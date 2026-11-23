@@ -79,7 +79,7 @@ theorem alg (A B : Type) [CommRing A] [CommRing B] [Algebra A B] [Algebra.Smooth
 
 theorem dense (X T : Scheme.{0}) (p : X ⟶ T) [Smooth p] (W : X.Opens)
     (hW : ∀ x : X, x ∈ closure ((W : Set X) ∩ p ⁻¹' {p x})) : IsSchemeTheoreticallyDominant W.ι := by
-  refine GlobalTheory.T.schemeTheoreticallyDominant_of_germ_injective X T p W fun U V hU hV e b hb => ?_
+  refine _root_.GlobalTheory.isSchemeTheoreticallyDominant_ι_of_germ_eq_zero_over_affine X T p W fun U V hU hV e b hb => ?_
   letI := (p.appLE V U e).hom.toAlgebra
   haveI : Algebra.Smooth Γ(T, V) Γ(X, U) := HasRingHomProperty.appLE @Smooth p ‹_› ⟨V, hV⟩ ⟨U, hU⟩ e
   exact alg Γ(T, V) Γ(X, U) b (GlobalTheory.T.mem_closure_annihilator_primes_inter_fibre X T p W U V hU hV e hW b hb)

@@ -64,7 +64,7 @@ variable {L : Type} [Field L] [NumberField L] [IsCMField L]
 local notation3 "L⁺" => maximalRealSubfield L
 
 theorem exists_sep (s : SplitPlace L) : ∃ e : 𝓞 L, Valued.v (s.i (e : L)) = 1 ∧
-    Valued.v (s.i (IsCMField.complexConj L (e : L))) < 1 := GlobalTheory.T.exists_integer_unit_split_place_conjugate_prime L s
+    Valued.v (s.i (IsCMField.complexConj L (e : L))) < 1 := _root_.GlobalTheory.SplitSep.exists_sep L s
 
 theorem mem_ALint_of_local (s : SplitPlace L) (e : 𝓞 L) (he : Valued.v (s.i (e : L)) = 1)
     (he' : Valued.v (s.i (IsCMField.complexConj L (e : L))) < 1) (z : AL L)

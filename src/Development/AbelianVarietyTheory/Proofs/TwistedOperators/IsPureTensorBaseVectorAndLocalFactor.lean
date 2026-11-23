@@ -59,9 +59,6 @@ namespace GlobalTheory.LocalPure
 
 variable {D : D7}
 
-theorem wAt_add {m n : ℕ} (p : Place D) (x y : Mx D m n) : wAt p (x + y) = wAt p x + wAt p y := by
-  rw [wAt_eq_smul, wAt_eq_smul, wAt_eq_smul, smul_add]
-
 theorem wAt_two {m n : ℕ} (p : Place D) (x : Mx D m n) : wAt p (2 • x) = 2 • wAt p x := by
   rw [wAt_eq_smul, wAt_eq_smul, smul_comm]
 
@@ -138,7 +135,7 @@ theorem ip_heis_sum (h : IsBase ψ θ S T sS sT ΛS ΛT f₀) (hμ : IsCovolOne 
     have hzP : ∀ p ∈ P, wAt p z = 0 := fun p hp => hz p (Finset.mem_insert_of_mem hp)
     have vyP : ∀ p ∈ P, VacAt ψ θ S T sS sT ΛS ΛT p y := fun p hp => vy p (Finset.mem_insert_of_mem hp)
     have hZ : wAt a (∑ p ∈ P, wAt p w + z) = 0 := by
-      rw [wAt_add, wAt_sum_of_notMem ha, hz a (Finset.mem_insert_self a P), add_zero]
+      rw [_root_.GlobalTheory.LatticeLocal.wAt_add, wAt_sum_of_notMem ha, hz a (Finset.mem_insert_self a P), add_zero]
     have hv : VacAt ψ θ S T sS sT ΛS ΛT a (heisO ψ S T (∑ p ∈ P, wAt p w + z) f₀) :=
       (GlobalTheory.T.fockVacua_localFactors_stable_heisenberg_away D ψ θ S T sS sT ΛS ΛT hψ (base_inf h) f₀ hb).1 a _ hZ (base_vacAt h a)
     rw [Finset.sum_insert ha, Finset.prod_insert ha, add_assoc,
@@ -177,7 +174,7 @@ theorem isPure_local (h : IsBase ψ θ S T sS sT ΛS ΛT f₀) (hμ : IsCovolOne
     have key : ∀ p ∈ P, wAt p (2 • u) = 0 := by
       intro p hp
       have e := congrArg (wAt p) hw
-      rw [wAt_add, wAt_sum_of_mem hp] at e
+      rw [_root_.GlobalTheory.LatticeLocal.wAt_add, wAt_sum_of_mem hp] at e
       calc wAt p (2 • u) = wAt p w + wAt p (2 • u) - wAt p w := by abel
         _ = wAt p w - wAt p w := by rw [← e]
         _ = 0 := sub_self _
@@ -196,7 +193,7 @@ theorem isPure_local (h : IsBase ψ θ S T sS sT ΛS ΛT f₀) (hμ : IsCovolOne
       have hpq : p ≠ q := fun e => hpP (e ▸ hqP)
       have ew : wAt p w = wAt p (2 • u) := by
         conv_lhs => rw [hw]
-        rw [wAt_add, wAt_sum_of_notMem hpP, zero_add]
+        rw [_root_.GlobalTheory.LatticeLocal.wAt_add, wAt_sum_of_notMem hpP, zero_add]
       show ipO μ 𝓕 (x p) (heisO ψ S T (wAt p w) f₀) = 1
       rw [hq p hpq, ew, wAt_two]
       have hh : heisO ψ S T (2 • wAt p u) f₀ = f₀ := by

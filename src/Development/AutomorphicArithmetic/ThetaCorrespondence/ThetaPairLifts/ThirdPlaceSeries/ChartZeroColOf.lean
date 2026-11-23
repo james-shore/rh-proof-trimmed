@@ -60,7 +60,7 @@ theorem chartZero_colOf_alt : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.toPre}
   obtain ⟨w, hw⟩ := hpin t
   have hstd : ∀ β, (J t).A.kb 0 β = TC.kStd X u (B.R.N 0) :=
     (hR t).std 0 (by have := B.R.two_le_m; omega)
-  have key := _root_.GlobalTheory.T.true_geometry_row_column_entry_alt W hW u a ha hTr row (_root_.GlobalTheory.Fam.columnChoiceOfCoefficients a J kom dd S s cV cK cP) t (J t).Ch₀ (J t).A (J t).ι w a.c₀ hw hstd
+  have key := _root_.GlobalTheory.Fam.zero_forms_alt W hW u a ha hTr row (_root_.GlobalTheory.Fam.columnChoiceOfCoefficients a J kom dd S s cV cK cP) t (J t).Ch₀ (J t).A (J t).ι w a.c₀ hw hstd
   have hone : ∀ i, Fintype.card (((J t).E i).Ch 0) = 1 ∧ ∀ α, ((J t).E i).wt 0 α = 1 := fun i =>
     let h := GlobalTheory.T.bottom_spherical_card_weight_index _ _ _ _ _ _ _ ((J t).E i)
     ⟨h.1, h.2.1⟩

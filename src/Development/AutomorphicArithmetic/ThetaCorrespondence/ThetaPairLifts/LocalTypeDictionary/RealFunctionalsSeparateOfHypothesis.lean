@@ -62,12 +62,12 @@ theorem real_functionals_separate_of_hypothesis
     (hSW : GlobalTheory.Published.SiegelWeilUnitaryConvergent)
     (realIn : Branch.RealInputE) :
     GlobalTheory.IndefiniteRowSideFullHecke.LevelPlusSubgroup.FunctionalsSeparate := by
-  have rowModels := _root_.GlobalTheory.T.exists_models_of_separating_data P
+  have rowModels := _root_.GlobalTheory.SepRows.separating_models_of_separating_data P
   have rowStep := _root_.GlobalTheory.T.separating_family_extend_by_twist P (_root_.GlobalTheory.T.exists_seesaw_pair_of_theta_data P) rowModels
   have rowTower := GlobalTheory.T.firstRowTower_multiplicitySpaces_of_arrow rowModels rowStep
   have conv := _root_.GlobalTheory.T.convergence_of_separating_family P rowTower
   have per := Branch.periodNe_of_eigen P.harishChandraModules P.casselmanWallach P.cuspRapidDecay realIn
-  have onto := _root_.GlobalTheory.T.twist_core_surjective P P.harishChandraFinite P.cuspRapidDecay P.discreteSeriesCover
+  have onto := _root_.GlobalTheory.Twist.CoreOntoAssembly.twist_core_surjective_of_local_components P P.harishChandraFinite P.cuspRapidDecay P.discreteSeriesCover
     P.harishChandraModules P.casselmanWallach hHowe P.weilRepresentationUnitaryPair
     P.weilSiegelFormulaUnitary hSW P.doublingMethod P.unramifiedDoublingGL
   have weak := GlobalTheory.T.rowSeparation_by_realFunctionals_of_chain_steps GlobalTheory.T.largeScaleSizes_imply_gapConditions (_root_.GlobalTheory.T.exists_separating_models P) (_root_.GlobalTheory.T.rapid_decay_of_separating_family P rowTower) per onto

@@ -50,10 +50,6 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.Co
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Base UpperTheory.V.Sd
 
-private theorem stab_open {G V : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [AddCommGroup V] [Module ℂ V]
-    (ρ : Representation ℂ G V) (v : V) (h : {k | ρ k v = v} ∈ nhds (1 : G)) : IsOpen {k | ρ k v = v} :=
-  _root_.UpperTheory.Reformulated.B.StabilizerIsOpen.stab_open ρ v h
-
 private theorem fin_mul {X ι : Type*} (S : Submodule ℂ (X → ℂ)) (f g h : ι → S) (e : ∀ i, (h i).1 = (f i).1 * (g i).1)
     (hf : FiniteDimensional ℂ (Submodule.span ℂ (Set.range f)))
     (hg : FiniteDimensional ℂ (Submodule.span ℂ (Set.range g))) :
@@ -79,7 +75,7 @@ theorem UpperTheory.V.Sd.Hm.mulaut :
     simp only [TR.rt_apply, Pi.mul_apply, e]
   refine ⟨fun γ g => ?_, ?_, ?_, hz, fun g => ?_⟩
   · rw [e, Pi.mul_apply, Pi.mul_apply, hφ.left, hψ.left]
-  · refine stab_open _ _ (Filter.mem_of_superset ((hφ.level.inter hψ.level).mem_nhds ⟨by simp, by simp⟩) fun k hk => ?_)
+  · refine _root_.UpperTheory.Reformulated.B.StabilizerIsOpen.stab_open _ _ (Filter.mem_of_superset ((hφ.level.inter hψ.level).mem_nhds ⟨by simp, by simp⟩) fun k hk => ?_)
     have h1 : TR.rt F a (finGL F a k) φ = φ := hk.1
     have h2 : TR.rt F a (finGL F a k) ψ = ψ := hk.2
     change TR.rt F a (finGL F a k) χ = χ

@@ -58,9 +58,9 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem satake_parameter_of_prime_to_level_alt : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → PhtCmp → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, _root_.GlobalTheory.HeightCounting.Up.FirstStageExists hL := by
   intro hP hC hL
-  have hE := _root_.GlobalTheory.T.isRayPrime_g_and_integral_range hP
-  have hR := _root_.GlobalTheory.T.depth_of_repOf_of_inputs hP
-  have hA := _root_.GlobalTheory.T.types_true_of_ray_class_alt hL hP.what₂.fin hP.what₂.berger hP.greenC hP.what₂.art hP.ray hP.what₂.cheb
+  have hE := _root_.GlobalTheory.ElemAtStates.elem_all_alt_alt hP
+  have hR := _root_.GlobalTheory.RowDepthTrue.rowDepth_allSt_alt_alt hP
+  have hA := _root_.GlobalTheory.HeightCounting.TopA.exists_sideA_alt hL hP.what₂.fin hP.what₂.berger hP.greenC hP.what₂.art hP.ray hP.what₂.cheb
   unfold _root_.GlobalTheory.HeightCounting.Up.FirstStageExists AllSt
   refine StepW.trans (StepW.and hE hR) (StepW.of_all ?_)
   intro K B f T w _ _ hq P x hLoc

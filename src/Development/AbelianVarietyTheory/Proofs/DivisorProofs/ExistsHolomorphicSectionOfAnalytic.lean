@@ -251,7 +251,7 @@ include hA hL in
 theorem weilIs_pow_eq {a b : ℕ} (hb : 0 < b) {x y : T ⟶ A} {c c' : Γ(T.left, ⊤)ˣ}
     (h : Out.WeilIs A L ((a * b : ℕ) : ℤ) x y c) (h' : Out.WeilIs A L a (x ^ b) (y ^ b) c') : c ^ b = c' := by
   have hG : Out.GlobalFnsSt := GlobalTheory.globalFns_holds
-  obtain ⟨t, ht⟩ := GlobalTheory.HodgeWeil.triv_theta GlobalTheory.CubeTop.cubeTheorem hA hL
+  obtain ⟨t, ht⟩ := GlobalTheory.HodgeWeil.triv_theta _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds hA hL
   have h₀ := CommPairing.weilIs_symm hL h
   have pw : ∀ j : ℕ, Out.WeilIs A L ((a * b : ℕ) : ℤ) (y ^ (j + 1)) x (c⁻¹ ^ (j + 1)) := fun j => by
     induction j with

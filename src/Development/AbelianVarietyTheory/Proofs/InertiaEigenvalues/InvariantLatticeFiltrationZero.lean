@@ -86,9 +86,7 @@ namespace GlobalTheory.BKGal.XiFil.ImageFil
 
 variable {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [Algebra ℤ_[l] O]
 
-theorem mul_mem_filO_zero (C : GlobalTheory.MemLoc.Core l) {x y : OB l O} (hx : x ∈ filO O C 0)
-    (hy : y ∈ filO O C 0) : x * y ∈ filO O C 0 := by
-  exact Bridge.mul_mem_filtration_zero C hx hy
+alias mul_mem_filO_zero := _root_.Bridge.mul_mem_filtration_zero
 
 theorem toOB_mem_filO (C : GlobalTheory.MemLoc.Core l) (x : OCr l O) : toOB l O x ∈ filO O C 0 := by
   induction x using TensorProduct.induction_on with

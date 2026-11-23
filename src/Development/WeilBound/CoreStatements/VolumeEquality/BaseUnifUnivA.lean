@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.BigZe
 import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.PUnipotentModulusMatrix
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
+import Development.WeilBound.CoreStatements.PlurisubharmonicCones.RiemannLatticeEigenProjections
 
 @[expose] public section
 
@@ -81,7 +82,7 @@ theorem exists_realExt {E : Type} [Field E] [NumberField E] [IsCMField E] {g : �
   classical
   haveI := R.free
   haveI := R.fin
-  have hspan : Submodule.span ℝ (Set.range R.P) = ⊤ := (SheetDecomposition.riemBasic E g Λ Unit R).2.1
+  have hspan : Submodule.span ℝ (Set.range R.P) = ⊤ := (_root_.LevelTowerAlt.riemann_lattice_eigen_projections E g Λ Unit R).2.1
   let b : Module.Basis (Fin (2 * g)) ℤ Λ := Module.finBasisOfFinrankEq ℤ Λ R.rank
   let v : Fin (2 * g) → Fin g → ℂ := fun k => R.P (b k)
   have hsum : ∀ (Q : Λ →+ (Fin g → ℂ)) (x : Λ), Q x = ∑ k, (b.repr x k : ℝ) • Q (b k) := by

@@ -202,7 +202,7 @@ theorem movesCompose_of_parts (hA : HfIntRec) (hB : SelfDualRec) (D : D7) : move
   set u : D.host.E := (algebraMap (𝓞 D.host.E) D.host.E (cO D π) / algebraMap (𝓞 D.host.E) D.host.E π) ^ (j + j)
     with hu
   have hc1 : D.host.conj (algebraMap (𝓞 D.host.E) D.host.E (cO D π)) = algebraMap (𝓞 D.host.E) D.host.E π :=
-    conj_conj' D _
+    _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.CU.conj_conj D _
   have hc2 : D.host.conj (algebraMap (𝓞 D.host.E) D.host.E π) = algebraMap (𝓞 D.host.E) D.host.E (cO D π) := rfl
   have hu1 : u * D.host.conj u = 1 := by
     rw [hu, map_pow, map_div₀, hc1, hc2, ← mul_pow]

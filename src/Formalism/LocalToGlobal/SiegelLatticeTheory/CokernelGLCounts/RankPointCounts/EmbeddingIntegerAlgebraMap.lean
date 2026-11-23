@@ -75,12 +75,7 @@ theorem iE_mem_O_iff_D (p : PlF D) (x : D.host.E) :
       ∃ s : 𝓞 D.host.F, s ∉ p.asIdeal ∧ IsIntegral ℤ (algebraMap D.host.F D.host.E (s : D.host.F) * x) :=
   iE_mem_O_iff (D.s.atP p) conjF_invol conjF_fix x
 
-theorem baseChange_smul₂ (p : PlF D) (c : D.host.E) (x : (VS D).V) :
-    baseChange₂ D p (c • x : (VS D).V) = ((D.s.atP p).ιE c • (baseChange₂ D p x : Vp D p) : Vp D p) := by
-  funext i
-  show (D.s.atP p).ιE ((VS D).frame.repr (c • x) i) =
-    (D.s.atP p).ιE c * (D.s.atP p).ιE ((VS D).frame.repr x i)
-  rw [LinearEquiv.map_smul, Finsupp.smul_apply, smul_eq_mul, map_mul]
+alias baseChange_smul₂ := _root_.Formalism.L2.SG.TermLoc.baseChange_smul₂
 
 def chat (p : PlF D) (w : (VS D).V →ₗ[D.host.E] D.host.E) (v : Vp D p) : (D.s.atP p).Ep :=
   ∑ j, (D.s.atP p).ιE (w ((VS D).frame j)) * v j

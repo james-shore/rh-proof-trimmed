@@ -256,7 +256,7 @@ theorem tw_facts (ε : Eps l) (k : Bool) (n : ℕ) (hn : IsNilpotent (l : (base 
     (m c : ℕ) (hc : ¬ l ^ m ∣ c) :
     ∃ w ξ : (base l).Acr n, (base l).cris n ε.μ = ((base l).cris n (ε.qk m ^ c) - 1) * w * ξ ∧ IsNilpotent ξ ∧
       ∀ r, Ideal.span {ξ} * fil (DD k (base l) n) (ρ r) ≤ fil (DD k (base l) n) (ρ (r + 1)) := by
-  obtain ⟨-, hq, hξ, hμ, -⟩ := GlobalTheory.T.epsilon_cyclotomic_element_properties ε
+  obtain ⟨-, hq, hξ, hμ, -⟩ := _root_.GlobalTheory.CompanionTheory.EpsFacts.eps_facts ε
   have hl : (l : ℕ) ≠ 0 := (Fact.out : l.Prime).ne_zero
   have hI : ∀ x ∈ JJ k (base l) n, IsNilpotent x := fun x hx =>
     GlobalTheory.CompanionTheory.ThickHom.isNilpotent_of_mem (DD k (base l) n) hl hn hx

@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnipotentComposition.Development
 
 @[expose] public section
 
@@ -96,7 +97,7 @@ theorem beta_lin_rdQ (D : B.RealPlaceData k r Wp Wq) (s : ℂ) (F0 F1 F2 F' : B.
   refine integral_congr_ae ?_
   filter_upwards [Formalism.FourierDecayAlt.P.B7.ae_mem_good_set_or_weight_zero D] with q hq
   rcases hq with hq | hw
-  · rw [← mul_sub, ← inner_sub_right, ← hsVec_sub_rd, ← h q hq, hsVec_smul_rd, inner_smul_right]
+  · rw [← mul_sub, ← inner_sub_right, ← hsVec_sub_rd, ← h q hq, _root_.PI.UnitaryGroupMassFormula.UsCompose.hsVec_smul, inner_smul_right]
     ring
   · simp [hw]
 
@@ -154,10 +155,8 @@ def RhR (L : R.LevelData A r) (st : Fr.Start A) (Y : ℂ) : A :=
 def RhvR (L : R.LevelData A r) (st : Fr.Start A) (Y : ℂ) : A :=
   L.Dr * (st.QQ Y 0 1 * L.Avr Y + st.QQ Y 1 1 * L.Bvr Y)
 
-def GiR (L : R.LevelData A r) : A := L.Dri * L.Drbi * L.GGi
-
 def thR (L : R.LevelData A r) (st : Fr.Start A) (Y : ℂ) : Fin 4 → A :=
-  ![L.Ahatv (Y + 1), GiR L * st.xi Y * RhR L st Y, GiR L * st.xi (Y + 1) * RhvR L st (Y + 1), L.Ahat Y]
+  ![L.Ahatv (Y + 1), _root_.Formalism.FourierDecayAlt.TL.gI L * st.xi Y * RhR L st Y, _root_.Formalism.FourierDecayAlt.TL.gI L * st.xi (Y + 1) * RhvR L st (Y + 1), L.Ahat Y]
 
 end Alg
 

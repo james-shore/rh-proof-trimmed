@@ -56,11 +56,11 @@ namespace GlobalTheory.Mem.LiteralAutomorphy
 theorem localLanglandsGL_and_purity_at_member_alt : _root_.GlobalTheory.Mem.LiteralAutomorphy.LocalRepresentationTheoryHypothesesAlt → _root_.GlobalTheory.Mem.LiteralAutomorphy.GlobalAutomorphicGaloisHypotheses' → _root_.UpperTheory.Zero.LLC.RecTExists ∧ _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt := by
   intro L A
   have hL : _root_.UpperTheory.Zero.LLC.RecTExists :=
-    _root_.GlobalTheory.T.recTExists_of_published_inputs L.llc L.conv L.dzi L.brauer L.chev A.art L.exh L.multi L.cos L.zel L.geo L.bz
+    _root_.UpperTheory.One.M.New.llOf_alt L.llc L.conv L.dzi L.brauer L.chev A.art L.exh L.multi L.cos L.zel L.geo L.bz
   refine ⟨hL, ?_⟩
   have hG : GlobalTheory.GLq.Green := GlobalTheory.GreenBridge.green_of_regular L.green
   exact
-    { what₂ := _root_.GlobalTheory.T.published_inputs_combined_alt_alt L.bz L.bern L.geo L.disj L.mp A.js A.fin L.temp L.seg A.gk A.gal A.car
+    { what₂ := _root_.GlobalTheory.NRows.HypothesesBridge.locComp_of_isRc_classMapD_cenLoc L.bz L.bern L.geo L.disj L.mp A.js A.fin L.temp L.seg A.gk A.gal A.car
         A.pur A.coh A.art A.chA A.chW A.berger GlobalTheory.Published.chebotarevDegreeOne' hL
       decay := A.decay
       hc := A.hc

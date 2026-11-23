@@ -62,34 +62,6 @@ section Lim
 
 variable {C : Type} [Field C] {V : VF C} {n : ℕ}
 
-private theorem exists_ge_character_germs (x : C) : ∃ B : ℝ, V.Ge B x := by
-  by_cases h : V.v x = ⊤
-  · exact ⟨0, show ((0 : ℝ) : WithTop ℝ) ≤ V.v x by rw [h]; exact le_top⟩
-  · obtain ⟨r, hr⟩ := WithTop.ne_top_iff_exists.1 h
-    exact ⟨r, show ((r : ℝ) : WithTop ℝ) ≤ V.v x from le_of_eq hr⟩
-
-private theorem tends_mul' {s t : ℕ → C} {x y : C} (hs : Tends V s x) (ht : Tends V t y) :
-    Tends V (fun k => s k * t k) (x * y) := by
-  obtain ⟨Bx, hBx⟩ := exists_ge_character_germs (V := V) x
-  obtain ⟨By, hBy⟩ := exists_ge_character_germs (V := V) y
-  unfold Tends at hs ht ⊢
-  intro w
-  obtain ⟨n1, hn1⟩ := ht By
-  obtain ⟨n2, hn2⟩ := ht (w - Bx)
-  obtain ⟨n3, hn3⟩ := hs (w - By)
-  refine ⟨max n1 (max n2 n3), fun k hk => ?_⟩
-  have h1 : n1 ≤ k := le_trans (le_max_left _ _) hk
-  have h2 : n2 ≤ k := le_trans (le_trans (le_max_left _ _) (le_max_right _ _)) hk
-  have h3 : n3 ≤ k := le_trans (le_trans (le_max_right _ _) (le_max_right _ _)) hk
-  have ht' : V.Ge By (t k) := by
-    have e : t k = y + -(y - t k) := by ring
-    rw [e]
-    exact hBy.add (hn1 k h1).neg
-  show V.Ge w (x * y - s k * t k)
-  have e : x * y - s k * t k = x * (y - t k) + (x - s k) * t k := by ring
-  rw [e]
-  exact VF.Ge.add ((hBx.mul (hn2 k h2)).mono (by linarith)) (((hn3 k h3).mul ht').mono (by linarith))
-
 private theorem tends_finset_sum {ι : Type} (S : Finset ι) {f : ι → ℕ → C} {g : ι → C}
     (h : ∀ i ∈ S, Tends V (f i) (g i)) : Tends V (fun k => ∑ i ∈ S, f i k) (∑ i ∈ S, g i) := by
   unfold Tends at h ⊢
@@ -105,7 +77,7 @@ theorem tends_mul {s t : ℕ → Matrix (Fin n) (Fin n) C} {x y : Matrix (Fin n)
     Tends V (fun k => (s k * t k) i j) ((x * y) i j) := by
   simp only [Matrix.mul_apply]
   exact tends_finset_sum (f := fun m k => s k i m * t k m j) (g := fun m => x i m * y m j) Finset.univ
-    (fun m _ => tends_mul' (hs i m) (ht m j))
+    (fun m _ => _root_.Formalism.L2.FormalSeriesBounds.RowTiePE0.Tends.mul (hs i m) (ht m j))
 
 theorem tends_pow {s : ℕ → Matrix (Fin n) (Fin n) C} {x : Matrix (Fin n) (Fin n) C}
     (hs : ∀ i j, Tends V (fun k => s k i j) (x i j)) (m : ℕ) (i j : Fin n) :
@@ -163,25 +135,6 @@ private theorem ge_inv_l_mul_of_ge_add_one {C : Type} [Field C] {V : VF C} {w : 
     rw [← WithTop.coe_one, ← WithTop.coe_add, WithTop.coe_le_coe] at h2
     rw [WithTop.coe_le_coe]
     linarith
-
-private theorem eq_of_tends_of_tends {C : Type} [Field C] {V : VF C} {u : ℕ → C} {a c : C}
-    (ha : Tends V u a) (hc : Tends V u c) : a = c := by
-  by_contra hne
-  have hne' : V.v (a - c) ≠ ⊤ := by
-    rw [Ne, AddValuation.top_iff]
-    exact sub_ne_zero.2 hne
-  obtain ⟨r, hr⟩ := WithTop.ne_top_iff_exists.1 hne'
-  unfold Tends at ha hc
-  obtain ⟨n1, hn1⟩ := ha (r + 1)
-  obtain ⟨n2, hn2⟩ := hc (r + 1)
-  have h := (hn1 (max n1 n2) (le_max_left _ _)).add (hn2 (max n1 n2) (le_max_right _ _)).neg
-  have e : a - u (max n1 n2) + -(c - u (max n1 n2)) = a - c := by ring
-  rw [e] at h
-  have h' : ((r + 1 : ℝ) : WithTop ℝ) ≤ (r : WithTop ℝ) := by
-    rw [hr]
-    exact h
-  rw [WithTop.coe_le_coe] at h'
-  linarith
 
 private theorem ge_add_matrix_mul_entry_of_ge {C : Type} [Field C] {V : VF C} {n : ℕ} {P R : Matrix (Fin n) (Fin n) C}
     {a b : ℝ} (hP : ∀ i j, V.Ge a (P i j)) (hR : ∀ i j, V.Ge b (R i j)) :
@@ -333,7 +286,7 @@ theorem teich_holds : TeichSt := by
     ext i j
     have h1 := tends_pow hTt (V.l ^ d) i j
     simp only [← hsS] at h1
-    exact eq_of_tends_of_tends h1 (tends_shift (hTt i j))
+    exact _root_.Formalism.L2.FormalSeriesBounds.RowTiePE0.Tends.unique h1 (tends_shift (hTt i j))
   have hbs : ∀ k, (V.l : C)⁻¹ • (b - s k) ∈ A := by
     intro k
     induction k with

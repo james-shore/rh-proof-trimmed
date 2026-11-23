@@ -41,4 +41,4 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem GZeroLogBound : PI.GZeroLogBound.Target := PI.GZeroLogBound.UnitaryGroupMassFormula.target
+alias GZeroLogBound := _root_.PI.GZeroLogBound.UnitaryGroupMassFormula.target

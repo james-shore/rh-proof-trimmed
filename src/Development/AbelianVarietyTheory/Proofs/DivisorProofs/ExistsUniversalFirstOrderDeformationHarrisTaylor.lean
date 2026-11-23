@@ -63,7 +63,7 @@ theorem GlobalTheory.HTUniv.main : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheor
       (n : GlobalTheory.UPel.HT.ObjMap o'' o (spMap (TrivSqZeroExt.map c).toRingHom)),
       ∀ x ∈ Fil o₀.A, IsFilLift m''.cart x (∑ j, c (Pi.single j 1) • f j x) := by
     intro s' o'' m'' c n x hx
-    have h := GlobalTheory.T.harrisTaylor_hodgeFiltration_naturality p D R b N hN hNp k t o₀ _ _ o m c s' o'' m'' n x _ (hm x hx)
+    have h := _root_.GlobalTheory.HTUniv.Nat.main p D R b N hN hNp k t o₀ _ _ o m c s' o'' m'' n x _ (hm x hx)
     rw [GlobalTheory.HTUniv.comp_pi] at h
     exact h
   obtain ⟨c₀, hc₀, hc₀u⟩ := huniq o' m'

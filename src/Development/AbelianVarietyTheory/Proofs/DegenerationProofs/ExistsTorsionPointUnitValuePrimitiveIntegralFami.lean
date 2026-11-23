@@ -178,7 +178,7 @@ theorem exists_unit_value : LL → TwistBCSpanStatement → TWM.VRatioGtStatemen
     by_contra h'
     exact h ⟨e, c, he, hc, h'⟩
   obtain ⟨e, c, he, hc, hc0⟩ := hex
-  obtain ⟨w₁, hw₁, hv₁, hsum⟩ := GlobalTheory.T.section_value_at_torsionPoint_eq_sum_terms hL hT hVR hTW hUU V hcpl ϖ hϖ D Q hQ F v hv A G hG U w₀ ρ hN _ hj p _ hx e he
+  obtain ⟨w₁, hw₁, hv₁, hsum⟩ := _root_.GlobalTheory.UT.TorsionValue.value_at_torsion hL hT hVR hTW hUU V hcpl ϖ hϖ D Q hQ F v hv A G hG U w₀ ρ hN _ hj p _ hx e he
   have hv₁ : GenV hϖ hv w₁ 0 := by
     have e0 : ((Q p.y : ℚ) / ((n ^ (i + m + 2) : ℕ) : ℚ) ^ 2) = 0 := by
       rw [show p.y = 0 from by simp only [p, qkMk], QForm.Q_zero hϖ D hQ]; simp

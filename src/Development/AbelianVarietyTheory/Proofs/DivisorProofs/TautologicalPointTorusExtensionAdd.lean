@@ -52,9 +52,6 @@ noncomputable section
 
 namespace GlobalTheory.TInj
 
-theorem toUnit_left_eq {S : Scheme.{0}} (X : Over S) : (toUnit X).left = X.hom := by
-  simpa using Over.w (toUnit X)
-
 theorem prod_zpow_add {F : Type} [Field F] {I : Type} [Fintype I] (x : I → F) (p q : I → ℤ)
     (hp : ∏ i, x i ^ p i ≠ 0) (hq : ∏ i, x i ^ q i ≠ 0) :
     ∏ i, x i ^ (p i + q i) = (∏ i, x i ^ p i) * ∏ i, x i ^ q i := by
@@ -71,7 +68,7 @@ theorem prod_zpow_add {F : Type} [Field F] {I : Type} [Fintype I] (x : I → F) 
 theorem tautPt_isAdd : ∀ {o W : Type} [CommRing o] [CommRing W] [IsLocalRing W] (T : TautBase o W) {I : Type} [Fintype I] (ε : I → LinearMap.BilinForm ℤ (Fin T.r → ℤ)) (n : ℕ) (V : Type) [CommRing V] [IsDomain V] (D : DegPre V) (ω : W →+* V) (s : I → V) (e : D.X ≃+ (Fin T.r → ℤ)) (β : D.P.A.left ⟶ T.B.left) (ββ : (G2 D.P.A).left ⟶ (G2 T.B).left) (w : LB.Iso (abelian₂ D.P.A D.P.L) ((abelian₂ T.B T.M.L).pull ββ)), D.TauBimult → From T ω s ε n D e β ββ w → ∀ (F : Type) [Field F] [Algebra (FractionRing V) F] (a a' : Fin T.r → ℤ) (g g' g'' : GtPtF D F), TautPt T ω s ε n D e β ββ w F a g → TautPt T ω s ε n D e β ββ w F a' g' → TautPt T ω s ε n D e β ββ w F (a + a') g'' → g.IsAdd g' g'' := by
   intro o W _ _ _ T I _ ε n V _ _ D ω s e β ββ w hB hF F _ _ a a' g g' g'' hg hg' hg''
   obtain ⟨ρ, hρ⟩ : ∃ ρ : Over.mk ((TF (R := V) F).hom ≫ spMap ω) ⟶ 𝟙_ (Over (Sp W)),
-      ρ.left = (TF (R := V) F).hom ≫ spMap ω := ⟨toUnit _, toUnit_left_eq _⟩
+      ρ.left = (TF (R := V) F).hom ≫ spMap ω := ⟨toUnit _, _root_.GlobalTheory.ObjPull.toUnit_left' _⟩
   have hpt : ∀ (x : TF (R := V) F ⟶ D.P.A) (b : Fin T.r → ℤ),
       x.left ≫ β = (TF (R := V) F).hom ≫ spMap ω ≫ (T.c₀ b).left → x.left ≫ β = (ρ ≫ T.c₀ b).left :=
     fun x b h => by rw [h, Over.comp_left, hρ, Category.assoc]
@@ -105,8 +102,8 @@ theorem tautPt_isAdd : ∀ {o W : Type} [CommRing o] [CommRing W] [IsLocalRing W
     rw [hkk, unitOn, unitOn, unitOn, map_mul, map_mul]
 
   have hyc : (DegPre.cF D F χ).left ≫ β = (ρ ≫ T.c₀ ((n : ℤ) • e χ)).left := by
-    rw [Over.comp_left, Category.assoc, hF.2.2.2.1 χ, Over.comp_left, hρ, toUnit_left_eq, Category.assoc]
-  have wa := (GlobalTheory.T.mumfordBundleIso_additive_cubicalStructure T ε n V D ω s e β ββ w hB hF (TF (R := V) F) g.b g'.b (DegPre.cF D F χ)
+    rw [Over.comp_left, Category.assoc, hF.2.2.2.1 χ, Over.comp_left, hρ, _root_.GlobalTheory.ObjPull.toUnit_left', Category.assoc]
+  have wa := (_root_.GlobalTheory.TInj.lamVal_add_cub T ε n V D ω s e β ββ w hB hF (TF (R := V) F) g.b g'.b (DegPre.cF D F χ)
     (ρ ≫ T.c₀ a) (ρ ≫ T.c₀ a') (ρ ≫ T.c₀ ((n : ℤ) • e χ)) (hpt _ _ hg.1) (hpt _ _ hg'.1) hyc y J₀ J hJ₀ hJ).2
   simp only [id] at wa
 

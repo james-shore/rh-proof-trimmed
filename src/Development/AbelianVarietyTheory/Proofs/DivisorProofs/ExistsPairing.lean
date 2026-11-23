@@ -89,7 +89,7 @@ theorem sections_triv {s : S ⟶ Sp R} (o : Obj b N s) (c : ℕ) (h : 𝟙_ (Ove
   have clsPow : GlobalTheory.CechPic.cls (Hecke.lbPow o.P c) hQ = c • GlobalTheory.CechPic.cls o.P hP := by
     refine (GlobalTheory.CechPic.cls_linComb hP (K := Fin c) (fun _ => 𝟙 _) (fun _ => 1) hQ).trans ?_
     simp only [GlobalTheory.CechPic.pull_id, one_smul, Finset.sum_const, Finset.card_univ, Fintype.card_fin]
-  have hadd := (GlobalTheory.AbDual.additive_of_cube GlobalTheory.CubeTop.cubeTheorem o.ab o.ab hP o.rig₁ o.rig₂).1
+  have hadd := (GlobalTheory.AbDual.additive_of_cube _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds o.ab o.ab hP o.rig₁ o.rig₂).1
   have evcCls : ∀ {M : LB (o.A ⊗ o.A).left} (hM : M.IsLB) {Y : Over S} (a t : Y ⟶ o.A),
       GlobalTheory.AbDual.evc hM a t = GlobalTheory.CechPic.pull (lift a t).left (GlobalTheory.CechPic.cls M hM) := by
     intro M hM Y a t
@@ -126,7 +126,7 @@ theorem exists_quot {s : S ⟶ Sp R} (o : Obj b N s) (c : ℕ) (hc : ∃ e : ℕ
     have := GlobalTheory.GaloisCartDesc.epi_of_isGaloisCover hgal
     exact (Over.forget S).epi_of_epi_map this
   have kill : ∀ h ∈ H, h ≫ ψ = 1 := fun h hh => comp_eq_one_of_transl ψ h (hgal.inv ⟨h, hh⟩)
-  choose actf hactf using fun c' : D.O => GlobalTheory.T.exists_descent_endomorphism_quotient_group_scheme S o.A A' H ψ hψ hgal (o.act.act c') (o.act.hom c') (stab c')
+  choose actf hactf using fun c' : D.O => _root_.GlobalTheory.UPel.HT.Hecke.exists_desc_endo S o.A A' H ψ hψ hgal (o.act.act c') (o.act.hom c') (stab c')
   let act' : OActN D.O A' :=
     { act := actf
       hom := fun c' => (hactf c').1
@@ -138,12 +138,12 @@ theorem exists_quot {s : S ⟶ Sp R} (o : Obj b N s) (c : ℕ) (hc : ∃ e : ℕ
       add := fun b' c' => by
         rw [← cancel_epi ψ, (hactf _).2, o.act.add, mul_comp, comp_mul, (hactf _).2, (hactf _).2] }
   have hcomp : ∀ c' : D.O, o.act.act c' ≫ ψ = ψ ≫ act'.act c' := fun c' => ((hactf c').2).symm
-  obtain ⟨u, hu, hcoc⟩ := GlobalTheory.T.exists_linearisation_birigidifiedPower_isotropicSections S o.A o.ab o.P o.isLB o.rig₁ o.rig₂ c H
+  obtain ⟨u, hu, hcoc⟩ := _root_.GlobalTheory.IsoLin.exists_linearisation_isotropic S o.A o.ab o.P o.isLB o.rig₁ o.rig₂ c H
     (fun h hh => (sections_triv o c h (hpow h hh)).1) (fun h hh => (sections_triv o c h (hpow h hh)).2) hiso
   have hGC := GlobalTheory.T.isGaloisCover_prod_sq2_of_isGaloisCover S o.A A' H ψ hψ hgal
   obtain ⟨P₀, hP₀, w₀⟩ := GlobalTheory.LinDescent.exists_descent_of_isGaloisCover _ _ (sq2 ψ) _ _
     (Hecke.lbPow o.P c) hGC (DVR.linComb_isLB _ o.isLB _ _) u hu hcoc
-  obtain ⟨P', hP', r1, r2, w⟩ := GlobalTheory.T.exists_birigidified_bundle_of_descent p D R b N S s o A' ψ hψ _ P₀ hP₀ w₀
+  obtain ⟨P', hP', r1, r2, w⟩ := _root_.GlobalTheory.UPel.HT.Hecke.exists_birigidified_of_descent p D R b N S s o A' ψ hψ _ P₀ hP₀ w₀
   have hc1 : 1 ≤ c := by
     obtain ⟨e, rfl⟩ := hc
     exact pow_pos (Fact.out : p.Prime).pos e
@@ -168,7 +168,7 @@ theorem exists_quot {s : S ⟶ Sp R} (o : Obj b N s) (c : ℕ) (hc : ∃ e : ℕ
         show o.eta (c' • x) ≫ ψ = (o.eta x ≫ ψ) ≫ act'.act c'
         rw [o.eta_lin, Category.assoc, hcomp, Category.assoc]
       eta_ker := fun x => by rw [o.eta_ker, one_comp]
-      geom := GlobalTheory.T.exists_tateSimilitude_quotient_by_pGroup_sections p D R b N S s o c hc H A' ψ hA' hψ hgal hpow act' hcomp P' hP' r1 r2 w }
+      geom := _root_.GlobalTheory.UPel.HT.Hecke.TateQuot.exists_tateIsoO_quot p D R b N S s o c hc H A' ψ hA' hψ hgal hpow act' hcomp P' hP' r1 r2 w }
   have hmk : IsMonHom (𝟙 o.A ^ c) := GlobalTheory.AbLaw.MulN.isMonHom_mulA o.A c
   obtain ⟨ψ', hψ'h, hψ'⟩ := GlobalTheory.T.exists_descent_hom_quotient_galois_group_scheme S o.A A' o.A H ψ hψ hgal (𝟙 o.A ^ c) hmk
     (fun h hh => by rw [MonObj.comp_pow, Category.comp_id, hpow h hh])
@@ -202,7 +202,7 @@ theorem exists_pairing {s : S ⟶ Sp R} (o : Obj b N s) (c : ℕ) (hc : ∃ e : 
     obtain ⟨e, rfl⟩ := hc
     rw [Nat.cast_pow]
     exact pow_ne_zero _ hp
-  obtain ⟨e, he, hl, hr⟩ := GlobalTheory.T.exists_bimultiplicative_weilPairing_torsion_axes S o.A o.P o.ab o.isLB κ x c hcκ
+  obtain ⟨e, he, hl, hr⟩ := _root_.GlobalTheory.TorsionCommPairing.exists_pairing S o.A o.P o.ab o.isLB κ x c hcκ
   have hG2 : IsAbelianScheme (G2 o.A) := AbelianSchemeGerms.isAbelianScheme_tensor o.A o.A o.ab o.ab
   have hinj : Function.Injective (unitOn (R := κ)) := by
     refine Units.map_injective (f := (Scheme.ΓSpecIso (CommRingCat.of κ)).inv.hom.toMonoidHom) ?_
@@ -216,14 +216,14 @@ theorem exists_pairing {s : S ⟶ Sp R} (o : Obj b N s) (c : ℕ) (hc : ∃ e : 
     haveI := o.act.hom a
     rw [← MonObj.pow_comp, hg, MonObj.one_comp]
   refine ⟨e, he, hl, hr, fun a g g' hg hg' => hinj ?_, fun g g' hg hg' => hinj ?_, fun g hg h => ?_⟩
-  · exact GlobalTheory.T.commutatorPairing_adjoint_eq_of_pullback_iso S o.A o.P o.ab o.isLB _ _ (o.act.hom a) (o.act.hom _) (o.rosati a) c _ g g' _ _
+  · exact _root_.GlobalTheory.AdjPairing.weilIs_adj_eq S o.A o.P o.ab o.isLB _ _ (o.act.hom a) (o.act.hom _) (o.rosati a) c _ g g' _ _
       (hval _ _ (hact a g hg) hg') (hval _ _ hg (hact _ g' hg'))
   · have h1 := GlobalTheory.CommPairing.weilIs_symm o.isLB (hval g' g hg' hg)
     have h2 := GlobalTheory.SwapPairing.weilIs_swap_eq S o.A o.P o.ab o.isLB o.symm c _ g g' _ _ h1 (hval g g' hg hg')
     rw [hmul, hone, ← h2]
     exact inv_mul_cancel _
   · obtain ⟨e₀, he₀, hker⟩ := o.kerP
-    have h1 := hker _ g (GlobalTheory.T.lineBundle_slice_trivial_of_weilPairing_one_torsion S o.A o.P o.ab o.isLB o.rig₁ o.rig₂ κ x c hcκ g hg (fun g' hg' => by
+    have h1 := hker _ g (_root_.GlobalTheory.WeilKernel.triv_slice_of_forall_weilIs_one S o.A o.P o.ab o.isLB o.rig₁ o.rig₂ κ x c hcκ g hg (fun g' hg' => by
       have := hval g g' hg hg'
       rwa [h g' hg', hone] at this))
     have hco : e₀.Coprime c := by
@@ -238,9 +238,9 @@ theorem max_geom {k : Type} [Field k] [IsAlgClosed k] {s : Sp k ⟶ Sp R} (o : O
     (κ : Type) [Field κ] [IsAlgClosed κ] (x : Sp κ ⟶ Sp k) (g : Over.mk x ⟶ o.A) (hg : g ^ c = 1)
     (ho : ∀ h ∈ H, Out.WeilIs (G2 o.A) (Hecke.lbPow o.P c) 1 (lift g 1 : Over.mk x ⟶ G2 o.A)
         (lift 1 (toUnit (Over.mk x) ≫ h)) 1) : ∃ h ∈ H, g = toUnit (Over.mk x) ≫ h := by
-  obtain ⟨g₀, hg₀, rfl⟩ := (GlobalTheory.T.finite_torsion_and_descent_abelianVariety_algClosed k o.A o.ab c hc).2 κ x g hg
+  obtain ⟨g₀, hg₀, rfl⟩ := (_root_.GlobalTheory.AbTorsionGeomDescent.finite_torsion_and_descent k o.A o.ab c hc).2 κ x g hg
   refine ⟨g₀, hmax g₀ hg₀ fun h hh => ?_, rfl⟩
-  obtain ⟨e, he, -, -⟩ := GlobalTheory.T.exists_bimultiplicative_weilPairing_torsion_axes (Sp k) o.A o.P o.ab o.isLB k (𝟙 _) c hc
+  obtain ⟨e, he, -, -⟩ := _root_.GlobalTheory.TorsionCommPairing.exists_pairing (Sp k) o.A o.P o.ab o.isLB k (𝟙 _) c hc
   have hG2 : IsAbelianScheme (G2 o.A) := AbelianSchemeGerms.isAbelianScheme_tensor o.A o.A o.ab o.ab
   have hQ : (Hecke.lbPow o.P c).IsLB := LB.isLB_linComb o.isLB _ _
   obtain ⟨u, hu⟩ : ∃ u : Γ((𝟙_ (Over (Sp k))).left, ⊤)ˣ, Out.WeilIs (G2 o.A) (Hecke.lbPow o.P c) 1

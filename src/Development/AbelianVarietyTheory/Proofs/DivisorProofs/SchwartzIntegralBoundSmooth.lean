@@ -59,16 +59,6 @@ namespace GlobalTheory.JSW.MirCinf.SecFamInf
 
 variable {E : Type} [Field E] [NumberField E] {n : ℕ}
 
-theorem sum_norm_mul_le' {α : Type} [NormedRing α] (a b : Matrix (Fin n) (Fin n) α) :
-    ∑ i, ∑ j, ‖(a * b) i j‖ ≤ (∑ i, ∑ j, ‖a i j‖) * ∑ i, ∑ j, ‖b i j‖ := by
-  first
-  | exact @_root_.GlobalTheory.EntryNormProductBound.sum_norm_entries_mul_le
-  | exact _root_.GlobalTheory.EntryNormProductBound.sum_norm_entries_mul_le
-  | (apply _root_.GlobalTheory.EntryNormProductBound.sum_norm_entries_mul_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EntryNormProductBound.sum_norm_entries_mul_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EntryNormProductBound.sum_norm_entries_mul_le <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.EntryNormProductBound.sum_norm_entries_mul_le ..)
-
 theorem norm_sandCLMInf_le (A B : Matrix (Fin n) (Fin n) (Cinf E)) :
     ‖sandCLMInf A B‖ ≤ (n : ℝ) ^ 2 * (∑ i, ∑ j, ‖A i j‖) * (∑ i, ∑ j, ‖B i j‖) := by
   have hA : 0 ≤ ∑ i, ∑ j, ‖A i j‖ := by positivity
@@ -84,8 +74,8 @@ theorem norm_sandCLMInf_le (A B : Matrix (Fin n) (Fin n) (Cinf E)) :
         (Finset.mem_univ j)).trans
       (Finset.single_le_sum (f := fun i => ∑ j, ‖(A * Matrix.of x * B) i j‖)
         (fun _ _ => Finset.sum_nonneg fun _ _ => norm_nonneg _) (Finset.mem_univ i))
-    have e2 := sum_norm_mul_le' (A * Matrix.of x) B
-    have e3 := sum_norm_mul_le' A (Matrix.of x)
+    have e2 := _root_.GlobalTheory.EntryNormProductBound.sum_norm_entries_mul_le (A * Matrix.of x) B
+    have e3 := _root_.GlobalTheory.EntryNormProductBound.sum_norm_entries_mul_le A (Matrix.of x)
     have e4 : ∑ i, ∑ j, ‖(Matrix.of x) i j‖ ≤ (n : ℝ) ^ 2 * ‖x‖ := by
       calc ∑ i, ∑ j, ‖(Matrix.of x) i j‖ ≤ ∑ _i : Fin n, ∑ _j : Fin n, ‖x‖ :=
             Finset.sum_le_sum fun i _ => Finset.sum_le_sum fun j _ =>

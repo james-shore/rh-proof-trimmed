@@ -84,7 +84,7 @@ structure Core0Alt (D : D7) : Prop where
 theorem core0_of_local_duality_inputs : _root_.GlobalTheory.NRows.ThetaLocalInputsAlt → GlobalTheory.Published.HarishChandraFinite → GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Published.DepthZeroSupport → LocalFiniteness → LocalTateDuality → LocalEulerChar →
     ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (D : D7), _root_.GlobalTheory.NRows.LinkedInputs hL D → JumpsCard D.nd D.naut → _root_.UpperTheory.GalS.Core0Alt D := by
   intro hP hc hd hs hF hT hE hL D I hJ
-  have R : _root_.GlobalTheory.NRows.PointConditions' D := _root_.GlobalTheory.T.theta_conditions_of_inputs_of_jumpsCard hP hc hd hL D I hJ
+  have R : _root_.GlobalTheory.NRows.PointConditions' D := _root_.GlobalTheory.RowsAll.locComp_of_isRc_classMapD_cenLoc hP hc hd hL D I hJ
   have at' : _root_.Formalism.MainNotions.SumRepresentations.AdmAtAlt D := I.admAt R.a R.b
   have p1 : _root_.Formalism.MainNotions.SumRepresentations.provisionFirst D := I.Conclusion1 (_root_.UpperTheory.GalS.Parts.main_alt_alt D) R.a R.b
   have g3 : _root_.UpperTheory.GalS.AdmissibleResidualTameEigenvalues D :=
@@ -92,8 +92,8 @@ theorem core0_of_local_duality_inputs : _root_.GlobalTheory.NRows.ThetaLocalInpu
   have rb : ResidualIrreducibleRankR D :=
     _root_.Formalism.MainNotions.AdmissibleThreePrime.residual_irreducible_of_theorem_three_prime_alt D ⟨R.a.tieLab, g3⟩ R.a.a5 (GlobalTheory.BrauerNesbittIrr.litBNIrr _) R.c.rho R.c.dz
   have adm : _root_.Formalism.MainNotions.SumRepresentations.AdmissibleDatum D := ⟨at', (residualIrreducibility_forms_equivalent D).2 rb, I.isot⟩
-  have z : SumRepresentations.ConclusionZ D := (SumRepresentations.multiplicity_statement_iff_reduced D I.isot p1.2.2).2 (_root_.GlobalTheory.T.reducedMultiplicity_of_inputs hL D I R)
-  have wt : GlobalTheory.IndefiniteRowSideFullHecke.JumpDictionary.WeightParam D := _root_.GlobalTheory.T.weight_param_of_character_choice hL D I.P
+  have z : SumRepresentations.ConclusionZ D := (SumRepresentations.multiplicity_statement_iff_reduced D I.isot p1.2.2).2 (_root_.GlobalTheory.PtSt.reducedMultiplicity_of_rows' hL D I R)
+  have wt : GlobalTheory.IndefiniteRowSideFullHecke.JumpDictionary.WeightParam D := _root_.GlobalTheory.weightParam_of_pin_alt hL D I.P
   have bl : GlobalTheory.IndefiniteRowSideFullHecke.JumpDictionary.BlockCharParam D := GlobalTheory.BlockCharInf.main D I.P.cf I.P.C I.P.tp I.P.chr
   have rm : ∀ i : D.nd.Loc, Nonempty (RowMod D I.P.rep (D.nd.j i)) := fun i => by
     have hj := D.nd.j_range i
@@ -110,7 +110,7 @@ theorem core0_of_local_duality_inputs : _root_.GlobalTheory.NRows.ThetaLocalInpu
       weight := wt
       block := bl
       muUnr := _root_.GlobalTheory.MuUnrTie.main_alt_alt hP.fin hL D I.P
-      depthG := _root_.GlobalTheory.T.depthZeroG_of_rowMod hP hs hL D I.P rm
+      depthG := _root_.GlobalTheory.DepthZeroType.depthZero_tame_alt hP hs hL D I.P rm
       bc := I.bc
       lam := I.lam }
 theorem galois_preconditions_at_mem : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → _root_.GlobalTheory.NRows.GeometricGaloisRepCompatibility → SerN → GlobalTheory.Published.DepthZeroSupport → LocalFiniteness →
@@ -118,7 +118,7 @@ theorem galois_preconditions_at_mem : _root_.GlobalTheory.HeightCounting.Up.Publ
     _root_.GlobalTheory.HeightCounting.Up.MemberAtLayerPoint hL fun _ _ _ _ w Z _ _ _ nch _ _ => _root_.UpperTheory.GalC.GaloisPreconditions (w.D Z) nch := by
   intro prn prx ser dzs lf ltd lec hL
   have hA := _root_.GlobalTheory.HeightCounting.Up.Model.AtMem.and_z (_root_.GlobalTheory.HeightCounting.Up.Model.AtMem.and_z (_root_.GlobalTheory.NRows.AtLayer.exists_inputs_pinAt_jumpsCard_at_mem prn prx hL)
-    (_root_.GlobalTheory.HeightCounting.Up.TripFin.finiteTriples_satisfy_condition_alt prn ser hL)) (_root_.GlobalTheory.T.goodFTAll_at_mem_of_inputs prn hL)
+    (_root_.GlobalTheory.HeightCounting.Up.TripFin.finiteTriples_satisfy_condition_alt prn ser hL)) (_root_.GlobalTheory.GoodMem.goodFTAll_at_members_of_depthZero prn hL)
   refine EvG.imp hA fun _ _ _ _ _ hK => large₂.imp hK fun B f T _ H kp w Z Wt p0 t nch n xd c hne hrx cp => ?_
   obtain ⟨⟨⟨I, -, jumps⟩, trip⟩, good⟩ := H kp w Z Wt p0 t nch n xd c hne hrx cp
   obtain ⟨ne⟩ := hne

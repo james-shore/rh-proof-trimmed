@@ -69,7 +69,7 @@ theorem GlobalTheory.LogPole.exists_coord_logDet : ∀ (E : Type) [Field E] [Num
     simpa only [LB.resG_resG] using h'
   obtain ⟨hreg, m, a, J, hRsp, hIa⟩ := GlobalTheory.T.snc_stalk_regularParameters_from_affineOpen TF.Y.X (LogKS.boundary TF.Y) TF.snc U x₀ hx₀
   haveI := TF.smooth
-  obtain ⟨hfp, hfree, hfin, hrank⟩ := GlobalTheory.T.smooth_affineOpen_finitePresentation_stalkKaehler_free_rank c.F TF.Y.X TF.Y.s Dw.dim U x₀ hx₀
+  obtain ⟨hfp, hfree, hfin, hrank⟩ := _root_.GlobalTheory.SmoothStalk.smooth_stalk c.F TF.Y.X TF.Y.s Dw.dim U x₀ hx₀
   letI : Algebra c.F Γ(TF.Y.X, U.1) := (algX TF.Y.s U.1).toAlgebra
   letI : Algebra Γ(TF.Y.X, U.1) (TF.Y.X.presheaf.stalk x₀) :=
     TopCat.Presheaf.algebra_section_stalk TF.Y.X.presheaf ⟨x₀, hx₀⟩
@@ -106,9 +106,9 @@ theorem GlobalTheory.LogPole.exists_coord_logDet : ∀ (E : Type) [Field E] [Num
     change ((LogKS.boundary TF.Y).ideal U).map (algebraMap Γ(TF.Y.X, U.1) (TF.Y.X.presheaf.stalk x₀)) =
       Ideal.span {algebraMap Γ(TF.Y.X, U.1) (TF.Y.X.presheaf.stalk x₀) (logDet (fun j => (b j).1) x)}
     exact hI.trans ((Ideal.span_singleton_mul_left_unit u.isUnit _).symm.trans (congrArg (fun y => Ideal.span {y}) hu.symm))
-  have h5 := GlobalTheory.T.idealSheaf_eq_span_on_basicOpens_of_stalk_principal TF.Y.X (LogKS.boundary TF.Y) U x₀ hx₀ _ inferInstance hd
+  have h5 := _root_.GlobalTheory.IdealSpread.ideal_eq_span_of_germ TF.Y.X (LogKS.boundary TF.Y) U x₀ hx₀ _ inferInstance hd
   obtain ⟨s₂, hs₂, hid⟩ := h5
-  have h2 := GlobalTheory.T.exists_basicOpen_topFormFrame_of_stalkKaehlerBasis c.F TF.Y.X TF.Y.s Dw.dim U x₀ hx₀ x ⟨bs, hbs⟩
+  have h2 := _root_.GlobalTheory.FrameSpread.exists_basicOpen_isFrame_dOn c.F TF.Y.X TF.Y.s Dw.dim U x₀ hx₀ x ⟨bs, hbs⟩
   obtain ⟨s₁, hs₁, hfr⟩ := h2
   have hle₁ : TF.Y.X.basicOpen (s₁ * s₂) ≤ TF.Y.X.basicOpen s₁ := by
     rw [Scheme.basicOpen_mul]; exact inf_le_left

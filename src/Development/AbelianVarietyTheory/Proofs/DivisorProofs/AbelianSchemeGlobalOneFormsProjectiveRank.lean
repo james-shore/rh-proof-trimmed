@@ -133,7 +133,7 @@ theorem globForm_FP : ∀ (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj A] (
   obtain ⟨hloc, hsm⟩ := smooth_of_openImm A.hom g hg (affPt A.hom U) (affPt_w A.hom U)
   have hrk := rankAtStalk_kaehler_of_locally g hloc q
   let e : Glob1 (OAff A.hom) →ₗ[R] Ω[B⁄R] := (LinearMap.proj T).comp (Glob1 (OAff A.hom)).subtype
-  have he : IsBaseChange B e := GlobalTheory.T.isBaseChange_compatibleGlobalOneForms R _ (OAff A.hom) hF h0 T e (fun _ ↦ rfl)
+  have he : IsBaseChange B e := _root_.GlobalTheory.AbCoh.isBaseChange_glob1 R _ (OAff A.hom) hF h0 T e (fun _ ↦ rfl)
   have h1 := Module.rankAtStalk_baseChange (R := R) (M := Glob1 (OAff A.hom)) (S := B) q
   rw [Module.rankAtStalk_eq_of_equiv he.equiv] at h1
   rw [← hqp]

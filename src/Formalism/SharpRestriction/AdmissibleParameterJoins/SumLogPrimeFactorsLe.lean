@@ -100,7 +100,7 @@ theorem mu_smul_ideal (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι �
     simp only [zl, AddSubgroup.toIntSubmodule_toAddSubgroup]
     exact AddSubgroup.relIndex_map_map_of_injective _ _ hinj
   have htw := DualPolygon.twist_index M hM 𝔟 h𝔟
-  have hcM := Formalism.F.covolPos _ (zl ρ M) hlatM.2
+  have hcM := _root_.Formalism.F.covol_pos' _ (zl ρ M) hlatM.2
   have hr : 0 < rkK M := rkK_pos b M hM0
   have hn : 0 < finrank ℚ K := Module.finrank_pos
   have hN : 0 < Ideal.absNorm 𝔟 := Nat.pos_of_ne_zero (fun h => h𝔟 (Ideal.absNorm_eq_zero_iff.1 h))

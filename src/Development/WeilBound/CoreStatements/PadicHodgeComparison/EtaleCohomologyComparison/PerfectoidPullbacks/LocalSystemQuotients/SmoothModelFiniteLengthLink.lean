@@ -67,8 +67,8 @@ private lemma isHecke_div_and_resEtaPow_div {b : Base} {L : b.Fun} (Q : ObjectPr
     Module.Finite b.R (HO Q j) := by
   have hfin := GlobalTheory.T.filtered_module_finite_of_graded (sFil Q) (fun r r' h T => (isFil Q).anti h T) (d + 1) (fun r _ j' => hgr r j') j
   rw [Nat.cast_add, Nat.cast_one] at hfin
-  have ha : ∀ T, (sFil Q 0).S T = ⊤ := fun T => (isFil Q).top 0 le_rfl T
-  have hb := GlobalTheory.T.square_pull_bijective_of_acyclic (sFil Q 0) (sFil Q (↑d + 1)) ha ?hv j
+  have ha : ∀ T, (sFil Q 0).S T = ⊤ := fun T => (_root_.GlobalTheory.CompanionTheory.DPFil.isFil_sFil Q).top 0 le_rfl T
+  have hb := _root_.GlobalTheory.CompanionTheory.LengthOneCochainExactness.pull_toSq_bijective (sFil Q 0) (sFil Q (↑d + 1)) ha ?hv j
   · exact Module.Finite.of_surjective (hM := hfin) (LinearEquiv.ofBijective _ hb).symm.toLinearMap
       (LinearEquiv.ofBijective _ hb).symm.surjective
   · exact hvan
@@ -77,8 +77,8 @@ theorem wittCohomology_finite_length {l : ℕ} [Fact l.Prime] {k : Type} [Field 
     {X : Scheme.{0}} (q : X ⟶ Spec (CommRingCat.of O)) [IsProper q] [Smooth q] (ρ : O →+* k) (j : ℕ) :
     IsFiniteLength (WittVector l k) (CH.H (Wc.OM l (B.schFn q) ρ 1) j) := by
   obtain ⟨U⟩ := (CrystallineSemistableComparison.Pb.cov_ex q).1 inferInstance
-  refine GlobalTheory.T.finite_length_witt_cohomology q ρ j ?_
-  have hvan := GlobalTheory.T.witt_level_one_vanish_above_dim q ρ U (Finset.univ.sup U.d) (fun α => Finset.le_sup (Finset.mem_univ α))
+  refine _root_.GlobalTheory.CompanionTheory.LevelOne.finiteLength_level_one q ρ j ?_
+  have hvan := _root_.GlobalTheory.CompanionTheory.WittLevel.Van.witt_level_one_filtration_vanish q ρ U (Finset.univ.sup U.d) (fun α => Finset.le_sup (Finset.mem_univ α))
   have hfin := isHecke_div_and_resEtaPow_div _ _ hvan ?hN ?hgr j
   · refine Module.Finite.of_surjective (hM := hfin)
       (LinearEquiv.ofBijective ((incl ?hle).o.pull j) ?hb).symm.toLinearMap (LinearEquiv.surjective _)

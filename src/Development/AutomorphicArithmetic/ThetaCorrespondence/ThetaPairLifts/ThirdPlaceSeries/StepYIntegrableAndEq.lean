@@ -61,7 +61,7 @@ theorem GlobalTheory.BaseChain.stepY_integrable_and_eq_alt {D : D7} {L : SizeDat
     hW.bot.hyp.2.2.2.1.chain.ioY t j (by omega)
   have hfin : ∀ PP : (_root_.GlobalTheory.Fam.pk_z W).Pg, Finite (kP PP.1) := fun PP => Ideal.finiteQuotientOfFreeOfNeBot _ PP.1.ne_bot
   haveI : Fintype (_root_.GlobalTheory.Fam.complexLevelStructure W).H := Fintype.ofFinite _
-  obtain ⟨κ, hκ, hsum⟩ := _root_.GlobalTheory.T.exists_level_elements_step_vector_alt W hW t j hj
+  obtain ⟨κ, hκ, hsum⟩ := _root_.GlobalTheory.FockVecSum.fockVec_eq_sum_alt W hW t j hj
   rw [hsum v hv Q]
   simp_rw [GlobalTheory.BaseChain.thetaKO_sum_smul_act]
   have hint : ∀ p ∈ (Finset.univ : Finset (_root_.GlobalTheory.Fam.complexLevelStructure W).H), IntegrableOn (fun h => (levChi (Yc D j) ((_root_.GlobalTheory.Fam.pk_z W).βY j) ((_root_.GlobalTheory.Fam.pk_z W).datYt t j (_root_.GlobalTheory.Fam.complexLevelStructure W)) (κ p))⁻¹ * thetaKO ((_root_.GlobalTheory.Fam.pk_z W).ωY t j) (g * κ p) h ((_root_.GlobalTheory.Fam.pk_z W).ptY t j Q) * F.1 x h) ((_root_.GlobalTheory.Fam.pk_z W).fdY t (j + 1)) ((_root_.GlobalTheory.Fam.pk_z W).νY t (j + 1)) := by
@@ -78,7 +78,7 @@ theorem GlobalTheory.BaseChain.stepY_integrable_and_eq_alt {D : D7} {L : SizeDat
     rw [integral_const_mul]
     have h1 := hio.eq ⟨F.1, hF⟩ Q x (g * κ p)
     simp only [Lift.liftInt] at h1
-    rw [h1, _root_.GlobalTheory.T.chain_projection_level_character_alt W hW t j hj ⟨F.1, hF⟩ F.2 (κ p) (hκ p) Q x g]
+    rw [h1, _root_.GlobalTheory.StepLevelP.io_levChi_alt W hW t j hj ⟨F.1, hF⟩ F.2 (κ p) (hκ p) Q x g]
     rw [← mul_assoc, inv_mul_cancel₀ (Lev.levChi_ne_zero (V := Yc D j) (β := (_root_.GlobalTheory.Fam.pk_z W).βY j) ((_root_.GlobalTheory.Fam.pk_z W).datYt t j (_root_.GlobalTheory.Fam.complexLevelStructure W)) (κ p)), one_mul]
   rw [Finset.sum_congr rfl e, Finset.sum_const, Finset.card_univ]
   simp only [Nat.card_eq_fintype_card, nsmul_eq_mul]

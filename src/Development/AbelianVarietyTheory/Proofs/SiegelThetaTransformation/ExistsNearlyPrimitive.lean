@@ -87,16 +87,7 @@ theorem exists_reduce (E : Type) [Field E] [NumberField E] :
       exact_mod_cast h1
     exact mul_le_of_le_one_left (norm_nonneg _) this
 
-theorem exists_approx (E : Type) [Field E] [NumberField E] :
-    ∃ M : ℕ, ∀ x : E, ∃ (m : ℕ) (y : E), 0 < m ∧ m ≤ M ∧ IsIntegral ℤ y ∧
-      ‖canonicalEmbedding E (m * x - y)‖ < 1 := by
-  first
-  | exact @_root_.GlobalTheory.SimultaneousDiophantineApprox.exists_bounded_multiple_near_integer
-  | exact _root_.GlobalTheory.SimultaneousDiophantineApprox.exists_bounded_multiple_near_integer
-  | (apply _root_.GlobalTheory.SimultaneousDiophantineApprox.exists_bounded_multiple_near_integer <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SimultaneousDiophantineApprox.exists_bounded_multiple_near_integer <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SimultaneousDiophantineApprox.exists_bounded_multiple_near_integer <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SimultaneousDiophantineApprox.exists_bounded_multiple_near_integer ..)
+alias exists_approx := _root_.GlobalTheory.SimultaneousDiophantineApprox.exists_bounded_multiple_near_integer
 
 theorem exists_min {E : Type} [Field E] [NumberField E] (S : Set E) (d : ℤ) (hd : d ≠ 0)
     (hS : ∀ x ∈ S, IsIntegral ℤ ((d : E) * x)) (h1 : (1 : E) ∈ S) :

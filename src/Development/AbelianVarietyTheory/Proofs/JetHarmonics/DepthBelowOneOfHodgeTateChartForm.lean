@@ -58,6 +58,6 @@ namespace GlobalTheory.PowGerm
 
 theorem lemmaBT_of_hodgeTate_chart : (∀ (p : ℕ) [Fact p.Prime], ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF.HTFSt p) → LemmaBT := fun h =>
   lemmaBT_of_characters GlobalTheory.firstFiveLaws.1 GlobalTheory.firstFiveLaws.2.1 GlobalTheory.firstFiveLaws.2.2.2.1
-    GlobalTheory.twistBaseChange_and_valuation_statements.1 (GlobalTheory.T.exists_characters_boundedMinors_of_hodgeTateChartBound h)
+    GlobalTheory.twistBaseChange_and_valuation_statements.1 (_root_.GlobalTheory.ChartCharacter.characters_exist_of_chartBound h)
 
 end GlobalTheory.PowGerm

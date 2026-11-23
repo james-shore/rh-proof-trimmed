@@ -61,7 +61,7 @@ theorem hz_bound (hD : CayleyBlocksInvertible) (hG : GlobCore ε c sL ρ G Pp Γ
     ‖hz Ht sec s₀ z Q x‖ ≤ C * (‖hz Ht sec s₀ (σ₁ : ℂ) 1 x‖ + ‖hz Ht sec s₀ (σ₂ : ℂ) 1 x‖) := by
   rw [norm_hz hD hG, norm_hz hD hG, norm_hz hD hG, Complex.ofReal_re, Complex.ofReal_re]
   have hx := Ht_pos hD hG x
-  have hr := rpow_le_add hx (show σ₁ - s₀.re ≤ z.re - s₀.re by linarith) (show z.re - s₀.re ≤ σ₂ - s₀.re by linarith)
+  have hr := _root_.GlobalTheory.Eis.rpow_le_add hx (show σ₁ - s₀.re ≤ z.re - s₀.re by linarith) (show z.re - s₀.re ≤ σ₂ - s₀.re by linarith)
   calc (Ht x : ℝ) ^ (z.re - s₀.re) * ‖sec Q x‖
       ≤ ((Ht x : ℝ) ^ (σ₁ - s₀.re) + (Ht x : ℝ) ^ (σ₂ - s₀.re)) * (C * ‖sec 1 x‖) :=
         mul_le_mul hr (hC x) (norm_nonneg _) (by positivity)

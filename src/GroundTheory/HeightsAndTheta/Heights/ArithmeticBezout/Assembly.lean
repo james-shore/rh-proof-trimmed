@@ -103,14 +103,11 @@ theorem ChowFormBaseChange.full : ChowFormBaseChange.Statement :=
           TrdegBaseAlgebraic.proof)
         (IncIdealNeBotDim.proof IncIdealDim.full))))
 
-theorem BaseChangeAvoid.full : BaseChangeAvoid.Statement :=
-  BaseChangeAvoid.proof
+alias BaseChangeAvoid.full := _root_.GroundTheory.Heights₂.Heights.BaseChangeAvoid.proof
 
-theorem ProjPrimeHasPoint.full : ProjPrimeHasPoint.Statement :=
-  ProjPrimeHasPoint.proof
+alias ProjPrimeHasPoint.full := _root_.GroundTheory.Heights₂.Heights.ProjPrimeHasPoint.proof
 
-theorem ChowFormSectionVertical.full : ChowFormSectionVertical.Statement :=
-  Vertical.ChowFormSectionVertical.full
+alias ChowFormSectionVertical.full := _root_.GroundTheory.Heights₂.Heights.Vertical.ChowFormSectionVertical.full
 
 theorem ConeMassOfFibre.full : ConeMassOfFibre.Statement :=
   (ConeMassOfFibre.of_open

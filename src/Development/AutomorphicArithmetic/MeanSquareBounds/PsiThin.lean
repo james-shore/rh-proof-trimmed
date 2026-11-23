@@ -53,24 +53,6 @@ open Finset Formalism.HermitianLattices.ZeroFreeRegionGL2 Formalism.HermitianLat
 
 namespace QH
 
-private theorem pt_factorsThrough_inv {N : ℕ} {χ : DirichletCharacter ℂ N} {d : ℕ}
-    (h : χ.FactorsThrough d) : χ⁻¹.FactorsThrough d := by
-  obtain ⟨hd, χ0, rfl⟩ := h
-  exact ⟨hd, χ0⁻¹, (map_inv (DirichletCharacter.changeLevel hd) χ0).symm⟩
-
-private theorem pt_isPrimitive_inv {N : ℕ} {χ : DirichletCharacter ℂ N} (h : χ.IsPrimitive) :
-    χ⁻¹.IsPrimitive := by
-  have hs : DirichletCharacter.conductorSet χ⁻¹ = DirichletCharacter.conductorSet χ := by
-    ext d
-    constructor
-    · intro hd
-      have := pt_factorsThrough_inv (χ := χ⁻¹) hd
-      rwa [inv_inv] at this
-    · intro hd
-      exact pt_factorsThrough_inv hd
-  unfold DirichletCharacter.IsPrimitive DirichletCharacter.conductor at *
-  rw [hs]; exact h
-
 private theorem pt_zero_symm {N : ℕ} [NeZero N] {χ : DirichletCharacter ℂ N} (hχ : χ.IsPrimitive) {ρ : ℂ}
     (h0 : 0 < ρ.re) (h1 : ρ.re < 1) (hz : DirichletCharacter.LFunction χ ρ = 0) :
     DirichletCharacter.LFunction χ⁻¹ (1 - ρ) = 0 := by
@@ -91,7 +73,7 @@ private theorem pt_zero_symm {N : ℕ} [NeZero N] {χ : DirichletCharacter ℂ N
     · exact h
     · exact absurd h hg
   rw [DirichletCharacter.LFunction_eq_completed_div_gammaFactor χ⁻¹ (1 - ρ) (Or.inl hρ1),
-    (pt_isPrimitive_inv hχ).completedLFunction_one_sub ρ, inv_inv, hc]
+    (_root_.PI.EF.isPrimitive_inv hχ).completedLFunction_one_sub ρ, inv_inv, hc]
   simp
 
 private theorem pt_rpow_le {u v r k : ℝ} (hu0 : 0 < u) (hv : v = Real.log u) (hv0 : 0 ≤ v) (hr : r ≤ 1 - k) :

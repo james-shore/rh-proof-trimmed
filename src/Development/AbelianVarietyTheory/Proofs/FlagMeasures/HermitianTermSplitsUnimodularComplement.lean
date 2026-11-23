@@ -83,21 +83,6 @@ theorem eq_zero_of_forall_hf (L : LocE F E) {n : ℕ} {Hm : Matrix (Fin n) (Fin 
 
 
 omit [IsNonarchimedeanLocalField F] [CharZero F] in
-theorem cj_mem (L : LocE F E) {x : E} (hx : x ∈ L.O) : L.cj x ∈ L.O := by
-  rw [L.O_def] at hx ⊢
-  exact hx.map ((L.cj : E →ₐ[F] E).restrictScalars 𝒪[F])
-
-omit [IsNonarchimedeanLocalField F] [CharZero F] in
-theorem hf_add_left (L : LocE F E) {n : ℕ} (Hm : Matrix (Fin n) (Fin n) E) (x x' y : Fin n → E) :
-    hf L Hm (x + x') y = hf L Hm x y + hf L Hm x' y := by
-  simp [hf, add_mul, Finset.sum_add_distrib]
-
-omit [IsNonarchimedeanLocalField F] [CharZero F] in
-theorem hf_add_right (L : LocE F E) {n : ℕ} (Hm : Matrix (Fin n) (Fin n) E) (x y y' : Fin n → E) :
-    hf L Hm x (y + y') = hf L Hm x y + hf L Hm x y' := by
-  simp [hf, mul_add, Finset.sum_add_distrib]
-
-omit [IsNonarchimedeanLocalField F] [CharZero F] in
 theorem hf_sum_right {L : LocE F E} {r k : ℕ} (S : Frames L r k) {ι : Type} [Fintype ι] (x : S.V)
     (c : ι → E) (g : ι → S.V) :
     hf L S.Hm x (∑ l, c l • g l) = ∑ l, hf L S.Hm x (g l) * L.cj (c l) := by
@@ -164,7 +149,7 @@ theorem main : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [I
       obtain ⟨c, rfl⟩ := (Submodule.mem_span_range_iff_exists_fun E).1 (hWY hw)
       rw [hf_sum_right S]
       simp [hzb]
-    rw [hf_add_right, e1, e2, add_zero]
+    rw [_root_.GlobalTheory.HL.FrameTri.hf_add_right, e1, e2, add_zero]
   set Gb : Matrix (Fin (k - 1)) (Fin (k - 1)) E := Matrix.of fun i j => hf L S.Hm (b i) (b j) with hGb
   have : Module.Finite F E := Module.finite_of_finrank_pos (by rw [L.rank]; norm_num)
   have : IsArtinianRing E := IsArtinianRing.of_finite F E
@@ -205,7 +190,7 @@ theorem main : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [I
     have e1 : hf L S.Hm m y = 0 := by
       rw [FrameBasic.hf_conj L S.herm.1 m y, hyW m (hMME m hm), map_zero]
     have e2 : ∑ i, o i • b i = ∑ i, (o i : E) • b i := rfl
-    rw [hf_add_left, e1, zero_add, e2, UnimodTerm.hf_sum_left S]
+    rw [_root_.GlobalTheory.HL.Eichler.hf_add_l, e1, zero_add, e2, UnimodTerm.hf_sum_left S]
     simp only [hyb, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true]
     exact (o j).2
   obtain ⟨Q, hQ⟩ := (Submodule.mem_span_range_iff_exists_fun L.O).1 ((hspan y hyW).1 hyΛ)
@@ -215,7 +200,7 @@ theorem main : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [I
       simp only [sub_smul, Finset.sum_sub_distrib]
       rw [← hy, hQ', sub_self])
     exact sub_eq_zero.1 (h0 l)
-  have h1 := cj_mem L (Q l).2
+  have h1 := _root_.GlobalTheory.UnramOrder.cj_mem L (Q l).2
   rw [← hcoef, L.cj_cj] at h1
   exact h1
 

@@ -57,11 +57,6 @@ variable {D : D7}
 theorem inv_app (a : GV D) (x : (VS D).V) : a⁻¹ (a x) = x := by
   show (a⁻¹ * a) x = x; rw [inv_mul_cancel]; rfl
 
-theorem xsp_eq {T : D.host.E} (P : LFlag (D.sp.Y 0) D.R.rS T) : Xsp P = Xflag P D.R.rS := by
-  show Submodule.span _ _ = Submodule.span _ _
-  congr 1
-  ext v; simp [Fin.is_lt]
-
 theorem xflag_mono {T : D.host.E} (P : LFlag (D.sp.Y 0) D.R.rS T) {i j : ℕ} (hij : i ≤ j) : Xflag P i ≤ Xflag P j := by
   show Submodule.span _ _ ≤ Submodule.span _ _
   apply Submodule.span_mono
@@ -122,7 +117,7 @@ theorem xsp_map_of_tri {T T' : D.host.E} (P : LFlag (D.sp.Y 0) D.R.rS T) (Q : LF
     (Xsp P).map (φ : (VS D).V →ₗ[D.host.E] (VS D).V) = Xsp Q ∧
       ∀ j, (Xflag P j).map (φ : (VS D).V →ₗ[D.host.E] (VS D).V) ≤ Xflag Q j := by
   refine ⟨?_, tri_fwd P Q φ h⟩
-  rw [xsp_eq, xsp_eq]
+  rw [_root_.Formalism.L2.SG.NGCut.NormalVectorPairings.X_eq_Xflag, _root_.Formalism.L2.SG.NGCut.NormalVectorPairings.X_eq_Xflag]
   exact le_antisymm (tri_fwd P Q φ h _) (tri_rev P Q φ h _)
 
 theorem tri_inv {T T' : D.host.E} (P : LFlag (D.sp.Y 0) D.R.rS T) (Q : LFlag (D.sp.Y 0) D.R.rS T') (φ : GV D)
@@ -152,7 +147,7 @@ theorem nrat_tri {T : D.host.E} (P : LFlag (D.sp.Y 0) D.R.rS T) (n : GV D) (hn :
         simp [P.fl.z_orth j]
       simpa using this hx
     have := hn.2.2 _ hz
-    rw [xsp_eq] at this
+    rw [_root_.Formalism.L2.SG.NGCut.NormalVectorPairings.X_eq_Xflag] at this
     simpa using this
   · rw [frame_cs]
     exact hn.2.1 i.1 _ (e_mem_xflag P i (Nat.lt_succ_self _))

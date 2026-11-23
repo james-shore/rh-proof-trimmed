@@ -267,7 +267,7 @@ theorem const_le (m mK : Measure (UpqT p q)) (hm : Formalism.IndefR.Lev.IsMinf m
           exact le_rfl
         · rw [Set.indicator_of_notMem hk]; exact zero_le
       · rw [Set.indicator_of_notMem hB]; exact zero_le
-    refine le_trans (le_of_eq ?_) (ENNReal.div_le_div hmE (GlobalTheory.T.lam_ballU_le_ofReal_pow p q lam hlam r hr0))
+    refine le_trans (le_of_eq ?_) (ENNReal.div_le_div hmE (_root_.GlobalTheory.CartanInt.LamBall.lam_ballU_le p q lam hlam r hr0))
     rw [← ENNReal.ofReal_div_of_pos (hpos _ (by positivity))]
     congr 1
     have e1 : (18 / 5 * r / a) ^ ((p + q) ^ 2) =

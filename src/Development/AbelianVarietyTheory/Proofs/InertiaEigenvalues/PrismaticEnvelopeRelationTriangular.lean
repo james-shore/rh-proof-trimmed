@@ -123,7 +123,7 @@ theorem shape (D : Delta l A) (J : Ideal A) (d p : A) (hlJ : (l : A) ∈ J) (hd 
       MvPolynomial.supported_mono (Set.Iio_subset_Iio (Nat.le_succ k)) hs
     refine ⟨D.φ e, phi_mem D J hlJ he, ?_, MvPolynomial.X k ^ l * MvPolynomial.C (D.δ e) + (polyDelta D).δ s -
       cc l (MvPolynomial.C e * MvPolynomial.X k) s, ?_, ?_⟩
-    · rw [GlobalTheory.T.deltaRingStructure_delta_frobenius_comm]; exact heu.map D.φ
+    · rw [_root_.GlobalTheory.BSP.Delta.δ_φ_comm]; exact heu.map D.φ
     · exact Subalgebra.sub_mem _ (Subalgebra.add_mem _ (Subalgebra.mul_mem _ (Subalgebra.pow_mem _ hX _)
         (C_mem_supp _ _)) hδ) (cc_mem_sub _ (Subalgebra.mul_mem _ (C_mem_supp _ _) hX) hs')
     · rw [Function.iterate_succ_apply', hk, step_eq]

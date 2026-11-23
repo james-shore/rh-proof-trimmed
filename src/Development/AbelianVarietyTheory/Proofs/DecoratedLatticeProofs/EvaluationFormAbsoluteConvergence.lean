@@ -111,15 +111,6 @@ theorem norm_theta_add (hψ : IsStdChar D ψ (-1)) {S T : HSp D} {f : WO S T →
   have h := hf.quasi δ w
   rw [show f ((incA D).toAddMonoidHom.mapMatrix δ + w) = _ from h, norm_mul, hψ.1.2.1, one_mul]
 
-theorem yZero_mem (S : HSp D) (ρ : ℕ) (z : Fin S.rank → D.host.E) : yZero S ρ z ∈ ratMx D S.rank ρ := by
-  refine neg_mem (mem_ratMx.2 ⟨vecMulVec z fun i => if i.1 + 1 = ρ then 1 else 0, ?_⟩)
-  funext i j
-  change incA D (z i * if j.1 + 1 = ρ then 1 else 0) = incA D (z i) * ell D ρ j
-  unfold ell
-  split_ifs
-  · rw [mul_one, mul_one]
-  · rw [mul_zero, mul_zero, map_zero]
-
 theorem incAdj_mem {T T₀ : HSp D} {ρ : ℕ} (d : HypDec T T₀ ρ) (S : HSp D) {y : Mx D S.rank ρ} (hy : y ∈ ratMx D S.rank ρ) :
     d.incAdj S y ∈ ratMx D T.rank S.rank :=
   ratMx_mul (rat_mem _) (ratMx_smul _ (ratMx_mul (ratMx_adj hy) (rat_mem _)))
@@ -143,7 +134,7 @@ theorem enorm_val_le {Ψ : WO B.V J.W → ℂ} (hΨ : IsThetaFunO ψ B.V J.W Ψ)
     (heisO ψ B.V₀ J.W (J.d.incAdj B.V₀ (yZero B.V₀ ρ (vecB B.o B.ζ)))
       (heisO ψ B.V₀ J.W (J.d.inc0 B.V₀ 0) (B.d.mixS J.W ψ s.vS.μ s.vS.𝓕 Ψ x))) 0‖ₑ = _
   rw [J.d.integrandT_eq, map_zero, add_zero, add_comm, ← ofReal_norm, ← ofReal_norm, norm_mul, s.weil.std.1.2.1, one_mul,
-    norm_theta_add s.weil.std hf (incAdj_mem J.d _ (yZero_mem _ _ _))]
+    norm_theta_add s.weil.std hf (incAdj_mem J.d _ (_root_.GlobalTheory.Unf.EvalInv.yZero_rat _ _ _))]
   rfl
 
 variable {om' : Om B.V₀ J.W} (hom : IsWeilDatumO ψ B.V₀ J.W s.χV s.χW om')
@@ -186,7 +177,7 @@ theorem val_ratR {Ψ : WO B.V J.W → ℂ} (hΨ : IsThetaFunO ψ B.V J.W Ψ) {γ
   rw [map_one, Prod.mk_one_one, map_one, Prod.mk_one_one, map_one, Module.End.one_apply] at h
   have ht := val_theta s hΨ (xZero J.d ⬝ u.1.1)
   have hp : ptT J.d B.V₀ (yZero B.V₀ ρ (vecB B.o B.ζ)) n ∈ ratMx D J.W₀.rank B.V₀.rank :=
-    ratMx_mul (rat_mem _) (ratMx_mul ((mem_GQ_iff _ _).1 (inv_mem hnq)) (incAdj_mem J.d _ (yZero_mem _ _ _)))
+    ratMx_mul (rat_mem _) (ratMx_mul ((mem_GQ_iff _ _).1 (inv_mem hnq)) (incAdj_mem J.d _ (_root_.GlobalTheory.Unf.EvalInv.yZero_rat _ _ _)))
   rw [h, opA, jacT, Pi.smul_apply, smul_eq_mul, heisO, norm_mul, norm_mul, s.weil.std.1.2.1, s.weil.std.1.2.1, one_mul,
     one_mul, add_comm, norm_theta_add s.weil.std (s.weil₀.om_pres _ _ ht) hp,
     s.weil₀.om_aut 1 (one_mem _) h' hh _ ht]

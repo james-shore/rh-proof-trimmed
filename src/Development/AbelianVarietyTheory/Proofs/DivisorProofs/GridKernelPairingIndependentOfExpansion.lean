@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MultilinearVanishOfProdVanish
 
 @[expose] public section
 
@@ -395,7 +396,7 @@ theorem GlobalTheory.FunObj.sumOK_vec_indep : ∀ (D : D7) (T : Type) (L : LevCh
       exact zero_smul _ _
   rw [hP τ Finset.subset_union_left, hP τ' Finset.subset_union_right, ← sub_eq_zero, ← Finset.sum_sub_distrib]
   simp_rw [← sub_smul]
-  refine GlobalTheory.T.sum_smul_multilinear_eq_zero_of_prod_vanish (aSub S t e) (pairML S t e (S.ptTop c) (S.ptRow c)) _ (fun d => τ d - τ' d) (gd S t e) fun x => ?_
+  refine _root_.GlobalTheory.multilinear_vanish_of_prod_vanish (aSub S t e) (pairML S t e (S.ptTop c) (S.ptRow c)) _ (fun d => τ d - τ' d) (gd S t e) fun x => ?_
   have hq : ∀ d ∈ τ.support ∪ τ'.support, ∏ k, ((gd S t e d k : aSub S t e k) : _ → ℂ) (x k) =
       (∏ j, (d.1 j).fn (x (.inl j))) * ∏ i, (d.2 i).fn (x (.inr i)) := by
     intro d hd

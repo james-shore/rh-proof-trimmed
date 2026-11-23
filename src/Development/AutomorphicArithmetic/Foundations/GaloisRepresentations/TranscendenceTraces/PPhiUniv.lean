@@ -81,7 +81,7 @@ private def famP {Q : ℕ} {Z S : Scheme.{0}} (p : Z ⟶ S) {G J : Shv (ZMod Q)}
 
 theorem phiUniv_of : PhiUniv := by
   intro Q Z S p G J t
-  obtain ⟨ψ, hψ, huniq⟩ := (GlobalTheory.T.etaleToSheafify_locally_bijective_and_lift (ZMod Q) (phiP p G)).2.2 J (famP p t)
+  obtain ⟨ψ, hψ, huniq⟩ := (_root_.GlobalTheory.EtC.toSheafify_loc_bij_lift (ZMod Q) (phiP p G)).2.2 J (famP p t)
   have key : ∀ (U : Scheme) (y : DS p G U), Sec.map ψ (phiSec p G U y) = famS p t U y := by
     intro U y
     exact congrArg (fun φ => ModuleCat.Hom.hom (φ.app (op U)) y) hψ

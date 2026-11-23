@@ -97,7 +97,7 @@ theorem exists_archimedean_component : _root_.GlobalTheory.FunPr.ThetaLocalInput
   obtain ⟨ρ, η, hη1, hη2, hη3, hρi, hρu, hρc, hρd⟩ := realRep hP.realMetaplecticRepresentation s hsc ω hωc fun g w v => by
     obtain ⟨c, rfl⟩ := φ.surjective w
     rw [hsφ, hωi]
-  obtain ⟨kk, hkk⟩ := _root_.GlobalTheory.T.realLift_characterTrace_hasDerivAt hP F E σ β R S τ JB b C hCM hFr.2.2 η (fun g h _ _ => hη1 g h) hη2.continuousOn
+  obtain ⟨kk, hkk⟩ := _root_.GlobalTheory.RealLift.CharTrace.deriv_characterTrace_realLift hP F E σ β R S τ JB b C hCM hFr.2.2 η (fun g h _ _ => hη1 g h) hη2.continuousOn
     fun g _ => hη3 g
   let toE : SInf F κ →L[ℂ] Sch (Fin n) := SchwartzMap.compCLMOfContinuousLinearEquiv ℂ (F := ℂ) θ.symm
   let toV : Sch (Fin n) →L[ℂ] SInf F κ := SchwartzMap.compCLMOfContinuousLinearEquiv ℂ (F := ℂ) θ
@@ -133,7 +133,7 @@ theorem exists_archimedean_component : _root_.GlobalTheory.FunPr.ThetaLocalInput
       simp only [Matrix.mul_assoc]
     have e1 : ⇑f₁ = schrF (trP F κ) (locV (d.e u).1, locV (d.e u).2) ⇑f := by
       funext y
-      have := congrFun ((GlobalTheory.T.heisenbergOp_archimedean_vector_acts_by_schrodinger_trace F E σ α β κ ψ JA JB d hψ u hu f fun _ => 1).symm.trans (hf fun _ => 1)) (liftV y)
+      have := congrFun ((_root_.GlobalTheory.ArchRhoPure.rho_pureA_schrF F E σ α β κ ψ JA JB d hψ u hu f fun _ => 1).symm.trans (hf fun _ => 1)) (liftV y)
       simpa only [pureA, liftV, RingEquiv.apply_symm_apply, Pi.one_apply, mul_one] using this.symm
     have e2 : ⇑(toE f₁) = rhoFun (φ c) ⇑(toE f) := by
       have := hS (locV (d.e u).1, locV (d.e u).2) ⇑(toE f)
@@ -143,7 +143,7 @@ theorem exists_archimedean_component : _root_.GlobalTheory.FunPr.ThetaLocalInput
       simp
     have e3 := hρi g _ _ _ e2
     rw [hsφ, hφu _ _ hu' hc'] at e3
-    rw [GlobalTheory.T.heisenbergOp_archimedean_vector_acts_by_schrodinger_trace F E σ α β κ ψ JA JB d hψ _ hu', hρ', hρ', htoV, htoV, hS, e3]
+    rw [_root_.GlobalTheory.ArchRhoPure.rho_pureA_schrF F E σ α β κ ψ JA JB d hψ _ hu', hρ', hρ', htoV, htoV, hS, e3]
   · haveI : BorelSpace ({w : InfinitePlace F // w.IsReal} → ℝ) := Pi.borelSpace
     haveI : BorelSpace ({w : InfinitePlace F // w.IsComplex} → ℂ) := Pi.borelSpace
     haveI : BorelSpace (mixedEmbedding.mixedSpace F) := Prod.borelSpace

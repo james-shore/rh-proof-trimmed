@@ -123,8 +123,8 @@ theorem isThetaFunO_thetaTr : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsS
           co.e (incM D.host.F x) = (fun i => algebraMap D.host.F (AF D.host.F) (y i), fun i => algebraMap D.host.F (AF D.host.F) (z i))) →
         ∀ Φ ∈ GlobalTheory.WeilM.schA D.host.F κ, Formalism.IndefR.Datum.IsThetaFunO ψ S T (GlobalTheory.WeilSchrodinger.thetaTr D.host.F co ψ Φ) := by
   intro D ψ hψ S T JA JB ξ hA hB κ _ co hrat Φ hΦ
-  exact ⟨theta_quasi D ψ hψ S T JA JB ξ hA hB κ co hrat Φ hΦ, theta_level D ψ hψ S T JA JB ξ hA hB κ co hrat Φ hΦ,
-    theta_cont D ψ hψ S T JA JB ξ hA hB κ co hrat Φ hΦ, theta_smooth D ψ hψ S T JA JB ξ hA hB κ co hrat Φ hΦ⟩
+  exact ⟨_root_.GlobalTheory.ThetaQuasiRat.thetaTr_ratW_add D ψ hψ S T JA JB ξ hA hB κ co hrat Φ hΦ, _root_.GlobalTheory.ThetaLevel.thetaTr_level D ψ hψ S T JA JB ξ hA hB κ co hrat Φ hΦ,
+    _root_.GlobalTheory.ThetaTrCont.continuous_thetaTr D ψ hψ S T JA JB ξ hA hB κ co hrat Φ hΦ, _root_.GlobalTheory.ThetaSmooth.contDiff_thetaTr_real D ψ hψ S T JA JB ξ hA hB κ co hrat Φ hΦ⟩
 
 theorem theta_isometry_coord : ∀ (F : Type) [Field F] [NumberField F] (ψ : AddChar (AF F) ℂ), IsCharAF F ψ →
     ∀ (κ : Type) [Fintype κ] (μ : @Measure (κ → AF F) (borel _)), @Measure.IsAddHaarMeasure _ _ _ (borel _) μ →
@@ -165,8 +165,8 @@ theorem theta_isometry : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdCha
           IsAddFundamentalDomain (ratL T S) 𝓕 ν → ∃ c : ENNReal, ∀ Φ ∈ GlobalTheory.WeilM.schA D.host.F κ,
             ∫⁻ x, ‖Φ x‖ₑ ^ 2 ∂μ = c * ∫⁻ w in 𝓕, ‖GlobalTheory.WeilSchrodinger.thetaTr D.host.F co ψ Φ w‖ₑ ^ 2 ∂ν := by
   intro D ψ hψ S T JA JB ξ hA hB κ _ co hrat μ hμ ν 𝓕 hν h𝓕
-  obtain ⟨ν', 𝓕', hν', h𝓕', heq⟩ := theta_transfer D ψ hψ S T JA JB ξ hA hB κ co hrat ν 𝓕 hν h𝓕
-  obtain ⟨c, hc⟩ := theta_isometry_coord D.host.F ψ hψ.1 κ μ hμ ν' hν' 𝓕' h𝓕'
+  obtain ⟨ν', 𝓕', hν', h𝓕', heq⟩ := _root_.GlobalTheory.RatDarbouxTransfer.haar_fundDomain_transfer D ψ hψ S T JA JB ξ hA hB κ co hrat ν 𝓕 hν h𝓕
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.ThetaParseval.exists_lintegral_sq_eq_mul_setLIntegral_theta D.host.F ψ hψ.1 κ μ hμ ν' hν' 𝓕' h𝓕'
   refine ⟨c, fun Φ hΦ => ?_⟩
   rw [hc Φ hΦ, ← heq]
   rfl
@@ -188,7 +188,7 @@ theorem isUnitaryOn_transport : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), I
                        GlobalTheory.WeilSchrodinger.IsTransport ψ co ω om → GlobalTheory.WeilM.IsUnitaryOn (GlobalTheory.WeilM.adeleClass D.host.F) om := by
   intro D ψ hψ S T χS χT hS hT rS rT JA JB ξ hA hB κ _ co hrat ω hω om hom
   rintro μ hμ ⟨a, b⟩ Φ hΦ
-  obtain ⟨g, h, hh, hg⟩ := pair_of_ug D S T JA JB ξ hA hB a b
+  obtain ⟨g, h, hh, hg⟩ := _root_.GlobalTheory.WeilPairPartner.pair_partner D S T JA JB ξ hA hB a b
   obtain ⟨ν, 𝓕, hν, h𝓕⟩ := GlobalTheory.TowerRestrictScalar.exists_fd S T
   obtain ⟨c, hc⟩ := theta_isometry D ψ hψ S T JA JB ξ hA hB κ co hrat μ hμ ν 𝓕 hν h𝓕
   have ht := hom a b g h hh hg Φ hΦ

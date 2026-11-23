@@ -162,7 +162,7 @@ theorem topCore (h2 : ExplicitMapOntoTwoLetters) (h5 : TwoLetterLatticeGaussInve
 
 theorem topLineP_of (h2 : ExplicitMapOntoTwoLetters) (h5 : TwoLetterLatticeGaussInverse) (hCO : CartanOnto) : TopLineP := by
   intro p n' R r hr a b Ψ hΨ h0 hl
-  have hA : Antitone (nuOf (wtPQ (r + 1) a b)) := nuOf_anti _ (wtPQ_anti (r + 1) a b (by omega))
+  have hA : Antitone (nuOf (wtPQ (r + 1) a b)) := _root_.Formalism.MainNotions.G.LatticeSystems.kp_nuOf_antitone _ (wtPQ_anti (r + 1) a b (by omega))
   obtain ⟨c, hc⟩ := topCore h2 h5 hCO R (r + 1) (by omega) a b Ψ hΨ h0 hl
   obtain ⟨c', hc'⟩ := topCore h2 h5 hCO R (r + 1) (by omega) a b (hw R.Kf (le_refl (r + 1 + 1)) (nuOf (wtPQ (r + 1) a b)))
     (hwMem R.Kf _ _ le_rfl _ hA)

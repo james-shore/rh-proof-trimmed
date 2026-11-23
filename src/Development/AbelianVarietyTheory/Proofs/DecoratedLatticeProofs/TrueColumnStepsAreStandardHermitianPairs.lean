@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.EvalAtOneExtremalMul
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.FiniteDimensionalMram
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.JointSmooth
+import Formalism.SharpRestriction.Divisibility.ProductZerothFirstParts
 
 @[expose] public section
 
@@ -75,6 +76,6 @@ theorem stdPair_steps_all : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok
   refine ⟨hψ, hθ, gX i, gX (i + 1), (I.rec7 l Z).sp.X_sig i, (I.rec7 l Z).sp.X_sig (i + 1), ?_, hcc, I.J.δ_ne_zero,
     GlobalTheory.AdForm.StdSteps.realPlace_cmTrace_zero_element_eq_I_mul_abs _ hcc, GlobalTheory.AdForm.StdSteps.scale_eq (I.rec7 l Z) I.J.δ_ne_zero⟩
   rw [r1, r2]
-  exact ⟨Ranks.N_pos _ _, GlobalTheory.AdForm.StdSteps.N_lt_succ _ _, GlobalTheory.AdForm.StdSteps.even_N _ _, GlobalTheory.AdForm.StdSteps.even_N _ _⟩
+  exact ⟨Ranks.N_pos _ _, _root_.GlobalTheory.ColPeriod.N_lt_succ _ _, _root_.Formalism.MainNotions.product_zeroth_first_parts.N_even _ _, _root_.Formalism.MainNotions.product_zeroth_first_parts.N_even _ _⟩
 
 end GlobalTheory.AdForm.StdStepsT

@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsRecTOfIsRec
 
 @[expose] public section
 
@@ -75,7 +76,7 @@ theorem members_good (hZ : GlobalTheory.Published.ZelevinskyPolynomialRing) (hBZ
     exact good_of_fixed_KOne hZ (GlobalTheory.SplitTypeCompl.exists_padic_equiv D s hg) _ hfix
   by_cases hp : s.v ∈ paraPl D tup i j
   · obtain ⟨s₀, ξ, hv, -, hP⟩ := lv.para i j hj s.v hp
-    exact good_of_toral (GlobalTheory.ParaToral.toral_of_levelPara hBZ hZ D.host.E D.R.nV (M.loc i).wt (av.S i P) (av.irr i P) (M.loc i).J
+    exact _root_.GlobalTheory.RecT.Model.good_of_toral (GlobalTheory.ParaToral.toral_of_levelPara hBZ hZ D.host.E D.R.nV (M.loc i).wt (av.S i P) (av.irr i P) (M.loc i).J
       (M.loc i).χ (M.loc i).J_open s₀ D.R.r ξ hP _ hiso hty hf0 s hv.symm σ hσ)
   · have hB : s.v ∉ gPl D ∪ paraPl D tup i j := fun h => h.elim hg hp
     exact good_of_isSpherical hBZ _ (GlobalTheory.SphHyp.isSpherical_of_hypOutside D.host.E D.R.nV (M.loc i).wt (av.S i P) (av.irr i P) (M.loc i).J

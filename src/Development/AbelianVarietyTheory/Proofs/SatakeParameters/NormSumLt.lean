@@ -59,9 +59,6 @@ theorem norm_sum_lt {K : Type u_1} [NormedField K] [IsUltrametricDist K] (s : Fi
     have h2 : ‖∑ i ∈ s, f i‖ < r := ih (fun i hi => h i (Finset.mem_insert_of_mem hi))
     exact lt_of_le_of_lt (IsUltrametricDist.norm_add_le_max _ _) (max_lt h1 h2)
 
-theorem main : ∀ {K : Type u_1} [inst : NormedField K] [IsUltrametricDist K] (s : Finset ℕ) (f : ℕ → K) {r : ℝ}, (0 : ℝ) < r → (∀ i ∈ s, ‖f i‖ < r) → ‖∑ i ∈ s, f i‖ < r :=
-  by
-  intro K _ _ s f r hr h
-  exact norm_sum_lt s f hr h
+alias main := _root_.GlobalTheory.NormSumLt.norm_sum_lt
 
 end GlobalTheory.NormSumLt

@@ -76,7 +76,7 @@ theorem detRel_unitary (γ γ₀ : IsoK D) :
     simp only [LinearEquiv.apply_symm_apply] at h1
     have h3 := congrArg D.host.φ₀ h1
 
-    simp only [map_sum, map_mul, phi_conj] at h3
+    simp only [map_sum, map_mul, _root_.Formalism.BasicNotions.Examples₂.emb_conj] at h3
     exact h3
   set M : Matrix (Fin 4 × D.what₂.Tau) (Fin 4 × D.what₂.Tau) D.host.K := LinearMap.toMatrix' T with hM
   have hdet : f (γ.detRel γ₀) = (f.mapMatrix M).det := by
@@ -118,7 +118,7 @@ theorem exists_conj (a : 𝓞 D.host.K) :
 theorem repr_K (x : D.host.K) : ∃ r s : ℚ, (x : D.host.E) =
     algebraMap ℚ D.host.E r + algebraMap ℚ D.host.E s * D.host.sqd := by
   have hsq : D.host.sqd * D.host.sqd = -(D.host.d : D.host.E) := by
-    rw [← sq]; exact bE_sq D.host
+    rw [← sq]; exact _root_.Formalism.BasicNotions.Examples₂.bE_sq D.host
   refine K_induction D.host (p := fun x => ∃ r s : ℚ, x =
     algebraMap ℚ D.host.E r + algebraMap ℚ D.host.E s * D.host.sqd) ?_ ?_ ?_ ?_ ?_ x
   · exact ⟨0, 1, by simp⟩
@@ -158,11 +158,11 @@ theorem repr_K (x : D.host.K) : ∃ r s : ℚ, (x : D.host.E) =
 theorem norm_int (t t' : 𝓞 D.host.K) (h : ((t' : D.host.K) : D.host.E) = D.host.conj ((t : D.host.K) : D.host.E)) :
     ∃ n : ℤ, t * t' = (n : 𝓞 D.host.K) := by
   have hsq : D.host.sqd * D.host.sqd = -(D.host.d : D.host.E) := by
-    rw [← sq]; exact bE_sq D.host
+    rw [← sq]; exact _root_.Formalism.BasicNotions.Examples₂.bE_sq D.host
   obtain ⟨r, s, hrs⟩ := repr_K (t : D.host.K)
   have hc : ((t' : D.host.K) : D.host.E) =
       algebraMap ℚ D.host.E r - algebraMap ℚ D.host.E s * D.host.sqd := by
-    rw [h, hrs, map_add (f := _), map_mul, AlgEquiv.commutes, AlgEquiv.commutes, conj_b]
+    rw [h, hrs, map_add (f := _), map_mul, AlgEquiv.commutes, AlgEquiv.commutes, _root_.Formalism.BasicNotions.Examples₂.conj_bE]
     ring
   have hprod : (((t * t' : 𝓞 D.host.K) : D.host.K) : D.host.E) = algebraMap ℚ D.host.E (r ^ 2 + (D.host.d : ℚ) * s ^ 2) := by
     have e : (((t * t' : 𝓞 D.host.K) : D.host.K) : D.host.E) = ((t : D.host.K) : D.host.E) * ((t' : D.host.K) : D.host.E) := by

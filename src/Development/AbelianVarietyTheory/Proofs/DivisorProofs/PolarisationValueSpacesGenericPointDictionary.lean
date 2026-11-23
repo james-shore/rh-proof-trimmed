@@ -130,14 +130,14 @@ theorem vs_iff_generic : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
     fun p hp => Set.mem_iInter.2 fun _ => hj₀ hp
   constructor
   · rintro ⟨r, σ, ω, hr, hv, hs⟩
-    obtain ⟨s₁, hs₁⟩ := GlobalTheory.T.exists_section_pullback_power_bundle_scalar_one _ _ P.U.LG.L (pullback.fst t.G.hom (jK R)) k σ
-    obtain ⟨σ₀, hσ₀⟩ := GlobalTheory.T.exists_section_power_through_genIso_and_schemeIso _ _ _ P.A.L P.U.LG.L P.U.gen.hom.left (pullback.fst t.G.hom (jK R)) w hw P.A.isLB
+    obtain ⟨s₁, hs₁⟩ := _root_.GlobalTheory.SecRestr.exists_restr _ _ P.U.LG.L (pullback.fst t.G.hom (jK R)) k σ
+    obtain ⟨σ₀, hσ₀⟩ := _root_.GlobalTheory.SecThroughIso.exists_sec_of_genIso _ _ _ P.A.L P.U.LG.L P.U.gen.hom.left (pullback.fst t.G.hom (jK R)) w hw P.A.isLB
       P.U.LG.isLB P.U.gen.inv.left hgi hig k s₁
     obtain ⟨σ', hσ'⟩ := GlobalTheory.T.exists_section_power_mul_global_function _ P.A.L k σ₀ (scal P.A.A.hom (algebraMap R (FractionRing R) r)⁻¹)
     refine ⟨σ', ?_⟩
     have e1 := v1 σ ω hv
-    have e2 := GlobalTheory.T.pointValue_of_section_pullback_scalar_multiple _ _ P.U.LG.L (pullback.fst t.G.hom (jK R)) k σ s₁ 1 hs₁ (FractionRing Ω) _ i hiK
-    have e3 := GlobalTheory.T.pointValue_relation_sections_through_generating_iso _ _ _ P.A.L P.U.LG.L P.U.gen.hom.left (pullback.fst t.G.hom (jK R)) w k σ₀ s₁ hσ₀
+    have e2 := _root_.GlobalTheory.SecScalVal.val_of_secScal _ _ P.U.LG.L (pullback.fst t.G.hom (jK R)) k σ s₁ 1 hs₁ (FractionRing Ω) _ i hiK
+    have e3 := _root_.GlobalTheory.GermVal.valR_linComb_germ _ _ _ P.A.L P.U.LG.L P.U.gen.hom.left (pullback.fst t.G.hom (jK R)) w k σ₀ s₁ hσ₀
       (FractionRing Ω) (ξ ≫ P.U.gen.inv.left) i j₀ hiK hjK
     rw [hξ1] at e3
     have e4 : valR ξ _ (σ'.f fun _ => j₀) = (algebraMap Ω (FractionRing Ω) (φ r))⁻¹ * valR ξ _ (σ₀.f fun _ => j₀) := by
@@ -154,15 +154,15 @@ theorem vs_iff_generic : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
     field_simp
     linear_combination (-(algebraMap Ω (FractionRing Ω) e₀ ^ k)) * hs + e2
   · rintro ⟨σ', rfl⟩
-    obtain ⟨s₁, hs₁⟩ := GlobalTheory.T.exists_section_power_through_generating_lineBundleIso _ _ _ P.A.L P.U.LG.L P.U.gen.hom.left (pullback.fst t.G.hom (jK R)) w hw P.A.isLB
+    obtain ⟨s₁, hs₁⟩ := _root_.GlobalTheory.SecThroughIso.exists_sec_of_iso _ _ _ P.A.L P.U.LG.L P.U.gen.hom.left (pullback.fst t.G.hom (jK R)) w hw P.A.isLB
       P.U.LG.isLB k σ'
     obtain ⟨F, hF, -⟩ := (P.U.expand k hk).1 s₁
     obtain ⟨r, hr, σ, f, hsc, -⟩ := hF
     obtain ⟨ω, hv⟩ := GlobalTheory.HeatV.exists_isValue t.G.left P.U.LG.L P.U.LG.isLB Ω x' g hg k σ
     refine ⟨r, σ, ω, hr, hv, ?_⟩
     have e1 := v1 σ ω hv
-    have e2 := GlobalTheory.T.pointValue_of_section_pullback_scalar_multiple _ _ P.U.LG.L (pullback.fst t.G.hom (jK R)) k σ s₁ _ hsc (FractionRing Ω) _ i hiK
-    have e3 := GlobalTheory.T.pointValue_relation_sections_through_generating_iso _ _ _ P.A.L P.U.LG.L P.U.gen.hom.left (pullback.fst t.G.hom (jK R)) w k σ' s₁ hs₁
+    have e2 := _root_.GlobalTheory.SecScalVal.val_of_secScal _ _ P.U.LG.L (pullback.fst t.G.hom (jK R)) k σ s₁ _ hsc (FractionRing Ω) _ i hiK
+    have e3 := _root_.GlobalTheory.GermVal.valR_linComb_germ _ _ _ P.A.L P.U.LG.L P.U.gen.hom.left (pullback.fst t.G.hom (jK R)) w k σ' s₁ hs₁
       (FractionRing Ω) (ξ ≫ P.U.gen.inv.left) i j₀ hiK hjK
     rw [hξ1] at e3
     have hq : (ξ ≫ P.U.gen.inv.left) ≫ pullback.snd t.G.hom (jK R) ≫ jK R =

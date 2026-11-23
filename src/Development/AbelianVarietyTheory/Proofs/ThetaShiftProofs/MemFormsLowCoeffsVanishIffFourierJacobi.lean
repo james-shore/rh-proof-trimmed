@@ -211,7 +211,7 @@ theorem posDef_of_coefFn_ne_zero (X : Data E r) (cu : CuspFD X ρ) (hbas : ∃ b
     have : (fun τ : X.Ψ => (τ.1 (hq χ η)).re) = 0 := by funext τ; simp [hz]
     rw [this]
     exact hP.2 _ hiso y hy
-  obtain ⟨n, hn0, hn⟩ := GlobalTheory.MaxCusp.exists_smul_mem X (∑ a, η a • cu.e a)
+  obtain ⟨n, hn0, hn⟩ := _root_.GlobalTheory.SubmoduleScalarClosure.main X (∑ a, η a • cu.e a)
   have hn' : (n : E) ≠ 0 := Int.cast_ne_zero.2 hn0
   have key2 : ∀ τ : X.Ψ, 0 < (τ.1 (hq χ η)).re := by
     intro τ

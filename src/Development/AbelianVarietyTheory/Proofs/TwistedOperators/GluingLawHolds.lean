@@ -151,19 +151,9 @@ theorem fockT_ins (τ : D.what₂.Tau) (P : D.what₂.Tau → LPol b a) (ε : Fi
   refine Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun k _ => ?_
   by_cases h : j = k <;> simp [h]
 
-theorem glue_span :
-    Submodule.span ℂ (Set.range (glue : (D.what₂.Tau → LPol b a) → PolF D b a)) = ⊤ := by
-  first
-  | exact @_root_.GlobalTheory.MonomialRangeMembership.span_range_glue
-  | exact _root_.GlobalTheory.MonomialRangeMembership.span_range_glue
-  | (apply _root_.GlobalTheory.MonomialRangeMembership.span_range_glue <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MonomialRangeMembership.span_range_glue <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MonomialRangeMembership.span_range_glue <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.MonomialRangeMembership.span_range_glue ..)
-
 theorem glueLaw : ∀ (D : D7) (a b : ℕ), GlueLaw D a b := by
   intro D a b
-  refine ⟨glue_span, fun τ ε ε' P => ⟨fun X => ?_, fun Y => ?_⟩⟩
+  refine ⟨_root_.GlobalTheory.MonomialRangeMembership.span_range_glue, fun τ ε ε' P => ⟨fun X => ?_, fun Y => ?_⟩⟩
   · rw [glue_update, glue_eq τ P, fockS_ins]
   · rw [glue_update, glue_eq τ P, fockT_ins]
 

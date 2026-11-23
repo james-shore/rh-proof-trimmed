@@ -80,18 +80,11 @@ theorem aeval_eq_zero_of_eigenbasis {C : Type} [Field C] {r : ℕ} (A : Matrix (
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem hinf_le_gj (K : FinExt l) (s : ℕ) : Hinf K ≤ Gj K s :=
-  IntermediateField.fixingSubgroup_antitone
-    (sup_le_sup_left (IntermediateField.adjoin.mono ℚ_[l] {x : Om l | x ^ (l ^ s) = 1}
-      {x : Om l | ∃ j : ℕ, x ^ (l ^ j) = 1} fun (x : Om l) (hx : x ^ (l ^ s) = 1) =>
-      (⟨s, hx⟩ : ∃ j : ℕ, x ^ (l ^ j) = 1)) _ : Ks K s ≤ Kinf K)
+alias hinf_le_gj := _root_.GlobalTheory.Cyc.AlmostTrace.Hinf_le_Gj
 
-theorem gj_le (K : FinExt l) (s : ℕ) : Gj K s ≤ (K0 K).fixingSubgroup :=
-  IntermediateField.fixingSubgroup_antitone (show K0 K ≤ Ks K s from le_sup_left)
+alias gj_le := _root_.GlobalTheory.Cyc.cyclotomicTowerLevelGaloisSubgroup_le_fixingSubgroup_base
 
-theorem norm_l_lt : ‖(l : PadicComplex l)‖ < 1 := by
-  rw [← map_natCast (algebraMap ℚ_[l] (PadicComplex l)), norm_algebraMap']
-  exact Padic.norm_p_lt_one
+alias norm_l_lt := _root_.GlobalTheory.TateDecomp.norm_l_lt
 
 theorem norm_chiC {χ : GQ l →* ℚ_[l]ˣ} (hχ : IsCyc χ) (j : ℤ) (g : GQ l) : ‖chiC χ j g‖ = 1 := by
   rw [chiC, norm_algebraMap', Units.val_zpow_eq_zpow_val, norm_zpow,

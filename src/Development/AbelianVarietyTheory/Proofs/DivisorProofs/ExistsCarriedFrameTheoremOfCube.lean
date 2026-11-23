@@ -127,14 +127,6 @@ theorem ctriv_of_pmaps {K : Type} [Fintype K] {φ : K → (Y₀ ⟶ X)} {ε : K 
   refine congrArg₂ (· * ·) ?_ rfl
   simp only [Category.assoc]
 
-theorem gm_stalk {Z : Scheme.{0}} (κ : Z ⟶ Y) (z : Z) (r : Y ⟶ X) (U : X.Opens) (h : r (κ z) ∈ U)
-    (a : Γ(X, U)ˣ) : gm (κ ≫ r) z U a = Units.map (κ.stalkMap z).hom.toMonoidHom (gm r (κ z) U a) := by
-  apply Units.ext
-  rw [gm_val (κ ≫ r) z U h]
-  show _ = (κ.stalkMap z).hom (gm r (κ z) U a).val
-  rw [gm_val r (κ z) U h]
-  exact (Scheme.Hom.germ_stalkMap_apply κ (r ⁻¹ᵁ U) z h _).symm
-
 theorem gs_stalk {Z : Scheme.{0}} (κ : Z ⟶ Y) (z : Z) (r : Y ⟶ X) (U : X.Opens) (h : r (κ z) ∈ U)
     (a : Γ(X, U)) : gs (κ ≫ r) z U a = (κ.stalkMap z).hom (gs r (κ z) U a) := by
   rw [gs_eq (κ ≫ r) z U h, gs_eq r (κ z) U h]
@@ -145,7 +137,7 @@ theorem secCarried_along {θ : L.Sec} {f : X ⟶ X} {w : LB.Iso L (L.pull f)} (h
     gs (ψ ≫ f) z (L.U j) (θ.f j) = (gw w ψ z j k).val * gs ψ z (L.U k) (θ.f k) := by
   have e := congrArg (ψ.stalkMap z).hom (h (ψ z) j k hk hj)
   have e₁ := gs_stalk ψ z (𝟙 X) (L.U k) hk (θ.f k)
-  have e₂ := gm_stalk ψ z (𝟙 X) ((L.pull f).U (fun _ => j) ⊓ L.U k) ⟨mem_pull.2 hj, hk⟩ (w.s (fun _ => j, k))
+  have e₂ := _root_.GlobalTheory.BundleExt.gm_comp ψ z (𝟙 X) ((L.pull f).U (fun _ => j) ⊓ L.U k) ⟨mem_pull.2 hj, hk⟩ (w.s (fun _ => j, k))
   rw [Category.comp_id] at e₁ e₂
   rw [gs_stalk ψ z f _ hj, gs_eq f _ _ hj, e, map_mul, e₁, gs_eq (𝟙 X) (ψ z) _ hk, gw, gw, e₂]
   rfl
@@ -205,9 +197,9 @@ theorem exists_frame (hL : L.IsLB) (x : Y ⟶ X) (W : Y.Opens) (t : LB.Gen (L.pu
     have a := hτ _ (𝟙 _) y k hk
     have a' := hτ _ (𝟙 _) y k' hk'
     rw [Category.id_comp] at a a'
-    rw [map_mul, ← gm_stalk W.ι y (𝟙 Y) (W ⊓ x ⁻¹ᵁ L.U k) ⟨hz, hk⟩,
-      ← gm_stalk W.ι y (𝟙 Y) (W ⊓ x ⁻¹ᵁ L.U k') ⟨hz, hk'⟩,
-      ← gm_stalk W.ι y x (L.U k ⊓ L.U k') ⟨hk, hk'⟩, Category.comp_id, a, a']
+    rw [map_mul, ← _root_.GlobalTheory.BundleExt.gm_comp W.ι y (𝟙 Y) (W ⊓ x ⁻¹ᵁ L.U k) ⟨hz, hk⟩,
+      ← _root_.GlobalTheory.BundleExt.gm_comp W.ι y (𝟙 Y) (W ⊓ x ⁻¹ᵁ L.U k') ⟨hz, hk'⟩,
+      ← _root_.GlobalTheory.BundleExt.gm_comp W.ι y x (L.U k ⊓ L.U k') ⟨hk, hk'⟩, Category.comp_id, a, a']
     refine (gen_trans ht (𝟙 _) y (j := fun _ => k) (j' := fun _ => k') (Set.mem_iInter.2 fun _ => hk)
       (Set.mem_iInter.2 fun _ => hk')).trans (congrArg₂ (· * ·) ?_ rfl)
     refine (Fintype.prod_unique _).trans ((zpow_one _).trans ?_)
@@ -234,11 +226,11 @@ theorem exists_frame (hL : L.IsLB) (x : Y ⟶ X) (W : Y.Opens) (t : LB.Gen (L.pu
       rw [← eJ' u, ← Category.assoc, e']; simp only [Category.assoc, hx]), eJ ⟨⟩, eJ' ⟨⟩,
       ← hτ _ r y k hk, ← hτ _ r' y j hj', e'] at c
     apply stalk_units_injective (r ≫ W.ι) y
-    rw [map_mul, ← gm_stalk (r ≫ W.ι) y h (W ⊓ x ⁻¹ᵁ L.U j) ⟨hz', hj⟩,
-      ← gm_stalk (r ≫ W.ι) y (𝟙 Y) (W ⊓ x ⁻¹ᵁ L.U k) ⟨hz, hk⟩, Category.comp_id, c]
+    rw [map_mul, ← _root_.GlobalTheory.BundleExt.gm_comp (r ≫ W.ι) y h (W ⊓ x ⁻¹ᵁ L.U j) ⟨hz', hj⟩,
+      ← _root_.GlobalTheory.BundleExt.gm_comp (r ≫ W.ι) y (𝟙 Y) (W ⊓ x ⁻¹ᵁ L.U k) ⟨hz, hk⟩, Category.comp_id, c]
     refine congrArg₂ (· * ·) ?_ rfl
     rw [← Category.assoc]
-    exact gm_stalk (r ≫ W.ι) y x ((L.pull f).U (fun _ => j) ⊓ L.U k) ⟨mem_pull.2 hfx, hk⟩ _
+    exact _root_.GlobalTheory.BundleExt.gm_comp (r ≫ W.ι) y x ((L.pull f).U (fun _ => j) ⊓ L.U k) ⟨mem_pull.2 hfx, hk⟩ _
 
 end
 

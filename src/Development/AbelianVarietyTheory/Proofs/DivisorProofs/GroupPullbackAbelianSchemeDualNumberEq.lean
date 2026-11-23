@@ -53,6 +53,7 @@ public import Development.AbelianVarietyTheory.Definitions.ModuliSpaces.IsInvDer
 public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.DenseInterior
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.LieBridgeA
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.LieBridgeB
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.LevelQuotientUnramifiedDualNumberPoints
 
 @[expose] public section
 
@@ -68,26 +69,12 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualRigidityField
 
-theorem subsingleton_sp_dualNumber (K : Type) [Field K] : Subsingleton (Sp (DualNumber K)) := by
-  have h : ∀ p : PrimeSpectrum (DualNumber K),
-      p.asIdeal = IsLocalRing.maximalIdeal (DualNumber K) := by
-    intro p
-    refine le_antisymm (IsLocalRing.le_maximalIdeal p.isPrime.ne_top) fun x hx => ?_
-    have hn : IsNilpotent x := by
-      rw [TrivSqZeroExt.isNilpotent_iff_isNilpotent_fst]
-      have : ¬ IsUnit x.fst := fun hu => hx (TrivSqZeroExt.isUnit_iff_isUnit_fst.2 hu)
-      have h0 : x.fst = 0 := by simpa using this
-      rw [h0]; exact IsNilpotent.zero
-    obtain ⟨n, hn⟩ := hn
-    exact p.isPrime.mem_of_pow_mem n (hn ▸ p.asIdeal.zero_mem)
-  exact ⟨fun p q => PrimeSpectrum.ext ((h p).trans (h q).symm)⟩
-
 theorem eq_of_eq_closedFibre {K : Type} [Field K] (A' G' : Over (Sp (DualNumber K))) [GrpObj A'] [GrpObj G']
     (a b : A' ⟶ G') (hA : IsAbelianScheme A')
     (hab : pullback.fst A'.hom (spMap (TrivSqZeroExt.fstHom K K K).toRingHom) ≫ a.left =
       pullback.fst A'.hom (spMap (TrivSqZeroExt.fstHom K K K).toRingHom) ≫ b.left)
     (hη : η[A'] ≫ a = η[A'] ≫ b) : a = b := by
-  haveI := subsingleton_sp_dualNumber K
+  haveI := _root_.GlobalTheory.LevelQuotUnram.subsingleton_sp_dual K
   let j := pullback.fst A'.hom (spMap (TrivSqZeroExt.fstHom K K K).toRingHom)
   have hj : IsPullback j (pullback.snd A'.hom (spMap (TrivSqZeroExt.fstHom K K K).toRingHom)) A'.hom
       (spMap (TrivSqZeroExt.fstHom K K K).toRingHom) := IsPullback.of_hasPullback _ _

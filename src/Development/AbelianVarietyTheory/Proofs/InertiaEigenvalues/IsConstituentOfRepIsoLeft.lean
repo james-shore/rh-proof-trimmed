@@ -62,9 +62,6 @@ theorem zIdem_idem_central {Γ : Type} [Group Γ] [Fintype Γ] (τ : FDRep ℂ �
 theorem zIdem_mul_eq_zero {Γ : Type} [Group Γ] [Fintype Γ] (τ τ' : FDRep ℂ Γ) (h : Simple τ) (h' : Simple τ')
     (hne : zIdem τ ≠ zIdem τ') : zIdem τ * zIdem τ' = 0 := GlobalTheory.T.simpleRepCentralIdempotent_mul_eq_zero_of_ne τ τ' h h' hne
 
-theorem repIso_of_zIdem_eq {Γ : Type} [Group Γ] [Fintype Γ] (τ τ' : FDRep ℂ Γ) (h : Simple τ) (h' : Simple τ')
-    (he : zIdem τ = zIdem τ') : RepIso τ.ρ τ'.ρ := GlobalTheory.T.repIso_of_simple_of_centralIdempotent_eq τ τ' h h' he
-
 theorem zIdem_finite_sum (Γ : Type) [Group Γ] [Fintype Γ] :
     {z : MonoidAlgebra ℂ Γ | ∃ τ : FDRep ℂ Γ, Simple τ ∧ zIdem τ = z}.Finite ∧
       ∑ᶠ z ∈ {z : MonoidAlgebra ℂ Γ | ∃ τ : FDRep ℂ Γ, Simple τ ∧ zIdem τ = z}, z = 1 := GlobalTheory.T.centralIdempotents_simpleFDRep_finite_finsum_eq_one Γ
@@ -81,7 +78,7 @@ def Zl (n : ℕ) (f : (ZMod g)[X]) : Set (MonoidAlgebra ℂ (GL (Fin n) (ZMod g)
 
 theorem Zl_sub (n : ℕ) (f : (ZMod g)[X]) : Zl O n f ⊆ Zall g n := fun _ ⟨τ, h1, h2, _⟩ => ⟨τ, h1, h2⟩
 
-theorem Zall_finite (n : ℕ) : (Zall g n).Finite := (zIdem_finite_sum (GL (Fin n) (ZMod g))).1
+theorem Zall_finite (n : ℕ) : (Zall g n).Finite := (_root_.GlobalTheory.SerOSys.zIdem_finite_and_finsum_eq_one (GL (Fin n) (ZMod g))).1
 
 theorem Zl_finite (n : ℕ) (f : (ZMod g)[X]) : (Zl O n f).Finite := (Zall_finite n).subset (Zl_sub O n f)
 
@@ -94,8 +91,8 @@ theorem mul_of_mem {n : ℕ} {z z' : MonoidAlgebra ℂ (GL (Fin n) (ZMod g))} (h
   obtain ⟨τ, hτ, rfl⟩ := hz
   obtain ⟨τ', hτ', rfl⟩ := hz'
   split_ifs with h
-  · rw [← h]; exact (zIdem_idem_central τ hτ).1
-  · exact zIdem_mul_eq_zero τ τ' hτ hτ' h
+  · rw [← h]; exact (_root_.GlobalTheory.SerOSys.zIdem_centralIdempotent τ hτ).1
+  · exact _root_.GlobalTheory.SerOSys.zIdem_mul_eq_zero_of_ne τ τ' hτ hτ' h
 
 theorem isConstituent_of_repIso_left {Γ V : Type} [Group Γ] [AddCommGroup V] [Module ℂ V] {τ τ' : FDRep ℂ Γ}
     {ρ : Representation ℂ Γ V} (h : IsConstituent τ ρ) (e : RepIso τ'.ρ τ.ρ) : IsConstituent τ' ρ := by

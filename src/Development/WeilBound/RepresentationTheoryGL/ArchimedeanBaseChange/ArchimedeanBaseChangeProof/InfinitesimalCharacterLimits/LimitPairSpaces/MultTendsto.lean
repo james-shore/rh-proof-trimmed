@@ -73,11 +73,11 @@ theorem mult_flat {N : ℕ} (b : Tr E N) (γ : ℕ → ℂ) : GlobalTheory.Compa
   | node t₁ t₂ ih₁ ih₂ => exact GlobalTheory.T.flat_node_function _ _ (ih₁ _) (ih₂ _)
 
 theorem mult_rinv {N : ℕ} (b : Tr E N) (γ : ℕ → ℂ) (x : GA E N) (k : Kinf E N) {c : GL (Fin N) (Af E)}
-    (hc : c ∈ Cint E N) : mult b γ (x * InducedTensorMap.cf N k c) = mult b γ x :=
+    (hc : c ∈ _root_.GlobalTheory.CompanionTheory.LimV.KO E N) : mult b γ (x * InducedTensorMap.cf N k c) = mult b γ x :=
   (mult_flat b γ).rinv x k c hc
 
 theorem mult_node {r s : ℕ} (t₁ : Tr E r) (t₂ : Tr E s) (γ : ℕ → ℂ) (u : BlockIx (r + s) r → Ad E)
-    (m : GA E r × GA E s) (k : Kinf E (r + s)) {c : GL (Fin (r + s)) (Af E)} (hc : c ∈ Cint E (r + s)) :
+    (m : GA E r × GA E s) (k : Kinf E (r + s)) {c : GL (Fin (r + s)) (Af E)} (hc : c ∈ _root_.GlobalTheory.CompanionTheory.LimV.KO E (r + s)) :
     mult (Tr.node t₁ t₂) γ (unip u * lev (Ad E) r s m * InducedTensorMap.cf (r + s) k c) =
       mult t₁ γ m.1 * mult t₂ (fun i => γ (i + t₁.twists.length)) m.2 :=
   GlobalTheory.T.node_function_levi_decomposition _ _ (mult_flat _ _) (mult_flat _ _) u m k c hc

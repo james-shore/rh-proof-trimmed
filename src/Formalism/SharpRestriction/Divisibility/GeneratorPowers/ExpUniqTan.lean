@@ -65,21 +65,6 @@ theorem jetTan_alt {κ : Type} [DecidableEq κ] (ℓ j : κ) :
   show (aeval fun i => if i = ℓ then (DualNumber.eps : DualNumber R) else 0) (X j) = _
   rw [aeval_X]
 
-private theorem sub_C_mem_lemma {κ : Type} (r : MvPolynomial κ R) : r - C (constantCoeff r) ∈ orig R κ := by
-  refine MvPolynomial.induction_on (motive := fun r => r - C (constantCoeff r) ∈ orig R κ) r ?_ ?_ ?_
-  · intro a
-    simp
-  · intro p q hp hq
-    have e : p + q - C (constantCoeff (p + q)) = (p - C (constantCoeff p)) + (q - C (constantCoeff q)) := by
-      rw [map_add (f := _), map_add (f := _)]
-      ring
-    rw [e]
-    exact add_mem hp hq
-  · intro p i _
-    have e : p * X i - C (constantCoeff (p * X i)) = p * X i := by simp
-    rw [e]
-    exact Ideal.mul_mem_left _ _ (by first | exact Ideal.subset_span ⟨i, rfl⟩ | (unfold orig; exact Ideal.subset_span ⟨i, rfl⟩))
-
 private theorem aug_mk_lemma_2 {κ : Type} (r : MvPolynomial κ R) :
     (jetAug : Jet R κ (0 + 1) →ₐ[R] R) (Ideal.Quotient.mk (orig R κ ^ (0 + 1 + 1)) r) = constantCoeff r := by
   have e : (jetAug : Jet R κ (0 + 1) →ₐ[R] R) (Ideal.Quotient.mk (orig R κ ^ (0 + 1 + 1)) r)
@@ -104,13 +89,13 @@ private theorem mul_zz_lemma_4 {κ : Type} (c : Jet R κ (0 + 1)) (i : κ) :
   change Ideal.Quotient.mk (orig R κ ^ (0 + 1 + 1)) r * Ideal.Quotient.mk (orig R κ ^ (0 + 1 + 1)) (X i)
     = Ideal.Quotient.mk (orig R κ ^ (0 + 1 + 1)) (C (constantCoeff r)) * Ideal.Quotient.mk (orig R κ ^ (0 + 1 + 1)) (X i)
   rw [← map_mul, ← map_mul, Ideal.Quotient.eq, ← sub_mul, orig_sq_lemma_3]
-  exact Ideal.mul_mem_mul (sub_C_mem_lemma r) (by first | exact Ideal.subset_span ⟨i, rfl⟩ | (unfold orig; exact Ideal.subset_span ⟨i, rfl⟩))
+  exact Ideal.mul_mem_mul (_root_.Formalism.L2.Pj.sub_const_mem_orig r) (by first | exact Ideal.subset_span ⟨i, rfl⟩ | (unfold orig; exact Ideal.subset_span ⟨i, rfl⟩))
 
 private theorem aug_zero_mem_lemma_5 {κ : Type} (p : Jet R κ (0 + 1)) (h : (jetAug : Jet R κ (0 + 1) →ₐ[R] R) p = 0) :
     p ∈ Ij R κ (0 + 1) := by
   obtain ⟨r, rfl⟩ := Ideal.Quotient.mk_surjective p
   rw [aug_mk_lemma_2] at h
-  have hr0 : r ∈ orig R κ := by simpa [h] using sub_C_mem_lemma r
+  have hr0 : r ∈ orig R κ := by simpa [h] using _root_.Formalism.L2.Pj.sub_const_mem_orig r
   have hr : r ∈ Ideal.span (Set.range (X : κ → MvPolynomial κ R)) := hr0
   have h2 := Ideal.mem_map_of_mem (Ideal.Quotient.mk (orig R κ ^ (0 + 1 + 1))) hr
   rw [Ideal.map_span, ← Set.range_comp] at h2
@@ -128,8 +113,8 @@ private theorem ker_aug_sq_lemma_6 {κ : Type} :
   obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective r
   obtain ⟨b, rfl⟩ := Ideal.Quotient.mk_surjective s
   rw [aug_mk_lemma_2] at hr hs
-  have ha : a ∈ orig R κ := by simpa [hr] using sub_C_mem_lemma a
-  have hb : b ∈ orig R κ := by simpa [hs] using sub_C_mem_lemma b
+  have ha : a ∈ orig R κ := by simpa [hr] using _root_.Formalism.L2.Pj.sub_const_mem_orig a
+  have hb : b ∈ orig R κ := by simpa [hs] using _root_.Formalism.L2.Pj.sub_const_mem_orig b
   rw [← map_mul, Ideal.Quotient.eq_zero_iff_mem, orig_sq_lemma_3]
   exact Ideal.mul_mem_mul ha hb
 

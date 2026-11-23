@@ -65,10 +65,6 @@ namespace GlobalTheory.LatOpenCpt
 
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
-theorem exists_zsmul_mem {E : Type} [Field E] [NumberField E] {n : ℕ} (L : Submodule (𝓞 E) (Fin n → E))
-    (hL : L.IsFullLattice E) (z : Fin n → E) : ∃ m : ℤ, m ≠ 0 ∧ m • z ∈ L := by
-  exact _root_.GlobalTheory.IntegerMultipleMembership.exists_int_smul_mem L hL z
-
 theorem vecMulVec_mem {E : Type} [Field E] [NumberField E] {n d : ℕ} {LX : Submodule (𝓞 E) (Fin n → E)}
     {LY : Submodule (𝓞 E) (Fin d → E)} (sX : Finset LX) (hsX : Submodule.span ℤ (sX : Set LX) = ⊤) (sY : Finset LY)
     (hsY : Submodule.span ℤ (sY : Set LY) = ⊤) (H : AddSubgroup (Matrix (Fin n) (Fin d) E))
@@ -134,8 +130,8 @@ theorem span_top {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E
     ext a b; simp [incM, map_zsmul]
   have hall : ∀ (x : Fin n → E) (y : Fin d → E), incM F (vecMulVec x y) ∈ S := by
     intro x y
-    obtain ⟨m, hm, hmx⟩ := exists_zsmul_mem LX hX x
-    obtain ⟨m', hm', hmy⟩ := exists_zsmul_mem LY hY y
+    obtain ⟨m, hm, hmx⟩ := _root_.GlobalTheory.IntegerMultipleMembership.exists_int_smul_mem LX hX x
+    obtain ⟨m', hm', hmy⟩ := _root_.GlobalTheory.IntegerMultipleMembership.exists_int_smul_mem LY hY y
     have h1 := ht _ hmx _ hmy
     rw [smul_vecMulVec, vecMulVec_smul, smul_smul, hzs] at h1
     have hk : ((m * m' : ℤ) : F) ≠ 0 := Int.cast_ne_zero.mpr (mul_ne_zero hm hm')

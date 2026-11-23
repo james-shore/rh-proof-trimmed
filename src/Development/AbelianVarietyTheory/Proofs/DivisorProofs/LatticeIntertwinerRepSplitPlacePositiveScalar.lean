@@ -58,9 +58,7 @@ open GlobalTheory.FinLatF
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
   {σ : E →ₐ[F] E} {nS nT : ℕ} {JS : Matrix (Fin nS) (Fin nS) E} {JT : Matrix (Fin nT) (Fin nT) E}
 
-theorem conj_conj_of_cm (hcm : IsCMExt F E σ) (x : E) : σ (σ x) = x := by
-  let τ : E →+* ℂ := (IsAlgClosed.lift (R := ℚ) (S := E) (M := ℂ)).toRingHom
-  exact τ.injective (by rw [hcm.2.2.2, hcm.2.2.2, star_star])
+alias conj_conj_of_cm := _root_.GlobalTheory.AdelicU.cm_conj_conj
 
 theorem isSplitIdemF_conj {e : AEF F E} (he : IsSplitIdemF σ e) : IsSplitIdemF σ (cAF σ e) := by
   obtain ⟨h1, h2, v, ε, hpl, hsum⟩ := he

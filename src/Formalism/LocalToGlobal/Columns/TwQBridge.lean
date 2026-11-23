@@ -115,7 +115,7 @@ theorem qbU_dense (P : Q) (k : GL (Fin n) ((qv F P.1).adicCompletion F))
     (hk' : qbInt ((k⁻¹ : GL (Fin n) ((qv F P.1).adicCompletion F)) : Matrix (Fin n) (Fin n) ((qv F P.1).adicCompletion F))) :
     ∃ g : ↥(GLint E n P.1), (qbIota P.1 (qbF hc hQ P) g)⁻¹ * k ∈
       qbU P.1 (qbF hc hQ P) (qbF_int hc hQ P) (qbF_P hc hQ P) (Θ P) (qbF hc hQ P (qbD hc Θ hQ hΘ P)) := by
-  obtain ⟨b, hb⟩ := qsp_norm_mem hc (qbPi hc hQ P)
+  obtain ⟨b, hb⟩ := _root_.Formalism.L2.Col.rll_norm_mem hc (qbPi hc hQ P)
   have hbP : b ∈ (underPl F P.1).asIdeal := by
     show algebraMap (𝓞 F) (𝓞 E) b ∈ P.1.asIdeal
     rw [hb]; exact Ideal.mul_mem_right _ _ (qbPi_spec hc hQ P).1

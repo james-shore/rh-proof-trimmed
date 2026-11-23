@@ -54,7 +54,7 @@ namespace UpperTheory.Gal.crystallineComparison
 theorem admissible_sequence_exact : AdmExact := admissibleExact_of_dualInvariantExact dinvExact_of
 theorem joinAbs_holds : JoinAbs :=
   joinAbs_of nilEmb_of (nilSubq_of admissible_sequence_exact nilEmb_of) nilAnn_of annSub_of (annExt_of dinvExt_of) admissible_sequence_exact
-theorem boundSt_holds : BoundSt := boundSt_of
+alias boundSt_holds := _root_.UpperTheory.Gal.crystallineComparison.boundSt_of
 theorem stOfCr_holds : StOfCr := stOfCr_of annPer_of boundSt_of
 
 end UpperTheory.Gal.crystallineComparison

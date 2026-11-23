@@ -63,7 +63,7 @@ theorem exists_skewUnit_k {B : Base F E} (hB : _root_.UpperTheory.TP.W.GoodK σ 
   have hc := hB.cm
   obtain ⟨ξ, hξ, hσξ⟩ := UnitA.exists_xi hc
   obtain ⟨S, hS⟩ := UnitA.exists_S (F := F) ξ
-  choose u hu1 hu2 hu3 using _root_.UpperTheory.TP.K.exists_locUnit hB hξ hσξ
+  choose u hu1 hu2 hu3 using _root_.UpperTheory.Reformulated.B.Gs6.exists_locUnit hB hξ hσξ
   let xv : ∀ v : Pl F, (Fv F v ⊗[F] E)ˣ := fun v =>
     ⟨inclR (F := F) (Fv F v) ξ, inclR (F := F) (Fv F v) ξ⁻¹, by rw [← map_mul, mul_inv_cancel₀ hξ, map_one],
       by rw [← map_mul, inv_mul_cancel₀ hξ, map_one]⟩

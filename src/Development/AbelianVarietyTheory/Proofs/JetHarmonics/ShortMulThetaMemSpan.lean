@@ -205,7 +205,7 @@ theorem shortVal_sum (hC : ChartIndepSt2) [StarRing (𝓞 E)] {nab : NabV Xo c} 
     (y : FrPt Xo c S) (v : S) (u : ι → S) (hv : ShortValAt Xo c nab w₀ Λ β N P y v)
     (hu : ∀ i, ShortValAt Xo c nab (w i) Λ β N P y (u i)) :
     ∑ i, algebraMap c.F S (cf i) * u i = algebraMap c.F S t * v := by
-  haveI := ShortValue.finite_levelQuotient Dw l
+  haveI := _root_.GlobalTheory.finite_levQ Dw l
   obtain ⟨S', _, _, φ, y', z, tp, F, h1, h2, h3, h4, h5, h6, h7⟩ := hv
   have hinj : Function.Injective φ := h1.injective
   apply hinj

@@ -88,7 +88,7 @@ theorem exists_local_log_of_commutative_law : ∀ (n g : ℕ) (b₀ : Fin n → 
     rw [← ball_prod_same]
     exact ⟨ball_subset_ball (min_le_right _ _) hb, ball_subset_ball (min_le_right _ _) hs⟩
   have hGbound : ∀ b ∈ ball b₀ R, ∀ s ∈ ball (0 : Fin g → ℂ) R, ∀ t ∈ ball (0 : Fin g → ℂ) R, ‖μ (b, s, t) - s - t‖ ≤ ‖s‖ * ‖t‖ / R ^ 2 := by
-    refine GlobalTheory.T.analytic_group_law_bounded_commutator b₀ G R hR ?_ ?_ ?_
+    refine _root_.GlobalTheory.CompanionTheory.Metric.norm_le_of_vanishing_on_axes b₀ G R hR ?_ ?_ ?_
     · rintro ⟨b, s, t⟩ ⟨hb, hs, ht⟩
       exact (hRG b hb s hs t ht).2.differentiableAt.differentiableWithinAt
     · rintro ⟨b, s, t⟩ ⟨hb, hs, ht⟩
@@ -133,7 +133,7 @@ theorem exists_local_log_of_commutative_law : ∀ (n g : ℕ) (b₀ : Fin n → 
     calc ‖μ (b, s, s) - s - s‖ ≤ C * ‖s‖ * ‖s‖ := h1
       _ ≤ c * ‖s‖ := by gcongr
       _ ≤ c * ‖((b, s) : (Fin n → ℂ) × (Fin g → ℂ)) - (b₀, 0)‖ := by gcongr
-  obtain ⟨h, hhan, hh0, H1, H2⟩ := GlobalTheory.T.analytic_doubling_map_local_inverse b₀ d hdan hd0 hdderiv
+  obtain ⟨h, hhan, hh0, H1, H2⟩ := _root_.GlobalTheory.CompanionTheory.Metric.FamilyInverse.exists_analytic_family_inverse b₀ d hdan hd0 hdderiv
   have hmed := LocalLog.medial_eventually b₀ μ hμ.continuousAt hμ0 hcomm hassoc
   have hhc : ContinuousAt h (b₀, 0) := hhan.continuousAt
   have t0 : Tendsto (fun p : (Fin n → ℂ) × (Fin g → ℂ) × (Fin g → ℂ) => p.1) (𝓝 (b₀, 0, 0)) (𝓝 b₀) :=

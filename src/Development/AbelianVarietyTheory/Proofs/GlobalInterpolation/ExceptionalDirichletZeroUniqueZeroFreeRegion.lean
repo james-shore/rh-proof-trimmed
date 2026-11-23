@@ -120,7 +120,7 @@ theorem main : ∃ c₀ : ℝ, 0 < c₀ ∧ ∀ c₁ : ℝ, 0 < c₁ → c₁ �
       simp at this
       linarith
     have hLχ : LFunction χ β = 0 :=
-      (GlobalTheory.T.dirichletL_zeros_eq_primitiveCharacter_zeros M χ β (by simp; linarith) (Or.inr hne)).1.mpr hL
+      (_root_.GlobalTheory.Lin.zeros_eq_zeros_primitiveCharacter M χ β (by simp; linarith) (Or.inr hne)).1.mpr hL
     refine ⟨fun hχ => ?_, hβ, hLχ, by linarith [div_log_le hM hcu.le hcu2]⟩
     rw [hχ] at hLχ
     have h1 := hP M (β : ℂ) hne hLχ
@@ -164,7 +164,7 @@ theorem main : ∃ c₀ : ℝ, 0 < c₀ ∧ ∀ c₁ : ℝ, 0 < c₁ → c₁ �
         have hne : ρ ≠ 1 := fun h => by
           rw [h] at hre
           simp at hre
-        have hL' := (GlobalTheory.T.dirichletL_zeros_eq_primitiveCharacter_zeros M χ ρ hpos (Or.inr hne)).1.mp hL
+        have hL' := (_root_.GlobalTheory.Lin.zeros_eq_zeros_primitiveCharacter M χ ρ hpos (Or.inr hne)).1.mp hL
         unfold IsExc
         refine ⟨hsq, hbig, hre, ?_⟩
         rw [← hρ]

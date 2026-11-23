@@ -58,12 +58,7 @@ lemma wt_countable : Countable SL(2, ℤ) := by
 lemma wt_cont (g : SL(2, ℤ)) : Continuous (fun τ : ℍ => g • τ) :=
   continuous_const_smul (g : GL (Fin 2) ℝ)
 
-lemma wt_fd_closed : IsClosed ModularGroup.fd := by
-  have h1 : IsClosed {z : ℍ | 1 ≤ normSq (z : ℂ)} :=
-    isClosed_le continuous_const (Complex.continuous_normSq.comp UpperHalfPlane.continuous_coe)
-  have h2 : IsClosed {z : ℍ | |z.re| ≤ 1 / 2} :=
-    isClosed_le (continuous_abs.comp (Complex.continuous_re.comp UpperHalfPlane.continuous_coe)) continuous_const
-  exact h1.inter h2
+alias wt_fd_closed := _root_.ModularGroup.isClosed_fd
 
 theorem wt_exists : ∀ L : ℕ, 0 < L → ∃ ρ, Wt L ρ := by
   intro L hL

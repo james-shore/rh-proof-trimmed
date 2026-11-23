@@ -64,19 +64,13 @@ namespace GlobalTheory.LatVac
 
 variable {D : D7}
 
-theorem tensor_prod_eq_zero {F A B E : Type} [Field F] [CommRing A] [CommRing B] [CommRing E] [Algebra F A]
-    [Algebra F B] [Algebra F E] (z : (A × B) ⊗[F] E)
-    (h1 : Algebra.TensorProduct.map (AlgHom.fst F A B) (AlgHom.id F E) z = 0)
-    (h2 : Algebra.TensorProduct.map (AlgHom.snd F A B) (AlgHom.id F E) z = 0) : z = 0 := by
-  exact _root_.GlobalTheory.ProductLeftMaps.main z h1 h2
-
 theorem approx_tmul {F A E : Type} [Field F] [CommRing A] [CommRing E] [Algebra F A] [Algebra F E]
     (a : F) (N : ℕ) (β : A) (x : E) :
     (algebraMap F A a + N • β) ⊗ₜ[F] x = (1 : A) ⊗ₜ[F] (a • x) + β ⊗ₜ[F] (N • x) := by
   rw [TensorProduct.add_tmul, Algebra.algebraMap_eq_smul_one, TensorProduct.smul_tmul, TensorProduct.smul_tmul]
 
 theorem eq_zero_of_parts (z : Formalism.L2.Theta.AE D) (h1 : infPart D z = 0) (h2 : finPart D z = 0) : z = 0 :=
-  tensor_prod_eq_zero (F := D.host.F) (A := Ainf D.host.F) (B := Af D.host.F) (E := D.host.E) z h1 h2
+  _root_.GlobalTheory.ProductLeftMaps.main (F := D.host.F) (A := Ainf D.host.F) (B := Af D.host.F) (E := D.host.E) z h1 h2
 
 theorem infPart_pair (α : Af D.host.F) (x : D.host.E) :
     infPart D (pairA D.host.F 0 α ⊗ₜ[D.host.F] x) = 0 := by
@@ -252,7 +246,7 @@ theorem approx (hS : IsSelfDualC S ΛS) (hT : IsSelfDualC T ΛT) (γ : WO S T) :
     | zero => exact ⟨0, 0, zero_mem _, fun i j => by simp⟩
     | add x y hx hy => rw [Matrix.single_add]; exact hadd _ _ hx hy
     | tmul a x =>
-      obtain ⟨N, hN, hM⟩ := GlobalTheory.T.scaled_matrix_mem_rational_lattice D S T ΛS ΛT (selfDual_isFullLattice S ΛS hS) (selfDual_isFullLattice T ΛT hT) (Matrix.single i j x)
+      obtain ⟨N, hN, hM⟩ := _root_.GlobalTheory.LatVacFull.latRat_full D S T ΛS ΛT (selfDual_isFullLattice S ΛS hS) (selfDual_isFullLattice T ΛT hT) (Matrix.single i j x)
       obtain ⟨a0, β, hβ, hab⟩ := (GlobalTheory.AdLat.strong_approximation_mod_nat D.host.F N hN).1 (sndA D.host.F a)
       refine ⟨Matrix.single i j (a0 • x), _, finTens_mem_latO (α := β) hβ hM, fun i' j' => ?_⟩
       have e : finPart D (finTens β (N • Matrix.single i j x) i' j') =

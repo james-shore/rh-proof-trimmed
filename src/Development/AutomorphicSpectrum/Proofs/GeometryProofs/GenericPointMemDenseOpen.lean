@@ -54,7 +54,7 @@ namespace GlobalTheory.CompanionTheory.Ar.SncBase
 
 theorem genPt_mem_of_dense_open : ∀ (W : Scheme.{0}) [IsLocallyNoetherian W] (Ω : Type) [Field Ω] (ξ : Sp Ω ⟶ W) (U : W.Opens), IsCptGen ξ → Dense (U : Set W) → genPt ξ ∈ U := by
   intro W _ Ω _ ξ U hξ hU
-  have hcl := GlobalTheory.T.isClopen_specializations_genPt W Ω ξ hξ
+  have hcl := _root_.GlobalTheory.CompanionTheory.Ar.isClopen_setOf_genPt_specializes W Ω ξ hξ
   obtain ⟨q, hq, hqU⟩ := hU.inter_open_nonempty _ hcl.isOpen ⟨genPt ξ, specializes_rfl⟩
   exact hq.mem_open U.isOpen hqU
 

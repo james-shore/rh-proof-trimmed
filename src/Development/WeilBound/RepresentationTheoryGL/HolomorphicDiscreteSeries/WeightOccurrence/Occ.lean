@@ -48,8 +48,8 @@ import Mathlib.Topology.Sheaves.Init
 namespace PositivityTheory.RgHe
 
 theorem occ : Occ :=
-  Dec.walk (Sl.stepL LowestKTypeModel.models LowestKTypeModel.ofInt LowestKTypeModel.seed Dec.decomposition_existence_holds)
-    (SM.stepM LowestKTypeModel.models LowestKTypeModel.ofInt LowestKTypeModel.seed Dec.decomposition_existence_holds)
-    (PositivityTheory.RgHe3.base LowestKTypeModel.models FrameF.frame)
+  _root_.PositivityTheory.RgHe.Dec.occurrence_of_walk (_root_.PositivityTheory.RgHe.Sl.stepL_of _root_.PositivityTheory.RgHe.LowestKTypeUnitIntegral.models_holds _root_.PositivityTheory.RgHe.LowestKTypeUnitIntegral.of_integral_holds _root_.PositivityTheory.RgHe.LowestKTypeUnitIntegral.lowestKTypeModel Dec.decomposition_existence_holds)
+    (_root_.PositivityTheory.RgHe.SM.model_walk_of_inputs _root_.PositivityTheory.RgHe.LowestKTypeUnitIntegral.models_holds _root_.PositivityTheory.RgHe.LowestKTypeUnitIntegral.of_integral_holds _root_.PositivityTheory.RgHe.LowestKTypeUnitIntegral.lowestKTypeModel Dec.decomposition_existence_holds)
+    (PositivityTheory.RgHe3.base _root_.PositivityTheory.RgHe.LowestKTypeUnitIntegral.models_holds _root_.PositivityTheory.RgHe.FrameA.frame)
 
 end PositivityTheory.RgHe

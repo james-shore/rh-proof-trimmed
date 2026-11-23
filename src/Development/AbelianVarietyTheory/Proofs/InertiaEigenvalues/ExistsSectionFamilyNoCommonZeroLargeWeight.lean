@@ -85,21 +85,6 @@ theorem holSub0_le_span_cuspA_of_lastPos : ∀ (D : D7) (T : CoreJ D), LawsJ T �
   intro P hP
   exact key ⟨hP.1, hP.2⟩
 
-theorem exists_complex_point {K A : Type} [Field K] [CommRing A] [Algebra K A] [Algebra.FiniteType K A]
-    (σ : K →+* ℂ) (I : Ideal A) (hI : I ≠ ⊤) : ∃ ψ : A →ₐ[K] CAt σ, ∀ x ∈ I, ψ x = 0 := by
-  obtain ⟨M, hMmax, hle⟩ := Ideal.exists_le_maximal _ hI
-  let _ : Field (A ⧸ M) := Ideal.Quotient.field M
-  have : Module.Finite K (A ⧸ M) := finite_of_finite_type_of_isJacobsonRing K (A ⧸ M)
-  let _ : Algebra K ℂ := σ.toAlgebra
-  let κ : (A ⧸ M) →ₐ[K] ℂ := (by
-    refine @_root_.IsAlgClosed.lift _ _ _ _ _ _ _ _ _ _ _ ?_ ?_ ?_
-    solve_by_elim* (maxDepth := 2) only [*,
-      @_root_.DivisionSemiring.to_moduleIsTorsionFree,
-      @_root_.Algebra.IsIntegral.isAlgebraic, @_root_.inferInstance])
-  refine ⟨κ.comp (Ideal.Quotient.mkₐ K M), fun x hx => ?_⟩
-  show κ (Ideal.Quotient.mk M x) = 0
-  rw [Ideal.Quotient.eq_zero_iff_mem.2 (hle hx), map_zero]
-
 theorem evR_of_frMap {D : D7} (T : CoreJ D) (h : LawsJ T) {j : ℕ} (hj : Formalism.L2.Pj.InR D j) (f : T.R j)
     (hf : IsNatural (K := T.Q.c.F) (fun S _ _ => FrPt (T.Q.Xo j) T.Q.c S) (fun φ y z => FrMap φ y z) f)
     {S : Type} [CommRing S] [Algebra T.Q.c.F S] (p : TRing T.Q.c.F) (ψ : p.R →ₐ[T.Q.c.F] S)
@@ -125,7 +110,7 @@ theorem exists_family : ∀ (D : D7) (T : CoreJ D), LawsJ T → ∀ j, Formalism
   · intro p y
     by_contra hne
     have hL := (GlobalTheory.Reg.evLaws_genFr_atlas _ _ _ _ (T.Q.Xo j) T.Q.c).1
-    obtain ⟨ψ, hψ⟩ := exists_complex_point σ _ hne
+    obtain ⟨ψ, hψ⟩ := _root_.GlobalTheory.BpfUniform.exists_complex_zero σ _ hne
     obtain ⟨z, hz⟩ := hL.bc p.R (CAt σ) ψ y
     have hz0 : ∀ i, evR (T.Q.Xo j) T.Q.c (B i : T.R j) z = 0 := fun i => by
       rw [evR_of_frMap T h hj _ (hsec i).1 p ψ y z hz]

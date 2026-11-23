@@ -109,8 +109,8 @@ theorem main : ∀ (E : Type) [CommRing E] [Algebra ℚ E] [FiniteDimensional �
   have hτint : ∀ w : S, IsIntegral ℤ_[ℓ] w → IsIntegral ℤ_[ℓ] (τℓ w) := fun w hw =>
     hw.map (τℓ.restrictScalars ℤ_[ℓ])
   obtain ⟨c, hc0, r, hur⟩ := exists_rat_mul_unit ℓ u
-  obtain ⟨b, s, hs, hb⟩ := GlobalTheory.T.exists_approx_unit_padic_tensor E ℓ z
-  obtain ⟨ρ, hρ, hρint⟩ := GlobalTheory.T.exists_integral_inv_one_add_prime_mul_padic ℓ S s hs
+  obtain ⟨b, s, hs, hb⟩ := _root_.GlobalTheory.PadicTensorApprox.exists_approx_unit E ℓ z
+  obtain ⟨ρ, hρ, hρint⟩ := _root_.GlobalTheory.exists_integral_inv_one_add_prime_mul ℓ S s hs
   set v : S := 1 + (ℓ : S) * s with hv
   have hvint : IsIntegral ℤ_[ℓ] v := by
     refine isIntegral_one.add (IsIntegral.mul ?_ hs)
@@ -150,10 +150,10 @@ theorem main : ∀ (E : Type) [CommRing E] [Algebra ℚ E] [FiniteDimensional �
       linear_combination (C * (z : S) * v * τℓ z * τℓ v) * hRRi
     rw [map_mul]
     linear_combination (-ι ai) * hK + (Ri * v * τℓ v) * h3'
-  obtain ⟨d1, hd1, hx1⟩ := GlobalTheory.T.exists_coprime_mul_isIntegral_of_padic_integral E ℓ (a * mi) (by
+  obtain ⟨d1, hd1, hx1⟩ := _root_.GlobalTheory.IntegralDescent.exists_not_dvd_isIntegral_mul E ℓ (a * mi) (by
     rw [← hιapp, hx]
     exact ((hint _).mul hρint).mul (hτint _ hρint))
-  obtain ⟨d2, hd2, hy2⟩ := GlobalTheory.T.exists_coprime_mul_isIntegral_of_padic_integral E ℓ (m * ai) (by
+  obtain ⟨d2, hd2, hy2⟩ := _root_.GlobalTheory.IntegralDescent.exists_not_dvd_isIntegral_mul E ℓ (m * ai) (by
     rw [← hιapp, hy]
     exact ((hint _).mul hvint).mul (hτint _ hvint))
   refine ⟨c, b, a * mi, m * ai, hc0, hbU, ?_, ?_, d1 * d2, ?_, ?_, ?_⟩

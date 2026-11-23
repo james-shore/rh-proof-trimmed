@@ -83,7 +83,7 @@ theorem full_of_span {n : ℕ} (N : Submodule (𝓞 E) (Sp E n)) (hN : Submodule
   | (intros; exact _root_.GlobalTheory.FullLatticeOfSpan.full_of_span_eq_top ..)
 
 theorem full_stdLat (n : ℕ) : Full (stdLat E n) := by
-  refine full_of_span _ (top_le_iff.1 fun x _ => ?_)
+  refine _root_.GlobalTheory.FullLatticeOfSpan.full_of_span_eq_top _ (top_le_iff.1 fun x _ => ?_)
   rw [pi_eq_sum_univ x]
   refine Submodule.sum_mem _ fun i _ => Submodule.smul_mem _ _ (Submodule.subset_span fun j _ => ?_)
   by_cases h : i = j

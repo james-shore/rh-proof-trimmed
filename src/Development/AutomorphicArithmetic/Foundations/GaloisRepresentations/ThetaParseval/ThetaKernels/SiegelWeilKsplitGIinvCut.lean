@@ -64,8 +64,6 @@ theorem T_lin_k (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) (Φ Φ' 
   show d.l (d.dd.rho d.B.ψ (X * (incM F d.b.1.toCols₂)ᵀ) (Φ + a • Φ')) =
     d.l (d.dd.rho d.B.ψ (X * (incM F d.b.1.toCols₂)ᵀ) Φ) + a • d.l (d.dd.rho d.B.ψ (X * (incM F d.b.1.toCols₂)ᵀ) Φ')
   rw [e, map_add (f := _), map_smul]
-theorem mu_right_k (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) : d.μ.IsMulRightInvariant := by
-  exact _root_.PositivityTheory.SiegelWeilFormula.KSplitA.mu_right_k d
 theorem thetaSum_S_rat_k (hT : _root_.PositivityTheory.SiegelWeilFormula.TAll_k) (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) : ∀ Φ ∈ d.sch, ∀ γ ∈ ratU σ d.A.J, thetaSum F (d.S γ Φ) = thetaSum F Φ := by
   intro Φ hΦ γ hγ
   obtain ⟨γ0, hγ0⟩ := hγ
@@ -102,7 +100,7 @@ theorem thetaSum_lin_k (hT : _root_.PositivityTheory.SiegelWeilFormula.TAll_k) (
 theorem I_S_k (hT : _root_.PositivityTheory.SiegelWeilFormula.TAll_k) (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) : ∀ Φ ∈ d.sch, ∀ g x, d.I (d.S g Φ) x = d.I Φ x := by
   intro Φ hΦ g x
   have := d.ok.haar
-  have := _root_.PositivityTheory.SiegelWeilFormula.KSplit.mu_right_k d
+  have := _root_.PositivityTheory.SiegelWeilFormula.KSplitA.mu_right_k d
   have := PositivityTheory.ThKF.countable_ratU σ d.A.J
   have : BorelSpace (UA σ d.A.J) := ⟨rfl⟩
   have hinv : ∀ γ ∈ ratU σ d.A.J, ∀ h, thetaSum F (d.om x (d.S (γ * h) Φ)) = thetaSum F (d.om x (d.S h Φ)) := by
@@ -126,15 +124,10 @@ theorem I_lin_k (hT : _root_.PositivityTheory.SiegelWeilFormula.TAll_k) (d : _ro
   simp only [_root_.PositivityTheory.SiegelWeilFormula.SD_k.I, thetaMean, MeasureTheory.setAverage_eq, e]
   rw [MeasureTheory.integral_add (hi Φ hΦ) ((hi Φ' hΦ').const_mul a), MeasureTheory.integral_const_mul, smul_add,
     mul_smul_comm]
-theorem exists_embU_k (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) (R : _root_.PositivityTheory.SiegelWeilFormula.RD_k d) (w : InfinitePlace F) (u : Matrix (Fin d.m) (Fin d.m) ℂ)
-    (hu : u ∈ Matrix.unitaryGroup (Fin d.m) ℂ) : ∃ g : UA σ d.A.J, ∀ X : Mx F E d.m d.n,
-      R.loc w (mat g⁻¹ * X) = (u * Matrix.of (R.loc w X) : Matrix (Fin d.m) (Fin d.n) ℂ) ∧ (∀ w', w' ≠ w → d.cw w' (mat g⁻¹ * X - X) = 0) ∧
-        finOne F • (mat g⁻¹ * X - X) = 0 := by
-  exact _root_.PositivityTheory.SiegelWeilFormula.KSplitA.exists_embU_k d R w u hu
 theorem S_lift_k (hT : _root_.PositivityTheory.SiegelWeilFormula.TAll_k) (hF : _root_.PositivityTheory.SiegelWeilFormula.FockMem_k) (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) (R : _root_.PositivityTheory.SiegelWeilFormula.RD_k d) (w : InfinitePlace F) (Ψ : Mx F E d.m d.n → ℂ)
     (hΨ : Ψ ∈ R.away w) (φ : PX d.m d.n →ₗ[ℂ] d.Fn) (hφ : R.IsLift w Ψ φ) (u : Matrix (Fin d.m) (Fin d.m) ℂ)
     (hu : u ∈ Matrix.unitaryGroup (Fin d.m) ℂ) : ∃ g : UA σ d.A.J, ∀ P, d.S g (φ P) = φ (actU u P) := by
-  obtain ⟨g, hg⟩ := _root_.PositivityTheory.SiegelWeilFormula.KSplit.exists_embU_k d R w u hu
+  obtain ⟨g, hg⟩ := _root_.PositivityTheory.SiegelWeilFormula.KSplitA.exists_embU_k d R w u hu
   refine ⟨g, fun P => ?_⟩
   have hP := hφ P
   have hQ := hφ (actU u P)
@@ -149,7 +142,7 @@ theorem S_lift_k (hT : _root_.PositivityTheory.SiegelWeilFormula.TAll_k) (hF : _
     have eX : mat g⁻¹ * X = X + (mat g⁻¹ * X - X) := by abel
     simp only [_root_.PositivityTheory.SiegelWeilFormula.RD_k.tens, smul_eq_mul, Pi.zero_apply]
     rw [h1, eX, hΨi X _ h2 h3, show fP P (u * Matrix.of (R.loc w X)) = fP (actU u P) (R.loc w X) from
-      fP_unitary u hu P _]
+      _root_.PositivityTheory.SiegelWeilFormula.KSplitA.fP_unitary u hu P _]
     ring
   have h0 := (hT.1 F E σ d).2.2 _ hsub hT0
   have : d.S g (φ P) = -((-1 : ℂ) • φ (actU u P)) := eq_neg_of_add_eq_zero_left h0

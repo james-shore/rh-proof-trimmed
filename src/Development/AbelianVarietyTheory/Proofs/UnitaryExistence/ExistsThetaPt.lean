@@ -110,7 +110,7 @@ theorem exists_gen (hT : Out.SecTwistSt) (y : Sp ℂ ⟶ Xo.X) {Z : Type} (ex : 
 theorem exists_thetaPt : Out.SecTwistSt → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (g : ℕ) (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ)) (F : FamilyUnif Xo (σ.comp (IntermediateField.inclusion c.le).toRingHom) (fun j => relab c σ (e j).1)) (r : ℕ) (M : ModelsOf F r) (k : Fin F.n) (T : ThetaData e F M k), ∀ b ∈ T.co ⁻¹' (M.X k).dom, ∀ κ : ℂ, κ ≠ 0 → ∃ y : FrPt Xo c (CAt σ), IsThetaPt T b κ y := by
   intro hT E _ _ _ H Dw l Xo c σ g e F r M k T b hb κ hκ
   have hP := T.isPer _ hb
-  obtain ⟨u, hu, htan, heig, hbas⟩ := GlobalTheory.T.exists_tangent_eigenbasis_exponential E H Dw l Xo c σ g e F k _ hP
+  obtain ⟨u, hu, htan, heig, hbas⟩ := _root_.GlobalTheory.LieFrame.exists_eigenbasis E H Dw l Xo c σ g e F k _ hP
   obtain ⟨s, hs⟩ := T.fr_sec b hb
   obtain ⟨hdet, hsym, hpos, -⟩ := T.norm b hb
   obtain ⟨w, hw⟩ := ((GlobalTheory.T.thetaChar_half_differentiable_ne_zero_families g T.c₁ T.c₂ T.half₁ T.half₂).1 _ hsym hpos).2

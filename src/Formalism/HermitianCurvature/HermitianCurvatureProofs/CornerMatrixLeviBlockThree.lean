@@ -57,7 +57,7 @@ namespace Formalism.FourierDecayAlt.P.PBQ
 open Formalism.FourierDecayAlt Formalism.REAL Formalism.QuantumDeterminants
 
 theorem leviElement_mem_GV {k p ρ : ℕ} (q : Matrix (Fin p) (Fin p) ℂ) (hq : IsUnit q.det) : U.muP k p ρ q ∈ B.GV k (p + ρ) :=
-  (Formalism.FourierDecayAlt.P.slice_membership k p ρ).2.1 q (isUnit_iff_ne_zero.mp hq)
+  (_root_.Formalism.FourierDecayAlt.P.Ux2.sliceMem k p ρ).2.1 q (isUnit_iff_ne_zero.mp hq)
 
 def MuPToOm : Prop := ∀ (k p ρ : ℕ) (z z' : Fin (2 * (p + ρ) + k + 1) → ℂ), inWb k (p + ρ) z → inWb k (p + ρ) z' →
   ∀ y ∈ domP k (p + ρ) p z z', y ∈ B.GV k (p + ρ) →
@@ -86,17 +86,6 @@ theorem corner_matrix_levi_block_three (z z' : Fin (2 * (p + ρ) + k + 1) → �
   congr 2 <;> simp only [Matrix.zero_mul, Matrix.one_mul, zero_add, add_zero, Matrix.mul_zero]
   · rw [← Matrix.mul_assoc, hw, Matrix.mul_assoc]
   · rw [← Matrix.mul_assoc (G.wMat p), hw]; simp only [Matrix.mul_assoc]
-
-theorem zhat_eq_blk (z z' : Fin (2 * (p + ρ) + k + 1) → ℂ) (hz : inWb k (p + ρ) z) (hz' : inWb k (p + ρ) z')
-    (product_first_partition : Matrix (Fin p) (Fin p) ℂ) (sizeConstantAtParamsWeight : Matrix (Fin p) (Fin (2 * ρ + k + 1)) ℂ) (flipOneThree : Matrix (Fin p) (Fin p) ℂ)
-    (placeRankTwoOne : Matrix (Fin (2 * ρ + k + 1)) (Fin p) ℂ) (TaylorLogMetric : B.Mat k ρ) (flipTwoThree : Matrix (Fin (2 * ρ + k + 1)) (Fin p) ℂ)
-    (BlochKatoReduction : Matrix (Fin p) (Fin p) ℂ) (SumRepresentations : Matrix (Fin p) (Fin (2 * ρ + k + 1)) ℂ) (ArithmeticCylinders : Matrix (Fin p) (Fin p) ℂ) :
-    Zhat k (p + ρ) z z' (U.blk3 product_first_partition sizeConstantAtParamsWeight flipOneThree placeRankTwoOne TaylorLogMetric flipTwoThree BlochKatoReduction SumRepresentations ArithmeticCylinders) =
-      Matrix.reindex (Ux3.eC p ρ) (Ux3.eC p ρ) (Matrix.fromBlocks (G.wMat p * BlochKatoReduction)
-        (G.wMat p * SumRepresentations * Formalism.QuantumDeterminants.Fm k ρ (U.lowV k p ρ z'))
-        ((Formalism.QuantumDeterminants.Fm k ρ (U.lowV k p ρ z))ᴴ * (Hpk k ρ * placeRankTwoOne))
-        ((Formalism.QuantumDeterminants.Fm k ρ (U.lowV k p ρ z))ᴴ * (Hpk k ρ * TaylorLogMetric) * Formalism.QuantumDeterminants.Fm k ρ (U.lowV k p ρ z'))) :=
-  Ux3.z_hat_of_block3 z z' hz hz' _ _ _ _ _ _ _ _ _
 
 theorem minor_gen {m : ℕ} (A : Matrix (Fin p) (Fin p) ℂ) (Bm : Matrix (Fin p) (Fin (ρ + 1)) ℂ)
     (Cm : Matrix (Fin (ρ + 1)) (Fin p) ℂ) (Dm : Matrix (Fin (ρ + 1)) (Fin (ρ + 1)) ℂ)
@@ -133,7 +122,7 @@ theorem minor_leviElement_mul_high (z z' : Fin (2 * (p + ρ) + k + 1) → ℂ) (
       ((qᴴ)⁻¹).det * Dmin k (p + ρ) z z' g ⟨p + m, by omega⟩ := by
   have hg := Ux3.block3_eta g
   unfold Dmin
-  rw [hg, corner_matrix_levi_block_three z z' hz hz', zhat_eq_blk z z' hz hz']
+  rw [hg, corner_matrix_levi_block_three z z' hz hz', _root_.Formalism.FourierDecayAlt.P.Ux3.z_hat_of_block3 z z' hz hz']
   show ((Matrix.reindex _ _ _).submatrix (Fin.castLE (show p + m ≤ p + ρ + 1 by omega))
     (Fin.castLE (show p + m ≤ p + ρ + 1 by omega))).det = _ * ((Matrix.reindex _ _ _).submatrix
       (Fin.castLE (show p + m ≤ p + ρ + 1 by omega)) (Fin.castLE (show p + m ≤ p + ρ + 1 by omega))).det

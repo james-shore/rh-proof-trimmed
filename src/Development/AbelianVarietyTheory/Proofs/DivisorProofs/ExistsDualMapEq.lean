@@ -62,8 +62,8 @@ def toAbVar {k : Type} [Field k] (A : Over (Spec (CommRingCat.of k))) [GrpObj A]
     AbVar k where
   X := A
   ab := hA
-  dim := (GlobalTheory.T.abelianScheme_specField_smoothOfRelativeDimension k A hA).choose
-  smooth := (GlobalTheory.T.abelianScheme_specField_smoothOfRelativeDimension k A hA).choose_spec
+  dim := (_root_.GlobalTheory.AbFieldDim.exists_smoothOfRelativeDimension k A hA).choose
+  smooth := (_root_.GlobalTheory.AbFieldDim.exists_smoothOfRelativeDimension k A hA).choose_spec
 
 end GlobalTheory.TateHondaBridge
 

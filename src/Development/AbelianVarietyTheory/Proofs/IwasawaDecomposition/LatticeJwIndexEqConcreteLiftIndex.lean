@@ -87,7 +87,7 @@ theorem jwIdx_eq_jw : ∀ (D : D7) {G : Type} [Group G] [Fintype G] {Pl0 T : Typ
     intro y z
     have := hF.inner (Z *ᵥ y) (Z *ᵥ z)
     have e1 : Formalism.DivisionValues.hform (lH D A P0 ψ0 i t) (Z *ᵥ y) (Z *ᵥ z) = Formalism.DivisionValues.hform HT y z := by
-      rw [GlobalTheory.Mem.LiftForms.hform_dot HT, ← hHZ']
+      rw [_root_.Formalism.DivisionValues.RationalHermitianForm.hform_eq_dot HT, ← hHZ']
       exact GlobalTheory.Mem.LiftForms.hform_mulVec _ Z Z y z
     rw [← e1]
     exact this

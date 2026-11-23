@@ -87,12 +87,12 @@ theorem fullTate (gb : GBase D.toG R) {N : ℕ} (h3 : 3 ≤ N) (hN : N.Coprime p
   haveI : CharZero k := by
     letI : Algebra ℚ k := (β.comp (algebraMap ℚ R)).toAlgebra
     exact algebraRat.charZero k
-  exact GlobalTheory.T.exists_tate_module_iso p D R gb.toBaseAt N h3 hN S s o k x β h
+  exact _root_.GlobalTheory.gen_level_extends_tate p D R gb.toBaseAt N h3 hN S s o k x β h
 
 theorem kerPrimeTo {gb : GBase D.toG R} {N : ℕ} (h3 : 3 ≤ N) {s : S ⟶ Sp R} (o : GObj gb N s) :
     ∃ e : ℕ, e.Coprime p ∧ ∀ (T : Over S) (x : T ⟶ o.A),
       (∃ t : (o.P.pull (lift (snd o.A T ≫ x) (fst o.A T)).left).Gen, t.IsGen) → x ^ e = 1 :=
-  GlobalTheory.T.torsion_of_generating_section p D R gb N h3 S s o
+  _root_.GlobalTheory.UPel.HT.GenKer.exists_coprime_pow_eq_one p D R gb N h3 S s o
 
 def GTateIso.toPrimeTo {k : Type} [Field k] {Q : Type} [Group Q] {act : D.O → Q → Q}
     {e : ℕ → Q → Q → kˣ → Prop} (I : GTateIso D.toG k Q act e) : TateIsoO D k Q act e where
@@ -164,7 +164,7 @@ def GBase.genModelOf (gb : GBase D.toG R) {N : ℕ} (h3 : 3 ≤ N) (hN : N.Copri
 theorem genModel_nonempty (p : ℕ) [Fact p.Prime] (D : Datum p) (R' : Type) [CommRing R'] [Algebra ℚ R']
     [IsNoetherianRing R'] (gb : GBase D.toG R') (N : ℕ) (h3 : 3 ≤ N) (hN : N.Coprime p) :
     Nonempty (GenModel gb N) := by
-  obtain ⟨M⟩ := GlobalTheory.T.harrisTaylorIntegralModel_nonempty p D R' gb.toBaseAt N h3 hN
+  obtain ⟨M⟩ := _root_.GlobalTheory.UPel.HT.model_nonempty p D R' gb.toBaseAt N h3 hN
   exact ⟨gb.genModelOf h3 hN M⟩
 
 end GlobalTheory.UPel.HT.Gen

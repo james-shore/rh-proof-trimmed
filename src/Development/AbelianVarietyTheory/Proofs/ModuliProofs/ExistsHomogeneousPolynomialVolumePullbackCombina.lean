@@ -378,7 +378,7 @@ theorem exists_vol_linComb_poly : Out.Laws → Out.Laws2 → ∀ (K : Type) [Fie
   · exact (GlobalTheory.T.sectionsGrowth_basic_properties_abelianVariety K P _ P.g (LB.isLB_linComb (h x) _ _)).2.2.1 _ _ (h _) (lbIso_pow P.isLB φ x a)
       ((vb x).2.2.2.1 a δ ha hδ)
   · let e := (Fintype.equivFin (Option κ)).symm
-    obtain ⟨Φ, hΦ, hV⟩ := GlobalTheory.T.exists_homogeneous_volume_veryAmple_products h₁ h₂ K P I φ _ (fun k => w (e k)) Fintype.card_pos fun k => hw (e k)
+    obtain ⟨Φ, hΦ, hV⟩ := _root_.GlobalTheory.VolPoly.exists_homogeneous_vol h₁ h₂ K P I φ _ (fun k => w (e k)) Fintype.card_pos fun k => hw (e k)
     refine ⟨MvPolynomial.rename e Φ, hΦ.rename_isHomogeneous, fun n hn => ?_⟩
     have := hV (fun k => n (e k)) fun k => hn (e k)
     have e₁ : ∑ k, (n k : ℤ) • w k = fun i => ∑ k, (n (e k) : ℤ) * w (e k) i := by

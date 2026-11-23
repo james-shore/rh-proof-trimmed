@@ -83,9 +83,9 @@ theorem restrict_core_k : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
     (HR (AF F) σ (dblG JT)).subtype_injective (Units.ext hab)
   have hdι : hd = ι h := ext _ _ (by rw [hhd, hιm])
   subst hdι
-  have hsc := fun h' => _root_.GlobalTheory.T.weil_pair_global_character F E σ B hB nS nT JS JT hS hT ξ₀ hξ hσξ χS χT ω hω ωd hωd h' (ι h') (hιm h')
+  have hsc := fun h' => _root_.PositivityTheory.ThKW.weil_pair_global_character_lift F E σ B hB nS nT JS JT hS hT ξ₀ hξ hσξ χS χT ω hω ωd hωd h' (ι h') (hιm h')
   choose c hc1 hc using hsc
-  have hth := _root_.GlobalTheory.T.theta_inner_product_formula F E σ B hB nS nT JS JT hS hT ξ₀ hξ hσξ
+  have hth := _root_.GlobalTheory.DblTargetThetaF.main_k F E σ B hB nS nT JS JT hS hT ξ₀ hξ hσξ
   by_cases h0 : ∃ f₀, IsThetaFunOF σ JS JT ξ₀ B.ψ f₀ ∧ f₀ ≠ 0
   swap
   · push_neg at h0
@@ -179,8 +179,8 @@ theorem restrict_core_k : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
     have hS1 : SuppAtF σ e JS 1 := fun i j => by rw [m1, sub_self]; simp
     obtain ⟨rd, hrd, hrd'⟩ := hωd.om_split e he 1 (ι g) hS1 (hιs e g hg) 1 y hx1 (hιd e g y hy)
     obtain ⟨r, hr, hr'⟩ := hω.om_split e he 1 g hS1 hg 1 y hx1 hy
-    obtain ⟨ℓ, hℓ, a, b, ha, hb, hℓab⟩ := _root_.GlobalTheory.T.exists_split_functional_doubled F E σ B hB nS nT JS JT hS hT ξ₀ hξ hσξ e he
-    have hheis := _root_.GlobalTheory.T.theta_doubling_inner_product F E σ B hB nS nT JS JT hS hT ξ₀ hξ hσξ
+    obtain ⟨ℓ, hℓ, a, b, ha, hb, hℓab⟩ := _root_.GlobalTheory.DblSplitForm.exists_invForm_dbl_k F E σ B hB nS nT JS JT hS hT ξ₀ hξ hσξ e he
+    have hheis := _root_.GlobalTheory.DblHeis.heisOF_dblG_deltaT_k F E σ B hB nS nT JS JT hS hT ξ₀ hξ hσξ
     have dadd : ∀ f f' : WOF F E nS nT → ℂ, deltaT (f + f') b = deltaT f b + deltaT f' b := fun f f' => by
       funext x; simp only [deltaT_apply, Pi.add_apply, add_mul]
     have dsmul : ∀ (s : ℂ) (f : WOF F E nS nT → ℂ), deltaT (s • f) b = s • deltaT f b := fun s f => by
@@ -229,7 +229,7 @@ theorem restrict_core_k : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
     rw [hcg, Complex.norm_real, Real.norm_eq_abs, abs_of_pos (div_pos hrd hr)] at hn
     apply Circle.ext
     rw [hcc, Circle.coe_one, hcg, hn, Complex.ofReal_one]
-  have hall := _root_.GlobalTheory.T.unitary_character_trivial_of_local F E σ B hB nT JT hT cc hcont hrat hsplit h
+  have hall := _root_.PositivityTheory.ThKW.unitary_character_trivial_global F E σ B hB nT JT hT cc hcont hrat hsplit h
   rw [hc h f₁ f₂ hf₁ hf₂, ← hcc, hall, Circle.coe_one, one_smul]
 end GlobalTheory.DblTargetRestrictCore
 end

@@ -237,7 +237,7 @@ theorem exists_algHom_quot_pow : ∀ (A R C : Type) [CommRing A] [IsDomain A] [I
   have hι : ∀ b, ι b = algebraMap B L0 b := fun b => rfl
   have hRL : ∀ r : R, algebraMap R L0 r = algebraMap B L0 (Ideal.Quotient.mk _ r) := fun r =>
     IsScalarTower.algebraMap_apply R B L0 r
-  have hHart := GlobalTheory.T.hasHartogsProperty_quotient_span_pow_retraction A R ρ hρ t hker ht n
+  have hHart := _root_.GlobalTheory.GoodEtaleSection.hart_quot A R ρ hρ t hker ht n
   have hmem : ∀ c, φ₀ c ∈ ι.range := by
     intro c
     obtain ⟨⟨x, m⟩, hxm⟩ := IsLocalization.mk'_surjective M0 (φ₀ c)

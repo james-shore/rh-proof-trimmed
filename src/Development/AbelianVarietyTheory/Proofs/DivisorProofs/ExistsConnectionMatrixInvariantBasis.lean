@@ -62,37 +62,21 @@ noncomputable section
 
 namespace GlobalTheory.HeatInvLift
 
-theorem rsT_of_le' {Z : Scheme.{0}} {O₀ O : Z.Opens} (h : O ≤ O₀) (s : Γ(Z, O₀)) : rsT s O = resG Z h s := dif_pos h
-
-theorem rsT_rsT' {Z : Scheme.{0}} {O₀ O₁ O₂ : Z.Opens} (h₁ : O₁ ≤ O₀) (h₂ : O₂ ≤ O₁) (s : Γ(Z, O₀)) :
-    rsT (rsT s O₁) O₂ = rsT s O₂ := by
-  rw [rsT_of_le' h₁, rsT_of_le' h₂, rsT_of_le' (h₂.trans h₁), ← CommRingCat.comp_apply, ← Functor.map_comp]
-  rfl
-
 theorem rsT_pbT' {Z X : Scheme.{0}} (m : Z ⟶ X) {O₀ : X.Opens} {O₁ O₂ : Z.Opens} (h₁ : O₁ ≤ m ⁻¹ᵁ O₀) (h₂ : O₂ ≤ O₁)
     (s : Γ(X, O₀)) : rsT (pbT m s O₁) O₂ = pbT m s O₂ := by
-  rw [rsT_of_le' h₂]
+  rw [_root_.GlobalTheory.KS.rsT_of_le h₂]
   unfold pbT
   rw [dif_pos h₁, dif_pos (h₂.trans h₁), ← CommRingCat.comp_apply, Scheme.Hom.appLE_map]
 
 theorem rsT_constFn' {R : Type} [CommRing R] {Z : Scheme.{0}} (p : Z ⟶ Sp R) {O₀ O : Z.Opens} (h : O ≤ O₀) (a : R) :
     rsT (constFn p O₀ a) O = constFn p O a := by
-  rw [rsT_of_le' h]
+  rw [_root_.GlobalTheory.KS.rsT_of_le h]
   exact congrArg (fun φ => φ.hom ((Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom a))
     (Scheme.Hom.appLE_map p (U := ⊤) (V := O₀) (fun _ _ => trivial) (homOfLE h).op)
 
 theorem rsT_field {Z : Scheme.{0}} {δ : ∀ W : Z.Opens, Γ(Z, W) → Γ(Z, W)} (hδ : IsField ⊤ δ) {O₀ O : Z.Opens}
     (h : O ≤ O₀) (s : Γ(Z, O₀)) : rsT (δ O₀ s) O = δ O (rsT s O) := by
-  rw [rsT_of_le' h, rsT_of_le' h, hδ.2.2 O₀ O h le_top s]
-
-theorem rsT_add' {Z : Scheme.{0}} {O₀ : Z.Opens} (s t : Γ(Z, O₀)) (O : Z.Opens) : rsT (s + t) O = rsT s O + rsT t O := by
-  unfold rsT; split_ifs <;> simp
-
-theorem rsT_sub' {Z : Scheme.{0}} {O₀ : Z.Opens} (s t : Γ(Z, O₀)) (O : Z.Opens) : rsT (s - t) O = rsT s O - rsT t O := by
-  unfold rsT; split_ifs <;> simp
-
-theorem rsT_mul' {Z : Scheme.{0}} {O₀ : Z.Opens} (s t : Γ(Z, O₀)) (O : Z.Opens) : rsT (s * t) O = rsT s O * rsT t O := by
-  unfold rsT; split_ifs <;> simp
+  rw [_root_.GlobalTheory.KS.rsT_of_le h, _root_.GlobalTheory.KS.rsT_of_le h, hδ.2.2 O₀ O h le_top s]
 
 theorem rsT_sum' {Z : Scheme.{0}} {O₀ : Z.Opens} {K : Type} (S : Finset K) (s : K → Γ(Z, O₀)) (O : Z.Opens) :
     rsT (∑ b ∈ S, s b) O = ∑ b ∈ S, rsT (s b) O := by
@@ -128,14 +112,14 @@ theorem exists_invLift_symmKS : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLoca
     have key : ∀ a, rsT (z a i i') W = ∑ b, constFn Y.H.hom W (c a b) *
         dlg Y.H Y.q.left Dd.toPre.P.L (dd b) (j i) (j i') W + (rsT (y a i') W - rsT (y a i) W) := by
       intro a
-      rw [hy a i i', rsT_add', rsT_sub', rsT_rsT' inf_le_right hW, rsT_rsT' inf_le_left hW]
+      rw [hy a i i', _root_.GlobalTheory.KS.rsT_add, _root_.GlobalTheory.KS.rsT_sub, _root_.GlobalTheory.KS.rsT_rsT inf_le_right hW, _root_.GlobalTheory.KS.rsT_rsT inf_le_left hW]
       congr 1
       rw [rsT_sum']
       refine Finset.sum_congr rfl fun b _ => ?_
-      rw [rsT_mul', rsT_constFn' _ hW]
+      rw [_root_.GlobalTheory.KS.rsT_mul, rsT_constFn' _ hW]
       congr 1
       unfold dlg
-      rw [rsT_mul', rsT_field (hdd b).1 hW, rsT_pbT' _ hU hW, rsT_pbT' _ hU hW]
+      rw [_root_.GlobalTheory.KS.rsT_mul, rsT_field (hdd b).1 hW, rsT_pbT' _ hU hW, rsT_pbT' _ hU hW]
     simp only [key, Matrix.of_apply, add_mul, sub_mul, Finset.sum_add_distrib, Finset.sum_sub_distrib, Finset.sum_mul]
     ring
   obtain ⟨Θ, hs, hΘ⟩ := GlobalTheory.T.exists_symmetric_kodairaSpencer_invariantLifts R Dd O oa Y n v dd hdd D J V j

@@ -80,7 +80,7 @@ theorem exists_isKS_of_heat : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
   refine ⟨fun a => spMap (dualMap (Scheme.ΓSpecIso (CommRingCat.of (ChartRing k m d))).inv.hom) ≫ (tv (v' a)).left,
     fun a => isTanAtG_tv E H _ t (v' a), ?_⟩
   obtain ⟨D', hD'⟩ := exists_derivation_intAlgebra' _ D
-  have key := GlobalTheory.T.kodairaSpencer_of_commuting_heat_operators_raynaud E H (ChartRing k m d) t P m (bdParam k m d) gam hmon hne hab Y' n vY dd hdd v' hv' D'
+  have key := _root_.GlobalTheory.KBracket.isKS_of_heat E H (ChartRing k m d) t P m (bdParam k m d) gam hmon hne hab Y' n vY dd hdd v' hv' D'
   rw [hD'] at key
   exact key h hbas hdef
 

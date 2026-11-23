@@ -86,7 +86,7 @@ theorem core (hP : PeriodLatticeAgreement.LatticePeriodEta) (hW : ThetaConstantW
     apply (hT0 ρ).2.1
     rw [hΛeq ρ] at ht ⊢
     exact hstab ρ _ ht
-  have hNρ := fun ρ => GlobalTheory.Proof.ThetaZeroNormGlobalInterpolation.normTheta0 _ (ω ρ) (τ ρ) (t ρ) (hω ρ) (hτ ρ) (hLat' ρ) (hT0 ρ).1 (htn ρ)
+  have hNρ := fun ρ => _root_.GlobalTheory.ThetaNullNormSquares.normTheta0 _ (ω ρ) (τ ρ) (t ρ) (hω ρ) (hτ ρ) (hLat' ρ) (hT0 ρ).1 (htn ρ)
   have hex : ∀ ρ, ∃ ab : Fin 2 × Fin 2, JacobiThetaHalfCharacteristic.IsEvenChar ab.1 ab.2 ∧
       JacobiThetaHalfCharacteristic.thetaChar ab.1 ab.2 (t ρ / ω ρ) (τ ρ) = 0 := fun ρ => (hNρ ρ).1.exists
   choose ab hab0 hab1 using hex

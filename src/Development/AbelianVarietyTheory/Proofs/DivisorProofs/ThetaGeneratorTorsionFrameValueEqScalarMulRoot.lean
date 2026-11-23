@@ -68,7 +68,7 @@ theorem frameValue_eq_lam_root_mul : ∀ (m : ℕ), Odd m → 3 ≤ m → ∀ (V
   refine ⟨(m ^ 2) ^ 2, Λ * ev s₀, Nat.one_le_pow _ _ (by positivity), ?_⟩
   intro x τ c hτ hval
   obtain ⟨c₀, rfl⟩ := hcov K (spMap ev) x hτ.1
-  obtain ⟨ζ, hζ, hζv⟩ := GlobalTheory.T.torsionFrame_mul_integralFrame_eq_root_mul_rig V₁ D K ev ρ₀ hρ₀ (m ^ 2) (Nat.one_le_pow _ _ (by omega)) (b c₀) τ hτ (t c₀) (htg c₀)
+  obtain ⟨ζ, hζ, hζv⟩ := _root_.GlobalTheory.USep.FrameRoot.frame_mul_eq_root V₁ D K ev ρ₀ hρ₀ (m ^ 2) (Nat.one_le_pow _ _ (by omega)) (b c₀) τ hτ (t c₀) (htg c₀)
     (fun κ hκn z J hJ => hκ c₀ κ hκn _ _ z J hJ)
   have hζ0 : ζ ≠ 0 := by
     rintro rfl

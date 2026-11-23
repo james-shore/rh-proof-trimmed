@@ -60,7 +60,7 @@ theorem lv3Mv_extensionWithOrigin_and_nEog : ∀ (hL : _root_.UpperTheory.Zero.L
   · intro K B f T w Z l S' N h
     have htransport := _root_.GlobalTheory.T.adelicRowsDivision_transport_spectralStage_lattices K B f T w Z l.Wt l.p0 l.what₂ S' N h
     obtain ⟨p0', t', hs, hgeo, hpk, hrx⟩ := htransport
-    have hchoice := _root_.GlobalTheory.T.exists_kept_choice_upper_lattice_alt hL K B f T w Z l.Wt S' N h l.nch l.xd
+    have hchoice := _root_.GlobalTheory.LayerMove.exists_kept_nChoice_thData_upL hL K B f T w Z l.Wt S' N h l.nch l.xd
     obtain ⟨nch', xd', hk, -, hn, -, hnx⟩ := hchoice
     have hnnew := hn l.n
     obtain ⟨n'⟩ := hnnew
@@ -76,7 +76,7 @@ theorem lv3Mv_extensionWithOrigin_and_nEog : ∀ (hL : _root_.UpperTheory.Zero.L
   · intro K B f T w Z l S' N h
     have htransport := _root_.GlobalTheory.T.adelicRowsDivision_transport_spectralStage_lattices K B f T w Z l.Wt l.p0 l.what₂ S' N h
     obtain ⟨p0', t', hs, hgeo, hpk, hrx⟩ := htransport
-    have hchoice := _root_.GlobalTheory.T.exists_kept_choice_upper_lattice_alt hL K B f T w Z l.Wt S' N h l.nch l.xd
+    have hchoice := _root_.GlobalTheory.LayerMove.exists_kept_nChoice_thData_upL hL K B f T w Z l.Wt S' N h l.nch l.xd
     obtain ⟨nch', xd', hk, -, hn, hg, hnx⟩ := hchoice
     have hnnew := hn l.n
     obtain ⟨n'⟩ := hnnew

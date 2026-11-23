@@ -373,17 +373,6 @@ end
 section
 open ReciprocityTheory.PGsh
 
-theorem _root_.GlobalTheory.OddBlock.expShift : (∀ (C : Type) [Field C] [CharZero C] (κ κ' : Type) [Fintype κ] [Fintype κ'] [DecidableEq κ] [DecidableEq κ'] (ζ : κ' → MvPolynomial κ C) (F : MvPolynomial κ C) (G : MvPolynomial κ' C) (g : MvPowerSeries (κ ⊕ κ') C),
-    (∑ A ∈ ((MvPolynomial.rename Sum.inl F * MvPolynomial.rename Sum.inr G : MvPolynomial (κ ⊕ κ') C)).support, AddMonoidAlgebra.coeff ((MvPolynomial.rename Sum.inl F * MvPolynomial.rename Sum.inr G : MvPolynomial (κ ⊕ κ') C)) A * (A.prod fun _ e => (e.factorial : C)) * MvPowerSeries.coeff A (PowerSeries.subst (((∑ j, MvPolynomial.rename Sum.inl (ζ j) * MvPolynomial.X (Sum.inr j) : MvPolynomial (κ ⊕ κ') C) : MvPowerSeries (κ ⊕ κ') C)) (PowerSeries.exp C) * g)) =
-    ∑ m ∈ (MvPolynomial.aeval (fun j => (MvPolynomial.rename Sum.inl (ζ j) + MvPolynomial.X (Sum.inr j) : MvPolynomial (κ ⊕ κ') C)) G).support, AddMonoidAlgebra.coeff (MvPolynomial.aeval (fun j => (MvPolynomial.rename Sum.inl (ζ j) + MvPolynomial.X (Sum.inr j) : MvPolynomial (κ ⊕ κ') C)) G) m * ((Finsupp.sumFinsuppEquivProdFinsupp m).2.prod fun _ e => (e.factorial : C)) *
-      (∑ A ∈ (F).support, AddMonoidAlgebra.coeff (F) A * (A.prod fun _ e => (e.factorial : C)) * MvPowerSeries.coeff A (MvPowerSeries.monomial (Finsupp.sumFinsuppEquivProdFinsupp m).1 (1 : C) * (show MvPowerSeries κ C from fun A' => MvPowerSeries.coeff (Finsupp.sumFinsuppEquivProdFinsupp.symm (A', (Finsupp.sumFinsuppEquivProdFinsupp m).2)) g)))) := by
-  exact @GlobalTheory.OddBlock.ExpShift.main
-
-end
-
-section
-open ReciprocityTheory.PGsh
-
 noncomputable section
 
 namespace GlobalTheory.OddBlock.ExpBinomial
@@ -506,18 +495,6 @@ theorem pair_mul {F R : MvPolynomial κ C} {d N : ℕ} (hF : F.IsHomogeneous (d 
     rw [coeff_homPart, if_pos (by omega)]
 
 end General
-
-theorem cayDet_isHomogeneous (n : ℕ) (C : Type) [CommRing C] : (cayDet n C).IsHomogeneous n := by
-  rw [cayDet, Matrix.det_apply]
-  refine MvPolynomial.IsHomogeneous.sum _ _ _ fun g _ => ?_
-  have h : (∏ i, (MvPolynomial.X (g i, i) : MvPolynomial (Fin n × Fin n) C)).IsHomogeneous n := by
-    have := MvPolynomial.IsHomogeneous.prod (Finset.univ : Finset (Fin n))
-      (fun i => (MvPolynomial.X (g i, i) : MvPolynomial (Fin n × Fin n) C)) (fun _ => 1)
-      (fun i _ => MvPolynomial.isHomogeneous_X _ _)
-    simpa using this
-  rcases Int.units_eq_one_or (Equiv.Perm.sign g) with e | e
-  · simpa [e] using h
-  · simpa [e] using h.neg
 
 def psi (l L E n : ℕ) : MvPolynomial ((Fin n × Fin n) ⊕ (Fin n × Fin n)) ℤ :=
   (Matrix.of fun b c : Fin n => (MvPolynomial.X (Sum.inl (b, c)) ^ L -
@@ -699,7 +676,7 @@ theorem main :
       rw [← MvPowerSeries.coeff_zero_eq_constantCoeff_apply, MvPolynomial.coeff_coe,
         ← MvPolynomial.constantCoeff_eq]
       simp
-    have key := GlobalTheory.OddBlock.expShift C (Fin n × Fin n) (Fin n × Fin n)
+    have key := _root_.GlobalTheory.OddBlock.ExpShift.main C (Fin n × Fin n) (Fin n × Fin n)
       (fun j => MvPolynomial.C (-((l : C) ^ E)⁻¹) * MvPolynomial.X j ^ (l ^ i))
       (cayDet n C ^ (l ^ i * y)) (cayDet n C ^ y) g
     rw [map_pow (MvPolynomial.aeval _), aeval_cayDet C l (l ^ i) E n hlC, ← hψ] at key
@@ -725,25 +702,13 @@ theorem main :
     rw [← map_pow (MvPolynomial.rename Sum.inl), ← pow_mul, Nat.mul_sub, mul_comm _ ((y.choose s : ℕ) : MvPolynomial _ C),
       ← nsmul_eq_mul, map_nsmul, map_nsmul, nsmul_eq_mul, mul_comm (ψ ^ s), act_mul]
     congr 1
-    refine pair_mul (d := n * (l ^ i * y - l ^ i * s)) ?_ ((cayDet_isHomogeneous n C).pow _) _
-    have := (cayDet_isHomogeneous n C).pow (l ^ i * y)
+    refine pair_mul (d := n * (l ^ i * y - l ^ i * s)) ?_ ((_root_.GlobalTheory.DetPairingBound.cayDet_isHomogeneous n C).pow _) _
+    have := (_root_.GlobalTheory.DetPairingBound.cayDet_isHomogeneous n C).pow (l ^ i * y)
     rwa [← mul_add, Nat.sub_add_cancel (Nat.mul_le_mul_left _ hsy)]
 
 end GlobalTheory.OddBlock.ExpBinomial
 
 end
-
-end
-
-section
-open ReciprocityTheory.PGsh
-
-theorem _root_.GlobalTheory.OddBlock.expBinomial : (∀ (C : Type) [Field C] [CharZero C] (v : AddValuation C (WithTop ℝ)) (l : ℕ), l.Prime → v (l : C) = 1 → 5 ≤ l → ∀ (i E n₀ : ℕ), Odd i → (E : ℝ) = 1 + ((l : ℝ) ^ i - l) / ((l : ℝ) ^ 2 - 1) → ∀ h₁ : MvPowerSeries ((Fin n₀ × Fin n₀) ⊕ (Fin n₀ × Fin n₀)) C,
-    (∀ α, (((1 / (l - 1)) - α.sum (fun j e => Sum.elim (fun _ => 1 / ((l : ℝ) ^ 2 - 1) + 3 / (8 * (l : ℝ) ^ i)) (fun _ => 1 / ((l : ℝ) ^ 2 - 1) + 1 / 2 - 1 / (8 * (l : ℝ) ^ i)) j * (e : ℝ)) : ℝ) : WithTop ℝ) ≤ v (MvPowerSeries.coeff α (h₁))) → (∀ α, MvPowerSeries.coeff α h₁ ≠ 0 → ∃ q, α (Sum.inr q) ≠ 0) →
-    ∃ Q : ℕ → MvPolynomial (Fin n₀ × Fin n₀) C, Q 0 = 1 ∧ (∀ s, (Q s).IsHomogeneous (n₀ * (l ^ i * s))) ∧
-      (∀ s : ℕ, 1 ≤ s → 1 ≤ n₀ → ∀ A, (((s : ℝ) / 8 - (n₀ : ℝ) ^ 2 * (Real.logb l (n₀ * s) + 1) : ℝ) : WithTop ℝ) ≤ v (AddMonoidAlgebra.coeff (Q s) A)) ∧
-      ∀ y : ℕ, (∑ A ∈ ((MvPolynomial.rename Sum.inl (cayDet n₀ C) ^ (l ^ i * y) * MvPolynomial.rename Sum.inr (cayDet n₀ C) ^ y : MvPolynomial ((Fin n₀ × Fin n₀) ⊕ (Fin n₀ × Fin n₀)) C)).support, AddMonoidAlgebra.coeff ((MvPolynomial.rename Sum.inl (cayDet n₀ C) ^ (l ^ i * y) * MvPolynomial.rename Sum.inr (cayDet n₀ C) ^ y : MvPolynomial ((Fin n₀ × Fin n₀) ⊕ (Fin n₀ × Fin n₀)) C)) A * (A.prod fun _ e => (e.factorial : C)) * MvPowerSeries.coeff A (PowerSeries.subst (((∑ q : Fin n₀ × Fin n₀, MvPolynomial.C (-((l : C) ^ E)⁻¹) * MvPolynomial.X (Sum.inl q) ^ (l ^ i) * MvPolynomial.X (Sum.inr q) : MvPolynomial ((Fin n₀ × Fin n₀) ⊕ (Fin n₀ × Fin n₀)) C) : MvPowerSeries ((Fin n₀ × Fin n₀) ⊕ (Fin n₀ × Fin n₀)) C) + h₁) (PowerSeries.exp C))) = (-((l : C) ^ E)⁻¹) ^ (n₀ * y) * ∑ s ∈ Finset.range (y + 1), (y.choose s : C) * (∑ A ∈ (cayDet n₀ C ^ (l ^ i * y)).support, AddMonoidAlgebra.coeff (cayDet n₀ C ^ (l ^ i * y)) A * (A.prod fun _ e => (e.factorial : C)) * AddMonoidAlgebra.coeff (cayDet n₀ C ^ (l ^ i * y - l ^ i * s) * Q s) A)) := by
-  exact @GlobalTheory.OddBlock.ExpBinomial.main
 
 end
 
@@ -866,7 +831,7 @@ theorem main : CoefficientExpansionLambda := by
     · have : s ≠ 0 := by omega
       simp [this]
   have hl0 : (0 : ℝ) < (l : ℝ) ^ i := by have := hl.pos; positivity
-  obtain ⟨Q, hQ0, hQh, hQv, hQ⟩ := GlobalTheory.OddBlock.expBinomial C v l hl hv h5 i (expE l i) n0 hi (expE_cast hl.two_le hi) h1
+  obtain ⟨Q, hQ0, hQh, hQv, hQ⟩ := _root_.GlobalTheory.OddBlock.ExpBinomial.main C v l hl hv h5 i (expE l i) n0 hi (expE_cast hl.two_le hi) h1
     (fun α => by
       have h := hm1 α
       rw [weight_sum]
@@ -1035,18 +1000,6 @@ namespace GlobalTheory.OddBlock.BlockContent
 
 variable {C : Type} [Field C] (v : AddValuation C (WithTop ℝ))
 
-theorem val_natCast_nonneg (m : ℕ) : 0 ≤ v (m : C) := by
-  induction m with
-  | zero => simp
-  | succ k ih =>
-    rw [Nat.cast_succ]
-    exact v.map_le_add ih (by simp)
-
-theorem val_intCast_nonneg (m : ℤ) : 0 ≤ v (m : C) := by
-  obtain ⟨k, rfl | rfl⟩ := m.eq_nat_or_neg
-  · simpa using val_natCast_nonneg v k
-  · simpa using val_natCast_nonneg v k
-
 theorem val_coprime_le {l m : ℕ} (hv : v (l : C) = 1) (h : Nat.Coprime l m) : v (m : C) ≤ 0 := by
   by_contra hm
   push_neg at hm
@@ -1058,10 +1011,10 @@ theorem val_coprime_le {l m : ℕ} (hv : v (l : C) = 1) (h : Nat.Coprime l m) : 
     exact_mod_cast congrArg (fun z : ℤ => (z : C)) hb
   have h1 : 0 < v ((l : C) * (Nat.gcdA l m : C)) := by
     rw [v.map_mul, hv]
-    exact lt_of_lt_of_le zero_lt_one (le_add_of_nonneg_right (val_intCast_nonneg v _))
+    exact lt_of_lt_of_le zero_lt_one (le_add_of_nonneg_right (_root_.GlobalTheory.RadiiIdentities.val_intCast_nonneg v _))
   have h2 : 0 < v ((m : C) * (Nat.gcdB l m : C)) := by
     rw [v.map_mul]
-    exact lt_of_lt_of_le hm (le_add_of_nonneg_right (val_intCast_nonneg v _))
+    exact lt_of_lt_of_le hm (le_add_of_nonneg_right (_root_.GlobalTheory.RadiiIdentities.val_intCast_nonneg v _))
   have h3 := v.map_lt_add h1 h2
   rw [← hC, v.map_one] at h3
   exact lt_irrefl _ h3
@@ -1147,7 +1100,6 @@ end
 section
 open Formalism.L2.FormalSeriesBounds
 
-theorem _root_.GlobalTheory.OddBlock.content_and_window : BiContent ∧ BiWindow := by
-  exact @GlobalTheory.OddBlock.BlockContent.biContent_and_biWindow
+alias _root_.GlobalTheory.OddBlock.content_and_window := _root_.GlobalTheory.OddBlock.BlockContent.biContent_and_biWindow
 
 end

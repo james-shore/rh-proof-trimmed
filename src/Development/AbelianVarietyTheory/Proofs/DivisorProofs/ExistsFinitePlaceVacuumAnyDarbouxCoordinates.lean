@@ -198,7 +198,7 @@ theorem exists_isVac_any_darboux : ∀ {F E : Type} [Field F] [NumberField F] [F
         (∑ m, (b m : Fv F v) • u m).1 ⬝ᵥ (∑ m, (a m : Fv F v) • u m).2))) := by
     intro a b
     simp only [χ]
-    rw [hadd, GlobalTheory.T.addChar_halfTrace_tensorLattice_heisenbergCocycle B hB X Y r s r' s' hX hY θ hθ v _ (hmem a) _ (hmem b), co.form]
+    rw [hadd, _root_.GlobalTheory.VacCocycle.psi_half_symp_add B hB X Y r s r' s' hX hY θ hθ v _ (hmem a) _ (hmem b), co.form]
     congr 1
     have hz := supported_neg (supported_mul_left (⅟(2 : AF F))
       (supported_sub (hdot a b).1 (hdot b a).1))

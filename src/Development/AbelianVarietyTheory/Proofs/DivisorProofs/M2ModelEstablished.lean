@@ -95,16 +95,16 @@ theorem etale_integralClosure_of_torsor_field : ∀ (S S₁ K K₁ : Type) [Comm
     GlobalTheory.KeyOriginCut.IsZTorsor K M q act →
     Algebra.Etale S₁ (integralClosure S₁ (K₁ ⊗[K] M)) := by
   intro S S₁ K K₁ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ hinj q hq hqu π hπ y hy M _ _ act htor
-  obtain ⟨ι, _, L, _, _, hfd, hgal, hdeg, ⟨e⟩⟩ := GlobalTheory.T.zmodTorsor_field_eq_prod_galois K M q act hq htor
+  obtain ⟨ι, _, L, _, _, hfd, hgal, hdeg, ⟨e⟩⟩ := _root_.GlobalTheory.KeyOriginCut.torsor_field_eq_prod_galois K M q act hq htor
   have hi : ∀ i, Algebra.Etale S₁ (integralClosure S₁ (K₁ ⊗[K] L i)) := fun i => by
     letI : Algebra S (L i) := ((algebraMap K (L i)).comp (algebraMap S K)).toAlgebra
     haveI : IsScalarTower S K (L i) := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
     haveI := hfd i
     haveI := hgal i
-    obtain ⟨hram, hsep⟩ := GlobalTheory.T.ramificationIdx_dvd_of_galois_degree_dvd_unit_dvr S K (L i) q hq hqu (hdeg i)
-    exact GlobalTheory.T.abhyankar_etale_integralClosure_root_uniformizer S S₁ K K₁ (L i) hinj q hq hqu π hπ y hy hram hsep
+    obtain ⟨hram, hsep⟩ := _root_.GlobalTheory.RamGalDVR.ramGal S K (L i) q hq hqu (hdeg i)
+    exact _root_.GlobalTheory.AbhyankarBC.etale_integralClosure_of_root_uniformizer S S₁ K K₁ (L i) hinj q hq hqu π hπ y hy hram hsep
   classical
-  haveI := GlobalTheory.T.etale_integralClosure_pi_of_etale S₁ ι (fun i => K₁ ⊗[K] L i) hi
+  haveI := _root_.GlobalTheory.PiClosure.etale_integralClosure_pi S₁ ι (fun i => K₁ ⊗[K] L i) hi
   let Ψ : K₁ ⊗[K] M ≃ₐ[K₁] ∀ i, K₁ ⊗[K] L i :=
     (Algebra.TensorProduct.congr AlgEquiv.refl e).trans (Algebra.TensorProduct.piRight K K₁ K₁ L)
   exact Algebra.Etale.of_equiv (Ψ.restrictScalars S₁).symm.mapIntegralClosure
@@ -128,6 +128,6 @@ theorem closureEtaleAt_of_root_of_uniformiser : ∀ (A R : Type) [CommRing A] [I
     ∀ y : R₁, y ^ q = φ (algebraMap A R π) →
     GlobalTheory.KeyOriginEnlarge.ClosureEtaleAt A₁ R₁ (GlobalTheory.KeyOriginBC.BC β DA) P₁ := by
   intro A R _ _ _ _ _ hAR A₁ R₁ _ _ _ _ _ hA₁R₁ f hf φ hφ β hβ DA _ _ q act hq hqu htor P₁ _ hd₁ hd π hπ y hy
-  exact closureEtaleAt_of_etale_integralClosure_localization A₁ R₁ _ P₁ (GlobalTheory.T.etale_integralClosure_torsor_of_fraction_fields etale_integralClosure_of_torsor_field A R hAR A₁ R₁ hA₁R₁ f hf φ hφ β hβ DA q act hq hqu htor P₁ hd₁ hd π hπ y hy)
+  exact closureEtaleAt_of_etale_integralClosure_localization A₁ R₁ _ P₁ (_root_.GlobalTheory.KeyOriginTransport.etale_closure_of_field etale_integralClosure_of_torsor_field A R hAR A₁ R₁ hA₁R₁ f hf φ hφ β hβ DA q act hq hqu htor P₁ hd₁ hd π hπ y hy)
 
 end GlobalTheory.AbhHeightOne

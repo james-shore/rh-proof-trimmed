@@ -142,7 +142,7 @@ theorem GlobalTheory.CompanionTheory.FineProd.jmL_prodIrr : ∀ {k : Type} [Fiel
     intro b
     split_ifs with hb
     · obtain ⟨c, hcS, hbc⟩ := hb
-      rw [GlobalTheory.T.cuspidal_cell_multiplicity_of_colouring x W b.1 (hr b) (hc b) c (fun i j => by rw [hbc]; rfl)]
+      rw [_root_.GlobalTheory.CompanionTheory.FineProdCell.jhMult_cell_colour x W b.1 (hr b) (hc b) c (fun i j => by rw [hbc]; rfl)]
       refine Finset.prod_eq_one fun i _ => ?_
       refine ((GlobalTheory.T.segment_rep_jacquet_word_multiplicity hA hJ (Γ i) (x i).rep (hΓ i) (sub W c i) fun w hw => ?_).1
         ((Finset.mem_filter.1 hcS).2 i))
@@ -150,7 +150,7 @@ theorem GlobalTheory.CompanionTheory.FineProd.jmL_prodIrr : ∀ {k : Type} [Fiel
       exact hW _ (List.get_mem _ _)
     · by_cases hm : ∃ (j : Fin W.length) (i i' : Fin h), i ≠ i' ∧ b.1 i j ≠ 0 ∧ b.1 i' j ≠ 0
       · obtain ⟨j, i, i', hii, h1, h2⟩ := hm
-        exact GlobalTheory.T.cuspidal_cell_multiplicity_zero_of_split_column hA x (fun j => W.get j) (fun j => hW _ (List.get_mem _ _)) b.1 (hr b) (hc b) j i i' hii h1 h2
+        exact _root_.GlobalTheory.CompanionTheory.FineProd.CellMulti.jhMult_cell_eq_zero hA x (fun j => W.get j) (fun j => hW _ (List.get_mem _ _)) b.1 (hr b) (hc b) j i i' hii h1 h2
       · push_neg at hm
         have hex : ∀ j, ∃ i, b.1 i j ≠ 0 := fun j => by
           by_contra hne
@@ -176,7 +176,7 @@ theorem GlobalTheory.CompanionTheory.FineProd.jmL_prodIrr : ∀ {k : Type} [Fiel
           push_neg at hne
           exact hcS (Finset.mem_filter.2 ⟨Finset.mem_univ _, hne⟩)
         obtain ⟨i, hi⟩ := hex2
-        rw [GlobalTheory.T.cuspidal_cell_multiplicity_of_colouring x W b.1 (hr b) (hc b) c (fun i j => by rw [hbc]; rfl)]
+        rw [_root_.GlobalTheory.CompanionTheory.FineProdCell.jhMult_cell_colour x W b.1 (hr b) (hc b) c (fun i j => by rw [hbc]; rfl)]
         refine Finset.prod_eq_zero (Finset.mem_univ i) ?_
         refine (GlobalTheory.T.segment_rep_jacquet_word_multiplicity hA hJ (Γ i) (x i).rep (hΓ i) (sub W c i) (fun w hw => ?_)).2 hi
         obtain ⟨p, -, rfl⟩ := List.mem_map.1 hw

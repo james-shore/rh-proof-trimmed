@@ -78,7 +78,7 @@ theorem alX_eq (hEta : EtaTie X) (u u' : D.what₂.Word) (v : HeightOneSpectrum 
 theorem summable_log_alpD (hk : 2 * D.R.rS + 2 + D.R.f + 5 ≤ D.R.k) (u u' : D.what₂.Word) :
     (∀ p, 0 < alpD u u' p) ∧ Summable fun p => Real.log (alpD u u' p) := by
   have hP := Formalism.L2.SG.Pf.placesOver_holds D
-  have hα := Formalism.L2.SG.IntegralApproximation.AlpBound_holds D
+  have hα := _root_.Formalism.L2.SG.Pf.alpBound_holds D
   set s := D.R.k - 2 * D.R.rS - 2 with hs
   have hs2 : 2 ≤ s := by omega
   set a : PlF D → ℝ := fun p => (Formalism.L2.SG.DataCut.qP p ^ s)⁻¹ with ha

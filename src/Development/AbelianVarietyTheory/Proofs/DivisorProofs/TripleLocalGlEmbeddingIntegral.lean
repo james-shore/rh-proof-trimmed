@@ -229,12 +229,12 @@ theorem diag_integral : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type) [F
     simp only [GlobalTheory.SplitFlip.omB, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
     ring
   have hSnorm : ∀ φ ∈ SB ((Fin a' × Fin (a + a')) → Fv F v), ∫⁻ y, ‖S g φ y‖ₑ ^ 2 ∂μ = ∫⁻ y, ‖φ y‖ₑ ^ 2 ∂μ :=
-    fun φ hφ => GlobalTheory.T.localWeilOperator_isometry_schwartzBruhat B G X om om' hT v k (hK g).1 φ (S g φ) hφ (hS g φ hφ).1 (hS g φ hφ).2 μ hμ
+    fun φ hφ => _root_.GlobalTheory.LocalIsom.lintegral_sq_eq_of_acts B G X om om' hT v k (hK g).1 φ (S g φ) hφ (hS g φ hφ).1 (hS g φ hφ).2 μ hμ
 
   have hL : ∀ ψ₁ ∈ SB ((Fin a' × Fin (a + a')) → Fv F v), ∀ ψ₂ ∈ SB ((Fin a' × Fin (a + a')) → Fv F v),
       Acts (evFin F v) (omd gd) (boxFun ψ₁ ψ₂) (boxFun (S g ψ₁) ψ₂) := by
     intro ψ₁ hψ₁ ψ₂ hψ₂
-    obtain ⟨φ', -, hA⟩ := GlobalTheory.T.doubledUnitaryElement_acts_localOperatorAtPlace F E σ B a a' G hT.base dd omd hspl v gd hAt _ (boxFun_mem_SB hψ₁ hψ₂)
+    obtain ⟨φ', -, hA⟩ := _root_.GlobalTheory.DblActs.dbl_acts F E σ B a a' G hT.base dd omd hspl v gd hAt _ (boxFun_mem_SB hψ₁ hψ₂)
     obtain ⟨r₁, hr₁, x₁, hx₁⟩ := GlobalTheory.RestComplement.exists_rest_ne_zero v ψ₁ hψ₁
     obtain ⟨r₂, hr₂, x₂, hx₂⟩ := GlobalTheory.RestComplement.exists_rest_ne_zero v ψ₂ hψ₂
     have hR := rest_boxFun v hr₁ hr₂

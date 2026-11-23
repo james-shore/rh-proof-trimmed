@@ -95,7 +95,7 @@ theorem curveJetsUnram (K : Type) [NormedField K] [IsUltrametricDist K] [CharZer
   have hF1 := weierstrass_biadditive_mod_equiv K W hc h2 s2
   have hAdj : AdjAt (unitBall K) (logSer W) (expSer W)
       (Formalism.L2.Th1.B.phO s2 (wpReg W) (logSer W)) al albar :=
-    adjUnitNorm K (unitBall K) (logSer W) (expSer W) _ al albar ((Fintype.card ι : ℤ) + 1) hFr hF1
+    _root_.Formalism.L2.Th1.G.adjoint_unit_norm_holds K (unitBall K) (logSer W) (expSer W) _ al albar ((Fintype.card ι : ℤ) + 1) hFr hF1
       hal0 halI hEal hEbar (by rw [hNal]; push_cast; ring) hNorm
   have hne : al ≠ albar := by
     intro h

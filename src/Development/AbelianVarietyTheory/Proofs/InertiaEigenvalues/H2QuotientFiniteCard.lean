@@ -84,7 +84,7 @@ theorem h2_twist_card_of_zmod {p : ℕ} [Fact p.Prime] {K : IntermediateField �
     exact hc.comp ((i.symm.continuous.comp continuous_fst).prodMk continuous_snd)
   obtain ⟨hF, hC⟩ := GlobalTheory.T.card_H2_le_card_local hTD p K hK r M rho hr hcont
   have htr := GlobalTheory.T.natCard_H2_comp_equiv i rho
-  have hsc := GlobalTheory.T.card_H2_eq_same_action (rho.comp i.toMulEquiv.toMonoidHom) (twist ε M) (fun g x => by
+  have hsc := _root_.GlobalTheory.H2CardScalars.card_H2_eq_of_same_action (rho.comp i.toMulEquiv.toMonoidHom) (twist ε M) (fun g x => by
       show rho (i g) x = ((ε g : Oˣ) : O) • x
       rw [hrho, i.symm_apply_apply])
   have hcard : Nat.card (H2 (twist ε M)) = Nat.card (H2 rho) := by
@@ -106,7 +106,7 @@ theorem h2_quot_card : ∀ {p : ℕ} [Fact p.Prime] {K : IntermediateField ℚ_[
     push_cast
     rw [pow_succ, mul_assoc]
     exact Ideal.mul_mem_right _ _ (Ideal.pow_mem_pow hO.p_mem k)
-  have hce := GlobalTheory.T.continuous_cyclotomic_character_localGalois hO i hε
+  have hce := _root_.GlobalTheory.FunctorialityH2.cyc_char_continuous hO i hε
   have hc : Continuous fun q : G × (O ⧸ IsLocalRing.maximalIdeal O ^ k) =>
       ((ε q.1 : Oˣ) : O) • q.2 := by
     have hq : Continuous (Ideal.Quotient.mk (IsLocalRing.maximalIdeal O ^ k)) := continuous_quot_mk

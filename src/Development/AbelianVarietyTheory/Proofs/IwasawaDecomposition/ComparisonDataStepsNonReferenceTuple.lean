@@ -128,9 +128,9 @@ theorem cmpJ_data_ne : ∀ {K : Ctx} {B : Base} {f : Fr B.toPre} {T : TwDat B} (
   intro hμ
   obtain ⟨tt, htt⟩ := GlobalTheory.T.trueColumnChoice_exists_standardChainData w.I w.ok w.pins w.l Z w.l0 nch n.tp t.C n.xi t.std t.stdLv
   have hpl := GlobalTheory.T.served_place_no_chain_place_or_type_prime_over w hO hF hP Z t Wt nch n Y hmu hQ O hO' hU E hE Fl hfl hw u v hg hμ tt htt
-  obtain ⟨dt, hdt⟩ := GlobalTheory.T.twisted_chart_levels_determinant_maps_values w hO hF hP Z t Wt nch n Y hmu hQ O hO' hU E hE Fl hfl hw u v hg hμ tt htt
-  have hB := GlobalTheory.T.exists_orthonormal_step_basis_base_lattice_charts w hO hF hP Z t Wt nch n Y hmu hQ O hO' hU E hE Fl hfl hw u v hg hμ tt htt
-  have hψ := GlobalTheory.T.exists_chainChart_localUnitCharacter_compatible_level w hO hF hP Z t Wt nch n Y hmu hQ O hO' hU E hE Fl hfl hw u v hg hμ tt htt
+  obtain ⟨dt, hdt⟩ := _root_.GlobalTheory.Mem.Top.KerTwDet.detTie_vals w hO hF hP Z t Wt nch n Y hmu hQ O hO' hU E hE Fl hfl hw u v hg hμ tt htt
+  have hB := _root_.GlobalTheory.Mem.Top.KerTwLv.stepBasis_std w hO hF hP Z t Wt nch n Y hmu hQ O hO' hU E hE Fl hfl hw u v hg hμ tt htt
+  have hψ := _root_.GlobalTheory.Mem.Top.KerTwPsi.psi_tied w hO hF hP Z t Wt nch n Y hmu hQ O hO' hU E hE Fl hfl hw u v hg hμ tt htt
   have hfin := fin_of w hO hF hP Z t Wt nch n Y hmu hQ O hO' hU E hE Fl hfl hw u v hg hμ tt htt
   have hfill := fill_of w hO hF hP Z t Wt nch n Y hmu hQ O hO' hU E hE Fl hfl hw u v hg
   let Cd : GlobalTheory.Mem.Top.KerTwLv.ChData tt.ch t.g.herm u ((w.D Z).what₂.muAt v) v hg :=
@@ -138,7 +138,7 @@ theorem cmpJ_data_ne : ∀ {K : Ctx} {B : Base} {f : Fr B.toPre} {T : TwDat B} (
       fr_lat := fun j hj β => (hB j hj).choose_spec.2 β
       ψ := fun j hj β => (hψ j hj β).choose
       fin := hfin }
-  have hhyp := GlobalTheory.T.twisted_chain_charts_hyperspecial_stabilise_lattice w hO hF hP Z t Wt nch n Y hmu hQ O hO' hU E hE Fl hfl hw u v hg hμ tt htt hpl Cd
+  have hhyp := _root_.GlobalTheory.Mem.Top.KerTwLv.hyp_charts_tw w hO hF hP Z t Wt nch n Y hmu hQ O hO' hU E hE Fl hfl hw u v hg hμ tt htt hpl Cd
   let Zt := Formalism.MainNotions.G.KAat.atInTw (X0 := t.g.herm) tt.forms u ((w.D Z).what₂.muAt v) hμ dt (Cd.Lc t.Gt (Fl u v hg) (hfl u v hg).1)
   have A : Formalism.MainNotions.G.ChF.HypTies Zt t.Gt t.cmp :=
     { fl_t := (hfl u v hg).1

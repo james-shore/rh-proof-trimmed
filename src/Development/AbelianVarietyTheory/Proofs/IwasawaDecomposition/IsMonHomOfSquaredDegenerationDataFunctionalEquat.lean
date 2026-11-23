@@ -82,8 +82,8 @@ theorem key : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], IsCN R �
       rw [H1.SectionArithmetic.sval_pullSec _ _ _ y hJ] at this
       rw [this]
       exact (ThetaScalar.sval_eq_zero ReciprocityTheory.ChartRestriction.G.DVR.SecOps.secZero (fun _ => rfl) _ y hJ).symm) j
-  exact GlobalTheory.T.psi_coordinates_fourthPower_associated R D D' Φ w hw (xe (2 • y)) (2 • y) _
-    (fun J J' hJ hJ' => GlobalTheory.T.weightTwoFactor_sq_values_correspond R D D' Φ w hΦ xe hc f f' hf hf' hcorr hcub y _ J J' hJ hJ'
+  exact _root_.GlobalTheory.psi_coord_fourth_associated R D D' Φ w hw (xe (2 • y)) (2 • y) _
+    (fun J J' hJ hJ' => _root_.GlobalTheory.PsiCompare.famMult_sq_corr R D D' Φ w hΦ xe hc f f' hf hf' hcorr hcub y _ J J' hJ hJ'
       inferInstance (ne J hJ)) r r' hr hr'
 
 end GlobalTheory.PsiFourth

@@ -255,7 +255,7 @@ theorem hOneTwo_holds : LocalFiniteness → LocalTateDuality → LocalEulerChar 
       rw [Formalism.MainNotions.SumRepresentations.twisted_character_at_frobenius D.nd w hw e]
     rw [h2]
     exact twist_sub_bijective _ _ hc0 hnr
-  have key := GlobalTheory.T.localCohomology_vanishes_tame_inertia_no_fixed hF hT hE D.host.E D.nd.Om (D.nd.l i)
+  have key := _root_.GlobalTheory.StringRepresentationDecomposition.tame_vanish hF hT hE D.host.E D.nd.Om (D.nd.l i)
     (Fin D.R.r → IsLocalRing.ResidueField (D.nd.O i)) (D.nd.plOm.1 w) w rhoZ (D.nd.plOm.2 w) hw hcZ
     ⟨⟨D.nd.gam0 i w, hγD⟩, D.nd.locNd_chebotarevPlace_mem i w, hbij⟩
   have hk := Formalism.MainNotions.N.CohomologyScalarsVanish.cohScalarsVanish (D.nd.l i ^ 1) (IsLocalRing.ResidueField (D.nd.O i))

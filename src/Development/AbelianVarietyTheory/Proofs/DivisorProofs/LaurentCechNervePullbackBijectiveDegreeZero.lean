@@ -62,10 +62,10 @@ theorem cechC_pull_bijective : ∀ (q : ℕ) [NeZero q] (A : Type) [CommRing A],
     ∀ (A' : Type) [CommRing A'] [Algebra A A'], Module.Finite A A' → ∀ (k : ℕ) (i : ℤ),
     Function.Bijective (pull _ (disc.map ((cechC A A').app (op ⦋k⦌))) (tw q i) 0) := by
   intro q _ A _ hA hq A' _ _ hfin k i
-  obtain ⟨e0, e, h1, -⟩ := GlobalTheory.T.laurentCechNerve_level_spec_tensorPower A A' k
+  obtain ⟨e0, e, h1, -⟩ := _root_.GlobalTheory.EtC.GmStep.LevelIso.level_iso A A' k
   haveI := hfin
   have hT : Module.Finite A (PiTensorProduct A (fun _ : Fin (k + 1) => A')) := inferInstance
-  have hr0 := GlobalTheory.T.laurentC_pullback_bijective_finite_strictlyHenselian q A hA hq (PiTensorProduct A (fun _ : Fin (k + 1) => A')) hT i
+  have hr0 := _root_.GlobalTheory.EtC.SpecMapPullbackFunctoriality.laurent_C_pull_bijective q A hA hq (PiTensorProduct A (fun _ : Fin (k + 1) => A')) hT i
   have hmap := congrArg (fun f => disc.map f) h1
   simp only [Functor.map_comp] at hmap
   have heq : ∀ x, pull _ (disc.map e.hom) (tw q i) 0 (pull _ (disc.map ((cechC A A').app (op ⦋k⦌))) (tw q i) 0 x) =

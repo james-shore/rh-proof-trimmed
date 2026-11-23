@@ -62,14 +62,9 @@ private lemma sec_tmul {A A' C J : Type} [CommRing A] [CommRing A'] [CommRing C]
     (τ : J → (A' →ₐ[A] C)) (c : C) (b : A') (j : J) : sec τ (c ⊗ₜ b) j = c * τ j b := by
   simp [sec]
 
-private lemma tensor_hom_ext {A A' C Ω : Type} [CommRing A] [CommRing A'] [CommRing C] [Algebra A A'] [Algebra A C]
-    [CommRing Ω] {u v : C ⊗[A] A' →+* Ω} (h₁ : ∀ c : C, u (c ⊗ₜ 1) = v (c ⊗ₜ 1))
-    (h₂ : ∀ b : A', u (1 ⊗ₜ b) = v (1 ⊗ₜ b)) : u = v :=
-  _root_.UpperTheory.Reformulated.B.Qk54.tensor_hom_ext h₁ h₂
+private alias tensor_hom_ext := _root_.UpperTheory.Reformulated.B.Qk54.tensor_hom_ext
 
-private lemma exists_eval {C Ω J : Type} [CommRing C] [Field Ω] [Fintype J] (f : (J → C) →+* Ω) :
-    ∃ j, ∀ v : J → C, f v = f (algebraMap C (J → C) (v j)) :=
-  _root_.UpperTheory.Reformulated.B.ExistsEvaluation.exists_eval f
+private alias exists_eval := _root_.UpperTheory.Reformulated.B.ExistsEvaluation.exists_eval
 
 private lemma bij_of_pts (hiso : AlgIsoPts) {C D E : Type} [CommRing C] [CommRing D] [CommRing E] [Algebra C D]
     [Algebra C E] [Algebra.Etale C D] [Algebra.Etale C E] (φ : D →ₐ[C] E)

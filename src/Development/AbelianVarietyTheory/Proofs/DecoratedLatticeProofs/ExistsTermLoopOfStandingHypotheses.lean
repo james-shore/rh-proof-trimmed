@@ -125,7 +125,7 @@ theorem GlobalTheory.Core.Deg.exists_termLoop_of_standingHypotheses : ∀ (D : D
   exact ⟨Formalism.L2.SG.LoopsFinal.jtPin_of _ hI _ _ _ (Formalism.L2.SG.Pf.FibreCounting.AmpFibreConst_holds Y),
     Formalism.L2.SG.Pf.WittFlags.WRowPin_holds hF hI _ _ _ _,
     Formalism.L2.SG.Pf.FibreCounting.FibreCount_holds Y,
-    Formalism.MainNotions.BridgeLemma₂.rows_TermPtsTie_of _ (Formalism.MainNotions.BridgeLemma₂.rows_rdE_pos D) hti.1,
+    Formalism.MainNotions.BridgeLemma₂.rows_TermPtsTie_of _ (_root_.Formalism.MainNotions.S.rdE_pos D) hti.1,
     hti.2.1, hti.2.2, fun t t' hL hE => hFE t t' hL hE⟩
 
 namespace GlobalTheory.Core.Deg

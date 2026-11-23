@@ -116,7 +116,7 @@ theorem le_of_rayAdm (D : D7) (jE : D.host.E →+* Qb) (M : Fld) (h : KQbar D jE
   have key : ∀ 𝔭 : HeightOneSpectrum (𝓞 D.host.K), ¬ 𝔭.asIdeal ∣ GlobalTheory.Mem.RaySplit.condIdeal D.host →
       (𝔭.asIdeal.primesOver (𝓞 R)).ncard = Module.finrank D.host.K R →
         ∃ π : 𝓞 D.host.K, 𝔭.asIdeal = Ideal.span {π} ∧ π - 1 ∈ GlobalTheory.Mem.RaySplit.condIdeal D.host :=
-    fun 𝔭 h1 h2 => GlobalTheory.T.exists_span_eq_one_mod_of_splits_in_rayClassField D.host.K R _ hR 𝔭 h1 h2
+    fun 𝔭 h1 h2 => _root_.GlobalTheory.Mem.RaySplit.exists_span_eq_of_splits D.host.K R _ hR 𝔭 h1 h2
   have hle : L' ≤ R := by
     refine @GlobalTheory.Bauer.le_of_finite_split_not_split D.host.K Qb _ _ _ _ R L' _ _ hab.toIsGalois
       ((Ideal.finite_factors (GlobalTheory.Mem.RaySplit.condIdeal_ne_bot D.host)).subset ?_)
@@ -157,7 +157,7 @@ theorem rayField_isRay : GlobalTheory.Published.RayClassFieldSt → ∀ (D : D7)
       ∀ p, IsRayPrime (KQbar D jE) (D.host.QS * D.host.q * D.host.d) p → SplitsIn (MrayC D jE) p := by
   intro hray D jE
   obtain ⟨M, h, hf, hM⟩ := exists_embedded hray D jE
-  have hsplit := GlobalTheory.T.rayClassField_splitsIn_of_isRayPrime D jE M h hf hM
+  have hsplit := _root_.GlobalTheory.ParRay.rayField_splitsIn_of_isRayPrime D jE M h hf hM
   have heq : MrayC D jE = M :=
     le_antisymm (iSup₂_le fun L hL => le_of_rayAdm D jE M h hf hM L hL) (le_rayField ⟨h, hf, hsplit⟩)
   generalize MrayC D jE = X at heq ⊢

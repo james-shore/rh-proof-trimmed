@@ -45,7 +45,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace GlobalTheory.CompanionTheory.Ar.HT
 
-theorem hodge_tate_cokernel_sharp : GlobalTheory.CompanionTheory.Ar.HT.HodgeTateCokerSharp :=
-  PositivityTheory.HtPt.Farsharp.hodgeTateCokerSharp
+alias hodge_tate_cokernel_sharp := _root_.PositivityTheory.HtPt.Farsharp.hodgeTateCokerSharp
 
 end GlobalTheory.CompanionTheory.Ar.HT

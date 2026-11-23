@@ -63,30 +63,8 @@ open Formalism.L2.Col Formalism.HermitianLatticesTheory Formalism.L2.Th1.H
 
 variable {E : Type} [Field E] [NumberField E] [StarRing E] {ι : Type} [Fintype ι] {a b : ℕ}
 
-theorem hv_apply' (sc : ℝ) (z w : VV ι a b) :
-    HV sc z w = (sc : ℂ) * ∑ τ, ∑ i, ∑ j, z τ i j * (starRingEnd ℂ) (w τ i j) := rfl
-
 theorem embH_apply' (emb : ι → E →+* ℂ) (δ : ℂ) (x : HomE E a b) (τ : ι) (i : Fin b) (j : Fin a) :
     embH emb δ x τ i j = δ * emb τ (x (Pi.single j 1) i) := rfl
-
-theorem hv_smul_emb (emb : ι → E →+* ℂ) (δ : ℂ) (sc : ℝ)
-    (hst : ∀ (τ : ι) (x : E), emb τ (star x) = starRingEnd ℂ (emb τ x)) (r : E) (x y : HomE E a b) :
-    HV sc (embH emb δ (r • x)) (embH emb δ y) = HV sc (embH emb δ x) (embH emb δ (star r • y)) := by
-  rw [hv_apply', hv_apply']
-  congr 1
-  refine Finset.sum_congr rfl fun τ _ => Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  simp only [embH_apply', LinearMap.smul_apply, Pi.smul_apply, smul_eq_mul, map_mul, hst, Complex.conj_conj]
-  ring
-
-theorem embH_injective' [Nonempty ι] (emb : ι → E →+* ℂ) {δ : ℂ} (hδ : δ ≠ 0) :
-    Function.Injective (embH emb δ : HomE E a b → VV ι a b) := by
-  intro x y h
-  obtain ⟨τ⟩ := ‹Nonempty ι›
-  refine LinearMap.pi_ext' fun j => LinearMap.ext_ring ?_
-  funext i
-  have := congrFun (congrFun (congrFun h τ) i) j
-  rw [embH_apply', embH_apply'] at this
-  simpa using (emb τ).injective (mul_left_cancel₀ hδ this)
 
 theorem altE_nsmul_left {V : Type} [AddCommGroup V] [Module ℂ V] (H : Sesq V) (n : ℕ) (v w : V) :
     altE H (n • v) w = altE H v (n • w) := by
@@ -120,7 +98,7 @@ theorem twO_selfDual : ∀ (E : Type) [Field E] [NumberField E] [StarRing E] (ι
       exact hz y hy
     rw [hSD'] at h1
     obtain ⟨z', hz', e'⟩ := h1
-    rwa [← embH_injective' emb hδ e']
+    rwa [← _root_.Formalism.L2.Ker.embH_inj emb hδ e']
   have hcM : ∀ y ∈ M, (c : E) • y ∈ twist₂ M c e := by
     intro y hy
     rw [mem_twO]
@@ -183,7 +161,7 @@ theorem twO_selfDual : ∀ (E : Type) [Field E] [NumberField E] [StarRing E] (ι
     apply hdualM
     intro y hy
     unfold altE
-    rw [hv_smul_emb emb δ sc hst, star_mul', algebraMap_cO, star_star, star_inv₀, hstk, hxv]
+    rw [_root_.GlobalTheory.CocIntLoc.hv_smul emb δ sc hst, star_mul', algebraMap_cO, star_star, star_inv₀, hstk, hxv]
     exact hv _ ⟨_, hT y hy, rfl⟩
   · rintro _ ⟨x, hx, rfl⟩ _ ⟨y, hy, rfl⟩
     refine (GlobalTheory.T.hermitian_cocycle_integral_of_local E ι a b emb δ d sc M hδ hst hSD hSC x y fun Q =>

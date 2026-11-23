@@ -242,7 +242,7 @@ theorem exists_close (L : LocE F E) {ϖ : 𝒪[F]} (hϖ : Irreducible ϖ) {n : �
   have hi' : 1 ≤ N' + i := by omega
   obtain ⟨j, hj⟩ := GlobalTheory.T.congruentOneMatrices_transitive_near_hermitian L ϖ hϖ m Γ hh hΓ (N' + i) hi'
   obtain ⟨h1, hK', -⟩ := GlobalTheory.T.matrixCongruentOneModUniformizerPow_group_and_orbits L ϖ hϖ m (N' + i) hi'
-  obtain ⟨h2, hK, -⟩ := GlobalTheory.T.matrixCongruentOneModUniformizerPow_group_and_orbits L ϖ hϖ m i hi
+  obtain ⟨h2, hK, -⟩ := _root_.GlobalTheory.CongGrp.congK_group L ϖ hϖ m i hi
   refine ⟨N' + (j + e), fun y u hy hG hu => ?_⟩
   have hint : ∀ v ∈ Λ, ∀ w ∈ Λ, hf L Hm v w ∈ L.O := fun v hv w hw => (hΛ.2 w).2 hw v hv
   let D : Matrix (Fin m) (Fin m) E := Matrix.of fun a b =>
@@ -317,7 +317,7 @@ theorem main : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [I
     ext a b
     exact (GlobalTheory.HL.Model.hf_symm L hH.1 _ _).symm
   obtain ⟨M, hM⟩ := exists_close L hϖ hH hΛ hh hΓ N e i (by omega)
-  obtain ⟨-, hC, -⟩ := GlobalTheory.T.matrixCongruentOneModUniformizerPow_group_and_orbits L ϖ hϖ m i (by omega)
+  obtain ⟨-, hC, -⟩ := _root_.GlobalTheory.CongGrp.congK_group L ϖ hϖ m i (by omega)
   let B : AddSubgroup (Fin m → Fin n → E) :=
     (tupLat L Λ m).map (DistribSMul.toAddMonoidHom _ (algebraMap F E ((ϖ : F) ^ M)))
   have hB : ∀ w : Fin m → Fin n → E, (∀ a, w a ∈ Λ) → algebraMap F E ((ϖ : F) ^ M) • w ∈ B :=

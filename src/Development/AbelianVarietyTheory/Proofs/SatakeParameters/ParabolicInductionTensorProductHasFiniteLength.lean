@@ -259,7 +259,7 @@ theorem multiProd_hasFiniteLength : GlobalTheory.Published.BernsteinZelevinskyFi
   obtain ⟨hAdm, -, hInd, -⟩ := hBZ k
   have hirr : (piTensor fun a => (σ a).π).IsIrreducible :=
     piTensor_isIrreducible_of_schur (fun a => (σ a).π) (fun a => (σ a).irr) fun a φ hφ =>
-      GlobalTheory.SchurAdm.schur_admissible (GL (Fin (d a)) k) (KO k (Fin (d a))) GlobalTheory.SplitFlip.isOpen_KO
+      _root_.GlobalTheory.SchurAdmissibility.schur_admissible (GL (Fin (d a)) k) (KO k (Fin (d a))) GlobalTheory.SplitFlip.isOpen_KO
         GlobalTheory.SplitFlip.isCompact_KO (σ a).V (σ a).π (σ a).irr
         (hAdm (Fin (d a)) (σ a).V (σ a).π (σ a).smooth (σ a).irr) φ hφ
   exact hInd (Fin s) (Fin n) (fun a => Fin (d a)) e _ _ (isSmooth_piTensor fun a => (σ a).smooth)

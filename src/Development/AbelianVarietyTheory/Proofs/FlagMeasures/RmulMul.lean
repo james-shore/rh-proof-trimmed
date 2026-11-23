@@ -61,23 +61,6 @@ namespace GlobalTheory.IntClsCount
 variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
 variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E]
 
-omit [TopologicalSpace E] in
-theorem uni_mul {N : ℕ} {A B : Matrix (Fin N) (Fin N) E} (hA : IsUni A) (hB : IsUni B) :
-    IsUni (A * B) := by
-  refine ⟨fun i j hij => ?_, fun i => ?_⟩
-  · rw [Matrix.mul_apply]
-    refine Finset.sum_eq_zero fun l _ => ?_
-    rcases lt_or_ge l i with h | h
-    · rw [hA.1 i l h, zero_mul]
-    · rw [hB.1 l j (lt_of_lt_of_le hij h), mul_zero]
-  · rw [Matrix.mul_apply, Finset.sum_eq_single i]
-    · rw [hA.2, hB.2, one_mul]
-    · intro l _ hl
-      rcases lt_or_gt_of_ne hl with h | h
-      · rw [hA.1 i l h, zero_mul]
-      · rw [hB.1 l i h, mul_zero]
-    · simp
-
 theorem int_mul (L : LocE F E) {N : ℕ} {A B : Matrix (Fin N) (Fin N) E} (hA : IsIntM L A)
     (hB : IsIntM L B) : IsIntM L (A * B) := fun i j => by
   rw [Matrix.mul_apply]
@@ -259,13 +242,13 @@ theorem main : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [I
     obtain ⟨A, hA, hAI, eA⟩ := hs u
     obtain ⟨A', hA', hAI', eA'⟩ := hs u'
     obtain ⟨Ai, hAi, hAiI, -, e2⟩ := exists_inv L hA hAI
-    obtain ⟨B₀, hB₀, hcong⟩ := hRs (A' * Ai) (uni_mul hA' hAi) (int_mul L hAI' hAiI)
+    obtain ⟨B₀, hB₀, hcong⟩ := hRs (A' * Ai) (_root_.GlobalTheory.HL.UniCount.isUni_mul hA' hAi) (int_mul L hAI' hAiI)
     obtain ⟨Bi, hBi, hBiI, e3, e4⟩ := exists_inv L (hRu B₀ hB₀).1 (hRu B₀ hB₀).2
     refine ⟨(coset L u, coset L u', B₀), ⟨⟨u, hu, fun i j => (hd i j).1, rfl⟩,
       ⟨u', hu', fun i j => (hd i j).2, rfl⟩, hB₀⟩, ?_⟩
     refine (((GlobalTheory.HL.FrameClass.frame_classes L r k S _ _).2.1
       (fun j => ∑ i, u i j • S.f i, fun j => ∑ i, u' i j • S.f' i) ?_).1).symm
-    have hBA := uni_mul hBi hA'
+    have hBA := _root_.GlobalTheory.HL.UniCount.isUni_mul hBi hA'
     refine ⟨A, Bi * A', hAI, int_mul L hBiI hAI', fun i j h => ⟨hA.1 i j h, hBA.1 i j h⟩,
       fun i => ⟨hA.2 i, hBA.2 i⟩, ?_, fun j => ?_, fun j => ?_⟩
     · choose c hc ec using hcong

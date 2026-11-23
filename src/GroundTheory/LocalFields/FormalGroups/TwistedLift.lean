@@ -260,7 +260,7 @@ theorem existsUnique_twisted {ℓ : MvPowerSeries ι B} (hℓ : constantCoeff �
     (hℓ1 : ∀ e : ι →₀ ℕ, e.degree = 1 → u * π * coeff e ℓ = π * σ (coeff e ℓ)) :
     ∃! φ : MvPowerSeries ι B,
       (2 : ℕ∞) ≤ order (φ - ℓ) ∧ PowerSeries.subst φ g = subst (substEach f) (map σ φ) := by
-  obtain ⟨φ, hφ, huniq⟩ := existsUnique_fixedPoint (twistStep σ u π g f ℓ)
+  obtain ⟨φ, hφ, huniq⟩ := _root_.UpperTheory.Reformulated.B.Ydb5.existsUnique_fixedPoint (twistStep σ u π g f ℓ)
     (twistStep_contract σ hf0 hf1 hg0 hg1 hreg hdiv ℓ)
   exact ⟨φ, (twistStep_eq_self_iff σ hf0 hf1 hg0 hg1 hreg hT hdiv hℓ hℓ1 φ).1 hφ,
     fun ψ hψ => huniq ψ ((twistStep_eq_self_iff σ hf0 hf1 hg0 hg1 hreg hT hdiv hℓ hℓ1 ψ).2 hψ)⟩

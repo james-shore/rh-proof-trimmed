@@ -81,12 +81,12 @@ theorem frame_gauge : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
   have hcs : ∀ (b : 𝓞 E) (i : Fin d), MvPowerSeries.constantCoeff (g.B.A.act b i) = 0 := fun b i => g.B.A.const b i
   have hp0 : ∀ i : Fin d, MvPowerSeries.constantCoeff (pt k (n := 1) d 0 i) = 0 := fun i => by simp [pt]
   have hp2 : ∀ (j : Fin 2) (i : Fin d), MvPowerSeries.constantCoeff (pt k (n := 2) d j i) = 0 := fun j i => by simp [pt]
-  obtain ⟨-, -, -, hT, hbT, -⟩ := GlobalTheory.T.formal_bilinear_term_product k d lam lam (pt k d 0) (g.B.A.act (star a)) hax hax hp0 (hcs _)
-  obtain ⟨-, -, -, hS, hbS, -⟩ := GlobalTheory.T.formal_bilinear_term_product k d lam lam (g.B.A.act a) (pt k d 0) hax hax (hcs _) hp0
+  obtain ⟨-, -, -, hT, hbT, -⟩ := _root_.PositivityTheory.HtPt.Ca.bil_calc k d lam lam (pt k d 0) (g.B.A.act (star a)) hax hax hp0 (hcs _)
+  obtain ⟨-, -, -, hS, hbS, -⟩ := _root_.PositivityTheory.HtPt.Ca.bil_calc k d lam lam (g.B.A.act a) (pt k d 0) hax hax (hcs _) hp0
   rw [germ_comp1_zero_point_left _ (hp2 0)] at hT hbT
   rw [germ_comp1_zero_point_left _ (hp2 1)] at hS hbS
-  obtain ⟨-, -, e1, -⟩ := GlobalTheory.T.formal_bilinear_term_product k d (subQ Qs (gB.B.ad a)) _ (pt k d 0) (pt k d 0) hA hT hp0 hp0
-  obtain ⟨-, -, e2, -⟩ := GlobalTheory.T.formal_bilinear_term_product k d _ (g.B.ad a) (pt k d 0) (pt k d 0) hS hadx hp0 hp0
+  obtain ⟨-, -, e1, -⟩ := _root_.PositivityTheory.HtPt.Ca.bil_calc k d (subQ Qs (gB.B.ad a)) _ (pt k d 0) (pt k d 0) hA hT hp0 hp0
+  obtain ⟨-, -, e2, -⟩ := _root_.PositivityTheory.HtPt.Ca.bil_calc k d _ (g.B.ad a) (pt k d 0) (pt k d 0) hS hadx hp0 hp0
   have h := congrArg (fun f => bil f 1 1) hrel
   beta_reduce at h
   rw [e1, e2, hbT, hbS, hbA, hl, lin_pt_eq_one, Matrix.transpose_one, Matrix.one_mul, Matrix.mul_one] at h

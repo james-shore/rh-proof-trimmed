@@ -61,10 +61,6 @@ lemma re_one_div_nonneg {w : ℂ} (h : 0 ≤ w.re) : 0 ≤ (1 / w).re := by
   rw [one_div, Complex.inv_re]
   exact div_nonneg h (Complex.normSq_nonneg w)
 
-lemma neg_re_le_norm (x : ℂ) : (-x).re ≤ ‖x‖ := by
-  rw [Complex.neg_re]
-  linarith [neg_le_abs x.re, Complex.abs_re_le_norm x]
-
 private lemma re_natCast_div_nonneg (k : ℕ) {w : ℂ} (hw : 0 ≤ w.re) : 0 ≤ ((k : ℂ) / w).re := by
   have e : (k : ℂ) / w = ((k : ℝ) : ℂ) * (1 / w) := by push_cast; ring
   rw [e, Complex.re_ofReal_mul]
@@ -149,7 +145,7 @@ lemma zeta_log_deriv_landau_bound (t σ : ℝ) (ht : 2 < |t|) (hσ : 1 < σ) (h�
     apply re_natCast_div_nonneg
     simp
     linarith
-  have hneg := neg_re_le_norm (deriv riemannZeta ((σ : ℂ) + t * I) / riemannZeta ((σ : ℂ) + t * I) -
+  have hneg := _root_.Formalism.ZF.zfo_neg_re_le_norm (deriv riemannZeta ((σ : ℂ) + t * I) / riemannZeta ((σ : ℂ) + t * I) -
       ∑ ρ ∈ Z, (m ρ : ℂ) / ((σ : ℂ) + t * I - ρ))
   have hsplit : (-(deriv riemannZeta ((σ : ℂ) + t * I) / riemannZeta ((σ : ℂ) + t * I))).re =
       (-(deriv riemannZeta ((σ : ℂ) + t * I) / riemannZeta ((σ : ℂ) + t * I) -
@@ -196,7 +192,7 @@ lemma zeta_neg_log_deriv_re_bound : ∃ K : ℝ, 0 ≤ K ∧ ∀ σ t : ℝ, 1 <
     rw [him] at hb
     have es : (σ : ℂ) + t * I - 1 = (σ : ℂ) - 1 + t * I := by ring
     rw [es] at hb
-    have hneg := neg_re_le_norm (deriv riemannZeta ((σ : ℂ) + t * I) / riemannZeta ((σ : ℂ) + t * I) +
+    have hneg := _root_.Formalism.ZF.zfo_neg_re_le_norm (deriv riemannZeta ((σ : ℂ) + t * I) / riemannZeta ((σ : ℂ) + t * I) +
       1 / ((σ : ℂ) - 1 + t * I))
     have hsplit : (-(deriv riemannZeta ((σ : ℂ) + t * I) / riemannZeta ((σ : ℂ) + t * I))).re =
         (1 / ((σ : ℂ) - 1 + t * I)).re + (-(deriv riemannZeta ((σ : ℂ) + t * I) /

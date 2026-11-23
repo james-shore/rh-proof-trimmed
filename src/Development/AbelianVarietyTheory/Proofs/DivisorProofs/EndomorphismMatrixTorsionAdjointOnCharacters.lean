@@ -79,7 +79,7 @@ theorem main : ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] (S : The
     obtain ⟨w, hw⟩ := hlab k pk pk' x x' hk hx hx' (by rw [hxx, Category.assoc, heA])
     refine ⟨j.symm w, j.injective ?_⟩
     rw [map_add (f := _), map_nsmul, AddEquiv.apply_symm_apply, hs, hw, hEm]
-  have hT := GlobalTheory.T.labelCongruence_endo_all_algClosed_fields o Ω S ρ p y₀ u eA s hlab'
+  have hT := _root_.GlobalTheory.LabelTransfer.main o Ω S ρ p y₀ u eA s hlab'
   haveI : Mono (jK u.V) := GlobalTheory.PolDeg.Wit.mono_jK
   haveI : Mono (genMap u.U) := by unfold genMap; infer_instance
   have hTor := GlobalTheory.Poinc.TorEnd.torMatch_of_endChar u.V hBase u.G u.semi u.D u.A u.U F hF m hm
@@ -119,6 +119,6 @@ theorem main : ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] (S : The
         qW W β (j χ) : ℤ) : ℝ) = sc * ((qW W β (y + j (m χ)) - qW W β y - qW W β (j (m χ)) : ℤ) : ℝ) := by
       push_cast; linarith
     exact_mod_cast mul_left_cancel₀ hsc.ne' h'
-  exact GlobalTheory.T.eq_adjoint_apply_of_weightedQuadraticSum_polar W hW X₀ β hβs hβp E E' hEE (j χ) (j (m χ)) hpolW
+  exact _root_.GlobalTheory.Poinc.eq_adjoint_apply_of_qW_polar W hW X₀ β hβs hβp E E' hEE (j χ) (j (m χ)) hpolW
 
 end GlobalTheory.Poinc.FibMatrix

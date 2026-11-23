@@ -65,35 +65,19 @@ section Series
 
 variable {S : Type} [CommRing S] [Algebra ℚ S] {d : ℕ}
 
-private lemma cc_pt_lemma {n : ℕ} (j : Fin n) (i : Fin d) :
-    MvPowerSeries.constantCoeff (pt S d j i) = 0 := by
-  simp [ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ.pt]
-
-private lemma cc_logOf_lemma_2 (G : FGLaw S d) (i : Fin d) :
-    MvPowerSeries.constantCoeff (ReciprocityTheory.ChartRestriction.G.TB.LogPf.logOf G i) = 0 := by
-  rw [← MvPowerSeries.coeff_zero_eq_constantCoeff_apply]
-  show ReciprocityTheory.ChartRestriction.G.TB.LogPf.prim _ 0 = 0
-  simp [ReciprocityTheory.ChartRestriction.G.TB.LogPf.prim]
-
 private lemma germEval_oneStandardPoint_self_lemma_3 {n : ℕ} (b : Fin 2 → Pt S n d)
     (hb : ∀ j i, MvPowerSeries.constantCoeff (b j i) = 0) (j : Fin 2) (f : PS S 1 d) :
     ev b (ev (n := 2) ![pt S d j] f) = ev ![b j] f := by
-  rw [ev_ev _ _ (fun j' i => by fin_cases j'; exact cc_pt_lemma j i) hb]
+  rw [ev_ev _ _ (fun j' i => by fin_cases j'; exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' j i) hb]
   congr 1
   funext j' i
   fin_cases j'
   exact ev_X b hb j i
 
-private lemma ev_hom_lemma_4 {m n : ℕ} (a : Fin m → Pt S n d)
-    (ha : ∀ j i, MvPowerSeries.constantCoeff (a j i) = 0) (f : PS S m d) :
-    ev a f = MvPowerSeries.substAlgHom (hasSubst_pts a ha) f := by
-  rw [MvPowerSeries.coe_substAlgHom]
-  rfl
-
 private lemma ev_neg_lemma_5 {m n : ℕ} (a : Fin m → Pt S n d)
     (ha : ∀ j i, MvPowerSeries.constantCoeff (a j i) = 0) (f : PS S m d) :
     ev a (-f) = -ev a f := by
-  rw [ev_hom_lemma_4 a ha, ev_hom_lemma_4 a ha, map_neg]
+  rw [_root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.ev_eq_hom a ha, _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.ev_eq_hom a ha, map_neg]
 
 private lemma eval_expSeries {m n : ℕ} (a : Fin m → Pt S n d)
     (ha : ∀ j i, MvPowerSeries.constantCoeff (a j i) = 0) (f : PS S m d)
@@ -103,18 +87,14 @@ private lemma eval_expSeries {m n : ℕ} (a : Fin m → Pt S n d)
 private lemma cc_lg_lemma_7 {n : ℕ} (G : FGLaw S d) (j : Fin n) (i : Fin d) :
     MvPowerSeries.constantCoeff (Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix.lg G j i) = 0 :=
   ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.cc_ev (a := ![pt S d j])
-    (fun j' i' => by fin_cases j'; exact cc_pt_lemma j i') (cc_logOf_lemma_2 G i)
-
-private lemma cc_bilL_lemma_8 (G : FGLaw S d) (c : Fin d → Fin d → S) :
-    MvPowerSeries.constantCoeff (bilL G c) = 0 := by
-  simp [Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix.bilL, MvPowerSeries.smul_eq_C_mul, cc_lg_lemma_7]
+    (fun j' i' => by fin_cases j'; exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' j i') (_root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_logOf G i)
 
 private lemma ev_bilL_lemma_9 {n : ℕ} (G : FGLaw S d) (c : Fin d → Fin d → S) (x y : Pt S n d)
     (ha : ∀ j i, MvPowerSeries.constantCoeff ((![x, y] : Fin 2 → Pt S n d) j i) = 0) :
     ev ![x, y] (bilL G c) = ∑ i, ∑ l, c i l •
       (ev ![x] (ReciprocityTheory.ChartRestriction.G.TB.LogPf.logOf G i) * ev ![y] (ReciprocityTheory.ChartRestriction.G.TB.LogPf.logOf G l)) := by
   have key : ∀ f, ev ![x, y] f = MvPowerSeries.substAlgHom (hasSubst_pts _ ha) f :=
-    fun f => ev_hom_lemma_4 _ ha f
+    fun f => _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.ev_eq_hom _ ha f
   have hl : ∀ (j : Fin 2) i, ev ![x, y] (Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix.lg G j i) =
       ev ![(![x, y] : Fin 2 → Pt S n d) j] (ReciprocityTheory.ChartRestriction.G.TB.LogPf.logOf G i) :=
     fun j i => germEval_oneStandardPoint_self_lemma_3 _ ha j _
@@ -135,8 +115,8 @@ theorem formal_log_add_first_two (G : FGLaw S d) (l : Fin d) :
   have hb : ∀ j i, MvPowerSeries.constantCoeff ((![pt S d 0, pt S d 1] : Fin 2 → Pt S 3 d) j i) = 0 := by
     intro j i
     fin_cases j
-    · exact cc_pt_lemma _ i
-    · exact cc_pt_lemma _ i
+    · exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' _ i
+    · exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' _ i
   have hF : ∀ j i, MvPowerSeries.constantCoeff ((![G.F] : Fin 1 → Pt S 2 d) j i) = 0 := by
     intro j i
     fin_cases j
@@ -148,14 +128,14 @@ theorem formal_log_add_first_two (G : FGLaw S d) (l : Fin d) :
     funext j i
     fin_cases j
     rfl
-  rw [e1, ReciprocityTheory.ChartRestriction.G.TB.LogPf.logOf_add (G := G), ev_hom_lemma_4 _ hb, map_add (f := _),
-    ← ev_hom_lemma_4 _ hb, ← ev_hom_lemma_4 _ hb, germEval_oneStandardPoint_self_lemma_3 _ hb, germEval_oneStandardPoint_self_lemma_3 _ hb]
+  rw [e1, ReciprocityTheory.ChartRestriction.G.TB.LogPf.logOf_add (G := G), _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.ev_eq_hom _ hb, map_add (f := _),
+    ← _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.ev_eq_hom _ hb, ← _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.ev_eq_hom _ hb, germEval_oneStandardPoint_self_lemma_3 _ hb, germEval_oneStandardPoint_self_lemma_3 _ hb]
   all_goals rfl
 
 theorem constantCoeff_add_first_second (G : FGLaw S d) (i : Fin d) :
     MvPowerSeries.constantCoeff (G.add (pt S (n := 3) d 0) (pt S d 1) i) = 0 :=
   ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.cc_ev (a := ![pt S d 0, pt S d 1]) (f := G.F i)
-    (fun j i' => by fin_cases j <;> exact cc_pt_lemma _ i') (G.const i)
+    (fun j i' => by fin_cases j <;> exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' _ i') (G.const i)
 
 theorem twist_mul_first_argument (G : FGLaw S d) (cc : Fin d → Fin d → S) :
     ev (n := 3) ![G.add (pt S d 0) (pt S d 1), pt S d 2] (expP (-bilL G cc)) =
@@ -165,18 +145,18 @@ theorem twist_mul_first_argument (G : FGLaw S d) (cc : Fin d → Fin d → S) :
     intro j i
     fin_cases j
     · exact constantCoeff_add_first_second G i
-    · exact cc_pt_lemma _ i
+    · exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' _ i
   have h0 : ∀ j i, MvPowerSeries.constantCoeff ((![pt S d 0, pt S d 2] : Fin 2 → Pt S 3 d) j i) = 0 := by
     intro j i
     fin_cases j
-    · exact cc_pt_lemma _ i
-    · exact cc_pt_lemma _ i
+    · exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' _ i
+    · exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' _ i
   have h1 : ∀ j i, MvPowerSeries.constantCoeff ((![pt S d 1, pt S d 2] : Fin 2 → Pt S 3 d) j i) = 0 := by
     intro j i
     fin_cases j
-    · exact cc_pt_lemma _ i
-    · exact cc_pt_lemma _ i
-  have hB := cc_bilL_lemma_8 G cc
+    · exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' _ i
+    · exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' _ i
+  have hB := _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_bilL G cc
   have hneg : MvPowerSeries.constantCoeff (-bilL G cc) = 0 := by rw [map_neg, hB, neg_zero]
   have hsplit : ev (n := 3) ![G.add (pt S d 0) (pt S d 1), pt S d 2] (bilL G cc) =
       ev (n := 3) ![pt S d 0, pt S d 2] (bilL G cc) + ev (n := 3) ![pt S d 1, pt S d 2] (bilL G cc) := by
@@ -199,10 +179,10 @@ theorem twist_sym (G : FGLaw S d) (cc : Fin d → Fin d → S) (hs : ∀ i l, cc
   have ha : ∀ j i, MvPowerSeries.constantCoeff ((![pt S d 1, pt S d 0] : Fin 2 → Pt S 2 d) j i) = 0 := by
     intro j i
     fin_cases j
-    · exact cc_pt_lemma _ i
-    · exact cc_pt_lemma _ i
+    · exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' _ i
+    · exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' _ i
   have hneg : MvPowerSeries.constantCoeff (-bilL G cc) = 0 := by
-    rw [map_neg, cc_bilL_lemma_8 G cc, neg_zero]
+    rw [map_neg, _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_bilL G cc, neg_zero]
   have hsw : ev (n := 2) ![pt S d 1, pt S d 0] (bilL G cc) = bilL G cc := by
     rw [ev_bilL_lemma_9 G cc _ _ ha]
     conv_rhs => rw [Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix.bilL]
@@ -220,7 +200,7 @@ theorem bilL_zero (G : FGLaw S d) : bilL G 0 = 0 := by
 theorem twist_add (G : FGLaw S d) (c c' : Fin d → Fin d → S) :
     expP (-bilL G (c + c')) = expP (-bilL G c) * expP (-bilL G c') := by
   rw [bilL_add, neg_add]
-  exact exp_add (by rw [map_neg, cc_bilL_lemma_8, neg_zero]) (by rw [map_neg, cc_bilL_lemma_8, neg_zero])
+  exact exp_add (by rw [map_neg, _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_bilL, neg_zero]) (by rw [map_neg, _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_bilL, neg_zero])
 
 theorem twist_zero (G : FGLaw S d) : expP (-bilL G 0) = 1 := by
   rw [bilL_zero, neg_zero]
@@ -283,8 +263,8 @@ private lemma mkIn_lemma_13 (G : FGLaw S d) (m : ℕ) (j : Fin d) :
       MvPowerSeries.constantCoeff ((![pt S d 0, pt S d 1] : Fin 2 → Pt S 3 d) p.1 p.2) = 0 := by
     rintro ⟨j', i'⟩
     fin_cases j'
-    · exact cc_pt_lemma _ i'
-    · exact cc_pt_lemma _ i'
+    · exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' _ i'
+    · exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' _ i'
   have hX : ∀ p : Fin 2 × Fin d, Ideal.Quotient.mk (Formalism.L2.Pj.orig S (Fin 3 × Fin d) ^ (m + 1))
       (MvPolynomial.X ((![0, 1] : Fin 2 → Fin 3) p.1, p.2) : MvPolynomial (Fin 3 × Fin d) S) =
         psJet m ((![pt S d 0, pt S d 1] : Fin 2 → Pt S 3 d) p.1 p.2) := by
@@ -323,7 +303,7 @@ theorem twist_mul_first_argument_jet (G : FGLaw S d) (cc : Fin d → Fin d → S
     · exact hx i'
     · exact hy i'
   have hpt : ∀ k : Fin 3, ∀ i, MvPowerSeries.constantCoeff ((pt S d k : Pt S 3 d) i) = 0 :=
-    fun k i => cc_pt_lemma k i
+    fun k i => _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' k i
   have hXc : ∀ (k k' : Fin 3), ∀ p : Fin 2 × Fin d, MvPolynomial.constantCoeff
       ((![fun j => X (k, j), fun j => X (k', j)] : Fin 2 → Fin d → MvPolynomial (Fin 3 × Fin d) S) p.1 p.2) = 0 := by
     intro k k'
@@ -369,8 +349,8 @@ theorem twist_sym_jet (G : FGLaw S d) (cc : Fin d → Fin d → S) (hs : ∀ i l
       MvPowerSeries.constantCoeff ((![pt S d 1, pt S d 0] : Fin 2 → Pt S 2 d) p.1 p.2) = 0 := by
     rintro ⟨j', i'⟩
     fin_cases j'
-    · exact cc_pt_lemma _ i'
-    · exact cc_pt_lemma _ i'
+    · exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' _ i'
+    · exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' _ i'
   have hXc : ∀ p : Fin 2 × Fin d, MvPolynomial.constantCoeff
       ((![fun j => X ((1 : Fin 2), j), fun j => X ((0 : Fin 2), j)] :
         Fin 2 → Fin d → MvPolynomial (Fin 2 × Fin d) S) p.1 p.2) = 0 := by

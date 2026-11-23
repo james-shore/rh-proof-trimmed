@@ -121,7 +121,7 @@ theorem main : Out.Laws → ∀ (O : Type) [CommRing O] [IsLocalRing O] [IsNoeth
     inferInstanceAs (Finite (PrimeSpectrum (AlgebraicClosure k)))
   have hc : ∀ y : x'.P.A.left, ∃ i, y ∈ x'.P.L.U i := fun y => exists_chart x'.P.isLB y
   choose c hc using hc
-  have H := (GlobalTheory.T.koszul_sections_exact_algClosed_polarisedAV hL (AlgebraicClosure k) x' n l s' b' m' c hn (by rw [hg]; exact hl)
+  have H := (_root_.GlobalTheory.koszul_sections_exact_field hL (AlgebraicClosure k) x' n l s' b' m' c hn (by rw [hg]; exact hl)
     (hZ' hfin hZ) hb' hm' hc).1
   have H' := transport ((algebraMap k (AlgebraicClosure k)).comp f) hg l n m m' hmm H
   exact descend (K := AlgebraicClosure k) (N := fun j => (l - j * n) ^ x.P.g)

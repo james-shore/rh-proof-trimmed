@@ -99,14 +99,6 @@ theorem line_data (hT : TAll) (hU : TUnit) (hH : THeis) (hA : AuxiliaryPrimeFunc
   · have := hB g hg Ω hΩ hTΩ Φ hΦ (W ξ) (hW ξ) z
     rwa [hsW] at this
 
-theorem B_rel (hT : TAll) (hU : TUnit) {ν : Measure (Mx F E d.m d.n)} (hν : ν.IsAddHaarMeasure) {k : d.G} {χ : ℂ}
-    (hχ : χ ≠ 0) {Ω : d.Fn} (hΩ : Ω ∈ d.sch) (hk : d.om k Ω = χ • Ω) {Φ : d.Fn} (hΦ : Φ ∈ d.sch) (q : Polynomial ℂ)
-    (hq : ∑ i ∈ Finset.range (q.natDegree + 1), q.coeff i • d.om (k ^ i) Φ = 0)
-    (v : Matrix (Fin d.m) (Fin d.n ⊕ Fin d.n) (AE F E)) :
-    ∑ i ∈ Finset.range (q.natDegree + 1),
-      q.coeff i * (star χ)⁻¹ ^ i * B ν Φ (d.dd.rho d.B.ψ (actB (cA σ) (k⁻¹ ^ i) v) Ω) = 0 := by
-  exact B_rel' hT hU hν hχ hΩ hk hΦ q hq v
-
 end PositivityTheory.SiegelWeilFormula.KFP
 
 end

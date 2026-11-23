@@ -53,20 +53,19 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace Formalism.L2.DIV
 
-theorem fockSTen : FockSTen := fockSymTensor_holds
-theorem pairRat : PairRat := pairingRational_holds
-theorem actRat : ActRat := actionRational_holds
-theorem pairNondeg : PairNondeg := pairingNondegenerate_holds
-theorem pairPos : PairPos := pairingPositive_holds
+alias fockSTen := _root_.Formalism.L2.DIV.fockSymTensor_holds
+alias pairRat := _root_.Formalism.L2.DIV.pairingRational_holds
+alias actRat := _root_.Formalism.L2.DIV.actionRational_holds
+alias pairNondeg := _root_.Formalism.L2.DIV.pairingNondegenerate_holds
+alias pairPos := _root_.Formalism.L2.DIV.pairingPositive_holds
 theorem basisAtEx : BasisAtEx := latticeBasisExists_holds
 theorem nabDelLoc : NabDelLoc := nablaDeltaLocal_holds
 theorem nabDelLattice : NabDelLattice := nablaDeltaLattice_holds
-theorem tauLatLattice : TauLatLattice := tauLatticeLattice_holds
-theorem dualFrLattice : DualFrLattice := dualFrameLattice_holds
-theorem dualFrHdual : DualFrHdual := dualFrameHdual_holds
-theorem tauLatDual : TauLatDual := tauLatticeDual_holds
-theorem roundLat : RoundLat := roundLattice_holds
-theorem weylEqDualNabla : Formalism.GradedWeylDivisibility.WeylEqDualNabla := weyl_eq_dual_nabla_holds
+alias tauLatLattice := _root_.Formalism.L2.DIV.tauLatticeLattice_holds
+alias dualFrLattice := _root_.Formalism.L2.DIV.dualFrameLattice_holds
+alias dualFrHdual := _root_.Formalism.L2.DIV.dualFrameHdual_holds
+alias tauLatDual := _root_.Formalism.L2.DIV.tauLatticeDual_holds
+alias roundLat := _root_.Formalism.L2.DIV.roundLattice_holds
 theorem pairBDualStd : PairBDualStd := pairBDualStd_of weyl_eq_dual_nabla_holds
 theorem pairBDualK : PairBDualK := pairBDualK_of pairBDualStd
 theorem pairBDual : PairBDual := pairBDual_of pairBDualStd

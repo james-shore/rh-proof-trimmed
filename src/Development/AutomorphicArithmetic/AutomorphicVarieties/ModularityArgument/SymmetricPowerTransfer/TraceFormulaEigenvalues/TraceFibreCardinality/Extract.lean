@@ -48,10 +48,6 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-private theorem artin {P : Type} [Mul P] (T : Finset (P → ℂ)) : ∀ c : (P → ℂ) → ℂ,
-    (∀ χ ∈ T, χ ≠ 0 ∧ ∀ p q, χ (p * q) = χ p * χ q) → (∀ p, ∑ χ ∈ T, c χ * χ p = 0) → ∀ χ ∈ T, c χ = 0 :=
-  _root_.UpperTheory.Reformulated.B.Qh30.artin T
-
 private theorem grp {P I : Type} [DecidableEq (P → ℂ)] (S : Finset I) (a : I → ℂ) (α : I → P → ℂ) (T : Finset (P → ℂ))
     (h : ∀ i ∈ S, α i ≠ 0 → α i ∈ T) (p : P) :
     ∑ χ ∈ T, (∑ i ∈ S.filter (fun i => α i = χ), a i) * χ p = ∑ i ∈ S, a i * α i p := by
@@ -73,7 +69,7 @@ theorem UpperTheory.V.Z.Sym.Tf.extract :
   by_contra hn
   push Not at hn
   set T := (S.image α ∪ S'.image β).filter (· ≠ 0) with hT
-  have key := artin T (fun χ => ∑ i ∈ S.filter (fun i => α i = χ), a i - ∑ j ∈ S'.filter (fun j => β j = χ), b j)
+  have key := _root_.UpperTheory.Reformulated.B.Qh30.artin T (fun χ => ∑ i ∈ S.filter (fun i => α i = χ), a i - ∑ j ∈ S'.filter (fun j => β j = χ), b j)
     (fun ψ hψ => by
       simp only [hT, Finset.mem_filter, Finset.mem_union, Finset.mem_image] at hψ
       refine ⟨hψ.2, ?_⟩

@@ -304,14 +304,11 @@ namespace Formalism.L2.SG.Pf.AlTie
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.HidaSetting
 open scoped TensorProduct
 
-theorem asIdeal_mapPl' {F L : Type} [Field F] [NumberField F] [Field L] [NumberField L] (j : F ≃+* L)
-    (v : HeightOneSpectrum (𝓞 F)) : (mapPl j v).asIdeal = v.asIdeal.map (RingOfIntegers.mapRingEquiv j) := asIdeal_mapPl j v
-
 theorem absNorm_mapPl {F L : Type} [Field F] [NumberField F] [Field L] [NumberField L] (j : F ≃+* L)
     (v : HeightOneSpectrum (𝓞 F)) : Ideal.absNorm (mapPl j v).asIdeal = Ideal.absNorm v.asIdeal := by
   rw [Ideal.absNorm_apply, Ideal.absNorm_apply, Submodule.cardQuot_apply, Submodule.cardQuot_apply]
   exact Nat.card_congr (Ideal.quotientEquiv v.asIdeal (mapPl j v).asIdeal (RingOfIntegers.mapRingEquiv j)
-    (asIdeal_mapPl' j v)).toEquiv.symm
+    (_root_.Formalism.L2.SG.Pf.AlTie.asIdeal_mapPl j v)).toEquiv.symm
 
 theorem natCast_mem_mapPl {F L : Type} [Field F] [NumberField F] [Field L] [NumberField L] (j : F ≃+* L)
     (v : HeightOneSpectrum (𝓞 F)) (n : ℕ) : ((n : 𝓞 L) ∈ (mapPl j v).asIdeal) ↔ ((n : 𝓞 F) ∈ v.asIdeal) := by

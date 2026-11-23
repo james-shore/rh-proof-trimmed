@@ -44,4 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem ball_quotient_length : PI.BallQuotLen := PI.UnitaryGroupMassFormula.BallQuotLen.ballQuotLen_main

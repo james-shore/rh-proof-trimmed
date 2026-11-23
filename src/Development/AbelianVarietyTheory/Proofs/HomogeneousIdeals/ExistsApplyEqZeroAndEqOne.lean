@@ -147,16 +147,6 @@ theorem isProperMap_comap (φ : A →ₐ[ℂ] B) (hφ : φ.toRingHom.IsIntegral)
   rw [show q b = u b from congrFun hq b]
   exact hu b
 
-theorem exists_isRoot_norm_lt {h : ℂ[X]} (hm : h.Monic) {ε : ℝ} (hε : 0 ≤ ε)
-    (h0 : ‖h.coeff 0‖ < ε ^ h.natDegree) : ∃ t, h.IsRoot t ∧ ‖t‖ < ε := by
-  first
-  | exact @_root_.GlobalTheory.RootNormBound.exists_root_norm_lt
-  | exact _root_.GlobalTheory.RootNormBound.exists_root_norm_lt
-  | (apply _root_.GlobalTheory.RootNormBound.exists_root_norm_lt <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RootNormBound.exists_root_norm_lt <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RootNormBound.exists_root_norm_lt <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.RootNormBound.exists_root_norm_lt ..)
-
 theorem exists_apply_eq_zero_and_eq_one {K : Type*} [Field K] [Algebra K A] (p : A →ₐ[K] K)
     {S : Set (A →ₐ[K] K)} (hS : S.Finite) (hp : p ∉ S) :
     ∃ a : A, p a = 0 ∧ ∀ q ∈ S, q a = 1 := by
@@ -208,7 +198,7 @@ theorem isOpenMap_comap [IsDomain A] [IsIntegrallyClosed A] [IsDomain B] (φ : A
     rw [mem_setOf_eq, comap_apply, h1, norm_zero]
     positivity
   · rintro r ⟨hrK, hrW⟩
-    obtain ⟨t, ht, htn⟩ := exists_isRoot_norm_lt (h := (minpoly A a).map r.toRingHom) (hm.map _)
+    obtain ⟨t, ht, htn⟩ := _root_.GlobalTheory.RootNormBound.exists_root_norm_lt (h := (minpoly A a).map r.toRingHom) (hm.map _)
       (ε := 1 / 2) (by norm_num) (by simpa [hm.natDegree_map] using hrW)
     let χ : A[X] →ₐ[ℂ] B := (aeval a).restrictScalars ℂ
     have hχ : χ.toRingHom.IsIntegral := by

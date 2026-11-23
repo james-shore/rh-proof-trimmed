@@ -78,7 +78,7 @@ theorem isPeriod_pull1_eq_comap : ∀ {I₁ : Type} [Fintype I₁] {g₁ : ℕ} 
     ((Hol.comap b hb hbV).toRingHom.toAddMonoidHom.comp per₂).comp A
   have key := GlobalTheory.T.period_pullback_eq_of_chartMap_class b hb hbV M A hτ K₁ K₂ κ hΦ hW hle r₁ r₂ β φ m hσ hx c per₂ per (fun _ ↦ rfl)
     (hp₂ K₂ r₂ hr₂)
-  have := GlobalTheory.T.periodClass_injective_of_rich_charts K₁ hR per₁ per ((hp₁ K₁ r₁ hr₁).symm.trans key)
+  have := _root_.GlobalTheory.AnPer.Charts.perCl_injective K₁ hR per₁ per ((hp₁ K₁ r₁ hr₁).symm.trans key)
   rw [this]
   rfl
 

@@ -60,30 +60,16 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.QLastPf
 
-theorem heisO_smul' {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (u : WO S T) (a : ℂ) (f : WO S T → ℂ) :
-    heisO ψ S T u (a • f) = a • heisO ψ S T u f := by
-  funext x
-  simp only [heisO, Pi.smul_apply, smul_eq_mul]
-  ring
-
-theorem comb_smul_left {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (a : ℂ) (e : WO S T →₀ ℂ) (f : WO S T → ℂ) :
-    comb ψ S T (a • e) f = a • comb ψ S T e f := by
-  by_cases ha : a = 0
-  · simp [comb, ha]
-  · rw [comb, comb, Finsupp.support_smul_eq ha, Finset.smul_sum]
-    refine Finset.sum_congr rfl fun u _ => ?_
-    rw [Finsupp.smul_apply, smul_smul, smul_eq_mul]
-
 theorem comb_smul_right {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (a : ℂ) (e : WO S T →₀ ℂ) (f : WO S T → ℂ) :
     comb ψ S T e (a • f) = a • comb ψ S T e f := by
   rw [comb, comb, Finset.smul_sum]
   refine Finset.sum_congr rfl fun u _ => ?_
-  rw [heisO_smul', smul_comm]
+  rw [_root_.GlobalTheory.SplitScalar.heisO_smul, smul_comm]
 
 theorem biComb_smul {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (A S A' : HSp D) (a b : ℂ) (e : WO A S →₀ ℂ) (e' : WO S A' →₀ ℂ)
     (C : WO A S → WO S A' → ℂ) : biComb ψ A S A' (a • e) (b • e') C = (a * b) • biComb ψ A S A' e e' C := by
   funext u v
-  simp only [biComb, comb_smul_left]
+  simp only [biComb, _root_.GlobalTheory.LocComb.comb_smul]
   have e1 : (fun u' => (b • comb ψ S A' e' (C u')) v) = b • fun u' => comb ψ S A' e' (C u') v := by
     funext u'; simp
   rw [e1, comb_smul_right]
@@ -115,8 +101,8 @@ theorem alg_of_core : ∀ (D : D7) (c : Comm D) (v : VCom c) (t : Tup c) (w : VT
     intro g
     rw [← (ht.sBF j 0 h).1]
     exact (t.sBF j 0 h).weil.om_pres _ _ hX
-  have lin := fun (s : Finset (GA D (c.V j))) (a : GA D (c.V j) → ℂ) => (GlobalTheory.T.lastDoubleThetaLift_integrable_linear D c v t hc ht hW j h _ hY φ hφ).2 _ s a _ hom
-  have hcore := GlobalTheory.T.seeSaw_last_two_steps_all_twist_places D c v t w F hc ht hv hW hF j h Ψ₁ Ψ₂ hΨ₁ hΨ₂ φ hφ α β
+  have lin := fun (s : Finset (GA D (c.V j))) (a : GA D (c.V j) → ℂ) => (_root_.GlobalTheory.LastDbl.main D c v t hc ht hW j h _ hY φ hφ).2 _ s a _ hom
+  have hcore := _root_.GlobalTheory.QLastCore.core D c v t w F hc ht hv hW hF j h Ψ₁ Ψ₂ hΨ₁ hΨ₂ φ hφ α β
   have hs : ∀ i, (F.Q i).s = j := fun i => by have := (F.Q i).hs; omega
   have hidx : ∀ i, ((F.Q i).idx (j + 1) : ℂ) ≠ 0 ∧ ((F.Q i).idx (j + 1 + 1) : ℂ) ≠ 0 := by
     intro i
@@ -178,7 +164,7 @@ theorem qLast_of_pin : ∀ (D : D7) (c : Comm D) (v : VCom c) (t : Tup c) (w : V
     intro g
     rw [← (ht.sBF j 0 h).1]
     exact (t.sBF j 0 h).weil.om_pres _ _ hX
-  have han := fun α => GlobalTheory.T.lastDoubleThetaLift_integrable_linear D c v t hc ht hW j h _ hY (φ α) (hφ α).1
+  have han := fun α => _root_.GlobalTheory.LastDbl.main D c v t hc ht hW j h _ hY (φ α) (hφ α).1
   set Y := comb c.ψ _ _ (w.eQT j h) Ψ₂ with hYd
   set X := comb c.ψ _ _ (w.eQ j) Ψ₁ with hXd
   set E := (c.oT (j + 1 + 1) h).emb with hE

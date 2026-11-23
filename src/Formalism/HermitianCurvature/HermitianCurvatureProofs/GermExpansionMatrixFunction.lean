@@ -95,7 +95,7 @@ theorem gauss_hessian_index_exists : Formalism.FourierDecayAlt.A6.GaussHess := b
       | exact a6x_a2_proof
       | exact second_gram_and_vanishing
       | exact a6x_n1Formula_proof
-      | exact first_kernel_explicit_formula
+      | exact _root_.Formalism.FourierDecayAlt.P.A5x8.first_kernel_formula_proof
       | exact a6x_intFinite_proof
       | exact integral_points_finite
       | exact a6x_charOrthDual_proof
@@ -272,7 +272,7 @@ theorem padic_stationary_phase : Formalism.FourierDecayAlt.A6.StationaryPhase :=
       | exact a6x_a2_proof
       | exact second_gram_and_vanishing
       | exact a6x_n1Formula_proof
-      | exact first_kernel_explicit_formula
+      | exact _root_.Formalism.FourierDecayAlt.P.A5x8.first_kernel_formula_proof
       | exact a6x_intFinite_proof
       | exact integral_points_finite
       | exact a6x_charOrthDual_proof
@@ -449,7 +449,7 @@ theorem germ_expansion_matrix_function : Formalism.FourierDecayAlt.A6.GermPhi :=
       | exact a6x_a2_proof
       | exact second_gram_and_vanishing
       | exact a6x_n1Formula_proof
-      | exact first_kernel_explicit_formula
+      | exact _root_.Formalism.FourierDecayAlt.P.A5x8.first_kernel_formula_proof
       | exact a6x_intFinite_proof
       | exact integral_points_finite
       | exact a6x_charOrthDual_proof
@@ -626,7 +626,7 @@ theorem germ_expansion_with_head : Formalism.FourierDecayAlt.A6.Germ := by
       | exact a6x_a2_proof
       | exact second_gram_and_vanishing
       | exact a6x_n1Formula_proof
-      | exact first_kernel_explicit_formula
+      | exact _root_.Formalism.FourierDecayAlt.P.A5x8.first_kernel_formula_proof
       | exact a6x_intFinite_proof
       | exact integral_points_finite
       | exact a6x_charOrthDual_proof
@@ -803,7 +803,7 @@ theorem germ_kernel_expansion : Formalism.FourierDecayAlt.A6.GermKernel := by
       | exact a6x_a2_proof
       | exact second_gram_and_vanishing
       | exact a6x_n1Formula_proof
-      | exact first_kernel_explicit_formula
+      | exact _root_.Formalism.FourierDecayAlt.P.A5x8.first_kernel_formula_proof
       | exact a6x_intFinite_proof
       | exact integral_points_finite
       | exact a6x_charOrthDual_proof
@@ -980,7 +980,7 @@ theorem germ_identity_bis : Formalism.FourierDecayAlt.A6.GermIdentity := by
       | exact a6x_a2_proof
       | exact second_gram_and_vanishing
       | exact a6x_n1Formula_proof
-      | exact first_kernel_explicit_formula
+      | exact _root_.Formalism.FourierDecayAlt.P.A5x8.first_kernel_formula_proof
       | exact a6x_intFinite_proof
       | exact integral_points_finite
       | exact a6x_charOrthDual_proof
@@ -1157,7 +1157,7 @@ theorem theta_omega_bound : Formalism.FourierDecayAlt.A6.ThOm := by
       | exact a6x_a2_proof
       | exact second_gram_and_vanishing
       | exact a6x_n1Formula_proof
-      | exact first_kernel_explicit_formula
+      | exact _root_.Formalism.FourierDecayAlt.P.A5x8.first_kernel_formula_proof
       | exact a6x_intFinite_proof
       | exact integral_points_finite
       | exact a6x_charOrthDual_proof
@@ -1334,7 +1334,7 @@ theorem lattice_average_induction : Formalism.FourierDecayAlt.A5.ThetaExistsStep
       | exact a6x_a2_proof
       | exact second_gram_and_vanishing
       | exact a6x_n1Formula_proof
-      | exact first_kernel_explicit_formula
+      | exact _root_.Formalism.FourierDecayAlt.P.A5x8.first_kernel_formula_proof
       | exact a6x_intFinite_proof
       | exact integral_points_finite
       | exact a6x_charOrthDual_proof
@@ -1511,7 +1511,7 @@ theorem lattice_average_lemma_full : Formalism.FourierDecayAlt.A5.LemmaA := by
       | exact a6x_a2_proof
       | exact second_gram_and_vanishing
       | exact a6x_n1Formula_proof
-      | exact first_kernel_explicit_formula
+      | exact _root_.Formalism.FourierDecayAlt.P.A5x8.first_kernel_formula_proof
       | exact a6x_intFinite_proof
       | exact integral_points_finite
       | exact a6x_charOrthDual_proof

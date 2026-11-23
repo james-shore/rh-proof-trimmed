@@ -68,7 +68,7 @@ theorem exists_galoisCover_of_geom {p : ℕ} [Fact p.Prime] {D : Datum p} {R : T
       GlobalTheory.ZM.IsGaloisCover (sympSimGrp h M) ρ₁ π₁ ∧ (∀ a, ρ₁ a ≫ y = y ≫ ρ a) ∧
       y ≫ s = π₁ ≫ t ∧ Nonempty (ObjMap o' o π₁) ∧ Nonempty (ObjMap o' u y) := by
   haveI : NeZero M := ⟨by omega⟩
-  obtain ⟨Y, t₁, lu, hYf, hYe, hY⟩ := GlobalTheory.T.exists_finiteEtale_symplecticLevel_scheme p D R b N h M hM0 hMp S t o
+  obtain ⟨Y, t₁, lu, hYf, hYe, hY⟩ := _root_.GlobalTheory.HTSympRep.exists_sympLevScheme p D R b N h M hM0 hMp S t o
   have hAu : SympCond o h M Y t₁ lu := (hY Y t₁ lu).2 ⟨𝟙 Y, by simp, fun a => Category.id_comp _⟩
   have uniqY : ∀ {T : Over S} (f g : T ⟶ Y), f.left ≫ t₁ = g.left ≫ t₁ → (∀ c, f ≫ lu c = g ≫ lu c) → f = g :=
     fun {T} f g e1 e2 => ((hY T (g.left ≫ t₁) (fun c => g ≫ lu c)).1 ((hY T _ _).2 ⟨g, rfl, fun _ => rfl⟩)).unique
@@ -202,6 +202,6 @@ theorem exists_galoisCover : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Typ
   intro p _ D R _ b N M e _ _ hM hodd hMp _ hMe hperf X s s₁ u lev _ huniv ρ hρ S t o
   have h1 : 1 ≤ Module.finrank ℤ D.La / 2 := by have := D.two_le_finrank_La; omega
   exact exists_galoisCover_of_geom b N _ M h1 (by omega) hodd hMp X s s₁ u lev huniv ρ hρ S t o
-    (fun K _ _ x => GlobalTheory.T.exists_symplectic_level_geometric_point_harrisTaylor p D R b N M e hM hodd hMp hMe hperf S t o K x)
+    (fun K _ _ x => _root_.GlobalTheory.HTSympCover.exists_sympCond_geom p D R b N M e hM hodd hMp hMe hperf S t o K x)
 
 end GlobalTheory.HTSympCover

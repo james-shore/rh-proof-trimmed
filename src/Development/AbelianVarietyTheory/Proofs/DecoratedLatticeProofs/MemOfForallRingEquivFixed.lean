@@ -51,22 +51,11 @@ open Polynomial
 
 namespace GlobalTheory.FixedRoots
 
-theorem exists_ringEquiv_add_one {Ω : Type} [Field Ω] [IsAlgClosed Ω] (k : Subfield Ω) (c : Ω)
-    (hc : Transcendental k c) :
-    ∃ σ : Ω ≃+* Ω, (∀ a ∈ k, σ a = a) ∧ σ c = c + 1 := by
-  first
-  | exact @_root_.GlobalTheory.ShiftVariables.exists_ringEquiv_add_one
-  | exact _root_.GlobalTheory.ShiftVariables.exists_ringEquiv_add_one
-  | (apply _root_.GlobalTheory.ShiftVariables.exists_ringEquiv_add_one <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ShiftVariables.exists_ringEquiv_add_one <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ShiftVariables.exists_ringEquiv_add_one <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ShiftVariables.exists_ringEquiv_add_one ..)
-
 theorem mem_of_forall_ringEquiv_fixed {Ω : Type} [Field Ω] [IsAlgClosed Ω] [CharZero Ω]
     (k : Subfield Ω) (c : Ω) (hfix : ∀ σ : Ω ≃+* Ω, (∀ a ∈ k, σ a = a) → σ c = c) : c ∈ k := by
   by_cases hc : Transcendental k c
   · exfalso
-    obtain ⟨σ, hσk, hσc⟩ := exists_ringEquiv_add_one k c hc
+    obtain ⟨σ, hσk, hσc⟩ := _root_.GlobalTheory.ShiftVariables.exists_ringEquiv_add_one k c hc
     have := hfix σ hσk
     rw [hσc] at this
     simp at this

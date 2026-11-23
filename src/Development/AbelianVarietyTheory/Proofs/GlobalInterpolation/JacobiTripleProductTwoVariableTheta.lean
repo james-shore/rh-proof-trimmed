@@ -69,7 +69,7 @@ theorem tripleProduct : GlobalTheory.ThetaWeberRoad.TripleProduct := by
         finCoeff (cexp (π * I * (τ : ℂ)) ^ 2) n j * jacobiTheta₂_term j z τ := by
     intro n
     rw [Finset.prod_congr rfl (fun k _ => tpFactor_eq τ z k), Finset.prod_mul_distrib]
-    have hf := GlobalTheory.T.jacobiTriple_finite_product s x hs0 hs1 hx0 n
+    have hf := _root_.GlobalTheory.JacobiTriple.finTriple s x hs0 hs1 hx0 n
     simp only [hs, hx] at hf
     simp only [hf, jacobiTheta₂_term_eq_zpow]
     rfl

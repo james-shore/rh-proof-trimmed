@@ -42,9 +42,3 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 
 
-section
-open GlobalTheory.BigTop GlobalTheory.BigTop.Fun GlobalTheory.SumSize
-
-theorem _root_.GlobalTheory.T.leafHeightMapBound_of_infK : _root_.GlobalTheory.BigTop.Fun.BundleCondition → _root_.GlobalTheory.BigTop.Fun.SettingAtPoint → InfK → _root_.GlobalTheory.BigTop.Fun.LeafHeightMapBound @Comparison₂ := by
-  first | exact @_root_.GlobalTheory.QuotientNormCoisometry.leafHeightMapBound_tie_of_infK | exact _root_.GlobalTheory.QuotientNormCoisometry.leafHeightMapBound_tie_of_infK | (intros; apply _root_.GlobalTheory.QuotientNormCoisometry.leafHeightMapBound_tie_of_infK <;> assumption)
-end

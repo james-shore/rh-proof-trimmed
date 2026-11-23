@@ -92,7 +92,7 @@ theorem exists_coprime {m : ℕ} (hm : l ∣ m) {j : ℕ} (hj : j < l) :
       have := Nat.le_of_dvd (Nat.succ_pos j) h2
       omega
     refine ⟨c * (m + j + 1), Nat.Coprime.mul_left hc ((Nat.Prime.coprime_iff_not_dvd hp).mpr hnd).symm, ?_⟩
-    rw [pow_succ', mul_assoc, hcj, mul_left_comm, dxi_mul A 1 (m + j), Nat.choose_one_right]
+    rw [pow_succ', mul_assoc, hcj, mul_left_comm, _root_.GlobalTheory.CompanionTheory.PerfFil.Expand.dxi_mul A 1 (m + j), Nat.choose_one_right]
     have e : 1 + (m + j) = m + (j + 1) := by omega
     rw [e]
     push_cast
@@ -126,7 +126,7 @@ theorem inner_step (k : ℕ) {j : ℕ} (hj : j < l) (b : A.A)
   have hx : A.aTo1 b * A.dxi 1 (l * k + j) ∈ A.Fil 1 (l * k + j + 1) := by
     have e : A.aTo1 (A.pi ^ j * b) * A.dxi 1 (l * k)
         = (c : A.Acr 1) * ((-1) ^ j * (A.aTo1 b * A.dxi 1 (l * k + j))) := by
-      rw [map_mul, map_pow, aTo1_pi A]
+      rw [map_mul, map_pow, _root_.GlobalTheory.CompanionTheory.PerfFil.Expand.aTo1_pi A]
       calc (-A.dxi 1 1) ^ j * A.aTo1 b * A.dxi 1 (l * k)
           = (-1) ^ j * A.aTo1 b * (A.dxi 1 1 ^ j * A.dxi 1 (l * k)) := by ring
         _ = _ := by rw [hcj]; ring

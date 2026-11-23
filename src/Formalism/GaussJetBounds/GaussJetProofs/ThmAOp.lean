@@ -391,7 +391,7 @@ theorem thmAOp : ThmAOp.{u} := by
       exact ((hsh s).2.2 hs ⟨0, h0⟩ rfl).2 k (fun hk => hsk ⟨hs, hk⟩)
     · rw [hnu1]
       exact (hsh s).2.1 k
-  have hjet := thmAJetA K l d N0 N1 hl hl3 hd hde hnl h0 K0 hK0 ζ hζ be hbe x hx g hg0 hg U hU ε hε
+  have hjet := _root_.Formalism.DworkPowerSeriesWeights.theorem_A_one_monomial_log_loss K l d N0 N1 hl hl3 hd hde hnl h0 K0 hK0 ζ hζ be hbe x hx g hg0 hg U hU ε hε
     TT nu1 nu2 size h21 h1s a ha hsa spec κ ?_ ?_ hspec ?_ hframe
   · rw [mul_assoc, norm_mul]
     calc ‖AddMonoidAlgebra.coeff (∏ s : ZMod d, minorProd (rowOp (N1 := N1) TT T s) (p s) (hp s) (I s)) κ‖ * _

@@ -51,8 +51,8 @@ theorem bottom_theta_lift_ne_zero : _root_.GlobalTheory.FunPr.ThetaLocalInputs �
     GBig fun {D} T _ _ G _ _ _ _ => ∀ (W : G.Weil) (i j : Fin D.R.m) (A A' WW : HSp D) (X : Tri T A A' WW),
       IsBottomTri W i j X → ∀ t : T, (∃ P h, X.I W.ψ W.θ t P h ≠ 0) ∧ ∃ P' h, X.I' W.ψ W.θ t P' h ≠ 0 := by
   intro hP hK hM hL
-  obtain ⟨a1, h1⟩ := _root_.GlobalTheory.T.rallis_inner_product_big_theta_lift hP
-  obtain ⟨a2, h2⟩ := _root_.GlobalTheory.T.bottom_theta_norm_eq_prod_local_factors hP.howeDualityReal hP hK hM hL
+  obtain ⟨a1, h1⟩ := _root_.GlobalTheory.RallisBottom.big_theta_norm_eq_rallis_inner_product hP
+  obtain ⟨a2, h2⟩ := _root_.GlobalTheory.BottomFactor.bottom_theta_norm_factorization hP.howeDualityReal hP hK hM hL
   obtain ⟨a3, h3⟩ := hL
   refine ⟨max (max a1 a2) a3, fun ε CF hCF => ?_⟩
   obtain ⟨C1, x1, k1⟩ := h1 ε CF (le_trans (le_trans (le_max_left _ _) (le_max_left _ _)) hCF)
@@ -84,12 +84,3 @@ end GlobalTheory.NonVanBottom
 end
 end
 
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.Theta IsDedekindDomain NumberField Finset MeasureTheory
-open GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.FunObj.SqNum GlobalTheory.RowTest GlobalTheory.SqTop
-open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-theorem _root_.GlobalTheory.T.first_occurrence_theta_lift_ne_zero : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.LocalMatching → LNe → GBig fun {D} T _ _ G _ _ _ _ => ∀ (W : G.Weil) (i j : Fin D.R.m) (A A' WW : HSp D) (X : Tri T A A' WW), IsBottomTri W i j X → ∀ t : T, (∃ P h, X.I W.ψ W.θ t P h ≠ 0) ∧ ∃ P' h, X.I' W.ψ W.θ t P' h ≠ 0 := by
-  first | exact @_root_.GlobalTheory.NonVanBottom.bottom_theta_lift_ne_zero | exact _root_.GlobalTheory.NonVanBottom.bottom_theta_lift_ne_zero | (intros; apply _root_.GlobalTheory.NonVanBottom.bottom_theta_lift_ne_zero <;> assumption)
-end

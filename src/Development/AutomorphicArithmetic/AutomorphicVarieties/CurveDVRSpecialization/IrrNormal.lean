@@ -65,11 +65,6 @@ public import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
 
 open Matrix Polynomial UpperTheory.V.U3 UpperTheory.V.Alg
 
-private theorem ext_integral {B S K : Type} [CommRing B] [CommRing S] [Field K] [IsAlgClosed K] [Algebra B S]
-    [Algebra.IsIntegral B S] (hinj : Function.Injective (algebraMap B S)) (φ : B →+* K) :
-    ∃ Φ : S →+* K, ∀ b, Φ (algebraMap B S b) = φ b :=
-  _root_.UpperTheory.Reformulated.B.Qe16.ext_integral hinj φ
-
 private theorem charpoly_of_basis {κ : Type} [Field κ] {n : ℕ} (M : Matrix (Fin n) (Fin n) κ)
     (b : Module.Basis (Fin n) κ (Fin n → κ)) (a : Fin n → κ) (h : ∀ i, M *ᵥ b i = a i • b i) :
     M.charpoly = ∏ i, (X - C (a i)) := by
@@ -90,7 +85,7 @@ private theorem reduce_roots {κ k B : Type} [Field κ] [Field k] [CommRing B] (
   have hinj : Function.Injective (algebraMap B (integralClosure B κ)) := by
     intro x y hxy
     exact hj (congrArg Subtype.val hxy)
-  obtain ⟨Φ, hΦ⟩ := ext_integral hinj ((algebraMap k (AlgebraicClosure k)).comp φ)
+  obtain ⟨Φ, hΦ⟩ := _root_.UpperTheory.Reformulated.B.Qe16.ext_integral hinj ((algebraMap k (AlgebraicClosure k)).comp φ)
   refine ⟨(integralClosure B κ).toSubring, Φ, fun n p a hp => ?_⟩
   have hm : p.Monic := by
     apply Polynomial.monic_of_injective hj

@@ -249,7 +249,7 @@ theorem layerU_Kur_level (hK : FiniteDimensional ℚ_[p] K) (N : Subgroup (GalLK
       equiv := fun g m => by
         induction g using QuotientGroup.induction_on with
         | H σ => rfl }
-  have hb := pair_H_bijective R ⟨continuous_of_discreteTopology, fun _ _ => isOpen_discrete _, hθ⟩
+  have hb := _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.Deg2.pair_bij R ⟨continuous_of_discreteTopology, fun _ _ => isOpen_discrete _, hθ⟩
     ⟨continuous_of_discreteTopology, fun _ _ => isOpen_discrete _, hu⟩ i
   have := layerU_Kn_H_subsingleton hK hn i hi
   exact hb.1.subsingleton

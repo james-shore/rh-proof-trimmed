@@ -82,7 +82,7 @@ namespace GlobalTheory.CompanionTheory.Published
 open GlobalTheory.CompanionTheory.CuspFinite in
 theorem cuspFiniteVectorsGL : GlobalTheory.Published.CuspFiniteVectorsGL := by
   intro E _ _ _ a μ _ _ H hH hi
-  obtain ⟨V, hV, hs⟩ := GlobalTheory.T.irreducible_cuspidal_smooth_module E a μ H hH hi
+  obtain ⟨V, hV, hs⟩ := _root_.GlobalTheory.CompanionTheory.StableMod.exists_stable E a μ H hH hi
   have hkf : ∀ F ∈ H, IsKFinL2 μ F → F ∈ classes V μ := fun F hF hk => by
     obtain ⟨φ, e, h1, h2, h3⟩ := exists_cusp_form_of_K_finite hH hi hF hk
     exact ⟨φ, (hV φ).2 ⟨h1, h2, h3⟩, e⟩
@@ -92,7 +92,7 @@ theorem cuspFiniteVectorsGL : GlobalTheory.Published.CuspFiniteVectorsGL := by
     have : F = h.toL2 := l2DiscreteQuotient_ext_iff_lift_ae_eq.2 (e.trans h.lift_toL2_ae_eq.symm)
     exact this ▸ hH'
   have hdense : H ≤ (classes V μ).topologicalClosure :=
-    (GlobalTheory.T.K_finite_vectors_dense E a μ H hi.1).trans (Submodule.topologicalClosure_mono
+    (_root_.GlobalTheory.CompanionTheory.DenseKFin.le_closure_span_K_finite E a μ H hi.1).trans (Submodule.topologicalClosure_mono
       (Submodule.span_le.2 fun F hF => hkf F hF.1 hF.2))
   have hne : V ≠ ⊥ := by
     intro hb

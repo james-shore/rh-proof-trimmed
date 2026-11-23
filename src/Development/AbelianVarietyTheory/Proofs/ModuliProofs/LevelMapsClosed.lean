@@ -75,7 +75,7 @@ theorem levelMaps_closed : Out.Laws → ∀ (E : Type) [Field E] [NumberField E]
     (exists_obj_twist_by_similitude hsim) hsim
   exact levelMaps_of_parts (exists_levelMap hsm hid hlow hrep) hact
     (LevCover.levelMap_finite_etale_surjective_of_laws hL)
-    (levelMap_fibre_orbit hL obj_pull hid obj_isAbelianScheme_dim_rigidified_sym hlow
+    (_root_.GlobalTheory.LevelFibre.levelMap_fibre_simply_transitive_of_laws hL obj_pull hid obj_isAbelianScheme_dim_rigidified_sym hlow
       (obj_rigid_closed hL) hrep tateIso_differ_by_similitude hsim hact)
 
 end GlobalTheory

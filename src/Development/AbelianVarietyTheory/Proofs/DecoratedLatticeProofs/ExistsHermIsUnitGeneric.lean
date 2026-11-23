@@ -51,6 +51,8 @@ import Development.AbelianVarietyTheory.Definitions.Foundations.AestronglyMeasur
 import Development.AbelianVarietyTheory.Definitions.Foundations.EventuallyEqOfIsPreconnected
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsIwasawaOfIsCompact
 import Formalism.LocalToGlobal.ProjectiveLattices.ErealAddIInf
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilDatumFixesVacuumNonSplitPlaceUnramified
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SupportedSubgroupSplitCommutePrimeIdempotents
 
 @[expose] public section
 
@@ -104,7 +106,7 @@ theorem exists_herm_notMem (σ : E →+* E) (δ : E) (hδ : δ ≠ 0) (hσδ : �
   let ψ := (π₀.comp τ).mapMatrix (m := Fin n)
   have h1 : π c * π p + π d * π q = 1 := by rw [← map_mul, ← map_mul, ← map_add (f := _), h, map_one]
   have h2 : ψ c * ψ p + ψ d * ψ q = 1 := by rw [← map_mul, ← map_mul, ← map_add (f := _), h, map_one]
-  obtain ⟨y, hy⟩ := GlobalTheory.T.matrix_field_stableRange_one_det_ne_zero _ n _ _ _ _ h1
+  obtain ⟨y, hy⟩ := _root_.GlobalTheory.matrix_stableRange_one _ n _ _ _ _ h1
   obtain ⟨y', hy'⟩ := GlobalTheory.T.matrix_field_stableRange_one_det_ne_zero _ n _ _ _ _ h2
   obtain ⟨x, hxs, hx1, hx2⟩ := GlobalTheory.T.exists_hermitian_two_det_ne_zero E (R ⧸ M) σ φ δ hδ hσδ n _ _ _ _ _ _ hy hy'
   have hx : ∀ i j, σ (x i j) = x j i := fun i j => congrFun (congrFun hxs i) j
@@ -190,13 +192,6 @@ theorem exists_herm_isUnit_generic {A : Type} [CommRing A] (σ : E →+* E) (δ 
 
 end Generic
 
-theorem cA_algebraMap {D : D7} (a : AF D.host.F) :
-    cA D (algebraMap (AF D.host.F) (AE D) a) = algebraMap (AF D.host.F) (AE D) a := by
-  rw [Algebra.algebraMap_eq_smul_one, GlobalTheory.FinTranslate.cA_smul, map_one]
-
-theorem algebraMap_inj {D : D7} : Function.Injective (algebraMap (AF D.host.F) (AE D)) :=
-  Algebra.TensorProduct.includeLeft_injective (S := AF D.host.F) (algebraMap D.host.F D.host.E).injective
-
 theorem half_mul_two {F A : Type} [Field F] [CharZero F] [CommRing A] [Algebra F A] :
     algebraMap F A (1 / 2) * 2 = 1 := by
   rw [← map_ofNat (algebraMap F A) 2, ← map_mul]
@@ -206,10 +201,10 @@ theorem exists_herm_isUnit (D : D7) (n : ℕ) (c d p q : Mx D n n) (h : c * p + 
     ∃ x : Mx D n n, GlobalTheory.MixModel.adj x = x ∧ IsUnit (c * x + d) :=
   exists_herm_isUnit_generic (D.sp.cm.sig : D.host.E →+* D.host.E) D.host.xi0 (GlobalTheory.DualPairCompare.embedding_xi_zero_ne_zero D)
     (GlobalTheory.DualPairCheck.star_purely_imaginary_eq_neg D) (incA D) (cA D) GlobalTheory.DualPairCheck.cA_incA GlobalTheory.DualPairCheck.cA_cA
-    (algebraMap (AF D.host.F) (AE D)) algebraMap_inj cA_algebraMap
+    (algebraMap (AF D.host.F) (AE D)) _root_.GlobalTheory.VacInert.alg_inj _root_.GlobalTheory.IdemSupport.cA_algebraMap
     (fun y hy => GlobalTheory.DetRootRows.exists_baseRing_of_conjugation_fixed_tensor D.sp.cm.sig
       (fun x => (D.sp.cm.fixed (x + star x)).1 (by rw [star_add, star_star, add_comm])) y hy)
-    (algebraMap D.host.F (AF D.host.F) (1 / 2)) half_mul_two (GlobalTheory.T.exists_orthogonal_idempotents_of_sum_mul_eq_one' D.host.F) c d p q h
+    (algebraMap D.host.F (AF D.host.F) (1 / 2)) half_mul_two (_root_.GlobalTheory.AdeleIdempotents.exists_orthogonal_idempotents_of_sum_mul_eq_one D.host.F) c d p q h
 
 end GlobalTheory.HermTransversal
 

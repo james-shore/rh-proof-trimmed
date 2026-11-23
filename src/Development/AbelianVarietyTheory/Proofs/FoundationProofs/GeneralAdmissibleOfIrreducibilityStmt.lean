@@ -62,17 +62,6 @@ open GlobalTheory.TypeLeaf (WildOne FrobDense)
 open GlobalTheory.IndefiniteRowSideFullHecke.RayClassPrimeCounting (OnW IsBaseChange IsGaloisRepOf IsReduction Zbar GaloisReps GalE toFb)
 open scoped Pointwise
 
-theorem span_eq_top_of_trace_eq {Γ K : Type} [Monoid Γ] [Field K] {n : ℕ}
-    (M N : Γ →* Matrix (Fin n) (Fin n) K) (h : ∀ g, (M g).trace = (N g).trace)
-    (hN : Submodule.span K (Set.range N) = ⊤) : Submodule.span K (Set.range M) = ⊤ := by
-  first
-  | exact @_root_.GlobalTheory.TraceFormNondegenerate.span_eq_top_of_trace_eq
-  | exact _root_.GlobalTheory.TraceFormNondegenerate.span_eq_top_of_trace_eq
-  | (apply _root_.GlobalTheory.TraceFormNondegenerate.span_eq_top_of_trace_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TraceFormNondegenerate.span_eq_top_of_trace_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TraceFormNondegenerate.span_eq_top_of_trace_eq <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TraceFormNondegenerate.span_eq_top_of_trace_eq ..)
-
 theorem trace_eq_of_charpoly_eq {K : Type} [Field K] {n : ℕ} {A B : Matrix (Fin n) (Fin n) K}
     (h : A.charpoly = B.charpoly) : A.trace = B.trace := by
   rcases n with _ | n
@@ -230,7 +219,7 @@ theorem admissible_at_of_irreducible_tame {i : Y.Tw} {s : Y.Sig i} {σ : D.what�
   · have hr : Nonempty (Fin D.R.r) := ⟨⟨0, (odd_r D.R).pos⟩⟩
     have h1 := GlobalTheory.BurnsideField.span_mat_eq_top_of_isIrrSub (D.ntypes.rbar σ w)
       ⟨top_ne_bot, fun _ _ _ => trivial, fun W _ hW => hirr W fun g _ => hW g⟩
-    have h2 := span_eq_top_of_trace_eq ((Units.coeHom _).comp ρ)
+    have h2 := _root_.GlobalTheory.TraceFormNondegenerate.span_eq_top_of_trace_eq ((Units.coeHom _).comp ρ)
       (twistM ((Units.coeHom _).comp (D.ntypes.rbar σ w)) η) (fun g => trace_eq_of_charpoly_eq (hcp g)) (by
         rw [eq_top_iff, ← h1, Submodule.span_le]
         rintro _ ⟨g, rfl⟩

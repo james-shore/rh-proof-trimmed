@@ -185,7 +185,7 @@ theorem exists_rigid_translate : Out.Laws → ∀ (R : Type) [CommRing R] (P : O
   rw [sq] at ht
   have := P.isAb.comm
   have := P.isAb.proper
-  obtain ⟨c, hc⟩ := Moduli.cube_of_isLB _ P P.L P.isLB
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.AbLaw.CubeAssembly.cube_gen _ P P.L P.isLB
   refine ⟨{ A := P.A, isAb := P.isAb, g := P.g, smoothDim := P.smoothDim, L := rigTransl P.L t
             isLB := DVR.linComb_isLB _ P.isLB _ _
             rigid := rigidified_rigTransl P.isLB

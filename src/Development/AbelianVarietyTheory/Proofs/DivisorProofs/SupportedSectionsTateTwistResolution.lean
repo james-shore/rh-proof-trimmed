@@ -61,29 +61,6 @@ variable {R : Type} [CommRing R]
 
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex in
 variable {R : Type} [CommRing R] in
-private theorem shv_hom_ext_of_sec_map_eq {S : Type} [CommRing S] {F G : _root_.GlobalTheory.EtC.Shv S}
-    (φ ψ : F ⟶ G)
-    (h : ∀ U (a : _root_.GlobalTheory.EtC.Sec F U),
-      _root_.GlobalTheory.EtC.Sec.map φ a = _root_.GlobalTheory.EtC.Sec.map ψ a) : φ = ψ := by
-  ext U a
-  exact h U.unop a
-
-open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex in
-variable {R : Type} [CommRing R] in
-private theorem sec_map_zero_apply {S : Type} [CommRing S] {F G : _root_.GlobalTheory.EtC.Shv S}
-    {U : Scheme} (a : _root_.GlobalTheory.EtC.Sec F U) :
-    _root_.GlobalTheory.EtC.Sec.map (0 : F ⟶ G) a = 0 := by
-  simp [_root_.GlobalTheory.EtC.Sec.map]
-
-open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex in
-variable {R : Type} [CommRing R] in
-private theorem etLoc_of_forall {U : Scheme} {P : (V : Scheme) → (V ⟶ U) → Prop}
-    (h : ∀ V g, P V g) : _root_.GlobalTheory.EtC.Loc U P :=
-  ⟨⊤, GrothendieckTopology.top_mem _ _, fun V g _ => h V g⟩
-
-
-open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex in
-variable {R : Type} [CommRing R] in
 theorem _root_.GlobalTheory.EtC.SuppRes.supp_res : ∀ (q : ℕ) [NeZero q] (i : ℤ)
     (D : _root_.GlobalTheory.EtC.Cx (ZMod q))
     (ι : D ⟶ _root_.GlobalTheory.EtC.res _ (_root_.GlobalTheory.EtC.tw q i)),
@@ -104,9 +81,9 @@ theorem _root_.GlobalTheory.EtC.SuppRes.supp_res : ∀ (q : ℕ) [NeZero q] (i :
   haveI := hAmono
   have hA : _root_.GlobalTheory.EtC.resι (ZMod q) (_root_.GlobalTheory.EtC.tw q i) ≫
       cokernel.π (ι.f 0) = 0 := by
-    apply shv_hom_ext_of_sec_map_eq
+    apply _root_.GlobalTheory.EtC.MonoEpi.sec_ext
     intro U y
-    rw [sec_map_zero_apply, ← _root_.GlobalTheory.EtC.ClsSpec.map_comp]
+    rw [_root_.GlobalTheory.EtC.ClsSpec.map_zero_hom, ← _root_.GlobalTheory.EtC.ClsSpec.map_comp]
     obtain ⟨b, hb⟩ := (himg 0 U (_root_.GlobalTheory.EtC.Sec.map
       (_root_.GlobalTheory.EtC.resι (ZMod q) (_root_.GlobalTheory.EtC.tw q i)) y)).2 (by
         refine _root_.GlobalTheory.EtC.ClsSpec.loc_mono
@@ -116,7 +93,7 @@ theorem _root_.GlobalTheory.EtC.SuppRes.supp_res : ∀ (q : ℕ) [NeZero q] (i :
           rw [_root_.GlobalTheory.EtC.ClsSpec.res_map, h,
             _root_.GlobalTheory.EtC.ClsSpec.smap_zero]
         · exact Or.inl ζ.2.1)
-    rw [← hb, _root_.GlobalTheory.EtC.ClsSpec.map_comp, cokernel.condition, sec_map_zero_apply]
+    rw [← hb, _root_.GlobalTheory.EtC.ClsSpec.map_comp, cokernel.condition, _root_.GlobalTheory.EtC.ClsSpec.map_zero_hom]
   have hA' : Abelian.monoLift (ι.f 0) _ hA ≫ ι.f 0 =
       _root_.GlobalTheory.EtC.resι (ZMod q) (_root_.GlobalTheory.EtC.tw q i) :=
     Abelian.monoLift_comp _ _ _
@@ -173,7 +150,7 @@ theorem _root_.GlobalTheory.EtC.SuppRes.supp_res : ∀ (q : ℕ) [NeZero q] (i :
                 (_root_.GlobalTheory.EtC.sglι (_root_.GlobalTheory.EtC.tw q i)) y) = b := by
               apply hinj 0 U
               simp only [_root_.GlobalTheory.EtC.ClsSpec.map_comp, Category.assoc, hterm', hy]
-            exact etLoc_of_forall fun V g =>
+            exact _root_.GlobalTheory.TwSec.loc_all fun V g =>
               ⟨_root_.GlobalTheory.EtC.Sec.res g (_root_.GlobalTheory.EtC.Sec.map
                 (_root_.GlobalTheory.EtC.sglι (_root_.GlobalTheory.EtC.tw q i)) y),
                 (_root_.GlobalTheory.EtC.ClsSpec.res_map (ε.f 0) g _).symm.trans
@@ -206,7 +183,7 @@ theorem _root_.GlobalTheory.EtC.SuppRes.supp_res : ∀ (q : ℕ) [NeZero q] (i :
         refine _root_.GlobalTheory.EtC.ClsSpec.loc_mono (_root_.GlobalTheory.EtC.ClsSpec.loc_and hex hsupp) ?_
         rintro V g ⟨⟨y, hy⟩, hq | hz⟩
         · obtain ⟨y', rfl⟩ := (himg (n - 1) V y).2
-            (etLoc_of_forall fun W h => Or.inl (_root_.GlobalTheory.EtC.ClsSpec.unit_res h hq))
+            (_root_.GlobalTheory.TwSec.loc_all fun W h => Or.inl (_root_.GlobalTheory.EtC.ClsSpec.unit_res h hq))
           refine ⟨y', hinj n V ?_⟩
           exact (_root_.GlobalTheory.EtC.ClsSpec.map_comp (D.d (n - 1) n) (ι.f n) y').trans
             ((congrArg (fun φ => _root_.GlobalTheory.EtC.Sec.map φ y') (ι.comm (n - 1) n).symm).trans

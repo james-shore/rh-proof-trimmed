@@ -71,7 +71,7 @@ theorem restrMap_exists : ∀ (R S : Type) [CommRing R] [CommRing S] (φ : R →
   obtain ⟨hKI, -, hGE, -, hι, -⟩ := GlobalTheory.T.chosenInjectiveResolution_etaleSheaf_properties R ((restr φ).obj F)
   obtain ⟨-, -, -, hq, hιS, -⟩ := GlobalTheory.T.chosenInjectiveResolution_etaleSheaf_properties S F
   have := rAug_quasiIso φ (resAug F)
-  obtain ⟨m, hm⟩ := (GlobalTheory.T.extend_chainMap_along_quasiIso_kInjective R ((restr φ).obj F) ((rcx φ).obj (res S F)) (res R ((restr φ).obj F))
+  obtain ⟨m, hm⟩ := (_root_.GlobalTheory.EtC.extHom_of_quasiIso R ((restr φ).obj F) ((rcx φ).obj (res S F)) (res R ((restr φ).obj F))
     (rAug φ (resAug F))).1 (resAug ((restr φ).obj F))
   refine ⟨rcxSemi φ m, fun U a => ?_⟩
   rw [rcxSemi_app]

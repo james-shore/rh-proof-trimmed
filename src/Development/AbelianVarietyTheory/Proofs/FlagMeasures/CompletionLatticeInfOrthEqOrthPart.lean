@@ -54,13 +54,9 @@ namespace GlobalTheory.Unfold.OrthLoc
 
 variable {D : D7}
 
-theorem localForm_add_left (Z : LocDat D) (p : PlF D) (x y z : Vp D p) :
-    LocFacts₂ Z.M p (x + y) z = LocFacts₂ Z.M p x z + LocFacts₂ Z.M p y z := by
-  simp only [LocFacts₂, Pi.add_apply, add_mul, Finset.sum_add_distrib]
+alias localForm_add_left := _root_.Formalism.L2.SG.Pf.LocFacts.localForm_add_left₂
 
-theorem localForm_smul_left (Z : LocDat D) (p : PlF D) (c : (D.s.atP p).Ep) (x z : Vp D p) :
-    LocFacts₂ Z.M p (c • x) z = c * LocFacts₂ Z.M p x z := by
-  simp only [LocFacts₂, Pi.smul_apply, smul_eq_mul, Finset.mul_sum, mul_assoc]
+alias localForm_smul_left := _root_.Formalism.L2.SG.Pf.LocFacts.localForm_smul_left₂
 
 def orthP (Z : LocDat D) (p : PlF D) (U : Submodule D.host.E (VS D).V) :
     Submodule (D.s.atP p).Ep (Vp D p) where

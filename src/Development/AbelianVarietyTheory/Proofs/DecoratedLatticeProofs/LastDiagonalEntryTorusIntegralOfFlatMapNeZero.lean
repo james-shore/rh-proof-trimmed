@@ -310,7 +310,7 @@ theorem chi_add (ψ : AddChar (AF D.host.F) ℂ) {T T₀ : HSp D} {ρ : ℕ} (d 
     (y : Mx D S.rank ρ) (t : Matrix (Fin ρ) (Fin ρ) (AE D)) (ξ₁ ξ₂ : Mx D ρ S.rank) :
     ψ (symplO S T (d.incAdj S y) (d.incX S (t ⬝ (ξ₁ + ξ₂)))) =
       ψ (symplO S T (d.incAdj S y) (d.incX S (t ⬝ ξ₁))) * ψ (symplO S T (d.incAdj S y) (d.incX S (t ⬝ ξ₂))) := by
-  rw [Matrix.mul_add, map_add (f := _), symplO_add_right', AddChar.map_add_eq_mul]
+  rw [Matrix.mul_add, map_add (f := _), _root_.GlobalTheory.LatVac.symplO_add_right, AddChar.map_add_eq_mul]
 
 end GlobalTheory.FinPl.LastDiag
 

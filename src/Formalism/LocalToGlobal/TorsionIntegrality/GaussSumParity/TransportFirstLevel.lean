@@ -51,12 +51,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.D
 
-theorem kernelOfF : KernelOfF := kernel_of_f
-theorem sigmaIsom : SigmaIsom := sigma_isometry
-theorem fixedIsLimit : FixedIsLimit := fixed_is_limit
-theorem transport_first_level : CoboundaryCocycleTransportAlongHom := transport_first_level_holds
-theorem transportNorm : TransportNorm := transport_norm_relation
-theorem trDualExists : TrDualExists := trace_dual_exists
-theorem frobA : FrobA := frobenius_on_ring_a
-
 end Formalism.L2.Th1.D

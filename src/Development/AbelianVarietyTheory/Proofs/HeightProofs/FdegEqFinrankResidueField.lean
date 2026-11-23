@@ -48,6 +48,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.IsUnitOfValEqZero
 
 @[expose] public section
 
@@ -245,7 +246,7 @@ theorem fdeg_eq_finrank_residueField : ∀ (R R' F : Type) [CommRing R] [IsDomai
     exact ⟨⟨(a, g), ha⟩, rfl⟩
   · intro z
     change residue (Loc ζ) (algebraMap (As R' A) (Loc ζ) z.1.1) = 0 ↔ residue (vRing w) z.1.2 = 0
-    rw [residue_eq_zero_iff, residue_eq_zero_iff, mem_maximalIdeal_vRing,
+    rw [residue_eq_zero_iff, residue_eq_zero_iff, _root_.ReciprocityTheory.ChartRestriction.G.T0.ValuationResidueLemmas.mem_max_iff,
       IsLocalization.AtPrime.to_map_mem_maximal_iff (Loc ζ) ζ.asIdeal, ← ord_pos_iff h, hord, ← hι]
     refine ⟨pos_of_sub_pos u ?_, pos_of_sub_pos u (hT z)⟩
     rw [← neg_sub, u.map_neg]

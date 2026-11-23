@@ -65,7 +65,7 @@ open scoped TensorProduct
 namespace GlobalTheory.CovTop
 theorem definite_bad_place_lift_alt : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → GlobalTheory.Published.GreenCuspidal → _root_.GlobalTheory.CovTop.GramCondition → _root_.GlobalTheory.CovTop.LiftsCondition fun Fm x _ ι p i _ _ => (i : ℕ) + 1 = (Fm.D x ι).R.m → BadAt p i := by
   intro hP hGr hG
-  have h1 := _root_.GlobalTheory.T.deformation_class_has_representative_alt hP hG
+  have h1 := _root_.GlobalTheory.DefRead.exists_representative_of_deformation_class_alt hP hG
   have h2 := _root_.GlobalTheory.CovTop.LocShareNum.local_share_count_le_exp_alt hP hGr
   unfold _root_.GlobalTheory.CovTop.LiftsCondition at h1 h2 ⊢
   refine (h1.and h2).imp fun Fm CH _ h => ?_
@@ -97,19 +97,5 @@ theorem definite_bad_place_lift_alt : _root_.GlobalTheory.CovTop.PublishedHodgeB
         rw [one_mul]; exact mul_le_mul_of_nonneg_right hs hr
     _ ≤ _ := by nlinarith
 end GlobalTheory.CovTop
-end
-section
-open CategoryTheory AlgebraicGeometry NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Theta
-open GlobalTheory GlobalTheory.CompHS GlobalTheory.CovTop GlobalTheory.BigTop GlobalTheory.HSApp GlobalTheory.DegVal GlobalTheory.DegCmp
-open GlobalTheory.AllWt (Psi wtOf cuspOn cuspW latOn latW normOn petOn GoodOn GoodW rankOn degOn rankW)
-open GlobalTheory.CompHt (hodgeWt)
-open GlobalTheory.LevDesc (TypeFrame grpHR grpGHR latN levDet secRing transl pull KeepsCusp)
-open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelAut)
-open GlobalTheory.BadCount
-open scoped TensorProduct
-
-theorem _root_.GlobalTheory.T.lifts_badAt_last_of_green_cuspidal : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → GlobalTheory.Published.GreenCuspidal → _root_.GlobalTheory.CovTop.GramCondition → _root_.GlobalTheory.CovTop.LiftsCondition fun Fm x _ ι p i _ _ => (i : ℕ) + 1 = (Fm.D x ι).R.m → BadAt p i := by
-  first | exact @_root_.GlobalTheory.CovTop.definite_bad_place_lift_alt | exact _root_.GlobalTheory.CovTop.definite_bad_place_lift_alt | (intros; apply _root_.GlobalTheory.CovTop.definite_bad_place_lift_alt <;> assumption)
 end
 end

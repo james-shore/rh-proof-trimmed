@@ -145,9 +145,6 @@ theorem exists_prime_gt_dvd_eval_of_natDegree_pos (f : Polynomial ℤ) (hf : 0 <
     · rw [hw]
       exact Dvd.dvd.mul_left hpv _
 
-theorem GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.exists_large_prime_dvd_eval :
-    ∀ (f : Polynomial ℤ), OfNat.ofNat (nat_lit 0) < f.natDegree → ∀ (N : ℕ), ∃ (p : ℕ) (m : ℤ), Nat.Prime p ∧ N < p ∧ p.cast ∣ Polynomial.eval m f := by
-  intro f hf N
-  exact exists_prime_gt_dvd_eval_of_natDegree_pos f hf N
+alias GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.exists_large_prime_dvd_eval := _root_.UpperTheory.Reformulated.B.P6.LargePrimeDivisors.exists_prime_gt_dvd_eval_of_natDegree_pos
 
 end UpperTheory.Reformulated.B.P6.LargePrimeDivisors

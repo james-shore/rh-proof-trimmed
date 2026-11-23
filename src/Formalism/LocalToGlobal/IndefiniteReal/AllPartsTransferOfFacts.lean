@@ -99,9 +99,9 @@ theorem all_parts_transfer_of_facts (hE : IdemE) (hP : IdemP) (hC : Core) (hD : 
     exact Formalism.BranchingDeterminantCap.OrthogonalSumAlt.majAt_zero_right b X v x
   have sw1 := sandwich hE hP hτ ρ hst H χ
   have sw0 := sandwich hE hP hτ ρ hst H₀ χ₀
-  have os1 := Formalism.BranchingDeterminantCap.orthSandwich K V ι b X hX S (fun s => cut A (epP H χ ρ ∘ₗ eS (τ s) ρ))
+  have os1 := _root_.Formalism.BranchingDeterminantCap.orthogonal_sandwich_bound K V ι b X hX S (fun s => cut A (epP H χ ρ ∘ₗ eS (τ s) ρ))
     (cut A (epP H χ ρ ∘ₗ eGood τ ρ)) (Fintype.card G) (fg_cut hfg _) hN (horth H χ) sw1.1 sw1.2.1
-  have os0 := Formalism.BranchingDeterminantCap.orthSandwich K V ι b X hX S (fun s => cut A (epP H₀ χ₀ ρ ∘ₗ eS (τ s) ρ))
+  have os0 := _root_.Formalism.BranchingDeterminantCap.orthogonal_sandwich_bound K V ι b X hX S (fun s => cut A (epP H₀ χ₀ ρ ∘ₗ eS (τ s) ρ))
     (cut A (epP H₀ χ₀ ρ ∘ₗ eGood τ ρ)) (Fintype.card G) (fg_cut hfg _) hN (horth H₀ χ₀) sw0.1
     sw0.2.1
   have hrk : ∀ s, rkK (cut A (epP H χ ρ ∘ₗ eS (τ s) ρ)) =
@@ -160,7 +160,7 @@ theorem all_parts_transfer_of_facts (hE : IdemE) (hP : IdemP) (hC : Core) (hD : 
         (rkK (cut A (epP H₀ χ₀ ρ ∘ₗ eGood τ ρ)) : ℝ) := os0.2.2
   rw [hrk0] at o13
   rw [os0.1, Nat.cast_sum] at o03
-  have h4 := Formalism.BranchingDeterminantCap.transferDeg S (fun s => (rkK (cut A (epP H₀ χ₀ ρ ∘ₗ eS (τ s) ρ)) : ℝ))
+  have h4 := _root_.Formalism.BranchingDeterminantCap.degreeTransferBound S (fun s => (rkK (cut A (epP H₀ χ₀ ρ ∘ₗ eS (τ s) ρ)) : ℝ))
     (fun s => (nS (τ s) H χ : ℝ)) (fun s => degT b X (cut A (epP H₀ χ₀ ρ ∘ₗ eS (τ s) ρ)))
     (fun s => degT b X (cut A (epP H χ ρ ∘ₗ eS (τ s) ρ))) (Real.log (Fintype.card G))
     (degT b X (cut A (epP H χ ρ ∘ₗ eGood τ ρ)))

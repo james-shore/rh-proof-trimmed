@@ -181,16 +181,6 @@ theorem wdPst_enlarge {l : ℕ} [Fact l.Prime] (P : LocPrime l) (ι : Om l ≃+*
   exact wdPst_eq_of_map P ι Bw h hj (IntermediateField.inclusion hL).toRingHom (fun _ => rfl) hf
     (EnlargeCoeff.incV_smul hL) b π hπ' hsum hV₁ hV₂ hdim
 
-theorem wdPst_sumRep {l : ℕ} [Fact l.Prime] (P : LocPrime l) (ι : Om l ≃+* ℂ) {E Ω : Type} [Field E]
-    [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] {A : ValuationSubring Ω}
-    {w : HeightOneSpectrum (𝓞 E)} {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-    (Bw : LocBridge l E Ω (Dec (F := E) A) O) (h : IsPlaceOver A w) (hj : Induces Bw) {L : FinExt l} {a b : ℕ}
-    (s : ↥(Dec (F := E) A) →* GL (Fin a) ↥L.1) (s' : ↥(Dec (F := E) A) →* GL (Fin b) ↥L.1) :
-    IsPst P (Bw.repE L s) → IsPst P (Bw.repE L s') → IsPst P (Bw.repE L (Formalism.MainNotions.SumRepresentations.At.sumRep s s')) →
-    wdPst P ι Bw h hj (Bw.repE L (Formalism.MainNotions.SumRepresentations.At.sumRep s s')) =
-      (wdPst P ι Bw h hj (Bw.repE L s)).lpSum (wdPst P ι Bw h hj (Bw.repE L s')) := by
-  exact GlobalTheory.T.potSemistableParameter_blockSum_eq_directSum P ι Bw h hj s s'
-
 theorem wdAt_sumRep : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) → ∀ (ι : Om l ≃+* ℂ) (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (A : ValuationSubring Ω) (w : HeightOneSpectrum (𝓞 E)) (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (h : IsPlaceOver A w) (hj : GlobalTheory.Pst.Induces Bw) (a b : ℕ) (r : ↥(Dec (F := E) A) →* GL (Fin a) (Om l)) (r' : ↥(Dec (F := E) A) →* GL (Fin b) (Om l)), GlobalTheory.Pst.IsPstAt P Bw r → GlobalTheory.Pst.IsPstAt P Bw r' → GlobalTheory.Pst.IsPstAt P Bw (Formalism.MainNotions.SumRepresentations.At.sumRep r r') → GlobalTheory.Pst.wdAt P ι Bw h hj (Formalism.MainNotions.SumRepresentations.At.sumRep r r') = (GlobalTheory.Pst.wdAt P ι Bw h hj r).lpSum (GlobalTheory.Pst.wdAt P ι Bw h hj r') := by
   intro l _ P AI _ ι E Ω _ _ _ _ _ A w O _ _ _ Bw h hj a b r r' hr hr' hs
   obtain ⟨L₁, r₁, hm₁, hp₁, e₁⟩ := wdAt_of_isPstAt ι Bw h hj hr
@@ -216,7 +206,7 @@ theorem wdAt_sumRep : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAin
   rw [e₁, e₂, e₃, ← wdPst_enlarge P ι Bw h hj h₁ r₁ hp₁ q₁, ← wdPst_enlarge P ι Bw h hj h₂ r₂ hp₂ q₂,
     ← wdPst_enlarge P ι Bw h hj h₃ r₃ hp₃ q₃]
   rw [key] at q₃ ⊢
-  exact wdPst_sumRep P ι Bw h hj _ _ q₁ q₂ q₃
+  exact _root_.GlobalTheory.Pst.SumOneField.wdPst_sumRep P ι Bw h hj _ _ q₁ q₂ q₃
 
 end GlobalTheory.Pst.SumParam
 

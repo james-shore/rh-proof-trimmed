@@ -53,7 +53,7 @@ public import Mathlib.Analysis.Calculus.ContDiff.Comp
 
 namespace ReciprocityTheory.AnForm.A
 
-theorem parts_thm : PartsStatement := mulVec_one_sub_idempotent_of_split_sum_identity
+alias parts_thm := _root_.ReciprocityTheory.AnForm.A.mulVec_one_sub_idempotent_of_split_sum_identity
 
 theorem hessCRestrict_thm : HessCRestrictStatement := by
   intro n φ U j hU hφ y hy

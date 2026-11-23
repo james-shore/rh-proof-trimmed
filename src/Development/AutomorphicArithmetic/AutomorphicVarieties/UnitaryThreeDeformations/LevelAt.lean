@@ -70,10 +70,6 @@ private theorem conjBy_right {D R : Type} [Group D] [CommRing R] (h : GL (Fin 3)
   show (GG.ofGL h * r d * (GG.ofGL h)⁻¹).right = _
   simp
 
-private theorem diag_mul {R : Type} [CommRing R] (X Y : Matrix (Fin 3) (Fin 3) R) (hX : ∀ i j, j < i → X i j = 0)
-    (hY : ∀ i j, j < i → Y i j = 0) (a : Fin 3) : (X * Y) a a = X a a * Y a a :=
-  _root_.UpperTheory.Reformulated.B.UpperTriangularThreeDiagonalOfMul.diag_mul X Y hX hY a
-
 private theorem tri_sgn {R : Type} [CommRing R] (ε : ℤˣ) (T : GL (Fin 3) R) (hT : ∀ i j, j < i → T i j = 0) :
     (∀ i j, j < i → sgnAct 3 R ε T i j = 0) ∧ ∀ (u : Rˣ) (I : Ideal R), (∀ a, T a a - ((u ^ wt1 a : Rˣ) : R) ∈ I) →
       ∀ a, sgnAct 3 R ε T a a - ((u ^ wt1 a : Rˣ) : R) ∈ I := by
@@ -94,7 +90,7 @@ private theorem tri_sgn {R : Type} [CommRing R] (ε : ℤˣ) (T : GL (Fin 3) R) 
     rw [Matrix.GeneralLinearGroup.coe_inv]
     exact h4 h
   refine ⟨fun i j h => by rw [h1, h2 _ _ (Fin.rev_lt_rev.2 h)], fun u I h a => ?_⟩
-  have h5 := diag_mul _ _ hT h2 a.rev
+  have h5 := _root_.UpperTheory.Reformulated.B.UpperTriangularThreeDiagonalOfMul.diag_mul _ _ hT h2 a.rev
   rw [← Units.val_mul, mul_inv_cancel, Units.val_one, Matrix.one_apply_eq] at h5
   have h6 : ((u ^ wt1 a : Rˣ) : R) * ((u ^ wt1 a.rev : Rˣ) : R) = 1 := by
     rw [← Units.val_mul, ← _root_.zpow_add, show wt1 a + wt1 a.rev = 0 by fin_cases a <;> rfl, zpow_zero, Units.val_one]
@@ -209,7 +205,7 @@ private theorem exists_diag {H k : Type} [Group H] [Field k] (X : H →* GL (Fin
   ⟨fun i => MonoidHom.toHomUnits
     { toFun := fun s => X s i i
       map_one' := by simp
-      map_mul' := fun s t => by rw [map_mul, Units.val_mul, diag_mul _ _ (hX s) (hX t)] }, fun _ _ => rfl⟩
+      map_mul' := fun s t => by rw [map_mul, Units.val_mul, _root_.UpperTheory.Reformulated.B.UpperTriangularThreeDiagonalOfMul.diag_mul _ _ (hX s) (hX t)] }, fun _ _ => rfl⟩
 
 open UpperTheory.V.Base in
 theorem UpperTheory.V.UnitaryThreeInertia.levelAt_of_pt :

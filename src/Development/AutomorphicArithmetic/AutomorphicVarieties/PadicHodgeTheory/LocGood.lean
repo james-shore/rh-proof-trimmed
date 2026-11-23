@@ -145,7 +145,7 @@ theorem UpperTheory.V.Loc.locGood :
   intro hP l _ O _ _ _ _ _ _ _ D U
   refine ⟨?_, ?_⟩
   · rintro R _ _ _ r r' h hh e ⟨f, hf, hI⟩
-    obtain ⟨f', hf', hI'⟩ := rtConj hP D U R r.hom h hh ⟨f, congrArg GLift.hom hf, hI⟩
+    obtain ⟨f', hf', hI'⟩ := _root_.GlobalTheory.OrdLoc.rtConj hP D U R r.hom h hh ⟨f, congrArg GLift.hom hf, hI⟩
     exact ⟨f', GLift.ext (hf'.trans e.symm), hI'⟩
   · have hi := zl_inj l O
     haveI : FaithfulSMul ℤ_[l] O := (faithfulSMul_iff_algebraMap_injective _ _).2 hi

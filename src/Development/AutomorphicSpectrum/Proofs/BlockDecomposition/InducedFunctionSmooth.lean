@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LengthFunctionFactsHold
 
 @[expose] public section
 
@@ -54,9 +55,6 @@ namespace GlobalTheory.CompanionTheory.ModelS.FMem
 
 variable {n : ℕ}
 
-theorem contDiff_entry (a b : Fin n) : ContDiff ℝ ∞ (fun g : Mat n => g a b) :=
-  contDiff_apply_apply ℝ a b
-
 theorem contDiff_det_of_entries {ι : Type} [Fintype ι] [DecidableEq ι] {M : Mat n → Matrix ι ι ℂ}
     (h : ∀ a b, ContDiff ℝ ∞ fun g => M g a b) : ContDiff ℝ ∞ fun g => (M g).det := by
   simp only [Matrix.det_apply']
@@ -64,13 +62,13 @@ theorem contDiff_det_of_entries {ι : Type} [Fintype ι] [DecidableEq ι] {M : M
   exact contDiff_prod fun i _ => h _ _
 
 theorem contDiff_lm (j : Fin n) : ContDiff ℝ ∞ (lm j) :=
-  contDiff_det_of_entries fun _ _ => contDiff_entry _ _
+  contDiff_det_of_entries fun _ _ => _root_.GlobalTheory.CompanionTheory.LengthGL.contDiff_ent _ _
 
 theorem contDiff_gm (j : Fin n) : ContDiff ℝ ∞ (gm j) := by
   refine contDiff_det_of_entries fun a b => ?_
   simp only [Matrix.mul_apply, Matrix.conjTranspose_apply, Matrix.submatrix_apply, id]
-  refine ContDiff.sum fun k _ => (contDiff_entry _ _).mul ?_
-  exact Complex.conjCLE.contDiff.comp (contDiff_entry _ _)
+  refine ContDiff.sum fun k _ => (_root_.GlobalTheory.CompanionTheory.LengthGL.contDiff_ent _ _).mul ?_
+  exact Complex.conjCLE.contDiff.comp (_root_.GlobalTheory.CompanionTheory.LengthGL.contDiff_ent _ _)
 
 theorem zpow_contDiffOn {f : Mat n → ℂ} {s : Set (Mat n)} (hf : ContDiffOn ℝ ∞ f s)
     (h : ∀ x ∈ s, f x ≠ 0) (m : ℤ) : ContDiffOn ℝ ∞ (fun x => f x ^ m) s := by

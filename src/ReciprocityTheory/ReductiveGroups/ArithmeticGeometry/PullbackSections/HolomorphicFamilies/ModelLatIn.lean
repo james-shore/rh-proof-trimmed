@@ -94,12 +94,6 @@ theorem halfDiffNorm : HalfDiffNormSt := by
   rw [← hlog]
   exact Real.log_le_log (by positivity) hsq
 
-theorem bb_ne_bot (D : D7) : D.host.𝔟 ≠ ⊥ := by
-  intro h
-  have h0 := (halfDiffNorm D).1
-  rw [h, Ideal.absNorm_bot] at h0
-  exact lt_irrefl 0 h0
-
 theorem finrank_E (D : D7) : Module.finrank ℚ D.host.E = 2 * D.R.f := by
   haveI := D.host.galois
   rw [← IsGalois.card_aut_eq_finrank, Nat.card_congr D.host.gal.toEquiv]

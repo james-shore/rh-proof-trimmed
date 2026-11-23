@@ -103,27 +103,27 @@ theorem L_std : ∀ (D : D7) (S : HSp D) (b : Module.Basis (Fin S.rank) D.host.E
 theorem reframe_thPVecOf : ∀ (D : D7) (S T : HSp D) (b : Module.Basis (Fin S.rank) D.host.E S.V), StdFrame.OrthFrame (reS S b) → ∀ (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D) (sT : D.what₂.Tau → Matrix (Fin T.rank) (Fin T.rank) ℂ) (ΛS : Lt D.host.E S.rank) (ΛT : Set (Fin T.rank → D.host.E)) (βS : GL (Fin S.rank) (Lev.EAf D)) (βT : GL (Fin T.rank) (Lev.EAf D)) (Pg Q : Finset (Formalism.L2.DIV.Pl D.host.E)) (ξ : ∀ PP : Formalism.L2.DIV.Pl D.host.E, (Formalism.L2.DIV.kP PP)ˣ →* ℂˣ) (f₀ f : WO S T → ℂ), (ΛS : Set (Fin S.rank → D.host.E)) = L0c D S → Formalism.L2.DIV.IsFrame βS ΛS → IsThPVecOf ψ θ S T (fun _ => 1) sT (ΛS : Set (Fin S.rank → D.host.E)) ΛT βS βT Pg Q ξ f₀ f → ∃ βS' : GL (Fin (reS S b).rank) (Lev.EAf D), Formalism.L2.DIV.IsFrame βS' (stdL D.host.E (reS S b).rank) ∧ IsThPVecOf ψ θ (reS S b) T (fun _ => 1) sT (stdL D.host.E (reS S b).rank : Set (Fin (reS S b).rank → D.host.E)) ΛT βS' βT Pg Q ξ (reF S T b f₀) (reF S T b f) := by
   intro D S T b hO ψ θ sT ΛS ΛT βS βT Pg Q ξ f₀ f hΛ hfr hv
   have hL := L_std D S b hO
-  refine ⟨frPinvGL S b * βS, L_frame D S b βS ΛS hO hΛ hfr, ?_⟩
+  refine ⟨frPinvGL S b * βS, _root_.GlobalTheory.AdSpan.ReVec.isFrame_frPinvGL_mul D S b βS ΛS hO hΛ hfr, ?_⟩
   rw [← hL]
   rw [hΛ] at hv
   obtain ⟨⟨hstd, hvac⟩, e, he, hth⟩ := hv
-  have hs := L_sympl D S T b
-  have hlat := L_lat D S T b ΛT
+  have hs := _root_.GlobalTheory.AdSpan.ReVec.Sympl.symplO_reW D S T b
+  have hlat := _root_.GlobalTheory.AdSpan.ReVec.latO_reW_iff D S T b ΛT
   refine ⟨⟨hstd, ?_⟩, e, he, ?_⟩
   · exact
       { inf := hvac.inf
-        theta := L_theta D ψ S T b hs f₀ hvac.theta
+        theta := _root_.GlobalTheory.AdSpan.ReVec.ThetaCarry.isThetaFunO_reF D ψ S T b hs f₀ hvac.theta
         lat := ⟨fun u hu => by
             rw [heisO_reF S T b ψ hs, reW_nsmul, hvac.lat.1 _ ((hlat u).1 hu)],
           fun e' he' u hu hh => by
             rw [heisO_reF S T b ψ hs, hvac.lat.2 e' he' _ ((hlat u).1 hu) ((isHalf_reW_iff S T b e' u).2 hh)]⟩
-        fock := fun τ => L_fock D ψ θ S T b hvac.inf hs τ (sT τ) f₀ (hvac.fock τ)
-        norm := L_norm D S T b f₀ hvac.norm }
+        fock := fun τ => _root_.GlobalTheory.AdSpan.ReVec.FockVac.isFockVacAt_reF D ψ θ S T b hvac.inf hs τ (sT τ) f₀ (hvac.fock τ)
+        norm := _root_.GlobalTheory.AdSpan.ReVec.reframeFunctionOnHoms_norm_one_covolumeOne D S T b f₀ hvac.norm }
   · refine (congrArg (fun Φ => IsThetaAt ψ (symplO (reS S b) T) (heisO ψ (reS S b) T) (cA D e)
       (latO (reS S b) T (L0c D (reS S b)) ΛT fun _ => True) 1 (reF S T b f₀) Φ (reF S T b f)) ?_).mpr
-      (L_thetaAt D ψ S T b (cA D e) _ _ 1 f₀ _ f hs hlat hth)
+      (_root_.GlobalTheory.ThetaAtReframe.isThetaAt_reframe D ψ S T b (cA D e) _ _ 1 f₀ _ f hs hlat hth)
     funext x
-    simp only [L_frMap D S T b βS βT x]
+    simp only [_root_.GlobalTheory.AdSpan.ReVec.FrMap.frMapAdj_reS D S T b βS βT x]
     rw [isHalf_reW_iff S T b (cA D e) x]
     exact if_congr Iff.rfl rfl rfl
 

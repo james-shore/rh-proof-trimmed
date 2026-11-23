@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ConstSmall
+import Lemmata.GeneralBFactRightSide.Imports
 
 @[expose] public section
 
@@ -150,28 +151,13 @@ private theorem UpperTheory.mem_dual_one_iff_trace_mul_int (F : Type) [Field F] 
     obtain ⟨n, hn⟩ := h b
     exact ⟨n, by rw [Algebra.traceForm_apply, hn]; simp⟩
 
-private theorem UpperTheory.cexp_two_pi_I_mul_eq_one_iff_int (t : ℝ) :
-    Complex.exp (2 * Real.pi * Complex.I * (t : ℂ)) = 1 ↔ ∃ n : ℤ, t = n := by
-  rw [Complex.exp_eq_one_iff]
-  constructor
-  · rintro ⟨n, hn⟩
-    refine ⟨n, ?_⟩
-    have hpi : (2 * Real.pi * Complex.I : ℂ) ≠ 0 := by
-      simp [Real.pi_ne_zero, Complex.I_ne_zero]
-    have : (t : ℂ) = (n : ℂ) := by
-      apply mul_left_cancel₀ hpi
-      rw [hn]; ring
-    exact_mod_cast this
-  · rintro ⟨n, rfl⟩
-    exact ⟨n, by push_cast; ring⟩
-
 theorem UpperTheory.addChar_inverseDifferent_and_residue_sum_eq_zero :
     ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (η : F), ((∀ v : Pl F, v.valuation F η ≤ WithZero.exp (ordI v (differentIdeal ℤ (𝓞 F)) : ℤ)) → ∀ b : 𝓞 F, Complex.exp (2 * Real.pi * Complex.I * ∑ v, (reAt v (η * (b : F)) : ℂ)) = 1) ∧ ∀ (w : Pl F) [Fintype (𝓞 F ⧸ w.asIdeal)] (s : 𝓞 F ⧸ w.asIdeal → 𝓞 F), (∀ r, Ideal.Quotient.mk w.asIdeal (s r) = r) → (∀ v : Pl F, v ≠ w → v.valuation F η ≤ WithZero.exp (ordI v (differentIdeal ℤ (𝓞 F)) : ℤ)) → w.valuation F η = WithZero.exp ((ordI w (differentIdeal ℤ (𝓞 F)) : ℤ) + 1) → ∑ r, Complex.exp (2 * Real.pi * Complex.I * ∑ v, (reAt v (η * (s r : F)) : ℂ)) = 0 := by
   intro F _ _ _ η
   have key : ∀ x : F, (∃ n : ℤ, Algebra.trace ℚ F x = n) ↔
       Complex.exp (2 * Real.pi * Complex.I * ∑ v, (reAt v x : ℂ)) = 1 := by
     intro x
-    rw [← Complex.ofReal_sum, UpperTheory.sum_reAt_eq_trace', UpperTheory.cexp_two_pi_I_mul_eq_one_iff_int]
+    rw [← Complex.ofReal_sum, UpperTheory.sum_reAt_eq_trace', _root_.Bl.general_b_fact_right_side.goal1]
     constructor
     · rintro ⟨n, hn⟩
       exact ⟨n, by rw [hn]; push_cast; rfl⟩

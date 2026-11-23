@@ -95,13 +95,6 @@ end GlobalTheory.SymMono
 
 namespace GlobalTheory.SymMono
 
-theorem zpow_finsum {G J : Type} [CommGroup G] (g : G) (s : Finset J) (f : J → ℤ) :
-    g ^ (∑ i ∈ s, f i) = ∏ i ∈ s, g ^ f i := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simp
-  | insert j s hj ih => rw [Finset.sum_insert hj, Finset.prod_insert hj, zpow_add, ih]
-
 theorem symElem_mem {r : ℕ} (a b : Fin r) : symElem a b ∈ balForms (id : ℤ → ℤ) (Fin r → ℤ) :=
   mem_balForms_int.2 (symElem_symm a b)
 
@@ -136,9 +129,9 @@ theorem eq_of_prod_zpow_eq (F : Type) [Field F] (r : ℕ) (I : Type) [Fintype I]
       _ = ∏ i, ∏ a, ∏ b, ((X i / Y i) ^ ((ε i : LinearMap.BilinForm ℤ (Fin r → ℤ)) (Pi.single a 1)
             (Pi.single b 1))) ^ (ε.repr ⟨symElem a b, symElem_mem a b⟩ k) := by
           refine Finset.prod_congr rfl fun i _ => ?_
-          rw [repr_self_eq_sum, zpow_finsum]
+          rw [repr_self_eq_sum, _root_.GlobalTheory.SharpFamRel.zpow_finsetSum]
           refine Finset.prod_congr rfl fun a _ => ?_
-          rw [zpow_finsum]
+          rw [_root_.GlobalTheory.SharpFamRel.zpow_finsetSum]
           refine Finset.prod_congr rfl fun b _ => ?_
           rw [zpow_mul]
       _ = ∏ a, ∏ b, (∏ i, (X i / Y i) ^ ((ε i : LinearMap.BilinForm ℤ (Fin r → ℤ)) (Pi.single a 1)

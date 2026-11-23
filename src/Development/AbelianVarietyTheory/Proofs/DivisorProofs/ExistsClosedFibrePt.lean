@@ -68,7 +68,7 @@ theorem exists_trait_pt : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing 
     simp only [ψc]
     rw [Spec.map_comp, Spec.map_comp, ← Scheme.fromSpecStalk_toSpecΓ, Category.assoc, Category.assoc,
       ← Scheme.toSpecΓ_naturality_assoc, toSpecΓ_SpecMap_ΓSpecIso_inv, Category.comp_id]
-  have hπinj : Function.Injective M.π.appTop.hom := fun a b h => GlobalTheory.Mum.jK_appTop_injective R (by
+  have hπinj : Function.Injective M.π.appTop.hom := fun a b h => _root_.GlobalTheory.PsiInt.jK_appTop_injective R (by
     rw [← M.appTop_comp, ← M.appTop_comp, h])
   have hψi : Function.Injective ψc.hom := by
     simp only [ψc, CommRingCat.hom_comp, RingHom.coe_comp]

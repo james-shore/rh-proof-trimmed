@@ -59,19 +59,6 @@ variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
 variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E]
 variable (L : LocE F E) {n : ℕ} (Hm : Matrix (Fin n) (Fin n) E)
 
-theorem hf_add_left (x y z : Fin n → E) : hf L Hm (x + y) z = hf L Hm x z + hf L Hm y z := by
-  simp [hf, add_mul, Finset.sum_add_distrib]
-
-theorem hf_add_right (x y z : Fin n → E) : hf L Hm x (y + z) = hf L Hm x y + hf L Hm x z := by
-  simp [hf, mul_add, Finset.sum_add_distrib]
-
-theorem hf_smul_left (t : E) (x y : Fin n → E) : hf L Hm (t • x) y = t * hf L Hm x y := by
-  simp [hf, Finset.mul_sum, mul_assoc]
-
-theorem hf_smul_right (t : E) (x y : Fin n → E) : hf L Hm x (t • y) = L.cj t * hf L Hm x y := by
-  simp only [hf, Finset.mul_sum, Pi.smul_apply, smul_eq_mul, map_mul]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
-
 theorem hf_zero_left (y : Fin n → E) : hf L Hm 0 y = 0 := by simp [hf]
 
 theorem hf_zero_right (y : Fin n → E) : hf L Hm y 0 = 0 := by simp [hf]
@@ -80,20 +67,15 @@ theorem hf_sum_left {ι : Type} (s : Finset ι) (f : ι → Fin n → E) (y : Fi
     hf L Hm (∑ i ∈ s, f i) y = ∑ i ∈ s, hf L Hm (f i) y := by
   induction s using Finset.induction_on with
   | empty => simp [hf_zero_left]
-  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, hf_add_left, ih]
+  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, _root_.GlobalTheory.HermOrthBasis.hf_add_left, ih]
 
 theorem hf_sum_right {ι : Type} (s : Finset ι) (f : ι → Fin n → E) (y : Fin n → E) :
     hf L Hm y (∑ i ∈ s, f i) = ∑ i ∈ s, hf L Hm y (f i) := by
   induction s using Finset.induction_on with
   | empty => simp [hf_zero_right]
-  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, hf_add_right, ih]
+  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, _root_.GlobalTheory.HermOrthBasis.hf_add_right, ih]
 
-theorem cj_hf (hH : IsHerm L Hm) (x y : Fin n → E) : L.cj (hf L Hm x y) = hf L Hm y x := by
-  have h : ∀ i j, L.cj (Hm i j) = Hm j i := fun i j => congrFun (congrFun hH j) i
-
-  simp only [hf, map_sum, map_mul, L.cj_cj, h]
-  rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
+alias cj_hf := _root_.GlobalTheory.HermOrthBasis.cj_hf
 
 theorem cj_mem_O {t : E} (ht : t ∈ L.O) : L.cj t ∈ L.O := by
   rw [L.O_def] at ht ⊢
@@ -184,7 +166,7 @@ theorem of_involution (hH : IsHerm L Hm) (c : (Fin n → E) →+ (Fin n → E))
     have hN' : L.cj (hf L Hm a a) = hf L Hm a a := cj_hf L Hm hH a a
     have e1 : hf L Hm (g a) (g a) = hf L Hm a a := hi a a
     rw [hsv a] at e1
-    simp only [hf_add_left, hf_add_right, hf_smul_left, hf_smul_right, map_mul, hN'] at e1
+    simp only [_root_.GlobalTheory.HermOrthBasis.hf_add_left, _root_.GlobalTheory.HermOrthBasis.hf_add_right, _root_.GlobalTheory.HermOrthBasis.hf_smul_left, _root_.GlobalTheory.HermOrthBasis.hf_smul_right, map_mul, hN'] at e1
     have e2 : L.cj s + s + s * L.cj s * hf L Hm a a = 0 := by
       refine (hN.mul hN).mul_left_cancel ?_
       linear_combination e1
@@ -195,7 +177,7 @@ theorem of_involution (hH : IsHerm L Hm) (c : (Fin n → E) →+ (Fin n → E))
       rw [hsv, map_add (f := _), hc, hs, ha, map_mul]
       congr 3
       rw [← hf', hc, ha]
-    rw [e3, hsv v, hf_add_left, hf_smul_left, add_assoc, ← add_smul]
+    rw [e3, hsv v, _root_.GlobalTheory.HermOrthBasis.hf_add_left, _root_.GlobalTheory.HermOrthBasis.hf_smul_left, add_assoc, ← add_smul]
     have : s * hf L Hm v a + L.cj s * (hf L Hm v a + s * hf L Hm v a * hf L Hm a a) = 0 := by
       linear_combination hf L Hm v a * e2
     rw [this, zero_smul, add_zero]
@@ -207,10 +189,10 @@ theorem exists_involution (hH : IsHerm L Hm) {ι : Type} [Fintype ι] (b : ι �
       (∀ v w, hf L Hm (c v) (c w) = L.cj (hf L Hm v w)) ∧ ∀ i, c (b i) = b i := by
   let c : (Fin n → E) →+ (Fin n → E) := AddMonoidHom.mk'
     (fun v => ∑ i, (hf L Hm (b i) v * ↑(hu i).unit⁻¹) • b i) (fun u v => by
-      simp only [hf_add_right, add_mul, add_smul, Finset.sum_add_distrib])
+      simp only [_root_.GlobalTheory.HermOrthBasis.hf_add_right, add_mul, add_smul, Finset.sum_add_distrib])
   have hcv : ∀ v, c v = ∑ i, (hf L Hm (b i) v * ↑(hu i).unit⁻¹) • b i := fun v => rfl
   have hs : ∀ t v, c (t • v) = L.cj t • c v := fun t v => by
-    simp only [hcv, hf_smul_right, Finset.smul_sum, smul_smul, mul_assoc]
+    simp only [hcv, _root_.GlobalTheory.HermOrthBasis.hf_smul_right, Finset.smul_sum, smul_smul, mul_assoc]
   have hbi : ∀ i, c (b i) = b i := fun i => by
     rw [hcv, Finset.sum_eq_single i]
     · rw [IsUnit.mul_val_inv, one_smul]
@@ -235,11 +217,11 @@ theorem exists_involution (hH : IsHerm L Hm) {ι : Type} [Fintype ι] (b : ι �
         · rw [hij]
         · rw [ho i j hij, ho j i (Ne.symm hij)]
       | zero => simp [hf_zero_right]
-      | add x y _ _ h1 h2 => rw [map_add (f := _), hf_add_right, hf_add_right, h1, h2, map_add (f := _)]
-      | smul t x _ h => rw [hs, hf_smul_right, hf_smul_right, h, map_mul]
+      | add x y _ _ h1 h2 => rw [map_add (f := _), _root_.GlobalTheory.HermOrthBasis.hf_add_right, _root_.GlobalTheory.HermOrthBasis.hf_add_right, h1, h2, map_add (f := _)]
+      | smul t x _ h => rw [hs, _root_.GlobalTheory.HermOrthBasis.hf_smul_right, _root_.GlobalTheory.HermOrthBasis.hf_smul_right, h, map_mul]
     | zero => simp [hf_zero_left]
-    | add x y _ _ h1 h2 => rw [map_add (f := _), hf_add_left, hf_add_left, h1, h2, map_add (f := _)]
-    | smul t x _ h => rw [hs, hf_smul_left, hf_smul_left, h, map_mul]
+    | add x y _ _ h1 h2 => rw [map_add (f := _), _root_.GlobalTheory.HermOrthBasis.hf_add_left, _root_.GlobalTheory.HermOrthBasis.hf_add_left, h1, h2, map_add (f := _)]
+    | smul t x _ h => rw [hs, _root_.GlobalTheory.HermOrthBasis.hf_smul_left, _root_.GlobalTheory.HermOrthBasis.hf_smul_left, h, map_mul]
 
 end
 
@@ -252,8 +234,8 @@ theorem qrefl_inverted : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalS
     exact cj_hf L Hm hH.1 _ _
   let φ : (Fin m → E) →ₗ[E] (Fin n → E) := Fintype.linearCombination E x
   have hφ : ∀ s t, hf L Hm (φ s) (φ t) = hf L Γ s t := fun s t => by
-    simp only [φ, Fintype.linearCombination_apply, hf_sum_left, hf_sum_right, hf_smul_left,
-      hf_smul_right, Finset.mul_sum]
+    simp only [φ, Fintype.linearCombination_apply, hf_sum_left, hf_sum_right, _root_.GlobalTheory.HermOrthBasis.hf_smul_left,
+      _root_.GlobalTheory.HermOrthBasis.hf_smul_right, Finset.mul_sum]
     conv_rhs => unfold hf
     rw [Finset.sum_comm]
     refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_

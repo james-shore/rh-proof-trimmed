@@ -52,11 +52,10 @@ namespace Formalism.MainNotions.G.ColumnFamilies.Top
 
 open Formalism.MainNotions.CovariantDegrees
 
-theorem b9 (D : Formalism.BasicNotions.D7) : GlobalSectionsSchur D := global_sections_schur D
-theorem b10 (D : Formalism.BasicNotions.D7) : BracketPolynomialSpan D := bracket_polynomial_span D
-theorem b11 (D : Formalism.BasicNotions.D7) : GradedLatticeStable D := adm_eleven D
-theorem b15 (D : Formalism.BasicNotions.D7) : SaturatedLowerSetSpan D := admissible_lowerSet_span D
-theorem b19 (D : Formalism.BasicNotions.D7) : WeylDualityLattice D := admissible_lattice_biduality D
-theorem a2 (D : Formalism.BasicNotions.D7) : PathColumnBasis D := admissible_polynomial_basis D
+alias b9 := _root_.Formalism.MainNotions.G.ColumnFamilies.global_sections_schur
+alias b10 := _root_.Formalism.MainNotions.G.ColumnFamilies.bracket_polynomial_span
+alias b11 := _root_.Formalism.MainNotions.G.ColumnFamilies.adm_eleven
+alias b15 := _root_.Formalism.MainNotions.G.ColumnFamilies.admissible_lowerSet_span
+alias a2 := _root_.Formalism.MainNotions.G.ColumnFamilies.admissible_polynomial_basis
 
 end Formalism.MainNotions.G.ColumnFamilies.Top

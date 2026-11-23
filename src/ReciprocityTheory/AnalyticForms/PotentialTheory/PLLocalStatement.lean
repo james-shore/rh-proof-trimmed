@@ -51,7 +51,7 @@ open scoped ContDiff
 
 noncomputable section
 
-theorem poincareLelong : PoincareLelongStatement := PLAux.pl_global
+alias poincareLelong := _root_.ReciprocityTheory.AnForm.M.PLAux.pl_global
 
 end
 

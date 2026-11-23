@@ -379,7 +379,7 @@ theorem exists_pull_val : LL → AllUF fun {R} _ _ {I} {D} {A} {G} _ _ U F _ _ =
   obtain ⟨t', htt⟩ := ThetaPtExist.exists_isTwistPull A.isLB (lift (fst _ _) (snd (TFK (R := R) F) A.A ≫ E.aA)) _
     (lift_snd _ _) _ _ α hα t
   obtain ⟨s', ht', -⟩ := (hB ν hν w₀ hw₀.1).1 t'
-  have H := (T.expansion_pullback_section_endomorphism hL R I hI D A G hG U F E hE ν 1 le_rfl hν ⟨β, hβ⟩).2 w₀ ρ hw₀ _ _ (lift_snd _ _) (lift_fst _ _)
+  have H := (_root_.GlobalTheory.UT.PullExp.main hL R I hI D A G hG U F E hE ν 1 le_rfl hν ⟨β, hβ⟩).2 w₀ ρ hw₀ _ _ (lift_snd _ _) (lift_fst _ _)
     rfl α hα hαn t t' s s' ht ht' htt κ hκ
   refine ⟨s', fun χ b z J hJ => ?_⟩
   obtain ⟨g, rfl⟩ := (gt_onto_divisible_kernel hL R I hI D F).1 b

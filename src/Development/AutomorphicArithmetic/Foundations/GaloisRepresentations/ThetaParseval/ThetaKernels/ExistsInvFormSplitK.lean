@@ -62,7 +62,7 @@ theorem exists_invForm_split_k : ∀ (F E : Type) [Field F] [NumberField F] [Fie
             ℓ (heisOF σ JS JT ξ₀ B.ψ u f) = ℓ f) ∧
           ∃ f, IsThetaFunOF σ JS JT ξ₀ B.ψ f ∧ ℓ f ≠ 0 := by
   intro F E _ _ _ _ _ σ B hB nS nT JS JT hS hT ξ₀ hξ hσξ e he f₀ hf₀ hf₀0
-  obtain ⟨φ, hφ, hφ0, hd⟩ := _root_.GlobalTheory.T.exists_eigenvector_split_idempotent F E σ B hB nS nT JS JT hS hT ξ₀ hξ hσξ e he f₀ hf₀ hf₀0
+  obtain ⟨φ, hφ, hφ0, hd⟩ := _root_.PositivityTheory.ThKW.SplitVacuumEigenvectors.exists_vac_split_k F E σ B hB nS nT JS JT hS hT ξ₀ hξ hσξ e he f₀ hf₀ hf₀0
   obtain ⟨ℓ, h1, h2⟩ := GlobalTheory.HalfCoinv.exists_form (Y := conjHalf σ e nS nT) (ρ := heisL σ JS JT ξ₀ B.ψ)
     (B := commF σ JS JT ξ₀ B.ψ) (Θ := {g | IsThetaFunOF σ JS JT ξ₀ B.ψ g})
     (fun x hx x' hx' f => by

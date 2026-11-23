@@ -244,13 +244,6 @@ section Grp
 
 variable {k r : ℕ}
 
-theorem Hpk_unit (k r : ℕ) : IsUnit (Hpk k r).det := by
-  rw [isUnit_iff_ne_zero]
-  intro h0
-  have h := congrArg Matrix.det (Formalism.MainNotions.BesselShellMomentBounds.Hpk_sq' k r)
-  rw [Matrix.det_mul, h0, zero_mul, Matrix.det_one] at h
-  exact zero_ne_one h
-
 theorem UH_one (k r : ℕ) : (1 : Mx k r) ∈ UH (Hpk k r) := by
   show (1 : Mx k r)ᴴ * Hpk k r * 1 = Hpk k r
   simp
@@ -266,7 +259,7 @@ theorem UH_inv {a : Mx k r} (ha : a ∈ UH (Hpk k r)) : a⁻¹ ∈ UH (Hpk k r) 
   have hd : IsUnit a.det := by
     have h := congrArg Matrix.det ha'
     rw [Matrix.det_mul, Matrix.det_mul] at h
-    have hu := Hpk_unit k r
+    have hu := _root_.Formalism.MainNotions.BesselShellMomentBounds.Hpk_det_unit k r
     rw [isUnit_iff_ne_zero]
     intro h0
     rw [h0, mul_zero] at h
@@ -279,7 +272,7 @@ theorem UH_det {a : Mx k r} (ha : a ∈ UH (Hpk k r)) : IsUnit a.det := by
   have ha' : aᴴ * Hpk k r * a = Hpk k r := ha
   have h := congrArg Matrix.det ha'
   rw [Matrix.det_mul, Matrix.det_mul] at h
-  have hu := Hpk_unit k r
+  have hu := _root_.Formalism.MainNotions.BesselShellMomentBounds.Hpk_det_unit k r
   rw [isUnit_iff_ne_zero]
   intro h0
   rw [h0, mul_zero] at h
@@ -301,7 +294,7 @@ theorem exp_mem_UH {X : Mx k r} (hX : InLieHpk k r X) (t : ℝ) :
   rw [hst]
   have e1 : (t : ℂ) • (Hpk k r * (-X) * (Hpk k r)⁻¹) = Hpk k r * (-((t : ℂ) • X)) * (Hpk k r)⁻¹ := by
     simp
-  rw [e1, Matrix.exp_conj _ _ ((Matrix.isUnit_iff_isUnit_det _).2 (Hpk_unit k r)), hinv]
+  rw [e1, Matrix.exp_conj _ _ ((Matrix.isUnit_iff_isUnit_det _).2 (_root_.Formalism.MainNotions.BesselShellMomentBounds.Hpk_det_unit k r)), hinv]
   have e2 : NormedSpace.exp (-((t : ℂ) • X)) * NormedSpace.exp ((t : ℂ) • X) = 1 := by
     rw [← Matrix.exp_add_of_commute _ _ ((Commute.refl ((t : ℂ) • X)).neg_left)]
     simp
@@ -1005,81 +998,17 @@ end
 
 end PieceB2
 
-section PieceB3
-
-open MeasureTheory Matrix Finset
-open scoped InnerProductSpace ContDiff
-
-noncomputable section
-
 namespace Formalism.MainNotions.LowestKTypeMultiplicity
-
-open Formalism.QuantumDeterminants Formalism.MainNotions.S Formalism.MainNotions.S.ThB Formalism.BasicNotions
-
-variable {k r : ℕ}
-
-section Integrand
-
-variable {Wp Wq : Type} [NormedAddCommGroup Wp] [NormedSpace ℂ Wp] [NormedAddCommGroup Wq] [NormedSpace ℂ Wq]
-
-end Integrand
 
 end Formalism.MainNotions.LowestKTypeMultiplicity
 
-end
-
-end PieceB3
-
-section PieceB4
-
-open MeasureTheory Matrix Finset
-open scoped InnerProductSpace ContDiff
-
-noncomputable section
-
 namespace Formalism.MainNotions.LowestKTypeMultiplicity
-
-open Formalism.QuantumDeterminants Formalism.MainNotions.S Formalism.MainNotions.S.ThB Formalism.BasicNotions
-
-variable {k r : ℕ}
-
-section Gen
-
-variable {Wp Wq : Type} [NormedAddCommGroup Wp] [NormedSpace ℂ Wp] [FiniteDimensional ℂ Wp] [NormedAddCommGroup Wq]
-  [NormedSpace ℂ Wq] [FiniteDimensional ℂ Wq]
-
-
-end Gen
-
 
 end Formalism.MainNotions.LowestKTypeMultiplicity
 
-end
-
-end PieceB4
-
-section PieceC1
-
-open MeasureTheory Matrix Finset
-open scoped InnerProductSpace ContDiff
-
-noncomputable section
-
 namespace Formalism.MainNotions.LowestKTypeMultiplicity
 
-open Formalism.QuantumDeterminants Formalism.MainNotions.S Formalism.MainNotions.S.ThB Formalism.BasicNotions Formalism.MainNotions.BesselShellMomentBounds
-
-section Shift
-
-variable {n : ℕ}
-
-end Shift
-
 end Formalism.MainNotions.LowestKTypeMultiplicity
-
-end
-
-end PieceC1
 
 section PieceC2
 
@@ -1131,49 +1060,13 @@ end
 
 end PieceL0
 
-section PieceL1
-
-open MeasureTheory
-open scoped InnerProductSpace ENNReal
-
-noncomputable section
-
 namespace Formalism.MainNotions.LowestKTypeMultiplicity
-
-open Formalism.MainNotions.BridgeCSchur
-
-section Avg
-
-variable {G : Type*} [Group G] [TopologicalSpace G] [MeasurableSpace G] [BorelSpace G] [MeasurableMul G] [MeasurableInv G]
-  {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V] [FiniteDimensional ℂ V]
-  {μ : Measure G} {ρ : G → (V →L[ℂ] V)}
-
-end Avg
 
 end Formalism.MainNotions.LowestKTypeMultiplicity
 
-end
-
-end PieceL1
-
-section PieceL2
-
-open MeasureTheory Matrix
-open scoped InnerProductSpace ENNReal
-
-noncomputable section
-
 namespace Formalism.MainNotions.LowestKTypeMultiplicity
 
-open Formalism.QuantumDeterminants Formalism.MainNotions.S Formalism.MainNotions.S.ThB Formalism.BasicNotions
-
-variable {k r : ℕ}
-
 end Formalism.MainNotions.LowestKTypeMultiplicity
-
-end
-
-end PieceL2
 
 section PieceL3
 
@@ -1208,59 +1101,13 @@ end
 
 end PieceL3
 
-section PieceL4
-
-open MeasureTheory Matrix
-open scoped InnerProductSpace ENNReal
-
-noncomputable section
-
 namespace Formalism.MainNotions.LowestKTypeMultiplicity
-
-open Formalism.QuantumDeterminants Formalism.MainNotions.S Formalism.MainNotions.S.ThB Formalism.BasicNotions
-
-variable {k r : ℕ}
-
-section KInv
-
-variable {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
-  {Wp : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
-  {ε : Fin (2 * r + k + 1) → Bool} {P : Mx k r} {σ : Mx k r → (H →L[ℂ] H)}
-
-end KInv
 
 end Formalism.MainNotions.LowestKTypeMultiplicity
 
-end
-
-end PieceL4
-
-section PieceL5
-
-open MeasureTheory Matrix
-open scoped InnerProductSpace ENNReal
-
-noncomputable section
-
 namespace Formalism.MainNotions.LowestKTypeMultiplicity
 
-open Formalism.QuantumDeterminants Formalism.MainNotions.S Formalism.MainNotions.S.ThB Formalism.BasicNotions
-
-variable {k r : ℕ}
-
-section KInv
-
-variable {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
-  {Wp : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
-  {ε : Fin (2 * r + k + 1) → Bool} {P : Mx k r} {σ : Mx k r → (H →L[ℂ] H)}
-
-end KInv
-
 end Formalism.MainNotions.LowestKTypeMultiplicity
-
-end
-
-end PieceL5
 
 section PieceL6
 
@@ -1382,69 +1229,19 @@ end
 
 end PieceL7
 
-section PieceL8
-
-open Matrix
-
-noncomputable section
-
 namespace Formalism.MainNotions.LowestKTypeMultiplicity
-
-open Formalism.QuantumDeterminants Formalism.MainNotions.S
 
 end Formalism.MainNotions.LowestKTypeMultiplicity
 
-end
-
-end PieceL8
-
-section PieceL9
-
-open Matrix
-open scoped InnerProductSpace
-
-noncomputable section
-
 namespace Formalism.MainNotions.LowestKTypeMultiplicity
-
-open Formalism.QuantumDeterminants Formalism.MainNotions.S
-
-section KT
-
-variable {n : ℕ} {ε : Fin n → Bool} {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
-
-end KT
 
 end Formalism.MainNotions.LowestKTypeMultiplicity
 
-end
-
-end PieceL9
-
-section PieceL10
-
-open Matrix
-
-noncomputable section
-
 namespace Formalism.MainNotions.LowestKTypeMultiplicity
-
-open Formalism.QuantumDeterminants Formalism.MainNotions.S
-
-variable {k r : ℕ}
 
 end Formalism.MainNotions.LowestKTypeMultiplicity
 
-end
-
-end PieceL10
-
-section PieceZ
-
 namespace Formalism.MainNotions.LowestKTypeMultiplicity
-
-open Formalism.BasicNotions
 
 end Formalism.MainNotions.LowestKTypeMultiplicity
 
-end PieceZ

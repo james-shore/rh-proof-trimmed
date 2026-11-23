@@ -60,9 +60,7 @@ namespace PI.UnitaryGroupMassFormula.IdCellInSW
 variable {E : Type} [Field E] [NumberField E] {V : Type} [AddCommGroup V] [Module E V]
   [Module (𝓞 E) V] [IsScalarTower (𝓞 E) E V]
 
-theorem exists_smul_mem (Λ : Submodule (𝓞 E) V) (hsp : Submodule.span E (Λ : Set V) = ⊤) (x : V) :
-    ∃ d : 𝓞 E, d ≠ 0 ∧ d • x ∈ Λ := by
-  first | exact Bl.general_b_fact_third''''''.goal1 .. | (apply Bl.general_b_fact_third''''''.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_third''''''.goal1 <;> assumption)
+alias exists_smul_mem := _root_.Bl.general_b_fact_third''''''.goal1
 
 variable [StarRing E]
 

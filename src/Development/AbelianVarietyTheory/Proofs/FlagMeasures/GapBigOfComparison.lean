@@ -73,6 +73,6 @@ theorem gapBig_of_comparison (h : PI.ScGapBig.ScGapBig) (D : Formalism.BasicNoti
 
 theorem gapBigOfGapHyp : ∀ D : D7, GapBigOfGapHyp D := by
   intro D
-  exact gapBig_of_comparison scGapBig D
+  exact gapBig_of_comparison _root_.PI.UnitaryGroupMassFormula.ScGapBig.scGapBig_main D
 
 end GlobalTheory.GapAtRealPlaces

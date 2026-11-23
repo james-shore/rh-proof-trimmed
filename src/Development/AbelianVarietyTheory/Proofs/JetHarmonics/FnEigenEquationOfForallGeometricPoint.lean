@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 public import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsSecOfLocal
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.SectionScalarValuation
 
 @[expose] public section
 
@@ -54,11 +55,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.EigenSpread
 
-theorem gs_sum {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) (h : f y ∈ U) {l : ℕ}
-    (a : Fin l → Γ(X, U)) : gs f y U (∑ i, a i) = ∑ i, gs f y U (a i) := by
-  set_option synthInstance.maxHeartbeats 100000 in
-    simp only [gs_eq f y U h, map_sum]
-
 theorem exists_defect_sum {O : Type} [CommRing O] {Y G H : Scheme.{0}} (m s : Y ⟶ G) (p : Y ⟶ H)
     (π : H ⟶ Spec (CommRingCat.of O)) (V : G.Opens) {l : ℕ} (c : Fin l → O) (t : Fin l → Γ(G, V))
     (u : Γ(H, ⊤)) : ∃ f : Γ(Y, m ⁻¹ᵁ V ⊓ s ⁻¹ᵁ V), ∀ (Z : Scheme.{0}) (g : Z ⟶ Y) (z : Z),
@@ -67,7 +63,7 @@ theorem exists_defect_sum {O : Type} [CommRing O] {Y G H : Scheme.{0}} (m s : Y 
           gs (g ≫ p) z ⊤ u * ∑ i, constVal ((g ≫ p) ≫ π) z (c i) * gs (g ≫ s) z V (t i) := by
   choose f hf using fun i => EigenAll.exists_defect m s p V (t i) u
   refine ⟨∑ i, resTop _ (scal (p ≫ π) (c i)) * f i, fun Z g z hz => ?_⟩
-  rw [gs_sum g z _ hz, Finset.mul_sum, ← Finset.sum_sub_distrib]
+  rw [_root_.ReciprocityTheory.ChartRestriction.G.DVR.SectionScalarValuation.gs_sum g z _ hz, Finset.mul_sum, ← Finset.sum_sub_distrib]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [gs_mul g z _ hz, FieldBaseChange.gs_const _ g z _ hz, hf i Z g z hz, Category.assoc]
   ring

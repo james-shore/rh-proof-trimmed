@@ -63,7 +63,7 @@ theorem exists_flat_ideal_extension (V K : Type) [CommRing V] [IsDomain V] [Valu
   obtain ⟨J₀, hf, hJ⟩ := GlobalTheory.T.exists_flat_ideal_valuationRing_pullback V K X X' p p' b h (I.ideal ⟨⊤, isAffineOpen_top X'⟩)
   have e : (Scheme.IdealSheafData.ofIdealTop J₀).ideal ⟨⊤, isAffineOpen_top X⟩ = J₀ :=
     Scheme.IdealSheafData.equivOfIsAffine.apply_symm_apply J₀
-  refine ⟨Scheme.IdealSheafData.ofIdealTop J₀, GlobalTheory.T.flat_subscheme_of_quotient_flat_affine V X p _ (by rw [e]; exact hf), ?_⟩
+  refine ⟨Scheme.IdealSheafData.ofIdealTop J₀, _root_.GlobalTheory.closedSub_flat_of_quotient_flat V X p _ (by rw [e]; exact hf), ?_⟩
   apply Scheme.IdealSheafData.ext_of_isAffine
   rw [GlobalTheory.T.idealSheafData_comap_ideal_top_of_isAffine, e, hJ]
 

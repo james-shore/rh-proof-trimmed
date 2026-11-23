@@ -168,11 +168,6 @@ private theorem locT (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] 
   exact (GlobalTheory.IwahoriRegular.regular_split k n (Units.mk0 x hx0) hx _
     (fun i j hij => mul_lt_mul_of_pos_left (hν hij) hm') a ha b hb).1
 
-private theorem integ_mul {p : ℕ} [Fact p.Prime] {D : Datum p} {G : HTGroup p} {L : Link D G} {a b : G.GAf}
-    (ha : Integ L a) (hb : Integ L b) : Integ L (a * b) := fun v hv => by
-  rw [map_mul, Module.End.mul_apply]
-  exact ha _ (hb v hv)
-
 private theorem scal_comm {k : Type} [Field k] {n : ℕ} {s : GL (Fin n) k} {a : k} (hs : s.val = a • (1 : Matrix (Fin n) (Fin n) k))
     (y : GL (Fin n) k) : Commute s y :=
   Units.ext (by rw [Units.val_mul, Units.val_mul, hs, smul_mul_assoc, mul_smul_comm, one_mul, mul_one])
@@ -196,7 +191,7 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 
 theorem auxFn : ExistsIdempotentHeckeOperatorWithRegularSupport := by
   intro E _ _ _ A n p _ S F x U w₀ Up V hn hsc hgen hoff hq r W hA N hrN hst L hw Ty hTy
-  obtain ⟨hF, -, c, hc, -, hcK⟩ := tyFact E A n p S F x U w₀ Up V hn hsc hgen hoff hq r W hA N hrN hst L hw Ty hTy
+  obtain ⟨hF, -, c, hc, -, hcK⟩ := _root_.UpperTheory.Gal.W2.Seed.tyFact_holds E A n p S F x U w₀ Up V hn hsc hgen hoff hq r W hA N hrN hst L hw Ty hTy
   choose t hti htm hts using fun w : Spl E p => locT (w.1.adicCompletion E) n
   obtain ⟨τ, hτ, hτ0, hτw, hcm, u', hu', hu'τ⟩ := exists_invertible_hecke_function_at_finite_places _ _ Ty (Spl E p) (fun w => GLw n w.1) L (fun w => Iw n w.1) t W hF
     fun w _ => ⟨UpperTheory.isCommensurated_iwahoriSubgroup_gl_fin _ n, hti w⟩
@@ -253,7 +248,7 @@ theorem auxFn : ExistsIdempotentHeckeOperatorWithRegularSupport := by
         rw [e1, mul_assoc b⁻¹ (F.j dc), hdc, mul_assoc τ⁻¹, hdr, hD]
         simp only [mul_assoc]
       rw [e']
-      exact integ_mul (hK _ (inv_mem hb)) (integ_mul hI (hK _ (inv_mem ha)))
+      exact _root_.UpperTheory.Gal.Int.Geo.Integ.mul (hK _ (inv_mem hb)) (_root_.UpperTheory.Gal.Int.Geo.Integ.mul hI (hK _ (inv_mem ha)))
     · rw [← map_mul, e, map_mul, map_mul, hτw w hwW]
       exact DoubleCoset.mem_doubleCoset.2 ⟨_, (hF w hwW).1.2 a ha, _, (hF w hwW).1.2 b hb, rfl⟩
   have hpow : ∀ m : ℕ, ∀ g, powFn Ty.K₀ (trl D (Ty.tf τ)) (Ty.tf 1) (m + 1) g ≠ 0 → Integ S.L g⁻¹ ∧
@@ -274,7 +269,7 @@ theorem auxFn : ExistsIdempotentHeckeOperatorWithRegularSupport := by
       obtain ⟨a, b, ha, hb, rfl⟩ := pConvSupp _ _ _ _ _ hg
       obtain ⟨a1, a2⟩ := hsupp a ha
       obtain ⟨b1, b2⟩ := ih b hb
-      refine ⟨by rw [_root_.mul_inv_rev]; exact integ_mul b1 a1, fun w hwW => ?_⟩
+      refine ⟨by rw [_root_.mul_inv_rev]; exact _root_.UpperTheory.Gal.Int.Geo.Integ.mul b1 a1, fun w hwW => ?_⟩
       have := htm w (m + 1) _ (a2 w hwW) _ (b2 w hwW)
       rwa [mul_assoc, ← mul_assoc ((L w).pr a), ← ((scal_comm (hs w) ((L w).pr a)).pow_left (m + 1)).eq, mul_assoc,
         ← mul_assoc, ← pow_succ', ← map_mul] at this

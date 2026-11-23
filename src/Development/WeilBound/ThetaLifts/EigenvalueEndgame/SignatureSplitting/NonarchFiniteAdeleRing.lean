@@ -166,7 +166,7 @@ theorem norm_half {u : (AdeleRing (𝓞 K) K)ˣ} (hu : 2 * pI K (u⁻¹).1 = 1) 
 theorem siegel_ad {u : (AdeleRing (𝓞 K) K)ˣ} (hu : 2 * pI K (u⁻¹).1 = 1) (hu' : pF K (u⁻¹).1 = 1) :
     ∃ Ω : Set SL(2, AdeleRing (𝓞 K) K), IsCompact Ω ∧ ∀ g, ∃ γ ∈ (Matrix.SpecialLinearGroup.map (algebraMap K (AdeleRing (𝓞 K) K))).range,
       ∃ k : ℕ, ∃ κ ∈ Ω, γ * g = dia u ^ k * κ := by
-  obtain ⟨Ω, K₀, t₀, h1, h2, h3, h4, h5⟩ := GlobalTheory.CompanionTheory.Classical.siegelSetsSL2Adelic_tie K
+  obtain ⟨Ω, K₀, t₀, h1, h2, h3, h4, h5⟩ := _root_.GroundTheory.BlockD.siegelSetsSL2Adelic_holds K
   have hC : IsCompact (⋃ i, ⋃ j, (fun z : SL(2, AdeleRing (𝓞 K) K) => z.1 i j) '' Ω) :=
     isCompact_iUnion fun i => isCompact_iUnion fun j => h1.image (continuous_subtype_val.matrix_elem i j)
   obtain ⟨r, hr⟩ := hC.exists_bound_of_continuousOn (pI_cont K).continuousOn

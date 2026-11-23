@@ -68,13 +68,6 @@ theorem up_relation_source_unique {P : M.Par} {l : ℕ} {a b c : M.Ty P} (h1 : M
   have e2 := h2 i
   omega
 
-theorem up_tgt {P : M.Par} {l : ℕ} {a b c : M.Ty P} (h1 : M.Up P l a b) (h2 : M.Up P l a c) : b = c := by
-  funext i
-  apply Fin.ext
-  have e1 := h1 i
-  have e2 := h2 i
-  omega
-
 section line
 
 variable {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]

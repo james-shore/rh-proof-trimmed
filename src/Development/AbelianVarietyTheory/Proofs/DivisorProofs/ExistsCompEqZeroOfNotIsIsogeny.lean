@@ -96,7 +96,7 @@ theorem norm_natCast_padicInt (p : ℕ) [Fact p.Prime] (n : ℕ) (hn : 0 < n) :
 
 theorem exists_comp_eq_zero_of_not_isIsogeny {k : Type} [Field k] (A : AbVar k) (f : End A)
     (hf : ¬ IsIsogeny f.asHom) : ∃ g : End A, g ≠ 0 ∧ f.asHom ≫ g.asHom = 0 := by
-  have hfin := (GlobalTheory.T.end_isogeny_algebra_finite_finrank_le k A).1
+  have hfin := (_root_.GlobalTheory.AV.AbVar.end_isogeny_algebra_finrank_le k A).1
   have hx : ¬ IsUnit (toEnd0 A f) := by
     rintro ⟨u, hu⟩
     obtain ⟨n, g, hn, hg⟩ := (toEnd0_injective_and_fraction k A).2 (↑u⁻¹ : End0 A)
@@ -130,7 +130,7 @@ theorem norm_det_eq_norm_deg : ∀ (p : ℕ) [Fact p.Prime] (T : Theory p) (k : 
   intro p _ T k _ _ _ A G t _ _ ψ f d hd
   have hlen := GlobalTheory.T.wittVector_colength_range_eq_det_valuation p k (T.M G) ψ (T.map (t.map t f.asHom.hom)) d hd
   by_cases hf : IsIsogeny f.asHom
-  · have hb := (GlobalTheory.T.abelianVariety_dieudonne_integrality_factorisation p T k A A G G t t f.asHom).2.1 hf
+  · have hb := (_root_.GlobalTheory.Dieu.AbVarDieu.abVar_dieudonne_integral_length_factor p T k A A G G t t f.asHom).2.1 hf
     have hpos := (isogeny_flat_finrank k A A f.asHom hf).2.2.1
     rw [hlen.1 _ hb.2, norm_natCast_padicInt p _ hpos]
   · have hdeg : deg f.asHom = 0 := by rw [deg, ite_eq_right hf]

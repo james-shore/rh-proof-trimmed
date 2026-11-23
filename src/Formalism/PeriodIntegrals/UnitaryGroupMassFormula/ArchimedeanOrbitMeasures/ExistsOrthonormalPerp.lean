@@ -223,10 +223,6 @@ theorem card_true_ge {k : ℕ} (u : Fin k → Fin n → ℂ) (huo : ∀ i j, BJ 
   have h3 := LinearMap.finrank_le_finrank_of_injective hinj
   simpa [Module.finrank_fin_fun, Fintype.card_subtype] using h3
 
-theorem BJ_orth_sum {k : ℕ} (u : Fin k → Fin n → ℂ) (huo : ∀ i j, BJ ε (u i) (u j) = if i = j then 1 else 0)
-    (c : Fin k → ℂ) (j : Fin k) : BJ ε (u j) (∑ l, c l • u l) = c j := by
-  exact card_true_ge_lemma ε u huo c j
-
 private theorem wittLin_holds_lemma {k : ℕ} (a b : Fin k → Fin n → ℂ)
     (h : ∀ i j, BJ ε (a i) (a j) = BJ ε (b i) (b j)) (c d : Fin k → ℂ) :
     BJ ε (∑ i, c i • a i) (∑ j, d j • a j) = BJ ε (∑ i, c i • b i) (∑ j, d j • b j) := by
@@ -264,7 +260,7 @@ theorem wittLin_holds : WittLin := by
   have hliu : LinearIndependent ℂ u := by
     rw [Fintype.linearIndependent_iff]
     intro c hc j
-    have h1 := BJ_orth_sum ε u huo c j
+    have h1 := _root_.PI.AprimeInfW.card_true_ge_lemma ε u huo c j
     rw [hc, map_zero] at h1
     exact h1.symm
   let bU := Module.Basis.span hliu

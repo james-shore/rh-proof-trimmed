@@ -65,7 +65,7 @@ theorem exists_isPer_of_quasiPeriodic : ∀ (A : Over (Sp ℂ)) [GrpObj A] (g : 
   choose f hf using hf
   have hω : ∀ U : A.left.affineOpens, ∃ ξ : Ω[Sec (str A) U.1⁄ℂ], dOne ℂ _ ξ = 0 ∧
       ∀ z ∈ pre u.ex U.1, fderiv ℂ (k U) z = evForm u.ex U.1 z ξ :=
-    fun U => GlobalTheory.T.exists_closed_algebraic_form_fderiv_uniformised A g L u hA U (k U) (hk U) (hder U)
+    fun U => _root_.GlobalTheory.CechPer.exists_closed_form_fderiv_eq A g L u hA U (k U) (hk U) (hder U)
   choose ω hωc hωe using hω
   have hsub : ∀ (U : A.left.Opens) (b b' : Sec (str A) U), ∀ z ∈ pre u.ex U,
       val u.ex U (b - b') z = val u.ex U b z - val u.ex U b' z := by

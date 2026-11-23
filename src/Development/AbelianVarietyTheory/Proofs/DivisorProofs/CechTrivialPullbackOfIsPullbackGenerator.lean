@@ -57,13 +57,6 @@ open GlobalTheory.CharKer
 
 namespace GlobalTheory.CharKer
 
-lemma res_res_pull {X : Scheme.{0}} {U V W : X.Opens} (h₁ : V ≤ U) (h₂ : W ≤ V) (x : Γ(X, U)ˣ) :
-    res h₂ (res h₁ x) = res (h₂.trans h₁) x := by
-  apply Units.ext
-  simp only [res, Units.coe_map, MonoidHom.coe_coe]
-  rw [← CommRingCat.comp_apply, ← Functor.map_comp]
-  rfl
-
 theorem triv_pull_of_isPullGen : ∀ (X Y : Scheme.{0}) (p : X ⟶ Y) (M : LB Y) (e : ∀ k, Γ(X, p ⁻¹ᵁ M.U k)ˣ), IsPullGen p M e → Triv (M.pull p) := by
   intro X Y p M e he
   refine ⟨⟨fun j => res (LB.wchart_le M (fun _ : PUnit => p) j PUnit.unit) (e (j PUnit.unit))⟩, fun i j => ?_⟩
@@ -79,7 +72,7 @@ theorem triv_pull_of_isPullGen : ∀ (X Y : Scheme.{0}) (p : X ⟶ Y) (M : LB Y)
     (inf_le_right.trans (LB.wchart_le M (fun _ : PUnit => p) j PUnit.unit))
     (le_inf (inf_le_left.trans (LB.wchart_le M (fun _ : PUnit => p) i PUnit.unit))
       (inf_le_right.trans (LB.wchart_le M (fun _ : PUnit => p) j PUnit.unit)))
-  refine (res_res_pull _ _ _).trans (h.trans ?_)
-  exact congrArg _ (res_res_pull _ _ _).symm
+  refine (_root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res' _ _ _).trans (h.trans ?_)
+  exact congrArg _ (_root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res' _ _ _).symm
 
 end GlobalTheory.CharKer

@@ -102,7 +102,7 @@ theorem chi_unique (hA : IsPlaceOver A v) (hN : 0 < N) {χ χ' : Dec (F := F) A 
   obtain ⟨φ₁, hφ₁⟩ := exists_isFrob hA
   let φ : Dec (F := F) A := ⟨φ₁, hφ₁.1⟩
   funext g
-  obtain ⟨a, -, t, i, hi, rfl⟩ := GlobalTheory.T.decomposition_group_frobenius_factor F Ω A v hA φ hφ₁ N hN g
+  obtain ⟨a, -, t, i, hi, rfl⟩ := _root_.GlobalTheory.CompanionTheory.TameDecomp.exists_frob_pow_mul_pow_mul_inertia F Ω A v hA φ hφ₁ N hN g
   rw [chi_decomp χ ha φ t i a (hF φ hφ₁) (hI i hi), chi_decomp χ' ha' φ t i a (hF' φ hφ₁) (hI' i hi)]
 
 theorem chi_eq_zero_of_fix (hA : IsPlaceOver A v) (hN : 0 < N) {χ : Dec (F := F) A → ZMod N}
@@ -113,8 +113,8 @@ theorem chi_eq_zero_of_fix (hA : IsPlaceOver A v) (hN : 0 < N) {χ : Dec (F := F
     (hg : (g : G F Ω) ξ = ξ) : χ g = 0 := by
   obtain ⟨φ₁, hφ₁⟩ := exists_isFrob hA
   let φ : Dec (F := F) A := ⟨φ₁, hφ₁.1⟩
-  obtain ⟨a, haN, t, i, hi, rfl⟩ := GlobalTheory.T.decomposition_group_frobenius_factor F Ω A v hA φ hφ₁ N hN g
-  have h0 := GlobalTheory.T.frobenius_power_fixes_root_unique F Ω A v hA φ hφ₁ N hN ξ hξ a t i haN hi hg
+  obtain ⟨a, haN, t, i, hi, rfl⟩ := _root_.GlobalTheory.CompanionTheory.TameDecomp.exists_frob_pow_mul_pow_mul_inertia F Ω A v hA φ hφ₁ N hN g
+  have h0 := _root_.GlobalTheory.CompanionTheory.TameAction.eq_zero_of_fixes_primitiveRoot F Ω A v hA φ hφ₁ N hN ξ hξ a t i haN hi hg
   rw [chi_decomp χ ha φ t i a (hF φ hφ₁) (hI i hi), h0, Nat.cast_zero]
 
 end Dec
@@ -153,7 +153,7 @@ theorem exists_cochain_cup (l : ℕ) [Fact l.Prime] (r : ℕ) (hr : 0 < r) {ζ :
     have := hlift (θ.symm σ) x
     rwa [MulEquiv.apply_symm_apply] at this
 
-  have hq : 1 < normV v := ReciprocityTheory.Gal.one_lt_normV v
+  have hq : 1 < normV v := _root_.GlobalTheory.WeilDeligne.one_lt_normV v
   obtain ⟨n, hn⟩ : ∃ n, n = normV v ^ l ^ r - 1 := ⟨_, rfl⟩
   have hn0 : n ≠ 0 := by
     have := one_lt_pow₀ hq hN.ne'

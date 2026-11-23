@@ -71,9 +71,7 @@ private theorem teich_ex (l : ℕ) [Fact l.Prime] (O : Type) [CommRing O] [IsLoc
   refine ⟨(Perfection.teichmuller l (maximalIdeal O)).comp j, fun x => ?_⟩
   exact (Perfection.mk_teichmuller (j x)).trans (hj x)
 
-private theorem lc_of_open {G H : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [Group H]
-    (f : G →* H) (h : IsOpen (f.ker : Set G)) : IsLocallyConstant f :=
-  _root_.UpperTheory.Reformulated.B.LocallyConstantOfOpenSet.lc_of_open f h
+private alias lc_of_open := _root_.UpperTheory.Reformulated.B.LocallyConstantOfOpenSet.lc_of_open
 
 theorem UpperTheory.V.W.psib_mu (l : ℕ) [Fact l.Prime] (F : GFrame l) (O : Type) [CommRing O] [IsLocalRing O] [Algebra ℤ_[l] O]
     [CharP (ResidueField O) l] (n : ℕ) (r : Resid F O n) (v : F.Vl) (i : Fin n) (g : F.mu v) : r.psib v i g = 1 := by

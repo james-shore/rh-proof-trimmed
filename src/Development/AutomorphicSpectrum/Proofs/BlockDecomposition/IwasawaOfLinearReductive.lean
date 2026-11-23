@@ -104,7 +104,7 @@ theorem frame {n : ℕ} (𝔤 : Submodule ℝ (Matrix (Fin n) (Fin n) ℂ)) :
     rw [heq, hHd] at hcomm
     apply hdiag
     refine hD Y (hM Y hY hYs fun A hA => ?_)
-    exact GlobalTheory.T.centralizer_regular_commutes U₀ H A Y hU₀ (hD H hHa) (hD A hA) (fun i j hij => hreg i j hij A hA) hcomm
+    exact _root_.GlobalTheory.CompanionTheory.MatrixComm.commute_of_dominated_diag U₀ H A Y hU₀ (hD H hHa) (hD A hA) (fun i j hij => hreg i j hij A hA) hcomm
 
 theorem alg {n : ℕ} (𝔤 : Submodule ℝ (Matrix (Fin n) (Fin n) ℂ)) (hs : ∀ X ∈ 𝔤, Xᴴ ∈ 𝔤)
     (hb : ∀ X ∈ 𝔤, ∀ Y ∈ 𝔤, X * Y - Y * X ∈ 𝔤) :
@@ -181,14 +181,14 @@ theorem iwaOn_of_isLinRed : ∀ {n : ℕ} {G : Set (Matrix (Fin n) (Fin n) ℂ)}
         have := ha hij
         have e : Uᴴ * (r • a) * U = r • (Uᴴ * a * U) := by simp
         rw [e, Matrix.smul_apply, this, smul_zero] }
-  have hloc := GlobalTheory.T.local_exp_product_decomposition hG 𝔤 𝔨 𝔟 hiff hV inf_le_left inf_le_left (fun X hX => by
+  have hloc := _root_.GlobalTheory.CompanionTheory.ClosedSubgroup.eventually_exp_mul_exp_of_isLinRed hG 𝔤 𝔨 𝔟 hiff hV inf_le_left inf_le_left (fun X hX => by
     obtain ⟨A, hA, B, hB, hAB, hAs, hBt⟩ := hdec X hX
     rw [hAB]
     exact Submodule.add_mem_sup ⟨hA, hAs⟩ ⟨hB, hBt⟩)
   obtain h := GlobalTheory.T.cartan_local_to_global hG U hU (by
     filter_upwards [hloc] with g hg hgG
     obtain ⟨X, hX, Y, hY, rfl⟩ := hg hgG
-    exact ⟨_, ⟨hexp X hX.1, exp_mem_unitaryGroup X hX.2⟩, _, hexp Y hY.1, rfl, GlobalTheory.T.exp_block_triangular U Y hU hY.2⟩)
+    exact ⟨_, ⟨hexp X hX.1, exp_mem_unitaryGroup X hX.2⟩, _, hexp Y hY.1, rfl, _root_.GlobalTheory.CompanionTheory.Unitary.ExpUpper.blockTriangular_conj_exp U Y hU hY.2⟩)
   exact ⟨U, hU, h⟩
 
 end GlobalTheory.CompanionTheory.IwaGen

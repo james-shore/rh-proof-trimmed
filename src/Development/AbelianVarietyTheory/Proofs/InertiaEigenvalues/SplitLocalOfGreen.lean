@@ -136,9 +136,9 @@ theorem hasLabelO_of_mul {p : ℕ} [Fact p.Prime] {C : Formalism.IrreducibleCoun
   rw [GlobalTheory.SerOSys.eSerO_eq_sum, Finset.mul_sum] at h
   obtain ⟨z, hz, hne⟩ := Finset.exists_ne_zero_of_sum_ne_zero (h.trans_ne h0)
   obtain ⟨τ, hτ, rfl, hl⟩ := (GlobalTheory.SerOSys.Zl_finite O r f).mem_toFinset.1 hz
-  refine GlobalTheory.SerOSys.hasLabelO_of_repIso O hl (GlobalTheory.SerOSys.repIso_of_zIdem_eq ρ τ hρ hτ ?_)
+  refine GlobalTheory.SerOSys.hasLabelO_of_repIso O hl (_root_.GlobalTheory.SerOSys.repIso_of_zIdem_eq_of_simple ρ τ hρ hτ ?_)
   by_contra e
-  exact hne (GlobalTheory.SerOSys.zIdem_mul_eq_zero ρ τ hρ hτ e)
+  exact hne (_root_.GlobalTheory.SerOSys.zIdem_mul_eq_zero_of_ne ρ τ hρ hτ e)
 
 theorem exists_hasLabel {p : ℕ} [Fact p.Prime] (t : Formalism.CyclotomicNorms.Fbar p →* ℂ)
     (ht : ∀ x y : Formalism.CyclotomicNorms.Fbar p, x ≠ 0 → y ≠ 0 → t x = t y → x = y) (ζ : ℕ → Formalism.CyclotomicNorms.Fbar p) (hζ : Formalism.L2.NT.IsGenSys ζ)

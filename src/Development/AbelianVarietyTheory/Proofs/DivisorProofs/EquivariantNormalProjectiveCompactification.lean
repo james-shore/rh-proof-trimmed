@@ -202,7 +202,7 @@ theorem exists_equivariant_model : ∀ (F : Type) [Field F] [NumberField F] (X V
     rw [hφ, normalizationAction_fromNormalization_assoc, hσP]
   obtain ⟨W, q, sW, hq, hqs, hW, hqf, hqs'⟩ := exists_projective_quotient (φ ≫ sX) ρ' hproj hρ'
   refine ⟨c.left.normalization, W, φ, c.left.toNormalization, ρ', q, sW, inferInstance, hnorm, hproj,
-    isOpenImmersion_toNormalization c.left (Pi.π (fun _ : Γ => A) 1).left j hc1, ?_,
+    _root_.GlobalTheory.NormalizationOpenImmersion.isOpenImmersion_toNormalization c.left (Pi.π (fun _ : Γ => A) 1).left j hc1, ?_,
     fun g => (toNormalization_normalizationAction c.left ρ σ H g).symm, hq, hqs, hW, hq.isIntegral,
     hqf, hqs'⟩
   simp only [φ, Scheme.Hom.toNormalization_fromNormalization_assoc, hc1]

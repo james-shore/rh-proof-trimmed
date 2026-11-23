@@ -145,7 +145,7 @@ theorem exists_pres_heq : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn
   intro X px I hX U Xg tr L eG0 hI hV hL hG cV i c0L hcV hmap hin hβ hgram
   obtain ⟨e0, he0, he_rho, he_pair, he_nab, he_del, he_rat, he_li⟩ :=
     vv_cast_heq X.B.fields.emb (LiftBrg.rkEq X i) (X.B.wts.lamV ((i : ℕ) + 1))
-      (fun τ => Bridge.lamLdef (D := X.toD7) (Vc X.toD7 i).rank ((i : ℕ) + 1) τ) (GlobalTheory.T.baseWeight_eq_forcedLiftWeight X i)
+      (fun τ => Bridge.lamLdef (D := X.toD7) (Vc X.toD7 i).rank ((i : ℕ) + 1) τ) (_root_.GlobalTheory.Mem.LiftWt.lamV_eq_lamLdef X i)
   let c : VV X.B.fields.K (X.B.wts.lamV ((i : ℕ) + 1)) →ₛₗ[X.B.embLL] (cV i).W :=
     { toFun := fun v => c0L (e0 v)
       map_add' := fun v w => by show c0L (e0 (v + w)) = c0L (e0 v) + c0L (e0 w); rw [map_add (f := _)]; exact c0L.map_add _ _
@@ -268,12 +268,12 @@ theorem exists_liftSide_at : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.Co
   intro X px I hX U Xg tr L eG hI hV hL hG cV i c0L hcV hmap hin hβ hg _
   obtain ⟨c, hce, hc, hP⟩ := exists_pres_heq X px I hX U Xg tr L eG hI hV hL hG cV i c0L hcV hmap hin hβ hg
   choose P hR hco hC using hP
-  have hF : ∀ t, LiftBrg.FrameOK X I U i t 1 1 := fun t => GlobalTheory.T.identity_integralUnitaryFrameCoordinates_of_unitGram X px I U i t hg
-  choose a ha using fun t => GlobalTheory.T.exists_finiteGroupAction_liftForms_rightTranslation X px I hX U Xg tr L eG hI hV hL hG cV i t 1 1 (hF t) (P t) (hR t)
-  have hk := fun t => GlobalTheory.T.splitHecke_operators_lifts_doubleCoset X px I hX U Xg tr L eG hI hV hL hG cV i t 1 1 (hF t) (P t) (hR t)
-  have hki := fun t => GlobalTheory.T.exists_inertHecke_doubleCosetOperators_lifts X px I hX U Xg tr L eG hI hV hL hG cV i t 1 1 (hF t) (P t) (hR t)
+  have hF : ∀ t, LiftBrg.FrameOK X I U i t 1 1 := fun t => _root_.GlobalTheory.Mem.R3.LiftBrg.frameOK_one_of_gram_eq_one X px I U i t hg
+  choose a ha using fun t => _root_.GlobalTheory.Mem.R3.LiftBrg.ActQ.exists_actTie X px I hX U Xg tr L eG hI hV hL hG cV i t 1 1 (hF t) (P t) (hR t)
+  have hk := fun t => _root_.GlobalTheory.Mem.R3.LiftBrg.SplitTie.split_tie X px I hX U Xg tr L eG hI hV hL hG cV i t 1 1 (hF t) (P t) (hR t)
+  have hki := fun t => _root_.GlobalTheory.Mem.R3.LiftBrg.InertTie.exists_inertTie X px I hX U Xg tr L eG hI hV hL hG cV i t 1 1 (hF t) (P t) (hR t)
   refine ⟨fun t => Bridge.SideRealG.mk (P t) (a t) (Classical.choice (hk t)), fun t => ⟨ha t, hC t, hki t⟩,
-    GlobalTheory.T.standardLiftReading_of_decoratedLatticePresentations X px I hX U Xg tr L eG hI hV hL hG cV i hβ hg c hc P hR hco, fun t φ h v' hv => ?_⟩
+    _root_.GlobalTheory.Mem.R3.LiftBrg.brgStdV_of_readsStd_one X px I hX U Xg tr L eG hI hV hL hG cV i hβ hg c hc P hR hco, fun t φ h v' hv => ?_⟩
   refine ((hR t _ h).trans (hco t _)).trans (hce _ _ ?_)
   rw [LinearEquiv.symm_apply_apply]
   exact hv
@@ -283,7 +283,7 @@ theorem exists_brgL_at : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn 
   have hVP : Seed.VPos X.toD7 := fun i => X.B.V_posDef _ (by omega) i.2
   obtain ⟨cX, -, prX, gramR, c0R, -, hcX, -, hdual, hiso, hgram, hmapR, -, hinR, -⟩ :=
     exists_coefData X.toD7 hVP θ hθ MX
-  have hR := GlobalTheory.T.exists_rowForms_adelic_decoratedLattices X px I hX U Xg tr L eG hI hV hL hG cX gramR c0R hcX hgram hmapR hinR hβX hsX
+  have hR := _root_.GlobalTheory.Mem.R3.RowsRead.exists_rowSide X px I hX U Xg tr L eG hI hV hL hG cX gramR c0R hcX hgram hmapR hinR hβX hsX
   have hLf := fun i => exists_liftSide_at X px I hX U Xg tr L eG hI hV hL hG cV i (c0L i) (hcV i) (hmapL i) (hinL i) (hβV i)
     (gram_V X hI.spaces i) (hsV i)
   obtain ⟨sR, hsR, hstR⟩ := hR

@@ -71,7 +71,7 @@ def CCF : Prop :=
           ∃ s ∈ S, ∃ u ∈ U, z = dg D p γ * s * u
 
 theorem ccf_holds : CCF :=
-  GlobalTheory.T.borel_finite_classNumber_centraliserTorus GlobalTheory.T.exists_polynomialLocus_similitudeCentralizerTorus GlobalTheory.classNumberFinite_holds
+  _root_.GlobalTheory.TorCls.Borel.classes_finite _root_.GlobalTheory.TorLoc.exists_locus GlobalTheory.classNumberFinite_holds
 
 theorem finite_of_cover {H : Type} [Group H] (Γ K : Subgroup H) (S : Set H) (hS : S.Finite)
     (h : ∀ g : H, ∃ γ ∈ Γ, ∃ s ∈ S, ∃ k ∈ K, g = γ * s * k) :

@@ -72,7 +72,7 @@ theorem logCanonicalCut_two_points : GlobalTheory.Published.Principalisation →
   classical
   have hDq : IsQCart D := hD.isQCart
   obtain ⟨B, δ₀, hδ0, hδ1, hB, hoff, hnk, hpres⟩ :=
-    GlobalTheory.T.exists_divisor_nonKlt_at_points_not_containing_centre hPr hNa hNe X p n hp hn Δ m G N D {x, x'} z (j + 1) h hΔ hklt hm hG hN hDq
+    _root_.GlobalTheory.PairStep.exists_step_divisor hPr hNa hNe X p n hp hn Δ m G N D {x, x'} z (j + 1) h hΔ hklt hm hG hN hDq
       (by
         intro y hy
         rcases Finset.mem_insert.1 hy with rfl | hy

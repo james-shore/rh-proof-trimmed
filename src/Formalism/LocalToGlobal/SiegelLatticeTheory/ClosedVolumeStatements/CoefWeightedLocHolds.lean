@@ -60,6 +60,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.HCReprodM
+import Formalism.SharpRestriction.GlobalSchurBounds.ThickPlacesCorollaryOfAnyTranslate
 
 @[expose] public section
 
@@ -159,10 +160,7 @@ theorem hform_crdA {D : D7} (A : UnitaryGroupInstance D) (v w : (VS D).V) :
   simp only [← Formalism.BasicNotions.bridge_star_holds D.R D.host, RingHom.id_apply]
   ring
 
-theorem hform_eq {D : D7} (A : UnitaryGroupInstance D) (v w : (VS D).V) :
-    Formalism.UG.hform (starRingEnd A.I.E) A.I.J (crdOf A.I A.ιE A.bas v) (crdOf A.I A.ιE A.bas w) =
-      A.ιE.symm ((VS D).hT v w) := by
-  rw [← hform_crdA, RingEquiv.symm_apply_apply]
+alias hform_eq := _root_.Formalism.L2.SG.Closed.ScMu.ChkScMu.hform_eq
 
 def SplitAtG (D : D7) : Prop :=
   ∀ (A : UnitaryGroupInstance D) (v : IsDedekindDomain.HeightOneSpectrum (𝓞 A.I.F)), ((gD D : ℕ) : 𝓞 A.I.F) ∈ v.asIdeal →
@@ -233,10 +231,7 @@ theorem hform_crdA {D : D7} (A : UnitaryGroupInstance D) (v w : (VS D).V) :
   simp only [← Formalism.BasicNotions.bridge_star_holds D.R D.host, RingHom.id_apply]
   ring
 
-theorem hform_eq {D : D7} (A : UnitaryGroupInstance D) (v w : (VS D).V) :
-    Formalism.UG.hform (starRingEnd A.I.E) A.I.J (crdOf A.I A.ιE A.bas v) (crdOf A.I A.ιE A.bas w) =
-      A.ιE.symm ((VS D).hT v w) := by
-  rw [← hform_crdA, RingEquiv.symm_apply_apply]
+alias hform_eq := _root_.Formalism.L2.SG.Closed.ScMu.ChkScMu.hform_eq
 
 def SplitAtG (D : D7) : Prop :=
   ∀ (A : UnitaryGroupInstance D) (v : IsDedekindDomain.HeightOneSpectrum (𝓞 A.I.F)), ((gD D : ℕ) : 𝓞 A.I.F) ∈ v.asIdeal →
@@ -324,10 +319,7 @@ theorem hform_crdA {D : D7} (A : UnitaryGroupInstance D) (v w : (VS D).V) :
   simp only [← Formalism.BasicNotions.bridge_star_holds D.R D.host, RingHom.id_apply]
   ring
 
-theorem hform_eq {D : D7} (A : UnitaryGroupInstance D) (v w : (VS D).V) :
-    Formalism.UG.hform (starRingEnd A.I.E) A.I.J (crdOf A.I A.ιE A.bas v) (crdOf A.I A.ιE A.bas w) =
-      A.ιE.symm ((VS D).hT v w) := by
-  rw [← hform_crdA, RingEquiv.symm_apply_apply]
+alias hform_eq := _root_.Formalism.L2.SG.Closed.ScMu.ChkScMu.hform_eq
 
 theorem isFrame {D : D7} (A : UnitaryGroupInstance D) (L : UnitaryLatticeData D) (u : D.what₂.Word) :
     PI.ScPiExists.IsFrame A.I (eC A L) (fC A L) (zC A L u) := by
@@ -347,22 +339,9 @@ theorem T_pos {D : D7} (u : D.what₂.Word) : 0 < (D.mem u).A.T := by
   · rw [h] at h2; simp at h2
   · exact h
 
-theorem strictAnti_fin {k : ℕ} (g : Fin k → ℝ) (hs : ∀ (i j : Fin k), j.1 = i.1 + 1 → g j < g i) :
-    StrictAnti g := by
-  have key : ∀ a : ℕ, ∀ i j : Fin k, j.1 = i.1 + a + 1 → g j < g i := by
-    intro a
-    induction a with
-    | zero => intro i j h; exact hs i j (by omega)
-    | succ a ih =>
-      intro i j h
-      have hm : i.1 + a + 1 < k := by omega
-      exact lt_trans (hs ⟨i.1 + a + 1, hm⟩ j (by simp; omega)) (ih i ⟨i.1 + a + 1, hm⟩ rfl)
-  intro i j hij
-  exact key (j.1 - i.1 - 1) i j (by have : i.1 < j.1 := hij; omega)
-
 theorem hcParam (D : D7) (P : HCParam D.R) : PI.UpqRep.IsHCParam (fun i => ((P.u i : ℚ) : ℝ)) := by
   refine ⟨?_, ?_⟩
-  · apply strictAnti_fin
+  · apply _root_.Formalism.MainNotions.StandardLattice.strictAnti_of_succ_lt_alt
     intro i j hj
     have hi : i.1 < D.R.k - 1 := by omega
     have h1 := P.u_gt_v ⟨i.1, hi⟩
@@ -434,7 +413,7 @@ namespace Formalism.L2.SG.Closed
 
 open Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.SplitPrimeNormLemmas
 
-theorem PsiExists_holds (D : D7) : PsiExists D := ScPsi.chkScPsiExists sc_psi_exists D
+theorem PsiExists_holds (D : D7) : PsiExists D := ScPsi.chkScPsiExists _root_.PI.ScPsiExists.UnitaryGroupMassFormula.norm_units_of_calculation D
 
 theorem MuExists_holds (D : D7) : MuExists D := ScMu.ChkScMu.chkScMuExists PI.sc_mu_exists D
 
@@ -448,7 +427,7 @@ theorem XuExists_holds (D : D7) : XuExists D :=
 
 variable [Fact Formalism.MainNotions.DiscreteSeriesWeylDimension.HighestWeightExists] in
 theorem PiExists_holds (D : D7) : PiExists D :=
-  ScPi.ChkScPi.chkScPiExists Formalism.MainNotions.BridgeHW.highest_weight_exists_bis sc_pi_frame sc_pi_construction D
+  ScPi.ChkScPi.chkScPiExists Formalism.MainNotions.BridgeHW.highest_weight_exists_bis _root_.PI.ScPiFrameW.frame_holds _root_.PI.ScPiBuildW.Asm.build D
 
 variable [Fact Formalism.MainNotions.DiscreteSeriesWeylDimension.DiscreteSeriesExistsG] in
 theorem BunExists_holds (D : D7) : BunExists D :=
@@ -456,9 +435,6 @@ theorem BunExists_holds (D : D7) : BunExists D :=
 
 theorem CoefWeightedLoc_holds [Fact Formalism.L2.SG.SplitPrimeNormLemmas.CoefWeightedLoc] : CoefWeightedLoc := Fact.out
 
-
-variable [Fact Formalism.L2.SG.SplitPrimeNormLemmas.BesselNVGap] in
-theorem BesselNVGap_holds : BesselNVGap := Formalism.L2.SG.BesselDiscreteSeries.besselNVGap
 
 theorem WlocExists_holds : WlocExists := scWlocExists Formalism.L2.SG.HCReprodM.hcReprodDSm
 

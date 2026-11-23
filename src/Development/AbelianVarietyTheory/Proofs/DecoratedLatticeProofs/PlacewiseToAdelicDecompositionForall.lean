@@ -109,11 +109,9 @@ theorem eq_zero_of_at_off (P : Pl D → Prop) {a : AE D} (h1 : a ∈ idAt D P) (
   rw [← (hA a).1 h1]
   exact (hO a).1 h2
 
-theorem mt_mul (S : HSp D) (a b : GA D S) : mt S (a * b) = mt S a * mt S b := by
-  simp [Formalism.L2.Theta.mt, map_mul]
+alias mt_mul := _root_.GlobalTheory.BesselCompare.mt_mul
 
-theorem mt_one (S : HSp D) : mt S 1 = 1 := by
-  simp [Formalism.L2.Theta.mt]
+alias mt_one := _root_.GlobalTheory.BesselCompare.mt_one
 
 theorem supp_mulVec (S : HSp D) (P : Pl D → Prop) (g : GA D S) {y : Fin S.rank → AE D}
     (hy : ∀ i, y i ∈ idAt D P) : ∀ i, (mt S g *ᵥ y) i ∈ idAt D P := by

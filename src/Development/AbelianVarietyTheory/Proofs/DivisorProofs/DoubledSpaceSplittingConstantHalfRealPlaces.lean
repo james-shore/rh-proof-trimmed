@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.FiniteDimKStableSubspaceKFiniteLie
 
 @[expose] public section
 
@@ -55,18 +56,6 @@ open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Forma
 noncomputable section
 
 namespace GlobalTheory.RealLift.DConst
-
-theorem Jm_diag' (p q : ℕ) :
-    Jm p q = Matrix.diagonal (Sum.elim (fun _ => (1 : ℂ)) (fun _ => -1)) := by
-  ext a b
-  rcases a with a | a <;> rcases b with b | b <;>
-    simp [Jm, Formalism.UG.Jpq, Matrix.diagonal_apply, Matrix.one_apply] <;> split_ifs <;> simp
-
-theorem Jm_mul_self' (p q : ℕ) : Jm p q * Jm p q = 1 := by
-  rw [Jm_diag', Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-  congr 1
-  funext a
-  cases a <;> simp
 
 theorem card_eq_of_isFrame {β : Type} [Fintype β] [DecidableEq β] {r s : ℕ} {M : Matrix β β ℂ}
     {C : Matrix β (Ix r s) ℂ} (h : IsFrame M C) : Fintype.card β = r + s := by
@@ -78,7 +67,7 @@ theorem card_eq_of_isFrame {β : Type} [Fintype β] [DecidableEq β] {r s : ℕ}
     simp only [Fintype.card_sum, Fintype.card_fin] at h3
     simpa using this.trans h3
   · have e : (Jm r s * Cᵀ * M) * C.map star = 1 := by
-      rw [Matrix.mul_assoc (Jm r s * Cᵀ), Matrix.mul_assoc, ← Matrix.mul_assoc Cᵀ, h1, Jm_mul_self']
+      rw [Matrix.mul_assoc (Jm r s * Cᵀ), Matrix.mul_assoc, ← Matrix.mul_assoc Cᵀ, h1, _root_.GlobalTheory.RealPar.KStabLie.Jm_sq]
     have := Matrix.rank_mul_le_right (Jm r s * Cᵀ * M) (C.map star)
     rw [e, Matrix.rank_one] at this
     have h3 := Matrix.rank_le_card_height (C.map star)
@@ -115,7 +104,7 @@ theorem cd_eq_half_exp : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
   intro F E _ _ _ _ _ σ α β κ _ _ _ _ _ P Q R S ψ τ JA JB dd a b A C Φd omd χ m cd hCM hψ hFr hWS hχ hAct hl hne hpos w₀
   obtain ⟨l, hladm, hlinv, g, hg, hlint⟩ := hl
   obtain ⟨z, γ, hγ, hgen, hγz, hzat, hzpi⟩ :=
-    GlobalTheory.T.exists_central_circle_oneParameter_unitary_realPlace F E σ (β ⊕ β) (R + S) (S + R) τ (dbl JB) (fun w => dblM (C w)) w₀ hCM
+    _root_.GlobalTheory.CentralLine.exists_central_line F E σ (β ⊕ β) (R + S) (S + R) τ (dbl JB) (fun w => dblM (C w)) w₀ hCM
   have hcard : Fintype.card β = R + S := card_eq_of_isFrame (hFr.2.2 w₀)
   have hzz : ∀ t, (z t : AE F E) * cA σ (z t : AE F E) = 1 := by
     intro t

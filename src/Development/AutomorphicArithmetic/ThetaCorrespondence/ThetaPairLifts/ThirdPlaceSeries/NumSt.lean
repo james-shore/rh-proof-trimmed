@@ -54,8 +54,8 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.
 open Formalism.L2.Pj GlobalTheory.BigTop GlobalTheory.BigOn
 namespace GlobalTheory.ExpTie
 theorem numSt_alt : _root_.GlobalTheory.ExpTie.NumStAlt := by
-  have H := _root_.GlobalTheory.ExpTie.atPts_and_alt (_root_.GlobalTheory.ExpTie.atPts_and_alt (_root_.GlobalTheory.ExpTie.atPts_and_alt _root_.GlobalTheory.T.parOf_hyp_at_pts _root_.GlobalTheory.T.exists_large_parameter_estimates_at_pts) (_root_.GlobalTheory.ExpTie.atPts_and_alt _root_.GlobalTheory.T.parameter_large_at_all_points _root_.GlobalTheory.T.parOf_height_lt_genus_at_pts))
-    (_root_.GlobalTheory.ExpTie.atPts_and_alt _root_.GlobalTheory.T.isLamPrime_at_all_points _root_.GlobalTheory.T.weight_lambda_shift_nonneg')
+  have H := _root_.GlobalTheory.ExpTie.atPts_and_alt (_root_.GlobalTheory.ExpTie.atPts_and_alt (_root_.GlobalTheory.ExpTie.atPts_and_alt _root_.GlobalTheory.ExpTie.parOf_hyp_alt _root_.GlobalTheory.ExpTie.rows_big_alt) (_root_.GlobalTheory.ExpTie.atPts_and_alt _root_.GlobalTheory.ExpTie.parOf_large_at_pts _root_.GlobalTheory.ExpTie.atPts_h_lt_g_alt))
+    (_root_.GlobalTheory.ExpTie.atPts_and_alt _root_.GlobalTheory.LiftWeightForced.atPts_alt _root_.GlobalTheory.ExpTie.Lift.wts_ok_alt)
   refine _root_.GlobalTheory.ExpTie.atPts_mono H fun Fm x hx i p h j => ?_
   obtain ⟨⟨⟨hH, hR⟩, ⟨hL, hB⟩⟩, ⟨hF, hW⟩⟩ := h
   obtain ⟨W, hOk, hlam, hbox, hT, hSp⟩ := hW j

@@ -71,8 +71,8 @@ theorem stable_dual_lattices : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (K 
   haveI : FiniteDimensional ℚ_[l] K.1 := K.2
   haveI : CompactSpace ↥(GK K) :=
     isCompact_iff_compactSpace.1 (IntermediateField.fixingSubgroup_isClosed K.1).isCompact
-  obtain ⟨LA⟩ := GlobalTheory.T.exists_stable_lattice_compact_group hO A
-  obtain ⟨LA', h⟩ := GlobalTheory.T.dualLattice_stable_twisted_pairing l P K LL O hO A A' m LA hm (cyc_integral l P K LL O hO)
+  obtain ⟨LA⟩ := _root_.GlobalTheory.StableLat.exists_lattice hO A
+  obtain ⟨LA', h⟩ := _root_.GlobalTheory.DualLat.dualLattice_exists l P K LL O hO A A' m LA hm (cyc_integral l P K LL O hO)
   exact ⟨LA, LA', h⟩
 
 end GlobalTheory.StableDual

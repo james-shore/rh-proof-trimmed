@@ -57,8 +57,8 @@ theorem regularizedIntegral_const_of_small : _root_.GlobalTheory.FunPr.ThetaLoca
   ∃ J : ℂ, ∀ z, IntegrableOn (translates z (kerSmall W Θ' g g₁)) (M.fd _) (M.ν _) →
     ∫ u in M.fd _, translates z (kerSmall W Θ' g g₁) u ∂M.ν _ = zdeg z * J := by
   intro h1 h2 h3 h4 h5
-  obtain ⟨C1, H1⟩ := _root_.GlobalTheory.T.exists_strip_combination_trivial_outside_set h1 h2 h3 h4 h5
-  obtain ⟨C2, H2⟩ := _root_.GlobalTheory.T.exists_regulariser_local h1 h2 h3 h4 h5
+  obtain ⟨C1, H1⟩ := _root_.GlobalTheory.StripPlaces.exists_combination_trivial_off_places h1 h2 h3 h4 h5
+  obtain ⟨C2, H2⟩ := _root_.GlobalTheory.RegAt.exists_regulariser_at_place h1 h2 h3 h4 h5
   refine ⟨max C1 C2, fun ε CF hCF => ?_⟩
   obtain ⟨x1, K1⟩ := H1 ε CF (le_trans (le_max_left _ _) hCF)
   obtain ⟨x2, K2⟩ := H2 ε CF (le_trans (le_max_right _ _) hCF)
@@ -98,19 +98,3 @@ end GlobalTheory.SmallConst
 end
 end
 
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
-open IsDedekindDomain NumberField GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.RowClaim
-open Formalism.L2.Host (HChar)
-open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.RowEx
-open MeasureTheory GlobalTheory.SplitFlip GlobalTheory.SplitWeil GlobalTheory.StdFrames
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
-
-theorem _root_.GlobalTheory.T.regularized_integral_small_constant : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree → GlobalTheory.SquareSt.WeilConvergence → GlobalTheory.SquareSt.LocalMatching → GlobalTheory.SquareSt.ThetaIntegralsAgree → BigR fun {D} _ _ _ _ T _ _ _ _ _ R sc => ∀ (G : GridData R.toLevCh sc) (W : G.Weil), W.Over R → ∀ (B : Frames G)
-  (ρ : RealMatch W), ρ.Over R → ∀ (t : T) (i j : Fin D.R.m) (M : Vol G), M.Is t → ∀ Θ Θ', IsMatched B t ρ i j Θ Θ' → ∀ g g₁,
-  ∃ J : ℂ, ∀ z, IntegrableOn (translates z (kerSmall W Θ' g g₁)) (M.fd _) (M.ν _) →
-    ∫ u in M.fd _, translates z (kerSmall W Θ' g g₁) u ∂M.ν _ = zdeg z * J := by
-  first | exact @_root_.GlobalTheory.SmallConst.regularizedIntegral_const_of_small | exact _root_.GlobalTheory.SmallConst.regularizedIntegral_const_of_small | (intros; apply _root_.GlobalTheory.SmallConst.regularizedIntegral_const_of_small <;> assumption)
-end

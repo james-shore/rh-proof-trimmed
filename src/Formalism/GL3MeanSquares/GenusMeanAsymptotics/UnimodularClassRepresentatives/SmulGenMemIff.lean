@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.MemSmulOfMemSmulLocF
 
 @[expose] public section
 
@@ -71,11 +72,6 @@ private theorem exists_mul_sub_one_mem_pow_of_not_mem_maximal (h𝔭 : 𝔭.IsMa
   rw [h2]
   exact (Submodule.neg_mem_iff _).mpr (Ideal.pow_mem_pow hi k)
 
-private theorem algebraMap_mem_extP_pow_of_mem_pow {k : ℕ} {a : 𝓞 F} (ha : a ∈ 𝔭 ^ k) :
-    algebraMap (𝓞 F) (𝓞 K) a ∈ extP K 𝔭 ^ k := by
-  rw [extP, ← Ideal.map_pow]
-  exact Ideal.mem_map_of_mem _ ha
-
 theorem mk_eq_smul (h𝔭 : 𝔭.IsMaximal) (he : IsGen L 𝔭 e) (k : ℕ) (x : ↥L) :
     ∃ a : 𝓞 K, (Submodule.Quotient.mk x : Qk L 𝔭 k) = a • Submodule.Quotient.mk ⟨e, he.1⟩ := by
   obtain ⟨t, ht, a, hta⟩ := he.2.2 x x.2
@@ -83,7 +79,7 @@ theorem mk_eq_smul (h𝔭 : 𝔭.IsMaximal) (he : IsGen L 𝔭 e) (k : ℕ) (x :
   refine ⟨algebraMap (𝓞 F) (𝓞 K) s * a, ?_⟩
   have hmem : (algebraMap (𝓞 F) (𝓞 K) (s * t - 1)) • x ∈
       ((extP K 𝔭) ^ k • ⊤ : Submodule (𝓞 K) ↥L) :=
-    Submodule.smul_mem_smul (algebraMap_mem_extP_pow_of_mem_pow hs) Submodule.mem_top
+    Submodule.smul_mem_smul (_root_.Formalism.HermitianLattices.Ext.L3.localizedQuotients.ι_mem_pow hs) Submodule.mem_top
   have hL : (algebraMap (𝓞 F) (𝓞 K) t) • x = a • (⟨e, he.1⟩ : ↥L) :=
     Subtype.ext (by rw [Submodule.coe_smul, Submodule.coe_smul]; exact hta)
   have hx : x = (algebraMap (𝓞 F) (𝓞 K) s * a) • (⟨e, he.1⟩ : ↥L) -
@@ -131,7 +127,7 @@ theorem smul_gen_mem_iff (h𝔭 : 𝔭.IsMaximal) (he : IsGen L 𝔭 e) (k : ℕ
         algebraMap (𝓞 F) (𝓞 K) (s * t - 1) * b := by
       rw [← h2, map_sub, map_mul, map_one]; ring
     rw [hb']
-    exact Ideal.sub_mem _ (Ideal.mul_mem_left _ _ hc) (Ideal.mul_mem_right _ _ (algebraMap_mem_extP_pow_of_mem_pow hs))
+    exact Ideal.sub_mem _ (Ideal.mul_mem_left _ _ hc) (Ideal.mul_mem_right _ _ (_root_.Formalism.HermitianLattices.Ext.L3.localizedQuotients.ι_mem_pow hs))
   · intro hb
     exact Submodule.smul_mem_smul hb Submodule.mem_top
 

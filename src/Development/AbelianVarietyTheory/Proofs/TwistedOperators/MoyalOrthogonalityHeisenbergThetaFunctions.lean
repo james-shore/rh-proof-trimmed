@@ -79,7 +79,7 @@ theorem orthogonality : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar
   obtain ⟨C, hC⟩ := GlobalTheory.T.rationalTranslateSum_bounded_rapidDecay D ψ hψ θ hθ S T _ (GlobalTheory.T.thetaMatrixCoeff_eq_zero_unless_orthogonal_level D ψ hψ S T v.μ v.𝓕 v.covol f f₀ hf hf₀)
     (GlobalTheory.T.thetaMatrixCoeff_polynomialDecay_realDirections D ψ hψ θ hθ S T v.μ v.𝓕 v.covol f f₀ hf hf₀)
   have hint : Integrable (fun w => thPair v.μ v.𝓕 f (heisO ψ S T w f₀)) v.μ :=
-    GlobalTheory.T.integrable_of_tsum_norm_translate_le (WO S T) (ratL T S) v.μ inferInstance v.𝓕 h𝓕 (by rw [h1]; exact ENNReal.one_lt_top) _ hcc C hC
+    _root_.GlobalTheory.integrable_of_tsum_translate_norm_le (WO S T) (ratL T S) v.μ inferInstance v.𝓕 h𝓕 (by rw [h1]; exact ENNReal.one_lt_top) _ hcc C hC
   refine ⟨hint, fun x => ?_⟩
   have hψn : ∀ a, ‖ψ a‖ = 1 := hψ.1.2.1
   have hgc : Continuous fun w => heisO ψ S T w f₀ x := by

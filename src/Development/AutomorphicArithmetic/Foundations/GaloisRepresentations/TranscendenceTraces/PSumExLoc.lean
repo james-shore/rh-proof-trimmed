@@ -52,7 +52,7 @@ theorem UpperTheory.Gal.TranscendenceTraces.sumExLoc_of :
   obtain ⟨ζ⟩ := hζ
   haveI : IsFinite A.r := Sq.finite A
   have hgen : twGen i (ζ.map A.r.appTop.hom) = Sec.res A.r (twGen i ζ) :=
-    ((GlobalTheory.T.tateTwist_sections_locally_generated q i).2.2.2.1 A.V A.U A.r ζ).symm
+    ((_root_.GlobalTheory.EtC.twist_sections q i).2.2.2.1 A.V A.U A.r ζ).symm
   obtain ⟨φ, hφ, hv⟩ := hSF q i A.V (ζ.map A.r.appTop.hom) a
   obtain ⟨ψ, hψ, hs⟩ := hw A φ hφ
   obtain ⟨b, hb⟩ := hFS q i A.U ζ ψ hψ

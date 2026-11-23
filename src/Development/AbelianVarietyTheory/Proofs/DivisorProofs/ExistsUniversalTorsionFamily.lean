@@ -64,10 +64,6 @@ theorem torsionLift_ι (G : Over S) [GrpObj G] {T : Over S} (f : T ⟶ G) (n : �
     torsionLift G f n hf ≫ torsion.ι G n = f :=
   pullback.lift_fst _ _ _
 
-theorem torsion_ι_pow (G : Over S) [GrpObj G] (n : ℕ) : torsion.ι G n ^ n = 1 := by
-  rw [← GlobalTheory.GrpTangent.comp_mulN, Hom.one_def]
-  exact pullback.condition.trans (congrArg (· ≫ η) (toUnit_unique _ _))
-
 end General
 
 end GlobalTheory.TorsionFamily

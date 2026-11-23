@@ -48,12 +48,7 @@ namespace Formalism.MainNotions.PairMembershipBlocks
 
 open Formalism.MainNotions.G Formalism.GradedWeylDivisibility Formalism.MainNotions.SourceCleaning Formalism.MainNotions.Pf14 Formalism.MainNotions.PlaneGramData Formalism.MainNotions.TestSideCounting Formalism.MainNotions.TestSideWords Formalism.MainNotions.G.WittFrameLocaliserOrders
 
-theorem det_mem_sub {R A : Type*} [CommRing R] [CommRing A] [Algebra R A] (S : Subalgebra R A) {r : ℕ}
-    (M : Matrix (Fin r) (Fin r) A) (h : ∀ i j, M i j ∈ S) : M.det ∈ S := by
-  rw [Matrix.det_apply]
-  refine Subalgebra.sum_mem _ fun σ _ => ?_
-  rw [Units.smul_def]
-  exact Subalgebra.zsmul_mem _ (Subalgebra.prod_mem _ fun i _ => h _ _) _
+alias det_mem_sub := _root_.Formalism.MainNotions.G.WittFrameLocaliserOrders.bs_det_mem
 
 theorem X_mem_supp {R σ : Type*} [CommRing R] (s : Set σ) (i : σ) (hi : i ∈ s) :
     (X i : MvPolynomial σ R) ∈ supported R s := by

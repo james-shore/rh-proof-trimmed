@@ -68,12 +68,6 @@ open GlobalTheory.Izumi
 noncomputable section
 namespace GlobalTheory.Izumi
 
-theorem algebraMap_completion_injective : ∀ (A : Type) [CommRing A] [IsLocalRing A] [IsNoetherianRing A], Function.Injective (algebraMap A (AdicCompletion (maximalIdeal A) A)) := by
-  intro A _ _ _
-  have h : IsHausdorff (maximalIdeal A) A := inferInstance
-  intro a b hab
-  exact AdicCompletion.of_injective (maximalIdeal A) A (by simpa [AdicCompletion.algebraMap_apply] using hab)
-
 theorem exists_sub_algebraMap_mem_maximalIdeal_completion : ∀ (A : Type) [CommRing A] [IsLocalRing A] [IsNoetherianRing A] (b : AdicCompletion (maximalIdeal A) A), ∃ a : A, b - algebraMap A (AdicCompletion (maximalIdeal A) A) a ∈ maximalIdeal (AdicCompletion (maximalIdeal A) A) := by
   intro A _ _ _ b
   set ψ := AdicCompletion.evalₐ (maximalIdeal A) (R := A) 1
@@ -183,7 +177,7 @@ theorem iInf_map_smallIdeal_le_span : ∀ (o Ω : Type) [CommRing o] [Field Ω] 
   set φ := algebraMap A R with hφ
   obtain ⟨hdom, hic⟩ := GlobalTheory.AnalyticNormality.completion_isDomain_and_isIntegrallyClosed A
   haveI : IsNoetherianRing R := GlobalTheory.AdicNoeth.isNoetherianRing_adicCompletion A _
-  have hinj : Function.Injective φ := algebraMap_completion_injective A
+  have hinj : Function.Injective φ := _root_.GlobalTheory.CompletionEmbed.algebraMap_injective A
   intro G hG
   by_contra hGf
   obtain ⟨s, hs0, hs⟩ := GlobalTheory.T.exists_nonzero_classicalPoint_of_localHom_avoiding o Ω M U hU x

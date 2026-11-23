@@ -54,24 +54,6 @@ noncomputable section
 
 namespace GlobalTheory.ThFam
 
-theorem prod_famB {R : Type} [CommRing R] [IsDomain R] (D : DegPre R) {T : Over (Spec (CommRingCat.of R))}
-    (ρ : T ⟶ D.P.A) (α : D.X) (k : ℕ) {U : Type} [CommGroup U] (h : (T.left ⟶ D.P.A.left) → U) :
-    ∏ i, h (ρ.left ≫ D.famφB α i) ^ DegPre.famε k i =
-      h ρ.left ^ ((k : ℤ) - 1) * h (DVR.cP D T α * ρ).left * (h (DVR.cP D T α).left)⁻¹ *
-        h (1 : T ⟶ D.P.A).left := by
-  have e₀ : ρ.left ≫ D.famφB α 0 = ρ.left := Category.comp_id _
-  have e₁ : ρ.left ≫ D.famφB α 1 = (DVR.cP D T α * ρ).left := by
-    have : ρ ≫ padd D.P.A (𝟙 D.P.A) (toUnit _ ≫ D.c α) = DVR.cP D T α * ρ := by
-      show ρ ≫ (𝟙 _ * DVR.cP D D.P.A α) = _
-      rw [MonObj.comp_mul, Category.comp_id, DVR.comp_cP, mul_comm]
-    exact congrArg (fun q => q.left) this
-  have e₂ : ρ.left ≫ D.famφB α 2 = (DVR.cP D T α).left := congrArg (fun q => q.left) (DVR.comp_cP D ρ α)
-  have e₃ : ρ.left ≫ D.famφB α 3 = (1 : T ⟶ D.P.A).left :=
-    congrArg (fun q : T ⟶ D.P.A => q.left) (MonObj.comp_one (M := D.P.A) ρ)
-  rw [Fin.prod_univ_four, e₀, e₁, e₂, e₃]
-  show _ ^ ((k : ℤ) - 1) * _ ^ (1 : ℤ) * _ ^ (-1 : ℤ) * _ ^ (1 : ℤ) = _
-  rw [zpow_one, zpow_one, zpow_neg_one]
-
 theorem exists_genB : ∀ (R : Type) [CommRing R] [IsDomain R] (D : DegPre R) (k : ℕ) (α mu : D.X) {K : Type} [Fintype K]
     (φ : K → (Spec (CommRingCat.of R) ⟶ D.P.A.left)) (ε : K → ℤ) (v : LB.Gen (LB.LinComb D.P.L φ ε)), v.IsGen →
     (∀ (U : Type) [CommGroup U] (h : (Spec (CommRingCat.of R) ⟶ D.P.A.left) → U), ∏ i, h (φ i) ^ ε i =
@@ -100,11 +82,11 @@ theorem exists_genB : ∀ (R : Type) [CommRing R] [IsDomain R] (D : DegPre R) (k
       have p₃ : ∏ i, h (D.famφB (α + k • mu) i) ^ DegPre.famε k i = h (Over.Hom.left (𝟙 D.P.A)) ^ ((k : ℤ) - 1) *
           h ((DVR.cP D D.P.A α) * (DVR.cP D D.P.A mu) ^ k * 𝟙 D.P.A).left *
           (h ((DVR.cP D D.P.A α) * (DVR.cP D D.P.A mu) ^ k).left)⁻¹ * h (1 : D.P.A ⟶ D.P.A).left := by
-        have := prod_famB D (𝟙 D.P.A) (α + k • mu) k h
+        have := _root_.GlobalTheory.FamPull.prod_famB D (𝟙 D.P.A) (α + k • mu) k h
         rw [hα'] at this
         refine Eq.trans ?_ this
         simp only [Over.id_left, Category.id_comp]
-      have p₄ := prod_famB D (padd D.P.A (𝟙 D.P.A) (toUnit _ ≫ D.c mu)) α k h
+      have p₄ := _root_.GlobalTheory.FamPull.prod_famB D (padd D.P.A (𝟙 D.P.A) (toUnit _ ≫ D.c mu)) α k h
       have c₁ : ∀ χ, D.P.A.hom ≫ (DVR.cP D (Over.mk (𝟙 (Spec (CommRingCat.of R)))) χ).left = (DVR.cP D D.P.A χ).left :=
         fun χ => congrArg (fun q => q.left) (DVR.comp_cP D (toUnit D.P.A) χ)
       have c₂ : D.P.A.hom ≫ (1 : Over.mk (𝟙 (Spec (CommRingCat.of R))) ⟶ D.P.A).left = (1 : D.P.A ⟶ D.P.A).left :=

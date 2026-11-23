@@ -51,7 +51,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace UpperTheory.Et.HenselianIdempotents
 
-theorem a0 : LateralTheory.E.HensIdemCut.LJac := LateralTheory.E.LJacPf.LJac_of
 theorem a1 : LateralTheory.E.HensIdemCut.LMonic := LateralTheory.E.LMonicPf.LMonic_of
 theorem a2 : LateralTheory.E.LIdemLiftPf.LFact := UpperTheory.liftIdempotentFactorization_holds
 theorem a3 : LateralTheory.E.LChartPf.LIdemLift := LateralTheory.E.LIdemLiftPf.LIdemLift_of a2
@@ -61,8 +60,8 @@ theorem a6 : LateralTheory.E.LEtaleLiftPf.LChart := LateralTheory.E.LChartPf.LCh
 theorem a7 : LateralTheory.E.LFactorPf.LEtaleLift := LateralTheory.E.LEtaleLiftPf.LEtaleLift_of a6
 theorem a8 : LateralTheory.E.HensIdemCut.LFactor := LateralTheory.E.LFactorPf.LFactor_of a7
 theorem a9 : LateralTheory.E.HensIdemCut.LIdem := LateralTheory.E.LIdemPf.LIdem_of
-theorem a10 : LateralTheory.E.t_E1Cut.HensIdem := LateralTheory.E.HensIdemCut.goal_of a0 a1 a8 a9
+theorem a10 : LateralTheory.E.t_E1Cut.HensIdem := LateralTheory.E.HensIdemCut.goal_of _root_.LateralTheory.E.LJacPf.LJac_of a1 a8 a9
 
-theorem intersectionNumber_baseChange : LateralTheory.E.t_E1Cut.HensIdem := a10
+alias intersectionNumber_baseChange := _root_.UpperTheory.Et.HenselianIdempotents.a10
 
 end UpperTheory.Et.HenselianIdempotents

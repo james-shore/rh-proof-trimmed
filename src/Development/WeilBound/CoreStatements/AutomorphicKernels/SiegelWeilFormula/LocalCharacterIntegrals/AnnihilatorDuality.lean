@@ -262,12 +262,12 @@ theorem isOpen_ballH (σ : E →ₐ[F] E) (n : ℕ) (R : ℝ) (hR : 0 < R) :
 theorem perp_bound (σ : E →ₐ[F] E) (hcm : IsCMExt F E σ) {ψ : AddChar (AF F) ℂ} (hψ : IsCharAF F ψ) (n : ℕ) :
     ∃ C₀ : ℝ, 0 ≤ C₀ ∧ ∀ R : ℝ, 0 < R → ∀ D : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E), D ∈ HermR (Fv F v) σ n →
       (∀ b : HermR (Fv F v) σ n, nM v b.1 ≤ R → psiV F ψ v (trPair (Fv F v) b.1 D) = 1) → nM v D ≤ C₀ / R := by
-  obtain ⟨y0, hy0⟩ := exists_psiV_ne_one (v := v) hcm hψ
+  obtain ⟨y0, hy0⟩ := _root_.PositivityTheory.SiegelWeilFormula.SwLocFin.exists_psiV_ne_one' (v := v) hcm hψ
   obtain ⟨c, hc, htr⟩ := exists_trace_ge (E := E) v
   obtain ⟨Cσ, hCσ0, hCσ⟩ := exists_nA_sig v σ
   have hσ : ∀ x, σ (σ x) = x := sigma_invol' σ hcm.2.2.2
   have hy0n : 0 < ‖y0‖ := by
-    rw [norm_pos_iff]; rintro rfl; exact hy0 (psiV_zero ψ)
+    rw [norm_pos_iff]; rintro rfl; exact hy0 (_root_.PositivityTheory.SiegelWeilFormula.SwLocFin.psiV_zero' ψ)
   set C1 : ℝ := max 1 Cσ with hC1
   have hC1pos : 0 < C1 := lt_of_lt_of_le one_pos (le_max_left _ _)
   refine ⟨‖y0‖ * C1 / c, by positivity, ?_⟩

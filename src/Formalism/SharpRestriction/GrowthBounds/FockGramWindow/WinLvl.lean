@@ -97,7 +97,7 @@ theorem int_lvl (hB : G.BlockOK) (A : ℕ) (hdeg : ∀ x, G.LL.deg x ≤ 2 * A) 
     ‖(p : ℚ_[p]) ^ (x0N p A r N G.T.t) *
       (mX (fun c => (Sum.inl (Fin.castSucc G.uPos, c) : M.BVar N r G.T.t)) (fun c => M.xiVar N r G.T.t c) (JN G jp) l
         (phisB p (r := r) G j jp u) v / (degFact G j jp : ℚ_[p]))‖ ≤ 1 := by
-  have hp1 : (1 : ℝ) ≤ p := one_le_p
+  have hp1 : (1 : ℝ) ≤ p := _root_.Formalism.GM.gammaIntegralityLemmas.p_real_one_le
   have hp0 : (0 : ℝ) < p := lt_of_lt_of_le zero_lt_one hp1
   have h1 := bnd_phisB p G hB A hdeg hz j jp u (Ljj_int p G j jp u hu)
   have h2 := bnd_Xl (fun c => (Sum.inl (Fin.castSucc G.uPos, c) : M.BVar N r G.T.t)) (fun c => M.xiVar N r G.T.t c)

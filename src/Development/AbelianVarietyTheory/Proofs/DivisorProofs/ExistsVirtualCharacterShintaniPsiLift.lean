@@ -80,7 +80,7 @@ theorem exists_virt_psi_lift : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F
     rw [zpowers_eq_top_of_prime_card hcard hs]; intro t; trivial
   have hlift1 : ∀ (m : ℕ) (δ : GL (Fin m) F'), shLift s (fun _ : GL (Fin m) F => (1 : ℂ)) δ = 1 := by
     intro m δ
-    exact shLift_eq_of_exists s δ (GlobalTheory.T.every_element_is_norm F F' s hgen m δ) _
+    exact shLift_eq_of_exists s δ (_root_.GlobalTheory.Shin.exists_isNorm F F' s hgen m δ) _
   intro n
   induction n using Nat.strong_induction_on with
   | _ n ih =>
@@ -91,7 +91,7 @@ theorem exists_virt_psi_lift : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F
         (shLift s (psiG (rootSum (pullθ ι θ) k) a)) (fun _ => 1) n δ := by
     intro a
     obtain ⟨Xa, hXa, h1, h2⟩ := ih a a.2
-    obtain ⟨Z, hZv, hZe⟩ := GlobalTheory.T.exists_virtualCharacter_twistedHarishChandraInductionGL F F' a (n - a) n (by omega) Xa hXa
+    obtain ⟨Z, hZv, hZe⟩ := _root_.GlobalTheory.Shin.HatInd.hat_ind F F' a (n - a) n (by omega) Xa hXa
     refine ⟨Z, hZv, fun δ => ?_, fun δ => ?_⟩
     · have e := hZe 1 δ
       simp only [map_one, mul_one] at e
@@ -103,12 +103,12 @@ theorem exists_virt_psi_lift : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F
       have e2 : (fun d => Xa (inl d * inr s)) = shLift s (psiG (rootSum (pullθ ι θ) k) a) := funext h2
       rw [e2]
   choose Z hZv hZ1 hZ2 using hZ
-  obtain ⟨A, hA, hA1, hA2⟩ := GlobalTheory.T.exists_tensorInduction_virtualCharacter_prime (GL (Fin n) F') (F' ≃ₐ[F] F') (galAct F F' n) s
+  obtain ⟨A, hA, hA1, hA2⟩ := _root_.GlobalTheory.Shin.tensorInd_virt_prime (GL (Fin n) F') (F' ≃ₐ[F] F') (galAct F F' n) s
     (by rw [hcard]; exact hp) hs (fun x => rootSum θ k (Matrix.charpoly (x : Matrix (Fin n) (Fin n) F')))
-    (GlobalTheory.T.rootPowerSum_charpoly_mem_virtualCharacters_GL F' θ hθ n k)
+    (_root_.GlobalTheory.CuspGL.rootSum_charpoly_mem_virt F' θ hθ n k)
   refine ⟨A - ∑ a : Fin n, Z a, sub_mem hA (sum_mem fun a _ => hZv a), fun g => ?_, fun δ => ?_⟩
   · simp only [Pi.sub_apply, Finset.sum_apply, hA1, hZ1]
-    rw [GlobalTheory.T.primitiveFunctionCharpolyGL_harishChandra_recursion F' _ n g]
+    rw [_root_.GlobalTheory.ShinPsiRec.psiG_eq_chG_sub_hc F' _ n g]
     rw [Fin.sum_univ_eq_sum_range (fun a => hc a (n - a)
         (psiG (fun P => ∏ t : F' ≃ₐ[F] F', rootSum θ k (P.map (t : F' →+* F'))) a) (fun _ => 1) n g) n]
     congr 1
@@ -117,9 +117,9 @@ theorem exists_virt_psi_lift : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F
     rw [galAct_apply, ← Matrix.charpoly_map]
     congr 2
   · simp only [Pi.sub_apply, Finset.sum_apply, hA2, hZ2]
-    have hex := GlobalTheory.T.every_element_is_norm F F' s hgen n δ
-    rw [shLift_eq_of_exists s δ hex, GlobalTheory.T.primitiveFunctionCharpolyGL_harishChandra_recursion F _ n, ← shLift_eq_of_exists s δ hex (chG _ n),
-      GlobalTheory.T.shintaniLift_charpoly_rootPowerSum_eq_norm F F' s hgen ι θ k n δ]
+    have hex := _root_.GlobalTheory.Shin.exists_isNorm F F' s hgen n δ
+    rw [shLift_eq_of_exists s δ hex, _root_.GlobalTheory.ShinPsiRec.psiG_eq_chG_sub_hc F _ n, ← shLift_eq_of_exists s δ hex (chG _ n),
+      _root_.GlobalTheory.Shin.shLift_chG_rootSum F F' s hgen ι θ k n δ]
     rw [Fin.sum_univ_eq_sum_range (fun a => hcTw (s : F' →+* F') a (n - a)
         (shLift s (psiG (rootSum (pullθ ι θ) k) a)) (fun _ => 1) n δ) n]
     congr 1
@@ -128,8 +128,8 @@ theorem exists_virt_psi_lift : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F
     · refine Finset.sum_congr rfl fun a ha => ?_
       have han : n = a + (n - a) := by have := Finset.mem_range.1 ha; omega
       rw [← shLift_eq_of_exists s δ hex (hc a (n - a) (psiG (rootSum (pullθ ι θ) k) a) (fun _ => 1) n),
-        GlobalTheory.T.shintaniLift_harishChandraInduction_eq_twisted F F' s hgen a (n - a) n han _ _
-          ((GlobalTheory.T.twistedHarishChandraInductionGL_isTwistedClassFunction F (RingHom.id F) 0 0 a (fun _ => 1) (fun _ => 1)).2.2 _).1 (fun _ _ => rfl)]
+        _root_.GlobalTheory.Shin.shLift_hc_eq_hcTw F F' s hgen a (n - a) n han _ _
+          ((_root_.GlobalTheory.Shin.twisted_class_main F (RingHom.id F) 0 0 a (fun _ => 1) (fun _ => 1)).2.2 _).1 (fun _ _ => rfl)]
       congr 1
       funext x
       exact (hlift1 _ x).symm

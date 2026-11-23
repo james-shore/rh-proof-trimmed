@@ -73,7 +73,7 @@ theorem eq_const_of_nonneg [IsAlgClosure ℚ Ω] (X : Tower Ω ε) (h : X.K) (hi
   set a0 := (X.exp h).coeff 0 with ha0
   have hsupp : ∀ r : ℚ, (X.exp h).coeff r ≠ 0 → ∃ n : ℕ, r = n := by
     intro r hr
-    obtain ⟨m, rfl⟩ := GlobalTheory.T.exponents_integral_of_translation_invariant X h (hinv _) r hr
+    obtain ⟨m, rfl⟩ := _root_.GlobalTheory.KZ.Tower.exponent_integral_of_translation_invariant X h (hinv _) r hr
     have hm : 0 ≤ m := by
       by_contra hm
       exact hr (hneg _ (by exact_mod_cast (not_le.1 hm)))
@@ -140,7 +140,7 @@ theorem mem_adjoin_j : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure
       obtain ⟨φ, hd, ha⟩ := hol
       obtain ⟨c, hcdef⟩ : ∃ c : Ω, c = (X.exp h).coeff (-((n + 1 : ℕ) : ℚ)) := ⟨_, rfl⟩
       obtain ⟨h', hh'⟩ : ∃ h' : X.K, h' = h - algebraMap Ω X.K c * X.jK ^ (n + 1) := ⟨_, rfl⟩
-      have hj := GlobalTheory.T.hahnSeries_pow_of_leading_qInv (X.exp X.jK) X.j_exp.1 X.j_exp.2.1 (n + 1)
+      have hj := _root_.GlobalTheory.hahn_pow_neg_one_lead (X.exp X.jK) X.j_exp.1 X.j_exp.2.1 (n + 1)
       have hinv' : ∀ γ : SL(2, ℤ), X.sl (ofSL γ) h' = h' := by
         intro γ
         rw [hh', map_sub, map_mul, map_pow, X.j_inv, hinv, AlgEquiv.commutes]
@@ -152,7 +152,7 @@ theorem mem_adjoin_j : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure
       have hneg' : ∀ r : ℚ, r < -(n : ℚ) → (X.exp h').coeff r = 0 := by
         intro r hr
         by_contra hrz
-        obtain ⟨m, rfl⟩ := GlobalTheory.T.exponents_integral_of_translation_invariant X h' (hinv' _) r hrz
+        obtain ⟨m, rfl⟩ := _root_.GlobalTheory.KZ.Tower.exponent_integral_of_translation_invariant X h' (hinv' _) r hrz
         apply hrz
         have hcoe : (X.exp h').coeff (m : ℚ) =
             (X.exp h).coeff m - c * ((X.exp X.jK) ^ (n + 1)).coeff m := by

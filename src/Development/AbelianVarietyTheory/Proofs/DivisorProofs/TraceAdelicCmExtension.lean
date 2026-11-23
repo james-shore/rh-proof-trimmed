@@ -52,33 +52,15 @@ namespace GlobalTheory.CMTrace
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
-theorem sig_sig {σ : E →ₐ[F] E} (h : IsCMExt F E σ) (x : E) : σ (σ x) = x := by
-  obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
-  apply τ.injective
-  rw [h.2.2.2, h.2.2.2, star_star]
-
-theorem sig_ne_id {σ : E →ₐ[F] E} (h : IsCMExt F E σ) : ∃ x : E, σ x ≠ x := by
-  by_contra hc
-  push_neg at hc
-  obtain ⟨w⟩ : Nonempty (InfinitePlace E) := inferInstance
-  have hr : w.IsReal := by
-    rw [InfinitePlace.isReal_iff, ComplexEmbedding.isReal_iff]
-    ext x
-    simp only [ComplexEmbedding.conjugate_coe_eq]
-    have := h.2.2.2 w.embedding x
-    rw [hc x] at this
-    exact this.symm
-  exact (InfinitePlace.not_isReal_iff_isComplex.mpr (h.2.1.isComplex w)) hr
-
 def sigE {σ : E →ₐ[F] E} (h : IsCMExt F E σ) : Gal(E/F) :=
-  AlgEquiv.ofAlgHom σ σ (AlgHom.ext fun x => sig_sig h x) (AlgHom.ext fun x => sig_sig h x)
+  AlgEquiv.ofAlgHom σ σ (AlgHom.ext fun x => _root_.GlobalTheory.AdelicU.cm_conj_conj h x) (AlgHom.ext fun x => _root_.GlobalTheory.AdelicU.cm_conj_conj h x)
 
 theorem trace_eq {σ : E →ₐ[F] E} (h : IsCMExt F E σ) (e : E) :
     algebraMap F E (Algebra.trace F E e) = e + σ e := by
   haveI : FiniteDimensional F E := Module.finite_of_finrank_eq_succ h.2.2.1
   have hne : (1 : Gal(E/F)) ≠ sigE h := by
     intro h1
-    obtain ⟨x, hx⟩ := sig_ne_id h
+    obtain ⟨x, hx⟩ := _root_.GlobalTheory.AdelicU.exists_cm_conj_ne h
     exact hx (congrArg (fun g : Gal(E/F) => g x) h1).symm
   have hle : Nat.card Gal(E/F) ≤ 2 := by
     calc Nat.card Gal(E/F) ≤ Nat.card (E →ₐ[F] E) :=

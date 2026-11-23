@@ -46,15 +46,13 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace UpperTheory.Lit
 
-theorem neronOggShafarevich : GlobalTheory.Published.NeronOggShafarevichSt := UpperTheory.Lit.Nos.Nos.neronOggShafarevich
-
 theorem potentialGoodReduction : GlobalTheory.Published.PotentialGoodReductionSt :=
-  GlobalTheory.potentialGoodReduction_of_neronOggShafarevich neronOggShafarevich
+  GlobalTheory.potentialGoodReduction_of_neronOggShafarevich _root_.UpperTheory.Lit.Nos.Nos.neronOggShafarevich
 
 theorem cmPotentialGoodReduction : GlobalTheory.Published.CMPotentialGoodReductionSt :=
-  cmPotentialGoodReduction_of_nos neronOggShafarevich
+  cmPotentialGoodReduction_of_nos _root_.UpperTheory.Lit.Nos.Nos.neronOggShafarevich
 
 theorem serreTateGoodReduction : GlobalTheory.Published.SerreTateGoodReductionSt :=
-  ⟨neronOggShafarevich, potentialGoodReduction, cmPotentialGoodReduction⟩
+  ⟨_root_.UpperTheory.Lit.Nos.Nos.neronOggShafarevich, potentialGoodReduction, cmPotentialGoodReduction⟩
 
 end UpperTheory.Lit

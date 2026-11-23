@@ -105,17 +105,17 @@ theorem shell_eq_zero_of_support : ∀ (k : Type) [Field k] [ValuativeRel k] [To
 theorem shell_lemma : ShellLemma := by
   intro k _ _ _ _ _ _ ϖ hϖ ν e hram hcond a μ hμ φ hφ
   have : μ.IsHaarMeasure := hμ
-  have hint := GlobalTheory.T.integrableOn_cartanDoubleCoset_shellIntegrand k ϖ ν e hcond a μ φ hφ
+  have hint := _root_.GlobalTheory.ShellInt.integrableOn_shell k ϖ ν e hcond a μ φ hφ
   have h2 : ∀ M : ℤ, IsPeriodic ϖ M φ → ∀ n : Fin a → ℤ, (∃ i, M ≤ n i) → ∀ z : ℂ, shell μ ϖ ν z φ n = 0 := by
     rintro M hM n ⟨i, hi⟩ z
     obtain ⟨u, hu1, hu2⟩ : ∃ u : kˣ, valuation k (u : k) = 1 ∧ ν u ≠ 1 := by
       by_contra h
       push_neg at h
       exact hram h
-    obtain ⟨t, htK, heq, hdisj⟩ := GlobalTheory.T.cartanDoubleCoset_finite_disjoint_leftCosets k ϖ a n
+    obtain ⟨t, htK, heq, hdisj⟩ := _root_.GlobalTheory.ShellCosets.shell_cosets k ϖ a n
     rw [shell, heq, integral_biUnion_finset t]
     · exact Finset.sum_eq_zero fun x hx =>
-        GlobalTheory.T.setIntegral_leftCoset_shellIntegrand_eq_zero k ϖ hϖ ν a μ φ M hM n i hi u hu1 hu2 x (htK x hx) z
+        _root_.GlobalTheory.ShellPiece.setIntegral_coset_eq_zero k ϖ hϖ ν a μ φ M hM n i hi u hu1 hu2 x (htK x hx) z
     · intro x _
       exact (isOpen_KO.preimage (continuous_const.mul continuous_id)).measurableSet
     · exact hdisj

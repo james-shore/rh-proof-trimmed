@@ -92,10 +92,6 @@ theorem cT_zero' {p q : Type} {A : Type} [CommRing A] (σ : A →+* A) :
   ext i j
   simp [cT]
 
-theorem cT_mulG {A : Type} [CommRing A] (σ : A →+* A) {m p q : Type} [Fintype p]
-    (M : Matrix m p A) (N : Matrix p q A) : cT σ (M * N) = cT σ N * cT σ M := by
-  rw [cT, cT, cT, Matrix.map_mul, Matrix.transpose_mul]
-
 theorem cT_fromBlocks {A : Type} [CommRing A] (σ : A →+* A) {a b c d : Type}
     (P : Matrix a c A) (Q : Matrix a d A) (R : Matrix b c A) (T : Matrix b d A) :
     cT σ (Matrix.fromBlocks P Q R T) = Matrix.fromBlocks (cT σ P) (cT σ R) (cT σ Q) (cT σ T) := by
@@ -187,8 +183,8 @@ theorem Frame.MA_unitary (h : HfinS I S) :
   have hu : cT (σA I) (I.fmat (h : I.Gf)) * JA I * I.fmat (h : I.Gf) = JA I :=
     (mem_UPts_iff I.J _).1 (h : I.Gf).2
   have hc : cT (σA I) fr.BiA * cT (σA I) fr.BA = 1 := by
-    rw [← cT_mulG, fr.BA_BiA, cT_one']
-  rw [fr.JtA, Frame.MA, cT_mulG, cT_mulG]
+    rw [← _root_.Formalism.UG.cT_mul, fr.BA_BiA, cT_one']
+  rw [fr.JtA, Frame.MA, _root_.Formalism.UG.cT_mul, _root_.Formalism.UG.cT_mul]
   simp only [Matrix.mul_assoc]
   rw [← Matrix.mul_assoc (cT (σA I) fr.BiA) (cT (σA I) fr.BA), hc, Matrix.one_mul,
     ← Matrix.mul_assoc fr.BA fr.BiA, fr.BA_BiA, Matrix.one_mul,
@@ -206,7 +202,7 @@ theorem Frame.MA_eq (h : HfinS I S) :
     rw [Frame.Jt]
     simp only [Matrix.mul_assoc]
     rw [← Matrix.mul_assoc fr.B fr.Bi, fr.mul_inv, Matrix.one_mul, ← Matrix.mul_assoc I.J,
-      Matrix.mul_nonsing_inv _ hJ, Matrix.one_mul, ← cT_mulG, fr.inv_mul, cT_one']
+      Matrix.mul_nonsing_inv _ hJ, Matrix.one_mul, ← _root_.Formalism.UG.cT_mul, fr.inv_mul, cT_one']
   have hdet : fr.Jt.toBlocks₁₁.det ≠ 0 := by
     have h1 := hJt
     rw [fr.Jt_blocks, Matrix.det_fromBlocks_zero₂₁] at h1
@@ -290,9 +286,9 @@ theorem Frame.P_unitary (y : UPts I.cm.sig fr.J' (Formalism.MainNotions.S.Af I.F
       Matrix.fromBlocks_multiply]
     simp [hy, cT_zero']
   have h1 : cT (σA I) fr.BiA * cT (σA I) fr.BA = 1 := by
-    rw [← cT_mulG, fr.BA_BiA, cT_one']
+    rw [← _root_.Formalism.UG.cT_mul, fr.BA_BiA, cT_one']
   show cT (σA I) (fr.P _) * JA I * fr.P _ = JA I
-  rw [Frame.P, cT_mulG, cT_mulG]
+  rw [Frame.P, _root_.Formalism.UG.cT_mul, _root_.Formalism.UG.cT_mul]
   simp only [Matrix.mul_assoc]
   rw [← Matrix.mul_assoc (JA I) fr.BA, ← Matrix.mul_assoc (cT (σA I) fr.BA),
     ← Matrix.mul_assoc (cT (σA I) fr.BA) (JA I) fr.BA, ← fr.JtA,

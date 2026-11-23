@@ -64,7 +64,7 @@ theorem KSp.sgn_mul_of_isQuad : ∀ (F : Type) [Field F] [CharZero F] [Valuative
     simp [hs, ht, this]
   · have : s * t ∉ H := fun h => hs ((H.mul_mem_cancel_right ht).mp h)
     simp [hs, ht, this]
-  · have : s * t ∈ H := GlobalTheory.T.mul_mem_range_norm_of_not_mem F E c δ hE s t hs ht
+  · have : s * t ∈ H := _root_.GlobalTheory.KSp.NormIndex.mul_mem_range_norm F E c δ hE s t hs ht
     simp [hs, ht, this]
 
 end GlobalTheory

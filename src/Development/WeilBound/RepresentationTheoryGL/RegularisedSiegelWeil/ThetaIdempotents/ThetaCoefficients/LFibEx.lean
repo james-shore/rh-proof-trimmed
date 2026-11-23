@@ -70,7 +70,7 @@ variable {D : D7} {r : ℕ}
 open GlobalTheory.CompanionTheory.SiegelND in
 theorem _root_.PositivityTheory.Rg.Rsw.L.fibEx : FibEx := by
   intro D r V hr ψ hψ θ hθ μ hμ lam hlam b₀ hb₀
-  have hCM := GlobalTheory.DefiniteQuotient.cmExt D
+  have hCM := _root_.Formalism.MainNotions.UnusedSlot34.isCMExt_D D
   have hJ := GlobalTheory.DefiniteQuotient.gram_hermND V
   obtain ⟨μH, 𝓕, hμH, h𝓕, -⟩ := GlobalTheory.Published.SiegelOneVector.exists_normalised D.sp.cm.sig V.gram hCM hJ
   obtain ⟨dx, db, hdx, hdb, hW⟩ := GlobalTheory.T.exists_self_dual_siegel_weil_measures D r V ψ hψ μ hμ lam hlam
@@ -86,7 +86,7 @@ theorem _root_.PositivityTheory.Rg.Rsw.L.fibEx : FibEx := by
   have hfin := thFin V hr μH 𝓕 hμH h𝓕 b₀.1 hT hb₀
   refine ⟨(thM V μH 𝓕 b₀.1).map (tupE D V.rank r), finE _, suppE V b₀.1 _ hTI.2,
     fun h => invE V _ h (ac.comp (continuous_const.prodMk continuous_id)).measurable (hTI.1 h), fun φ hφ => ?_⟩
-  have hSB := GlobalTheory.T.schwartz_function_schwartz_bruhat D θ hθ V.rank r φ hφ
+  have hSB := _root_.GlobalTheory.CompanionTheory.SiegelND.isSchwartzBruhat_tupOf_of_mem_schwartzA D θ hθ V.rank r φ hφ
   have hI := thInt V hr μH 𝓕 hμH h𝓕 b₀.1 hT hb₀ _ hSB
   refine ⟨(tupE D V.rank r).measurableEmbedding.integrable_map_iff.2 hI, ?_⟩
   rw [hW φ b₀, (tupE D V.rank r).measurableEmbedding.integral_map]

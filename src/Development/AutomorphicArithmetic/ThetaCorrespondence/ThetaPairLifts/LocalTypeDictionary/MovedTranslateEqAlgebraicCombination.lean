@@ -82,12 +82,12 @@ theorem moved_translate_eq_algebraic_combination : ∀ {D : D7} {T : Type} [Fini
     simp only [Prod.mk_mul_mk, mul_assoc]
   obtain ⟨ζ, hζ, hkv⟩ := hlev k hk k' hk' hkc hkc'
   have h1 : IsAlgComb W.ψ (GlobalTheory.Grid.neg A) WW X.vac (X.ω t (s, s') X.vac) :=
-    _root_.GlobalTheory.T.moved_support_theta_algebraic hP hI hL hX t N hN s hs s' hs' hss hss'
+    _root_.GlobalTheory.MovedAlg.support_split_algebraic_combination hP hI hL hX t N hN s hs s' hs' hss hss'
   have h2 : IsAlgComb W.ψ (GlobalTheory.Grid.neg A) WW X.vac (X.ω t ((s, s') * (k, k')) X.vac) := by
     rw [map_mul, Module.End.mul_apply, hkv, map_smul]
     exact h1.smul hζ
   have h3 : IsAlgComb W.ψ (GlobalTheory.Grid.neg A) WW X.vac (X.ω t (γ * a, γ' * a') X.vac) :=
-    _root_.GlobalTheory.T.exists_rat_real_algebraic_combination_twist hP hI hL hX t γ hγ a ha γ' hγ' a' ha' hga hga'
+    _root_.GlobalTheory.MovedAlgRat.rat_real_algebraic_combination_of_moved hP hI hL hX t γ hγ a ha γ' hγ' a' ha' hga hga'
   have h4 : IsAlgComb W.ψ (GlobalTheory.Grid.neg A) WW X.vac (X.ω t (x, h) X.vac) := by
     rw [hpair, map_mul, Module.End.mul_apply]
     exact om_algComb hX hψ t _ _ h3 h2
@@ -98,20 +98,3 @@ end GlobalTheory.MovedAlg
 end
 end
 
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
-open IsDedekindDomain NumberField GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.RowClaim
-open Formalism.L2.Host (HChar)
-open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.RowEx MeasureTheory
-
-theorem _root_.GlobalTheory.T.twisted_moved_translate_algebraic : ∀ {D : D7} {T : Type} [Finite T] {L : LevCh D T} {μ₀ : T} {sc : Consts} {G : GridData L sc} {W : G.Weil}
-    {i j : Fin D.R.m} {A A' WW : HSp D} {X : Tri T A A' WW}, _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, GlobalTheory.NormSum.Inp D) → L.Is μ₀ →
-    IsBottomTri W i j X →
-    ∀ (t : T), ∀ x ∈ GfC A, ∀ h ∈ GfC WW, ∀ u : WO (GlobalTheory.Grid.neg A) WW, u.map (infPart D) = 0 →
-      ∃ (n : ℕ) (c : Fin n → ℂ) (w : Fin n → WO (GlobalTheory.Grid.neg A) WW), (∀ p, IsAlgebraic ℚ (c p)) ∧
-        (∀ p, (w p).map (infPart D) = 0) ∧
-        X.ω t (x, h) (heisO W.ψ (GlobalTheory.Grid.neg A) WW u X.vac) = ∑ p, c p • heisO W.ψ (GlobalTheory.Grid.neg A) WW (w p) X.vac := by
-  first | exact @_root_.GlobalTheory.MovedAlg.moved_translate_eq_algebraic_combination | exact _root_.GlobalTheory.MovedAlg.moved_translate_eq_algebraic_combination | (intros; apply _root_.GlobalTheory.MovedAlg.moved_translate_eq_algebraic_combination <;> assumption)
-end

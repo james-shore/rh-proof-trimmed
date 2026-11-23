@@ -72,20 +72,6 @@ theorem rtV_apply (V : HSp D) (g : GA D V) (f : GA D V → ℂ) (h : GA D V) : r
 
 variable {V : HSp D} {n : ℕ}
 
-theorem pre_psi (Q : RowPsi V n) (z : Formalism.AUTREP.GAf D.host.E n) : pre Q (Q.ψ z) = z := by
-  have h : ∃ x, Q.ψ x = Q.ψ z := ⟨z, rfl⟩
-  unfold pre
-  rw [dite_eq_left h]
-  exact Q.inj h.choose_spec
-
-theorem psi_pre (Q : RowPsi V n) {γ : GA D V} (hγ : γ ∈ GfC V) : Q.ψ (pre Q γ) = γ := by
-  obtain ⟨h, hh⟩ := Q.onto γ hγ
-  have h' : ∃ x, Q.ψ x = γ := ⟨h, hh⟩
-  unfold pre
-  rw [dite_eq_left h']
-  exact h'.choose_spec
-
-
 open Classical in
 def lift (Q : RowPsi V n) (x : Formalism.AUTREP.GAf D.host.E n → ℂ) : GA D V → ℂ :=
   fun g => if g ∈ GfC V then x (pre Q g) else 0
@@ -94,9 +80,9 @@ theorem rtV_lift_psi (Q : RowPsi V n) (x : Formalism.AUTREP.GAf D.host.E n → �
     (y : Formalism.AUTREP.GAf D.host.E n) : rtV V γ (lift Q x) (Q.ψ y) = x (y * pre Q γ) := by
   rw [rtV_apply]
   have hmem : Q.ψ y * γ ∈ GfC V := (GfC V).mul_mem (Q.into y) hγ
-  have heq : Q.ψ y * γ = Q.ψ (y * pre Q γ) := by rw [map_mul, psi_pre Q hγ]
+  have heq : Q.ψ y * γ = Q.ψ (y * pre Q γ) := by rw [map_mul, _root_.Formalism.IndefR.principalLevelFrame.pre_spec Q hγ]
   unfold lift
-  rw [if_pos hmem, heq, pre_psi]
+  rw [if_pos hmem, heq, _root_.GlobalTheory.SphScalar.pre_psi]
 
 theorem lift_fixed (Q : RowPsi V n) (x : Formalism.AUTREP.GAf D.host.E n → ℂ) (K : Set (GA D V)) (hK : K ⊆ GfC V)
     (hx : ∀ κ, Q.ψ κ ∈ K → Formalism.L2.NG.rt D.host.E n κ x = x) : ∀ k ∈ K, rtV V k (lift Q x) = lift Q x := by
@@ -106,10 +92,10 @@ theorem lift_fixed (Q : RowPsi V n) (x : Formalism.AUTREP.GAf D.host.E n → ℂ
   rw [rtV_apply]
   by_cases hg : g ∈ GfC V
   · have hgk : g * k ∈ GfC V := (GfC V).mul_mem hg hkG
-    have heq : g * k = Q.ψ (pre Q g * pre Q k) := by rw [map_mul, psi_pre Q hg, psi_pre Q hkG]
-    have hfix := congrFun (hx (pre Q k) (by rw [psi_pre Q hkG]; exact hk)) (pre Q g)
+    have heq : g * k = Q.ψ (pre Q g * pre Q k) := by rw [map_mul, _root_.Formalism.IndefR.principalLevelFrame.pre_spec Q hg, _root_.Formalism.IndefR.principalLevelFrame.pre_spec Q hkG]
+    have hfix := congrFun (hx (pre Q k) (by rw [_root_.Formalism.IndefR.principalLevelFrame.pre_spec Q hkG]; exact hk)) (pre Q g)
     unfold lift
-    rw [if_pos hgk, if_pos hg, heq, pre_psi]
+    rw [if_pos hgk, if_pos hg, heq, _root_.GlobalTheory.SphScalar.pre_psi]
     exact hfix
   · have hgk : g * k ∉ GfC V := fun h => hg (by simpa using (GfC V).mul_mem h ((GfC V).inv_mem hkG))
     unfold lift

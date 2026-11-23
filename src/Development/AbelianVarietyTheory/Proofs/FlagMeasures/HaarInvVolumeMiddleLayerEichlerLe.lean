@@ -501,8 +501,6 @@ section Ideals
 
 variable {K : Type} [Field K] [NumberField K]
 
-theorem ipow_fg (𝔡 : Ideal (𝓞 K)) (n : ℤ) : (ipow 𝔡 n).FG := FractionalIdeal.fg_of_isNoetherianRing le_rfl _
-
 theorem one_mem_ipow_mul {𝔡 : Ideal (𝓞 K)} (h : 𝔡 ≠ ⊥) (n : ℤ) : (1 : K) ∈ ipow 𝔡 (-n) * ipow 𝔡 n := by
   have h0 : ((𝔡 : FractionalIdeal (𝓞 K)⁰ K)) ≠ 0 := FractionalIdeal.coeIdeal_ne_zero.2 h
   have e : ((𝔡 : FractionalIdeal (𝓞 K)⁰ K)) ^ (-n) * (𝔡 : FractionalIdeal (𝓞 K)⁰ K) ^ n = 1 := by
@@ -514,18 +512,13 @@ theorem one_mem_ipow_mul {𝔡 : Ideal (𝓞 K)} (h : 𝔡 ≠ ⊥) (n : ℤ) : 
 variable [StarRing K]
 
 
-omit [NumberField K] in
-theorem star_mem_one {t : K} (ht : t ∈ (1 : Submodule (𝓞 K) K)) : star t ∈ (1 : Submodule (𝓞 K) K) := by
-  obtain ⟨a, rfl⟩ := Submodule.mem_one.1 ht
-  refine Submodule.mem_one.2 ⟨⟨star (a : K), ?_⟩, rfl⟩
-  exact (NumberField.RingOfIntegers.isIntegral_coe a).map (starRingEnd K).toIntAlgHom
 private theorem geo_lemma_2 {K : Type} [Field K] [StarRing K] {𝔡 : Ideal (𝓞 K)}
     (hs : ∀ x ∈ 𝔡, ∃ y ∈ 𝔡, (y : K) = star (x : K)) (m : ℕ) :
     ∀ x ∈ 𝔡 ^ m, ∃ y ∈ 𝔡 ^ m, (y : K) = star (x : K) := by
   induction m with
   | zero =>
     intro x _
-    have h1 : star (x : K) ∈ (1 : Submodule (𝓞 K) K) := star_mem_one (Submodule.mem_one.2 ⟨x, rfl⟩)
+    have h1 : star (x : K) ∈ (1 : Submodule (𝓞 K) K) := _root_.GlobalTheory.UnimodQuot.star_mem_one (Submodule.mem_one.2 ⟨x, rfl⟩)
     obtain ⟨y, hy⟩ := Submodule.mem_one.1 h1
     exact ⟨y, by simp, hy⟩
   | succ m ih =>
@@ -561,7 +554,7 @@ theorem star_mem_ipow {𝔡 : Ideal (𝓞 K)} (h : 𝔡 ≠ ⊥) (hs : ∀ x ∈
     intro t ht
     rw [FractionalIdeal.mem_one_iff] at ht ⊢
     obtain ⟨x, rfl⟩ := ht
-    have := star_mem_one (K := K) (Submodule.mem_one.2 ⟨x, rfl⟩)
+    have := _root_.GlobalTheory.UnimodQuot.star_mem_one (K := K) (Submodule.mem_one.2 ⟨x, rfl⟩)
     exact Submodule.mem_one.1 this
   obtain ⟨m, rfl | rfl⟩ := Int.eq_nat_or_neg n
   · rw [zpow_natCast] at ht ⊢
@@ -1153,7 +1146,7 @@ theorem invVol_mid_layer_le : ∀ (K V : Type) [Field K] [NumberField K] [StarRi
       rw [AddSubgroup.inf_relIndex_right]; exact hfr.1 a ha
     have hpg := relIndex_prodGrp_le (W := N.Wt) (k := Module.finrank K N.Wt) (A := N.aa a)
       (C := C' a ⊓ (N.aa a).toAddSubgroup) (L := flagPairDefinitePartLattice N.F N.F' Λ ⊓ rs (𝓞 K) N.Wt)
-      (M := Λ ⊓ rs (𝓞 K) N.Wt) le_rfl (ipow_fg N.𝔡 _) inf_le_right hCA hM_FG
+      (M := Λ ⊓ rs (𝓞 K) N.Wt) le_rfl (_root_.GlobalTheory.DegCnt.InnerLat.ipow_fg N.𝔡 _) inf_le_right hCA hM_FG
       (fun x hx => (Submodule.mem_inf.1 hx).2) hML hm.1
     rw [AddSubgroup.inf_relIndex_right] at hpg
     have hQ1 : prodGrp (C' a ⊓ (N.aa a).toAddSubgroup) (Λ ⊓ rs (𝓞 K) N.Wt).toAddSubgroup ≤ (Q a).comap φ := by

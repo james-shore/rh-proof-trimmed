@@ -150,14 +150,6 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     [CommRing O] [Algebra O LL] [TopologicalSpace LL] {v : AddValuation LL (WithTop ℚ)} {n : ℕ}
     (W : LocWach PD LL O v n) (T : LocLat G Qp LL O)
 
-theorem φD_smulA (a : LetA O n) (x : W.DD T) : W.φD T (a • x) = W.φA a • W.φD T x := by
-  have := W.φD_smul T (algebraMap (LetA O n) W.EE a) x
-  rwa [algebraMap_smul, W.φE_ext, algebraMap_smul] at this
-
-theorem γD_smulA (g : W.Gam) (a : LetA O n) (x : W.DD T) : W.γD T g (a • x) = W.γA g a • W.γD T g x := by
-  have := W.γD_smul T g (algebraMap (LetA O n) W.EE a) x
-  rwa [algebraMap_smul, W.γE_ext, algebraMap_smul] at this
-
 theorem φpull_eq {β : W.DD T} (hN : W.N T = Submodule.span (LetA O n) {β}) :
     W.φpull T = Submodule.span (LetA O n) {W.φD T β} := by
   apply le_antisymm
@@ -165,7 +157,7 @@ theorem φpull_eq {β : W.DD T} (hN : W.N T = Submodule.span (LetA O n) {β}) :
     rintro _ ⟨x, hx, rfl⟩
     rw [SetLike.mem_coe, hN, Submodule.mem_span_singleton] at hx
     obtain ⟨a, rfl⟩ := hx
-    rw [φD_smulA]
+    rw [_root_.GlobalTheory.WachTie.MatF.φD_smulA]
     exact Submodule.smul_mem _ _ (Submodule.mem_span_singleton_self _)
   · refine Submodule.span_mono ?_
     rintro _ rfl
@@ -202,7 +194,7 @@ theorem exists_frob (hs : W.s = 1) {g : W.Gam} {J : O⟦X⟧ →ₐ[O] O⟦X⟧}
   have e3 : ∀ δ ∈ W.DelF, W.γ₀ δ ((w : O⟦X⟧) ^ k * f i) = (w : O⟦X⟧) ^ k * f i := fun δ hδ => by
     have h3 := congrArg (W.γD T δ) e2
     have h4 : W.γA δ q' = q' := funext fun _ => (h2 _).1 ⟨X, rfl⟩ δ hδ
-    rw [γD_smulA, γD_smulA, ← W.φγ_comm, hβ.2 δ hδ, map_pow, h4, ← e2] at h3
+    rw [_root_.GlobalTheory.WachTie.MatF.γD_smulA, _root_.GlobalTheory.WachTie.MatF.γD_smulA, ← W.φγ_comm, hβ.2 δ hδ, map_pow, h4, ← e2] at h3
     exact congrFun (hi _ _ h3) i
   have e4 : f i * f' i = W.q₀ ^ (k + k') := congrFun e1 i
   have hwf : Associated ((w : O⟦X⟧) ^ k * f i) (f i) := associated_unit_mul_left _ _ (w.isUnit.pow k)
@@ -237,7 +229,7 @@ theorem pow_eq_of_frob [IsNoetherianRing O] {g : W.Gam} {J : O⟦X⟧ →ₐ[O] 
     rw [h3]; exact this
   have e5 : W.γA g W.q ^ k * W.φA (1 + W.π₀ * r) * f = W.q ^ k * W.γA g f * (1 + W.π₀ * r) := hi _ _ (by
     have := congrArg (W.γD T g) hf
-    rw [γD_smulA, γD_smulA, ← W.φγ_comm, e1, φD_smulA, map_pow] at this
+    rw [_root_.GlobalTheory.WachTie.MatF.γD_smulA, _root_.GlobalTheory.WachTie.MatF.γD_smulA, ← W.φγ_comm, e1, _root_.GlobalTheory.WachTie.MatF.φD_smulA, map_pow] at this
     rw [mul_smul, ← hf, mul_assoc (W.q ^ k), mul_smul (W.q ^ k), mul_smul (W.γA g f), ← this, smul_comm,
       mul_smul])
   have e6 : W.γ₀ g W.q₀ ^ k * W.φ₀ (1 + X * r' (i - 1)) * (W.q₀ ^ m * u) =

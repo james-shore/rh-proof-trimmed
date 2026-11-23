@@ -91,9 +91,9 @@ theorem mat_determines : ∀ (Rg : Type) [CommRing Rg] [IsNoetherianRing Rg] (A 
     · rw [Category.assoc, hψB1, key, Category.assoc]
     · rw [Category.assoc, hψB2, Over.w Φ₂, Category.assoc, Over.w Φ₁, hψA2]
 
-  obtain ⟨ψA₁, ψB₁, eA₁, eB₁, g₁⟩ := GlobalTheory.T.isMatrixIdentity_germ_pullback_chart M₁
-  obtain ⟨ψA₂, ψB₂, eA₂, eB₂, g₂⟩ := GlobalTheory.T.isMatrixIdentity_germ_pullback_chart M₂
-  obtain ⟨x, b', hx, hb', hemb⟩ := GlobalTheory.T.embeds_after_baseChange_specTopOpen_of_stable_basis B M k bB hBab hM hva hbc
+  obtain ⟨ψA₁, ψB₁, eA₁, eB₁, g₁⟩ := _root_.GlobalTheory.HomFixMat.isMat_germ M₁
+  obtain ⟨ψA₂, ψB₂, eA₂, eB₂, g₂⟩ := _root_.GlobalTheory.HomFixMat.isMat_germ M₂
+  obtain ⟨x, b', hx, hb', hemb⟩ := _root_.GlobalTheory.HomFixMat.EmbedsBC.embeds_bc B M k bB hBab hM hva hbc
   have hG : ψA ≫ ψA₁ = ψA₂ := topS_tensor_left_ext A _ _ (by rw [Category.assoc, eA₁, eA₂, hψA1])
   let H : (baseAt x ⊗ B).left ⟶ (topS Rg ⊗ B).left := (homAt x ▷ B).left
   have hHi : IsIso (homAt x) := by
@@ -131,7 +131,7 @@ theorem mat_determines : ∀ (Rg : Type) [CommRing Rg] [IsNoetherianRing Rg] (A 
     have w : (fst (baseAt x) B).left ≫ (baseAt x).hom = (snd (baseAt x) B).left ≫ B.hom :=
       pullback.condition
     rw [w, hsx]; simp only [Category.assoc]
-  refine GlobalTheory.T.eq_of_proportional_germs_sectionsEmbedProjectively (fst (baseAt x) B).left b' hemb _ _ ?_ ?_
+  refine _root_.GlobalTheory.HomFixGerm.eq_of_germs (fst (baseAt x) B).left b' hemb _ _ ?_ ?_
   · rw [← cancel_mono (baseAt x).hom]
     simp only [Category.assoc]
     rw [hπ, hπ]

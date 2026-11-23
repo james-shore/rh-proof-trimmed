@@ -35,6 +35,7 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RamifiedSumsFifthEstimate
 
 @[expose] public section
 
@@ -86,8 +87,8 @@ theorem desHLeaf_alt : _root_.GlobalTheory.BigTop.Fun.DescentHeightCondition := 
   refine ⟨⟨(Fm.D x i).R.two_le_m, (Fm.D x i).R.m_add_three_le_k, by exact_mod_cast hm4,
     (Fm.D x i).R.f_le_k⟩, ?_⟩
   show (FunData.Lc d.O : ℝ) ≤ (Fm.L x i).sc.b
-  exact (lcLeOfCloud d.O (Fm.L x i).Sc (Fm.L x i).Sc_pos.le
-    (fun τ j => cloudIcc (Fm.L x i) τ j)).trans (scLeB (Fm.params x hx i))
+  exact (_root_.GlobalTheory.BigTop.Fun.Lc_le_of_cloud_le d.O (Fm.L x i).Sc (Fm.L x i).Sc_pos.le
+    (fun τ j => _root_.GlobalTheory.BigTop.Fun.cloud_mem_Icc_Sc (Fm.L x i) τ j)).trans (_root_.GlobalTheory.BigTop.Fun.Sc_le_scale_b (Fm.params x hx i))
 end GlobalTheory.BigTop.Fun.Close
 end
 end

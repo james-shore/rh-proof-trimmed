@@ -429,9 +429,6 @@ theorem prime_of_irr (ϖ : 𝒪[(D.s.atP p).Fp]) (h : Irreducible ϖ) : Prime ϖ
   | exact UniqueFactorizationMonoid.irreducible_iff_prime.1 h
   | exact PrincipalIdealRing.irreducible_iff_prime.1 h
 
-theorem alg_mem_O (a : (D.s.atP p).Fp) (ha : a ∈ 𝒪[(D.s.atP p).Fp]) :
-    algebraMap (D.s.atP p).Fp (D.s.atP p).Ep a ∈ (D.s.atP p).O := algebraMap_mem_O_of_mem_integers p a ha
-
 theorem sq_coords (θ : D.host.E) (tr nm : 𝓞 D.host.F)
     (htr : ((tr : D.host.F) : D.host.E) = θ + D.conjF θ) (hnm : ((nm : D.host.F) : D.host.E) = θ * D.conjF θ)
     (a b : (D.s.atP p).Fp) :
@@ -477,8 +474,8 @@ theorem unramAt : UnramAt p := by
   have hA1 : A = (ϖ : (D.s.atP p).Fp) * (a1 : (D.s.atP p).Fp) := congrArg Subtype.val ha1
   have hB1 : B = (ϖ : (D.s.atP p).Fp) * (b1 : (D.s.atP p).Fp) := congrArg Subtype.val hb1
   refine ⟨⟨algebraMap (D.s.atP p).Fp (D.s.atP p).Ep (a1 : (D.s.atP p).Fp) + algebraMap (D.s.atP p).Fp (D.s.atP p).Ep (b1 : (D.s.atP p).Fp) * (D.s.atP p).ιE θ,
-    Subring.add_mem _ (alg_mem_O p _ a1.2)
-      (Subring.mul_mem _ (alg_mem_O p _ b1.2) (iotaE_mem p θ hθ))⟩, ?_⟩
+    Subring.add_mem _ (_root_.Formalism.L2.SG.Pf.LocUnramP.algebraMap_mem_O_of_mem_integers p _ a1.2)
+      (Subring.mul_mem _ (_root_.Formalism.L2.SG.Pf.LocUnramP.algebraMap_mem_O_of_mem_integers p _ b1.2) (iotaE_mem p θ hθ))⟩, ?_⟩
   change (algebraMap (D.s.atP p).Fp (D.s.atP p).Ep (a1 : (D.s.atP p).Fp) + algebraMap (D.s.atP p).Fp (D.s.atP p).Ep (b1 : (D.s.atP p).Fp) * (D.s.atP p).ιE θ) *
     algebraMap (D.s.atP p).Fp (D.s.atP p).Ep (ϖ : (D.s.atP p).Fp) = x
   rw [hAB, hA1, hB1]

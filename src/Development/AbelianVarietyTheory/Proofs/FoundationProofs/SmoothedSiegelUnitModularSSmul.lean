@@ -92,6 +92,6 @@ theorem sg_S : ∀ (c : ℕ) (x : Fin 2 → ℚ) (τ : ℍ), admitted c x →
     · exact_mod_cast e1.symm
   unfold sg
   rw [h1, h2]
-  exact GlobalTheory.T.smoothedThetaQProduct_modularS_transform c τ z hc hc6 hnot
+  exact _root_.GlobalTheory.Sieg.cth_modular_S c τ z hc hc6 hnot
 
 end GlobalTheory.Sieg

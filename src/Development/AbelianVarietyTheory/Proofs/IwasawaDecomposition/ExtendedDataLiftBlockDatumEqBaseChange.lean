@@ -93,7 +93,7 @@ theorem blockBC_lift : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheo
   have hac := Ha B f T w hE hff hPin hpx Z hX Wt z hG hGA hFine hHL Z' hX' hG' hGA' hVol z' hFine' hExt j j' hj φ hφ e he L hL hC
   have hnb := Hn B f T w hE hff hPin hpx Z hX Wt z hG hGA hFine hHL Z' hX' hG' hGA' hVol z' hFine' hExt j j' hj φ hφ L hL hC
   have hsb := Hs B f T w hE hff hPin hpx Z hX Wt z hG hGA hFine hHL Z' hX' hG' hGA' hVol z' hFine' hExt j j' hj φ hφ L hL hC
-  exact ⟨e, ⟨GlobalTheory.T.forms_of_semilinear_alt φ e _ _ _ _ L hL hli hsp hcs hac hnb hsb, hXg, hP, hψ⟩⟩
+  exact ⟨e, ⟨_root_.GlobalTheory.Mem.R3.DefLatBC.forms_of_semilinear φ e _ _ _ _ L hL hli hsp hcs hac hnb hsb, hXg, hP, hψ⟩⟩
 
 end GlobalTheory.Mem.R3.TwistedPlaceExtensions
 

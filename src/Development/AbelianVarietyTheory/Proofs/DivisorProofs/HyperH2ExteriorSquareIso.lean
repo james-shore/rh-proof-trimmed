@@ -195,7 +195,7 @@ theorem exists_wedge_hyp_equiv : ∀ (R : Type) [CommRing R] (C : Type) [Categor
       have := LinearMap.congr_fun hcomm t
       simp only [LinearMap.coe_comp, Function.comp_apply, LinearEquiv.coe_coe] at this
       rw [this, ht, map_zero, map_zero]
-    obtain ⟨m, a, w, rfl⟩ := GlobalTheory.T.exists_sum_ιMulti_of_exteriorSquare_map_eq_zero R (Glob1 F) (Hyp1 F) (CatCoh.H1 F) (clAll F hc) (toO F) hs hex t h1
+    obtain ⟨m, a, w, rfl⟩ := _root_.GlobalTheory.exteriorSquare_ker_of_surjective R (Glob1 F) (Hyp1 F) (CatCoh.H1 F) (clAll F hc) (toO F) hs hex t h1
     simp only [← ιTwo_apply] at ht ⊢
     have hsum : ∑ k, cupHyp F (a k) (clAll F hc (w k)) = 0 := by
 

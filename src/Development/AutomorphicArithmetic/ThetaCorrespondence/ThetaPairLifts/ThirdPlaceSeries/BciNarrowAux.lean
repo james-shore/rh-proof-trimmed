@@ -77,10 +77,10 @@ theorem aux_of_cgTrue_of_auTrue (hA : AscComp) : DefiniteN → GlobalTheory.Publ
     ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (D : D7) (T : GlobalTheory.RowTie.WDTie D.nd D.naut) (A : _root_.GlobalTheory.HeightCounting.AUSideAlt D),
       _root_.GlobalTheory.HeightCounting.CGTrueT hL D T → _root_.GlobalTheory.HeightCounting.AutomorphicSideRealised hL D T A → SphericalInertData.Conclusion1 D := by
   intro hNT hGU hSC hL D T A hCG hAU
-  obtain ⟨hP, hS, hSat⟩ := _root_.GlobalTheory.T.recProd_recSpeh_recSatake hGU hSC hL D.nd D.naut T
+  obtain ⟨hP, hS, hSat⟩ := _root_.GlobalTheory.FormDict.RecTLaws.transported_reciprocity_prod_and_speh_and_satake hGU hSC hL D.nd D.naut T
   exact _root_.UpperTheory.One.M.Ud.baseChangeDefinite_of_cmDatum_recLaws D (_root_.GlobalTheory.FormDict.recT_alt T hL) hNT
     (discCsd_of hA D.host.E) hP hS hSat
-    (_root_.GlobalTheory.T.cuspReadG_recT_of_cgTrue hL D T hCG) (_root_.GlobalTheory.T.unitary_of_local_langlands' hL D T A hAU)
+    (_root_.UpperTheory.One.M.cusp_read_rec_t hL D T hCG) (_root_.GlobalTheory.T.unitary_of_local_langlands' hL D T A hAU)
 end Closing
 end UpperTheory.BaseChangeIdentities
 end Pr

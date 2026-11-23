@@ -115,12 +115,12 @@ theorem exists_regular (F : Type) [Field F] [Finite F] (θ : AlgebraicClosure F 
   have hr : Module.finrank F (Fin d → F) = d := by simp
   have hg := generalLinearGroupCardComplex_finiteField_ne_zero F d
   have hq : 2 ≤ Nat.card F := Finite.one_lt_card
-  obtain ⟨a, ha, -⟩ := GlobalTheory.T.exists_int_coeff_primitive_GL_character F θ hθ d χ hd h hp
+  obtain ⟨a, ha, -⟩ := _root_.GlobalTheory.CuspGL.exists_int_coeff_of_isPrimitive F θ hθ d χ hd h hp
   have haa := sum_coef_mul_eq_pair F θ hθ d hd χ χ h h hp hp a a ha ha
-  rw [GlobalTheory.T.finiteGroupFunctionPairing_self_irreducible_algClosed ℂ _ χ hi, mul_one] at haa
+  rw [_root_.GlobalTheory.BI.pair_self_of_isIrrChar_algClosed ℂ _ χ hi, mul_one] at haa
   have hinv : ∀ k l i : ℕ, k * Nat.card F ^ i ≡ l [MOD Nat.card F ^ d - 1] → a k = a l := by
     intro k l i hkl
-    have := GlobalTheory.T.innerProduct_rootPowerSum_eq_of_frobenius_modEq F (Fin d → F) θ _ hc hp (by rw [hr]; exact hd) k l i (by rw [hr]; exact hkl)
+    have := _root_.GlobalTheory.CuspGL.ipGL_rootSum_eq_of_modEq F (Fin d → F) θ _ hc hp (by rw [hr]; exact hd) k l i (by rw [hr]; exact hkl)
     rw [ha, ha] at this
     exact_mod_cast mul_right_cancel₀ hg this
   have hdvd : ∀ k s : ℕ, (d : ℤ) ∣ ∑ I ∈ (Finset.range d).powersetCard s, a (k * ∑ i ∈ I, Nat.card F ^ i) := by
@@ -155,7 +155,7 @@ theorem exists_regular (F : Type) [Field F] [Finite F] (θ : AlgebraicClosure F 
   obtain ⟨k, hk0, hk⟩ := GlobalTheory.T.exists_regular_exponent_of_sum_sq_eq' _ d a hq hd hinv (by simp only [sq]; exact_mod_cast haa)
     (GlobalTheory.T.dvd_of_period_of_dvd_sum_powersetCard' _ d a hq hd hinv hdvd)
   refine ⟨k, hk, ?_⟩
-  obtain ⟨h', hn⟩ := GlobalTheory.T.isCharacter_cuspidal_rootSum_regular F θ hθ d k hd hk
+  obtain ⟨h', hn⟩ := _root_.GlobalTheory.CuspGL.isChar_psi_rootSum_of_regular F θ hθ d k hd hk
   have hv' := AddSubgroup.subset_closure (k := {χ | IsChar ℂ ℂ χ}) h'
   have hsq : ((-1 : ℂ) ^ (d - 1)) * (-1) ^ (d - 1) = 1 := by rw [← mul_pow]; simp
   have hi' := ((GlobalTheory.T.irreducible_of_virtualCharacter_norm_one _ _ hv' (by

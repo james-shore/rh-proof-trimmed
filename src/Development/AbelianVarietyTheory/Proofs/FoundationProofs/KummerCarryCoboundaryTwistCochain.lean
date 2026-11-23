@@ -75,8 +75,8 @@ theorem twist_cochain : ∀ (K Ω : Type) [Field K] [Field Ω] [Algebra K Ω] [A
     rintro rfl
     rw [zero_pow hN.ne'] at hβ
     exact hb ((algebraMap K Ω).injective (by rw [← hβ, map_zero]))
-  obtain ⟨-, hgα, -, -⟩ := GlobalTheory.T.kummerExponentOfGaloisElement_isKummerCharacter K Ω N ζ α hN hζ hζfix hα0 ⟨a, hα.symm⟩
-  obtain ⟨hylc, -, -, -⟩ := GlobalTheory.T.kummerExponentOfGaloisElement_isKummerCharacter K Ω N ζ β hN hζ hζfix hβ0 ⟨b, hβ.symm⟩
+  obtain ⟨-, hgα, -, -⟩ := _root_.GlobalTheory.NeedB.KumLemma.kummer_character_main K Ω N ζ α hN hζ hζfix hα0 ⟨a, hα.symm⟩
+  obtain ⟨hylc, -, -, -⟩ := _root_.GlobalTheory.NeedB.KumLemma.kummer_character_main K Ω N ζ β hN hζ hζfix hβ0 ⟨b, hβ.symm⟩
   refine ⟨fun g => Units.mk0 α hα0 ^ (kum (N := N) ζ β g).val * (w g)⁻¹, ?_, ?_⟩
   · exact IsLocallyConstant.comp₂ hylc hw (fun (i : ZMod N) (u : Ωˣ) => Units.mk0 α hα0 ^ i.val * u⁻¹)
   · intro g h

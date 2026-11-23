@@ -44,4 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem tiltSurjectiveOfParts : PI.ArtSch.TiltGlue := PI.ArtSch.Glue.tiltGlue

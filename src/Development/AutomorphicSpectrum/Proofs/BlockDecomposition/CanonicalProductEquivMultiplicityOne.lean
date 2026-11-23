@@ -151,15 +151,10 @@ theorem sum_get_fst (W : List (IrrGL (k := k))) : ∑ a : Fin W.length, (W.get a
   congr 1
   exact List.ext_get (by simp) (by simp)
 
-theorem sum_decWord (Δ : Segment k) : ((decWord Δ).map Sigma.fst).sum = Δ.deg := by
-  unfold decWord
-  rw [List.map_reverse, List.sum_reverse, List.map_ofFn, List.sum_ofFn]
-  exact Δ.sum_term_fst
-
 theorem sum_flat {h : ℕ} (Γ : Fin h → Segment k) (y : Fin h → IrrGL (k := k)) (hL : ∀ i, IsLSeg (Γ i) (y i).rep) :
     ∑ a, (((List.ofFn fun i => decWord (Γ i)).flatten).get a).1 = ∑ i, (y i).1 := by
   rw [sum_get_fst, List.map_flatten, List.sum_flatten, List.map_ofFn, List.map_ofFn, List.sum_ofFn]
-  exact Finset.sum_congr rfl fun i _ => (sum_decWord (Γ i)).trans (hL i).deg_eq
+  exact Finset.sum_congr rfl fun i _ => (_root_.GlobalTheory.CompanionTheory.FineProd.deg_decWord (Γ i)).trans (hL i).deg_eq
 
 theorem cusp_flat {h : ℕ} (Γ : Fin h → Segment k) : ∀ w ∈ (List.ofFn fun i => decWord (Γ i)).flatten, w.IsCusp := by
   intro w hw

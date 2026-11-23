@@ -118,35 +118,4 @@ theorem le_of_forall_le_exp {a b : ℤᵐ⁰} (hb : b ≤ 1)
 theorem eq_zero_of_forall_le_exp {a : ℤᵐ⁰} (h : ∀ n : ℕ, a ≤ exp (-(n : ℤ))) : a = 0 :=
   le_antisymm (le_of_forall_le_exp zero_le' fun n _ => h n) zero_le'
 
-theorem continuous_of_valued_eq {A B Γ : Type*} [Ring A] [Ring B] [LinearOrderedCommGroupWithZero Γ]
-    [Valued A Γ] [Valued B Γ] (hs : Function.Surjective (Valued.v : A → Γ)) (f : A →+* B)
-    (hf : ∀ x, Valued.v (f x) = Valued.v x) : Continuous f := by
-  refine continuous_of_continuousAt_zero f ?_
-  rw [ContinuousAt, map_zero, (Valued.hasBasis_nhds_zero A _).tendsto_iff (Valued.hasBasis_nhds_zero B _)]
-  intro γ _
-  obtain ⟨a, ha⟩ := hs (MonoidWithZeroHom.ValueGroup₀.embedding γ.1)
-  have ha0 : (Valued.v : Valuation A Γ).restrict a ≠ 0 := by
-    simp [ha]
-  refine ⟨Units.mk0 _ ha0, trivial, fun x hx => ?_⟩
-  simp only [Set.mem_setOf_eq, Units.val_mk0, Valuation.restrict_lt_iff] at hx
-  simp only [Set.mem_setOf_eq, Valuation.restrict_lt_iff_lt_embedding]
-  rw [hf, ← ha]
-  exact hx
-
-
-open scoped WithZeroTopology in
-theorem exists_extension {K : Type} [Field K] [NumberField K] {R L : Type} [CommRing R] [IsDedekindDomain R]
-    [Field L] [Algebra R L] [IsFractionRing R L]
-    (w : HeightOneSpectrum (𝓞 K)) (u : HeightOneSpectrum R) (f : K →+* u.adicCompletion L)
-    (hf : ∀ x, Valued.v (f x) = w.valuation K x) :
-    ∃ φ : w.adicCompletion K →+* u.adicCompletion L, Continuous φ ∧
-      (∀ x : K, φ (algebraMap K _ x) = f x) ∧ ∀ y, Valued.v (φ y) = Valued.v y := by
-  first
-  | exact @_root_.GlobalTheory.ValuationExtensionContinuous.exists_extension
-  | exact _root_.GlobalTheory.ValuationExtensionContinuous.exists_extension
-  | (apply _root_.GlobalTheory.ValuationExtensionContinuous.exists_extension <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ValuationExtensionContinuous.exists_extension <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ValuationExtensionContinuous.exists_extension <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ValuationExtensionContinuous.exists_extension ..)
-
 end GlobalTheory.DenseCompl

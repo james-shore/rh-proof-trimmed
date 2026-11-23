@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinPartConjMem
 
 @[expose] public section
 
@@ -136,7 +137,7 @@ theorem unipArg_away {θ : InfFam D} {τ : D.what₂.Tau} (hθ : IsInfFam θ) (V
       have := congrFun (congrFun h.2 j) i
       simp only [Matrix.map_apply] at this ⊢
       simp only [adj, Matrix.transpose_apply, Matrix.map_apply]
-      rw [finPart_cA, finPart_cA, this]
+      rw [_root_.GlobalTheory.MovedIdem.finPart_cA, _root_.GlobalTheory.MovedIdem.finPart_cA, this]
     simp only [GlobalTheory.StdUnn.inner]
     rw [Matrix.map_mul, Matrix.map_mul, Matrix.map_mul, Matrix.map_mul, hadj, h.2]
   congr 1

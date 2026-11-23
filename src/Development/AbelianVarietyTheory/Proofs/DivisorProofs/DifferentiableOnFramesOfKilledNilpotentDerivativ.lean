@@ -164,8 +164,7 @@ theorem projU_apply (p : ℕ) (W : Frame Ψ r) (τ : Ψ) (a b : Fin r) : projU �
     if b < a then W τ a b else
       if a < b then -((sgn p a : ℝ) : ℂ) * ((sgn p b : ℝ) : ℂ) * (starRingEnd ℂ) (W τ b a) else 0 := rfl
 
-theorem sgn_mul_self (p a : ℕ) : ((sgn p a : ℝ) : ℂ) * ((sgn p a : ℝ) : ℂ) = 1 := by
-  unfold sgn; split_ifs <;> simp
+alias sgn_mul_self := _root_.GlobalTheory.FlagGS.sgn_mul_self
 
 theorem projU_mem [NumberField E] [IsCMField E] (X : Data E r) (W : Frame X.Ψ r) :
     projU X.Ψ r X.p0 W ∈ unitLie X := by

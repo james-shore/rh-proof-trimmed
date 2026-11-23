@@ -105,7 +105,7 @@ theorem pet_lin_left (hN : 0 < N) (hl : 0 < l) (f g h : CuspForm (GlobalTheory.H
 theorem eq_zero_of_pet_self (hN : 0 < N) (hl : 0 < l) (f : CuspForm (GlobalTheory.Hk.lev N l) k)
     (h : P ⇑f ⇑f = 0) : f = 0 := by
   by_contra hf
-  have := (GlobalTheory.T.peterssonCosetIntegralSum_self_pos_gamma1InterGamma0 N l k hN hl f hf).1
+  have := (_root_.GlobalTheory.Hk.pet_self_pos N l k hN hl f hf).1
   rw [h] at this
   simp at this
 

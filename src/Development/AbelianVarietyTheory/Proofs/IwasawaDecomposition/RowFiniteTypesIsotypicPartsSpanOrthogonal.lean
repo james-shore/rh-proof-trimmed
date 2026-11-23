@@ -357,9 +357,9 @@ theorem isotL_span_orth : ∀ (D : D7) (V : HSp D) (S : D.what₂.Tau → SPar) 
       intro v
       funext g
       exact principalLevelFrame.mult_lev hTm.1 v k.1 k.2 g
-  have hspan := GlobalTheory.T.smooth_admissible_unitary_mem_sup_isotypic_parts D D.R.r (MMap M) (principalLevelFrame.actM P M) (principalLevelFrame.Minf θ P M) (ipM M μ 𝓕) hsesq hherm hpos hstab hinv
+  have hspan := _root_.GlobalTheory.SpanIsot.span_isotIn D D.R.r (MMap M) (principalLevelFrame.actM P M) (principalLevelFrame.Minf θ P M) (ipM M μ 𝓕) hsesq hherm hpos hstab hinv
     hadm hsm T hTC
-  have hdec := GlobalTheory.T.kernel_vector_sum_of_isotypic_pieces D D.R.r (MMap M) (principalLevelFrame.actM P M) (principalLevelFrame.Minf θ P M) (ipM M μ 𝓕) hsesq hherm hpos horth
+  have hdec := _root_.GlobalTheory.decomp_kernels_isotIn D D.R.r (MMap M) (principalLevelFrame.actM P M) (principalLevelFrame.Minf θ P M) (ipM M μ 𝓕) hsesq hherm hpos horth
     (Option (levS V β L)) O hpres T hspan hTO
   have hle : (⨆ π : Formalism.L2.NG.FinTyp D.host.E D.R.r,
       (principalLevelFrame.isotIn (principalLevelFrame.actM P M) (principalLevelFrame.Minf θ P M) π ⊓ ⨅ i, LinearMap.ker (O i))) ≤

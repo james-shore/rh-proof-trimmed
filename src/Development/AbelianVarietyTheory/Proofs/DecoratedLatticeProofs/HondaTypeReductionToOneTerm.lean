@@ -60,11 +60,6 @@ theorem coeff_frobOp (τ : K →+* K) {q : ℕ} (hq : q ≠ 0) (i : ℕ) (f : K�
 theorem pow_apply_pow (τ : K →+* K) (i k : ℕ) (x : K) : (τ ^ i) ((τ ^ k) x) = (τ ^ (i + k)) x := by
   rw [pow_add]; rfl
 
-theorem norm_pow_apply (τ : K →+* K) (hτ : ∀ x, ‖τ x‖ = ‖x‖) (i : ℕ) (x : K) : ‖(τ ^ i) x‖ = ‖x‖ := by
-  induction i generalizing x with
-  | zero => rfl
-  | succ i ih => rw [← pow_apply_pow, ih, pow_one, hτ]
-
 theorem coeff_frobOp_eq_zero (τ : K →+* K) {q : ℕ} (hq : 2 ≤ q) {f : K⟦X⟧} (hf : constantCoeff f = 0)
     {k n : ℕ} (h : n ≤ k) : coeff n (frobOp τ q k f) = 0 := by
   rw [coeff_frobOp τ (by omega)]
@@ -167,7 +162,7 @@ theorem exists_one_term : ∀ (K : Type) [NormedField K] [IsUltrametricDist K] [
     refine le_trans (mul_le_of_le_one_left (norm_nonneg _) (ht1 i)) ?_
     rw [coeff_frobOp τ (by omega)]
     split_ifs
-    · rw [norm_pow_apply τ hτ]; exact hg _
+    · rw [_root_.GlobalTheory.Honda.TwistedDivision.norm_pow_apply τ hτ]; exact hg _
     · simp
 
 end GlobalTheory.Honda.OneTerm

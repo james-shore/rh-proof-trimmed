@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.LogSupSumLeOfNonvanishingDetLimit
 
 @[expose] public section
 
@@ -54,14 +55,7 @@ section Val
 
 variable {K : Type} [Field K] [NumberField K] (w : HeightOneSpectrum (𝓞 K))
 
-theorem vAdd_mul_of_ne {x y : K} (hx : x ≠ 0) (hy : y ≠ 0) : vAdd w (x * y) = vAdd w x + vAdd w y := by
-  unfold vAdd
-  rw [map_mul, WithZero.log_mul ((Valuation.ne_zero_iff _).2 hx) ((Valuation.ne_zero_iff _).2 hy), neg_add]
-
-theorem vAdd_pow_eq (x : K) (n : ℕ) : vAdd w (x ^ n) = n * vAdd w x := by
-  unfold vAdd
-  rw [map_pow, WithZero.log_pow]
-  simp
+alias vAdd_mul_of_ne := _root_.Formalism.BasicNotions.Examples₂.PlacesToy.vAdd_mul
 
 theorem vAdd_prod_of_ne {ι : Type} (s : Finset ι) (f : ι → K) (h : ∀ i, f i ≠ 0) :
     vAdd w (∏ i ∈ s, f i) = ∑ i ∈ s, vAdd w (f i) := by
@@ -153,7 +147,7 @@ theorem vG_loss_le {D : D7} (L : SizeData₂ D) (EX : ErrX D) (hPr : (recPrimes 
         Int.toNat_of_nonneg (sum_nuW_nonneg (Pr := recPrimes EX) (recWts EX) u hj' τ)]
     rw [e, vAdd_mul_of_ne _ (pow_ne_zero _ hg0) (Finset.prod_ne_zero_iff.2 fun τ _ => pow_ne_zero _ (hπ τ)),
       vAdd_prod_of_ne _ _ _ fun τ => pow_ne_zero _ (hπ τ)]
-    simp only [vAdd_pow_eq, hvg]
+    simp only [_root_.Formalism.MainNotions.Gaps.SizeBoundsAlt.vAdd_pow', hvg]
     push_cast
     simp only [h3]
     rw [add_div, mul_div_assoc, div_self he.ne', mul_one, vNN]

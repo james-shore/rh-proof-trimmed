@@ -148,26 +148,6 @@ def datum : (pullExt f E).GtDatum ((Over.pullback f).obj G) where
 
 end Datum
 
-private lemma res_res_lemma {X : Scheme.{0}} {U V W : X.Opens} (h : V ≤ U) (h' : W ≤ V)
-    (u : Γ(X, U)ˣ) : res h' (res h u) = res (h'.trans h) u := by
-  ext
-  exact (res_val_res (h'.trans h) h h' u).symm
-
-private lemma gen_div_self_lemma_2 {X : Scheme.{0}} (M : LB X) (hM : M.IsLB) :
-    ∃ t : LB.Gen (LB.div M M), t.IsGen := by
-  refine ⟨⟨fun p => M.g p.1 p.2⟩, ?_⟩
-  rintro ⟨a, b⟩ ⟨c, d⟩
-  try dsimp only [LB.div]
-  have e1 := congrArg (res (show M.U a ⊓ M.U b ⊓ (M.U c ⊓ M.U d) ≤ M.U a ⊓ M.U c ⊓ M.U d from
-    le_inf (le_inf (inf_le_left.trans inf_le_left) (inf_le_right.trans inf_le_left))
-      (inf_le_right.trans inf_le_right))) (hM.cocycle a c d)
-  have e2 := congrArg (res (show M.U a ⊓ M.U b ⊓ (M.U c ⊓ M.U d) ≤ M.U a ⊓ M.U b ⊓ M.U d from
-    le_inf inf_le_left (inf_le_right.trans inf_le_right))) (hM.cocycle a b d)
-  simp only [map_mul, res_res_lemma] at e1 e2
-  have e3 := eq_mul_inv_of_mul_eq e2
-  rw [← e1] at e3
-  exact e3.trans (mul_right_comm _ _ _)
-
 theorem gtBaseChange : GtBaseChangeSt := by
   intro S S' f E G _ hG
   obtain ⟨d⟩ := hG
@@ -179,6 +159,6 @@ theorem gtBaseChange : GtBaseChangeSt := by
   · show ∃ w : LB.Iso ((E.O χ).L.pull (𝟙 (pullback E.B.hom f) ≫ pullback.fst E.B.hom f))
         ((E.O χ).L.pull (mB f E).F), w.IsGen
     rw [mB_F, Category.id_comp]
-    exact gen_div_self_lemma_2 _ (LB.isLB_pull (E.O χ).isLB _)
+    exact _root_.ReciprocityTheory.ChartRestriction.G.Pdiv.PullbackComparison.gen_refl _ (LB.isLB_pull (E.O χ).isLB _)
 
 end ReciprocityTheory.ChartRestriction.G.Out.GtBCPf

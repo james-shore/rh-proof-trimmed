@@ -66,13 +66,13 @@ namespace GlobalTheory
 theorem diag_abstract_collisions_once :
     ∀ (τ Rw I H H₁ : Type) [Fintype I] [NormedAddCommGroup H] [InnerProductSpace ℂ H] [NormedAddCommGroup H₁] [InnerProductSpace ℂ H₁] [CompleteSpace H₁] (X : Formalism.FourierDecayAlt.PB.Terms τ Rw I H H₁) (one : H) (Pg B A₁ A₂ : ℝ), 0 ≤ Pg → X.AbsConv → X.NormExpansionOn X.genSet → X.NormExpansionOn X.ngSet → X.GGBound Pg → X.RowOrth → X.CorankPos → Formalism.L2.SG.RowsOther.IdOne X one → X.pairAbs (X.big X.nzSet) ≤ B → X.pairSum (X.one X.genSet) ≤ A₁ → X.pairSum (X.one X.ngSet) ≤ A₂ → ‖X.K0 - one‖ ^ 2 ≤ 2 * Pg * (B + A₁ + A₂) := by
   intro τ Rw I H H₁ _ _ _ _ _ _ X one Pg B A₁ A₂ hPg hA hNg hNn hG hO hC hI hB h1 h2
-  have hE := Formalism.FourierDecayAlt.P.equal_index
-  have hF := Formalism.FourierDecayAlt.P.subfamilyAlt τ Rw I H H₁ X hA
-  obtain ⟨_, _, hng⟩ := Formalism.FourierDecayAlt.P.pair_split_alt τ Rw I H H₁ X hA hO hC
+  have hE := _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_EqualIota
+  have hF := _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_SubFamily τ Rw I H H₁ X hA
+  obtain ⟨_, _, hng⟩ := _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_PairSplit τ Rw I H H₁ X hA hO hC
 
   have hgen : X.PhiEq X.genSet = X.pairSum (X.big X.genSet) + X.pairSum (X.one X.genSet) := by
     let Y : Formalism.FourierDecayAlt.PB.Terms τ Rw I H H₁ := { X with scal := fun _ _ => True }
-    obtain ⟨_, hg, _⟩ := Formalism.FourierDecayAlt.P.pair_split_alt τ Rw I H H₁ Y hA hO hC
+    obtain ⟨_, hg, _⟩ := _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_PairSplit τ Rw I H H₁ Y hA hO hC
     have e1 : Y.nsc Y.genSet = ∅ := by
       ext p; simp [Y, Formalism.FourierDecayAlt.PB.Terms.nsc]
     have e2 : Y.sc Y.genSet = X.one X.genSet := by
@@ -108,11 +108,11 @@ theorem diag_abstract_collisions_once :
   have bn : X.pairSum (X.big X.ngSet) ≤ X.pairAbs (X.big X.ngSet) :=
     (le_abs_self _).trans (hF _ _ le_rfl).2
   have g1 : ‖X.part X.genSet‖ ^ 2 ≤ Pg * (X.pairAbs (X.big X.genSet) + A₁) := by
-    have := Formalism.FourierDecayAlt.P.price_of_index hE τ Rw I H H₁ X Pg X.genSet hNg hG
+    have := _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_PriceOfIota hE τ Rw I H H₁ X Pg X.genSet hNg hG
     refine this.trans (mul_le_mul_of_nonneg_left ?_ hPg)
     rw [hgen]; linarith
   have g2 : ‖X.part X.ngSet‖ ^ 2 ≤ Pg * (X.pairAbs (X.big X.ngSet) + A₂) := by
-    have := Formalism.FourierDecayAlt.P.price_of_index hE τ Rw I H H₁ X Pg X.ngSet hNn hG
+    have := _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_PriceOfIota hE τ Rw I H H₁ X Pg X.ngSet hNn hG
     refine this.trans (mul_le_mul_of_nonneg_left ?_ hPg)
     rw [hng]; linarith
   have hK : X.K0 - one = X.part X.genSet + X.part X.ngSet := by

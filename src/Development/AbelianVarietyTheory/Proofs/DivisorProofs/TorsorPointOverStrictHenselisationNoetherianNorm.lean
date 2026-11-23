@@ -79,11 +79,11 @@ theorem torsor_point_of_essFiniteType : ∀ (T O : Type) [CommRing T] [IsDomain 
     ψA hψA DA _ _ actA htor
   obtain ⟨A', _, _, _, _, _, _, EA', _, _, _, _, _, QA', _, hQ', hq', ρ', hρ1, hρ2, jA', ψA', hψ', DA', _, _,
     actA', htor', hgood', β, h, hβ1, hβ2⟩ :=
-    GlobalTheory.T.strictHenselisation_enlarge_good_at_origin T O hT P φ hφ hsh hP q hq0 hqT A i hi hil hqA EA QA hQA jA hjA ψA hψA DA actA htor
-  have hce := GlobalTheory.T.integralClosure_finiteEtale_originKeyLemma_essFiniteType A' EA' QA' hQ' ρ' hρ1 hρ2 q hq0 hq' DA' actA' htor' hgood'
+    _root_.GlobalTheory.KeyOriginEnlarge.enlarge_good T O hT P φ hφ hsh hP q hq0 hqT A i hi hil hqA EA QA hQA jA hjA ψA hψA DA actA htor
+  have hce := _root_.GlobalTheory.GoodEtale.closure_finiteEtale A' EA' QA' hQ' ρ' hρ1 hρ2 q hq0 hq' DA' actA' htor' hgood'
   haveI : HenselianLocalRing O := hsh.1
   haveI : IsSepClosed (ResidueField O) := hsh.2.1
-  obtain ⟨σ', hσ'⟩ := GlobalTheory.T.exists_point_closureFiniteEtale_strictHenselian A' (Localization.AtPrime QA') O (GlobalTheory.LocAcyc.GenFib T O) jA'
+  obtain ⟨σ', hσ'⟩ := _root_.GlobalTheory.KeyOriginNoeth.exists_point_of_closureFiniteEtale A' (Localization.AtPrime QA') O (GlobalTheory.LocAcyc.GenFib T O) jA'
     (algebraMap O (GlobalTheory.LocAcyc.GenFib T O)) ψA' hψ' DA' htor'.1 hce
   refine ⟨σ'.comp h, ?_⟩
   rw [RingHom.comp_assoc, hβ2, ← RingHom.comp_assoc, hσ', hβ1]

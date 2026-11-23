@@ -66,12 +66,6 @@ namespace GlobalTheory.UnitLemma.DescentGL
 
 open GlobalTheory.UnitLemma
 
-theorem stab_smul_comm {G X : Type} [CommGroup G] [MulAction G X] (t : G) (x : X) :
-    MulAction.stabilizer G (t • x) = MulAction.stabilizer G x := by
-  ext h
-  simp only [MulAction.mem_stabilizer_iff]
-  rw [smul_smul, mul_comm, ← smul_smul, smul_left_cancel_iff]
-
 theorem countGL_prod : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [Finite (IsLocalRing.ResidueField O)] (E : Type) [Field E] [Algebra O E] [IsFractionRing O E] [IsAdicComplete (IsLocalRing.maximalIdeal O) O] (A₁ A₂ : Type) [CommRing A₁] [CommRing A₂] [Algebra E A₁] [Algebra E A₂] [Algebra O A₁] [Algebra O A₂] [IsScalarTower O E A₁] [IsScalarTower O E A₂] [Module.Finite E A₁] [Module.Finite E A₂] (g₁ : A₁) (g₂ : A₂), ((LinearMap.mulLeft E g₁).charpoly * (LinearMap.mulLeft E g₂).charpoly).Separable → countGL O E ((g₁, g₂) : A₁ × A₂) = (Nat.card (IsLocalRing.ResidueField O) : ℚ) ^ val O (resultant (LinearMap.mulLeft E g₁).charpoly (LinearMap.mulLeft E g₂).charpoly) * (countGL O E g₁ * countGL O E g₂) := by
   intro O _ _ _ _ E _ _ _ _ A₁ A₂ _ _ _ _ _ _ _ _ _ _ g₁ g₂ hsep
   have hs₁ := hsep.of_mul_left
@@ -111,7 +105,7 @@ theorem countGL_prod : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValua
     rw [hfib, (GlobalTheory.T.stabilizer_stableLatticePair_relIndex_integralUnits O E A₁ A₂ g₁ g₂ _ (GlobalTheory.T.stabilizer_stableLattice_le_integralUnitsSubgroup O E A₁ g₁ _) (GlobalTheory.T.stabilizer_stableLattice_le_integralUnitsSubgroup O E A₂ g₂ _)).2, Nat.cast_mul]
   have hs := hsum (fun y => ((MulAction.stabilizer A₁ˣ y).relIndex (intUnits O A₁) : ℚ))
     (fun y => ((MulAction.stabilizer A₂ˣ y).relIndex (intUnits O A₂) : ℚ))
-    (fun t y => by simp only [stab_smul_comm]) (fun t y => by simp only [stab_smul_comm])
+    (fun t y => by simp only [_root_.GlobalTheory.OrbitCounting.stabilizer_smul_eq]) (fun t y => by simp only [_root_.GlobalTheory.OrbitCounting.stabilizer_smul_eq])
   rw [finsum_congr hterm, ← mul_finsum, hs]
 
 end GlobalTheory.UnitLemma.DescentGL

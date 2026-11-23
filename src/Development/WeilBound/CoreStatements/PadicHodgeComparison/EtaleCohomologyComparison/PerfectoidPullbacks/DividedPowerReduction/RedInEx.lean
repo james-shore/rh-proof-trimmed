@@ -53,11 +53,6 @@ open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris Divided
 
 namespace CrystallineSemistableComparison.Pb
 
-theorem redIn_ex : ∀ {l : ℕ} [Fact l.Prime] {K : IntermediateField ℚ_[l] (PadicAlgCl l)} {A : Type} [CommRing A] [Algebra (OK l K) A]
-    {I : Ideal A} (γ : DividedPowers I) (s : ℕ) (lam : Acris l →+* A), TFBase γ l s →
-    lam (algebraMap (Ainf l) (Acris l) (xi0 l)) ∈ I →
-    (∀ (a : OK l K) (w : Ainf l), theta0 l w = okToOC l K a → algebraMap (OK l K) A a - lam (algebraMap (Ainf l) (Acris l) w) ∈ I) →
-    ∀ n : ℕ, ∃ d : RedIn (B.DD false (PAlg.base l) n) (B.κb (okToOC l K) false n) γ l n,
-      ∀ c, d.ρ ((PAlg.base l).cris n c) = Ideal.Quotient.mk _ (lam c) := @GlobalTheory.CompanionTheory.RedInEx.redIn_ex
+alias redIn_ex := _root_.GlobalTheory.CompanionTheory.RedInEx.redIn_ex
 
 end CrystallineSemistableComparison.Pb

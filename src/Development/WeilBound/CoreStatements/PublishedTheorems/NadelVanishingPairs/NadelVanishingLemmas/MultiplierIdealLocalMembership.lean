@@ -76,8 +76,7 @@ variable {Y : Scheme.{0}} [IsIntegral Y] [IsLocallyNoetherian Y]
 noncomputable def multHom (z : Y) : CartierDiv Y →+ ℤ :=
   AddMonoidHom.mk' (fun D => D.mult z) (fun D E => CartierDiv.mult_add D E z)
 
-theorem mult_neg' (D : CartierDiv Y) (z : Y) : (-D).mult z = -D.mult z :=
-  map_neg (multHom z) D
+alias mult_neg' := _root_.GlobalTheory.Cartier.MultEff.mult_neg
 
 theorem mult_sub' (D E : CartierDiv Y) (z : Y) : (D - E).mult z = D.mult z - E.mult z :=
   map_sub (multHom z) D E
@@ -126,7 +125,7 @@ theorem GlobalTheory.Discrepancy.inMultAt_iff_regularAt_logRes : ∀ (k : Type) 
         rw [← GlobalTheory.T.ord_functionField_pullback_primeDivisor_over k X Y p s hres.bir E' E hO u, hE'.ord_eq]
       have hgy : (pullCart s G).IsEqn y (fnPull s g) := isEqn_pullCart s (by rw [hy]; exact hg)
       obtain ⟨V, hV, hgV⟩ := hgy.exists_nhds
-      have h3 := GlobalTheory.T.discrepancy_formula_divisor k Y (s ≫ p) n η' hη' K (pullCart s G) m hm hres.div E' z
+      have h3 := _root_.GlobalTheory.Discrepancy.discrep_isAt_eq_neg_mult k Y (s ≫ p) n η' hη' K (pullCart s G) m hm hres.div E' z
         (fnPull s g) hE' (hgV z (hz.mem_open V.isOpen hV))
       rw [hdisc E' E hO g, ← hΓ] at h3
       rw [h2, h3] at h1
@@ -159,10 +158,10 @@ theorem GlobalTheory.Discrepancy.inMultAt_iff_regularAt_logRes : ∀ (k : Type) 
       rw [e, mult_sub', mult_nsmul', hF w, Int.emod_def]
     have hsupp : (G' - m • K).supp ≤ B := by
       intro w hw
-      obtain ⟨z, hzw, hz0⟩ := ((GlobalTheory.T.cartier_divisor_mult_characterize Y (G' - m • K)).2.1 w).1 hw
-      refine hres.supp (((GlobalTheory.T.cartier_divisor_mult_characterize Y Γ).2.1 w).2 ⟨z, hzw, fun h0 => hz0 ?_⟩)
+      obtain ⟨z, hzw, hz0⟩ := ((_root_.GlobalTheory.Cartier.MultEff.eff_supp_eq_of_mult Y (G' - m • K)).2.1 w).1 hw
+      refine hres.supp (((_root_.GlobalTheory.Cartier.MultEff.eff_supp_eq_of_mult Y Γ).2.1 w).2 ⟨z, hzw, fun h0 => hz0 ?_⟩)
       rw [hmod, h0, Int.zero_emod]
-    have hcrit := (GlobalTheory.T.klt_of_snc_coefficients k Y (s ≫ p) n η' hη' K G' m B hm hres.div hres.snc hsupp y _ hg'
+    have hcrit := (_root_.GlobalTheory.Discrepancy.coeff_criterion_snc k Y (s ≫ p) n η' hη' K G' m B hm hres.div hres.snc hsupp y _ hg'
       E' hE'y).1 fun w _ => by rw [hmod]; exact Int.emod_lt_of_pos _ hmz
     have hd : discrep E' η' m (fnPull s g / f ^ m) = discrep E η m g + E'.ord f := by
       rw [← hdisc E' E hO g]

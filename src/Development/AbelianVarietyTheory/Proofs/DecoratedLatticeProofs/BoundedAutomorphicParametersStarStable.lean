@@ -96,7 +96,7 @@ theorem param_star (D : D7) (V : HSp D) (S : Finset (HeightOneSpectrum (𝓞 D.h
   · have hB' : B w' = (B w).map (·⁻¹) :=
       ConjPlace.eq_map_inv_of_isParamVec hcm hJ hd hne (hpar w rfl) (hpar w' h')
     rcases hpar w rfl with ⟨-, e, he, hsat⟩ | ⟨hi, -⟩
-    · rw [hB', GlobalTheory.T.satakeParameterGL_star_eq_inv_of_unitarisable _ w _ _ _ _ (B w) (hloc.imp fun _ hb => ⟨hb.1, hb.2.1, fun g => hb.2.2 (e.symm g)⟩) hsat]
+    · rw [hB', _root_.GlobalTheory.LFun.UnitaryParam.map_star_eq_map_inv _ w _ _ _ _ (B w) (hloc.imp fun _ hb => ⟨hb.1, hb.2.1, fun g => hb.2.2 (e.symm g)⟩) hsat]
     · exact absurd (ConjPlace.isSplit_of_ne hne rfl h') (not_isSplit_of_isInertAt hi)
   · rcases hpar w rfl with ⟨hs, -⟩ | ⟨-, c, ϖ, e, α, hUI, he, hsat, hBw⟩
     · exact absurd hs hns

@@ -216,7 +216,7 @@ theorem intK_facts (σ : E →ₐ[F] E) (hσ : IsCMExt F E σ) {d : ℕ} (b : Mo
   haveI : BorelSpace (Fv F v ⊗[F] E) := ⟨rfl⟩
   haveI := hlam.1
   haveI hS : SigmaFinite (coordK (Fv F v) b lam) := GlobalTheory.CompanionTheory.SW.WBox.sigmaFinite_coordK (Fv F v) (hK d b) lam
-  obtain ⟨-, hO, -, hm⟩ := GlobalTheory.T.local_lattice_compact_open_unit_volume F E σ hσ d b 1 1 v
+  obtain ⟨-, hO, -, hm⟩ := _root_.GlobalTheory.CompanionTheory.SW.latV_compact_open_mass F E σ hσ d b 1 1 v
   have hpre : intK b v = (fun (x : Fv F v ⊗[F] E) (_ : Fin 1) (_ : Fin 1) => x) ⁻¹' latV b v := by
     ext x
     exact ⟨fun h _ _ k => h k, fun h k => h 0 0 k⟩
@@ -274,7 +274,7 @@ theorem stageInt_primV : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
   obtain ⟨t1, t2, t3, t4, -⟩ := GlobalTheory.CompanionTheory.SW.LocFv.isLocR_Fv F v
   haveI hB := (GlobalTheory.CompanionTheory.SW.TopK.topTens_props F E σ hσ (Fv F v)).2.2.2.2.2.2.2.1 n M
   have hlat : MeasurableSet (latV b v : Set (Fin n → Fin M → Fv F v ⊗[F] E)) :=
-    (GlobalTheory.T.local_lattice_compact_open_unit_volume F E σ hσ d b n M v).2.1.measurableSet
+    (_root_.GlobalTheory.CompanionTheory.SW.latV_compact_open_mass F E σ hσ d b n M v).2.1.measurableSet
   obtain ⟨hA, hAm⟩ := box_mass σ hσ n b v lam hlam (u : Fv F v ⊗[F] E) a hmap
   refine ⟨k * tHA (Fv F v) σ hinv J u, ?_, ?_⟩
   · rw [actW_mul, actW_tHA_e0, actW_scalT]

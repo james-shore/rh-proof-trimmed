@@ -79,14 +79,7 @@ theorem eq_zero_of_eig_of_mem_twKer {G V : Type} [Group G] [TopologicalSpace G] 
   · exact absurd h0 (Nat.cast_ne_zero.2 Fintype.card_ne_zero)
   · exact h0
 
-theorem isSmooth_cInd {G Z : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
-    [AddCommGroup Z] [Module ℂ Z] (H : Subgroup G) (σ : Representation ℂ H Z) : IsSmooth (cInd H σ) := by
-  intro f
-  have h : {g : G | cInd H σ g f = f} = {g : G | ind H σ g f.1.1 = f.1.1} := by
-    ext g
-    exact ⟨fun h => congrArg (fun x : cIndSpace H σ => x.1.1) h, fun h => Subtype.ext (Subtype.ext h)⟩
-  rw [h]
-  exact f.1.2
+alias isSmooth_cInd := _root_.GlobalTheory.CompanionTheory.BZFun.isSmooth_cInd
 
 def evL {G Z : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [AddCommGroup Z] [Module ℂ Z] (H : Subgroup G) (σ : Representation ℂ H Z) (x : G) : cIndSpace H σ →ₗ[ℂ] Z :=

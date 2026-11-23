@@ -42,9 +42,3 @@ import Mathlib.Topology.Sheaves.Init
 @[expose] public section
 
 
-theorem _root_.GlobalTheory.T.hasSum_regroup_antitonePartitions_by_degree : ∀ {m : ℕ} (G : (Fin m → ℕ) → ℂ),
-    (Summable fun l : {l : Fin m → ℕ // Antitone l} => ‖G l.1‖) →
-    Summable (fun d => ‖∑ l ∈ GlobalTheory.JSW.antiParts m d, G l‖) ∧
-    ∀ s, HasSum (fun d => ∑ l ∈ GlobalTheory.JSW.antiParts m d, G l) s →
-      HasSum (fun l : {l : Fin m → ℕ // Antitone l} => G l.1) s := by
-  first | exact @GlobalTheory.JSW.regroup_antiParts | exact GlobalTheory.JSW.regroup_antiParts | (intros; apply GlobalTheory.JSW.regroup_antiParts <;> assumption)

@@ -67,9 +67,9 @@ theorem nPos_parInd (F : Type) [Field F] [Fintype F] (ψ : AddChar F ℂ) (hψ :
     rw [GlobalTheory.T.symmetricPositionCharMultiplicity_eq_sum_degenerateWhittaker F ψ hψ r _ (parInd b σ) k (by omega)]
     refine Finset.sum_congr rfl fun j hj => ?_
     have hj' := Finset.mem_range.1 hj
-    rw [GlobalTheory.T.degenerateWhittakerDim_parabolicInduction_cuspidal F ψ hψ r V b σ hσ j (Or.inl (by omega)), GlobalTheory.T.levi_whittaker_eq_one_of_cuspidal F ψ hψ r V b σ hσ, mul_one, mul_comm]
+    rw [_root_.GlobalTheory.FinGL.WhCutInd.degenerateWhittakerDim_parabolicInduction F ψ hψ r V b σ hσ j (Or.inl (by omega)), _root_.GlobalTheory.BlockDecompositionExistence.leviWh_eq_one F ψ hψ r V b σ hσ, mul_one, mul_comm]
   | succ ρ ih =>
-    rw [← GlobalTheory.T.symmetricPositionCharMultiplicity_succ_eq F ψ hψ r _ (parInd b σ) ρ k (by omega)]
+    rw [← _root_.GlobalTheory.FinGL.RootExchange.nPos_succ F ψ hψ r _ (parInd b σ) ρ k (by omega)]
     exact ih (by omega)
 
 end GlobalTheory.FinGL

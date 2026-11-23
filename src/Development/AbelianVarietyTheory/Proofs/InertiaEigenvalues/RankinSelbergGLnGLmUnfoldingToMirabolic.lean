@@ -93,7 +93,7 @@ theorem rs_unfold : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField
   obtain ⟨hc', hl', hv'⟩ := GlobalTheory.T.cuspFormRapidSpan_continuous_automorphic_cuspidal E m π' oc' hoc' hπoc' φ' hφ'
   have hb : ∃ C : ℝ, ∀ g, ‖φ g‖ ≤ C := (GlobalTheory.JSWPosR.mspanR_le_bddForms hoc hπoc hφ).2.2.2
   have hmk : m + 1 ≤ m + r + 1 := by omega
-  obtain ⟨hR1, hR2, hR3, hR4, hR5⟩ := GlobalTheory.T.adelicGLLastRow_and_detModule_under_left_multiplication E m
+  obtain ⟨hR1, hR2, hR3, hR4, hR5⟩ := _root_.GlobalTheory.UnfoldRows.rows_main E m
   obtain ⟨Fh, hFh⟩ : ∃ Fh, Fh = GroundTheory.Automorphic.GJMatrix.adelicFourierPi E F := ⟨_, rfl⟩
   have hFhc : Continuous Fh := hFh ▸ GroundTheory.Automorphic.GJMatrix.continuous_of_mem_schwartzBruhatPi
     (GroundTheory.Automorphic.GJMatrix.adelicFourierPi_mem_schwartzBruhatPi hF)
@@ -111,7 +111,7 @@ theorem rs_unfold : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField
     rw [hR1, hR3 γ hγ, ← hR2]
 
   obtain ⟨sq, hsq⟩ : ∃ sq : ℂ → ℂ, sq = fun z => z * ((‖z‖ ^ (-(1 / 2 : ℝ)) : ℝ) : ℂ) := ⟨_, rfl⟩
-  have hsqc : Continuous sq := hsq ▸ GlobalTheory.T.continuous_mul_norm_rpow_neg_half'
+  have hsqc : Continuous sq := hsq ▸ _root_.GlobalTheory.continuous_mul_norm_rpow_neg_half
   have hsqn : ∀ z, ‖sq z‖ = Real.sqrt ‖z‖ := by
     intro z
     rw [hsq]
@@ -156,9 +156,9 @@ theorem rs_unfold : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField
     intro X g; rw [hc2]; simp only [GlobalTheory.ZUnf.lastRow_uGL_mul, hR5]
   obtain ⟨f1, hf1⟩ : ∃ f1 : GA E (m + 1) → ℂ, f1 = fun g => c1 g * Q g := ⟨_, rfl⟩
   obtain ⟨f2, hf2⟩ : ∃ f2 : GA E (m + 1) → ℂ, f2 = fun g => c2 g * φ' g := ⟨_, rfl⟩
-  have hG1 : Good (GlobalTheory.StdCharConductor.psi E) m f1 := hf1 ▸ GlobalTheory.T.isMirabolicWhittakerStage_mul_invariant_continuous E (m + 1) m _ Q c1 hGQ hc1c hc1γ hc1b
+  have hG1 : Good (GlobalTheory.StdCharConductor.psi E) m f1 := hf1 ▸ _root_.GlobalTheory.GoodMul.good_mul_invariant E (m + 1) m _ Q c1 hGQ hc1c hc1γ hc1b
   have hG2 : Good (GlobalTheory.StdCharConductor.psi E) m f2 :=
-    hf2 ▸ GlobalTheory.T.isMirabolicWhittakerStage_mul_invariant_continuous E (m + 1) m _ φ' c2 (GlobalTheory.T.isMirabolicWhittakerStage_top_of_vanishing_blockAverages E m _ φ' hc' hl' hv') hc2c hc2γ hc2b
+    hf2 ▸ _root_.GlobalTheory.GoodMul.good_mul_invariant E (m + 1) m _ φ' c2 (_root_.GlobalTheory.CuspGeneric.good_top E m _ φ' hc' hl' hv') hc2c hc2γ hc2b
   have whit_mul : ∀ (c f : GA E (m + 1) → ℂ), (∀ X g, c (uGL X * g) = c g) → ∀ g,
       GlobalTheory.JSW.whit (fun g => c g * f g) g = c g * GlobalTheory.JSW.whit f g := by
     intro c f hcu g

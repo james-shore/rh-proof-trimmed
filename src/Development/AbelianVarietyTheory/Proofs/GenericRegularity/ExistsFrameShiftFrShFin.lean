@@ -60,7 +60,7 @@ theorem exists_frameShift_frShFin : ∀ (E : Type) [Field E] [NumberField E] [Is
   have hInt : IntDiagUnit Xo c := (GlobalTheory.T.evaluation_laws_generic_frames_atlas_hold E H Dw l Xo c).2.1
   have hTw : ReciprocityTheory.ChartRestriction.G.Out.SecTwistSt :=
     GlobalTheory.lawsFieldsSeparately.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.1
-  obtain ⟨δ, h1, h2⟩ := GlobalTheory.T.exists_frame_shift_of_valued_points hTw E H Dw l Xo c hEv hInt hM Y h
+  obtain ⟨δ, h1, h2⟩ := _root_.GlobalTheory.Reg.exists_frameShift_of_valued_points hTw E H Dw l Xo c hEv hInt hM Y h
   exact ⟨δ, h1, fun d hD => GlobalTheory.Reg.frShFin_of_divFin_of_finset E H Dw l Xo c d δ hD h2⟩
 
 end GlobalTheory.Reg

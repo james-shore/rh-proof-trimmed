@@ -199,7 +199,7 @@ theorem intSer_of_isogeny_identities : ∀ (p : ℕ) [Fact p.Prime] (k : ℕ) (e
     rw [← eAB, mul_sub, eA, eB, sq]
     exact (rB _ _ (rB _ _ hPb hPb).2.2 hP'b).2.1
   have hΨi : IntSer Ψ :=
-    GlobalTheory.T.integral_series_of_common_divisor_line_products p k (2 * k) e Ψ A B y y' (IntSer.bdd he) hΨb ⟨_, hGs x₀⟩ ⟨_, hGs x₁⟩ hΨ0 eA eB hy
+    _root_.GlobalTheory.EvenTheta.intSer_of_common_divisor p k (2 * k) e Ψ A B y y' (IntSer.bdd he) hΨb ⟨_, hGs x₀⟩ ⟨_, hGs x₁⟩ hΨ0 eA eB hy
   have hP'm : ∀ n, ‖PowerSeries.coeff n P'‖ ≤ max 1 ‖x₁‖ := fun n => by
     have := rM Ψ B _ _ hΨi (hGs x₁) n
     rwa [eB, one_mul] at this

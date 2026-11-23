@@ -58,13 +58,9 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 
 namespace One
 
-theorem spMap_comp' {R S T : Type} [CommRing R] [CommRing S] [CommRing T] (f : R →+* S) (g : S →+* T) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  show Spec.map (CommRingCat.ofHom (g.comp f)) = _
-  rw [CommRingCat.ofHom_comp, Spec.map_comp]
+alias spMap_comp' := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp
 
-theorem spMap_inj {R S : Type} [CommRing R] [CommRing S] {f g : R →+* S} (h : spMap f = spMap g) : f = g :=
-  congrArg CommRingCat.Hom.hom (Spec.map_injective h)
+alias spMap_inj := _root_.GlobalTheory.Reg.CellChart.spMap_inj
 
 theorem spec_map_factorisation {X : Scheme.{0}} {A A' B B' : CommRingCat.{0}} (u : A ⟶ B) [IsIso u] (r : A ⟶ A') (v : A' ⟶ B')
     (a : Spec A ⟶ X) (a' : Spec A' ⟶ X) (x : Spec B ⟶ X) (x' : Spec B' ⟶ X) (e : Spec.map u ≫ a = x)

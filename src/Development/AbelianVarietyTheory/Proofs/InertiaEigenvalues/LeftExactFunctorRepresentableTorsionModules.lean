@@ -115,7 +115,7 @@ theorem card_le_of_min [IsNoetherianRing Λ] [Finite (IsLocalRing.ResidueField �
   have h1 : Nat.card (A →ₗ[Λ] IsLocalRing.ResidueField Λ) ≤ c := Nat.card_le_card_of_injective _ hinj
   have h2 : c ≤ Nat.card (IsLocalRing.ResidueField Λ) ^ c :=
     (Nat.lt_pow_self Finite.one_lt_card).le
-  obtain ⟨v, hv⟩ := GlobalTheory.T.exists_generators_of_card_hom_residueField_le Λ A c (h1.trans h2)
+  obtain ⟨v, hv⟩ := _root_.GlobalTheory.exists_span_eq_top_of_card_hom_residueField_le Λ A c (h1.trans h2)
   let p : Fin c → (Λ ⧸ IsLocalRing.maximalIdeal Λ ^ n) →ₗ[Λ] A := fun i =>
     (IsLocalRing.maximalIdeal Λ ^ n).liftQ (LinearMap.toSpanSingleton Λ A (v i)) (fun r hr => hn r hr _)
   refine Nat.card_le_card_of_surjective (fun t => ∑ i, p i (t i)) (fun a => ?_)

@@ -59,12 +59,6 @@ section Alg
 variable {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R] [Algebra F R]
   (σ : E →ₐ[F] E)
 
-theorem sigR_invol (hσ : ∀ x, σ (σ x) = x) (z : R ⊗[F] E) : sigR R σ (sigR R σ z) = z := by
-  induction z using TensorProduct.induction_on with
-  | zero => simp
-  | tmul a b => simp [sigR, hσ]
-  | add x y hx hy => simp only [map_add (f := _), hx, hy]
-
 theorem gramR_comb {M a : ℕ} (J : Matrix (Fin M) (Fin M) E) (u : Matrix (Fin a) (Fin a) (R ⊗[F] E))
     (X : Fin a → Fin M → R ⊗[F] E) :
     gramR R σ J (fun b => ∑ c, u c b • X c) = (u.map (sigR R σ)).transpose * gramR R σ J X * u := by
@@ -100,7 +94,7 @@ theorem cgr_mem (hσ : ∀ x, σ (σ x) = x) {a : ℕ} (m : Matrix (Fin a) (Fin 
   intro p q
 
   simp only [cgr, Matrix.mul_apply, Matrix.transpose_apply, Matrix.map_apply, map_sum, map_mul,
-  sigR_invol R σ hσ, Finset.sum_mul]
+  _root_.PI.VolStabS.sigR_invol R σ hσ, Finset.sum_mul]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun c _ => Finset.sum_congr rfl fun l _ => ?_
   rw [hS]

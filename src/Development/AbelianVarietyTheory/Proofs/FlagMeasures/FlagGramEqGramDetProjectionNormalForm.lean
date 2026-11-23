@@ -75,22 +75,6 @@ theorem idx_cases (i : Fin (2 * r + k + 1)) :
   · exact Or.inr (Or.inl ⟨⟨i.val - r, by omega⟩, Fin.ext (by simp only [wI]; omega)⟩)
   · exact Or.inr (Or.inr ⟨⟨2 * r + k - i.val, by omega⟩, Fin.ext (by simp only [esI]; omega)⟩)
 
-theorem wI_inj : Function.Injective (wI k r) := by
-  intro a b h
-  have := congrArg Fin.val h
-  simp only [wI] at this
-  exact Fin.ext (by omega)
-
-theorem sum_mid (f : Fin (2 * r + k + 1) → ℂ) (hf : inWb k r f) : ∑ i, f i = ∑ j, f (wI k r j) := by
-  symm
-  refine Finset.sum_of_injOn (wI k r) wI_inj.injOn (by simp) ?_ (by simp)
-  intro i _ hi
-  apply hf
-  by_contra hc
-  apply hi
-  refine ⟨⟨i.val - r, by omega⟩, by simp, Fin.ext ?_⟩
-  simp only [wI]; omega
-
 theorem mulVec_of_row {n : ℕ} (A : Matrix (Fin n) (Fin n) ℂ) (v : Fin n → ℂ) (i i' : Fin n) (c : ℂ)
     (h : ∀ j, A i j = if j = i' then c else 0) : (A *ᵥ v) i = c * v i' := by
   simp [Matrix.mulVec, dotProduct, h]
@@ -118,15 +102,10 @@ theorem H_wI (v : Fin (2 * r + k + 1) → ℂ) (b : Fin (k + 1)) :
   simp only [Hpk, Fin.ext_iff, Fin.val_last]
   split_ifs <;> first | rfl | omega
 
-theorem herm_eI (v : Fin (2 * r + k + 1) → ℂ) (a : Fin r) :
-    herm (Hpk k r) v (bvec (eI k r a)) = v (esI k r a) := by
-  rw [← H_eI v a]
-  simp [herm, bvec, dotProduct, Pi.single_apply]
-
 theorem herm_mid (v z : Fin (2 * r + k + 1) → ℂ) (hz : inWb k r z) :
     herm (Hpk k r) v z = herm (Hb k) (mid k r v) (mid k r z) := by
   unfold herm dotProduct
-  rw [sum_mid]
+  rw [_root_.GlobalTheory.Amp.NfMid.sum_mid]
   · refine Finset.sum_congr rfl fun j _ => ?_
     rw [H_wI]
     simp [Hb, mid, Matrix.mulVec_diagonal]
@@ -148,7 +127,7 @@ theorem mid_mEmb (m : Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ) (v : Fin (2 * r + 
   funext b
   simp only [mid, Matrix.mulVec, dotProduct]
   have := b.2
-  rw [sum_mid]
+  rw [_root_.GlobalTheory.Amp.NfMid.sum_mid]
   · refine Finset.sum_congr rfl fun j _ => ?_
     have := j.2
     congr 1
@@ -249,7 +228,7 @@ theorem gramProj_mul {n j : ℕ} (P : Submodule ℂ (EuclideanSpace ℂ (Fin n))
 theorem inner_mid (v u : EuclideanSpace ℂ (Fin (2 * r + k + 1))) (hu : inWb k r u.ofLp) :
     ⟪v, u⟫_ℂ = ⟪(WithLp.toLp 2 (mid k r v.ofLp) : EuclideanSpace ℂ (Fin (k + 1))), WithLp.toLp 2 (mid k r u.ofLp)⟫_ℂ := by
   simp only [PiLp.inner_apply]
-  rw [sum_mid]
+  rw [_root_.GlobalTheory.Amp.NfMid.sum_mid]
   · rfl
   · intro i hi
     simp [hu i hi]
@@ -344,13 +323,13 @@ theorem mem_Ppos_iff (z z' : Fin (2 * r + k + 1) → ℂ) (hz' : inWb k r z') (g
     · intro h
       refine ⟨fun a => ?_, ?_⟩
       · have := h a.castSucc
-        rw [← herm_eI (x *ᵥ v.ofLp) a]
+        rw [← _root_.GlobalTheory.Amp.NfMid.herm_e (x *ᵥ v.ofLp) a]
         simpa [fvec] using this
       · simpa [fvec] using h (Fin.last r)
     · rintro ⟨h1, h2⟩ a
       unfold fvec
       split_ifs
-      · rw [herm_eI]; exact h1 _
+      · rw [_root_.GlobalTheory.Amp.NfMid.herm_e]; exact h1 _
       · exact h2
   have hm : v ∈ Ppos k r z z' g x ↔ Hpk k r *ᵥ v.ofLp = v.ofLp ∧ x *ᵥ v.ofLp ∈ Hcom k r z z' g ⊔ Xsp k r := by
     simp only [Ppos, Submodule.mem_comap, Submodule.mem_inf, LinearMap.mem_ker, Matrix.toLin'_apply,
@@ -426,7 +405,7 @@ theorem Dj_eq {j : ℕ} (hj : j ≤ r) (z z' : Fin (2 * r + k + 1) → ℂ) (g :
   have ha : a.val < r := lt_of_lt_of_le a.2 hj
   have hb : b.val < r := lt_of_lt_of_le b.2 hj
   simp only [Matrix.submatrix_apply, Zhat, fvec, Fin.val_castLE, Matrix.of_apply]
-  rw [dite_eq_left ha, dite_eq_left hb, herm_eI]
+  rw [dite_eq_left ha, dite_eq_left hb, _root_.GlobalTheory.Amp.NfMid.herm_e]
   rfl
 
 theorem Yj_eq_gramProj : ∀ (k r j : ℕ) (hj : j ≤ r) (z z' : (Fin (2 * r + k + 1) → ℂ)), ∀ (g₀ : Mat k r) (β : Fin r → ℕ) (c : ℂ), inWb k r z → inWb k r z' → 0 < Tz k r z → IsNormal0 k r hj β c z z' g₀ → ∀ m ∈ UH (Hb k), ∃ P₀ : Submodule ℂ (EuclideanSpace ℂ (Fin (k + 1))), k - 1 ≤ Module.finrank ℂ P₀ ∧ ∀ (q : PSec k r j × (UToff β → ℂ)) (a : Fin r → ℝ), (∀ b, 0 < a b) → Yj k r hj z z' g₀ (sEl k r j β q * (uEmb k r (Matrix.diagonal fun b => (a b : ℂ)) * mEmb k r m)) = gramProj P₀ fun b : Fin j => m⁻¹ *ᵥ q.1.1 ⟨Fin.castLE hj b, b.2⟩ := by

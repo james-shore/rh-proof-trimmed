@@ -69,7 +69,7 @@ theorem goodGeneric_rows_alt : GlobalTheory.Published.DiscreteSeriesCover → Gl
   letI := a.x.grp
   letI := a.x.fin
   letI := a.x.alg
-  exact (GlobalTheory.T.goodGenericCharacter_of_weakCharacterisation a.x.R a.x.F a.x.pins.char 1 a.intersectionNumber_baseChange.ok hSer).1
+  exact (_root_.GlobalTheory.GoodGenericSer.goodGenericCharacter_of_seriesTypes a.x.R a.x.F a.x.pins.char 1 a.intersectionNumber_baseChange.ok hSer).1
 end GlobalTheory.Mem.R3.GenRows
 end
 end

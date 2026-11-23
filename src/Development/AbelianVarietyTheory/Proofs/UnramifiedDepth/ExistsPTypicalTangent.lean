@@ -56,6 +56,7 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.WeightedSumBo
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.WeightedSumBounds.TangentEqLcZero
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Mathlib.RingTheory.RootsOfUnity.EnoughRootsOfUnity
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.WeightedSumBounds.CardToMultisetEqDegree
 
 @[expose] public section
 
@@ -107,13 +108,6 @@ theorem nsmul_lg (G : LogFGL v d) {ga : Fin d → PowerSeries C} (h : PTGood v g
     rw [nsmul_lg G h n a, Nat.cast_succ, add_smul, one_smul, add_comm]
     rfl
 
-theorem lg_low (G : LogFGL v d) (a : Fin d) :
-    ∀ α : Fin d →₀ ℕ, α.degree ≤ 1 → coeff α (G.lg a - X a) = 0 := by
-  intro α hα
-  have := pt_low_of_lin (G.lg_const a) (fun s => if a = s then (1 : C) else 0)
-    (fun s => G.lg_lin a s) α hα
-  simpa [ite_smul, one_smul, zero_smul, Finset.sum_ite_eq] using this
-
 theorem lg_agree (G : LogFGL v d) {τ : Type*} {x y : Fin d → MvPowerSeries τ C}
     (hx : ∀ a, constantCoeff (x a) = 0) (hy : ∀ a, constantCoeff (y a) = 0) (k : ℕ)
     (h : PTAgree k x y) (a : Fin d) (e : τ →₀ ℕ) (he : e.degree < k) :
@@ -124,7 +118,7 @@ theorem lg_agree (G : LogFGL v d) {τ : Type*} {x y : Fin d → MvPowerSeries τ
       subst z (G.lg a) = z a + subst z (G.lg a - X a) := by
     intro z hz; rw [subst_sub hz, subst_X hz]; ring
   rw [split x hsx, split y hsy, map_add (f := _), map_add (f := _), h a e he,
-    pt_subst_agree hsx hsy hx hy (G.lg a - X a) k h (pt_hK_of_low (lg_low G a) x y) e
+    pt_subst_agree hsx hsy hx hy (G.lg a - X a) k h (pt_hK_of_low (_root_.ReciprocityTheory.ChartRestriction.G.Sh.PTb.coeff_lg_sub_X_low G a) x y) e
       (by omega)]
 
 theorem sub_exists (G : LogFGL v d) {ga ge : Fin d → PowerSeries C} (hg : PTGood v ga)

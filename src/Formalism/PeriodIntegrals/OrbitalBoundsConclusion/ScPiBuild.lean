@@ -42,5 +42,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem sc_pi_construction : PI.ScPiExists.Build :=
-  PI.ScPiBuildW.Asm.build

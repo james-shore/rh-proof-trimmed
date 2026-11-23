@@ -113,13 +113,13 @@ theorem herm_ybAll (σ : E →ₐ[F] E) (ψ : AddChar (AF F) ℂ) {ι : Type} [F
     (b : HermR (Ainf F) σ n) (i : ι) :
     herm (ybAll σ θ g b i) =
       ((g i)⁻¹).1 * (b : Matrix (Fin n) (Fin n) (Ainf F ⊗[F] E)).map (θ i) * (((g i)⁻¹).1)ᴴ :=
-  herm_hinv _ (Matrix.isHermitian_mul_mul_conjTranspose _ (map_isHerm σ (θ i) (hP.conj i) b))
+  herm_hinv _ (Matrix.isHermitian_mul_mul_conjTranspose _ (_root_.PositivityTheory.SiegelWeilFormula.GReal.isHerm_map σ (θ i) (hP.conj i) b))
 
 theorem herm_ygAll (σ : E →ₐ[F] E) (ψ : AddChar (AF F) ℂ) {ι : Type} [Fintype ι]
     (θ : ι → (Ainf F ⊗[F] E →+* ℂ)) (l : ι → ℝ) (hP : IsPlaces σ ψ θ l) {n : ℕ} (g : ι → GL (Fin n) ℂ)
     (b : HermR (Ainf F) σ n) (i : ι) :
     herm (ygAll σ θ g b i) =
       ((g i).1)ᴴ * (b : Matrix (Fin n) (Fin n) (Ainf F ⊗[F] E)).map (θ i) * (g i).1 :=
-  herm_hinv _ (Matrix.isHermitian_conjTranspose_mul_mul _ (map_isHerm σ (θ i) (hP.conj i) b))
+  herm_hinv _ (Matrix.isHermitian_conjTranspose_mul_mul _ (_root_.PositivityTheory.SiegelWeilFormula.GReal.isHerm_map σ (θ i) (hP.conj i) b))
 
 end PositivityTheory.SiegelWeilFormula.GReal

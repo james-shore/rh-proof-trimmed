@@ -66,21 +66,6 @@ namespace GlobalTheory.StdFstFix
 
 variable {D : D7}
 
-theorem isHalf_actO {S T : HSp D} {e : AE D} (g : GA D S) (h : GA D T) {x : WO S T} (hx : IsHalf e x) :
-    IsHalf e (actO S T g h x) := by
-  have hx' : e • (x : Matrix (Fin T.rank) (Fin S.rank) (AE D)) = x := Matrix.ext fun i j => hx i j
-  have e1 : e • actO S T g h x = actO S T g h x := by
-    unfold actO
-    conv_rhs => rw [← hx']
-    rw [Matrix.mul_smul, Matrix.smul_mul]
-  intro i j
-  exact congrFun (congrFun e1 i) j
-
-theorem actO_nsmul {S T : HSp D} (g : GA D S) (h : GA D T) (k : ℕ) (x : WO S T) :
-    actO S T g h (k • x) = k • actO S T g h x := by
-  unfold actO
-  rw [Matrix.mul_smul, Matrix.smul_mul]
-
 theorem finCong_of_mem_GinfC {V : HSp D} (N : ℕ) {k : GA D V} (hk : k ∈ GinfC V) : GlobalTheory.Member.FinCong V N k := by
   have h1 : finHom V k = finHom V 1 := by rw [map_one]; exact hk
   have := GlobalTheory.Member.PrincLevel.finCong_one V N
@@ -139,12 +124,12 @@ theorem stdFst_fixed : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G 
     obtain ⟨l, hl', e1⟩ := hm g hg hgc (K • x) (hC x (GlobalTheory.PlaceDatum.infPart_of_half hinf hx.1) hx.2.1)
     have e2 : actO (GlobalTheory.Grid.neg A) WW g 1 x = x + (n₀ * (n * c) * M) • l := by
       have e3 : K • actO (GlobalTheory.Grid.neg A) WW g 1 x = K • (x + (n₀ * (n * c) * M) • l) := by
-        rw [← actO_nsmul, e1, smul_add, smul_smul]
+        rw [← _root_.GlobalTheory.ThetaMove.act_nsmul, e1, smul_add, smul_smul]
       rw [← GlobalTheory.PlaceModel.inv_smul_nsmul (GlobalTheory.Grid.neg A) WW hK (actO (GlobalTheory.Grid.neg A) WW g 1 x), e3,
         GlobalTheory.PlaceModel.inv_smul_nsmul (GlobalTheory.Grid.neg A) WW hK]
     refine StandardFirstTheta.GlobalTheory.CompanionTheory.StdFstTheta.stdFst_shift he hnI hl hcS A WW X.rA.β X.rW.β
       (W := fun i j => (M : Lev.EAf D) * frMapO A WW X.rA.β X.rW.β l i j)
-      ⟨fun _ => hx.1, fun _ => isHalf_actO g 1 hx.1⟩ (fun i j => hB l hl' i j) fun i j => ?_
+      ⟨fun _ => hx.1, fun _ => _root_.GlobalTheory.SplitHecke.isHalf_actO g 1 hx.1⟩ (fun i j => hB l hl' i j) fun i j => ?_
     rw [e2, GlobalTheory.PlaceDatum.frMapO_add]
     push_cast
     ring

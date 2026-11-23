@@ -393,7 +393,7 @@ theorem exists_antiJ_frame (hU : IsUnramInv ϖ σ q) (n : ℕ) :
     rw [apply_ite c, map_one, map_zero, add_comm j.val]
   have hBB : B * B = 1 := Matrix.map_injective (f := ι) Subtype.val_injective (by
     show (B * B).map ι = (1 : Matrix _ _ _).map ι
-    rw [Matrix.map_mul, hBι, GlobalTheory.DualDivU.antiJ_sq, Matrix.map_one _ (map_zero ι) (map_one ι)])
+    rw [Matrix.map_mul, hBι, _root_.Formalism.UG.P.fIwasawa_antiJ_mul_antiJ, Matrix.map_one _ (map_zero ι) (map_one ι)])
   obtain ⟨p, hp⟩ := GlobalTheory.UnitaryDoubleCoset.exists_poly_norm hc
     (GlobalTheory.T.exists_norm_eq_X_mod_monic_of_adicComplete_involution (v.adicCompletionIntegers K) _ c hc hI hω) hB (IsUnit.of_mul_eq_one _ hBB)
   have h1 : (B * cT c (Polynomial.aeval B p)) * Polynomial.aeval B p = 1 := by rw [Matrix.mul_assoc, hp, hBB]

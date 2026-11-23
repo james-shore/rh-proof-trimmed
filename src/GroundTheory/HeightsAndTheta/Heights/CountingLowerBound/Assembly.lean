@@ -54,8 +54,7 @@ namespace GroundTheory.Heights₂.Heights.LowerBound
 
 universe u
 
-theorem PackingCount.full : PackingCount.Statement :=
-  PackingCount.proof
+alias PackingCount.full := _root_.GroundTheory.Heights₂.Heights.LowerBound.PackingCount.proof
 
 theorem MeanCountBound.full : MeanCountBound.Statement.{u} :=
   MeanCountBound.proof
@@ -66,7 +65,6 @@ theorem TailBound.full : TailBound.Statement.{u} :=
 theorem MeanLogPlus.full : MeanLogPlus.Statement.{u} :=
   MeanLogPlus.proof TailBound.full
 
-theorem MeanCuspWeight.full : MeanCuspWeight.Statement :=
-  MeanCuspWeight.proof
+alias MeanCuspWeight.full := _root_.GroundTheory.Heights₂.Heights.LowerBound.MeanCuspWeight.proof
 
 end GroundTheory.Heights₂.Heights.LowerBound

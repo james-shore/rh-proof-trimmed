@@ -45,6 +45,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.TypeStar
 public import Mathlib.Topology.LocallyConstant.Algebra
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TranscendenceTraces.IsolateSpec
 
 @[expose] public section
 
@@ -54,9 +55,6 @@ open UpperTheory.Gal.TranscendenceTraces (gp pt Wt fib IsWt)
 open UpperTheory.Gal.crystallineComparison (resPt)
 
 namespace UpperTheory.Gal.Mod
-
-private theorem pt_comp {Ω : Type} [Field Ω] {X X' : Scheme.{0}} (x : gp Ω ⟶ X) (f : X ⟶ X') :
-    pt (x ≫ f) = f (pt x) := rfl
 
 private theorem finsum_single {α : Type*} {s : Set α} {f : α → ℤ} {a : α} (ha : a ∈ s)
     (h : ∀ b ∈ s, b ≠ a → f b = 0) : ∑ᶠ b ∈ s, f b = f a := by
@@ -139,7 +137,7 @@ theorem wtVal : FibExt → SecGen → ClopenAt → WtVal := by
     intro σ
     have h := (hφ.comp_continuous σ.continuous).apply_eq_of_preconnectedSpace (pt η) (pt (resPt V))
     simp only [Function.comp_apply] at h
-    rw [pt_comp, pt_comp]
+    rw [_root_.UpperTheory.Gal.TranscendenceTraces.pt_comp, _root_.UpperTheory.Gal.TranscendenceTraces.pt_comp]
     by_cases h1 : σ (pt η) ∈ U <;> by_cases h2 : σ (pt (resPt V)) ∈ U <;> simp_all [φ]
   have hpK : (p : K) ≠ 0 := by
     intro h0

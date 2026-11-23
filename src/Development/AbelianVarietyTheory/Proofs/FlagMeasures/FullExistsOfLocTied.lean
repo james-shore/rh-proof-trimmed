@@ -52,6 +52,6 @@ theorem fullExists_of_locTied : ∀ (D : D7) (X : HidaSetting D), Formalism.L2.S
 
   intro D X hT
   exact Formalism.L2.SG.Pf.fullExists_tied Formalism.L2.SG.Pf.trExistsC_holds Formalism.L2.SG.Pf.lattice_steps_hold
-    Formalism.L2.SG.Closed.LocCTied_holds D X (Formalism.L2.SG.Closed.level_subgroup_is_group X) hT
+    Formalism.L2.SG.Closed.LocCTied_holds D X (_root_.Formalism.L2.SG.Pf.level_subgroup_character_unitary X) hT
 
 end GlobalTheory

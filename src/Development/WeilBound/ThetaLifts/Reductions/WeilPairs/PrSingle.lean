@@ -145,7 +145,7 @@ theorem PositivityTheory.ThKW.PhaseFourierInjectivity.finj : ∀ (F E : Type) [F
     intro z
     induction z using TensorProduct.induction_on with
     | zero => simp
-    | tmul a x => simp [cAF, sigR, GlobalTheory.DblSiegelChar.invol hB.cm]
+    | tmul a x => simp [cAF, sigR, _root_.GlobalTheory.AdelicU.cm_conj_conj hB.cm]
     | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
   have he : Continuous (vecE F E nS nT) := by
     show Continuous fun (w : WOF F E nS nT) (k : Fin (nT * nS)) => w (finProdFinEquiv.symm k).1 (finProdFinEquiv.symm k).2

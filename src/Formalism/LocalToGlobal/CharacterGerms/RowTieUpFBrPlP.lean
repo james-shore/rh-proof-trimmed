@@ -81,7 +81,7 @@ theorem exists_e [Module.Free ℤ OE] [Module.Finite ℤ OE] (ε : OE) (hε1 : �
     refine ⟨(1 : ℤ_[l]) ⊗ₜ[ℤ] y, ?_⟩
     rw [Algebra.TensorProduct.tmul_mul_tmul, one_mul, ← TensorProduct.tmul_sub, hy, mul_comm, natCast_mul_tmul,
       mul_one, natCast_tmul]
-  obtain ⟨e, he, he'⟩ := lift_idem _ _ h
+  obtain ⟨e, he, he'⟩ := _root_.Bl.SecondBlockLemmaI.goal1 _ _ h
   rw [Ideal.mem_span_singleton'] at he'
   obtain ⟨z, hz⟩ := he'
   exact ⟨e, z, he, by rw [← hz, mul_comm]⟩

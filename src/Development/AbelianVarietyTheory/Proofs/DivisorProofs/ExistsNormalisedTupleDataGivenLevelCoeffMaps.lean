@@ -114,7 +114,7 @@ theorem exists_pins_given : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T
     exact (star_star _).symm
   choose thAd hth using fun t => GlobalTheory.T.exists_adelicSide_of_models D G Pl0 T0 A _ R hmodels i t _ _ c0' _ (h t) _ (hrep t).1.2.2.1
     (hrep t).1.2.2.2.2.2.1 (v₀ i (sg0 D A))
-  have hact := fun c => GlobalTheory.T.levelAction_framedPoints_isAction D G Pl0 T0 A T R hL hT hpb i c lev hlev
+  have hact := fun c => _root_.GlobalTheory.LevelActFromLevel.actLev_of_levIs D G Pl0 T0 A T R hL hT hpb i c lev hlev
   refine ⟨{ c' := c', hle := hle, jL := jL, hV := hT.spaceW _ (inR i) _ rfl, c0' := c0', lev := lev, dδ := dδ, Cl' := Cl,
             bad := bad, Lh := Lh, La := La, Nc := Nc, gam := gam, vol := vol, ep := fun t k => epF t (Lh t k), B := B,
             epF := epF, io := io, hw := hw, φ := φ,

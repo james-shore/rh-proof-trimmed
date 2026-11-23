@@ -48,6 +48,7 @@ import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsRealFam
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealLineOfPeriodsOnLine
+import Formalism.LocalToGlobal.GlobalTheory.GL3.PLinkThIndep
 
 @[expose] public section
 
@@ -126,7 +127,7 @@ theorem isSelfDualC_latPi {S : HSp D} (hg : S.gram = -1) {I : FractionalIdeal (�
 theorem conjFI_AAbar (D : D7) : GlobalTheory.SeeSaw.conjFI D D.host.AAbar = D.host.AA := by
   rw [← GlobalTheory.SeeSaw.conjFI_AA]
   ext x
-  rw [GlobalTheory.SeeSaw.mem_conjFI, GlobalTheory.SeeSaw.mem_conjFI, GlobalTheory.SeeSaw.conj_conj_host]
+  rw [GlobalTheory.SeeSaw.mem_conjFI, GlobalTheory.SeeSaw.mem_conjFI, _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.CU.conj_conj]
 
 theorem lineId_ne_zero (D : D7) (j : ℕ) : lineId D j ≠ 0 := by
   have hA := GlobalTheory.FinPl.LocGen.AA_ne_zero D

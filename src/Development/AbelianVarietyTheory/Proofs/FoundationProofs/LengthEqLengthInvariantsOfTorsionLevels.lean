@@ -163,7 +163,7 @@ theorem finite_h2_padic_representation [ContinuousMul Γ] (ρ : Representation �
     (h : ∀ r g x, PadicInt.toZModPow r (ρ g x) = ρr r g (PadicInt.toZModPow r x))
     (h1 : ∀ r, 0 < r → Finite (H1 (ρr r))) (h2 : Finite (H2 (ρr 1)))
     (h3 : Subsingleton (Hn (ρr 1) 3)) : Module.Finite ℤ_[l] (H2 ρ) := by
-  refine GlobalTheory.T.padicInt_module_finite_of_separated l _ ?_ fun x hx => ?_
+  refine _root_.GlobalTheory.padicInt_module_finite_of_separated_of_finite_quotient l _ ?_ fun x hx => ?_
   · refine Nat.finite_of_card_ne_zero ?_
     rw [card_quot_lpow 1 _ (reduction_h2_surjective ρ hρ ρr h h3 1) (reduction_h2_eq_zero_iff ρ hρ 1 _ (h 1))]
     exact Nat.card_pos.ne'
@@ -187,7 +187,7 @@ theorem length_eq_length_invariants_of_torsion_levels {X : Type} [AddCommGroup X
     (he : ∀ r g n, ι r (τ r g n) = σ g (ι r n))
     (hc : ∀ r, 0 < r → Nat.card (X ⧸ lpow l X r) = Nat.card (H0 (τ r))) :
     Module.length ℤ_[l] X = Module.length ℤ_[l] (H0 σ) := by
-  refine GlobalTheory.T.padicInt_length_eq_of_card_quotient_eq l X (H0 σ) (lpow l X)
+  refine _root_.GlobalTheory.padicInt_length_eq_of_card_quotient_eq_card_submodule l X (H0 σ) (lpow l X)
     (fun r => Submodule.torsionBy ℤ_[l] (H0 σ) ((l : ℤ_[l]) ^ r)) 1 (lpow_anti X) (lpow_sep X)
     (fun r s h => Submodule.torsionBy_le_torsionBy_of_dvd _ _ (pow_dvd_pow _ h))
     (fun y => (hA y.1).imp fun r h => Subtype.ext h) fun r h => ?_
@@ -251,7 +251,7 @@ theorem finite_cohomology_and_card_H2_eq_card_H0_dual (hF : LocalFinitenessK) (h
     (τ : Representation (ZMod (l ^ r)) (Dec (F := F) A) (TDual (ZMod (l ^ r)) M))
     (hτ : ∀ g φ m, τ g φ m = (cycMod F Ω l r g : ZMod (l ^ r)) * φ (ρ g⁻¹ m)) :
     Finite (H1 ρ) ∧ Finite (H2 ρ) ∧ Subsingleton (Hn ρ 3) ∧ Nat.card (H2 ρ) = Nat.card (H0 τ) := by
-  obtain ⟨K, hK, e, he, he', hc⟩ := GlobalTheory.T.decompositionGroup_mulEquiv_localGalois_cyclotomic F Ω l v A hv hA
+  obtain ⟨K, hK, e, he, he', hc⟩ := _root_.GlobalTheory.DecLocal.exists_mulEquiv_cyc F Ω l v A hv hA
   let ρK : Representation (ZMod (l ^ r)) (GK l K) M := ρ.comp e.symm.toMonoidHom
   have hρK : ContAction ρK := hρ.comp' he'
   obtain ⟨-, f1, f2, f3⟩ := hF l K hK r M ρK hr hρK
@@ -445,7 +445,7 @@ theorem exists_kill (he : e ≠ 0) : ∃ c : ℕ, ∀ (v : D.S) (a : QZ l),
     (∀ g, qzTw D e (locFam D.S D.A v g) a = a) → (l : ℤ_[l]) ^ c • a = 0 := by
   have h : ∀ v : D.S, ∃ c : ℕ, ∀ a : QZ l,
       (∀ g, qzTw D e (locFam D.S D.A v g) a = a) → (l : ℤ_[l]) ^ c • a = 0 := fun v => by
-    obtain ⟨g, hg, hne⟩ := GlobalTheory.T.exists_decompositionGroup_cyclotomicCharacter_zpow_ne_one F Ω l v.1 (D.A v) ((mem_above D v.1).1 v.2) (D.hA v) (-e)
+    obtain ⟨g, hg, hne⟩ := _root_.GlobalTheory.CycDec.exists_mem_Dec_cycZ_zpow_ne_one F Ω l v.1 (D.A v) ((mem_above D v.1).1 v.2) (D.hA v) (-e)
       (neg_ne_zero.2 he)
     have hx : ((cycZ F Ω l g ^ (-e) : ℤ_[l]ˣ) : ℤ_[l]) - 1 ≠ 0 :=
       sub_ne_zero.2 fun h => hne (Units.ext h)
@@ -520,7 +520,7 @@ theorem ptShaAt : PTShaAt D e := by
         ∃ b : QZ l, (l : ℤ_[l]) ^ r • b = 0 ∧ ∀ g, qzTw D e g a - a = qzTw D e g b - b := by
     rcases eq_or_ne e 0 with he | he
     · have htr : ∀ g a, qzTw D e g a = a := fun g a => by simp [qzTw, he]
-      have htf := GlobalTheory.T.padicInt_eq_zero_of_pow_smul_of_card_quotient l (_ ⧸ LinearMap.range (localH2 D e)) fun r hr => by
+      have htf := _root_.GlobalTheory.padicInt_torsionFree_of_card_quotient_pow l (_ ⧸ LinearMap.range (localH2 D e)) fun r hr => by
         have hH : H0 (zd D (e + 1) r) = ⊤ :=
           eq_top_iff.2 fun n _ g => h1 r ((h4 r g n).trans (htr g _))
         rw [card_cok D e hF hT hN hS h3 r hr, hH, Nat.card_congr Submodule.topEquiv.toEquiv]
@@ -546,7 +546,7 @@ theorem ptShaAt : PTShaAt D e := by
   obtain ⟨c, key⟩ := key
   have hker : Sha2Zl D e = LinearMap.ker (localH2 D e) := by rw [localH2, LinearMap.ker_pi]; rfl
   rw [hker]
-  refine GlobalTheory.T.padicInt_length_eq_of_card_quotient_eq l _ _ (fun r => (lpow l _ r).comap (LinearMap.ker (localH2 D e)).subtype) P
+  refine _root_.GlobalTheory.padicInt_length_eq_of_card_quotient_eq_card_submodule l _ _ (fun r => (lpow l _ r).comap (LinearMap.ker (localH2 D e)).subtype) P
     (c + 1) (fun r s h => Submodule.comap_mono (lpow_anti _ h))
     (fun x hx => Subtype.ext (lpow_sep (l := l) _ _ hx)) hm hu fun r hr => ?_
   obtain ⟨k1, k2⟩ := key r (by omega)

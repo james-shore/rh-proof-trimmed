@@ -58,7 +58,7 @@ theorem preservesColimitsOfShape_spec_yoneda (J : Type) [SmallCategory J] :
 theorem hyp_spec_coAug_of_etFF : ∀ (R : Type) [CommRing R] (A B : CommRingCat.{0}) (g : A ⟶ B), EtFF g → Hyp R (Scheme.Spec.rightOp ⋙ sch.op) (coAug g) := by
   intro R _ A B g hg k
   obtain ⟨h1, h2⟩ := (etFF_basic.2.1 A B g).1 hg
-  exact GlobalTheory.T.cechConerve_chains_quasiIso_of_locallySurjective R CommRingCat.{0} (Scheme.Spec.{0}.rightOp ⋙ (yoneda (C := Scheme.{0})).op)
+  exact _root_.GlobalTheory.EtC.chains_cech_conerve_quasiIso R CommRingCat.{0} (Scheme.Spec.{0}.rightOp ⋙ (yoneda (C := Scheme.{0})).op)
     (fun n => preservesColimitsOfShape_spec_yoneda _) A B g
     (locallySurjective_etale_section_baseChange.1 _ _ (Spec.map g) h1 h2)
 

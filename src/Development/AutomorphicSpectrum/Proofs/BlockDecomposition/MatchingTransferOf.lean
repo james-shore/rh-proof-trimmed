@@ -219,14 +219,6 @@ theorem vRes_add {n : ℕ} (a : ℕ) {l l' : Fin (n / 2) → ℤ} (h : Cone l) (
 theorem restr_anti {n m : ℕ} {x : Fin n → ℤ} (hx : StrictAnti x) (S : Finset (Fin n)) (h : S.card = m) :
     Antitone (restr x S h) := fun _ _ hij => hx.antitone ((S.orderEmbOfFin h).monotone hij)
 
-theorem relIndex_prod {A B : Type} [Group A] [Group B] (H K : Subgroup A) (H' K' : Subgroup B) :
-    (H.prod H').relIndex (K.prod K') = H.relIndex K * H'.relIndex K' := by
-  unfold Subgroup.relIndex
-  rw [← Subgroup.index_prod,
-    ← Subgroup.index_comap_of_surjective ((H.subgroupOf K).prod (H'.subgroupOf K'))
-      (f := (Subgroup.prodEquiv K K').toMonoidHom) (Subgroup.prodEquiv K K').surjective]
-  congr 1
-
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
 theorem fU_left {w : Pl E} {n : ℕ} (b : GLw n w) (ϖ : (w.adicCompletion E)ˣ) (l : Fin (n / 2) → ℤ) {k : UL n w}
@@ -322,7 +314,7 @@ theorem iw_idx (a : ℕ) (w : Pl E) : (iwGL a w).relIndex (GlobalTheory.LFun.KGL
 
 theorem iwahori_pair_index_ne_zero (a b : ℕ) (w : Pl E) :
     ((iwGL a w).prod (iwGL b w)).relIndex ((GlobalTheory.LFun.KGL w (n := a)).prod (GlobalTheory.LFun.KGL w (n := b))) ≠ 0 := by
-  rw [relIndex_prod]
+  rw [_root_.GlobalTheory.BCT.OrbProd.relIndex_prod_prod]
   exact mul_ne_zero (iw_idx a w) (iw_idx b w)
 
 def tm (n : ℕ) (w : Pl E) (ϖ : (w.adicCompletion E)ˣ) (a : ℕ) (x : Fin n → ℤ) (s : Finset (Fin (n / 2)))

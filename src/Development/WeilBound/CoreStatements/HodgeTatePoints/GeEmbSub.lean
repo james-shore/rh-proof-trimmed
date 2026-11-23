@@ -180,10 +180,6 @@ theorem spec_valRing_fromSpec {B : Type} [CommRing B] {X : Scheme.{0}} (x : Spec
   rw [this, Spec.map_comp, Category.assoc, e, ← Category.assoc, ← Spec.map_comp]
   simp
 
-theorem fromSpec_mem' {X : Scheme.{0}} {U : X.Opens} (hU : IsAffineOpen U) (z) : hU.fromSpec z ∈ U := by
-  rw [← SetLike.mem_coe, ← hU.range_fromSpec]
-  exact ⟨z, rfl⟩
-
 variable {R : Type} [CommRing R] [IsDomain R] {T : Type} [CommGroup T]
 
 theorem val_pullback (Γ : QFGroup R T) {U : Γ.G.left.Opens} (hU : IsAffineOpen U) {A : Subalgebra R (T → R)}
@@ -361,7 +357,7 @@ theorem openImmersion_translatesCover : ∀ (R : Type) [CommRing R] [IsDomain R]
     obtain ⟨Q', hQ'⟩ : (⟨Q, hQ⟩ : PrimeSpectrum (Γ.btOrder ⊤)) ∈ Set.range (PrimeSpectrum.comap ψ.hom) := by
       rw [range_comap_of_surjective _ _ hsurj]
       exact hk
-    refine ⟨t, hU.fromSpec Q', fromSpec_mem' hU _, fun f f' hff => ?_⟩
+    refine ⟨t, hU.fromSpec Q', _root_.GlobalTheory.CompanionTheory.Ar.BT.SubOrder.fromSpec_mem hU _, fun f f' hff => ?_⟩
     have hjg : (j (hU.fromSpec Q')).asIdeal = Q := by
       have h1 : j (hU.fromSpec Q') = (Spec.map ψ) Q' := by
         rw [hψ]

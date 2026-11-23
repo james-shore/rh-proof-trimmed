@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.RatHerm
 
 @[expose] public section
 
@@ -49,12 +50,6 @@ open scoped Matrix ComplexOrder
 namespace GlobalTheory.AmbNormTie
 
 variable {K : Type} [Field K] [NumberField K] [StarRing K]
-
-theorem hform_eq_sum {n : ℕ} (H : Matrix (Fin n) (Fin n) K) (x y : Fin n → K) :
-    Formalism.DivisionValues.hform H x y = ∑ i, ∑ j, star (x i) * H i j * y j := by
-  simp only [Formalism.DivisionValues.hform, Matrix.toLinearMapₛₗ₂'_apply, starRingEnd_apply, RingHom.id_apply]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  ring
 
 theorem j_eq_sum {σ : K →+* ℂ} {W : Type} [AddCommGroup W] [Module ℂ W] {n : ℕ}
     (j : (Fin n → K) →ₛₗ[σ] W) (x : Fin n → K) :
@@ -93,13 +88,13 @@ theorem hAt_mk {σ : K →+* ℂ} (hσ : ∀ a, σ (star a) = starRingEnd ℂ (�
   rcases InfinitePlace.embedding_mk_eq σ with he | he
   · left
     intro x y
-    rw [hin, hform_eq_sum, hAt, he]
+    rw [hin, _root_.Formalism.DivisionValues.RationalHermitianForm.hform_apply, hAt, he]
 
     simp only [map_sum, map_mul, hσ]
     rfl
   · right
     intro x y
-    rw [hin, hform_eq_sum, hAt, he]
+    rw [hin, _root_.Formalism.DivisionValues.RationalHermitianForm.hform_apply, hAt, he]
 
     simp only [map_sum, map_mul, hσ, star_sum, star_mul', ComplexEmbedding.conjugate_coe_eq, Complex.star_def]
 
@@ -126,7 +121,7 @@ open GlobalTheory.AmbNormTie in
 theorem GlobalTheory.AmbNormTie.normAt_frm_mk : ∀ {K : Type} [Field K] [NumberField K] [StarRing K] [_root_.NumberField.IsTotallyComplex K] (σ : K →+* ℂ), (∀ a, σ (star a) = starRingEnd ℂ (σ a)) → ∀ {W : Type} [NormedAddCommGroup W] [InnerProductSpace ℂ W] {n : ℕ} (j : (Fin n → K) →ₛₗ[σ] W) (H E : Matrix (Fin n) (Fin n) K) (op : W →ₗ[ℂ] W), Formalism.L2.DIV.FormsTie σ j H E op → ∀ x : Fin n → K, Formalism.HermitianLatticesTheory.normAt (Pi.basisFun K (Fin n)) (GlobalTheory.AmbCrd.frm H) (InfinitePlace.mk σ) x = ‖j x‖ := by
   intro K _ _ _ _ σ hσ W _ _ n j H E op hT x
   obtain ⟨hP, hd⟩ := posAt_mk hσ j H E op hT
-  have hPD := GlobalTheory.T.posDef_map_embedding_of_positiveAtPlace H (InfinitePlace.mk σ) hP
+  have hPD := _root_.GlobalTheory.AmbTiePosDef.posDef_map_of_posAt H (InfinitePlace.mk σ) hP
   have hmaj : Formalism.HermitianLatticesTheory.majAt (Pi.basisFun K (Fin n)) (GlobalTheory.AmbCrd.frm H) (InfinitePlace.mk σ) x x =
       hAt H (InfinitePlace.mk σ) x x := by
     rw [Formalism.L2.DIV.majAt_eq, GlobalTheory.AmbCrd.frm_of_posDef H _ hPD, (Formalism.L2.DIV.frameOfSpec _ _ hPD).2,

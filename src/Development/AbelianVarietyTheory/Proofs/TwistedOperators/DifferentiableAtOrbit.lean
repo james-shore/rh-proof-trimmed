@@ -58,19 +58,9 @@ namespace GlobalTheory.GKLie
 
 variable {n : ℕ} {ε : Fin n → Bool} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 
-theorem Jm_mul_self (ε : Fin n → Bool) : Jm ε * Jm ε = 1 := by
-  unfold Jm
-  rw [diagonal_mul_diagonal, ← diagonal_one]
-  congr 1
-  funext a
-  split_ifs <;> norm_num
+alias Jm_mul_self := _root_.Formalism.REAL.Jm_mul_self
 
-theorem Jm_conjTranspose (ε : Fin n → Bool) : (Jm ε)ᴴ = Jm ε := by
-  unfold Jm
-  rw [diagonal_conjTranspose]
-  congr 1
-  funext a
-  by_cases h : ε a = true <;> simp [h]
+alias Jm_conjTranspose := _root_.Formalism.REAL.Jm_conjTranspose
 
 theorem isUnit_Jm_det (ε : Fin n → Bool) : IsUnit (Jm ε).det :=
   isUnit_det_of_left_inverse (Jm_mul_self ε)

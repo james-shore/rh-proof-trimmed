@@ -53,7 +53,7 @@ theorem exists_sPack_integrable_alt :
         ∃ P : SPack D F, Integrable P.X.ph (Formalism.L2.SG.ProjRows.muInf P.X.B.I) := by
   intro hSW hRF D F hG hL
   obtain ⟨X, hb, ψ, Y, hF, tr, hinst, hpin, hmt, hch, hstd, hmc, hlc, hint, hu⟩ :=
-    _root_.GlobalTheory.T.local_bessel_uniqueness_holds hSW hRF D F hG hL
+    _root_.UpperTheory.Lit.exists_spectralData_gap_alt hSW hRF D F hG hL
   obtain ⟨G⟩ := GlobalTheory.rowDict_goodOp_nonempty D X
   exact ⟨⟨X, hb, Y, hF, ψ, hmt, hch, hstd, hmc, hlc, tr, fun u => (hu u).2.1, fun u => (hu u).2.2.1,
     fun u => (hu u).1, fun u => (hu u).2.2.2, hinst, G, hpin⟩, hint⟩

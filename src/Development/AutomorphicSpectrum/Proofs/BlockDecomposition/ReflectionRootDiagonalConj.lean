@@ -210,18 +210,6 @@ theorem prod_compare {m : ℕ} (χ : Fin m → ℂˣ) (Q : ℂ) (hQ : Q ≠ 0) (
     ring
   linear_combination ((χ i : ℂ) ^ (o j) * (χ j : ℂ) ^ (o i) * P) * hq
 
-section Ord
-
-variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))]
-
-theorem ordL_mul' {x y : L} (hx : x ≠ 0) (hy : y ≠ 0) : ordL (x * y) = ordL x + ordL y := by
-  have h1 := v_eq_exp' (mul_ne_zero hx hy)
-  rw [map_mul, v_eq_exp' hx, v_eq_exp' hy, ← WithZero.exp_add] at h1
-  have := WithZero.exp_injective h1
-  omega
-
-end Ord
-
 theorem torus_step : ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplicative ℤ))] (ϖ : L) (σ : L →+* L) (q n : ℕ) (hU : IsUnramInv ϖ σ q) (a : ℕ) (h : 2 * (a + 2) ≤ n) (χ : Fin (n / 2) → ℂˣ) (i j : Fin (n / 2)), i.val = a → j.val = a + 1 → ∀ t : GU σ n, PositivityTheory.SphericalProduct.IsDiagM (t : GL (Fin n) L) →
     ∃ c : L, c ≠ 0 ∧ ∃ t' : GU σ n, IsBorelU t' ∧
       (∀ x : L, sR σ hU.1 a h * uR σ hU.1 a h x * t = t' * (sR σ hU.1 a h * uR σ hU.1 a h (c * x))) ∧
@@ -271,7 +259,7 @@ theorem torus_step : ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplicativ
     have hoi : o i = ordL (d (cI n a h 0)) := by simp only [hodef, hci]
     have hoj : o j = ordL (d (cI n a h 1)) := by simp only [hodef, hcj]
     have hc : ordL (d (cI n a h 1) * (d (cI n a h 0))⁻¹) = o j - o i := by
-      rw [ordL_mul' (hd _) (inv_ne_zero (hd _)), ordL_inv' (hd _), hoi, hoj]
+      rw [_root_.Formalism.UG.P.fSatake_ord_mul (hd _) (inv_ne_zero (hd _)), ordL_inv' (hd _), hoi, hoj]
       ring
     rw [hL, hR, hc]
     refine prod_compare χ _ hq _ i j (by omega) o o' ?_ ?_ ?_

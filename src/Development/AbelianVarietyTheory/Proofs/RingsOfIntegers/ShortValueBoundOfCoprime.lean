@@ -260,7 +260,7 @@ theorem ell_part (Xo : Moduli Dw l) (c : Coeff l) [StarRing (𝓞 E)] (hst : ∀
     ((-ρ : ℝ) : EReal) ≤ nval T.V e (io (β⁻¹ * ((Λ.mIdx N (Dw.p + Dw.q) : c.F))⁻¹ * ((N : c.F) ^ P.totalDegree)⁻¹) *
       ∑ i, hv Xo c nab y.1 (N ^ 2) (F i) P) := by
   letI := io.toAlgebra
-  obtain ⟨A, hsim⟩ := GlobalTheory.T.exists_adapted_similitude_data_at_prime E H n Λ N M ℓ hU hL hp
+  obtain ⟨A, hsim⟩ := _root_.GlobalTheory.PlaceInt.AdaptExists.exists_adapt E H n Λ N M ℓ hU hL hp
   have hN : Odd N := hL.1
   have hkN : Odd (A.k * N) := A.odd.mul hN
   have hlev : (A.k * N) ^ 2 = N ^ 2 * A.k ^ 2 := by ring
@@ -287,7 +287,7 @@ theorem ell_part (Xo : Moduli Dw l) (c : Coeff l) [StarRing (𝓞 E)] (hst : ∀
   obtain ⟨hff, -, hhom⟩ := GlobalTheory.PushIntegral.map_pushL_mem_FFV E H Dw l c n Λ w P hP T io A.k A.ga
     (isUnit_of_coprime hl A.cop) A.unitary A.into
   have hkN0 : ((A.k * N : ℕ) : c.F) ^ P.totalDegree ≠ 0 := pow_ne_zero _ (Nat.cast_ne_zero.2 hkN.pos.ne')
-  obtain ⟨z, hz1, hz2⟩ := GlobalTheory.T.sum_hv_primary_kernel_alt E H Dw l Xo c hst T io y C hC nab hnab e ρ w n he hB ℓ hp hl (A.k * N)
+  obtain ⟨z, hz1, hz2⟩ := _root_.GlobalTheory.sum_hv_primary_kernel E H Dw l Xo c hst T io y C hC nab hnab e ρ w n he hB ℓ hp hl (A.k * N)
     (A.k ^ 2) (N ^ 2) A.k₁ A.p A.q ((A.k : 𝓞 E) • A.g) hkN hsim (mul_pow _ _ _) (A.cop.pow_left 2) hR A.cop₁
     (by rw [Matrix.smul_mul, A.gq, smul_smul]; congr 1; push_cast; ring) J a hinj ha'
     (fun i i' ε hε => hiso (a i) (a i') ε (hZ i) (hZ i') fun b => by rw [← Nat.cast_pow]; exact hε b)

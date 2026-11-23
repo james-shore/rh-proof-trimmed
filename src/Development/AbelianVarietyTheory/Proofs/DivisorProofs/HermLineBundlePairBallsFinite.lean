@@ -86,9 +86,7 @@ theorem exists_rep (P : Pair p) (a c : ℤ) : ∃ M : HermLB p, P.Rep a c M := b
   rw [add_zero, zero_add] at this
   exact ⟨_, this⟩
 
-theorem nu_nonneg (P : Pair p) (a b : ℤ) (σ : k →+* ℂ) (y : CxPts p σ) (f : X.functionField) :
-    0 ≤ P.nu a b σ y f :=
-  mul_nonneg (norm_nonneg _) (Real.exp_pos _).le
+alias nu_nonneg := _root_.GlobalTheory.VolBr.SmallBall.nu_nonneg
 
 theorem smallSec_tens_shift (N M : HermLB p) (t : ℝ) :
     ((N.tens M).shift (fun _ => t) fun _ => rfl).smallSec ⊆ (N.tens (M.shift (fun _ => t) fun _ => rfl)).smallSec :=

@@ -36,6 +36,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals
 
 @[expose] public section
 
@@ -52,15 +53,6 @@ section Gen
 
 variable {E : Type} [Field E] [NumberField E] [StarRing E] {S : Formalism.BasicNotions.HSpace E} {r : ℕ}
 
-theorem mem_gmap_iff (ψ : S.V ≃ₗ[E] S.V) (Λ : Submodule (𝓞 E) S.V) (x : S.V) :
-    x ∈ Formalism.HermitianLatticesTheory.gmap ψ Λ ↔ ψ.symm x ∈ Λ := by
-  unfold Formalism.HermitianLatticesTheory.gmap
-  constructor
-  · rintro ⟨y, hy, rfl⟩
-    simpa using hy
-  · intro h
-    exact ⟨ψ.symm x, h, by simp⟩
-
 theorem mem_map_iff (ψ : S.V ≃ₗ[E] S.V) (U : Submodule E S.V) (x : S.V) :
     x ∈ U.map (ψ : S.V →ₗ[E] S.V) ↔ ψ.symm x ∈ U := by
   constructor
@@ -69,15 +61,10 @@ theorem mem_map_iff (ψ : S.V ≃ₗ[E] S.V) (U : Submodule E S.V) (x : S.V) :
   · intro h
     exact ⟨ψ.symm x, h, by simp⟩
 
-theorem mem_orth_iff (U : Submodule E S.V) (x : S.V) :
-    x ∈ orth S U ↔ ∀ y ∈ U, S.hT y x = 0 := by
-  unfold orth
-  simp [Submodule.mem_iInf]
-
 theorem mem_orth_map (ψ : S.V ≃ₗ[E] S.V) (hψ : ψ ∈ Formalism.HermitianLatticesTheory.isom S.hT) (U : Submodule E S.V)
     (x : S.V) : x ∈ orth S (U.map (ψ : S.V →ₗ[E] S.V)) ↔ ψ.symm x ∈ orth S U := by
   have hi : ∀ a b, S.hT (ψ a) (ψ b) = S.hT a b := hψ
-  rw [mem_orth_iff, mem_orth_iff]
+  rw [_root_.Formalism.MainNotions.LatticeGluingRadicals.a_mem_orth, _root_.Formalism.MainNotions.LatticeGluingRadicals.a_mem_orth]
   constructor
   · intro h y hy
     have := h (ψ y) ⟨y, hy, rfl⟩
@@ -94,13 +81,13 @@ theorem mem_Lrep_map (ψ : S.V ≃ₗ[E] S.V) (hψ : ψ ∈ Formalism.HermitianL
     (F G : LFlag S r T) (hF : (Xsp F).map (ψ : S.V →ₗ[E] S.V) = Xsp G) (x : S.V) :
     x ∈ Lrep (Formalism.HermitianLatticesTheory.gmap ψ Λ) G ↔ ψ.symm x ∈ Lrep Λ F := by
   unfold Lrep
-  rw [Submodule.mem_inf, Submodule.mem_inf, mem_gmap_iff, toO, toO, Submodule.restrictScalars_mem,
+  rw [Submodule.mem_inf, Submodule.mem_inf, _root_.Formalism.L2.SG.Saturated.mem_gmap_iff, toO, toO, Submodule.restrictScalars_mem,
     Submodule.restrictScalars_mem, ← hF, mem_orth_map ψ hψ]
 
 theorem gmap_eq (ψ : S.V ≃ₗ[E] S.V) (Λ : Submodule (𝓞 E) S.V) :
     Formalism.HermitianLatticesTheory.gmap ψ Λ = Λ.map (ψ.restrictScalars (𝓞 E) : S.V →ₗ[𝓞 E] S.V) := by
   ext x
-  rw [mem_gmap_iff, Submodule.mem_map_equiv]
+  rw [_root_.Formalism.L2.SG.Saturated.mem_gmap_iff, Submodule.mem_map_equiv]
   rfl
 
 theorem XLam_map (ψ : S.V ≃ₗ[E] S.V) (Λ : Submodule (𝓞 E) S.V)
@@ -109,7 +96,7 @@ theorem XLam_map (ψ : S.V ≃ₗ[E] S.V) (Λ : Submodule (𝓞 E) S.V)
   ext x
   rw [Submodule.mem_map_equiv]
   unfold XLam
-  rw [Submodule.mem_inf, Submodule.mem_inf, mem_gmap_iff, toO, toO, Submodule.restrictScalars_mem,
+  rw [Submodule.mem_inf, Submodule.mem_inf, _root_.Formalism.L2.SG.Saturated.mem_gmap_iff, toO, toO, Submodule.restrictScalars_mem,
     Submodule.restrictScalars_mem, ← hF, mem_map_iff]
   rfl
 

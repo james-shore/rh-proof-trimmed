@@ -337,7 +337,7 @@ theorem sMemLeft_holds (hGen : ∀ D : D7, Saturated.GenIso (VS D) D.R.rS (gS D)
     (Quot.sound (r := Rel t.lam (lf D (X.Fu u)) (PD D t.lam (lf D (X.Fu u)) u'))
       (a := c1) (b := ⟨mapLF t'.lin (lf D (X.Fu u')), t'.rep.2.2.2.2⟩) hdc').symm
   have hΛ := (Y.rowsOK u).1 t.lam t.mem
-  have hTF := Formalism.L2.SG.Closed.TermFun_holds D u u' (X.Fu u) t.lam hΛ
+  have hTF := _root_.term_function_const D u u' (X.Fu u) t.lam hΛ
   have hG : t'.G = t.G := by
     have a1 : Gt t.lam (lf D (X.Fu u)) (PD D t.lam (lf D (X.Fu u)) u')
         (mk t.lam (lf D (X.Fu u)) (PD D t.lam (lf D (X.Fu u)) u') c1) = Gval (lf D (X.Fu u)) c1.1 :=
@@ -435,8 +435,6 @@ theorem incl_inj {a b : Fin X.B.I.n → X.B.I.E} (h : incl X.B.I a = incl X.B.I 
   funext i
   exact hinj (congrFun h i)
 
-theorem fmat_mul (a b : X.B.I.Gf) : X.B.I.fmat (a * b) = X.B.I.fmat a * X.B.I.fmat b := Formalism.L2.SG.PoincareInHH.Cut.fmat_mul X a b
-
 theorem betaLift_holds : BetaLift := by
   intro D X w rs c Λ hΛ γ hk
   obtain ⟨M, hM, h1, h2⟩ : (γ : X.B.I.GA) ∈ X.B.I.GFset := (Subgroup.mem_inf.1 γ.2).1
@@ -468,8 +466,8 @@ theorem betaLift_holds : BetaLift := by
         X.B.I.fmat (kB c Λ γ) *ᵥ (X.B.I.fmat H⁻¹ *ᵥ incl X.B.I (X.crd (β.symm y))) := by
       have ey : y = β (β.symm y) := (β.apply_symm_apply y).symm
       conv_lhs => rw [ey]
-      rw [hcrd, ← Formalism.L2.SG.Pf.incl_mulVec X, ← h2, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, ← fmat_mul X,
-        ← fmat_mul X, hk']
+      rw [hcrd, ← Formalism.L2.SG.Pf.incl_mulVec X, ← h2, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, ← _root_.Formalism.L2.SG.PoincareInHH.Cut.fmat_mul X,
+        ← _root_.Formalism.L2.SG.PoincareInHH.Cut.fmat_mul X, hk']
       congr 2
       group
     rw [key y, key (β.symm y), e]
@@ -479,7 +477,7 @@ theorem betaLift_holds : BetaLift := by
       exact Formalism.L2.SG.Pf.unitaryCongruence.K_mv X.B.I hk h
     · intro h
       have := Formalism.L2.SG.Pf.unitaryCongruence.K_mv X.B.I (Formalism.L2.SG.Pf.unitaryCongruence.K_inv X.B.I hk) h
-      rwa [Matrix.mulVec_mulVec, ← fmat_mul X, inv_mul_cancel, show X.B.I.fmat 1 = 1 by simp [AutInst.fmat],
+      rwa [Matrix.mulVec_mulVec, ← _root_.Formalism.L2.SG.PoincareInHH.Cut.fmat_mul X, inv_mul_cancel, show X.B.I.fmat 1 = 1 by simp [AutInst.fmat],
         Matrix.one_mulVec] at this
   · refine Fin.lastCases ?_ (fun i => ?_) a
     · show β ((lf D (X.Fu w)).fl.fvec (Fin.last _)) = (lf D (X.Fu w)).fl.fvec (Fin.last _)

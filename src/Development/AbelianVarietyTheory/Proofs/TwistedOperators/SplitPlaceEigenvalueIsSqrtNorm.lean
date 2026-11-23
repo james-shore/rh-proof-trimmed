@@ -66,16 +66,6 @@ noncomputable section
 
 namespace GlobalTheory.FinZeta.SplitNorm
 
-theorem natCast_mem_of_dvd_absNorm {K : Type} [Field K] [NumberField K] (w : HeightOneSpectrum (𝓞 K)) {q : ℕ}
-    (hq : q.Prime) (hd : q ∣ Ideal.absNorm w.asIdeal) : (q : 𝓞 K) ∈ w.asIdeal := by
-  first
-  | exact @_root_.GlobalTheory.NatCastMemOfPrimeDvdNorm.natCast_mem_of_prime_dvd_absNorm
-  | exact _root_.GlobalTheory.NatCastMemOfPrimeDvdNorm.natCast_mem_of_prime_dvd_absNorm
-  | (apply _root_.GlobalTheory.NatCastMemOfPrimeDvdNorm.natCast_mem_of_prime_dvd_absNorm <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NatCastMemOfPrimeDvdNorm.natCast_mem_of_prime_dvd_absNorm <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NatCastMemOfPrimeDvdNorm.natCast_mem_of_prime_dvd_absNorm <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NatCastMemOfPrimeDvdNorm.natCast_mem_of_prime_dvd_absNorm ..)
-
 theorem conj_smul_ne_of_isSplit (D : D7) (v : HeightOneSpectrum (𝓞 D.host.F)) (w : HeightOneSpectrum (𝓞 D.host.E))
     (hw : w.under (𝓞 D.host.F) = v) (hv : IsSplit (E := D.host.E) v) : D.host.conj • w.asIdeal ≠ w.asIdeal := by
   intro hfix
@@ -102,7 +92,7 @@ theorem lam_qV_pow (D : D7) (lam : ℕ →* ℂ)
   apply hlam
   · exact pow_ne_zero _ fun h => w.ne_bot (Ideal.absNorm_eq_zero_iff.1 h)
   · intro q hq hi hd
-    have hmem := natCast_mem_of_dvd_absNorm w hq (hq.dvd_of_dvd_pow hd)
+    have hmem := _root_.GlobalTheory.NatCastMemOfPrimeDvdNorm.natCast_mem_of_prime_dvd_absNorm w hq (hq.dvd_of_dvd_pow hd)
     refine conj_smul_ne_of_isSplit D v w hw hv (hi w.asIdeal w.isPrime w.ne_bot hmem)
 
 end GlobalTheory.FinZeta.SplitNorm

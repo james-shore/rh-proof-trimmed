@@ -63,18 +63,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace PositivityTheory.PrwZar.Z2
 
-theorem isAbelianScheme_pb {S S' : Scheme.{0}} (f : S' ⟶ S) (A : Over S) [GrpObj A]
-    (h : IsAbelianScheme A) : IsAbelianScheme ((Over.pullback f).obj A) := by
-  have := h.comm
-  have := h.smooth
-  have := h.proper
-  have := h.geomConnected
-  exact
-    { comm := inferInstance
-      smooth := (inferInstance : Smooth (pullback.snd A.hom f))
-      proper := (inferInstance : IsProper (pullback.snd A.hom f))
-      geomConnected := (inferInstance : GeometricallyConnected (pullback.snd A.hom f)) }
-
 theorem pb_map_id_pow {S S' : Scheme.{0}} (f : S' ⟶ S) (B : Over S) [GrpObj B] (m : ℕ) :
     (Over.pullback f).map (𝟙 B ^ m) = 𝟙 ((Over.pullback f).obj B) ^ m := by
   induction m with
@@ -133,6 +121,6 @@ theorem isFinite_mu_fibre (hA : IsAbelianScheme A) (hB : IsAbelianScheme B) (g :
     rw [← Functor.map_comp, h₁, pb_map_id_pow]
   have e₂ : (Over.pullback s).map mu ≫ (Over.pullback s).map l = 𝟙 ((Over.pullback s).obj B) ^ m := by
     rw [← Functor.map_comp, h₂, pb_map_id_pow]
-  exact (fin_surj_core (isAbelianScheme_pb s A hA) (isAbelianScheme_pb s B hB) _ _ m hm e₁ e₂ hL ha).2.2.1
+  exact (fin_surj_core (_root_.GlobalTheory.isAbelianScheme_pullback_obj s A hA) (_root_.GlobalTheory.isAbelianScheme_pullback_obj s B hB) _ _ m hm e₁ e₂ hL ha).2.2.1
 
 end PositivityTheory.PrwZar.Z2

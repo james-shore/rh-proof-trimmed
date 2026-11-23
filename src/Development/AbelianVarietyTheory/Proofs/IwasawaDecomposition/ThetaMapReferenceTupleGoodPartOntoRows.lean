@@ -36,6 +36,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.IndefiniteReal.CxLemmas
 
 @[expose] public section
 
@@ -50,16 +51,6 @@ theorem kOf_apply_self_on {K : Type} [Field K] (σ : K →+* ℂ) (a : K) : kOf 
   rw [dite_eq_left h]
   exact σ.injective h.choose_spec
 
-theorem relMat_self_on {E : Type} [AddCommGroup E] [Module ℂ E] {n : ℕ} (f : (Fin n → ℂ) →ₗ[ℂ] E)
-    (hf : Function.Injective f) : relMat f f = 1 := by
-  ext i k
-  have h : ∃ y, f y = f (Pi.single k 1) := ⟨_, rfl⟩
-  have : solve f (f (Pi.single k 1)) = Pi.single k 1 := by
-    unfold solve
-    rw [dite_eq_left h]
-    exact hf h.choose_spec
-  simp only [relMat, Matrix.of_apply, this, Matrix.one_apply, Pi.single_apply]
-
 theorem kMat_one_on {K : Type} [Field K] (σ : K →+* ℂ) {n : ℕ} : kMat σ (1 : Matrix (Fin n) (Fin n) ℂ) = 1 := by
   ext i k
   simp only [kMat, Matrix.map_apply, Matrix.one_apply]
@@ -71,7 +62,7 @@ theorem thetaMap_referenceTuple_goodPart_onto_rows : ∀ (D : D7) (Bs : DefBase 
   intro D Bs A X fc s R cr eV hF hI hV
   have h1 : X.rowMat cr true Bs.μ0 = 1 := by
     unfold CxData.rowMat CxData.rowMatC
-    rw [relMat_self_on _ hF.h2.1, kMat_one_on]
+    rw [_root_.Formalism.IndefR.Cx.relMat_self _ hF.h2.1, kMat_one_on]
   rw [eq_top_iff, ← D.jEE_basis.2, Submodule.span_le]
   rintro _ ⟨i, rfl⟩
   obtain ⟨x, hx⟩ := R.eRR.surjective (D.div.RR.b i)

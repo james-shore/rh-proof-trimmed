@@ -55,12 +55,6 @@ namespace GlobalTheory.EisM
 open Matrix.SpecialLinearGroup
 open scoped Pointwise
 
-theorem norm_petersson_self_eq (k : ℕ) (f : ℍ → ℂ) (z : ℍ) :
-    ‖UpperHalfPlane.petersson (k : ℤ) f f z‖ = ‖f z‖ ^ 2 * z.im ^ k := by
-  simp only [UpperHalfPlane.petersson, norm_mul, Complex.norm_conj, zpow_natCast, norm_pow,
-    Complex.norm_real, Real.norm_of_nonneg z.im_pos.le]
-  ring
-
 theorem cusp_decay : ∀ (k L N : ℕ) (ε : DirichletCharacter ℂ N) (a : ℕ → ℂ) (γ : SL(2, ℤ)), 1 ≤ k → 0 < L → N ∣ L →
     CF k L (ch ε) a → ∃ C δ : ℝ, 0 < δ ∧ ∀ τ : ℍ, 1 / 2 ≤ τ.im →
       ‖qs a (γ • τ)‖ ^ 2 * (γ • τ).im ^ k ≤ C * Real.exp (-δ * τ.im) := by
@@ -81,7 +75,7 @@ theorem cusp_decay : ∀ (k L N : ℕ) (ε : DirichletCharacter ℂ N) (a : ℕ 
   have key : ‖qs a (γ • τ)‖ ^ 2 * (γ • τ).im ^ k =
       ‖UpperHalfPlane.petersson (k : ℤ) (CuspForm.translate f γ) (CuspForm.translate f γ) τ‖ := by
     rw [show ((CuspForm.translate f γ : CuspForm _ _) : ℍ → ℂ) = (⇑f) ∣[(k : ℤ)] γ from rfl,
-      UpperHalfPlane.petersson_slash_SL, norm_petersson_self_eq, hf]
+      UpperHalfPlane.petersson_slash_SL, _root_.GlobalTheory.EisM.norm_petersson_self, hf]
   rw [key]
   rcases le_total y τ.im with h1 | h1
   · have h2 := hy _ h1 τ rfl

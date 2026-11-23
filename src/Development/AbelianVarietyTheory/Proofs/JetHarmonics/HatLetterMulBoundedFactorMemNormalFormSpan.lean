@@ -99,10 +99,10 @@ theorem hats_mul_bmon_mem_nfSpan : ∀ (P : M.Par) (A : Type) [Ring A] [StarRing
     | mem b hb =>
       intro X hX
       rcases hX with ((⟨y, rfl⟩ | ⟨y, rfl⟩) | ⟨y, rfl⟩) | ⟨y, rfl⟩
-      · exact (GlobalTheory.T.Ahat_mul_and_R0_mul_mem_nfSpan_hats P A d hd b hb y).1
-      · exact (GlobalTheory.T.Ahat_mul_and_R0_mul_mem_nfSpan_hats P A d hd b hb y).2
-      · exact (GlobalTheory.T.Ahatv_mul_and_R0v_mul_mem_nfSpan_hats P A d hd b hb y).1
-      · exact (GlobalTheory.T.Ahatv_mul_and_R0v_mul_mem_nfSpan_hats P A d hd b hb y).2
+      · exact (_root_.GlobalTheory.HatNF.GenPlus.plus_hats_pass_generators P A d hd b hb y).1
+      · exact (_root_.GlobalTheory.HatNF.GenPlus.plus_hats_pass_generators P A d hd b hb y).2
+      · exact (_root_.GlobalTheory.HatNF.GenMinus.minus_hats_pass_generators P A d hd b hb y).1
+      · exact (_root_.GlobalTheory.HatNF.GenMinus.minus_hats_pass_generators P A d hd b hb y).2
     | one =>
       intro X hX
       exact Submodule.subset_span ⟨1, one_mem _, [X], rfl, by simpa using hX, by simp⟩

@@ -62,8 +62,7 @@ variable {D : D7}
 section Maps
 variable {V V' W : HSp D} {r : ℕ} (C : Matrix (Fin V.rank) (Fin r) D.host.E) (B : Matrix (Fin V.rank) (Fin V'.rank) D.host.E)
 
-theorem isoPart_add (y y' : Mx D W.rank r) : isoPart V W C (y + y') = isoPart V W C y + isoPart V W C y' :=
-  Matrix.add_mul _ _ _
+alias isoPart_add := _root_.GlobalTheory.TowerResNonzero.isoPart_add'
 
 theorem isoPart_zero : isoPart V W C (0 : Mx D W.rank r) = 0 := Matrix.zero_mul _
 
@@ -95,7 +94,7 @@ theorem midPart_infPart {u : WO V' W} (hu : u.map (infPart D) = 0) : (midPart V 
 
 def midHom : WO V' W →+ WO V W where
   toFun := midPart V V' W B
-  map_zero' := midPart_zero B
+  map_zero' := _root_.GlobalTheory.TowerResNonzero.midPart_zero' B
   map_add' := midPart_add B
 
 end Maps
@@ -103,10 +102,7 @@ end Maps
 section Shift
 variable {m n : ℕ}
 
-theorem lattice_Mx (D : D7) (m n : ℕ) : IsTopologicalAddGroup (Mx D m n) ∧ LocallyCompactSpace (Mx D m n) ∧
-    SecondCountableTopology (Mx D m n) ∧ T2Space (Mx D m n) ∧ DiscreteTopology (ratMx D m n) ∧
-    ∃ K : Set (Mx D m n), IsCompact K ∧ ∀ x : Mx D m n, ∃ γ ∈ ratMx D m n, γ + x ∈ K :=
-  GlobalTheory.AdelicMatrixLattice.lattice D (Examples₂.posSpace Examples₂.star_isIntegral m) (Examples₂.posSpace Examples₂.star_isIntegral n)
+alias lattice_Mx := _root_.GlobalTheory.TowerResNonzero.lattice_ratMx
 
 theorem setIntegral_add_right {μ : Measure (Mx D m n)} {𝓨 : Set (Mx D m n)} (h : IsCovolOne (ratMx D m n) μ 𝓨)
     (φ : Mx D m n → ℂ) (hφ : ∀ γ ∈ ratMx D m n, ∀ a, φ (γ + a) = φ a) (b : Mx D m n) :
@@ -182,7 +178,7 @@ theorem integrable_res (hψ : IsStdChar D ψ (-1)) {μ : Measure (Mx D W.rank r)
     (h : IsCovolOne (ratMx D W.rank r) μ 𝓨) {f : WO V W → ℂ} (hf : IsThetaFunO ψ V W f) (x : WO V' W) :
     IntegrableOn (fun y => f (isoPart V W C y + midPart V V' W B x)) 𝓨 μ := by
   have : BorelSpace (Mx D W.rank r) := ⟨rfl⟩
-  obtain ⟨c, hc⟩ := ((GlobalTheory.ThetaSquare.thetaFunctions_squareIntegrable_heisenbergUnitary D V W).2 ψ hψ).1 f hf |>.2.1
+  obtain ⟨c, hc⟩ := ((_root_.GlobalTheory.ThetaSquare.theta_square_integrable D V W).2 ψ hψ).1 f hf |>.2.1
   refine Measure.integrableOn_of_bounded (M := c) (by rw [h.2.2]; exact ENNReal.one_ne_top) ?_
     (Filter.Eventually.of_forall fun y => hc _)
   exact (hf.cont.comp ((continuous_isoPart C).add continuous_const)).aestronglyMeasurable
@@ -192,7 +188,7 @@ theorem continuous_res (hψ : IsStdChar D ψ (-1)) {μ : Measure (Mx D W.rank r)
     Continuous (res V V' W C B μ 𝓨 f) := by
   have : BorelSpace (Mx D W.rank r) := ⟨rfl⟩
   have : IsFiniteMeasure (μ.restrict 𝓨) := isFiniteMeasure_restrict.2 (by rw [h.2.2]; exact ENNReal.one_ne_top)
-  obtain ⟨c, hc⟩ := ((GlobalTheory.ThetaSquare.thetaFunctions_squareIntegrable_heisenbergUnitary D V W).2 ψ hψ).1 f hf |>.2.1
+  obtain ⟨c, hc⟩ := ((_root_.GlobalTheory.ThetaSquare.theta_square_integrable D V W).2 ψ hψ).1 f hf |>.2.1
   obtain ⟨-, -, i3, -⟩ := lattice_Mx D W.rank V'.rank
   have : FirstCountableTopology (WO V' W) := @TopologicalSpace.SecondCountableTopology.to_firstCountableTopology _ _ i3
   exact continuous_of_dominated (bound := fun _ => c)

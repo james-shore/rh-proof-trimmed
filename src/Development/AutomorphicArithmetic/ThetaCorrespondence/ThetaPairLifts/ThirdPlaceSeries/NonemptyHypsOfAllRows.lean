@@ -50,7 +50,7 @@ namespace GlobalTheory.Fc
 theorem nonempty_hyps_of_allRows_alt : StandardLattice.SiegelMassRatioCM → LitThin → Formalism.L2.SG.Pf.WuDecayOfGap → Formalism.L2.SG.RowsDef.RowsFinDim → Formalism.L2.SG.RowsPos.TypeP → Formalism.L2.SG.RowsPos.RowNGP → Formalism.L2.SG.RowsPos.RowMainEqP → (∀ D, MassRatioUnderVolume D) → (∀ D, Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.GenusMassAt D 2) → ∀ (KP : ∀ B : GlobalTheory.Mem.Base, Fr B.toPre → Prop) (Q Q' : V4.Slot) (Lk : LkT _root_.GlobalTheory.Fc.BundleCondition) (N : FamClass → Prop) (DR : _root_.GlobalTheory.Fc.R1.DefiniteSideType), (DC.MinkDiv → GroupRetwisting.BaseCond KP ∧ GroupRetwisting.FirstG KP Q ∧ GroupRetwisting.ExportF KP Q ∧ GroupRetwisting.SecondG KP Q Q') → ExBL KP Q Q' Lk → _root_.GlobalTheory.Fc.AllRowsAlt KP Q Q' Lk N DR → Nonempty (_root_.GlobalTheory.Fc.HypsAlt N DR) := by
   intro hP hLit hWu hRF hTy hNG hM hU hG KP Q Q' Lk N DR hc hx hA
   obtain ⟨R30, hR30, c30, cIc, hb30, hpos, r30⟩ := hA.c30
-  have rTu := Row.rowL (KP := KP) (Q := Q) largeBaseProperty_true (_root_.GlobalTheory.T.hTu_cTmin_of_genusMass hU hG Q' Lk)
+  have rTu := Row.rowL (KP := KP) (Q := Q) largeBaseProperty_true (_root_.GlobalTheory.Fc.row_hTu_cTmin_alt hU hG Q' Lk)
   have hall := RowL.and (hA.hn4 : RowL KP Q Q' Lk fun 𝒜 _ => R0.ClassCountBoundAllPoints 𝒜) <|
     RowL.and (hA.jOn : RowL KP Q Q' Lk fun 𝒜 _ => R0.H_jOn 𝒜) <|
     RowL.and (hA.hInstR : RowL KP Q Q' Lk fun 𝒜 _ => ClassTwoEntries.H_hInstR 𝒜) <|

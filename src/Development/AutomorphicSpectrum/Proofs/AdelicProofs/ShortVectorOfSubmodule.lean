@@ -321,7 +321,7 @@ theorem short_vector_of_submodule : LineOfLargeDegree.Statement → ∀ (L : Typ
       metric := fun σ => gramMat B σ (fun j => (f j : B.carrier))
       posDef := hpos
       conj := hconj }
-  have hdeg : Fl.degree = B.degreeWith F f := GlobalTheory.T.hermitian_lattice_degree_eq_bundle_degree L B F i f c Fl hf rfl hcinj hcf rfl (fun _ => rfl)
+  have hdeg : Fl.degree = B.degreeWith F f := _root_.GlobalTheory.CompanionTheory.Ar.Lines.degree_eq_degreeWith L B F i f c Fl hf rfl hcinj hcf rfl (fun _ => rfl)
   have hslope : Fl.slope = B.slope F := by
     rw [HermLattice.slope, normalise, hdeg]
     rfl

@@ -143,7 +143,7 @@ theorem relation_top_zero : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     simp only [map_pow, map_neg, map_one]
     ring
   have hzero : toEven n (((blockPoly e).charpolyRev * (-blockPolyBar e).charpolyRev).coeff k) = 0 := by
-    have h2 := GlobalTheory.T.charpolyRev_mul_eq_one_of_trace_pow_add_eq_zero (K := ℂ) _ _ (GlobalTheory.T.trace_pow_grassmannBlockCurvature_supertrace_zero e)
+    have h2 := _root_.GlobalTheory.charpolyRev_mul_charpolyRev_eq_one_of_trace_pow_add_eq_zero (K := ℂ) _ _ (_root_.GlobalTheory.GrassModel.trace_pow_blockPoly_add_trace_pow_neg_blockPolyBar e)
     have e1 : ((blockPoly e).map (toEven n)).charpolyRev = (blockPoly e).charpolyRev.map (toEven n).toRingHom :=
       (charpolyRev_map' _ _).symm
     have e2 : ((-blockPolyBar e).map (toEven n)).charpolyRev =

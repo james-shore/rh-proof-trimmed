@@ -55,12 +55,6 @@ import Mathlib.Topology.Sheaves.Init
 
 open QuadraticAlgebra UpperTheory.V.Z.Sym UpperTheory.V.Z.Sym.Loc
 
-private theorem inv_norm {O K : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [Field K] [Algebra O K] {Δ τ : K} (L : IsLoc O Δ)
-    {c : K} {d m : EL Δ τ} (h : IsDat c d m) : ∀ t ∈ NE τ, ∀ x : Kˣ,
-    lcount O c d (((t * x : Kˣ) : K) • m) = lcount O c d ((x : K) • m) := fun t ht x => by
-  rw [Units.val_mul, mul_smul]
-  exact lcountNorm O K Δ τ L c d _ (datSmul K Δ τ c d m h x) t ht
-
 theorem UpperTheory.V.Z.Sym.Loc.kapMove : UpperTheory.V.Z.Sym.Loc.KapMove := by
   intro O K _ _ _ _ _ Δ τ L hr c hc z hz lam lam' hn hn' htr htr'
   have h2 : (2 + τ : K) ≠ 0 := by
@@ -114,7 +108,7 @@ theorem UpperTheory.V.Z.Sym.Loc.kapMove : UpperTheory.V.Z.Sym.Loc.KapMove := by
   have hf : ∀ t ∈ NE τ, ∀ x : Kˣ,
       (fun x : Kˣ => lcount O c (dLam lam' z) ((x : K) • (1 : EL Δ τ))) (t * x) =
       (fun x : Kˣ => lcount O c (dLam lam' z) ((x : K) • (1 : EL Δ τ))) x :=
-    fun t ht x => inv_norm L hD' t ht x
+    fun t ht x => _root_.UpperTheory.V.Z.Sym.Loc.lcount_inv L hD' t ht x
   have hss := (sumShift O K Δ τ L hr (fun x : Kˣ => lcount O c (dLam lam' z) ((x : K) • (1 : EL Δ τ))) hf g).2.1
   have hk : kapSum O c (dLam lam z) 1 = hs (τ ^ 2 - 4) (QuadraticAlgebra.norm (y : Lsq K Δ)) *
       kapSum O c (dLam lam' z) 1 := by

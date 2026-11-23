@@ -63,21 +63,17 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace CompanionTheory.PfDual
 
-theorem h1Le : H1StructureDimLe := MainStatements.Hodge.Free.h1Le
-
-theorem trivLocus : TrivLocus := trivLocus_pf
-
-theorem fewEquations : FewEquations := fewEquations_pf h1Le
+theorem fewEquations : FewEquations := fewEquations_pf _root_.MainStatements.Hodge.Free.h1Le
 
 theorem ciFlat : CIFlat := GlobalTheory.T.CechFlatComplex
 
-theorem trivLocusFlat : TrivLocusFlat := @GlobalTheory.CompanionTheory.TrivFlat.trivLocusFlat fewEquations ciFlat
+theorem trivLocusFlat : TrivLocusFlat := @GlobalTheory.CompanionTheory.TrivFlat.trivLocusFlat fewEquations _root_.GlobalTheory.CompanionTheory.CIFlatPf.ciFlat
 
 theorem pointSurj : PointSurj := pointSurj_pf addAcyclic_pf
 
-theorem finDual : FinDual := @GlobalTheory.CompanionTheory.DualAb.finDual_of_univNoeth (@GlobalTheory.CompanionTheory.DualUniv.univNoeth trivLocus trivLocusFlat pointSurj)
+theorem finDual : FinDual := @GlobalTheory.CompanionTheory.DualAb.finDual_of_univNoeth (@GlobalTheory.CompanionTheory.DualUniv.univNoeth _root_.CompanionTheory.PfDual.trivLocus_pf trivLocusFlat pointSurj)
 
-theorem kTrivModel : KTrivModel := @GlobalTheory.CompanionTheory.KTrivSpread.kTrivModel_of_trivLocus trivLocus
+theorem kTrivModel : KTrivModel := @GlobalTheory.CompanionTheory.KTrivSpread.kTrivModel_of_trivLocus _root_.CompanionTheory.PfDual.trivLocus_pf
 
 theorem kTrivDual : KTrivDual := @GlobalTheory.CompanionTheory.DualScheme.ktrivDual kTrivModel finDual
 

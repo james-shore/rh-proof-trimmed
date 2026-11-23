@@ -163,15 +163,6 @@ theorem KO_det {m : Type} [Fintype m] [DecidableEq m] {κ : GL m k} (hκ : κ �
   rw [h3] at this
   exact lt_irrefl _ this
 
-theorem card_filter_lt (N n : ℕ) (hn : n ≤ N) : (Finset.univ.filter fun i : Fin N => (i : ℕ) < n).card = n := by
-  first
-  | exact @_root_.GlobalTheory.CardValuationLt.card_val_lt
-  | exact _root_.GlobalTheory.CardValuationLt.card_val_lt
-  | (apply _root_.GlobalTheory.CardValuationLt.card_val_lt <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CardValuationLt.card_val_lt <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CardValuationLt.card_val_lt <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CardValuationLt.card_val_lt ..)
-
 theorem indic_antitone (N n : ℕ) : Antitone (indic (Finset.univ.filter fun i : Fin N => (i : ℕ) < n)) := by
   intro a b hab
   simp only [indic, Finset.mem_filter, Finset.mem_univ, true_and]
@@ -181,7 +172,7 @@ theorem indic_antitone (N n : ℕ) : Antitone (indic (Finset.univ.filter fun i :
 theorem sum_indic (N n : ℕ) (hn : n ≤ N) :
     ∑ i : Fin N, indic (Finset.univ.filter fun i : Fin N => (i : ℕ) < n) i = n := by
   simp only [indic, Finset.sum_boole, Finset.filter_mem_eq_inter, Finset.univ_inter]
-  exact_mod_cast card_filter_lt N n hn
+  exact_mod_cast _root_.GlobalTheory.CardValuationLt.card_val_lt N n hn
 
 theorem val_torus_prod (ϖ : kˣ) {ι : Type*} [Fintype ι] (e : ι → ℤ) :
     valuation k (∏ x, (ϖ : k) ^ e x) = valuation k (ϖ : k) ^ ∑ x, e x := by

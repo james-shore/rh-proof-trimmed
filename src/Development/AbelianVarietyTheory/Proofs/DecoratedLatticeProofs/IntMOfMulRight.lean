@@ -203,21 +203,14 @@ theorem intAt_div_of_val {P : HeightOneSpectrum (𝓞 E)} (hq : ((qOf P : ℕ) :
   have := P.isPrime
   exact (mul_eq_zero.1 h1).resolve_left fun h0 => hs (Ideal.Quotient.eq_zero_iff_mem.1 h0)
 
-theorem single_std {n : ℕ} (P : HeightOneSpectrum (𝓞 E)) (j : Fin n) : (Pi.single j 1 : Sp E n) ∈ stdAt E n P :=
-  mem_stdAt.2 fun i => by
-    rw [Pi.single_apply]
-    split_ifs
-    · exact intAt_one
-    · exact intAt_zero
-
 variable {hc : Formalism.BasicNotions.CMData F E} {n : ℕ} {ST SG Q : Finset (HeightOneSpectrum (𝓞 E))}
 
 theorem frame_near {g : GL (Fin n) (AfE F E)} {p : DecoF E n ST SG Q} (h : IsPtOf hc g p) (w : SG) :
     SmallM Valued.v (locM F w.1 g⁻¹ * ratM w.1 (p.deco.1.liftFr w).toLinearMap - 1) := by
   intro i j
   obtain ⟨h1, h2⟩ := liftFr_spec p.deco.2 w
-  have hz := (h1 _).2 (single_std w.1 j)
-  have hb := h2 _ (single_std w.1 j)
+  have hz := (h1 _).2 (_root_.GlobalTheory.CharValCompare.single_mem_stdAt w.1 j)
+  have hb := h2 _ (_root_.GlobalTheory.CharValCompare.single_mem_stdAt w.1 j)
   set z := p.deco.1.liftFr w (Pi.single j 1) with hzdef
   have hs := p.deco.2.be_smul w
   obtain ⟨s, hs0, hsz⟩ : ∃ s ∈ w.1.asIdeal.primeCompl, s • z ∈ p.deco.1.N := id hz
@@ -261,10 +254,10 @@ theorem locM_int {g : GL (Fin n) (AfE F E)} {p : DecoF E n ST SG Q} (h : IsPtOf 
     rwa [Deco.at, hN] at this
   set f := p.deco.1.liftFr w
   have hf : IntM Valued.v (ratM w.1 f.toLinearMap) :=
-    (intM_ratM _ _).2 fun j => mem_stdAt.1 ((h1 _).2 (single_std w.1 j))
+    (intM_ratM _ _).2 fun j => mem_stdAt.1 ((h1 _).2 (_root_.GlobalTheory.CharValCompare.single_mem_stdAt w.1 j))
   have hf' : IntM Valued.v (ratM w.1 f.symm.toLinearMap) :=
     (intM_ratM _ _).2 fun j => mem_stdAt.1 ((h1 _).1 (by
-      rw [LinearEquiv.coe_coe, LinearEquiv.apply_symm_apply]; exact single_std w.1 j))
+      rw [LinearEquiv.coe_coe, LinearEquiv.apply_symm_apply]; exact _root_.GlobalTheory.CharValCompare.single_mem_stdAt w.1 j))
   constructor
   · refine intM_of_mul_right h0 ?_
     rwa [← Matrix.mul_assoc, ← locM_mul, mul_inv_cancel, locM_one, Matrix.one_mul]

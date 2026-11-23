@@ -92,10 +92,6 @@ theorem ringKrullDim_quot_sup_add_one_le {n : ℕ} (p : Ideal (MvPolynomial (Fin
       (DoubleQuot.quotQuotEquivQuotSup p (Ideal.span {g}))
   rwa [ringKrullDim_eq_of_ringEquiv e] at h
 
-theorem le_of_add_one_le_succ {a : WithBot ℕ∞} {k : ℕ} (h : a + 1 ≤ ((k + 1 : ℕ) : WithBot ℕ∞)) :
-    a ≤ (k : WithBot ℕ∞) :=
-  _root_.UpperTheory.Reformulated.B.Qn14.le_of_add_one_le_succ h
-
 theorem dimH_le_of_step {n : ℕ} (d : ℕ)
     (hIH : ∀ J' : Ideal (MvPolynomial (Fin n) ℂ), ringKrullDim (MvPolynomial (Fin n) ℂ ⧸ J') + 1 ≤ d →
       dimH {x : Fin n → ℂ | ∀ q ∈ J', MvPolynomial.eval x q = 0} ≤ 2 * (d : ENNReal))
@@ -174,7 +170,7 @@ theorem dimH_zeroLocus_le (d : ℕ) : ∀ (n : ℕ) (J : Ideal (MvPolynomial (Fi
   | succ k ih =>
     intro n J hJ
     refine dimH_le_of_step (k + 1) (fun J' hJ' => ?_) J hJ
-    refine (ih n J' (le_of_add_one_le_succ hJ')).trans ?_
+    refine (ih n J' (_root_.UpperTheory.Reformulated.B.Qn14.le_of_add_one_le_succ hJ')).trans ?_
     have : (k : ENNReal) ≤ ((k + 1 : ℕ) : ENNReal) := by exact_mod_cast Nat.le_succ k
     gcongr
 

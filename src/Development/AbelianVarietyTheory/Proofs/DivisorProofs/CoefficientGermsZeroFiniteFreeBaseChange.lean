@@ -72,10 +72,6 @@ theorem eq_zero_of_germOf_max {B : CommRingCat.{0}} (a : B)
   have h1 : (1 : B) ∈ (Ideal.span {a}).annihilator := this ▸ Submodule.mem_top
   exact (one_smul B _).symm.trans ((Submodule.mem_annihilator_span_singleton _ _).1 h1)
 
-theorem gs_comp' {Z Y X : Scheme.{0}} (r : Z ⟶ Y) (F : Y ⟶ X) (z : Z) (U : X.Opens) (h : F (r z) ∈ U) (f : Γ(X, U)) :
-    gs (r ≫ F) z U f = (r.stalkMap z).hom (gs F (r z) U f) := by
-  rw [← gs_pull r F z U h, gs_stalkMap r z _ h, gs_pull (𝟙 _) F (r z) U h, Category.id_comp]
-
 theorem germ_eq_zero : ∀ (R R₁ : Type) [CommRing R] [CommRing R₁] (ρ₁ : R →+* R₁) (d : ℕ) (b : Fin d → R₁), (∀ r : R₁, ∃! c : Fin d → R, r = ∑ l, ρ₁ (c l) * b l) → ∀ (X : Scheme.{0}) (f : X ⟶ Sp R) (U : X.Opens) (a : Fin d → Γ(X, U)) (x : X), x ∈ U → (∀ z : (pullback f (spMap ρ₁) : Scheme.{0}), (pullback.fst f (spMap ρ₁)) z = x → ∑ l, gs (pullback.snd f (spMap ρ₁)) z ⊤ ((Scheme.ΓSpecIso (CommRingCat.of R₁)).inv.hom (b l)) * gs (pullback.fst f (spMap ρ₁)) z U (a l) = 0) → ∀ l, gs (𝟙 X) x U (a l) = 0 := by
   intro R R₁ _ _ ρ₁ d b hb X f U a x hx h
   let _ : Algebra R R₁ := ρ₁.toAlgebra
@@ -117,7 +113,7 @@ theorem germ_eq_zero : ∀ (R R₁ : Type) [CommRing R] [CommRing R₁] (ρ₁ :
 
     rw [← e, map_sum]
     refine Finset.sum_congr rfl fun l _ => ?_
-    rw [map_mul, map_mul, ← gs_comp' r _ z ⊤ trivial, ← gs_comp' r _ z U (hzx ▸ hx), r1, r2,
+    rw [map_mul, map_mul, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.gs_comp r _ z ⊤ trivial, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.gs_comp r _ z U (hzx ▸ hx), r1, r2,
       gs_fromSpecStalk x hx, ← germOf_apply, ← germOf_map, ← germOf_map, Category.id_comp, Category.id_comp]
   have hli' := (Algebra.TensorProduct.basis A β).linearIndependent
   refine Fintype.linearIndependent_iff.1 hli' (fun l => gs (𝟙 X) x U (a l)) ?_

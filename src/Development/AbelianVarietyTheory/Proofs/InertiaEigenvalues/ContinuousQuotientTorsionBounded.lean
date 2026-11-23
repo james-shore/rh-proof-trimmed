@@ -55,18 +55,6 @@ open Formalism.NG (KO)
 
 namespace GlobalTheory.LatticeQuotBound
 
-theorem exists_pow_smul_mem {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
-    {V : Type} [AddCommGroup V] [Module O V] [Module (FractionRing O) V]
-    [IsScalarTower O (FractionRing O) V] (T : Submodule O V) (hT : IsLatticeIn T)
-    (ϖ : O) (hϖ : Irreducible ϖ) (v : V) : ∃ m : ℕ, ϖ ^ m • v ∈ T := by
-  first
-  | exact @_root_.GlobalTheory.IntegralPowerMultiple.exists_pow_smul_mem
-  | exact _root_.GlobalTheory.IntegralPowerMultiple.exists_pow_smul_mem
-  | (apply _root_.GlobalTheory.IntegralPowerMultiple.exists_pow_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralPowerMultiple.exists_pow_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralPowerMultiple.exists_pow_smul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegralPowerMultiple.exists_pow_smul_mem ..)
-
 theorem pow_smul_eq_zero_of_compact : ∀ {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] {V : Type} [AddCommGroup V] [Module O V] [Module (FractionRing O) V] [IsScalarTower O (FractionRing O) V] [TopologicalSpace V] [IsTopologicalAddGroup V] {X : Type} [TopologicalSpace X] [CompactSpace X] (T : Submodule O V), IsLatticeIn T → IsOpen (T : Set V) → ∀ ϖ : O, Irreducible ϖ → ∀ c : X → V ⧸ T, Continuous c → ∃ r : ℕ, ∀ x, ϖ ^ r • c x = 0 := by
   intro O _ _ _ V _ _ _ _ _ _ X _ _ T hT hTo ϖ hϖ c hc
   have hopen : ∀ m : ℕ, IsOpen {q : V ⧸ T | ϖ ^ m • q = 0} := by
@@ -84,7 +72,7 @@ theorem pow_smul_eq_zero_of_compact : ∀ {O : Type} [CommRing O] [IsDomain O] [
   have hcover : ∀ x, ∃ m : ℕ, x ∈ c ⁻¹' {q : V ⧸ T | ϖ ^ m • q = 0} := by
     intro x
     obtain ⟨v, hv⟩ := Submodule.Quotient.mk_surjective T (c x)
-    obtain ⟨m, hm⟩ := exists_pow_smul_mem T hT ϖ hϖ v
+    obtain ⟨m, hm⟩ := _root_.GlobalTheory.IntegralPowerMultiple.exists_pow_smul_mem T hT ϖ hϖ v
     refine ⟨m, ?_⟩
     simp only [Set.mem_preimage, Set.mem_setOf_eq]
     rw [← hv, ← Submodule.Quotient.mk_smul, (Submodule.Quotient.mk_eq_zero T).2 hm]

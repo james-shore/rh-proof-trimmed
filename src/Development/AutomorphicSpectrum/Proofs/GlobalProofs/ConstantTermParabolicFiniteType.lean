@@ -166,15 +166,6 @@ section Abstract
 
 variable {W : Type} [AddCommGroup W] [Module ℂ W]
 
-theorem qdet_commute {A : Type} [Ring A] [Algebra ℂ A] {n : ℕ} {E : Fin n → Fin n → A} (hE : Formalism.REAL.GlRel E) (u v : ℂ) :
-    Commute (Formalism.REAL.qdet E u) (Formalism.REAL.qdet E v) := by
-  have h : Formalism.REAL.qdet E v ∈ Subalgebra.centralizer ℂ {Formalism.REAL.qdet E u} := by
-    refine GlobalTheory.CompanionTheory.CTFin.CapFactor.qdet_mem _ _ (fun i j => ?_) _
-    rw [Subalgebra.mem_centralizer_iff]
-    rintro _ rfl
-    exact Formalism.REAL.qDetCentral A n E hE u i j
-  exact (Subalgebra.mem_centralizer_iff ℂ).1 h _ rfl
-
 def nW {c N : ℕ} (n : Fin c → ℕ) (h : ∑ i, n i = N) (Xf : Fin N → Fin N → Module.End ℂ W) (Wn : Submodule ℂ W) : Submodule ℂ W :=
   Submodule.span ℂ {G | ∃ p q, GlobalTheory.SmGL.blk (GlobalTheory.SmGL.stdBlocks n h) p < GlobalTheory.SmGL.blk (GlobalTheory.SmGL.stdBlocks n h) q ∧ ∃ F ∈ Wn, G = Xf p q F}
 
@@ -228,7 +219,7 @@ theorem monic_gelf_block {c N : ℕ} (n : Fin c → ℕ) (h : ∑ i, n i = N) (X
   let s : Set (Module.End ℂ W) := Set.range (Formalism.REAL.qdet Ei)
   have hcomm : ∀ x ∈ s, ∀ y ∈ s, x * y = y * x := by
     rintro _ ⟨u, rfl⟩ _ ⟨v, rfl⟩
-    exact (qdet_commute hEg u v).eq
+    exact (_root_.GlobalTheory.CompanionTheory.CTFin.CapComm.qdet_commute_self hEg u v).eq
   letI : IsMulCommutative (Algebra.adjoin ℂ s) :=
     Algebra.isMulCommutative_adjoin ℂ (fun x hx y hy _ => hcomm x hx y hy)
   letI : CommRing (Algebra.adjoin ℂ s) := by
@@ -337,7 +328,7 @@ theorem rderC_slice : ∀ (D : D7) (θ : D.what₂.Tau → (Ainf D.host.F ⊗[D.
         RderC θ V τ ((frameMat V V' ι).map (tauE D τ) * Z *
           ((gramAt D V' τ)⁻¹ * ((frameMat V V' ι).map (tauE D τ))ᴴ * gramAt D V τ)) F (s h * y) := by
   intro D θ hθ V V' ι hι s hs τ Z y hy F
-  obtain ⟨-, f2, -, -, -⟩ := GlobalTheory.T.hermitian_form_change_of_basis_lie (gramAt D V τ) (gramAt D V' τ) ((frameMat V V' ι).map (tauE D τ)) (GlobalTheory.SmoothForms.RealPts.gramAt_herm V τ) (GlobalTheory.SmoothForms.RealPts.gramAt_herm V' τ) (GlobalTheory.SmoothForms.RealPts.gramAt_unit V τ) (GlobalTheory.SmoothForms.RealPts.gramAt_unit V' τ) (frame_isom hι τ)
+  obtain ⟨-, f2, -, -, -⟩ := _root_.GlobalTheory.CompanionTheory.IsometricMatrix.main (gramAt D V τ) (gramAt D V' τ) ((frameMat V V' ι).map (tauE D τ)) (GlobalTheory.SmoothForms.RealPts.gramAt_herm V τ) (GlobalTheory.SmoothForms.RealPts.gramAt_herm V' τ) (GlobalTheory.SmoothForms.RealPts.gramAt_unit V τ) (GlobalTheory.SmoothForms.RealPts.gramAt_unit V' τ) (frame_isom hι τ)
   obtain ⟨h1, h2⟩ := GlobalTheory.SmoothAutCheck.parts_mem V' τ Z
   have e : ∀ Z, conjAt V τ ((frameMat V V' ι).map (tauE D τ) * Z *
       ((gramAt D V' τ)⁻¹ * ((frameMat V V' ι).map (tauE D τ))ᴴ * gramAt D V τ)) = (frameMat V V' ι).map (tauE D τ) * conjAt V' τ Z *
@@ -362,7 +353,7 @@ theorem mid_frame : ∀ (D : D7) (V V' : HSp D) (ι : V'.V →ₗ[D.host.E] V.V)
   obtain ⟨hdim, B, Bi, hBB, hB, hperp⟩ := GlobalTheory.T.adapted_frame_orthogonal_subspace D V V' ι hι m X Y hW T hr C hC a ham hup
   refine ⟨hdim, fun τ => ⟨B.map (tauE D τ), Bi.map (tauE D τ), ?_, ?_⟩⟩
   · rw [← Matrix.map_mul, hBB, Matrix.map_one _ (map_zero _) (map_one _)]
-  · obtain ⟨f1, -, -, -, -⟩ := GlobalTheory.T.hermitian_form_change_of_basis_lie (gramAt D V τ) (gramAt D V' τ) ((frameMat V V' ι).map (tauE D τ)) (GlobalTheory.SmoothForms.RealPts.gramAt_herm V τ) (GlobalTheory.SmoothForms.RealPts.gramAt_herm V' τ) (GlobalTheory.SmoothForms.RealPts.gramAt_unit V τ) (GlobalTheory.SmoothForms.RealPts.gramAt_unit V' τ) (frame_isom hι τ)
+  · obtain ⟨f1, -, -, -, -⟩ := _root_.GlobalTheory.CompanionTheory.IsometricMatrix.main (gramAt D V τ) (gramAt D V' τ) ((frameMat V V' ι).map (tauE D τ)) (GlobalTheory.SmoothForms.RealPts.gramAt_herm V τ) (GlobalTheory.SmoothForms.RealPts.gramAt_herm V' τ) (GlobalTheory.SmoothForms.RealPts.gramAt_unit V τ) (GlobalTheory.SmoothForms.RealPts.gramAt_unit V' τ) (frame_isom hι τ)
     have hPu : IsUnit (C.1.map (tauE D τ)).det := by
       have h1 : C.1.map (tauE D τ) * ((C⁻¹).1.map (tauE D τ)) = 1 := by
         rw [← Matrix.map_mul, Units.mul_inv, Matrix.map_one _ (map_zero _) (map_one _)]

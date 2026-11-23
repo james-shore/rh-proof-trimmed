@@ -176,7 +176,7 @@ theorem main : ∀ (l : ℕ) [Fact l.Prime], l ≠ 2 → ∃ c : ℕ, ∀ (Ω : 
   have hHζ : ∀ s : G ℚ Ω, s ζ' = ζ' → s ζ = ζ := fun s hs => by rw [← hζ', map_pow, hs]
   have hHc : ∀ s : G ℚ Ω, s ζ' = ζ' → cycMod ℚ Ω l m s = 1 := fun s hs =>
     cycMod_eq_one l Ω m hm ζ hζ s (hHζ s hs)
-  obtain ⟨y, hyA, hyfix, e, heA, he⟩ := GlobalTheory.T.exists_fixed_congr_axLemma_oddPrime l hl2 Ω A hA H (inf_le_left.trans (Ine_le_Dec A)) k x hx (by
+  obtain ⟨y, hyA, hyfix, e, heA, he⟩ := _root_.GlobalTheory.AxSen.exists_fixed_congr l hl2 Ω A hA H (inf_le_left.trans (Ine_le_Dec A)) k x hx (by
     intro h hh
     obtain ⟨hh1, hh2⟩ := (hHmem h).1 hh
     obtain ⟨z, hz, hze⟩ := hyp h hh1 (hHc h hh2) 0 (by simpa using hh2)
@@ -213,7 +213,7 @@ theorem main : ∀ (l : ℕ) [Fact l.Prime], l ≠ 2 → ∃ c : ℕ, ∀ (Ω : 
     rw [map_mul, map_pow, map_natCast, map_sub, map_sub, h2, hyfix s ((hHmem s).2 ⟨hs, hsζ⟩),
       hofix s hs (hHc s hsζ), ← hweq] at h4
     exact mul_left_cancel₀ (pow_ne_zero k hl0) h4
-  obtain ⟨Q, hQ, hQw⟩ := GlobalTheory.T.exists_polynomial_in_primitiveRoot_of_inertia_fixed l Ω A hA (2 * m) ζ' hprim w hwA hwfix
+  obtain ⟨Q, hQ, hQw⟩ := _root_.GlobalTheory.ZetaPoly.exists_poly l Ω A hA (2 * m) ζ' hprim w hwA hwfix
   obtain ⟨v, hvA, hv⟩ := trace_mem A (l ^ m) ζ ζ' hζ.pow_eq_one hζ'A γ hγζ hγ Q fun d => ⟨(hQ d).1, (hQ d).2 γ hγI⟩
   rw [hQw] at hv
   have hfix : ∀ a : Ω, γ a = a → ∀ j : ℕ, (γ ^ j) a = a := by

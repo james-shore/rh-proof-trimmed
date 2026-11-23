@@ -107,14 +107,6 @@ theorem hO_eq_trace (S T : HSp D) (x y : WO S T) :
   simp only [Matrix.trace, Matrix.diag, Matrix.mul_apply, ad, Formalism.UG.cT, Matrix.transpose_apply,
     Matrix.map_apply, Finset.mul_sum, mul_assoc]
 
-theorem hO_add_left (S T : HSp D) (x x' y : WO S T) : hO S T (x + x') y = hO S T x y + hO S T x' y := by
-  unfold hO
-  simp only [Matrix.add_apply, mul_add, Finset.sum_add_distrib]
-
-theorem hO_add_right (S T : HSp D) (x y y' : WO S T) : hO S T x (y + y') = hO S T x y + hO S T x y' := by
-  unfold hO
-  simp only [Matrix.add_apply, map_add (f := _), mul_add, add_mul, Finset.sum_add_distrib]
-
 theorem hO_mul_mul (V W : HSp D) {m n : ℕ} (y₁ : Mx D W.rank m) (y₂ : Mx D W.rank n)
     (P₁ : Matrix (Fin m) (Fin V.rank) D.host.E) (P₂ : Matrix (Fin n) (Fin V.rank) D.host.E) :
     hO V W (HMul.hMul y₁ (P₁.map (incA D))) (HMul.hMul y₂ (P₂.map (incA D))) =
@@ -169,7 +161,7 @@ theorem trace_swap {m n : ℕ} (Z : Mx D m m) (A : Mx D m n) (Y : Mx D n n) (X :
 
 theorem hO_isoPart_add_midPart (hs : IsIsoSplit V V' C B) (y y' : Mx D W.rank r) (x x' : WO V' W) :
     hO V W (isoPart V W C y + midPart V V' W B x) (isoPart V W C y' + midPart V V' W B x') = hO V' W x x' := by
-  rw [hO_add_left, hO_add_right, hO_add_right]
+  rw [_root_.GlobalTheory.LatVac.hO_add_left, _root_.GlobalTheory.LatVac.hO_add_right, _root_.GlobalTheory.LatVac.hO_add_right]
   unfold isoPart midPart
   rw [hO_mul_mul, hO_mul_mul, hO_mul_mul, hO_mul_mul, coef_iso_iso hs, coef_iso_mid hs, coef_mid_iso hs,
     coef_mid_mid hs]

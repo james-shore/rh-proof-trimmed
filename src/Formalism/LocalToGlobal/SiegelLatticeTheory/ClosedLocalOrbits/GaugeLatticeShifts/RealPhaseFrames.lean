@@ -184,12 +184,6 @@ theorem sgUpF_one {K : Type} [Field K] {N : ℕ} : sgUpF (1 : Matrix (Fin N) (Fi
   · exact Matrix.one_apply_ne (fun e => by have := congrArg Fin.val e; simp at this)
   · rfl
 
-theorem isLoUni_one {K : Type} [Field K] {N : ℕ} : IsLoUni (1 : Matrix (Fin N) (Fin N) K) := fun i j =>
-  ⟨fun h => Matrix.one_apply_ne (ne_of_lt h), fun h => by subst h; exact Matrix.one_apply_eq i⟩
-
-theorem isUpUni_one {K : Type} [Field K] {N : ℕ} : IsUpUni (1 : Matrix (Fin N) (Fin N) K) := fun i j =>
-  ⟨fun h => Matrix.one_apply_ne (ne_of_lt h).symm, fun h => by subst h; exact Matrix.one_apply_eq i⟩
-
 theorem isUpUni_sgnT {P : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ} (h : IsLoUni P) :
     IsUpUni (FormRegularity.sgn r * Pᵀ * FormRegularity.sgn r) := by
   intro i j
@@ -275,8 +269,8 @@ theorem place_id (u u' : D.what₂.Word) {γ γw g g' : X.B.I.Ginf} (hg : g ∈ 
                 simp only [Matrix.mul_assoc]
             _ = _ := by rw [FormRegularity.sgn_sq, Matrix.mul_one]
   have hLo := Formalism.MainNotions.BridgeLemma.bru_lo_mul (FormRegularity.isLoUni_star hPg) (FormRegularity.isLoUni_map ψ hL)
-  have hUp := Formalism.MainNotions.BridgeLemma.bru_up_mul (FormRegularity.isUpUni_map ψ hU) (isUpUni_sgnT hPg')
-  have hds := decompSimpleF (mapPt ψ w) hLo hUp isLoUni_one isUpUni_one hw'
+  have hUp := _root_.GlobalTheory.UpperUnipotentMul.isUpUni_mul (FormRegularity.isUpUni_map ψ hU) (isUpUni_sgnT hPg')
+  have hds := decompSimpleF (mapPt ψ w) hLo hUp _root_.Formalism.MainNotions.BridgeLemma.bru_lo_one _root_.Formalism.MainNotions.BridgeLemma.bru_up_one hw'
   rw [sgLoF_mul (FormRegularity.isLoUni_star hPg) (FormRegularity.isLoUni_map ψ hL),
     sgUpF_mul (FormRegularity.isUpUni_map ψ hU) (isUpUni_sgnT hPg'), sgLoF_one, sgUpF_one, sgLoF_map, sgUpF_map] at hds
   have e1 : sgLoF (Pg.map star) = ∑ a, star (rootCoord ε e f z (uMat (g v)) a) := by

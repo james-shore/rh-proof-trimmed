@@ -79,6 +79,4 @@ theorem assemble (K M P z s lc lL lr lR lo ld ln : ℝ) (hz : 1 ≤ z) (hP : z �
     nlinarith
   · nlinarith
 
-theorem log_le_self' {x : ℝ} (hx : 0 ≤ x) : Real.log x ≤ x := Real.log_le_self hx
-
 end GlobalTheory.ArcCM.Room

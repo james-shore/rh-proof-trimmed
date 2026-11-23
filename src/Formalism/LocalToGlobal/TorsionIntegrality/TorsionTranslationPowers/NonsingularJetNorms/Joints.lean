@@ -151,7 +151,7 @@ theorem series_even_theta_half_period (hU : Unif l L ι W) (ω₀ : ℂ) (hω : 
     unfold B.kapW
     rw [he, hU.1, map_sub, map_mul, map_pow, map_div₀, map_ofNat, map_ofNat]
   unfold inW B.evenSigmaLogAtTwoTorsion B.phE
-  rw [F.taylorTh0 L ω₀ hω hω2, map_mul, B.Map.map_sigma1, B.Map.map_wOf,
+  rw [_root_.Formalism.L2.Th1.F.taylor_even_theta L ω₀ hω hω2, map_mul, B.Map.map_sigma1, B.Map.map_wOf,
     B.Map.map_fExp' _ (by simp), he, hk, weierstrass_series_eq_transported l L ι W hU, PowerSeries.subst_mul hs]
   unfold B.sigma1
   have hc : ∀ a : PowerSeries ℂ_[l], constantCoeff a = 0 →

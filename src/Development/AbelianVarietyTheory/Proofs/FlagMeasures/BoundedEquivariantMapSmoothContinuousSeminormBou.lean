@@ -129,7 +129,7 @@ theorem reg_main : ∀ (k r : ℕ) {H : Type} [NormedAddCommGroup H] [InnerProdu
     intro Q hQ
     obtain ⟨K₂, hK₂, h⟩ := hsu Q hQ
     refine ⟨K₂, hK₂, fun Λ' u hu x hx hxG => ?_⟩
-    obtain ⟨hs, hd⟩ := GlobalTheory.T.smooth_functional_orbit_smoothVector k r σ Λ' hσ u hu
+    obtain ⟨hs, hd⟩ := _root_.GlobalTheory.SgInfOrb.smooth_rdWord_functional k r σ Λ' hσ u hu
     have hcont : ∀ ws ∈ Ws, ContinuousOn (rdWord ws fun g : Mat k r => Λ' (σ g u)) (GG k r) := by
       intro ws hws
       have h1 : ContinuousOn (fun g : Mat k r => Λ' (σ g (dsigW σ ws u))) (GG k r) :=

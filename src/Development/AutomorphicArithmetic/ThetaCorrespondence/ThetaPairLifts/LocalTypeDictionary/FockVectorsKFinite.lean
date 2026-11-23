@@ -78,7 +78,7 @@ theorem fock_space_kFinite : _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ 
     (fun k => Tk k.1) (fun k u => mat k.1 * u) (GlobalTheory.T.fockVacua_span_finiteDimensional F E σ B n d X W M χX χW om r s r' s' hP)
     (fun u hu g => hDspan u hu g) (fun f₀ h => hGP f₀ h) (fun u hu g hg => hclos u hu g hg) hmin
     (fun k g hg => Submodule.subset_span
-      (_root_.GlobalTheory.T.fock_vacuum_stabilized_is_gaussian hPr F E σ B n d X W M χX χW om r s r' s' hP k.1 k.2 g hg _
+      (_root_.GlobalTheory.FockVacStab.isGaussian_of_fock_vacuum_stabilizer_acts hPr F E σ B n d X W M χX χW om r s r' s' hP k.1 k.2 g hg _
         ((hTacts k.1 k.2 g (hGP g hg) _).2 rfl)))
     (fun k u hu => hAt k.1 u hu)
     (fun k u hu g hg => (hDiff _ (hAt k.1 u hu) _ _).1

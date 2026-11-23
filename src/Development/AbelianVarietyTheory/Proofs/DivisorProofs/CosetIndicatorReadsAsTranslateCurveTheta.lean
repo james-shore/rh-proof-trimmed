@@ -82,12 +82,6 @@ open GlobalTheory.ThetaLatticePoints (ptHom)
 
 variable {D : D7}
 
-private theorem one_mem_inverse_halfDifferent (D : D7) : (1 : D.host.E) ∈ D.host.AA0 := by
-  have hb0 := bb_ne_zero D
-  refine (show (1 : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E) ≤ D.host.AA0 from ?_) (FractionalIdeal.one_mem_one _)
-  rw [Formalism.BasicNotions.Host.AA0, ← one_div, FractionalIdeal.le_div_iff_mul_le hb0, one_mul]
-  exact FractionalIdeal.coeIdeal_le_one
-
 private theorem mem_skewEnt {𝔪 : Ideal (𝓞 D.host.E)} (h𝔪 : 𝔪 ≠ ⊥) {b : 𝓞 D.host.E} (hb : b ∈ 𝔪) :
     (b : D.host.E) ∈ skewEnt D 𝔪 := by
   have hn0 := GlobalTheory.SkewLatSelfDual.coe_ne_zero (GlobalTheory.SkewLatSelfDual.conj_smul_ne_bot h𝔪)
@@ -100,7 +94,7 @@ private theorem mem_skewEnt {𝔪 : Ideal (𝓞 D.host.E)} (h𝔪 : 𝔪 ≠ ⊥
 private theorem mem_skewMat {𝔪 : Ideal (𝓞 D.host.E)} (h𝔪 : 𝔪 ≠ ⊥) {a d : ℕ} {z : Matrix (Fin d) (Fin a) D.host.E}
     (hz : IsIntE z) {c : 𝓞 D.host.E} (hc : c ∈ 𝔪) : (c : D.host.E) • z ∈ skewMat D 𝔪 a d := fun i j => by
   obtain ⟨b, hb⟩ := hz i j
-  have h := FractionalIdeal.mul_mem_mul (one_mem_inverse_halfDifferent D) (mem_skewEnt h𝔪 (𝔪.mul_mem_right b hc))
+  have h := FractionalIdeal.mul_mem_mul (_root_.Formalism.L2.Pj.one_mem_inverse_halfDifferent D) (mem_skewEnt h𝔪 (𝔪.mul_mem_right b hc))
   rw [one_mul] at h
   rw [Matrix.smul_apply, smul_eq_mul, hb]
   exact h
@@ -108,7 +102,7 @@ private theorem mem_skewMat {𝔪 : Ideal (𝓞 D.host.E)} (h𝔪 : 𝔪 ≠ ⊥
 private theorem mem_stdMat {a d : ℕ} {z : Matrix (Fin d) (Fin a) D.host.E} (hz : IsIntE z) :
     z ∈ stdMat D a d := fun i j => by
   obtain ⟨b, hb⟩ := hz i j
-  have h := Submodule.smul_mem (D.host.AA0 : Submodule (𝓞 D.host.E) D.host.E) b (one_mem_inverse_halfDifferent D)
+  have h := Submodule.smul_mem (D.host.AA0 : Submodule (𝓞 D.host.E) D.host.E) b (_root_.Formalism.L2.Pj.one_mem_inverse_halfDifferent D)
   rw [Algebra.smul_def, mul_one] at h
   rw [hb]
   exact h

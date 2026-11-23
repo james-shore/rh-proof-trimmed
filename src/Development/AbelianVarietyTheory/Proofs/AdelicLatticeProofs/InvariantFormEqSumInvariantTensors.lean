@@ -57,7 +57,7 @@ theorem invariant_form_eq_sum_invariant_tensors : ∀ (ι : Type) [Fintype ι] [
   obtain ⟨-, hinv, -, hp⟩ := GlobalTheory.T.leftTranslateMatrixPoly_tensorForm_properties ι
   obtain ⟨p, hpev, hpl, hpsurj⟩ := hp n
   obtain ⟨l, hl⟩ := hpsurj F hhom
-  obtain ⟨R₁, h1a, -, -, h1d, -, -⟩ := GlobalTheory.T.exists_reynolds_of_completelyReducible' ((Fin n → ι) → ℂ)
+  obtain ⟨R₁, h1a, -, -, h1d, -, -⟩ := _root_.GlobalTheory.ClassFin.exists_reynolds_of_completelyReducible ((Fin n → ι) → ℂ)
     ((fun g => Matrix.toLin' (tpow n g)ᵀ) '' Γ) (by
       intro U hU
       obtain ⟨U', hU', hc⟩ := GlobalTheory.T.completelyReducible_kroneckerPower_transpose ι Γ hP hS n U (by
@@ -66,7 +66,7 @@ theorem invariant_form_eq_sum_invariant_tensors : ∀ (ι : Type) [Fintype ι] [
       refine ⟨U', ?_, hc⟩
       rintro _ ⟨g, hg, rfl⟩ v hv
       simpa [Matrix.toLin'_apply] using hU' _ ⟨g, hg, rfl⟩ v hv)
-  obtain ⟨R₂, -, h2b, h2c, -, -, -⟩ := GlobalTheory.T.exists_reynolds_of_completelyReducible' (MvPolynomial (ι × ι) ℂ)
+  obtain ⟨R₂, -, h2b, h2c, -, -, -⟩ := _root_.GlobalTheory.ClassFin.exists_reynolds_of_completelyReducible (MvPolynomial (ι × ι) ℂ)
     ((fun g => (ltr g).toLinearMap) '' Γ) (by
       intro U hU
       obtain ⟨U', hU', hc⟩ := GlobalTheory.T.leftTranslateMatrixPoly_completelyReducible ι Γ hP hS U (fun g hg f hf => hU _ ⟨g, hg, rfl⟩ f hf)

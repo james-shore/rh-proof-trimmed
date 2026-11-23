@@ -116,9 +116,6 @@ theorem split_iso : CjEx → ∀ (E : Type) [Field E] [NumberField E] [IsCMField
         (ratW a w.1 (GeneralLinearGroup.map (IsCMField.complexConj E).toRingEquiv.toRingHom δ₁),
          ratW b w.1 (GeneralLinearGroup.map (IsCMField.complexConj E).toRingEquiv.toRingHom δ₂))) := @GlobalTheory.T.aux_statement_22
 
-theorem sg_facts : ∀ (E : Type) [Field E] [NumberField E] (a b : ℕ) (w : Pl E),
-  Continuous (sgP a b w) ∧ (∀ g, sgP a b w (sgP a b w g) = g) ∧ ∀ k ∈ K2 (E := E) a b w, sgP a b w k ∈ K2 (E := E) a b w := @GlobalTheory.T.pair_involution_continuous
-
 theorem rat_mem : ∀ (E : Type) [Field E] [NumberField E] (n : ℕ) (δ : GL (Fin n) E), ∀ᶠ w : Pl E in cofinite, ratW n w δ ∈ GlobalTheory.LFun.KGL w (n := n) := @GlobalTheory.T.rational_element_integral_almost_all
 
 theorem cofinite_sec : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (S : Set (Pl E)), IsSection S → ∀ P : PlF E → Prop,
@@ -166,20 +163,20 @@ theorem locConds_inert (hC : CjEx) (hU : Unr E) {S : Set (Pl E)} (hS : IsSection
     {φ₁ φ₂ : ∀ w : Pl E, GLw a w × GLw b w → ℂ} (h₁ : IsTestP φ₁) (δ₁ : GL (Fin a) E) (δ₂ : GL (Fin b) E)
     (he₁ : polE δ₁ ∈ Ell E a) (he₂ : polE δ₂ ∈ Ell E b) (v : PlF E) (w : Above v) (hw : w.1 ∈ S) (hns : ¬ IsSplitAt w.1) :
     LocConds (thv a b v) (Kv a b v) (pv a b v (ratF E a δ₁, ratF E b δ₂)) (fv S φ₁ φ₂ v) := by
-  obtain ⟨e, he, hθ, hK⟩ := inert_iso hC E a b v w hns
-  refine transport_loc e _ ((thL a w.1).prodMap (thL b w.1)) _ (K2 a b w.1) _ _ (φ₁ w.1) hθ hK (fun x => ?_) ?_
+  obtain ⟨e, he, hθ, hK⟩ := _root_.GlobalTheory.CompanionTheory.LocHypInert.inert_iso hC E a b v w hns
+  refine _root_.GlobalTheory.CompanionTheory.TransportLoc.locConds_of_equiv e _ ((thL a w.1).prodMap (thL b w.1)) _ (K2 a b w.1) _ _ (φ₁ w.1) hθ hK (fun x => ?_) ?_
   · rw [fv_eq hS φ₁ φ₂ v w hw, if_neg hns, mul_one, he]
   obtain ⟨K', hKo, hKle, hH, -⟩ := test_facts h₁
   have hloc : e (pv a b v (ratF E a δ₁, ratF E b δ₂)) = (locEl a w.1 δ₁, locEl b w.1 δ₂) := by
     rw [he, evw_pv_rat]
     simp only [locEl, if_neg hns, ratW]
   rw [hloc]
-  have s₁ := sep_locEl hC E a w.1 δ₁ he₁
+  have s₁ := _root_.GlobalTheory.CompanionTheory.SepLocEl.separable_charpoly_nrmL_locEl hC E a w.1 δ₁ he₁
   have s₂ := sep_locEl hC E b w.1 δ₂ he₂
   have hG := GlobalTheory.T.local_good_reduction E hU a b w.1 (locEl a w.1 δ₁, locEl b w.1 δ₂) s₁ s₂
   have hL := GlobalTheory.CompanionTheory.TwistOrbit.locSupp E hU a b w.1 (locEl a w.1 δ₁, locEl b w.1 δ₂) s₁ s₂
   obtain ⟨-, hKc⟩ := GlobalTheory.CompanionTheory.TwistOrbit.isOpen_isCompact_pair_integral_points (E := E) a b w.1
-  refine ⟨hG.1, fun y => split_index _ _ (K' w.1) _ (φ₁ w.1) (GlobalTheory.CompanionTheory.TwistOrbit.continuous_thPair hU a b w.1) hKc (hKo _)
+  refine ⟨hG.1, fun y => _root_.GlobalTheory.CompanionTheory.SplitIndex.rStab_index_ne_zero_of_compact _ _ (K' w.1) _ (φ₁ w.1) (GlobalTheory.CompanionTheory.TwistOrbit.continuous_thPair hU a b w.1) hKc (hKo _)
     (hH w.1).2 y, ?_, hG.2⟩
   refine (hL.1 _ (hH w.1).1).subset ?_
   rintro q ⟨k, hk, hq⟩
@@ -205,12 +202,12 @@ theorem split_all {H : Type} [Group H] [TopologicalSpace H] [IsTopologicalGroup 
       _ = d' * (σ y.1 * σ x.1) * d'⁻¹ := by rw [c']
       _ = _ := by group
   have hσc' : Continuous (swTw σ) := (hσc.comp continuous_snd).prodMk (hσc.comp continuous_fst)
-  refine ⟨hcomm, ?_, ?_, split_cpt σ _ d d' hσc hσ hKo hKc hσK hG⟩
+  refine ⟨hcomm, ?_, ?_, _root_.GlobalTheory.CompanionTheory.SplitCpt.split_cpt σ _ d d' hσc hσ hKo hKc hσK hG⟩
   · have hc2 : IsCompact ((K.prod K : Subgroup (H × H)) : Set (H × H)) := by
       rw [Subgroup.coe_prod]; exact hKc.prod hKc
     have ho2 : IsOpen ((K₁.prod (K₂.comap σ) : Subgroup (H × H)) : Set (H × H)) := by
       rw [Subgroup.coe_prod]; exact hKo₁.prod (hKo₂.preimage hσc)
-    refine split_index (swTw σ) (K.prod K) (K₁.prod (K₂.comap σ)) (d, d') (fun y => f₁ y.1 * f₂ (σ y.2)) hσc' hc2 ho2 ?_
+    refine _root_.GlobalTheory.CompanionTheory.SplitIndex.rStab_index_ne_zero_of_compact (swTw σ) (K.prod K) (K₁.prod (K₂.comap σ)) (d, d') (fun y => f₁ y.1 * f₂ (σ y.2)) hσc' hc2 ho2 ?_
     rintro ⟨k₁, k₂⟩ ⟨hk₁, hk₂⟩ ⟨x₁, x₂⟩
     have hk₂' : σ k₂ ∈ K₂ := hk₂
     constructor
@@ -218,7 +215,7 @@ theorem split_all {H : Type} [Group H] [TopologicalSpace H] [IsTopologicalGroup 
       rw [(hH₁.2 k₁ hk₁ x₁).1, map_mul, (hH₂.2 _ hk₂' _).1]
     · show f₁ (x₁ * k₁) * f₂ (σ (x₂ * k₂)) = f₁ x₁ * f₂ (σ x₂)
       rw [(hH₁.2 k₁ hk₁ x₁).2, map_mul, (hH₂.2 _ hk₂' _).2]
-  · refine split_fin σ K d d' (fun y => f₁ y.1 * f₂ (σ y.2)) (tsupport f₁) (σ '' tsupport f₂) hσc hσ hKo hKc hσK hH₁.1 (hH₂.1.image hσc) ?_ hL
+  · refine _root_.GlobalTheory.CompanionTheory.LocHypSplit.finite_doubleCosets_split σ K d d' (fun y => f₁ y.1 * f₂ (σ y.2)) (tsupport f₁) (σ '' tsupport f₂) hσc hσ hKo hKc hσK hH₁.1 (hH₂.1.image hσc) ?_ hL
     intro y hy
     have h1 : f₁ y.1 ≠ 0 := left_ne_zero_of_mul hy
     have h2 : f₂ (σ y.2) ≠ 0 := right_ne_zero_of_mul hy
@@ -228,9 +225,9 @@ theorem locConds_split (hC : CjEx) (hU : Unr E) {S : Set (Pl E)} (hS : IsSection
     {φ₁ φ₂ : ∀ w : Pl E, GLw a w × GLw b w → ℂ} (h₁ : IsTestP φ₁) (h₂ : IsTestP φ₂) (δ₁ : GL (Fin a) E) (δ₂ : GL (Fin b) E)
     (he₁ : polE δ₁ ∈ Ell E a) (he₂ : polE δ₂ ∈ Ell E b) (v : PlF E) (w : Above v) (hw : w.1 ∈ S) (hs : IsSplitAt w.1) :
     LocConds (thv a b v) (Kv a b v) (pv a b v (ratF E a δ₁, ratF E b δ₂)) (fv S φ₁ φ₂ v) := by
-  obtain ⟨e, he, hθ, hK, hr⟩ := split_iso hC E a b v w hs
-  obtain ⟨hσc, hσ, hσK⟩ := sg_facts E a b w.1
-  refine transport_loc e _ (swTw (sgP a b w.1)) _ ((K2 a b w.1).prod (K2 a b w.1)) _ _
+  obtain ⟨e, he, hθ, hK, hr⟩ := _root_.GlobalTheory.CompanionTheory.SplitIso.split_iso hC E a b v w hs
+  obtain ⟨hσc, hσ, hσK⟩ := _root_.GlobalTheory.CompanionTheory.LocalHypotheses.sgP_facts E a b w.1
+  refine _root_.GlobalTheory.CompanionTheory.TransportLoc.locConds_of_equiv e _ (swTw (sgP a b w.1)) _ ((K2 a b w.1).prod (K2 a b w.1)) _ _
     (fun y => φ₁ w.1 y.1 * φ₂ w.1 (sgP a b w.1 y.2)) hθ hK (fun x => ?_) ?_
   · rw [fv_eq hS φ₁ φ₂ v w hw, if_pos hs, ← he, ← he, hθ]
     rfl
@@ -240,8 +237,8 @@ theorem locConds_split (hC : CjEx) (hU : Unr E) {S : Set (Pl E)} (hS : IsSection
   rw [hr]
   have hN : (ratW a w.1 δ₁, ratW b w.1 δ₂) * sgP a b w.1 (ratW a w.1 (GeneralLinearGroup.map (IsCMField.complexConj E).toRingEquiv.toRingHom δ₁),
     ratW b w.1 (GeneralLinearGroup.map (IsCMField.complexConj E).toRingEquiv.toRingHom δ₂)) = (locEl a w.1 δ₁, locEl b w.1 δ₂) :=
-    Prod.ext (norm_split E a w.1 δ₁ hs) (norm_split E b w.1 δ₂ hs)
-  have s₁ := sep_locEl hC E a w.1 δ₁ he₁
+    Prod.ext (_root_.GlobalTheory.CompanionTheory.NormSplit.ratW_mul_thetaGL E a w.1 δ₁ hs) (_root_.GlobalTheory.CompanionTheory.NormSplit.ratW_mul_thetaGL E b w.1 δ₂ hs)
+  have s₁ := _root_.GlobalTheory.CompanionTheory.SepLocEl.separable_charpoly_nrmL_locEl hC E a w.1 δ₁ he₁
   have s₂ := sep_locEl hC E b w.1 δ₂ he₂
   have hG := GlobalTheory.T.local_good_reduction E hU a b w.1 (locEl a w.1 δ₁, locEl b w.1 δ₂) s₁ s₂
   have hL := (GlobalTheory.CompanionTheory.TwistOrbit.locSupp E hU a b w.1 (locEl a w.1 δ₁, locEl b w.1 δ₂) s₁ s₂).1
@@ -261,8 +258,8 @@ theorem unitConds_inert (hC : CjEx) {S : Set (Pl E)} (hS : IsSection S)
         ∃ t ∈ twCent ((thL a w.1).prodMap (thL b w.1)) (locEl a w.1 δ₁, locEl b w.1 δ₂), t⁻¹ * g ∈ K2 (E := E) a b w.1) ∧
       cptPart (twCent ((thL a w.1).prodMap (thL b w.1)) (locEl a w.1 δ₁, locEl b w.1 δ₂)) ≤ K2 (E := E) a b w.1) :
     UnitConds (thv a b v) (Kv a b v) (pv a b v (ratF E a δ₁, ratF E b δ₂)) (fv S φ₁ φ₂ v) := by
-  obtain ⟨e, he, hθ, hK⟩ := inert_iso hC E a b v w hns
-  refine transport_unit e _ ((thL a w.1).prodMap (thL b w.1)) _ (K2 a b w.1) _ _ (φ₁ w.1) hθ hK (fun x => ?_) ?_
+  obtain ⟨e, he, hθ, hK⟩ := _root_.GlobalTheory.CompanionTheory.LocHypInert.inert_iso hC E a b v w hns
+  refine _root_.GlobalTheory.CompanionTheory.UnitTransport.unitConds_of_homeo e _ ((thL a w.1).prodMap (thL b w.1)) _ (K2 a b w.1) _ _ (φ₁ w.1) hθ hK (fun x => ?_) ?_
   · rw [fv_eq hS φ₁ φ₂ v w hw, if_neg hns, mul_one, he]
   have hloc : e (pv a b v (ratF E a δ₁, ratF E b δ₂)) = (locEl a w.1 δ₁, locEl b w.1 δ₂) := by
     rw [he, evw_pv_rat]
@@ -292,44 +289,44 @@ theorem unitConds_split (hC : CjEx) {S : Set (Pl E)} (hS : IsSection S)
         ∃ t ∈ twCent ((thL a w.1).prodMap (thL b w.1)) (locEl a w.1 δ₁, locEl b w.1 δ₂), t⁻¹ * g ∈ K2 (E := E) a b w.1) ∧
       cptPart (twCent ((thL a w.1).prodMap (thL b w.1)) (locEl a w.1 δ₁, locEl b w.1 δ₂)) ≤ K2 (E := E) a b w.1) :
     UnitConds (thv a b v) (Kv a b v) (pv a b v (ratF E a δ₁, ratF E b δ₂)) (fv S φ₁ φ₂ v) := by
-  obtain ⟨e, he, hθ, hK, hr⟩ := split_iso hC E a b v w hs
-  obtain ⟨hσc, hσ, hσK⟩ := sg_facts E a b w.1
-  refine transport_unit e _ (swTw (sgP a b w.1)) _ ((K2 a b w.1).prod (K2 a b w.1)) _ _
+  obtain ⟨e, he, hθ, hK, hr⟩ := _root_.GlobalTheory.CompanionTheory.SplitIso.split_iso hC E a b v w hs
+  obtain ⟨hσc, hσ, hσK⟩ := _root_.GlobalTheory.CompanionTheory.LocalHypotheses.sgP_facts E a b w.1
+  refine _root_.GlobalTheory.CompanionTheory.UnitTransport.unitConds_of_homeo e _ (swTw (sgP a b w.1)) _ ((K2 a b w.1).prod (K2 a b w.1)) _ _
     (fun y => φ₁ w.1 y.1 * φ₂ w.1 (sgP a b w.1 y.2)) hθ hK (fun x => ?_) ?_
   · rw [fv_eq hS φ₁ φ₂ v w hw, if_pos hs, ← he, ← he, hθ]
     rfl
   rw [hr]
   have hN : (ratW a w.1 δ₁, ratW b w.1 δ₂) * sgP a b w.1 (ratW a w.1 (GeneralLinearGroup.map (IsCMField.complexConj E).toRingEquiv.toRingHom δ₁),
     ratW b w.1 (GeneralLinearGroup.map (IsCMField.complexConj E).toRingEquiv.toRingHom δ₂)) = (locEl a w.1 δ₁, locEl b w.1 δ₂) :=
-    Prod.ext (norm_split E a w.1 δ₁ hs) (norm_split E b w.1 δ₂ hs)
+    Prod.ext (_root_.GlobalTheory.CompanionTheory.NormSplit.ratW_mul_thetaGL E a w.1 δ₁ hs) (_root_.GlobalTheory.CompanionTheory.NormSplit.ratW_mul_thetaGL E b w.1 δ₂ hs)
   have hid : (thL a w.1).prodMap (thL b w.1) = MonoidHom.id _ := by
     have e₁ : thL a w.1 = MonoidHom.id _ := by rw [thL, if_pos hs]
     have e₂ : thL b w.1 = MonoidHom.id _ := by rw [thL, if_pos hs]
     rw [e₁, e₂]
     rfl
   rw [hid, ← hN] at hy
-  obtain ⟨hc, hp⟩ := split_unit (sgP a b w.1) (K2 a b w.1) _ _ hσc hσ hσK hd hd' hy.2 hy.1
+  obtain ⟨hc, hp⟩ := _root_.GlobalTheory.CompanionTheory.SplitUnit.main (sgP a b w.1) (K2 a b w.1) _ _ hσc hσ hσK hd hd' hy.2 hy.1
   exact ⟨split_ind _ _ hσ hσK _ _ hφ₁ hφ₂, ⟨hd, hd'⟩, hc, hp⟩
 
 theorem locHyp : PositivityTheory.Rg.BcB.G8.Fin.LocHyp := by
   intro hC E _ _ _ hU a b S hS φ₁ φ₂ h₁ h₂ δ₁ δ₂ he₁ he₂
   have hloc : ∀ v : PlF E, LocConds (thv a b v) (Kv a b v) (pv a b v (ratF E a δ₁, ratF E b δ₂)) (fv S φ₁ φ₂ v) := by
     intro v
-    obtain ⟨w, hw⟩ := exists_above E S hS v
+    obtain ⟨w, hw⟩ := _root_.GlobalTheory.CompanionTheory.LocHypAbove.exists_above_mem_section E S hS v
     by_cases hs : IsSplitAt w.1
     · exact locConds_split hC hU hS h₁ h₂ δ₁ δ₂ he₁ he₂ v w hw hs
     · exact locConds_inert hC hU hS h₁ δ₁ δ₂ he₁ he₂ v w hw hs
   have hunit : ∀ᶠ v : PlF E in cofinite,
       UnitConds (thv a b v) (Kv a b v) (pv a b v (ratF E a δ₁, ratF E b δ₂)) (fv S φ₁ φ₂ v) := by
-    refine cofinite_sec E S hS _ ?_
+    refine _root_.GlobalTheory.CompanionTheory.LocHypSec.eventually_cofinite_of_section E S hS _ ?_
     have hinj : Tendsto (Subtype.val : {w : Pl E // w ∈ S} → Pl E) cofinite cofinite :=
       Function.Injective.tendsto_cofinite Subtype.val_injective
     obtain ⟨-, -, -, -, t₁⟩ := test_facts h₁
     obtain ⟨-, -, -, -, t₂⟩ := test_facts h₂
-    have c₁ := rat_mem E a δ₁
-    have c₂ := rat_mem E b δ₂
-    have c₃ := rat_mem E a (GeneralLinearGroup.map (IsCMField.complexConj E).toRingEquiv.toRingHom δ₁)
-    have c₄ := rat_mem E b (GeneralLinearGroup.map (IsCMField.complexConj E).toRingEquiv.toRingHom δ₂)
+    have c₁ := _root_.GlobalTheory.CompanionTheory.LocalHypotheses.ratW_mem_KGL_eventually E a δ₁
+    have c₂ := _root_.GlobalTheory.CompanionTheory.LocalHypotheses.ratW_mem_KGL_eventually E b δ₂
+    have c₃ := _root_.GlobalTheory.CompanionTheory.LocalHypotheses.ratW_mem_KGL_eventually E a (GeneralLinearGroup.map (IsCMField.complexConj E).toRingEquiv.toRingHom δ₁)
+    have c₄ := _root_.GlobalTheory.CompanionTheory.LocalHypotheses.ratW_mem_KGL_eventually E b (GeneralLinearGroup.map (IsCMField.complexConj E).toRingEquiv.toRingHom δ₂)
     filter_upwards [hinj.eventually t₁, hinj.eventually t₂, hinj.eventually c₁, hinj.eventually c₂, hinj.eventually c₃,
       hinj.eventually c₄, GlobalTheory.T.unit_almost_everywhere_facts E hU a b S hS δ₁ δ₂ he₁ he₂] with w r₁ r₂ m₁ m₂ m₃ m₄ hy
     have hy' := hy _ rfl

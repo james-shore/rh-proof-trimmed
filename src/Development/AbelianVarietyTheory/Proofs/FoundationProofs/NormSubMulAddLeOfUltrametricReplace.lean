@@ -249,7 +249,7 @@ theorem middle_glue2 : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [Field Ω] [Alge
       refine ⟨Bq q, hBq q, ?_⟩
       have hψθ : ∀ s ∈ Ine (F := ℚ) (Bq q), ψ s = 1 ∧ θ s = 1 := fun s hs =>
         ⟨GlobalTheory.Ord2.FirstDer.killsMu_ine hqw hkill (hBq q) hs, hθI q hql (Bq q) (hBq q) s hs⟩
-      obtain ⟨v, hv⟩ := GlobalTheory.T.tameShapiroSystem_limit_unramified_away_from_l l Ω W c n e χ θ ρ ψ Yw Yt q (Bq q) hql (hBq q) hψθ hW hWO hWθ hρO hχO
+      obtain ⟨v, hv⟩ := _root_.GlobalTheory.KA.TameUnr.tame_limit_unram l Ω W c n e χ θ ρ ψ Yw Yt q (Bq q) hql (hBq q) hψθ hW hWO hWθ hρO hχO
         hYw hYwc hYwO hYwpush hYtap
       by_cases hqS : q ∈ S
       · have hle : mq q ≤ S.sup mq := Finset.le_sup hqS

@@ -175,7 +175,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.IwahoriBlocks.xSimple 
       SimpleIn (rS ι) (Xs μ τ κ p (im w)) ∧ SchurIn (rS ι) (Xs μ τ κ p (im w)) := by
   intro K _ _ _ μ _ τ κ p hτ hR r w ι hw hι
   have hp : IdemA κ p := hR.1
-  obtain ⟨hX, hX'⟩ := xMem μ τ κ p hp
+  obtain ⟨hX, hX'⟩ := _root_.UpperTheory.Reformulated.B.Gul4.xMem μ τ κ p hp
   have hstab := fun φ hφ => (hX' hτ w ι hw hι φ hφ).2
   obtain ⟨J, hJi, hJ, hJr, hJU⟩ := exists_injection_into_l2_cusp μ τ κ p hτ hp (im w)
   obtain ⟨-, hcw, hco, -, -, hlev⟩ := (embEx 2 w hw).2 ι hι

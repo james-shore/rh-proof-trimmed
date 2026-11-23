@@ -50,8 +50,8 @@ namespace ReciprocityTheory.MultiplicativeHeights.Closed
 
 open ReciprocityTheory.MultiplicativeHeights
 
-theorem semiPoint : SemiPointStatement := semiDeg_holds degAdd
+theorem semiPoint : SemiPointStatement := semiDeg_holds _root_.ReciprocityTheory.MultiplicativeHeights.degAdd_holds
 
-theorem semistable : SemistableStatement := semiContract_holds semiPoint degAdd
+theorem semistable : SemistableStatement := semiContract_holds semiPoint _root_.ReciprocityTheory.MultiplicativeHeights.degAdd_holds
 
 end ReciprocityTheory.MultiplicativeHeights.Closed

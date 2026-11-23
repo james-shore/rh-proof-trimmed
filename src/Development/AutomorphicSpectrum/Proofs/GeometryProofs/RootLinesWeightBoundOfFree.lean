@@ -99,7 +99,7 @@ theorem rootModel_nefAt_of_hodgeCpt : FarguesHodgeTate → ∀ (E : Type) [Field
       M.xdeg e hfree hroot
     have hR := 𝔐.R_ge p hpS
     have h2 : ∀ τ, Num.TrivFlagMod o (p : o) M.y (D.p + D.q) (fun i => M.xdeg (τ, i)) := fun τ =>
-      trivFlagMod_of_dvd o M.Ω M.K M.ι M.y _ _ _ _ (dvd_pow_self (p : o) (by omega)) (h1 τ)
-    exact trivflag_nef_fibre (CMType H) (D.p + D.q) M p o ho h2 mu hmu
+      _root_.PositivityTheory.HtPt.Gf.trivflag_mono o M.Ω M.K M.ι M.y _ _ _ _ (dvd_pow_self (p : o) (by omega)) (h1 τ)
+    exact _root_.PositivityTheory.HtPt.Gf.trivflag_nef (CMType H) (D.p + D.q) M p o ho h2 mu hmu
 
 end GlobalTheory.CompanionTheory.Ar.HT

@@ -37,6 +37,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntDerApply
+import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ValueAtNormalForm
 
 @[expose] public section
 
@@ -53,10 +54,6 @@ namespace GlobalTheory.Heat
 theorem scheme_constantSection_add {R : Type} [CommRing R] {X : Scheme.{0}} (p : X ⟶ Sp R) (U : X.Opens) (a b : R) :
     constFn p U (a + b) = constFn p U a + constFn p U b := by
   simp [constFn, map_add (f := _)]
-
-theorem constFn_mul_on_open {R : Type} [CommRing R] {X : Scheme.{0}} (p : X ⟶ Sp R) (U : X.Opens) (a b : R) :
-    constFn p U (a * b) = constFn p U a * constFn p U b := by
-  simp [constFn, map_mul]
 
 theorem gammaSpecIso_appLE_of_eq_id_apply {R : Type} [CommRing R] (f : Sp R ⟶ Sp R) (hf : f = 𝟙 _) (e : (⊤ : (Sp R).Opens) ≤ f ⁻¹ᵁ ⊤) (r : R) :
     (Scheme.ΓSpecIso (CommRingCat.of R)).hom.hom ((f.appLE ⊤ ⊤ e).hom ((Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom r)) = r := by
@@ -95,7 +92,7 @@ theorem liftDer_isDerivation : ∀ (R : Type) [CommRing R] (G : Over (Sp R)) [Gr
   have hmul : ∀ a b, D (a * b) = a * D b + b * D a := by
     intro a b
     have := congrArg ev (hc (a * b))
-    rw [constFn_mul_on_open, hL.1.2.1 W le_rfl, hc, hc, map_add (f := _), map_mul, map_mul, hev, hev, hev, hev, hev] at this
+    rw [_root_.GlobalTheory.KeyPow.constFn_mul, hL.1.2.1 W le_rfl, hc, hc, map_add (f := _), map_mul, map_mul, hev, hev, hev, hev, hev] at this
     exact this.symm
   let L : R →ₗ[ℤ] R := (AddMonoidHom.mk' D hadd).toIntLinearMap
   exact ⟨Derivation.mk' L (fun a b => by simpa [L, smul_eq_mul] using hmul a b), fun r => rfl⟩

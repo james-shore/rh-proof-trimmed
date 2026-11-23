@@ -122,6 +122,4 @@ theorem preOfTree : PreOfTree := by
 
 end PositivityTheory.Rg.BcB.SpectralAccumulation.PreOfTreePf
 
-theorem PositivityTheory.Rg.BcB.SpectralAccumulation.preOfTree_holds : PositivityTheory.Rg.BcB.SpectralAccumulation.PreOfTree := PositivityTheory.Rg.BcB.SpectralAccumulation.PreOfTreePf.preOfTree
-
 end

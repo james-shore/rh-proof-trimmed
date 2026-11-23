@@ -44,4 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem diagonal_rank_bound : PI.DiagRank := PI.UnitaryGroupMassFormula.DiagRank.diagRank

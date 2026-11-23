@@ -236,7 +236,7 @@ theorem eigen_at_field_points (hL : Laws) {E : Type} [Field E] [NumberField E] [
       UnifPre.gFK (G := t.G) F ≫ (t.act.act a).left := by
     rw [← Category.assoc, ← Over.comp_left, whiskerLeft_snd, Over.comp_left, Category.assoc, Category.assoc]
     exact congrArg _ (pullback.lift_fst _ _ _)
-  have hpow := DVR.pullGen_isGen _ _ _ _ (FrameGeo.powGen_isGen _ _ _ _ hmu k) (UnifPre.gFK (G := t.G) F)
+  have hpow := DVR.pullGen_isGen _ _ _ _ (_root_.ReciprocityTheory.ChartRestriction.G.DVR.powGen_isGen _ _ _ _ hmu k) (UnifPre.gFK (G := t.G) F)
   obtain ⟨σ', hσ'⟩ := exists_sec hLB (φ' := fun _ : Fin 1 => UnifPre.gFK (G := t.G) F)
     (ε' := fun _ => ((k * N : ℕ) : ℤ)) (fun W _ g => by
       simp only [Fintype.prod_sum_type, Fin.prod_univ_two, Sum.elim_inl, Sum.elim_inr, Finset.univ_unique,
@@ -268,8 +268,8 @@ theorem eigen_at_field_points (hL : Laws) {E : Type} [Field E] [NumberField E] [
         (congrArg (fun q => sval (σ i) q y J) (Category.assoc _ _ _))))).2 rfl
   have eτ := (g₂ t').unique x₃ ⟨l, c, σ, f, hσ, lin, hlin⟩
   rw [← eτ] at lin
-  obtain ⟨ρ, a₁, a₂, a₃, a₄⟩ := GlobalTheory.T.exists_lift_point_translation_fieldPoint V t.G F (z₀ ≫ P.U.gen.inv) T e r g hg
-  have key := GlobalTheory.T.eigenEquation_translation_kernel_genericFibre V _ P.D P.A t.G P.U.toUnifPre F (t.act.act a) (P.oA.act a) (P.oA.hom a) (P.lin.ext a) N k
+  obtain ⟨ρ, a₁, a₂, a₃, a₄⟩ := _root_.GlobalTheory.exists_lift_translT V t.G F (z₀ ≫ P.U.gen.inv) T e r g hg
+  have key := _root_.GlobalTheory.Jets.eigen_equation_generic V _ P.D P.A t.G P.U.toUnifPre F (t.act.act a) (P.oA.act a) (P.oA.hom a) (P.lin.ext a) N k
     mu hmu wI hwI σ₀ σ' τ tA' tA v' r₂ r₃ θ hact z₀ ε hz₀ hW _ ρ z J hJ
   rw [PullExpField.secLin_val lin _ z hJ, PullExpField.secLin_val lin _ z hJ] at key
   simp only [gs_scal, FieldBaseChange.groupBase] at key
@@ -313,7 +313,7 @@ theorem eigen_germ : Laws → Laws4 → TwistBCSpanStatement → JetSer.JetAlgSt
   obtain ⟨w₁, κ₁, hw₁, hexp⟩ := hgeo mu hmu M r hM hr
   obtain ⟨r', hr'⟩ := (GermExist.isUnit_of_isSer1 hRep hSer y.hx (Units.isUnit _) hr).exists_right_inv
   have hMu := GermExist.isUnit_of_isSer1 hRep hSer y.hx (Units.isUnit _) hM
-  obtain ⟨n, cc, σ, fi, hcc, hσ, hlin⟩ := GlobalTheory.T.exists_integralExpansions_of_valuation_ge hL V y.ϖ y.hϖ y.P.D y.P.A y.t.G y.P.U y.Q y.hQ F y.v y.hv
+  obtain ⟨n, cc, σ, fi, hcc, hσ, hlin⟩ := _root_.GlobalTheory.exists_integral_expansions_of_vge hL V y.ϖ y.hϖ y.P.D y.P.A y.t.G y.P.U y.Q y.hQ F y.v y.hv
     (k * p) hq (c • t') 0 hV
   let cO : Fin n → TWO.Ov y.v := fun i => ⟨cc i, hcc i⟩
   obtain ⟨m, hm⟩ : ∃ m : Γ(y.t.G.left, U)ˣ, m = mu.s (fun _ => y.j) := ⟨_, rfl⟩

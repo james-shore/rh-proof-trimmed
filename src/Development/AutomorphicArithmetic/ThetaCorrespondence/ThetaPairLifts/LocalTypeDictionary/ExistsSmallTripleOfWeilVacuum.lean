@@ -63,18 +63,8 @@ noncomputable section
 namespace GlobalTheory.SmallTriple
 open GlobalTheory.Grid MeasureTheory
 variable {D : D7}
-private theorem eta_sq_eq_one_alt {η : (AF D.host.F)ˣ →* Circle} (h : IsEta D η) (a : (AF D.host.F)ˣ) : η a ^ 2 = 1 := by
-  have h2 : Module.finrank D.host.F D.host.E = 2 := D.sp.cm.deg2
-  have : Module.Finite D.host.F D.host.E := Module.Finite.of_restrictScalars_finite ℚ _ _
-  have e := h.2.2.1 (idF D a)
-  have e2 : Units.map (Algebra.norm (AF D.host.F) : AE D →* AF D.host.F) (idF D a) = a ^ 2 := by
-    ext1
-    show Algebra.norm (AF D.host.F) (algebraMap (AF D.host.F) (AE D) (a : AF D.host.F)) = ((a ^ 2 : (AF D.host.F)ˣ) : AF D.host.F)
-    let b := (Module.finBasis D.host.F D.host.E).baseChange (AF D.host.F)
-    rw [Algebra.norm_algebraMap_of_basis b, Fintype.card_fin, h2, Units.val_pow_eq_pow_val]
-  rwa [e2, map_pow] at e
 private theorem restriction_eta_add_two {χ : (AE D)ˣ →* Circle} {n : ℕ} (h : ResEta D χ (n + 2)) : ResEta D χ n :=
-  ⟨h.1, fun η hη a => by rw [h.2 η hη a, pow_add, eta_sq_eq_one_alt hη, mul_one]⟩
+  ⟨h.1, fun η hη a => by rw [h.2 η hη a, pow_add, _root_.Formalism.L2.Theta.eta_sq hη, mul_one]⟩
 private theorem exists_weil_representation (hP : GlobalTheory.Published.WeilRepresentationUnitaryPair) {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdChar D ψ (-1))
     (ε : Bool) (S W : HSp D) {χS χW : (AE D)ˣ →* Circle} (h1 : IsHeckeChar D χS) (h2 : IsHeckeChar D χW)
     (h3 : ResEta D χS S.rank) (h4 : ResEta D χW W.rank) : ∃ ω : WRep S W, IsWeil ψ ε S W χS χW ω := by
@@ -132,9 +122,4 @@ theorem exists_small_triple : _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀
     ⟨by omega, hA, hB, hW, hω, hω', hv, hv', hX.idem, hX.expo, hf, hf', hX.meas, hm'⟩⟩
 end GlobalTheory.SmallTriple
 end
-theorem _root_.GlobalTheory.T.exists_small_triple_of_weil_vacuum : _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ (D : D7) (T : Type) (A A' WW B' WW₁ : HSp D) (X : Tri T A A' WW)
-    (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D) (α β : T → ((AE D)ˣ →* Circle)) (νH : T → HChar D.host.E)
-    (S : T → Finset (Formalism.L2.DIV.Pl D.host.E)) (rB : GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle.Rig B') (rW : GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle.Rig WW₁),
-    IsInfFam θ → X.Is ψ θ α β νH S → rB.Is → rW.Is → B'.rank + 2 = A'.rank → WW₁.rank + 2 = WW.rank →
-    ∃ Y : Tri T A B' WW₁, Y.rA = X.rA ∧ Y.rA' = rB ∧ Y.rW = rW ∧ Y.Is ψ θ α β νH S := _root_.GlobalTheory.SmallTriple.exists_small_triple
 end

@@ -46,6 +46,8 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagonalBlockDetBlockTriangular
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsLocalVacuumOfIsLatticeVacuumCoprimeLevel
+import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.CompletedTensorLatticeLatticeVacuumTransport
 
 @[expose] public section
 
@@ -64,17 +66,6 @@ namespace GlobalTheory.XCharComb
 
 variable {D : D7}
 
-theorem pairA_zero_mul (α β : Af D.host.F) :
-    pairA D.host.F 0 α * pairA D.host.F 0 β = pairA D.host.F 0 (α * β) := by
-  exact Prod.ext (zero_mul _) rfl
-
-theorem intAf_mul {α β : Af D.host.F} (hα : α ∈ intAf D.host.F) (hβ : β ∈ intAf D.host.F) :
-    α * β ∈ intAf D.host.F := fun v => by
-  rw [map_mul]; exact mul_mem (hα v) (hβ v)
-
-theorem one_mem_intAf : (1 : Af D.host.F) ∈ intAf D.host.F := fun v => by
-  rw [map_one]; exact one_mem _
-
 theorem complId_mul {𝔞 𝔟 : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E} {x y : AE D} (hx : x ∈ complId 𝔞)
     (hy : y ∈ complId 𝔟) : x * y ∈ complId (𝔞 * 𝔟) := by
   induction hx using AddSubgroup.closure_induction with
@@ -83,8 +74,8 @@ theorem complId_mul {𝔞 𝔟 : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E} {x
     induction hy using AddSubgroup.closure_induction with
     | mem y hy =>
       obtain ⟨β, hβ, b, hb, rfl⟩ := hy
-      rw [Algebra.TensorProduct.tmul_mul_tmul, pairA_zero_mul]
-      exact tmul_mem_complId (intAf_mul hα hβ) (FractionalIdeal.mul_mem_mul ha hb)
+      rw [Algebra.TensorProduct.tmul_mul_tmul, _root_.GlobalTheory.VacLat.pairA_mul]
+      exact tmul_mem_complId (_root_.GlobalTheory.FinPl.LatMem.intAf_mul' hα hβ) (FractionalIdeal.mul_mem_mul ha hb)
     | zero => rw [mul_zero]; exact zero_mem _
     | add y z _ _ hy hz => rw [mul_add]; exact add_mem hy hz
     | neg y _ hy => rw [mul_neg]; exact neg_mem hy
@@ -114,7 +105,7 @@ theorem finId_mul {𝔞 𝔟 : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E} {x y
 
 theorem tmul_one_mem_finId {𝔠 : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E} {a : D.host.E} (ha : a ∈ 𝔠) :
     a ⊗ₜ[D.host.F] (1 : Formalism.L2.Herm.Af D.host.F) ∈ finId 𝔠 :=
-  ⟨_, tmul_mem_complId one_mem_intAf ha, rfl⟩
+  ⟨_, tmul_mem_complId _root_.GlobalTheory.TensLatMove.intAf_one ha, rfl⟩
 
 theorem int_mem_finId_one {z : EAf D} (hz : z ∈ Formalism.L2.Herm.intAf D.host.F D.host.E) :
     z ∈ finId (1 : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E) := by
@@ -174,7 +165,7 @@ theorem mem_complId_of_finId {𝔞 𝔟 : FractionalIdeal (𝓞 D.host.E)⁰ D.h
     (h : toEAf D c ∈ finId 𝔟) : c ∈ complId 𝔟 := by
   obtain ⟨z, hz, hze⟩ := h
   have hze' : toEAf D z = toEAf D c := hze
-  have hzc : z = c := GlobalTheory.DepthFix.ext_cpt (by rw [infPart_of_mem hz, infPart_of_mem hc])
+  have hzc : z = c := _root_.GlobalTheory.FunObj.ae_ext (by rw [infPart_of_mem hz, infPart_of_mem hc])
     fun Q => by rw [hze']
   exact hzc ▸ hz
 

@@ -77,7 +77,7 @@ theorem exists_qfGroup_kernel : ∀ (R : Type) [CommRing R] [IsDomain R] [IsNoet
   have := hB.separated
   have := hB.quasiCompact
   have := hB.comm
-  have := GlobalTheory.CompanionTheory.Ar.BT.flat_mul_semiAbelian (Spec (CommRingCat.of R)) B hB N hN
+  have := _root_.PositivityTheory.HtPt.Twhopf.mul_flat (Spec (CommRingCat.of R)) B hB N hN
   have := GlobalTheory.CompanionTheory.Ar.BT.locallyQuasiFinite_pow_semiAbelian (Spec (CommRingCat.of R)) B hB N hN
   have hm := mono_of_pullback hp
   obtain ⟨h1, h2, h3, h4, h5⟩ := kernel_props hp

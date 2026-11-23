@@ -65,20 +65,20 @@ theorem GlobalTheory.LocalExtCompletion.exists_completion_ext : ∀ (K L Ω : Ty
   intro K L Ω _ _ _ _ _ _ _ _ _ _ _ A v v' h h' hloc ι ι' hι hι'
   obtain ⟨e, he, hv⟩ := GlobalTheory.T.valuation_pow_of_isPlaceOver_alt K L Ω A v v' h h'
   obtain ⟨f, hfc, hfK, hfv⟩ := GlobalTheory.T.exists_extension_pow_alt K L v v' e he hv
-  have hirr := GlobalTheory.T.minpoly_irreducible_local_embedding K L Ω A v h (fun σ => by
+  have hirr := _root_.GlobalTheory.LocIrred.minpoly_map_adicCompletion_irreducible K L Ω A v h (fun σ => by
     obtain ⟨τ, hτ⟩ := hloc σ
     exact ⟨τ, Weil_le_Dec h τ.2, hτ⟩) ι hι
   letI : Algebra (v.adicCompletion K) (v'.adicCompletion L) := f.toAlgebra
-  have hind := GlobalTheory.T.linearIndependent_completion_of_irreducible_minpoly_alt K L v v' f hfK hirr _ (Module.finBasis K L)
-  have hspan := GlobalTheory.T.span_basis_image_adicCompletion_eq_top_alt K L v v' f hfc hfK _ (Module.finBasis K L)
+  have hind := _root_.GlobalTheory.linearIndependent_completion_of_irreducible_minpoly K L v v' f hfK hirr _ (Module.finBasis K L)
+  have hspan := _root_.GlobalTheory.span_basis_image_adicCompletion_eq_top K L v v' f hfc hfK _ (Module.finBasis K L)
   let b' : Module.Basis (Fin (Module.finrank K L)) (v.adicCompletion K) (v'.adicCompletion L) :=
     Module.Basis.mk hind hspan.ge
   have hb' : ∀ i, b' i = algebraMap L _ (Module.finBasis K L i) := fun i => Module.Basis.mk_apply _ _ _
   haveI hfd : FiniteDimensional (v.adicCompletion K) (v'.adicCompletion L) := Module.Finite.of_basis b'
   have hrank : Module.finrank (v.adicCompletion K) (v'.adicCompletion L) = Module.finrank K L := by
     rw [Module.finrank_eq_card_basis b', Fintype.card_fin]
-  have htn := GlobalTheory.T.adicCompletion_trace_norm_of_basis_image_alt K L v v' f hfK _ (Module.finBasis K L) b' hb'
-  have hcont := GlobalTheory.T.adicCompletion_trace_norm_continuous_alt K L v v' f hfc hfd
+  have htn := _root_.GlobalTheory.adicCompletion_trace_norm_of_basis_image K L v v' f hfK _ (Module.finBasis K L) b' hb'
+  have hcont := _root_.GlobalTheory.adicCompletion_trace_norm_continuous K L v v' f hfc hfd
 
   haveI : Algebra.IsAlgebraic (v.adicCompletion K) (v'.adicCompletion L) := Algebra.IsAlgebraic.of_finite _ _
   haveI : Algebra.IsAlgebraic (v.adicCompletion K) (Kbar v') :=
@@ -87,7 +87,7 @@ theorem GlobalTheory.LocalExtCompletion.exists_completion_ext : ∀ (K L Ω : Ty
   let b₀ : Kbar v ≃ₐ[v.adicCompletion K] Kbar v' := IsAlgClosure.equiv (v.adicCompletion K) (Kbar v) (Kbar v')
   have hb₀ : ∀ x, b₀ (algebraMap (v.adicCompletion K) (Kbar v) x) = algebraMap (v'.adicCompletion L) (Kbar v') (f x) :=
     fun x => (b₀.commutes x).trans rfl
-  have hint := GlobalTheory.T.residue_closure_iso_ramified_ext K L v v' e f he hfv hfd b₀.toRingEquiv hb₀
+  have hint := _root_.GlobalTheory.LocIntegral.isIntegral_iff_isIntegral_map K L v v' e f he hfv hfd b₀.toRingEquiv hb₀
   let ι₂ : Ω →ₐ[K] Kbar v :=
     { (b₀.symm.toRingEquiv.toRingHom.comp ι'.toRingHom) with
       commutes' := fun x => by
@@ -99,8 +99,8 @@ theorem GlobalTheory.LocalExtCompletion.exists_completion_ext : ∀ (K L Ω : Ty
     rw [hι' z, hint]
     change IsIntegral _ (ι' z) ↔ IsIntegral _ (b₀ (b₀.symm (ι' z)))
     rw [AlgEquiv.apply_symm_apply]
-  obtain ⟨σ, hσ, hσι⟩ := GlobalTheory.T.local_embeddings_differ_by_decomposition K Ω A v ι ι₂ hι hι₂
-  obtain ⟨θ, -, -, hθ⟩ := GlobalTheory.T.decomposition_group_local_galois_iso K Ω A v h ι hι
+  obtain ⟨σ, hσ, hσι⟩ := _root_.GlobalTheory.LocEmbDec.exists_dec_of_isLocEmb K Ω A v ι ι₂ hι hι₂
+  obtain ⟨θ, -, -, hθ⟩ := _root_.GlobalTheory.LocDec.decomposition_mulEquiv_galLoc K Ω A v h ι hι
   let g := θ ⟨σ, hσ⟩
   have hg : ∀ z, g (ι z) = b₀.symm (ι' z) := fun z => (hθ ⟨σ, hσ⟩ z).trans (hσι z).symm
   refine ⟨f, g.toRingEquiv.trans b₀.toRingEquiv, hfc, fun x => ?_, fun z => ?_, hfK, hrank, hcont.1,

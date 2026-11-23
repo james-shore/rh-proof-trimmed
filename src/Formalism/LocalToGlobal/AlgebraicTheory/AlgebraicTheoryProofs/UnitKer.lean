@@ -64,6 +64,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.LemmaTwoOf
 
 @[expose] public section
 
@@ -158,10 +159,6 @@ section Gauss
 
 variable {K : Type} [NormedField K] [IsUltrametricDist K]
 
-theorem norm_sub_le_one {x y : K} (hx : ‖x‖ ≤ 1) (hy : ‖y‖ ≤ 1) : ‖x - y‖ ≤ 1 := by
-  rw [sub_eq_add_neg]
-  exact (IsUltrametricDist.norm_add_le_max _ _).trans (max_le hx (by rw [norm_neg]; exact hy))
-
 theorem gaussOne_one : GaussOne (1 : PowerSeries K) := by
   refine ⟨fun n => ?_, 0, by simp⟩
   rw [coeff_one]
@@ -198,7 +195,7 @@ theorem gauss_roots {ι : Type} [Fintype ι] (A : PowerSeries K) (hA0 : constant
     · have hdP : d P = 1 := by simp only [hd]; rw [if_pos h]
       refine ⟨fun n => ?_, 0, ?_⟩
       · rw [hgc, hdP, inv_one, one_mul]
-        apply norm_sub_le_one (hA n)
+        apply _root_.Formalism.InvariantFactorPaths.G7.LemTwo.norm_sub_le_one (hA n)
         split_ifs
         · exact h
         · simp
@@ -227,7 +224,7 @@ theorem gauss_roots {ι : Type} [Fintype ι] (A : PowerSeries K) (hA0 : constant
         · rw [mul_zero]
       refine ⟨fun n => ?_, 2, ?_⟩
       · rw [e]
-        apply norm_sub_le_one (hsmall n).le
+        apply _root_.Formalism.InvariantFactorPaths.G7.LemTwo.norm_sub_le_one (hsmall n).le
         split_ifs <;> simp
       · rw [e, if_pos rfl]
         apply norm_one_of_close (b := -1)
@@ -240,7 +237,7 @@ theorem gauss_roots {ι : Type} [Fintype ι] (A : PowerSeries K) (hA0 : constant
     simp only [hg]
     rw [← mul_assoc, ← map_mul, mul_inv_cancel₀ (hd0 P), map_one, one_mul]
   have hG : GaussOne (∏ P, g P) :=
-    Finset.prod_induction _ GaussOne (fun f g hf hg => Formalism.L2.Th1.E.gaussMul K f g hf hg) gaussOne_one
+    Finset.prod_induction _ GaussOne (fun f g hf hg => _root_.Formalism.L2.Th1.E.gauss_multiplicative K f g hf hg) gaussOne_one
       (fun P _ => hG1 P)
   obtain ⟨n, hn⟩ := hG.2
   have hc := hF n
@@ -270,7 +267,7 @@ theorem padic_norm_twelve_eq_one_of_five_le (hp : p = 3) {r : ℤ} (hr : r = 1 �
 
 theorem pick3 (hp : p = 3) {x : ℂ_[p]} (hx : ‖x‖ ≤ 1) :
     ∃ r : ℤ, (r = 1 ∨ r = 2) ∧ ‖x - (r : ℂ_[p])‖ = 1 := by
-  have le1 : ∀ k : ℤ, ‖x - (k : ℂ_[p])‖ ≤ 1 := fun k => norm_sub_le_one hx (normZ_le k)
+  have le1 : ∀ k : ℤ, ‖x - (k : ℂ_[p])‖ ≤ 1 := fun k => _root_.Formalism.InvariantFactorPaths.G7.LemTwo.norm_sub_le_one hx (normZ_le k)
   by_cases h1 : ‖x - ((1 : ℤ) : ℂ_[p])‖ < 1
   · refine ⟨2, Or.inr rfl, le_antisymm (le1 2) (not_lt.1 fun h2 => ?_)⟩
     have h3 := IsUltrametricDist.norm_add_le_max (x - ((1 : ℤ) : ℂ_[p])) (-(x - ((2 : ℤ) : ℂ_[p])))
@@ -377,7 +374,7 @@ theorem calcGen {p : ℕ} [Fact p.Prime] (ι : ℂ ≃+* ℂ_[p]) {dK : ℕ} (L 
     ⟨hW.1, hW.2.1, hW.2.2.1, hW.2.2.2.1, hW.2.2.2.2.1⟩
   have hb2 : (curveL p L ι).b₂ = 0 := (Formalism.L2.Th1.A.shortInv ℂ_[p] _ _).1
   let _ : StarRing (OO ι hmod) := starOO ι hmod
-  have key := (Formalism.L2.Th1.C.curveEndoUnitBall ℂ_[p] h2 _ hM (ι (Formalism.L2.Th1.F.s2 L)) (OO ι hmod)
+  have key := (_root_.Formalism.L2.Th1.C.curve_endomorphisms_unit_ball ℂ_[p] h2 _ hM (ι (Formalism.L2.Th1.F.s2 L)) (OO ι hmod)
     (tau ι hmod)
     (continuous_fst.comp continuous_subtype_val)
     (Continuous.subtype_mk (continuous_swap.comp continuous_subtype_val) _)

@@ -76,12 +76,12 @@ theorem row_rRows_stage0_alt : GlobalTheory.Published.DiscreteSeriesCover → Gl
   have hpdiv : AtAll _root_.GlobalTheory.Fc.Ind.DivisorPointSummands 𝒜 (_root_.GlobalTheory.Fc.summandSelection σ τ') := fun Fm hc x hx i => _root_.GlobalTheory.Fc.StageZeroRow.p_div_at_piece_of_div3g _ (hdv Fm hc x hx i)
   have hcs : AtAll (fun D O c (b : _root_.GlobalTheory.Fc.Ind.PointSummands D O c) => GlobalTheory.ExportPin.ClassSumPin b.pt ∧ b.pt.CompatibilityConditions) 𝒜 (_root_.GlobalTheory.Fc.summandSelection σ τ') :=
     fun Fm hc x hx i => ⟨(hτ Fm hc x hx i).2.1, (hτ Fm hc x hx i).2.2.1⟩
-  have hrows : Ind.EvW _root_.GlobalTheory.Fc.Ind.RowPointSummands 𝒜 (_root_.GlobalTheory.Fc.summandSelection σ τ') := _root_.GlobalTheory.T.eventually_pDiv_ties_of_class_sum_pin hDS hHC hCR hCW 𝒜 (_root_.GlobalTheory.Fc.summandSelection σ τ') hppa hpdiv hgd hcs
+  have hrows : Ind.EvW _root_.GlobalTheory.Fc.Ind.RowPointSummands 𝒜 (_root_.GlobalTheory.Fc.summandSelection σ τ') := _root_.GlobalTheory.Fc.Ind.evW_pRows_of_rows_alt hDS hHC hCR hCW 𝒜 (_root_.GlobalTheory.Fc.summandSelection σ τ') hppa hpdiv hgd hcs
   have hmore : Ind.EvW (fun _ _ _ b => GlobalTheory.BigOn.More b.pt) 𝒜 (_root_.GlobalTheory.Fc.summandSelection σ τ') :=
     evW_of_atAll' fun Fm hc x hx i => (hτ Fm hc x hx i).2.2.2
-  refine ⟨τ', ?_, hl3, _root_.GlobalTheory.T.eventually_norm_bound_of_more_points hOnto 𝒜 (_root_.GlobalTheory.Fc.summandSelection σ τ') hduty hrows hmore, _root_.GlobalTheory.T.eventually_L6_bound_of_lamLow hLam 𝒜 (_root_.GlobalTheory.Fc.summandSelection σ τ') hduty hrows, hfun⟩
-  exact _root_.GlobalTheory.T.eventually_small_of_seeEx_primitive 𝒜 (_root_.GlobalTheory.Fc.summandSelection σ τ') (fun Fm hc x hx i =>
-      _root_.GlobalTheory.T.indefinite_scale_theta_nonvanishing_alt hDC _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ (_root_.GlobalTheory.Fc.summandSelection σ τ' Fm hc x hx i).B.Q (_root_.GlobalTheory.Fc.summandSelection σ τ' Fm hc x hx i).pins
+  refine ⟨τ', ?_, hl3, _root_.GlobalTheory.Fc.Ind.onto_at_chosen_alt hOnto 𝒜 (_root_.GlobalTheory.Fc.summandSelection σ τ') hduty hrows hmore, _root_.GlobalTheory.Fc.Ind.eventual_L6_of_lower_scalar_alt hLam 𝒜 (_root_.GlobalTheory.Fc.summandSelection σ τ') hduty hrows, hfun⟩
+  exact _root_.GlobalTheory.Fc.Ind.small_along_alt 𝒜 (_root_.GlobalTheory.Fc.summandSelection σ τ') (fun Fm hc x hx i =>
+      _root_.GlobalTheory.RowPlacementReal.placement_of_realisation_alt hDC _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ (_root_.GlobalTheory.Fc.summandSelection σ τ' Fm hc x hx i).B.Q (_root_.GlobalTheory.Fc.summandSelection σ τ' Fm hc x hx i).pins
         (hiota Fm hc x hx i)) hppa
 end GlobalTheory.Fc.StageZeroRow
 end

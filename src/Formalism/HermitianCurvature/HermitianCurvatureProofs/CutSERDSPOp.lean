@@ -71,13 +71,6 @@ section Help
 variable {k r : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
   [InnerProductSpace ℂ Wq]
 
-theorem rdsp_rw_vanish {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] (F : B.Mat k r → E) (w : List (B.Mat k r)) :
-    ∀ g, g ∉ tsupport F → B.Rw w F g = 0 := by
-  intro g hg
-  rw [Formalism.FourierDecayAlt.P.JCTx6.Pos.rw_congr_open (isClosed_tsupport F).isOpen_compl (f₁ := F) (f₂ := 0)
-    (fun x hx => image_eq_zero_of_notMem_tsupport hx) w g hg, Formalism.FourierDecayAlt.P.CutMP.JA.GA.rw_zero_fn]
-  rfl
-
 theorem rdsp_tsupport_sub {E E' : Type*} [Zero E] [Zero E'] {G : B.Mat k r → E} {F : B.Mat k r → E'}
     (h : ∀ g, g ∉ tsupport F → G g = 0) : tsupport G ⊆ tsupport F := by
   apply closure_minimal _ (isClosed_tsupport F)
@@ -145,7 +138,7 @@ theorem spectral_pairing_operator : RDSPOp := by
     refine Formalism.FourierDecayAlt.P.PBJ.ckOn_opApply_list (B.GPos D) F hF hsuppF Θ (fun T hT => (hS T hT).1) fun T _ => ?_
     refine (closure_minimal (fun g hg => ?_) (isClosed_tsupport F)).trans hOP
     by_contra hgF
-    exact hg.2 (rdsp_rw_vanish F T.word g hgF)
+    exact hg.2 (_root_.Formalism.FourierDecayAlt.P.CutMP.JA.FFS.AC.rw_eq_zero_of_not_mem F T.word g hgF)
   have hB1s : B.CkOn ⊤ (B.GV k r) (B.opAdj Θ F) := Formalism.FourierDecayAlt.P.CutMP.JA.FFS.AC.ckOn_opAdj D Θ hS hF hsuppF
   refine ⟨⟨hA1s, hFc.of_isClosed_subset (isClosed_tsupport _) hA1t, hA1t⟩,
     ⟨hB1s, hFc.of_isClosed_subset (isClosed_tsupport _) hB1t, hB1t⟩, ?_⟩

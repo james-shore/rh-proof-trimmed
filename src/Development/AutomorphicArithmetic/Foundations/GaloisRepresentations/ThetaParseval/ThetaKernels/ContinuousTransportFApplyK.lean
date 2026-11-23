@@ -81,12 +81,12 @@ theorem continuous_transportF_apply_k : ∀ (F E : Type) [Field F] [NumberField 
   have hth : ∀ w, Continuous fun p => GlobalTheory.WeilSchrodinger.thetaTr F co B.ψ (om p Φ) w := by
     intro w
     choose g h hh hg using fun p : UG (cA σ) (incM F JA) × UG (cA σ) (incM F JB) =>
-      _root_.GlobalTheory.T.doubled_lagrangian_intertwiner F E σ B hB hstd nS nT JS JT hJS hJT ξ₀ hξ0 hσξ JA JB ξ hJA hJB p.1 p.2
+      _root_.GlobalTheory.WeilPairPartnerF.pair_partnerF_k F E σ B hB hstd nS nT JS JT hJS hJT ξ₀ hξ0 hσξ JA JB ξ hJA hJB p.1 p.2
     have hθ : IsThetaFunOF σ JS JT ξ₀ B.ψ (GlobalTheory.WeilSchrodinger.thetaTr F co B.ψ Φ) :=
-      ⟨_root_.GlobalTheory.T.doubled_lagrangian_continuous F E σ B hB hstd nS nT JS JT hJS hJT ξ₀ hξ0 hσξ JA JB ξ hJA hJB κ co hco Φ hΦ,
-        _root_.GlobalTheory.T.doubled_lagrangian_unitary F E σ B hB hstd nS nT JS JT hJS hJT ξ₀ hξ0 hσξ JA JB ξ hJA hJB κ co hco Φ hΦ,
-        _root_.GlobalTheory.T.doubled_lagrangian_equivariant F E σ B hB hstd nS nT JS JT hJS hJT ξ₀ hξ0 hσξ JA JB ξ hJA hJB κ co hco Φ hΦ,
-        _root_.GlobalTheory.T.doubled_lagrangian_invariant_functional F E σ B hB hstd nS nT JS JT hJS hJT ξ₀ hξ0 hσξ JA JB ξ hJA hJB κ co hco Φ hΦ⟩
+      ⟨_root_.GlobalTheory.ThetaQuasiRatF.thetaTr_ratWF_add_k F E σ B hB hstd nS nT JS JT hJS hJT ξ₀ hξ0 hσξ JA JB ξ hJA hJB κ co hco Φ hΦ,
+        _root_.GlobalTheory.ThetaLevelF.thetaTr_levelF_k F E σ B hB hstd nS nT JS JT hJS hJT ξ₀ hξ0 hσξ JA JB ξ hJA hJB κ co hco Φ hΦ,
+        _root_.GlobalTheory.ThetaTrContF.continuous_thetaTrF_k F E σ B hB hstd nS nT JS JT hJS hJT ξ₀ hξ0 hσξ JA JB ξ hJA hJB κ co hco Φ hΦ,
+        _root_.GlobalTheory.ThetaSmoothF.contDiff_thetaTr_realF_k F E σ B hB hstd nS nT JS JT hJS hJT ξ₀ hξ0 hσξ JA JB ξ hJA hJB κ co hco Φ hΦ⟩
     have hhU : ∀ p, matHomF σ JT (h p) = p.1.1 := fun p => Units.ext (hh p)
     have hgU : ∀ p, (matHomF σ JS (g p))⁻¹.1 = p.2.1.1ᵀ := by
       intro p
@@ -117,7 +117,7 @@ theorem continuous_transportF_apply_k : ∀ (F E : Type) [Field F] [NumberField 
     exact ((hω.om_cont _ hθ w).comp (hcG.prodMk hcH)).congr fun p => (heq p).symm
   refine continuous_iff_continuousAt.2 fun p0 => ?_
   obtain ⟨N, hN, m, g, y, hg, hy, hf⟩ :=
-    _root_.GlobalTheory.T.weil_pair_commuting_actions F E σ B hB nS nT JS JT hJS hJT ξ₀ hξ0 hσξ χS χT hS hT rS rT ω hω JA JB ξ hJA hJB κ co hco om htr Φ hΦ p0
+    _root_.GlobalTheory.WeilContF.exists_local_finite_parts_F_k F E σ B hB nS nT JS JT hJS hJT ξ₀ hξ0 hσξ χS χT hS hT rS rT ω hω JA JB ξ hJA hJB κ co hco om htr Φ hΦ p0
   let f : _ → Fin m → SchwartzMap (κ → mixedEmbedding.mixedSpace F) ℂ :=
     fun p => if h : p ∈ N then Classical.choose (hf p h) else 0
   have hfe : ∀ p ∈ N, om p Φ = ∑ i, pureA F (f p i) (g i) := fun p hp => by
@@ -134,7 +134,7 @@ theorem continuous_transportF_apply_k : ∀ (F E : Type) [Field F] [NumberField 
   have hbd : ∀ k : ℕ, ∃ C : ℝ, ∀ᶠ p in nhds p0, ∀ i v, ‖v‖ ^ k * ‖f p i v‖ ≤ C := by
     intro k
     choose C hC using fun i =>
-      _root_.GlobalTheory.T.weil_pair_rational_invariance F E σ B hB nS nT JS JT hJS hJT ξ₀ hξ0 hσξ χS χT hS hT rS rT ω hω JA JB ξ hJA hJB κ co hco om htr
+      _root_.GlobalTheory.WeilContF.slice_bounds_k F E σ B hB nS nT JS JT hJS hJT ξ₀ hξ0 hσξ χS χT hS hT rS rT ω hω JA JB ξ hJA hJB κ co hco om htr
         Φ hΦ (y i) p0 k 0
     refine ⟨∑ i, |C i|, ?_⟩
     filter_upwards [Filter.eventually_all.2 hC, hN] with p hp hpN i v
@@ -178,7 +178,7 @@ theorem continuous_transportF_apply_k : ∀ (F E : Type) [Field F] [NumberField 
       intro p
       simp only [hform, ← mul_assoc, hψinv, one_mul]
     exact ((continuous_const.mul (hth _)).continuousAt).congr (Filter.Eventually.of_forall h2)
-  have hL := GlobalTheory.continuousAt_charSeries_coef_zero e (fun a y => hψ.2.1 _) h0 hne _ p0 M hM hMb hc
+  have hL := _root_.GlobalTheory.CharSeriesCoef.continuousAt_coef_zero e (fun a y => hψ.2.1 _) h0 hne _ p0 M hM hMb hc
   simpa using hL
 end GlobalTheory.WeilContF
 end

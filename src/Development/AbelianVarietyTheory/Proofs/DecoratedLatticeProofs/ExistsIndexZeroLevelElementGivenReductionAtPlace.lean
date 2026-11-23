@@ -59,6 +59,7 @@ import Development.AbelianVarietyTheory.Definitions.LatticeFrames.MiStarOfMid
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.PairForm
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.UnitRatio
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.MemLatOIffExistsActO
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.InvolutionSphericalHeckeAnti
 
 @[expose] public section
 
@@ -249,7 +250,7 @@ theorem GlobalTheory.LevZeroPlace.one_place : ∀ {D : D7} {c : Comm D} {v : VCo
   have hνl := hLev ν _ hν ((GlobalTheory.LevZeroGen.upZero_mem_lev _ _ _).2 hnJ)
   have hηl := hLev _ _ hη' ((GlobalTheory.LevZeroGen.upZero_mem_lev _ _ _).2 hγJ)
   have hQν := hN PP ν _ (GlobalTheory.LocFlag.mem_flagN D _ _ _ _ _ _ _ _ _ hbes ν _ hupN hν) hupN hν hνl
-  have hQη := hU η (GlobalTheory.PlaceMatch.mem_GfC_of_suppAt' (G PP).q.split hη.1) hηl
+  have hQη := hU η (_root_.GlobalTheory.SplitPlace.mem_GfC (G PP).q.split hη.1) hηl
   have hprod := GlobalTheory.LocGrp.isLoc_mul _ hν hη'
   rw [← map_mul] at hprod
   have e : b⁻¹ * ν * b * (b⁻¹ * embA (c.bes 0 D.R.rS h0).d (c.bes 0 D.R.rS h0).o η * b) =

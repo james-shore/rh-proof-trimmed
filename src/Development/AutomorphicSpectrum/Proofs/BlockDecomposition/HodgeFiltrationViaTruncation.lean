@@ -217,9 +217,9 @@ local notation "TFs" => (TF 1 : ℕ → ObjectProperty (Thick LL))
 theorem loc_vanish (hG : KH.LocGr) (hP : KH.PolyTf) {V : X.Opens} {d : ℕ} (c : Coord q V d) (r s' : ℕ) (hd : d < r)
     (hs : r + 1 ≤ s') (j : ℕ) : Subsingleton (CH.H (gr (sFil (St (TFs s') {V})) (r : ℤ)) j) := by
   have hb : TFBase (dividedPowersBot K) 1 s' := tfBase (by omega)
-  obtain ⟨c', e, hTF, -, -, -⟩ := GlobalTheory.T.exists_chart_from_coordinates (O := K) (R := K) (dividedPowersBot K) 1 s' hb q (Ideal.Quotient.mk ⊥)
+  obtain ⟨c', e, hTF, -, -, -⟩ := _root_.GlobalTheory.CompanionTheory.ChartAlg.chart_exists (O := K) (R := K) (dividedPowersBot K) 1 s' hb q (Ideal.Quotient.mk ⊥)
     (fun a => rfl) c
-  have hgood := GlobalTheory.T.chart_is_good c'
+  have hgood := _root_.GlobalTheory.CompanionTheory.ChartMaps.good c'
   have hQ : ∀ T, St (TFs s') {V} T → InU V T := by
     rintro T ⟨-, W, hW, h⟩
     rw [Set.mem_singleton_iff.1 hW] at h

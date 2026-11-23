@@ -90,7 +90,7 @@ theorem isHausdorff_quot {l : ℕ} [Fact l.Prime] {R : Type} [CommRing R] (P : O
   refine ⟨fun y hy => ?_⟩
   obtain ⟨x, rfl⟩ := Ideal.Quotient.mk_surjective y
   rw [Ideal.Quotient.eq_zero_iff_mem, hd]
-  refine GlobalTheory.T.mem_span_singleton_of_bounded_torsion_of_adic_limit l P.A d N hnzd hbdd hc x fun n => ?_
+  refine _root_.GlobalTheory.BSP.span_singleton_closed_of_bounded_torsion l P.A d N hnzd hbdd hc x fun n => ?_
   have h1 := hy n
   simp only [SModEq.zero, smul_eq_mul, Ideal.mul_top] at h1
   rw [← Ideal.map_pow, Ideal.mem_map_iff_of_surjective _ Ideal.Quotient.mk_surjective] at h1

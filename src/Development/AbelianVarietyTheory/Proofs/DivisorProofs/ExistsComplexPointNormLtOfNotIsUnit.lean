@@ -109,16 +109,6 @@ theorem exists_extend_apply_eq {R B Ω : Type*} [CommRing R] [IsDomain R] [IsInt
   · simpa using h (C r)
   · simpa using h X
 
-theorem exists_root_norm_lt {F : ℂ[X]} (hF : F.Monic) {ε : ℝ} (hε : 0 < ε)
-    (h : ‖F.coeff 0‖ < ε ^ F.natDegree) : ∃ t, F.IsRoot t ∧ ‖t‖ < ε := by
-  first
-  | exact @_root_.GlobalTheory.RootNormLowerBound.exists_root_norm_lt
-  | exact _root_.GlobalTheory.RootNormLowerBound.exists_root_norm_lt
-  | (apply _root_.GlobalTheory.RootNormLowerBound.exists_root_norm_lt <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RootNormLowerBound.exists_root_norm_lt <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RootNormLowerBound.exists_root_norm_lt <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.RootNormLowerBound.exists_root_norm_lt ..)
-
 theorem exists_eventually_norm_le {R B : Type*} [CommRing R] [CommRing B] [Algebra R B]
     (Ψ : R →+* ℂ[X]) {b : B} (hb : IsIntegral R b) :
     ∃ M : ℝ, ∀ᶠ s in 𝓝 (0 : ℂ), ∀ φ : B →+* ℂ,
@@ -173,7 +163,7 @@ theorem exists_small_of_curve {R B : Type*} [CommRing R] [IsDomain R] [IsIntegra
       simpa using (Ψ r).finite_setOf_isRoot hr))
   obtain ⟨s, hs2, hs1, hs3⟩ := (h2.and
     ((h1.and (eventually_all.2 hM)).filter_mono nhdsWithin_le_nhds)).exists
-  obtain ⟨t, ht, htε⟩ := exists_root_norm_lt (hF.map ((evalRingHom s).comp Ψ)) hε (by
+  obtain ⟨t, ht, htε⟩ := _root_.GlobalTheory.RootNormLowerBound.exists_root_norm_lt (hF.map ((evalRingHom s).comp Ψ)) hε (by
     rw [coeff_map, hF.natDegree_map]
     exact hs1)
   obtain ⟨φ, hφ, hφu⟩ := exists_extend_apply_eq ((evalRingHom s).comp Ψ) u t (by

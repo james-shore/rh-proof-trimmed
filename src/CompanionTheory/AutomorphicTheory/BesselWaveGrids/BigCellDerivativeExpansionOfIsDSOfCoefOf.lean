@@ -81,14 +81,14 @@ theorem suppliedData_existsW : Hyps → ∀ (P : M.Par) (Wp Wq : Type) [NormedAd
   obtain ⟨l, l', dg, hl, hl'⟩ := GlobalTheory.T.exists_family_functionals hH P Wp Wq p lam b bv ga h q0 R hN hfam
   have hK : PI.KFinSmooth := hH.1.2.2.1
   obtain ⟨s₀, hs₀⟩ := hf (l ν₀) (l' ν₀)
-  obtain ⟨⟨-, -, -, -, hgap⟩, hnum⟩ := GlobalTheory.T.numericalFamily_shape_gaps P.k P.r lam P.u b bv ga h q0 hN
+  obtain ⟨⟨-, -, -, -, hgap⟩, hnum⟩ := _root_.GlobalTheory.NumFam.num_fam P.k P.r lam P.u b bv ga h q0 hN
   have hg : Formalism.QuantumDeterminants.GapAtLeast (PI.BesselPeriodGGP.eps48 P.k P.r) (fun a => lam a + (ν₀ a : ℝ)) (h / 2) :=
     (hnum ν₀ h0).2.2.1
   obtain ⟨c, -, hc⟩ := GlobalTheory.T.bessel_setting_uniform_constant hH P.k P.r Wp Wq p.T.base
   have hne : s₀ ≠ 0 := by
     intro hz
     apply hj
-    rw [GlobalTheory.T.jN2_eq_normSq_base P Wp Wq p f,
+    rw [_root_.GlobalTheory.jN2_eq_normSq_base.besselNormSq_eq_bigCellNormSq P Wp Wq p f,
       hc _ _ (h / 2) (R ν₀) (l ν₀) (l' ν₀) (dg ν₀) hR0 hg hgap (hl ν₀ h0).1 (hl' ν₀ h0).1 (hl ν₀ h0).2.2 f s₀ hs₀, hz]
     simp
   obtain ⟨s, J, t, ht, hJ, -, hcoef, hzero⟩ :=
@@ -112,18 +112,18 @@ theorem coef_norm_finite_and_zeroW : Hyps → ∀ (P : M.Par) (Wp Wq : Type) [No
   obtain ⟨s, hs⟩ := hf (l ν₀) (l' ν₀)
   obtain ⟨c, hc, hnorm⟩ := GlobalTheory.T.bessel_setting_uniform_constant hH P.k P.r Wp Wq p.T.base
   have hj : TBB.jN2 p f = ENNReal.ofReal (c * ‖s‖ ^ 2 / dg ν₀) := by
-    rw [GlobalTheory.T.jN2_eq_normSq_base]
+    rw [_root_.GlobalTheory.jN2_eq_normSq_base.besselNormSq_eq_bigCellNormSq]
     exact hnorm _ _ (h / 2) (R ν₀) (l ν₀) (l' ν₀) (dg ν₀) hR0 hgap hok hB hB' hfd f s hs
   have hck := (GlobalTheory.T.smooth_and_inCC_of_isCoef_of_gap hH P.k P.r _ _ (h / 2) (R ν₀) Wp Wq (l ν₀) (l' ν₀) f s hR0 hgap hok hs).1
   refine ⟨by rw [hj]; exact ENNReal.ofReal_lt_top,
-    GlobalTheory.T.aemeasurable_besselNormIntegrand_bigCell P Wp Wq p f (GlobalTheory.CoefZero.continuousOn_of_ckOn hck), fun hz x hx hG => ?_⟩
+    _root_.GlobalTheory.bigCell_density_aemeasurable P Wp Wq p f (GlobalTheory.CoefZero.continuousOn_of_ckOn hck), fun hz x hx hG => ?_⟩
   have hs0 : s = 0 := by
     by_contra hne
     rw [hj, ENNReal.ofReal_eq_zero] at hz
     have hpos : 0 < ‖s‖ := norm_pos_iff.mpr hne
     have : 0 < c * ‖s‖ ^ 2 / dg ν₀ := by positivity
     linarith
-  obtain ⟨γ, hγ, -, hV⟩ := GlobalTheory.T.exists_regularRep_besselBigCellVector_eq_bessel P Wp Wq p x hx hG
+  obtain ⟨γ, hγ, -, hV⟩ := _root_.GlobalTheory.exists_regular_rep_vec_bigPt_eq_bessel P Wp Wq p x hx hG
   obtain ⟨OO, hOO⟩ := GlobalTheory.T.bessel_orbital_integral_integrable_and_eq_smul hH P.k P.r _ _ (h / 2) (R ν₀) Wp Wq p.T.base (l ν₀) (l' ν₀) hR0 hgap hok hB hB'
   rw [hV f, (hOO f s hs γ hγ).2, hs0, zero_smul]
 
@@ -142,7 +142,7 @@ theorem familyDerivativeExpansion_of_isDS_of_coefOf (H : Hyps) (C : ℝ) (hC : 0
   have hν₀ : n1 ν₀ ≤ q0 := by omega
   obtain ⟨hfin, hmeas, hz⟩ := coef_norm_finite_and_zeroW H P Wp Wq p lam b bv ga h q0 R0 f ν₀ hν₀ hN hDS hf
   by_cases h0 : TBB.jN2 p f = 0
-  · exact GlobalTheory.T.familyDerivativeExpansion_of_V_eq_zero P Wp Wq p f b _ a₁ (by linarith) hmeas (hz h0)
+  · exact _root_.GlobalTheory.bigCellExpansion_of_besselFunction_zero P Wp Wq p f b _ a₁ (by linarith) hmeas (hz h0)
   obtain ⟨R, l, l', dg, s, J, tau, t, ht, hJ, hS⟩ :=
     suppliedData_existsW H P Wp Wq p lam b bv ga h q0 R0 f ν₀ hν₀ hN hDS hf h0
   have hn : ∀ μ : Fin (2 * P.r + P.k + 1) → ℤ, n1 μ ≤ Formalism.FourierDecayAlt.P.CutBP.LatticeNorms.N1 (μ - ν₀) + n1 ν₀ := fun μ => by
@@ -222,7 +222,7 @@ theorem familyDerivativeExpansion_of_isDS_of_coefOf (H : Hyps) (C : ℝ) (hC : 0
   have hsc : Formalism.FourierDecayAlt.P.CutBP.scF p (J ν₀) ≠ 0 := by
     unfold Formalism.FourierDecayAlt.P.CutBP.scF
     exact inv_ne_zero (Real.sqrt_pos.2 (ENNReal.toReal_pos hpos.ne' hlt.ne)).ne'
-  have hE' := GlobalTheory.T.bigCellExpansion_smul P Wp Wq p _ b _ a₁ (((Formalism.FourierDecayAlt.P.CutBP.scF p (J ν₀) : ℂ) * (t : ℂ))⁻¹) hE
+  have hE' := _root_.GlobalTheory.familyDerivativeExpansion_smul P Wp Wq p _ b _ a₁ (((Formalism.FourierDecayAlt.P.CutBP.scF p (J ν₀) : ℂ) * (t : ℂ))⁻¹) hE
   have hne : ((Formalism.FourierDecayAlt.P.CutBP.scF p (J ν₀) : ℂ) * (t : ℂ)) ≠ 0 :=
     mul_ne_zero (Complex.ofReal_ne_zero.2 hsc) (Complex.ofReal_ne_zero.2 ht.ne')
   have e : (fun g => (((Formalism.FourierDecayAlt.P.CutBP.scF p (J ν₀) : ℂ) * (t : ℂ))⁻¹) • Formalism.FourierDecayAlt.P.CutBP.unitF p (J ν₀) g) = f := by

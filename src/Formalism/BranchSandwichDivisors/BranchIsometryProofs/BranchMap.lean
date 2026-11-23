@@ -1652,9 +1652,6 @@ theorem bm_eig {R : Type} [CommRing R] [IsDomain R] [CharZero R] {n : ℕ} (lam 
     exact capDet_eigen (bmEL R n) u (zcomp R n β G) (fun s => (lam s : ℤ) - β s)
       (fun l j hlj => bmD_raise lam G hG β hmax l j hlj) (fun s => bmD_weight lam G hG β s)
 
-theorem bmF_omg_add {n : ℕ} (β β' : Fin n → ℤ) : omg (β + β') = omg β + omg β' := by
-  simp only [omg, Pi.add_apply, mul_add, Finset.sum_add_distrib]
-
 theorem bm_isLow_iff {R : Type*} [CommRing R] {n : ℕ} (D : ℤ) (L : BP R n) :
     IsLow D L ↔ ∀ β, D ≤ omg β → zcomp R n β L = 0 := by
   classical
@@ -1801,7 +1798,7 @@ theorem bmLift_mul {R : Type*} [CommRing R] {n : ℕ} {lam b lam' b' : Fin n →
       have e3 : (fun s => (((b + b') s : ℕ) : ℤ)) = (fun s => (b s : ℤ)) + fun s => (b' s : ℤ) := by
         funext s
         simp
-      rw [e3, bmF_omg_add]
+      rw [e3, _root_.Formalism.BranchingDeterminantCap.bmD_omg_add]
     rw [e1, e2]
     refine bmF_low_add (bmF_fil_mul_low (bmF_fil_of_WH (bmF_lead_WH R n b f)) h'.2.2) ?_
     rw [add_comm (omg _)]
@@ -1864,9 +1861,6 @@ theorem bmF_zmon_single (R : Type*) [CommRing R] (n : ℕ) (t : Fin n) :
   rw [Finset.prod_eq_single t (fun b _ hb => by simp [Pi.single_apply, hb])
     (fun h => absurd (Finset.mem_univ t) h)]
   simp
-
-theorem bmF_omg_single {n : ℕ} (t : Fin n) : omg (Pi.single t 1 : Fin n → ℤ) = ((t : ℕ) : ℤ) + 1 := by
-  simp [omg, Pi.single_apply]
 
 theorem bmF_neg_one_pow_WH {R σ B : Type*} [CommRing R] [AddCommMonoid B] (w : σ → B) (k : ℕ) :
     IsWeightedHomogeneous w ((-1 : MvPolynomial σ R) ^ k) 0 := by
@@ -1940,7 +1934,7 @@ theorem bmLift_minor1 (R : Type*) [CommRing R] (n : ℕ) {s : ℕ} (I : Fin s �
       by_cases ht : t = ⟨s, hs⟩
       · subst ht; simp
       · simp [ht]
-    rw [h2, h3, bmF_omg_single, bmF_omg_single]
+    rw [h2, h3, _root_.Formalism.BranchingDeterminantCap.bmD_omg_single, _root_.Formalism.BranchingDeterminantCap.bmD_omg_single]
     simp
 
 theorem bmF_extM_castSucc (R : Type*) [CommRing R] {n : ℕ} (g : Matrix (Fin n) (Fin n) R) (a b : Fin n) :

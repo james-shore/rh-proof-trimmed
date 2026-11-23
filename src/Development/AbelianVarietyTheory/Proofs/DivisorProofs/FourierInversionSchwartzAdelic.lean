@@ -75,7 +75,7 @@ theorem fourier_inversion_tamagawa : ∀ (F : Type) [Field F] [NumberField F], I
   obtain ⟨ν, hν⟩ := GlobalTheory.SWQ.exists_adeles_haarMeasure_covolume_one F
   let a : Fin N → F := fun _ => 1 / 2
   have hC : GlobalTheory.SWQ.Ctx ψ lam ν a := ⟨hF, hψ, hlam, hν, fun _ => by norm_num [a]⟩
-  have hμeq := GlobalTheory.T.tamagawa_adelicHaar_eq_map_product_measure F κ N e ν hν μ hμ
+  have hμeq := _root_.GlobalTheory.SWLit.tamagawa_eq_map_pi F κ N e ν hν μ hμ
   let T : (Fin N → AF F) ≃ₜ+ (κ → AF F) := GlobalTheory.PoissonReindex.reidx e
   let Tm : (Fin N → AF F) ≃ᵐ (κ → AF F) := T.toHomeomorph.toMeasurableEquiv
   have hTm : ∀ u, Tm u = T u := fun _ => rfl

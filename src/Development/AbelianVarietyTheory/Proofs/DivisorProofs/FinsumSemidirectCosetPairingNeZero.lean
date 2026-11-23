@@ -68,7 +68,7 @@ theorem finsum_coset_pair_ne_zero : ∀ (G Γ : Type) [Group G] [Finite G] [Grou
   have hgen : ∀ t : Γ, t ∈ Subgroup.zpowers s := by
     intro t; rw [zpowers_eq_top_of_prime_card rfl hs]; trivial
   have hζ := Complex.isPrimitiveRoot_exp (Nat.card Γ) hp.ne_zero
-  obtain ⟨η, -, -, hfour⟩ := GlobalTheory.T.fourier_sums_cosets_semidirect_cyclic G Γ φ s hgen _ hζ
+  obtain ⟨η, -, -, hfour⟩ := _root_.GlobalTheory.Shin.CosetFourier.fourier_coset_sums G Γ φ s hgen _ hζ
   obtain ⟨h1, h2⟩ := hfour X Y
   have hvirt : ∀ a : ℕ, (fun x => Y x * (η x : ℂ) ^ a) ∈ Virt ℂ ℂ (G ⋊[φ] Γ) := by
     intro a

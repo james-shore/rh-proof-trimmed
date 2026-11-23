@@ -137,27 +137,7 @@ theorem key_of_gauss {T E F F₁ FH Ω : Type} [CommRing T] [IsDomain T] [IsPrin
   refine (mul_eq_zero.1 h2).resolve_left fun h0 => hs ?_
   rw [← hk]; exact h0
 
-theorem gauss_of_key {O T F F₁ Ω : Type} [CommRing O] [IsLocalRing O] [CommRing T] [IsDomain T] [IsDiscreteValuationRing T]
-    [Field F] [Field F₁] [Algebra O T] [IsLocalHom (algebraMap O T)] [Algebra T F₁]
-    [Field Ω] [IsAlgClosed Ω] [Algebra (ResidueField O) Ω] [Algebra (ResidueField T) Ω] [Algebra T Ω]
-    [IsScalarTower T (ResidueField T) Ω]
-    [Module.Finite (ResidueField O) (ResidueField T)] [Algebra.IsSeparable (ResidueField O) (ResidueField T)]
-    (hc : Function.Injective (algebraMap T F₁)) (c₀ : O →+* F) (θ : F →+* F₁)
-    (hcomm : θ.comp c₀ = (algebraMap T F₁).comp (algebraMap O T)) (π : O) (hπ : Irreducible (algebraMap O T π))
-    (W : Subalgebra T F₁) (htors : ∀ x : F₁, ∃ n : ℕ, algebraMap T F₁ (algebraMap O T π) ^ n * x ∈ W)
-    (key : ∀ (s : ResidueField T →ₐ[ResidueField O] Ω) (lam : W.toSubmodule →ₗ[T] Ω) (n : ℕ) (r : Fin n → T)
-      (w : Fin n → F) (hw : ∀ i, θ (w i) ∈ W.toSubmodule) (y : F₁), y ∈ W →
-      ∑ i, algebraMap T F₁ (r i) * θ (w i) = algebraMap T F₁ (algebraMap O T π) * y →
-      ∑ i, s (residue T (r i)) * lam ⟨_, hw i⟩ = 0) :
-    GaussAt (algebraMap T F₁) (maximalIdeal T) θ (θ ⁻¹' W) W := by
-  first
-  | (rename_i h_5 h_6 h_7 h_8 h_9 h_10 h_11 h_12 h_13 h_14 h_15 h_16 h_17 h_18 h_19 h_20 h_21 h_22; revert O T F F₁ Ω h_5 h_6 h_7 h_8 h_9 h_10 h_11 h_12 h_13 h_14 h_15 h_16 h_17 h_18 h_19 h_20 h_21 h_22 hc c₀ θ hcomm π hπ W htors key; exact @_root_.GlobalTheory.VandermondeEmbeddingVanishing.gaussAt)
-  | exact @_root_.GlobalTheory.VandermondeEmbeddingVanishing.gaussAt
-  | exact _root_.GlobalTheory.VandermondeEmbeddingVanishing.gaussAt
-  | (apply _root_.GlobalTheory.VandermondeEmbeddingVanishing.gaussAt <;> assumption)
-  | (intros; apply _root_.GlobalTheory.VandermondeEmbeddingVanishing.gaussAt <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.VandermondeEmbeddingVanishing.gaussAt <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.VandermondeEmbeddingVanishing.gaussAt ..)
+alias gauss_of_key := _root_.GlobalTheory.VandermondeEmbeddingVanishing.gaussAt
 
 theorem sp_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
     spMap g ≫ spMap f = spMap (g.comp f) := (Spec.map_comp (CommRingCat.ofHom f) (CommRingCat.ofHom g)).symm

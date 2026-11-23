@@ -51,8 +51,8 @@ namespace GlobalTheory.NormBigProof
 theorem normBig_alt : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, GlobalTheory.NormSum.Inp D) → LNe → NormBig := by
   intro hP hI hL
   obtain ⟨a1, k1⟩ := hL
-  obtain ⟨a2, k2⟩ := _root_.GlobalTheory.T.theta_lift_petersson_norm_ratio_formula hP hI ⟨a1, k1⟩
-  obtain ⟨a3, k3⟩ := _root_.GlobalTheory.T.big_theta_lift_ne_zero_of_petersson_norm hP hI ⟨a1, k1⟩
+  obtain ⟨a2, k2⟩ := _root_.GlobalTheory.NormRatio.big_theta_petersson_norm_ratio_eq hP hI ⟨a1, k1⟩
+  obtain ⟨a3, k3⟩ := _root_.GlobalTheory.NormBigNe.big_theta_petersson_norm_ne_zero hP hI ⟨a1, k1⟩
   refine ⟨max a1 (max a2 a3), fun ε CF hCF => ?_⟩
   obtain ⟨c1, x1, l1⟩ := k1 ε CF (le_trans (le_max_left _ _) hCF)
   obtain ⟨c2, x2, l2⟩ := k2 ε CF (le_trans (le_trans (le_max_left _ _) (le_max_right _ _)) hCF)
@@ -69,7 +69,7 @@ theorem normBig_alt : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, Glo
     obtain ⟨Λ₀, hΛ₀, hne⟩ := (hl i j).1 t₀
     have hprod : ∏ s ∈ Icc (1 - (e0 D i j : ℤ)) (h0 D i j : ℤ), Λ₀ s ≠ 0 :=
       prod_ne_zero_iff.2 fun s hs => hne s (mem_Icc.1 hs).1
-        (le_trans (mem_Icc.1 hs).2 (by exact_mod_cast squareBottomHalfRankSum_le_halfRank D i j))
+        (le_trans (mem_Icc.1 hs).2 (by exact_mod_cast _root_.GlobalTheory.SqTop.squareBottomHalfRankSum_le_halfRank D i j))
     have hn₀ : (P₀.norm : ℂ) ≠ 0 := by exact_mod_cast hz δ t0 i j t₀ Q₀ P₀ P₀' hb₀
     refine ⟨(P₀.norm : ℂ) / ∏ s ∈ Icc (1 - (e0 D i j : ℤ)) (h0 D i j : ℤ), Λ₀ s, div_ne_zero hn₀ hprod,
       fun t Q P P' Λ hb hΛ => ?_⟩

@@ -44,5 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem bessel_levi_formula : PI.BesselLevi.BesselLevi :=
-  PI.UnitaryGroupMassFormula.BesselLevi.main

@@ -110,8 +110,7 @@ theorem gram_eq (F F' : FlagG S r T) (b b' : Fin (r + 1)) :
   induction b using Fin.lastCases <;> induction b' using Fin.lastCases <;>
     simp [FlagG.fvec, F.e_iso, F'.e_iso, F.z_orth, F'.z_orth, F.z_norm, F'.z_norm, hz]
 
-theorem mem_orth_iff (U : Submodule E S.V) (v : S.V) : v ∈ orth S U ↔ ∀ x ∈ U, S.hT x v = 0 := by
-  simp [orth, Submodule.mem_iInf]
+alias mem_orth_iff := _root_.Formalism.MainNotions.mem_orth_iff
 
 theorem hT_X_eq_zero (F : FlagG S r T) (v : S.V) (hv : ∀ a, S.hT (F.e a) v = 0) (x : S.V) (hx : x ∈ F.X) :
     S.hT x v = 0 := by

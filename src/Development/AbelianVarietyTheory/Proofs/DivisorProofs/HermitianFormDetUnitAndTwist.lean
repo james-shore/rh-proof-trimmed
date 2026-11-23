@@ -118,14 +118,6 @@ theorem gram_det_ne_zero {K : UQ} (B : InvAlg K) (hsep : B.P.Separable) (β : B.
     exact this
   exact hy0 ((Units.mul_right_eq_zero β).1 hβy)
 
-theorem gram_map_conj {K : UQ} (B : InvAlg K) (L : Type) [Field L] (e : K.E ≃+* L) (c : L →+* L)
-    (hec : ∀ x, e (K.c x) = c (e x)) (a : ℕ) (β : B.A)
-    (hβ : B.σ β = β * ((-1) ^ (a - 1) * B.g)) (b : Module.Basis (Fin a) K.E B.A) :
-    ((Matrix.of fun i j => B.herm β (b i) (b j)).map e).map c =
-      ((-1 : L) ^ (a - 1)) • (((Matrix.of fun i j => B.herm β (b i) (b j)).map e)ᵀ *
-        (LinearMap.toMatrix b b (LinearMap.mulLeft K.E B.g)).map e) :=
-  _root_.GlobalTheory.ScalarSigmaBasis.main B L e c hec a β hβ b
-
 theorem gram_twisted_norm_charpoly : ∀ (K : GlobalTheory.UnitLemma.UQ) (B : GlobalTheory.UnitLemma.InvAlg K) (L : Type) [Field L] (e : K.E ≃+* L) (c : L →+* L), (∀ x, e (K.c x) = c (e x)) → (∀ x, c (c x) = x) → ∀ (a : ℕ) (Q : L[X]), B.P = Q.map e.symm.toRingHom → Q.Separable → Q.natDegree = a → ∀ β : B.Aˣ, B.σ (β : B.A) = β * ((-1) ^ (a - 1) * B.g) → ∀ b : Module.Basis (Fin a) K.E B.A, IsUnit (Matrix.of fun i j => e (B.herm β (b i) (b j))).det ∧ ∀ δ : GL (Fin a) L, ((δ.val * GlobalTheory.Tw.Phi a L)⁻¹)ᵀ = (Matrix.of fun i j => e (B.herm β (b i) (b j))) → (δ * thetaGL a c δ).val.charpoly = Q := by
   intro K B L _ e c hec hcc a Q hPQ hQs hQd β hβ b
   set S : Matrix (Fin a) (Fin a) K.E := Matrix.of fun i j => B.herm β (b i) (b j) with hS
@@ -142,7 +134,7 @@ theorem gram_twisted_norm_charpoly : ∀ (K : GlobalTheory.UnitLemma.UQ) (B : Gl
     set G := S.map e with hGdef
     set P := (LinearMap.toMatrix b b (LinearMap.mulLeft K.E B.g)).map e with hP
     set Φ := GlobalTheory.Tw.Phi a L with hΦ
-    have hGc : G.map c = ((-1 : L) ^ (a - 1)) • (Gᵀ * P) := gram_map_conj B L e c hec a β hβ b
+    have hGc : G.map c = ((-1 : L) ^ (a - 1)) • (Gᵀ * P) := _root_.GlobalTheory.ScalarSigmaBasis.main B L e c hec a β hβ b
     have hinv : (δ⁻¹).val = Φ * Gᵀ := by
       have h1 : (δ.val * Φ)⁻¹ = Gᵀ := by rw [← hδ, Matrix.transpose_transpose]
       have hΦinv : Φ⁻¹ = Φᵀ := Matrix.inv_eq_right_inv (phi_mul_transpose a)

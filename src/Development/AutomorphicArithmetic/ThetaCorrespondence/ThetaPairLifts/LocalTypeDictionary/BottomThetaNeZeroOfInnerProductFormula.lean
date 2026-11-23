@@ -59,10 +59,10 @@ namespace GlobalTheory.SqTop.BotNeFormula
 theorem bottomTheta_ne_zero_of_innerProduct_formula : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.LocalMatching →
     (∀ D, GlobalTheory.NormSum.Inp D) → LNe → BotSmall → NormBig → TriEx → BotNe := by
   intro hPr hK hM hI hL hB hN hT
-  have hLarge := _root_.GlobalTheory.T.theta_bottom_formula_large hPr hK hM hI hB
-  have hSmall := _root_.GlobalTheory.T.theta_bottom_formula_small hPr hK hM hI hB
-  have hMatch := _root_.GlobalTheory.T.rallis_bottom_minor_matching hPr hK hM hI hB
-  have hBasis := _root_.GlobalTheory.T.exists_bottom_basis_change hPr
+  have hLarge := _root_.GlobalTheory.BotFormula.rallis_bottom_formula_large_rank hPr hK hM hI hB
+  have hSmall := _root_.GlobalTheory.BotFormula.rallis_bottom_formula_small_rank hPr hK hM hI hB
+  have hMatch := _root_.GlobalTheory.BotMatch.theta_bottom_minor_match hPr hK hM hI hB
+  have hBasis := _root_.GlobalTheory.BottomRebase.bottom_basis_change hPr
   unfold LNe at hL
   unfold BotSmall at hB
   unfold NormBig at hN
@@ -134,12 +134,3 @@ theorem bottomTheta_ne_zero_of_innerProduct_formula : _root_.GlobalTheory.FunPr.
 end GlobalTheory.SqTop.BotNeFormula
 end
 
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.Theta IsDedekindDomain NumberField Finset MeasureTheory
-open GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.FunObj.SqNum GlobalTheory.RowTest GlobalTheory.SqTop
-open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-theorem _root_.GlobalTheory.T.bottomTheta_nonvanishing : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.LocalMatching → (∀ D, GlobalTheory.NormSum.Inp D) → LNe → BotSmall → NormBig → TriEx → BotNe := by
-  exact _root_.GlobalTheory.SqTop.BotNeFormula.bottomTheta_ne_zero_of_innerProduct_formula
-end

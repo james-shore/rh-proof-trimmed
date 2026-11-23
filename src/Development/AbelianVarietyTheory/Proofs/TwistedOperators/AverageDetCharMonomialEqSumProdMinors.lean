@@ -92,9 +92,6 @@ theorem continuous_colSub_mul (Λ : Pol ι d a →ₗ[ℂ] ℂ) (P : Pol ι d a)
     refine continuous_finsetSum _ fun j _ => ?_
     exact Continuous.mul (by fun_prop) (hp _)
 
-theorem norm_det_unitary (u : Matrix.unitaryGroup (Fin a) ℂ) : ‖(u : Matrix (Fin a) (Fin a) ℂ).det‖ = 1 := by
-  exact CStarRing.norm_of_mem_unitary (Matrix.det_of_mem_unitary u.2)
-
 theorem integrable_avg {K : Type} [Group K] [MeasurableSpace K] (ν : Measure K) [IsFiniteMeasure ν]
     (ρ : K →* (ι → Matrix.unitaryGroup (Fin a) ℂ))
     (hmeas : ∀ τ i j, Measurable fun g => (ρ g τ : Matrix (Fin a) (Fin a) ℂ) i j) (z : ι → ℤ)
@@ -123,7 +120,7 @@ theorem integrable_avg {K : Type} [Group K] [MeasurableSpace K] (ν : Measure K)
     refine Finset.measurable_prod _ fun τ _ => ?_
     exact Measurable.pow_const ((hdetc τ).measurable.comp he) _
   · rw [norm_mul, norm_prod]
-    simp only [norm_zpow, norm_det_unitary, one_zpow, Finset.prod_const_one, one_mul, hFe]
+    simp only [norm_zpow, _root_.GlobalTheory.UnitaryAvg.det_unitary_norm, one_zpow, Finset.prod_const_one, one_mul, hFe]
     exact hC _ (hball g)
 
 theorem average_monomial_eq_sum_prodMinors : ∀ {ι : Type} [Fintype ι] (a d : ℕ) (m : ι → ℤ), ∃ n : ι → ℕ,
@@ -149,7 +146,7 @@ theorem average_monomial_eq_sum_prodMinors : ∀ {ι : Type} [Fintype ι] (a d :
   set R : Pol ι d a := MvPolynomial.monomial k 1 - ∑ p, ((r p : ℚ) : ℂ) • prodMinors (U p) with hRdef
   have hperp : ∀ I ∈ inv a d (fun τ => (-m τ).toNat), Formalism.L2.DIV.fockS I R = 0 := by
     intro I hI
-    have hspan := GlobalTheory.T.fockDetCharInvariants_le_span_prodMaximalMinors a d (fun τ => (-m τ).toNat) hI
+    have hspan := _root_.GlobalTheory.MinorFrame.inv_le_span_prodMinors a d (fun τ => (-m τ).toNat) hI
     clear hI
     show Formalism.L2.DIV.fockL I R = 0
     induction hspan using Submodule.span_induction with
@@ -159,7 +156,7 @@ theorem average_monomial_eq_sum_prodMinors : ∀ {ι : Type} [Fintype ι] (a d :
     | smul c x _ hx => rw [map_smulₛₗ, LinearMap.smul_apply, hx, smul_zero]
   have h0 := GlobalTheory.T.unitaryAverage_kills_fock_complement_relInvariants a d (fun τ => (-m τ).toNat) ν hP hInv hleft ρ hmeas hsurj Λ R hperp
   have hdet0 : ∀ g τ, (ρ g τ : Matrix (Fin a) (Fin a) ℂ).det ≠ 0 := fun g τ => by
-    rw [← norm_ne_zero_iff, norm_det_unitary]; exact one_ne_zero
+    rw [← norm_ne_zero_iff, _root_.GlobalTheory.UnitaryAvg.det_unitary_norm]; exact one_ne_zero
   have hD : ∀ g, (∏ τ, (ρ g τ : Matrix (Fin a) (Fin a) ℂ).det ^ (m τ)) =
       ∏ τ, (ρ g τ : Matrix (Fin a) (Fin a) ℂ).det ^ (-(((-m τ).toNat : ℕ) : ℤ)) := by
     intro g

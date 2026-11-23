@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeReferenceFrame.HANegRight
 
 @[expose] public section
 
@@ -148,12 +149,6 @@ def SS (r k M : ℕ) (e f : Fin r → Fin I.n → I.E) (θ : 𝓞 I.E) (z : Fin 
 
 theorem gL_mem (G : ℕ) {x : Fin I.n → I.E} (hx : x ∈ I.L) : (G : I.E) • x ∈ gL I G := Submodule.subset_span ⟨x, hx, rfl⟩
 
-private theorem star_coe_mem_range_algebraMap (θ : 𝓞 I.E) :
-    star (θ : I.E) ∈ (algebraMap (𝓞 I.E) I.E).range := by
-  have h : IsIntegral ℤ (star (θ : I.E)) :=
-    (NumberField.RingOfIntegers.isIntegral_coe θ).map (starRingEnd I.E).toIntAlgHom
-  exact ⟨⟨star (θ : I.E), h⟩, rfl⟩
-
 theorem side_mem {r k M : ℕ} (e f : Fin r → Fin I.n → I.E) (θ : 𝓞 I.E) (G ga : ℕ) (qa qb w wab : ℤ)
     (z za zb : Fin I.n → I.E) (b ba bb bd bda bdb : Fin k → Fin I.n → I.E)
     (hza : za ∈ I.L) (hzb : zb ∈ I.L)
@@ -207,7 +202,7 @@ theorem side_mem {r k M : ℕ} (e f : Fin r → Fin I.n → I.E) (θ : 𝓞 I.E)
           (star (θ : I.E) * (qa : I.E) * bda i j) * hsum
       rw [hv]
       exact S'.add_mem (hzs qa (hsp' _ (Or.inr ⟨i, rfl⟩)))
-        (hG' _ (osmul_mem I hwab (osmul_mem I (star_coe_mem_range_algebraMap I θ)
+        (hG' _ (osmul_mem I hwab (osmul_mem I (_root_.PI.ScRefExists.GlueA.star_int I θ)
           (I.L.sub_mem (hbL i).2.2.1 (hbL i).2.2.2))))
   · rw [gL, Submodule.span_le]
     rintro v ⟨x, hx, rfl⟩
@@ -266,7 +261,7 @@ theorem chinese_remainder_gluing : GWcrt := by
       rw [hG_comb]
       ring
     · refine crt_ge I hqa hqb (hTa i).2 (hTb i).2
-        (mul_mem (star_coe_mem_range_algebraMap I θ)
+        (mul_mem (_root_.PI.ScRefExists.GlueA.star_int I θ)
           (add_mem (hG_int I hza (hbbL i).2) (hG_int I hzb (hbaL i).2))) ?_
       beta_reduce
       rw [hG_comb]

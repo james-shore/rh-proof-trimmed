@@ -162,11 +162,7 @@ theorem relAmple_of_generic (O K : Type) [CommRing O] [IsDomain O] [IsNoetherian
     (GlobalTheory.FibreAmple.relAmple_of_factor hM pp.1 (IsPullback.of_hasPullback A.hom (spMap g)) (spMap g') e₂
       (pull_isLB hM _) (GlobalTheory.lbIso_refl (pull_isLB hM _)) hp)
 
-theorem isSquare_comp {S S' S'' : Scheme.{0}} {G : Over S} {G' : Over S'} {G'' : Over S''} {φ : G'.left ⟶ G.left}
-    {φ₂ : (G' ⊗ G').left ⟶ (G ⊗ G).left} {ψ : G''.left ⟶ G'.left} {ψ₂ : (G'' ⊗ G'').left ⟶ (G' ⊗ G').left}
-    (h' : IsSquare ψ ψ₂) (h : IsSquare φ φ₂) : IsSquare (ψ ≫ φ) (ψ₂ ≫ φ₂) :=
-  ⟨by rw [Category.assoc, h.1, ← Category.assoc, h'.1, Category.assoc],
-    by rw [Category.assoc, h.2, ← Category.assoc, h'.2, Category.assoc]⟩
+alias isSquare_comp := _root_.GlobalTheory.PolDeg.isSquare_comp
 
 theorem isPPol_of_field (O K' : Type) [CommRing O] [IsDomain O] [IsNoetherianRing O] [IsIntegrallyClosed O] [Field K']
     (j : O →+* K') (hj : Function.Injective j) (A : Over (Sp O)) [GrpObj A] [IsCommMonObj A] (hA : IsAbelianScheme A)

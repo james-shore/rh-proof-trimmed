@@ -166,23 +166,9 @@ private lemma inverse_block_pairing_eq (A B C D : Matrix ι ι ℚ) (a b a' b' :
 open Matrix Complex in
 open scoped ComplexConjugate Real in
 variable {κ ι : Type} [Fintype κ] [Fintype ι] [DecidableEq ι] in
-private lemma qm_add_siegel_theta_transformation {α β : Type} (M N : Matrix α β ℚ) :
-    _root_.GlobalTheory.SW.qm (M + N) = _root_.GlobalTheory.SW.qm M + _root_.GlobalTheory.SW.qm N := by
-  ext i j; simp [_root_.GlobalTheory.SW.qm]
-
-open Matrix Complex in
-open scoped ComplexConjugate Real in
-variable {κ ι : Type} [Fintype κ] [Fintype ι] [DecidableEq ι] in
 private lemma qm_neg_siegel_theta_transformation {α β : Type} (M : Matrix α β ℚ) :
     _root_.GlobalTheory.SW.qm (-M) = -_root_.GlobalTheory.SW.qm M := by
   ext i j; simp [_root_.GlobalTheory.SW.qm]
-
-open Matrix Complex in
-open scoped ComplexConjugate Real in
-variable {κ ι : Type} [Fintype κ] [Fintype ι] [DecidableEq ι] in
-private lemma qm_mul_siegel_theta_transformation' {α β γ : Type} [Fintype β] (M : Matrix α β ℚ) (N : Matrix β γ ℚ) :
-    _root_.GlobalTheory.SW.qm (M * N) = _root_.GlobalTheory.SW.qm M * _root_.GlobalTheory.SW.qm N := by
-  ext i j; simp [_root_.GlobalTheory.SW.qm, Matrix.mul_apply]
 
 open Matrix Complex in
 open scoped ComplexConjugate Real in
@@ -228,7 +214,7 @@ private lemma isUnit_det_spDen_of_mem_siegel {σ : Matrix (ι ⊕ ι) (ι ⊕ ι
   have d2 := congrArg _root_.GlobalTheory.SW.qm s2
   have d3 := congrArg _root_.GlobalTheory.SW.qm s3
   have d4 := congrArg _root_.GlobalTheory.SW.qm s4
-  simp only [qm_add_siegel_theta_transformation, qm_neg_siegel_theta_transformation, qm_mul_siegel_theta_transformation', qm_transpose_siegel_theta_transformation, qm_zero_siegel_theta_transformation,
+  simp only [_root_.GlobalTheory.SiegelAction.qm_add, qm_neg_siegel_theta_transformation, _root_.GlobalTheory.SiegelAction.qm_mul, qm_transpose_siegel_theta_transformation, qm_zero_siegel_theta_transformation,
     qm_one_siegel_theta_transformation] at d1 d2 d3 d4
   have hτs : τᵀ = τ := hτ.1
   have hY := hτ.2
@@ -404,7 +390,7 @@ private lemma transS_heisS_rowAct {σ : Matrix (ι ⊕ ι) (ι ⊕ ι) ℚ}
   have d2 := congrArg _root_.GlobalTheory.SW.qm s2
   have d3 := congrArg _root_.GlobalTheory.SW.qm s3
   have d4 := congrArg _root_.GlobalTheory.SW.qm s4
-  simp only [qm_add_siegel_theta_transformation, qm_neg_siegel_theta_transformation, qm_mul_siegel_theta_transformation', qm_transpose_siegel_theta_transformation, qm_zero_siegel_theta_transformation,
+  simp only [_root_.GlobalTheory.SiegelAction.qm_add, qm_neg_siegel_theta_transformation, _root_.GlobalTheory.SiegelAction.qm_mul, qm_transpose_siegel_theta_transformation, qm_zero_siegel_theta_transformation,
     qm_one_siegel_theta_transformation] at c2 c4 d1 d2 d3 d4
   obtain ⟨A, hA⟩ : ∃ A, A = _root_.GlobalTheory.SW.qm σ.toBlocks₁₁ := ⟨_, rfl⟩
   obtain ⟨B, hB⟩ : ∃ B, B = _root_.GlobalTheory.SW.qm σ.toBlocks₁₂ := ⟨_, rfl⟩

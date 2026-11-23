@@ -67,8 +67,8 @@ theorem convB : ∀ (O K : Type) [CommRing O] [NormedField K] [IsUltrametricDist
   have hr0 : 0 ≤ rad l k := rad_nonneg l k
   have hr1 : rad l k < 1 := rad_lt_one l hk
   have hl2 : 2 ≤ l := (Fact.out : l.Prime).two_le
-  refine limR O K l k (Y τ i j) (fun n => Z n τ i j) (fun n => (hD n τ i j).1) (fun n => hY n τ i j) ?_
-  have hg := (growth β (rad l k) l hβ hr0 hr1 hl2).const_mul M
+  refine _root_.GlobalTheory.mem_R_of_adic_limit O K l k (Y τ i j) (fun n => Z n τ i j) (fun n => (hD n τ i j).1) (fun n => hY n τ i j) ?_
+  have hg := (_root_.GlobalTheory.tendsto_const_pow_mul_pow_pow_zero β (rad l k) l hβ hr0 hr1 hl2).const_mul M
   rw [mul_zero] at hg
   refine squeeze_zero (fun n => ?_) (fun n => ?_) hg
   · have hm := sub_mem (hD (n + 1) τ i j).1 (hD n τ i j).1
@@ -160,7 +160,7 @@ theorem Y_mem (P : PhiMod O K l e a ι) {k : ℝ} (hk : 1 / ((e : ℝ) * l) < k)
     exact lt_trans (by positivity) hk
   refine convB O K l a ι k hk0 (fun τ => (P.mx (τ - 1)).map (frob K l))
     (fun τ => (P.mxInv τ).map constantCoeff) (fun n τ => P.mxInv τ * P.xiSeq (n + 1) τ)
-    (fun τ => P.mxInv τ * P.xiMat τ) (fun τ i j => frobA O K l e k hk _ (P.mx_mem _ i j))
+    (fun τ => P.mxInv τ * P.xiMat τ) (fun τ i j => _root_.GlobalTheory.BK.frob_mem_R_of_mem_invE_A O K l e k hk _ (P.mx_mem _ i j))
     (fun τ => ?_) (fun n τ => ?_) (fun n τ i j => ?_) τ i j
   · rw [PhiMod.xiSeq_succ, PhiMod.xiSeq_zero, frob_map_one, Matrix.mul_one, ← Matrix.mul_assoc,
       PhiMod.mxInv_mul_mx, Matrix.one_mul]
@@ -182,7 +182,7 @@ theorem Yi_mem (P : PhiMod O K l e a ι) {k : ℝ} (hk : 1 / ((e : ℝ) * l) < k
     exact lt_trans (by positivity) hk
   have key := convB O K l a ι k hk0 (fun τ => ((P.mxInv (τ - 1)).map (frob K l))ᵀ)
     (fun τ => (P.mx0 τ)ᵀ) (fun n τ => (Seq.Ws P (n + 1) τ * P.mx τ)ᵀ)
-    (fun τ => ((P.xiMat τ)⁻¹ * P.mx τ)ᵀ) (fun τ i j => frobA O K l e k hk _ (P.mxInv_mem _ j i))
+    (fun τ => ((P.xiMat τ)⁻¹ * P.mx τ)ᵀ) (fun τ i j => _root_.GlobalTheory.BK.frob_mem_R_of_mem_invE_A O K l e k hk _ (P.mxInv_mem _ j i))
     (fun τ => ?_) (fun n τ => ?_) (fun n τ i j => ?_) τ j i
   · simpa using key
   · show (Seq.Ws P (0 + 1) τ * P.mx τ)ᵀ = ((P.mx0 τ)ᵀ).map C

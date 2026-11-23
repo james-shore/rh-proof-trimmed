@@ -45,6 +45,7 @@ import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.IsOrthCo
 import Formalism.SharpRestriction.GrowthBounds.ChartedClasses.ToLEInvApply
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFiniteAdeleBaseChangeEquiv
 
 @[expose] public section
 
@@ -119,14 +120,6 @@ theorem scalar (v : HeightOneSpectrum (𝓞 F)) (a : FiniteAdeleRing (𝓞 F) F)
     rw [hc, map_mul, map_natCast]
     field_simp
 
-theorem algebraMap_mem_intAd (r : 𝓞 F) :
-    algebraMap F (FiniteAdeleRing (𝓞 F) F) (algebraMap (𝓞 F) F r) ∈ Formalism.UG.intAd F := by
-  intro w
-  show algebraMap F (FiniteAdeleRing (𝓞 F) F) (algebraMap (𝓞 F) F r) w ∈ w.adicCompletionIntegers F
-  rw [HeightOneSpectrum.mem_adicCompletionIntegers, GlobalTheory.Idele.adele_algebraMap_apply,
-    GlobalTheory.Idele.valued_algebraMap, HeightOneSpectrum.valuation_of_algebraMap]
-  exact w.intValuation_le_one r
-
 theorem scalarFam (v : HeightOneSpectrum (𝓞 F)) {ι : Type} [Fintype ι] (a : ι → FiniteAdeleRing (𝓞 F) F)
     (ha : ∀ i, a i v = 0) (M : ℕ) (hM : 0 < M) :
     ∃ t : 𝓞 F, t ∉ v.asIdeal ∧ ∀ i, ∃ y ∈ Formalism.UG.intAd F,
@@ -137,7 +130,7 @@ theorem scalarFam (v : HeightOneSpectrum (𝓞 F)) {ι : Type} [Fintype ι] (a :
   have hT : ∏ i, t i ∈ v.asIdeal.primeCompl := Submonoid.prod_mem _ fun i _ => ht i
   refine ⟨∏ i, t i, hT, fun i => ?_⟩
   refine ⟨algebraMap F _ (algebraMap (𝓞 F) F (∏ j ∈ Finset.univ.erase i, t j)) * y i,
-    mul_mem (algebraMap_mem_intAd _) (hy i), ?_⟩
+    mul_mem (_root_.GlobalTheory.AdeleBaseChange.algebraMap_int_mem _) (hy i), ?_⟩
   rw [← Finset.mul_prod_erase _ _ (Finset.mem_univ i), map_mul, map_mul, mul_comm (algebraMap F _ _),
     mul_assoc, he i]
   ring

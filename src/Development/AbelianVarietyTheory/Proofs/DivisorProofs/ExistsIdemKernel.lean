@@ -126,9 +126,9 @@ theorem eq_one_of_reg {S : Scheme.{0}} (A : Over S) [GrpObj A] [IsCommMonObj A] 
     (hc : ∀ (U : T.left.Opens) (f : Γ(T.left, U)), (c : Γ(T.left, U)) * f = 0 → f = 0) (hx : x ^ c = 1)
     (h : ∀ (k : Type) [Field k] [IsAlgClosed k], (c : k) ≠ 0 → ∀ (z : Sp k ⟶ S) (g : Over.mk z ⟶ T), g ≫ x = 1) :
     x = 1 := by
-  obtain ⟨U, j, hj, hu⟩ := GlobalTheory.T.exists_dominant_natCast_isUnit_of_nonZeroDivisor T.left c hc
+  obtain ⟨U, j, hj, hu⟩ := _root_.GlobalTheory.exists_schemeTheoreticallyDominant_isUnit_natCast T.left c hc
   let j' : Over.mk (j ≫ T.hom) ⟶ T := Over.homMk j
-  have h1 : j' ≫ x = 1 := GlobalTheory.T.abelianScheme_torsionPoint_trivial_of_geometric S A hA _ (j' ≫ x) c hu (by rw [← MonObj.comp_pow, hx, MonObj.comp_one])
+  have h1 : j' ≫ x = 1 := _root_.GlobalTheory.TorsionRigid.eq_one_of_geometric S A hA _ (j' ≫ x) c hu (by rw [← MonObj.comp_pow, hx, MonObj.comp_one])
     (fun k _ _ hk z g => by rw [← Category.assoc]; exact h k hk z _)
   have h2 : j' ≫ x = j' ≫ 1 := by rw [h1, MonObj.comp_one]
   have := hA.proper

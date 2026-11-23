@@ -285,7 +285,7 @@ theorem AA_ne : D.host.AA ≠ 0 := fun h => by
   exact zero_ne_one this
 
 theorem skLat_isLattice (S : HSp D) {d : ℕ} (e : Fin S.rank ≃ Fin d) : Submodule.IsLattice D.host.E (skLat S e) := by
-  have hL := GlobalTheory.SkewLat.PairLatLattice.scLat_isLattice (AA_ne (D := D)) (GlobalTheory.PlaceModel.isSelfDualC_latFrame S).1
+  have hL := GlobalTheory.SkewLat.PairLatLattice.scLat_isLattice (_root_.GlobalTheory.SkewLat.DualPair.AA_ne (D := D)) (GlobalTheory.PlaceModel.isSelfDualC_latFrame S).1
   exact Submodule.IsLattice.of_fg D.host.E (Submodule.FG.map _ hL.fg)
 
 theorem latFrame_isFullLattice (S : HSp D) :

@@ -210,7 +210,7 @@ theorem exists_sph_whit_tl_ne_zero : ∀ (E : Type) [Field E] [NumberField E] [_
   classical
   let B : HeightOneSpectrum (𝓞 E) → Multiset ℂˣ := fun w =>
     if h : w ∈ T then 0 else Finset.univ.val.map (α ⟨w, h⟩)
-  obtain ⟨φ₀, hφ₀V, hφ₀0, hφ₀K⟩ := GlobalTheory.T.exists_global_spherical_vector_of_satake_family E (m + 1) π T B (fun w hw => by
+  obtain ⟨φ₀, hφ₀V, hφ₀0, hφ₀K⟩ := _root_.GlobalTheory.JSW.SphVec.exists_sphVec_of_hasSat E (m + 1) π T B (fun w hw => by
     simp only [B, dif_neg hw]; exact hα ⟨w, hw⟩)
   obtain ⟨g, hg⟩ : ∃ g, whit φ₀.1 g ≠ 0 := by
     by_contra h

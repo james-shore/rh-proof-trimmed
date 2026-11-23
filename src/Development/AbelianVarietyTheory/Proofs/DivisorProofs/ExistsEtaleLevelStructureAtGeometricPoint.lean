@@ -54,19 +54,11 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 noncomputable section
 namespace GlobalTheory.UPel.HT.EtLev
 
-theorem epi_sp_field {k k' : Type} [Field k] [Field k'] (x' : Sp k' ⟶ Sp k) : Epi x' := by
-  rw [← Spec.map_preimage x']
-  have : Flat (Spec.map (Spec.preimage x')) := by
-    rw [show Spec.preimage x' = CommRingCat.ofHom (Spec.preimage x').hom from rfl]; infer_instance
-  have : Surjective (Spec.map (Spec.preimage x')) :=
-    ⟨fun _ => ⟨IsLocalRing.closedPoint k', Subsingleton.elim _ _⟩⟩
-  exact Flat.epi_of_flat_of_surjective _
-
 theorem pt_ext_of_pullback {S : Scheme.{0}} {A : Over S} {k k' : Type} [Field k] [Field k'] (x : Sp k ⟶ S)
     (x' : Sp k' ⟶ Sp k) (g₁ g₂ : Over.mk x ⟶ A)
     (h : (Over.homMk x' rfl : Over.mk (x' ≫ x) ⟶ Over.mk x) ≫ g₁ =
       (Over.homMk x' rfl : Over.mk (x' ≫ x) ⟶ Over.mk x) ≫ g₂) : g₁ = g₂ := by
-  haveI := epi_sp_field x'
+  haveI := _root_.GlobalTheory.ThetaSplit.epi_of_fields x'
   apply Over.OverMorphism.ext
   have := congrArg CommaMorphism.left h
   simp only [Over.comp_left, Over.homMk_left] at this
@@ -80,10 +72,10 @@ theorem exists_etLevOver_geomPt : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R 
     rw [h, Ideal.mem_bot] at hp
     exact (Fact.out : p.Prime).ne_zero (by exact_mod_cast hp)
   haveI : Finite (𝓞 D.F ⧸ w0 ^ r) := Ideal.finiteQuotientOfFreeOfNeBot _ (pow_ne_zero _ hw0)
-  obtain ⟨f, fadd, fsm, finj, fsurj⟩ := GlobalTheory.T.torsion_points_additive_parametrization p D R b N w0 r hw S s o k x
+  obtain ⟨f, fadd, fsm, finj, fsurj⟩ := _root_.GlobalTheory.UPel.HT.EtLev.TorFree.free_torsion_geomPt p D R b N w0 r hw S s o k x
   have hmul : ∀ (c : D.O) (g h : Over.mk x ⟶ o.A), (g * h) ≫ o.act.act c = (g ≫ o.act.act c) * (h ≫ o.act.act c) := by
     intro c g h; haveI := o.act.hom c; exact MonObj.mul_comp _ _ _
-  obtain ⟨l, ladd, llin, lker, lsurj⟩ := GlobalTheory.T.exists_morita_lattice_quotient_torsion p D w0 r hw.1 hw.2.1 (Over.mk x ⟶ o.A) (fun c g => g ≫ o.act.act c)
+  obtain ⟨l, ladd, llin, lker, lsurj⟩ := _root_.GlobalTheory.EtLevMorita.exists_lev p D w0 r hw.1 hw.2.1 (Over.mk x ⟶ o.A) (fun c g => g ≫ o.act.act c)
     (fun c g h => hmul c g h) (fun g => by simp only [o.act.one, Category.comp_id])
     (fun b c g => by simp only [o.act.mul, Category.assoc])
     (fun b c g => by simp only [o.act.add]; exact MonObj.comp_mul _ _ _) f fadd fsm finj fsurj
@@ -101,7 +93,7 @@ theorem exists_etLevOver_geomPt : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R 
     apply pt_ext_of_pullback x x'
     rw [hy]
     exact (MonObj.comp_one _).symm
-  · obtain ⟨f', -, -, -, f'surj⟩ := GlobalTheory.T.torsion_points_additive_parametrization p D R b N w0 r hw S s o k' (x' ≫ x)
+  · obtain ⟨f', -, -, -, f'surj⟩ := _root_.GlobalTheory.UPel.HT.EtLev.TorFree.free_torsion_geomPt p D R b N w0 r hw S s o k' (x' ≫ x)
     let π : Over.mk (x' ≫ x) ⟶ Over.mk x := Over.homMk x' rfl
     have tor' : ∀ a, ∀ c ∈ w0 ^ r, (π ≫ f a) ≫ o.act.act (algebraMap (𝓞 D.F) D.O c) = 1 := by
       intro a c hc

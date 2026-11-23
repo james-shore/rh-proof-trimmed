@@ -251,13 +251,6 @@ section Core
 variable {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCat.of Ω) ⟶ X} {G : Over X} [GrpObj G]
   {Li : Type} [AddCommGroup Li] [Module Ω Li]
 
-theorem exists_value_basis [IsCommMonObj G] [Smooth G.hom] (hξ : IsCptGen ξ) (M : LieModel G ξ Li) (z : Sp ℂ ⟶ X)
-    (h : genPt ξ ⤳ centre z) {V I : Type} [AddCommGroup V] [Module ℂ V] (Mz : LieModel G z V) [Fintype I]
-    (F : I → Li) (hli : LinearIndependent Ω F)
-    (hsp : M.lat ⟨centre z, h⟩ = Submodule.span (regAt ξ ⟨centre z, h⟩) (Set.range F)) :
-    ∃ y : Module.Basis I ℂ V, ∀ j, M.ValAt z (F j) (Mz.pt (y j)) :=
-  _root_.UpperTheory.Reformulated.B.Ga4.exists_value_basis hξ M z h Mz F hli hsp
-
 theorem eig_of_value (hξ : IsCptGen ξ) (M : LieModel G ξ Li) (z : Sp ℂ ⟶ X) {V : Type} [AddCommGroup V] [Module ℂ V]
     (Mz : LieModel G z V) {O : Type} [CommRing O] (act : OAct O G) (ρ : O →+* Module.End Ω Li)
     (hρ : M.IsActOf act.act ρ) (χ : O →+* Ω) (c : O →+* ℂ) (hc : ∀ a, Ar.ValAt ξ z (χ a) (c a))
@@ -385,7 +378,7 @@ theorem values_eig : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H :
     refine Over.OverMorphism.ext ?_
     rw [hMz, pt_linear e hb N hN (t.act.act a) (Bb a) (fun x => hB a x) x, Over.comp_left, Over.comp_left, hMz,
       Category.assoc, Category.assoc, m.act a]
-  obtain ⟨yb, hyb⟩ := exists_value_basis hgen 𝔐.M _ (𝔐.all _) Mz' _ hli hsp
+  obtain ⟨yb, hyb⟩ := _root_.UpperTheory.Reformulated.B.Ga4.exists_value_basis hgen 𝔐.M _ (𝔐.all _) Mz' _ hli hsp
   have hey : ∀ p : (Σ u, Fin (k u)), yb p ∈ eigSp Bb (σ p.1) := fun p =>
     eig_of_value hgen 𝔐.M _ Mz' 𝔐.t.act 𝔐.ρ 𝔐.act (𝔐.emb p.1) (σ p.1) (hσ p.1) Bb hBz (hmem p.1 p.2).2 (hyb p)
   have hx : ∀ i, yb ⟨lab, i⟩ = fun k' => ψ b (sc i k') := by

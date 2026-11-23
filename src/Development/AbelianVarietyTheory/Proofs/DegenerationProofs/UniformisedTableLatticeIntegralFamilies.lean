@@ -244,11 +244,11 @@ theorem main : LL → TwistBCSpanStatement → TWM.VRatioGtStatement → TWState
         · simp [Pi.single_eq_of_ne h']
       rwa [Finset.sum_eq_single i (fun i' _ h' => by rw [Pi.single_eq_of_ne h', zero_smul]) (by simp),
         Pi.single_eq_same, one_smul] at this
-    exact (hO _).2 (GlobalTheory.T.integral_family_values_torsion_torusExtension hL h₁ h₂ h₃ h₄ V hc ϖ hϖ D Q hQ F v hv A G hG U w₀ ρ hN (n ^ j) (m ^ 2)
+    exact (hO _).2 (_root_.GlobalTheory.OneBasis.integral_value_at_torsion hL h₁ h₂ h₃ h₄ V hc ϖ hϖ D Q hQ F v hv A G hG U w₀ ρ hN (n ^ j) (m ^ 2)
       (pow_pos hn.pos j) hm1 h e (b i) (s i) _ hf he (hb i) hi (valAt_cmb (hB i) hl))
   · rintro a ha ⟨i, hi⟩
     obtain ⟨t, ht⟩ := exists_cmb b a
-    obtain ⟨j, x, hj, hx, hval⟩ := GlobalTheory.T.exists_torsionPoint_unit_value_primitive_integral_family hL h₁ h₂ h₃ h₄ V hc ϖ hϖ D Q hQ F v hv A G hG U w₀ ρ hN (m ^ 2) n
+    obtain ⟨j, x, hj, hx, hval⟩ := _root_.GlobalTheory.OneBasis.UnitValue.exists_unit_value hL h₁ h₂ h₃ h₄ V hc ϖ hϖ D Q hQ F v hv A G hG U w₀ ρ hN (m ^ 2) n
       (by nlinarith) hn hnu t _ (cls i) (hcb a t ht) (((hs.2 a 0).2.1).2 fun i' => (hO _).1 (ha i'))
       fun q hq hV => by
         have := (hs.2 a q).2.2 i hV
@@ -256,7 +256,7 @@ theorem main : LL → TwistBCSpanStatement → TWM.VRatioGtStatement → TWState
         exact absurd this (not_le.2 hq)
     refine ⟨j, x, ?_, ?_⟩
     · rw [hHs]
-      exact GlobalTheory.T.torusExtension_torsion_mem_unitThetaConstantGroup hL h₁ h₂ h₃ h₄ V hc ϖ hϖ D Q hQ F v hv A G hG U w₀ ρ hN th ϑ hE hP n j hn hno hnu hj x hx
+      exact _root_.GlobalTheory.OneBasis.UnitGen.fromGt_mem_unitGrp hL h₁ h₂ h₃ h₄ V hc ϖ hϖ D Q hQ F v hv A G hG U w₀ ρ hN th ϑ hE hP n j hn hno hnu hj x hx
     · rintro l ⟨e, he, hl⟩
       rw [valuation_eq_one_iff hO, Matrix.dotProduct_mulVec]
       exact hval e _ he (valAt_cmb (cmb_comp hB ht) hl)
@@ -266,7 +266,7 @@ theorem main : LL → TwistBCSpanStatement → TWM.VRatioGtStatement → TWState
       · exact ⟨1, one_ne_zero, by rw [← h]; simp⟩
       · exact exists_val_eq hv h
     choose π hπ0 hπ using hπ
-    have u01 := GlobalTheory.T.valuation_nonneg_iff_span_multiplicationTranslates hL h₁ h₂ h₃ h₄ V hc ϖ hϖ D Q hQ F v hv A G hG U w₀ ρ hN th ϑ hE hP m hm hmu hm3
+    have u01 := _root_.GlobalTheory.UT.nuGe_zero_iff_span_translates hL h₁ h₂ h₃ h₄ V hc ϖ hϖ D Q hQ F v hv A G hG U w₀ ρ hN th ϑ hE hP m hm hmu hm3
     have hnu : ∀ a : Fin r → F, (∀ i, a i / π i ∈ O) ↔ NuGe D Q F v (m ^ 2) (∑ i, a i • s i) 0 := fun a => by
       rw [(hs.2 a 0).1]
       exact forall_congr' fun i => by rw [hO, div_mem_iff v (hπ0 i) (hπ i), zero_add]

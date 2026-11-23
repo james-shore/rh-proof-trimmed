@@ -132,7 +132,7 @@ theorem length_cocRho_le (eρ : ℕ) (hr : GoodR D.nd i r) (hS : GoodCongruenceO
     (add_le_add ((lenCob_mono i _ hC).trans (GlobalTheory.T.length_coboundaries_among_block_cocycles_le D i r ρ π Xs S hr hS hπ).1) le_rfl)
   intro v h1 h2 h3
   exact resIne_eq_bot_of_le i hC
-    (GlobalTheory.Proof.LocalGlobalSelmer.main D i r Xs S _ S.ψρ (inR'_one i r S) hU v h1 h2 h3)
+    (GlobalTheory.Proof.LocalGlobalSelmer.main D i r Xs S _ S.ψρ (_root_.GlobalTheory.Cut.Check.inR'_one i r S) hU v h1 h2 h3)
 
 
 

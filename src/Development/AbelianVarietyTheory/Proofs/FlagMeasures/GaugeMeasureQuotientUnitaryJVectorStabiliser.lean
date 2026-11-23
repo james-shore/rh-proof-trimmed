@@ -325,7 +325,7 @@ theorem const_eq_one (e : Option (Fin P' ⊕ Fin Q') ≃ (Fin P ⊕ Fin Q)) (he 
     rw [mul_one, ENNReal.mul_inv_cancel hk0 hkt] at h1
     refine h1.congr' ?_
     filter_upwards [self_mem_nhdsWithin] with r hr
-    rw [card_eq e, GlobalTheory.T.ballVol_succ_sq_eq_pow_mul_prod P' Q' r hr]
+    rw [card_eq e, _root_.GlobalTheory.GaugeQuot.BallProd.ballVol_succ_sq P' Q' r hr]
     simp only [Function.comp_apply]
     rw [div_eq_mul_inv, div_eq_mul_inv, ENNReal.mul_inv (Or.inl hk0) (Or.inl hkt)]
     ring

@@ -44,7 +44,5 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 namespace LateralTheory.Fin.EtaleChapterDThree
-theorem etale_cohomology_third_statement_holds_alt : LateralTheory.E.EtaleChapterDThree := by
-  apply LateralTheory.E.t_D3Cut.goal
-theorem intersectionNumber_baseChange : LateralTheory.E.EtaleChapterDThree := etale_cohomology_third_statement_holds_alt
+alias intersectionNumber_baseChange := _root_.LateralTheory.E.t_D3Cut.goal
 end LateralTheory.Fin.EtaleChapterDThree

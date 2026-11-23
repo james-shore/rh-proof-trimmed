@@ -403,12 +403,12 @@ theorem sum_Sig_le (X : Inst D L) (K : Consts) (Cm : ℝ) (N : NumMean D L K Cm)
             mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_left h' hm) hc2
           _ = _ := by ring
 
-theorem mem_candF {K : Consts} {p : ℕ} : p ∈ candF D L K ↔ p < ⌈L.sc.X'⌉₊ ∧ Cand D L K p := by
-  unfold candF
+theorem mem_candF {K : Consts} {p : ℕ} : p ∈ _root_.Formalism.MainNotions.AuxBlock8.cands D L K ↔ p < ⌈L.sc.X'⌉₊ ∧ Cand D L K p := by
+  unfold _root_.Formalism.MainNotions.AuxBlock8.cands
   simp only [Finset.mem_filter, Finset.mem_range]
 
 theorem sum_cand_le (K : Consts) :
-    ∑ p ∈ candF D L K, Real.log p / p ≤ L.sc.x ^ (L.sc.eps / 3) * (2 + L.sc.x ^ (L.sc.eps / 3)) := by
+    ∑ p ∈ _root_.Formalism.MainNotions.AuxBlock8.cands D L K, Real.log p / p ≤ L.sc.x ^ (L.sc.eps / 3) * (2 + L.sc.x ^ (L.sc.eps / 3)) := by
   have hx : 0 < L.sc.x := lt_trans zero_lt_one L.sc.one_lt_alt
   have ht : 0 < L.sc.x ^ (L.sc.eps / 3) := by positivity
   set t := L.sc.x ^ (L.sc.eps / 3) with htdef
@@ -420,7 +420,7 @@ theorem sum_cand_le (K : Consts) :
   have hlt : ∀ n ∈ Finset.range M, (n : ℝ) < Real.exp t := fun n hn => by
     rw [← hX]
     exact Nat.lt_ceil.mp (Finset.mem_range.mp hn)
-  calc ∑ p ∈ candF D L K, Real.log p / p
+  calc ∑ p ∈ _root_.Formalism.MainNotions.AuxBlock8.cands D L K, Real.log p / p
       ≤ ∑ n ∈ Finset.range M, Real.log n / n := by
         exact Finset.sum_le_sum_of_subset_of_nonneg
           (fun n hn => Finset.mem_range.mpr (mem_candF.mp hn).1)
@@ -466,7 +466,7 @@ theorem markov_ind (s : Scale) (S : ℝ) (hS : 0 ≤ S) [Decidable (s.x ^ (-s.ep
   · positivity
 
 theorem ZZ_le (X : Inst D L) (K : Consts) (a b : HH D → ℤ) (hS : ∀ p, Cand D L K p → 0 ≤ Sig X K a b p) :
-    ZZ X K a b ≤ ∑ p ∈ candF D L K, Real.log p / p * (L.sc.x ^ L.sc.eps + 1) * Sig X K a b p := by
+    ZZ X K a b ≤ ∑ p ∈ _root_.Formalism.MainNotions.AuxBlock8.cands D L K, Real.log p / p * (L.sc.x ^ L.sc.eps + 1) * Sig X K a b p := by
   unfold ZZ
   refine Finset.sum_le_sum fun p hp => ?_
   have hc : Cand D L K p := (mem_candF.mp hp).2
@@ -486,14 +486,14 @@ theorem meanEx_of (X : Inst D L) (K : Consts) (hK : K.Nonneg) (Cm : ℝ) (h8 : a
   have hx : 0 < L.sc.x := lt_trans zero_lt_one L.sc.one_lt_alt
   have key : ∑ a ∈ box D (winA D L.sc), ∑ b ∈ box D (winB D K L.sc), ZZ X K a b ≤
       ((box D (winA D L.sc)).card : ℝ) * ((box D (winB D K L.sc)).card : ℝ) * (L.sc.x ^ (-9 : ℝ) / 4) := by
-    calc _ ≤ ∑ a ∈ box D (winA D L.sc), ∑ b ∈ box D (winB D K L.sc), ∑ p ∈ candF D L K,
+    calc _ ≤ ∑ a ∈ box D (winA D L.sc), ∑ b ∈ box D (winB D K L.sc), ∑ p ∈ _root_.Formalism.MainNotions.AuxBlock8.cands D L K,
             Real.log p / p * (L.sc.x ^ L.sc.eps + 1) * Sig X K a b p :=
           Finset.sum_le_sum fun a _ => Finset.sum_le_sum fun b _ => ZZ_le X K a b (hS a b)
-      _ = ∑ p ∈ candF D L K, Real.log p / p * (L.sc.x ^ L.sc.eps + 1) *
+      _ = ∑ p ∈ _root_.Formalism.MainNotions.AuxBlock8.cands D L K, Real.log p / p * (L.sc.x ^ L.sc.eps + 1) *
             ∑ a ∈ box D (winA D L.sc), ∑ b ∈ box D (winB D K L.sc), Sig X K a b p := by
           simp only [Finset.mul_sum]
           exact (Finset.sum_congr rfl fun _ _ => Finset.sum_comm).trans Finset.sum_comm
-      _ ≤ ∑ p ∈ candF D L K, Real.log p / p * (L.sc.x ^ L.sc.eps + 1) *
+      _ ≤ ∑ p ∈ _root_.Formalism.MainNotions.AuxBlock8.cands D L K, Real.log p / p * (L.sc.x ^ L.sc.eps + 1) *
             (((box D (winA D L.sc)).card : ℝ) * ((box D (winB D K L.sc)).card : ℝ) *
               ((D.R.m : ℝ) * (D.host.TT.card : ℝ) * L.sc.x ^ (-12 : ℝ))) := by
           refine Finset.sum_le_sum fun p hp => mul_le_mul_of_nonneg_left
@@ -502,7 +502,7 @@ theorem meanEx_of (X : Inst D L) (K : Consts) (hK : K.Nonneg) (Cm : ℝ) (h8 : a
           positivity
       _ = ((box D (winA D L.sc)).card : ℝ) * ((box D (winB D K L.sc)).card : ℝ) *
             ((L.sc.x ^ L.sc.eps + 1) * (D.R.m : ℝ) * (D.host.TT.card : ℝ) * L.sc.x ^ (-12 : ℝ)) *
-            ∑ p ∈ candF D L K, Real.log p / p := by
+            ∑ p ∈ _root_.Formalism.MainNotions.AuxBlock8.cands D L K, Real.log p / p := by
           rw [Finset.mul_sum]
           refine Finset.sum_congr rfl fun p _ => ?_
           ring
@@ -531,11 +531,11 @@ theorem weight_condition_of_mean_excess (X : Inst D L) (K : Consts) (h : MeanEx 
   refine ⟨a, ha, b, hb, ?_⟩
   unfold WReq
   unfold ZZ at hZ
-  have hc : cands D L K = candF D L K := rfl
+  have hc : cands D L K = _root_.Formalism.MainNotions.AuxBlock8.cands D L K := rfl
   rw [hc]
-  have h4 : ∑ p ∈ candF D L K, Real.log p / p *
+  have h4 : ∑ p ∈ _root_.Formalism.MainNotions.AuxBlock8.cands D L K, Real.log p / p *
       (2 * (if L.sc.x ^ (-L.sc.eps) < Sig X K a b p then (1 : ℝ) else 0) + 4 * Sig X K a b p) ≤
-      4 * ∑ p ∈ candF D L K, Real.log p / p *
+      4 * ∑ p ∈ _root_.Formalism.MainNotions.AuxBlock8.cands D L K, Real.log p / p *
         ((if L.sc.x ^ (-L.sc.eps) < Sig X K a b p then (1 : ℝ) else 0) + Sig X K a b p) := by
     rw [Finset.mul_sum]
     refine Finset.sum_le_sum fun p _ => ?_

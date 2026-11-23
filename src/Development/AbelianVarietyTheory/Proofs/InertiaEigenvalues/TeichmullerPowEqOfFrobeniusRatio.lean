@@ -82,7 +82,7 @@ theorem teich_eq_of_phi_ratio : ∀ (l : ℕ) [Fact l.Prime] (w' : Formalism.Per
     rcases GlobalTheory.T.acris_eq_zero_or_eq_zero_of_mul_eq_zero l _ _ h0 with h0 | h0
     · exact hw h0
     · exact hφ h0
-  rw [map_mul, frob_teich] at h
+  rw [map_mul, _root_.GlobalTheory.PMon.Gauss.φc_tc] at h
   have h' : (tc l (ζ ^ l) - tc l ζ) * (w' * φc l w') = 0 := by
     linear_combination h
   rcases GlobalTheory.T.acris_eq_zero_or_eq_zero_of_mul_eq_zero l _ _ h' with h0 | h0

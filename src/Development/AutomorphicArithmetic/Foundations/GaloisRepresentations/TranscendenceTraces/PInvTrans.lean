@@ -51,11 +51,6 @@ open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComp
 
 namespace UpperTheory.Gal.TranscendenceTraces
 
-private theorem root_orbit {A B G Ω : Type} [CommRing A] [CommRing B] [Algebra A B] [Group G] [Finite G]
-    [MulSemiringAction G B] [SMulCommClass G A B] [Algebra.IsInvariant A B G] [Field Ω] (φ ψ : B →+* Ω)
-    (h : φ.comp (algebraMap A B) = ψ.comp (algebraMap A B)) (b : B) : ∃ g : G, ψ b = φ (g • b) :=
-  _root_.UpperTheory.Reformulated.B.Qi49.root_orbit φ ψ h b
-
 private theorem same_ker {A B G Ω : Type} [CommRing A] [CommRing B] [Algebra A B] [Group G] [Finite G]
     [MulSemiringAction G B] [SMulCommClass G A B] [Algebra.IsInvariant A B G] [Field Ω] (φ ψ : B →+* Ω)
     (h : φ.comp (algebraMap A B) = ψ.comp (algebraMap A B)) (hk : RingHom.ker φ = RingHom.ker ψ) :
@@ -88,11 +83,11 @@ private theorem same_ker {A B G Ω : Type} [CommRing A] [CommRing B] [Algebra A 
     constructor
     · rintro ⟨x, rfl⟩
       obtain ⟨b, rfl⟩ := Ideal.Quotient.mk_surjective x
-      obtain ⟨g, hg⟩ := root_orbit (G := G) φ ψ h b
+      obtain ⟨g, hg⟩ := _root_.UpperTheory.Reformulated.B.Qi49.root_orbit (G := G) φ ψ h b
       exact ⟨Ideal.Quotient.mk Q (g • b), by rw [φm, ψm, hg]⟩
     · rintro ⟨x, rfl⟩
       obtain ⟨b, rfl⟩ := Ideal.Quotient.mk_surjective x
-      obtain ⟨g, hg⟩ := root_orbit (G := G) ψ φ h.symm b
+      obtain ⟨g, hg⟩ := _root_.UpperTheory.Reformulated.B.Qi49.root_orbit (G := G) ψ φ h.symm b
       exact ⟨Ideal.Quotient.mk Q (g • b), by rw [φm, ψm, hg]⟩
   let eφ : B ⧸ Q ≃+* φb.range := RingEquiv.ofBijective φb.rangeRestrict
     ⟨fun x y e => φi (congrArg Subtype.val e), φb.rangeRestrict_surjective⟩

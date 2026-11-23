@@ -42,6 +42,7 @@ import Mathlib.Topology.Sheaves.Init
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.ModerateGrowthSchwartz
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermOf
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.WeilSiegelTheta.BigCellDefs
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.DensInfCo
 
 @[expose] public section
 
@@ -75,16 +76,6 @@ theorem trace_sigR (R : Type) [CommRing R] [Algebra F R] (σ : E →ₐ[F] E) (h
   rw [h]
   exact Algebra.trace_eq_of_algEquiv e z
 
-theorem hR_add_left (R : Type) [CommRing R] [Algebra F R] (σ : E →ₐ[F] E) {M : ℕ}
-    (J : Matrix (Fin M) (Fin M) E) (x x' y : Fin M → R ⊗[F] E) :
-    hR R σ J (x + x') y = hR R σ J x y + hR R σ J x' y := by
-  simp only [hR, Formalism.UG.hform, Pi.add_apply, map_add (f := _), add_mul, Finset.sum_add_distrib]
-
-theorem hR_add_right (R : Type) [CommRing R] [Algebra F R] (σ : E →ₐ[F] E) {M : ℕ}
-    (J : Matrix (Fin M) (Fin M) E) (x y y' : Fin M → R ⊗[F] E) :
-    hR R σ J x (y + y') = hR R σ J x y + hR R σ J x y' := by
-  simp only [hR, Formalism.UG.hform, Pi.add_apply, mul_add, Finset.sum_add_distrib]
-
 end Gen
 
 section Fin
@@ -111,7 +102,7 @@ theorem gramR_add (σ : E →ₐ[F] E) {M n : ℕ}
     (J : Matrix (Fin M) (Fin M) E) (X Y : Fin n → Fin M → Af F ⊗[F] E) :
     gramR (Af F) σ J (X + Y) = gramR (Af F) σ J X + gramR (Af F) σ J Y + gram2 σ J X Y + gram2 σ J Y X := by
   funext a c
-  simp only [gramR, gram2, Pi.add_apply, Matrix.add_apply, hR_add_left, hR_add_right]
+  simp only [gramR, gram2, Pi.add_apply, Matrix.add_apply, _root_.PI.VolStabS.hR_add_left, _root_.PI.VolStabS.hR_add_right]
   abel
 
 end Fin

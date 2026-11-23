@@ -140,7 +140,7 @@ theorem exists_isWeilHom (hA : IsAbelianScheme A) {P : LB (A ⊗ B).left} (hP : 
       exact hP.additive.evc_one hP.isLB _)
     rw [AbDual.ev, e'] at e
     exact e
-  obtain ⟨τ, hτ⟩ := WeilHom.triv_theta CubeTop.cubeTheorem hAA hQ
+  obtain ⟨τ, hτ⟩ := WeilHom.triv_theta _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds hAA hQ
   obtain ⟨τ', hτ', hn⟩ := AbLaw.Cube.exists_normalised hQ τ hτ
   exact WeilHom.exists_of_cubical hAA
     (AbLaw.Cube.cubicalOfNormalised globalFns_holds hAA ⟨polBundle P lam, r, hQ, hr⟩ τ' hτ' hn) t t

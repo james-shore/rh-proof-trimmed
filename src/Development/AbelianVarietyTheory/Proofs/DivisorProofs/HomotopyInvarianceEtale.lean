@@ -73,11 +73,11 @@ theorem homotopy_invariance_etale : GlobalTheory.EtC.C4 := by
   intro q _ A _ hq i
   have hqΓ : IsUnit ((q : ℕ) : Γ(Spec (CommRingCat.of A), ⊤)) := by
     simpa using hq.map (Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom
-  refine GlobalTheory.T.etC_b3 q (Spec.map (CommRingCat.ofHom (Polynomial.C : A →+* Polynomial A)))
+  refine _root_.GlobalTheory.EtC.tateTwist_local_to_global_strictlyHenselian q (Spec.map (CommRingCat.ofHom (Polynomial.C : A →+* Polynomial A)))
     (𝟙 (Spec (CommRingCat.of A))) hqΓ i ?_
   intro A' _ s hA'
   refine eqv_baseChange q A i A' s ?_
   have hq' : IsUnit (q : A') := by simpa using hq.map (Spec.preimage s).hom
-  exact GlobalTheory.T.homotopyInvariance_tateTwist_strictlyHenselian q A' hA' hq' i
+  exact _root_.GlobalTheory.homotopyInvariance_strictlyHenselian q A' hA' hq' i
 
 end GlobalTheory.EtC.HomotopyInv

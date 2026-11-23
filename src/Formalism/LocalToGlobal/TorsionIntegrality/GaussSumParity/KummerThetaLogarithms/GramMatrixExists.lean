@@ -121,7 +121,7 @@ theorem gram_matrix_exists : GramExists := by
     · omega
     · exact h
   have hm : 0 < m := by omega
-  have hσζ : σ ζ = ζ ^ (2 * m + 1) := teichSigma K _ 2 σ hU (by norm_num) ζ hζ.pow_eq_one
+  have hσζ : σ ζ = ζ ^ (2 * m + 1) := _root_.Formalism.L2.Th1.D.teichmuller_sigma K _ 2 σ hU (by norm_num) ζ hζ.pow_eq_one
   have hN0 : (2 * m + 1) ^ 2 - 1 ≠ 0 := by
     have : 1 < (2 * m + 1) ^ 2 := Nat.one_lt_pow (by norm_num) (by omega)
     omega

@@ -122,15 +122,6 @@ private theorem form_sum_lemma_7 {K V : Type} [Field K] [StarRing K] [AddCommGro
   · intro h'
     exact absurd (Finset.mem_univ i) h'
 
-private theorem mem_self_lemma_9 {K V : Type} [Field K] [StarRing K] [AddCommGroup V] [Module K V] {S : Subring K} {ι : Type} [Fintype ι] [DecidableEq ι] (b : ι → V) (i : ι) :
-    b i ∈ spanS S b := by
-  refine (mem_iff_lemma b (b i)).2 ⟨fun j => if j = i then 1 else 0, fun j => ?_, ?_⟩
-  · dsimp only
-    split_ifs
-    · exact S.one_mem
-    · exact S.zero_mem
-  · simp [ite_smul]
-
 private theorem isSD_lemma_8 {K V : Type} [Field K] [StarRing K] [AddCommGroup V] [Module K V]
     {S : Subring K} (hS : IsHermSemilocal S) {h : V →ₗ⋆[K] V →ₗ[K] K} {ι : Type} [Fintype ι]
     [DecidableEq ι] {b : ι → V} (ho : ∀ i j, i ≠ j → h (b i) (b j) = 0)
@@ -159,7 +150,7 @@ private theorem isSD_lemma_8 {K V : Type} [Field K] [StarRing K] [AddCommGroup V
     obtain ⟨g, rfl⟩ := (Submodule.mem_span_range_iff_exists_fun K).1 hx
     rw [mem_iff_lemma]
     refine ⟨g, fun i => ?_, rfl⟩
-    have h1 := hdual (b i) (mem_self_lemma_9 b i)
+    have h1 := hdual (b i) (_root_.Formalism.L2.SG.Pf.G3.mem_spanS_self b i)
 
     rw [map_sum, Finset.sum_eq_single i] at h1
     · rw [map_smul, smul_eq_mul] at h1
@@ -266,7 +257,7 @@ theorem uni_part {K V : Type} [Field K] [StarRing K] [AddCommGroup V] [Module K 
       · rw [show gP p = f (σ ⟨p, hp⟩) from hgq ⟨p, hp⟩,
           show gP p' = f (σ ⟨p', hp'⟩) from hgq ⟨p', hp'⟩]
         exact hz _ _ (hof _ _ (fun hq => hpp (congrArg Subtype.val (σ.injective hq))))
-  have hfL : ∀ j, f j ∈ spanS S bP := fun j => (mem_cutM.1 ((hspf _).1 (mem_self_lemma_9 f j))).1
+  have hfL : ∀ j, f j ∈ spanS S bP := fun j => (mem_cutM.1 ((hspf _).1 (_root_.Formalism.L2.SG.Pf.G3.mem_spanS_self f j))).1
   have hgL : ∀ p, gP p ∈ spanS S bP := fun p => by
     by_cases hp : p = p₀
     · rw [hp, hg0]
@@ -316,18 +307,18 @@ theorem uni_part {K V : Type} [Field K] [StarRing K] [AddCommGroup V] [Module K 
     intro i
     by_cases hi : e i = e i₀
     · rw [show c i = gP ⟨i, hi⟩ from hcP ⟨i, hi⟩]
-      exact spanS_le_lemma_3 (fun p => by rw [hbP]; exact mem_self_lemma_9 b p) (hgL _)
+      exact spanS_le_lemma_3 (fun p => by rw [hbP]; exact _root_.Formalism.L2.SG.Pf.G3.mem_spanS_self b p) (hgL _)
     · rw [hcn i hi]
-      exact mem_self_lemma_9 b i
+      exact _root_.Formalism.L2.SG.Pf.G3.mem_spanS_self b i
   have hfc : ∀ j, f j ∈ spanS S c := fun j => by
     have hfj : f j = c (σ.symm j).1.1 := by rw [hcP, hgq, Equiv.apply_symm_apply]
     rw [hfj]
-    exact mem_self_lemma_9 c _
+    exact _root_.Formalism.L2.SG.Pf.G3.mem_spanS_self c _
   have h2 : ∀ i, b i ∈ spanS S c := by
     intro i
     by_cases hi : e i = e i₀
     · have hbi : b i ∈ spanS S bP := by
-        have hm := mem_self_lemma_9 (S := S) bP ⟨i, hi⟩
+        have hm := _root_.Formalism.L2.SG.Pf.G3.mem_spanS_self (S := S) bP ⟨i, hi⟩
         rwa [hbP] at hm
       have hr := (hspf _).2 (proj_mem hSD.toIsLatIn hXL hXu' hbi)
       have ha : h' Xs (b i) * (h' Xs Xs)⁻¹ ∈ S := S.mul_mem (hSD.int _ hXL _ hbi) hXu'.2.2
@@ -336,9 +327,9 @@ theorem uni_part {K V : Type} [Field K] [StarRing K] [AddCommGroup V] [Module K 
       rw [key]
       refine add_mem (smul_mem_lemma_2 ha ?_) (spanS_le_lemma_3 hfc hr)
       rw [← hc0]
-      exact mem_self_lemma_9 c i₀
+      exact _root_.Formalism.L2.SG.Pf.G3.mem_spanS_self c i₀
     · rw [← hcn i hi]
-      exact mem_self_lemma_9 c i
+      exact _root_.Formalism.L2.SG.Pf.G3.mem_spanS_self c i
   obtain ⟨hspc, hiffc⟩ := spans_eq_lemma_5 h1 h2
   exact ⟨c, hoc, huc, hc0, hcn, hspc, hiffc⟩
 

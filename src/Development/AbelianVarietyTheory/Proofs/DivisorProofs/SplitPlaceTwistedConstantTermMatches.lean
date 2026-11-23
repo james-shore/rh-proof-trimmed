@@ -58,10 +58,6 @@ noncomputable section
 
 namespace GlobalTheory.BCT.SplitCtMatch
 
-theorem conjOfCharpoly : ∀ (k : Type) [Field k] (a : ℕ) (x y : GL (Fin a) k), x.val.charpoly = y.val.charpoly →
-    x.val.charpoly.Separable → ∃ g : GL (Fin a) k, y = g⁻¹ * x * g :=
-  fun k _ a x y h hs => GlobalTheory.SepConj.conj_of_charpoly_eq_of_separable k a x y h hs
-
 theorem existsOfCharpoly : ∀ (k : Type) [Field k] (a : ℕ) (Q : k[X]), Q.Monic → Q.natDegree = a → Q.coeff 0 ≠ 0 →
     ∃ x : GL (Fin a) k, x.val.charpoly = Q := by
   intro k _ a Q hm hn h0
@@ -344,10 +340,6 @@ end GlobalTheory.BCT.SplitCtMatch
 
 namespace GlobalTheory.BCT.SplitCtMatch
 
-theorem charpoly_conj' {k : Type} [Field k] {a : ℕ} (g x : GL (Fin a) k) :
-    (g⁻¹ * x * g).val.charpoly = x.val.charpoly := by
-  rw [Units.val_mul, Units.val_mul, Matrix.coe_units_inv, Matrix.charpoly_units_conj']
-
 theorem toSub_val {G : Type} [Group G] {H : Subgroup G} {g : G} (h : g ∈ H) : (toSub H g : G) = g := by
   rw [toSub, dite_eq_left h]
 
@@ -406,11 +398,11 @@ theorem match_ctMu_of_isSplitAt : ∀ (E : Type) [Field E] [NumberField E] [IsCM
       · simp
       · exact ⟨hx₁, hx₂⟩
       · rintro y ⟨h1, h2⟩
-        obtain ⟨g₁, hg₁⟩ := conjOfCharpoly _ a x₁ y.1 (hx₁.trans h1.symm) (hx₁ ▸ hs₁)
-        obtain ⟨g₂, hg₂⟩ := conjOfCharpoly _ (n - a) x₂ y.2 (hx₂.trans h2.symm) (hx₂ ▸ hs₂)
+        obtain ⟨g₁, hg₁⟩ := _root_.GlobalTheory.SepConj.conj_of_charpoly_eq_of_separable _ a x₁ y.1 (hx₁.trans h1.symm) (hx₁ ▸ hs₁)
+        obtain ⟨g₂, hg₂⟩ := _root_.GlobalTheory.SepConj.conj_of_charpoly_eq_of_separable _ (n - a) x₂ y.2 (hx₂.trans h2.symm) (hx₂ ▸ hs₂)
         exact ⟨(g₁, g₂), Prod.ext hg₁ hg₂⟩
       · intro g
-        exact ⟨(charpoly_conj' g.1 x₁).trans hx₁, (charpoly_conj' g.2 x₂).trans hx₂⟩
+        exact ⟨(_root_.GlobalTheory.LeviDesc.conjP_charpoly g.1 x₁).trans hx₁, (_root_.GlobalTheory.LeviDesc.conjP_charpoly g.2 x₂).trans hx₂⟩
       · intro g; rfl
     obtain ⟨γ₀, hv⟩ : ∃ γ₀ : UL n w, (γ₀ : GLw n w) = blk (Nat.add_sub_cancel' ha) w (x₁, x₂) 0 :=
       ⟨_, toSub_val (hmem _)⟩
@@ -421,14 +413,14 @@ theorem match_ctMu_of_isSplitAt : ∀ (E : Type) [Field E] [NumberField E] [IsCM
           (fun y => f (toSub (UL n w) y)) := by
       rw [clSum_oneClass _ _ _ _ _ γ₀ hcp ?_ ?_ ?_ (fun g => twOrb_twConj _ _ _ _ _), one_mul, twOrb_top _ hUL, hKL, hv]
       · intro γ hγ
-        obtain ⟨g, hg⟩ := conjOfCharpoly _ n (γ₀ : GLw n w) γ.1 (hcp.trans hγ.symm) (hcp ▸ hsep)
+        obtain ⟨g, hg⟩ := _root_.GlobalTheory.SepConj.conj_of_charpoly_eq_of_separable _ n (γ₀ : GLw n w) γ.1 (hcp.trans hγ.symm) (hcp ▸ hsep)
         refine ⟨toSub (UL n w) g, Subtype.ext ?_⟩
         simp only [MonoidHom.id_apply, Subgroup.coe_mul, Subgroup.coe_inv, toSub_val (hmem g)]
         exact hg
       · intro g
         show ((g⁻¹ * γ₀ * g : UL n w) : GLw n w).val.charpoly = _
         simp only [Subgroup.coe_mul, Subgroup.coe_inv]
-        rw [charpoly_conj', hcp]
+        rw [_root_.GlobalTheory.LeviDesc.conjP_charpoly, hcp]
       · intro g; rfl
     rw [hLHS, hRHS]
 

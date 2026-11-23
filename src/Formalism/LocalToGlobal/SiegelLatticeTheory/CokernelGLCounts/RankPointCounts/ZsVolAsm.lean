@@ -82,7 +82,7 @@ theorem fibreIndex_holds : FibreCZ M δ u u' F0 what₂ := by
   have hG₁ : Gval (lf D F0) F' ≠ 0 := by
     obtain ⟨Fa, ⟨pa, ea⟩, hGa, -⟩ := hE.2
     obtain ⟨p₁, e₁⟩ := hRep
-    have hdca := (Formalism.L2.SG.Closed.TermEqIff_holds D u u' F0 γ.lam hΛ ⟨Fa, pa⟩ ⟨F', p₁⟩).1 (ea.trans e₁.symm)
+    have hdca := (_root_.term_eq_iff_relation D u u' F0 γ.lam hΛ ⟨Fa, pa⟩ ⟨F', p₁⟩).1 (ea.trans e₁.symm)
     rw [Formalism.L2.SG.Pf.gval_rel (lf D F0) hdca]
     exact hGa
   have hGr := Formalism.L2.SG.Pf.StabilizerIndexVolumes.gram_gg_unit F0 F'.fl (star_natCast _) (star_natCast _) hZu hG₁

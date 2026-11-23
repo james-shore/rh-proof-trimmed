@@ -166,12 +166,6 @@ theorem psi_val_mem {R : Type} [CommRing R] [IsDomain R] (D : DegPre R) {F : Typ
   rw [DegPre.toOpen, RingHom.comp_apply, GlobalTheory.Ex.UnitVal.valF_res' (le_top : (⊤ : (Sp R).Opens) ≤ ⊤) (fun _ _ => trivial), e2]
   exact GlobalTheory.OriginFrame.valF_spMap_fn _ a'
 
-theorem exists_finite_pt (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (hR : Base R) (Z : Scheme.{0})
-    (π : Z ⟶ Sp R) [IsFinite π] (k : Sp (Kb R) ⟶ Z) (hk : k ≫ π = (TF (R := R) (Kb R)).hom) :
-    ∃ S : Subalgebra R (Kb R), Module.Finite R S ∧ IsLocalRing S ∧
-      ∃ k₀ : Sp S ⟶ Z, k₀ ≫ π = spMap (algebraMap R S) ∧ spMap (S.val : S →+* Kb R) ≫ k₀ = k :=
-  GlobalTheory.T.algClosurePoint_factors_through_finite_local_subalgebra R hR Z π k hk
-
 theorem exists_finite_ext (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (hR : Base R) (D : DegPre R)
     (x : TF (R := R) (Kb R) ⟶ D.P.A) (m : ℕ) (hm : IsUnit (m : R)) (z : 𝟙_ (Over (Sp R)) ⟶ D.P.A)
     (hx : x ^ m = toUnit _ ≫ z) : ∃ S : Subalgebra R (Kb R), Module.Finite R S ∧ IsLocalRing S ∧
@@ -187,7 +181,7 @@ theorem exists_finite_ext (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (
     have h1 : (toUnit (TF (R := R) (Kb R))).left = (TF (R := R) (Kb R)).hom := by
       simpa using Over.w (toUnit (TF (R := R) (Kb R)))
     rw [← Over.comp_left, GlobalTheory.IntDiv.comp_mulA, hx, Over.comp_left, h1]
-  obtain ⟨S, hSf, hSl, k₀, hk₀, hk⟩ := exists_finite_pt R hR (pullback (mulA D.P.A m).left z.left)
+  obtain ⟨S, hSf, hSl, k₀, hk₀, hk⟩ := _root_.GlobalTheory.Mum.finpt_factor R hR (pullback (mulA D.P.A m).left z.left)
     (pullback.snd _ _) (pullback.lift _ _ hxm) (pullback.lift_snd _ _ _)
   refine ⟨S, hSf, hSl, k₀ ≫ pullback.fst _ _, ?_, ?_⟩
   · have h2 : pullback.fst (mulA D.P.A m).left z.left ≫ D.P.A.hom = pullback.snd _ _ := by

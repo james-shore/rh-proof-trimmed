@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
 
 @[expose] public section
 
@@ -65,8 +66,6 @@ theorem phi_conj (φ : H.E →+* ℂ) (x : H.E) : φ (H.conj x) = conj (φ x) :=
 
 theorem d_pos : 0 < H.d := H.hyp.2.1.pos
 
-theorem bE_sq : H.sqd ^ 2 = -(H.d : H.E) := H.sqd_sq
-
 theorem b_mem_K : H.sqd ∈ H.K := mem_adjoin_simple_self ℚ _
 
 def bK : H.K := ⟨H.sqd, b_mem_K H⟩
@@ -84,7 +83,7 @@ theorem finrank_K : Module.finrank ℚ H.K = 2 := by
           Polynomial.eval_C] at hx
         have hd : (0 : ℚ) < H.d := by exact_mod_cast d_pos H
         nlinarith [sq_nonneg x]
-    · simp [bE_sq H]
+    · simp [_root_.Formalism.BasicNotions.Examples₂.bE_sq H]
     · exact Polynomial.monic_X_pow_add_C _ (by norm_num)
   show Module.finrank ℚ ℚ⟮H.sqd⟯ = 2
   rw [IntermediateField.adjoin.finrank hint, hp, Polynomial.natDegree_X_pow_add_C]
@@ -157,7 +156,7 @@ variable {D : Car}
 
 theorem periodExists_of (h2 : KQuad D) (hn : PhiNonReal D) : PeriodExists D :=
   fun cc δ hcc hδ =>
-    exists_periodPairOfIdeal D.host.K (D.host.φ₀.comp (algebraMap D.host.K D.host.E)) cc δ h2 hn hcc hδ
+    _root_.PI.KerLat.PerPairProof.perPair D.host.K (D.host.φ₀.comp (algebraMap D.host.K D.host.E)) cc δ h2 hn hcc hδ
 
 end Exist
 
@@ -170,8 +169,6 @@ theorem periodExists : PeriodExists D := periodExists_of (kQuad D) (phiNonReal D
 end Final
 
 namespace Test
-
-open Formalism.BasicNotions.Examples₂
 
 end Test
 

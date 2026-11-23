@@ -292,7 +292,7 @@ open Formalism.MainNotions.DeltaInvariantLattices in
 set_option maxHeartbeats 800000 in
 theorem main : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW), WachCharacterisation D HW F := by
   intro D HW F l _ K s LL h T hT N₁ hfree hbc hγN₁ hγπ hφ hφinv
-  obtain ⟨a, h1, h2⟩ := GlobalTheory.T.wachFreeLattice_eq_wachLattice_invert_X D HW F l K s LL h T hT N₁ hfree hbc hφ hφinv
+  obtain ⟨a, h1, h2⟩ := _root_.GlobalTheory.NL.InvX.main D HW F l K s LL h T hT N₁ hfree hbc hφ hφinv
   obtain ⟨nb⟩ := GlobalTheory.NL.N_basis D HW F l K s LL h T hT
   obtain ⟨r₁, ⟨b₁⟩⟩ := basis_of_freeA _ T hfree
   haveI : Nontrivial ((HW l).W K s LL h).EE := ((HW l).W K s LL h).EE_inj.nontrivial

@@ -56,14 +56,6 @@ open scoped Classical
 
 namespace GlobalTheory.Shin
 
-theorem stdForm_incl_map_eq {F F' : Type} [Field F] [Field F'] [Algebra F F'] (n : ℕ) (t : F' ≃ₐ[F] F')
-    (γ : GL (Fin n) F) :
-    ((incl F F' n γ : GL (Fin n) F') : Matrix (Fin n) (Fin n) F').map t =
-      ((incl F F' n γ : GL (Fin n) F') : Matrix (Fin n) (Fin n) F') := by
-  ext i j
-  show t (algebraMap F F' ((γ : Matrix (Fin n) (Fin n) F) i j)) = algebraMap F F' ((γ : Matrix (Fin n) (Fin n) F) i j)
-  exact t.commutes _
-
 theorem stdForm_adjoin_map_mem {F F' : Type} [Field F] [Field F'] [Algebra F F'] (n : ℕ) (t : F' ≃ₐ[F] F')
     (γ : GL (Fin n) F) {M : Matrix (Fin n) (Fin n) F'}
     (hM : M ∈ Algebra.adjoin F' {((incl F F' n γ : GL (Fin n) F') : Matrix (Fin n) (Fin n) F')}) :
@@ -75,7 +67,7 @@ theorem stdForm_adjoin_map_mem {F F' : Type} [Field F] [Field F'] [Algebra F F']
   | mem x hx =>
     rw [Set.mem_singleton_iff] at hx
     subst hx
-    rw [hT, stdForm_incl_map_eq]
+    rw [hT, _root_.GlobalTheory.Shin.NormSurj.map_incl]
     exact Algebra.subset_adjoin rfl
   | algebraMap r =>
     have : T (algebraMap F' (Matrix (Fin n) (Fin n) F') r) = algebraMap F' (Matrix (Fin n) (Fin n) F') (t r) := by
@@ -98,10 +90,10 @@ theorem isNorm_exists_twistedConj_adjoin :
         Matrix (Fin n) (Fin n) F') ∈ Algebra.adjoin F' {((incl F F' n γ : GL (Fin n) F') : Matrix (Fin n) (Fin n) F')} ∧
         nrm s (y⁻¹ * δ * galAct F F' n s y) = incl F F' n γ := by
   intro F F' _ _ _ _ s hs n δ γ hN
-  obtain ⟨_, -, h3, h4, h5⟩ := GlobalTheory.T.galoisTwistedNormGL_basic_properties F F' s hs n
+  obtain ⟨_, -, h3, h4, h5⟩ := _root_.GlobalTheory.Shin.NrmBasic.main F F' s hs n
 
   have hgfix : ∀ t : F' ≃ₐ[F] F', galAct F F' n t (incl F F' n γ) = incl F F' n γ := fun t =>
-    Units.ext (stdForm_incl_map_eq n t γ)
+    Units.ext (_root_.GlobalTheory.Shin.NormSurj.map_incl n t γ)
 
   have hC : ∀ z w : GL (Fin n) F',
       (z : Matrix (Fin n) (Fin n) F') ∈ Algebra.adjoin F' {((incl F F' n γ : GL (Fin n) F') : Matrix (Fin n) (Fin n) F')} →
@@ -123,7 +115,7 @@ theorem isNorm_exists_twistedConj_adjoin :
     rw [hn1, hgfix s] at this
     exact this
 
-  obtain ⟨δ₀, hδ₀A, hn0⟩ := GlobalTheory.T.norm_map_surjective_finite_field F F' s hs n γ
+  obtain ⟨δ₀, hδ₀A, hn0⟩ := _root_.GlobalTheory.Shin.NormSurj.nrm_surj_adjoin F F' s hs n γ
   have hδ₀g : Commute δ₀ (incl F F' n γ) := hC δ₀ _ hδ₀A (Commute.refl _)
   have hεg : Commute (δ₀⁻¹ * (c⁻¹ * δ * galAct F F' n s c)) (incl F F' n γ) :=
     (hδ₀g.inv_left).mul_left hcomm1
@@ -143,7 +135,7 @@ theorem isNorm_exists_twistedConj_adjoin :
     subst hg'
     have e := congrArg (fun N => ((s : F' ≃+* F') : F' →+* F').mapMatrix N) (hM _ rfl)
     simp only [map_mul] at e
-    rw [← stdForm_incl_map_eq n s γ]
+    rw [← _root_.GlobalTheory.Shin.NormSurj.map_incl n s γ]
     exact e
   have hεB : ((δ₀⁻¹ * (c⁻¹ * δ * galAct F F' n s c) : GL (Fin n) F') : Matrix (Fin n) (Fin n) F') ∈
       Subalgebra.centralizer F' {((incl F F' n γ : GL (Fin n) F') : Matrix (Fin n) (Fin n) F')} := by
@@ -152,7 +144,7 @@ theorem isNorm_exists_twistedConj_adjoin :
     rw [Set.mem_singleton_iff] at hg'
     subst hg'
     exact ((stdForm_commute_iff _ _).1 hεg).eq.symm
-  obtain ⟨x, hxB, hεx⟩ := GlobalTheory.T.exists_coboundary_of_norm_one_in_subalgebra F F' s hs n _ hBst _ hεB hεn
+  obtain ⟨x, hxB, hεx⟩ := _root_.GlobalTheory.HilbertNinety.hilbert90_matrix_subalgebra_norm_one F F' s hs n _ hBst _ hεB hεn
   have hxg : Commute x (incl F F' n γ) := by
     rw [stdForm_commute_iff]
     exact ((Subalgebra.mem_centralizer_iff F').1 hxB _ rfl).symm

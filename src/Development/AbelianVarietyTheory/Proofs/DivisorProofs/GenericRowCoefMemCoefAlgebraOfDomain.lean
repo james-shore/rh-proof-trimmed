@@ -61,9 +61,6 @@ open MvPolynomial Formalism.GradedWeylDivisibility
 
 namespace GlobalTheory.GenCoef
 
-theorem expr_mul_of_parts : ∀ (O : Type) [CommRing O] (N : ℕ) (ν : Fin N → ℕ) (R : Type) [CommRing R] [Algebra O R]
-    (Y Y' : Matrix (Fin N) (Fin N) R), Expr O N ν R Y → Expr O N ν R Y' → Expr O N ν R (Y * Y') := GlobalTheory.T.rowSubstDualWeylExpressible_matrix_mul_closed
-
 theorem rowSubst_diagonal_of_parts : ∀ (O : Type) [CommRing O] (N : ℕ) (R : Type) [CommRing R] [Algebra O R] (d : Fin N → R) (D : ℕ)
     (f : MvPolynomial (Fin N × Fin N) O), f.totalDegree ≤ D →
     rowSubst O N R (Matrix.diagonal d) f = ∑ w ∈ Fintype.piFinset (fun _ : Fin N => Finset.range (D + 1)),
@@ -73,19 +70,8 @@ theorem rowDiv_mem_of_parts : ∀ (O : Type) [CommRing O] (N : ℕ) (ν : Fin N 
     ∃ p ∈ dwAlg O N ν, ∀ f : dualWeyl O N N ν,
       (p f : MvPolynomial (Fin N × Fin N) O) = rowDiv O a b k (f : MvPolynomial (Fin N × Fin N) O) := GlobalTheory.T.dividedPowerRowOperator_mem_dualWeylEndSubalgebra
 
-theorem rowSubst_transvection_of_parts : ∀ (O : Type) [CommRing O] (N : ℕ) (R : Type) [CommRing R] [Algebra O R] (a b : Fin N) (r : R)
-    (D : ℕ) (f : MvPolynomial (Fin N × Fin N) O), f.totalDegree ≤ D →
-    rowSubst O N R (Matrix.transvection a b r) f =
-      ∑ k ∈ Finset.range (D + 1), r ^ k • MvPolynomial.map (algebraMap O R) (rowDiv O b a k f) := GlobalTheory.T.matrixRowSubstitutionPoly_transvection_eq_sum
-
 theorem totalDegree_le_of_mem_of_parts : ∀ (O : Type) [CommRing O] (N : ℕ) (ν : Fin N → ℕ) (f : MvPolynomial (Fin N × Fin N) O),
     f ∈ dualWeyl O N N ν → f.totalDegree ≤ ∑ a, ν a := GlobalTheory.T.totalDegree_le_of_mem_dualWeylLattice
-
-theorem lower_mem_closure_of_parts : ∀ (R : Type) [CommRing R] (N : ℕ) (c : Matrix (Fin N) (Fin N) R), (∀ a b, a ≤ b → c a b = 0) →
-    1 + c ∈ Submonoid.closure {M | ∃ (a b : Fin N) (r : R), a ≠ b ∧ M = Matrix.transvection a b r} := GlobalTheory.T.one_add_strictLower_mem_closure_transvection'
-
-theorem upper_mem_closure_of_parts : ∀ (R : Type) [CommRing R] (N : ℕ) (c : Matrix (Fin N) (Fin N) R), (∀ a b, b ≤ a → c a b = 0) →
-    1 + c ∈ Submonoid.closure {M | ∃ (a b : Fin N) (r : R), a ≠ b ∧ M = Matrix.transvection a b r} := GlobalTheory.T.one_add_strictUpper_mem_closure_transvection
 
 theorem lduHom_pure_of_parts : ∀ (O : Type) [CommRing O] (N : ℕ) (M : Type) [AddCommGroup M] [Module O M]
     (s : Finset (Fin N × Fin N →₀ ℕ)) (c : (Fin N × Fin N →₀ ℕ) → M),
@@ -122,7 +108,7 @@ theorem expr_diagonal (d : Fin N → R) : Expr O N ν R (Matrix.diagonal d) := b
   classical
   refine expr_of_finset (Fintype.piFinset (fun _ : Fin N => Finset.range (∑ a, ν a + 1))) _ (fun w => ∏ a, d a ^ w a)
     (fun w => GlobalTheory.ExpFrame.rowProj O N ν w) (fun w _ => Algebra.subset_adjoin (Or.inr ⟨w, rfl⟩)) (fun f => ?_)
-  rw [rowSubst_diagonal_of_parts O N R d _ _ (totalDegree_le_of_mem_of_parts O N ν _ f.2)]
+  rw [_root_.GlobalTheory.DiagRowSubst.rowSubst_diagonal_eq_sum_components O N R d _ _ (_root_.GlobalTheory.DualWeylDeg.totalDegree_le_of_mem_dualWeyl O N ν _ f.2)]
   rfl
 
 theorem expr_one : Expr O N ν R 1 := by
@@ -131,9 +117,9 @@ theorem expr_one : Expr O N ν R 1 := by
 
 theorem expr_transvection (a b : Fin N) (hab : a ≠ b) (r : R) : Expr O N ν R (Matrix.transvection a b r) := by
   classical
-  choose p hp hpf using rowDiv_mem_of_parts O N ν b a hab.symm
+  choose p hp hpf using _root_.GlobalTheory.GenCoef.rowDiv_mem_dwAlg O N ν b a hab.symm
   refine expr_of_finset (Finset.range (∑ a, ν a + 1)) _ (fun k => r ^ k) p (fun k _ => hp k) (fun f => ?_)
-  rw [rowSubst_transvection_of_parts O N R a b r _ _ (totalDegree_le_of_mem_of_parts O N ν _ f.2)]
+  rw [_root_.GlobalTheory.RowSubstTransvection.rowSubst_transvection O N R a b r _ _ (_root_.GlobalTheory.DualWeylDeg.totalDegree_le_of_mem_dualWeyl O N ν _ f.2)]
   refine Finset.sum_congr rfl fun k _ => ?_
   rw [hpf k f]
 
@@ -145,7 +131,7 @@ theorem expr_of_mem_closure (Y : Matrix (Fin N) (Fin N) R)
     obtain ⟨a, b, r, hab, rfl⟩ := hx
     exact expr_transvection a b hab r
   | one => exact expr_one
-  | mul x y _ _ hx hy => exact expr_mul_of_parts O N ν R x y hx hy
+  | mul x y _ _ hx hy => exact _root_.GlobalTheory.GenCoef.expr_mul O N ν R x y hx hy
 
 theorem expr_ldu : Expr O N ν (MvPolynomial (Fin N × Fin N) O) (lowGen O N * diagGen O N * upGen O N) := by
   classical
@@ -159,11 +145,11 @@ theorem expr_ldu : Expr O N ν (MvPolynomial (Fin N × Fin N) O) (lowGen O N * d
     by_cases h : a = b
     · subst h; simp [upGen]
     · simp [upGen, h, Matrix.one_apply_ne h]
-  refine expr_mul_of_parts O N ν _ _ _ (expr_mul_of_parts O N ν _ _ _ ?_ (expr_diagonal _)) ?_
+  refine _root_.GlobalTheory.GenCoef.expr_mul O N ν _ _ _ (_root_.GlobalTheory.GenCoef.expr_mul O N ν _ _ _ ?_ (expr_diagonal _)) ?_
   · rw [hL]
-    exact expr_of_mem_closure _ (lower_mem_closure_of_parts _ N _ fun a b hab => by simp [not_lt.mpr hab])
+    exact expr_of_mem_closure _ (_root_.GlobalTheory.one_add_strictLower_mem_closure_transvection _ N _ fun a b hab => by simp [not_lt.mpr hab])
   · rw [hU]
-    exact expr_of_mem_closure _ (upper_mem_closure_of_parts _ N _ fun a b hab => by simp [not_lt.mpr hab])
+    exact expr_of_mem_closure _ (_root_.GlobalTheory.UpperTransvection.upper_mem_closure _ N _ fun a b hab => by simp [not_lt.mpr hab])
 
 end Glue
 
@@ -196,8 +182,8 @@ theorem coef_mem (O : Type) [CommRing O] (N : ℕ) (ν : Fin N → ℕ) (m : Fin
       ∑ m' ∈ s, lduHom O N (monomial m' 1) •
         MvPolynomial.map (algebraMap O (MvPolynomial (Fin N × Fin N) O)) (Cm m' f) := by
     intro f
-    rw [rowSubst_eq_sum_genSub_of_parts]
-    refine Finset.sum_subset (fun m' hm' => hs m' (genSub_coeff_le_of_parts O N D _ (totalDegree_le_of_mem_of_parts O N ν _ f.2) m'
+    rw [_root_.GlobalTheory.GenCoef.RowSubstSum.main]
+    refine Finset.sum_subset (fun m' hm' => hs m' (_root_.GlobalTheory.GenSubDeg.genSub_coeff_le O N D _ (_root_.GlobalTheory.DualWeylDeg.totalDegree_le_of_mem_dualWeyl O N ν _ f.2) m'
       (MvPolynomial.mem_support_iff.1 hm'))) (fun m' _ hm' => ?_) |>.trans (Finset.sum_congr rfl fun m' _ => ?_)
     · simp [Cm, MvPolynomial.notMem_support_iff.1 hm']
     · simp only [Cm, LinearMap.coe_mk, AddHom.coe_mk, lduHom, aeval_monomial, map_one, one_mul]
@@ -219,7 +205,7 @@ theorem coef_mem (O : Type) [CommRing O] (N : ℕ) (ν : Fin N → ℕ) (m : Fin
     simp only [MvPolynomial.coeff_sum, key] at h
     simp only [LinearMap.sum_apply, LinearMap.smul_apply, MvPolynomial.coeff_sum, MvPolynomial.coeff_smul, smul_eq_mul]
     simpa [Φ] using h
-  have hzero := lduHom_pure_of_parts O N _ s (fun m' => Asub.mkQ (Cm m')) (fun k => by
+  have hzero := _root_.GlobalTheory.GenCoef.lduHom_coeff_smul_injective O N _ s (fun m' => Asub.mkQ (Cm m')) (fun k => by
 
     simp only [← map_smul, ← map_sum]
     rw [hcoef k, Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero]

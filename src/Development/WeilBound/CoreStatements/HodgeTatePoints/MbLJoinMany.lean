@@ -97,12 +97,9 @@ theorem join_finitely_many : ∀ (o : Type) [CommRing o] (Ω : Type) [Field Ω] 
       (fun c => ∏ a, w a (c a)) M' (fun _ => rfl) p'
     exact ⟨c a, JoinMany.inChart_of_inChart_prod _ w hc a⟩
   · intro p hp
-    exact PositivityTheory.HtPt.Mb.join_iso o Ω κ x M (∀ a, κa a) (fun c => ∏ a, w a (c a)) M' f hf p
+    exact _root_.PositivityTheory.HtPt.Mb.LJoinIso.JoinIso.isoAt_of_chart o Ω κ x M (∀ a, κa a) (fun c => ∏ a, w a (c a)) M' f hf p
       (JoinMany.inChart_prod_of_forall _ w p hp)
 
 end PositivityTheory.HtPt.Mb.LJoinMany
 
 
-open AlgebraicGeometry CategoryTheory GlobalTheory.CompanionTheory.Ar NumberField in
-theorem PositivityTheory.HtPt.Mb.join_many : ∀ (o : Type) [CommRing o] (Ω : Type) [Field Ω] [Algebra o Ω] (κ : Type) [Finite κ] (x : κ → Ω) (M : PModel o x) (A : Type) [Finite A] (κa : A → Type) [∀ a, Finite (κa a)] (w : ∀ a, κa a → Ω), (∀ a, ∃ l, w a l ≠ 0) → ∃ (κ' : Type) (_ : Finite κ') (y : κ' → Ω) (M' : PModel o y) (f : M'.X ⟶ M.X), Dominates M'.ξ M.ξ f (RingHom.id Ω) ∧ (∀ a (p' : Cpt M'.ξ), ∃ l, InChart M'.ξ (w a) l p') ∧ ∀ p : Cpt M.ξ, (∀ a, ∃ l, InChart M.ξ (w a) l p) → IsoAt M'.ξ f (RingHom.id Ω) p :=
-  @PositivityTheory.HtPt.Mb.LJoinMany.join_finitely_many

@@ -56,7 +56,7 @@ theorem isSplit_conj (D : D7) {P Q : HeightOneSpectrum (𝓞 D.host.E)} (hP : GL
   obtain ⟨a, b, hab, ha, hb⟩ := hP
   have hb' : b = Formalism.L2.PairingIndexBounds.Rec.cO D a := Subtype.ext (hab.trans rfl)
   refine ⟨b, a, ?_, ?_, ?_⟩
-  · rw [hab]; exact (Formalism.L2.PairingIndexBounds.Rec.conj_conj' D (a : D.host.E)).symm
+  · rw [hab]; exact (_root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.CU.conj_conj D (a : D.host.E)).symm
   · rw [hQ, hb', Formalism.L2.PairingIndexBounds.Rec.cO_cO]; exact ha
   · rw [hQ, ← hb']; exact hb
 

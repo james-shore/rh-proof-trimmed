@@ -59,12 +59,6 @@ namespace GlobalTheory.CompanionTheory.EpsFacts
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem geom_sum_eq_zero {R : Type*} [CommRing R] [IsDomain R] {z : R} {m : ℕ} (h : z ^ m = 1) (h1 : z ≠ 1) :
-    ∑ i ∈ Finset.range m, z ^ i = 0 := by
-  have e := mul_geom_sum z m
-  rw [h, sub_self] at e
-  exact (mul_eq_zero.1 e).resolve_left (sub_ne_zero.2 h1)
-
 theorem pow_chain {M : Type*} [Monoid M] {m : ℕ} (e : ℕ → M) (hs : ∀ k, e (k + 1) ^ m = e k) (k j : ℕ) :
     e (k + j) ^ m ^ j = e k := by
   induction j with
@@ -141,7 +135,7 @@ theorem sum_mem_ker (ε : Eps l) :
 
   rw [RingHom.mem_ker, map_sum]
   simp only [map_pow]
-  exact geom_sum_eq_zero ((theta_e_succ ε 0).trans ε.one) ε.prim
+  exact _root_.GlobalTheory.CompanionTheory.RootsLC.geom_eq_zero ((theta_e_succ ε 0).trans ε.one) ε.prim
 
 theorem cris_sum_mem (ε : Eps l) (A : PAlg l) (n : ℕ) :
     A.cris n (∑ i ∈ Finset.range l, ε.qk 1 ^ i) ∈ A.Fil n 1 := by

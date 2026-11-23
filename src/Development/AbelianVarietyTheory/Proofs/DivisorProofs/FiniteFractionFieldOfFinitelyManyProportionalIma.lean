@@ -48,6 +48,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.OneArc
 
 @[expose] public section
 
@@ -74,13 +75,6 @@ theorem GlobalTheory.LevelFinite.finite_of_isAlgebraic : ∀ (o Ω : Type) [Comm
     exact div_mem (hR a ha) (hR c hc)
   rw [htop] at hL
   exact (IntermediateField.topEquiv (F := K0) (E := Ω)).toLinearEquiv.finiteDimensional
-
-private theorem spMap_comp_moduli_spaces {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B)
-    (g : B →+* C) : spMap (g.comp f) = spMap g ≫ spMap f := by
-  first
-  | rfl
-  | simp [spMap, ← Spec.map_comp]
-  | (simp only [spMap]; rw [← Spec.map_comp]; rfl)
 
 private theorem pow_injective_of_transcendental {Ω : Type} [Field Ω] (K0 : Subfield Ω) (z : Ω) (hz : Transcendental K0 z) :
     Function.Injective (fun m : ℕ => z ^ m) := by
@@ -136,7 +130,7 @@ theorem GlobalTheory.LevelFinite.finite_ratio_field : ∀ (o Ω : Type) [CommRin
   refine (hS.biUnion (fun y _ => hfib y)).subset ?_
   rintro _ ⟨m, rfl⟩
   refine Set.mem_biUnion (x := spMap ((τ m : Ω →+* AlgebraicClosure Ω)) ≫ spMap R.val.toRingHom ≫ x) ?_ rfl
-  refine ⟨((τ m : Ω →+* AlgebraicClosure Ω)).comp R.val.toRingHom, by rw [spMap_comp_moduli_spaces, Category.assoc], ?_⟩
+  refine ⟨((τ m : Ω →+* AlgebraicClosure Ω)).comp R.val.toRingHom, by rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, Category.assoc], ?_⟩
   by_cases h : ∃ i, (v i : Ω) ≠ 0
   · obtain ⟨i0, hi0⟩ := h
     have hc0 : algebraMap Ω (AlgebraicClosure Ω) (v i0) ≠ 0 := by

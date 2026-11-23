@@ -59,8 +59,8 @@ theorem GlobalTheory.Obs.extCoef_two_equiv : ∀ (R₀ R₁ : Type) [CommRing R�
   have hres : ∀ {X₀ X₁ : Scheme.{0}} {s₀ : X₀ ⟶ Sp R₀} {s₁ : X₁ ⟶ Sp R₁} {pr : X₁ ⟶ X₀}
       (hp : IsPullback pr s₁ s₀ (spMap (algebraMap R₀ R₁))),
       Function.Bijective (CoefMap.restrict (OAff s₁) (preF hp)).pull2 := fun {X₀ X₁ s₀ s₁ pr} hp ↦
-    GlobalTheory.T.restrict_structureSheaf_affineBasis_pull2_bijective R₁ X₁ s₁ _ (preF hp) (preF_cover hp (GlobalTheory.T.exists_opens_preimage_eq_of_sqZero_augmentation R₀ R₁ q hq X₀ X₁ s₀ s₁ pr hp))
-      (preF_dir hp (GlobalTheory.T.exists_opens_preimage_eq_of_sqZero_augmentation R₀ R₁ q hq X₀ X₁ s₀ s₁ pr hp))
+    _root_.GlobalTheory.AbCoh.restrict_pull2_bijective_of_basis R₁ X₁ s₁ _ (preF hp) (preF_cover hp (_root_.GlobalTheory.LiftSys.exists_opens_preimage_eq_of_sqZero_aug R₀ R₁ q hq X₀ X₁ s₀ s₁ pr hp))
+      (preF_dir hp (_root_.GlobalTheory.LiftSys.exists_opens_preimage_eq_of_sqZero_aug R₀ R₁ q hq X₀ X₁ s₀ s₁ pr hp))
   have hfwd : ∀ {X₀ X₁ : Scheme.{0}} {s₀ : X₀ ⟶ Sp R₀} {s₁ : X₁ ⟶ Sp R₁} {pr : X₁ ⟶ X₀}
       (hp : IsPullback pr s₁ s₀ (spMap (algebraMap R₀ R₁))), Function.Bijective (fwd hp).pull2 :=
     fun {X₀ X₁ s₀ s₁ pr} hp ↦ ofNat_pull2_bijective _ _ _ (fun U ↦ GlobalTheory.T.baseChangeSectionsComparisonHom_bijective R₀ R₁ X₀ X₁ s₀ s₁ pr hp U.unop)
@@ -145,8 +145,8 @@ theorem GlobalTheory.Obs.extCoef_two_equiv : ∀ (R₀ R₁ : Type) [CommRing R�
       rw [← CoefMap.pullCohomologyTwo_comp]
       exact CoefMap.pullCohomologyTwo_eq_of_natTrans _ _ { app := fun p ↦ 𝟙 _ } (fun p b ↦ mp_id _ _ b) z
     rw [key, key] at hxy
-    have hW' := GlobalTheory.T.exists_opens_preimage_eq_of_sqZero_augmentation R₀ R₁ q hq Y₀ Y₁ t₀ t₁ pr' hp'
-    rw [(GlobalTheory.T.restrict_structureSheaf_affineBasis_pull2_bijective R₁ Y₁ t₁ _ (preFP hp hp' hf ⋙ pairFst f₁) (preFP_cover hp hp' hf hW')
+    have hW' := _root_.GlobalTheory.LiftSys.exists_opens_preimage_eq_of_sqZero_aug R₀ R₁ q hq Y₀ Y₁ t₀ t₁ pr' hp'
+    rw [(_root_.GlobalTheory.AbCoh.restrict_pull2_bijective_of_basis R₁ Y₁ t₁ _ (preFP hp hp' hf ⋙ pairFst f₁) (preFP_cover hp hp' hf hW')
       (preFP_directed hp hp' hf hW')).1 hxy]
   apply hinj
   rw [A, B]

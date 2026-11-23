@@ -59,6 +59,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.LocalToGlobal.IndefiniteForms.IndefUse
 
 @[expose] public section
 
@@ -445,14 +446,6 @@ theorem card_pos (U : Subgroup P) : (0 : ℝ) < (Nat.card U : ℝ) := by
   have h : 0 < Nat.card U := Nat.card_pos
   exact_mod_cast h
 
-theorem matLat_one' {d : ℕ} (L : Submodule (𝓞 K) (Fin d → K)) :
-    matLat (1 : Matrix (Fin d) (Fin d) K) L = L := by
-  unfold matLat
-  rw [Matrix.mulVecLin_one]
-  first
-  | exact Submodule.map_id L
-  | (ext x; simp)
-
 theorem local_bound (O : OnObj S P c) (v : HeightOneSpectrum (𝓞 K)) (j : Bs.J) (t : Bs.Tup)
     (hMk : LeafMackey O) (hSup : LeafSup O) (hProj : LeafProj O)
     (hC : Function.Injective (O.φ j) ∧ LinearMap.range (O.φ j) = O.Zg j ∧
@@ -836,14 +829,14 @@ theorem on_core (N : IndefNum Bs) (O : OnObj S P c) (CE : ℝ) (hRk : RankRows S
     O.e0 (fun v j => O.r v j / (ramw v : ℝ)) O.ε0 N.F0 O.errl (fun w j => (ramw w : ℝ) * N.J0 (S.μ w) w j)
     O.vU0 O.gq (fun j => (O.nZ j : ℝ)) EA O.Rb (fun _ => O.EJ) (O.U.index : ℝ)
     (∑ w ∈ S.Tw, lw w * ((ramw w : ℝ) * (2 / (plc w : ℝ) ^ 2))) hδ
-    (by intro w hw j; simp only [matLat_one']; exact hloc1 w hw j)
-    (by intro w hw j; simp only [matLat_one']; exact hloc2 w hw j)
+    (by intro w hw j; simp only [_root_.Formalism.L2.Indef.matLat_one]; exact hloc1 w hw j)
+    (by intro w hw j; simp only [_root_.Formalism.L2.Indef.matLat_one]; exact hloc2 w hw j)
     hsh hv hdep h1.2 hEA hRb hEJ le_rfl
   obtain ⟨c1, c2, -⟩ := X
   refine ⟨?_, ?_, ?_⟩
   · intro w hw
     have h := c1 w hw
-    simp only [matLat_one'] at h
+    simp only [_root_.Formalism.L2.Indef.matLat_one] at h
     rw [(ramified_basic_bound K w).2.2.2.2] at h
     simp only [IndefData.Iw]
     exact h
@@ -1095,13 +1088,6 @@ theorem lw_pos (w : HeightOneSpectrum (𝓞 K)) : 0 < lw w := by
   apply div_pos (Real.log_pos h2)
   have h4 : 0 < finrank ℚ K := Module.finrank_pos
   exact_mod_cast h4
-
-section Level
-
-variable (h5 : ∀ w ∈ Tw0, plc w = 5)
-include h5
-
-end Level
 
 end Examples₂
 

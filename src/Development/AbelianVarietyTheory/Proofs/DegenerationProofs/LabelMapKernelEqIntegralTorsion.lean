@@ -252,7 +252,7 @@ theorem exists_pair_of_integral (hL : Laws) (X : 𝟙_ (Over (Sp V)) ⟶ G) (x :
   have hX : X ^ k = 1 := Over.OverMorphism.ext
     (ext_of_separated (B := G) base_injective (toUnit_left (V := V) (F := F)) _ _ (congrArg (fun q => q.left) e₁))
   obtain ⟨gp, hgp, -⟩ := existsUnique_gtPt_of_point V I hR hI D A G U.toUnifPre X
-  obtain ⟨p, hp, hpg⟩ := (T.torsionPoint_qk_alt hL.globalFns V I hR hI D A G U.toUnifPre k X gp hX hgp).2 F
+  obtain ⟨p, hp, hpg⟩ := (_root_.GlobalTheory.TorsionQk.torsionPoint_qk hL.globalFns V I hR hI D A G U.toUnifPre k X gp hX hgp).2 F
   exact ⟨p, hp, qkToAkU_of_integral_torsion hL V I hR hI D A G U k hk X gp hX hgp F p x hp hpg h⟩
 
 
@@ -271,7 +271,7 @@ theorem exists_integral_of_pair [ValuationRing V] [CharZero V] [IsAlgClosed F] (
     intro σ
     have hσ : (σ : F →+* F).comp (algebraMap (FractionRing V) F) = algebraMap (FractionRing V) F :=
       RingHom.ext σ.commutes
-    have e := (T.qkToAkU_iff_galois_equivariant ⟨hL, hL₂, l₃, l₄, l₅⟩ V I hR D A G hG U F F σ.toAlgHom k hk p (qkExt hB _ hσ p) (f p) (f p)
+    have e := (_root_.GlobalTheory.TorsionExt.qkToAkU_iff_of_qkExt ⟨hL, hL₂, l₃, l₄, l₅⟩ V I hR D A G hG U F F σ.toAlgHom k hk p (qkExt hB _ hσ p) (f p) (f p)
       ((qkExt_iff hB _ hσ _ _).2 rfl) (hx.trans ((congrArg (· ≫ xK) (spMap_jFK σ).symm).trans
         ((Category.assoc _ _ _).trans (congrArg (spMap (σ : F →+* F) ≫ ·) hx.symm))))).1 ((h₁ _ _).2 rfl)
     obtain ⟨z, hz, hg⟩ := (equiv_iff hB _ _).1 ((h₂ _ _).1 ((h₁ _ _).1 e))

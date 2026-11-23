@@ -48,6 +48,6 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PositivityTheory.KB
 
-theorem sInv : SInv := sInv_of sChain sEv sPsi sStokes_of
+theorem sInv : SInv := sInv_of _root_.PositivityTheory.KB.sChain_of _root_.PositivityTheory.KB.sEv_of sPsi sStokes_of
 
 end PositivityTheory.KB

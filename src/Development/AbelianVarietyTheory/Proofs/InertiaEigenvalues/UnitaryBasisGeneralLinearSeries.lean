@@ -175,13 +175,13 @@ theorem lowestKType_irreducible : ∀ (D : D7) (n m : ℕ) (w : GlobalTheory.Exp
       exact (GlobalTheory.FockSubstComm.fockSubst_fockT D m n w.p _ τ _ _).symm
     · exact GlobalTheory.CompactHarm.fockT_compact_harm D n m w.p (ψ x) (h2 x) τ a b hab
     · exact (MvPolynomial.mem_restrictTotalDegree _ _ _).2
-        (GlobalTheory.T.fockTargetMatrixUnit_compact_totalDegree_le D n m w τ a b hab d _ ((MvPolynomial.mem_restrictTotalDegree _ _ _).1 (h3 x)))
+        (_root_.GlobalTheory.LowestKType.kop_totalDegree_le D n m w τ a b hab d _ ((MvPolynomial.mem_restrictTotalDegree _ _ _).1 (h3 x)))
   have hsU : s ∈ U := ⟨hseq, hSharm s hsS, hdeg s hds⟩
   have hφU : φ ∈ U := ⟨hφeq, hφharm, hdeg φ hdφ⟩
   have hKHw : ∀ x : W →ₗ[ℂ] PolF D m n, GlobalTheory.LowestKType.IsKHwMap w x → GlobalTheory.LowestKType.IsKHw w (x w0) :=
     fun x hxh => ⟨fun τ a b hab hlt => by simpa using LinearMap.congr_fun (hxh.1 τ a b hab hlt) w0,
       fun τ a => (hxh.2 τ a).imp fun c hc => by simpa using LinearMap.congr_fun hc w0⟩
-  have key := GlobalTheory.T.isIrreducible_of_anisotropic_form_highestWeight (W →ₗ[ℂ] PolF D m n) U hUfd J E st BM (GlobalTheory.LowestKType.IsKHwMap w) hUst
+  have key := _root_.GlobalTheory.DownLift.abstract_irreducible_of_highestWeight (W →ₗ[ℂ] PolF D m n) U hUfd J E st BM (GlobalTheory.LowestKType.IsKHwMap w) hUst
     (fun x _ => hBMani x) hBMadj (fun j => rfl)
     (fun T hTU hT0 hTst => by
       haveI : FiniteDimensional ℂ T := Submodule.finiteDimensional_of_le hTU

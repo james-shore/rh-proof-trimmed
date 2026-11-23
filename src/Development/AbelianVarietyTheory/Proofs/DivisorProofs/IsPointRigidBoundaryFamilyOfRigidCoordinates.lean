@@ -67,7 +67,7 @@ theorem pointRigid_of_hasRigidCoords : ∀ {E : Type} [Field E] [NumberField E] 
     intro a b
     have hτ' := GlobalTheory.T.isUnitTau_scaledGenerator_torusMonomial Xo c φ R C N s ε τ₀ hs hε hτ u hu' a b
     obtain ⟨τ₁, hτ₁, hv⟩ := hrel a b _ hτ'
-    obtain ⟨x, hx⟩ := GlobalTheory.T.periodGenerators_agree_over_algClosedSubfield R C.P.D.toPre τ₀ K ev k₀ hk W₀ ιb hFB hιb B₀ M₀ c₀ B' π₁ π₀ w c' hB hM hp₁ hp₀ hw hc
+    obtain ⟨x, hx⟩ := _root_.GlobalTheory.UCanon.BaseDescent.main R C.P.D.toPre τ₀ K ev k₀ hk W₀ ιb hFB hιb B₀ M₀ c₀ B' π₁ π₀ w c' hB hM hp₁ hp₀ hw hc
       a b τ₁ hτ₁
     let z : Sp K := IsLocalRing.closedPoint K
     choose J hJ using fun χ : Sp K ⟶ C.P.D.toPre.P.A.left => exists_chart C.P.D.toPre.P.isLB (χ z)

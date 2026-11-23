@@ -68,9 +68,9 @@ theorem phi_eq_of_convex : ∀ (X : Type) [NormedAddCommGroup X] [NormedSpace �
       GlobalTheory.CompanionTheory.TubeFourier.phi G (c, a) t = GlobalTheory.CompanionTheory.TubeFourier.phi G (c, b) t := by
     intro a b c h
     rcases le_total a b with hab | hba
-    · exact GlobalTheory.T.tube_transform_vertical_invariance X Ω G hG a b c hab
+    · exact _root_.GlobalTheory.CompanionTheory.TubeFourier.phi_shift_snd X Ω G hG a b c hab
         (fun s hs => h s (Set.Icc_subset_uIcc hs)) t
-    · exact (GlobalTheory.T.tube_transform_vertical_invariance X Ω G hG b a c hba
+    · exact (_root_.GlobalTheory.CompanionTheory.TubeFourier.phi_shift_snd X Ω G hG b a c hba
         (fun s hs => h s (Set.Icc_subset_uIcc' hs)) t).symm
   have hf : IsLocallyConstant (fun p : Ω => GlobalTheory.CompanionTheory.TubeFourier.phi G (p : ℝ × ℝ) t) := by
     rw [IsLocallyConstant.iff_eventually_eq]

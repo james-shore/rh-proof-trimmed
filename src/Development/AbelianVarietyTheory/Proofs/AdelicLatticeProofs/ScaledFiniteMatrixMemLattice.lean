@@ -54,11 +54,6 @@ open GlobalTheory.FockCompare GlobalTheory.VacUnique
 
 namespace GlobalTheory.VacUnique.Den
 
-theorem exists_nsmul_mem_lattice {E : Type} [Field E] [NumberField E] {n : ℕ}
-    (Λ : Submodule (𝓞 E) (Fin n → E)) (h : Submodule.IsFullLattice E Λ) (v : Fin n → E) :
-    ∃ N : ℕ, 0 < N ∧ N • v ∈ Λ := by
-  exact _root_.GlobalTheory.NatMulIntegralNsmul.exists_nsmul_mem Λ h v
-
 theorem AA_ne_zero (D : D7) : D.host.AA ≠ 0 := by
   refine mul_ne_zero ?_ (inv_ne_zero ?_)
   · rw [FractionalIdeal.coeIdeal_ne_zero]
@@ -87,8 +82,8 @@ theorem exists_nsmul_finRat_mem : ∀ (D : D7) (S T : HSp D) (ΛS : Submodule (�
     · rw [mul_nsmul']; exact nsmul_mem hy N
   · exact ⟨1, one_pos, by rw [AddMonoidHom.map_zero, nsmul_zero]; exact zero_mem _⟩
   · rintro ⟨i, j⟩ -
-    obtain ⟨N, hN, ht⟩ := exists_nsmul_mem_lattice ΛT hT (Pi.single i (γ i j / a))
-    obtain ⟨M, hM, hs⟩ := exists_nsmul_mem_lattice ΛS hS (fun k => star (S.gram⁻¹ j k))
+    obtain ⟨N, hN, ht⟩ := _root_.GlobalTheory.NatMulIntegralNsmul.exists_nsmul_mem ΛT hT (Pi.single i (γ i j / a))
+    obtain ⟨M, hM, hs⟩ := _root_.GlobalTheory.NatMulIntegralNsmul.exists_nsmul_mem ΛS hS (fun k => star (S.gram⁻¹ j k))
     refine ⟨N * M, mul_pos hN hM, ?_⟩
     refine AddSubgroup.subset_closure ⟨1, fun w => by rw [map_one]; exact one_mem _, fun v hv => absurd trivial hv,
       a, ha, _, hs, _, ht, ?_⟩

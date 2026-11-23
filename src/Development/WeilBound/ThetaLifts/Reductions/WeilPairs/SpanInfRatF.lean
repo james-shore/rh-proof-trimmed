@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.WeilBound.ThetaLifts.Reductions.WeilPairs.SumFourEqTrace
 
 @[expose] public section
 
@@ -184,11 +185,6 @@ theorem piWF_actOF (C : Ctx σ B JS JT ξ₀ θ ι) (g : GAF σ JS) (h : GAF σ 
   rw [GlobalTheory.RealWeilF.actOF_add, piWF_add, piWF_of_fin (actOF_fin g h (finIdem_smul_fin x)), zero_add,
     GlobalTheory.T.adelicHomAction_realCoordinates_eq F E σ B C.good nS nT JS JT C.hS C.hT ξ₀ C.h0 C.hξ θ C.inf ι C.chart g h, piWF_iotaVF C.chart]
 
-theorem hOF_rat (x y : Matrix (Fin nT) (Fin nS) E) :
-    hOF σ JS JT (ratWF (F := F) x) (ratWF (F := F) y) = incAF F E (hRatF σ JS JT x y) := by
-  set_option synthInstance.maxHeartbeats 100000 in
-    simp only [hOF, hRatF, ratWF, Matrix.map_apply, cAF_inc, map_sum, map_mul]
-
 theorem trace_inc (e : E) :
     Algebra.trace (AF F) (AEF F E) (incAF F E e) = algebraMap F (AF F) (Algebra.trace F E e) := by
   haveI : FiniteDimensional F E := Module.Finite.of_restrictScalars_finite ℚ F E
@@ -198,7 +194,7 @@ theorem trace_inc (e : E) :
 theorem symplOHF_rat (x y : Matrix (Fin nT) (Fin nS) E) :
     symplOHF σ JS JT ξ₀ (ratWF (F := F) x) (ratWF (F := F) y) =
       algebraMap F (AF F) (1 / 2 * Algebra.trace F E (ξ₀ * hRatF σ JS JT x y)) := by
-  rw [symplOHF, symplOF, hOF_rat, ← map_mul, trace_inc, ← map_mul]
+  rw [symplOHF, symplOF, _root_.PositivityTheory.ThKW.LatC.hOF_rat, ← map_mul, trace_inc, ← map_mul]
 
 theorem psi_rat (C : Ctx σ B JS JT ξ₀ θ ι) (x y : Matrix (Fin nT) (Fin nS) E) :
     B.ψ (symplOHF σ JS JT ξ₀ (ratWF x) (ratWF y)) = 1 := by
@@ -231,46 +227,10 @@ theorem hOF_trace (x y : WOF F E nS nT) :
   simp only [hOF, Matrix.trace, Matrix.diag, Matrix.mul_apply, Matrix.transpose_apply, Matrix.map_apply, Finset.sum_mul]
   exact Finset.sum_congr rfl fun a _ => sum3 _
 
-theorem hOF_actOF (hS : IsHermND σ JS) (g : GAF σ JS) (h : GAF σ JT) (x y : WOF F E nS nT) :
-    hOF σ JS JT (actOF σ JS JT g h x) (actOF σ JS JT g h y) = hOF σ JS JT x y := by
-  have hu : IsUnit JS.det := isUnit_iff_ne_zero.mpr hS.2
-  have hg : (((mtF σ JS g⁻¹).map (cAF σ))ᵀ * JS.map (incAF F E)) * mtF σ JS g⁻¹ = JS.map (incAF F E) := (g⁻¹).2
-  have hh : (((mtF σ JT h).map (cAF σ))ᵀ * JT.map (incAF F E)) * mtF σ JT h = JT.map (incAF F E) := h.2
-  rw [hOF_trace, hOF_trace]
-  unfold actOF
-  set G := mtF σ JS g⁻¹
-  set H := mtF σ JT h
-  set Si := JS⁻¹.map (incAF F E)
-  set Sm := JS.map (incAF F E)
-  set Tm := JT.map (incAF F E)
-  have hi1 : Si * Sm = 1 := by
-    rw [← Matrix.map_mul, Matrix.nonsing_inv_mul _ hu, Matrix.map_one _ (map_zero _) (map_one _)]
-  have hi2 : Sm * Si = 1 := by
-    rw [← Matrix.map_mul, Matrix.mul_nonsing_inv _ hu, Matrix.map_one _ (map_zero _) (map_one _)]
-  have hK' : (Si * (G.map (cAF σ))ᵀ * Sm) * G = 1 := by
-    have e : Si * (G.map (cAF σ))ᵀ * Sm * G = Si * ((G.map (cAF σ))ᵀ * Sm * G) := by simp only [Matrix.mul_assoc]
-    rw [e, hg, hi1]
-  have hK : G * (Si * (G.map (cAF σ))ᵀ * Sm) = 1 := by
-    first | exact mul_eq_one_comm.1 hK' | exact Matrix.mul_eq_one_comm.1 hK' | exact Matrix.mul_eq_one_comm_of_equiv (Equiv.refl _) hK'
-  have hGJ : G * Si * (G.map (cAF σ))ᵀ = Si := by
-    calc G * Si * (G.map (cAF σ))ᵀ = G * (Si * (G.map (cAF σ))ᵀ * Sm) * Si := by
-          simp only [Matrix.mul_assoc, hi2, Matrix.mul_one]
-      _ = Si := by rw [hK, Matrix.one_mul]
-  rw [Matrix.map_mul, Matrix.map_mul, Matrix.transpose_mul, Matrix.transpose_mul]
-  have e1 : Si * ((G.map (cAF σ))ᵀ * ((y.map (cAF σ))ᵀ * (H.map (cAF σ))ᵀ)) * Tm * (H * x * G) =
-      (Si * (G.map (cAF σ))ᵀ * (y.map (cAF σ))ᵀ * ((H.map (cAF σ))ᵀ * Tm * H) * x) * G := by
-    simp only [Matrix.mul_assoc]
-  rw [e1, hh, Matrix.trace_mul_comm]
-  have e2 : G * (Si * (G.map (cAF σ))ᵀ * (y.map (cAF σ))ᵀ * Tm * x) =
-      (G * Si * (G.map (cAF σ))ᵀ) * ((y.map (cAF σ))ᵀ * Tm * x) := by
-    simp only [Matrix.mul_assoc]
-  rw [e2, hGJ]
-  simp only [Matrix.mul_assoc]
-
 theorem symplOF_actOF (C : Ctx σ B JS JT ξ₀ θ ι) (g : GAF σ JS) (h : GAF σ JT) (x y : WOF F E nS nT) :
     symplOF σ JS JT ξ₀ (actOF σ JS JT g h x) (actOF σ JS JT g h y) = symplOF σ JS JT ξ₀ x y := by
   unfold symplOF
-  rw [hOF_actOF C.hS]
+  rw [_root_.PositivityTheory.ThKW.LatA.hOF_actOF C.hS]
 
 theorem symplOF_eq_add (x y : WOF F E nS nT) :
     symplOF σ JS JT ξ₀ x y = symplOHF σ JS JT ξ₀ x y + symplOHF σ JS JT ξ₀ x y := by

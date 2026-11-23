@@ -273,7 +273,7 @@ theorem GlobalTheory.GSep.Spz.latTo_of_specializes : ∀ (I : Type) (X₁ : Glob
     𝔫₂.U ξ₂ β₂ hβ₂ ρ hρ
   have eqv := spread₂_endU_comm Y.Z FinalForm.G FinalForm.semi V₁ b₁ 𝔫₁.G 𝔫₁.semi 𝔫₁.D 𝔫₁.A 𝔫₁.U ξ₁ β₁ hβ₁ V₂ b₂ 𝔫₂.G 𝔫₂.semi 𝔫₂.D 𝔫₂.A
     𝔫₂.U ξ₂ β₂ hβ₂ ρ hρ
-  have tor := GlobalTheory.T.toricTorsionSection_of_spread_through_latticeMap Y.Z FinalForm.G FinalForm.semi V₁ b₁ 𝔫₁.G 𝔫₁.semi 𝔫₁.D 𝔫₁.A 𝔫₁.U ξ₁ β₁ hβ₁ V₂ b₂ 𝔫₂.G 𝔫₂.semi 𝔫₂.D 𝔫₂.A
+  have tor := _root_.GlobalTheory.Poinc.Sep.Spz.torAt_of_spread₂ Y.Z FinalForm.G FinalForm.semi V₁ b₁ 𝔫₁.G 𝔫₁.semi 𝔫₁.D 𝔫₁.A 𝔫₁.U ξ₁ β₁ hβ₁ V₂ b₂ 𝔫₂.G 𝔫₂.semi 𝔫₂.D 𝔫₂.A
     𝔫₂.U ξ₂ β₂ hβ₂ ρ hρ X₁.o₁ Y.s o₁ o₂ ho₁ ho₂
   obtain ⟨tot₁, sur₁, cong₁, -⟩ := GlobalTheory.T.thetaLabels_surjective_hom_lattice_mod_level I X₁ z₁ act V₁ ev₁ X₀ t₁ δ₁ 𝔫₁
   obtain ⟨tot₂, sur₂, cong₂, -⟩ := GlobalTheory.T.thetaLabels_surjective_hom_lattice_mod_level I X₁ z₁ act V₂ ev₂ X t₂ δ₂ 𝔫₂
@@ -302,7 +302,7 @@ theorem GlobalTheory.GSep.Spz.latTo_of_specializes : ∀ (I : Type) (X₁ : Glob
       (X₁.S.r * X₁.S.N) (algebraMap (FractionRing V₁) _ (algebraMap V₁ _ (o₁ (X₁.S.ζ ^ (X₁.S.r * X₁.S.N))))) (by omega)
       (by rw [← map_pow, ← map_pow, ← map_pow, hζ, map_one, map_one, map_one]) c
     obtain ⟨τ', q, hτ', hq, hq', hQ⟩ := id hx₁
-    obtain ⟨τ, hτ⟩ := GlobalTheory.T.geometricTorsionPoint_member_has_label I X₁ z₁ act V₁ ev₁ X₀ t₁ δ₁ 𝔫₁ x₁ (GlobalTheory.GSep.Spz.pow_eq_one_of_qkToAkU 𝔫₁ hQ)
+    obtain ⟨τ, hτ⟩ := _root_.GlobalTheory.GSep.IntTerm.torsion_has_label I X₁ z₁ act V₁ ev₁ X₀ t₁ δ₁ 𝔫₁ x₁ (GlobalTheory.GSep.Spz.pow_eq_one_of_qkToAkU 𝔫₁ hQ)
     have hH : τ ∈ X₁.S.HH X₁.M z₁ := (int₁ τ).2 ⟨q, x₁, hq.trans (map_zero _).symm, hQ, hτ⟩
     obtain ⟨Wo, h, hW, hs⟩ := FinalForm.sec _ τ (hHH hH)
     have lift : ∀ {V : Type} [CommRing V] [IsLocalRing V] (ξ : Sp V ⟶ Y.Z), ξ (closedPoint V) ∈ Wo →

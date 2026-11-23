@@ -152,7 +152,7 @@ theorem flBF_rat {Ψ : WO B.V J.W → ℂ} (hΨ : IsThetaFunO ψ B.V J.W Ψ) {γ
   obtain ⟨n, hn, h', rfl⟩ := (GlobalTheory.MixPer.Decomp.mem_jacGrp_iff J.d).1 hγ.2
   obtain ⟨hnQ, hh'⟩ := ((GlobalTheory.T.unfolding_base_point_fourierJacobi_group D J.W J.W₀ ρ J.d).2.2.2.2.2 n hn h').1 hγ.1
   have hψ := s.weil.std.1
-  have hΞ := flBF_theta s hΨ
+  have hΞ := _root_.GlobalTheory.BesMean.theta_flBF s hΨ
   have hy : yZero B.V₀ ρ (vecB B.o B.ζ) ∈ ratMx D B.V₀.rank ρ := neg_mem (GlobalTheory.UnfKer.zEll_rat _ _ _)
   rw [← map_one (embA B.d B.o), GlobalTheory.T.besselToJacobiFlatMap_equivariant D ψ ρ B J s Ψ hΨ 1 n hn h', psiFlag_eq,
     GlobalTheory.CharLaws.psiBes_rat ψ J.d hψ.2.2.1 1 0 hnQ,

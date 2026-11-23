@@ -70,7 +70,7 @@ theorem eq_zero_of_pow_eq_one {A : Type} [CommRing A] [Nontrivial A] (ζ : Prim 
     rw [← ZMod.val_eq_zero]
     unfold Nat.ModEq at hm
     rwa [Nat.mod_eq_of_lt (ZMod.val_lt C), Nat.zero_mod] at hm
-  have hu := (GlobalTheory.T.primitiveRoot_pow_unit_sub_prod_properties q A).2.2.1 ζ C.val 0 hne
+  have hu := (_root_.GlobalTheory.EtC.PrimBasic.prim_basic q A).2.2.1 ζ C.val 0 hne
   rw [h, pow_zero, sub_self] at hu
   exact not_isUnit_zero hu
 
@@ -120,7 +120,7 @@ theorem local_zero (V : Scheme.{0}) [IsAffine V] (m : (twF q 1).obj Γ(V, ⊤))
     obtain ⟨a, ha⟩ := h ξ
     refine ⟨a, ?_⟩
     rw [comp_appTop_apply', comp_appTop_apply', ha, map_pow]
-  obtain ⟨W, k, hWa, hk, ⟨w, hw⟩, hP⟩ := ((GlobalTheory.T.etaleLocally_iff_affine_etale_point_cover V _ hst).1 hL) v
+  obtain ⟨W, k, hWa, hk, ⟨w, hw⟩, hP⟩ := ((_root_.GlobalTheory.EtC.loc_iff_etale_affine_points V _ hst).1 hL) v
   refine ⟨W, k, hWa, hk, ⟨w, hw⟩, ?_⟩
   haveI : Nonempty (⊤ : W.Opens) := ⟨⟨w, trivial⟩⟩
   haveI : Nontrivial Γ(W, ⊤) := Scheme.component_nontrivial W ⊤
@@ -169,9 +169,9 @@ theorem etaS_injective : ∀ (q : ℕ) [NeZero q] (U : Scheme.{0}), IsUnit (q : 
     rw [res_comp, h]
     exact map_zero _
   have hloc : Loc U fun W g => Sec.res g x = 0 := by
-    rw [GlobalTheory.T.etaleLocally_iff_affine_etale_point_cover U _ hst]
+    rw [_root_.GlobalTheory.EtC.loc_iff_etale_affine_points U _ hst]
     intro u
-    obtain ⟨V, j, v, m, hVa, hj, hjv, hm⟩ := (GlobalTheory.T.etaleSheafOfRingFunctor_sections_locally_bijective (ZMod q) (twF q 1) U).1 x u
+    obtain ⟨V, j, v, m, hVa, hj, hjv, hm⟩ := (_root_.GlobalTheory.ofRings_loc (ZMod q) (twF q 1) U).1 x u
     have hem : ((eta q).app Γ(V, ⊤)).hom m = 0 := by
       have hm' : (ofRings.sec (twF q 1) V m : Sec (tw q 1) V) = Sec.res (F := tw q 1) j x := hm
       rw [← etaS_sec, hm', etaS_res]
@@ -183,7 +183,7 @@ theorem etaS_injective : ∀ (q : ℕ) [NeZero q] (U : Scheme.{0}), IsUnit (q : 
     · rw [Scheme.Hom.comp_apply, hw, hjv]
     · have hm' : Sec.res (F := tw q 1) j x = (ofRings.sec (twF q 1) V m : Sec (tw q 1) V) := hm.symm
       rw [res_comp, hm']
-      refine ((GlobalTheory.T.etaleSheafOfRingFunctor_sections_locally_bijective (ZMod q) (twF q 1) V).2.2 W k m).trans ?_
+      refine ((_root_.GlobalTheory.ofRings_loc (ZMod q) (twF q 1) V).2.2 W k m).trans ?_
       rw [hmW]
       exact map_zero _
   obtain ⟨S, hS, hSP⟩ := hloc

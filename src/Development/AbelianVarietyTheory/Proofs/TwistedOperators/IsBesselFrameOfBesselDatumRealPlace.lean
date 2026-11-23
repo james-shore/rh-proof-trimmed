@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.AdelicUnitaryRealPointsStructureRealPlaces
 
 @[expose] public section
 
@@ -107,7 +108,7 @@ theorem isFrame_of_besDat : ∀ (D : D7) (A B : HSp D) (ι : A.V →ₗ[D.host.E
     exact isUnit_iff_ne_zero.2 ((map_ne_zero _).2 (Formalism.L2.Theta.gram_det_ne V))
   obtain ⟨L, hL⟩ := GlobalTheory.BesselChar.exists_leftInv d.e d.e_iso.1
   refine
-    { herm := GlobalTheory.SepPer.gramAt_conjTranspose B τ
+    { herm := _root_.GlobalTheory.SmoothForms.RealPts.gramAt_herm B τ
       unit := hunit B
       unit₀ := hunit A
       codim := d.codim

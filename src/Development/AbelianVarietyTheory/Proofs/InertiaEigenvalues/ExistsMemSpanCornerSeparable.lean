@@ -76,7 +76,7 @@ theorem exists_mem_span_corner_separable {K Γ : Type} [Field K] [Infinite K] [G
       exact (Vs j).smul_mem c (hx v hv)
   obtain ⟨m, hm, hsep⟩ := GlobalTheory.T.exists_corner_separable_charpoly_of_isInternal ι Vs a b hint hba (fun j => hstab j _ hab)
   refine ⟨m, ?_, hsep⟩
-  have hlin := GlobalTheory.T.span_representation_density_of_isInternal_constituents (matRep σ) ι Vs hs hint hspan hdist (Matrix.toLin' m)
+  have hlin := _root_.GlobalTheory.BlockDensity.density (matRep σ) ι Vs hs hint hspan hdist (Matrix.toLin' m)
     (fun j v hv => by simpa [Matrix.toLin'_apply] using hm j v hv)
   have hfun : (⇑(matRep σ)) = ⇑(Matrix.toLin' : Matrix (Fin n) (Fin n) K ≃ₗ[K] _) ∘ ⇑σ := rfl
   rw [hfun, Set.range_comp] at hlin

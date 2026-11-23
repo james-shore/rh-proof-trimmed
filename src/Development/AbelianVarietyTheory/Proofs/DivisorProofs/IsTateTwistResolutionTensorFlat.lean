@@ -58,15 +58,6 @@ namespace GlobalTheory.EtC
 section
 variable {R : Type} [CommRing R]
 
-theorem sec_map_res' {F G : Shv R} (ψ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U) (z : Sec F U) :
-    Sec.map ψ (Sec.res g z) = Sec.res g (Sec.map ψ z) :=
-  congrArg (fun f => f.hom z) (ψ.hom.naturality g.op)
-
-theorem sec_map_comp' {F G H : Shv R} (φ : F ⟶ G) (ψ : G ⟶ H) {U : Scheme.{0}} (x : Sec F U) :
-    Sec.map (φ ≫ ψ) x = Sec.map ψ (Sec.map φ x) := rfl
-
-theorem sec_map_id' {F : Shv R} {U : Scheme.{0}} (x : Sec F U) : Sec.map (𝟙 F) x = x := rfl
-
 theorem flatS_of_iso {M N : Shv R} (i : M ≅ N) (h : FlatS M) : FlatS N := by
   obtain ⟨P, φ, hs, hi, hf⟩ := h
   refine ⟨P, φ ≫ i.hom.hom, ?_, ?_, hf⟩
@@ -76,12 +67,12 @@ theorem flatS_of_iso {M N : Shv R} (i : M ≅ N) (h : FlatS M) : FlatS N := by
     obtain ⟨x, hx⟩ := hP V g hg
     refine ⟨x, ?_⟩
     change Sec.map i.hom ((φ.app (op V)).hom x) = Sec.res g y
-    rw [hx, sec_map_res', ← sec_map_comp', i.inv_hom_id, sec_map_id']
+    rw [hx, _root_.GlobalTheory.EtC.exactIff_map_res, ← _root_.GlobalTheory.EtC.exactIff_map_comp, i.inv_hom_id, _root_.GlobalTheory.EtC.TwMulSurj.map_id_apply]
   · intro U x hx
     refine hi U x ?_
     have h1 : Sec.map i.inv (Sec.map i.hom ((φ.app (op U)).hom x)) = Sec.map i.inv (0 : Sec N U) :=
       congrArg (Sec.map i.inv) hx
-    rw [← sec_map_comp', i.hom_inv_id, sec_map_id'] at h1
+    rw [← _root_.GlobalTheory.EtC.exactIff_map_comp, i.hom_inv_id, _root_.GlobalTheory.EtC.TwMulSurj.map_id_apply] at h1
     exact h1.trans (map_zero _)
 
 theorem flatS_of_isZero {M : Shv R} (h : IsZero M) : FlatS M := by
@@ -106,10 +97,10 @@ theorem isTwRes_tensor : ∀ (q : ℕ) [NeZero q] (i j k : ℤ), i + j = k → �
   intro q _ i j k hk I J T e e' hI hJ hflat τ hτ
   obtain ⟨hIge, εI, hεI, heI⟩ := hI
   obtain ⟨hJge, εJ, hεJ, heJ⟩ := hJ
-  obtain ⟨μ, hμ, hμgen⟩ := GlobalTheory.T.tateTwist_mul_isTensorPairing q i j k hk
-  obtain ⟨T₁, τ₁, hτ₁⟩ := GlobalTheory.T.exists_isTensor_etaleSheafComplexPairing (ZMod q) (sgl (tw q i)) J
-  have hTge : T.IsStrictlyGE 0 := (GlobalTheory.T.isTensor_universal_property (ZMod q) τ hτ).2.1 hIge hJge
-  obtain ⟨u₁, hu₁, -⟩ := (GlobalTheory.T.isTensor_universal_property (ZMod q) μ hμ).1 τ₁ (𝟙 _) εJ
+  obtain ⟨μ, hμ, hμgen⟩ := _root_.GlobalTheory.EtC.TwMul.tw_mul_isTensor q i j k hk
+  obtain ⟨T₁, τ₁, hτ₁⟩ := _root_.GlobalTheory.EtC.tensor_exists (ZMod q) (sgl (tw q i)) J
+  have hTge : T.IsStrictlyGE 0 := (_root_.GlobalTheory.EtC.Pair.isTensor_universal (ZMod q) τ hτ).2.1 hIge hJge
+  obtain ⟨u₁, hu₁, -⟩ := (_root_.GlobalTheory.EtC.Pair.isTensor_universal (ZMod q) μ hμ).1 τ₁ (𝟙 _) εJ
   obtain ⟨u₂, hu₂, -⟩ := (GlobalTheory.T.isTensor_universal_property (ZMod q) τ₁ hτ₁).1 τ εI (𝟙 J)
   obtain ⟨ν, hμν, -, hνt⟩ := GlobalTheory.T.exists_isFlip_sheafComplexPairing (ZMod q) μ
   obtain ⟨ν₁, hν₁, -, hν₁t⟩ := GlobalTheory.T.exists_isFlip_sheafComplexPairing (ZMod q) τ₁
@@ -128,8 +119,8 @@ theorem isTwRes_tensor : ∀ (q : ℕ) [NeZero q] (i j k : ℤ), i + j = k → �
     rw [hid] at h1
     rw [← h1]
     exact map_zsmul ((u₁.f w).hom.app (op U)).hom _ _
-  have hq1 : QuasiIso u₁ := GlobalTheory.T.tensor_flat_complex_preserves_quasiIso (ZMod q) ν ν₁ (hνt hμ) (hν₁t hτ₁) hflati εJ u₁ hc
-  have hq2 : QuasiIso u₂ := GlobalTheory.T.tensor_flat_complex_preserves_quasiIso (ZMod q) τ₁ τ hτ₁ hτ hflat εI u₂ hu₂
+  have hq1 : QuasiIso u₁ := _root_.GlobalTheory.EtC.tensor_quasiIso (ZMod q) ν ν₁ (hνt hμ) (hν₁t hτ₁) hflati εJ u₁ hc
+  have hq2 : QuasiIso u₂ := _root_.GlobalTheory.EtC.tensor_quasiIso (ZMod q) τ₁ τ hτ₁ hτ hflat εI u₂ hu₂
   refine ⟨hTge, u₁ ≫ u₂, quasiIso_comp (hφ := hq1) (hφ' := hq2) _ _, fun U ζ => ?_⟩
   rw [← hμgen U ζ]
   change Sec.map (u₂.f 0) (Sec.map (u₁.f 0) _) = _

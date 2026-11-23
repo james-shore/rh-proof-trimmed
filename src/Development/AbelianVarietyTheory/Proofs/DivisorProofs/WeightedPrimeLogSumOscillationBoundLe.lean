@@ -35,6 +35,7 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Formalism.SharpRestriction.AdmissibleParameterJoins.SumLogPrimeFactorsLe
 
 @[expose] public section
 
@@ -43,21 +44,6 @@ open GlobalTheory.RefSum GlobalTheory.CovTop GlobalTheory.BigTop
 namespace GlobalTheory.SumBound
 
 open Finset
-
-theorem sum_log_le (M : ℕ) :
-    ∑ p ∈ (range (M + 1)).filter Nat.Prime, Real.log p ≤ M * Real.log 4 := by
-  have h := primorial_le_four_pow M
-  unfold primorial at h
-  have h' : (∏ p ∈ (range (M + 1)).filter Nat.Prime, (p:ℝ)) ≤ (4:ℝ) ^ M := by
-    rw [← Nat.cast_prod]
-    exact_mod_cast h
-  have hpos : ∀ p ∈ (range (M + 1)).filter Nat.Prime, (0:ℝ) < (p:ℝ) := by
-    intro p hp
-    have := (mem_filter.1 hp).2.pos
-    positivity
-  have := Real.log_le_log (Finset.prod_pos hpos) h'
-  rw [Real.log_prod (fun p hp => (hpos p hp).ne')] at this
-  simpa [Real.log_pow] using this
 
 theorem eOf_nonneg (F N k m : ℕ) (Mb Sm : ℝ) (vd : ℕ → ℝ) (M : ℕ) (S₀ R : Finset ℕ) (hMb : 0 ≤ Mb) (hSm : 0 ≤ Sm)
     (hvd : ∀ q, 0 ≤ vd q) (p : ℕ) (hp : p.Prime) : 0 ≤ eOf F N k m Mb Sm vd M S₀ R p := by
@@ -238,7 +224,7 @@ theorem primeSum_eOf : ∀ (F N k m M : ℕ) (Mb Sm : ℝ) (vd : ℕ → ℝ) (l
   have hlog4 : Real.log 4 ≤ 3 := by
     have := Real.log_le_sub_one_of_pos (show (0:ℝ) < 4 by norm_num); linarith
   have hth : ∑ q ∈ S, Real.log q ≤ 3 * M := by
-    have := sum_log_le M
+    have := _root_.Formalism.MainNotions.J.sum_log_primes_le M
     have h2 : (M:ℝ) * Real.log 4 ≤ M * 3 := mul_le_mul_of_nonneg_left hlog4 hMn
     linarith
   have hKS : ∀ q ∈ K, q.Prime ∧ m * q < k := fun q hq =>

@@ -180,7 +180,7 @@ private theorem be_conv_of_growth (hG : GrowthS) : Hyps → ∀ (k r : ℕ) (ε 
     rw [integral_const_mul]; ring
 
 private theorem be_conv : Hyps → ∀ (k r : ℕ) (ε : Fin (2 * r + k + 1) → Bool) (mu : Fin (2 * r + k + 1) → ℝ) (h : ℝ) (R : Rep k r) (Wp : Type) [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [CompleteSpace Wp] [FiniteDimensional ℂ Wp] (z : Fin (2 * r + k + 1) → ℂ) (π : Mx k r → (Wp →L[ℂ] Wp)) (u : ℕ → ℝ) (μW μN μG νq : Measure (Formalism.QuantumDeterminants.Mt k r)), R.IsDS ε mu → Formalism.QuantumDeterminants.GapAtLeast ε mu h → GapOK k r h → SideG k r z π u μW μN μG νq → ∀ v ∈ R.TK, (∀ w ∈ R.sm, Integrable (beInt z Formalism.QuantumDeterminants.cStd π R.σ w v) (μW.prod μN)) ∧ PI.BesselMapUniq.IsCWCont (k := k) (r := r) R.σ (fun w => be z Formalism.QuantumDeterminants.cStd π R.σ μW μN w v) :=
-  be_conv_of_growth GlobalTheory.T.besselGrowth_stabilizer_unipotent
+  be_conv_of_growth _root_.GlobalTheory.besselGrowthS
 
 end GlobalTheory.BesselNorm.BesselConvolution
 
@@ -213,8 +213,8 @@ private theorem GlobalTheory.BesselNorm.InnerIntegralSquares.double_integral : H
   intro hH k r ε mu h R Wp _ _ _ _ z π u μW μN μG νq hDS hgap hok hS v hv w hw ξ
   have hint := (GlobalTheory.BesselNorm.BesselConvolution.be_conv hH k r ε mu h R Wp z π u μW μN μG νq hDS hgap hok hS v hv).1 w hw
   obtain ⟨hz, hT, ⟨u₀, hπ⟩, -, hW, hN, -, -⟩ := hS
-  obtain ⟨hψ1, hψm, -, hψc, hUW, -⟩ := GlobalTheory.T.besselCharacter_unipotentRadical_properties k r z Formalism.QuantumDeterminants.cStd hz
-  obtain ⟨hmp, -, -, -, -, hae⟩ := GlobalTheory.T.besselSubgroup_parameter_measurePreserving k r z μW μN hok.1 hz hT hW hN
+  obtain ⟨hψ1, hψm, -, hψc, hUW, -⟩ := _root_.GlobalTheory.BesselPsi.psi_character k r z Formalism.QuantumDeterminants.cStd hz
+  obtain ⟨hmp, -, -, -, -, hae⟩ := _root_.GlobalTheory.sParam_measurePreserving k r z μW μN hok.1 hz hT hW hN
   obtain ⟨-, hmul, hunit, -⟩ := Formalism.FourierDecayAlt.P.MatrixMultiplicationContinuity.piW_facts hT hπ
   have e0 : ((‖be z Formalism.QuantumDeterminants.cStd π R.σ μW μN w v ξ‖ ^ 2 : ℝ) : ℂ) =
       ⟪be z Formalism.QuantumDeterminants.cStd π R.σ μW μN w v ξ, be z Formalism.QuantumDeterminants.cStd π R.σ μW μN w v ξ⟫_ℂ := by
@@ -362,7 +362,7 @@ private theorem integrable_of_growth (hGG : GrowthG) (hGS : GrowthS) : Hyps → 
     _ ≤ _ := mul_le_mul_of_nonneg_left key (mul_nonneg hC0 hC0)
 
 private theorem integrable_GS : Hyps → ∀ (k r : ℕ) (ε : Fin (2 * r + k + 1) → Bool) (mu : Fin (2 * r + k + 1) → ℝ) (h : ℝ) (R : Rep k r) (Wp : Type) [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [CompleteSpace Wp] [FiniteDimensional ℂ Wp] (z : Fin (2 * r + k + 1) → ℂ) (π : Mx k r → (Wp →L[ℂ] Wp)) (u : ℕ → ℝ) (μW μN μG νq : Measure (Formalism.QuantumDeterminants.Mt k r)), R.IsDS ε mu → Formalism.QuantumDeterminants.GapAtLeast ε mu h → GapOK k r h → SideG k r z π u μW μN μG νq → ∀ v ∈ R.TK, ∀ w ∈ R.sm, Integrable (fun y : Formalism.QuantumDeterminants.Mt k r × (Formalism.QuantumDeterminants.Mt k r × Formalism.QuantumDeterminants.Mt k r) => ⟪v, R.σ (Matrix.of y.1) w⟫_ℂ * star ⟪v, R.σ (Matrix.of y.2.1 * Matrix.of y.2.2 * Matrix.of y.1) w⟫_ℂ) (μG.prod (μW.prod μN)) :=
-  integrable_of_growth GlobalTheory.T.growth_unitaryGroup_rpow_neg_integrable GlobalTheory.T.besselGrowth_stabilizer_unipotent
+  integrable_of_growth _root_.GlobalTheory.gN_rpow_neg_integrable_haar _root_.GlobalTheory.besselGrowthS
 
 end GlobalTheory.BesselNorm.GrowthIntegrability
 
@@ -542,7 +542,7 @@ theorem norm_integral (hy : Hyps) (k r : ℕ) (ε : Fin (2 * r + k + 1) → Bool
   set f : Formalism.QuantumDeterminants.Mt k r → ℂ := fun x => ∫ q, F (x, q) ∂(μW.prod μN) with hf
   have hfm : Measurable f := (hFm.stronglyMeasurable.integral_prod_right' (ν := μW.prod μN)).measurable
   have hfi : Integrable f μG := hFi.integral_prod_left
-  obtain ⟨-, hgi, hge⟩ := GlobalTheory.T.weil_formula_integrable_complex k r μG (muSof μW μN) νq f hq hfm hfi
+  obtain ⟨-, hgi, hge⟩ := _root_.GlobalTheory.weil_formula_integrable k r μG (muSof μW μN) νq f hq hfm hfi
 
   have hg : ∀ᵐ x ∂νq, ∫ s, f (fun i j => (Matrix.of s * Matrix.of x) i j) ∂(muSof μW μN) =
       ((‖be z Formalism.QuantumDeterminants.cStd π R.σ μW μN (R.σ (Matrix.of x) w) v ξ‖ ^ 2 : ℝ) : ℂ) := by

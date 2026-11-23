@@ -85,12 +85,12 @@ theorem GlobalTheory.MumCmp.psi_twist : ∀ (R : Type) [CommRing R] [IsDomain R]
     rw [e₃] at e₁
     exact (GlobalTheory.IntegralExpansionLocal.isUnit_cst_of_ne_zero _ y hr).mul_right_eq_zero.1 e₁.symm
   obtain ⟨σ₂, f₂, ν, hν, hE₂, h0σ, hrel⟩ :=
-    GlobalTheory.T.translate_integral_thetaExpansion_by_twoTorsion R hB D A G hsa U g hz a ha hlev A₂ D₂ U₂ hL β hβm hβq xe hxe hc w hw σ f hE
+    _root_.GlobalTheory.MumCmp.translate_expansion_twist R hB D A G hsa U g hz a ha hlev A₂ D₂ U₂ hL β hβm hβq xe hxe hc w hw σ f hE
   have hne : ¬ ∀ mu j, (f₂ mu).f j = 0 := fun h0' => hσ0 (h0σ (by
     have H := (GlobalTheory.comb_eq_zero_iff_expansion_comb_eq_zero R _ hR D₂ A₂ G U₂.toUnifPre 1 1 ![1] ![σ₂] ![f₂]
       (fun i => by fin_cases i; exact hE₂)).2 hsa.geomConnected (fun α j => by
         simpa [scal] using h0' α j)
     exact fun j => by simpa [scal] using H j))
-  exact GlobalTheory.T.psi_twisted_eq_psi_mul_character_of_point R hB D D₂ g β hβm xe hc w hw h0 f f₂ ν hν
+  exact _root_.GlobalTheory.MumCmp.psi_maps_twist R hB D D₂ g β hβm xe hc w hw h0 f f₂ ν hν
     (GlobalTheory.PsiCompare.levelOneEq_of_expandsAt hG hR U.toUnifPre (U.expand 1 le_rfl) σ f hE)
     (GlobalTheory.PsiCompare.levelOneEq_of_expandsAt hG hR U₂.toUnifPre (U₂.expand 1 le_rfl) σ₂ f₂ hE₂) hne hrel

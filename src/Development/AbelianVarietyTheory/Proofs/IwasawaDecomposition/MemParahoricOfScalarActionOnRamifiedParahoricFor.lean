@@ -50,6 +50,7 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsR
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FunKilled
 import Formalism.LocalToGlobal.IndefiniteReal.DoubleCosetOperators.GoodPartLeTypeSubspace
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.TypesDefs
+import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.LogSupSumLeOfNonvanishingDetLimit
 
 @[expose] public section
 
@@ -65,19 +66,11 @@ open GlobalTheory.TwistChoice (Reading ReadsAt)
 
 namespace GlobalTheory.ParaRigid
 
-theorem det_mem_of {K : Type} [Field K] (O : Subring K) {m : ℕ} (M : Matrix (Fin m) (Fin m) K)
-    (hM : ∀ i j, M i j ∈ O) : M.det ∈ O := by
-  have e : M = (Matrix.of fun i j => (⟨M i j, hM i j⟩ : O)).map O.subtype := by ext i j; rfl
-  have h := RingHom.map_det O.subtype (Matrix.of fun i j => (⟨M i j, hM i j⟩ : O))
-  rw [RingHom.mapMatrix_apply] at h
-  rw [e, ← h]
-  exact SetLike.coe_mem _
-
 theorem inv_entry_mem {K : Type} [Field K] (O : Subring K) {m : ℕ} (x : GL (Fin m) K)
     (h1 : ∀ i j, x.1 i j ∈ O) (hd : (x.1.det)⁻¹ ∈ O) : ∀ i j, (x⁻¹).1 i j ∈ O := by
   intro i j
   rw [Matrix.coe_units_inv, Matrix.inv_def, Matrix.smul_apply, smul_eq_mul, Matrix.adjugate_apply]
-  refine O.mul_mem ?_ (det_mem_of O _ ?_)
+  refine O.mul_mem ?_ (_root_.Formalism.MainNotions.Gaps.SizeBoundsAlt.gc_det_mem O _ ?_)
   · rw [Ring.inverse_eq_inv']; exact hd
   · intro k l
     rw [Matrix.updateRow_apply]

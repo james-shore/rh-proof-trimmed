@@ -55,15 +55,6 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 open GlobalTheory.PRep Formalism.UG GlobalTheory.DefU
 open UpperTheory.Gal.Int.Div
 
-private theorem conj_alt_bis {E : Type} [Field E] [NumberField E] [IsCMField E] {d : ℕ} (hd : 0 < d) {x : E}
-    (hx : x ^ 2 = -(d : E)) : IsCMField.complexConj E x = -x :=
-  _root_.UpperTheory.Reformulated.B.CMConjNegOfSqEqNegPos.conj_alt_bis hd hx
-
-private theorem adjoin_form {E : Type} [Field E] [NumberField E] {d : ℕ} (hd : 0 < d) {x : E}
-    (hx : x ^ 2 = -(d : E)) (y : E) (hy : y ∈ IntermediateField.adjoin ℚ {x}) :
-    ∃ s t : ℚ, y = (s : E) + (t : E) * x :=
-  _root_.UpperTheory.Reformulated.B.AdjoinForm.adjoin_form hd hx y hy
-
 private theorem two_cases {R : Type} [CommRing R] (T : R → Prop) (hT : ∀ a b, T a → T b → T (a + b))
     (I J : Ideal R) (h : ∀ y, T y → y ∈ I ∨ y ∈ J) : (∀ y, T y → y ∈ I) ∨ (∀ y, T y → y ∈ J) := by
   by_contra hcon
@@ -118,8 +109,8 @@ private theorem int_mem {R : Type} [CommRing R] {l : ℕ} (hl : l.Prime) {u u' :
 private theorem norm_int {E : Type} [Field E] [NumberField E] [IsCMField E] {d : ℕ} (hd : 0 < d) {x : E}
     (hx : x ^ 2 = -(d : E)) (y y' : 𝓞 E) (hy : (y : E) ∈ IntermediateField.adjoin ℚ {x})
     (hy' : (y' : E) = IsCMField.complexConj E (y : E)) : ∃ n : ℤ, y * y' = (n : 𝓞 E) := by
-  obtain ⟨s, t, hst⟩ := adjoin_form hd hx _ hy
-  have hc := conj_alt_bis hd hx
+  obtain ⟨s, t, hst⟩ := _root_.UpperTheory.Reformulated.B.AdjoinForm.adjoin_form hd hx _ hy
+  have hc := _root_.UpperTheory.Reformulated.B.CMConjNegOfSqEqNegPos.conj_alt_bis hd hx
   have hq : ((y * y' : 𝓞 E) : E) = algebraMap ℚ E (s ^ 2 + d * t ^ 2) := by
     have h1 : (y' : E) = (s : E) - t * x := by
       rw [hy', hst, map_add (f := _), map_mul, hc]
@@ -154,10 +145,10 @@ theorem UpperTheory.Gal.Int.Div.sameOr_of :
     rw [hcE, hcE, IsCMField.complexConj_apply_apply])
   have hKc : ∀ y : 𝓞 E, (y : E) ∈ IntermediateField.adjoin ℚ {x} → ((c y : 𝓞 E) : E) ∈ IntermediateField.adjoin ℚ {x} := by
     intro y hy
-    obtain ⟨s, t, hst⟩ := adjoin_form hd hx _ hy
+    obtain ⟨s, t, hst⟩ := _root_.UpperTheory.Reformulated.B.AdjoinForm.adjoin_form hd hx _ hy
     have hxK : x ∈ IntermediateField.adjoin ℚ {x} := IntermediateField.mem_adjoin_simple_self ℚ x
     have h1 : ((c y : 𝓞 E) : E) = (s : E) + ((-t : ℚ) : E) * x := by
-      rw [hcE, hst, map_add (f := _), map_mul, conj_alt_bis hd hx]
+      rw [hcE, hst, map_add (f := _), map_mul, _root_.UpperTheory.Reformulated.B.CMConjNegOfSqEqNegPos.conj_alt_bis hd hx]
       simp
     rw [h1]
     exact add_mem (SubfieldClass.ratCast_mem _ s) (mul_mem (SubfieldClass.ratCast_mem _ _) hxK)

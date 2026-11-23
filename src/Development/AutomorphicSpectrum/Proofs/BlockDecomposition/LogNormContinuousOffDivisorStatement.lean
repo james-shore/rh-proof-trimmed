@@ -56,7 +56,3 @@ open ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M
 open GlobalTheory.CompanionTheory.MPDict GlobalTheory.CompanionTheory.MixZ
 open ReciprocityTheory.ChartRestriction.G.Geo (mcPts IsMultiHomog SameOrbit)
 
-theorem _root_.GlobalTheory.T.log_norm_continuous_off_divisor : ∀ {k : Type} [CommRing k] {X : Scheme.{0}} [IsIntegral X] {q : X ⟶ Sp k} {σ : k →+* ℂ}
-    {L : LB X} (ψ : GlobalTheory.Weight q σ L), ψ.IsCInf → ∀ {r : L.ι → X.functionFieldˣ} (hr : IsRatSec L r),
-    ContinuousOn (GlobalTheory.Cartier.logNorm ψ r) (offSupp q σ (divOfRatSec ψ.isLB hr)) := by
-  first | exact @GlobalTheory.CompanionTheory.MixZ.ArchInt.continuousOn_logNorm_offSupp | exact GlobalTheory.CompanionTheory.MixZ.ArchInt.continuousOn_logNorm_offSupp | (intros; apply GlobalTheory.CompanionTheory.MixZ.ArchInt.continuousOn_logNorm_offSupp <;> assumption)

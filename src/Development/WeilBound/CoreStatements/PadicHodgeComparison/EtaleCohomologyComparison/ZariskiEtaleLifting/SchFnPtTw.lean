@@ -76,9 +76,7 @@ theorem red_κb (k : Bool) {m n : ℕ} (h : n ≤ m) :
   obtain ⟨w, hw⟩ := Ideal.Quotient.mk_surjective ((base l).oC (κ x))
   rw [← hw]; rfl
 
-theorem red_cris (A : PAlg l) {m n : ℕ} (h : n ≤ m) (a : Acris l) : A.red h (A.cris m a) = A.cris n a :=
-  RingHom.congr_fun (ACris.ringHom_ext (F := (A.red h).comp (A.cris m)) (G := A.cris n) fun y => by
-    rw [RingHom.comp_apply, cris_of, cris_of, red_mk]) a
+alias red_cris := _root_.GlobalTheory.CompanionTheory.PerfFil.red_cris
 
 def redMor (k : Bool) {m n : ℕ} (h : n ≤ m) : CH.Mor (Oc F κ k m) (Oc F κ k n) (RingHom.id _) :=
   omMor (crMor (F := F) (F' := F) (b := bs l k m) (b' := bs l k n) (ht := rfl) (ht' := rfl) ((base l).red h) rfl (dd_red k _ h)

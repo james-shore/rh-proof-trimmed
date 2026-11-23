@@ -64,12 +64,6 @@ namespace GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil.UnitScale
 
 open GlobalTheory.CompanionTheory.SW.WBox (cK eW)
 
-theorem map_eq_of_conj {G : Type} [AddCommGroup G] [TopologicalSpace G] [IsTopologicalAddGroup G]
-    [LocallyCompactSpace G] [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G]
-    (m s : G ≃ₜ+ G) (ν : Measure G) [ν.IsAddHaarMeasure] (c : ℝ≥0) (hs : ∀ x, s (s x) = x)
-    (h : ν.map (fun x => s (m (s (m x)))) = (c * c) • ν) : ν.map m = c • ν :=
-  _root_.UpperTheory.Reformulated.B.FactorConjugationCancel.map_eq_of_conj m s ν c hs h
-
 section Coord
 
 variable {F E : Type} [Field F] [Field E] [Algebra F E] {R : Type} [CommRing R] [Algebra F R] {d : ℕ}
@@ -199,7 +193,7 @@ theorem map_coordW_unit : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
       _ = _ := by
           rw [hT, Measure.map_smul, ← hνπ]
           exact (eW R hK 1 1).symm.measurable.aemeasurable
-  refine map_eq_of_conj (mulT y) (sigT (sigR R σ) hsc hinv) _ c (fun X => ?_) ?_
+  refine _root_.UpperTheory.Reformulated.B.FactorConjugationCancel.map_eq_of_conj (mulT y) (sigT (sigR R σ) hsc hinv) _ c (fun X => ?_) ?_
   · funext a i
     exact hinv _
   · have e : (fun X => sigT (sigR R σ) hsc hinv (mulT y (sigT (sigR R σ) hsc hinv (mulT y X)))) =

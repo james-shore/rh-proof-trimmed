@@ -259,17 +259,6 @@ theorem derChar_eq_one {n t N : ℕ} (h : ∑ a, dd n t a = N) (ψ : AddChar k C
   rw [H _ _ (Or.inr h2)]
   exact Matrix.one_apply_ne fun e => by rw [e] at h1; omega
 
-theorem isSubquotient_twist' {G V W : Type} [Group G] [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
-    {σ : Representation ℂ G W} {ρ : Representation ℂ G V} (h : IsSubquotient σ ρ) (χ : G →* ℂˣ) :
-    IsSubquotient (twist σ χ) (twist ρ χ) := by
-  obtain ⟨R, f, hf⟩ := h
-  refine ⟨⟨R.toSubmodule, fun g v hv => ?_⟩, ⟨f.toLinearMap, fun g => LinearMap.ext fun v => ?_⟩, hf⟩
-  · rw [twist_apply]
-    exact R.toSubmodule.smul_mem _ (R.apply_mem_toSubmodule g hv)
-  · show f.toLinearMap ((χ g : ℂ) • R.toRepresentation g v) = (χ g : ℂ) • σ g (f v)
-    rw [map_smul]
-    exact congrArg _ (f.isIntertwining _ _ g v)
-
 theorem exists_jac_deriv (ψ : AddChar k Circle) (n j : ℕ) {V : Type} [AddCommGroup V] [Module ℂ V]
     (π : Representation ℂ (GL (Fin (n + j + 1)) k) V) :
     ∃ L : Jacquet π (unipRad k (stdBlocks (dd n (j + 1)) (dd_sum n j))) →ₗ[ℂ]
@@ -357,7 +346,7 @@ theorem exists_irr_block {n t : ℕ} {X W : Type} [AddCommGroup X] [Module ℂ X
     ∃ (Y : Type) (_ : AddCommGroup Y) (_ : Module ℂ Y) (τ : Representation ℂ (Levi k fun a => Fin (dd n t a)) Y),
       τ.IsIrreducible ∧ IsSubquotient τ T ∧
         IsSubquotient A (τ.comp (iota n t) : Representation ℂ (GL (Fin n) k) Y) := by
-  refine GlobalTheory.ProdSubquot.exists_irreducible_of_pred _ _ T
+  refine _root_.GlobalTheory.ExactIrr.main _ _ T
     (fun Y _ _ σ => IsSubquotient A (σ.comp (iota n t) : Representation ℂ (GL (Fin n) k) Y)) hT ?_ ?_ ?_ h
   · intro Y Y' _ _ _ _ σ σ' f hf' h
     exact h.trans (GlobalTheory.LocGL.SupportUnique.isSubquotient_comp (.of_injective f hf') _)
@@ -373,7 +362,7 @@ theorem exists_irr_block {n t : ℕ} {X W : Type} [AddCommGroup X] [Module ℂ X
     let q : Representation.IntertwiningMap (B.toRepresentation.comp (iota n t) : Representation ℂ (GL (Fin n) k) _)
         ((subQuot B C).comp (iota n t) : Representation ℂ (GL (Fin n) k) _) :=
       ⟨Submodule.mkQ _, fun _ => rfl⟩
-    exact GlobalTheory.ProdSubquot.subquot_dichotomy _ _ _ _ _ _ _ _ _ i q hA (fun b hb =>
+    exact _root_.GlobalTheory.isSubquotient_of_exact_middle _ _ _ _ _ _ _ _ _ i q hA (fun b hb =>
       ⟨⟨b.1, (Submodule.Quotient.mk_eq_zero (C.toSubmodule.comap B.toSubmodule.subtype)).1 hb⟩,
         Subtype.ext rfl⟩) h
 
@@ -400,7 +389,7 @@ theorem derivJac (hA : GlobalTheory.Published.IrreducibleAdmissibleGL) : GlobalT
   have hχ : IsSmoothChar (detChar (Fin (n + 1)) (absPow k (-(((j : ℂ) + 1) / 2)))) :=
     (isSmoothChar_absPow _).detChar
   have hSi := isIrreducible_twist S.irr (detChar (Fin (n + 1)) (absPow k (-(((j : ℂ) + 1) / 2))))
-  have h2 := (isSubquotient_twist' hS _).trans (isSubquotient_twist_deriv ψ (n + 1) j π)
+  have h2 := (_root_.GlobalTheory.LocGL.isSubquotient_twist hS _).trans (isSubquotient_twist_deriv ψ (n + 1) j π)
   obtain ⟨σ, hsub, ⟨E⟩⟩ := exists_tensor hA _ (isSmooth_jac _ hs)
     (GlobalTheory.CompanionTheory.JacquetBridge.jacquetFiniteLength k _ _ _ _ V π hs hf) _ hSi h2
   let y : Fin 2 → IrrGL (k := k) := fun a => ⟨dd (n + 1) (j + 1) a, σ a⟩

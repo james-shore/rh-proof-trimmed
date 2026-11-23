@@ -80,8 +80,6 @@ theorem theta_eq_one {D : D7} {Z : LocDat D} {FP : ∀ p : PlF D, LocNG.FPair (l
 
 theorem isLat : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, LocNG.FPair (locH Z p) D.R.rS) (p : PlF D) (d : LocNG.Datum (FP p)) (t : Loc.Term (Vp D p) (Z.M p) D.R.rS), LocNG.IsTermOver (FP p) d t → t.abelian₂.FG ∧ Submodule.span (D.s.atP p).Ep (t.abelian₂ : Set (Vp D p)) = ⊤ := GlobalTheory.T.localTermLattice_over_innerDatum_fg_span
 
-theorem noDefect : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, LocNG.FPair (locH Z p) D.R.rS) (p : PlF D), (FP p).RelG (LocNG.theta (Z.M p)) → (FP p).PrimeTo → ∀ (d : LocNG.Datum (FP p)) (t : Loc.Term (Vp D p) (Z.M p) D.R.rS), LocNG.IsTermOver (FP p) d t → ¬ LocNG.BBne (H := locH Z p) t := GlobalTheory.T.localTerm_noDefect_primeTo_invariants
-
 theorem full_of_local_span {D : D7} (Z : LocDat D) (Λ : LV D)
     (hΛ : Submodule.IsLattice D.host.E Λ) (p : PlF D)
     (hspan : Submodule.span (D.s.atP p).Ep (lattice₂ D Z.M p Λ : Set (Vp D p)) = ⊤) :
@@ -149,7 +147,7 @@ theorem fibre : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, LocNG.FPair (lo
   have single : ∀ p, p ∉ P → ∃! L, L ∈ locSet G G' p (y p) := by
     intro p hp
     obtain ⟨A, A', hA, hA', hint, hc, hc'⟩ := hloc p hp
-    have key := GlobalTheory.T.hermitian_orbit_unique_lattice_integral_frames (Z.M p) (Z.agree p).1 (locH Z p) D.R.rS D.R.k (FP p) hk (finrank_eq p)
+    have key := _root_.GlobalTheory.HL.GoodFrames.main (Z.M p) (Z.agree p).1 (locH Z p) D.R.rS D.R.k (FP p) hk (finrank_eq p)
       (hRelG p) (hPrime p hp) A A' (fun a b h => ⟨hA.1 a b h, hA'.1 a b h⟩) (fun a => ⟨hA.2 a, hA'.2 a⟩) hint
       (scaled Z p (frame G)) (scaled Z p (frame G'))
       (fun j => by rw [hc j, (hBased p).1]; rfl) (fun j => by rw [hc' j, (hBased p).2.1]; rfl)
@@ -172,7 +170,7 @@ theorem fibre : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, LocNG.FPair (lo
             | (simp [Algebra.smul_def])
             | (erw [smul_eq_mul, mul_one])
             | (change (A a b - A' a b) * 1 = _; rw [mul_one])⟩) hc hc'
-    exact ⟨hT, noDefect D Z FP p (hRelG p) (hPrime p hp) (d0 p) _ hT⟩
+    exact ⟨hT, _root_.GlobalTheory.LocNoDef.noDefect D Z FP p (hRelG p) (hPrime p hp) (d0 p) _ hT⟩
 
   let Φ : LV D → ∀ q : P, Submodule (Z.M q).L.O (Vp D q) := fun Λ q => lattice₂ D Z.M q Λ
   have hinj : Set.InjOn Φ (globSet G G' y) := by
@@ -195,7 +193,7 @@ theorem fibre : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, LocNG.FPair (lo
         · simp only [Lp, dif_pos h]; exact hg ⟨p, h⟩ (Set.mem_univ _)
         · simp only [Lp, dif_neg h]; exact (single p h).exists.choose_spec
       have hlat : ∀ p, (Lp p).FG ∧ Submodule.span (D.s.atP p).Ep (Lp p : Set (Vp D p)) = ⊤ :=
-        fun p => isLat D Z FP p (y p) (tm FP G G' p (Lp p)) (hLp p).1
+        fun p => _root_.GlobalTheory.GenMass.Fibre.termLat D Z FP p (y p) (tm FP G G' p (Lp p)) (hLp p).1
       have hfin' : {p | Lp p ≠ lattice₂ D Z.M p Λ₀}.Finite := by
         refine ((P.finite_toSet).union hfin).subset fun p hp => ?_
         by_contra hn

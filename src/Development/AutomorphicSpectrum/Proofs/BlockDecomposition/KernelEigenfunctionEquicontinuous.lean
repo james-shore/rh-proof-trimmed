@@ -62,11 +62,6 @@ namespace GlobalTheory.CompanionTheory.Conc.WeightedCauchySchwarzLintegral
 
 open scoped Pointwise
 
-theorem sq_lintegral_mul_le {X : Type*} [MeasurableSpace X] (ν : Measure X) {a b : X → ℝ≥0∞}
-    (ha : Measurable a) (hb : Measurable b) :
-    (∫⁻ w, a w * b w ∂ν) ^ 2 ≤ (∫⁻ w, a w ∂ν) * ∫⁻ w, a w * b w ^ 2 ∂ν :=
-  _root_.UpperTheory.Reformulated.B.P6.r96a.GlobalTheory.CompanionTheory.Conc.WeightedCauchySchwarzLintegral.sq_lintegral_mul_le ν ha hb
-
 variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [T2Space G] [MeasurableSpace G] [BorelSpace G]
 
 theorem eventually_lintegral_translate_le [LocallyCompactSpace G]
@@ -164,7 +159,7 @@ theorem sq_mean_translate_le (μ : Measure G) [μ.IsHaarMeasure] [μ.IsMulRightI
           gcongr
           exact enorm_translate_sub_le μ hα hs hψ hrep x y
     _ ≤ ∫⁻ x in F, (∫⁻ w, a w ∂μ) * ∫⁻ w, a w * ‖ψ (x * w)‖ₑ ^ 2 ∂μ ∂μ :=
-        lintegral_mono fun x => sq_lintegral_mul_le μ ha (by
+        lintegral_mono fun x => _root_.UpperTheory.Reformulated.B.P6.r96a.GlobalTheory.CompanionTheory.Conc.WeightedCauchySchwarzLintegral.sq_lintegral_mul_le μ ha (by
           have : Continuous fun w => ‖ψ (x * w)‖ₑ := by fun_prop
           exact this.measurable)
     _ = (∫⁻ w, a w ∂μ) * ∫⁻ x in F, ∫⁻ w, a w * ‖ψ (x * w)‖ₑ ^ 2 ∂μ ∂μ :=

@@ -73,11 +73,6 @@ theorem spMap_comp_ring {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f
     spMap g ≫ spMap f = spMap (g.comp f) :=
   (Spec.map_comp (CommRingCat.ofHom f) (CommRingCat.ofHom g)).symm
 
-theorem lbIso_pull_comp_of_eq {X Y Z : Scheme.{0}} {L : LB X} {M : LB Y} {a : Y ⟶ X} (h : LBIso M (L.pull a)) (j : Z ⟶ Y)
-    {a' : Z ⟶ X} (e : a' = j ≫ a) : LBIso (M.pull j) (L.pull a') :=
-  LBIso.chartPull (ReciprocityTheory.ChartRestriction.G.Geo.Tor.chartPullPull M j j rfl)
-    (ReciprocityTheory.ChartRestriction.G.Geo.Tor.chartPullSame L _ (fun _ => a) _ j fun _ => e) h
-
 theorem isMonHom_of_isGrpPullback {S S' : Scheme.{0}} {G : Over S} {G' : Over S'} [GrpObj G] [GrpObj G'] {f : S' ⟶ S}
     {φ : G'.left ⟶ G.left} (hφ : IsGrpPullback G' G f φ) (e : G ⟶ G) [IsMonHom e] (e' : G' ⟶ G')
     (he : e'.left ≫ φ = φ ≫ e.left) : IsMonHom e' := by
@@ -150,10 +145,10 @@ theorem deep_of_uLink : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   set om : X₁.S.R →+* S₂.R := (Subalgebra.inclusion hR).toRingHom.comp h with hom
   have hval : ∀ a, ((om a : S₂.R) : Ω₂) = algebraMap X₁.Ω₁ Ω₂ a := fun a => hh a
   have hcart : IsGrpPullback ρ₂.P.A X₁.ρ.P.A (spMap om) (φ₂ ≫ ψ) := by
-    rw [hom, ← spMap_comp_ring]
+    rw [hom, ← _root_.GlobalTheory.spMap_comp_ring]
     exact hpb₂.comp hpb
   have hlbc : LBIso ρ₂.P.L (X₁.ρ.P.L.pull (φ₂ ≫ ψ)) :=
-    LBIso.trans ρ₂.P.isLB (pull_isLB P.isLB _) (pull_isLB X₁.ρ.P.isLB _) hlb₂ (lbIso_pull_comp_of_eq hlb φ₂ rfl)
+    LBIso.trans ρ₂.P.isLB (pull_isLB P.isLB _) (pull_isLB X₁.ρ.P.isLB _) hlb₂ (_root_.GlobalTheory.Ex.GenericFibre.lbIso_pull hlb φ₂ rfl)
 
   have hφp := hcart.1
   have wε : ∀ a, ((φ₂ ≫ ψ) ≫ (act a).left) ≫ X₁.ρ.P.A.hom = ρ₂.P.A.hom ≫ spMap om := fun a => by
@@ -178,7 +173,7 @@ theorem deep_of_uLink : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
     X₁.M.qc X₁.M.sep _ hp hst
   have hs : M₂.s ≫ spMap κ = q ≫ X₁.M.s := by
     refine ext_of_isDominant M₂.pt ?_
-    rw [← Category.assoc, M₂.pt_s, spMap_comp_ring, ← Category.assoc, hqgen, hp]
+    rw [← Category.assoc, M₂.pt_s, _root_.GlobalTheory.spMap_comp_ring, ← Category.assoc, hqgen, hp]
   have hproj : IsProjOver M₂.s :=
     GlobalTheory.T.isProjOver_of_isFinite_over_projective X₁.o₁ o₂ κ M₂.Z X₁.M.Z X₁.M.s q M₂.s X₁.projM hq inferInstance hs
 
@@ -192,7 +187,7 @@ theorem deep_of_uLink : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
     ((algebraMap X₁.Ω₁ Ω₂).comp (ratHull X₁.S.R).val.toRingHom).codRestrict (ratHull S₂.R) hrat
   have hrv : spMap (ratHull S₂.R).val.toRingHom ≫ spMap rh =
       spMap (algebraMap X₁.Ω₁ Ω₂) ≫ spMap (ratHull X₁.S.R).val.toRingHom := by
-    rw [spMap_comp_ring, spMap_comp_ring]
+    rw [_root_.GlobalTheory.spMap_comp_ring, _root_.GlobalTheory.spMap_comp_ring]
     rfl
   have hUO₂ : UOver Xo c ρ₂.P (toRat S₂.R) (spMap rh ≫ u) := by
     refine (uOver_baseChange_iff hcart hlbc (toRat S₂.R)).2 ?_

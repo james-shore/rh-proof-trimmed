@@ -125,19 +125,9 @@ theorem frMapO_add' {S T : HSp D} (βS : GL (Fin S.rank) (EAf D)) (βT : GL (Fin
   unfold frMapO
   rw [Matrix.map_add _ (map_add (toEAf D)), Matrix.mul_add, Matrix.add_mul]
 
-theorem frMapO_smul {S T : HSp D} (βS : GL (Fin S.rank) (EAf D)) (βT : GL (Fin T.rank) (EAf D)) (e : AE D) (x : WO S T) :
-    frMapO S T βS βT (e • x) = toEAf D e • frMapO S T βS βT x := by
-  unfold frMapO
-  have : (e • x : Matrix (Fin T.rank) (Fin S.rank) (AE D)).map (toEAf D) = toEAf D e • x.map (toEAf D) :=
-    Matrix.ext fun i j => by simp [Matrix.smul_apply, map_mul]
-  rw [this, Matrix.mul_smul, Matrix.smul_mul]
+alias frMapO_smul := _root_.GlobalTheory.RedHalfDrop.frMapO_smul_eq
 
-theorem frMapAdj_smul {S T : HSp D} (βS : GL (Fin S.rank) (EAf D)) (βT : GL (Fin T.rank) (EAf D)) (e : AE D) (x : WO S T) :
-    frMapAdj S T βS βT (e • x) = toEAf D (cA D e) • frMapAdj S T βS βT x := by
-  rw [GlobalTheory.PlaceVec.frMapAdj_eq, GlobalTheory.PlaceVec.frMapAdj_eq]
-  have : (((e • x : WO S T).map (toEAf D)).map (cF D))ᵀ = toEAf D (cA D e) • ((x.map (toEAf D)).map (cF D))ᵀ :=
-    Matrix.ext fun i j => by simp [Matrix.smul_apply, map_mul, toEAf_cA]
-  rw [this, Matrix.mul_smul, Matrix.smul_mul]
+alias frMapAdj_smul := _root_.GlobalTheory.RedHalfDrop.frMapAdj_smul_eq
 
 theorem isIntM_smul {b a : ℕ} {e : AE D} (he : e * e = e) {N : Matrix (Fin b) (Fin a) (EAf D)} (hN : IsIntM N) :
     IsIntM (toEAf D e • N) := fun i j => by
@@ -147,9 +137,7 @@ theorem isIntM_smul {b a : ℕ} {e : AE D} (he : e * e = e) {N : Matrix (Fin b) 
 theorem isIntM_smul_cA {b a : ℕ} {e : AE D} (he : e * e = e) {N : Matrix (Fin b) (Fin a) (EAf D)} (hN : IsIntM N) :
     IsIntM (toEAf D (cA D e) • N) := isIntM_smul (by rw [← map_mul, he]) hN
 
-theorem isHalf_smul {m n : ℕ} {e : AE D} (he : e * e = e) (x : Mx D m n) : IsHalf e (e • x) := fun i j => by
-  show e * (e * x i j) = e * x i j
-  rw [← mul_assoc, he]
+alias isHalf_smul := _root_.GlobalTheory.ExportSeries.RestrictHalfModel.isHalf_smul
 
 theorem isInt_iff {S T : HSp D} {F : Frame S T} (hF : F.Good) {Pg Qa Qb : Finset (Pl D.host.E)} (h : PlacesOK Pg Qa)
     (hQ : Qb ⊆ Qa) {x : WO S T} (hx : IsHalf (halfIdem Pg Qa) x) :
@@ -164,12 +152,12 @@ theorem isInt_iff {S T : HSp D} {F : Frame S T} (hF : F.Good) {Pg Qa Qb : Finset
     exact (Matrix.ext fun i j => hx i j).symm
   constructor
   · rintro ⟨h1, h2⟩
-    refine ⟨?_, ?_, mem_lat_of_isIntM_half hF hR (isHalf_smul hb x) ?_⟩
+    refine ⟨?_, ?_, _root_.GlobalTheory.IntHalfLat.mem_lat_of_frMapO_int hF hR (isHalf_smul hb x) ?_⟩
     · rw [frMapAdj_smul]; exact isIntM_smul_cA ha' h1
     · rw [frMapO_smul]; exact isIntM_smul ha' h2
     · rw [frMapO_smul]; exact isIntM_smul hb h2
   · rintro ⟨k1, k2, k3⟩
-    obtain ⟨o, d⟩ := isIntM_of_mem_lat_half hF hR (isHalf_smul hb x) k3
+    obtain ⟨o, d⟩ := _root_.GlobalTheory.LatHalfInt.frMap_int_of_mem_lat hF hR (isHalf_smul hb x) k3
     rw [hxe, GlobalTheory.PlaceVec.frMapAdj_add, frMapO_add']
     exact ⟨fun i j => add_mem (k1 i j) (d i j), fun i j => add_mem (k2 i j) (o i j)⟩
 
@@ -191,7 +179,7 @@ theorem datumFn_eq_restrict {S T : HSp D} {F : Frame S T} (hF : F.Good) {G : Typ
   have hbx := isHalf_smul hb x
   by_cases hint : IsIntM (frMapAdj S T F.βS F.βT x) ∧ IsIntM (frMapO S T F.βS F.βT x)
   · obtain ⟨k1, k2, k3⟩ := (isInt_iff hF h hQ hx).1 hint
-    obtain ⟨r1, r2⟩ := redM_halfIdem_smul F.βS F.βT h hQ hx hint.1 hint.2
+    obtain ⟨r1, r2⟩ := _root_.GlobalTheory.RedHalfDrop.redM_drop F.βS F.βT h hQ hx hint.1 hint.2
     simp only [Frame.datumFn, halfInd]
     rw [if_pos ⟨hx, hint.1⟩, if_pos ⟨hx, hint.2⟩, if_pos ⟨ha'x, k1⟩, if_pos ⟨ha'x, k2⟩, if_pos ⟨k3, hbx⟩, mul_one]
     congr 1
@@ -234,7 +222,7 @@ theorem vecAt_drop : ∀ (D : D7) (S T : HSp D) (B : Base S T) (Q Q' : Finset (P
   rw [hL, datumFn_eq_restrict hB.frame hP hQb hω]
   have hmodel := Frame.isPlaceModel_placeMap hB.frame hP
   rw [halfIdem_eq_add hQb] at hmodel ⊢
-  have hm' := isPlaceModel_restrictHalf hPb.isOrthSum.1.idem (idem_mul_self_of (hP.empty_sdiff (Qb := B.de.Q ∪ Q')))
+  have hm' := _root_.GlobalTheory.ExportSeries.isPlaceModel_comp_restrictHalf hPb.isOrthSum.1.idem (idem_mul_self_of (hP.empty_sdiff (Qb := B.de.Q ∪ Q')))
     (halfIdem_mul_idem hP hQb) (fun e he u hu => GlobalTheory.PlaceModelSum.idem_smul_latO he hu) hmodel
   exact GlobalTheory.PlaceVec.placeModel_unique hB.frame.vac.1 hB.frame.sdS hB.frame.sdT hPb.isOrthSum.1.idem
     hPb.isOrthSum.1.infPart_eq hm' (Frame.isPlaceModel_placeMap hB.frame hPb) (Frame.isSBHalf_datumFn hB.frame hPb hω)

@@ -65,9 +65,9 @@ theorem intLatU_holds : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   obtain ⟨G, t, m₁, m₂, ⟨ub, hub⟩, θ, hθ⟩ := y.2.2
   obtain ⟨G₂, t₂, n₁, n₂, ⟨ub₂, hub₂⟩, θ₂, hθ₂⟩ := y'.2.2
   obtain ⟨k, n, hk, hn⟩ := exists_sabMap_of_eq T hx G G₂ t t₂ m₁ m₂ n₁ n₂
-  refine ⟨GlobalTheory.T.integral_frames_differ_by_unit' E H Dw l Xo c T io y.1 y'.1 G G₂ t t₂ m₁ m₂ n₁ n₂ k n hx hk hn ub ub₂ hub hub₂, ?_⟩
+  refine ⟨_root_.GlobalTheory.IntLie.integral_frames_differ_by_unit E H Dw l Xo c T io y.1 y'.1 G G₂ t t₂ m₁ m₂ n₁ n₂ k n hx hk hn ub ub₂ hub hub₂, ?_⟩
   intro a pm h1 h2 h3
-  refine GlobalTheory.T.valV_eq_one_integral_generators E H Dw l Xo c T io y.1 y'.1 G G₂ t t₂ m₁ m₂ n₁ n₂ k n hx hk hn θ θ₂ hθ hθ₂ a
+  refine _root_.GlobalTheory.IntegralGenerator.valV_eq_one E H Dw l Xo c T io y.1 y'.1 G G₂ t t₂ m₁ m₂ n₁ n₂ k n hx hk hn θ θ₂ hθ hθ₂ a
     ⟨pm, h1, ?_, h3⟩
   have hid : spMap (RingHom.id T.Fr) = 𝟙 (Sp T.Fr) := Spec.map_id _
   rw [h2, hid]

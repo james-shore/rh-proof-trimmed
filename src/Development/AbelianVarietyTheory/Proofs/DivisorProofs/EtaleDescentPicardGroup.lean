@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BijectiveMultiplicativeGroupSectionsUnits
 
 @[expose] public section
 
@@ -64,7 +65,7 @@ def gmOf (C : CommRingCat.{0}) : Additive Cˣ →+ (onRings Gm).obj C :=
       (MulEquiv.toAdditive (Units.mapEquiv (gsi C).symm.toMulEquiv)).toAddMonoidHom)
 
 theorem gmOf_bijective (C : CommRingCat.{0}) : Function.Bijective (gmOf C) := by
-  have h := GlobalTheory.T.bijective_multiplicativeGroup_sections_units (Spec C)
+  have h := _root_.GlobalTheory.EtC.GmSec.gm_sec_bijective (Spec C)
   have h2 : Function.Bijective (fun a : Additive Cˣ =>
       (ULift.up (Additive.ofMul (Units.mapEquiv (gsi C).symm.toMulEquiv a.toMul)) : ULift.{1} (Additive Γ(Spec C, ⊤)ˣ))) :=
     ((MulEquiv.toAdditive (Units.mapEquiv (gsi C).symm.toMulEquiv)).toEquiv.trans Equiv.ulift.symm).bijective
@@ -105,19 +106,11 @@ def zOf {w : (B ⊗[A] B)ˣ} (hw : UCoc A B w) : Z1 Gm A B :=
 theorem zOf_coe {w : (B ⊗[A] B)ˣ} (hw : UCoc A B w) :
     (zOf hw : (onRings Gm).obj (CommRingCat.of (B ⊗[A] B))) = gmOf (CommRingCat.of (B ⊗[A] B)) (Additive.ofMul w) := rfl
 
-theorem UCoc_mul {w v : (B ⊗[A] B)ˣ} (hw : UCoc A B w) (hv : UCoc A B v) : UCoc A B (w * v) := by
-  rw [← mem_cocycles_units_iff, ofMul_mul, map_add (f := _)]
-  exact add_mem ((mem_cocycles_units_iff w).2 hw) ((mem_cocycles_units_iff v).2 hv)
-
-theorem UCoc_inv {w : (B ⊗[A] B)ˣ} (hw : UCoc A B w) : UCoc A B w⁻¹ := by
-  rw [← mem_cocycles_units_iff, ofMul_inv, map_neg]
-  exact neg_mem ((mem_cocycles_units_iff w).2 hw)
-
 theorem zOf_mul {w v : (B ⊗[A] B)ˣ} (hw : UCoc A B w) (hv : UCoc A B v) :
-    zOf (UCoc_mul hw hv) = zOf hw + zOf hv :=
+    zOf (_root_.GlobalTheory.PicCech.uCoc_mul hw hv) = zOf hw + zOf hv :=
   Subtype.ext (by rw [zOf_coe, ofMul_mul, map_add (f := _)]; rfl)
 
-theorem zOf_inv {w : (B ⊗[A] B)ˣ} (hw : UCoc A B w) : zOf (UCoc_inv hw) = - zOf hw :=
+theorem zOf_inv {w : (B ⊗[A] B)ˣ} (hw : UCoc A B w) : zOf (_root_.GlobalTheory.PicCech.uCoc_inv hw) = - zOf hw :=
   Subtype.ext (by rw [zOf_coe, ofMul_inv, map_neg]; rfl)
 
 theorem UCoc_map {B' : Type} [CommRing B'] [Algebra A B'] (φ : B →ₐ[A] B') {w : (B ⊗[A] B)ˣ} (hw : UCoc A B w)
@@ -165,21 +158,21 @@ theorem cobd_iff {G K : Type} [CommGroup G] [CommGroup K] (r l : K →* G) (w : 
 variable (A : Type) [CommRing A]
 
 def cg : ∀ (B : Type) [CommRing B] [Algebra A B], Z1 Gm A B →+ H ℤ (sp A) Gm 1 :=
-  Classical.choose (GlobalTheory.T.etale_cocycle_coboundary_iff ℤ Gm A)
+  Classical.choose (_root_.GlobalTheory.CechOne.cech1 ℤ Gm A)
 
 def cd : ∀ (B : Type) [CommRing B] [Algebra A B], (B ⊗[A] B)ˣ → CommRing.Pic A :=
-  Classical.choose (GlobalTheory.T.pic_faithfullyFlat_descent_unitCocycles A)
+  Classical.choose (_root_.GlobalTheory.pic_cech_descent A)
 
 variable {A} {B : Type} [CommRing B] [Algebra A B]
 
 theorem cd_mul [Module.FaithfullyFlat A B] {w v : (B ⊗[A] B)ˣ} (hw : UCoc A B w) (hv : UCoc A B v) :
     cd A B (w * v) = cd A B w * cd A B v :=
-  (Classical.choose_spec (GlobalTheory.T.pic_faithfullyFlat_descent_unitCocycles A) B).1 w v hw hv
+  (Classical.choose_spec (_root_.GlobalTheory.pic_cech_descent A) B).1 w v hw hv
 
 theorem cg_zero_iff [Algebra.Etale A B] [Module.FaithfullyFlat A B] {w : (B ⊗[A] B)ˣ} (hw : UCoc A B w) :
     cg A B (zOf hw) = 0 ↔ cd A B w = 1 := by
   unfold cg cd
-  rw [(Classical.choose_spec (GlobalTheory.T.etale_cocycle_coboundary_iff ℤ Gm A) B).1, (Classical.choose_spec (GlobalTheory.T.pic_faithfullyFlat_descent_unitCocycles A) B).2.1 w hw]
+  rw [(Classical.choose_spec (_root_.GlobalTheory.CechOne.cech1 ℤ Gm A) B).1, (Classical.choose_spec (_root_.GlobalTheory.pic_cech_descent A) B).2.1 w hw]
   calc _ ↔ ∃ b : Additive Bˣ, Additive.ofMul w =
         MonoidHom.toAdditive (Units.map (Algebra.TensorProduct.includeRight : B →ₐ[A] B ⊗[A] B).toRingHom.toMonoidHom) b -
         MonoidHom.toAdditive (Units.map (Algebra.TensorProduct.includeLeft : B →ₐ[A] B ⊗[A] B).toRingHom.toMonoidHom) b := by
@@ -198,7 +191,7 @@ theorem cg_zero_iff [Algebra.Etale A B] [Module.FaithfullyFlat A B] {w : (B ⊗[
 
 theorem cg_range [Algebra.Etale A B] [Module.FaithfullyFlat A B] (x : H ℤ (sp A) Gm 1)
     (hx : pull ℤ (spMap (algebraMap A B)) Gm 1 x = 0) : ∃ (w : (B ⊗[A] B)ˣ) (hw : UCoc A B w), cg A B (zOf hw) = x := by
-  obtain ⟨u, hu⟩ := (Classical.choose_spec (GlobalTheory.T.etale_cocycle_coboundary_iff ℤ Gm A) B).2.1 x hx
+  obtain ⟨u, hu⟩ := (Classical.choose_spec (_root_.GlobalTheory.CechOne.cech1 ℤ Gm A) B).2.1 x hx
   obtain ⟨b, hb⟩ := (gmOf_bijective _).2 (u : (onRings Gm).obj (CommRingCat.of (B ⊗[A] B)))
   have hw : UCoc A B (Additive.toMul b) := (mem_cocycles_units_iff _).1 (by rw [ofMul_toMul, hb]; exact u.2)
   have hz : zOf hw = u := Subtype.ext hb
@@ -206,16 +199,16 @@ theorem cg_range [Algebra.Etale A B] [Module.FaithfullyFlat A B] (x : H ℤ (sp 
 
 theorem cd_range [Module.FaithfullyFlat A B] (c : CommRing.Pic A) (hc : CommRing.Pic.mapAlgebra A B c = 1) :
     ∃ w, UCoc A B w ∧ cd A B w = c :=
-  (Classical.choose_spec (GlobalTheory.T.pic_faithfullyFlat_descent_unitCocycles A) B).2.2.1 c hc
+  (Classical.choose_spec (_root_.GlobalTheory.pic_cech_descent A) B).2.2.1 c hc
 
 theorem push {C : Type} [CommRing C] [Algebra A C] [Algebra.Etale A B] [Module.FaithfullyFlat A B]
     [Algebra.Etale A C] [Module.FaithfullyFlat A C] (φ : B →ₐ[A] C) {w : (B ⊗[A] B)ˣ} (hw : UCoc A B w) :
     ∃ (wC : (C ⊗[A] C)ˣ) (hC : UCoc A C wC), cg A C (zOf hC) = cg A B (zOf hw) ∧ cd A C wC = cd A B w := by
   have hC : UCoc A C (Units.map (Algebra.TensorProduct.map φ φ).toRingHom.toMonoidHom w) := UCoc_map φ hw rfl
   refine ⟨_, hC, ?_, ?_⟩
-  · exact (Classical.choose_spec (GlobalTheory.T.etale_cocycle_coboundary_iff ℤ Gm A) B).2.2.2 C φ (zOf hw) (zOf hC)
+  · exact (Classical.choose_spec (_root_.GlobalTheory.CechOne.cech1 ℤ Gm A) B).2.2.2 C φ (zOf hw) (zOf hC)
       (by rw [zOf_coe, zOf_coe, gmOf_nat]; rfl)
-  · exact (Classical.choose_spec (GlobalTheory.T.pic_faithfullyFlat_descent_unitCocycles A) B).2.2.2.2 C φ w _ hw rfl
+  · exact (Classical.choose_spec (_root_.GlobalTheory.pic_cech_descent A) B).2.2.2.2 C φ w _ hw rfl
 
 variable {A : Type} [CommRing A]
 
@@ -247,15 +240,15 @@ theorem common {x y : H ℤ (sp A) Gm 1} {c d : CommRing.Pic A} (hx : Rep x c) (
 
 theorem rep_unique {x : H ℤ (sp A) Gm 1} {c c' : CommRing.Pic A} (h : Rep x c) (h' : Rep x c') : c = c' := by
   obtain ⟨C, _, _, _, _, w, hw, v, hv, e1, rfl, e2, rfl⟩ := common h h'
-  have hq := UCoc_mul hw (UCoc_inv hv)
-  have h0 : cg A C (zOf hq) = 0 := by rw [zOf_mul hw (UCoc_inv hv), zOf_inv hv, map_add (f := _), map_neg, e1, e2, add_neg_cancel]
+  have hq := _root_.GlobalTheory.PicCech.uCoc_mul hw (_root_.GlobalTheory.PicCech.uCoc_inv hv)
+  have h0 : cg A C (zOf hq) = 0 := by rw [zOf_mul hw (_root_.GlobalTheory.PicCech.uCoc_inv hv), zOf_inv hv, map_add (f := _), map_neg, e1, e2, add_neg_cancel]
   rw [cg_zero_iff] at h0
   have : w = (w * v⁻¹) * v := by rw [inv_mul_cancel_right]
   rw [this, cd_mul hq hv, h0, one_mul]
 
 theorem rep_add {x y : H ℤ (sp A) Gm 1} {c d : CommRing.Pic A} (hx : Rep x c) (hy : Rep y d) : Rep (x + y) (c * d) := by
   obtain ⟨C, _, _, _, _, w, hw, v, hv, e1, f1, e2, f2⟩ := common hx hy
-  refine ⟨C, inferInstance, inferInstance, inferInstance, inferInstance, w * v, UCoc_mul hw hv, ?_, ?_⟩
+  refine ⟨C, inferInstance, inferInstance, inferInstance, inferInstance, w * v, _root_.GlobalTheory.PicCech.uCoc_mul hw hv, ?_, ?_⟩
   · rw [zOf_mul hw hv, map_add (f := _), e1, e2]
   · rw [cd_mul hw hv, f1, f2]
 
@@ -272,7 +265,7 @@ theorem rep_exists (x : H ℤ (sp A) Gm 1) : ∃ c, Rep x c := by
   exact ⟨cd A B w, B, inferInstance, inferInstance, inferInstance, inferInstance, w, hw, hwx, rfl⟩
 
 theorem rep_surj (c : CommRing.Pic A) : ∃ x, Rep x c := by
-  obtain ⟨B, _, _, _, _, hB⟩ := GlobalTheory.T.exists_etale_faithfullyFlat_picMapAlgebra_eq_one A c
+  obtain ⟨B, _, _, _, _, hB⟩ := _root_.GlobalTheory.PicLoc.exists_etale_faithfullyFlat_mapAlgebra_eq_one A c
   obtain ⟨w, hw, hc⟩ := cd_range c hB
   exact ⟨cg A B (zOf hw), B, inferInstance, inferInstance, inferInstance, inferInstance, w, hw, rfl, hc⟩
 

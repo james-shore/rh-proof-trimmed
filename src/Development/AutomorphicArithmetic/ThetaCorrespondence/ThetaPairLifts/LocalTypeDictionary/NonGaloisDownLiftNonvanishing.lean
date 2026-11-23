@@ -55,7 +55,7 @@ open GlobalTheory.DownLift GlobalTheory.Core.Rk.Exh
 namespace GlobalTheory
 theorem DownLift.nonvanishing_of_down_lift : GlobalTheory.Published.CuspRapidDecay → _root_.GlobalTheory.Published.DoublingMethodLocalZetaIntegrals → GlobalTheory.Published.UnramifiedDoublingGL → GlobalTheory.Published.HeckeLPartialContinuation → GlobalTheory.Hk3.HoweUnram → ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) (A : FamIn D.what₂.LL G Pl0 T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.LiftRows.Given R F → R.FullP → ∀ i t, NonVan R i t := by
   intro h1 h2 h4 h5 h6 D G _ _ Pl0 T A Ks _ _ _ R F hG hF i t
-  exact ((_root_.GlobalTheory.T.liftInj_and_nonVan_typeNZ_of_given h1 h2 h4 h5 h6 D G Pl0 T A Ks R F hG hF).2 i t).1
+  exact ((_root_.GlobalTheory.Core.Rk.LiftOnto.liftInj_nonVan_typeNZ_of_hypotheses_alt h1 h2 h4 h5 h6 D G Pl0 T A Ks R F hG hF).2 i t).1
 end GlobalTheory
 end
 

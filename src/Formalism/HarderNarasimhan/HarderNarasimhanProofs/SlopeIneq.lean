@@ -167,7 +167,7 @@ theorem rank_range_eq_and_degree_le {G : Type*} [AddCommGroup G] (α : G →+ E)
   have hA := Formalism.F.covolEqGram E (LinearMap.range α.toIntLinearMap) _ b
   have hB := Formalism.F.covolEqGram F (LinearMap.range β.toIntLinearMap) _ (b.map e)
   simp only [Basis.map_apply] at hB
-  have hG := Formalism.F.gramDetLe E F _ (fun i => ((b i : LinearMap.range α.toIntLinearMap) : E))
+  have hG := _root_.Formalism.F.gram_det_le E F _ (fun i => ((b i : LinearMap.range α.toIntLinearMap) : E))
     (fun i => ((e (b i) : LinearMap.range β.toIntLinearMap) : F)) C
     (fun c => norm_sum_smul_map_le_mul_of_bounded e.toLinearMap C hC.le hy b c)
   simp only [Fintype.card_fin] at hG

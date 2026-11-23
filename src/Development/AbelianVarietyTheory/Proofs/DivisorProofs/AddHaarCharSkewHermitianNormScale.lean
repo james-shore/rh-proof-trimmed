@@ -185,7 +185,7 @@ open GlobalTheory.ResidueEisenstein.ModConj.SkewSplit in
 theorem addEquivAddHaarChar_skewA_scale : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → ∀ (j : ℕ) [LocallyCompactSpace (GlobalTheory.ResidueEisenstein.ModConj.skewA σ j)] [SecondCountableTopology (GlobalTheory.ResidueEisenstein.ModConj.skewA σ j)] [MeasurableSpace (GlobalTheory.ResidueEisenstein.ModConj.skewA σ j)] [BorelSpace (GlobalTheory.ResidueEisenstein.ModConj.skewA σ j)] (l : (AF F ⊗[F] E)ˣ) (L : GlobalTheory.ResidueEisenstein.ModConj.skewA σ j ≃ₜ+ GlobalTheory.ResidueEisenstein.ModConj.skewA σ j), (∀ s, (L s : Matrix (Fin j) (Fin j) (AF F ⊗[F] E)) = ((l : AF F ⊗[F] E) * sigR (AF F) σ (l : AF F ⊗[F] E)) • (s : Matrix (Fin j) (Fin j) (AF F ⊗[F] E))) → addEquivAddHaarChar L = absE F E l ^ (j * j) := by
   intro F E _ _ _ _ _ σ hcm j _ _ _ _ l L hL
   haveI : IsTotallyReal F := hcm.1
-  have hσ := GlobalTheory.ImaginaryModulus.sig_sig hcm
+  have hσ := _root_.GlobalTheory.AdelicU.cm_conj_conj hcm
   obtain ⟨δ, hδ0, hδ⟩ := GlobalTheory.ImaginaryModulus.exists_anti hcm
   obtain ⟨-, hlc, hsc, ht2⟩ := topAE F E
   haveI : LocallyCompactSpace (AF F ⊗[F] E) := hlc

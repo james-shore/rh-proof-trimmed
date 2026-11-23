@@ -104,16 +104,6 @@ section Entries
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
-theorem stdBlocks_ones' (N : ℕ) (a : Fin N) (i : Fin (PositivityTheory.Lbc.ones N a)) :
-    stdBlocks (PositivityTheory.Lbc.ones N) (PositivityTheory.Lbc.sum_ones N) ⟨a, i⟩ = a := by
-  apply Fin.ext
-  rw [stdBlocks_val]
-  have hi : (i : ℕ) = 0 := by
-    have := i.2
-    simp only [PositivityTheory.Lbc.ones] at this
-    omega
-  simp [PositivityTheory.Lbc.ones, hi]
-
 def zeroOne (N : ℕ) (a : Fin N) : Fin (PositivityTheory.Lbc.ones N a) := ⟨0, by simp [PositivityTheory.Lbc.ones]⟩
 
 theorem nup_entries {N : ℕ} {g : GL (Fin N) k} (hg : g ∈ PositivityTheory.Lbc.Nup k N) :
@@ -122,9 +112,9 @@ theorem nup_entries {N : ℕ} {g : GL (Fin N) k} (hg : g ∈ PositivityTheory.Lb
   obtain ⟨h1, h2⟩ := mem_unipRad.1 hg
   refine ⟨fun i j hij => ?_, fun i => ?_⟩
   · have := (mem_parab_iff.1 h1) i j (zeroOne N i) (zeroOne N j) hij
-    rwa [stdBlocks_ones', stdBlocks_ones'] at this
+    rwa [_root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq, _root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq] at this
   · have := h2 i (zeroOne N i) (zeroOne N i)
-    rwa [stdBlocks_ones', Matrix.one_apply_eq] at this
+    rwa [_root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq, Matrix.one_apply_eq] at this
 
 theorem nlo_entries {N : ℕ} {g : GL (Fin N) k} (hg : g ∈ PositivityTheory.Lbc.Nlo k N) :
     (∀ i j : Fin N, i < j → (g : Matrix (Fin N) (Fin N) k) i j = 0) ∧
@@ -132,29 +122,29 @@ theorem nlo_entries {N : ℕ} {g : GL (Fin N) k} (hg : g ∈ PositivityTheory.Lb
   obtain ⟨h1, h2⟩ := (mem_unipRadLower k).1 hg
   refine ⟨fun i j hij => ?_, fun i => ?_⟩
   · have := ((mem_parabLower_iff k).1 h1) i j (zeroOne N i) (zeroOne N j) hij
-    rwa [stdBlocks_ones', stdBlocks_ones'] at this
+    rwa [_root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq, _root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq] at this
   · have := h2 i (zeroOne N i) (zeroOne N i)
-    rwa [stdBlocks_ones', Matrix.one_apply_eq] at this
+    rwa [_root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq, Matrix.one_apply_eq] at this
 
 theorem mem_Nup_of' {N : ℕ} (g : GL (Fin N) k)
     (h0 : ∀ i j : Fin N, j < i → (g : Matrix (Fin N) (Fin N) k) i j = 0)
     (h1 : ∀ i, (g : Matrix (Fin N) (Fin N) k) i i = 1) : g ∈ PositivityTheory.Lbc.Nup k N := by
   refine mem_unipRad.2 ⟨mem_parab_iff.2 fun a b i j hab => ?_, fun a i j => ?_⟩
-  · rw [stdBlocks_ones', stdBlocks_ones']
+  · rw [_root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq, _root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq]
     exact h0 a b hab
   · have hij : i = j := Fin.ext (by have := i.2; have := j.2; simp only [PositivityTheory.Lbc.ones] at *; omega)
     subst hij
-    rw [stdBlocks_ones', h1, Matrix.one_apply_eq]
+    rw [_root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq, h1, Matrix.one_apply_eq]
 
 theorem mem_Nlo_of' {N : ℕ} (g : GL (Fin N) k)
     (h0 : ∀ i j : Fin N, i < j → (g : Matrix (Fin N) (Fin N) k) i j = 0)
     (h1 : ∀ i, (g : Matrix (Fin N) (Fin N) k) i i = 1) : g ∈ PositivityTheory.Lbc.Nlo k N := by
   refine (mem_unipRadLower k).2 ⟨(mem_parabLower_iff k).2 fun a b i j hab => ?_, fun a i j => ?_⟩
-  · rw [stdBlocks_ones', stdBlocks_ones']
+  · rw [_root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq, _root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq]
     exact h0 a b hab
   · have hij : i = j := Fin.ext (by have := i.2; have := j.2; simp only [PositivityTheory.Lbc.ones] at *; omega)
     subst hij
-    rw [stdBlocks_ones', h1, Matrix.one_apply_eq]
+    rw [_root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq, h1, Matrix.one_apply_eq]
 
 end Entries
 

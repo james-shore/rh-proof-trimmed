@@ -165,22 +165,7 @@ section Local
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
   {n : Type} [Fintype n] [DecidableEq n]
 
-theorem charInd_mem' (χ : AddChar 𝓀[k] ℂ) (Q : Pair k n) : charInd χ Q ∈ SB (n → k) := by
-  haveI : T2Space k := GlobalTheory.SplitWeil.t2Space k
-  refine ⟨(IsLocallyConstant.iff_exists_open _).2 fun y => ?_,
-    HasCompactSupport.intro (Comm.isCompact_lat Q.lat) fun y hy => ?_⟩
-  · by_cases hy : y ∈ Q.lat
-    · refine ⟨{z | z - y ∈ Q.ker}, (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.isOpen_lat Q.ker).preimage (continuous_id.sub continuous_const),
-        by simp [zero_mem], fun z hz => ?_⟩
-      have hz' : Q.HasVal z (Q.ev y) := by
-        have := (GlobalTheory.LatPair.Pair.mem_ker.1 hz).add (GlobalTheory.LatPair.Pair.hasVal_ev hy)
-        simpa using this
-      simp only [charInd, vecInd, if_pos hz'.mem, if_pos hy, hz'.ev_eq]
-    · refine ⟨(Q.lat : Set (n → k))ᶜ, (Comm.isCompact_lat Q.lat).isClosed.isOpen_compl, hy, fun z hz => ?_⟩
-      have hz' : z ∉ Q.lat := hz
-      simp only [charInd, vecInd, if_neg hz', if_neg hy, mul_zero]
-  · have hy' : y ∉ Q.lat := hy
-    simp only [charInd, vecInd, if_neg hy', mul_zero]
+alias charInd_mem' := _root_.GlobalTheory.FinPl.SBFacts.charInd_mem
 
 theorem inDual_vecMul {L : Submodule 𝒪[k] (n → k)} {g : GL n k} (hg : g • L = L) (η : n → k) :
     InDual L (η ᵥ* g.val) ↔ InDual L η := by

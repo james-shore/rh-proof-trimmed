@@ -157,7 +157,7 @@ theorem UpperTheory.Cb.pow_polarization_iso_pullback_of_descent :
       have h3 := (b.unit n hnp).map β
       rw [map_natCast] at h3
       exact h3.ne_zero
-    obtain ⟨u, hu⟩ := GlobalTheory.T.exists_weilCommutatorPairing_torsion_geometricPoint Y B _ hB hMB κ x n hn hnκ _ _ (htor n hn hnp z) (htor n hn hnp z')
+    obtain ⟨u, hu⟩ := _root_.GlobalTheory.WeilGeomPt.exists_weilIs_geomPt Y B _ hB hMB κ x n hn hnκ _ _ (htor n hn hnp z) (htor n hn hnp z')
     have h3 := (GlobalTheory.weilIs_along_hom GlobalTheory.globalFns_holds Y o.A B ψ _ _ (p ^ e) (n : ℤ) (Over.mk x)
       (I.ev n z) (I.ev n z') _ u o.ab hB hLA hMB hψ hiso hu).2 hA
     rw [h3] at hu

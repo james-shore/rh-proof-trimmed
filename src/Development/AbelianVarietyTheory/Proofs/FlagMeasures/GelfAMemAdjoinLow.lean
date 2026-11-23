@@ -266,7 +266,7 @@ theorem central_of_filt_low {E : Fin n → Fin n → A} (hE : Formalism.REAL.GlR
         refine Algebra.adjoin_le ?_
         rintro x hx _ rfl
         exact (h2 x hx).symm
-      exact this (GlobalTheory.T.mem_adjoin_glAction_of_commute_tensorPerm n d T hT) _ rfl
+      exact this (_root_.GlobalTheory.SymmTensor.mem_adjoin_polar n d T hT) _ rfl
     have h4 : Submodule.span ℂ (Set.range (permMat n d)) ≤
         (Subalgebra.toSubmodule (Algebra.adjoin ℂ (Set.range fun k : Fin n => gelfA E k.val)) ⊔
           filt E d).comap (wordMap E d) := by

@@ -58,7 +58,7 @@ theorem GlobalTheory.LogPair.relSnc_spread : ∀ (R k : Type) [CommRing R] [Fiel
   have hW : π ⁻¹ᵁ W = ⊤ := by
     refine top_unique fun y _ => ?_
     obtain ⟨C', hC'⟩ := hrel.chart y
-    obtain ⟨C, hC⟩ := GlobalTheory.T.snc_chart_descends R k φ X X' f f' π d s L σ C' y hpb hC'
+    obtain ⟨C, hC⟩ := _root_.GlobalTheory.ChartDesc.chart_desc R k φ X X' f f' π d s L σ C' y hpb hC'
     show π y ∈ W
     exact (Opens.mem_iSup).2 ⟨C, hC⟩
   obtain ⟨a, ha, h⟩ := GlobalTheory.T.universallyClosed_open_containing_fibre_contains_nearby R k φ X X' f f' π W hpb hW
@@ -69,7 +69,7 @@ theorem GlobalTheory.LogPair.relSnc_spread : ∀ (R k : Type) [CommRing R] [Fiel
     have : z ∈ ρ ⁻¹ᵁ W := by rw [hZ]; trivial
     exact this
   obtain ⟨C, hC⟩ := (Opens.mem_iSup).1 hz
-  obtain ⟨C', hC'⟩ := GlobalTheory.T.snc_chart_base_change R T χ X Z f g ρ d s L σ C hρ
+  obtain ⟨C', hC'⟩ := _root_.GlobalTheory.LogPair.sncChart_baseChange R T χ X Z f g ρ d s L σ C hρ
   refine ⟨C', ?_⟩
   rw [hC']
   exact hC

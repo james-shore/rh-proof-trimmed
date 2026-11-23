@@ -53,6 +53,7 @@ import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.RankOneUnitar
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ThetaMod
 import Formalism.AlgebraicWeights.IsAlgWeight
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.TypesDefs
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.NotMemSpanOfCommute
 
 @[expose] public section
 
@@ -117,11 +118,6 @@ theorem nsmul_inv_smul {D : D7} {S T : HSp D} {N : ℕ} (hN : 0 < N) (t : WO S T
   rw [smul_comm]
   exact GlobalTheory.PlaceModel.inv_smul_nsmul S T hN t
 
-theorem isHalf_nsmul {D : D7} {m n : ℕ} {e : AE D} {u : Mx D m n} (h : IsHalf e u) (N : ℕ) : IsHalf e (N • u) := by
-  intro i j
-  show e * (N • u i j) = N • u i j
-  rw [nsmul_eq_mul, mul_left_comm, h i j]
-
 theorem isHalf_smul_idem {D : D7} {m n : ℕ} {e : AE D} (he : e * e = e) (w : AE D) (a : Mx D m n) :
     IsHalf e (w • (e • a)) := by
   intro i j
@@ -166,7 +162,7 @@ theorem exists_split_lattices : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel 
   · exact fun t ht => ((hL' t).1 ht).1
   · intro y hy
     obtain ⟨b, ⟨hb1, hb2⟩, rfl⟩ := (hK y).1 hy
-    exact ⟨isHalf_nsmul hb2 N, hNU b hb1⟩
+    exact ⟨_root_.GlobalTheory.SplitScalar.isHalf_nsmul hb2 N, hNU b hb1⟩
   · have hAc := lat_compact p FS FT hS hT
     have hB : IsCompact ((fun m => (N : k)⁻¹ • m) '' ((Λ₀.comap (upH p FS FT) : AddSubgroup _) : Set (Matrix Y Y' k))) :=
       hAc.image (continuous_const_smul _)
@@ -204,7 +200,7 @@ theorem exists_split_lattices : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel 
     obtain ⟨h1, h2⟩ := (hL' x).1 hx
     obtain ⟨b, ⟨hb1, -⟩, rfl⟩ := (hK y).1 hy
     rw [← symplO_nsmul_swap]
-    have hhalf : IsHalf p.e (N • x) := isHalf_nsmul h1 N
+    have hhalf : IsHalf p.e (N • x) := _root_.GlobalTheory.SplitScalar.isHalf_nsmul h1 N
     exact (hdual (N • x) (GlobalTheory.PlaceDatum.infPart_of_half hinfe hhalf)).1 h2 b hb1
   · intro y hy hyL
     obtain ⟨y', hy'h, rfl⟩ := GlobalTheory.PlaceModel.half_div S T (cA D p.e) N hN y ((mem_half_iff _ _).2 hy)

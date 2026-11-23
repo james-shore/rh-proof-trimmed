@@ -75,7 +75,7 @@ theorem shareWSt_of_modelSt_alt : _root_.GlobalTheory.ShareOn.ModelStatement →
   refine ⟨max x1 x2, fun x hx hle ι p hp hmore r hr hown i => ?_⟩
   have hm := h1 x hx ((le_max_left _ _).trans hle) ι p hp hmore r hr hown i
   have hn := h2 x hx ((le_max_right _ _).trans hle) ι
-  exact shareW_of_modelAt p i _ _ (by positivity) hm (by obtain ⟨_, _, -, -, h⟩ := _root_.GlobalTheory.T.exists_whittaker_lam_psi_half_unip _ _ _ _ _ _ _ _ _ _ p hp; exact h)
+  exact shareW_of_modelAt p i _ _ (by positivity) hm (by obtain ⟨_, _, -, -, h⟩ := _root_.GlobalTheory.ShareOn.isWhit_and_eq_embLL_inv_and_halfUnip _ _ _ _ _ _ _ _ _ _ p hp; exact h)
     (fun p0 h0 => (hn p0 h0).1) (hn 0 (Nat.zero_le _)).2
 end GlobalTheory.ShareOn
 end

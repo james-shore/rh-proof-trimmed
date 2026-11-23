@@ -122,7 +122,7 @@ theorem sigD_genSub (hσ : IsURepOn (UJset ε) σ) (hD : IsDerivedOn ε σ D E) 
       rw [sigD_E hσ hD hk a b x, actM]
       simp only [LinearMap.sum_apply, LinearMap.smul_apply]
       exact Submodule.sum_mem _ fun c _ => Submodule.sum_mem _ fun d _ =>
-        Submodule.smul_mem _ _ (generatedSub_stable E V c d hx)
+        Submodule.smul_mem _ _ (_root_.ReciprocityTheory.ChartRestriction.DS.Lap.LemK.vc_genSub_stable E V c d hx)
   exact hT hv
 
 theorem wK_tensFock_genSub (hσ : IsURepOn (UJset ε) σ) (hD : IsDerivedOn ε σ D E) {V : Submodule ℂ D}

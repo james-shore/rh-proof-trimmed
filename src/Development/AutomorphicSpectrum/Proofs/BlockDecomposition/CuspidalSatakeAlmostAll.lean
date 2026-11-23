@@ -147,18 +147,13 @@ theorem rank_le_of_simple {M ι : Type} [AddCommGroup M] [Module ℂ M] (S : Sub
   rw [← e]
   exact (rank_span_le _).trans (Cardinal.le_aleph0_iff_set_countable.2 hUc)
 
-theorem countable_orbit {G M : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [SecondCountableTopology G]
-    [AddCommGroup M] [Module ℂ M] (ρ : Representation ℂ G M) (x : M) (h : IsOpen {g | ρ g x = x}) :
-    (Set.range fun g => ρ g x).Countable :=
-  _root_.UpperTheory.Reformulated.B.Yhd2.main ρ x h
-
 section Cusp
 
 variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {a : ℕ}
 
 omit [_root_.NumberField.IsTotallyComplex E] in
 theorem secondCountable_GL : SecondCountableTopology (GL (Fin a) (Af E)) := by
-  haveI := Formalism.L2.Fam.ThC.sc_Af E
+  haveI := _root_.GlobalTheory.AdelicUnitaryTop.secondCountable_finiteAdele E
   haveI : SecondCountableTopology (Matrix (Fin a) (Fin a) (Af E)) :=
     inferInstanceAs (SecondCountableTopology (Fin a → Fin a → Af E))
   haveI : SecondCountableTopology (Matrix (Fin a) (Fin a) (Af E))ᵐᵒᵖ :=
@@ -174,7 +169,7 @@ theorem rank_cuspSub (π : CuspSub E a) : Module.rank ℂ π.V ≤ Cardinal.alep
     (Module.Finite.iff_fg.1 hk)
   let b := Module.finBasis ℝ (Lie E a)
   refine ⟨(Set.range fun g => finRep E a g x) ∪ ((s : Set (Sm E a)) ∪ Set.range fun i => lie E a (b i) x),
-    (countable_orbit _ _ hcusp.level).union (s.countable_toSet.union (Set.countable_range _)), ?_, fun o => ?_⟩
+    (_root_.UpperTheory.Reformulated.B.Yhd2.main _ _ hcusp.level).union (s.countable_toSet.union (Set.countable_range _)), ?_, fun o => ?_⟩
   · rintro y (⟨g, rfl⟩ | hy | ⟨i, rfl⟩)
     · exact π.stable (.fin g) x hx
     · obtain ⟨k, rfl⟩ := hs1 hy

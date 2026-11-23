@@ -98,7 +98,7 @@ theorem conclusion_of_automorphic_side_true (hL : _root_.UpperTheory.Zero.LLC.Re
   obtain ⟨Pl⟩ := GlobalTheory.HeightCounting.nonempty_plSide D
   obtain ⟨X, h1, h0, e1, e2, e3, e4, e5, ⟨par⟩, hι⟩ := GlobalTheory.ParRay.exists_types hR hC D hE jE Pl hray
   obtain ⟨Γ', hΓ⟩ := exists_grp_setTy D hE X h1 h0 e1 e2 e3 Γ
-  obtain ⟨wd⟩ := GlobalTheory.HeightCounting.exists_wdSide hdR (setTy D hE X h1 h0) T
+  obtain ⟨wd⟩ := _root_.GlobalTheory.HeightCounting.nonempty_wdSide_of_tie hdR (setTy D hE X h1 h0) T
   obtain ⟨cg⟩ := hcg
   let cf' : CharFrame (setTy D hE X h1 h0) :=
     ⟨cf.P, cf.W, cf.mu0, cf.eta, cf.chiPsi, cf.del, cf.del', cf.isMu0, cf.isEta, cf.isChi, cf.isDel, cf.isDel'⟩
@@ -139,7 +139,7 @@ theorem conclusion_of_cusp_galois_true (hL : _root_.UpperTheory.Zero.LLC.RecTExi
     (T : GlobalTheory.RowTie.WDTie D.nd D.naut) (hlab : LabTrue D T) (hconj : LabConj D T) (Rs : RowSide D)
     (hrow : _root_.GlobalTheory.HeightCounting.RepresentationParametersHold hL D rep (fun σ w => T.e w (Rs.locR σ w)) Rs.satR)
     (hcg : Nonempty (_root_.GlobalTheory.HeightCounting.CGTrueT hL D T)) (chr : CharSide D cf) : _root_.GlobalTheory.HeightCounting.TopA.ConclAlt hL D cf jE rep := by
-  obtain ⟨C, au, hau⟩ := _root_.GlobalTheory.T.exists_nbc_auSide_true_of_isEmpty_loc hL D hE T
+  obtain ⟨C, au, hau⟩ := _root_.GlobalTheory.AutQuot.exists_nbc_auSide_auTrue_of_isEmpty hL D hE T
   obtain ⟨cg⟩ := hcg
   let cf' : CharFrame (setBC D C) :=
     ⟨cf.P, cf.W, cf.mu0, cf.eta, cf.chiPsi, cf.del, cf.del', cf.isMu0, cf.isEta, cf.isChi, cf.isDel, cf.isDel'⟩
@@ -177,7 +177,7 @@ theorem conclusion_of_group_side (hA : GlobalTheory.Published.AutomorphicFormsFi
     (hχ : ChiTOk D cf)
     (hd : RowDepth D rep) : _root_.GlobalTheory.HeightCounting.TopA.ConclAlt hL D cf jE rep := by
   obtain ⟨Rw, hRw⟩ := _root_.GlobalTheory.RowPar.exists_rowWD_rowTrue_m_alt hL D rep hd
-  obtain ⟨lab, h, A, C, tm, tg, hl, hpl, T, hlab, hconj, Rs, hp, hs⟩ := GlobalTheory.HeightCounting.exists_setAut_wdTie_labConj D hE Rw
+  obtain ⟨lab, h, A, C, tm, tg, hl, hpl, T, hlab, hconj, Rs, hp, hs⟩ := _root_.GlobalTheory.HeightCounting.TrueConjLabels.exists_labels_true_conj D hE Rw
   let cf' : CharFrame (setAut D hE lab h A C tm tg hl) :=
     ⟨cf.P, cf.W, cf.mu0, cf.eta, cf.chiPsi, cf.del, cf.del', cf.isMu0, cf.isEta, cf.isChi, cf.isDel, cf.isDel'⟩
   have hk := fun k v => haveI : Fact (D.host.g k).Prime := ⟨D.host.g_prime k⟩
@@ -204,7 +204,7 @@ theorem conclusion_of_group_side (hA : GlobalTheory.Published.AutomorphicFormsFi
 
 theorem exists_sideA_alt : ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, GlobalTheory.Published.AutomorphicFormsFiniteGL → GlobalTheory.Published.DeRhamPotSemistable → GlobalTheory.Published.GreenCuspidal → GlobalTheory.Published.GlobalArtinReciprocity → GlobalTheory.Published.RayClassFieldSt → GlobalTheory.Published.ChebotarevDegreeOne → ∀ (D : D7) (hE : IsEmpty D.nd.Loc) (cf : CharFrame D) (jE : D.host.E →+* Qb) (rep : D.what₂.FT → NG.FinTyp D.host.E D.R.r), (∀ j g, ∃ z : ℤ, eExp D j g = z) → GlobalTheory.Mem.Top.TypesTrue D.ntypes cf.P cf.W → RowDepth D rep → (∀ k, IsRayPrime (KQbar D jE) (D.host.QS * D.host.q * D.host.d) (D.host.g k)) → ∃ (L : Lay0 D) (hZ : L.ZOk) (hη : L.EtaOk) (A : _root_.GlobalTheory.HeightCounting.CharFrameHostEmbedding (setK D L hZ hη) (cfK L hZ hη cf) jE), Nonempty (_root_.GlobalTheory.HeightCounting.CGTrueT hL _ A.wdT) ∧ _root_.GlobalTheory.HeightCounting.AutomorphicSideRealised hL _ A.wdT A.au ∧ _root_.GlobalTheory.HeightCounting.RepresentationParametersHold hL (setK D L hZ hη) rep (fun σ w => A.wdT.e w (A.row.locR σ w)) A.row.satR ∧ GlobalTheory.Mem.Top.TypesTrue L.ntypes cf.P cf.W ∧ L.nd.PlG = D.nd.PlG ∧ HEq L.naut.plGw D.naut.plGw ∧ HEq L.ntypes.cenAmb D.ntypes.cenAmb ∧ HEq L.ntypes.cenMt D.ntypes.cenMt ∧ (∀ k, haveI : Fact (D.host.g k).Prime := ⟨D.host.g_prime k⟩; A.grp.ζ k = (GlobalTheory.Mem.TypePl.labDat (D.host.g k)).gen) ∧ L.loc = D.loc ∧ HEq (@NData.Om _ _ _ L.nd) (@NData.Om _ _ _ D.nd) ∧ HEq (@NData.instOm _ _ _ L.nd) (@NData.instOm _ _ _ D.nd) ∧ HEq (@NData.algOm _ _ _ L.nd) (@NData.algOm _ _ _ D.nd) ∧ HEq (@NData.plOm _ _ _ L.nd) (@NData.plOm _ _ _ D.nd) ∧ LabConj _ A.wdT := by
   intro hL hA hdR hG hAr hR hC D hE cf jE rep hz hT hd hray
-  obtain ⟨L, hZ, hη, hE', hT', k1, k2, k3, k4, ⟨Γ, hζ⟩, hχ, k5, k6, k7, k8, k9⟩ := GlobalTheory.T.exists_tame_generators_green_cuspidal_labelling hG hAr D hE cf hz hT
+  obtain ⟨L, hZ, hη, hE', hT', k1, k2, k3, k4, ⟨Γ, hζ⟩, hχ, k5, k6, k7, k8, k9⟩ := _root_.GlobalTheory.HeightCounting.TameGrp.exists_tame_generators_cuspidal_labelling hG hAr D hE cf hz hT
   have hd' : RowDepth (setK D L hZ hη) rep := by
     intro σ k v
     obtain ⟨v₀, e⟩ := exists_eq_of_heq k1 k2 k v

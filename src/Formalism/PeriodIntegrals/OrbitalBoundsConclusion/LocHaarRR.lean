@@ -44,4 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem local_haar_real_real : PI.LocHaarRR.Target := PI.LocHaarRRW.target

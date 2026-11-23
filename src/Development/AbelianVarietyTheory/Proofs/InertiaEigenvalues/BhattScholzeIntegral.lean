@@ -56,7 +56,7 @@ theorem bhattScholzeIntegral : GlobalTheory.Published.BhattScholzeIntegral := by
   obtain ⟨a, ha⟩ := GlobalTheory.T.etaleRealisation_indep_ainfModel l K P₀ e H
   refine ⟨?_, ?_⟩
   · intro P AI hstd V _ _ _ _ _ _ _ ρ L hc hcr
-    obtain ⟨M, j₀, hj₀⟩ := GlobalTheory.T.crystallineLattice_prismaticFCrystal_perfectPrism l K P AI hstd V ρ L hc hcr
+    obtain ⟨M, j₀, hj₀⟩ := _root_.GlobalTheory.BSP.clause1_perfectPrism l K P AI hstd V ρ L hc hcr
     obtain ⟨j, hj⟩ := ((ha M).2 ↥L.T (fun g => actT L g)).1 j₀ hj₀
     exact ⟨M, j, hj⟩
   · intro T T' _ _ _ _ ρ ρ' E E' j j' hj hj' f hf

@@ -117,9 +117,9 @@ theorem UpperTheory.V.Z.Tf.L4.ulFact :
   have hgo : ∀ i j, i ≠ j → g i j ∈ I := fun i j h => by
     have := hg i j
     rwa [Matrix.one_apply_ne h, sub_zero] at this
-  obtain ⟨X, Y, δ, e, x1, x0, -, -, hδ, y1, y0, yL⟩ := Formalism.IrreducibleCountingLemmas.Z.iwahori_factorization_exists 𝒪[E] I I hIm n g
+  obtain ⟨X, Y, δ, e, x1, x0, -, -, hδ, y1, y0, yL⟩ := _root_.Bl.SecondBlockLemmaB.goal1 𝒪[E] I I hIm n g
     (fun i => by
-      have := Formalism.IrreducibleCountingLemmas.Z.isUnit_sub_of_mem_maximalIdeal isUnit_one (hIm (I.neg_mem (hgd i)))
+      have := _root_.Bl.FirstBlockLemmaG.goal1 isUnit_one (hIm (I.neg_mem (hgd i)))
       simpa using this)
     (fun i j h => hgo i j h.ne) fun i j h => hgo i j h.ne'
   let U : Matrix (Fin n) (Fin n) E := fun i j => (X i j : E) * w i j

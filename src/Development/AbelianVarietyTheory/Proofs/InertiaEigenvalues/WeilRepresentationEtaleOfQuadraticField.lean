@@ -82,7 +82,7 @@ theorem GlobalTheory.JR.weilEt_of_weilField : WeilField → WeilEt := by
   | _ n ih =>
     intro A hn
     rcases subsingleton_or_nontrivial A.K with hs | hnt
-    · exact GlobalTheory.T.weilRepresentationExistsEtale_of_subsingleton F E A hs
+    · exact _root_.GlobalTheory.JR.weilAt_of_subsingleton F E A hs
     by_cases hK : IsField A.K
     · by_cases hL : IsField A.L
       · exact weilAt_of_isField hF F E A hK hL

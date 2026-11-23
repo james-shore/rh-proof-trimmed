@@ -282,7 +282,7 @@ theorem rel_of_defect [IsAlgClosure ℚ Ω] (X : Tower Ω ε) (N l w : ℕ) [Fac
     rw [hdiam, Pi.smul_apply, pow_succ', mul_smul, ← smul_sub]
     refine Submodule.smul_mem _ _ ?_
     show ((q : ℤ_[l]) ^ w) • X.kmap l (X.gal s.symm) (X.kmap l (X.sl (toGQ _)).toRingEquiv (b _)) - _ ∈ _
-    rw [MobLaws.toGQ_SL, ← map_smul, ← map_smul, ← map_sub, ← map_sub, hhom]
+    rw [_root_.GlobalTheory.KZ.Betti.toGQ_sl, ← map_smul, ← map_smul, ← map_sub, ← map_sub, hhom]
     refine map_mem_smul_top _ _ (map_mem_smul_top _ _ (X.B_sub_mem N l w b hbB n _ _ ?_))
     have h1 := chi_mul_symm l s
     rw [hχ] at h1

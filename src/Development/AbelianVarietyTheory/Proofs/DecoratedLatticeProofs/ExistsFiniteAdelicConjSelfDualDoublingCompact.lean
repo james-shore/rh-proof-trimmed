@@ -70,6 +70,6 @@ theorem exists_conj_KAd_of_selfDual : ∀ (D : D7) (A : HSp D) (L L' : Lat A), I
   refine ⟨ofFin D.sp.cm.sig A.gram y, hk, GlobalTheory.T.doubledCompactSubgroup_conj_hermitianSpace D A L L' _ hk ?_⟩
   intro v z
   rw [proj_ofFin]
-  exact GlobalTheory.T.mem_localLattice_iff_of_finiteAdelic_completion_map D.host.F D.host.E A.rank L L' hL.1.fg hL'.1.fg b hbL v z
+  exact _root_.GlobalTheory.Core.LocFromGlob.mem_latLoc_iff_of_latHat D.host.F D.host.E A.rank L L' hL.1.fg hL'.1.fg b hbL v z
 
 end GlobalTheory.Core.Rk.LatMove

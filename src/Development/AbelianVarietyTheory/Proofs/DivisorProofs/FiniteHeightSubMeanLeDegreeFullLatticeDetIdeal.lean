@@ -80,11 +80,11 @@ theorem detSpan_relIndex_le : ∀ (F V : Type) [Field F] [NumberField F] [AddCom
   rcases eq_or_lt_of_le hle with rfl | hlt
   · rw [AddSubgroup.relIndex_self]
     omega
-  obtain ⟨u, p, hp, huN, hu0, hpu⟩ := GlobalTheory.T.exists_maximalIdeal_smul_mem_of_lt_of_relIndex_ne_zero F V N₀ N hlt hidx
+  obtain ⟨u, p, hp, huN, hu0, hpu⟩ := _root_.GlobalTheory.exists_maxIdeal_smul_mem_of_lt_of_relIndex_ne_zero F V N₀ N hlt hidx
   set N₁ := N₀ ⊔ Submodule.span (𝓞 F) {u} with hN₁
   have h01 : N₀ ≤ N₁ := le_sup_left
   have h1N : N₁ ≤ N := sup_le hle ((Submodule.span_singleton_le_iff_mem _ _).mpr huN)
-  have hidx01 := GlobalTheory.T.relIndex_sup_span_singleton_eq_absNorm_of_isMaximal F V N₀ u p hp hu0 hpu
+  have hidx01 := _root_.GlobalTheory.relIndex_sup_span_singleton_eq_absNorm F V N₀ u p hp hu0 hpu
   have hmul := AddSubgroup.relIndex_mul_relIndex N₀.toAddSubgroup N₁.toAddSubgroup N.toAddSubgroup
     (Submodule.toAddSubgroup_mono h01) (Submodule.toAddSubgroup_mono h1N)
   rw [hidx01] at hmul

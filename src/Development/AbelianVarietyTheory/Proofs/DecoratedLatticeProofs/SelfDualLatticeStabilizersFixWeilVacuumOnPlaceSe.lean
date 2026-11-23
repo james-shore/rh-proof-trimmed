@@ -63,7 +63,7 @@ theorem stab_fix_vac : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp 
     rw [h1, Matrix.one_mulVec]
   have single : ∀ v, P v → ∀ y y', InK S LS (· = v) y → InK T LT (· = v) y' → om (y, y') f = f :=
     fun v hv y y' hy hy' => GlobalTheory.VacStabFixed.vacFixedAt D v ψ S T χS χT om hW (hP v hv).2.1 (hP v hv).2.2 LS LT hS hT f
-      hloc.1 (hloc.2 v hv).2 y y' (GlobalTheory.T.inLatticeStabilizerAtPlace_of_supportedStabilizer D S LS v y hS hy) (GlobalTheory.T.inLatticeStabilizerAtPlace_of_supportedStabilizer D T LT v y' hT hy')
+      hloc.1 (hloc.2 v hv).2 y y' (_root_.GlobalTheory.KStabBridge.inStabAt_of_inK D S LS v y hS hy) (_root_.GlobalTheory.KStabBridge.inStabAt_of_inK D T LT v y' hT hy')
   have listS : ∀ l : List (GA D S), (∀ y ∈ l, ∃ v, P v ∧ InK S LS (· = v) y) → om (l.prod, 1) f = f := by
     intro l
     induction l with
@@ -87,7 +87,7 @@ theorem stab_fix_vac : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp 
   choose lS hlS hiS hinS houtS using GlobalTheory.T.exists_placeStabilizer_partialProducts_finiteSet D S LS P κ hS hκ
   choose lT hlT hiT hinT houtT using GlobalTheory.T.exists_placeStabilizer_partialProducts_finiteSet D T LT P κ' hT hκ'
   have tS := GlobalTheory.T.tendsto_unitaryAdelicPoints_agree_on_growing_finset D S κ (fun Fs => (lS Fs).prod) hiS hinS houtS
-  have tT := GlobalTheory.T.tendsto_unitaryAdelicPoints_agree_on_growing_finset D T κ' (fun Fs => (lT Fs).prod) hiT hinT houtT
+  have tT := _root_.GlobalTheory.AdelicLimit.tendsto_of_agree D T κ' (fun Fs => (lT Fs).prod) hiT hinT houtT
   funext w
   have hc := ((hW.om_cont f hloc.1 w).tendsto (κ, κ')).comp (tS.prodMk_nhds tT)
   have heq : ∀ Fs, f w = ((fun p : GA D S × GA D T => om p f w) ∘ fun Fs => ((lS Fs).prod, (lT Fs).prod)) Fs := by

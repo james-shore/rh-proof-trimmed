@@ -76,7 +76,7 @@ theorem cutAt_of_leaves {D : Formalism.BasicNotions.D7} {M : ∀ p : PlF D, Loc.
     (hFS : FCount.FibSum M δ u u' F0 what₂) (hDT : FCount.DensTh M δ L u u') :
     CutAt M δ L u u' F0 what₂ := by
   have hNR := normRepElig_of hN
-  have hU := Formalism.L2.SG.Pf.locUnram_holds hA u u'
+  have hU := _root_.Formalism.L2.SG.Pf.LocUnramB.locUnram_triv hA u u'
   have hR := Formalism.L2.SG.Pf.thRestricted_holds_of hA hrows hN PCount.eligRel_holds
   have hTS := Formalism.L2.SG.Pf.thSome_holds hA hc hrows hNR
   refine ⟨LocOrbSumPf.localOrbitSum_holds M δ u u' hA, Formalism.L2.SG.Pf.scalKind_of hrows,

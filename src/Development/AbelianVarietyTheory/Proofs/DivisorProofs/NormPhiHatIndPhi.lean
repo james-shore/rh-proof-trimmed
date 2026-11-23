@@ -357,7 +357,7 @@ theorem homN_raw_le : ∃ C : ℝ, 0 ≤ C ∧ ∀ (D : D7) (T : CoreJ D) (j : �
       Real.exp (-(((Formalism.L2.Pj.DF (T.Q.Dw j) a : ℕ) : ℝ) / 2) * Real.log (Real.pi * (2 * xiR D))) := by
     rw [AllWt.lieFacZ_wtZ, lieFac, show 2 * Real.pi * xiR D = Real.pi * (2 * xiR D) by ring]
     simp [Formalism.L2.Pj.DF]
-  have hsupp := card_support_le ((GlobalTheory.T.exists_integralHarmonic_ne_zero_and_isHomogeneous _ _ (T.Q.Dw j) Y.d.l₂ Y.d.c₂ a n).2 P hP.1)
+  have hsupp := card_support_le ((_root_.GlobalTheory.exists_harmA_ne_zero_and_isHomogeneous _ _ (T.Q.Dw j) Y.d.l₂ Y.d.c₂ a n).2 P hP.1)
   rw [card_letters, hcard, ← hpq] at hsupp
   rw [hlie, ← hpq]
   exact numbers D.R.f D.R.r n _ _ Lb _ _ _ _ _ ρ _ _ hL hf1 hr1 hrn hdκ hnκ hsz hfr hrd1 hrdL (by linarith)

@@ -73,7 +73,7 @@ theorem exists_section_mod (T O : Type) [CommRing T] [IsLocalRing T] [HenselianL
     (by rw [IsLocalRing.jacobson_eq_maximalIdeal ⊥ bot_ne_top]; exact le_maximalIdeal hI)
   haveI : IsLocalHom π := inferInstance
   have het : (algebraMap A B).Etale := RingHom.etale_algebraMap.mpr inferInstance
-  obtain ⟨ψ, hψ1, hψ2⟩ := GlobalTheory.T.etale_hom_to_field_factors_algClosed_subfield A B (ResidueField T) (ResidueField (O ⧸ I))
+  obtain ⟨ψ, hψ1, hψ2⟩ := _root_.GlobalTheory.etale_hom_to_field_lands_in_algClosed_subfield A B (ResidueField T) (ResidueField (O ⧸ I))
     ((residue T).comp i) (ResidueField.map π) ((residue (O ⧸ I)).comp b)
     (fun a ha => by
       simp only [RingHom.comp_apply, residue_eq_zero_iff]

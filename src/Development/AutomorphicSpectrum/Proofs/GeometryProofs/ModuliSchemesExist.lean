@@ -47,6 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 
 namespace GlobalTheory.CompanionTheory.Ar.Top
 
-theorem moduli_schemes_exist : N1ab := GlobalTheory.Moduli.moduli_scheme_exists
-
 end GlobalTheory.CompanionTheory.Ar.Top

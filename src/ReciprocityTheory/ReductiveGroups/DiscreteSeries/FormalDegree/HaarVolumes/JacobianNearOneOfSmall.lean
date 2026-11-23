@@ -67,15 +67,11 @@ theorem jacobian_zero (ε : Fin n → Bool) : Jac (0 : PCoord ε → ℂ) = 1 :=
   rw [eigenvalues_zero]
   simp [shc]
 
-theorem unitary_volume_pos (M : ℕ) : 0 < volU M := by
-  unfold volU
-  exact Finset.prod_pos fun i _ => by positivity
-
 theorem jacobian_near_one_of_small (ε : Fin n → Bool) (η : ℝ) (hη : 0 < η) :
     ∃ δ > 0, ∀ C : Set (PCoord ε → ℂ), MeasurableSet C → (∀ z ∈ C, ‖z‖ < δ) →
       (∫⁻ z in C, ENNReal.ofReal (Jac z)) ≤ ENNReal.ofReal (1 + η) * volume C ∧
         ENNReal.ofReal (1 - η) * volume C ≤ ∫⁻ z in C, ENNReal.ofReal (Jac z) := by
-  obtain ⟨δ, hδ, h⟩ := Metric.continuous_iff.1 (jac_continuous ε) 0 η hη
+  obtain ⟨δ, hδ, h⟩ := Metric.continuous_iff.1 (_root_.ReciprocityTheory.ChartRestriction.DS.pb_jac_continuous ε) 0 η hη
   have hpt : ∀ z : PCoord ε → ℂ, ‖z‖ < δ → |Jac z - 1| < η := fun z hz => by
     have := h z (by simpa [dist_zero_right] using hz)
     rwa [jacobian_zero, Real.dist_eq] at this
@@ -118,7 +114,7 @@ theorem muPolar_near_one (ε : Fin n → Bool) (η : ℝ) (hη : 0 < η) :
   rw [polar_measure_product_eq hA hC]
   obtain ⟨hd1, hd2⟩ := hdk B hB hB1
   obtain ⟨hj1, hj2⟩ := hJ C hC hC2
-  have hV : 0 < volU (pOf ε) * volU (qOf ε) := mul_pos (unitary_volume_pos _) (unitary_volume_pos _)
+  have hV : 0 < volU (pOf ε) * volU (qOf ε) := mul_pos (_root_.ReciprocityTheory.ChartRestriction.DS.volU_pos' _) (_root_.ReciprocityTheory.ChartRestriction.DS.volU_pos' _)
   set V := volU (pOf ε) * volU (qOf ε) with hVdef
   have hA' : expImageOfCompact B = {k | ∃ w ∈ B, toMK k = NormedSpace.exp (kMat w)} := rfl
   rw [hA']

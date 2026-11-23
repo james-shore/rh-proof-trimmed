@@ -402,13 +402,13 @@ theorem chiH_sym {Ψ : Finset (E →+* ℂ)} (hΨ : IsType Ψ) (a b : Fin N → 
   have h : ∀ a b : Fin N → E,
       (x * vecMulVec a (fun i => cc (b i)) * ccT x).trace = herm 1 (x *ᵥ a) (x *ᵥ b) := by
     intro a b
-    rw [Matrix.mul_vecMulVec, Matrix.vecMulVec_mul, Matrix.trace_vecMulVec, Nbr.herm_one]
+    rw [Matrix.mul_vecMulVec, Matrix.vecMulVec_mul, Matrix.trace_vecMulVec, _root_.GlobalTheory.SW.Base.herm_one]
     refine Finset.sum_congr rfl fun k _ => ?_
     simp [ccT, cc, Matrix.vecMul, Matrix.mulVec, dotProduct, mul_comm]
   rw [chiH, eT, ← sum_add_cc hΨ, herm_symm, sym, Matrix.mul_add, Matrix.add_mul, Matrix.trace_add, h, h]
 
 theorem herm_ar (x y y' : Fin n → E) : herm 1 x (y + y') = herm 1 x y + herm 1 x y' := by
-  simp [Nbr.herm_one, cc, mul_add, Finset.sum_add_distrib]
+  simp [_root_.GlobalTheory.SW.Base.herm_one, cc, mul_add, Finset.sum_add_distrib]
 
 theorem inf_mem_hyp {M q : ℕ} {P : Ideal (𝓞 E)} (hP : GoodPrime M q P) {Λ Λ' : Lt E n}
     (h' : Λ' ∈ Nb M P Λ) : Λ'.comap Λ.subtype ∈ Hyp P Λ :=

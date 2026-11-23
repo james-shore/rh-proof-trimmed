@@ -50,9 +50,3 @@ end GlobalTheory.FPair
 end
 end
 
-section
-open GlobalTheory.SumSize GlobalTheory.RowClaim
-
-theorem _root_.GlobalTheory.T.field_pair_comparison : _root_.GlobalTheory.FunPr.ThetaLocalInputs → FinPairK ∧ InfPairK := by
-  first | exact @_root_.GlobalTheory.FPair.lift_splits_locally | exact _root_.GlobalTheory.FPair.lift_splits_locally | (intros; apply _root_.GlobalTheory.FPair.lift_splits_locally <;> assumption)
-end

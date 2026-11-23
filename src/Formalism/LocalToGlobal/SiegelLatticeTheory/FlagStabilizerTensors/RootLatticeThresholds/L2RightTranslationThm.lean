@@ -79,6 +79,6 @@ theorem l2RightTranslation_thm : L2RightTranslation := by
     have h2 : ‖W (s * Matrix.of x)‖₊ = ‖W (Matrix.of x)‖₊ := NNReal.eq (hWS s hs (Matrix.of x) hx)
     change ((‖W (s * Matrix.of x)‖₊ : ℝ≥0∞)) ^ 2 = _
     rw [h2]
-  exact quotient_invariant (2 * r + k + 1) _ _ μG μS ν hset F hmeas hinv y hy
+  exact _root_.PI.QuotInvW.quotInv (2 * r + k + 1) _ _ μG μS ν hset F hmeas hinv y hy
 
 end Formalism.L2.SG.Pf.WuBL

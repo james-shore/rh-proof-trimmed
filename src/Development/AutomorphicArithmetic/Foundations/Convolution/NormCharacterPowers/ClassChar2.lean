@@ -74,12 +74,7 @@ theorem norm_le {K : Type} [Field K] [NumberField K] (w : HeightOneSpectrum (�
   · rw [Polynomial.natDegree_X_pow_sub_X hq, Finset.card_univ]
     exact not_le.1 hlt
 
-theorem int_le {M Ω : Type} [Field M] [NumberField M] [Field Ω] [Algebra M Ω] (A : ValuationSubring Ω) (x : 𝓞 M) :
-    A.valuation (algebraMap M Ω x) ≤ 1 := by
-  have hi : IsIntegral ℤ (algebraMap M Ω x) := x.isIntegral_coe.algebraMap
-  obtain ⟨y, hy⟩ := (IsIntegrallyClosed.isIntegral_iff (R := A) (K := Ω)).1 (hi.tower_top (A := A))
-  rw [A.valuation_le_one_iff, ← hy]
-  exact y.2
+alias int_le := _root_.CompanionTheory.FamInh.val_int_le_one
 
 theorem moved {K M : Type} [Field K] [Field M] [NumberField M] [Algebra K M] (τ : M ≃ₐ[K] M) (h : τ ≠ 1) :
     ∃ θ : 𝓞 M, τ θ ≠ θ := by
@@ -102,7 +97,7 @@ theorem classChar2 : ClassChar := by
   obtain ⟨ι⟩ : Nonempty (Qbar 2 ≃+* ℂ) := GlobalTheory.nonempty_padicAlgCl_ringEquiv_complex 2
   let Ω := AlgebraicClosure M
   haveI : IsAlgClosure K Ω := ⟨IsAlgClosure.isAlgClosed M, Algebra.IsAlgebraic.trans K M Ω⟩
-  obtain ⟨art, ha⟩ := GlobalTheory.globalArtinReciprocity_holds K Ω
+  obtain ⟨art, ha⟩ := _root_.CompanionTheory.FamInh.globalArtin K Ω
   let r : G K Ω →* (M ≃ₐ[K] M) := AlgEquiv.restrictNormalHom M
   have hr : ∀ s (x : M), algebraMap M Ω (r s x) = s (algebraMap M Ω x) := fun s x => AlgEquiv.restrictNormal_commutes s M x
   let e : (M ≃ₐ[K] M) ≃* rootsOfUnity (Module.finrank K M) (Qbar 2) :=

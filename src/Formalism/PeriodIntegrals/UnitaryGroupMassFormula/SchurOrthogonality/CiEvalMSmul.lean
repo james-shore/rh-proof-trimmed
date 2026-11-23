@@ -44,6 +44,7 @@ public import Mathlib.Topology.Algebra.MvPolynomial
 import Mathlib.Topology.Sheaves.Init
 public import Mathlib.MeasureTheory.Function.LocallyIntegrable
 public import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SchurOrthogonality.CrRowActRowAct
 
 @[expose] public section
 
@@ -142,26 +143,12 @@ theorem ci_herm {N : ℕ} (μ : Measure (Matrix (Fin N) (Fin N) ℂ)) (p q : MvP
   funext x
   simp [mul_comm]
 
-private theorem evalM_rowAct {N : ℕ} (u x : Matrix (Fin N) (Fin N) ℂ)
-    (p : MvPolynomial (Fin N × Fin N) ℂ) :
-    evalM x (Formalism.GradedWeylDivisibility.rowAct ℂ u p) = evalM (u * x) p := by
-  induction p using MvPolynomial.induction_on
-  next a =>
-    simp [evalM, Formalism.GradedWeylDivisibility.rowAct]
-  next p q hp hq =>
-    rw [map_add (f := _), ci_evalM_add, ci_evalM_add, hp, hq]
-  next p v hp =>
-    simp only [evalM, map_mul] at hp ⊢
-    rw [hp]
-    congr 1
-    simp [Formalism.GradedWeylDivisibility.rowAct, Matrix.mul_apply]
-
 theorem ci_invariant {N : ℕ} {μ : Measure (Matrix (Fin N) (Fin N) ℂ)} (hμ : IsHaarU N μ)
     (u : Matrix (Fin N) (Fin N) ℂ) (hu : u ∈ unitaryGroup (Fin N) ℂ) (p q : MvPolynomial (Fin N × Fin N) ℂ) :
     Aform μ (Formalism.GradedWeylDivisibility.rowAct ℂ u p) (Formalism.GradedWeylDivisibility.rowAct ℂ u q) = Aform μ p q := by
   obtain ⟨-, -, -, hL⟩ := hμ
   unfold Aform
-  simp only [evalM_rowAct]
+  simp only [_root_.PI.WSF.cr_evalM_rowAct]
   exact hL u hu (fun x => evalM x p * star (evalM x q)) (ci_cont2 p q)
 
 end PI.WSF

@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Development.WeilBound.CoreStatements.PlurisubharmonicCones.EmbEquivSymmApply
 
 @[expose] public section
 
@@ -70,35 +71,6 @@ def imB (M : Matrix (Fin g) (Fin g) ℂ) : (Fin g → ℂ) →ₗ[ℝ] (Fin g �
       rw [h, mulVec_smul, dotProduct_smul, smul_eq_mul, Complex.im_ofReal_mul, smul_eq_mul])
 
 theorem imB_P (R : RiemLat E g Λ) (x y : Λ) : imB R.Hm (R.P x) (R.P y) = R.form x y := R.im x y
-
-theorem inj (R : RiemLat E g Λ) : Function.Injective R.P := by
-  refine (injective_iff_map_eq_zero _).2 fun x hx => R.unimod.1 ?_
-  ext y
-  have h := imB_P R x y
-  rw [hx] at h
-  simpa using h.symm
-
-theorem span_top (R : RiemLat E g Λ) : Submodule.span ℝ (Set.range R.P) = ⊤ := by
-  classical
-  have := R.free
-  have := R.fin
-  let b : Module.Basis (Fin (2 * g)) ℤ Λ := Module.finBasisOfFinrankEq ℤ Λ R.rank
-  have hli : LinearIndependent ℝ fun k => R.P (b k) := by
-    refine Fintype.linearIndependent_iff.2 fun r hr l => ?_
-    obtain ⟨y, hy⟩ := R.unimod.2 (b.coord l)
-    have h := congrArg (imB R.Hm (R.P y)) hr
-
-    simp only [map_sum, map_smul, map_zero, imB_P, hy, Module.Basis.coord_apply, Module.Basis.repr_self,
-    smul_eq_mul] at h
-    rw [Finset.sum_eq_single l (fun k _ hk => by simp [Finsupp.single_apply, hk]) (by simp)] at h
-    simpa using h
-  have hcard : Fintype.card (Fin (2 * g)) = Module.finrank ℝ (Fin g → ℂ) := by
-    simp [Module.finrank_pi_fintype, Complex.finrank_real_complex, mul_comm]
-  have h := hli.span_eq_top_of_card_eq_finrank' hcard
-  rw [eq_top_iff, ← h]
-  exact Submodule.span_mono (by
-    rintro _ ⟨k, rfl⟩
-    exact ⟨b k, rfl⟩)
 
 omit [IsCMField E] in
 theorem exists_decomp {V : Type} [AddCommGroup V] [Module ℂ V] (ρ : 𝓞 E →+* Module.End ℂ V) (x : V) :
@@ -166,9 +138,9 @@ theorem sum_eigComp {V : Type} [AddCommGroup V] [Module ℂ V] (ρ : 𝓞 E →+
 theorem adj_herm (R : RiemLat E g Λ) (a a' : 𝓞 E) (ha : (a' : E) = IsCMField.complexConj E (a : E)) (z w : Fin g → ℂ) :
     R.B a z ⬝ᵥ R.Hm *ᵥ star w = z ⬝ᵥ R.Hm *ᵥ star (R.B a' w) := by
   have h : (imB R.Hm).comp ((R.B a).restrictScalars ℝ) = (imB R.Hm).compl₂ ((R.B a').restrictScalars ℝ) := by
-    refine LinearMap.ext_on (span_top R) ?_
+    refine LinearMap.ext_on (_root_.LevelTowerAlt.span_top R) ?_
     rintro _ ⟨x, rfl⟩
-    refine LinearMap.ext_on (span_top R) ?_
+    refine LinearMap.ext_on (_root_.LevelTowerAlt.span_top R) ?_
     rintro _ ⟨y, rfl⟩
     show imB R.Hm (R.B a (R.P x)) (R.P y) = imB R.Hm (R.P x) (R.B a' (R.P y))
     rw [← R.act, ← R.act, imB_P, imB_P, R.adj a a' ha]
@@ -198,12 +170,5 @@ theorem orth (R : RiemLat E g Λ) (s s' : 𝓞 E →+* ℂ) (hne : s ≠ s') (x 
 end SheetDecomposition.Riem
 
 namespace SheetDecomposition
-
-theorem riemBasic : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (g : ℕ) (Λ : Type) [AddCommGroup Λ] [Module (𝓞 E) Λ] (Ψ : Type) [Fintype Ψ] (R : RiemLat E g Λ), Function.Injective R.P ∧ Submodule.span ℝ (Set.range R.P) = ⊤ ∧ (∀ s : 𝓞 E →+* ℂ, (∀ x, eigComp R.B s x ∈ eigSp R.B s) ∧ (∀ x ∈ eigSp R.B s, eigComp R.B s x = x) ∧ (∀ (c : ℂ) x y, eigComp R.B s (c • x + y) = c • eigComp R.B s x + eigComp R.B s y) ∧ ∀ a x, eigComp R.B s (R.B a x) = s a • eigComp R.B s x) ∧ (∀ x, ∑ s : E →+* ℂ, eigComp R.B (s.comp (algebraMap (𝓞 E) E)) x = x) ∧ ∀ s s' : 𝓞 E →+* ℂ, s ≠ s' → ∀ x ∈ eigSp R.B s, ∀ y ∈ eigSp R.B s', R.ip x y = 0 := by
-  intro E _ _ _ g Λ _ _ Ψ _ R
-  refine ⟨Riem.inj R, Riem.span_top R, fun s => ?_, Riem.sum_eigComp R.B, Riem.orth R⟩
-  obtain ⟨p, h₁, h₂, h₃, h₄⟩ := Riem.exists_proj R.B s
-  simp only [h₁]
-  exact ⟨h₂, h₃, fun c x y => by rw [map_add (f := _), map_smul], h₄⟩
 
 end SheetDecomposition

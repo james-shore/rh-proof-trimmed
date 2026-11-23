@@ -79,7 +79,7 @@ theorem GlobalTheory.Ord2.exists_nf_srcUr : ∀ (l : ℕ) [Fact l.Prime] (Ω : T
   obtain ⟨⟨g0, χ, A, κ, hM0, ha0, hχ, hatt, hA, hfl, hin⟩, hne⟩ := hS
   obtain ⟨g, hg⟩ := hfl
   obtain ⟨M, hM, hMa⟩ := hW.away
-  obtain ⟨S, hSa, hSu⟩ := GlobalTheory.T.unramified_of_levelAway_inertia_characters l Ω W M hM hMa
+  obtain ⟨S, hSa, hSu⟩ := _root_.GlobalTheory.Ord2.unramified_of_levelAway l Ω W M hM hMa
   let r : G ℚ Ω →* GL (Fin 2) (Qbar l) := (MulAut.conj g).toMonoidHom.comp W
   have hrc : Continuous r := by
     show Continuous fun s => g * W s * g⁻¹

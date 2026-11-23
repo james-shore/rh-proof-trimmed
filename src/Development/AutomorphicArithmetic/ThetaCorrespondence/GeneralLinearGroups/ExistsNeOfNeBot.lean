@@ -317,7 +317,7 @@ theorem exists_emb (hG : GlobalTheory.Published.GeometricLemma) (hBZ : GlobalThe
         · simp [ψ, Pi.mulSingle_eq_of_ne ha, Function.update_of_ne ha])
     (q c).2.rep.irr hc.2 (isSmooth_jac e π.smooth) hfl hsub (by
       intro Y _ _ τ hτ hτs z hz
-      obtain ⟨σ, hσ⟩ := GlobalTheory.CuspSupportExist.L_tens hG k _ π _ _ e Y τ hτ hτs
+      obtain ⟨σ, hσ⟩ := _root_.GlobalTheory.JacTensor.exists_irr_tensor_of_isSubquotient_jac hG k _ π _ _ e Y τ hτ hτs
       obtain ⟨ω, -, hω⟩ := exists_smooth_hasCentralChar (σ c).smooth (σ c).irr
       rw [Matrix.GeneralLinearGroup.center_eq_range_scalar] at hz
       obtain ⟨z, rfl⟩ := hz
@@ -327,7 +327,7 @@ theorem exists_emb (hG : GlobalTheory.Published.GeometricLemma) (hBZ : GlobalThe
       · subst ha
         simpa [ψ] using hω z v
       · simp [ψ, Pi.mulSingle_eq_of_ne ha, ha])
-  obtain ⟨σ, hσ⟩ := GlobalTheory.CuspSupportExist.L_tens hG k _ π _ _ e U ν hνi (.of_surjective p hp)
+  obtain ⟨σ, hσ⟩ := _root_.GlobalTheory.JacTensor.exists_irr_tensor_of_isSubquotient_jac hG k _ π _ _ e U ν hνi (.of_surjective p hp)
   obtain ⟨φ, hφ⟩ := GlobalTheory.injective_of_jacquet_surjective π e hνi p hp
   have hirr : (piTensor fun a => (σ a).π).IsIrreducible :=
     GlobalTheory.ExtTensorIrr.piTensor_isIrreducible hBZ k (Fin h) (fun a => Fin (q a).1)

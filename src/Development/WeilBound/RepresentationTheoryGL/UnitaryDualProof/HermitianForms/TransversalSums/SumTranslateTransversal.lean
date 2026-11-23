@@ -113,7 +113,7 @@ theorem avgData_exists (hψ : Continuous ψ) (hπ : IsSmooth π) (ξ : Fin (m + 
   have hdot : Continuous fun a : Fin (m + 1) → k => ξ ⬝ᵥ a := by unfold dotProduct; fun_prop
   have h1 : (A : Set (Fin (m + 1) → k)) ∈ nhds 0 := hA.2.mem_nhds A.zero_mem
   have h2 : colEl k m N h ⁻¹' {g | π g v = v} ∈ nhds 0 :=
-    ((hπ v).preimage (continuous_colEl h)).mem_nhds (by simp [colEl_zero])
+    ((hπ v).preimage (_root_.PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.continuous_colEl' h)).mem_nhds (by simp [colEl_zero])
   have h3 : (fun a : Fin (m + 1) → k => ξ ⬝ᵥ a) ⁻¹' {y | ValuativeRel.valuation k y < γ} ∈ nhds 0 := by
     apply hdot.continuousAt.preimage_mem_nhds
     simpa using (IsValuativeTopology.hasBasis_nhds_zero' k).mem_of_mem hγ
@@ -192,7 +192,7 @@ theorem sub_avg_mem (hψ : Continuous ψ) (hπ : IsSmooth π) (A : AddSubgroup (
       twKer π (derUnip k N (m + 1)) (lvlChar k ψ N (m + 1)) := by
     have := Submodule.subset_span (R := ℂ)
       (s := {w | ∃ (n : derUnip k N (m + 1)) (u : V), w = π (n : GL (Fin N) k) u - ((lvlChar k ψ N (m + 1) n : ℂˣ) : ℂ) • u})
-      ⟨⟨colEl k m N h t, colEl_mem_derUnip h t⟩, v, rfl⟩
+      ⟨⟨colEl k m N h t, _root_.PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.colEl_mem_derUnip' h t⟩, v, rfl⟩
     rw [lvlChar_colEl] at this
     exact this
   have e : v - starRingEnd ℂ ((ψ (xi0 k m ⬝ᵥ t) : Circle) : ℂ) • π (colEl k m N h t) v =

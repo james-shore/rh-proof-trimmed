@@ -89,7 +89,7 @@ theorem det_sub_exp (e : Fin j ↪ Fin N) (S : Set (Fin N)) (Y : Matrix (Fin N) 
     simp [hsub1]
   have hd0 : HasDerivAt f (sub e Y).trace 0 := by
     rw [hf]
-    apply hasDerivAt_det_of_one (fun s : ℝ => sub e (NormedSpace.exp ((s : ℂ) • Y))) (sub e Y)
+    apply _root_.Bl.b110.goal1 (fun s : ℝ => sub e (NormedSpace.exp ((s : ℂ) • Y))) (sub e Y)
     · simp [hsub1]
     · intro a b
       have hfun : (fun s : ℝ => sub e (NormedSpace.exp ((s : ℂ) • Y)) a b) =

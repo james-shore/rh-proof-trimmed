@@ -118,7 +118,7 @@ theorem jhMult_jac_multiProd (hG : GeometricLemma) {d l : ℕ} (hd : 0 < d) (hl 
     simp [cl', mul_comm]
   have hinj : Function.Injective (cl' σ l) := fun a b h => cl_injective hd σ h
   have hc : ∀ a, (cl' σ l a).IsCusp := fun a => cl_cusp hd σ hσ a
-  have key := GlobalTheory.T.jacquet_multiplicity_cuspidal_product irrAdm (cl' σ l) (cl' σ l) hx hx hc hc
+  have key := _root_.GlobalTheory.CompanionTheory.CuspJm.main irrAdm (cl' σ l) (cl' σ l) hx hx hc hc
   have hset : {e : Fin l ≃ Fin l | ∀ a, cl' σ l a = cl' σ l (e a)} = {Equiv.refl _} := by
     ext e
     simp only [Set.mem_ofPred_eq, Set.mem_singleton_iff]

@@ -174,12 +174,6 @@ private theorem isUnit_algebraMap_δ_mul_uP (Z : LocDat D) (p : PlF D) :
     IsUnit (algebraMap (D.s.atP p).Fp (D.s.atP p).Ep (Z.δ p) * (D.s.atP p).ιE (uP p : D.host.E)) :=
   LocFacts.isUnit_localConstant p Z
 
-private theorem isUnit_frFac' (Z : LocDat D) (p : PlF D) (a : Fin (D.R.rS + 1)) : IsUnit (frFac Z.δ p a) := by
-  obtain ⟨u, hu⟩ := isUnit_algebraMap_δ_mul_uP Z p
-  simp only [frFac]
-  rw [← hu, ← Units.val_pow_eq_pow_val, Ring.inverse_unit]
-  exact Units.isUnit _
-
 theorem chg_scaled (Z : LocDat D) (p : PlF D) {f g : Fin (D.R.rS + 1) → (VS D).V}
     {t : Matrix (Fin (D.R.rS + 1)) (Fin (D.R.rS + 1)) D.host.E} (h : Chg f t g) :
     Chg (scaled Z p f) (Matrix.diagonal (fun a => Ring.inverse (frFac Z.δ p a)) * t.map (D.s.atP p).ιE *
@@ -190,7 +184,7 @@ theorem chg_scaled (Z : LocDat D) (p : PlF D) {f g : Fin (D.R.rS + 1) → (VS D)
   Matrix.diagonal_mul, Matrix.map_apply]
   refine Finset.sum_congr rfl fun a _ => ?_
   congr 1
-  have hu := Ring.inverse_mul_cancel _ (isUnit_frFac' Z p a)
+  have hu := Ring.inverse_mul_cancel _ (_root_.Formalism.L2.SG.Pf.BBTie.bt_frFac_unit Z p a)
   linear_combination (-(frFac Z.δ p b * (D.s.atP p).ιE (t a b))) * hu
 
 end Loc
@@ -211,9 +205,9 @@ theorem one_flag (Z : LocDat D) {T : D.host.E} (hT : T ≠ 0) (F : LFlag (D.sp.Y
         Chg (f p) A (scaled Z p (frame G)) := by
   classical
   have hψφ : ∀ p a, Ring.inverse (frFac Z.δ p a) * frFac Z.δ p a = 1 :=
-    fun p a => Ring.inverse_mul_cancel _ (isUnit_frFac' Z p a)
+    fun p a => Ring.inverse_mul_cancel _ (_root_.Formalism.L2.SG.Pf.BBTie.bt_frFac_unit Z p a)
   have hφψ : ∀ p a, frFac Z.δ p a * Ring.inverse (frFac Z.δ p a) = 1 :=
-    fun p a => Ring.mul_inverse_cancel _ (isUnit_frFac' Z p a)
+    fun p a => Ring.mul_inverse_cancel _ (_root_.Formalism.L2.SG.Pf.BBTie.bt_frFac_unit Z p a)
   have hdd : ∀ p : PlF D, Matrix.diagonal (fun a => Ring.inverse (frFac Z.δ p a)) * Matrix.diagonal (frFac Z.δ p) = 1 := fun p => by
     rw [Matrix.diagonal_mul_diagonal]; simp only [hψφ]; exact Matrix.diagonal_one
   have hdd' : ∀ p : PlF D, Matrix.diagonal (frFac Z.δ p) * Matrix.diagonal (fun a => Ring.inverse (frFac Z.δ p a)) = 1 := fun p => by

@@ -41,6 +41,8 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GoodSplitPlaceTranslationActsThroughWeil
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermitianSelfDualLatticeSpaceFormHermitianNondeg
 
 @[expose] public section
 
@@ -69,23 +71,10 @@ theorem exists_factor {U V P : Type} [AddCommGroup U] [Module ℂ U] [AddCommGro
   change r (T x) = ⟨x, hx⟩ at this
   simp [this]
 
-theorem det_ne_of_hasSig {n r s : ℕ} {M : Matrix (Fin n) (Fin n) ℂ} (h : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.HasSig M r s) : M.det ≠ 0 := by
-  obtain ⟨hn, A, hA⟩ := h
-  subst hn
-  intro h0
-  have h1 : Aᵀ * M * A.map star = (A.submatrix finSumFinEquiv id)ᵀ * M.submatrix finSumFinEquiv finSumFinEquiv *
-      (A.map star).submatrix finSumFinEquiv id := by
-    rw [Matrix.transpose_submatrix, Matrix.submatrix_mul_equiv, Matrix.submatrix_mul_equiv, Matrix.submatrix_id_id]
-  have h2 := congrArg Matrix.det hA
-  rw [h1, Matrix.det_mul, Matrix.det_mul, Matrix.det_submatrix_equiv_self, h0, Matrix.det_fromBlocks_zero₂₁,
-    Matrix.det_neg] at h2
-  simp only [mul_zero, zero_mul, Matrix.det_one, one_mul, mul_one] at h2
-  exact pow_ne_zero _ (neg_ne_zero.2 one_ne_zero) h2.symm
-
 theorem det_ne_of_hasSig_map {E : Type} [Field E] {n r s : ℕ} {J : Matrix (Fin n) (Fin n) E} (τ : E →+* ℂ) (c : ℂ)
     (h : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.HasSig (c • J.map τ) r s) : J.det ≠ 0 := by
   intro h0
-  refine det_ne_of_hasSig h ?_
+  refine _root_.GlobalTheory.WeilSchrodingerHerm.det_ne_zero_of_hasSig h ?_
   have : (J.map τ).det = τ J.det := (RingHom.map_det τ J).symm
   rw [Matrix.det_smul, this, h0, map_zero, mul_zero]
 
@@ -122,18 +111,6 @@ end GlobalTheory.TripleAssembly.LieInv
 namespace GlobalTheory.TripleAssembly.LieInv
 
 variable {D : D7}
-
-theorem conjU_mul (M : HSp D) {J : Matrix (Fin M.rank) (Fin M.rank) D.host.E} (c : D.host.E) (hc : J = c • M.gram)
-    (g h : GA D M) : GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU M c hc (g * h) = GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU M c hc g * GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU M c hc h := by
-  apply Subtype.ext
-  simp only [GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU, map_mul]
-  rfl
-
-theorem conjU_one' (M : HSp D) {J : Matrix (Fin M.rank) (Fin M.rank) D.host.E} (c : D.host.E) (hc : J = c • M.gram) :
-    GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU M c hc 1 = 1 := by
-  apply Subtype.ext
-  simp only [GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU, map_one]
-  rfl
 
 theorem finTens_cA (z : AE D) : GlobalTheory.LFun.finTens D.host.F D.host.E (Formalism.L2.Theta.cA D z) =
     Algebra.TensorProduct.map (AlgHom.id D.host.F _) D.sp.cm.sig (GlobalTheory.LFun.finTens D.host.F D.host.E z) := by
@@ -176,10 +153,10 @@ theorem exists_line_conjU (θ : InfFam D) (M : HSp D) (τ : D.what₂.Tau) (Y : 
     { toFun := fun t => GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU M c hc (oneP θ M τ Y (Multiplicative.toAdd t))
       map_one' := by
         show GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU M c hc (oneP θ M τ Y 0) = 1
-        rw [GlobalTheory.Mem.Lift.oneP_zero hθ, conjU_one']
+        rw [GlobalTheory.Mem.Lift.oneP_zero hθ, _root_.GlobalTheory.LocWeilAct.conjU_one']
       map_mul' := fun s t => by
         show GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU M c hc (oneP θ M τ Y (Multiplicative.toAdd s + Multiplicative.toAdd t)) = _
-        rw [GlobalTheory.Mem.Lift.oneP_add hθ hY, conjU_mul] }
+        rw [GlobalTheory.Mem.Lift.oneP_add hθ hY, _root_.GlobalTheory.LocWeilAct.conjU_mul'] }
   refine ⟨γ, ⟨?_, fun t => ?_⟩, fun t => rfl⟩
   · exact (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.continuous_conjU M c hc).comp ((GlobalTheory.Mem.Lift.continuous_oneP hθ hY).comp continuous_toAdd)
   · exact conjU_mem_UAt M Yd c hc (GlobalTheory.Mem.Lift.isAtTau_oneP hθ hY _).1
@@ -187,8 +164,6 @@ theorem exists_line_conjU (θ : InfFam D) (M : HSp D) (τ : D.what₂.Tau) (Y : 
 end GlobalTheory.TripleAssembly.LieInv
 
 namespace GlobalTheory.TripleAssembly.LieInv
-
-variable {D : D7}
 
 end GlobalTheory.TripleAssembly.LieInv
 

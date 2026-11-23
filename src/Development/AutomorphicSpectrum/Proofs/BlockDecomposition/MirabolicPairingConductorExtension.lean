@@ -149,7 +149,7 @@ theorem exists_evVal_ne_zero : ∀ {k : Type} [Field k] [ValuativeRel k] [Topolo
     obtain ⟨τ, hτ⟩ := hA
     exact ⟨τ, fun u hu => (hτ u hu).trans h0⟩
   choose τ hτ using hev
-  obtain ⟨u, htu, hu⟩ := exists_unit_bound (GlobalTheory.T.shear_orbit_box_finite_of_isSmooth T' hT' v' r hr) τ t
+  obtain ⟨u, htu, hu⟩ := exists_unit_bound (_root_.GlobalTheory.CompanionTheory.MirPair.ShearOrbit.shear_orbit_finite T' hT' v' r hr) τ t
   have hz : ∀ b ∈ box (n + 1) (c * t⁻¹), ∫ x in (box (n + 1) u : Set (Fin (n + 1) → k)),
       ((ψ (-(b ⬝ᵥ x)) : Circle) : ℂ) * (wt ψ n x * coef T B v v' x) ∂(piHaar ν (n + 1)) = 0 := by
     intro b hb

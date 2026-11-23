@@ -76,9 +76,7 @@ theorem tauHom_comp_eq_id (f g : Kb R →ₐ[FractionRing R] Kb R) (h : ∀ a, f
   rw [e, CommRingCat.ofHom_id, Spec.map_id]
   rfl
 
-theorem map_unitOn' {k k' : Type} [CommRing k] [CommRing k'] (σ : k →+* k') (u : kˣ) :
-    Units.map (spMap σ).appTop.hom.toMonoidHom (unitOn u) = unitOn (Units.map σ.toMonoidHom u) :=
-  Units.ext (congrArg (fun q => q.hom u.val) (Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom σ))).symm
+alias map_unitOn' := _root_.GlobalTheory.Ex.Specialise.map_unitOn
 
 end GlobalTheory.Mum.GalConjLabels
 

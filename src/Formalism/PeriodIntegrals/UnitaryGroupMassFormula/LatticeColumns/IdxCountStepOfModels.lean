@@ -82,16 +82,6 @@ private theorem hEmbGL_inj {A : Type} [CommRing A] (r k : ℕ) {B B' : GL (Fin k
   change hEmb r (B : Matrix (Fin k) (Fin k) A) _ _ = hEmb r (B' : Matrix (Fin k) (Fin k) A) _ _ at this
   simpa [hEmb, midEmb] using this
 
-private theorem glRed_eq_one_iff_sub_one_mem_ker {ι R S : Type} [Fintype ι] [DecidableEq ι] [CommRing R] [CommRing S]
-    (π : R →+* S) (g : GL ι R) :
-    MassDataIdxRed.glRed π g = 1 ↔ ∀ i j, ((g : Matrix ι ι R) - 1) i j ∈ RingHom.ker π := by
-  rw [Units.ext_iff, ← Matrix.ext_iff]
-  refine forall_congr' fun i => forall_congr' fun j => ?_
-  change π ((g : Matrix ι ι R) i j) = (1 : Matrix ι ι S) i j ↔ _
-  rw [RingHom.mem_ker, Matrix.sub_apply, map_sub, sub_eq_zero]
-  simp only [Matrix.one_apply]
-  split_ifs <;> simp
-
 private theorem glRed_hEmbGL {R S : Type} [CommRing R] [CommRing S] (π : R →+* S) (r k : ℕ)
     (B : GL (Fin k) R) :
     MassDataIdxRed.glRed π (hEmbGL (A := R) r k B) = hEmbGL (A := S) r k (MassDataIdxRed.glRed π B) := by
@@ -135,7 +125,7 @@ theorem hImU_of_model (X : HidaSetting D) (hb : AdBridgeIso X.B.I) (hK : X.Level
   have hσker : ∀ x, σ x = 1 ↔ x ∈ KgH X u p := by
     intro x
     have e1 : MassDataIdxRed.glRed π (ψ (inclH X u p x)) = 1 ↔ x ∈ KgH X u p := by
-      rw [glRed_eq_one_iff_sub_one_mem_ker, hπker]
+      rw [_root_.MassDataIdxRed.glRed_eq_one_iff, hπker]
       exact hker (inclH X u p x)
     rw [← e1, hσ]
     exact (e2 _).symm.trans (by

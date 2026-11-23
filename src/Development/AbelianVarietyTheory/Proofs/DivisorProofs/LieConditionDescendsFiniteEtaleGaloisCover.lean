@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.NonemptyIsLimitBaseChange
 
 @[expose] public section
 
@@ -102,12 +103,12 @@ def scaleAt (y : Sp R₁ ⟶ S) (r : R₁) : epsPtR y ⟶ epsPtR y :=
 theorem zeroAt_scaleAt (y : Sp R₁ ⟶ S) (r : R₁) : zeroAt y ≫ scaleAt y r = zeroAt y :=
   Over.OverMorphism.ext (by
     show spMap _ ≫ spMap _ = spMap _
-    rw [spMap_comp', fst_comp_es])
+    rw [_root_.GlobalTheory.spMap_comp_ring, fst_comp_es])
 
 theorem scaleAt_mul (y : Sp R₁ ⟶ S) (r s : R₁) : scaleAt y r ≫ scaleAt y s = scaleAt y (r * s) :=
   Over.OverMorphism.ext (by
     show spMap _ ≫ spMap _ = spMap _
-    rw [spMap_comp', es_comp_es])
+    rw [_root_.GlobalTheory.spMap_comp_ring, es_comp_es])
 
 theorem scaleAt_one (y : Sp R₁ ⟶ S) : scaleAt y 1 = 𝟙 _ :=
   Over.OverMorphism.ext (by
@@ -117,7 +118,7 @@ theorem scaleAt_one (y : Sp R₁ ⟶ S) : scaleAt y 1 = 𝟙 _ :=
 theorem scaleAt_zero (y : Sp R₁ ⟶ S) : scaleAt y 0 = baseAt y ≫ zeroAt y :=
   Over.OverMorphism.ext (by
     show spMap _ = spMap _ ≫ spMap _
-    rw [spMap_comp', es_zero])
+    rw [_root_.GlobalTheory.spMap_comp_ring, es_zero])
 
 variable (G : Over S) [GrpObj G] [IsCommMonObj G]
 
@@ -174,7 +175,7 @@ def phiR (y : Sp R₁ ⟶ S) : R₁ →+* AddMonoid.End (TM G y) where
     rw [scaleAt_zero, Category.assoc, (Additive.toMul u).2, comp_one])
   map_add' r s := AddMonoidHom.ext fun u => Subtype.ext (by
     show scaleAt y (r + s) ≫ _ = (scaleAt y r ≫ _) * (scaleAt y s ≫ _)
-    exact Over.OverMorphism.ext ((GlobalTheory.T.grpObj_tangentVector_add_at_point G y _ (tan_left G y _) r s _ _ rfl rfl).symm))
+    exact Over.OverMorphism.ext ((_root_.GlobalTheory.GrpTangentPt.tanadd G y _ (tan_left G y _) r s _ _ rfl rfl).symm))
 
 def psiR {O : Type} [Ring O] (F : Type) [CommRing F] [Algebra F O] (act : OActN O G) (y : Sp R₁ ⟶ S) :
     F →+* AddMonoid.End (TM G y) where
@@ -239,19 +240,19 @@ end Theta
 theorem lie_descends : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.Datum p) (R : Type) [CommRing R] (b : Base D R) (X Y : Scheme.{0}) (π : X ⟶ Y) (sY : Y ⟶ Sp R) (Ga : Type) [Group Ga] (ρ : Ga → (X ⟶ X)) (A : Over X) [GrpObj A] [IsCommMonObj A] (A₀ : Over Y) [GrpObj A₀] [IsCommMonObj A₀] (φ : A.left ⟶ A₀.left) (act : OActN D.O A) (act₀ : OActN D.O A₀), GlobalTheory.ZM.IsGaloisCover Ga ρ π → IsAbelianScheme A → IsAbelianScheme A₀ → IsGrpPullback A A₀ π φ → (∀ c, (act.act c).left ≫ φ = φ ≫ (act₀.act c).left) → (∀ (R' : Type) [CommRing R'] (β : R →+* R') (x : Sp R' ⟶ X), x ≫ (π ≫ sY) = spMap β → ∀ v : epsPtR x ⟶ A, IsTanScal act x (algebraMap (𝓞 D.F) D.O D.ω) (β b.ρ) v → ∃ w : Fin D.a → (epsPtR x ⟶ A), (∀ i, ∀ c : 𝓞 D.F, IsTanScal act x (algebraMap (𝓞 D.F) D.O c) (β (b.t i c)) (w i)) ∧ v = (List.ofFn w).prod) → (∀ (R' : Type) [CommRing R'] (β : R →+* R') (x : Sp R' ⟶ Y), x ≫ sY = spMap β → ∀ v : epsPtR x ⟶ A₀, IsTanScal act₀ x (algebraMap (𝓞 D.F) D.O D.ω) (β b.ρ) v → ∃ w : Fin D.a → (epsPtR x ⟶ A₀), (∀ i, ∀ c : 𝓞 D.F, IsTanScal act₀ x (algebraMap (𝓞 D.F) D.O c) (β (b.t i c)) (w i)) ∧ v = (List.ofFn w).prod) := by
   intro p _ D R _ b X Y π sY Ga _ ρ A _ _ A₀ _ _ φ act act₀ hG _ _ hpb hact H R' _ β x hx v hv
   classical
-  obtain ⟨e, he⟩ := GlobalTheory.T.exists_eigen_projections_tensor_of_comaximal R (𝓞 D.F) D.a b.t b.comax
-  obtain ⟨R'', _, g₁, x'', d₁, hsq, hdalg, hdfst, hdes, hepi⟩ := GlobalTheory.T.exists_affine_galois_cover_dual_number_epi X Y π Ga ρ hG R' x
+  obtain ⟨e, he⟩ := _root_.GlobalTheory.eigenProjections_of_comaximal R (𝓞 D.F) D.a b.t b.comax
+  obtain ⟨R'', _, g₁, x'', d₁, hsq, hdalg, hdfst, hdes, hepi⟩ := _root_.GlobalTheory.DualCover.exists_dualCover X Y π Ga ρ hG R' x
 
   let j : epsPtR (x'' ≫ π) ⟶ epsPtR x := Over.homMk (spMap d₁) (by
     show spMap d₁ ≫ spMap _ ≫ x = spMap _ ≫ x'' ≫ π
-    rw [hsq, ← Category.assoc, ← Category.assoc, spMap_comp', spMap_comp', hdalg])
+    rw [hsq, ← Category.assoc, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring, _root_.GlobalTheory.spMap_comp_ring, hdalg])
   let g₀ : Over.mk (x'' ≫ π) ⟶ Over.mk x := Over.homMk (spMap g₁) hsq.symm
   have hj : zeroAt (x'' ≫ π) ≫ j = g₀ ≫ zeroAt x := Over.OverMorphism.ext (by
     show spMap _ ≫ spMap d₁ = spMap g₁ ≫ spMap _
-    rw [spMap_comp', spMap_comp', hdfst])
+    rw [_root_.GlobalTheory.spMap_comp_ring, _root_.GlobalTheory.spMap_comp_ring, hdfst])
   have hs : ∀ r, j ≫ scaleAt x r = scaleAt (x'' ≫ π) (g₁ r) ≫ j := fun r => Over.OverMorphism.ext (by
     show spMap d₁ ≫ spMap _ = spMap _ ≫ spMap d₁
-    rw [spMap_comp', spMap_comp', hdes])
+    rw [_root_.GlobalTheory.spMap_comp_ring, _root_.GlobalTheory.spMap_comp_ring, hdes])
   have jinj : ∀ u u' : epsPtR x ⟶ A₀, j ≫ u = j ≫ u' → u = u' := fun u u' h =>
     Over.OverMorphism.ext ((cancel_epi (spMap d₁)).1 (congrArg Over.Hom.left h))
   let pj : (epsPtR x ⟶ A₀) →* (epsPtR (x'' ≫ π) ⟶ A₀) :=
@@ -266,7 +267,7 @@ theorem lie_descends : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.Da
   let w : Fin D.a → (epsPtR x ⟶ A₀) := fun i => (Additive.toMul (Θ (e i) m)).1
 
   have hx'' : x'' ≫ (π ≫ sY) = spMap (g₁.comp β) := by
-    rw [← Category.assoc, hsq, Category.assoc, hx, spMap_comp']
+    rw [← Category.assoc, hsq, Category.assoc, hx, _root_.GlobalTheory.spMap_comp_ring]
   obtain ⟨E, hE⟩ := GlobalTheory.LiePull.exists_pushEquiv hpb (epsPtR x'')
     (spMap (algebraMap R'' (DualNumber R'')) ≫ (x'' ≫ π)) (Category.assoc _ _ _).symm
   have key : ∀ (u : epsPtR x'' ⟶ A) (c : D.O) (r : R''), IsTanScal act x'' c r u ↔

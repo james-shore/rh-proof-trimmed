@@ -217,9 +217,9 @@ theorem PositivityTheory.Sph.Tr.endAB_sph
   have h_Weil6_ThKEst_EpsOf : PositivityTheory.ThKEst.EpsOf := (PositivityTheory.ThKEst.epsOf_of)
   have h_GlobalTheory_ThK_WeilConv : GlobalTheory.ThK.WeilConv := (PositivityTheory.ThKEst.weilConv hSiegelSet h_GlobalTheory_ThK_ThetaBasic)
   have h_Weil6_ThKEst_DomWeilU : PositivityTheory.ThKEst.DomWeilU := (PositivityTheory.ThKEst.domWeilU hSiegelSet)
-  have h_Weil6_ThKEst_DomWeil : PositivityTheory.ThKEst.DomWeil := (PositivityTheory.ThKClose.domWeil_of h_Weil6_ThKEst_DomWeilU)
+  have h_Weil6_ThKEst_DomWeil : PositivityTheory.ThKEst.DomWeil := (_root_.PositivityTheory.ThKEst.domWeil_of_U h_Weil6_ThKEst_DomWeilU)
   have h_Weil6_ThKEst_SoSemiU : PositivityTheory.ThKEst.SoSemiU := (PositivityTheory.ThKEst.soSemiU hSiegelSet)
-  have h_Weil6_ThKEst_SoSemi : PositivityTheory.ThKEst.SoSemi := (PositivityTheory.ThKClose.soSemi_of h_Weil6_ThKEst_SoSemiU)
+  have h_Weil6_ThKEst_SoSemi : PositivityTheory.ThKEst.SoSemi := (_root_.PositivityTheory.ThKEst.soSemi_of_U h_Weil6_ThKEst_SoSemiU)
   have h_GlobalTheory_ThK_SoDecay : GlobalTheory.ThK.SoDecay := (PositivityTheory.ThKEst.soDecay hSiegelSet)
   have h_Weil6_ThKEst_FinVolU : PositivityTheory.ThKEst.FinVolU := (PositivityTheory.ThKEst.finVolU)
   have h_Weil6_ThKEst_SoFin : PositivityTheory.ThKEst.SoFin := (PositivityTheory.ThKEst.soFin_of)
@@ -332,7 +332,7 @@ theorem PositivityTheory.Sph.Tr.endAB_sph
   have h_GlobalTheory_ThK_Dbl_NormZeta : GlobalTheory.ThK.Dbl.NormZeta := (GlobalTheory.ThK.Dbl.normZeta_of h_GlobalTheory_ThK_Dbl_SWFullX h_GlobalTheory_ThK_Dbl_BoxSecX h_GlobalTheory_ThK_Dbl_DblX h_GlobalTheory_ThK_Dbl_HgtEx h_GlobalTheory_ThK_Dbl_HgtInt h_GlobalTheory_ThK_Dbl_Stab2Cpt h_GlobalTheory_ThK_Dbl_CptAll h_GlobalTheory_ThK_ThetaBasic h_GlobalTheory_ThK_Dbl_PolSch)
   have h_GlobalTheory_ThK_Dbl_EulerProd : GlobalTheory.ThK.Dbl.EulerProd := (GlobalTheory.ThK.Dbl.eulerProd)
   have h_GlobalTheory_ThK_Dbl_LocMeas : GlobalTheory.ThK.Dbl.LocMeas := (GlobalTheory.ThK.Dbl.locMeas)
-  have h_GlobalTheory_ThK_Dbl_LocUnrInert : GlobalTheory.ThK.Dbl.LocUnrInert := GlobalTheory.ThK.Dbl.locUnrInert
+  have h_GlobalTheory_ThK_Dbl_LocUnrInert : GlobalTheory.ThK.Dbl.LocUnrInert := _root_.GlobalTheory.ThK.Dbl.Inert.main
   have h_GlobalTheory_ThK_Dbl_LocUnr : GlobalTheory.ThK.Dbl.LocUnr := (GlobalTheory.ThK.Dbl.locUnr_of h_GlobalTheory_ThK_Dbl_LocUnrSplit h_GlobalTheory_ThK_Dbl_LocUnrInert)
   have h_GlobalTheory_ThK_Dbl_RealInv : GlobalTheory.ThK.Dbl.RealInv := (GlobalTheory.ThK.Dbl.realInv_of h_Weil6_ThKF_ArchOp)
   have h_GlobalTheory_ThK_Dbl_DProd : GlobalTheory.ThK.Dbl.DProd := (GlobalTheory.ThK.Dbl.dProd)

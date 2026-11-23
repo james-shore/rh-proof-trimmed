@@ -88,12 +88,12 @@ theorem thList_galois : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMonO
   let j : Ω →+* Ω' := algebraMap Ω Ω'
   have hincj : inc.comp j = ι₀ := (IsScalarTower.algebraMap_eq Ω Ω' K).symm
   have hqo : ∀ a, q a ≫ G.hom = spMap j ≫ x := fun a => sp_cancel inc _ _ (by
-    rw [← Category.assoc, hq a, Over.w (ptK a), ← Category.assoc, ← sp_comp, hincj]; rfl)
+    rw [← Category.assoc, hq a, Over.w (ptK a), ← Category.assoc, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, hincj]; rfl)
   let pt' : Fin N → (Over.mk (spMap j ≫ x) ⟶ G) := fun a => Over.homMk (q a) (hqo a)
   let u : Over.mk (spMap ι₀ ≫ x) ⟶ Over.mk (spMap j ≫ x) :=
     Over.homMk (spMap inc) (by
       show spMap inc ≫ spMap j ≫ x = spMap ι₀ ≫ x
-      rw [← Category.assoc, ← sp_comp, hincj])
+      rw [← Category.assoc, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, hincj])
   have hu : ∀ a, u ≫ pt' a = ptK a := fun a => Over.OverMorphism.ext (by simp [u, pt', hq a])
   have hinj' : Function.Injective pt' := fun a b h => hK.1 (by rw [← hu a, ← hu b, h])
   have htor : ∀ a, pt' a ^ (m ^ 2) = 1 := fun a => by

@@ -174,7 +174,7 @@ theorem pull (T : Trait F) {W : Type} [CommRing W] [IsDomain W] [IsLocalRing W] 
       exact gm_cocycle hL _ y (mem_pull.1 hy.1.1) (mem_pull.1 hy.1.2) (mem_pull.1 hy.2)
   have hΛ := lamPull T fK G'' β κ hκ hκβ α₂ hα₂
   have gB := (isGrpPullback_pullback G'' (jK W)).comp hβ
-  obtain ⟨hr, hs⟩ := GlobalTheory.T.rigidified_symmetric_lineBundle_groupPullback _ _ _ T.G _ _ gB T.U.LG T.U.symG T.U.symG_gen
+  obtain ⟨hr, hs⟩ := _root_.GlobalTheory.RigSymBaseChange.rigidified_and_sym_pull _ _ _ T.G _ _ gB T.U.LG T.U.symG T.U.symG_gen
   have hα := hκ.comp T.cart
   obtain ⟨ha, hamp, hkt⟩ := GlobalTheory.T.principalPolarization_of_mumfordBundle_siegelFibre o ζ g n F _ (spMap fK ≫ T.y) _ (κ ≫ T.α) α₂ hα hα₂ _
     (pull_isLB T.U.LG.isLB _) hr hs hΛ

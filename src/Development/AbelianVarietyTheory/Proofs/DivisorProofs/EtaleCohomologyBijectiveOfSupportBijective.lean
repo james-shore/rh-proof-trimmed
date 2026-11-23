@@ -80,8 +80,8 @@ end GlobalTheory.EtC.ConeLocalization
 theorem GlobalTheory.EtC.a10 : GlobalTheory.EtC.A10 := by
   intro R _ E F G φ hφ
   haveI := GlobalTheory.EtC.ConeLocalization.cone_kinj R φ
-  have hC := GlobalTheory.T.subsingleton_hypercohomology_of_locallyExact_on_support R E (mappingCone (resMap R φ)) (GlobalTheory.EtC.ConeLocalization.cone_loc R E φ hφ)
-  have ex := GlobalTheory.T.hypercohomology_mappingCone_second_variable_exact R ((chains R).obj E) (resMap R φ)
+  have hC := _root_.GlobalTheory.EtC.subsingleton_of_locExact_supp R E (mappingCone (resMap R φ)) (GlobalTheory.EtC.ConeLocalization.cone_loc R E φ hφ)
+  have ex := _root_.GlobalTheory.EtC.coneSeqTgt_exact R ((chains R).obj E) (resMap R φ)
   intro n
   constructor
   · obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by ring⟩

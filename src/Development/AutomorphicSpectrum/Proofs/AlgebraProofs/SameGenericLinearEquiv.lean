@@ -154,9 +154,9 @@ theorem main : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing
     · have := hfp.generic i
       rw [Module.Basis.repr_self] at this ⊢
       exact this
-  obtain ⟨h1, h2⟩ := GlobalTheory.T.same_generic_flag_difference O Ω K ι x ϖ hϖ d hW N V E E' hEE' K' ι' z hW' hfn (EB 0) (EB 1)
+  obtain ⟨h1, h2⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Num.ck_rootNum_eq_pairNum_on_flagPair O Ω K ι x ϖ hϖ d hW N V E E' hEE' K' ι' z hW' hfn (EB 0) (EB 1)
     hp0 hp1 w w (b 0) (b 1) f g hfp
-  obtain ⟨h3, h4⟩ := GlobalTheory.T.same_generic_flag_difference O Ω K ι x ϖ hϖ d hW N V₁ F F' hFF' K' ι' z hW' hfn FB FB'
+  obtain ⟨h3, h4⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Num.ck_rootNum_eq_pairNum_on_flagPair O Ω K ι x ϖ hϖ d hW N V₁ F F' hFF' K' ι' z hW' hfn FB FB'
     hF hF' (w.map e) (w.map e) (b 0) (b 1) f g hfpF
   refine ⟨fun k hk hkd q L Q hQ => ?_, fun c G hG hc hcd q L Q hQ a ha => ?_⟩
   · rw [h1 k hk hkd q L Q hQ, h3 k hk hkd q L Q hQ]

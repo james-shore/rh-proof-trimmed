@@ -215,10 +215,7 @@ theorem weights_le_of_irr_hw (hE : IsGlRep E) (hU : IsInfUnitary ε E) {μ : Fin
     Submodule.mem_orthogonal_singleton_iff_inner_left.1 (horth (heq ▸ hxS))
   exact hx0 (inner_self_eq_zero.1 h0)
 
-theorem khw_line_of_irr (hE : IsGlRep E) (hU : IsInfUnitary ε E) {μ : Fin n → ℝ} {S : Submodule ℂ M}
-    (hS : IsKIrrHW ε E μ S) {x y : M} (hx : x ∈ S) (hy : y ∈ S) (hxw : IsKHWVec ε E μ x)
-    (hyw : IsKHWVec ε E μ y) (hy0 : y ≠ 0) : ∃ c : ℂ, x = c • y :=
-  khw_line_of_kIrrHW hE hU hS hx hy hxw hyw hy0
+alias khw_line_of_irr := _root_.ReciprocityTheory.ChartRestriction.DS.khw_line_of_kIrrHW
 
 end Module
 

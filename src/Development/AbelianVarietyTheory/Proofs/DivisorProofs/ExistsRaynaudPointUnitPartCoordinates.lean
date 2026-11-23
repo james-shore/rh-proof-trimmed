@@ -167,13 +167,6 @@ namespace GlobalTheory.UnitPartPt
 
 variable {R : Type} [CommRing R] [IsDomain R] {Q : DegPre R}
 
-theorem cst_mul'' {V : Type} [CommRing V] {Z : Scheme.{0}} (q : Z ⟶ Sp V) (z : Z) (a b : V) :
-    cst q z (a * b) = cst q z a * cst q z b := by
-  simp only [cst, map_mul, gs_mul q z ⊤ trivial]
-
-theorem cst_one'' {V : Type} [CommRing V] {Z : Scheme.{0}} (q : Z ⟶ Sp V) (z : Z) : cst q z 1 = 1 := by
-  rw [cst, map_one, gs_eq _ _ ⊤ trivial, map_one, map_one]
-
 section
 variable (ψ₀ : ∀ χ : Q.X, LB.Gen (LB.LinComb Q.P.L (K := PUnit) (fun _ => (Q.c χ).left) fun _ => -1))
 
@@ -245,7 +238,7 @@ theorem exists_unitPartPt : ∀ (R : Type) [CommRing R] [IsDomain R] (Q : DegPre
       have p0 : val (ψ₀ 0) (jK R) z J = (val Q.rig (jK R) z J)⁻¹ := by
         refine Units.ext ?_
         have e := hψ 0 _ (𝟙 _) z J hJ
-        simp only [n0, pow_zero, Finset.prod_const_one, cst_one'', _root_.one_mul, Category.id_comp] at e
+        simp only [n0, pow_zero, Finset.prod_const_one, _root_.ReciprocityTheory.ChartRestriction.G.H1.cst_one, _root_.one_mul, Category.id_comp] at e
         rw [← e, GlobalTheory.PsiZero.val_psi_zero hB hJ]
       have hp : ∀ a, a = mu → val (ψ₀ a) (jK R) z J = val (ψ₀ mu) (jK R) z J := by rintro a rfl; rfl
       rw [hp _ (add_zero mu), p0, inv_inv, mul_inv_cancel, _root_.one_mul, mul_inv_cancel]
@@ -304,7 +297,7 @@ theorem exists_unitPartPt : ∀ (R : Type) [CommRing R] [IsDomain R] (Q : DegPre
       rw [show χ + χ' + mu = mu + (χ + χ') by abel, add_comm χ mu, add_comm χ' mu] at eB
       have eC : C (mu + (χ + χ')) * C mu * C χ * C χ' = C (mu + χ) * C (mu + χ') * C (χ + χ') := by
         apply Units.ext
-        simp only [Units.val_mul, hC, ← cst_mul'']
+        simp only [Units.val_mul, hC, ← _root_.ReciprocityTheory.ChartRestriction.G.H1.cst_mul]
         congr 1
         simp only [← Finset.prod_mul_distrib, ← pow_add, exp_id gam n hn]
       have eB' := congrArg Additive.ofMul eB
@@ -328,7 +321,7 @@ theorem exists_unitPartPt : ∀ (R : Type) [CommRing R] [IsDomain R] (Q : DegPre
         _root_.mul_one]
     have e2 : cst (g ≫ jK R) z (∏ i, t i ^ (n mu i + n χ i)) =
         cst (g ≫ jK R) z (∏ i, t i ^ n mu i) * cst (g ≫ jK R) z (∏ i, t i ^ n χ i) := by
-      rw [← cst_mul'', ← Finset.prod_mul_distrib]
+      rw [← _root_.ReciprocityTheory.ChartRestriction.G.H1.cst_mul, ← Finset.prod_mul_distrib]
       simp only [pow_add]
     rw [e2, ← hC, ← hC, ← hC, ← Units.val_mul, ← Units.val_mul, ← Units.val_mul]
     congr 1

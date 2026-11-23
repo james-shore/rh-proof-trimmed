@@ -87,7 +87,7 @@ theorem recip_conj : ∀ (l : ℕ) [Fact l.Prime], l ≠ 2 → ∃ c : ℕ, ∀ 
     GlobalTheory.Glue.CgA A l m ((l : Ω) ^ c * (k.val : Ω))
       ((l : Ω) ^ c * ((t.val : Ω) * (ζ ^ (b : ZMod (l ^ m)).val * (Polynomial.derivative P).eval (ζ ^ (b : ZMod (l ^ m)).val) / P.eval (ζ ^ (b : ZMod (l ^ m)).val))) + (s x - x)) := by
   intro l _ hl
-  obtain ⟨c, hc⟩ := GlobalTheory.T.kummerCochain_eq_dlog_explicitReciprocity l hl
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.RecOne.kummer_eq_dlog_one l hl
   refine ⟨c, ?_⟩
   intro Ω _ _ _ A hA m ζ ζ' hζ hζ' P hP hPA hPi hP0 τ b hτ hb
   have hpos : 0 < l ^ m := pow_pos (Fact.out : l.Prime).pos m

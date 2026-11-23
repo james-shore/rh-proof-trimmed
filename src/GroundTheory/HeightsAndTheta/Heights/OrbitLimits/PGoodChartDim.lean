@@ -97,9 +97,7 @@ theorem projChartSet_eq (P : Ideal (MRing ι)) {m e : ℕ} (σ : Fin m ≃ ((k :
   · rintro ⟨⟨z, hz, rfl⟩, h1⟩
     exact ⟨z, hz, (hl z).symm.trans h1, rfl⟩
 
-theorem linForm_single' {m : ℕ} (a : Fin m) : linForm (Pi.single a (1 : ℂ)) = X a := by
-  classical
-  simp [linForm, Pi.single_apply]
+alias linForm_single' := _root_.GroundTheory.Heights₂.Heights.linForm_single
 
 
 omit [∀ k, Fintype (ι k)] in
@@ -210,9 +208,9 @@ theorem GoodChartDim.proof (h₁ : ConeVanishingHomog.Statement) (h₂ : ConeSli
     rw [hVQ₀, Ideal.minimalPrimes_eq_subsingleton_self]
     rfl
 
-  have d₁ := ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.KH.dimPIT ℂ (Fin m) V J (linForm t - 1) hV.isPrime
+  have d₁ := _root_.ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.KH.KrullDimensionPrincipalIdeal.dimPIT' ℂ (Fin m) V J (linForm t - 1) hV.isPrime
     (linForm_sub_one_not_mem hV.isHomog hV.isPrime.ne_top t) hJmin
-  have d₂ := ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.KH.dimPIT ℂ (Fin m) V Q₀ (linForm u - 1) hV.isPrime
+  have d₂ := _root_.ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.KH.KrullDimensionPrincipalIdeal.dimPIT' ℂ (Fin m) V Q₀ (linForm u - 1) hV.isPrime
     (linForm_sub_one_not_mem hV.isHomog hV.isPrime.ne_top u) hQ₀min
   rw [← d₂, hdimQ₀] at d₁
   exact eq_of_add_one_eq d₁

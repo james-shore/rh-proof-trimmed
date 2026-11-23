@@ -130,10 +130,10 @@ theorem exists_normOne_mul_compact : ∀ (K : Type) [NontriviallyNormedField K] 
     have h1 := hnull _ hx
     rw [mul_assoc, hf.eq] at h1
     exact congrArg Subtype.val h1
-  obtain ⟨B1, hB1, hB1m⟩ := GlobalTheory.T.isCompact_preimage_quadratic_map_no_null_vectors K hK n S (fun w => w * GlobalTheory.Tw.adj δ w) hqc hhom hnullS
+  obtain ⟨B1, hB1, hB1m⟩ := _root_.GlobalTheory.quadratic_preimage_compact_on_subspace K hK n S (fun w => w * GlobalTheory.Tw.adj δ w) hqc hhom hnullS
     ((fun u : GL (Fin n) K => (f : Matrix (Fin n) (Fin n) K) * u) '' C)
     (hC.image (continuous_const.mul Units.continuous_val))
-  obtain ⟨B2, hB2, hB2m⟩ := GlobalTheory.T.isCompact_preimage_quadratic_map_no_null_vectors K hK n S (fun w => w * GlobalTheory.Tw.adj δ w) hqc hhom hnullS
+  obtain ⟨B2, hB2, hB2m⟩ := _root_.GlobalTheory.quadratic_preimage_compact_on_subspace K hK n S (fun w => w * GlobalTheory.Tw.adj δ w) hqc hhom hnullS
     ((fun u : GL (Fin n) K => (f : Matrix (Fin n) (Fin n) K) * ((u⁻¹ : GL (Fin n) K) : Matrix (Fin n) (Fin n) K)) '' C)
     (hC.image (continuous_const.mul (Units.continuous_coe_inv (M := Matrix (Fin n) (Fin n) K))))
   let φ : GL (Fin n) K × Matrix (Fin n) (Fin n) K × Matrix (Fin n) (Fin n) K →

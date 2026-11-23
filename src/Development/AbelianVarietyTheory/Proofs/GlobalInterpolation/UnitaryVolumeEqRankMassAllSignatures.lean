@@ -54,8 +54,8 @@ namespace GlobalTheory.Glob
 theorem vol_eq_massI_all_sig : ∀ D : D7, VolTie D → Conclusion2 D → ∀ (W : HSpace D.host.E) (P Q : ℕ), W.SigOK →
     (∀ τ, W.sig τ = (P, Q)) → D.vol W = massI D (P + Q) := by
   intro D hT h2 W P Q hW hs
-  have hv : DefiniteVolumeEqMass D := mass_volume_identity_of_class_decomp D hT (GlobalTheory.genusMassStd_all D)
-    (GlobalTheory.DefiniteDecompObj.doubleCosets_mass D)
+  have hv : DefiniteVolumeEqMass D := mass_volume_identity_of_class_decomp D hT (_root_.GlobalTheory.genusMassStd D)
+    (_root_.GlobalTheory.DefiniteDecomp.defClassDecomp D)
   have hrk : W.rank = P + Q := by
     have := Formalism.BasicNotions.sig_sum W hW D.host.φ₀
     rw [hs D.host.φ₀] at this

@@ -94,8 +94,8 @@ theorem splitP (p : ℕ) [Fact p.Prime] : ∀ x : O0 p, x ≠ 0 →
 theorem not_eigen (p : ℕ) [Fact p.Prime] (D : Derivation ℤ (O0 p) (O0 p)) (f g : O0 p)
     (hf : f ≠ 0) (hg : g ≠ 0) : (p : O0 p) * (g * D f - f * D g) ≠ g * f := by
   intro heq
-  obtain ⟨a, f0, rfl, hf0⟩ := splitP p f hf
-  obtain ⟨c, g0, rfl, hg0⟩ := splitP p g hg
+  obtain ⟨a, f0, rfl, hf0⟩ := _root_.GlobalTheory.K5.Basic.exists_eq_prime_pow_mul_not_dvd_completedLaurent p f hf
+  obtain ⟨c, g0, rfl, hg0⟩ := _root_.GlobalTheory.K5.Basic.exists_eq_prime_pow_mul_not_dvd_completedLaurent p g hg
   have hD : ∀ (k : ℕ) (y : O0 p), D ((p : O0 p) ^ k * y) = (p : O0 p) ^ k * D y := by
     intro k y
     rw [Derivation.leibniz, Derivation.leibniz_pow]
@@ -104,13 +104,13 @@ theorem not_eigen (p : ℕ) [Fact p.Prime] (D : Derivation ℤ (O0 p) (O0 p)) (f
       simpa using this
     simp [this]
   rw [hD, hD] at heq
-  have hp0 : (p : O0 p) ≠ 0 := (primeP p).ne_zero
+  have hp0 : (p : O0 p) ≠ 0 := (_root_.GlobalTheory.K5.prime_natCast_completedLaurentRing p).ne_zero
   have h2 : (p : O0 p) ^ (c + a) * ((p : O0 p) * (g0 * D f0 - f0 * D g0)) =
       (p : O0 p) ^ (c + a) * (g0 * f0) := by
     rw [pow_add]; linear_combination heq
   have h3 := mul_left_cancel₀ (pow_ne_zero _ hp0) h2
   have h4 : (p : O0 p) ∣ g0 * f0 := ⟨_, h3.symm⟩
-  rcases (primeP p).dvd_or_dvd h4 with h | h
+  rcases (_root_.GlobalTheory.K5.prime_natCast_completedLaurentRing p).dvd_or_dvd h4 with h | h
   · exact hg0 h
   · exact hf0 h
 
@@ -120,11 +120,11 @@ theorem q_not_pow : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra
   intro p _ Ω _ _ h b hb hbp
   have hp : p.Prime := Fact.out
   haveI : CharZero Ω := Basic.charZero_of_isClo h
-  obtain ⟨D, hDq, hDr⟩ := exists_derivation_fix_q_kill_padicInt p
-  obtain ⟨E, hE⟩ := derExt p Ω h D
+  obtain ⟨D, hDq, hDr⟩ := _root_.GlobalTheory.K5.QDer.exists_qDer p
+  obtain ⟨E, hE⟩ := _root_.GlobalTheory.K5.DerExt.derivation_extend p Ω h D
   have hEr : ∀ r : ℤ_[p], E (algebraMap (O0 p) Ω (algebraMap ℤ_[p] (O0 p) r)) = 0 := by
     intro r; rw [hE, hDr, map_zero]
-  have hEa := derAlg p Ω h E hEr
+  have hEa := _root_.GlobalTheory.K5.DerAlg.der_algZp p Ω h E hEr
   have hq0 : algebraMap (O0 p) Ω (qO p) ≠ 0 :=
     ((Basic.isUnit_qO p).map (algebraMap (O0 p) Ω)).ne_zero
   have hb0 : b ≠ 0 := by

@@ -136,7 +136,7 @@ theorem exists_rho (D : D7) (n : ℕ) (v : Pl D) (τ : D.host.E →ₐ[D.host.F]
       (inL (O := Ov D v) (L := Lv D v) (n := n)).range := by
     intro k
     have hk : (k : G D n) ∈ GlobalTheory.LocIntw.KUpAd D.sp.cm.sig (Jst D n) := (Subgroup.mem_inf.1 k.2).1
-    exact (GlobalTheory.T.mem_maximal_compact_iff_integral_image D n v τ _).1 ((GlobalTheory.LocIntw.mem_KUpAd.1 hk).1 v)
+    exact (_root_.GlobalTheory.CompanionTheory.Jp.SplitK.mem_KUpFin_iff D n v τ _).1 ((GlobalTheory.LocIntw.mem_KUpAd.1 hk).1 v)
   obtain ⟨ρ, hρ⟩ := exists_lift _ _ hinj hmem
   have hρ' : ∀ k : KAt D n v, thU D n v τ (proj D.sp.cm.sig (Jst D n) v k) = inL (L := Lv D v) (ρ k) := hρ
   refine ⟨ρ, hρ', ?_, ?_⟩

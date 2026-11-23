@@ -118,18 +118,6 @@ theorem position_zero {I : Ideal (MRing J) → (n : ℕ) → (Fin n → HermLine
     obtain ⟨u, v, huv, hu, -⟩ := OneModel.exists_pair_ne h2.1.2 hz
     rw [a1 _ hz u v huv hu, h2.2.1 _ hz u v huv hu]
 
-theorem comb_single {τ : Type} [Fintype τ] [DecidableEq τ] (l : τ → HermLine J) (a : τ) :
-    Top.combLine l (Pi.single a 1) = l a := by
-  refine OneSlot.hermLine_ext ?_ (funext fun z => ?_)
-  · show ∑ j, (Pi.single a 1 : τ → ℤ) j • (l j).a = _
-    simp [Pi.single_apply]
-  · show ∏ j, (l j).h z ^ (Pi.single a 1 : τ → ℤ) j = _
-    rw [Finset.prod_eq_single a]
-    · simp
-    · intro b _ hb
-      simp [hb]
-    · simp
-
 theorem ii_comb_snoc {II : IntersectionSystem} (hII : IsFullIntersectionSystem II) (hP : IsArithVar P (e + 1)) {τ : Type}
     [Fintype τ] [DecidableEq τ] (l : τ → HermLine J) (hl : ∀ a, IsSmoothHerm (l a)) (ν : Fin e → τ → ℤ) (a : τ) :
     II K J P (e + 1) (Fin.snoc (fun k => Top.combLine l (ν k)) (l a)) =
@@ -139,7 +127,7 @@ theorem ii_comb_snoc {II : IntersectionSystem} (hII : IsFullIntersectionSystem I
       Fin.snoc (α := fun _ => HermLine J) (fun k => Top.combLine l (ν k)) (l a) := by
     funext k
     refine Fin.lastCases ?_ (fun k => ?_) k
-    · simp [comb_single]
+    · simp [_root_.RootFieldNumerics.Ii.combLine_single]
     · simp
   rw [← h1, h, ← (Fin.snocEquiv fun _ => τ).sum_comp, Fintype.sum_prod_type, Finset.sum_eq_single a]
   · refine Finset.sum_congr rfl fun w _ => ?_
@@ -212,7 +200,7 @@ theorem replace_gen {II : IntersectionSystem} (hII : IsFullIntersectionSystem II
       · simp [h1, hν]
       · by_cases h2 : q (i.succAbove k)
         · simp only [h1, h2, not_false_eq_true, and_self, if_true, if_false]
-          exact comb_single _ _
+          exact _root_.RootFieldNumerics.Ii.combLine_single _ _
         · simp [h1, h2, hν]
     have hterm : ∀ u : Fin e → Option (Option σ), Tendsto (fun t => (∏ k, (μ k (u k) : ℝ)) *
         (II K J P (e + 1) (Fin.snoc (fun k => l t (u k)) (M t)) -

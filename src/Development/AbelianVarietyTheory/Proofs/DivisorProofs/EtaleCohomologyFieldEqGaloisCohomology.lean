@@ -91,9 +91,6 @@ theorem twGen_pow {q : ℕ} (i : ℤ) {U : Scheme.{0}} (ζ ξ : Prim q Γ(U, ⊤
   have := congrArg (((toSheafify Scheme.etaleTopology (Scheme.Γ ⋙ twF q i)).app (op U)).hom) (quot_pow i ζ ξ a h)
   exact this.trans (LinearMap.map_smul _ _ _)
 
-theorem res_id' {R : Type} [CommRing R] {F : Shv R} {U : Scheme.{0}} (x : Sec F U) : Sec.res (𝟙 U) x = x := by
-  simp [Sec.res]
-
 end GlobalTheory.EtC.FieldTw
 
 namespace GlobalTheory.EtC.FieldTw
@@ -124,14 +121,14 @@ theorem field_tw_coh_eq_galois : B7 := by
   have hφ : Function.Bijective φ := by
     have : (φ : ZMod q → Sec (tw q (i : ℤ)) S) = e S (𝟙 S) ∘ fun c => LocallyConstant.const S c := by
       funext c
-      simp only [Function.comp_apply, he1, res_id']
+      simp only [Function.comp_apply, he1, _root_.GlobalTheory.EtC.sec_res_id']
       rfl
     rw [this]
     exact (e S (𝟙 S)).bijective.comp hconst
   let E1 : ZMod q ≃+ Sec (tw q (i : ℤ)) S := AddEquiv.ofBijective φ hφ
   let E0 : M ≃+ ZMod q := (b.equivFun.trans (LinearEquiv.funUnique Unit (ZMod q) (ZMod q))).toAddEquiv
   have hE0 : ∀ m, E0 m = b.repr m () := fun m => rfl
-  refine GlobalTheory.T.nonempty_cohomology_addEquiv_galois_cohomology (ZMod q) (tw q (i : ℤ)) (GlobalTheory.T.tateTwist_finitary q i) K Ω M (E0.trans E1) ?_ n
+  refine _root_.GlobalTheory.EtC.GalFld.cohomology_field_addEquiv_galois (ZMod q) (tw q (i : ℤ)) (_root_.GlobalTheory.EtC.tw_finitary q i) K Ω M (E0.trans E1) ?_ n
   intro σ m
 
   have hσ : IsPrimitiveRoot (σ ζ) q := hζ.map_of_injective σ.injective

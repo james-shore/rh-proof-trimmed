@@ -60,10 +60,6 @@ namespace GlobalTheory.Ord2.Upgrade
 
 variable {Ω : Type} [Field Ω] [Algebra ℚ Ω] {l : ℕ} [Fact l.Prime]
 
-theorem mat_mul (W : R2 Ω l) (s t : G ℚ Ω) : mat W (s * t) = mat W s * mat W t := by simp [mat]
-
-theorem mat_one (W : R2 Ω l) : mat W 1 = 1 := by simp [mat]
-
 theorem det_upper (W : R2 Ω l) {s : G ℚ Ω} (h : mat W s 1 0 = 0) : (mat W s).det = mat W s 0 0 * mat W s 1 1 := by
   rw [Matrix.det_fin_two, h]; ring
 
@@ -84,14 +80,12 @@ theorem continuous_galoisRepRankTwoTateDual (W : R2 Ω l) (h : dt W ^ 2 = 1) (hc
     simp_rw [e]
     exact hf.comp continuous_inv
 
-theorem dt_sq_apply (W : R2 Ω l) (h : dt W ^ 2 = 1) (s : G ℚ Ω) : (mat W s).det ^ 2 = 1 := CupCob.det_sq W h s
-
 theorem nontriv (e : ℕ) (S : Finset Pl) (A : ValuationSubring Ω) [IsAlgClosure ℚ Ω] (W : R2 Ω l) (hW : Nf e S A W) :
     (∃ s ∈ Dec (F := ℚ) A, mat W s 1 1 ≠ 1) ∧ (∃ s ∈ Dec (F := ℚ) A, mat (dual1 W) s 0 0 ≠ 1) := by
   set D := Dec (F := ℚ) A with hDdef
   have hup : ∀ s ∈ D, mat W s 1 0 = 0 := hW.upper
   have h00 : ∀ s t, t ∈ D → mat W (s * t) 0 0 = mat W s 0 0 * mat W t 0 0 := by
-    intro s t ht; rw [mat_mul, Matrix.mul_apply, Fin.sum_univ_two, hup t ht]; ring
+    intro s t ht; rw [_root_.GlobalTheory.Ord2.mat_mul', Matrix.mul_apply, Fin.sum_univ_two, hup t ht]; ring
   have hv : A.valuation (l : Ω) < 1 := by
     obtain ⟨v, hA, hlv⟩ := hW.atL
     simpa using (hA _).2 hlv
@@ -104,7 +98,7 @@ theorem nontriv (e : ℕ) (S : Finset Pl) (A : ValuationSubring Ω) [IsAlgClosur
   have hpow00 : ∀ s ∈ D, ∀ n : ℕ, mat W (s ^ n) 0 0 = mat W s 0 0 ^ n := by
     intro s hs n
     induction n with
-    | zero => simp [mat_one]
+    | zero => simp [_root_.GlobalTheory.Ord2.mat_one']
     | succ n ih => rw [pow_succ, h00 _ _ hs, ih, pow_succ]
   set T := t ^ (2 * m) with hTdef
   have hTD : T ∈ D := D.pow_mem htD _
@@ -184,7 +178,7 @@ theorem commAlgFunctorCoboundaryZero_mem_cocyclesOne (V : R2 Ω l) (hc : Continu
     rw [e]
     exact ((Units.continuous_val.comp hc).matrix_mulVec continuous_const).sub continuous_const
   · change d0 (Loc.colRep V) v (g * h) = d0 (Loc.colRep V) v g + mat V g *ᵥ d0 (Loc.colRep V) v h
-    rw [amitsur_d0_apply, amitsur_d0_apply, amitsur_d0_apply, mat_mul, ← Matrix.mulVec_mulVec, Matrix.mulVec_sub]
+    rw [amitsur_d0_apply, amitsur_d0_apply, amitsur_d0_apply, _root_.GlobalTheory.Ord2.mat_mul', ← Matrix.mulVec_mulVec, Matrix.mulVec_sub]
     abel
 
 theorem galoisRepRankTwoTateDual_unramified_outside [IsAlgClosure ℚ Ω] (S : Finset Pl) (W : R2 Ω l) (h : dt W ^ 2 = 1) (hS : ContainsAbove S l)
@@ -212,11 +206,11 @@ theorem upgrade : GlobalTheory.Mem.LiteralAutomorphy.LitCoh → ∀ (l : ℕ) [F
   have hup' : ∀ s ∈ Dec (F := ℚ) A, mat (dual1 W) s 1 0 = 0 := fun s hs => by
     rw [galoisRepRankTwoTateDual_matrix_apply W hdet2, hup s hs, mul_zero]
 
-  obtain ⟨c1, j, hc1, hyint1, hyunr1, -, -⟩ := GlobalTheory.T.galois_cocycle_integral_after_scaling l Ω S W c y hc hWc hW.unr hy hyU A
+  obtain ⟨c1, j, hc1, hyint1, hyunr1, -, -⟩ := _root_.GlobalTheory.CocInt.integral_after_scaling l Ω S W c y hc hWc hW.unr hy hyU A
   have hWc1 : ∀ s i j, mat W s i j ∈ c1.O := fun s i j => hc1 (hWc s i j)
   have hW'c1 : ∀ s i j, mat (dual1 W) s i j ∈ c1.O := CupCob.dual_representation_integral c1 W hdet2 hWc1
   obtain ⟨c2, k, hc2, hzint2, hzunr2, -, hzgr2⟩ :=
-    GlobalTheory.T.galois_cocycle_integral_after_scaling l Ω S (dual1 W) c1 z hc' hW'c1 (galoisRepRankTwoTateDual_unramified_outside S W hdet2 hW.above hW.unr) hz hzU A
+    _root_.GlobalTheory.CocInt.integral_after_scaling l Ω S (dual1 W) c1 z hc' hW'c1 (galoisRepRankTwoTateDual_unramified_outside S W hdet2 hW.above hW.unr) hz hzU A
   obtain ⟨x, hxO, hx⟩ := hzgr2 hzGr
   have hWc2 : ∀ s i j, mat W s i j ∈ c2.O := fun s i j => hc2 (hWc1 s i j)
   have hW'c2 : ∀ s i j, mat (dual1 W) s i j ∈ c2.O := CupCob.dual_representation_integral c2 W hdet2 hWc2
@@ -267,27 +261,27 @@ theorem upgrade : GlobalTheory.Mem.LiteralAutomorphy.LitCoh → ∀ (l : ℕ) [F
   obtain ⟨p, hAp, hlp⟩ := hW.atL
   have hpS : p ∈ S := hW.above p hlp
   have hCobA : ∀ n, Cob2 c2 n (Dec (F := ℚ) A) (cup W y1 z1) := fun n => by
-    refine GlobalTheory.T.integralTwoCocycle_reciprocity_trivial_at_last_place hLit l Ω c2 n S (cup W y1 z1) p hW.l_odd hW.above
-      (GlobalTheory.T.cupProductDualTwist_isTwoCocycle_unramified l Ω c2 n S W y1 z1 hc hWc2 hdet2 hW.above hW.unr hy1Z hz1Z hy1int hz1int hy1U hz1U) hpS ?_ A hAp
+    refine _root_.GlobalTheory.Ord2.Rec.reciprocity hLit l Ω c2 n S (cup W y1 z1) p hW.l_odd hW.above
+      (_root_.GlobalTheory.Ord2.cupProductDualTwist_isTwoCocycle_unramified_alt l Ω c2 n S W y1 z1 hc hWc2 hdet2 hW.above hW.unr hy1Z hz1Z hy1int hz1int hy1U hz1U) hpS ?_ A hAp
     intro v _ hvp
     have hlv : ((l : ℕ) : 𝓞 ℚ) ∉ v.asIdeal := fun h => hvp (place_unique h hlp)
     obtain ⟨B, hB⟩ := exists_isPlaceOver Ω v
-    exact ⟨B, hB, GlobalTheory.T.cupProduct_unramifiedClasses_vanishes hLit l Ω c2 n W v B y1 z1 hc hWc2 hdet2 hB hlv
+    exact ⟨B, hB, _root_.GlobalTheory.Ord2.UnrCup.cup_unr_cob hLit l Ω c2 n W v B y1 z1 hc hWc2 hdet2 hB hlv
       (isIntegralCocycleOneModPow_of_integral_cocycle c2 n W _ hy1Z hy1int) (isIntegralCocycleOneModPow_of_integral_cocycle c2 n (dual1 W) _ hz1Z hz1int)
       (isIntegralCoboundaryOneModPow_of_integral_vector c2 n W _ (hy1unr v hlv B hB)) (isIntegralCoboundaryOneModPow_of_integral_vector c2 n (dual1 W) _ (hz1unr v hlv B hB))⟩
 
   have hm : Continuous fun s => mat W s := Units.continuous_val.comp hc
   have hm' : Continuous fun s => mat (dual1 W) s := Units.continuous_val.comp hc'
-  have hloc := GlobalTheory.T.local_duality_character_orthogonal_classes hLit l Ω c2 A (fun s => mat W s 1 1) (fun s => mat (dual1 W) s 0 0) (fun s => z1 s 0)
+  have hloc := _root_.GlobalTheory.Ord2.localDuality_char hLit l Ω c2 A (fun s => mat W s 1 1) (fun s => mat (dual1 W) s 0 0) (fun s => z1 s 0)
     (fun s => -y1 s 1) hW.atL (hm.matrix_elem 1 1).continuousOn (hm'.matrix_elem 0 0).continuousOn
     ((continuous_apply 0).comp hz1Z.1).continuousOn ((continuous_apply 1).comp hy1Z.1).neg.continuousOn
     (fun s hs => ⟨hWc2 s 1 1, hW'c2 s 0 0, hz1int s 0, neg_mem (hy1int s 1), by
       rw [galoisRepRankTwoTateDual_matrix_apply W hdet2, det_upper W (hup s hs)]
-      have h := dt_sq_apply W hdet2 s
+      have h := _root_.GlobalTheory.Ord2.CupCob.det_sq W hdet2 s
       rw [det_upper W (hup s hs)] at h
       linear_combination (eps l s) * h⟩)
-    (fun s hs t ht => ⟨by rw [mat_mul, Matrix.mul_apply, Fin.sum_univ_two, hup s hs]; ring,
-      by rw [mat_mul, Matrix.mul_apply, Fin.sum_univ_two, hup' t ht]; ring,
+    (fun s hs t ht => ⟨by rw [_root_.GlobalTheory.Ord2.mat_mul', Matrix.mul_apply, Fin.sum_univ_two, hup s hs]; ring,
+      by rw [_root_.GlobalTheory.Ord2.mat_mul', Matrix.mul_apply, Fin.sum_univ_two, hup' t ht]; ring,
       by
         rw [coc_eq W hy1Z s t]
         simp [Matrix.mulVec, dotProduct, Fin.sum_univ_two, hup s hs]; ring,

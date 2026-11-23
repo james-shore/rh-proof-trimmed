@@ -137,9 +137,6 @@ theorem finPart_jF (b : Af D.host.F ⊗[D.host.F] D.host.E) : finPart D (jF D b)
   | tmul p q => rfl
   | add p q hp hq => rw [LinearMap.map_add (f := _), RingHom.map_add (f := _), hp, hq]
 
-theorem ext_parts {a b : AE D} (h1 : infPart D a = infPart D b) (h2 : finPart D a = finPart D b) : a = b := by
-  rw [← recon a, ← recon b, h1, h2]
-
 theorem exists_unit_parts (a : (Ainf D.host.F ⊗[D.host.F] D.host.E)ˣ) (b : (Af D.host.F ⊗[D.host.F] D.host.E)ˣ) :
     ∃ Y : (AE D)ˣ, infPart D (Y : AE D) = a ∧ finPart D (Y : AE D) = b := by
   have hI : ∀ a' b', infPart D (jI D a' + jF D b') = a' := fun a' b' => by
@@ -148,7 +145,7 @@ theorem exists_unit_parts (a : (Ainf D.host.F ⊗[D.host.F] D.host.E)ˣ) (b : (A
     rw [RingHom.map_add (f := _), finPart_jI, finPart_jF, zero_add]
   have h1 : (jI D (a : _) + jF D (b : _)) * (jI D ((a⁻¹ : (Ainf D.host.F ⊗[D.host.F] D.host.E)ˣ) : _) +
       jF D ((b⁻¹ : (Af D.host.F ⊗[D.host.F] D.host.E)ˣ) : _)) = 1 := by
-    apply ext_parts
+    apply _root_.GlobalTheory.SplitScalar.adele_ext
     · rw [RingHom.map_mul, hI, hI, Units.mul_inv, RingHom.map_one]
     · rw [RingHom.map_mul, hF, hF, Units.mul_inv, RingHom.map_one]
   exact ⟨⟨_, _, h1, by rw [mul_comm]; exact h1⟩, hI _ _, hF _ _⟩
@@ -241,7 +238,7 @@ theorem exists_root_one {D : D7} {V : HSp D} {M pd : ℕ} {k : Type} [Field k] {
   refine ⟨Yf * Yi, ?_, ?_⟩
   · unfold IsDetRoot
     generalize ((Yf * Yi : (AE D)ˣ) : AE D) = Y at hYI hYF ⊢
-    apply ext_parts
+    apply _root_.GlobalTheory.SplitScalar.adele_ext
     · calc infPart D Y = infPart D (y₀ : AE D) := hYI
         _ = infPart D ((matHom V u).1.det * sigR (AF D.host.F) D.sp.cm.sig (y₀ : AE D)) := congrArg (infPart D) hy₀
         _ = infPart D (matHom V u).1.det * infPart D (sigR (AF D.host.F) D.sp.cm.sig (y₀ : AE D)) := (infPart D).map_mul _ _

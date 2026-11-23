@@ -83,9 +83,7 @@ theorem _root_.GlobalTheory.CuspGL.isCharacter_of_isIrreducibleCharacter_complex
   exact ⟨n, ρ, hρ⟩
 
 open Polynomial in
-theorem _root_.GlobalTheory.CuspGL.generalLinearGroupCardComplex_finiteField_ne_zero (F : Type) [Field F] [Finite F] (d : ℕ) : _root_.GlobalTheory.CuspGL.glCard F d ≠ 0 := by
-  unfold _root_.GlobalTheory.CuspGL.glCard
-  exact_mod_cast Nat.card_pos.ne'
+alias _root_.GlobalTheory.CuspGL.generalLinearGroupCardComplex_finiteField_ne_zero := _root_.GlobalTheory.CuspGL.MassMult.glCard_ne_zero
 
 
 open Polynomial in

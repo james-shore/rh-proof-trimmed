@@ -88,17 +88,6 @@ theorem mem_stab_iff (Λ : Submodule O V) (g : V ≃ₗ[E] V) :
 theorem smul_mem_of (Λ : Submodule O V) {c : E} (hc : c ∈ O) {v : V} (hv : v ∈ Λ) : c • v ∈ Λ :=
   Λ.smul_mem ⟨c, hc⟩ hv
 
-theorem exists_pow_smul_mem {p : E} (hp : p ∈ O) (hdiv : ∀ e : E, ∃ a : ℕ, p ^ a * e ∈ O)
-    (Λ Λ' : Submodule O V) (hΛ : Λ.FG) (hΛ' : Submodule.span E (Λ' : Set V) = ⊤) :
-    ∃ a : ℕ, ∀ v ∈ Λ, p ^ a • v ∈ Λ' := by
-  first
-  | exact @_root_.GlobalTheory.PowSmulMem.main
-  | exact _root_.GlobalTheory.PowSmulMem.main
-  | (apply _root_.GlobalTheory.PowSmulMem.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowSmulMem.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowSmulMem.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PowSmulMem.main ..)
-
 def congSub (Λ : Submodule O V) (c : E) : Subgroup (V ≃ₗ[E] V) where
   carrier := {g | g ∈ MulAction.stabilizer (V ≃ₗ[E] V) Λ ∧ ∀ v ∈ Λ, ∃ w ∈ Λ, g v - v = c • w}
   one_mem' := ⟨one_mem _, fun v _ => ⟨0, Λ.zero_mem, by simp⟩⟩
@@ -209,7 +198,7 @@ theorem mem_stab_of_cong {p : E} (hp : p ∈ O) (hdiv : ∀ e : E, ∃ a : ℕ, 
       simp only [smul_add, smul_neg]
       abel
   let Λ1 : Submodule O V := Λ.map (g.symm.toLinearMap.restrictScalars O)
-  obtain ⟨a, ha⟩ := exists_pow_smul_mem hp hdiv Λ1 Λ (hΛ.map _) hΛ'
+  obtain ⟨a, ha⟩ := _root_.GlobalTheory.PowSmulMem.main hp hdiv Λ1 Λ (hΛ.map _) hΛ'
   rw [mem_stab_iff]
   refine fun v => ⟨fun hv => ?_, hle v⟩
   obtain ⟨u, hu, w, hw, e⟩ := hit a _ hv
@@ -222,8 +211,8 @@ theorem exists_level {p : E} (hp : p ∈ O) (hu : IsUnit p) (hdiv : ∀ e : E, �
     (hΛ' : Λ'.FG) (hs' : Submodule.span E (Λ' : Set V) = ⊤) (N : ℕ) :
     ∃ N' : ℕ, ∀ g : V ≃ₗ[E] V, (∀ v ∈ Λ, ∃ w ∈ Λ, g v - v = p ^ N' • w) →
       ∀ v ∈ Λ', ∃ w ∈ Λ', g v - v = p ^ N • w := by
-  obtain ⟨a, ha⟩ := exists_pow_smul_mem hp hdiv Λ Λ' hΛ hs'
-  obtain ⟨b, hb⟩ := exists_pow_smul_mem hp hdiv Λ' Λ hΛ' hs
+  obtain ⟨a, ha⟩ := _root_.GlobalTheory.PowSmulMem.main hp hdiv Λ Λ' hΛ hs'
+  obtain ⟨b, hb⟩ := _root_.GlobalTheory.PowSmulMem.main hp hdiv Λ' Λ hΛ' hs
   refine ⟨b + (N + a), fun g hg v hv => ?_⟩
   obtain ⟨w, hw, e⟩ := hg _ (hb v hv)
   refine ⟨p ^ a • w, ha w hw, ?_⟩

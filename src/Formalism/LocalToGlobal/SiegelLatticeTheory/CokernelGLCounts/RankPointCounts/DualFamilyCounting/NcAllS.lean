@@ -180,6 +180,6 @@ theorem ncTie0All_of (hRB : Formalism.L2.SG.Pf.NcReal.RealBracket) (hSW : PI.Vol
     (Formalism.L2.SG.Pf.MassDataX.volHa'_eq X hb hK FdN FdN' u u' X0 ψ T sd C Th vR Q M δ i0 i0' νq hSW hStd.2.2.1 hMC)
     hcong hRR (Formalism.L2.SG.Pf.NcVal.volOrdV_holds X u u' ψ) (Formalism.L2.SG.Pf.NcVal.volTypV_holds X u u' ψ)
     (Formalism.L2.SG.Pf.AlTieIdx.indexTypC_holds X hb hK FdN FdN' u u' X0 ψ T sd C Th vR Q M δ i0 i0' νq)
-    (Formalism.L2.SG.Pf.NcVal.OmVSt.OmVZ.omV_holdsX X u' ψ) (Formalism.L2.SG.Pf.AlTieLG.fieldDict_holds X u u') hPC
+    (_root_.Formalism.L2.SG.Pf.NcX.OmVSt.omVZ_holdsX X u' ψ) (Formalism.L2.SG.Pf.AlTieLG.fieldDict_holds X u u') hPC
 
 end Formalism.L2.SG.Pf.NcAllS

@@ -206,8 +206,8 @@ private theorem stab_finite {p : ℕ} [Fact p.Prime] (G : HTGroup p) (ha : G.a =
     by_cases hq : q = p
     · subst hq
       by_cases hov : LiesOver G.Kq G.u (τ.comp (algebraMap G.F (FM P)))
-      · exact GlobalTheory.T.centralizer_element_padic_bounded q G P r z K y.2 hr hK w ((hmem w).1 hw).2 _ (hA w) τ hov
-      · have hov' := GlobalTheory.T.conjugate_place_lies_over q G _ hov
+      · exact _root_.GlobalTheory.StabFin.norm_le_one_at_u q G P r z K y.2 hr hK w ((hmem w).1 hw).2 _ (hA w) τ hov
+      · have hov' := _root_.GlobalTheory.StabFinOver.liesOver_comp_complexConj_of_not_liesOver q G _ hov
         set τ' := τ.comp (iM P).toRingHom
         have hτ' : LiesOver G.Kq G.u (τ'.comp (algebraMap G.F (FM P))) := by
           intro k
@@ -217,8 +217,8 @@ private theorem stab_finite {p : ℕ} [Fact p.Prime] (G : HTGroup p) (ha : G.a =
           show τ (iM P (algebraMap G.F (FM P) k)) = _
           rw [iM_algF]; rfl
         have hwi : w⁻¹ ∈ S := S.inv_mem hw
-        have h1 := GlobalTheory.T.centralizer_element_padic_bounded q G P r z K y.2 hr hK w⁻¹ ((hmem _).1 hwi).2 _ (hA _) τ' hτ'
-        have h2 := GlobalTheory.T.centralizer_scalar_padic_bounded q G P r z K y.2 hr hK w ((hmem w).1 hw).2
+        have h1 := _root_.GlobalTheory.StabFin.norm_le_one_at_u q G P r z K y.2 hr hK w⁻¹ ((hmem _).1 hwi).2 _ (hA _) τ' hτ'
+        have h2 := _root_.GlobalTheory.StabFin.sim_norm_le_one q G P r z K y.2 hr hK w ((hmem w).1 hw).2
         have e : A w = iM P (algebraMap ℚ (FM P) (((w : G.Cˣ × ℚˣ).2 : ℚ)) * A w⁻¹) := by
           have e0 : algebraMap ℚ (FM P) (((w : G.Cˣ × ℚˣ).2 : ℚ)) * A w⁻¹ = iM P (A w) := by
             rw [← mul_iM_of_cent P w (A w) (hA w), mul_comm (A w), mul_assoc, hAinv, mul_one]
@@ -236,13 +236,13 @@ private theorem stab_finite {p : ℕ} [Fact p.Prime] (G : HTGroup p) (ha : G.a =
         intro a b hab
         apply jM_injective P
         simpa [f] using hab
-      refine GlobalTheory.T.bounded_powers_padic_integral (FM P) q _ f hf (A w) B (fun k i => ?_) τ
+      refine _root_.GlobalTheory.norm_conj_le_one_of_bounded_coords (FM P) q _ f hf (A w) B (fun k i => ?_) τ
       rw [← hApow]
       have := hB (w ^ k) (S.pow_mem hw k).1 i
       simpa [f, hA] using this
   haveI := fm_reduced P
   haveI := fm_finite P
-  have hfin := units_finite (iM P) (GlobalTheory.T.betaTwistedInvolution_eq_complexConj_of_marked p G P μ ha hM)
+  have hfin := units_finite (iM P) (_root_.GlobalTheory.StabFin.iM_conj p G P μ ha hM)
   let U : S → (FM P)ˣ := fun w => ⟨A w, A (w : P.cent)⁻¹, hAinv w, by rw [mul_comm]; exact hAinv w⟩
   have hU : ∀ w : S, U w ∈ {x : (FM P)ˣ | x ∈ GlobalTheory.LKTorus.simT ℚ (iM P) ∧
       (∀ (q : ℕ) [Fact q.Prime] (τ : FM P →+* PadicAlgCl q), ‖τ (x : FM P)‖ ≤ 1) ∧
@@ -281,7 +281,7 @@ private theorem pointSum_zero {Γ G₁ G₂ : Type} [Group Γ] [Group G₁] [Gro
       ((K₁.prod K₂ : Subgroup (G₁ × G₂)) : Set (G₁ × G₂)) |
       f₁ ((Quotient.out q).1⁻¹ * γ * (Quotient.out q).1) *
         φ ((Quotient.out q).2⁻¹ * δ * θ (Quotient.out q).2) ≠ 0}.Finite
-  · rw [GlobalTheory.T.kottwitz_pointCount_one_class_commensurable ι₁ ι₂ θ K₁ K₂ γ δ f₁ φ hK₁ hK₂ hθ hf₁ hφ hc₁ hc₂ hι hstab hs]
+  · rw [_root_.GlobalTheory.LKCountComm.pointSum_eq_pointSide_of_commensurable ι₁ ι₂ θ K₁ K₂ γ δ f₁ φ hK₁ hK₂ hθ hf₁ hφ hc₁ hc₂ hι hstab hs]
     unfold pointSide
     rw [h0]
     simp
@@ -295,9 +295,9 @@ private theorem termAt_zero {p : ℕ} [Fact p.Prime] (G : HTGroup p) (ha : G.a =
     (hx : Triv G (AfP p) Q.β x t) (δ z : Gr G 1) (hn : IsNrm G 1 Q.atP δ z)
     (h0 : orbK (MonoidHom.id G.GAf) Lv.K.toSubgroup (Q.toAf x t hx Q.self) f = 0) :
     Q.termAt Lv.K.toSubgroup f 1 (Kp G) (oneP G) x t hx δ z = 0 := by
-  have hreg := GlobalTheory.T.similitudePair_regular_image_at_p p G Q
-  have hB := GlobalTheory.T.map_centralizer_regular_twistedCentraliser p G 1 Q.atP δ z one_pos hreg.2.1 hn
-  have hK184 := GlobalTheory.T.unitarySimilitudeIntegralSubgroup_commensurated_frobenius p G 1 one_pos
+  have hreg := _root_.GlobalTheory.LKMid.atP_regular p G Q
+  have hB := _root_.GlobalTheory.CarryCent.map_centralizer_carry p G 1 Q.atP δ z one_pos hreg.2.1 hn
+  have hK184 := _root_.GlobalTheory.heckeOperator_integral p G 1 one_pos
   have hc1 : ∀ g : Q.cent, Q.toAf x t hx g * Q.toAf x t hx Q.self = Q.toAf x t hx Q.self * Q.toAf x t hx g := by
     intro g
     rw [← map_mul, ← map_mul]
@@ -323,8 +323,8 @@ private theorem termAt_zero {p : ℕ} [Fact p.Prime] (G : HTGroup p) (ha : G.a =
       rfl
     · rw [Set.indicator_of_notMem (show _ ∉ (Kp G : Set (Gr G 1)) from fun h => hw (hiff.1 h)),
         Set.indicator_of_notMem (show _ ∉ (Kp G : Set (Gr G 1)) from hw)]
-  exact pointSum_zero _ _ _ _ _ _ _ _ _ (GlobalTheory.T.compactOpenLevel_conj_commensurable p G Lv) hK184.1 hK184.2.2
-    (fun k hk y => hbi ⟨k⁻¹, Subgroup.inv_mem _ hk⟩ ⟨k, hk⟩ _) hφ hc1 hc2 (GlobalTheory.T.similitudePair_adelicProdUnramifiedEmbedding_injective p G Q x t hx 1 z)
+  exact pointSum_zero _ _ _ _ _ _ _ _ _ (_root_.GlobalTheory.LKMid.level_conj_commensurable p G Lv) hK184.1 hK184.2.2
+    (fun k hk y => hbi ⟨k⁻¹, Subgroup.inv_mem _ hk⟩ ⟨k, hk⟩ _) hφ hc1 hc2 (_root_.GlobalTheory.LKMid.pair_embedding_injective p G Q x t hx 1 z)
     (stab_finite G ha Q μ hM x t hx 1 z Lv (Kp G) one_pos (Subgroup.Commensurable.refl _)) h0
 
 private theorem charpoly_at_self {p : ℕ} [Fact p.Prime] {G : HTGroup p} {k : Type} [Field k] [Algebra G.F k] (R : Pl G k)

@@ -151,7 +151,7 @@ theorem squareFlip_one_rows : ∀ {k : Type} [Field k] [ValuativeRel k] [Topolog
         simpa [setCols, hj] using hZ' i ⟨j, hj⟩
       · intro i j hj
         simp [setCols, hj]
-    have key := GlobalTheory.T.sum_quotientIntegerMatrices_invariant_integralGL_mul_left ϖ e hϖ (fun Z => φ (setCols (Assignment.two.block D₁ D₂) X' Z) * (ψ (pairCols (Assignment.two.block D₁ D₂) X' Z) : ℂ)) hg (invT u⁻¹) hMK
+    have key := _root_.GlobalTheory.ResSumInv.sum_res_mul_left ϖ e hϖ (fun Z => φ (setCols (Assignment.two.block D₁ D₂) X' Z) * (ψ (pairCols (Assignment.two.block D₁ D₂) X' Z) : ℂ)) hg (invT u⁻¹) hMK
     beta_reduce at key
     rw [← key, Finset.mul_sum]
     refine Finset.sum_congr rfl fun S _ => ?_

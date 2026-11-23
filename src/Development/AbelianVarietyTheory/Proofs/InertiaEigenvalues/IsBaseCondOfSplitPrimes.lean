@@ -67,10 +67,6 @@ theorem basecond_exists_above {E : Type} [Field E] [NumberField E] (v : HeightOn
   ext x
   simp [below, Ideal.under, ← hQv]
 
-theorem basecond_natCast_mem_below {E : Type} [Field E] [NumberField E] (P : HeightOneSpectrum (𝓞 E)) (n : ℕ) :
-    (n : OF E) ∈ (below P).asIdeal ↔ (n : 𝓞 E) ∈ P.asIdeal := by
-  simp [below, Ideal.under, Ideal.mem_comap, map_natCast]
-
 theorem isBaseCond_cond0 : ∀ (R : Ranks) (H : Formalism.BasicNotions.Host R) (q0 : ℕ) (w0 : HeightOneSpectrum (𝓞 H.E)), (∀ p ∈ [H.g 0, H.g 1, H.pde, H.pde', q0], ∀ P : HeightOneSpectrum (𝓞 H.E), (p : 𝓞 H.E) ∈ P.asIdeal → Splits (below P)) → PlacesOk H q0 w0 → IsBaseCond (cond0 H w0) := by
   intro R H q0 w0 hspl hok
   have hprime : ∀ p ∈ [H.g 0, H.g 1, H.pde, H.pde', q0], p.Prime := fun p hp => (hok.splits p hp).1
@@ -113,11 +109,11 @@ theorem isBaseCond_cond0 : ∀ (R : Ranks) (H : Formalism.BasicNotions.Host R) (
       · have h1 : (below w0).asIdeal = v.asIdeal :=
           ((below w0).isMaximal).eq_of_le v.isPrime.ne_top (Ideal.le_of_dvd h)
         refine ⟨q0, by simp, ?_⟩
-        rw [← h1, basecond_natCast_mem_below]
+        rw [← h1, _root_.GlobalTheory.LamTie.ExpCond.mem_below]
         exact hok.referencePlaceOverPrime
     obtain ⟨P, hPv⟩ := basecond_exists_above v
     have hpP : ((p : ℕ) : 𝓞 H.E) ∈ P.asIdeal := by
-      rw [← basecond_natCast_mem_below, hPv]
+      rw [← _root_.GlobalTheory.LamTie.ExpCond.mem_below, hPv]
       exact hpv
     obtain ⟨hpr, hp2, hdisc, hnorm⟩ := hok.splits p hp
     refine ⟨hPv ▸ hspl p hp P hpP, ?_, p, hpr, hp2, hpv, hdisc, hnorm⟩

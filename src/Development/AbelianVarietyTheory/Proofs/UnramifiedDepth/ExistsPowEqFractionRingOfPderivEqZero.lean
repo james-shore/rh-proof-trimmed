@@ -162,7 +162,7 @@ theorem exists_pow_eq_fractionRing_of_pderiv_eq_zero : ∀ (k : Type) [Field k] 
     rw [map_sub, Derivation.leibniz_pow, ← Nat.cast_smul_eq_nsmul A, CharP.cast_eq_zero,
       zero_smul, zero_sub] at h2
     exact (neg_mem_iff).mp h2
-  apply GlobalTheory.T.exists_pth_root_of_derivation_zero
+  apply _root_.GlobalTheory.exists_pow_eq_of_forall_derivation_eq_zero
   intro D
   exact derivation_eq_zero_of_kaehler p f hd D
 

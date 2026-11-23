@@ -108,8 +108,8 @@ theorem exists_local_nonnorm : ∀ (p : ℕ) (F : Type) [Field F] [NumberField F
       exact h1
     refine ⟨(-WithZero.log (v.valuation F (p : F))).toNat, ?_⟩
     rw [Int.toNat_of_nonneg (by omega), neg_neg, WithZero.exp_log h0]
-  obtain ⟨htL, hiL⟩ := GlobalTheory.T.pIdx_units_finite_extension_adicCompletion' p F v e L hp.pos he
-  obtain ⟨htK, hiK⟩ := GlobalTheory.T.pIdx_units_finite_extension_adicCompletion' p F v e (v.adicCompletion F) hp.pos he
+  obtain ⟨htL, hiL⟩ := _root_.GlobalTheory.CNorm.pIdx_units_finite_extension_adicCompletion p F v e L hp.pos he
+  obtain ⟨htK, hiK⟩ := _root_.GlobalTheory.CNorm.pIdx_units_finite_extension_adicCompletion p F v e (v.adicCompletion F) hp.pos he
   rw [hrk] at hiL
   rw [Module.finrank_self, pow_one] at hiK
   have hQ : Ideal.absNorm v.asIdeal ^ e ≠ 0 :=

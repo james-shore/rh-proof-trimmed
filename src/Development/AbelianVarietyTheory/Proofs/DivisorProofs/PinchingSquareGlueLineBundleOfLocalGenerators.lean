@@ -119,8 +119,8 @@ theorem assemble : ∀ (X X' Z Z' : Scheme.{0}) (p : X' ⟶ X) (i : Z ⟶ X) (i'
         exact ratio_tele _ _ _
   refine ⟨cls E hE, ?_, ?_⟩
   · rw [← cls_pull hE p (pull_isLB hE p)]
-    exact (cls_eq_iff _ _).2 (LBIso.symm (GlobalTheory.T.lineBundle_iso_pullback_of_local_unit_generators _ _ p L' X W g s' hs' Gp))
+    exact (cls_eq_iff _ _).2 (LBIso.symm (_root_.GlobalTheory.PinchLift.lbIso_pull_of_genOn _ _ p L' X W g s' hs' Gp))
   · rw [← cls_pull hE i (pull_isLB hE i)]
-    exact (cls_eq_iff _ _).2 (LBIso.symm (GlobalTheory.T.lineBundle_iso_pullback_of_local_unit_generators _ _ i LZ X W g sZ hsZ Gi))
+    exact (cls_eq_iff _ _).2 (LBIso.symm (_root_.GlobalTheory.PinchLift.lbIso_pull_of_genOn _ _ i LZ X W g sZ hsZ Gi))
 
 end GlobalTheory.PinchLift

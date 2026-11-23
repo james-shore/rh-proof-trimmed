@@ -79,22 +79,9 @@ theorem conj_of_sq {ρ : ℂ} (hρ : ρ ^ 2 = -(H.d : ℂ)) : starRingEnd ℂ ρ
     nlinarith [sq_nonneg x]
   · exact h
 
-theorem bar_rt : H.bar H.rt = -H.rt := by
-  obtain ⟨φ⟩ : Nonempty (E →+* ℂ) := inferInstance
-  have h4 : (φ (H.rt : E)) ^ 2 = -(H.d : ℂ) := by
-    have := congrArg (fun a : 𝓞 E => φ (a : E)) H.rt_sq
-    simpa using this
-  apply Subtype.ext
-  show ((H.bar H.rt : 𝓞 E) : E) = ((-H.rt : 𝓞 E) : E)
-  apply φ.injective
-  rw [H.bar_eq, IsCMField.complexEmbedding_complexConj, conj_of_sq h4]
-  simp
+alias bar_rt := _root_.GlobalTheory.ConjSplit.bar_rt
 
-theorem cmHost_bar_halfIntegerGenerator : H.bar H.w0 = 1 - H.w0 := by
-  have h := congrArg H.bar H.two_weight_eq_one_add_root
-  rw [map_mul, map_add (f := _), map_one, bar_rt, map_ofNat] at h
-  apply mul_left_cancel₀ (two_ne_zero (α := 𝓞 E))
-  linear_combination h + H.two_weight_eq_one_add_root
+alias cmHost_bar_halfIntegerGenerator := _root_.GlobalTheory.ConjSplit.cmHost_bar_halfIntegerGenerator
 
 theorem bar_mul_wE (s : ℤ × ℤ) :
     H.bar (wE H s) * wE H s = ((s.1 ^ 2 + s.1 * s.2 + s.2 ^ 2 * (((H.d : ℤ) + 1) / 4) : ℤ) : 𝓞 E) := by

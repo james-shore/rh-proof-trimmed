@@ -54,7 +54,7 @@ open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 namespace LateralTheory.E.LeafTwistIsoPf
 
 theorem leafLoc : LateralTheory.E.LeafTwistPf.LeafLoc :=
-  LateralTheory.E.LeafLocPf.LeafLoc_of' (LateralTheory.E.LocSecPfC.LocSec_of LateralTheory.E.ClassSecPf.ClassSec_of)
+  LateralTheory.E.LeafLocPf.LeafLoc_of' (LateralTheory.E.LocSecPfC.LocSec_of _root_.LateralTheory.E.ClassSecPf.classSec)
     (LateralTheory.E.LocSlicePf.LocSlice_of' LateralTheory.E.PullMonoPf.PullMono_of)
 
 theorem leafTwSec : LateralTheory.E.LeafTwistPf.LeafTwSec :=

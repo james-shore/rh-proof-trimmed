@@ -45,6 +45,7 @@ public import ReciprocityTheory.GroupCohomology.CupCorB
 public import ReciprocityTheory.GroupCohomology.HomogIso
 public import ReciprocityTheory.GroupCohomology.PrismOpZeroEval
 public import ReciprocityTheory.GroupCohomology.CupCorA
+import ReciprocityTheory.GroupCohomology.PartialProdCoe
 
 @[expose] public section
 
@@ -96,11 +97,11 @@ theorem cupCor_holds : CupCorStatement.{u} := by
       rfl⟩
 
   have hcont : Continuous (fun g : G => ((retr U g : U) : G)) :=
-    continuous_subtype_val.comp (CCA.continuous_retr (U := U) hU)
+    continuous_subtype_val.comp (_root_.ReciprocityTheory.Coh.CohomologyFunctoriality₂.continuous_retr (U := U) hU)
   have hequiv : ∀ (v : U) (g : G), ((retr U (v • g) : U) : G) = v • ((retr U g : U) : G) := by
     intro v g
     show ((retr U ((v : G) * g) : U) : G) = (v : G) * ((retr U g : U) : G)
-    rw [CCA.retr_mul, Subgroup.coe_mul]
+    rw [_root_.ReciprocityTheory.Coh.CohomologyFunctoriality₂.retr_mul, Subgroup.coe_mul]
   have hpr := prism_holds.{u} R U (N.resSub U) G G (HomogeneousCochainIso.hcx (N.resSub U) G)
     (HomogeneousCochainIso.hcx (N.resSub U) G) (fun n => LinearEquiv.refl R _) (fun n => LinearEquiv.refl R _)
     (fun n F => rfl) (fun n F => rfl)

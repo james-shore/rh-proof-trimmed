@@ -115,8 +115,8 @@ theorem tensor_eq_top_or_le_ker_map : ∀ {ι : Type} [Fintype ι] [DecidableEq 
     by_cases hUt : U = ⊤
     · exact Or.inr hUt
     exact Or.inl (le_antisymm (hloc i U ((hRel i).trans hKU) hU hUt) hKU)
-  obtain ⟨F₀, hF₀⟩ := GlobalTheory.T.exists_finset_generating_operator_stable_bounded Op₀ Rel₀ hL₀
-  choose F hF using fun i => GlobalTheory.T.exists_finset_generating_operator_stable_bounded (Op i) (Rel i) (hL i)
+  obtain ⟨F₀, hF₀⟩ := _root_.GlobalTheory.StabGen.exists_finset_generating Op₀ Rel₀ hL₀
+  choose F hF using fun i => _root_.GlobalTheory.StabGen.exists_finset_generating (Op i) (Rel i) (hL i)
   let G : Finset (M₀ ⊗[ℂ] (⨂[ℂ] i, M i)) :=
     (F₀ ×ˢ Fintype.piFinset F).image (fun q => q.1 ⊗ₜ[ℂ] PiTensorProduct.tprod ℂ q.2)
   have hgen : ∀ U, N ≤ U → Stab (tensOps Op₀ (piOps Op)) U → (↑G : Set (M₀ ⊗[ℂ] (⨂[ℂ] i, M i))) ⊆ (U : Set (M₀ ⊗[ℂ] (⨂[ℂ] i, M i))) → U = ⊤ := by

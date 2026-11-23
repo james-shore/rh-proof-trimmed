@@ -127,7 +127,7 @@ private theorem eeN_mul_comm_of_ne_index {n' : ℕ} (S : UniformizedDVR p O) (hR
   have hA : ∀ c d, eeN D K Dt ⟨j, a⟩ mu * glOps (KK O) K Dt.trueLet (NSet Dt.nL j' b.val) c d =
       glOps (KK O) K Dt.trueLet (NSet Dt.nL j' b.val) c d * eeN D K Dt ⟨j, a⟩ mu :=
     hc.2.1 0 mu _ hdisj
-  have hpres := comm_pres_isoSub (E := glOps (KK O) K Dt.trueLet (NSet Dt.nL j' b.val)) _ hA
+  have hpres := _root_.Formalism.MainNotions.G.GLWeightTheory.isotypic_stable_commuting (E := glOps (KK O) K Dt.trueLet (NSet Dt.nL j' b.val)) _ hA
   exact (comm_isoProj (E := glOps (KK O) K Dt.trueLet (NSet Dt.nL j' b.val)) (eeN D K Dt ⟨j, a⟩ mu) hpres
     (eeN D K Dt ⟨j', b⟩) (eeN_spec D K Dt ⟨j', b⟩).1 (eeN_spec D K Dt ⟨j', b⟩).2 mu').symm
 

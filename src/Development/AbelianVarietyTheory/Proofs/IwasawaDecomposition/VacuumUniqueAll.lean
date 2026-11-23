@@ -47,7 +47,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory
 
-theorem vacuum_unique_all : ∀ D : D7, VacUniqueO D :=
-  fun D => GlobalTheory.VacUnique.vacUniqueO D
-
 end GlobalTheory

@@ -382,11 +382,11 @@ theorem exists_nontriv (σ : E →ₐ[F] E) (hcm : IsCMExt F E σ) {ψ : AddChar
     ∃ C > 0, ∀ b : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E), 0 < nM v b → ∀ r : ℝ, C ≤ r * nM v b →
       ∃ x₀ : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E), nM v x₀ ≤ r ∧
         psiV F ψ v (-Algebra.trace (Fv F v) (Fv F v ⊗[F] E) (Matrix.trace (T * b * x₀))) ≠ 1 := by
-  obtain ⟨y₀, hy₀⟩ := exists_psiV_ne_one (v := v) hcm hψ
+  obtain ⟨y₀, hy₀⟩ := _root_.PositivityTheory.SiegelWeilFormula.SwLocFin.exists_psiV_ne_one' (v := v) hcm hψ
   obtain ⟨c, hc, htr⟩ := exists_trace_ge (E := E) v
   obtain ⟨Cm, hCm, hm⟩ := exists_nM_mul (E := E) v n n n
   obtain ⟨Ti, hTi'⟩ : ∃ Ti : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E), Ti * T = 1 := ⟨T⁻¹, Matrix.nonsing_inv_mul _ hT⟩
-  have hy0 : y₀ ≠ 0 := by rintro rfl; exact hy₀ (psiV_zero ψ)
+  have hy0 : y₀ ≠ 0 := by rintro rfl; exact hy₀ (_root_.PositivityTheory.SiegelWeilFormula.SwLocFin.psiV_zero' ψ)
   have hny0 : 0 < ‖y₀‖ := norm_pos_iff.2 hy0
   have hTi := nM_nonneg (v := v) Ti
   have hCT : 0 < Cm * nM v Ti + 1 := by have := mul_nonneg hCm hTi; linarith
@@ -550,13 +550,13 @@ def chi (ψ : AddChar (AF F) ℂ) {n : ℕ} (T b : HermR (Fv F v) σ n) (x : Mat
 theorem chi_add (ψ : AddChar (AF F) ℂ) {n : ℕ} (T b : HermR (Fv F v) σ n) (x y : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) :
     chi ψ T b (x + y) = chi ψ T b x * chi ψ T b y := by
   simp only [chi, Matrix.mul_add, Matrix.trace_add, map_add (f := _), neg_add]
-  exact psiV_add ψ _ _
+  exact _root_.PositivityTheory.SiegelWeilFormula.SwLocFin.psiV_add' ψ _ _
 
 theorem continuous_chi {ψ : AddChar (AF F) ℂ} (hψ : IsCharAF F ψ) {n : ℕ} (T : HermR (Fv F v) σ n) :
     Continuous fun p : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E) × HermR (Fv F v) σ n => chi ψ T p.2 p.1 := by
   have htr : Continuous (Algebra.trace (Fv F v) (Fv F v ⊗[F] E)) :=
     IsModuleTopology.continuous_of_linearMap (Algebra.trace (Fv F v) (Fv F v ⊗[F] E))
-  refine (continuous_psiV hψ).comp (htr.comp ?_).neg
+  refine (_root_.PositivityTheory.SiegelWeilFormula.SwLocFin.continuous_psiV' hψ).comp (htr.comp ?_).neg
   exact ((continuous_const.matrix_mul (continuous_subtype_val.comp continuous_snd)).matrix_mul continuous_fst).matrix_trace
 
 theorem trPair_conj (hcm : IsCMExt F E σ) {n : ℕ} (T b : HermR (Fv F v) σ n) (x : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) :
@@ -574,7 +574,7 @@ theorem shellP_core {F E : Type} [Field F] [NumberField F] [Field E] [NumberFiel
   haveI : lam.IsAddHaarMeasure := h.haar
   obtain ⟨r1, hr1, hpres⟩ := exists_normPres v σ n
   obtain ⟨r2, hr2, hinv⟩ := exists_inv (E := E) v n
-  obtain ⟨r3, hr3, hJ⟩ := jtR_conj_inv v σ h.cm J (psiV F ψ v) μv Φv h.sb
+  obtain ⟨r3, hr3, hJ⟩ := _root_.PositivityTheory.SiegelWeilFormula.SwLocFin.SwSplit.jtR_conj_inv' v σ h.cm J (psiV F ψ v) μv Φv h.sb
   obtain ⟨r4, hr4, hnu⟩ := lattice_norm_conj_invariant v σ h.cm lam L₁ L₂ h.co₁ h.co₂
   obtain ⟨Cq, hCq, hquad⟩ := exists_quad v σ T.1
   obtain ⟨Cν, hCν, hnt⟩ := exists_nontriv v σ h.cm h.chr T.1 h.unit
@@ -655,7 +655,7 @@ theorem shellP_core {F E : Type} [Field F] [NumberField F] [Field E] [NumberFiel
         _ = Cq * Cν ^ 2 * q / R := by rw [hrdef]; field_simp
         _ ≤ ε := by rw [div_le_iff₀ hRpos, mul_comm ε R]; rwa [div_le_iff₀ hε] at hRb
     simp only [whI, hnu', hJ', hval, trPair_conj h.cm, chi]
-    rw [neg_add, neg_add, psiV_add, psiV_add, hq1]
+    rw [neg_add, neg_add, _root_.PositivityTheory.SiegelWeilFormula.SwLocFin.psiV_add', _root_.PositivityTheory.SiegelWeilFormula.SwLocFin.psiV_add', hq1]
     ring
   ·
     intro b hb
@@ -666,7 +666,7 @@ theorem shellP_core {F E : Type} [Field F] [NumberField F] [Field E] [NumberFiel
     obtain ⟨x₀, hx₀, hne⟩ := hnt b.1 hbpos r hC
     exact setIntegral_char_eq_zero m U hUm (chi ψ T b) (chi_add ψ T b) (x₀ := x₀) hx₀ hne
   · intro b x
-    exact (norm_psiV h.chr _).le
+    exact (_root_.PositivityTheory.SiegelWeilFormula.SwLocFin.norm_psiV' h.chr _).le
 
 end Shell
 

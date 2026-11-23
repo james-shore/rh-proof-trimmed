@@ -65,9 +65,7 @@ theorem map_cst_rs {X : Scheme.{0}} (f : X ⟶ Spec (CommRingCat.of R)) (J : Ide
   have e : (rs X h).comp (cst f U) = cst f V := RingHom.ext fun r => rs_cst f h r
   rwa [e] at h'
 
-theorem gs_sub' {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) (h : f y ∈ U) (a b : Γ(X, U)) :
-    gs f y U (a - b) = gs f y U a - gs f y U b := by
-  simp only [gs_eq f y U h, map_sub]
+alias gs_sub' := _root_.GlobalTheory.LBGerm.gs_sub
 
 theorem gs_zero' {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) : gs f y U 0 = 0 := by
   unfold gs

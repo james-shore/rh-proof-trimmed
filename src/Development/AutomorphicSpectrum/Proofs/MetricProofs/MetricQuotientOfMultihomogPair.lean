@@ -208,7 +208,7 @@ theorem local_decay : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Finty
       exact hyp _ hG0 hHy hs
     show (aeval (R.lift x₀ ((R.A.chart j).symm z)) G : ℂ) / _ = 0
     rw [hlt, aeval_scale hG, hGy, mul_zero, zero_div]
-  obtain ⟨N, C₀, hN, hloj⟩ := GlobalTheory.T.lojasiewicz_inequality_analytic e f g _ hf hg hzero
+  obtain ⟨N, C₀, hN, hloj⟩ := _root_.GlobalTheory.CompanionTheory.Loj.lojasiewicz e f g _ hf hg hzero
   have hloj' : ∀ᶠ y in 𝓝 x₀, ‖f (R.A.chart j y)‖ ^ N ≤ C₀ * ‖g (R.A.chart j y)‖ :=
     ((R.A.chart j).continuousAt hj).eventually hloj
 

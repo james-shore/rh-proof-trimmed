@@ -129,11 +129,6 @@ theorem gauge_pos {n : ℕ} {ε : Fin n → Bool} {c : ℝ} (h : IsGauge ε c) :
   exact absurd h1 (not_lt.2 (div_nonpos_of_nonpos_of_nonneg
     (mul_nonpos_of_nonpos_of_nonneg (not_lt.1 hc) ENNReal.toReal_nonneg) h3.le))
 
-theorem card_places (I : AutInst) : Fintype.card (InfinitePlace I.F) = I.f := by
-  haveI := I.cm.totReal
-  rw [AutInst.f, IsTotallyReal.finrank, InfinitePlace.card_eq_nrRealPlaces_add_nrComplexPlaces,
-    IsTotallyReal.nrComplexPlaces_eq_zero, add_zero]
-
 theorem expU_zero {n : ℕ} {ε : Fin n → Bool} : expU (0 : gLie ε) = 1 :=
   Subtype.ext (Units.ext (by
     show NormedSpace.exp ((0 : gLie ε) : Matrix (Fin n) (Fin n) ℂ) = 1
@@ -158,9 +153,6 @@ theorem continuous_expU {n : ℕ} {ε : Fin n → Bool} (X : gLie ε) : Continuo
   have h2 : Continuous fun t : ℝ => uMat (expU ((-t) • X)) := (hc X.1).comp continuous_neg
   simp only [← this] at h2
   exact h2
-
-theorem hs_eq_trace {n : ℕ} (X : Matrix (Fin n) (Fin n) ℂ) : hs X = ((X * Xᴴ).trace).re := by
-  simp [hs, Matrix.trace, Matrix.mul_apply, Complex.mul_conj, Complex.normSq_eq_norm_sq, ← Complex.ofReal_pow]
 
 noncomputable def onePar (B : RowsAut) (E : gInf B) (t : ℝ) : B.I.GA := ((fun v => expU (t • E v)), 1)
 
@@ -288,7 +280,7 @@ theorem le_beP {n : ℕ} {b : ℝ} (hn : 8 ≤ n) (hb : (n : ℝ) ^ 19 ≤ b ^ 2
 
 theorem sobolev_bound : ∀ (B : RowsAut) (b : ℝ) (c : InfinitePlace B.I.F → ℝ) (P₀ : ℕ) (D : ℕ) (T : Fin D → (B.Hs →L[ℂ] B.I.L2 B.μf B.fund)) (Fr : Fin D → B.Hs → B.I.GA → ℂ), 8 ≤ B.I.n → 1 ≤ B.g → (B.I.n : ℝ) ^ 19 ≤ b ^ 2 → (∀ v, IsGauge (B.I.ε v) (c v)) → (∀ P, StepBoundAt B b P) → (∀ i, IsReps B (T i) (Fr i)) → (∀ i u, ‖T i u‖ = ‖u‖) → ∀ (y : B.I.GA), ∀ u ∈ VP B P₀, ‖vv B Fr u y‖ ^ 2 ≤ (6 * beP B.I.n b (P₀ + B.I.n ^ 2 * B.I.f)) ^ (B.I.n ^ 2 * B.I.f) * Real.exp B.I.f * (1 + 4 * Real.sqrt B.I.n / tau1 B.I y ^ 2) ^ (2 * (B.I.n ^ 2 * B.I.f)) * D * (∏ v, c v) / (B.μf (B.I.Kg B.g)).toReal * ‖u‖ ^ 2 := by
   intro B b c P₀ D T Fr hn hg hb hc hS hR hT y u hu
-  have e : Fin B.I.f ≃ InfinitePlace B.I.F := (Fintype.equivFinOfCardEq (card_places B.I)).symm
+  have e : Fin B.I.f ≃ InfinitePlace B.I.F := (Fintype.equivFinOfCardEq (_root_.GlobalTheory.Count.FrameMajorant.card_places B.I)).symm
   choose E₀ hE1 hE2 _ using fun v => GlobalTheory.LieONB.exists_orthonormal_basis B.I.n (B.I.ε v)
   let E : ∀ v, Fin (B.I.n ^ 2) → gLie (B.I.ε v) := fun v i => ⟨E₀ v i, (hE1 v i).1⟩
   have h8 : (8 : ℝ) ≤ B.I.n := by exact_mod_cast hn
@@ -321,7 +313,7 @@ theorem sobolev_bound : ∀ (B : RowsAut) (b : ℝ) (c : InfinitePlace B.I.F →
       norm_num
     · refine ((hS p).2.2.2.2.1 _ _ w hw).trans ?_
       have h1 : hs (E (e l.divNat) l.modNat).1 = 1 := by
-        rw [hs_eq_trace]; simpa using hE2 (e l.divNat) l.modNat l.modNat
+        rw [_root_.GlobalTheory.ExpChartExpanding.hs_eq_trace]; simpa using hE2 (e l.divNat) l.modNat l.modNat
       rw [h1, Real.sqrt_one, one_mul]
       rw [mul_comm B.I.f] at hp
       exact mul_le_mul_of_nonneg_right (monotone₂ _ _ hp) (norm_nonneg _)

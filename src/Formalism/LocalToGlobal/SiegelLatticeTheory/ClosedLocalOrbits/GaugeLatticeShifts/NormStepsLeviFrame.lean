@@ -88,30 +88,6 @@ theorem lf_mL_le {x : VA I} (hx : x ∈ mL I g) : x ∈ I.Lf := by
   obtain ⟨y, hy, rfl⟩ := lf_mem_mL I g hx
   exact lf_memL_smul I (natCast_mem _ g) hy
 
-private theorem hA_smul_right_eq_mul (I : AutInst) (x y : VA I) (a : I.E ⊗[I.F] Af I.F) :
-    hA I x (a • y) = a * hA I x y := by
-  unfold hA Formalism.UG.hform
-  simp only [Pi.smul_apply, smul_eq_mul, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  ring
-
-private theorem hA_sub_right_gauge_lattice_shifts (I : AutInst) (x y z : VA I) :
-    hA I x (y - z) = hA I x y - hA I x z := by
-  unfold hA Formalism.UG.hform
-  simp only [Pi.sub_apply, mul_sub, Finset.sum_sub_distrib]
-
-private theorem hA_smul_left_eq_sigA_mul (I : AutInst) (x y : VA I) (a : I.E ⊗[I.F] Af I.F) :
-    hA I (a • x) y = sigA I a * hA I x y := by
-  unfold hA Formalism.UG.hform sigA
-  simp only [Pi.smul_apply, smul_eq_mul, map_mul, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  ring
-
-private theorem zMod'_mul_of_mem_intAf (I : AutInst) (g : ℕ) {c a : I.E ⊗[I.F] Af I.F} (hc : c ∈ IntAf I.F I.E)
-    (ha : ZMod' I g a) : ZMod' I g (c * a) := by
-  obtain ⟨t, ht, rfl⟩ := ha
-  exact ⟨c * t, mul_mem hc ht, by ring⟩
-
 theorem lf_hA_sub_left (u u' v : VA I) : hA I (u - u') v = hA I u v - hA I u' v := by
   unfold hA Formalism.UG.hform
   simp only [Pi.sub_apply, map_sub, sub_mul, Finset.sum_sub_distrib]
@@ -140,7 +116,7 @@ theorem lf_hA_cong {x x' y y' : VA I} (hx' : x' ∈ I.Lf) (hy : y ∈ I.Lf) (hxx
   obtain ⟨t2, ht2, h2⟩ := lf_hA_mL_right I g hx' hyy
   refine ⟨t1 + t2, add_mem ht1 ht2, ?_⟩
   rw [lf_hA_sub_left] at h1
-  rw [hA_sub_right_gauge_lattice_shifts] at h2
+  rw [_root_.Formalism.L2.SG.Pf.unitaryCongruence.hA_sub_right] at h2
   linear_combination h1 + h2
 
 theorem lf_one_mem {κ : Type} [DecidableEq κ] (i j : κ) :
@@ -281,8 +257,8 @@ theorem lf_proj_orth (hPQ : ε • (lfGram I uR * Q) = ε • 1) (y : VA I) (l :
     have := congrFun (congrFun hPQ l) m
     simpa only [Matrix.smul_apply, smul_eq_mul] using this
   unfold lfProj
-  rw [hA_sub_right_gauge_lattice_shifts, lf_hA_sum_right, hA_smul_right_eq_mul]
-  simp only [hA_smul_right_eq_mul]
+  rw [_root_.Formalism.L2.SG.Pf.unitaryCongruence.hA_sub_right, lf_hA_sum_right, _root_.Formalism.L2.SG.Pf.unitaryCongruence.hA_smul_right]
+  simp only [_root_.Formalism.L2.SG.Pf.unitaryCongruence.hA_smul_right]
   have key : ∑ k, lfCf I ε uR Q y k * hA I (uR l) (uR k) = ε * hA I (uR l) y := by
     calc ∑ k, lfCf I ε uR Q y k * hA I (uR l) (uR k)
         = ∑ m, (ε * (lfGram I uR * Q) l m) * hA I (uR m) y := by
@@ -300,7 +276,7 @@ theorem lf_cf_eps (hεε : ε * ε = ε) (y : VA I) (k : ι) : ε * lfCf I ε uR
 
 theorem lf_cf_eq (hσε : sigA I ε = ε) (y : VA I) (k : ι) :
     lfCf I ε uR Q y k = ∑ l, Q k l * hA I (ε • uR l) y := by
-  simp only [lfCf, Pi.smul_apply, smul_eq_mul, Matrix.mulVec, dotProduct, hA_smul_left_eq_sigA_mul, hσε,
+  simp only [lfCf, Pi.smul_apply, smul_eq_mul, Matrix.mulVec, dotProduct, _root_.Formalism.L2.SG.Pf.unitaryCongruence.hA_smul_left, hσε,
     Finset.mul_sum]
   refine Finset.sum_congr rfl fun l _ => ?_
   ring
@@ -399,7 +375,7 @@ theorem lf_frame_core (I : AutInst) (g : ℕ) {ε : I.E ⊗[I.F] Af I.F} (hεO :
   have hG : ∀ k l, ZMod' I g (ε * lfGram I uR k l - Q0 k l) := fun k l => by
     have e1 : ε * lfGram I uR k l = hA I (ε • uR k) (ε • uR l) := by
       simp only [lfGram, Matrix.of_apply]
-      rw [hA_smul_left_eq_sigA_mul, hA_smul_right_eq_mul, hσε, ← mul_assoc, hεε]
+      rw [_root_.Formalism.L2.SG.Pf.unitaryCongruence.hA_smul_left, _root_.Formalism.L2.SG.Pf.unitaryCongruence.hA_smul_right, hσε, ← mul_assoc, hεε]
     have h1 := lf_hA_cong I g (hu0 k) (huL l) (hεu k) (hεu l)
     have h2 := Z_add (ha := h1) (hb := hgr k l)
     convert h2 using 1
@@ -408,7 +384,7 @@ theorem lf_frame_core (I : AutInst) (g : ℕ) {ε : I.E ⊗[I.F] Af I.F} (hεO :
   have hGQ : ∀ k l, ZMod' I g (ε * (lfGram I uR * Q0) k l - (1 : Matrix ι ι (I.E ⊗[I.F] Af I.F)) k l) := fun k l => by
     have hs := Z_sum (I := I) (g := g) (s := Finset.univ)
       (f := fun m => Q0 m l * (ε * lfGram I uR k m - Q0 k m))
-      (h := fun m _ => zMod'_mul_of_mem_intAf I g (hQ0O m l) (hG k m))
+      (h := fun m _ => _root_.Formalism.L2.SG.Pf.unitaryCongruence.Z_smul I g (hQ0O m l) (hG k m))
     convert hs using 1
     try dsimp only
     rw [← hQ0, Matrix.mul_apply, Matrix.mul_apply, Finset.mul_sum, ← Finset.sum_sub_distrib]
@@ -486,12 +462,12 @@ theorem lf_frame_core (I : AutInst) (g : ℕ) {ε : I.E ⊗[I.F] Af I.F} (hεO :
     linear_combination N l i * hηη
   · rw [smul_smul, ← map_mul, hηη]
   · rw [lf_hA_sum_right]
-    exact Finset.sum_eq_zero fun l _ => by rw [hA_smul_right_eq_mul, hb'o l k, mul_zero]
-  · rw [hA_smul_right_eq_mul, hd'o i k, mul_zero]
+    exact Finset.sum_eq_zero fun l _ => by rw [_root_.Formalism.L2.SG.Pf.unitaryCongruence.hA_smul_right, hb'o l k, mul_zero]
+  · rw [_root_.Formalism.L2.SG.Pf.unitaryCongruence.hA_smul_right, hd'o i k, mul_zero]
   · rw [lf_hA_sum_right]
     have e3 : ∀ l, hA I (sigA I (ε * ew) • d' i) ((ε * ew * N l j) • b' l) =
         ε * ew * (hA I (d' i) (b' l) * N l j) := fun l => by
-      rw [hA_smul_right_eq_mul, hA_smul_left_eq_sigA_mul, sigA_sigA]
+      rw [_root_.Formalism.L2.SG.Pf.unitaryCongruence.hA_smul_right, _root_.Formalism.L2.SG.Pf.unitaryCongruence.hA_smul_left, sigA_sigA]
       linear_combination (N l j * hA I (d' i) (b' l)) * hηη
     rw [Finset.sum_congr rfl fun l _ => e3 l, ← Finset.mul_sum, hHN i j, Matrix.one_apply]
     split_ifs <;> ring
@@ -502,7 +478,7 @@ theorem lf_frame_core (I : AutInst) (g : ℕ) {ε : I.E ⊗[I.F] Af I.F} (hεO :
       ring
     have A1 := Z_sum (I := I) (g := g) (s := Finset.univ)
       (f := fun l => ε * ew * N l j * (hA I (bwd i) (b' l) - if i = l then ew else 0))
-      (h := fun l _ => zMod'_mul_of_mem_intAf I g (mul_mem hηO (hNO l j)) (hK l))
+      (h := fun l _ => _root_.Formalism.L2.SG.Pf.unitaryCongruence.Z_smul I g (mul_mem hηO (hNO l j)) (hK l))
     have A3 : ZMod' I g (ε * ew * (1 : Matrix (Fin m) (Fin m) (I.E ⊗[I.F] Af I.F)) i j - if i = j then ew else 0) := by
       rw [Matrix.one_apply]
       split_ifs
@@ -517,7 +493,7 @@ theorem lf_frame_core (I : AutInst) (g : ℕ) {ε : I.E ⊗[I.F] Af I.F} (hεO :
     convert h4 using 1
     try dsimp only
     rw [lf_hA_sum_right]
-    simp only [hA_smul_right_eq_mul]
+    simp only [_root_.Formalism.L2.SG.Pf.unitaryCongruence.hA_smul_right]
     rw [Finset.sum_congr rfl fun l _ => mul_sub (ε * ew * N l j) (hA I (bwd i) (b' l))
       (if i = l then ew else 0), Finset.sum_sub_distrib, hs]
     ring
@@ -531,9 +507,9 @@ theorem lf_frame_core (I : AutInst) (g : ℕ) {ε : I.E ⊗[I.F] Af I.F} (hεO :
       · obtain ⟨t, ht, he⟩ := hewη
         exact ⟨-t, neg_mem ht, by linear_combination -he + hηew⟩
       · exact ⟨0, zero_mem _, by ring⟩
-    have h4 := Z_add (ha := zMod'_mul_of_mem_intAf I g hηO hK) (hb := B2)
+    have h4 := Z_add (ha := _root_.Formalism.L2.SG.Pf.unitaryCongruence.Z_smul I g hηO hK) (hb := B2)
     convert h4 using 1
-    rw [hA_smul_left_eq_sigA_mul, sigA_sigA]
+    rw [_root_.Formalism.L2.SG.Pf.unitaryCongruence.hA_smul_left, sigA_sigA]
     ring
 
 section HidaSetting

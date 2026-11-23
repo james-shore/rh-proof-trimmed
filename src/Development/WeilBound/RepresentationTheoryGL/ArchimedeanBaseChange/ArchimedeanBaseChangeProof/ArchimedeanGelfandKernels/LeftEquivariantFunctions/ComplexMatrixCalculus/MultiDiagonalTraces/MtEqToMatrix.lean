@@ -74,26 +74,8 @@ private theorem trace_single_mul_single_eq_ite (a b c d : Fin n) :
   · rw [single_mul_single_of_ne (h := h)]
     simp [h]
 
-private theorem trace_hb_mul_hb_eq_ite (p q : Fin n × Fin n) : (hb p * hb q).trace = if p = q then 1 else 0 := by
-  obtain ⟨a, b⟩ := p
-  obtain ⟨c, d⟩ := q
-  have hs : ((↑√2 : ℂ))⁻¹ * (↑√2 : ℂ)⁻¹ = (1 / 2 : ℂ) := by
-    rw [← mul_inv, ← Complex.ofReal_mul, Real.mul_self_sqrt (by norm_num)]
-    norm_num
-  simp only [hb, Prod.mk.injEq]
-  split_ifs <;>
-    (try simp only [Matrix.mul_add, Matrix.add_mul, Matrix.mul_sub, Matrix.sub_mul, Matrix.smul_mul,
-      Matrix.mul_smul, Matrix.trace_add, Matrix.trace_sub, Matrix.trace_smul, trace_single_mul_single_eq_ite, smul_eq_mul]) <;>
-    (try split_ifs) <;>
-    (try simp only [Fin.ext_iff, Fin.lt_def, not_and, not_lt] at *) <;>
-    first
-    | omega
-    | ring1
-    | linear_combination 2 * hs
-    | linear_combination 2 * hs - 2 * (↑√2 : ℂ)⁻¹ * (↑√2 : ℂ)⁻¹ * Complex.I_sq
-
 private theorem trace_hbM_mul_hbM_eq_ite (p q : Md n) : (hbM p * hbM q).trace = if p = q then 1 else 0 := by
-  simp only [hbM, trace_hb_mul_hb_eq_ite, EmbeddingLike.apply_eq_iff_eq]
+  simp only [hbM, _root_.PositivityTheory.RgBcC.Cxa.hb_ortho, EmbeddingLike.apply_eq_iff_eq]
 
 theorem hbM_li : LinearIndependent ℂ (hbM (n := n)) := by
   rw [linearIndependent_iff']

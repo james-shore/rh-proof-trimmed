@@ -89,16 +89,6 @@ private theorem gm_res_eq_gm {S T : Scheme.{0}} (f : T ⟶ S) (t : T) {U V : S.O
   congr 1
   exact TopCat.Presheaf.germ_res_apply S.presheaf (homOfLE hVU) (f t) ht _
 
-private theorem units_eq_of_gm_eq {S : Scheme.{0}} {W : S.Opens} {a b : Γ(S, W)ˣ}
-    (h : ∀ x, x ∈ W → gm (𝟙 S) x W a = gm (𝟙 S) x W b) : a = b := by
-  apply Units.ext
-  apply TopCat.Presheaf.section_ext S.sheaf W
-  intro x hx
-  have := congrArg Units.val (h x hx)
-  unfold gm pullU at this
-  rw [dite_eq_left (show (𝟙 S) x ∈ W from hx)] at this
-  exact this
-
 private theorem gm_id_pullU' {S T : Scheme.{0}} (f : T ⟶ S) (t : T) (W : S.Opens) (c : Γ(S, W)ˣ) (ht : f t ∈ W) :
     gm (𝟙 T) t (f ⁻¹ᵁ W) (pullU f W c) = gm f t W c := by
   unfold gm
@@ -113,7 +103,7 @@ private theorem res_eq_mul_inv_mul_of_gm {S : Scheme.{0}} {W A B C D : S.Opens} 
     (hD : W ≤ D) (a : Γ(S, A)ˣ) (b : Γ(S, B)ˣ) (c : Γ(S, C)ˣ) (d : Γ(S, D)ˣ)
     (h : ∀ x, x ∈ W → gm (𝟙 S) x A a = gm (𝟙 S) x B b * (gm (𝟙 S) x C c)⁻¹ * gm (𝟙 S) x D d) :
     res hA a = res hB b * (res hC c)⁻¹ * res hD d := by
-  apply units_eq_of_gm_eq
+  apply _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.unit_ext
   intro x hx
   rw [map_mul, map_mul, gm_inv_moduli, gm_res_eq_gm (𝟙 S) x hA a hx, gm_res_eq_gm (𝟙 S) x hB b hx,
     gm_res_eq_gm (𝟙 S) x hC c hx, gm_res_eq_gm (𝟙 S) x hD d hx]
@@ -190,13 +180,13 @@ theorem exists_push : ∀ (X Y : Scheme.{0}) (ψ : Y ⟶ X) [IsOpenImmersion ψ]
     obtain ⟨i, hi⟩ := hcov y
     exact TopologicalSpace.Opens.mem_iSup.2 ⟨fun _ => i, (hmem _ y).2 hi⟩
   · intro j
-    apply units_eq_of_gm_eq
+    apply _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.unit_ext
     intro y hy
     have h1 := (hmem j y).1 hy
     rw [gm_res_eq_gm (𝟙 Y) y, map_one, hN j j y h1 h1, Gself _ y h1]
     exact hy
   · intro j j' j''
-    apply units_eq_of_gm_eq
+    apply _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.unit_ext
     intro y hy
     have h1 := (hmem j y).1 hy.1.1
     have h2 := (hmem j' y).1 hy.1.2

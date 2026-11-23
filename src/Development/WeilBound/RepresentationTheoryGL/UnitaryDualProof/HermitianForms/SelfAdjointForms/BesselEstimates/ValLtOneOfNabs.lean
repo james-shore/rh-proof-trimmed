@@ -161,13 +161,6 @@ theorem nabs_pow (x : kˣ) (n : ℕ) : nabs k (x ^ n) = nabs k x ^ n := by
   | zero => simp [nabs_one]
   | succ n ih => rw [pow_succ, GlobalTheory.SmGL.nabs_mul' k, ih, pow_succ]
 
-theorem B_colEl (hB : Lv ψ h π s B) (y : Fin (m + 1) → k) (a b : V) :
-    B (π (colEl k m N h y) a) (π (colEl k m N h y) b) = B a b := by
-  have hmem : unip k (m + 1) (Multiplicative.ofAdd y) ∈ Mir k (m + 1) := MirU_le_Mir k (m + 1) ⟨_, rfl⟩
-  have e := hB.mir _ hmem a b
-  rw [ColumnElementGluing.det_unip, nabs_one, Real.one_rpow, Complex.ofReal_one, one_mul] at e
-  exact e
-
 theorem B_scal (hB : Lv ψ h π s B) (z : kˣ) (i : ℕ) (a b : V) :
     B (π (scalAt k (m + 1) N (by omega) (z ^ i)) a) (π (scalAt k (m + 1) N (by omega) (z ^ i)) b) =
       ((nabs k z ^ ((i : ℝ) * (m + 1) * s) : ℝ) : ℂ) * B a b := by
@@ -209,7 +202,7 @@ theorem dens_bessel_of (hB : Lv ψ h π s B)
         conv_lhs => rw [← ha]
         rw [← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply] }
   let K : Subgroup (GL (Fin (m + 1)) k) := S.comap (blkAt k (m + 1) N h1)
-  have hK : IsOpen (K : Set (GL (Fin (m + 1)) k)) := (hB.smooth v).preimage (ColumnElementGluing.continuous_blkAt (m + 1) N h1)
+  have hK : IsOpen (K : Set (GL (Fin (m + 1)) k)) := (hB.smooth v).preimage (_root_.PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.continuous_blkAt' (m + 1) N h1)
   have hvK : FixK h1 π K v := fun g hg => hg
   obtain ⟨A₁, hA₁, -, hst⟩ := hstab K hK hA₀
   have hzv : valuation k (z : k) < 1 := val_lt_one_of_nabs hz
@@ -224,7 +217,7 @@ theorem dens_bessel_of (hB : Lv ψ h π s B)
   have hfix : ∀ i, FixK h1 π K (π (σ i) v) := by
     intro i g hg
     show π (blkAt k (m + 1) N h1 g) (π (scalAt k (m + 1) N h1 (z ^ i)) v) = π (scalAt k (m + 1) N h1 (z ^ i)) v
-    rw [← Module.End.mul_apply, ← map_mul, ← ColumnElementGluing.scalAt_comm_blkAt h1 (z ^ i) g, map_mul, Module.End.mul_apply,
+    rw [← Module.End.mul_apply, ← map_mul, ← _root_.PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.scalAt_comm_blkAt' h1 (z ^ i) g, map_mul, Module.End.mul_apply,
       hvK g hg]
   let a : ℕ → V := fun i => avg ψ h π (xi0 k m) A (π (σ i) v)
   have hval : ∀ i, B' (π (σ i) v) (π (σ i) v) = ((A₀.relIndex A : ℕ) : ℂ) * B (a i) (π (σ i) v) := by
@@ -251,7 +244,7 @@ theorem dens_bessel_of (hB : Lv ψ h π s B)
       π (colEl k m N h y) (u i) = ((ψ (xi0 k m ⬝ᵥ ((z ^ i : kˣ) : k) • y) : Circle) : ℂ) • u i := by
     intro i y hy
     show π (colEl k m N h y) (π (σ i)⁻¹ (a i)) = _ • π (σ i)⁻¹ (a i)
-    have hc := ColumnElementGluing.scalAt_conj_colEl h (z ^ i) y
+    have hc := _root_.PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.scalAt_conj_colEl' h (z ^ i) y
     have hc' : colEl k m N h y * (σ i)⁻¹ = (σ i)⁻¹ * colEl k m N h (((z ^ i : kˣ) : k) • y) := by
       show colEl k m N h y * (scalAt k (m + 1) N h1 (z ^ i))⁻¹ =
         (scalAt k (m + 1) N h1 (z ^ i))⁻¹ * colEl k m N h (((z ^ i : kˣ) : k) • y)
@@ -285,7 +278,7 @@ theorem dens_bessel_of (hB : Lv ψ h π s B)
     have e2 := heig (i + (l + 1)) y (hy2 ▸ hMA (smul_mem_Mz (pow_mem hzO _) hwM))
     rw [hy1] at e1
     rw [hy2] at e2
-    have hinv := B_colEl hB y (u i) (u (i + (l + 1)))
+    have hinv := _root_.PositivityTheory.RgUd.Form.LeviSmoothness.alg.B_colEl hB y (u i) (u (i + (l + 1)))
     rw [e1, e2, B_smul_smul] at hinv
     have hxw : xi0 k m ⬝ᵥ w = c * d := by simp [w, xi0]
     have hxw2 : xi0 k m ⬝ᵥ ((z : k) ^ (l + 1)) • w = (z : k) ^ (l + 1) * (c * d) := by

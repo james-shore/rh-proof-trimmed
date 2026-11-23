@@ -86,7 +86,7 @@ theorem dvO_letter (T : LocLat G Qp LL O) (c' : ZMod n) {d : ℕ} (b : Fin d →
   unfold dvO dv
   refine Submodule.sum_mem _ fun m _ => Submodule.smul_mem _ _ ?_
   have hbN : b m ∈ W.N T := (hb.1 m).1.1
-  have hbl : (letE c' : LetA O n) • b m = b m := Formalism.MainNotions.UnusedSlot80.ArcF.letter_of_Nl W T c' (hb.1 m).2
+  have hbl : (letE c' : LetA O n) • b m = b m := _root_.Formalism.MainNotions.LiftingTheory.frame_letE_fix W T c' (hb.1 m).2
   have hcl : cmpD W T (b m) ∈ DcrisL PD T.ρ (W.emb c') := by
     rw [Formalism.MainNotions.UnusedSlot80.ArcF.cmpD_of_mem W T hbN]; exact Formalism.MainNotions.UnusedSlot80.ArcF.cmp_mem_letter W T c' hbN hbl
   exact Formalism.MainNotions.UnusedSlot80.ArcF.φVB_pow_letter W T c' hcl e

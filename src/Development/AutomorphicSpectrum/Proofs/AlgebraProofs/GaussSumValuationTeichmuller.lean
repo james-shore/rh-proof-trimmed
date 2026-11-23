@@ -96,10 +96,6 @@ theorem val_sub_one_pow {K : Type} [Field K] (v : Valuation K NNReal) (p : ℕ) 
   rw [hprod, map_prod, Finset.prod_congr rfl hval, Finset.prod_const, hζ.card_primitiveRoots,
     Nat.totient_prime hp, Valuation.map_sub_swap]
 
-theorem exists_mulShift_eq {F K : Type} [Field F] [Fintype F] [Field K] (ψ₀ ψ : AddChar F K)
-    (h₀ : ψ₀ ≠ 1) : ∃ c, ψ = AddChar.mulShift ψ₀ c :=
-  _root_.UpperTheory.Reformulated.B.Yde4.main ψ₀ ψ h₀
-
 def ltOneIdeal {C : Type} [Field C] (v : Valuation C NNReal) (R : Type) [CommRing R]
     [Algebra R C] (hv : v.Integers R) : Ideal R where
   carrier := {r | v (algebraMap R C r) < 1}
@@ -172,7 +168,7 @@ theorem gauss_value : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgCl
       rw [hb, Ne, ZMod.val_eq_zero]
       exact one_ne_zero
     exact hζ.pow_ne_one_of_pos_of_lt hb0 (ZMod.val_lt _) h1
-  obtain ⟨c, rfl⟩ := exists_mulShift_eq ψ₀ ψ hψ₀1
+  obtain ⟨c, rfl⟩ := _root_.UpperTheory.Reformulated.B.Yde4.main ψ₀ ψ hψ₀1
   have hc : c ≠ 0 := by
     rintro rfl
     exact hψ (AddChar.mulShift_zero _)

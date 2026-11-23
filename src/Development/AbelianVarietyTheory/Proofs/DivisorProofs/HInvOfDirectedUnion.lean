@@ -85,4 +85,4 @@ open GlobalTheory.UnionHInv in
 theorem GlobalTheory.EtC.hInv_of_directed_union : ∀ (q : ℕ) [NeZero q] (A : Type) [CommRing A] (ι : Type) [Preorder ι] [IsDirected ι (· ≤ ·)] [Nonempty ι] (S : ι → Subalgebra ℤ A), Monotone S → (∀ a, ∃ i, a ∈ S i) → (∀ i, IsUnit (q : S i)) → (∀ i, HInv q (S i)) → HInv q A := by
   intro q _ A _ ι _ _ _ S hS hcov hu hH
   obtain ⟨hc⟩ := cocone_isColimit S hS hcov
-  exact GlobalTheory.T.etaleHomotopyInvariantTwists_of_filtered_colimit q ι (diag S hS) (cocone S hS) hc hu hH
+  exact _root_.GlobalTheory.EtC.hInv_of_filtered_colimit q ι (diag S hS) (cocone S hS) hc hu hH

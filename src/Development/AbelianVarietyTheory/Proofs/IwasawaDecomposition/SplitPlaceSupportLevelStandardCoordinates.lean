@@ -50,6 +50,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.HilbertRowConditions.CenterIdempotentAction
 import Formalism.LocalToGlobal.IndefiniteReal.RecTie
+import Formalism.LocalToGlobal.Columns.RecLevelHost
 
 @[expose] public section
 
@@ -278,7 +279,7 @@ theorem loc_iff : ∀ (X : Stages) {px : PreX X.B.toPre} (I : Col2.ColIn X.B px)
     rcases Formalism.L2.Col.mhl_over_eq X.toD7.sp.cm hv PP hov with h | h
     · subst h
       refine hoffset.2.2 PP (Or.inr hPP) ?_
-      rw [Formalism.L2.Col.conjIdeal_asIdeal, ← hPb, Formalism.L2.Col.conjPrime_conjPrime]
+      rw [Formalism.L2.Col.conjIdeal_asIdeal, ← hPb, _root_.Formalism.L2.Col.rlh_conjP_conjP]
     · rw [hPb] at h
       subst h
       exact hoffset.2.1 (Or.inr hPP)

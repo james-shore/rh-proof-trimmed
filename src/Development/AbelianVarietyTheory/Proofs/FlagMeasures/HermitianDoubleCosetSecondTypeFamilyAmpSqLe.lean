@@ -154,7 +154,7 @@ theorem family_bound : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpa
       simp only [hc]
       nlinarith [mul_le_mul_of_nonneg_left hg hA0p]
   have h1 := (GlobalTheory.HL.BasicIneq.basic_inequality L r k S hk1).2 (S.InFF β J βJ) _ (7 * e) (by positivity)
-    hmass (fun d => GlobalTheory.T.amplitude_le_mass_secondType_family L r k S hk β J βJ d)
+    hmass (fun d => _root_.GlobalTheory.HL.AmpCancel.amp_le_mass L r k S hk β J βJ d)
   have h2 : (S.sumData fun d => S.mass d (S.InFF β J βJ d)) ≤
       ENNReal.ofReal (A1 * ((β : ℝ) ^ (k - 1))⁻¹) * S.nn :=
     (sumData_mono S _ _ fun d => mass_mono S d _ _ fun Λ _ h => h.2.1).trans (GlobalTheory.T.sumData_mass_be_eq_le L r k S hk β hβ1)

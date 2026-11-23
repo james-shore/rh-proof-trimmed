@@ -185,10 +185,6 @@ theorem perFr_smul_int (X : Data E r) (x : Frame X.Ψ r) (a : E) (v : Fin r → 
   · simp
   · simp
 
-theorem coe_smul_lat (X : Data E r) (a : 𝓞 E) (w : X.Λ) :
-    ((a • w : X.Λ) : Fin r → E) = (a : E) • (w : Fin r → E) := by
-  funext k; simp [Algebra.smul_def]
-
 theorem hermC_mulVec_left (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E) (M : Matrix (Fin r) (Fin r) ℂ)
     (w e : Fin r → ℂ) : hermC τ G (M *ᵥ w) e = ∑ k, w k * hermC τ G (col M k) e := by
   simp only [hermC, Matrix.mulVec, dotProduct, col, Finset.sum_mul, Finset.mul_sum]
@@ -239,7 +235,7 @@ theorem rep_fwd (X : Data E r) {La : Type} [AddCommGroup La] [Module (𝓞 E) La
   have hG : ∀ j' (a : 𝓞 E) v, Formalism.L2.PjFree.perFr X x' (φ (a • v) : Fin r → E) (ty j') (idx j') =
       ty j' (a : E) * Formalism.L2.PjFree.perFr X x' (φ v : Fin r → E) (ty j') (idx j') := by
     intro j' a v
-    rw [map_smul, coe_smul_lat, perFr_smul_int]
+    rw [map_smul, _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianLatticeMaps.smul_coe, perFr_smul_int]
   have hsep := sep_types ty (fun j' v => Formalism.L2.PjFree.perFr X x' (φ v : Fin r → E) (ty j') (idx j'))
     (conjEmb ρ.1) c (fun v => Q v j) hG (fun a v => by rw [hQ, hj]) hsum
   refine ⟨fun k => ∑ j', if ty j' = conjEmb ρ.1 ∧ (k : ℕ) = X.p0 - 1 - idx j' then c j' else 0, ?_, ?_⟩
@@ -284,7 +280,7 @@ theorem rep_bwd (X : Data E r) {La : Type} [AddCommGroup La] [Module (𝓞 E) La
     (fun v => Formalism.L2.PjFree.perFr X x' (φ v : Fin r → E) (ty j0) (idx j0)) (fun j a v => hQ a v j) ?_ hsum⟩
   intro a v
   show Formalism.L2.PjFree.perFr X x' (φ (a • v) : Fin r → E) (ty j0) (idx j0) = _
-  rw [map_smul, coe_smul_lat, perFr_smul_int, hj0]
+  rw [map_smul, _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianLatticeMaps.smul_coe, perFr_smul_int, hj0]
 
 theorem lift_frame : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (X : ReciprocityTheory.ChartRestriction.G.FD.Data E r) (La : Type) [AddCommGroup La] [Module (𝓞 E) La] (φ : La ≃ₗ[𝓞 E] X.Λ) (g : ℕ) (ty : Fin g → (E →+* ℂ)) (idx : Fin g → ℕ) (d : ℕ) (B : Set (ReciprocityTheory.L2DbarEstimates.V d)) (P : ReciprocityTheory.L2DbarEstimates.V d → (La →+ (Fin g → ℂ))) (b₀ : ReciprocityTheory.L2DbarEstimates.V d), IsOpen B → b₀ ∈ B → (∀ b ∈ B, ∀ (a : 𝓞 E) (v : La) (j : Fin g), P b (a • v) j = ty j (a : E) * P b v j) → (∀ v, DifferentiableOn ℂ (fun b => P b v) B) → (∀ ρ ∈ X.Ψ, ∀ m < X.p0, ∃ j, ty j = conjEmb ρ ∧ idx j = m) → (∀ j j', ty j = ty j' → idx j = idx j' → j = j') → (∀ j, ty j ∉ X.Ψ → idx j < X.p0) → (∀ b ∈ B, ∃ x' ∈ X.dom, ∃ h : (Fin g → ℂ) ≃ₗ[ℂ] (Fin g → ℂ), ∀ v, P b v = h (fun j => Formalism.L2.PjFree.perFr X x' (φ v : Fin r → E) (ty j) (idx j))) → ∃ s : ReciprocityTheory.L2DbarEstimates.V d → ReciprocityTheory.ChartRestriction.G.FD.Frame X.Ψ r, AnalyticAt ℂ s b₀ ∧ ∀ᶠ b in 𝓝 b₀, s b ∈ X.dom ∧ ∀ x' ∈ X.dom, (∃ h : (Fin g → ℂ) ≃ₗ[ℂ] (Fin g → ℂ), ∀ v, P b v = h (fun j => Formalism.L2.PjFree.perFr X x' (φ v : Fin r → E) (ty j) (idx j))) → (∀ (τ : X.Ψ) (a b' : Fin r), X.p0 ≤ (a : ℕ) → (b' : ℕ) < X.p0 → ((ReciprocityTheory.ChartRestriction.G.FD.mat (s b) τ)⁻¹ * ReciprocityTheory.ChartRestriction.G.FD.mat x' τ) a b' = 0) ∧ (∀ (τ : X.Ψ) (a b' : Fin r), X.p0 ≤ (a : ℕ) → (b' : ℕ) < X.p0 → ((ReciprocityTheory.ChartRestriction.G.FD.mat x' τ)⁻¹ * ReciprocityTheory.ChartRestriction.G.FD.mat (s b) τ) a b' = 0) := by
   intro E _ _ _ r X La _ _ φ g ty idx d B P b₀ hBo hb₀ hsl hdiff hcov hinj hidx hper

@@ -142,11 +142,7 @@ namespace Data
 
 variable (d : Data K ι Ω WT A)
 
-theorem admissible_of_good_valuation (hd : d.AxH 𝒜) (h : d.S1) (c : ι) {p : Ideal (KTp K d.D d.N)} (hp : p ∈ d.HtOne)
-    {w : AddValuation (OmS (Ω c) d.D d.N) (WithTop ℤ)} (hw : w ∈ d.GoodP c p) : d.admitted c (d.Wres c w) := by
-  rcases d.PlaceTrivialOrPositive hd h c p hp w hw.1 with h1 | h1
-  · obtain ⟨b, hb, hb'⟩ := hw.2; exact absurd (h1 b hb) hb'
-  · exact h1.1
+alias admissible_of_good_valuation := _root_.ReciprocityTheory.ChartRestriction.G.T0.Data.good_adm
 
 theorem shift {c : ι} {v : AddValuation (Ω c) (WithTop ℤ)} (hv : d.admitted c v) {a : Ω c} (ha : a ≠ 0)
     {x y : ℤ} (hs : ((y : ℤ) : WithTop ℤ) = v a + (x : WithTop ℤ)) : y = WithTop.untopD 0 (v a) + x := by
@@ -156,9 +152,7 @@ theorem shift {c : ι} {v : AddValuation (Ω c) (WithTop ℤ)} (hv : d.admitted 
   rw [WithTop.untopD_coe]
   exact_mod_cast hs
 
-theorem goodP_finite' (hd : d.AxH 𝒜) (h : d.S1) (c : ι) {p : Ideal (KTp K d.D d.N)} (hp : p ∈ d.HtOne) :
-    (d.GoodP c p).Finite :=
-  d.goodP_finite hd h c hp
+alias goodP_finite' := _root_.ReciprocityTheory.ChartRestriction.G.T0.Data.goodP_finite
 
 theorem usage₆ (hd : d.AxH 𝒜) (h : d.S1) (O : ∀ c, AddValuation (Ω c) (WithTop ℤ) → A c → ℤ)
     (c : ι) (f : A c) (a : Ω c) (ha : a ≠ 0)

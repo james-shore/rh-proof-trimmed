@@ -145,7 +145,7 @@ theorem pair_J_prod_rootSum : ∀ (F : Type) [Field F] [Finite F], ∀ (θ : Alg
     have hnd' : L.Nodup := (List.nodup_cons.1 hnd).2
     have hb := deg_map_const_fst m e L
     have hn' : n = m + deg (L.map fun i => (m, e i)) := by rw [hn, hb, List.length_cons]; ring
-    have hmass := GlobalTheory.T.pairing_harishChandraInduction_charpolyFunction F m (deg (L.map fun i => (m, e i))) n hn' (cusp θ m (e i))
+    have hmass := _root_.GlobalTheory.Shin.Mass.mass F m (deg (L.map fun i => (m, e i))) n hn' (cusp θ m (e i))
       (J θ (L.map fun i => (m, e i)) (deg (L.map fun i => (m, e i)))) (fun P => ∏ j ∈ T, rootSum θ (e j) P)
     have hs := pair_prod_split (cusp θ m (e i))
       (J θ (L.map fun i => (m, e i)) (deg (L.map fun i => (m, e i))))

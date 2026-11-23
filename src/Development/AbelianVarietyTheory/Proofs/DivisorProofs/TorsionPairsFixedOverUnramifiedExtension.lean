@@ -117,7 +117,7 @@ theorem qk_fixed_of_unram : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRin
   have := D.toPre.P.isAb.proper
   have : D.toPre.P.A.left.IsSeparated := ⟨by rw [← terminal.comp_from D.toPre.P.A.hom]; infer_instance⟩
   obtain ⟨J, hJ, eJ⟩ := GlobalTheory.UnramTorsion.exists_good_ext D.toPre.P.isLB T₁.subtype Subtype.val_injective J₀ h₀
-  have hψ := fun χ => GlobalTheory.T.psiValue_isUnit_of_psiUnitOn_localRing R D.toPre W χ (hW χ) _ T₁ φ₁ hφ₁ hcl' J₀ h₀ J eJ
+  have hψ := fun χ => _root_.GlobalTheory.PsiValUnit.psi_val_unit_of_psiUnitOn R D.toPre W χ (hW χ) _ T₁ φ₁ hφ₁ hcl' J₀ h₀ J eJ
   have hbw : ∀ (x : TF (R := R) (AlgebraicClosure (FractionRing V)) ⟶ D.toPre.P.A) (b : Sp T₁ ⟶ D.toPre.P.A.left),
       spMap T₁.subtype ≫ b = x.left → b ≫ D.toPre.P.A.hom = spMap φ₁ := by
     intro x b hb
@@ -133,13 +133,13 @@ theorem qk_fixed_of_unram : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRin
     exact (RingHom.ext hφ₁).symm
   choose bb hbb using hbs
   have hk0 : k ≠ 0 := by rintro rfl; exact not_isUnit_zero (M₀ := V) (by simpa using hk)
-  have fin := GlobalTheory.T.finite_kTorsion_abelianPart_algClosed R D.toPre (AlgebraicClosure (FractionRing V)) k (Nat.one_le_iff_ne_zero.2 hk0)
-  obtain ⟨Rep, hRepf, hRep⟩ := GlobalTheory.T.quotientPoints_finite_representatives R D.toPre hB (AlgebraicClosure (FractionRing V)) k hk0 fin
+  have fin := _root_.GlobalTheory.AbTorsionFiniteF.finite_torsion_TF R D.toPre (AlgebraicClosure (FractionRing V)) k (Nat.one_le_iff_ne_zero.2 hk0)
+  obtain ⟨Rep, hRepf, hRep⟩ := _root_.GlobalTheory.Mum.qkPt_finite_reps R D.toPre hB (AlgebraicClosure (FractionRing V)) k hk0 fin
   obtain ⟨s, hs⟩ := Module.Finite.fg_top (R := ℤ) (M := D.toPre.X)
   have hS : AddSubgroup.closure (s : Set D.toPre.X) = ⊤ := by
     rw [← Submodule.span_int_eq_addSubgroupClosure, hs]; rfl
   choose uu huu using fun (p : QkPt D.toPre (AlgebraicClosure (FractionRing V)) k) χ =>
-    GlobalTheory.T.quotientPoint_characterValue_pow_isUnit R D.toPre hB _ T₁ φ₁ hφ₁ J₀ h₀ J hJ eJ hψ k p (bb p) (hbb p) (hbw _ _ (hbb p)) χ
+    _root_.GlobalTheory.UnramCharPow.charVal_pow_unit R D.toPre hB _ T₁ φ₁ hφ₁ J₀ h₀ J hJ eJ hψ k p (bb p) (hbb p) (hbw _ _ (hbb p)) χ
   let U : Set T₁ˣ := insert 1 ((fun pc : QkPt D.toPre (AlgebraicClosure (FractionRing V)) k × D.toPre.X => uu pc.1 pc.2) '' (Rep ×ˢ (s : Set D.toPre.X)))
   have hU : U.Finite := ((hRepf.prod s.finite_toSet).image _).insert 1
   have hkT : IsUnit (k : T₁) := by simpa using hk.map f
@@ -159,14 +159,14 @@ theorem qk_fixed_of_unram : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRin
     exact hσT t t.2
   have hfix : ∀ p' ∈ Rep, GlobalTheory.TorusExt.gtExt D.toPre σ.toRingHom hσ p'.g = p'.g := by
     intro p' hp'
-    refine GlobalTheory.T.torusExtensionPoint_fixed_of_chartValues_fixed R D.toPre _ σ.toRingHom hσ p'.g ?_ J hJ ?_
+    refine _root_.GlobalTheory.TorusExt.gtExt_eq_self_of_charVal_fixed R D.toPre _ σ.toRingHom hσ p'.g ?_ J hJ ?_
     · rw [← hbb p', ← Category.assoc, hsub]
-    · exact GlobalTheory.T.torusExtensionPoint_characterValues_fixed_local R D.toPre _ T₁ φ₁ hφ₁ J₀ h₀ J hJ eJ σ.toRingHom hσT p'.g (bb p') (hbb p') (hbw _ _ (hbb p')) _ hS
+    · exact _root_.GlobalTheory.CharValsFixed.main R D.toPre _ T₁ φ₁ hφ₁ J₀ h₀ J hJ eJ σ.toRingHom hσT p'.g (bb p') (hbb p') (hbw _ _ (hbb p')) _ hS
         (fun χ hχ => hσT' _ (hroot _ ⟨uu p' χ, Set.mem_insert_of_mem _ ⟨(p', χ), ⟨hp', hχ⟩, rfl⟩, huu p' χ⟩))
   have hfixt : ∀ t : GtPtF D.toPre (AlgebraicClosure (FractionRing V)), t.b = 1 → k • t = 0 →
       GlobalTheory.TorusExt.gtExt D.toPre σ.toRingHom hσ t = t := by
     intro t h1 hkt
-    refine GlobalTheory.T.torusExtensionPoint_fixed_of_chartValues_fixed R D.toPre _ σ.toRingHom hσ t ?_ J hJ (fun χ => hσT' _ (hroot _ ⟨1, Set.mem_insert _ _, ?_⟩))
+    refine _root_.GlobalTheory.TorusExt.gtExt_eq_self_of_charVal_fixed R D.toPre _ σ.toRingHom hσ t ?_ J hJ (fun χ => hσT' _ (hroot _ ⟨1, Set.mem_insert _ _, ?_⟩))
     · rw [h1]
       exact congrArg (fun q => q.left) (MonObj.comp_one (GlobalTheory.TorusExt.extMap (R := R) σ.toRingHom hσ) :
         GlobalTheory.TorusExt.extMap (R := R) σ.toRingHom hσ ≫ (1 : TF (R := R) _ ⟶ D.toPre.P.A) = 1)

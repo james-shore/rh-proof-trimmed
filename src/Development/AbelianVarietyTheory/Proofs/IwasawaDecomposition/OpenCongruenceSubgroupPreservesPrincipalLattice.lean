@@ -107,16 +107,6 @@ theorem den_nat {κ : Type} [Fintype κ] (f : κ → E) :
     rw [e, Int.cast_neg, Int.cast_natCast, neg_mul, neg_neg] at this
     exact this
 
-theorem exists_smul_mem {n : ℕ} (Λ : Submodule (𝓞 E) (Fin n → E)) (hs : Submodule.span E (Λ : Set (Fin n → E)) = ⊤)
-    (y : Fin n → E) : ∃ m : ℕ, m ≠ 0 ∧ (m : E) • y ∈ Λ := by
-  first
-  | exact @_root_.GlobalTheory.NatSmulMemIntegral.exists_nat_smul_mem
-  | exact _root_.GlobalTheory.NatSmulMemIntegral.exists_nat_smul_mem
-  | (apply _root_.GlobalTheory.NatSmulMemIntegral.exists_nat_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NatSmulMemIntegral.exists_nat_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NatSmulMemIntegral.exists_nat_smul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NatSmulMemIntegral.exists_nat_smul_mem ..)
-
 theorem exists_den {n : ℕ} (Λ : Submodule (𝓞 E) (Fin n → E)) (hf : Module.Finite (𝓞 E) Λ) :
     ∃ m : ℕ, m ≠ 0 ∧ ∀ y ∈ Λ, ∀ i, IsIntegral ℤ ((m : E) * y i) := by
   obtain ⟨s, hs⟩ : Λ.FG := Module.Finite.iff_fg.1 hf
@@ -163,7 +153,7 @@ theorem loc_lower {n : ℕ} (v : HeightOneSpectrum (𝓞 F)) (Λ : Submodule (�
     (hs : Submodule.span E (Λ : Set (Fin n → E)) = ⊤) :
     ∃ m : ℕ, m ≠ 0 ∧ ∀ j, (Pi.single j (m : E ⊗[F] v.adicCompletion F) : Fin n → E ⊗[F] v.adicCompletion F)
       ∈ Formalism.L2.Herm.locL v Λ := by
-  choose a ha h using fun j : Fin n => exists_smul_mem Λ hs (Pi.single j 1)
+  choose a ha h using fun j : Fin n => _root_.GlobalTheory.NatSmulMemIntegral.exists_nat_smul_mem Λ hs (Pi.single j 1)
   refine ⟨∏ j, a j, Finset.prod_ne_zero_iff.2 fun j _ => ha j, fun j => ?_⟩
   obtain ⟨c, hc⟩ : a j ∣ ∏ j, a j := Finset.dvd_prod_of_mem _ (Finset.mem_univ j)
   have h1 : (fun i => inclE (v.adicCompletion F) (((a j : E) • (Pi.single j 1 : Fin n → E)) i))

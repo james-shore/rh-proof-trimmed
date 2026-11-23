@@ -98,15 +98,6 @@ theorem support_prod_mem {G ι : Type} [AddCommMonoid G] (M : AddSubmonoid G) (s
     exact M.add_mem (h a (Finset.mem_insert_self a s) x hx)
       (ih (fun i hi => h i (Finset.mem_insert_of_mem hi)) z hz)
 
-theorem symplO_add_right (S T : HSp D) (x y y' : WO S T) :
-    symplO S T x (y + y') = symplO S T x y + symplO S T x y' := by
-  unfold symplO hO
-  simp only [Matrix.add_apply, map_add (f := _), mul_add, add_mul, Finset.sum_add_distrib]
-
-theorem symplO_zero_right (S T : HSp D) (x : WO S T) : symplO S T x 0 = 0 := by
-  unfold symplO hO
-  simp
-
 theorem comb_mul (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (a b : AddMonoidAlgebra ℂ (WO S T))
     (h : ∀ x ∈ a.coeff.support, ∀ y ∈ b.coeff.support, symplO S T x y = 0) (f : WO S T → ℂ) :
     comb ψ S T (a * b).coeff f = comb ψ S T a.coeff (comb ψ S T b.coeff f) := by
@@ -154,9 +145,9 @@ theorem main : ∀ (D : D7) (c : Comm D) (v : VCom c) (t : Tup c) (w : VTup t) (
 
   let M : AddSubmonoid (WO (c.V j) (c.V (j + 1))) :=
     { carrier := {y | (∀ x, GlobalTheory.FinPl.MxAt (· = v₀) x → symplO _ _ x y = 0) ∧ y.map (infPart D) = 0}
-      add_mem' := fun {y y'} hy hy' => ⟨fun x hx => by rw [symplO_add_right, hy.1 x hx, hy'.1 x hx, add_zero], by
+      add_mem' := fun {y y'} hy hy' => ⟨fun x hx => by rw [_root_.GlobalTheory.LatVac.symplO_add_right, hy.1 x hx, hy'.1 x hx, add_zero], by
         rw [Matrix.map_add _ (map_add (infPart D)), hy.2, hy'.2, add_zero]⟩
-      zero_mem' := ⟨fun x _ => symplO_zero_right _ _ x, by
+      zero_mem' := ⟨fun x _ => _root_.GlobalTheory.PlaceModel.symplO_zero_right _ _ x, by
         funext a b
         simp⟩ }
   have hM : ∀ i' ∈ Finset.univ.erase i, ∀ y ∈ ((F.Q i').eL j).support, y ∈ M := by

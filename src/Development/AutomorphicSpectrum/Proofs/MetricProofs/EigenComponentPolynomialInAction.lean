@@ -49,11 +49,7 @@ namespace GlobalTheory.CompanionTheory.Ar.Cusp.EigFormula
 
 variable {E : Type} [Field E] [NumberField E]
 
-theorem emb_injective (s : 𝓞 E →+* ℂ) : Function.Injective s :=
-  (RingHom.injective_iff_ker_eq_bot _).2
-    (Ideal.eq_bot_of_comap_eq_bot (R := ℤ) (eq_bot_iff.2 fun n hn => by simpa using hn))
-
-def extend (s : 𝓞 E →+* ℂ) : E →+* ℂ := IsFractionRing.lift (K := E) (emb_injective s)
+def extend (s : 𝓞 E →+* ℂ) : E →+* ℂ := IsFractionRing.lift (K := E) (_root_.LevelTowerAlt.emb_inj s)
 
 theorem extend_comp (s : 𝓞 E →+* ℂ) : (extend s).comp (algebraMap (𝓞 E) E) = s :=
   RingHom.ext fun x => by rw [RingHom.comp_apply, extend, IsFractionRing.lift_algebraMap]

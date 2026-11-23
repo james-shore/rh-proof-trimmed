@@ -86,7 +86,7 @@ theorem rigExt_field_of_charP (p : ℕ) [Fact p.Prime] (K : Type)
     (LinearMap.range_le_ker_iff.2 (rigExtMap_relFrob_comp_rigOfOmega h G))
   have h6 : rigExtMap (verschiebung h G) ∘ₗ rigExtMap (relFrob h G) = 0 := by
     rw [← rigExtMap_comp, verschiebung_comp_relFrob]
-    exact (GlobalTheory.T.rigidifiedExtensionPullback_add_and_prime_smul_id p K h
+    exact (_root_.GlobalTheory.PDivGroup.rigExtMap_add_and_natCast_smul_id p K h
       (frobTwist h G) (frobTwist h G)).2
   exact ⟨f1, d1, d2, h4, h5, ker_eq_range_of_range_eq_ker f2 f1 _ _
     (d3.trans ((frobTwist_height h G).trans d1.symm)) h6 (h4.trans h5.symm),

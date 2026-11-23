@@ -62,7 +62,7 @@ theorem acyc_polynomial_of_isAlgClosed : ∀ (q : ℕ) [NeZero q] (K : Type) [Fi
   have hqA : IsUnit (q : Polynomial K) := by
     simpa using hq.map (Polynomial.C : K →+* Polynomial K)
   by_cases h2 : 2 ≤ n
-  · exact GlobalTheory.T.smooth_affine_curve_etale_cohomologicalDimension_le_one q K (Polynomial K) hq n i h2
+  · exact _root_.GlobalTheory.EtC.etC_c2 q K (Polynomial K) hq n i h2
   · have hn1 : n = 1 := by omega
     subst hn1
     have hζ : ∃ ζ : Polynomial K, Polynomial.aeval ζ (Polynomial.cyclotomic q ℤ) = 0 := by
@@ -77,9 +77,9 @@ theorem acyc_polynomial_of_isAlgClosed : ∀ (q : ℕ) [NeZero q] (K : Type) [Fi
         exact hz
       have hC : Polynomial.C z = algebraMap K (Polynomial K) z := rfl
       rw [hC, Polynomial.aeval_algebraMap_apply, hz', map_zero]
-    obtain ⟨e⟩ := GlobalTheory.T.tateTwistCohomology_spec_twist_independent q (Polynomial K) hqA hζ 1 i 1
+    obtain ⟨e⟩ := _root_.GlobalTheory.EtC.untwist q (Polynomial K) hqA hζ 1 i 1
     have hs : Subsingleton (Ht q (sp (Polynomial K)) 1 1) := by
-      refine GlobalTheory.T.kummer_etale_vanishing q (Polynomial K) hqA ?_ ?_
+      refine _root_.GlobalTheory.EtC.kummer_vanishing q (Polynomial K) hqA ?_ ?_
       · intro u
         obtain ⟨r, hr, hru⟩ := Polynomial.isUnit_iff.1 u.isUnit
         obtain ⟨v, hv⟩ := IsAlgClosed.exists_pow_nat_eq r (Nat.pos_of_ne_zero (NeZero.ne q))

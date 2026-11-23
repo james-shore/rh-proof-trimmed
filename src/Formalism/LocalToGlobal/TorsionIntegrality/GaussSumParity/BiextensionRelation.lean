@@ -48,9 +48,7 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.D
 
-theorem phCompare : PhCompare := phi_comparison
-theorem first_level_on_curve : CurveExponentCoboundaryCocycle := first_level_curve_holds
-theorem fieldDataCM : FieldDataCM := complex_multiplication_field_data
+alias first_level_on_curve := _root_.Formalism.L2.Th1.D.first_level_curve_holds
 theorem gramExists : GramExists := gram_matrix_exists
 
 end Formalism.L2.Th1.D

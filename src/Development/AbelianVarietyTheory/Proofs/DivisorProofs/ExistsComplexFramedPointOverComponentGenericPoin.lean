@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.NonemptyIsLimitBaseChange
 
 @[expose] public section
 
@@ -99,11 +100,6 @@ end GlobalTheory.GenCxPt
 
 namespace GlobalTheory.GenCxPt
 
-theorem spMap_comp_spMap {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (g : A →+* B) (f : B →+* C) :
-    spMap f ≫ spMap g = spMap (f.comp g) := by
-  simp only [spMap, ← Spec.map_comp]
-  rfl
-
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}
   {Xo : Moduli Dw l} {c : Coeff l}
 
@@ -121,10 +117,10 @@ theorem GlobalTheory.GenCxPt.exists_frPt_ptF_eq_genPt : ∀ (E : Type) [Field E]
   haveI := c.fin
   obtain ⟨e⟩ := nonempty_algHom_complex c.F (kap Z) Dw.dim ((GlobalTheory.Reg.kap_fg_trdeg E H Dw l Xo c).2 Z)
   have hsnd : spMap (e : kap Z →+* ℂ) ≫ genSp Z ≫ strK = spMap (algebraMap c.F ℂ) := by
-    rw [genSp_strK, spMap_comp_spMap, AlgHom.comp_algebraMap]
+    rw [genSp_strK, _root_.GlobalTheory.spMap_comp_ring, AlgHom.comp_algebraMap]
   have hx : (spMap (e : kap Z →+* ℂ) ≫ xGen Z) ≫ Xo.s = sOf c ℂ := by
     rw [xGen, Category.assoc, Category.assoc, pullback.condition, ← Category.assoc (genSp Z),
-      ← Category.assoc, hsnd, sOf, spMap_comp_spMap]
+      ← Category.assoc, hsnd, sOf, _root_.GlobalTheory.spMap_comp_ring]
   obtain ⟨y, hy⟩ := GlobalTheory.FlagTan.exists_frPt _ hx
   refine ⟨y, fun s => ?_⟩
   have hpt : ptF y = spMap (e : kap Z →+* ℂ) ≫ genSp Z := by

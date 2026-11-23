@@ -219,12 +219,12 @@ theorem GlobalTheory.PlaceInt.chBound_zero_of_isUnit_discr : ∀ (E : Type) [Fie
   have eF : B.FK T.Fr = C.ch.B.FK T.Fr := by
     funext i
     change MvPowerSeries.map _ (B.G.F i) = MvPowerSeries.map _ (C.ch.B.G.F i)
-    rw [ChartBiext.toK_self, gF, hBT.1]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.gt_map_id, gF, hBT.1]
   have eA : ∀ a, B.actK T.Fr a = C.ch.B.actK T.Fr a := by
     intro a
     funext i
     change MvPowerSeries.map _ (B.A.act a i) = MvPowerSeries.map _ (C.ch.B.A.act a i)
-    rw [ChartBiext.toK_self, gA, hBT.2.1]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.gt_map_id, gA, hBT.2.1]
   have hcc : ∀ τ : E →+* ℂ, ComplexEmbedding.conjugate (ComplexEmbedding.conjugate τ) = τ := fun τ => star_star τ
   have hσ : ∀ (τ : E →+* ℂ) (a : 𝓞 E), (io.comp (embK c (ComplexEmbedding.conjugate τ))) a =
       (io.comp (embK c τ)) (star a) := by

@@ -51,7 +51,7 @@ theorem main : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) 
   obtain ⟨f, hf, hf0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot h₁.2.1
   obtain ⟨N, hN, hNf⟩ := (h₁.1.le hf).2
   have hfix : ∀ κ, NG.Cong L n N κ → NG.rt L n κ f = f := fun κ hκ => funext fun g => hNf κ hκ g
-  obtain ⟨φ, hφ1, hφ2, hφ3⟩ := GlobalTheory.T.algebraicModularForms_heckeModules_iso_all_places L n a S₁ S₂ h₁ h₂ hsplit (fun v hv => by
+  obtain ⟨φ, hφ1, hφ2, hφ3⟩ := _root_.GlobalTheory.HeckeIso.main L n a S₁ S₂ h₁ h₂ hsplit (fun v hv => by
     obtain ⟨w, Dv, α, hw, hs1, hs2⟩ := hinert v hv
     have k1 : ∃ f ∈ S₁, f ≠ 0 ∧ ∀ κ ∈ Umax L n, TrivOutside {v} κ → NG.rt L n κ f = f := by
       obtain ⟨f, hf, hf0, U, hfU, hU, -⟩ := hs1

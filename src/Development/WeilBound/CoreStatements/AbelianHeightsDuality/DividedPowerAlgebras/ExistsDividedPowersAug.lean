@@ -86,7 +86,7 @@ theorem exists_dividedPowers_aug : ∀ (B : Type) [CommRing B] (Q : PDPoly B),
     ∃ η : DividedPowers Q.aug, ∀ n : ℕ, η.dpow n (Q.e 1) = Q.e n := by
   intro B _ Q
   obtain ⟨η, hpre, hη⟩ := pre_aug B Q
-  obtain ⟨δ, hδ⟩ := dp_of_pre Q.P Q.aug η (Set.range fun n : ℕ => Q.e (n + 1)) hpre rfl (by
+  obtain ⟨δ, hδ⟩ := _root_.FubiniStudyChowHeightFormula₂.Adr.dp_of_pre' Q.P Q.aug η (Set.range fun n : ℕ => Q.e (n + 1)) hpre rfl (by
     rintro x ⟨k, rfl⟩ m n hn
     show η m (η n (Q.e (k + 1))) = _ * η (m * n) (Q.e (k + 1))
     obtain ⟨j, hj⟩ : ∃ j, n * (k + 1) = j + 1 :=
@@ -218,7 +218,7 @@ theorem flatExt (R A : Type) [CommRing R] [CommRing A] [Algebra R A] [Module.Fla
   have hspan : I.map (algebraMap R A) = Ideal.span (Set.range fun i : I => algebraMap R A i) := by
     rw [Ideal.map, Set.image_eq_range]
     rfl
-  obtain ⟨δ, hδ⟩ := dp_of_pre A (I.map (algebraMap R A)) γ (Set.range fun i : I => algebraMap R A i)
+  obtain ⟨δ, hδ⟩ := _root_.FubiniStudyChowHeightFormula₂.Adr.dp_of_pre' A (I.map (algebraMap R A)) γ (Set.range fun i : I => algebraMap R A i)
     (hspan ▸ hpre) hspan (by
       rintro _ ⟨i, rfl⟩ m n hn
       show γ m (γ n (algebraMap R A i)) = _ * γ (m * n) (algebraMap R A i)
@@ -233,7 +233,7 @@ theorem exists_std (B : Type) [CommRing B] (J : Ideal B) (δ : DividedPowers J) 
     ∃ η : DividedPowers (Q.ext J), Q.IsStd δ η := by
   obtain ⟨η, hη⟩ := exists_dividedPowers_aug B Q
   obtain ⟨-, ε, hε⟩ := exists_lift_and_aug B Q
-  obtain ⟨θ, hθ, hθη⟩ := dp_split B J δ Q.P ε Q.aug η hε
+  obtain ⟨θ, hθ, hθη⟩ := _root_.FubiniStudyChowHeightFormula₂.Adr.dp_split' B J δ Q.P ε Q.aug η hε
   refine ⟨θ, ⟨hθ, fun n => ?_⟩⟩
   rw [hθη n _ (Q.e_succ_mem_aug 0)]
   exact hη n

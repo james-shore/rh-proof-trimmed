@@ -45,7 +45,6 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace GlobalTheory.CompanionTheory.Ar.Num.PairNumberPullback
 
-theorem main : GroundTheory.Heights₂.Heights.NumbersDVR.PairNumberPullback.Statement :=
-  PositivityTheory.Xgn.t_s_pullback
+alias main := _root_.PositivityTheory.Xgn.t_s_pullback
 
 end GlobalTheory.CompanionTheory.Ar.Num.PairNumberPullback

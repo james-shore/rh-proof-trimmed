@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.DegreeRatioFormulaStatement
 
 @[expose] public section
 
@@ -92,10 +93,7 @@ theorem flagV_f {M : Type} [Zero M] {ρ k n : ℕ} (e f : Fin ρ → M) (b : Fin
   unfold GlobalTheory.SeeConjRead.flagV
   rw [dite_eq_right (by omega), dite_eq_right (by omega), dite_eq_right (by omega), dite_eq_left h2]
 
-theorem symmetricFlagBasisVectors_apply_middle {M : Type} [Zero M] {ρ k n : ℕ} (e f : Fin ρ → M) (b : Fin k → M) (z : M) (i : Fin n)
-    (h1 : i.1 = ρ + k) : GlobalTheory.SeeConjRead.flagV ρ k n e f b z i = z := by
-  unfold GlobalTheory.SeeConjRead.flagV
-  rw [dite_eq_right (by omega), dite_eq_right (by omega), dite_eq_left h1]
+alias symmetricFlagBasisVectors_apply_middle := _root_.GlobalTheory.SeeConjGroup.Bwd.symmetricFlagBasisVectors_eq_centre
 
 theorem flagV_b {M : Type} [Zero M] {ρ k n : ℕ} (e f : Fin ρ → M) (b : Fin k → M) (z : M) (i : Fin n)
     (h1 : ρ ≤ i.1) (h2 : i.1 < ρ + k) : GlobalTheory.SeeConjRead.flagV ρ k n e f b z i = b ⟨i.1 - ρ, by omega⟩ := by
@@ -112,7 +110,7 @@ theorem GlobalTheory.SeeConjChar.resT_cP_argT : ∀ {D : D7} {G : Type} [Group G
   have hn : (Yc D 0).rank = 2 * D.R.rS + D.R.k + 1 := by
     have e := X.n_eq
     rw [h] at e
-    have e2 := Formalism.L2.DIV.ranks_r_sym D
+    have e2 := _root_.Formalism.MainNotions.BridgeLemma.sza_r_eq D
     change (Formalism.L2.SG.InstExistsPf.instOf D).n = _
     omega
   have hrn : D.R.r = (Yc D 0).rank := by
@@ -122,7 +120,7 @@ theorem GlobalTheory.SeeConjChar.resT_cP_argT : ∀ {D : D7} {G : Type} [Group G
     omega
   have hK : ((iotaX X h).toMulEquiv κ).2 ∈ X.B.I.Kset := (Formalism.L2.SG.Closed.level_subgroup_properties X).2.1 _ hK2
   have hU : upperLeftBlock (r_le_Y (D := D) 0) (redFn β PP (finE (Yc D 0) κ)) ∈ unip (kP PP) D.R.r :=
-    unipCol_le _ _ _ (((GlobalTheory.T.mem_K2_iff_upperLeftBlock_reductions R F X h hL hGrp β hβ hred κ hK hS).1 hK2) PP hP)
+    unipCol_le _ _ _ (((_root_.GlobalTheory.SeeConjRead.mem_deeperLevel_iff_reductions_symmetricUnipotent R F X h hL hGrp β hβ hred κ hK hS).1 hK2) PP hP)
   have hMinv : (finE (Yc D 0) κ)⁻¹ ∈ St β := inv_mem hS
   have hredinv : redFn β PP (finE (Yc D 0) κ)⁻¹ = (redFn β PP (finE (Yc D 0) κ))⁻¹ := extendOne_inv _ hS
   have hC : ∀ a j, hT X h (flagAt X h PP j) (Matrix.mulVec (finE (Yc D 0) κ).val (pairAt X h PP a)) ∈ Formalism.L2.Herm.intAf D.host.F D.host.E ∧

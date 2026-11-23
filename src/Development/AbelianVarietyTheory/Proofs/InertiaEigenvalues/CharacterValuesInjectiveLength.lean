@@ -101,13 +101,10 @@ theorem blockPol_map {B : Type} [CommRing B] (f : A →+* B) (e M : Matrix (Fin 
   ext a b : 2
   by_cases h : a = b <;> simp [h, Matrix.one_apply]
 
-theorem overK_apply {k : ℕ} (σ : Γ →* GL (Fin k) A) (g : Γ) (u : Fin k → FractionRing A) :
-    overK σ g u = ((mat σ g).map (toFr A)).mulVec u := rfl
-
 theorem blockPol_coeff_mem {T : Subalgebra A (X → A)} {rep : X → (Γ →* GL (Fin n) A)}
     (hT : CharPolyIn T rep) {e M : X → Matrix (Fin n) (Fin n) A} (he : InRing T rep e)
     (hM : InRing T rep M) (j : ℕ) : (fun x => (blockPol (e x) (M x)).coeff j) ∈ T := by
-  have := GlobalTheory.T.coeff_det_pencil_mem_heckeAlgebra T rep hT e (1 - e - M) he (inRing_sub (inRing_sub inRing_one he) hM) j
+  have := _root_.GlobalTheory.SpanRing.coeff_det_pencil_mem T rep hT e (1 - e - M) he (inRing_sub (inRing_sub inRing_one he) hM) j
   convert this using 1
   funext x
   unfold blockPol
@@ -183,7 +180,7 @@ theorem exists_choice (l : ℕ) [Fact l.Prime] [Finite X] [IsDomain A] [IsDiscre
   haveI := charZero_of_finite l A
   obtain ⟨hl, hsep, -, hT, hirr, -, hdec, habs⟩ := hS
   obtain ⟨e, hd⟩ := hdec π hπ
-  obtain ⟨eB, e1, hid, heB, he1⟩ := GlobalTheory.T.exists_orthogonal_idempotents_heckeSpan_rep l T rep (ρ π) χ π e hr (span_top (habs π hπ)) hd
+  obtain ⟨eB, e1, hid, heB, he1⟩ := _root_.GlobalTheory.SpanIdem.exists_orthogonal_idempotents l T rep (ρ π) χ π e hr (span_top (habs π hπ)) hd
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible A
   have hat := GlobalTheory.T.rank_idempotentBlockCharPoly_of_projection e _ _ _ heB (corner_act e heB (hd g0))
   obtain ⟨s, hs, hroots⟩ := GlobalTheory.T.exists_heckeSpan_correction_distinct_eigenvalues (t := t) T rep π g0 eB (ϖ ^ L) (pow_ne_zero _ hϖ.ne_zero) hsep hirr
@@ -196,7 +193,7 @@ theorem exists_choice (l : ℕ) [Fact l.Prime] [Finite X] [IsDomain A] [IsDiscre
 theorem blockPol_monic [IsDomain A] {e M : Matrix (Fin n) (Fin n) A} (hee : e * e = e)
     (hr : (e.map (toFr A)).rank = t) (h1 : e * M = M) (h2 : M * e = M) :
     ((blockPol e M).map (toFr A)).Monic ∧ ((blockPol e M).map (toFr A)).natDegree = t := by
-  obtain ⟨a, b, -, -, h⟩ := GlobalTheory.T.idempotentBlockCharPoly_eq_charpoly_image (e.map (toFr A)) (by rw [← Matrix.map_mul, hee]) hr
+  obtain ⟨a, b, -, -, h⟩ := _root_.GlobalTheory.BlockCharpoly.blockPol_eq_charpoly (e.map (toFr A)) (by rw [← Matrix.map_mul, hee]) hr
   have := h (M.map (toFr A))
   rw [← Matrix.map_mul, ← Matrix.map_mul, h1, h2] at this
   rw [blockPol_map, this]
@@ -229,10 +226,6 @@ theorem charPolyIn_map {T : Subalgebra A (X → A)} {T' : Subalgebra B (X → B)
   ext a b : 2
   by_cases hab : a = b <;> simp [hab, Matrix.one_apply, mat, mapRep]
 
-theorem span_top_map {ρ : Γ →* GL (Fin r) A} (h : Submodule.span A (Set.range (mat ρ)) = ⊤) :
-    Submodule.span B (Set.range (mat (mapRep (algebraMap A B) ρ))) = ⊤ :=
-  _root_.GlobalTheory.SpanMapTop.span_mapRep_eq_top h
-
 end Base
 
 section Record
@@ -251,7 +244,7 @@ theorem character_values_injective_length {g0 : GE N} (hg : IsInertiaCyclotomicG
       (((N.chi i 1 g0 : (N.O i)ˣ) : N.O i) - ((N.chi i c g0 : (N.O i)ˣ) : N.O i))}) = N.vdel i := by
   haveI := charZero_of_finite (N.l i) (N.O i)
   obtain ⟨-, v, hv⟩ := hg
-  refine GlobalTheory.T.injOn_charValues_and_length_quotient (N.l i) (N.s0 i) R.t (cycZ (F := H.E) (Ω := N.Om) (N.l i) g0) v
+  refine _root_.GlobalTheory.CharValueLength.injOn_and_lenUnit (N.l i) (N.s0 i) R.t (cycZ (F := H.E) (Ω := N.Om) (N.l i) g0) v
     (fun c => N.chi i c g0) ?_ ?_ hv ?_
   · exact UpperTheory.KStar.S0.one_le_localLevel N i
   · exact UpperTheory.KStar.S0.two_le_localLevel_of_eq_two N i
@@ -330,7 +323,7 @@ theorem exists_good (rep : N.X i → (GE N →* GL (Fin R.nV) (N.O i)))
   have hTT : ∀ f ∈ N.T i, (fun x' : N.X i × Equiv.Perm (Fin R.t) => f x'.1) ∈ T' :=
     fun f hf => Algebra.subset_adjoin (Or.inl ⟨f, hf, rfl⟩)
   have hT' : CharPolyIn T' (fun x' => rep x'.1) := fun h d => hTT _ (hT h d)
-  obtain ⟨ψρ, ψχ, hψ, hψs⟩ := GlobalTheory.T.exists_block_action_of_decomposition T' (fun x' => rep x'.1) (ρ π) (N.chi i) (π, 1) e hspan hd
+  obtain ⟨ψρ, ψχ, hψ, hψs⟩ := _root_.GlobalTheory.SpanBlockAction.exists_block_action T' (fun x' => rep x'.1) (ρ π) (N.chi i) (π, 1) e hspan hd
   have hpol : ∀ x' : N.X i × Equiv.Perm (Fin R.t),
       ∏ c ∈ Finset.Icc 1 R.t, (Polynomial.X - Polynomial.C (root β c x')) =
         blockPol (eB x'.1) (X0 x'.1) := by
@@ -361,7 +354,7 @@ theorem exists_good (rep : N.X i → (GE N →* GL (Fin R.nV) (N.O i)))
         left_inv := by rintro ⟨⟨y, σ⟩, rfl⟩; rfl
         right_inv := fun _ => rfl }
     exact (Nat.card_congr this).trans (by simp [Fintype.card_perm])
-  · refine GlobalTheory.T.prod_other_root_factors_action_first_coordinate e (eB π) (X0 π) (fun c => root β c (π, 1)) (two_le_ranks_t R) heB (fun u => ?_)
+  · refine _root_.GlobalTheory.RootFactorProduct.prod_other_factors_action e (eB π) (X0 π) (fun c => root β c (π, 1)) (two_le_ranks_t R) heB (fun u => ?_)
     rw [hXπ]
     congr 1
     funext c
@@ -419,13 +412,13 @@ theorem consExist : ConsExist N i := by
     obtain ⟨S, s0, s1, s2, s3, hG⟩ := exists_good N i _ ρ π g0 hg
       (fun x => (eB x).map (algebraMap A (N.O i))) (fun x => (e1 x).map (algebraMap A (N.O i)))
       (fun x => (X0 x).map (algebraMap A (N.O i))) (charPolyIn_map hTT hS.2.2.2.1)
-      (by rw [hρ π hπ]; exact span_top_map (span_top (hS.2.2.2.2.2.2.2 π hπ)))
+      (by rw [hρ π hπ]; exact _root_.GlobalTheory.SpanMapTop.span_mapRep_eq_top (span_top (hS.2.2.2.2.2.2.2 π hπ)))
       ⟨inRing_map hTT hB, inRing_map hTT h1, hmul hBB, hmul h11,
         (hmul hB1).trans (by funext x; simp), (hmul h1B).trans (by funext x; simp),
         fun x => by rw [hφM, GlobalTheory.T.rank_map_ringHom, hrB], fun x => by rw [hφM, GlobalTheory.T.rank_map_ringHom, hr1]⟩
       e' (by
         intro g u
-        rw [hρ π hπ, overK_apply, overK_apply]
+        rw [hρ π hπ, _root_.GlobalTheory.SpanIdem.overK_apply, _root_.GlobalTheory.SpanIdem.overK_apply]
         have := he' ((mat (repA π) g).map (toFr A)) ((mat (ρA π) g).map (toFr A)) _ (hd g) u
         rw [← hφM, ← hφM] at this
         refine this.trans ?_
@@ -449,7 +442,7 @@ theorem consExist : ConsExist N i := by
           rw [hφ, hχ _ (by omega) (by omega)])
       (fun x => by
         obtain ⟨α, hα⟩ := hroot x
-        obtain ⟨β, hβ, hP⟩ := GlobalTheory.T.exists_injective_roots_of_ncard_rootSet' R.t _ α hinj (hdist x) hα
+        obtain ⟨β, hβ, hP⟩ := _root_.GlobalTheory.exists_injective_roots_of_ncard_rootSet R.t _ α hinj (hdist x) hα
         exact ⟨β, hβ, by rw [← blockPol_map, hP]⟩)
     exact ⟨S, s0, congrFun s1, congrFun s2, congrFun s3, hG⟩
 

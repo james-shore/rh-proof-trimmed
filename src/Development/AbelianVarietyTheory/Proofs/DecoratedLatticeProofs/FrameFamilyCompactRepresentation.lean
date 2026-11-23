@@ -52,16 +52,6 @@ open scoped TensorProduct DirectSum Classical
 
 namespace GlobalTheory.SepTypes
 
-theorem coeffSpan_finiteDimensional {G W : Type} [Group G] [AddCommGroup W] [Module ℂ W] [FiniteDimensional ℂ W]
-    (ρ : Representation ℂ G W) : FiniteDimensional ℂ (coeffSpan ρ) := by
-  first
-  | exact @_root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients
-  | exact _root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients
-  | (apply _root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients ..)
-
 theorem coeffSpan_rtrans {G W : Type} [Group G] [AddCommGroup W] [Module ℂ W]
     (ρ : Representation ℂ G W) (c : G) {h : G → ℂ} (hh : h ∈ coeffSpan ρ) :
     (fun k => h (k * c)) ∈ coeffSpan ρ := by
@@ -86,7 +76,7 @@ theorem exists_space {ι : Type} [Fintype ι] [DecidableEq ι] {G : Type} [Group
       add_mem' := fun {a b} ha hb => ⟨ha.1.add hb.1, fun τ k₀ => Submodule.add_mem _ (ha.2 τ k₀) (hb.2 τ k₀)⟩
       zero_mem' := ⟨continuous_const, fun τ k₀ => Submodule.zero_mem _⟩
       smul_mem' := fun c {a} ha => ⟨ha.1.const_smul c, fun τ k₀ => Submodule.smul_mem _ c (ha.2 τ k₀)⟩ }
-  have hfd : ∀ τ, FiniteDimensional ℂ (coeffSpan (ρ τ)) := fun τ => coeffSpan_finiteDimensional (ρ τ)
+  have hfd : ∀ τ, FiniteDimensional ℂ (coeffSpan (ρ τ)) := fun τ => _root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients (ρ τ)
   have hfin := GlobalTheory.finiteDimensional_span_separately ι Γ (fun τ => coeffSpan (ρ τ)) hfd
   have hupd : ∀ (x : ∀ τ, Γ τ) τ y,
       Function.update x τ y = Function.update x τ 1 * Pi.mulSingle τ y := by

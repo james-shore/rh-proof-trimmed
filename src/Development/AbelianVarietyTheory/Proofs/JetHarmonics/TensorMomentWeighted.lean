@@ -112,7 +112,7 @@ theorem moment_lemma_pieri : Hyps → ∀ (k r : ℕ) (ι κ : Type) [Fintype ι
     have hw : io I e y ∈ R.sm := (hT.raw.io_sm I e).mem y hy'
     have hpair := GlobalTheory.T.tensor_moment_transfer hy k r ι κ ρ Γ d R RI io pr ε mu muI Wp z π u μW μN μG νq om Bm BI β hR hRI hinj
       hT.raw hS hB.1 hBI hβ I hI y hy' (fun c => Γ c e) (io I e y) hw
-    have hcs := GlobalTheory.T.norm_sq_integral_inner_weight_le (Formalism.QuantumDeterminants.Mt k r) Wp νq _ _ _ hf (hmB Bm hB.1 _ hw) (hph e)
+    have hcs := _root_.GlobalTheory.norm_sq_integral_inner_smul_le (Formalism.QuantumDeterminants.Mt k r) Wp νq _ _ _ hf (hmB Bm hB.1 _ hw) (hph e)
     rw [hpair] at hcs
     have hiso := hB.2 _ hw
     have hg : ∫⁻ x, ENNReal.ofReal (‖Bm (R.σ (Matrix.of x) (io I e y))‖ ^ 2) ∂νq =
@@ -145,7 +145,7 @@ theorem moment_lemma_pieri : Hyps → ∀ (k r : ℕ) (ι κ : Type) [Fintype ι
   · refine lintegral_congr_ae ?_
     filter_upwards [hae] with x hx
     rw [← ENNReal.ofReal_sum_of_nonneg (fun e _ => by positivity), ← Finset.sum_mul]
-    have := GlobalTheory.T.sum_norm_sq_herm_translates_orthonormal k r ι ρ Γ Γᵀ d om hρ (transpose_unitary Γ hH h2) _ hx
+    have := _root_.GlobalTheory.MomentParseval.sum_herm_sq k r ι ρ Γ Γᵀ d om hρ (transpose_unitary Γ hH h2) _ hx
     rw [← this]
     rfl
   · intro e _

@@ -61,6 +61,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.GammaLeOfDvd
 
 @[expose] public section
 
@@ -161,22 +162,6 @@ def rho (X : Tower Ω ε) (H : Subgroup SL(2, ℤ)) : H →* RingAut X.K where
     ext f
     show X.sl (ofSL ((g * h : H) : SL(2, ℤ))⁻¹) f = X.sl (ofSL (g : SL(2, ℤ))⁻¹) (X.sl (ofSL (h : SL(2, ℤ))⁻¹) f)
     rw [← X.sl_mul, ← map_mul, Subgroup.coe_mul, _root_.mul_inv_rev]
-
-open scoped MatrixGroups TensorProduct in
-open Matrix in
-variable {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] {ε : Ω →+* ℂ} in
-private lemma gamma_le_gamma_of_dvd' {n m : ℕ} (h : n ∣ m) :
-    CongruenceSubgroup.Gamma m ≤ CongruenceSubgroup.Gamma n := by
-  intro γ hγ
-  rw [CongruenceSubgroup.Gamma_mem] at hγ ⊢
-  have hcast : ∀ a : ℤ, (ZMod.castHom h (ZMod n)) (a : ZMod m) = (a : ZMod n) :=
-    fun a => map_intCast _ a
-  obtain ⟨h1, h2, h3, h4⟩ := hγ
-  refine ⟨?_, ?_, ?_, ?_⟩
-  · rw [← hcast, h1, map_one]
-  · rw [← hcast, h2, map_zero]
-  · rw [← hcast, h3, map_zero]
-  · rw [← hcast, h4, map_one]
 
 open scoped MatrixGroups TensorProduct in
 open Matrix in
@@ -347,7 +332,7 @@ private lemma exists_finset_lev_mem_closure_bddRing (X : _root_.GlobalTheory.KZ.
       (pow_dvd_pow_of_dvd (dvd_mul_left l _) k)
   have hT : ∀ t ∈ T, t ∈ B := by
     intro t ht
-    refine ⟨fun γ hγ => hTlev t ht γ (gamma_le_gamma_of_dvd' hN₀m hγ), 1, one_ne_zero, fun r => ?_⟩
+    refine ⟨fun γ hγ => hTlev t ht γ (_root_.GlobalTheory.FN.gamma_le_of_dvd hN₀m hγ), 1, one_ne_zero, fun r => ?_⟩
     rw [map_one, one_mul]
     obtain ⟨e, he⟩ := hDint t r
     have hqD : ¬ q ∣ D t := fun h => hqS (Nat.mem_primeFactors.2
@@ -419,7 +404,7 @@ private lemma exists_finset_lev_mem_closure_bddRing (X : _root_.GlobalTheory.KZ.
       (inv_mem (Subgroup.mem_subgroupOf.1 hδ))
   · intro δ hδ
     change X.sl (_root_.GlobalTheory.KZ.ofSL (δ : SL(2, ℤ))⁻¹) f = f
-    exact hf _ (gamma_le_gamma_of_dvd' hdvd (inv_mem (Subgroup.mem_subgroupOf.1 hδ)))
+    exact hf _ (_root_.GlobalTheory.FN.gamma_le_of_dvd hdvd (inv_mem (Subgroup.mem_subgroupOf.1 hδ)))
   · rintro ⟨g, hg⟩ hgY
     change X.sl (_root_.GlobalTheory.KZ.ofSL g⁻¹) f = f
     obtain ⟨h01, h10, hdiag⟩ := (_root_.GlobalTheory.KZ.ES.Scal.lev_and_scalar ε X m hm0).2 g⁻¹

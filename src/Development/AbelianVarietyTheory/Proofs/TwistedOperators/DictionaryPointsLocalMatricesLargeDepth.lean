@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealLineOfPeriodsOnLine
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.InvolutionSphericalHeckeAnti
 
 @[expose] public section
 
@@ -59,12 +60,6 @@ open GlobalTheory.FlatPlace GlobalTheory.LocMod
 
 variable {D : D7}
 
-theorem mt_mul' (V : HSp D) (a b : GA D V) : Formalism.L2.Theta.mt V (a * b) = Formalism.L2.Theta.mt V a * Formalism.L2.Theta.mt V b := by
-  simp [Formalism.L2.Theta.mt]
-
-theorem mt_inv_mul' (V : HSp D) (a : GA D V) : Formalism.L2.Theta.mt V a⁻¹ * Formalism.L2.Theta.mt V a = 1 := by
-  simp [Formalism.L2.Theta.mt]
-
 theorem map_eq_one_of_off {w : Pl D.host.E} {p : Place D (Kw w)} (hp : IsPlc w p) {V : HSp D} {g : GA D V}
     (hg : g ∈ GlobalTheory.FinPl.grpOff V (· = w.under (𝓞 D.host.F))) : (Formalism.L2.Theta.mt V g).map p.π = 1 := by
   ext i k
@@ -75,42 +70,21 @@ theorem map_eq_one_of_off {w : Pl D.host.E} {p : Place D (Kw w)} (hp : IsPlc w p
   rw [Matrix.sub_apply, map_sub, sub_eq_zero] at h1
   rw [Matrix.map_apply, h1, ← Matrix.map_apply (f := p.π), Matrix.map_one _ (map_zero _) (map_one _)]
 
-theorem suppAt_iff' (e : AE D) (V : HSp D) (g : GA D V) :
-    SuppAt e V g ↔ (e + cA D e) • (Formalism.L2.Theta.mt V g - 1) = Formalism.L2.Theta.mt V g - 1 := by
-  constructor
-  · intro h
-    ext i j
-    exact h i j
-  · intro h i j
-    exact congrFun (congrFun h i) j
-
-theorem suppAt_mul' {e : AE D} {V : HSp D} {a b : GA D V} (ha : SuppAt e V a) (hb : SuppAt e V b) : SuppAt e V (a * b) := by
-  rw [suppAt_iff'] at ha hb ⊢
-  have : Formalism.L2.Theta.mt V (a * b) - 1 = (Formalism.L2.Theta.mt V a - 1) * Formalism.L2.Theta.mt V b + (Formalism.L2.Theta.mt V b - 1) := by
-    rw [mt_mul', Matrix.sub_mul, Matrix.one_mul]; abel
-  rw [this, smul_add, ← smul_mul_assoc, ha, hb]
-
-theorem suppAt_inv' {e : AE D} {V : HSp D} {a : GA D V} (ha : SuppAt e V a) : SuppAt e V a⁻¹ := by
-  rw [suppAt_iff'] at ha ⊢
-  have : Formalism.L2.Theta.mt V a⁻¹ - 1 = -(Formalism.L2.Theta.mt V a⁻¹ * (Formalism.L2.Theta.mt V a - 1)) := by
-    rw [Matrix.mul_sub, mt_inv_mul', Matrix.mul_one]; abel
-  rw [this, smul_neg, ← mul_smul_comm, ha]
-
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (p : Place D k)
   {Y : Type} [Fintype Y] [DecidableEq Y]
 
 theorem isLoc_mul' {S : HSp D} {F : Frame k S.rank Y} {a b : GA D S} {x y : GL Y k} (ha : p.IsLoc F a x)
     (hb : p.IsLoc F b y) : p.IsLoc F (a * b) (x * y) := by
-  refine ⟨suppAt_mul' ha.1 hb.1, ?_⟩
-  rw [mt_mul', Matrix.map_mul, ha.2, hb.2, Units.val_mul]
+  refine ⟨_root_.GlobalTheory.SplitPlace.suppAt_mul ha.1 hb.1, ?_⟩
+  rw [_root_.GlobalTheory.BesselCompare.mt_mul, Matrix.map_mul, ha.2, hb.2, Units.val_mul]
   simp only [Matrix.mul_assoc]
   rw [← Matrix.mul_assoc F.γ, F.γβ, Matrix.one_mul]
 
 theorem isLoc_inv' {S : HSp D} {F : Frame k S.rank Y} {a : GA D S} {x : GL Y k} (ha : p.IsLoc F a x) :
     p.IsLoc F a⁻¹ x⁻¹ := by
-  refine ⟨suppAt_inv' ha.1, ?_⟩
+  refine ⟨_root_.GlobalTheory.SplitPlace.suppAt_inv ha.1, ?_⟩
   have h1 : (Formalism.L2.Theta.mt S a⁻¹).map p.π * (F.β * x.val * F.γ) = 1 := by
-    rw [← ha.2, ← Matrix.map_mul, mt_inv_mul', Matrix.map_one _ (map_zero _) (map_one _)]
+    rw [← ha.2, ← Matrix.map_mul, _root_.GlobalTheory.MixModel.mt_inv_mul, Matrix.map_one _ (map_zero _) (map_one _)]
   have h2 : (F.β * x.val * F.γ) * (F.β * (x⁻¹).val * F.γ) = 1 := by
     simp only [Matrix.mul_assoc]
     rw [← Matrix.mul_assoc F.γ, F.γβ, Matrix.one_mul, ← Matrix.mul_assoc x.val, Units.mul_inv, Matrix.one_mul, F.βγ]
@@ -180,7 +154,7 @@ theorem localization₂ : Big fun ch => LocP ch := by
         rw [if_neg h0, if_neg hi, inv_one, mul_one, epsV_eq_one t w hm, elt_eq_one t w β hm, mul_one]
   · obtain ⟨δ, hδ, hoff⟩ := hh j hj
     rw [hδ.2.1 he, inv_one, one_mul] at hoff
-    rw [mt_mul', Matrix.map_mul, map_eq_one_of_off hp hoff, Matrix.one_mul, L0.2, Matrix.mul_assoc,
+    rw [_root_.GlobalTheory.BesselCompare.mt_mul, Matrix.map_mul, map_eq_one_of_off hp hoff, Matrix.one_mul, L0.2, Matrix.mul_assoc,
       (frRow ch.S.B t w j hj).γβ, Matrix.mul_one]
     rfl
   · obtain ⟨δ, hδ, hoff⟩ := hh j hj
@@ -189,7 +163,7 @@ theorem localization₂ : Big fun ch => LocP ch := by
     have hr0 : (Formalism.L2.Theta.mt _ (r₀ j)).map p.π = 1 := by
       rw [L0.2]
       simp only [if_neg h0, Units.val_one, Matrix.mul_one, (frRow ch.S.B t w j hj).βγ]
-    rw [mt_mul', Matrix.map_mul, hr0, Matrix.mul_one, ← mul_inv_cancel_left δ (h j), mt_mul', Matrix.map_mul,
+    rw [_root_.GlobalTheory.BesselCompare.mt_mul, Matrix.map_mul, hr0, Matrix.mul_one, ← mul_inv_cancel_left δ (h j), _root_.GlobalTheory.BesselCompare.mt_mul, Matrix.map_mul,
       map_eq_one_of_off hp hoff, Matrix.mul_one]
 
 end GlobalTheory.FlatPlaceLoc

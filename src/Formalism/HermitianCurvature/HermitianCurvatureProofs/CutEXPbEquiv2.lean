@@ -237,7 +237,7 @@ theorem pbF_left_uw (Bj : B.RealPlaceData k ρ Wp Wq) (B0 : B.RealPlaceData k n 
   have hΦ : PBQ.GoodP Bj (Φ x) :=
     ⟨LieBracketMultiplication.uw_mul hi hx1, (Formalism.QuantumDeterminants.uWNormal k ρ Bj.z Bj.z_mem h⁻¹ hi _ hx2).1⟩
   have hsP : D.castM e (PBQ.sP Bj x) * (D.castM e (U.embG k p ρ h) * g) = D.castM e (PBQ.sP Bj (Φ x)) * g := by
-    rw [← Matrix.mul_assoc, ← PBQ.castM_mul]
+    rw [← Matrix.mul_assoc, ← _root_.Formalism.FourierDecayAlt.P.Dx2.Tower.castM_mul]
     congr 2
     unfold PBQ.sP
     rw [if_pos hx, if_pos hΦ]
@@ -282,7 +282,7 @@ theorem pullback_equivalence : CutEX.PbEquiv := by
     rw [p.T.π'_lev P.r le_rfl, Formalism.FourierDecayAlt.P.Dx2.Tower.lev_eq_embG]
     rfl
   unfold CutEX.pbTop PBQ.pbT CutEX.xT
-  rw [LeftFubiniLemmas.embedding_map_embedded_group, PBQ.castM_mul, PBQ.castM_mul, pbF_right_uw _ _ _ _ _ _ hw, pbF_left_uw _ _ _ _ _ hh, hpi,
+  rw [LeftFubiniLemmas.embedding_map_embedded_group, _root_.Formalism.FourierDecayAlt.P.Dx2.Tower.castM_mul, _root_.Formalism.FourierDecayAlt.P.Dx2.Tower.castM_mul, pbF_right_uw _ _ _ _ _ _ hw, pbF_left_uw _ _ _ _ _ hh, hpi,
     ContinuousLinearMap.comp_assoc]
 
 end Formalism.FourierDecayAlt.P

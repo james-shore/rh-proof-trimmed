@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.RationalPointsLeHolds
 
 @[expose] public section
 
@@ -69,7 +70,7 @@ theorem translate_mem_span_adelic (S : StepLevel F E σ J T f bad) (emb : ι →
   | mem h hh =>
     obtain ⟨z, rfl⟩ := hh
     have hb : bc (inclE (F := F) (FiniteAdeleRing (𝓞 F) F)) γ ∈ UPts σ J (FiniteAdeleRing (𝓞 F) F) :=
-      Formalism.UG.Final.RatPtsLe F E (Fin n) σ J (FiniteAdeleRing (𝓞 F) F) ⟨γ, hγ, rfl⟩
+      _root_.Formalism.UG.P.rational_points_le_holds F E (Fin n) σ J (FiniteAdeleRing (𝓞 F) F) ⟨γ, hγ, rfl⟩
     have hk : κ.1 ∈ UPts σ J (FiniteAdeleRing (𝓞 F) F) := ((S.U_eq κ.1).1 κ.2).1
     let z' : UPts σ J (FiniteAdeleRing (𝓞 F) F) :=
       ⟨bc (inclE (F := F) (FiniteAdeleRing (𝓞 F) F)) γ * z.1 * κ.1, mul_mem (mul_mem hb z.2) hk⟩

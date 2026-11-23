@@ -229,28 +229,14 @@ theorem tau_comm {z : Fin (2 * r + k + 1) → ℂ} {h : B.Mat k r} (hh : h ∈ U
   unfold C2.tauM
   rw [← mul_assoc, nEich_comm hh _, mul_assoc, mX_comm hh _, ← mul_assoc]
 
-theorem det_UT {m : ℕ} {u : Matrix (Fin m) (Fin m) ℂ} (hu : u ∈ C2.UTset m) : u.det = 1 := by
-  obtain ⟨h1, h2⟩ := hu
-  rw [Matrix.det_of_isUpperTriangular (fun i j hij => h1 i j hij)]
-  simp [h2]
-
-theorem UT_star {m : ℕ} {u : Matrix (Fin m) (Fin m) ℂ} (hu : u ∈ C2.UTset m) : uᴴ ∈ C2.LTset m := by
-  obtain ⟨h1, h2⟩ := hu
-  refine ⟨fun i j hij => ?_, fun i => ?_⟩
-  · simp [Matrix.conjTranspose_apply, h1 j i hij]
-  · simp [Matrix.conjTranspose_apply, h2]
-
-theorem det_LT {m : ℕ} {l : Matrix (Fin m) (Fin m) ℂ} (hl : l ∈ C2.LTset m) : l.det = 1 := by
-  obtain ⟨h1, h2⟩ := hl
-  rw [Matrix.det_of_isLowerTriangular l (fun i j hij => h1 i j hij)]
-  simp [h2]
+alias det_UT := _root_.Formalism.FourierDecayAlt.P.C2x2.ut_det
 
 theorem adj_eq_inv {m : ℕ} {A : Matrix (Fin m) (Fin m) ℂ} (h : A.det = 1) : A.adjugate = A⁻¹ := by
   rw [Matrix.inv_def, h, Ring.inverse_one, one_smul]
 
 theorem LT_col_last {l : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ} (hl : l ∈ C2.LTset (r + 1)) :
     l.adjugate *ᵥ Pi.single (Fin.last r) 1 = Pi.single (Fin.last r) 1 := by
-  rw [adj_eq_inv (det_LT hl)]
+  rw [adj_eq_inv (_root_.Formalism.FourierDecayAlt.P.C2x2.lt_det hl)]
   obtain ⟨h1, h2⟩ := C2x2.lt_inv hl
   funext i
   simp only [Matrix.mulVec, dotProduct, Pi.single_apply, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq',
@@ -320,13 +306,6 @@ theorem n_in_S {z : Fin (2 * r + k + 1) → ℂ} {n : B.Mat k r} (hn : n ∈ Nse
   refine ⟨1, ?_, n, hn, (one_mul n).symm⟩
   simp [UWset, UH]
 
-theorem isUnit_N {n : B.Mat k r} (hn : n ∈ Nset k r) : IsUnit n.det := by
-  have hH : Hpk k r * Hpk k r = 1 := (majorant_estimate k r).2.1
-  have h1 : nᴴ * Hpk k r * n = Hpk k r := hn.1
-  apply Matrix.isUnit_det_of_left_inverse (B := Hpk k r * nᴴ * Hpk k r)
-  calc Hpk k r * nᴴ * Hpk k r * n = Hpk k r * (nᴴ * Hpk k r * n) := by simp only [Matrix.mul_assoc]
-    _ = 1 := by rw [h1, hH]
-
 private theorem col_lemma' {z : Fin (2 * r + k + 1) → ℂ} {M : B.Mat k r}
     {V : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ} (hF : M * Fz k r z = Fz k r z * V) (b : Fin (r + 1)) :
     M *ᵥ fvec k r z b = ∑ c, V c b • fvec k r z c := by
@@ -357,7 +336,7 @@ theorem uMap_inv {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) {n : B.M
     rw [hdet]
     exact isUnit_one
   rw [adj_eq_inv hdet]
-  exact C2x5.uMap_eq hz _ _ (col_lemma' (inv_mul_fz_eq_fz_mul_inv (frame_mul hz hs) (isUnit_N hn) hUu))
+  exact C2x5.uMap_eq hz _ _ (col_lemma' (inv_mul_fz_eq_fz_mul_inv (frame_mul hz hs) (_root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.isUnit_of_N hn) hUu))
 
 private theorem zhat_inv_mul_mul_eq_conjTranspose_mul_mul (z z' : Fin (2 * r + k + 1) → ℂ) {γ n n' : B.Mat k r}
     {U U' : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ} (hn : IsUnit n.det) (hnH : n ∈ UH (Hpk k r))
@@ -427,7 +406,7 @@ private theorem isDFrame_inv_mul_mul_of_frame_compat (S : B.RealPlaceData k r Wp
       rw [Matrix.mulVec_mulVec, hF', ← Matrix.mulVec_mulVec]
     rw [cofR_eq, cofR_eq, hZ, Matrix.adjugate_mul_distrib, Matrix.adjugate_mul_distrib]
     simp only [← Matrix.mulVec_mulVec]
-    rw [LT_col_last (UT_star hU), hFv, hUU]
+    rw [LT_col_last (_root_.Formalism.FourierDecayAlt.P.C2x2.ut_conjT hU), hFv, hUU]
   have hcL : D.cofL S (n⁻¹ * γ * n') = n⁻¹ *ᵥ D.cofL S γ := by
     rw [cofL_eq, cofL_eq, hZ, Matrix.adjugate_mul_distrib, Matrix.adjugate_mul_distrib]
     simp only [← Matrix.vecMul_vecMul]
@@ -473,7 +452,7 @@ theorem hzz_ne {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) : herm (Hp
 theorem prW_tau_inv {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) {v : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ}
     (hv : v ∈ C2.UTset (r + 1)) (x : Fin (2 * r + k + 1) → ℂ) :
     D.prW k r z ((C2.tauM k r z v)⁻¹ *ᵥ x) = D.prW k r z x := by
-  have hu := isUnit_N (tau_N hz hv)
+  have hu := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.isUnit_of_N (tau_N hz hv)
   have h := prW_tau hz.1 (hzz_ne hz) v ((C2.tauM k r z v)⁻¹ *ᵥ x)
   rw [Matrix.mulVec_mulVec, Matrix.mul_nonsing_inv _ hu, Matrix.one_mulVec] at h
   exact h.symm
@@ -486,8 +465,8 @@ theorem dframe_tau_inv (S : B.RealPlaceData k r Wp Wq) (ν' : Fin (2 * r + k + 1
   have hz' : C2.StdZ k r S.z' := ⟨S.z'_mem, S.T'_pos⟩
   have hN := tau_N hz hv
   have hN' := tau_N hz' hu'
-  have hτu := isUnit_N hN
-  have hτu' := isUnit_N hN'
+  have hτu := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.isUnit_of_N hN
+  have hτu' := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.isUnit_of_N hN'
   have hvu : IsUnit v.det := by
     rw [det_UT hv]
     exact isUnit_one

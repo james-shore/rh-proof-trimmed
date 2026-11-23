@@ -78,9 +78,7 @@ theorem hf_sub_right (Hm : Matrix (Fin g) (Fin g) ℂ) (x y y' : Fin g → ℂ) 
     hf Hm x (y - y') = hf Hm x y - hf Hm x y' := by
   rw [sub_eq_add_neg, hf_add_right, hf_neg_right, ← sub_eq_add_neg]
 
-theorem hf_sub_left (Hm : Matrix (Fin g) (Fin g) ℂ) (x x' y : Fin g → ℂ) :
-    hf Hm (x - x') y = hf Hm x y - hf Hm x' y := by
-  rw [sub_eq_add_neg, hf_add_left, ← neg_one_smul ℂ x', hf_smul_left]; ring
+alias hf_sub_left := _root_.GlobalTheory.MomDual.hf_sub_left
 
 theorem hf_sum_right (Hm : Matrix (Fin g) (Fin g) ℂ) {r : ℕ} (x : Fin g → ℂ) (y : Fin r → Fin g → ℂ) :
     hf Hm x (∑ i, y i) = ∑ i, hf Hm x (y i) := by

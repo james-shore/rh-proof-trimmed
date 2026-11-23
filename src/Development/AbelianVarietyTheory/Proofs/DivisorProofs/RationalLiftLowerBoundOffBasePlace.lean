@@ -54,6 +54,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.NoncompactArrFiniteDimensional
 
 @[expose] public section
 
@@ -284,8 +285,8 @@ theorem lower_overK_six (hA : GlobalTheory.LowRow.AdelC R F) (h : GlobalTheory.H
   have m4 := mem_orth_ker θ j ((R.FW i).j σ) th U (R.gW i σ z) κ m2 (hU i σ).1 (fun x => hκ.2 x _ (hθ x)) m3
   have m5 := conjLift_lower_six hA h i hb ht hs' hv hC.1 hd _ m4
   have m6 := congrArg Complex.re (GlobalTheory.ConjLiftCounterexample.gram_of_conjAt hC hd hy hy)
-  have m7 := (re_inner_self _).symm.trans (m6.trans (re_inner_self _))
-  have m8 := (re_inner_self _).symm.trans (congrArg Complex.re (m1 x x))
+  have m7 := (_root_.Formalism.REAL.re_inner_self_eq_norm_sq _).symm.trans (m6.trans (_root_.Formalism.REAL.re_inner_self_eq_norm_sq _))
+  have m8 := (_root_.Formalism.REAL.re_inner_self_eq_norm_sq _).symm.trans (congrArg Complex.re (m1 x x))
   exact (congrArg (Real.exp (lowB D i b) * ·) m8).ge.trans (m5.trans m7.ge)
 
 theorem lowForm_of_emb_six {s : ℕ} (hOk : A.fam.Ok s) (h : GlobalTheory.Hk3.Core R F) (hB : BaseLinks R F) {b : ℝ}
@@ -326,7 +327,7 @@ theorem lowForm_six : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Typ
     obtain ⟨v, hv1⟩ := hv i ((starRingEnd ℂ).comp σ)
     have k1 := lower_overK_six hA h hU i (hb i) ht g2.1 hv1 hT g.1 (g.2.1 gramR c0R c0L hT _ g2.1) hy (hx _)
     have k2 := congrArg Complex.re (g2.2 y y)
-    have k3 := (re_inner_self _).symm.trans ((k2.trans (Complex.conj_re _)).trans (re_inner_self _))
+    have k3 := (_root_.Formalism.REAL.re_inner_self_eq_norm_sq _).symm.trans ((k2.trans (Complex.conj_re _)).trans (_root_.Formalism.REAL.re_inner_self_eq_norm_sq _))
     have k4 := (congrArg Complex.re (csumAt_conj (A.MtCSD i A.μ0) σ x x)).trans (Complex.conj_re _)
     exact (congrArg (Real.exp (lowB D i b) * ·) k4).ge.trans (k1.trans k3.ge)
 

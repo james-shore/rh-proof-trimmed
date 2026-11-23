@@ -65,10 +65,7 @@ namespace GlobalTheory.ShortVecDecay
 
 variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {a : ℕ}
 
-theorem continuous_pInf : Continuous (pInf E) :=
-  continuous_pi fun w =>
-    ((InfinitePlace.Completion.isometryEquivComplexOfIsComplex (IsTotallyComplex.isComplex w)).continuous.comp
-      (continuous_apply w)).comp continuous_fst
+alias continuous_pInf := _root_.GlobalTheory.CuspRep.RankOne.continuous_pInf
 
 theorem exists_le_norm_pInf {T : Set (Af E)} (hT : IsCompact T) :
     ∃ ε : ℝ, 0 < ε ∧ ∀ x : E, x ≠ 0 → pFin E (algebraMap E (Ad E) x) ∈ T → ε ≤ ‖pInf E (algebraMap E (Ad E) x)‖ := by

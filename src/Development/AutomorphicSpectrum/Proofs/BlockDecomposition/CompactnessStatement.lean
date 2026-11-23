@@ -70,25 +70,10 @@ noncomputable section
 open Matrix
 namespace GlobalTheory.CompanionTheory.Jp.Cmp
 
-theorem red_unique : ∀ (O L : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [Field L] [Algebra O L] [IsFractionRing O L]
-    (n : ℕ) (w : Lˣ) (κ : GL (Ix n) O) (h₁ h₂ : GL (Ix n) (IsLocalRing.ResidueField O)),
-    IsRed (O := O) w κ h₁ → IsRed (O := O) w κ h₂ →
-      ∃ (a d : GL (Fin n) (IsLocalRing.ResidueField O)) (b : Matrix (Fin n) (Fin n) (IsLocalRing.ResidueField O)),
-        h₂ = pM a d b * h₁ := GlobalTheory.T.reduction_unique_up_to_parabolic
-
-theorem twist_gam : ∀ (O L : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [Field L] [Algebra O L] [IsFractionRing O L]
-    (n : ℕ) (ϖ : O), Irreducible ϖ → ∀ w : Lˣ, (w : L) = algebraMap O L ϖ → ∀ γ ∈ Gam2 (n := n) ϖ,
-      ∃ j' : GL (Ix n) O, inL γ * tauM w = tauM w * inL j' ∧ resK j' = 1 := GlobalTheory.T.level_square_congruence_conjugation
-
 theorem twist_low : ∀ (O L : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [Field L] [Algebra O L] [IsFractionRing O L]
     (n : ℕ) (ϖ : O), Irreducible ϖ → ∀ w : Lˣ, (w : L) = algebraMap O L ϖ →
     ∀ x : GL (Ix n) (IsLocalRing.ResidueField O), x.1.toBlocks₁₂ = 0 →
       ∃ j j' : GL (Ix n) O, inL j * tauM w = tauM w * inL j' ∧ resK j' = x := GlobalTheory.T.residue_upper_unipotent_lift
-
-theorem red_rank : ∀ (O L : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [Field L] [Algebra O L] [IsFractionRing O L]
-    (n : ℕ) (ϖ : O), Irreducible ϖ → ∀ w : Lˣ, (w : L) = algebraMap O L ϖ →
-    ∀ (κ : GL (Ix n) O) (h : GL (Ix n) (IsLocalRing.ResidueField O)), IsRed (O := O) w κ h →
-      iD h = (lowerLeftBlock (resK κ)).rank := GlobalTheory.T.reduction_corank_eq_rank_lower_left
 
 theorem dbl : ∀ (k : Type) [Field k] (n : ℕ) (g₁ g₂ : GL (Ix n) k), iD g₁ = iD g₂ →
     ∃ (a d : GL (Fin n) k) (b : Matrix (Fin n) (Fin n) k) (x : GL (Ix n) k),
@@ -97,10 +82,6 @@ theorem dbl : ∀ (k : Type) [Field k] (n : ℕ) (g₁ g₂ : GL (Ix n) k), iD g
 theorem avg_res : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [Fintype (IsLocalRing.ResidueField O)]
     (n : ℕ) (ϖ : O), Irreducible ϖ → ∀ f : GL (Ix n) (IsLocalRing.ResidueField O) → ℂ,
       avgK ϖ (fun κ => f (resK κ)) = sumG f / (Nat.card (GL (Ix n) (IsLocalRing.ResidueField O)) : ℂ) := GlobalTheory.T.average_over_maximal_compact_residue
-
-theorem avg_right : ∀ (O : Type) [CommRing O] [IsLocalRing O] (n : ℕ) (ϖ : O) (φ : GL (Ix n) O → ℂ),
-    (∀ κ, ∀ γ ∈ Gam2 (n := n) ϖ, φ (κ * γ) = φ κ) → ∀ j : GL (Ix n) O,
-      avgK ϖ (fun κ => φ (κ * j)) = avgK ϖ φ := GlobalTheory.T.average_invariant_right_translation
 
 theorem cnt_swap : ∀ (k : Type) [Field k] [Fintype k] (n i : ℕ),
     Nat.card {g : GL (Ix n) k // (lowerLeftBlock g).rank = i} = Nat.card {g : GL (Ix n) k // (dBlk g).rank = i} := GlobalTheory.T.card_rank_lower_left_eq_lower_right
@@ -113,12 +94,6 @@ theorem cnt_half : ∀ (k : Type) [Field k] [Fintype k] (n : ℕ) (D : Matrix (F
 theorem cnt_cols : ∀ (k : Type) [Field k] [Fintype k] (n ρ : ℕ) (D : Matrix (Fin n) (Fin n) k), D.rank = ρ →
     Nat.card {C : Matrix (Fin n) (Fin n) k // (Matrix.fromCols C D).rank = n} =
       Fintype.card k ^ (n * ρ) * ∏ j ∈ Finset.range (n - ρ), (Fintype.card k ^ n - Fintype.card k ^ j) := GlobalTheory.T.card_completions_to_full_rank
-
-theorem cnt_rank : ∀ (k : Type) [Field k] [Fintype k] (n ρ : ℕ), ρ ≤ n →
-    Nat.card {D : Matrix (Fin n) (Fin n) k // D.rank = ρ} *
-        ∏ j ∈ Finset.range (n - ρ), (Fintype.card k ^ n - Fintype.card k ^ j) =
-      Nat.card {D : Matrix (Fin n) (Fin n) k // D.rank = n - ρ} *
-        ∏ j ∈ Finset.range ρ, (Fintype.card k ^ n - Fintype.card k ^ j) := GlobalTheory.T.card_rank_completion_symmetry
 
 theorem red_mul {O L : Type} [CommRing O] [IsLocalRing O] [Field L] [Algebra O L] {n : ℕ} {w : Lˣ}
     {κ j j' : GL (Ix n) O} {h : GL (Ix n) (IsLocalRing.ResidueField O)} (hr : IsRed (O := O) w κ h)
@@ -193,7 +168,7 @@ theorem card_by_rank {k : Type} [Field k] [Fintype k] (n ρ : ℕ) :
   rw [Nat.card_congr e, Nat.card_sigma]
   rw [Finset.sum_congr rfl (g := fun _ => Nat.card {g : GL (Ix n) k // lowerLeftBlock g = 0 ∧ dBlk g = 1} *
           (Fintype.card k ^ (n * ρ) * ∏ j ∈ Finset.range (n - ρ), (Fintype.card k ^ n - Fintype.card k ^ j)))
-    (fun D _ => by rw [cnt_half, cnt_cols k n ρ D.1 D.2])]
+    (fun D _ => by rw [_root_.GlobalTheory.CompanionTheory.Jp.CntHalf.card_lowerRightBlock_eq_fibre_formula, _root_.GlobalTheory.CompanionTheory.Jp.CntCols.card_completions k n ρ D.1 D.2])]
   rw [Finset.sum_const, smul_eq_mul, Finset.card_univ, ← Nat.card_eq_fintype_card]
 
 theorem count {k : Type} [Field k] [Fintype k] (n i : ℕ) (hi : i ≤ n) :
@@ -204,8 +179,8 @@ theorem count {k : Type} [Field k] [Fintype k] (n i : ℕ) (hi : i ≤ n) :
     have : (dBlk g).rank ≤ n := by simpa using (dBlk g).rank_le_card_width
     unfold iD
     omega
-  rw [h1, cnt_swap, card_by_rank, card_by_rank]
-  have hr := cnt_rank k n i hi
+  rw [h1, _root_.GlobalTheory.CompanionTheory.Jp.CntSwap.card_lower_left_rank_eq_card_lower_right_rank, card_by_rank, card_by_rank]
+  have hr := _root_.GlobalTheory.CompanionTheory.Jp.CountRank.rank_symm k n i hi
   have e1 : n - (n - i) = i := by omega
   rw [e1]
   have e2 : n * (n - i) + 2 * n * i = n * i + n * n := by
@@ -247,25 +222,25 @@ theorem jpCmp : JpCmp := by
   haveI := Fintype.ofFinite (GL (Ix n) (IsLocalRing.ResidueField O))
   have hinv : ∀ κ h, IsRed (O := O) w κ h → Ψ h = Ψ (T κ) := by
     intro κ h hr
-    obtain ⟨a, d, b, e⟩ := red_unique O L n w κ (T κ) h (hT κ) hr
+    obtain ⟨a, d, b, e⟩ := _root_.GlobalTheory.CompanionTheory.Jp.RedUnique.red_unique O L n w κ (T κ) h (hT κ) hr
     rw [e, hΨ]
   have hγ : ∀ κ, ∀ γ ∈ Gam2 (n := n) ϖ, Ψ (T (κ * γ)) = Ψ (T κ) := by
     intro κ γ hg
-    obtain ⟨j', e, r⟩ := twist_gam O L n ϖ hϖ w hw γ hg
+    obtain ⟨j', e, r⟩ := _root_.GlobalTheory.CompanionTheory.Jp.Twist.twist_gam O L n ϖ hϖ w hw γ hg
     have := red_mul (hT κ) e
     rw [r, mul_one] at this
     exact (hinv _ _ this).symm
   have hx : ∀ x : GL (Ix n) (IsLocalRing.ResidueField O), x.1.toBlocks₁₂ = 0 →
       avgK ϖ (fun κ => Ψ (T κ * x)) = avgK ϖ (fun κ => Ψ (T κ)) := by
     intro x hl
-    obtain ⟨j, j', e, r⟩ := twist_low O L n ϖ hϖ w hw x hl
+    obtain ⟨j, j', e, r⟩ := _root_.GlobalTheory.CompanionTheory.Jp.twist_low O L n ϖ hϖ w hw x hl
     have h1 : (fun κ => Ψ (T κ * x)) = fun κ => Ψ (T (κ * j)) := by
       funext κ
       have := red_mul (hT κ) e
       rw [r] at this
       exact hinv _ _ this
     rw [h1]
-    exact avg_right O n ϖ (fun κ => Ψ (T κ)) hγ j
+    exact _root_.GlobalTheory.CompanionTheory.Jp.AvgRight.avgK_right_invariant O n ϖ (fun κ => Ψ (T κ)) hγ j
   set Pm : Finset (GL (Ix n) (IsLocalRing.ResidueField O)) := Finset.univ.filter (fun x => x.1.toBlocks₁₂ = 0) with hPm
   have hmem : ∀ x, x ∈ Pm ↔ x.1.toBlocks₁₂ = 0 := by simp [hPm]
   have hN : (Pm.card : ℂ) ≠ 0 := by
@@ -326,10 +301,10 @@ theorem jpCmp : JpCmp := by
     exact pow_ne_zero _ (by exact_mod_cast this)
   have hL : avgK ϖ (fun κ => Ψ (T κ)) = sumG (fun h : GL (Ix n) (IsLocalRing.ResidueField O) => f (lowerLeftBlock h).rank) /
       (Nat.card (GL (Ix n) (IsLocalRing.ResidueField O)) : ℂ) := by
-    rw [← hΦavg, ← avg_res O n ϖ hϖ (fun h : GL (Ix n) (IsLocalRing.ResidueField O) => f (lowerLeftBlock h).rank)]
+    rw [← hΦavg, ← _root_.GlobalTheory.CompanionTheory.Jp.AvgRes.avgK_res O n ϖ hϖ (fun h : GL (Ix n) (IsLocalRing.ResidueField O) => f (lowerLeftBlock h).rank)]
     congr 1
     funext κ
-    rw [hf, red_rank O L n ϖ hϖ w hw κ _ (hT κ)]
+    rw [hf, _root_.GlobalTheory.CompanionTheory.Jp.RedRank.iD_eq_rank O L n ϖ hϖ w hw κ _ (hT κ)]
   have hden := sum_weight (k := IsLocalRing.ResidueField O) n (fun _ => 1)
   have hone : sumG (fun _ : GL (Ix n) (IsLocalRing.ResidueField O) => (1 : ℂ)) =
       (Nat.card (GL (Ix n) (IsLocalRing.ResidueField O)) : ℂ) := by

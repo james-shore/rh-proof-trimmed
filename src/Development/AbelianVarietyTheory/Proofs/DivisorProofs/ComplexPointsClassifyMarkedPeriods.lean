@@ -79,7 +79,7 @@ theorem Model.fineAt_univ : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type
     obtain ⟨e2, he2⟩ := (tr o y m hy h' hL' D' t Q).1 e hU
     exact ⟨D', t, Q, e2, hC, he2⟩
   · intro D' t Q hC hQ
-    obtain ⟨o, h', hL', e, hU⟩ := GlobalTheory.T.exists_harrisTaylor_object_of_period p D R b N σ ρ D' t Q hN hNp hty hC hQ
+    obtain ⟨o, h', hL', e, hU⟩ := _root_.GlobalTheory.UPel.HT.exists_obj_unifAt_of_period p D R b N σ ρ D' t Q hN hNp hty hC hQ
     obtain ⟨f, ⟨hf, ⟨m⟩⟩, -⟩ := M.rep (Sp ℂ) (spMap σ) o
     obtain ⟨e2, he2⟩ := (tr o f m hf h' hL' D' t Q).1 e hU
     exact ⟨f, e2, he2⟩

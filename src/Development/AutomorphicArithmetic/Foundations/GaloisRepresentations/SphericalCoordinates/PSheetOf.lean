@@ -109,7 +109,7 @@ theorem sheetOf_of : SheetOf := by
     have ev : ∀ b x, P' b x = h (P b (w.symm x)) := fun _ _ => rfl
     have hper : ∀ b ∈ B', IsPeriod (U.Di i') ρ (P' b) := fun b hb =>
       isPeriod_comp_isometry_symm _ _ w hw.1 _
-        (GlobalTheory.T.comp_linearEquiv_intertwining O bar _ g ρ ρ (P b) h (hP.1 b hb) hc)
+        (_root_.GlobalTheory.PELU.IsPeriod.comp_linearEquiv O bar _ g ρ ρ (P b) h (hP.1 b hb) hc)
     refine ⟨B', P', hB', hb', hsub, ⟨hper, fun x => ?_⟩, ?_, fun b hb => ?_⟩
     · exact (LinearMap.toContinuousLinearMap h.toLinearMap).differentiable.comp_differentiableOn
         (hP.2 (w.symm x))

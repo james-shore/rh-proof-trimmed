@@ -60,9 +60,9 @@ theorem tensorInd_virt_prime : ∀ (G Γ : Type) [Group G] [Finite G] [Group Γ]
     intro t
     exact mem_zpowers_of_prime_card rfl hs
   obtain ⟨a, b, ha, hb, rfl⟩ := (mem_virt_iff_sub ℂ ℂ G χ).1 hχ
-  obtain ⟨A, hA, hA1, hA2⟩ := GlobalTheory.T.exists_tensorInduction_char' G Γ φ s hgen a ha
-  obtain ⟨B, hB, hB1, hB2⟩ := GlobalTheory.T.exists_tensorInduction_char' G Γ φ s hgen b hb
-  obtain ⟨Z, hZ, hZ1, hZ2⟩ := GlobalTheory.T.exists_virtualCharacter_semidirect_orbit_cross_terms G Γ φ s hp hs (a - b) b
+  obtain ⟨A, hA, hA1, hA2⟩ := _root_.GlobalTheory.Shin.TensorInd.exists_tensorInduction_char G Γ φ s hgen a ha
+  obtain ⟨B, hB, hB1, hB2⟩ := _root_.GlobalTheory.Shin.TensorInd.exists_tensorInduction_char G Γ φ s hgen b hb
+  obtain ⟨Z, hZ, hZ1, hZ2⟩ := _root_.GlobalTheory.CrossOrbit.cross_terms_induced G Γ φ s hp hs (a - b) b
     ((mem_virt_iff_sub ℂ ℂ G _).2 ⟨a, b, ha, hb, rfl⟩)
     ((mem_virt_iff_sub ℂ ℂ G b).2 ⟨b, 0, hb, (GlobalTheory.T.isCharacterOverSubfield_zero_and_add ℂ ℂ G).1, by simp⟩)
   have hAv : A ∈ Virt ℂ ℂ (G ⋊[φ] Γ) := AddSubgroup.subset_closure hA

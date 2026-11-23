@@ -63,13 +63,10 @@ theorem eq_of_parts {A : Type*} [CommRing A] {e f m m' o : A} (k1 : (e + f) * (m
     (k2 : (e + f) * (m' - o) = m' - o) (k3 : e * m = e * m') (k4 : f * m' = f * m) : m = m' := by
   linear_combination (-1 : A) * k1 + k2 + k3 - k4
 
-theorem mt_unit (S : HSp D) (g : GA D S) :
-    ((mt S g).map (cA D)).transpose * (HSpace.gram S).map (incA D) * mt S g = (HSpace.gram S).map (incA D) := g.2
-
 theorem gram_mul_conj_inv (S : HSp D) (e : AE D) (g : GA D S) :
     (HSpace.gram S).map (incA D) * (cA D e • mt S g⁻¹) =
       ((e • mt S g).map (cA D)).transpose * (HSpace.gram S).map (incA D) := by
-  have hu := mt_unit S g
+  have hu := _root_.Formalism.L2.Theta.mt_rel S g
   have h1 : mt S g * mt S g⁻¹ = 1 := by rw [← mt_mul, mul_inv_cancel, mt_one]
   have hmap : (e • mt S g).map (cA D) = cA D e • (mt S g).map (cA D) := by
     ext i j; simp [Matrix.map_apply, map_mul]

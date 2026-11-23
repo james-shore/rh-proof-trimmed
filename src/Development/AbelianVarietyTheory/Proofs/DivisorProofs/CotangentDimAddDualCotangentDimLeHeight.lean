@@ -85,7 +85,7 @@ theorem GlobalTheory.PDivGroup.finrank_cot_add_finrank_cot_dual_le_of_cast_eq_ze
         Γ.A 1 →ₐ[k] (PDivGroup.frobTwist hp Γ).A 1).toLinearMap ≤
       (kerIdeal ((PDivGroup.relFrob hp Γ).app 1)).restrictScalars k := by
     intro a ha
-    have h := GlobalTheory.T.mulP_mem_kerIdeal_comp_relFrob_of_verschiebung_eq_zero p k hp Γ a ha
+    have h := _root_.GlobalTheory.PDivGroup.mulP_mem_kerIdeal_of_verschiebung_eq_zero p k hp Γ a ha
     rw [kerIdeal_comp] at h
     change a ∈ kerIdeal ((PDivGroup.relFrob hp Γ).app 1)
     rw [← GlobalTheory.T.comap_map_eq_self_of_injective_finiteHopf k _ _ (Γ.mulP 1) hmulP

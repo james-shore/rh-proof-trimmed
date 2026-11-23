@@ -111,7 +111,7 @@ theorem kunneth (R : Type) [CommRing R] (C : Type) [Category.{0} C] [Finite C] [
       (evZ F φ).rTensor _ t = f.1 (T, b) (T', b) (φ, 𝟙 b) := fun b ↦ by
     haveI := hf b
     let f₀ : ∀ (T T' : C) (_ : T ⟶ T'), F.obj T' ⊗[R] F.obj b := fun T T' φ ↦ f.1 (T, b) (T', b) (φ, 𝟙 b)
-    refine GlobalTheory.T.flat_cocycle_tensor_representation R C F (F.obj b) f₀ ?_
+    refine _root_.GlobalTheory.CompanionTheory.Axis.cocycle_of_flat R C F (F.obj b) f₀ ?_
     intro T T' T'' φ ψ
     have e := Z1.comp f (show ((T, b) : C × C) ⟶ (T', b) from (φ, 𝟙 b)) (show ((T', b) : C × C) ⟶ (T'', b) from (ψ, 𝟙 b))
     rw [mp_box_left] at e
@@ -123,7 +123,7 @@ theorem kunneth (R : Type) [CommRing R] (C : Type) [Category.{0} C] [Finite C] [
   have hcomp : ∀ (b b' : C) (ψ : b ⟶ b'), (H1.mk F).rTensor _ (t b') =
       (mp F ψ).toLinearMap.lTensor (H1 F) ((H1.mk F).rTensor _ (t b)) := fun b b' ψ ↦ by
     haveI := hf b'
-    have k := GlobalTheory.T.cocycle_tensor_coboundary_class_zero R C F (F.obj b') (t b' - (mp F ψ).toLinearMap.lTensor (Z1 F) (t b))
+    have k := _root_.GlobalTheory.CompanionTheory.Axis.KFlat.class_eq_zero_of_coboundary R C F (F.obj b') (t b' - (mp F ψ).toLinearMap.lTensor (Z1 F) (t b))
       (fun a ↦ f.1 (a, b) (a, b') (𝟙 a, ψ)) (fun T T' φ ↦ by
         have e : (evZ F φ).rTensor _ ((mp F ψ).toLinearMap.lTensor (Z1 F) (t b)) =
             (mp F ψ).toLinearMap.lTensor _ ((evZ F φ).rTensor _ (t b)) := by
@@ -157,7 +157,7 @@ theorem kunneth (R : Type) [CommRing R] (C : Type) [Category.{0} C] [Finite C] [
     rw [e3, e2, ← e]
     change _ - z.1 a a' φ ⊗ₜ[R] (1 : F.obj b) + (z.1 a a' φ ⊗ₜ[R] (1 : F.obj b) - _) = 0
     abel
-  obtain ⟨y, hy⟩ := GlobalTheory.T.cocycle_on_product_from_second_factor R C F hU f' hv
+  obtain ⟨y, hy⟩ := _root_.GlobalTheory.CompanionTheory.Axis.exists_pull_of_vanish_fst R C F hU f' hv
   refine ⟨H1.mk F z, H1.mk F y, ?_⟩
   rw [CoefMap.pullCohomologyOne_class, CoefMap.pullCohomologyOne_class, ← map_add (f := _), H1.mk_eq_mk]
   refine ⟨-G, ?_⟩
@@ -188,7 +188,7 @@ theorem ust_abelian : DescentSt → LowSt → SysBCSt → SteinSt → ∀ (R : T
   obtain ⟨S', m, -⟩ := hB R (TrivSqZeroExt R M) A.left A'.left A.hom A'.hom φ hpb inferInstance P S
   have hSt : Stein (OSys A'.hom S') :=
     ((hL _ _ _ _ _ (resSys A'.hom S') (hD _ _ A'.hom inferInstance P S')).2.2).1 (hS _ A' g hA' hg')
-  exact GlobalTheory.T.exists_unique_constant_of_compatible_family R Pᵒᵖ (OSys A.hom S) M _ m hSt z hz
+  exact _root_.GlobalTheory.CompanionTheory.Axis.existsUnique_const_of_trivSqZeroExt R Pᵒᵖ (OSys A.hom S) M _ m hSt z hz
 
 theorem isPullO_comp (R : Type) [CommRing R] {X Y Z : Over (Sp R)} (f : X ⟶ Y) (g : Y ⟶ Z)
     (a : HO1 Z.hom) (b : HO1 Y.hom) (c : HO1 X.hom) (h1 : IsPullO (wOver g) a b) (h2 : IsPullO (wOver f) b c) :

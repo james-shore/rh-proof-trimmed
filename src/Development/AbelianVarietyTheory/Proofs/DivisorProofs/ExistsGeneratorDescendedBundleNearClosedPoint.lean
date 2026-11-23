@@ -201,7 +201,7 @@ theorem gen_of_ten {T S : Scheme.{0}} (π : S ⟶ T) (G : Over T) [GrpObj G] (G'
     · exact ⟨_, by simp [ten, cubeTen], hb⟩
     · exact ⟨_, by simp [ten, cubeTen], hc⟩
     · exact ⟨_, by simp [ten, cubeTen], iv _ _ (mu _ _ _ _ hb hc)⟩
-  have hg := GlobalTheory.T.exists_generator_of_theoremOfCube_ten_points S G' P θ (Over.mk (k ≫ G'.hom)) x a b c ⊤ fun f' hf' z _ => by
+  have hg := _root_.GlobalTheory.Mum.exists_gen_of_cubeTen S G' P θ (Over.mk (k ≫ G'.hom)) x a b c ⊤ fun f' hf' z _ => by
     obtain ⟨f, hf, e⟩ := key f' hf'
     refine h f hf z _ ?_
     exact (Scheme.Hom.comp_apply _ _ _).symm.trans ((congrArg (fun φ => φ z) e).trans (Scheme.Hom.comp_apply _ _ _))

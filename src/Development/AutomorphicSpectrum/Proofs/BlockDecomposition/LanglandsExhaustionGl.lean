@@ -57,7 +57,7 @@ theorem langlandsMultisegments_of_clauses (hA : GlobalTheory.Published.Irreducib
     (hFree : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k], LOrderFree k)
     (hE : GlobalTheory.Published.LanglandsExhaustionGL) : GlobalTheory.Published.LanglandsMultisegments := by
   intro k _ _ _ _ _
-  exact ⟨GlobalTheory.T.langlands_injective_of_socle hA (hSoc k) (hSeg k),
+  exact ⟨_root_.GlobalTheory.CompanionTheory.Multisegment.lInjective hA (hSoc k) (hSeg k),
     fun 𝔪 𝔫 x y hd h₀ h₁ hy =>
       GlobalTheory.T.langlands_sum_subquotient_product hA (hSoc k) (hSeg k)
         (hFree k) (hE k) 𝔪 𝔫 x y hd h₀ h₁ hy⟩

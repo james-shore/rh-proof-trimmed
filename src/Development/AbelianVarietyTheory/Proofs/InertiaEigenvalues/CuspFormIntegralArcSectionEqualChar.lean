@@ -81,7 +81,7 @@ theorem inV_of_arc_of_extIn : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
   have hχy : spMap ev ≫ χ = y' := hsp hϖ y' ev hy' (by
     rintro _ ⟨x, rfl⟩
     exact ⟨z x, by rw [← Scheme.Hom.comp_apply, hz₃]⟩) hA hevC hevX
-  obtain ⟨ρ, e, th, y₀, t, he, hth, htan, hρ, hy₀, ht⟩ := GlobalTheory.T.exists_constant_integral_arc_frames E H Dw l Xo c _ Y T io b a χ W ev z hP hb hover
+  obtain ⟨ρ, e, th, y₀, t, he, hth, htan, hρ, hy₀, ht⟩ := _root_.GlobalTheory.ArcFrame.exists_arcFrame E H Dw l Xo c _ Y T io b a χ W ev z hP hb hover
     hevC hz₂ (by rw [hz₃, ← hχy, ← Category.assoc, sp_comp]) y.1 hz₁
   obtain ⟨h, N, hval⟩ := exists_value Y T io b a χ W ϖ hϖ hP hb hover hab ρ e th he hth hρ hf.1
 
@@ -120,7 +120,7 @@ theorem inV_of_arc_of_extIn : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
   obtain ⟨h₁, rfl⟩ := hX
 
   have hG : PowerSeries.C ϖ ^ N ∣ h₁ := by
-    obtain ⟨T', ω, i, hω, hωX, hωd, hi, -⟩ := GlobalTheory.T.exists_gaussPoint' T ϖ hϖ
+    obtain ⟨T', ω, i, hω, hωX, hωd, hi, -⟩ := _root_.GlobalTheory.GaussPoint.exists_gaussPoint T ϖ hϖ
     have hinj := IsFractionRing.injective T'.V T'.Fr
     have hω0 : ω (PowerSeries.C ϖ) ≠ 0 := fun h0 =>
       hϖ.ne_zero (PowerSeries.C_injective ((hω (h0.trans (map_zero _).symm)).trans (map_zero _).symm))

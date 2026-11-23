@@ -185,7 +185,7 @@ theorem theta_const_bounded : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
   refine ⟨max T' (max Ha.T T₃), C, hC, fun w hw yF e₁ e₂ hz x φ hx u c₀ hrig hfib hfn => ?_⟩
   simp only [max_lt_iff] at hw
   obtain ⟨rw, hrw, hval⟩ := hT' w hw.1
-  obtain rfl := GlobalTheory.T.thetaConstant_uniformisedChartFibre_eq_familyConstant E H Dw l Xo c σ V Y a χ W g ty Fu Ha th Θ M hgood hty hPI hχ hrng hM w hw.2.1 w₀ w₁ h₀ h₁ (κ * rw) hval yF e₁ e₂ hz x φ hx u c₀ hrig hfib hfn
+  obtain rfl := _root_.GlobalTheory.ArcThetaFib.const_eq E H Dw l Xo c σ V Y a χ W g ty Fu Ha th Θ M hgood hty hPI hχ hrng hM w hw.2.1 w₀ w₁ h₀ h₁ (κ * rw) hval yF e₁ e₂ hz x φ hx u c₀ hrig hfib hfn
   exact hb w hw.2.2 rw hrw
 
 end GlobalTheory.ArcNormal

@@ -63,7 +63,7 @@ theorem local_norm_k {σ : E →ₐ[F] E} {B : Base F E} (hB : _root_.UpperTheor
     GlobalTheory.QuadNormBase.exists_basis F E σ hB.cm.2.2.1 (sig_invol hB.cm) (sig_ne hB.cm)
   have hbb' : b 1 * b 1 = algebraMap F E δ := hbb
   refine (GlobalTheory.QuadSymbol.mem_normGroup_iff_form b hb0 hbb').2 ?_
-  rcases _root_.GlobalTheory.T.nonempty_algHom_or_exists_inert_of_goodK F E σ B hB v with ⟨τ⟩ | ⟨w, hw⟩
+  rcases _root_.GlobalTheory.KFinLoc.split_or_inert_k F E σ B hB v with ⟨τ⟩ | ⟨w, hw⟩
   · obtain ⟨τ⟩ := τ
     have hs : τ (b 1) * τ (b 1) = algebraMap F (Fv F v) δ := by rw [← map_mul, hbb', AlgHom.commutes]
     have hs0 : τ (b 1) ≠ 0 := (map_ne_zero τ).2 (b.ne_zero 1)
@@ -89,7 +89,7 @@ theorem local_norm_k {σ : E →ₐ[F] E} {B : Base F E} (hB : _root_.UpperTheor
       rw [map_mul, map_one] at hm
       rw [← hm]
       exact mul_le_of_le_one_right' a2
-    obtain ⟨z, hz⟩ := _root_.GlobalTheory.InertUnitNorm.unit_eq_mul_conj_k F E σ B hB v w hw (_root_.GlobalTheory.T.inert_completion_isField F E σ B hB v w hw) u hu
+    obtain ⟨z, hz⟩ := _root_.GlobalTheory.InertUnitNorm.unit_eq_mul_conj_k F E σ B hB v w hw (_root_.GlobalTheory.InertTensorField.isField_tensor_of_isInertAt_k F E σ B hB v w hw) u hu
     obtain ⟨x, y, rfl⟩ := tensor_decomp (A := Fv F v) (b 1) (fun x => ⟨b.repr x 0, b.repr x 1, by
       have hx := b.sum_repr x
       rw [Fin.sum_univ_two, hb0] at hx

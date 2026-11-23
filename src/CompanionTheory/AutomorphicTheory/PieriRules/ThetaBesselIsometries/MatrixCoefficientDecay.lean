@@ -71,8 +71,8 @@ theorem pair_bound (H : HypsG) {k r : ℕ} {ε : Fin (2 * r + k + 1) → Bool} {
 
 theorem coef_bound : HypsG → ∀ (k r : ℕ) (ε : Fin (2 * r + k + 1) → Bool) (mu : Fin (2 * r + k + 1) → ℝ) (h : ℝ) (R : Rep k r), R.IsDG ε mu → Formalism.QuantumDeterminants.GapAtLeast ε mu h → GapOK k r h → ∀ x ∈ R.TK, ∀ y ∈ R.TK, ∀ m : ℕ, ∃ c : ℝ, ∀ a b : List (Mx k r), (∀ Y ∈ a, B.unitLie k r Y) → (∀ Y ∈ b, B.unitLie k r Y) → a.length + b.length ≤ m → ∀ g ∈ GG k r, B.gN g ^ (aOf r h - 1) * ‖⟪PI.UpqRep.dsigW (k := k) (r := r) R.σ a x, R.σ g (PI.UpqRep.dsigW (k := k) (r := r) R.σ b y)⟫_ℂ‖ ≤ c := by
   intro H k r ε mu h R hR hgap hok x hx y hy m
-  obtain ⟨M, xs, hxs, hxa⟩ := GlobalTheory.T.k_finite_derivatives_finite_span H.1.2.2.1 k r ε mu R hR x hx m
-  obtain ⟨N, ys, hys, hyb⟩ := GlobalTheory.T.k_finite_derivatives_finite_span H.1.2.2.1 k r ε mu R hR y hy m
+  obtain ⟨M, xs, hxs, hxa⟩ := _root_.Gp91.GlobalTheory.UnitBoxWords.box_words H.1.2.2.1 k r ε mu R hR x hx m
+  obtain ⟨N, ys, hys, hyb⟩ := _root_.Gp91.GlobalTheory.UnitBoxWords.box_words H.1.2.2.1 k r ε mu R hR y hy m
   choose c hc using fun (i : Fin M) (j : Fin N) => pair_bound H R hR hgap hok (xs i) (ys j) (hxs i) (hys j)
   refine ⟨∑ i, ∑ j, c i j, fun a b ha hb hl g hg => ?_⟩
   obtain ⟨co, hco, ea⟩ := hxa a ha (by omega)

@@ -46,6 +46,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.LiftMatrixTransferConjTransposeCommute
 
 @[expose] public section
 
@@ -82,12 +83,6 @@ theorem minus_inv (σ : Site A) (hW : YangianSpanCharacter.T.WeylRel σ.p σ.c �
     abel
   · exact hW.1
 
-theorem lift_zero_one : (lift0 (1 : M2 A) : M2 (SlopeTestRemainingChoices S A)) = 1 := by
-  unfold lift0
-  ext i j
-  rw [Matrix.map_apply, Matrix.one_apply, Matrix.one_apply]
-  split_ifs <;> simp [io]
-
 theorem ivlet_mul_star (σ : Site A) (hW : YangianSpanCharacter.T.WeylRel σ.p σ.c σ.ci) (l : Letter K S)
     (hl : star l.pt = l.pt) : ivlet σ l * star (vlet σ l) = 1 := by
   unfold ivlet vlet
@@ -96,9 +91,9 @@ theorem ivlet_mul_star (σ : Site A) (hW : YangianSpanCharacter.T.WeylRel σ.p �
     ← Formalism.FourierDecayAlt.P.Wd7.lift_reduction_mul]
   cases hpl : l.plus
   · simp only [Bool.false_eq_true, ite_false]
-    rw [minus_inv σ hW l.pt, lift_zero_one, Formalism.FourierDecayAlt.P.Wd1.ins_one]
+    rw [minus_inv σ hW l.pt, _root_.Formalism.FourierDecayAlt.P.Wd8.liftMatrix_one, Formalism.FourierDecayAlt.P.Wd1.ins_one]
   · simp only [ite_true]
-    rw [plus_inv σ hW l.pt hl, lift_zero_one, Formalism.FourierDecayAlt.P.Wd1.ins_one]
+    rw [plus_inv σ hW l.pt hl, _root_.Formalism.FourierDecayAlt.P.Wd8.liftMatrix_one, Formalism.FourierDecayAlt.P.Wd1.ins_one]
 
 theorem ibT_mul_star (σ : Site A) (hσ : IsSite σ) :
     ∀ w : List (Letter K S), (∀ l ∈ w, star l.pt = l.pt) → ibT σ w * star (bT σ w) = 1

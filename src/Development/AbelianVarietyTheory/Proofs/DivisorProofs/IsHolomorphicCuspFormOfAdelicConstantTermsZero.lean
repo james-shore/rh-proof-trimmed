@@ -151,14 +151,9 @@ theorem inZe_iff (X : Data E r) {H : Matrix (Fin r) (Fin r) E} (hG : X.Gm = -H�
 
 end
 
-theorem archM_mul {D : D7} (V : HSp D) (θ : Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ) (a b : GA D V) :
-    archM V θ (a * b) = archM V θ a * archM V θ b := by
-  unfold archM
-  rw [map_mul, Units.val_mul, Matrix.map_mul]
-
 theorem det_archM_conj {D : D7} (V : HSp D) (θ : Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ) (h v : GA D V) :
     (archM V θ (h⁻¹ * v * h)).det = (archM V θ v).det := by
-  rw [archM_mul, Matrix.det_mul_comm, ← archM_mul, ← mul_assoc, mul_inv_cancel, one_mul]
+  rw [_root_.GlobalTheory.PointAtPlace.archM_mul, Matrix.det_mul_comm, ← _root_.GlobalTheory.PointAtPlace.archM_mul, ← mul_assoc, mul_inv_cancel, one_mul]
 
 
 
@@ -226,7 +221,7 @@ theorem isHolCusp_of_zCusp : ∀ (D : D7) (θ : InfFam D) (V : HSp D) (S : D.wha
       obtain ⟨ρ, rfl⟩ := e.surjective τ
       have h1 := hx' ρ (e ρ) (he ρ)
       have h2 := hfr ρ (e ρ) (he ρ)
-      rw [e2, archM_mul, hvs] at h1
+      rw [e2, _root_.GlobalTheory.PointAtPlace.archM_mul, hvs] at h1
       show mat x' (e ρ) = (X k).flowMat η (e ρ) (s (e ρ)) * mat y (e ρ)
       rw [h1, h2, Matrix.mul_assoc]
       rfl
@@ -270,7 +265,7 @@ theorem isHolCusp_of_zCusp : ∀ (D : D7) (θ : InfFam D) (V : HSp D) (S : D.wha
       group
     rw [e1, hF.aut.left q hq, hlev ((γ * g)⁻¹ * a * (γ * g)⁻¹⁻¹) haU ((MonoidHom.normal_ker (infHom V)).conj_mem a haF _)]
     refine key _ _ (mul_mem huI hI) fun ρ => ?_
-    rw [archM_mul, hA, ht, hm]
+    rw [_root_.GlobalTheory.PointAtPlace.archM_mul, hA, ht, hm]
     simp only
     rw [flowMat_mul _ hη0]
     simp

@@ -80,9 +80,6 @@ theorem unitOn_map {F F' : Type} [Field F] [Field F'] (β : F →+* F') (w : Fˣ
     Units.map (spMap β).appTop.hom.toMonoidHom (unitOn w) = unitOn (Units.map β.toMonoidHom w) :=
   Units.ext (congrArg (fun q => q.hom w.val) (Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom β))).symm
 
-theorem unitOn_inj {F : Type} [Field F] : Function.Injective (unitOn (R := F)) := fun a b h =>
-  Units.ext ((ConcreteCategory.bijective_of_isIso (Scheme.ΓSpecIso (CommRingCat.of F)).inv).1 (congrArg Units.val h))
-
 theorem unitOn_surj {F : Type} [Field F] (c : Γ(Sp F, ⊤)ˣ) : ∃ w : Fˣ, unitOn w = c :=
   ⟨Units.map (Scheme.ΓSpecIso (CommRingCat.of F)).hom.hom.toMonoidHom c,
     Units.ext (CommRingCat.inv_hom_apply (Scheme.ΓSpecIso (CommRingCat.of F)) c.val)⟩
@@ -144,7 +141,7 @@ theorem exists_ptHom [CharZero R] [IsAlgClosed F] [IsAlgClosed F'] (ha : IsFib �
     obtain ⟨w, rfl⟩ := unitOn_surj (F := F) w
     have := (GlobalTheory.LevelCompare.weil_existsUnique A k (u x) (u y) (by rw [← map_pow, hx, map_one])
       (by rw [← map_pow, hy, map_one])).unique (up k x y w hw₀) ((hw k x y _).1 h)
-    have e₁ : w = z := Units.ext (em.toRingHom.injective (congrArg Units.val (unitOn_inj this)))
+    have e₁ : w = z := Units.ext (em.toRingHom.injective (congrArg Units.val (_root_.GlobalTheory.LevelFibre.unitOn_injective this)))
     exact e₁ ▸ hw₀
 
 theorem theta_prop [CharZero R] [IsAlgClosed F] [IsAlgClosed F'] (ha : IsFib φ A A' a) (c : Compat φ F')

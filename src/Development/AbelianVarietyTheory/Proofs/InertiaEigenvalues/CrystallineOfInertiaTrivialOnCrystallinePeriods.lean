@@ -168,7 +168,7 @@ theorem kur_stable (g : GQ l) {x : Om l} (hx : x ∈ MaximalUnramifiedExtension 
 
 theorem inert_fix_B (P : LocPrime l) (i : Gl l) (hi : i ∈ IK (Formalism.MainNotions.ElementDenominator.qlExt l)) (c : ↥(MaximalUnramifiedExtension l)) :
     P.actQ (i : GQ l) (algebraMap ↥(MaximalUnramifiedExtension l) P.R.B c) = algebraMap ↥(MaximalUnramifiedExtension l) P.R.B c :=
-  P.actQ_Kur _ c c (L_inert l i hi c c.2)
+  P.actQ_Kur _ c c (_root_.GlobalTheory.InertQlUnr.IK_qlExt_fixes_Kur l i hi c c.2)
 
 theorem sigQ_smul_K0 (P : LocPrime l) {LL : FinExt l} (T : QLat LL) (K : FinExt l) (i : Gl l)
     (hi : i ∈ IK (Formalism.MainNotions.ElementDenominator.qlExt l)) (c : ↥(K0 K)) (w : P.R.B ⊗[ℚ_[l]] T.V) :
@@ -290,7 +290,7 @@ theorem descend (P : LocPrime l) {LL : FinExt l} (T : QLat LL) (K' F K'' : FinEx
       rfl
   haveI := (P.PD K'').finK₀
   intro m hm
-  have key := L_speiser (G := ↥(GK F)) (L := ↥(K0 K'')) (Ω := ↥(MaximalUnramifiedExtension l)) (M := P.R.B ⊗[ℚ_[l]] T.V)
+  have key := _root_.GlobalTheory.speiser_descent_span (G := ↥(GK F)) (L := ↥(K0 K'')) (Ω := ↥(MaximalUnramifiedExtension l)) (M := P.R.B ⊗[ℚ_[l]] T.V)
     (fun g c => ⟨(g : GQ l) c, kur_stable _ c.2⟩) (fun g => embeddingRestrictMaxUnramified K'' (g : GQ l))
     (fun g => (sigQ P T (inclG F g)).toAddMonoidHom) (DcrisK₀ (P.PD K'') (T.ρ.comp (inclG K'')))
     (fun g h c => rfl) (fun c => rfl)
@@ -322,7 +322,7 @@ theorem descend (P : LocPrime l) {LL : FinExt l} (T : QLat LL) (K' F K'' : FinEx
     (fun g hg w hw => by
       change sigQ P T (inclG F g) w = w
       have hfx : ∀ x ∈ K0 K'', (g : GQ l) x = x := fun x hx => congrArg Subtype.val (hg ⟨x, hx⟩)
-      obtain ⟨i, hi, hiF, hih⟩ := L_lift l K' F K'' hN hK'' (g : GQ l) g.2 hfx
+      obtain ⟨i, hi, hiF, hih⟩ := _root_.GlobalTheory.InertiaLift.lift l K' F K'' hN hK'' (g : GQ l) g.2 hfx
       let j : Gl l := i⁻¹ * inclG F g
       have e1 : inclG F g = i * j := (mul_inv_cancel_left i _).symm
       have e2 : sigQ P T j w = w := by
@@ -352,7 +352,7 @@ theorem main : GlobalTheory.Published.FontaineBcris → ∀ (l : ℕ) [Fact l.Pr
   change IsCrys (Pl.PD K') (T.ρ.comp (inclG K')) at hc
   have hc'' : IsCrys (Pl.PD K'') (T.ρ.comp (inclG K'')) :=
     TiedRestrict.isCrys_restrict hK' (T.ρ.comp (inclG K')) hT hc
-  have hspan := L_span l Pl AI hstd LL T K' K'' hK' hc
+  have hspan := _root_.GlobalTheory.Per.DcrisSpan.dcris_span l Pl AI hstd LL T K' K'' hK' hc
   have hfixK : ∀ i : Gl l, i ∈ IK (Formalism.MainNotions.ElementDenominator.qlExt l) →
       (∀ x ∈ Dcris (Pl.PD K') (resF T K').ρ, actVB (Pl.PD (Formalism.MainNotions.ElementDenominator.qlExt l)) T.ρ i x = x) →
       ∀ w ∈ DcrisK₀ (Pl.PD K'') (T.ρ.comp (inclG K'')), sigQ Pl T i w = w := by
@@ -372,7 +372,7 @@ theorem main : GlobalTheory.Published.FontaineBcris → ∀ (l : ℕ) [Fact l.Pr
   constructor
   · intro hyp
     change IsCrys (Pl.PD F) (T.ρ.comp (inclG F))
-    exact L_dim l Pl AI hstd LL T F K'' hc'' (descend Pl T K' F K'' hN hK'' fun i hi hiF => hfixK i hi (hyp i hi hiF))
+    exact _root_.GlobalTheory.BKGal.isCrys_of_dcris_le_span l Pl AI hstd LL T F K'' hc'' (descend Pl T K' F K'' hN hK'' fun i hi hiF => hfixK i hi (hyp i hi hiF))
   · intro g hg p hp
     show ∀ x : T.V ⊗[ℚ_[l]] Pl.R.B, x ∈ Dcris (Pl.PD F) (T.ρ.comp (inclG F)) →
       (Polynomial.aeval (actVB (Pl.PD (Formalism.MainNotions.ElementDenominator.qlExt l)) T.ρ g : Module.End ↥LL.1 (T.V ⊗[ℚ_[l]] Pl.R.B)) p) x = 0

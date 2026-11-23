@@ -99,7 +99,7 @@ theorem op_galB_comm : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure
     obtain ⟨e, he, hζ⟩ := GlobalTheory.T.galAlgClosureRat_primitiveRoot_eq_pow s q hq
 
     rw [LinearMap.sum_apply, LinearMap.sum_apply, map_sum]
-    rw [← GlobalTheory.T.sum_act_upperTriangular_hecke_reindex_coprime_unit X l _ hinv q e hq he]
+    rw [← _root_.GlobalTheory.KZ.Tower.sum_act_upper_mul_unit X l _ hinv q e hq he]
     refine Finset.sum_congr rfl fun j _ => ?_
     exact (GlobalTheory.T.galoisAction_upperTriangular_hecke_reindex_on_B ε X hε hj N l w hl hN hNl hw s q e hq hζ (j : ℤ) b hb).symm
 

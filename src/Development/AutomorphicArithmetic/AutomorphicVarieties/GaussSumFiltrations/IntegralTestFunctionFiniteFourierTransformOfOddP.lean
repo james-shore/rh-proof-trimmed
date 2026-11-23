@@ -130,23 +130,14 @@ section Lat
 
 variable {F : Type} [Field F] [NumberField F] {κ : Type} [Fintype κ] [DecidableEq κ]
 
-theorem smul_mem_LL {a : F} (ha : IsIntegral ℤ a) {x : κ → F} (hx : x ∈ LL F κ) : a • x ∈ LL F κ :=
-  fun i hi => ha.mul (hx i hi)
-
-theorem BF_smul_right (G : Matrix κ κ ℤ) (a : F) (x y : κ → F) : BF G x (a • y) = a * BF G x y := by
-  simp only [BF, Matrix.mulVec_smul, dotProduct_smul, smul_eq_mul]
-
-theorem BF_add_right (G : Matrix κ κ ℤ) (x y z : κ → F) : BF G x (y + z) = BF G x y + BF G x z := by
-  simp only [BF, Matrix.mulVec_add, dotProduct_add]
-
 theorem isSB_wT {p : ℕ} (hp : p.Prime) {δ : F} (hδ : IsDel p δ) {G S : Matrix κ κ ℤ} {t : ℕ} (hL : LatD p G S t)
     (Φ : (κ → F) → ℂ) {N : ℕ} {T : Finset (κ → F)} {c : F} (hN : 0 < N) (hNp : N.Coprime p)
     (hT : ∀ x ∈ T, x ∈ aL κ (N : F)⁻¹) (hc : PUnit p (c / δ)) (k : ℕ) :
     ∃ M : ℕ, 0 < M ∧ M.Coprime p ∧ IsSB M (wT G k t (N : F) c T Φ) := by
-  obtain ⟨hδ0, hint, htr, d, -, hd, -, -, hdu⟩ := GlobalTheory.T.isDel_ne_zero_coprime_denominators_different_generator F p hp δ hδ
-  obtain ⟨-, hsm, hadd, hI, -, haL, het, -⟩ := GlobalTheory.T.evenPos_gramForm_integral_lattice_properties F κ G hL.pos
-  obtain ⟨hlev, -⟩ := GlobalTheory.T.dualLattice_index_eq_discr_pow_mul_det_pow F κ G hL.pos
-  obtain ⟨-, -, -, ht⟩ := GlobalTheory.T.intMatrix_isometry_prime_order_lattice_stability F p hp κ G S t hL
+  obtain ⟨hδ0, hint, htr, d, -, hd, -, -, hdu⟩ := _root_.GlobalTheory.HilbertThetaSeries.denominators_prime_to F p hp δ hδ
+  obtain ⟨-, hsm, hadd, hI, -, haL, het, -⟩ := _root_.GlobalTheory.HilbertThetaSeries.formLatticeProps F κ G hL.pos
+  obtain ⟨hlev, -⟩ := _root_.GlobalTheory.HilbertThetaSeries.DualLevel.dual_level_index F κ G hL.pos
+  obtain ⟨-, -, -, ht⟩ := _root_.GlobalTheory.HilbertThetaSeries.IsoP.isometry_order_p F p hp κ G S t hL
   have htp : t.Coprime p := ((Nat.Prime.coprime_iff_not_dvd hp).2 (by exact_mod_cast ht)).symm
   obtain ⟨w₀, hw₀⟩ := exists_place F p hp
   have hc0 : c ≠ 0 := by
@@ -178,7 +169,7 @@ theorem isSB_wT {p : ℕ} (hp : p.Prime) {δ : F} (hδ : IsDel p δ) {G S : Matr
   · have hyd : ((N : F) / c) • y ∈ dualL F G := by
       by_contra h
       exact hy (by simp [wT, h])
-    have h3 := smul_mem_LL ((hnat (N₂ * N)).mul h1i) (hlev _ hyd d hd)
+    have h3 := _root_.GlobalTheory.HilbertThetaSeries.DualLevel.smul_mem_LL ((hnat (N₂ * N)).mul h1i) (hlev _ hyd d hd)
     refine (haL _ _).2 ⟨_, h3, ?_⟩
     rw [smul_smul, smul_smul, smul_smul, hL.det]
     have e : ((N₁ * N₂ * N : ℕ) : F)⁻¹ * (((N₂ * N : ℕ) : F) * (N₁ * (c / ((t : F) ^ 2 * d * N)))) *
@@ -207,7 +198,7 @@ theorem isSB_wT {p : ℕ} (hp : p.Prime) {δ : F} (hδ : IsDel p δ) {G S : Matr
       rw [hadd, add_div, (het _ _).1, ((het (BF _ (_ • l₀) _ / c) 0).2.2.1).2, mul_one]
       obtain ⟨n, hn⟩ := h2i _ ((hnat N₁).mul ((hI l₀ hl₀).2 x₀ hx₀))
       refine ⟨n, ?_⟩
-      rw [← hn, (hsm _ _ _).1, BF_smul_right]
+      rw [← hn, (hsm _ _ _).1, _root_.GlobalTheory.HilbertThetaSeries.FormLat.bf_smul_right]
       congr 1
       push_cast
       field_simp
@@ -220,9 +211,9 @@ theorem good_wT : ∀ (F : Type) [Field F] [NumberField F] (p : ℕ) [Fact p.Pri
   classical
   have hp : p.Prime := hpf.out
   obtain ⟨-, hinv, hint, hzero⟩ := hΦ
-  obtain ⟨-, hsm, -, -, -, haL, het, -⟩ := GlobalTheory.T.evenPos_gramForm_integral_lattice_properties F κ G hL.pos
-  obtain ⟨hiso, hS, hfree, -⟩ := GlobalTheory.T.intMatrix_isometry_prime_order_lattice_stability F p hp κ G S t hL
-  have hC := GlobalTheory.T.weil_index_constant_congruent_one_mod_prime F p ι hp2 δ c hδ hc t N hNp hL.cong
+  obtain ⟨-, hsm, -, -, -, haL, het, -⟩ := _root_.GlobalTheory.HilbertThetaSeries.formLatticeProps F κ G hL.pos
+  obtain ⟨hiso, hS, hfree, -⟩ := _root_.GlobalTheory.HilbertThetaSeries.IsoP.isometry_order_p F p hp κ G S t hL
+  have hC := _root_.GlobalTheory.HilbertThetaSeries.wC_near_one F p ι hp2 δ c hδ hc t N hNp hL.cong
   have hp1 : (p : ℝ)⁻¹ ≤ 1 := inv_le_one_of_one_le₀ (by exact_mod_cast hp.one_le)
   have hC1 : ‖ι.symm (wC (p - 1) t (N : F) c)‖ ≤ 1 := by
     have := IsUltrametricDist.norm_add_le_max (ι.symm (wC (p - 1) t (N : F) c) - 1) 1
@@ -247,10 +238,10 @@ theorem good_wT : ∀ (F : Type) [Field F] [NumberField F] (p : ℕ) [Fact p.Pri
       refine Finset.sum_nbij σ (fun x hx => (hσ x hx).1) hbij.injOn hbij.surjOn fun x hx => ?_
       obtain ⟨l, hl, e⟩ := (haL _ _).1 (hσ x hx).2
       have e' : S.map (Int.cast : ℤ → F) *ᵥ x = σ x + (N : F) • l := by rw [← e, hs, add_sub_cancel]
-      rw [hΦσ x hx, ← (hiso y x).1, e', BF_add_right, add_div, (het _ _).1, ((het (BF _ _ (_ • l) / c) 0).2.2.1).2, mul_one]
+      rw [hΦσ x hx, ← (hiso y x).1, e', _root_.GlobalTheory.HilbertThetaSeries.FormLat.bf_add_right, add_div, (het _ _).1, ((het (BF _ _ (_ • l) / c) 0).2.2.1).2, mul_one]
       obtain ⟨n, hn⟩ := hiff.2 h l hl
       refine ⟨n, ?_⟩
-      rw [← hn, (hsm _ _ _).1, BF_smul_right]
+      rw [← hn, (hsm _ _ _).1, _root_.GlobalTheory.HilbertThetaSeries.FormLat.bf_smul_right]
       congr 1
       ring
     · rfl
@@ -270,7 +261,7 @@ theorem good_wT : ∀ (F : Type) [Field F] [NumberField F] (p : ℕ) [Fact p.Pri
       refine Finset.sum_congr rfl fun x _ => ?_
       simp [BF, et]
     have hσ0 : σ 0 = 0 := (huniq _ h0 _ (hσ 0 h0).1 (by simpa using (hσ 0 h0).2)).symm
-    have horb := GlobalTheory.T.norm_sum_free_orbits_le_inv_prime p ι _ σ (T.erase 0) Φ
+    have horb := _root_.GlobalTheory.HilbertThetaSeries.norm_sum_free_orbits_le p ι _ σ (T.erase 0) Φ
       (fun x hx => by
         obtain ⟨hx0, hx⟩ := Finset.mem_erase.1 hx
         exact Finset.mem_erase.2 ⟨fun h => hx0 (hbij.injOn hx h0 (h.trans hσ0.symm)), (hσ x hx).1⟩)
@@ -299,5 +290,3 @@ end GlobalTheory.HilbertThetaSeries.GoodInv
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Af UpperTheory.V.Sd GlobalTheory.HilbertThetaSeries
 open scoped Matrix
 
-theorem _root_.GlobalTheory.T.integral_test_function_finite_fourier_transform_of_odd_prime : ∀ (F : Type) [Field F] [NumberField F] (p : ℕ) [Fact p.Prime] (ι : Qbar p ≃+* ℂ), p ≠ 2 → ∀ δ : F, IsDel p δ → ∀ (κ : Type) [Fintype κ] [DecidableEq κ] (G S : Matrix κ κ ℤ) (t : ℕ), LatD p G S t → ∀ (Φ : (κ → F) → ℂ) (N : ℕ) (T : Finset (κ → F)) (c : F), Good ι S Φ → 0 < N → N.Coprime p → IsSB N Φ → IsReps (aL κ (N : F)) (aL κ (N : F)⁻¹) T → 0 ∈ T → PUnit p (c / δ) → Good ι S (wT G (p - 1) t (N : F) c T Φ) := by
-  first | exact @GlobalTheory.HilbertThetaSeries.GoodInv.good_wT | exact GlobalTheory.HilbertThetaSeries.GoodInv.good_wT | (intros; apply GlobalTheory.HilbertThetaSeries.GoodInv.good_wT <;> assumption)

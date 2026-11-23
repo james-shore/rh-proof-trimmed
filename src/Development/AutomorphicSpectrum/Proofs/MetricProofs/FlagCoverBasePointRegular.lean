@@ -46,6 +46,8 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.TransPtBase
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagModelBaseProjectionPoints
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsArith
 
 @[expose] public section
 
@@ -163,54 +165,18 @@ theorem comp_mem_mcPts {Ω Ω' : Type} [Field Ω] [Field Ω'] {κ : K → K'} {v
 
 end Forms
 
-private theorem isHecke_div_and_resEtaPow_div {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {Ω : Type} [Field Ω]
-    (y : (Σ k, ι k) → Ω) {g : MRing ι} {d : K → ℕ} (hg : IsMultiHomog g d) :
-    mConeMap y g = C (aeval y g) * ∏ k, X k ^ d k := by
-  have key : ∀ m ∈ g.support, (m.prod fun p e => (X p.1 : MvPolynomial K Ω) ^ e) = ∏ k, X k ^ d k := by
-    intro m hm
-    rw [Finsupp.prod_fintype _ _ (fun p => pow_zero _), Fintype.prod_sigma]
-    refine Finset.prod_congr rfl (fun k _ => ?_)
-    dsimp only
-    rw [Finset.prod_pow_eq_pow_sum, hg m hm k]
-  conv_lhs => rw [g.as_sum]
-  conv_rhs => rw [g.as_sum]
-
-  simp only [map_sum, Finset.sum_mul]
-  refine Finset.sum_congr rfl (fun m hm => ?_)
-  rw [← key m hm]
-  simp only [mConeMap, aeval_monomial, Finsupp.prod, mul_pow, Finset.prod_mul_distrib, map_mul, map_prod,
-    map_pow, algebraMap_int_eq, eq_intCast, map_intCast]
-  ring
-
-private theorem isPair_and_isPair_of_isTriple {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {Ω : Type} [Field Ω]
-    {y : (Σ k, ι k) → Ω} {s : Ω} {z : (Σ k, ι k) → ℂ} (hz : z ∈ mcPts (mCoordIdeal y)) {v1 v2 : ℂ}
-    (H1 : IsValueAt y s z v1) (H2 : IsValueAt y s z v2) : v1 = v2 := by
-  obtain ⟨d1, g1, h1, hg1, hh1, -, he1, hz1, rfl⟩ := H1
-  obtain ⟨d2, g2, h2, hg2, hh2, -, he2, hz2, rfl⟩ := H2
-  have hmem : g1 * h2 - g2 * h1 ∈ mCoordIdeal y := by
-    rw [mCoordIdeal, RingHom.mem_ker, map_sub, map_mul, map_mul, isHecke_div_and_resEtaPow_div y hg1, isHecke_div_and_resEtaPow_div y hh2, isHecke_div_and_resEtaPow_div y hg2,
-      isHecke_div_and_resEtaPow_div y hh1, he1, he2]
-    simp only [map_mul]
-    ring
-  unfold mcPts at hz
-  obtain ⟨-, hzP⟩ := hz
-  have h0 := hzP _ hmem
-  simp only [map_sub, map_mul] at h0
-  rw [div_eq_div_iff hz1 hz2]
-  linear_combination h0
-
 theorem regAt_φ_valAt : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (Φ : Type) [Field Φ] (y : (Σ k, ι k) → Φ) (Ψ : Type) [Fintype Ψ] [DecidableEq Ψ] (N j : ℕ) (M : FlagModel y Ψ N j) (K' : Type) [Fintype K'] (ι' : K' → Type) [∀ k, Fintype (ι' k)] (Φ' : Type) [Field Φ'] (y' : (Σ k, ι' k) → Φ') (M' : FlagModel y' Ψ N j) (Cv : FlagCover M' M) (zb : (Σ k, baseIdx ι' M'.blk k) → ℂ) (s : M.Ω), zb ∈ mcPts (mCoordIdeal M'.x) → RegAt M.x (mCoordIdeal (zb ∘ Cv.v)) s → RegAt M'.x (mCoordIdeal zb) (Cv.φ s) ∧ valAt M'.x (Cv.φ s) zb = valAt M.x s (zb ∘ Cv.v) := by
   intro K _ ι _ Φ _ y Ψ _ _ N j M K' _ ι' _ Φ' _ y' M' Cv zb s hzb hreg
   obtain ⟨d, g, h, hg, hh, hhn, he⟩ := hreg
   have hb := Cv.block
   have hxv : M'.x ∘ Cv.v = Cv.φ ∘ M.x := funext Cv.x_eq
-  have hz' : zb ∘ Cv.v ∈ mcPts (mCoordIdeal M.x) := comp_mem_mcPts hb Cv.φ hxv hzb
+  have hz' : zb ∘ Cv.v ∈ mcPts (mCoordIdeal M.x) := _root_.GlobalTheory.CompanionTheory.Ar.PB.CPts.comp_mem_mcPts hb Cv.φ hxv hzb
   have hg' := isMultiHomog_rename_block hb hg
   have hh' := isMultiHomog_rename_block hb hh
-  have hhn' := rename_notMem hb hhn
+  have hhn' := _root_.GlobalTheory.CompanionTheory.Ar.PB.CPts.rename_notMem hb hhn
   have hae : ∀ f : MRing (baseIdx ι M.blk), aeval M'.x (rename Cv.v f) = Cv.φ (aeval M.x f) := by
     intro f
-    rw [aeval_rename, hxv, aeval_comp_ringHom]
+    rw [aeval_rename, hxv, _root_.GlobalTheory.CompanionTheory.Ar.PB.CPts.aeval_comp_ringHom]
   have he' : aeval M'.x (rename Cv.v g) = Cv.φ s * aeval M'.x (rename Cv.v h) := by
     rw [hae, hae, he, map_mul]
   refine ⟨⟨_, _, _, hg', hh', hhn', he'⟩, ?_⟩
@@ -221,11 +187,11 @@ theorem regAt_φ_valAt : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fi
   have hev : eval (zb ∘ Cv.v) (map (Int.castRingHom ℂ) h) ≠ 0 := by
     intro h0
     apply hhn
-    rw [mCoordIdeal, RingHom.mem_ker, isHecke_div_and_resEtaPow_div _ hh, ← hcast, h0, map_zero, zero_mul]
+    rw [mCoordIdeal, RingHom.mem_ker, _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.ProjLine.mConeMap_eq_of_isMultiHomog _ hh, ← hcast, h0, map_zero, zero_mul]
   have hax : aeval M.x h ≠ 0 := by
     intro h0
     have hmem : h ∈ mCoordIdeal M.x := by
-      rw [mCoordIdeal, RingHom.mem_ker, isHecke_div_and_resEtaPow_div _ hh, h0, map_zero, zero_mul]
+      rw [mCoordIdeal, RingHom.mem_ker, _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.ProjLine.mConeMap_eq_of_isMultiHomog _ hh, h0, map_zero, zero_mul]
     have hz2 := hz'
     unfold mcPts at hz2
     exact hev (hz2.2 _ hmem)
@@ -243,6 +209,6 @@ theorem regAt_φ_valAt : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fi
   have hex1 : ∃ v, IsValueAt M.x s (zb ∘ Cv.v) v := ⟨_, hv1⟩
   have hex2 : ∃ v, IsValueAt M'.x (Cv.φ s) zb v := ⟨_, hv2⟩
   unfold valAt
-  rw [dite_eq_left hex1, dite_eq_left hex2, isPair_and_isPair_of_isTriple hzb hex2.choose_spec hv2, isPair_and_isPair_of_isTriple hz' hex1.choose_spec hv1]
+  rw [dite_eq_left hex1, dite_eq_left hex2, _root_.GroundTheory.Heights₂.Heights.LowerBoundFree.isValueAt_unique hzb hex2.choose_spec hv2, _root_.GroundTheory.Heights₂.Heights.LowerBoundFree.isValueAt_unique hz' hex1.choose_spec hv1]
 
 end GlobalTheory.CompanionTheory.Ar.PB.CovGraph.RegPhi

@@ -94,21 +94,8 @@ end GlobalTheory.AV.AbVar.DegNorm
 
 namespace GlobalTheory.AV.AbVar.DegNorm
 
-theorem charpoly_eq_minpoly_pow {K : Type} [Field K] (A : AbVar K) (hA : A.dim ≠ 0) {F : Type} [Field F]
-    [NumberField F] (ι : 𝓞 F →+* End A) (x : 𝓞 F) :
-    ∃ k : ℕ, 0 < k ∧ (charpoly (ι x)).map (Int.castRingHom ℚ) = minpoly ℚ (x : F) ^ k := by
-  first
-  | exact @_root_.GlobalTheory.CharpolyMinpolyPower.charpoly_eq_minpoly_pow
-  | exact _root_.GlobalTheory.CharpolyMinpolyPower.charpoly_eq_minpoly_pow
-  | (apply _root_.GlobalTheory.CharpolyMinpolyPower.charpoly_eq_minpoly_pow <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CharpolyMinpolyPower.charpoly_eq_minpoly_pow <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CharpolyMinpolyPower.charpoly_eq_minpoly_pow <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CharpolyMinpolyPower.charpoly_eq_minpoly_pow ..)
-
 end GlobalTheory.AV.AbVar.DegNorm
 
 namespace GlobalTheory.AV.AbVar.DegNorm
-
-open IntermediateField
 
 end GlobalTheory.AV.AbVar.DegNorm

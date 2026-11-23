@@ -59,20 +59,9 @@ theorem mul_mem_scale (L : PeriodPair) (c : ℂ) (hc : c ≠ 0) (z : ℂ) :
     c * z ∈ (scalePair L c hc).lattice ↔ z ∈ L.lattice := by
   rw [(Formalism.L2.Th1.F.homogeneity L c hc).1, inv_mul_cancel_left₀ hc]
 
-theorem herm_scale (L : PeriodPair) (c : ℂ) (hc : c ≠ 0) (z w : ℂ) :
-    Formalism.L2.Th1.F.herm (scalePair L c hc) (c * z) (c * w) = Formalism.L2.Th1.F.herm L z w := by
-  have hA := (Formalism.L2.Th1.F.homogeneity L c hc).2.2.2.2.2.1
-  have hn : ((‖c‖ : ℂ)) ^ 2 ≠ 0 := pow_ne_zero 2 (by exact_mod_cast (norm_pos_iff.mpr hc).ne')
-  simp only [Formalism.L2.Th1.F.herm, hA, map_mul]
-  have h1 : c * z * (conj c * conj w) = (‖c‖ : ℂ) ^ 2 * (z * conj w) := by
-    rw [← Complex.mul_conj' c]; ring
-  rw [h1]
-  push_cast
-  exact mul_div_mul_left _ _ hn
-
 theorem scalePair_mul_mul_eq (L : PeriodPair) (c : ℂ) (hc : c ≠ 0) (z w : ℂ) :
     Formalism.L2.Th1.F.altE (scalePair L c hc) (c * z) (c * w) = Formalism.L2.Th1.F.altE L z w := by
-  simp only [Formalism.L2.Th1.F.altE, herm_scale]
+  simp only [Formalism.L2.Th1.F.altE, _root_.Formalism.L2.Th1.F.Homog.herm_scale]
 
 theorem semiChar_scale (L : PeriodPair) (c : ℂ) (hc : c ≠ 0) (ω : ℂ) :
     Formalism.L2.Th1.F.semiChar (scalePair L c hc) (c * ω) = Formalism.L2.Th1.F.semiChar L ω := by
@@ -93,7 +82,7 @@ theorem smul_mem_stdLat_scale (L : PeriodPair) (c : ℂ) (hc : c ≠ 0) (n : Typ
 
 theorem stdH_scale (L : PeriodPair) (c : ℂ) (hc : c ≠ 0) (n : Type*) [Fintype n] [DecidableEq n] (z w : n → ℂ) :
     stdH (scalePair L c hc) n (c • z) (c • w) = stdH L n z w := by
-  simp only [stdH_apply, Pi.smul_apply, smul_eq_mul, herm_scale]
+  simp only [stdH_apply, Pi.smul_apply, smul_eq_mul, _root_.Formalism.L2.Th1.F.Homog.herm_scale]
 
 theorem alphaQ_scale (L : PeriodPair) (c : ℂ) (hc : c ≠ 0) (n : Type*) [Fintype n] [DecidableEq n] (r : ℝ)
     (x : n → ℂ) : alphaQ r (stdH (scalePair L c hc) n) (c • x) = alphaQ r (stdH L n) x := by

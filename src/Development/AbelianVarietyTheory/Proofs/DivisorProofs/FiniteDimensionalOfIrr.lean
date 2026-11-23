@@ -203,7 +203,7 @@ theorem isoGL_of_twist [Finite F] {b b' : Fin r → ℕ} {σ : Representation �
     (i : Fin r) (hf : IsFactor b σ (b i) ρ) (hf' : IsFactor b' σ' (b' (w i)) ρ') : IsoGL ρ ρ' := by
   obtain ⟨hi, hc, hs⟩ := hf
   obtain ⟨hi', hc', hs'⟩ := hf'
-  obtain ⟨h1, h2⟩ := GlobalTheory.T.blockGLHom_conj_permMatrix_of_blocks_match F r b b' w hw i
+  obtain ⟨h1, h2⟩ := _root_.GlobalTheory.Proof.BlockConj.blockHom_conj_permGL F r b b' w hw i
   obtain rfl : d = d' := hc.symm.trans (h1.trans hc')
   obtain ⟨π, hπ⟩ := h2 d hc hc'
   let τ' : Representation ℂ (GL (Fin d) F) V' :=
@@ -226,9 +226,9 @@ theorem exists_perm_of_kernel (h : IsRegularCusp b σ d W ρ) (h' : IsRegularCus
       K ((p' : GL (Fin r) F) * g * (p : GL (Fin r) F)) = σ' p' ∘ₗ K g ∘ₗ σ p) {g : GL (Fin r) F} (hg : K g ≠ 0) :
     ∃ (w : Equiv.Perm (Fin r)) (p' : blockTri (κ := F) b') (p : blockTri (κ := F) b),
       g = (p' : GL (Fin r) F) * permGL F w * (p : GL (Fin r) F) ∧ ∀ i, IsoGL (ρ (b i)) (ρ' (b' (w i))) := by
-  obtain ⟨w, p', p, rfl⟩ := GlobalTheory.T.exists_permMatrix_rep_parabolic_doubleCoset F r b b' h.1.mono h'.1.mono g
+  obtain ⟨w, p', p, rfl⟩ := _root_.GlobalTheory.FinGL.Bruhat.exists_perm_rep_blockTri F r b b' h.1.mono h'.1.mono g
   have h0 : K (permGL F w) ≠ 0 := fun e => hg (by rw [hK, e]; simp)
-  have hw := GlobalTheory.T.cuspidalLeviDatum_perm_blocks_match F r b b' V V' σ σ' h.1 h'.1 w _ h0 (kernel_twist hK _)
+  have hw := _root_.GlobalTheory.FinGL.BlockMatch.blocks_match F r b b' V V' σ σ' h.1 h'.1 w _ h0 (kernel_twist hK _)
   exact ⟨w, p', p, rfl, fun i => isoGL_of_twist hw h0 (kernel_twist hK _) i (h.2.1 _ ⟨i, rfl⟩) (h'.2.1 _ ⟨w i, rfl⟩)⟩
 
 theorem parInd_irreducible (h : IsRegularCusp b σ d W ρ) : (parInd b σ).IsIrreducible := by
@@ -262,7 +262,7 @@ theorem exists_twist (h : IsRegularCusp b σ d W ρ) (h' : IsRegularCusp b' σ' 
       exact this) (by
       rintro ⟨_, i, rfl⟩
       obtain ⟨-, hc', hs'⟩ := isFactor_of_iso (hρ i) (h'.2.1 _ ⟨w i, rfl⟩)
-      obtain ⟨π, hπ⟩ := (GlobalTheory.T.blockGLHom_conj_permMatrix_of_blocks_match F r b b' w hw i).2 _ (hf ⟨_, i, rfl⟩).2.1 hc'
+      obtain ⟨π, hπ⟩ := (_root_.GlobalTheory.Proof.BlockConj.blockHom_conj_permGL F r b b' w hw i).2 _ (hf ⟨_, i, rfl⟩).2.1 hc'
       refine isotypic_conj π (fun g => ?_) hs'
       refine congrArg σ' (Subtype.ext ?_)
       show (ι' (f ⟨_, i, rfl⟩ g) : GL (Fin r) F) = _

@@ -65,7 +65,7 @@ theorem ConeMeetNull.null_of_mem_not_mem (hZ : ZeroLocusDimH.Statement) {n e : �
   set J : Ideal (MvPolynomial (Fin n) ℂ) := W ⊔ Ideal.span {g} with hJ
 
   have hdim : ringKrullDim (MvPolynomial (Fin n) ℂ ⧸ J) ≤ (e : ℕ) :=
-    ZeroLocusDimH.le_of_add_one_le_succ
+    _root_.UpperTheory.Reformulated.B.Qn14.le_of_add_one_le_succ
       ((ZeroLocusDimH.ringKrullDim_quot_sup_add_one_le W g hgW).trans hW)
 
   let φ : EuclideanSpace ℂ (Fin n) →ₗ[ℂ] (Fin n → ℂ) :=

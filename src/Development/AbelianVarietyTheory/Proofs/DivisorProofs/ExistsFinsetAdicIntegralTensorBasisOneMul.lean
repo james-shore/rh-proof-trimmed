@@ -53,9 +53,4 @@ noncomputable section
 
 namespace GlobalTheory.AdicSpan
 
-theorem isIntB_one_mul_cofinite : ∀ (C : Type) [Ring C] [Algebra ℚ C] [FiniteDimensional ℚ C] (κ : Type) (b : Module.Basis κ ℚ C),
-    ∃ S : Finset (HeightOneSpectrum ℤ), ∀ v ∉ S,
-      IsIntB v b 1 ∧ ∀ y z, IsIntB v b y → IsIntB v b z → IsIntB v b (y * z) :=
-  isIntB_one_mul_eventually
-
 end GlobalTheory.AdicSpan

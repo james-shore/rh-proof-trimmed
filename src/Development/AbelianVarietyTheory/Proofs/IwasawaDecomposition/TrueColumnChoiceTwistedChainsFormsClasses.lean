@@ -262,7 +262,7 @@ theorem twStep_top (hok : I.Ok) (pins : TC.Pins B X) {H : Formalism.L2.Herm.Herm
     have hχ (κ κ' : ((F u).cls B.R.m le_rfl (Or.inr rfl)).lev.U)
         (e : κ.1 = κ'.1) : χ κ = χ κ' := congrArg χ (Subtype.ext e)
     exact ⟨S, ⟨fun _ _ κ κ' e _ => hχ κ κ' e, fun h => (h rfl).elim, fun h => (h rfl).elim⟩⟩
-  · obtain ⟨K1, hk, htop, hoU, hfin, hchi⟩ := GlobalTheory.T.chart_lastStep_twistBasePoint I hok pins l Z u a Q ((F u).cls B.R.m le_rfl (Or.inr rfl)) hQ hr0
+  · obtain ⟨K1, hk, htop, hoU, hfin, hchi⟩ := _root_.GlobalTheory.Mem.Col2.TC.chart_twm I hok pins l Z u a Q ((F u).cls B.R.m le_rfl (Or.inr rfl)) hQ hr0
     have hr : I.ReadsK l Z u a B.R.m le_rfl (fun _ => ()) K1 :=
       hk.elim fun k h => ⟨k, h.1⟩
     have hLb (β : Unit) : (K1 β).lev.Lb = ((F u).cls B.R.m le_rfl (Or.inr rfl)).lev.Lb := by
@@ -333,10 +333,10 @@ theorem twPack_ex (hok : I.Ok) (pins : TC.Pins B X) {H : Formalism.L2.Herm.HermC
       · exact absurd (ha ▸ (hQ v).1 hv) (GlobalTheory.T.not_twistPlace_referenceTuple I hok v)
     · obtain ⟨n, hn, h⟩ := (St (B.R.m - 1)).chiFin ha h1 (Nat.sub_le _ _) β
       exact ⟨n, hn, fun κ _ => h κ⟩
-  obtain ⟨J⟩ := GlobalTheory.T.exists_penultimateLevel_couplingCosets I hok pins l Z H.Ch H.chOf F u a Q h1 (St (B.R.m - 1)).Ch (St (B.R.m - 1)).fin (St (B.R.m - 1)).chOf
+  obtain ⟨J⟩ := _root_.GlobalTheory.Mem.Col2.TwistLevel.exists_levJ_cosets I hok pins l Z H.Ch H.chOf F u a Q h1 (St (B.R.m - 1)).Ch (St (B.R.m - 1)).fin (St (B.R.m - 1)).chOf
     (fun β => (St (B.R.m - 1)).K h1 (Nat.sub_le _ _) β) (St (B.R.m - 1)).gOf hQ hF hJ ((St (B.R.m - 1)).readsQ h1 (Nat.sub_le _ _) h2) hfin
     (fun β v hv => (St (B.R.m - 1)).offK h1 h2 β v hv) (fun β κ κ' e hv => (St (B.R.m - 1)).chiC h1 h2 β κ κ' e hv)
-  obtain ⟨χ, hχ, hχ'⟩ := GlobalTheory.T.exists_levelJ_character_eq_member_off_places I hok pins l Z H.Ch H.chOf F u a Q h1 (St (B.R.m - 1)).Ch (St (B.R.m - 1)).fin (St (B.R.m - 1)).chOf
+  obtain ⟨χ, hχ, hχ'⟩ := _root_.GlobalTheory.Mem.Col2.TC.twLevJ_exists_chi_off I hok pins l Z H.Ch H.chOf F u a Q h1 (St (B.R.m - 1)).Ch (St (B.R.m - 1)).fin (St (B.R.m - 1)).chOf
     (fun β => (St (B.R.m - 1)).K h1 (Nat.sub_le _ _) β) (St (B.R.m - 1)).gOf hQ hF hJ ((St (B.R.m - 1)).reads h1 (Nat.sub_le _ _))
     (fun β v hv => (St (B.R.m - 1)).offK h1 h2 β v hv) (fun β κ κ' e hv => (St (B.R.m - 1)).chiC h1 h2 β κ κ' e hv) J
   exact ⟨⟨St, hSt ▸ hSm, { J with chiJ := χ, chiJ_eq := hχ }, hχ'⟩⟩
@@ -451,10 +451,10 @@ def twW (hok : I.Ok) (pins : TC.Pins B X) (l0 : I.Law0 l) {H : Formalism.L2.Herm
       chiJ u μ _ := (p u μ).J.chiJ
       chiJ_eq u μ _ _ β κ κ' e := (p u μ).J.chiJ_eq β κ κ' e
       val u μ _ i h1 hm := by
-        have hv := GlobalTheory.T.hermitianChart_complex_rational_integral_forms I hok pins l Z u μ i hm _ _ _ (fun β => ((p u μ).St i).K h1 hm β) (twYS (twT Q hQ p) F u μ i hm)
+        have hv := _root_.GlobalTheory.Mem.Col2.TC.val_tied I hok pins l Z u μ i hm _ _ _ (fun β => ((p u μ).St i).K h1 hm β) (twYS (twT Q hQ p) F u μ i hm)
           (((p u μ).St i).reads h1 hm) (idY_twYS hF Q hQ p u μ i hm)
         exact ⟨hv.Fi, hv.rat, fun w _ => hv.lat w trivial⟩
-      dil u μ _ i h1 hm := GlobalTheory.T.diamondOperators_on_charts I hok pins l Z u μ i hm _ _ _ (fun β => ((p u μ).St i).K h1 hm β) (twYS (twT Q hQ p) F u μ i hm)
+      dil u μ _ i h1 hm := _root_.GlobalTheory.Mem.Col2.DiaChart.dilTied I hok pins l Z u μ i hm _ _ _ (fun β => ((p u μ).St i).K h1 hm β) (twYS (twT Q hQ p) F u μ i hm)
         ((A u μ).eV (F u).atT) (((p u μ).St i).reads h1 hm) (((p u μ).St i).fk h1 hm) (idY_twYS hF Q hQ p u μ i hm) (by
           intro v
           show ((F u).atT.eV ((A u μ).eVT v)).1 = _

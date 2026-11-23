@@ -89,7 +89,7 @@ theorem GlobalTheory.hInv_of_integral_killed_of_lower : ∀ (q : ℕ) [NeZero q]
       have h' : a + 1 ≤ (d : ℕ∞) := by exact_mod_cast h
       have ha : a ≠ ⊤ := ne_top_of_le_ne_top (ENat.natCast_ne_top d) (le_trans le_self_add h')
       exact_mod_cast (ENat.add_one_le_iff ha).mp h'
-  exact GlobalTheory.T.hInv_of_directed_union_subalgebras q E (Finset E) (fun F => (Algebra.adjoin D (F : Set E)).restrictScalars ℤ)
+  exact _root_.GlobalTheory.EtC.hInv_of_directed_union q E (Finset E) (fun F => (Algebra.adjoin D (F : Set E)).restrictScalars ℤ)
     (fun F G h x hx => Algebra.adjoin_mono (Finset.coe_subset.mpr h) hx)
     (fun a => ⟨{a}, Algebra.subset_adjoin (by simp)⟩)
     (fun F => by

@@ -56,26 +56,21 @@ namespace PositivityTheory.SiegelWeilFormula
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
 namespace SD
 variable (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ)
-theorem _root_.PositivityTheory.SiegelWeilFormula.SD_k.chiW_mul (w : InfinitePlace F) : ∀ z z' : ℂ, z ≠ 0 → z' ≠ 0 → d.chiW w (z * z') = d.chiW w z * d.chiW w z' :=
-  d.chiW_mul_pf w
-theorem _root_.PositivityTheory.SiegelWeilFormula.SD_k.chiW_cont (w : InfinitePlace F) : ContinuousOn (d.chiW w) {z : ℂ | z ≠ 0} :=
-  d.chiW_cont_pf w
+alias _root_.PositivityTheory.SiegelWeilFormula.SD_k.chiW_mul := _root_.PositivityTheory.SiegelWeilFormula.SD_k.chiW_mul_pf
+alias _root_.PositivityTheory.SiegelWeilFormula.SD_k.chiW_cont := _root_.PositivityTheory.SiegelWeilFormula.SD_k.chiW_cont_pf
 theorem _root_.PositivityTheory.SiegelWeilFormula.SD_k.chiW_norm (w : InfinitePlace F) : ∀ z : ℂ, z ≠ 0 → ‖d.chiW w z‖ = 1 := by
   intro z _
   by_cases h : IsUnit (d.uW w z)
   · rw [_root_.PositivityTheory.SiegelWeilFormula.SD_k.chiW, dite_eq_left h]
     exact Circle.norm_coe _
   · rw [_root_.PositivityTheory.SiegelWeilFormula.SD_k.chiW, dite_eq_right h, norm_one]
-theorem _root_.PositivityTheory.SiegelWeilFormula.SD_k.chiW_pos (w : InfinitePlace F) : ∀ r : ℝ, 0 < r → d.chiW w (r : ℂ) = 1 :=
-  d.chiW_pos_pf w
+alias _root_.PositivityTheory.SiegelWeilFormula.SD_k.chiW_pos := _root_.PositivityTheory.SiegelWeilFormula.SD_k.chiW_pos_pf
 theorem _root_.PositivityTheory.SiegelWeilFormula.SD_k.chiW_form (w : InfinitePlace F) : ∃ k : ℤ, ∀ z : ℂ, z ≠ 0 → d.chiW w z = (z / (‖z‖ : ℂ)) ^ k :=
   GlobalTheory.T.continuous_unitary_multiplicative_eq_arg_pow (d.chiW w) (d.chiW_mul w) (d.chiW_cont w) (d.chiW_norm w) (d.chiW_pos w)
 end SD
 namespace RD
 variable {d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ} (R : _root_.PositivityTheory.SiegelWeilFormula.RD_k d) (w : InfinitePlace F)
-theorem _root_.PositivityTheory.SiegelWeilFormula.RD_k.stepM_val (hT : _root_.PositivityTheory.SiegelWeilFormula.TAll_k) : ∀ (y : GR d.n) (a : Matrix (Fin d.n) (Fin d.n) ℂ), IsUnit a.det → mR y = mLoc a →
-    R.StepOK w (R.ι w y) (fun f u => (d.chiW w a.det * (‖a.det‖ : ℂ) ^ d.m) * f (Matrix.of u * a)) id :=
-  R.stepM_val_pf w hT
+alias _root_.PositivityTheory.SiegelWeilFormula.RD_k.stepM_val := _root_.PositivityTheory.SiegelWeilFormula.RD_k.stepM_val_pf
 variable {L : GR d.n → ((Fin d.m → Fin d.n → ℂ) → ℂ) → (Fin d.m → Fin d.n → ℂ) → ℂ}
 theorem _root_.PositivityTheory.SiegelWeilFormula.RD_k.locOp_mM_law (hT : _root_.PositivityTheory.SiegelWeilFormula.TAll_k) (hG : _root_.PositivityTheory.SiegelWeilFormula.GoodAwayEx_k) (hL : R.IsLocOp w L) :
     ∃ k : ℤ, ∀ (y : GR d.n) (a : Matrix (Fin d.n) (Fin d.n) ℂ), IsUnit a.det → mR y = mLoc a → ∀ f, IsSw f →

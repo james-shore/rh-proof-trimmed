@@ -55,25 +55,6 @@ import ReciprocityTheory.GaloisValuations.GlobalA
 
 open Formalism.BasicNotions Formalism.BasicNotions.Loc ReciprocityTheory.Gal Module UpperTheory.V.Loc UpperTheory.V.U3 UpperTheory.V.Alg IsLocalRing Polynomial
 
-private theorem ptFin_int {l : ℕ} [Fact l.Prime] (x : PadicAlgCl l) : IsIntegral ℤ_[l] x ↔ ‖x‖ ≤ 1 := by
-  have hi : IsIntegral ℚ_[l] x := Algebra.IsIntegral.isIntegral x
-  have h0 : ‖x‖ = spectralValue (minpoly ℚ_[l] x) := rfl
-  rw [h0, spectralValue_le_one_iff (minpoly.monic hi)]
-  constructor
-  · intro h n
-    rw [minpoly.isIntegrallyClosed_eq_field_fractions' ℚ_[l] h, coeff_map]
-    exact PadicInt.norm_le_one _
-  · intro h
-    have hl' : minpoly ℚ_[l] x ∈ lifts (algebraMap ℤ_[l] ℚ_[l]) :=
-      (lifts_iff_coeff_lifts _).mpr fun n => ⟨⟨_, h n⟩, rfl⟩
-    obtain ⟨q, hq, -, hqm⟩ := lifts_and_degree_eq_and_monic hl' (minpoly.monic hi)
-    exact ⟨q, hqm, by rw [← aeval_def, ← aeval_map_algebraMap ℚ_[l], hq, minpoly.aeval]⟩
-
-private theorem ptFin_pow {O S : Type} [CommRing O] [CommRing S] [Algebra O S] [IsNoetherianRing S] (m : Ideal S)
-    (hres : ∀ x : S, ∃ a : O, x - algebraMap O S a ∈ m) (n : ℕ) :
-    ∃ N : Submodule O S, N.FG ∧ ∀ x : S, ∃ y ∈ N, x - y ∈ m ^ n :=
-  _root_.UpperTheory.Reformulated.B.PointFinitePower.ptFin_pow m hres n
-
 private theorem ptFin_finite {O S : Type} [CommRing O] [IsLocalRing O] [IsAdicComplete (maximalIdeal O) O]
     [CommRing S] [Algebra O S] [IsLocalRing S] [IsNoetherianRing S] [Algebra.IsIntegral O S]
     (hloc : ∀ a ∈ maximalIdeal O, algebraMap O S a ∈ maximalIdeal S)
@@ -94,7 +75,7 @@ private theorem ptFin_finite {O S : Type} [CommRing O] [IsLocalRing O] [IsAdicCo
       (by change (P.comap (algebraMap O S)).IsMaximal; rw [h2]; infer_instance)
     exact (eq_maximalIdeal h3).ge
   obtain ⟨n, hn⟩ := Ideal.exists_pow_le_of_le_radical_of_fg hrad (IsNoetherian.noetherian _)
-  obtain ⟨N, hN, h⟩ := ptFin_pow (maximalIdeal S) hres n
+  obtain ⟨N, hN, h⟩ := _root_.UpperTheory.Reformulated.B.PointFinitePower.ptFin_pow (maximalIdeal S) hres n
   refine (UpperTheory.V.abelian₂.nakayama O (maximalIdeal O) S).2 ⟨?_⟩
   have : (⊤ : Submodule O (S ⧸ (maximalIdeal O) • (⊤ : Submodule O S))) = N.map (Submodule.mkQ _) := by
     symm
@@ -119,7 +100,7 @@ theorem UpperTheory.V.Loc.ptFin :
   have hint : ∀ a : R, IsIntegral O (f a) := by
     intro a
     obtain ⟨c, hc⟩ := IsCO.res_surj (O := O) a
-    have h1 : IsIntegral O (f (a - algebraMap O R c)) := ((ptFin_int _).2 (hF _ hc).le).tower_top
+    have h1 : IsIntegral O (f (a - algebraMap O R c)) := ((_root_.GlobalTheory.isIntegral_padicInt_iff_norm_le_one _).2 (hF _ hc).le).tower_top
     have h2 : f a = f (a - algebraMap O R c) + algebraMap O _ c := by simp
     rw [h2]
     exact h1.add isIntegral_algebraMap

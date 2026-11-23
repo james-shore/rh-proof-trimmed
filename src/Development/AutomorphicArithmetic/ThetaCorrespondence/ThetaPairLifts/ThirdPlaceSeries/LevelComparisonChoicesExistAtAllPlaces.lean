@@ -124,13 +124,13 @@ theorem exists_level_comparison_choice_alt (hP : _root_.GlobalTheory.HeightCount
   obtain ⟨tp, t1, t2⟩ := htp C rfl
   refine ⟨C, tp, t1, t2, rfl, rfl, ⟨⟨fun a => hE.elim a, fun a => hE.elim a, fun a => hE.elim a,
     ⟨ψ₀, c4, hp, fun a => hE.elim a⟩, fun v x y z _ hx => (ρ v).emb_side x y z hx⟩,
-    ⟨c1, fun v _ => (GlobalTheory.T.twistReading_induces_sideEmbedding_fixedField D _ _ _ _ (ρ v)).1, fun v _ x => (GlobalTheory.T.twistReading_induces_sideEmbedding_fixedField D _ _ _ _ (ρ v)).2.2 _ x, fun v _ => hb v,
+    ⟨c1, fun v _ => (_root_.GlobalTheory.LevCmp.reading_sidePl_emb D _ _ _ _ (ρ v)).1, fun v _ x => (_root_.GlobalTheory.LevCmp.reading_sidePl_emb D _ _ _ _ (ρ v)).2.2 _ x, fun v _ => hb v,
       fun v v' _ _ e => ?_, fun v _ => hc v⟩, h4, fun v _ => GlobalTheory.MtRead.admissible_twist_of_twisting_character (hok v), ?_, ?_⟩, hok, rfl⟩
   · have e' : s v' = s v := e
     have key : k v' = k v ∧ χ v' = χ v := by
-      have a1 := (GlobalTheory.T.twistReading_induces_sideEmbedding_fixedField D _ _ _ _ (ρ v)).1
-      have a2 := (GlobalTheory.T.twistReading_induces_sideEmbedding_fixedField D _ _ _ _ (ρ v')).1
-      have a3 := (GlobalTheory.T.twistReading_induces_sideEmbedding_fixedField D _ _ _ _ ((ρ v').conj hG)).1
+      have a1 := (_root_.GlobalTheory.LevCmp.reading_sidePl_emb D _ _ _ _ (ρ v)).1
+      have a2 := (_root_.GlobalTheory.LevCmp.reading_sidePl_emb D _ _ _ _ (ρ v')).1
+      have a3 := (_root_.GlobalTheory.LevCmp.reading_sidePl_emb D _ _ _ _ ((ρ v').conj hG)).1
       rw [e'] at a2 a3
       by_cases hbb : b v' = b v
       · rw [hbb] at a2

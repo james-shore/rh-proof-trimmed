@@ -194,7 +194,7 @@ theorem fourCopiesInvHalfDifferent_selfDual (x : Fin 4 → H.E) : x ∈ lat4 H �
 theorem exists_atP (p : ℕ) (hp : p.Prime) (hs : Th.SplitK H p) : ∃ γ : Th.IsoK H (Tau R), Th.AtP γ p := by
   classical
   obtain ⟨γ⟩ := nonempty_isoK H
-  obtain ⟨𝔭, α, β, hp𝔭, hα, hβ, hαβ⟩ := GlobalTheory.T.exists_prime_over_split_not_mem_conj R H p hp hs
+  obtain ⟨𝔭, α, β, hp𝔭, hα, hβ, hαβ⟩ := _root_.GlobalTheory.Mem.Col2.SplitPrime.exists_prime_not_conj R H p hp hs
   have hiso : ∀ x y, ∑ w, γ.g x w * HostK.conjK H (γ.g y w) = ∑ a, Algebra.trace H.K H.E (x a * H.conj (y a)) := fun x y => by
     apply (algebraMap H.K H.E).injective
 
@@ -298,9 +298,9 @@ theorem nonempty_kapIn (γ₀ : Th.IsoK H (Tau R)) : Nonempty (Th.KapIn γ₀) :
   have h2 : Th.SplitK H 2 := Or.inl rfl
   have hpp : ∀ p : ℕ, ∃ 𝔭 : HeightOneSpectrum (𝓞 H.K), p.Prime → Th.SplitK H p → (p : 𝓞 H.K) ∈ 𝔭.asIdeal := fun p => by
     by_cases h : p.Prime ∧ Th.SplitK H p
-    · obtain ⟨𝔭, -, -, h1, -⟩ := GlobalTheory.T.exists_prime_over_split_not_mem_conj R H p h.1 h.2
+    · obtain ⟨𝔭, -, -, h1, -⟩ := _root_.GlobalTheory.Mem.Col2.SplitPrime.exists_prime_not_conj R H p h.1 h.2
       exact ⟨𝔭, fun _ _ => h1⟩
-    · obtain ⟨𝔭, -⟩ := GlobalTheory.T.exists_prime_over_split_not_mem_conj R H 2 Nat.prime_two h2
+    · obtain ⟨𝔭, -⟩ := _root_.GlobalTheory.Mem.Col2.SplitPrime.exists_prime_not_conj R H 2 Nat.prime_two h2
       exact ⟨𝔭, fun a b => absurd ⟨a, b⟩ h⟩
   have hga : ∀ p : ℕ, ∃ γ : Th.IsoK H (Tau R), p.Prime → Th.SplitK H p → Th.AtP γ p := fun p => by
     by_cases h : p.Prime ∧ Th.SplitK H p

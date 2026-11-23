@@ -160,7 +160,7 @@ theorem orbit_abstract {p : ℕ} (hp : p.Prime) (hd : ¬ (p : ℤ) ∣ NumberFie
   have hker : ∀ s, RingHom.ker (r (φ s)) = RingHom.ker (r s) := fun s => by
     ext a
     rw [RingHom.mem_ker, RingHom.mem_ker, hF, pow_eq_zero_iff hp.ne_zero]
-  obtain ⟨ε, h1, -, h3, -, -⟩ := unramified_prime_idempotent E p hp hd w₀ hpw
+  obtain ⟨ε, h1, -, h3, -, -⟩ := _root_.PositivityTheory.HtPt.Gsplit.glue_split E p hp hd w₀ hpw
   have hsurj : Function.Surjective (Ideal.Quotient.mk w₀) := Ideal.Quotient.mk_surjective
   let lf : (𝓞 E ⧸ w₀) → 𝓞 E := Function.surjInv hsurj
   have hlf : ∀ a, Ideal.Quotient.mk w₀ (lf a) = a := Function.surjInv_eq hsurj

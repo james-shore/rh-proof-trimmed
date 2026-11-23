@@ -282,8 +282,8 @@ theorem bkADim_of_tied : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : Loc
   haveI := hO.2.1
   obtain ⟨hD, hR⟩ := finite_periods T K LL A.ρ
   exact finrank_eq (P.PD K) A.ρ hD hR
-    (GlobalTheory.T.tensor_fundamental_exact_sequence_crystalline l P AI T K LL A.V).2
-    (fun d₁ h₁ d₂ h₂ => GlobalTheory.T.exists_blochKato_cocycle_of_crys_deRham_pair l P AI T K LL O hO A d₁ h₁ d₂ h₂)
-    (fun c x hx => GlobalTheory.T.crystalline_coboundary_lift l P AI T K LL O hO A hdr c x hx)
+    (_root_.GlobalTheory.FundSeq.tensor_fundamental_sequence l P AI T K LL A.V).2
+    (fun d₁ h₁ d₂ h₂ => _root_.GlobalTheory.FundDel.connecting_cocycle l P AI T K LL O hO A d₁ h₁ d₂ h₂)
+    (fun c x hx => _root_.GlobalTheory.CobCrisLift.coboundary_lift l P AI T K LL O hO A hdr c x hx)
 
 end GlobalTheory.CompanionTheory.BKDim

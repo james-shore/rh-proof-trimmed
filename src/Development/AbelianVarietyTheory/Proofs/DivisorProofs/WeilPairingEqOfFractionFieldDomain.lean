@@ -62,11 +62,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.WeilDomain
 
-theorem appTop_spMap_inv {A B : Type} [CommRing A] [CommRing B] (g : A →+* B) (a : A) :
-    (spMap g).appTop.hom ((Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom a) =
-      (Scheme.ΓSpecIso (CommRingCat.of B)).inv.hom (g a) :=
-  (congrArg (fun q => q.hom a) (Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom g))).symm
-
 theorem weilIs_of_fractionField : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (P : PolAV (Sp R)) (W L : Type) [CommRing W] [IsDomain W] [Field L] [Algebra W L] [IsFractionRing W L] (f : R →+* W) (e : Over.mk (spMap ((algebraMap W L).comp f)) ⟶ Over.mk (spMap f)), e.left = spMap (algebraMap W L) → ∀ (n : ℕ) (x y : Over.mk (spMap f) ⟶ P.A), x ^ n = 1 → y ^ n = 1 → ∀ (w : Wˣ), Out.WeilIs P.A P.L n (e ≫ x) (e ≫ y) (unitOn (Units.map (algebraMap W L).toMonoidHom w)) → Out.WeilIs P.A P.L n x y (unitOn w) := by
   intro R _ _ P W L _ _ _ _ _ f e he n x y hx hy w H
   have hL := (GlobalTheory.firstFiveLaws).1
@@ -78,7 +73,7 @@ theorem weilIs_of_fractionField : ∀ (R : Type) [CommRing R] [IsNoetherianRing 
     intro a b hab
     have ia := CommRingCat.inv_hom_apply (Scheme.ΓSpecIso (CommRingCat.of W)) a
     have ib := CommRingCat.inv_hom_apply (Scheme.ΓSpecIso (CommRingCat.of W)) b
-    rw [← ia, ← ib, appTop_spMap_inv, appTop_spMap_inv] at hab
+    rw [← ia, ← ib, _root_.GlobalTheory.SecSpread.spMap_appTop, _root_.GlobalTheory.SecSpread.spMap_appTop] at hab
     have h1 := (ConcreteCategory.bijective_of_isIso (Scheme.ΓSpecIso (CommRingCat.of L)).inv).1 hab
     have h2 := IsFractionRing.injective W L h1
     rw [← ia, ← ib, h2]
@@ -89,7 +84,7 @@ theorem weilIs_of_fractionField : ∀ (R : Type) [CommRing R] [IsNoetherianRing 
     refine this.trans ?_
     show (Scheme.ΓSpecIso (CommRingCat.of L)).inv.hom (algebraMap W L w) = _
     rw [he]
-    exact (appTop_spMap_inv (algebraMap W L) (w : W)).symm
+    exact (_root_.GlobalTheory.SecSpread.spMap_appTop (algebraMap W L) (w : W)).symm
   exact hc' ▸ hc
 
 end GlobalTheory.WeilDomain

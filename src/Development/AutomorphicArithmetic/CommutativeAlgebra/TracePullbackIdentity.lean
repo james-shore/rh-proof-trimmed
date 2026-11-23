@@ -122,7 +122,7 @@ private theorem lat_step {p : ℕ} [Fact p.Prime] {D : Datum p} {G : HTGroup p} 
       rw [hin, map_nsmul, map_nsmul, hxv, hv'eq, smul_comm]
     have e2 := congrArg (L.actG h⁻¹) e1
     rwa [hinv, hinv] at e2
-  exact GlobalTheory.T.exists_latticeVector_eq_nsmul_of_adelic_nsmul p D d hd0 hd (GlobalTheory.T.int_dvd_of_eq_nat_mul_integralAdeleAwayFromP p d hd0 hd) (c • x) ⟨v', hv', key⟩
+  exact _root_.GlobalTheory.LKGeo.LatDvd.exists_eq_nsmul_of_inAf p D d hd0 hd (_root_.GlobalTheory.LKGeo.IntDvd.int_dvd_of_eq_mul_isIntAf p d hd0 hd) (c • x) ⟨v', hv', key⟩
 
 end UpperTheory.LatticeTracePullback
 

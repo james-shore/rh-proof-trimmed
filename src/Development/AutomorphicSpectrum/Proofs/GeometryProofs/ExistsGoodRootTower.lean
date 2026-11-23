@@ -112,8 +112,8 @@ theorem level_data (hG : Top.Given) (hW : Out.WeilSt)
     ∃ (RM : Top.RootModel (CMType H) (D.p + D.q)) (o' : RootOrigin Y S RM Fx), o'.𝔐.OmVB ∧
       (∀ p ∈ S, o'.𝔐.R p = 4) ∧ o'.Re.J = ⊤ ∧ ∃ _ : Algebra ℚ RM.Ω, SmoothGenericFibreM RM.y := by
   obtain ⟨Ω, _, _, K, _, J, _, y, bk, bx, i, 𝔐, h, Fl, xdeg, e, hbk, hy, hd, hf, hcst, hfl, hfin, hlines,
-    hom, hsm, hR⟩ := GlobalTheory.T.root_origin_good_primes_finite hG hW E H D l Xo c Y Sys Fx R o S hS hdisc hdeg
-  obtain ⟨RM, o', h1, h2, h3, h4⟩ := GlobalTheory.T.root_origin_coords_over_field hG E H D l Xo c Y Sys Fx R o S Ω K J y bk bx i 𝔐 h Fl
+    hom, hsm, hR⟩ := _root_.GlobalTheory.CompanionTheory.Ar.ChangeGeo.exists_cover hG hW E H D l Xo c Y Sys Fx R o S hS hdisc hdeg
+  obtain ⟨RM, o', h1, h2, h3, h4⟩ := _root_.GlobalTheory.CompanionTheory.Ar.root_model_on_cover hG E H D l Xo c Y Sys Fx R o S Ω K J y bk bx i 𝔐 h Fl
     xdeg e hdeg hemb hbij hbk hy hd hf hcst hfl hfin hlines hom hsm
   refine ⟨RM, o', h1, fun p hp => ?_, h3, h4⟩
   rw [h2]

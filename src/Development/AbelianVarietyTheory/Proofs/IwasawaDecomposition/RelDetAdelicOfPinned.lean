@@ -57,6 +57,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
+import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.EqOfLeOfAbsNormEq
 
 @[expose] public section
 
@@ -136,16 +137,6 @@ theorem coe_eq_of_pow {𝔞 𝔟 : Submodule (𝓞 L) L} (hb : 𝔞 * 𝔟 = 1) 
     FractionalIdeal.count_pow, ← exp_nsmul, exp_inj, nsmul_eq_mul, mul_neg, neg_inj] at f
   exact (mul_left_cancel₀ (by exact_mod_cast hn.ne') f).symm
 
-theorem val_le_of_span {S : Set L} (w : HeightOneSpectrum (𝓞 L)) {γ : ℤᵐ⁰} (h : ∀ x ∈ S, w.valuation L x ≤ γ) :
-    ∀ x ∈ Submodule.span (𝓞 L) S, w.valuation L x ≤ γ := by
-  first
-  | exact @_root_.GlobalTheory.SpanValuationBound.main
-  | exact _root_.GlobalTheory.SpanValuationBound.main
-  | (apply _root_.GlobalTheory.SpanValuationBound.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SpanValuationBound.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SpanValuationBound.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SpanValuationBound.main ..)
-
 variable {N : ℕ}
 
 def detFI (M : Submodule (𝓞 L) (Fin N → L)) (h : M.FG) : FractionalIdeal (𝓞 L)⁰ L :=
@@ -171,7 +162,7 @@ theorem exists_val_det_eq {M : Submodule (𝓞 L) (Fin N → L)} (h : M.FG)
   by_contra hne
   obtain ⟨y, hy, e⟩ := GlobalTheory.Idele.exists_mem_valuation_eq (detFI_ne_zero h hs) w
   have : w.valuation L y ≤ exp (-FractionalIdeal.count L w (detFI M h) - 1) := by
-    refine val_le_of_span w ?_ y hy
+    refine _root_.GlobalTheory.SpanValuationBound.span_valuation_le w ?_ y hy
     rintro _ ⟨x, hx, rfl⟩
     have h1 := lt_of_le_of_ne (val_det_le h hs w hx) fun e => hne ⟨x, hx, e⟩
     rcases eq_or_ne (w.valuation L (Matrix.of x).det) 0 with h0 | h0
@@ -199,7 +190,7 @@ theorem span_det_eq {M M' : Submodule (𝓞 L) (Fin N → L)} (h : M.FG)
   have hc : ∀ w, FractionalIdeal.count L w (detFI M' h' * (detFI M h)⁻¹) =
       FractionalIdeal.count L w (detFI M' h') - FractionalIdeal.count L w (detFI M h) := fun w => by
     rw [FractionalIdeal.count_mul L w hn' (inv_ne_zero hn), FractionalIdeal.count_inv, sub_eq_add_neg]
-  refine eq_coe_of_val (mul_ne_zero hn' (inv_ne_zero hn)) (fun z hz w => val_le_of_span w ?_ z hz) fun w => ?_
+  refine eq_coe_of_val (mul_ne_zero hn' (inv_ne_zero hn)) (fun z hz w => _root_.GlobalTheory.SpanValuationBound.span_valuation_le w ?_ z hz) fun w => ?_
   · rintro _ ⟨A, hA, rfl⟩
     obtain ⟨x, hx, e⟩ := exists_val_det_eq h hs w
     have h1 := val_det_le h' hs' w (x := fun i => A.mulVec (x i)) fun i => hA _ (hx i)
@@ -404,13 +395,8 @@ theorem isConjPl_iff (w w' : HeightOneSpectrum (𝓞 H.E)) : IsConjPl H w w' ↔
   rw [conjPl_main.2.1 R H w w']
   exact ⟨(existsUnique_conjPl H.conj.toRingEquiv w).choose_spec.2 w', fun h => h ▸ val_bar H w⟩
 
-theorem conj_conj (x : H.E) : H.conj (H.conj x) = x := by
-  letI := H.cmStar
-  have hs : ∀ x : H.E, star x = H.conj x := bridge_star_holds R H
-  rw [← hs, ← hs, star_star]
-
 theorem val_conj (w : HeightOneSpectrum (𝓞 H.E)) (x : H.E) : w.valuation H.E (H.conj x) = (bar H w).valuation H.E x := by
-  rw [← val_bar H w, conj_conj]
+  rw [← val_bar H w, _root_.Formalism.MainNotions.UnusedSlot33.HK.conj_conj]
 
 theorem bar_bar (w : HeightOneSpectrum (𝓞 H.E)) : bar H (bar H w) = w :=
   ((existsUnique_conjPl H.conj.toRingEquiv (bar H w)).choose_spec.2 w fun x => val_conj H w x).symm
@@ -525,7 +511,7 @@ theorem normOne_iff (𝔞 : Submodule (𝓞 H.E) H.E) :
       rw [hIJ, FractionalIdeal.count_one] at h1
       obtain ⟨x, hx, ex⟩ := GlobalTheory.Idele.exists_mem_valuation_eq hI (bar H w)
       obtain ⟨y, hy, ey⟩ := GlobalTheory.Idele.exists_mem_valuation_eq hJ w
-      have hx' : H.conj x ∈ J := (hb _).2 (by rw [conj_conj]; exact hx)
+      have hx' : H.conj x ∈ J := (hb _).2 (by rw [_root_.Formalism.MainNotions.UnusedSlot33.HK.conj_conj]; exact hx)
       have hy' : H.conj y ∈ I := (hb _).1 hy
       have h2 := (GlobalTheory.Idele.mem_iff_valuation_le hJ _).1 hx' w
       have h3 := (GlobalTheory.Idele.mem_iff_valuation_le hI _).1 hy' (bar H w)

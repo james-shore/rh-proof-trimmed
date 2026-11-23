@@ -64,11 +64,7 @@ def qrDom (N : ℕ) : Set (UNgrp N × TriCo N) := Set.univ ×ˢ triPos N
 
 def glSet (N : ℕ) : Set (Fin N → Fin N → ℂ) := {Z | (Matrix.of Z).det ≠ 0}
 
-theorem measurableSet_triPos : MeasurableSet (triPos N) := by
-  unfold triPos
-  simp only [Set.ofPred_forall]
-  exact MeasurableSet.iInter fun j =>
-    measurableSet_lt measurable_const ((measurable_pi_apply j).comp measurable_fst)
+alias measurableSet_triPos := _root_.ReciprocityTheory.ChartRestriction.DS.PositiveTriangularSet.ms_triPos
 
 theorem measurableSet_qrDom : MeasurableSet (qrDom N) :=
   MeasurableSet.univ.prod measurableSet_triPos
@@ -144,31 +140,9 @@ theorem nuQR_map_eq (φ : UNgrp N × TriCo N → UNgrp N × TriCo N) (hφ : Meas
 theorem det_toM_ne_zero (k : UNgrp N) : (toM k).det ≠ 0 :=
   ((Matrix.isUnit_iff_isUnit_det _).mp (k : (Matrix (Fin N) (Fin N) ℂ)ˣ).isUnit).ne_zero
 
-theorem det_upMat (t : TriCo N) : (upMat t).det = ∏ j, ((t.1 j : ℝ) : ℂ) := by
-  rw [Matrix.det_of_isUpperTriangular]
-  · simp [upMat]
-  · intro a b hba
-    have h1 : a ≠ b := ne_of_gt hba
-    have h2 : ¬ a < b := not_lt.mpr (le_of_lt hba)
-    simp [upMat, h1, h2]
+alias continuous_upMat := _root_.ReciprocityTheory.ChartRestriction.DS.PositiveTriangularSet.continuous_upMat
 
-theorem det_upMat_ne_zero (t : TriCo N) (ht : t ∈ triPos N) : (upMat t).det ≠ 0 := by
-  rw [det_upMat]
-  exact Finset.prod_ne_zero_iff.mpr fun j _ => by
-    exact_mod_cast (ne_of_gt (ht j))
-
-theorem continuous_upMat : Continuous (upMat (N := N)) := by
-  refine continuous_pi fun a => continuous_pi fun b => ?_
-  simp only [upMat]
-  split_ifs with h1 h2
-  · exact Complex.continuous_ofReal.comp ((continuous_apply a).comp continuous_fst)
-  · exact (continuous_apply _).comp continuous_snd
-  · exact continuous_const
-
-theorem continuous_triCoOf : Continuous (triCoOf (N := N)) := by
-  refine Continuous.prodMk (continuous_pi fun j => ?_) (continuous_pi fun ab => ?_)
-  · exact Complex.continuous_re.comp ((continuous_apply j).comp (continuous_apply j))
-  · exact (continuous_apply _).comp (continuous_apply _)
+alias continuous_triCoOf := _root_.ReciprocityTheory.ChartRestriction.DS.PositiveTriangularSet.continuous_triCoOf
 
 def triR (t0 : TriCo N) (t : TriCo N) : TriCo N := triCoOf (upMat t * upMat t0)
 
@@ -206,20 +180,20 @@ theorem nuQR_map_right (t0 : TriCo N) (h0 : t0 ∈ triPos N) :
     (nuQR N).map (fun p : UNgrp N × TriCo N => (p.1, triR t0 p.2)) = nuQR N := by
   refine nuQR_map_eq _ (measurable_fst.prodMk ((continuous_triR t0).measurable.comp measurable_snd))
     ?_ (fun Z => Matrix.of.symm (Matrix.of Z * upMat t0))
-    (measurable_mulRight_mat _) (gmMeas_map_mul_right _ (det_upMat_ne_zero t0 h0)) ?_ ?_
+    (measurable_mulRight_mat _) (gmMeas_map_mul_right _ (_root_.ReciprocityTheory.ChartRestriction.DS.qrA_upMat_det_ne t0 h0)) ?_ ?_
   · intro p hp
     refine ⟨trivial, fun j => ?_⟩
     change 0 < (triR t0 p.2).1 j
-    rw [triR, (upMat_triCoOf_mul p.2 t0).2 j]
+    rw [triR, (_root_.ReciprocityTheory.ChartRestriction.DS.UpperTriangularMatrices.upMat_triCoOf_mul' p.2 t0).2 j]
     exact mul_pos (hp.2 j) (h0 j)
   · ext Z
     simp only [glSet, Set.mem_preimage, Set.mem_ofPred_eq]
     change (Matrix.of Z * upMat t0).det ≠ 0 ↔ _
     rw [Matrix.det_mul]
-    exact ⟨fun h => left_ne_zero_of_mul h, fun h => mul_ne_zero h (det_upMat_ne_zero t0 h0)⟩
+    exact ⟨fun h => left_ne_zero_of_mul h, fun h => mul_ne_zero h (_root_.ReciprocityTheory.ChartRestriction.DS.qrA_upMat_det_ne t0 h0)⟩
   · intro p _
     simp only [qrMap, triR]
-    rw [(upMat_triCoOf_mul p.2 t0).1]
+    rw [(_root_.ReciprocityTheory.ChartRestriction.DS.UpperTriangularMatrices.upMat_triCoOf_mul' p.2 t0).1]
     change Matrix.of.symm (toM p.1 * (upMat p.2 * upMat t0)) = Matrix.of.symm ((toM p.1 * upMat p.2) * upMat t0)
     rw [Matrix.mul_assoc]
 
@@ -342,7 +316,7 @@ theorem d_qrMap (k : UNgrp N) (t : TriCo N) (ht : t ∈ triPos N) :
   congr 2
   have : Matrix.of (qrMap (k, t)) = toM k * upMat t := by
     exact Matrix.of.apply_symm_apply _
-  rw [this, Matrix.det_mul, norm_mul, norm_det_toM, one_mul, det_upMat, norm_prod]
+  rw [this, Matrix.det_mul, norm_mul, norm_det_toM, one_mul, _root_.ReciprocityTheory.ChartRestriction.DS.PositiveTriangularSet.det_upMat, norm_prod]
   refine Finset.prod_congr rfl fun j _ => ?_
   rw [Complex.norm_real, Real.norm_of_nonneg (ht j).le]
 

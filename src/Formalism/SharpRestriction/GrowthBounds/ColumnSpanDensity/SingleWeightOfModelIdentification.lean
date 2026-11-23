@@ -169,7 +169,7 @@ theorem single_weight_of_model_identification (h : TwoLetterModelIdentification)
     · intro x hx
       obtain ⟨hx2, hx3⟩ := (h1 P Q x).1 hx
       obtain ⟨f, hf, hfe⟩ := hA ⟨x, hx2⟩ hx3
-      refine (h2 (P - j) (Q - j) _).2 ⟨((p : R.Kf) ^ d) • f, smul_mem_latOf _ g' hpd hf, ?_⟩
+      refine (h2 (P - j) (Q - j) _).2 ⟨((p : R.Kf) ^ d) • f, _root_.Formalism.CountingSumsFrames.Har4.smul_mem_latOf_gauss _ g' hpd hf, ?_⟩
       rw [map_smul, hfe, hP' j ⟨x, hx2⟩, Submodule.coe_smul, Submodule.coe_smul, smul_smul, hd, pow_add, mul_comm]
     · intro y hy
       obtain ⟨f, hf, hfe⟩ := (h2 (P - j) (Q - j) y).1 hy
@@ -190,7 +190,7 @@ theorem single_weight_of_model_identification (h : TwoLetterModelIdentification)
           show ((p : R.Kf) ^ U) • I j y = _
           rw [Submodule.coe_smul, Submodule.coe_smul, hIy, smul_smul, hd, pow_add, mul_comm]
         rw [e, map_smul, Submodule.coe_smul]
-        exact smul_mem_latOf _ g' hpd h3
+        exact _root_.Formalism.CountingSumsFrames.Har4.smul_mem_latOf_gauss _ g' hpd h3
 
 end Formalism.MainNotions.flipOneThree.Pf
 

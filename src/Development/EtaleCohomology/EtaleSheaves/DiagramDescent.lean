@@ -60,10 +60,6 @@ theorem descendFP_of (hA : LateralTheory.E.LeafObjFPPf.LeafObjAff) (hG : Lateral
   exact diagramDescent_of_objects_pairs_triples hO (LateralTheory.E.LeafPairFPPf.pairDescent_of_objects_morphisms hO (LateralTheory.E.LeafMapFPPf2.morphismDescent_of_isLimit hL))
     (LateralTheory.E.LeafTripleFPPf.tripleDescent_of_pairRelation (LateralTheory.E.LeafPairRelPf.LeafPairRel_of hO hF))
 
-theorem fp_snd {X Y Z : Scheme.{0}} (f : X ⟶ Z) (g : Y ⟶ Z) (hf : FP f) : FP (pullback.snd f g) := by
-  obtain ⟨h1, h2, h3⟩ := hf
-  exact ⟨inferInstance, inferInstance, inferInstance⟩
-
 theorem cond {k Ω : Type} [Field k] [Field Ω] [Algebra k Ω] {R R' : Subalgebra k Ω} (hR : R ≤ R')
     {C D : Scheme.{0}} {g : D ⟶ Sp R} {v : C ⟶ D} {c : C ⟶ Sp Ω} (h : IsPullback v c g (toR R)) :
     v ≫ g = (c ≫ toR R') ≫ incl hR := by
@@ -100,11 +96,11 @@ theorem LeafDescendPreMap_of (hA : LateralTheory.E.LeafObjFPPf.LeafObjAff) (hG :
     rw [E1]; simp only [e2, pullback.map, pullback.lift_snd, Category.comp_id]
   refine ⟨R', hR'fg, _, _, _, pullback.snd q (incl h), e1, e2, g ≫ pullback.fst p bk,
     pullback.lift v0 (c0 ≫ toR R') (cond h p0), pullback.lift v1 ((γ1 ≫ c0) ≫ toR R') (cond h p1),
-    pullback.lift v2 ((γ2 ≫ γ1 ≫ c0) ≫ toR R') (cond h p2), ?_, ⟨fp_snd _ _ hq0, ?_, ?_, sq h p0, ?_, ?_, ?_, ?_⟩, ?_⟩
+    pullback.lift v2 ((γ2 ≫ γ1 ≫ c0) ≫ toR R') (cond h p2), ?_, ⟨_root_.LateralTheory.E.LeafObjGluePf.fp_snd _ _ hq0, ?_, ?_, sq h p0, ?_, ?_, ?_, ?_⟩, ?_⟩
   · rw [Category.assoc, pullback.condition, ← Category.assoc, hg1, Category.assoc,
       LateralTheory.E.LeafDescendMapPf.incl_base]
-  · rw [E1]; exact fp_snd _ _ hq1
-  · rw [E2]; exact fp_snd _ _ hq2
+  · rw [E1]; exact _root_.LateralTheory.E.LeafObjGluePf.fp_snd _ _ hq1
+  · rw [E2]; exact _root_.LateralTheory.E.LeafObjGluePf.fp_snd _ _ hq2
   · rw [E1]; exact sq h p1
   · rw [E2]; exact sq h p2
   · apply pullback.hom_ext

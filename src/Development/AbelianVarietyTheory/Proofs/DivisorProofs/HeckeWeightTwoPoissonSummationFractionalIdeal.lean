@@ -82,11 +82,6 @@ theorem phi_line : ∀ (σ : ℂ), 0 < σ.re → ∀ (y : ℝ), y ≠ 0 →
     Continuous (fun t : ℝ => GlobalTheory.HeckeTwo.phi σ ((t : ℂ) + (y : ℂ) * Complex.I)) ∧
     Integrable (fun t : ℝ => GlobalTheory.HeckeTwo.phi σ ((t : ℂ) + (y : ℂ) * Complex.I)) := GlobalTheory.T.heckeWeightTwoKernelPhi_line_continuous_integrable
 
-theorem summable_lat : ∀ (F : Type) [Field F] [NumberField F] [NumberField.IsTotallyReal F]
-    (𝔞 : GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.Frac F) (σ : ℂ), 0 < σ.re → ∀ z ∈ GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.upperHalf F, ∀ b : F, b ≠ 0 →
-    Summable (fun a : {a : F // a ∈ GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.latM 𝔞} =>
-      ∏ τ : GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.Emb F, GlobalTheory.HeckeTwo.phi σ (((τ a.1 : ℝ) : ℂ) + ((τ b : ℝ) : ℂ) * z τ)) := GlobalTheory.T.summable_heckeWeightTwoLatticeSum
-
 theorem prod_isBigO : ∀ (ι : Type) [Fintype ι] (g : ι → ℝ → ℂ) (b : ℝ), 0 ≤ b →
     (∀ i, ∃ C : ℝ, ∀ t : ℝ, ‖g i t‖ ≤ C * (1 + |t|) ^ (-b)) →
     (fun v : EuclideanSpace ℝ ι => ∏ i, g i (v i)) =O[Filter.cocompact (EuclideanSpace ℝ ι)]
@@ -127,16 +122,16 @@ theorem continuous_hTrans (σ : ℂ) (hσ : 0 < σ.re) (y : ℝ) (hy : y ≠ 0) 
     Continuous (fun ν : ℝ => hTrans σ ν y) := by
   rw [hTrans_eq_fourier]
   exact VectorFourier.fourierIntegral_continuous Real.continuous_fourierChar (innerSL ℝ).continuous₂
-    (phi_line σ hσ y hy).2
+    (_root_.GlobalTheory.HeckeTwo.phi_line_continuous_integrable σ hσ y hy).2
 
 theorem fourier_mod (σ : ℂ) (hσ : 0 < σ.re) (y : ℝ) (hy : y ≠ 0) (c s : ℝ) :
     𝓕 (fun t : ℝ => Complex.exp (2 * (Real.pi : ℂ) * I * ((t * c : ℝ) : ℂ)) * hTrans σ t y) s =
       phi σ (((c - s : ℝ) : ℂ) + (y : ℂ) * I) := by
   set f : ℝ → ℂ := fun t => phi σ ((t : ℂ) + (y : ℂ) * I) with hf
-  obtain ⟨hfc, hfi⟩ := phi_line σ hσ y hy
+  obtain ⟨hfc, hfi⟩ := _root_.GlobalTheory.HeckeTwo.phi_line_continuous_integrable σ hσ y hy
   have hH := hTrans_eq_fourier σ y
   have hFi : Integrable (𝓕 f) := by
-    obtain ⟨C, hC⟩ := hTrans_decay σ hσ y hy 2
+    obtain ⟨C, hC⟩ := _root_.GlobalTheory.HeckeTwo.hTrans_rapid_decay σ hσ y hy 2
     have h2 : Integrable (fun t : ℝ => (1 + ‖t‖) ^ (-(2 : ℝ))) :=
       integrable_one_add_norm (by simp)
     refine (h2.const_mul C).mono' ?_ (Filter.Eventually.of_forall fun t => ?_)
@@ -207,7 +202,7 @@ theorem poisson : ∀ (F : Type) [Field F] [NumberField F] [NumberField.IsTotall
   have hbN : (Module.finrank ℝ (RSp F) : ℝ) < (N : ℝ) := by rw [hN]; push_cast; linarith
   have hΨO : Ψ =O[Filter.cocompact (RSp F)] fun v => ‖v‖ ^ (-(N : ℝ)) :=
     prod_isBigO (Emb F) g N (Nat.cast_nonneg _) fun τ => by
-      obtain ⟨C, hC⟩ := hTrans_decay σ hσ _ (hyτ τ) N
+      obtain ⟨C, hC⟩ := _root_.GlobalTheory.HeckeTwo.hTrans_rapid_decay σ hσ _ (hyτ τ) N
       exact ⟨C, fun t => (hgn τ t).symm ▸ hC t⟩
   obtain ⟨hint, hsumx, hGc, hGper⟩ := Formalism.H.poisson_periodization (RSp F) L Ψ hΨc (N : ℝ) hbN hΨO
   haveI : Module.Free ℤ L := ZLattice.module_free ℝ L
@@ -241,7 +236,7 @@ theorem poisson : ∀ (F : Type) [Field F] [NumberField F] [NumberField.IsTotall
     ⟨fun ν ν' h => Subtype.ext (remb_inj (congrArg Subtype.val h)), fun μ => by
       obtain ⟨ν, hν, h⟩ := (hLmem μ).1 μ.2
       exact ⟨⟨ν, hν⟩, Subtype.ext h⟩⟩
-  have hsL := summable_lat F 𝔞 σ hσ z hz b hb
+  have hsL := _root_.GlobalTheory.HeckeTwo.summable_latSum F 𝔞 σ hσ z hz b hb
   have hsumc : Summable (fun μ : Formalism.H.dual L => ∫ y in D, (∑' l : L, Ψ ((l : RSp F) + y)) *
       Complex.exp (-(2 * Real.pi * Complex.I * (⟪(μ : RSp F), y⟫ : ℝ)))) := by
     simp only [hcoef]

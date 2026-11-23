@@ -135,7 +135,7 @@ theorem datExS_evLg (h1 : GlobalTheory.Published.DiscreteSeriesCover) (h2 : Glob
   obtain ⟨hVals, hOk3⟩ := hOB w.px I hX hok hC hrange
   have hrange' : Set.range I.xi = T.set I.C := by rw [hC]; exact hrange
   obtain ⟨Xg, tr₀, R₀, cG, hLev, hIdG, hGood, hMu, hIdem, hPre0, hIn, hTup, hAll, hKeep, hBrg⟩ :=
-    GlobalTheory.T.exists_analyticData_kept_clauses_columnChoices X w.px I hX T Wt C.Q.c.F h6 hfin hconj hok hrange' hsel hgrp hVals hHH hStd hX' hPos hCK hCE
+    _root_.GlobalTheory.Mem.R3.FrameCaseLifts.exists_realDat_keep X w.px I hX T Wt C.Q.c.F h6 hfin hconj hok hrange' hsel hgrp hVals hHH hStd hX' hPos hCK hCE
       (fun L hL hLC' => hmu _ L _ hL (hLC'.trans (by rw [hC])))
   have hValR : Formalism.L2.Host.ValLL X.toD7 R₀.C := by rw [hLev.C, hC]; exact hVal
   have hpbR : C.pb = R₀.C.P.pb := by rw [hLev.C, hC]; exact hpb

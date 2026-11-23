@@ -81,6 +81,6 @@ theorem mem_liftI (D : D7) (Pg Q : Finset (Formalism.L2.DIV.Pl D.host.E)) (x : �
     rw [Function.onFun, Ideal.isCoprime_iff_sup_eq]
     exact Ideal.IsMaximal.coprime_of_ne (conjI_isMaximal D PP) (conjI_isMaximal D PP') hne'
 
-theorem main : ∀ (D : D7) (Pg Q : Finset (Formalism.L2.DIV.Pl D.host.E)) (x : 𝓞 D.host.E), (∀ PP ∈ Pg ∪ Q, x ∈ conjI PP.asIdeal) → x ∈ GlobalTheory.LiftLevel.liftI Pg Q := fun D Pg Q x hx => mem_liftI D Pg Q x hx
+alias main := _root_.GlobalTheory.LiftLevel.InfMem.mem_liftI
 
 end GlobalTheory.LiftLevel.InfMem

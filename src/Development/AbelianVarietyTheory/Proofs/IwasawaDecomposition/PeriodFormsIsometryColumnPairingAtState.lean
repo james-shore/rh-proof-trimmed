@@ -74,7 +74,7 @@ theorem inner_per_e {K : Ctx} {B : Base} {f : Fr B.toPre} {T : TwDat B} {w : Col
   have he : (P.q.per.e a).toLinearMap (j' m) = jA m := by
     show (P.q.per.e a) ((P.q.per.e a).symm (jA m)) = _
     rw [LinearEquiv.apply_symm_apply]
-  have hL := GlobalTheory.T.classSum_complexRowForm_columnsLevel_eq (w.st P.Z₀) w.I P.hX P.z.Xg P.z.tr a m x hx
+  have hL := _root_.GlobalTheory.Mem.CsumForm.cSum_toCx_rowForm (w.st P.Z₀) w.I P.hX P.z.Xg P.z.tr a m x hx
   have hI := hF.inner m m
   rw [he, hj', hL]
   calc ((‖jA m‖ ^ 2 : ℝ) : ℂ) = inner ℂ (jA m) (jA m) := by rw [inner_self_eq_norm_sq_to_K]; norm_cast

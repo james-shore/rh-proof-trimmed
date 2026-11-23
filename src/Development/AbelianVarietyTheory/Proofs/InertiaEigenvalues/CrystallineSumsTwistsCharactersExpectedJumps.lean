@@ -171,7 +171,7 @@ theorem multV_shift {V : Type} [AddCommGroup V] [Module ↥LL.1 V] [Module ℚ_[
     (h : ∀ a, multV (P.PD K) (charRep θ) τ a = (({b} : Multiset ℤ).count a : ℤ)) (a : ℤ) :
     multV (P.PD K) ρ' τ (a + b) = multV (P.PD K) ρ τ a := by
   haveI := (P.PD K).finK
-  obtain ⟨m, k, β, d, hd, h1⟩ := GlobalTheory.T.deRham_comparison_isFiltered l P AI T K LL ↥LL.1 (charRep θ) (isDR T K LL _ hθ) 0 1
+  obtain ⟨m, k, β, d, hd, h1⟩ := _root_.GlobalTheory.DRFil.deRham_filtered l P AI T K LL ↥LL.1 (charRep θ) (isDR T K LL _ hθ) 0 1
     ⟨1 ⊗ₜ ⟨1, (P.PD K).one_mem⟩, rfl⟩
   have key := finrank_twist (P.PD K) (AlgHom.id ↥LL.1 ↥LL.1) ρ ρ' (charRep θ) (fun g => (θ g : ↥LL.1))
     (fun _ _ => rfl) hρ k β d hd h1 τ b (fun a => by

@@ -52,10 +52,6 @@ open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC GlobalThe
 noncomputable section
 namespace GlobalTheory.EtC.MuTw
 
-theorem appTop_comp_apply' {W V U : Scheme.{0}} (k : W ⟶ V) (g : V ⟶ U) (a : Γ(U, ⊤)) :
-    (k ≫ g).appTop.hom a = k.appTop.hom (g.appTop.hom a) := by
-  rw [Scheme.Hom.comp_appTop]; rfl
-
 theorem isUnit_natCast_of_hom {V U : Scheme.{0}} (g : V ⟶ U) (q : ℕ) (hq : IsUnit (q : Γ(U, ⊤))) :
     IsUnit (q : Γ(V, ⊤)) := by
   have := hq.map g.appTop.hom
@@ -93,7 +89,7 @@ theorem etaS_surjective : ∀ (q : ℕ) [NeZero q] (U : Scheme.{0}), IsUnit (q :
       ((GlobalTheory.T.etaleLocal_primitiveRoot_and_roots_of_unity q V).2.2.1 ζ (muVal q (Sec.res g y)) (muVal_pow q _)) ?_
     rintro W k ⟨a, ha⟩
     refine ⟨_, etaS_lift_pow q W (Prim.map k.appTop.hom ζ) (Sec.res (k ≫ g) y) a ?_⟩
-    rw [muVal_res, appTop_comp_apply', ← muVal_res, ha]
+    rw [muVal_res, _root_.GlobalTheory.EtC.MuTw.Inj.comp_appTop_apply', ← muVal_res, ha]
     rfl
   obtain ⟨S, hS, hSy⟩ := hloc
   choose s hs using hSy
@@ -104,12 +100,12 @@ theorem etaS_surjective : ∀ (q : ℕ) [NeZero q] (U : Scheme.{0}), IsUnit (q :
     fun V g hg => s V g hg
   have hfam : fam.Compatible := by
     intro Y₁ Y₂ Z g₁ g₂ f₁ f₂ h₁ h₂ e
-    apply GlobalTheory.T.tateTwistOneToRootsOfUnity_sections_injective q Z (isUnit_natCast_of_hom (g₁ ≫ f₁) q hq)
+    apply _root_.GlobalTheory.EtC.MuTw.Inj.etaS_injective q Z (isUnit_natCast_of_hom (g₁ ≫ f₁) q hq)
     change Sec.map (etaS q) (Sec.res g₁ (s _ f₁ h₁)) = Sec.map (etaS q) (Sec.res g₂ (s _ f₂ h₂))
     rw [etaS_res, etaS_res, hs, hs]
     apply muVal_injective q Z
     simp only [muVal_res]
-    rw [← appTop_comp_apply', ← appTop_comp_apply', e]
+    rw [← _root_.GlobalTheory.EtC.MuTw.Inj.comp_appTop_apply', ← _root_.GlobalTheory.EtC.MuTw.Inj.comp_appTop_apply', e]
   obtain ⟨x, hx, -⟩ := hsh S hS fam hfam
   refine ⟨x, ?_⟩
   have hsep := (muS q).property

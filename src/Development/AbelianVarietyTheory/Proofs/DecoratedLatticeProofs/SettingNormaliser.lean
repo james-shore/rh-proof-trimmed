@@ -113,7 +113,7 @@ theorem frame_normaliser (I : AutInst) (g : ℕ) (hg : g ≠ 1) {ρ κ : ℕ} (h
         frGL β x = (d : GL (Fin I.n) (I.E ⊗[I.F] Formalism.MainNotions.S.Af I.F)) →
         (∀ i j, ZMod' I g (((x : Matrix (Fin I.n) (Fin I.n) (Formalism.L2.Herm.intAf I.F I.E)) - midDiag I.n ρ κ 1 c) i j).1) →
         d⁻¹ * (z⁻¹ * y) ∈ K := by
-  obtain ⟨G, hG⟩ := GlobalTheory.T.unitary_group_conjugate_transpose_matrix I β hβ
+  obtain ⟨G, hG⟩ := _root_.GlobalTheory.GramFrame.gram_frame_int I β hβ
   have hσ := sigA_sigA I
   have hS : ∀ s ∈ Formalism.L2.Herm.intAf I.F I.E, sigA I s ∈ Formalism.L2.Herm.intAf I.F I.E := fun s hs => sigA_mem I hs
   have hJ : cT (sigA I) (I.J.map (inclE (F := I.F) (Formalism.MainNotions.S.Af I.F))) = I.J.map (inclE (F := I.F) (Formalism.MainNotions.S.Af I.F)) := by
@@ -254,7 +254,7 @@ theorem inst_normaliser (D : D7) (hρ : 1 ≤ D.R.rS) (I : AutInst) (hI : I = in
         d⁻¹ * (z⁻¹ * y) ∈ K2set I g e0 z0 bw := by
   subst hI hg'
   obtain ⟨Pg, hPg⟩ := GlobalTheory.Core.Mi.PinModel.exists_isTypePlaces (D := D)
-  have hnc := GlobalTheory.T.genus_type_places_pairwise_not_conjugate D Pg hPg
+  have hnc := _root_.GlobalTheory.Core.Mi.typePlaces_noConj D Pg hPg
   have key : ∀ PP : Pl D.host.E, ∃ ψ : AddChar (kP PP) ℂ, ψ ≠ 1 := fun PP => by
     obtain ⟨ψ, hψ⟩ := (AddChar.exists_apply_ne_zero (α := kP PP) (a := 1)).2 one_ne_zero
     exact ⟨ψ, fun h => hψ (by rw [h]; rfl)⟩
@@ -290,14 +290,14 @@ theorem inst_normaliser (D : D7) (hρ : 1 ≤ D.R.rS) (I : AutInst) (hI : I = in
         (congrArg _ e).trans (Formalism.L2.SG.Pf.unitaryCongruence.divN_gmul _ _ hg t)
       show star (psiEf (divN (instOf D) (D.host.g 0 * D.host.g 1) s.1)) = 1
       rw [this, hint t ht, star_one])
-    (GlobalTheory.T.exists_integralAdele_prescribed_residues_and_conj D Pg hnc)
+    (_root_.GlobalTheory.ConjResidueSurj.exists_res_and_conj D Pg hnc)
     (GlobalTheory.T.residueSupport_single_place_to_conjugatePair_position D Pg hPg.1 hnc (fun s => star (psiEf (divN (instOf D) (D.host.g 0 * D.host.g 1) s.1)) ≠ 1) fun Q hQ => by
-      obtain ⟨s, h1, h2⟩ := GlobalTheory.T.exists_finiteAdditiveChar_ne_one_at_each_prime D psiEf hadd hint hrat Q hQ
+      obtain ⟨s, h1, h2⟩ := _root_.GlobalTheory.FiniteCharNontrivial.exists_psi_ne_one D psiEf hadd hint hrat Q hQ
       exact ⟨s, h1, fun h => h2 (by simpa using congrArg star h)⟩)
   obtain ⟨a, ha1, hK⟩ := read_in_frame (instOf D) _ hg e0 f0 z0 bw bwd ew hF hn' β₀ hβ₀ Pg hPg.1 hN psiEf hadd hint ψ0 a₁ a₂ ha hχ
   exact ⟨β₀, hβ₀, frame_normaliser (instOf D) _ hg1 hn' hρ hk β₀ hβ₀.1 (adPlaces D) Pg hPg.1
     (fun Q hQ Q' hQ' h => hnc Q hQ Q' hQ' (conj_of_idem (instOf D) (adPlaces D) h))
-    (fun Q h => exists_res_ne (instOf D) Q (GlobalTheory.T.exists_integer_sub_conj_notMem_self_conjugate_place D Q (conj_of_idem (instOf D) (adPlaces D) h))) ψ0 hψ a ha1 _
+    (fun Q h => exists_res_ne (instOf D) Q (_root_.GlobalTheory.ConjMovesResidue.exists_sub_star_notMem D Q (conj_of_idem (instOf D) (adPlaces D) h))) ψ0 hψ a ha1 _
     (fun x => star (chi2f (instOf D) psiEf (D.host.g 0 * D.host.g 1) e0 f0 z0 bw bwd x)) hK y hy⟩
 
 

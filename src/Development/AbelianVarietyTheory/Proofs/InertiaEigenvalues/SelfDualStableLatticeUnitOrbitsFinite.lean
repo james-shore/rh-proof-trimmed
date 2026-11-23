@@ -96,7 +96,7 @@ theorem orbits_finite : ∀ (K : UQ) (B : InvAlg K), B.P.Separable → ∀ x : B
     set W : Set (Submodule K.O B.A) :=
       (⋃ J ∈ S, {M : Submodule K.O B.A | mulLat K.O (algebraMap K.O B.A c) J ≤ M ∧ M ≤ J}) ∩ B.X x with hW
     have hWf : W.Finite :=
-      (hSf.biUnion fun J hJ => GlobalTheory.T.finite_submodules_between_mulLeftImage_lattice K B J (hSl J hJ) c hc0).subset Set.inter_subset_left
+      (hSf.biUnion fun J hJ => _root_.GlobalTheory.UnitLemma.finite_between_mulLat K B J (hSl J hJ) c hc0).subset Set.inter_subset_left
     haveI : Finite W := hWf.to_subtype
     let f : W → Orb K.O B.T (B.X x) := fun M => Quot.mk _ ⟨M.1, M.2.2⟩
     apply Finite.of_surjective f

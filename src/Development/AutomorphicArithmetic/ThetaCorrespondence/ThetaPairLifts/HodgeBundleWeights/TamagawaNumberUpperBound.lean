@@ -54,7 +54,7 @@ namespace MainStatements.Tam.A
 end MainStatements.Tam.A
 namespace MainStatements.Tam
 theorem tamagawa_number_upper_bound : VolSt → StabSt → NumSt → _root_.MainStatements.Tam.ArchimedeanTamagawaUpperBound := fun hV hS hN hP D Tu C t0 hC i P μ 𝓕 hF L hL =>
-  MainStatements.Tam.A.up_core hV hS hN D Tu C t0 hC i P μ 𝓕 hF L hL (_root_.GlobalTheory.T.level_subgroup_index_bounded hP D Tu C t0 hC i P)
+  MainStatements.Tam.A.up_core hV hS hN D Tu C t0 hC i P μ 𝓕 hF L hL (_root_.GlobalTheory.CovTop.LevelIndex.level_index_le_bound hP D Tu C t0 hC i P)
 end MainStatements.Tam
 end
 end

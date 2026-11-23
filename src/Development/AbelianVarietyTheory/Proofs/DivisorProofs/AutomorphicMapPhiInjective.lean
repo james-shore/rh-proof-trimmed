@@ -53,19 +53,6 @@ noncomputable section
 
 namespace GlobalTheory.BCT.TrKer
 
-theorem multilinear_mem_span {ι : Type} [Fintype ι] [DecidableEq ι] {M : ι → Type}
-    [∀ i, AddCommGroup (M i)] [∀ i, Module ℂ (M i)] {N : Type} [AddCommGroup N] [Module ℂ N]
-    (Φ : MultilinearMap (RingHom.id ℂ) M N) (s : ∀ i, Set (M i)) (f : ∀ i, M i)
-    (hf : ∀ i, f i ∈ Submodule.span ℂ (s i)) :
-    Φ f ∈ Submodule.span ℂ {y | ∃ g : ∀ i, M i, (∀ i, g i ∈ s i) ∧ y = Φ g} := by
-  first
-  | exact @_root_.GlobalTheory.MultilinearSpanImage.multilinear_apply_mem_span_image
-  | exact _root_.GlobalTheory.MultilinearSpanImage.multilinear_apply_mem_span_image
-  | (apply _root_.GlobalTheory.MultilinearSpanImage.multilinear_apply_mem_span_image <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MultilinearSpanImage.multilinear_apply_mem_span_image <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MultilinearSpanImage.multilinear_apply_mem_span_image <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.MultilinearSpanImage.multilinear_apply_mem_span_image ..)
-
 theorem span_smallRep_unitary (n : ℕ) (mu : DomWeight n) :
     Submodule.span ℂ (Set.range (GlobalTheory.Branching.smallRep (GlobalTheory.Branching.unitaryIncl n) mu)) = ⊤ :=
   GlobalTheory.ClassFin.span_range_eq_top_of_isIrreducible _ _ _ (GlobalTheory.Branching.isIrreducible_smallRep_unitary n mu)
@@ -81,7 +68,7 @@ theorem span_wInf (lam : InfinitePlace E → DomWeight n) :
   | smul_tprod r f =>
     rw [map_smul, PiTensorProduct.piTensorHomMap_tprod_eq_map]
     refine Submodule.smul_mem _ _ ?_
-    have h := multilinear_mem_span
+    have h := _root_.GlobalTheory.MultilinearSpanImage.multilinear_apply_mem_span_image
       (PiTensorProduct.mapMultilinear ℂ (fun v => nablaSq ℂ n (lam v)) (fun v => nablaSq ℂ n (lam v)))
       (fun v => Set.range (GlobalTheory.Branching.smallRep (GlobalTheory.Branching.unitaryIncl n) (lam v))) f
       (fun v => by rw [span_smallRep_unitary]; trivial)

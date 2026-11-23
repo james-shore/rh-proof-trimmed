@@ -75,7 +75,7 @@ theorem kummer_boundary_picClass : ∀ (q : ℕ) [NeZero q] (κ : (restr (Int.ca
   intro q _ κ h0 _ h2 _ _ h5 z s hz E L hE y hy
   obtain ⟨a, ha⟩ := GlobalTheory.T.exists_cocycle_lifting_lineBundle_transition_units q (cokernel κ) _ E L hE h5
   have hy' : y = CohomologyClass.mk (zcomp a (Cocycle.ofHom (resAug (cokernel κ))) (add_zero 1)) :=
-    (GlobalTheory.T.etaleCohomology_bijective_of_support_bijective ℤ E _ (fun U hU => h5 U (hE U hU)) 1).1 (hy.trans (GlobalTheory.T.kummerLiftedCocycle_image_eq_picardClass _ _ E L a ha).symm)
+    (_root_.GlobalTheory.EtC.a10 ℤ E _ (fun U hU => h5 U (hE U hU)) 1).1 (hy.trans (GlobalTheory.T.kummerLiftedCocycle_image_eq_picardClass _ _ E L a ha).symm)
   haveI : Injective ((res ℤ (twZ q)).X 0) :=
     inferInstanceAs (Injective ((injectiveResolution (twZ q)).cochainComplex.X 0))
   let φ : Gm ⟶ (res ℤ (twZ q)).X 0 := Injective.factorThru (resι ℤ (twZ q)) κ
@@ -87,7 +87,7 @@ theorem kummer_boundary_picClass : ∀ (q : ℕ) [NeZero q] (κ : (restr (Int.ca
   have hψd : ψ ≫ (res ℤ (twZ q)).d 1 2 = 0 := by
     rw [← cancel_epi (cokernel.π κ), ← Category.assoc, hψ, Category.assoc, HomologicalComplex.d_comp_d,
       comp_zero, comp_zero]
-  obtain ⟨w, hw⟩ := GlobalTheory.T.exists_cocycle_of_map_to_degreeOne_term (cokernel κ) (res ℤ (twZ q)) ψ hψd
+  obtain ⟨w, hw⟩ := _root_.GlobalTheory.EtC.exists_cocycle_of_map_to_X_one (cokernel κ) (res ℤ (twZ q)) ψ hψd
   have hzw := hz φ ψ hφ hψ w hw
   have hext : HK.ext ℤ _ z 1 (1 + 1) rfl y = s • CohomologyClass.mk (zcomp a w rfl) := by
     rw [hy']
@@ -100,7 +100,7 @@ theorem kummer_boundary_picClass : ∀ (q : ℕ) [NeZero q] (κ : (restr (Int.ca
     rfl
   rw [hext]
   congr 1
-  refine GlobalTheory.T.kummerCocycle_sub_chernClass_coboundary q E L hE φ (GlobalTheory.T.kummerSplittingDefect_glue_qthRoots q φ (GlobalTheory.T.kummerSplittingDefect_eq_of_pow_eq q κ h2 φ hφ)) (cokernel κ) a w (fun U x v hv => ?_)
+  refine GlobalTheory.T.kummerCocycle_sub_chernClass_coboundary q E L hE φ (_root_.GlobalTheory.EtC.KumPic.DvGlue.glue q φ (_root_.GlobalTheory.EtC.KumPic.dv_eq_of_pow_eq q κ h2 φ hφ)) (cokernel κ) a w (fun U x v hv => ?_)
   obtain ⟨c, hc, hac⟩ := ha U x
   have hU : IsUnit (q : Γ(U, ⊤)) := hE U ⟨x.face 0⟩
   have hpow : ∀ n : ℕ, unitSec (v ^ n) = (n : ℤ) • unitSec v := by

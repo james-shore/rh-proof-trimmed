@@ -45,6 +45,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.HtValOnSubset
 import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsFlatSecRankZero
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsProbabilityMeasureMuPart
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FramedPointsGluePrincipalCover
 
 @[expose] public section
 
@@ -217,12 +218,6 @@ end GlobalTheory.EigLatSpan
 noncomputable section
 namespace GlobalTheory.EigLatSpan
 
-theorem dualMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    (Formalism.L2.Pj.dualMap g).comp (Formalism.L2.Pj.dualMap f) = Formalism.L2.Pj.dualMap (g.comp f) := by
-  apply RingHom.ext
-  intro r
-  ext <;> simp [Formalism.L2.Pj.dualMap]
-
 theorem eigLat_le_span : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (K : Type) [Field K] [NumberField K] [Algebra c.F K] (y : FrPt Xo c K) (B : GlobalTheory.CM.PAT H (Sp (𝓞 K))) (t₀ : SAB H (Sp K)) (m1 : SABMap t₀ Xo.univ.t y.x) (m2 : SABMap t₀ B.t (spMap (algebraMap (𝓞 K) K))) (F : GlobalTheory.CM.GenFib B.pol) (ρ : E →+* ℂ) (tt : 𝓞 E →+* 𝓞 K), (∀ a, ((tt a : 𝓞 K) : K) = algebraMap c.F K (embK c ρ a)) → ∀ (u : Fin (Dw.mult ρ) → Fin F.P₀.g → K), GlobalTheory.PtDeg.FrameCoord y m1 m2 F ρ u → ∀ (𝔓 : HeightOneSpectrum (𝓞 K)) (T : CDVR) (iK : K →+* T.Fr), (∀ z : K, iK z ∈ Set.range (algebraMap T.V T.Fr) ↔ 𝔓.valuation K z ≤ 1) → ∀ (ρV : 𝓞 K →+* T.V), (algebraMap T.V T.Fr).comp ρV = iK.comp (algebraMap (𝓞 K) K) → letI := (iK.comp (algebraMap c.F K)).toAlgebra; ∀ (yT : FrPt Xo c T.Fr), FrMap ({ iK with commutes' := fun _ => rfl } : K →ₐ[c.F] T.Fr) y yT → ∀ (G : GlobalTheory.CM.PAT H (Sp T.V)) (t' : SAB H (Sp T.Fr)) (n : SABMap G.t B.t (spMap ρV)) (n' : SABMap t' t₀ (spMap iK)) (m1' : SABMap t' Xo.univ.t yT.x) (m2' : SABMap t' G.t (spMap (algebraMap T.V T.Fr))), m1'.φ = n'.φ ≫ m1.φ → m2'.φ ≫ n.φ = n'.φ ≫ m2.φ → ∀ (C : ∀ σ : E →+* ℂ, Matrix (Fin (Dw.mult σ)) (Fin (Dw.mult σ)) T.Fr) (a : T.Fr) (y' : FrPt Xo c T.Fr), FrChg C a yT y' → GlobalTheory.LamT.LieInt T (iK.comp (algebraMap c.F K)) m1' m2' y'.u → ∀ v ∈ F.eigLat B.t.act tt, (fun k => iK (v k)) ∈ Submodule.span T.V (Set.range fun i => ∑ j, C ρ i j • fun k => iK (u j k)) := by
   intro E _ _ _ H Dw l Xo c K _ _ _ y B t₀ m1 m2 F ρ tt htt u hu 𝔓 T iK hval ρV hρV
   letI := (iK.comp (algebraMap c.F K)).toAlgebra
@@ -307,8 +302,8 @@ theorem eigLat_le_span : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
       refine htr cc w s' hwc ?_
       have ed : spMap (Formalism.L2.Pj.dualMap (algebraMap T.V T.Fr)) ≫ spMap (Formalism.L2.Pj.dualMap ρV) =
           spMap (Formalism.L2.Pj.dualMap iK) ≫ spMap (ReciprocityTheory.ChartRestriction.G.Chart.dualMapR (algebraMap (𝓞 K) K)) := by
-        rw [GlobalTheory.IntLie.spMap_comp₂, GlobalTheory.IntLie.spMap_comp₂, dualMap_comp', hρV]
-        exact congrArg spMap (dualMap_comp' _ _).symm
+        rw [GlobalTheory.IntLie.spMap_comp₂, GlobalTheory.IntLie.spMap_comp₂, _root_.GlobalTheory.Frames.Glue.dual_comp, hρV]
+        exact congrArg spMap (_root_.GlobalTheory.Frames.Glue.dual_comp _ _).symm
       rw [hwv, ← h2, ← Category.assoc, hs2, Category.assoc, hW', ← Category.assoc, ed, Category.assoc]
     have heq := (he.2 s' (hA.2.1 _ _ hc)).unique hc hs
     rw [heq]

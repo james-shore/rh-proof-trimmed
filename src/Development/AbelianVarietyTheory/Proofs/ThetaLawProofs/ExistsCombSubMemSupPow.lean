@@ -199,7 +199,7 @@ theorem exists_comb_sub_mem_sup_pow : Out.Laws → ∀ (O : Type) [CommRing O] [
       exact ha
     · exact ⟨0, fun y h => (hz ⟨y, h⟩).elim⟩
   choose a ha using ha
-  obtain ⟨sg₀, hsg₀⟩ := (GlobalTheory.T.koszul_sections_exact_algClosed_polarisedAV hL K x' n l s' b' m' c' hn (hg ▸ hl) hZ' hB' hm' hc').2.1 a
+  obtain ⟨sg₀, hsg₀⟩ := (_root_.GlobalTheory.koszul_sections_exact_field hL K x' n l s' b' m' c' hn (hg ▸ hl) hZ' hB' hm' hc').2.1 a
   obtain ⟨sg, hsg⟩ := exists_sec_cast x' (show l = l - 0 * n by simp) sg₀
   obtain ⟨v, hv, -⟩ := hB' 0 (Nat.zero_le _) sg
   have hN : (l - 0 * n) ^ x'.P.g = (l - 0 * n) ^ x.P.g := congrArg (fun r => (l - 0 * n) ^ r) hg

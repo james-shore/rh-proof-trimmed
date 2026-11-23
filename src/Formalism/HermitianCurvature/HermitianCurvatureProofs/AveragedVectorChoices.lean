@@ -487,14 +487,14 @@ theorem cutNormEval_main : CutNormEval := by
 
 end PositiveSemidefiniteClosure
 
-theorem averaged_vector_norm_bound : Formalism.FourierDecayAlt.A6.UNormBound := PositiveSemidefiniteClosure.uNormBound_main
+alias averaged_vector_norm_bound := _root_.Formalism.FourierDecayAlt.P.PositiveSemidefiniteClosure.uNormBound_main
 
-theorem cut_posSemidef : Formalism.FourierDecayAlt.A6.CutPSD := PositiveSemidefiniteClosure.cutPSD_main
+alias cut_posSemidef := _root_.Formalism.FourierDecayAlt.P.PositiveSemidefiniteClosure.cutPSD_main
 
-theorem heads_distinct_determinant_orthogonal : Formalism.FourierDecayAlt.A6.UBlock := PositiveSemidefiniteClosure.uBlock_main
+alias heads_distinct_determinant_orthogonal := _root_.Formalism.FourierDecayAlt.P.PositiveSemidefiniteClosure.uBlock_main
 
-theorem averaged_vector_choices_exist : Formalism.FourierDecayAlt.A6.AvgDataExists := PositiveSemidefiniteClosure.avgDataExists_main
+alias averaged_vector_choices_exist := _root_.Formalism.FourierDecayAlt.P.PositiveSemidefiniteClosure.avgDataExists_main
 
-theorem truncated_average_norm_formula : Formalism.FourierDecayAlt.A6.CutNormEval := PositiveSemidefiniteClosure.cutNormEval_main
+alias truncated_average_norm_formula := _root_.Formalism.FourierDecayAlt.P.PositiveSemidefiniteClosure.cutNormEval_main
 
 end Formalism.FourierDecayAlt.P

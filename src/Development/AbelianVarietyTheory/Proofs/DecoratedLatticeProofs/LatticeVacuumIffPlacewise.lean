@@ -66,14 +66,7 @@ theorem latO_mono (S T : HSp D) (LS : Set (Fin S.rank → D.host.E)) (LT : Set (
   rintro w ⟨α, hα, hvan, rest⟩
   exact ⟨α, hα, fun v hv => hvan v fun hq => hv (h v hq), rest⟩
 
-theorem heisO_zero (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (f : WO S T → ℂ) : heisO ψ S T 0 f = f := by
-  funext w
-  simp [heisO, symplOH, symplO, hO]
-
-theorem pairA_add (a b : Af D.host.F) :
-    pairA D.host.F 0 (a + b) = pairA D.host.F 0 a + pairA D.host.F 0 b := by
-  show ((0 : Ainf D.host.F), a + b) = ((0 : Ainf D.host.F), a) + ((0 : Ainf D.host.F), b)
-  rw [Prod.mk_add_mk, add_zero]
+alias heisO_zero := _root_.GlobalTheory.MixPer.heisO_zero
 
 theorem pairA_mul (a b : Af D.host.F) :
     pairA D.host.F 0 a * pairA D.host.F 0 b = pairA D.host.F 0 (a * b) := by
@@ -128,7 +121,7 @@ theorem latVac_of_places (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (LS : La
             exact h ⟨h'.1, fun h'' => h'.2 (Or.inr h'')⟩
         have hdisj : Disjoint ({v} : Set (Pl D)) (↑(s \ t) : Set (Pl D))ᶜ := by
           rw [Set.disjoint_singleton_left]; simp [hvs, hvt]
-        rw [hset, ← indicatorAdele_union_of_disjoint hdisj, pairA_add, add_smul]
+        rw [hset, ← indicatorAdele_union_of_disjoint hdisj, _root_.GlobalTheory.FinPlLoc.pairA_add, add_smul]
         have hprod : pairA D.host.F 0 (indP D {v}) * pairA D.host.F 0 (indP D (↑(s \ t) : Set (Pl D))ᶜ) = 0 := by
           rw [pairA_mul, indicatorAdele_singleton_mul_singleton, Set.disjoint_iff_inter_eq_empty.mp hdisj, indicatorAdele_empty, pairA_zero]
         rw [(GlobalTheory.T.heisenbergOperator_disjointSupport_smul_add) D ψ S T _ _ _ _ f hprod, ih']

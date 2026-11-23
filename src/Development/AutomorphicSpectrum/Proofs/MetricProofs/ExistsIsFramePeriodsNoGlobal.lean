@@ -122,7 +122,7 @@ theorem exists_isFramePeriods_noGlobal : ∀ (E : Type) [Field E] [NumberField E
   have hhol : IsHolTo (Metric.ball 0 1) p := GlobalTheory.T.holomorphic_coords_of_generic_point 𝔐.X Ω 𝔐.ξ K J y htie hall n _ w p Metric.isOpen_ball hw hp
   haveI : FiniteDimensional ℚ c.F := c.fin
   haveI : NumberField c.F := ⟨⟩
-  obtain ⟨τ, hτ⟩ := GlobalTheory.T.holomorphic_disc_over_number_field_ring c.F 𝔐.X (𝔐.f ≫ Y.s) n p hhol
+  obtain ⟨τ, hτ⟩ := _root_.GlobalTheory.CompanionTheory.Ar.ConstEmbedding.exists_embedding c.F 𝔐.X (𝔐.f ≫ Y.s) n p hhol
   have hint : ∀ u ∈ Flat.punct n a₀ 1, 𝔐.Interior (p u) := fun u hu => by
     have h1 := (hgeo ρ₀ hρ₀ le_rfl u hu.1).2.2
     have h2 := hBd (p u) (w u) (hp u hu.1)

@@ -59,7 +59,7 @@ theorem isPullCubical_constPt : GlobalTheory.CovTop.Hypotheses₂ → GlobalTheo
   refine GlobalTheory.TripleModel.isPullCubical_of_lbIso GlobalTheory.SemiRigid.globalFns hA hF o.t.cub Xo.univ.t.cub ?_
   obtain ⟨w, -, hw, -⟩ := rigIso_congr rfl m.cm m.lin rfl rfl
   have K2 : LBIso (Xo.univ.t.PP.L.pull π') (Xo.univ.t.PP.L.pull (q ≫ π)) :=
-    GlobalTheory.T.lineBundle_iso_tangent_pull_constant_deformation E H Dw l Xo c K y.x x' A A' π π' i q hi hπ hπ' hiπ hiq hq
+    _root_.GlobalTheory.TangentConstLB.lbIso_tangent_const E H Dw l Xo c K y.x x' A A' π π' i q hi hπ hπ' hiπ hiq hq
   have hM := Xo.univ.t.PP.isLB
   have h1 : LBIso o.t.PP.L (Xo.univ.t.PP.L.pull (g ≫ π')) := hg1 ▸ ⟨w, hw⟩
   have h2 : LBIso ((Xo.univ.t.PP.L.pull π').pull g) (Xo.univ.t.PP.L.pull (g ≫ q ≫ π)) :=

@@ -58,6 +58,6 @@ theorem expBound (hL : ExpLow k) : ExpBound k :=
     (Move2.moveLast k (Fact.factorIrr k) (Comm.comm2Irr k)) (Move2.moveFirst k (Fact.factorIrr k) (Comm.comm2Irr k))
     (ThetaPf.thetaProd k) (thetaFacts k) (centralProd2 k) hL
 
-theorem expBound_of : ExpLow k → ExpBound k := expBound k
+alias expBound_of := _root_.PositivityTheory.RgUd.Exp.Final.expBound
 
 end PositivityTheory.RgUd.Exp.Final

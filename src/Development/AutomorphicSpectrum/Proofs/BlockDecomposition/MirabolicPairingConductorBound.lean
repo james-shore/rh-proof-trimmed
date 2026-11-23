@@ -76,7 +76,7 @@ theorem JJ_preimage_box_eq_JJ_box : ∀ {k : Type} [Field k] [ValuativeRel k] [T
     exacts [⟨a, le_rfl, h⟩, ⟨a', h, le_rfl⟩]
   obtain ⟨r₁, hr₁, h₁⟩ := GlobalTheory.T.shear_preserves_box_membership g
   obtain ⟨r₂, -, h₂⟩ := GlobalTheory.T.smooth_vector_fixed_small_shear T hT v
-  obtain ⟨r₃, -, h₃⟩ := GlobalTheory.T.smooth_vector_fixed_small_shear T' hT' v'
+  obtain ⟨r₃, -, h₃⟩ := _root_.GlobalTheory.CompanionTheory.MirPair.shear_fix_vector T' hT' v'
   obtain ⟨r₄, h₄₁, h₄₂⟩ := hmin r₁ r₂
   obtain ⟨r, hr₄, hr₃⟩ := hmin r₄ r₃
   refine ⟨r, fun t ht t' hgt => ?_⟩
@@ -107,7 +107,7 @@ theorem JJ_preimage_box_eq_JJ_box : ∀ {k : Type} [Field k] [ValuativeRel k] [T
     hw.mul (GlobalTheory.T.mirabolic_coefficient_continuous T B hT v v')
   have hsub : (GlobalTheory.CompanionTheory.BZOnto.PerpSmall.box (n + 1) t : Set (Fin (n + 1) → k)) ⊆ M :=
     fun x hx => hgt x hx
-  have key := GlobalTheory.T.fourier_box_integral_vanishing ν ψ c hψ hc (n + 1) t M
+  have key := _root_.GlobalTheory.CompanionTheory.MirPair.setIntegral_inter_box_of_twists ν ψ c hψ hc (n + 1) t M
     (fun x => GlobalTheory.CompanionTheory.MirPair.wt ψ n x * GlobalTheory.CompanionTheory.MirPair.coef T B v v' x)
     (GlobalTheory.CompanionTheory.MirPair.JJ ν ψ T B M v v') hMc hMm hf (by
       intro b hb

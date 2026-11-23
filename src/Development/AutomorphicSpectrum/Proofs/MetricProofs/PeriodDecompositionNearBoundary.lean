@@ -141,7 +141,7 @@ theorem limit_of_data : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
     congr 1
     · exact funext (hf0 τ)
     · exact funext (hqt0 τ)
-  have hsol := fun τ => GlobalTheory.T.exists_continuous_change_of_frame n g (r + k) (fun z i => b τ i z) (F τ) (T τ) (fun i => hbc τ i) (hFc τ)
+  have hsol := fun τ => _root_.GlobalTheory.CompanionTheory.Ar.SolveCoeff.coeff_continuous n g (r + k) (fun z i => b τ i z) (F τ) (T τ) (fun i => hbc τ i) (hFc τ)
     ((hb.2 0 h0ball τ).1) (fun i => by rw [hF0 τ]; exact hT τ i) (by
       filter_upwards [Metric.isOpen_ball.mem_nhds h0ball] with z hz i
       rw [(hb.2 z hz τ).2]

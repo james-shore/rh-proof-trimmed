@@ -99,7 +99,7 @@ theorem comp_bound (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host 
   have hb : ∀ r : RootIx D, ∃ Cr : ℝ, ∀ z : (Σ k, R.ι k) → ℂ, (∀ k, ∃ a, z ⟨k, a⟩ ≠ 0) →
       |Real.log ((o₀.Re.ref (some r)).h z) + ∑ k ∈ Finset.Iic r.2, Real.log ((R.x 1 (r.1, k)).h z)| ≤ Cr := by
     rintro ⟨τ, p⟩
-    refine GlobalTheory.T.log_hermitian_sum_bounded R.K R.ι (Fin (D.p + D.q)) (o₀.Re.ref (some (τ, p))) (fun k => R.x 1 (τ, k)) (Finset.Iic p)
+    refine _root_.GlobalTheory.CompanionTheory.Ar.CancelBound.log_metrics_bounded R.K R.ι (Fin (D.p + D.q)) (o₀.Re.ref (some (τ, p))) (fun k => R.x 1 (τ, k)) (Finset.Iic p)
       (o₀.Re.ref_smooth _) (fun k => R.x_smooth _ _) ?_
     rw [o₀.fund_deg]
     simp only [R.x_deg]

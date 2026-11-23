@@ -70,7 +70,7 @@ theorem norm_le_of_twist {act : GQ l →* (PadicComplex l ≃+* PadicComplex l)}
     (ha : IsActC act) (hχ : IsCyc χ) (K : FinExt l) {s : ℕ} (hs : Lev l s) {j : ℤ} (hj : j ≠ 0)
     (β : PadicComplex l) (h : ∀ σ ∈ Gj K s, ‖chiC χ j σ * act σ β - β‖ ≤ 1) :
     ‖(l : PadicComplex l) ^ (1 + s + padicValInt l j) * β‖ ≤ 1 := by
-  obtain ⟨γ, hγ, e⟩ := GlobalTheory.T.cyclotomic_twist_cocycle_coboundary l act χ ha hχ K s hs j hj
+  obtain ⟨γ, hγ, e⟩ := _root_.GlobalTheory.Cyc.TwistKill.pow_kills_cyclotomic_H1 l act χ ha hχ K s hs j hj
     (fun σ => chiC χ j σ * act σ β - β)
     ⟨(((continuous_chiC hχ j).mul (GlobalTheory.Cyc.IsActC.continuous_orbit l act ha β)).sub
       continuous_const).continuousOn, h, fun g _ g' _ => by

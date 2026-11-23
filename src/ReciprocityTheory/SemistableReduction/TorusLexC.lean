@@ -54,12 +54,6 @@ namespace ReciprocityTheory.MultiplicativeHeights.TorusLexOrder
 
 open MeasureTheory ComplexConjugate
 
-private theorem norm_torusMono_eq_one {ι : Type} [Fintype ι] (θ : ι → ℝ) (s : ι →₀ ℕ) :
-    ‖torusMono θ s‖ = 1 := by
-  unfold torusMono
-  rw [norm_prod]
-  simp [norm_pow, norm_torusPoint]
-
 private theorem continuous_torusMono' {ι : Type} [Fintype ι] (s : ι →₀ ℕ) :
     Continuous (fun θ : ι → ℝ => torusMono θ s) := by
   have h : ∀ i, Continuous fun θ : ι → ℝ => torusPoint θ i :=
@@ -74,13 +68,13 @@ theorem integrable_torus_term {ι : Type} [Fintype ι] (f : MvPolynomial ι ℂ)
     (Complex.continuous_conj.comp (continuous_torusMono' s))) (∑ t ∈ f.support, ‖f.coeff t‖)
     (fun θ => ?_)
   have h := norm_eval_torus_le f θ
-  simpa [norm_torusMono_eq_one] using h
+  simpa [_root_.ReciprocityTheory.MultiplicativeHeights.TorusLexOrder.norm_torusMono] using h
 
 theorem integrable_mono_term {ι : Type} [Fintype ι] (t s : ι →₀ ℕ) :
     Integrable (fun θ => torusMono θ t * conj (torusMono θ s)) (torusProb ι) := by
   refine integrable_of_bdd ((continuous_torusMono' t).mul
     (Complex.continuous_conj.comp (continuous_torusMono' s))) 1 (fun θ => ?_)
-  simp [norm_torusMono_eq_one]
+  simp [_root_.ReciprocityTheory.MultiplicativeHeights.TorusLexOrder.norm_torusMono]
 
 theorem torus_coeff_integral {ι : Type} [Fintype ι] (f : MvPolynomial ι ℂ) (s : ι →₀ ℕ) :
     ∫ θ, MvPolynomial.eval (torusPoint θ) f * conj (torusMono θ s) ∂(torusProb ι) =
@@ -208,7 +202,7 @@ theorem torus_l2_cauchy_of_basic (hBasic : TorusMeanBasicStatement) : TorusL2Cau
     rw [← torus_coeff_integral f s]
     have hb : ∀ᵐ θ ∂(torusProb ι), ‖MvPolynomial.eval (torusPoint θ) f * conj (torusMono θ s)‖ ≤
         ‖MvPolynomial.eval (torusPoint θ₀) f‖ :=
-      Filter.Eventually.of_forall (fun θ => by simpa [norm_torusMono_eq_one] using hθ₀ θ)
+      Filter.Eventually.of_forall (fun θ => by simpa [_root_.ReciprocityTheory.MultiplicativeHeights.TorusLexOrder.norm_torusMono] using hθ₀ θ)
     simpa using norm_integral_le_of_norm_le_const hb
 
 end ReciprocityTheory.MultiplicativeHeights.TorusLexOrder

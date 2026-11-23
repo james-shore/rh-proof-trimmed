@@ -121,7 +121,7 @@ theorem exists_section (hL : Laws2) (u : ρ.UTest p y₀) : ∃ (ϑ : H0 u.U.LG.
       (spMap u.yK (IsLocalRing.closedPoint _))
     obtain ⟨z, hz, -⟩ := Scheme.exists_preimage_of_isPullback (grpPullback u).1 _ _ e
     exact ⟨z, by rw [hz]; exact hθ y hy⟩)
-  obtain ⟨lam, hlam, hfr⟩ := GlobalTheory.T.torsionFrame_pow_eq_integral_generator u.V u.G u.semi u.U.LG _ ρ.P ρ.rig ρ.rig_gen _ _ (grpPullback u) w hw (S.r * S.N)
+  obtain ⟨lam, hlam, hfr⟩ := _root_.GlobalTheory.TorsFrameInt.torsFrame_pow_eq u.V u.G u.semi u.U.LG _ ρ.P ρ.rig ρ.rig_gen _ _ (grpPullback u) w hw (S.r * S.N)
   set e := algebraMap (FractionRing u.V) (PadicAlgCl p) with he
   have pos : ∀ x : FractionRing u.V, x ≠ 0 → 0 < ‖e x‖ := fun x hx =>
     norm_pos_iff.2 ((map_ne_zero e).2 hx)
@@ -210,13 +210,7 @@ theorem exists_translate (hL : Laws) {V : Type} [CommRing V] [IsDomain V] [IsDis
   rw [← map_mul, ← y₂] at this
   exact this
 
-theorem isUnit_level (u : ρ.UTest p y₀) (hy : ∀ a : o, ‖y₀ (algebraMap o S.R a)‖ ≤ 1) :
-    IsUnit ((S.r * S.N : ℕ) : u.V) := by
-  obtain ⟨a, ha⟩ := S.unit.exists_right_inv
-  obtain ⟨v, hv⟩ := (u.norm_le (u.yK (algebraMap o S.R a))).1 ((congrArg _ (RingHom.congr_fun u.fac _)).trans_le (hy a))
-  refine IsUnit.of_mul_eq_one v (IsFractionRing.injective u.V (FractionRing u.V) ?_)
-  rw [map_mul, hv, map_natCast, map_one, ← map_natCast (u.yK.comp (algebraMap o S.R))]
-  exact (map_mul (u.yK.comp (algebraMap o S.R)) _ _).symm.trans (by rw [ha, map_one])
+alias isUnit_level := _root_.GlobalTheory.ZH.TestVal.isUnit_level
 
 theorem eq_zero_of_nonpos {X : Type} [AddCommGroup X] [Module.Free ℤ X] (q : QuadraticMap ℤ X ℝ)
     (hq : Filter.Tendsto q Filter.cofinite Filter.atTop) {w : X} (hw : q w ≤ 0) : w = 0 := by

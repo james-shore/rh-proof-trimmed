@@ -172,4 +172,3 @@ theorem recT : Formalism.FourierDecayAlt.RecursionText := by
 
 end Formalism.FourierDecayAlt.P.RecText
 
-theorem Formalism.FourierDecayAlt.P.coarseBound : Formalism.FourierDecayAlt.RecursionText := Formalism.FourierDecayAlt.P.RecText.recT

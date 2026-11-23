@@ -55,10 +55,7 @@ namespace GlobalTheory.PDivLat.Frob
 variable {p : ℕ} [Fact p.Prime] {O : Type} [CommRing O] [Fact ¬IsUnit (p : O)]
   [IsAdicComplete (Ideal.span {(p : O)}) O]
 
-theorem frob_phiInv (a : Ainf p O) : WittVector.frobenius (phiInv p O a) = a := by
-  ext n
-  rw [WittVector.coeff_frobenius_charP, phiInv, WittVector.map_coeff]
-  exact frobeniusEquiv_symm_pow_p _ p _
+alias frob_phiInv := _root_.GlobalTheory.Dieudonne.frobenius_phiInv
 
 theorem phiInv_ofPadic' (c : ℤ_[p]) : phiInv p O (ofPadic p O c) = ofPadic p O c := by
   ext n
@@ -67,16 +64,11 @@ theorem phiInv_ofPadic' (c : ℤ_[p]) : phiInv p O (ofPadic p O c) = ofPadic p O
     (((_root_.frobeniusEquiv (PreTilt O p) p).symm : PreTilt O p →+* PreTilt O p).comp
       (ZMod.castHom (dvd_refl p) (PreTilt O p))) (ZMod.castHom (dvd_refl p) (PreTilt O p))) _
 
-theorem frob_ofPadic (c : ℤ_[p]) :
-    WittVector.frobenius (ofPadic p O c) = ofPadic p O c := by
-  conv_lhs => rw [← phiInv_ofPadic' c]
-  exact frob_phiInv _
-
 def frobT (G : PDivGroup p O) (y : TDual G) : TDual G where
   toFun t := WittVector.frobenius (y t)
   map_add' s t := by rw [map_add (f := _), map_add (f := _)]
   map_smul' c t := by
-    rw [LinearMap.map_smulₛₗ, smul_eq_mul, map_mul, frob_ofPadic, smul_eq_mul]
+    rw [LinearMap.map_smulₛₗ, smul_eq_mul, map_mul, _root_.GlobalTheory.PDivLat.frobenius_ofPadic, smul_eq_mul]
 
 def xiPhiInvT (ε : PreTilt O p) (G : PDivGroup p O) (m : TDual G) : TDual G where
   toFun t := xi ε * phiInv p O (m t)

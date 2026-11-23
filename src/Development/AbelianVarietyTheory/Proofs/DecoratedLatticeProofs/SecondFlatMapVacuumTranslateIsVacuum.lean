@@ -71,10 +71,6 @@ theorem latO_of_none (S T : HSp D) (LS : Set (Fin S.rank → D.host.E)) (LT : Se
   ext i j
   simp [hp]
 
-theorem heisO_zero (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (f : WO S T → ℂ) : heisO ψ S T 0 f = f := by
-  funext w
-  simp [heisO, symplOH, symplO, hO]
-
 theorem vac_second : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (σ : ℕ) (J : JacLev D (σ + 1)) (B : BesLev D σ) (s : StepFB ψ J B) (LV : Lat J.W) (LV₀ : Lat J.W₀) (LW : Lat B.V) (LW₀ : Lat B.V₀) (P : Pl D → Prop), (∀ v, P v → AdaptFB ψ J B LV LV₀ LW LW₀ v ∧ UnrAt s v) → ∀ f, Vac ψ J.W B.V LV LW P f → ∀ h₁ ∈ grpOff J.W P, ∀ h₂ ∈ grpOff B.V P, Vac ψ J.W₀ B.V₀ LV₀ LW₀ P (flatFB s (s.om (h₁, h₂) f)) := by
   intro D ψ σ J B s LV LV₀ LW LW₀ P hP f hf h₁ hh₁ h₂ hh₂
   have hflat : ∀ Q : Pl D → Prop, IsFlatFB s Q (flatFB s) := fun Q => (GlobalTheory.T.flatMapsSatisfyFlatLaws_finitePlaces D ψ Q).2 σ J B s
@@ -97,10 +93,10 @@ theorem vac_second : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (σ : ℕ) (J
     · intro u hu
       rw [hbot, AddSubgroup.mem_bot] at hu
       subst hu
-      rw [two_nsmul, add_zero, heisO_zero]
+      rw [two_nsmul, add_zero, _root_.GlobalTheory.SplitScalar.heisO_zero]
     · intro e _ u hu _
       rw [hbot, AddSubgroup.mem_bot] at hu
       subst hu
-      rw [heisO_zero]
+      rw [_root_.GlobalTheory.SplitScalar.heisO_zero]
 
 end GlobalTheory.VacSecondPf

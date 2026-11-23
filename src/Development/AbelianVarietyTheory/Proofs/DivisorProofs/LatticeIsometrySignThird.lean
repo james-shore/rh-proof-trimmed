@@ -76,10 +76,7 @@ section Classical
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r g n : ℕ} {X : Data E r}
   {bas : (Fin g ⊕ Fin g → ℤ) ≃ₗ[ℤ] X.Λ}
 
-theorem heisG_smul (y : Matrix (Fin n) (Fin r) E) (c : ℂ) (φ : TF n g) :
-    heisG X bas y (c • φ) = c • heisG X bas y φ := by
-  funext x
-  simp only [heisG, heisS, Pi.smul_apply, smul_eq_mul, mul_assoc]
+alias heisG_smul := _root_.GlobalTheory.SW.TensVac.heisG_smul
 
 theorem projA_smul (w : E) (A : AddSubgroup (Matrix (Fin n) (Fin r) E)) (a : ℂ) (φ : TF n g) :
     projA X bas w A (a • φ) = a • projA X bas w A φ := by
@@ -171,7 +168,7 @@ theorem isONFr_move (hψ : IsStdChar D ψ (-1)) (hθ : IsInfFam θ) (hV : V.gram
     (hS : IsSympl X bas) {x : Frame X.Ψ r} (hx : IsONFr X x) (k : GA D W) : IsONFr X (frMove θ W hr X k x) := by
   subst hr
   obtain ⟨X', m, hq', hq, bas', idx', hs, -, -, -, -, -, -, hfr⟩ :=
-    GlobalTheory.T.orthonormal_frame_reading_eq_conjugate_datum_theta D ψ θ V W g X bas idx hψ hθ he hV hM hS
+    _root_.GlobalTheory.AdTh.reads_iff_eq_th D ψ θ V W g X bas idx hψ hθ he hV hM hS
   obtain ⟨⟨B, hB⟩, hBx⟩ := hfr x hx
   obtain ⟨-, -, -, -, -, -, -, hmv, -⟩ := hBx B hB
   exact (hmv k).1

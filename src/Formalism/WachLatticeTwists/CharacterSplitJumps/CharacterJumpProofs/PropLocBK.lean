@@ -48,6 +48,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 public import Mathlib.LinearAlgebra.FreeModule.PID
 public import Mathlib.RingTheory.Localization.Module
+import Formalism.CharacterColumnKernels.IdempotentNormalForms.LengthEqKerAddRange
 
 @[expose] public section
 
@@ -64,11 +65,11 @@ theorem bkbConv : StatBKbConv := by
   ext x
   constructor
   · rintro ⟨a, ha, rfl⟩
-    rw [mem_annih]
+    rw [_root_.Formalism.NG.IdempotentNormalFormsRhoFacts.mem_annih]
     intro t ht
     rw [h3, (h1 a).1 ha _ ht, Submodule.Quotient.mk_zero]
   · intro hx
-    rw [mem_annih] at hx
+    rw [_root_.Formalism.NG.IdempotentNormalFormsRhoFacts.mem_annih] at hx
     let ψ : HT' →ₗ[O] HV' ⧸ HfV' := (HfV'.mkQ.restrictScalars O) ∘ₗ j'
     have hle : LinearMap.ker ψ ≤ LinearMap.ker (pr x) := by
       intro t ht

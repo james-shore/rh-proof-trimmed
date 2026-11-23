@@ -51,9 +51,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.Local
 noncomputable section
 namespace GlobalTheory.SquareConv
 
-theorem natCast_not_mem {Rg : Type*} [CommRing Rg] {P : Ideal Rg} (hP : P ≠ ⊤) {p n : ℕ} (hpn : Nat.Coprime p n)
-    (hp : (p : Rg) ∈ P) : (n : Rg) ∉ P :=
-  _root_.GlobalTheory.CoprimeNatNotMem.natCast_not_mem_of_coprime hP hpn hp
+alias natCast_not_mem := _root_.GlobalTheory.CoprimeNatNotMem.natCast_not_mem_of_coprime
 
 theorem standing {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : Type} {A : FamIn D.what₂.LL Γ Pl0 T D.R.m}
     {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] {R : RealDat D A Ks} {F : Face D A} {large₂ : SizeData₂ D}

@@ -80,7 +80,7 @@ theorem split_vacuum_eigenvalue_eq_one : _root_.GlobalTheory.FunPr.ThetaLocalInp
         conv_lhs => rw [← hx]
         rw [← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply] }
   have hD : ∀ p ∈ GlobalTheory.DblVac.KD σ G.V v, p ∈ GlobalTheory.DblVac.PDiag σ G.V → p ∈ H := fun p hp hpd => by
-    obtain ⟨μ, hμ⟩ := _root_.GlobalTheory.T.vDouble_eigenspace_split_of_line hP F E σ B a a' G X om om' hT v hsp₀ hv hψ htwo hstd d' hd' dd omd hdc hsp r hr p hp
+    obtain ⟨μ, hμ⟩ := _root_.GlobalTheory.VDblEigSplit.vDouble_eigenfunction_split hP F E σ B a a' G X om om' hT v hsp₀ hv hψ htwo hstd d' hd' dd omd hdc hsp r hr p hp
     have h1 := siegel_eigen_eq_one_any F E σ B a a' G X om om' hT v hv d' dd omd hdc hsp r hr hr0 p hp hpd μ hμ
     show omd p S = S
     rw [hμ, h1, one_smul]
@@ -88,7 +88,7 @@ theorem split_vacuum_eigenvalue_eq_one : _root_.GlobalTheory.FunPr.ThetaLocalInp
     obtain ⟨w₀, hw₀, hW⟩ := GlobalTheory.T.exists_diagOneNegOne_conj_antidiagonalStabilizer_mem σ G.V v
     obtain ⟨h1, h2⟩ := hW q hq hqa
     have hq' : omd (w₀ * q * w₀⁻¹) S = S := hD _ h1 h2
-    obtain ⟨μ, hμ⟩ := _root_.GlobalTheory.T.vDouble_eigenspace_split_of_line hP F E σ B a a' G X om om' hT v hsp₀ hv hψ htwo hstd d' hd' dd omd hdc hsp r hr w₀ hw₀
+    obtain ⟨μ, hμ⟩ := _root_.GlobalTheory.VDblEigSplit.vDouble_eigenfunction_split hP F E σ B a a' G X om om' hT v hsp₀ hv hψ htwo hstd d' hd' dd omd hdc hsp r hr w₀ hw₀
     have hinv : μ • omd w₀⁻¹ S = S := by
       rw [← LinearMap.map_smul, ← hμ, ← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one,
         Module.End.one_apply]
@@ -96,7 +96,7 @@ theorem split_vacuum_eigenvalue_eq_one : _root_.GlobalTheory.FunPr.ThetaLocalInp
     show omd q S = S
     rw [e, map_mul, map_mul, Module.End.mul_apply, Module.End.mul_apply, hμ, LinearMap.map_smul, hq',
       LinearMap.map_smul, hinv]
-  obtain ⟨gd, hgd, hgdK⟩ := GlobalTheory.T.exists_diag_mem_doubledVacuumLatticeStabilizer σ G.V v k hk
+  obtain ⟨gd, hgd, hgdK⟩ := _root_.GlobalTheory.DblVacDiag.diag_mem_KD σ G.V v k hk
   have hfix : omd gd S = S :=
     GlobalTheory.T.split_place_diagonal_stabilizer_generated_hermitian_doubling σ B G.V _ _ hT.base hT.geo.hV v hsp₀ hψ htwo H hD hA gd hgdK
   have hb := hbox k gd hgd V₀ hr.2 (fun x => star (V₀ x)) (GlobalTheory.T.conj_mem_adelicSchwartzSpaceNumberField_of_mem _ V₀ hr.2)
@@ -119,14 +119,3 @@ end GlobalTheory.SplitVacV
 end
 end
 
-section
-open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-open scoped TensorProduct Matrix
-
-theorem _root_.GlobalTheory.T.split_vacuum_hecke_eigenvalue_eq_one : _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (B : Base F E)
-    (a a' : ℕ) (G : Geo σ a a') (X : Chars F E) (om : Rep σ G.V G.W) (om' : Rep σ G.V' G.W), IsTriple B G X om om' →
-    ∀ (v : Pl F), Formalism.MainNotions.SchurIrreducible.IsSplit (E := E) v → v ∉ X.T → PsiUnr B.ψ v → (2 : 𝓞 F) ∉ v.asIdeal →
-    G.M.vac v = Set.indicator {x | ∀ i, x i ∈ v.adicCompletionIntegers F} 1 →
-    ∀ k ∈ GlobalTheory.InertSph.KAt σ G.V v, ∀ c : ℂ, Acts (evFin F v) (om (k, 1)) (G.M.vac v) (c • G.M.vac v) → c = 1 := by
-  first | exact @_root_.GlobalTheory.SplitVacV.split_vacuum_eigenvalue_eq_one | exact _root_.GlobalTheory.SplitVacV.split_vacuum_eigenvalue_eq_one | (intros; apply _root_.GlobalTheory.SplitVacV.split_vacuum_eigenvalue_eq_one <;> assumption)
-end

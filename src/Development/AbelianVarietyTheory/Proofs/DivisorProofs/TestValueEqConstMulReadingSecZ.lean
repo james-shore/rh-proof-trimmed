@@ -124,7 +124,7 @@ theorem test_value_eq_const_mul_reading_secZ (hS : Out.SecBaseChangeSt) {Xo : Mo
     (y : FrPt Xo c p.R) (ψ : p.R →ₐ[c.F] CAt σ) :
     ∃ (k : U.Comp) (x : (U.X k).dom) (u : ℂ), ∀ f ∈ secZ Xo c e,
       Formalism.L2.Pj.toC (ψ (f p y)) = u * rdU U f k x.1 := by
-  obtain ⟨-, -, hW, -, -, -, -⟩ := GlobalTheory.T.framedModuli_algebraicLaws_chart_weight_integrality hS E H Dw l Xo c
+  obtain ⟨-, -, hW, -, -, -, -⟩ := _root_.GlobalTheory.Frames.algebraic_laws hS E H Dw l Xo c
   obtain ⟨z, hz⟩ := GlobalTheory.Frames.FramedBaseChange.exists_frMap hS E H Dw l Xo c p.R (CAt σ) ψ y
   obtain ⟨k, x, t, ht⟩ := hU.2.2.1 z
   haveI : IsReduced (CAt σ) := inferInstanceAs (IsReduced ℂ)

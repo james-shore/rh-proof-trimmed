@@ -117,10 +117,10 @@ theorem main : ∀ (g : ℕ) (Λ : Submodule ℤ (Fin g → ℂ)), DiscreteTopol
   obtain ⟨γ, hγ, hsa⟩ := GlobalTheory.T.exists_selfAdjoint_endo_relating_hermitian_forms g H₁ H₂ h₁ h₂ hp₁
   obtain ⟨Tq, hT⟩ := GlobalTheory.T.hermitian_endo_matrix_rational_in_lattice_basis g n e H₁ H₂ hp₁ (fun k l => hi₁ _ (hek k) _ (hek l))
     (fun k l => hi₂ _ (hek k) _ (hek l)) γ hγ
-  obtain ⟨hB, hBT⟩ := GlobalTheory.T.posDef_real_gram_pair_hermitian_forms g n e H₁ H₂ h₁ h₂ hp₁ hp₂ γ hγ
+  obtain ⟨hB, hBT⟩ := _root_.GlobalTheory.HermGram.gram_posDef_pair g n e H₁ H₂ h₁ h₂ hp₁ hp₂ γ hγ
   rw [← hT] at hBT
-  obtain ⟨c₀, r, c, p, hc₀, hc, hid⟩ := GlobalTheory.T.exists_unit_eq_positive_squares_times_selfAdjoint n Tq _ hB hBT
-  have hform := GlobalTheory.T.hermitian_form_eq_combination_of_selfAdjoint_identity g H₁ H₂ γ hγ hsa c₀ r c p (GlobalTheory.T.rational_matrix_identity_transfer_to_complex_map g n e γ Tq hT c₀ r c p hid)
+  obtain ⟨c₀, r, c, p, hc₀, hc, hid⟩ := _root_.GlobalTheory.Desc.SqLin.main n Tq _ hB hBT
+  have hform := _root_.GlobalTheory.herm_form_identity g H₁ H₂ γ hγ hsa c₀ r c p (_root_.GlobalTheory.matrix_identity_transfer g n e γ Tq hT c₀ r c p hid)
   obtain ⟨D, hD1, ⟨m₀, hm₀⟩, hci, hM⟩ := common_den n r c₀ c (fun i => Polynomial.aeval Tq (p i))
   choose m hm using hci
   have hm₀p : 0 < m₀ := by

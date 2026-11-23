@@ -160,7 +160,7 @@ theorem upNe_of_heckeForm : ∀ D : D7, GlobalTheory.Core.Rk.IP.HeckeForm D → 
     have := hs'.haar; exact GlobalTheory.RallisIP.Model.vol_pos s'.ν
   have hd : GlobalTheory.LFun.dSfun (F := D.host.F) D.host.E (c.S : Set (GlobalTheory.IndefiniteRowSideFullHecke.SphericalVolumeLift.FinPl D)) s.V.rank s'.V.rank
       ((c.t : ℂ) / 2) ≠ 0 := by
-    refine ((GlobalTheory.T.partialNormalizingFactorProduct_analytic_ne_zero D _ _ _).2 _ ?_).1
+    refine ((_root_.GlobalTheory.Core.Rk.IP.dSfun_analytic_ne_zero D _ _ _).2 _ ?_).1
     simp only [Complex.div_ofNat_re, Complex.natCast_re]; positivity
   have hI' : ∫ g in GlobalTheory.Core.Rk.IP.openOff s.V s.Λ c.S, GlobalTheory.Core.Rk.IP.wcoef p.ω m₁ X₁ (p.pt φ) (p.pt φ) g *
       GlobalTheory.Core.Rk.IP.rcoef s.ν (fun x => conj (F x)) (fun x => conj (F x)) g ∂s.ν ≠ 0 := by

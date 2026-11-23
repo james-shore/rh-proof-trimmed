@@ -114,7 +114,7 @@ theorem crys_projective : ∀ (F : Type) [Field F] [NumberField F] (C C₀ : Typ
       one := by rw [map_one]; exact a.one
       mul := fun x y ↦ by rw [mul_comm, map_mul, a.mul]
       add := fun x y ↦ by rw [map_add (f := _), a.add] }
-  obtain ⟨f, fsurj, fker, fequiv⟩ := GlobalTheory.T.deRhamHomology_closedFibre_surjective_kernel C₀ A₀ hA (𝓞 F) a'
+  obtain ⟨f, fsurj, fker, fequiv⟩ := _root_.GlobalTheory.HdRFibre.fibre_baseChange C₀ A₀ hA (𝓞 F) a'
   let q := algebraMap C₀ (IsLocalRing.ResidueField C₀)
   let B := (Over.pullback (spMap q)).obj A₀
   let aB : OAct (𝓞 F) B := OAct.pullback (spMap q) A₀ a'
@@ -129,7 +129,7 @@ theorem crys_projective : ∀ (F : Type) [Field F] [NumberField F] (C C₀ : Typ
     change algebraMap C₀ (IsLocalRing.ResidueField C₀) c = 0
     rw [IsLocalRing.ResidueField.algebraMap_eq]
     exact (IsLocalRing.residue_eq_zero_iff c).2 hc
-  refine GlobalTheory.T.projective_tensor_of_fibre_projective'
+  refine _root_.GlobalTheory.HTSummand.projective_tensor_of_fibre_projective
     C (IsLocalRing.ResidueField C₀) (𝓞 F) σ hσ H (HdR B)
     ρ ρB (f.comp red) hfin hproj (fsurj.comp hsurj) ?_ ?_
       (fibre_projective_tensorModOf F (IsLocalRing.ResidueField C₀) B hB aB)

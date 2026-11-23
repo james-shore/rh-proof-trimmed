@@ -161,13 +161,13 @@ theorem abel_oneVar_uW (r l N : ℕ) (i : Fin r) (v : (Fin r → ℕ) → ℚ) (
   · unfold OneVar.uW
     beta_reduce
     split_ifs with h
-    · exact OneVar.goodAt_smul _ ((@GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.OtherVar.otherVar_main r l i k _ hk).1 (OneVar.iterate_good_other hk hgk c)).2
+    · exact OneVar.goodAt_smul _ ((@_root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.OtherVar.good_support_other r l i k _ hk).1 (OneVar.iterate_good_other hk hgk c)).2
     · exact OneVar.goodAt_smul _ (OneVar.iterate_good_other hk hgk N)
   · intro m hm
     unfold OneVar.uW
     beta_reduce
     split_ifs with h
-    · simp [((@GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.OtherVar.otherVar_main r l i k _ hk).2 (OneVar.iterate_supp_other hk hsk c)).2 m hm]
+    · simp [((@_root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.OtherVar.good_support_other r l i k _ hk).2 (OneVar.iterate_supp_other hk hsk c)).2 m hm]
     · simp [OneVar.iterate_supp_other hk hsk N m hm]
   · rw [OneVar.tsum_iterate hl hg hb hs N, Fin.sum_univ_castSucc, Finset.sum_range]
     congr 1

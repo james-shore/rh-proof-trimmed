@@ -223,14 +223,14 @@ theorem lift_growth : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F]
     intro s
     by_cases hs : ∃ y₀ : GL (Fin 2) (InfinitePlace F → ℝ), ∀ v, 0 < y₀.val.det v ↔ s v
     · obtain ⟨y₀, h₀⟩ := hs
-      obtain ⟨τ, hτ⟩ := (GlobalTheory.T.rational_GL2_infinite_finite_factor F 1).2 (h * y₀)
+      obtain ⟨τ, hτ⟩ := (_root_.GlobalTheory.HilbertThetaSeries.RatPts.ratGL_real_fin F 1).2 (h * y₀)
       rw [← mul_assoc] at hτ
       obtain ⟨C, N, hC, hb⟩ := sl_mul_bound k (Ψ (toFin τ * u)) (hgr _) (toInf τ * h)
       refine ⟨C, N, hC, fun y hy => ?_⟩
       have hp : Pos (toInf τ * h * y) := pos_of_sign _ y₀ y hτ fun v => (h₀ v).trans (hy v).symm
       have e : ratGL F 2 τ * (TR.infGL F 2 h * finGL F 2 u * TR.infGL F 2 y) =
           TR.infGL F 2 (toInf τ * h * y) * finGL F 2 (toFin τ * u) := by
-        rw [(GlobalTheory.T.rational_GL2_infinite_finite_factor F τ).1]
+        rw [(_root_.GlobalTheory.HilbertThetaSeries.RatPts.ratGL_real_fin F τ).1]
         exact TR.ga_ext (by simp [mul_assoc]) (by simp)
       rw [← hl.1 τ, e, hl.2 _ hp]
       exact hb y hp
@@ -247,5 +247,3 @@ end GlobalTheory.HilbertThetaSeries.LiftGrowth
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Af UpperTheory.V.Sd GlobalTheory.HilbertThetaSeries
 open scoped Matrix
 
-theorem _root_.GlobalTheory.T.adelic_lift_has_moderate_growth : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (k : ℕ) (Ψ : GL (Fin 2) (Af F) → Hn F → ℂ) (φ : GA F 2 → ℂ), (∀ g, Gr (Ψ g)) → IsLift k Ψ φ → ∀ g, ∃ (C : ℝ) (N : ℕ), ∀ y, ‖φ (g * TR.infGL F 2 y)‖ ≤ C * TR.height y ^ N := by
-  first | exact @GlobalTheory.HilbertThetaSeries.LiftGrowth.lift_growth | exact GlobalTheory.HilbertThetaSeries.LiftGrowth.lift_growth | (intros; apply GlobalTheory.HilbertThetaSeries.LiftGrowth.lift_growth <;> assumption)

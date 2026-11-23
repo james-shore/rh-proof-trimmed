@@ -60,11 +60,6 @@ namespace GlobalTheory.CentralGram
 
 variable {D : D7}
 
-theorem trace_incA_eq (x : D.host.E) : Algebra.trace (AF D.host.F) (AE D) (incA D x) =
-    algebraMap D.host.F (AF D.host.F) (Algebra.trace D.host.F D.host.E x) := by
-  show Algebra.trace (AF D.host.F) (AE D) ((1 : AF D.host.F) ⊗ₜ[D.host.F] x) = _
-  rw [Algebra.trace_apply, Algebra.trace_apply, ← Algebra.baseChange_lmul, LinearMap.trace_baseChange]
-
 def qG {ρ : ℕ} (A c : Mx D ρ ρ) : AF D.host.F :=
   algebraMap D.host.F (AF D.host.F) (1 / 2) * Algebra.trace (AF D.host.F) (AE D) (A ⬝ c).trace
 
@@ -80,7 +75,7 @@ theorem trace_rat {ρ : ℕ} (M : Matrix (Fin ρ) (Fin ρ) D.host.E) : (rat M : 
 
 theorem qG_rat {ρ : ℕ} (M C : Matrix (Fin ρ) (Fin ρ) D.host.E) :
     qG (rat M) (rat C) = algebraMap D.host.F (AF D.host.F) (1 / 2 * Algebra.trace D.host.F D.host.E (M * C).trace) := by
-  rw [qG, ← rat_mul, trace_rat, trace_incA_eq, map_mul]
+  rw [qG, ← rat_mul, trace_rat, _root_.GlobalTheory.BesselChar.trace_incA, map_mul]
 
 theorem map_cA_rat {m n : ℕ} (N : Matrix (Fin m) (Fin n) D.host.E) : (rat N).map (cA D) = rat (N.map star) := by
   funext i j; exact GlobalTheory.DualPairCheck.cA_incA _

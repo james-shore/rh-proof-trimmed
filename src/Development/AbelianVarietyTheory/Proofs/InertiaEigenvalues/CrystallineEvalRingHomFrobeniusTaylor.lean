@@ -178,7 +178,7 @@ theorem sep_teich_acris (x : Per.Acris l) (h : ∀ n, ainfToAcris l ϖ.teich ^ n
   ring
 
 theorem constP_inclS_mem (x : (Wq l a)⟦X⟧) : constP a K (inclS t K x) ∈ PPd t K e :=
-  Subring.subset_closure (constP_mem t e (GlobalTheory.T.unramifiedWittPowerSeries_mem_dividedPowerSeriesGeneratorSet l a e O K t x))
+  Subring.subset_closure (constP_mem t e (_root_.GlobalTheory.CrysPrism.inclS_mem_SdSet l a e O K t x))
 
 theorem evE_constP_coe (q : Polynomial (Wq l a)) (h : constP a K (inclS t K (q : (Wq l a)⟦X⟧)) ∈ PPd t K e) :
     evE t ϖ g ⟨_, h⟩ = ainfToAcris l (ϖ.ev a q) :=

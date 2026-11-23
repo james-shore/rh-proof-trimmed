@@ -142,7 +142,7 @@ theorem exists_index_pow {F : Type} [Field F] [NumberField F] {v : HeightOneSpec
     rw [← LinearMap.ker_eq_bot, Matrix.ker_toLin'_eq_bot_iff]
     intro c hc
     exact Matrix.eq_zero_of_mulVec_eq_zero hne hc
-  obtain ⟨m, ⟨u, hu⟩, hc⟩ := GlobalTheory.HL.LatDet.card_coker (Pi.basisFun (Formalism.UG.Ov F v) (Fin n)) hirr _ hinj
+  obtain ⟨m, ⟨u, hu⟩, hc⟩ := _root_.GlobalTheory.CardQuotientPow.main (Pi.basisFun (Formalism.UG.Ov F v) (Fin n)) hirr _ hinj
   rw [LinearMap.det_toLin'] at hu
   refine ⟨m, ?_, ?_⟩
   · have h1 := congrArg (fun x : Formalism.UG.Ov F v => Valued.v (x : v.adicCompletion F)) hu

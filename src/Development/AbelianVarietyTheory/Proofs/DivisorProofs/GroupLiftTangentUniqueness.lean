@@ -77,7 +77,7 @@ theorem objMap_const : GlobalTheory.CovTop.Hypotheses₂ → GlobalTheory.Publis
     intro σ τ n hn hσ hστ
     let u := pushHom hgq (𝟙_ (Over (Sp (DualNumber K)))) σ
     have hu : u ^ n = 1 := by rw [← map_pow, hσ, map_one]
-    have e := GlobalTheory.T.torsion_dualNumber_point_eq_constant_charZero K A _ (by simp) (hcomm _) u n hn hu
+    have e := _root_.GlobalTheory.TorsConst.torsion_eq_const K A _ (by simp) (hcomm _) u n hn hu
     have hul : u.left = σ.left ≫ g ≫ q := by
       show σ.left ≫ (g ≫ q) = _; rfl
     rw [hul] at e

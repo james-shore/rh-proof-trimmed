@@ -58,7 +58,7 @@ theorem exportF_isBuiltE_alt_alt : _root_.GlobalTheory.ExportFirst.exportF_isBui
   rintro _ rfl
   obtain ⟨cn, en⟩ := b.nx
   obtain ⟨j⟩ := hp hKP hT w Z c'.Wt c'.O.p0 b.what₂ c'.O.nch b.n c'.O.xd cn ⟨en⟩ ⟨b.rx⟩ b.pin
-  exact _root_.GlobalTheory.T.series_realization_of_published_alt h1 h2 h3 h4 h5 h6 h7 h8 h9 h10 h11 h12 h13 h14 h15 h16 h17 h18 h19 h20 h21 h22 (w.st Z).toD7 c'.O.nch c'.O.xd
+  exact _root_.GlobalTheory.ExportClose0.exportAt_bundles_alt h1 h2 h3 h4 h5 h6 h7 h8 h9 h10 h11 h12 h13 h14 h15 h16 h17 h18 h19 h20 h21 h22 (w.st Z).toD7 c'.O.nch c'.O.xd
     j.X j.Y j.gal j.field (_root_.UpperTheory.GalS.ghOf'_alt hL hA hG hR hLG _ _ j.cg j.gal.lab) (hconds _) c'.nch_tie (j.base hT)
 end GlobalTheory.ExportFirst
 end

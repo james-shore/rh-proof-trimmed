@@ -106,7 +106,7 @@ theorem isSpanned_contact_of_posDef : ∀ (O : Type) [CommRing O] [IsDedekindDom
   let e := Fintype.equivFin (Σ j, Fin (s j))
   refine ⟨_, fun i => γ (e.symm i).1 (e.symm i).2, fun i => hbal _ _, fun i y => hγnn _ _ _, fun i => hγK _ _,
     fun B hB => ?_⟩
-  refine GlobalTheory.T.mem_rational_cone_of_perturbation X _ _ B B₀ fun ε hε => ?_
+  refine _root_.GlobalTheory.CompanionTheory.Ar.Fan.rcone_closed_seg X _ _ B B₀ fun ε hε => ?_
   have hεd : IsPosDef (ε • B₀) := isPosDef_smul_of_pos hd hε
   have hεr : ε • B₀ ∈ realForms bar X := (realForms bar X).smul_mem ε (mem_realForms_of_mem_psdCone hB₀.1)
   obtain ⟨hpd, hps⟩ := isPosDef_add_and_mem_psdCone O bar X B (ε • B₀) hB.1 hεr hεd

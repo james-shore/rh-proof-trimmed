@@ -104,11 +104,6 @@ theorem ballVol_ne_top (d : ℕ) : ballVol d ≠ ⊤ := by
   unfold ballVol
   exact measure_ball_lt_top.ne
 
-theorem volU_pos' (i : ℕ) : 0 < volU i := by
-  unfold volU sphV
-  refine mul_pos (Finset.prod_pos fun l _ => ?_) (by positivity)
-  positivity
-
 theorem tendsto_mul_balls {f g : ℝ → ENNReal} {d e : ℕ} {V : ENNReal} (hV : V ≠ ⊤)
     (hf : Tendsto (fun r : ℝ => f r / ENNReal.ofReal (r ^ d)) (𝓝[>] 0) (𝓝 (ballVol d)))
     (hg : Tendsto (fun r : ℝ => g r / ENNReal.ofReal (r ^ e)) (𝓝[>] 0) (𝓝 (ballVol e))) :
@@ -247,9 +242,9 @@ theorem iwasawa_constant : ∀ (n : ℕ) (ε : Fin n → Bool) (p q : ℕ), (uni
   have hμ0eq := GlobalTheory.T.right_invariant_eq_smul_left_invariant_probability (Formalism.REAL.UJ ε) (maxK ε) μK μ0 hK0 hμ0'.1 hK1 hKinv rK
   rw [hVK] at hμ0eq
 
-  have hvpos : ∀ i, 0 < volU i := volU_pos'
+  have hvpos : ∀ i, 0 < volU i := _root_.GlobalTheory.UnitaryVolume.volU_pos
   have hVtop : ENNReal.ofReal (volU p * volU q) ≠ ⊤ := ENNReal.ofReal_ne_top
-  have hδ := GlobalTheory.T.leviFactorInverseModulus_properties n ε a j W
+  have hδ := _root_.GlobalTheory.IwDelta.dlt_props n ε a j W
   have hΓtop : volume {v | gau EN EM EK EL v ≤ 1} ≠ ⊤ := by
     rw [hvol]
     exact ENNReal.mul_ne_top (ENNReal.mul_ne_top ENNReal.ofReal_ne_top (ballVol_ne_top _)) (ballVol_ne_top _)
@@ -337,7 +332,7 @@ theorem iwasawa_constant : ∀ (n : ℕ) (ε : Fin n → Bool) (p q : ℕ), (uni
   have hvtop : ENNReal.ofReal (volU p * volU q) * (ballVol (n ^ 2) *
       ballVol ((p - ∑ i, j i) ^ 2 + (q - ∑ i, j i) ^ 2 + ∑ i, j i ^ 2)) ≠ ⊤ :=
     ENNReal.mul_ne_top hVtop (ENNReal.mul_ne_top (ballVol_ne_top _) (ballVol_ne_top _))
-  have hF := GlobalTheory.T.tendsto_small_ball_density_of_squeeze (fun r => ENNReal.ofReal c * κ * (νL Set.univ * Sp r)) _ _ hvtop (fun η hη => by
+  have hF := _root_.GlobalTheory.IwConst.tendsto_div_pow_of_squeeze (fun r => ENNReal.ofReal c * κ * (νL Set.univ * Sp r)) _ _ hvtop (fun η hη => by
     refine ⟨fun r => ENNReal.ofReal c * κ * (Fp r * νL (hsBall ε r)), hb, ?_⟩
     have h1η : (1 : ENNReal) ≤ ENNReal.ofReal (1 + η) := ENNReal.one_le_ofReal.mpr (by linarith)
     filter_upwards [hsand η hη, self_mem_nhdsWithin] with r hr hr0

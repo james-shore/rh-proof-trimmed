@@ -109,7 +109,7 @@ theorem ndSpec_exists_alt : GlobalTheory.Published.GlobalArtinReciprocity → He
     (GlobalTheory.T.heckeOperators_on_localisation_space_semisimple D M C hR X hS hStd GlobalTheory.T.splitPlace_doubleCosetOperator_semisimple_typeSpace hG hX)
   have hAHK := GlobalTheory.T.heckeRing_acts_on_lattice_as_operators _ hs hd hML hAct
   have hI := osInt D (base M C hR X hS)
-  have hGal := fun w (hw : TwistedAt D w) => GlobalTheory.T.twistCharacter_ramified_at_conductor_trivial_above_l D cf C tp w hArt hCheb hCS.psi hw (hVal w hw) (hCS.adm w hw)
+  have hGal := fun w (hw : TwistedAt D w) => _root_.GlobalTheory.TwistRamLoc.twist_ram_and_trivial_at_l D cf C tp w hArt hCheb hCS.psi hw (hVal w hw) (hCS.adm w hw)
   have htw : ∀ w v, v ∈ C.Q w → TwistedAt D w := fun w v hv => by
     by_contra hw
     rw [hCS.off w hw] at hv

@@ -58,14 +58,14 @@ theorem psiG_gal (F : Type) [Field F] [Finite F] (t : F ≃+* F) (S : F[X] → �
   induction n using Nat.strong_induction_on with
   | _ n ih =>
     intro x
-    rw [GlobalTheory.T.primitiveFunctionCharpolyGL_harishChandra_recursion F S n (gal (t : F →+* F) n x), GlobalTheory.T.primitiveFunctionCharpolyGL_harishChandra_recursion F _ n x]
+    rw [_root_.GlobalTheory.ShinPsiRec.psiG_eq_chG_sub_hc F S n (gal (t : F →+* F) n x), _root_.GlobalTheory.ShinPsiRec.psiG_eq_chG_sub_hc F _ n x]
     congr 1
     · simp only [chG, gal]
       congr 1
       rw [← Matrix.charpoly_map]
       rfl
     · refine Finset.sum_congr rfl fun a ha => ?_
-      rw [GlobalTheory.T.harishChandraInductionGL_fieldAutomorphism F t a (n - a) n]
+      rw [_root_.GlobalTheory.Shin.HcGal.hc_gal F t a (n - a) n]
       have ha' : a < n := Finset.mem_range.1 ha
       congr 1
       funext y
@@ -79,6 +79,6 @@ theorem cusp_gal : ∀ (F : Type) [Field F] [Finite F] (θ : AlgebraicClosure F 
   rw [psiG_gal F t]
   congr 2
   funext P
-  exact GlobalTheory.T.rootSum_map_frobenius_pow_eq_rootSum_mul F θ (t : F →+* F) j (fun y => ht y) k P
+  exact _root_.GlobalTheory.Shin.rootSum_map_frobeniusPow F θ (t : F →+* F) j (fun y => ht y) k P
 
 end GlobalTheory.Shin

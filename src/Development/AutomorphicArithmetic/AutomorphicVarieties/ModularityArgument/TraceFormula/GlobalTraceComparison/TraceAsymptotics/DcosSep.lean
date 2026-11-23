@@ -50,7 +50,3 @@ namespace UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm
 
 end UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm
 
-open UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm in
-theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm.dcosSep :
-    UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm.DcosSep :=
-  _root_.UpperTheory.Reformulated.B.DoubleCosetSeparation.dcosSep

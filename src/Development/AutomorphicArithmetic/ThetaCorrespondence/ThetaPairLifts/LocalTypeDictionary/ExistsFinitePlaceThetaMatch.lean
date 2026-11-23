@@ -338,7 +338,7 @@ theorem exists_finite_place_theta_match (hP : _root_.GlobalTheory.FunPr.ThetaLoc
   have mA := _root_.GlobalTheory.TripleAssembly.PureImage.firstFactorMap_thetaSum_pure_tensor hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h
     hTA hTB R Rf hM 1 (fun _ => f) (fun _ => φ) (fun _ => ⟨sb, cof⟩)
     (by rw [Fin.sum_univ_one]; exact Submodule.subset_span ⟨f, φ, hfP, sb, cof, rfl⟩)
-  have mB := _root_.GlobalTheory.T.tripleProduct_secondMap_theta_pure hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h
+  have mB := _root_.GlobalTheory.TripleAssembly.secondFactorMap_theta_pure_tensor hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h
     hTA hTB R Rf hM 1 (fun _ => f') (fun _ => φ') (fun _ => ⟨sb', cof'⟩)
     (by rw [Fin.sum_univ_one]; exact Submodule.subset_span ⟨f', φ', hfP', sb', cof', rfl⟩)
   rw [Fin.sum_univ_one, Fin.sum_univ_one, ← hQ, hfy] at mA
@@ -346,11 +346,11 @@ theorem exists_finite_place_theta_match (hP : _root_.GlobalTheory.FunPr.ThetaLoc
   have sA := GlobalTheory.T.fockAlgebraicThetaVectors_stable_finiteAdeles_lie D ψ θ hψ hθ true A WW FA FW _ _ _ hA
   have sB := GlobalTheory.T.fockAlgebraicThetaVectors_stable_finiteAdeles_lie D ψ θ hψ hθ false A' WW FA' FW _ _ _ hB
   obtain ⟨oA, oB⟩ := _root_.GlobalTheory.T.triple_algebra_map_surjective hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h hTA hTB R Rf hM
-  obtain ⟨iA, iB⟩ := _root_.GlobalTheory.T.triple_assembly_inverse_finite hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h hTA hTB R Rf hM
-  obtain ⟨lA, lB⟩ := _root_.GlobalTheory.T.theta_triple_lift_lie_invariant hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h hTA hTB R Rf hM
-  obtain ⟨fA, fB⟩ := _root_.GlobalTheory.T.theta_triple_maps_equivariant hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h hTA hTB R Rf hM
-  obtain ⟨dA, dB⟩ := _root_.GlobalTheory.T.theta_triple_lift_lie_equivariant hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h hTA hTB R Rf hM
-  have ir := _root_.GlobalTheory.T.theta_triple_lift_irreducible hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h hTA hTB R Rf hM
+  obtain ⟨iA, iB⟩ := _root_.GlobalTheory.TripleAssembly.triple_map_comp_inverse_finite hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h hTA hTB R Rf hM
+  obtain ⟨lA, lB⟩ := _root_.GlobalTheory.TripleAssembly.LieInv.theta_triple_maps_lie_action_eq_zero hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h hTA hTB R Rf hM
+  obtain ⟨fA, fB⟩ := _root_.GlobalTheory.TripleAssembly.EqFin.theta_triple_maps_equivariant_on_finite_vectors hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h hTA hTB R Rf hM
+  obtain ⟨dA, dB⟩ := _root_.GlobalTheory.TripleAssembly.theta_triple_maps_lie_equivariant hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h hTA hTB R Rf hM
+  have ir := _root_.GlobalTheory.TripleAssembly.Irred.theta_triple_piT_irreducible hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h hTA hTB R Rf hM
   refine ⟨ModuleCat.of ℂ (GlobalTheory.TripleAssembly.PiT R Γ Rf), _, _, _, _,
     ⟨hA, hB, ir, ⟨sA.1, sA.2, oA, iA, lA, fA, dA⟩, ⟨sB.1, sB.2, oB, iB, lB, fB, dB⟩⟩, Q, Q', 1, ?_, ?_⟩
   · refine ne_of_eq_of_ne mA fun h0 => ?_

@@ -130,7 +130,7 @@ theorem betaArch_of_transport : GlobalTheory.IndefiniteRowSideFullHecke.LatticeN
   have hFcl : ∀ σ σ', Fixes φK σ → Fixes φK σ' → ClassGroup.mk K (𝔞 σ) = ClassGroup.mk K (𝔞 σ') → Fσ σ = Fσ σ' := by
     intro σ σ' h h' hcl
     simp only [Fσ]
-    rw [GlobalTheory.T.fractionalIdealNorm_pow_six_mul_discriminant_class_invariant φK hK2 hc (𝔞 σ) (𝔞 σ') (Λσ σ) (Λσ σ') (hσ σ h).2.1 (hσ σ' h').2.1 hcl]
+    rw [_root_.GlobalTheory.DiscClass.nrm_pow_mul_norm_latDisc_eq φK hK2 hc (𝔞 σ) (𝔞 σ') (Λσ σ) (Λσ σ') (hσ σ h).2.1 (hσ σ' h').2.1 hcl]
   have hB : ∀ σ, Fixes φK σ → Real.log ‖σ β‖ ≤ Fσ σ := by
     intro σ hσf
     obtain ⟨π, χ', hw, hcc, hv'⟩ := GlobalTheory.T.exists_conjugate_cmValueCharacter_permuted_weight φK (cmPhi D) s (kap D 1 i j s) (condF G.pl) (fam G μ₀ i j c) σ

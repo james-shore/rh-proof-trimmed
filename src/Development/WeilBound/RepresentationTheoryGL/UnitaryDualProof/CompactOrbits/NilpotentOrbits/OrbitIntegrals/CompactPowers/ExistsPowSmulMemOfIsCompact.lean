@@ -161,15 +161,12 @@ theorem isClosed_nilpotent : IsClosed {M : Matrix (Fin n) (Fin n) k | IsNilpoten
   rw [e]
   exact isClosed_singleton.preimage (continuous_pow n)
 
-theorem continuous_dual (f : Module.Dual k (Matrix (Fin n) (Fin n) k)) : Continuous f :=
-  _root_.UpperTheory.Reformulated.B.DYlb5.main f
-
 theorem isClosed_subalgebra (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) :
     IsClosed (Z : Set (Matrix (Fin n) (Fin n) k)) := by
   rw [← isOpen_compl_iff, isOpen_iff_forall_mem_open]
   intro x hx
   obtain ⟨f, hfx, hf⟩ := Submodule.exists_dual_map_eq_bot_of_notMem (p := Subalgebra.toSubmodule Z) hx inferInstance
-  refine ⟨{y | f y ≠ 0}, fun y hy hyZ => hy ?_, isOpen_ne_fun (continuous_dual f) continuous_const, hfx⟩
+  refine ⟨{y | f y ≠ 0}, fun y hy hyZ => hy ?_, isOpen_ne_fun (_root_.UpperTheory.Reformulated.B.DYlb5.main f) continuous_const, hfx⟩
   have : f y ∈ (Subalgebra.toSubmodule Z).map f := ⟨y, hyZ, rfl⟩
   rw [hf] at this
   simpa using this

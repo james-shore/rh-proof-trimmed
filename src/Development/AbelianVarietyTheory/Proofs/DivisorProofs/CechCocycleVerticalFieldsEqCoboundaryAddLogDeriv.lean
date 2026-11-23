@@ -86,7 +86,7 @@ theorem exists_coboundary_add_dlog : ∀ (E : Type) [Field E] [NumberField E] [I
     · rw [← resG_appLE U (inf_le_left.trans (hWU i)) h3 r, (he i i'').2.2 _ _ h3 le_rfl, hev, map_zero]
     · intro O hO f
       rw [← hcoc i i' i'' O hO f, hc i i' O (hO.trans h1) f, hc i' i'' O (hO.trans h2) f]
-      simp only [map_add (f := _), resG_resG', add_mul, Finset.sum_add_distrib]
+      simp only [map_add (f := _), _root_.GlobalTheory.Cartier.resG_resG, add_mul, Finset.sum_add_distrib]
     · intro O hO f
       rw [hc i i'' O (hO.trans h3) f]
       simp only [resG_resG']

@@ -174,8 +174,8 @@ theorem sliceOmBlock : SliceOmBlock := by
   subst hp
   have hP : D.ptSize (h ++ [(n + 1, t), (1, c)]) = D.ptSize h + (n + 1 + 1) := ptSize_two h n t c
   have hlocH : D.IsLocPt h (D.ptSize h) := ⟨fun b hb => hloc.1 b (List.mem_append_left _ hb), rfl⟩
-  have hspec := (Formalism.FourierDecayAlt.P.ptPerm_spec _ _ hloc).1
-  have hspec' := (Formalism.FourierDecayAlt.P.ptPerm_spec _ _ hlocH).1
+  have hspec := (_root_.Formalism.FourierDecayAlt.P.Dx1.d_ptPermSpec _ _ hloc).1
+  have hspec' := (_root_.Formalism.FourierDecayAlt.P.Dx1.d_ptPermSpec _ _ hlocH).1
   set ph := D.ptSize h with hph
   have hσ : ∀ a : Fin (D.ptSize (h ++ [(n + 1, t), (1, c)])),
       ((Fub.sigQ (D.ptPerm h) (Om.σB (n + 1))) (Fin.cast hP a)).val =
@@ -238,4 +238,3 @@ end final
 
 end Formalism.FourierDecayAlt.P.FormNormSumIdentities.GlobalTheory
 
-theorem Formalism.FourierDecayAlt.P.slice_orbital_block : Formalism.FourierDecayAlt.P.FormNormSumIdentities.SliceOmBlock := Formalism.FourierDecayAlt.P.FormNormSumIdentities.GlobalTheory.sliceOmBlock

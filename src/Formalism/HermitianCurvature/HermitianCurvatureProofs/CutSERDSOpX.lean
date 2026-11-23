@@ -332,7 +332,7 @@ theorem spectral_operator_X : RDSOpX := by
       Formalism.FourierDecayAlt.P.TLB.mulAt_ofFn L.ci _ fun l => Formalism.FourierDecayAlt.P.TLB.act_ci X L hL x l
     have hDrbi : Formalism.FourierDecayAlt.P.TLB.MulAt x L.Drbi.1 (∏ a, (star (x.1 a))⁻¹) :=
       Formalism.FourierDecayAlt.P.TLB.mulAt_ofFn L.cbi _ fun l => Formalism.FourierDecayAlt.P.TLB.act_cbi X L hL x l
-    have hGi : Formalism.FourierDecayAlt.P.TLB.MulAt x (GiR L).1 (((Gf P.k P.r D.z D.z' g : ℝ) : ℂ))⁻¹ := by
+    have hGi : Formalism.FourierDecayAlt.P.TLB.MulAt x (_root_.Formalism.FourierDecayAlt.TL.gI L).1 (((Gf P.k P.r D.z D.z' g : ℝ) : ℂ))⁻¹ := by
       rw [hgdef, (hcell x hx).2.2.2, Complex.ofReal_mul, ← Complex.mul_conj, mul_inv, mul_inv,
         ← Finset.prod_inv_distrib, map_prod, ← Finset.prod_inv_distrib]
       exact Formalism.FourierDecayAlt.P.TLB.mulAt_mul (Formalism.FourierDecayAlt.P.TLB.mulAt_mul hDri hDrbi) hGGi
@@ -352,7 +352,7 @@ theorem spectral_operator_X : RDSOpX := by
       field_simp
     have hXi : OpAt x (st.xi Y).1 (Polynomial.aeval (s • xf g) q) := by
       rw [hq]; exact opAt_aeval hX q
-    show (((GiR L).1 ((st.xi Y).1 Ψ) : RadSp P.k P.r D.z D.z' D.π D.π') : Fn P.k P.r (Wq →L[ℂ] Wp)) x.1 x.2 =
+    show (((_root_.Formalism.FourierDecayAlt.TL.gI L).1 ((st.xi Y).1 Ψ) : RadSp P.k P.r D.z D.z' D.π D.π') : Fn P.k P.r (Wq →L[ℂ] Wp)) x.1 x.2 =
       cf g ((Ψ : Fn P.k P.r (Wq →L[ℂ] Wp)) x.1 x.2)
     rw [hGi, hXi]
     rfl

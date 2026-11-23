@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsRecTOfIsRec
 
 @[expose] public section
 
@@ -76,7 +77,7 @@ theorem good_of_levelShape (hBZ : GlobalTheory.Published.BernsteinZelevinskyFini
   by_cases hs : s.v ∈ B
   · obtain ⟨s₀, hv, hB'⟩ := hB s hs
     rcases hB' with ⟨r, ξ, hP⟩ | ⟨hk, r, ψ₀, ξ, hU, hψ, ht⟩
-    · exact GlobalTheory.AVGood.good_of_toral (GlobalTheory.ParaToral.toral_of_levelPara hBZ hZ L n π.toAlgWt π.S π.irrS J χ hc s₀ r ξ hP
+    · exact _root_.GlobalTheory.RecT.Model.good_of_toral (GlobalTheory.ParaToral.toral_of_levelPara hBZ hZ L n π.toAlgWt π.S π.irrS J χ hc s₀ r ξ hP
         f hf hfT hf0 s hv.symm σ hσ)
     · exact GlobalTheory.AVGood.good_of_fixed_KOne hZ hk _ (GlobalTheory.UniDepthZero.main L n π.toAlgWt π.S π.irrS J χ hc s₀ r ψ₀ ξ hU hψ ht
         f hf hfT hf0 s hv.symm σ hσ)

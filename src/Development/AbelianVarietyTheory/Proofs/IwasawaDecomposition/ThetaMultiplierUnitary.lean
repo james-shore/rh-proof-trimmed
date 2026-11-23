@@ -93,10 +93,6 @@ theorem actO_one (h : GA D T) (w : WO S T) : actO S T 1 h w =
   unfold actO
   rw [inv_one, GlobalTheory.Ker.OmRat.mt_one', Matrix.mul_one]
 
-theorem compAt_mul (θ : InfFam D) (ρ : D.what₂.Tau) {a b c : ℕ} (x : Mx D a b) (y : Mx D b c) :
-    compAt θ ρ (x * y : Mx D a c) = compAt θ ρ x * compAt θ ρ y :=
-  Matrix.map_mul (f := (θ ρ).comp (infPart D))
-
 theorem compAt_rat {θ : InfFam D} (hθ : IsInfFam θ) (ρ : D.what₂.Tau) {a b : ℕ}
     (m : Matrix (Fin a) (Fin b) D.host.E) : compAt θ ρ (m.map (incA D)) = m.map (tauE D ρ) := by
   ext i j
@@ -130,7 +126,7 @@ theorem rational_points : ∀ (D : D7) (S T : HSp D) (r g : ℕ) (hr : T.rank = 
     exact this.symm
   · funext a
     change compAt θ (eT.symm τ) (actO S T 1 δ w) a k = _
-    rw [actO_one, compAt_mul, hc]
+    rw [actO_one, _root_.GlobalTheory.WeilVacMove.compAt_mul, hc]
     rfl
   · intro χS χT om H f hf w
     have h1 := H.om_heis 1 δ w f hf

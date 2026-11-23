@@ -64,23 +64,17 @@ variable {k r : ℕ}
 theorem continuous_conj (a : Mat k r) : Continuous (conjM a : Mt k r → Mt k r) :=
   (continuous_const.matrix_mul (continuous_id (X := Mat k r))).matrix_mul continuous_const
 
-theorem det_Hpk : IsUnit (Hpk k r).det :=
-  Matrix.isUnit_det_of_right_inverse (hpkFacts k r).2.1
-
-theorem unit_det {g : Mat k r} (hg : g ∈ GG k r) : IsUnit g.det :=
-  ((uHGroup _ _ det_Hpk).2.2 g hg).1
-
 theorem mem_S (z : Fin (2 * r + k + 1) → ℂ) {n : Mat k r} (hn : n ∈ Nset k r) : n ∈ Sset k r z :=
-  ⟨1, ⟨(uHGroup _ _ det_Hpk).1, fun a => by simp, by simp⟩, n, hn, by simp⟩
+  ⟨1, ⟨(uHGroup _ _ _root_.GlobalTheory.Amp.NfMid.det_H).1, fun a => by simp, by simp⟩, n, hn, by simp⟩
 
 theorem twoFl_of {z z' : Fin (2 * r + k + 1) → ℂ} {n n' g : Mat k r} (hn : n ∈ Nset k r) (hn' : n' ∈ Nset k r)
     (h : TwoFl k r z z' (n * g * n')) : TwoFl k r z z' g := by
   obtain ⟨h1, h2, h3, h4, h5, h6, h7⟩ := h
   refine ⟨h1, h2, h3, h4, ?_, ?_, ?_⟩
-  · have G := uHGroup _ _ (det_Hpk (k := k) (r := r))
+  · have G := uHGroup _ _ (_root_.GlobalTheory.Amp.NfMid.det_H (k := k) (r := r))
     have e : g = n⁻¹ * (n * g * n') * n'⁻¹ := by
-      rw [Matrix.mul_assoc n, Matrix.nonsing_inv_mul_cancel_left _ _ (unit_det hn.1),
-        Matrix.mul_nonsing_inv_cancel_right _ _ (unit_det hn'.1)]
+      rw [Matrix.mul_assoc n, Matrix.nonsing_inv_mul_cancel_left _ _ (_root_.GlobalTheory.Amp.NfMid.unit_det hn.1),
+        Matrix.mul_nonsing_inv_cancel_right _ _ (_root_.GlobalTheory.Amp.NfMid.unit_det hn'.1)]
     rw [e]
     exact G.2.1 _ (G.2.1 _ (G.2.2 _ hn.1).2 _ h5) _ (G.2.2 _ hn'.1).2
   · rwa [gInv k r z z' h1 h2 _ (mem_S z hn) _ (mem_S z' hn')] at h6
@@ -143,7 +137,7 @@ theorem pOf_e (q : PPar k r) (a : Fin r) : pOf k r q *ᵥ bvec (eI k r a) = bvec
 
 theorem pOf_inv_e (q : PPar k r) (a : Fin r) : (pOf k r q)⁻¹ *ᵥ bvec (eI k r a) = bvec (eI k r a) := by
   conv_lhs => rw [← pOf_e q a]
-  rw [Matrix.mulVec_mulVec, Matrix.nonsing_inv_mul _ (unit_det (pOf_mem q).1), Matrix.one_mulVec]
+  rw [Matrix.mulVec_mulVec, Matrix.nonsing_inv_mul _ (_root_.GlobalTheory.Amp.NfMid.unit_det (pOf_mem q).1), Matrix.one_mulVec]
 
 theorem conj_entry (q : PPar k r) (u : Matrix (Fin r) (Fin r) ℂ) (a b : Fin r) :
     (((pOf k r q)⁻¹ * uEmb k r u * pOf k r q) *ᵥ bvec (eI k r b)) (eI k r a) = u a b := by
@@ -156,7 +150,7 @@ theorem conj_mem {P Q g x : Mat k r} (hP : P ∈ Nset k r) (hQ : Q ∈ Nset k r)
   have N := nSubgroup k r
   refine ⟨N.2.1 _ (N.2.1 _ hP _ hx.1) _ (N.2.2 _ hP), ?_⟩
   have e : Q * g * P⁻¹ * (P * x * P⁻¹) * (Q * g * P⁻¹)⁻¹ = Q * (g * x * g⁻¹) * Q⁻¹ := by
-    have hu := unit_det hP.1
+    have hu := _root_.GlobalTheory.Amp.NfMid.unit_det hP.1
     simp only [Matrix.mul_inv_rev, Matrix.nonsing_inv_nonsing_inv _ hu, Matrix.mul_assoc,
       Matrix.nonsing_inv_mul_cancel_left _ _ hu]
   rw [e]
@@ -169,7 +163,7 @@ theorem eq_map (z' : Fin (2 * r + k + 1) → ℂ) (p : Point ℂ (r + 1))
     (h1 : μ.map (rootCoords k r z' p) = c • volume) :
     μ = (c • lebR k r (fun a => blockIdx p.1 a.val)).map (conjM (pOf k r p₀)⁻¹) := by
   set β : Fin r → ℕ := fun a => blockIdx p.1 a.val with hβ
-  have hu := unit_det (pOf_mem p₀).1
+  have hu := _root_.GlobalTheory.Amp.NfMid.unit_det (pOf_mem p₀).1
   let E : (rootPat p → ℂ) → (UTin β → ℂ) := fun y q => y (patEquiv p h q)
   have hE : MeasurePreserving E volume volume :=
     (volume_measurePreserving_piCongrLeft (fun _ : rootPat p => ℂ) (patEquiv p h)).symm _
@@ -218,15 +212,15 @@ theorem rootMeas_normR : ∀ (D : D7) (z z' : (Fin (2 * D.R.rS + D.R.k + 1) → 
   have hg := twoFl_of hn hn' hT
   obtain ⟨p₁, p₀, -, hN, -, h⟩ := GlobalTheory.T.exists_radical_normalForm_pair_of_flags _ _ z z' g p hg hZ
   have N := nSubgroup D.R.k D.R.rS
-  have hu₀ := unit_det (pOf_mem p₀).1
-  have hu₁ := unit_det (pOf_mem p₁).1
+  have hu₀ := _root_.GlobalTheory.Amp.NfMid.unit_det (pOf_mem p₀).1
+  have hu₁ := _root_.GlobalTheory.Amp.NfMid.unit_det (pOf_mem p₁).1
   refine ⟨card_le p h, n * (pOf _ _ p₁)⁻¹, N.2.1 _ hn _ (N.2.2 _ (pOf_mem p₁)), pOf _ _ p₀ * n',
     N.2.1 _ (pOf_mem p₀) _ hn', _, _, hN, ?_, ?_⟩
   · simp only [Matrix.mul_assoc, Matrix.nonsing_inv_mul_cancel_left _ _ hu₀, Matrix.nonsing_inv_mul_cancel_left _ _ hu₁]
   · have e1 : (fun x : Mt D.R.k D.R.rS => fun i j => (n'⁻¹ * Matrix.of x * n') i j) = conjM n'⁻¹ := by
       funext x
       unfold conjM
-      rw [Matrix.nonsing_inv_nonsing_inv _ (unit_det hn'.1)]
+      rw [Matrix.nonsing_inv_nonsing_inv _ (_root_.GlobalTheory.Amp.NfMid.unit_det hn'.1)]
     have e2 : (conjM (pOf _ _ p₀ * n')⁻¹ : Mt D.R.k D.R.rS → _) = conjM n'⁻¹ ∘ conjM (pOf _ _ p₀)⁻¹ := by
       funext x
       change (pOf _ _ p₀ * n')⁻¹ * Matrix.of x * (pOf _ _ p₀ * n')⁻¹⁻¹ =

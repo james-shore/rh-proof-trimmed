@@ -71,7 +71,7 @@ theorem span_one_tmul {L : Type} [Field L] (e : L →+* ℂ) (V : Type) [AddComm
 
 private theorem isGrpPullback_one_left {S : Scheme.{0}} {G : Over S} [GrpObj G] (A : Over S) :
     (1 : A ⟶ G).left = A.hom ≫ (1 : Over.mk (𝟙 S) ⟶ G).left := by
-  have h := LieSigma.comp_one_over (M := G) (Over.homMk A.hom (by simp) : A ⟶ Over.mk (𝟙 S))
+  have h := _root_.ReciprocityTheory.ChartRestriction.G.Chart.comp_one'' (M := G) (Over.homMk A.hom (by simp) : A ⟶ Over.mk (𝟙 S))
   calc (1 : A ⟶ G).left
       = ((Over.homMk A.hom (by simp) : A ⟶ Over.mk (𝟙 S)) ≫ (1 : Over.mk (𝟙 S) ⟶ G)).left := by rw [h]
     _ = A.hom ≫ (1 : Over.mk (𝟙 S) ⟶ G).left := by rw [Over.comp_left]; rfl

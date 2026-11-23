@@ -101,7 +101,7 @@ theorem rLoc : RLoc := by
       exact hbB.trans hbB'.symm)
   have hstr := GlobalTheory.Rigid.strings_eq_of_equiv (fun i => (⟨a i, CG.mk (P i)⟩ : Σ b, CG E b)) d
     (fun j => (⟨a' j, CG.mk (P' j)⟩ : Σ b, CG E b)) d' s fun x => ⟨(hs x).1, (hs x).2⟩
-  obtain ⟨s0, hs0⟩ := GlobalTheory.T.multiset_of_strings_determines_points_degrees _ d _ d' hd hd' hstr
+  obtain ⟨s0, hs0⟩ := _root_.GlobalTheory.CompanionTheory.Rigid.strings_rigid _ d _ d' hd hd' hstr
   refine ⟨s0, fun i w => ?_⟩
   have hA : AscEmb (D'.V (s0 i)) (P i) (d i) := by
     rw [(hs0 i).2]

@@ -67,11 +67,11 @@ theorem ker_mulVecLin_eq_U_of_formulaAt {p : PtAt ex Csz} (hp : p.PointCondition
     refine (map_ne_zero _).2 fun z => ?_
     rw [z, zero_pow hn.ne'] at e
     exact zero_ne_one e
-  have hinj := (_root_.GlobalTheory.T.iC_iota_mulVec_eq_iC p hp).1
+  have hinj := (_root_.GlobalTheory.BigTop.Fun.iC_base_factor_of_rows_alt p hp).1
   have key : ∀ y, p.R.Th p.P.A3.fam3.base3.μ0 (p.R.jX p.P.A3.fam3.base3.μ0 (eV0 p p.P.A3.fam3.base3.μ0 y)) = 0 ↔
       ((Df p).Pq p.P.A3.fam3.base3.μ0).mulVec y = 0 := by
     intro y
-    have e := _root_.GlobalTheory.T.theta_j_ev0_eq_ic_pq p hp p.P.A3.fam3.base3.μ0 y
+    have e := _root_.GlobalTheory.BigTop.Fun.theta_eV0_eq_iC_Pq_alt p hp p.P.A3.fam3.base3.μ0 y
     change p.R.Th p.P.A3.fam3.base3.μ0 (p.R.jX p.P.A3.fam3.base3.μ0 (eV0 p p.P.A3.fam3.base3.μ0 y)) = _ at e
     rw [e]
     constructor
@@ -96,7 +96,7 @@ theorem ker_mulVecLin_eq_U_of_formulaAt {p : PtAt ex Csz} (hp : p.PointCondition
       by_contra hall
       push_neg at hall
       exact hne (hI _ hall)
-    exact FormulaAt.ne_zero ⟨hz, hf⟩ hc (_root_.GlobalTheory.T.eV0_mem_goodF' p hp _ y) hi
+    exact FormulaAt.ne_zero ⟨hz, hf⟩ hc (_root_.GlobalTheory.BigTop.Fun.eV0_mem_goodF_alt p hp _ y) hi
   ext y
   simp only [LinearMap.mem_ker, Matrix.mulVecLin_apply, DefSide.U]
   rw [← key y]
@@ -104,7 +104,7 @@ theorem ker_mulVecLin_eq_U_of_formulaAt {p : PtAt ex Csz} (hp : p.PointCondition
   · intro h0
     apply hI
     intro i
-    have e := hf p.P.A3.fam3.base3.μ0 (eV0 p p.P.A3.fam3.base3.μ0 y) (_root_.GlobalTheory.T.eV0_mem_goodF' p hp _ y) i
+    have e := hf p.P.A3.fam3.base3.μ0 (eV0 p p.P.A3.fam3.base3.μ0 y) (_root_.GlobalTheory.BigTop.Fun.eV0_mem_goodF_alt p hp _ y) i
     have hs := h.sums p.P.A3.fam3.base3.μ0 (Or.inl rfl) y i
     have hv : vK a.ch p.P.A3.fam3.base3.μ0 (eV0 p p.P.A3.fam3.base3.μ0 y) i = 0 :=
       hs.symm.trans (by rw [h0]; exact map_zero _)
@@ -112,7 +112,7 @@ theorem ker_mulVecLin_eq_U_of_formulaAt {p : PtAt ex Csz} (hp : p.PointCondition
     exact ((mul_eq_zero.1 e2).resolve_left (mul_ne_zero hze hc))
   · intro h0
     funext i
-    have e := hf p.P.A3.fam3.base3.μ0 (eV0 p p.P.A3.fam3.base3.μ0 y) (_root_.GlobalTheory.T.eV0_mem_goodF' p hp _ y) i
+    have e := hf p.P.A3.fam3.base3.μ0 (eV0 p p.P.A3.fam3.base3.μ0 y) (_root_.GlobalTheory.BigTop.Fun.eV0_mem_goodF_alt p hp _ y) i
     have hs := h.sums p.P.A3.fam3.base3.μ0 (Or.inl rfl) y i
     have hz0 : psiK a.ch i (p.R.Th p.P.A3.fam3.base3.μ0
         (p.R.jX p.P.A3.fam3.base3.μ0 (eV0 p p.P.A3.fam3.base3.μ0 y))) = 0 := by

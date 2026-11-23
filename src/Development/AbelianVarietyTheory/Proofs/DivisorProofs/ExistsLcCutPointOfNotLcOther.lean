@@ -67,7 +67,7 @@ theorem exists_lcCut_of_not_lcAt : GlobalTheory.Published.Principalisation → G
   have hDq : IsQCart D := QNum.isQCart hQ
 
   obtain ⟨B, δ₀, hδ₀, hδ₀1, hBq, hoff, hnk, hfar⟩ :=
-    GlobalTheory.T.exists_divisor_nonKlt_at_points_not_containing_centre hPr hNad hNef X p n hp hn Δ m G N D {x} z (j + 1) h hΔ hklt hm hG hN hDq
+    _root_.GlobalTheory.PairStep.exists_step_divisor hPr hNad hNef X p n hp hn Δ m G N D {x} z (j + 1) h hΔ hklt hm hG hN hDq
       (by simp [hx, hzx]) (by omega) hzd (Or.inr hz) hh (by simpa using hdeg)
 
   obtain ⟨δ₁, hδ₁, hx'⟩ := GlobalTheory.T.exists_not_kltAt_sub_of_not_lcAt X p n hp hn Δ D x' hDq (hklt x') hnlc

@@ -65,7 +65,7 @@ theorem setup : ∀ {g n : ℕ} (F : SFam g n (zetaAway n)) (Z : Scheme.{0}) (z 
   intro g n F Z z i OZ φ d S π j BD hMin hBlow
   obtain ⟨J, -, -, -, -, hproj, hdense, hji, -, -, -⟩ := hBlow
   obtain ⟨_, _, _, _, _, _, _, _, _, _, _, _, _, ⟨-, -, -, hiz, -⟩, -⟩ := hMin
-  have hP := GlobalTheory.ArithCurve.isProper_of_projOver hproj
+  have hP := _root_.GlobalTheory.SpreadAb.isProper_of_isProjOver hproj
   have hlft : LocallyOfFiniteType (π ≫ z) := GlobalTheory.isProjOver_locallyOfFiniteType _ _ _ hproj
   haveI : IsNoetherianRing (cycAway n) := is_noetherian_subring_closure _ (Set.toFinite _)
   refine ⟨⟨by rw [← terminal.comp_from (π ≫ z)]; infer_instance⟩, hlft, LocallyOfFiniteType.isLocallyNoetherian (π ≫ z), hdense, ?_⟩

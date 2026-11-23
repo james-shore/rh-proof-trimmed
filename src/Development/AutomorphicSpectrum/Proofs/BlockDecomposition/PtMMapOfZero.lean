@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.BlockMatrixTwoByTwoFinStandardSkewMap
 
 @[expose] public section
 
@@ -115,28 +116,16 @@ section Blocks
 
 variable {R : Type} [CommRing R] {n : ℕ}
 
-theorem blk_mul (a b c d a' b' c' d' : Matrix (Fin n) (Fin n) R) :
-    blk4 a b c d * blk4 a' b' c' d' =
-      blk4 (a * a' + b * c') (a * b' + b * d') (c * a' + d * c') (c * b' + d * d') := by
-  rw [blk4, blk4, Matrix.submatrix_mul_equiv, Matrix.fromBlocks_multiply, blk4]
-
-theorem blk_one : blk4 (1 : Matrix (Fin n) (Fin n) R) 0 0 1 = 1 := by
-  rw [blk4, Matrix.fromBlocks_one, Matrix.submatrix_one_equiv]
-
 theorem blk_add (a b c d a' b' c' d' : Matrix (Fin n) (Fin n) R) :
     blk4 a b c d + blk4 a' b' c' d' = blk4 (a + a') (b + b') (c + c') (d + d') := by
   rw [blk4, blk4, blk4, ← Matrix.fromBlocks_add]; rfl
-
-theorem blk_smul (r : R) (a b c d : Matrix (Fin n) (Fin n) R) :
-    r • blk4 a b c d = blk4 (r • a) (r • b) (r • c) (r • d) := by
-  rw [blk4, blk4, ← Matrix.fromBlocks_smul]; rfl
 
 theorem ptM_unip {e : R} (he : e * e = e) {y : Matrix (Fin n) (Fin n) R} (hy : e • y = y) :
     ptM e he (blk4 1 y 0 1) = blk4 1 y 0 1 := by
   have h1 : (1 - e) • (1 : Matrix (Fin n) (Fin n) R) + e • 1 = 1 := by rw [← add_smul]; simp
   rw [ptM_apply]
-  nth_rw 1 [← blk_one]
-  rw [blk_smul, blk_smul, blk_add]
+  nth_rw 1 [← _root_.GlobalTheory.StdUnn.Frame.block_matrix_one]
+  rw [_root_.GlobalTheory.StdUnn.Frame.blockMatrixTwoByTwoFin_smul, _root_.GlobalTheory.StdUnn.Frame.blockMatrixTwoByTwoFin_smul, blk_add]
   simp [h1, hy]
 
 theorem blk_apply (a b c d : Matrix (Fin n) (Fin n) R) (x y : Fin n ⊕ Fin n) :
@@ -163,22 +152,11 @@ section Gen2
 
 variable {R R' : Type} [CommRing R] [CommRing R'] {n : ℕ}
 
-theorem weyl_map (φ : R →+* R') :
-    (blk4 (0 : Matrix (Fin n) (Fin n) R) 1 (-1) 0).map φ = blk4 (0 : Matrix (Fin n) (Fin n) R') 1 (-1) 0 := by
-  ext i j
-  obtain ⟨i, rfl⟩ := finSumFinEquiv.surjective i
-  obtain ⟨j, rfl⟩ := finSumFinEquiv.surjective j
-  rw [Matrix.map_apply, blk_apply, blk_apply]
-  rcases i with i | i <;> rcases j with j | j <;> by_cases h : i = j <;> simp [Matrix.one_apply, h]
-
 theorem map_compl_zero (φ : R →+* R') {e : R} (h : φ e = 1) : φ (1 - e) = 0 := by
   rw [map_sub, map_one, h, sub_self]
 
 theorem map_compl_one (φ : R →+* R') {e : R} (h : φ e = 0) : φ (1 - e) = 1 := by
   rw [map_sub, map_one, h, sub_zero]
-
-theorem bc_val {m : Type} [Fintype m] [DecidableEq m] (φ : R →+* R') (g : GL m R) :
-    (Formalism.UG.bc φ g).1 = g.1.map φ := rfl
 
 theorem cell_alg {e : R} {c d y : Matrix (Fin n) (Fin n) R} (h : (e • c) * y = e • d) :
     e • (c * -y + d * 1) = 0 := by
@@ -186,7 +164,7 @@ theorem cell_alg {e : R} {c d y : Matrix (Fin n) (Fin n) R} (h : (e • c) * y =
 
 theorem weyl_inv (y : Matrix (Fin n) (Fin n) R) :
     blk4 (0 : Matrix (Fin n) (Fin n) R) 1 (-1) 0 * blk4 1 y 0 1 * blk4 (-y) (-1) 1 0 = 1 := by
-  rw [blk_mul, blk_mul, ← blk_one]
+  rw [_root_.GlobalTheory.StdUnn.Frame.submatrix_fromBlocks_mul, _root_.GlobalTheory.StdUnn.Frame.submatrix_fromBlocks_mul, ← _root_.GlobalTheory.StdUnn.Frame.block_matrix_one]
   simp
 
 end Gen2
@@ -288,7 +266,7 @@ theorem cB_pt (e : AE D) (he : e * e = e) (hc : cA D e = e) (x : G D n) : cB (pt
     Matrix.smul_apply, Matrix.one_apply_ne hne, smul_zero, zero_add]
 
 theorem cB_inv {q : G D n} (h : cB q = 0) : cB q⁻¹ = 0 := by
-  have h1 : mat (1 : G D n) = blk4 1 0 0 1 := by rw [mat_one', blk_one]
+  have h1 : mat (1 : G D n) = blk4 1 0 0 1 := by rw [mat_one', _root_.GlobalTheory.StdUnn.Frame.block_matrix_one]
   have c1 := cB_mul q q⁻¹
   have d1 := dB_mul q q⁻¹
   rw [mul_inv_cancel, cB_of h1, h, zero_mul, zero_add] at c1

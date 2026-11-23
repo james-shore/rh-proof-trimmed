@@ -165,7 +165,7 @@ theorem unit_fixed_is_norm : ∀ (L : Type) [Field L] [NumberField L] (c : L →
       by rw [Algebra.TensorProduct.tmul_mul_tmul, mul_one, mul_inv_cancel₀ hθ, Algebra.TensorProduct.one_def],
       by rw [Algebra.TensorProduct.tmul_mul_tmul, mul_one, inv_mul_cancel₀ hθ, Algebra.TensorProduct.one_def]⟩
   have hσθ : σ ↑θu = -↑θu := by simp [θu, σ, hcθ, TensorProduct.tmul_neg]
-  obtain ⟨z, hzI, hzS⟩ := GlobalTheory.T.exists_twistedNorm_mod_maxIdeal_adicTensor v L c hc κ bL h2 h1 hmul hmulS hσI θu hθI hθI' hσθ e hee hei hei'
+  obtain ⟨z, hzI, hzS⟩ := _root_.GlobalTheory.ResidueNorm.exists_norm_mod_small v L c hc κ bL h2 h1 hmul hmulS hσI θu hθI hθI' hσθ e hee hei hei'
   set w := z * σ z with hwdef
   have hwσ : σ w = w := by simp only [w, map_mul, hσσ]; ring
   set u : v.adicCompletion ℚ ⊗[ℚ] L := ↑e⁻¹ * w with hudef
@@ -173,7 +173,7 @@ theorem unit_fixed_is_norm : ∀ (L : Type) [Field L] [NumberField L] (c : L →
   have huS : IsSmallB v bL (u - 1) := by
     have : u - 1 = ↑e⁻¹ * (w - ↑e) := by simp [u, mul_sub]
     rw [this]; exact hmulS _ _ hei' hzS
-  obtain ⟨f, hfI, hfI', hf2, hfS, huniq⟩ := GlobalTheory.T.adicIntegralTensorBasis_hensel_exists_unique_sqrt v L κ bL h2 h1 hmul hmulS u huI huS
+  obtain ⟨f, hfI, hfI', hf2, hfS, huniq⟩ := _root_.GlobalTheory.AdicSpan.HenselSqrt.exists_sqrt v L κ bL h2 h1 hmul hmulS u huI huS
   have hσu : σ u = u := by simp only [u, map_mul, hσinv e hee, hwσ]
   have hσf : σ ↑f = ↑f := by
     refine huniq _ (hσI _ hfI) (by rw [← map_pow, hf2, hσu]) ?_

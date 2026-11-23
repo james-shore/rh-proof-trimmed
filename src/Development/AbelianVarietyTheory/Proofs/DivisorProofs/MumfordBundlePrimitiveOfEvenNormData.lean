@@ -71,8 +71,8 @@ theorem mumfordBundle_primitive_of_evenNorm_data : ∀ (R : Type) [CommRing R] [
   letI := md
   have hpsi' : TraceFormTwistIso D'.toPre o' w := hbal2 O o' oA' oG hlin' hadj w ν hw hν hν1 hev hprim
   obtain ⟨Φ, xe, hΦ, hov, hto, hcB, hxs, hxc, hwΛ⟩ :=
-    GlobalTheory.T.polarisedDegenerationData_iso_of_mumfordBundle_iso R hR D A G hG U O o oA oG hlin D' A' U' o' oA' hlin' hlam
-  obtain ⟨hD, hxe, heΦ⟩ := GlobalTheory.T.primitive_degeneration_data_iso_of_polarised_iso R hR D D' O o o' w hpsi hpsi' Φ xe hΦ ⟨hcB, hxs, hxc⟩ hwΛ
+    _root_.GlobalTheory.Mum.SameLam.iso_of_lbIso_lam R hR D A G hG U O o oA oG hlin D' A' U' o' oA' hlin' hlam
+  obtain ⟨hD, hxe, heΦ⟩ := _root_.GlobalTheory.PrimPull.isPullDeg_of_primitive R hR D D' O o o' w hpsi hpsi' Φ xe hΦ ⟨hcB, hxs, hxc⟩ hwΛ
   obtain ⟨ψ, bc, φ, hψ, hbc, hcomp, hpu, -⟩ := GlobalTheory.unif_determined_by_data_normal R hR.1 D A G hG U D' A' G hG U' hD
   obtain ⟨hov', hto'⟩ := GlobalTheory.T.uniformisationPullbackAlongId_lies_over_dataIso R hR D A G hG U D' A' U' hD ψ.hom bc Φ.hom hψ hcomp heΦ hpu
   rw [hxe] at hto'

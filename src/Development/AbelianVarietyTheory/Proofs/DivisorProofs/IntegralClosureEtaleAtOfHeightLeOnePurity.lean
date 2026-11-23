@@ -99,13 +99,13 @@ theorem closureEtaleAt_of_comap_height_le_one : ∀ (q : ℕ) (A : Type) [CommRi
   intro q A _ _ _ _ _ _ EA _ _ _ _ _ QA _ DA _ _ actA htors hyp P _ hP
   obtain ⟨hdom, hic, hnoeth, hinj⟩ :=
     atPrime_isDomain_isIntegrallyClosed_isNoetherian_injective A EA QA
-  haveI := GlobalTheory.T.cyclic_torsor_etale _ DA q actA htors
+  haveI := _root_.GlobalTheory.KeyOriginCut.etale_of_isZTorsor _ DA q actA htors
   haveI : Module.Finite (GlobalTheory.LocAcyc.GenFib A (Localization.AtPrime QA)) DA := htors.1
   letI := GlobalTheory.KeyOriginNoeth.closureAlg A (Localization.AtPrime QA) DA
-  haveI := GlobalTheory.T.closure_finite_over_base A (Localization.AtPrime QA) hinj DA
-  exact GlobalTheory.T.etale_atPrime_of_regular_of_isIntegrallyClosedIn (Localization.AtPrime QA)
+  haveI := _root_.GlobalTheory.ClosureFinite.closure_finite A (Localization.AtPrime QA) hinj DA
+  exact _root_.GlobalTheory.PurityLoc.etale_atPrime_of_isIntegrallyClosedIn (Localization.AtPrime QA)
     (GlobalTheory.KeyOriginNoeth.closure A (Localization.AtPrime QA) DA)
-    (GlobalTheory.T.isIntegrallyClosedIn_etale_genFib_of_injective A (Localization.AtPrime QA) hinj DA) P (GlobalTheory.T.regular_height_one_localization A EA QA P hP)
+    (_root_.GlobalTheory.KeyOriginNoeth.isIntegrallyClosedIn_closure_localization A (Localization.AtPrime QA) hinj DA) P (_root_.GlobalTheory.EtaleSpreadReg.isRegularLocalRing_atPrime A EA QA P hP)
     (fun P' _ _ hh => hyp P' hh)
 
 end GlobalTheory.KeyOriginEnlarge

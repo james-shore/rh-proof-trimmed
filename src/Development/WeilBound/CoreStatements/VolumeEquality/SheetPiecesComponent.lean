@@ -115,7 +115,7 @@ theorem transferU : ∃ κ : ℕ → ℕ → ℕ → ℝ, (∀ f j j', 0 < κ f 
     fun k => (hint k).const_mul _
   obtain ⟨hs1, hs2⟩ := sum_sheets volume Q.FF Q.pc Q.B Q.d (fun k => (Q.fund k).1) (fun m => (Q.cover.meas m).1)
     Q.B_sub (fun k t => κ Dc.f Dc.j Dc.j' * (Gk k t * ballDens (Q.F k).q t)) Q.count hint'
-  have key := GlobalTheory.T.sheet_cover_of_arithmetic_variety K J (mCoordIdeal Dc.y) Dc.n Dc.nCharts Dc.Bd Dc.chart Q.V Q.B Q.γ (muLine Hd) G Dc.arith
+  have key := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.ptsIntegral_sheets K J (mCoordIdeal Dc.y) Dc.n Dc.nCharts Dc.Bd Dc.chart Q.V Q.B Q.γ (muLine Hd) G Dc.arith
     (fun z hz => by
       obtain ⟨a, t, ht, cc, hc, rfl⟩ := Dc.chart_cover z hz
       exact ⟨a, t, ht, _, rfl, cc, hc, rfl⟩)

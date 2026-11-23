@@ -60,7 +60,7 @@ theorem passIn3_of_rows : ∀ (D : D7) [_root_.NumberField.IsTotallyComplex D.wh
   have hlev : R.toRealDat.grp_levels F.lv2 := hC.base.grp.levels
   have hrec : R.toRealDat.grp_record := hC.base.grp.record
   have hirr : ∀ χ ∈ A3.A.X, IsAbsIrrChar χ := hOk.ok2.irr
-  have hind := GlobalTheory.T.goodCharacter_placewise_cuspidal_parabolic_product D G Pl0 T A3.A Ks R.toRealDat hrec hser hirr
+  have hind := _root_.GlobalTheory.GoodCharProd.isProdCuspChar_good D G Pl0 T A3.A Ks R.toRealDat hrec hser hirr
   letI i0 : Fintype F.P0 := Fintype.ofFinite _
   letI i1 : Fintype F.P1 := Fintype.ofFinite _
   have hone : ∀ χ ∈ A3.A.X, ∑ h : F.P0, χ (h : G) * (((F.ψ0 h)⁻¹ : D.what₂.LLˣ) : D.what₂.LL) = (Fintype.card F.P0 : D.what₂.LL) :=

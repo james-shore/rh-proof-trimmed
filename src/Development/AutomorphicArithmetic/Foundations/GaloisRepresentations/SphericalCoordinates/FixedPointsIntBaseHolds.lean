@@ -132,171 +132,89 @@ namespace UpperTheory.Gal.W2
 
 theorem ModelEx_holds : ModelEx := GlobalTheory.UPel.HT.model_nonempty
 
-theorem GenCmp_holds : GenCmp := GlobalTheory.T.exists_open_closed_immersion_genModel_to_fibre
+theorem GenCmp_holds : GenCmp := _root_.GlobalTheory.UPel.HT.GenCmp.genModel_eq_genericFibre
 
 theorem GenPts_holds : GenPts := UpperTheory.Cb.complexModel_points_of_genericFiber_embedding
 
-theorem EmbAll_holds : EmbAll := embAll_of
+theorem FTrace_holds : FTrace := fTrace_of _root_.UpperTheory.Gal.W2.embAll_of
 
-theorem FTrace_holds : FTrace := fTrace_of EmbAll_holds
+theorem FInt_holds : FInt := fInt_of _root_.UpperTheory.Gal.W2.embAll_of
 
-theorem FInt_holds : FInt := fInt_of EmbAll_holds
+theorem FApprox_holds : FApprox := fApprox_of _root_.UpperTheory.Gal.W2.embAll_of
 
-theorem FApprox_holds : FApprox := fApprox_of EmbAll_holds
+theorem MemDual_holds : MemDual := memDual_of _root_.UpperTheory.Gal.W2.trDual_of
 
-theorem TrDual_holds : TrDual := trDual_of
+theorem PFrameEx_holds : PFrameEx := pFrameEx_of _root_.UpperTheory.Gal.W2.fMat_of _root_.UpperTheory.Gal.W2.fForm_of _root_.UpperTheory.Gal.W2.sN_of FTrace_holds FInt_holds FApprox_holds
 
-theorem MemDual_holds : MemDual := memDual_of TrDual_holds
-
-theorem KpMem_holds : KpMem := kpMem_of
-
-theorem LocLat_holds : LocLat := locLat_of
-
-theorem OOnto_holds : OOnto := oOnto_of
-
-theorem FMat_holds : FMat := fMat_of
-
-theorem FForm_holds : FForm := fForm_of
-
-theorem SN_holds : SN := sN_of
-
-theorem PFrameEx_holds : PFrameEx := pFrameEx_of FMat_holds FForm_holds SN_holds FTrace_holds FInt_holds FApprox_holds
-
-theorem PLatOf_holds : PLatOf := pLatOf_of
-
-theorem PkLat_holds : PkLat := pkLat_of OOnto_holds MemDual_holds PLatOf_holds
-
-theorem PkEquiv_holds : PkEquiv := pkEquiv_of
+theorem PkLat_holds : PkLat := pkLat_of _root_.UpperTheory.Gal.W2.oOnto_of MemDual_holds _root_.UpperTheory.Gal.W2.pLatOf_of
 
 theorem PkPerf_holds : PkPerf := pkPerf_of MemDual_holds
 
-theorem PkInj_holds : PkInj := pkInj_of MemDual_holds EmbAll_holds
+theorem PkInj_holds : PkInj := pkInj_of MemDual_holds _root_.UpperTheory.Gal.W2.embAll_of
 
-theorem PkOnto_holds : PkOnto := pkOnto_of LocLat_holds FApprox_holds FInt_holds PkLat_holds PkPerf_holds OOnto_holds
+theorem PkOnto_holds : PkOnto := pkOnto_of _root_.UpperTheory.Gal.W2.locLat_of FApprox_holds FInt_holds PkLat_holds PkPerf_holds _root_.UpperTheory.Gal.W2.oOnto_of
 
-theorem ArchSpan_holds : ArchSpan := archSpan_of
+theorem ArchEx_holds : ArchEx := archEx_of _root_.UpperTheory.Gal.W2.fMat_of _root_.UpperTheory.Gal.W2.fForm_of _root_.UpperTheory.Gal.W2.sN_of _root_.UpperTheory.Gal.W2.archSpan_of
 
-theorem ArchEx_holds : ArchEx := archEx_of FMat_holds FForm_holds SN_holds ArchSpan_holds
+theorem JStruct_holds : JStruct := jStruct_of _root_.UpperTheory.Gal.W2.archSpan_of
 
-theorem SigB_holds : SigB := sigB_of
+theorem TypeIso_holds : TypeIso := typeIso_of _root_.UpperTheory.Gal.W2.simDiag_of _root_.UpperTheory.Gal.W2.extendEmb_of _root_.UpperTheory.Gal.W2.typeCount_of _root_.UpperTheory.Gal.W2.placeT_of
 
-theorem PerExt_holds : PerExt := perExt_of
+theorem RPer_holds : RPer := rPer_of _root_.UpperTheory.Gal.W2.sigB_of _root_.UpperTheory.Gal.W2.lineBasis_of TypeIso_holds _root_.UpperTheory.Gal.W2.hermOfJ_of _root_.UpperTheory.Gal.W2.placeT_of
 
-theorem JStruct_holds : JStruct := jStruct_of ArchSpan_holds
+theorem RDicEx_holds : RDicEx := rDicEx_of ArchEx_holds _root_.UpperTheory.Gal.W2.sigB_of _root_.UpperTheory.Gal.W2.perExt_of JStruct_holds _root_.UpperTheory.Gal.W2.jLine_of RPer_holds _root_.UpperTheory.Gal.W2.placeT_of
 
-theorem JLine_holds : JLine := jLine_of
+theorem GUnif_holds : GUnif := gUnif_of ModelEx_holds GenCmp_holds GenPts_holds _root_.UpperTheory.Gal.W2.baseC_of _root_.UpperTheory.Gal.W2.gFine_of
 
-theorem HermOfJ_holds : HermOfJ := hermOfJ_of
+theorem AdOfWit_holds : AdOfWit := adOfWit_of _root_.UpperTheory.Gal.W2.adCore_of
 
-theorem LineBasis_holds : LineBasis := lineBasis_of
+theorem WitOfAd_holds : WitOfAd := witOfAd_of _root_.UpperTheory.Gal.W2.rdForm_of _root_.UpperTheory.Gal.W2.rdDense_of _root_.UpperTheory.Gal.W2.rdAct_of
 
-theorem PlaceT_holds : PlaceT := placeT_of
+theorem CoordKN_holds : CoordKN := coordKN_of _root_.UpperTheory.Gal.W2.rdDense_of
 
-theorem TypeIso_holds : TypeIso := typeIso_of SimDiag_holds ExtendEmb_holds TypeCount_holds PlaceT_holds
+theorem LatIso_holds : LatIso := latIso_of _root_.UpperTheory.Gal.W2.rdAct_of CoordKN_holds _root_.UpperTheory.Gal.W2.clsScalar_of _root_.UpperTheory.Gal.W2.actY_of
 
-theorem RPer_holds : RPer := rPer_of SigB_holds LineBasis_holds TypeIso_holds HermOfJ_holds PlaceT_holds
+theorem PlaceEx_holds : PlaceEx := placeEx_of _root_.UpperTheory.Gal.W2.adCore_of _root_.UpperTheory.Gal.W2.latForm_of
 
-theorem RDicEx_holds : RDicEx := rDicEx_of ArchEx_holds SigB_holds PerExt_holds JStruct_holds JLine_holds RPer_holds PlaceT_holds
+theorem CoordEx_holds : CoordEx := coordEx_of PlaceEx_holds AdOfWit_holds _root_.UpperTheory.Gal.W2.placeLoc_of _root_.UpperTheory.Gal.W2.placePer_of
 
-theorem RhoSig_holds : RhoSig := rhoSig_of
+theorem CoordOcc_holds : CoordOcc := coordOcc_of WitOfAd_holds _root_.UpperTheory.Gal.W2.placePer_of
 
-theorem BaseC_holds : BaseC := baseC_of
+theorem CoordIso_holds : CoordIso := coordIso_of _root_.UpperTheory.Gal.W2.latForm_of LatIso_holds _root_.UpperTheory.Gal.W2.actY_of
 
-theorem GFine_holds : GFine := gFine_of
+theorem UnifG_holds : UnifG := unifG_of CoordEx_holds CoordOcc_holds CoordIso_holds _root_.UpperTheory.Gal.W2.coordMove_of
 
-theorem GUnif_holds : GUnif := gUnif_of ModelEx_holds GenCmp_holds GenPts_holds BaseC_holds GFine_holds
+theorem FixLine_holds : FixLine := fixLine_of _root_.UpperTheory.Gal.W2.actY_of
 
-theorem SheetOf_holds : SheetOf := sheetOf_of
+theorem StabTriv_holds : StabTriv := stabTriv_of CoordOcc_holds LatIso_holds FixLine_holds _root_.UpperTheory.Gal.W2.rigid_of
 
-theorem FixFinite_holds : FixFinite := fixFinite_of
+theorem IsogForm_holds : IsogForm := isogForm_of _root_.UpperTheory.Gal.W2.rdForm_of
 
-theorem RdAct_holds : RdAct := rdAct_of
+theorem IsogCoord_holds : IsogCoord := isogCoord_of AdOfWit_holds CoordKN_holds IsogForm_holds _root_.UpperTheory.Gal.W2.rdDense_of
 
-theorem RdForm_holds : RdForm := rdForm_of
+theorem SumPts_holds : SumPts := sumPts_of _root_.UpperTheory.Gal.W2.eigSame_of
 
-theorem RdDense_holds : RdDense := rdDense_of
+theorem LevelChange_holds : LevelChange := levelChange_of _root_.UpperTheory.Gal.W2.eigSame_of
 
-theorem AdCore_holds : AdCore := adCore_of
-
-theorem AdOfWit_holds : AdOfWit := adOfWit_of AdCore_holds
-
-theorem WitOfAd_holds : WitOfAd := witOfAd_of RdForm_holds RdDense_holds RdAct_holds
-
-theorem CoordKN_holds : CoordKN := coordKN_of RdDense_holds
-
-theorem PlacePer_holds : PlacePer := placePer_of
-
-theorem PlaceLoc_holds : PlaceLoc := placeLoc_of
-
-theorem LatForm_holds : LatForm := latForm_of
-
-theorem ClsScalar_holds : ClsScalar := clsScalar_of
-
-theorem ActY_holds : ActY := actY_of
-
-theorem LatIso_holds : LatIso := latIso_of RdAct_holds CoordKN_holds ClsScalar_holds ActY_holds
-
-theorem CoordMove_holds : CoordMove := coordMove_of
-
-theorem PlaceEx_holds : PlaceEx := placeEx_of AdCore_holds LatForm_holds
-
-theorem CoordEx_holds : CoordEx := coordEx_of PlaceEx_holds AdOfWit_holds PlaceLoc_holds PlacePer_holds
-
-theorem CoordOcc_holds : CoordOcc := coordOcc_of WitOfAd_holds PlacePer_holds
-
-theorem CoordIso_holds : CoordIso := coordIso_of LatForm_holds LatIso_holds ActY_holds
-
-theorem UnifG_holds : UnifG := unifG_of CoordEx_holds CoordOcc_holds CoordIso_holds CoordMove_holds
-
-theorem Rigid_holds : Rigid := rigid_of
-
-theorem FixLine_holds : FixLine := fixLine_of ActY_holds
-
-theorem StabTriv_holds : StabTriv := stabTriv_of CoordOcc_holds LatIso_holds FixLine_holds Rigid_holds
-
-theorem IsogForm_holds : IsogForm := isogForm_of RdForm_holds
-
-theorem IsogCoord_holds : IsogCoord := isogCoord_of AdOfWit_holds CoordKN_holds IsogForm_holds RdDense_holds
-
-theorem IntMult_holds : IntMult := intMult_of
-
-theorem RegSep_holds : RegSep := regSep_of
-
-theorem InvMin_holds : InvMin := invMin_of
-
-theorem MinBridge_holds : MinBridge := minBridge_of
-
-theorem EigSame_holds : EigSame := eigSame_of
-
-theorem SumPts_holds : SumPts := sumPts_of EigSame_holds
-
-theorem LevelChange_holds : LevelChange := levelChange_of EigSame_holds
-
-theorem TateWit_holds : TateWit := tateWit_of
-
-theorem IsogAt_holds : IsogAt := isogAt_of TateWit_holds PerLin_holds
+theorem IsogAt_holds : IsogAt := isogAt_of _root_.UpperTheory.Gal.W2.tateWit_of _root_.UpperTheory.Gal.W2.perLin_of
 
 theorem HeckeCoord_holds : HeckeCoord := heckeCoord_of IsogAt_holds IsogCoord_holds
 
 theorem OneAt_holds : OneAt := oneAt_of HeckeCoord_holds LatIso_holds
 
-theorem FixFwd_holds : FixFwd := fixFwd_of HeckeCoord_holds OneAt_holds LatForm_holds LatIso_holds FixLine_holds ActY_holds
+theorem FixFwd_holds : FixFwd := fixFwd_of HeckeCoord_holds OneAt_holds _root_.UpperTheory.Gal.W2.latForm_of LatIso_holds FixLine_holds _root_.UpperTheory.Gal.W2.actY_of
 
-theorem FixGa_holds : FixGa := fixGa_of HeckeCoord_holds LatIso_holds FixLine_holds ActY_holds IntMult_holds
+theorem FixGa_holds : FixGa := fixGa_of HeckeCoord_holds LatIso_holds FixLine_holds _root_.UpperTheory.Gal.W2.actY_of _root_.UpperTheory.Gal.W2.intMult_of
 
 theorem FixEq_holds : FixEq := fixEq_of HeckeCoord_holds OneAt_holds LatIso_holds
 
-theorem PwOver_holds : PwOver := pwOver_of
+theorem PowCorr_holds : PowCorr := powCorr_of _root_.UpperTheory.Gal.W2.pwOver_of _root_.UpperTheory.Gal.W2.ptFibre_of
 
-theorem PowCorr_holds : PowCorr := powCorr_of PwOver_holds PtFibre_holds
+theorem FixLoc_holds : FixLoc := fixLoc_of _root_.UpperTheory.Gal.W2.sheetOf_of FixGa_holds FixEq_holds OneAt_holds PowCorr_holds CspDim_holds _root_.UpperTheory.Gal.W2.adExists_of EigTop_holds LocSum_holds _root_.UpperTheory.Gal.W2.regSep_of _root_.UpperTheory.Gal.W2.invMin_of _root_.UpperTheory.Gal.W2.minBridge_of CorrChart_holds _root_.UpperTheory.Gal.W2.ptFibre_of
 
-theorem PowSm_holds : PowSm := powSm_of
+theorem PDicEx_holds : PDicEx := pkTop_of PFrameEx_holds PkLat_holds _root_.UpperTheory.Gal.W2.pkEquiv_of PkPerf_holds PkInj_holds PkOnto_holds _root_.UpperTheory.Gal.W2.kpMem_of
 
-theorem FixLoc_holds : FixLoc := fixLoc_of SheetOf_holds FixGa_holds FixEq_holds OneAt_holds PowCorr_holds CspDim_holds AdExists_holds EigTop_holds LocSum_holds RegSep_holds InvMin_holds MinBridge_holds CorrChart_holds PtFibre_holds
-
-theorem PDicEx_holds : PDicEx := pkTop_of PFrameEx_holds PkLat_holds PkEquiv_holds PkPerf_holds PkInj_holds PkOnto_holds KpMem_holds
-
-theorem fixedPoints_int_base_holds : HeckeFixedPointCMCycleClass := fixedPoints_integral_base_of_uniformisation RhoSig_holds GUnif_holds PDicEx_holds RDicEx_holds UnifG_holds StabTriv_holds FixFwd_holds FixEq_holds FixGa_holds FixLoc_holds TanExists_holds FixFinite_holds PowSm_holds PwOver_holds SumPts_holds EigSame_holds
+theorem fixedPoints_int_base_holds : HeckeFixedPointCMCycleClass := fixedPoints_integral_base_of_uniformisation _root_.UpperTheory.Gal.W2.rhoSig_of GUnif_holds PDicEx_holds RDicEx_holds UnifG_holds StabTriv_holds FixFwd_holds FixEq_holds FixGa_holds FixLoc_holds _root_.UpperTheory.Gal.W2.tanExists_of _root_.UpperTheory.Gal.W2.fixFinite_of _root_.UpperTheory.Gal.W2.powSm_of _root_.UpperTheory.Gal.W2.pwOver_of SumPts_holds _root_.UpperTheory.Gal.W2.eigSame_of
 
 theorem FixZ_holds : FixZ := fixZ_of fixedPoints_int_base_holds LevelChange_holds
 

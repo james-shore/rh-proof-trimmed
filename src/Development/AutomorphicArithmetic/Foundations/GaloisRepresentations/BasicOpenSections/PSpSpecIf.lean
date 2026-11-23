@@ -100,9 +100,9 @@ theorem UpperTheory.Gal.Mod.spSpecIf :
     push_cast
     exact hl.pow k
   have hbI : Function.Bijective (pullHQ l (sch.map iY) n i) :=
-    UpperTheory.Gal.Mod.spHqBij l _ n i (fun k => (hEq _ (hlk k) i).1 n)
+    _root_.GlobalTheory.GenusTwoPureComparison.Cmp.pullHQ_bijective l _ n i (fun k => (hEq _ (hlk k) i).1 n)
   have hbJ : Function.Bijective (pullHQ l (sch.map jY) n i) :=
-    UpperTheory.Gal.Mod.spHqBij l _ n i (fun k => (hEq _ (hlk k) i).2 n)
+    _root_.GlobalTheory.GenusTwoPureComparison.Cmp.pullHQ_bijective l _ n i (fun k => (hEq _ (hlk k) i).2 n)
   let eI := LinearEquiv.ofBijective _ hbI
   let eJ := LinearEquiv.ofBijective _ hbJ
   have hsp : ∀ x, (eI.symm.trans eJ) (pullHQ l (sch.map iY) n i x) = pullHQ l (sch.map jY) n i x := by

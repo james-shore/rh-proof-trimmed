@@ -74,13 +74,6 @@ def testSub (X : Type) [TopologicalSpace X] : Submodule ℂ (X → ℂ) where
   zero_mem' := ⟨IsLocallyConstant.const 0, HasCompactSupport.zero⟩
   smul_mem' := fun c f hf => ⟨hf.1.comp (fun z => c • z), hf.2.smul_left (f := fun _ => c)⟩
 
-theorem absK_unit (A : Et F E) (s : A.Kˣ) : A.absK (s : A.K) = distribHaarChar A.K s := by
-  unfold Et.absK
-  rw [dif_pos s.isUnit]
-  congr 2
-  ext
-  rfl
-
 theorem fOp_smul (A : Et F E) (ψ : AddChar F ℂ) (x : A.K) (μ : Measure A.L) (c : ℂ) (φ : A.L → ℂ) :
     fOp A ψ x μ (c • φ) = c • fOp A ψ x μ φ := by
   funext y
@@ -99,16 +92,6 @@ theorem nOp_smul (A : Et F E) (ψ : AddChar F ℂ) (x z : A.K) (c : ℂ) (φ : A
 end GlobalTheory.JR.WeilQuad
 
 namespace GlobalTheory.JR.WeilQuad
-
-variable {F E : Type} [NontriviallyNormedField F] [NontriviallyNormedField E] [NormedAlgebra F E] [StarRing E]
-
-theorem absK_neg_one (A : Et F E) : A.absK ((-1 : A.Kˣ) : A.K) = 1 := by
-  rw [absK_unit]
-  have h : distribHaarChar A.K (-1 : A.Kˣ) ^ 2 = 1 := by
-    rw [← map_pow]; simp
-  have h0 := (distribHaarChar_pos (A := A.K) (g := (-1 : A.Kˣ))).le
-  have : distribHaarChar A.K (-1 : A.Kˣ) = 1 := (pow_eq_one_iff_of_nonneg h0 two_ne_zero).1 h
-  rw [this]; rfl
 
 end GlobalTheory.JR.WeilQuad
 
@@ -149,20 +132,17 @@ theorem nOp_add (A : Et F E) (ψ : AddChar F ℂ) (x a b : A.K) (φ : A.L → �
   funext y
   simp only [nOp, Et.psiK, add_mul, map_add (f := _), AddChar.map_add_eq_mul]; ring
 
-theorem absK_mul (A : Et F E) (a b : A.Kˣ) : A.absK ((a * b : A.Kˣ) : A.K) = A.absK a * A.absK b := by
-  simp only [absK_unit, map_mul, NNReal.coe_mul]
-
 theorem absK_inv (A : Et F E) (a : A.Kˣ) : A.absK ((a⁻¹ : A.Kˣ) : A.K) = (A.absK a)⁻¹ := by
-  simp only [absK_unit, map_inv, NNReal.coe_inv]
+  simp only [_root_.GlobalTheory.JR.EtMeas.absK_unit, map_inv, NNReal.coe_inv]
 
 theorem absK_ne (A : Et F E) (a : A.Kˣ) : (A.absK a : ℂ) ≠ 0 := by
-  rw [absK_unit]; exact_mod_cast (distribHaarChar_pos (A := A.K) (g := a)).ne'
+  rw [_root_.GlobalTheory.JR.EtMeas.absK_unit]; exact_mod_cast (distribHaarChar_pos (A := A.K) (g := a)).ne'
 
 theorem mOp_one (A : Et F E) {ψ : AddChar F ℂ} {x : A.Kˣ} {μ : Measure A.L} {ω : A.K → ℂ}
     (H : Hyp A ψ x μ ω) (φ : A.L → ℂ) : mOp A ω 1 φ = φ := by
   funext y
   simp only [mOp]
-  rw [omega_one A H, absK_unit, map_one]
+  rw [omega_one A H, _root_.GlobalTheory.JR.EtMeas.absK_unit, map_one]
   simp
 
 theorem mOp_mul (A : Et F E) {ω : A.K → ℂ}
@@ -170,7 +150,7 @@ theorem mOp_mul (A : Et F E) {ω : A.K → ℂ}
     mOp A ω (a * b) φ = mOp A ω a (mOp A ω b φ) := by
   funext y
   simp only [mOp]
-  rw [hmul, absK_mul, smul_smul, Units.val_mul, mul_comm (b : A.K) (a : A.K)]
+  rw [hmul, _root_.GlobalTheory.JR.WeilQuad.absK_units_mul, smul_smul, Units.val_mul, mul_comm (b : A.K) (a : A.K)]
   push_cast; ring
 
 theorem rel_ww (A : Et F E) {ψ : AddChar F ℂ} {x : A.Kˣ} {μ : Measure A.L} {ω : A.K → ℂ}
@@ -179,7 +159,7 @@ theorem rel_ww (A : Et F E) {ψ : AddChar F ℂ} {x : A.Kˣ} {μ : Measure A.L} 
   funext y
   rw [fOp_smul]
   simp only [Pi.smul_apply, smul_eq_mul, mOp]
-  rw [hneg, absK_neg_one, Units.val_neg, Units.val_one, neg_one_smul]
+  rw [hneg, _root_.GlobalTheory.JR.WeilQuad.absK_units_neg_one, Units.val_neg, Units.val_one, neg_one_smul]
   have h := H.2.2.2.1.2 φ hφ y
   simp only [fOp] at h ⊢
   rw [h]
@@ -222,7 +202,7 @@ theorem rel_wnw (A : Et F E) {ψ : AddChar F ℂ} {x : A.Kˣ} {μ : Measure A.L}
   rw [h8 z, hGv]
   have hw : (-u⁻¹ : A.Kˣ) = (-1) * u⁻¹ := by rw [neg_one_mul]
   simp only [nOp, mOp]
-  rw [hw, hmul, absK_mul, hneg, absK_neg_one, omega_inv A H hmul, absK_inv, ← hw, Units.val_neg]
+  rw [hw, hmul, _root_.GlobalTheory.JR.WeilQuad.absK_units_mul, hneg, _root_.GlobalTheory.JR.WeilQuad.absK_units_neg_one, omega_inv A H hmul, absK_inv, ← hw, Units.val_neg]
   simp only [Pi.smul_apply, smul_eq_mul]
   have := absK_ne A u
   push_cast

@@ -52,7 +52,7 @@ open GlobalTheory.BigTop.Fun.ThbTie in
 theorem GlobalTheory.BigTop.Fun.thb_tie_alt (hS : _root_.GlobalTheory.BigTop.Fun.SettingAtPoint)
     (hd : Closed FamHyp fun Fm _ => _root_.GlobalTheory.BigTop.EventuallyAtPoints Fm fun x _ i _ => |(Fm.L x i).logDerivativeAtOne| ≤ (Fm.L x i).sc.x ^ (Fm.L x i).sc.eps)
     (hT : ThbSt) : _root_.GlobalTheory.BigTop.Fun.LeafThetaBound @Comparison₂ := by
-  have hQ := _root_.GlobalTheory.T.forallLeaves_fitted_of_gBig _ hS hd hT
+  have hQ := _root_.GlobalTheory.BigTop.Fun.gBig_atTied_alt _ hS hd hT
   refine _root_.GlobalTheory.BigTop.Fun.LeafConditions.mono hQ ?_
   intro D L hT' Gi Gl Kc Y cX ex Csz p CF d C CH _ htie
   refine ⟨htie, fun hq => ?_⟩

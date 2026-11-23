@@ -85,7 +85,6 @@ theorem order_prod_sub_prod {R τ ι : Type} [CommRing R] (s : Finset ι)
           add_le_add (hab j (Finset.mem_insert_self _ _)) hbs
         _ ≤ _ := MvPowerSeries.le_order_mul
 
-theorem target : ∀ {R τ ι : Type} [inst : CommRing R] (s : Finset ι) (a b : ι → MvPowerSeries τ R) (k : ι → ℕ), (∀ i ∈ s, (↑(k i) : ℕ∞) ≤ MvPowerSeries.order (a i)) → (∀ i ∈ s, (↑(k i) : ℕ∞) ≤ MvPowerSeries.order (b i)) → (∀ i ∈ s, (↑(k i) : ℕ∞) + (1 : ℕ∞) ≤ MvPowerSeries.order (a i - b i)) → ∑ i ∈ s, (↑(k i) : ℕ∞) + (1 : ℕ∞) ≤ MvPowerSeries.order (∏ i ∈ s, a i - ∏ i ∈ s, b i) :=
-  fun s a b k ha hb hab => order_prod_sub_prod s a b k ha hb hab
+alias target := _root_.GlobalTheory.OrderProductDifference.order_prod_sub_prod
 
 end GlobalTheory.OrderProductDifference

@@ -76,22 +76,7 @@ theorem generatesAt_add_vanishesAt {D : CartierDiv X} {x : X} {f u : X.functionF
     simpa using this
   exact (IsLocalRing.mem_maximalIdeal _).1 h2 ha
 
-theorem eff_nsmul {D : CartierDiv X} (hD : D.Eff) (r : ℕ) : (r • D).Eff := by
-  induction r with
-  | zero => rw [zero_nsmul]; exact CartierDiv.eff_zero
-  | succ r ih => rw [succ_nsmul]; exact ih.add hD
-
 variable [IsLocallyNoetherian X]
-
-theorem mult_nsmul (E : CartierDiv X) (r : ℕ) (z : X) : (r • E).mult z = r * E.mult z := by
-  induction r with
-  | zero =>
-    have h₀ := CartierDiv.mult_add (0 : CartierDiv X) 0 z
-    rw [add_zero] at h₀
-    rw [zero_nsmul]
-    push_cast
-    omega
-  | succ r ih => rw [succ_nsmul, CartierDiv.mult_add, ih]; push_cast; ring
 
 end GlobalTheory.AmpleStep
 
@@ -110,7 +95,7 @@ theorem GlobalTheory.AmpleStep.exists_divisor : GlobalTheory.Published.Principal
   intro hP X _ _ _ p n hp hn Δ m G A D P z k h hΔ hklt hm hG hA hD hPz hk hdim hz hh hnum
   obtain ⟨l₁, hl₁⟩ := GlobalTheory.GeneralLift.exists_lift_klt hP X p n hp hn Δ D m G A z hm hG hD hA
   obtain ⟨l, hll, hhl, f₀, hf₀, hgen, δ₀, hδ0, hδ1, hnk⟩ :=
-    GlobalTheory.T.exists_global_section_angehrnSiu_inductive_step hP X p n hp hn Δ m G A D P z k h hΔ hklt hm hG hA hD hPz hk hdim hz hh hnum l₁
+    _root_.GlobalTheory.PairStep.exists_global_step hP X p n hp hn Δ m G A D P z k h hΔ hklt hm hG hA hD hPz hk hdim hz hh hnum l₁
   obtain ⟨u, hu, huz, hukl⟩ := hl₁ l hll f₀ hf₀
   have hgz : (l • A).GeneratesAt z (f₀ + u) := generatesAt_add_vanishesAt hgen huz
   let g : X.functionFieldˣ := Units.mk0 (f₀ + u) hgz.ne_zero
@@ -128,10 +113,10 @@ theorem GlobalTheory.AmpleStep.exists_divisor : GlobalTheory.Published.Principal
         have : ((h.num.toNat : ℕ) : ℤ) = h.num := Int.toNat_of_nonneg hnum0.le
         exact_mod_cast this
       rw [e1, Rat.num_div_den]
-    refine ⟨b * l, a • (CartierDiv.principal g + l • A), Nat.mul_pos hb0 hlpos, eff_nsmul hEeff a,
+    refine ⟨b * l, a • (CartierDiv.principal g + l • A), Nat.mul_pos hb0 hlpos, _root_.GlobalTheory.RoundEqn.Eff.nsmul' hEeff a,
       ?_, fun C hC => ?_⟩
     · funext x
-      simp only [Pi.smul_apply, smul_eq_mul, qWeil, mult_nsmul, hab]
+      simp only [Pi.smul_apply, smul_eq_mul, qWeil, _root_.GlobalTheory.CoefBound.cartierDivisor_mult_nsmul_eq_natCast_mul, hab]
       push_cast
       field_simp
     · have hcls : cls (toLB (a • (CartierDiv.principal g + l • A))) (isLB_toLB _) =

@@ -87,7 +87,7 @@ theorem exists_finite_graded_module_secCube : ∀ (R : Type) [CommRing R] (Y : S
   obtain ⟨K, hK, hfin, hb⟩ := exists_finite_grCube_hom_bijective (Fin (m + 1)) R (GrSum (hx ⊤))
     (GrSum.grading (hx ⊤)) fun i => by
       obtain ⟨haff, r, hr, hsurj⟩ := hs.2 i
-      obtain ⟨h1, ε, hε, hk, -⟩ := GlobalTheory.T.exists_dehomogenisation_twisted_chart R Y f H m s M hH hM hs hx i r hr
+      obtain ⟨h1, ε, hε, hk, -⟩ := _root_.GlobalTheory.AbLaw.exists_dehom_chart R Y f H m s M hH hM hs hx i r hr
       letI := cstAlgebra f (nonzeroLocus (s i))
       have hfp := (secOn_finitePresentation_projective Y (tw M H 0) _ (isLB_tw hM hH 0) haff).1
       exact (finite_quotSMulTop_X_sub_one_of_chart (Fin (m + 1)) R (GrSum (hx ⊤))
@@ -96,7 +96,7 @@ theorem exists_finite_graded_module_secCube : ∀ (R : Type) [CommRing R] (Y : S
         ⟨hsurj, (MvPolynomial.aeval_X r i).trans h1, hε, hk⟩).1 inferInstance
   refine ⟨K, inferInstance, inferInstance, inferInstance, inferInstance,
     grSub (GrSum.grading (hx ⊤)) K, inferInstance, grSubDecomposition _ hK, hfin, fun t => ?_⟩
-  obtain ⟨φ, hφ⟩ := GlobalTheory.T.exists_twistedSections_cube_bijective R Y f H m s M hH hM hs hx t
+  obtain ⟨φ, hφ⟩ := _root_.GlobalTheory.exists_grCube_twistedSections_hom_secCube_bijective R Y f H m s M hH hM hs hx t
   exact ⟨grCubeMap (isGradedMap_subtype _ K) t ≫ φ, fun I hI => (hφ I).comp (hb t I hI)⟩
 
 end GlobalTheory.AbLaw

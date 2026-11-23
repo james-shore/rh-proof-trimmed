@@ -57,9 +57,7 @@ open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComp
 
 namespace UpperTheory.Cb.SHAcyc
 
-private theorem map_res {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U)
-    (x : Sec F U) : Sec.map φ (Sec.res g x) = Sec.res g (Sec.map φ x) :=
-  congrArg (fun h => h.hom x) (φ.hom.naturality g.op)
+private alias map_res := _root_.GlobalTheory.EtC.exactIff_map_res
 
 private theorem res_comp {R : Type} [CommRing R] {F : Shv R} {W V U : Scheme.{0}} (k : W ⟶ V) (g : V ⟶ U)
     (x : Sec F U) : Sec.res (k ≫ g) x = Sec.res k (Sec.res g x) := by
@@ -305,7 +303,7 @@ theorem UpperTheory.etaleCohomology_functorialityAxioms_hold : GlobalTheory.EtC.
             erw [hkn, neg_neg, smul_smul, Int.units_mul_self, one_smul]
   have hz := (local_cocycle R (Spec (CommRingCat.of A)) (res R F) (n - 1) n (n + 1) (by ring) rfl).2 α
   have hloc := (GlobalTheory.T.chosenInjectiveResolutionEtaleSheaf_sections_exactness R F (Spec (CommRingCat.of A))).2.2.1 (n - 1) n (n + 1) hn (by ring) _ rfl hz.1
-  have hpts := (GlobalTheory.T.etaleLocally_iff_affine_etale_point_cover (Spec (CommRingCat.of A)) _ (by
+  have hpts := (_root_.GlobalTheory.EtC.loc_iff_etale_affine_points (Spec (CommRingCat.of A)) _ (by
     rintro V W g k ⟨y, hy⟩
     refine ⟨Sec.res k y, ?_⟩
     rw [map_res, hy, res_comp])).1 hloc

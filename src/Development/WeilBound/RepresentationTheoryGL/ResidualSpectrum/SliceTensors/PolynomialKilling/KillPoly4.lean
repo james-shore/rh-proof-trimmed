@@ -137,7 +137,7 @@ theorem killPoly4 : KillPoly := by
       have e : ∀ g, (v : G → ℂ) (a t * g) = μ * (v : G → ℂ) g := fun g =>
         congrArg (fun w : V => (w : G → ℂ) g) hμt
       rw [e g, e g₀, mul_div_cancel_right₀ _ hg₀']
-    obtain ⟨c, hc⟩ := UpperTheory.V.Lib.Small.exists_eq_exp (fun t => (v : G → ℂ) (a t * g₀) / (v : G → ℂ) g₀)
+    obtain ⟨c, hc⟩ := _root_.UpperTheory.Reformulated.B.weightedSumBis.exists_eq_exp (fun t => (v : G → ℂ) (a t * g₀) / (v : G → ℂ) g₀)
       ((hcV _ v.2 g₀).div_const _) (by simp only [ha0, one_mul, div_self hg₀'])
       (fun s t => by
         show (v : G → ℂ) (a (s + t) * g₀) / (v : G → ℂ) g₀ =

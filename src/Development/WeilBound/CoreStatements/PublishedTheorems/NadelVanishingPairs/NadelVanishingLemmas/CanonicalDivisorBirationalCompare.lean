@@ -81,7 +81,7 @@ theorem not_mem_supp_sub_pullCart : ∀ (k : Type) [Field k] [CharZero k] (Y₀ 
   intro k _ _ Y₀ Y₁ _ _ _ _ q n t _ _ _ U hU hiso η hη K₀ K₁ h₀ h₁ y hy
   haveI : Smooth q := SmoothOfRelativeDimension.smooth n q
   haveI : Smooth (t ≫ q) := SmoothOfRelativeDimension.smooth n (t ≫ q)
-  haveI : GlobalTheory.IsNormalScheme Y₀ := isNormalScheme_of_smooth' q
+  haveI : GlobalTheory.IsNormalScheme Y₀ := _root_.GlobalTheory.ModifSections.isNormalScheme_of_smooth q
   haveI : GlobalTheory.IsNormalScheme Y₁ := isNormalScheme_of_smooth' (t ≫ q)
   have hbir := GlobalTheory.T.functionFieldMap_bijective_of_isIso_restrict' Y₀ Y₁ t U hU hiso
   have hpull : EtaleKlt.ratPull q t n η ≠ 0 := fun h =>

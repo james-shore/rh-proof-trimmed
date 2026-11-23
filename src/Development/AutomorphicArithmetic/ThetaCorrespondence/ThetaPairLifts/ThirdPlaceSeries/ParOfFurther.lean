@@ -88,7 +88,7 @@ theorem parOf_further_alt : _root_.GlobalTheory.BigOn.AtPtsAlt fun Fm x _ i _ =>
     rw [hxx, hee]
     exact pow_real hxp E4
 theorem parOf_large_at_pts : _root_.GlobalTheory.BigOn.AtPtsAlt fun Fm x _ i _ => ∀ j : Fin (Fm.D x i).R.m, (parOf (Fm.L x i) j).Large :=
-  _root_.GlobalTheory.ExpTie.atPts_mono (_root_.GlobalTheory.ExpTie.atPts_and_alt (_root_.GlobalTheory.ExpTie.atPts_and_alt _root_.GlobalTheory.ExpTie.parOf_hyp_alt _root_.GlobalTheory.T.exists_large_parameter_estimates_at_pts) _root_.GlobalTheory.ExpTie.parOf_further_alt) fun _ _ _ _ _ H j => by
+  _root_.GlobalTheory.ExpTie.atPts_mono (_root_.GlobalTheory.ExpTie.atPts_and_alt (_root_.GlobalTheory.ExpTie.atPts_and_alt _root_.GlobalTheory.ExpTie.parOf_hyp_alt _root_.GlobalTheory.ExpTie.rows_big_alt) _root_.GlobalTheory.ExpTie.parOf_further_alt) fun _ _ _ _ _ H j => by
     obtain ⟨⟨hH, hR⟩, hE⟩ := H
     obtain ⟨X', A, hR', hB⟩ := hR j
     exact large_of_rows_pow (hH j) hR' hB (hE j).1 (hE j).2

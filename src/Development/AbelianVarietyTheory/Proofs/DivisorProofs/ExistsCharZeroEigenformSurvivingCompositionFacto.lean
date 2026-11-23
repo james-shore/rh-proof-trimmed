@@ -248,9 +248,9 @@ theorem eig_of_ann (hOk : F.Ok) (hJm : F.IsJ mu jKm) (hHm : F.IsHecke mu jKm (Na
     (m : Ideal F.T) [m.IsMaximal]
     (hannM : ∀ p : F.T, (∀ x : Forms F.O (A := alg F.O N mu) F.Γ jKm (NablaT F.O N mu), p • x = 0) → p ∈ m) :
     ∃ θ, F.IsEig mu θ ∧ F.Over θ m := by
-  have h1 := GlobalTheory.T.module_finite_frameLatticeForms l ι N F mu jKm hOk
+  have h1 := _root_.GlobalTheory.ExpFrame.Frame.finite_latticeForms l ι N F mu jKm hOk
   have h2 := tf_forms F mu jKm hOk b hbi
-  have h3 := GlobalTheory.T.linearIndependent_frameForms_baseChange l ι N F mu jKm b hbi hOk hbli
+  have h3 := _root_.GlobalTheory.BaseChangeIndep.forms_indep l ι N F mu jKm b hbi hOk hbli
   have h4 := jmap_equiv F mu jKm hHm b
   obtain ⟨θ, hθ1, hθ2, v, hvspan, hv0, hvT⟩ :=
     @GlobalTheory.T.exists_integral_hecke_eigensystem_deligne_serre l _ F.O _ _ _ F.emb

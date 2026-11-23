@@ -60,15 +60,6 @@ open Formalism.L2.Th1.C (wpShift HasSecondLogDeriv wTr IsLogPair mulBy EndInt Ph
 open Formalism.L2.Th1.A (fgl iSer logSer expSer wpReg g₂ g₃ IntModel xS tS xPlus bridgeWp bridgeLaw
   bridgeCurve bridgeCurve3)
 
-section Alg
-
-variable {K : Type} [Field K] [CharZero K]
-
-theorem logPair (W : WeierstrassCurve K) : IsLogPair (logSer W) (expSer W) :=
-  (Formalism.L2.Th1.C.curveFrame K ⊤ W ⟨trivial, trivial, trivial, trivial, trivial⟩).1
-
-end Alg
-
 section Norm
 
 variable {K : Type} [NormedField K] [IsUltrametricDist K] [CharZero K]

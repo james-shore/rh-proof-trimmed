@@ -61,20 +61,6 @@ noncomputable section
 
 namespace GlobalTheory.BSP
 
-theorem ringHom_ext_of_sep_galPer {R B : Type} [CommRing R] [CommRing B] {f g : R⟦X⟧ →+* B}
-    (hC : ∀ r, f (C r) = g (C r)) (hX : f X = g X) (hsep : ∀ b : B, (∀ n, f X ^ n ∣ b) → b = 0) :
-    f = g := by
-  have hp : ∀ p : Polynomial R, f p = g p := fun p => by
-    induction p using Polynomial.induction_on with
-    | C a => simpa using hC a
-    | add p q hp hq => simp [hp, hq]
-    | monomial n a _ => simp [hC, hX]
-  ext1 a
-  rw [← sub_eq_zero]
-  refine hsep _ fun n => ?_
-  rw [a.eq_X_pow_mul_shift_add_trunc n, map_add (f := _), map_add (f := _), hp, map_mul, map_mul, map_pow, map_pow, ← hX]
-  exact ⟨_, by rw [add_sub_add_right_eq_sub, ← mul_sub]⟩
-
 theorem mat_mul_right_cancel_galPer {R : Type} [CommRing R] [IsDomain R] {n : Type} [Fintype n] [DecidableEq n]
     {A B P : Matrix n n R} (hP : P.det ≠ 0) (h : A * P = B * P) : A = B := by
   have h2 : (A - B) * P = 0 := by rw [Matrix.sub_mul, h, sub_self]
@@ -101,23 +87,7 @@ namespace BK
 
 variable (bk : BK K)
 
-theorem X_pow_mem_J_galPer : (X : bk.S) ^ bk.Ep.natDegree ∈ bk.J := by
-  have e1 : bk.Ep - Polynomial.X ^ bk.Ep.natDegree =
-      ∑ i ∈ Finset.range bk.Ep.natDegree, Polynomial.C (bk.Ep.coeff i) * Polynomial.X ^ i := by
-    rw [sub_eq_iff_eq_add']
-    exact bk.monic.as_sum
-  have h1 : (l : Polynomial (Wq l bk.a)) ∣ bk.Ep - Polynomial.X ^ bk.Ep.natDegree := by
-    rw [e1]
-    refine Finset.dvd_sum fun i hi => ?_
-    obtain ⟨c, hc⟩ := bk.dvd_coeff i (Finset.mem_range.1 hi)
-    exact ⟨Polynomial.C c * Polynomial.X ^ i, by rw [hc, map_mul, map_natCast]; ring⟩
-  have h2 : (l : bk.S) ∣ bk.E - X ^ bk.Ep.natDegree := by
-    have := map_dvd (Polynomial.coeToPowerSeries.ringHom (R := Wq l bk.a)) h1
-    simpa using this
-  have e2 : (X : bk.S) ^ bk.Ep.natDegree = bk.E - (bk.E - X ^ bk.Ep.natDegree) := by ring
-  rw [e2]
-  exact Submodule.sub_mem _ (Ideal.mem_sup_right (Ideal.mem_span_singleton_self _))
-    (Ideal.mem_sup_left (Ideal.mem_span_singleton.2 h2))
+alias X_pow_mem_J_galPer := _root_.GlobalTheory.BSP.BK.X_pow_natDegree_mem_J
 
 theorem ev_sep_galPer (b : Ainf l) (hb : ∀ n, bk.ev X ^ n ∣ b) : b = 0 := by
   obtain ⟨ι, ⟨tb⟩⟩ := GlobalTheory.T.ainf_adicTopologicalBasis_over_breuilKisin l K bk
@@ -133,7 +103,7 @@ theorem σA_ev_galPer {g : ↥(GK K)} (hg : bk.FixFlat g) (a : bk.S) : Per.σA (
   have hX : ((Per.σA (g : GQ l)).comp bk.ev) X = bk.ev X := by
     show Per.σA _ (bk.ev X) = bk.ev X
     rw [bk.ev_X, GlobalTheory.RingIface.sigA_teich, hg']
-  have h := ringHom_ext_of_sep_galPer (f := (Per.σA (g : GQ l)).comp bk.ev) (g := bk.ev)
+  have h := _root_.GlobalTheory.Fon.ps_hom_ext (f := (Per.σA (g : GQ l)).comp bk.ev) (g := bk.ev)
     (fun w => by
       show Per.σA _ (bk.ev (C w)) = bk.ev (C w)
       rw [bk.ev_C, bk.gal_w]) hX

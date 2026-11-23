@@ -65,7 +65,7 @@ theorem isIntB_lattice_principal_eventually : ∀ (L : Type) [Field L] [NumberFi
   intro L _ _ κ ℓ
   obtain ⟨S₁, hS₁⟩ := isIntB_mul_star_eventually L
     (RingHom.toOpposite (RingHom.id L) fun x y => mul_comm x y) κ ℓ
-  obtain ⟨S₂, hS₂⟩ := GlobalTheory.T.adicIntegralTensorBasis_iff_exists_integral_multiple L κ ℓ
+  obtain ⟨S₂, hS₂⟩ := _root_.GlobalTheory.AdicSpan.isIntB_one_tmul_iff_exists_isIntegral L κ ℓ
   refine ⟨S₁ ∪ S₂, fun v hv I h0 hadd hmul ⟨D, hD0, hDI, hIO⟩ => ?_⟩
   have hv₁ : v ∉ S₁ := fun h => hv (Finset.mem_union_left _ h)
   have hv₂ : v ∉ S₂ := fun h => hv (Finset.mem_union_right _ h)
@@ -96,7 +96,7 @@ theorem isIntB_lattice_principal_eventually : ∀ (L : Type) [Field L] [NumberFi
     apply (hloc a).1
     have := hIO _ ha
     rwa [hcast, htm, mul_div_cancel₀ _ hDL] at this
-  obtain ⟨g, hgK, hg⟩ := GlobalTheory.T.exists_generator_localized_integers_ideal_in_field L v K hK0 hKadd hKmul hKloc
+  obtain ⟨g, hgK, hg⟩ := _root_.GlobalTheory.LocIntPrincipal.exists_generator L v K hK0 hKadd hKmul hKloc
   have hDK : (D : L) * D ∈ K := by
     show _ ∈ I
     have h1 := hDI _ (hO _ (hloc1 1))
@@ -112,7 +112,7 @@ theorem isIntB_lattice_principal_eventually : ∀ (L : Type) [Field L] [NumberFi
       val_inv := by rw [htm, e1]; rfl
       inv_val := by rw [htm, e1']; rfl }
   refine ⟨m, fun x => ⟨fun hx => ?_, ?_⟩⟩
-  · obtain ⟨y, ρ₁, hρ₁, rfl⟩ := GlobalTheory.T.adicTensor_exists_rational_add_integral_mul L κ ℓ v x D hD0
+  · obtain ⟨y, ρ₁, hρ₁, rfl⟩ := _root_.GlobalTheory.AdicSpan.exists_tmul_add_mul_isIntB L κ ℓ v x D hD0
     have hy : (1 : v.adicCompletion ℚ) ⊗ₜ[ℚ] y ∈ I := by
       have h2 : (1 : v.adicCompletion ℚ) ⊗ₜ[ℚ] ((-1 : ℤ) : L) * ((D : v.adicCompletion ℚ ⊗[ℚ] L) * ρ₁) ∈ I :=
         hmul _ (hO _ (hloc1 _)) _ (hDI _ hρ₁)

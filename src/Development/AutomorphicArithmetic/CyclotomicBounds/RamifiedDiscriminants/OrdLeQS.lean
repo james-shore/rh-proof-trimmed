@@ -48,6 +48,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import Development.AutomorphicArithmetic.FrobeniusLocalisation.DiffDefs
+import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.InertiaGaloisSymmetry.CycGrp
 
 @[expose] public section
 
@@ -66,13 +67,6 @@ private theorem ordCompl_q' {φ : Frame} (H : HostRaw φ) : ordCompl[H.q] H.cond
   have h3 : ordCompl[H.q] H.q = 1 := by
     simpa using Nat.ordCompl_self_pow (k := 1) hq
   simp only [HostRaw.condN, Nat.ordCompl_mul, h3, ordCompl_eq_self_of_not_dvd h1, ordCompl_eq_self_of_not_dvd h2, mul_one]
-
-private theorem ordCompl_d' {φ : Frame} (H : HostRaw φ) : ordCompl[H.d] H.condN = H.QS * H.q := by
-  have hd := H.d_prime
-  have h3 : ordCompl[H.d] H.d = 1 := by
-    simpa using Nat.ordCompl_self_pow (k := 1) hd
-  simp only [HostRaw.condN]
-  rw [Nat.ordCompl_mul, h3, mul_one, ordCompl_eq_self_of_not_dvd H.d_not_dvd_QSq]
 
 private theorem crt_unit {φ : Frame} (H : HostRaw φ) {a b : ℕ} (hab : a.Coprime b) (hN : H.condN = a * b)
     (u : (ZMod H.condN)ˣ) : ∃ v : (ZMod H.condN)ˣ, (v : ZMod H.condN).val ≡ 1 [MOD a] ∧
@@ -132,7 +126,7 @@ private theorem img_sub {φ : Frame} (H : HostRaw φ) :
     exact hv1
   · rw [SetLike.mem_coe, HostRaw.mem_inertG]
     refine ⟨w, ?_, rfl⟩
-    rw [ordCompl_d' H]
+    rw [_root_.Formalism.HC.Der.ordCompl_d H]
     exact hw1
   · rw [← map_mul, hw, mul_inv_cancel_left]
 

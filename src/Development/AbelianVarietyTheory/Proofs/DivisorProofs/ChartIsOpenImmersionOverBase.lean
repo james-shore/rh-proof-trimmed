@@ -51,18 +51,11 @@ open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum
 
-theorem transl_toTerm_eq {S : Scheme.{0}} {X : Over S} (f g : X ⟶ Over.mk (𝟙 S)) : f = g := by
-  ext
-  have hf := Over.w f
-  have hg := Over.w g
-  simp only [Over.mk_hom] at hf hg
-  exact (Category.comp_id f.left).symm.trans (hf.trans (hg.symm.trans (Category.comp_id g.left)))
-
 theorem transl_comp {S : Scheme.{0}} {G : Over S} [GrpObj G] (y z : Over.mk (𝟙 S) ⟶ G) :
     transl y ≫ transl z = transl (y * z) := by
   unfold transl
   rw [comp_mul, Category.comp_id, ← Category.assoc,
-    transl_toTerm_eq (_ ≫ Over.homMk G.hom (by simp)) (Over.homMk G.hom (by simp)), _root_.mul_assoc, ← comp_mul]
+    _root_.GlobalTheory.ZM.FamilyScheme.to_base_ext (_ ≫ Over.homMk G.hom (by simp)) (Over.homMk G.hom (by simp)), _root_.mul_assoc, ← comp_mul]
 
 theorem transl_one {S : Scheme.{0}} {G : Over S} [GrpObj G] : transl (1 : Over.mk (𝟙 S) ⟶ G) = 𝟙 G := by
   unfold transl

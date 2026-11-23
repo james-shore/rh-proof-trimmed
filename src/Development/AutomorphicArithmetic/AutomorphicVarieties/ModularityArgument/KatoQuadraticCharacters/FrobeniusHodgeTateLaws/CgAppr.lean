@@ -204,7 +204,7 @@ theorem UpperTheory.V.Z.Kato.Joint.thOp :
     have h2 := cg_j hj (hrel.2.1 ((i : ℚ) / (1 : ℕ)))
     simp only [GlobalTheory.CyclotomicQExpansion.Api.coeff_uq (Fact.out : l.Prime).pos, Nat.cast_one, div_one, Rat.den_natCast,
       if_true] at h2
-    have h3 := cg_j hj (GlobalTheory.T.cgA_coeff_of_isThB_succ Ω ε X A N l hl2 hlN (by omega) hl n _ _ _ (hψ (n + 1)).1 (hψ n).1
+    have h3 := cg_j hj (_root_.GlobalTheory.ThBCompat.isThB_succ_coeff_cong Ω ε X A N l hl2 hlN (by omega) hl n _ _ _ (hψ (n + 1)).1 (hψ n).1
       ((l : ℚ) * i))
     simp only [Nat.cast_one, div_one, Nat.cast_mul]
     exact cg_trans h2 h3

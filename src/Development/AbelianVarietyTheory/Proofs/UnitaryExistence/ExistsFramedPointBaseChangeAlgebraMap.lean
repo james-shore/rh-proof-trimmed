@@ -59,45 +59,17 @@ namespace GlobalTheory.Frames.FramedBaseChange
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}
   {Xo : Moduli Dw l} {c : Coeff l}
 
-theorem spMap_comp_spMap {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (f : R' →+* R'')
-    (g : R →+* R') : spMap f ≫ spMap g = spMap (f.comp g) := by
-  unfold spMap
-  rw [← Spec.map_comp]
-  rfl
+alias spMap_comp_spMap := _root_.GlobalTheory.Frames.EigenBaseChange.spMap_spMap
 
-theorem dualMap_comp_alg {S T : Type} [CommRing S] [CommRing T] (ψ : S →+* T) :
-    (dualMap ψ).comp (algebraMap S (DualNumber S)) = (algebraMap T (DualNumber T)).comp ψ := by
-  ext s <;> simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl]
+alias dualMap_comp_alg := _root_.GlobalTheory.Frames.EigenBaseChange.dualMap_comp_alg
 
-theorem fst_comp_dualMap {S T : Type} [CommRing S] [CommRing T] (ψ : S →+* T) :
-    (TrivSqZeroExt.fstHom T T T).toRingHom.comp (dualMap ψ) = ψ.comp (TrivSqZeroExt.fstHom S S S).toRingHom := by
-  ext s <;> simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl]
+alias fst_comp_dualMap := _root_.GlobalTheory.Frames.EigenBaseChange.fst_comp_dualMap
 
-theorem dualMap_comp_epsMul {S T : Type} [CommRing S] [CommRing T] (ψ : S →+* T) (a : S) :
-    (dualMap ψ).comp (epsMul a) = (epsMul (ψ a)).comp (dualMap ψ) := by
-  ext s <;> simp [dualMap, epsMul, TrivSqZeroExt.algebraMap_eq_inl]
+alias dualMap_comp_epsMul := _root_.GlobalTheory.Frames.EigenBaseChange.dualMap_comp_epsMul
 
-theorem tan_bc {S T : Type} [CommRing S] [CommRing T] (ψ : S →+* T) {x : Sp S ⟶ Xo.X}
-    {v : Sp (DualNumber S) ⟶ Xo.univ.t.G.left} (hv : IsTanAt x v) :
-    IsTanAt (spMap ψ ≫ x) (spMap (dualMap ψ) ≫ v) := by
-  obtain ⟨h1, h2⟩ := hv
-  refine ⟨?_, ?_⟩
-  · rw [Category.assoc, h1, ← Category.assoc, spMap_comp_spMap, dualMap_comp_alg, ← spMap_comp_spMap,
-      Category.assoc]
-  · rw [← Category.assoc, spMap_comp_spMap, fst_comp_dualMap, ← spMap_comp_spMap, Category.assoc, h2]
-    have e : (Over.homMk (spMap ψ) rfl : Over.mk (spMap ψ ≫ x) ⟶ Over.mk x) ≫ (1 : Over.mk x ⟶ Xo.univ.t.G) = 1 := by
-      simp [Hom.one_def]
-    rw [← e, Over.comp_left]
-    rfl
+alias tan_bc := _root_.GlobalTheory.Frames.EigenBaseChange.isTanAt_baseChange
 
-theorem eig_bc {S T : Type} [CommRing S] [Algebra c.F S] [CommRing T] [Algebra c.F T] (ψ : S →ₐ[c.F] T)
-    (τ : E →+* ℂ) {v : Sp (DualNumber S) ⟶ Xo.univ.t.G.left} (hv : IsEigAt c τ v) :
-    IsEigAt c τ (spMap (dualMap ψ.toRingHom) ≫ v) := by
-  intro a
-  rw [Category.assoc, hv a, ← Category.assoc, spMap_comp_spMap, dualMap_comp_epsMul, ← spMap_comp_spMap,
-    Category.assoc]
-  congr 3
-  exact ψ.commutes _
+alias eig_bc := _root_.GlobalTheory.Frames.EigenBaseChange.isEigAt_baseChange
 
 theorem exists_frMap : Out.SecBaseChangeSt → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (S : Type) [CommRing S] [Algebra c.F S] (T : Type) [CommRing T] [Algebra c.F T] (φ : S →ₐ[c.F] T) (y : FrPt Xo c S), ∃ z : FrPt Xo c T, FrMap φ y z := by
   intro hB E _ _ _ H Dw l Xo c S _ _ T _ _ φ y

@@ -62,7 +62,7 @@ theorem rankOne_galois_closure_geometric_alt (hPr : _root_.GlobalTheory.NRows.Th
         (∀ τ, InducesW D.nd i τ w → D.naut.jumpsW i ρ τ = D.naut.jumpsInf i π τ) ∧
         D.naut.wdOf i ρ w = D.naut.lpTw (D.naut.locG π w) ((1 - ((1 : ℕ) : ℝ)) / 2)) := by
   have h0 : (1 - ((1 : ℕ) : ℝ)) / 2 = 0 := by norm_num
-  obtain ⟨ρ, hc, h1, h2⟩ := _root_.GlobalTheory.T.exists_galois_character_of_algebraic_alt hPr.fin hPr.art hPr.chA hPr.chP hL D P i π 0 (fun τ z hz => by
+  obtain ⟨ρ, hc, h1, h2⟩ := _root_.GlobalTheory.GalPin.heckeLAdicTwist_alt hPr.fin hPr.art hPr.chA hPr.chP hL D P i π 0 (fun τ z hz => by
     obtain ⟨n, hn⟩ := ((D.naut.ralg_def π).1 hr τ).2 z hz
     exact ⟨n, by rw [hn]; simp⟩)
   refine ⟨ρ, hc, isSSRep_rankOne ρ, fun w hw => ⟨by rw [h0]; exact h1 w hw, ?_⟩, fun w hw => ⟨(h2 w hw).1, fun τ hτ => ?_, by rw [h0]; exact (h2 w hw).2.1⟩⟩

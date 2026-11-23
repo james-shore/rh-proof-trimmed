@@ -158,9 +158,6 @@ theorem cPoint_sum (T : Over (Spec (CommRingCat.of R))) {κ : Type} (s : Finset 
 theorem comp_zpow {S : Scheme.{0}} {G : Over S} [GrpObj G] {T T' : Over S} (ρ : T' ⟶ T) (x : T ⟶ G) (n : ℤ) :
     ρ ≫ x ^ n = (ρ ≫ x) ^ n := map_zpow (preHom ρ) x n
 
-theorem comp_prod {S : Scheme.{0}} {G : Over S} [GrpObj G] [IsCommMonObj G] {T T' : Over S} (ρ : T' ⟶ T) {κ : Type}
-    (s : Finset κ) (x : κ → (T ⟶ G)) : ρ ≫ ∏ k ∈ s, x k = ∏ k ∈ s, ρ ≫ x k := map_prod (preHom ρ) x s
-
 theorem exists_powZ (hB : D.TauBimult) {T : Over (Spec (CommRingCat.of R))} (x u : T ⟶ D.P.A) (m : ℤ) :
     ∃ t : LB.Gen (LB.LinComb D.P.L (Sum.elim (GlobalTheory.PolDeg.lamPts (x ^ m) u) (GlobalTheory.PolDeg.lamPts x u))
       (Sum.elim Oε (fun i => -(m * Oε i)))), t.IsGen ∧
@@ -197,7 +194,7 @@ theorem exists_powZ (hB : D.TauBimult) {T : Over (Spec (CommRingCat.of R))} (x u
 theorem comp_combo {T T' : Over (Spec (CommRingCat.of R))} (ρ : T' ⟶ T) {r : ℕ} (p : Fin r → (T ⟶ D.P.A))
     (m : Fin r → ℤ) (y : Fin r → D.X) (hp : ∀ k, ρ ≫ p k = DVR.cP D T' (y k)) :
     ρ ≫ ∏ k, p k ^ m k = DVR.cP D T' (∑ k, m k • y k) := by
-  rw [comp_prod, cPoint_sum]
+  rw [_root_.GlobalTheory.MatrixAction.comp_finsetProd, cPoint_sum]
   exact Finset.prod_congr rfl fun k _ => by rw [comp_zpow, hp, cPoint_zsmul]
 
 theorem exists_generator_lambda_linear_first_position (hB : D.TauBimult) {T : Over (Spec (CommRingCat.of R))} : ∀ {r : ℕ} (p : Fin r → (T ⟶ D.P.A))

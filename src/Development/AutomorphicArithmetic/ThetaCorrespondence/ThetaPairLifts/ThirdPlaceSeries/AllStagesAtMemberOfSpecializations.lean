@@ -68,15 +68,15 @@ theorem all_stages_of_specializations_alt : GlobalTheory.Published.CasselmanWall
     _root_.GlobalTheory.HeightCounting.Up.SameGaloisLevelExists hL ∧ SMt ∧ _root_.GlobalTheory.HeightCounting.Up.RationalityStatementThirdPlaceSeries hL ∧ _root_.GlobalTheory.HeightCounting.Up.CuspStatement' hL ∧ _root_.GlobalTheory.HeightCounting.Up.FirstIntermediateLevelExists hL ∧ _root_.GlobalTheory.HeightCounting.Up.SecondIntermediateLevelExists hL ∧ _root_.GlobalTheory.HeightCounting.Up.ThirdIntermediateLevelExists hL ∧ _root_.GlobalTheory.HeightCounting.Up.StrictHenselianAcyclicLevelNonempty hL ∧ _root_.GlobalTheory.HeightCounting.Up.FinitenessStatement hL ∧
       ∀ cDep : ℝ, _root_.GlobalTheory.HeightCounting.Up.SettingsFormsExistList' hL cDep ∧ _root_.GlobalTheory.HeightCounting.Up.SeriesExistList' hL cDep ∧ _root_.GlobalTheory.HeightCounting.Up.ModuliPointsExistList' hL cDep ∧ _root_.GlobalTheory.HeightCounting.Up.FinitenessListStatement hL cDep := by
   intro hCW hHM hW hD hU hH hP hS hL hA hPt
-  have hMt : SMt := _root_.GlobalTheory.T.sMt_of_published_inputs' hP
+  have hMt : SMt := _root_.GlobalTheory.MtInMain.prN_sMt_alt_alt hP
   have hRat : _root_.GlobalTheory.HeightCounting.Up.RationalityStatementThirdPlaceSeries hL := _root_.GlobalTheory.HeightCounting.RatSide.sRat_of_isotInternal_inputs hU hP hS (_root_.GlobalTheory.HeightCounting.Up.IsotAtStates.isotInternal_at_states hW hD hH hP) hL
-  have hPar : _root_.GlobalTheory.HeightCounting.Up.ParameterStatement hL := _root_.GlobalTheory.T.parSt_of_third_layer_sMt hP hMt hL
+  have hPar : _root_.GlobalTheory.HeightCounting.Up.ParameterStatement hL := _root_.GlobalTheory.HeightCounting.Up.conjDualParam_stable_of_prime_not_dividing_level_alt hP hMt hL
   have hEta : _root_.GlobalTheory.HeightCounting.Up.EtaStatement' hL := _root_.GlobalTheory.StEta.sEta_alt_alt_alt hP hL hPt
-  have hFin := _root_.GlobalTheory.T.sFin_and_sFinl_of_archCmp_sEta_thetaData hW hD hP hL hA hEta (_root_.GlobalTheory.HeightCounting.Up.sXd_all_alt hL)
+  have hFin := _root_.GlobalTheory.HeightCounting.Fin3.sFin_and_sFinl_of_theta_data_exists hW hD hP hL hA hEta (_root_.GlobalTheory.HeightCounting.Up.sXd_all_alt hL)
   have hG := _root_.GlobalTheory.HeightCounting.UpPin.steps_pin_alt hL 0
-  refine ⟨_root_.GlobalTheory.T.stageASameGalois_of_inputs_phtCmp hP hA.pht hL, hMt, hRat, _root_.GlobalTheory.SCuspRows.sCusp_of_parSt_alt_alt hP hL hPar hRat, hG.1 (_root_.GlobalTheory.T.settingsFormsExistList_of_inputs_serN hP hS hL 0),
-    hG.2.1 (_root_.GlobalTheory.T.seriesExistList_of_inputs_serN hP hS hL 0), hG.2.2.1 (_root_.GlobalTheory.T.moduliPointsExistList_of_inputs_serN hP hS hL 0), _root_.GlobalTheory.T.stage_c_nonempty_of_prints_third_layer hH.cover hCW hHM hP hS hL, hFin.1, fun c => ?_⟩
-  exact ⟨_root_.GlobalTheory.T.settingsFormsExistList_of_inputs_serN hP hS hL c, _root_.GlobalTheory.T.seriesExistList_of_inputs_serN hP hS hL c, _root_.GlobalTheory.T.moduliPointsExistList_of_inputs_serN hP hS hL c, hFin.2 c⟩
+  refine ⟨_root_.GlobalTheory.HeightCounting.Up.sa_of_prN_alt_alt hP hA.pht hL, hMt, hRat, _root_.GlobalTheory.SCuspRows.sCusp_of_parSt_alt_alt hP hL hPar hRat, hG.1 (_root_.GlobalTheory.HeightCounting.Up.PointwiseSettings.settings_forms_exist_list_of_published_inputs hP hS hL 0),
+    hG.2.1 (_root_.GlobalTheory.HeightCounting.Up.SeriesStep.sb1l_alt_alt hP hS hL 0), hG.2.2.1 (_root_.GlobalTheory.HeightCounting.Up.points_step_alt_alt hP hS hL 0), _root_.GlobalTheory.HeightCounting.Up.ChoiceEx.stage_c_nonempty_of_published_inputs hH.cover hCW hHM hP hS hL, hFin.1, fun c => ?_⟩
+  exact ⟨_root_.GlobalTheory.HeightCounting.Up.PointwiseSettings.settings_forms_exist_list_of_published_inputs hP hS hL c, _root_.GlobalTheory.HeightCounting.Up.SeriesStep.sb1l_alt_alt hP hS hL c, _root_.GlobalTheory.HeightCounting.Up.points_step_alt_alt hP hS hL c, hFin.2 c⟩
 end GlobalTheory.HeightCounting.Up
 end
 

@@ -57,16 +57,6 @@ open scoped TensorProduct
 
 namespace GlobalTheory.HInvAic
 
-theorem spMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  simp only [spMap]
-  rw [← Functor.map_comp, ← Spec.map_comp]
-  rfl
-
-theorem spMap_id (A : Type) [CommRing A] : spMap (RingHom.id A) = 𝟙 _ := by
-  simp only [spMap]
-  rw [show CommRingCat.ofHom (RingHom.id A) = 𝟙 (CommRingCat.of A) from rfl, Spec.map_id, CategoryTheory.Functor.map_id]
-
 theorem eqv_comp {R : Type} [CommRing R] {E E' E'' : Spc} (f : E ⟶ E') (g : E' ⟶ E'') (F : Shv R)
     (hf : Eqv R f F) (hg : Eqv R g F) : Eqv R (f ≫ g) F := by
   intro n
@@ -78,9 +68,9 @@ theorem eqv_spMap_equiv {R : Type} [CommRing R] {A B : Type} [CommRing A] [CommR
     Eqv R (spMap (e : A →+* B)) F := by
   intro n
   have h1 : spMap (e : A →+* B) ≫ spMap (e.symm : B →+* A) = 𝟙 _ := by
-    rw [← spMap_comp]; convert spMap_id B; ext x; simp
+    rw [← _root_.GlobalTheory.EtC.ProdStep.spMap_comp]; convert _root_.GlobalTheory.EtAlgCD.spMap_id B; ext x; simp
   have h2 : spMap (e.symm : B →+* A) ≫ spMap (e : A →+* B) = 𝟙 _ := by
-    rw [← spMap_comp]; convert spMap_id A; ext x; simp
+    rw [← _root_.GlobalTheory.EtC.ProdStep.spMap_comp]; convert _root_.GlobalTheory.EtAlgCD.spMap_id A; ext x; simp
   refine Function.bijective_iff_has_inverse.mpr ⟨pull R (spMap (e.symm : B →+* A)) F n, fun x => ?_, fun x => ?_⟩
   · rw [← pull_comp, h2, pull_id]
   · rw [← pull_comp, h1, pull_id]
@@ -93,12 +83,12 @@ theorem alg (T O : Type) [CommRing T] [IsDomain T] [CommRing O] [Algebra T O] :
     AIC T → SH O → IndEt T O → IsDomain O ∧ AIC O := by
   intro hT hSH hInd
   obtain ⟨hH, -⟩ := hSH
-  obtain ⟨-, hac⟩ := (GlobalTheory.T.monicPolynomialsHaveRoots_iff_integrallyClosed_algClosed T).1 hT
-  haveI : IsIntegrallyClosed T := ((GlobalTheory.T.monicPolynomialsHaveRoots_iff_integrallyClosed_algClosed T).1 hT).1
-  refine GlobalTheory.T.isDomain_monicRoots_of_isIndEtale_local T O hInd ?_
+  obtain ⟨-, hac⟩ := (_root_.GlobalTheory.AICIff.aic_iff T).1 hT
+  haveI : IsIntegrallyClosed T := ((_root_.GlobalTheory.AICIff.aic_iff T).1 hT).1
+  refine _root_.GlobalTheory.LocalIndEtAIC.isDomain_aic_of_indEt T O hInd ?_
   intro E _ _ _ P _
   obtain ⟨hd, hc⟩ := GlobalTheory.isDomain_and_isIntegrallyClosed_atPrime_of_etale T P (Localization.AtPrime P)
-  exact ⟨hd, (GlobalTheory.T.monicPolynomialsHaveRoots_iff_integrallyClosed_algClosed _).2 ⟨hc, GlobalTheory.T.isAlgClosed_fractionRing_atPrime_of_etale' T E P hac⟩⟩
+  exact ⟨hd, (_root_.GlobalTheory.AICIff.aic_iff _).2 ⟨hc, _root_.GlobalTheory.isAlgClosed_fractionRing_atPrime_of_etale T E P hac⟩⟩
 end GlobalTheory.HInvAic
 
 namespace GlobalTheory.HInvAic
@@ -123,14 +113,14 @@ theorem main : ∀ (q : ℕ) [NeZero q] (T : Type) [CommRing T] [IsDomain T], AI
   have hφ : ((Algebra.ofId T (Polynomial T)).toRingHom : T →+* Polynomial T) = Polynomial.C := by
     ext x <;> simp [Algebra.ofId_apply]
   rw [← hφ]
-  apply GlobalTheory.T.etaleCohomology_local_to_global_ringMap_indEtale (ZMod q) (tw q i) (GlobalTheory.T.tateTwist_finitary q i) T T (Polynomial T) (Algebra.ofId T (Polynomial T))
+  apply _root_.GlobalTheory.LocGlobRing.main (ZMod q) (tw q i) (_root_.GlobalTheory.EtC.tw_finitary q i) T T (Polynomial T) (Algebra.ofId T (Polynomial T))
 
   intro O _ _ hSH hInd
   obtain ⟨hdom, haic⟩ := alg T O hT hSH hInd
   obtain ⟨hH, -⟩ := hSH
   have hqO : IsUnit (q : O) := by simpa using hq.map (algebraMap T O)
-  have hC := GlobalTheory.T.etaleHomotopyInvariance_absIntClosedLocalDomain q O haic hqO i
-  rw [tensor_map_eq, spMap_comp, spMap_comp]
+  have hC := _root_.GlobalTheory.EtC.HtpyLine.htpy_AIC q O haic hqO i
+  rw [tensor_map_eq, _root_.GlobalTheory.EtC.ProdStep.spMap_comp, _root_.GlobalTheory.EtC.ProdStep.spMap_comp]
   exact eqv_comp _ _ _ (eqv_comp _ _ _ (eqv_spMap_equiv _ _) hC) (eqv_spMap_equiv _ _)
 
 end GlobalTheory.HInvAic

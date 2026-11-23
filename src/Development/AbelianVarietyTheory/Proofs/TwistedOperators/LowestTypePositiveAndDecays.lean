@@ -133,18 +133,11 @@ theorem funSchmid_ps (hl : IsHCParam lam) (hτ : IsTau ε (lowK ε lam) τ w) (h
   rw [← this]
   exact Finset.sum_congr rfl fun p _ => by ring
 
-theorem apply_eq_zero_of_mem_noncompactPart {X : Matrix (Fin n) (Fin n) ℂ} (hX : inP ε X) {a b : Fin n} (h : ε a = ε b) : X a b = 0 := by
-  have := congrFun (congrFun hX.2 a) b
-  simp only [Formalism.REAL.Jm, Matrix.mul_diagonal, Matrix.diagonal_mul, Matrix.neg_apply, h] at this
-  split_ifs at this
-  · linear_combination (1 / 2 : ℂ) * this
-  · linear_combination (-1 / 2 : ℂ) * this
-
 theorem thM_eq {X : Matrix (Fin n) (Fin n) ℂ} (hX : inP ε X) : thM ε X = Xᵀ := by
   ext i i'
   rw [thM, Matrix.sum_apply, Finset.sum_eq_single (i', i)]
   · by_cases h : ε i' = ε i
-    · simp [apply_eq_zero_of_mem_noncompactPart hX h]
+    · simp [_root_.GlobalTheory.GapSum.inP_apply_eq_zero hX h]
     · simp [thE, sgn, h]
   · intro p _ hp
     have : Matrix.single p.2 p.1 (1 : ℂ) i i' = 0 :=

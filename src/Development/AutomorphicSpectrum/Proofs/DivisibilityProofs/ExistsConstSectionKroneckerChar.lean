@@ -62,10 +62,6 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Br.CovEx
 
-theorem exists_padic_emb (K : Type) [Field K] [NumberField K] (p : Nat.Primes) : Nonempty (K →+* ℂ_[p]) := by
-  haveI : Fact (p : ℕ).Prime := ⟨p.2⟩
-  exact ⟨(IsAlgClosed.lift (R := ℚ) (S := K) (M := ℂ_[p]) : K →ₐ[ℚ] ℂ_[p]).toRingHom⟩
-
 theorem goodOf_or {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {l : Level H} (c : Coeff l)
     (σ : c.F →+* ℂ) : Formalism.L2.Pj.goodOf c σ = σ ∨ (starRingEnd ℂ).comp (Formalism.L2.Pj.goodOf c σ) = σ := by
   unfold Formalism.L2.Pj.goodOf
@@ -81,7 +77,7 @@ theorem exists_constSec : Geo.ResK.ResKStatement → GagaSections → ∀ (E : T
       s.deg = ((D.p : ℝ) - D.q) / 2 * (GlobalTheory.CM.logOm E χ).re := by
   intro hR hG E _ _ _ H D l Xo c r U x hL _ χ hχ Z τ
   have hpos := hL.pos
-  obtain ⟨κ⟩ := exists_padic_emb c.F (⟨2, Nat.prime_two⟩ : Nat.Primes)
+  obtain ⟨κ⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Fl.DSplit.exists_emb c.F (⟨2, Nat.prime_two⟩ : Nat.Primes)
   obtain ⟨O, _, _, _, β, Y, hβ, -, -, -⟩ :=
     GlobalTheory.T.good_reduction_dvr_model_exists E H D l Xo c ⟨2, Nat.prime_two⟩ κ hpos (hL.good 2 Nat.prime_two)
   obtain ⟨hclopen, hcpt, -⟩ := GlobalTheory.T.irreducible_component_clopen E H D l Xo c (Z : Set (Xo.XF c)) Z.2

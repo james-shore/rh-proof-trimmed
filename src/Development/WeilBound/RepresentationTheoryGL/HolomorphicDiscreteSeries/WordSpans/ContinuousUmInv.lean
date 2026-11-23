@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactExponentialSurjective
 
 @[expose] public section
 
@@ -65,9 +66,6 @@ theorem norm_entry_le {m : ℕ} (M : Matrix (Fin m) (Fin m) ℂ) (i j : Fin m) :
   exact (Finset.single_le_sum (f := fun j => ‖M i j‖ ^ 2) (fun _ _ => by positivity) (Finset.mem_univ j)).trans
     (Finset.single_le_sum (f := fun i => ∑ j, ‖M i j‖ ^ 2) (fun _ _ => Finset.sum_nonneg fun _ _ => by positivity)
       (Finset.mem_univ i))
-
-theorem hs_nonneg' {m : ℕ} (M : Matrix (Fin m) (Fin m) ℂ) : 0 ≤ hs M :=
-  Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => by positivity
 
 theorem um_inv_eq {m : ℕ} {ε : Fin m → Bool} (g : UJ ε) : um g⁻¹ = Jm ε * (um g)ᴴ * Jm ε := by
   have hg : (um g)ᴴ * Jm ε * um g = Jm ε := g.2
@@ -176,7 +174,7 @@ theorem word_growth (hS : IsSmMod ε σ S E) (hU : IsURepOn (UJset ε) σ) (w : 
       refine Continuous.smul ?_ (hc c d)
       exact ((continuous_um_inv.matrix_elem c p.1).mul (continuous_um.matrix_elem p.2 d))
     · rw [e1]
-      have hg1 : 0 ≤ hs (um g) := hs_nonneg' _
+      have hg1 : 0 ≤ hs (um g) := _root_.Formalism.REAL.frobenius_nonneg_matrix _
       have hco : ∀ c d, ‖um g⁻¹ c p.1 * um g p.2 d‖ ≤ hs (um g) := fun c d => by
         rw [norm_mul]
         have h1 := norm_entry_le (um g⁻¹) c p.1
@@ -316,7 +314,7 @@ theorem zero_proof : Zero := by
   set a : ℝ := (n : ℝ) ^ 2 + 1 with ha
   set C' : ℝ := max C 0 with hC'
   have hcb' : ∀ h, ‖c h‖ ≤ C' * hs (um h) ^ (-(a + L)) := fun h =>
-    (hcb h).trans (mul_le_mul_of_nonneg_right (le_max_left _ _) (Real.rpow_nonneg (hs_nonneg' _) _))
+    (hcb h).trans (mul_le_mul_of_nonneg_right (le_max_left _ _) (Real.rpow_nonneg (_root_.Formalism.REAL.frobenius_nonneg_matrix _) _))
   set K₀ : ℝ := C' * CT * 2 ^ L with hK₀
   have hC'0 : 0 ≤ C' := le_max_right _ _
   have hK₀0 : 0 ≤ K₀ := mul_nonneg (mul_nonneg hC'0 hCT0) (by positivity)
@@ -341,7 +339,7 @@ theorem zero_proof : Zero := by
     rw [norm_mul]
     calc _ ≤ (C' * hs (um h) ^ (-(a + L))) * (‖b‖ * (CT * 2 ^ L * hs (um h) ^ L)) :=
           mul_le_mul (hcb' h) ((norm_inner_le_norm _ _).trans (mul_le_mul_of_nonneg_left (hX h) (norm_nonneg _)))
-            (norm_nonneg _) (mul_nonneg hC'0 (Real.rpow_nonneg (hs_nonneg' _) _))
+            (norm_nonneg _) (mul_nonneg hC'0 (Real.rpow_nonneg (_root_.Formalism.REAL.frobenius_nonneg_matrix _) _))
       _ = K₀ * ‖b‖ * (hs (um h) ^ (-(a + L)) * hs (um h) ^ L) := by rw [hK₀]; ring
       _ = _ := by rw [hrp]
   have integ : ∀ b : H, Integrable (fun h : UJ ε' => c h * ⟪b, ap T (π (emb e (um h)) η)⟫_ℂ) ν := fun b =>
@@ -352,7 +350,7 @@ theorem zero_proof : Zero := by
       Complex.continuous_ofReal.comp (continuous_hs_um.rpow_const fun h =>
         Or.inl (lt_of_lt_of_le one_pos (one_le_hs' hn h)).ne')
     have := (hIntR n ε' ν hν hn _ 1 a hcw le_rfl fun h => by
-      rw [Complex.norm_real, Real.norm_of_nonneg (Real.rpow_nonneg (hs_nonneg' _) _), one_mul]).1
+      rw [Complex.norm_real, Real.norm_of_nonneg (Real.rpow_nonneg (_root_.Formalism.REAL.frobenius_nonneg_matrix _) _), one_mul]).1
     simpa using this.re
   refine ⟨integ b, ?_⟩
 
@@ -382,7 +380,7 @@ theorem zero_proof : Zero := by
     refine LipschitzWith.continuous (K := Real.toNNReal (K₀ * ∫ h, hs (um h) ^ (-a) ∂ν))
       (LipschitzWith.of_dist_le_mul fun b b' => ?_)
     rw [dist_eq_norm, dist_eq_norm, Real.coe_toNNReal _ (mul_nonneg hK₀0 (integral_nonneg fun h =>
-      Real.rpow_nonneg (hs_nonneg' _) _))]
+      Real.rpow_nonneg (_root_.Formalism.REAL.frobenius_nonneg_matrix _) _))]
     exact hlip b b'
   have hcl : IsClosed {b : H | Λ b = 0} := isClosed_eq hcont continuous_const
   have hall : closure (S : Set H) ⊆ {b : H | Λ b = 0} := closure_minimal (fun b hb => hS0 b hb) hcl

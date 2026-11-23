@@ -156,7 +156,7 @@ theorem exists_charts (hR : Geo.ResK.ResKStatement) [CharZero Ω] (y : (Σ k, J 
       cases k with
       | inl k => exact ⟨c k, hc k⟩
       | inr k => exact hy'
-    refine GlobalTheory.T.isArithVar_of_block_algebraic _ _ _ _ Sum.inl (joinInl J fun _ : Unit => Fin M) Ω (joinVec y y') _ hblock hnz
+    refine _root_.GlobalTheory.CompanionTheory.Ar.Cmp.isArithVar_of_isAlgebraic_image _ _ _ _ Sum.inl (joinInl J fun _ : Unit => Fin M) Ω (joinVec y y') _ hblock hnz
       (by rw [eL]; exact he) fun t ht => ?_
     rw [eL]
     exact isAlgebraic_algebraMap (⟨t, hfn ▸ ht⟩ : ReciprocityTheory.ChartRestriction.G.AI.I4.blockFnField y)

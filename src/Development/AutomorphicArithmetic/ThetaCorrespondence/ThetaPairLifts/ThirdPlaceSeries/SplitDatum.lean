@@ -65,7 +65,7 @@ theorem split_datum_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi 
     (GlobalTheory.SDFrameLattice.isSelfDualC_of_isSDFrame D _ _ _ _)
   have frV : Formalism.L2.DIV.IsFrame β Λ := hSD.elim (fun h => h.elim fun _ h => h.1) (fun h => h.elim fun _ h => h.1)
   have hex := GlobalTheory.PlaceDatum.stepVecExists D
-  obtain ⟨⟨eG, heG⟩, hQt⟩ := _root_.GlobalTheory.T.level_places_disjoint_idempotents_alt W hW
+  obtain ⟨⟨eG, heG⟩, hQt⟩ := _root_.GlobalTheory.PkPlaces.pk_places_alt W hW
   obtain ⟨fG, hfG⟩ := hex (_root_.GlobalTheory.Fam.pk_z W).ψ (_root_.GlobalTheory.Fam.pk_z W).θ (Yc D j) V (cart ((_root_.GlobalTheory.Fam.pk_z W).MY j)) (cart M) ((_root_.GlobalTheory.Fam.pk_z W).ΛY j) Λ ((_root_.GlobalTheory.Fam.pk_z W).βY j) β
     (datY _ D.R.r D.R.t j (r_le_Y j) (_root_.GlobalTheory.Fam.pk_z W).Pg ∅ (_root_.GlobalTheory.Fam.complexLevelStructure W) (_root_.GlobalTheory.Fam.pk_z W).chi (fun _ => 1) Frm.B) ((_root_.GlobalTheory.Fam.pk_z W).chi (j + 1)) ∅
     (fun _ => 1) sdY sdV frY frV (Finset.disjoint_empty_right _) ⟨eG, heG⟩ vac hvac

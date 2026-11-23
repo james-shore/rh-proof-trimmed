@@ -161,7 +161,7 @@ theorem locChart (hLP : LocPer) (hT : Transport) (hFV : FrameVals) (hPM : PerMat
   set ch := An.Sys.A.chart k with hch
   let t₀ := ch x₀
   have hs₀ : ch.symm t₀ = x₀ := ch.left_inv hk
-  have hop : IsOpen An.Sys.open' := (GlobalTheory.T.section_boundary_closed_and_codense _ _ An.Sys.A An.Sys.L An.Sys.s _ An.Sys.m An.Sys.W An.Sys.sec An.Sys.snc).1.isOpen_compl
+  have hop : IsOpen An.Sys.open' := (_root_.GlobalTheory.CompanionTheory.Ar.Bdry.bdry_isClosed_dense_compl _ _ An.Sys.A An.Sys.L An.Sys.s _ An.Sys.m An.Sys.W An.Sys.sec An.Sys.snc).1.isOpen_compl
   let V₁ := ch.target ∩ ch.symm ⁻¹' An.Sys.open'
   have hV₁ : IsOpen V₁ := ch.isOpen_inter_preimage_symm hop
   have ht₁ : t₀ ∈ V₁ := ⟨ch.map_source hk, by show ch.symm t₀ ∈ An.Sys.open'; rwa [hs₀]⟩

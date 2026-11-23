@@ -54,13 +54,6 @@ theorem not_both_mem {R : Type*} [CommRing R] {I : Ideal R} (hI : I ≠ ⊤) {a 
   obtain ⟨s, r, hsr⟩ := h.cast (R := R)
   exact hI ((Ideal.eq_top_iff_one _).2 (hsr ▸ I.add_mem (I.mul_mem_left _ ha) (I.mul_mem_left _ hb)))
 
-theorem mem_of_mem_divs {A : Type} [CommRing A] [IsDedekindDomain A] {a : A} {P : HeightOneSpectrum A}
-    (h : P ∈ Formalism.L2.Col.divs a) : a ∈ P.asIdeal := by
-  unfold Formalism.L2.Col.divs at h
-  split_ifs at h with hf
-  · simpa using h
-  · simp at h
-
 theorem coprime_absNorm_of_notMem {E : Type} [Field E] [NumberField E] (p : ℕ) [Fact p.Prime]
     (P : HeightOneSpectrum (𝓞 E)) (h : ((p : ℕ) : 𝓞 E) ∉ P.asIdeal) : Nat.Coprime (Ideal.absNorm P.asIdeal) p := by
   refine GlobalTheory.NormUnitInert.Arith.coprime_absNorm p P.ne_bot ?_
@@ -78,14 +71,14 @@ theorem notMem_Sall (t : KerEntTied ex) (u : D.what₂.Word) (μ : D.what₂.Tup
   intro hpP
   simp only [Formalism.L2.Col.Sall, Formalism.L2.Col.rowSG, Formalism.L2.Col.uSG, Formalism.L2.Col.Primes.vGs, Finset.mem_union] at hP
   have hG : ∀ i, P ∈ t.Pr.vG i → False := fun i hPi => by
-    have hc := mem_of_mem_divs hPi
+    have hc := _root_.Formalism.L2.Col.decoFin_mem_of_mem_divs hPi
     have hgm : ((D.host.g i : ℕ) : 𝓞 t.X.E) ∈ P.asIdeal := by
       rw [← t.g_rec i, ← t.pr_ok.piG_norm]
       exact Ideal.mul_mem_left _ _ hc
     have hgi : (D.host.g i).Prime := t.g_rec i ▸ t.pr_ok.g_prime i
     exact not_both_mem P.isPrime.ne_top ((Nat.coprime_primes hgi hp).2 (hgp i).symm) hgm hpP
   rcases hP with hP | (hP | hP) | hP
-  · have hpi := mem_of_mem_divs hP
+  · have hpi := _root_.Formalism.L2.Col.decoFin_mem_of_mem_divs hP
     have hTm : (((D.mem u).A.T : ℕ) : 𝓞 t.X.E) ∈ P.asIdeal := by
       rw [← t.T_rec u, ← t.pr_ok.piT_norm]
       exact Ideal.mul_mem_right _ _ hpi

@@ -78,7 +78,7 @@ theorem GlobalTheory.WeilContF.slice_bounds_k : ∀ (F E : Type) [Field F] [Numb
   haveI : MeasurableAdd (mixedEmbedding.mixedSpace F) := ContinuousAdd.measurableAdd
   haveI : (MeasureTheory.volume : MeasureTheory.Measure (κ → mixedEmbedding.mixedSpace F)).IsAddHaarMeasure :=
     MeasureTheory.Measure.pi.isAddHaarMeasure _
-  have hI := _root_.GlobalTheory.T.weil_representation_pair_continuous F E σ B hB nS nT JS JT hS hT ξ₀ hξ hσ χS χT cS cT rS rT ω hω JA JB ξ hJA hJB κ co hco om htr
+  have hI := _root_.GlobalTheory.TransportHeisF.pres_impl_k F E σ B hB nS nT JS JT hS hT ξ₀ hξ hσ χS χT cS cT rS rT ω hω JA JB ξ hJA hJB κ co hco om htr
   have hU := _root_.GlobalTheory.T.weil_representation_pair_unitary F E σ B hB nS nT JS JT hS hT ξ₀ hξ hσ χS χT cS cT rS rT ω hω JA JB ξ hJA hJB κ co hco om htr
   obtain ⟨M, himpl, hM⟩ := GlobalTheory.T.weil_representation_darboux_coordinates F E σ B.ψ nT nS JA JB ξ κ co om hI.2
   obtain ⟨μ, hμ, hiso⟩ := GlobalTheory.T.weil_representation_l2_isometry F κ om hI.1 hU

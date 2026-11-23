@@ -46,6 +46,8 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaUniqueness.FlagVectorMemLocalization
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IdentityCellTrace.AlgIdentity
 
 @[expose] public section
 
@@ -256,19 +258,10 @@ theorem hT_iota (u : Fin e → S.V) (v : S.V) (c : Fin e → E) :
 
   simp [j_iota, Fintype.linearCombination_apply, map_sum, map_smul]
 
-theorem hT_smul_left (x : E) (v w : S.V) : S.hT (x • v) w = star x * S.hT v w := by
-  simp [LinearMap.map_smulₛₗ₂]
-  left
-  rfl
-
 theorem hT_iota_gram (u : Fin e → S.V) (c : Fin e → E) (i : Fin e) :
     S.hT (u i) (j_iota u c) = (gramU u).mulVec c i := by
   rw [hT_iota]
   simp [gramU, Matrix.mulVec, dotProduct, mul_comm]
-
-theorem one_mul_mem {a b : E} (ha : a ∈ (1 : Submodule (𝓞 E) E)) (hb : b ∈ (1 : Submodule (𝓞 E) E)) :
-    a * b ∈ (1 : Submodule (𝓞 E) E) := by
-  simpa using Submodule.mul_mem_mul ha hb
 
 theorem mem_one_frac {a : E} : a ∈ (1 : FractionalIdeal (𝓞 E)⁰ E) ↔ a ∈ (1 : Submodule (𝓞 E) E) := by
   rw [FractionalIdeal.mem_one_iff, Submodule.mem_one]
@@ -282,14 +275,14 @@ theorem mem_dual_psL (u : Fin e → S.V) {I : Fin e → FractionalIdeal (𝓞 E)
     rw [FractionalIdeal.mem_inv_iff (hI i)]
     intro y hy
     have h1 := h (star y • u i) (Submodule.subset_span ⟨i, star y, hs i y hy, rfl⟩)
-    rw [hT_smul_left, star_star, hT_iota_gram] at h1
+    rw [_root_.PI.UnitaryGroupMassFormula.BetaLUniq.EigB.hT_smul_left, star_star, hT_iota_gram] at h1
     rw [mem_one_frac, mul_comm]
     exact h1
   · intro h y hy
     induction hy using Submodule.span_induction with
     | mem y hy =>
       obtain ⟨j, x, hx, rfl⟩ := hy
-      rw [hT_smul_left, hT_iota_gram, mul_comm]
+      rw [_root_.PI.UnitaryGroupMassFormula.BetaLUniq.EigB.hT_smul_left, hT_iota_gram, mul_comm]
       have := (FractionalIdeal.mem_inv_iff (hI j)).1 (h j) (star x) (hs j x hx)
       exact mem_one_frac.1 this
     | zero => simp
@@ -297,9 +290,9 @@ theorem mem_dual_psL (u : Fin e → S.V) {I : Fin e → FractionalIdeal (𝓞 E)
       rw [map_add (f := _), LinearMap.add_apply]
       exact Submodule.add_mem _ hy hz
     | smul o y _ hy =>
-      rw [← IsScalarTower.algebraMap_smul E o y, hT_smul_left]
+      rw [← IsScalarTower.algebraMap_smul E o y, _root_.PI.UnitaryGroupMassFormula.BetaLUniq.EigB.hT_smul_left]
       obtain ⟨o', ho'⟩ := i_star_int o
-      refine one_mul_mem ?_ hy
+      refine _root_.PI.UnitaryGroupMassFormula.IdCellInSW.one_mul_mem ?_ hy
       rw [← ho']
       exact Submodule.mem_one.2 ⟨o', rfl⟩
 

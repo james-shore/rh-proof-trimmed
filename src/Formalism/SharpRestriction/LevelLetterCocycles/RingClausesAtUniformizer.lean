@@ -302,12 +302,12 @@ theorem frame_of_isBas (hR : Formalism.MainNotions.RamifiedCoefficientChains.Sh.
   obtain ⟨⟨hxN, hxΔ⟩, hxl⟩ := hx
   have hxl' : (letE c : LetA O n) • x = x := by
     obtain ⟨y, -, rfl⟩ := hxl
-    rw [LinearMap.smul_apply, LinearMap.id_apply, smul_smul, Formalism.MainNotions.RamifiedCoefficientChains.Sh.BT.letE_mul_self']
+    rw [LinearMap.smul_apply, LinearMap.id_apply, smul_smul, _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq]
   obtain ⟨f, hf, hfu⟩ := he.2 x hxN ⟨hxl', hxΔ⟩
   have hletΔ : (letE c : LetA O n) ∈ W.AΔ := fun δ _ => Formalism.MainNotions.RamifiedCoefficientChains.S9.NinQ.γA_letE W δ c
   refine ⟨fun m => letE c * Formalism.MainNotions.RamifiedCoefficientChains.Sh.at0 W (f m),
     ⟨fun m => ⟨W.AΔ.mul_mem hletΔ (Formalism.MainNotions.RamifiedCoefficientChains.Sh.BT.evaluation_mem_invariants W hR _),
-      by rw [← mul_assoc, Formalism.MainNotions.RamifiedCoefficientChains.Sh.BT.letE_mul_self']⟩, ?_⟩, ?_⟩
+      by rw [← mul_assoc, _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq]⟩, ?_⟩, ?_⟩
   · rw [hf]
     refine Finset.sum_congr rfl fun m _ => ?_
     dsimp only

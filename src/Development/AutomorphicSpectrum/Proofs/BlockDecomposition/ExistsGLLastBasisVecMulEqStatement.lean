@@ -47,5 +47,3 @@ import Mathlib.Topology.Sheaves.Init
 open Matrix
 open scoped Topology
 
-theorem _root_.GlobalTheory.T.exists_GL_last_basis_vecMul_eq : ∀ (k : Type) [Field k] (m : ℕ) (ξ : Fin (m + 1) → k), ξ ≠ 0 → ∃ h : GL (Fin (m + 1)) k, (Pi.single (Fin.last m) 1 : Fin (m + 1) → k) ᵥ* (h : Matrix (Fin (m + 1)) (Fin (m + 1)) k) = ξ := by
-  first | exact @GlobalTheory.CompanionTheory.RowSect.exists_GL_last_row | exact GlobalTheory.CompanionTheory.RowSect.exists_GL_last_row | (intros; apply GlobalTheory.CompanionTheory.RowSect.exists_GL_last_row <;> assumption)

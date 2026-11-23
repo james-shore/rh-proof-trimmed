@@ -52,27 +52,7 @@ open Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspR
 open UpperTheory.ConvolutionTheory.R2
 open scoped Classical
 
-private theorem diagonalConj_mul {F : Type} [Field F] [NumberField F] (t : (A F)ˣ) (g g' : G1 F) :
-    cD t (g * g') = cD t g * cD t g' := by
-  have ht : (t : A F) * ((t⁻¹ : (A F)ˣ) : A F) = 1 := Units.mul_inv t
-  apply Subtype.ext
-  ext i j
-  show (cD t (g * g')).1 i j = ((cD t g).1 * (cD t g').1) i j
-  fin_cases i <;> fin_cases j
-  · simp [cD, Matrix.mul_apply, Fin.sum_univ_two]
-    linear_combination (-(g.1 0 1 * g'.1 1 0)) * ht
-  · simp [cD, Matrix.mul_apply, Fin.sum_univ_two]
-    ring
-  · simp [cD, Matrix.mul_apply, Fin.sum_univ_two]
-    ring
-  · simp [cD, Matrix.mul_apply, Fin.sum_univ_two]
-    linear_combination (-(g.1 1 0 * g'.1 0 1)) * ht
-
-private theorem diagonalConj_one {F : Type} [Field F] [NumberField F] (t : (A F)ˣ) :
-    cD t (1 : G1 F) = 1 := by
-  apply Subtype.ext
-  ext i j
-  fin_cases i <;> fin_cases j <;> simp [cD]
+private alias diagonalConj_one := _root_.UpperTheory.ConvolutionTheory.R2.cD_one
 
 private theorem diagonalConj_unipotent {F : Type} [Field F] [NumberField F] (t : (A F)ˣ) (b : A F) :
     cD t (nU b) = nU (b * ((t⁻¹ : (A F)ˣ) : A F)) := by
@@ -86,12 +66,6 @@ private theorem diagonalConj_weyl {F : Type} [Field F] [NumberField F] (t : (A F
   ext i j
   show (cD t (wW F)).1 i j = ((mD t⁻¹).1 * (wW F).1) i j
   fin_cases i <;> fin_cases j <;> simp [cD, mD, wW, Matrix.mul_apply, Fin.sum_univ_two]
-
-private theorem idelicNorm_inv {F : Type} [Field F] [NumberField F] (t : (A F)ˣ) : ab t⁻¹ = (ab t)⁻¹ := by
-  simp [ab, map_inv]
-
-private theorem idelicNorm_pos {F : Type} [Field F] [NumberField F] (t : (A F)ˣ) : 0 < ab t :=
-  (IdeleGroup.ideleModule F t).2
 
 private theorem similitude_inv {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
     (h : GL (Fin 2) (A E)) : nu F h⁻¹ = (nu F h)⁻¹ := by
@@ -143,18 +117,18 @@ theorem UpperTheory.ConvolutionTheory.R2.D.comm :
         rw [map_inv]
         have : η (nu F h) = 1 := hη _
         rw [this, inv_one]
-      rw [hlin, hη1, idelicNorm_inv]
+      rw [hlin, hη1, _root_.UpperTheory.ConvolutionTheory.R2.ab_inv]
       have ha : ((ab (nu F h) : ℝ) : ℂ) ≠ 0 := by
-        exact_mod_cast (idelicNorm_pos (nu F h)).ne'
+        exact_mod_cast (_root_.UpperTheory.ConvolutionTheory.R2.ab_pos (nu F h)).ne'
       push_cast
       field_simp
   | one => simp [diagonalConj_one]
   | mul x y _ _ hx hy =>
-    rw [map_mul, diagonalConj_mul, map_mul, ← mul_assoc, hx, mul_assoc, hy, mul_assoc]
+    rw [map_mul, _root_.UpperTheory.ConvolutionTheory.R2.cD_mul, map_mul, ← mul_assoc, hx, mul_assoc, hy, mul_assoc]
   | inv x _ hx =>
     have e1 : Om x * Om x⁻¹ = 1 := by rw [← map_mul, mul_inv_cancel, map_one]
     have cinv : cD (nu F h) x⁻¹ * cD (nu F h) x = 1 := by
-      rw [← diagonalConj_mul, inv_mul_cancel, diagonalConj_one]
+      rw [← _root_.UpperTheory.ConvolutionTheory.R2.cD_mul, inv_mul_cancel, diagonalConj_one]
     have e2 : Om (cD (nu F h) x⁻¹) * Om (cD (nu F h) x) = 1 := by rw [← map_mul, cinv, map_one]
     calc L h * Om x⁻¹ = (Om (cD (nu F h) x⁻¹) * Om (cD (nu F h) x)) * (L h * Om x⁻¹) := by rw [e2, one_mul]
       _ = Om (cD (nu F h) x⁻¹) * ((Om (cD (nu F h) x) * L h) * Om x⁻¹) := by simp only [mul_assoc]

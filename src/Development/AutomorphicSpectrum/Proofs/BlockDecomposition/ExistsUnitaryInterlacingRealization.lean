@@ -179,7 +179,7 @@ lemma inter {d : Fin (n + 1) → ℝ} {ε' : Fin n → Bool} {d' : Fin n → ℝ
     field_simp
     ring
   · simp only [X0, G0, Sum.elim_inl, Sum.elim_inr, univ_unique, sum_singleton]
-    have h0 := GlobalTheory.T.partial_fraction_diagonal_identity d d' hinj i
+    have h0 := _root_.GlobalTheory.CompanionTheory.RgHe.Frame.pfZero d d' hinj i
     have h1 : ∑ j, sg (ε' j) * yy ε' d d' j * (cc d d' i * yy ε' d d' j / (d i - d' j)) =
         -(cc d d' i * ∑ j, pfR d d' j / (d i - d' j)) := by
       rw [mul_sum, ← sum_neg_distrib]

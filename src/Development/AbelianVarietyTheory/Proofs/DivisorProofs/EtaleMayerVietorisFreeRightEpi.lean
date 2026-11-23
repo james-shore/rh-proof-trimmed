@@ -125,9 +125,9 @@ theorem epi_of_loc (R : Type) [CommRing R] {P Q E : PSh} (f : P ⟶ E) (g : Q �
   have map_comp : ∀ {G H K : Shv R} (χ : G ⟶ H) (ω : H ⟶ K) {U : Scheme.{0}} (s : Sec G U),
       Sec.map (χ ≫ ω) s = Sec.map ω (Sec.map χ s) := by
     intros; rfl
-  obtain ⟨-, hext, hres, -⟩ := GlobalTheory.T.free_sections_ext_res_map R E F
-  obtain ⟨-, -, -, hmapP⟩ := GlobalTheory.T.free_sections_ext_res_map R P F
-  obtain ⟨-, -, -, hmapQ⟩ := GlobalTheory.T.free_sections_ext_res_map R Q F
+  obtain ⟨-, hext, hres, -⟩ := _root_.GlobalTheory.EtC.free_hom_sections R E F
+  obtain ⟨-, -, -, hmapP⟩ := _root_.GlobalTheory.EtC.free_hom_sections R P F
+  obtain ⟨-, -, -, hmapQ⟩ := _root_.GlobalTheory.EtC.free_hom_sections R Q F
   apply hext
   intro T x
   apply (GlobalTheory.T.etaleSheafSections_ext_and_glue R F T).1
@@ -151,7 +151,7 @@ theorem mv_right_epi : ∀ (R : Type) [CommRing R] (A A' : Type) [CommRing A] [C
     HasRingHomProperty.Spec_iff.mpr (RingHom.etale_algebraMap.mpr inferInstance)
   apply epi_of_loc
   intro T (x : T ⟶ Spec (CommRingCat.of A))
-  rw [GlobalTheory.T.etaleLocally_iff_affine_etale_point_cover]
+  rw [_root_.GlobalTheory.EtC.loc_iff_etale_affine_points]
   · intro t
     by_cases hf : f ∈ (x t).asIdeal
     · obtain ⟨q, hq⟩ := exists_prime_over A A' f hs hi (x t) hf

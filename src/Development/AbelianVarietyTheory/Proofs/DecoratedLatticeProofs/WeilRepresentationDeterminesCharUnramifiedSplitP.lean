@@ -115,11 +115,6 @@ theorem exists_unit_idem {e : AE D} (he : e * e = e) (u : (AE D)ˣ) : ∃ x : (A
     linear_combination (2 - (u : AE D) - ((u⁻¹ : (AE D)ˣ) : AE D)) * he + e * e * hu
   exact ⟨⟨_, _, hk, by rw [mul_comm]; exact hk⟩, rfl⟩
 
-theorem isSplitIdem_conj' {e : AE D} (h : IsSplitIdem D e) : IsSplitIdem D (cA D e) := by
-  obtain ⟨h1, h2, v, ε, hε, h3⟩ := h
-  exact ⟨by rw [← map_mul, h1], by rw [Formalism.L2.Theta.cA_cA, mul_comm, h2], v, ε, hε,
-    by rw [Formalism.L2.Theta.cA_cA, add_comm, h3]⟩
-
 theorem isDetAt_one (e : AE D) (V : HSp D) : IsDetAt e V 1 1 := by
   change (1 : AE D) = e * (Formalism.L2.Theta.mt V 1).det + (1 - e)
   rw [Formalism.IndefR.flipTwoThree.mt_one', Matrix.det_one]
@@ -169,7 +164,7 @@ theorem eq_of_comp {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [I
     (GlobalTheory.VacStabFixed.supp_iff hε _).2 ⟨by rw [map_sub, map_one, h1, sub_self],
       fun w hw => by rw [map_sub, map_sub, map_one, map_one, h2 w hw, sub_self]⟩
   have he : IsSplitIdem D p.e := p.split
-  have hce : IsSplitIdem D (cA D p.e) := isSplitIdem_conj' he
+  have hce : IsSplitIdem D (cA D p.e) := _root_.GlobalTheory.SplitScalar.isSplitIdem_conj he
   obtain ⟨x1, hx1⟩ := exists_unit_idem he.1 x
   obtain ⟨x2, hx2⟩ := exists_unit_idem hce.1 x
   have hprod : x = x1 * x2 := by

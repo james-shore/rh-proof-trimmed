@@ -126,13 +126,13 @@ theorem miStar2_at_realisation_alt : GlobalTheory.Published.DiscreteSeriesClassi
   have hMt := _root_.GlobalTheory.MiTop.botHyp_match_alt W hB
   have hS : parB (Ptw D) (min 0 D.R.m) = parB (Ptw D) 0 := by simp
   obtain ⟨v, hv⟩ := GlobalTheory.Core.Mi.exists_conjVec hDS D W.S.X W.Q.instEq W.Q.Rl.θ _ (W.Q.Rl.MY 0) hS hMt.2.1 hB.gap hB.idE
-  obtain ⟨κ, hκ, hPF⟩ := _root_.GlobalTheory.T.pairForm_of_conjVec_of_botHyp hDS hCR W hB v hv
+  obtain ⟨κ, hκ, hPF⟩ := _root_.GlobalTheory.MiTop.PairingL2.pairForm_alt hDS hCR W hB v hv
   have hCC := _root_.GlobalTheory.MiTop.colCrd_of_real_pack W
   have hrow : ∀ t (F : Fin ((W.Q.F.fc (_root_.GlobalTheory.MiS.packageCoefficientSpace W).zs).Df1.nV t) → D.what₂.LL), _root_.GlobalTheory.MiTop.rowFormOfTuple W t F ∈ _root_.GlobalTheory.MiTop.BaseRowSpace W :=
     fun t F => hMt.2.2.2.2.2 _ (hΘ t F)
-  have hanc := fun u => _root_.GlobalTheory.T.conjugate_vector_central_twist_alt hDS hCR W hB hPu z hzf hzc v hv u
+  have hanc := fun u => _root_.GlobalTheory.MiTop.anchor_pairs_alt hDS hCR W hB hPu z hzf hzc v hv u
   have hword := fun u => _root_.GlobalTheory.MiTop.AtReal.anchor_word_alt W z u (d u) v (U u) (r u) (c u)
-    (_root_.GlobalTheory.T.botRel_of_botHyp_of_pin_central hDS hCR W hB z hzf hzc u (d u) (hpin u)) (hanc u) (hr u) (hUn u) (hRel u) hrow
+    (_root_.GlobalTheory.MiTop.botRel_of_pin_of_mem_center hDS hCR W hB z hzf hzc u (d u) (hpin u)) (hanc u) (hr u) (hUn u) (hRel u) hrow
   choose R p b₀ hp hb₀ hid using hword
   have key : ∀ m : (W.Q.F.fc (_root_.GlobalTheory.MiS.packageCoefficientSpace W).zs).Dc.Mem, ∃ (Um : Matrix (Fin ((W.Q.F.fc (_root_.GlobalTheory.MiS.packageCoefficientSpace W).zs).Dc.a m)) (Fin ((W.Q.F.fc (_root_.GlobalTheory.MiS.packageCoefficientSpace W).zs).Dc.a m)) ℂ) (cm : W.P.A3.fam3.base3.Tup → ℂ),
       (∀ x, fnorm ((W.Q.F.fc (_root_.GlobalTheory.MiS.packageCoefficientSpace W).zs).Dc.Xc m W.P.A3.fam3.base3.v0) (Um.mulVec x) = fnorm ((W.Q.F.fc (_root_.GlobalTheory.MiS.packageCoefficientSpace W).zs).Dc.Xc m W.P.A3.fam3.base3.v0) x) ∧

@@ -126,10 +126,6 @@ theorem cnt_true : cnt (fun _ : Fin m => true) true = m := by
 theorem cnt_false : cnt (fun _ : Fin m => true) false = 0 := by
   simp [cnt]
 
-theorem pOf_add_qOf (sg : ℤˣ) (m : ℕ) : ((pOf sg m : ℕ) : ℤ) + (qOf sg m : ℕ) = m := by
-  unfold pOf qOf
-  split_ifs <;> simp
-
 theorem locData_of (h : LocHyp sg L) :
     ∃ (sL : PX m n →ₗ[ℂ] (GR n → ℂ)) (ρ : GR n → PX m n →ₗ[ℂ] PX m n) (e : ℤ),
       LocData (fun _ => true) (2 * Real.pi) (2 * Real.pi * ((sg : ℤ) : ℝ)) (pOf sg m) (qOf sg m) e sL ρ ∧
@@ -144,7 +140,7 @@ theorem locData_of (h : LocHyp sg L) :
     have hg := h.sw g _ (isSw_fP P)
     show L (mG a * nG b * g) (fP P) 0 = _ * L g (fP P) 0
     rw [h.mul _ _ _ (isSw_fP P), h.mul _ _ _ hg, he (mG a) a ha (mR_mG ha) _ (h.sw _ _ hg),
-      h.nU (nG b) b hb (mR_nG hb) _ hg, weight_factor_levi_unipotent _ _ _ a b ha hb, pOf_add_qOf]
+      h.nU (nG b) b hb (mR_nG hb) _ hg, weight_factor_levi_unipotent _ _ _ a b ha hb, _root_.PositivityTheory.SiegelWeilFormula.KLI.pq_sum]
     have key : ∀ X : Fin m → Fin n → ℂ, X = 0 → Complex.exp (2 * Real.pi * Complex.I * ((sg : ℤ) : ℂ) *
         (b * ((Matrix.of X)ᴴ * Matrix.of X)).trace) * L g (fP P) X = L g (fP P) 0 := by
       rintro X rfl

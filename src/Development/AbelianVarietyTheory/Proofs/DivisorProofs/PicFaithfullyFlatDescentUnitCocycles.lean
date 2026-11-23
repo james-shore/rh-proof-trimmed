@@ -66,7 +66,7 @@ theorem descMod_one_le [Module.FaithfullyFlat A B] : descMod A B 1 ≤ 1 := by
   intro b hb
   simp only [descMod, LinearMap.mem_eqLocus, LinearMap.comp_apply, LinearMap.mulLeft_apply,
     AlgHom.toLinearMap_apply, Units.val_one, one_mul] at hb
-  obtain ⟨a, ha⟩ := GlobalTheory.T.exists_algebraMap_eq_of_faithfullyFlat_includeLeft_eq_includeRight A B b hb.symm
+  obtain ⟨a, ha⟩ := _root_.GlobalTheory.EtC.exists_algebraMap_eq_of_includeLeft_eq_includeRight A B b hb.symm
   exact Submodule.mem_one.2 ⟨a, ha⟩
 
 theorem uCoc_mul {u v : (B ⊗[A] B)ˣ} (hu : UCoc A B u) (hv : UCoc A B v) : UCoc A B (u * v) := by
@@ -91,7 +91,7 @@ theorem descMod_mul_inv [Module.FaithfullyFlat A B] {u : (B ⊗[A] B)ˣ} (hu : U
     (descMod_mul_le u u⁻¹).trans (by rw [mul_inv_cancel]; exact descMod_one_le)
   refine le_antisymm hle ?_
   have htop : (⊤ : Submodule A B) * (descMod A B u * descMod A B u⁻¹) = ⊤ := by
-    rw [← mul_assoc, GlobalTheory.T.top_mul_descendedSubmoduleOfUnitCocycle_eq_top A B u hu, GlobalTheory.T.top_mul_descendedSubmoduleOfUnitCocycle_eq_top A B u⁻¹ (uCoc_inv hu)]
+    rw [← mul_assoc, _root_.GlobalTheory.DescTop.top_mul_descMod_eq_top A B u hu, _root_.GlobalTheory.DescTop.top_mul_descMod_eq_top A B u⁻¹ (uCoc_inv hu)]
   set J : Ideal A := (descMod A B u * descMod A B u⁻¹).comap (Algebra.linearMap A B) with hJ
   have hJtop : J • (⊤ : Submodule A B) = ⊤ := by
     rw [eq_top_iff]

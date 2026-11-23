@@ -65,7 +65,7 @@ theorem exists_poly_of_fixed : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [Field �
     subst hxu
     haveI : Subsingleton (ZMod (l ^ 0)) := by rw [pow_zero]; infer_instance
     exact ⟨hu, fun s hs => hfix s hs (Units.ext (Subsingleton.elim _ _))⟩
-  · obtain ⟨Q, hQ, hQe⟩ := GlobalTheory.T.exists_poly_in_root_of_inertia_cyclotomic_fixed l Ω A m ζ hζ u hfix
+  · obtain ⟨Q, hQ, hQe⟩ := _root_.GlobalTheory.InertiaCycFixed.exists_poly_of_fixed l Ω A m ζ hζ u hfix
     have hl : A.valuation (l : Ω) < 1 := by
       obtain ⟨v, hv, hlv⟩ := hA
       have := (hv (l : 𝓞 ℚ)).2 hlv

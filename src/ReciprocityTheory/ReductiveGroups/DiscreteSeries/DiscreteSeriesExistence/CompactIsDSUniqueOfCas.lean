@@ -79,24 +79,9 @@ theorem cf_inner_casimir {M : Type*} [NormedAddCommGroup M] [InnerProductSpace �
   · simp [h]
   · simp [h, Ne.symm h]
 
-theorem cf_eps_eq_of_pq {ε : Fin n → Bool} (hpq : pOf ε = 0 ∨ qOf ε = 0) (a b : Fin n) : ε a = ε b := by
-  rcases hpq with h | h
-  · unfold pOf at h
-    rw [Finset.card_eq_zero, Finset.filter_eq_empty_iff] at h
-    have ha := h (Finset.mem_univ a)
-    have hb := h (Finset.mem_univ b)
-    clear h
-    cases h1 : ε a <;> cases h2 : ε b <;> simp_all
-  · unfold qOf at h
-    rw [Finset.card_eq_zero, Finset.filter_eq_empty_iff] at h
-    have ha := h (Finset.mem_univ a)
-    have hb := h (Finset.mem_univ b)
-    clear h
-    cases h1 : ε a <;> cases h2 : ε b <;> simp_all
-
 theorem cf_stdGap_of_pq {ε : Fin n → Bool} {lam : Fin n → ℝ} (hpq : pOf ε = 0 ∨ qOf ε = 0)
     (hmono : StrictAnti lam) : StdGap ε lam := by
-  refine ⟨hmono, 2, fun a b hab => absurd (cf_eps_eq_of_pq hpq a b) hab, ?_⟩
+  refine ⟨hmono, 2, fun a b hab => absurd (_root_.ReciprocityTheory.ChartRestriction.DS.cmpt_eps_eq hpq a b) hab, ?_⟩
   rcases hpq with h | h <;> rw [h] <;> norm_num
 
 theorem cf_kset_sub {ε : Fin n → Bool} {g : Matrix (Fin n) (Fin n) ℂ} (hg : g ∈ Kset ε) : g ∈ UJset ε := by
@@ -200,7 +185,7 @@ theorem compact_isDS_unique_of_cas (hpq : pOf ε = 0 ∨ qOf ε = 0) (hlam : S7.
   have hUK : ∀ (k : S7.KG ε) (v : T.V), U (T.op k v) = σ (S7.toMK k) (U v) := by
     intro k v
     rw [← hσ₀K k]
-    exact hU _ (cf_kset_sub (S7.toMK_mem ε k)) v
+    exact hU _ (_root_.ReciprocityTheory.ChartRestriction.DS.UnitaryGroupOfForm.K_mem_UJ (S7.toMK_mem ε k)) v
   refine ⟨fun S hS => ?_, U, hUK⟩
   obtain ⟨-, hSK, -, ⟨v, hvS, hv0, -⟩, -⟩ := hS
   let W : Submodule ℂ T.V := S.comap (U.toLinearEquiv : T.V →ₗ[ℂ] H)

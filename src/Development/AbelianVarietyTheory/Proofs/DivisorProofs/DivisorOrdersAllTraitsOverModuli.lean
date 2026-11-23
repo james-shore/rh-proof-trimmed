@@ -194,7 +194,7 @@ theorem GlobalTheory.UPoinc.AllTraits.orders_all : ∀ (E : Type) [Field E] [Num
   haveI : IsLocallyNoetherian Y.Z := LocallyOfFiniteType.isLocallyNoetherian Y.s
   have hWc : IsAdicComplete (maximalIdeal W) W := hW.2.1
   obtain ⟨R, _, _, _, j, Λ, _, _, p, c₀, hRn, hRc, hj, hc, hper⟩ :=
-    localPeriods E H Dw hpq l Xo c C X₁ Y U₀ EE out πY hAdm hEE hHom (χ (closedPoint W))
+    _root_.GlobalTheory.UPoinc.UPeriods.main E H Dw hpq l Xo c C X₁ Y U₀ EE out πY hAdm hEE hHom (χ (closedPoint W))
   obtain ⟨jinj, jloc, jext⟩ := isCpl_props hj
   obtain ⟨ψ, ψloc, hψ⟩ := jext W hWc (Scheme.stalkClosedPointTo χ).hom inferInstance
   have hξ : spMap (ψ.comp j) ≫ Y.Z.fromSpecStalk (χ (closedPoint W)) = χ := by
@@ -219,14 +219,14 @@ theorem GlobalTheory.UPoinc.AllTraits.orders_all : ∀ (E : Type) [Field E] [Num
   haveI := T₀.P.D.toPre.finX
   obtain ⟨N, b, hb⟩ := Module.Finite.exists_fin (R := ℤ) (M := T₀.P.D.toPre.X)
   obtain ⟨A, _, _, _, ϖ', ψ', m, m', k', hA, hϖ', ψ'inj, ψ'loc, hm, hm', hk''⟩ :=
-    GlobalTheory.PropDvr.exists_cdvr_proportional R W ϖ hϖ ψ ψloc (Option (Fin N × Fin N))
+    _root_.GlobalTheory.CompleteDiscreteValuationRing.main R W ϖ hϖ ψ ψloc (Option (Fin N × Fin N))
       (fun i => i.elim (j d) fun ii => p (e.symm (b ii.1 + b ii.2)))
       (fun i => i.elim a fun ii => k (e.symm (b ii.1 + b ii.2)))
       (by rintro (_ | ii); exacts [hda, hk' _])
   haveI : CharZero A := (RingHom.charZero_iff ψ'inj).1 hRc
   haveI := jloc
   haveI := ψ'loc
-  obtain ⟨T', f, finj, floc, hthru, hyC⟩ := traitThroughOpen E H Dw hpq l Xo c C X₁ Y U₀ EE out πY hAdm hEE hHom
+  obtain ⟨T', f, finj, floc, hthru, hyC⟩ := _root_.GlobalTheory.UPoinc.exists_uTrait_through_open_of_stalk_dvr E H Dw hpq l Xo c C X₁ Y U₀ EE out πY hAdm hEE hHom
     (χ (closedPoint W)) A hA (ψ'.comp j) (ψ'inj.comp jinj) inferInstance
   haveI := floc
   haveI : IsDiscreteValuationRing T'.V := T'.cdvr.1

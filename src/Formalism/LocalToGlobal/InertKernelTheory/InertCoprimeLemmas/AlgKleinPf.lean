@@ -51,6 +51,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.AnalyticIdentityTheorems.IntegerEndomorphismInstance
 
 @[expose] public section
 
@@ -146,14 +147,9 @@ theorem sg_neg_deriv (L : PeriodPair) (u : ℂ) :
   rw [e, h2.deriv]
   simp
 
-theorem ev_add_notMem (L : PeriodPair) {P : ℂ} (hP : P ∉ L.lattice) : ∀ᶠ z in 𝓝 (0 : ℂ), z + P ∉ L.lattice := by
-  have h1 := PDeriv.eventually_notMem L hP
-  have h2 : Filter.Tendsto (fun z : ℂ => z + P) (𝓝 0) (𝓝 P) := (continuous_add_const P).tendsto' 0 _ (by simp)
-  exact h2.eventually h1
-
 theorem wp_analytic (L : PeriodPair) {P : ℂ} (hP : P ∉ L.lattice) :
     AnalyticAt ℂ (fun z => L.weierstrassP (z + P)) 0 :=
-  analyticAt_of_eventually ((ev_add_notMem L hP).mono fun z hz =>
+  analyticAt_of_eventually ((_root_.Formalism.L2.Th1.F.EndoZ.ev_shift_notMem L hP).mono fun z hz =>
     ((PDeriv.hasDerivAt_P L hz).comp_add_const z P).differentiableAt)
 
 theorem tp_series (L : PeriodPair) (P Q : ℂ) (hQ : Q ∉ L.lattice) (hP : P ∉ L.lattice) :
@@ -193,7 +189,7 @@ theorem tp_series (L : PeriodPair) (P Q : ℂ) (hQ : Q ∉ L.lattice) (hP : P �
       (g := fun z => (L.weierstrassP Q + (-1 : ℂ) * L.weierstrassP (z + P)) *
         (opU L P (sgStar L) z * opU L P (sgStar L) z)) analyticAt_const a5, Taylor.taylor0_const, e5]
   rw [← e1, ← e6]
-  refine Taylor.taylor0_congr ((ev_add_notMem L hP).mono fun z hz => ?_)
+  refine Taylor.taylor0_congr ((_root_.Formalism.L2.Th1.F.EndoZ.ev_shift_notMem L hP).mono fun z hz => ?_)
   have h := translateProduct L P Q z hQ hz
   linear_combination h
 
@@ -217,7 +213,7 @@ theorem wp_coeffs (L : PeriodPair) {P : ℂ} (hP : P ∉ L.lattice) :
     PowerSeries.coeff 1 (taylor0 (fun z => L.weierstrassP (z + P))) = L.derivWeierstrassP P ∧
     PowerSeries.coeff 2 (taylor0 (fun z => L.weierstrassP (z + P))) =
       (6 * L.weierstrassP P ^ 2 - L.g₂ / 2) / 2 := by
-  have hev := ev_add_notMem L hP
+  have hev := _root_.Formalism.L2.Th1.F.EndoZ.ev_shift_notMem L hP
   have hW : ∀ z, z + P ∉ L.lattice → HasDerivAt (fun z => L.weierstrassP (z + P)) (L.derivWeierstrassP (z + P)) z :=
     fun z hz => (PDeriv.hasDerivAt_P L hz).comp_add_const z P
   have hP0 : (0 : ℂ) + P ∉ L.lattice := by rwa [zero_add]
@@ -612,7 +608,7 @@ section KleinAllPf
 theorem klein_forms_algebraic : KleinAll := by
   intro D cc δ B hcc hδ
   have sd : B.StdOK := Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.SO.stdOK B hcc hδ
-  obtain ⟨h2, h3⟩ := Sigma.invAlg' D cc δ hcc hδ B.L B.lat
+  obtain ⟨h2, h3⟩ := _root_.Formalism.L2.KerInert.Sigma.ChartWirtingerDerivatives.weierstrass_invariants_algebraic D cc δ hcc hδ B.L B.lat
   exact kleinAlg_of B.L B.ω₀ sd.per sd.half h2 h3
 
 theorem kernel_torsion_translates_algebraic : KerTransAll := kerTransAll_of_kleinAll klein_forms_algebraic

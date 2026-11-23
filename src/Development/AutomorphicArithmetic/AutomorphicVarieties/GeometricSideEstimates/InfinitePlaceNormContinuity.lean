@@ -76,9 +76,7 @@ variable [_root_.NumberField.IsTotallyComplex E]
 private theorem norm_pInf (x : Ad E) (w : InfinitePlace E) : ‖pInf E x w‖ = ‖x.1 w‖ :=
   (InfinitePlace.Completion.isometry_extensionEmbedding w).norm_map_of_map_zero (map_zero _) (x.1 w)
 
-private theorem cont_pInf : Continuous (pInf E) :=
-  continuous_pi fun w => (InfinitePlace.Completion.isometry_extensionEmbedding w).continuous.comp
-    ((continuous_apply w).comp continuous_fst)
+private alias cont_pInf := _root_.GlobalTheory.CuspRep.RankOne.continuous_pInf
 
 end
 

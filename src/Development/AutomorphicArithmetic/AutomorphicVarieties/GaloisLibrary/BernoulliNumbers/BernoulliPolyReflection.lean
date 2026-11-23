@@ -47,10 +47,6 @@ import Mathlib.Topology.Sheaves.Init
 
 open Finset UpperTheory.V.Bern
 
-private theorem bernoulli_poly_reflection (k : ℕ) (x : ℚ) :
-    (Polynomial.bernoulli k).eval (1 - x) = (-1) ^ k * (Polynomial.bernoulli k).eval x := by
-  exact Polynomial.bernoulli_eval_one_sub k x
-
 theorem UpperTheory.V.Bern.b_shift :
     ∀ (N k a : ℕ), 0 < N → bcoef N k (a + N) = bcoef N k a + (k : ℚ) * (a : ℚ) ^ (k - 1) ∧ (∀ m : ℕ, 0 < m → bcoef (m * N) k (m * a) = (m : ℚ) ^ ((k : ℤ) - 1) * bcoef N k a) ∧ (a ≤ N → bcoef N k (N - a) = (-1) ^ k * bcoef N k a) := by
   intro N k a hN
@@ -76,5 +72,5 @@ theorem UpperTheory.V.Bern.b_shift :
     unfold bcoef
     have e : ((N - a : ℕ) : ℚ) / N = 1 - (a : ℚ) / N := by
       rw [Nat.cast_sub h]; field_simp
-    rw [e, bernoulli_poly_reflection]
+    rw [e, _root_.Polynomial.bernoulli_eval_one_sub]
     ring

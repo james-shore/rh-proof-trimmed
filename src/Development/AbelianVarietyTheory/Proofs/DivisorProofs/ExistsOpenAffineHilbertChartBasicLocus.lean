@@ -93,7 +93,7 @@ theorem isCompact_bad_compl (e : Module.Basis (Fin N) A B) (σ : Fin r ↪ Fin N
     IsCompact (bad e σ y U)ᶜ := by
   letI := ((proj y).app U).hom.toAlgebra
   obtain ⟨h1, h2, h3⟩ := secs_props y U hU
-  exact GlobalTheory.T.free_module_complement_support_compact _ _ r h3 (gens e σ y U)
+  exact _root_.GlobalTheory.isCompact_compl_support_quotient_span _ _ r h3 (gens e σ y U)
 
 theorem basic_iff (e : Module.Basis (Fin N) A B) (σ : Fin r ↪ Fin N) {T : Scheme.{0}}
     (y : (functor A B r).obj (op T)) :
@@ -109,7 +109,7 @@ theorem basic_iff (e : Module.Basis (Fin N) A B) (σ : Fin r ↪ Fin N) {T : Sch
   change Function.Bijective (fun c : Fin r → Γ(T, U) =>
     ∑ k, ((proj y).app U).hom (c k) * gens e σ y U k) ↔ _
   rw [hf]
-  refine ⟨fun hb => ?_, fun hb => GlobalTheory.T.linearCombination_bijective_of_rankAtStalk_eq _ _ r h3 _ hb⟩
+  refine ⟨fun hb => ?_, fun hb => _root_.GlobalTheory.bijective_linearCombination_of_rankAtStalk _ _ r h3 _ hb⟩
   show Module.support _ _ = ∅
   rw [Module.support_eq_empty_iff, Submodule.Quotient.subsingleton_iff,
     ← Fintype.range_linearCombination, LinearMap.range_eq_top]
@@ -143,7 +143,7 @@ theorem bad_nat (e : Module.Basis (Fin N) A B) (σ : Fin r ↪ Fin N) {T T' : Sc
   haveI : IsFinite (proj y) := y.2.2.1
   have hP := ReciprocityTheory.ChartRestriction.G.Out.GtBCPf.isPushout_appLE sq inferInstance hU hU' h hleG
   have fin : ((proj y).app U).hom.Finite := (secs_props y U hU).1
-  have H := GlobalTheory.T.mem_support_quotient_span_iff_of_isPushout' _ _ _ _ _ _ _ _ hP fin (gens e σ y U) (hU'.primeIdealOf ⟨x, hx⟩)
+  have H := _root_.GlobalTheory.QuotientSupportBaseChange.mem_support_quotient_iff _ _ _ _ _ _ _ _ hP fin (gens e σ y U) (hU'.primeIdealOf ⟨x, hx⟩)
   rw [IsAffineOpen.comap_primeIdealOf_appLE U hU U' hU' h hx] at H
   have hg : (fun i => ((pbMap a y).appLE (proj y ⁻¹ᵁ U) _ hleG).hom (gens e σ y U i)) =
       gens e σ ((functor A B r).map a.op y) U' := funext (gens_pbMap e σ a y U U' hleG)

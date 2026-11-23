@@ -74,17 +74,17 @@ theorem kills_of_norm_one_of_pairing_prime :
       ∑ᶠ g, X (inl g) * star (Y g) = z * (Nat.card G : ℂ) → ¬ ((Nat.card Γ : ℤ) ∣ z) →
       Kills (fun δ => X (inl δ * inr s)) Y := by
   intro G Γ _ _ _ _ φ s hp hs X hX hn Y hY hYs z hz hl
-  obtain ⟨χ, e, hχ, hχG, hXe⟩ := GlobalTheory.T.virtualCharacter_coset_normOne_single G Γ φ s hp hs X hX hn
+  obtain ⟨χ, e, hχ, hχG, hXe⟩ := _root_.GlobalTheory.Shin.virt_coset_norm_one_single G Γ φ s hp hs X hX hn
   have hgen : ∀ t : Γ, t ∈ Subgroup.zpowers s := by
     haveI : Fact (Nat.card Γ).Prime := ⟨hp⟩
     intro t
     rw [zpowers_eq_top_of_prime_card rfl hs]
     exact Subgroup.mem_top t
-  obtain ⟨Z, hZ, hZY⟩ := GlobalTheory.T.exists_semidirect_character_ext_of_stable G Γ φ s hgen Y hY hYs
+  obtain ⟨Z, hZ, hZY⟩ := _root_.GlobalTheory.StableExt.exists_ext G Γ φ s hgen Y hY hYs
   have hZv : Z ∈ Virt ℂ ℂ (G ⋊[φ] Γ) := AddSubgroup.subset_closure hZ
   have hXZ : ∑ᶠ g, X (inl g) * star (Z (inl g)) = z * (Nat.card G : ℂ) := by
     simp only [hZY]; exact hz
-  have hc := GlobalTheory.T.finsum_semidirect_coset_pairing_ne_zero G Γ φ s hp hs X hX Z hZv z hXZ hl
+  have hc := _root_.GlobalTheory.Shin.finsum_coset_pair_ne_zero G Γ φ s hp hs X hX Z hZv z hXZ hl
   have hχc : ∑ᶠ g, χ (inl g * inr s) * star (Z (inl g * inr s)) ≠ 0 := by
     intro h0
     apply hc
@@ -97,9 +97,9 @@ theorem kills_of_norm_one_of_pairing_prime :
   have hχY : ∑ᶠ g, χ (inl g) * star (Y g) ≠ 0 := by
     intro h0
     apply hχc
-    apply GlobalTheory.T.finsum_semidirect_coset_character_orth_zero G Γ φ s hp hs χ Z hχchar hZ
+    apply _root_.GlobalTheory.Shin.finsum_coset_mul_star_eq_zero G Γ φ s hp hs χ Z hχchar hZ
     simp only [hZY]; exact h0
-  have hK := GlobalTheory.T.twisted_restricted_character_in_isotypic_part G Γ φ s χ Y hχchar hχG hY hχY
+  have hK := _root_.GlobalTheory.Shin.kills_twist_of_pair_ne_zero G Γ φ s χ Y hχchar hχG hY hχY
   have := kills_const_mul e _ Y hK
   simpa only [hXe] using this
 

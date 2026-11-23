@@ -68,13 +68,7 @@ namespace GlobalTheory.LiftFlatModel
 
 variable {D : D7}
 
-theorem cA_cA (z : AE D) : cA D (cA D z) = z := by
-  induction z using TensorProduct.induction_on with
-  | zero => rw [RingHom.map_zero, RingHom.map_zero]
-  | add x y hx hy => rw [RingHom.map_add (f := _), RingHom.map_add (f := _), hx, hy]
-  | tmul a x =>
-    change a ⊗ₜ[D.host.F] star (star x) = _
-    rw [star_star]
+alias cA_cA := _root_.Formalism.L2.Theta.cA_cA
 
 theorem isIntM_add {b a : ℕ} {N M : Matrix (Fin b) (Fin a) (EAf D)} (hN : IsIntM N) (hM : IsIntM M) :
     IsIntM (N + M) := fun i j => by rw [Matrix.add_apply]; exact add_mem (hN i j) (hM i j)
@@ -145,13 +139,6 @@ theorem isHalf_neg {e : AE D} {u : Mx D m n} (hu : IsHalf e u) : IsHalf e (-u) :
   intro i j
   simp only [Matrix.neg_apply, mul_neg, hu i j]
 
-theorem isHalf_nsmul {e : AE D} {u : Mx D m n} (hu : IsHalf e u) (k : ℕ) : IsHalf e (k • u) := by
-  induction k with
-  | zero => rw [zero_nsmul]; exact fun i j => mul_zero e
-  | succ k ih => rw [succ_nsmul]; exact (isHalf_add_iff hu).2 ih
-
-
-
 theorem isSBHalf_of_sum {e : AE D} {Λ : AddSubgroup (Mx D m n)} {Ψ : Mx D m n → ℂ} {Rs : Finset (Mx D m n)}
     {c : Mx D m n → ℂ} (hR : ∀ u ∈ Rs, IsHalf e u) (hΨ : ∀ x, Ψ x = ∑ u ∈ Rs, c u * halfInd e Λ (x + u))
     (hk : ∃ k : ℕ, 0 < k ∧ ∀ u ∈ Rs, k • u ∈ Λ) : IsSBHalf e Λ Ψ := by
@@ -170,7 +157,7 @@ theorem isSBHalf_of_sum {e : AE D} {Λ : AddSubgroup (Mx D m n)} {Ψ : Mx D m n 
   · rw [hΨ, hΨ]
     refine Finset.sum_congr rfl fun u hu => ?_
     have hkv : k • v ∈ Λ := AddSubgroup.nsmul_mem Λ hv k
-    have hkh : IsHalf e (k • v) := isHalf_nsmul hve k
+    have hkh : IsHalf e (k • v) := _root_.GlobalTheory.SplitScalar.isHalf_nsmul hve k
     have e1 : x + k • v + u = (x + u) + k • v := by abel
     have e2 : (x + u + k • v ∈ Λ ∧ IsHalf e (x + u + k • v)) ↔ (x + u ∈ Λ ∧ IsHalf e (x + u)) :=
       and_congr (Λ.add_mem_cancel_right hkv) (isHalf_add_iff hkh)
@@ -248,7 +235,7 @@ theorem exists_reps_pairing : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0
     exact ⟨hg1 y, hg2 y⟩
   refine ⟨ψP, Finset.univ.image g, hprim, hmem, ⟨k, hk0, fun u hu => ?_⟩, fun y => ?_, fun x hx u hu => ?_,
     fun x hx => ⟨fun h => ?_, fun h => ?_⟩, fun x hx hi u hu => hpair x hx hi u (hmem u hu).1 (hmem u hu).2⟩
-  · exact (hfr _ (isHalf_nsmul (hmem u hu).1 k)).2 (hk u (hmem u hu).2)
+  · exact (hfr _ (_root_.GlobalTheory.SplitScalar.isHalf_nsmul (hmem u hu).1 k)).2 (hk u (hmem u hu).2)
   · refine ⟨g y, ⟨Finset.mem_image_of_mem g (Finset.mem_univ y), hg4 y⟩, ?_⟩
     rintro u ⟨hu, hred⟩
     obtain ⟨y', -, rfl⟩ := Finset.mem_image.1 hu

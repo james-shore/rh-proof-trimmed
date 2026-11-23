@@ -69,12 +69,6 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ}
 theorem countable_numberField : Countable E :=
   (Module.finBasis ℚ E).equivFun.injective.countable
 
-theorem countable_GL : Countable (GL (Fin r) E) := by
-  haveI := countable_numberField (E := E)
-  haveI : Countable (Matrix (Fin r) (Fin r) E) := inferInstanceAs (Countable (Fin r → Fin r → E))
-  exact Function.Injective.countable (f := (Units.val : GL (Fin r) E → Matrix (Fin r) (Fin r) E))
-    fun a b h => Units.ext h
-
 def idF (Ψ : Finset (E →+* ℂ)) (r : ℕ) : Frame Ψ r := fun _ => (1 : Matrix (Fin r) (Fin r) ℂ)
 
 def invB {Ψ : Finset (E →+* ℂ)} (b : Frame Ψ r) : Frame Ψ r :=
@@ -112,23 +106,6 @@ theorem invB_mem {Ψ : Finset (E →+* ℂ)} {b : Frame Ψ r} (hb : b ∈ Bor Ψ
 theorem rmul_invB {Ψ : Finset (E →+* ℂ)} {b : Frame Ψ r} (hb : b ∈ Bor Ψ r) : rmul b (invB b) = idF Ψ r := by
   funext τ
   exact Matrix.mul_nonsing_inv (mat b τ) (isUnit_iff_ne_zero.mpr (hb τ).1)
-
-theorem lact_rmul {Ψ : Finset (E →+* ℂ)} (γ : GL (Fin r) E) (y b : Frame Ψ r) :
-    lact γ (rmul y b) = rmul (lact γ y) b := by
-  funext τ
-  exact (Matrix.mul_assoc ((γ : Matrix (Fin r) (Fin r) E).map τ.1) (mat y τ) (mat b τ)).symm
-
-theorem lact_mul {Ψ : Finset (E →+* ℂ)} (γ δ : GL (Fin r) E) (y : Frame Ψ r) :
-    lact (γ * δ) y = lact γ (lact δ y) := by
-  funext τ
-  show ((γ * δ : GL (Fin r) E) : Matrix (Fin r) (Fin r) E).map τ.1 * mat y τ =
-    (γ : Matrix (Fin r) (Fin r) E).map τ.1 * ((δ : Matrix (Fin r) (Fin r) E).map τ.1 * mat y τ)
-  rw [Units.val_mul, Matrix.map_mul, Matrix.mul_assoc]
-
-theorem lact_one {Ψ : Finset (E →+* ℂ)} (y : Frame Ψ r) : lact (1 : GL (Fin r) E) y = y := by
-  funext τ
-  show ((1 : GL (Fin r) E) : Matrix (Fin r) (Fin r) E).map τ.1 * mat y τ = mat y τ
-  rw [Units.val_one, Matrix.map_one _ (map_zero _) (map_one _), Matrix.one_mul]
 
 theorem continuous_lact {Ψ : Finset (E →+* ℂ)} (γ : GL (Fin r) E) : Continuous (lact (Ψ := Ψ) γ) := by
   refine continuous_pi fun τ => ?_
@@ -189,7 +166,7 @@ theorem covolume_realSU : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
     rw [hμ, lintegral_smul_measure, smul_eq_mul]
     exact congrArg (C * ·) (hνφ φ hφ hB)
   obtain ⟨hFFm, hFFO, hFFinj, hFFae⟩ := hFF
-  haveI := countable_GL (E := E) (r := r)
+  haveI := _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.FundSetPf.countable_GL (E := E) (r := r)
 
   obtain ⟨T, hTdef⟩ : ∃ T : Set (Frame X.Ψ r), T = (fun p : ReciprocityTheory.L2DbarEstimates.V (nd X) × Frame X.Ψ r =>
       rmul (cpt X x p.1) p.2) '' (FF ×ˢ Bor X.Ψ r) := ⟨_, rfl⟩
@@ -235,7 +212,7 @@ theorem covolume_realSU : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
   have hSB : ∀ y ∈ X.dom, ∀ b ∈ Bor X.Ψ r, rmul y b ∈ S ↔ y ∈ S := by
     intro y _ b hb
     rw [memS, memS]
-    simp only [lact_rmul]
+    simp only [_root_.ReciprocityTheory.ChartRestriction.G.AR.Up.FundSetPf.lact_rmul]
     exact exists_congr fun γ => and_congr_right fun _ => hTB _ b hb
   have hfm : Measurable (frOf X x) := (continuous_frOf X x).measurable
   have hind : ∀ (A : Set (Frame X.Ψ r)) (y y' : Frame X.Ψ r), (y ∈ A ↔ y' ∈ A) →
@@ -263,7 +240,7 @@ theorem covolume_realSU : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
       filter_upwards [hFFae] with z hz
       obtain ⟨z', hz', γ, hγ, b, hb, e⟩ := hz
       have hS : cpt X x z ∈ S := (memS _).2 ⟨γ, hγ, by
-        rw [e, ← lact_mul, inv_mul_cancel, lact_one]; exact (memT _).2 ⟨z', hz', b, hb, rfl⟩⟩
+        rw [e, ← _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.FundSetPf.lact_mul, inv_mul_cancel, _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.FundSetPf.lact_one]; exact (memT _).2 ⟨z', hz', b, hb, rfl⟩⟩
       exact Set.indicator_of_notMem (Set.notMem_compl_iff.2 hS) _
     rw [hzero, mul_zero] at h
     rw [hpre, lintegral_indicator_one (hfm hSm.compl)] at h
@@ -299,13 +276,13 @@ theorem covolume_realSU : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
         frOf_smul X x _ h2 c2 e2, frOf_smul X x _ h1 c1 e1] at this
     have hc : c2⁻¹ * c1 ∈ X.Γ := X.Γ.mul_mem (X.Γ.inv_mem hc2) hc1
     have h21 : rmul (cpt X x z2) b2 = lact (c2⁻¹ * c1) (rmul (cpt X x z1) b1) := by
-      rw [← hf2, ← hf1, lact_mul, ← hfr, ← lact_mul, inv_mul_cancel, lact_one]
+      rw [← hf2, ← hf1, _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.FundSetPf.lact_mul, ← hfr, ← _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.FundSetPf.lact_mul, inv_mul_cancel, _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.FundSetPf.lact_one]
     have hz : z1 = z2 := by
       refine hFFinj z1 hz1 z2 hz2 _ hc (rmul b1 (invB b2)) (rmul_mem hb1 (invB_mem hb2)) ?_
-      rw [← rmul_assoc, lact_rmul, ← h21, rmul_assoc, rmul_invB hb2, rmul_idF]
+      rw [← rmul_assoc, _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.FundSetPf.lact_rmul, ← h21, rmul_assoc, rmul_invB hb2, rmul_idF]
     subst hz
     have hfree : lact (c2⁻¹ * c1) (cpt X x z1) = rmul (cpt X x z1) (rmul b2 (invB b1)) := by
-      rw [← rmul_assoc, h21, lact_rmul, rmul_assoc, rmul_invB hb1, rmul_idF]
+      rw [← rmul_assoc, h21, _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.FundSetPf.lact_rmul, rmul_assoc, rmul_invB hb1, rmul_idF]
     have h1' := X.Γ_free _ hc (cpt X x z1) (hFFO hz1) _ (rmul_mem hb2 (invB_mem hb1)) hfree
     have hcc : c1 = c2 := (inv_mul_eq_one.1 h1').symm
     subst hcc

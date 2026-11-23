@@ -44,6 +44,6 @@ noncomputable section
 
 namespace PI.PoleLengthCount
 
-theorem pole_ballQuot : BallQuot := ball_quotient_length
+theorem pole_ballQuot : BallQuot := _root_.PI.UnitaryGroupMassFormula.BallQuotLen.ballQuotLen_main
 
 end PI.PoleLengthCount

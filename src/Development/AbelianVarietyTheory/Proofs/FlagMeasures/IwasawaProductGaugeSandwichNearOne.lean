@@ -207,9 +207,9 @@ theorem gau_sandwich : ∀ (n : ℕ) (ε : Fin n → Bool) (SN SM MainNotions : 
   have hs0 : 0 ≤ s := (nrm_nonneg _).trans hsu
   have hs2 : ∀ x : ℝ, 0 ≤ x → x ≤ s → x ^ 2 ≤ s ^ 2 := fun x hx hxs => pow_le_pow_left₀ hx hxs 2
 
-  have aN := GlobalTheory.T.cutOut_subgroup_tangent_second_order_hilbertSchmidt n ε SN dN EN hN u hu
-  have aM := GlobalTheory.T.cutOut_subgroup_tangent_second_order_hilbertSchmidt n ε SM dM EM hM m hm
-  have aK := GlobalTheory.T.cutOut_subgroup_tangent_second_order_hilbertSchmidt n ε MainNotions dK EK hK k hk
+  have aN := _root_.GlobalTheory.IwConstApprox.nrm_sub_proj_le_sq n ε SN dN EN hN u hu
+  have aM := _root_.GlobalTheory.IwConstApprox.nrm_sub_proj_le_sq n ε SM dM EM hM m hm
+  have aK := _root_.GlobalTheory.IwConstApprox.nrm_sub_proj_le_sq n ε MainNotions dK EK hK k hk
   set X := cmb EN (crd EN (uMat u - 1))
   set Y := cmb EM (crd EM (uMat m - 1))
   set Z := cmb EK (crd EK (uMat k - 1))

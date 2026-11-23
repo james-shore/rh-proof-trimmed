@@ -70,12 +70,9 @@ namespace GlobalTheory.FamRep
 theorem spMap_surj {R R' : Type} [CommRing R] [CommRing R'] (x : Sp R' ⟶ Sp R) : ∃ β : R →+* R', spMap β = x :=
   ⟨(Spec.preimage x).hom, Spec.map_preimage x⟩
 
-theorem spMap_comp_eq {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (h : B →+* C) :
-    spMap h ≫ spMap f = spMap (h.comp f) := by
-  rw [← Spec.map_comp]; rfl
+alias spMap_comp_eq := _root_.GlobalTheory.ZM.ClosedCoord.spMap_comp_eq
 
-theorem spMap_inj {R R' : Type} [CommRing R] [CommRing R'] {f f' : R →+* R'} (h : spMap f = spMap f') : f = f' :=
-  congrArg CommRingCat.Hom.hom (Spec.map_injective h)
+alias spMap_inj := _root_.GlobalTheory.ZM.DenseFib.spMap_inj
 
 
 open MvPolynomial in

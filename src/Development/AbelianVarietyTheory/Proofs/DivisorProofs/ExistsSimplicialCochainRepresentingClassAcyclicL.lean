@@ -106,7 +106,7 @@ theorem step (E : Spc) (F : Shv R) {n : ℤ} (z : Cocycle ((chains R).obj E) (re
 theorem exact_of_vanish (F : Shv R) (P : PSh) (m : ℤ) (h0 : ∀ y : H R (disc.obj P) F m, y = 0)
     (t : (free R).obj P ⟶ (res R F).X m) (ht : t ≫ (res R F).d m (m + 1) = 0) :
     ∃ y : (free R).obj P ⟶ (res R F).X (m - 1), t = y ≫ (res R F).d (m - 1) m := by
-  obtain ⟨cl, -, hinj, hzero, -⟩ := GlobalTheory.T.etaleSpaceCohomology_presheaf_classes_as_cocycles R F
+  obtain ⟨cl, -, hinj, hzero, -⟩ := _root_.GlobalTheory.EtC.disc_elt_cls R F
   have h : cl P m t ht = cl P m 0 Limits.zero_comp := by rw [hzero]; exact h0 _
   obtain ⟨y, hy⟩ := (hinj P m t ht 0 Limits.zero_comp).1 h
   exact ⟨y, by rw [hy, zero_add]⟩
@@ -168,5 +168,3 @@ theorem main (R : Type) [CommRing R] (F : Shv R) (E : Spc) (n : ℕ)
 
 end GlobalTheory.EtC.LeraySurj
 
-theorem GlobalTheory.EtC.leray_surj : ∀ (R : Type) [CommRing R] (F : Shv R) (E : Spc) (n : ℕ), (∀ k m : ℕ, 0 < m → k + m = n → ∀ y : H R (disc.obj (E.obj (op ⦋k⦌))) F m, y = 0) → ∀ x : H R E F n, ∃ s : (free R).obj (E.obj (op ⦋n⦌)) ⟶ F, cobd s = 0 ∧ IsCls s x :=
-  fun R _ F E n hyp x => GlobalTheory.EtC.LeraySurj.main R F E n hyp x

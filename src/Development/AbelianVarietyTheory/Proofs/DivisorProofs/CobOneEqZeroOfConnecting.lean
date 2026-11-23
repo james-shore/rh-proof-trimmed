@@ -97,7 +97,7 @@ theorem vecExtMap_add (f g : G ⟶ H) : vecExtMap (f + g) = vecExtMap f + vecExt
   change Submodule.Quotient.mk (cocyclesMap (f + g) c) =
     Submodule.Quotient.mk (cocyclesMap f c + cocyclesMap g c)
   refine (Submodule.Quotient.eq _).2 ⟨B, Subtype.ext (funext fun n => ?_)⟩
-  exact eq_sub_iff_add_eq'.2 (T.bialgebraPullbackTwo_convMul_symmetricCocycle (f.app n) (g.app n) (c.1 n) (c.2 n).1).symm
+  exact eq_sub_iff_add_eq'.2 (_root_.GlobalTheory.PDiv.pullTwo_convMul (f.app n) (g.app n) (c.1 n) (c.2 n).1).symm
 
 theorem SemiHom.ofHom_vecExt (f : G ⟶ H) (x : H.VecExt) :
     (SemiHom.ofHom f).vecExt x = vecExtMap f x := by
@@ -164,10 +164,10 @@ theorem exists_of_cobOne_eq_zero {b : G.A 1} (hb : cobOne R _ b = 0) :
     ∃ x : G.VecExt, (∃ (c : G.cocycles) (B : G.funs), Submodule.Quotient.mk c = x ∧
       G.cob B = cocyclesMap ((p : ℤ_[p]) • 𝟙 G) c ∧ Coalgebra.counit (R := R) b = 0 ∧ B.1 1 = b) := by
   obtain ⟨B, hB, hB'⟩ := T.exists_extension_additive_fn_pDivGroup G b hb
-  choose c hc using fun n => T.exists_pullback_mulP_of_pTorsion_invariant G n _ (T.coboundary_translation_invariant_pTorsion G n _ b (hB' n)).1 (T.coboundary_translation_invariant_pTorsion G n _ b (hB' n)).2
+  choose c hc using fun n => _root_.GlobalTheory.PDivGroup.exists_tensorSquare_mulP_eq G n _ (T.coboundary_translation_invariant_pTorsion G n _ b (hB' n)).1 (T.coboundary_translation_invariant_pTorsion G n _ b (hB' n)).2
   have h1 : ∀ n, pullbackTwo (G.res n) (c (n + 1)) = c n := fun n => G.pullbackTwo_mulP_injective n (by
     rw [← pullTwo_comp, mulP_comp_res, ← res_comp_mulP, pullTwo_comp, hc, hc, pullTwo_cobOne, B.2])
-  let c' : G.cocycles := ⟨c, fun n => ⟨T.mem_symmetricCocycles_of_pullback_mulP G n _ (hc n ▸ cobOne_mem _), h1 n⟩⟩
+  let c' : G.cocycles := ⟨c, fun n => ⟨_root_.GlobalTheory.PDivGroup.mem_symCocycles_of_pullTwo_mulP G n _ (hc n ▸ cobOne_mem _), h1 n⟩⟩
   have h2 : ∀ n, (G.cob B).1 (n + 1) = (cocyclesMap ((p : ℤ_[p]) • 𝟙 G) c').1 (n + 1) := fun n => by
     rw [cocyclesMap_natCast_val, ← mulP_comp_res, pullTwo_comp]
     exact (hc n).symm.trans (congrArg _ (h1 n).symm)

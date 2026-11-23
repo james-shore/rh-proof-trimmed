@@ -93,9 +93,7 @@ theorem symplO_extX_extY {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) (T :
   rw [Finset.sum_comm]
   exact Finset.sum_congr rfl fun j _ => Finset.sum_comm
 
-theorem heisO_zero' (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (f : WO S T → ℂ) : heisO ψ S T 0 f = f := by
-  funext w
-  simp [heisO, symplOH, symplO, hO]
+alias heisO_zero' := _root_.GlobalTheory.SplitScalar.heisO_zero
 
 theorem exists_mixS_zero {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdChar D ψ (-1)) {S S₀ T : HSp D} {ρ : ℕ}
     (d : HypDec S S₀ ρ) {μ : Measure (Mx D T.rank ρ)} {𝓕 : Set (Mx D T.rank ρ)}

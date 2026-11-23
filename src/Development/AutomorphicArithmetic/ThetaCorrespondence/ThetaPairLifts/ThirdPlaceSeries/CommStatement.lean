@@ -40,10 +40,3 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 
 
-section
-open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.L2.Pj GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpFrame GlobalTheory.ExpTie GlobalTheory.FrameOf
-open scoped TensorProduct
-
-theorem _root_.GlobalTheory.T.commAt_of_smallAt_in_range : _root_.GlobalTheory.ExpTie.InRangeAlt fun _ _ _ _ p j P _ w => SmallAt p j P w → CommAt p j P w := by
-  first | exact @_root_.GlobalTheory.HeckeCommFrame.comm_alt | exact _root_.GlobalTheory.HeckeCommFrame.comm_alt | (intros; apply _root_.GlobalTheory.HeckeCommFrame.comm_alt <;> assumption)
-end

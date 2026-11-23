@@ -129,10 +129,10 @@ theorem arc_clause : DVR.TwistBaseChangeStatement → Laws → Laws2 → Laws3 �
   have hys : y ≫ Y.j ≫ Y.s = jK _ ≫ spMap (PowerSeries.C (R := O')) ≫ spMap b := by
     have := hTy.1
     rwa [show spMap (RingHom.id (PowerSeries O')) = 𝟙 _ from Spec.map_id _, Category.id_comp] at this
-  obtain ⟨χ, hχ⟩ := GlobalTheory.T.arc_generic_point_extends_powerSeries h1 h2 E H D l Xo c W₀ Y O' b a ϖ hB m Z π t mt hfin hsurj hAF R₁ g y₁ gam hgam hgf hR
+  obtain ⟨χ, hχ⟩ := _root_.GlobalTheory.LN.ArcExtends.exists_extension h1 h2 E H D l Xo c W₀ Y O' b a ϖ hB m Z π t mt hfin hsurj hAF R₁ g y₁ gam hgam hgf hR
     y hy hys hθ hf
-  obtain ⟨c1, c2, c3⟩ := GlobalTheory.T.arc_abelianLocus_and_moduli_of_traitData h1 h2 E H D l Xo c W₀ Y O' b a ϖ hB y χ hχ hTy
-  have c4 := GlobalTheory.T.extendedArc_uAdicUniformisation_of_arcData h1 h2 h3 h4 h5 h6 hE hU hP hX E H D l Xo c W₀ Y O' b a ϖ hB hN.2.2.1 y χ hχ hTy
+  obtain ⟨c1, c2, c3⟩ := _root_.GlobalTheory.arc_abLocus_of_traitData h1 h2 E H D l Xo c W₀ Y O' b a ϖ hB y χ hχ hTy
+  have c4 := _root_.GlobalTheory.ArcData.hasArcData_of_traitData h1 h2 h3 h4 h5 h6 hE hU hP hX E H D l Xo c W₀ Y O' b a ϖ hB hN.2.2.1 y χ hχ hTy
   have hϖ : ϖ ≠ 0 := by
     rcases hB with ⟨-, rfl⟩ | ⟨-, h, -⟩
     exacts [one_ne_zero, h.ne_zero]
@@ -164,7 +164,7 @@ theorem arc_clause : DVR.TwistBaseChangeStatement → Laws → Laws2 → Laws3 �
       have := not_mem_generic ev (r := PowerSeries.C ϖ * PowerSeries.X)
         (by rw [map_mul, hC, hXv]; exact mul_ne_zero hϖ hϖ) q
       exact this
-    have c5 := GlobalTheory.T.arcData_specialise_at_uniformiser h1 h2 hT h4.unifBaseChange h5 E H D l Xo c _ _ Y O' b ϖ a hirr hc' ev hC hXv χ c1 hrg c4
+    have c5 := _root_.GlobalTheory.hasArcData_specialise h1 h2 hT h4.unifBaseChange h5 E H D l Xo c _ _ Y O' b ϖ a hirr hc' ev hC hXv χ c1 hrg c4
     obtain ⟨z, hz⟩ := exists_lift (c.V W₀) Y _ hrg
     obtain ⟨z', hz'⟩ := exists_lift (c.V W₀) Y _ hr
     have hid : spMap (RingHom.id O') = 𝟙 _ := Spec.map_id _

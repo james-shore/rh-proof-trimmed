@@ -74,13 +74,8 @@ theorem Gm_isMF' {p : ℕ} (hp : p.Prime) : IsMF (12 * ((2 * (p + 1) : ℕ) : �
 
 theorem kronFun_isMF {p : ℕ} (hp : p.Prime) : IsMF (12 * ((2 * (p + 1) : ℕ) : ℤ)) (kronFun p) := (Gm_isMF' hp).add (kronSq_isMF p)
 
-theorem aC_conv : Conv aC := convergesOnDisk_eisensteinFourCubeSeries
-theorem dC_conv : Conv dC := convergesOnDisk_discriminantSeries
-theorem aC_ev (τ : ℍ) : ev aC (qm 1 τ) = AA τ := by
-  exact evalSeries_eisensteinFourCubeSeries τ
-theorem dC_ev (τ : ℍ) : ev dC (qm 1 τ) = DD τ := by
-  exact evalSeries_discriminantSeries τ
-
+alias aC_conv := _root_.ReciprocityTheory.ChartRestriction.L1.convergesOnDisk_eisensteinFourCubeSeries
+alias dC_conv := _root_.ReciprocityTheory.ChartRestriction.L1.convergesOnDisk_discriminantSeries
 theorem kronFun_qExp {p : ℕ} (hp : p.Prime) :
     qExpansion 1 (kronFun p) = qExpansion 1 (Gm p) + (aC * dC ^ p - aC ^ p * dC) ^ 2 := by
   have hq : ∀ τ : ℍ, ‖qm 1 τ‖ < 1 := fun τ => by
@@ -94,7 +89,7 @@ theorem kronFun_qExp {p : ℕ} (hp : p.Prime) :
   intro τ
   rw [ev_add hG.conv (c3.pow 2) (hq τ), hG.ev_eq τ, ev_pow c3 2 (hq τ), ev_sub c1 c2 (hq τ),
     ev_mul aC_conv (dC_conv.pow p) (hq τ), ev_pow dC_conv p (hq τ), ev_mul (aC_conv.pow p) dC_conv (hq τ),
-    ev_pow aC_conv p (hq τ), aC_ev, dC_ev]
+    ev_pow aC_conv p (hq τ), _root_.ReciprocityTheory.ChartRestriction.L1.evalSeries_eisensteinFourCubeSeries, _root_.ReciprocityTheory.ChartRestriction.L1.evalSeries_discriminantSeries]
   rfl
 
 theorem kronFun_div {p : ℕ} (hp : p.Prime) :

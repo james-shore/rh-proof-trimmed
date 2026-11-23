@@ -90,20 +90,20 @@ theorem exists_locLev {U : Submodule ℂ (UA E a → ℂ)} (hU : IsAutRepU U) (w
     exacts [le_rfl, inf_le_left]
   · simp only [H]
     split_ifs
-    · exact (GlobalTheory.T.definiteUnitaryIntegralBelowPlace_compact_open E a r).2
+    · exact (_root_.GlobalTheory.Cong.AdaptLev.intU_isCompact_isOpen E a r).2
     · have e : (((intU a r ⊓ stab).subgroupOf (locU a r)) : Set (locU a r)) =
           (((intU a r).subgroupOf (locU a r)) : Set (locU a r)) ∩
             (fun x : locU a r => (⟨x.1, ((GlobalTheory.Cong.LevelExt.mem_locU_iff x.1).1 x.2).1⟩ : finU (E := E) (n := a))) ⁻¹'
               {k : finU (E := E) (n := a) | RU E a k φ₀ = φ₀} := by
         ext x; exact Iff.rfl
       rw [e]
-      exact (GlobalTheory.T.definiteUnitaryIntegralBelowPlace_compact_open E a r).2.inter (hφ₀aut.level.preimage (Continuous.subtype_mk continuous_subtype_val _))
+      exact (_root_.GlobalTheory.Cong.AdaptLev.intU_isCompact_isOpen E a r).2.inter (hφ₀aut.level.preimage (Continuous.subtype_mk continuous_subtype_val _))
   · simp only [H, intU_congr h]
   · simp only [H]
     split_ifs with h1
     · exact h1
     · exact ⟨φ₀, hφ₀U, hφ₀0, fun x hx => (Subgroup.mem_inf.1 hx).2⟩
-  · filter_upwards [GlobalTheory.T.autForm_fixed_by_integralPoints_almostAllPlaces E a φ₀ hφ₀aut] with w hw
+  · filter_upwards [_root_.GlobalTheory.Cong.AutFormFix.fixed_intU_eventually E a φ₀ hφ₀aut] with w hw
     exact hint w ⟨φ₀, hφ₀U, hφ₀0, hw⟩
 
 theorem map_intU {w : HeightOneSpectrum (𝓞 E)} (hw : IsSplitAt w) : (intU a w).map (cLoc w) = GlobalTheory.LFun.KGL w (n := a) := by
@@ -120,7 +120,7 @@ theorem open_compact_map {w : HeightOneSpectrum (𝓞 E)} (hw : IsSplitAt w) {L 
   rw [map_eq_image hle e he]
   refine ⟨e.toHomeomorph.isOpenMap _ ho, IsCompact.image ?_ e.continuous⟩
   rw [Topology.IsInducing.subtypeVal.isCompact_iff]
-  convert isCompact_of_le hL ho (GlobalTheory.T.definiteUnitaryIntegralBelowPlace_compact_open E a w).1 using 1
+  convert isCompact_of_le hL ho (_root_.GlobalTheory.Cong.AdaptLev.intU_isCompact_isOpen E a w).1 using 1
   exact coe_subgroupOf_image hle
 
 theorem exists_level {T : Finset (HeightOneSpectrum (𝓞 E))} {U : Submodule ℂ (UA E a → ℂ)} (hU : AutOffT T U)
@@ -136,10 +136,10 @@ theorem exists_level {T : Finset (HeightOneSpectrum (𝓞 E))} {U : Submodule �
   classical
   obtain ⟨H, hleI, hopen, hfib, hfix, hint, hae⟩ := exists_locLev hU.1 w₀
   have hle : ∀ w, H w ≤ locU a w := fun w => (hleI w).trans (intU_le_locU w)
-  have hcpt : ∀ w, IsCompact (H w : Set (UA E a)) := fun w => isCompact_of_le (hleI w) (hopen w) (GlobalTheory.T.definiteUnitaryIntegralBelowPlace_compact_open E a w).1
-  obtain ⟨φ, hφU, hφ0, hφH⟩ := GlobalTheory.T.exists_vector_fixed_by_product_localLevels E a U hU.1 w₀ H hle hfib hcpt
+  have hcpt : ∀ w, IsCompact (H w : Set (UA E a)) := fun w => isCompact_of_le (hleI w) (hopen w) (_root_.GlobalTheory.Cong.AdaptLev.intU_isCompact_isOpen E a w).1
+  obtain ⟨φ, hφU, hφ0, hφH⟩ := _root_.GlobalTheory.Cong.FixProd.fix_prod E a U hU.1 w₀ H hle hfib hcpt
     (hae.mono fun w hw x hx => by rw [hw] at hx; exact (mem_intU.1 hx).2 w (not_apart_self w)) hopen (fun w _ => hfix w)
-  have hφ := GlobalTheory.T.fixed_of_fixed_by_local_levels E a w₀ H hle hfib hcpt hopen hae φ (hU.1.aut φ hφU) hφH
+  have hφ := _root_.GlobalTheory.Cong.AdaptLev.fixed_of_levelOf E a w₀ H hle hfib hcpt hopen hae φ (hU.1.aut φ hφU) hφH
   let H' : HeightOneSpectrum (𝓞 E) → Subgroup (UA E a) := fun w => if Apart w v' then H w else intU a w
   have h1 : ∀ w, Apart w v' → H' w = H w := fun w h => if_pos h
   have h2 : ∀ w, ¬ Apart w v' → H' w = intU a w := fun w h => if_neg h
@@ -151,8 +151,8 @@ theorem exists_level {T : Finset (HeightOneSpectrum (𝓞 E))} {U : Submodule �
   have hopen' : ∀ w, IsOpen (((H' w).subgroupOf (locU a w)) : Set (locU a w)) := fun w => by
     by_cases h : Apart w v'
     · rw [h1 w h]; exact hopen w
-    · rw [h2 w h]; exact (GlobalTheory.T.definiteUnitaryIntegralBelowPlace_compact_open E a w).2
-  have hcpt' : ∀ w, IsCompact (H' w : Set (UA E a)) := fun w => isCompact_of_le (hleI' w) (hopen' w) (GlobalTheory.T.definiteUnitaryIntegralBelowPlace_compact_open E a w).1
+    · rw [h2 w h]; exact (_root_.GlobalTheory.Cong.AdaptLev.intU_isCompact_isOpen E a w).2
+  have hcpt' : ∀ w, IsCompact (H' w : Set (UA E a)) := fun w => isCompact_of_le (hleI' w) (hopen' w) (_root_.GlobalTheory.Cong.AdaptLev.intU_isCompact_isOpen E a w).1
   have hfib' : ∀ w u, ¬ Apart w u → H' w = H' u := fun w u h => by
     by_cases hw : Apart w v'
     · have hu : Apart u v' := by
@@ -165,7 +165,7 @@ theorem exists_level {T : Finset (HeightOneSpectrum (𝓞 E))} {U : Submodule �
     · rw [h1 w hw, h]
     · exact h2 w hw
   refine ⟨levelOf a w₀ H', fun w => (H' w).map (cLoc w), (H v').map (cLoc v'),
-    GlobalTheory.T.isLevelAway_definiteUnitaryLevelFromLocalLevels E a w₀ H' hle' hfib' hcpt' hopen' (hae.mono hint'), (open_compact_map hv' (hleI v') (hopen v')).1,
+    _root_.GlobalTheory.Cong.LevAway.isLevelAway_levelOf E a w₀ H' hle' hfib' hcpt' hopen' (hae.mono hint'), (open_compact_map hv' (hleI v') (hopen v')).1,
     ⟨φ, hφU, hφ0, fun x hx => hφ x ?_⟩, ?_, fun w hw _ => open_compact_map hw (hleI' w) (hopen' w), ?_, ?_, ?_⟩
   · obtain ⟨hx1, y, hy, e⟩ := Subgroup.mem_inf.1 hx
     obtain ⟨g1, g2, g3⟩ := mem_levelOf.1 hx1

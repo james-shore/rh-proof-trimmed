@@ -67,12 +67,7 @@ section
 variable {C : Type} [Field C] {R : Type} [CommRing R] [Algebra R C] {v : Valuation C NNReal}
   {F : Type} [Field F]
 
-theorem mem_x_ideal_iff (M : Submodule R (F → C)) (χ : MulChar F R) (r : R) :
-    r ∈ xIdeal M χ ↔ (fun a => algebraMap R C (r * χ a)) ∈ M := by
-  have : LinearMap.toSpanSingleton R (F → C) (fun a => algebraMap R C (χ a)) r =
-      fun a => algebraMap R C (r * χ a) := by
-    funext a; simp [Algebra.smul_def]
-  rw [xIdeal, Submodule.mem_comap, this]
+alias mem_x_ideal_iff := _root_.PositivityTheory.HtPt.Pmono.mem_xIdeal
 
 theorem mem_aug (M : Submodule R (F → C)) (g : F → C) :
     g ∈ augIdeal M ↔ g ∈ M ∧ g 0 = 0 := Iff.rfl
@@ -173,7 +168,7 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.fundamental_ideal_frobenius_pr
   have hord : orderOf σ = p ^ f - 1 := (FundGen.main p C v R hv hp F f hf σ hσ).1
   obtain ⟨h0, -⟩ := exists_inv_card hv hp hf
   have hprin := eig_rank_one p C v R hv hp F f hf AA hst
-  have hmono := (GlobalTheory.T.fundamental_ideal_frobenius_powers p C v R hv hp F f hf AA hst σ hσ c hc).2
+  have hmono := (_root_.PositivityTheory.HtPt.Pmono.r_mono p C v R hv hp F f hf AA hst σ hσ c hc).2
   have hq : 1 ≤ p ^ f := Nat.one_le_pow _ _ (by omega)
   have hsq : ∀ n, (fun a => algebraMap R C (c n ^ p * (σ ^ p ^ (n + 1)) a)) ∈
       sqIdeal (augIdeal AA.carrier) := fun n => by

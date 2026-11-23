@@ -204,7 +204,7 @@ theorem schur_data_mul_finGL : ∀ (E : Type) [Field E] [NumberField E] [_root_.
   have hi : (conjLowUni (Yof g) K).map (pInf E) = 1 := by rw [conjLowUni_map, hKi, conjLowUni_one]
   have hdet : IsUnit (conjLowUni (Yof g) K).det := by rwa [det_conjLowUni]
   rw [hf] at hD' ⊢
-  have alg := GlobalTheory.T.lower_unipotent_conj_block_formulas (Ad E) m r g K hD
+  have alg := _root_.GlobalTheory.SchurExt.schur_mul_conjLowUni (Ad E) m r g K hD
   generalize conjLowUni (Yof g) K = L at *
   have hDi : (Dof L).map (pInf E) = 1 := by rw [← Dof_map, hi, Dof_one]
   have hDL : IsUnit (Dof L).det := by

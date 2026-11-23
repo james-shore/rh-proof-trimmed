@@ -96,13 +96,6 @@ end Act
 
 variable [IsCMField E]
 
-theorem principal_root_re_zero_im_sq (H : Host E) : H.rt0.re = 0 ∧ H.rt0.im ^ 2 = H.d := by
-  first
-  | exact @_root_.GlobalTheory.SquareEqNegReIm.re_eq_zero_and_im_sq
-  | exact _root_.GlobalTheory.SquareEqNegReIm.re_eq_zero_and_im_sq
-  | (apply _root_.GlobalTheory.SquareEqNegReIm.re_eq_zero_and_im_sq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SquareEqNegReIm.re_eq_zero_and_im_sq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SquareEqNegReIm.re_eq_zero_and_im_sq <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SquareEqNegReIm.re_eq_zero_and_im_sq ..)
+alias principal_root_re_zero_im_sq := _root_.GlobalTheory.SquareEqNegReIm.re_eq_zero_and_im_sq
 
 end GlobalTheory.PrincipalDatum

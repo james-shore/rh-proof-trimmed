@@ -59,7 +59,7 @@ theorem blockTri_at_alt : ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, _root
         GlobalTheory.CenFrame.FrameRed (GlobalTheory.FrameBlockDiagonal.rankV (w.st Z).toD7 k) (ad.PV k) (t.r.z.R.βV k) s' φ b →
         b ∈ Formalism.L2.DIV.blockTri (Formalism.L2.DIV.blk2 (w.st Z).toD7.R.r) := by
   intro hL
-  refine _root_.GlobalTheory.HeightCounting.Up.Model.AtMem.at_member_imp (_root_.GlobalTheory.HeightCounting.Up.Model.AtMem.and_z (_root_.GlobalTheory.T.central_frame_split_nontrivial_at_alt hL) (_root_.GlobalTheory.T.exists_residue_ne_zero_ne_one_at_member hL)) ?_
+  refine _root_.GlobalTheory.HeightCounting.Up.Model.AtMem.at_member_imp (_root_.GlobalTheory.HeightCounting.Up.Model.AtMem.and_z (_root_.GlobalTheory.FrameTypes.main_alt_alt hL) (_root_.GlobalTheory.ResThree.main_alt_alt hL)) ?_
   intro K B f T w Z Wt p0 t nch n c h ad i s k hs hN s' φ b hP hres hfr
   obtain ⟨F, J, χ, ψ₀, ξ, hF, hψ, hJ, hFJ, hS⟩ := h.1 ad i s k hs hN s' φ b hP hres hfr
   have hr : 2 ≤ (w.st Z).toD7.R.r := by

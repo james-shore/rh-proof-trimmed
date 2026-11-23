@@ -39,6 +39,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.CechHOneVanishesOnOpenOfIsAffineOpen
 
 @[expose] public section
 
@@ -49,20 +50,6 @@ open GlobalTheory.AbLaw
 noncomputable section
 
 namespace GlobalTheory.ExactCoboundaryTriple
-
-theorem exists_triple {κ : Type} [LinearOrder κ] {t : Finset κ} (ht : t.card = 3) :
-    ∃ i j k, i < j ∧ j < k ∧ t = {i, j, k} := by
-  refine ⟨t.orderEmbOfFin ht 0, t.orderEmbOfFin ht 1, t.orderEmbOfFin ht 2,
-    (t.orderEmbOfFin ht).strictMono (by decide), (t.orderEmbOfFin ht).strictMono (by decide), ?_⟩
-  ext x
-  constructor
-  · intro hx
-    have : x ∈ Set.range (t.orderEmbOfFin ht) := by rw [Finset.range_orderEmbOfFin]; exact hx
-    obtain ⟨m, rfl⟩ := this
-    fin_cases m <;> simp
-  · intro hx
-    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
-    rcases hx with rfl | rfl | rfl <;> exact Finset.orderEmbOfFin_mem _ _ _
 
 theorem totalD_triple {κ : Type} [LinearOrder κ] {R : Type} [CommRing R] (A : Cube.{0} κ R)
     (x : ∀ s, A.obj s) {i j k : κ} (hij : i < j) (hjk : j < k) :
@@ -141,7 +128,7 @@ theorem coboundary_of_exact {κ : Type} [LinearOrder κ] (W : κ → X.Opens)
     funext t
     rw [Cube.d_apply_eq_totalD (secCube f M W) _ x (fun _ => rfl)]
     obtain ⟨t, ht⟩ := t
-    obtain ⟨i, j, k, hij, hjk, rfl⟩ := exists_triple ht
+    obtain ⟨i, j, k, hij, hjk, rfl⟩ := _root_.GlobalTheory.AbLaw.CechOne.exists_triple ht
     refine (totalD_triple (secCube f M W) x hij hjk).trans ?_
     rw [hx hij, hx hjk, hx (hij.trans hjk)]
     simp only [res_secCube]

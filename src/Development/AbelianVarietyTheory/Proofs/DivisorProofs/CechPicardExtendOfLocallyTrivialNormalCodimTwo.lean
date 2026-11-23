@@ -45,6 +45,8 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.EqOfAgreeOnTorsion
 import Development.AbelianVarietyTheory.PublishedTheorems.AbelianLaws.PrincipalPolarisationOneSection
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsAdditiveOfUniversal
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsGenOfRigid
+import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.CommGroupCommonFactorQuotientCancel
 
 @[expose] public section
 
@@ -60,13 +62,6 @@ namespace GlobalTheory.ExtendClass
 open GlobalTheory.GlueLineBundle TopologicalSpace
 
 variable {X : Scheme.{0}}
-
-theorem gm_eq_map {Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) (hy : f y ∈ U) (a : Γ(X, U)ˣ) :
-    gm f y U a = Units.map (f.stalkMap y).hom.toMonoidHom (gm (𝟙 X) (f y) U a) := by
-  apply Units.ext
-  rw [gm_val f y U hy, Units.coe_map, gm_val (𝟙 X) (f y) U hy]
-  show _ = (f.stalkMap y).hom ((X.presheaf.germ U (f y) hy).hom a.val)
-  rw [Scheme.Hom.germ_stalkMap_apply]
 
 theorem map_stalk_inj {Y : Scheme.{0}} (j : Y ⟶ X) [IsOpenImmersion j] (y : Y) :
     Function.Injective (Units.map (j.stalkMap y).hom.toMonoidHom) :=
@@ -127,7 +122,7 @@ theorem exists_sigma (W : X.Opens) {M : LB W.toScheme} (N : X.Opens)
   have m3 : ι₁ a ∈ W.ι ⁻¹ᵁ N ⊓ M.U k' := ⟨hz, hk'⟩
   apply map_stalk_inj ι₁ a
   beta_reduce
-  rw [map_mul, ← gm_eq_map ι₁ a _ m1, ← gm_eq_map ι₁ a _ m2, ← gm_eq_map ι₁ a _ m3,
+  rw [map_mul, ← _root_.GlobalTheory.RigidTriv.gm_stalk ι₁ a _ m1, ← _root_.GlobalTheory.RigidTriv.gm_stalk ι₁ a _ m2, ← _root_.GlobalTheory.RigidTriv.gm_stalk ι₁ a _ m3,
     ev k hk, ev k' hk', eg]
   exact (isGen_iff_germ t).1 ht a (fun _ => k) (fun _ => k') (mem_pull.2 hk) (mem_pull.2 hk')
 
@@ -136,11 +131,6 @@ end GlobalTheory.ExtendClass
 namespace GlobalTheory.ExtendClass
 open GlobalTheory.GlueLineBundle TopologicalSpace
 variable {X : Scheme.{0}}
-
-theorem mul_ringHom_units_ratio {G : Type} [CommGroup G] (g a b : G) : g * a * (g * b)⁻¹ = a * b⁻¹ := by
-  apply Additive.ofMul.injective
-  simp only [ofMul_mul, ofMul_inv]
-  abel
 
 theorem exists_ratio (W : X.Opens) {M : LB W.toScheme} (hM : M.IsLB) {I : Type} (N : I → X.Opens)
     (σ : ∀ x k, Γ(W.toScheme, W.ι ⁻¹ᵁ N x ⊓ M.U k)ˣ)
@@ -166,7 +156,7 @@ theorem exists_ratio (W : X.Opens) {M : LB W.toScheme} (hM : M.IsLB) {I : Type} 
       have hy : W.ι z ∈ N y := h1.1.2
       have hk : z ∈ M.U k := h1.2
       have hk' : z ∈ M.U k' := h2.2
-      rw [ev k z h1, ev k' z h2, hσ x z k k' hx hk hk', hσ y z k k' hy hk hk', mul_ringHom_units_ratio])
+      rw [ev k z h1, ev k' z h2, hσ x z k k' hx hk hk', hσ y z k k' hy hk hk', _root_.GlobalTheory.WtBundle.commGroup_common_factor_quotient_cancel])
   refine ⟨r, fun z k hx hy hk => ?_⟩
   have hz : z ∈ O k := ⟨⟨hx, hy⟩, hk⟩
   rw [← gm_res _ z (l0 k) hz, hr k, ev k z hz]

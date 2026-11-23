@@ -54,7 +54,7 @@ section SlopeTestRemainingChoices
 
 variable {p : ℕ} [hp : Fact p.Prime]
 
-private theorem prime_prime_padicInt : Prime (p : ℤ_[p]) := PadicInt.irreducible_p.prime
+private alias prime_prime_padicInt := _root_.PadicInt.prime_p
 
 private theorem not_prime_dvd_padicInt_unit (w : ℤ_[p]ˣ) : ¬ (p : ℤ_[p]) ∣ (w : ℤ_[p]) :=
   fun h => prime_prime_padicInt.not_unit (isUnit_of_dvd_unit h (Units.isUnit _))

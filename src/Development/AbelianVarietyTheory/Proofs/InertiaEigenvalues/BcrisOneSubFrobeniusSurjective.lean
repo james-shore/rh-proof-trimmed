@@ -126,17 +126,9 @@ theorem ainf_onto (r : ℕ) (a : Per.Ainf l) : ∃ β : Per.Ainf l, Per.φA l β
   obtain ⟨β, hβ⟩ := (ArtinSchreierWitt.main l).2.2 ((l : Per.Ainf l) ^ r) a
   exact ⟨β, by rw [GlobalTheory.RingBasics.φA_apply]; exact hβ⟩
 
-theorem phiA_alg (a : Per.Ainf l) : phiA l (algebraMap (Per.Ainf l) (Per.Acris l) a) =
-    algebraMap (Per.Ainf l) (Per.Acris l) (Per.φA l a) := (GlobalTheory.CrisMaps.phiA_extends l).alg a
+alias phiA_alg := _root_.GlobalTheory.MemLoc.PhiImage.phiA_alg
 
-theorem exists_w (e : Per.Fl l) (he : e.untilt = 1) : ∃ w : Per.Acris l,
-    (l : Per.Acris l) * w = algebraMap (Per.Ainf l) (Per.Acris l) (mu e) ^ (l - 1) := by
-  obtain ⟨w, hw, -⟩ := exists_mu_pow_div l e he
-  have hw0 : (l : Per.Acris0 l) * w = algebraMap (Per.Ainf l) (Per.Acris0 l) (mu e) ^ (l - 1) :=
-    Subtype.ext (by simpa using hw)
-  have hw1 := congrArg (algebraMap (Per.Acris0 l) (Per.Acris l)) hw0
-  rw [map_mul, map_natCast, map_pow, ← TFil.alg_factor] at hw1
-  exact ⟨_, hw1⟩
+alias exists_w := _root_.GlobalTheory.MemLoc.FixR.exists_w
 
 set_option allowUnsafeReducibility true in
 attribute [local irreducible] Per.Acris Per.Bcris
@@ -164,7 +156,7 @@ namespace GlobalTheory.MemLoc
 
 theorem one_sub_phi_onto (l : ℕ) [Fact l.Prime] (C : Core l) : C.OneSubPhiOnto := by
   intro b
-  obtain ⟨r, x, hx⟩ := GlobalTheory.T.bcris_eq_acris_localization_periodT l C b
+  obtain ⟨r, x, hx⟩ := _root_.GlobalTheory.MemLoc.bcris_eq_acris_localization_periodT_alt l C b
   obtain ⟨hT, -, -, hl⟩ := core_t_unit_fil l C
   refine OneSubPhi.onto_of_denom l (algebraMap (Per.Acris l) (Per.Bcris l)) (phiA l) (Per.φB l)
     (ActLaws.act_laws l).2.2.2.2.2.2.2.2.2.2.2.2 C.t (TPhi.t_phi l C) hT hl

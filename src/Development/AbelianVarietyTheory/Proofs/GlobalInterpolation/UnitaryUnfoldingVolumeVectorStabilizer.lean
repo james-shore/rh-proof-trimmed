@@ -164,7 +164,7 @@ theorem rational_orbit {F E : Type} [Field F] [NumberField F] [Field E] [NumberF
       ∃ γ ∈ ratPts (AF F) cm.sig W.gram, γ • ratTup (F := F) (AF F) (coordTup W x) = y := by
   have hd := (GlobalTheory.T.hermitian_form_and_selfDual_lattice_in_frame_coords F E cm W).1
   have hxx : hE cm.sig W.gram (coordTup W x 0) (coordTup W x 0) = β := (hd x x).trans hx
-  obtain ⟨hw1, hw2⟩ := GlobalTheory.T.rational_vectors_same_length_one_unitary_orbit F E cm.sig (isCMExt cm) _ W.gram (isHermND cm W) (coordTup W x) (hxx ▸ hβ)
+  obtain ⟨hw1, hw2⟩ := _root_.GlobalTheory.RatOrbit.rational_sphere_orbit F E cm.sig (isCMExt cm) _ W.gram (isHermND cm W) (coordTup W x) (hxx ▸ hβ)
   refine ⟨fun a b hab => ?_, fun y => Iff.trans ⟨?_, ?_⟩ (hw2 y)⟩
   · exact Subtype.ext (W.frame.repr.injective (Finsupp.ext (congrFun (congrFun (hw1 hab) 0))))
   · rintro ⟨x', rfl⟩
@@ -281,7 +281,7 @@ theorem unfoldAt (hT : StabTransitive) (D : D7) (W W' : HSpace D.host.E) (P Q P'
     (by rw [hLc]; exact (hμ.2.2 θ hθ).2 A hA)
   obtain ⟨-, ψ', hψ', hψA', hψm'⟩ := GlobalTheory.T.map_restrict_latticeStabiliser_measure_eq_compactDual _ _ _ hcm _ (embOf D) θ hθ _ P' Q' hM' W'.gram hJ'.2 A' hA' L' hK' D.cd μ'
     (by rw [hLc']; exact (hμ'.2.2 θ hθ).2 A' hA')
-  obtain ⟨hpt, hpt'⟩ := GlobalTheory.T.exists_measurable_realOrbitMap_of_adelicOrbit _ _ _ hcm _ (embOf D) hτ θ hθ _ P Q W.gram A N hN hN' (coordTup W x)
+  obtain ⟨hpt, hpt'⟩ := _root_.GlobalTheory.RealOrbitMap.realOrbit _ _ _ hcm _ (embOf D) hτ θ hθ _ P Q W.gram A N hN hN' (coordTup W x)
   refine ⟨hpt, fun pt hp Φi hΦ => ?_⟩
   obtain ⟨hpm, hpi, hph⟩ := hpt' pt hp
   obtain ⟨φ, hφc, hφi, hφr, hφB, hφΓ⟩ := GlobalTheory.T.exists_adelic_unitary_complement_range_stabiliser _ _ _ hcm _ _ W.gram W'.gram B (coordTup W x) hMM hJ hJ' hB hBx hx0
@@ -297,13 +297,13 @@ theorem unfoldAt (hT : StabTransitive) (D : D7) (W W' : HSpace D.host.E) (P Q P'
   have : Countable (ratPts (AF D.host.F) D.sp.cm.sig W.gram) := Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.Unfold.countableGamma _ _
   have : Countable (ratPts (AF D.host.F) D.sp.cm.sig W'.gram) := Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.Unfold.countableGamma _ _
   rw [← hu1]
-  refine GlobalTheory.T.lintegral_tsum_orbit_unfold_alt _ _ _ {x' : W.V // W.hT x' x' = algebraMap _ _ β} μ μ' (ratPts _ _ _) (ratPts _ _ _) 𝓕 𝓕' h𝓕 h𝓕' φ
+  refine _root_.GlobalTheory.lintegral_tsum_orbit_unfold _ _ _ {x' : W.V // W.hT x' x' = algebraMap _ _ β} μ μ' (ratPts _ _ _) (ratPts _ _ _) 𝓕 𝓕' h𝓕 h𝓕' φ
     hφc.measurable hφi hφΓ _ hφr
     (fun x' => ratTup (F := D.host.F) (AF D.host.F) (coordTup W x'.1)) hw1 hw2 u hu
     (phiLat (L0c D W) Φi) fun h => ?_
   · rw [hu2, hph h (ψ h) (hψA h)]
     refine congrArg (· * _) ?_
-    have h1 := GlobalTheory.T.finPart_inv_smul_mem_latHat_iff_stab_mul_level hT _ _ _ hcm (unramified_host D) _ W.gram hJ L hLs β hβ (coordTup W x) hxL' hxx h
+    have h1 := _root_.GlobalTheory.AdelicOrbit.mem_latHat_iff hT _ _ _ hcm (unramified_host D) _ W.gram hJ L hLs β hβ (coordTup W x) hxL' hxx h
     have h2 : (L : Set _) = L0c D W := hLc
     rw [← h2]
     refine Set.indicator_eq_indicator (h1.trans ⟨?_, ?_⟩) rfl

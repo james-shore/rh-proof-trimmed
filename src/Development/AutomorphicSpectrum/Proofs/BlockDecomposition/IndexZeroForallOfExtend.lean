@@ -125,7 +125,7 @@ theorem ses (hF : IsFil Φ Fil) (r : ℤ) (h0 : Q.Crit Fil (r - 1)) (h1 : Q.Crit
     refine (h T b).trans (forall_congr' fun k => ?_)
     have e : r' + 1 - (k : ℤ) = r' - k + 1 := by ring
     rw [e]
-  obtain ⟨β, i, e, s, f⟩ := GlobalTheory.T.filtration_critical_comparison_map Q E Fil (fun r => Fil (r + 1)) r (fun r' T => hF.anti (by omega) T) h1 h0 (cb _ h2) (cb _ (by simpa using h1))
+  obtain ⟨β, i, e, s, f⟩ := _root_.GlobalTheory.CompanionTheory.PolySes.ses Q E Fil (fun r => Fil (r + 1)) r (fun r' T => hF.anti (by omega) T) h1 h0 (cb _ h2) (cb _ (by simpa using h1))
   exact ⟨Functor.whiskerLeft (Pt.Sσ σ) β, fun T => i _, fun T => e _, fun T => s _, fun T c c' z z' h h' h'' => f ((Pt.Sσ σ).obj T) c c' z z' h h' h''⟩
 
 abbrev Jm (r : ℤ) : CH.Mor (gr Fil r) (G Q E σ Fil r) (RingHom.id R) := CH.Mor.ofNatTrans (jW Q E σ Fil r)
@@ -153,7 +153,7 @@ theorem pull_cfs (hF : IsFil Φ Fil) (hc : E.GrConst Fil) {j q : ℕ} {r : ℤ} 
 
   rw [map_sum, map_sum]
   refine Finset.sum_congr rfl fun I _ => ?_
-  exact GlobalTheory.T.frame_form_restriction_cocycle Q hF E σ hc j q r hr I.1 (x I) (hx I) _ _ (fun s => rfl) (fun s => rfl)
+  exact _root_.GlobalTheory.CompanionTheory.GrPull.gr_pull Q hF E σ hc j q r hr I.1 (x I) (hx I) _ _ (fun s => rfl) (fun s => rfl)
 
 theorem mem_y (hF : IsFil Φ Fil) {j q : ℕ} {r : ℤ} (hr : r = (j + 1 : ℕ) + q) (I : Fin j → Fin (d + 1)) (x : Φ.A.obj E.D)
     (hx : x ∈ (Fil q).S E.D) (s : ComposableArrows C j) :
@@ -177,13 +177,13 @@ theorem d_yc (hF : IsFil Φ Fil) (hc : E.GrConst Fil) {j q : ℕ} {r : ℤ} (hr 
     (hx : x ∈ (Fil q).S E.D) :
     CH.d _ j (yc Q E σ hF hr (Fin.succ ∘ I) x hx) =
       -(Jm Q E σ Fil r).pullC (j + 1) (fc hF E σ hr (Fin.cons 0 (Fin.succ ∘ I)) x hx) :=
-  GlobalTheory.T.frame_form_coboundary_relation Q hF E σ hc j q r (by rw [hr]; push_cast; ring) I x hx _ _ (fun s => rfl) (fun s => rfl)
+  _root_.GlobalTheory.CompanionTheory.GrDelta.gr_delta Q hF E σ hc j q r (by rw [hr]; push_cast; ring) I x hx _ _ (fun s => rfl) (fun s => rfl)
 
 theorem pull_fc (hF : IsFil Φ Fil) (hc : E.GrConst Fil) {j q : ℕ} {r : ℤ} (hr : r = j + q) (I : Fin j → Fin d) (x : Φ.A.obj E.D)
     (hx : x ∈ (Fil q).S E.D) :
     (Pm Q E σ Fil r).pullC j (fc (Cut.isFil_1 hF) (Cut.E1 E) Cut.can hr I x hx) =
       (Jm Q E σ Fil r).pullC j (fc hF E σ hr (Fin.succ ∘ I) x hx) :=
-  GlobalTheory.T.frame_form_restriction_cocycle Q hF E σ hc j q r hr I x hx _ _ (fun s => rfl) (fun s => rfl)
+  _root_.GlobalTheory.CompanionTheory.GrPull.gr_pull Q hF E σ hc j q r hr I x hx _ _ (fun s => rfl) (fun s => rfl)
 
 theorem beta_val (hF : IsFil Φ Fil) {r : ℤ} (β : G Q E σ Fil r ⟶ G Q E σ Fil (r - 1))
     (hβ : ∀ (T : C) (c c' : ℕ →₀ Φ.A.obj T) (z : sqM (Fil r) (Fil (r + 1)) (Q.P T)) (z' : sqM (Fil (r - 1)) (Fil (r - 1 + 1)) (Q.P T)),

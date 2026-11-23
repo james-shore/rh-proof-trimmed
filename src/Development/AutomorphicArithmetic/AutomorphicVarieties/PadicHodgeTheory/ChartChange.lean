@@ -56,10 +56,6 @@ import Mathlib.Topology.Sheaves.Init
 
 open UpperTheory.V.Loc UpperTheory.V.Alg IsLocalRing MvPowerSeries
 
-private theorem mem_span_X {O σ : Type} [CommRing O] [Fintype σ] (f : MvPowerSeries σ O)
-    (hf : constantCoeff f = 0) : ∃ g : σ → MvPowerSeries σ O, f = ∑ i, MvPowerSeries.X i * g i :=
-  _root_.UpperTheory.Reformulated.B.MemSpanMonomial.mem_span_X f hf
-
 private theorem mem_max {E σ : Type} [Field E] (a : MvPowerSeries σ E) :
     a ∈ maximalIdeal _ ↔ constantCoeff a = 0 := by
   rw [mem_maximalIdeal, mem_nonunits_iff, MvPowerSeries.isUnit_iff_constantCoeff, isUnit_iff_ne_zero, not_not]
@@ -67,7 +63,7 @@ private theorem mem_max {E σ : Type} [Field E] (a : MvPowerSeries σ E) :
 private theorem lin_part {E : Type} [Field E] {n : ℕ} (f : MvPowerSeries (Fin n) E)
     (hf : constantCoeff f = 0) :
     f - ∑ j, coeff (Finsupp.single j 1) f • (X j : MvPowerSeries (Fin n) E) ∈ maximalIdeal _ ^ 2 := by
-  obtain ⟨g, hg⟩ := mem_span_X f hf
+  obtain ⟨g, hg⟩ := _root_.UpperTheory.Reformulated.B.MemSpanMonomial.mem_span_X f hf
   have hc : ∀ j, coeff (Finsupp.single j 1) f = constantCoeff (g j) := by
     intro j
 

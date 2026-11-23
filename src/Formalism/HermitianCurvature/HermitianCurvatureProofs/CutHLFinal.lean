@@ -50,4 +50,4 @@ theorem head_letter_of_minus_positive : LevelPointCoordinates.HeadLetter :=
 
 end Formalism.FourierDecayAlt.P.CutHL
 
-theorem Formalism.FourierDecayAlt.P.head_letter_identity : Formalism.FourierDecayAlt.P.LevelPointCoordinates.HeadLetter := Formalism.FourierDecayAlt.P.CutHL.head_letter_of_minus_positive
+alias Formalism.FourierDecayAlt.P.head_letter_identity := _root_.Formalism.FourierDecayAlt.P.CutHL.head_letter_of_minus_positive

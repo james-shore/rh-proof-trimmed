@@ -51,6 +51,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.PowExpIOrInvInjective
 
 @[expose] public section
 
@@ -152,7 +153,7 @@ theorem central_wt : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam 
           simp only [hμdef, hζρ ρ hρ, inv_one, ite_self]
         rw [Finset.prod_eq_single τ (fun ρ _ hρ => by rw [hμρ ρ hρ, one_pow]) (by simp),
           Finset.prod_eq_single τ (fun ρ _ hρ => by rw [hμρ ρ hρ, one_pow]) (by simp)] at e2
-        exact GlobalTheory.T.eq_of_pow_eq_pow_of_eq_exp_I_or_inv _ _ (μ z τ) (by
+        exact _root_.GlobalTheory.ExpPow.pow_exp_I_or_inv_injective _ _ (μ z τ) (by
           simp only [hμdef, hζτ]
           split_ifs
           exacts [Or.inr rfl, Or.inl rfl]) e2

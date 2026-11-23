@@ -158,7 +158,7 @@ theorem core : ∀ (P M N : Type) [Group P] [Group M] [Group N] (s : M →* P) (
   have hsupp : (Function.support fun d : DoubleCoset.Quotient (TP : Set P) (KP : Set P) =>
       (((TP ⊓ KP.map (MulAut.conj (Quotient.out d)).toMonoidHom).relIndex CP : ℕ) : ℂ) * G (Quotient.out d)).Finite :=
     hfin.subset fun d hd => right_ne_zero_of_mul hd
-  rw [GlobalTheory.T.finsum_fiberwise_of_finite_support_complex ρ _ hsupp]
+  rw [_root_.GlobalTheory.finsum_fiberwise_of_finite_support ρ _ hsupp]
   refine finsum_congr fun q => ?_
   set q0 := Quotient.out q with hq0def
   have hq0 : DoubleCoset.mk TM KM q0 = q := DoubleCoset.out_eq' q

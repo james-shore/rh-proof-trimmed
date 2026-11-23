@@ -349,7 +349,7 @@ theorem covolume_congruence_stabiliser : ∀ (K : Type) [Field K] [NumberField K
   obtain ⟨hstab, hlie, hstabp, hliep⟩ := GlobalTheory.T.gramUnipotentStabilizer_bruhatCell_conj_root K N L U p hL hU
   have hUdet : IsUnit U.det := by rw [det_upUni hU]; exact isUnit_one
   have hZdet : (L * ptMat p * U).det ≠ 0 := by
-    rw [Matrix.det_mul, Matrix.det_mul, det_loUni hL, det_upUni hU, one_mul, mul_one]
+    rw [Matrix.det_mul, Matrix.det_mul, det_loUni hL, _root_.GlobalTheory.LieCovol.det_upUni hU, one_mul, mul_one]
     exact (GlobalTheory.LoopV.Cell.ptMat_det p).ne_zero
   have hRlt : ∀ q ∈ roots (ptMat p), q.1 < q.2 := by
     intro q hq

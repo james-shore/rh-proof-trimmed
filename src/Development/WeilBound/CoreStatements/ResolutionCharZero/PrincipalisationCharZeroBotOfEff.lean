@@ -70,12 +70,6 @@ def GBoundary : Prop :=
     (∀ x ∈ E, FinalTheorems.SncAt (Scheme.IdealSheafData.vanishingIdeal E) x) →
     ∃ L : List X.IdealSheafData, HasSimpleNormalCrossings p L ∧ (⋃ D ∈ L, (D.support : Set X)) = E
 
-def GCentre : Prop :=
-  ∀ (k : Type) [Field k] (X : Scheme.{0}) (q : X ⟶ Spec (CommRingCat.of k)) [Smooth q] (Z : X.IdealSheafData)
-    (L : List X.IdealSheafData) (F : Closeds X),
-    HasSimpleNormalCrossings q L → HasSimpleNormalCrossingsWith q Z L → (⋃ D ∈ L, (D.support : Set X)) = F →
-    IsSncCentre F Z
-
 def GEnd : Prop :=
   ∀ (k : Type) [Field k] [CharZero k] (X : Scheme.{0}) (p : X ⟶ Spec (CommRingCat.of k)) [Smooth p]
     [LocallyOfFiniteType p] [QuasiCompact p] (I : X.IdealSheafData) (L : List X.IdealSheafData)
@@ -126,7 +120,7 @@ namespace PositivityTheory.ResPlug.WeightsCompactStabilizer
 
 open GlobalTheory.CompanionTheory.Hypotheses₂ GlobalTheory.CompanionTheory.Hypotheses₂.SncBlowup FunctorialResolution
 
-theorem isSncBlowupSeq_of_principalizing (hC : GCentre) (hT : GTransform) {k : Type} [Field k] [CharZero k]
+theorem isSncBlowupSeq_of_principalizing (hC : _root_.PositivityTheory.ResPlug.BlowupCentre.GCentre) (hT : GTransform) {k : Type} [Field k] [CharZero k]
     {X : Scheme.{0}} (g : X ⟶ Spec (CommRingCat.of k)) [Smooth g] (E : Closeds X) (I : X.IdealSheafData)
     (L : List X.IdealSheafData) (hL : (⋃ D ∈ L, (D.support : Set X)) = E) (s : BlowupSequence X)
     (hs : IsPrincipalizingSequence g I L s) :
@@ -188,7 +182,7 @@ namespace PositivityTheory.ResPlug.WeightsCompactStabilizer
 
 open GlobalTheory.CompanionTheory.Hypotheses₂ GlobalTheory.CompanionTheory.Hypotheses₂.SncBlowup FunctorialResolution
 
-theorem principalisationCharZero_of (H : FPrinc) (hB : GBoundary) (hC : GCentre) (hE : GEnd) :
+theorem principalisationCharZero_of (H : FPrinc) (hB : GBoundary) (hC : _root_.PositivityTheory.ResPlug.BlowupCentre.GCentre) (hE : GEnd) :
     PrincipalisationCharZero := by
   intro k _ _ d X g hd hqc hsep I E hI hEsnc
   have : SmoothOfRelativeDimension d g := hd
@@ -210,10 +204,10 @@ open GlobalTheory.CompanionTheory.Hypotheses₂ GlobalTheory.CompanionTheory.Hyp
 
 theorem fPrinc : FPrinc := FunctorialResolution.functorialPrincipalizationCharZero.{0}
 
-theorem principalisationCharZero (hB : GBoundary) (hC : GCentre) (hE : GEnd) : PrincipalisationCharZero :=
+theorem principalisationCharZero (hB : GBoundary) (hC : _root_.PositivityTheory.ResPlug.BlowupCentre.GCentre) (hE : GEnd) : PrincipalisationCharZero :=
   principalisationCharZero_of fPrinc hB hC hE
 
-theorem principalisationCharZero_bot (hC : GCentre) (hE : GEnd) :
+theorem principalisationCharZero_bot (hC : _root_.PositivityTheory.ResPlug.BlowupCentre.GCentre) (hE : GEnd) :
     ∀ (k : Type) [Field k] [CharZero k] (d : ℕ) (X : Scheme.{0}) (g : X ⟶ Sp k),
       SmoothOfRelativeDimension d g → QuasiCompact g → IsSeparated g →
       ∀ (I : X.IdealSheafData), (∀ C ∈ irreducibleComponents X, ¬ C ⊆ (I.support : Set X)) →
@@ -247,7 +241,7 @@ namespace PositivityTheory.ResPlug.WeightsCompactStabilizer
 
 open GlobalTheory.CompanionTheory.Hypotheses₂ GlobalTheory.CompanionTheory.Hypotheses₂.SncBlowup FunctorialResolution
 
-theorem gCentre : GCentre := PositivityTheory.ResPlug.BlowupCentre.gCentre
+theorem gCentre : _root_.PositivityTheory.ResPlug.BlowupCentre.GCentre := PositivityTheory.ResPlug.BlowupCentre.gCentre
 
 theorem principalisationCharZero' (hB : GBoundary) (hE : GEnd) : PrincipalisationCharZero :=
   principalisationCharZero hB gCentre hE

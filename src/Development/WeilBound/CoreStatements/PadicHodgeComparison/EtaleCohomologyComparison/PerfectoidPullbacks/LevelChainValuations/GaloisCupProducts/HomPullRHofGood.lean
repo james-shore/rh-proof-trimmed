@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.DividedPowerReduction.ReductionChangeLevel
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MuBNat
 
 @[expose] public section
 
@@ -74,9 +75,9 @@ theorem homPull_good_of_nmHM_pull
     o := fun _ => rfl
     tS := fun n j x => ((Model.pullH u hu false j).comm n x).symm
     r := hr
-    red := fun n j z => nmHM_redM _ l s none n j z
+    red := fun n j z => _root_.GlobalTheory.CompanionTheory.RedPull.nmHM_redM _ l s none n j z
     b := nmHO_nmPullB_bMap hL u hu s hQN hQM
-    μ := nm_muB (nmPullB L u hu) (Model.genMap_q u hu) 1 s (fun _ => rfl) }
+    μ := _root_.GlobalTheory.CompanionTheory.MuNat.muB_nat (nmPullB L u hu) (Model.genMap_q u hu) 1 s (fun _ => rfl) }
 
 end
 

@@ -86,7 +86,7 @@ private theorem frobN_mor (p : ℕ) [Fact p.Prime] {k : Type} [Field k] (hk : (p
     have F := frobMor p k hk A (cast_left p k hk A)
     have K : GrpMor (dp0 k) (𝟙 _) A (dp0 k) (𝟙 _) A ((frobR p k hk).comp ρ) (spMap ((frobR p k hk).comp ρ))
         (frobN p A.left (cast_left p k hk A) (j + 1)) := by
-      rw [GlobalTheory.SchRing.spMap_comp']
+      rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
       exact u.comp F
     refine ⟨_, K, fun c ↦ ?_⟩
     rw [Function.iterate_succ_apply', ← hu]
@@ -140,7 +140,7 @@ theorem UpperTheory.Gal.Ord.rel :
       have := congrArg (e.left ≫ ·) e3
       simpa only [← Category.assoc, e4, Category.id_comp] using this
     apply GlobalTheory.SchRing.spMap_inj
-    rw [GlobalTheory.SchRing.spMap_comp']
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
     exact e5
   rw [← hu]
   exact (congrArg m.pull (GrpMor.pull_pull gm u K1 (fun _ ↦ rfl) rfl y)).trans

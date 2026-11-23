@@ -68,9 +68,9 @@ theorem kills_prod_comp_surj : ∀ (P G₁ G₂ : Type) [Group P] [Finite P] [Gr
     exact isChar_mul_complex (a := fun p => Y₁ (π p).1) (b := fun p => Y₂ (π p).2)
       ⟨n, ρ.comp ((MonoidHom.fst G₁ G₂).comp π), fun p => hρ _⟩
       ⟨m, σ.comp ((MonoidHom.snd G₁ G₂).comp π), fun p => hσ _⟩
-  obtain ⟨k₁, hk₁⟩ := (GlobalTheory.T.isInCharacterIsotypicPart_iff_convolution G₁ φ₁ Y₁ hY₁).1 h₁
-  obtain ⟨k₂, hk₂⟩ := (GlobalTheory.T.isInCharacterIsotypicPart_iff_convolution G₂ φ₂ Y₂ hY₂).1 h₂
-  apply (GlobalTheory.T.isInCharacterIsotypicPart_iff_convolution P _ _ hY).2
+  obtain ⟨k₁, hk₁⟩ := (_root_.GlobalTheory.Shin.kills_iff_conv G₁ φ₁ Y₁ hY₁).1 h₁
+  obtain ⟨k₂, hk₂⟩ := (_root_.GlobalTheory.Shin.kills_iff_conv G₂ φ₂ Y₂ hY₂).1 h₂
+  apply (_root_.GlobalTheory.Shin.kills_iff_conv P _ _ hY).2
   set c : ℕ := (Finset.univ.filter fun q : P => π q = 1).card with hcdef
   have hc : (c : ℂ) ≠ 0 := by
     rw [Nat.cast_ne_zero]

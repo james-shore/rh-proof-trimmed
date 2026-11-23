@@ -130,7 +130,7 @@ theorem specialise_generic_solution : ∀ (k A : Type) [Field k] [IsAlgClosed k]
   have hjet : ∀ i, ∃ Q : Ideal A, Q.IsMaximal ∧ (∀ u, u ∈ Q ↔ Δ' i 0 u = 0) ∧
       ∀ f : A, (∀ l < N, Δ' i l f = 0) → f ∈ Q ^ N := by
     intro i
-    apply GlobalTheory.T.mem_maximal_pow_of_jets_vanish k A N (Δ' i) hN
+    apply _root_.GlobalTheory.mem_pow_of_jets_vanish k A N (Δ' i) hN
     · rw [hΔ' i 0 hN0, h01 i, hone]
     · intro l hl u w
 

@@ -102,7 +102,7 @@ theorem fe_of_fe_kbar : GlobalFnsSt → AllPre fun {V} _ _ _ {_} {_} {_} _ _ U =
   choose sF hsF using fun i => ((P F (𝟙_ _) (toUnit _) k).2 (f i)).exists
   have : IsAffine (𝟙_ (Over (Spec (CommRingCat.of V)))).left := inferInstanceAs (IsAffine (Spec (CommRingCat.of V)))
   refine famFE_of_sum D F k n c s sF (fun α Z r z J hJ => ?_) fun i =>
-    GlobalTheory.T.familyFunctionalEquation_field_change hG V D (𝟙_ _) k (f i) (Kbar V) F (toUnit _) (toUnit _) (sK i) (sF i) (toUnit_injective V _)
+    _root_.GlobalTheory.famFE_field_change hG V D (𝟙_ _) k (f i) (Kbar V) F (toUnit _) (toUnit _) (sK i) (sF i) (toUnit_injective V _)
       (hsK i) (hsF i) (hK (tK i) (sK i)
         (IntExp.expF_of_expT V _ D A G U (Kbar V) k (σ i) (f i) (tK i) (sK i) (hT i) (htK i) (hsK i)))
   have w : (toUnit (TF (R := V) F) ▷ D.P.A).left ≫ (snd (𝟙_ _) D.P.A).left = (snd _ D.P.A).left :=

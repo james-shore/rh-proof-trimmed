@@ -95,14 +95,6 @@ theorem quotMat_map {B : Type} [CommRing B] (f : A →+* B) (M : Matrix ι ι A)
 
 end Pure
 
-theorem ordL_eq_neg_log {K : Type} [Field K] [Valued K (WithZero (Multiplicative ℤ))] (x : K) :
-    ordL x = -WithZero.log (Valued.v x) := by
-  unfold ordL
-  split_ifs with h
-  · simp [h]
-  · conv_rhs => rw [← WithZero.coe_unzero h]
-    rfl
-
 theorem isHermND_dbl {F E : Type} [Field F] [Field E] [Algebra F E] (σ : E →ₐ[F] E) {n : ℕ}
     {J : Matrix (Fin n) (Fin n) E} (hJ : IsHermND σ J) : IsHermND σ (dblGram finSumFinEquiv J) := by
   refine ⟨fun i j => ?_, ?_⟩
@@ -165,6 +157,6 @@ theorem exists_dbl_chart : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
       rfl
     have h2 := congrArg (fun y => Valued.v (toCompl h' y)) (sigR_det_quot_mul_aH hQ hJ.2 p)
     simp only [map_mul, map_one, ← hcc, hcv] at h2
-    rw [h1, ordL_eq_neg_log, ordL_eq_neg_log, eq_inv_of_mul_eq_one_right h2, WithZero.log_inv]
+    rw [h1, _root_.GlobalTheory.LGrp.ordL_eq, _root_.GlobalTheory.LGrp.ordL_eq, eq_inv_of_mul_eq_one_right h2, WithZero.log_inv]
 
 end GlobalTheory.LFun.DblSplit

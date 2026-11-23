@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.UwClosedSubgroup
 
 @[expose] public section
 
@@ -95,24 +96,20 @@ theorem dmin_xT (r : ℕ) (z z' : Fin (2 * r + k + 1) → ℂ) (Z : Matrix (Fin 
     Dmin k r z z' (xT k r Z μ) ⟨r, by omega⟩ = Z.det := by
   unfold xT
   rw [Formalism.FourierDecayAlt.P.PBI.dmin_castM (by omega) z z' _ r (by omega) (by omega),
-    Formalism.FourierDecayAlt.P.hat_z_minimum_degree k r (r - r)]
-  have e := Formalism.FourierDecayAlt.P.hat_z_on_slice k r (r - r) 0 0 Z μ
+    _root_.Formalism.FourierDecayAlt.P.Ux3.zhDmin k r (r - r)]
+  have e := _root_.Formalism.FourierDecayAlt.P.Ux3.zhSlice k r (r - r) 0 0 Z μ
   rw [Formalism.FourierDecayAlt.P.LeftFubiniLemmas.rn_zero, inv_one, Matrix.one_mul, Matrix.mul_one] at e
   unfold U.DjU
   rw [e]
 
 theorem xT_GV (r : ℕ) {Z : Matrix (Fin r) (Fin r) ℂ} {μ : B.Mat k (r - r)} (hZ : Z.det ≠ 0) (hμ : μ ∈ B.GV k (r - r)) :
     xT k r Z μ ∈ B.GV k r :=
-  Formalism.FourierDecayAlt.P.PBE.castM_GV _ ((Formalism.FourierDecayAlt.P.slice_membership k r (r - r)).1 Z μ hZ hμ)
+  Formalism.FourierDecayAlt.P.PBE.castM_GV _ ((_root_.Formalism.FourierDecayAlt.P.Ux2.sliceMem k r (r - r)).1 Z μ hZ hμ)
 
 theorem gf_castM {a b : ℕ} (e : a = b) (z z' : Fin (2 * b + k + 1) → ℂ) (g : B.Mat k a) :
     Gf k b z z' (D.castM e g) = Gf k a (D.castV e.symm z) (D.castV e.symm z') g := by
   subst e
   rw [Formalism.FourierDecayAlt.P.Dx2.MN.castM_rfl, Formalism.FourierDecayAlt.P.JCTx5.castV_rfl, Formalism.FourierDecayAlt.P.JCTx5.castV_rfl]
-
-theorem inWb_castV {a b : ℕ} (e : a = b) {z : Fin (2 * a + k + 1) → ℂ} (h : inWb k a z) : inWb k b (D.castV e z) := by
-  subst e
-  rwa [Formalism.FourierDecayAlt.P.JCTx5.castV_rfl]
 
 end lemmas
 
@@ -130,9 +127,9 @@ theorem pullback_smooth_formula : PbSmooth := by
   have hgf : 0 < Gf P.k P.r p.T.base.z p.T.base.z' (xT P.k P.r (Matrix.of q₀.1) (Matrix.of q₀.2)) := by
     unfold xT
     rw [gf_castM]
-    have e := Formalism.FourierDecayAlt.P.level_function_slice P.k P.r (P.r - P.r)
+    have e := _root_.Formalism.FourierDecayAlt.P.Ux3.gfSlice P.k P.r (P.r - P.r)
       (D.castV (by omega : P.r = P.r + (P.r - P.r)) p.T.base.z) (D.castV (by omega : P.r = P.r + (P.r - P.r)) p.T.base.z')
-      (inWb_castV _ p.T.base.z_mem) (inWb_castV _ p.T.base.z'_mem) 0 0 (Matrix.of q₀.1) (Matrix.of q₀.2)
+      (_root_.Formalism.FourierDecayAlt.P.PBH.inWb_castV _ p.T.base.z_mem) (_root_.Formalism.FourierDecayAlt.P.PBH.inWb_castV _ p.T.base.z'_mem) 0 0 (Matrix.of q₀.1) (Matrix.of q₀.2)
     rw [Formalism.FourierDecayAlt.P.LeftFubiniLemmas.rn_zero, inv_one, Matrix.one_mul, Matrix.mul_one] at e
     rw [e, MkCptPf.lowV_top p.T _, MkCptPf.lowV_top' p.T _, MkCptPf.gf_eq_ggl (by omega)]
     exact mul_pos (Complex.normSq_pos.2 hq₀.1) hq₀.2
@@ -157,7 +154,5 @@ theorem pullback_smooth_formula : PbSmooth := by
 end Formalism.FourierDecayAlt.P.CutEX
 
 namespace Formalism.FourierDecayAlt.P
-
-theorem pullback_smooth : CutEX.PbSmooth := CutEX.pullback_smooth_formula
 
 end Formalism.FourierDecayAlt.P

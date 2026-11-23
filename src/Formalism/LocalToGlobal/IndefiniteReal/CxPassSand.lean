@@ -200,19 +200,10 @@ theorem actMat_coord {Z : Submodule K B.S.Forms} (hZ : ∀ g : G, Z ≤ Z.comap 
   simp only [LinearEquiv.coe_coe]
   rw [h1, LinearEquiv.apply_symm_apply]
 
-private theorem gaMat_single_lemma (g : G) :
-    B.S.gaMat B.r (MonoidAlgebra.single g 1) = B.S.actMat B.r g := by
-  first
-  | (simp [CSD.gaMat, MonoidAlgebra.coeff_single, Finset.sum_ite_eq']; done)
-  | (simp [CSD.gaMat, Finsupp.single_apply]; done)
-  | (simp [CSD.gaMat, MonoidAlgebra.single_apply]; done)
-  | (unfold CSD.gaMat; rw [Finset.sum_eq_single g] <;> simp_all [Finsupp.single_apply]; done)
-  | simp only [CSD.gaMat]
-
 theorem action_preserves_idempotent_range {X : Finset (G → K)} (hX : ∀ χ ∈ X, IsAbsIrrChar χ) (g : G)
     {x : Fin B.S.dim → K} (hx : x ∈ LinearMap.range (B.S.gaMat B.r (idemOf X)).mulVecLin) :
     B.S.actMat B.r g *ᵥ x ∈ LinearMap.range (B.S.gaMat B.r (idemOf X)).mulVecLin := by
-  have hs := gaMat_single_lemma B g
+  have hs := _root_.Formalism.L2.DIV.BlockDat.gaMat_single B g
   obtain ⟨y, rfl⟩ := hx
   have hc := (idempotent_central K G X hX).2 (MonoidAlgebra.single g 1)
   have hm := (group_action_matrix_hom K B.S G B.r).2
@@ -457,16 +448,6 @@ theorem cpt_sum_smul {K : Type} [Field K] (σ : K →+* ℂ) {n : ℕ} {ι : Typ
 end Sand
 
 namespace In
-
-variable {K : Type} [Field K] [NumberField K] [StarRing K] {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {m : ℕ}
-  (I : In K G Pl0 T m)
-
-section Prin
-
-variable {I} {s : ℕ} (hH : I.Hyp s)
-include hH
-
-end Prin
 
 end In
 

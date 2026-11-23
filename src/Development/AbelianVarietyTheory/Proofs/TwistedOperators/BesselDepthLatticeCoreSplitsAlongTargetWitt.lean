@@ -63,17 +63,11 @@ variable {D : D7}
 theorem one_mem_intAf : (1 : Af D.host.F) ∈ intAf D.host.F := fun v => by
   rw [map_one]; exact one_mem _
 
-theorem finPart_pure (α : Af D.host.F) (e : D.host.E) :
-    finPart D ((pairA D.host.F 0 α) ⊗ₜ[D.host.F] e) = α ⊗ₜ[D.host.F] e := by
-  unfold finPart
-  rw [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Algebra.TensorProduct.map_tmul]
-  rfl
-
 theorem toEAf_pure (e : D.host.E) :
     toEAf D ((pairA D.host.F 0 1) ⊗ₜ[D.host.F] e) =
       Formalism.UG.inclE (F := D.host.F) (FiniteAdeleRing (𝓞 D.host.F) D.host.F) e := by
   unfold toEAf
-  rw [RingHom.comp_apply, finPart_pure]
+  rw [RingHom.comp_apply, _root_.GlobalTheory.LatVac.finPart_pair]
   rfl
 
 theorem rat_mulVec_pure {m n : ℕ} (M : Matrix (Fin m) (Fin n) D.host.E) (α : Af D.host.F) (t : Fin n → D.host.E) :

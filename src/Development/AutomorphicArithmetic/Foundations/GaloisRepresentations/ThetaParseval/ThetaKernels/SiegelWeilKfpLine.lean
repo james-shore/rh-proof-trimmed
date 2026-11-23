@@ -96,13 +96,6 @@ theorem line_data_k (hT : _root_.PositivityTheory.SiegelWeilFormula.TAll_k) (hU 
     linarith
   · have := hB g hg Ω hΩ hTΩ Φ hΦ (W ξ) (hW ξ) z
     rwa [hsW] at this
-theorem B_rel_k (hT : _root_.PositivityTheory.SiegelWeilFormula.TAll_k) (hU : _root_.PositivityTheory.SiegelWeilFormula.TUnit_k) {ν : Measure (Mx F E d.m d.n)} (hν : ν.IsAddHaarMeasure) {k : d.G} {χ : ℂ}
-    (hχ : χ ≠ 0) {Ω : d.Fn} (hΩ : Ω ∈ d.sch) (hk : d.om k Ω = χ • Ω) {Φ : d.Fn} (hΦ : Φ ∈ d.sch) (q : Polynomial ℂ)
-    (hq : ∑ i ∈ Finset.range (q.natDegree + 1), q.coeff i • d.om (k ^ i) Φ = 0)
-    (v : Matrix (Fin d.m) (Fin d.n ⊕ Fin d.n) (AE F E)) :
-    ∑ i ∈ Finset.range (q.natDegree + 1),
-      q.coeff i * (star χ)⁻¹ ^ i * _root_.PositivityTheory.SiegelWeilFormula.KFP.B_k ν Φ (d.dd.rho d.B.ψ (actB (cA σ) (k⁻¹ ^ i) v) Ω) = 0 := by
-  exact _root_.PositivityTheory.SiegelWeilFormula.KFP.B_rel'_k hT hU hν hχ hΩ hk hΦ q hq v
 end PositivityTheory.SiegelWeilFormula.KFP
 end
 end

@@ -132,7 +132,7 @@ theorem GlobalTheory.PolFan.cellMult_lt_of_star_new : ∀ (E : Type) [Field E] [
   obtain ⟨h₂, h₂0, h₂γ, h₂cut⟩ := GlobalTheory.T.exists_linForm_cut_face_of_cell_in_cone H.bar φ δt γ hδt hγ hγδt
   have hcutγ : ∀ β ∈ balForms H.bar X, (∀ y, 0 ≤ β y y) → InRCone γ β → h β = 0 →
       InRCone (fun k => γ (s k)) β :=
-    fun β _ _ hβ hβ0 => GlobalTheory.T.inRealCone_generators_of_linForm_eq_zero γ h s β hcut.1 (fun i hi => (hcut.2 i).1 hi) hβ hβ0
+    fun β _ _ hβ hβ0 => _root_.GlobalTheory.PolFan.inRCone_of_apply_eq_zero γ h s β hcut.1 (fun i hi => (hcut.2 i).1 hi) hβ hβ0
   have hhs : ∀ k, h (γ (s k)) = 0 := fun k => (hcut.2 (s k)).2 ⟨k, rfl⟩
   obtain ⟨h₃, h₃0, h₃γs, h₃cut⟩ := GlobalTheory.T.exists_linForm_cut_face_of_face_of_cone H.bar δt γ (fun k => γ (s k)) h₂ h hδt.mem hδt.nonneg
     (fun k => inRCone_self γ (s k)) h₂0 h₂γ h₂cut hcut.1 hhs hcutγ
@@ -145,7 +145,7 @@ theorem GlobalTheory.PolFan.cellMult_lt_of_star_new : ∀ (E : Type) [Field E] [
     rw [Finset.range_orderEmbOfFin]
     simp [I]
   have hsupp : ∀ β, InRCone δt β → h₃ β = 0 → InRCone (fun k => δt (eI k)) β :=
-    fun β hβ h0 => GlobalTheory.T.inRealCone_generators_of_linForm_eq_zero δt h₃ eI β h₃0 (fun i hi => (heI i).2 hi) hβ h0
+    fun β hβ h0 => _root_.GlobalTheory.PolFan.inRCone_of_apply_eq_zero δt h₃ eI β h₃0 (fun i hi => (heI i).2 hi) hβ h0
 
   obtain ⟨c, hc0, hcβ⟩ : InRCone δt β₀ := inRCone_trans hγδt hβ₀γ
   have hclt : ∀ i, c i < 1 := hcoord X hX m₀ δt hδt hliδt hprimδt β₀ hβ₀ hβ₀p hw c hc0 hcβ

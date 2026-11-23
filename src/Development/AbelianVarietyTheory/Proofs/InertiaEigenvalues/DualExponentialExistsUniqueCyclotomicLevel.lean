@@ -380,7 +380,7 @@ theorem H1_twist_vanishes {j : ℤ} (hj : j ≠ 0) {f : GQ l → PadicComplex l}
     (hf : CocOn (Gj K s) (fun g y => chiC χ j g * act g y) Set.univ f) :
     ∃ b, ∀ g ∈ Gj K s, f g = chiC χ j g * act g b - b := by
   obtain ⟨m, hm⟩ := exists_scale K s hf.1
-  obtain ⟨x, -, hx⟩ := GlobalTheory.T.cyclotomic_twist_cocycle_coboundary l act χ ha hχ K s hs j hj (fun g => (l : PadicComplex l) ^ m * f g)
+  obtain ⟨x, -, hx⟩ := _root_.GlobalTheory.Cyc.TwistKill.pow_kills_cyclotomic_H1 l act χ ha hχ K s hs j hj (fun g => (l : PadicComplex l) ^ m * f g)
     ⟨continuousOn_const.mul hf.1, hm, fun g hg h hh => by
       simp only [hf.2.2 g hg h hh, map_mul, map_pow, map_natCast]; ring⟩
   have hl : (l : PadicComplex l) ≠ 0 := GlobalTheory.RingBasics.p_ne_zero

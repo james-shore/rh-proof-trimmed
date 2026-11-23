@@ -96,7 +96,7 @@ theorem definite_datum_form_pos :
       rw [Nat.card_congr ((e.subtypeEquiv (q := fun s => s.1 = τ) fun _ => Iff.rfl).trans (Equiv.sigmaSubtype τ))]
       simp
     exact ⟨_, fun i => (e i).1, fun τ => ⟨fun h => (key τ).trans (if_pos h), fun h => (key τ).trans (if_neg h)⟩⟩
-  obtain ⟨Pe, hP⟩ := datum_exists_period E H D g ty hty
+  obtain ⟨Pe, hP⟩ := _root_.GlobalTheory.PeriodNonempty.exists_isPeriod E H D g ty hty
   have hcard : ∀ i, Nat.card {j // ty j = ty i} ≠ 0 := fun i =>
     haveI : Nonempty {j // ty j = ty i} := ⟨⟨i, rfl⟩⟩
     Nat.card_pos.ne'

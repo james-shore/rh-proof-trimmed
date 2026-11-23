@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.AllPlacesOfRestrictions
 
 @[expose] public section
 
@@ -94,10 +95,6 @@ theorem applyD_map {σ τ K L : Type} [Field K] [Field L] (φ : K →+* L) (P : 
 
 variable {p : ℕ} [Fact p.Prime]
 
-theorem constantCoeff_coordZA (X : Sys p) (K : Type) [Field K] [Algebra (K0 p) K] (j : ℕ) (s : X.EA j ⊕ X.EA j) :
-    MvPowerSeries.constantCoeff (X.coordZA K j s) = 0 := by
-  rcases s with ⟨v, r, a, b⟩ | ⟨v, r, a, b⟩ <;> simp [Sys.coordZA, map_sum]
-
 theorem map_coordZA (X : Sys p) (K : Type) [Field K] [Algebra (K0 p) K] (j : ℕ) (s : X.EA j ⊕ X.EA j) :
     MvPowerSeries.map (algebraMap (K0 p) K) (X.coordZA (K0 p) j s) = X.coordZA K j s := by
   rcases s with ⟨v, r, a, b⟩ | ⟨v, r, a, b⟩ <;> simp [Sys.coordZA, map_sum]
@@ -107,7 +104,7 @@ theorem ThZA_map (X : Sys p) (K : Type) [Field K] [Algebra (K0 p) K] (j : ℕ)
     X.ThZA K j (MvPowerSeries.map (algebraMap (K0 p) K) f) =
       MvPowerSeries.map (algebraMap (K0 p) K) (X.ThZA (K0 p) j f) := by
   unfold Sys.ThZA
-  rw [MvPowerSeries.map_subst (MvPowerSeries.hasSubst_of_constantCoeff_zero (constantCoeff_coordZA X _ j))]
+  rw [MvPowerSeries.map_subst (MvPowerSeries.hasSubst_of_constantCoeff_zero (_root_.Formalism.MainNotions.FormalGroupSystem.Pf.coordZA_const X _ j))]
   congr 1
   funext s
   exact (map_coordZA X K j s).symm
@@ -140,7 +137,7 @@ theorem cofactor_lower_bound_of_place_bound_witt : ∀ (p : ℕ) [Fact p.Prime] 
   set d := P.totalDegree with hd
   have hfin : {n : (X.EA j ⊕ X.EA j) →₀ ℕ | n.degree ≤ d}.Finite := Finsupp.finite_of_degree_le d
   set S := hfin.toFinset with hS
-  have hspan := GlobalTheory.T.lowCoefficients_of_parameterCoefficients p (X.EA j ⊕ X.EA j) Y.Kc Un hUn U d S (fun n hn => hfin.mem_toFinset.mpr hn)
+  have hspan := _root_.GlobalTheory.TwU.low_coeff_of_param p (X.EA j ⊕ X.EA j) Y.Kc Un hUn U d S (fun n hn => hfin.mem_toFinset.mpr hn)
   have hint : ∀ n, IntS p (inParam p (Un n)) := fun n =>
     ⟨MvPowerSeries.monomial n 1, by rw [(hUn n).1, MvPowerSeries.map_monomial, RingHom.map_one]⟩
   choose a ha using fun n => hL (Un n) (hint n) I m
@@ -149,7 +146,7 @@ theorem cofactor_lower_bound_of_place_bound_witt : ∀ (p : ℕ) [Fact p.Prime] 
   set E := expS p (-phAt X Y.be j v) with hEdef
   set φ := algebraMap (K0 p) Y.Kc with hφ
   set c : _ → Y.Kc := fun n => MvPowerSeries.coeff n (inParamK p Y.Kc U) with hc
-  have hsub := MvPowerSeries.hasSubst_of_constantCoeff_zero (constantCoeff_coordZA X Y.Kc j)
+  have hsub := MvPowerSeries.hasSubst_of_constantCoeff_zero (_root_.Formalism.MainNotions.FormalGroupSystem.Pf.coordZA_const X Y.Kc j)
   set A := U - ∑ n ∈ S, c n • MvPowerSeries.map φ (Un n) with hA
   have hAo : ((d + 1 : ℕ) : ℕ∞) ≤ A.order := by
     apply MvPowerSeries.nat_le_order
@@ -160,7 +157,7 @@ theorem cofactor_lower_bound_of_place_bound_witt : ∀ (p : ℕ) [Fact p.Prime] 
     rw [MvPowerSeries.coeff_smul, MvPowerSeries.coeff_map]
   have hz : applyD P (X.ThZA Y.Kc j (MvPowerSeries.map φ E * A)) = 0 := by
     apply applyD_eq_zero
-    refine le_trans ?_ (le_order_subst' (constantCoeff_coordZA X Y.Kc j) _)
+    refine le_trans ?_ (le_order_subst' (_root_.Formalism.MainNotions.FormalGroupSystem.Pf.coordZA_const X Y.Kc j) _)
     exact hAo.trans (le_trans le_add_self MvPowerSeries.le_order_mul)
   have hU' : MvPowerSeries.map φ E * U =
       MvPowerSeries.map φ E * A + ∑ n ∈ S, c n • MvPowerSeries.map φ (E * Un n) := by

@@ -99,7 +99,7 @@ theorem cup_eq_coboundary_vanishing_on_inertia : ∀ (k K Ω : Type) [Field k] [
   · intro B hB g hg
     obtain ⟨c, hcE, hc0, hcv⟩ := hfB B hB
     rw [← hθ₀] at hcv
-    obtain ⟨hgE, hk⟩ := GlobalTheory.T.inertia_fixes_adjoin_kummer_roots_and_values_eq k K Ω N ζ hN hζ a b α β haA hai hbA hbi ha0 hb0 hα hβ θ θ₀ hθ0 hθ₀0 hθE
+    obtain ⟨hgE, hk⟩ := _root_.GlobalTheory.InertKummer.inert_fixes_adjoin_and_kum_eq k K Ω N ζ hN hζ a b α β haA hai hbA hbi ha0 hb0 hα hβ θ θ₀ hθ0 hθ₀0 hθE
       ⟨f, hθ₀.symm⟩ B hB g hg c hcE hc0 hcv
     show η₀ g - kum ζ θ₀ g = 0
     rw [hθη g hgE, hk, sub_self]

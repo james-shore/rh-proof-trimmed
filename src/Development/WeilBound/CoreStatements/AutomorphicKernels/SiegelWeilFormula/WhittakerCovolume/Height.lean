@@ -274,10 +274,6 @@ theorem fin_at (d : SD σ) (R : RD d) {x : d.G} {t u : GL (Fin d.n) (AE F E)} {T
   rw [det_map, det_map] at key
   exact key
 
-theorem exists_haar_tup (v : HeightOneSpectrum (𝓞 F)) (n : ℕ) :
-    ∃ lv : Measure (Fin n → HeckeCharacterZeroLocus.SiegelWeilU.Fv F v ⊗[F] E), lv.IsAddHaarMeasure :=
-  PositivityTheory.SiegelWeilFormula.HeightDict.exists_haar_tup v n
-
 theorem normV_eq (x : (AE F E)ˣ) (v : HeightOneSpectrum (𝓞 F)) :
     ‖Algebra.norm (v.adicCompletion F) (compFin F E v x.1)‖ =
       ((GlobalTheory.Doubling.absEv F E v (GlobalTheory.Doubling.unitFin F E v x) : ℝ≥0) : ℝ) := by
@@ -327,7 +323,7 @@ theorem absE_split (d : SD σ) (x : (AE F E)ˣ) :
 
 theorem heightDict : HeightDict := by
   intro F E _ _ _ _ _ σ d R x t u T η T₀ hOf θ fr g hR nb lam 𝓖 hc ε w hw
-  choose lv hlv using fun v : HeightOneSpectrum (𝓞 F) => exists_haar_tup (E := E) v d.n
+  choose lv hlv using fun v : HeightOneSpectrum (𝓞 F) => _root_.PositivityTheory.SiegelWeilFormula.HeightDict.exists_haar_tup (E := E) v d.n
   have hfin :
         (∀ v : HeightOneSpectrum (𝓞 F),
           Gen.IsCO (latM v ((t.1.map (GlobalTheory.AdelicU.compFin F E v)).map (HeckeCharacterZeroLocus.SiegelWeilU.sigR (v.adicCompletion F) σ))) ∧

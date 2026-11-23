@@ -78,7 +78,7 @@ theorem hOf : TieHyp (wOf X) hI :=
   { lat := Formalism.L2.SG.Pf.WittFlags.LatIso_holds D
     idG := fun u u' => identityCell_vanishes u u'
     atSome := fun u u' => Formalism.L2.SG.LeadingMinorsNonvanishing.atSomeAll_holds _ _ Y u u'
-    autFin := fun u => Formalism.L2.SG.Pf.autFin_of (automorphism_lattice_finite D) (D.sp.Y_sig 0)
+    autFin := fun u => Formalism.L2.SG.Pf.autFin_of (_root_.PI.AutLzFinite.SlopeTestRemainingChoices.autLzFin_main D) (D.sp.Y_sig 0)
       (Formalism.MainNotions.BridgeLemma.tie_Tu_pos D u)
       (Formalism.L2.SG.Pf.WittFlags.RowRepsIso_holds D ((wOf X).δ u) ((wOf X).isom u) (X.Fu u) (Y.what₂ u) (Y.rowsOK u))
     dim := fun u => Formalism.L2.SG.Pf.dimTie X u

@@ -103,7 +103,7 @@ theorem levDatum_forms_alt : GlobalTheory.Published.GlobalArtinReciprocity → �
   have hψt := fun P (hP : P ∈ qpOf D Pq Q) =>
     GlobalTheory.T.tameValues_galoisChar_form_residue_unit_character ψ P 1 (T.l i) hopen (by simpa [placesOver] using hQl P (qpOf_sub D Pq Q hP)) (fun A _ σ _ => hl σ)
   have hδt := fun P (hP : P ∈ qpOf D Pq (T.pD i)) =>
-    GlobalTheory.T.tameValues_galoisChar_form_residue_unit_character (T.delta i) P (if b then 1 else -1) 15 (T.delta_open i) (GlobalTheory.T.fifteen_not_mem_and_delta_inertia_order_divides_fifteen_pow D T i P (qpOf_sub D Pq _ hP)).1
+    GlobalTheory.T.tameValues_galoisChar_form_residue_unit_character (T.delta i) P (if b then 1 else -1) 15 (T.delta_open i) (_root_.GlobalTheory.Member.DeltaTame.delta_tame_and_15 D T i P (qpOf_sub D Pq _ hP)).1
       (GlobalTheory.T.fifteen_not_mem_and_delta_inertia_order_divides_fifteen_pow D T i P (qpOf_sub D Pq _ hP)).2
   obtain ⟨J, χ, hJo, hhyp, hJm, hchi⟩ := GlobalTheory.T.exists_levelGroup_with_character_at_type_places D T In.θ i j b k Q ψ (qpOf D Pq Q) (qpOf D Pq (T.pD i)) sp redG
     hspw hv hdisj1 hdisj2 hpG (qpOf_sub D Pq Q) (qpOf_sub D Pq _) hψt hδt

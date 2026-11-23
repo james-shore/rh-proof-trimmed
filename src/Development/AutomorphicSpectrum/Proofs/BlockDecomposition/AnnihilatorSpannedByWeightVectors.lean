@@ -49,12 +49,6 @@ open GroundTheory.Automorphic.HarishChandra GlobalTheory.CompanionTheory.PresRho
 
 namespace GlobalTheory.CompanionTheory.PresRho
 
-theorem eq_zero_of_sum_weightVec {ι κ A : Type} [DecidableEq ι] [AddCommGroup A] [Module ℂ A]
-    (T : κ → Module.End ℂ A) (f : ι → κ → ℂ) (hf : Function.Injective f) (s : Finset ι) :
-    ∀ v : ι → A, (∀ i ∈ s, ∀ k, T k (v i) = f i k • v i) → ∑ i ∈ s, v i = 0 →
-      ∀ i ∈ s, v i = 0 :=
-  _root_.UpperTheory.Reformulated.B.P6.r14a.GlobalTheory.CompanionTheory.PresRho.eq_zero_of_sum_weightVec T f hf s
-
 def wtPart {n : ℕ} (x : U n) (w : Fin n → ℤ) : U n :=
   ∑ m ∈ (pbw.repr x).support.filter (fun m => wt m = w), pbw.repr x m • canon m
 
@@ -81,7 +75,7 @@ theorem mem_span_isAdW_of_kills {n : ℕ} {A : Type} [AddCommGroup A] [Module �
     funext k
     have := congrFun h k
     simpa using this
-  have hz := eq_zero_of_sum_weightVec (fun k : Fin n => φ (e (k, k)))
+  have hz := _root_.UpperTheory.Reformulated.B.P6.r14a.eigenvectors_sum_zero_eq_zero (fun k : Fin n => φ (e (k, k)))
     (fun (w : Fin n → ℤ) k => rhoVec n k + (w k : ℂ)) hinj ((pbw.repr x).support.image wt)
     (fun w => φ (wtPart x w) t)
     (fun w _ k => by

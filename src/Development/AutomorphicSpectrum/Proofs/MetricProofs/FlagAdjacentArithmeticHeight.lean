@@ -212,7 +212,7 @@ theorem main : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι 
     exact ⟨x⟩
   obtain ⟨r, hr1, hr2⟩ := GlobalTheory.T.exists_continuous_orbit_section _ _ _ n Rb hnon
   have hx0 := hr1 _ hzb
-  obtain ⟨kb, V, bl, hsrc, hV, hBC⟩ := GlobalTheory.T.exists_base_chart_at_good_point K ι Φ y Ψ N j M n Rb F (r (baseOf M k₀ z))
+  obtain ⟨kb, V, bl, hsrc, hV, hBC⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.WMan.BaseLift.exists_baseChart K ι Φ y Ψ N j M n Rb F (r (baseOf M k₀ z))
     (by rw [CovMap.mCoordIdeal_eq_of_sameOrbit hx0]; exact hG)
   obtain ⟨hblm, hblnorm, hblgood, hblorb⟩ := hBC.2.2.2.2 _ hV
   rw [(Rb.A.chart kb).left_inv hsrc] at hblorb

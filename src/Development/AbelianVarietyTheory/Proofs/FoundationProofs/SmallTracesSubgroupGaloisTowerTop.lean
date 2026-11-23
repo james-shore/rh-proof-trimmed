@@ -70,7 +70,7 @@ theorem small_traces_subgroup : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field 
   haveI : U'.FiniteIndex := inferInstance
   haveI : Finite (↥H' ⧸ U') := Subgroup.finite_quotient_of_finiteIndex
   letI : Fintype (↥H' ⧸ U') := Fintype.ofFinite _
-  have hU'sep : AlmostSep v U' := GlobalTheory.T.fixedFieldAlmostEtale_subgroupOf Ω v ↥K U H' hUsep
+  have hU'sep : AlmostSep v U' := _root_.GlobalTheory.AlmostEt.almostSep_subgroupOf Ω v ↥K U H' hUsep
   have hsmul : ∀ (h : ↥H') (x : Ω), h • x = ((h : ↥K) : Gal p Ω) x := fun _ _ => rfl
   have hinv : ∀ (h : ↥H') (x : Ω), v (h • x) = v x := fun h x => by rw [hsmul]; exact hvgal _ x
   have hfixζ : ∀ h : ↥H', h • (T.ζ j - 1) = T.ζ j - 1 := by
@@ -78,8 +78,8 @@ theorem small_traces_subgroup : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field 
     have hm : ((h : ↥K) : Gal p Ω) ∈ Gn T j := (Subgroup.mem_iInf.mp (h : ↥K).2) j
     have h1 : ((h : ↥K) : Gal p Ω) (T.ζ j) = T.ζ j := ((Basic.mem_gn T j _).mp hm).1
     rw [hsmul, map_sub, map_one, h1]
-  have hve : v (T.ζ j - 1) < 1 := (GlobalTheory.T.valuation_tower_zeta_sub_one p Ω hp2 T v hv1 j hj).1
-  obtain ⟨y₀, hy₀, hy₀le, htr⟩ := GlobalTheory.T.exists_integer_cosetRepresentativeTrace_eq_of_lt_one Ω v ↥H' hinv U' hU'sep (T.ζ j - 1) hfixζ hve
+  have hve : v (T.ζ j - 1) < 1 := (_root_.GlobalTheory.K5.ZetaNonvanishing₂.valuation_zeta_sub_one p Ω hp2 T v hv1 j hj).1
+  obtain ⟨y₀, hy₀, hy₀le, htr⟩ := _root_.GlobalTheory.AlmostEt.exists_integer_coset_trace_eq Ω v ↥H' hinv U' hU'sep (T.ζ j - 1) hfixζ hve
   have hS : ∀ s ∈ S, s ∈ Fix Ω U' := fun s hs g =>
     hUS s hs ⟨((g : ↥H') : ↥K), Subgroup.mem_subgroupOf.mp g.2⟩
   obtain ⟨y, D, E', hy, huniq, hsum⟩ := GlobalTheory.T.exists_reps_of_cosetRepresentativeTrace Ω ↥H' U' S hS y₀ hy₀

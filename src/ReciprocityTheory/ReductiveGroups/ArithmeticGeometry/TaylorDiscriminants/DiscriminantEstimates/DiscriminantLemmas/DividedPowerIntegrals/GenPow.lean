@@ -126,14 +126,6 @@ theorem gdelta_apply (κ : I → J → K) (R : MvPolynomial (I ⊕ J) K) :
     gdelta κ R = ∑ i, ∑ j, κ i j • pderiv (Sum.inl i) (pderiv (Sum.inr j) R) := by
   exact gdelta_apply' κ R
 
-theorem dL_apply (κ : I → J → K) (i : I) (R : MvPolynomial (I ⊕ J) K) :
-    dL κ i R = ∑ j, κ i j • pderiv (Sum.inr j) R := by
-  exact dL_apply' κ i R
-
-theorem dR_apply (κ : I → J → K) (j : J) (R : MvPolynomial (I ⊕ J) K) :
-    dR κ j R = ∑ i, κ i j • pderiv (Sum.inl i) R := by
-  exact dR_apply' κ j R
-
 theorem gdelta_X_inl (κ : I → J → K) (i : I) (R : MvPolynomial (I ⊕ J) K) :
     gdelta κ (X (Sum.inl i) * R) = X (Sum.inl i) * gdelta κ R + dL κ i R := by
   classical
@@ -153,7 +145,7 @@ theorem gdelta_X_inl (κ : I → J → K) (i : I) (R : MvPolynomial (I ⊕ J) K)
       gdelta κ S = ∑ j, ∑ i', κ i' j • pderiv (Sum.inl i') (pderiv (Sum.inr j) S) := by
     intro S
     rw [gdelta_apply, Finset.sum_comm]
-  rw [hΔ, hΔ, dL_apply, Finset.mul_sum, ← Finset.sum_add_distrib]
+  rw [hΔ, hΔ, _root_.PI.DivPowInteg.Gen.dL_apply', Finset.mul_sum, ← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [h1, Finset.mul_sum]
   simp only [h2, smul_add, Finset.sum_add_distrib, mul_smul_comm, smul_ite, smul_zero,
@@ -181,7 +173,7 @@ theorem gdelta_X_inr (κ : I → J → K) (j : J) (R : MvPolynomial (I ⊕ J) K)
     intro i' j'
     rw [h2, map_add (f := _), h1]
     split_ifs <;> simp
-  rw [gdelta_apply, gdelta_apply, dR_apply, Finset.mul_sum, ← Finset.sum_add_distrib]
+  rw [gdelta_apply, gdelta_apply, _root_.PI.DivPowInteg.Gen.dR_apply', Finset.mul_sum, ← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun i' _ => ?_
   rw [Finset.mul_sum]
   simp only [h3, smul_add, Finset.sum_add_distrib, mul_smul_comm, smul_ite, smul_zero,
@@ -206,10 +198,5 @@ theorem powXR_holds : PowXR := by
   | succ n ih =>
     rw [gdelta_pow_succ_apply κ (n + 1), ih, map_add (f := _), map_nsmul, gdelta_X_inr, gdelta_dR_apply,
       ← gdelta_pow_succ_apply, ← gdelta_pow_succ_apply, add_assoc, ← succ_nsmul']
-
-section
-variable {K I J : Type} [CommRing K] [Algebra ℚ K] [Fintype I] [Fintype J]
-
-end
 
 end PI.DivPowInteg.Gen

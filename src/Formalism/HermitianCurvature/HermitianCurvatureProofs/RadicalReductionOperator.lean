@@ -87,6 +87,4 @@ end Formalism.FourierDecayAlt.P.RadicalReductionOperator
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem local_logarithm_unitary : NFRadRedR.LocLog := RadicalReductionOperator.locLog
-
 end Formalism.FourierDecayAlt.P

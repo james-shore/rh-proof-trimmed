@@ -77,6 +77,6 @@ theorem ordL_blk_det : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (n
   intro E _ _ _ n a b h w m X
   have h1 : IsUnit m.1.val.det := (Matrix.isUnit_iff_isUnit_det _).1 m.1.isUnit
   have h2 : IsUnit m.2.val.det := (Matrix.isUnit_iff_isUnit_det _).1 m.2.isUnit
-  rw [blk_val_det, GlobalTheory.CompanionTheory.SwapInt.ordL_mul_of_ne h1.ne_zero h2.ne_zero]
+  rw [blk_val_det, _root_.Formalism.UG.P.fSatake_ord_mul h1.ne_zero h2.ne_zero]
 
 end GlobalTheory.CompanionTheory.CtS

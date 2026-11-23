@@ -74,7 +74,7 @@ theorem fibre_span : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H :
   have hκ := GlobalTheory.T.polarisation_logDerivative_cechCocycle E H X t U n δ hδ J W j hW hcov hWU hj
   have hz := GlobalTheory.T.maximalIdeal_element_pullback_closedFibre_zero E H X t U m A ι hpb
   have hind : ∀ (r : Fin n → Γ(X, U.1)) (h' : ∀ i, Γ(A.left, ι ⁻¹ᵁ W i)), (∀ i i', ∑ b, (ι.appLE (W i ⊓ W i') (ι ⁻¹ᵁ W i ⊓ ι ⁻¹ᵁ W i') (fun _ hx => hx)).hom ((t.G.hom.appLE U.1 (W i ⊓ W i') (inf_le_left.trans (hWU i))).hom (r b)) * (ι.appLE (W i ⊓ W i') (ι ⁻¹ᵁ W i ⊓ ι ⁻¹ᵁ W i') (fun _ hx => hx)).hom (δ b (W i ⊓ W i') (resG t.G.left (inf_le_inf (hj i) (hj i')) (t.PP.L.g (j i) (j i')).val) * resG t.G.left (inf_le_inf (hj i) (hj i')) (t.PP.L.g (j i) (j i'))⁻¹.val) = resG A.left inf_le_left (h' i) - resG A.left inf_le_right (h' i')) → ∀ b, r b ∈ m :=
-    fun r h'' hr => GlobalTheory.T.fibreIndependence_logDerivatives_closedFibre E H X t hP hA hK U n v hv hu δ hδ hδR hδT J W j hW hcov hWU hj m hm A ι hpb r h''
+    fun r h'' hr => _root_.GlobalTheory.FibreIndep.fibre_indep' E H X t hP hA hK U n v hv hu δ hδ hδR hδT J W j hW hcov hWU hj m hm A ι hpb r h''
       (fun i i' => by
 
         rw [map_sum]

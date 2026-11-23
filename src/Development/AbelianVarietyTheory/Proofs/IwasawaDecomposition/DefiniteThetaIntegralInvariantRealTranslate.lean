@@ -94,7 +94,7 @@ theorem liftInt_shift : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (V W : HSp
   intro D ψ V W χS χT ω ν 𝓕 s F H hpos hν h𝓕 hs hF hinv k _
   have := Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.Unfold.topGroupHA D.sp.cm.sig W.gram
   obtain ⟨_, _, _, _⟩ := GlobalTheory.TwistAdelicTop.locallyCompact_secondCountable_borel_countable W
-  obtain ⟨C, hC, hcov⟩ := GlobalTheory.definite_unitary_cocompact W hpos
+  obtain ⟨C, hC, hcov⟩ := _root_.GlobalTheory.DefiniteQuotient.exists_compact W hpos
   obtain ⟨hcont, hθ⟩ := GlobalTheory.thetaKO_continuous_and_rat_invariant ψ V W χS χT ω H s hs
   have hk := map_mul_right_of_cocompact (GQ W) ν 𝓕 C h𝓕 hC hcov k
   funext g

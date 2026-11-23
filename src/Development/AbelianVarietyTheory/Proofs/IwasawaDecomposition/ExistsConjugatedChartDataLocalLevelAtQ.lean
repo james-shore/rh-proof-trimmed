@@ -103,7 +103,7 @@ theorem chartQ_exists : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Nu
     intro v hv
     rw [S.UlocAlt v hv]
     exact hbT v ((mem_plUnder_iff_norm hc hST T hTπ v).2 hv)
-  obtain ⟨S', hLb, hU, hchi⟩ := GlobalTheory.T.exists_stepLevel_conj_baseLatticeUnitary S b hbU hbV hbT' hbO
+  obtain ⟨S', hLb, hU, hchi⟩ := _root_.GlobalTheory.Mem.Col2.ChEx.exists_stepLevel_conj S b hbU hbV hbT' hbO
   have hlam : ∃ m : ℕ, 0 < m ∧ ∀ h, lam h ^ m = 1 := by
     haveI : Finite (GLG (E := E) (n := n) (SG := SG)) := inferInstance
     refine ⟨Nat.card (Subgroup.pi Set.univ Hw : Subgroup (GLG (E := E) (n := n) (SG := SG))), Nat.card_pos, fun h => ?_⟩

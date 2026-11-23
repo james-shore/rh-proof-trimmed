@@ -58,7 +58,7 @@ theorem theta_stage_of_small_rank : _root_.GlobalTheory.FunPr.ThetaLocalInputs �
     NumbersIn D.what₂.embLL S μ₀ → ∀ (i j : Fin D.R.m) (p q : ℕ) (A A' WW : HSp D) (X : Tri T A A' WW), GlobalTheory.SqTower.IsStageC W i j p q X →
       ∃ P' : PolF D WW.rank A'.rank, (∀ t h, MeasureTheory.IntegrableOn (X.ker' W.ψ W.θ t P' h) X.fd' X.m') ∧ ∀ t, X.I' W.ψ W.θ t P' ≠ 0 := by
   intro hP hK hL
-  obtain ⟨c, hc⟩ := GlobalTheory.SqTop.Model.gBig_and (_root_.GlobalTheory.T.smallStage_thetaIntegral_nonzero_case hP hK hL) (_root_.GlobalTheory.T.smallStage_thetaIntegral_large_rank_case hP hK hL)
+  obtain ⟨c, hc⟩ := GlobalTheory.SqTop.Model.gBig_and (_root_.GlobalTheory.StageSmallNz.smallStage_thetaIntegral_of_ne_zero hP hK hL) (_root_.GlobalTheory.StageSmallBig.smallStage_thetaIntegral_of_large_rank hP hK hL)
   refine ⟨c, fun ε CF hCF => ?_⟩
   obtain ⟨C0, x0, h⟩ := hc ε CF hCF
   refine ⟨C0, x0, fun C hC D large₂ a b r T Lc μ hL G W S hW hN i j p q A A' WW X hX => ?_⟩

@@ -98,7 +98,7 @@ theorem acycF_of_isIntegral : ∀ (R : Type) [CommRing R] (F : Shv R), Finitary 
   intro n hn
   suffices h : ∀ x : H R (sp B) F n, x = 0 from ⟨fun x y => by rw [h x, h y]⟩
   intro x
-  obtain ⟨j, y, hy⟩ := (GlobalTheory.T.etaleCohomology_filteredColimit_rings_finitary R F hF (Finset B) (finDiag A B) (finCocone A B)
+  obtain ⟨j, y, hy⟩ := (_root_.GlobalTheory.EtC.RingContH.main R F hF (Finset B) (finDiag A B) (finCocone A B)
     (finCoconeIsColimit A B) n).1 x
   haveI := finite_finDiag A B j
   obtain ⟨ι, hι, T, hT, hAl, e, hH, hS⟩ :=

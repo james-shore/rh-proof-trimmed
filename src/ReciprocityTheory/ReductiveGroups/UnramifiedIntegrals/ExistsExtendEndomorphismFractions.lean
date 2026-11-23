@@ -60,14 +60,6 @@ open Formalism.L2.Th1.CM
 
 variable (l : ℕ) [Fact l.Prime]
 
-theorem norm_prime_lt_one_padicField : ‖(l : ℂ_[l])‖ < 1 := by
-  rw [norm_l_Cl]
-  exact inv_lt_one_of_one_lt₀ (by exact_mod_cast (Fact.out : l.Prime).one_lt)
-
-theorem norm_prime_pos_padicField : 0 < ‖(l : ℂ_[l])‖ := by
-  rw [norm_l_Cl]
-  exact inv_pos.mpr (by exact_mod_cast (Fact.out : l.Prime).pos)
-
 theorem frobeniusLift_near_pow (s : Rmu l →+* Rmu l)
     (hs : ∀ (ζ : ℂ_[l]) (hζ : ζ ∈ muP l),
       ((s ⟨ζ, Subring.subset_closure hζ⟩ : Rmu l) : ℂ_[l]) = ζ ^ l) (x : Rmu l) :
@@ -82,7 +74,7 @@ theorem frobeniusLift_norm_one (s : Rmu l →+* Rmu l)
     (hx : ‖(x : ℂ_[l])‖ = 1) : ‖((s x : Rmu l) : ℂ_[l])‖ = 1 := by
   have h1 : ‖(x : ℂ_[l]) ^ l‖ = 1 := by rw [norm_pow, hx, one_pow]
   have h2 : ‖((s x : Rmu l) : ℂ_[l]) - (x : ℂ_[l]) ^ l‖ < ‖(x : ℂ_[l]) ^ l‖ := by
-    rw [h1]; exact lt_of_le_of_lt (frobeniusLift_near_pow l s hs x) (norm_prime_lt_one_padicField l)
+    rw [h1]; exact lt_of_le_of_lt (frobeniusLift_near_pow l s hs x) (_root_.ReciprocityTheory.ChartRestriction.L1.norm_prime_lt_one_complexPadic l)
   have h3 := IsUltrametricDist.norm_add_eq_max_of_norm_ne_norm (ne_of_lt h2)
   rw [sub_add_cancel, max_eq_right h2.le, h1] at h3
   exact h3
@@ -99,7 +91,7 @@ theorem unitBall_eq_frac_normOne {x : ℂ_[l]} (hx : x ∈ Kmu l) (h1 : ‖x‖ 
     by_contra hneg
     rw [not_le] at hneg
     have : 1 < ‖(l : ℂ_[l])‖ ^ m :=
-      one_lt_zpow_of_neg₀ (norm_prime_pos_padicField l) (norm_prime_lt_one_padicField l) hneg
+      one_lt_zpow_of_neg₀ (_root_.ReciprocityTheory.ChartRestriction.L1.norm_prime_pos_complexPadic l) (_root_.ReciprocityTheory.ChartRestriction.L1.norm_prime_lt_one_complexPadic l) hneg
     rw [← hn] at this
     exact absurd h1 (not_le.mpr this)
   obtain ⟨k, rfl⟩ := Int.eq_ofNat_of_zero_le hm
@@ -123,7 +115,7 @@ theorem rmu_sigma_norm (s : Rmu l →+* Rmu l)
     by_contra hneg
     rw [not_le] at hneg
     have : 1 < ‖(l : ℂ_[l])‖ ^ m :=
-      one_lt_zpow_of_neg₀ (norm_prime_pos_padicField l) (norm_prime_lt_one_padicField l) hneg
+      one_lt_zpow_of_neg₀ (_root_.ReciprocityTheory.ChartRestriction.L1.norm_prime_pos_complexPadic l) (_root_.ReciprocityTheory.ChartRestriction.L1.norm_prime_lt_one_complexPadic l) hneg
     rw [← hn] at this
     exact absurd (rmu_norm_le l x.2) (not_le.mpr this)
   obtain ⟨k, rfl⟩ := Int.eq_ofNat_of_zero_le hm

@@ -169,8 +169,8 @@ theorem resIndep : ResIndep := by
   refine core hn D D' R R' hR hR' fun t t' htt x y hx hy => ?_
   have hg := DiscreteGroups.sglob.DzType.natCast_mem_of_normV D.w' g n hn D.card
   have hg' := DiscreteGroups.sglob.DzType.natCast_mem_of_normV D'.w' g n hn D'.card
-  have h1 := tameRecAll D.E' Ω g A D.w' D.h' hg D.unr D.a' D.ha' π (by rw [D.card]; exact hπ) t x hx
-  have h2 := tameRecAll D'.E' Ω g A D'.w' D'.h' hg' D'.unr D'.a' D'.ha' π (by rw [D'.card]; exact hπ) t' y hy
+  have h1 := _root_.UpperTheory.localArtin_inertia_valuation_of_uniformizer_prime D.E' Ω g A D.w' D.h' hg D.unr D.a' D.ha' π (by rw [D.card]; exact hπ) t x hx
+  have h2 := _root_.UpperTheory.localArtin_inertia_valuation_of_uniformizer_prime D'.E' Ω g A D'.w' D'.h' hg' D'.unr D'.a' D'.ha' π (by rw [D'.card]; exact hπ) t' y hy
   rw [← htt] at h2
   have e : algebraMap D.E' Ω (x : D.E') - algebraMap D'.E' Ω (y : D'.E') =
       ((t : G D.E' Ω) π / π - algebraMap D'.E' Ω (y : D'.E')) - ((t : G D.E' Ω) π / π - algebraMap D.E' Ω (x : D.E')) := by ring

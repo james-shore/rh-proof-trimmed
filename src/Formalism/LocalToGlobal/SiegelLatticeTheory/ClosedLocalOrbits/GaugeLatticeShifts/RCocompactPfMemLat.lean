@@ -80,7 +80,7 @@ theorem lat_pres (Λ : Submodule (𝓞 D.host.E) (VS D).V) (hΛ : Submodule.IsFu
       ∀ g : (VS D).V →ₗ[D.host.E] (VS D).V, (∀ y, X.crd (g y) = G *ᵥ X.crd y) → ∀ y ∈ Λ, g y ∈ Λ := by
   obtain ⟨d, hd0, hd⟩ := Formalism.HermitianLatticesTheory.majLattice_exists_d X.bas Λ hΛ.fg
   have hc : ∀ i, ∃ c : ℤ, c ≠ 0 ∧ c • X.bas i ∈ Λ := fun i =>
-    Formalism.HermitianLatticesTheory.majLattice_exists_c Λ hΛ.span_eq_top (X.bas i)
+    _root_.Bl.general_b_fact_second_rest.goal1 Λ hΛ.span_eq_top (X.bas i)
   choose c hc0 hcm using hc
   set C : ℤ := ∏ i, c i with hC
   have hCm : ∀ i, (C * C) • X.bas i ∈ Λ := by

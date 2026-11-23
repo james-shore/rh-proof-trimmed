@@ -508,7 +508,7 @@ theorem map_analytic_y_at_zero (t : ℂ) : ι (yf L (W0 l ι W) t 0) = yc l L ι
 theorem transW (hU : Unif l L ι W) (t : ℂ) (ht : t ∉ L.lattice) :
     inW l ι W (xf L (W0 l ι W) t) = xT W (ptW l L ι W t) := by
   have hz := A.zMap ℂ ℂ_[l] (ι : ℂ →+* ℂ_[l]) (W0 l ι W)
-  have hp := (A.plusMap ℂ ℂ_[l] (ι : ℂ →+* ℂ_[l]) (W0 l ι W) (xf L (W0 l ι W) t 0)
+  have hp := (_root_.Formalism.L2.Th1.A.addition_map ℂ ℂ_[l] (ι : ℂ →+* ℂ_[l]) (W0 l ι W) (xf L (W0 l ι W) t 0)
     (yf L (W0 l ι W) t 0)).2.1
   have he := A.expSpec ℂ_[l] W
   unfold inW

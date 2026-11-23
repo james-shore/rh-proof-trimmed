@@ -67,7 +67,7 @@ theorem exists_path_ring : ∀ (A B R : Type) [CommRing A] [CommRing B] [CommRin
   let seq : (n : ℕ) → {φ : A → PowerSeries R // GlobalTheory.Nef.PathJet.IsJet π ε m β δ (n + 2) φ} :=
     fun n => Nat.rec ⟨_, GlobalTheory.T.isDoublingJetOfOrder_two_firstOrder A B R π ε m β δ hεπ hmπ hεm hm2 hδ hδπ⟩
       (fun k s => ⟨F k s.1 s.2, hF k s.1 s.2⟩) n
-  exact GlobalTheory.T.exists_ringHom_limit_of_doublingJets A B R π ε m β δ (fun n => (seq n).1) (fun n => (seq n).2)
+  exact _root_.GlobalTheory.Nef.PathJet.limit_of_jets A B R π ε m β δ (fun n => (seq n).1) (fun n => (seq n).2)
     (fun n f => hFφ n (seq n).1 (seq n).2 f)
 
 end GlobalTheory.Nef

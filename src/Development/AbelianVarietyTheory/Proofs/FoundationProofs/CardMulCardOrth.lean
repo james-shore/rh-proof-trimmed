@@ -150,17 +150,6 @@ theorem sum_eq_sum_orth [Fintype M] (hc : ∀ x y, β x y = β y x) (hz : ∀ y,
     (fun x _ => by rw [h1, hX _ x.2, mul_one]), ← Finset.mul_sum, sum_beta hc hz h2 hY]
   split_ifs <;> simp [mul_comm]
 
-theorem sum_comp_surj {G Q : Type} [AddCommGroup G] [AddCommGroup Q] [Fintype G] [Fintype Q]
-    (π : G →+ Q) (hπ : Function.Surjective π) (g : Q → ℂ) :
-    ∃ n : ℕ, 0 < n ∧ ∑ y, g (π y) = n * ∑ q, g q := by
-  first
-  | exact @_root_.GlobalTheory.SumCompSurjective.sum_comp_surjective
-  | exact _root_.GlobalTheory.SumCompSurjective.sum_comp_surjective
-  | (apply _root_.GlobalTheory.SumCompSurjective.sum_comp_surjective <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SumCompSurjective.sum_comp_surjective <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SumCompSurjective.sum_comp_surjective <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SumCompSurjective.sum_comp_surjective ..)
-
 end
 
 def IsHerm {R : Type} [CommRing R] (σ : R →+* R) {M : Type} [AddCommGroup M] [Module R M]
@@ -239,7 +228,7 @@ theorem isotropic_step [Finite M] (h : IsHerm σ φ β) {X Y : Submodule R M}
   · letI := Fintype.ofFinite M
     haveI : Finite (Y ⧸ X.submoduleOf Y) := Finite.of_surjective _ hπ
     letI := Fintype.ofFinite (Y ⧸ X.submoduleOf Y)
-    obtain ⟨n, hn, e⟩ := sum_comp_surj π.toAddMonoidHom hπ φ'
+    obtain ⟨n, hn, e⟩ := _root_.GlobalTheory.SumCompSurjective.sum_comp_surjective π.toAddMonoidHom hπ φ'
     refine ⟨n, hn, ?_⟩
     rw [finsum_eq_sum_of_fintype, finsum_eq_sum_of_fintype, ← e, sum_eq_sum_orth hc hz h1 h2 hY hX]
     exact Finset.sum_congr rfl fun y _ => (hφ y).symm

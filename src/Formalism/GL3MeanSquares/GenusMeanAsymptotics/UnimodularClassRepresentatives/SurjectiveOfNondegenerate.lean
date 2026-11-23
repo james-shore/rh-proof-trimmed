@@ -121,11 +121,7 @@ theorem star_phi {h : V →ₗ⋆[K] V →ₗ[K] K} (hs : h.IsSymm) (X : V ≃�
   have e : ∀ a b, star (h a b) = h b a := fun a b => hs.eq a b
   rw [phi_apply, phi_apply, star_sub, e, e]
 
-theorem unif_ne_zero {𝔭 : Ideal (𝓞 F)} {π : 𝓞 F} (hπ' : π ∉ 𝔭 ^ 2) : algebraMap F K (π : F) ≠ 0 := by
-  intro h0
-  have h1 : (π : F) = 0 := (map_eq_zero (algebraMap F K)).1 h0
-  have h2 : π = 0 := by exact_mod_cast h1
-  exact hπ' (h2 ▸ zero_mem _)
+alias unif_ne_zero := _root_.Formalism.HermitianLattices.Ext.L3.D2.unif_ne_zero
 
 theorem sesq_scale (hF : IsFixF K F) {𝔭 : Ideal (𝓞 F)} (h𝔭 : 𝔭.IsMaximal) {A₀ B₀ : Submodule (𝓞 K) V} {r : ℕ}
     (hr : extP K 𝔭 ^ r • locF 𝔭 A₀ ≤ locF 𝔭 B₀) (s : V →ₗ⋆[K] V →ₗ[K] K) {n m : ℕ} (hnm : n + 2 * r ≤ m)

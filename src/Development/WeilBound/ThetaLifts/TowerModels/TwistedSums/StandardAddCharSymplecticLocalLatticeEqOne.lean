@@ -61,10 +61,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
 variable {F : Type} [Field F] [NumberField F]
 
-theorem trace_mixedEmbedding (y : F) :
-    Algebra.trace ℝ (mixedEmbedding.mixedSpace F) (mixedEmbedding F y) = (Algebra.trace ℚ F y : ℝ) :=
-  _root_.UpperTheory.Reformulated.B.TraceMixedEmbedding.trace_mixedEmbedding y
-
 theorem psi_fin_rat {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) (x : F) :
     ψ (pairA F 0 (algebraMap F (Af F) x)) =
       Complex.exp (2 * Real.pi * Complex.I * ((Algebra.trace ℚ F x : ℚ) : ℂ)) := by
@@ -85,7 +81,7 @@ theorem psi_fin_rat {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) (x : F) :
   have h2 : evI F (pairA F (algebraMap F (Ainf F) (-x)) 0) = mixedEmbedding F (-x) := by
     show InfiniteAdeleRing.ringEquiv_mixedSpace F (algebraMap F (Ainf F) (-x)) = _
     rw [InfiniteAdeleRing.mixedEmbedding_eq_algebraMap_comp]
-  rw [h2, trace_mixedEmbedding, map_neg]
+  rw [h2, _root_.UpperTheory.Reformulated.B.TraceMixedEmbedding.trace_mixedEmbedding, map_neg]
   congr 1
   push_cast
   ring

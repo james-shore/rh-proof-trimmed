@@ -93,10 +93,10 @@ theorem ratio_local_norm_dpair : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (�
   obtain ⟨S1, hS1⟩ := exists_finset_of_eventually (GlobalTheory.OrbFinAf.cptInt p G Ω hΩ)
   obtain ⟨S2, hS2⟩ := exists_finset_of_eventually
     (GlobalTheory.OrbFinAf.cptInt p G {P₁.toAf x₁ t₁ hx₁ P₁.self} isCompact_singleton)
-  obtain ⟨S3, hS3⟩ := GlobalTheory.T.eventually_adic_integral_span_closed_mul_star G.C G.star _ (Module.finBasis ℚ G.C)
-  obtain ⟨S4, hS4⟩ := GlobalTheory.T.eventually_integral_conjugators_differ_by_centralizer p G P₁.γ P₁.reg.1 P₁.reg.2 L ι hinj hcent _ (Module.finBasis ℚ G.C)
-  obtain ⟨S5, hS5⟩ := GlobalTheory.T.almost_all_places_twisted_unit_integral G.C L ι hinj _ (Module.finBasis ℚ G.C) _ (Module.finBasis ℚ L)
-  obtain ⟨S6, hS6⟩ := GlobalTheory.T.fixed_unit_eq_norm_almost_all_places L c hcc hcne _ (Module.finBasis ℚ L)
+  obtain ⟨S3, hS3⟩ := _root_.GlobalTheory.AdicSpan.isIntB_mul_star_eventually G.C G.star _ (Module.finBasis ℚ G.C)
+  obtain ⟨S4, hS4⟩ := _root_.GlobalTheory.LatStep.lattice_step p G P₁.γ P₁.reg.1 P₁.reg.2 L ι hinj hcent _ (Module.finBasis ℚ G.C)
+  obtain ⟨S5, hS5⟩ := _root_.GlobalTheory.LocIntSpan.isIntB_of_isIntB_conj G.C L ι hinj _ (Module.finBasis ℚ G.C) _ (Module.finBasis ℚ L)
+  obtain ⟨S6, hS6⟩ := _root_.GlobalTheory.LocNorm.unit_fixed_is_norm L c hcc hcne _ (Module.finBasis ℚ L)
   refine ⟨S1 ∪ S2 ∪ S3 ∪ S4 ∪ S5 ∪ S6 ∪ (finite_above p).toFinset, ?_⟩
   intro P hγ hcP hex a ha v hv
   obtain ⟨x, t, hx, hxΩ⟩ := hex

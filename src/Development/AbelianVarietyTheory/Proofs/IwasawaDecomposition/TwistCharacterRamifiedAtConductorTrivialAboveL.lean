@@ -74,14 +74,6 @@ instance (M : Type) : TopologicalSpace (Disc M) := ⊥
 instance (M : Type) : DiscreteTopology (Disc M) := ⟨rfl⟩
 instance (M : Type) [CommGroup M] : IsTopologicalGroup (Disc M) := inferInstance
 
-theorem finite_placesOver (E : Type) [Field E] [NumberField E] (l : ℕ) (hl : l ≠ 0) :
-    (placesOver E l).Finite := by
-  have h0 : Ideal.span {((l : ℕ) : 𝓞 E)} ≠ 0 := by
-    rw [Ne, Ideal.zero_eq_bot, Ideal.span_singleton_eq_bot]
-    exact_mod_cast hl
-  refine (Ideal.finite_factors h0).subset fun v hv => ?_
-  exact Ideal.dvd_span_singleton.mpr hv
-
 end GlobalTheory.TwistRamLoc
 
 namespace GlobalTheory.TwistRamLoc
@@ -132,7 +124,7 @@ theorem twist_ram_and_trivial_at_l : ∀ (D : D7) (cf : CharFrame D) (C : NChoic
     · rw [Subgroup.coe_inf]
       exact hro.inter hΨo
   let S : Finset (HeightOneSpectrum (𝓞 D.host.E)) :=
-    C.Q w ∪ (finite_placesOver D.host.E (D.what₂.places.resChar w) (D.what₂.places.resChar_prime w).ne_zero).toFinset
+    C.Q w ∪ (_root_.Formalism.MainNotions.placesOver_finite_av D.host.E (D.what₂.places.resChar w) (D.what₂.places.resChar_prime w).ne_zero).toFinset
   have hΦ1 : Φ = 1 := by
     refine GlobalTheory.FrobDense.eq_one_of_frob D.host.E D.nd.Om art ha _ Φ hΦc S fun v hv A hA σ hσ => ?_
     have hvQ : v ∉ C.Q w := fun h => hv (Finset.mem_union_left _ h)

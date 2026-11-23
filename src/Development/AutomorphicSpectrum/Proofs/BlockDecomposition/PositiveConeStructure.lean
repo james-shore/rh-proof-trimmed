@@ -78,9 +78,6 @@ theorem cone_chol (n : ℕ) : ∃ σ₀ : Mat n → Mat n, ContDiffOn ℝ ∞ σ
   GlobalTheory.T.smooth_positive_definite_sqrt n
 theorem cone_lin (n : ℕ) (g : Mat n) (hg : g.det ≠ 0) : ∃ T : (Fin n × Fin n → ℝ) →ₗ[ℝ] (Fin n × Fin n → ℝ),
     (∀ v, hOf (T v) = g * hOf v * gᴴ) ∧ LinearMap.det T = ‖g.det‖ ^ (2 * n) := GlobalTheory.T.congruence_action_determinant n g hg
-theorem cone_meas (n : ℕ) (g : Mat n) (hg : g.det ≠ 0) (T : (Fin n × Fin n → ℝ) →ₗ[ℝ] (Fin n × Fin n → ℝ))
-    (hT : ∀ v, hOf (T v) = g * hOf v * gᴴ) (hdet : LinearMap.det T = ‖g.det‖ ^ (2 * n)) :
-    Measure.map T (coneMeas n) = coneMeas n := GlobalTheory.T.cone_measure_congruence_invariant n g hg T hT hdet
 theorem cone_fin (n : ℕ) (C : Set (Fin n × Fin n → ℝ)) (hC : IsCompact C) (hCc : C ⊆ cone n) : coneMeas n C < ⊤ :=
   (GlobalTheory.T.cone_measure_locally_finite n).2 C hC hCc
 theorem cone_ne (n : ℕ) : coneMeas n ≠ 0 := (GlobalTheory.T.cone_measure_locally_finite n).1
@@ -88,10 +85,6 @@ theorem cone_ae (n : ℕ) : ∀ᵐ v ∂(coneMeas n), v ∈ cone n := (GlobalThe
 theorem cone_int (n : ℕ) (f : (Fin n × Fin n → ℝ) → ℂ) :
     ∫ v, f v ∂(coneMeas n) = ∫ v in cone n, f v * ((hOf v).det ^ n)⁻¹ := (GlobalTheory.T.cone_measure_density_formula n).2 f
 theorem cone_cpt (n : ℕ) (R : ℝ) : IsCompact {y : G n | lg y.val ≤ R} := GlobalTheory.CompanionTheory.LengthGL.isCompact_G R
-
-theorem hOf_isHermitian (v : Fin n × Fin n → ℝ) : (hOf v).IsHermitian := by
-  show (hOf v)ᴴ = hOf v
-  simp [hOf, conjTranspose_sum, conjTranspose_smul, GlobalTheory.CompanionTheory.TwistHomotopy.hb_conjTranspose]
 
 theorem trace_hOf_mul (v : Fin n × Fin n → ℝ) (q : Fin n × Fin n) : (hOf v * hb q).trace = (v q : ℂ) := by
   simp only [hOf, Finset.sum_mul, Matrix.trace_sum, Matrix.smul_mul, Matrix.trace_smul,
@@ -120,7 +113,7 @@ theorem hOf_coords (P : Mat n) (hP : P.IsHermitian) : hOf (fun p => ((hb p * P).
 
 theorem cone_hOf (n : ℕ) : (∀ v : Fin n × Fin n → ℝ, (hOf v).IsHermitian) ∧ Function.Injective (hOf (n := n)) ∧
     ∀ P : Mat n, P.IsHermitian → hOf (fun p => ((hb p * P).trace).re) = P :=
-  ⟨hOf_isHermitian, hOf_injective, hOf_coords⟩
+  ⟨_root_.GlobalTheory.CompanionTheory.ConeHaar.OpenCone.hOf_herm, hOf_injective, hOf_coords⟩
 
 theorem cone_conv (n : ℕ) : Convex ℝ (cone n) := by
   rw [convex_iff_forall_pos]
@@ -129,7 +122,7 @@ theorem cone_conv (n : ℕ) : Convex ℝ (cone n) := by
     simp only [hOf, Finset.smul_sum, ← Finset.sum_add_distrib, Pi.add_apply, Pi.smul_apply, smul_eq_mul, smul_smul,
       ← add_smul, Complex.ofReal_add, Complex.ofReal_mul]
   show (hOf (a • x + b • y)).PosDef
-  have hh : (hOf (a • x + b • y)).IsHermitian := hOf_isHermitian _
+  have hh : (hOf (a • x + b • y)).IsHermitian := _root_.GlobalTheory.CompanionTheory.ConeHaar.OpenCone.hOf_herm _
   refine Matrix.PosDef.of_dotProduct_mulVec_pos hh fun w hw => ?_
   have h1 : 0 < star w ⬝ᵥ hOf x *ᵥ w := Matrix.PosDef.dotProduct_mulVec_pos hx hw
   have h2 : 0 < star w ⬝ᵥ hOf y *ᵥ w := Matrix.PosDef.dotProduct_mulVec_pos hy hw
@@ -199,8 +192,7 @@ theorem continuous_emb : Continuous (emb : UK n → G n) := by
   show Continuous fun κ : UK n => star κ.1
   exact continuous_subtype_val.star
 
-theorem val_mem (y : G n) : y.val ∈ GLs n :=
-  ((Matrix.isUnit_iff_isUnit_det _).1 y.isUnit).ne_zero
+alias val_mem := _root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val
 
 theorem contDiff_hOf : ContDiff ℝ ∞ (hOf (n := n)) := by
   unfold hOf
@@ -251,7 +243,7 @@ theorem measurable_sec (σ₀ : Mat n → Mat n) (hc : ContinuousOn σ₀ {P | P
     · simp [h]
     · simp [h, sec]
   rw [this]
-  exact hcont.measurable_piecewise continuousOn_const (cone_open n).measurableSet
+  exact hcont.measurable_piecewise continuousOn_const (_root_.GlobalTheory.CompanionTheory.ConeHaar.isOpen_cone n).measurableSet
 
 def piG (y : G n) : Fin n × Fin n → ℝ := fun p => ((hb p * (y.val * y.valᴴ)).trace).re
 
@@ -272,16 +264,16 @@ theorem piG_mem (y : G n) : piG y ∈ cone n := by
 
 theorem coneSt : ConeSt := by
   intro n
-  obtain ⟨σ₀, hσs, hσ⟩ := cone_chol n
-  refine ⟨cone_open n, cone_conv n, fun v => σ₀ (hOf v), ?_, fun v hv => hσ _ hv, ?_⟩
+  obtain ⟨σ₀, hσs, hσ⟩ := _root_.GlobalTheory.CompanionTheory.ConeHaar.Chol.exists_smooth_section n
+  refine ⟨_root_.GlobalTheory.CompanionTheory.ConeHaar.isOpen_cone n, cone_conv n, fun v => σ₀ (hOf v), ?_, fun v hv => hσ _ hv, ?_⟩
   · exact hσs.comp contDiff_hOf.contDiffOn fun v hv => hv
   intro _ _ μ _
   have hms := measurable_sec σ₀ hσs.continuousOn hσ
   have hact : ∀ g : G n, ∃ a : (Fin n × Fin n → ℝ) → (Fin n × Fin n → ℝ), Measurable a ∧
       Measure.map a (coneMeas n) = coneMeas n ∧ ∀ᵐ x ∂(coneMeas n), ∃ k, g * sec σ₀ hσ x = sec σ₀ hσ (a x) * emb k := by
     intro g
-    obtain ⟨T, hT, hdet⟩ := cone_lin n g.val (val_mem g)
-    refine ⟨T, (T.continuous_of_finiteDimensional).measurable, cone_meas n g.val (val_mem g) T hT hdet, ?_⟩
+    obtain ⟨T, hT, hdet⟩ := _root_.GlobalTheory.CompanionTheory.ConeLin.cone_lin n g.val (val_mem g)
+    refine ⟨T, (T.continuous_of_finiteDimensional).measurable, _root_.GlobalTheory.CompanionTheory.ConeHaar.map_coneMeas_eq n g.val (val_mem g) T hT hdet, ?_⟩
     filter_upwards [cone_ae n] with v hv
     have hTv : T v ∈ cone n := by
       show (hOf (T v)).PosDef
@@ -323,7 +315,7 @@ theorem coneSt : ConeSt := by
     (fun y k => hK _ (val_mem y) k)
   rw [h1, cone_int]
   congr 1
-  refine setIntegral_congr_fun (cone_open n).measurableSet fun v hv => ?_
+  refine setIntegral_congr_fun (_root_.GlobalTheory.CompanionTheory.ConeHaar.isOpen_cone n).measurableSet fun v hv => ?_
   simp only [sec_val σ₀ hσ hv]
 
 end GlobalTheory.CompanionTheory.ConeHaar

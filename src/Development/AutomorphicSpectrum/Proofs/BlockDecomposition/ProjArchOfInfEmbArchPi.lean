@@ -118,15 +118,11 @@ theorem conjT_map (hcm : IsCMExt F E σ) (τ : E →+* ℂ) {a b : Type} (M : Ma
   ext i j
   simp [cT, conjTranspose_apply, hcm.2.2.2 τ]
 
-theorem cT_conj {a b : Type} (M : Matrix a b ℂ) : cT (starRingEnd ℂ) M = Mᴴ := by
-  ext i j
-  simp [cT, conjTranspose_apply]
-
 theorem arch_unitary (hcm : IsCMExt F E σ) (τ : EmbOver E w) (y : GArch σ J w) :
     (archMat σ J τ y)ᴴ * J.map τ.1 * archMat σ J τ y = J.map τ.1 := by
   have h : cT (starRingEnd ℂ) (archEquiv J hcm τ y).1.1 * J.map τ.1 * (archEquiv J hcm τ y).1.1 = J.map τ.1 :=
     (archEquiv J hcm τ y).2
-  rw [cT_conj] at h
+  rw [_root_.Formalism.UG.P.cT_conj_eq] at h
   exact h
 
 theorem det_map_ne (hdet : J.det ≠ 0) (τ : E →+* ℂ) : (J.map τ).det ≠ 0 := by
@@ -145,7 +141,7 @@ theorem exists_lift (hcm : IsCMExt F E σ) (hdet : J.det ≠ 0) (τ : EmbOver E 
   let u : GL (Fin n) ℂ := Matrix.nonsingInvUnit m (isUnit_iff_ne_zero.2 hd)
   have hu : u ∈ Formalism.UG.UJ (starRingEnd ℂ) (J.map τ.1) := by
     change cT (starRingEnd ℂ) m * J.map τ.1 * m = J.map τ.1
-    rw [cT_conj]
+    rw [_root_.Formalism.UG.P.cT_conj_eq]
     exact hm
   refine ⟨(archEquiv J hcm τ).symm ⟨u, hu⟩, ?_⟩
   rw [GlobalTheory.Orb.archMat_eq_archEquiv J hcm, MulEquiv.apply_symm_apply]

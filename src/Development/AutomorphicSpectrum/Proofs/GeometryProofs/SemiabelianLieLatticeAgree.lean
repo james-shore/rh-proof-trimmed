@@ -106,11 +106,7 @@ theorem lat_fin (h : IsCptGen ξ) (G : Over X) [GrpObj G] [IsCommMonObj G] [Smoo
     (fun s n hn => Submodule.smul_mem _ s hn) (fun a b ha hb => add_mem ha hb)
   exact Submodule.subset_span (by rw [hr]; exact ⟨m, rfl⟩)
 
-theorem dualMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    (dualMap g).comp (dualMap f) = dualMap (g.comp f) := by
-  apply RingHom.ext
-  intro a
-  ext <;> simp [dualMap]
+alias dualMap_comp := _root_.PositivityTheory.Xgn.NormalLatticeRange.dualMap_comp
 
 theorem lat_gen (h : IsCptGen ξ) (G : Over X) [GrpObj G] [IsCommMonObj G] [Smooth G.hom] {E : Type}
     [AddCommGroup E] [Module Ω E] (M : LieModel G ξ E) {p q : Cpt ξ} (hs : q.1 ⤳ p.1) :

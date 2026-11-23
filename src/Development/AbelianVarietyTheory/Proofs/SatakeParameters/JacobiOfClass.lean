@@ -103,7 +103,7 @@ theorem hostAt_inert : Formalism.L2.KerInert.GenusOneModelExistsLattice → Form
   have hin := jacobi_of_class D p hcl
   obtain ⟨cc', δ', g, -, -, hL, hlam, hAt, hM, hLT⟩ := h1 D cc δ hc hδ p h5 hin lam
   obtain ⟨g2, g3, ε, s2, -, -, -, -, hn, ⟨a1, a2, a3, a4, a5, -, F, hF, -⟩, hD⟩ := h2 D cc' δ' p g hLT hAt h5 hin hM
-  obtain ⟨σ, hσ, -⟩ := Formalism.L2.Th1.D.fieldDataCM p h5
+  obtain ⟨σ, hσ, -⟩ := _root_.Formalism.L2.Th1.D.complex_multiplication_field_data p h5
   refine ⟨_, g2, g3, s2, ε, σ, F, hn, ⟨h5, a1, a2, a3, a4, hσ, hF, a5 σ hσ⟩, ?_⟩
   intro N N' L L' hA
   obtain ⟨r, b, hb, ho⟩ := Formalism.L2.KerInert.orthBasisExists_of Formalism.L2.KerInert.global_orthonormal_basis_four

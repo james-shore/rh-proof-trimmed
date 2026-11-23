@@ -73,11 +73,7 @@ private theorem norm_pow_anti (n' n : ℕ) (h : n' ≤ n) : ‖((l : ℕ) : Qbar
 private theorem cg_mono {n' n : ℕ} (h : n' ≤ n) {x y : Qbar l} (hc : Cg n x y) : Cg n' x y :=
   le_trans hc (norm_pow_anti n' n h)
 
-private theorem cg_trans {n : ℕ} {x y z : Qbar l} (h1 : Cg n x y) (h2 : Cg n y z) : Cg n x z := by
-  have e : x - z = (x - y) + (y - z) := by ring
-  unfold Cg at *
-  rw [e]
-  exact (IsUltrametricDist.norm_add_le_max _ _).trans (max_le h1 h2)
+private alias cg_trans := _root_.GlobalTheory.Ord2.cg_trans
 
 private theorem cg_sub {n : ℕ} {x y x' y' : Qbar l} (h1 : Cg n x y) (h2 : Cg n x' y') : Cg n (x - x') (y - y') := by
   have e : x - x' - (y - y') = (x - y) + -(x' - y') := by ring

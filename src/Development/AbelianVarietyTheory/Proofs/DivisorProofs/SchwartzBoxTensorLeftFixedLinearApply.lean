@@ -59,28 +59,9 @@ theorem matD_mul {σ : E →ₐ[F] E} {d : ℕ} {W : Spc F E d} (g h : UD σ W) 
 theorem matD_inv_mul {σ : E →ₐ[F] E} {d : ℕ} {W : Spc F E d} (g : UD σ W) : matD g⁻¹ * matD g = 1 := by
   rw [← matD_mul, inv_mul_cancel]; rfl
 
-theorem KD_mul {σ : E →ₐ[F] E} {d : ℕ} {W : Spc F E d} {v : Pl (F := F)} {g h : UD σ W} (hg : g ∈ KD σ W v)
-    (hh : h ∈ KD σ W v) : g * h ∈ KD σ W v := by
-  refine ⟨fun u hu => ?_, fun z hz => ?_⟩
-  · have e : matD (g * h) - 1 = matD g * (matD h - 1) + (matD g - 1) := by
-      rw [matD_mul, Matrix.mul_sub, Matrix.mul_one]; abel
-    show u • (matD (g * h) - 1) = 0
-    have h1 : u • (matD h - 1) = 0 := hh.1 u hu
-    have h2 : u • (matD g - 1) = 0 := hg.1 u hu
-    rw [e, smul_add, ← Matrix.mul_smul, h1, h2, Matrix.mul_zero, add_zero]
-  · refine ⟨?_, ?_⟩
-    · rw [matD_mul, ← Matrix.mulVec_mulVec]; exact (hg.2 _ (hh.2 z hz).1).1
-    · rw [_root_.mul_inv_rev, matD_mul, ← Matrix.mulVec_mulVec]; exact (hh.2 _ (hg.2 z hz).2).2
+alias KD_mul := _root_.GlobalTheory.DblVacFactor.KD_mul
 
-theorem KD_inv {σ : E →ₐ[F] E} {d : ℕ} {W : Spc F E d} {v : Pl (F := F)} {g : UD σ W} (hg : g ∈ KD σ W v) :
-    g⁻¹ ∈ KD σ W v := by
-  refine ⟨fun u hu => ?_, fun z hz => ?_⟩
-  · have e : matD g⁻¹ - 1 = -(matD g⁻¹ * (matD g - 1)) := by
-      rw [Matrix.mul_sub, matD_inv_mul, Matrix.mul_one]; abel
-    show u • (matD g⁻¹ - 1) = 0
-    have h2 : u • (matD g - 1) = 0 := hg.1 u hu
-    rw [e, smul_neg, ← Matrix.mul_smul, h2, Matrix.mul_zero, neg_zero]
-  · rw [inv_inv]; exact ⟨(hg.2 z hz).2, (hg.2 z hz).1⟩
+alias KD_inv := _root_.GlobalTheory.DblVacFactor.KD_inv
 
 theorem PDiag_inv {σ : E →ₐ[F] E} {d : ℕ} {W : Spc F E d} {p : UD σ W} (hp : p ∈ PDiag σ W) :
     p⁻¹ ∈ PDiag σ W := by
@@ -109,8 +90,8 @@ theorem mem_of_KD_diag_anti : ∀ (F E : Type) [Field F] [NumberField F] [Field 
       (∀ p ∈ GlobalTheory.DblVac.KD σ G.V v, p ∈ GlobalTheory.DblVac.PAnti σ G.V → p ∈ H) → ∀ g ∈ GlobalTheory.DblVac.KD σ G.V v, g ∈ H := by
   intro F E _ _ _ _ _ σ B a a' G X om om' hT v w hin _ H hD hA g hg
   have h2 : (2 : 𝓞 F) ∉ v.asIdeal := (hT.base.inert v w hin).1
-  obtain ⟨u, hu, huP, hdet, hlat⟩ := GlobalTheory.T.exists_unipotent_corner_isUnit_inertPlace F E σ B a (a - G.p) G.p G.V hT.base hT.geo.hV v w hin g hg
-  obtain ⟨p, q, hp, hpP, hq, hqA, hpq⟩ := GlobalTheory.T.doubledVacuumLatticeStabilizer_bigCell_factorization F E σ a G.V v h2 (g * u) (KD_mul hg hu) hdet hlat
+  obtain ⟨u, hu, huP, hdet, hlat⟩ := _root_.GlobalTheory.InertTransv.exists_unip_corner_isUnit F E σ B a (a - G.p) G.p G.V hT.base hT.geo.hV v w hin g hg
+  obtain ⟨p, q, hp, hpP, hq, hqA, hpq⟩ := _root_.GlobalTheory.DblVacFactor.factor F E σ a G.V v h2 (g * u) (KD_mul hg hu) hdet hlat
   have e : g = p * q * u⁻¹ := by rw [← hpq]; group
   rw [e]
   exact H.mul_mem (H.mul_mem (hD p hp hpP) (hA q hq hqA)) (hD _ (KD_inv hu) (PDiag_inv huP))

@@ -85,7 +85,7 @@ theorem exists_common {P X : Scheme.{0}} {a b : P ⟶ X} {U V : X.Opens}
     (hU : HasAffineChart a b U) (hV : HasAffineChart a b V) (x : X) (hxU : x ∈ U) (hxV : x ∈ V) :
     ∃ W, HasAffineChart a b W ∧ x ∈ W ∧ W ≤ U ∧ W ≤ V := by
   obtain ⟨Y, q, hY, hq⟩ := (hasAffineChart_iff a b U).1 hU
-  obtain ⟨D, hD⟩ := GlobalTheory.T.invariant_open_chart_preimage hq (U ⊓ V) inf_le_left (by
+  obtain ⟨D, hD⟩ := _root_.GlobalTheory.CompanionTheory.FreeQuotGlue.IsChart.exists_opens_image_preimage hq (U ⊓ V) inf_le_left (by
     have h1 := hq.stable
     have h2 := hV.1
     ext p
@@ -155,4 +155,4 @@ theorem GlobalTheory.CompanionTheory.FreeQuotGlue.exists_of_affineCharts : ∀ {
   · exact prop_of_charts @Flat.{0} π _ Y q em hcomm hpre hsurj fun U ↦ (hq U).flat
   · exact prop_of_charts @LocallyOfFinitePresentation.{0} π _ Y q em hcomm hpre hsurj fun U ↦ (hq U).lfp
   · exact prop_of_charts @Surjective.{0} π _ Y q em hcomm hpre hsurj fun U ↦ (hq U).surjective
-  · exact GlobalTheory.T.pullback_of_glued_charts a b π _ Y q em hq hcomm hpre hsurj
+  · exact _root_.GlobalTheory.CompanionTheory.FreeQuotGlue.isPullback_of_isChart a b π _ Y q em hq hcomm hpre hsurj

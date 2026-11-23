@@ -112,7 +112,7 @@ theorem act_tie : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn X.B px)
     exact (MulEquiv.map_eq_one_iff eG.symm).trans e
   · intro g κ hκ f
     obtain ⟨m, hm⟩ := hRD
-    obtain ⟨u, hdeco, hch⟩ := GlobalTheory.T.decoratedRowLattices_flagLevel_rightTranslation X px I hX U L eG hI hV hL hG t κ
+    obtain ⟨u, hdeco, hch⟩ := _root_.GlobalTheory.Mem.R3.RowDeco.deco_tie X px I hX U L eG hI hV hL hG t κ
     have hg : eG.symm (rTup L.βX (L.datXt t) (Formalism.UG.bc (swapAE X.toD7) ((κ : Bridge.Gf X.toD7.sp.X') : GL _ _))) = g := hκ
     rw [hg] at hdeco
     funext h

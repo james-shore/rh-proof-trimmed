@@ -121,7 +121,7 @@ theorem offBlock_le : ∀ (k r : ℕ) (z z' : (Fin (2 * r + k + 1) → ℂ)) (g�
     have := hblk i j h
     rw [hlβ, hlβ, this] at hij
     tauto
-  have hcr := Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.cramerUpper ℂ r l hl 1 (Zr k r g₀) U (by simp)
+  have hcr := _root_.Formalism.HermitianLatticeCounting.P.leadingMinorColumnReplace ℂ r l hl 1 (Zr k r g₀) U (by simp)
     (fun i j h => Matrix.one_apply_ne h.ne) (fun i => by simp [hU, upperOff, upper])
     (fun i j h => by
       simp only [hU, upperOff, upper]

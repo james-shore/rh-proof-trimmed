@@ -72,7 +72,7 @@ theorem kum_sum {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ} (X :
     exact hzero
   | insert a s ha ih =>
     simp only [Finset.sum_insert ha]
-    exact hadd _ _ _ _ (GlobalTheory.T.isKummerCharacterAtLevel_padicInt_smul Ω ε X l n (r a) (x a) (χ a) (h a)) ih
+    exact hadd _ _ _ _ (_root_.GlobalTheory.KZ.H3.kum_smul Ω ε X l n (r a) (x a) (χ a) (h a)) ih
 
 theorem exists_betti_cocycle {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (ε : Ω →+* ℂ) (X : Tower Ω ε)
     (_hε : Function.Injective ε) (hj : ∃ φ : ℂ → ℂ, DifferentiableOn ℂ φ Hs ∧ X.an X.jK = (φ : Mero))

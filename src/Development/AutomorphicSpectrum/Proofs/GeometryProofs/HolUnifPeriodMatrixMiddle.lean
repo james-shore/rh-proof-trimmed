@@ -94,7 +94,7 @@ theorem cubWeil_quot {G B : Over (Sp ℂ)} [GrpObj G] [IsCommMonObj G] [GrpObj B
     (c₂ : CubicalStr B L₂) (hw : LBIso L₁.L (L₂.L.pull q.left)) (N : ℕ) (x y : 𝟙_ (Over (Sp ℂ)) ⟶ G)
     (ζ : Γ(Sp ℂ, ⊤)ˣ) (h : CubWeil c₁ N x y ζ) : CubWeil c₂ N (x ≫ q) (y ≫ q) ζ := by
   obtain ⟨hL, hr, ⟨c', hc⟩, -⟩ := Out.CubePf.cubePull _ _ _ _ (CubeMap.ofHom q) L₂ c₂
-  have h1 := cubWeil_of_lbIso G hs τ L₁ ((CubeMap.ofHom q).rigLB L₂ hL hr) c₁ c' hw N x y ζ h
+  have h1 := _root_.GlobalTheory.CompanionTheory.Ar.CubIso.cubWeil_of_lbIso G hs τ L₁ ((CubeMap.ofHom q).rigLB L₂ hL hr) c₁ c' hw N x y ζ h
   have hw' : (CubeMap.ofHom q).F ≫ B.hom = G.hom ≫ 𝟙 _ := by
     simp [CubeMap.ofHom]
   have e : ∀ (T : Over (Sp ℂ)) (a : T ⟶ G), Out.toBase hw' a =

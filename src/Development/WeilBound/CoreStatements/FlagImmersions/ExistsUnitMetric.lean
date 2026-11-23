@@ -53,6 +53,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ComplexPointExistsUniqueEmbedding
 
 @[expose] public section
 
@@ -66,9 +67,6 @@ namespace RootFieldNumerics.RF.Smooth
 
 variable {K : Type} [Fintype K] {J : K → Type} [∀ k, Fintype (J k)]
 
-theorem evC_eq (w : (Σ k, J k) → ℂ) (f : MRing J) : evC w f = aeval w f := by
-  rw [evC, MvPolynomial.eval_map, aeval_def, algebraMap_int_eq]
-
 theorem evC_mul (w : (Σ k, J k) → ℂ) (f g : MRing J) : evC w (f * g) = evC w f * evC w g := by
   simp only [evC, map_mul]
 
@@ -80,7 +78,7 @@ theorem evC_conj (w : (Σ k, J k) → ℂ) (f : MRing J) :
   simp [map_sum, map_prod, map_pow, map_mul]
 
 theorem contDiff_evC (f : MRing J) : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) fun w : (Σ k, J k) → ℂ => evC w f := by
-  simp only [evC_eq]
+  simp only [_root_.GlobalTheory.CompanionTheory.Ar.Flat.OverUnique.evC_eq_aeval]
   induction f using MvPolynomial.induction_on with
   | C a => simpa using contDiff_const
   | add p q hp hq => simpa using hp.add hq
@@ -345,13 +343,6 @@ theorem exists_unit_metric (y : (Σ k, J k) → Ω) (a : K → ℤ) (c₀ : Ω)
       (‖evC w g0‖ / ‖evC w h0‖) ^ 2 by field_simp [hpw.2.1.ne', hpw.2.2.2.ne'],
     Real.sqrt_sq (div_nonneg (norm_nonneg _) (norm_nonneg _)), div_mul_cancel₀ _ hh0]
 
-private theorem homog_mul_lemma_3 {p q : MRing J} {d1 d2 : K → ℕ} (hp : IsMultiHomog p d1)
-    (hq : IsMultiHomog q d2) : IsMultiHomog (p * q) (d1 + d2) := by
-  classical
-  intro m hm k
-  obtain ⟨m1, hm1, m2, hm2, rfl⟩ := Finset.mem_add.1 (MvPolynomial.support_mul p q hm)
-  simp only [Finsupp.coe_add, Pi.add_apply, Finset.sum_add_distrib, hp m1 hm1 k, hq m2 hm2 k]
-
 theorem pres_off {y : (Σ k, J k) → Ω} (hP : IsMultiHomogIdeal (mCoordIdeal y)) (a : K → ℤ) (c₀ : Ω)
     {w : (Σ k, J k) → ℂ} (hw : ∀ k, ∃ i, w ⟨k, i⟩ ≠ 0) (hn : w ∉ mcPts (mCoordIdeal y)) :
     ∃ g h dg dh, Pres y a c₀ g h dg dh ∧ evC w g ≠ 0 ∧ evC w h ≠ 0 := by
@@ -402,7 +393,7 @@ theorem pres_off {y : (Σ k, J k) → Ω} (hP : IsMultiHomogIdeal (mCoordIdeal y
   clear_value mon
   refine ⟨s0 * mon (fun k => (a k).toNat), s0 * mon (fun k => (-a k).toNat),
     e + fun k => (a k).toNat, e + fun k => (-a k).toNat,
-    ⟨homog_mul_lemma_3 he (hmon _), homog_mul_lemma_3 he (hmon _), fun k => ?_, ?_⟩, ?_, ?_⟩
+    ⟨_root_.GlobalTheory.CompanionTheory.Ar.Flat.UnitChart.homog_mul he (hmon _), _root_.GlobalTheory.CompanionTheory.Ar.Flat.UnitChart.homog_mul he (hmon _), fun k => ?_, ?_⟩, ?_, ?_⟩
   · show ((e k + (a k).toNat : ℕ) : ℤ) - ((e k + (-a k).toNat : ℕ) : ℤ) = a k
     push_cast
     omega

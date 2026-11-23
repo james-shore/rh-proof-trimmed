@@ -81,7 +81,7 @@ variable {K : FinExt l} (bk : BK K)
 
 theorem sat (w : WCb l) (hw : ((l : ℕ) : WCb l) * w ∈ bk.OE) : w ∈ bk.OE := by
   haveI := perfect_Cb (l := l)
-  obtain ⟨ek, pr, hek, hinj, -, -⟩ := GlobalTheory.T.exists_residueTilt_injective_retract l K bk
+  obtain ⟨ek, pr, hek, hinj, -, -⟩ := _root_.GlobalTheory.BSP.exists_resTilt_retract l K bk
   intro n
   obtain ⟨m, s, y, h⟩ := hw (n + 1)
   have h0 : (bk.evW s).coeff 0 = 0 := by
@@ -145,7 +145,7 @@ theorem gal (g : ↥(GK K)) (hg : bk.FixFlat g) (w : WCb l) (hw : w ∈ bk.OE) :
   have hW : ∀ t : bk.S, galW l (g : GQ l) (bk.evW t) = bk.evW t := fun t => by
     change galW l _ (inclW l (bk.ev t)) = inclW l (bk.ev t)
     rw [galW_inclW, ← RingHom.comp_apply (Per.σA _) bk.ev, hfix]
-  obtain ⟨-, -, hu, -, -⟩ := GlobalTheory.T.breuilKisin_OE_mod_prime_laurent_field l K bk
+  obtain ⟨-, -, hu, -, -⟩ := _root_.GlobalTheory.BSP.oe_mod_l l K bk
   apply sub_eq_zero.1
   apply eq_zero_of_forall_dvd
   intro n
@@ -163,7 +163,7 @@ theorem gal (g : ↥(GK K)) (hg : bk.FixFlat g) (w : WCb l) (hw : w ∈ bk.OE) :
 
 theorem inv (w : WCb l) (hw : w ∈ bk.OE) (hu : IsUnit w) : ∃ w' ∈ bk.OE, w * w' = 1 := by
   haveI := perfect_Cb (l := l)
-  obtain ⟨-, -, -, -, hinv⟩ := GlobalTheory.T.breuilKisin_OE_mod_prime_laurent_field l K bk
+  obtain ⟨-, -, -, -, hinv⟩ := _root_.GlobalTheory.BSP.oe_mod_l l K bk
   obtain ⟨u, rfl⟩ := hu
   have hy : WittVector.constantCoeff (p := l) (R := Cb l) u ∈
       bk.OE.map (WittVector.constantCoeff (p := l) (R := Cb l)) := Subring.mem_map.2 ⟨u, hw, rfl⟩

@@ -82,7 +82,7 @@ theorem peelAll : PeelAll :=
 theorem charEx : CharEx :=
   charEx_holds PositivityTheory.Stage1.PM.heckeLAdicCharacter charFrob_holds
     (charAbove_holds PositivityTheory.Stage1.PM.heckeLAdicCharacter HodgeLocalDeRhamField.HLdR.field_outright
-      (UpperTheory.Lit.CharWD.algebraicCharacterWD GlobalTheory.globalArtinReciprocity_holds HodgeLocalDeRhamField.HLdR.field_outright GlobalTheory.deRham_potentiallySemistable) pstOfDR
+      (UpperTheory.Lit.CharWD.algebraicCharacterWD _root_.CompanionTheory.FamInh.globalArtin HodgeLocalDeRhamField.HLdR.field_outright GlobalTheory.deRham_potentiallySemistable) pstOfDR
       contLeft_holds) charInj_holds
 
 end UpperTheory.Gal.TP.Sub

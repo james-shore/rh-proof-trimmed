@@ -175,7 +175,7 @@ theorem exists_galRep_csd_twist : GlobalTheory.Published.GaloisRepOfPolarizedCus
   · have hw : ((l : ℕ) : 𝓞 E) ∈ w.asIdeal := hj.mem_placesOver h
     obtain ⟨σ, hσ, hsp⟩ := hsph w hw
     have HA := H.above PP AI T w A h O Bw hj
-    refine ⟨HA.crys _ (hσ.twist _) (GlobalTheory.T.isSpherical_twist_absDetPow_GL E a w σ s hsp), fun τ LL' τ' hτ' => ?_⟩
+    refine ⟨HA.crys _ (hσ.twist _) (_root_.GlobalTheory.TwistSph.isSpherical_twist_absPow E a w σ s hsp), fun τ LL' τ' hτ' => ?_⟩
     rw [← hHT]
     exact HA.jumps τ LL' τ' hτ'
   · intro w _ hl σ hσ S hS B g hB hg

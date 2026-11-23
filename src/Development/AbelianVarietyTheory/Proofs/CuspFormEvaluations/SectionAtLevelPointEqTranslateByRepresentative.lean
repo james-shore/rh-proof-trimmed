@@ -68,17 +68,11 @@ theorem tyAct_natCast {E : Type} [Field E] [NumberField E] {g : ℕ} (ty : Fin g
   funext k
   simp [tyAct]
 
-theorem hermForm_smul_left' {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) (c : ℂ) (z w : Fin g → ℂ) :
-    hermForm Hm (c • z) w = c * hermForm Hm z w := by
-  simp [hermForm]
+alias hermForm_smul_left' := _root_.GlobalTheory.AnValThPow.herm_smul_left
 
 theorem hermForm_two_right {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) (z w : Fin g → ℂ) :
     hermForm Hm z ((2 : ℂ) • w) = 2 * hermForm Hm z w := by
   simp [hermForm, Matrix.mulVec_smul]
-
-theorem hermForm_add_left' {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) (z z' w : Fin g → ℂ) :
-    hermForm Hm (z + z') w = hermForm Hm z w + hermForm Hm z' w := by
-  simp [hermForm]
 
 section
 
@@ -168,7 +162,7 @@ theorem im_even (mk : Dw.La →+ (Fin g → ℂ)) (hmk : ∀ a, mk a ∈ Φ.lat)
     simp
   · rintro a b ⟨k, hk⟩ ⟨k', hk'⟩
     refine ⟨k + k', ?_⟩
-    rw [map_add (f := _), hermForm_add_left', Complex.add_im, hk, hk']
+    rw [map_add (f := _), _root_.GlobalTheory.AnVal.semichar_herm_add_left, Complex.add_im, hk, hk']
     push_cast
     ring
 

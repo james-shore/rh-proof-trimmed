@@ -103,7 +103,7 @@ theorem hasRep_opens {S X : Scheme.{0}} (i : X ⟶ S) [IsOpenImmersion i] (A : O
   have hr : Set.range V.ι ⊆ Set.range i := by
     rw [Scheme.Opens.range_ι]; exact hV
   let m : Over.mk V.ι ⟶ Over.mk i := Over.homMk (IsOpenImmersion.lift i V.ι hr) (IsOpenImmersion.lift_fac _ _ _)
-  exact GlobalTheory.T.baseChangeBis S A (Over.mk i) (Over.mk V.ι) g m h
+  exact _root_.GlobalTheory.DualCon.HasRep.baseChange S A (Over.mk i) (Over.mk V.ι) g m h
 
 theorem comap_ne_bot_away {R : Type} [CommRing R] (f : R) (J' : Ideal (Localization.Away f)) (h : J' ≠ ⊥) :
     J'.comap (algebraMap R (Localization.Away f)) ≠ ⊥ := by

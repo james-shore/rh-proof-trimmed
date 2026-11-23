@@ -103,7 +103,7 @@ theorem lieMod_matAct_iff_lieIdeal_le_ker : ∀ (p : ℕ) [Fact p.Prime] (D : Da
       convert h using 3
       funext x
       simp [hτ]
-    rw [GlobalTheory.T.eigenDecomposition_iff_shiftedProducts_kill_comaximal (𝓞 D.F) T (Fin n → T) (matAct M f) D.a τ hcomax v]
+    rw [_root_.GlobalTheory.UPel.HT.LieLin.decomp_iff_kill (𝓞 D.F) T (Fin n → T) (matAct M f) D.a τ hcomax v]
     simp only [list_prod_matrixActionAfterRingHom_sub_apply, hP]
     rfl
 

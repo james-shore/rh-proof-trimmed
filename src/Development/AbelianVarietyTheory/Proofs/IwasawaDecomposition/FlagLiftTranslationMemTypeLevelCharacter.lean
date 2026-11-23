@@ -56,10 +56,6 @@ open Formalism.IndefR.RecTie Formalism.IndefR.Lev Formalism.L2.Rows GlobalTheory
 noncomputable section
 namespace GlobalTheory.Mem.R3.LiftBrg.ActQ
 
-theorem castGL_self {R : Type} [CommRing R] {m : ℕ} (x : GL (Fin m) R) : LiftBrg.castGL (rfl : m = m) x = x := by
-  ext i j
-  simp [LiftBrg.castGL]
-
 theorem coarse_eq_blkOf' {a r t m : ℕ} (hn : a = r + m * t) (i : Fin a) :
     Formalism.L2.Col.coarse r (List.replicate m t) i.val = Formalism.L2.DIV.blkOf r t i := by
   unfold Formalism.L2.DIV.blkOf
@@ -75,21 +71,11 @@ theorem coarse_eq_blkOf' {a r t m : ℕ} (hn : a = r + m * t) (i : Fin a) :
       · exact h0
     rw [Formalism.L2.Col.blkIdx_replicate ht m _ (by omega)]
 
-theorem coarseBlockIndex_single_eq_twoBlock {a r b : ℕ} (hn : a = r + b) (i : Fin a) :
-    Formalism.L2.Col.coarse r [b] i.val = Formalism.L2.DIV.blk2 r i := by
-  unfold Formalism.L2.DIV.blk2
-  split_ifs with hi
-  · exact Formalism.L2.Col.coarse_of_lt hi
-  · rw [Formalism.L2.Col.coarse_of_le (Nat.not_lt.mp hi)]
-    have hi2 := i.2
-    have : i.val - r < b := by omega
-    simp [Formalism.L2.Col.blkIdx, this]
-
 theorem castGL_inv_mul_diag_mem_HKV {κ : Type} [CommRing κ] {a n r t : ℕ} (h : a = n) (hn : n = r + t) (hra : r ≤ a)
     (hrn : r ≤ n) (y : GL (Fin a) κ) (hy : y ∈ Formalism.L2.DIV.blockTri (Formalism.L2.DIV.blkOf r t)) :
     (LiftBrg.castGL h y)⁻¹ * Formalism.L2.Col.diagEmb κ hrn (Formalism.L2.DIV.upperLeftBlock hra y) ∈ Formalism.L2.Col.HKV κ n r t := by
   subst h
-  rw [castGL_self]
+  rw [_root_.GlobalTheory.Mem.R3.LiftBrg.ActQ.castGL_rfl_apply']
   have hn' : a = r + 1 * t := by rw [hn, one_mul]
   have hy' : y ∈ Formalism.L2.Col.blockUT _ κ r (List.replicate 1 t) := by
     intro i j hij
@@ -126,12 +112,12 @@ theorem castGL_inv_mem_HQ {κ : Type} [CommRing κ] {a n r b : ℕ} (h : a = n) 
     (hy : y ∈ Formalism.L2.DIV.blockTri (Formalism.L2.DIV.blk2 r)) :
     (LiftBrg.castGL h y)⁻¹ * 1 ∈ Formalism.L2.Col.HQ κ n r b := by
   subst h
-  rw [castGL_self, mul_one]
+  rw [_root_.GlobalTheory.Mem.R3.LiftBrg.ActQ.castGL_rfl_apply', mul_one]
   refine Subgroup.inv_mem _ ?_
   intro i j hij
   apply hy
   have hij' : Formalism.L2.Col.coarse r [b] j.val < Formalism.L2.Col.coarse r [b] i.val := hij
-  rw [coarseBlockIndex_single_eq_twoBlock hn, coarseBlockIndex_single_eq_twoBlock hn] at hij'
+  rw [_root_.GlobalTheory.Mem.R3.LiftBrg.LamQInv.coarseBlockIndex_single_eq_twoBlock hn, _root_.GlobalTheory.Mem.R3.LiftBrg.LamQInv.coarseBlockIndex_single_eq_twoBlock hn] at hij'
   exact hij'
 
 theorem lev_lam_congr' {κ K : Type} [CommRing κ] [Field K] {n : ℕ} {l l' : Formalism.L2.Col.Lev κ K n} (e : l = l')

@@ -56,7 +56,7 @@ variable {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.MainNotio
 theorem wtPt_of_wtN_alt (h : _root_.GlobalTheory.CovTop.LiftWeightNumerator) : _root_.GlobalTheory.RefSum.WtPtAlt :=
   Closed.imp h fun Fm _ _ ⟨_, _, a, h⟩ => ⟨802, by norm_num, a, fun x hx hle ι p hp i hi u1 hq =>
     wtAt_of_wtNum p i (h x hx hle ι p hp i) (le_PP (Fm.parT x hx ι)) hi u1 hq⟩
-theorem wt_pt_of_cov_size : _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.RefSum.WtPtAlt := fun _ => _root_.GlobalTheory.RefSum.DivWt.wtPt_of_wtN_alt _root_.GlobalTheory.T.lift_weight_numerator
+theorem wt_pt_of_cov_size : _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.RefSum.WtPtAlt := fun _ => _root_.GlobalTheory.RefSum.DivWt.wtPt_of_wtN_alt _root_.GlobalTheory.CovTop.WtShape.wtN_z
 end GlobalTheory.RefSum.DivWt
 end
 end

@@ -92,12 +92,12 @@ theorem exists_kummer_on_finer_nbhd : ∀ (q : ℕ) [NeZero q] (k B : Type) [Fie
   let φf : Localization.Away (algebraMap B A' f) →+* Localization M :=
     IsLocalization.Away.lift (algebraMap B A' f) (IsLocalization.map_units (Localization M) (⟨(algebraMap B A' f), hfM⟩ : M))
   have hφf : φf.comp (algebraMap A' _) = algebraMap A' (Localization M) := IsLocalization.Away.lift_comp _ _
-  haveI := GlobalTheory.T.subsingleton_pic_etale_localization_unitsModulo B f A'
+  haveI := _root_.GlobalTheory.PicLoc.subsingleton_pic_localization B f A'
   have hqL : IsUnit (q : Localization M) := by simpa using hqA.map (algebraMap A' (Localization M))
-  obtain ⟨u, hu⟩ := GlobalTheory.T.exists_unit_kummer_eq_of_picard_torsionFree q (Localization M) hqL (fun c _ => Subsingleton.elim _ _) (pull _ (spMap φf) _ _ w)
+  obtain ⟨u, hu⟩ := _root_.GlobalTheory.EtC.kum_surjective q (Localization M) hqL (fun c _ => Subsingleton.elim _ _) (pull _ (spMap φf) _ _ w)
   let u₀ : (Localization M)ˣ := Units.map (Scheme.ΓSpecIso (CommRingCat.of (Localization M))).hom.hom.toMonoidHom u
   have hu₀ : gU _ u₀ = u := by ext; simp [u₀]
-  obtain ⟨m₀, hm₀, v, hv⟩ := GlobalTheory.T.exists_away_unit_map_eq A' M u₀
+  obtain ⟨m₀, hm₀, v, hv⟩ := _root_.GlobalTheory.units_localization_descend_away A' M u₀
   have hm₁ : (algebraMap B A' f) * m₀ ∈ M := M.mul_mem hfM hm₀
   have hunit1 : IsUnit (algebraMap A' (Localization.Away ((algebraMap B A' f) * m₀)) ((algebraMap B A' f) * m₀)) := IsLocalization.Away.algebraMap_isUnit _
   let α : Localization.Away (algebraMap B A' f) →+* Localization.Away ((algebraMap B A' f) * m₀) :=
@@ -111,7 +111,7 @@ theorem exists_kummer_on_finer_nbhd : ∀ (q : ℕ) [NeZero q] (k B : Type) [Fie
   have hφ₁ : φ₁.comp (algebraMap A' _) = algebraMap A' _ := IsLocalization.Away.lift_comp _ _
   have hqm₀ : IsUnit (q : Localization.Away m₀) := by simpa using hqA.map (algebraMap A' _)
   have hqm₁ : IsUnit (q : Localization.Away ((algebraMap B A' f) * m₀)) := by simpa using hqA.map (algebraMap A' _)
-  have hnat := GlobalTheory.T.cup_chern_kummer_pullback_naturality
+  have hnat := _root_.GlobalTheory.EtC.a6nat_holds
   set y := pull _ (spMap α) _ _ w - kum q (gU _ (Units.map β.toMonoidHom v)) with hy
   have hy0 : pull _ (spMap φ₁) _ _ y = 0 := by
     rw [hy, map_sub, ← pull_spMap_comp, pull_kum_gU hnat q _ hqm₁]
@@ -119,13 +119,13 @@ theorem exists_kummer_on_finer_nbhd : ∀ (q : ℕ) [NeZero q] (k B : Type) [Fie
     have e2 : Units.map φ₁.toMonoidHom (Units.map β.toMonoidHom v) = u₀ := by
       rw [← hv (φ₁.comp β) (by rw [RingHom.comp_assoc, hβ, hφ₁])]; ext; rfl
     rw [e1, e2, hu₀, hu, sub_self]
-  obtain ⟨m', hm', hψ⟩ := GlobalTheory.T.tateTwistCohomology_class_dies_on_localizationAway GlobalTheory.T.etaleCohomology_twisted_filtered_colimit_continuity q A' M 1 1 hqA ((algebraMap B A' f) * m₀) hm₁ y φ₁ hφ₁ hy0
+  obtain ⟨m', hm', hψ⟩ := _root_.GlobalTheory.EtC.AwayCont.kill_of_loc _root_.GlobalTheory.EtC.pairingProperties q A' M 1 1 hqA ((algebraMap B A' f) * m₀) hm₁ y φ₁ hφ₁ hy0
   obtain ⟨b, hb, hbm⟩ := M.mul_mem hm₁ hm'
   obtain ⟨s, hs, t, ht, rfl⟩ := Submonoid.mem_sup.1 hb
   obtain ⟨n, rfl⟩ := ht
   have hs' : IsUnit (Ideal.Quotient.mk (Ideal.span {f}) s) := hs
   refine ⟨Localization.Away (algebraMap B A' s), inferInstance, inferInstance, inferInstance, inferInstance,
-    GlobalTheory.T.isExcisionNbhd_away_of_isUnit_mod' B A' f s hA' hs', ?_⟩
+    _root_.GlobalTheory.EtC.isExcisionNbhd_away_of_isUnit_mod B A' f s hA' hs', ?_⟩
   set A₂ := Localization.Away (algebraMap B A' s)
   set g : A' →+* Localization.Away (algebraMap B A₂ f) := (algebraMap A₂ _).comp (algebraMap A' A₂) with hg
   have hgu : IsUnit (g ((algebraMap B A' f) * m₀ * m')) := by

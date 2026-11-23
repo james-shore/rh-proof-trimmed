@@ -219,17 +219,11 @@ open GlobalTheory.LocFlat
 section Sets
 variable {n n' : Type} [Fintype n] [DecidableEq n] [Fintype n'] [DecidableEq n'] {c : ℕ}
 
-theorem mem_fixSet {ρ : ℕ} {e : (n ⊕ Fin c) × (n' ⊕ Fin (c + 1))} : e ∈ fixSet ρ ↔
-    ((∃ i, e.2 = Sum.inr i ∧ i.val ≤ ρ ∧ ¬ Free (ρ + 1) e) ∨ (∃ l s, e.1 = Sum.inr l ∧ ρ < l.val ∧ e.2 = Sum.inl s)) := by
-  simp [fixSet]
+alias mem_fixSet := _root_.GlobalTheory.PartRed.LowLaw.mem_fix
 
-theorem mem_transSet {ρ : ℕ} {e : (n ⊕ Fin c) × (n' ⊕ Fin (c + 1))} : e ∈ transSet ρ ↔
-    (Free (ρ + 1) e ∧ ∀ i, e.2 = Sum.inr i → ρ < i.val) := by
-  simp [transSet]
+alias mem_transSet := _root_.GlobalTheory.PartRed.LowLaw.mem_trans
 
-theorem mem_lowSet {ρ : ℕ} {e : (n ⊕ Fin c) × (n' ⊕ Fin (c + 1))} : e ∈ lowSet ρ ↔
-    ∃ (l : Fin c) (i : Fin (c + 1)), e = (Sum.inr l, Sum.inr i) ∧ ρ < i.val ∧ i.val ≤ l.val := by
-  simp [lowSet]
+alias mem_lowSet := _root_.GlobalTheory.PartRed.LowLaw.mem_low
 
 theorem mem_upSet {ρ : ℕ} {e : (n ⊕ Fin c) × (n' ⊕ Fin (c + 1))} : e ∈ upSet ρ ↔
     ∃ (l : Fin c) (i : Fin (c + 1)), e = (Sum.inr l, Sum.inr i) ∧ l.val < i.val ∧ i.val ≤ ρ := by

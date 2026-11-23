@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymplecticFormUnitaryPairAction
 
 @[expose] public section
 
@@ -52,36 +53,6 @@ open Formalism.IndefR.DatumF MeasureTheory GlobalTheory.FinWeil
 open GlobalTheory.FinLatF
 
 namespace PositivityTheory.ThKW.LatA
-
-theorem sum_four_eq_trace {A : Type} [CommRing A] {m n : ℕ} (σ : A →+* A) (P : Matrix (Fin n) (Fin n) A)
-    (Q : Matrix (Fin m) (Fin m) A) (x y : Matrix (Fin m) (Fin n) A) :
-    ∑ a, ∑ b, ∑ c, ∑ d, P a b * σ (y c b) * Q c d * x d a = (P * (y.map σ)ᵀ * Q * x).trace := by
-  simp only [Matrix.trace, Matrix.diag_apply, Matrix.mul_apply, Matrix.transpose_apply, Matrix.map_apply,
-    Finset.sum_mul]
-  refine Finset.sum_congr rfl fun a _ => Eq.symm ?_
-  rw [Finset.sum_comm]
-  refine (Finset.sum_congr rfl fun c _ => Finset.sum_comm).trans ?_
-  rw [Finset.sum_comm]
-
-theorem sum_unitary {A : Type} [CommRing A] {m n : ℕ} (σ : A →+* A) (Q g : Matrix (Fin m) (Fin m) A)
-    (P P' k : Matrix (Fin n) (Fin n) A) (hP : P * P' = 1) (hg : (g.map σ)ᵀ * Q * g = Q)
-    (hk : (k.map σ)ᵀ * P' * k = P') (x y : Matrix (Fin m) (Fin n) A) :
-    ∑ a, ∑ b, ∑ c, ∑ d, P a b * σ ((g * y * k) c b) * Q c d * (g * x * k) d a =
-      ∑ a, ∑ b, ∑ c, ∑ d, P a b * σ (y c b) * Q c d * x d a := by
-  have h1 : (P * (k.map σ)ᵀ * P') * k = 1 := by
-    rw [Matrix.mul_assoc P, Matrix.mul_assoc P, hk, hP]
-  have h2 : k * (P * (k.map σ)ᵀ * P') = 1 := mul_eq_one_comm.1 h1
-  have hP' : P' * P = 1 := mul_eq_one_comm.1 hP
-  have hk' : k * P * (k.map σ)ᵀ = P := by
-    calc k * P * (k.map σ)ᵀ = k * P * (k.map σ)ᵀ * (P' * P) := by rw [hP', Matrix.mul_one]
-      _ = (k * (P * (k.map σ)ᵀ * P')) * P := by simp only [Matrix.mul_assoc]
-      _ = P := by rw [h2, Matrix.one_mul]
-  have e : P * ((g * y * k).map σ)ᵀ * Q * (g * x * k) =
-      (P * (k.map σ)ᵀ * ((y.map σ)ᵀ * ((g.map σ)ᵀ * Q * g) * x)) * k := by
-    simp only [Matrix.map_mul, Matrix.transpose_mul, Matrix.mul_assoc]
-  rw [sum_four_eq_trace, sum_four_eq_trace, e, hg, Matrix.trace_mul_comm, ← Matrix.mul_assoc,
-    ← Matrix.mul_assoc k, hk']
-  simp only [Matrix.mul_assoc]
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
   {σ : E →ₐ[F] E} {nS nT : ℕ} {JS : Matrix (Fin nS) (Fin nS) E} {JT : Matrix (Fin nT) (Fin nT) E}
@@ -97,7 +68,7 @@ theorem hOF_actOF (hS : IsHermND σ JS) (g : GAF σ JS) (h : GAF σ JT) (x y : W
   have h1 : JS⁻¹.map (incAF F E) * JS.map (incAF F E) = 1 := by
     rw [← Matrix.map_mul, Matrix.nonsing_inv_mul _ (isUnit_iff_ne_zero.mpr hS.2)]
     exact Matrix.map_one _ (incAF F E).map_zero (incAF F E).map_one
-  exact sum_unitary (cAF σ) (JT.map (incAF F E)) (mtF σ JT h) (JS⁻¹.map (incAF F E)) (JS.map (incAF F E)) (mtF σ JS g⁻¹)
+  exact _root_.GlobalTheory.SymplOInv.sum_unitary (cAF σ) (JT.map (incAF F E)) (mtF σ JT h) (JS⁻¹.map (incAF F E)) (JS.map (incAF F E)) (mtF σ JS g⁻¹)
     h1 h.2 (g⁻¹).2 x y
 
 theorem symplOF_actOF (hS : IsHermND σ JS) (g : GAF σ JS) (h : GAF σ JT) (x y : WOF F E nS nT) :

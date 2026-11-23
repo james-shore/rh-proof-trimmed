@@ -66,7 +66,7 @@ theorem line_derivative_split_eq_sum : _root_.GlobalTheory.FunPr.ThetaLocalInput
       (∀ i, ∀ u, HasDerivAt (fun t : ℝ => GlobalTheory.WeilM.thetaSum F (M.co.rho B.ψ u (om (γs i (Multiplicative.ofAdd t), 1) ΦD)))
         (GlobalTheory.WeilM.thetaSum F (M.co.rho B.ψ u (Ψ i))) 0) ∧ Φ₁D = (l.map Ψ).sum := by
   intro hPr F E _ _ _ _ _ σ B n d X W M χX χW om r s r' s' hP ι l γs hγs γ hγ hprod ΦD hΦD Φ₁D hΦ₁
-  have hact := _root_.GlobalTheory.T.dualPair_preserves_polarization hPr F E σ B n d X W M χX χW om r s r' s' hP
+  have hact := _root_.GlobalTheory.PolActsPf.polarization_acts_of_isDualPair hPr F E σ B n d X W M χX χW om r s r' s' hP
   choose Ds hDsP hDs using fun i => hact.1 (γs i) (hγs i)
   obtain ⟨Dγ, -, hDγ⟩ := hact.1 γ hγ
   obtain ⟨m, c, g, hg⟩ := (Submodule.mem_span_set').1 hΦD
@@ -103,7 +103,7 @@ theorem line_derivative_split_eq_sum : _root_.GlobalTheory.FunPr.ThetaLocalInput
         simpa [Finset.sum_fn] using hs
       exact (hΦ₁ x).unique h2
     have hadd : ∀ j, Dγ (c j • f j) = (l.map fun i => Ds i (c j • f j)).sum := fun j =>
-      _root_.GlobalTheory.T.line_derivative_additive_in_lines hPr F E σ B n d X W M χX χW om r s r' s' hP l γs hγs γ hγ hprod _ (hmem j) _ _
+      _root_.GlobalTheory.LineAdd.deriv_prod_lines_eq_sum hPr F E σ B n d X W M χX χW om r s r' s' hP l γs hγs γ hγ hprod _ (hmem j) _ _
         ((hDγ _ (hmem j) _).2 rfl) (fun i => (hDs i _ (hmem j) _).2 rfl)
     calc Φ₁D = ∑ j, GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure (Dγ (c j • f j)) (φ j) :=
           funext fun x => (hpt x).trans (Finset.sum_apply x _ _).symm

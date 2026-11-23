@@ -98,7 +98,7 @@ theorem exists_divFrom : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] 
   have l₂ : LBIso o'.t.PP.L (L.o.t.PP.L.pull m.toSABMap.φ) := m.lin.imp fun _ h => h.1
   have l₃ : LBIso o'.t.PP.L (L.D.P.L.pull (m.toSABMap.φ ≫ L.φB)) :=
     LBIso.trans o'.t.PP.isLB (pull_isLB L.o.t.PP.isLB _) (pull_isLB L.D.P.isLB _) l₂ (GenSpread.lbIso_pull_of_lbIso L.ab.2.2 _ rfl)
-  obtain ⟨s, h₁, h₂, h₃⟩ := GlobalTheory.T.exists_periods_monomialFamily_coords_over_base Xo c φ V hV hk C D' L θ₀ e (i.hom.left ≫ m.toSABMap.φ ≫ L.φB)
+  obtain ⟨s, h₁, h₂, h₃⟩ := _root_.GlobalTheory.UCanon.Periods.exists_divFrom Xo c φ V hV hk C D' L θ₀ e (i.hom.left ≫ m.toSABMap.φ ≫ L.φB)
     (((isGrpPullback_of_iso i).comp (m.cart.comp L.ab.1)).congr (by simp) rfl)
     (fun a => by
       have h1 := congrArg (·.left) (hia a)

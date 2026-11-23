@@ -80,9 +80,6 @@ theorem eq_zero_of_rational_points {k : Type} [Field k] [IsAlgClosed k] {X : Sch
   have hU : ⊤ ≤ (pointOfClosedPoint π y hc) ⁻¹ᵁ U := hb.trans (Scheme.Hom.preimage_mono _ (X.basicOpen_le f))
   exact ((Points.le_preimage_basicOpen_iff _ hU f).1 hb).ne_zero (h _ (pointOfClosedPoint_comp π y hc) hU)
 
-theorem fib_fst {R : Type} [CommRing R] {S : Scheme.{0}} {G : Over S} {y : Sp R ⟶ S} (x : Over.mk y ⟶ G) :
-    fib x ≫ pullback.fst G.hom y = x.left := pullback.lift_fst _ _ _
-
 theorem sec_eq_zero {S : Scheme.{0}} (P : Out.PolAV S) {k : Type} [Field k] [IsAlgClosed k] (y : Sp k ⟶ S) (m : ℕ)
     (u : SecP P.L (pullback.fst P.A.hom y) m)
     (h : ∀ (x : Over.mk y ⟶ P.A) j, ⊤ ≤ x.left ⁻¹ᵁ P.L.U j → ArcPts.sval u (fib x) j = 0) (i) : u.f i = 0 := by
@@ -98,7 +95,7 @@ theorem sec_eq_zero {S : Scheme.{0}} (P : Out.PolAV S) {k : Type} [Field k] [IsA
     exact Category.id_comp _)
   have e : fib a = x := by
     apply pullback.hom_ext
-    · exact fib_fst a
+    · exact _root_.GlobalTheory.FibreFrame.fib_fst a
     · rw [hx]
       exact pullback.lift_snd _ _ _
   have := h a j fun p hp => Set.mem_iInter.1 (hU hp) 0
@@ -159,7 +156,7 @@ theorem level_on_fibre : Out.Laws → Out.Laws2 → ∀ (E : Type) [Field E] [Nu
   have hθk0 : θ ^ k ≠ 0 := fun e => hθ0 (funext fun z => pow_eq_zero_iff hk |>.1 (congrFun e z))
   have hv : ∀ α, ∀ th ∈ A.Theta k α, ∀ v j, ⊤ ≤ (Ψ.pi w v).left ⁻¹ᵁ o.t.PP.L.U j →
       ArcPts.sval (σ₀ α th) (fib (Ψ.pi w v)) j = A.Sum k α th w v * Ψ.fr w j v ^ k := fun α th hth v j hj =>
-    hval α th hth v j (by rw [fib_fst]; exact hj)
+    hval α th hth v j (by rw [_root_.GlobalTheory.FibreFrame.fib_fst]; exact hj)
   refine LevelUnique.torsion_eq_of_same_ratios hL hL2 E H D l B bb S s o ℂ (Ψ.yw w) A.V (Ψ.pi w) k _ _
     (fun _ => True) (σ₀ 0 (θ ^ k)) (Nat.one_le_iff_ne_zero.2 hk) ?_ ?_ (fun m _ u hu => ?_) ?_
     (fun _ _ _ _ => trivial) fun v _ t₁ t₂ j j' hj hj' => ?_
@@ -177,7 +174,7 @@ theorem level_on_fibre : Out.Laws → Out.Laws2 → ∀ (E : Type) [Field E] [Nu
       rw [ArcPts.sval, e]
       refine Points.valR_zero _ _ fun p hp => Set.mem_iInter.2 fun _ => ?_
       have := hj' hp
-      rw [← fib_fst] at this
+      rw [← _root_.GlobalTheory.FibreFrame.fib_fst] at this
       exact this
     rw [hv 0 _ hθk v j hj'] at h0
     exact mul_ne_zero hv0 (pow_ne_zero _ ((SpecGroup.pi_frm Ψ hw v).1 j hj').ne_zero) h0

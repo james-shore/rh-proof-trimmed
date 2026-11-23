@@ -161,7 +161,7 @@ theorem exists_atlas_decomp : ∀ (p : ℕ) [Fact p.Prime] (Y X : Scheme.{0}) [I
   have hJ (k j) : j ∈ J k ↔ ∃ c, (C k).e c = some j := by simp [J]
   have heq (k) := hE' (pullChart hP (C k)) (hgen k) (x k) (fun _ => rfl)
   have hlog (k) : IsLogChart (suppAll E) (pullChart hP (C k)).U (x k) (J k) := by
-    refine GlobalTheory.T.etale_coordinates_log_chart p X f _ (hgen k) (pullChart hP (C k)).t (x k) (J k) _ (pullChart hP (C k)).affine
+    refine _root_.GlobalTheory.EtLog.isLogChart_of_isEtCoord p X f _ (hgen k) (pullChart hP (C k)).t (x k) (J k) _ (pullChart hP (C k)).affine
       (pullChart hP (C k)).etale (fun _ => rfl) fun y hy => ?_
     constructor
     · intro hy'
@@ -189,7 +189,7 @@ theorem exists_atlas_decomp : ∀ (p : ℕ) [Fact p.Prime] (Y X : Scheme.{0}) [I
       chart := hlog
       snc := fun k => ⟨(C k).e, (C k).inj, hJ k, heq k⟩ }
   have : CharP X.functionField p := charP_of_injective_ringHom (Cartier.constFn f).injective p
-  refine ⟨T.card, E, 𝒜, GlobalTheory.T.frobenius_decomposition_of_lift p 𝒜 hd ?_, fun i => (hE i).trans (CechPic.cls_pull (h.isLB i) π _)⟩
+  refine ⟨T.card, E, 𝒜, _root_.GlobalTheory.LogDR.decomp_of_isLifted p 𝒜 hd ?_, fun i => (hE i).trans (CechPic.cls_pull (h.isLB i) π _)⟩
   refine DI.isLifted_of_sncCharts p Y X g f π hP L σ h.isLB C _ _ (fun _ => le_rfl) hgen x J
     (fun k l => ?_) (fun k l => (hJ k l).1) hlog
   exact congrArg (fun ψ : Γ(Y, (C k).U) ⟶ Γ(X, π ⁻¹ᵁ (C k).U) => fnOf _ (hgen k) (ψ.hom ((C k).t l)))

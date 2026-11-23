@@ -111,7 +111,7 @@ namespace GlobalTheory.BigTop.Fun.PolBound
 
 open Formalism.BasicNotions Formalism.MainNotions NumberField
 
-theorem rpow_mono {x a b : ℝ} (hx : 1 ≤ x) (h : a ≤ b) : x ^ a ≤ x ^ b := Real.rpow_le_rpow_of_exponent_le hx h
+alias rpow_mono := _root_.Real.rpow_le_rpow_of_exponent_le
 
 theorem factors_le {D : D7} (L : SizeData₂ D) (hS : SizesAt L) (T : ℕ) (hT : L.Ct + 1 ≤ T) :
     (D.R.f : ℝ) ≤ L.sc.x ^ (T + 9) ∧ (D.R.m : ℝ) ≤ L.sc.x ^ (T + 9) ∧ (D.R.k : ℝ) ≤ L.sc.x ^ (T + 9) ∧

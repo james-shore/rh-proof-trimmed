@@ -70,7 +70,7 @@ theorem exists_pair_of_annihilator_any : ∀ (F : Type) [Field F] [NumberField F
     by_contra h
     push_neg at h
     exact hne (by ext t; simpa using h t)
-  obtain ⟨n, hn⟩ := GlobalTheory.CharConductor.exists_conductor_exponent F v ψ hcont hnorm hne'
+  obtain ⟨n, hn⟩ := _root_.GlobalTheory.ConductorAdicCompletion.exists_conductor_adicCompletion F v ψ hcont hnorm hne'
   obtain ⟨a, ha⟩ := exists_valuation_eq F v n
   have ha0 : a ≠ 0 := by
     intro h; rw [h, map_zero] at ha; exact WithZero.zero_ne_coe ha

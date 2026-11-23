@@ -59,9 +59,6 @@ noncomputable abbrev res : Obar p →+* kbar p := IsLocalRing.residue (Obar p)
 
 theorem norm_le_one (x : Obar p) : ‖(x : PadicAlgCl p)‖ ≤ 1 := mem_Obar_iff.1 x.2
 
-theorem norm_sub_le_max' (x y : PadicAlgCl p) : ‖x - y‖ ≤ max ‖x‖ ‖y‖ := by
-  first | exact Bl.FirstBlockLemmaD.goal1 .. | (apply Bl.FirstBlockLemmaD.goal1 <;> assumption) | (intros; apply Bl.FirstBlockLemmaD.goal1 <;> assumption)
-
 theorem isUnit_iff (x : Obar p) : IsUnit x ↔ ‖(x : PadicAlgCl p)‖ = 1 := by
   constructor
   · rintro ⟨u, rfl⟩
@@ -144,7 +141,7 @@ theorem finite_resK (K : IntermediateField ℚ_[p] (PadicAlgCl p)) (hK : FiniteD
     have hy1 : ‖(y : PadicAlgCl p)‖ ≤ 1 := by
       have h1 : (y : PadicAlgCl p) = (x : PadicAlgCl p) - ((x : PadicAlgCl p) - (y : PadicAlgCl p)) := by ring
       rw [h1]
-      exact (norm_sub_le_max' _ _).trans (max_le (norm_le_one x) hxy'.le)
+      exact (_root_.Bl.FirstBlockLemmaD.goal1 _ _).trans (max_le (norm_le_one x) hxy'.le)
     refine ⟨y, hy, ?_⟩
     have hg : g y = res ⟨(y : PadicAlgCl p), mem_Obar_iff.2 hy1⟩ := dif_pos hy1
     rw [hg]
@@ -178,12 +175,7 @@ theorem not_dvd_qK_pow_sub_one (K : IntermediateField ℚ_[p] (PadicAlgCl p)) (h
     rwa [Nat.sub_sub_self h2] at this
   exact (Fact.out : p.Prime).one_lt.ne' (Nat.dvd_one.1 h3)
 
-theorem norm_eq_one_of_pow {m : ℕ} (hm : m ≠ 0) {ζ : PadicAlgCl p} (hζ : ζ ^ m = 1) : ‖ζ‖ = 1 := by
-  first | exact Bl.FirstBlockLemmaC.goal1 .. | (apply Bl.FirstBlockLemmaC.goal1 <;> assumption) | (intros; apply Bl.FirstBlockLemmaC.goal1 <;> assumption)
-
-theorem norm_sub_one_of_pow {m : ℕ} (hm : ¬ p ∣ m) {η : PadicAlgCl p} (hη : η ^ m = 1) (h : η ≠ 1) :
-    ‖η - 1‖ = 1 := by
-  first | exact Bl.PadicNatCastNorm.goal1 .. | (apply Bl.PadicNatCastNorm.goal1 <;> assumption) | (intros; apply Bl.PadicNatCastNorm.goal1 <;> assumption)
+alias norm_eq_one_of_pow := _root_.Bl.FirstBlockLemmaC.goal1
 
 theorem norm_sub_eq_one_of_pow_eq_one {m : ℕ} (hm : ¬ p ∣ m) {ζ ξ : PadicAlgCl p} (hζ : ζ ^ m = 1)
     (hξ : ξ ^ m = 1) (h : ζ ≠ ξ) : ‖ζ - ξ‖ = 1 := by
@@ -192,7 +184,7 @@ theorem norm_sub_eq_one_of_pow_eq_one {m : ℕ} (hm : ¬ p ∣ m) {ζ ξ : Padic
     rintro rfl; rw [zero_pow hm0] at hξ; exact zero_ne_one hξ
   have h1 : ζ - ξ = ξ * (ζ / ξ - 1) := by field_simp
   rw [h1, norm_mul, norm_eq_one_of_pow hm0 hξ, one_mul]
-  apply norm_sub_one_of_pow hm
+  apply _root_.Bl.PadicNatCastNorm.goal1 hm
   · rw [div_pow, hζ, hξ, div_one]
   · intro h2; exact h ((div_eq_one_iff_eq hξ0).1 h2)
 

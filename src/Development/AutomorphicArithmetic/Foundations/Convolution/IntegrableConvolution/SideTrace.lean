@@ -202,11 +202,7 @@ private theorem rhoL_mul (w : Pl K) (g h : Gw n w) : rhoL μ w (g * h) = rhoL μ
   have := (UpperTheory.ConvolutionTheory.Tf.commPrj K n μ ⊥).2.2.2.2.2.1
   simp only [rhoL, map_mul, this]
 
-private theorem rhoL_comm {w w' : Pl K} (h : w ≠ w') (g : Gw n w) (g' : Gw n w') : Commute (rhoL μ w g) (rhoL μ w' g') := by
-  have h1 := (UpperTheory.ConvolutionTheory.Tf.commPrj K n μ ⊥).2.2.2.2.2.1
-  have h2 := (UpperTheory.ConvolutionTheory.Tf.locEmb K n w).2.2.2.1 w' h.symm g g'
-  show rhoL μ w g ∘L rhoL μ w' g' = rhoL μ w' g' ∘L rhoL μ w g
-  simp only [rhoL, ← h1, h2]
+private alias rhoL_comm := _root_.UpperTheory.ConvolutionTheory.L1.TY.rhoL_comm
 
 private theorem arch_comm (a : archGroup K n) (w : Pl K) (g : Gw n w) :
     Commute (rightRegularRep (rationalGLOne (K := K) (n := n)) μ (archP K n a)) (rhoL μ w g) := by
@@ -241,10 +237,6 @@ private theorem oloc_fix {w : Pl K} [MeasurableSpace (Gw n w)] [BorelSpace (Gw n
   show ψ g * _ = ψ (u * g) * _
   rw [hJ u hu, rhoL_mul, ContinuousLinearMap.comp_apply, ContinuousLinearMap.adjoint_inner_left]
 
-private theorem mem_eigL {w : Pl K} {J : Subgroup (Gw n w)} {χ : Gw n w → ℂ} {v : LL μ} :
-    v ∈ eigL μ w J χ ↔ ∀ x ∈ J, rhoL μ w x v = χ x • v := by
-  simp [eigL, Submodule.mem_iInf, LinearMap.mem_eqLocus]
-
 end Ops
 
 section Ty
@@ -253,7 +245,7 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 
 private theorem mem_typed (T : Ty σ n q w₀) {v : LL μ} :
     v ∈ T.typed μ ↔ ∀ w, ∀ x ∈ T.J w, rhoL μ w x v = T.χ w x • v := by
-  simp only [Ty.typed, Submodule.mem_iInf, mem_eigL]
+  simp only [Ty.typed, Submodule.mem_iInf, _root_.UpperTheory.ConvolutionTheory.L1.TY.mem_eigL]
 
 private theorem typed_closed (T : Ty σ n q w₀) : IsClosed (T.typed μ : Set (LL μ)) := by
   simp only [Ty.typed, Submodule.coe_iInf]
@@ -278,7 +270,7 @@ private theorem typed_step (T : Ty σ n q w₀) (Bo : LL μ →L[ℂ] LL μ) (w�
     have h1 := (UpperTheory.ConvolutionTheory.L1.eigBasic E n μ w (T.J w) 1 (T.co w) hch).2.1
     have h2 : Bo v ∈ eigL μ w (T.J w) 1 := by rw [h1]; exact hfix v
     rw [hχ]
-    exact (mem_eigL μ).1 h2 x hx
+    exact (_root_.UpperTheory.ConvolutionTheory.L1.TY.mem_eigL μ).1 h2 x hx
   · have := congrArg (fun S : LL μ →L[ℂ] LL μ => S v) (hc w h x).eq
     simp only [ContinuousLinearMap.mul_apply] at this
     rw [← this, hv w x hx, map_smul]

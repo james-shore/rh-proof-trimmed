@@ -189,7 +189,7 @@ theorem jet_family_deriv : AllC fun {R} _ _ {D} _ {N} ν => ∀ (g' r g : ℕ) (
         (d.fr (d.t12 *ᵥ co bX α + zP σ Y)).ne_zero)
       linear_combination (-(d.fr (d.t12 *ᵥ co bX α + zP σ Y) : ℂ)) * e1 + f α (d.ex (zP σ Y)) * e2 +
         Complex.exp ((2 * Real.pi * Complex.I : ℂ) * (co bX α ⬝ᵥ tP σ Y)) * e3
-    have h1 := GlobalTheory.T.familyMember_tangentValue_eq_firstJet R D hE hT N ν g' d.toAB G gm.b W hb hW k s f α _ _ hs (d.c_eq α) hφ hA
+    have h1 := _root_.GlobalTheory.MBLow.Cl.sE_fam_eq_jet R D hE hT N ν g' d.toAB G gm.b W hb hW k s f α _ _ hs (d.c_eq α) hφ hA
     have h2 := dual_mul (hne _) (hne _) h1 (hT' α _ rfl)
     rw [h0, join_zero] at h2
     rw [fderiv_eq σ _ _ hφ hB, leftComponent_join, secondBlock_join, join_zero]

@@ -156,7 +156,7 @@ private theorem indepB (ρ : G → V →ₗ[Q] V) {ι : Type} (d : ι → ↥(DD
     hd.map' (DD F a ha ρ).subtype (DD F a ha ρ).ker_subtype
   rw [linearIndependent_iff_finset_linearIndependent]
   intro s
-  exact GlobalTheory.RegularRing.linearIndepOn_of_invariant (fun g b => a g b) (fun g => (sig a ρ g).toAddMonoidHom)
+  exact _root_.GlobalTheory.LinearIndependentFixed.linearIndepOn_of_fixed (fun g b => a g b) (fun g => (sig a ρ g).toAddMonoidHom)
     (sig_smul a ρ) hf _ (fun g i => (d i).2 g) s (h1.linearIndepOn _)
 
 include hf in

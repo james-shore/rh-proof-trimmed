@@ -132,7 +132,7 @@ theorem exists_eq_smul_of_commute_rhoFun : ∀ (l : Type) [Fintype l] (S : Sch l
   set c : ℂ := S G 0 with hc
   have hSGc : S G = c • G := by
     ext x
-    rw [GlobalTheory.T.schwartz_eq_gaussian_of_fderiv_add_eq_zero' l (S G) hSG x, SchwartzMap.smul_apply, smul_eq_mul, hG, GroundTheory.Global.gaussianSchwartz_apply]
+    rw [_root_.GlobalTheory.schwartz_eq_gaussian_of_fderiv_add_eq_zero l (S G) hSG x, SchwartzMap.smul_apply, smul_eq_mul, hG, GroundTheory.Global.gaussianSchwartz_apply]
   have hrho : ∀ w, S (rhoSch w G) = c • rhoSch w G := by
     intro w
     ext x

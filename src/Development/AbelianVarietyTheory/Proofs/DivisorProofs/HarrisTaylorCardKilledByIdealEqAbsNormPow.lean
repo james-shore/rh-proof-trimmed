@@ -94,7 +94,7 @@ theorem card_killedBy_eq_absNorm_pow : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalT
   obtain ⟨I, -⟩ := o.geom k t β hβ.symm
   letI : Module (𝓞 D.F) D.La := Module.compHom D.La (algebraMap (𝓞 D.F) D.O)
   have hsmul : ∀ (a : 𝓞 D.F) (x : D.La), a • x = (algebraMap (𝓞 D.F) D.O a) • x := fun _ _ => rfl
-  have hcnt := GlobalTheory.T.card_killed_by_ideal_mod_int_eq_absNorm_pow D.F D.La D.freeLa D.finLa (D.m * D.n) D.rankLa 𝔟 (Ideal.absNorm 𝔟) hcpos
+  have hcnt := _root_.GlobalTheory.TorsQuotCount.card_killed_eq D.F D.La D.freeLa D.finLa (D.m * D.n) D.rankLa 𝔟 (Ideal.absNorm 𝔟) hcpos
     (Ideal.absNorm_mem 𝔟)
   rw [← hcnt]
   set c := Ideal.absNorm 𝔟 with hc

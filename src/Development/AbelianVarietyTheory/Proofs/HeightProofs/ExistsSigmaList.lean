@@ -180,7 +180,7 @@ theorem isLieData (R : RealPoints θ V) : IsLieData (sigInf V) (jInf V) (secInf 
     rw [R.2.2.2.1, (secInf_spec R hab).2, (secInf_spec R ha).2, (secInf_spec R hb).2]
     rfl
 
-theorem hasLog (R : RealPoints θ V) : HasLog (sigInf V) (jInf V) := GlobalTheory.T.hasSmoothLogNearOne_of_isUnitaryLieExpData _ _ _ _ _ _ (isLieData R)
+theorem hasLog (R : RealPoints θ V) : HasLog (sigInf V) (jInf V) := _root_.GlobalTheory.SmoothForms.hasLog_of_isLieData _ _ _ _ _ _ (isLieData R)
 
 theorem exp_mem_UH {n : ℕ} {J X : Matrix (Fin n) (Fin n) ℂ} (hJ : IsUnit J.det) (hX : Xᴴ * J + J * X = 0) :
     NormedSpace.exp X ∈ Formalism.QuantumDeterminants.UH J := by
@@ -243,7 +243,7 @@ theorem smooth_iff (R : RealPoints θ V) (φ : GA D V → ℂ) :
     have : X = ∑ τ, (atPlace V τ (X τ) : LieN V) := (sum_atPlace X).symm
     rw [this]
     exact sum_mem fun τ _ => Submodule.subset_span ⟨τ, _, rfl⟩
-  rw [isSmoothInf_iff, expInf, GlobalTheory.T.smoothInExponentialCoords_iff_first_second_kind _ _ _ _ _ _ (isLieData R) (hasLog R) _ hT]
+  rw [isSmoothInf_iff, expInf, _root_.GlobalTheory.SmoothForms.SecondKind.main _ _ _ _ _ _ (isLieData R) (hasLog R) _ hT]
   constructor
   · intro h k Y hY g
     choose τs Xs hX using hY
@@ -400,7 +400,7 @@ theorem zfin_iff (R : RealPoints θ V) {φ : GA D V → ℂ} (hφ : IsSmoothInf 
     rw [show φ = ψ.1 from rfl, envDer_eq R]
     exact key _ (hc τ ▸ hw) ψ hm
   · intro h
-    obtain ⟨W, hW, hm, hs⟩ := GlobalTheory.T.commuting_algebras_finite_span (SmF θ V) D.what₂.Tau
+    obtain ⟨W, hW, hm, hs⟩ := _root_.GlobalTheory.OrbitGrowth.main (SmF θ V) D.what₂.Tau
       (fun τ => (Subalgebra.center ℂ (EnvAt V τ)).map (envRep R τ))
       (by
         rintro τ τ' hne _ ⟨u, -, rfl⟩ _ ⟨u', -, rfl⟩

@@ -59,9 +59,6 @@ section SquareIntegrability
 variable {n : ℕ} {ε : Fin n → Bool} {lam : Fin n → ℝ} {T : S7.KType ε (lowK ε lam)}
   {Ψ : Matrix (Fin n) (Fin n) ℂ → (T.V →L[ℂ] T.V)}
 
-theorem hq_umem (g : Formalism.REAL.UJ ε) : Formalism.MainNotions.S.umat g ∈ UJset ε :=
-  ReciprocityTheory.ChartRestriction.DS.umat_mem_UJset ε g
-
 theorem hq_one (hrep : IsURepOn (UJset ε) (sigLam ε Ψ T.w)) :
     sigLam ε Ψ T.w (Formalism.MainNotions.S.umat (1 : Formalism.REAL.UJ ε)) = 1 := by
   have e : Formalism.MainNotions.S.umat (1 : Formalism.REAL.UJ ε) = 1 := rfl
@@ -73,11 +70,11 @@ theorem hq_mul (hrep : IsURepOn (UJset ε) (sigLam ε Ψ T.w)) (a b : Formalism.
       (sigLam ε Ψ T.w (Formalism.MainNotions.S.umat a)).comp (sigLam ε Ψ T.w (Formalism.MainNotions.S.umat b)) := by
   have e : Formalism.MainNotions.S.umat (a * b) = Formalism.MainNotions.S.umat a * Formalism.MainNotions.S.umat b := rfl
   rw [e]
-  exact hrep.1.2 _ (hq_umem a) _ (hq_umem b)
+  exact hrep.1.2 _ (_root_.ReciprocityTheory.ChartRestriction.DS.arb_umat_mem a) _ (_root_.ReciprocityTheory.ChartRestriction.DS.arb_umat_mem b)
 
 theorem hq_iso (hrep : IsURepOn (UJset ε) (sigLam ε Ψ T.w)) (g : Formalism.REAL.UJ ε) (v : Hlam ε Ψ T.w) :
     ‖sigLam ε Ψ T.w (Formalism.MainNotions.S.umat g) v‖ = ‖v‖ :=
-  hrep.2.1 _ (hq_umem g) v
+  hrep.2.1 _ (_root_.ReciprocityTheory.ChartRestriction.DS.arb_umat_mem g) v
 
 theorem hq_memLp_of_ne (hrep : IsURepOn (UJset ε) (sigLam ε Ψ T.w))
     (hirr : Formalism.MainNotions.S.IsIrredOn (Formalism.MainNotions.S.UJset ε) (sigLam ε Ψ T.w)) (w₀ x₀ : Hlam ε Ψ T.w) (hx₀ : x₀ ≠ 0)
@@ -92,7 +89,7 @@ theorem hq_inner
     (hcoe : ∀ g ∈ UJset ε, ∀ x : Hlam ε Ψ T.w, ((sigLam ε Ψ T.w g x : Hlam ε Ψ T.w) : L2 ε) = rreg ε g x)
     (y z : Hlam ε Ψ T.w) (g : Formalism.REAL.UJ ε) :
     ⟪y, sigLam ε Ψ T.w (Formalism.MainNotions.S.umat g) z⟫_ℂ = inner ℂ (y : L2 ε) (rreg ε (Formalism.MainNotions.S.umat g) (z : L2 ε)) := by
-  rw [Submodule.coe_inner, hcoe _ (hq_umem g)]
+  rw [Submodule.coe_inner, hcoe _ (_root_.ReciprocityTheory.ChartRestriction.DS.arb_umat_mem g)]
 
 theorem hq_w_ne (hP : IsPsiFor ε lam T Ψ) : uniformisationL2 ε Ψ T.w T.w ≠ 0 := by
   have hw : T.w ≠ 0 := by
@@ -120,7 +117,7 @@ theorem hq_coef_all (hP : IsPsiFor ε lam T Ψ)
   have e0 : (fun g : Formalism.REAL.UJ ε => ⟪w₀, sigLam ε Ψ T.w (Formalism.MainNotions.S.umat g) w₀⟫_ℂ) =
       fun g => ((‖uniformisationL2 ε Ψ T.w T.w‖ ^ 2 : ℝ) : ℂ) * jfun Ψ T.w T.w (Formalism.MainNotions.S.umat g) := by
     funext g
-    rw [hq_inner hcoe, hw₀, hF _ (hq_umem g)]
+    rw [hq_inner hcoe, hw₀, hF _ (_root_.ReciprocityTheory.ChartRestriction.DS.arb_umat_mem g)]
     rfl
   have h0 : MemLp (fun g : Formalism.REAL.UJ ε => ⟪w₀, sigLam ε Ψ T.w (Formalism.MainNotions.S.umat g) w₀⟫_ℂ) 2 (Formalism.REAL.muG ε) := by
     rw [e0]

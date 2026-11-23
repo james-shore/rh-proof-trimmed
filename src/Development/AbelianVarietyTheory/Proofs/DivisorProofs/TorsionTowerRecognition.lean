@@ -244,7 +244,7 @@ theorem exists_tower {f : ∀ k, QkPt D C k → (TFK (R := W) C ⟶ A.A)} {f' : 
     have w₂ := G'.weil _ (hk j) _ _ (N'.wp (V _ (S j (P _ p))) (V _ (S j (P _ q))))
       ((BW W D' he' hb' C N' ν' _ (hk j) _ _ _ _ _ (hV _ _) (hV _ _)).2 rfl)
     rw [hS, hS] at w₂
-    exact Units.ext (congrArg Units.val (unitOn_inj ((GlobalTheory.LevelCompare.weil_existsUnique A _ _ _
+    exact Units.ext (congrArg Units.val (_root_.GlobalTheory.LevelFibre.unitOn_injective ((GlobalTheory.LevelCompare.weil_existsUnique A _ _ _
       (G.pow _ (hk j) _) (G.pow _ (hk j) _)).unique w₂ w₁)))
 
 end Tower

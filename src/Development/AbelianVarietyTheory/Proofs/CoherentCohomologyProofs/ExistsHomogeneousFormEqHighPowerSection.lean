@@ -181,7 +181,7 @@ theorem exists_form_eq_sec_pw : ∀ (R : Type) [CommRing R] (Y : Scheme.{0}) (f 
     (fun i y => by
       obtain ⟨-, r, hr, hπ⟩ := hs.2 i
       obtain ⟨hi, ε, -, hker, hε⟩ :=
-        GlobalTheory.T.exists_dehomogenisation_twisted_chart R Y f H m s _ hH (Inh.trivLB_isLB Y) hs hx i r hr
+        _root_.GlobalTheory.AbLaw.exists_dehom_chart R Y f H m s _ hH (Inh.trivLB_isLB Y) hs hx i r hr
       exact exists_X_pow_smul_mem_span_of_dehomogenisation (GrSum.grading (hx ⊤)) i hπ
         ((MvPolynomial.eval₂Hom_X' _ _ i).trans hi) ε hker hg
         (fun z => by rw [hε]; exact exists_eq_smul_restrict_one hH _ z) _

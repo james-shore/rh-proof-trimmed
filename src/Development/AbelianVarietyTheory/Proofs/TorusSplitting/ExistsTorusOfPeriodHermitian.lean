@@ -181,19 +181,9 @@ section Host
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 
-theorem conj_rt (τ : E →+* ℂ) : τ (H.rt : E) ^ 2 = -(H.d : ℂ) ∧
-    starRingEnd ℂ (τ (H.rt : E)) = -τ (H.rt : E) := by
-  first
-  | exact @_root_.GlobalTheory.ImaginarySqrtEmbedding.embedding_sqrt_sq_and_conj
-  | exact _root_.GlobalTheory.ImaginarySqrtEmbedding.embedding_sqrt_sq_and_conj
-  | (apply _root_.GlobalTheory.ImaginarySqrtEmbedding.embedding_sqrt_sq_and_conj <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ImaginarySqrtEmbedding.embedding_sqrt_sq_and_conj <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ImaginarySqrtEmbedding.embedding_sqrt_sq_and_conj <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ImaginarySqrtEmbedding.embedding_sqrt_sq_and_conj ..)
-
 theorem mult_add_mult_conj (D : Datum H) (τ : E →+* ℂ) :
     D.mult τ + D.mult (ComplexEmbedding.conjugate τ) = D.p + D.q := by
-  obtain ⟨h1, h2⟩ := conj_rt (H := H) τ
+  obtain ⟨h1, h2⟩ := _root_.GlobalTheory.ImaginarySqrtEmbedding.embedding_sqrt_sq_and_conj (H := H) τ
   have h3 : H.rt0 ≠ -H.rt0 := fun h => by
     have h0 : H.rt0 = 0 := by linear_combination h / 2
     have := H.sqrt_neg_disc_sq
@@ -212,7 +202,7 @@ theorem coe_one_sub_w0 : ((1 - H.w0 : 𝓞 E) : E) = cc (H.w0 : E) := by
   rw [map_mul, map_add (f := _), map_one, map_ofNat] at h
   change 2 * τ (H.w0 : E) = 1 + τ (H.rt : E) at h
   have h' := congrArg (starRingEnd ℂ) h
-  rw [map_mul, map_add (f := _), map_one, map_ofNat, (conj_rt (H := H) τ).2] at h'
+  rw [map_mul, map_add (f := _), map_one, map_ofNat, (_root_.GlobalTheory.ImaginarySqrtEmbedding.embedding_sqrt_sq_and_conj (H := H) τ).2] at h'
   have : τ ((1 - H.w0 : 𝓞 E) : E) = 1 - τ (H.w0 : E) := by simp
   rw [this]
   linear_combination (-h - h') / 2

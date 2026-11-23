@@ -156,8 +156,8 @@ theorem exists_cocycle_cup_not_cob : Formalism.GaloisCohomology.LocalTateDuality
   set X := LinearMap.ker (LinearMap.lsmul O (VT ⧸ D.T) (ϖ ^ n)) with hXdef
   have memX : ∀ x : VT ⧸ D.T, x ∈ X ↔ ϖ ^ n • x = 0 := fun x => by
     rw [hXdef, LinearMap.mem_ker, LinearMap.lsmul_apply]
-  haveI : Finite X := GlobalTheory.T.finite_pow_smul_torsion_lattice_quotient D.T hOr hOc hOa hlat ϖ hϖ n
-  obtain ⟨hcT', hopen, -⟩ := GlobalTheory.T.dualLattice_compact_powSmul_nhds_basis D hOc hemb hlat hperf hT2' ϖ hϖ
+  haveI : Finite X := _root_.GlobalTheory.LatTorsFinite.finite_ker_pow_smul D.T hOr hOc hOa hlat ϖ hϖ n
+  obtain ⟨hcT', hopen, -⟩ := _root_.GlobalTheory.LocDualTop.dualLat_compact_powSub_nhds D hOc hemb hlat hperf hT2' ϖ hϖ
   haveI : CompactSpace ↥D.T' := hcT'
   haveI : Finite (↥D.T' ⧸ powSub (M := ↥D.T') ϖ n) :=
     AddSubgroup.quotient_finite_of_isOpen (powSub (M := ↥D.T') ϖ n).toAddSubgroup (hopen n)
@@ -212,13 +212,13 @@ theorem exists_cocycle_cup_not_cob : Formalism.GaloisCohomology.LocalTateDuality
     rw [map_mul, ho, map_one, mul_inv_cancel₀ hπ]
   have hβ1 : ∀ x : X, x ≠ 0 → ∃ y, β x y = toKO O ((algebraMap O (FractionRing O) ϖ)⁻¹) := by
     intro x hx
-    obtain ⟨f, hf⟩ := GlobalTheory.T.exists_dualLattice_pairing_eq_inv_uniformizer D hlat hperf ϖ hϖ (x : VT ⧸ D.T) (fun h => hx (Subtype.ext h))
+    obtain ⟨f, hf⟩ := _root_.GlobalTheory.LocDualInt.exists_dual_pairKO_eq_inv_unif D hlat hperf ϖ hϖ (x : VT ⧸ D.T) (fun h => hx (Subtype.ext h))
     exact ⟨Submodule.Quotient.mk f, hf⟩
   have hβ2 : ∀ y, y ≠ 0 → ∃ x : X, β x y = toKO O ((algebraMap O (FractionRing O) ϖ)⁻¹) := by
     intro y hy
     obtain ⟨f, rfl⟩ := Submodule.Quotient.mk_surjective _ y
     have hf : f ∉ powSub (M := ↥D.T') ϖ n := fun h => hy ((Submodule.Quotient.mk_eq_zero _).2 h)
-    obtain ⟨x, hx1, hx2⟩ := GlobalTheory.T.exists_torsion_pairing_eq_inv_uniformizer D ϖ hϖ n f hf
+    obtain ⟨x, hx1, hx2⟩ := _root_.GlobalTheory.LocDualInt.exists_pairKO_eq_inv_unif D ϖ hϖ n f hf
     exact ⟨⟨x, (memX x).2 hx1⟩, hx2⟩
   have hcX : ∀ g, c g ∈ X := fun g => (memX _).2 (by
     rw [← Nat.sub_add_cancel hrn, pow_add, mul_smul, hr, smul_zero])

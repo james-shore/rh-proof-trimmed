@@ -58,11 +58,6 @@ private theorem unr_pow {χ : HChar E} {w : HeightOneSpectrum (𝓞 E)} (h : χ.
   have e : (χ ^ j).loc w x = χ.loc w x ^ j := MonoidHom.pow_apply χ.1 j _
   rw [e, h x hx, one_pow]
 
-private theorem unr_inv {χ : HChar E} {w : HeightOneSpectrum (𝓞 E)} (h : χ.UnrAt w) : (χ⁻¹).UnrAt w := by
-  intro x hx
-  have e : (χ⁻¹).loc w x = (χ.loc w x)⁻¹ := rfl
-  rw [e, h x hx, inv_one]
-
 private theorem unit_of_pow {χ : HChar E} {l : ℕ} (hl : l ≠ 0) (h : χ ^ l = 1) : χ.IsUnitary := by
   intro x
   have e : χ.1 x ^ l = 1 := by
@@ -73,17 +68,10 @@ private theorem unit_of_pow {χ : HChar E} {l : ℕ} (hl : l ≠ 0) (h : χ ^ l 
 
 variable [_root_.NumberField.IsTotallyComplex E]
 
-private theorem unit_twist {n : ℕ} {π : CG E n} (h : π.IsUnitary) {χ : HChar E} (hχ : χ.IsUnitary) :
-    (π.twist χ).IsUnitary := by
-  obtain ⟨ω, hω, hc⟩ := h
-  refine ⟨_, fun x => ?_, hc.twist χ⟩
-  have e : (ω * χ ^ n).1 x = ω.1 x * χ.1 x ^ n := congrArg (ω.1 x * ·) (MonoidHom.pow_apply χ.1 n _)
-  rw [e, Units.val_mul, Units.val_pow_eq_pow_val, norm_mul, norm_pow, hω x, hχ x, one_pow, one_mul]
-
 private theorem sat_untw {n : ℕ} {π : CG E n} {χ : HChar E} {w : HeightOneSpectrum (𝓞 E)} (hχ : χ.UnrAt w)
     (h : ∃ B, (π.twist χ).HasSat w B) : ∃ B, π.HasSat w B := by
   obtain ⟨B, hB⟩ := h
-  have := satake_twist_holds E n _ χ⁻¹ w B (unr_inv hχ) hB
+  have := satake_twist_holds E n _ χ⁻¹ w B (_root_.Formalism.L2.Host.HChar.UnrAt.inv hχ) hB
   rw [← CG.twist_mul, mul_inv_cancel, CG.twist_one] at this
   exact ⟨_, this⟩
 
@@ -173,7 +161,7 @@ theorem UpperTheory.ConvolutionTheory.R.count :
   obtain ⟨S0, hS0⟩ := hS K X hXf (by
     rintro _ (rfl | ⟨j, rfl⟩)
     · exact ⟨hn, hu1, e1.mono fun v hv => sat_untw ((hν _).1 v) hv⟩
-    · refine ⟨hn, unit_twist hu0 (hηu j), ?_⟩
+    · refine ⟨hn, _root_.GlobalTheory.CuspRep.CG.IsUnitary.twist hu0 (hηu j), ?_⟩
       filter_upwards [e0, S1.eventually_cofinite_notMem] with v hv hvS
       obtain ⟨B, hB⟩ := sat_untw ((hν _).1 v) hv
       exact ⟨_, satake_twist_holds K n π0 _ v B (unr_pow (hunr1 ⟨v, hvS⟩) j) hB⟩)

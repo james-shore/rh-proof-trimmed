@@ -162,7 +162,7 @@ theorem locPer : LocPer := by
       have hs : spMap (((starRingEnd ℂ).comp (κ t₀)).comp (algebraMap (𝓞 c.F) c.F)) =
           spMap (starRingEnd ℂ) ≫ spMap ((κ t₀).comp (algebraMap (𝓞 c.F) c.F)) :=
         Spec.map_comp (CommRingCat.ofHom ((κ t₀).comp (algebraMap (𝓞 c.F) c.F))) (CommRingCat.ofHom (starRingEnd ℂ))
-      refine hasPer_conj 𝔐 (hasPer_good 𝔐 _ ty hty FU (hBo.preimage continuous_star) (GlobalTheory.T.holomorphic_family_conjugate _ _ _ _ hz')
+      refine hasPer_conj 𝔐 (hasPer_good 𝔐 _ ty hty FU (hBo.preimage continuous_star) (_root_.GlobalTheory.CompanionTheory.Ar.Cusp.FamEx.isHolTo_conj _ _ _ _ hz')
         (fun t ht => ?_) (fun t ht => ?_) (by simpa using hε))
       · have h := hi' _ ht
         unfold HodgeCpt.Interior at h ⊢

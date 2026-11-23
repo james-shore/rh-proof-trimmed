@@ -67,7 +67,7 @@ theorem heis_fix : ∀ {F : Type} [Field F] [NumberField F] {κ : Type} [Fintype
   induction hΦ using Submodule.span_induction with
   | mem x hx =>
     obtain ⟨f, g, hg, rfl⟩ := hx
-    obtain ⟨m₁, hm₁, h1⟩ := GlobalTheory.SBTransl.transInv g hg
+    obtain ⟨m₁, hm₁, h1⟩ := _root_.GlobalTheory.SBTransl.exists_mulInt_invariant g hg
     obtain ⟨M, hM, h2⟩ := GlobalTheory.SuppDen.support_bounded_denominators g hg
     exact ⟨2 * m₁ * M * m₃, by positivity, GlobalTheory.PureFix.pureA_fixed ψ g m₁ M m₃ hm₁ hM hm₃ h1 h2 h3 f⟩
   | zero =>
@@ -148,7 +148,7 @@ theorem transport_denom : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [
   have hhf := finite_mulSupport_htFin F h
   have hBf : (Function.mulSupport B).Finite :=
     (((hKaf.union hgf).subset (Function.mulSupport_mul _ _)).union hhf).subset (Function.mulSupport_mul _ _)
-  obtain ⟨N, hN, hNle, hNint⟩ := GlobalTheory.SmoothForms.denom_global B hB1 hBf
+  obtain ⟨N, hN, hNle, hNint⟩ := _root_.GlobalTheory.AdicNormZpowEstimates.exists_denominator B hB1 hBf
   have hfin : ∀ {m : ℕ} (k : GL (Fin m) (AF F ⊗[F] E)), ∏ᶠ v, htFin F v (bc (compFin F E v) k) ≤ heightGL F k :=
     fun k => by
       unfold heightGL

@@ -109,16 +109,7 @@ theorem two_le_jhMult_of_map {s N : ℕ} {d : Fin s → ℕ} (e : (Σ a, Fin (d 
   have h6 := ENat.one_le_iff_ne_zero.2 h4
   exact (by norm_num : (2 : ℕ∞) = 1 + 1).le.trans (add_le_add h5 h6)
 
-theorem piTensor_eq_smul {α : Type} [Fintype α] {Γ X : α → Type} [∀ a, Group (Γ a)] [∀ a, AddCommGroup (X a)]
-    [∀ a, Module ℂ (X a)] (ρ : ∀ a, Representation ℂ (Γ a) (X a)) (g : ∀ a, Γ a) (c : α → ℂ)
-    (h : ∀ a v, ρ a (g a) v = c a • v) (t : ⨂[ℂ] a, X a) : piTensor ρ g t = (∏ a, c a) • t := by
-  classical
-  have : piTensor ρ g = (∏ a, c a) • LinearMap.id := by
-    refine PiTensorProduct.ext (MultilinearMap.ext fun v => ?_)
-    simp only [LinearMap.compMultilinearMap_apply, piTensor_tprod, h, LinearMap.smul_apply, LinearMap.id_apply]
-    exact MultilinearMap.map_smul_univ _ _ _
-  rw [this]
-  rfl
+alias piTensor_eq_smul := _root_.GlobalTheory.BoundaryMaps.piTensor_scalar
 
 theorem smul_eq_of_isSubquotient {G V W : Type} [Group G] [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
     [Nontrivial W] {σ : Representation ℂ G W} {τ : Representation ℂ G V} (h : IsSubquotient σ τ) (g : G) (a b : ℂ)
@@ -226,7 +217,7 @@ theorem exists_sub (hZ : GlobalTheory.Published.SegmentRepresentation) (Δ : Seg
 theorem jm_perm_prod (hA : GlobalTheory.Published.IrreducibleAdmissibleGL) (Δ : Segment k) (σ : Equiv.Perm (Fin Δ.len)) {N : ℕ}
     (hy : ∑ a, (Δ.term (σ a)).1 = N) (hd : ∑ a, (Δ.term a).1 = N) :
     jm (fun a => Δ.term (σ a)) hy (prodIrr Δ.term hd) = 1 := by
-  rw [GlobalTheory.T.jacquet_multiplicity_cuspidal_product hA Δ.term _ hd hy Δ.isCusp_term fun a => Δ.isCusp_term _]
+  rw [_root_.GlobalTheory.CompanionTheory.CuspJm.main hA Δ.term _ hd hy Δ.isCusp_term fun a => Δ.isCusp_term _]
   have hinj := GlobalTheory.CompanionTheory.SegTerm.term_injective hA Δ
   have : {e : Fin Δ.len ≃ Fin Δ.len | ∀ a, Δ.term (σ a) = Δ.term (e a)} = {σ} := by
     ext e
@@ -320,7 +311,7 @@ theorem fine_jacquet_length_two_segment (hA : GlobalTheory.Published.Irreducible
   · obtain ⟨_, h1⟩ := hdec
     refine le_antisymm ((hmono _ hy).trans_eq (jm_perm_prod hA (seg2 ρ hρ) Fin.revPerm hy hd)) h1
   · have h2 := h1.trans (hmono y hy)
-    rw [GlobalTheory.T.jacquet_multiplicity_cuspidal_product hA (seg2 ρ hρ).term y hd hy (seg2 ρ hρ).isCusp_term hyc] at h2
+    rw [_root_.GlobalTheory.CompanionTheory.CuspJm.main hA (seg2 ρ hρ).term y hd hy (seg2 ρ hρ).isCusp_term hyc] at h2
     have hne : {e : Fin c ≃ Fin (seg2 ρ hρ).len | ∀ a, y a = (seg2 ρ hρ).term (e a)}.Nonempty := by
       by_contra hn
       rw [Set.not_nonempty_iff_eq_empty] at hn

@@ -79,13 +79,6 @@ section Gen
 
 variable {L : Type} [Field L] [NumberField L] [IsCMField L]
 
-theorem le_exp_neg_one_of_lt_one' {x : WithZero (Multiplicative ℤ)} (h : x < 1) : x ≤ WithZero.exp (-((1 : ℕ) : ℤ)) := by
-  rcases eq_or_ne x 0 with rfl | hx0
-  · exact zero_le'
-  · rw [← WithZero.exp_log hx0] at h ⊢
-    rw [← WithZero.exp_zero, WithZero.exp_lt_exp] at h
-    rw [WithZero.exp_le_exp]; omega
-
 theorem exists_int_locK_ne (χ : HChar L) (t : SplitPlace L) (ht : χ.TameAt t.w) (hr : ¬ χ.UnrAt t.w) :
     ∃ b : 𝓞 (maximalRealSubfield L), b ∉ t.v.asIdeal ∧ ∃ k : Lˣ,
       (k : L) = ((algebraMap (𝓞 (maximalRealSubfield L)) (𝓞 L) b : 𝓞 L) : L) ∧ χ.locK t.w k ≠ 1 := by
@@ -149,7 +142,7 @@ theorem exists_int_locK_ne (χ : HChar L) (t : SplitPlace L) (ht : χ.TameAt t.w
       field_simp
       ring
     rw [e, map_mul, Valuation.map_neg, map_inv₀, hx', inv_one, mul_one]
-    exact le_exp_neg_one_of_lt_one' hxc
+    exact _root_.GlobalTheory.Mem.KerDet.le_exp_neg_one hxc
   have h2 := ht (y * x⁻¹) hu hsub
   rw [map_mul, map_inv, mul_inv_eq_one] at h2
   rw [← h2]

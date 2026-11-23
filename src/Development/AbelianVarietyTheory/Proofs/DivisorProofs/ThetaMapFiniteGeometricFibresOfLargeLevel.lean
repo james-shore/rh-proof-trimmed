@@ -81,10 +81,6 @@ theorem polFib_transport {S : Scheme.{0}} {G : Over S} [GrpObj G] {L : LB G.left
         (fun _ => rfl)) hLα
   exact LBIso.trans P'.isLB (pull_isLB P.isLB _) (pull_isLB hL _) h1 h2
 
-theorem charZero_of_pt {F K : Type} [Field F] [CharZero F] [Field K] (t : Sp K ⟶ Sp F) : CharZero K := by
-  have f := (Spec.preimage t).hom
-  exact (f.charZero_iff f.injective).1 inferInstance
-
 end GlobalTheory.UMin.QF
 
 namespace GlobalTheory.UMin.QF
@@ -168,7 +164,7 @@ namespace GlobalTheory.UMin.QF
 
 theorem finite_fibre_thMap : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l) (o : Type) [CommRing o] (j n : ℕ) (f : Xo.XF c ⟶ PSpace o n), 81 ^ (Module.finrank ℚ E / 2 * (Dw.p + Dw.q)) * (Module.finrank ℚ E / 2 * (Dw.p + Dw.q)).factorial < 3 ^ j * 81 → n + 1 = (3 ^ j * 81) ^ (4 * (Module.finrank ℚ E / 2 * (Dw.p + Dw.q))) → ThMap Xo.univ.t.G Xo.univ.t.PP.L Xo.univ.t.PP.rig (3 ^ j * 81) (pullback.fst _ _ : Xo.XF c ⟶ Xo.X) f → ∀ (K : Type) [Field K] [IsAlgClosed K] (x : Sp K ⟶ Xo.XF c), Set.Finite {y : Sp K ⟶ Xo.XF c | y ≫ pullback.snd _ _ = x ≫ pullback.snd _ _ ∧ y ≫ f = x ≫ f} := by
   intro E _ _ _ H Dw l Xo c o _ j n f hbig hn hth K _ _ x
-  haveI : CharZero K := charZero_of_pt (x ≫ pullback.snd _ _)
+  haveI : CharZero K := _root_.GlobalTheory.ZM.FullLevel.charZero_of_hom (x ≫ pullback.snd _ _)
   set g := Module.finrank ℚ E / 2 * (Dw.p + Dw.q) with hg
   have hm0 : ((3 ^ j * 81 : ℕ) : K) ≠ 0 := Nat.cast_ne_zero.2 (by positivity)
   have h3 : ((3 : ℕ) : K) ≠ 0 := Nat.cast_ne_zero.2 (by norm_num)

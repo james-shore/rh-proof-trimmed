@@ -62,15 +62,15 @@ theorem GlobalTheory.PairStep.exists_sec_separating_two_points_of_ample : Global
   have hsplit : ∑ e ∈ Finset.Icc 1 n, (h e + ε) = S + n * ε := by
     rw [Finset.sum_add_distrib, Finset.sum_const, Nat.card_Icc, nsmul_eq_mul]
     simp [hS]
-  obtain ⟨D, d, hd, hQ, hcase⟩ := GlobalTheory.T.twoPoint_induction_kltPair_separation hP hNV hNef X p n hproj hdim Δ m G N ε h x₁ x₂
+  obtain ⟨D, d, hd, hQ, hcase⟩ := _root_.GlobalTheory.PairStep.two_point_induction hP hNV hNef X p n hproj hdim Δ m G N ε h x₁ x₂
     hΔ hklt hm hlc hNamp hx₁ hx₂ hne hh hvol hεpos
   have hdρ : d < ρ := by
     have h2 : (n : ℚ) * ε + ε = ρ - S := by rw [← h1]; ring
     linarith
   rcases hcase with ⟨hlc1, hnk2⟩ | ⟨hlc2, hnk1⟩
-  · obtain ⟨s, hs1, hs2⟩ := GlobalTheory.T.exists_separatingSection_of_isolatedNonKltPoint hNV X p n hproj hdim M Δ m G N D ρ d x₁ x₂ hM hΔ hm hlc
+  · obtain ⟨s, hs1, hs2⟩ := _root_.GlobalTheory.PairStep.exists_sec_sep_of_lcCut hNV X p n hproj hdim M Δ m G N D ρ d x₁ x₂ hM hΔ hm hlc
       hNamp hnum hQ hdρ hx₁ hne hlc1 hnk2
     exact ⟨s, Or.inl ⟨hs1, hs2⟩⟩
-  · obtain ⟨s, hs2, hs1⟩ := GlobalTheory.T.exists_separatingSection_of_isolatedNonKltPoint hNV X p n hproj hdim M Δ m G N D ρ d x₂ x₁ hM hΔ hm hlc
+  · obtain ⟨s, hs2, hs1⟩ := _root_.GlobalTheory.PairStep.exists_sec_sep_of_lcCut hNV X p n hproj hdim M Δ m G N D ρ d x₂ x₁ hM hΔ hm hlc
       hNamp hnum hQ hdρ hx₂ (Ne.symm hne) hlc2 hnk1
     exact ⟨s, Or.inr ⟨hs2, hs1⟩⟩

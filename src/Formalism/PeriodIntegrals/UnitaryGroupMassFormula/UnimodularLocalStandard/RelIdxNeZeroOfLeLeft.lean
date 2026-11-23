@@ -114,10 +114,6 @@ lemma not_dvd_relIndex {A B : AddSubgroup V} {l n : ℕ} (hl : l.Prime) (hAB : A
   rw [← QuotientAddGroup.mk_nsmul, QuotientAddGroup.eq_zero_iff, AddSubgroup.mem_addSubgroupOf]
   exact hn _ y.2
 
-lemma relIdx_ne_zero_of_cover {A B : AddSubgroup V} {ι : Type*} [Finite ι] (φ : ι → V)
-    (hφ : ∀ i, φ i ∈ B) (hcov : ∀ b ∈ B, ∃ i, b - φ i ∈ A) : A.relIndex B ≠ 0 :=
-  relIndex_ne_zero_of_finite_cover φ hφ hcov
-
 private theorem relIndex_ne_zero_of_le {A B : AddSubgroup V} (h : B ≤ A) : A.relIndex B ≠ 0 :=
   relIndex_ne_zero_of_finite_cover (ι := Unit) (fun _ => 0) (fun _ => B.zero_mem)
     (fun b hb => ⟨(), by simpa using h hb⟩)
@@ -168,7 +164,7 @@ lemma stdLat_smul_idx (L : PeriodPair) (m : Type*) [Fintype m] {N : ℕ} (hN : N
     ((stdLat L m).map (smulHom (N : ℂ))).relIndex (stdLat L m) ≠ 0 := by
   have hN0 : (0 : ℤ) < N := by exact_mod_cast Nat.pos_of_ne_zero hN
   have hN1 : (N : ℤ) ≠ 0 := hN0.ne'
-  refine relIdx_ne_zero_of_cover (ι := m → (Set.Ico (0 : ℤ) N × Set.Ico (0 : ℤ) N))
+  refine _root_.PI.UnitaryGroupMassFormula.UnimodLocStd.relIndex_ne_zero_of_finite_cover (ι := m → (Set.Ico (0 : ℤ) N × Set.Ico (0 : ℤ) N))
     (fun f j => (((f j).1 : ℤ) : ℂ) * L.ω₁ + (((f j).2 : ℤ) : ℂ) * L.ω₂) ?_ ?_
   · intro f
     simp only [PI.ULS.stdLat, AddSubgroup.mem_pi]

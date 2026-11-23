@@ -157,10 +157,6 @@ theorem form_smul_left (S : Matrix (Fin r) (Fin r) ℤ) (b : 𝓞 E → 𝓞 E) 
 theorem form_bijective (S : Matrix (Fin r) (Fin r) ℤ) (hS : IsUnit S.det) : Function.Bijective (form ρ g S) :=
   GlobalTheory.T.unitaryStandardLatticeAlternatingForm_bijective ρ g S hS
 
-theorem form_cx_pos (S : Matrix (Fin r) (Fin r) ℤ) (hS : (S.map (Int.cast : ℤ → ℝ)).PosDef) (x : ℝ ⊗[ℤ] Lat ρ g)
-    (hx : x ≠ 0) : 0 < (form ρ g S).baseChange ℝ ((cx ρ g).baseChange ℝ x) x :=
-  GlobalTheory.T.unitaryStandardLattice_form_complexStructure_baseChange_pos ρ g S hS x hx
-
 theorem trace_act (a : 𝓞 E) : LinearMap.trace ℤ (Lat ρ g) (act ρ g a) = 2 * g * (ρ a).trace := by
   rw [LinearMap.trace_eq_matrix_trace ℤ (basis ρ g)]
   simp only [Matrix.trace, Matrix.diag, LinearMap.toMatrix_apply, basis_repr, act_apply, smul_apply]
@@ -175,10 +171,6 @@ theorem trace_cx_act (a : 𝓞 E) : LinearMap.trace ℤ (Lat ρ g) (cx ρ g ∘�
     cx_apply, smul_apply]
   simp [Fintype.sum_prod_type, Fintype.sum_sum_type, basis_apply, Prod.fst_sum, Prod.snd_sum, Finset.sum_apply,
     Pi.single_apply]
-
-theorem trace_rep (s : ℕ) (hr : r = s * Module.finrank ℚ E) (a : 𝓞 E) :
-    (ρ a).trace = s * Algebra.trace ℤ (𝓞 E) a :=
-  GlobalTheory.T.trace_ringHom_eq_mul_algebraTrace ρ s hr a
 
 end Lemmas
 
@@ -196,7 +188,7 @@ theorem dom_exists (hpos : (S.map (Int.cast : ℤ → ℝ)).PosDef)
         (((s * g : ℕ) : ℂ) * τ (a : E) + ((s * g : ℕ) : ℂ) * starRingEnd ℂ (τ (a : E))) →
       J ∘ₗ A = A ∘ₗ J ∧ LinearMap.trace ℝ _ A = 2 * t.re ∧ LinearMap.trace ℝ _ (J ∘ₗ A) = -2 * t.im := by
   have hcc : cx ρ g ∘ₗ cx ρ g = -LinearMap.id := LinearMap.ext fun x => cx_cx ρ g x
-  refine ⟨(cx ρ g).baseChange ℝ, fun x => ?_, fun x y => ?_, form_cx_pos ρ g S hpos, fun a A t hA ht => ?_⟩
+  refine ⟨(cx ρ g).baseChange ℝ, fun x => ?_, fun x y => ?_, _root_.GlobalTheory.UnitaryStd.form_cx_baseChange_pos ρ g S hpos, fun a A t hA ht => ?_⟩
   · rw [← LinearMap.comp_apply, ← LinearMap.baseChange_comp, hcc, LinearMap.baseChange_neg,
       LinearMap.baseChange_id]
     rfl
@@ -226,7 +218,7 @@ theorem dom_exists (hpos : (S.map (Int.cast : ℤ → ℝ)).PosDef)
       LinearMap.ext fun x => cx_smul ρ g a x
     refine ⟨?_, ?_, ?_⟩
     · rw [hAe, ← LinearMap.baseChange_comp, hcomm, LinearMap.baseChange_comp]
-    · rw [hAe, LinearMap.trace_baseChange, trace_act, trace_rep ρ s hr, ht']
+    · rw [hAe, LinearMap.trace_baseChange, trace_act, _root_.GlobalTheory.repTrace_eq_mul_trace ρ s hr, ht']
       simp only [Complex.mul_re, Complex.natCast_re, Complex.intCast_re, Complex.natCast_im, Complex.intCast_im]
       push_cast
       norm_num
@@ -241,7 +233,7 @@ def stdDatum (hSt : S.transpose = S) (hdet : IsUnit S.det) (hpos : (S.map (Int.c
   proj := inferInstance
   EF := form ρ g S
   alt := form_self ρ g S hSt
-  unimod := form_bijective ρ g S hdet
+  unimod := _root_.GlobalTheory.UnitaryStd.form_bijective_of_unimodular ρ g S hdet
   adj a x y := form_smul_left ρ g S (fun a => H.bar a) hρ a x y
   p := s * g
   q := s * g

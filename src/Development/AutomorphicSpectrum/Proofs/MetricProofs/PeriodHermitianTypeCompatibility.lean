@@ -161,14 +161,14 @@ theorem trace_mul_sesq (D : Datum H) (a : 𝓞 E) (x y : D.La) :
   have e3 : D.EF (((RingOfIntegers.basis E).repr a k) • (RingOfIntegers.basis E k • x)) y =
       ((RingOfIntegers.basis E).repr a k) * D.EF (RingOfIntegers.basis E k • x) y := by
     rw [map_zsmul, LinearMap.smul_apply, smul_eq_mul]
-  rw [e2, map_smul, ← HT.LatTest.repr_eq_trace, e3]
+  rw [e2, map_smul, ← _root_.GlobalTheory.CompanionTheory.Ar.HT.LatBasic.repr_eq_trace, e3]
   push_cast
   rw [smul_eq_mul, mul_comm]
 
 theorem sesq_smul_left (D : Datum H) (a : 𝓞 E) (x y : D.La) :
     sesq D (a • x) y = (a : E) * sesq D x y := by
   classical
-  conv_rhs => rw [HT.LatTest.expand_dual ((a : E) * sesq D x y)]
+  conv_rhs => rw [_root_.GlobalTheory.CompanionTheory.Ar.HT.LatBasic.expand_dual ((a : E) * sesq D x y)]
   rw [sesq]
   refine Finset.sum_congr rfl fun k _ => ?_
   have e1 : (a : E) * sesq D x y * integralBasis E k =

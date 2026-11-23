@@ -54,7 +54,7 @@ open scoped ComplexConjugate
 namespace GlobalTheory.PsCo.Pc1
 
 def LocalPC4 : Prop :=
-  ∀ (r : ℕ), Odd r → ∀ (ε : Fin r → Bool) (lam : Fin r → ℤ), Gap4 r lam →
+  ∀ (r : ℕ), Odd r → ∀ (ε : Fin r → Bool) (lam : Fin r → ℤ), _root_.GlobalTheory.PsCo.Pc.GapG r lam →
     ∀ (X : Type) [NormedAddCommGroup X] [InnerProductSpace ℂ X] (D : Matrix (Fin r) (Fin r) ℂ → (X →L[ℂ] X))
       (hD : IsDS ε (fun a => (lam a : ℝ)) D) (μ : Measure (UJ ε)) [μ.IsHaarMeasure],
       ∃ f, GlobalTheory.PsCo.Pc.IsPC' ε lam μ D hD f

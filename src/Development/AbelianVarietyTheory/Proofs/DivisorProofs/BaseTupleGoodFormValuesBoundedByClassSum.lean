@@ -544,7 +544,7 @@ private theorem herm_eq (F : Face D A) (hc : GlobalTheory.Hk3.Core R F) (t : T) 
     (GlobalTheory.FiniteGroupUnitary.levEnv_ch_pow _ _ _)
     (HeckeRational.action_rational D.sp.X' R.cX.coef (R.B.R t).pres (hT.coefR t) hT.mapR
       fun g i j => (coefAction_repr_mem_subfield (labLL D) _ _ HeckeRational.labLL_mem_cmMax g i j).1)
-  obtain ⟨v0, hv0⟩ := GlobalTheory.isConjAt_exists_main D.what₂.LL ⟨D.what₂.embLL, D.starLL_cx⟩
+  obtain ⟨v0, hv0⟩ := _root_.GlobalTheory.exists_isConjAt_of_embedding D.what₂.LL ⟨D.what₂.embLL, D.starLL_cx⟩
   have hE : ∀ i j, (A.fam.R t).vE (A.fam.lvl F.P0 F.ψ0) i j ∈ cmMax D.what₂.LL :=
     image_idempotent_rational _ _ _ (gaMat_rat (A.MtildeCSD t) (A.leftGroupActionRight t) hr (goodAt A.X F.P0 F.ψ0) fun g => by
       unfold goodAt

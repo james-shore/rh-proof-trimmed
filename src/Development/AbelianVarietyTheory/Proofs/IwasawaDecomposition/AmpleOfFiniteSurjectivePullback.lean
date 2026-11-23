@@ -63,7 +63,7 @@ theorem exists_sec_image {X Y : Scheme.{0}} (f : Y ⟶ X) [IsFinite f] [Surjecti
   obtain ⟨u, hu⟩ := GlobalTheory.T.exists_sec_normCoeff_local' f hM t
   refine ⟨u, fun x hx => ?_, fun x k hk hx => ?_⟩
   · obtain ⟨V, hV, _, _, τ, hxV, ht, hc⟩ := hu x
-    obtain ⟨k, hk, h⟩ := GlobalTheory.T.exists_mem_basicOpen_normCoeff_of_fibre f hV τ x hxV fun y hy => (ht y (hy ▸ hxV)).1 (hx y hy)
+    obtain ⟨k, hk, h⟩ := _root_.GlobalTheory.NormalDescent.mem_basicOpen_normCoeff_of_fibre f hV τ x hxV fun y hy => (ht y (hy ▸ hxV)).1 (hx y hy)
     exact ⟨k, hk, (hc k x hxV).2 h⟩
   · obtain ⟨V, hV, _, _, τ, hxV, ht, hc⟩ := hu x
     obtain ⟨y, hy, rfl⟩ := GlobalTheory.T.exists_mem_basicOpen_of_mem_basicOpen_normCoeff' f hV τ x k hxV hk ((hc k x hxV).1 hx)

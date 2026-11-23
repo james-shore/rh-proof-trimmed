@@ -55,6 +55,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import GroundTheory.HeightsAndTheta.Heights.Regularisation.GlueCharts
 
 @[expose] public section
 
@@ -86,7 +87,7 @@ theorem isPsh_sum {d : ℕ} {U : Set (Fin d → ℂ)} {ι : Type} (S : Finset ι
   | empty => simpa using isPsh_zero U 0
   | insert a S ha ih =>
     have := isPsh_add (h a (Finset.mem_insert_self a S)) (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
-    refine GroundTheory.Heights₂.Heights.NineStatements.isPsh_congr' (fun z _ => ?_) this
+    refine _root_.GroundTheory.Heights₂.Heights.Regular.isPsh_congr (fun z _ => ?_) this
     simp [Finset.sum_insert ha]
 
 theorem hol_apply {n g g' : ℕ} {V : Set (Fin n → ℂ)} {q : (Fin n → ℂ) → (Fin g → ℂ) →ₗ[ℂ] (Fin g' → ℂ)}
@@ -138,7 +139,7 @@ theorem perEmb {U W : Set (Fin n → ℂ)} {R : (Fin n → ℂ) → RiemLat E g 
   have hwe : ∀ t, ∀ a, w a t ∈ eigSp (R t).B s := fun t a =>
     ((GlobalTheory.T.riemann_lattice_eigen_projection E g Λ Unit (R t)).2.2.1 s).1 _
   have ht₀U := hWU ht₀
-  obtain ⟨k, J, rfl, hli⟩ := GlobalTheory.T.exists_extend_linearIndependent_of_span g m r (fun a => w a t₀) (fun i => b i t₀) (hwl _ ht₀U) (hbl _ ht₀U)
+  obtain ⟨k, J, rfl, hli⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Exchange.exists_completion_by_members g m r (fun a => w a t₀) (fun i => b i t₀) (hwl _ ht₀U) (hbl _ ht₀U)
     (fun a => by rw [hbs _ ht₀U]; exact hwe _ a)
   set c : Fin (r + k) → (Fin n → ℂ) → Fin g → ℂ := fun i t => Fin.append (fun a => w a t) (fun j => b (J j) t) i with hc
   have hch : ∀ i, DifferentiableOn ℂ (c i) W := by
@@ -176,7 +177,7 @@ theorem perEmb {U W : Set (Fin n → ℂ)} {R : (Fin n → ℂ) → RiemLat E g 
       (fun j => hol_apply (fun x => (hq x).mono hVW) (((hb _).mono hWU).mono hVW)) hul
   have hneg : DifferentiableOn ℂ (fun t => - G t) V := hG.neg
   have hfin := GroundTheory.Heights₂.Heights.NineStatements.isPsh_add_re_add_const hVo hup hneg 0
-  refine ⟨V, hVo, ht₀V, hVW, GroundTheory.Heights₂.Heights.NineStatements.isPsh_congr' (fun t ht => ?_) hfin⟩
+  refine ⟨V, hVo, ht₀V, hVW, _root_.GroundTheory.Heights₂.Heights.Regular.isPsh_congr (fun t ht => ?_) hfin⟩
   have e1 := (hGl t ht).2
   have e2 := hSc t ht
   have hc1 := hcpos t ht
@@ -202,7 +203,7 @@ theorem localQuot {U : Set (Fin n → ℂ)} {R : (Fin n → ℂ) → RiemLat E g
       ∀ t ∈ W, ∀ y z, (∀ u ∈ I, (R t).ip ((R t).P u) y = 0) → (R' t).ip (q t y) (q t z) = (R t).ip y z := by
   obtain ⟨g', k, Λ', i1, i2, e, form', π, hk, hπ, hall⟩ := GlobalTheory.T.isotropic_quotient_structure E g Λ (R t₀) I hsat hiso
   have hform : ∀ t ∈ U, (R t).form = (R t₀).form := fun t ht => hHol.1 t ht t₀ ht₀
-  obtain ⟨W, hWo, ht₀W, hWU, q, hq, hqs⟩ := GlobalTheory.T.holomorphic_local_quotient_map g' k g n U (fun i t => (R t).P (e i)) t₀ hU ht₀ hk
+  obtain ⟨W, hWo, ht₀W, hWU, q, hq, hqs⟩ := _root_.GlobalTheory.CompanionTheory.Metric.QuotHol.exists_holomorphic_quotient g' k g n U (fun i t => (R t).P (e i)) t₀ hU ht₀ hk
     (fun i => hHol.2 (e i)) (hall (R t₀) rfl).1
   have hker : ∀ t ∈ W, LinearMap.ker (q t) = Submodule.span ℂ ((R t).P '' I) := fun t ht => by
     rw [(hqs t ht).2, (hall (R t) (hform t (hWU ht))).2.1]
@@ -277,7 +278,7 @@ theorem phi_isPsh_continuous : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
     refine ⟨V₀, hV₀o, ⟨ht₀W, Set.mem_iInter.2 ht₀V⟩, ?_⟩
     have hs := isPsh_add (isPsh_sum Finset.univ fun τ _ => GlobalTheory.CompanionTheory.AnForm.PshLocal.isPsh_mono (hV₀ τ) (hVp τ))
       (isPsh_zero V₀ (Real.log idx))
-    exact GroundTheory.Heights₂.Heights.NineStatements.isPsh_congr' (fun t ht => (hlog t (hWU ht.1)).symm) hs
+    exact _root_.GroundTheory.Heights₂.Heights.Regular.isPsh_congr (fun t ht => (hlog t (hWU ht.1)).symm) hs
   · have hHm : ∀ i j, ContinuousOn (fun t => (R t).Hm i j) U := by
       intro i j
       obtain ⟨h1, h2⟩ := (GlobalTheory.T.holomorphic_family_smooth_entries E g Λ Ψ n U R hU hHol).1 i j

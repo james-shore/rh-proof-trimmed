@@ -58,14 +58,6 @@ namespace GlobalTheory.LBTrans
 
 variable {X : Scheme.{0}}
 
-theorem res_comp {U V W : X.Opens} (h : V ≤ U) (h' : W ≤ V) (a : Γ(X, U)ˣ) :
-    res h' (res h a) = res (h'.trans h) a := by
-  apply Units.ext
-  change (X.presheaf.map (homOfLE h').op).hom ((X.presheaf.map (homOfLE h).op).hom a) =
-    (X.presheaf.map (homOfLE (h'.trans h)).op).hom a
-  rw [← CommRingCat.comp_apply, ← Functor.map_comp]
-  rfl
-
 theorem units_eq_of_local {U : X.Opens} (a b : Γ(X, U)ˣ)
     (h : ∀ x ∈ U, ∃ (W : X.Opens) (hW : W ≤ U), x ∈ W ∧ res hW a = res hW b) : a = b := by
   let J := {W : X.Opens // ∃ hW : W ≤ U, res hW a = res hW b}
@@ -123,7 +115,7 @@ theorem transition_units (X : Scheme.{0}) (C : Type) [Category.{0} C] (V : C →
     intro x hx
     obtain ⟨T, ⟨c⟩, ⟨d⟩, hxT, hle⟩ := hB.2 i.1 j.1 x (W i ⊓ W j) hx hx.1 hx.2
     refine ⟨V T, hle, hxT, ?_⟩
-    rw [res_comp, res_comp]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res', _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res']
     have e1 := res_quot hu i.2.1.some i.2.2.some c
     have e2 := res_quot hu j.2.1.some j.2.2.some d
     change res (hV c) (w i) = res (hV d) (w j)

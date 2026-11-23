@@ -138,7 +138,7 @@ theorem dual_components_iff : ∀ (F E : Type) [Field F] [NumberField F] [Field 
   intro F E _ _ _ _ _ _ cm n J hJ hdet T f L _ _ _ hT v _ sp hsig hdiag
   have hint : ∀ x, x ∈ intV E v ↔
       (sp x).1 ∈ v.adicCompletionIntegers F ∧ (sp x).2 ∈ v.adicCompletionIntegers F :=
-    split_integral_local F E v sp hdiag
+    _root_.PI.SplitIntLoc.Proof.main F E v sp hdiag
   have hσ : ∀ a, sigR cm.sig (v.adicCompletion F) (sigR cm.sig (v.adicCompletion F) a) = a := by
     intro a
     apply sp.injective

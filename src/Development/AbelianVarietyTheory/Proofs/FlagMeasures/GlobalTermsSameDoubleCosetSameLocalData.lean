@@ -224,9 +224,9 @@ theorem over_same : ∀ (D : D7) (Z : LocDat D), ∀ (u u' : D.what₂.Word) (F0
   have hnI : n ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT := hn.1
   have hmI : m ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT := hm.1
   have hnmI : n * m ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT := mul_mem hnI hmI
-  obtain ⟨gn, hgnE, -, -, -, hgnN⟩ := GlobalTheory.T.rational_isometry_extends_local_isometry D Z p n hnI
-  obtain ⟨gm, hgmE, -, -, -, hgmN⟩ := GlobalTheory.T.rational_isometry_extends_local_isometry D Z p m hmI
-  obtain ⟨g, -, -, hguniq, hgimg, -⟩ := GlobalTheory.T.rational_isometry_extends_local_isometry D Z p (n * m) hnmI
+  obtain ⟨gn, hgnE, -, -, -, hgnN⟩ := _root_.GlobalTheory.LocExt.ext_isometry D Z p n hnI
+  obtain ⟨gm, hgmE, -, -, -, hgmN⟩ := _root_.GlobalTheory.LocExt.ext_isometry D Z p m hmI
+  obtain ⟨g, -, -, hguniq, hgimg, -⟩ := _root_.GlobalTheory.LocExt.ext_isometry D Z p (n * m) hnmI
   have hext : Ext p (n * m) (gn * gm) := fun x => by
     show (gn * gm) (baseChange₂ D p x) = baseChange₂ D p ((n * m) x)
     rw [LinearEquiv.mul_apply, hgmE x, hgnE (m x), LinearEquiv.mul_apply]

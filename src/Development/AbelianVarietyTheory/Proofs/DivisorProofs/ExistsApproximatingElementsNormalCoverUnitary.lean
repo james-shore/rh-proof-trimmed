@@ -62,22 +62,6 @@ noncomputable section
 
 namespace GlobalTheory.USep
 
-theorem range_jK_spMap_subset : ∀ (V R : Type) [CommRing V] [IsDomain V] [CommRing R] [IsDomain R] (ρ : V →+* R), Function.Injective ρ → ∀ (X : Scheme.{0}) (χ : Sp V ⟶ X), Set.range (jK R ≫ spMap ρ ≫ χ) ⊆ Set.range (jK V ≫ χ) := by
-  intro V R _ _ _ _ ρ hρ X χ x ⟨p, hp⟩
-  let q : Sp (FractionRing V) := (⟨⊥, Ideal.isPrime_bot⟩ : PrimeSpectrum (FractionRing V))
-  have key : (spMap ρ) ((jK R) p) = (jK V) q := by
-    apply PrimeSpectrum.ext
-    change Ideal.comap ρ (Ideal.comap (algebraMap R (FractionRing R)) p.asIdeal) =
-      Ideal.comap (algebraMap V (FractionRing V)) ⊥
-    haveI : p.asIdeal.IsPrime := PrimeSpectrum.isPrime p
-    rw [Ideal.eq_bot_of_prime p.asIdeal, Ideal.comap_comap,
-      Ideal.comap_bot_of_injective _ (IsFractionRing.injective V (FractionRing V)),
-      Ideal.comap_bot_of_injective _ (by rw [RingHom.coe_comp]; exact (IsFractionRing.injective R (FractionRing R)).comp hρ)]
-  refine ⟨q, ?_⟩
-  rw [← hp]
-  change χ ((jK V) q) = χ ((spMap ρ) ((jK R) p))
-  rw [key]
-
 theorem exists_elements_cover : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H), 1 ≤ Dw.p + Dw.q → ∀ (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l) (C : UCompact Xo c), ∀ (φ : InvFun (𝓞 E)), IsPolFan H.bar (min Dw.p Dw.q) φ → ∀ (d : ℕ) (J : C.Z.IdealSheafData), (∀ x ∈ J.support, x ∉ Set.range C.i) → UValOn Xo c C.i φ J d → ∀ (S : Scheme.{0}) (π : S ⟶ pullback C.z (spMap C.b)), IsNormBl π (J.comap (pullback.fst C.z (spMap C.b))) → ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V] (Cm : GlobalTheory.UChart.MonoFam Xo c φ V), GlobalTheory.Mum.Base V → ∀ ξ : Sp V ⟶ S, Cm.y ≫ C.iF = jK V ≫ ξ ≫ π → ∀ (N₁ : ℕ) (M : Scheme.{0}) [IsIntegral M] (g : M ⟶ C.Z) (z₁ : M) (ζ : Sp (M.presheaf.stalk z₁) ⟶ pullback C.z (spMap C.b)) (Φ : VSys (H.bar : 𝓞 E → 𝓞 E) (min Dw.p Dw.q) !![(1 : ℤ)] N₁ (M.presheaf.stalk z₁)) (y : Φ.Y) (ρ : V →+* Φ.V y) (e : Φ.X y ≃ₗ[𝓞 E] Cm.P.D.toPre.X) (h : Fin (Φ.m y) ≃ Fin Cm.m) (U : M.Opens), (U : Set M).Nonempty → IsCov C g z₁ ζ → GlobalTheory.GSep.HasTraitsOn ζ Φ.pre U → IsMember ζ Φ Cm (ξ ≫ π) y ρ e h → ∀ (K : Type) [Field K] [IsAlgClosed K] (ev : V →+* K) (k₀ : Subfield K), IsAlgClosed k₀ → (∀ p, (spMap ev ≫ ξ) p = ξ (closedPoint V)) → GlobalTheory.UChart.DefOver k₀ (spMap ev ≫ ξ) → ∀ ga : Fin (Φ.m y) → LinearMap.BilinForm ℤ (Φ.X y), (∀ k a b, ga k a b = Cm.δ (h k) (e a) (e b)) → ∃ ev₁ : Φ.V y →+* K, ev₁.comp ρ = ev ∧ GlobalTheory.Poinc.Sep.Elements Φ y φ (2 * d) ga ev₁ k₀ := by
   intro E _ _ _ H Dw hpq l Xo c C φ hφ d J hJ hV S π hπ V _ _ _ Cm hB ξ hξ N₁ M _ g z₁ ζ Φ y ρ e h U hUne hcov htr hmem K _ _ ev k₀ hk₀ hpt hdef ga hga
   obtain ⟨hρi, hρf, hζ, hst, -⟩ := hmem
@@ -92,7 +76,7 @@ theorem exists_elements_cover : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
   have hζ' : (spMap ρ ≫ ξ) ≫ π = spMap (Φ.ev y) ≫ ζ := by rw [hζ, Category.assoc]
   have hgen : Set.range (jK (Φ.V y) ≫ (spMap ρ ≫ ξ) ≫ π) ⊆ Set.range C.iF := by
     intro x hx
-    obtain ⟨p, hp⟩ := range_jK_spMap_subset V (Φ.V y) ρ hρi _ (ξ ≫ π) (by simpa only [Category.assoc] using hx)
+    obtain ⟨p, hp⟩ := _root_.GlobalTheory.USepStrait.range_jK_spMap_subset_of_injective V (Φ.V y) ρ hρi _ (ξ ≫ π) (by simpa only [Category.assoc] using hx)
     simp only [Category.assoc] at hp
     rw [← hξ, Scheme.Hom.comp_apply] at hp
     exact ⟨_, hp⟩

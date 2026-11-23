@@ -54,18 +54,6 @@ open Polynomial
 
 namespace GlobalTheory.FilCoeff
 
-theorem poly_eq_zero_of_eval_nat {R : Type} [CommRing R]
-    (hR : ∀ n : ℕ, n ≠ 0 → IsUnit (n : R)) :
-    ∀ (n : ℕ) (F : R[X]), F.natDegree ≤ n → ∀ m : ℕ,
-      (∀ k : ℕ, F.eval ((m + k : ℕ) : R) = 0) → F = 0 := by
-  first
-  | exact @_root_.GlobalTheory.EvalNatCastZero.eq_zero_of_eval_natCast_add
-  | exact _root_.GlobalTheory.EvalNatCastZero.eq_zero_of_eval_natCast_add
-  | (apply _root_.GlobalTheory.EvalNatCastZero.eq_zero_of_eval_natCast_add <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EvalNatCastZero.eq_zero_of_eval_natCast_add <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EvalNatCastZero.eq_zero_of_eval_natCast_add <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.EvalNatCastZero.eq_zero_of_eval_natCast_add ..)
-
 noncomputable def binPoly {R : Type} [CommRing R] (y : R) (s : ℕ) : R[X] :=
   ∑ j ∈ Finset.range s, C (y ^ j * Ring.inverse ((j.factorial : ℕ) : R)) * descPochhammer R j
 
@@ -109,7 +97,7 @@ theorem smul_coeff_one_eq_zero {R : Type} [CommRing R] (hR : ∀ n : ℕ, n ≠ 
     intro k; rw [hPdef, eval_sub, eval_one, eval_binPoly hR y _ hy k]
   set F : R[X] := ∑ i ∈ Finset.range (t + 2), P ^ i * C (c i) with hFdef
   have hF : F = 0 := by
-    apply poly_eq_zero_of_eval_nat hR F.natDegree F le_rfl 0
+    apply _root_.GlobalTheory.EvalNatCastZero.eq_zero_of_eval_natCast_add hR F.natDegree F le_rfl 0
     intro k
     rw [zero_add, hFdef, eval_finsetSum]
     simp only [eval_mul, eval_pow, eval_C, hP]

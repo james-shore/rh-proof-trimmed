@@ -96,7 +96,7 @@ theorem main : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host 
   obtain ⟨g, hD, hg, -, -⟩ := Cn.data
   have hinj := comp_C_injective Cn.ψ Cn.compl.2.2.1 Cn.ψ_loc
   obtain ⟨-, hb, hU, -⟩ := letI := H.starRing
-    GlobalTheory.T.degenerationDataNsmulRescale_keeps_laws Cn.L.W Cn.L.D (𝓞 E) Cn.L.oa H.w0 l.M' Cn.L.even Cn.L.bimult Cn.L.w0 Cn.L.gen
+    _root_.GlobalTheory.UCanon.MulDeg.mulDeg_laws Cn.L.W Cn.L.D (𝓞 E) Cn.L.oa H.w0 l.M' Cn.L.even Cn.L.bimult Cn.L.w0 Cn.L.gen
   obtain ⟨τ₁, hτ, hF⟩ := GlobalTheory.UTautData.gens_fromBase _ hinj _ _ hD hb hU
   refine ⟨Cn.ε.map (pullBalEquiv H.bar Cn.e), τ₁, fun k => rfl, hF, fun a b => ?_⟩
   have hs : ∀ k, algebraMap R (FractionRing R) (Cn.ψ (MvPolynomial.X k)) ≠ 0 := by

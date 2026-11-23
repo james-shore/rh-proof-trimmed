@@ -103,9 +103,9 @@ theorem trace_lift_monomial : ∀ (k : Type) [Field k] [IsAlgClosed k] (θ : k �
   have hE := GlobalTheory.T.finrank_eigenspace_monomial_matrix_lift k θ hθ n σ c hc
   set A : Matrix (Fin n) (Fin n) k := Matrix.of fun i j => if i = σ j then c j else 0 with hAdef
   set B : Matrix (Fin n) (Fin n) ℂ := Matrix.of fun i j => if i = σ j then θ (c j) else 0 with hBdef
-  have h1 := GlobalTheory.T.sum_charpoly_roots_eq_finsum_eigenspace_finrank k (Fin n → k) (Matrix.toLin' A) N hN
+  have h1 := _root_.GlobalTheory.CuspGL.sum_roots_charpoly_eq_finsum_eigenspace k (Fin n → k) (Matrix.toLin' A) N hN
     (by rw [← Matrix.toLin'_pow, hA, Matrix.toLin'_one]; rfl) θ
-  have h2 := GlobalTheory.T.sum_charpoly_roots_eq_finsum_eigenspace_finrank ℂ (Fin n → ℂ) (Matrix.toLin' B) N (by exact_mod_cast hN0)
+  have h2 := _root_.GlobalTheory.CuspGL.sum_roots_charpoly_eq_finsum_eigenspace ℂ (Fin n → ℂ) (Matrix.toLin' B) N (by exact_mod_cast hN0)
     (by rw [← Matrix.toLin'_pow, hB, Matrix.toLin'_one]; rfl) id
   rw [Matrix.charpoly_toLin'] at h1 h2
   rw [Matrix.trace_eq_sum_roots_charpoly, h1]

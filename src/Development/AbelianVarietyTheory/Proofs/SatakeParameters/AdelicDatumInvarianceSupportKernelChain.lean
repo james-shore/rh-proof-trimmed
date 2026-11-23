@@ -153,13 +153,13 @@ theorem cosetBound {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism
     IntAt Q.1 ((qOf Q.1 : t.X.E) ^ (if Q.1 ∈ t.Pr.vGs then 1 else (t.cst μ).M) *
       (frsF t.sel (t.tup μ) p Q).symm (repY (cosetOf A (t.m2 + 1) hi β p)) l) := by
   have hy0 : ∀ P, y0At A (t.m2 + 1) hi β P = A.y0 β P := fun P => by simp [y0At]
-  obtain ⟨y, hy⟩ := cosetNonempty t.sel (t.tup μ) (t.cst μ) (fun P => frsF t.sel (t.tup μ) p P) (fun P => A.y0 β P)
+  obtain ⟨y, hy⟩ := _root_.GlobalTheory.FrameCongApprox.exists_sameCoset t.sel (t.tup μ) (t.cst μ) (fun P => frsF t.sel (t.tup μ) p P) (fun P => A.y0 β P)
   have hne : repY (cosetOf A (t.m2 + 1) hi β p) ∈ cosetOf A (t.m2 + 1) hi β p := by
     unfold repY
     exact Classical.epsilon_spec (p := fun y => y ∈ cosetOf A (t.m2 + 1) hi β p) ⟨y, fun P => by rw [hy0]; exact hy P⟩
   have h1 := hne Q l
   rw [hy0] at h1
-  have h2 := couplingBaseVector_bound_kernelChain A dtU a H β x Q l
+  have h2 := _root_.GlobalTheory.TwU.baseCosetRepresentative_bounded_at_bad_primes A dtU a H β x Q l
   generalize (frsF t.sel (t.tup μ) p Q).symm (repY (cosetOf A (t.m2 + 1) hi β p)) = v at h1 ⊢
   rw [Pi.sub_apply] at h1
   have hq := GlobalTheory.TopInv.qOf_ne (E := t.X.E) Q.1
@@ -196,7 +196,7 @@ theorem sizeLaw_of_tie' : UnderTie (fun {D L hT Gi Gl Kc Y cX ex t u μ St} A dt
     rw [hSS]
   rw [hxi, hS, hlev, latK_eq_map _ (A.crd i (Nat.le_of_succ_le hi)), latK_eq_map _ (A.crd (i + 1) hi), ← hp.lat, ← hp'.lat]
   unfold levC
-  refine transport t.seam t.cc _ _ _ _ _ _ _ GlobalTheory.GO.twDen_pos (GlobalTheory.GO.twMod_pos (hPr.T_prime _).pos) _
+  refine _root_.GlobalTheory.DatTransport.datLoc_seam_inFr t.seam t.cc _ _ _ _ _ _ _ GlobalTheory.GO.twDen_pos (GlobalTheory.GO.twMod_pos (hPr.T_prime _).pos) _
     (fun P hP => hT.aa P hP) ?_ ?_
   · intro z hz
     unfold xiPt at hz

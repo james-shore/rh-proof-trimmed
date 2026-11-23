@@ -56,12 +56,12 @@ variable {nb : nA σ d.Y d.b → d.G} {uM : (Fin L.n → AE F E) → d.G} {nb' :
   {cM : (Fin L.n → AE F E) × AF F → d.G} {δ : E}
 
 theorem eisenstein_term_expansion (h : Hyp L nb uM nb' w₁ cM δ) {s₁ : ℂ} {f : d.G → ℂ} (hf : IsSec d.K d.χ s₁ f) (z : ℂ)
-    {e : (Σ _ : Cs L.sd, Crat L) ≃ {q : Cs d // ¬ LagrangianCondition L (rep q)}}
+    {e : (Σ _ : Cs L.sd, _root_.PositivityTheory.SiegelWeilFormula.Act.C6.Cr L) ≃ {q : Cs d // ¬ LagrangianCondition L (rep q)}}
     (he : ∀ x, ∃ p ∈ par2 σ d.Y, p ∈ rat2 σ d.Y ∧ rep (e x).1 = p * (w₁ * (cM x.2.1 * L.j (rep x.1)))) (g : d.G) :
-    E2 L (phz d f s₁ z) g = ∑' x : (Σ _ : Cs L.sd, Crat L), phz d f s₁ z (w₁ * (cM x.2.1 * (L.j (rep x.1) * g))) ∧
+    E2 L (phz d f s₁ z) g = ∑' x : (Σ _ : Cs L.sd, _root_.PositivityTheory.SiegelWeilFormula.Act.C6.Cr L), phz d f s₁ z (w₁ * (cM x.2.1 * (L.j (rep x.1) * g))) ∧
       ∑' q : {q : Cs d // ¬ LagrangianCondition L (rep q)}, ‖phz d f s₁ z (rep q.1 * g)‖ₑ =
-        ∑' x : (Σ _ : Cs L.sd, Crat L), ‖phz d f s₁ z (w₁ * (cM x.2.1 * (L.j (rep x.1) * g)))‖ₑ := by
-  have key : ∀ x : (Σ _ : Cs L.sd, Crat L), phz d f s₁ z (rep (e x).1 * g) =
+        ∑' x : (Σ _ : Cs L.sd, _root_.PositivityTheory.SiegelWeilFormula.Act.C6.Cr L), ‖phz d f s₁ z (w₁ * (cM x.2.1 * (L.j (rep x.1) * g)))‖ₑ := by
+  have key : ∀ x : (Σ _ : Cs L.sd, _root_.PositivityTheory.SiegelWeilFormula.Act.C6.Cr L), phz d f s₁ z (rep (e x).1 * g) =
       phz d f s₁ z (w₁ * (cM x.2.1 * (L.j (rep x.1) * g))) := fun x => by
     obtain ⟨p, hp, hr, hx⟩ := he x
     rw [hx, mul_assoc, C4.phz_rat hf z hp hr, mul_assoc, mul_assoc]

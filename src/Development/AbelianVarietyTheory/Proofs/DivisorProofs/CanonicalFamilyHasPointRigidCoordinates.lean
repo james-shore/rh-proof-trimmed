@@ -78,5 +78,5 @@ theorem GlobalTheory.UCanon.canon_hasRigidCoords : ∀ {E : Type} [Field E] [Num
       exact (RingHom.FiniteType.essFiniteType (by
         rw [← MvPolynomial.algebraMap_eq]
         exact RingHom.finiteType_algebraMap.mpr inferInstance))
-    exact GlobalTheory.T.closedPoint_of_values_in_small_algClosed c.F (MvPolynomial (Fin C.m ⊕ Fin Cn.N) Cn.L.W) R K (MvPolynomial.C.comp Cn.L.b) hft Cn.ψ Cn.compl
+    exact _root_.GlobalTheory.PointAlg.closed_point_of_values c.F (MvPolynomial (Fin C.m ⊕ Fin Cn.N) Cn.L.W) R K (MvPolynomial.C.comp Cn.L.b) hft Cn.ψ Cn.compl
       ev k₀ hemb hall

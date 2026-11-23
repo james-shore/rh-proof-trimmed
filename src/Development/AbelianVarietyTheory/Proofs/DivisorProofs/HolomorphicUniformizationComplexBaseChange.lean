@@ -47,6 +47,9 @@ import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.IsRegularFnIffO
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoeffTopMonEqZero
 import Development.AbelianVarietyTheory.Proofs.ToricGeometry.MemSpanOfCardLe
 import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.EllipsoidStA
+import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.MemRangeCompIffOfIsClosedImmersion
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsDifferentiableOnVerticalVectorField
+import Development.AbelianVarietyTheory.Proofs.ToricGeometry.TangentBijectionOfValues
 
 @[expose] public section
 
@@ -61,16 +64,6 @@ noncomputable section
 
 namespace GlobalTheory.UnifTan
 
-theorem valR_comp_eq {A : Type} [CommRing A] {X Y : Scheme.{0}} (p : Sp A ⟶ X) (ψ : X ⟶ Y) (U : Y.Opens) (f : Γ(Y, U)) :
-    valR (p ≫ ψ) U f = valR p (ψ ⁻¹ᵁ U) ((ψ.app U).hom f) := by
-  first
-  | exact @_root_.GlobalTheory.ValuationCompositionDivisor.valR_comp
-  | exact _root_.GlobalTheory.ValuationCompositionDivisor.valR_comp
-  | (apply _root_.GlobalTheory.ValuationCompositionDivisor.valR_comp <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ValuationCompositionDivisor.valR_comp <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ValuationCompositionDivisor.valR_comp <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ValuationCompositionDivisor.valR_comp ..)
-
 theorem valF_eq_valAt' {X : Scheme.{0}} (p : Sp ℂ ⟶ X) (U : X.Opens) (f : Γ(X, U)) :
     valF p U f = valAt' p U f := by
   unfold valF valAt' valAt
@@ -80,10 +73,6 @@ theorem valR_eq_valAt' {X : Scheme.{0}} (p : Sp ℂ ⟶ X) (U : X.Opens) (f : Γ
     valR p U f = valAt' p U f := by
   unfold valR valAt' valAt
   split_ifs <;> rfl
-
-theorem valAt'_comp_eq {X Y : Scheme.{0}} (p : Sp ℂ ⟶ X) (ψ : X ⟶ Y) (U : Y.Opens) (f : Γ(Y, U)) :
-    valAt' (p ≫ ψ) U f = valAt' p (ψ ⁻¹ᵁ U) ((ψ.app U).hom f) := by
-  rw [← valR_eq_valAt', ← valR_eq_valAt', valR_comp_eq]
 
 theorem prime_subsingleton : Subsingleton (PrimeSpectrum (DualNumber ℂ)) := by
   constructor
@@ -117,15 +106,6 @@ theorem tf_hom (R : Type) [CommRing R] [IsDomain R] [Algebra (FractionRing R) �
     (TF (R := R) ℂ).hom = spMap ((algebraMap (FractionRing R) ℂ).comp (algebraMap R (FractionRing R))) := by
   simp only [TF, jFK, jK, Over.mk_hom, spMap, CommRingCat.ofHom_comp, Spec.map_comp]
 
-theorem ex_zero {A : Over (Sp ℂ)} [GrpObj A] {L : LB A.left} {g : ℕ} (u : HolUnif A L g) :
-    (u.ex 0).left = η[A].left := by
-  have h1 : u.ex 0 = 1 := by
-    have := u.ex_add 0 0
-    rw [add_zero] at this
-    exact (mul_eq_left.1 this.symm)
-  rw [h1, Hom.one_def]
-  simp
-
 theorem isD_iff_isDiff : ∀ (R : Type) [CommRing R] [IsDomain R] [Algebra (FractionRing R) ℂ] (D : DegPre R) (N : NumD ℂ)
     (ν : NumOf D ℂ N) (g : ℕ) (d : AB N.toNumB g) (x : KeyIn ℂ) (u : HolUnif x.P.A x.P.L g) (φ : x.P.A.left ⟶ D.P.A.left),
     IsGrpPullback x.P.A D.P.A (spMap ((algebraMap (FractionRing R) ℂ).comp (algebraMap R (FractionRing R)))) φ → (∀ z, (ν.eA (d.ex z)).left = (u.ex z).left ≫ φ) →
@@ -153,11 +133,11 @@ theorem isD_iff_isDiff : ∀ (R : Type) [CommRing R] [IsDomain R] [Algebra (Frac
     · simp only [Over.lift_left, pullback.lift_snd, Category.assoc, ψ, e, IsPullback.isoPullback_hom_snd]
       exact hbb.symm
   have hred : redE ℂ ≫ b'.left = (u.ex 0).left := by
-    rw [ex_zero]; exact hb'
+    rw [_root_.GlobalTheory.TangentOrigin.ex_zero_left]; exact hb'
   have back : ∀ {A : Type} [CommRing A] (p : Sp A ⟶ x.P.A.left) (U' : x.P.A.left.Opens) (f' : Γ(x.P.A.left, U')),
       valR (p ≫ ψ) (e.inv ⁻¹ᵁ U') ((e.inv.app U').hom f') = valR p U' f' := by
     intro A _ p U' f'
-    rw [← valR_comp_eq, Category.assoc, hψi, Category.comp_id]
+    rw [← _root_.GlobalTheory.Points.valR_comp, Category.assoc, hψi, Category.comp_id]
   have valB : ∀ (U' : x.P.A.left.Opens) (h : ⊤ ≤ b'.left ⁻¹ᵁ U') (f' : Γ(x.P.A.left, U')),
       (Scheme.ΓSpecIso (CommRingCat.of (DualNumber ℂ))).hom.hom ((b'.left.appLE U' ⊤ h).hom f') = valR b'.left U' f' := by
     intro U' h f'
@@ -184,7 +164,7 @@ theorem isD_iff_isDiff : ∀ (R : Type) [CommRing R] [IsDomain R] [Algebra (Frac
       exact h0
     have hs := hI (ψ ⁻¹ᵁ U) h1 ((ψ.app U).hom f)
     rw [valB] at hs
-    simp only [hb, hpt, valR_comp_eq, valF_eq_valAt', valAt'_comp_eq]
+    simp only [hb, hpt, _root_.GlobalTheory.Points.valR_comp, valF_eq_valAt', _root_.GlobalTheory.KS.VertField.valAt'_comp]
     ext
     · simp only [TrivSqZeroExt.fst_add, TrivSqZeroExt.fst_inl, TrivSqZeroExt.fst_inr, add_zero]
       rw [← hred, ← valR_eq_valAt', (GlobalTheory.ZH.CrdCalc.valR_spMap _ _ _ h1).2]

@@ -109,7 +109,7 @@ theorem RE_eq_rowDiv (K : Type) [CommRing K] (k : ℕ) (a b : Fin k) (f : MvPoly
 theorem restAdj : RestAdj := by
   intro K _ k a b P Q
   rw [RE_eq_rowDiv, RE_eq_rowDiv]
-  exact Formalism.L2.G.Model.TS.Top.fockRRowDivAdj K k k a b 1 P Q
+  exact _root_.Formalism.L2.G.Model.TS.fock_pairing_divided_adjoint K k k a b 1 P Q
 
 theorem restStab : RestStab := by
   intro K _ _ k ν a b P hP

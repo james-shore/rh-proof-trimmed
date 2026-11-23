@@ -93,7 +93,7 @@ theorem lintegral_resQ (ha : 0 < a) (μ : Measure (GA E a)) [μ.IsHaarMeasure] (
     (hz : ∀ t g, φ (splitCentre E a t * g) = φ g) :
     ∫⁻ q, ‖resQ φ q‖ₑ ^ 2 ∂(RightCosetSpace.quotientMeasure (rationalGLOne (K := E) (n := a)) ν) =
       c * ∫⁻ q, ‖descend (latticeGL E a) φ q‖ₑ ^ 2 ∂(GlobalTheory.AutomorphicL2Unitary.quotMeasure (latticeGL E a) μ) := by
-  have hd := GlobalTheory.T.fundamental_domain_split_centre_product E a ha μ
+  have hd := _root_.GlobalTheory.CompanionTheory.CuspTransfer.isFundamentalDomain_splitFd E a ha μ
   have hL : LeftInv (latticeGL E a) φ := leftInv_latticeGL hl hz
   rw [RightCosetSpace.lintegral_quotientMeasure, lintegral_quotMeasure hd]
   simp only [resQ_mk hl, hL.descend_mk]
@@ -133,7 +133,7 @@ theorem denseRange_toL2cusp : DenseRange (toL2cusp μ) := by
 variable {μ ν} in
 def toCusp (hm : ∀ φ : cuspidalL2Functions μ, MemLp (resQ φ.1) 2 (RightCosetSpace.quotientMeasure (rationalGLOne (K := E) (n := a)) ν)) :
     cuspidalL2Functions μ →ₗ[ℂ] cuspidalL2 ν where
-  toFun φ := ⟨(hm φ).toLp _, GlobalTheory.T.cuspidal_restrict_mem_cuspidal_l2 E a ν φ.1 φ.2.1 (hm φ)⟩
+  toFun φ := ⟨(hm φ).toLp _, _root_.GlobalTheory.CompanionTheory.CuspTransfer.toLp_restrict_mem_cuspidalL2 E a ν φ.1 φ.2.1 (hm φ)⟩
   map_add' φ ψ := Subtype.ext (MemLp.toLp_add (hm φ) (hm ψ))
   map_smul' z φ := Subtype.ext (MemLp.toLp_const_smul z (hm φ))
 

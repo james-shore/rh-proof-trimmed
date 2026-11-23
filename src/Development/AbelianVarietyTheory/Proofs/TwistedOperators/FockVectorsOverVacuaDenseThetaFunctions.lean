@@ -128,7 +128,7 @@ theorem relations {κ : Type} [Fintype κ] (e : OrthonormalBasis κ ℝ V) (N : 
       (∀ z, N * cE J hS hD z = cE J hS hD z * (N + ((8 * π : ℝ) : ℂ) • 1)) ∧
       (∀ z, N * aE J hS hD z = aE J hS hD z * (N - ((8 * π : ℝ) : ℂ) • 1)) ∧
       ∀ z, dE hS hD z ∈ Submodule.span ℂ (Set.range (fun j => aE J hS hD (e j)) ∪ Set.range fun j => cE J hS hD (e j)) := by
-  refine GlobalTheory.T.weyl_number_operator_commutation_alt V _ κ J e (dE hS hD) (aE J hS hD) (cE J hS hD) N hJ
+  refine _root_.GlobalTheory.weyl_number_operator_commutation V _ κ J e (dE hS hD) (aE J hS hD) (cE J hS hD) N hJ
     (fun u v => LinearMap.ext fun f => Subtype.ext (dH_add_left ρ u v f.1))
     (fun r v => LinearMap.ext fun f => Subtype.ext ((dH_smul_left ρ r v f.1).trans (Complex.coe_smul r _).symm))
     (fun u v => LinearMap.ext fun f => Subtype.ext ?_) (fun _ => rfl) (fun _ => rfl) hN
@@ -157,7 +157,7 @@ theorem inner_translate (K : Submodule ℂ S) (hK : ∀ z, ∀ x ∈ K, cE J hS 
     inner ℂ y (Φ (ρ w v)) = 0 := by
   have e : (1 / 2 : ℂ) • cE J hS hD w - (1 / 2 : ℂ) • aE J hS hD w = dE hS hD w := by
     unfold cE aE; module
-  obtain ⟨h1, h2⟩ := GlobalTheory.T.pow_sub_creation_vacuum_fock_bound S H ((Φ : B →ₗ[ℂ] H) ∘ₗ S.subtype) ((1 / 2 : ℂ) • aE J hS hD w)
+  obtain ⟨h1, h2⟩ := _root_.GlobalTheory.pow_vacuum_fock_bound S H ((Φ : B →ₗ[ℂ] H) ∘ₗ S.subtype) ((1 / 2 : ℂ) • aE J hS hD w)
     ((1 / 2 : ℂ) • cE J hS hD w) (π * ‖w‖ ^ 2) v (by positivity)
     (fun x x' => by
       have := adjoint h hΦ hS hD w x x'
@@ -174,7 +174,7 @@ theorem inner_translate (K : Submodule ℂ S) (hK : ∀ z, ∀ x ∈ K, cE J hS 
     (by rw [LinearMap.smul_apply, ha, smul_zero])
   rw [e] at h1 h2
   have h3 := h1 K hv fun x hx => K.smul_mem _ (hK w x hx)
-  have := GlobalTheory.T.eq_zero_at_one_of_iteratedDerivs_vanish_of_growth (fun k t => inner ℂ y (Φ (ρ (t • w) ((dE hS hD w ^ k) v)))) (2 * (π * ‖w‖ ^ 2))
+  have := _root_.GlobalTheory.vanish_at_one_of_derivs_vanish_of_growth (fun k t => inner ℂ y (Φ (ρ (t • w) ((dE hS hD w ^ k) v)))) (2 * (π * ‖w‖ ^ 2))
     (‖y‖ ^ 2 * ‖Φ v‖ ^ 2) (fun k t => ?_) (fun k => ?_) fun k t => ?_
   · simpa using this
   · have := (((innerSL ℂ y).comp Φ).restrictScalars ℝ).hasFDerivAt.comp_hasDerivAt t

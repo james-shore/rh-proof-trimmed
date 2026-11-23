@@ -204,7 +204,7 @@ private theorem hi_B [IsAlgClosure ℚ Ω] (N w p : ℕ) (hN : 0 < N) (hp : p.Pr
     rintro x ⟨hxP, hxI⟩
     refine ⟨?_, fun γ hγ => ?_⟩
     · rw [hi_sum X l N p x]
-      exact hi_pol_sum X l w Finset.univ _ (fun i => GlobalTheory.T.intMatrixAction_mem_homogeneousPolyFunctions X l w _ (fun a ha => hA _ a ha) x hxP)
+      exact hi_pol_sum X l w Finset.univ _ (fun i => _root_.GlobalTheory.KZ.PolAct.act_mem_pol X l w _ (fun a ha => hA _ a ha) x hxP)
     · obtain ⟨π, g, hg, he⟩ := hi_act X l N p hN hp hc γ hγ
       rw [he x, hi_sum X l N p x]
       calc _ = ∑ i, X.act l (GlobalTheory.HeckeFamilyMatrices.tqFam p (sgD N l p) (π i)) x :=

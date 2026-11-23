@@ -54,11 +54,7 @@ namespace GlobalTheory.SgInf.AbsConv
 
 variable {k r : ℕ}
 
-theorem measurable_lmul : Measurable (fun p : Mt k r × Mt k r => lmulM (Matrix.of p.2 : Mat k r) p.1) := by
-  apply Continuous.measurable
-  refine continuous_pi fun i => continuous_pi fun j => ?_
-  simp only [lmulM, Matrix.mul_apply, Matrix.of_apply]
-  fun_prop
+alias measurable_lmul := _root_.GlobalTheory.SgInf.measurable_lmul_swap
 
 theorem lintegral_lt_top {μG μS ν : Measure (Mt k r)} [SFinite μG] [SFinite μS] [SFinite ν]
     {S : Set (Mat k r)} (hq : IsQuotMeas μG μS ν)

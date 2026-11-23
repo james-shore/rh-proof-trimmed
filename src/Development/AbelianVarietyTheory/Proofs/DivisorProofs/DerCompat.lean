@@ -63,14 +63,6 @@ set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.KSAgree
 
-theorem dual_alg {S S' : Type} [CommRing S] [CommRing S'] (r : S →+* S') :
-    (dualMap r).comp (algebraMap S (DualNumber S)) = (algebraMap S' (DualNumber S')).comp r := by
-  ext a <;> simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl] <;> rfl
-
-theorem fst_dual {S S' : Type} [CommRing S] [CommRing S'] (r : S →+* S') :
-    (TrivSqZeroExt.fstHom S' S' S').toRingHom.comp (dualMap r) = r.comp (TrivSqZeroExt.fstHom S S S).toRingHom := by
-  ext a <;> (try simp [dualMap]) <;> rfl
-
 section Gen
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {X : Scheme.{0}} (t : SAB H X)
 
@@ -79,7 +71,7 @@ theorem eps_over {S S' : Type} [CommRing S] [CommRing S'] (r : S →+* S') {x : 
     spMap (dualMap r) ≫ spMap (algebraMap S (DualNumber S)) ≫ x = spMap (algebraMap S' (DualNumber S')) ≫ x' := by
   have h : spMap (dualMap r) ≫ spMap (algebraMap S (DualNumber S)) =
       spMap (algebraMap S' (DualNumber S')) ≫ spMap r := by
-    rw [GlobalTheory.LogKSLoc.spMap_comp', GlobalTheory.LogKSLoc.spMap_comp', dual_alg]
+    rw [GlobalTheory.LogKSLoc.spMap_comp', GlobalTheory.LogKSLoc.spMap_comp', _root_.Formalism.L2.Pj.dualMap_alg]
   rw [← hx, ← Category.assoc, ← Category.assoc, h]
 
 theorem tan_map {S S' : Type} [CommRing S] [CommRing S'] (r : S →+* S') {x : Sp S ⟶ X} {x' : Sp S' ⟶ X}
@@ -89,7 +81,7 @@ theorem tan_map {S S' : Type} [CommRing S] [CommRing S'] (r : S →+* S') {x : S
   · rw [Category.assoc, hv.1, eps_over r hx]
   · have h : spMap (TrivSqZeroExt.fstHom S' S' S').toRingHom ≫ spMap (dualMap r) =
         spMap r ≫ spMap (TrivSqZeroExt.fstHom S S S).toRingHom := by
-      rw [GlobalTheory.LogKSLoc.spMap_comp', GlobalTheory.LogKSLoc.spMap_comp', fst_dual]
+      rw [GlobalTheory.LogKSLoc.spMap_comp', GlobalTheory.LogKSLoc.spMap_comp', _root_.GlobalTheory.Frames.EigenBaseChange.fst_comp_dualMap]
     rw [← Category.assoc, h, Category.assoc, hv.2]
     let k : Over.mk x' ⟶ Over.mk x := Over.homMk (spMap r) hx
     exact congrArg CommaMorphism.left (comp_one k (M := t.G))

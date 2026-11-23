@@ -67,7 +67,7 @@ theorem rowLevTop_glint {sharp : Bool} {n : ℕ} {P : HeightOneSpectrum (𝓞 X.
     split_ifs at hg
     · exact hg.1
     · exact hg.1
-  rw [GlobalTheory.TopLawSym.lamY_eq] at h
+  rw [_root_.GlobalTheory.LastSteps.lamY_zero] at h
   exact h
 
 theorem phiTop_rowLevTop (hm : R.m = m2 + 2) (sharp : Bool) {P : HeightOneSpectrum (𝓞 X.E)} (hP : P ∈ Pr.vGs)

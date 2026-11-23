@@ -50,14 +50,16 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CycleBoundaryInjectivity.SBridgeOf
+import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.SeparationCase.SSepOf
 
 @[expose] public section
 
 namespace PositivityTheory.KB
 
 theorem bStarOdd : BStarOdd :=
-  sBStarOdd_of sChain sSep' sBridge sStab
-    (sSurj_of sPrime_of sHecke sHt_of sPU sMom sWhit sCen sGap_of sLoc sMean_of sInv)
-    (sWtOdd_of sChain sEv sPsi sStokes_of)
+  sBStarOdd_of _root_.PositivityTheory.KB.sChain_of _root_.PositivityTheory.KB.sSep _root_.PositivityTheory.KB.sBridge_of sStab
+    (_root_.PositivityTheory.KB.JoinReconstruction.key sPrime_of sHecke sHt_of sPU sMom sWhit sCen sGap_of sLoc sMean_of sInv)
+    (sWtOdd_of _root_.PositivityTheory.KB.sChain_of _root_.PositivityTheory.KB.sEv_of sPsi sStokes_of)
 
 end PositivityTheory.KB

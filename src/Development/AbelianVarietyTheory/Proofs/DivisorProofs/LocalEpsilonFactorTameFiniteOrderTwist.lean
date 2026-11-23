@@ -68,9 +68,6 @@ theorem locK_pow_eq_one {ξ : HChar E} {N : ℕ} (h : ξ.OrderDvd N) (w : Height
     ((ξ.locK w x : ℂˣ) : ℂ) ^ N = 1 :=
   pow_apply_eq_one h _
 
-theorem isUnitary_of_orderDvd {ξ : HChar E} {N : ℕ} (hN : 0 < N) (h : ξ.OrderDvd N) : IsUnitary ξ := fun x =>
-  Complex.norm_eq_one_of_pow_eq_one (pow_apply_eq_one h x) hN.ne'
-
 theorem expAt_unr_mul {χ ξ : HChar E} {w : HeightOneSpectrum (𝓞 E)} {a : ℕ} (hχ : χ.UnrAt w) (hξ : ExpAt ξ w a) :
     ExpAt (χ * ξ) w a := by
   intro k
@@ -169,7 +166,7 @@ theorem exists_gaussSumAt_dvd {K : Type} [Field K] [NumberField K] (σ : K →+*
 
     rw [← hσg, map_sum, map_sum, map_sum]
     exact Finset.sum_congr rfl fun y _ => by rw [map_inv₀, Complex.inv_eq_conj (hnorm y)]
-  have hu : IsUnitary ξ := isUnitary_of_orderDvd hN hξN
+  have hu : IsUnitary ξ := _root_.Formalism.L2.Host.HChar.isUnitary_of_order hN hξN
   have hG := GlobalTheory.GaussMod.gaussSumAt_normSq ξ w 1 c one_ne_zero hξ hu (valuation_unif_pow w _)
   have hprod : (∑ y, X y) * (∑ y, (X y)⁻¹) = (q : K) := σ.injective (by
     rw [map_mul, hσg, hσg', Complex.mul_conj, Complex.normSq_eq_norm_sq, hG, hqw, map_natCast]

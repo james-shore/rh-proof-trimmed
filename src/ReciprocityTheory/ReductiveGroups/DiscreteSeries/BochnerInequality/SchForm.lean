@@ -82,7 +82,7 @@ variable {M : Type*} [NormedAddCommGroup M] [InnerProductSpace ℂ M] {ε : Fin 
 theorem phi_Wm_last_of_sch (hSch : ∀ x ∈ Wm ε E V, phi E 1 x = 0) {k : ℕ} {F : Big n (k + 1) M}
     (hF : ∀ κ, slice (Fin.last k) κ F ∈ Wm ε E V) : phi E (k + 1) F = 0 := by
   classical
-  rw [phi_apply_eq, ← (Fin.snocEquiv (fun _ => Fin n × Fin n)).sum_comp, Fintype.sum_prod_type_right]
+  rw [_root_.ReciprocityTheory.ChartRestriction.DS.wordContraction_apply, ← (Fin.snocEquiv (fun _ => Fin n × Fin n)).sum_comp, Fintype.sum_prod_type_right]
   refine Finset.sum_eq_zero (fun init _ => ?_)
   rcases isEmpty_or_nonempty (Fin n × Fin n) with hem | ⟨⟨p₀⟩⟩
   · simp [Finset.univ_eq_empty]
@@ -107,7 +107,7 @@ theorem phi_Wm_position_of_sch (hE : IsGlRep E) (hV : IsKIrrHW ε E (lowK ε lam
         slice i (κ ∘ Equiv.swap i (Fin.last k)) F := by
       apply big_ext
       intro ι
-      rw [sch_slice_apply, sch_slice_apply, sch_permute_apply, Function.update_comp_equiv,
+      rw [sch_slice_apply, sch_slice_apply, _root_.ReciprocityTheory.ChartRestriction.DS.permute_apply, Function.update_comp_equiv,
         Equiv.symm_swap, Equiv.swap_apply_right]
     rw [hs]
     exact hF _
@@ -273,7 +273,7 @@ theorem exists_khw_of_not_sch (hE : IsGlRep E) (hU : IsInfUnitary ε E)
   obtain ⟨a, b, hab, hε, hμe⟩ := Wm_khw hE hU hV hmono hh hbig hx hx0 hkx
   refine ⟨a, b, hab, hε, phi E 1 x₁, ?_, hw0, hμe ▸ hkμ⟩
   rw [← hfx]
-  exact phi_mem_layer (Wm_le_ncV hx)
+  exact _root_.ReciprocityTheory.ChartRestriction.DS.wordContraction_mem_noncompactLayer' (Wm_le_ncV hx)
 
 theorem sch_of_no (hE : IsGlRep E) (hU : IsInfUnitary ε E)
     (hV : IsKIrrHW ε E (lowK ε lam) V) (hmono : StrictAnti lam) {h : ℝ} (hh : GapAtLeast ε lam h)

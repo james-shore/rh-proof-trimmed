@@ -60,8 +60,6 @@ theorem norm_pow_sub_one_le {K : Type u_1} [NormedField K] [IsUltrametricDist K]
     rw [norm_mul, hζ, one_mul]
     exact ih
 
-theorem main : ∀ {K : Type u_1} [inst : NormedField K] [IsUltrametricDist K] {ζ : K},
-    ‖ζ‖ = (1 : ℝ) → ∀ (a : ℕ), ‖ζ ^ a - (1 : K)‖ ≤ ‖ζ - (1 : K)‖ :=
-  fun hζ a => norm_pow_sub_one_le hζ a
+alias main := _root_.GlobalTheory.NormPowSubOne.norm_pow_sub_one_le
 
 end GlobalTheory.NormPowSubOne

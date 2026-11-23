@@ -60,10 +60,6 @@ open GlobalTheory.Core.Rk.Exh GlobalTheory.RegSW
 
 namespace PositivityTheory.Rg.Rsw.Kplug
 
-theorem resKilled_of_leaves : K0 → K1 → K2 → SimplePoleRescaling → ContinuousInvariantCoefficients → KillingPolyConst → ContinuationThroughChart → K4 →
-    GlobalTheory.Published.SiegelEisensteinContinuation → PositivityTheory.Rg.Rsw.ResCore → ResidueVanishing :=
-  residue_vanishes_of_siegel_eisenstein
-
 theorem k0 : K0 := mem_section_space
 theorem k1 : K1 := local_representation_smoothness
 theorem k2 : K2 := continuation_pole_order
@@ -74,7 +70,7 @@ theorem k3b : ContinuationThroughChart := continuation_through_chart
 theorem k4 : K4 := theta_continuation
 
 theorem res_killed' : GlobalTheory.Published.SiegelEisensteinContinuation → PositivityTheory.Rg.Rsw.ResCore → ResidueVanishing :=
-  resKilled_of_leaves k0 k1 k2 k2b k2c k3a k3b k4
+  _root_.PositivityTheory.Rg.Rsw.Kplug.residue_vanishes_of_siegel_eisenstein _root_.PositivityTheory.Rg.Rsw.Kplug.mem_section_space _root_.PositivityTheory.Rg.Rsw.Kplug.local_representation_smoothness _root_.PositivityTheory.Rg.Rsw.Kplug.continuation_pole_order _root_.PositivityTheory.Rg.Rsw.Kplug.simple_pole_rescaling _root_.PositivityTheory.Rg.Rsw.Kplug.continuous_invariant_coefficients _root_.PositivityTheory.Rg.Rsw.Kplug.continuation_chart_defined _root_.PositivityTheory.Rg.Rsw.Kplug.continuation_through_chart _root_.PositivityTheory.Rg.Rsw.Kplug.theta_continuation
 
 end PositivityTheory.Rg.Rsw.Kplug
 

@@ -91,12 +91,6 @@ theorem jetOp_transport {K M : Type} [Field K] [Field M] {ι : Type} [Fintype ι
   apply Subtype.ext
   rw [key, GlobalTheory.CoefModel.mapVV_coe, ← MvPolynomial.map_map, h2]
 
-theorem applyAt0_monomial (D : D7) {N N' : ℕ} (m : GL3Theta.Idx D N N' →₀ ℕ) (H : VC D N N' → ℂ) :
-    GL3Theta.applyAt0 D (MvPolynomial.monomial m 1) H = (m.prod fun _ n => (n.factorial : ℂ)) * TaylorLogMetric.taylor D H m := by
-  classical
-  rw [GL3Theta.applyAt0, MvPolynomial.support_monomial, if_neg one_ne_zero, Finset.sum_singleton,
-    MvPolynomial.coeff_monomial, if_pos rfl, one_mul]
-
 def trL (D : D7) (a b : ℕ) : VC D a b →ₗ[ℂ] VC D b a where
   toFun z := fun τ i j => z τ j i
   map_add' _ _ := rfl
@@ -114,7 +108,7 @@ theorem applyAt0_tr (D : D7) {a b : ℕ} {H : VC D b a → ℂ} (hH : Differenti
   have han : AnalyticAt ℂ H 0 := GlobalTheory.ProdThetaConj.an0 hH
   have e : (m.mapDomain fun k => (k.1, k.2.2, k.2.1)) = Finsupp.embDomain (trI D a b) m := by
     rw [Finsupp.embDomain_eq_mapDomain]; rfl
-  rw [applyAt0_monomial, applyAt0_monomial, e, Finsupp.prod_embDomain, GlobalTheory.ConjSeries.taylor_eq_coeff,
+  rw [_root_.GlobalTheory.FockPos.applyAt0_monomial', _root_.GlobalTheory.FockPos.applyAt0_monomial', e, Finsupp.prod_embDomain, GlobalTheory.ConjSeries.taylor_eq_coeff,
     GlobalTheory.ConjSeries.taylor_eq_coeff, ← GlobalTheory.ConjRestrict.coeff_taylorDir_embDomain _ _ han]
   have h := taylorDir_comp_clm (LinearMap.toContinuousLinearMap (trL D a b)) (coordV D) han
   have hc : ∀ k, trL D a b (coordV D k) = coordV D (trI D a b k) := fun k => by
@@ -511,7 +505,7 @@ theorem row_jets (hI : GlobalTheory.NormSum.Inp D) (hDict : DictAt ch) {Φ β d}
     rw [e1, ← hf u, hkk]
     congr 2
     funext m
-    rw [applyAt0_monomial]
+    rw [_root_.GlobalTheory.FockPos.applyAt0_monomial']
     change starRingEnd ℂ (J m : ℂ) = starRingEnd ℂ _
     congr 1
     simp only [J, Finsupp.prod]
@@ -521,7 +515,7 @@ theorem row_jets (hI : GlobalTheory.NormSum.Inp D) (hDict : DictAt ch) {Φ β d}
   refine key.trans ?_
   congr 2
   funext m
-  rw [applyAt0_tr D hdiff, applyAt0_monomial, htay]
+  rw [applyAt0_tr D hdiff, _root_.GlobalTheory.FockPos.applyAt0_monomial', htay]
   simp only [J, Finsupp.prod, map_mul, map_natCast, StandardLatticesGL3.cj, TaylorLogMetric.liftM, dif_pos (hcoef _)]
   push_cast
   rfl

@@ -89,14 +89,14 @@ theorem residual_count_alt_alt : ValRingModel → SSList → SSRankUnique → _r
     rcases List.mem_cons.1 hp with rfl | hp
     · exact ⟨hr1, GlobalTheory.T.absIrrSub_map_of_irredOn_map_Fbar hr1 rb (D.naut.kFbar i) hirr φ⟩
     · obtain ⟨c, -, rfl⟩ := List.mem_map.1 hp
-      exact ⟨le_rfl, absIrr_id le_rfl _ fun W _ => sub_fin_one W⟩
+      exact ⟨le_rfl, _root_.GlobalTheory.AbsolutelyIrreduciblePullback.absIrrSub_top le_rfl _ fun W _ => _root_.GlobalTheory.SatakeMainTheorem.main W⟩
   have h2 : ∀ p ∈ L2, 1 ≤ p.1 ∧ AbsIrrSub p.2 ⊤ := by
     intro p hp
     obtain ⟨k, -, hp⟩ := List.mem_flatMap.1 hp
     obtain ⟨a, -, hp⟩ := List.mem_flatMap.1 hp
     obtain ⟨q, hq, rfl⟩ := List.mem_map.1 hp
     obtain ⟨hq1, hq2⟩ := hL1 k q hq
-    exact ⟨hq1, absIrr_id hq1 _ fun W hW => hq2.2.2 W le_top (isInv_of_twGL _ _ W hW)⟩
+    exact ⟨hq1, _root_.GlobalTheory.AbsolutelyIrreduciblePullback.absIrrSub_top hq1 _ fun W hW => hq2.2.2 W le_top (isInv_of_twGL _ _ W hW)⟩
   have hjψ : j.comp ψ = iotaOQ D.nd D.naut i := RingHom.ext hψ
   have hs : ∀ g, j (ψ (((Formalism.MainNotions.N.Glob.epsO D.nd i g)⁻¹ : (D.nd.O i)ˣ) : D.nd.O i)) = (epsQ D i g)⁻¹ := by
     intro g

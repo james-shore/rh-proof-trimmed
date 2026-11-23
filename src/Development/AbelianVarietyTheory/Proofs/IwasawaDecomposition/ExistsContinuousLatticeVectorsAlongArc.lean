@@ -71,16 +71,6 @@ theorem isDerivAt_comp_iff {V V' : Type} [NormedAddCommGroup V] [NormedSpace ℂ
     congrArg (· w) (h1.comp 0 L.hasFDerivAt).fderiv
   rw [h2]
 
-theorem isDerivAt_smul {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] {X : Scheme.{0}} {c : V → (Sp ℂ ⟶ X)}
-    {z w : V} {v : Sp (DualNumber ℂ) ⟶ X} (h : IsDerivAt c z w v) (a : ℂ) :
-    IsDerivAt c z (a • w) (spMap (epsMul a) ≫ v) := by
-  refine ⟨?_, fun U hU f => ?_⟩
-  · rw [← h.1, ← Category.assoc, ← Spec.map_comp]
-    congr 2
-    exact CommRingCat.hom_ext (RingHom.ext fun x => by simp [epsMul])
-  · rw [valR_spMap _ _ _ ((le_preimage_dual_iff h.1 U).2 hU), map_smul, ← h.2 U hU f]
-    simp [epsMul]
-
 theorem isDerivAt_add {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] {S : Scheme.{0}} {G : Over S} [GrpObj G]
     {y : Sp ℂ ⟶ S} {e : V → (Over.mk y ⟶ G)} (he : ∀ z w, e (z + w) = e z * e w)
     (hol : HolAt (fun z => (e z).left) 0) {w w' : V} {v v' : epsPt y ⟶ G}
@@ -106,7 +96,7 @@ theorem exists_lieEquiv {X : Scheme.{0}} (t : SAB H X) {y : Sp ℂ ⟶ X} {g : �
   let D : (Fin g → ℂ) →ₗ[ℂ] TanM y t.G :=
     { toFun := fun w => tanOf (t := t) ⟨(hd w).over, (hd w).1.trans (congrArg (·.left) h0)⟩
       map_add' := fun w w' => tan_ext ((hd _).unique (isDerivAt_add he hol (hd w) (hd w')))
-      map_smul' := fun a w => tan_ext ((hd _).unique (isDerivAt_smul (hd w) a)) }
+      map_smul' := fun a w => tan_ext ((hd _).unique (_root_.GlobalTheory.DerivEig.isDerivAt_epsMul (hd w) a)) }
   have hu := fun v : TanM y t.G => hdiff (tv v) ((isTan_tv v).2.trans (congrArg (·.left) h0.symm))
   simp only [isDerivAt0_iff] at hu
   refine ⟨LinearEquiv.ofBijective D ⟨fun w w' h => (hu (D w)).unique (hd w) (by rw [h]; exact hd w'), fun v => ?_⟩, hd⟩

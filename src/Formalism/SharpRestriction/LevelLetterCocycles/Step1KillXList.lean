@@ -140,7 +140,7 @@ theorem step1Kill_kill [NeZero n] (hR : Formalism.MainNotions.LiftingTheory.lift
   have hseq := Formalism.MainNotions.LiftingTheory.lifta_seq W T (uniformizerInverse W) (algebraMap_uniformizer_mul_inverse hU) cO _ seq hstep
   rw [h0] at hseq
   have hNs : seq (xListL W T c (Mi c) (hi c) 0 a).length ∈ W.N T :=
-    Formalism.MainNotions.LiftingTheory.liftb_Nl_le W T c (by simpa using hN)
+    _root_.Formalism.MainNotions.LiftingTheory.wmap_Nl_le W T c (by simpa using hN)
   rw [hseq] at hNs
   have hprod : ((xListL W T c (Mi c) (hi c) 0 a).map
       fun x => (X - C (cO x) : Polynomial O)).prod =

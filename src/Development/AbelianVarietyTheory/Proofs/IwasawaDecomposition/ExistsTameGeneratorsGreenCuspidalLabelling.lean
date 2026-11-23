@@ -85,7 +85,7 @@ theorem exists_tame_generators_cuspidal_labelling : GlobalTheory.Published.Green
     intro k v
     haveI : Fact (D.host.g k).Prime := ⟨D.host.g_prime k⟩
     haveI := D.nd.acOm
-    exact GlobalTheory.T.exists_coupled_tame_inertia_generator D.host.E D.nd.Om (D.nd.plOm.1 (D.naut.plGw k v)) (D.naut.plGw k v) (D.nd.plOm.2 _)
+    exact _root_.GlobalTheory.TameCoupledEx.exists_coupled_tame_generator D.host.E D.nd.Om (D.nd.plOm.1 (D.naut.plGw k v)) (D.naut.plGw k v) (D.nd.plOm.2 _)
       (D.host.g k) (D.naut.plGw_over k v)
       (Formalism.MainNotions.Gaps.LevGap.natCast_notMem_sq_of_split _ (D.host.g_prime k) (D.nd.g_split k) _ (D.naut.plGw_over k v))
       _ (isGenSys_gen _)
@@ -142,12 +142,12 @@ theorem exists_tame_generators_cuspidal_labelling : GlobalTheory.Published.Green
     haveI : Fact (D.host.g k).Prime := ⟨D.host.g_prime k⟩
     haveI := D.nd.acOm
     have hP := D.nd.plOm.2 (D.naut.plGw k v)
-    obtain ⟨a, ha, hua, hga⟩ := GlobalTheory.T.tameInertia_representative_residue D.host.E D.nd.Om (D.nd.plOm.1 (D.naut.plGw k v)) (D.naut.plGw k v)
+    obtain ⟨a, ha, hua, hga⟩ := _root_.GlobalTheory.tameRep_residue D.host.E D.nd.Om (D.nd.plOm.1 (D.naut.plGw k v)) (D.naut.plGw k v)
       (D.host.g k) hP (GlobalTheory.TameLabels.normV_eq_of_split (D.host.g_prime k) (D.nd.g_split k) (D.naut.plGw_over k v))
       (D.naut.plGw_over k v)
       (Formalism.MainNotions.Gaps.LevGap.natCast_notMem_sq_of_split _ (D.host.g_prime k) (D.nd.g_split k) _ (D.naut.plGw_over k v))
       (kv k v) (tg k v) _ (tg_mem k v) (isGenSys_gen _) (tg_coup k v)
-      (fun A' hA' hσ hne => GlobalTheory.T.inertia_two_places_over_same_prime_trivial_meet D.host.E D.nd.Om _ _ _ hP hA' (tg k v) (tg_mem k v) hσ hne) u hrep
+      (fun A' hA' hσ hne => _root_.GlobalTheory.InertiaTwoPlaces.eq_of_mem_Ine_of_mem_Ine D.host.E D.nd.Om _ _ _ hP hA' (tg k v) (tg_mem k v) hσ hne) u hrep
     refine ⟨(D.nd.chiT k v j)⁻¹, Or.inr rfl, ?_⟩
     change ((((cf.mu0 j).locK (D.naut.plGw k v)) (Units.mk0 (((show 𝓞 D.host.E from u) : 𝓞 D.host.E) : D.host.E) hu) : ℂˣ) : ℂ) =
       (D.ntypes.teichC k) ((algebraMap (ZMod (D.host.g k)) (Formalism.CyclotomicNorms.Fbar (D.host.g k)))

@@ -138,7 +138,7 @@ theorem sections_separate_fibre : GlobalTheory.Published.NadelVanishingAndNonKlt
         (2 * m - 2 * c₀ - 1) 2 C hC hcM
       have e3 := interNumRed_one_congr (k := ℂ) (isLB_toLB D₁) (pull_isLB (isLB_toLB D₀) f)
         (hcls.trans (cls_pull (isLB_toLB D₀) f _).symm) C
-      have e4 := GlobalTheory.T.intersectionNumber_pullback_proportional_of_proportional M W p f hp hpM (toLB D₀) N₀ (isLB_toLB D₀) h₀ 2 m' (fun C' hC' => by
+      have e4 := _root_.GlobalTheory.NumPull.interNumRed_pull_proportional M W p f hp hpM (toLB D₀) N₀ (isLB_toLB D₀) h₀ 2 m' (fun C' hC' => by
         have := hcur C' hC'
         have hm'0 : (m' : ℚ) ≠ 0 := by exact_mod_cast hm'.ne'
         rw [Nat.cast_ofNat, div_eq_div_iff hm'0 two_ne_zero] at this
@@ -199,8 +199,8 @@ theorem sections_separate_fibre : GlobalTheory.Published.NadelVanishingAndNonKlt
       have : H0.val (z i) (k i) le_top (hk i) (H0.ofSec (f ≫ p) ⊤ s) = 0 := by
         by_contra hne
         exact hs' _ ((hsupp _ (hzM i)).2 (hfz i)) (hzne i j hij)
-          ((GlobalTheory.T.lineBundleValueAtPoint_ne_zero_iff_mem_nonzeroLocus ℂ M (f ≫ p) _ s (z i) (k i) (hk i)).1 hne)
+          ((_root_.GlobalTheory.ValNe.val_ofSec_ne_zero_iff ℂ M (f ≫ p) _ s (z i) (k i) (hk i)).1 hne)
       rw [this, mul_zero]) (fun h => absurd (Finset.mem_univ j) h)] at h1
-  exact (mul_eq_zero.1 h1).resolve_right ((GlobalTheory.T.lineBundleValueAtPoint_ne_zero_iff_mem_nonzeroLocus ℂ M (f ≫ p) _ s (z j) (k j) (hk j)).2 hs)
+  exact (mul_eq_zero.1 h1).resolve_right ((_root_.GlobalTheory.ValNe.val_ofSec_ne_zero_iff ℂ M (f ≫ p) _ s (z j) (k j) (hk j)).2 hs)
 
 end GlobalTheory.EtaleSep

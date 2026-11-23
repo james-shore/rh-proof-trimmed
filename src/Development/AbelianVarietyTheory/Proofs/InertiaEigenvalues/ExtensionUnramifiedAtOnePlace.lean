@@ -180,7 +180,7 @@ theorem core {E : Type} [Field E] [NumberField E] [Algebra E Ω] [IsAlgClosure E
     have hτA : A.valuation (τ β) ≤ 1 := by
       rw [A.valuation_le_one_iff, ReciprocityTheory.Gal.apply_mem_iff_of_mem_Dec hτ, ← A.valuation_le_one_iff]
       exact hβA
-    refine (GlobalTheory.T.eq_of_roots_congr_of_derivative_unit A f β (τ β) hβA hτA hfβ (aeval_apply_eq_zero τ f hfβ) hu ?_).symm
+    refine (_root_.GlobalTheory.eq_of_root_congr_of_deriv_unit A f β (τ β) hβA hτA hfβ (aeval_apply_eq_zero τ f hfβ) hu ?_).symm
     rw [Valuation.map_sub_swap]; exact hlt
 
   have hine : ∀ t ∈ Ine (F := E) A, ∀ e : E', t (algebraMap E' Ω e) = algebraMap E' Ω e := by

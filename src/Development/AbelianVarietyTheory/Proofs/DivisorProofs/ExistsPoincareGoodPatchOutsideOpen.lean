@@ -57,7 +57,7 @@ theorem exists_goodPatch : ∀ {F : Type} [Field F] {σ : F →+* ℂ} {X : Var 
   obtain ⟨e, S, hholo, hys, hy0, hcomp, A, hA, c, N, hev⟩ := hG y hy
   have h1 : ∀ᶠ z in 𝓝 y, z ∈ ptsIn X.str σ O → GoodBound S c N (fun v => H A (e.symm v) ()) (e z) :=
     (eventually_nhdsWithin_iff.1 hev).mono fun z hz hzO => hz hzO ()
-  have h2 : ∀ᶠ z in 𝓝 y, A ∈ E.S (under z) := GlobalTheory.T.adaptedFrame_eventually_near_complexPoint E hA
+  have h2 : ∀ᶠ z in 𝓝 y, A ∈ E.S (under z) := _root_.GlobalTheory.GoodTop.frame_eventually E hA
   have h3 : ∀ᶠ z in 𝓝 y, z ∈ e.source := e.open_source.mem_nhds hys
   have h4 : ∀ᶠ z in 𝓝 y, ∀ a ∈ S, ‖e z a‖ ≤ 1 / 2 := by
     refine (Filter.eventually_all_finset S).2 fun a ha => ?_

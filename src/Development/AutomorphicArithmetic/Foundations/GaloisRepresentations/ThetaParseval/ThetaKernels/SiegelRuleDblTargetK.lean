@@ -76,8 +76,8 @@ theorem GlobalTheory.WeilSchrodinger.DblTargetF.siegelRule_dblTarget_k : ∀ (F 
   intro F E _ _ _ _ _ σ B hB nS nT JS JT hS hT ξ₀ hξ₀ hσ χS hχS rχS JB ξ hξ κ _ co hco ωd hωd omp htr
   intro l hl hinv p t hpt φ hφ
   obtain ⟨ν, 𝓕, hν, h𝓕⟩ := GlobalTheory.TowerFD.exists_fd_any F E nS nT
-  obtain ⟨c, hc⟩ := _root_.GlobalTheory.T.lagrangian_darboux_schrodinger_action F E σ B hB nS nT JS JT hS hT ξ₀ hξ₀ hσ JB ξ hξ κ co hco ν 𝓕 hν h𝓕 l hl hinv
-  obtain ⟨hmem, hrule⟩ := _root_.GlobalTheory.T.lagrangian_darboux_schrodinger_unitary F E σ B hB nS nT JS JT hS hT ξ₀ hξ₀ hσ JB ξ hξ κ co hco ν 𝓕 hν h𝓕 χS hχS rχS
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.LagrUniq.lagr_invariant_unique_k F E σ B hB nS nT JS JT hS hT ξ₀ hξ₀ hσ JB ξ hξ κ co hco ν 𝓕 hν h𝓕 l hl hinv
+  obtain ⟨hmem, hrule⟩ := _root_.GlobalTheory.SiegelLawDblTargetF.main_law_k F E σ B hB nS nT JS JT hS hT ξ₀ hξ₀ hσ JB ξ hξ κ co hco ν 𝓕 hν h𝓕 χS hχS rχS
     ωd hωd omp htr p t hpt φ hφ
   show l (omp (p, 1) φ) = _
   rw [hc _ hmem, hrule, hc _ hφ]

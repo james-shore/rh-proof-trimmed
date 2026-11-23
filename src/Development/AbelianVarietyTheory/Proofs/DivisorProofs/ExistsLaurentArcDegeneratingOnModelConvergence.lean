@@ -142,11 +142,11 @@ theorem hasSum_evR_arc_natural : Out.Laws → Out.Laws2 → ∀ (E : Type) [Fiel
   obtain ⟨y₁, hy₁⟩ := hL.bc _ _ φ y₀
   obtain ⟨G, s, hGs⟩ := (frChg_exists_unique_units E H Dw l Xo c _ (fun _ => 1) 1 y₁).2.2.2 y
     (by rw [hy₁.1, ← hch.2.1, ← Category.assoc, hφ, hpt2])
-  obtain ⟨T₁, h₁⟩ := GlobalTheory.T.holArc_chart_coordinates_hasSum E H Dw l Xo c σ O β Y a χ W g ty Fu Ha p j φ hK hχ hβ hch.1 hch.2.2
+  obtain ⟨T₁, h₁⟩ := _root_.GlobalTheory.ArcPoint.chart_coordinates_hasSum E H Dw l Xo c σ O β Y a χ W g ty Fu Ha p j φ hK hχ hβ hch.1 hch.2.2
     (by rw [← Category.assoc, hφ, hpt1])
-  obtain ⟨T₂, h₂⟩ := GlobalTheory.T.frame_matrix_hasSum_alt hL1 hL2 E H Dw l Xo c σ O β Y a χ W g ty Fu Ha y e th z p j y₀ φ y₁ G s
+  obtain ⟨T₂, h₂⟩ := _root_.GlobalTheory.ArcLie.frame_matrix_hasSum hL1 hL2 E H Dw l Xo c σ O β Y a χ W g ty Fu Ha y e th z p j y₀ φ y₁ G s
     hK hχ hβ hy hz hch hy₁ hGs
-  obtain ⟨T₃, h₃⟩ := GlobalTheory.T.hasSum_thetaGenerator_chart_ratio hL1 hL2 E H Dw l Xo c σ O β Y a χ W g ty Fu Ha y e th Θ p j y₀ φ y₁ G s
+  obtain ⟨T₃, h₃⟩ := _root_.GlobalTheory.ArcQ.hasSum_generator_ratio hL1 hL2 E H Dw l Xo c σ O β Y a χ W g ty Fu Ha y e th Θ p j y₀ φ y₁ G s
     hK hχ hβ hP hth hy hch hy₁ hGs
   have key : ∀ w : ℂ, max T₁ (max T₂ T₃) < w.im → ∀ yw, AnFr Ha Θ z w yw →
       ∃ (ψ : p.R →ₐ[c.F] CAt σ) (yw₁ : FrPt Xo c (CAt σ))
@@ -264,7 +264,7 @@ theorem exists_arc_secZ' [Algebra c.F ℂ⸨X⸩]
         GlobalTheory.ArcId.sp_comp]
       rfl)
     (fun τ t => halg _)
-  have hbd := GlobalTheory.T.arc_framed_point_extends_to_model_boundary E H Dw l Xo c σ _ _ Y _ χ W e th y halg hover hmono hB hy (fun h =>
+  have hbd := _root_.GlobalTheory.CuspFrom.arc_bdExt E H Dw l Xo c σ _ _ Y _ χ W e th y halg hover hmono hB hy (fun h =>
     (hab _).1 h (by
       change _ ∈ IsLocalRing.maximalIdeal _
       rw [PowerSeries.maximalIdeal_eq_span_X]

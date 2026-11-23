@@ -218,7 +218,7 @@ theorem exists_basis_HtupW (G : GAtP p) [IsFractionRing G.O G.Kf] [CharZero G.Kf
   · unfold Places.HtupW Places.tenV
     rw [Submodule.span_le]
     rintro _ ⟨F, hF, rfl⟩
-    refine Formalism.BasicNotions.Examples₂.NZ.prod_mem_of_span (R := G.O) (fun v => (G.P.vEmb v).toLinearMap.restrictScalars G.O) _ _
+    refine _root_.Bl.general_b_fact_right_bis_form.goal1 (R := G.O) (fun v => (G.P.vEmb v).toLinearMap.restrictScalars G.O) _ _
       (fun f hf => ?_) F (fun v => (hloc v).ge (hF v))
     choose I hI using hf
     refine Submodule.subset_span ⟨fun x => I x.1 x.2, ?_⟩

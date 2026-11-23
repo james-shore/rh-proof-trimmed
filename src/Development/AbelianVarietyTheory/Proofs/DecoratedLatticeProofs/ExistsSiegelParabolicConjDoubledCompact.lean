@@ -57,14 +57,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.StdUnn.ConjElt
 
-theorem compInf_sigR_comm {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E] (σ : E →ₐ[F] E)
-    (w : NumberField.InfinitePlace F) (x : AF F ⊗[F] E) :
-    compInf F E w (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (AF F) σ x) = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR w.Completion σ (compInf F E w x) := by
-  induction x using TensorProduct.induction_on with
-  | zero => simp
-  | tmul r y => simp [compInf, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR]
-  | add x y hx hy => simp only [map_add (f := _), hx, hy]
-
 theorem compInf_inclR_eq {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E]
     (w : NumberField.InfinitePlace F) (y : E) :
     compInf F E w (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR (AF F) y) = Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR w.Completion y := by
@@ -80,7 +72,7 @@ theorem sq_real_of_majorant {F E : Type} [Field F] [NumberField F] [Field E] [Al
   rw [← hbw w] at hs
   have h1 : ((b.1.map (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (AF F) σ))ᵀ).map (compInf F E w) =
       Formalism.UG.cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR w.Completion σ) (Formalism.UG.bc (compInf F E w) b).1 :=
-    Matrix.ext fun i j => compInf_sigR_comm σ w _
+    Matrix.ext fun i j => _root_.GlobalTheory.StdUnn.Conj.infinitePlaceComponent_tensorConjugation σ w _
   have h2 : (J.map (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR (F := F) (AF F))).map (compInf F E w) =
       Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.JR (F := F) w.Completion J :=
     Matrix.ext fun i j => compInf_inclR_eq w _

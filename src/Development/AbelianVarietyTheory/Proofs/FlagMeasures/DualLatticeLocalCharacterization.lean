@@ -190,7 +190,7 @@ theorem exists_dual_basis (hJ : J.det ≠ 0) (L : Submodule (𝓞 E) (Fin n → 
       (∀ i j, hform (σ : E →+* E) J (x i) (y j) = if i = j then 1 else 0) ∧
       (∀ w : Fin n → E, ∃ c : Fin n → E, w = ∑ j, c j • y j) ∧
       ∀ j, algebraMap F E (s : F) • y j ∈ dualL σ J L := by
-  obtain ⟨x, s, hs, hxL, hxs⟩ := PI.SelfDualLoc.W.locBasis F E n v L hL.1 hL.2
+  obtain ⟨x, s, hs, hxL, hxs⟩ := _root_.Bl.PaddedFamilies.goal1 F E n v L hL.1 hL.2
   have hsE : algebraMap F E (s : F) ≠ 0 := PI.SelfDualLoc.W.LB.algF_ne_zero v hs
   have hxspan : Submodule.span E (Set.range x) = ⊤ := by
     rw [eq_top_iff, ← hL.2, Submodule.span_le]

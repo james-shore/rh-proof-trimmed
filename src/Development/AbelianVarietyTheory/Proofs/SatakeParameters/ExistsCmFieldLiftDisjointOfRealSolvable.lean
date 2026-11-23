@@ -81,7 +81,7 @@ theorem GlobalTheory.KLift.exists_cm_lift : ∀ (Ω : Type) [Field Ω] (E : Type
   haveI : Algebra.IsAlgebraic (maximalRealSubfield E) Ω :=
     Algebra.IsAlgebraic.trans (maximalRealSubfield E) E Ω
   haveI hcF : IsAlgClosure (maximalRealSubfield E) Ω := ⟨IsAlgClosure.isAlgClosed E, inferInstance⟩
-  obtain ⟨T, hvT, hT⟩ := GlobalTheory.T.finite_decompositionGroups_cover_openQuotient Ω (maximalRealSubfield E) v
+  obtain ⟨T, hvT, hT⟩ := _root_.GlobalTheory.DecCover.main Ω (maximalRealSubfield E) v
     (N.map (AlgEquiv.restrictScalarsHom (maximalRealSubfield E))) (isOpen_map_restrictScalars N hN)
   refine ⟨T, hvT, ?_⟩
   intro F₁ hfd hgal hsolv hreal hdec

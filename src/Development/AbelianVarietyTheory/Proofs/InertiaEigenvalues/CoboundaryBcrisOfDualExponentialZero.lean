@@ -49,22 +49,6 @@ open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.Basi
 
 namespace GlobalTheory.KerExpCrys
 
-theorem finite_Ks {l : ℕ} [Fact l.Prime] (K : FinExt l) (j : ℕ) :
-    FiniteDimensional ℚ_[l] (Ks K j) := by
-  haveI := K.2
-  haveI : FiniteDimensional ℚ_[l] (K0 K) :=
-    Module.Finite.of_injective
-      (IntermediateField.inclusion (inf_le_left : K0 K ≤ K.1)).toLinearMap
-      (IntermediateField.inclusion_injective (inf_le_left : K0 K ≤ K.1))
-  have hf : {x : Om l | x ^ (l ^ j) = 1}.Finite := by
-    refine (Polynomial.nthRootsFinset (l ^ j) (1 : Om l)).finite_toSet.subset fun x hx => ?_
-    exact Finset.mem_coe.2 ((Polynomial.mem_nthRootsFinset
-      (pow_pos (Fact.out : l.Prime).pos _) _).2 hx)
-  haveI := hf.to_subtype
-  haveI : FiniteDimensional ℚ_[l] (IntermediateField.adjoin ℚ_[l] {x : Om l | x ^ (l ^ j) = 1}) :=
-    IntermediateField.finiteDimensional_adjoin fun x _ => Algebra.IsIntegral.isIntegral x
-  exact IntermediateField.finiteDimensional_sup _ _
-
 theorem cob_cris_of_expStar_zero : ∀ (D : Formalism.BasicNotions.D7), adm2 D → ArchimedeanSignatureMatching D → ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (s : ℕ), Lev l s → ∀ (e : ℕ) (z : GQ l → ℚ_[l]), ExpStar D.loc (Gj K s) e z 0 → ∃ x : (D.loc l).R.B, ∀ σ ∈ Gj K s, algebraMap ℚ_[l] (D.loc l).R.B (z σ) = (((D.loc l).χQ σ ^ (-(e : ℤ)) : ℚ_[l]ˣ) : ℚ_[l]) • (D.loc l).actQ σ x - x := by
   intro D h2 h4 l _ K s hs e z hz
   obtain ⟨hpos, hzero⟩ := GlobalTheory.T.dualExponential_kernel_cyclotomic_cocycles D h2 h4 l K s hs e z hz
@@ -72,8 +56,8 @@ theorem cob_cris_of_expStar_zero : ∀ (D : Formalism.BasicNotions.D7), adm2 D �
   · have hI := hzero he
     subst he
     obtain ⟨⟨hc, -, hadd⟩, -⟩ := hz
-    have hadd' : ∀ g h : ↥(GK (⟨Ks K s, finite_Ks K s⟩ : FinExt l)),
-        z ((g * h : ↥(GK (⟨Ks K s, finite_Ks K s⟩ : FinExt l))) : GQ l) = z g + z h := by
+    have hadd' : ∀ g h : ↥(GK (⟨Ks K s, _root_.GlobalTheory.Cyc.TwistLift.finite_Ks K s⟩ : FinExt l)),
+        z ((g * h : ↥(GK (⟨Ks K s, _root_.GlobalTheory.Cyc.TwistLift.finite_Ks K s⟩ : FinExt l))) : GQ l) = z g + z h := by
       intro g h
       have := hadd g g.2 h h.2
       simpa using this
@@ -81,7 +65,7 @@ theorem cob_cris_of_expStar_zero : ∀ (D : Formalism.BasicNotions.D7), adm2 D �
       have := hadd' 1 1
       simpa using this
     obtain ⟨b, hb⟩ := GlobalTheory.UnramifiedCrys.exists_rat (D.locA l) (D.locT l)
-      (⟨Ks K s, finite_Ks K s⟩ : FinExt l) (fun g => z g) hc.restrict hadd' (by
+      (⟨Ks K s, _root_.GlobalTheory.Cyc.TwistLift.finite_Ks K s⟩ : FinExt l) (fun g => z g) hc.restrict hadd' (by
         intro g hg
         induction hg using Subgroup.closure_induction with
         | mem x hx => exact hI x x.2 hx

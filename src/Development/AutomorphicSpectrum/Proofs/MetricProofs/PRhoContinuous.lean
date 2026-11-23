@@ -68,7 +68,7 @@ theorem continuous_upV {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype 
 
 theorem pSgn_ne_zero {Ψ : Type} {N j : ℕ} (hj : j ≤ N) (keep : Ψ × Fin N → Prop) (q : PIdx j keep) :
     pSgn (stepCols N j (pStep j keep q.1.1.1 q.1.1.2.2)) q.1.1.2.1 q.1.1.2.2 ≠ 0 := by
-  obtain ⟨-, -, hb, ha, hc⟩ := GlobalTheory.T.pMat_stepCols_entry Ψ N j keep q hj
+  obtain ⟨-, -, hb, ha, hc⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.PFl.SmallStep.pStep_reads Ψ N j keep q hj
   have hX : IsLowerUni (pMat (j := j) keep (fun _ => (0 : ℂ)) q.1.1.1) := by
     refine ⟨fun a => ?_, fun a b hab => ?_⟩
     · unfold pMat lowMat
@@ -107,7 +107,7 @@ theorem main : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι 
       (continuous_apply l).continuousAt.comp ((Rb.A.chart kb).continuousAt hz.2.1)
     exact ContinuousAt.comp_continuousWithinAt (g := fun x => Rb.A.chart kb x l) c3 c2
   · simp only [pRho, e]
-    obtain ⟨hk, -, -, -, -⟩ := GlobalTheory.T.pMat_stepCols_entry Ψ N j keep q M.j_le
+    obtain ⟨hk, -, -, -, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.PFl.SmallStep.pStep_reads Ψ N j keep q M.j_le
     have cT := fun (k : K) (J : Finset (Fin N)) => twMinor_continuousWithinAt M F cB.continuousWithinAt hbase
       (hbase hz) (hgood z hz) cU.continuousWithinAt (pStep j keep q.1.1.1 q.1.1.2.2) k (h q.1.1.1)⁻¹ J
     cases e' : M.blk (q.1.1.1, pStep j keep q.1.1.1 q.1.1.2.2) with

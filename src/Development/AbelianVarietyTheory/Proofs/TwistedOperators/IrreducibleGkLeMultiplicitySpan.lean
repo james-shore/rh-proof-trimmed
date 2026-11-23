@@ -64,15 +64,6 @@ theorem sub_pow_sum : ∀ {P : Type} [AddCommGroup P] [Module ℂ P] {ι : Type}
     ∀ y ∈ N, ∃ (n : ℕ) (Sm : Fin n → (P →ₗ[ℂ] (Fin m → P))) (q : Fin n → P),
       (∀ l i p, Sm l (a i p) = fun j => a i (Sm l p j)) ∧ (∀ l p, Sm l p ∈ N) ∧ y = ∑ l, Sm l (q l) := GlobalTheory.T.exists_sum_intertwined_of_mem_invariant_submodule
 
-theorem place_comm : ∀ {D : D7} (θ : D.what₂.Tau → (Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ)) (V : HSp D),
-    IsInfFam (D := D) θ → ∀ τ τ' : D.what₂.Tau, τ ≠ τ' →
-    (∀ g ∈ Formalism.QuantumDeterminants.UH (gramAt D V τ), ∀ h ∈ Formalism.QuantumDeterminants.UH (gramAt D V τ'), ∀ f : GA D V → ℂ,
-      rTr V (atTau θ V τ g) (rTr V (atTau θ V τ' h) f) = rTr V (atTau θ V τ' h) (rTr V (atTau θ V τ g) f)) ∧
-    (∀ g ∈ Formalism.QuantumDeterminants.UH (gramAt D V τ), ∀ X ∈ lieAt V τ', ∀ f : GA D V → ℂ,
-      Rder θ V τ' X (rTr V (atTau θ V τ g) f) = rTr V (atTau θ V τ g) (Rder θ V τ' X f)) ∧
-    (∀ X ∈ lieAt V τ, ∀ Y ∈ lieAt V τ', ∀ f : GA D V → ℂ, IsAutFunSm θ V f →
-      Rder θ V τ X (Rder θ V τ' Y f) = Rder θ V τ' Y (Rder θ V τ X f)) := GlobalTheory.T.realPlaces_distinct_translations_derivatives_commute
-
 end GlobalTheory.CuspGKId
 
 noncomputable section
@@ -273,11 +264,11 @@ theorem IsPartMult.rTr_comp (hθ : IsInfFam (D := D) θ) {A : Submodule ℂ (GA 
   · have hne : τ ≠ τ' := fun e => hτ (e ▸ hτ')
     simp only [LinearMap.compMultilinearMap_apply, rTrL]
     rw [hF.equivK τ' hτ' h hh hk u w hw]
-    exact (place_comm θ V hθ τ τ' hne).1 g hg.1 h hh _
+    exact (_root_.GlobalTheory.PlaceComm.place_comm θ V hθ τ τ' hne).1 g hg.1 h hh _
   · have hne : τ ≠ τ' := fun e => hτ (e ▸ hτ')
     simp only [LinearMap.compMultilinearMap_apply, rTrL]
     rw [hF.equivLie τ' hτ' Y hY u w hw]
-    exact ((place_comm θ V hθ τ τ' hne).2.1 g hg.1 Y hY _).symm
+    exact ((_root_.GlobalTheory.PlaceComm.place_comm θ V hθ τ τ' hne).2.1 g hg.1 Y hY _).symm
   · simp only [LinearMap.compMultilinearMap_apply, hF.other τ' hτ' u w, map_smul]
 
 theorem IsPartMult.postRder_comp (hθ : IsInfFam (D := D) θ) {A : Submodule ℂ (GA D V → ℂ)}
@@ -290,11 +281,11 @@ theorem IsPartMult.postRder_comp (hθ : IsInfFam (D := D) θ) {A : Submodule ℂ
   · have hne : τ' ≠ τ := fun e => hτ (e ▸ hτ')
     show Rder θ V τ X (F _) = rTr V _ (Rder θ V τ X (F u))
     rw [hF.equivK τ' hτ' h hh hk u w hw]
-    exact (place_comm θ V hθ τ' τ hne).2.1 h hh X hX _
+    exact (_root_.GlobalTheory.PlaceComm.place_comm θ V hθ τ' τ hne).2.1 h hh X hX _
   · have hne : τ ≠ τ' := fun e => hτ (e ▸ hτ')
     show Rder θ V τ X (F _) = Rder θ V τ' Y (Rder θ V τ X (F u))
     rw [hF.equivLie τ' hτ' Y hY u w hw]
-    exact (place_comm θ V hθ τ τ' hne).2.2 X hX Y hY _ (hsm _ (hF.mem u))
+    exact (_root_.GlobalTheory.PlaceComm.place_comm θ V hθ τ τ' hne).2.2 X hX Y hY _ (hsm _ (hF.mem u))
   · show Rder θ V τ X (F _) = lam τ' w • Rder θ V τ X (F _)
     rw [hF.other τ' hτ' u w, GlobalTheory.Mem.AutSpace.Rder_smul]
 
@@ -303,9 +294,6 @@ end GlobalTheory.CuspGKId
 noncomputable section
 
 namespace GlobalTheory.CuspGKId
-
-variable {D : D7} {θ : D.what₂.Tau → (Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ)} {V : HSp D} {S : D.what₂.Tau → SPar}
-  {M : Formalism.IndefR.Mult.DSModel V S}
 
 end GlobalTheory.CuspGKId
 

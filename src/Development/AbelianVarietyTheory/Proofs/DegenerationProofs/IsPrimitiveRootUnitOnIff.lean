@@ -153,7 +153,7 @@ theorem level_descend {K₀ K : Type} [Field K₀] [Field K] (i : K₀ →+* K) 
         R ((Over.homMk x (by simp) : Over.mk x ⟶ Out.baseOver _) ≫ pt₀ a) := by
     intro K' _ x
     obtain ⟨x', rfl⟩ := Spec.map_surjective x
-    obtain ⟨Ω, _, _, j, j', hj⟩ := GlobalTheory.exists_algClosed_join_of_two_field_extensions K₀ K K' i x'.hom
+    obtain ⟨Ω, _, _, j, j', hj⟩ := _root_.GlobalTheory.CommonAlgClosedExtension.exists_common_algClosed_extension K₀ K K' i x'.hom
     have hc : spMap j' ≫ Spec.map x' = spMap j ≫ spMap i := by
       rw [← Spec.map_comp, ← Spec.map_comp]
       congr 1

@@ -136,7 +136,7 @@ theorem density_close {F E : Type} [Field F] [NumberField F] [Field E] [NumberFi
     (hW 1 M) hlv.1 n1 n2 mv hmv'
   have hqc : Continuous fun X : Fin 1 → Fin M → Fv F v ⊗[F] E => Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.qR (Fv F v) σ J (X 0) :=
     GlobalTheory.CompanionTheory.SW.LenFib.continuous_qR (Fv F v) hσ J
-  obtain ⟨hLc, hLo, -, -⟩ := GlobalTheory.T.local_lattice_compact_open_unit_volume F E σ hσ d b 1 M v
+  obtain ⟨hLc, hLo, -, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.latV_compact_open_mass F E σ hσ d b 1 M v
   have hLm : MeasurableSet (latV (M := M) (n := 1) b v) := hLo.measurableSet
 
   let φ : (Fin 1 → Fin M → Fv F v ⊗[F] E) → ℝ := (latV b v).indicator fun _ => 1

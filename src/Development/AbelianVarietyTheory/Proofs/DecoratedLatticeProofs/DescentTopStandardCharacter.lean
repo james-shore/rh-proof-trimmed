@@ -88,11 +88,6 @@ theorem coords_moved (p : Place D k) (GS : Frame k S.rank Y') (GT : Frame k T.ra
     LT.coords LS (p.down GS GT x) = ((frMapO S T βS βT (actO S T g⁻¹ h⁻¹ x)).map π').submatrix eb ea := by
   rw [← coords_down p _ _ hπ LS LT ea eb (map_eq_of_movedTo _ GS hπ _ _ mS) (map_eq_of_movedTo _ GT hπ _ _ mT), down_moved]
 
-theorem isHalf_actO_iff {e : AE D} (g : GA D S) (h : GA D T) (x : WO S T) : IsHalf e (actO S T g h x) ↔ IsHalf e x :=
-  ⟨fun H => by
-    have := GlobalTheory.SplitHecke.isHalf_actO g⁻¹ h⁻¹ H
-    rwa [GlobalTheory.SplitHecke.actO_inv_actO] at this, GlobalTheory.SplitHecke.isHalf_actO g h⟩
-
 theorem part_int (q : GlobalTheory.FinPl.SplitPt D k) {π' : Datum.EAf D →+* k} (hπ : ∀ a, π' (toEAf D a) = q.pr a)
     (hint : ∀ z : Datum.EAf D, z ∈ Formalism.L2.Herm.intAf D.host.F D.host.E ↔
       (1 - toEAf D q.e) * z ∈ Formalism.L2.Herm.intAf D.host.F D.host.E ∧ π' z ∈ 𝒪[k]) {z : Datum.EAf D} (hz : π' z ∈ 𝒪[k]) :
@@ -121,17 +116,6 @@ theorem idem_eq {P : Finset (Pl D.host.E)} {e : AE D} (he : IsIdemSum e P) {n : 
   exact Finset.sum_congr rfl fun i _ => (GlobalTheory.PlaceIdemUniq.idemAt_unique_orth D _ _ _ _ (hes _ (pl i).2) (ha i)).1 rfl
 
 end Gen
-
-section Fam
-
-variable {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.MainNotions.G.Inst D L} {Gl : Formalism.MainNotions.G.LatInst D} {Kc : Formalism.MainNotions.G.Consts}
-  {Yd : DivX D} {cX : ExtraC} {ex : Extra D L hT Gi Gl Kc Yd cX} {W : RealPack ex} {u : D.what₂.Word} {f : FamCh W u}
-  {v : VCom f.c}
-
-
-
-end Fam
-
 
 end GlobalTheory.TopDatumTheta
 

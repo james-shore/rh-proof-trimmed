@@ -177,18 +177,6 @@ theorem exists_cart {V : Type} [CommRing V] [IsDomain V] {C : Type} [Field C] [A
 
 end Geometry
 
-theorem exists_finset_point {Ω : Type} [Field Ω] {X : Scheme.{0}} (p : X ⟶ Sp ℚ) [LocallyOfFiniteType p]
-    (a : Sp Ω ⟶ X) : ∃ s : Finset Ω, ∀ (k : Type) [Field k] (β : k →+* Ω), (s : Set Ω) ⊆ Set.range β →
-      ∃ b : Sp k ⟶ X, spMap β ≫ b = a := by
-  first
-  | (rename_i h_1 h_4; revert Ω h_1 X p h_4 a; exact @_root_.GlobalTheory.PointDescentFactorization.point_descends)
-  | exact @_root_.GlobalTheory.PointDescentFactorization.point_descends
-  | exact _root_.GlobalTheory.PointDescentFactorization.point_descends
-  | (apply _root_.GlobalTheory.PointDescentFactorization.point_descends <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PointDescentFactorization.point_descends <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PointDescentFactorization.point_descends <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PointDescentFactorization.point_descends ..)
-
 theorem isLocalHom_of_integral {V W Ω : Type} [CommRing V] [IsLocalRing V] [CommRing W] [IsLocalRing W] [Algebra V W]
     [Algebra.IsIntegral V W] [CommRing Ω] [IsLocalRing Ω] (g : W →+* Ω)
     (h : ∀ v ∈ IsLocalRing.maximalIdeal V, g (algebraMap V W v) ∈ IsLocalRing.maximalIdeal Ω) : IsLocalHom g := by
@@ -302,7 +290,7 @@ theorem exists_split_point (W : Type) [CommRing W] [IsDomain W] [IsDiscreteValua
       f.Finite ∧ Function.Injective i ∧ (∀ x, i (f x) = algebraMap W F x) ∧ spMap i ≫ χ = y ≫ Y.j ∧
       GlobalTheory.LN.PolAt t (jK V) ∧ GlobalTheory.LN.SplitOver t.G (IsLocalRing.maximalIdeal V) := by
   obtain ⟨p, hp⟩ := exists_finiteType Xo c
-  obtain ⟨s, hs⟩ := exists_finset_point p y
+  obtain ⟨s, hs⟩ := _root_.GlobalTheory.PointDescentFactorization.point_descends p y
   obtain ⟨W₁, d₁, c₁, -, f₁, -, -, hW₁, -⟩ := exists_complete_dvr_finite_subalgebra W F s
   have i₁ : Function.Injective (algebraMap W₁ F) := Subtype.val_injective
   let β₁ : FractionRing W₁ →+* F := IsFractionRing.lift i₁

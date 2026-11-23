@@ -77,10 +77,6 @@ theorem PP_conj (N l d : ℕ) (σ : SL(2, ℤ)) (r : M₂) (hσ : IsDiam N l d �
     PP N l ((σ : M₂) * r * ((σ⁻¹ : SL(2, ℤ)) : M₂)) :=
   GlobalTheory.T.heckeStableCongruence_conj_diamondMatrix N l d σ r hσ hr
 
-theorem diam_comm (N l d d' : ℕ) (σ σ' : SL(2, ℤ)) (hσ : IsDiam N l d σ) (hσ' : IsDiam N l d' σ') :
-    ∃ g : SL(2, ℤ), g ∈ Gam N l ∧ σ' * σ = g * (σ * σ') :=
-  GlobalTheory.T.diamondMatrix_mul_comm_mod_gamma1CapGamma0 N l d d' σ σ' hσ hσ'
-
 theorem PP_cancel {N l : ℕ} {y β : M₂} (h : PP N l (y * β)) (hβ : PP N l β) : PP N l y := by
   obtain ⟨a1, a2, a3, a4⟩ := h
   obtain ⟨b1, b2, b3, b4⟩ := hβ
@@ -142,7 +138,7 @@ theorem classU {N l : ℕ} (hl : l.Prime) (m : M₂) (hm : m.det = l) (hPm : PP 
 
 theorem rfT {q : ℕ} (hq : q.Prime) (σ : SL(2, ℤ)) (m : M₂) (h : (q : ℤ) ∣ m.det) :
     ∃ o, ∃ y : M₂, m = y * repT q σ o := by
-  rcases herm q hq m h with ⟨y, hy⟩ | ⟨k, hk, y, hy⟩
+  rcases _root_.GlobalTheory.hermite_right_factor_prime_det q hq m h with ⟨y, hy⟩ | ⟨k, hk, y, hy⟩
   · refine ⟨none, y * ((σ⁻¹ : SL(2, ℤ)) : M₂), ?_⟩
     show m = _ * ((σ : M₂) * !![(q : ℤ), 0; 0, 1])
     rw [hy, Matrix.mul_assoc, ← Matrix.mul_assoc _ (σ : M₂), inv_mul_self, Matrix.one_mul]
@@ -150,7 +146,7 @@ theorem rfT {q : ℕ} (hq : q.Prime) (σ : SL(2, ℤ)) (m : M₂) (h : (q : ℤ)
 
 theorem rfU {l : ℕ} (hl : l.Prime) (m : M₂) (h : (l : ℤ) ∣ m.det) (hc : IsCoprime (m 0 0) (l : ℤ)) :
     ∃ k : Fin l, ∃ y : M₂, m = y * repU l k := by
-  rcases herm l hl m h with ⟨y, hy⟩ | ⟨k, hk, y, hy⟩
+  rcases _root_.GlobalTheory.hermite_right_factor_prime_det l hl m h with ⟨y, hy⟩ | ⟨k, hk, y, hy⟩
   · exfalso
     have hdvd : (l : ℤ) ∣ m 0 0 := ⟨y 0 0, by rw [hy]; simp [Matrix.mul_apply, Fin.sum_univ_two]; ring⟩
     have h2 := hc.of_isCoprime_of_dvd_left hdvd
@@ -217,7 +213,7 @@ theorem sum_swap (X : Tower Ω ε) (N l : ℕ) [Fact l.Prime] {ι κ : Type} [Fi
   have hdis : ∀ x x' : ι × κ, ∀ h : SL(2, ℤ), (h : M₂) * (r2 x.2 * r1 x.1) = r2 x'.2 * r1 x'.1 → x = x' := by
     rintro ⟨i, k⟩ ⟨i', k'⟩ h H
     rw [← Matrix.mul_assoc] at H
-    obtain ⟨g, hg⟩ := bezout (p2 : ℤ) (p1 : ℤ) hcop.symm hp1' _ _ _ _
+    obtain ⟨g, hg⟩ := _root_.GlobalTheory.sl2_right_factor_of_coprime_factorizations (p2 : ℤ) (p1 : ℤ) hcop.symm hp1' _ _ _ _
       (by rw [det_mul, Matrix.SpecialLinearGroup.det_coe, one_mul, hd2]) (hd2 k') (hd1 i) (hd1 i') H
     have hii : i = i' := dis1 i i' g hg
     subst hii
@@ -238,7 +234,7 @@ theorem sum_diam (X : Tower Ω ε) (N l : ℕ) [Fact l.Prime] {ι : Type} [Finty
     intro i
     have hdm : ((σ : M₂) * r i * ((σ⁻¹ : SL(2, ℤ)) : M₂)).det = p := by
       rw [det_mul, det_mul, Matrix.SpecialLinearGroup.det_coe, Matrix.SpecialLinearGroup.det_coe, hd]; ring
-    obtain ⟨j, g, hg, he⟩ := com _ hdm (PP_conj N l d σ (r i) hσ (hP i))
+    obtain ⟨j, g, hg, he⟩ := com _ hdm (_root_.GlobalTheory.KZ.StabHecke.congruenceCondition_conj_diamond N l d σ (r i) hσ (hP i))
     refine ⟨j, g, hg, ?_⟩
     calc (σ : M₂) * r i = (σ : M₂) * r i * (((σ⁻¹ : SL(2, ℤ)) : M₂) * σ) := by rw [inv_mul_self, Matrix.mul_one]
       _ = ((g : M₂) * r j) * σ := by rw [← he]; simp only [Matrix.mul_assoc]
@@ -359,7 +355,7 @@ theorem comm_DD (X : Tower Ω ε) (N l : ℕ) [Fact l.Prime] (hN : N ≠ 0) (d d
   have hσ' : IsDiam N l d' (sgD N l d') := Betti.isDiam_sgD hN hl.ne_zero hD'
   show X.act l (sgD N l d : M₂) (X.act l (sgD N l d' : M₂) b) = X.act l (sgD N l d' : M₂) (X.act l (sgD N l d : M₂) b)
   rw [act_act X l _ _ (det1 _) (det1 _), act_act X l _ _ (det1 _) (det1 _)]
-  obtain ⟨g, hg, he⟩ := diam_comm N l d d' _ _ hσ hσ'
+  obtain ⟨g, hg, he⟩ := _root_.GlobalTheory.KZ.isDiam_mul_comm_mod_Gam N l d d' _ _ hσ hσ'
   rw [← Matrix.SpecialLinearGroup.coe_mul, he, Matrix.SpecialLinearGroup.coe_mul, act_Gam X N l b hb g hg _ (det1 _),
     Matrix.SpecialLinearGroup.coe_mul]
 

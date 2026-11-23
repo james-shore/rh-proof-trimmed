@@ -68,24 +68,11 @@ open GlobalTheory.SplitScalar
 
 variable {D : D7}
 
-theorem symplO_add_right' (V W : HSp D) (x y y' : WO V W) :
-    symplO V W x (y + y') = symplO V W x y + symplO V W x y' := by
-  rw [← symplOH_add_self V W x (y + y'), ← symplOH_add_self V W x y, ← symplOH_add_self V W x y',
-    symplOH_add_right]
-  abel
-
 theorem symplO_nsmul_right (V W : HSp D) (x y : WO V W) (k : ℕ) :
     symplO V W x (k • y) = k • symplO V W x y := by
   induction k with
   | zero => rw [zero_nsmul, zero_nsmul, symplO_zero_right]
-  | succ k ih => rw [succ_nsmul, symplO_add_right', ih, succ_nsmul]
-
-theorem cA_invol (x : AE D) : cA D (cA D x) = x := by
-  induction x using TensorProduct.inductionOn with
-  | add x y hx hy => rw [RingHom.map_add (f := _), RingHom.map_add (f := _), hx, hy]
-  | tmul a x =>
-    change a ⊗ₜ[D.host.F] star (star x) = _
-    rw [star_star]
+  | succ k ih => rw [succ_nsmul, _root_.GlobalTheory.LatVac.symplO_add_right, ih, succ_nsmul]
 
 theorem flipElt_mul_of_half {e eT x : AE D} (m : ℕ) (hx : e * x = x) (h1 : e * eT = eT) (h3 : e * e = e)
     (h5 : e * cA D eT = 0) : flipElt eT m * x = (e - eT) * x + (m : AE D) * (eT * x) := by
@@ -150,7 +137,7 @@ theorem flip_translates : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : In
       _ = 0 := by rw [h, zero_mul]
   have h6 : cA D eT * cA D eT = cA D eT := by rw [← map_mul, h2]
   have hm0 : m ≠ 0 := hm.pos.ne'
-  have hcc : cA D (cA D eT) = eT := GlobalTheory.FlipTranslates.cA_invol eT
+  have hcc : cA D (cA D eT) = eT := _root_.Formalism.L2.Theta.cA_cA eT
   have hst : ∀ a : AE D, a * a = a → ∀ w ∈ latO V W (ΛV : Set (Fin V.rank → D.host.E))
       (ΛW : Set (Fin W.rank → D.host.E)) (fun _ => True), a • w ∈ latO V W (ΛV : Set (Fin V.rank → D.host.E))
       (ΛW : Set (Fin W.rank → D.host.E)) (fun _ => True) := fun a ha w hw => idem_smul_mem ha w hw

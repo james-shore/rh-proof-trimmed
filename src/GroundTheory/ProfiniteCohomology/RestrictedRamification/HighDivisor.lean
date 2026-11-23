@@ -80,7 +80,7 @@ theorem PrimaryVanishes.of_shortExact {S : ShortComplex (Rep.{0} k G)} [IsDiscre
   intro x k hx
   have hg : (cohomologyMap S.g p).hom x = 0 :=
     h₃ _ k (by rw [← map_nsmul, hx, map_zero])
-  obtain ⟨y, rfl⟩ := exists_cohomologyMap_f_eq_of_cohomologyMap_g_eq_zero hS p x hg
+  obtain ⟨y, rfl⟩ := _root_.GroundTheory.ProfCoh.exists_cohomologyMap_f_eq hS p x hg
   obtain ⟨y', ⟨j, hj⟩, hy'⟩ := exists_primary_map_eq (cohomologyMap S.f p).hom.toAddMonoidHom hℓ
     (isTorsion_cohomology _ hp y) (k := k) hx
   have : y' = 0 := h₁ y' j hj

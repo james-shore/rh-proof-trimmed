@@ -101,15 +101,12 @@ theorem evX_bound (P : PX m n) : ∃ K : ℝ, ∃ d : ℕ, 0 ≤ K ∧ ∀ x, �
       _ ≤ (K * (1 + ‖x‖) ^ d) * (1 + ‖x‖) := mul_le_mul (b x) hc (norm_nonneg _) (by positivity)
       _ = K * (1 + ‖x‖) ^ (d + 1) := by ring
 
-theorem sq_norm_le (x : Fin m → Fin n → ℂ) : ‖x‖ ^ 2 ≤ ∑ a, ∑ i, ‖x a i‖ ^ 2 :=
-  _root_.UpperTheory.Reformulated.B.SquareNormBound.sq_norm_le x
-
 theorem norm_gs_le (c : ℝ) (hc : 0 < c) (x : Fin m → Fin n → ℂ) : ‖gs c x‖ ≤ Real.exp (-(c * ‖x‖ ^ 2)) := by
   unfold gs
   rw [show (-(↑(c * ∑ a, ∑ i, ‖x a i‖ ^ 2) : ℂ)) = ↑(-(c * ∑ a, ∑ i, ‖x a i‖ ^ 2)) by push_cast; ring,
     Complex.norm_exp_ofReal]
   apply Real.exp_le_exp.2
-  have := sq_norm_le x
+  have := _root_.UpperTheory.Reformulated.B.SquareNormBound.sq_norm_le x
   nlinarith
 
 theorem poly_exp_bound (c : ℝ) (hc : 0 < c) (N : ℕ) (t : ℝ) (ht : 0 ≤ t) :

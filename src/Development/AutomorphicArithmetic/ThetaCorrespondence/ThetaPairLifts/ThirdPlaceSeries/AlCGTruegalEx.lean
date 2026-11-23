@@ -41,4 +41,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-theorem GlobalTheory.HeightCounting.CGTrueT.galEx : type_of% (@GlobalTheory.HeightCounting.CGTrueT.galEx_alt) := @GlobalTheory.HeightCounting.CGTrueT.galEx_alt
+alias GlobalTheory.HeightCounting.CGTrueT.galEx := _root_.GlobalTheory.HeightCounting.CGTrueT.galEx_alt

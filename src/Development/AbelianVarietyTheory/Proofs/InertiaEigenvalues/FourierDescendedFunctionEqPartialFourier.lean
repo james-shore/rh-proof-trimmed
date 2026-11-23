@@ -115,7 +115,7 @@ theorem GlobalTheory.JR.fourB_descFn : ∀ (F E : Type) [NontriviallyNormedField
     fun g => j.trans (Matrix.UnitaryGroup.toLinearEquiv g)
   have hjg : ∀ g y, jg g y = g.1 *ᵥ j y := fun g y => rfl
   have hjgI : ∀ g, A.IsIsom x (jg g) := fun g y y' => by rw [hjg, hjg, hstar, hx]
-  have I := GlobalTheory.T.map_isIsom_selfDualMeasure_kerL_eq_pi_haar F E A ψ hψ r M x
+  have I := _root_.GlobalTheory.JR.MeasTransport.map_isIsom_eq_pi F E A ψ hψ r M x
   have hker : ∀ y' y, A.kerL ψ x y' y = ψ (Algebra.trace F E (star (j y') ⬝ᵥ j y)) := (I j hx).1
   have hmapj : Measure.map j μ = P := by rw [hP]; exact (I j hx).2 μ hμ
   have hmapg : ∀ g, Measure.map (jg g) μ = P := fun g => by rw [hP]; exact (I (jg g) (hjgI g)).2 μ hμ

@@ -71,8 +71,6 @@ theorem mul_mem {a b : Mat n} (ha : a ∈ GLs n) (hb : b ∈ GLs n) : a * b ∈ 
   simp only [GLs, Set.mem_ofPred_eq, Matrix.det_mul] at *
   exact mul_ne_zero ha hb
 
-theorem isUnit_det {a : Mat n} (ha : a ∈ GLs n) : IsUnit a.det := isUnit_iff_ne_zero.2 ha
-
 def mulR (z : Mat n) : Mat n →L[ℝ] Mat n :=
   LinearMap.toContinuousLinearMap
     { toFun := fun w => w * z, map_add' := fun a b => Matrix.add_mul a b z,
@@ -127,7 +125,7 @@ theorem locSupp_Psi {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] {k : M
   have hy' : R + M < lg y.val := lt_of_not_ge hy
   have hsub : lg y.val ≤ lg x + lg (x⁻¹ * y.val) := by
     have := lg_mul_le x (x⁻¹ * y.val)
-    rwa [Matrix.mul_nonsing_inv_cancel_left _ _ (isUnit_det hxG)] at this
+    rwa [Matrix.mul_nonsing_inv_cancel_left _ _ (_root_.GlobalTheory.CompanionTheory.LengthGL.isUnit_det_of_mem hxG)] at this
   have hz : k (x⁻¹ * y.val) = 0 := hR _ (mul_mem (inv_mem hxG) (mem_GLs_val y)) (by linarith)
   simp [Psi, hz]
 
@@ -138,11 +136,11 @@ variable [MeasurableSpace (G n)] [BorelSpace (G n)] (μ : Measure (G n)) [μ.IsH
 theorem act_eq_Psi (E : KMod n) (k : Mat n → (E.V →L[ℂ] E.V))
     (f : Mat n → E.V) {x : Mat n} (hx : x ∈ GLs n) :
     act μ E k f x = ∫ y : G n, Psi k f (x, y.val) ∂μ := by
-  let u : G n := Matrix.nonsingInvUnit x (isUnit_det hx)
+  let u : G n := Matrix.nonsingInvUnit x (_root_.GlobalTheory.CompanionTheory.LengthGL.isUnit_det_of_mem hx)
   have hu : (u : Mat n) = x := rfl
   rw [← integral_mul_left_eq_self (fun y : G n => Psi k f (x, y.val)) u]
   refine integral_congr_ae (Filter.Eventually.of_forall fun y => ?_)
-  simp only [Psi, Units.val_mul, hu, Matrix.nonsing_inv_mul_cancel_left _ _ (isUnit_det hx)]
+  simp only [Psi, Units.val_mul, hu, Matrix.nonsing_inv_mul_cancel_left _ _ (_root_.GlobalTheory.CompanionTheory.LengthGL.isUnit_det_of_mem hx)]
 
 theorem hasFDerivAt_Psi_slice {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] {k : Mat n → (V →L[ℂ] V)}
     (f : Mat n → V) (hk : ContDiffOn ℝ ∞ k (GLs n)) {x z : Mat n} (hx : x ∈ GLs n) (hz : z ∈ GLs n) :
@@ -192,13 +190,13 @@ theorem actDer : ActDer := by
   have h1 : Rd X (act μ E k f) x = (∫ y : G n, pd (Psi k f) (x, y.val) ∂μ) (x * X) :=
     congrArg (fun L => L (x * X)) hA.fderiv
   rw [h1, ContinuousLinearMap.integral_apply hint]
-  let u : G n := Matrix.nonsingInvUnit x (isUnit_det hx)
+  let u : G n := Matrix.nonsingInvUnit x (_root_.GlobalTheory.CompanionTheory.LengthGL.isUnit_det_of_mem hx)
   have hu : (u : Mat n) = x := rfl
   rw [← integral_mul_left_eq_self (fun y : G n => pd (Psi k f) (x, y.val) (x * X)) u]
   refine integral_congr_ae (Filter.Eventually.of_forall fun y => ?_)
   simp only [Units.val_mul, hu]
   rw [pd_Psi_apply E f hk hf hx (mul_mem hx (mem_GLs_val y)) X,
-    Matrix.nonsing_inv_mul_cancel_left _ _ (isUnit_det hx)]
+    Matrix.nonsing_inv_mul_cancel_left _ _ (_root_.GlobalTheory.CompanionTheory.LengthGL.isUnit_det_of_mem hx)]
 
 end Int
 

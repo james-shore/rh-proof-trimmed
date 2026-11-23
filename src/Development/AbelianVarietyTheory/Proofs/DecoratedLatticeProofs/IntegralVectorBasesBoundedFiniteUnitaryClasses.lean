@@ -177,6 +177,6 @@ theorem bases_finite_classes : ∀ (I : AutInst) (N : ℕ) (R : ℝ), ∃ S : Se
     let γ : GL (Fin I.n) I.E := ⟨M, M', h2, h1⟩
     refine ⟨pick t, ⟨t, ⟨htA, hex⟩, rfl⟩, γ, ?_, hMi, hM'i, hMe⟩
     show Formalism.UG.cT (starRingEnd I.E) M * I.J * M = I.J
-    exact GlobalTheory.T.unitary_of_preserves_hermitianTraceForm_integralBasis I e M he fun i j => by rw [hMe, hMe]; exact ht₀.2 i j
+    exact _root_.GlobalTheory.CuspGeo.unitary_of_trForm_zBasis I e M he fun i j => by rw [hMe, hMe]; exact ht₀.2 i j
 
 end GlobalTheory.BasesFin

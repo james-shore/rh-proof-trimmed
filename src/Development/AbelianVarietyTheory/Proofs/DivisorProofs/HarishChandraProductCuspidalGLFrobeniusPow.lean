@@ -69,9 +69,9 @@ theorem J_gal : ∀ (F : Type) [Field F] [Finite F] (θ : AlgebraicClosure F →
   | nil => intro n x; rfl
   | cons p L ih =>
     intro n x
-    rw [List.map_cons, J_cons, J_cons, GlobalTheory.T.harishChandraInductionGL_fieldAutomorphism F t]
+    rw [List.map_cons, J_cons, J_cons, _root_.GlobalTheory.Shin.HcGal.hc_gal F t]
     have h1 : (fun y => cusp θ p.1 p.2 (gal (t : F →+* F) p.1 y)) = cusp θ p.1 (p.2 * ringChar F ^ j) := by
-      funext y; exact GlobalTheory.T.cuspidalCharacterGLFiniteField_frobenius_pow F θ t j ht p.1 p.2 y
+      funext y; exact _root_.GlobalTheory.Shin.cusp_gal F θ t j ht p.1 p.2 y
     have h2 : (fun y => J θ L (deg L) (gal (t : F →+* F) (deg L) y)) =
         J θ (L.map fun p => (p.1, p.2 * ringChar F ^ j)) (deg L) := by
       funext y; exact ih (deg L) y

@@ -152,7 +152,7 @@ theorem integral_baseChange_chg [StarRing (𝓞 E)] (z : CMPt Xo c) (T T' : CDVR
     rw [hu]
     exact this
   have hLw : LieInt T' (i.comp io) M'.m1 M'.m2 w.u :=
-    (GlobalTheory.T.exists_integralEigenbasis_of_frame_at_localModel E H Dw l Xo c T' (i.comp io) M'.G.t M'.t'.t _ M'.m1 M'.m2 y' hy').2 hL' X 1 w hX hw
+    (_root_.GlobalTheory.LamT.lieInt_exists_and_change E H Dw l Xo c T' (i.comp io) M'.G.t M'.t'.t _ M'.m1 M'.m2 y' hy').2 hL' X 1 w hX hw
   have hs1 : SecBC i 1 y.x y'.x y.s y'.s := by
     have := secBC_one_of_frMap hm
     rwa [hi] at this
@@ -199,15 +199,15 @@ theorem step5Loc_cmPt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   let φ : z.K →ₐ[c.F] T.Fr := { iK with commutes' := fun _ => rfl }
   obtain ⟨yT, hyT⟩ := GlobalTheory.Frames.FramedBaseChange.exists_frMap GlobalTheory.lawsFieldsSeparately.2.1 E H Dw l Xo c _ _ φ z.y
   have hyx : yT.x = spMap iK ≫ z.x := by rw [hyT.1, hz.2.2.2.1]
-  obtain ⟨g, hg, hgL⟩ := (GlobalTheory.T.exists_integralEigenbasis_of_frame_at_localModel E H Dw l Xo c T io M.G.t M.t'.t _ M.m1 M.m2 yT hyx).1
-  obtain ⟨s, hsS⟩ := GlobalTheory.T.exists_unit_integral_generator_principal_local_model E H Dw l Xo c T io M.G M.t'.t _ M.m1 M.m2 yT hyx
+  obtain ⟨g, hg, hgL⟩ := (_root_.GlobalTheory.LamT.lieInt_exists_and_change E H Dw l Xo c T io M.G.t M.t'.t _ M.m1 M.m2 yT hyx).1
+  obtain ⟨s, hsS⟩ := _root_.GlobalTheory.LamT.LocSec.exists_unit_secInt E H Dw l Xo c T io M.G M.t'.t _ M.m1 M.m2 yT hyx
   obtain ⟨y', hy', -⟩ := GlobalTheory.Frames.existsUnique_frChg E H Dw l Xo c T.Fr yT g s hg
   have hL := hgL _ _ hy'
   have hS := hsS _ _ hy'
-  obtain ⟨u, hu⟩ := GlobalTheory.T.integralGenerator_associated_localGenerator_CM_line E H Dw l Xo c z f La hz p T iK M hiK φ yT y' g s rfl hyT hy' hS ca hca
+  obtain ⟨u, hu⟩ := _root_.GlobalTheory.LamT.LocGen.integral_generator_unit E H Dw l Xo c z f La hz p T iK M hiK φ yT y' g s rfl hyT hy' hS ca hca
   refine ⟨T.V, T.Fr, inferInstance, inferInstance, inferInstance, inferInstance, inferInstance, inferInstance, iK,
     fun b => (g b)⁻¹, inferInstance, hT, hiK, fun b => (Matrix.isUnit_nonsing_inv_det _ (hg b)).ne_zero,
-    fun b j k => GlobalTheory.T.lieLetter_integral_in_integral_eigenbasis E H Dw l Xo c z f La hz p T iK M hiK φ yT y' g s rfl hyT hy' hg hL b j k _ (hcl _), ?_⟩
+    fun b j k => _root_.GlobalTheory.LamT.LetterInt.letter_integral_in_eigenbasis E H Dw l Xo c z f La hz p T iK M hiK φ yT y' g s rfl hyT hy' hg hL b j k _ (hcl _), ?_⟩
   intro W KW _ _ _ _ _ _ _ fW hW hWf _ hfW Y X hX hXY
   have hinj : Function.Injective (algebraMap T.V W) := by
     intro x y h
@@ -238,7 +238,7 @@ theorem step5Loc_cmPt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   obtain ⟨w, hw, -⟩ := GlobalTheory.Frames.existsUnique_frChg E H Dw l Xo c T'.Fr y'' _ 1 hXu
   have hint := integral_baseChange_chg z T T' iK M (algebraMap T.V W) i hψ io iA y' y'' w
     (fun b => (X b).transpose) rfl (hy'.1.trans hyx) hL hS hy'' hXt hw
-  obtain ⟨w₀, hw₀⟩ := GlobalTheory.T.ruleValue_integral_of_supLattice_values_nonneg E H Dw l Xo c F hv T' (i.comp io) hWf w hint
+  obtain ⟨w₀, hw₀⟩ := _root_.GlobalTheory.LamT.evR_mem_range_of_valSet_nonneg E H Dw l Xo c F hv T' (i.comp io) hWf w hint
   have hYX : ∀ b, (Y b).transpose = ((X b).map (algebraMap W KW)).transpose * (g b).map fW := fun b => by
     rw [← hXY b, Matrix.transpose_mul, Matrix.transpose_transpose, Matrix.mul_assoc, ← Matrix.map_mul,
       Matrix.nonsing_inv_mul _ (hg b)]

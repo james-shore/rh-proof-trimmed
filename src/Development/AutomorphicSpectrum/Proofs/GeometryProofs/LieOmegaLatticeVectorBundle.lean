@@ -88,16 +88,9 @@ theorem exists_tr {A B : Type} [CommRing A] [CommRing B] (a : Sp A ⟶ X) (b : S
   have := hj e
   simpa [LieModel.Lifts] using this
 
-theorem spMap_dual_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (c : A →+* B) (d : B →+* C) :
-    spMap (dualMap d) ≫ spMap (dualMap c) = spMap (dualMap (d.comp c)) := by
-  have : dualMap (d.comp c) = (dualMap d).comp (dualMap c) := by
-    ext a <;> simp [dualMap]
-  simp only [this, spMap, ← Spec.map_comp]
-  rfl
+alias spMap_dual_comp := _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_dual_comp
 
-theorem pt_left_inj {A : Type} [CommRing A] {a : Sp A ⟶ X} {E : Type} [AddCommGroup E] [Module A E]
-    (M : LieModel G a E) {u v : E} (h : (M.pt u).left = (M.pt v).left) : u = v :=
-  M.inj (Over.OverMorphism.ext h)
+alias pt_left_inj := _root_.GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj
 
 theorem exists_lift {R A : Type} [CommRing R] [CommRing A] [IsLocalRing A] (x : Sp R ⟶ X) [IsOpenImmersion x]
     (z : Sp A ⟶ X) (h : z (IsLocalRing.closedPoint A) ∈ x.opensRange) : ∃ a : R →+* A, spMap a ≫ x = z := by

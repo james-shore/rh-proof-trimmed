@@ -97,7 +97,7 @@ theorem weight_finrank_eq : ∀ (k : Type) [Field k] [IsAlgClosed k] (C : Type) 
       (Algebra.ofId k (Module.End k H)) σ.toIntAlgHom (fun _ _ => Algebra.commutes _ _)) a h := fun _ _ => rfl
   haveI : IsScalarTower k (k ⊗[ℤ] C) H := ⟨fun l a h => by
     rw [hact, hact, map_smul, LinearMap.smul_apply]⟩
-  obtain ⟨e, he, h1, hn⟩ := GlobalTheory.T.exists_idempotent_local_of_character k (k ⊗[ℤ] C) (chr k C χ)
+  obtain ⟨e, he, h1, hn⟩ := _root_.GlobalTheory.exists_idem_local_of_character k (k ⊗[ℤ] C) (chr k C χ)
   have hσ : ∀ c, σ c = DistribSMul.toLinearMap k H ((1 : k) ⊗ₜ[ℤ] c) := by
     intro c; ext h
     rw [DistribSMul.toLinearMap_apply, hact]
@@ -117,8 +117,8 @@ theorem weight_finrank_eq : ∀ (k : Type) [Field k] [IsAlgClosed k] (C : Type) 
       ⨅ c : C, Module.End.maxGenEigenspace (DistribSMul.toLinearMap k (k ⊗[ℤ] C) ((1 : k) ⊗ₜ[ℤ] c)) (χ c) :=
     iInf_congr fun c => by rw [hlm]
   rw [eH, eA]
-  rw [finrank_fix e _ (GlobalTheory.T.mem_iInf_maxGenEigenspace_iff_smul_eq k C H χ e he h1 hn), finrank_fix e _ (GlobalTheory.T.mem_iInf_maxGenEigenspace_iff_smul_eq k C (k ⊗[ℤ] C) χ e he h1 hn),
-    GlobalTheory.T.finrank_quot_one_sub_idempotent_eq_mul k (k ⊗[ℤ] C) (chr k C χ) e he h1 hn H]
+  rw [finrank_fix e _ (_root_.GlobalTheory.weightSpace_iff_idempotent_fixed k C H χ e he h1 hn), finrank_fix e _ (_root_.GlobalTheory.weightSpace_iff_idempotent_fixed k C (k ⊗[ℤ] C) χ e he h1 hn),
+    _root_.GlobalTheory.finrank_quot_one_sub_idem_eq_mul k (k ⊗[ℤ] C) (chr k C χ) e he h1 hn H]
   have hq : Module.finrank k (H ⧸ GlobalTheory.HTRho.mSub σ χ ⊤) =
       Module.finrank k (H ⧸ (RingHom.ker (chr k C χ) • ⊤ : Submodule (k ⊗[ℤ] C) H)) := by
     have heq : GlobalTheory.HTRho.mSub σ χ ⊤ = (RingHom.ker (chr k C χ) • ⊤ : Submodule (k ⊗[ℤ] C) H).restrictScalars k := by

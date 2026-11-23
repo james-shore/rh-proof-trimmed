@@ -523,7 +523,7 @@ theorem locR : Scal → MassOne → LocR := by
     intro x n u hn hu S hS
     rw [← hScal F E σ hcm J hJ (Fv F v) hloc _ _ (m v) hW hH (hm v) x n u hn hu]
     exact Measure.map_apply (hmul x) hS
-  have hLm : MeasurableSet (latV (n := 1) (M := 1) b v) := (GlobalTheory.T.local_lattice_compact_open_unit_volume F E σ hcm d b 1 1 v).2.1.measurableSet
+  have hLm : MeasurableSet (latV (n := 1) (M := 1) b v) := (_root_.GlobalTheory.CompanionTheory.SW.latV_compact_open_mass F E σ hcm d b 1 1 v).2.1.measurableSet
   have hL : ∀ X, X ∈ latV (n := 1) (M := 1) b v ↔ ∃ a c : Fv F v, a ∈ v.adicCompletionIntegers F ∧
       c ∈ v.adicCompletionIntegers F ∧ X 0 0 = cd F δ a c := by
     intro X

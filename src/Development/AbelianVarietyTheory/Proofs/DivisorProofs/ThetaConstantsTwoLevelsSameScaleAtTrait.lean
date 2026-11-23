@@ -63,19 +63,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 noncomputable section
 namespace GlobalTheory.UMin.CmpTrait
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  rw [← Spec.map_comp]; rfl
-
-theorem spMap_id' (A : Type) [CommRing A] : spMap (RingHom.id A) = 𝟙 _ := by
-  rw [← Spec.map_id]; rfl
-
-theorem comp_pow'' {S : Scheme.{0}} {A T T₀ : Over S} [GrpObj A] (ρ : T₀ ⟶ T) (x : T ⟶ A) (n : ℕ) :
-    ρ ≫ x ^ n = (ρ ≫ x) ^ n := by
-  induction n with
-  | zero => rw [pow_zero, pow_zero, MonObj.comp_one]
-  | succ n ih => rw [pow_succ, pow_succ, MonObj.comp_mul, ih]
-
 theorem card_le_of_thList {S : Scheme.{0}} {G : Over S} [GrpObj G] {L : LB G.left} {ρ : LB.Gen (L.pull (eSec G))}
     {m : ℕ} {K : Type} [Field K] [IsAlgClosed K] {x : Sp K ⟶ S} {θ θ' : SecAt G L x} {N N' : ℕ}
     {pt : Fin N → (Over.mk x ⟶ G)} {pt' : Fin N' → (Over.mk x ⟶ G)} {c : Fin N → K} {c' : Fin N' → K}
@@ -83,11 +70,11 @@ theorem card_le_of_thList {S : Scheme.{0}} {G : Over S} [GrpObj G] {L : LB G.lef
   let e : Over.mk (spMap (RingHom.id K) ≫ x) ⟶ Over.mk x := Over.homMk (spMap (RingHom.id K)) rfl
   have key : ∀ a, ∃ b, pt a = pt' b := fun a => by
     have hp : (e ≫ pt a) ^ (m ^ 2) = 1 := by
-      rw [← comp_pow'', (h.2.1 a).1, MonObj.comp_one]
+      rw [← _root_.GlobalTheory.SemiAbTorsion.comp_pow_points, (h.2.1 a).1, MonObj.comp_one]
     obtain ⟨b, hb⟩ := h'.2.2 K (RingHom.id K) (e ≫ pt a) hp
     refine ⟨b, Over.OverMorphism.ext ?_⟩
     have hb' : spMap (RingHom.id K) ≫ (pt a).left = spMap (RingHom.id K) ≫ (pt' b).left := hb
-    rwa [spMap_id', Category.id_comp, Category.id_comp] at hb'
+    rwa [_root_.GlobalTheory.LevelFibre.spMap_id', Category.id_comp, Category.id_comp] at hb'
   choose s hs using key
   have hs' : Function.Injective s := fun a a' he => h.1 ((hs a).trans ((congrArg pt' he).trans (hs a').symm))
   simpa using Fintype.card_le_of_injective s hs'
@@ -103,7 +90,7 @@ theorem isGenSec_of_nz {S : Scheme.{0}} {G : Over S} [GrpObj G] {L : LB G.left} 
   obtain ⟨P, α, -, hp, hw⟩ := hP
   obtain ⟨e, he⟩ := exists_univBasis_of_fibre abelianSchemeLaws_all.2 S (Sp K) G L hL P x α hp hw K (𝟙 _) x
     (Category.id_comp x)
-  have h0 : spMap (RingHom.id K) ≫ x = x := by rw [spMap_id', Category.id_comp]
+  have h0 : spMap (RingHom.id K) ≫ x = x := by rw [_root_.GlobalTheory.LevelFibre.spMap_id', Category.id_comp]
   obtain ⟨a, ha⟩ := he.ex (RingHom.id K) h0 (SecM.ofSec G θ)
   have ha0 : a ≠ 0 := by
     rintro rfl
@@ -178,10 +165,10 @@ theorem cmp_trait : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : 
     Xo.univ.ktriv (jK T.V) (𝟙 _) (by rw [Category.comp_id, Category.id_comp])
   obtain ⟨σ, hσ⟩ := exists_nz_of_polAt abelianSchemeLaws_all.1 abelianSchemeLaws_all.2 E H (Sp T.V) T.t T.V (𝟙 _) T.t m0
     hpol
-  have h0 : spMap (RingHom.id T.V) ≫ 𝟙 (Sp T.V) = 𝟙 _ := by rw [Category.comp_id, spMap_id']
+  have h0 : spMap (RingHom.id T.V) ≫ 𝟙 (Sp T.V) = 𝟙 _ := by rw [Category.comp_id, _root_.GlobalTheory.LevelFibre.spMap_id']
   have hσσ : VVRank.pullS T.t.G _ (Over.homMk (spMap (RingHom.id T.V)) h0 : Over.mk (𝟙 (Sp T.V)) ⟶ Over.mk (𝟙 _)) σ = σ := by
     have e : (Over.homMk (spMap (RingHom.id T.V)) h0 : Over.mk (𝟙 (Sp T.V)) ⟶ Over.mk (𝟙 _)) = 𝟙 _ :=
-      Over.OverMorphism.ext (spMap_id' T.V)
+      Over.OverMorphism.ext (_root_.GlobalTheory.LevelFibre.spMap_id' T.V)
     rw [e]
     have := VVRank.pullM_id T.t.G T.t.PP.isLB ((1 : ℕ) : ℤ) (SecM.ofSec T.t.G σ)
     rw [VVRank.pullM_ofSec] at this
@@ -193,9 +180,9 @@ theorem cmp_trait : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : 
   have hmK : ∀ {k : ℕ}, IsUnit (k : V) → (k : K) ≠ 0 := fun h => by
     have := h.map (io.comp (algebraMap V (FractionRing V))); simpa using this.ne_zero
   set x₁ : Sp K ⟶ Sp T.V := spMap i ≫ 𝟙 (Sp T.V) with hx₁
-  have ex₁ : spMap io' ≫ jK T.V = x₁ := by rw [hx₁, Category.comp_id, hi, spMap_comp']
+  have ex₁ : spMap io' ≫ jK T.V = x₁ := by rw [hx₁, Category.comp_id, hi, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
   set x : Sp K ⟶ Xo.X := spMap io ≫ y ≫ pullback.fst _ _ with hx
-  have ex : spMap io' ≫ T.y ≫ pullback.fst _ _ = x := by rw [hx, hTy, ← hio', spMap_comp']; simp only [Category.assoc]
+  have ex : spMap io' ≫ T.y ≫ pullback.fst _ _ = x := by rw [hx, hTy, ← hio', _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]; simp only [Category.assoc]
   set g := Module.finrank ℚ E / 2 * (Dw.p + Dw.q) with hg
   have hPx : PolFib Xo.univ.t.G Xo.univ.t.PP.L g x := GlobalTheory.T.universalTriple_fibre_principallyPolarised_dimension E H Dw l Xo c K x
   obtain ⟨wK, hwK, -⟩ := mK.lin

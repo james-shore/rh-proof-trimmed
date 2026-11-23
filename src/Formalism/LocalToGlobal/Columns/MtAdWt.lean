@@ -234,15 +234,6 @@ theorem mtwCoef_eval (lam : ι → DomWeight n) (M : ι → Matrix (Fin n) (Fin 
   unfold mtwCoef
   rw [mtwCf_eval, mtwUniv_map]
 
-theorem mtw_eval_aeval {σ ρ : Type} (f : σ → MvPolynomial ρ ℂ) (d : ρ → ℂ) (P : MvPolynomial σ ℂ) :
-    eval d (aeval f P) = eval (fun x => eval d (f x)) P := by
-  induction P using MvPolynomial.induction_on
-  · simp [MvPolynomial.algebraMap_eq]
-  · rename_i p q hp hq
-    simp only [map_add (f := _), hp, hq]
-  · rename_i p v hp
-    simp only [map_mul, hp, MvPolynomial.aeval_X, MvPolynomial.eval_X]
-
 end Poly
 
 section Alg
@@ -276,11 +267,9 @@ def mtwTwP (emb : ι → L →+* ℂ) (lam : ι → DomWeight n) : MvPolynomial 
   ∏ τ, if 0 ≤ (lam τ).detShift then mtwDetP (emb τ) ^ (lam τ).detShift.toNat
     else mtwDetP (ComplexEmbedding.conjugate (emb τ)) ^ (-(lam τ).detShift).toNat
 
-def mtwPt (γ₀ : Matrix (Fin n) (Fin n) L) : (L →+* ℂ) × Fin n × Fin n → ℂ := fun p => p.1 (γ₀ p.2.1 p.2.2)
-
 theorem twistPolynomial_eval (emb : ι → L →+* ℂ) (lam : ι → DomWeight n) (γ₀ : GL (Fin n) L) (hγ : γ₀ ∈ GQ0 L n) :
-    eval (mtwPt (γ₀ : Matrix (Fin n) (Fin n) L)) (mtwTwP emb lam) = detTwK lam (mtwEmb emb γ₀) := by
-  have hdet : ∀ σ : L →+* ℂ, eval (mtwPt (γ₀ : Matrix (Fin n) (Fin n) L)) (mtwDetP σ) =
+    eval (_root_.PI.UnitaryGroupMassFormula.HwConjInf.ratPt (γ₀ : Matrix (Fin n) (Fin n) L)) (mtwTwP emb lam) = detTwK lam (mtwEmb emb γ₀) := by
+  have hdet : ∀ σ : L →+* ℂ, eval (_root_.PI.UnitaryGroupMassFormula.HwConjInf.ratPt (γ₀ : Matrix (Fin n) (Fin n) L)) (mtwDetP σ) =
       σ (γ₀ : Matrix (Fin n) (Fin n) L).det := by
     intro σ
     rw [detPolynomial_eval, RingHom.map_det]
@@ -307,7 +296,7 @@ theorem eval_tensorCoeff (emb : ι → L →+* ℂ) (lam : ι → DomWeight n) (
       mtwCoord lam i (Formalism.GradedWeylDivisibility.blockAct ℂ (fun τ => (Matrix.of fun a b => y (emb τ, a, b))ᵀ) (bVVfun ℂ lam j)) := by
   have key := mtwCoef_eval lam (fun τ => Matrix.of fun a b => y (emb τ, a, b)) i j
   simp only [Matrix.of_apply] at key
-  simp only [tenP, map_mul, mtw_eval_aeval, MvPolynomial.eval_X, key]
+  simp only [tenP, map_mul, _root_.Formalism.L2.Col.eval_aeval_poly, MvPolynomial.eval_X, key]
 
 theorem tenRep_toMatrix (emb : ι → L →+* ℂ) (lam : ι → DomWeight n) (γ : GQ L n) (γ₀ : GL (Fin n) L)
     (hm : (((γ : GAf L n) : GL (Fin n) (AL L)) : Matrix (Fin n) (Fin n) (AL L)) =
@@ -652,7 +641,7 @@ theorem mtWt_hw_dual (emb : ι → L →+* ℂ) (hinj : Function.Injective emb)
     (hcm : ∀ τ τ', emb τ ≠ ComplexEmbedding.conjugate (emb τ')) (lam : ι → DomWeight n) (h : TenIrr emb lam)
     (h' : TenIrr (mtwConj emb) lam) (τ : ι) (a : NG.AlgWt L n) (lam0 : Fin n → ℤ)
     (hd : (mtWt emb lam h).IsDual a) (hw : a.HWAt (emb τ) lam0) : lam0 = (lam τ).w := by
-  have hiso : a.Iso (tenWt emb lam h') := algebraic_weight_dual_unique L n _ a _ hd (mtWt_isDual emb lam h h')
+  have hiso : a.Iso (tenWt emb lam h') := _root_.PI.UnitaryGroupMassFormula.AlgWtDualUniq.main L n _ a _ hd (mtWt_isDual emb lam h h')
   exact algebraic_weight_highest_unique L n _ (emb τ) lam0 (lam τ).w (mtw_hwAt_of_iso hiso hw) (tenWt_hwAt emb hinj hcm lam h' τ)
 
 end Dual

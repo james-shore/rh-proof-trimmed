@@ -325,7 +325,7 @@ theorem sum_hv_primary_kernel : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
       choose G' hG'' using fun (α : W₁) b =>
         (existsUnique_moves E H Dw l Xo T.Fr (xOf y) (N ^ 2) hodd (α.1.1 b) (htor α b) (G (eq.symm x) b)).1.exists
       have hr : ∀ α : W₁, Rel (G (eq.symm (α * x))) (G' α) := fun α => key α x (hG' x) (hG'' α) (hG' _)
-      obtain ⟨z, hz, hz'⟩ := GlobalTheory.T.sum_harmonicValues_formalKernel_similitude E H Dw l Xo c hbar T io y C hC nab hnab e ρ w n he hB ℓ hℓ hℓu N k M p q hN
+      obtain ⟨z, hz, hz'⟩ := _root_.GlobalTheory.PlaceInt.FormSum.sum_hv_formal_kernel E H Dw l Xo c hbar T io y C hC nab hnab e ρ w n he hB ℓ hℓ hℓu N k M p q hN
         hsim hkM hk hM W₁ (fun α => α.1.1) (Subtype.val_injective.comp Subtype.val_injective)
         (fun u => ⟨by rintro ⟨α, rfl⟩; exact ⟨α.1.2.1, α.2⟩, fun ⟨h1, h2⟩ => by
           choose α hα using h2

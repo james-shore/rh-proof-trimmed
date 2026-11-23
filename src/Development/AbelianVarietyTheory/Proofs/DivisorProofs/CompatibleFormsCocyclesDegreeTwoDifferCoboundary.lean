@@ -71,7 +71,7 @@ theorem cob_of_class_eq : ∀ (R R' : Type) [CommRing R] [CommRing R'] (I : Idea
   intro R R' _ _ I I' κ κ' X X' t t' σ φ₀ m k k' f f' hk hk' h
   have h' : H2.mk _ (m.coef.pullbackTwoCocycle f) = H2.mk _ f' := h.symm
   obtain ⟨e, he⟩ := H2.mk_eq_mk.1 h'
-  refine cob_of_fn_cob (KK κ' t') (GlobalTheory.T.fnMap_pullbackBijective12_kk_and_res R' I' κ' X' t' X' (𝟙 X')).1.2.injective _
+  refine cob_of_fn_cob (KK κ' t') (_root_.GlobalTheory.PDForm.crystalline_forget_forms_bijective_site_and_pairs R' I' κ' X' t' X' (𝟙 X')).1.2.injective _
     (AddSubgroup.sub_mem _ ((morMap m).p2_mem_Z2_of_mem_Z2 k.2) k'.2) e ?_
   intro T T' T'' φ ψ
   have h1 := congrFun (congrFun (congrFun (congrFun (congrFun he T) T') T'') φ) ψ

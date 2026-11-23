@@ -69,7 +69,7 @@ theorem main : ∀ (q : ℕ) (B : Type) [CommRing B] {Y : Scheme.{0}} (f : Y ⟶
       Eqv _ (sch.map (pullback.snd f (Spec.map (CommRingCat.ofHom (algebraMap B A))))) (tw q i)) →
     Eqv _ (sch.map f) (tw q i) := by
   intro q B _ Y f _ _ _ i hyp
-  refine GlobalTheory.T.etaleEquivalence_scheme_of_strictlyHenselian_stalks (ZMod q) (tw q i) (GlobalTheory.T.tateTwist_finitary q i) Y (Spec (CommRingCat.of B)) (Spec (CommRingCat.of B)) f
+  refine GlobalTheory.T.etaleEquivalence_scheme_of_strictlyHenselian_stalks (ZMod q) (tw q i) (_root_.GlobalTheory.EtC.tw_finitary q i) Y (Spec (CommRingCat.of B)) (Spec (CommRingCat.of B)) f
     (𝟙 _) ?_
   intro O _ s hs
   obtain ⟨inst, hSH, hind, rfl⟩ := isStalk_affine B O s hs

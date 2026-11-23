@@ -68,27 +68,11 @@ section Dual
 
 variable {R R' : Type} [CommRing R] [CommRing R']
 
-theorem dual_inl (φ : R →+* R') (r : R) : dualMapR φ (inl r) = inl (φ r) := by
-  ext <;> simp [dualMapR]
+alias snd_dual := _root_.GlobalTheory.ConstTan.snd_dualMapR
 
-theorem dual_eps (φ : R →+* R') : dualMapR φ DualNumber.eps = DualNumber.eps := by
-  ext <;> simp [dualMapR]
+alias fst_dual := _root_.GlobalTheory.ConstTan.fst_dualMapR
 
-theorem snd_dual (φ : R →+* R') (a : DualNumber R) : (dualMapR φ a).snd = φ a.snd := by
-  simp [dualMapR]
-
-theorem fst_dual (φ : R →+* R') (a : DualNumber R) : (dualMapR φ a).fst = φ a.fst := by
-  simp [dualMapR]
-
-theorem dual_comp (φ : R →+* R') :
-    (dualMapR φ).comp (algebraMap R (DualNumber R)) = (algebraMap R' (DualNumber R')).comp φ :=
-  RingHom.ext fun a => dual_inl φ a
-
-theorem dual_injective {φ : R →+* R'} (h : Function.Injective φ) : Function.Injective (dualMapR φ) := by
-  intro a b e
-  ext
-  · exact h (by rw [← fst_dual, e, fst_dual])
-  · exact h (by rw [← snd_dual, e, snd_dual])
+alias dual_comp := _root_.GlobalTheory.SpecTangent.dualMapR_comp
 
 theorem fst_alg {Z : Scheme.{0}} (y : Sp R ⟶ Z) :
     spMap (fstHom R R R).toRingHom ≫ spMap (algebraMap R (DualNumber R)) ≫ y = y := by
@@ -168,7 +152,7 @@ theorem sumsAt_fderiv (H : IsPullback p q t (spMap κ)) (bF : F →+* ℂ) (φ :
     have hw₁ : T₁ < w.im := (le_max_right _ _).trans_lt hw
     have hwT : T < w.im := hT₁.trans_lt hw₁
     obtain ⟨hol, e0, ν, ν1, ν2⟩ := he w hwT ((le_max_left _ _).trans_lt hw)
-    obtain ⟨ν', a1, a2, a3⟩ := exists_lift H (dualMapR (Γ.R w).val.toRingHom) (dual_injective Subtype.val_injective)
+    obtain ⟨ν', a1, a2, a3⟩ := exists_lift H (dualMapR (Γ.R w).val.toRingHom) (_root_.GlobalTheory.SpecTangent.dualMapR_injective Subtype.val_injective)
       ν n ((algebraMap (Γ.R w) (DualNumber (Γ.R w))).comp ((algebraMap ℂ (Γ.R w)).comp bF)) ν1
       (by rw [hn, ← RingHom.comp_assoc, dual_comp, ← spMap_comp]; rfl)
     have hq : (spMap (dualMapR (Γ.ev w).toRingHom) ≫ ν') ≫ q = constVec (spMap bF) := by
@@ -249,8 +233,8 @@ theorem deriv_sumsAt : Out.Laws → Out.Laws2 → ∀ (E : Type) [Field E] [Numb
     rw [Category.assoc, Over.w v]
     exact (spMap_comp _ _).symm.trans ((congrArg spMap (dual_comp _)).trans (spMap_comp _ _))
   have tW : IsTanPt C.ΦW (K.h.symm z₀) (spMap ρ ≫ v.left) :=
-    ⟨pullback.lift _ _ hW, T.isTangent_constant_coords_generic_fibre hL hL₂ E H D l Xo c O β Y _ a χ W Λ C.Ξ C.ΦW g K.h z₀ ν v ρ _ C.isGen hd
-      (dual_inl _) (dual_eps _) (pullback.lift_fst _ _ _) (pullback.lift_snd _ _ _), pullback.lift_fst _ _ _⟩
+    ⟨pullback.lift _ _ hW, _root_.GlobalTheory.ConstTan.isTan_of_diffHyp hL hL₂ E H D l Xo c O β Y _ a χ W Λ C.Ξ C.ΦW g K.h z₀ ν v ρ _ C.isGen hd
+      (_root_.GlobalTheory.ConstTan.dualMapR_inl _) (_root_.GlobalTheory.ConstTan.dualMapR_eps _) (pullback.lift_fst _ _ _) (pullback.lift_snd _ _ _), pullback.lift_fst _ _ _⟩
   have tY := (isTanPt_iff C.rig₂.1 C.rel₂ _ hW).1 tW
   have hY : ((spMap ρ ≫ v.left) ≫ W.m.φ) ≫ Y.t.G.hom = (spMap (algebraMap ℂ⸨X⸩ _) ≫ C.yF) ≫ Y.j := by
     rw [Category.assoc, W.m.cart.1.w, ← Category.assoc, hW, Category.assoc, Category.assoc, C.yF_j]
@@ -276,10 +260,10 @@ theorem deriv_sumsAt : Out.Laws → Out.Laws2 → ∀ (E : Type) [Field E] [Numb
   have hK : K.T < w.im := (le_max_right _ _).trans_lt hw'
   have hP := K.period w hK
   obtain ⟨νt, -, b1, b2⟩ := h₀ w hw ((le_max_left _ _).trans_lt hw')
-  obtain ⟨b2, b3⟩ := b2 (dualMapR (Γ.ev w).toRingHom) (dual_inl _) (dual_eps _)
+  obtain ⟨b2, b3⟩ := b2 (dualMapR (Γ.ev w).toRingHom) (_root_.GlobalTheory.ConstTan.dualMapR_inl _) (_root_.GlobalTheory.ConstTan.dualMapR_eps _)
   have ex : ∀ z, (Fu.ex K.i (K.Pw w) z).left = (Ψ.pi w (K.h.symm z)).left := fun z => by
     rw [← K.ex_eq w hK, K.h.apply_symm_apply]
-  refine ⟨holAt_of_isHolTo (isHolTo_ex Fu K.i hP) trivial, ?_, νt, (b1 _ (dual_inl _) (dual_eps _)).trans eU, ?_,
+  refine ⟨holAt_of_isHolTo (isHolTo_ex Fu K.i hP) trivial, ?_, νt, (b1 _ (_root_.GlobalTheory.ConstTan.dualMapR_inl _) (_root_.GlobalTheory.ConstTan.dualMapR_eps _)).trans eU, ?_,
     fun U hU k => ?_⟩
   · rw [map_zero_eq_one (Fu.ex_add K.i _ hP), ← Category.assoc, ← Ψ.yw_eq w hw, ← K.u_eq w hK]
     rfl

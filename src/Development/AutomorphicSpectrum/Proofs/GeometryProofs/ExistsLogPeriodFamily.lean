@@ -107,10 +107,7 @@ def restrict (e : FamExp G M B ψ) (hB' : IsOpen B') (h : B' ⊆ B) : FamExp G M
   diff b hb := e.diff b (h hb)
   log b hb := e.log b (h hb)
 
-theorem ex_zero (e : FamExp G M B ψ) {b : Fin n → ℂ} (hb : b ∈ B) : e.ex b 0 = 1 := by
-  have h := e.add b hb 0 0
-  rw [add_zero] at h
-  exact (left_eq_mul.mp h)
+alias ex_zero := _root_.GlobalTheory.CompanionTheory.Ar.Flat.ExpLift.ex_zero
 
 theorem ex_nsmul (e : FamExp G M B ψ) {b : Fin n → ℂ} (hb : b ∈ B) (y : Fin g → ℂ) (k : ℕ) :
     e.ex b ((k : ℂ) • y) = e.ex b y ^ k := by
@@ -219,10 +216,6 @@ theorem exists_seq_punct : ∃ u : ℕ → (Fin n → ℂ), Tendsto u atTop (�
 
 end Geo
 
-theorem exists_radius_le {I : Type} (s : Finset I) (c : ℝ) (hc : 0 < c) (f : I → ℝ) (hf : ∀ i, 0 < f i) :
-    ∃ ρ : ℝ, 0 < ρ ∧ ρ ≤ c ∧ ∀ i ∈ s, ρ ≤ f i :=
-  _root_.UpperTheory.Reformulated.B.Ydd5.main s c hc f hf
-
 theorem exists_additive_sections {n g : ℕ} (Γ₀ : Submodule ℤ (Fin g → ℂ)) [Module.Free ℤ Γ₀] [Module.Finite ℤ Γ₀]
     (Q : (Fin n → ℂ) → AddSubgroup (Fin g → ℂ)) (c : ℝ) (hc : 0 < c)
     (hsp : ∀ x : Γ₀, ∃ (ε : ℝ) (s : (Fin n → ℂ) → (Fin g → ℂ)), 0 < ε ∧
@@ -233,7 +226,7 @@ theorem exists_additive_sections {n g : ℕ} (Γ₀ : Submodule ℤ (Fin g → �
   classical
   let bs := Module.Free.chooseBasis ℤ Γ₀
   choose εs ss hε hd h0 hq using fun j => hsp (bs j)
-  obtain ⟨ρ, hρ0, hρc, hρ⟩ := exists_radius_le Finset.univ c hc εs hε
+  obtain ⟨ρ, hρ0, hρc, hρ⟩ := _root_.UpperTheory.Reformulated.B.Ydd5.main Finset.univ c hc εs hε
   have hsub : ∀ j, Metric.ball (0 : Fin n → ℂ) ρ ⊆ Metric.ball 0 (εs j) := fun j =>
     Metric.ball_subset_ball (hρ j (Finset.mem_univ j))
   refine ⟨ρ, hρ0, hρc, fun x b => ∑ j, ((bs.repr x j : ℤ) : ℂ) • ss j b, ?_, ?_, ?_, ?_⟩

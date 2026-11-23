@@ -62,14 +62,14 @@ theorem hdR_projective : ∀ (F : Type) [Field F] [NumberField F] (k : Type) [Fi
   intro F _ _ k _ A₀ _ _ hA a
   rcases CharP.char_is_prime_or_zero k (ringChar k) with hp | hp
   · haveI : Fact (ringChar k).Prime := ⟨hp⟩
-    refine GlobalTheory.T.de_rham_cohomology_projective_module F k ?_ A₀ hA a
+    refine _root_.GlobalTheory.HdRDescent.projective_of_algebraicClosure F k ?_ A₀ hA a
     intro B₀ _ _ hB b
     set K := AlgebraicClosure k
     haveI : CharP K (ringChar k) := charP_of_injective_algebraMap (algebraMap k K).injective _
     obtain ⟨Λ, _, π, hπ, hker, hp2, hann⟩ := GlobalTheory.T.exists_flat_lift_mod_p_sq_perfect_field (ringChar k) K
     have hI : RingHom.ker π ^ 2 = 0 := by
       rw [hker, Ideal.span_singleton_pow, hp2, Ideal.span_singleton_eq_bot.2 rfl]; rfl
-    obtain ⟨hfin, hfree, f, hf, hk⟩ := GlobalTheory.T.crystal_finite_free_reduces_to_deRham F Λ K π hπ hI B₀ hB b
+    obtain ⟨hfin, hfree, f, hf, hk⟩ := _root_.GlobalTheory.CrysFree.crys_free_and_red F Λ K π hπ hI B₀ hB b
     letI := tensorModule (divided₂ hI) (spMap π) b
     haveI := isScalarTower_tensorModule (divided₂ hI) (spMap π) b
     letI := tensorModule (dp0 K) (𝟙 _) b

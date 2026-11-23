@@ -65,18 +65,6 @@ open scoped TensorProduct
 set_option synthInstance.maxHeartbeats 400000
 noncomputable section
 namespace GlobalTheory.BadEmb
-section Abstract
-variable {K Γ A : Type} [Field K] [Group Γ] [CommRing A] [Algebra K A] (B : Subalgebra K A) (tr : Γ → A →ₐ[K] A)
-  (t1 : ∀ f, tr 1 f = f) (tm : ∀ g h f, tr (g * h) f = tr g (tr h f)) (tB : ∀ g, ∀ f ∈ B, tr g f ∈ B)
-end Abstract
-section General
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
-  {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} (hpq : 1 ≤ Dw.p + Dw.q) (hA : l.A.Coprime l.M)
-  {r : ℕ} (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r)
-end General
-section Weights
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} (Dw : Datum H)
-end Weights
 set_option maxHeartbeats 1000000 in
 theorem regular_embeddings_cover_bad_embedding_locus_alt : GlobalTheory.CovTop.HypothesesX → _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → GlobalTheory.Published.GrothendieckDeformation → GlobalTheory.HSCore.Quoted → GlobalTheory.Published.SiegelToroidalIntegral → GlobalTheory.Published.ToroidalForFanKS → GlobalTheory.Published.SemiAbelianLieSeminegative → _root_.GlobalTheory.CovTop.GramCondition → _root_.GlobalTheory.CovTop.DeepGoodness → _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.CovTop.FlatDegreeCondition → _root_.GlobalTheory.CovTop.CoverDegree → _root_.GlobalTheory.CovTop.ShareCondition → _root_.GlobalTheory.CovTop.CoversCondition fun Fm x _ ι p i Y _ _ => ∀ (fr : TypeFrame (dat p i) Y.d.l₂) (π : (LevelAut (dat p i) Y.d.l₂) →* G0g (Fm.D x ι).nd) (ρ : Representation ℂ (LevelAut (dat p i) Y.d.l₂) (ℂ ⊗[Y.d.c₂.F] Y.V (Gk p i))) (χ : (LevelAut (dat p i) Y.d.l₂) →* ℂˣ) (Pb : Subgroup (G0g (Fm.D x ι).nd)) (lamb : Pb.comap π →* ℂˣ) (H : Fin 2 → Subgroup (G0g (Fm.D x ι).nd)), Pb.comap π = grpHR fr → (∀ k, (H k).comap π = grpGHR fr k) → (∀ (g : (LevelAut (dat p i) Y.d.l₂)) (v w : Y.V (Gk p i)), (w : Rul Y.d.Xo₂ Y.d.c₂) = transl Y.d.Xo₂ Y.d.c₂ g v → ρ g ((1 : ℂ) ⊗ₜ[Y.d.c₂.F] v) = ((χ g : ℂˣ) : ℂ) • ((1 : ℂ) ⊗ₜ[Y.d.c₂.F] w)) → ∀ k : Fin 2, ∃ n : ℕ, EmbReg ρ ((H k).comap π) n ∧ (n : ℝ) * Nat.card ((H k).comap π) ≤ 3 / 2 * Nat.card (Pb.comap π) * Module.finrank ℂ (eig ρ (Pb.comap π) lamb) := by
   intro hX hP hGD hQ hS hT hSA _ hDG hSz hFD hDg hSh
@@ -84,15 +72,15 @@ theorem regular_embeddings_cover_bad_embedding_locus_alt : GlobalTheory.CovTop.H
     | have h4 := _root_.GlobalTheory.T.rank_growth_bound_small_scale_alt_alt hX hP hS hT hGD hQ hSA hDG hSz hFD hDg hSh
     | have h4 := _root_.GlobalTheory.T.rank_growth_bound_small_scale_alt_alt hP hS hT hGD hQ hSA hDG hSz hFD hDg hSh
   first
-    | have ua0 := _root_.GlobalTheory.T.orbits_separated_by_regular_cusp hX hP hGD hQ hS hT hSA
-    | have ua0 := _root_.GlobalTheory.T.orbits_separated_by_regular_cusp hP hGD hQ hS hT hSA
+    | have ua0 := _root_.GlobalTheory.OrbitSep.exists_cusp_regular_level_determinant hX hP hGD hQ hS hT hSA
+    | have ua0 := _root_.GlobalTheory.OrbitSep.exists_cusp_regular_level_determinant hP hGD hQ hS hT hSA
   first
-    | have sg := _root_.GlobalTheory.T.covering_shift_preserves_goodAt hX hP
-    | have sg := _root_.GlobalTheory.T.covering_shift_preserves_goodAt hP
-  have h3 := _root_.GlobalTheory.T.size_bounds_for_family_alt hSz
+    | have sg := _root_.GlobalTheory.CovTop.ShiftGood.covering_goodAt_shift hX hP
+    | have sg := _root_.GlobalTheory.CovTop.ShiftGood.covering_goodAt_shift hP
+  have h3 := _root_.GlobalTheory.CovTop.CovSz.size_rows_alt hSz
   unfold _root_.GlobalTheory.CovTop.DeepGoodness _root_.GlobalTheory.CovTop.CoversCondition at hDG
   unfold _root_.GlobalTheory.CovTop.CoversCondition at h3 h4 ⊢
-  refine _root_.GlobalTheory.BadEmb.lifts_of_four_quantitative_conditions hDG _root_.GlobalTheory.T.weight_conditions_at_index' h3 h4 ?_
+  refine _root_.GlobalTheory.BadEmb.lifts_of_four_quantitative_conditions hDG _root_.GlobalTheory.CovTop.HodgeGapBounds.reading_alt h3 h4 ?_
   clear hDG h3 h4
   intro eps Fm x hx ι p i PP _ _ _ _ b1 b2 b3 b4 hi Y hY fr π ρ χ Pb lamb H hPb hH hρ k
   have g0 := (b1 hi Y hY).1
@@ -129,19 +117,5 @@ theorem regular_embeddings_cover_bad_embedding_locus_alt : GlobalTheory.CovTop.H
     (ua _ (Or.inl hPb)) (ua _ (Or.inr ⟨k, hH k⟩)) ρ χ lamb hρ
 end GlobalTheory.BadEmb
 end
-end
-section
-open CategoryTheory AlgebraicGeometry NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Theta
-open GlobalTheory GlobalTheory.CompHS GlobalTheory.CovTop GlobalTheory.BigTop GlobalTheory.HSApp GlobalTheory.DegVal GlobalTheory.DegCmp
-open GlobalTheory.AllWt (Psi wtOf cuspOn cuspW latOn latW normOn petOn GoodOn GoodW rankOn degOn rankW)
-open GlobalTheory.CompHt (hodgeWt)
-open GlobalTheory.LevDesc (TypeFrame grpHR grpGHR latN levDet secRing transl pull KeepsCusp)
-open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelAut)
-open GlobalTheory.BadCount
-open scoped TensorProduct
-set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.bad_embedding_locus_covered_by_regular_alt : GlobalTheory.CovTop.HypothesesX → _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → GlobalTheory.Published.GrothendieckDeformation → GlobalTheory.HSCore.Quoted → GlobalTheory.Published.SiegelToroidalIntegral → GlobalTheory.Published.ToroidalForFanKS → GlobalTheory.Published.SemiAbelianLieSeminegative → _root_.GlobalTheory.CovTop.GramCondition → _root_.GlobalTheory.CovTop.DeepGoodness → _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.CovTop.FlatDegreeCondition → _root_.GlobalTheory.CovTop.CoverDegree → _root_.GlobalTheory.CovTop.ShareCondition → _root_.GlobalTheory.CovTop.CoversCondition fun Fm x _ ι p i Y _ _ => ∀ (fr : TypeFrame (dat p i) Y.d.l₂) (π : (LevelAut (dat p i) Y.d.l₂) →* G0g (Fm.D x ι).nd) (ρ : Representation ℂ (LevelAut (dat p i) Y.d.l₂) (ℂ ⊗[Y.d.c₂.F] Y.V (Gk p i))) (χ : (LevelAut (dat p i) Y.d.l₂) →* ℂˣ) (Pb : Subgroup (G0g (Fm.D x ι).nd)) (lamb : Pb.comap π →* ℂˣ) (H : Fin 2 → Subgroup (G0g (Fm.D x ι).nd)), Pb.comap π = grpHR fr → (∀ k, (H k).comap π = grpGHR fr k) → (∀ (g : (LevelAut (dat p i) Y.d.l₂)) (v w : Y.V (Gk p i)), (w : Rul Y.d.Xo₂ Y.d.c₂) = transl Y.d.Xo₂ Y.d.c₂ g v → ρ g ((1 : ℂ) ⊗ₜ[Y.d.c₂.F] v) = ((χ g : ℂˣ) : ℂ) • ((1 : ℂ) ⊗ₜ[Y.d.c₂.F] w)) → ∀ k : Fin 2, ∃ n : ℕ, EmbReg ρ ((H k).comap π) n ∧ (n : ℝ) * Nat.card ((H k).comap π) ≤ 3 / 2 * Nat.card (Pb.comap π) * Module.finrank ℂ (eig ρ (Pb.comap π) lamb) := by
-  first | exact @_root_.GlobalTheory.BadEmb.regular_embeddings_cover_bad_embedding_locus_alt | exact _root_.GlobalTheory.BadEmb.regular_embeddings_cover_bad_embedding_locus_alt | (intros; apply _root_.GlobalTheory.BadEmb.regular_embeddings_cover_bad_embedding_locus_alt <;> assumption)
 end
 end

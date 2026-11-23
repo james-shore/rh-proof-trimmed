@@ -42,7 +42,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace GlobalTheory
 
-theorem dixmierMalliavinFactorisation_fromLibrary : GlobalTheory.Published.DixmierMalliavinFactorisation :=
-  CompanionTheory.DM.dixmierMalliavinFactorisation_holds
-
 end GlobalTheory

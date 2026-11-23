@@ -60,17 +60,6 @@ section SlopeTestRemainingChoices
 
 open Polynomial
 
-private theorem algpt_int {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
-    [IsAdicComplete (maximalIdeal O) O] {R : Type} [CommRing R] [Algebra O R] [IsLocalRing R]
-    {K : Type} [Field K] [Algebra O K] [FaithfulSMul O K] [Algebra.IsAlgebraic O K] (f : R →ₐ[O] K)
-    (a : R) (ha : a ∈ maximalIdeal R) : IsIntegral O (f a) :=
-  _root_.UpperTheory.Reformulated.B.AlgebraicPointIntegral.algpt_int f a ha
-
-private theorem algpt_pow {O S : Type} [CommRing O] [CommRing S] [Algebra O S] [IsNoetherianRing S] (m : Ideal S)
-    (hres : ∀ x : S, ∃ a : O, x - algebraMap O S a ∈ m) (n : ℕ) :
-    ∃ N : Submodule O S, N.FG ∧ ∀ x : S, ∃ y ∈ N, x - y ∈ m ^ n :=
-  _root_.UpperTheory.Reformulated.B.FinitelyGeneratedModPow.fg_mod_pow m hres n
-
 private theorem algpt_finite {O S : Type} [CommRing O] [IsLocalRing O] [IsAdicComplete (maximalIdeal O) O]
     [CommRing S] [Algebra O S] [IsLocalRing S] [IsNoetherianRing S] [Algebra.IsIntegral O S]
     (hloc : ∀ a ∈ maximalIdeal O, algebraMap O S a ∈ maximalIdeal S)
@@ -92,7 +81,7 @@ private theorem algpt_finite {O S : Type} [CommRing O] [IsLocalRing O] [IsAdicCo
       (h2 ▸ maximalIdeal.isMaximal O)
     exact (eq_maximalIdeal h3).ge
   obtain ⟨n, hn⟩ := Ideal.exists_pow_le_of_le_radical_of_fg hrad (IsNoetherian.noetherian _)
-  obtain ⟨N, hN, h⟩ := algpt_pow (maximalIdeal S) hres n
+  obtain ⟨N, hN, h⟩ := _root_.UpperTheory.Reformulated.B.FinitelyGeneratedModPow.fg_mod_pow (maximalIdeal S) hres n
   refine (UpperTheory.V.abelian₂.nakayama O (maximalIdeal O) S).2 ⟨?_⟩
   have : (⊤ : Submodule O (S ⧸ (maximalIdeal O) • (⊤ : Submodule O S))) = N.map (Submodule.mkQ _) := by
     symm
@@ -114,7 +103,7 @@ theorem UpperTheory.V.W.exists_algebraicPoint_of_groupDeterminant :
   have hint : ∀ a : R, IsIntegral O (f a) := by
     intro a
     obtain ⟨c, hc⟩ := IsCO.res_surj (O := O) a
-    have h1 : IsIntegral O (f (a - algebraMap O R c)) := algpt_int f _ hc
+    have h1 : IsIntegral O (f (a - algebraMap O R c)) := _root_.UpperTheory.Reformulated.B.AlgebraicPointIntegral.algpt_int f _ hc
     have h2 : f a = f (a - algebraMap O R c) + algebraMap O _ c := by simp
     rw [h2]
     exact h1.add isIntegral_algebraMap

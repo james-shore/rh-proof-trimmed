@@ -75,7 +75,7 @@ theorem finite_isogTarget : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type
   haveI : CharP L p := charP_of_residueField_of_notMem_basicOpen p M.X u hu L h
   set ξ := spMap h ≫ M.X.fromSpecResidueField u with hξ
   obtain ⟨o₀, ⟨m₀⟩⟩ := HTPull.exists_objMap_pull p D R b N M.X (Sp L) M.s ξ M.univ
-  have hF := T.finite_kernels_pIsogenies_harrisTaylor_charP p D R b N hN hNp hm c L (ξ ≫ M.s) o₀
+  have hF := _root_.GlobalTheory.UPel.HT.ES.KerFin.finite_kernels p D R b N hN hNp hm c L (ξ ≫ M.s) o₀
   let Rel : (Sp L ⟶ M.X) → ((T : Over (Sp L)) → (T ⟶ o₀.A) → Prop) → Prop := fun ζ P =>
     ∃ (o' : Obj b N (ξ ≫ M.s)) (ψ₀ : o₀.A ⟶ o'.A), IsPIsog c o₀ o' ψ₀ ∧
       (P = fun T x => x ≫ ψ₀ = 1) ∧ Nonempty (ObjMap o' M.univ ζ) ∧ ζ ≫ M.s = ξ ≫ M.s
@@ -89,9 +89,9 @@ theorem finite_isogTarget : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type
   refine (hF.biUnion fun P _ => (hsub P).finite).subset ?_
   intro ζ hζ
   obtain ⟨hs, o, o', ψ, ⟨mo⟩, ⟨mo'⟩, hψ⟩ := hζ
-  obtain ⟨i₀, -⟩ := IwLevel.exists_objMap_cancel (f := 𝟙 (Sp L)) (g := ξ)
+  obtain ⟨i₀, -⟩ := _root_.GlobalTheory.HTSympCover.exists_objMap_cancel_φ (f := 𝟙 (Sp L)) (g := ξ)
     (cast (congrArg (ObjMap o₀ M.univ) (Category.id_comp ξ).symm) m₀) mo
-  obtain ⟨i₁, -⟩ := IwLevel.exists_objMap_cancel (f := 𝟙 (Sp L)) (g := ζ)
+  obtain ⟨i₁, -⟩ := _root_.GlobalTheory.HTSympCover.exists_objMap_cancel_φ (f := 𝟙 (Sp L)) (g := ζ)
     (cast (congrArg (ObjMap o' M.univ) (Category.id_comp ζ).symm) mo') mo'
   obtain ⟨ψ₀, hψ₀, -⟩ := ValExt.isPIsog_pull p D R b N c (Sp L) (Sp L) (ξ ≫ M.s) (ξ ≫ M.s) (𝟙 _)
     o o' o₀ o' i₀ i₁ ψ hψ

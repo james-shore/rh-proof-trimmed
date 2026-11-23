@@ -103,7 +103,7 @@ theorem lift_mod {l : ℕ} [Fact l.Prime] {K : FinExt l} {bk : BK K} {d : ℕ} (
     have e := congrFun hv i
     simp only [qmap_mk] at e
     exact e.trans (RingHom.map_mulVec _ _ _ i).symm
-  have H := GlobalTheory.T.exists_descent_solution_lift_mod_prism_ideal l K bk d S B C D h f p q hc hpo z₀ hyp
+  have H := _root_.GlobalTheory.BSP.lift_solution l K bk d S B C D h f p q hc hpo z₀ hyp
   exact ⟨H.choose, H.choose_spec.2, fun i => Ideal.Quotient.eq.2 (H.choose_spec.1 i)⟩
 
 
@@ -113,7 +113,7 @@ theorem exists_descent : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K)
   obtain ⟨D, p₀, q₀, hpo⟩ := hc.stable.po C h
   have hcomm : ∀ b, p₀.f (h.f b) = q₀.f (h.f b) := fun b => congrArg (fun k : Hom B D => k.f b) hpo.comm
   letI : Algebra (B.A ⧸ adI B ^ 1) (C.A ⧸ adI C ^ 1) := (qmap h 1).toAlgebra
-  obtain ⟨N₁, hN₁, hfin, hproj, hbc⟩ := GlobalTheory.T.stratifiedPhiModule_descent_finite_level l K bk d S B C D h f p₀ q₀ hc hpo 1
+  obtain ⟨N₁, hN₁, hfin, hproj, hbc⟩ := _root_.GlobalTheory.BSP.LevH.descent_at_level l K bk d S B C D h f p₀ q₀ hc hpo 1
   haveI hcB : IsAdicComplete (adI B ^ 1) B.A := by rw [pow_one]; exact B.complete
   obtain ⟨P, _, _, _, _, u₁, hu₁⟩ := GlobalTheory.T.exists_finite_projective_lift_of_isAdicComplete B.A (adI B ^ 1) ↥N₁
   letI : Algebra B.A C.A := h.f.toAlgebra
@@ -159,7 +159,7 @@ theorem exists_descent : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K)
         rw [heq]; exact hb2
     exact (GlobalTheory.T.isSemilinearBaseChange_iff_isBaseChange B.A C.A P (Fin d → C.A) u u' (fun x => rfl)).2 hV
   · intro Q p q hpq x
-    have HC := GlobalTheory.T.prismPushoutModAdicPow_universal l _ B C C D h h p₀ q₀ hpo Q p q hpq
+    have HC := _root_.GlobalTheory.BSP.PoUniv.isPO_univ l _ B C C D h h p₀ q₀ hpo Q p q hpq
     obtain ⟨c, ⟨hcp, hcq⟩, -⟩ := HC
     subst hcp hcq
     have hx := (memM _).1 (huM x)

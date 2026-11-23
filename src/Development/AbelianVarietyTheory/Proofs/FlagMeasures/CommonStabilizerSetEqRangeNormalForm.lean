@@ -79,23 +79,10 @@ theorem xst_coord {v : Fin (2 * r + k + 1) → ℂ} (hv : v ∈ XstJ k r j) (i :
   | add x y _ _ hx hy => simp [hx, hy]
   | smul c x _ hx => simp [hx]
 
-theorem es_inj {a b : Fin r} : esI k r a = esI k r b ↔ a = b := by
-  simp only [esI, Fin.ext_iff]; omega
+alias es_inj := _root_.GlobalTheory.Amp.NfMid.esI_inj
 
 theorem e_inj {a b : Fin r} : eI k r a = eI k r b ↔ a = b := by
   simp only [eI, Fin.ext_iff]
-
-theorem w_inj {a b : Fin (k + 1)} : wI k r a = wI k r b ↔ a = b := by
-  simp only [wI, Fin.ext_iff]; omega
-
-theorem e_ne_es (a b : Fin r) : eI k r a ≠ esI k r b := by
-  simp only [eI, esI, ne_eq, Fin.ext_iff]; omega
-
-theorem e_ne_w (a : Fin r) (b : Fin (k + 1)) : eI k r a ≠ wI k r b := by
-  simp only [eI, wI, ne_eq, Fin.ext_iff]; omega
-
-theorem w_ne_es (a : Fin (k + 1)) (b : Fin r) : wI k r a ≠ esI k r b := by
-  simp only [wI, esI, ne_eq, Fin.ext_iff]; omega
 
 theorem nf {hj : j ≤ r} {β : Fin r → ℕ} {c : ℂ} {z z' : Fin (2 * r + k + 1) → ℂ} {G : Mat k r}
     (h : IsNormal0 k r hj β c z z' G) :
@@ -240,15 +227,15 @@ theorem subset_range {hj : j ≤ r} {β : Fin r → ℕ} {c : ℂ} {z z' : Fin (
   simp only [hq, mv] at hc
   have hB : ∀ b : Fin r, b.val < j → B b = 0 := fun b hb => by
     funext i
-    have := col_zero hg h hρ b hb (wI k r i) fun b' _ _ => w_ne_es _ _
+    have := col_zero hg h hρ b hb (wI k r i) fun b' _ _ => _root_.GlobalTheory.Amp.Rad.wI_ne_esI _ _
     rw [hc] at this
-    simpa [Finset.sum_apply, bv, w_ne_es, w_inj, (e_ne_w _ _).symm] using this
+    simpa [Finset.sum_apply, bv, _root_.GlobalTheory.Amp.Rad.wI_ne_esI, _root_.GlobalTheory.Amp.NfMid.wI_inj, (_root_.GlobalTheory.Amp.Rad.eI_ne_wI _ _).symm] using this
   have hS : ∀ a b : Fin r, b.val < j → skewM s t a b = 0 := fun a b hb => by
     have : upper x *ᵥ (fun a => skewM s t a b) = 0 := by
       funext a'
-      have := col_zero hg h hρ b hb (eI k r a') fun b' _ _ => e_ne_es _ _
+      have := col_zero hg h hρ b hb (eI k r a') fun b' _ _ => _root_.GlobalTheory.Amp.Rad.eI_ne_esI _ _
       rw [hc, hB b hb] at this
-      simpa [Finset.sum_apply, bv, e_ne_es, e_inj, e_ne_w, herm_zero_left, Matrix.mulVec, dotProduct, mul_comm]
+      simpa [Finset.sum_apply, bv, _root_.GlobalTheory.Amp.Rad.eI_ne_esI, e_inj, _root_.GlobalTheory.Amp.Rad.eI_ne_wI, herm_zero_left, Matrix.mulVec, dotProduct, mul_comm]
         using this
     exact congrFun (Matrix.eq_zero_of_mulVec_eq_zero hu.ne_zero this) a
   have hui : (upper x)⁻¹.BlockTriangular (OrderDual.toDual ∘ β) := by
@@ -263,7 +250,7 @@ theorem subset_range {hj : j ≤ r} {β : Fin r → ℕ} {c : ℂ} {z z' : Fin (
     have := col_zero hg h hρ b hb (esI k r a) fun b' _ h' h'' => by
       rw [es_inj.1 h''] at hab; omega
     rw [hc] at this
-    simpa [Finset.sum_apply, bv, (w_ne_es _ _).symm, es_inj, (e_ne_es _ _).symm] using this
+    simpa [Finset.sum_apply, bv, (_root_.GlobalTheory.Amp.Rad.wI_ne_esI _ _).symm, es_inj, (_root_.GlobalTheory.Amp.Rad.eI_ne_esI _ _).symm] using this
   have hu' := inv_tri (Matrix.isUnit_nonsing_inv_det _ hu) hui
   rw [Matrix.nonsing_inv_nonsing_inv _ hu] at hu'
   refine ⟨(fun p => x p.1, fun a => B a.1, fun p => s p.1, fun a => t a.1), ?_⟩

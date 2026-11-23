@@ -62,14 +62,6 @@ namespace GlobalTheory.CentralOps.Rg
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 attribute [local instance 100] LieRing.ofAssociativeRing
 
-theorem polyFun_mem (D : D7) (θ : D.what₂.Tau → (Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ)) (V : HSp D)
-    (R : RealPoints θ V) (P : PolyE V) : polyFun θ V P ∈ SmF θ V := GlobalTheory.CentralOps.polyFun_mem_smF D θ V R P
-
-theorem lieDer_polyFun (D : D7) (θ : D.what₂.Tau → (Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ)) (V : HSp D)
-    (R : RealPoints θ V) (τ : D.what₂.Tau) (X : LieAt V τ) (P : PolyE V) :
-    lieDer V (expInf θ V) (atPlace V τ X) (polyFun θ V P) = polyFun θ V (matDer τ X.1 P) := GlobalTheory.T.rightLieDerivative_realEntryPolynomialFunction D θ V R τ X P
-
-
 open Classical in
 theorem aeval_matDer_single {T : Type} {n : ℕ} (τ τ' : T) (a b c d : Fin n) :
     MvPolynomial.aeval (fun p : T × Fin n × Fin n => if p.2.1 = p.2.2 then (1 : ℂ) else 0)
@@ -100,10 +92,10 @@ theorem envRepAll_ι_of (R : RealPoints θ V) (τ : D.what₂.Tau) (y : ℂ ⊗[
   rw [← envIncl_ι, envRepAll_envIncl]
 
 theorem envRepAll_polyFun (R : RealPoints θ V) (u : GlobalTheory.AutFinLit.Env V) (P : PolyE V) :
-    (envRepAll R u ⟨polyFun θ V P, polyFun_mem D θ V R P⟩).1 = polyFun θ V (polyRep V u P) := by
+    (envRepAll R u ⟨polyFun θ V P, _root_.GlobalTheory.CentralOps.polyFun_mem_smF D θ V R P⟩).1 = polyFun θ V (polyRep V u P) := by
   classical
   let S : Subalgebra ℂ (GlobalTheory.AutFinLit.Env V) :=
-    { carrier := {u | ∀ P, (envRepAll R u ⟨polyFun θ V P, polyFun_mem D θ V R P⟩).1 = polyFun θ V (polyRep V u P)}
+    { carrier := {u | ∀ P, (envRepAll R u ⟨polyFun θ V P, _root_.GlobalTheory.CentralOps.polyFun_mem_smF D θ V R P⟩).1 = polyFun θ V (polyRep V u P)}
       mul_mem' := fun {u v} hu hv P => by
         rw [map_mul, map_mul, mul_apply_eq_comp, mul_apply_eq_comp, ← hu]
         congr 2
@@ -126,7 +118,7 @@ theorem envRepAll_polyFun (R : RealPoints θ V) (u : GlobalTheory.AutFinLit.Env 
         rw [envRepAll_ι_of, polyRep_ι_of, placeRep_tmul,
           show c ⊗ₜ[ℝ] X = c • ((1 : ℂ) ⊗ₜ[ℝ] X) by rw [TensorProduct.smul_tmul', smul_eq_mul, mul_one], map_smul,
           map_smul, envRep_ι, LinearMap.smul_apply, LinearMap.smul_apply, Submodule.coe_smul, opInf_coe,
-          polyFun_smul, lieDer_polyFun D θ V R]
+          polyFun_smul, _root_.GlobalTheory.PolyRightDeriv.lieDer_polyFun D θ V R]
         rfl
   exact GlobalTheory.EnvCentre.mem_of_ι_mem (AlgHom.id ℂ _) S hι u P
 

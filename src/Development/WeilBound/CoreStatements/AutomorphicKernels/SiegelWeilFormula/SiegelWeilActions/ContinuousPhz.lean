@@ -52,7 +52,7 @@ namespace PositivityTheory.SiegelWeilFormula.Act.ComplexParameterFamilyContinuit
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
 
 theorem continuous_phz (d : SD σ) {f : d.G → ℂ} (hf : Continuous f) (s₁ z : ℂ) : Continuous (phz d f s₁ z) := by
-  have ha := continuous_a' d
+  have ha := _root_.PositivityTheory.SiegelWeilFormula.kunf.continuous_a d
   have e : (fun x => ((d.Ht x : ℝ) : ℂ) ^ (z - s₁)) = fun x => ((d.a x : ℝ) : ℂ) ^ (z - s₁) := by
     funext x; rw [kunf.ht_eq]
   have h1 : Continuous fun x => ((d.Ht x : ℝ) : ℂ) ^ (z - s₁) := by

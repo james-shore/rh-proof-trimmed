@@ -107,66 +107,6 @@ lemma f_gram_re (X : Data E r) (ξ : Fin r → E) (z0 : Frame X.Ψ r) (f : X.Ψ 
   split_ifs <;> simp [Complex.mul_conj, Complex.normSq_eq_norm_sq] <;>
     rw [← Complex.ofReal_pow, Complex.ofReal_re]
 
-private lemma hermC_add_left_fundamental_domains (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E) (u u' v : Fin r → ℂ) :
-    hermC τ G (u + u') v = hermC τ G u v + hermC τ G u' v := by
-  unfold hermC
-  simp only [Pi.add_apply, add_mul, Finset.sum_add_distrib]
-
-private lemma hermC_sub_left' (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E) (u u' v : Fin r → ℂ) :
-    hermC τ G (u - u') v = hermC τ G u v - hermC τ G u' v := by
-  unfold hermC
-  simp only [Pi.sub_apply, sub_mul, Finset.sum_sub_distrib]
-
-private lemma hermC_sub_right' (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E) (u v v' : Fin r → ℂ) :
-    hermC τ G u (v - v') = hermC τ G u v - hermC τ G u v' := by
-  unfold hermC
-  simp only [Pi.sub_apply, map_sub, mul_sub, Finset.sum_sub_distrib]
-
-private lemma hermC_smul_left_fundamental_domains (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E) (c : ℂ) (u v : Fin r → ℂ) :
-    hermC τ G (c • u) v = c * hermC τ G u v := by
-  unfold hermC
-  rw [Finset.mul_sum]
-  refine Finset.sum_congr rfl fun a _ => ?_
-  rw [Finset.mul_sum]
-  refine Finset.sum_congr rfl fun b _ => ?_
-  simp only [Pi.smul_apply, smul_eq_mul]
-  ring
-
-private lemma hermC_smul_right_fundamental_domains (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E) (c : ℂ) (u v : Fin r → ℂ) :
-    hermC τ G u (c • v) = conj c * hermC τ G u v := by
-  unfold hermC
-  rw [Finset.mul_sum]
-  refine Finset.sum_congr rfl fun a _ => ?_
-  rw [Finset.mul_sum]
-  refine Finset.sum_congr rfl fun b _ => ?_
-  simp only [Pi.smul_apply, smul_eq_mul, map_mul]
-  ring
-
-private lemma hermC_zero_left' (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E) (v : Fin r → ℂ) :
-    hermC τ G 0 v = 0 := by
-  unfold hermC
-  simp
-
-private lemma hermC_zero_right' (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E) (u : Fin r → ℂ) :
-    hermC τ G u 0 = 0 := by
-  unfold hermC
-  simp
-
-private lemma ppos_smul_fundamental_domains (X : Data E r) (x : Frame X.Ψ r) (τ : X.Ψ) (c : ℂ) (u : Fin r → ℂ) :
-    X.ppos x τ (c • u) = c • X.ppos x τ u := by
-  rw [Data.ppos_eq, Data.ppos_eq, Finset.smul_sum]
-  refine Finset.sum_congr rfl fun a _ => ?_
-  rw [smul_smul, Finset.mul_sum]
-  congr 1
-  refine Finset.sum_congr rfl fun b _ => ?_
-  rw [hermC_smul_left_fundamental_domains]
-  ring
-
-private lemma hermC_add_right_fundamental_domains (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E) (u v v' : Fin r → ℂ) :
-    hermC τ G u (v + v') = hermC τ G u v + hermC τ G u v' := by
-  unfold hermC
-  simp only [Pi.add_apply, map_add (f := _), mul_add, Finset.sum_add_distrib]
-
 theorem key (X : DataX E r) (ξ : Fin r → E) (z0 x0 : Frame X.Ψ r)
     (f : X.Ψ → Fin (r - 2) → Fin r → ℂ) (h1 : X.Ψ → Matrix (Fin r) (Fin r) ℂ) (δ : ℝ)
     (hz : z0 ∈ X.dom) (hx0 : x0 ∈ X.dom) (hortho : X.IsOrtho x0)
@@ -210,7 +150,7 @@ theorem key (X : DataX E r) (ξ : Fin r → E) (z0 x0 : Frame X.Ψ r)
   have hvP : X.ppos z0 τ v = v := ppos_of_mem (X := X.toData) hz τ v hv
   have hvneg : ∀ k : Fin (r - 2), ¬ (k : ℕ) < X.p0 - 1 → hermC τ.1 X.Gm v (f τ k) = 0 := by
     intro k hk
-    rw [← hvP, Data.ppos_selfadj (X := X.toData) hz τ v (f τ k), hPneg k hk, hermC_zero_right']
+    rw [← hvP, Data.ppos_selfadj (X := X.toData) hz τ v (f τ k), hPneg k hk, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_zero_right]
 
   obtain ⟨a, ha⟩ : ∃ a : Fin (r - 2) → ℂ,
       a = fun k : Fin (r - 2) => if (k : ℕ) < X.p0 - 1 then hermC τ.1 X.Gm v (f τ k) else 0 := ⟨_, rfl⟩
@@ -234,7 +174,7 @@ theorem key (X : DataX E r) (ξ : Fin r → E) (z0 x0 : Frame X.Ψ r)
     simp only [hgr, mul_ite, mul_zero, Finset.sum_ite_eq, Finset.mem_univ, if_true]
   have hfp : ∀ k, hermC τ.1 X.Gm (f τ k) (v - w) = 0 := by
     intro k
-    rw [hermC_sub_right', hfw]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_sub_right, hfw]
     by_cases hk : (k : ℕ) < X.p0 - 1
     · rw [if_pos hk, mul_one, ha]
       simp only [if_pos hk]
@@ -244,16 +184,16 @@ theorem key (X : DataX E r) (ξ : Fin r → E) (z0 x0 : Frame X.Ψ r)
       rw [← hermC_conj τ.1 X.Gm_herm, hvneg k hk, map_zero]
   have hskew : ∀ u q, hermC τ.1 X.Gm (X.Jt z0 τ u) q = -hermC τ.1 X.Gm u (X.Jt z0 τ q) := by
     intro u q
-    rw [hJt, hJt, hermC_smul_left_fundamental_domains, hermC_smul_right_fundamental_domains, hermC_sub_left', hermC_sub_right',
-      hermC_smul_left_fundamental_domains, hermC_smul_right_fundamental_domains, Data.ppos_selfadj (X := X.toData) hz τ u q, Complex.conj_I]
+    rw [hJt, hJt, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_smul_left, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_smul_right, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_sub_left, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_sub_right,
+      _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_smul_left, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_smul_right, Data.ppos_selfadj (X := X.toData) hz τ u q, Complex.conj_I]
     first
       | (simp only [map_ofNat]; ring)
       | (simp; ring)
 
   let Lq : (Fin r → ℂ) → (Fin r → ℂ) →ₗ[ℂ] ℂ := fun q =>
     { toFun := fun u => hermC τ.1 X.Gm u q
-      map_add' := fun u u' => hermC_add_left_fundamental_domains _ _ u u' q
-      map_smul' := fun c u => hermC_smul_left_fundamental_domains _ _ c u q }
+      map_add' := fun u u' => _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_add_left _ _ u u' q
+      map_smul' := fun c u => _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_smul_left _ _ c u q }
   have hK : ⨅ i, LinearMap.ker (![Lq (Data.emb τ.1 ξ), Lq (X.Jt z0 τ (Data.emb τ.1 ξ))] i) ≤
       LinearMap.ker (Lq (v - w)) := by
     intro u hu
@@ -272,7 +212,7 @@ theorem key (X : DataX E r) (ξ : Fin r → E) (z0 x0 : Frame X.Ψ r)
     have h := LinearMap.congr_fun hc u
     simp only [Fin.sum_univ_two, LinearMap.add_apply, LinearMap.smul_apply, Matrix.cons_val_zero,
       Matrix.cons_val_one, Matrix.head_cons, smul_eq_mul] at h
-    rw [hermC_add_right_fundamental_domains, hermC_smul_right_fundamental_domains, hermC_smul_right_fundamental_domains, Complex.conj_conj,
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_add_right, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_smul_right, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_smul_right, Complex.conj_conj,
       Complex.conj_conj]
     exact h.symm
   have hnd : ∀ z : Fin r → ℂ, (∀ u, hermC τ.1 X.Gm u z = 0) → z = 0 := by
@@ -282,14 +222,14 @@ theorem key (X : DataX E r) (ξ : Fin r → E) (z0 x0 : Frame X.Ψ r)
     rw [← hermC_conj τ.1 X.Gm_herm, hz', map_zero, mul_zero, zero_smul]
   have hpq : v - w = conj (c 0) • Data.emb τ.1 ξ + conj (c 1) • X.Jt z0 τ (Data.emb τ.1 ξ) := by
     refine sub_eq_zero.mp (hnd _ fun u => ?_)
-    rw [hermC_sub_right', hc' u, sub_self]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_sub_right, hc' u, sub_self]
   have hfix : h1 τ *ᵥ (v - w) = v - w := by
     have h := congrFun (hI (fun _ => conj (c 0)) (fun _ => conj (c 1))) τ
     simp only [Data.applyV, Data.lineV, Data.Jz, Pi.add_apply] at h
     have he : conj (c 0) • Data.emb τ.1 ξ + conj (c 1) • X.Jt z0 τ (Data.emb τ.1 ξ) =
         conj (c 0) • Data.emb τ.1 ξ + I • ((2 : ℂ) • X.ppos z0 τ (conj (c 1) • Data.emb τ.1 ξ) -
           conj (c 1) • Data.emb τ.1 ξ) := by
-      rw [hJt, ppos_smul_fundamental_domains]
+      rw [hJt, _root_.ReciprocityTheory.ChartRestriction.G.FD.Data.ppos_smul_eq]
       first
         | module
         | (simp only [smul_sub, smul_smul]; ring_nf)
@@ -303,7 +243,7 @@ theorem key (X : DataX E r) (ξ : Fin r → E) (z0 x0 : Frame X.Ψ r)
     exact Finset.sum_eq_zero fun k _ => by rw [(hperp k).1, mul_zero]
   have hwP : X.ppos z0 τ w = w := ppos_of_mem (X := X.toData) hz τ w hwS
   have hp0 : ∀ τ' : X.Ψ, X.ppos z0 τ' 0 = 0 := fun τ' => by
-    simpa using ppos_smul_fundamental_domains X.toData z0 τ' 0 0
+    simpa using _root_.ReciprocityTheory.ChartRestriction.G.FD.Data.ppos_smul_eq X.toData z0 τ' 0 0
   have hU : (fun τ' => if τ' = τ then w else 0) ∈ X.Uz z0 ξ := by
     refine ⟨fun τ' => ?_, fun τ' => ?_⟩
     · by_cases h : τ' = τ
@@ -311,13 +251,13 @@ theorem key (X : DataX E r) (ξ : Fin r → E) (z0 x0 : Frame X.Ψ r)
         rw [h]
         exact hwe
       · simp only [if_neg h]
-        exact hermC_zero_left' _ _ _
+        exact _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_zero_left _ _ _
     · by_cases h : τ' = τ
       · simp only [Data.Jz, if_pos h]
-        rw [h, hwP, hermC_smul_left_fundamental_domains, hermC_sub_left', hermC_smul_left_fundamental_domains, hwe]
+        rw [h, hwP, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_smul_left, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_sub_left, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_smul_left, hwe]
         ring
       · simp only [Data.Jz, if_neg h, hp0, smul_zero, sub_zero]
-        exact hermC_zero_left' _ _ _
+        exact _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_zero_left _ _ _
   have hA := hUz _ hU
   have hA1 : hermC τ.1 X.Gm (h1 τ *ᵥ w) (Data.emb τ.1 ξ) = 0 := by
     have h := hA.1 τ
@@ -340,7 +280,7 @@ theorem key (X : DataX E r) (ξ : Fin r → E) (z0 x0 : Frame X.Ψ r)
       PositiveSpanMatrices.Neg X.toData x0 τ (∑ k, b k • f τ k) := by
     unfold PositiveSpanMatrices.Neg
     refine Finset.sum_congr rfl fun a' _ => ?_
-    rw [hermC_add_left_fundamental_domains, perp_kap (X := X.toData) hortho τ _ hpS0 a', zero_add,
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_add_left, perp_kap (X := X.toData) hortho τ _ hpS0 a', zero_add,
       hermC_sum_left_lemma, hermC_sum_left_lemma]
     congr 2
     refine Finset.sum_congr rfl fun k _ => ?_
@@ -380,7 +320,7 @@ theorem key (X : DataX E r) (ξ : Fin r → E) (z0 x0 : Frame X.Ψ r)
   have hexp : (hermC τ.1 X.Gm ((v - w) + ∑ k, cc k • f τ k) ((v - w) + ∑ k, cc k • f τ k)).re =
       (hermC τ.1 X.Gm (v - w) (v - w)).re +
         (hermC τ.1 X.Gm (∑ k, cc k • f τ k) (∑ k, cc k • f τ k)).re := by
-    rw [hermC_add_left_fundamental_domains, hermC_add_right_fundamental_domains, hermC_add_right_fundamental_domains,
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_add_left, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_add_right, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_add_right,
       hermC_sum_right_lemma_2 τ.1 X.Gm (v - w), hermC_sum_left_lemma τ.1 X.Gm cc (f τ) (v - w)]
     simp only [hpf, hfp, mul_zero, Finset.sum_const_zero, add_zero, zero_add, Complex.add_re]
   have hSS := f_gram_re X.toData ξ z0 f hf τ cc

@@ -50,8 +50,8 @@ import Mathlib.Topology.Sheaves.Init
 namespace Formalism.FourierDecayAlt.P
 
 theorem lattice_facts_general : Formalism.FourierDecayAlt.S6.LatticesGeneral :=
-  assemble_lattice_facts degreeFacts_statement different_power_conj_stable
-    unramRelative twistedLatticeBetween twistedLatticeIndex dual_lattice_subset
+  _root_.Formalism.FourierDecayAlt.P.S6x2.assembleLattices degreeFacts_statement _root_.Formalism.FourierDecayAlt.P.S6x2.powConjStable
+    unramRelative _root_.Formalism.FourierDecayAlt.P.S6x2.between twistedLatticeIndex dual_lattice_subset
     traceDualGe scaledIdealNorm covolumeIndex
 
 end Formalism.FourierDecayAlt.P

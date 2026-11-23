@@ -76,7 +76,7 @@ theorem norm_tower : ∀ (R : Type) [CommRing R] (p : ℕ) [Fact p.Prime], IsAdi
     intro h hh
     rw [Function.iterate_succ_apply]
     apply ih
-    rw [GlobalTheory.T.ev_normOp_eq_nrm_ev_succ R p (m + i + 1) (by omega) hR h, ← hu (m + i)]
+    rw [_root_.GlobalTheory.Col.ev_normOp_eq_nrm R p (m + i + 1) (by omega) hR h, ← hu (m + i)]
     congr 1
 
 theorem ev_map_congr : ∀ (R : Type) [CommRing R] (p m : ℕ) (τ : R →+* R) (g g' : PowerSeries R), ev R p m g = ev R p m g' → ev R p m (PowerSeries.map τ g) = ev R p m (PowerSeries.map τ g') := by
@@ -294,7 +294,7 @@ theorem exists_coleman_series : ∀ (R : Type) [CommRing R] (p : ℕ) [hp : Fact
       have := GlobalTheory.ColEx.ev_map_congr R p (m + 1) (((σ : R ≃+* R) : R →+* R) ^ (m + 1)) _ _ hD
       rw [hinv, map_mul, map_pow, map_natCast] at this
       exact ⟨_, this⟩
-    have hI := GlobalTheory.T.X_mul_mem_span_of_colemanLevels R p hF.dom hF.prime hR (F (k + 1) - F k) (k + 1) (k + 2) hsmall ((k + 1) / 2)
+    have hI := _root_.GlobalTheory.Col.X_mul_mem_span_of_levels R p hF.dom hF.prime hR (F (k + 1) - F k) (k + 1) (k + 2) hsmall ((k + 1) / 2)
       (by omega) (by omega)
     apply hdivX
     refine (Ideal.span_le.2 ?_) hI

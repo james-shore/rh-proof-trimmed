@@ -108,7 +108,7 @@ theorem prod_map_val (B : Multiset ℂˣ) : (B.map (fun α : ℂˣ => (α : ℂ)
 theorem offDiag : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a b : ℕ) (σ : CG E a) (σ' : CG E b), 1 ≤ a → 1 ≤ b → σ.IsUnitary → σ'.IsUnitary → (⟨a, σ⟩ : Σ a, CG E a) ≠ ⟨b, σ'⟩ → ∀ T : Finset (HeightOneSpectrum (𝓞 E)), IsGood T → UnrOutside T σ → UnrOutside T σ' → ∃ G : ℂ → ℂ, (∀ x : ℝ, 0 < x → AnalyticAt ℂ G (x : ℂ)) ∧ ∀ x : ℝ, 1 < x → HasProd (fun w : {w : HeightOneSpectrum (𝓞 E) // w ∉ T} => lfac σ σ' (x : ℂ) w.1) (G x) := by
   intro E _ _ _ a b σ σ' ha hb hσ hσ' hne T hgood hU hU'
   rcases lt_trichotomy a b with hab | rfl | hab
-  · obtain ⟨F, H, hF, hH, hHpos, hFH⟩ := GlobalTheory.T.rankinSelberg_GLn_GLm_partialL_eq_div_entire E b a σ' σ ha hab hσ' hσ T hgood.2 hU' hU
+  · obtain ⟨F, H, hF, hH, hHpos, hFH⟩ := _root_.GlobalTheory.RSnmUnf.rs_nm_partialL_eq_div E b a σ' σ ha hab hσ' hσ T hgood.2 hU' hU
     refine ⟨fun z => starRingEnd ℂ (F (starRingEnd ℂ z) / H (starRingEnd ℂ z)), ?_, ?_⟩
     · intro x hx
       have hopen : IsOpen {z : ℂ | H (starRingEnd ℂ z) ≠ 0} :=
@@ -135,14 +135,14 @@ theorem offDiag : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.I
       rw [← h3]
       exact hp.multipliable.hasProd
   · have hne' : σ ≠ σ' := fun h => hne (by rw [h])
-    obtain ⟨F, hFa, hF1, hF⟩ := GlobalTheory.T.rankinSelberg_sameDegree_meromorphic_continuation E a σ σ' ha hσ hσ' T hgood hU hU'
+    obtain ⟨F, hFa, hF1, hF⟩ := _root_.GlobalTheory.RSNonvan.samedeg_continuation E a σ σ' ha hσ hσ' T hgood hU hU'
     refine ⟨dslope F 1, fun x hx => analyticAt_dslope' (hFa x hx), fun x hx => ?_⟩
     have hx1 : (x : ℂ) ≠ 1 := by exact_mod_cast hx.ne'
     have e : dslope F 1 (x : ℂ) = F x / ((x : ℂ) - 1) := by
       rw [dslope_of_ne _ hx1, slope_def_module, hF1 hne', sub_zero, smul_eq_mul, inv_mul_eq_div]
     rw [e]
     exact hF x hx
-  · obtain ⟨F, H, hF, hH, hHpos, hFH⟩ := GlobalTheory.T.rankinSelberg_GLn_GLm_partialL_eq_div_entire E a b σ σ' hb hab hσ hσ' T hgood.2 hU hU'
+  · obtain ⟨F, H, hF, hH, hHpos, hFH⟩ := _root_.GlobalTheory.RSnmUnf.rs_nm_partialL_eq_div E a b σ σ' hb hab hσ hσ' T hgood.2 hU hU'
     refine ⟨fun z => F z / H z, fun x hx => (hF.analyticAt _).div (hH.analyticAt _) ?_, fun x hx => hFH x hx⟩
     intro h0
     have := (hHpos x).1
@@ -159,13 +159,13 @@ theorem tendsto_of_analyticAt {G : ℂ → ℂ} (hG : AnalyticAt ℂ G 1) :
 theorem tendsto_partialL_ne_zero : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a b : ℕ) (σ : CG E a) (σ' : CG E b), 1 ≤ a → 1 ≤ b → σ.IsUnitary → σ'.IsUnitary → (⟨a, σ⟩ : Σ a, CG E a) ≠ ⟨b, σ'⟩ → ∀ T : Finset (HeightOneSpectrum (𝓞 E)), UnrOutside T σ → UnrOutside T σ' → ∃ z : ℂ, z ≠ 0 ∧ Tendsto (fun x : ℝ => ∏' w : {w : HeightOneSpectrum (𝓞 E) // w ∉ T}, locL (Ideal.absNorm w.1.asIdeal) (sat σ w.1) ((sat σ' w.1).map (Units.map (starRingEnd ℂ).toMonoidHom)) (x : ℂ)) (𝓝[>] 1) (𝓝 z) := by
   intro E _ _ _ a b σ σ' ha hb hσ hσ' hne T hT hT'
   classical
-  obtain ⟨T', hTT', hgood⟩ := GlobalTheory.T.exists_goodRankinSelbergPlaceSet_superset_totallyComplex E T
+  obtain ⟨T', hTT', hgood⟩ := _root_.GlobalTheory.RSNonvan.exists_isGood_superset_all E T
   have hU : UnrOutside T' σ := fun w hw => hT w fun h => hw (hTT' h)
   have hU' : UnrOutside T' σ' := fun w hw => hT' w fun h => hw (hTT' h)
   obtain ⟨G, hGa, hG⟩ := offDiag E a b σ σ' ha hb hσ hσ' hne T' hgood hU hU'
   obtain ⟨G', hG'a, hG'⟩ := offDiag E b a σ' σ hb ha hσ' hσ (Ne.symm hne) T' hgood hU' hU
-  obtain ⟨D, hDa, -, hD⟩ := GlobalTheory.T.rankinSelberg_sameDegree_meromorphic_continuation E a σ σ ha hσ hσ T' hgood hU hU
-  obtain ⟨D', hD'a, -, hD'⟩ := GlobalTheory.T.rankinSelberg_sameDegree_meromorphic_continuation E b σ' σ' hb hσ' hσ' T' hgood hU' hU'
+  obtain ⟨D, hDa, -, hD⟩ := _root_.GlobalTheory.RSNonvan.samedeg_continuation E a σ σ ha hσ hσ T' hgood hU hU
+  obtain ⟨D', hD'a, -, hD'⟩ := _root_.GlobalTheory.RSNonvan.samedeg_continuation E b σ' σ' hb hσ' hσ' T' hgood hU' hU'
   have hGa1 : AnalyticAt ℂ G 1 := by simpa using hGa 1 one_pos
   have hG'a1 : AnalyticAt ℂ G' 1 := by simpa using hG'a 1 one_pos
   have hlim : Tendsto (fun x : ℝ => ∏' w : {w : HeightOneSpectrum (𝓞 E) // w ∉ T'}, lfac σ σ' (x : ℂ) w.1)
@@ -187,7 +187,7 @@ theorem tendsto_partialL_ne_zero : ∀ (E : Type) [Field E] [NumberField E] [_ro
     have hP : ∀ x : ℝ, 1 < x → ∃ g : ℂ, HasSum (fun p : {w : HeightOneSpectrum (𝓞 E) // w ∉ T'} × ℕ =>
         ((dcoef σ σ' p.1.1 p.2 : ℝ) : ℂ) * Complex.exp (-((dexp p.1.1 p.2 : ℝ) : ℂ) * (x : ℂ))) g ∧ P x = Complex.exp g := by
       intro x hx
-      obtain ⟨g, hg, he⟩ := GlobalTheory.T.dirichlet_series_exponential_sum_converges E a b σ σ' hσ hσ' T' hU hU' x hx
+      obtain ⟨g, hg, he⟩ := _root_.GlobalTheory.RSNonvan.fourProd_eq_exp E a b σ σ' hσ hσ' T' hU hU' x hx
       refine ⟨g, hg, ?_⟩
       rw [← he, (hD x hx).tprod_eq, (hD' x hx).tprod_eq, (hG x hx).tprod_eq, (hG' x hx).tprod_eq]
       have hx1 : (x : ℂ) ≠ 1 := by exact_mod_cast hx.ne'
@@ -216,8 +216,8 @@ theorem tendsto_partialL_ne_zero : ∀ (E : Type) [Field E] [NumberField E] [_ro
     · intro w hw
       rw [Multiset.card_add, Multiset.card_map, Multiset.card_map, (sat_spec (hU w hw)).card, (sat_spec (hU' w hw)).card]
     · intro w hw
-      rw [Multiset.prod_add, norm_mul, prod_map_val, prod_map_val, GlobalTheory.T.norm_prod_satakeParameters_unitary_eq_one E a σ w _ hσ (sat_spec (hU w hw)),
-        GlobalTheory.T.norm_prod_satakeParameters_unitary_eq_one E b σ' w _ hσ' (sat_spec (hU' w hw)), one_mul]
+      rw [Multiset.prod_add, norm_mul, prod_map_val, prod_map_val, _root_.GlobalTheory.RSNonvan.norm_prod_sat_eq_one E a σ w _ hσ (sat_spec (hU w hw)),
+        _root_.GlobalTheory.RSNonvan.norm_prod_sat_eq_one E b σ' w _ hσ' (sat_spec (hU' w hw)), one_mul]
     · refine hs.congr fun p => ?_
       have hq : (0 : ℝ) < (Ideal.absNorm p.1.1.asIdeal : ℝ) := by
         have := NumberField.HeightOneSpectrum.one_lt_absNorm p.1.1
@@ -233,8 +233,8 @@ theorem tendsto_partialL_ne_zero : ∀ (E : Type) [Field E] [NumberField E] [_ro
       lfac σ σ' 1 w ≠ 0 := by
     intro w hw
     have hw2 := (Finset.mem_sdiff.1 hw).2
-    exact GlobalTheory.T.localRankinSelbergFactor_conj_tendsto_one_ne_zero (Ideal.absNorm w.asIdeal) (sat σ w) (sat σ' w) (NumberField.HeightOneSpectrum.one_lt_absNorm w)
-      (GlobalTheory.T.satakeParameter_normSq_lt_absNorm_unitaryCusp E a σ ha hσ T hT w hw2) (GlobalTheory.T.satakeParameter_normSq_lt_absNorm_unitaryCusp E b σ' hb hσ' T hT' w hw2)
+    exact _root_.GlobalTheory.JSW.locL_conj_tendsto_one_and_ne_zero (Ideal.absNorm w.asIdeal) (sat σ w) (sat σ' w) (NumberField.HeightOneSpectrum.one_lt_absNorm w)
+      (_root_.GlobalTheory.RSStrict.norm_sq_lt_absNorm E a σ ha hσ T hT w hw2) (_root_.GlobalTheory.RSStrict.norm_sq_lt_absNorm E b σ' hb hσ' T hT' w hw2)
   refine ⟨(∏ w ∈ T' \ T, lfac σ σ' 1 w) * G 1,
     mul_ne_zero (Finset.prod_ne_zero_iff.2 fun w hw => (hfac w hw).2) hG1, ?_⟩
   have hprodlim : Tendsto (fun x : ℝ => ∏ w ∈ T' \ T, lfac σ σ' (x : ℂ) w) (𝓝[>] 1)

@@ -63,7 +63,7 @@ namespace GlobalTheory.IwLevel
 theorem quotGlobal_holds : QuotGlobal := by
   intro S _ A _ H _ i hA hi hm hf hfl
   have := hA.comm
-  choose B instB q hq using GlobalTheory.T.exists_abelianQuotient_affineCover S A H i hA hi hm hf hfl
+  choose B instB q hq using _root_.GlobalTheory.AbQuotientLocal.exists_local_quotient S A H i hA hi hm hf hfl
   have hfin : ∀ j, IsFinite (q j).left := fun j => (hq j).2.2.1
   have hflat : ∀ j, Flat (q j).left := fun j => (hq j).2.2.2.1
   have hsurj : ∀ j, Surjective (q j).left := fun j => (hq j).2.2.2.2.1
@@ -75,7 +75,7 @@ theorem quotGlobal_holds : QuotGlobal := by
     (fun j => S.affineCover.f j) (fun j => inferInstance) (fun j => (B j).hom)
     (fun j k => pullback ((B j).hom ≫ S.affineCover.f j) (S.affineCover.f k)) (fun j k => pullback.fst _ _) b
     (fun j k => by rw [hb1]; exact IsPullback.of_hasPullback _ _) hb2 hcoc
-  obtain ⟨Qm, hQF, hQm⟩ := GlobalTheory.T.exists_gluedQuotientMap_of_local_quotients S S.affineCover A H i B q b G0 F ψ hchar (fun j k => (hψ2 j k).w)
+  obtain ⟨Qm, hQF, hQm⟩ := _root_.GlobalTheory.QuotGlue.exists_glueMap S S.affineCover A H i B q b G0 F ψ hchar (fun j k => (hψ2 j k).w)
     (fun j => (hψ j).w)
   let G : Over S := Over.mk F
   let Q : A ⟶ G := Over.homMk Qm hQF

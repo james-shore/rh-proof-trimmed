@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.CechDifferentialOneInclusion
 
 @[expose] public section
 
@@ -57,15 +58,6 @@ open CategoryTheory Polynomial CrystallineSemistableComparison CrystallineSemist
 universe w w' v u v' u' v'' u''
 
 namespace CrystallineSemistableComparison.B
-
-theorem kstep_aug_d {R : Type} [CommRing R] {C : Type u} [Category.{v} C] (F : C ⥤ ModuleCat.{w} R)
-    {M : Type w'} [AddCommGroup M] [Module R M] (e : ∀ T : C, M →ₗ[R] F.obj T)
-    (he : ∀ {T T' : C} (φ : T ⟶ T') x, (F.map φ).hom (e T x) = e T' x) (x : M) :
-    d F 0 (aug F e x) = 0 := by
-  funext s
-  change ∑ i : Fin 2, (-1 : ℤ) ^ (i : ℕ) • (F.map (GlobalTheory.CatH.toLast i s)).hom (e _ x) = 0
-  simp only [he, Fin.sum_univ_two]
-  simp
 
 def kstepLast (d k : ℕ) : Gam (d + 1) := Multiplicative.ofAdd (Pi.single (Fin.last d) k)
 
@@ -195,6 +187,6 @@ theorem CrystallineSemistableComparison.B.P.kstep : ∀ {R : Type} [CommRing R] 
     rw [hM1]
     rfl
   have htr := (CrystallineSemistableComparison.P.res_transfer (Mor.restrict F' (kstepL π hπ)).hom (aug F' e) s 1 hup).2
-    (kstep_aug_d F' e he) (hε ▸ hb)
+    (_root_.CrystallineSemistableComparison.Auxfi.d_aug F' e he) (hε ▸ hb)
   rw [mul_one] at htr
   exact htr

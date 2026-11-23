@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Topology.Sheaves.Init
+import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.NormNatCastPrime
 
 @[expose] public section
 
@@ -245,7 +246,7 @@ theorem exists_norm_eq_zpow_of_iota_eq {y : PadicAlgCl p} (hy : y ≠ 0) {a b : 
     have h9 := (mul_eq_zero.1 h8).resolve_left (sub_ne_zero.2 hσ1)
     exact Real.eq_one_of_pos_of_log_eq_zero hγ0 h9
   refine ⟨D, ?_⟩
-  rw [hy1, hγ1, one_mul, norm_p_algCl]
+  rw [hy1, hγ1, one_mul, _root_.UpperTheory.Reformulated.B.CapelliMiscellany.norm_natCast_prime]
 
 end ACris
 

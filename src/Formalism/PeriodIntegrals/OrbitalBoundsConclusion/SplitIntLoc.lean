@@ -44,4 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem split_integral_local : PI.SplitIntLoc := PI.SplitIntLoc.Proof.main

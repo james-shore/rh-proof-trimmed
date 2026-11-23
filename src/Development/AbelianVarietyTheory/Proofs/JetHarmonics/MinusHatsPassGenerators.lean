@@ -192,7 +192,7 @@ theorem minus_hats_pass_generators :
     mem_span d hx (Or.inl (Or.inr ⟨y, rfl⟩))
   have sR : ∀ {x}, x ∈ bmon d → ∀ y, x * d.L.R0v y ∈ nfSpan d (hats d.L) 0 0 1 := fun hx y =>
     mem_span d hx (Or.inr ⟨y, rfl⟩)
-  have hInv := Formalism.FourierDecayAlt.P.inverseCommutators _ P.r d.L y
+  have hInv := _root_.Formalism.FourierDecayAlt.R.PInv.ruleInv _ P.r d.L y
   have hb' := gen hb
   rcases hb with (((hb | ⟨f, rfl⟩) | ⟨i, hi, rfl⟩) | ⟨i, hi, rfl⟩)
   · simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hb

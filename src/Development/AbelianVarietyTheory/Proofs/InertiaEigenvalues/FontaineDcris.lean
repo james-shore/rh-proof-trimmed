@@ -70,10 +70,6 @@ theorem mapVB_eq_rTensor (f : V →ₗ[LL] W) (x : V ⊗[Qp] B) :
   | tmul v b => simp [Formalism.MainNotions.RamifiedCoefficientChains.mapVB]
   | add x y hx hy => simp only [map_add (f := _), hx, hy]
 
-theorem mem_Dcris' (ρ : Representation LL G V) (x : V ⊗[Qp] B) :
-    x ∈ Dcris PD ρ ↔ ∀ g, actVB PD ρ g x = x := by
-  simp [Dcris, Submodule.mem_iInf, sub_eq_zero]
-
 theorem mapVB_act (ρ : Representation LL G V) (σ : Representation LL G W) (f : V →ₗ[LL] W)
     (hf : ∀ g v, f (ρ g v) = σ g (f v)) (g : G) (x : V ⊗[Qp] B) :
     Formalism.MainNotions.RamifiedCoefficientChains.mapVB (B := B) LL f (actVB PD ρ g x) =
@@ -86,7 +82,7 @@ theorem mapVB_act (ρ : Representation LL G V) (σ : Representation LL G W) (f :
 theorem mapVB_mem_Dcris (ρ : Representation LL G V) (σ : Representation LL G W) (f : V →ₗ[LL] W)
     (hf : ∀ g v, f (ρ g v) = σ g (f v)) {x : V ⊗[Qp] B} (hx : x ∈ Dcris PD ρ) :
     Formalism.MainNotions.RamifiedCoefficientChains.mapVB (B := B) LL f x ∈ Dcris PD σ := by
-  rw [mem_Dcris'] at hx ⊢
+  rw [_root_.GlobalTheory.IndefiniteRowSideFullHecke.CrystallineSubrepresentation.mem_Dcris] at hx ⊢
   intro g
   rw [← mapVB_act PD ρ σ f hf, hx]
 
@@ -155,8 +151,8 @@ theorem exactStrict (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P)
       obtain ⟨x, hx⟩ := (hexT y).mp hk
       rw [← mapVB_eq_rTensor] at hx
       refine ⟨x, ?_, hx⟩
-      have hy' := (mem_Dcris' _ ρ₁ y).1 hy
-      rw [SetLike.mem_coe, mem_Dcris']
+      have hy' := (_root_.GlobalTheory.IndefiniteRowSideFullHecke.CrystallineSubrepresentation.mem_Dcris _ ρ₁ y).1 hy
+      rw [SetLike.mem_coe, _root_.GlobalTheory.IndefiniteRowSideFullHecke.CrystallineSubrepresentation.mem_Dcris]
       intro g
       apply hinjT
       rw [← mapVB_eq_rTensor, ← mapVB_eq_rTensor, mapVB_act _ ρ₀ ρ₁ ι hι, hx, hy' g]

@@ -89,9 +89,9 @@ theorem famφB_zero {T : Over (Sp V₁)} (y : T ⟶ D.P.A) : (fun k => y.left �
   fin_cases k
   · exact Category.comp_id _
   · show (y ≫ (𝟙 D.P.A * (toUnit D.P.A ≫ D.c 0))).left = y.left
-    rw [ThetaOne.c_zero, MonObj.comp_one, _root_.mul_one, Category.comp_id]
+    rw [_root_.GlobalTheory.IndivisibleSection.c_zero_eq_one, MonObj.comp_one, _root_.mul_one, Category.comp_id]
   · show (y ≫ toUnit D.P.A ≫ D.c 0).left = (1 : T ⟶ D.P.A).left
-    rw [ThetaOne.c_zero, MonObj.comp_one, MonObj.comp_one]
+    rw [_root_.GlobalTheory.IndivisibleSection.c_zero_eq_one, MonObj.comp_one, MonObj.comp_one]
   · show (y ≫ (1 : D.P.A ⟶ D.P.A)).left = (1 : T ⟶ D.P.A).left
     rw [MonObj.comp_one]
 
@@ -226,13 +226,9 @@ theorem term_val {V₁ : Type} [CommRing V₁] [IsDomain V₁] (D : DegPre V₁)
     simp only [ofMul_mul, ofMul_inv, ofMul_one]
     abel
 
-theorem toStk_surj {K : Type} [Field K] (z : Sp K) : Function.Surjective (toStk z) := fun s => by
-  obtain ⟨U, hU, a, rfl⟩ := (Sp K).presheaf.germ_exist s
-  exact ⟨_, (toStk_valF_gs (𝟙 _) U z hU a).trans (gs_eq _ _ _ hU _)⟩
-
 theorem root_mem {K : Type} [Field K] {k₀ : Subfield K} (hk₀ : IsAlgClosed k₀) {z : Sp K} {s : (Sp K).presheaf.stalk z}
     {n : ℕ} (hn : 1 ≤ n) (h : ∃ c ∈ k₀, s ^ n = toStk z c) : ∃ c ∈ k₀, s = toStk z c := by
-  obtain ⟨y, rfl⟩ := toStk_surj z s
+  obtain ⟨y, rfl⟩ := _root_.GlobalTheory.Ex.GtValues.toStk_surj z s
   obtain ⟨c, hc, e⟩ := h
   rw [← map_pow] at e
   exact ⟨y, Frames.mem_of_pow_mem k₀ hn ((toStk z).injective e ▸ hc), rfl⟩

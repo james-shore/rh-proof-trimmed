@@ -126,10 +126,6 @@ theorem Sub.of_smul_le {X Y : Submodule (𝓞 L) V} {𝔞 : Ideal (𝓞 L)} (h�
   obtain ⟨a, ha, ha0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot h𝔞
   exact ⟨a, ha0, fun x hx => h (Submodule.smul_mem_smul ha hx)⟩
 
-theorem exists_smul_mem_of_mem_span (Y : Submodule (𝓞 L) V) {S : Set V} (hS : ∀ x ∈ S, x ∈ Y) {p : V}
-    (hp : p ∈ Submodule.span L S) : ∃ b : 𝓞 L, b ≠ 0 ∧ b • p ∈ Y :=
-  _root_.UpperTheory.Reformulated.B.Qo3.exists_smul_mem_of_mem_span Y hS hp
-
 omit [Module L V] [IsScalarTower (𝓞 L) L V] in
 theorem Sub.of_fg {X Y : Submodule (𝓞 L) V} (hX : X.FG) (h : ∀ x ∈ X, ∃ b : 𝓞 L, b ≠ 0 ∧ b • x ∈ Y) : Sub X Y := by
   classical
@@ -253,14 +249,14 @@ theorem eig_fg (s : Ψ ⊕ Ψ) : (A.eig s).FG := A.fg.of_le inf_le_left
 
 theorem exists_smul_mem_eig (s : Ψ ⊕ Ψ) {x : V} (hx : x ∈ eigSp A.ρ (A.σ s)) :
     ∃ c : 𝓞 L, c ≠ 0 ∧ c • x ∈ A.eig s := by
-  obtain ⟨c, hc, h⟩ := exists_smul_mem_of_mem_span A.Λ (S := (A.Λ : Set V)) (fun _ h => h) (p := x)
+  obtain ⟨c, hc, h⟩ := _root_.UpperTheory.Reformulated.B.Qo3.exists_smul_mem_of_mem_span A.Λ (S := (A.Λ : Set V)) (fun _ h => h) (p := x)
     (A.span ▸ Submodule.mem_top)
   exact ⟨c, hc, h, ((eigSp A.ρ (A.σ s)).restrictScalars (𝓞 L)).smul_mem c hx⟩
 
 theorem sub_eig {s : Ψ ⊕ Ψ} {n : ℕ} {b : Fin n → V} (hb : Submodule.span L (Set.range b) = eigSp A.ρ (A.σ s)) :
     Sub (A.eig s) (Submodule.span (𝓞 L) (Set.range b)) ∧ Sub (Submodule.span (𝓞 L) (Set.range b)) (A.eig s) := by
   refine ⟨Sub.of_fg (eig_fg A s) fun x hx => ?_, Sub.of_fg (Submodule.fg_span (Set.finite_range b)) fun x hx => ?_⟩
-  · refine exists_smul_mem_of_mem_span _ (fun y hy => Submodule.subset_span hy) ?_
+  · refine _root_.UpperTheory.Reformulated.B.Qo3.exists_smul_mem_of_mem_span _ (fun y hy => Submodule.subset_span hy) ?_
     rw [hb]
     exact hx.2
   · refine exists_smul_mem_eig A s ?_

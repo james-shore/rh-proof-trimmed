@@ -74,7 +74,7 @@ theorem exists_bessel_scale_gap (hH : GlobalTheory.GapIn.Hyp) {k r : ℕ} {Wp : 
       ∀ x ∈ R.sm, ∀ v ∈ R.TK, Formalism.FourierDecayAlt.ThreeDimData.be z c π R.σ μW μN x v = (innerSL ℂ (l v)).smulRight (l x) := by
   obtain ⟨t, ht, hN, hz, -⟩ := GlobalTheory.T.exists_unitaryTorus_scale_besselCharacter k r c hc
   obtain ⟨-, hW, hψ⟩ := hz z hS.1
-  obtain ⟨hS', hm⟩ := GlobalTheory.T.isBesselMap_conj_iff_and_besselFn_eq_rankOne hH k r Wp z π u c μW μN μG νq t ht hN hW hψ hS
+  obtain ⟨hS', hm⟩ := _root_.GlobalTheory.BesselMoveGap.bessel_move_gap hH k r Wp z π u c μW μN μG νq t ht hN hW hψ hS
   have hRG : R.IsDG ε mu := ⟨hR.1, hR.2, ⟨h, hg, hok⟩⟩
   obtain ⟨l₁, hl⟩ := Gp91.GlobalTheory.T.bessel_gap_exists_functional hH.1 k r ε mu h R Wp _ _ _ _ _ _ _ hRG hg hok hS'
   obtain ⟨h1, h2⟩ := hm R hU
@@ -145,7 +145,7 @@ theorem norm_eq_const_div_deg_gap : GlobalTheory.GapIn.Hyp → GlobalTheory.GapI
   obtain ⟨l, b1, e1⟩ := exists_bessel_scale_gap hH hc s1 ⟨A.H, A.σ⟩ hDS hU hgap hok
   obtain ⟨l', b2, e2⟩ := exists_bessel_scale_gap hH hc s2 ⟨A.H, A.σ⟩ hDS hU hgap hok
   obtain ⟨k1, k2, w0, η, hw0, hη, hJ⟩ :=
-    GlobalTheory.T.amplitude_eq_smul_normalisedAmplitude_largeGap hH D τ w w' θ W lam' A _ l l' hθ hkg hT hT' hW hA hgap hok b1 b2 e1 e2
+    _root_.GlobalTheory.AmpNormalGap.amp_eq_smul_normalised_gap hH D τ w w' θ W lam' A _ l l' hθ hkg hT hT' hW hA hgap hok b1 b2 e1 e2
   have hw0' : w0 ≠ 0 := by
     obtain ⟨P, -, h1, -⟩ := hw0
     rintro rfl

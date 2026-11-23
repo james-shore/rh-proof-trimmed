@@ -62,7 +62,7 @@ theorem mem_chartForms_iff_sum_card {K : Type} [Field K] (A : Subring K) {n : �
     η ∈ chartForms A x J t a ↔ ∃ d : {I : Finset (Fin n) // I.card = a} → K, (∀ I, d I ∈ A) ∧
       η = ∑ I, d I • (((t⁻¹ * ∏ j ∈ I.1 \ J, x j : Kˣ) : K) • logWedge x I.1) := by
   classical
-  rw [GlobalTheory.T.mem_chart_forms_iff K A n x J t a η]
+  rw [_root_.GlobalTheory.LogDR.mem_chartForms_iff K A n x J t a η]
   have ht : (t : K) ≠ 0 := t.ne_zero
   have hP : ∀ I : Finset (Fin n), ∏ j ∈ I \ J, (x j : K) ≠ 0 := fun I =>
     Finset.prod_ne_zero_iff.2 fun j _ => (x j).ne_zero
@@ -110,7 +110,7 @@ theorem latModel_logAt_isFiniteQC : ∀ (X : Scheme.{0}) [IsIntegral X] {C : Typ
     (E : C → CartierDiv X) {n : ℕ} {ι : Type} (𝒜 : SncAtlas E n ι) (G : CartierDiv X) (a : ℕ)
     (F : X.Modules), LatModel (logAt (suppAll E) G a) F → GlobalTheory.QCoh.IsFiniteQC F := by
   intro X _ C _ E n ι 𝒜 G a F hF
-  refine GlobalTheory.T.lattice_model_finite_quasicoherent X _ F hF fun y => ?_
+  refine _root_.GlobalTheory.LogDR.LatFinite.isFiniteQC_of_latModel X _ F hF fun y => ?_
   obtain ⟨i, hi⟩ : ∃ i, y ∈ 𝒜.U i := by
     have : y ∈ (⨆ i, 𝒜.U i) := by rw [𝒜.cover]; trivial
     simpa [Opens.mem_iSup] using this
@@ -129,7 +129,7 @@ theorem latModel_logAt_isFiniteQC : ∀ (X : Scheme.{0}) [IsIntegral X] {C : Typ
   · intro z hz w
     have hzU : z ∈ 𝒜.U i := X.basicOpen_le f hz
     have hzt : G.IsEqn z t := hW z (hfW hz)
-    rw [GlobalTheory.T.log_forms_eq_chart_forms (suppAll E) (𝒜.U i) (𝒜.x i) (𝒜.J i) G z t a (𝒜.chart i) hzU hzt,
+    rw [_root_.GlobalTheory.LogDR.ChartStalk.logAt_eq_chartForms (suppAll E) (𝒜.U i) (𝒜.x i) (𝒜.J i) G z t a (𝒜.chart i) hzU hzt,
       mem_chartForms_iff_sum_card]
     constructor
     · rintro ⟨d, hd, rfl⟩

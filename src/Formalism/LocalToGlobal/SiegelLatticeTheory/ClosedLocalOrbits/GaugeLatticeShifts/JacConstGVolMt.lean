@@ -612,11 +612,9 @@ theorem phi_mul (g h : ↥(Formalism.REAL.UJ (εT k))) :
   rw [← iota_mul]
   rfl
 
-theorem iota_linv (A : Matrix (Fin k) (Fin k) ℂ) : (Ew k r)ᵀ * iota (r := r) A * Ew k r = A := Ew_transpose_mul_iota A
-
 theorem iota_inj {A B : Matrix (Fin k) (Fin k) ℂ} (h : iota (r := r) A = iota (r := r) B) : A = B := by
-  calc A = (Ew k r)ᵀ * iota (r := r) A * Ew k r := (iota_linv A).symm
-    _ = B := by rw [h, iota_linv]
+  calc A = (Ew k r)ᵀ * iota (r := r) A * Ew k r := (_root_.Formalism.L2.SG.Pf.GV.Ew_transpose_mul_iota A).symm
+    _ = B := by rw [h, _root_.Formalism.L2.SG.Pf.GV.Ew_transpose_mul_iota]
 
 theorem cont_phi : Continuous (phi k r) := by
   show Continuous fun g : ↥(Formalism.REAL.UJ (εT k)) =>

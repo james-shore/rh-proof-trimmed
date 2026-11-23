@@ -141,10 +141,7 @@ end Generic
 section Cosets
 variable {G : Type} [Group G]
 
-theorem exists_reps {K : Subgroup G} (hK : Formalism.UG.IsCommensurated K) (g : G) :
-    ∃ R : Finset G, (∀ γ ∈ R, ∃ k₁ ∈ K, ∃ k₂ ∈ K, γ = k₁ * g * k₂) ∧
-      ∀ x : G, (∃ k₁ ∈ K, ∃ k₂ ∈ K, x = k₁ * g * k₂) → ∃! γ, γ ∈ R ∧ γ⁻¹ * x ∈ K := by
-  exact _root_.GlobalTheory.FinsetConjugateRepresentatives.exists_finset_reps hK g
+alias exists_reps := _root_.GlobalTheory.FinsetConjugateRepresentatives.exists_finset_reps
 
 variable {H : Type} [Group H] {ρ : G →* H} {S : G → Prop} {K : Set G} {K' : Subgroup H}
 

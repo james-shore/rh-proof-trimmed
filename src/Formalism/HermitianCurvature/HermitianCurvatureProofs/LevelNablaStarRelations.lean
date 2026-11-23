@@ -583,6 +583,4 @@ end Formalism.FourierDecayAlt.P.Mx2
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem level_exists_model : Formalism.FourierDecayAlt.M.LevelExists := Mx2.levelExists
-
 end Formalism.FourierDecayAlt.P

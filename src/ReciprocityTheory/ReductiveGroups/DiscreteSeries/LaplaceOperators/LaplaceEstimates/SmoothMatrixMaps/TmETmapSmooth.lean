@@ -74,7 +74,7 @@ theorem tmE_coefX_add (x₀ : Mat k r) (w u v : H) (g : Mat k r) :
 theorem tmE_tmap_smooth (x₁ : Fin (2 * r + k + 1) → ℂ) (x₀ : Mat k r) (w : H) (f : Fin (2 * r + k + 1) → H)
     (hsm : ∀ c, Formalism.REAL.SmoothOnG ε (coefX σ x₀ w (f c))) : Formalism.REAL.SmoothOnG ε (tMap ε σ x₁ x₀ w f) := by
   unfold tMap
-  exact tmA_sm_sum _ _ fun c _ => Formalism.REAL.smooth_on_group_mul (tmD_cJ_smooth x₁ _) (hsm c)
+  exact _root_.Formalism.REAL.smooth_on_group_sum _ _ fun c _ => Formalism.REAL.smooth_on_group_mul (tmD_cJ_smooth x₁ _) (hsm c)
 
 theorem tmE_eab_tmap (hσ : IsURepOn (UJset ε) σ) (hD : IsDerivedOn ε σ D E) {x₀ : Mat k r}
     (hx₀ : x₀ ∈ UJset ε) (x₁ : Fin (2 * r + k + 1) → ℂ) (w : H) (f : Fin (2 * r + k + 1) → D)

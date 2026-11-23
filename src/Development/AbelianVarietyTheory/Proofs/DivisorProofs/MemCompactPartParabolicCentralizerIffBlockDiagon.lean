@@ -177,8 +177,8 @@ theorem twCent_blk_eq {n a b : ℕ} (h : a + b = n) (w : Pl E) (m : GLw a w × G
     have hc2 := (reindex e e).injective hc
     simp only [fromBlocks_multiply, Matrix.mul_zero, Matrix.zero_mul, add_zero, zero_add] at hc2
     rw [Matrix.fromBlocks_inj] at hc2
-    have h21 := GlobalTheory.LeviDesc.intertwiner_eq_zero_of_isCoprime _ _ _ hcop hc2.2.2.1
-    have h12 := GlobalTheory.LeviDesc.intertwiner_eq_zero_of_isCoprime _ _ _ hcop.symm hc2.2.1
+    have h21 := _root_.GlobalTheory.IntertwiningOperators.main _ _ _ hcop hc2.2.2.1
+    have h12 := _root_.GlobalTheory.IntertwiningOperators.main _ _ _ hcop.symm hc2.2.1
     obtain ⟨t, rfl⟩ := exists_jHom h g h12 h21
     refine ⟨t, ?_, rfl⟩
     show t * m = m * MonoidHom.id _ t

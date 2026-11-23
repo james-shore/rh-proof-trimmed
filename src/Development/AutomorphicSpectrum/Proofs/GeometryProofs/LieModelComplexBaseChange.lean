@@ -58,25 +58,6 @@ namespace GlobalTheory.CompanionTheory.Ar.LieSigma
 
 variable {S : Scheme.{0}} {R R' : Type} [CommRing R] [CommRing R']
 
-theorem dualMap_comp_algebraMap (φ : R →+* R') :
-    (dualMap φ).comp (algebraMap R (DualNumber R)) = (algebraMap R' (DualNumber R')).comp φ := by
-  refine RingHom.ext fun a => TrivSqZeroExt.ext ?_ ?_ <;>
-    simp [GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
-
-theorem fst_comp_dualMap (φ : R →+* R') :
-    (TrivSqZeroExt.fstHom R' R' R').toRingHom.comp (dualMap φ)
-      = φ.comp (TrivSqZeroExt.fstHom R R R).toRingHom := by
-  refine RingHom.ext fun a => ?_
-  simp [GlobalTheory.CompanionTheory.Ar.dualMap]
-
-theorem dualMap_comp_epsMul (φ : R →+* R') (a : R) :
-    (dualMap φ).comp (epsMul a) = (epsMul (φ a)).comp (dualMap φ) := by
-  refine RingHom.ext fun a => TrivSqZeroExt.ext ?_ ?_ <;>
-    simp [GlobalTheory.CompanionTheory.Ar.dualMap, GlobalTheory.CompanionTheory.Ar.epsMul, mul_comm]
-
-theorem comp_one_over {X Y M : Over S} [GrpObj M] (u : Y ⟶ X) : u ≫ (1 : X ⟶ M) = 1 := by
-  exact comp_one u
-
 theorem comp_mul_over {X Y M : Over S} [GrpObj M] (u : Y ⟶ X) (p q : X ⟶ M) :
     u ≫ (p * q) = (u ≫ p) * (u ≫ q) := by
   exact comp_mul u p q
@@ -85,7 +66,7 @@ def pullEps (φ : R →+* R') (x : Sp R ⟶ S) : epsAt (spMap φ ≫ x) ⟶ epsA
   Over.homMk (spMap (dualMap φ)) (by
     simp only [Over.mk_hom, epsAt]
     rw [← Spec.map_comp_assoc, ← Spec.map_comp_assoc, ← CommRingCat.ofHom_comp, ← CommRingCat.ofHom_comp,
-      dualMap_comp_algebraMap])
+      _root_.GlobalTheory.CompanionTheory.Ar.SqAdd.dualMap_comp_algebraMap])
 
 def pullPt (φ : R →+* R') (x : Sp R ⟶ S) : Over.mk (spMap φ ≫ x) ⟶ Over.mk x :=
   Over.homMk (spMap φ) rfl
@@ -93,10 +74,10 @@ def pullPt (φ : R →+* R') (x : Sp R ⟶ S) : Over.mk (spMap φ ≫ x) ⟶ Ove
 theorem isTanAt_pull (G : Over S) [GrpObj G] (φ : R →+* R') (x : Sp R ⟶ S) (v : epsAt x ⟶ G)
     (hv : IsTanAt G x v) : IsTanAt G (spMap φ ≫ x) (pullEps φ x ≫ v) := by
   unfold IsTanAt at hv ⊢
-  rw [← comp_one_over (pullPt φ x), Over.comp_left, Over.comp_left, ← hv]
+  rw [← _root_.ReciprocityTheory.ChartRestriction.G.Chart.comp_one'' (pullPt φ x), Over.comp_left, Over.comp_left, ← hv]
   have key : Spec.map (CommRingCat.ofHom (TrivSqZeroExt.fstHom R' R' R').toRingHom) ≫ spMap (dualMap φ)
       = spMap φ ≫ Spec.map (CommRingCat.ofHom (TrivSqZeroExt.fstHom R R R).toRingHom) := by
-    simp only [spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp, fst_comp_dualMap]
+    simp only [spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp, _root_.GlobalTheory.CompanionTheory.Ar.SqAdd.fst_comp_dualMap]
   simp only [pullEps, pullPt, Over.homMk_left]
   rw [reassoc_of% key]
 
@@ -117,7 +98,7 @@ theorem exists_linear (G : Over S) [GrpObj G] (φ : R →+* R') (x : Sp R ⟶ S)
     rw [M₀.smul, hj, Over.comp_left, Over.comp_left, M.smul]
     simp only [pullEps, Over.homMk_left, ← Category.assoc]
     congr 1
-    simp only [spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp, dualMap_comp_epsMul]
+    simp only [spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp, _root_.GlobalTheory.CompanionTheory.Ar.LieCarrier.dualMap_epsMul]
 
 def transport {G : Over S} [GrpObj G] {x : Sp R ⟶ S} {E E' : Type} [AddCommGroup E] [Module R E]
     [AddCommGroup E'] [Module R E'] (M : LieModel G x E) (f : E' ≃ₗ[R] E) : LieModel G x E' where

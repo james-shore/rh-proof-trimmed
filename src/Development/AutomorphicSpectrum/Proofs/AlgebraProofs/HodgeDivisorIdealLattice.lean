@@ -235,7 +235,7 @@ open GlobalTheory.CompanionTheory.Ar.Num.HaSteps.SlopeTestRemainingChoices in
 theorem GlobalTheory.CompanionTheory.Ar.Num.HaSteps.main : ∀ {o Ω : Type} [CommRing o] [Field Ω] [Algebra o Ω] {F : Type} [Zero F] [One F] [Fintype F] {n : ℕ} {Sg : Type} {r s : Sg → ℕ} (D : LieLatticeData Ω F n Sg r s) (R : Subalgebra o Ω) (p : ℕ) (w : Ω) (χ : Sg → F → Ω), CharData R p w χ → D.Base R p w → p.Prime → IsNoetherianRing R → IsFractionRing R Ω → IsIntegrallyClosedIn R Ω → ∀ φ : Equiv.Perm Sg, D.TestFacts R p w χ φ → D.Good₁ R p χ → D.Good₂ R p χ → (∀ τ i, D.dId R p (χ τ) i = D.xId (χ τ) i) ∧ (∀ τ (i : Fin n), (D.stepGraph τ (χ τ) i).map (AddMonoidHom.snd _ _) = D.kk τ i) ∧ ∀ τ i, (D.stepGraph (φ τ) (χ (φ τ)) i).comap (AddMonoidHom.inl _ _) = powSpan R p (D.xId (χ τ) i) := by
   intro o Ω _ _ _ F _ _ _ n Sg r s D R p w χ hc hb hp hN hF hI φ hT hG hG2
   obtain ⟨hf1, hbc1⟩ := GlobalTheory.CompanionTheory.Ar.Num.LatticeGoodBaseChange.main D R p w χ hc hb hG
-  have hk := GlobalTheory.CompanionTheory.Ar.Num.kernel_graph_base_change D R p w χ hc hb hG
+  have hk := _root_.PositivityTheory.Xgn.kernel_lattice_base_change D R p w χ hc hb hG
   obtain ⟨hf2, hbc2⟩ := GlobalTheory.CompanionTheory.Ar.Num.LatticeGoodness.main D R p w χ hc hb hG hG2
     (GlobalTheory.CompanionTheory.Ar.Num.hodge_annihilator_lattice D R p w χ hc hb hp hN hF hI φ hT hG)
   have hp0 := hc.1
@@ -271,13 +271,13 @@ theorem GlobalTheory.CompanionTheory.Ar.Num.HaSteps.main : ∀ {o Ω : Type} [Co
           spanOver RC (algebraMap Ω C '' powSpan R p (D.xId (χ τ) i)) := by
       intro C _ _ _ _ RC hRC
       rw [← (((hbc2 C RC hRC.2.2.2).2 (φ τ)).2 i).2,
-        ← (GlobalTheory.CompanionTheory.Ar.Num.powSpan_locFree_baseChange R RC hRC.2.2.2 p _ ((hf1 τ).2.2.2 i)).2,
+        ← (_root_.PositivityTheory.Xgn.t_powspan R RC hRC.2.2.2 p _ ((hf1 τ).2.2.2 i)).2,
         ← ((hbc1 C RC hRC.2.2.2).2 τ).2.2 i]
       exact (hT C RC hRC).inj τ i
     obtain ⟨m, hm⟩ := pow_mem_xId hc hb τ i
     refine le_antisymm
       (ideal_le R p hp hp0 hN hF hI _ _
-        (GlobalTheory.CompanionTheory.Ar.Num.powSpan_locFree_baseChange (C := Ω) R R (fun _ ha => ha) p _ ((hf1 τ).2.2.2 i)).1
+        (_root_.PositivityTheory.Xgn.t_powspan (C := Ω) R R (fun _ ha => ha) p _ ((hf1 τ).2.2.2 i)).1
         (fun a ha => xId_le hc hb (φ τ) i a (ker_le hb _ _ i ha)) ⟨m * p, ?_⟩ h)
       (ideal_le R p hp hp0 hN hF hI _ _ ((hf2 (φ τ)).2 i).2
         (powSpan_le R p _ (xId_le hc hb τ i)) (pow_mem_ker hc hb (φ τ) i)

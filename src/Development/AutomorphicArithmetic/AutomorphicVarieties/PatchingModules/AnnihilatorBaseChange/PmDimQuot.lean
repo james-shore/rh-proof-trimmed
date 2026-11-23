@@ -176,7 +176,7 @@ theorem UpperTheory.V.Pa.Core.pmDim :
     show (c a * r) • x = a • (r • x)
     rw [mul_smul, hc]⟩
   obtain ⟨hfin, hfree⟩ :=
-    UpperTheory.V.AlgebraTools.IsCplAt.finite_free_baseChange Λ R (q.comap c) q La B X hLa hRB rfl
+    _root_.UpperTheory.Reformulated.B.FlatnessPrecompleteProducts.finite_free_baseChange Λ R (q.comap c) q La B X hLa hRB rfl
   haveI := hfin
   haveI := hfree
   let y' : σ → B := fun i => algebraMap P.BB B (algebraMap R P.BB (y i))

@@ -61,7 +61,7 @@ theorem contr_quasi : ∀ (D : D7) (ρ σ : ℕ) (B : BesLev D ρ) (B' : BesLev 
     funext w
     have e : ((ratW S B.A γ + u, l.κ S w) : WO B.A S × WO B.L S) = (ratW S B.A γ, (0 : WO B.L S)) + (u, l.κ S w) := by simp
     rw [e, map_add (f := _), e0, h₁.quasi, ← e0, B.o.symplOH_resS, AddEquiv.apply_symm_apply, AddEquiv.apply_symm_apply,
-      symplOH_zero_left, add_zero]
+      _root_.GlobalTheory.MixModel.symplOH_zero_left, add_zero]
     ring
   · intro γ u v
     have e0 : (B'.o.resT S).symm (ratW B'.A S γ, 0) = ratW B'.V₀ S (B'.o.iA * γ) := by
@@ -72,7 +72,7 @@ theorem contr_quasi : ∀ (D : D7) (ρ σ : ℕ) (B : BesLev D ρ) (B' : BesLev 
     funext w
     have e : ((ratW B'.A S γ + v, w) : WO S B'.A × WO S B'.L) = (ratW B'.A S γ, (0 : WO S B'.L)) + (v, w) := by simp
     rw [e, map_add (f := _), e0, h₂.quasi, ← e0, B'.o.symplOH_resT, AddEquiv.apply_symm_apply, AddEquiv.apply_symm_apply,
-      symplOH_zero_left, add_zero]
+      _root_.GlobalTheory.MixModel.symplOH_zero_left, add_zero]
     ring
 
 end GlobalTheory.ContrComb

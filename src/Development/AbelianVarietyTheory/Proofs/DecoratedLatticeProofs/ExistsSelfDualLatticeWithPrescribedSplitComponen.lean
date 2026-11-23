@@ -117,9 +117,7 @@ theorem sec_eq_mul (p : SplitPt D k) (a : k) : p.sec a = p.e * p.sec a := by
   have h := p.sec_pr (p.sec a)
   rwa [p.pr_sec] at h
 
-theorem sec_mem_idAt (p : SplitPt D k) (a : k) : p.sec a ∈ idAt D (· = p.v) := by
-  rw [sec_eq_mul]
-  exact Ideal.mul_mem_right _ _ (e_mem_idAt p)
+alias sec_mem_idAt := _root_.GlobalTheory.FinPl.FrameLat.sec_mem_idAt
 
 variable {S : HSp D} {n : Type} [Fintype n] [DecidableEq n]
 

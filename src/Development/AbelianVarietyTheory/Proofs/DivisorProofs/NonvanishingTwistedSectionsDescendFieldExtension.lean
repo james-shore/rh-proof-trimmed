@@ -92,21 +92,6 @@ theorem ker_descend {k K : Type} [Field k] [Field K] [Algebra k K] {a b : ℕ}
     refine Finset.sum_congr rfl fun l _ => ?_
     rw [Algebra.smul_def, mul_comm]
 
-theorem mem_nonzeroLocus_iff_isUnit {X Z : Scheme.{0}} {N : LB X} (s : LB.Sec N) (r : Z ⟶ X) (z : Z) {j : N.ι}
-    (hj : r z ∈ N.U j) : r z ∈ nonzeroLocus s ↔ IsUnit (gs r z _ (s.f j)) := by
-  have key : ∀ {j : N.ι} (hj : r z ∈ N.U j), IsUnit (gs r z _ (s.f j)) ↔ r z ∈ X.basicOpen (s.f j) := by
-    intro j hj
-    rw [gs_eq r z _ hj]
-    refine ((Z.mem_basicOpen ((r.app _).hom (s.f j)) z hj).symm).trans ?_
-    rw [← Scheme.Hom.preimage_basicOpen]
-    rfl
-  rw [key hj]
-  refine ⟨fun h => ?_, fun h => TopologicalSpace.Opens.mem_iSup.2 ⟨j, h⟩⟩
-  obtain ⟨j', hj'⟩ := TopologicalSpace.Opens.mem_iSup.1 h
-  have hm : r z ∈ N.U j' := X.basicOpen_le _ hj'
-  rw [← key hj, gs_compat s r z hj hm]
-  exact (Units.isUnit _).mul ((key hm).2 hj')
-
 theorem linComb_whisker {S : Scheme.{0}} (A : Over S) [GrpObj A] (L : LB A.left) (q : ℕ)
     {T T' : Over S} (ρ : T' ⟶ T) (c : T ⟶ A) :
     LB.LinComb L (K := Fin 2) (fun k => (ρ ▷ A).left ≫ ![(snd T A).left, (translPt A c).left] k)
@@ -157,7 +142,7 @@ theorem exists_sec_of_baseChange : ∀ (S : Scheme.{0}) (P : PolAV S) (k : Type)
     have a₁ := GlobalTheory.SecTwist.gs_pullSec (chartPullOut P.L _ _ π _ fun _ => rfl) sK (𝟙 _) z (fun _ => Q.ch i)
       (mem_pull.2 m₁)
     rw [Category.id_comp] at a₁
-    refine a₁ ▸ (mem_nonzeroLocus_iff_isUnit sK (𝟙 _) z m₂).1 hsK
+    refine a₁ ▸ (_root_.GlobalTheory.mem_nonzeroLocus_iff_pull sK (𝟙 _) z m₂).1 hsK
   obtain ⟨r, e, u, hu, hvu⟩ := ker_descend Q.D₀ (E.symm sb).1 (E.symm sb).2
   have h₀ : IsPullback (𝟙 _) f f (Spec.map (CommRingCat.ofHom (RingHom.id k))) := by
     rw [CommRingCat.ofHom_id, Spec.map_id]
@@ -174,7 +159,7 @@ theorem exists_sec_of_baseChange : ∀ (S : Scheme.{0}) (P : PolAV S) (k : Type)
     rw [Category.comp_id] at a₃ a₄
     exact a₃.trans a₄
   have hnu : ∀ l, gs π z (M.U (Q.ch i)) ((s l).f (Q.ch i)) ∈ IsLocalRing.maximalIdeal _ := fun l => by
-    rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff, ← mem_nonzeroLocus_iff_isUnit (s l) π z m₁]
+    rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff, ← _root_.GlobalTheory.mem_nonzeroLocus_iff_pull (s l) π z m₁]
     exact hy (s l)
   have e1 : ∀ a : k, ReciprocityTheory.ChartRestriction.G.Geo.Tor.cst f' z (algebraMap k K a) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.cst (π ≫ f) z a :=
     fun a => by

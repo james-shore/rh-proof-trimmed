@@ -150,11 +150,6 @@ theorem gram_posDef (hb : C.HasRatBasis) (φ : K →+* ℂ) (hp : (C.gramV.map �
     ⟨c, Finset.mem_univ c, mul_pos (hw c) (hp.dotProduct_mulVec_pos hc)⟩
 
 
-omit [StarRing K] in
-theorem exists_smul_mem {V : Type} [AddCommGroup V] [Module K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V]
-    {M : Submodule (𝓞 K) V} {x : V} (hx : x ∈ Submodule.span K (M : Set V)) : ∃ d : 𝓞 K, d ≠ 0 ∧ d • x ∈ M := by
-  exact _root_.GlobalTheory.NonzeroSmulMemIntegralSpan.exists_ne_zero_smul_mem hx
-
 theorem values_isLattice (M : C.Cl → Submodule (𝓞 K) C.V) (hM : ∀ c, Submodule.IsFullLattice K (M c))
     (L : Submodule (𝓞 K) C.Forms) (hL : ∀ x, x ∈ L ↔ ∀ c, x.1 c ∈ M c) :
     L.FG ∧ Submodule.span K (L : Set C.Forms) = ⊤ := by
@@ -167,7 +162,7 @@ theorem values_isLattice (M : C.Cl → Submodule (𝓞 K) C.V) (hM : ∀ c, Subm
   · apply eq_top_iff.mpr
     intro x _
     have hx : ∀ c, ∃ d : 𝓞 K, d ≠ 0 ∧ d • x.1 c ∈ M c := fun c =>
-      exists_smul_mem (by rw [(hM c).span_eq_top]; trivial)
+      _root_.GlobalTheory.NonzeroSmulMemIntegralSpan.exists_ne_zero_smul_mem (by rw [(hM c).span_eq_top]; trivial)
     choose d hd hdx using hx
     let a : 𝓞 K := ∏ c, d c
     have ha : a ≠ 0 := Finset.prod_ne_zero_iff.mpr fun c _ => hd c

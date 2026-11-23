@@ -58,11 +58,11 @@ theorem exists_basic_nhd : ∀ (A B : Type) [CommRing A] [CommRing B] [Algebra A
   intro A B _ _ _ N r e Z y z
   obtain ⟨W₀, hW₀, hzW₀, -⟩ := exists_isAffineOpen_mem_and_subset (show z ∈ (⊤ : Z.Opens) from trivial)
   let W : Z.affineOpens := ⟨W₀, hW₀⟩
-  obtain ⟨hfin, hflat⟩ := GlobalTheory.T.affineHilbertSections_finite_flat A B r Z y W
-  obtain ⟨σ, f, hf, hbij⟩ := GlobalTheory.T.exists_localizedModule_map_bijective_of_rankAtStalk_eq Γ(Z, W₀) (GlobalTheory.HilbAff.Sec A B y W) N r
-    (fun j => GlobalTheory.HilbAff.gen A B y W (e j)) (GlobalTheory.T.affineHilbertSections_basis_span_eq_top A B N r e Z y W) (GlobalTheory.T.affineHilbertSections_rankAtStalk A B r Z y W)
+  obtain ⟨hfin, hflat⟩ := _root_.GlobalTheory.HilbAff.sec_finite_flat A B r Z y W
+  obtain ⟨σ, f, hf, hbij⟩ := _root_.GlobalTheory.exists_embedding_bijective_localizedModule_map_of_rankAtStalk Γ(Z, W₀) (GlobalTheory.HilbAff.Sec A B y W) N r
+    (fun j => GlobalTheory.HilbAff.gen A B y W (e j)) (_root_.GlobalTheory.HilbAff.span_gen_eq_top A B N r e Z y W) (_root_.GlobalTheory.HilbAff.rankAtStalk_sec A B r Z y W)
     (hW₀.primeIdealOf ⟨z, hzW₀⟩)
-  have hD := (GlobalTheory.T.affineHilbertCoordinateMap_basicOpen_bijective A B N r e σ Z y W f).2 hbij
+  have hD := (_root_.GlobalTheory.HilbAff.coord_basicOpen_bijective_iff A B N r e σ Z y W f).2 hbij
   have hzf : z ∈ Z.basicOpen f := by
     have h1 : hW₀.primeIdealOf ⟨z, hzW₀⟩ ∈ hW₀.fromSpec ⁻¹ᵁ Z.basicOpen f := by
       rw [hW₀.fromSpec_preimage_basicOpen]; exact hf
@@ -73,8 +73,8 @@ theorem exists_basic_nhd : ∀ (A B : Type) [CommRing A] [CommRing B] [Algebra A
   refine ⟨σ, Z.basicOpen f, hzf, ?_⟩
   rw [GlobalTheory.HilbAff.basic_iff]
   intro W'
-  apply GlobalTheory.T.affineHilbertCoordinateMap_restrict_bijective
-  exact GlobalTheory.T.hilbertCoordinateMap_bijective_of_le_affine A B N r e σ Z y ⟨Z.basicOpen f, hW₀.basicOpen f⟩
+  apply _root_.GlobalTheory.HilbAff.coord_restrict_bijective
+  exact _root_.GlobalTheory.HilbAff.coord_bijective_of_le_affine A B N r e σ Z y ⟨Z.basicOpen f, hW₀.basicOpen f⟩
     ⟨_, W'.2.image_of_isOpenImmersion (Z.basicOpen f).ι⟩ (Scheme.Opens.ι_image_le _ _) hD
 
 end GlobalTheory.HilbAff

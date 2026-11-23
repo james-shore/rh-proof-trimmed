@@ -58,36 +58,10 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.AmpRecordGap
 
-theorem isHCParam_u (R : Ranks) (P : HCParam R) : Formalism.QuantumDeterminants.IsHCParam (fun i => ((P.u i : ℚ) : ℝ)) := by
-  have hk := R.m_add_three_le_k
-  obtain ⟨c, hc⟩ := R.k_even
-  have step : ∀ (i : ℕ) (h : i + 1 < R.k), P.u ⟨i + 1, h⟩ < P.u ⟨i, by omega⟩ := fun i h =>
-    lt_trans (P.v_gt_u ⟨i, by omega⟩) (P.u_gt_v ⟨i, by omega⟩)
-  refine ⟨?_, fun a => ?_⟩
-  · have key : ∀ (d i : ℕ) (h : i + d + 1 < R.k), P.u ⟨i + d + 1, h⟩ < P.u ⟨i, by omega⟩ := by
-      intro d
-      induction d with
-      | zero => intro i h; exact step i h
-      | succ d ih => intro i h; exact lt_trans (step (i + d + 1) h) (ih i (by omega))
-    intro i j hij
-    have hlt : i.val < j.val := hij
-    have := key (j.val - i.val - 1) i.val (by omega)
-    have e : P.u ⟨i.val + (j.val - i.val - 1) + 1, by omega⟩ = P.u j := congrArg P.u (Fin.ext (by simp; omega))
-    rw [e] at this
-    beta_reduce
-    exact_mod_cast this
-  · obtain ⟨z, hz⟩ := P.u_half a
-    refine ⟨z - c + 1, ?_⟩
-    simp only
-    rw [hz, hc]; push_cast; ring
-
-theorem isHCParam_uS (D : D7) (w : D.what₂.Word) (τ : D.what₂.Tau) : Formalism.QuantumDeterminants.IsHCParam (uS D w τ) :=
-  isHCParam_u D.R (D.hcW w τ)
-
 theorem weyl_at (D : D7) : VanishingOnXAndXPlusBranching.adm12 D := by
   intro τ w H _ _ z π hπ
   obtain ⟨g, -, hg⟩ := hπ
-  exact (GlobalTheory.WeylDimU.weyl_dimension _ _ (isHCParam_uS D w τ)).1 H _ hg
+  exact (GlobalTheory.WeylDimU.weyl_dimension _ _ (_root_.GlobalTheory.CritLevel.isHCParam_uS D w τ)).1 H _ hg
 
 theorem ampOn_singleton : ∀ c : ℝ, AmpOn {c} := by
   intro c Cg cb Cu cT CT hcb _

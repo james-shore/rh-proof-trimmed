@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PConeFsLogIntegrable
 
 @[expose] public section
 
@@ -76,12 +77,6 @@ theorem pairing_pointOf_smul (h : HermNorm n) (u : Fin n → ℂ) (t : ℂ)
   rw [hpt, Finset.mul_sum]
   exact Finset.sum_congr rfl fun j _ => by simp only [Pi.smul_apply, smul_eq_mul]; ring
 
-theorem dualNorm_pointOf_eq (h : HermNorm n) (y : EuclideanSpace ℂ (Fin n)) :
-    h.dualNorm (h.pointOf y) = ‖y‖ := by
-  have hA : IsUnit h.matᵀ.det := by rw [Matrix.det_transpose]; exact h.isUnit_det
-  rw [HermNorm.dualNorm, HermNorm.pointOf, Matrix.mulVec_mulVec, Matrix.nonsing_inv_mul _ hA,
-    Matrix.one_mulVec, EuclideanSpace.norm_eq]
-
 theorem hermNorm_pos (h : HermNorm n) {u : Fin n → ℂ} (hu : u ≠ 0) : 0 < h.norm u := by
   have hne : h.mat *ᵥ u ≠ 0 := by
     intro h0
@@ -109,7 +104,7 @@ theorem lt_logGap_iff (h : HermNorm n) {u : Fin n → ℂ} (hu : u ≠ 0) {s : �
   by_cases hp : ∑ j, u j * h.pointOf y j = 0
   · simp [hy, hp, hs.lt_top, hc]
   · have hpn : 0 < ‖∑ j, u j * h.pointOf y j‖ := norm_pos_iff.mpr hp
-    rw [if_neg hy, if_neg hp, ENNReal.lt_ofReal_iff_toReal_lt hs, fsLog, dualNorm_pointOf_eq,
+    rw [if_neg hy, if_neg hp, ENNReal.lt_ofReal_iff_toReal_lt hs, fsLog, _root_.GroundTheory.Heights₂.Heights.ConeFsLog.dualNorm_pointOf,
       Real.log_div hpn.ne' hy'.ne', ← Real.log_lt_log_iff hpn hc,
       Real.log_mul (by positivity) hy'.ne', Real.log_mul (Real.exp_pos _).ne' hN.ne', Real.log_exp]
     constructor <;> intro hh <;> linarith

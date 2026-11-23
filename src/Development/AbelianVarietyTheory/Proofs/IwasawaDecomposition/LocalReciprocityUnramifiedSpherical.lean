@@ -171,7 +171,7 @@ theorem isSpherical_of_sphAt (π : NG.AutRep L n) (s : SplitPlace L)
       have := j.1.2.2 (lift (e g)) (hlift _).1 a
       rw [hloc] at this
       exact this⟩
-  refine fixed_ne_bot_of_mem_iSup σ.irr Tm (GlobalTheory.SplitWeil.KO _ (Fin n)) ht hf0 fun k hk => ?_
+  refine _root_.GlobalTheory.UnrLoc.fixed_ne_bot_of_mem_iSup_range σ.irr Tm (GlobalTheory.SplitWeil.KO _ (Fin n)) ht hf0 fun k hk => ?_
   show NG.rt L n (lift (e k)) f = f
   exact hfix _ (mem_Umax_of_mem_KO s i hi _ (hlift _).1 (by rw [hloc]; exact hk)) (hlift _).1
 

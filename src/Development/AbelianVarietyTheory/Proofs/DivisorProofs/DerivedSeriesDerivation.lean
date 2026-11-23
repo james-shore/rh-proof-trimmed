@@ -39,6 +39,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsDimEqOne
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SimilitudeActionAdelicLattice
 
 @[expose] public section
 
@@ -57,12 +58,6 @@ namespace GlobalTheory.UnitApprox
 open IsDedekindDomain IsDedekindDomain.HeightOneSpectrum
 
 variable {p : ℕ} [Fact p.Prime]
-
-theorem int_mul {a c : AfP p} (ha : IsIntAf a) (hc : IsIntAf c) : IsIntAf (a * c) := fun v => by
-  rw [map_mul]; exact mul_mem (ha v) (hc v)
-
-theorem int_sub {a c : AfP p} (ha : IsIntAf a) (hc : IsIntAf c) : IsIntAf (a - c) := fun v => by
-  rw [map_sub]; exact sub_mem (ha v) (hc v)
 
 theorem int_natCast (k : ℕ) : IsIntAf (k : AfP p) := fun v => by
   rw [map_natCast]; exact natCast_mem _ k
@@ -85,7 +80,7 @@ theorem exists_int_approx : ∀ (p : ℕ) [Fact p.Prime] (ε ε' : AfP p), IsInt
     obtain ⟨β, hβ, e1⟩ := hu n hn hnp
     obtain ⟨β', hβ', e2⟩ := hu (n * m) (Nat.mul_pos hn hm) hnmp
     apply IntDvdAdele.dvd_of_eq_mul_int p n hn hnp _ (β - (m : AfP p) * β')
-      (int_sub hβ (int_mul (int_natCast m) hβ'))
+      (_root_.GlobalTheory.AdelicSim.isInt_sub hβ (_root_.GlobalTheory.AdelicSim.isInt_mul (int_natCast m) hβ'))
     have : ((u (n * m) - u n : ℤ) : AfP p) = (u (n * m) : AfP p) - (u n : AfP p) := by push_cast; ring
     rw [this]
     have e3 : (u (n * m) : AfP p) = ε - ((n * m : ℕ) : AfP p) * β' := by rw [e2]; ring
@@ -97,7 +92,7 @@ theorem exists_int_approx : ∀ (p : ℕ) [Fact p.Prime] (ε ε' : AfP p), IsInt
     obtain ⟨z', β', hβ', e2⟩ := LaHatMod.exists_int_add_mul n hn hnp ε' hε'
     have hd : (n : ℤ) ∣ u n * z' - 1 := by
       apply IntDvdAdele.dvd_of_eq_mul_int p n hn hnp _ ((n : AfP p) * β * β' - β * ε' - ε * β')
-        (int_sub (int_sub (int_mul (int_mul (int_natCast n) hβ) hβ') (int_mul hβ hε')) (int_mul hε hβ'))
+        (_root_.GlobalTheory.AdelicSim.isInt_sub (_root_.GlobalTheory.AdelicSim.isInt_sub (_root_.GlobalTheory.AdelicSim.isInt_mul (_root_.GlobalTheory.AdelicSim.isInt_mul (int_natCast n) hβ) hβ') (_root_.GlobalTheory.AdelicSim.isInt_mul hβ hε')) (_root_.GlobalTheory.AdelicSim.isInt_mul hε hβ'))
       have e4 : (u n : AfP p) = ε - (n : AfP p) * β := by rw [e1]; ring
       have e5 : (z' : AfP p) = ε' - (n : AfP p) * β' := by rw [e2]; ring
       push_cast

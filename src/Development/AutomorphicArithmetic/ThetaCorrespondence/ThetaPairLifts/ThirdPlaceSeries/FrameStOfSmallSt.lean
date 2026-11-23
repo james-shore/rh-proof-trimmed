@@ -82,8 +82,8 @@ variable {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.MainNotio
 end Point
 theorem frameSt_of_smallSt' : _root_.GlobalTheory.ExpTie.SmallnessCondition → _root_.GlobalTheory.ExpTie.FrameStatement' := by
   intro hS
-  have h := _root_.GlobalTheory.FrameOf.inRange_and_alt hS (_root_.GlobalTheory.FrameOf.inRange_and_alt _root_.GlobalTheory.T.inRange_halfAt_of_smallAt (_root_.GlobalTheory.FrameOf.inRange_and_alt _root_.GlobalTheory.T.inRange_kapAt_of_smallAt (_root_.GlobalTheory.FrameOf.inRange_and_alt _root_.GlobalTheory.T.chiAt_of_smallAt (_root_.GlobalTheory.FrameOf.inRange_and_alt _root_.GlobalTheory.T.tame_at_of_small_at
-    (_root_.GlobalTheory.FrameOf.inRange_and_alt _root_.GlobalTheory.T.permAt_of_smallAt (_root_.GlobalTheory.FrameOf.inRange_and_alt _root_.GlobalTheory.T.commAt_of_smallAt_in_range _root_.GlobalTheory.T.readsAt_of_smallAt))))))
+  have h := _root_.GlobalTheory.FrameOf.inRange_and_alt hS (_root_.GlobalTheory.FrameOf.inRange_and_alt _root_.GlobalTheory.HalfLabels.halfAt_inRange_alt (_root_.GlobalTheory.FrameOf.inRange_and_alt _root_.GlobalTheory.FrameOf.kapSt_alt (_root_.GlobalTheory.FrameOf.inRange_and_alt _root_.GlobalTheory.LevelCharExp.chiAt_inRange_alt (_root_.GlobalTheory.FrameOf.inRange_and_alt _root_.GlobalTheory.TameStab.tameSt_alt
+    (_root_.GlobalTheory.FrameOf.inRange_and_alt _root_.GlobalTheory.FramePerm.permSt_alt (_root_.GlobalTheory.FrameOf.inRange_and_alt _root_.GlobalTheory.HeckeCommFrame.comm_alt _root_.GlobalTheory.FrameRead.reads_of_small_alt))))))
   refine _root_.GlobalTheory.FrameOf.inRange_of_dict_imp h fun Fm x hx i p j P W w hD hq => ?_
   obtain ⟨hs, hh, hk, hc, ht, hp, hcm, hr⟩ := hq
   exact frameAt_of p j P W w hD.Nr (hh hs) (hk hs) (hc hs) (ht hs) (hp hs) (hcm hs) (hr hs)

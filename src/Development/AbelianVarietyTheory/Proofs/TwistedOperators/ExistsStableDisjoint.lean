@@ -146,7 +146,7 @@ theorem fockF_matRep {n n' : ℕ} (g : GL (Fin n) ℂ) (h : GL (Fin n') ℂ) (v 
       ← Matrix.conjTranspose_kronecker]
     ext a b
     rfl
-  rw [matRep_apply, matRep_apply, Formalism.GradedWeylDivisibility.fockSubAdj, e]
+  rw [matRep_apply, matRep_apply, _root_.Formalism.GradedWeylDivisibility.fischerInnerSubstitutionAdjoint, e]
 
 theorem exists_stable_disjoint (n n' : ℕ) (M : Submodule ℂ (MvPolynomial (Fin n' × Fin n) ℂ)) (hM : M ≠ ⊤)
     (hst : ∀ p : GL (Fin n) ℂ × GL (Fin n') ℂ, ∀ v ∈ M, matRep n n' p v ∈ M) :

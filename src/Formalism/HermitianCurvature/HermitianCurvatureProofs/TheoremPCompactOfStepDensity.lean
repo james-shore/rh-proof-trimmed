@@ -70,13 +70,7 @@ theorem iteratedFDeriv_apply_of_eq_zero (m : ℕ) (u : Fin m → ℂ) (G : ℂ �
   subst hm
   simp
 
-theorem ae_ne_zero_C : ∀ᵐ t : ℂ, t ≠ 0 := by
-  rw [ae_iff]
-  have hset : {a : ℂ | ¬a ≠ 0} = {0} := by
-    ext a
-    simp
-  rw [hset]
-  exact measure_singleton 0
+alias ae_ne_zero_C := _root_.Formalism.FourierDecayAlt.P5.ae_complex_ne_zero
 
 theorem ext_of_derivCombInt {f : ℂ → ℂ} {I : ℂ} (hf : DerivCombInt f I) :
     ∃ φ : ℂ → ℂ, Continuous φ ∧ (∀ t, t ≠ 0 → φ t = f t) ∧

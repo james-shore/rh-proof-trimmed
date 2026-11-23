@@ -148,7 +148,7 @@ theorem UpperTheory.exists_eq_pure_vacuum_of_lattice_invariant :
       ((latAtV X W v).map (GlobalTheory.LatVac.locCo M.co v)) c
       (by rw [← AddMonoidHom.map_closure]; exact AddSubgroup.map_mono hgen) hc0
       (GlobalTheory.LatVac.DualLoc.map_selfDual v M.co B.ψ _ (fun γ hγ => GlobalTheory.VacLine.at_latAtV hγ)
-        (GlobalTheory.T.heisenbergLattice_selfDual_every_finitePlace F E σ B n d X W r s r' s' hB hX hW v))
+        (_root_.GlobalTheory.LatSelfDualAll.latAtV_selfDual F E σ B n d X W r s r' s' hB hX hW v))
       (by rintro _ ⟨γ, hγ, rfl⟩; exact hc γ hγ) (M.vac v)
       (fun ξ => Ψ (y + fun k => GlobalTheory.LatVac.liftV v (ξ k)))
       (by

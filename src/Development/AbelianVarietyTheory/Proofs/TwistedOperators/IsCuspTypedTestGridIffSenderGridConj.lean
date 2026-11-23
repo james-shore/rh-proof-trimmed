@@ -41,6 +41,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CuspAlongOfPairLifts
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.GridParameterRegularCardEqRankFormula
 
 @[expose] public section
 
@@ -56,15 +58,10 @@ open Matrix GlobalTheory.ConjDS GlobalTheory.ConjMult Formalism.IndefR.Mult
 
 variable {D : D7}
 
-theorem isUnit_det_gramAt (V : HSp D) (τ : D.what₂.Tau) : IsUnit (gramAt D V τ).det := by
-  refine isUnit_iff_ne_zero.2 ?_
-  rw [gramAt, ← RingHom.mapMatrix_apply, ← RingHom.map_det]
-  exact (map_ne_zero _).2 (Formalism.L2.Theta.gram_det_ne V)
-
 theorem isTypeAt_star {θ : InfFam D} {V : HSp D} {τ : D.what₂.Tau} {S : SPar} {φ : GA D V → ℂ}
     (h : IsTypeAt θ V τ S φ) : IsTypeAt θ V τ (dualPar S) fun g => star (φ g) := by
   obtain ⟨H, i1, i2, σ, lam, ε, P, hE, hD, hP, hG, hx⟩ := h
-  have hJ := isUnit_det_gramAt V τ
+  have hJ := _root_.GlobalTheory.SmoothAutCheck.gramAt_unit V τ
   have key : ∀ g, rv (P.submatrix Fin.revPerm (Equiv.refl _) * g * (P.submatrix Fin.revPerm (Equiv.refl _))⁻¹) =
       P * g * P⁻¹ := fun g => by
     rw [inv_submatrix_equiv]
@@ -141,38 +138,12 @@ theorem listed_iff_of_sameSp {θ : InfFam D} {V V' : HSp D} (h : GlobalTheory.Gr
   refine and_congr ⟨fun h => ⟨⟨h.left, h.level, h.cont⟩, h.smooth, h.zfin, h.growth⟩,
     fun h => ⟨⟨h.left, h.level, h.cont⟩, h.smooth, h.zfin, h.growth⟩⟩ (and_congr Iff.rfl Iff.rfl)
 
-theorem grid_eq_num (D : D7) (τ : D.what₂.Tau) : GlobalTheory.Grid.grid D τ = GlobalTheory.ChiGrid.num D 1 τ := by
-  have hg := GlobalTheory.GridJoin.gap_eq_chiGap D
-  have hc : GlobalTheory.Grid.cen D τ = GlobalTheory.ChiGrid.cen D 1 τ := by
-    funext i
-    unfold GlobalTheory.Grid.cen GlobalTheory.ChiGrid.cen GlobalTheory.Grid.gridOf
-    rw [hg]
-    rfl
-  unfold GlobalTheory.Grid.grid GlobalTheory.Grid.gridOf GlobalTheory.ChiGrid.num
-  rw [hc, hg]
-  rfl
-
 theorem parV_eq (D : D7) (i j : ℕ) (τ : D.what₂.Tau) :
     GlobalTheory.Grid.parV D i j τ = dualPar (GlobalTheory.ChiGrid.parV D 1 i j τ) := by
-  rw [GlobalTheory.Grid.parV, GlobalTheory.ChiGrid.parV, grid_eq_num]
+  rw [GlobalTheory.Grid.parV, GlobalTheory.ChiGrid.parV, _root_.GlobalTheory.GridParDCount.grid_eq_num]
 
 variable {G₀ : Type} [Group G₀] [Fintype G₀] {Pl0 T : Type} {A : FamIn D.what₂.LL G₀ Pl0 T D.R.m}
   {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL]
-
-theorem nodeS_eq {R : RealDat D A Ks} {G : GlobalTheory.Grid.GridPre R} (hG : G.Is) {i j : ℕ} (hi : i ≤ D.R.m) (hj : j ≤ D.R.m) :
-    (G.V i j).S = GlobalTheory.Grid.parV D i j := by
-  cases i with
-  | zero =>
-    rw [GlobalTheory.Grid.parV_zero D hj]
-    cases j with
-    | zero => simp [GlobalTheory.Grid.GridPre.V, GlobalTheory.Grid.row0, GlobalTheory.Grid.nodeY]
-    | succ j =>
-      by_cases h : j + 1 < D.R.m
-      · simp [GlobalTheory.Grid.GridPre.V, GlobalTheory.Grid.row0, GlobalTheory.Grid.nodeY, h, min_eq_left h.le]
-      · have e : j + 1 = D.R.m := by omega
-        simp only [GlobalTheory.Grid.GridPre.V, GlobalTheory.Grid.GridSp.vert, GlobalTheory.Grid.row0, if_neg h]
-        rw [e]
-  | succ i => exact (hG.spaces.vert i j (by omega) hj).par
 
 end GlobalTheory.ListedTypeConj
 
@@ -189,7 +160,7 @@ theorem isCuspListed_grid_iff : ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ]
   intro D Γ _ _ Pl0 T A Ks _ _ _ R sc large₂ F _ hc G' W hW G hG hM i j hi hj e φ
   have hθ : W.θ = R.θ := hW.θ
   have hS : (G.V i j).S = fun τ => dualPar (GlobalTheory.ChiGrid.Node.par D sc.cGap (.grid i j) τ) := by
-    rw [nodeS_eq hG hi hj, hc]
+    rw [_root_.GlobalTheory.PairLift.par_vert hG hi hj, hc]
     funext τ
     exact parV_eq D i j τ
   have hsp := (hM.1.vert i j hi hj).sp

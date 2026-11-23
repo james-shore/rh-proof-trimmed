@@ -192,7 +192,7 @@ theorem product_moment : Hyps → ∀ (k r : ℕ) (Wp : Type) [NormedAddCommGrou
   have hA : 0 ≤ (((2 * r + k + 1) : ℝ) ^ 2 * (Formalism.QuantumDeterminants.Tz k r z * b ^ 4) * (6 * bv) ^ (2 * (2 * r + 2))) := by
     have : 0 ≤ bv := by linarith
     positivity
-  have hmain := GlobalTheory.T.product_moment_bound_density_mass_one (Formalism.QuantumDeterminants.Mt k r) νq j (fun a x => lenA k r z (Matrix.of x) (Fin.castLE (Nat.succ_le_succ hj) a))
+  have hmain := _root_.GlobalTheory.MomentHolder.product_moment_le (Formalism.QuantumDeterminants.Mt k r) νq j (fun a x => lenA k r z (Matrix.of x) (Fin.castLE (Nat.succ_le_succ hj) a))
     (fun x => dg ν * ‖l ν ((R ν).σ (Matrix.of x) w)‖ ^ 2)
     (((2 * r + k + 1) : ℝ) ^ 2 * (Formalism.QuantumDeterminants.Tz k r z * b ^ 4) * (6 * bv) ^ (2 * (2 * r + 2))) (b ^ 2)
     (fun a => hlen (Fin.castLE (Nat.succ_le_succ hj) a))
@@ -215,7 +215,7 @@ theorem product_moment : Hyps → ∀ (k r : ℕ) (Wp : Type) [NormedAddCommGrou
       simpa only [hw1, one_pow, mul_one] using this)
   refine hmain.trans (ENNReal.ofReal_le_ofReal ?_)
   have h1 : (b ^ 2) ^ (2 * j) ≤ (b ^ 2) ^ (2 * r) := pow_le_pow_right₀ (one_le_pow₀ hb) (by omega)
-  have h2 := (mul_le_mul_of_nonneg_left h1 hA).trans (GlobalTheory.T.numericalFamily_productBound_constant_le k r lam u b bv ga h q0 _ hNum hT)
+  have h2 := (mul_le_mul_of_nonneg_left h1 hA).trans (_root_.GlobalTheory.MomNum.mom_num k r lam u b bv ga h q0 _ hNum hT)
   have h3 : 1 ≤ Hsq r (Formalism.QuantumDeterminants.Tz k r z) b := one_le_mul_of_one_le_of_one_le (le_max_left _ _) (one_le_pow₀ hb)
   exact (pow_le_pow_left₀ (mul_nonneg hA (by positivity)) h2 _).trans (pow_le_pow_right₀ h3 (by omega))
 
@@ -339,7 +339,7 @@ theorem exists_tau : Hyps → ∀ (P : M.Par) (Wp Wq : Type) [NormedAddCommGroup
   haveI := FiniteDimensional.complete ℂ Wp
   haveI := FiniteDimensional.complete ℂ Wq
   obtain ⟨-, hz1, hz2, -, -, ht1, ht2⟩ := p.hP
-  obtain ⟨νq, νq', hS, hS'⟩ := GlobalTheory.T.besselDatum_both_sides_are_sides P.k P.r Wp Wq p.T.base P.u P.u' ht1 ht2
+  obtain ⟨νq, νq', hS, hS'⟩ := _root_.GlobalTheory.exists_sideG_both_of_isType P.k P.r Wp Wq p.T.base P.u P.u' ht1 ht2
   have key : ∀ ν, ∃ t : Finset (Fin (2 * P.r + P.k + 1)) → ℂ,
       (∀ I, J ν = 0 ∨ J (ν + eZ I) = 0 → t I = 0) ∧
       (n1 ν + (P.r + 1) * (P.r + 2) ≤ q0 →
@@ -425,7 +425,7 @@ theorem tau_bound : Hyps → ∀ (P : M.Par) (Wp Wq : Type) [NormedAddCommGroup 
     by_contra hc
     exact hz.2 (hS.zero _ hc)
   obtain ⟨-, -, -, hT, hT', hty, hty'⟩ := p.hP
-  obtain ⟨νq, νq', hG, hG'⟩ := GlobalTheory.T.besselDatum_both_sides_are_sides P.k P.r Wp Wq p.T.base P.u P.u' hty hty'
+  obtain ⟨νq, νq', hG, hG'⟩ := _root_.GlobalTheory.exists_sideG_both_of_isType P.k P.r Wp Wq p.T.base P.u P.u' hty hty'
   obtain ⟨io, pr, ep, hTens, hκ⟩ := hSL.tau_eq ν hν
   obtain ⟨κ, κ', hk, hk', ht⟩ := hκ ⟨I, hI⟩ hz.1 hz.2
   have b1 := kappa_bound hyp P.k P.r Wp lam P.u b bv ga h q0 _ _ _ _ _ νq R l dg
@@ -448,7 +448,7 @@ theorem supplied_pieri : Hyps → ∀ (P : M.Par) (Wp Wq : Type) [NormedAddCommG
   intro H P Wp Wq _ _ _ _ _ _ p lam b bv ga h q0 R l l' dg s J tau₀ hN hS j hj tau hSL ν hν c hc hG
   haveI := FiniteDimensional.complete ℂ Wp
   haveI := FiniteDimensional.complete ℂ Wq
-  obtain ⟨γ, hγ, hZ, hV⟩ := GlobalTheory.T.exists_regularRep_besselBigCellVector_eq_bessel P Wp Wq p c hc hG
+  obtain ⟨γ, hγ, hZ, hV⟩ := _root_.GlobalTheory.exists_regular_rep_vec_bigPt_eq_bessel P Wp Wq p c hc hG
   simp only [hV]
   by_cases hJ : J ν = 0
   · rw [hJ, GlobalTheory.SuppliedPieri.JF_zero, smul_zero]

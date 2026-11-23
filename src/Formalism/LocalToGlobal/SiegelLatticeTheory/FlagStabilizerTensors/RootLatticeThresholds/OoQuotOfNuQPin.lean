@@ -68,7 +68,7 @@ theorem hfF (w' : D.what₂.Word) (a : Fin D.R.rS) (b : Fin (D.R.rS + 1)) :
   | last =>
     rw [frm_last, hfz_v, if_neg (Fin.castSucc_ne_last a).symm]
   | cast b =>
-    rw [frm_castSucc, hJs_r, hfe_v]
+    rw [frm_castSucc, _root_.Formalism.L2.SG.Pf.Carrier.JointQuot.hJ_smul_r, hfe_v]
     by_cases h : b = a
     · subst h; simp
     · rw [if_neg h, if_neg (fun e => h (Fin.castSucc_injective _ e)), mul_zero]

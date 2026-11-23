@@ -61,6 +61,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.InvolutionSphericalHeckeAnti
 
 @[expose] public section
 
@@ -340,7 +341,7 @@ theorem map_conj (S : GridChoice W U) {t : T} (ht : t ∈ U) {w : Pl D.host.E} (
   obtain ⟨P, e, he, hsupp, hoff⟩ := S.N.u_supp _ hX
   have hn := GlobalTheory.RowMoveAt.notOff S ht hw
   have hu := GlobalTheory.RowMoveAt.map_mt_eq_one hn he hoff hsupp
-  have hu' := GlobalTheory.RowMoveAt.map_mt_eq_one hn he hoff (GlobalTheory.StdHalfLat.suppAt_inv' hsupp)
+  have hu' := GlobalTheory.RowMoveAt.map_mt_eq_one hn he hoff (_root_.GlobalTheory.SplitPlace.suppAt_inv hsupp)
   rw [show Formalism.L2.Theta.mt _ ((S.N.u X)⁻¹ * g * S.N.u X).1 =
       Formalism.L2.Theta.mt _ (S.N.u X).1⁻¹ * Formalism.L2.Theta.mt _ g.1 * Formalism.L2.Theta.mt _ (S.N.u X).1 from rfl,
     Matrix.map_mul, Matrix.map_mul, hu, hu', Matrix.one_mul, Matrix.mul_one]
@@ -572,7 +573,7 @@ theorem col_scalar (S : GridChoice W U) {t μ₀ : T} (hL : L.Is μ₀) (ht : t 
   have e : G.Λ (.top D.R.m) = G.sp.topDec.lat (G.Λ (.grid D.R.m D.R.m)) (fun _ => 1) := G.sp.topLat
   have h2 : Lev.finE (G.V (.top D.R.m)) (finEmb G.sp.topDec k).1 ∈
       Formalism.UG.stabGL (Formalism.L2.Herm.hatL (F := D.host.F) (G.Λ (.top D.R.m))) := by
-    rw [e]; exact GlobalTheory.LastColLat.finEmb_stab G.sp.topDec _ k h1
+    rw [e]; exact _root_.GlobalTheory.FinEmbLat.finEmb_mem_stabGL G.sp.topDec _ k h1
   have h4 := GlobalTheory.LastColLat.topLast_stab S.N _ (GlobalTheory.LastColLat.conj_stab S.N (X := .top D.R.m) le_rfl _ h2)
   have key := GlobalTheory.T.weilLatticeVacuum_eq_prod_splitPlace_factors hW (S.N.selfDual hn.1) (S.N.selfDual hn.2) (locPl G t) (fun w hw => isIdemAt_idemAt hL G t hw)
     (Good.under_injOn hL G t) (fun v hv' => by rw [hS, hT]; exact ⟨mu_charUnramAt hL G t _ hv', mu_charUnramAt hL G t _ hv'⟩)

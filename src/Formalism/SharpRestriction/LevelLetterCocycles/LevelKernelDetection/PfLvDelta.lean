@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.DistinguishedUnitIdeals.DistinguishedOrderProofs.Bridge
 
 @[expose] public section
 
@@ -113,14 +114,6 @@ theorem grdB_ringInverse (τ : Ks ≃ₐ[LL] Ks) (a : LLˣ) {X : HahnSeries ℤ 
       _ = ↑u⁻¹ := by rw [h1, one_mul]
   · rw [Ring.inverse_non_unit _ hu, grdB_zero']
 
-theorem ofPS_coeff_neg {R : Type} [CommRing R] (x : PowerSeries R) {i : ℤ} (hi : i < 0) :
-    (HahnSeries.ofPowerSeries ℤ R x).coeff i = 0 := by
-  rw [HahnSeries.ofPowerSeries_apply]
-  exact HahnSeries.embDomain_of_notMem_range (by
-    rintro ⟨m, hm⟩
-    simp at hm
-    omega)
-
 end Graded
 
 variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp] [Field K₀] [Field K]
@@ -168,7 +161,7 @@ theorem delta_holds (hR : Ring9 W) (uZ : ℤ_[PD.p]ˣ) (ιZ : ℤ_[PD.p] →+* O
   · show algebraMap LL (KsW W s) ((((levW W uZ ιZ s).a j) ^ i : LLˣ) : LL) *
         ((levW W uZ ιZ s).τ j) ((HahnSeries.ofPowerSeries ℤ (KsW W s) (rhoL hR c s a)).coeff i) =
       (HahnSeries.ofPowerSeries ℤ (KsW W s) (rhoL hR c s a)).coeff i
-    rw [ofPS_coeff_neg _ hi, map_zero, mul_zero]
+    rw [_root_.Formalism.ExponentWindows.G.BR.ofPS_coeff_neg _ hi, map_zero, mul_zero]
   · obtain ⟨k, rfl⟩ := Int.eq_ofNat_of_zero_le (not_lt.mp hi)
     show algebraMap LL (KsW W s) ((((levW W uZ ιZ s).a j) ^ (k : ℤ) : LLˣ) : LL) *
         ((levW W uZ ιZ s).τ j) ((HahnSeries.ofPowerSeries ℤ (KsW W s) (rhoL hR c s a)).coeff (k : ℤ)) =

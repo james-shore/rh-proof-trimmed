@@ -67,10 +67,6 @@ noncomputable section
 namespace GlobalTheory.DiscrJacGlobal
 open EtBaseChange
 
-theorem top_le_of_closedPoint {T : Type} [CommRing T] [IsLocalRing T] {X : Scheme.{0}} (w : Sp T ⟶ X) {U : X.Opens}
-    (h : w (IsLocalRing.closedPoint T) ∈ U) : ⊤ ≤ w ⁻¹ᵁ U :=
-  fun p _ => ((IsLocalRing.specializes_closedPoint p).map w.continuous).mem_open U.isOpen h
-
 theorem exists_unit_chart {R T : Type} [CommRing R] [CommRing T] (x : KeyIn R) (w : Sp T ⟶ x.P.A.left)
     (c c' : x.P.L.ι) (h : ⊤ ≤ w ⁻¹ᵁ x.P.L.U c) (h' : ⊤ ≤ w ⁻¹ᵁ x.P.L.U c') :
     ∃ ω : Tˣ, ∀ (l : ℕ) (s : RR x l), valT w (x.P.L.U c) (s.f c) = (ω : T) ^ l * valT w (x.P.L.U c') (s.f c') := by
@@ -89,7 +85,7 @@ theorem notMem_nonzeroLocus {R T : Type} [CommRing R] [CommRing T] [IsLocalRing 
     (hs : valT w (x.P.L.U c) (s.f c) = 0) : w (IsLocalRing.closedPoint T) ∉ Out.nonzeroLocus s := by
   intro hy
   obtain ⟨k, hk⟩ := TopologicalSpace.Opens.mem_iSup.1 hy
-  have h₁ := top_le_of_closedPoint w hk
+  have h₁ := _root_.GlobalTheory.KeyKa.ClosedApprox.top_le_of_closedPoint w hk
   have hle := x.P.A.left.basicOpen_le (s.f k)
   obtain ⟨ω, hω⟩ := exists_unit_chart x w k c (fun p hp => hle (h₁ hp)) h
   have e := valT_res w hle h₁ (s.f k)
@@ -135,9 +131,9 @@ theorem main : Out.Laws → ∀ (O : Type) [CommRing O] [IsDomain O] [IsDiscrete
   have hθ : ∀ y : Y, θ y (IsLocalRing.closedPoint _) = y.1 := fun y => (hθ₀ y).trans (hr y)
   choose e he₁ he₂ using fun a => hθ₃ (p a) O (z a).left
     ((Over.w (z a)).trans (Spec.map_id _).symm) (hθ (p a)).symm
-  have hc : ∀ y, ⊤ ≤ θ y ⁻¹ᵁ x.P.L.U (ch (r y)) := fun y => top_le_of_closedPoint _ (by
+  have hc : ∀ y, ⊤ ≤ θ y ⁻¹ᵁ x.P.L.U (ch (r y)) := fun y => _root_.GlobalTheory.KeyKa.ClosedApprox.top_le_of_closedPoint _ (by
     rw [hθ₀]; exact hz (r y) (x := IsLocalRing.closedPoint O) trivial)
-  have hc' : ∀ a, ⊤ ≤ θ (p a) ⁻¹ᵁ x.P.L.U (ch a) := fun a => top_le_of_closedPoint _ (by
+  have hc' : ∀ a, ⊤ ≤ θ (p a) ⁻¹ᵁ x.P.L.U (ch a) := fun a => _root_.GlobalTheory.KeyKa.ClosedApprox.top_le_of_closedPoint _ (by
     rw [hθ]; exact hz a (x := IsLocalRing.closedPoint O) trivial)
   choose ω hω using fun a => exists_unit_chart x (θ (p a)) (ch a) (ch (r (p a))) (hc' a) (hc (p a))
   let F : Y → Fin x.P.g → MvPowerSeries (Fin x.P.g) O := fun y i =>

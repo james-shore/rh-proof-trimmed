@@ -149,7 +149,7 @@ theorem disint_finPart : ∀ (D : D7) (X : Formalism.L2.SG.HidaSetting.HidaSetti
   set x := X.xu u with hxdef
   haveI : SecondCountableTopology G := Formalism.L2.SG.Pf.gf_secondCountable X.B.I
   haveI : X.B.μf.IsHaarMeasure := X.B.haar
-  have hKg := Formalism.L2.SG.Closed.level_subgroup_is_group X
+  have hKg := _root_.Formalism.L2.SG.Pf.level_subgroup_character_unitary X
   have hKt := Formalism.L2.SG.Pf.level_subgroup_compact_open X
   have hK1 : (1 : G) ∈ K := hKg.1
   have hKmul : ∀ a ∈ K, ∀ b ∈ K, a * b ∈ K := hKg.2.1

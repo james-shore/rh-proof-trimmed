@@ -69,9 +69,4 @@ theorem card_zmod_tensor_eq_card_quot (M : Type) [AddCommGroup M] [Module ℤ M]
     Nat.card_congr (TensorProduct.quotTensorEquivQuotSMul M (Ideal.span {(p : ℤ)})).toEquiv,
     ideal_span_natCast_smul_top_eq_range]
 
-theorem card_zmod_tensor_eq_card_quot' : ∀ (M : Type) [AddCommGroup M] [Module ℤ M] (p : ℕ),
-    Nat.card (TensorProduct ℤ (ZMod p) M) =
-      Nat.card (M ⧸ LinearMap.range ((p : ℤ) • (LinearMap.id : M →ₗ[ℤ] M))) :=
-  fun M _ _ p => card_zmod_tensor_eq_card_quot M p
-
 end GlobalTheory

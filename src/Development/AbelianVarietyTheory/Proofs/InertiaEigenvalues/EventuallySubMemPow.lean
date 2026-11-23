@@ -167,7 +167,7 @@ theorem eventually_dvd_ainf (N : ℕ) (y : Per.Ainf l) :
 
 theorem eventually_dvd_dpow {x : Per.Ainf l} (hx : Per.θ l x = 0) (k N : ℕ) :
     ∀ᶠ g : GQ l in 𝓝 1, (l : Per.Acris l) ^ N ∣ galC g (dpow x hx k) - dpow x hx k := by
-  choose c hc using GlobalTheory.RingBasics.exists_pow_div_factorial l
+  choose c hc using _root_.Reformulated.AutPerF.exists_factorial_mul_eq_pow l
   have hc' : ∀ n : ℕ, (n.factorial : Per.Acris l) * algebraMap ℤ_[l] _ (c n) = (l : Per.Acris l) ^ n :=
     fun n => by
       simpa only [map_mul, map_natCast, map_pow] using congrArg (algebraMap ℤ_[l] (Per.Acris l)) (hc n)

@@ -71,7 +71,7 @@ theorem propsB_iso {Rc : UpperTheory.GalStar.RecNotion} {E Ω : Type} [Field E] 
   have Ha := H.above P AI T w A h O Bw hj
   have e : ∀ s : ↥(Dec (F := E) A), r'.comp (Dec (F := E) A).subtype s = g * r.comp (Dec (F := E) A).subtype s * g⁻¹ :=
     fun s => hg s
-  obtain ⟨c1, c2, -, c4⟩ := GlobalTheory.T.padicHodgeProperties_conj_invariant l P E Ω O _ Bw m _ _ g e
+  obtain ⟨c1, c2, -, c4⟩ := _root_.GlobalTheory.ConjLocal.local_conj l P E Ω O _ Bw m _ _ g e
   refine ⟨fun σ hσ hf => ?_, fun σ hσ rc hrc h1 h2 => ?_⟩
   · obtain ⟨a1, a2, a3⟩ := Ha.crys σ hσ hf
     exact ⟨c2 a1, c1 a2, fun τ L τ' hτ => c4 _ _ (a3 τ L τ' hτ)⟩

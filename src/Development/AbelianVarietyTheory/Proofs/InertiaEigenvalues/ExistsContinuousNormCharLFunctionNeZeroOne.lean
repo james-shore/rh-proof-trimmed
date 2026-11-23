@@ -157,7 +157,7 @@ theorem exists_continuous_ne_zero_one :
   have hεε : ε * ε = 1 := by
     rw [hε, ← Units.val_mul, ← map_mul]
     simp
-  obtain ⟨φ, hφmul, hφhom, hφsm, hφnorm, hφβ⟩ := GlobalTheory.T.exists_mixedSpace_norm_sign_character K ε hεε
+  obtain ⟨φ, hφmul, hφhom, hφsm, hφnorm, hφβ⟩ := _root_.GlobalTheory.NormSign.exists_normSign K ε hεε
   have hXφ : ∀ β : 𝓞 K, β ≠ 0 → β - 1 ∈ M → X (Ideal.span {β}) = φ (mixedEmbedding K β) := by
     intro β hβ0 hβ1
     rw [hφβ β hβ0]

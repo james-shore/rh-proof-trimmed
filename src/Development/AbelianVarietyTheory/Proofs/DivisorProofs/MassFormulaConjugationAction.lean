@@ -112,7 +112,7 @@ theorem mass_pt_side : ∀ (H : Type) [Group H] (X : Type) [MulAction H X] (f : 
       (Quotient.mk'' (Quotient.out O).pt : MulAction.orbitRel.Quotient H X)) _
     (finite_support_weighted f hfin)]
   refine finsum_congr fun a => ?_
-  have h := GlobalTheory.T.finsum_over_conj_pairs_eq_orbit_sum H X f hinv hstab hsupp (Quotient.out a)
+  have h := _root_.GlobalTheory.PtFib.ptFib_mass H X f hinv hstab hsupp (Quotient.out a)
   rw [Quotient.out_eq'] at h
   exact h.symm
 
@@ -133,7 +133,7 @@ theorem mass_class_side : ∀ (G : Type) [Group G] (X : Type) [MulAction G X] (�
     (fun O : MulAction.orbitRel.Quotient Γ (ConjPair Γ X) => ConjClasses.mk (Quotient.out O).elt) _
     (finite_support_weighted Φ hfin)]
   refine finsum_congr fun c => ?_
-  have h := GlobalTheory.T.finsum_stabilizer_weighted_pair_orbits_conjClass G X Γ Φ hinv (Quotient.out c)
+  have h := _root_.GlobalTheory.MassConj.finsum_pairOrbit_fibre G X Γ Φ hinv (Quotient.out c)
   have e : ConjClasses.mk (Quotient.out c) = c := Quotient.out_eq c
   rw [e] at h
   exact h

@@ -54,7 +54,7 @@ open NumberField IsDedekindDomain Formalism Formalism.BasicNotions Formalism.Bas
 namespace GlobalTheory.BridgeAdmDict
 theorem main_alt_alt : GlobalTheory.TwSys.Cheb → ∀ D : D7, _root_.Formalism.MainNotions.SumRepresentations.adm2_alt D → WeightParam D → BlockCharParam D → AdmissibleParameterJ.AdmDict D := by
   intro hC D hA hW hB
-  have hAC := _root_.GlobalTheory.T.algebraicCharacter_of_adm2 D hA
+  have hAC := _root_.GlobalTheory.AlgCharFromGal.main_alt_alt_alt D hA
   refine ⟨false, ?_⟩
   rintro i τ₀ g ρ ⟨hτ, hP⟩
   obtain ⟨b, hb, hU⟩ : ∃ b : Bool, (D.naut.iotaQC i).toRingHom.comp τ₀ = GlobalTheory.IndefiniteRowSideFullHecke.JumpDictionary.embOver D ρ b ∧

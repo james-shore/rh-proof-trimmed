@@ -64,7 +64,7 @@ theorem restWinE_proved (D : Formalism.BasicNotions.D7) : RestWinE D := by
     (a_mem_win hS)
 
 theorem theorem_A_closed_form_holds (D : Formalism.BasicNotions.D7) : Formalism.MainNotions.flipOneThree.IntegralityFromMetricForLargeConstants D :=
-  closed_of_minimal_vector D PI.exists_minimalNormVector diagonal_rank_bound (restWinE_proved D)
+  closed_of_minimal_vector D PI.exists_minimalNormVector _root_.PI.UnitaryGroupMassFormula.DiagRank.diagRank (restWinE_proved D)
 
 end Formalism.MainNotions.G.GramWindowAlt
 

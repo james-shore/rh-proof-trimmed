@@ -50,11 +50,8 @@ namespace GlobalTheory.LoopC.PerpFlags
 
 variable {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpace E} {r : ℕ}
 
-theorem mem_orth (U : Submodule E S.V) (v : S.V) : v ∈ orth S U ↔ ∀ x ∈ U, S.hT x v = 0 := by
-  simp [orth, Submodule.mem_iInf]
-
 theorem orth_anti {U U' : Submodule E S.V} (h : U ≤ U') : orth S U' ≤ orth S U := fun v hv =>
-  (mem_orth _ _).2 fun x hx => (mem_orth _ _).1 hv x (h hx)
+  (_root_.Formalism.MainNotions.mem_orth_iff _ _).2 fun x hx => (_root_.Formalism.MainNotions.mem_orth_iff _ _).1 hv x (h hx)
 
 theorem xplus_le {T : E} {Λ : Submodule (𝓞 E) S.V} (hΛ : Submodule.IsFullLattice E Λ) (F : LFlag S r T)
     (M : Submodule (𝓞 E) S.V) (h1 : XLam Λ F ≤ M) (h2 : F.fl.z ∈ M) : Xplus F ≤ spanE S M := by
@@ -99,7 +96,7 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [StarRing E] (S : HSpace
   by_cases hc : c = 0
   · simp [hc]
   refine absurd (gflag_eq_zero F.fl F'.fl c hc fun b => ?_) hG
-  refine GlobalTheory.Mass.RowPerp.swap_zero S.herm ((mem_orth _ _).1 (a2 hx.1) _ ?_)
+  refine GlobalTheory.Mass.RowPerp.swap_zero S.herm ((_root_.Formalism.MainNotions.mem_orth_iff _ _).1 (a2 hx.1) _ ?_)
   refine Fin.lastCases ?_ (fun i => ?_) b
   · rw [FlagG.fvec, Fin.snoc_last]
     exact Submodule.mem_sup_right (Submodule.mem_span_singleton_self _)

@@ -62,8 +62,8 @@ open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Fo
 namespace Formalism.L2.SG.Pf
 
 theorem normExpDegC_of_leaves (hFL : Formalism.L2.SG.Pf.FinLeviC) (hOL : Formalism.L2.SG.Pf.OOLintSumC) : NormExpDegC :=
-  normExpDegC_of hilbert_schmidt_blocks (Formalism.L2.SG.Closed.FoldOKC_holds hFL) (Formalism.L2.SG.Closed.OOIntAllC_holds hOL)
-    (Formalism.L2.SG.Closed.AbsConvC_holds hOL) Formalism.L2.SG.Closed.AmpWellDefC_holds Formalism.L2.SG.Closed.OOFundIndepC_holds
+  normExpDegC_of _root_.NormHilbertSchmidtBlocks.hSBlocks_main (Formalism.L2.SG.Closed.FoldOKC_holds hFL) (_root_.Formalism.L2.SG.Pf.ooIntAllC_holds_of hOL)
+    (_root_.Formalism.L2.SG.Pf.absConvC_holds_of hOL) Formalism.L2.SG.Closed.AmpWellDefC_holds Formalism.L2.SG.Closed.OOFundIndepC_holds
     (fun _ X => chi_n_bilinear X) (fun D X Y u _ => Formalism.L2.SG.NormCut.colFreeAll D X Y u)
     (fun D X Y u _ h1 h2 h3 =>
       Formalism.L2.SG.NormCut.degLeftAct_of_PD (fun D => Formalism.L2.SG.Pf.positive_definite_isomorphism D) D X Y u h1 h2 h3)

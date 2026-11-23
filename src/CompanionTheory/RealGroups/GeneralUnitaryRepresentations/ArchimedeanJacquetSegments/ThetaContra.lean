@@ -69,10 +69,7 @@ theorem nontriv {G V : Type} [Group G] [AddCommGroup V] [Module ℂ V] (ρ : Rep
   have hne : (⊥ : Subrepresentation ρ) ≠ ⊤ := bot_ne_top
   exact hne (Subrepresentation.toSubmodule_injective (Subsingleton.elim _ _))
 
-theorem congrProd {h N : ℕ} {x y : Fin h → IrrGL (k := k)} (e : x = y) (hx : ∑ a, (x a).1 = N) (hy : ∑ a, (y a).1 = N) :
-    Nonempty ((prodIrr x hx).Equiv (prodIrr y hy)) := by
-  subst e
-  exact ⟨Representation.Equiv.refl _⟩
+alias congrProd := _root_.GlobalTheory.CompanionTheory.LSocle.prodIrr_congr
 
 def yy (x : IrrGL (k := k)) (s : ℝ) : Fin 2 → IrrGL (k := k) := ![x.nu (-(s : ℂ)), x.nu (s : ℂ)]
 

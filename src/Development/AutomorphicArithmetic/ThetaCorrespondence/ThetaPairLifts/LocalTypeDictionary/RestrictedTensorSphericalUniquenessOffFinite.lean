@@ -84,7 +84,7 @@ theorem spherical_vacuum_unique_off_finite_set : _root_.GlobalTheory.FunPr.Theta
   have hsd : ∀ z, z ∈ (latAtV G.V' G.W v).map (GlobalTheory.LatVac.locCo G.M'.co v) ↔
       ∀ l ∈ (latAtV G.V' G.W v).map (GlobalTheory.LatVac.locCo G.M'.co v), GlobalTheory.LatVac.psiAt B.ψ v (z.1 ⬝ᵥ l.2 - l.1 ⬝ᵥ z.2) = 1 :=
     GlobalTheory.LatVac.DualLoc.map_selfDual v G.M'.co B.ψ (latAtV G.V' G.W v) hat
-      (fun z hz => GlobalTheory.T.splitPlace_tensorLattice_selfDual F E σ B hTr.base G.V' G.W _ _ _ _ hTr.geo.hV' hTr.geo.hW v hs hψv z hz)
+      (fun z hz => _root_.GlobalTheory.SplitLatSelfDual.latAtV_selfDual_split F E σ B hTr.base G.V' G.W _ _ _ _ hTr.geo.hV' hTr.geo.hW v hs hψv z hz)
   have hst : ∀ t ∈ v.adicCompletionIntegers F, ∀ l ∈ (latAtV G.V' G.W v).map (GlobalTheory.LatVac.locCo G.M'.co v),
       t • l ∈ (latAtV G.V' G.W v).map (GlobalTheory.LatVac.locCo G.M'.co v) := by
     rintro t ht _ ⟨γ, hγ, rfl⟩
@@ -137,26 +137,10 @@ theorem spherical_vacuum_fixed_off_finite_set : _root_.GlobalTheory.FunPr.ThetaL
     obtain ⟨φ₁, hφ₁, hact⟩ := GlobalTheory.T.weilRepresentation_localAtFinitePlace_unitaryGroupW F E σ B a a' G X om om' hTr v k hk.1 _ hSB
     have h1 := GlobalTheory.T.unitaryStabilizer_preserves_vacuumCondition_at_place F E σ B a a' G X om om' hTr v θ hθ k hk _ hSB φ₁ hφ₁ hact hvac
     obtain ⟨c, rfl⟩ := _root_.GlobalTheory.SphOffFinite.spherical_vacuum_unique_off_finite_set hPr F E σ B a a' G X om om' hTr v hs hψ h2 θ hθ hvac φ₁ hφ₁ h1
-    have hc := _root_.GlobalTheory.T.split_place_weil_scalar_trivial hPr F E σ B a a' G X om om' hTr v hs hvT hψ h2 hstd k hk c hact
+    have hc := _root_.GlobalTheory.SplitScalar.weil_scalar_eq_one_of_split hPr F E σ B a a' G X om om' hTr v hs hvT hψ h2 hstd k hk c hact
     rwa [hc, one_smul] at hact
-  · exact GlobalTheory.T.inertPlace_latticeStabilizer_fixes_vacuum F E σ B a a' G X om om' hTr v w hw hvT k hk
+  · exact _root_.GlobalTheory.InertSph.vac_fixed' F E σ B a a' G X om om' hTr v w hw hvT k hk
 end GlobalTheory.SphOffFinite
 end
 end
 
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
-open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionValues
-open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
-open GlobalTheory.Grid GlobalTheory.Doubling GlobalTheory.ChainFr GlobalTheory.IndefiniteRowSideFullHecke.MatchingAdjoints
-open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.SquareComm GlobalTheory.SquareAgree
-
-theorem _root_.GlobalTheory.T.restricted_tensor_spherical_uniqueness_off_finite : _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E)
-    (B : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Base F E) (a a' : ℕ) (G : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Geo σ a a') (X : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Chars F E)
-    (om : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Rep σ G.V G.W) (om' : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Rep σ G.V' G.W), GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.IsTriple B G X om om' →
-    ∃ S₀ : Finset (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)), ∀ v, v ∉ S₀ → ∀ k ∈ GlobalTheory.InertSph.KAt σ G.W v,
-      GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Acts (GlobalTheory.AdelicU.evFin F v) (om' (1, k)) (G.M'.vac v) (G.M'.vac v) := by
-  first | exact @_root_.GlobalTheory.SphOffFinite.spherical_vacuum_fixed_off_finite_set | exact _root_.GlobalTheory.SphOffFinite.spherical_vacuum_fixed_off_finite_set | (intros; apply _root_.GlobalTheory.SphOffFinite.spherical_vacuum_fixed_off_finite_set <;> assumption)
-end

@@ -177,11 +177,7 @@ theorem ev_spec {R : CommRingCat.{0}} (j : R ⟶ CommRingCat.of ℂ) (a : Γ(Spe
 theorem ev_conj {Y : Scheme.{0}} (x : Sp ℂ ⟶ Y) (τ : ℂ →+* ℂ) (f : Γ(Y, ⊤)) : ev (spMap τ ≫ x) f = τ (ev x f) := by
   rw [ev_comp, ev_spec]; rfl
 
-theorem ΓSpecIso_fromSpecResidueField {Y : Scheme.{0}} (ξ : Y) :
-    (Y.fromSpecResidueField ξ).appTop ≫ (Scheme.ΓSpecIso _).hom = Y.evaluation ⊤ ξ trivial := by
-  rw [Scheme.fromSpecResidueField, Scheme.Hom.comp_appTop, Category.assoc, Scheme.ΓSpecIso_naturality,
-    Scheme.fromSpecStalk_appTop]
-  simp [Scheme.evaluation]
+alias ΓSpecIso_fromSpecResidueField := _root_.ReciprocityTheory.AnForm.R.fromSpecResidueField_appTop_iso
 
 theorem ev_residue {Y : Scheme.{0}} (ξ : Y) (φ : Y.residueField ξ →+* ℂ) (f : Γ(Y, ⊤)) :
     ev (Spec.map (CommRingCat.ofHom φ) ≫ Y.fromSpecResidueField ξ) f = φ ((Y.evaluation ⊤ ξ trivial).hom f) := by

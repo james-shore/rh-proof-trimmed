@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.InfPartOfSplitIdem
 
 @[expose] public section
 
@@ -73,12 +74,6 @@ theorem infPart_idem (q : GlobalTheory.FinPl.SplitPt D k) : infPart D (q.e + cA 
   rw [h4]
   exact TensorProduct.zero_tmul _ _
 
-theorem cA_idem (q : GlobalTheory.FinPl.SplitPt D k) : cA D (q.e + cA D q.e) = q.e + cA D q.e := by
-  obtain ⟨ε, -, h4⟩ := q.above
-  rw [h4]
-  show cA D (ε ⊗ₜ[D.host.F] (1 : D.host.E)) = ε ⊗ₜ[D.host.F] (1 : D.host.E)
-  simp [cA, sigR]
-
 theorem idem_mul_idem (q : GlobalTheory.FinPl.SplitPt D k) (q' : GlobalTheory.FinPl.SplitPt D k') (hne : q.v ≠ q'.v) :
     (q.e + cA D q.e) * (q'.e + cA D q'.e) = 0 := by
   obtain ⟨ε, ⟨α, rfl, -, hα⟩, h⟩ := q.above
@@ -96,19 +91,10 @@ theorem idem_mul_idem (q : GlobalTheory.FinPl.SplitPt D k) (q' : GlobalTheory.Fi
     rfl
   rw [h, h', ← map_mul, h0, map_zero]
 
-theorem idem_sq (q : GlobalTheory.FinPl.SplitPt D k) : (q.e + cA D q.e) * (q.e + cA D q.e) = q.e + cA D q.e := by
-  have h1 := q.split.1
-  have h2 := q.split.2.1
-  have h3 : cA D q.e * cA D q.e = cA D q.e := by rw [← map_mul, h1]
-  linear_combination h1 + 2 * h2 + h3
-
 end Idem
 
 section Comb
 variable {ψ : AddChar (AF D.host.F) ℂ} {S T : HSp D}
-
-theorem aconv_cons {G : Type} [AddMonoid G] (e : G →₀ ℂ) (l : List (G →₀ ℂ)) :
-    aconv (e :: l) = ∑ g ∈ e.support, ∑ h ∈ (aconv l).support, Finsupp.single (g + h) (e g * aconv l h) := rfl
 
 theorem support_aconv {G : Type} [AddMonoid G] (p : G → Prop) (h0 : p 0) (hadd : ∀ x y, p x → p y → p (x + y))
     (l : List (G →₀ ℂ)) (hl : ∀ e ∈ l, ∀ u ∈ e.support, p u) : ∀ u ∈ (aconv l).support, p u := by
@@ -121,43 +107,18 @@ theorem support_aconv {G : Type} [AddMonoid G] (p : G → Prop) (h0 : p 0) (hadd
     exact h3 ▸ h0
   | cons e l ih =>
     intro w hw
-    rw [aconv_cons] at hw
+    rw [_root_.GlobalTheory.TriStep.IdempotentCombination.aconv_cons] at hw
     obtain ⟨x, hx, hw2⟩ := Finset.mem_biUnion.1 (Finsupp.support_finsetSum hw)
     obtain ⟨y, hy, hw3⟩ := Finset.mem_biUnion.1 (Finsupp.support_finsetSum hw2)
     have h3 := Finsupp.support_single_subset hw3
     rw [Finset.mem_singleton] at h3
     exact h3 ▸ hadd x y (hl e List.mem_cons_self x hx) (ih (fun e' he' => hl e' (List.mem_cons_of_mem _ he')) y hy)
 
-theorem comb_aconv_cons (e : WO S T →₀ ℂ) (l : List (WO S T →₀ ℂ))
-    (h : ∀ x ∈ e.support, ∀ y ∈ (aconv l).support, symplO S T x y = 0) (f : WO S T → ℂ) :
-    comb ψ S T (aconv (e :: l)) f = comb ψ S T e (comb ψ S T (aconv l) f) := by
-  rw [GlobalTheory.HeisComb.comb_comb, GlobalTheory.HeisComb.comb_eq_sum, aconv_cons]
-  rw [Finsupp.sum_finsetSum _ _ _ (fun u => zero_smul ℂ (heisO ψ S T u f)) (fun u a b => add_smul a b (heisO ψ S T u f))]
-  refine Finset.sum_congr rfl fun x hx => ?_
-  rw [Finsupp.sum_finsetSum _ _ _ (fun u => zero_smul ℂ (heisO ψ S T u f)) (fun u a b => add_smul a b (heisO ψ S T u f))]
-  refine Finset.sum_congr rfl fun y hy => ?_
-  have h0 : symplOH S T x y = 0 := by
-    unfold symplOH
-    rw [h x hx y hy, mul_zero]
-  rw [Finsupp.sum_single_index (zero_smul ℂ (heisO ψ S T (x + y) f)), GlobalTheory.WeilVacMove.heisO_heisO, h0, AddChar.map_zero_eq_one,
-    one_smul]
-
-theorem half_add {e : AE D} {x y : WO S T} (hx : IsHalf e x) (hy : IsHalf e y) : IsHalf e (x + y) := fun i j => by
-  show e * (x i j + y i j) = x i j + y i j
-  rw [mul_add, hx i j, hy i j]
-
-theorem half_zero (e : AE D) : IsHalf e (0 : WO S T) := fun _ _ => mul_zero e
-
 theorem half_compl {e e' : AE D} (h : e * e' = 0) {x : WO S T} (hx : IsHalf e' x) : IsHalf (1 - e) x := fun i j => by
   rw [sub_mul, one_mul, ← hx i j, ← mul_assoc, h, zero_mul, sub_zero]
 
 theorem fin_add {x y : WO S T} (hx : x.map (infPart D) = 0) (hy : y.map (infPart D) = 0) : (x + y).map (infPart D) = 0 := by
   rw [Matrix.map_add _ (fun a b => (infPart D).map_add a b), hx, hy, add_zero]
-
-theorem fin_of_half {e : AE D} (he : infPart D e = 0) {u : WO S T} (hu : IsHalf e u) : u.map (infPart D) = 0 := by
-  ext i j
-  rw [Matrix.map_apply, ← hu i j, map_mul, he, zero_mul]
-  rfl
 
 theorem comb_aconv_isolate : ∀ (n : ℕ) (ε : Fin n → AE D) (d : Fin n → WO S T →₀ ℂ), (∀ j, cA D (ε j) = ε j) →
     (∀ j, ε j * ε j = ε j) → (∀ j j', j ≠ j' → ε j * ε j' = 0) → (∀ j, infPart D (ε j) = 0) →
@@ -171,14 +132,14 @@ theorem comb_aconv_isolate : ∀ (n : ℕ) (ε : Fin n → AE D) (d : Fin n → 
     intro ε d hc hi ho hf hd i
     have htail : ∀ u ∈ (aconv (List.ofFn fun j : Fin n => d j.succ)).support, IsHalf (1 - ε 0) u ∧ u.map (infPart D) = 0 := by
       refine support_aconv (fun u : WO S T => IsHalf (1 - ε 0) u ∧ u.map (infPart D) = 0)
-        ⟨half_zero _, Matrix.map_zero _ (infPart D).map_zero⟩
-        (fun x y hx hy => ⟨half_add hx.1 hy.1, fin_add hx.2 hy.2⟩) _ fun e he u hu => ?_
+        ⟨_root_.Formalism.IndefR.Fin.LevelGroupLemmas.Lat.isHalf_zero _, Matrix.map_zero _ (infPart D).map_zero⟩
+        (fun x y hx hy => ⟨_root_.Formalism.IndefR.Fin.LevelGroupLemmas.Lat.isHalf_add hx.1 hy.1, fin_add hx.2 hy.2⟩) _ fun e he u hu => ?_
       obtain ⟨j, rfl⟩ := List.mem_ofFn.1 he
-      exact ⟨half_compl (ho 0 j.succ (Fin.succ_ne_zero j).symm) (hd _ u hu), fin_of_half (hf _) (hd _ u hu)⟩
+      exact ⟨half_compl (ho 0 j.succ (Fin.succ_ne_zero j).symm) (hd _ u hu), _root_.GlobalTheory.PlaceDatum.infPart_of_half (hf _) (hd _ u hu)⟩
     have h1 : ∀ f, comb ψ S T (aconv (List.ofFn d)) f =
         comb ψ S T (d 0) (comb ψ S T (aconv (List.ofFn fun j : Fin n => d j.succ)) f) := fun f => by
       rw [List.ofFn_succ]
-      exact comb_aconv_cons _ _ (fun x hx y hy => GlobalTheory.HeisComb.symplO_half S T (ε 0) (1 - ε 0) x y (hc 0)
+      exact _root_.GlobalTheory.TriStep.IdempotentCombination.comb_aconv_cons _ _ (fun x hx y hy => GlobalTheory.HeisComb.symplO_half S T (ε 0) (1 - ε 0) x y (hc 0)
         (by rw [mul_sub, mul_one, hi 0, sub_self]) (hd 0 x hx) (htail y hy).1) f
     refine Fin.cases ⟨_, htail, h1⟩ (fun i => ?_) i
     obtain ⟨c', hc', he'⟩ := ih (fun j => ε j.succ) (fun j => d j.succ) (fun j => hc _) (fun j => hi _)
@@ -186,8 +147,8 @@ theorem comb_aconv_isolate : ∀ (n : ℕ) (ε : Fin n → AE D) (d : Fin n → 
     obtain ⟨c'', hs, he''⟩ := (GlobalTheory.HeisComb.main D ψ S T).1 (d 0) c'
     refine ⟨c'', fun w hw => ?_, fun f => ?_⟩
     · obtain ⟨x, hx, y, hy, rfl⟩ := hs w hw
-      exact ⟨half_add (half_compl (ho _ _ (Fin.succ_ne_zero i)) (hd 0 x hx)) (hc' y hy).1,
-        fin_add (fin_of_half (hf 0) (hd 0 x hx)) (hc' y hy).2⟩
+      exact ⟨_root_.Formalism.IndefR.Fin.LevelGroupLemmas.Lat.isHalf_add (half_compl (ho _ _ (Fin.succ_ne_zero i)) (hd 0 x hx)) (hc' y hy).1,
+        fin_add (_root_.GlobalTheory.PlaceDatum.infPart_of_half (hf 0) (hd 0 x hx)) (hc' y hy).2⟩
     · rw [h1, he', he'']
       exact (GlobalTheory.HeisComb.main D ψ S T).2.1 _ _ (fun x hx y hy => GlobalTheory.HeisComb.symplO_half S T (ε 0) (ε i.succ) x y (hc 0)
         (ho _ _ (Fin.succ_ne_zero i).symm) (hd 0 x hx) (hd _ y hy)) _
@@ -211,14 +172,14 @@ theorem isModel_comb {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] 
     (FS : GlobalTheory.LocMod.Frame k S.rank Y') (FT : GlobalTheory.LocMod.Frame k T.rank Y) (c : WO S T →₀ ℂ)
     (hc : ∀ u ∈ c.support, IsHalf (1 - (q.e + cA D q.e)) u ∧ u.map (infPart D) = 0) (Tm)
     (h : (ofSplit q).IsModel ψ FS FT Tm) : (ofSplit q).IsModel ψ FS FT (combLin ψ S T c ∘ₗ Tm) := by
-  have hi := idem_sq q
+  have hi := _root_.GlobalTheory.TriStep.IdempotentCombination.idem_sq q
   refine (GlobalTheory.LocModU.localModel_uniq_transport_exist D k (ofSplit q) Y Y' S T FS FT ψ hψ).2.1 Tm h (combLin ψ S T c)
     (fun f hf => (GlobalTheory.HeisComb.main D ψ S T).2.2.1 c f hf (fun u hu => (hc u hu).2) hψ) fun f _ y hy => ?_
   show comb ψ S T c (heisO ψ S T y f) = heisO ψ S T y (comb ψ S T c f)
   rw [← comb_single_one, ← comb_single_one y (comb ψ S T c f)]
   refine ((GlobalTheory.HeisComb.main D ψ S T).2.1 _ _ (fun x hx u hu => ?_) f).symm
   have hx' : x = y := Finset.mem_singleton.1 (Finsupp.support_single_subset hx)
-  exact GlobalTheory.HeisComb.symplO_half S T (q.e + cA D q.e) (1 - (q.e + cA D q.e)) x u (cA_idem q)
+  exact GlobalTheory.HeisComb.symplO_half S T (q.e + cA D q.e) (1 - (q.e + cA D q.e)) x u (_root_.GlobalTheory.TriStep.IdempotentCombination.cA_idem q)
     (by rw [mul_sub, mul_one, hi, sub_self]) (hx' ▸ hy) (hc u hu).1
 
 end Comb
@@ -303,13 +264,13 @@ theorem integrand_inv (hψ : IsStdChar D ψ (-1)) {n : ℕ} (Q : Fin n → QStep
     integrand Q c₁ c₂ f₁ f₂ φ f g h₁ h₂ ((Q i).gl₁ a * x * (Q i).gl₁ j) ((Q i).gl₂ a' * y * (Q i).gl₂ j') =
       integrand Q c₁ c₂ f₁ f₂ φ f g h₁ h₂ x y := by
   obtain ⟨hc, -, -, hv, hφ, hf, ht, -, hh₁, hh₂⟩ := hH
-  have hi : ∀ j, ((Q j).q.e + cA D (Q j).q.e) * ((Q j).q.e + cA D (Q j).q.e) = (Q j).q.e + cA D (Q j).q.e := fun j => idem_sq _
+  have hi : ∀ j, ((Q j).q.e + cA D (Q j).q.e) * ((Q j).q.e + cA D (Q j).q.e) = (Q j).q.e + cA D (Q j).q.e := fun j => _root_.GlobalTheory.TriStep.IdempotentCombination.idem_sq _
   have ho : ∀ j j', j ≠ j' → ((Q j).q.e + cA D (Q j).q.e) * ((Q j').q.e + cA D (Q j').q.e) = 0 := fun j j' h =>
     idem_mul_idem _ _ fun h' => h (hinj h')
   obtain ⟨d₁, hd₁, e₁⟩ := comb_aconv_isolate (ψ := ψ) n (fun j => (Q j).q.e + cA D (Q j).q.e) (fun j => (Q j).D₁)
-    (fun j => cA_idem _) hi ho (fun j => infPart_idem _) (fun j => (Q j).dat₁.1) i
+    (fun j => _root_.GlobalTheory.TriStep.IdempotentCombination.cA_idem _) hi ho (fun j => infPart_idem _) (fun j => (Q j).dat₁.1) i
   obtain ⟨d₂, hd₂, e₂⟩ := comb_aconv_isolate (ψ := ψ) n (fun j => (Q j).q.e + cA D (Q j).q.e) (fun j => (Q j).D₂)
-    (fun j => cA_idem _) hi ho (fun j => infPart_idem _) (fun j => (Q j).dat₂.1) i
+    (fun j => _root_.GlobalTheory.TriStep.IdempotentCombination.cA_idem _) hi ho (fun j => infPart_idem _) (fun j => (Q j).dat₂.1) i
   have hv' : (Q i).Vac (comb ψ _ _ d₁ f₁) (comb ψ _ _ d₂ f₂) := by
     obtain ⟨⟨T₁, O₁, m₁, o₁, rfl⟩, T₂, O₂, m₂, o₂, rfl⟩ := hv i
     exact ⟨⟨_, O₁, isModel_comb hψ _ _ _ d₁ hd₁ T₁ m₁, o₁, rfl⟩, _, O₂, isModel_comb hψ _ _ _ d₂ hd₂ T₂ m₂, o₂, rfl⟩

@@ -147,7 +147,7 @@ theorem avgHol_pf {nb lam 𝓖} (hc : CoefData (σ := σ) (Y := d.Y) d.b nb lam 
     have hr : ν.real 𝓤 = 1 := by simp [Measure.real, hu.2.2.2]
     rw [hr, mul_one] at h1
     exact h1
-  obtain ⟨hDiff, hComm⟩ := lamDeriv (rat2 σ d.Y) (fun φ => avg d L uM ν 𝓤 nb lam 𝓖 φ T x) hadd hbd U Ê hUo hd hcont hinv
+  obtain ⟨hDiff, hComm⟩ := _root_.GlobalTheory.CompanionTheory.HolFamily.functional_commutes_iteratedDeriv (rat2 σ d.Y) (fun φ => avg d L uM ν 𝓤 nb lam 𝓖 φ T x) hadd hbd U Ê hUo hd hcont hinv
   exact ⟨hDiff, fun i => hComm _ hs i⟩
 
 end Deg

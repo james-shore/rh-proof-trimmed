@@ -372,7 +372,7 @@ theorem qLaw_of_pin : ∀ (D : D7) (c : Comm D) (v : VCom c) (t : Tup c) (w : VT
       (biComb c.ψ _ _ _ (w.dQ j p.1 p.2) (w.dQ (j + 1) p.2 β) (c.ctr j σ h (t.sBF j (σ + 1) h) (t.sFB j σ h) Ψ₁ Ψ₂))) := fun p =>
     contAut_lift (S := dblOf H) hc.std (handIsLift H hW) (fin_dQ F hF j (by omega) p.1 p.2)
       (fin_dQ F hF (j + 1) (by omega) p.2 β) hΨ₁.1 hΨ₂.1 (hφ p.1).1
-  exact (per_sum hc.std (c.B (j + 1 + 1) σ (idx_step h)) (GlobalTheory.QValOuter.contAut_trc (w.ε (j + 1 + 1) β) hf') _ hX).symm
+  exact (per_sum hc.std (c.B (j + 1 + 1) σ (idx_step h)) (_root_.GlobalTheory.SeeSawLastValue.contAut_trc (w.ε (j + 1 + 1) β) hf') _ hX).symm
 
 end GlobalTheory.QLawPf
 end

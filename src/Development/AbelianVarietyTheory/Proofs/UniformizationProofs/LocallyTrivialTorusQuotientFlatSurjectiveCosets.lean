@@ -129,19 +129,7 @@ theorem incl_le {Z Y : Over S} (a : Z ⟶ Y) (U : Y.left.Opens) :
 
 variable {X : Type} [AddCommGroup X] {G B : Over S} [GrpObj G] {i : splitTorus S X ⟶ G} {q : G ⟶ B}
 
-theorem stable {U : G.left.Opens}
-    (hU : (snd (splitTorus _ X) G).left ⁻¹ᵁ U ≤ ((fst (splitTorus _ X) G ≫ i) * snd _ G).left ⁻¹ᵁ U)
-    {Z : Over S} (t : Z ⟶ splitTorus S X) {g : Z ⟶ G} (hg : ⊤ ≤ g.left ⁻¹ᵁ U) :
-    ⊤ ≤ ((t ≫ i) * g).left ⁻¹ᵁ U :=  by
-  intro z _
-  have h1 : (lift t g).left z ∈ (snd (splitTorus S X) G).left ⁻¹ᵁ U := by
-    have : z ∈ g.left ⁻¹ᵁ U := hg trivial
-    rwa [← lift_snd t g, Over.comp_left] at this
-  have h2 := hU h1
-  have e : (t ≫ i) * g = lift t g ≫ ((fst (splitTorus S X) G ≫ i) * snd _ G) := by
-    rw [comp_mul, lift_fst_assoc, lift_snd]
-  rw [e, Over.comp_left]
-  exact h2
+alias stable := _root_.GlobalTheory.TorusGrading.top_le_act
 
 theorem eq_of_units {U : G.left.Opens}
     (hU : (snd (splitTorus _ X) G).left ⁻¹ᵁ U ≤ ((fst (splitTorus _ X) G ≫ i) * snd _ G).left ⁻¹ᵁ U)

@@ -248,7 +248,7 @@ theorem lift_eig_mem_part : GlobalTheory.Hk3.HoweUnram → ∀ {D : D7} {G : Typ
     obtain ⟨hu1, hu2, hvac⟩ := h38
     have step : ∀ cV cW, Match R.ψ ω P (dualC cV) cW → ∀ y y' : H.H, H.e y' = hkF (Vc D i) P cV (H.e y) →
         (R.HW i σ).e (th y') = postOn (R.MW i σ) (hk (Wc D i) P cW) ((R.HW i σ).e (th y)) :=
-      GlobalTheory.T.conjugate_theta_lift_matched_hecke_combination R F hC gramR c0R c0L tie i σ c c₁ H j hK hforms μ' η' th ω f₀ f B io thP hLD hproj P hP hvac
+      _root_.GlobalTheory.ConjLiftHecke.lift_match R F hC gramR c0R c0L tie i σ c c₁ H j hK hforms μ' η' th ω f₀ f B io thP hLD hproj P hP hvac
     by_cases hc : Formalism.DivisionValues.conjPl P = P
     · exact loc_inert R i σ th μ' η' ω P a hHowe hW hP hvac hc step d
     · exact loc_split R i σ th μ' η' ω P a hW hP hu1 hu2 hc step d hd

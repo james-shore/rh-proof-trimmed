@@ -61,10 +61,6 @@ def EffectiveCartierSupportContainsNoComponent : Prop :=
 theorem effectiveCartierSupportContainsNoComponent : EffectiveCartierSupportContainsNoComponent.{u} :=
   fun _ _ hD _ hC => hD.not_irreducibleComponent_subset_support hC
 
-theorem nonzeroOnComponents_comap_iso_hom {X Y : Scheme.{u}} (f : X ≅ Y) (I : Y.IdealSheafData)
-    (h : NonzeroOnComponents I) : NonzeroOnComponents (I.comap f.hom) :=
-  PrincipalizationIsoTransport.nonzeroOnComponents_comap_iso f I h
-
 private theorem isPreirreducible_inter_of_isOpen {α : Type u} [TopologicalSpace α] {T U : Set α}
     (hT : IsPreirreducible T) (hU : IsOpen U) : IsPreirreducible (T ∩ U) := by
   intro V W hV hW hVne hWne
@@ -230,7 +226,7 @@ theorem nonzeroOnComponents_ideal_of_isAdmissible (hcart : EffectiveCartierSuppo
   | zero =>
     intro _
     rw [s.ideal_zero]
-    exact nonzeroOnComponents_comap_iso_hom s.toSequenceOfBlowups.isoZero T.ideal hT.nonzeroOnComponents
+    exact _root_.FunctorialResolution.EmbeddedResolution.PrincipalizationIsoTransport.nonzeroOnComponents_comap_iso s.toSequenceOfBlowups.isoZero T.ideal hT.nonzeroOnComponents
   | succ n ih =>
     intro hn
     have hlt : n < s.toSequenceOfBlowups.length := hn

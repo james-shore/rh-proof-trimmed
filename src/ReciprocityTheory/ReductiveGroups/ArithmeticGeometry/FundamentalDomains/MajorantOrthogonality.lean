@@ -50,6 +50,7 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDo
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.IsotropicCombinations
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.LminorSubmatrixCastSucc
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.PositiveSpanMatrices
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.PosCoordNe
 
 @[expose] public section
 
@@ -112,7 +113,7 @@ private lemma sum_inv_mulVec_smul_col_of_det_ne_zero (M : Matrix (Fin r) (Fin r)
 private lemma hermC_col_mat_of_isOrtho (X : Data E r) {x : Frame X.Ψ r} (ho : X.IsOrtho x) (τ : X.Ψ) (k l : Fin r) :
     hermC τ.1 X.Gm (col (mat x τ) k) (col (mat x τ) l) =
       if k = l then (if (k : ℕ) < X.p0 then (1 : ℂ) else -1) else 0 := by
-  rw [ReciprocityTheory.ChartRestriction.G.FD.PositiveSpanMatrices.ortho_apply (X := X) ho τ k l]
+  rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.OrthonormalPerpBasis.ortho_h (X := X) ho τ k l]
   by_cases hkl : k = l
   · subst hkl
     by_cases hk : (k : ℕ) < X.p0

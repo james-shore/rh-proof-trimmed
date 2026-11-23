@@ -59,16 +59,6 @@ namespace GlobalTheory.GeoTie
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-theorem norm_sum_le_of_le {p : ℕ} [Fact p.Prime] {ι : Type} (s : Finset ι) (g : ι → ℂ_[p]) {r : ℝ} (hr : 0 ≤ r)
-    (h : ∀ k ∈ s, ‖g k‖ ≤ r) : ‖∑ k ∈ s, g k‖ ≤ r := by
-  first
-  | exact @_root_.GlobalTheory.SingleStatement.main
-  | exact _root_.GlobalTheory.SingleStatement.main
-  | (apply _root_.GlobalTheory.SingleStatement.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SingleStatement.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SingleStatement.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SingleStatement.main ..)
-
 section Core
 
 variable {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 I0 T1 : Type}
@@ -229,7 +219,7 @@ theorem mem_span_locBall
         ring
       rw [e]
       refine (IsUltrametricDist.norm_add_le_max _ _).trans (max_le (hsum z) ?_)
-      refine norm_sum_le_of_le _ _ hϖ0.le fun s _ => ?_
+      refine _root_.GlobalTheory.SingleStatement.main _ _ hϖ0.le fun s _ => ?_
       rw [norm_mul]
       calc _ ≤ r * 1 := by
             refine mul_le_mul ?_ (hB s z) (norm_nonneg _) hϖ0.le
@@ -256,7 +246,7 @@ theorem mem_span_locBall
     have h1 : ‖φ' (a' s0 * (algebraMap S.Ks F' ϖ)⁻¹)‖ ≤ 1 := by
 
       rw [hco, map_sum]
-      refine norm_sum_le_of_le _ _ zero_le_one fun t _ => ?_
+      refine _root_.GlobalTheory.SingleStatement.main _ _ zero_le_one fun t _ => ?_
       rw [Algebra.smul_def, map_mul, hφ', norm_mul]
       calc _ ≤ 1 * 1 := mul_le_mul (hBc (g t) (hg t) s0) (hβ t) (norm_nonneg _) zero_le_one
         _ = 1 := one_mul 1

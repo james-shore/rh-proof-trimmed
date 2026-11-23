@@ -55,7 +55,7 @@ namespace GlobalTheory.PDForm
 theorem fnMap_pullbackBijective12_of_acyclic {C : Type 1} [Category.{0} C] (K : Cx C)
     (h1 : K.M1.Ac0 ∧ K.M1.Ac1 ∧ K.M1.Ac2) (h2 : K.M2.Ac0 ∧ K.M2.Ac1 ∧ K.M2.Ac2) (h3 : K.M3.Ac0 ∧ K.M3.Ac1 ∧ K.M3.Ac2) :
     K.fnMap.PullbackBijectiveDegreesOneTwo :=
-  And.intro (GlobalTheory.T.forget_positive_h1_bijective C K h1.1 h1.2.1 h2.1) (GlobalTheory.T.forget_positive_h2_bijective C K h1.2.1 h1.2.2 h2.1 h2.2.1 h3.1)
+  And.intro (_root_.GlobalTheory.CxCoh.Cx.fnMap_h1_bijective C K h1.1 h1.2.1 h2.1) (_root_.GlobalTheory.CxCoh.fnMap_h2_bijective C K h1.2.1 h1.2.2 h2.1 h2.2.1 h3.1)
 
 variable {R : Type} [CommRing R] {I : Ideal R} {κ : DividedPowers I} {X : Scheme.{0}} {t : X ⟶ Sp R}
   {Y : Scheme.{0}} {i : X ⟶ Y}

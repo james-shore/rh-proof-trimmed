@@ -69,5 +69,5 @@ theorem GlobalTheory.PenLev.levels_alt : ∀ {B : GlobalTheory.Mem.Base} {X : Pr
   have hlevel := _root_.GlobalTheory.PenLoc.level_iff_relax_alt W hW u a ha hA j hj t J hJ α
   obtain ⟨c, hc, hmem⟩ := hlevel
   refine ⟨c, hc, fun g => ?_⟩
-  rw [hmem g, _root_.GlobalTheory.T.true_geometry_tuple_free_relation_alt W hW u a ha hA j hj t J hJ α]
+  rw [hmem g, _root_.GlobalTheory.PenLev.relaxed_level_eq_tuple_free_alt W hW u a ha hA j hj t J hJ α]
 end

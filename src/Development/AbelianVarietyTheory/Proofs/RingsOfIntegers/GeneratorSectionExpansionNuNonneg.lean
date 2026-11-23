@@ -101,6 +101,6 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host 
     congr
     exact funext hs
   subst hs'
-  exact nuGe_of_thFrame hϖ P.D Q hQ F v hv s (GlobalTheory.T.thetaFrame_expansion_framedPoint_generator E H Dw l Xo c T io y.1 I P ϖ hϖ F φ rfl z hz σ s htie hexp)
+  exact nuGe_of_thFrame hϖ P.D Q hQ F v hv s (_root_.GlobalTheory.GeneratorFrame.main E H Dw l Xo c T io y.1 I P ϖ hϖ F φ rfl z hz σ s htie hexp)
 
 end GlobalTheory.GeneratorNu

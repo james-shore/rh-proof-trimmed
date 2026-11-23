@@ -264,11 +264,6 @@ theorem exists_nat_R (r : E ⊗[F] Af F) : ∃ N : ℕ, 0 < N ∧ (N : E ⊗[F] 
     rw [e1]
     exact add_mem (mul_mem (natCast_mem _ _) hx) (mul_mem (natCast_mem _ _) hy)
 
-theorem exists_nat_L {L : Submodule (𝓞 E) (Fin n → E)}
-    {z : Fin n → E} (hz : z ∈ Submodule.span E (L : Set (Fin n → E))) :
-    ∃ N : ℕ, 0 < N ∧ N • z ∈ L := by
-  first | exact Bl.NatMulIsIntegral.goal1 .. | (apply Bl.NatMulIsIntegral.goal1 <;> assumption) | (intros; apply Bl.NatMulIsIntegral.goal1 <;> assumption)
-
 theorem exists_nat_vec {L : Submodule (𝓞 E) (Fin n → E)}
     (hspan : Submodule.span E (L : Set (Fin n → E)) = ⊤) (w : Fin n → E ⊗[F] Af F) :
     ∃ N : ℕ, 0 < N ∧ N • w ∈ lamAf (F := F) L := by
@@ -277,7 +272,7 @@ theorem exists_nat_vec {L : Submodule (𝓞 E) (Fin n → E)}
       lamAf (F := F) L := by
     intro i
     obtain ⟨A, hA0, hA⟩ := exists_nat_R (F := F) (E := E) (w i)
-    obtain ⟨B, hB0, hB⟩ := exists_nat_L (L := L) (z := Pi.single i 1)
+    obtain ⟨B, hB0, hB⟩ := _root_.Bl.NatMulIsIntegral.goal1 (L := L) (z := Pi.single i 1)
       (by rw [hspan]; exact Submodule.mem_top)
     refine ⟨A * B, Nat.mul_pos hA0 hB0, ?_⟩
     have e1 : ivec (F := F) (B • (Pi.single i 1 : Fin n → E)) =

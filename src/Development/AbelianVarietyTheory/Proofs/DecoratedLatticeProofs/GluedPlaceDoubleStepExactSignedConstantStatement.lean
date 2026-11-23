@@ -42,5 +42,3 @@ import Mathlib.Topology.Sheaves.Init
 
 open Formalism.BasicNotions
 
-theorem _root_.GlobalTheory.T.gluedPlace_doubleStep_exact_signed_constant : ∀ D : D7, GlobalTheory.FinPl.VertexExact D := by
-  first | exact @GlobalTheory.FinPl.VertexExactCount.vertexExact | exact GlobalTheory.FinPl.VertexExactCount.vertexExact | (intros; apply GlobalTheory.FinPl.VertexExactCount.vertexExact <;> assumption)

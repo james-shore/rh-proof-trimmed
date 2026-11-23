@@ -92,9 +92,9 @@ theorem omega_conj_vac_low: ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts
     have := hTm.vac; rwa [one_smul] at this
   rw [hsplit, map_mul, Module.End.mul_apply, GlobalTheory.T.truncatedConjugate_fixes_standardVacuum_topPair S hL ht j hj k hk e he ε hε halg]
   conv_lhs => rw [← hvac]
-  refine (hlaw (halfInd e (stdLatO S (.top t j))) (isSBHalf_halfInd e _)).trans ?_
+  refine (hlaw (halfInd e (stdLatO S (.top t j))) (_root_.GlobalTheory.isSBHalf_halfInd e _)).trans ?_
   congr 1
-  · rw [detAt_one' he2, detAt_resG_eq he2 hc hε halg, GlobalTheory.T.detIdele_conjugatedTopPoint_eq_prod_local S ht j hj k e he]
+  · rw [detAt_one' he2, detAt_resG_eq he2 hc hε halg, _root_.GlobalTheory.TopLevelInv.detAt_conjPt_eq_prod S ht j hj k e he]
     unfold GlobalTheory.SplitLinear.fac
     simp only [splitFacO, map_one, inv_one, one_mul]
     rw [GlobalTheory.T.topPairSourceChar_prod_localIdeles G hL j hj]
@@ -109,7 +109,7 @@ theorem omega_conj_vac_low: ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts
     apply halfInd_congr
     by_cases hx : IsHalf e x
     · have hinv : (conjPt S j k)⁻¹ = resG _ (1 - ε) (conjPt S j k)⁻¹ * (resG _ ε (conjPt S j k))⁻¹ := by
-        rw [← resG_inv_eq hε', ← _root_.mul_inv_rev, resG_compl _ hε]
+        rw [← _root_.Formalism.IndefR.Fin.LevelGroupLemmas.resG_inv hε', ← _root_.mul_inv_rev, resG_compl _ hε]
       have key : actO (G.pS (.top t j : Pair T)) (G.pT (.top t j : Pair T)) 1⁻¹ (conjPt S j k)⁻¹ x =
           actO (G.pS (.top t j : Pair T)) (G.pT (.top t j : Pair T)) 1⁻¹ (resG _ ε (conjPt S j k))⁻¹ x :=
         calc _ = actO (G.pS (.top t j : Pair T)) (G.pT (.top t j : Pair T)) (1 * 1⁻¹)

@@ -189,7 +189,7 @@ theorem reducesAt_pack (hF : HT.FarguesHodgeTate) (E : Type) [Field E] [NumberFi
     ext r
     exact (RingEquiv.symm_apply_eq κ).2 (hκ r).symm
   haveI := P.fin
-  refine reducesAt_of (GlobalTheory.T.pointHT_of_fargues_hodge_tate hF) E H D p (CR O y c') Ω (𝔐.R p) _ (withE P.Dh e halt hadj hes hei) u hu 𝔐.X 𝔐.t P.x (relabel P.Γ₂ b) P.i₂
+  refine reducesAt_of (_root_.GlobalTheory.CompanionTheory.Ar.HT.Fargues.pointHT hF) E H D p (CR O y c') Ω (𝔐.R p) _ (withE P.Dh e halt hadj hes hei) u hu 𝔐.X 𝔐.t P.x (relabel P.Γ₂ b) P.i₂
     ⟨P.tors₂.isOver, P.tors₂.mul, P.tors₂.inj, P.tors₂.kernel⟩ P.L P.M P.ρ P.act P.j P.j_bc π (P.ζ ^ a) (algebraMap O (CR O y c') w)
     ⟨P.isHT.1, P.isHT.2.1, fun z => ?_⟩ hπ he ?_ (isProper_of_iso _ 𝔐.ξ _ _ hq) (fun k _ _ f => ?_)
     (cp_descend hinj p (algebraMap O (CR O y c') w) hw) C O' v hv hvp hO hφ

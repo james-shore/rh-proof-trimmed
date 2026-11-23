@@ -90,8 +90,8 @@ theorem seg_map_inv {K : Type} [Field K] [NumberField K] (w : HeightOneSpectrum 
 
 theorem transferOn_isSplit : ∀ D : D7, TransferOn D fun v => IsSplit (E := D.host.E) v := by
   intro D ψ S T χS χT om hW t ht v hv hunr w h U hU f hf X _ _ ρ x B hx X' _ _ ρ' b hb hne
-  obtain ⟨eS, heS⟩ := (GlobalTheory.T.exists_unitaryCharts_allFinitePlaces_frameLattice D S v w h).1 hv
-  obtain ⟨eT, heT⟩ := (GlobalTheory.T.exists_unitaryCharts_allFinitePlaces_frameLattice D T v w h).1 hv
+  obtain ⟨eS, heS⟩ := (_root_.GlobalTheory.ChartsAll.exists_charts D S v w h).1 hv
+  obtain ⟨eT, heT⟩ := (_root_.GlobalTheory.ChartsAll.exists_charts D T v w h).1 hv
   have hxS := hx.isSatVecGL hv heS
   obtain ⟨hfix, hH⟩ := GlobalTheory.T.latticeVacuum_heckeIdentity_splitPlace_charts D ψ S T χS χT om hW t ht v w h hv hunr eS eT heS heT (f : WO S T → ℂ) hf
   obtain ⟨hcS, hsS⟩ := GlobalTheory.T.integral_GL_commensurated_doubleCosetCardInvSymm D.host.E w S.rank

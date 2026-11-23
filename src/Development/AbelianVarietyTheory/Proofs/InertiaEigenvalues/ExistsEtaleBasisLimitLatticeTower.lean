@@ -184,8 +184,7 @@ end GlobalTheory.BKLim.EtaleLimit
 
 namespace GlobalTheory.BKLim.EtaleLimit
 
-theorem evW_mem {l : ℕ} [Fact l.Prime] {K : FinExt l} (bk : BK K) (s : bk.S) : bk.evW s ∈ bk.OE :=
-  fun _ => ⟨0, s, 0, by simp⟩
+alias evW_mem := _root_.GlobalTheory.BSP.EquivOE.evW_mem
 
 theorem cong_symm {l : ℕ} [Fact l.Prime] {m k : Type} {n : ℕ} {A B : Matrix m k (WCb l)}
     (h : ∀ i j, (l : WCb l) ^ n ∣ (A - B) i j) : ∀ i j, (l : WCb l) ^ n ∣ (B - A) i j := fun i j => by

@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsEtPlace
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompEqOneOfTransl
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HolomorphicConjugatePullback
 
 @[expose] public section
 
@@ -121,20 +122,15 @@ theorem map_zero_eq_one_of_additive_to_group {M G : Type} [AddCommGroup M] [Grou
   rw [add_zero] at this
   exact mul_left_cancel (this.symm.trans (mul_one (f 0)).symm)
 
-theorem map_nsmul_eq_pow_of_additive_to_mulGroup {M G : Type} [AddCommGroup M] [Group G] (f : M → G) (hadd : ∀ a a', f (a + a') = f a * f a') (n : ℕ) (a : M) : f (n • a) = f a ^ n := by
-  induction n with
-  | zero => rw [zero_smul, map_zero_eq_one_of_additive_to_group f hadd, pow_zero]
-  | succ n ih => rw [succ_nsmul, hadd, ih, pow_succ]
-
 theorem deg_eq_card_ker_of_tangent : ∀ (K : Type) [Field K] [IsAlgClosed K] (B : AbVar K) (f : B ⟶ B), IsIsogeny f → (∀ v : epsPtR (𝟙 (Sp K)) ⟶ B.X, spMap (TrivSqZeroExt.fstHom K K K).toRingHom ≫ v.left = (1 : Over.mk (𝟙 (Sp K)) ⟶ B.X).left → v ≫ Hom.hom f = 1 → v = 1) → deg f = Nat.card (ptMap f).ker :=
-  fun K _ _ B f hf hv => deg_eq_card_ker_of_unram K B B f hf (GlobalTheory.T.formallyUnramified_kernel_isogeny_tangent_injective K B f hf hv)
+  fun K _ _ B f hf hv => deg_eq_card_ker_of_unram K B B f hf (_root_.GlobalTheory.KerUnram.formallyUnramified_ker K B f hf hv)
 
 theorem card_ker_eq_norm_pow : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A] [IsCommMonObj A], IsAbelianScheme A → ∀ (F : Type) [Field F] [NumberField F] (act : OAct (𝓞 F) A) (k : Type) [Field k] [IsAlgClosed k] (x : Sp k ⟶ S) (h ℓ : ℕ), ℓ.Prime → (ℓ : k) ≠ 0 → (∀ j : ℕ, ∃ f : (Fin h → 𝓞 F ⧸ Ideal.span {((ℓ ^ j : ℕ) : 𝓞 F)}) → (Over.mk x ⟶ A), (∀ a a', f (a + a') = f a * f a') ∧ (∀ (c : 𝓞 F) a, f (Ideal.Quotient.mk (Ideal.span {((ℓ ^ j : ℕ) : 𝓞 F)}) c • a) = f a ≫ act.act c) ∧ Function.Injective f ∧ ∀ g : Over.mk x ⟶ A, g ^ (ℓ ^ j) = 1 → ∃ a, f a = g) → ∀ c : 𝓞 F, c ≠ 0 → (∀ v : epsPtR x ⟶ A, spMap (TrivSqZeroExt.fstHom k k k).toRingHom ≫ v.left = (1 : Over.mk x ⟶ A).left → v ≫ act.act c = 1 → v = 1) → Nat.card {g : Over.mk x ⟶ A // g ≫ act.act c = 1} = (Algebra.norm ℤ c).natAbs ^ h := by
   intro S A _ _ hA F _ _ act k _ _ x h ℓ hℓ hℓk hyp c hc hv
-  obtain ⟨B, e, ψ, he, htan⟩ := GlobalTheory.T.geometric_point_abelian_variety_action S A hA F act k x
+  obtain ⟨B, e, ψ, he, htan⟩ := _root_.GlobalTheory.FibreAV.fibre_av S A hA F act k x
   have hiso := (GlobalTheory.AV.AbVar.DegNorm.isIsogeny_and_deg_ne_zero B ψ c hc).1
   have hE := deg_eq_card_ker_of_tangent k B (ψ c).asHom hiso (htan c hv)
-  have hD := GlobalTheory.T.degree_pow_finrank_eq_natAbs_norm_pow k B F ψ c hc
+  have hD := _root_.GlobalTheory.AV.AbVar.DegNorm.deg_pow_finrank_eq_natAbs_norm_pow k B F ψ c hc
   have hker : Nat.card {g : Over.mk x ⟶ A // g ≫ act.act c = 1} = Nat.card (ptMap (ψ c).asHom).ker := by
     apply Nat.card_congr
     refine Equiv.subtypeEquiv e.toEquiv (fun g => ?_)
@@ -150,7 +146,7 @@ theorem card_ker_eq_norm_pow : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A] [IsC
   have hL2 : Nat.card {g : Over.mk x ⟶ A // g ^ ℓ = 1} = ℓ ^ (h * Module.finrank ℚ F) := by
     obtain ⟨f, hadd, -, hinj, hsurj⟩ := hyp 1
     have h0 := map_zero_eq_one_of_additive_to_group f hadd
-    have hns := map_nsmul_eq_pow_of_additive_to_mulGroup f hadd
+    have hns := _root_.GlobalTheory.SiegelComparison.map_nsmul_of_add f hadd
     have hq : ((ℓ : ℕ) : 𝓞 F ⧸ Ideal.span {((ℓ ^ 1 : ℕ) : 𝓞 F)}) = 0 := by
       rw [← map_natCast (Ideal.Quotient.mk (Ideal.span {((ℓ ^ 1 : ℕ) : 𝓞 F)})), Ideal.Quotient.eq_zero_iff_mem]
       exact Ideal.subset_span (by simp)

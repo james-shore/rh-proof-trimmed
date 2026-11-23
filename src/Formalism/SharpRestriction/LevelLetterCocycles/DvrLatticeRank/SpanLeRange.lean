@@ -92,11 +92,6 @@ theorem LV_sum {ι : Type} (K : ℕ) (s : Finset ι) (f : ι → W.DD T)
     refine ⟨by rw [map_add (f := _), smul_add]; exact Submodule.add_mem _ (hf a) ih.1, ?_⟩
     rw [LV_add W T c ζ K _ _ (hf a) ih.1, ih.2]
 
-theorem letE_idem (d : ZMod n) : (letE d : LetA O n) * letE d = letE d := by
-  funext i
-  simp only [Pi.mul_apply, letE, Pi.single_apply]
-  split_ifs <;> simp
-
 variable {Pt : ZMod n → LL → (K →ₐ[Qp] LL) → Prop}
 
 theorem span_le_range (hp4 : Formalism.MainNotions.DeltaInvariantLattices.p4 W Pt T) {τ : K →ₐ[Qp] LL} (hPt : Pt c ζ τ)
@@ -193,7 +188,7 @@ theorem span_le_range (hp4 : Formalism.MainNotions.DeltaInvariantLattices.p4 W P
   have hx'eq : x' = ∑ j, a j • ((letE d : LetA O n) • b j) := by
     have h1 : x' = (letE d : LetA O n) • x' := by
       show _ = (letE d : LetA O n) • ((letE d : LetA O n) • (x : W.DD T))
-      rw [smul_smul, letE_idem]
+      rw [smul_smul, _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq]
     rw [h1, hax, Finset.smul_sum]
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [smul_comm]
@@ -201,7 +196,7 @@ theorem span_le_range (hp4 : Formalism.MainNotions.DeltaInvariantLattices.p4 W P
     intro j
     refine (mem_NcS W T _ _).2 ⟨Submodule.smul_mem _ _ (hbΔ j).1, fun δ hδ => ?_, ?_⟩
     · rw [γD_letE, (hbΔ j).2 δ hδ]
-    · rw [smul_smul, letE_idem]
+    · rw [smul_smul, _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq]
   have hebN' : ∀ j, (letE d : LetA O n) • b j ∈ W.N T := fun j => ((mem_NcS W T _ _).1 (hebN j)).1
   choose Kb hKb using fun j => N_φ' W T _ (hebN' j)
   set K := k + ∑ j, Kb j

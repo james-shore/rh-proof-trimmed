@@ -83,18 +83,6 @@ theorem line_le (A : Submodule (𝓞 K) K) (v : V) (S : Submodule K V) (hv : v �
   exact S.smul_mem t hv
 
 omit [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] in
-theorem e_mem_II (N : NF H r) (a : Fin r) (ha : N.j ≤ a.val) : N.F.e a.castSucc ∈ II N.F N.F' := by
-  have hc : N.c ≠ 0 := by
-    intro h
-    have := N.c_norm
-    rw [h, zero_mul] at this
-    exact zero_ne_one this
-  refine ⟨Submodule.subset_span ⟨a, a.2, rfl⟩, ?_⟩
-  have h1 : N.F'.e a.castSucc ∈ N.F'.X := Submodule.subset_span ⟨a, a.2, rfl⟩
-  have h2 := N.F'.X.smul_mem N.c⁻¹ h1
-  rwa [N.same a.castSucc ha, smul_smul, inv_mul_cancel₀ hc, one_smul] at h2
-
-omit [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] in
 theorem isotropicMeet_le_jointSpan (N : NF H r) : II N.F N.F' ≤ V0 N.F N.F' :=
   inf_le_left.trans (le_sup_left.trans le_sup_left)
 
@@ -120,13 +108,9 @@ theorem eq_zero_of_mem (N : NF H r)
   simp only [φ, LinearMap.sum_apply, LinearMap.smulRight_apply, LinearMap.flip_apply]
   refine Finset.sum_eq_zero fun a ha => ?_
   have ha' : N.j ≤ a.val := by simpa using ha
-  have he := e_mem_II N a ha'
+  have he := _root_.GlobalTheory.DegCnt.NFGeom.e_mem_II N a ha'
   rw [← H.herm, (hrad _ (isotropicMeet_le_jointSpan N he)).2 he d hd']
   simp
-
-omit [NumberField K] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] in
-theorem Xa_le_X (F : FlagD H r) (j : ℕ) : F.Xa j ≤ F.X :=
-  Submodule.span_mono (Set.image_mono fun b _ => b.2)
 
 theorem P0_inf_V0_le_sup_of_radical (N : NF H r)
     (hrad : ∀ v ∈ V0 N.F N.F', (∀ w ∈ V0 N.F N.F', H.B v w = 0) ↔ v ∈ II N.F N.F') :
@@ -137,9 +121,9 @@ theorem P0_inf_V0_le_sup_of_radical (N : NF H r)
   have hQV : Q ≤ rs (𝓞 K) (V0 N.F N.F') := by
     refine sup_le (sup_le (sup_le ?_ ?_) ?_) ?_
     · exact inf_le_right.trans fun x hx =>
-        ((Xa_le_X N.F N.j).trans (le_sup_left.trans le_sup_left) : N.F.Xa N.j ≤ V0 N.F N.F') hx
+        ((_root_.GlobalTheory.DegCnt.Kill.Xa_le N.F N.j).trans (le_sup_left.trans le_sup_left) : N.F.Xa N.j ≤ V0 N.F N.F') hx
     · exact inf_le_right.trans fun x hx =>
-        ((Xa_le_X N.F' N.j).trans (le_sup_right.trans le_sup_left) : N.F'.Xa N.j ≤ V0 N.F N.F') hx
+        ((_root_.GlobalTheory.DegCnt.Kill.Xa_le N.F' N.j).trans (le_sup_right.trans le_sup_left) : N.F'.Xa N.j ≤ V0 N.F N.F') hx
     · exact inf_le_right.trans fun x hx => isotropicMeet_le_jointSpan N hx
     · exact line_le _ _ _ (Submodule.mem_sup_right (Submodule.subset_span (by simp)))
   have hP : N.P0 ≤ Q ⊔ rs (𝓞 K) N.Ist := by
@@ -152,7 +136,7 @@ theorem P0_inf_V0_le_sup_of_radical (N : NF H r)
       · exact le_sup_of_le_left (le_sup_of_le_left (le_sup_of_le_left
           (le_inf h0 (line_le _ _ _ (Submodule.subset_span ⟨a, ha, rfl⟩)))))
       · exact le_sup_of_le_left (le_sup_of_le_right
-          (le_inf h0 (line_le _ _ _ (e_mem_II N a (not_lt.1 ha)))))
+          (le_inf h0 (line_le _ _ _ (_root_.GlobalTheory.DegCnt.NFGeom.e_mem_II N a (not_lt.1 ha)))))
     · refine iSup₂_le fun a ha => ?_
       have h0 : line (N.aa a) (N.F'.e a.castSucc) ≤ N.P0 :=
         le_sup_of_le_left (le_sup_of_le_left (le_sup_of_le_right

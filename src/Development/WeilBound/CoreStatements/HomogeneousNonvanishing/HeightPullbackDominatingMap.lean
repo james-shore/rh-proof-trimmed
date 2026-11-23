@@ -80,10 +80,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 
 namespace GlobalTheory.CompanionTheory.Ar.HTPullK
 
-theorem dual_sq {A B : Type} [CommRing A] [CommRing B] (c : A →+* B) :
-    (dualMap c).comp (algebraMap A (DualNumber A)) = (algebraMap B (DualNumber B)).comp c := by
-  ext r <;> simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl]
-
 theorem dualMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (c : A →+* B) (d : B →+* C) :
     (dualMap d).comp (dualMap c) = dualMap (d.comp c) := by
   ext r <;> simp [dualMap]
@@ -130,7 +126,7 @@ theorem isHT_move {R : Type} [CommRing R] [IsDomain R] {T : Type} [CommGroup T] 
   · have w₁ := Over.w (Mb.pt e)
     rw [Category.assoc, hover, ← Category.assoc, h1, Category.assoc, w₁]
     show _ = _ ≫ Spec.map _ ≫ x'
-    rw [← Category.assoc _ _ x', ← Spec.map_comp, ← CommRingCat.ofHom_comp, dual_sq]
+    rw [← Category.assoc _ _ x', ← Spec.map_comp, ← CommRingCat.ofHom_comp, _root_.GlobalTheory.CompanionTheory.Ar.SqAdd.dualMap_comp_algebraMap]
 
 theorem isHT_lie {R : Type} [CommRing R] [IsDomain R] {T : Type} [CommGroup T] (Γ : BT.QFGroup R T)
     {S : Scheme.{0}} {G : Over S} [GrpObj G] {x : Sp R ⟶ S} {i : Γ.G.left ⟶ G.left} {L₁ L₂ : Type} [AddCommGroup L₁]
@@ -472,11 +468,5 @@ theorem GlobalTheory.CompanionTheory.Ar.HTPullK.main : ∀ (X X' : Scheme.{0}) (
       exact Submodule.smul_mem _ (⟨i c, hreg c c.2⟩ : regAt ξ' p') ha
 
 namespace PositivityTheory.UnitarySelfGeneration
-
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar
-
-theorem height_pullback_dominating_map : ∀ (X X' : Scheme.{0}) (Ω Ω' : Type) [Field Ω] [Field Ω'] (ξ : Sp Ω ⟶ X) (ξ' : Sp Ω' ⟶ X') (f : X' ⟶ X) (i : Ω →+* Ω') (G : Over X) (G' : Over X') [GrpObj G] [IsCommMonObj G] [GrpObj G'] [IsCommMonObj G'] (φ : G'.left ⟶ G.left) (V V' : Type) [AddCommGroup V] [Module Ω V] [AddCommGroup V'] [Module Ω' V'] (M : LieModel G ξ V) (M' : LieModel G' ξ' V') (j : V →+ V'), IsCptGen ξ → IsCptGen ξ' → GlobalTheory.CompanionTheory.Ar.Dominates ξ' ξ f i → IsGrpPullback G' G f φ → Smooth G.hom → (∀ e, (M'.pt (j e)).left ≫ φ = Spec.map (CommRingCat.ofHom (dualMap i)) ≫ (M.pt e).left) → ∀ (jd : Module.Dual Ω V →+ Module.Dual Ω' V'), (∀ w e, jd w (j e) = i (w e)) → ∀ (N : ℕ), 0 < N → ∀ (p' : Cpt ξ') (h : genPt ξ ⤳ f p'.1), IsIntegrallyClosed (X.presheaf.stalk (f p'.1)) → IsNoetherianRing (X.presheaf.stalk (f p'.1)) → (∃ ζ : Ω, IsPrimitiveRoot ζ N) → M.IsHTFormAt N ⟨f p'.1, h⟩ 0 → M'.htLat N p' = (M.htLat N).pull ξ' f jd p' :=
-  @GlobalTheory.CompanionTheory.Ar.HTPullK.main
 
 end PositivityTheory.UnitarySelfGeneration

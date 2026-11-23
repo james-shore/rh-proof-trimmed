@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Foundations.CosetTrace
 import Development.AbelianVarietyTheory.Definitions.Foundations.ExpUpper
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsArcIsometryTorsionIntegralGauge
 
 @[expose] public section
 
@@ -103,8 +104,8 @@ theorem mem_cycAlg_iff : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [Field Ω] [Al
         exact hζ.eq_orderOf.symm
       rw [h4, ← ZMod.natCast_eq_natCast_iff, ZMod.natCast_zmod_val, Nat.cast_one] at h3
       exact Units.ext h3
-    obtain ⟨Q, hQ, hQe⟩ := GlobalTheory.T.exists_polynomial_in_primitiveRoot_of_inertia_fixed l Ω A hA m ζ hζ (x : Ω) x.2 hfix
-    have hζA : ζ ∈ A := mem_of_pow_mem A hpos.ne' (by rw [hζ.pow_eq_one]; exact A.one_mem)
+    obtain ⟨Q, hQ, hQe⟩ := _root_.GlobalTheory.ZetaPoly.exists_poly l Ω A hA m ζ hζ (x : Ω) x.2 hfix
+    have hζA : ζ ∈ A := _root_.GlobalTheory.Ex.ArcLift.mem_of_pow_mem A hpos.ne' (by rw [hζ.pow_eq_one]; exact A.one_mem)
     have hζc : (⟨ζ, hζA⟩ : A) ∈ cycAlg l A :=
       mem_cycAlg_of_pow (n := m) (Subtype.ext (by simpa using hζ.pow_eq_one))
     have e : x = ∑ d ∈ Finset.range (Q.natDegree + 1), (⟨Q.coeff d, (hQ d).1⟩ : A) * (⟨ζ, hζA⟩ : A) ^ d := by

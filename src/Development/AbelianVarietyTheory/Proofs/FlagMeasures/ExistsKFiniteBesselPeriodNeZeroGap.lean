@@ -109,7 +109,7 @@ theorem nzOn_of_mass (hy : GlobalTheory.GapIn.Hyp) {k r : ℕ} {ε : Fin (2 * r 
     exact Formalism.FourierDecayAlt.P.DDSmoothness.uh_mul hp.1.1 hp.2.1
   have hS0 : Formalism.FourierDecayAlt.ThreeDimData.muSof μW μN ≠ 0 := GlobalTheory.SideCompare.muS_ne_zero hWh.2.1 hNh.2.1
   have hνae := GlobalTheory.BesselNorm.quot_ae hq hGae hSae hS0
-  have hνs : SigmaFinite νq := GlobalTheory.SideCompare.sigmaFinite_of_isQuotMeas hS0 hq
+  have hνs : SigmaFinite νq := _root_.GlobalTheory.QuotientMeasureSigmaFinite.sigmaFinite_of_isQuotMeas hS0 hq
   have hSC : SecondCountableTopology Wp := by
     have := FiniteDimensional.proper ℂ Wp
     infer_instance

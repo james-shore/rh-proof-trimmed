@@ -175,12 +175,6 @@ section Frame
 variable {n r : ℕ} {R : Type} [CommRing R] {s : R →+* R} {Jm : Matrix (Fin n) (Fin n) R}
   {X Y : Matrix (Fin n) (Fin r) R}
 
-theorem cT_sub' {a b : Type} (P Q : Matrix a b R) : cT s (P - Q) = cT s P - cT s Q :=
-  Matrix.ext fun _ _ => by simp [cT]
-
-theorem cT_add' {a b : Type} (P Q : Matrix a b R) : cT s (P + Q) = cT s P + cT s Q :=
-  Matrix.ext fun _ _ => by simp [cT]
-
 theorem cT_diagonal' (d : Fin r → R) : cT s (diagonal d) = diagonal (fun i => s (d i)) := by
   ext i j
   by_cases hij : i = j
@@ -190,7 +184,7 @@ theorem cT_diagonal' (d : Fin r → R) : cT s (diagonal d) = diagonal (fun i => 
 
 theorem cT_piM_mul (hF : PFr s Jm X Y) :
     cT s (piM X Y (cT s X * Jm) (cT s Y * Jm)) * Jm = Jm * piM X Y (cT s X * Jm) (cT s Y * Jm) := by
-  simp only [piM, cT_sub', Formalism.UG.cT_one, Formalism.UG.cT_mul, hF.cc, hF.herm, Matrix.sub_mul, Matrix.mul_sub, Matrix.one_mul,
+  simp only [piM, _root_.PositivityTheory.ThKR.Sieg.cT_sub, Formalism.UG.cT_one, Formalism.UG.cT_mul, hF.cc, hF.herm, Matrix.sub_mul, Matrix.mul_sub, Matrix.one_mul,
     Matrix.mul_one, Matrix.mul_assoc]
   abel
 
@@ -208,7 +202,7 @@ theorem cT_leviM_mul (hF : PFr s Jm X Y) {g h : Matrix (Fin n) (Fin n) R} (D D' 
       _ = cT s P * ((cT s g * Jm) * P) := by rw [hp, Matrix.mul_assoc]
       _ = (cT s P * Jm) * (h * P) := by rw [hgJ]; simp only [Matrix.mul_assoc]
       _ = Jm * (P * (h * P)) := by rw [hp, Matrix.mul_assoc]
-  rw [leviM, leviM, cT_add', cT_add', Matrix.add_mul, Matrix.add_mul, Matrix.mul_add, Matrix.mul_add, e3]
+  rw [leviM, leviM, _root_.PositivityTheory.ThKR.Sieg.cT_add, _root_.PositivityTheory.ThKR.Sieg.cT_add, Matrix.add_mul, Matrix.add_mul, Matrix.mul_add, Matrix.mul_add, e3]
   congr 1
   simp only [Formalism.UG.cT_mul, hF.cc, hF.herm, Matrix.mul_assoc]
   rw [add_comm]

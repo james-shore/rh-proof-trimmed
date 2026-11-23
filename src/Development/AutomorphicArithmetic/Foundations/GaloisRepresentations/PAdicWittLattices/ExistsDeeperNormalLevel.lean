@@ -139,7 +139,7 @@ private theorem comp_univ_hom_eq_of_wit {p : ℕ} [Fact p.Prime] {D : Datum p} {
 theorem UpperTheory.Gal.G3.pKSEx :
     KNBasic → WitUniq → WitComp → WitCart → WitEx → WitOne → WitTrans → WitFree → KSEx := by
   intro hK hU hC hCart hEx hOne hTr hFree p _ D G L _ R _ _ gb k
-  have hM : ∀ N : Lv p, Nonempty (GenModel gb N.1) := fun N => GlobalTheory.T.unitaryCharZeroGenericModel_nonempty p D R gb N.1 N.2.1 N.2.2
+  have hM : ∀ N : Lv p, Nonempty (GenModel gb N.1) := fun N => _root_.GlobalTheory.UPel.HT.Gen.genModel_nonempty p D R gb N.1 N.2.1 N.2.2
   let M : (N : Lv p) → GenModel gb N.1 := fun N => (hM N).some
   have hint : ∀ {N : ℕ} {u : G.GAf}, u ∈ L.KN N → Integ L u := fun hu =>
     UpperTheory.Gal.Int.Geo.integ_of_mem (UpperTheory.Gal.Int.Geo.KN_anti (one_dvd _) hu)

@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Algebra.MvPolynomial
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ContinuousCharpolyCoeffOfMatrix
 
 @[expose] public section
 
@@ -104,16 +105,7 @@ theorem algSat_satTot (w : HeightOneSpectrum (𝓞 E)) (n : ℕ) {c : ℕ} (d : 
   push_cast
   ring
 
-private theorem contCoeff {K : Type} [CommRing K] [TopologicalSpace K] [IsTopologicalRing K] (n i : ℕ) :
-    Continuous fun M : Matrix (Fin n) (Fin n) K => M.charpoly.coeff i := by
-  have h : (fun M : Matrix (Fin n) (Fin n) K => M.charpoly.coeff i) =
-      fun M => MvPolynomial.eval (fun ij : Fin n × Fin n => M ij.1 ij.2)
-        ((Matrix.charpoly.univ K (Fin n)).coeff i) := by
-    funext M
-    exact (Matrix.charpoly.univ_coeff_eval₂Hom (Fin n) (RingHom.id K) (fun ij : Fin n × Fin n => M ij.1 ij.2) i).symm
-  rw [h]
-  exact (MvPolynomial.continuous_eval _).comp
-    (continuous_pi fun ij => (continuous_apply ij.2).comp (continuous_apply ij.1))
+private alias contCoeff := _root_.GlobalTheory.TypeLeaf.continuous_charpoly_coeff_of_matrix
 
 private theorem contProd {K T I : Type} [CommRing K] [TopologicalSpace K] [IsTopologicalRing K] [TopologicalSpace T]
     (s : Finset I) (f : I → T → K[X]) (hf : ∀ i m, Continuous fun x => (f i x).coeff m) (m : ℕ) :

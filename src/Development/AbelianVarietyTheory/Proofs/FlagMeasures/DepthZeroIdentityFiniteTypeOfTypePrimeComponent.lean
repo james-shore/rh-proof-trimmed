@@ -60,14 +60,6 @@ namespace GlobalTheory.DepthZeroSer
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
-theorem rt_rt' {L : Type} [Field L] [NumberField L] [IsCMField L] {n : ℕ} (h h' : GAf L n) (f : GAf L n → ℂ) :
-    NG.rt L n h (NG.rt L n h' f) = NG.rt L n (h * h') f := by
-  funext x; simp [NG.rt, mul_assoc]
-
-theorem rt_one' {L : Type} [Field L] [NumberField L] [IsCMField L] {n : ℕ} (f : GAf L n → ℂ) :
-    NG.rt L n 1 f = f := by
-  funext x; simp [NG.rt]
-
 theorem nontrivial_of_irr {G : Type} [Group G] [TopologicalSpace G] (τ : GlobalTheory.SmGL.IrrRep G) : Nontrivial τ.V := by
   haveI := τ.irr
   by_contra h
@@ -105,7 +97,7 @@ theorem serFix_of_locS {L : Type} [Field L] [NumberField L] [IsCMField L] {n g :
     rintro y x hx f ⟨b, rfl⟩
     refine ⟨τ.ρ (Matrix.GeneralLinearGroup.map i.toRingHom (s.loc n x)) b, ?_⟩
     simp only [LinearMap.coe_comp, Function.comp_apply]
-    rw [hTeq x hx b, rt_rt', rt_rt', (hI.2.1 x y.1 hx y.2).eq]
+    rw [hTeq x hx b, _root_.Formalism.IndefR.principalLevelFrame.rt_rt, _root_.Formalism.IndefR.principalLevelFrame.rt_rt, (hI.2.1 x y.1 hx y.2).eq]
   have hsupst : ∀ (J : Finset _) x, TrivOutside {s.v} x → ∀ f ∈ ⨆ j ∈ J, N j, NG.rt L n x f ∈ ⨆ j ∈ J, N j := by
     intro J x hx f hf
     have : (⨆ j ∈ J, N j) ≤ (⨆ j ∈ J, N j).comap (NG.rt L n x) := by
@@ -127,7 +119,7 @@ theorem serFix_of_locS {L : Type} [Field L] [NumberField L] [IsCMField L] {n g :
     intro y b b' h
     apply hT
     have := congrArg (NG.rt L n y.1⁻¹) h
-    simpa [rt_rt', rt_one'] using this
+    simpa [_root_.Formalism.IndefR.principalLevelFrame.rt_rt, _root_.Formalism.IndefR.principalLevelFrame.rt_one] using this
   have hfix : ∀ y ∈ J, c y ∈ GlobalTheory.GLp.fixK1 ρ' := by
     intro y hy
     simp only [GlobalTheory.GLp.fixK1, Submodule.mem_iInf, LinearMap.mem_ker, LinearMap.sub_apply, LinearMap.id_apply,
@@ -146,7 +138,7 @@ theorem serFix_of_locS {L : Type} [Field L] [NumberField L] [IsCMField L] {n g :
     rw [hφsum, map_sum] at hx
     have hx' : ∑ y ∈ J, NG.rt L n y.1 (T (ρ' (GlobalTheory.GLp.inc g n kk) (c y))) = ∑ y ∈ J, NG.rt L n y.1 (T (c y)) := by
       rw [← hx]; refine Finset.sum_congr rfl fun y _ => ?_
-      rw [← hθx, ← hτθ, hTeq x hx1, rt_rt', rt_rt', (hI.2.1 x y.1 hx1 y.2).eq]
+      rw [← hθx, ← hτθ, hTeq x hx1, _root_.Formalism.IndefR.principalLevelFrame.rt_rt, _root_.Formalism.IndefR.principalLevelFrame.rt_rt, (hI.2.1 x y.1 hx1 y.2).eq]
     exact hinj y (hJuniq _ _ (fun y _ => ⟨_, rfl⟩) (fun y _ => ⟨_, rfl⟩) hx' y hy)
   have hfix' : ∀ y ∈ J, ∀ kk ∈ (GlobalTheory.GLp.red g n).ker, ρ' (GlobalTheory.GLp.inc g n kk) (c y) = c y := by
     intro y hy kk hkk
@@ -163,7 +155,7 @@ theorem serFix_of_locS {L : Type} [Field L] [NumberField L] [IsCMField L] {n g :
 
     rw [hφsum, map_sum]
     refine Finset.sum_congr rfl fun y hy => ?_
-    rw [rt_rt', (hI.2.1 (ℓ γ) y.1 (hℓ γ).1 y.2).eq, ← rt_rt', ← hTeq _ (hℓ γ).1, hτθ, hkkeq, map_mul,
+    rw [_root_.Formalism.IndefR.principalLevelFrame.rt_rt, (hI.2.1 (ℓ γ) y.1 (hℓ γ).1 y.2).eq, ← _root_.Formalism.IndefR.principalLevelFrame.rt_rt, ← hTeq _ (hℓ γ).1, hτθ, hkkeq, map_mul,
       Module.End.mul_apply, hfix' y hy _ (hkk γ)]
   rw [finsum_eq_sum_of_fintype]
   calc ∑ γ, a.coeff γ • NG.rt L n (ℓ γ) φ = ∑ y ∈ J, NG.rt L n y.1 (T (GlobalTheory.GLp.actK ρ' a (c y))) := by

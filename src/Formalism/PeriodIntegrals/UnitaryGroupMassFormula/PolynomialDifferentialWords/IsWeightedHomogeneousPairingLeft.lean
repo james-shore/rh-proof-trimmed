@@ -319,4 +319,3 @@ theorem divT : PI.OpWords.DivT := by
 
 end PI.OpWords.WeightedHomogeneousPolynomialDifferentialWords
 
-theorem PI.OpWords.pairingDivisibility : PI.OpWords.DivT := PI.OpWords.WeightedHomogeneousPolynomialDifferentialWords.divT

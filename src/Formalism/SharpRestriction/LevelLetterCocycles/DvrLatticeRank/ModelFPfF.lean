@@ -149,7 +149,7 @@ theorem modelF_local (hfr : IsFrame W Pt π' Eπ h' M σ c α β) (hcry : IsCrys
     have hy1Δ : ∀ δ ∈ W.DelF, W.γD T δ y1 = y1 := by
       intro δ hδ
       have e : W.γD T δ (π' ^ j • y1) = π' ^ j • W.γD T δ y1 := by
-        rw [Formalism.MainNotions.LiftingTheory.wmap_γD_smul, W.AΔ.pow_mem hπΔ j δ hδ]
+        rw [_root_.Formalism.MainNotions.LiftingTheory.gammaD_semilinear, W.AΔ.pow_mem hπΔ j δ hδ]
       refine sub_eq_zero.1 (tf_smul W T hunit ?_)
       rw [smul_sub, ← e, hyΔ δ hδ, sub_self]
     have hy1c : (letE c : LetA O n) • y1 = y1 := by

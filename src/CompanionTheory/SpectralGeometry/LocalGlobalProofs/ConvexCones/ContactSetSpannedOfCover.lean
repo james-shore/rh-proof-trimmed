@@ -106,7 +106,7 @@ theorem isSpanned_contact : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [Ch
     rw [e]
     exact pullR_mem_contact hr (hK i)
   · have hker : ∀ y, r y = 0 → B y y = 0 := fun y hy => hrad B hB y (by rw [hfac, hy]; simp)
-    obtain ⟨B', hB', rfl⟩ := GlobalTheory.T.psd_cone_descends_along_surjection O bar X X₁ r B hr hB.1 hker
+    obtain ⟨B', hB', rfl⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Fan.exists_psdCone_descend O bar X X₁ r B hr hB.1 hker
     obtain ⟨t, ht, e⟩ := hsub (mem_contact_of_pullR hr hB' hB)
     refine ⟨t, ht, LinearMap.ext₂ fun y z => ?_⟩
     simp [e, LinearMap.sum_apply]

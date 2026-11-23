@@ -66,7 +66,7 @@ theorem jointB_of_large : ∀ eps ez C₂ A : ℝ, 0 < eps → 0 < ez → ∃ x0
     h2 D L (D.nd.l i) hZ (le_trans (le_max_right _ _) hx) Fact.out hin
   refine ⟨GlobalTheory.T.placeCompletion_le_maxUnramified_away_2qd D.nbr i w hw hin.1 hin.2.1 hin.2.2.1, ?_⟩
   intro Cx hG
-  obtain ⟨ε, g, hg, hB⟩ := GlobalTheory.T.wordConditions_common_natural_representation L _ HW i r ρ π w hw Cx hG hR hadm hfont hJ hPt hin.1 hin.2.1 hin.2.2.1
+  obtain ⟨ε, g, hg, hB⟩ := _root_.GlobalTheory.HTW.Rec.recS_wordBase_natural L _ HW i r ρ π w hw Cx hG hR hadm hfont hJ hPt hin.1 hin.2.1 hin.2.2.1
   have hWB : WordsB L (D.nd.l i) C₂ (recWord L (liftIdx D i) ε g) := by
     refine GlobalTheory.T.twistedDualSizeWord_long_orbit_small_prime L Pm _ C₂ _ ε g _ (D.nd.l i) hR hg (le_max_right _ _) h11 hrow.1 ?_
     rw [Prod.snd_inv, orderOf_inv]

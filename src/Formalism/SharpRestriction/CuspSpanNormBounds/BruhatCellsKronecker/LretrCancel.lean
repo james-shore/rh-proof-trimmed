@@ -107,7 +107,7 @@ theorem l_retr : IntegralRetraction := by
   have hK : Disjoint K X := by
     rw [Submodule.disjoint_def]
     intro x hxK hxX
-    obtain ⟨d, hd, hdx⟩ := lretr_den (N : Set S.V) x hxK
+    obtain ⟨d, hd, hdx⟩ := _root_.Bl.general_b_fact_right_alt_form.goal1 (N : Set S.V) x hxK
     have hdxN : d • x ∈ N := by
       simpa only [Submodule.span_eq] using hdx
     obtain ⟨n, hn, he⟩ := Submodule.mem_map.mp hdxN

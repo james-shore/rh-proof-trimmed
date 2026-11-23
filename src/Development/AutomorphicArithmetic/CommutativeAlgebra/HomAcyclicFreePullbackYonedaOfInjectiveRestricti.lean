@@ -52,7 +52,7 @@ open LateralTheory.E.EtaleTopologySheaves LateralTheory.E.LeafGhostCut UpperTheo
 private lemma res_val {R : Type} [CommRing R] {X : Scheme.{0}} {J : Shv R} (φ : (free R).obj (yoneda.obj X) ⟶ J)
     {V : Scheme.{0}} (x : V ⟶ X) :
     Sec.map φ (freeGen R (yoneda.obj X) V x) = Sec.res x (Sec.map φ (freeGen R (yoneda.obj X) X (𝟙 X))) := by
-  have h3 := (GlobalTheory.T.free_sections_ext_res_map R (yoneda.obj X) J).2.2.1 V X x (𝟙 X)
+  have h3 := (_root_.GlobalTheory.EtC.free_hom_sections R (yoneda.obj X) J).2.2.1 V X x (𝟙 X)
   have nat : Sec.res x (Sec.map φ (freeGen R (yoneda.obj X) X (𝟙 X))) =
       Sec.map φ (Sec.res x (freeGen R (yoneda.obj X) X (𝟙 X))) := by
     simp only [Sec.res, Sec.map]
@@ -69,12 +69,12 @@ private noncomputable def evE (R : Type) [CommRing R] (X : Scheme.{0}) (J : Shv 
       map_smul' := fun _ _ => rfl }
     ⟨by
       intro φ ψ h
-      refine (GlobalTheory.T.free_sections_ext_res_map R (yoneda.obj X) J).2.1 φ ψ fun U x => ?_
+      refine (_root_.GlobalTheory.EtC.free_hom_sections R (yoneda.obj X) J).2.1 φ ψ fun U x => ?_
       rw [res_val φ x, res_val ψ x]
       exact congrArg (Sec.res x) h,
      by
       intro s
-      obtain ⟨φ, hφ⟩ := (GlobalTheory.T.free_sections_ext_res_map R (yoneda.obj X) J).1 (fun U x => Sec.res x s) (by
+      obtain ⟨φ, hφ⟩ := (_root_.GlobalTheory.EtC.free_hom_sections R (yoneda.obj X) J).1 (fun U x => Sec.res x s) (by
         intro V U g x
         simp [Sec.res])
       refine ⟨φ, ?_⟩
@@ -105,7 +105,7 @@ private lemma ev_pre {R : Type} [CommRing R] {X X' : Scheme.{0}} {J : Shv R} (f 
     (φ : (free R).obj (yoneda.obj X) ⟶ J) :
     Sec.map ((free R).map (yoneda.map f) ≫ φ) (freeGen R (yoneda.obj X') X' (𝟙 X')) =
       Sec.res f (Sec.map φ (freeGen R (yoneda.obj X) X (𝟙 X))) := by
-  have h4 := (GlobalTheory.T.free_sections_ext_res_map R (yoneda.obj X') J).2.2.2 (yoneda.obj X) (yoneda.map f) X' (𝟙 X')
+  have h4 := (_root_.GlobalTheory.EtC.free_hom_sections R (yoneda.obj X') J).2.2.2 (yoneda.obj X) (yoneda.map f) X' (𝟙 X')
   have hc : Sec.map ((free R).map (yoneda.map f) ≫ φ) (freeGen R (yoneda.obj X') X' (𝟙 X')) =
       Sec.map φ (Sec.map ((free R).map (yoneda.map f)) (freeGen R (yoneda.obj X') X' (𝟙 X'))) := rfl
   rw [hc, h4, ← res_val φ f]

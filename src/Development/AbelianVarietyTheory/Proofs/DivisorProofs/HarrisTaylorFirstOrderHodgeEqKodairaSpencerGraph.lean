@@ -136,8 +136,8 @@ theorem main : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.Datum p) (
       rw [GlobalTheory.HTCount.crysAct_apply]
       exact isFilLift_push (o₀.act.act a) (o'.act.act a) (m'.act a).symm (hg x hx)
     exact (hG _ hax _ _ e1).1 (hg _ hax)
-  · obtain ⟨hz₀, hz⟩ := GlobalTheory.T.lieConditionHodgeSubspace_constant_lift_mem_fil p D R b N k t o₀ β hβ o' m' z hz
+  · obtain ⟨hz₀, hz⟩ := _root_.GlobalTheory.HTCount.lieZ_mem_fil_and_lift p D R b N k t o₀ β hβ o' m' z hz
     simpa using (hG _ hz₀ _ _ hz).1 (hg _ hz₀)
-  · exact GlobalTheory.T.harrisTaylor_firstOrder_deformation_skew p D R b N k t o₀ φ hφ o' m' x hx y hy _ _ (hg x hx) (hg y hy)
+  · exact _root_.GlobalTheory.HTSkew.skew_of_isFilLift p D R b N k t o₀ φ hφ o' m' x hx y hy _ _ (hg x hx) (hg y hy)
 
 end GlobalTheory.HTNecessary

@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.BcDefs
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.BaseChangeUnits.CycCOfCyclic
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UniversalAnticyclotomicCharacterLaws
 
 @[expose] public section
 
@@ -75,8 +76,7 @@ private theorem across_pair {F₀ F Ω k : Type} [Field F₀] [Field F] [Field �
   rw [Units.val_mul, ← Matrix.smul_mul, ← hp]
   simp only [Matrix.mul_assoc, e']
 
-private theorem across_tf (L Ω : Type) [Field L] [Field Ω] [Algebra L Ω] : Module.IsTorsionFree L Ω :=
-  DivisionSemiring.to_moduleIsTorsionFree
+private alias across_tf := _root_.GlobalTheory.GalChar.isTorsionFree_field
 
 attribute [local instance] across_tf
 

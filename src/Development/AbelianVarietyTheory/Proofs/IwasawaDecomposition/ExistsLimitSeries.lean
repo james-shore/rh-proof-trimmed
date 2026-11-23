@@ -60,10 +60,6 @@ theorem exists_limit_series {R : Type} [CommRing R] (p : R) [IsPrecomplete (Idea
       exact Dvd.dvd.mul_right (pow_dvd_pow p (Finset.mem_Ico.mp hi).1) _)
   exact ⟨L, fun k => (mem_pow_smul_top_iff p k _).mp ((SModEq.sub_mem).mp (hL k))⟩
 
-theorem target : ∀ {R : Type} [inst : CommRing R] (p : R) [IsPrecomplete (Ideal.span {p}) R]
-    (f : ℕ → R), ∃ (L : R), ∀ (k : ℕ), p ^ k ∣ ∑ i ∈ Finset.range k, p ^ i * f i - L :=
-  by
-  intro R _ p _ f
-  exact exists_limit_series p f
+alias target := _root_.GlobalTheory.LimitSeriesPowSmul.exists_limit_series
 
 end GlobalTheory.LimitSeriesPowSmul

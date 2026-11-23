@@ -61,7 +61,7 @@ theorem linPull_coord_int_of_degree_lt :
       cases n with
       | inl x => exact he j x
       | inr κ => exact VF.Ge.zero 0) b
-  obtain ⟨h0, h1, -⟩ := GlobalTheory.T.formalGroupCoordinates_pullback_linear_tangentBasis C V d I J G S t ht (Fin N) e
+  obtain ⟨h0, h1, -⟩ := _root_.GlobalTheory.MainTerm.linPull_coords C V d I J G S t ht (Fin N) e
     (fun b j => S.co (Sum.elim (e j) (0 : J → C)) b)
     (fun c k b => if k = 0 then (if c = b then 1 else 0) else S.co (S.cur c k) b)
     (fun j x => (S.co_spec (Sum.elim (e j) (0 : J → C)) x).symm)

@@ -103,7 +103,7 @@ theorem per_indep {ρ : ℕ} (B : GlobalTheory.Unf.BesLev D ρ) {ψ : AddChar (A
     {ν : Measure (flagN B.d)} {𝓝 : Set (flagN B.d)} (hu : GlobalTheory.Per.IsUnitN B.V B.d.e ν 𝓝) (φ : GA D B.A → ℂ) (f : GA D B.V → ℂ)
     (hφ : ∀ γ ∈ GQ B.A, ∀ g, φ (γ * g) = φ g) (hf : ∀ γ ∈ GQ B.V, ∀ g, f (γ * g) = f g) :
     besPer ψ 1 B.d B.o B.ζ μ 𝓕 ν 𝓝 φ f = B.per ψ φ f := by
-  have hI : IsIsoSub B.V B.d.e := ⟨GlobalTheory.Core.Mi.PerCmp.hyp_linIndep B.d, by rw [cT_sig]; exact B.d.ee⟩
+  have hI : IsIsoSub B.V B.d.e := ⟨_root_.GlobalTheory.MixPer.Decomp.linInd B.d, by rw [cT_sig]; exact B.d.ee⟩
   obtain rfl : ν = B.vN.ν := unitN_unique hI hu B.vN.unit
   subst hA
   exact (GlobalTheory.Core.Mi.PerCmp.besPer_domN B.d B.o B.ζ hψ 1 _ _ B.vN.ν B.vN.unit.1 hu.2.1 B.vN.unit.2.1 φ f hf).trans

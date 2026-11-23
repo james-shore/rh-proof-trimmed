@@ -65,7 +65,7 @@ theorem exists_etale_of_isEtaleCompletion (A R : Type) [CommRing A] [IsLocalRing
   let D := AdicCompletion (maximalIdeal A) A
   haveI : IsNoetherianRing D := AdicNoeth.isNoetherianRing_adicCompletion A _
   haveI : IsAdicComplete ((maximalIdeal A).map h) R := by rw [hmap]; infer_instance
-  obtain ⟨g, hg⟩ := exists_adicCompletion_ringHom_extend (maximalIdeal A) h
+  obtain ⟨g, hg⟩ := _root_.GlobalTheory.PowerExtensionEvaluation.exists_extension (maximalIdeal A) h
   letI : Algebra D R := g.toAlgebra
   have hgA : ∀ a, g (algebraMap A D a) = h a := fun a => RingHom.congr_fun hg a
   have hmA : (maximalIdeal D).map (algebraMap D R) = maximalIdeal R := by

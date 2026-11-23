@@ -125,7 +125,7 @@ theorem UpperTheory.exists_numberField_extension_place_frobenius_degree :
     have hτA : A.valuation (τ ζ) ≤ 1 := by
       rw [A.valuation_le_one_iff, ReciprocityTheory.Gal.apply_mem_iff_of_mem_Dec hτ, ← A.valuation_le_one_iff]
       exact hζA
-    refine (GlobalTheory.T.eq_of_roots_congr_of_derivative_unit A f ζ (τ ζ) hζA hτA hfζ (GlobalTheory.UnrCycExt.aeval_apply_eq_zero τ f hfζ) hder ?_).symm
+    refine (_root_.GlobalTheory.eq_of_root_congr_of_deriv_unit A f ζ (τ ζ) hζA hτA hfζ (GlobalTheory.UnrCycExt.aeval_apply_eq_zero τ f hfζ) hder ?_).symm
     rw [Valuation.map_sub_swap]; exact hlt
   have hine : ∀ t ∈ Ine (F := E) A, ∀ x : L, t (algebraMap L Ω x) = algebraMap L Ω x := by
     intro t ht e

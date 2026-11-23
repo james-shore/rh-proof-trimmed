@@ -67,6 +67,6 @@ theorem isAmpleLB_pull_fst_of_translates : ∀ (R : Type) [CommRing R] [IsNoethe
     IsLocus.exists_sec h2 (hcls ▸ GlobalTheory.T.translate_mul_inv_isNonvanishingLocus_square (Sp R) A hA c V hloc T (a i) (hrel i))
   choose s hs using hsec
   exact isAmpleLB_of_cover hL' (by norm_num) s (by simp only [hs]; exact hcov)
-    fun i => (hs i).symm ▸ GlobalTheory.T.isAffineOpen_preimage_add_inf_preimage_sub_grpScheme R A V hV T (a i)
+    fun i => (hs i).symm ▸ _root_.GlobalTheory.SumAffine.isAffineOpen_preimage_add_inf_preimage_sub R A V hV T (a i)
 
 end GlobalTheory

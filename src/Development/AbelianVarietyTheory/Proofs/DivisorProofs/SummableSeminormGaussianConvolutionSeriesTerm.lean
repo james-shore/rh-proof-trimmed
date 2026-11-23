@@ -104,7 +104,7 @@ theorem summable_seminorm_term : ∀ (E : Type) [NormedAddCommGroup E] [InnerPro
     rw [hfun]
     have hfn : ‖f‖ ≤ s * ∫ a, ‖GlobalTheory.ConvSeries.wt b c (⇑h) a‖ * ‖a‖ ^ j := by
       rw [hf, norm_smul, Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hs0]
-      exact mul_le_mul_of_nonneg_left (GlobalTheory.T.norm_gaussianConvolutionSeriesCoefficient_le_integral E b c hb.le hc.le h j) hs0
+      exact mul_le_mul_of_nonneg_left (_root_.GlobalTheory.ConvSeries.norm_coef_le_integral E b c hb.le hc.le h j) hs0
     have hterm : ∀ i ∈ Finset.range (n + 1),
         ‖y‖ ^ k * ((n.choose i : ℝ) * ‖iteratedFDeriv ℝ i (fun y : E => Complex.exp (-((c * ‖y‖ ^ 2 : ℝ) : ℂ))) y‖ *
           ‖iteratedFDeriv ℝ (n - i) (fun y : E => f (fun _ => y)) y‖) ≤

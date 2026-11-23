@@ -125,7 +125,7 @@ theorem qdet_vector_multiplier_shift_plus : ∀ (V W : Type) [AddCommGroup V] [M
     have h3 : ∀ k : Fin (m + 1), qdet E u (x k (ι (y k))) = (∏ s, (u + ν s)) • x k (ι (y k)) +
         ∑ a : Fin (m + 1), x a (ι ((((-1 : ℂ) ^ ((a : ℕ) + (k : ℕ))) • qminor E' (Fin.succAbove a) (Fin.succAbove k) (u - 1)) (y k))) := by
       intro k
-      have := LinearMap.congr_fun (GlobalTheory.T.capelliDet_mul_vectorType (Module.End ℂ V) m E x hE hx u k) (ι (y k))
+      have := LinearMap.congr_fun (_root_.GlobalTheory.qdet_mul_vector (Module.End ℂ V) m E x hE hx u k) (ι (y k))
       simp only [LinearMap.sum_apply, LinearMap.smul_apply, Module.End.mul_apply,
         LinearMap.add_apply, hqι, map_smul] at this
       rw [this]

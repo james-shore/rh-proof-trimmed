@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.WindowSums.AnnihilatorPolynomials.EvalOneSmulDecomposition
 
 @[expose] public section
 
@@ -308,7 +309,7 @@ end KillerBridge
 
 theorem killer_conditions_of_stable (D : D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW)
     (h : AtCaseA fun l _ K LL h => Pi0Stable ((HW l).W K 1 LL h.2.2)) : adm11 D HW F :=
-  ⟨Formalism.WindowSums.arc_KillerVal, Formalism.WindowSums.arc_KillerKills,
+  ⟨Formalism.WindowSums.arc_KillerVal, _root_.Formalism.WindowSums.annihilatorPoly_kills,
     fun l _ K LL hc h5 => killerModule_of_stable _ (h l K LL hc h5)⟩
 
 end Formalism.MainNotions.WachCoordinates

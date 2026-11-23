@@ -251,7 +251,7 @@ theorem diagR_acts : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type) [Fiel
   have hL : ∀ ψ₁ ∈ SB ((Fin a' × Fin (a + a')) → Fv F v), ∀ ψ₂ ∈ SB ((Fin a' × Fin (a + a')) → Fv F v),
       Acts (evFin F v) (omd gd) (boxFun ψ₁ ψ₂) (boxFun (S g ψ₁) ψ₂) := by
     intro ψ₁ hψ₁ ψ₂ hψ₂
-    obtain ⟨φ', -, hA⟩ := GlobalTheory.T.doubledUnitaryElement_acts_localOperatorAtPlace F E σ B a a' G hT.base dd omd hspl v gd hAt _ (box_mem_SB hψ₁ hψ₂)
+    obtain ⟨φ', -, hA⟩ := _root_.GlobalTheory.DblActs.dbl_acts F E σ B a a' G hT.base dd omd hspl v gd hAt _ (box_mem_SB hψ₁ hψ₂)
     obtain ⟨r₁, hr₁, x₁, hx₁⟩ := GlobalTheory.RestComplement.exists_rest_ne_zero v ψ₁ hψ₁
     obtain ⟨r₂, hr₂, x₂, hx₂⟩ := GlobalTheory.RestComplement.exists_rest_ne_zero v ψ₂ hψ₂
     have hR := rest_box v hr₁ hr₂

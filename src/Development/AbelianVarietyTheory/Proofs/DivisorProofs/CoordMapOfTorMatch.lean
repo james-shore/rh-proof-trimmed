@@ -79,7 +79,7 @@ theorem coordMap_of_torMatch : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocal
   have hFr : ∀ r, algebraMap (FractionRing R) F (algebraMap R (FractionRing R) r) =
       algebraMap (FractionRing V) F (algebraMap V (FractionRing V) (g r)) :=
     fun r => (hF _).trans (congrArg _ (hgK r))
-  obtain ⟨e, he1, he2, he3⟩ := GlobalTheory.T.exists_genericPoints_uniformisations_weilPairing_galois R hR G hG D A U V hVb hV g hg G' β hβ hG' D' A' U' hL F hFr
+  obtain ⟨e, he1, he2, he3⟩ := _root_.GlobalTheory.GenRestrict.exists_genericPoints_equiv_any R hR G hG D A U V hVb hV g hg G' β hβ hG' D' A' U' hL F hFr
   have hm : ∀ (k : ℕ), IsUnit (k : R) → ∀ (τ : Multiplicative D.toPre.X →* Fˣ) (τ' : Multiplicative D'.toPre.X →* Fˣ)
       (q : QkPt D.toPre F k) (q' : QkPt D'.toPre F k) (a : TFK (R := R) F ⟶ A.A) (a' : TFK (R := V) F ⟶ A'.A),
       τ' ^ k = 1 → (∀ χ, τ (Multiplicative.ofAdd χ) = τ' (Multiplicative.ofAdd (ρ χ))) → q.y = 0 → GlobalTheory.UT.IsTor τ q.g →

@@ -74,7 +74,7 @@ theorem bij_cov (U : Cov q) {n : ℕ} (hn : n ≠ 0) (j : ℕ) :
   have hUs : sSup (Set.range U.U) = ⊤ := by
     rw [sSup_range]
     exact U.cover
-  have g := GlobalTheory.T.witt_level_morphism_cover_compat q ρ U n ((l : WittVector l k) ^ n) (mq (F := B.schFn q) (ρ := ρ) hn) (hGq q ρ hn)
+  have g := _root_.GlobalTheory.CompanionTheory.FlatCoverGlue.glue q ρ U n ((l : WittVector l k) ^ n) (mq (F := B.schFn q) (ρ := ρ) hn) (hGq q ρ hn)
     (fun S hS j => by
       obtain ⟨α, hα⟩ := hS
       obtain ⟨c', -⟩ := GlobalTheory.T.coordinates_restrict_affine_open (U.c α) (iInf₂_le α hα : (⨅ α ∈ S, U.U α) ≤ U.U α) (U.inter S ⟨α, hα⟩)

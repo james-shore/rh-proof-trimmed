@@ -94,7 +94,7 @@ theorem exists_ext (hZ : IsIsoSat D Z) (φ : Z →+ ℤ) : ∃ y : D.La, ∀ z :
     rw [← map_add (f := _)]; congr 1; ext; simp only [map_add (f := _), Submodule.coe_add]; abel)
   refine ⟨-y, fun z => ?_⟩
   have h0 : (Z.restrictScalars ℤ).mkQ (z : D.La) = 0 := (Submodule.Quotient.mk_eq_zero _).2 z.2
-  rw [map_neg, ef_swap, neg_neg, hy]
+  rw [map_neg, _root_.GlobalTheory.SimLift.form_skew, neg_neg, hy]
   simp only [AddMonoidHom.mk'_apply, h0, map_zero, sub_zero]
 
 theorem mem_of_perp_perp (hZ : IsIsoSat D Z) (y : D.La) (hy : ∀ p ∈ perp D Z, D.EF y p = 0) : y ∈ Z := by
@@ -110,7 +110,7 @@ theorem mem_of_perp_perp (hZ : IsIsoSat D Z) (y : D.La) (hy : ∀ p ∈ perp D Z
     have h0 : (Z.restrictScalars ℤ).mkQ z = 0 := (Submodule.Quotient.mk_eq_zero _).2 hz
     rw [hp, LinearMap.toAddMonoidHom_coe, LinearMap.comp_apply, h0, map_zero]
   have := hy p hpZ
-  rw [ef_swap, hp, neg_eq_zero] at this
+  rw [_root_.GlobalTheory.SimLift.form_skew, hp, neg_eq_zero] at this
   exact hχ this
 
 theorem perp_sat (D : Datum H) (Z : Submodule (𝓞 E) D.La) (a : 𝓞 E) (ha : a ≠ 0) (y : D.La) (hy : a • y ∈ perp D Z) :
@@ -142,13 +142,13 @@ theorem exists_opp (D : Datum H) (Z : Submodule (𝓞 E) D.La) (hZ : IsIsoSat D 
   have hZx : ∀ (z : D.La), z ∈ Z → ∀ x, D.EF z x = D.EF z (s ((perp D Z).mkQ x)) := fun z hz x => by
     have := hdec x z hz
     rw [map_sub, LinearMap.sub_apply, sub_eq_zero] at this
-    rw [ef_swap, this, ← ef_swap]
+    rw [_root_.GlobalTheory.SimLift.form_skew, this, ← _root_.GlobalTheory.SimLift.form_skew]
   have A1 : ∀ φ : Z →+ ℤ, ∃! b : C, ∀ a : Z, D.EF a b = φ a := by
     intro φ
     obtain ⟨y, hy⟩ := exists_ext hZ φ
     refine ⟨⟨s ((perp D Z).mkQ y), _, rfl⟩, fun a => (hZx a a.2 y).symm.trans (hy a), fun b hb => Subtype.ext ?_⟩
     have h1 : (b : D.La) - s ((perp D Z).mkQ y) ∈ perp D Z := fun z hz => by
-      rw [ef_swap, map_sub, hb ⟨z, hz⟩, ← hZx z hz, hy ⟨z, hz⟩, sub_self, neg_zero]
+      rw [_root_.GlobalTheory.SimLift.form_skew, map_sub, hb ⟨z, hz⟩, ← hZx z hz, hy ⟨z, hz⟩, sub_self, neg_zero]
     exact sub_eq_zero.1 (hC0 _ (sub_mem b.2 ⟨_, rfl⟩) h1)
 
   have A2 : ∀ φ : C →+ ℤ, ∃! z : Z, ∀ c : C, D.EF c z = φ c := by
@@ -163,20 +163,20 @@ theorem exists_opp (D : Datum H) (Z : Submodule (𝓞 E) D.La) (hZ : IsIsoSat D 
       have : (⟨s ((perp D Z).mkQ p), hmC p⟩ : C) = 0 := Subtype.ext (by show s ((perp D Z).mkQ p) = 0; rw [h0, map_zero])
       rw [this, map_zero, neg_zero]
     have key : ∀ c : C, D.EF c (-y) = φ c := fun c => by
-      rw [ef_swap, map_neg, LinearMap.neg_apply, neg_neg, hy]
+      rw [_root_.GlobalTheory.SimLift.form_skew, map_neg, LinearMap.neg_apply, neg_neg, hy]
       congr 1; exact Subtype.ext (hsC c c.2)
     refine ⟨⟨-y, hyZ⟩, key, fun z hz => Subtype.ext ?_⟩
     have hw : ∀ x, D.EF ((z : D.La) - -y) x = 0 := fun x => by
       have h1 := hz ⟨_, hmC x⟩
       have h2 := key ⟨_, hmC x⟩
-      rw [hZx _ (sub_mem z.2 hyZ), ef_swap, map_sub]
+      rw [hZx _ (sub_mem z.2 hyZ), _root_.GlobalTheory.SimLift.form_skew, map_sub]
       rw [h1, h2, sub_self, neg_zero]
     exact sub_eq_zero.1 (D.unimod.1 (LinearMap.ext fun x => by rw [hw, map_zero, LinearMap.zero_apply]))
   let β : LinearMap.BilinForm ℤ C := LinearMap.mk₂ ℤ (fun a b : C => -D.EF a b)
     (fun a a' b => by simp only [Submodule.coe_add, map_add (f := _), LinearMap.add_apply]; abel) (fun n a b => by simp) (fun a b b' => by simp only [Submodule.coe_add, map_add (f := _)]; abel) (fun n a b => by simp)
   obtain ⟨t, ht⟩ := exists_skew_solve A2 β (fun a b => by
       show -D.EF a b = -(-D.EF b a)
-      rw [ef_swap D a b]) (fun c a b => by
+      rw [_root_.GlobalTheory.SimLift.form_skew D a b]) (fun c a b => by
       show -D.EF ((c • a : C) : D.La) b = -D.EF a ((H.bar c • b : C) : D.La)
       rw [Submodule.coe_smul, Submodule.coe_smul, D.adj])
   have ht' : ∀ a b : C, D.EF a (t b) + D.EF (t a) b = -D.EF a b := ht
@@ -199,10 +199,10 @@ theorem exists_opp (D : Datum H) (Z : Submodule (𝓞 E) D.La) (hZ : IsIsoSat D 
     refine ⟨a, ?_, fun a' ha' => hu a' fun c => ?_⟩
     · rintro ⟨_, c, rfl⟩
       show D.EF a (g c) = φ ⟨g c, c, rfl⟩
-      rw [kZ, ef_swap, ha c, AddMonoidHom.neg_apply, neg_neg]
+      rw [kZ, _root_.GlobalTheory.SimLift.form_skew, ha c, AddMonoidHom.neg_apply, neg_neg]
       rfl
     · have h1 := ha' ⟨g c, c, rfl⟩
-      rw [ef_swap, ← kZ a' c]
+      rw [_root_.GlobalTheory.SimLift.form_skew, ← kZ a' c]
       show -D.EF a' (g c) = -φ ⟨g c, c, rfl⟩
       rw [← h1]
 

@@ -59,9 +59,7 @@ namespace GlobalTheory.CompanionTheory.ColumnSplitting
 
 variable {D : D7}
 
-theorem continuous_adjM {a b : ℕ} : Continuous (adj : Mx D a b → Mx D b a) := by
-  have hc : Continuous (cA D) := GlobalTheory.FockCompare.ThetaCont.continuous_conj
-  exact (continuous_id.matrix_map hc).matrix_transpose
+alias continuous_adjM := _root_.GlobalTheory.MixModel.continuous_adj
 
 theorem continuous_ipM {X : Type} [TopologicalSpace X] (V : HSp D) {a b : ℕ} {f : X → Mx D V.rank a}
     {g : X → Mx D V.rank b} (hf : Continuous f) (hg : Continuous g) :

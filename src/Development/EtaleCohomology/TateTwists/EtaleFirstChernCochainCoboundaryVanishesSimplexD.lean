@@ -98,6 +98,3 @@ theorem etale_first_chern_cochain_closed_of_degree_parts (hd : EvDelta) (hx : cx
 
 end LateralTheory.EtaleFoundations
 
-open LateralTheory.EtaleFoundations in
-theorem LateralTheory.EtaleFoundations.etale_first_chern_cochain_closed_of_components (hd : EvDelta) (hx : cx_ext) (hr : res_neg) (h1 : EtaleFirstChernCochainCoboundaryVanishesSimplexDegreeOne) (h2 : EtaleFirstChernCochainCoboundaryVanishesSimplexDegreeTwo) (h3 : EtaleFirstChernCochainCoboundaryVanishesSimplexDegreeThree) :
-    LateralTheory.EtaleFoundations.EtaleKummerChernClassCochainIsCocycle := etale_first_chern_cochain_closed_of_degree_parts hd hx hr h1 h2 h3

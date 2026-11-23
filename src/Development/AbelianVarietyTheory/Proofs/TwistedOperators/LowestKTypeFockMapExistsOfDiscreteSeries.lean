@@ -292,7 +292,7 @@ theorem weights_parHol (i : Fin D.R.m) {P : D.what₂.Tau → SPar} (hP : P = pa
         (aPl D i ((Wc D i).sig (tauE D τ)).1 τ) (aMi D i ((Wc D i).sig (tauE D τ)).1 ((Wc D i).sig (tauE D τ)).2 τ)
         (x₃ τ) j = -(Bridge.lamLdef (D := D) (Vc D i).rank ((i : ℕ) + 1) τ).w j := by
   subst hP
-  exact GlobalTheory.T.lowestKType_coefficientWeight_eq_minorWeights D i _ rfl M h
+  exact _root_.GlobalTheory.JointHarm.weights_of_minors D i _ rfl M h
 
 theorem ioEx (D : D7) : IoEx D := by
   rintro i M M' ψ θ χS χT ω hθ hω hχ c hc ⟨pr, hpr⟩ BV f hf

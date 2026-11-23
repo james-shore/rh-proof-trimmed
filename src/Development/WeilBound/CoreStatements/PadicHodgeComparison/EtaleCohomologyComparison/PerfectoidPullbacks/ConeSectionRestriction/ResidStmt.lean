@@ -79,8 +79,8 @@ theorem resid_alg : ∀ (K : Type) [Field K] [CharZero K] (n : ℕ) (R : Type) [
     simp
   have hune : (Finset.univ : Finset (Fin (n + 2))).Nonempty := Finset.univ_nonempty
   have hfin : FiniteDimensional (fldF K t) (FractionRing R) :=
-    fldF_findim t (B Finset.univ) (hTB _ hune) (hFG _ hune) (hInt _ hune) hFrac
-  obtain ⟨res, hres1, hres0, hresD⟩ := res_R t ht D hD
+    _root_.CrystallineSemistableComparison.Pb.fldF_findim_pf t (B Finset.univ) (hTB _ hune) (hFG _ hune) (hInt _ hune) hFrac
+  obtain ⟨res, hres1, hres0, hresD⟩ := _root_.CrystallineSemistableComparison.Pb.res_R_pf t ht D hD
 
   let Φ : R →+ FractionRing R :=
     ((algebraMap (fldF K t) (FractionRing R)).toAddMonoidHom.comp
@@ -94,7 +94,7 @@ theorem resid_alg : ∀ (K : Type) [Field K] [CharZero K] (n : ℕ) (R : Type) [
       (∀ b ∈ B', IsIntegral (torusS K t (Finset.univ.erase i)) b) ∧
       ∀ r : R, ∃ b ∈ B', ∃ b' ∈ B', b' ≠ 0 ∧ r * b' = b := fun i => by
     obtain ⟨w, hwA, hw0, hscale⟩ := torus_scale (K := K) t i
-    obtain ⟨B', hB', hFG', hInt', hFrac'⟩ := chart_ext (torusS K t (Finset.univ.erase i)) (torusS K t Finset.univ)
+    obtain ⟨B', hB', hFG', hInt', hFrac'⟩ := _root_.CrystallineSemistableComparison.Pb.chart_ext_pf (torusS K t (Finset.univ.erase i)) (torusS K t Finset.univ)
       (B (Finset.univ.erase i)) (B Finset.univ) (torusS_le_univ t _) (hTB _ (hne i)) (hMono i) (hTB _ hune)
       (hFG _ (hne i)) (hInt _ (hne i)) (hFG _ hune) (hInt _ hune) hFrac w hwA hw0 hscale
     exact ⟨B', hB', (hTB _ (hne i)).trans hB', hFG', hInt', hFrac'⟩

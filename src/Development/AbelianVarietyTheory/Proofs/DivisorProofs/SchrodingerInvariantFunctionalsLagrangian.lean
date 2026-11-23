@@ -190,7 +190,7 @@ theorem main : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F : Type) [Field F] [Nu
     (∃ φ ∈ schA F κ, l₂ φ ≠ 0) → ∃ c : ℂ, ∀ φ ∈ schA F κ, l₁ φ = c * l₂ φ := by
   intro _ F _ _ ψ hψ κ _ L hL hdim l₁ l₂ hi₁ hi₂ ⟨φ₀, hφ₀, hne⟩
   classical
-  obtain ⟨g, hg, hgL⟩ := GlobalTheory.T.exists_symplecticBlockGenerators_lagrangian_normal_form F κ L hL hdim
+  obtain ⟨g, hg, hgL⟩ := _root_.GlobalTheory.AdelicSvN.LagrangianNormalForm.exists_mem_closure F κ L hL hdim
   obtain ⟨S, hS, hSs, hSa, hSi⟩ := realised_of_mem_closure ψ hψ hg
 
   have hlin : ∀ (a b : ℂ), ∀ φ ∈ schA F κ, ∀ φ' ∈ schA F κ, S (a • φ + b • φ') = a • S φ + b • S φ' := by

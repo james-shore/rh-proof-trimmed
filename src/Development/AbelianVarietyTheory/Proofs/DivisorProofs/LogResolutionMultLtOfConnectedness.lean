@@ -154,7 +154,7 @@ theorem mult_lt_of_connected : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoe
     subst hwz
     obtain ⟨g, hg⟩ := G.exists_isEqn (s w)
     have hd := hdisc (s w) hz E hE g hg
-    have h1 := GlobalTheory.T.discrepancy_formula_divisor ℂ Y (s ≫ p) n (EtaleKlt.ratPull p s n η) hη' K (pullCart s G) m hm
+    have h1 := _root_.GlobalTheory.Discrepancy.discrep_isAt_eq_neg_mult ℂ Y (s ≫ p) n (EtaleKlt.ratPull p s n η) hη' K (pullCart s G) m hm
       hres.div E' w (fnPull s g) hw (isEqn_pullCart s hg)
     have h2 : discrep E' (EtaleKlt.ratPull p s n η) m (fnPull s g) = discrep E η m g := by
       have hform : E'.formOrd (EtaleKlt.ratPull p s n η) = E.formOrd η := by

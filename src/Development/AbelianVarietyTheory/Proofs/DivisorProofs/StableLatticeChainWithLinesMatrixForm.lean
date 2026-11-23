@@ -93,7 +93,7 @@ theorem chain_of_lattices : ∀ (Γ O : Type) [Group Γ] [CommRing O] [IsDomain 
   have hϖ0 : ϖ ≠ 0 := hϖ.ne_zero
   have hin : ∀ k (y : Fin n → O), (fun a => ϖ * y a) ∈ M k := fun k y =>
     hmono (Fin.zero_le k) ((hM0 _).2 ⟨y, rfl⟩)
-  choose A hA hdet using fun k => GlobalTheory.T.exists_square_matrix_image_submodule_contains_uniformizer n ϖ (M k) hϖ0 (hin k)
+  choose A hA hdet using fun k => _root_.GlobalTheory.exists_square_matrix_of_submodule_between n ϖ (M k) hϖ0 (hin k)
   have hinj : ∀ k, Function.Injective (A k).mulVec := fun k u v huv => by
     by_contra hne
     refine hdet k ((Matrix.exists_mulVec_eq_zero_iff).1 ⟨u - v, sub_ne_zero.2 hne, ?_⟩)

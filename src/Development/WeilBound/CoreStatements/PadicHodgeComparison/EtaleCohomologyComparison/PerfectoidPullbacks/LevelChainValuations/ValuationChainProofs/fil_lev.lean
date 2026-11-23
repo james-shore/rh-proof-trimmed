@@ -88,26 +88,26 @@ theorem quoM_bMap (hQ : ∀ T, QB L M s T → QA L M s (((nmB M hL).mor 0).obj T
 
 
 theorem fil_lev_pf [FiniteDimensional ℚ_[l] K] (hM : M.Sm) (U : Cov M.q) (hU : ∀ α, U.d α + m ≤ s) (hs : m ≤ s) {j : ℕ}
-    (x : ∀ n, M.Hc false n j) (hx : (chainOf hL M s (qb_le hL M s) (rHof d hc M s)).Comp x)
-    (f : Module.Dual K (HdR M.q j) →+ L.B) (hf : (chainOf hL M s (qb_le hL M s) (rHof d hc M s)).Rho x f) (N r : ℕ) (hN : N ≤ s)
+    (x : ∀ n, M.Hc false n j) (hx : (chainOf hL M s (_root_.CrystallineSemistableComparison.Pb.Kap.qb_le_pf hL M s) (rHof d hc M s)).Comp x)
+    (f : Module.Dual K (HdR M.q j) →+ L.B) (hf : (chainOf hL M s (_root_.CrystallineSemistableComparison.Pb.Kap.qb_le_pf hL M s) (rHof d hc M s)).Rho x f) (N r : ℕ) (hN : N ≤ s)
     (hfil : ∀ n, x n ∈ B.HcFil (B.schFn M.p) (okToOC l K) false n N j) (φ : Module.Dual K (HdR M.q j))
     (hφ : ∀ h ∈ FilR M.q j (r + 1), φ h = 0) : f φ ∈ pdP L.γB (N - r) := by
   obtain ⟨hlin, e, z, hz, hb⟩ := hf
-  obtain ⟨e', -, -, hsep⟩ := cg_lift hL M hM s hs j
+  obtain ⟨e', -, -, hsep⟩ := _root_.CrystallineSemistableComparison.Pb.Kap.cg_lift_pf hL M hM s hs j
   have h1 : ∀ n, redM (QA L M s) (some (N : ℤ)) ((l : L.A) ^ n) j z = 0 := fun n => by
     have h2 : redM (QA L M s) none ((l : L.A) ^ n) j z = (l : L.A) ^ e • rHof d hc M s n j (x n) := hz n
     rw [← toSome_redM, h2, map_smul]
     have h3 : toSome (QA L M s) N ((l : L.A) ^ n) j (rHof d hc M s n j (x n)) = 0 :=
-      red_fil (d n) M.p s {⊤} ((PAlg.base l).cris n) L.lam (hc n) N j (x n) (hfil n)
+      _root_.GlobalTheory.CompanionTheory.RedFil.red_kills_toSome (d n) M.p s {⊤} ((PAlg.base l).cris n) L.lam (hc n) N j (x n) (hfil n)
     rw [h3, smul_zero]
   have h4 := hsep N (by exact_mod_cast hN) z h1
   rw [← map_smul] at h4
-  have h5 := quoM_bMap hL M s (qb_le hL M s) N j _ h4
+  have h5 := quoM_bMap hL M s (_root_.CrystallineSemistableComparison.Pb.Kap.qb_le_pf hL M s) N j _ h4
   haveI := (m_fin M hM j).1
   let bs := Module.finBasis K (HdR M.q j)
-  have h6 : (l : L.B) ^ e • ∑ t, f (bs.coord t) • muB L.γB M.q 1 s {⊤} j (bs t) = bMap M s hL (qb_le hL M s) j z := hb bs
+  have h6 : (l : L.B) ^ e • ∑ t, f (bs.coord t) • muB L.γB M.q 1 s {⊤} j (bs t) = bMap M s hL (_root_.CrystallineSemistableComparison.Pb.Kap.qb_le_pf hL M s) j z := hb bs
   rw [LinearMap.map_smulₛₗ, ← h6, map_pow, map_natCast, map_smul, map_smul] at h5
-  have hu := unit_B hL
+  have hu := _root_.CrystallineSemistableComparison.Pb.Kap.unit_B_pf hL
   rw [(hu.pow e').smul_eq_zero, (hu.pow e).smul_eq_zero] at h5
   have h7 := (basisB L.γB s m (pdP_B_bot hL) hs M.q U hU {⊤} sSup_singleton j bs).2 N hN _ h5 r φ hφ
   have h8 : f φ = ∑ t, f (bs.coord t) * algebraMap K L.B (φ (bs t)) := by

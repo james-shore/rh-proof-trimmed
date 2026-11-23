@@ -169,13 +169,13 @@ theorem exists_compact_iwasawa_good : ∀ (F E : Type) [Field F] [NumberField F]
       rw [hstab v e]
       exact hv
     let S : Finset (HeightOneSpectrum (𝓞 F)) := hfin.toFinset
-    choose pl kl hkl hgl Bl hBl hpl using fun v => GlobalTheory.T.max_even_lattice_flag_transitive_local (X := X) hCM hJ hW v (hT v) (Λ v) (hΛ1 v) (proj σ J v g)
+    choose pl kl hkl hgl Bl hBl hpl using fun v => _root_.GlobalTheory.CompanionTheory.KFin.Iwasawa.iwasawa_loc (X := X) hCM hJ hW v (hT v) (Λ v) (hΛ1 v) (proj σ J v g)
     let x : ∀ v : S, GLoc σ J v := fun v => pl v
     have hp1 : embAt σ J S x ∈ minPar σ J X := by
       have : embAt σ J S x ∈ minParSub X hCM hJ hW := by
         refine Subgroup.noncommProd_mem _ (f := fun v : S => emb σ J v (x v))
           (fun _ _ _ _ h => commute_emb σ J _ (proj_emb_ne σ J (fun e => h (Subtype.ext e)) _)) fun v _ => ?_
-        exact GlobalTheory.T.block_triangular_mem_minimal_parabolic_local (Y := Y) v.1 _ (Bl v.1) (hBl v.1) (hpl v.1)
+        exact _root_.GlobalTheory.CompanionTheory.KFin.emb_mem_minPar (Y := Y) v.1 _ (Bl v.1) (hBl v.1) (hpl v.1)
       exact this
     have hp2 := mem_atPts.1 (embAt_mem σ J S x)
     refine ⟨embAt σ J S x, hp1, hp2.1, (embAt σ J S x)⁻¹ * g, (memK _).2 ⟨mul_mem (inv_mem hp2.1) hg, fun v => ?_⟩, by simp⟩
@@ -207,7 +207,7 @@ theorem exists_compact_iwasawa_good : ∀ (F E : Type) [Field F] [NumberField F]
       exact e1
     have hmK : m ∈ K := by
       refine (memK m).2 ⟨hmf, fun v => ?_⟩
-      refine GlobalTheory.T.max_even_lattice_adapted_basis hCM hJ hW v (Λ v) (hΛ1 v) (hΛ2 v) (proj σ J v p) (proj σ J v m) (hpv v) _
+      refine _root_.GlobalTheory.CompanionTheory.KFin.GoodLocal.levi_mem_stabLat hCM hJ hW v (Λ v) (hΛ1 v) (hΛ2 v) (proj σ J v p) (proj σ J v m) (hpv v) _
         (hB.map _) (flag_map_kfin (evFin F v) p B hpB) ?_
       refine (matHom_mapH_kfin (evFin F v) m).trans ?_
       rw [hm, ← GlobalTheory.T.levi_matrix_map_base_change, ← matHom_mapH_kfin]

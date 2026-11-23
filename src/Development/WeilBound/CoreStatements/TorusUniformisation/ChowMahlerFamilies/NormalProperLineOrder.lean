@@ -88,30 +88,18 @@ theorem subset_of_specializes {T : Type} [TopologicalSpace T] [TopologicalSpace.
 
 variable {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCat.of Ω) ⟶ X}
 
-theorem unit_mul {p : Cpt ξ} {a b : Ω} (ha : unitAt ξ p a) (hb : unitAt ξ p b) : unitAt ξ p (a * b) :=
-  ⟨mul_ne_zero ha.1 hb.1, mul_mem ha.2.1 hb.2.1, by rw [mul_inv]; exact mul_mem ha.2.2 hb.2.2⟩
+alias unit_mul := _root_.GlobalTheory.CompanionTheory.Ar.Flat.ZUnit.mul
 
-theorem unit_inv {p : Cpt ξ} {a : Ω} (ha : unitAt ξ p a) : unitAt ξ p a⁻¹ :=
-  ⟨inv_ne_zero ha.1, ha.2.2, by rw [inv_inv]; exact ha.2.1⟩
+alias unit_inv := _root_.GlobalTheory.CompanionTheory.Ar.Flat.ZUnit.inv
 
-theorem unit_pow {p : Cpt ξ} {a : Ω} (ha : unitAt ξ p a) (n : ℕ) : unitAt ξ p (a ^ n) :=
-  ⟨pow_ne_zero n ha.1, pow_mem ha.2.1 n, by rw [← inv_pow]; exact pow_mem ha.2.2 n⟩
+alias unit_pow := _root_.GlobalTheory.CompanionTheory.Ar.Flat.ZUnit.pow
 
 theorem unit_change {L : Lat ξ Ω} {p : Cpt ξ} {σ π e f : Ω} {M : ℕ} (he : L.IsGenAt p e) (hf : L.IsGenAt p f)
     (h : unitAt ξ p (π / (σ / f) ^ M)) : unitAt ξ p (π / (σ / e) ^ M) := by
   rw [CurvePositivity.change_gen σ π e f M hf.1]
   exact unit_mul h (unit_pow (ProjectiveLinePlaces.unitAt_div he hf) M)
 
-theorem exists_local_gen {L : Lat ξ Ω} (h : L.IsVB 1 ⊤) (p : Cpt ξ) :
-    ∃ (U : X.Opens) (e : Ω), p.1 ∈ U ∧ ∀ q : Cpt ξ, q.1 ∈ U → L.IsGenAt q e := by
-  obtain ⟨U, hp, b, -, hb⟩ := h p (Set.mem_univ p)
-  refine ⟨U, b 0, hp, fun q hq => ?_⟩
-  obtain ⟨hli, hspan⟩ := hb q (Set.mem_univ q) hq
-  refine ⟨hli.ne_zero 0, ?_⟩
-  rw [hspan]
-  congr 1
-  ext x
-  simp [eq_comm]
+alias exists_local_gen := _root_.GlobalTheory.CompanionTheory.Ar.Flat.ZLat.GlobalTheory.CompanionTheory.Ar.Flat.ZLat.exists_local_gen
 
 end PositivityTheory.Xgn.ProperZeroNumerical
 

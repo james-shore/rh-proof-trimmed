@@ -182,7 +182,7 @@ theorem scales_of_box {κ : Type} [Fintype κ] {v : Pl (F := F)} (ψ : AddChar (
   have key := GlobalTheory.T.linearForm_eq_zero_of_kills_productSchwartzBruhat F v κ κ ψ hψ hψ1 (Λ ∘ₗ S - a • Λ) (fun φ₁ h₁ φ₂ h₂ => by
     obtain ⟨Φ₁, -, hA⟩ := hex _ (box_mem_SB h₁ h₂)
     simp only [LinearMap.sub_apply, LinearMap.smul_apply, smul_eq_mul, LinearMap.comp_apply]
-    rw [← hS _ (box_mem_SB h₁ h₂) Φ₁ hA, hbox φ₁ h₁ φ₂ h₂ Φ₁ hA, sub_self])
+    rw [← hS _ (_root_.GlobalTheory.BoxSpan.boxFun_mem_SB' h₁ h₂) Φ₁ hA, hbox φ₁ h₁ φ₂ h₂ Φ₁ hA, sub_self])
   intro Φ hΦ
   obtain ⟨Φ₁, hΦ₁, hA⟩ := hex Φ hΦ
   refine ⟨Φ₁, hΦ₁, hA, ?_⟩
@@ -219,7 +219,7 @@ theorem char_eq_one : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
   have hSB := GlobalTheory.T.heisenbergDiagonalIntegral_mem_schwartzBruhat F v _ _ hψc hψ1 μ hμ _ (box_mem_SB hφ₀ hφ₀) c₁ hc₁ U hUo hUc hU0 hU
   obtain ⟨Λ, hΛ⟩ := GlobalTheory.T.lagrangian_diagonal_integral_extends_linearForm F v _ _ hψc μ hμ N ν hν j hj hSB
   have hΛ0 : Λ (boxFun φ₀ φ₀) ≠ 0 := by
-    rw [hΛ _ (box_mem_SB hφ₀ hφ₀), lagInt]
+    rw [hΛ _ (_root_.GlobalTheory.BoxSpan.boxFun_mem_SB' hφ₀ hφ₀), lagInt]
     simp only [hU]
     exact GlobalTheory.T.integral_injectiveSubspace_compactOpen_const_ne_zero F v _ N ν hν j hj c₁ hc₁ U hUo hUc hU0
   have hlag : ∀ y, ζ y * Cᵀ ∈ lagAt v C := fun y =>
@@ -337,7 +337,7 @@ theorem char_eq_one : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
   have s2 := hdiag k⁻¹ hki kd⁻¹ hkdi
   have q1 := hpar p₁ t₁ (at_of_one_sub_smul hp₁) ht₁
   have q2 := hpar p₂ t₂ (at_of_one_sub_smul hp₂) ht₂
-  have hb := box_mem_SB hφ₀ hφ₀
+  have hb := _root_.GlobalTheory.BoxSpan.boxFun_mem_SB' hφ₀ hφ₀
   have f1 : c k * c k⁻¹ = 1 := by
     have h := s1.mul s2 (hspl.pres _)
     rw [← map_mul, mul_inv_cancel, map_one] at h

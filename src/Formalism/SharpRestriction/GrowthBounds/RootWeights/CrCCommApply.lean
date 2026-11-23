@@ -100,10 +100,6 @@ theorem cr_C_comm_apply (E : GLOps n K V) (hR : SatisfiesGLRelations E) (c d : F
   have := congrArg (fun f : Module.End K V => f x) (cr_C_comm E hR c d)
   simpa using this
 
-theorem cr_sym {M : Type*} [AddCommMonoid M] (F : Fin n → Fin n → M) :
-    ∑ a, ∑ b, F a b = ∑ a, F a a + ∑ a, ∑ b, if a < b then F a b + F b a else 0 :=
-  _root_.UpperTheory.Reformulated.B.DoubleSumDiagonalOffDiagonal.main F
-
 theorem cr_C_wt (E : GLOps n K V) (hR : SatisfiesGLRelations E) (mu : Fin n → ℤ) (x : V) (hx : x ∈ weightSp E mu) :
     cr_C E x = ((cr_c mu : ℤ) : K) • x + (2 : K) • ∑ a : Fin n, ∑ b : Fin n, if a < b then E b a (E a b x) else 0 := by
   classical
@@ -119,7 +115,7 @@ theorem cr_C_wt (E : GLOps n K V) (hR : SatisfiesGLRelations E) (mu : Fin n → 
     rw [v2rep_comm E hR a b b a x]
     simp only [if_true, hx' a, hx' b, sub_smul, two_smul]
     abel
-  rw [e0, cr_sym, Finset.sum_congr rfl fun a _ => e1 a]
+  rw [e0, _root_.UpperTheory.Reformulated.B.DoubleSumDiagonalOffDiagonal.main, Finset.sum_congr rfl fun a _ => e1 a]
   have e3 : ∀ a b : Fin n, (if a < b then E a b (E b a x) + E b a (E a b x) else 0) =
       (2 : K) • (if a < b then E b a (E a b x) else 0) + (if a < b then ((mu a : K) - (mu b : K)) else 0) • x := by
     intro a b

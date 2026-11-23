@@ -60,15 +60,15 @@ theorem GlobalTheory.UCanon.sabMap_of_same_coords : ∀ {E : Type} [Field E] [Nu
     exact Finset.prod_ne_zero_iff.mpr fun k _ => hs k
   have hdiv : ∀ k, ∃ n : ℕ, s k ∣ f ^ n := fun k =>
     ⟨1, by rw [pow_one, hf]; exact Finset.dvd_prod_of_mem s (Finset.mem_univ k)⟩
-  have hpsi := GlobalTheory.T.psiUnitOn_basicOpen_of_comesFromBase L P₁.D.toPre P₁.oD iw s ε e₁ h₁ f hdiv
-  obtain ⟨t', P', hD, ⟨m⟩, hx, hact⟩ := GlobalTheory.T.exists_linearUniformisation_pullback_localMap R V bR bV t₁ P₁ θ hθ f hfθ hpsi
+  have hpsi := _root_.GlobalTheory.UnitOpen.psiUnitOn_basicOpen_of_divFrom L P₁.D.toPre P₁.oD iw s ε e₁ h₁ f hdiv
+  obtain ⟨t', P', hD, ⟨m⟩, hx, hact⟩ := _root_.GlobalTheory.LocalPull.exists_pelUnif_pull R V bR bV t₁ P₁ θ hθ f hfθ hpsi
   let e' : P'.D.toPre.X ≃ₗ[𝓞 E] L.D.X := (hD.xe.toLinearEquiv hx).trans e₁
-  have h' := GlobalTheory.T.comesFromBase_stable_under_pullback_of_data L P₁.D.toPre P₁.oD P'.D.toPre P'.oD iw θ s ε e₁ hD e' (fun y => rfl) hact hs h₁
-  obtain ⟨hD₂, he₂, hact₂⟩ := GlobalTheory.T.exists_isPullDeg_id_same_coordinates L P'.D.toPre P'.oD P.D.toPre P.oD (θ.comp iw) (fun k => θ (s k)) ε e' e
+  have h' := _root_.GlobalTheory.UCanon.DivFromPull.divFrom_pull L P₁.D.toPre P₁.oD P'.D.toPre P'.oD iw θ s ε e₁ hD e' (fun y => rfl) hact hs h₁
+  obtain ⟨hD₂, he₂, hact₂⟩ := _root_.GlobalTheory.UCanon.DivIso.exists_isPullDeg_id L P'.D.toPre P'.oD P.D.toPre P.oD (θ.comp iw) (fun k => θ (s k)) ε e' e
     hs h' h
   have hx₂ : ∀ (x : 𝓞 E) y, hD₂.xe (x • y) = x • hD₂.xe y := by
     intro x y
     apply e'.injective
     rw [he₂, map_smul, map_smul, he₂]
-  obtain ⟨m₂⟩ := GlobalTheory.T.tripleIso_of_linear_degenerationData_iso V bV t' t P' P hD₂ hx₂ hact₂
+  obtain ⟨m₂⟩ := _root_.GlobalTheory.triple_iso_of_linear_data_iso V bV t' t P' P hD₂ hx₂ hact₂
   exact GlobalTheory.TraitOrder.comp (Category.id_comp _) m m₂

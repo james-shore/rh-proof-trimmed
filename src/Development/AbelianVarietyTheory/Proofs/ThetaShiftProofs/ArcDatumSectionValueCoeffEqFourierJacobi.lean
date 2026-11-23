@@ -106,8 +106,7 @@ end Freq
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}
   {Xo : Moduli Dw l} {c : Coeff l}
 
-theorem sp_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : B →+* C) (g : A →+* B) :
-    spMap f ≫ spMap g = spMap (f.comp g) := (Spec.map_comp _ _).symm
+alias sp_comp := _root_.Formalism.L2.Pj.spMap_comp_ring
 
 theorem gtTanR_of_isArcFr (hG : Out.GlobalFnsSt) {O : Type} [CommRing O] {β : O →+* c.F} {Y : Model Xo c β}
     {A : Type} [CommRing A] [IsDomain A] [IsLocalRing A] [IsNoetherianRing A] {b : O →+* A} {a : ArcIn Dw l β A b}
@@ -231,7 +230,7 @@ theorem exists_frPt_at (h1 : Out.Laws) (h2 : Out.Laws2) (hev : GlobalTheory.Reg.
     (fun τ => by simpa only [one_mul] using hu.1 τ) isUnit_one
   have c₂ : FrChg (fun _ => 1) (cstL (ι ζ)) y₂ z₁ := ((GlobalTheory.T.frameChange_compose_invert_baseChange_triangular E H Dw l Xo c ℂ⸨X⸩).1 _ _ _ _ _ _ _ hy₂).2 c₁
   refine ⟨fun h0 => hu.2.ne_zero (by rw [h0, map_zero, zero_mul]), y₂, ?_, fun F hF => ?_⟩
-  · refine GlobalTheory.T.arcFrame_change_by_constants h1 h2 E H Dw l Xo c _ _ d.Y ℂ b' a₁ _ W₁ e₁ e₂ th₁ th₁ g 1 hth₁ he₂ (ThMul.refl _) _ _ y₁ y₂
+  · refine _root_.GlobalTheory.ArcQ.isArcFr_of_frChg_const h1 h2 E H Dw l Xo c _ _ d.Y ℂ b' a₁ _ W₁ e₁ e₂ th₁ th₁ g 1 hth₁ he₂ (ThMul.refl _) _ _ y₁ y₂
       hY b₁ ?_
     rw [map_one, map_one]
     exact hy₂
@@ -295,7 +294,7 @@ theorem ajAt_eq_fj_of_overBase : Out.Laws → Out.Laws2 → Out.UnifBaseChangeSt
     ((GlobalTheory.Relab.relab_good E H l c _ hgood).2.2.2 Dw Uw.g Uw.e) (GlobalTheory.ArcInTest.exists_values c d.Wp) hover₁
     (generic_mem d ι)
   let f : a₁.D₀.X ≃ₗ[𝓞 E] d.a.D₀.X := { p.xe with map_smul' := hp.2.1 }
-  obtain ⟨k, ξ', sE, C, hiso, -, -, -, hC, -, hmain⟩ := GlobalTheory.T.laurentCoeff_sectionValue_arc_eq_fourierJacobi h1 h2 E H Dw l Xo c _ r U Uw _ _ d.Y a₁ _ W₁ Ha
+  obtain ⟨k, ξ', sE, C, hiso, -, -, -, hC, -, hmain⟩ := _root_.GlobalTheory.ArcCoeff.coeff_evR_eq_fj h1 h2 E H Dw l Xo c _ r U Uw _ _ d.Y a₁ _ W₁ Ha
     th₁ (ξ.comp (f.toLinearMap.restrictScalars ℤ)) ν₀ d.jj a' n hev hgood hunf (fun _ => rfl) hover₁
     (mono_spMap_subtype _) hpush (hnz _ _ hth₁ hth) (f.finrank_eq.trans hrk)
     (fun h => hξ (LinearMap.ext fun y => by

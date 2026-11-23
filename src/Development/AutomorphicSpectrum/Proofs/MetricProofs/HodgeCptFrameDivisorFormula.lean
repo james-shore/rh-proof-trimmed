@@ -250,7 +250,7 @@ theorem exists_colFlags : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
     exact GlobalTheory.T.hodgeCpt_lattice_base_change E H D l Xo c Y S Ω K₀ J₀ x₀ 𝔐 τ 𝔐'.X _ 𝔐'.ξ pr 𝔐'.Li j (bO τ) (v τ) _ hext hdom (hv τ)
       (fun a => genU_diag (r := rk (CMType H) D.p D.q) (.inr τ) a) (fun a b h => genU_above (r := rk (CMType H) D.p D.q) (.inr τ) a b h) h1
 
-  obtain ⟨ι, hι, hdomι, hfin⟩ := GlobalTheory.T.hodgeCpt_morphism_compat E H D l Xo c Y S Ω _ K₀ _ J₀ _ x₀ _ 𝔐 𝔐' pr _ j d hO hC
+  obtain ⟨ι, hι, hdomι, hfin⟩ := _root_.PositivityTheory.Xgp.t_c_fm_exists_flags_field E H D l Xo c Y S Ω _ K₀ _ J₀ _ x₀ _ 𝔐 𝔐' pr _ j d hO hC
   obtain ⟨Li₀, _, _, M₀, j₁, V₀, c₀, hpt₁, hext₁, hV₀, hc₀⟩ :=
     GlobalTheory.T.hodgeCpt_descent_generic_point E H D l Xo c Y S Ω K₀ J₀ x₀ 𝔐 𝔐'.Ω₀ 𝔐'.ξ₀ ι 𝔐'.gen₀ hdomι
   have hjinj : Function.Injective j := by

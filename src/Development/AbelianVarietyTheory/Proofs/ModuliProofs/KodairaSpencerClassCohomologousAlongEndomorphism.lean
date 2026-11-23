@@ -57,11 +57,7 @@ open GlobalTheory.KS
 namespace GlobalTheory.KS.EndClass
 variable {X Y Z T : Scheme.{0}}
 
-theorem pbT_pbT (t : T ⟶ Z) (f : Z ⟶ Y) {O₀ : Y.Opens} {O₁ : Z.Opens} {O₂ : T.Opens} (h₁ : O₁ ≤ f ⁻¹ᵁ O₀)
-    (h₂ : O₂ ≤ t ⁻¹ᵁ O₁) (s : Γ(Y, O₀)) : pbT t (pbT f s O₁) O₂ = pbT (t ≫ f) s O₂ := by
-  have h₃ : O₂ ≤ (t ≫ f) ⁻¹ᵁ O₀ := h₂.trans (t.preimage_mono h₁)
-  simp only [pbT, dif_pos h₁, dif_pos h₂, dif_pos h₃]
-  rw [← CommRingCat.comp_apply, Scheme.Hom.appLE_comp_appLE]
+alias pbT_pbT := _root_.GlobalTheory.KS.InvField.pbT_pbT
 
 theorem app_eq (f : Z ⟶ Y) {O : Y.Opens} (s : Γ(Y, O)) : (f.app O).hom s = pbT f s (f ⁻¹ᵁ O) := by
   simp only [pbT, dif_pos (le_refl (f ⁻¹ᵁ O)), Scheme.Hom.appLE_eq_app]
@@ -106,32 +102,10 @@ private lemma rsT_eq_pbT_id {Y : Scheme.{0}} {O₀ : Y.Opens} (s : Γ(Y, O₀)) 
   · have h' : ¬ O ≤ (𝟙 Y) ⁻¹ᵁ O₀ := h
     simp only [rsT, pbT, dif_neg h, dif_neg h']
 
-private lemma pbT_eq_appLE_hom {Y Z : Scheme.{0}} (f : Z ⟶ Y) {O₀ : Y.Opens} {V : Z.Opens} (h : V ≤ f ⁻¹ᵁ O₀)
-    (s : Γ(Y, O₀)) : pbT f s V = (f.appLE O₀ V h).hom s := by
-  simp only [pbT, dif_pos h]
-
-private lemma rsT_sub_moduli' {Y : Scheme.{0}} {O₀ : Y.Opens} (a b : Γ(Y, O₀)) (O : Y.Opens) :
-    rsT (a - b) O = rsT a O - rsT b O := by
-  by_cases h : O ≤ O₀
-  · simp only [rsT, dif_pos h, map_sub]
-  · simp only [rsT, dif_neg h, sub_zero]
-
-private lemma pbT_zero_eq_zero {Y Z : Scheme.{0}} (f : Z ⟶ Y) {O₀ : Y.Opens} (V : Z.Opens) :
-    pbT f (0 : Γ(Y, O₀)) V = 0 := by
-  by_cases h : V ≤ f ⁻¹ᵁ O₀
-  · simp only [pbT, dif_pos h, map_zero]
-  · simp only [pbT, dif_neg h]
-
-private lemma rsT_zero_eq_zero {Y : Scheme.{0}} {O₀ : Y.Opens} (O : Y.Opens) :
-    rsT (0 : Γ(Y, O₀)) O = 0 := by
-  by_cases h : O ≤ O₀
-  · simp only [rsT, dif_pos h, map_zero]
-  · simp only [rsT, dif_neg h]
-
 private lemma locDerK_zero' {Y X : Scheme.{0}} {K R : Type} [Field K] [CommRing R] (q : Y ⟶ Sp K)
     (p : X ⟶ Sp R) (m : Y ⟶ X) (W₀ : X.Opens) :
     LocDerK q p m (fun _ => 0) W₀ (fun _ _ => 0) :=
-  ⟨fun _ _ _ _ => (add_zero 0).symm, fun _ _ _ _ => by simp, fun _ _ _ _ _ => (rsT_zero_eq_zero _).symm,
+  ⟨fun _ _ _ _ => (add_zero 0).symm, fun _ _ _ _ => by simp, fun _ _ _ _ _ => (_root_.GlobalTheory.KS.rsT_zero _).symm,
     fun _ _ _ => (constFn_zero' q _).symm⟩
 
 variable {K : Type} [Field K] {R : Type} [CommRing R] {g : ℕ}
@@ -149,9 +123,9 @@ theorem pbT_ι_comb {m : Y ⟶ X} (dd : Fin g → ∀ O : Y.Opens, Γ(Y, O) → 
   have hL : ((O.ι ≫ y) ≫ m) ⁻¹ᵁ W ≤ O.ι ⁻¹ᵁ (O ⊓ y ⁻¹ᵁ m ⁻¹ᵁ W) := le_of_eq (pre_ι_eq O y m W)
   have hL₀ : ((O.ι ≫ y) ≫ m) ⁻¹ᵁ W ≤ ((O.ι ≫ y) ≫ m) ⁻¹ᵁ W₀ := Scheme.Hom.preimage_mono _ hW
 
-  rw [pbT_eq_appLE_hom _ hL, map_sum]
+  rw [_root_.GlobalTheory.KS.pbT_of_le _ hL, map_sum]
   refine Finset.sum_congr rfl (fun a _ => ?_)
-  rw [map_mul, ← pbT_eq_appLE_hom _ hL, ← pbT_eq_appLE_hom _ hL]
+  rw [map_mul, ← _root_.GlobalTheory.KS.pbT_of_le _ hL, ← _root_.GlobalTheory.KS.pbT_of_le _ hL]
   congr 1
   · have h₁ : O ⊓ y ⁻¹ᵁ m ⁻¹ᵁ W ≤ (𝟙 Z) ⁻¹ᵁ O := inf_le_left
     have h₂ : ((O.ι ≫ y) ≫ m) ⁻¹ᵁ W₀ ≤ O.ι ⁻¹ᵁ O := by
@@ -177,18 +151,18 @@ theorem comb_unique {q : Y ⟶ Sp K} {p : X ⟶ Sp R} {m : Y ⟶ X} {dd : Fin g 
     have e := pbT_ι_comb dd y O hO hW (fun a => c a - c' a) f
     beta_reduce at e ⊢
     rw [← e]
-    simp only [rsT_sub_moduli', sub_mul, Finset.sum_sub_distrib, h W hW f, sub_self, pbT_zero_eq_zero]
+    simp only [_root_.GlobalTheory.KS.rsT_sub, sub_mul, Finset.sum_sub_distrib, h W hW f, sub_self, _root_.GlobalTheory.KS.pbT_zero]
   have hz' : ∀ W, W ≤ W₀ → ∀ f : Γ(X, W), (fun _ _ => 0 : ∀ W : X.Opens, Γ(X, W) → Γ(O.toScheme, ((O.ι ≫ y) ≫ m) ⁻¹ᵁ W)) W f =
       ∑ a, rsT ((0 : Fin g → Γ(O.toScheme, ((O.ι ≫ y) ≫ m) ⁻¹ᵁ W₀)) a) _ *
         pbT (O.ι ≫ y) (dd a (m ⁻¹ᵁ W) ((m.app W).hom f)) _ := by
     intro W hW f
-    simp only [Pi.zero_apply, rsT_zero_eq_zero, zero_mul, Finset.sum_const_zero]
+    simp only [Pi.zero_apply, _root_.GlobalTheory.KS.rsT_zero, zero_mul, Finset.sum_const_zero]
   obtain ⟨c₀, -, hu⟩ := hb O.toScheme (O.ι ≫ y) W₀ _ (locDerK_zero' _ p _ W₀)
   have e₁ := hu _ hz
   have e₂ := hu _ hz'
   funext a
   have ha : pbT O.ι (c a - c' a) (((O.ι ≫ y) ≫ m) ⁻¹ᵁ W₀) = pbT O.ι (0 : Γ(Z, O)) (((O.ι ≫ y) ≫ m) ⁻¹ᵁ W₀) := by
-    rw [pbT_zero_eq_zero]
+    rw [_root_.GlobalTheory.KS.pbT_zero]
     exact congrFun (e₁.trans e₂.symm) a
   exact sub_eq_zero.mp ((pbT_ι_bijective O (le_refl O) hV₀).1 ha)
 
@@ -209,12 +183,6 @@ theorem comb_exists {q : Y ⟶ Sp K} {p : X ⟶ Sp R} {m : Y ⟶ X} {dd : Fin g 
   rw [e, pbT_ι_comb dd y O hO hW c f]
   simp only [hc']
 
-private lemma pbT_add_of_open {Y Z : Scheme.{0}} (f : Z ⟶ Y) {O₀ : Y.Opens} (a b : Γ(Y, O₀)) (V : Z.Opens) :
-    pbT f (a + b) V = pbT f a V + pbT f b V := by
-  by_cases h : V ≤ f ⁻¹ᵁ O₀
-  · simp only [pbT, dif_pos h, map_add (f := _)]
-  · simp only [pbT, dif_neg h, add_zero]
-
 private lemma pbT_mul_of_le_preimage {Y Z : Scheme.{0}} (f : Z ⟶ Y) {O₀ : Y.Opens} (a b : Γ(Y, O₀)) {V : Z.Opens}
     (h : V ≤ f ⁻¹ᵁ O₀) : pbT f (a * b) V = pbT f a V * pbT f b V := by
   simp only [pbT, dif_pos h, map_mul]
@@ -234,7 +202,7 @@ private lemma pbT_rsT_eq_rsT_pbT {Y Z : Scheme.{0}} (f : Z ⟶ Y) {O₀ O : Y.Op
 
 private lemma pbT_constFn_of_le_preimage {Y Z : Scheme.{0}} {R : Type} [CommRing R] (f : Z ⟶ Y) (q : Y ⟶ Sp R)
     {O : Y.Opens} {V : Z.Opens} (h : V ≤ f ⁻¹ᵁ O) (r : R) : pbT f (constFn q O r) V = constFn (f ≫ q) V r := by
-  rw [pbT_eq_appLE_hom f h]
+  rw [_root_.GlobalTheory.KS.pbT_of_le f h]
   exact congrArg (fun φ : Γ(Sp R, ⊤) ⟶ Γ(Z, V) => φ.hom ((Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom r))
     (Scheme.Hom.appLE_comp_appLE f q ⊤ O V (by exact le_top) h)
 
@@ -263,10 +231,10 @@ theorem locDer_diff {q : Y ⟶ Sp K} {p : X ⟶ Sp R} {m : Y ⟶ X} {D : R → K
     intro W h
     rw [app_eq, app_eq, pbT_pbT (t ≫ f₀) m le_rfl (hL' W)]
   refine ⟨fun W hW h h' => ?_, fun W hW h h' => ?_, fun W W' hh hW h => ?_, fun W hW r => ?_⟩
-  · rw [pbT_add_of_open, h₁.add (W₁ ⊓ f ⁻¹ᵁ W) inf_le_left, pbT_add_of_open, h₂.add W hW, pbT_add_of_open]
+  · rw [_root_.GlobalTheory.KS.pbT_add, h₁.add (W₁ ⊓ f ⁻¹ᵁ W) inf_le_left, _root_.GlobalTheory.KS.pbT_add, h₂.add W hW, _root_.GlobalTheory.KS.pbT_add]
     abel
   · rw [pbT_mul_of_le_preimage f h h' (inf_le_right : W₁ ⊓ f ⁻¹ᵁ W ≤ f ⁻¹ᵁ W), h₁.mul (W₁ ⊓ f ⁻¹ᵁ W) inf_le_left,
-      h₂.mul W hW, pbT_add_of_open, pbT_add_of_open, pbT_mul_of_le_preimage _ _ _ (hL W), pbT_mul_of_le_preimage _ _ _ (hL W),
+      h₂.mul W hW, _root_.GlobalTheory.KS.pbT_add, _root_.GlobalTheory.KS.pbT_add, pbT_mul_of_le_preimage _ _ _ (hL W), pbT_mul_of_le_preimage _ _ _ (hL W),
       pbT_mul_of_le_preimage _ _ _ (hL' W), pbT_mul_of_le_preimage _ _ _ (hL' W), hA, hA, hB, hB]
     ring
   · have hV : W₁ ⊓ f ⁻¹ᵁ W' ≤ W₁ ⊓ f ⁻¹ᵁ W := inf_le_inf_left _ (f.preimage_mono hh)
@@ -274,16 +242,10 @@ theorem locDer_diff {q : Y ⟶ Sp K} {p : X ⟶ Sp R} {m : Y ⟶ X} {D : R → K
       h₁.res _ _ hV inf_le_left,
       pbT_rsT_eq_rsT_pbT t _ (m.preimage_mono hV) (hL W') (hL W) ((t ≫ f₀ ≫ m).preimage_mono hh),
       pbT_rsT_eq_rsT_pbT (t ≫ f₀) _ (m.preimage_mono hh) (hL' W') (hL' W) (((t ≫ f₀) ≫ m).preimage_mono hh),
-      rsT_sub_moduli']
+      _root_.GlobalTheory.KS.rsT_sub]
   · rw [pbT_constFn_of_le_preimage f p (inf_le_right : W₁ ⊓ f ⁻¹ᵁ W ≤ f ⁻¹ᵁ W), hp, h₁.base _ inf_le_left,
       h₂.base W hW, pbT_constFn_of_le_preimage t q (hL W), pbT_constFn_of_le_preimage (t ≫ f₀) q (hL' W), Category.assoc t f₀ q, hq,
       sub_self, constFn_zero']
-
-private lemma pbT_sub' {Y Z : Scheme.{0}} (f : Z ⟶ Y) {O₀ : Y.Opens} (a b : Γ(Y, O₀)) (V : Z.Opens) :
-    pbT f (a - b) V = pbT f a V - pbT f b V := by
-  by_cases h : V ≤ f ⁻¹ᵁ O₀
-  · simp only [pbT, dif_pos h, map_sub]
-  · simp only [pbT, dif_neg h, sub_zero]
 
 private lemma pbT_rsT_of_le_of_le_preimage {Y Z : Scheme.{0}} (f : Z ⟶ Y) {O₀ O : Y.Opens} {L : Z.Opens} (s : Γ(Y, O₀))
     (hV : L ≤ f ⁻¹ᵁ O) (hO : O ≤ O₀) : pbT f (rsT s O) L = pbT f s L := by
@@ -301,11 +263,6 @@ private lemma rsT_pbT_of_le_preimage {Y Z : Scheme.{0}} (f : Z ⟶ Y) {O₀ : Y.
   have hV' : V ≤ (𝟙 Z) ⁻¹ᵁ V₀ := hV
   rw [rsT_eq_pbT_id, pbT_pbT (𝟙 Z) f hV₀ hV', Category.id_comp]
 
-private lemma rsT_constFn_of_le {Y : Scheme.{0}} {R : Type} [CommRing R] (q : Y ⟶ Sp R) {O O' : Y.Opens}
-    (h : O' ≤ O) (r : R) : rsT (constFn q O r) O' = constFn q O' r := by
-  have h' : O' ≤ (𝟙 Y) ⁻¹ᵁ O := h
-  rw [rsT_eq_pbT_id, pbT_constFn_of_le_preimage (𝟙 Y) q h', Category.id_comp]
-
 private lemma rsT_sum_mul {Y : Scheme.{0}} {n : ℕ} {O O' : Y.Opens} (h : O' ≤ O) (u v : Fin n → Γ(Y, O)) :
     rsT (∑ a, u a * v a) O' = ∑ a, rsT (u a) O' * rsT (v a) O' := by
 
@@ -317,9 +274,9 @@ private lemma pbT_sum_mul {Y Z : Scheme.{0}} {n : ℕ} (f : Z ⟶ Y) {O : Y.Open
     (h : V ≤ f ⁻¹ᵁ O) (u v : Fin n → Γ(Y, O)) :
     pbT f (∑ a, u a * v a) V = ∑ a, pbT f (u a) V * pbT f (v a) V := by
 
-  rw [pbT_eq_appLE_hom f h, map_sum]
+  rw [_root_.GlobalTheory.KS.pbT_of_le f h, map_sum]
   simp only [map_mul]
-  simp only [← pbT_eq_appLE_hom f h]
+  simp only [← _root_.GlobalTheory.KS.pbT_of_le f h]
 
 private lemma rsT_sum_rsT_mul_pbT_inf {Y₁ Y₂ : Scheme.{0}} {n : ℕ} (y : Y₁ ⟶ Y₂) {O Q V : Y₁.Opens} {A : Y₂.Opens}
     (hQ : Q ≤ O) (hV : V ≤ y ⁻¹ᵁ A) (c : Fin n → Γ(Y₁, O)) (e : Fin n → Γ(Y₂, A)) :
@@ -365,7 +322,7 @@ theorem cohom_of_basis {q : Y ⟶ Sp K} {p : X ⟶ Sp R} {m : Y ⟶ X} {dd : Fin
     convert hD using 1
     funext W' h
     have hL := le_of_eq (pre_ι_eq (m ⁻¹ᵁ W i ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W k) f₀ m W')
-    rw [pbT_sub', pbT_rsT_of_le_of_le_preimage _ _ hL (hVi i k W'), pbT_pbT _ f₀ inf_le_right hL]
+    rw [_root_.GlobalTheory.KS.pbT_sub, pbT_rsT_of_le_of_le_preimage _ _ hL (hVi i k W'), pbT_pbT _ f₀ inf_le_right hL]
   choose c hc' using hex
   have hE : ∀ i k (Q : Y.Opens), Q ≤ m ⁻¹ᵁ W i ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W k → ∀ W', W' ≤ W k → ∀ h : Γ(X, W'),
       ∑ a, rsT (c i k a) (Q ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W') * pbT f₀ (dd a (m ⁻¹ᵁ W') ((m.app W').hom h)) (Q ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W') =
@@ -374,7 +331,7 @@ theorem cohom_of_basis {q : Y ⟶ Sp K} {p : X ⟶ Sp R} {m : Y ⟶ X} {dd : Fin
     intro i k Q hQ W' hW' h
     have e := rsT_sum_rsT_mul_pbT_inf f₀ hQ (le_refl (f₀ ⁻¹ᵁ m ⁻¹ᵁ W')) (c i k) (fun a => dd a (m ⁻¹ᵁ W') ((m.app W').hom h))
     rw [← hc' i k W' hW' h] at e
-    rw [← e, rsT_sub_moduli', rsT_rsT_of_le _ (hVi i k W') (inf_le_inf_right _ hQ),
+    rw [← e, _root_.GlobalTheory.KS.rsT_sub, rsT_rsT_of_le _ (hVi i k W') (inf_le_inf_right _ hQ),
       rsT_pbT_of_le_preimage f₀ _ inf_le_right (inf_le_inf_right _ hQ)]
   refine ⟨fun i k => c i k x, fun i i' k => ?_, fun i k k' => ?_⟩
   · have hQ : m ⁻¹ᵁ W i ⊓ m ⁻¹ᵁ W i' ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W k ≤ f₀ ⁻¹ᵁ m ⁻¹ᵁ W k := inf_le_right
@@ -418,17 +375,17 @@ theorem cohom_of_basis {q : Y ⟶ Sp K} {p : X ⟶ Sp R} {m : Y ⟶ X} {dd : Fin
       intro a
       rw [Eu, hres a _ _ _ hOcf, rsT_rsT_of_le _ hOcf hQc, hend a (m ⁻¹ᵁ W') ((m.app W').hom h), rsT_sum_mul hQf]
       refine Finset.sum_congr rfl (fun b _ => ?_)
-      rw [rsT_constFn_of_le _ hQf, app_eq f₀, rsT_pbT_of_le_preimage f₀ _ le_rfl hQf]
-    simp only [rsT_sub_moduli', rsT_rsT_of_le _ hQi hQ', rsT_rsT_of_le _ hQi' hQ', sub_mul, Finset.sum_sub_distrib]
+      rw [_root_.GlobalTheory.KS.rsT_constFn _ hQf, app_eq f₀, rsT_pbT_of_le_preimage f₀ _ le_rfl hQf]
+    simp only [_root_.GlobalTheory.KS.rsT_sub, rsT_rsT_of_le _ hQi hQ', rsT_rsT_of_le _ hQi' hQ', sub_mul, Finset.sum_sub_distrib]
     rw [hE i' k _ hQi' W' hW' h, hE i k _ hQi W' hW' h, sub_sub_sub_cancel_right,
       EA i (le_inf (inf_le_left.trans inf_le_left) inf_le_right), EA i' (le_inf (inf_le_left.trans inf_le_right) inf_le_right),
-      ← rsT_sub_moduli', hc.diff i i' _ inf_le_left, rsT_sum_mul hQc]
+      ← _root_.GlobalTheory.KS.rsT_sub, hc.diff i i' _ inf_le_left, rsT_sum_mul hQc]
     have Elc : ∀ b, rsT (rsT (lc q (F b) θ i i') (m ⁻¹ᵁ W i ⊓ m ⁻¹ᵁ W i' ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W k)) (m ⁻¹ᵁ W i ⊓ m ⁻¹ᵁ W i' ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W k ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W') =
         ∑ a, constFn q (m ⁻¹ᵁ W i ⊓ m ⁻¹ᵁ W i' ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W k ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W') (F b a) * rsT (θ a i i') (m ⁻¹ᵁ W i ⊓ m ⁻¹ᵁ W i' ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W k ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W') := by
       intro b
       rw [rsT_rsT_of_le _ inf_le_left hQ']
       exact (rsT_sum_mul (hQ'.trans inf_le_left) (fun a => constFn q _ (F b a)) (fun a => θ a i i')).trans
-        (Finset.sum_congr rfl (fun a _ => by rw [rsT_constFn_of_le _ (hQ'.trans inf_le_left)]))
+        (Finset.sum_congr rfl (fun a _ => by rw [_root_.GlobalTheory.KS.rsT_constFn _ (hQ'.trans inf_le_left)]))
     refine (Finset.sum_congr rfl (fun a _ => ?_)).trans ((sum_mul_sum_eq_sum_sum_mul_mul (fun a => rsT (θ a i i') (m ⁻¹ᵁ W i ⊓ m ⁻¹ᵁ W i' ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W k ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W'))
       (fun b a => constFn q (m ⁻¹ᵁ W i ⊓ m ⁻¹ᵁ W i' ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W k ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W') (F b a))
       (fun b => pbT f₀ (dd b (m ⁻¹ᵁ W') ((m.app W').hom h)) (m ⁻¹ᵁ W i ⊓ m ⁻¹ᵁ W i' ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W k ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W'))).trans
@@ -454,9 +411,9 @@ theorem cohom_of_basis {q : Y ⟶ Sp K} {p : X ⟶ Sp R} {m : Y ⟶ X} {dd : Fin
         m ⁻¹ᵁ W i ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W k ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W k' := inf_le_left
     have hRf : m ⁻¹ᵁ W i ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W k ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W k' ⊓ f₀ ⁻¹ᵁ m ⁻¹ᵁ W' ≤ f₀ ⁻¹ᵁ m ⁻¹ᵁ W' := inf_le_right
     have hWθ : m ⁻¹ᵁ W' ≤ m ⁻¹ᵁ W k ⊓ m ⁻¹ᵁ W k' := Scheme.Hom.preimage_mono _ hW'
-    simp only [rsT_sub_moduli', rsT_rsT_of_le _ hRk hR', rsT_rsT_of_le _ hRk' hR', sub_mul, Finset.sum_sub_distrib]
+    simp only [_root_.GlobalTheory.KS.rsT_sub, rsT_rsT_of_le _ hRk hR', rsT_rsT_of_le _ hRk' hR', sub_mul, Finset.sum_sub_distrib]
     rw [hE i k _ hRk W' (hW'.trans inf_le_left) h, hE i k' _ hRk' W' (hW'.trans inf_le_right) h,
-      sub_sub_sub_cancel_left, ← pbT_sub', hc.diff k k' W' hW', pbT_sum_mul f₀ hRf]
+      sub_sub_sub_cancel_left, ← _root_.GlobalTheory.KS.pbT_sub, hc.diff k k' W' hW', pbT_sum_mul f₀ hRf]
     refine Finset.sum_congr rfl (fun a _ => ?_)
     rw [pbT_rsT_of_le_of_le_preimage _ _ hRf hWθ, rsT_pbT_of_le_preimage f₀ _ hRθ hR']
 

@@ -69,17 +69,6 @@ theorem amp_eq_finsum (d : G.Dat) (hT : {o : Quot G.LRel | G.IsTerm d o.out}.Fin
     have : ¬ G.IsTerm d o.out := fun h => ho (hT.mem_toFinset.2 h)
     simp only [this, false_and, if_false]
 
-theorem finprod_split' {ι : Type} (S1 : Finset ι) (f g : ι → ℂ) (hf : (Function.mulSupport f).Finite)
-    (hfg : ∀ p ∉ S1, f p = g p) :
-    ∏ᶠ p, f p = (∏ p ∈ S1, f p) * ∏ᶠ p, (if p ∈ S1 then 1 else g p) := by
-  first
-  | exact @_root_.GlobalTheory.FinprodProdMulIte.finprod_eq_prod_mul_finprod_ite
-  | exact _root_.GlobalTheory.FinprodProdMulIte.finprod_eq_prod_mul_finprod_ite
-  | (apply _root_.GlobalTheory.FinprodProdMulIte.finprod_eq_prod_mul_finprod_ite <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FinprodProdMulIte.finprod_eq_prod_mul_finprod_ite <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FinprodProdMulIte.finprod_eq_prod_mul_finprod_ite <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FinprodProdMulIte.finprod_eq_prod_mul_finprod_ite ..)
-
 theorem norm_finprod_eq_one {ι : Type} (g : ι → ℂ) (hg : (Function.mulSupport g).Finite)
     (h1 : ∀ p, ‖g p‖ = 1) : ‖∏ᶠ p, g p‖ = 1 := by
   rw [finprod_eq_prod_of_mulSupport_subset (s := hg.toFinset) g (fun p hp => hg.mem_toFinset.2 hp), norm_prod]
@@ -153,7 +142,7 @@ theorem amp_sum_defect_sets : ∀ {F E : Type} [Field F] [NumberField F] [Field 
         c * ∏ p ∈ S1, (if p ∈ B then (G.S p).amp (d p) (fun Λ => ¬ (G.S p).BBzero (d p) Λ)
           else (G.S p).amp (d p) ((G.S p).BBzero (d p))) := by
     intro B hB
-    rw [(hprod B hB).1, finprod_split' S1 _ g (hsupp B hB), mul_comm]
+    rw [(hprod B hB).1, _root_.GlobalTheory.FinprodProdMulIte.finprod_eq_prod_mul_finprod_ite S1 _ g (hsupp B hB), mul_comm]
     · rw [Finset.prod_congr rfl fun p _ => amp_cond G d B p]
     · intro p hp
       have hpB : p ∉ B := fun h => hp (hB h)

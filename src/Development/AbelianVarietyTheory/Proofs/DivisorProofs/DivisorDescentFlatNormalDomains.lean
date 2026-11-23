@@ -144,7 +144,7 @@ theorem divisor_descent : ∀ (A' B' : Type) [CommRing A'] [IsDomain A'] [IsNoet
     have hsQ : algebraMap A' B' s ∈ Q := by rw [← hbc]; exact Q.mul_mem_right c hbQ
     obtain ⟨h𝔭1, h𝔭Q⟩ := primeDescent A' B' s hs hpr Q hQ hQ1 hsQ
     obtain ⟨j₀, ⟨t₁, ht₁, hj₁⟩, ⟨t₂, ht₂, hj₂⟩⟩ :=
-      GlobalTheory.T.height_one_prime_associate A' B' (Q.comap (algebraMap A' B')) (by rw [h𝔭Q]; exact hQ) (by rw [h𝔭Q]; exact hQ1) c hc0
+      _root_.GlobalTheory.exists_locally_associated_algebraMap_of_height_eq_one A' B' (Q.comap (algebraMap A' B')) (by rw [h𝔭Q]; exact hQ) (by rw [h𝔭Q]; exact hQ1) c hc0
     rw [h𝔭Q] at ht₁ ht₂
     have hS0 : (0 : B') ∉ (Q.comap (algebraMap A' B')).primeCompl.map (algebraMap A' B') := by
       intro h0
@@ -152,7 +152,7 @@ theorem divisor_descent : ∀ (A' B' : Type) [CommRing A'] [IsDomain A'] [IsNoet
       by_cases hu0 : u' = 0
       · exact hu' (hu0 ▸ (Q.comap (algebraMap A' B')).zero_mem)
       · exact hinj u' hu0 h
-    obtain ⟨u, huS, hu⟩ := GlobalTheory.T.exists_mem_submonoid_dvd_mul_of_height_one B' ((Q.comap (algebraMap A' B')).primeCompl.map (algebraMap A' B'))
+    obtain ⟨u, huS, hu⟩ := _root_.GlobalTheory.exists_mem_submonoid_dvd_mul_of_forall_height_eq_one B' ((Q.comap (algebraMap A' B')).primeCompl.map (algebraMap A' B'))
       hS0 (algebraMap A' B' j₀) c hc0 (by
         intro Q' hQ' hQ'1 hcQ' hdisj
         have hsQ' : algebraMap A' B' s ∈ Q' := by rw [← hbc]; exact Q'.mul_mem_left b hcQ'
@@ -178,7 +178,7 @@ theorem divisor_descent : ∀ (A' B' : Type) [CommRing A'] [IsDomain A'] [IsNoet
     · rw [map_mul, mul_assoc]; exact mul_dvd_mul_left _ hj₂
   apply colonStep A' B' b c s hbc
   intro x hx
-  obtain ⟨u, hu, hdiv⟩ := GlobalTheory.T.exists_mem_submonoid_dvd_mul_of_height_one B' ⊥ (by simp) (algebraMap A' B' x) b hb0 (by
+  obtain ⟨u, hu, hdiv⟩ := _root_.GlobalTheory.exists_mem_submonoid_dvd_mul_of_forall_height_eq_one B' ⊥ (by simp) (algebraMap A' B' x) b hb0 (by
     intro Q hQ hQ1 hbQ _
     obtain ⟨j, hcj, t, htQ, z, hz⟩ := hloc Q hQ hQ1 hbQ
     obtain ⟨a, ha⟩ := hx j hcj

@@ -140,7 +140,7 @@ theorem locData (σ : E →ₐ[F] E) {r r' : ℕ} (J : Matrix (Fin r) (Fin r) E)
     · ext i k; subst hcm; exact (comm_sigR' σ v _).symm
     · ext i k; subst hcm; simp [JR, Formalism.UG.inclE, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR]
     · ext i k; subst hcm; simp [JR, Formalism.UG.inclE, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR]
-  obtain ⟨φ, hφ⟩ := GlobalTheory.T.exists_localUnitaryGroupIso_conj_isometry σ J J' v _ _ hab hba hJ
+  obtain ⟨φ, hφ⟩ := _root_.GlobalTheory.LocIsoConj.exists_locIso σ J J' v _ _ hab hba hJ
   refine ⟨φ, ?_, hφ⟩
   have injv : Function.Injective jv.mulVec := fun x y hxy => by
     have := congrArg jv'.mulVec hxy
@@ -191,7 +191,7 @@ theorem isom_locComponents : ∀ (D : D7) (V V' : HSp D) (j : Matrix (Fin V'.ran
     (GlobalTheory.FinAdIdent.isLocLatIsom_map hj v).1.2 (GlobalTheory.FinAdIdent.isLocLatIsom_map hj v).2
   choose jl hjl hjm using key
   refine ⟨jl, hjl, fun v g => ?_⟩
-  apply GlobalTheory.T.finiteAdelicUnitaryPoint_ext_localComponents
+  apply _root_.GlobalTheory.TrFinExt.gfc_ext
   intro u
   have hc := hΦ (locFin V v g)
   have e1 := congrArg (fun X => GlobalTheory.IndefiniteRowSideFullHecke.IsometryCarriesCharacter.mmul X j') hc
@@ -199,10 +199,10 @@ theorem isom_locComponents : ∀ (D : D7) (V V' : HSp D) (j : Matrix (Fin V'.ran
   rw [e1, Matrix.map_mul, Matrix.map_mul]
   by_cases hu : u = v
   · subst hu
-    rw [GlobalTheory.T.finitePart_localToFiniteAdelic_component_self V u g, GlobalTheory.T.finitePart_localToFiniteAdelic_component_self V' u (jl u g), hjm]
+    rw [_root_.GlobalTheory.FinLocSelf.finE_locFin_map_prV V u g, _root_.GlobalTheory.FinLocSelf.finE_locFin_map_prV V' u (jl u g), hjm]
     rw [← Matrix.mul_assoc]
     exact assemble (F := D.host.F) (E := D.host.E) u _ _ _
-  · rw [GlobalTheory.T.finitePart_localToFiniteAdelic_component_ne V hu, GlobalTheory.T.finitePart_localToFiniteAdelic_component_ne V' hu, Matrix.one_mul, ← Matrix.map_mul, h1,
+  · rw [_root_.GlobalTheory.LocFinComp.finE_locFin_map_prV_ne V hu, _root_.GlobalTheory.LocFinComp.finE_locFin_map_prV_ne V' hu, Matrix.one_mul, ← Matrix.map_mul, h1,
       Matrix.map_one _ (map_zero _) (map_one _)]
 
 end GlobalTheory.TwistPC

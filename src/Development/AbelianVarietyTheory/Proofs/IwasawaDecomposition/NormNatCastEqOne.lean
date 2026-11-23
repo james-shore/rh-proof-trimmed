@@ -49,6 +49,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.AdmissibleHarmonicLattice
+import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.PeriodLatticeFinitelyGenerated
 
 @[expose] public section
 
@@ -62,10 +63,6 @@ variable {D : D7}
 
 theorem conj_eq_complexConj (x : D.host.E) : D.host.conj x = IsCMField.complexConj D.host.E x :=
   (Formalism.BasicNotions.Examples₂.star_eq_conj D.host x).symm
-
-theorem norm_natCast_eq_one {p : ℕ} [hp : Fact p.Prime] {k : ℕ} (hk : ¬ p ∣ k) : ‖(k : ℂ_[p])‖ = 1 := by
-  rw [GlobalTheory.EigenGenerator.norm_natCast_eq]
-  exact Padic.norm_natCast_eq_one_iff.2 ((Nat.Prime.coprime_iff_not_dvd hp.out).2 hk)
 
 theorem exists_unitary_at (p : ℕ) (hp : p.Prime) {N : ℕ} (L : Submodule (𝓞 D.host.E) (Fin N → D.host.E))
     (hL : letI := D.host.cmStar; IsSDLat D.host.E N L) :
@@ -138,7 +135,7 @@ theorem basR_of {p : ℕ} [Fact p.Prime] (lam : Qbar →+* ℂ_[p]) (τ : D.what
     exact (map_ne_zero ρ).2 hdet
   refine ⟨hdet', fun x hx a => ?_, fun a => ?_⟩
   · obtain ⟨k, hk, c, hc⟩ := h1 x hx
-    have hk1 := norm_natCast_eq_one (p := p) hk
+    have hk1 := _root_.Formalism.L2.Ker.norm_natCast_of_not_dvd (p := p) hk
     have hk0 : (k : ℂ_[p]) ≠ 0 := fun h => by rw [h, norm_zero] at hk1; exact zero_ne_one hk1
     have hv : (fun i => ρ (x i)) = (G.map ρ).mulVec ((k : ℂ_[p])⁻¹ • fun a => ρ (c a : D.host.E)) := by
       funext i
@@ -150,7 +147,7 @@ theorem basR_of {p : ℕ} [Fact p.Prime] (lam : Qbar →+* ℂ_[p]) (τ : D.what
       smul_eq_mul, norm_mul, norm_inv, hk1, inv_one, one_mul]
     exact GlobalTheory.JetTieCompare.norm_int_le ρ (c a)
   · obtain ⟨k, hk, hkL⟩ := h2 a
-    have hk1 := norm_natCast_eq_one (p := p) hk
+    have hk1 := _root_.Formalism.L2.Ker.norm_natCast_of_not_dvd (p := p) hk
     have hk0 : (k : ℂ_[p]) ≠ 0 := fun h => by rw [h, norm_zero] at hk1; exact zero_ne_one hk1
     refine ⟨1, fun _ => (k : ℂ_[p])⁻¹, fun _ => (k : D.host.E) • fun i => G i a, fun _ => by rw [norm_inv, hk1, inv_one],
       fun _ => hkL, fun i => ?_⟩

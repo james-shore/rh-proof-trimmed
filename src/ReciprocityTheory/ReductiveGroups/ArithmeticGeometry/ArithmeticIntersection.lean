@@ -50,6 +50,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace ReciprocityTheory.ChartRestriction.G.AI
 
-theorem len2 : LocalLengthMultiplicativity := length_two_generator_quotient
-
 end ReciprocityTheory.ChartRestriction.G.AI

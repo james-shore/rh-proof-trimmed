@@ -79,15 +79,6 @@ theorem lpow_smul_mem (T : QLat LL) (n : ℕ) (x : T.V) (hx : x ∈ T.L.T) : (l 
   have := o_smul_mem T ((l : ↥(OL LL)) ^ n) x hx
   simpa using this
 
-theorem exists_pow_smul_mem (T : QLat LL) (v : T.V) : ∃ n : ℕ, (l : ↥LL.1) ^ n • v ∈ T.L.T := by
-  first
-  | exact @_root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem
-  | exact _root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem
-  | (apply _root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem ..)
-
 theorem actB_tmul_one (T : QLat LL) (g : Gl l) (x : ↥T.L.T) :
     actB (sQ l) T g ((1 : OB l ↥(OL LL)) ⊗ₜ[↥(OL LL)] x) = (1 : OB l ↥(OL LL)) ⊗ₜ[↥(OL LL)] T.actT g x := by
   simp [actB, TWact]
@@ -144,9 +135,9 @@ theorem pow_le_mem (T : QLat LL) {k n : ℕ} (hk : k ≤ n) (v : T.V) (hv : (l :
 set_option maxHeartbeats 2000000 in
 theorem cocycle (T : QLat LL) (b : TW (OB l ↥(OL LL)) T) (c : Gl l → T.V) (hc : IsCobOf (sQ l) T b c)
     (g h : Gl l) : c (g * h) = c g + T.ρ g (c h) := by
-  obtain ⟨n1, h1⟩ := exists_pow_smul_mem T (c g)
-  obtain ⟨n2, h2⟩ := exists_pow_smul_mem T (c h)
-  obtain ⟨n3, h3⟩ := exists_pow_smul_mem T (c (g * h))
+  obtain ⟨n1, h1⟩ := _root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem T (c g)
+  obtain ⟨n2, h2⟩ := _root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem T (c h)
+  obtain ⟨n3, h3⟩ := _root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem T (c (g * h))
   have m1 := pow_le_mem T (n := n1 + n2 + n3) (by omega) _ h1
   have m2 := pow_le_mem T (n := n1 + n2 + n3) (by omega) _ h2
   have m3 := pow_le_mem T (n := n1 + n2 + n3) (by omega) _ h3
@@ -154,7 +145,7 @@ theorem cocycle (T : QLat LL) (b : TW (OB l ↥(OL LL)) T) (c : Gl l → T.V) (h
   have e2 := hc h _ ⟨_, m2⟩ rfl
   have e3 := hc (g * h) _ ⟨_, m3⟩ rfl
   have key : (⟨_, m3⟩ : ↥T.L.T) = T.actT g ⟨_, m2⟩ + ⟨_, m1⟩ := by
-    apply inj1 l LL T
+    apply _root_.GlobalTheory.TContInj.main l LL T
     have := abs_cocycle (actB (sQ l) T g) (actB (sQ l) T h) (actB (sQ l) T (g * h)) (actB_mul T g h) _ _ _ _ _ e1 e2 e3
     refine this.trans ?_
     refine (congrArg (· + _) (actB_tmul_one T g _)).trans ?_
@@ -178,9 +169,9 @@ theorem contAt_one (hl2 : l ≠ 2) (T : QLat LL) (b : TW (OB l ↥(OL LL)) T) (c
     (hc : IsCobOf (sQ l) T b c) : ContinuousAt c 1 := by
   rw [ContinuousAt, c_one T b c hc]
   intro U hU
-  obtain ⟨m, hm⟩ := nbhd l LL T U hU
+  obtain ⟨m, hm⟩ := _root_.GlobalTheory.TContNbhd.main l LL T U hU
   rw [Filter.mem_map]
-  filter_upwards [cont1 l hl2 LL T b c hc m] with g hg
+  filter_upwards [_root_.GlobalTheory.CocycleCont.cont_at_one l hl2 LL T b c hc m] with g hg
   obtain ⟨x, hx, e⟩ := hg
   rw [Set.mem_preimage, e]
   exact hm x hx

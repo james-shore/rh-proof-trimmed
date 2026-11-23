@@ -136,8 +136,8 @@ theorem GenAway₂ : ∀ (l : ℕ) [Fact l.Prime] (R : Type) [CommRing R] (B : O
   intro l _ R _ B f d hg
   set M := Submonoid.closure (Set.range fun m : ℕ => B.D.φ^[m] f) with hM
   have hfM : f ∈ M := Submonoid.subset_closure ⟨0, rfl⟩
-  obtain ⟨DL, hDL⟩ := GlobalTheory.T.exists_deltaRingStructure_localization l B.A B.D M (locAway_φ_mem B.D f)
-  obtain ⟨hIL, hdnz, N, hN⟩ := GlobalTheory.T.prismLocalization_span_nonZeroDivisor_bounded_torsion l R B f d hg M hfM
+  obtain ⟨DL, hDL⟩ := _root_.GlobalTheory.BSP.delta_localization l B.A B.D M (locAway_φ_mem B.D f)
+  obtain ⟨hIL, hdnz, N, hN⟩ := _root_.GlobalTheory.BSP.locAway_span_nzd_bdd l R B f d hg M hfM
   set J : Ideal (Localization M) := Ideal.span {(l : Localization M)} ⊔
     Ideal.span {algebraMap B.A (Localization M) d} with hJdef
   have hJ : (JJ B).map (algebraMap B.A (Localization M)) = J := by
@@ -213,7 +213,7 @@ theorem GenAway₂ : ∀ (l : ℕ) [Fact l.Prime] (R : Type) [CommRing R] (B : O
     obtain ⟨h, hh⟩ := GlobalTheory.T.exists_ringHom_extend_isAdicCompletionMap _ Q C.A i J (JJ C) hi C.complete lift hJle
     have hhi : ∀ y, h (i y) = lift y := fun y => RingHom.congr_fun hh y
     have hδh : IsδMap DQ C.D h := by
-      refine GlobalTheory.T.isDeltaRingHom_of_dense_deltaCommuteLocus l Q C.A DQ C.D (J.map i) (JJ C) h ?_ ?_ hhaus ?_
+      refine _root_.GlobalTheory.isδMap_of_dense_δLocus l Q C.A DQ C.D (J.map i) (JJ C) h ?_ ?_ hhaus ?_
       · rw [← map_natCast i]; exact Ideal.mem_map_of_mem i hlJ
       · rw [Ideal.map_map, hh]; exact hJle
       · intro x n
@@ -238,7 +238,7 @@ theorem GenAway₂ : ∀ (l : ℕ) [Fact l.Prime] (R : Type) [CommRing R] (B : O
     refine ⟨H, Hom.ext' hgC, fun y hy => Hom.ext' ?_⟩
     have hy' : y.f.comp g = gC.f := congrArg Hom.f hy
     have hyi : y.f.comp i = h.comp i := IsLocalization.ringHom_ext M (hy'.trans hgC.symm)
-    exact GlobalTheory.T.ringHom_eq_of_isAdicCompletionMap _ Q C.A i J (JJ C) hi hhaus y.f h (by rw [hyi, hh]; exact hJle) hyi
+    exact _root_.GlobalTheory.BSP.ringHom_eq_of_isCompl _ Q C.A i J (JJ C) hi hhaus y.f h (by rw [hyi, hh]; exact hJle) hyi
   · intro x n
     obtain ⟨y, hy⟩ := hi.surj x n
     obtain ⟨⟨b0, s⟩, hbs⟩ := IsLocalization.mk'_surjective M y

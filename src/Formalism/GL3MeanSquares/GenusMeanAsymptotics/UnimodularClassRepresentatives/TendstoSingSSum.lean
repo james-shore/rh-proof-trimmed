@@ -103,7 +103,7 @@ theorem dominated (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF : IsF
     have hb : n ∈ boxSet K F T := by
       simpa using (Finset.mem_filter.mp hn).1
     have hP := hC1 n (ne_zero_of_mem_boxSet hb)
-    exact mul_le_mul (pow_le_pow_left₀ (Nat.cast_nonneg _) (absNorm_le_of_mem_boxSet hK hF hb) _) hP.2 hP.1
+    exact mul_le_mul (pow_le_pow_left₀ (Nat.cast_nonneg _) (_root_.Formalism.HermitianLattices.Ext.L3.BoxSum.absNorm_le_of_mem hK hF hb) _) hP.2 hP.1
       (pow_nonneg (pow_nonneg hT0.le _) _)
   have hcard : (((boxSet_finite hK hF T).toFinset.filter (fun n => v ≤ valF n)).card : ℝ) ≤
       2 ^ Formalism.HermitianLatticesTheory.fDeg K * T ^ Formalism.HermitianLatticesTheory.fDeg K / (Ideal.absNorm (bId v) : ℝ) := by

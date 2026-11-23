@@ -180,17 +180,6 @@ theorem isProGen_iff_isUnit : ∀ (F Ω : Type) [Field F] [NumberField F] [Field
     rw [mul_inv_cancel_left] at h4
     exact h4
 
-theorem exists_pow_of_finite {K L : Type} [Field K] [Fintype K] [Field L] [Algebra K L]
-    [Algebra.IsAlgebraic K L] (σ : L ≃ₐ[K] L) (X : Finset L) :
-    ∃ i : ℕ, ∀ x ∈ X, σ x = x ^ Fintype.card K ^ i := by
-  first
-  | exact @_root_.GlobalTheory.CardinalPower.exists_pow_card_eq
-  | exact _root_.GlobalTheory.CardinalPower.exists_pow_card_eq
-  | (apply _root_.GlobalTheory.CardinalPower.exists_pow_card_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CardinalPower.exists_pow_card_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CardinalPower.exists_pow_card_eq <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CardinalPower.exists_pow_card_eq ..)
-
 theorem mem_Ine_of_integral {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω]
     [IsAlgClosure F Ω] {A : ValuationSubring Ω} {τ : G F Ω} (hτ : τ ∈ Dec (F := F) A)
     (h : ∀ b : IntCl F Ω, A.valuation (τ b - b) < 1) : τ ∈ Ine (F := F) A := by
@@ -230,7 +219,7 @@ theorem exists_pow_cong {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Alge
   have hgQ : g ∈ MulAction.stabilizer (G F Ω) Q := by
     show g • Q = Q
     rw [hQ, ← primeBelow_smul, mem_Dec.1 hg]
-  obtain ⟨i, hi⟩ := exists_pow_of_finite
+  obtain ⟨i, hi⟩ := _root_.GlobalTheory.CardinalPower.exists_pow_card_eq
     (Ideal.Quotient.stabilizerHom Q v.asIdeal (G F Ω) ⟨g, hgQ⟩) (X.image (Ideal.Quotient.mk Q))
   refine ⟨i, fun b hb => ?_⟩
   have h1 : Ideal.Quotient.mk Q (g • b) = _ := hi _ (Finset.mem_image_of_mem _ hb)

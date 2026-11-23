@@ -111,7 +111,7 @@ theorem twistOf_delta_good : ∀ (D : D7) (a : Recip D D.nd.Om), a.Good → ∀ 
     rfl
   show (⟨Q, charOf a f ψ, resOf (charOf a f ψ)⟩ : Twist D Circle).Good
   rw [hkey]
-  refine GlobalTheory.T.split_set_inertia_power_trivial D D.nd D.ntw a ha Circle (g.comp ψ) ?_ ?_ Q hsplit ?_ ?_
+  refine _root_.GlobalTheory.TwistPullTame.good_pull_tame D D.nd D.ntw a ha Circle (g.comp ψ) ?_ ?_ Q hsplit ?_ ?_
   · exact Subgroup.isOpen_mono (H₁ := ψ.ker) (fun x hx => by
       rw [MonoidHom.mem_ker] at hx ⊢
       rw [MonoidHom.comp_apply, hx, map_one]) hopen

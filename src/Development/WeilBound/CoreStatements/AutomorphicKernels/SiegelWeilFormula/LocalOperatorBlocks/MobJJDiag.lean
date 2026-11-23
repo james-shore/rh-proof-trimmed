@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LocalOperatorBlocks.ContinuousWeightFactorUnitary
 
 @[expose] public section
 
@@ -64,14 +65,6 @@ theorem toBlocks₁₂_mul (M N : M2 n) : (M * N).toBlocks₁₂ = M.toBlocks₁
   ext i j
   simp [Matrix.toBlocks₁₁, Matrix.toBlocks₁₂, Matrix.toBlocks₂₂, Matrix.mul_apply, Fintype.sum_sum_type]
 
-theorem toBlocks₂₁_mul (M N : M2 n) : (M * N).toBlocks₂₁ = M.toBlocks₂₁ * N.toBlocks₁₁ + M.toBlocks₂₂ * N.toBlocks₂₁ := by
-  ext i j
-  simp [Matrix.toBlocks₁₁, Matrix.toBlocks₂₂, Matrix.toBlocks₂₁, Matrix.mul_apply, Fintype.sum_sum_type]
-
-theorem toBlocks₂₂_mul (M N : M2 n) : (M * N).toBlocks₂₂ = M.toBlocks₂₁ * N.toBlocks₁₂ + M.toBlocks₂₂ * N.toBlocks₂₂ := by
-  ext i j
-  simp [Matrix.toBlocks₁₂, Matrix.toBlocks₂₂, Matrix.toBlocks₂₁, Matrix.mul_apply, Fintype.sum_sum_type]
-
 theorem mob_mul (M N : M2 n) (Z : Matrix (Fin n) (Fin n) ℂ) (hV : IsUnit (N.toBlocks₂₁ * Z + N.toBlocks₂₂).det) :
     mob (M * N) Z = mob M (mob N Z) := by
   set V := N.toBlocks₂₁ * Z + N.toBlocks₂₂ with hVdef
@@ -79,7 +72,7 @@ theorem mob_mul (M N : M2 n) (Z : Matrix (Fin n) (Fin n) ℂ) (hV : IsUnit (N.to
   have h1 : (M * N).toBlocks₁₁ * Z + (M * N).toBlocks₁₂ = M.toBlocks₁₁ * W + M.toBlocks₁₂ * V := by
     rw [toBlocks₁₁_mul, toBlocks₁₂_mul, hVdef, hWdef]; noncomm_ring
   have h2 : (M * N).toBlocks₂₁ * Z + (M * N).toBlocks₂₂ = M.toBlocks₂₁ * W + M.toBlocks₂₂ * V := by
-    rw [toBlocks₂₁_mul, toBlocks₂₂_mul, hVdef, hWdef]; noncomm_ring
+    rw [_root_.PositivityTheory.SiegelWeilFormula.KLI.lower_left_block_mul, _root_.PositivityTheory.SiegelWeilFormula.KLI.lower_right_block_mul, hVdef, hWdef]; noncomm_ring
   clear_value V W
   have hVV : V * V⁻¹ = 1 := Matrix.mul_nonsing_inv V hV
   have hVV' : V⁻¹ * V = 1 := Matrix.nonsing_inv_mul V hV

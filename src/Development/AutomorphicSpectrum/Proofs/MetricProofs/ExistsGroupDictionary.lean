@@ -114,7 +114,7 @@ theorem groupDict_nonempty : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
       (∀ x, R'.P x = C.perExt (F.R 0) fun τ => C.tm a⁻¹ τ *ᵥ C.vec x τ) ∧
       C.IsAdapted R' (fun τ => C.tm a τ * A0 τ) := by
     intro a
-    obtain ⟨R', h1, h2, h3, h4⟩ := GlobalTheory.T.exists_translated_riemann_lattice E Ψ j j' n g Λ F C (F.R 0) (C.tm a) (C.tm a⁻¹) (hform 0) (hinv a)
+    obtain ⟨R', h1, h2, h3, h4⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.Dict.Rotate.rotate_exists E Ψ j j' n g Λ F C (F.R 0) (C.tm a) (C.tm a⁻¹) (hform 0) (hinv a)
       (huni a)
     exact ⟨R', h1, h2, h3, h4 A0 hA0⟩
   choose rot rform rB rP rad using hrot
@@ -161,7 +161,7 @@ theorem groupDict_nonempty : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
       rw [ha τ, Matrix.mul_assoc, (fct τ).1, Matrix.mul_one]
     have h1 := rad a
     rw [hAa] at h1
-    exact ⟨a, huniq a t ht (GlobalTheory.T.adapted_frame_determines_lattice E Ψ j j' n g Λ F C (F.R t) (rot a) At (hform t) (rform' a) hAt h1)⟩
+    exact ⟨a, huniq a t ht (_root_.GlobalTheory.CompanionTheory.Ar.Cusp.Dict.adapted_eqvBy E Ψ j j' n g Λ F C (F.R t) (rot a) At (hform t) (rform' a) hAt h1)⟩
 
   let v : C.Arch → C.Arch → Ψ → Matrix (Sg j j') (Sg j j') ℂ := fun a b τ =>
     C.cinv (C.tm a τ * A0 τ) τ * (C.tm b τ * A0 τ)
@@ -177,7 +177,7 @@ theorem groupDict_nonempty : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     · exact key
     constructor
     · intro h
-      exact (huniq b (π a) (hπ a).1 (GlobalTheory.T.adapted_frame_determines_lattice E Ψ j j' n g Λ F C (F.R (π a)) (rot b) _ (hform _) (rform' b) h (rad b))).symm
+      exact (huniq b (π a) (hπ a).1 (_root_.GlobalTheory.CompanionTheory.Ar.Cusp.Dict.adapted_eqvBy E Ψ j j' n g Λ F C (F.R (π a)) (rot b) _ (hform _) (rform' b) h (rad b))).symm
     · intro h
       rw [h]
       exact radπ b
@@ -227,7 +227,7 @@ theorem groupDict_nonempty : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   have hπY : ∀ a, π a = Y (moebBall F.q (u a) 0) := fun a => by
     rw [← hZπ, (hYZ _ (hπ a).1).2.2]
   have hucont : Continuous fun a : C.Arch => moebBall F.q (u a) 0 := by
-    refine GlobalTheory.T.ball_mobius_zero_continuous Ψ j j' n F.q C.Arch u (fun τ => ?_) uU
+    refine _root_.GlobalTheory.CompanionTheory.Ar.Cusp.Dict.continuous_moebBall_zero Ψ j j' n F.q C.Arch u (fun τ => ?_) uU
     exact continuous_const.matrix_mul ((hcont τ).matrix_mul continuous_const)
   have hmem : ∀ a, moebBall F.q (u a) 0 ∈ ballDom F.q := fun a =>
     (GlobalTheory.T.ball_mobius_holomorphic_potential_change Ψ j j' n F.q (u a) (uU a)).2.1 h0

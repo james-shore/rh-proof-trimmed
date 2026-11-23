@@ -170,7 +170,7 @@ theorem term_eq_iff_lRel : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' :
   intro D X Y u u' hst hk w F00 F'0 FP hZ hG hAt G c t₀ ρ U U' hmv t t' n m n' m' e₁ e₂ e₃ e₄ hnm hnm'
   obtain ⟨hn, hm, ht⟩ := hnm
   obtain ⟨hn', hm', ht'⟩ := hnm'
-  have hI := GlobalTheory.T.rational_unipotent_groups_lattices_global_coordinates D X Y u u' hst hk w F00 F'0 FP hZ hG hAt G c t₀ ρ U U' hmv
+  have hI := _root_.GlobalTheory.HL.GrpCoord.grp_coords D X Y u u' hst hk w F00 F'0 FP hZ hG hAt G c t₀ ρ U U' hmv
   have hN := hI.1
   have hN' := hI.2.1
   constructor

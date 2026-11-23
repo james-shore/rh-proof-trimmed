@@ -251,10 +251,7 @@ theorem big (ρ : S.Real) (h : S.Big) : Big S.g S.N (S.r * S.N) := by
   rw [ρ.N_eq]
   omega
 
-theorem spMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  rw [← Spec.map_comp]
-  rfl
+alias spMap_comp := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp
 
 section Cover
 variable {p : ℕ} [Fact p.Prime] {y₀ : S.R →+* PadicAlgCl p} (t : ρ.GeoTest p y₀)

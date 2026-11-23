@@ -55,16 +55,6 @@ namespace GlobalTheory.ContrComb.LatT
 
 variable {D : D7}
 
-theorem latV_entry_mem {S : HSp D} {L : Lat S} {P : Pl D → Prop} {y : Fin S.rank → AE D}
-    (hy : y ∈ latV S L P) (i : Fin S.rank) : y i ∈ idAt D P := by
-  induction hy using AddSubgroup.closure_induction with
-  | mem z hz =>
-    obtain ⟨β, -, hβ, c, -, x, -, rfl⟩ := hz
-    exact GlobalTheory.FinPl.LatMem.tmul_mem_idAt hβ _
-  | zero => exact zero_mem _
-  | add z z' _ _ hz hz' => exact add_mem hz hz'
-  | neg z _ hz => exact neg_mem hz
-
 theorem jA_latV {V₀ A L : HSp D} (o : OrthDec V₀ A L) {P : Pl D → Prop} {LA : Lat A} {M : Lat V₀}
     (hLA : IsSelfDualC A LA) (hM : IsSelfDualC V₀ M) (hloc : ∀ v, P v → ∃ LL, OrthAt o M LA LL v)
     {y : Fin A.rank → AE D} (hy : y ∈ latV A LA P) : o.jA *ᵥ y ∈ latV V₀ M P := by

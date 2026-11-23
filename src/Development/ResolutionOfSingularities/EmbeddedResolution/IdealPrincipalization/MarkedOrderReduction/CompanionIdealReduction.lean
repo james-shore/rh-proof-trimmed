@@ -218,7 +218,7 @@ theorem maxOrderNonMonomialOnOrderLocus_extendByCompanionIdeal_lt (hG : Principa
   have hboundaryEq : (continuationByCompanionIdeal hG hT A s hcont).boundary (continuationByCompanionIdeal hG hT A s hcont).length
       = (companionIdealPrincipalizationSeq hG hT A s).boundary
           (companionIdealPrincipalizationSeq hG hT A s).length :=
-    ofMarkedSequence_boundary_eq_of_le (companionIdealPrincipalizationSeq hG hT A s)
+    _root_.FunctorialResolution.EmbeddedResolution.MarkedBlowupSequenceData.ofMarkedSequence_boundary (companionIdealPrincipalizationSeq hG hT A s)
       (companionIdealPrincipalizationSeq hG hT A s).length le_rfl
   have hideal : (continuationByCompanionIdeal hG hT A s hcont).ideal (continuationByCompanionIdeal hG hT A s hcont).length
       = MarkedSequenceOfBlowups.controlledTransform (companionIdealPrincipalizationSeq hG hT A s) (s.ideal s.length)

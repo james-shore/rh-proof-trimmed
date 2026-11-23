@@ -80,7 +80,7 @@ theorem homogCoc_red_cob : ∀ (p : ℕ) [Fact p.Prime] (k : Type) [Field k] [Ch
   have hc0 : constantCoeff c = 0 := by
     rw [← coeff_zero_eq_constantCoeff_apply]
     exact hhom 0 (by simp; omega)
-  obtain ⟨b, hb⟩ := GlobalTheory.T.symmetricCocycle_additive_eq_coboundary_add k d c hc hc0
+  obtain ⟨b, hb⟩ := _root_.GlobalTheory.symmetricCocycle_additive_eq_coboundary_add_alt k d c hc hc0
   set cm : Fin d → MvPowerSeries (Fin d ⊕ Fin d) k := fun m => at2 c (Pi.single m (X (Sum.inl m) : MvPowerSeries (Fin d ⊕ Fin d) k)) (Pi.single m (X (Sum.inr m))) with hcm
   set bN := homogeneousComponent N b with hbN
   have hbNc : ∀ α, coeff α bN = if α.degree = N then coeff α b else 0 := fun α =>
@@ -150,7 +150,7 @@ theorem homogCoc_red_cob : ∀ (p : ℕ) [Fact p.Prime] (k : Type) [Field k] [Ch
     | insert x s hx ih => rw [Finset.sum_insert hx, Finset.sum_insert hx, formalCoboundary_add hconstFr, ih]
   have redm : ∀ m, Red p (t m • cob1 (addLaw (Fr p k) d) (X m ^ N)) (cm m) := by
     intro m α
-    rw [GlobalTheory.T.cob1_addLaw_X_pow_eq_sum_choose (Fr p k) d N m (by omega)]
+    rw [_root_.GlobalTheory.coboundaryOne_additiveFormalGroupLaw_X_pow (Fr p k) d N m (by omega)]
     simp only [cm]
 
     rw [GlobalTheory.T.coeff_powerSeriesEvalTwoGroups_single_pair, map_smul, map_sum]

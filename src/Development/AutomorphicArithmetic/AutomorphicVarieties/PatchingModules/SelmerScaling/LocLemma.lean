@@ -69,11 +69,6 @@ public import Mathlib.LinearAlgebra.Dual.Lemmas
 
 open IsLocalRing Matrix UpperTheory.V.Alg UpperTheory.V.W UpperTheory.V.AlgebraTools UpperTheory.V.Pa
 
-private theorem tri_diag {R : Type} [CommRing R] {n : ℕ} (A B : Matrix (Fin n) (Fin n) R)
-    (hA : A.BlockTriangular id) (hB : B.BlockTriangular id) (i : Fin n) :
-    (A * B) i i = A i i * B i i :=
-  _root_.UpperTheory.Reformulated.B.Qk9.tri_diag A B hA hB i
-
 private theorem tri_of_idem {R : Type} [CommRing R] {n : ℕ} (f : Fin n → Matrix (Fin n) (Fin n) R)
     (hf : OrthogonalIdempotents f) (ht : ∀ i, (f i).BlockTriangular id) (hd : ∀ i, f i i i = 1)
     (M : Matrix (Fin n) (Fin n) R) (c : Fin n → R) (h0 : ∀ a b, b < a → f a * M * f b = 0)
@@ -120,7 +115,7 @@ private theorem tri_of_idem {R : Type} [CommRing R] {n : ℕ} (f : Fin n → Mat
   have h2 : M * V = V * (V⁻¹ * M * V) := by
     rw [← mul_assoc, ← mul_assoc, hr, one_mul]
   have h3 := congrFun (congrFun h2 i) i
-  rw [tri_diag _ _ hMt hV, tri_diag _ _ hV hT, hVd, mul_one, one_mul, e3, h1, mul_smul_comm,
+  rw [_root_.UpperTheory.Reformulated.B.Qk9.tri_diag _ _ hMt hV, _root_.UpperTheory.Reformulated.B.Qk9.tri_diag _ _ hV hT, hVd, mul_one, one_mul, e3, h1, mul_smul_comm,
     smul_mul_assoc, mul_assoc, e1, ← mul_assoc, hl] at h3
   simpa using h3
 
@@ -141,7 +136,7 @@ private theorem lag_tri {R : Type} [CommRing R] {n : ℕ} (a : Fin n → R) (Q :
       rw [Finset.prod_insert hk, Finset.prod_insert hk, map_mul, map_sub, Polynomial.aeval_X,
         Polynomial.aeval_C]
       refine ⟨hb.mul ih.1, ?_⟩
-      rw [tri_diag _ _ hb ih.1, ih.2, Matrix.sub_apply, hd, Matrix.algebraMap_matrix_apply]
+      rw [_root_.UpperTheory.Reformulated.B.Qk9.tri_diag _ _ hb ih.1, ih.2, Matrix.sub_apply, hd, Matrix.algebraMap_matrix_apply]
       simp
   obtain ⟨k1, k2⟩ := key (Finset.univ.erase i)
   unfold lag
@@ -416,5 +411,5 @@ theorem UpperTheory.V.Pa.locLemma :
   rw [hβ]
   have hb := p1.sub (htri1 g)
   refine ⟨fun i j h => (hb.mul (htri1 g⁻¹)) h, fun i => ?_⟩
-  rw [tri_diag _ _ hb (htri1 _), Matrix.sub_apply, p2, htri2, htri2, mul_assoc, ← map_mul,
+  rw [_root_.UpperTheory.Reformulated.B.Qk9.tri_diag _ _ hb (htri1 _), Matrix.sub_apply, p2, htri2, htri2, mul_assoc, ← map_mul,
     inv_mul_cancel, map_one, mul_one]

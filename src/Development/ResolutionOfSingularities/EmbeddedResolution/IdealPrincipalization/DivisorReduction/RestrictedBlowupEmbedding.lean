@@ -341,8 +341,8 @@ private theorem support_center_subset_iteratedPreimage (U₀ : (s.toSequenceOfBl
   exact support_ideal_subset_iteratedPreimage T j hj I₀ E₀ s U₀ hsupp t (le_of_lt ht) h4
 
 private theorem imageIdealSheaf_comp_of_eq {S X P : Scheme.{u}} (ι : S ⟶ X) (emb : X ⟶ P)
-    (J : S.IdealSheafData) (Z : X.IdealSheafData) (hJ : imageIdealSheaf ι J = Z) :
-    imageIdealSheaf (ι ≫ emb) J = imageIdealSheaf emb Z := by
+    (J : S.IdealSheafData) (Z : X.IdealSheafData) (hJ : _root_.FunctorialResolution.Blowup.schemeImageIdeal ι J = Z) :
+    _root_.FunctorialResolution.Blowup.schemeImageIdeal (ι ≫ emb) J = _root_.FunctorialResolution.Blowup.schemeImageIdeal emb Z := by
   subst hJ
   exact Scheme.IdealSheafData.map_comp J ι emb
 
@@ -354,7 +354,7 @@ theorem center_ambientBlowupSeq_eq_imageIdealSheaf [AlgebraicGeometry.IsNoetheri
       (U₀ : Set ↥(s.toSequenceOfBlowups.schemeAt 0)))
     (t : ℕ) (ht : t < s.toSequenceOfBlowups.length) :
     (ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).center t =
-      imageIdealSheaf (restrictedEmbedding T j hj I₀ E₀ s hres hno hpr U₀ t)
+      _root_.FunctorialResolution.Blowup.schemeImageIdeal (restrictedEmbedding T j hj I₀ E₀ s hres hno hpr U₀ t)
         ((s.toSequenceOfBlowups.center t).comap (iteratedPreimage T j hj I₀ E₀ s U₀ t).ι) := by
   have hcl : IsClosed ((iteratedPreimage T j hj I₀ E₀ s U₀ t : Set ↥(s.toSequenceOfBlowups.schemeAt t))) :=
     isClosed_iteratedPreimage T j hj I₀ E₀ s U₀ hU t
@@ -363,7 +363,7 @@ theorem center_ambientBlowupSeq_eq_imageIdealSheaf [AlgebraicGeometry.IsNoetheri
   have hsub : (((s.toSequenceOfBlowups.center t).support : Set ↥(s.toSequenceOfBlowups.schemeAt t))) ⊆
       ((iteratedPreimage T j hj I₀ E₀ s U₀ t : Set ↥(s.toSequenceOfBlowups.schemeAt t))) :=
     support_center_subset_iteratedPreimage T j hj I₀ E₀ s U₀ hm hsupp t ht
-  have h1 : imageIdealSheaf (iteratedPreimage T j hj I₀ E₀ s U₀ t).ι
+  have h1 : _root_.FunctorialResolution.Blowup.schemeImageIdeal (iteratedPreimage T j hj I₀ E₀ s U₀ t).ι
         ((s.toSequenceOfBlowups.center t).comap (iteratedPreimage T j hj I₀ E₀ s U₀ t).ι)
       = s.toSequenceOfBlowups.center t :=
     imageIdealSheaf_comap_ι_eq_self_of_support_subset (s.toSequenceOfBlowups.center t)

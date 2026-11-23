@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.MiStarOfMid
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsHeisenbergCombinationSplitPlaceDatum
 
 @[expose] public section
 
@@ -58,10 +59,10 @@ noncomputable section
 namespace GlobalTheory.Fam
 theorem QuadraticExtensionData.dat_exists : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.toPre} {I : TC B X} {l : I.Laws} {Z : TC.Later B (I.cols l)} {L : SizeData₂ (I.rec7 l Z)} {hT : GatTies (I.rec7 l Z)} {Gi : Formalism.MainNotions.G.Inst (I.rec7 l Z) L} {Gl : Formalism.MainNotions.G.LatInst (I.rec7 l Z)} {Kc : Formalism.MainNotions.G.Consts} {Yd : DivX (I.rec7 l Z)} {cX : ExtraC} {ex : Extra (I.rec7 l Z) L hT Gi Gl Kc Yd cX} (W : _root_.GlobalTheory.MiS.RealPackAlt ex), _root_.GlobalTheory.Fam.AllFamilyConditions W → ∀ (u : B.Word) (a : _root_.GlobalTheory.Fam.GeometricFamily W u), a.Is → a.True → (∀ r s, (a.g.oT B.R.m rfl).iA r s = if r.val = s.val then 1 else 0) → ∃ C : ℕ → ℂ, (∀ j, j < B.R.m → C j ≠ 0) ∧ ∀ t (J : _root_.GlobalTheory.Fam.QuadraticExtensionData a t), J.Reads → ∃ s ζ ρ, J.Dat C s ζ ρ := by
   intro B X I l Z L hT Gi Gl Kc Yd cX ex W hW u a ha hTr hoT
-  obtain ⟨C, hC0, hC⟩ := _root_.GlobalTheory.T.true_geometry_row_pair_relation_alt_alt W hW u a ha hTr hoT
+  obtain ⟨C, hC0, hC⟩ := _root_.GlobalTheory.Fam.ratDatum_xiOff_common_alt W hW u a ha hTr hoT
   refine ⟨C, hC0, fun t J hR => ?_⟩
-  obtain ⟨e₀, he₀, hAe⟩ := _root_.GlobalTheory.T.true_geometry_twist_quadratic_level_alt W hW u a ha hTr t J hR
-  obtain ⟨p, q, hA, hB, ⟨c0, hc0, h0⟩, hstep, hD⟩ := _root_.GlobalTheory.T.true_geometry_row_pair_property_alt W hW u a ha hTr hoT t J hR
+  obtain ⟨e₀, he₀, hAe⟩ := _root_.GlobalTheory.Fam.IdemSplitTw.idem_eq_add_twist_alt W hW u a ha hTr t J hR
+  obtain ⟨p, q, hA, hB, ⟨c0, hc0, h0⟩, hstep, hD⟩ := _root_.GlobalTheory.TwPlaces.ratDatum_add_twist_places_alt W hW u a ha hTr hoT t J hR
   set Af : ∀ j, J.Ch j → ℂ := fun j α => p j α * (J.A.chr (j + 1) (J.A.xr j (J.ι j α)) : ℂ) with hAf
   set Bf : ∀ j, J.Ch (j + 1) → ℂ := fun j γ => q j γ * ((J.A.chr (j + 1) (J.A.xr (j + 1) (J.ι (j + 1) γ)) : ℂ))⁻¹ with hBf
   let k : ℕ → ℂ := fun j => if h : j + 1 < B.R.m then (hstep j h).choose else 1
@@ -71,7 +72,7 @@ theorem QuadraticExtensionData.dat_exists : ∀ {B : GlobalTheory.Mem.Base} {X :
     · simp only [k, dif_neg h]; exact ⟨1, one_pos, by simp⟩
   let cc : ℕ → ℂ := fun j => c0 * ∏ i ∈ Finset.range j, k i
   have hcc : ∀ j, ∃ n : ℕ, 0 < n ∧ cc j ^ n = 1 := fun j =>
-    datRoot_mul hc0 (datRoot_prod _ _ fun i _ => hk i)
+    _root_.GlobalTheory.TwPlaces.rou_mul hc0 (datRoot_prod _ _ fun i _ => hk i)
   let s : ∀ j, J.Ch j → ℂ := chartRescale B.R.m cc Bf
   have hs0 : ∀ α, s 0 α = 1 := fun _ => rfl
   have hsS : ∀ j γ, j < B.R.m → s (j + 1) γ = cc j * Bf j γ := fun j γ h => by
@@ -96,7 +97,7 @@ theorem QuadraticExtensionData.dat_exists : ∀ {B : GlobalTheory.Mem.Base} {X :
     | succ j =>
       intro γ
       by_cases h : j < B.R.m
-      · rw [hsS j γ h]; exact datRoot_mul (hcc j) (hB j h γ)
+      · rw [hsS j γ h]; exact _root_.GlobalTheory.TwPlaces.rou_mul (hcc j) (hB j h γ)
       · refine ⟨1, one_pos, ?_⟩
         show (if j < B.R.m then cc j * Bf j γ else 1) ^ 1 = 1
         rw [if_neg h, one_pow]
@@ -107,11 +108,11 @@ theorem QuadraticExtensionData.dat_exists : ∀ {B : GlobalTheory.Mem.Base} {X :
     rw [← hAe] at h2
     have hdQ : J.dQ s j α γ = (s j α * (s (j + 1) γ)⁻¹ * J.wt j α) • aconv (List.ofFn fun i => (J.E i).dL j (α i) (γ i)) := by
       simp only [_root_.GlobalTheory.Fam.QuadraticExtensionData.dQ, smul_smul]
-    rw [hdQ, comb_smul_coef]
+    rw [hdQ, _root_.GlobalTheory.LocComb.comb_smul]
     convert h2 using 2
     rename_i z
     beta_reduce
-    rw [_root_.GlobalTheory.T.true_geometry_twist_quadratic_value_alt W hW u a ha hTr t J hR j hj α γ z]
+    rw [_root_.GlobalTheory.Fam.xi_eq_xiOff_mul_join_alt W hW u a ha hTr t J hR j hj α γ z]
     ring
   · have hjm : j < B.R.m := by omega
     have hSA := hsA j hjm α

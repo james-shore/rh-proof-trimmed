@@ -77,6 +77,4 @@ end Formalism.FourierDecayAlt.P.PBM
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem top_unipotent_integral : PBI.HighestUnipotentIntegral := PBM.highestUnipotentIntegral
-
 end Formalism.FourierDecayAlt.P

@@ -163,7 +163,7 @@ theorem deg_eq_places : ∀ (F : Type) [Field F] [NumberField F] (N : LogNorms F
     rw [this]
     exact hv
   have h1 := sum_log_embeddings_eq F n α hα hn'
-  have h2 := (GlobalTheory.T.product_formula_log_norms F α hα).2
+  have h2 := (_root_.GlobalTheory.CompanionTheory.Ar.Fl.product_formula_embeddings F α hα).2
   have h3 : ∀ p, (LogNorms.ofElt α).finSum p = M * N.finSum p := by
     intro p
     simp only [LogNorms.finSum, LogNorms.ofElt, Finset.mul_sum, key]

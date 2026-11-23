@@ -124,10 +124,10 @@ theorem exists_terms : ∀ (I : Type) (X₁ : GlobalTheory.GSep.GSet) (z₁ : X�
     rwa [hlab] at this)
   choose p xb hp hq hxp using hyy
   have hp0 : ∀ c, (p c).y = 0 := fun c => (hp c).trans (map_zero _)
-  choose h gi hh hgt hfe hext hpull using fun c => GlobalTheory.T.rationalTorsionPoint_lift_section_torusExtension V hV 𝔪.D 𝔪.A 𝔪.G 𝔪.semi 𝔪.U _ hN (x (lab c)) (xb c) (p c)
+  choose h gi hh hgt hfe hext hpull using fun c => _root_.GlobalTheory.Poinc.TorsLift.lift V hV 𝔪.D 𝔪.A 𝔪.G 𝔪.semi 𝔪.U _ hN (x (lab c)) (xb c) (p c)
     (hxb _ _ (hxp c)) (hp0 c) (hq c)
   choose g' hg' using fun c => GlobalTheory.FieldRestrictionTest.exists_isPullF (toUnit (TF (R := V) (FractionRing V))) (gi c)
-  choose w hw hif hlies using fun c => GlobalTheory.T.sectionValue_integralPoint_eq_adicSum_terms V hV 𝔪.D 𝔪.A 𝔪.G 𝔪.semi 𝔪.U w₀ hw₀ (x (lab c)) (fr (lab c)) (h c) (gi c)
+  choose w hw hif hlies using fun c => _root_.GlobalTheory.Poinc.IntEval.eval_at_integral V hV 𝔪.D 𝔪.A 𝔪.G 𝔪.semi 𝔪.U w₀ hw₀ (x (lab c)) (fr (lab c)) (h c) (gi c)
     (g' c) l hl (hfe c) (hext c) (hg' c) (hlf _ _ _ (htf _) (hh c) (hext c))
   have htor : ∀ c, ∃ o, GtPtF.IsNsmul (X₁.S.r * X₁.S.N) (g' c) o ∧ o.IsZero := fun c => by
     obtain ⟨o, ho, hz⟩ := hgt c
@@ -137,9 +137,9 @@ theorem exists_terms : ∀ (I : Type) (X₁ : GlobalTheory.GSep.GSet) (z₁ : X�
   have hb : ∀ c, (g' c).b = toUnit _ ≫ (gi c).b := fun c =>
     ((GlobalTheory.FieldRestrictionTest.isPullF_iff _ _ _).1 (hg' c)).1
   have hex : Exhausts 𝔪.D.toPre.P (X₁.S.r * X₁.S.N) fun c => (gi c).b := by
-    refine GlobalTheory.T.torsionSections_exhaust_of_generic_geometric V _ _ hN C _ (fun c => (Sep.Frames.torsion_of_nsmul (g' c) _ (hb c) (htor c)).2) fun β hβ => ?_
-    obtain ⟨y, hy, ⟨q, hq0, hqy⟩, H⟩ := GlobalTheory.T.geometricTorsionPoint_abelianPart_lies_under_classZero V hV 𝔪.D 𝔪.A 𝔪.G 𝔪.semi 𝔪.U _ hN β hβ
-    obtain ⟨a, ha⟩ := GlobalTheory.T.geometricTorsionPoint_member_has_label I X₁ z₁ act V ev X t δ 𝔪 y hy
+    refine _root_.GlobalTheory.Poinc.IntTerm.exhausts_of_generic V _ _ hN C _ (fun c => (Sep.Frames.torsion_of_nsmul (g' c) _ (hb c) (htor c)).2) fun β hβ => ?_
+    obtain ⟨y, hy, ⟨q, hq0, hqy⟩, H⟩ := _root_.GlobalTheory.Poinc.IntTerm.torsion_lies_under V hV 𝔪.D 𝔪.A 𝔪.G 𝔪.semi 𝔪.U _ hN β hβ
+    obtain ⟨a, ha⟩ := _root_.GlobalTheory.GSep.IntTerm.torsion_has_label I X₁ z₁ act V ev X t δ 𝔪 y hy
     have hmem : a ∈ Set.range lab := by
       rw [hlab]
       exact (hint a).2 ⟨q, y, hq0.trans (map_zero _).symm, hqy, ha⟩
@@ -147,7 +147,7 @@ theorem exists_terms : ∀ (I : Type) (X₁ : GlobalTheory.GSep.GSet) (z₁ : X�
     have e : xb c = y := Over.OverMorphism.ext ((hxb _ _ (hxp c)).trans (hxb _ _ ha).symm)
     exact ⟨c, (H (p c) (hp0 c) (e ▸ hq c)).symm.trans ((GlobalTheory.FieldRestrictionTest.isPullF_iff _ _ _).1 (hpull c)).1⟩
   obtain ⟨θ, hθ⟩ := exists_isTheta hV 𝔪.D.toPre
-  obtain ⟨κ, hκ⟩ := GlobalTheory.T.degree_one_term_eq_const_mul_psi_mul_theta V 𝔪.D.toPre θ hθ s
+  obtain ⟨κ, hκ⟩ := _root_.GlobalTheory.Poinc.IntTerm.term_eq_const_psi_theta V 𝔪.D.toPre θ hθ s
   choose υ hυ using 𝔪.psi
   choose a ha hau using fun mu c => hκ (gi c) (g' c) (w c) l (hg' c) (hw c) (hif c) (𝔪.e₈ mu) _ (hυ mu)
   have hunit : ∀ mu, ∃ c, IsUnit (a mu c) := fun mu =>

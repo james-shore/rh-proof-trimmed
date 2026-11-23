@@ -184,7 +184,7 @@ theorem exists_point {κ : Type} {x : κ → Ω} (tie : CoordTie ℤ ξ x) {c : 
     rw [map_mul, hφ, hφ] at h1
     have ht : t ∉ RingHom.ker ψ := fun h0 => mul_ne_zero ha.ne_zero hs (h1.trans h0)
     exact isUnit_of_mul_isUnit_left (h ▸ isUnit_regAt (a := ι t) ((hu t).1 ht))⟩
-  obtain ⟨z, ⟨-, hz⟩, -⟩ := GlobalTheory.T.existsUnique_centre_local_hom X Ω ξ tie.gen p K φ hl
+  obtain ⟨z, ⟨-, hz⟩, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.exists_unique_point_of_local X Ω ξ tie.gen p K φ hl
   exact ⟨z, fun a => hφ a ▸ hz (ι a)⟩
 
 theorem unitAt_of_val (hξ : IsCptGen ξ) {R : Type} [CommRing R] [IsLocalRing R] {z : Spec (CommRingCat.of R) ⟶ X}

@@ -69,72 +69,11 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 attribute [local instance] Over.cartesianMonoidalCategory
 open scoped ContDiff
 
-theorem tay_coord {N : ℕ} (k : Fin N) :
-    tay (fun v : Fin N → ℂ => v k) 0 = MvPowerSeries.X ((0 : Fin 1), k) := by
-  classical
-  have hθ : ContDiffAt ℂ ω (fun v : Fin N → ℂ => v k) 0 := (contDiff_apply ℂ (fun _ => ℂ) k).contDiffAt
-  have eq_of_cc (F G : MvPowerSeries (Fin 1 × Fin N) ℂ)
-      (h : ∀ l : List (Fin 1 × Fin N), MvPowerSeries.constantCoeff (l.foldr (fun q H => MvPowerSeries.pderiv q H) F) =
-        MvPowerSeries.constantCoeff (l.foldr (fun q H => MvPowerSeries.pderiv q H) G)) : F = G := by
-    have coeff_foldr (l : List (Fin 1 × Fin N)) (m : (Fin 1 × Fin N) →₀ ℕ) :
-        ∃ c : ℂ, c ≠ 0 ∧ ∀ F : MvPowerSeries (Fin 1 × Fin N) ℂ,
-          MvPowerSeries.coeff m (l.foldr (fun q G => MvPowerSeries.pderiv q G) F) =
-            c * MvPowerSeries.coeff (m + (l.map fun q => Finsupp.single q 1).sum) F := by
-      induction l generalizing m with
-      | nil => exact ⟨1, one_ne_zero, fun F => by simp⟩
-      | cons q l ih =>
-        obtain ⟨c, hc, hF⟩ := ih (m + Finsupp.single q 1)
-        refine ⟨c * ((m q : ℂ) + 1), mul_ne_zero hc (Nat.cast_add_one_ne_zero _), fun F => ?_⟩
-        simp only [List.foldr_cons]
-        rw [MvPowerSeries.coeff_pderiv, hF, List.map_cons, List.sum_cons, add_assoc]
-        ring
-    have sum_single_toList (m : (Fin 1 × Fin N) →₀ ℕ) :
-        ((Finsupp.toMultiset m).toList.map fun q => Finsupp.single q 1).sum = m := by
-      have hs : ∀ t : Multiset (Fin 1 × Fin N), (t.map fun q => Finsupp.single q 1).sum = Multiset.toFinsupp t := by
-        intro t
-        induction t using Multiset.induction_on with
-        | empty => simp
-        | cons a t ih =>
-          rw [Multiset.map_cons, Multiset.sum_cons, ih, ← Multiset.singleton_add, Multiset.toFinsupp_add,
-            Multiset.toFinsupp_singleton]
-      have h2 := hs (Finsupp.toMultiset m)
-      rw [Finsupp.toMultiset_toFinsupp] at h2
-      calc
-        _ = (Multiset.map (fun q => Finsupp.single q 1) (Finsupp.toMultiset m)).sum := by
-          rw [← Multiset.sum_coe, ← Multiset.map_coe, Multiset.coe_toList]
-        _ = m := h2
-    ext m
-    have h1 := h (Finsupp.toMultiset m).toList
-    obtain ⟨c, hc, h0⟩ := coeff_foldr (Finsupp.toMultiset m).toList 0
-    rw [← MvPowerSeries.coeff_zero_eq_constantCoeff_apply, ← MvPowerSeries.coeff_zero_eq_constantCoeff_apply,
-      h0, h0, zero_add, sum_single_toList] at h1
-    exact mul_left_cancel₀ hc h1
-  refine eq_of_cc _ _ fun l => ?_
-  rcases l.eq_nil_or_concat with rfl | ⟨l', ⟨a, j⟩, rfl⟩
-  · simp only [List.foldr_nil, constantCoeff_tay, TM.mD_zero, MvPowerSeries.constantCoeff_X, Pi.zero_apply]
-  · obtain rfl : a = 0 := Subsingleton.elim _ _
-    have hd : (fun y : Fin N → ℂ => fderiv ℂ (fun v : Fin N → ℂ => v k) y (Pi.single j 1)) =
-        fun _ => (Pi.single j (1 : ℂ) : Fin N → ℂ) k := by
-      funext y
-      exact congrArg (fun T : (Fin N → ℂ) →L[ℂ] ℂ => T (Pi.single j 1))
-        (ContinuousLinearMap.proj (R := ℂ) (φ := fun _ : Fin N => ℂ) k).fderiv
-    rw [List.concat_eq_append, List.foldr_append, List.foldr_append]
-    simp only [List.foldr_cons, List.foldr_nil]
-    rw [TM.pderiv_tay hθ, hd, TM.tay_const, MvPowerSeries.pderiv_X]
-    congr 2
-    by_cases h : k = j
-    · subst h; simp
-    · simp [h, Ne.symm h, Pi.single_apply]
-
-theorem psJet_X' {κ : Type} [Fintype κ] [DecidableEq κ] (m : ℕ) (p : κ) :
-    psJet m (MvPowerSeries.X p : MvPowerSeries κ ℂ) = Ideal.Quotient.mk _ (MvPolynomial.X p) := by
-  rw [← MvPolynomial.coe_X, psJet, FBIdJet.psTrunc_eq, FBIdJet.mk_trunc_coe]
-
 theorem jetN_coord {n g : ℕ} (m : ℕ) (i : Fin n) (j : Fin g) :
     jetN m (fun w : Fin n → Fin g → ℂ => w i j) = Ideal.Quotient.mk _ (MvPolynomial.X (i, j)) := by
   have h : jetOf m (fun v : Fin (n * g) → ℂ => v (finProdFinEquiv (i, j))) =
       Ideal.Quotient.mk _ (MvPolynomial.X ((0 : Fin 1), finProdFinEquiv (i, j))) := by
-    rw [jetOf, tay_coord, psJet_X']
+    rw [jetOf, _root_.GlobalTheory.JetLinSub.tay_coord, _root_.GlobalTheory.JetLinSub.psJet_X]
   show renN n g m (jetOf m (fun v : Fin (n * g) → ℂ => v (finProdFinEquiv (i, j)))) = _
   rw [h]
   show Ideal.Quotient.mk _ (MvPolynomial.aeval _ _) = _
@@ -150,7 +89,7 @@ theorem jetN_coord_add {n g : ℕ} (m : ℕ) (i i' : Fin n) (j : Fin g) :
 theorem subst_X {κ κ' : Type} [Fintype κ] [DecidableEq κ] (m : ℕ) (sb : κ → MvPolynomial κ' ℂ) (p : κ) :
     (jetSubstP m sb : Jet ℂ κ m →ₐ[ℂ] Jet ℂ κ' m) (psJet m (MvPowerSeries.X p)) =
       Ideal.Quotient.mk _ (sb p - MvPolynomial.C (MvPolynomial.constantCoeff (sb p))) := by
-  rw [psJet_X']
+  rw [_root_.GlobalTheory.JetLinSub.psJet_X]
   show Ideal.Quotient.mk _ (MvPolynomial.aeval _ _) = _
   simp
 

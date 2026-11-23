@@ -58,6 +58,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.CuspSpanNormBounds.LowestKTypeMultiplicity
 
 @[expose] public section
 
@@ -257,12 +258,6 @@ theorem monicOf_coeff {K : Type} [Field K] {N : ℕ} {h : K[X]} (hm : h.Monic) (
   · rw [coeff_eq_zero_of_natDegree_lt (by rw [(monicOf_monic _).2]; exact hj),
       coeff_eq_zero_of_natDegree_lt (by rw [hd]; exact hj)]
 
-section Recip
-
-variable {g : ℕ} [Fact g.Prime] {f : (ZMod g)[X]}
-
-end Recip
-
 end E0
 
 section GoodOpEx
@@ -346,9 +341,7 @@ theorem eg_mul (x : X.B.I.Gf) {k : X.B.I.Gf} (hk : k ∈ X.B.I.Kg X.B.g) : eg X 
       rwa [mul_inv_cancel_right] at this
     rw [dite_eq_right (fun h => hxk h.1), dite_eq_right (fun h => hx h.1)]
 
-theorem level_ne_zero : X.B.g ≠ 0 := by
-  rw [X.g_eq]
-  exact Nat.mul_ne_zero (D.host.g_prime 0).ne_zero (D.host.g_prime 1).ne_zero
+alias level_ne_zero := _root_.Formalism.L2.SG.Pf.modulus_g_ne_zero
 
 theorem isLocallyConstant_eg : IsLocallyConstant (eg X) := by
   rw [IsLocallyConstant.iff_eventually_eq]
@@ -411,30 +404,6 @@ def DSSchurOrth : Prop :=
     (σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)), Nontrivial H → IsURepOn (UJset ε) σ → IsIrredOn (UJset ε) σ →
     IsSqIntOn ε σ → ∃ d : ℝ, IsFdeg (Formalism.REAL.muG ε) σ d
 
-theorem fdegOf_eq {n : ℕ} {ε : Fin n → Bool} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
-    {σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)} {d : ℝ} (h : IsFdeg (Formalism.REAL.muG ε) σ d) {w : H} (hw : w ≠ 0) :
-    fdegOf (Formalism.REAL.muG ε) σ w = d := by
-  obtain ⟨hd, hS⟩ := h
-  obtain ⟨-, hI⟩ := hS w w w w
-  have e1 : ∀ g : Formalism.REAL.UJ ε, coefOn (ε := ε) σ w w g * star (coefOn (ε := ε) σ w w g) =
-      ((‖coefOn (ε := ε) σ w w g‖ ^ 2 : ℝ) : ℂ) := fun g => by
-    rw [← starRingEnd_apply, RCLike.mul_conj]
-    push_cast
-    rfl
-  simp_rw [e1] at hI
-  rw [integral_complex_ofReal, inner_self_eq_norm_sq_to_K] at hI
-  have hw' : ‖w‖ ≠ 0 := norm_ne_zero_iff.2 hw
-  have hR : ∫ g, ‖coefOn (ε := ε) σ w w g‖ ^ 2 ∂(Formalism.REAL.muG ε) = ‖w‖ ^ 4 / d := by
-    have h2 : ((∫ g, ‖coefOn (ε := ε) σ w w g‖ ^ 2 ∂(Formalism.REAL.muG ε) : ℝ) : ℂ) = ((‖w‖ ^ 4 / d : ℝ) : ℂ) := by
-      rw [hI]
-      change ((‖w‖ : ℂ)) ^ 2 * ((‖w‖ : ℂ)) ^ 2 / (d : ℂ) = _
-      push_cast
-      ring
-    exact_mod_cast h2
-  unfold fdegOf
-  rw [hR]
-  field_simp
-
 theorem fdeg_of_schur (hS : DSSchurOrth) (v : InfinitePlace X.B.I.F) :
     IsFdeg (Formalism.REAL.muG (X.B.I.ε v)) (X.B.σ v) (fdegOf (Formalism.REAL.muG (X.B.I.ε v)) (X.B.σ v) (X.B.w v)) := by
   obtain ⟨hC, hN, hU, hIrr, hSq, -⟩ := X.ds v
@@ -444,7 +413,7 @@ theorem fdeg_of_schur (hS : DSSchurOrth) (v : InfinitePlace X.B.I.F) :
     have := (X.low v).1
     rw [h0, norm_zero] at this
     exact zero_ne_one this
-  rw [fdegOf_eq hd hw]
+  rw [_root_.Formalism.MainNotions.LowestKTypeMultiplicity.fdegOf_of_isFdeg hd hw]
   exact hd
 
 theorem finiteDimensional_HHX_of_hypotheses (hHC : Formalism.L2.SG.RowsDef.RowsFinDim) (hS : DSSchurOrth)

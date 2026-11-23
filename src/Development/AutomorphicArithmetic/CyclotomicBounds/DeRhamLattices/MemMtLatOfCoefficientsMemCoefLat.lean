@@ -66,7 +66,7 @@ theorem _root_.UpperTheory.KN.mem_mtLat_of_coefficients_mem_coefLat :
   obtain ⟨hk, -⟩ := UpperTheory.KN.levEnv_level_subgroup_le_levJ_and_character_eq D X X0 Y S YS Z c w j H ι hι k
   have h1 := ((Base.mem_formsC _).1 hF).2 γ ((X.R.B.L j (Y.tupT (D.what₂.muTw w))).pres.y a) ⟨k, hk⟩
   have h2 := Base.act_mem_coefLat hB.frame hc γ _ k (Base.mem_St_of_mem_levJ hk) (hy a)
-  have h3 := GlobalTheory.T.level_twist_character_mem_coefficientIntegers D X X0 Y S YS Z c w j H ι hι ⟨k, hk⟩
+  have h3 := _root_.GlobalTheory.PlaceRead.LevVal.levLam_twVia_mem_intLL D X X0 Y S YS Z c w j H ι hι ⟨k, hk⟩
   have h4 := Submodule.smul_mem _ (⟨_, h3⟩ : intLL D) h2
   subst e
   exact h1 ▸ h4

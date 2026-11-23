@@ -405,7 +405,7 @@ end Main
 
 theorem kvalGe_zero : ∀ (Lc : product_zeroth_first_parts.Loc) (ep : ℂ_[Lc.l]) (be : MvPowerSeries (ZMod Lc.d) ℂ_[Lc.l]), ‖ep‖ = 1 → BeStd Lc.l Lc.d be → OrbitPlaces.OrbitThetaExpansion Lc ep (-1) be → product_zeroth_first_parts.KvalGe Lc.N0 Lc.N1 Lc.l Lc.nu Lc.Th 0 := by
   rintro Lc ep be hep ⟨σ, F, be0, om, oms, ζ, hD, rfl⟩ hB
-  obtain ⟨U0, hU, hTh⟩ := GlobalTheory.T.exists_integral_orbit_series Lc ep σ F be0 om oms ζ hD hB
+  obtain ⟨U0, hU, hTh⟩ := _root_.GlobalTheory.KerStd.integral_cofactor_converse Lc ep σ F be0 om oms ζ hD hB
   obtain ⟨hσ, hF, h1, h2, hO, hT, -⟩ := hD
   have hb0 : MvPowerSeries.constantCoeff be0 = 0 := h1.1 0 (Or.inl rfl)
   have hH := hur_theta (d := Lc.d) (N0 := Lc.N0) (N1 := Lc.N1) σ hσ be0 hb0 (GlobalTheory.T.addCoord_exponent_integral_jets_unramified Lc.l σ F be0 hσ hF h1 h2) om oms hO.1 U0 hU

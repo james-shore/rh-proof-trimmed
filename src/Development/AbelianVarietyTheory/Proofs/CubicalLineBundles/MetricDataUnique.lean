@@ -86,7 +86,7 @@ theorem isMetricAt_unique (x : Sp ℂ ⟶ Xo.X) (s : LB.Sec (PPx x))
   have sc := GlobalTheory.Frames.SecCalc.sec_calc E H Dw l Xo ℂ ℂ ℂ (RingHom.id ℂ) (RingHom.id ℂ) x x x hx hx
   have hbc : SecBC (RingHom.id ℂ) 1 x x s s := (sc.2.1 1 s s).2 fun i => by
     rw [(sc.2.2.2 1 1 i).2.2, _root_.one_mul]
-  obtain ⟨hg, v', hv', kp, hv⟩ := GlobalTheory.T.universalTripleFibreKeyData_baseChange_keyPullback E H Dw l Xo ℂ ℂ (RingHom.id ℂ) x x Φ Φ' s s hx tie tie' hbc
+  obtain ⟨hg, v', hv', kp, hv⟩ := _root_.GlobalTheory.LamT.fibKey_keyPB E H Dw l Xo ℂ ℂ (RingHom.id ℂ) x x Φ Φ' s s hx tie tie' hbc
   simp only [spMap_dualMap_id, Category.id_comp] at hv
   obtain ⟨u₁, χ₁, θ₁, Fd₁, c1, c2, c3, c4, hN₁, hD⟩ := GlobalTheory.T.exists_appellHumbert_uniformisation_of_keyDatumIso Φ.key _ kp hg _ u Hm χ θ Fd ⟨a1, a2, a3, a4⟩
   have hm : Hm.map (RingHom.id ℂ) = Hm := rfl

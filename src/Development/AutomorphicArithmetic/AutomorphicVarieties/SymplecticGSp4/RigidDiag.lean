@@ -127,12 +127,8 @@ private theorem diag_of_comm {K : Type} [Field K] (X h : M4 K) (hX : X ∈ sp4 K
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.mul_apply, Fin.sum_univ_four, z01, z03, z10, z12, z21, z23, z30, z32, z02, z20, z13, z31, z33, z22, wt, lamW, muW] <;> ring
 
-private theorem norm_le_one_of_int (l : ℕ) [Fact l.Prime] (x : PadicAlgCl l) (hx : IsIntegral ℤ_[l] x) :
-    ‖x‖ ≤ 1 :=
-  _root_.UpperTheory.Reformulated.B.NormLeOneOfIsIntegral.norm_le_one_of_isIntegral l x hx
-
 private theorem norm_le_one {l : ℕ} [Fact l.Prime] (c : Coef l) (x : c.O) : ‖algebraMap c.O (PadicAlgCl l) x‖ ≤ 1 :=
-  norm_le_one_of_int l _ ((Algebra.IsIntegral.isIntegral (R := ℤ_[l]) x).map c.O.val)
+  _root_.UpperTheory.Reformulated.B.NormLeOneOfIsIntegral.norm_le_one_of_isIntegral l _ ((Algebra.IsIntegral.isIntegral (R := ℤ_[l]) x).map c.O.val)
 
 private theorem norm_eq_one {l : ℕ} [Fact l.Prime] (c : Coef l) (x : c.O) (hx : residue c.O x ≠ 0) :
     ‖algebraMap c.O (PadicAlgCl l) x‖ = 1 := by

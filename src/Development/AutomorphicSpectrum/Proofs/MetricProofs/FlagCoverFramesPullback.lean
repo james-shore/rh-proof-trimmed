@@ -48,6 +48,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagModelBaseProjectionPoints
 
 @[expose] public section
 
@@ -175,8 +176,8 @@ theorem transPt_eq_smul_sum : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ 
     (map_ne_zero α).2 (Finset.prod_ne_zero_iff.2 fun k'' _ => zpow_ne_zero _ (hc' k''))
   have hμ : ρ (∏ k'', M.x ⟨k'', F.c k''⟩ ^ M.b p k'') ≠ 0 :=
     (map_ne_zero ρ).2 (Finset.prod_ne_zero_iff.2 fun k'' _ => zpow_ne_zero _ (hc k''))
-  have hd' : detFac j p.2 T' ≠ 0 := detFac_ne_zero' M'.j_le p.2 hTb' hdet'
-  have hd : detFac j p.2 T ≠ 0 := detFac_ne_zero' M.j_le p.2 hTb hdet
+  have hd' : detFac j p.2 T' ≠ 0 := _root_.GlobalTheory.CompanionTheory.Ar.PB.CPts.detFac_ne_zero M'.j_le p.2 hTb' hdet'
+  have hd : detFac j p.2 T ≠ 0 := _root_.GlobalTheory.CompanionTheory.Ar.PB.CPts.detFac_ne_zero M.j_le p.2 hTb hdet
   set μ' := α (∏ k'', M'.x ⟨k'', F'.c k''⟩ ^ M'.b p k'') with hμ'def
   set μ := ρ (∏ k'', M.x ⟨k'', F.c k''⟩ ^ M.b p k'') with hμdef
   set d' := detFac j p.2 T' with hd'def

@@ -51,6 +51,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.StepPtRepPf
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.BaseOf
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeCountingBound.ArchPlace
 
 @[expose] public section
 
@@ -107,7 +108,7 @@ theorem gX_nonneg {θ : ℝ} (C : Formalism.L2.SG.LocWSOf.Choice X θ) (u u' : D
   have hrd := Formalism.MainNotions.LocalModelPeriodLattices.rdE_pos D
   have hz := Formalism.L2.SG.Pf.BaseOf.zc_spec X C u v
   have hz' := Formalism.L2.SG.Pf.BaseOf.zc_spec X C u' v
-  have hgv := Bridge.delta_GV hTr (Formalism.L2.SG.Pf.Carrier.uMat_unitary (γ v))
+  have hgv := Bridge.delta_GV hTr (_root_.PI.UnitaryGroupMassFormula.LCG.ap_inUJ (γ v))
   have hG := Formalism.QuantumDeterminants.gNonneg D.R.k D.R.rS _ _ hz.1 hz'.1 (Formalism.L2.SG.Pf.BaseOf.zc_pos X C u v)
     (Formalism.L2.SG.Pf.BaseOf.zc_pos X C u' v) _ hgv
   have h1 := Bridge.zhat_cs hTr hTr' (sc := D.host.rdE) hrd.ne' (Formalism.MainNotions.S.uMat (γ v))

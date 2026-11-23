@@ -68,7 +68,7 @@ theorem chain_levelPt_of_section (h1 : Out.Laws) (h2 : Out.Laws2) (E : Type) [Fi
   let pY : Over.mk (gen ≫ χ) ⟶ Y.t.G := Over.homMk (C.yF ≫ ξ.left ≫ Y.m.φ) hY
   let pF : Over.mk C.yF ⟶ Y.oF.t.G := toUnit _ ≫ ξ
   have hpF : pF.left = C.yF ≫ ξ.left := rfl
-  have hW := GlobalTheory.T.levelPoints_of_arc_eq_period_div_level h1 h2 E H D l Xo c O β Y (bF.comp β) a χ W Λ C.Ξ C.ΦW C.yF k p₀ ξ la p C.isGen C.yF_j
+  have hW := _root_.GlobalTheory.levelPt_of_rep h1 h2 E H D l Xo c O β Y (bF.comp β) a χ W Λ C.Ξ C.ΦW C.yF k p₀ ξ la p C.isGen C.yF_j
     hk hrep hp
   have h₂ := (GlobalTheory.T.arcLevelPoint_tangentVector_transport_iff E H _ _ Λ.A _ _ _ W.m C.w₂ _ _ C.ΦW C.ΦY C.rig₂.1 C.rel₂).1 k p pY la hp
   have h₁ := (GlobalTheory.T.arcLevelPoint_tangentVector_transport_iff E H _ _ Λ.A _ _ _ Y.m C.w₁ _ _ C.ΦF C.ΦY C.rig₁.1 C.rel₁).1 k pF pY la

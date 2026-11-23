@@ -61,20 +61,6 @@ open GlobalTheory.Ex
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 
-theorem exists_nsmul_of_dvd (D : Datum H) {n : ℕ} (hn : 0 < n) {b : D.La} (h : ∀ a, (n : ℤ) ∣ D.EF b a) :
-    ∃ e, b = n • e := by
-  choose f hf using h
-  have hn' : (n : ℤ) ≠ 0 := Int.natCast_ne_zero.2 hn.ne'
-  let g : D.La →ₗ[ℤ] ℤ :=
-    { toFun := f
-      map_add' := fun a a' => mul_left_cancel₀ hn' (by rw [mul_add, ← hf, ← hf, ← hf, map_add (f := _)])
-      map_smul' := fun c a => mul_left_cancel₀ hn' (by
-        rw [← hf, map_smul, hf, smul_eq_mul, RingHom.id_apply, smul_eq_mul, mul_left_comm]) }
-  obtain ⟨e, he⟩ := D.unimod.2 g
-  refine ⟨e, D.unimod.1 (LinearMap.ext fun a => ?_)⟩
-  rw [map_nsmul, LinearMap.smul_apply, he, nsmul_eq_mul]
-  exact hf a
-
 theorem exists_linear_lift {R M X : Type} [CommRing R] [AddCommGroup M] [Module R M] [Module.Projective R M]
     [AddCommGroup X] [Module R X] (n : ℕ) (Y : M → X) (hadd : ∀ a b, ∃ e, Y (a + b) = Y a + Y b + n • e)
     (hsmul : ∀ (c : R) a, ∃ e, Y (c • a) = c • Y a + n • e) : ∃ y : M →ₗ[R] X, ∀ a, ∃ e, y a = Y a + n • e := by
@@ -254,7 +240,7 @@ theorem tateIsoQ_y_cois : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E]
     obtain ⟨e, he⟩ := hy n hn a
     rw [he, ofAdd_add, map_mul, ofAdd_nsmul, map_pow, ← MonoidHom.pow_apply, ht, MonoidHom.one_apply, _root_.mul_one]
   have dv : ∀ c : D.La, (∀ a, I.ζ n ^ D.EF c a = 1) → ∃ e, c = n • e := fun c h =>
-    exists_nsmul_of_dvd D hn fun a => ((I.ζ_prim n hn).zpow_eq_one_iff_dvd _).1 (h a)
+    _root_.GlobalTheory.Ex.Specialise.exists_eq_smul_of_dvd D hn fun a => ((I.ζ_prim n hn).zpow_eq_one_iff_dvd _).1 (h a)
   refine ⟨fun x => ?_, fun a ha => ?_⟩
   · by_contra hx
     push_neg at hx
@@ -276,7 +262,7 @@ theorem tateIsoQ_y_cois : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E]
     obtain ⟨e', he'⟩ := hy n hn b
     obtain ⟨k, hk⟩ := ha b ⟨e + e', by rw [he', he, smul_add]⟩
     apply hx'
-    rw [← tv t ht, ← h1, ef_swap, hk]
+    rw [← tv t ht, ← h1, _root_.GlobalTheory.SimLift.form_skew, hk]
     exact ((I.ζ_prim n hn).zpow_eq_one_iff_dvd _).2 ⟨-k, by ring⟩
 
 end GlobalTheory.LowFilt

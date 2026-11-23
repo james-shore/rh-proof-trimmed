@@ -146,15 +146,11 @@ end Up
 section Pass
 variable {D : D7} (ψ : AddChar (AF D.host.F) ℂ)
 
-theorem symplOH_zero_r {S T : HSp D} (x : WO S T) : symplOH S T x 0 = 0 := by
-  have : hO S T x 0 = 0 := by simp [hO]
-  simp [symplOH, symplO, this]
-
 theorem heis_pass {V A L : HSp D} (o : OrthDec V A L) (S : HSp D) (f : WO V S → ℂ) (a u : WO A S) (z : WO L S) :
     heisO ψ V S ((o.resS S).symm (a, 0)) f ((o.resS S).symm (u, z)) =
       ψ (symplOH A S u a) * f ((o.resS S).symm (u + a, z)) := by
   simp only [heisO]
-  rw [o.symplOH_resS, AddEquiv.apply_symm_apply, AddEquiv.apply_symm_apply, symplOH_zero_r, add_zero,
+  rw [o.symplOH_resS, AddEquiv.apply_symm_apply, AddEquiv.apply_symm_apply, _root_.GlobalTheory.SuperposS.symplOH_zero_right, add_zero,
     ← map_add, Prod.mk_add_mk, add_zero]
 
 end Pass

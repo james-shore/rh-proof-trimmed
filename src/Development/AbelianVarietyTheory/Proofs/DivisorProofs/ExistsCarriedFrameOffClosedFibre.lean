@@ -71,7 +71,7 @@ theorem exists_carried_frame_off_closed : ∀ (R : Type) [CommRing R] [IsDomain 
   have s₁ := Classical.choose_spec hP.lg
   have s₀ := Classical.choose_spec hP₀.lg
   refine s₁.2.elim fun he₁ m₁ => s₀.2.elim fun he₀ m₀ => ?_
-  have hg := GlobalTheory.T.uniformisationBundle_rigidLinearisations_same_localUnits R' D' A' G' hS' U' (specOf (Gal.hom σ)) _ _ e he₀ he₁ _ _ s₀.1 s₁.1 m₀.1 m₁.1
+  have hg := _root_.GlobalTheory.Mum.RigLinUnique.gw_eq_of_rigidified R' D' A' G' hS' U' (specOf (Gal.hom σ)) _ _ e he₀ he₁ _ _ s₀.1 s₁.1 m₀.1 m₁.1
   intro z j k hz hfz hzk hfzj
   have h1 := hF₀ z j k hz (by rw [e]; exact hfz) hzk (by rw [e]; exact hfzj)
   rw [hg z j k hzk (by rw [e]; exact hfzj)] at h1

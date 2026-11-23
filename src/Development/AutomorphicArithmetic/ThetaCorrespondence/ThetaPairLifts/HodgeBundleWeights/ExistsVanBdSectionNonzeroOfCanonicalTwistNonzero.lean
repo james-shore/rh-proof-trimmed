@@ -56,7 +56,7 @@ theorem exists_vanBd_section_nonzero_of_canonical_twist_nonzero : _root_.GlobalT
   obtain ⟨m, hm⟩ := (M.bijective_pullOff (isLB_L₀ TF.X Z la)).2 ((C.mulEquiv ω.unit).symm (H0.restr le_top g))
   have hm' : C.mul ω.ω (M.pullOff m) = H0.restr le_top g := by
     rw [hm, ← ProdChart.mulEquiv_apply C ω.unit, LinearEquiv.apply_symm_apply]
-  obtain ⟨s, hsv, hsr⟩ := (_root_.GlobalTheory.T.log_canonical_criterion_boundary hP hG E H Dw l Xo c TF Z hF M ω (la - FlagTan.kap Dw) la hs m).2 ⟨g, hm'.symm⟩
+  obtain ⟨s, hsv, hsr⟩ := (_root_.GlobalTheory.LogCanon.log_canonical_pair_iff hP hG E H Dw l Xo c TF Z hF M ω (la - FlagTan.kap Dw) la hs m).2 ⟨g, hm'.symm⟩
   refine ⟨s, hsv, ?_⟩
   obtain ⟨t, ha, hb, hc⟩ := C.cover z
   have e := C.germ_mul ω.ω (M.pullOff m) t z hz ha hb hc
@@ -76,16 +76,3 @@ theorem exists_vanBd_section_nonzero_of_canonical_twist_nonzero : _root_.GlobalT
 end GlobalTheory.CuspNonvanishing
 end
 
-section
-open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory Formalism.L2.Pj Formalism.BasicNotions
-open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
-open GlobalTheory GlobalTheory.CechPic GlobalTheory.Vanishing GlobalTheory.HermTools GlobalTheory.Adelic GlobalTheory.CompHS GlobalTheory.CovTop
-open GlobalTheory.AllWt (Psi wtOf cuspOn latOn normOn petOn GoodOn GoodW bergOn framesOn)
-open GlobalTheory.FlagMod (FlagCover)
-open GlobalTheory.FlagTan (dimFlag)
-open GlobalTheory.HSApp
-
-theorem _root_.GlobalTheory.T.exists_form_nonvanishing_at_cusp : _root_.GlobalTheory.CovTop.Hypotheses'' → GlobalTheory.Published.GrothendieckDeformation → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (TF : TorFlag Xo c) (Z : Comp Xo c), FnAlgClosed (Xo := Xo) (c := c) → ∀ (M : Modif (str₀ TF.X Z) (U₀ TF.X Z) (dimFlag Dw)) (ω : CanId M) (la : AllWt.Weight Dw) (g : H0 M.str (tens M.K.bundle ((L₀ TF.X Z (la - FlagTan.kap Dw)).pull M.σ)) ⊤) (z : M.X), z ∈ M.off → z ∈ nonzeroLocus (toSec g) → ∃ s ∈ vanBd TF.X Z la, M.σ z ∈ nonzeroLocus (toSec s) := by
-  first | exact @_root_.GlobalTheory.CuspNonvanishing.exists_vanBd_section_nonzero_of_canonical_twist_nonzero | exact _root_.GlobalTheory.CuspNonvanishing.exists_vanBd_section_nonzero_of_canonical_twist_nonzero | (intros; apply _root_.GlobalTheory.CuspNonvanishing.exists_vanBd_section_nonzero_of_canonical_twist_nonzero <;> assumption)
-end

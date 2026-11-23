@@ -230,39 +230,21 @@ theorem normFock_map {N : ℕ} (lam : DomWeight N) (a b : MvPolynomial (Fin N ×
   rw [brFockF_map, extremal_map, brFockF_map]
   exact (Rat.cast_div _ _).symm
 
-private theorem fockQ_eq_sum_of_support_subset {σ : Type*} (f g : MvPolynomial σ ℚ) (S : Finset (σ →₀ ℕ))
-    (hS : f.support ⊆ S) :
-    fockQ f g = ∑ m ∈ S, f.coeff m * g.coeff m * ((∏ k ∈ m.support, (m k).factorial : ℕ) : ℚ) := by
-  unfold fockQ
-  apply Finset.sum_subset hS
-  intro m _ hm
-  have h0 : f.coeff m = 0 := by simpa [MvPolynomial.mem_support_iff] using hm
-  simp [h0]
-
 theorem normFockQ_symm {N : ℕ} (lam : DomWeight N) (a b : MvPolynomial (Fin N × Fin N) ℚ) :
     normFockQ lam a b = normFockQ lam b a := by
   classical
   unfold normFockQ
   congr 1
-  rw [fockQ_eq_sum_of_support_subset a b (a.support ∪ b.support) Finset.subset_union_left,
-    fockQ_eq_sum_of_support_subset b a (a.support ∪ b.support) Finset.subset_union_right]
+  rw [_root_.Formalism.GradedWeylDivisibility.lfockq_eq_sum a b (a.support ∪ b.support) Finset.subset_union_left,
+    _root_.Formalism.GradedWeylDivisibility.lfockq_eq_sum b a (a.support ∪ b.support) Finset.subset_union_right]
   refine Finset.sum_congr rfl fun m _ => ?_
   ring
-
-private theorem fockF_eq_sum_lemma {σ : Type*} (f g : MvPolynomial σ ℂ) (S : Finset (σ →₀ ℕ))
-    (hS : f.support ⊆ S) :
-    fockF f g = ∑ m ∈ S, f.coeff m * star (g.coeff m) * ((∏ k ∈ m.support, (m k).factorial : ℕ) : ℂ) := by
-  unfold fockF
-  apply Finset.sum_subset hS
-  intro m _ hm
-  have h0 : f.coeff m = 0 := by simpa [MvPolynomial.mem_support_iff] using hm
-  simp [h0]
 
 private theorem fockF_swap_eq_star {σ : Type*} [DecidableEq σ] (f g : MvPolynomial σ ℂ) :
     fockF g f = star (fockF f g) := by
   classical
-  rw [fockF_eq_sum_lemma g f (f.support ∪ g.support) Finset.subset_union_right,
-    fockF_eq_sum_lemma f g (f.support ∪ g.support) Finset.subset_union_left, star_sum]
+  rw [_root_.Formalism.REAL.fischerInner_eq_sum_of_subset g f (f.support ∪ g.support) Finset.subset_union_right,
+    _root_.Formalism.REAL.fischerInner_eq_sum_of_subset f g (f.support ∪ g.support) Finset.subset_union_left, star_sum]
   refine Finset.sum_congr rfl fun m _ => ?_
   simp only [star_mul', star_star, star_natCast]
   ring

@@ -56,8 +56,8 @@ theorem puNZ_member_alt : GlobalTheory.Core.Rk.RowDiag (fun D L C' => GlobalTheo
   intro hRow hL p hTP
   have hR := fun Cg CT : ℝ => hRow Cg (1 / 4) 3 (1 / 2) CT (by norm_num) (by norm_num)
   choose Cf Af Bf hC hrow using hR
-  have h1 := _root_.GlobalTheory.T.exists_constants_for_parameters_scale_bundle hL p (fun _ _ => 0) (fun _ _ => 0) (fun _ _ => 0)
-  have h2 := _root_.GlobalTheory.T.degHypL_all_linked_good_members hL p (fun C => Af (C.P.CYL + 1) C.CTu) (fun C => Bf (C.P.CYL + 1) C.CTu)
+  have h1 := _root_.GlobalTheory.Fam.MemberSizes.parameters_scale_rank_gap_bounds hL p (fun _ _ => 0) (fun _ _ => 0) (fun _ _ => 0)
+  have h2 := _root_.GlobalTheory.Core.HypAt.hypL_at_points_alt hL p (fun C => Af (C.P.CYL + 1) C.CTu) (fun C => Bf (C.P.CYL + 1) C.CTu)
   have h3 : GlobalTheory.Fc.RowE (Bl.IsGoodE p.s) (_root_.GlobalTheory.Mem.Top.Bl.BundleLinkage p)
       (fun κ _ _ _ _ => Cf (κ.C.P.CYL + 1) κ.C.CTu + 1 ≤ κ.C.CGam) :=
     EvP.mono (fun _ _ _ h _ _ _ _ _ => h) (evP_cGam fun a b => Cf a b + 1)

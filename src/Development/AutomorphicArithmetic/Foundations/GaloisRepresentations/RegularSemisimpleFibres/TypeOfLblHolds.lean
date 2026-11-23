@@ -117,19 +117,19 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace UpperTheory.Gal.InertialTypesAlt
 
-theorem killsAll_holds : KillsAll := GlobalTheory.T.shintani_lift_kills_product_of_cusp_forms
+theorem killsAll_holds : KillsAll := _root_.GlobalTheory.Shin.DescentAll.kills_liftAll
 
-theorem liftHc_holds : LiftHc := GlobalTheory.T.shintaniLift_harishChandraInduction_eq_twisted
+theorem liftHc_holds : LiftHc := _root_.GlobalTheory.Shin.shLift_hc_eq_hcTw
 
-theorem killsHc_holds : KillsHc := GlobalTheory.T.twistedHarishChandra_isotypic_part
+theorem killsHc_holds : KillsHc := _root_.GlobalTheory.Shin.HcIso.kills_hcTw
 
-theorem jAppend_holds : JAppend := fun F _ _ θ => (GlobalTheory.T.harishChandraProductCuspidalGL_list_properties F θ).2.1
+theorem jAppend_holds : JAppend := fun F _ _ θ => (_root_.GlobalTheory.Shin.J_list_props F θ).2.1
 
 theorem normEx_holds : NormEx := by
   intro F F' _ _ _ _ s hs t δ
   haveI : Finite F := Finite.of_injective _ (algebraMap F F').injective
   haveI : Fintype F := Fintype.ofFinite F
-  refine GlobalTheory.T.every_element_is_norm F F' s (fun τ => ?_) t δ
+  refine _root_.GlobalTheory.Shin.exists_isNorm F F' s (fun τ => ?_) t δ
   have e : s = FiniteField.frobeniusAlgEquivOfAlgebraic F F' := by
     ext z; rw [hs z, Nat.card_eq_fintype_card]; rfl
   obtain ⟨⟨i, _⟩, hi⟩ := (FiniteField.bijective_frobeniusAlgEquivOfAlgebraic_pow F F').2 τ

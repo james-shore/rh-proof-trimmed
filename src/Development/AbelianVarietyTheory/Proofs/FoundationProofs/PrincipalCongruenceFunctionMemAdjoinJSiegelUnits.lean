@@ -169,7 +169,7 @@ theorem finite_range (X : Tower Ω ε) (M : ℕ) (hM : 0 < M) : Finite (rhoF X M
   exact Finite.of_equiv _ (QuotientGroup.quotientKerEquivRange (rhoF X M)).toEquiv
 
 theorem sl_neg_one (X : Tower Ω ε) (f : X.K) : X.sl (ofSL (-1)) f = f := by
-  apply GlobalTheory.KZ.SiegelSL.an_injective X
+  apply _root_.GlobalTheory.KZ.SiegelModel.an_injective X
   obtain ⟨φ, -, hφ, -⟩ := X.an_exp f
   rw [X.an_sl _ _ _ hφ, hφ]
   congr 1

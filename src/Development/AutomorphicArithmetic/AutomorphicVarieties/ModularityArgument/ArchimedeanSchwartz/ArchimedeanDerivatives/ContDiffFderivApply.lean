@@ -46,6 +46,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.InfinitesimalCharacterPullback.HasInfCharPullSub
 
 @[expose] public section
 
@@ -60,15 +61,10 @@ variable {K : Type} [Field K] [NumberField K] {n : ℕ}
 
 private abbrev eDir (τ : K →+* ℂ) (i j : Fin n) (z : ℂ) : Lie K n := toL (Matrix.single i j (atEmb τ z))
 
-omit [NumberField K] in
-private theorem coord_smul' (τ : K →+* ℂ) (t : ℝ) (x : Cinf K) : coord τ (t • x) = t • coord τ x := by
-  unfold coord
-  split_ifs <;> simp
-
 private def coordL (τ : K →+* ℂ) (i j : Fin n) : Lie K n →ₗ[ℝ] ℂ where
   toFun y := coord τ (y i j)
   map_add' x y := map_add (coord τ) (x i j) (y i j)
-  map_smul' t x := coord_smul' τ t (x i j)
+  map_smul' t x := _root_.UpperTheory.V.FieldIso.coord_smul τ t (x i j)
 
 private def coordC (τ : K →+* ℂ) (i j : Fin n) : Lie K n →L[ℝ] ℂ :=
   LinearMap.toContinuousLinearMap (coordL τ i j)
@@ -279,10 +275,7 @@ private theorem rd_congr (τ : K →+* ℂ) (a b : Fin n) (c : ℂ) (y : Lie K n
     (fun z => rd τ a b G z + c * G z) =ᶠ[nhds y] fun z => rd τ a b H z + c * H z :=
   ((h.fderiv (𝕜 := ℝ)).and h).mono fun z hz => by simp only [rd_eq, hz.1, hz.2]
 
-private theorem exists_smooth_eq {U : Set (Lie K n)} (hU : IsOpen U) {F : Lie K n → ℂ}
-    (hF : ContDiffOn ℝ ∞ F U) {x : Lie K n} (hx : x ∈ U) :
-    ∃ G : Lie K n → ℂ, ContDiff ℝ ∞ G ∧ G =ᶠ[nhds x] F :=
-  _root_.UpperTheory.Reformulated.B.LocalSmoothExtension.exists_smooth_eq hU hF hx
+private alias exists_smooth_eq := _root_.UpperTheory.Reformulated.B.LocalSmoothExtension.exists_smooth_eq
 
 end UpperTheory.V.Z.Inf.WeylGroupAction
 

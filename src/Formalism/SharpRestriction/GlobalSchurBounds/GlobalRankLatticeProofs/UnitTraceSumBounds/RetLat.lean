@@ -44,8 +44,8 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.MainNotions.Ext
 
-theorem discrNe_holds : DiscrNe := discrNe'
+theorem discrNe_holds : DiscrNe := _root_.DiscrNeWork.discrNe_all
 
-theorem sigmaStarEx_holds : SigmaStarEx := sigma_star_exists
+theorem sigmaStarEx_holds : SigmaStarEx := _root_.PI.SSE.sigmaStarEx
 
 end Formalism.MainNotions.Ext

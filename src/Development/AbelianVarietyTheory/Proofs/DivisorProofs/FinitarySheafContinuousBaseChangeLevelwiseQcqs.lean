@@ -91,7 +91,7 @@ theorem contCone_bc_sch_qcqs (R : Type) [CommRing R] (F : Shv R) (hF : Finitary 
       · exact (IsPullback.of_hasPullback (G.obj j).hom r).flip
     exact MorphismProperty.of_isPullback (P := @IsAffineHom) hsq.flip (isAffineHom_of_isAffine _)
   have h1 : ContCone R F (sch.mapCone (H.mapCone c)) :=
-    GlobalTheory.T.contCone_of_isLimit_of_qcqs_affine_transitions R F hF I (G ⋙ H) (H.mapCone c) hl hcomp hqsp haff
+    _root_.GlobalTheory.EtC.contCone_of_qcqs_affine R F hF I (G ⋙ H) (H.mapCone c) hl hcomp hqsp haff
   have hb := GlobalTheory.EtC.eqv_basic R F
   refine (GlobalTheory.EtC.ContCone.iff_of_eqv R F I (G ⋙ H ⋙ sch) (G ⋙ bc (sch.map r)) (sch.mapCone (H.mapCone c))
     ((bc (sch.map r)).mapCone c) (Functor.whiskerLeft G e.hom) (e.hom.app c.pt) ?_ ?_ ?_).1 h1
@@ -103,7 +103,7 @@ theorem contCone_bc_sch_qcqs (R : Type) [CommRing R] (F : Shv R) (hF : Finitary 
 
 theorem contCone_bc_qcqsOver : ∀ (R : Type) [CommRing R] (F : Shv R), Finitary F → ∀ (S : Scheme.{0}) (E : Spc) (p : E ⟶ sch.obj S), QcqsOver p → (∀ (I : Type) [SmallCategory I] [IsCofiltered I] (G : I ⥤ Over S) (c : Cone G), IsLimit c → (∀ i, IsAffine (G.obj i).left) → ContCone R F ((bc p).mapCone c)) := by
   intro R _ F hF S E p hp I _ _ G c hc hG
-  refine GlobalTheory.T.cohomologyContinuous_base_change_of_levels R F S E p I G c ?_
+  refine _root_.GlobalTheory.EtC.CcStep.cc_step R F S E p I G c ?_
   intro k
   obtain ⟨X, r, e, hqc, hqs, he⟩ := hp k
   exact ⟨X, r, e, he, contCone_bc_sch_qcqs R F hF S X r hqc hqs I G c hc hG⟩

@@ -134,9 +134,6 @@ theorem exists_frac {F : Type} [Field F] {O : Type} [CommRing O] [IsDomain O] (�
       · rintro rfl; simp at hb; exact hx hb.symm
       · rw [hb, mul_inv_cancel₀ hx, map_one]
 
-theorem norm_natCast_prime (p : Nat.Primes) : ‖(((p : ℕ) : ℂ_[p]))‖ = ((p : ℕ) : ℝ)⁻¹ := by
-  rw [← map_natCast (algebraMap ℚ_[(p : ℕ)] ℂ_[(p : ℕ)]) (p : ℕ), norm_algebraMap', Padic.norm_p]
-
 theorem dvd_prime {F : Type} [Field F] [CharZero F] {O : Type} [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (β : O →+* F) {p : Nat.Primes}
     (κ : F →+* ℂ_[p]) (h : ∀ x, ‖κ x‖ ≤ 1 ↔ x ∈ β.range) {ϖ : O} (hϖ : Irreducible ϖ) :
@@ -149,7 +146,7 @@ theorem dvd_prime {F : Type} [Field F] [CharZero F] {O : Type} [CommRing O] [IsD
       rw [hu, map_natCast] at h1
       exact (eq_inv_of_mul_eq_one_right h1)
     have hle := (h _).2 hmem
-    rw [map_inv₀, map_natCast, norm_inv, norm_natCast_prime, inv_inv] at hle
+    rw [map_inv₀, map_natCast, norm_inv, _root_.GlobalTheory.CompanionTheory.Ar.Flat.CPoint.norm_prime_padicComplex, inv_inv] at hle
     have h1 : (1 : ℝ) < (p : ℕ) := by exact_mod_cast p.2.one_lt
     linarith
   have hm : ((p : ℕ) : O) ∈ IsLocalRing.maximalIdeal O := (IsLocalRing.mem_maximalIdeal _).2 hnu

@@ -119,7 +119,7 @@ private theorem addHaar_singleton_zero_eq_zero {m : ℕ} {ψ : AddChar k Circle}
     have h0 : ({0} : Set (Fin (m + 1) → k)) ⊆ (perp ψ (gmap (g ^ j) A) : Set _) := by
       simp [(perp ψ (gmap (g ^ j) A)).zero_mem]
     calc (ν {0}).toReal ≤ (ν (perp ψ (gmap (g ^ j) A))).toReal :=
-          ENNReal.toReal_mono (meas_perp_lt_top ψ ν hψ hψ1 (lat_gmap _ _ hA)).ne (measure_mono h0)
+          ENNReal.toReal_mono (meas_perp_lt_top ψ ν hψ hψ1 (_root_.PositivityTheory.RgUd.Form.U.Lift2.AvA.lat_gmap' _ _ hA)).ne (measure_mono h0)
       _ = _ := by rw [meas_perp_gmap ψ ν hψ hψ1 _ hA, hpow, inv_pow]
   have hlim : Tendsto (fun j : ℕ => ((md g)⁻¹) ^ j * (ν (perp ψ A)).toReal) atTop (𝓝 0) := by
     have := tendsto_pow_atTop_nhds_zero_of_lt_one (inv_nonneg.2 (md_pos g).le) (inv_lt_one_of_one_lt₀ hg1)

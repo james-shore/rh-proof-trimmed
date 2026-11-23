@@ -57,11 +57,11 @@ theorem contCone_of_qcqs_affine : ∀ (R : Type) [CommRing R] (F : Shv R), Finit
   have hc' : IsLimit ((Over.conePost G i₀).obj c) := Over.isLimitConePost i₀ hc
   haveI := hcp i₀
   haveI := hqs i₀
-  have hcore := GlobalTheory.T.cohomologyContinuous_baseChange_qcqs R F hF (G.obj i₀) (Over i₀) (Over.post G) ((Over.conePost G i₀).obj c) hc'
+  have hcore := _root_.GlobalTheory.contCone_bc_of_qcqs R F hF (G.obj i₀) (Over i₀) (Over.post G) ((Over.conePost G i₀).obj c) hc'
     (fun j => haff _ _ j.hom) (G.obj i₀) (𝟙 _)
-  have hb := GlobalTheory.T.etaleCohomologyEquivalence_basic_properties R F
+  have hb := _root_.GlobalTheory.EtC.eqv_basic R F
   haveI : IsIso (sch.map (𝟙 (G.obj i₀))) := inferInstance
-  apply GlobalTheory.T.cohomologyContinuousOnCone_of_whisker R F I (Over i₀) (Over.forget i₀) (G ⋙ sch) (sch.mapCone c)
+  apply _root_.GlobalTheory.EtC.contCone_of_whisker R F I (Over i₀) (Over.forget i₀) (G ⋙ sch) (sch.mapCone c)
   · intro i
     exact ⟨Over.mk (IsCofiltered.minToRight i i₀), ⟨IsCofiltered.minToLeft i i₀⟩⟩
   · let α : Over.post G ⋙ bc (sch.map (𝟙 (G.obj i₀))) ⟶ Over.forget i₀ ⋙ G ⋙ sch :=
@@ -70,7 +70,7 @@ theorem contCone_of_qcqs_affine : ∀ (R : Type) [CommRing R] (F : Shv R), Finit
           simp only [Functor.comp_map, bc, pullback.map]
           erw [pullback.lift_snd]
           rfl }
-    refine (GlobalTheory.T.of_etaleCohomologyEquivalence_diagram R F (Over i₀) _ _ ((bc (sch.map (𝟙 (G.obj i₀)))).mapCone ((Over.conePost G i₀).obj c))
+    refine (_root_.GlobalTheory.EtC.ContCone.iff_of_eqv R F (Over i₀) _ _ ((bc (sch.map (𝟙 (G.obj i₀)))).mapCone ((Over.conePost G i₀).obj c))
       ((sch.mapCone c).whisker (Over.forget i₀)) α (pullback.snd _ _) ?_ ?_ ?_).1 hcore
     · intro j
       simp only [Functor.mapCone_π_app, Cone.whisker_π, bc, pullback.map]

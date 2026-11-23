@@ -125,7 +125,7 @@ private theorem family (F Ω : Type) [Field F] [NumberField F] [IsTotallyReal F]
       ∀ (u : HeightOneSpectrum (𝓞 F)) (A' : ValuationSubring Ω), ((p : ℕ) : 𝓞 F) ∈ u.asIdeal →
         IsPlaceOver A' u → ¬ Ine (F := F) A' ≤ (UpperTheory.V.Af.Bc.res F Ω ↥Q.K).range := by
     intro p hp Q hQK u A' hu hA' hle
-    obtain ⟨s, hs, hne⟩ := GlobalTheory.T.inertia_moves_square_root F Ω p hp.1 hp.2.2.1 hp.2.2.2 (δ p) (hδ p) u A' hu hA'
+    obtain ⟨s, hs, hne⟩ := _root_.GlobalTheory.SqrtNegRam.sqrt_neg_moved_by_inertia F Ω p hp.1 hp.2.2.1 hp.2.2.2 (δ p) (hδ p) u A' hu hA'
     refine hne ((GlobalTheory.ExSplitCM.mem_range_res_iff Q.K s).1 (hle hs) (δ p) ?_)
     rw [hQK]
     exact IntermediateField.mem_adjoin_simple_self F (δ p)
@@ -163,9 +163,6 @@ private theorem family (F Ω : Type) [Field F] [NumberField F] [IsTotallyReal F]
   obtain ⟨A', hA'⟩ := ReciprocityTheory.Gal.exists_isPlaceOver Ω u
   exact ⟨u, fun hall => hmove p hp Q hQK u A' hu hA' (hall A' hA'), hu⟩
 
-private theorem star_eq_of_sq {z : ℂ} {r : ℝ} (hr : 0 ≤ r) (h : z * z = r) : star z = z :=
-  _root_.UpperTheory.Reformulated.B.Ra8.star_eq_of_sq hr h
-
 private theorem exists_real_emb (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (ψ : F →+* ℂ) :
     ∃ φ : F →+* ℝ, ∀ x, ψ x = (φ x : ℂ) := by
   have hr : ComplexEmbedding.IsReal ψ := by
@@ -194,7 +191,7 @@ private theorem exists_sq_neg (F K : Type) [Field F] [NumberField F] [IsTotallyR
       @_root_.Algebra.IsIntegral.isAlgebraic, @_root_.inferInstance])
   have hF : ∀ a : F, τ (algebraMap F K a) = (φ a : ℂ) := fun a => τ.commutes a
   have ht : star (τ (e 1)) = τ (e 1) := by
-    refine star_eq_of_sq (not_lt.1 hnn) ?_
+    refine _root_.UpperTheory.Reformulated.B.Ra8.star_eq_of_sq (not_lt.1 hnn) ?_
     rw [← map_mul, h1, hF]
   have hall : ∀ x, star (τ x) = τ x := fun x => by
     obtain ⟨a, b, rfl⟩ := hx x
@@ -228,7 +225,7 @@ private theorem cm_of_sq (F M : Type) [Field F] [NumberField F] [IsTotallyReal F
       rintro x rfl
       show ρ ⟨a * b, hc⟩ = star (ρ ⟨a * b, hc⟩)
       symm
-      refine star_eq_of_sq (r := φ α * φ β) (mul_nonneg_of_nonpos_of_nonpos (hα φ).le (hβ φ).le) ?_
+      refine _root_.UpperTheory.Reformulated.B.Ra8.star_eq_of_sq (r := φ α * φ β) (mul_nonneg_of_nonpos_of_nonpos (hα φ).le (hβ φ).le) ?_
       have h2 : (⟨a * b, hc⟩ : K) * ⟨a * b, hc⟩ = algebraMap F K (α * β) := by
         apply Subtype.ext
         show a * b * (a * b) = algebraMap F M (α * β)

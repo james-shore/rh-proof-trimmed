@@ -65,7 +65,7 @@ def dpsi (ψ : AddChar (Ad E) ℂ) (Z : Cinf E) : ℂ := deriv (fun t : ℝ => �
 
 theorem hasDerivAt_dpsi {ψ : AddChar (Ad E) ℂ} (hψ : StdPsi ψ) (Z : Cinf E) :
     HasDerivAt (fun t : ℝ => ψ (sInf E (t • Z))) (dpsi ψ Z) 0 := by
-  obtain ⟨c, hc⟩ := hasDerivAt_of_mulHom (fun t : ℝ => ψ (sInf E (t • Z)))
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.CompanionTheory.CharDeriv.hasDerivAt_of_continuous_hom (fun t : ℝ => ψ (sInf E (t • Z)))
     (hψ.cont.comp (continuous_sInf'.comp (continuous_id.smul continuous_const)))
     (by simp only [zero_smul, map_zero, AddChar.map_zero_eq_one])
     (fun s t => by simp only [add_smul, map_add (f := _), AddChar.map_add_eq_mul])
@@ -104,7 +104,7 @@ theorem whitLie_holds : WhitLie := by
   have hw0 : whit ψ (a - 1) φ₀.1.1 ≠ 0 :=
     (whit_good hψ (a - 1) h0 (hg φ₀)).2 fun h => hφ₀ (Subtype.ext (Subtype.ext h))
   obtain ⟨g₀, hg₀⟩ := Function.ne_iff.1 hw0
-  obtain ⟨b, k, hb, hyk⟩ := exists_upper_unitary (GeneralLinearGroup.map (pInf E) g₀)
+  obtain ⟨b, k, hb, hyk⟩ := _root_.GlobalTheory.CompanionTheory.Iwasawa.exists_upper_mul_unitary (GeneralLinearGroup.map (pInf E) g₀)
   let ℓ : π.V →ₗ[ℂ] ℂ :=
     { toFun := fun φ => whit ψ (a - 1) φ.1.1 (infGL E a b)
       map_add' := fun φ φ' => congrFun (whit_add hψ (a - 1) h0 (hg φ) (hg φ')) _
@@ -130,7 +130,7 @@ theorem whitLie_holds : WhitLie := by
       have hu : IsUnit (b.val p p * (b⁻¹).val q q) :=
         (IsUnit.of_mul_eq_one _ (diag_inv b hb p)).mul (IsUnit.of_mul_eq_one_right _ (diag_inv b hb q))
       have hβ0 : β p q ≠ 0 := (hu.map (coord τ)).ne_zero
-      exact wirtinger_ne_zero (fun z => ψ (sInf E (atEmb τ z)))
+      exact _root_.GlobalTheory.CompanionTheory.Unitary.wirtinger_combination_ne_zero (fun z => ψ (sInf E (atEmb τ z)))
         (hψ.cont.comp (continuous_sInf'.comp (continuous_atEmb τ)))
         (fun z w => by simp only [atEmb_add, map_add (f := _), AddChar.map_add_eq_mul]) (fun z => hψ.norm _)
         (psi_nontriv hψ τ) (fun z => dpsi ψ (atEmb τ z))

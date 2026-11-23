@@ -71,16 +71,6 @@ open NumberField Module Matrix Formalism.BasicNotions Formalism.MainNotions.S Fo
 open scoped ENNReal Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-theorem lead_eq {E : Type} [Field E] {n : ℕ} {Z Z₂ : Matrix (Fin n) (Fin n) E} (h : ZEquiv Z Z₂) (l : ℕ) :
-    leadMinorE Z₂ l = leadMinorE Z l := by
-  obtain ⟨A, B, hA0, hA1, hB0, hB1, rfl⟩ := h
-  unfold leadMinorE
-  split_ifs with hl
-  · exact Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.leadingMinorInvariant E n l hl _ Z _ (fun i => by simp [hA1])
-      (fun i j hij => by simp [hA0 i j hij]) (fun i => by simp [hB1]) (fun i j hij => by simp [hB0 i j hij])
-  · rfl
-
-
 open GlobalTheory.Mass GlobalTheory.LoopC.DetCard Formalism.HermitianLatticesTheory in
 theorem fullLattice_latIn_span {K V : Type} [Field K] [NumberField K] [AddCommGroup V]
     [Module (𝓞 K) V] [Module K V] [IsScalarTower (𝓞 K) K V]
@@ -217,7 +207,7 @@ theorem orth_lattice (D : D7) (u u' : D.what₂.Word) (F0 : Fb D u) (Λ : LatV D
     (fun x hx => ⟨hle hx, Submodule.subset_span hx⟩) hsp.symm (fun x hx H =>
       (Submodule.mem_bot _).1 (n2.le ⟨hsp.le hx, (Formalism.MainNotions.mem_orth_iff _ _).2 fun y hy => H y (hsp.ge hy)⟩))
   have hg : gS D ≠ 0 := mul_ne_zero hs.2.2.2.2.2.2.2.1.ne_zero hs.2.2.2.2.2.2.2.2.1.ne_zero
-  have hB := GlobalTheory.T.norm_pow_le_card_flag_quotient _ (hS D) _ Λ (gS D) _ _ (lf D F0) F' hg hl hl' hF hF' hc' had hG
+  have hB := _root_.GlobalTheory.LoopC.AdmissibleOrder.NE_pow_le_card_BQ _ (hS D) _ Λ (gS D) _ _ (lf D F0) F' hg hl hl' hF hF' hc' had hG
     (Nat.finite_of_card_ne_zero g1)
   refine ⟨Partner.seen_le_L0X _ _ hH, (Partner.rk_seen _ (by first | exact hfull | exact hL) hW _ hH ?_).trans n3, d1.trans ?_⟩
   · rw [eq_bot_iff, ← n2, inf_comm]
@@ -334,7 +324,7 @@ theorem main : ∀ Cg cb Cu cT CT C0 A : ℝ, ∃ C : ℝ, ∀ (D : D7) (large�
         obtain ⟨o1, o2, o3⟩ := orth_lattice D u u' F0 Λ hs ⟨he, hz⟩ hΛ F' ⟨t1, t2⟩
         refine ⟨_, ⟨o1, o2, o3.trans (le_of_eq ?_)⟩, ⟨t1, t2⟩, t4, le_rfl⟩
         rw [G0, FrameDet.main D large₂ u u' C' Cl Cg cb Cu cT CT C0 A hH F0 he hz Λ hΛ F' ⟨t1, t2⟩ t3, hGd]
-        simp only [Gz, absDl, lead_eq t4])
+        simp only [Gz, absDl, _root_.GlobalTheory.LoopC.GramSize.lead_zequiv t4])
       (by
         rintro P ⟨p1, p2, p3⟩
         have := h1 C c1 D large₂ u u' C' Cl hCl hH F0 he hz Λ hΛ Z hZ 1 le_rfl hk P p1 p2 G' H hG'1

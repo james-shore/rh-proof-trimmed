@@ -313,7 +313,7 @@ theorem exists_hasColen_tens (p : ℕ) [Fact p.Prime] (hv : v.Integers R) (hp : 
   obtain ⟨e, -, -⟩ := ReciprocityTheory.PGsh.Up.U3.exists_charEquiv hζ
   let A₁ : HopfOrder (C := C) R (ZMod p) := multOrder' v hv e
   let A₂ : HopfOrder (C := C) R (ZMod p) := constOrder
-  obtain ⟨AA, hcar, -, -, -, -, hcol⟩ := GlobalTheory.T.tensor_product_hopf_orders p C v R hv hp (ZMod p) (ZMod p) A₁ A₂
+  obtain ⟨AA, hcar, -, -, -, -, hcol⟩ := _root_.PositivityTheory.HtPt.Re.tens_hopf p C v R hv hp (ZMod p) (ZMod p) A₁ A₂
   have h1 : A₁.carrier = Submodule.span R (Set.range fun (ψ : AddChar (ZMod p) C)
       (x : ZMod p) => ψ x) := by
     show Submodule.span R (Set.range fun j : ZMod p => ((e j : AddChar (ZMod p) C) : ZMod p → C)) = _
@@ -451,7 +451,7 @@ theorem ord_split : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgClos
       rintro _ ⟨ψ, rfl⟩
       let χ : AddChar N C := ψ.compAddMonoidHom
         ((AddMonoidHom.fst (ZMod p) (ZMod p)).comp e.symm.toAddMonoidHom)
-      refine ⟨fun x => χ x, GlobalTheory.T.hopf_order_contains_add_characters p C v R hv hp N AA χ, ?_⟩
+      refine ⟨fun x => χ x, _root_.PositivityTheory.HtPt.Ra.charmem p C v R hv hp N AA χ, ?_⟩
       funext z
       simp [χ, LinearMap.funLeft_apply]
     exact hle hh

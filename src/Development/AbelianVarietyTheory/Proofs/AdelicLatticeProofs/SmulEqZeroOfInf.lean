@@ -200,8 +200,8 @@ theorem ker_mem_nhds {F : Type} [Field F] [NumberField F] {ψ : AddChar (AF F) �
     refine ((Circle.isOpen_centeredArc _).preimage hχ).mem_nhds ?_
     rw [Set.mem_preimage, h0, Circle.mem_centeredArc (by linarith [Real.pi_pos])]
     simp [Real.pi_pos]
-  obtain ⟨N, hN, hNV⟩ := GlobalTheory.AdLat.OpenLat.exists_nsmul_adele F _ hV
-  refine Filter.mem_of_superset (GlobalTheory.AdLat.OpenLat.nsmul_integral_mem_nhds F N hN) ?_
+  obtain ⟨N, hN, hNV⟩ := _root_.GlobalTheory.LocalNormBound.main F _ hV
+  refine Filter.mem_of_superset (_root_.GlobalTheory.IntegralNeighbourhoodZero.nsmul_integral_mem_nhds_zero F N hN) ?_
   rintro _ ⟨a, ha, rfl⟩
   have : χ (N • a) = 1 := by
     refine Circle.eq_one_of_forall_pow_mem_centeredArc_pi_div_two fun n _ => ?_

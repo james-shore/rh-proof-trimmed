@@ -66,7 +66,7 @@ theorem GlobalTheory.FormalAlg.exists_chart_cocycle_of_pull : ∀ (R : Type) [Co
     | zero => rw [hγ0]; infer_instance
     | succ e ih =>
       rw [← hγs e]
-      have := MorphismProperty.of_isPullback (P := @Surjective) (hβ e).flip (GlobalTheory.GenSystem.surjective_thickTrans R I e)
+      have := MorphismProperty.of_isPullback (P := @Surjective) (hβ e).flip (_root_.GlobalTheory.LBAlg.surjective_thickTrans R I e)
       infer_instance
   have hpre := fun i => GlobalTheory.T.thickeningTowerCharts_preimage_and_germ_pullback R I Y β n C γ hγ0 hγs e i
   have hu := fun i => GlobalTheory.T.exists_local_frames_of_pullback_power_on_nonzeroLocus _ _ (γ e) H₀ (s₀ i) k L hL hH₀ w hw (C.D e i) ((hpre i).1.trans (hD i))

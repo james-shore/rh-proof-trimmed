@@ -53,6 +53,9 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.BCTools
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.UniformBaseChange.PullGt
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsTorusAbelianQuotientPDivisibleSmoothGroup
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.FrobeniusOnTorsion
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.PullInvClsOfFibres
 
 @[expose] public section
 
@@ -101,15 +104,15 @@ theorem exists_quot_quasiInv {Y : Scheme.{0}} [IsLocallyNoetherian Y] (A₀ : Ov
     · rintro ⟨y, rfl⟩
       have := lift y (1 : T ⟶ A₀) ≫= hq.w
       simpa [comp_mul, ← Category.assoc] using this
-  have hK := GlobalTheory.TranslQuotientPow.isMonHom_id_pow A₀ k
+  have hK := _root_.GlobalTheory.SS.DivSemi.isMonHom_id_pow A₀ k
   have hqc : QuasiCompact q.left := inferInstance
   obtain ⟨⟨ψ', hψ', hψ'e⟩, hepi⟩ := GlobalTheory.exists_monHom_factor_of_flat_surjective Y A₀ B A₀ q ((𝟙 A₀) ^ k)
     hqm hK hqflat hqsurj hqc (fun T x hx => by
       obtain ⟨z, rfl⟩ := (hker T x).1 hx
-      rw [GlobalTheory.TranslQuotientPow.comp_id_pow, ← comp_pow_hom, hk, comp_one])
+      rw [_root_.GlobalTheory.OddDescent.comp_id_pow, ← comp_pow_hom, hk, comp_one])
   refine ⟨B, gB, hcB, q, ψ', hB, ⟨hqm, hψ', hψ'e, ?_⟩, hker⟩
-  rw [← cancel_epi q, reassoc_of% hψ'e, GlobalTheory.TranslQuotientPow.comp_id_pow q k,
-    GlobalTheory.TranslQuotientPow.pow_comp_hom q (𝟙 A₀) k, Category.id_comp]
+  rw [← cancel_epi q, reassoc_of% hψ'e, _root_.GlobalTheory.OddDescent.comp_id_pow q k,
+    _root_.GlobalTheory.SS.FrobTorsion.pow_comp' q (𝟙 A₀) k, Category.id_comp]
 
 theorem ker_iff_of_pullbacks {S Y T : Scheme.{0}} {g₀ : Y ⟶ S} {A : Over S} {A₀ : Over Y}
     {φ₀ : A₀.left ⟶ A.left} (h₀ : IsPullback φ₀ A₀.hom A.hom g₀)
@@ -163,7 +166,7 @@ theorem isogeny_rep : ∀ (S : Scheme.{0}) [IsLocallyNoetherian S] (A : Over S) 
   obtain ⟨hψ₁m, hψ₁'m, e₁, e₂⟩ := hq₁
   have hkill : ∀ (T' : Over T) (g : T' ⟶ A₁), g ≫ ψ₁ = 1 → g ^ k = 1 := by
     intro T' g hg
-    rw [← GlobalTheory.TranslQuotientPow.comp_id_pow, ← e₁, ← Category.assoc, hg, one_comp]
+    rw [← _root_.GlobalTheory.OddDescent.comp_id_pow, ← e₁, ← Category.assoc, hg, one_comp]
   have hA₁ : IsAbelianScheme A₁ := by
     exact { comm := inferInstance
             smooth := MorphismProperty.of_isPullback (P := @Smooth) h₁.1 hA.smooth

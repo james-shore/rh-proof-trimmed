@@ -156,7 +156,7 @@ theorem key (k : Type) [Field k] [IsAlgClosed k] (p : ℕ) [hp : Fact p.Prime] [
         rw [dualDer_iter, hc]; simp
       have hnz : f ^ (p - 1) ≠ 0 := by
         intro hz
-        have := GlobalTheory.T.primitive_element_powers_indep k p A f hf h0 (fun i => if i = p - 1 then 1 else 0) (by
+        have := _root_.GlobalTheory.CompanionTheory.HopfPrim.powers_indep_of_primitive k p A f hf h0 (fun i => if i = p - 1 then 1 else 0) (by
           rw [Finset.sum_eq_single (p - 1)]
           · simp [hz]
           · intro b _ hb; simp [hb]
@@ -182,7 +182,7 @@ theorem key (k : Type) [Field k] [IsAlgClosed k] (p : ℕ) [hp : Fact p.Prime] [
         linear_combination h'
       have hu0 : u0 ≠ 0 := by
         intro hz
-        have := GlobalTheory.T.primitive_element_powers_indep k p A f hf h0 (fun i => if i = 0 then 0 else 1) (by
+        have := _root_.GlobalTheory.CompanionTheory.HopfPrim.powers_indep_of_primitive k p A f hf h0 (fun i => if i = 0 then 0 else 1) (by
           rw [Finset.range_eq_Ico, Finset.sum_eq_sum_Ico_succ_bot (by omega)]
           simp only [if_true, zero_smul, zero_add]
           rw [← hz]

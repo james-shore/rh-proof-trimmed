@@ -244,7 +244,7 @@ theorem exists_roots : ∀ {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [IsD
   intro l _ O _ _ _ _ _ _ Δ _ ξ hl2 hl ⟨ζ, hζ⟩ hξ hinv
   classical
   haveI := Fintype.ofFinite Δ
-  obtain ⟨e, a, hes, ha, hpow, hbij⟩ := GlobalTheory.T.exists_coset_reps_finite_subgroup_padicInt_units Δ hl2
+  obtain ⟨e, a, hes, ha, hpow, hbij⟩ := _root_.GlobalTheory.exists_coset_representatives_of_finite_subgroup_padicInt_units Δ hl2
   have hm : ζ - 1 ∈ maximalIdeal O := fun h => hl ((assoc_l ζ hζ).isUnit (h.pow _))
   have hz : ∀ b : ZMod l, ζ ^ b.val - 1 ∈ maximalIdeal O := fun b =>
     Ideal.mem_of_dvd _ (by simpa using sub_dvd_pow_sub_pow ζ 1 b.val) hm

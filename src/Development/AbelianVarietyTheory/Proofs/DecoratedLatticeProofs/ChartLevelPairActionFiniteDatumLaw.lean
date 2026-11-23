@@ -111,7 +111,7 @@ theorem lev_law : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.toPre} (I : TC B X
   have hvth : IsThetaFunO ψ _ _ (vac j) := (hX.vc j hj).2.theta
   have hp : kom j (κ.1, κ'.1) (vac j) = p • vac j := by
     have hf : IsThetaFunO ψ _ _ (kom j (κ.1, κ'.1) (vac j) - p • vac j) :=
-      GlobalTheory.AvgKill.theta_sub' (hom.om_pres _ _ hvth) (GlobalTheory.LocMod.LinSpace.isThetaFunO_smul p hvth)
+      _root_.GlobalTheory.OrientedHeis.theta_sub (hom.om_pres _ _ hvth) (GlobalTheory.LocMod.LinSpace.isThetaFunO_smul p hvth)
     have hz : xiN θ _ _ (rankN (I.rec7 l Z) j (Nat.le_of_succ_le hj1)) (rankN (I.rec7 l Z) (j + 1) hj1) I.A.δ I.A.sc
         (kom j (κ.1, κ'.1) (vac j) - p • vac j) = 0 := by
       funext z

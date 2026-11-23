@@ -87,7 +87,7 @@ theorem isClosedImmersion_special_of_local : ∀ (R : Type) [CommRing R] [IsLoca
   obtain ⟨E⟩ := hG.fibres Ω p
   let v := (bcIso p (Fin r → ℤ)).hom ≫ (GlobalTheory.IndefiniteRowSideFullHecke.LieAlgebraMaps.baseChange R Ω).map u
   have hv : IsClosedImmersion v.left := by
-    refine GlobalTheory.T.isClosedImmersion_splitTorus_into_torusExtension Ω _ E r v inferInstance fun q hq φ hφ h => hφ ?_
+    refine _root_.GlobalTheory.TorusFieldCrit.isClosedImmersion_of_torusExtension Ω _ E r v inferInstance fun q hq φ hφ h => hφ ?_
     have hsep : IsSeparated G.hom := hG.separated
     have e1 : torusMap _ φ ≫ (bcIso p (Fin r → ℤ)).hom =
         (bcIso p (ZMod q)).hom ≫ (Over.pullback p).map (torusMap _ φ) :=
@@ -103,7 +103,7 @@ theorem isClosedImmersion_special_of_local : ∀ (R : Type) [CommRing R] [IsLoca
 
     have hk := GlobalTheory.T.overSpecBaseChange_map_eq_of_fieldExtension R k Ω _ _ _ _ hΩ
     have hf : torusMap _ φ ≫ u = 1 :=
-      GlobalTheory.T.splitTorus_hom_ext_of_eq_mod_maximalIdeal_pow R (ZMod q) G hsep _ _ (GlobalTheory.T.splitTorus_hom_pullback_quotient_pow_eq_one R (ZMod q) G _ inferInstance hk)
+      _root_.GlobalTheory.splitTorus_hom_ext_of_forall_pow R (ZMod q) G hsep _ _ (_root_.GlobalTheory.splitTorus_hom_trivial_mod_pow R (ZMod q) G _ inferInstance hk)
 
     let pK : Spec (CommRingCat.of K) ⟶ Spec (CommRingCat.of R) :=
       Spec.map (CommRingCat.ofHom (algebraMap R K))

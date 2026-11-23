@@ -53,10 +53,6 @@ open IsLocalRing UpperTheory.V.Alg UpperTheory.V.W Polynomial
 
 namespace UpperTheory.V.W
 
-private theorem locConst_of_ker {G M : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [Group M]
-    (χ : G →* M) (h : IsOpen (χ.ker : Set G)) : IsLocallyConstant χ :=
-  _root_.UpperTheory.Reformulated.B.LocallyConstantOfKernelCapelliIdentities.locConst_of_ker χ h
-
 private theorem locConst_pi {G M ι : Type} [TopologicalSpace G] [Finite ι] (f : ι → G → M)
     (h : ∀ i, IsLocallyConstant (f i)) : IsLocallyConstant fun g i => f i g := by
   rw [IsLocallyConstant.iff_eventually_eq]
@@ -102,7 +98,7 @@ theorem UpperTheory.V.W.residual_diagonal_determinant_isPolar :
   have hres' : (res O (ResidueField O) : ResidueField O →+* ResidueField O) = RingHom.id _ := RingHom.ext hres
   refine ⟨⟨r.Dbar, r.psib, fun i N => ?_, ?_, fun v i => ⟨fun N => ?_, fun g => hres _, fun g => ?_⟩, fun i g => ?_,
     hok.1, fun u g hg h => ?_⟩, rfl, rfl⟩
-  · have h1 := locConst_pi _ fun j => locConst_of_ker _ (r.chib_open j)
+  · have h1 := locConst_pi _ fun j => _root_.UpperTheory.Reformulated.B.LocallyConstantOfKernelCapelliIdentities.locConst_of_ker _ (r.chib_open j)
     refine (IsLocallyConstant.iff_eventually_eq _).2 fun x => ((IsLocallyConstant.iff_eventually_eq _).1 h1 x).mono fun y hy => ?_
     have h2 : diagRep r.chib y = diagRep r.chib x := by
       change Matrix.diagonal _ = Matrix.diagonal _
@@ -113,7 +109,7 @@ theorem UpperTheory.V.W.residual_diagonal_determinant_isPolar :
     simp [GDet.repAlg, h2]
   · rw [hres']
     rfl
-  · exact (locConst_of_ker _ (r.psib_open v i)).comp fun u => Ideal.Quotient.mk _ (u : ResidueField O)
+  · exact (_root_.UpperTheory.Reformulated.B.LocallyConstantOfKernelCapelliIdentities.locConst_of_ker _ (r.psib_open v i)).comp fun u => Ideal.Quotient.mk _ (u : ResidueField O)
   · rw [hok.2 v i g]
     rfl
   · have h1 := r.polar (ResidueField O)[X] (MonoidAlgebra.single 1 X -

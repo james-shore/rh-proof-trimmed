@@ -61,7 +61,7 @@ namespace GlobalTheory.CompanionTheory.PerfectRing
 
 theorem pq_baseChange : ∀ (p : ℕ) [Fact p.Prime] (A : Type) [CommRing A](S : Type) [CommRing S] [Algebra A S] (B : Type) [CommRing B] [Algebra A B] (K : Type) [CommRing K] [Algebra A K](S₁ : Type) [CommRing S₁] (i : S →ₐ[A] B) (I : Ideal S) (κ : K →+* S₁) (j : S →+* S₁) (i₁ : S₁ →+* B ⊗[A] K), Pf p A → Pf p K → PQ p (i : S →+* B) I → κ.comp (algebraMap A K) = j.comp (algebraMap A S) → Subring.closure (Set.range κ ∪ Set.range j) = ⊤ → (∀ a, i₁ (κ a) = (1 : B) ⊗ₜ[A] a) → (∀ s, i₁ (j s) = i s ⊗ₜ[A] (1 : K)) → PQ p i₁ (I.map j) := by
   intro p _ A _ S _ _ B _ _ K _ _ S₁ _ i I κ j i₁ hA hK hQ hcomm hgen hκ hj
-  have hT : Pf p (B ⊗[A] K) := GlobalTheory.T.perfect_tensor_product p A B K hA hQ.pf hK
+  have hT : Pf p (B ⊗[A] K) := _root_.GlobalTheory.CompanionTheory.PerfectRing.pf_tensor p A B K hA hQ.pf hK
   obtain ⟨-, hred, -, -, -⟩ := pf_facts p _ hT
   have hpS : (p : S₁) = 0 := by
     have h := congrArg κ hK.char

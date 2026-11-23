@@ -80,12 +80,6 @@ theorem val_ofSec_ne_zero {F : Type} [Field F] {X : Scheme.{0}} (p : X ⟶ Sp F)
   rw [← TangentOrigin.evalPt_res z (X.basicOpen_le _) hk h]
   exact ((X.toRingedSpace.isUnit_res_basicOpen (θ.f k)).map _).ne_zero
 
-theorem exists_chart_pt {X : Scheme.{0}} {B : LB X} (hB : B.IsLB) (z : Sp ℂ ⟶ X) : ∃ k, ⊤ ≤ z ⁻¹ᵁ B.U k := by
-  obtain ⟨k, hk⟩ := ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_chart hB (z (IsLocalRing.closedPoint ℂ))
-  refine ⟨k, fun s _ => ?_⟩
-  obtain rfl : s = IsLocalRing.closedPoint ℂ := Subsingleton.elim (α := PrimeSpectrum ℂ) _ _
-  exact hk
-
 theorem cls_nsmul {Y : Scheme.{0}} {Λ : Type} [AddCommGroup Λ] {B : Λ → LB Y} (C : Common B) (n : ℕ) (a : Λ) :
     cls (B (n • a)) (C.isLB (n • a)) = n • cls (B a) (C.isLB a) := by
   induction n with
@@ -100,7 +94,5 @@ theorem cls_nsmul {Y : Scheme.{0}} {Λ : Type} [AddCommGroup Λ] {B : Λ → LB 
 end GlobalTheory.OrbitSep
 
 namespace GlobalTheory.OrbitSep
-
-open Formalism.MainNotions Formalism.L2.Theta GlobalTheory.DegVal GlobalTheory.DegCmp GlobalTheory.BadCount
 
 end GlobalTheory.OrbitSep

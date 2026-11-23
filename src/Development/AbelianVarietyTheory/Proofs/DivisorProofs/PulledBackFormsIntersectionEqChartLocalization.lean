@@ -51,7 +51,7 @@ namespace GlobalTheory.PD
 
 theorem omB_comap_loc : ∀ (k : Type) [Field k] [CharZero k] (F K : Type) [Field F] [Field K] [Algebra k F] [Algebra k K] [Algebra F K] [IsScalarTower k F K] (d : ℕ) (x : Fin (d + 1) → F), IsFinCover k K x → ∀ (p : ℕ) (W : Type) [AddCommGroup W] [Module K W] [Module F W] [Module k W] [IsScalarTower F K W] [IsScalarTower k F W] [IsScalarTower k K W] (e : W →ₗ[K] DR k K) (I : Finset (Fin (d + 1))) (i : Fin (d + 1)), i ∈ I → (omB k K (rB k K x I) p).comap (e.restrictScalars k) = (Submodule.span (rA k x I) ((omB k K (rB k K x {i}) p).comap (e.restrictScalars k) : Set W)).restrictScalars k := by
   intro k _ _ F K _ _ _ _ _ _ d x hx p W _ _ _ _ _ _ _ e I i hi
-  have hloc := GlobalTheory.T.kahlerFormsOverSubalgebra_standardOpen_iff_pow_smul k F K d x hx I i hi p
+  have hloc := _root_.GlobalTheory.omB_iff_pow_smul k F K d x hx I i hi p
   ext w
   rw [Submodule.restrictScalars_mem, Submodule.mem_comap, LinearMap.restrictScalars_apply]
   constructor
@@ -83,7 +83,7 @@ theorem omB_comap_loc : ∀ (k : Type) [Field k] [CharZero k] (F K : Type) [Fiel
     | add a b _ _ ha hb => rw [map_add (f := _)]; exact Submodule.add_mem _ ha hb
     | smul r a _ ha =>
       rw [Subalgebra.smul_def, ← algebraMap_smul K, map_smul]
-      refine ((GlobalTheory.T.kahlerFormsOverSubalgebra_closure_properties k K (rB k K x I) p p).2.1 _ ha).2.2.2 _ ?_
+      refine ((_root_.GlobalTheory.PD.omB_alg k K (rB k K x I) p p).2.1 _ ha).2.2.2 _ ?_
       exact (integralClosure (rA k x I) K).algebraMap_mem r
 
 end GlobalTheory.PD

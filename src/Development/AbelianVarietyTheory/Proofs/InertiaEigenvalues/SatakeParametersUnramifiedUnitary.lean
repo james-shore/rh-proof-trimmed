@@ -117,18 +117,7 @@ theorem heckeVec_eq_sum (ρ : Representation ℂ G V) (K : Subgroup G) (h : G �
   refine finsum_eq_sum_of_support_subset _ fun c hc => hS c fun h0 => hc ?_
   simp [h0]
 
-theorem mem_of_mem_iSup {ι : Type} (ρ : Representation ℂ G V) (σ : Representation ℂ G W) (hσ : σ.IsIrreducible)
-    (f : ι → W →ₗ[ℂ] V) (hf : ∀ i g u, f i (σ g u) = ρ g (f i u)) (K : Set G) (Z : Submodule ℂ V)
-    (hZ : ∀ i v, (∀ k ∈ K, σ k v = v) → f i v ∈ Z) (hZK : ∀ z ∈ Z, ∀ k ∈ K, ρ k z = z) (φ : V)
-    (hK : ∀ k ∈ K, ρ k φ = φ) (hφ : φ ∈ ⨆ i, LinearMap.range (f i)) : φ ∈ Z := by
-  first
-  | (rename_i h_3 h_4 h_5 h_6 h_7; revert G V W h_3 h_4 h_5 h_6 h_7 ι ρ σ hσ f hf K Z hZ hZK φ hK hφ; exact @_root_.GlobalTheory.InvariantSupremum.fixed_mem_of_mem_iSup_range)
-  | exact @_root_.GlobalTheory.InvariantSupremum.fixed_mem_of_mem_iSup_range
-  | exact _root_.GlobalTheory.InvariantSupremum.fixed_mem_of_mem_iSup_range
-  | (apply _root_.GlobalTheory.InvariantSupremum.fixed_mem_of_mem_iSup_range <;> assumption)
-  | (intros; apply _root_.GlobalTheory.InvariantSupremum.fixed_mem_of_mem_iSup_range <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.InvariantSupremum.fixed_mem_of_mem_iSup_range <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.InvariantSupremum.fixed_mem_of_mem_iSup_range ..)
+alias mem_of_mem_iSup := _root_.GlobalTheory.InvariantSupremum.fixed_mem_of_mem_iSup_range
 
 end Abstract
 

@@ -76,15 +76,6 @@ theorem zeta_muZ (hB : RadBase k r z z' μsec π π') {ζ : ℂ} (hζ : Tz k r z
   rw [e1, e2, ← TwoByOneBlock.jV_wbPart hz, ← TwoByOneBlock.jV_wbPart hz', TwoByOneBlock.emb_mulVec_jV, TwoByOneBlock.herm_jV]
   exact hS
 
-theorem isOpen_QR : IsOpen (QR k r z z') := by
-  have h1 : IsOpen (OmX r) := by
-    have e : OmX r = ⋂ l : Fin r, {x : Fin r → ℂ | x l ≠ 0} := by ext x; simp [OmX]
-    rw [e]
-    exact isOpen_iInter_of_finite fun l => isOpen_ne_fun (continuous_apply l) continuous_const
-  have h2 : IsOpen {ζ : ℂ | Tz k r z * Tz k r z' < Complex.normSq ζ} :=
-    isOpen_lt continuous_const Complex.continuous_normSq
-  exact (h1.preimage continuous_fst).inter (h2.preimage continuous_snd)
-
 theorem radR_mulZ (hB : RadBase k r z z' μsec π π') (f : ℂ → ℂ) {Φ : Fn k r (Wq →L[ℂ] Wp)}
     (hΦ : Φ ∈ RadSp k r z z' π π') {x : (Fin r → ℂ) × ℂ} (hx : x ∈ QR k r z z') :
     radR k r z z' μsec (mulZ k r z z' f Φ) x = f x.2 • radR k r z z' μsec Φ x := by
@@ -264,7 +255,7 @@ theorem radOrder0_of (hMem : RadRedMem) (hInj : RadRedInj) : RadOrder0 := by
   intro Wp Wq _ _ _ _ _ _ k r z z' μsec π π' hB T a b hT ha hb f hf Φ Ψ hΨ
   obtain ⟨n, A, -, hA⟩ := hT
   have hUo : IsOpen {ζ : ℂ | Tz k r z * Tz k r z' < Complex.normSq ζ} := isOpen_U
-  have hQo : IsOpen (QR k r z z') := isOpen_QR
+  have hQo : IsOpen (QR k r z z') := _root_.Formalism.FourierDecayAlt.P.NFRadRedA.qr_open
   have hg : ContDiffOn ℝ ∞ (fun ζ => a * dZ f ζ + b * dZb f ζ) {ζ : ℂ | Tz k r z * Tz k r z' < Complex.normSq ζ} :=
     (contDiffOn_const.mul (contDiffOn_dZ hUo hf)).add (contDiffOn_const.mul (contDiffOn_dZb hUo hf))
   have hsm : ContDiffOn ℝ ∞ (radR k r z z' μsec (Φ : Fn k r (Wq →L[ℂ] Wp))) (QR k r z z') :=
@@ -337,10 +328,7 @@ end Formalism.FourierDecayAlt.P.NFRO
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem nf_radOrder0_of_radRed : Formalism.FourierDecayAlt.NF.RadRedMem → Formalism.FourierDecayAlt.NF.RadRedInj → Formalism.FourierDecayAlt.NF.RadOrder0 :=
-  NFRO.radOrder0_of
-
 theorem radical_order_zero : Formalism.FourierDecayAlt.NF.RadOrder0 :=
-  nf_radOrder0_of_radRed radical_reduction_mem radical_reduction_injective
+  _root_.Formalism.FourierDecayAlt.P.NFRO.radOrder0_of _root_.Formalism.FourierDecayAlt.P.NFRadRedA.radRedMem _root_.Formalism.FourierDecayAlt.P.NFRadRedA.radRedInj
 
 end Formalism.FourierDecayAlt.P

@@ -48,7 +48,6 @@ set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights
 
-theorem NormalisationModelLocalization.full : NormalisationModelLocalization.Statement :=
-  NormalisationModelLocalization.proof
+alias NormalisationModelLocalization.full := _root_.GroundTheory.Heights₂.Heights.NormalisationModelLocalization.proof
 
 end GroundTheory.Heights₂.Heights

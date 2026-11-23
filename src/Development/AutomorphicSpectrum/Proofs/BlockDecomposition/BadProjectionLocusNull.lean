@@ -220,7 +220,7 @@ theorem volume_chart_crit : ∀ (m : ℕ) (n : Fin (m + 1) → ℕ) (X : Scheme.
   have horb : ∀ (O : Set (Fin D → ℂ)) (γ : (Fin D → ℂ) → (Σ k, Bk n k) → ℂ), O ⊆ c.finChart.target →
       (∀ v ∈ O, Over i (c.finChart.symm v) (γ v)) → ∀ v ∈ O, ∀ v' ∈ O, SameOrbit (γ v) (γ v') → v = v' := by
     intro O γ hO hγ v hv v' hv' h
-    have e := (GlobalTheory.T.points_eq_iff_same_torus_orbit m n X i _ _ _ _ (hγ v hv) (hγ v' hv')).2 h
+    have e := (_root_.GlobalTheory.CompanionTheory.MixZ.Orbit.eq_iff_sameOrbit m n X i _ _ _ _ (hγ v hv) (hγ v' hv')).2 h
     calc v = c.finChart (c.finChart.symm v) := (c.finChart.right_inv (hO hv)).symm
       _ = c.finChart (c.finChart.symm v') := congrArg _ e
       _ = v' := c.finChart.right_inv (hO hv')
@@ -248,7 +248,7 @@ theorem volume_chart_crit : ∀ (m : ℕ) (n : Fin (m + 1) → ℕ) (X : Scheme.
         (fun a ha b hb => horb O γ hOT (fun u hu => (hγ u hu).1) a (hball ha) b (hball hb))
         (Metric.mem_ball_self hr)
     · rintro w ⟨⟨-, z', hz', h0'⟩, hw⟩
-      obtain ⟨a, ha, e⟩ := (GlobalTheory.T.points_eq_iff_same_torus_orbit m n X i _ _ _ _ hz' (hγ w (hball hw)).1).1 rfl
+      obtain ⟨a, ha, e⟩ := (_root_.GlobalTheory.CompanionTheory.MixZ.Orbit.eq_iff_sameOrbit m n X i _ _ _ _ hz' (hγ w (hball hw)).1).1 rfl
       rw [segre_orbit e, map_smul, Pi.smul_apply, smul_eq_mul] at h0'
       exact (mul_eq_zero.1 h0').resolve_left (Finset.prod_ne_zero_iff.2 fun k _ => ha k)
   have hS2 : volume {v | v ∈ c.finChart.target ∧ (∀ z, Over i (c.finChart.symm v) z → Ψ (segre z) 0 ≠ 0) ∧
@@ -282,7 +282,7 @@ theorem volume_chart_crit : ∀ (m : ℕ) (n : Fin (m + 1) → ℕ) (X : Scheme.
       have hev : projCoord i Ψ ∘ c.finChart.symm =ᶠ[𝓝 w]
           fun w => PtsSheetOnlyNull.ratio (Ψ (segre (γ w))) := by
         filter_upwards [hO'o.mem_nhds (hball hw)] with u hu
-        have hso := (GlobalTheory.T.points_eq_iff_same_torus_orbit m n X i _ _ _ _ (over_liftOf (hγ u hu.1).1) (hγ u hu.1).1).1 rfl
+        have hso := (_root_.GlobalTheory.CompanionTheory.MixZ.Orbit.eq_iff_sameOrbit m n X i _ _ _ _ (over_liftOf (hγ u hu.1).1) (hγ u hu.1).1).1 rfl
         exact ratios_eq_of_sameOrbit Ψ hso hu.2
       unfold IsRegAt at hnr
       rw [not_not, c.finChart.right_inv hwT, hev.fderiv_eq] at hnr

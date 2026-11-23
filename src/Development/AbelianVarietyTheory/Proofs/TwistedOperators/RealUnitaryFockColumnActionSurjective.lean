@@ -45,6 +45,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.FlatTensorVacuum
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsMatchOver
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.TwistPlacesOffPrimeQZero
 import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAt
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.GaussianHessianIntegral
 
 @[expose] public section
 
@@ -68,10 +69,10 @@ theorem realCol_surjective {D : D7} {θ : InfFam D} (hθ : IsInfFam θ) (V : HSp
   intro u
   have hex : ∀ τ, ∃ h : GA D V, IsAtTau θ V τ ((u τ : Matrix (Fin V.rank) (Fin V.rank) ℂ)ᵀ) h := fun τ => by
     refine (GlobalTheory.PointAtPlace.existsUnique_isAtTau V τ θ hθ _ ?_).exists
-    have hu := transpose_mem_unitary (u τ).2
+    have hu := _root_.Formalism.FourierDecayAlt.P.G9.transpose_unitary (u τ).2
     rw [Matrix.mem_unitaryGroup_iff', Matrix.star_eq_conjTranspose] at hu
     show _ * _ * _ = _
-    rw [gramAt_of_gram_one hV, Matrix.mul_one, hu]
+    rw [_root_.GlobalTheory.AdForm.RatMove.gramAt_one hV, Matrix.mul_one, hu]
   choose hτ hhτ using hex
   have key : ∀ (L : List D.what₂.Tau), L.Nodup → ∀ ρ,
       compAt θ ρ (Formalism.L2.Theta.mt V (L.map hτ).prod) =
@@ -82,7 +83,7 @@ theorem realCol_surjective {D : D7} {θ : InfFam D} (hθ : IsInfFam θ) (V : HSp
     | cons a L ih =>
       intro hL ρ
       rw [List.nodup_cons] at hL
-      rw [List.map_cons, List.prod_cons, GlobalTheory.StdUnn.CartanMove.compAt_mt_mul, ih hL.2 ρ, compAt_eq_infMat]
+      rw [List.map_cons, List.prod_cons, _root_.GlobalTheory.RatAut.compAt_mul, ih hL.2 ρ, compAt_eq_infMat]
       by_cases c : ρ = a
       · subst c
         rw [(hhτ ρ).2.1, if_neg hL.1, if_pos List.mem_cons_self, Matrix.mul_one]

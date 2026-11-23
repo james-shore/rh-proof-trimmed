@@ -85,7 +85,7 @@ theorem th_pure_rv_zero_bound : ∀ (F : Type) [Field F] [NumberField F], IsTota
       ENNReal.ofReal (δ ^ Module.finrank ℚ F) * th (PositivityTheory.Rg.Base1.pure S G g fun v => rv v 0) (u * r δ) ≤ C := by
   intro F _ _ hF θ hθ r hr S G g hGc hGs hg D hD
   obtain ⟨M, hM0, hM⟩ := pure_rv_zero_le S G g hGc hGs hg
-  obtain ⟨N, hN, hden⟩ := GlobalTheory.T.bounded_denominators_compact_idele_set F D hD S (fun v => tsupport (g v)) (fun v hv => (hg v hv).2)
+  obtain ⟨N, hN, hden⟩ := _root_.GlobalTheory.CompanionTheory.BasePsi.Den.common_denominator F D hD S (fun v => tsupport (g v)) (fun v hv => (hg v hv).2)
   let K : Set (Ainf F) :=
     (fun p : (AF F)ˣ × Ainf F => (((p.1⁻¹ : (AF F)ˣ) : AF F).1) * p.2) '' (D ×ˢ tsupport G)
   have hK : IsCompact K := by

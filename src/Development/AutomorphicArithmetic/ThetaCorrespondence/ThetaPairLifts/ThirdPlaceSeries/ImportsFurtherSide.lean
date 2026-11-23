@@ -53,7 +53,7 @@ variable {D : D7}
 open Classical in
 theorem main_alt_alt : Hypotheses₂ → ∀ (D : D7) (L : SizeData₂ D) (P : ParameterChoice' D L) (nch : NChoice D) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (Cm : CmpOf D.loc D.locA HW F) (X : KillingConditions.HubData D) (C₂ : ℝ), _root_.GlobalTheory.NLink.SetupAlt L nch HW X C₂ → ∀ ep, AdmissibleParameterJ.hodgeTateJumpsAtModulesForSign D ep → EmbeddingTypeJumps.HodgeJumpWindowsAtDistinguishedPrimes X.r ep L := by
   intro _ D L P nch HW F Cm X C₂ S ep hJa
-  obtain ⟨-, hJb, hJc, -⟩ := _root_.GlobalTheory.JumpStatement.holds_all_alt D L (S.facts.admJ L S.par)
+  obtain ⟨-, hJb, hJc, -⟩ := _root_.GlobalTheory.JumpSets.stmtJ_holds_alt D L (S.facts.admJ L S.par)
   intro i _ w hw C τ
   obtain ⟨g, ρ, hR, hjx, -⟩ := hJa i (X.r i) (S.canon.fam.good i) w hw C τ
   obtain ⟨hj1, hj2⟩ := D.nd.j_range i

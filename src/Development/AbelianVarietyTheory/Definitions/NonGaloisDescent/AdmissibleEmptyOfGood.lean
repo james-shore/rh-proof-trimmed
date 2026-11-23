@@ -483,7 +483,7 @@ theorem exists_frame_good (S T : HSp D) (hS : S.SigOK) (hpos : S.IsPosDef) (hT :
       smul_smul, inv_mul_cancel₀ hn, one_smul] at hy
   obtain ⟨βS, hβS⟩ := GlobalTheory.AdelicFrame.exists_isFrame (F := D.host.F) _ dS.1.fg (hsp S dS)
   obtain ⟨βT, hβT⟩ := GlobalTheory.AdelicFrame.exists_isFrame (F := D.host.F) _ dT.1.fg (hsp T dT)
-  obtain ⟨f₀, hf₀⟩ := GlobalTheory.Member.vacuum_oriented_exists D ψ θ hψ hθ S T (fun _ => 1) sT hS hT
+  obtain ⟨f₀, hf₀⟩ := _root_.GlobalTheory.VacuumO.vacExists D ψ θ hψ hθ S T (fun _ => 1) sT hS hT
     (fun τ => GlobalTheory.GalLift.Vec.isCartanInv_one (hBS τ)) hsT _ _ dS dT
   exact ⟨⟨ψ, θ, sT, BS, BT, _, _, βS, βT, f₀⟩, hr, hBS, hsT, hBT, dS, dT, hβS, hβT, hf₀⟩
 

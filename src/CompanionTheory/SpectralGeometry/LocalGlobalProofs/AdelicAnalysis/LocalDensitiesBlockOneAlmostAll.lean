@@ -189,7 +189,7 @@ theorem coordK_map_unit [NumberField E] (σ : E →ₐ[F] E) (hCM : IsCMExt F E 
   have he' : Continuous e.symm := continuous_const.mul continuous_id
   let L : Set (Fv F v ⊗[F] E) := {y | ∀ k, (Algebra.TensorProduct.basis (Fv F v) b).repr y k ∈
     v.adicCompletionIntegers F}
-  obtain ⟨c1, c2, c3, -⟩ := GlobalTheory.T.local_lattice_compact_open_unit_volume F E σ hCM d b 1 1 v
+  obtain ⟨c1, c2, c3, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.latV_compact_open_mass F E σ hCM d b 1 1 v
   have hLc : IsCompact L := by
     have : L = (fun X : Fin 1 → Fin 1 → Fv F v ⊗[F] E => X 0 0) '' latV b v := by
       ext y
@@ -224,7 +224,7 @@ theorem coordK_map_unit [NumberField E] (σ : E →ₐ[F] E) (hCM : IsCMExt F E 
       exact (hmem _).1 (hk k ▸ h k)
     · intro h k
       exact hk k ▸ (hmem _).2 (h k)
-  have := (GlobalTheory.T.map_addHaar_addEquiv_eq_smul_and_eq_of_compact_open _ _ (coordK (Fv F v) b lam) (coordK (Fv F v) b lam) e he he').2 L L hLc hLo hL0 hL rfl
+  have := (_root_.GlobalTheory.CompanionTheory.SW.HaarTransport.map_addEquiv_haar _ _ (coordK (Fv F v) b lam) (coordK (Fv F v) b lam) e he he').2 L L hLc hLo hL0 hL rfl
   rw [one_smul]
   exact this
 
@@ -251,7 +251,7 @@ theorem blockFibre_mass : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
   have hmeas : ∀ p q : ℕ, MeasurableSet (latV (M := q) (n := p) b v) := by
     intro p q
     haveI := hB p q
-    exact (GlobalTheory.T.local_lattice_compact_open_unit_volume F E σ hCM d b p q v).2.1.measurableSet
+    exact (_root_.GlobalTheory.CompanionTheory.SW.latV_compact_open_mass F E σ hCM d b p q v).2.1.measurableSet
   have hc := coordK_map_unit σ hCM v lam hlam t ht htv d b
   let φ : (Fin (n + 1) → Fin (M + 1) → Fv F v ⊗[F] E) → ℝ≥0∞ := (latV b v).indicator 1
   have hφ : Measurable φ := measurable_one.indicator (hmeas _ _)

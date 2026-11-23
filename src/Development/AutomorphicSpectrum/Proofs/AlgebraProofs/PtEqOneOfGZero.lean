@@ -70,7 +70,7 @@ namespace GlobalTheory.CompanionTheory.Ar.GR.Top
 
 theorem pt_eq_one_of_g_zero : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R]
     (P : Out.PolAV (Spec (CommRingCat.of R))), P.g = 0 → ∀ z : sp (R₀ := R) R ⟶ P.A, z = 1 :=
-  GlobalTheory.T.trivial_polarized_abelian_point_eq_one
+  _root_.GlobalTheory.CompanionTheory.Ar.DimZero.eq_one_of_g_eq_zero
 
 theorem exists_cp (p : ℕ) [hp : Fact p.Prime] {C : Type} [Field C] [IsAlgClosed C] [CharZero C]
     {v : Valuation C NNReal} {R : Type} [CommRing R] [Algebra R C] (hv : v.Integers R)

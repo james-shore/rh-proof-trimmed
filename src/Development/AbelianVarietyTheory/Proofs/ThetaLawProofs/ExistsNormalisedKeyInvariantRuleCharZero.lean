@@ -81,11 +81,6 @@ def HasValue (g n : ℕ) (ka : KeyIn ℂ → ℂˣ) (a₀ : ℂ) : Prop :=
     charHalf x.P.g a b → c₀ ≠ 0 → Mx.det ≠ 0 → NormalAt x τ Mx a b c₀ →
     (ka x : ℂ) = a₀ * (Mx.det ^ 4 / c₀ ^ 8) ^ n
 
-theorem dim_of_keyPB {R R' : Type} [CommRing R] [CommRing R'] {x' : KeyIn R'} {x : KeyIn R} {f : R →+* R'}
-    (h : KeyPB x' x f) : x'.P.g = x.P.g := by
-  obtain ⟨_, _, _, hg, -⟩ := h
-  exact hg
-
 theorem HasValue.holo {g n : ℕ} {ka : KeyIn ℂ → ℂˣ} {a₀ : ℂ} (h : HasValue g n ka a₀) (a b : Fin g → ℂ)
     (hab : charHalf g a b) : ∃ U : Matrix (Fin g) (Fin g) ℂ → ℂ, Key.IsHoloSiegel g U ∧
       ∀ (x : KeyIn ℂ) (h : x.P.g = g) (τ : Matrix (Fin x.P.g) (Fin x.P.g) ℂ),
@@ -150,7 +145,7 @@ theorem exists_rule_sq (hinv : Key.Chi.InversionStatement) {g c M : ℕ}
 theorem exists_test (hT : ThetaUnifAV) {g n : ℕ} (hg : 1 ≤ g) {ka : KeyIn ℂ → ℂˣ} {a₀ : ℂ} (h : HasValue g n ka a₀)
     {S : Type} [CommRing S] (W : WeierstrassCurve S) [W.IsElliptic] (s : S →+* ℂ) :
     ∃ (y : KeyIn S) (z : KeyIn ℂ), y.P.g = g ∧ KeyPB z y s ∧ (ka z : ℂ) = a₀ * s W.Δ ^ (g * n) := by
-  obtain ⟨x, hx, hxv⟩ := GlobalTheory.T.exists_ellipticKeyData_value_eq_discriminant hT S W
+  obtain ⟨x, hx, hxv⟩ := _root_.GlobalTheory.EllipticKey.exists_keyIn_value_eq_discriminant hT S W
   obtain ⟨y, hy⟩ := exists_isKeyPow S x g hg
   obtain ⟨x', hx'⟩ := exists_keyPB_ring x s
   obtain ⟨z, hz⟩ := exists_isKeyPow ℂ x' g hg
@@ -161,7 +156,7 @@ theorem exists_test (hT : ThetaUnifAV) {g n : ℕ} (hg : 1 ≤ g) {ka : KeyIn �
   obtain ⟨e, τ', M', hd, hn⟩ :=
     normalAt_pow x' z g τ Mx (fun i => (m i : ℝ) / 2) (fun i => (m' i : ℝ) / 2) c hz hn₀
   refine ⟨y, z, by rw [hy.dim_eq, hx, Nat.mul_one], keyPB_of_isKeyPow S ℂ s x y x' z g hx' hy hz, ?_⟩
-  rw [h z τ' M' _ _ _ (by rw [hz.dim_eq, dim_of_keyPB hx', hx, Nat.mul_one]) ⟨fun i => hab.1 _, fun i => hab.2 _⟩
+  rw [h z τ' M' _ _ _ (by rw [hz.dim_eq, _root_.GlobalTheory.KeyGalDesc.g_eq hx', hx, Nat.mul_one]) ⟨fun i => hab.1 _, fun i => hab.2 _⟩
     (pow_ne_zero _ hc) (by rw [hd]; exact pow_ne_zero _ hM) hn, ← hΔ, hd, pow_mul]
   congr 2
   ring
@@ -184,7 +179,7 @@ theorem const_rat_unit (hT : ThetaUnifAV) {g n M : ℕ} (hg : 1 ≤ g)
   obtain ⟨i⟩ := hlift (T := ℚ) hQ.isUnit
   obtain ⟨y, z, hy, hz, hv⟩ := exists_test hT hg h (W.map (algebraMap ℤ S)) ((Rat.castHom ℂ).comp i)
   obtain ⟨yQ, hyQ⟩ := exists_keyPB_ring y i
-  have hyQg : yQ.P.g = g := (dim_of_keyPB hyQ).trans hy
+  have hyQg : yQ.P.g = g := (_root_.GlobalTheory.KeyGalDesc.g_eq hyQ).trans hy
   rw [hF ℚ ℂ (Rat.castHom ℂ) yQ z hyQg (GlobalTheory.KeyCancel.keyPB_cancel _ _ _ y yQ z _ _ hyQ hz),
     WeierstrassCurve.map_Δ, eq_intCast (algebraMap ℤ S), map_intCast, eq_ratCast] at hv
   have hC : (W.Δ : ℂ) ≠ 0 := Int.cast_ne_zero.2 hW
@@ -197,7 +192,7 @@ theorem const_rat_unit (hT : ThetaUnifAV) {g n M : ℕ} (hg : 1 ≤ g)
     obtain ⟨yK, hyK⟩ := exists_keyPB_ring yQ (Rat.castHom K)
     have hyK' := GlobalTheory.keyPB_trans _ _ _ y yQ yK _ _ hyQ hyK
     rw [hext ((Rat.castHom K).comp i) ((algebraMap R K).comp j)] at hyK'
-    obtain ⟨u, hu, -⟩ := hU R K yR yK ((dim_of_keyPB hyR).trans hy) hM
+    obtain ⟨u, hu, -⟩ := hU R K yR yK ((_root_.GlobalTheory.KeyGalDesc.g_eq hyR).trans hy) hM
       (GlobalTheory.KeyCancel.keyPB_cancel _ _ _ y yR yK _ _ hyR hyK')
     rw [hF ℚ K _ yQ yK hyQg hyK, eq_ratCast] at hu
     have hK : (W.Δ : K) ≠ 0 := Int.cast_ne_zero.2 hW

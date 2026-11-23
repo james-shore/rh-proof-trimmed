@@ -44,7 +44,7 @@ theorem torsion_descent (B : Over (Sp k₀)) [GrpObj B] (hB : IsAbelianScheme B)
   haveI : IsAbelianScheme B := hB
   obtain ⟨-, hfin, het⟩ := GrpTangent.finiteEtale_mulN_torsion B (isUnit_natCast_gamma hN)
   obtain ⟨x, hx, -⟩ := LatticeTorsion.existsUnique_torsion B N u hu
-  obtain ⟨x₀, hx₀, hjx⟩ := finiteEtale_point_of_ext k₀ K _ (torsion B N).hom hfin het x.left (Over.w x)
+  obtain ⟨x₀, hx₀, hjx⟩ := _root_.GlobalTheory.FinEtPoints.exists_point_of_finite_etale k₀ K _ (torsion B N).hom hfin het x.left (Over.w x)
   let y₀' : 𝟙_ (Over (Sp k₀)) ⟶ torsion B N := Over.homMk x₀ hx₀
   refine ⟨y₀' ≫ torsion.ι B N, ?_, ?_⟩
   · rw [← MonObj.comp_pow, LatticeTorsion.torsionι_pow_eq_one, MonObj.comp_one]
@@ -89,7 +89,7 @@ theorem endo_descent (B : Over (Sp k₀)) [GrpObj B] (hB : IsAbelianScheme B)
     (f : (Over.pullback (spMap (algebraMap k₀ K))).obj B ⟶
       (Over.pullback (spMap (algebraMap k₀ K))).obj B) (hf : IsMonHom f) :
     ∃! f₀ : B ⟶ B, IsMonHom f₀ ∧ (Over.pullback (spMap (algebraMap k₀ K))).map f₀ = f := by
-  obtain ⟨R, g, Ψ, f₀, σ, hΨ, hf₀, hbc, hσ₁, hσ₂, hf₀σ⟩ := exists_spread_specialise k₀ K B hB f hf
+  obtain ⟨R, g, Ψ, f₀, σ, hΨ, hf₀, hbc, hσ₁, hσ₂, hf₀σ⟩ := _root_.GlobalTheory.Spread.exists_endo_spread_specialise k₀ K B hB f hf
   have key : (Over.pullback (spMap (algebraMap k₀ K))).map f₀ = f := by
     let Ω := AlgebraicClosure K
     let qΩ : Sp Ω ⟶ Sp K := spMap (algebraMap K Ω)
@@ -146,7 +146,7 @@ theorem endo_descent (B : Over (Sp k₀)) [GrpObj B] (hB : IsAbelianScheme B)
           ← Category.assoc, Spread.spMap_algHom_comp]
       · rw [Category.assoc, Spread.bcMap_snd, pullback.lift_snd_assoc, Category.assoc, pullback.lift_snd,
           Category.id_comp, Category.comp_id]
-    have hC := torsion_section_comp_eq k₀ K B hB R g Ψ f₀ σ hΨ hf₀ hσ₁ hσ₂ hf₀σ (l ^ a)
+    have hC := _root_.GlobalTheory.TorsCmp.torsion_section_eq k₀ K B hB R g Ψ f₀ σ hΨ hf₀ hσ₁ hσ₂ hf₀σ (l ^ a)
       (by rw [Nat.cast_pow]; exact pow_ne_zero _ hlk) y₀ hy₀ c (pullback.lift_fst _ _ _)
       (pullback.lift_snd _ _ _)
     have m1 : ((Over.pullback qΩ).map ((Over.pullback (spMap (algebraMap k₀ K))).map f₀)).left ≫
@@ -199,7 +199,7 @@ theorem point_descent (B : Over (Sp k₀)) [GrpObj B] (hB : IsAbelianScheme B) (
     exact e2.trans hz
   let x : Sp K ⟶ pullback (mulN B n).left z₀.left :=
     pullback.lift (y.left ≫ pullback.fst B.hom (spMap (algebraMap k₀ K))) (spMap (algebraMap k₀ K)) hw
-  obtain ⟨x₀, hx₀, hjx⟩ := finiteEtale_point_of_ext k₀ K _ (pullback.snd (mulN B n).left z₀.left) inferInstance inferInstance x
+  obtain ⟨x₀, hx₀, hjx⟩ := _root_.GlobalTheory.FinEtPoints.exists_point_of_finite_etale k₀ K _ (pullback.snd (mulN B n).left z₀.left) inferInstance inferInstance x
     (pullback.lift_snd _ _ _)
   have hz0 : z₀.left ≫ B.hom = 𝟙 _ := Over.w z₀
   have hfB : pullback.fst (mulN B n).left z₀.left ≫ B.hom = pullback.snd (mulN B n).left z₀.left := by

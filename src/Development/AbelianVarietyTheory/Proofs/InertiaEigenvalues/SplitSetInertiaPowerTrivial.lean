@@ -64,17 +64,6 @@ noncomputable section
 
 namespace GlobalTheory.TwistPullTame
 
-theorem coprime_absNorm {E : Type} [Field E] [NumberField E] {P : HeightOneSpectrum (𝓞 E)} {m : ℕ}
-    (hm : ((m : ℕ) : 𝓞 E) ∉ P.asIdeal) : Nat.Coprime m (Ideal.absNorm P.asIdeal) := by
-  first
-  | exact @_root_.GlobalTheory.CoprimeAbsNorm.coprime_absNorm_of_natCast_notMem
-  | exact _root_.GlobalTheory.CoprimeAbsNorm.coprime_absNorm_of_natCast_notMem
-  | (apply _root_.GlobalTheory.CoprimeAbsNorm.coprime_absNorm_of_natCast_notMem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CoprimeAbsNorm.coprime_absNorm_of_natCast_notMem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CoprimeAbsNorm.coprime_absNorm_of_natCast_notMem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CoprimeAbsNorm.coprime_absNorm_of_natCast_notMem ..)
-
-
 open GlobalTheory.HeckeGal (Gab toAb IsGlobalArtin) in
 theorem tameAt_of_ine {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] {art : Neutral.B1.Ideles E →* Gab E Ω}
     (ha : IsGlobalArtin art) {r : G E Ω →* ℂˣ} {χ : Formalism.L2.Host.HChar E} (h : GlobalTheory.ToricDistribution.Corr art r χ)
@@ -96,7 +85,7 @@ theorem tameAt_of_ine {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebr
     obtain ⟨σ, hσ, e⟩ := (ha.ine P B hB _).mp ⟨x, hx, rfl⟩
     have e2 : χ.loc P x = r σ := h _ σ e.symm
     rw [e2, hi σ hσ]
-  have hc : Nat.Coprime m (Ideal.absNorm P.asIdeal ^ a) := (coprime_absNorm hm).pow_right a
+  have hc : Nat.Coprime m (Ideal.absNorm P.asIdeal ^ a) := (_root_.GlobalTheory.CoprimeAbsNorm.coprime_absNorm_of_natCast_notMem hm).pow_right a
   rw [← pow_one (χ.loc P x), ← hc.gcd_eq_one]
   exact pow_gcd_eq_one.2 ⟨h4, h3⟩
 
@@ -170,7 +159,7 @@ theorem good_pull_tame : ∀ (D : D7) (N : NData D.R D.host D.what₂) (X : NTw 
     obtain ⟨c, χ, hc, hχ, hcr⟩ := exists_chrEq_pull ha o1 hM o2
     rw [map_one]
     refine Units.ext ((hcr _).symm.trans ?_)
-    rw [GlobalTheory.T.heckeChar_unramified_outside_split_set_of_tame D N a.art ha.artin _ M hM o2 c χ hc hχ Q hQ (htame f χ hχ) (fun v hv hc' B hB σ hσ => by
+    rw [_root_.GlobalTheory.UnramTame.unramOutside_of_corr_of_tame D N a.art ha.artin _ M hM o2 c χ hc hχ Q hQ (htame f χ hχ) (fun v hv hc' B hB σ hσ => by
       rw [MonoidHom.comp_apply, show φ.rangeRestrict σ = 1 from Subtype.ext (hunr v hv hc' B hB σ hσ), map_one]) x h1 h2 h3 h4]
     simp
   ·

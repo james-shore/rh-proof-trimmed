@@ -60,12 +60,7 @@ open Classical
 
 namespace GlobalTheory.ScalarSelfDual
 
-theorem eq_of_parts {D : D7} {x y : AE D} (hx : infPart D x = 0) (hy : infPart D y = 0)
-    (h : toEAf D x = toEAf D y) : x = y := by
-  rw [← sub_eq_zero]
-  refine GlobalTheory.LatVac.eq_zero_of_parts _ (by rw [map_sub, hx, hy, sub_zero]) ?_
-  rw [map_sub, sub_eq_zero]
-  exact (Algebra.TensorProduct.comm D.host.F (Af D.host.F) D.host.E).injective h
+alias eq_of_parts := _root_.GlobalTheory.SplitDualElt.eq_of_toEAf
 
 theorem mul_hO_of_half {D : D7} {S T : HSp D} {e : AE D} {l : WO S T} (hl : IsHalf e l) (u : WO S T) :
     e * hO S T l u = hO S T l u := by

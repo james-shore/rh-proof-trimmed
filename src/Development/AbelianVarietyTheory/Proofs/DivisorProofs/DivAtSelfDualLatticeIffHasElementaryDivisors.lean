@@ -279,15 +279,6 @@ theorem map_mul_inv {E R : Type} [Field E] [CommRing R] {n : ℕ} (ι : E →+* 
   rw [← Matrix.map_mul, Matrix.mul_nonsing_inv _ (Matrix.isUnit_det_of_left_inverse h),
     Matrix.map_one _ (map_zero _) (map_one _)]
 
-theorem finMat_mul' {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-    (σ : E →ₐ[F] E) {n : ℕ} (J : Matrix (Fin n) (Fin n) E) (g h : HA (AF F) σ J) :
-    finMat σ J (g * h) = finMat σ J g * finMat σ J h :=
-  Matrix.map_mul (f := Algebra.TensorProduct.map (sndA F) (AlgHom.id F E))
-
-theorem finMat_one' {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-    (σ : E →ₐ[F] E) {n : ℕ} (J : Matrix (Fin n) (Fin n) E) : finMat σ J (1 : HA (AF F) σ J) = 1 :=
-  Matrix.map_one _ (map_zero _) (map_one _)
-
 theorem divAt_iff_of_frame {D : D7} (V : HSp D) {P : HeightOneSpectrum (𝓞 D.host.E)} {e f : AE D} {ϖ : 𝓞 D.host.E}
     (d : List ℤ) (hef : IsPrimeIdem P e f) (h1 : ϖ ∈ P.asIdeal) (h2 : ϖ ∉ P.asIdeal ^ 2)
     {N N' X : Matrix (Fin V.rank) (Fin V.rank) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af D.host.F ⊗[D.host.F] D.host.E)} (hN : N * N' = 1)
@@ -329,10 +320,10 @@ theorem divAt_cj_iff : ∀ (D : D7) [IsCMField D.host.E] (V : HSp D) (j : UA D.h
   have hMM := map_mul_inv (Algebra.TensorProduct.includeRight :
       D.host.E →ₐ[D.host.F] Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af D.host.F ⊗[D.host.F] D.host.E).toRingHom hM
   have hH : finMat D.sp.cm.sig V.gram h₀⁻¹ * finMat D.sp.cm.sig V.gram h₀ = 1 :=
-    (finMat_mul' _ _ _ _).symm.trans ((congrArg _ (inv_mul_cancel h₀)).trans (finMat_one' _ _))
+    (_root_.Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.finMat_mul _ _ _ _).symm.trans ((congrArg _ (inv_mul_cancel h₀)).trans (_root_.Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.finMat_one _ _))
   have hα : finMat D.sp.cm.sig V.gram (cj j h₀ x) = finMat D.sp.cm.sig V.gram h₀⁻¹ *
       finMat D.sp.cm.sig V.gram (j x) * finMat D.sp.cm.sig V.gram h₀ :=
-    (congrArg _ (cj_apply j h₀ x)).trans ((finMat_mul' _ _ _ _).trans (congrArg (· * _) (finMat_mul' _ _ _ _)))
+    (congrArg _ (cj_apply j h₀ x)).trans ((_root_.Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.finMat_mul _ _ _ _).trans (congrArg (· * _) (_root_.Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.finMat_mul _ _ _ _)))
   refine divAt_iff_of_frame V d hef h1 h2 (frame_mul hH hMM) (fun y => ?_) (frame_conj hα (hj x)) ?_
   · rw [← Matrix.mulVec_mulVec]
     exact hL y

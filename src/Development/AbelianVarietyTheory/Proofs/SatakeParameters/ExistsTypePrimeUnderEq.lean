@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.Columns.BaseLemmas
 
 @[expose] public section
 
@@ -61,16 +62,6 @@ theorem conjO_algebraMap (X : Fields) (hX : X.Ok) (x : 𝓞 X.F) :
   have : ((algebraMap (𝓞 X.F) (𝓞 X.E) x : 𝓞 X.E) : X.E) = algebraMap X.F X.E (x : X.F) := rfl
   rw [this]
   exact hX.star_F _
-
-theorem mem_divs_iff {A : Type} [CommRing A] [IsDedekindDomain A] {a : A} (ha : a ≠ 0) (P : HeightOneSpectrum A) :
-    P ∈ divs a ↔ a ∈ P.asIdeal := by
-  have hfin : {P : HeightOneSpectrum A | a ∈ P.asIdeal}.Finite := by
-    have h0 : Ideal.span {a} ≠ ⊥ := by simpa using ha
-    refine (Ideal.finite_factors h0).subset fun v hv => ?_
-    exact Ideal.dvd_span_singleton.2 hv
-  unfold divs
-  rw [dite_eq_left hfin, Set.Finite.mem_toFinset]
-  rfl
 
 def conjPrime (X : Fields) (P : HeightOneSpectrum (𝓞 X.E)) : HeightOneSpectrum (𝓞 X.E) where
   asIdeal := P.asIdeal.comap X.conjO
@@ -104,11 +95,11 @@ theorem exists_vG_under : ∀ (X : Fields) (Pr : Primes X), X.Ok → Pr.Ok → �
     have h1 := hPr.piG_norm i
     rw [h, mul_zero] at h1
     exact hg0 h1.symm
-  have hvG : ∀ v, v ∈ Pr.vG i ↔ X.conjO (Pr.piG i) ∈ v.asIdeal := fun v => mem_divs_iff hc0 v
+  have hvG : ∀ v, v ∈ Pr.vG i ↔ X.conjO (Pr.piG i) ∈ v.asIdeal := fun v => _root_.Formalism.L2.Col.mem_divs hc0 v
   rw [← hPr.piG_norm i] at hP
   rcases P.isPrime.mem_or_mem hP with h | h
   · refine ⟨conjPrime X P, (hvG _).2 ?_, under_conjPrime X hX P⟩
-    rw [mem_conjPrime, conjO_conjO]
+    rw [mem_conjPrime, _root_.Formalism.L2.Col.Fields.conjO_invol]
     exact h
   · exact ⟨P, (hvG P).2 h, rfl⟩
 

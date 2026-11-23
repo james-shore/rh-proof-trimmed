@@ -95,7 +95,7 @@ theorem theta_map_aff : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMonO
   have hf : PCrd (GlobalTheory.ProjSpace.pt β e hspan) e := (GlobalTheory.UMin.CrdUniq.pCrd_iff _ β hstr e).2 ⟨hspan, rfl⟩
   refine ⟨GlobalTheory.ProjSpace.pt β e hspan, hstr, ?_⟩
   intro K _ x' c ⟨θ', pt, hθ', hl⟩
-  obtain ⟨i, rfl⟩ := GlobalTheory.UMin.CrdUniq.exists_spMap' x'
+  obtain ⟨i, rfl⟩ := _root_.GlobalTheory.ZM.DenseFib.exists_spMap x'
   obtain ⟨r, hr⟩ := hθ' (SecAt.pull G L θ i)
   have hsm : SecM.ofSec G (SecAt.pull G L θ i) = r • SecM.ofSec G θ' := Subtype.ext (funext hr)
   set a : K := (Scheme.ΓSpecIso (CommRingCat.of K)).hom.hom r with ha

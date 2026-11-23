@@ -66,7 +66,7 @@ theorem kval_orbit (D : D7) (L : SizeData₂ D) (X : Inst D L) (K : Consts) (ce 
     product_zeroth_first_parts.KvalGe (D.R.N i) (D.R.N (i + 1)) p (fun s : ZMod (nP D p) => E.nu u i (OrbitPlaces.orbMap D p (true, t) s))
       (MvPowerSeries.map (Formalism.L2.G.Pend.k0ToC p) (inLetters (thOne B be U)))
       (FOrb D (i + 1) p (true, t) - OrbitPlaces.errF L K ce (i + 1) p (true, t)) := by
-  obtain ⟨bv, h1, h2, h3, h4, hb⟩ := GlobalTheory.T.exists_letterCoordinates_series_onePlace_alt p h.five (nP D p) h.even B be hbe
+  obtain ⟨bv, h1, h2, h3, h4, hb⟩ := _root_.GlobalTheory.OnePlace.exists_letterCoordinates_series_onePlace p h.five (nP D p) h.even B be hbe
   obtain ⟨U', hU', e⟩ := hb _ _ U hU
   exact GlobalTheory.T.orbitBound_overSecondEmbedding_anyBasePoint D L X K ce E 11 1 hA hS hC p h h0 hne hX u i hi t 1 (-1) bv (by simp) (Or.inr rfl) h1 h2 h3 h4 _
     ⟨U', hU', e⟩

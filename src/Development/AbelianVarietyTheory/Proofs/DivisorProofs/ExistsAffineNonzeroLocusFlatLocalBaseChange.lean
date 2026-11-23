@@ -90,10 +90,10 @@ theorem exists_affine_nonzeroLocus_of_square : (∀ (R' : Type) [CommRing R'] [I
       (fst G G * (snd G G)⁻¹).left z := by rw [hΦ3, Scheme.Hom.comp_apply, hx']
   have hsemi' : IsSemiAbelian ((Over.pullback (spMap ρ)).obj G) := IsSemiAbelian.pullback _ G hG
   haveI := hd; haveI := hn; haveI := hic
-  have hab' := GlobalTheory.T.isAbelianScheme_genericFibre_injective_domain_map R R' ρ hinj G hab
+  have hab' := _root_.GlobalTheory.Desc.isAbelianScheme_generic_of_injective R R' ρ hinj G hab
   obtain ⟨t, ht⟩ := H R' ((Over.pullback (spMap ρ)).obj G) hsemi' hab'
     (M₀.pull (pullback.fst G.hom (spMap ρ))) (LB.isLB_pull hM _) a
-  obtain ⟨s, hs⟩ := GlobalTheory.T.exists_section_sq_nonzeroLocus_of_translate_generator _ _ (pullback.fst G.hom (spMap ρ)) M₀ hM s₀ _ _ ⟨t, ht⟩
+  obtain ⟨s, hs⟩ := _root_.GlobalTheory.PullSecSq.exists_sec_lbPow_two_nonzeroLocus _ _ (pullback.fst G.hom (spMap ρ)) M₀ hM s₀ _ _ ⟨t, ht⟩
   haveI : IsAffineHom (pullback.fst G.hom (spMap ρ)) :=
     MorphismProperty.of_isPullback (IsPullback.of_hasPullback G.hom (spMap ρ)).flip inferInstance
   have hW : IsAffineOpen (pullback.fst G.hom (spMap ρ) ⁻¹ᵁ nonzeroLocus s₀) := hV.preimage _

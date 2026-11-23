@@ -75,24 +75,6 @@ theorem ext_affine : ∀ (R : Type) [CommRing R] (I : Ideal R), IsHausdorff I R 
     rw [SModEq, Submodule.Quotient.eq, smul_eq_mul, Ideal.mul_top]
     exact Ideal.Quotient.eq.1 he'
 
-theorem srel_comp {h k : ℕ} {B B' B'' : Type} [CommRing B] [CommRing B'] [CommRing B''] {ζ : B} {ζ' : B'} {ζ'' : B''}
-    {S S' S'' : Scheme.{0}} {s : S ⟶ Sp B} {s' : S' ⟶ Sp B'} {s'' : S'' ⟶ Sp B''}
-    {c : SiegPre h k ζ s} {c' : SiegPre h k ζ' s'} {c'' : SiegPre h k ζ'' s''} {f : S' ⟶ S}
-    {f' : S'' ⟶ S'} {φ : c'.A.left ⟶ c.A.left} {ψ : c''.A.left ⟶ c'.A.left}
-    (m : SRelBy c' c 1 1 f φ) (m' : SRelBy c'' c' 1 1 f' ψ) : SRelBy c'' c 1 1 (f' ≫ f) (ψ ≫ φ) := by
-  obtain ⟨hφ, ⟨φ₂, hs, hw⟩, hl⟩ := m
-  obtain ⟨hψ, ⟨ψ₂, hs', hw'⟩, hl'⟩ := m'
-  simp only [pow_one] at hl hl' ⊢
-  refine ⟨hψ.comp hφ, ⟨ψ₂ ≫ φ₂, ⟨?_, ?_⟩, ?_⟩, fun a => ?_⟩
-  · rw [Category.assoc, hs.1, ← Category.assoc, hs'.1, Category.assoc]
-  · rw [Category.assoc, hs.2, ← Category.assoc, hs'.2, Category.assoc]
-  · exact (hw'.trans c''.isLB (pull_isLB c'.isLB _) (pull_isLB (pull_isLB c.isLB _) _)
-      (GlobalTheory.SiegelPullComp.iso_pull ψ₂ hw)).trans c''.isLB (pull_isLB (pull_isLB c.isLB _) _) (pull_isLB c.isLB _)
-      (GlobalTheory.SiegelPullComp.iso_pull_pull c.isLB φ₂ ψ₂)
-  · rw [pow_one, pow_one]
-    exact (Category.assoc _ _ _).symm.trans ((congrArg (· ≫ φ) (hl' a)).trans ((Category.assoc _ _ _).trans
-      ((congrArg (f' ≫ ·) (hl a)).trans (Category.assoc _ _ _).symm)))
-
 theorem tower : ∀ (g n : ℕ) (B : Type) [CommRing B] (b : TBase B n) (R : Type) [CommRing R] (I : Ideal R) (s s' : Sp R ⟶ Sp B) (c : SiegPre g n (b.ζ : B) s) (c' : SiegPre g n (b.ζ : B) s') (t : ∀ e : ℕ, Sp (R ⧸ I ^ (e + 1)) ⟶ Sp B) (ce : ∀ e, SiegPre g n (b.ζ : B) (t e)) (φ : ∀ e, (ce e).A.left ⟶ c.A.left) (ψ : ∀ e, (ce e).A.left ⟶ c'.A.left), 3 ≤ n → Odd n → c.Principal → c'.Principal → (∀ e, SRelBy (ce e) c 1 1 (Out.thick R I e) (φ e)) → (∀ e, SRelBy (ce e) c' 1 1 (Out.thick R I e) (ψ e)) → ∃ β : ∀ e, (ce e).A.left ⟶ (ce (e + 1)).A.left, ∀ e, β e ≫ φ (e + 1) = φ e ∧ β e ≫ ψ (e + 1) = ψ e := by
   intro g n B _ b R _ I s s' c c' t ce φ ψ hn hodd hc hc' hφ hψ
   have key : ∀ e, ∃ β : (ce e).A.left ⟶ (ce (e + 1)).A.left, β ≫ φ (e + 1) = φ e ∧ β ≫ ψ (e + 1) = ψ e := by
@@ -102,10 +84,10 @@ theorem tower : ∀ (g n : ℕ) (B : Type) [CommRing B] (b : TBase B n) (R : Typ
         (by rw [Out.thickTrans_comp]; exact (sRel_one_one_iff _ _ _).1 ⟨_, hφ e⟩)
     obtain ⟨β, hβ⟩ := (sRel_one_one_iff _ _ _).2 h1
     refine ⟨β, ?_, ?_⟩
-    · have := srel_comp (hφ (e + 1)) hβ
+    · have := _root_.GlobalTheory.SiegPBDescent.comp_by (hφ (e + 1)) hβ
       rw [Out.thickTrans_comp] at this
       exact GlobalTheory.SiegRigid.eq_of_sRelBy g n n 1 B B b (b.ζ : B) _ _ s (t e) c (ce e) _ _ _ hn hodd hc this (hφ e)
-    · have := srel_comp (hψ (e + 1)) hβ
+    · have := _root_.GlobalTheory.SiegPBDescent.comp_by (hψ (e + 1)) hβ
       rw [Out.thickTrans_comp] at this
       exact GlobalTheory.SiegRigid.eq_of_sRelBy g n n 1 B B b (b.ζ : B) _ _ s' (t e) c' (ce e) _ _ _ hn hodd hc' this (hψ e)
   choose β hβ using key
@@ -124,13 +106,7 @@ theorem alg : ∀ (g n : ℕ) (B : Type) [CommRing B] (b : TBase B n) (R : Type)
   choose φ hφ using fun e => (sRel_one_one_iff (ce e) c _).2 (hce e)
   choose ψ hψ using fun e => (sRel_one_one_iff (ce e) c' _).2 (hce' e)
   obtain ⟨β, hβ⟩ := tower g n B b R I s s' c c' t ce φ ψ hn hodd hc hc' hφ hψ
-  exact assemble g n B (b.ζ : B) R I hI s s' c c' t ce φ ψ β hc hφ hψ (fun e => (hβ e).1) (fun e => (hβ e).2)
-
-theorem quot_local (R : Type) [CommRing R] [IsLocalRing R] (e : ℕ) :
-    IsLocalRing (R ⧸ IsLocalRing.maximalIdeal R ^ (e + 1)) :=
-  have : Nontrivial (R ⧸ IsLocalRing.maximalIdeal R ^ (e + 1)) := Ideal.Quotient.nontrivial_iff.2
-    (ne_top_of_le_ne_top (IsLocalRing.maximalIdeal.isMaximal R).ne_top (Ideal.pow_le_self (Nat.succ_ne_zero e)))
-  IsLocalRing.of_surjective' (Ideal.Quotient.mk _) Ideal.Quotient.mk_surjective
+  exact _root_.GlobalTheory.SiegFormalAssemble.siegPB_id_of_tower g n B (b.ζ : B) R I hI s s' c c' t ce φ ψ β hc hφ hψ (fun e => (hβ e).1) (fun e => (hβ e).2)
 
 theorem quot_artin {R : Type} [CommRing R] [IsNoetherianRing R] (m : Ideal R) (hm : m.IsMaximal)
     (N : ℕ) : IsArtinianRing (R ⧸ m ^ (N + 1)) := by
@@ -150,13 +126,6 @@ theorem quot_artin {R : Type} [CommRing R] [IsNoetherianRing R] (m : Ideal R) (h
     exact h5.resolve_left hP.ne_top
   exact IsNoetherianRing.isArtinianRing_of_krullDimLE_zero
 
-theorem spMap_comp_ {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  simp [spMap, CommRingCat.ofHom_comp, Spec.map_comp]
-
-theorem spMap_id_ {A : Type} [CommRing A] : spMap (RingHom.id A) = 𝟙 _ := by
-  simp [spMap]
-
 end GlobalTheory.SFamCompl
 
 namespace GlobalTheory.SFamCompl
@@ -165,13 +134,13 @@ theorem classified_of_complete : ∀ (g n : ℕ), 1 ≤ g → 3 ≤ n → Odd n 
   intro g n hg hn hodd F R _ _ _ hR β c hc
   have hn0 : n ≠ 0 := by omega
   set m := IsLocalRing.maximalIdeal R with hm
-  haveI : ∀ e : ℕ, IsLocalRing (R ⧸ m ^ (e + 1)) := fun e => quot_local R e
+  haveI : ∀ e : ℕ, IsLocalRing (R ⧸ m ^ (e + 1)) := fun e => _root_.GlobalTheory.WtTower.isLocalRing_quotient_pow R e
   haveI : ∀ e : ℕ, IsArtinianRing (R ⧸ m ^ (e + 1)) := fun e => quot_artin m (IsLocalRing.maximalIdeal.isMaximal R) e
   let βe : ∀ e : ℕ, cycAway n →+* (R ⧸ m ^ (e + 1)) := fun e => (Ideal.Quotient.mk _).comp β
   have hthick : ∀ e, Out.thick R m e ≫ spMap β = spMap (βe e) ≫ spMap (RingHom.id (cycAway n)) := by
     intro e
-    rw [spMap_id_, Category.comp_id]
-    exact (spMap_comp_ β (Ideal.Quotient.mk (m ^ (e + 1)))).symm
+    rw [_root_.GlobalTheory.LN.Cmp.spMap_ringHom_id, Category.comp_id]
+    exact (_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp β (Ideal.Quotient.mk (m ^ (e + 1)))).symm
   have hpull := fun e => GlobalTheory.SiegelRingChange.siegPre_pull_ringChange g n (cycAway n) (cycAway n) (zetaAway n)
     (zetaAway n) (RingHom.id _) (Sp R) (Sp (R ⧸ m ^ (e + 1))) (spMap β) (spMap (βe e)) (Out.thick R m e) rfl (hthick e)
   choose ce hce using fun e => (hpull e).1 c
@@ -184,13 +153,13 @@ theorem classified_of_complete : ∀ (g n : ℕ), 1 ≤ g → 3 ≤ n → Odd n 
     refine GlobalTheory.T.siegelFamily_classifyingMap_unique g n hg hn hodd F _ (spMap (βe e)) (ce e) _ _ ?_ (hxs e)
       (GlobalTheory.SiegelPullComp.pb_comp (hxpb (e + 1)) h1) (hxpb e)
     rw [Category.assoc, hxs (e + 1)]
-    exact (spMap_comp_ _ _).symm.trans (congrArg spMap (by ext a; rfl))
-  obtain ⟨f, hf⟩ := glue R hR F.X x hcomp
+    exact (_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp _ _).symm.trans (congrArg spMap (by ext a; rfl))
+  obtain ⟨f, hf⟩ := _root_.GlobalTheory.LocalThickGlue.exists_glue R hR F.X x hcomp
   have hfs : f ≫ F.s = spMap β := by
     refine ext_affine R m hR.toIsHausdorff (cycAway n) _ _ fun e => ?_
-    rw [← Category.assoc, hf e, hxs e, hthick e, spMap_id_, Category.comp_id]
+    rw [← Category.assoc, hf e, hxs e, hthick e, _root_.GlobalTheory.LN.Cmp.spMap_ringHom_id, Category.comp_id]
   have hpf := GlobalTheory.SiegelRingChange.siegPre_pull_ringChange g n (cycAway n) (cycAway n) (zetaAway n)
-    (zetaAway n) (RingHom.id _) F.X (Sp R) F.s (spMap β) f rfl (by rw [hfs, spMap_id_, Category.comp_id])
+    (zetaAway n) (RingHom.id _) F.X (Sp R) F.s (spMap β) f rfl (by rw [hfs, _root_.GlobalTheory.LN.Cmp.spMap_ringHom_id, Category.comp_id])
   obtain ⟨c', hc'⟩ := hpf.1 F.univ
   have hc'p : c'.Principal := hpf.2.1 F.univ c' hc' F.princ
   have key : SiegPB c c' (𝟙 _) := by

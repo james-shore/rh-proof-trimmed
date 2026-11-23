@@ -259,7 +259,7 @@ theorem divClausesR_of [_root_.NumberField.IsTotallyComplex K] {Pl : Type} [Fint
         Real.log (P.cols.κ v) - minOver (fun p => ∑ j, Real.log (P.cols.lam j Bs.μ0 p v))) _ hX (fun v => Or.inr (Hv v)) ?_
       linarith [Hm, h1]
   ·
-    have hB := P.base.boundsMu Formalism.DivisorInequality.boundsMu specDet reduction_lemma_zero latticeGlue ramBasic wf0 P.extra.untw I.eb I.heb
+    have hB := P.base.boundsMu _root_.Formalism.DivisorInequality.slope_bounds specDet reduction_lemma_zero latticeGlue ramBasic wf0 P.extra.untw I.eb I.heb
       I.Sy I.Sy_tw I.G0 I.LG I.E3 I.E2 I.gy I.ηy I.bi I.bLG I.biv I.borderedMinorImage I.twisted_third_sum_le
     have de0 : 0 ≤ N.de := I.de0
     have deQ : 3 * N.de * I.Q ≤ 1 := I.deQ

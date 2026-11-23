@@ -46,6 +46,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.CountingSumsFrames.Top
 
-theorem detLeadDiag : Formalism.CountingSumsFrames.DetLeadDiag := Formalism.CountingSumsFrames.det_leading_diagonal
-
 end Formalism.CountingSumsFrames.Top

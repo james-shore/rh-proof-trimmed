@@ -53,15 +53,7 @@ open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorMode
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
-noncomputable section
-
 namespace GlobalTheory.SquareAgree
-
-theorem conjU_one_eq {D : D7} (V : HSp D) {J : Matrix (Fin V.rank) (Fin V.rank) D.host.E} (c : D.host.E) (h : J = c • V.gram) :
-    GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU V c h 1 = 1 := by
-  apply Subtype.ext
-  simp [GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU]
 
 end GlobalTheory.SquareAgree
 
-end

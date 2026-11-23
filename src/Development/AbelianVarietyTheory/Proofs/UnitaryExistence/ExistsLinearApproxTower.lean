@@ -60,22 +60,14 @@ namespace GlobalTheory.AdLat.Tower
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {n : ℕ}
 
 omit [NumberField E] in
-lemma fv_add (x y : Fin n → E) : fv F (x + y) = fv F x + fv F y := by
-  funext i; simp [fv, TensorProduct.tmul_add]
+alias fv_add := _root_.GlobalTheory.AdLat.Translate.fv_add
 
 omit [NumberField E] in
 lemma fv_sub (x y : Fin n → E) : fv F (x - y) = fv F x - fv F y := by
   funext i; simp [fv, TensorProduct.tmul_sub]
 
 omit [NumberField E] in
-lemma fv_zero : fv F (0 : Fin n → E) = 0 := by
-  funext i; simp [fv]
-
-omit [NumberField E] in
-lemma fv_nsmul (N : ℕ) (x : Fin n → E) : fv F (N • x) = N • fv F x := by
-  induction N with
-  | zero => simp [fv_zero]
-  | succ k ih => rw [succ_nsmul, succ_nsmul, fv_add, ih]
+alias fv_nsmul := _root_.GlobalTheory.AdLat.Translate.fv_nsmul
 
 omit [NumberField E] in
 lemma fv_smul (c : 𝓞 E) (x : Fin n → E) :
@@ -85,26 +77,10 @@ lemma fv_smul (c : 𝓞 E) (x : Fin n → E) :
   rfl
 
 omit [NumberField E] in
-lemma nsmul_cancel {N : ℕ} (hN : 0 < N) {z u : Fin n → RA F E} (h : N • z = N • u) : z = u := by
-  have hN' : (N : F) ≠ 0 := by exact_mod_cast hN.ne'
-  rw [← Nat.cast_smul_eq_nsmul F, ← Nat.cast_smul_eq_nsmul F] at h
-  have := congrArg (fun t => (N : F)⁻¹ • t) h
-  simpa [smul_smul, inv_mul_cancel₀ hN'] using this
+alias nsmul_cancel := _root_.GlobalTheory.AdLat.Translate.nsmul_cancel
 
 omit [NumberField E] in
-lemma smul_mem_hat (L : Submodule (𝓞 E) (Fin n → E)) (c : 𝓞 E) {z : Fin n → RA F E}
-    (hz : z ∈ hat F (L : Set (Fin n → E))) :
-    ((1 : FiniteAdeleRing (𝓞 F) F) ⊗ₜ[F] (c : E) : RA F E) • z ∈ hat F (L : Set (Fin n → E)) := by
-  induction hz using AddSubgroup.closure_induction with
-  | mem z hz =>
-    obtain ⟨a, ha, x, hx, rfl⟩ := hz
-    refine AddSubgroup.subset_closure ⟨a, ha, c • x, L.smul_mem c hx, ?_⟩
-    funext i
-    simp only [Pi.smul_apply, smul_eq_mul, Algebra.TensorProduct.tmul_mul_tmul, one_mul]
-    rfl
-  | zero => rw [smul_zero]; exact zero_mem _
-  | add x y _ _ hx hy => rw [smul_add]; exact add_mem hx hy
-  | neg x _ hx => rw [smul_neg]; exact neg_mem hx
+alias smul_mem_hat := _root_.GlobalTheory.AdLat.Translate.hat_smul_ring
 
 lemma exists_div {M : Submodule (𝓞 E) (Fin n → E)}
     (hM : ∀ v, fv F v ∈ hat F (M : Set (Fin n → E)) ↔ v ∈ M) {N : ℕ} (hN : 0 < N)
@@ -134,7 +110,7 @@ def rel (L Λ : Submodule (𝓞 E) (Fin n → E)) (g : Matrix (Fin n) (Fin n) (R
     Submodule (𝓞 E) (L × Λ) where
   carrier := {p | ∃ w ∈ hat F (L : Set (Fin n → E)),
     fv F (p.2 : Fin n → E) = g *ᵥ (fv F (p.1 : Fin n → E) + N • w)}
-  zero_mem' := ⟨0, zero_mem _, by simp [fv_zero]⟩
+  zero_mem' := ⟨0, zero_mem _, by simp [_root_.GlobalTheory.AdLat.Translate.fv_zero]⟩
   add_mem' := by
     rintro p q ⟨w, hw, hp⟩ ⟨w', hw', hq⟩
     refine ⟨w + w', add_mem hw hw', ?_⟩

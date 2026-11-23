@@ -81,7 +81,7 @@ theorem map_mem_nabAtr (f : K₀ →+* K) (emb : ι → E →+* K₀) (lam : ι 
   rw [Submodule.mem_comap] at hx ⊢
   change MvPolynomial.map f x.1 ∈ nabP lam fun τ => dualFr (tauLat (fun τ => f.comp (emb τ)) τ M)
   change x.1 ∈ nabP lam (fun τ => dualFr (tauLat emb τ M)) at hx
-  refine GlobalTheory.TransLattice.mem_of_forall_mem_locP _ fun w => ?_
+  refine _root_.GlobalTheory.TransLoc.mem_of_forall_locP _ fun w => ?_
   obtain ⟨w₀, hw₀⟩ : ∃ Q : HeightOneSpectrum (𝓞 K₀),
       ∀ r : 𝓞 K₀, r ∈ Q.asIdeal ↔ RingOfIntegers.mapRingHom f r ∈ w.asIdeal := by
     refine ⟨⟨w.asIdeal.comap (RingOfIntegers.mapRingHom f), Ideal.comap_isPrime _ _, fun h => ?_⟩, fun _ => Iff.rfl⟩

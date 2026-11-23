@@ -90,7 +90,7 @@ theorem UpperTheory.exists_finite_etale_faithfullyFlat_cover_of_etaleLocal_affin
           Algebra.Etale A (∀ i, C i) ∧ Module.FaithfullyFlat A (∀ i, C i) ∧
           ∀ i, P (Spec (CommRingCat.of (C i))) (Spec.map (CommRingCat.ofHom (algebraMap A (C i)))) := by
   intro A _ P hP hL
-  have hx := (GlobalTheory.T.etaleLocally_iff_affine_etale_point_cover _ P hP).1 hL
+  have hx := (_root_.GlobalTheory.EtC.loc_iff_etale_affine_points _ P hP).1 hL
   choose V g hVa hge hxm hPx using hx
   have h1 := fun x => exists_local A P hP (V x) (g x) (hVa x) (hge x) (hPx x)
   choose B iB aB hBe hBr hBP using h1

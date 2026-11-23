@@ -58,19 +58,6 @@ open ReciprocityTheory.AnForm.R (conePts)
 
 namespace GlobalTheory.CompanionTheory.Ar.Pub.CxPosIndep
 
-theorem cx_fibre_finite : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)]
-    (Q : Ideal (MRingOver ℂ ι)) (e : ℕ) (Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (e + 1) → ℂ)),
-    IsCxVar Q e → IsSetGoodProj (conePts Q) Ψ → ∀ y, (setFibre (conePts Q) Ψ y).Finite := by
-  first | exact @GlobalTheory.CompanionTheory.Ar.Pub.CxFib.setFibre_finite | exact GlobalTheory.CompanionTheory.Ar.Pub.CxFib.setFibre_finite | (intros; apply GlobalTheory.CompanionTheory.Ar.Pub.CxFib.setFibre_finite <;> assumption)
-
-theorem cx_posDens_aemeasurable : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)]
-    (Q : Ideal (MRingOver ℂ ι)) (e : ℕ) (Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (e + 1) → ℂ))
-    (L : Fin e → HermLine ι) (g : ((Σ k, ι k) → ℂ) → ℝ),
-    IsCxVar Q e → IsSetGoodProj (conePts Q) Ψ → (∀ j, IsSmoothHerm (L j)) → Measurable g →
-    (∀ (c : K → ℂ) (z : (Σ k, ι k) → ℂ), (∀ k, c k ≠ 0) → g (fun p => c p.1 * z p) = g z) →
-    AEMeasurable (cxPosDens (conePts Q) Ψ (pot L) g) := by
-  first | exact @GlobalTheory.CompanionTheory.Ar.Pub.CxPosMeas.cxPosDens_aemeasurable | exact GlobalTheory.CompanionTheory.Ar.Pub.CxPosMeas.cxPosDens_aemeasurable | (intros; apply GlobalTheory.CompanionTheory.Ar.Pub.CxPosMeas.cxPosDens_aemeasurable <;> assumption)
-
 theorem cx_simple_null : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)]
     (Q : Ideal (MRingOver ℂ ι)) (e : ℕ) (Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (e + 1) → ℂ)),
     IsCxVar Q e → IsSetGoodProj (conePts Q) Ψ →
@@ -168,7 +155,7 @@ theorem cx_posPart_indep : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, 
     intro B B' hB hB' hc
     have hnull := measure_union_null (cx_simple_null K ι Q e B hP hB) (GlobalTheory.T.volume_nonsimple_fibres_eq_zero K ι Q e B B' hP hB hB')
     filter_upwards [measure_eq_zero_iff_ae_notMem.1 hnull] with y hy
-    refine cxPosDens_split _ _ E y (cx_fibre_finite K ι Q e B hP hB y) hEd fun w hw hs z hz hzw => ?_
+    refine cxPosDens_split _ _ E y (_root_.GlobalTheory.CompanionTheory.Ar.Pub.CxFib.setFibre_finite K ι Q e B hP hB y) hEd fun w hw hs z hz hzw => ?_
     have hw1 : B w 0 = 1 := by
       obtain ⟨_, _, _, h⟩ := hw
       rw [h]
@@ -189,7 +176,7 @@ theorem cx_posPart_indep : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, 
         ∑' k, ∫⁻ y, ENNReal.ofReal (cxPosDens (conePts Q) B (pot L) ((E k).indicator g) y) := by
     intro B hB h2
     rw [lintegral_congr_ae h2, lintegral_tsum fun k =>
-      (cx_posDens_aemeasurable K ι Q e B L _ hP hB hLs (hg.indicator (hEm k)) (hgE k)).ennreal_ofReal]
+      (_root_.GlobalTheory.CompanionTheory.Ar.Pub.CxPosMeas.cxPosDens_aemeasurable K ι Q e B L _ hP hB hLs (hg.indicator (hEm k)) (hgE k)).ennreal_ofReal]
   rw [hint Ψ hΨ (hae Ψ Ψ' hΨ hΨ' fun z hz h1 h2 => hcov z ⟨hz, h1, h2⟩),
     hint Ψ' hΨ' (hae Ψ' Ψ hΨ' hΨ fun z hz h1 h2 => hcov z ⟨hz, h2, h1⟩)]
   exact tsum_congr fun k => hWE (f k) (E k) (hEm k) (hEi k) (hEW k)

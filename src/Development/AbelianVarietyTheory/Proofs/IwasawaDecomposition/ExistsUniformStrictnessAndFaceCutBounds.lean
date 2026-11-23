@@ -194,7 +194,7 @@ theorem perModule_bound (hP : IsPolyFanOn bar φ X) : ∃ N₀ : ℕ, ∀ (m : �
     refine LinearMap.ext₂ fun y z => ?_
     have := LinearMap.congr_fun₂ hsum (e.symm y) (e.symm z)
     simpa [LinearMap.sum_apply, γ'] using this
-  choose k a hk hka using fun i => GlobalTheory.T.cell_generators_smul_mem_other_cellCone bar φ δ γ' c hδ hγ' hc hsum' i
+  choose k a hk hka using fun i => _root_.GlobalTheory.PolFan.exists_smul_eq_sum_of_sum_toReal_eq bar φ δ γ' c hδ hγ' hc hsum' i
   let J := Finset.univ.filter fun j => ∃ i, 0 < a i j
   let T := J.image γ
   have hTS : T ∈ hS.toFinset.powerset := by

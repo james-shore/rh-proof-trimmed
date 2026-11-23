@@ -117,6 +117,6 @@ theorem GlobalTheory.GLFin.exists_compact_open_subgroup_subset_nhds_one :
         IsOpen (U : Set (GL (Fin a) (Af E))) ∧ IsCompact (U : Set (GL (Fin a) (Af E))) ∧
           (U : Set (GL (Fin a) (Af E))) ⊆ B := by
   intro E _ _ a B hB
-  obtain ⟨W, hWo, hWc, -, h1, hWB⟩ := GlobalTheory.T.exists_compact_clopen_nhds_one_GL_finiteAdeles E a B hB
+  obtain ⟨W, hWo, hWc, -, h1, hWB⟩ := _root_.GlobalTheory.GLFinAdeleNhds.exists_isCompact_isClopen E a B hB
   obtain ⟨U, hUo, hUc, hUW⟩ := GlobalTheory.GLFinSmall.exists_compact_open_subgroup_subset hWc hWo h1
   exact ⟨U, hUo, hUc, hUW.trans hWB⟩

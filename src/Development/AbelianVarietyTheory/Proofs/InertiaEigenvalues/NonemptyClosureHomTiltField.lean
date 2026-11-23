@@ -53,16 +53,6 @@ open scoped Formalism.Per
 
 namespace GlobalTheory.Per
 
-theorem exists_pow_eq_one_of_algClosure_zmod (l : ℕ) [hl : Fact l.Prime] (a : AlgebraicClosure (ZMod l))
-    (ha : a ≠ 0) : ∃ m : ℕ, 0 < m ∧ ¬ l ∣ m ∧ a ^ m = 1 := by
-  first
-  | exact @_root_.GlobalTheory.ProofStatement.main
-  | exact _root_.GlobalTheory.ProofStatement.main
-  | (apply _root_.GlobalTheory.ProofStatement.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ProofStatement.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ProofStatement.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ProofStatement.main ..)
-
 theorem exists_isPrimitiveRoot_tilt (l : ℕ) [hl : Fact l.Prime] (m : ℕ) (hm : 0 < m) (hlm : ¬ l ∣ m) :
     ∃ e : Per.Fl l, IsPrimitiveRoot e m := by
   haveI : NeZero m := ⟨hm.ne'⟩
@@ -98,7 +88,7 @@ theorem nonempty_algClosure_zmod_to_tilt :
     intro a
     by_cases ha : a = 0
     · rw [ha, map_zero]; exact zero_mem _
-    obtain ⟨m, hm, hlm, ham⟩ := exists_pow_eq_one_of_algClosure_zmod l a ha
+    obtain ⟨m, hm, hlm, ham⟩ := _root_.GlobalTheory.ProofStatement.main l a ha
     obtain ⟨e, he⟩ := exists_isPrimitiveRoot_tilt l m hm hlm
     haveI : NeZero m := ⟨hm.ne'⟩
     obtain ⟨i, -, hi⟩ := (he.map_of_injective hj).eq_pow_of_pow_eq_one

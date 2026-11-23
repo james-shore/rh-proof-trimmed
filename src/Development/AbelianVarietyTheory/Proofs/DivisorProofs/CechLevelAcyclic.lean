@@ -66,7 +66,7 @@ theorem cech_level_acyclic : ∀ (R : Type) [CommRing R] (F : Shv R), Finitary F
   haveI : Algebra.IsSeparable K Ω := IsSepClosure.separable
   have hf : IsIntegralHom (Spec.map (CommRingCat.ofHom (algebraMap K Ω))) :=
     IsIntegralHom.SpecMap_iff.2 fun x => Algebra.IsIntegral.isIntegral x
-  obtain ⟨Z, π, e, hπ, -⟩ := GlobalTheory.T.exists_representable_cech_level_of_stable @IsIntegralHom _ _ _ hf (op ⦋k⦌)
+  obtain ⟨Z, π, e, hπ, -⟩ := _root_.GlobalTheory.EtC.cech_level_representable @IsIntegralHom _ _ _ hf (op ⦋k⦌)
   haveI : IsIntegralHom π := hπ
   haveI : IsAffine Z := isAffine_of_isAffineHom π
   let φ : Ω →+* Γ(Z, ⊤) := ((Scheme.ΓSpecIso (CommRingCat.of Ω)).inv ≫ π.appTop).hom
@@ -83,11 +83,11 @@ theorem cech_level_acyclic : ∀ (R : Type) [CommRing R] (F : Shv R), Finitary F
       rfl
     rw [Polynomial.eval₂_map, hc]
     exact h
-  have hac : AcycF R (sp Γ(Z, ⊤)) F := GlobalTheory.T.integral_strictHenselian_acyclic_finitary R F hF Ω Γ(Z, ⊤) (sh_of_isSepClosed Ω)
+  have hac : AcycF R (sp Γ(Z, ⊤)) F := _root_.GlobalTheory.EtC.IntAcyc.acycF_of_isIntegral R F hF Ω Γ(Z, ⊤) (sh_of_isSepClosed Ω)
   let i : sp Γ(Z, ⊤) ≅ disc.obj ((cech (Spec.map (CommRingCat.ofHom (algebraMap K Ω)))).obj (op ⦋k⦌)) :=
     sch.mapIso Z.isoSpec.symm ≪≫ disc.mapIso e
-  have heq : Eqv R i.hom F := (GlobalTheory.T.etaleCohomologyEquivalence_basic_properties R F).1 _ _ i.hom inferInstance
-  have hs := ((GlobalTheory.T.etaleCohomologyEquivalence_basic_properties R F).2.2.2 _ _ i.hom heq).1 hac (m : ℤ) (by exact_mod_cast hm)
+  have heq : Eqv R i.hom F := (_root_.GlobalTheory.EtC.eqv_basic R F).1 _ _ i.hom inferInstance
+  have hs := ((_root_.GlobalTheory.EtC.eqv_basic R F).2.2.2 _ _ i.hom heq).1 hac (m : ℤ) (by exact_mod_cast hm)
   exact Subsingleton.elim _ _
 
 end GlobalTheory.EtC

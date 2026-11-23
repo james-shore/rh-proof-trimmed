@@ -192,12 +192,7 @@ theorem mul_single {f : ℕ} (σ : crystallineComparison.V f) (v : Fin f) (w : �
   · subst h; simp
   · simp [h]
 
-theorem exp_eq_one_iff_int (x : ℝ) :
-    Complex.exp (2 * Real.pi * Complex.I * (x : ℂ)) = 1 ↔ ∃ n : ℤ, x = n := by
-  first | exact Bl.general_b_fact_right_side.goal1 .. | (apply Bl.general_b_fact_right_side.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_right_side.goal1 <;> assumption) | (apply @Bl.general_b_fact_right_side.goal1 <;> assumption) | (intros; apply @Bl.general_b_fact_right_side.goal1 <;> assumption) | (apply @Bl.general_b_fact_right_side.goal1 <;> first | assumption | infer_instance) | exact @Bl.general_b_fact_right_side.goal1 x
-
-theorem add_conj (w : ℂ) : w + (starRingEnd ℂ) w = ((2 * w.re : ℝ) : ℂ) := by
-  apply Complex.ext <;> simp; ring
+alias add_conj := _root_.Complex.add_conj
 
 def gen (f : ℕ) (R : ℝ) (p : Fin f × Bool) : crystallineComparison.V f :=
   Pi.single p.1 (if p.2 then (R : ℂ) * Complex.I else (R : ℂ))
@@ -223,7 +218,7 @@ theorem mem_dual_iff (f : ℕ) (R : ℝ) (hR : 0 < R) (σ : crystallineCompariso
   have hgen : ∀ v (β : Bool), crystallineComparison.psi (σ * gen f R (v, β)) = 1 ↔
       ∃ n : ℤ, (if β then -(2 * R * (σ v).im) else 2 * R * (σ v).re) = n := by
     intro v β
-    rw [gen, mul_single, psi_single, add_conj, ← exp_eq_one_iff_int]
+    rw [gen, mul_single, psi_single, add_conj, ← _root_.Bl.general_b_fact_right_side.goal1]
     congr! 4
     cases β <;> simp [Complex.mul_re, Complex.mul_im] <;> ring
   constructor
@@ -482,12 +477,6 @@ theorem lstdSum : PBC.LstdSum := by
   nlinarith [sq_nonneg (x - 1)]
 
 end Lat
-
-theorem pbc_lstdSum : PBC.LstdSum := Lat.lstdSum
-
-theorem pbc_lstdFacts : PBC.LstdFacts := Lat.lstdFacts
-
-theorem pbc_sizesSup : PBC.SizesSup := Lat.sizesSup
 
 end
 

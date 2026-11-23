@@ -156,7 +156,7 @@ theorem exists_formFrame (σ : E →ₐ[F] E) {n : ℕ} (J : Matrix (Fin n) (Fin
       ← Matrix.map_mul, h1, Matrix.map_one _ (map_zero _) (map_one _), Matrix.transpose_one, Matrix.mul_one,
       Matrix.nonsing_inv_mul _ hJtu]
 
-theorem cA_inclR (σ : E →ₐ[F] E) (e : E) : cA σ (inclR (F := F) (AF F) e) = inclR (F := F) (AF F) (σ e) := rfl
+alias cA_inclR := _root_.GlobalTheory.VacIndic.cA_inclR
 
 theorem trace_inclR (e : E) :
     Algebra.trace (AF F) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)) (inclR (F := F) (AF F) e) = algebraMap F (AF F) (Algebra.trace F E e) := by

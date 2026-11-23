@@ -52,10 +52,6 @@ namespace GlobalTheory.CosetRow.ExtSB
 
 variable {D : D7} {m n : ℕ}
 
-theorem half_of_idem' {b : AE D} (hb : b * b = b) (t : Mx D m n) : IsHalf b (b • t) := fun i j => by
-  simp only [Matrix.smul_apply, smul_eq_mul]
-  linear_combination (t i j) * hb
-
 theorem half_add_nsmul_iff {e : AE D} {t u : Mx D m n} (hu : IsHalf e u) (k : ℕ) :
     IsHalf e (t + k • u) ↔ IsHalf e t := by
   constructor
@@ -83,14 +79,14 @@ theorem isSBHalf_extFn : ∀ {D : D7} {m n : ℕ} {Λ : AddSubgroup (Mx D m n)} 
   · have hhalf := half_add_nsmul_iff (t := t) hue k
     have hA : Φ (e₀ • (t + k • u)) = Φ (e₀ • t) := by
       rw [smul_add_nsmul]
-      exact iΦ _ (hΛ0 u hu) (half_of_idem' h0 u) _
+      exact iΦ _ (hΛ0 u hu) (_root_.GlobalTheory.SplitScalar.isHalf_smul h0 u) _
     have hB : halfInd e₁ Λ (e₁ • (t + k • u)) = halfInd e₁ Λ (e₁ • t) := by
       rw [smul_add_nsmul]
       unfold halfInd
       have hm : e₁ • t + k • (e₁ • u) ∈ Λ ↔ e₁ • t ∈ Λ :=
         Λ.add_mem_cancel_right (AddSubgroup.nsmul_mem Λ (hΛ1 u hu) k)
       have hh : IsHalf e₁ (e₁ • t + k • (e₁ • u)) ↔ IsHalf e₁ (e₁ • t) :=
-        half_add_nsmul_iff (half_of_idem' h1 u) k
+        half_add_nsmul_iff (_root_.GlobalTheory.SplitScalar.isHalf_smul h1 u) k
       by_cases hc : e₁ • t ∈ Λ ∧ IsHalf e₁ (e₁ • t)
       · rw [if_pos (And.intro (hm.2 hc.1) (hh.2 hc.2)), if_pos hc]
       · rw [if_neg (fun h => hc ⟨hm.1 h.1, hh.1 h.2⟩), if_neg hc]

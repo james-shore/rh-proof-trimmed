@@ -526,9 +526,6 @@ theorem levi_phla_zero (r : ℕ) (X : Data E r) (la : Wt X.Ψ r) (x : Frame X.Ψ
     norm_cast
   · simp [hba, zMat]
 
-theorem leviZero : (∀ (r : ℕ) (X : Data E r) (la : Wt X.Ψ r) (x : Frame X.Ψ r), IsOrth X x → ∀ ξ : Fin (nd X) → ℂ, leviM X (phla X la) x 0 ξ = ∑ e : Ent X, sgn X.p0 e.2.1.1 * sgn X.p0 e.2.1.2 * ((la e.1 e.2.1.2 : ℝ) - (la e.1 e.2.1.1 : ℝ)) * ‖ξ (Fintype.equivFin (Ent X) e)‖ ^ 2) :=
-  levi_phla_zero
-
 end
 
 end GlobalTheory.LeviZero

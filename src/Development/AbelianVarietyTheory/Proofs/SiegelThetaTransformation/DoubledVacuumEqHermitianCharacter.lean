@@ -274,7 +274,7 @@ theorem ip_of_support (h : IsSB φ) (k : IsSB ψ) {A B : Set (Matrix κ ι K)} {
         (t * conj s)⁻¹ • fun x => φ x * conj (ψ x) := by
       rw [e, smul_smul, inv_mul_cancel₀ hts, one_smul]
     rw [e']
-    exact sb_smul _ (sb_mul_conj h k)
+    exact sb_smul _ (_root_.GlobalTheory.SW.DblZero.isSB_mul_conj h k)
   obtain ⟨ρ, hρ, hh⟩ : ∃ ρ : ℝ, 0 ≤ ρ ∧
       haar (fun x : Matrix κ ι K => if x ∈ A ∧ x ∈ B then (1 : ℂ) else 0) = ρ := by
     unfold GlobalTheory.SW.haar
@@ -295,7 +295,7 @@ theorem ip_of_support (h : IsSB φ) (k : IsSB ψ) {A B : Set (Matrix κ ι K)} {
 theorem unitv_smul {n g : ℕ} {v : TF n g} (h : IsSB v) (h1 : ip v v = 1) (c : ℂ) :
     unitv (c • v) = ((‖c‖ : ℂ)⁻¹ * c) • v := by
   unfold GlobalTheory.SW.unitv
-  rw [ip_smul h h c c, h1, mul_one, Complex.mul_conj, Complex.normSq_eq_norm_sq, Complex.ofReal_re,
+  rw [_root_.GlobalTheory.SW.DblZero.ip_smul h h c c, h1, mul_one, Complex.mul_conj, Complex.normSq_eq_norm_sq, Complex.ofReal_re,
     Real.sqrt_sq (norm_nonneg c), smul_smul]
 
 end Ip
@@ -341,11 +341,7 @@ theorem EF_eq_of_graph (w : E) {β : Matrix (Fin r) (Fin r) E} (hβ : ccT β = �
     pair_sub_right] at e1 e2
   linear_combination e1 + (1 / 2 : E) * e2
 
-theorem toCols₁_dblT (y₁ y₂ : Matrix (Fin n) (Fin r) E) :
-    (Matrix.fromCols y₁ y₂ * dblT X).toCols₁ = y₁ - y₂ := by
-  unfold dblT
-  rw [Matrix.fromCols_mul_fromBlocks, Matrix.toCols₁_fromCols, Matrix.mul_one, Matrix.mul_neg,
-    Matrix.mul_one, sub_eq_add_neg]
+alias toCols₁_dblT := _root_.GlobalTheory.SW.DblZero.toCols₁_dblT
 
 theorem toCols₂_dblT (y₁ y₂ : Matrix (Fin n) (Fin r) E) :
     (Matrix.fromCols y₁ y₂ * dblT X).toCols₂ = (1 / 2 : E) • ((y₁ + y₂) * skew X) := by
@@ -553,17 +549,17 @@ theorem ip_dbl (hs : IsSympl X bas) (hn : Even n) {b : ℂ}
       ?_ ?_ ?_ ?_ hx hy
     · intro u u' v hu hu' hv
       rw [addL u u' χ hu hu' hχ,
-        GlobalTheory.SW.DblVac.ip_add_left (sbD u χ hu hχ) (sbD u' χ hu' hχ) (sbD v χ hv hχ),
-        GlobalTheory.SW.DblVac.ip_add_left hu hu' hv]
+        _root_.GlobalTheory.SW.DblZero.ip_add_left (sbD u χ hu hχ) (sbD u' χ hu' hχ) (sbD v χ hv hχ),
+        _root_.GlobalTheory.SW.DblZero.ip_add_left hu hu' hv]
       ring
     · intro u v v' hu hv hv'
       rw [addL v v' χ hv hv' hχ,
-        GlobalTheory.SW.DblVac.ip_add_right (sbD u χ hu hχ) (sbD v χ hv hχ) (sbD v' χ hv' hχ),
-        GlobalTheory.SW.DblVac.ip_add_right hu hv hv']
+        _root_.GlobalTheory.SW.DblZero.ip_add_right (sbD u χ hu hχ) (sbD v χ hv hχ) (sbD v' χ hv' hχ),
+        _root_.GlobalTheory.SW.DblZero.ip_add_right hu hv hv']
       ring
     · intro a c u v hu hv
       rw [smulL u χ a hu hχ, smulL v χ c hv hχ,
-        GlobalTheory.SW.DblVac.ip_smul (sbD u χ hu hχ) (sbD v χ hv hχ), GlobalTheory.SW.DblVac.ip_smul hu hv]
+        _root_.GlobalTheory.SW.DblZero.ip_smul (sbD u χ hu hχ) (sbD v χ hv hχ), _root_.GlobalTheory.SW.DblZero.ip_smul hu hv]
       ring
     · intro u hu
       rw [hb u χ hu hχ]
@@ -576,17 +572,17 @@ theorem ip_dbl (hs : IsSympl X bas) (hn : Even n) {b : ℂ}
       ?_ ?_ ?_ ?_ k₂ h₂
     · intro u u' v hu hu' hv
       rw [addR ψ₁ u u' k₁ hu hu',
-        GlobalTheory.SW.DblVac.ip_add_right (sbD φ₁ v h₁ hv) (sbD ψ₁ u k₁ hu) (sbD ψ₁ u' k₁ hu'),
-        GlobalTheory.SW.DblVac.ip_add_left hu hu' hv]
+        _root_.GlobalTheory.SW.DblZero.ip_add_right (sbD φ₁ v h₁ hv) (sbD ψ₁ u k₁ hu) (sbD ψ₁ u' k₁ hu'),
+        _root_.GlobalTheory.SW.DblZero.ip_add_left hu hu' hv]
       ring
     · intro u v v' hu hv hv'
       rw [addR φ₁ v v' h₁ hv hv',
-        GlobalTheory.SW.DblVac.ip_add_left (sbD φ₁ v h₁ hv) (sbD φ₁ v' h₁ hv') (sbD ψ₁ u k₁ hu),
-        GlobalTheory.SW.DblVac.ip_add_right hu hv hv']
+        _root_.GlobalTheory.SW.DblZero.ip_add_left (sbD φ₁ v h₁ hv) (sbD φ₁ v' h₁ hv') (sbD ψ₁ u k₁ hu),
+        _root_.GlobalTheory.SW.DblZero.ip_add_right hu hv hv']
       ring
     · intro a c u v hu hv
       rw [smulR φ₁ v c h₁ hv, smulR ψ₁ u a k₁ hu,
-        GlobalTheory.SW.DblVac.ip_smul (sbD φ₁ v h₁ hv) (sbD ψ₁ u k₁ hu), GlobalTheory.SW.DblVac.ip_smul hu hv,
+        _root_.GlobalTheory.SW.DblZero.ip_smul (sbD φ₁ v h₁ hv) (sbD ψ₁ u k₁ hu), _root_.GlobalTheory.SW.DblZero.ip_smul hu hv,
         Complex.conj_conj]
       ring
     · intro u hu

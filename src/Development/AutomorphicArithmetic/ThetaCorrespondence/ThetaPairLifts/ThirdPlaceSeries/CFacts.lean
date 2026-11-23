@@ -88,7 +88,7 @@ theorem facts_of_galois_preconditions_of_cutRec (hCh : GlobalTheory.TwSys.Cheb) 
   have h1 : SumRepresentations.adm1 D := h.adm.1.1.2.2.1
   have g2 := _root_.UpperTheory.GalS.de_rham_points_weight_jumps_alt D h0 h1 h.what₂.a.a2 h.what₂.a.a5 hC
   { what₂ := h.what₂, adm := h.adm, Conclusion1 := h.Conclusion1
-    Conclusion2 := ⟨_root_.UpperTheory.GalS.prvG5_of_admissible_cutRec lf ltd lec D h.adm ex hC, _root_.GlobalTheory.T.prvG6_of_admissible' D h.adm ex, h.z⟩
+    Conclusion2 := ⟨_root_.UpperTheory.GalS.prvG5_of_admissible_cutRec lf ltd lec D h.adm ex hC, _root_.GlobalTheory.ClosingSixth.conclusionG6_of_adm_alt D h.adm ex, h.z⟩
     rhoBar := h.rhoBar, g3p := h.g3p, weight := h.weight, block := h.block, g2 := g2
     admJ := fun L hL => _root_.UpperTheory.GalS.admJ_of_admPar D L h0 h1 h.what₂.a.a2 h.what₂.a.a5 hC h.weight h.block hL
     muUnr := h.muUnr, depthG := h.depthG, bc := h.bc, lam := h.lam, c2 := h.c2, large := h.large

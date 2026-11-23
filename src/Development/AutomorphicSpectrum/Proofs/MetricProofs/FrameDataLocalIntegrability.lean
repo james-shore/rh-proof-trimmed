@@ -96,7 +96,7 @@ theorem chart_reads : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Finty
       rw [hbase, hr1, (Rb.A.chart kb).right_inv hV]
       rfl
     · show pRead M F keep (pBase M v φ) h (upV v φ) q.1.1.1 q.1.1.2.1 q.1.1.2.2 = w (ε (Sum.inr q))
-      obtain ⟨hkeep, hpr, hbS, haS, hent⟩ := GlobalTheory.T.pMat_stepCols_entry Ψ N j keep q M.j_le
+      obtain ⟨hkeep, hpr, hbS, haS, hent⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.PFl.SmallStep.pStep_reads Ψ N j keep q M.j_le
       obtain ⟨hval, hzero⟩ := hent (pL ε w)
       obtain ⟨k, hk⟩ : ∃ k, M.blk (q.1.1.1, pStep j keep q.1.1.1 q.1.1.2.2) = some k := by
         rcases e' : M.blk (q.1.1.1, pStep j keep q.1.1.1 q.1.1.2.2) with _ | k

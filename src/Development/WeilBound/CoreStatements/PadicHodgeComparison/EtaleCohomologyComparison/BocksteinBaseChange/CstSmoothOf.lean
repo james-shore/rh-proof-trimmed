@@ -61,8 +61,8 @@ theorem zIn (h : FormalIn) (h4 : GlobalTheory.EtC.E4) (h8 : GlobalTheory.EtC.E8)
   ⟨h.a6nat, h.a6ring, h.a9, h.et.a11, h4, h8, bock h, root h, sum h⟩
 
 theorem etSide : EtaleSideSmoothAndSemistable := fun h l _ K _ =>
-  ⟨adic h l K _ (fun _ hM => hM.1) (comp l K).1 fun M hM => geo l K M hM.1,
-    adic h l K _ (fun _ hM => hM) (comp l K).2 fun M hM => geo l K M hM⟩
+  ⟨adic h l K _ (fun _ hM => hM.1) (comp l K).1 fun M hM => _root_.CrystallineSemistableComparison.geoMain l K M hM.1,
+    adic h l K _ (fun _ hM => hM) (comp l K).2 fun M hM => _root_.CrystallineSemistableComparison.geoMain l K M hM⟩
 
 structure Chapters : Prop where
   rin : ∀ (l : ℕ) [Fact l.Prime], E.RIn l

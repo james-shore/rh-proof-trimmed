@@ -56,7 +56,7 @@ theorem cardQ : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l), ∀ (LL : Type) [Fi
   have := hO
   have := hD
   have := hF
-  have hq := (GlobalTheory.T.goodO_adic_complete_compact_basis l LL O hG ϖ hϖ).2.1
+  have hq := (_root_.GlobalTheory.CompanionTheory.GoodCoeff.goodO_structure l LL O hG ϖ hϖ).2.1
   refine ⟨(GlobalTheory.CompanionTheory.LocDual.Q.finite_quot O A.V LA.T ϖ r hq LA.fg).2, ?_⟩
   have : Module.Finite O ↥LA.T := Module.Finite.iff_fg.mpr LA.fg
   have := LA.free

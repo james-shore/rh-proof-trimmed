@@ -61,25 +61,6 @@ open GlobalTheory.ChainFr Matrix
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 noncomputable section
 namespace GlobalTheory.RealSep
-section Generic
-open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.BigNZ
-variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
-  {a a' : ℕ} {B : Base F E} {G : Geo σ a a'} {X : Chars F E} {om : Rep σ G.V G.W} {om' : Rep σ G.V' G.W}
-end Generic
-section Nonzero
-open GlobalTheory.BigNZ GlobalTheory.AdelicU
-open GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation (spV spW spW₁ spV₁ blkU conjU UB)
-end Nonzero
-section Read
-open GlobalTheory.SquareComm GlobalTheory.SquareAgree GlobalTheory.Grid GlobalTheory.TripleRead GlobalTheory.SquareIdent
-open GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation (incM conjU)
-variable {D : D7}
-end Read
-section Grid
-open GlobalTheory.SquareComm GlobalTheory.SquareAgree GlobalTheory.TripleRead GlobalTheory.SquareIdent GlobalTheory.SquareDict GlobalTheory.BigNZ
-open GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation (alpha beta blkU spV spW spW₁ spV₁ xiV xiV₁)
-variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc}
-end Grid
 section Null
 open GlobalTheory.SquareComm GlobalTheory.SquareIdent GlobalTheory.SquareDict
 open GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation (alpha beta spV spW spW₁ spV₁)
@@ -108,7 +89,7 @@ theorem exists_nullSpace_realPlace (hP : _root_.GlobalTheory.FunPr.ThetaLocalInp
   choose a b ha hb _ using (hT μ₀).gap
   obtain ⟨Pr, q, H⟩ := _root_.GlobalTheory.T.thetaIntegral_factors_through_kType hP hK hLM D W.ψ W.θ W.ψ_std W.θ_is _ _ _ A A₁ (frSum AV AV₁) a b
   replace H := fun t => H _ _ (hT t) fun τ => ⟨GlobalTheory.SquareRel.hasInfExp_alpha G i j hL μ₀ t τ (ha τ), hb τ⟩
-  choose ωA ωB hωA hωB using fun t => _root_.GlobalTheory.T.weilRepresentation_square_comm hP D W.ψ W.ψ_std _ _ _ _ _ (hT t)
+  choose ωA ωB hωA hωB using fun t => _root_.GlobalTheory.SquareComm.WeilOfTriple.exists_weilPair_of_triple hP D W.ψ W.ψ_std _ _ _ _ _ (hT t)
   have hbig : Node.InRange D.R.m (.grid (i + 1) (j + 1)) := ⟨i.2, j.2⟩
   have form : ∀ B (ρ : RealMatch W) t (M : Vol G), M.Is t → ∀ n Φ τ τ',
       (∀ w ∈ locPl G t, depthAt G w ≤ n w ∧ IsNatDatum (unifAt w) (n w) (Φ w)) → HasFlip B t ρ i j n Φ τ τ' →
@@ -227,15 +208,3 @@ end GlobalTheory.RealSep
 end
 end
 
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.Theta Formalism.L2.DIV IsDedekindDomain NumberField MeasureTheory
-open GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.FunObj.SqNum GlobalTheory.RowTest GlobalTheory.SqTop GlobalTheory.SqTower GlobalTheory.SplitFlip GlobalTheory.SplitWeil GlobalTheory.StdFrames GlobalTheory.ChainFr GlobalTheory.SquareDict GlobalTheory.SquareComm
-open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
-open GlobalTheory.ConstRatio (Factor)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
-
-theorem _root_.GlobalTheory.T.theta_real_places_separation : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.LocalMatching →
-  GBig fun {D} T _ _ G _ _ _ _ => ∀ (W : G.Weil) (B : Frames G) (ρ ρ₀ : RealMatch W), ρ₀.vX = ρ.vX → ρ₀.vT = ρ.vT →
-    ∀ i j : Fin D.R.m, ∃ lam : ℂ, lam ≠ 0 ∧ ∀ (t : T) (c' c₀ : ℂ), IsSquareConst W B ρ t i j c' → RegConst W B ρ₀ t i j c₀ → c₀ ≠ 0 ∧ c' = lam * c₀ := by
-  first | exact @_root_.GlobalTheory.RealSep.realPlace_theta_matching | exact _root_.GlobalTheory.RealSep.realPlace_theta_matching | (intros; apply _root_.GlobalTheory.RealSep.realPlace_theta_matching <;> assumption)
-end

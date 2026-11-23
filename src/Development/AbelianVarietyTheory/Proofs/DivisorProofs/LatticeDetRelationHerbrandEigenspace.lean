@@ -81,36 +81,11 @@ theorem evalVec_injective : ∀ (C : Type) [Field C] (w : Valuation C ℝ≥0) (
     Function.Injective (evalVec (liftA hv a) N) :=
   GlobalTheory.T.evalQuotientRingVectorAtPoints_injective
 
-theorem eigenSub_iff : ∀ (C : Type) [Field C] (w : Valuation C ℝ≥0) (v : AddValuation C (WithTop ℝ))
-    (hv : ∀ x, x ∈ Int0 v ↔ x ∈ w.valuationSubring) (S : Type) [Fintype S] [DecidableEq S]
-    (a : S → w.valuationSubring) (N : ℕ) (τ : S), Function.Injective a →
-    Function.Injective (evalVec (liftA hv a) N) →
-    (∀ y, y ∈ freeLattice a N ↔ ∃ x, evalVec (liftA hv a) N x = y) →
-    ∀ y : Fin N → C, y ∈ eigenSub (W := fun _ => Fin N → C) (freeLattice a N) τ ↔
-      ∃ z ∈ GlobalTheory.IndefiniteRowSideFullHecke.MultiplicationKernelIdentity.eigSub (liftA hv a) τ (Fin N → RS (liftA hv a)),
-        (fun i => ((GlobalTheory.IndefiniteRowSideFullHecke.MultiplicationKernelIdentity.comp (liftA hv a) N τ z i : Int0 v) : C)) = y :=
-  GlobalTheory.T.eigenSublattice_freeLattice_iff_eval
-
 theorem mem_of_components : ∀ (C : Type) [Field C] (w : Valuation C ℝ≥0) (S : Type) [Fintype S]
     [DecidableEq S] (a : S → w.valuationSubring) (N : ℕ)
     (F : Submodule w.valuationSubring (S → Fin N → C)), Function.Injective a → IsFiltration a F →
     ∀ x ∈ freeLattice a N, (∀ s, x s ∈ filSpace F s) → x ∈ F :=
   GlobalTheory.T.mem_filtration_of_components_mem_eigenSpan
-
-theorem lie_iff : ∀ (C : Type) [Field C] (w : Valuation C ℝ≥0) (v : AddValuation C (WithTop ℝ))
-    (hv : ∀ x, x ∈ Int0 v ↔ x ∈ w.valuationSubring) (S : Type) [Fintype S] [DecidableEq S]
-    (a : S → w.valuationSubring) (N : ℕ) (F : Submodule w.valuationSubring (S → Fin N → C))
-    (τ : S), Function.Injective a → IsFiltration a F →
-    Function.Injective (evalVec (liftA hv a) N) →
-    (∀ y, y ∈ freeLattice a N ↔ ∃ x, evalVec (liftA hv a) N x = y) →
-    (∀ x, x ∈ (Submodule.span (RS (liftA hv a)) {x : Fin _ → RS (liftA hv a) | (fun s i => ↑(ev (liftA hv a) s (x i))) ∈ F}) ↔ evalVec (liftA hv a) N x ∈ F) →
-    (∀ x ∈ freeLattice a N, (∀ s, x s ∈ filSpace F s) → x ∈ F) →
-    ∀ z : (Fin N → C) ⧸ filSpace F τ, z ∈ eigenSub (lie (freeLattice a N) F) τ ↔
-      ∃ x : Fin N → RS (liftA hv a),
-        proj (liftA hv a) ((Submodule.span (RS (liftA hv a)) {x : Fin _ → RS (liftA hv a) | (fun s i => ↑(ev (liftA hv a) s (x i))) ∈ F})) x ∈
-          GlobalTheory.IndefiniteRowSideFullHecke.MultiplicationKernelIdentity.eigSub (liftA hv a) τ ((Fin N → RS (liftA hv a)) ⧸ (Submodule.span (RS (liftA hv a)) {x : Fin _ → RS (liftA hv a) | (fun s i => ↑(ev (liftA hv a) s (x i))) ∈ F})) ∧
-        quotMap (w := w) (filSpace F τ) (fun i => ((GlobalTheory.IndefiniteRowSideFullHecke.MultiplicationKernelIdentity.comp (liftA hv a) N τ x i : Int0 v) : C)) = z :=
-  GlobalTheory.T.lieEigenSublattice_iff_eval_flat
 
 end GlobalTheory.HerbrandBridge
 
@@ -288,10 +263,10 @@ theorem exForm : ∀ (C : Type) [Field C] (w : Valuation C ℝ≥0) (ℓ : C), 0
     ha (Subtype.ext (congrArg (fun z : Int0 (toAddVal w ℓ h0 h1) => (z : C)) h))
   let P := filPre (liftA hv a) (N := p + q) Fil
   have hmem (x : Fin (p + q) → RS (liftA hv a)) : x ∈ P ↔ evalVec (liftA hv a) (p + q) x ∈ Fil :=
-    filPre_mem C w _ hv S a (p + q) Fil hF.stable x
-  have hrange := evalVec_range C w _ hv S a (p + q)
-  have hinj := evalVec_injective C w _ hv S a (p + q) ha
-  have hcomp := mem_of_components C w S a (p + q) Fil ha hF
+    _root_.GlobalTheory.FilPreMem.filPre_mem_iff C w _ hv S a (p + q) Fil hF.stable x
+  have hrange := _root_.GlobalTheory.EvalVecRange.evalVec_range C w _ hv S a (p + q)
+  have hinj := _root_.GlobalTheory.HerbrandBridge.evalVec_injective_of_injective C w _ hv S a (p + q) ha
+  have hcomp := _root_.GlobalTheory.Div.KerFil.mem_of_components C w S a (p + q) Fil ha hF
   have hsat : ∀ (c : Int0 (toAddVal w ℓ h0 h1)) (x : Fin (p + q) → RS (liftA hv a)), c ≠ 0 →
       c • x ∈ P → x ∈ P := by
     intro c x hc hcx
@@ -368,7 +343,7 @@ theorem exForm : ∀ (C : Type) [Field C] (w : Valuation C ℝ≥0) (ℓ : C), 0
       (fun c z => by funext i; simp only [map_smul, Pi.smul_apply, smul_eq_mul]; rfl)
       (fun z z' hz => by rw [show z = z' from hz])
       (fun k => (h k : Fin (p + q) → RS (liftA hv a))) (fun k => rfl) _ (fun y => ?_)
-    rw [eigenSub_iff C w _ hv S a (p + q) τ ha hinj hrange y]
+    rw [_root_.GlobalTheory.EigenSubEval.eigenSub_iff_eval C w _ hv S a (p + q) τ ha hinj hrange y]
     simp only [LinearMap.id_apply]
   · refine span_eq_of_basis hv (GlobalTheory.IndefiniteRowSideFullHecke.MultiplicationKernelIdentity.eigSub (liftA hv a) τ ((Fin (p + q) → RS (liftA hv a)) ⧸ P)) l (proj (liftA hv a) P)
       (fun z => quotMap (w := w) (filSpace Fil τ)
@@ -387,7 +362,7 @@ theorem exForm : ∀ (C : Type) [Field C] (w : Valuation C ℝ≥0) (ℓ : C), 0
       refine Submodule.subset_span ⟨_, h2, ?_⟩
       funext i
       rfl
-    · exact lie_iff C w _ hv S a (p + q) Fil τ ha hF hinj hrange hmem hcomp y
+    · exact _root_.GlobalTheory.lie_eigenSub_iff_flat C w _ hv S a (p + q) Fil τ ha hF hinj hrange hmem hcomp y
   · exact span_eq_of_basis hv (eigQuot (liftA hv a) P τ) fb
       LinearMap.id (fun z i => ((z i : Int0 (toAddVal w ℓ h0 h1)) : C))
       (fun z z' => by funext i; rfl) (fun c z => by funext i; rfl)

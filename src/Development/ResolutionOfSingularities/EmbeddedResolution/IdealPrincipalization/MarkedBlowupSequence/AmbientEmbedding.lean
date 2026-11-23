@@ -79,8 +79,8 @@ private theorem isNoetherian_blowup_of_isNoetherian (hno : BlowupPreservesNoethe
 
 private theorem comap_imageIdealSheaf_of_isClosedImmersion {S' A : Scheme.{u}} (σ : S' ⟶ A)
     [AlgebraicGeometry.IsClosedImmersion σ] (J : S'.IdealSheafData) :
-    (imageIdealSheaf σ J).comap σ = J := by
-  have h : imageIdealSheaf σ J = J.map σ := rfl
+    (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ J).comap σ = J := by
+  have h : _root_.FunctorialResolution.Blowup.schemeImageIdeal σ J = J.map σ := rfl
   rw [h]
   exact Blowup.comap_map_of_isClosedImmersion σ J
 
@@ -93,21 +93,21 @@ private theorem exists_closedImmersion_blowup_of_isBlowupAlongIdealSheaf (hres :
     [AlgebraicGeometry.IsClosedImmersion σ] (J : S'.IdealSheafData) {S'' : Scheme.{u}}
     (f : S'' ⟶ S') (hf : Blowup.IsBlowupAlongIdealSheaf f J)
     (hc : ∀ T ∈ irreducibleComponents ↥S', ¬ T ⊆ (J.support : Set ↥S')) :
-    ∃ τ : S'' ⟶ Blowup.blowup (imageIdealSheaf σ J),
+    ∃ τ : S'' ⟶ Blowup.blowup (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ J),
       AlgebraicGeometry.IsClosedImmersion τ ∧
-      τ ≫ Blowup.blowup.proj (imageIdealSheaf σ J) = f ≫ σ ∧
-      τ.ker = Blowup.strictTransform (Blowup.blowup.proj (imageIdealSheaf σ J)) (imageIdealSheaf σ J) σ.ker := by
-  have hπ : Blowup.IsBlowupAlongIdealSheaf (Blowup.blowup.proj (imageIdealSheaf σ J)) (imageIdealSheaf σ J) :=
+      τ ≫ Blowup.blowup.proj (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ J) = f ≫ σ ∧
+      τ.ker = Blowup.strictTransform (Blowup.blowup.proj (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ J)) (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ J) σ.ker := by
+  have hπ : Blowup.IsBlowupAlongIdealSheaf (Blowup.blowup.proj (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ J)) (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ J) :=
     Blowup.blowup.isBlowupAlongIdealSheaf_proj _
-  have hcomap : (imageIdealSheaf σ J).comap σ = J := comap_imageIdealSheaf_of_isClosedImmersion σ J
+  have hcomap : (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ J).comap σ = J := comap_imageIdealSheaf_of_isClosedImmersion σ J
   have hsupp : ∀ T ∈ irreducibleComponents ↥S',
-      ¬ (σ.base '' T) ⊆ ((imageIdealSheaf σ J).support : Set ↥A) := by
+      ¬ (σ.base '' T) ⊆ ((_root_.FunctorialResolution.Blowup.schemeImageIdeal σ J).support : Set ↥A) := by
     intro T hT hsub
     refine hc T hT ?_
-    have h2 := (Set.image_subset_iff.mp hsub).trans (preimage_support_subset_support_comap σ (imageIdealSheaf σ J))
+    have h2 := (Set.image_subset_iff.mp hsub).trans (preimage_support_subset_support_comap σ (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ J))
     rwa [hcomap] at h2
-  obtain ⟨ψ, hψ1, hψ2⟩ := hres A (Blowup.blowup (imageIdealSheaf σ J)) S' σ
-    (Blowup.blowup.proj (imageIdealSheaf σ J)) (imageIdealSheaf σ J) hπ hsupp
+  obtain ⟨ψ, hψ1, hψ2⟩ := hres A (Blowup.blowup (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ J)) S' σ
+    (Blowup.blowup.proj (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ J)) (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ J) hπ hsupp
   rw [hcomap] at hψ2
   have hab : hψ2.lift f hf.1 ≫ ψ = f := hψ2.lift_comp f hf.1
   have hba : hf.lift ψ hψ2.1 ≫ f = ψ := hf.lift_comp ψ hψ2.1
@@ -119,7 +119,7 @@ private theorem exists_closedImmersion_blowup_of_isBlowupAlongIdealSheaf (hres :
     rw [Category.assoc, hab, hba]
   have : IsIso (hψ2.lift f hf.1) := ⟨⟨hf.lift ψ hψ2.1, hid1, hid2⟩⟩
   refine ⟨hψ2.lift f hf.1 ≫
-      (Blowup.strictTransform (Blowup.blowup.proj (imageIdealSheaf σ J)) (imageIdealSheaf σ J) σ.ker).subschemeι,
+      (Blowup.strictTransform (Blowup.blowup.proj (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ J)) (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ J) σ.ker).subschemeι,
     inferInstance, ?_, ?_⟩
   · rw [Category.assoc, ← hψ1, ← Category.assoc, hab]
   · rw [Scheme.Hom.ker_comp_of_isIso]
@@ -131,11 +131,11 @@ private theorem exists_closedImmersion_blowup_imageIdealSheaf_of_lt_length (hres
     (hσ : AlgebraicGeometry.IsClosedImmersion σ) (hA : AlgebraicGeometry.IsNoetherian A)
     (hc : ∀ T ∈ irreducibleComponents ↥(s.obj n),
         ¬ T ⊆ ((s.center n).support : Set ↥(s.obj n))) :
-    ∃ τ : s.obj (n + 1) ⟶ Blowup.blowup (imageIdealSheaf σ (s.center n)),
+    ∃ τ : s.obj (n + 1) ⟶ Blowup.blowup (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ (s.center n)),
       AlgebraicGeometry.IsClosedImmersion τ ∧
-      τ ≫ Blowup.blowup.proj (imageIdealSheaf σ (s.center n)) = s.map n ≫ σ ∧
-      τ.ker = Blowup.strictTransform (Blowup.blowup.proj (imageIdealSheaf σ (s.center n)))
-          (imageIdealSheaf σ (s.center n)) σ.ker := by
+      τ ≫ Blowup.blowup.proj (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ (s.center n)) = s.map n ≫ σ ∧
+      τ.ker = Blowup.strictTransform (Blowup.blowup.proj (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ (s.center n)))
+          (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ (s.center n)) σ.ker := by
   have := hσ
   have := hA
   have : AlgebraicGeometry.IsLocallyNoetherian A := inferInstance
@@ -148,7 +148,7 @@ def embeddingIntoAmbientBlowup (hres : FunctorialResolution.Blowup.StrictTransfo
     (hσ : AlgebraicGeometry.IsClosedImmersion σ) (hA : AlgebraicGeometry.IsNoetherian A)
     (hc : ∀ T ∈ irreducibleComponents ↥(s.obj n),
         ¬ T ⊆ ((s.center n).support : Set ↥(s.obj n))) :
-    s.obj (n + 1) ⟶ Blowup.blowup (imageIdealSheaf σ (s.center n)) :=
+    s.obj (n + 1) ⟶ Blowup.blowup (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ (s.center n)) :=
   (exists_closedImmersion_blowup_imageIdealSheaf_of_lt_length hres hno s n hn A σ hσ hA hc).choose
 
 private theorem isClosedImmersion_embeddingIntoBlowupImageIdealSheaf (hres : FunctorialResolution.Blowup.StrictTransformIsBlowupOfClosedSubscheme.{u})
@@ -166,7 +166,7 @@ private theorem embeddingIntoBlowupImageIdealSheaf_comp_proj (hres : FunctorialR
     (hσ : AlgebraicGeometry.IsClosedImmersion σ) (hA : AlgebraicGeometry.IsNoetherian A)
     (hc : ∀ T ∈ irreducibleComponents ↥(s.obj n),
         ¬ T ⊆ ((s.center n).support : Set ↥(s.obj n))) :
-    embeddingIntoAmbientBlowup hres hno s n hn A σ hσ hA hc ≫ Blowup.blowup.proj (imageIdealSheaf σ (s.center n)) =
+    embeddingIntoAmbientBlowup hres hno s n hn A σ hσ hA hc ≫ Blowup.blowup.proj (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ (s.center n)) =
       s.map n ≫ σ :=
   (exists_closedImmersion_blowup_imageIdealSheaf_of_lt_length hres hno s n hn A σ hσ hA hc).choose_spec.2.1
 
@@ -177,8 +177,8 @@ private theorem ker_embeddingIntoBlowupImageIdealSheaf (hres : FunctorialResolut
     (hc : ∀ T ∈ irreducibleComponents ↥(s.obj n),
         ¬ T ⊆ ((s.center n).support : Set ↥(s.obj n))) :
     (embeddingIntoAmbientBlowup hres hno s n hn A σ hσ hA hc).ker =
-      Blowup.strictTransform (Blowup.blowup.proj (imageIdealSheaf σ (s.center n)))
-        (imageIdealSheaf σ (s.center n)) σ.ker :=
+      Blowup.strictTransform (Blowup.blowup.proj (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ (s.center n)))
+        (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ (s.center n)) σ.ker :=
   (exists_closedImmersion_blowup_imageIdealSheaf_of_lt_length hres hno s n hn A σ hσ hA hc).choose_spec.2.2
 
 def ambientEmbeddingZero {S X : Scheme.{u}} (ι : S ⟶ X)
@@ -196,7 +196,7 @@ def ambientEmbeddingSucc (hres : FunctorialResolution.Blowup.StrictTransformIsBl
     (n : ℕ) (st : AmbientEmbedding s n) :
     Σ t : AmbientEmbedding s (n + 1), (t.ambient ⟶ st.ambient) :=
   if h : n < s.length then
-    ⟨{ ambient := Blowup.blowup (imageIdealSheaf st.emb (s.center n))
+    ⟨{ ambient := Blowup.blowup (_root_.FunctorialResolution.Blowup.schemeImageIdeal st.emb (s.center n))
        emb := embeddingIntoAmbientBlowup hres hno s n h st.ambient st.emb st.emb_isClosedImmersion
          (st.isNoetherian_ambient_of_le_length (Nat.le_of_lt h)) (hcen n h)
        emb_isClosedImmersion := by
@@ -205,8 +205,8 @@ def ambientEmbeddingSucc (hres : FunctorialResolution.Blowup.StrictTransformIsBl
        isNoetherian_ambient_of_le_length := by
          intro _
          exact isNoetherian_blowup_of_isNoetherian hno (st.isNoetherian_ambient_of_le_length (Nat.le_of_lt h))
-           (imageIdealSheaf st.emb (s.center n)) },
-     Blowup.blowup.proj (imageIdealSheaf st.emb (s.center n))⟩
+           (_root_.FunctorialResolution.Blowup.schemeImageIdeal st.emb (s.center n)) },
+     Blowup.blowup.proj (_root_.FunctorialResolution.Blowup.schemeImageIdeal st.emb (s.center n))⟩
   else
     ⟨{ ambient := s.obj (n + 1)
        emb := 𝟙 (s.obj (n + 1))
@@ -219,7 +219,7 @@ private theorem isBlowupAlongIdealSheaf_succAmbientEmbeddingMorphism (hres : Fun
     (hcen : ∀ i, i < s.length → ∀ T ∈ irreducibleComponents ↥(s.obj i),
         ¬ T ⊆ ((s.center i).support : Set ↥(s.obj i)))
     (n : ℕ) (st : AmbientEmbedding s n) (h : n < s.length) :
-    Blowup.IsBlowupAlongIdealSheaf (ambientEmbeddingSucc hres hno s hcen n st).2 (imageIdealSheaf st.emb (s.center n)) := by
+    Blowup.IsBlowupAlongIdealSheaf (ambientEmbeddingSucc hres hno s hcen n st).2 (_root_.FunctorialResolution.Blowup.schemeImageIdeal st.emb (s.center n)) := by
   unfold ambientEmbeddingSucc
   rw [dite_eq_left h]
   exact Blowup.blowup.isBlowupAlongIdealSheaf_proj _
@@ -246,7 +246,7 @@ private theorem ker_succAmbientEmbedding_eq_strictTransform (hres : FunctorialRe
     (n : ℕ) (st : AmbientEmbedding s n) (h : n < s.length) :
     (ambientEmbeddingSucc hres hno s hcen n st).1.emb.ker =
       Blowup.strictTransform (ambientEmbeddingSucc hres hno s hcen n st).2
-        (imageIdealSheaf st.emb (s.center n)) st.emb.ker := by
+        (_root_.FunctorialResolution.Blowup.schemeImageIdeal st.emb (s.center n)) st.emb.ker := by
   unfold ambientEmbeddingSucc
   rw [dite_eq_left h]
   exact ker_embeddingIntoBlowupImageIdealSheaf hres hno s n h st.ambient st.emb st.emb_isClosedImmersion
@@ -278,7 +278,7 @@ theorem isBlowupAlongIdealSheaf_ambientBlowupMorphism {S X : Scheme.{u}} (ι : S
     (hcen : ∀ i, i < s.length → ∀ T ∈ irreducibleComponents ↥(s.obj i),
         ¬ T ⊆ ((s.center i).support : Set ↥(s.obj i))) (n : ℕ) (hn : n < s.length) :
     Blowup.IsBlowupAlongIdealSheaf (ambientEmbeddingSuccMap ι s hres hno hcen n)
-      (imageIdealSheaf (ambientEmbedding ι s hres hno hcen n).emb (s.center n)) :=
+      (_root_.FunctorialResolution.Blowup.schemeImageIdeal (ambientEmbedding ι s hres hno hcen n).emb (s.center n)) :=
   isBlowupAlongIdealSheaf_succAmbientEmbeddingMorphism hres hno s hcen n (ambientEmbedding ι s hres hno hcen n) hn
 
 def ambientBlowupSequence {S X : Scheme.{u}} (ι : S ⟶ X)
@@ -291,7 +291,7 @@ def ambientBlowupSequence {S X : Scheme.{u}} (ι : S ⟶ X)
   obj := fun n => (ambientEmbedding ι s hres hno hcen n).ambient
   map := fun n => ambientEmbeddingSuccMap ι s hres hno hcen n
   isoZero := Iso.refl X
-  center := fun n => imageIdealSheaf (ambientEmbedding ι s hres hno hcen n).emb (s.center n)
+  center := fun n => _root_.FunctorialResolution.Blowup.schemeImageIdeal (ambientEmbedding ι s hres hno hcen n).emb (s.center n)
   isBlowup := fun n hn => isBlowupAlongIdealSheaf_ambientBlowupMorphism ι s hres hno hcen n hn
 
 def embeddingIntoAmbientBlowupSequence {S X : Scheme.{u}} (ι : S ⟶ X)
@@ -328,7 +328,7 @@ theorem ambientBlowupSequence_center {S X : Scheme.{u}} (ι : S ⟶ X)
     (hcen : ∀ i, i < s.length → ∀ T ∈ irreducibleComponents ↥(s.obj i),
         ¬ T ⊆ ((s.center i).support : Set ↥(s.obj i))) (n : ℕ) :
     (ambientBlowupSequence ι s hres hno hcen).center n =
-      imageIdealSheaf (embeddingIntoAmbientBlowupSequence ι s hres hno hcen n) (s.center n) := rfl
+      _root_.FunctorialResolution.Blowup.schemeImageIdeal (embeddingIntoAmbientBlowupSequence ι s hres hno hcen n) (s.center n) := rfl
 
 theorem isNoetherian_ambientBlowupSequence_schemeAt {S X : Scheme.{u}} (ι : S ⟶ X)
     [AlgebraicGeometry.IsClosedImmersion ι] [AlgebraicGeometry.IsNoetherian X]

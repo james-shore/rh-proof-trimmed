@@ -55,7 +55,7 @@ open GlobalTheory.KS
 
 namespace GlobalTheory.KS.GlueDer
 
-theorem rsT_eq {Y : Scheme.{0}} {O₀ O : Y.Opens} (h : O ≤ O₀) (s : Γ(Y, O₀)) : rsT s O = resG Y h s := dif_pos h
+alias rsT_eq := _root_.GlobalTheory.KS.rsT_of_le
 
 theorem res_res {Y : Scheme.{0}} {U V V' : Y.Opens} (h : V ≤ U) (h' : V' ≤ V) (s : Γ(Y, U)) :
     resG Y h' (resG Y h s) = resG Y (h'.trans h) s := by

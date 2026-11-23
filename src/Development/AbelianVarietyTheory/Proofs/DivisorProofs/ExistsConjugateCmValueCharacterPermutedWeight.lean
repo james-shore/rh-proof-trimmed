@@ -177,10 +177,6 @@ theorem infChar_local (φ : I → E →+* ℂ) (n : I → ℤ) (v : HeightOneSpe
 theorem finPartI_finIdele (y : (Af E)ˣ) : GlobalTheory.Mem.Chr.finPartI E (finIdele E y) = finIdele E y :=
   GlobalTheory.Mem.Chr.finPartI_eq_self fun _ => rfl
 
-theorem finPartI_local (v : HeightOneSpectrum (𝓞 E)) (x : (v.adicCompletion E)ˣ) :
-    GlobalTheory.Mem.Chr.finPartI E (localIdele E v x) = localIdele E v x :=
-  GlobalTheory.Mem.Chr.finPartI_eq_self fun _ => rfl
-
 theorem finPartI_diag (k : Eˣ) :
     GlobalTheory.Mem.Chr.finPartI E (diagUnits E k) = finIdele E (Units.map (algebraMap E (Af E)).toMonoidHom k) :=
   Units.ext rfl
@@ -307,7 +303,7 @@ theorem conjChar_loc (v : HeightOneSpectrum (𝓞 E)) (x : (v.adicCompletion E)�
   show (conjChar φ σ p hp χ m hχ).1 (localIdele E v x) = _
   rw [conjChar_apply, infChar_local, one_mul]
   show Units.map (σ : ℂ →+* ℂ).toMonoidHom (χ.1 (GlobalTheory.Mem.Chr.finPartI E (localIdele E v x))) = _
-  rw [finPartI_local]
+  rw [_root_.GlobalTheory.Mem.KerDet.finPartI_localIdele]
   rfl
 
 theorem conjChar_finPart (y : (Af E)ˣ) :

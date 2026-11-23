@@ -55,5 +55,4 @@ theorem main (hChain : Chain) : OpenCoset :=
 end LateralTheory.DivDb.OpenCosetPf
 
 namespace LateralTheory.DivDb
-theorem OpenCoset_of (hChain : Chain) : OpenCoset := OpenCosetPf.main hChain
 end LateralTheory.DivDb

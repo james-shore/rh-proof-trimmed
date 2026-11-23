@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.EpsilonPairingZeta
 import Development.AbelianVarietyTheory.Definitions.Divisors.GhostFrobenius
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConstantCoeffNmul
 
 @[expose] public section
 
@@ -227,28 +228,6 @@ private theorem dIn_univ_of_QL_of_isLaw {B Q : Type} [CommRing B] [CommRing Q] [
 
 open MvPowerSeries in
 set_option autoImplicit false in
-private theorem constantCoeff_nmul_eq_zero {d : ℕ} {R : Type} [CommRing R]
-    {μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) R} (hμ : ∀ i, constantCoeff (μ i) = 0) (k : ℕ) (i : Fin d) :
-    constantCoeff (_root_.GlobalTheory.QLog.nmul μ k i) = 0 := by
-  induction k generalizing i with
-  | zero => simp [_root_.GlobalTheory.QLog.nmul]
-  | succ k ih =>
-    have hstep : _root_.GlobalTheory.QLog.nmul μ (k + 1) i =
-        _root_.GlobalTheory.Katz.at2 (μ i) (_root_.GlobalTheory.QLog.nmul μ k) (fun j => X j) := by
-      unfold _root_.GlobalTheory.QLog.nmul
-      rw [Function.iterate_succ_apply']
-      rfl
-    rw [hstep]
-    unfold _root_.GlobalTheory.Katz.at2
-    have ha : ∀ j : Fin d ⊕ Fin d,
-        constantCoeff (Sum.elim (_root_.GlobalTheory.QLog.nmul μ k) (fun j => (X j : MvPowerSeries (Fin d) R)) j) = 0 := by
-      rintro (j | j)
-      · exact ih j
-      · simp
-    exact constantCoeff_subst_eq_zero (hasSubst_of_constantCoeff_zero ha) ha (hμ i)
-
-open MvPowerSeries in
-set_option autoImplicit false in
 private theorem hasVal_zero_of_constantCoeff_eq_zero {p : ℕ} {B Q : Type} [CommRing B] [CommRing Q] [Algebra B Q] {d : ℕ}
     {f : MvPowerSeries (Fin d) Q} (hf : constantCoeff f = 0) :
     _root_.GlobalTheory.QLog.HasVal p (fun _ : Fin d => (0 : B)) f 0 := by
@@ -291,7 +270,7 @@ theorem _root_.GlobalTheory.QLogPeriod.hasPeriod_hodgeTate : ∀ (p : ℕ) [Fact
   rw [hs] at hval_s
   have hdiff : _root_.GlobalTheory.QLog.DIn (B := O) ⊤ f := dIn_univ_of_QL_of_isLaw c.12 hQL
   have hu0 : ∀ j, constantCoeff (_root_.GlobalTheory.QLog.nmul c.μ (p ^ n) j) = 0 :=
-    constantCoeff_nmul_eq_zero c.12.1 (p ^ n)
+    _root_.GlobalTheory.QLogDefect.constantCoeff_nmul c.12.1 (p ^ n)
   have hEu : (fun j => Ez (_root_.GlobalTheory.QLog.nmul c.μ (p ^ n) j)) = fun _ => (0 : O) := by
     funext j
     simp only [Ez, AlgHom.comp_apply]

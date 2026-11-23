@@ -164,8 +164,8 @@ theorem exists_subspace_isometric : Out.Laws → Out.Laws2 → ∀ (E : Type) [F
   have hud := T.torusCoordinateRatio_differentiableAt_origin a.D₀ g n Ha.ex₀ _ (hb _ _) Ha.add Ha.hol_b Ha.hol_chi u hu
   have hu1 : ∀ x, u x 0 = 1 := fun x => mul_left_cancel₀ (hu0 x 0) (by simpa using (hum x 0 0).symm)
   have hue : ∀ x z, u x z = Complex.exp (fderiv ℂ (u x) 0 z) := fun x =>
-    Doubling.eq_cexp_fderiv_of_map_add (hud x) (hu0 x 0) (hum x)
-  obtain ⟨hz1, htor⟩ := T.torusCoordinateRatio_eq_torusCoord_over_origin a.D₀ g n Ha.ex₀ sB hb hadd hpull Ha.add
+    _root_.GlobalTheory.ExpOfFrechetDerivative.eq_exp_fderiv (hud x) (hu0 x 0) (hum x)
+  obtain ⟨hz1, htor⟩ := _root_.GlobalTheory.AbelianLetters.TorusRatio.ratio_eq_torus_coord a.D₀ g n Ha.ex₀ sB hb hadd hpull Ha.add
   let p : ℂ → (Fin g ⊕ Fin g → ℤ) →+ (Fin g → ℂ) := fun w => (Ha.Pw w).comp Θ.bas.toAddMonoidHom
   have hp : ∀ w v, p w v = Ha.Pw w (Θ.bas v) := fun _ _ => rfl
   let V : Submodule ℂ (Fin g → ℂ) := ⨅ x, LinearMap.ker (fderiv ℂ (u x) 0).toLinearMap
@@ -197,10 +197,10 @@ theorem exists_subspace_isometric : Out.Laws → Out.Laws2 → ∀ (E : Type) [F
       · rw [map_nsmul, hy, smul_zero]
       · rw [map_nsmul, Nat.cast_smul_eq_nsmul]
   refine ⟨V, hV, fun v ν z hv hν hz => ?_⟩
-  have hνb : ν.b.left = v.left := by rw [hν.1, hb, T.tangentVector_pow_scale_inv_eq _ v n hn hv]
+  have hνb : ν.b.left = v.left := by rw [hν.1, hb, _root_.GlobalTheory.AbelianLetters.scale_tangent_pow _ v n hn hv]
   have hd : IsDerivAt0 (fun z => (show Sp ℂ ⟶ _ from (Ha.ex₀ z).b.left)) z v.left := hνb ▸ hz.1
   have hzV : z ∈ V := (Submodule.mem_iInf _).2 fun x =>
-    T.fderiv_torusCoordinateRatio_eq_zero_of_tangent a.D₀ g n Ha.ex₀ sB hb hadd hpull Ha.add Ha.hol_b Ha.hol_chi hn u hu hud hu1 v ν z hν hd hz.2 x
+    _root_.GlobalTheory.AbelianLetters.fderiv_ratio_eq_zero a.D₀ g n Ha.ex₀ sB hb hadd hpull Ha.add Ha.hol_b Ha.hol_chi hn u hu hud hu1 v ν z hν hd hz.2 x
   refine ⟨hzV, ?_⟩
   rintro w Hm x hw hR ⟨P', φ, wL, η', hφ, hwL, hη, uu, Hm', χ', z', hAH, hD, rfl⟩
   have hη' : η'.left ≫ φ = v.left := by
@@ -215,7 +215,7 @@ theorem exists_subspace_isometric : Out.Laws → Out.Laws2 → ∀ (E : Type) [F
   obtain ⟨fr, f₁, f₂, f₃, -, f₅⟩ := Θ.onB w hw
   obtain ⟨ρ, r₁, r₂, r₃⟩ := T.exists_entire_unit_appellHumbert_frame_ratio P'.A _ a.D₀.P.L P'.L a.D₀.P.isLB P'.isLB φ wL hwL g _ uu Hm' χ' hAH _ F
     (fun z => (hF z).trans (Category.id_comp _)) fr th _ f₁ f₂ f₃ f₅
-  obtain ⟨t₁, t₂, t₃⟩ := T.thetaCharOff_ne_zero_differentiable_quasiPeriodic' g Θ.S (Θ.τ w) Θ.c₁ Θ.c₂ (Θ.pos w hw).1 (Θ.pos w hw).2 Θ.half₁ Θ.half₂ Θ.c₁_S
+  obtain ⟨t₁, t₂, t₃⟩ := _root_.GlobalTheory.ThetaBlock.thetaCharOff_ne_zero_differentiable_quasiPeriodic g Θ.S (Θ.τ w) Θ.c₁ Θ.c₂ (Θ.pos w hw).1 (Θ.pos w hw).2 Θ.half₁ Θ.half₂ Θ.c₁_S
   have hfac : ∀ v, Ha.y (Θ.bas v) = 0 → ∃ a₁ b₁ : ℂ, a₁ ≠ 0 ∧
       (∀ z, Θ.κ * thetaCharOff Θ.S (Θ.τ w) Θ.c₁ Θ.c₂ (Θ.h.mulVec (z + p w v)) =
         a₁ * Complex.exp (dotForm Θ.h (fun i => (v (.inr i) : ℂ)) z) *

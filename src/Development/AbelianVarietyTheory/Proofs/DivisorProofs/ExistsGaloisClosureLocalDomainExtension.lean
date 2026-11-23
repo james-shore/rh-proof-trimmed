@@ -51,19 +51,6 @@ open GlobalTheory.Mum
 
 namespace GlobalTheory.GalClosure
 
-theorem exists_galois_embedding (R R' : Type) [CommRing R] [IsDomain R] [CharZero R] [CommRing R'] [IsDomain R']
-    [Algebra R R'] [Module.Finite R R'] (hinj : Function.Injective (algebraMap R R')) :
-    ∃ L : IntermediateField (FractionRing R) (AlgebraicClosure (FractionRing R)),
-      FiniteDimensional (FractionRing R) L ∧ IsGalois (FractionRing R) L ∧
-      ∃ j : R' →ₐ[R] L, Function.Injective j := by
-  first
-  | exact @_root_.GlobalTheory.GaloisEmbeddingExistence.exists_galois_embedding
-  | exact _root_.GlobalTheory.GaloisEmbeddingExistence.exists_galois_embedding
-  | (apply _root_.GlobalTheory.GaloisEmbeddingExistence.exists_galois_embedding <;> assumption)
-  | (intros; apply _root_.GlobalTheory.GaloisEmbeddingExistence.exists_galois_embedding <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.GaloisEmbeddingExistence.exists_galois_embedding <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.GaloisEmbeddingExistence.exists_galois_embedding ..)
-
 end GlobalTheory.GalClosure
 
 namespace GlobalTheory.GalClosure
@@ -131,7 +118,7 @@ theorem exists_galois_finExt_isLocalHom : ∀ (R R' : Type) [CommRing R] [IsDoma
   obtain ⟨-, hinj, hfin⟩ := hρ
   letI : Algebra R R' := ρ.toAlgebra
   haveI : Module.Finite R R' := hfin
-  obtain ⟨L, hLf, hLg, j, hj⟩ := exists_galois_embedding R R' hinj
+  obtain ⟨L, hLf, hLg, j, hj⟩ := _root_.GlobalTheory.GaloisEmbeddingExistence.exists_galois_embedding R R' hinj
   set B := integralClosure R L
   obtain ⟨hBfin, hBloc, hBn, hBic, -⟩ := GlobalTheory.integralClosure_finite_local_of_isAdicComplete R hRc L
   have hmem : ∀ x : R', j x ∈ B := fun x => (Algebra.IsIntegral.isIntegral (R := R) x).map j

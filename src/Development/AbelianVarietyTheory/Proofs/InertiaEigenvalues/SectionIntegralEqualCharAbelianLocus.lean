@@ -130,7 +130,7 @@ theorem inV_of_extIn_eqChar : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
   have hs : y' ≫ Y.s = spMap (k.comp (la.valuation c.F).valuationSubring.subtype) := by
     have e1 : spMap (algebraMap T.V T.Fr) ≫ (y' ≫ Y.s) =
         spMap (algebraMap T.V T.Fr) ≫ spMap (k.comp (la.valuation c.F).valuationSubring.subtype) := by
-      rw [← Category.assoc, ← h3, Category.assoc, GlobalTheory.TraitDataIntrinsic.j_s, ← Category.assoc, h2, sp_comp,
+      rw [← Category.assoc, ← h3, Category.assoc, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.Model.j_s, ← Category.assoc, h2, sp_comp,
         sp_comp, ← RingHom.comp_assoc, hk]
     obtain ⟨φ, hφ⟩ : ∃ φ : (la.valuation c.F).valuationSubring →+* T.V, y' ≫ Y.s = spMap φ :=
       ⟨(Spec.preimage (y' ≫ Y.s)).hom, by simp [spMap]⟩

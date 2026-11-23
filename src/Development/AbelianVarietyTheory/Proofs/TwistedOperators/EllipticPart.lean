@@ -108,7 +108,7 @@ theorem elliptic_expansion {E : Type} [Field E] [NumberField E] {F : Subfield E}
     ⟨continuous_of_mem_ccSmooth (continuous_archCoord σ J w) (ha w), (ha w).1⟩
   have hc := (continuous_of_mem_ccAd (tensor_mem_ccAd ha hf)).2
   obtain ⟨hfin, hfinx⟩ := GlobalTheory.TrFinite.finite_charpoly_and_ratPts F E σ hcm r J _ hc
-  have hpol := fun P => GlobalTheory.T.integral_charpolyKernel_eq_stableOrbitalIntegrals E F σ hcm hun r P J hJ L μa μf μ hμ fa ff ha' hf (dta P) (dtf P) (dt P) (ht P)
+  have hpol := fun P => _root_.GlobalTheory.TrEll.integral_polKernel E F σ hcm hun r P J hJ L μa μf μ hμ fa ff ha' hf (dta P) (dtf P) (dt P) (ht P)
   have hinj : Function.Injective (Subtype.val : PPol σ r → E[X]) := Subtype.val_injective
   set S : Finset (PPol σ r) := (hfin.preimage (f := fun P : PPol σ r => P.1) hinj.injOn).toFinset with hSdef
   have hS : ∀ (x : GAd σ J) (γ : GRat σ J) (P : PPol σ r), tensor σ J fa ff (x⁻¹ * ratEmb σ J γ * x) ≠ 0 →
@@ -135,7 +135,7 @@ theorem elliptic_expansion {E : Type} [Field E] [NumberField E] {F : Subfield E}
     exact hn (hS _ δ.1 P h δ.2)
   refine ⟨fun P => ⟨⟨(GlobalTheory.T.unitaryTorus_compact_quotient_finite_volume F E σ hcm r P).2 _ (ht P).haar, fun v => ?_, ?_⟩, fun w => ?_⟩,
     S.finite_toSet.subset hsupp, ?_, ?_⟩
-  · exact (GlobalTheory.T.local_stable_orbital_integrals_well_defined F E σ hcm r r P J hJ).1 v _ _ _ (hμ.haar_loc v) ((ht P).haar_loc v) (hf.1 v).1.continuous
+  · exact (_root_.GlobalTheory.TrPhiOK.phiOK_local F E σ hcm r r P J hJ).1 v _ _ _ (hμ.haar_loc v) ((ht P).haar_loc v) (hf.1 v).1.continuous
       (hf.1 v).2
   · have := isLattice_stdLattice (E := Fld P) (n := 1)
     filter_upwards [GlobalTheory.T.eventually_unitaryTorus_orbitalClass_trivial_local F E σ hcm r P J hJ L, hf.2, hμ.eventually_eq_one,
@@ -143,7 +143,7 @@ theorem elliptic_expansion {E : Type} [Field E] [NumberField E] {F : Subfield E}
     have h5 := h1.2.2.2 (μf v) (dtf P v) (hμ.haar_loc v) ((ht P).haar_loc v) h3 h4
     rw [h2, Phi, finsum_eq_single _ ⟨1, h1.1⟩ fun q hq => (h5 q).2 fun e => hq (Subtype.ext e)]
     exact (h5 _).1 rfl
-  · exact (GlobalTheory.T.local_stable_orbital_integrals_well_defined F E σ hcm r r P J hJ).2 w _ _ _ (hμ.haar_arch w) ((ht P).haar_arch w) (ha' w).1 (ha' w).2
+  · exact (_root_.GlobalTheory.TrPhiOK.phiOK_local F E σ hcm r r P J hJ).2 w _ _ _ (hμ.haar_arch w) ((ht P).haar_arch w) (ha' w).1 (ha' w).2
   · rw [hsum]
     exact integrable_finsetSum _ fun P _ => (hpol P).1
   · rw [hsum, integral_finsetSum _ fun P _ => (hpol P).1, finsum_eq_sum_of_support_subset _ hsupp, hterm]

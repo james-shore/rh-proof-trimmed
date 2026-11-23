@@ -276,10 +276,7 @@ theorem val_pow_anti {ϖ : kˣ} (hϖ : IsUnif ϖ) {a b : ℕ} (h : a ≤ b) :
   rw [Units.val_pow_eq_pow_val, Units.val_pow_eq_pow_val, map_pow, map_pow]
   exact pow_le_pow_of_le_one zero_le' h1 h
 
-theorem val_inv_pow_mono {ϖ : kˣ} (hϖ : IsUnif ϖ) {a b : ℕ} (h : a ≤ b) :
-    valuation k (((ϖ ^ a)⁻¹ : kˣ) : k) ≤ valuation k (((ϖ ^ b)⁻¹ : kˣ) : k) := by
-  rw [Units.val_inv_eq_inv_val, Units.val_inv_eq_inv_val, map_inv₀, map_inv₀]
-  exact inv_anti₀ (zero_lt_iff.2 (by simp)) (val_pow_anti hϖ h)
+alias val_inv_pow_mono := _root_.GlobalTheory.FunObj.FlatSupp.val_inv_pow_mono
 
 theorem IsSBArgs.mono {G : Grid k} {ϖ : kˣ} (hϖ : IsUnif ϖ) {n n' : ℕ} (h : n ≤ n') {F : ColArgs G → RowArgs G → ℂ}
     (hF : IsSBArgs G ϖ n F) : IsSBArgs G ϖ n' F :=
@@ -453,17 +450,13 @@ theorem isSmall_zero : IsSmall P β' β n (0 : Mx D b a) := fun w _ r s => by
   have h : frAt w β' β 0 = 0 := by ext; simp [frAt, Comparison₂.fr]
   rw [h]; simp
 
-theorem IsSmall.add {x y : Mx D b a} (h : IsSmall P β' β n x) (h' : IsSmall P β' β n y) : IsSmall P β' β n (x + y) :=
-  fun w hw r s => by
-    rw [frAt_add, Matrix.add_apply]
-    exact Valuation.map_add_le _ (h w hw r s) (h' w hw r s)
+alias IsSmall.add := _root_.GlobalTheory.FunObj.CosSB.isSmall_add
 
 theorem IsSmall.neg {x : Mx D b a} (h : IsSmall P β' β n x) : IsSmall P β' β n (-x) := fun w hw r s => by
   rw [frAt_neg, Matrix.neg_apply, Valuation.map_neg]
   exact h w hw r s
 
-theorem IsSmall.sub {x y : Mx D b a} (h : IsSmall P β' β n x) (h' : IsSmall P β' β n y) : IsSmall P β' β n (x - y) := by
-  rw [sub_eq_add_neg]; exact h.add h'.neg
+alias IsSmall.sub := _root_.GlobalTheory.FunObj.CosSB.isSmall_sub
 
 theorem cosLoc_self {e : AE D} {r : Mx D b a} (hr : IsHalf e r) : cosLoc P e β' β n r r = 1 := by
   rw [cosLoc, if_pos ⟨hr, by rw [sub_self]; exact isSmall_zero⟩]

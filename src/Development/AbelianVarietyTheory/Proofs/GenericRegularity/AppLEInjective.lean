@@ -64,11 +64,7 @@ theorem eq_of_loc {X : Scheme.{0}} {U : X.Opens} (a b : Γ(X, U))
   have e2 := X.presheaf.germ_res_apply (homOfLE hW) p hpW b
   exact e1.symm.trans ((congrArg _ e).trans e2)
 
-theorem sec_ext {X : Scheme.{0}} {L : LB X} {s t : LB.Sec L} (h : ∀ i, s.f i = t.f i) : s = t := by
-  cases s
-  cases t
-  congr 1
-  exact funext h
+alias sec_ext := _root_.ReciprocityTheory.ChartRestriction.G.DVR.SecOps.sec_ext
 
 theorem isoMaps_unique {X : Scheme.{0}} {L M : LB X} (hL : L.IsLB) (w : LB.Iso L M) (σ : LB.Sec L)
     {s s' : LB.Sec M} (h : IsoMaps w σ s) (h' : IsoMaps w σ s') : s = s' := by

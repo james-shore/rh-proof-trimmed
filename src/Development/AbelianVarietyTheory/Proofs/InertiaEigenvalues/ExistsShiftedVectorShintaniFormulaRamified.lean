@@ -125,7 +125,7 @@ theorem GlobalTheory.RamShift.exists_shifted_bump_shintani : ∀ (E : Type) [Fie
     funext z
     exact hφ' z
   obtain ⟨F₀, hF₀V, hF₀b, hF₀U, hF₀inv, hF₀rel⟩ :=
-    GlobalTheory.T.kirillov_semilocal_smooth_bump E m T b hbN hbC hbU hbS π φ' hφ'V ⟨x₀, hx₀, by rw [hWφ']; exact hW₀⟩
+    _root_.GlobalTheory.JSW.KirSemi.kirillov_semilocal_bump E m T b hbN hbC hbU hbS π φ' hφ'V ⟨x₀, hx₀, by rw [hWφ']; exact hW₀⟩
   have hWF : ∀ y, whit (fun g => F₀ (g * t₀⁻¹)) y = whit F₀ (y * t₀⁻¹) := fun y =>
     (whit_mul_right F₀ y t₀⁻¹).symm
   refine ⟨fun g => F₀ (g * t₀⁻¹), mspanR_rt hF₀V _, l₀, fun w => shift_last m T ϖ w, ?_, ?_, ?_, ?_, ?_⟩
@@ -140,7 +140,7 @@ theorem GlobalTheory.RamShift.exists_shifted_bump_shintani : ∀ (E : Type) [Fie
       exact hU _ hu _
   ·
     intro k hk hkinf hkT g
-    have hkf := eq_finGL_of_pInf hkinf
+    have hkf := _root_.GlobalTheory.JSW.KirArchTransfer.eq_finGL hkinf
     set kf := GeneralLinearGroup.map (pFin E) k with hkfdef
     have hφk : act (.fin kf) φ = φ := GlobalTheory.T.smoothAutomorphicForm_fixed_of_locally_integral_fixed E (m + 1) φ (π.cusp φ hφV).1 T hφK kf
       (fun w hw => by

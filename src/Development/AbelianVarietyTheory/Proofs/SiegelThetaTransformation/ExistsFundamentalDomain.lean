@@ -79,15 +79,7 @@ theorem lact_one {Ψ : Finset (E →+* ℂ)} (x : Frame Ψ r) : lact (1 : GL (Fi
   rw [Matrix.map_one _ (map_zero _) (map_one _), Matrix.one_mul]
 
 omit [NumberField E] [IsCMField E] in
-theorem lact_mul {Ψ : Finset (E →+* ℂ)} (γ' γ : GL (Fin r) E) (x : Frame Ψ r) :
-    lact (γ' * γ) x = lact γ' (lact γ x) := by
-  first
-  | exact @_root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame
-  | exact _root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame
-  | (apply _root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame ..)
+alias lact_mul := _root_.GlobalTheory.LeftActionFrameMul.lact_mul_frame
 
 omit [NumberField E] [IsCMField E] in
 theorem continuous_lact {Ψ : Finset (E →+* ℂ)} (γ : GL (Fin r) E) :
@@ -106,17 +98,6 @@ theorem countable_fg : {L : Lt E r | L.FG}.Countable := by
   exact ⟨s, hs⟩
 
 
-omit [IsCMField E] in
-theorem exists_den {L : Lt E r} (hL : L.FG) :
-    ∃ d : 𝓞 E, d ≠ 0 ∧ ∀ v ∈ L, ∀ a, ∃ c : 𝓞 E, (c : E) = (d : E) * v a := by
-  first
-  | exact @_root_.GlobalTheory.CommonDenominatorExistence.exists_common_denominator
-  | exact _root_.GlobalTheory.CommonDenominatorExistence.exists_common_denominator
-  | (apply _root_.GlobalTheory.CommonDenominatorExistence.exists_common_denominator <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CommonDenominatorExistence.exists_common_denominator <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CommonDenominatorExistence.exists_common_denominator <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CommonDenominatorExistence.exists_common_denominator ..)
-
 theorem eq_zero_of_small (X : Data E r) (c : 𝓞 E) (h : ∀ τ : X.Ψ, ‖τ.1 (c : E)‖ < 1) : c = 0 := by
   by_contra hc
   obtain ⟨σ, hσ⟩ := NumberField.exists_conjugate_one_le_norm hc
@@ -132,7 +113,7 @@ theorem eq_zero_of_small (X : Data E r) (c : 𝓞 E) (h : ∀ τ : X.Ψ, ‖τ.1
 theorem exists_nhds (X : Data E r) {L : Lt E r} (hL : L.FG)
     (hsp : Submodule.span E (L : Set (Fin r → E)) = ⊤) {x : Frame X.Ψ r} (hx : x ∈ X.dom) :
     ∃ U ∈ 𝓝 x, ∀ γ : GL (Fin r) E, mapL γ L = L → lact γ x ∈ U → γ = 1 := by
-  obtain ⟨d, hd0, hd⟩ := exists_den hL
+  obtain ⟨d, hd0, hd⟩ := _root_.GlobalTheory.CommonDenominatorExistence.exists_common_denominator hL
   obtain ⟨s, hs⟩ := hL
   let f : (Fin r → E) → X.Ψ → Fin r → Frame X.Ψ r → ℝ := fun v τ a y =>
     ‖τ.1 (d : E) * ((mat y τ *ᵥ ((mat x τ)⁻¹ *ᵥ fun b => τ.1 (v b))) a - τ.1 (v a))‖

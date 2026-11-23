@@ -62,14 +62,9 @@ theorem embLL_mem' (D : D7) (z : D.what₂.LL) : D.what₂.embLL z ∈ TaylorLog
   rw [mem_algebraicClosure_iff']
   exact (Algebra.IsIntegral.isIntegral z).map D.what₂.embLL.toRatAlgHom
 
-theorem embT_mem' (D : D7) (τ : D.what₂.Tau) (x : D.host.E) : TaylorLogMetric.embT D τ x ∈ TaylorLogMetric.Qbar := by
-  rw [mem_algebraicClosure_iff']
-  exact (Algebra.IsIntegral.isIntegral x).map (TaylorLogMetric.embT D τ).toRatAlgHom
+alias embT_mem' := _root_.GlobalTheory.TwV.Xc.embT_mem_qbar
 
-theorem lamC_mul' {p : ℕ} [Fact p.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_[p]) {x y : ℂ} (hx : x ∈ TaylorLogMetric.Qbar) (hy : y ∈ TaylorLogMetric.Qbar) :
-    TaylorLogMetric.lamC lam (x * y) = TaylorLogMetric.lamC lam x * TaylorLogMetric.lamC lam y := by
-  rw [Formalism.L2.Ker.lamC_of_mem lam (mul_mem hx hy), Formalism.L2.Ker.lamC_of_mem lam hx, Formalism.L2.Ker.lamC_of_mem lam hy, ← map_mul]
-  rfl
+alias lamC_mul' := _root_.Formalism.L2.Ker.lamC_mul
 
 theorem lamC_ne' {p : ℕ} [Fact p.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_[p]) {x : ℂ} (hx : x ∈ TaylorLogMetric.Qbar) (h0 : x ≠ 0) :
     TaylorLogMetric.lamC lam x ≠ 0 := by

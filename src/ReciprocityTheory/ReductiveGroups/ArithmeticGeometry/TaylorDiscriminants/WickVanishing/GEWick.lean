@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.DofDApply
 
 @[expose] public section
 
@@ -85,12 +86,6 @@ theorem iter_Cmul (D : PS k 1 d → PS k 1 d) (hD : ∀ (r : k) f, D (C r * f) =
   | zero => rfl
   | succ n ih => simp only [Function.iterate_succ_apply, hD, ih]
 
-private theorem Dof_add' (v : Fin d → k) (f g : PS k 1 d) :
-    Dof F v (f + g) = Dof F v f + Dof F v g := by
-  first
-  | simp only [Dof, map_add (f := _), mul_add, Finset.sum_add_distrib]
-  | simp [Dof, mul_add, Finset.sum_add_distrib]
-
 theorem foldr_add (L : List ι) (m : ι →₀ ℕ) (f g : PS k 1 d) :
     L.foldr (fun l h => (Dof F (u l))^[m l] h) (f + g) =
       L.foldr (fun l h => (Dof F (u l))^[m l] h) f + L.foldr (fun l h => (Dof F (u l))^[m l] h) g := by
@@ -98,15 +93,7 @@ theorem foldr_add (L : List ι) (m : ι →₀ ℕ) (f g : PS k 1 d) :
   | nil => rfl
   | cons l L ih =>
     simp only [List.foldr_cons, ih]
-    exact iter_add _ (fun f g => Dof_add' F (u l) f g) _ _ _
-
-private theorem Dof_C_mul (v : Fin d → k) (r : k) (f : PS k 1 d) :
-    Dof F v (C r * f) = C r * Dof F v f := by
-  first
-  | (simp only [Dof, ← MvPowerSeries.smul_eq_C_mul, map_smul, mul_smul_comm, Finset.smul_sum]; done)
-  | (simp only [Dof, ← MvPowerSeries.smul_eq_C_mul, Derivation.map_smul, mul_smul_comm, Finset.smul_sum]; done)
-  | (simp only [Dof, Finset.mul_sum, Derivation.leibniz, smul_eq_mul, mul_add, Finset.sum_add_distrib]; done)
-  | (have hp := (pderiv : Unit))
+    exact iter_add _ (fun f g => _root_.ReciprocityTheory.ChartRestriction.G.TB.GE.dof_add F (u l) f g) _ _ _
 
 theorem foldr_Cmul (L : List ι) (m : ι →₀ ℕ) (r : k) (f : PS k 1 d) :
     L.foldr (fun l h => (Dof F (u l))^[m l] h) (C r * f) =
@@ -115,7 +102,7 @@ theorem foldr_Cmul (L : List ι) (m : ι →₀ ℕ) (r : k) (f : PS k 1 d) :
   | nil => rfl
   | cons l L ih =>
     simp only [List.foldr_cons, ih]
-    exact iter_Cmul _ (fun r f => Dof_C_mul F (u l) r f) _ _ _
+    exact iter_Cmul _ (fun r f => _root_.ReciprocityTheory.ChartRestriction.G.TB.GE.dof_C_mul F (u l) r f) _ _ _
 
 theorem dmonOf_add (m : ι →₀ ℕ) (f g : PS k 1 d) :
     DmonOf F u m (f + g) = DmonOf F u m f + DmonOf F u m g :=

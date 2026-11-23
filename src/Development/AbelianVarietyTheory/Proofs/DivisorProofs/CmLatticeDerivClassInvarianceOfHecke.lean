@@ -101,7 +101,7 @@ theorem series_weightTwo : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
   have hus : Summable u := summable_sum fun j _ =>
     ((hNs.mul_left _).mul_right _).add (((hNs.mul_left _).mul_right _).mul_right _)
   have hder : ∀ q w, w ∈ U → HasFDerivAt (fun w : I → ℂ => eTerm φ m σ w q.1.out) (f' q w) w :=
-    fun q w hw => GlobalTheory.T.hasFDerivAt_weightTwoDerivativeEisensteinTerm E I φ m σ q.1.out (hne q) w (hUpd w hw)
+    fun q w hw => _root_.GlobalTheory.WeightTwoSum.hasFDerivAt_eTerm E I φ m σ q.1.out (hne q) w (hUpd w hw)
   have hrat : ∀ (q : modUnits (lattice c y)) w, w ∈ U → ∀ j,
       ‖-σ * φ j q.1.out / starRingEnd ℂ (defCoord φ w q.1.out j)‖ ≤ ‖σ‖ / (1 - r) := by
     intro q w hw j
@@ -174,8 +174,8 @@ theorem isOpen_upperHalf (F : Type) [Field F] [NumberField F] : IsOpen (upperHal
 theorem derivFormula_two (hH : HeckeWeightTwo) (E : Type) [Field E] [NumberField E] [IsCMField E] (I : Type) [Fintype I]
     [DecidableEq I] (φ : I → E →+* ℂ) (hF : 2 ≤ Module.finrank ℚ (maximalRealSubfield E)) (hφ : IsCMType φ)
     (c : Ideal (OF E)) (y : (Af E)ˣ) (hc : c ≠ ⊥) : DerivFormula φ 2 (lattice c y) := by
-  obtain ⟨e, he⟩ := GlobalTheory.T.exists_equiv_cmType_realEmbeddings_maxRealSubfield E I φ hφ
-  obtain ⟨θ₀, hθ₀⟩ := GlobalTheory.T.exists_element_pos_im_under_cmType E I φ hφ
+  obtain ⟨e, he⟩ := _root_.GlobalTheory.CMTypeRealEmb.exists_equiv E I φ hφ
+  obtain ⟨θ₀, hθ₀⟩ := _root_.GlobalTheory.CMTypeImPos.exists_im_pos E I φ hφ
   have hne : Nonempty I := by
     obtain ⟨i, -⟩ := hφ (Classical.arbitrary (E →+* ℂ))
     exact ⟨i⟩
@@ -189,7 +189,7 @@ theorem derivFormula_two (hH : HeckeWeightTwo) (E : Type) [Field E] [NumberField
   have hθ : ∀ i, 0 < (φ i θ).im := fun i => by
     rw [hθdef, map_add (f := _), he]; simpa using hθ₀ i
   obtain ⟨G, ⟨hG1, hG2, hG3⟩, hG0, -⟩ := hH (maximalRealSubfield E) hF 𝔞 𝔟
-  have hP := GlobalTheory.WeightTwoSum.isOpen_polydisc I
+  have hP := _root_.GlobalTheory.DerivAtOrigin.isOpen_polydisc I
   have hmaps : Set.MapsTo (modPt φ e θ) (polydisc I) (upperHalf _) := fun z hz τ => modPt_im_pos φ e θ hθ hz τ
   set cw : ℂ := (cWt E 2 : ℂ) with hcw
   set b : (I → ℂ) → ℂ := fun z => (homFac z)⁻¹ ^ 2 with hb

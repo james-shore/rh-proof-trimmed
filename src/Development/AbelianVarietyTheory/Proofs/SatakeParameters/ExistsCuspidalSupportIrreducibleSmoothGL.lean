@@ -74,8 +74,6 @@ theorem L_lt : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [I
 
 theorem L_pit : ∀ (α : Type) [Fintype α] [DecidableEq α] (Γ : α → Type) [∀ a, Group (Γ a)] (X Y : α → Type) [∀ a, AddCommGroup (X a)] [∀ a, Module ℂ (X a)] [∀ a, AddCommGroup (Y a)] [∀ a, Module ℂ (Y a)] (ρ : ∀ a, Representation ℂ (Γ a) (X a)) (ρ' : ∀ a, Representation ℂ (Γ a) (Y a)), (∀ a, IsSubquotient (ρ a) (ρ' a)) → IsSubquotient (piTensor ρ) (piTensor ρ') := GlobalTheory.T.piExteriorTensor_isSubquotient_of_forall
 
-theorem L_stage : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (s n : ℕ) (d : Fin s → ℕ) (e : (Σ a, Fin (d a)) ≃ Fin n) (t : Fin s → ℕ) (d' : ∀ a, Fin (t a) → ℕ) (e' : ∀ a, (Σ b, Fin (d' a b)) ≃ Fin (d a)) (X : ∀ a, Fin (t a) → Type) [∀ a b, AddCommGroup (X a b)] [∀ a b, Module ℂ (X a b)] (ρ : ∀ a b, Representation ℂ (GL (Fin (d' a b)) k) (X a b)), (∀ a b, IsSmooth (ρ a b)) → ∃ E : (Σ c : Fin (∑ a, t a), Fin (d' (finSigmaFinEquiv.symm c).1 (finSigmaFinEquiv.symm c).2)) ≃ Fin n, IsSubquotient (multiProd e fun a => multiProd (e' a) (ρ a)) (multiProd E fun c => ρ (finSigmaFinEquiv.symm c).1 (finSigmaFinEquiv.symm c).2) := GlobalTheory.T.isSubquotient_parInd_products_flattened
-
 theorem cusp_case (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : ℕ) (hn : 0 < n) (π : Irr k n) (hc : IsCuspidal π.π) :
     ∃ (s : ℕ) (d : Fin s → ℕ) (σ : ∀ a, Irr k (d a)), IsCuspSupport π.π d (fun a => (σ a).π) := by
   let e : (Σ _ : Fin 1, Fin n) ≃ Fin n :=
@@ -98,9 +96,9 @@ theorem reduce (hBZ : GlobalTheory.Published.BernsteinZelevinskyFiniteness) (hGL
     by_contra h
     push_neg at h
     exact hc ⟨π.smooth, fun s d e hne => h s d e hne⟩
-  obtain ⟨Y, _, _, τ, hτi, hτs, hτq, φ, hφ⟩ := L_jacq hBZ k n π s d e hns
-  obtain ⟨σ, hσ⟩ := L_tens hGL k n π s d e Y τ hτi hτq
-  exact ⟨s, d, e, σ, L_lt k n s d e hne, (IsSubquotient.of_injective φ hφ).trans
+  obtain ⟨Y, _, _, τ, hτi, hτs, hτq, φ, hφ⟩ := _root_.GlobalTheory.exists_embedding_parInd_of_jacquet_nontrivial hBZ k n π s d e hns
+  obtain ⟨σ, hσ⟩ := _root_.GlobalTheory.JacTensor.exists_irr_tensor_of_isSubquotient_jac hGL k n π s d e Y τ hτi hτq
+  exact ⟨s, d, e, σ, _root_.GlobalTheory.UnipRadProper.blocks_lt_of_unipRad_ne_bot k n s d e hne, (IsSubquotient.of_injective φ hφ).trans
     (L_ind k _ _ _ e _ _ τ _ (isSmooth_piTensor fun a => (σ a).smooth) hσ)⟩
 
 theorem glue (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : ℕ) (π : Irr k n) (s : ℕ) (d : Fin s → ℕ) (e : (Σ a, Fin (d a)) ≃ Fin n)
@@ -113,8 +111,8 @@ theorem glue (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonar
   have step1 : IsSubquotient (multiProd e fun a => (σ a).π)
       (multiProd e fun a => multiProd (e' a) fun b => (τ a b).π) :=
     L_ind k _ _ _ e _ _ _ _ (isSmooth_piTensor fun a => isSmooth_parInd _ _)
-      (L_pit _ _ _ _ _ _ he')
-  obtain ⟨E, hE⟩ := L_stage k s n d e t d' e' _ (fun a b => (τ a b).π) fun a b => (τ a b).smooth
+      (_root_.GlobalTheory.piTensor_isSubquotient_of_forall _ _ _ _ _ _ he')
+  obtain ⟨E, hE⟩ := _root_.GlobalTheory.SmGL.Stages.isSubquotient_multiProd_multiProd k s n d e t d' e' _ (fun a b => (τ a b).π) fun a b => (τ a b).smooth
   exact ⟨∑ a, t a, _, fun c => τ (finSigmaFinEquiv.symm c).1 (finSigmaFinEquiv.symm c).2, π.irr,
     fun c => (hτ _).2.1 _, E, hsub.trans (step1.trans hE)⟩
 
@@ -124,7 +122,7 @@ theorem main : GlobalTheory.Published.BernsteinZelevinskyFiniteness → GlobalTh
   | _ n ih =>
   intro π
   rcases Nat.eq_zero_or_pos n with rfl | hn
-  · exact L_zero k π
+  · exact _root_.GlobalTheory.CuspidalSupportZero.exists_isCuspSupport_zero k π
   by_cases hc : IsCuspidal π.π
   · exact cusp_case k n hn π hc
   · obtain ⟨s, d, e, σ, hlt, hsub⟩ := reduce hBZ hGL k n π hc

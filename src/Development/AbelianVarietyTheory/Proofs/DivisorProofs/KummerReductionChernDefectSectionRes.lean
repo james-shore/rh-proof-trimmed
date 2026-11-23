@@ -61,8 +61,8 @@ theorem defectSec_res : ∀ (Q q : ℕ) [NeZero Q], q ∣ Q → ∀ (U : Scheme.
   rintro W h ⟨v, hv⟩
   have hres : Sec.res h (Sec.res g (defectSec Q q U u)) = Sec.res (h ≫ g) (defectSec Q q U u) := by
     simp only [Sec.res, op_comp, Functor.map_comp, ModuleCat.hom_comp, LinearMap.comp_apply]
-  rw [hres, GlobalTheory.T.kummerReductionChernDefect_restrict Q q hqQ V _ hQV W h v hv]
-  refine GlobalTheory.T.kummerReductionChernDefect_restrict Q q hqQ U u hQ W (h ≫ g) v ?_
+  rw [hres, _root_.GlobalTheory.EtC.RedChern.res_defectSec Q q hqQ V _ hQV W h v hv]
+  refine _root_.GlobalTheory.EtC.RedChern.res_defectSec Q q hqQ U u hQ W (h ≫ g) v ?_
   rw [hv]
   ext
   simp [Scheme.Hom.comp_appTop] <;> rfl

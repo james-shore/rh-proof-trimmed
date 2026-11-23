@@ -99,7 +99,7 @@ theorem kappa_window_bound : KapWin := by
           push_cast; rfl
       _ ≤ ∑ k, ((L k : ℝ) / ((ℓ : ℝ) - 1) + Real.logb ℓ D) := by
           refine Finset.sum_le_sum fun k _ => ?_
-          refine Formalism.WindowSums.arc_WindowSum ℓ (a k) (L k) D _ ?_ ?_ ?_
+          refine _root_.Formalism.WindowSums.sum_padicValInt_le ℓ (a k) (L k) D _ ?_ ?_ ?_
           · intro i hi
             exact (Finset.mem_filter.mp hi).2
           · intro h0

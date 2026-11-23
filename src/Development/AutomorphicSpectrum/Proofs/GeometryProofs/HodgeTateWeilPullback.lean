@@ -82,7 +82,7 @@ theorem deriv_gen {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCa
   obtain ⟨M₀, hM₀⟩ : ∃ M₀ : LieModel G x (LiePull.ExtE hx M), ∀ l, M₀.pt l = LiePull.vec l :=
     ⟨LiePull.extModel hg hx M, fun _ => rfl⟩
   have hin₀ : ∀ l, ⊤ ≤ (M₀.pt l).left ⁻¹ᵁ W := fun l => hin _ (M₀.tan l)
-  obtain ⟨D, hD⟩ := GlobalTheory.T.dual_number_section_derivation X G A x (LiePull.ExtE hx M) M₀ W hin₀ s
+  obtain ⟨D, hD⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HtPull.exists_linear_snd X G A x (LiePull.ExtE hx M) M₀ W hin₀ s
   obtain ⟨c, hc⟩ := (Submodule.mem_span_range_iff_exists_fun _).1 (hl e u hu)
   choose a ha using fun k => (c k).2
   let b : Fin r → LiePull.ExtE hx M := fun k => ⟨B k, v k, hv k⟩
@@ -225,7 +225,7 @@ theorem ht_pull {X X' : Scheme.{0}} {Ω Ω' : Type} [Field Ω] [Field Ω'] {ξ :
   refine ⟨?_, φ ⁻¹ᵁ W, φ.app W s, hη', ?_, ?_⟩
   · rw [hom, Lat.pull_apply _ hd]
     exact Submodule.subset_span ⟨w, hwω, rfl⟩
-  · exact GlobalTheory.T.weil_pairing_pullback X X' Ω Ω' ξ ξ' f i hd G L n e he hF G' φ hp hF' L' e' he' y y' hy hy' hc t1 t2 W s hT
+  · exact _root_.GlobalTheory.CompanionTheory.Ar.HtTorPull.torsion_clause X X' Ω Ω' ξ ξ' f i hd G L n e he hF G' φ hp hF' L' e' he' y y' hy hy' hc t1 t2 W s hT
   · intro e₀ u hu h
     have hk : ∀ k, ⊤ ≤ (v' k).left ⁻¹ᵁ (φ ⁻¹ᵁ W) := fun k => tanin X' G' q'.1 (v' k) (hv' k).1 _ hη'
     have hk₀ : ∀ k, ⊤ ≤ (v k).left ⁻¹ᵁ W := fun k => tanin X G (f q'.1) (v k) (hv k).1 _ hη

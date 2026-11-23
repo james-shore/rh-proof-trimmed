@@ -55,7 +55,7 @@ namespace GlobalTheory.AV.AbVar
 
 theorem pull_zsmul_of_symm : ∀ (K : Type) [Field K] (B A : AbVar K) (c : Pic A.X.left), CechPic.pull (Hom.hom (-(𝟙 A))).left c = c → ∀ (f : B ⟶ A) (n : ℤ), AbVar.lam c f.hom f.hom = 2 • CechPic.pull f.hom.left c ∧ CechPic.pull (Hom.hom (n • f)).left c = (n ^ 2) • CechPic.pull f.hom.left c := by
   intro K _ B A c hc f n
-  have bil := GlobalTheory.T.abelianVarietyMumfordClass_bilinear K A c B.X
+  have bil := _root_.GlobalTheory.AV.AbVar.lam_bilinear K A c B.X
 
   have h1 : CechPic.pull (1 : B.X ⟶ A.X).left c = 0 := by
     have e := (bil 1 1 1 0).2.1

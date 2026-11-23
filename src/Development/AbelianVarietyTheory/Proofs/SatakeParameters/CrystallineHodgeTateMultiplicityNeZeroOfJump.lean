@@ -99,7 +99,7 @@ theorem jump_multV_ne_zero : ∀ {l : ℕ} [Fact l.Prime] (P : LocPrime l) (K LL
   intro l _ P K LL T hF τ u hJ
   let A : GRep ↥(GK K) ℚ_[l] ↥LL.1 ↥(OL LL) :=
     { V := T.V, ρ := T.ρ, cont := T.cont }
-  obtain ⟨-, ⟨hfin, -⟩, -⟩ := hF ↥LL.1 ↥(OL LL) (GlobalTheory.T.goodCoefficientRing_integers_padicFiniteExtension l LL) A
+  obtain ⟨-, ⟨hfin, -⟩, -⟩ := hF ↥LL.1 ↥(OL LL) (_root_.GlobalTheory.Pass.goodO_ringOfIntegers l LL) A
   haveI : Module.Finite ↥LL.1 ↥(DdR (P.PD K) T.ρ) := hfin
   exact multV_ne_zero_of_jump (P.PD K) T.ρ τ u hJ
 

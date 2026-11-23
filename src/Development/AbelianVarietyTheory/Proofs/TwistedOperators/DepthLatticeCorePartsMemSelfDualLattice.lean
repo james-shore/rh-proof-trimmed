@@ -90,19 +90,6 @@ theorem latO_negSp_le (S T : HSp D) (LS : Set (Fin S.rank → D.host.E)) (LT : S
   funext i j
   simp [negSp_gram, Finset.sum_neg_distrib, TensorProduct.tmul_neg]
 
-section Witt
-
-variable {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ)
-
-theorem qX_e : d.qX * d.e = 1 := rat_injective (by rw [rat_mul, rat_one]; exact d.pX_jX)
-theorem qX_e' : d.qX * d.e' = 0 := rat_injective (by rw [rat_mul, rat_zero]; exact d.pX_jY)
-theorem qX_i₀ : d.qX * d.i₀ = 0 := rat_injective (by rw [rat_mul, rat_zero]; exact d.pX_j0)
-theorem qY_e : d.qY * d.e = 0 := rat_injective (by rw [rat_mul, rat_zero]; exact d.pY_jX)
-theorem qY_e' : d.qY * d.e' = 1 := rat_injective (by rw [rat_mul, rat_one]; exact d.pY_jY)
-theorem qY_i₀ : d.qY * d.i₀ = 0 := rat_injective (by rw [rat_mul, rat_zero]; exact d.pY_j0)
-
-end Witt
-
 end GlobalTheory.AscFin.BigProj
 
 namespace GlobalTheory.AscFin.BigProj
@@ -132,7 +119,7 @@ theorem auxiliary_vector_multiple_of_witt_basis_vector (hd : IsAuxiliaryVectorWi
   · have hp : c - 1 - q.1 < ρ := by omega
     have hs : s ⟨c - 1 - q.1, hp⟩ ≠ 0 := by
       intro h0
-      have := congrFun (congrFun (qY_e' d) ⟨c - 1 - q.1, hp⟩) ⟨c - 1 - q.1, hp⟩
+      have := congrFun (congrFun (_root_.GlobalTheory.SeeSaw.SplitLat.qY_e' d) ⟨c - 1 - q.1, hp⟩) ⟨c - 1 - q.1, hp⟩
       rw [Matrix.mul_apply, Matrix.one_apply_eq] at this
       simp [he', colsOf, h0] at this
     refine ⟨⟨c - 1 - q.1, hp⟩, (s ⟨c - 1 - q.1, hp⟩)⁻¹, fun l => ?_⟩
@@ -150,10 +137,10 @@ theorem wittHyperbolic_projX_auxiliary_vectors (hd : IsAuxiliaryVectorWittDec a 
   rw [Matrix.mul_diagonal]
   by_cases hq : q.1 < ρ
   · obtain ⟨p, κ, h⟩ := (auxiliary_vector_multiple_of_witt_basis_vector a d hd hc q).1 hq
-    rw [mul_col _ _ _ q p κ h, Matrix.mul_assoc, qX_e, Matrix.mul_one, if_pos hq, mul_one, h]
+    rw [mul_col _ _ _ q p κ h, Matrix.mul_assoc, _root_.GlobalTheory.MixPer.qX_e, Matrix.mul_one, if_pos hq, mul_one, h]
   · obtain ⟨p, κ, h⟩ := (auxiliary_vector_multiple_of_witt_basis_vector a d hd hc q).2 hq
     rw [mul_col _ _ _ q p κ h]
-    simp [Matrix.mul_assoc, qX_e', hq]
+    simp [Matrix.mul_assoc, _root_.GlobalTheory.SeeSaw.SplitLat.qX_e', hq]
 
 theorem wittHyperbolic_projY_auxiliary_vectors (hd : IsAuxiliaryVectorWittDec a d) (hc : c = 2 * ρ) :
     d.e' * d.qY * a.a = a.a * Matrix.diagonal (fun q : Fin c => if q.1 < ρ then (0 : D.host.E) else 1) := by
@@ -162,16 +149,16 @@ theorem wittHyperbolic_projY_auxiliary_vectors (hd : IsAuxiliaryVectorWittDec a 
   by_cases hq : q.1 < ρ
   · obtain ⟨p, κ, h⟩ := (auxiliary_vector_multiple_of_witt_basis_vector a d hd hc q).1 hq
     rw [mul_col _ _ _ q p κ h]
-    simp [Matrix.mul_assoc, qY_e, hq]
+    simp [Matrix.mul_assoc, _root_.GlobalTheory.SeeSaw.SplitLat.qY_e, hq]
   · obtain ⟨p, κ, h⟩ := (auxiliary_vector_multiple_of_witt_basis_vector a d hd hc q).2 hq
-    rw [mul_col _ _ _ q p κ h, Matrix.mul_assoc, qY_e', Matrix.mul_one, if_neg hq, mul_one, h]
+    rw [mul_col _ _ _ q p κ h, Matrix.mul_assoc, _root_.GlobalTheory.SeeSaw.SplitLat.qY_e', Matrix.mul_one, if_neg hq, mul_one, h]
 
 theorem proj_lat (hd : IsAuxiliaryVectorWittDec a d) (hc : c = 2 * ρ) (hi : d.i₀ = frameMat B A a.ι)
     (Λ : Submodule (𝓞 D.host.E) (Fin A.rank → D.host.E)) (𝔟 : Fin c → FractionalIdeal (𝓞 D.host.E)⁰ D.host.E) :
     ∀ x ∈ a.lat Λ 𝔟, (d.e * d.qX) *ᵥ x ∈ a.lat Λ 𝔟 ∧ (d.e' * d.qY) *ᵥ x ∈ a.lat Λ 𝔟 := by
   rintro x ⟨y, hy, u, hu, rfl⟩
-  have k1 : d.e * d.qX * frameMat B A a.ι = 0 := by rw [← hi, Matrix.mul_assoc, qX_i₀, Matrix.mul_zero]
-  have k2 : d.e' * d.qY * frameMat B A a.ι = 0 := by rw [← hi, Matrix.mul_assoc, qY_i₀, Matrix.mul_zero]
+  have k1 : d.e * d.qX * frameMat B A a.ι = 0 := by rw [← hi, Matrix.mul_assoc, _root_.GlobalTheory.SeeSaw.SplitLat.qX_i₀, Matrix.mul_zero]
+  have k2 : d.e' * d.qY * frameMat B A a.ι = 0 := by rw [← hi, Matrix.mul_assoc, _root_.GlobalTheory.SeeSaw.SplitLat.qY_i₀, Matrix.mul_zero]
   refine ⟨⟨0, Λ.zero_mem, Matrix.diagonal (fun q : Fin c => if q.1 < ρ then (1 : D.host.E) else 0) *ᵥ u, fun p => ?_, ?_⟩,
     ⟨0, Λ.zero_mem, Matrix.diagonal (fun q : Fin c => if q.1 < ρ then (0 : D.host.E) else 1) *ᵥ u, fun p => ?_, ?_⟩⟩
   · rw [Matrix.mulVec_diagonal]

@@ -53,14 +53,13 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.H
 
-theorem phiBasic : PhiBasic := cayleyPhaseBasic
-theorem gaussEighth : GaussEighth := gaussSumEighthPower
-theorem unitaryGauss : UnitaryGauss := UnitaryGauss_of gaussEighth
-theorem detCayley : DetCayley := cayleyDet
-theorem unitaryConstant : UnitaryConstant := UnitaryConstant_proof
-theorem unitaryEighth : UnitaryEighth := UnitaryEighth_proof
+alias phiBasic := _root_.Formalism.L2.Th1.H.cayleyPhaseBasic
+alias unitaryGauss := _root_.Formalism.L2.Th1.H.UC.unitaryGauss
+alias detCayley := _root_.Formalism.L2.Th1.H.cayleyDet
+alias unitaryConstant := _root_.Formalism.L2.Th1.H.UnitaryConstant_proof
+alias unitaryEighth := _root_.Formalism.L2.Th1.H.UnitaryEighth_proof
 
-theorem tripleFormula : TripleFormula := TripleFormula_proof
+alias tripleFormula := _root_.Formalism.L2.Th1.H.TripleFormula_proof
 theorem psiQuadratic : PsiQuadratic := triplePhaseQuadratic
 theorem tripleEighth : TripleEighth := TripleEighth_proof
 

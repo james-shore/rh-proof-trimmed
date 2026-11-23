@@ -141,7 +141,7 @@ theorem UpperTheory.Gal.crystallineComparison.Mod.lineC_of :
       KilledBy M.univ w g → KilledBy M.univ w (e ≫ g) := by
     intro T T' e g hg a ha
     rw [Category.assoc, hg a ha, MonObj.comp_one]
-  obtain ⟨K, _, i, _, _, hisog, hsub⟩ := GlobalTheory.T.exists_finiteFlat_torsion_harrisTaylor_abelian p D O b N M.X M.s M.univ w hw
+  obtain ⟨K, _, i, _, _, hisog, hsub⟩ := _root_.GlobalTheory.HTTors.htTorsion p D O b N M.X M.s M.univ w hw
   have hP : ∀ g, KilledBy M.univ w g ↔ ∃ h, red h = g := by
     intro g
     constructor

@@ -55,10 +55,7 @@ namespace GlobalTheory.CompanionTheory.SmoothRep.Inj
 
 variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {a : ℕ}
 
-theorem continuous_infGL_alt : Continuous (infGL E a) := by
-  have hs : Continuous (sInf E) := ((continuous_infEq E).prodMk continuous_const :
-    Continuous fun x : Cinf E => ((infEq E x, 0) : InfiniteAdeleRing E × Af E))
-  exact Continuous.units_map (corner (matN a (sInf E))) (continuous_const.add (continuous_id.matrix_map hs))
+alias continuous_infGL_alt := _root_.GlobalTheory.CuspQuot.continuous_infGL
 
 theorem R_apply_eq {μ : Measure (GA E a)} [μ.IsHaarMeasure] [μ.IsMulRightInvariant] {U : Subgroup (GL (Fin a) (Af E))}
     {v : L2 (latticeGL E a) μ} (hv : ∀ u ∈ U, R (latticeGL E a) μ (finGL E a u) v = v) {g : GA E a}

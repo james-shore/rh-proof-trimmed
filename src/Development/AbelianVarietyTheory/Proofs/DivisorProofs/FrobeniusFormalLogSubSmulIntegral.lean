@@ -78,7 +78,7 @@ theorem in_frob_formalLog_sub_smul : ∀ (p : ℕ) [Fact p.Prime] (B O Q : Type)
     have := congrArg constantCoeff hgk
     rwa [map_mul, hgp1, one_mul, map_one] at this
 
-  have hc := fun α => GlobalTheory.T.frobenius_subst_map_congr_pow_mod_p p B σB hσ d g α
+  have hc := fun α => _root_.GlobalTheory.FrobCong.frobenius_congr p B σB hσ d g α
   choose r hr using hc
   set R : MvPowerSeries (Fin d) B := fun α => r α with hR
   have hvR : v - g ^ p = C (p : B) * R := by

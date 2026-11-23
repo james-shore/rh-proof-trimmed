@@ -57,13 +57,6 @@ namespace Formalism.MainNotions.G.Joints.PlaneGramSpan
 
 open Formalism.MainNotions.G Formalism.MainNotions.G.Joints
 
-theorem card_val_lt {n h : ℕ} (hh : h ≤ n) : (univ.filter fun m : Fin n => m.val < h).card = h := by
-  first | exact GlobalTheory.CardFilterLt.card_filter_val_lt .. | (apply GlobalTheory.CardFilterLt.card_filter_val_lt <;> assumption) | (intros; apply GlobalTheory.CardFilterLt.card_filter_val_lt <;> assumption) | (apply @GlobalTheory.CardFilterLt.card_filter_val_lt <;> assumption) | (intros; apply @GlobalTheory.CardFilterLt.card_filter_val_lt <;> assumption) | (apply @GlobalTheory.CardFilterLt.card_filter_val_lt <;> first | assumption | infer_instance) | exact @GlobalTheory.CardFilterLt.card_filter_val_lt n h hh | exact @GlobalTheory.CardFilterLt.card_filter_val_lt n h | exact @GlobalTheory.CardFilterLt.card_filter_val_lt n
-
-theorem colH_le {n : ℕ} (mu : Fin n → ℤ) (c : ℤ) : colH mu c ≤ n := by
-  unfold colH
-  exact (Finset.card_filter_le _ _).trans (by simp)
-
 theorem colH_zero {n : ℕ} (c : ℤ) : colH (0 : Fin n → ℤ) c = if c ≤ 0 then n else 0 := by
   unfold colH
   split_ifs with h
@@ -81,7 +74,7 @@ theorem colH_oneMu {n N : ℕ} (h : Fin (N + 1) → ℕ) (e : ℤ) (i : Fin (N +
   · rw [Finset.filter_true_of_mem]
     · simp
     · intro m _; split_ifs <;> omega
-  · refine Eq.trans ?_ (card_val_lt hh)
+  · refine Eq.trans ?_ (_root_.GlobalTheory.CardFilterLt.card_filter_val_lt hh)
     congr 1
     ext m
     simp only [Finset.mem_filter, Finset.mem_univ, true_and]
@@ -106,7 +99,7 @@ theorem hstrip_one {n : ℕ} (a b : ℕ) (e : ℤ) (hb : b ≤ n) (h1 : a ≤ b)
   · have e1 : ∀ m : Fin n, ((if m.val < b then (1 : ℤ) else 0) - e - ((if m.val < a then (1 : ℤ) else 0) - e)) =
         (if m.val < b then (1 : ℤ) else 0) - (if m.val < a then (1 : ℤ) else 0) := fun m => by ring
     simp only [e1]
-    rw [Finset.sum_sub_distrib, Finset.sum_boole, Finset.sum_boole, card_val_lt hb, card_val_lt (h1.trans hb)]
+    rw [Finset.sum_sub_distrib, Finset.sum_boole, Finset.sum_boole, _root_.GlobalTheory.CardFilterLt.card_filter_val_lt hb, _root_.GlobalTheory.CardFilterLt.card_filter_val_lt (h1.trans hb)]
     push_cast [Nat.cast_sub h1]
     ring
 
@@ -132,7 +125,7 @@ def onePath {n N : ℕ} {LL : Letters (Fin N)} {d : Fin N → ℕ} (P : PPath n 
       have h1 := colH_strip hstep.1 c
       have h2 := strip_le_one hstep (P.dom _) c
       have h3 := hstrip_one (n := n) (colH (P.mu i.castSucc) c) (colH (P.mu i.succ) c) (if 1 ≤ c then 0 else 1)
-        (colH_le _ _) (by omega) (by omega)
+        (_root_.Formalism.MainNotions.CovariantDegrees.colH_le _ _) (by omega) (by omega)
       have h4 : (if IsUsed P.mu c i then 1 else 0) = colH (P.mu i.succ) c - colH (P.mu i.castSucc) c := by
         unfold IsUsed
         split_ifs with h <;> omega
@@ -141,7 +134,7 @@ def onePath {n N : ℕ} {LL : Letters (Fin N)} {d : Fin N → ℕ} (P : PPath n 
       have h1 := colH_strip hstep.1 c
       have h2 := strip_le_one hstep (P.dom _) c
       have h3 := hstrip_one (n := n) (colH (P.mu i.succ) c) (colH (P.mu i.castSucc) c) (if 1 ≤ c then 0 else 1)
-        (colH_le _ _) (by omega) (by omega)
+        (_root_.Formalism.MainNotions.CovariantDegrees.colH_le _ _) (by omega) (by omega)
       have h4 : (if IsUsed P.mu c i then 1 else 0) = colH (P.mu i.castSucc) c - colH (P.mu i.succ) c := by
         unfold IsUsed
         split_ifs with h <;> omega
@@ -151,7 +144,7 @@ theorem colH_onePath {n N : ℕ} {LL : Letters (Fin N)} {d : Fin N → ℕ} (P :
     (i : Fin (N + 1)) (c' : ℤ) :
     colH ((onePath P c).mu i) c' = if c' + (if 1 ≤ c then 0 else 1) ≤ 0 then n
       else if c' + (if 1 ≤ c then 0 else 1) = 1 then colH (P.mu i) c else 0 :=
-  colH_oneMu (fun i => colH (P.mu i) c) _ i (colH_le _ _) c'
+  colH_oneMu (fun i => colH (P.mu i) c) _ i (_root_.Formalism.MainNotions.CovariantDegrees.colH_le _ _) c'
 
 theorem colStep_congr {n : ℕ} {P : Type*} [CommRing P] {c c' : ℤ} (hc : 1 ≤ c ↔ 1 ≤ c') (a b : ℕ)
     (x : Fin n → P) (K : Finset (Fin n) → P) : colStep c a b x K = colStep c' a b x K := by
@@ -295,7 +288,7 @@ theorem col_est (h3b : Formalism.MainNotions.PlaneGramData.PathSpanAtRing O) {N 
     congr 1
     show _ = (if (lastIdx r).val < colH (P.mu i.succ) c then (1 : ℤ) else 0) - (if 1 ≤ c then 0 else 1)
     have hl : (lastIdx r).val = r - 1 := rfl
-    have hle := colH_le (P.mu i.succ) c
+    have hle := _root_.Formalism.MainNotions.CovariantDegrees.colH_le (P.mu i.succ) c
     rw [hl]
     split_ifs <;> omega
 
@@ -343,7 +336,7 @@ theorem stage_identity {N r : ℕ} [NeZero r] {LL : Letters (Fin N)} {d : Fin N 
   rw [← sum_colVal (∑ i, ∑ m, |P.mu i m|) (P.mu i (lastIdx r)) (by linarith) (by linarith)]
   refine Finset.sum_congr rfl fun c _ => ?_
   have h3 := colH_eq_iff (P.dom i) c
-  have h4 := colH_le (P.mu i) c
+  have h4 := _root_.Formalism.MainNotions.CovariantDegrees.colH_le (P.mu i) c
   have h5 : colH (P.mu i) c < r ↔ P.mu i (lastIdx r) < c := by
     constructor
     · intro h; by_contra h'; exact absurd (h3.2 (not_lt.1 h')) (by omega)

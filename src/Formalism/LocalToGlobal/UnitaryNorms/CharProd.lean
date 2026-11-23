@@ -52,7 +52,7 @@ namespace Formalism.L2.Host.HChar
 
 variable {L : Type} [Field L] [NumberField L] (χ : HChar L)
 
-theorem productRule : χ.ProductRule := hecke_product_rule L χ
+alias productRule := _root_.PI.HeckeProdW.productRule
 
 theorem val_principal (S : Finset (HeightOneSpectrum (𝓞 L))) (hS : ∀ v, v ∉ S → χ.UnrAt v) (k : Lˣ) :
     (∏ᶠ (v : HeightOneSpectrum (𝓞 L)) (_ : v ∉ S), χ.val v ^ ordF v k) = (χ.inf k * ∏ v ∈ S, χ.locK v k)⁻¹ :=

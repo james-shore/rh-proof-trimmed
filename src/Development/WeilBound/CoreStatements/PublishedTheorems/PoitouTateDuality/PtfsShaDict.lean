@@ -56,14 +56,6 @@ open NumberField IsDedekindDomain Representation Formalism.ConjugateSelfDual Rec
 
 namespace PositivityTheory.Lit1.PTN
 
-theorem addEquiv_of_resCmp {R ι H C : Type} [CommRing R] [AddCommGroup H] [Module R H]
-    [AddCommGroup C] {Hv Cv : ι → Type} [∀ v, AddCommGroup (Hv v)] [∀ v, AddCommGroup (Cv v)]
-    (res : ∀ v, H →+ Hv v) (pres : ∀ v, C →+ Cv v) (E : H ≃+ C) (Ev : ∀ v, Hv v ≃+ Cv v)
-    (h : ∀ v x, Ev v (res v x) = pres v (E x)) (U : Submodule R H) (T : AddSubgroup C)
-    (hU : ∀ x, x ∈ U ↔ ∀ v, res v x = 0) (hT : ∀ y, y ∈ T ↔ ∀ v, pres v y = 0) :
-    Nonempty (U ≃+ T) :=
-  _root_.UpperTheory.Reformulated.B.LocallyTrivialClassesAddEquiv.main res pres E Ev h U T hU hT
-
 section FoundSide
 
 attribute [local instance 2000] Rep.hV2
@@ -116,10 +108,10 @@ theorem shaIso_of_rep (K : IntermediateField ℚ (AlgebraicClosure ℚ)) [Number
     intro x
     simp only [Sha2, Submodule.mem_iInf, LinearMap.mem_ker]
     rfl
-  exact ⟨addEquiv_of_resCmp
+  exact ⟨_root_.UpperTheory.Reformulated.B.LocallyTrivialClassesAddEquiv.main
       (fun v => (resH1 rho (locFam S Av v) (continuous_locFam S Av v)).toAddMonoidHom)
       (fun v => ptRes (fun v : S => gsFinFamily (S : Set (HeightOneSpectrum (𝓞 K))) ιs ⟨v.1, Finset.mem_coe.2 v.2⟩) A v 1) E1 Ev1 h1 _ _ hU1 (hT 1),
-    addEquiv_of_resCmp
+    _root_.UpperTheory.Reformulated.B.LocallyTrivialClassesAddEquiv.main
       (fun v => (resH2 rho (locFam S Av v) (continuous_locFam S Av v)).toAddMonoidHom)
       (fun v => ptRes (fun v : S => gsFinFamily (S : Set (HeightOneSpectrum (𝓞 K))) ιs ⟨v.1, Finset.mem_coe.2 v.2⟩) A v 2) E2 Ev2 h2 _ _ hU2 (hT 2)⟩
 

@@ -63,7 +63,7 @@ theorem goodGenericCharacter_of_seriesTypes : ∀ {D : D7} {G : Type} [Group G] 
   have hG := hC.base.grp
   have hOk2 : A3.A.fam.Ok s := hOk.ok2
   have hprod : ∀ χ ∈ A3.A.X, GlobalTheory.IndefiniteRowSideFullHecke.CuspidalProductMultiplicity.IsProdCuspChar D.what₂.embLL R.Pg D.R.r fun g => χ (R.eG.symm g) :=
-    GlobalTheory.T.goodCharacter_placewise_cuspidal_parabolic_product D G Pl0 T A3.A Ks R.toRealDat hG.record hser (fun χ hχ => hOk2.irr χ hχ)
+    _root_.GlobalTheory.GoodCharProd.isProdCuspChar_good D G Pl0 T A3.A Ks R.toRealDat hG.record hser (fun χ hχ => hOk2.irr χ hχ)
   letI : Fintype F.P0 := Fintype.ofFinite _
   have hsum : ∀ χ ∈ A3.A.X, ∑ h : F.P0, χ (h : G) * (((F.ψ0 h)⁻¹ : D.what₂.LLˣ) : D.what₂.LL) = (Fintype.card F.P0 : D.what₂.LL) :=
     fun χ hχ => by

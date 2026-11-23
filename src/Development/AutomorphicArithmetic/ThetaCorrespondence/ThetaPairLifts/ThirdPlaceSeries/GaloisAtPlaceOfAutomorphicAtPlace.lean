@@ -58,18 +58,6 @@ section
 set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.FrameGal
-section Poly
-open Polynomial Formalism.L2.Col
-variable {K : Type} [Field K]
-end Poly
-section Runs
-open Formalism.BasicNotions Formalism.CohomologicalDescent.LogSmallConstantBounds Formalism.CohomologicalDescent.ShortWeightBounds GlobalTheory.GalDef
-end Runs
-section Galois
-open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions GlobalTheory.ExpFrame GlobalTheory.TripleGal
-variable {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] {l : ℕ} [Fact l.Prime]
-variable [IsCMField E]
-end Galois
 section Side
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions GlobalTheory.ExpFrame GlobalTheory.TripleGal GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.CuspRep GlobalTheory.GalDef
 open Formalism.CohomologicalDescent.LogSmallConstantBounds Formalism.CohomologicalDescent.ShortWeightBounds Formalism.CohomologicalDescent.LD Formalism.L2.Col Polynomial
@@ -200,16 +188,10 @@ theorem GlobalTheory.FrameGal.galois_steinberg_local_alt : GlobalTheory.Publishe
     _root_.GlobalTheory.Published.BaseChangeDefiniteUnitaryGroup → GlobalTheory.Published.BhattScholzeCrystallineLattices → GlobalTheory.Published.HeckeLAdicCharacterAbove →
     _root_.UpperTheory.Zero.LLC.RecTExists → _root_.GlobalTheory.ExpTie.SmallnessCondition → _root_.GlobalTheory.ExpTie.GaloisStatement := by
   intro p1 p3 p4 p6 p7 p8 p9 p10 hS
-  refine Closed.imp (_root_.GlobalTheory.T.frame_aut_of_small_estimate hS) fun Fm _ _ H => ?_
+  refine Closed.imp (_root_.GlobalTheory.FrameAut.autSt_of_smallSt' hS) fun Fm _ _ H => ?_
   obtain ⟨a, ha⟩ := H
   exact ⟨a, fun x hx hle i p hp hm j P W hD hN w hw hR =>
     _root_.GlobalTheory.FrameGal.galois_at_place_of_automorphic_at_place_alt p p1 p3 p4 p6 p7 p8 p9 p10 hD hN (ha x hx hle i p hp hm j P W hD hN w hw hR)⟩
 end
-end
-section
-open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpTie GlobalTheory.ExpFrame Formalism.CohomologicalDescent.DepthNonnegative Formalism.CohomologicalDescent.LogSmallConstantBounds Formalism.CohomologicalDescent.ShortWeightBounds Formalism.CohomologicalDescent.LD Formalism.RankGapBounds.FormsTensorLocalization
-
-theorem _root_.GlobalTheory.T.galois_frame_compatibility_alt : GlobalTheory.Published.ClozelCohomological → GlobalTheory.Published.HeckeLAdicCharacter → GlobalTheory.Published.ChebotarevDegreeOne → _root_.UpperTheory.GalS.CuspUAlt → _root_.GlobalTheory.Published.BaseChangeDefiniteUnitaryGroup → GlobalTheory.Published.BhattScholzeCrystallineLattices → GlobalTheory.Published.HeckeLAdicCharacterAbove → _root_.UpperTheory.Zero.LLC.RecTExists → _root_.GlobalTheory.ExpTie.SmallnessCondition → _root_.GlobalTheory.ExpTie.GaloisStatement := by
-  first | exact @_root_.GlobalTheory.FrameGal.galois_steinberg_local_alt | exact _root_.GlobalTheory.FrameGal.galois_steinberg_local_alt | (intros; apply _root_.GlobalTheory.FrameGal.galois_steinberg_local_alt <;> assumption)
 end
 end

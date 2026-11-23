@@ -47,6 +47,6 @@ import Mathlib.Topology.Sheaves.Init
 namespace PositivityTheory.RgUd
 
 theorem expBound (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] : ExpBound k :=
-  Exp.Final.expBound_of k (Cell.expLow k (Form.Final.besselSum k) (Cell.openCell k))
+  Exp.Final.expBound_of k (_root_.PositivityTheory.RgUd.CellE.expLow k (Form.Final.besselSum k) (_root_.PositivityTheory.RgUd.CellA.openCell k))
 
 end PositivityTheory.RgUd

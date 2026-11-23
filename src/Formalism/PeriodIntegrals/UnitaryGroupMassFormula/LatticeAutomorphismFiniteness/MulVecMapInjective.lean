@@ -96,11 +96,6 @@ theorem form_eq {n k : Type} [Fintype n] [Fintype k] (B : Matrix n k ℂ) (J : M
     star (B *ᵥ v) ⬝ᵥ (J *ᵥ (B *ᵥ v)) = star v ⬝ᵥ ((Bᴴ * J * B) *ᵥ v) := by
   rw [Matrix.star_mulVec, ← Matrix.dotProduct_mulVec, ← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec]
 
-theorem mulVec_map_injective {K : Type} [Field K] {n k : Type} [Fintype n] [DecidableEq n] [Fintype k]
-    [DecidableEq k] (f : K →+* ℂ) (A : Matrix n k K) (hA : Function.Injective A.mulVec) :
-    Function.Injective (A.map f).mulVec := by
-  first | exact Bl.general_b_fact_upper_alt_form.goal1 .. | (apply Bl.general_b_fact_upper_alt_form.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_upper_alt_form.goal1 <;> assumption) | (apply @Bl.general_b_fact_upper_alt_form.goal1 <;> assumption) | (intros; apply @Bl.general_b_fact_upper_alt_form.goal1 <;> assumption) | (apply @Bl.general_b_fact_upper_alt_form.goal1 <;> first | assumption | infer_instance) | exact @Bl.general_b_fact_upper_alt_form.goal1 K ‹_› n k ‹_› ‹_› ‹_› ‹_› f A hA | exact @Bl.general_b_fact_upper_alt_form.goal1 K ‹_› n k ‹_› ‹_› ‹_› ‹_› f A | exact @Bl.general_b_fact_upper_alt_form.goal1 K ‹_› n k ‹_› ‹_› ‹_› ‹_› f | exact @Bl.general_b_fact_upper_alt_form.goal1 K ‹_› n k ‹_› ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_upper_alt_form.goal1 K ‹_› n k ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_upper_alt_form.goal1 K ‹_› n k ‹_› ‹_› | exact @Bl.general_b_fact_upper_alt_form.goal1 K ‹_› n k ‹_› | exact @Bl.general_b_fact_upper_alt_form.goal1 K ‹_› n k | exact @Bl.general_b_fact_upper_alt_form.goal1 K ‹_› n | exact @Bl.general_b_fact_upper_alt_form.goal1 K ‹_› | exact @Bl.general_b_fact_upper_alt_form.goal1 K
-
 theorem coord_injective {k : Type} [Fintype k] (u : k → S.V) (hu : LinearIndependent E u) :
     Function.Injective (Matrix.of fun i a => S.frame.repr (u a) i).mulVec := by
   intro c d hcd
@@ -173,7 +168,7 @@ theorem pos_perp (hstar : ∀ (τ : E →+* ℂ) (a : E), τ (star a) = starRing
       rwa [smul_smul, inv_mul_cancel₀ ht, one_smul] at this
   have hind : LinearIndependent E u := he.sum_type hpair hdisj
   have hB : Function.Injective (coordC S τ u).mulVec :=
-    mulVec_map_injective τ _ (coord_injective S u hind)
+    _root_.Bl.general_b_fact_upper_alt_form.goal1 τ _ (coord_injective S u hind)
   have hneg : ∀ v : Fin r ⊕ Fin 2 → ℂ,
       (star (coordC S τ u *ᵥ v) ⬝ᵥ (S.gram.map τ *ᵥ (coordC S τ u *ᵥ v))).re ≤ 0 := by
     intro v

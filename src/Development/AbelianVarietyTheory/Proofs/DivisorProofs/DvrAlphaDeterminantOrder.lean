@@ -72,9 +72,9 @@ theorem det_append_eq_mul_det : ∀ (C : Type) [Field C] (w : Valuation C NNReal
   have hd0 : GlobalTheory.IndefiniteRowSideFullHecke.QuotientEigenDifference.diffGen a τ ≠ 0 := by
     refine Finset.prod_ne_zero_iff.mpr fun s hs => sub_ne_zero.mpr ?_
     exact ha.ne (Finset.ne_of_mem_erase hs).symm
-  have h1 := GlobalTheory.T.latticeDetRelation_herbrand_eigenspace C w ℓ hℓ0 hℓ1 S a p q Fil τ ha hFil hfin
-  rw [GlobalTheory.T.piEigenSublattice_free_eq_differentScaled C w S a (p + q) τ ha] at h1
-  have h2 := GlobalTheory.T.latticeDetRelation_of_lsmul_shift C w ℓ hℓ0 hℓ1 p q _ _ _ _ _ _ hd0 h1
+  have h1 := _root_.GlobalTheory.HerbrandBridge.exForm C w ℓ hℓ0 hℓ1 S a p q Fil τ ha hFil hfin
+  rw [_root_.GlobalTheory.EigenSubFree.main C w S a (p + q) τ ha] at h1
+  have h2 := _root_.GlobalTheory.detRel_of_detRel_lsmul C w ℓ hℓ0 hℓ1 p q _ _ _ _ _ _ hd0 h1
   obtain ⟨x', u', m', c, hx', hu', hm', hmF, ⟨hc0, hcv⟩, hdet⟩ := h2
   obtain ⟨P, hP, hPdet⟩ := GlobalTheory.DetRelCompare.transition x' x _ hx' hx
   obtain ⟨A, hA, hAdet⟩ := GlobalTheory.DetRelCompare.transition _ _ _ hu' hu

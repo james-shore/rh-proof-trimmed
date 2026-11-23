@@ -62,7 +62,7 @@ theorem exists_common_vacua_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies
   have hQ : ∀ p ∈ v.gP, ((∃ e ε, IsSplitIdem D e ∧ IsPlaceIdem D p ε ∧ e + cA D e = algebraMap (AF D.host.F) (AE D) ε) ∧ (∀ a ∈ GlobalTheory.FinPl.intAt D (· = p), incA D D.host.xi0 * a ∈ GlobalTheory.FinPl.intAt D (· = p) ∧ incA D D.host.xi0⁻¹ * a ∈ GlobalTheory.FinPl.intAt D (· = p)) ∧ ∀ (V : HSp D) (Λ : GlobalTheory.FinPl.Lat V), GlobalTheory.FinPl.latA V Λ (· = p) = GlobalTheory.FinPl.latV V Λ (· = p)) := by
     intro p hp
     obtain ⟨PP, hPP, rfl⟩ := (hgP p).1 hp
-    exact _root_.GlobalTheory.T.type_places_split_idempotents_alt W hpk hTy PP hPP
+    exact _root_.GlobalTheory.LevelPlaces.split_unit_alt W hpk hTy PP hPP
   have hY : ∀ j, ∃ o : WO (Yc D j) (Yc D (j + 1)) →₀ ℂ, j + 1 < D.R.m →
       GlobalTheory.FinPl.CombAt (· ∈ v.gP) o ∧
       (∀ P, ∀ x ∈ GinfC (Yc D j), ∀ x' ∈ GinfC (Yc D (j + 1)), GlobalTheory.FinPl.Vac (_root_.GlobalTheory.Fam.pk_z W).ψ _ _ (v.N j) (v.N (j + 1)) (fun _ => True)
@@ -71,8 +71,8 @@ theorem exists_common_vacua_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies
         (pureTensorO (_root_.GlobalTheory.Fam.pk_z W).ψ (_root_.GlobalTheory.Fam.pk_z W).θ (Yc D j) (Yc D (j + 1)) (cart ((_root_.GlobalTheory.Fam.pk_z W).MY j)) (cart ((_root_.GlobalTheory.Fam.pk_z W).MY (j + 1))) (onb ((_root_.GlobalTheory.Fam.pk_z W).MY j)) (onb ((_root_.GlobalTheory.Fam.pk_z W).MY (j + 1))) ((_root_.GlobalTheory.Fam.pk_z W).vac j) 1)) ≠ 0 := by
     intro j
     by_cases hj : j + 1 < D.R.m
-    · obtain ⟨M, hM, hMv⟩ := _root_.GlobalTheory.T.exists_selfDual_lattice_moves W hpk j (by omega) (b j)
-      obtain ⟨M', hM', hM'v⟩ := _root_.GlobalTheory.T.exists_selfDual_lattice_moves W hpk (j + 1) hj (b (j + 1))
+    · obtain ⟨M, hM, hMv⟩ := _root_.GlobalTheory.MovedLat.movedLat_alt W hpk j (by omega) (b j)
+      obtain ⟨M', hM', hM'v⟩ := _root_.GlobalTheory.MovedLat.movedLat_alt W hpk (j + 1) hj (b (j + 1))
       obtain ⟨hvac, hnz⟩ := _root_.GlobalTheory.T.self_dual_lattices_consecutive_step_alt W hpk j hj (b j) (b (j + 1)) (hb j) (hb (j + 1)) M M' hM hM' hMv hM'v
       obtain ⟨o, ho, hoV⟩ := GlobalTheory.T.exists_combination_rebase_vacuumLattices_injective D (_root_.GlobalTheory.Fam.pk_z W).ψ hc.std (Yc D j) (Yc D (j + 1)) M (v.N j) M' (v.N (j + 1)) v.gP hM
         (hN j (by omega)).1 hM' (hN (j + 1) hj).1 hQ (fun p hp =>
@@ -89,8 +89,8 @@ theorem exists_common_vacua_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies
       comb (_root_.GlobalTheory.Fam.pk_z W).ψ _ _ o (omT (_root_.GlobalTheory.Fam.pk_z W) W.P.A3.A.μ0 j h (b (j + 1), a.bT) (pureTensorO (_root_.GlobalTheory.Fam.pk_z W).ψ (_root_.GlobalTheory.Fam.pk_z W).θ (Yc D (j + 1)) D.sp.X' (cart ((_root_.GlobalTheory.Fam.pk_z W).MY (j + 1))) (cart (_root_.GlobalTheory.Fam.pk_z W).MX) (onb ((_root_.GlobalTheory.Fam.pk_z W).MY (j + 1))) (onb (_root_.GlobalTheory.Fam.pk_z W).MX) (vacT (_root_.GlobalTheory.Fam.pk_z W) j h) 1)) ≠ 0 := by
     intro j h
     have hj : j + 1 < D.R.m := by omega
-    obtain ⟨M', hM', hM'v⟩ := _root_.GlobalTheory.T.exists_selfDual_lattice_moves W hpk (j + 1) hj (b (j + 1))
-    obtain ⟨hvac, hnz⟩ := _root_.GlobalTheory.T.self_dual_lattices_top_step_alt W hpk j h (b (j + 1)) a.bT (hb (j + 1)) hbT M' a.LT hM' hLT hM'v hmT
+    obtain ⟨M', hM', hM'v⟩ := _root_.GlobalTheory.MovedLat.movedLat_alt W hpk (j + 1) hj (b (j + 1))
+    obtain ⟨hvac, hnz⟩ := _root_.GlobalTheory.TopMove.fock_vac_moved_top_alt W hpk j h (b (j + 1)) a.bT (hb (j + 1)) hbT M' a.LT hM' hLT hM'v hmT
     have hNT' : IsSelfDualC D.sp.X' v.NT := hNT ▸ hLT
     obtain ⟨o, ho, hoV⟩ := GlobalTheory.T.exists_combination_rebase_vacuumLattices_injective D (_root_.GlobalTheory.Fam.pk_z W).ψ hc.std (Yc D (j + 1)) D.sp.X' M' (v.N (j + 1)) a.LT v.NT v.gP hM'
       (hN (j + 1) hj).1 hLT hNT' hQ (fun p hp =>

@@ -49,22 +49,6 @@ open NumberField MeasureTheory Formalism.MainNotions.GlobalTheoryTheory.GenusMas
 
 namespace GlobalTheory.LieScal
 
-theorem sumPl_add_smul {ι : Type} [Fintype ι] [DecidableEq ι] {V : ι → Type} [∀ i, AddCommGroup (V i)] [∀ i, Module ℂ (V i)]
-    (L : ∀ w, Module.End ℂ (V w)) (a : ι → ℂ) :
-    sumPl (fun w => L w + a w • (1 : Module.End ℂ (V w))) = sumPl L + (∑ w, a w) • (1 : Module.End ℂ (⨂[ℂ] i, V i)) := by
-  have h : ∀ w, atPl w (L w + a w • (1 : Module.End ℂ (V w))) = atPl w (L w) + a w • (1 : Module.End ℂ (⨂[ℂ] i, V i)) := by
-    intro w
-    have e := (PiTensorProduct.mapMultilinear ℂ V V).map_update_add (fun i => (LinearMap.id : V i →ₗ[ℂ] V i)) w (L w)
-      (a w • LinearMap.id)
-    have e2 := (PiTensorProduct.mapMultilinear ℂ V V).map_update_smul (fun i => (LinearMap.id : V i →ₗ[ℂ] V i)) w (a w)
-      LinearMap.id
-    simp only [PiTensorProduct.mapMultilinear_apply, Function.update_eq_self, PiTensorProduct.map_id] at e e2
-    simp only [atPl]
-    rw [Module.End.one_eq_id, Module.End.one_eq_id, e, e2]
-    rfl
-  simp only [sumPl, h, Finset.sum_add_distrib, Finset.sum_smul]
-
-
 open scoped Classical in
 theorem lieScalar : GlobalTheory.FunPr.Hypotheses₂ → DerEx → VacLine → LieScalar := by
   intro hP hD hV F E _ _ _ _ _ σ α β κ _ _ _ _ _ P Q R S ψ τ JA JB d a b A C Φ om hCM hψ hFr hΦ hom
@@ -95,7 +79,7 @@ theorem lieScalar : GlobalTheory.FunPr.Hypotheses₂ → DerEx → VacLine → L
       sumPl (fun w => fockAct2 P Q R S (Y w) + (c₀ w * (Y w).trace) • (1 : Module.End ℂ _)) +
         (∑ w, k w * (Y w).trace) • (1 : Module.End ℂ (Tens F P Q R S)) := by
     simp only [add_mul, add_smul, ← add_assoc]
-    exact sumPl_add_smul (fun w => fockAct2 P Q R S (Y w) + (c₀ w * (Y w).trace) • (1 : Module.End ℂ _)) _
+    exact _root_.GlobalTheory.ArchRep.sumPl_add_smul (fun w => fockAct2 P Q R S (Y w) + (c₀ w * (Y w).trace) • (1 : Module.End ℂ _)) _
   rw [e2, LinearMap.add_apply, LinearMap.smul_apply, Module.End.one_apply, map_add (f := _), map_smul]
   have key : ∀ (z : ℂ) (f f' : SInf F κ), pureA F ⇑(f' + z • f) g = z • pureA F ⇑f g + pureA F ⇑f' g := by
     intro z f f'; funext x; simp [pureA]; ring

@@ -131,7 +131,7 @@ theorem locDens_le_add {e : ℕ} {X : Type} [TopologicalSpace X] (A : FinHolAtla
   show (hessC (fun y' => (Φ k).φ ((A.chart j).symm y) ((A.chart j).symm y') +
       (Θ k).φ ((A.chart j).symm y) ((A.chart j).symm y')) y -
     hessC (fun y' => (Φ k).φ ((A.chart j).symm y) ((A.chart j).symm y')) y).PosSemidef
-  rw [ReciprocityTheory.AnForm.A.hessC_add (fun y' => (Φ k).φ ((A.chart j).symm y) ((A.chart j).symm y'))
+  rw [_root_.ReciprocityTheory.AnForm.A.TraceConjugationCover.complexHessian_add_of_contDiffAt (fun y' => (Φ k).φ ((A.chart j).symm y) ((A.chart j).symm y'))
     (fun y' => (Θ k).φ ((A.chart j).symm y) ((A.chart j).symm y')) y (pot_contDiffAt_two (hΦ k) _ j hy ((Φ k).mem_U _))
     (pot_contDiffAt_two (hΘ k) _ j hy ((Θ k).mem_U _)), add_sub_cancel_left]
   exact hessC_locPot_posSemidef (hΘ k) (hΘp k) j hy

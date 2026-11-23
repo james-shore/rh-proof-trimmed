@@ -92,7 +92,7 @@ theorem i2iAt_record : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartIndepS
     tableLineDegreeFive hP14
   obtain ⟨inst, hnab⟩ := h.nabPin j hj
   obtain ⟨α, hα1, hα2⟩ := GlobalTheory.RunIn.half_level_generator_norm D T h EX
-  obtain ⟨hrun, hcc, -, -⟩ := GlobalTheory.T.thetaRunParameters_at_typePrimes_product D _ _ j (recPJ h j hj) K Ch Ah Cq Aq S large₂ H C2 A2 CR CT ka wL wF Tn nP nW h0
+  obtain ⟨hrun, hcc, -, -⟩ := _root_.GlobalTheory.RunParametersAtRecord.run_at_record D _ _ j (recPJ h j hj) K Ch Ah Cq Aq S large₂ H C2 A2 CR CT ka wL wF Tn nP nW h0
     hHP hTie hPage hSupp
   have hM : T.Q.l.M = D.host.g 0 * D.host.g 1 := h.pins.2.1.1
   have hP0 : P₁ ≠ 0 := fun e => GlobalTheory.BlockThInhab.not_isBlockProd_zero (T.Q.Dw j) wL.n T.Q.c.F (e ▸ hB)
@@ -108,7 +108,7 @@ theorem i2iAt_record : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartIndepS
     refine pow_le_sq_of_log (by linarith) (by rw [hdeg]; have := hSupp.2.2.2.2; omega) (norm_nonneg _) ?_
     rw [hdeg, hM, Nat.cast_mul]
     exact hSupp.2.1 σ
-  have key := GlobalTheory.T.integralityBound_of_family_containing_scaled_thetaRules hCI D.host.E T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c D.R.r (T.U j) (xiR D) (T.nab j) hnab
+  have key := _root_.GlobalTheory.AnVal.i2iAt_of_containsTh hCI D.host.E T.Q.H (T.Q.Dw j) T.Q.l (T.Q.Xo j) T.Q.c D.R.r (T.U j) (xiR D) (T.nab j) hnab
     (fun σ hσ => ⟨h.unf j hj σ hσ, h.unTest j hj σ hσ, h.xiAbs j hj σ hσ⟩) α hα1 hα2 (wtA wL) wL.n P₁ (dom_wtA wL) hP hB
     _ hs N (fun k => ((w k).1 : T.R j)) (fun k => cusp_le_sec _ _ _ _ _ (cutR_le T.C j wL (w k).2)) hC
     (Real.sqrt (90 * (D.R.f * D.R.r + WeightAlgebra.DF wL))) D.R.m (by rw [hdeg, hM]; exact hrun) (Or.inr hq) tableLineDegreeFive

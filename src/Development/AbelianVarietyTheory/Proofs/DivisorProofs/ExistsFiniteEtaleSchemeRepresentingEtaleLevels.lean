@@ -59,13 +59,13 @@ namespace GlobalTheory.UPel.HT.EtLev
 
 theorem exists_etLevScheme : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type) [CommRing R] (b : Base D R) (N : ℕ) (w0 : Ideal (𝓞 D.F)) (r : ℕ), N.Coprime p → IsEtPlace b w0 → ∀ (S : Scheme.{0}) [IsLocallyNoetherian S] (s : S ⟶ Sp R) (o : Obj b N s), ∃ (Y : Scheme.{0}) (π : Y ⟶ S) (lu : D.La → (Over.mk π ⟶ o.A)), IsFinite π ∧ Etale π ∧ IsEtLevOver o w0 r lu ∧ ∀ (T : Over S) (l : D.La → (T ⟶ o.A)), IsEtLevOver o w0 r l → ∃! f : T ⟶ Over.mk π, ∀ y, f ≫ lu y = l y := by
   intro p _ D R _ b N w0 r _hNp hw S _ s o
-  obtain ⟨r', hrr', H, i, hHf, hHfl, hHk, hHu⟩ := GlobalTheory.T.finite_flat_torsion_subgroup p D R b N w0 hw.1 hw.2.1 S s o r
-  have hHe : Etale H.hom := GlobalTheory.T.torsion_subgroup_universal p D R b N w0 r' S s o H i hHf hHfl hHk hHu
-    (fun k _ _ x v h0 hv => GlobalTheory.T.infinitesimal_point_trivial p D R b N w0 r' hw S s o k x v h0 hv)
-  obtain ⟨K, κ, hKf, hKe, hKk, hKu⟩ := GlobalTheory.T.etale_torsion_subgroup_universal p D R b N w0 r r' hrr' S s o H i hHf hHe hHk hHu
-  obtain ⟨Z, et, hZf, hZe, eadd, elin, eker, huniv⟩ := GlobalTheory.T.etale_level_kernel_universal p D R b N w0 r hw S s o K κ hKf hKe hKk hKu
-  have c1 := GlobalTheory.T.clopenCond_injective_geom_alt p D R b N w0 r hw S s o K κ hKf hKe hKk hKu Z et hZf hZe eadd elin eker
-  have c2 := GlobalTheory.T.clopenCond_onto_alt p D R b N w0 r hw S s o K κ hKf hKe hKk hKu Z et hZf hZe eadd elin eker
+  obtain ⟨r', hrr', H, i, hHf, hHfl, hHk, hHu⟩ := _root_.GlobalTheory.UPel.HT.PrimTors.exists_finite_flat_wPow p D R b N w0 hw.1 hw.2.1 S s o r
+  have hHe : Etale H.hom := _root_.GlobalTheory.UPel.HT.EtLev.etale_of_killed_tangent_trivial p D R b N w0 r' S s o H i hHf hHfl hHk hHu
+    (fun k _ _ x v h0 hv => _root_.GlobalTheory.UPel.HT.EtLev.TanKill.tan_eq_one_of_etPlace p D R b N w0 r' hw S s o k x v h0 hv)
+  obtain ⟨K, κ, hKf, hKe, hKk, hKu⟩ := _root_.GlobalTheory.UPel.HT.EtLev.exists_rep_pow_of_le p D R b N w0 r r' hrr' S s o H i hHf hHe hHk hHu
+  obtain ⟨Z, et, hZf, hZe, eadd, elin, eker, huniv⟩ := _root_.GlobalTheory.UPel.HT.EtLev.exists_finiteEtale_linTorsHom p D R b N w0 r hw S s o K κ hKf hKe hKk hKu
+  have c1 := _root_.GlobalTheory.UPel.HT.EtLev.clopenCond_injective_geom p D R b N w0 r hw S s o K κ hKf hKe hKk hKu Z et hZf hZe eadd elin eker
+  have c2 := _root_.GlobalTheory.UPel.HT.EtLev.clopenCond_onto p D R b N w0 r hw S s o K κ hKf hKe hKk hKu Z et hZf hZe eadd elin eker
   obtain ⟨U, hU, HU⟩ := c1.and c2
   haveI := hZf
   haveI := hZe

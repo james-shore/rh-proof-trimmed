@@ -519,7 +519,7 @@ theorem char_conj [Invertible (2 : R)] (h : Fr s J X Y) (hs : Continuous s) (ω 
     simp only [W]
     rw [e, hφ, map_mul, map_mul, Units.val_mul, Units.val_mul, Matrix.mul_assoc _ _ Y, bY']
     simp only [Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_assoc])
-  have key := char_eq_of_retract ι cι π cπ (fun x p => h.nMat_inj (by
+  have key := _root_.UpperTheory.Reformulated.B.Yhb4.main ι cι π cπ (fun x p => h.nMat_inj (by
     have e : B (ι x * p) = B p := Beq _ _ (by
       rw [map_mul, Units.val_mul, Matrix.mul_assoc, hB, ← Matrix.mul_assoc, hι, nX])
     rw [hπ, map_mul, Matrix.mul_assoc, hπ]

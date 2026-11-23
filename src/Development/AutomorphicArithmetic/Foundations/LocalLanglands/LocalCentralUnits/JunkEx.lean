@@ -116,14 +116,6 @@ private theorem exists_frobAut (K : Type) [Field K] [Finite K] (q n : ℕ) (hq :
     have := Nat.le_of_dvd (by omega) hdv
     omega
 
-private theorem le_exp_neg_one {γ : WithZero (Multiplicative ℤ)} (h : γ < 1) : γ ≤ WithZero.exp (-1 : ℤ) := by
-  rcases eq_or_ne γ 0 with rfl | h0
-  · exact zero_le'
-  · rw [← WithZero.exp_log h0] at h ⊢
-    rw [← WithZero.exp_zero, WithZero.exp_lt_exp] at h
-    rw [WithZero.exp_le_exp]
-    omega
-
 private theorem exp_neg_one_le {γ : WithZero (Multiplicative ℤ)} (h : ¬ γ ≤ WithZero.exp (-2 : ℤ)) :
     WithZero.exp (-1 : ℤ) ≤ γ := by
   have h0 : γ ≠ 0 := by rintro rfl; exact h zero_le'
@@ -138,7 +130,7 @@ private theorem le_val_of_not_mem_sq {L : Type} [Field L] [NumberField L] (u : H
     (HeightOneSpectrum.valuedAdicCompletion_eq_valuation' (R := 𝓞 L) u (c : L)).trans
       (HeightOneSpectrum.valuation_of_algebraMap u c)
   rw [e]
-  refine (le_exp_neg_one hx).trans (exp_neg_one_le fun h2 => hc2 ?_)
+  refine (_root_.GlobalTheory.NormCompat.NormCont.le_exp_neg_one_of_lt_one hx).trans (exp_neg_one_le fun h2 => hc2 ?_)
   exact_mod_cast (u.intValuation_le_pow_iff_mem c 2).1 (by simpa using h2)
 
 private theorem junkData (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (A : ValuationSubring Ω)
@@ -292,7 +284,7 @@ private theorem junkData (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Alg
       simp [AlgEquiv.mul_apply]
     have hP : PlaceIso A u A u (frob h : G E Ω).toRingEquiv (s.toRingEquiv : L →+* L) i :=
       ⟨fun z => apply_mem_iff_of_mem_Dec hφ.1 z, hs, hic, hil⟩
-    have e := isLocalArtin_transport GlobalTheory.globalArtinReciprocity_holds GlobalTheory.Published.chevalleyUnits' L Ω A u hu L Ω A u hu
+    have e := isLocalArtin_transport _root_.CompanionTheory.FamInh.globalArtin GlobalTheory.Published.chevalleyUnits' L Ω A u hu L Ω A u hu
       _ _ i hP a a ha ha _ _ hW
     have hiϖ : i ϖ = ϖ := by
       rw [hϖdef, hil]

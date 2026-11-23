@@ -71,7 +71,7 @@ theorem kFinPoly_of_k (hT : _root_.PositivityTheory.SiegelWeilFormula.TAll_k) (h
     intro h; rw [h, norm_zero] at hω1; exact zero_ne_one hω1
   have hωi : ∀ j : ℕ, 0 < j → ω⁻¹ ^ j ≠ 1 := fun j hj h => hω j hj (by rw [inv_pow] at h; exact inv_eq_one.1 h)
   have hμ : (star χ)⁻¹ ≠ 0 := inv_ne_zero (star_ne_zero.2 hχ)
-  obtain ⟨N, hN⟩ := poly_of_rot q hq0 (star χ)⁻¹ ω⁻¹ hμ (inv_ne_zero hω0) hωi
+  obtain ⟨N, hN⟩ := _root_.PositivityTheory.SiegelWeilFormula.KFPB.poly_of_rot q hq0 (star χ)⁻¹ ω⁻¹ hμ (inv_ne_zero hω0) hωi
   have hinv : ∀ ξ z, actB (cA σ) k⁻¹ (vv ξ z) = vv ξ (ω⁻¹ * z) := fun ξ z => by
     have := congrArg (actB (cA σ) k⁻¹) (hrot ξ (ω⁻¹ * z))
     rwa [← _root_.PositivityTheory.SiegelWeilFormula.KFP.actB_mul_k, inv_mul_cancel, _root_.PositivityTheory.SiegelWeilFormula.KFP.actB_one_k, ← mul_assoc, mul_inv_cancel₀ hω0, one_mul, eq_comm] at this
@@ -81,18 +81,18 @@ theorem kFinPoly_of_k (hT : _root_.PositivityTheory.SiegelWeilFormula.TAll_k) (h
     | zero => intro ξ z; simp [_root_.PositivityTheory.SiegelWeilFormula.KFP.actB_one_k]
     | succ i ih => intro ξ z; rw [pow_succ, _root_.PositivityTheory.SiegelWeilFormula.KFP.actB_mul_k, hinv, ih, pow_succ, mul_assoc]
   have hTΦ : d.T Φ ∈ d.schM := (hT.1 F E σ d).1 Φ hΦ
-  refine _root_.PositivityTheory.SiegelWeilFormula.KFP.mem_fock_of_k R hνf hTΦ fun g hg' => ?_
+  refine _root_.PositivityTheory.SiegelWeilFormula.KFP.OswGen.mem_fock_of_k R hνf hTΦ fun g hg' => ?_
   obtain ⟨Ω, hΩ, hTΩ⟩ := _root_.PositivityTheory.SiegelWeilFormula.KFP.exists_lift_k hT hF R hg'
-  obtain ⟨h, hh⟩ := _root_.PositivityTheory.SiegelWeilFormula.KFP.hg_sch_k R hνf hTΦ hg'
+  obtain ⟨h, hh⟩ := _root_.PositivityTheory.SiegelWeilFormula.KFP.OswGen.hg_sch_k R hνf hTΦ hg'
   have hpi : (0 : ℝ) < 2 * Real.pi := by positivity
-  obtain ⟨P, -, hP⟩ := poly_gauss_of_lines (2 * Real.pi) hpi N h fun ξ => by
+  obtain ⟨P, -, hP⟩ := _root_.PositivityTheory.SiegelWeilFormula.KFPB.poly_gauss_of_lines (2 * Real.pi) hpi N h fun ξ => by
     set I : ℂ → ℂ := fun z => ∫ u, h u * Real.exp (-(2 * Real.pi * ‖u‖ ^ 2)) * Complex.exp (z * ⟪ξ, u⟫_ℝ) with hI
     set Eξ : ℂ → ℂ := fun z => Complex.exp (-(z ^ 2 * ‖ξ‖ ^ 2 / (16 * Real.pi))) * I z with hE
     have hdiff : Differentiable ℂ Eξ :=
-      (Differentiable.cexp (by fun_prop)).mul (entire_laplace (2 * Real.pi) hpi h ξ)
+      (Differentiable.cexp (by fun_prop)).mul (_root_.PositivityTheory.SiegelWeilFormula.KFPB.entire_laplace (2 * Real.pi) hpi h ξ)
     have hrel : ∀ z, ∑ i ∈ Finset.range (q.natDegree + 1), q.coeff i * (star χ)⁻¹ ^ i * Eξ (ω⁻¹ ^ i * z) = 0 := by
       intro z
-      have e0 := _root_.PositivityTheory.SiegelWeilFormula.KFP.B_rel_k hT hU hν hχ hΩ (heig g hg' Ω hΩ hTΩ) hΦ q hq (vv ξ z)
+      have e0 := _root_.PositivityTheory.SiegelWeilFormula.KFP.B_rel'_k hT hU hν hχ hΩ (heig g hg' Ω hΩ hTΩ) hΦ q hq (vv ξ z)
       simp only [hact, hB g hg' Ω hΩ hTΩ Φ hΦ, ← hh] at e0
       have hn : ∀ i : ℕ, ‖ω⁻¹ ^ i * z‖ = ‖z‖ := fun i => by
         rw [norm_mul, norm_pow, norm_inv, hω1, inv_one, one_pow, one_mul]

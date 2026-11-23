@@ -36,32 +36,13 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SatakeParametersOfTwist
 
 @[expose] public section
 
 noncomputable section
 
 namespace UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm
-
-open GlobalTheory.LFun
-
-private theorem esymm_scale (A : Multiset ℂ) (c : ℂ) (i : ℕ) :
-    (A.map (· * c)).esymm i = c ^ i * A.esymm i := by
-  unfold Multiset.esymm
-  rw [Multiset.powersetCard_map, Multiset.map_map, ← Multiset.sum_map_mul_left]
-  refine congrArg Multiset.sum (Multiset.map_congr rfl fun t ht => ?_)
-  have h := (Multiset.mem_powersetCard.1 ht).2
-  simp only [Function.comp_apply]
-  rw [Multiset.prod_map_mul, Multiset.map_id', Multiset.map_const', Multiset.prod_replicate, h, mul_comm]
-
-private theorem satEig_scale (q n : ℕ) (B : Multiset ℂˣ) (c : ℂˣ) (i : ℕ) :
-    satEig q n (B.map (· * c)) i = (c : ℂ) ^ i * satEig q n B i := by
-  have e : ((B.map (· * c)).map fun b : ℂˣ => (b : ℂ)) =
-      (B.map fun b : ℂˣ => (b : ℂ)).map (· * (c : ℂ)) := by
-    simp [Multiset.map_map, Function.comp_def]
-  simp only [satEig]
-  rw [e, esymm_scale]
-  ring
 
 end UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm
 
@@ -78,7 +59,7 @@ theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm.satSum :
     intro i hi
     have hs : i.1 + i.2 = j := (Finset.mem_filter.1 hi).2
     have hsc : (j : ℂ) = (i.1 : ℂ) + i.2 := by exact_mod_cast hs.symm
-    rw [if_pos hs, satEig_scale, satEig_scale]
+    rw [if_pos hs, _root_.GlobalTheory.SphGal.satEig_map_mul, _root_.GlobalTheory.SphGal.satEig_map_mul]
     have e : ((j : ℂ) * (((a + b : ℕ) : ℂ) - j) - i.1 * (a - i.1) - i.2 * (b - i.2)) / 2 =
         (((i.1 : ℂ)) * ((b : ℂ) - i.2) + ((i.2 : ℂ)) * ((a : ℂ) - i.1)) / 2 := by
       rw [hsc]; push_cast; ring

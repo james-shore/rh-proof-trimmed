@@ -56,36 +56,16 @@ namespace GlobalTheory.IwaOrbit
 
 variable {D : D7}
 
-theorem mul_mem_intAE {x y : Af D.host.F ⊗[D.host.F] D.host.E} (hx : x ∈ intAE D) (hy : y ∈ intAE D) :
-    x * y ∈ intAE D := by
-  refine AddSubgroup.closure_induction₂ (p := fun x y _ _ => x * y ∈ intAE D) ?_ ?_ ?_ ?_ ?_ ?_ ?_ hx hy
-  · rintro _ _ ⟨a, ha, u, rfl⟩ ⟨b, hb, v, rfl⟩
-    refine AddSubgroup.subset_closure ⟨a * b, fun w => ?_, u * v, ?_⟩
-    · rw [map_mul]; exact mul_mem (ha w) (hb w)
-    · rw [Algebra.TensorProduct.tmul_mul_tmul]; rfl
-  · intro x _; rw [zero_mul]; exact zero_mem _
-  · intro x _; rw [mul_zero]; exact zero_mem _
-  · intro x y z _ _ _ h1 h2; rw [add_mul]; exact add_mem h1 h2
-  · intro x y z _ _ _ h1 h2; rw [mul_add]; exact add_mem h1 h2
-  · intro x y _ _ h; rw [neg_mul]; exact neg_mem h
-  · intro x y _ _ h; rw [mul_neg]; exact neg_mem h
+alias mul_mem_intAE := _root_.GlobalTheory.IdemPrime.mul_mem_int
 
 theorem intAt_zero {P : Pl D → Prop} : (0 : AE D) ∈ intAt D P :=
   ⟨zero_mem _, by rw [(finPart D).map_zero]; exact zero_mem _⟩
 
-theorem intAt_add {P : Pl D → Prop} {a b : AE D} (ha : a ∈ intAt D P) (hb : b ∈ intAt D P) :
-    a + b ∈ intAt D P :=
-  ⟨add_mem ha.1 hb.1, by rw [(finPart D).map_add]; exact add_mem ha.2 hb.2⟩
-
-theorem intAt_mul {P : Pl D → Prop} {a b : AE D} (ha : a ∈ intAt D P) (hb : b ∈ intAt D P) :
-    a * b ∈ intAt D P :=
-  ⟨Ideal.mul_mem_right _ _ ha.1, by rw [(finPart D).map_mul]; exact mul_mem_intAE ha.2 hb.2⟩
-
 theorem mulVec_mem_intAt {P : Pl D → Prop} {m n : ℕ} {M : Matrix (Fin m) (Fin n) (AE D)} {z : Fin n → AE D}
     (hM : ∀ i j, M i j ∈ intAt D P) (hz : ∀ j, z j ∈ intAt D P) (i : Fin m) : (M *ᵥ z) i ∈ intAt D P := by
   simp only [Matrix.mulVec, dotProduct]
-  exact Finset.sum_induction _ (· ∈ intAt D P) (fun _ _ => intAt_add) intAt_zero
-    fun j _ => intAt_mul (hM i j) (hz j)
+  exact Finset.sum_induction _ (· ∈ intAt D P) (fun _ _ => _root_.GlobalTheory.IwaPlace.SdComap.intAt_add) intAt_zero
+    fun j _ => _root_.GlobalTheory.IwaPlace.SdComap.intAt_mul (hM i j) (hz j)
 
 theorem mul_mem_idAt_left {P : Pl D → Prop} {l m n : ℕ} {A : Matrix (Fin l) (Fin m) (AE D)}
     (B : Matrix (Fin m) (Fin n) (AE D)) (hA : ∀ i j, A i j ∈ idAt D P) (i : Fin l) (j : Fin n) :

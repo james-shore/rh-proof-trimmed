@@ -55,18 +55,12 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups
 
 open Formalism.BasicNotions Formalism.BasicNotions.Loc ReciprocityTheory.Gal Module UpperTheory.V.Loc UpperTheory.V.U3 UpperTheory.V.Alg IsLocalRing Polynomial
 
-private theorem ptc_field {l : ℕ} [Fact l.Prime] {R : Type} [CommRing R] [IsLocalRing R] [Algebra ℤ_[l] R]
-    {K : Type} [Field K] [Algebra ℚ_[l] K] [Module.Finite ℚ_[l] K] [Algebra ℤ_[l] K] [IsScalarTower ℤ_[l] ℚ_[l] K]
-    (x : R →ₐ[ℤ_[l]] K) (a : R) (ha : a ∈ maximalIdeal R) :
-    IsIntegral ℤ_[l] (x a) ∧ ∃ n : ℕ, ∃ b, IsIntegral ℤ_[l] b ∧ x a ^ n = (l : K) * b :=
-  _root_.UpperTheory.Reformulated.B.IntegralOfNormBounded.ptc_field x a ha
-
 private theorem ptc_field' {l : ℕ} [Fact l.Prime] {R : Type} [CommRing R] [IsLocalRing R] [Algebra ℤ_[l] R]
     (hR : ∀ a : R, ∃ c, IsIntegral ℤ_[l] c ∧ a - c ∈ maximalIdeal R)
     {K : Type} [Field K] [Algebra ℚ_[l] K] [Module.Finite ℚ_[l] K] [Algebra ℤ_[l] K] [IsScalarTower ℤ_[l] ℚ_[l] K]
     (x : R →ₐ[ℤ_[l]] K) (a : R) : IsIntegral ℤ_[l] (x a) := by
   obtain ⟨c, hc, hm⟩ := hR a
-  have := (ptc_field x _ hm).1.add (hc.map x)
+  have := (_root_.UpperTheory.Reformulated.B.IntegralOfNormBounded.ptc_field x _ hm).1.add (hc.map x)
   simpa using this
 
 private theorem ptc_finite {l : ℕ} [Fact l.Prime] {R : Type} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
@@ -183,4 +177,4 @@ theorem UpperTheory.V.Loc.ptCont :
     have h2 := he.comp h1
     simpa [QCont, Function.comp_def] using h2
   · letI := hB.toField
-    exact ⟨ptc_field' hR x', fun a ha => (ptc_field x' a ha).2⟩
+    exact ⟨ptc_field' hR x', fun a ha => (_root_.UpperTheory.Reformulated.B.IntegralOfNormBounded.ptc_field x' a ha).2⟩

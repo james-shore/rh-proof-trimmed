@@ -77,7 +77,7 @@ theorem exists_tensor_stabiliser_closed_orbit : ∀ (ι : Type) [Fintype ι] [De
       have h := hΦ ℂ y k
       simp only [eq_ratCast] at h
       rw [← h, evC, ev, MvPolynomial.eval_map, MvPolynomial.aeval_def]
-    have hcl := GlobalTheory.T.isClosed_image_SL_under_generating_invariants ι Γ Rey (TIdx ι d) (fun k => MvPolynomial.map (algebraMap ℚ ℂ) (Φ k)) hRey
+    have hcl := _root_.GlobalTheory.ClassFin.isClosed_image_invariants ι Γ Rey (TIdx ι d) (fun k => MvPolynomial.map (algebraMap ℚ ℂ) (Φ k)) hRey
       hΓ.det_eq (fun k g hg y => by rw [hev, hev, hmul, hfix g hg]) (fun f hf => by
         obtain ⟨P, hP⟩ := hgen f hf
         rw [Algebra.adjoin_range_eq_range_aeval]

@@ -50,12 +50,8 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.G0.Top
 
-theorem walkSharp : Formalism.G0.WalkSharp := Formalism.G0.walkSharp_true
+alias walkSharp := _root_.Formalism.G0.WalkSharpP.main
 
-theorem subspaceCount : Formalism.G0.SubspaceCount := Formalism.G0.countSubspacesEq
-
-theorem typeIIDown : Formalism.G0.TypeIIDown := Formalism.G0.countAboveRangeCodimFormula
-
-theorem markedRun : Formalism.G0.MarkedRun := Formalism.G0.marked_run
+alias subspaceCount := _root_.Formalism.G0.countSubspacesEq
 
 end Formalism.G0.Top

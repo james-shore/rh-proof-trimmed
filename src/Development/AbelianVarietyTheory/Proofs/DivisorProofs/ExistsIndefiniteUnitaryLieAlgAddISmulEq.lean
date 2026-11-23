@@ -44,6 +44,7 @@ import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
 import Development.AbelianVarietyTheory.Definitions.Divisors.FramedDConst
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsFockIPOfFockData
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFockMap
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.FiniteDimKStableSubspaceKFiniteLie
 
 @[expose] public section
 
@@ -53,20 +54,10 @@ open GlobalTheory.HoweD
 
 namespace GlobalTheory.HoweD
 
-theorem jm_conjTranspose (p q : ℕ) : (Formalism.BasicNotions.TH.Jm p q)ᴴ = Formalism.BasicNotions.TH.Jm p q := by
-  unfold Formalism.BasicNotions.TH.Jm Formalism.UG.Jpq
-  rw [Matrix.fromBlocks_conjTranspose]
-  simp
-
-theorem jm_mul_self (p q : ℕ) : Formalism.BasicNotions.TH.Jm p q * Formalism.BasicNotions.TH.Jm p q = 1 := by
-  unfold Formalism.BasicNotions.TH.Jm Formalism.UG.Jpq
-  rw [Matrix.fromBlocks_multiply]
-  simp [Matrix.fromBlocks_one]
-
 theorem upq_span (p q : ℕ) (Z : Mat p q) : ∃ X ∈ upq p q, ∃ Y ∈ upq p q, Z = X + Complex.I • Y := by
   obtain ⟨J, hJ⟩ : ∃ J, J = Formalism.BasicNotions.TH.Jm p q := ⟨_, rfl⟩
-  have hJh : Jᴴ = J := hJ ▸ jm_conjTranspose p q
-  have hJJ : J * J = 1 := hJ ▸ jm_mul_self p q
+  have hJh : Jᴴ = J := hJ ▸ _root_.GlobalTheory.RealPar.KStabLie.Jm_ct p q
+  have hJJ : J * J = 1 := hJ ▸ _root_.GlobalTheory.RealPar.KStabLie.Jm_sq p q
   refine ⟨(1/2 : ℂ) • (Z - J * Zᴴ * J), ?_, (-(Complex.I / 2)) • (Z + J * Zᴴ * J), ?_, ?_⟩
   · show _ = _
     rw [← hJ]

@@ -137,7 +137,7 @@ theorem decEquiv : ReciprocityTheory.ChartRestriction.T2.DecEquiv := by
   obtain ⟨j, hj⟩ := GlobalTheory.PlaceBridge.exists_embedding F Ω w A hw hAw
   obtain ⟨i, hi⟩ := GlobalTheory.T.exists_decompositionGroup_equiv_padicGalois p F Ω A j hj
   refine ⟨_, GlobalTheory.PlaceBridge.finiteDimensional_adjoin_range (j.comp (algebraMap F Ω)), i, ?_,
-    fun g => GlobalTheory.T.localInertia_iff_mem_placeInertia p F Ω A j hj _ i.toMulEquiv hi g,
+    fun g => _root_.GlobalTheory.DecInertia.inertiaK_iff_mem_Ine p F Ω A j hj _ i.toMulEquiv hi g,
     fun v hv => finrank_closure_eq_locDeg p F Ω A j hj v hv⟩
   intro O _ ε hε g n ζ hζ
   obtain ⟨y, hy, rfl⟩ := exists_root_of_unity p Ω j n ζ hζ

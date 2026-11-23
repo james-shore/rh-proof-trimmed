@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CompactOrbits.Descent.NilpotentPowers.IsNilpotentPowSub
 
 @[expose] public section
 
@@ -162,13 +163,7 @@ theorem cc_of_NB {Z : Subalgebra k (Matrix (Fin n) (Fin n) k)} (hZ : CR Z) {c m 
   have hn : IsNilpotent (c + m - c) := by simpa using hm.2
   exact ⟨⟨⟨c, hc, hn⟩, hB⟩, zpart_unique hZ hB hc hn⟩
 
-theorem isClosed_Bz (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) : IsClosed (Bz Z) := by
-  have e : Bz Z = ⋂ a ∈ (Z : Set (Matrix (Fin n) (Fin n) k)), {x | a * x = x * a} := by
-    ext x; simp [Bz]
-  rw [e]
-  exact isClosed_biInter fun a _ => isClosed_eq (continuous_const.mul continuous_id) (continuous_id.mul continuous_const)
-
 theorem isClosed_NB (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) : IsClosed (NB Z) :=
-  (isClosed_Bz Z).inter PositivityTheory.RgUd.T.Nil.Orb.Ozn.isClosed_nilpotent
+  (_root_.PositivityTheory.RgUd.T.Desc.Asm.isClosed_Bz Z).inter PositivityTheory.RgUd.T.Nil.Orb.Ozn.isClosed_nilpotent
 
 end PositivityTheory.RgUd.TP.Nil.Fib1

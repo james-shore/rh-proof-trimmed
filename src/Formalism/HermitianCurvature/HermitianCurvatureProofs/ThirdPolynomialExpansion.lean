@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.SignPermutationIdentity
 
 @[expose] public section
 
@@ -58,18 +59,7 @@ theorem succAbove_val {n : ℕ} (p : Fin (n + 1)) (l : Fin n) :
   unfold Fin.succAbove
   split_ifs with h1 h2 h2 <;> simp_all [Fin.lt_def] <;> omega
 
-private theorem sgnW_succ' (s : ℕ) : sgnW (s + 1) = (-1) ^ s * sgnW s := by
-  unfold sgnW
-  rw [← pow_add]
-  congr 1
-  cases s with
-  | zero => rfl
-  | succ k =>
-    have e : (k + 1 + 1) * (k + 1 + 1 - 1) = (k + 1) * (k + 1 - 1) + 2 * (k + 1) := by
-      simp only [Nat.add_sub_cancel]
-      ring
-    rw [e, Nat.add_mul_div_left _ _ (by norm_num : 0 < 2)]
-    ring
+private alias sgnW_succ' := _root_.Formalism.FourierDecayAlt.P.SignAntidiagonal.sgnW_succ
 
 theorem zb_det (i0 s : ℕ) (h : Matrix (Fin i0) (Fin i0) ℂ) (t : ℂ) :
     (Matrix.of fun a b : Fin (i0 + s) => Zb i0 s h t a.val b.val).det = h.det * t ^ s * sgnW s := by

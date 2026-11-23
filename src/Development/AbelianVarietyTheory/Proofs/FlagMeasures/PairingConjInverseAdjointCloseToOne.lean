@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsPrincipalIdealRingOfHenselian
 
 @[expose] public section
 
@@ -70,10 +71,6 @@ theorem cT_sub (L : LocE F E) {n : ℕ} (A B : Matrix (Fin n) (Fin n) E) :
   ext i j
   simp [cT, map_sub]
 
-theorem cj_mem (L : LocE F E) {x : E} (hx : x ∈ L.O) : L.cj x ∈ L.O := by
-  rw [L.O_def] at hx ⊢
-  exact hx.map (L.cj.toAlgHom.restrictScalars 𝒪[F])
-
 theorem main : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] (L : LocE F E) (n : ℕ) (Z Zi M Mi M' : Matrix (Fin n) (Fin n) E) (t e : E), t ∈ L.O → L.cj t = t → Zi * Z = 1 → (∀ i j, e * Z i j ∈ L.O) → (∀ i j, e * Zi i j ∈ L.O) → Mi * M = 1 → M * Mi = 1 → (∀ i j, ∃ o ∈ L.O, (Mi - 1) i j = t * o) → cT L M * Z * M' = Z → ∀ i j, ∃ o ∈ L.O, e * e * (M' - 1) i j = t * o := by
   intro F _ _ _ E _ _ _ L n Z Zi M Mi M' t e ht htc hZiZ heZ heZi hMiM hMMi hclose hM'
   have hc : cT L Mi * cT L M = 1 := by rw [← cT_mul, hMMi, cT_one]
@@ -87,7 +84,7 @@ theorem main : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] {E
   intro i j
   refine ⟨∑ l, ∑ k, (e * Zi i k) * L.cj (o l k) * (e * Z l j), ?_, ?_⟩
   · refine Subring.sum_mem _ fun l _ => Subring.sum_mem _ fun k _ => ?_
-    exact Subring.mul_mem _ (Subring.mul_mem _ (heZi i k) (cj_mem L (ho l k))) (heZ l j)
+    exact Subring.mul_mem _ (Subring.mul_mem _ (heZi i k) (_root_.GlobalTheory.UnramOrder.cj_mem L (ho l k))) (heZ l j)
   · rw [hsub]
     simp only [Matrix.mul_apply, cT, hoe, map_mul, htc, Finset.sum_mul, Finset.mul_sum]
     refine Finset.sum_congr rfl fun l _ => Finset.sum_congr rfl fun k _ => ?_

@@ -92,7 +92,7 @@ theorem l_dvd_of_galois_sections : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (
       (f : En.Q.A ⧸ I →+* O), f (π (En.inl.f (bk.ev X))) ≠ 0 → ¬ IsUnit (f (π (En.inl.f (bk.ev X)))) →
       IsAdicComplete (Ideal.span {f (π (En.inl.f (bk.ev X)))}) O → ∀ j, f (π (x j)) = 0 := by
     intro O _ _ _ _ _ f hf0 hfu hfc j
-    obtain ⟨g, s, ψ, h1, h2, h3⟩ := GlobalTheory.T.breuilKisinEnvelope_point_factors_through_section l K bk En O (f.comp π) hf0 hfu hfc
+    obtain ⟨g, s, ψ, h1, h2, h3⟩ := _root_.GlobalTheory.BSP.envPoint_factors l K bk En O (f.comp π) hf0 hfu hfc
     obtain ⟨z, hz⟩ := hs g s h1 h2 j
     have e := h3 (x j)
     rw [RingHom.comp_apply] at e

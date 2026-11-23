@@ -62,25 +62,14 @@ variable {n : ℕ}
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
-theorem jall_pmat_add {ε : Fin n → Bool} (z w : PCoord ε → ℂ) : pmat (z + w) = pmat z + pmat w := by
-  ext a b
-  simp only [pmat, Pi.add_apply, Matrix.add_apply]
-  split_ifs <;> simp
-
-theorem jall_pmat_smul {ε : Fin n → Bool} (c : ℝ) (z : PCoord ε → ℂ) :
-    pmat (c • z) = (c : ℂ) • pmat z := by
-  ext a b
-  simp only [pmat, Pi.smul_apply, Matrix.smul_apply]
-  split_ifs <;> simp [Complex.real_smul, star_mul', Complex.conj_ofReal]
-
 def adKL {ε : Fin n → Bool} (k : KG ε) : (PCoord ε → ℂ) →ₗ[ℝ] (PCoord ε → ℂ) where
   toFun := adK k
   map_add' z w := by
     funext ab
-    simp only [adK, jall_pmat_add, Matrix.mul_add, Matrix.add_mul, Pi.add_apply, Matrix.add_apply]
+    simp only [adK, _root_.ReciprocityTheory.ChartRestriction.DS.PolarJacobianDeterminant.pmat_add', Matrix.mul_add, Matrix.add_mul, Pi.add_apply, Matrix.add_apply]
   map_smul' c z := by
     funext ab
-    simp only [adK, jall_pmat_smul, Matrix.mul_smul, Matrix.smul_mul, Pi.smul_apply, Matrix.smul_apply,
+    simp only [adK, _root_.ReciprocityTheory.ChartRestriction.DS.adKAux_pmat_smul, Matrix.mul_smul, Matrix.smul_mul, Pi.smul_apply, Matrix.smul_apply,
       RingHom.id_apply, Complex.real_smul, smul_eq_mul]
 
 theorem jall_adK_inv {ε : Fin n → Bool} (k : KG ε) (z : PCoord ε → ℂ) : adK k⁻¹ (adK k z) = z := by

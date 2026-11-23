@@ -85,7 +85,7 @@ theorem integral_det_dbar_eq_zero_of_poincare : ∀ {n : ℕ} (S : Finset (Fin n
     IntegrableOn (fun v => (Matrix.of fun i b => dbar (f i) v (coordVec b)).det) (offHyp S U) ∧
       ∫ v in offHyp S U, (Matrix.of fun i b => dbar (f i) v (coordVec b)).det = 0 := by
   intro n S U K f j u c hU hK hKU hsmall hf hf0 hfb hdb
-  have hΩ : IsOpen (offHyp S U) := GlobalTheory.T.isOpen_offCoordinateHyperplanes S U hU
+  have hΩ : IsOpen (offHyp S U) := _root_.GlobalTheory.GoodTop.isOpen_offHyp_of_isOpen S U hU
   have hΩm : MeasurableSet (offHyp S U) := hΩ.measurableSet
   have hKc : IsClosed K := hK.isClosed
   have hwt : ∀ v ∈ offHyp S U, ∀ a, 0 < poinWt S v a := fun v hv =>
@@ -98,7 +98,7 @@ theorem integral_det_dbar_eq_zero_of_poincare : ∀ {n : ℕ} (S : Finset (Fin n
       ‖dbar (g i) v (coordVec b)‖ * (poinWt S v (u i) * poinWt S v b) ≤ c') → ∀ v ∈ offHyp S U, v ∈ K →
       ‖(Matrix.of fun i b => dbar (g i) v (coordVec b)).det‖ ≤
         (n.factorial : ℝ) * |c'| ^ n * ∏ a, (poinWt S v a)⁻¹ ^ 2 :=
-    fun g c' h v hv hvK => GlobalTheory.T.norm_det_le_of_weighted_entry_bound _ u _ c' (hwt v hv) (h v hv hvK)
+    fun g c' h v hv hvK => _root_.GlobalTheory.GoodTop.norm_det_le_of_weighted _ u _ c' (hwt v hv) (h v hv hvK)
   have hint := GlobalTheory.T.integrableOn_offCoordinateHyperplanes_of_poincareBound S U K (fun v => (Matrix.of fun i b => dbar (f i) v (coordVec b)).det) _ hU hK hKU hsmall
     (continuousOn_det_dbar hΩ hf) (hoff f hf0) (hbd f c hdb)
   refine ⟨hint, ?_⟩

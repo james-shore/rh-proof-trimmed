@@ -61,11 +61,11 @@ theorem majorant_k (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) (hS :
       ∃ u : GlobalTheory.Eis.Cosets (par2 σ d.Y) (rat2 σ d.Y) → ℝ, Summable u ∧
         ∀ g ∈ C, ∀ q, ‖GlobalTheory.Eis.term (par2 σ d.Y) (rat2 σ d.Y) (fun x => ((d.Ht x : ℝ) : ℂ) ^ (z - s₁) * f x) g q‖ ≤ u q := by
   obtain ⟨r', s', hY⟩ := hS
-  have hKc : IsCompact (d.K : Set d.G) := _root_.GlobalTheory.T.isCompact_standard_maximal_compact F E σ d.B d.n d.Y r' s' d.ok.good d.ok.hn hY d.b d.K d.a
+  have hKc : IsCompact (d.K : Set d.G) := _root_.GlobalTheory.CompanionTheory.StdK.isCompact_K_k F E σ d.B d.n d.Y r' s' d.ok.good d.ok.hn hY d.b d.K d.a
     d.ok.frame d.ok.stdK d.ok.hgt
-  obtain ⟨hac, hpos⟩ := _root_.GlobalTheory.T.height_function_continuous_pos F E σ d.B d.n d.Y r' s' d.ok.good d.ok.hn hY d.b d.K d.a d.ok.frame d.ok.stdK d.ok.hgt
-  obtain ⟨C0, hC0⟩ := GlobalTheory.T.flat_section_growth_bound d.K d.a hKc d.ok.hgt hpos d.χ s₁ f hf
-  obtain ⟨σ₀, hσ⟩ := _root_.GlobalTheory.T.eisenstein_series_convergence_bound F E σ d.B d.n d.Y r' s' d.ok.good d.ok.hn hY d.b d.K d.a d.ok.frame d.ok.stdK d.ok.hgt
+  obtain ⟨hac, hpos⟩ := _root_.GlobalTheory.CompanionTheory.Iwasawa.height_continuous_pos_k F E σ d.B d.n d.Y r' s' d.ok.good d.ok.hn hY d.b d.K d.a d.ok.frame d.ok.stdK d.ok.hgt
+  obtain ⟨C0, hC0⟩ := _root_.GlobalTheory.CompanionTheory.EisTerm.flat_norm_le_height_rpow d.K d.a hKc d.ok.hgt hpos d.χ s₁ f hf
+  obtain ⟨σ₀, hσ⟩ := _root_.GlobalTheory.CompanionTheory.GodementH.godement_sum_k F E σ d.B d.n d.Y r' s' d.ok.good d.ok.hn hY d.b d.K d.a d.ok.frame d.ok.stdK d.ok.hgt
   refine ⟨σ₀ - (d.n : ℝ) / 2, fun z hz C hC => ?_⟩
   set σ' : ℝ := z.re + (d.n : ℝ) / 2 with hσ'
   have h1 : σ₀ < σ' := by linarith

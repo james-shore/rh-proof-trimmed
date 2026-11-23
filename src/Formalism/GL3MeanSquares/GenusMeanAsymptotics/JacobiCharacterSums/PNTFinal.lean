@@ -54,14 +54,8 @@ noncomputable section
 
 namespace Formalism.HermitianLattices.Ext.PrimesInProgressions
 
-theorem explicitS_proof' : ExplicitS := smoothed_explicit_formula
-
-theorem logDensityM_proof' : LogDensityM := Dens.log_density_bound
-
-theorem deuringHeilbronnMB_proof' : DeuringHeilbronnMB := deuring_heilbronn_lossy
-
 theorem pnt_progressions_relative_weak_holds : Formalism.HermitianLattices.Ext.LogarithmicIntegralBounds.PNTAPRelW :=
   prime_count_of_psi (glue_ranges psi_relative_near_range
-    (psi_relative_far_range explicitS_proof' differenced_explicit_formula (zero_sum_bound_lossy logDensityM_proof' deuringHeilbronnMB_proof')))
+    (psi_relative_far_range _root_.Formalism.HermitianLattices.Ext.PrimesInProgressions.smoothed_explicit_formula differenced_explicit_formula (zero_sum_bound_lossy _root_.Formalism.HermitianLattices.Ext.PrimesInProgressions.Dens.log_density_bound _root_.Formalism.HermitianLattices.Ext.PrimesInProgressions.deuring_heilbronn_lossy)))
 
 end Formalism.HermitianLattices.Ext.PrimesInProgressions

@@ -80,21 +80,6 @@ namespace GlobalTheory.CompanionTheory.CuspPairSub
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
-theorem exists_eq_singleton_of_sum' {ι A : Type*} [Fintype ι] [DecidableEq ι] {a : A} {t : ι → Multiset A}
-    (h : ({a} : Multiset A) = ∑ j, t j) : ∃ j₀, t j₀ = {a} ∧ ∀ j, j ≠ j₀ → t j = 0 := by
-  have hc : ∑ j, Multiset.card (t j) = 1 := by
-    have := congrArg Multiset.card h
-    rw [Multiset.card_sum] at this
-    simpa using this.symm
-  obtain ⟨j₀, -, h1⟩ := Finset.exists_ne_zero_of_sum_ne_zero (hc.symm ▸ one_ne_zero)
-  have hz : ∀ j, j ≠ j₀ → t j = 0 := fun j hj => by
-    have h2 := Finset.add_le_sum (s := Finset.univ) (f := fun j => Multiset.card (t j)) (fun _ _ => Nat.zero_le _)
-      (Finset.mem_univ j₀) (Finset.mem_univ j) (Ne.symm hj)
-    simp only [hc] at h2
-    exact Multiset.card_eq_zero.1 (by omega)
-  refine ⟨j₀, ?_, hz⟩
-  rw [h, Finset.sum_eq_single j₀ (fun j _ hj => hz j hj) (by simp)]
-
 theorem eq_of_hasSupport_singleton {y z : IrrGL (k := k)} (h : HasSupport y.rep {z}) : y = z := by
   obtain ⟨r, u, hu, hi, hc, e, hsub⟩ := h
   obtain rfl : r = 1 := by simpa using congrArg Multiset.card hu
@@ -141,7 +126,7 @@ theorem exists_equiv_of_cell {l : ℕ} (x y : Fin l → IrrGL (k := k)) (hxc : �
       (y := fun i => IrrGL.of (s i j).ρ (s i j).smooth (s i j).irr)
       (fun i => (ht i j).of_equiv (IrrGL.equivOf _ _ _)) (y j).2.rep.irr
       (h1.trans (.of_injective ψ.toIntertwiningMap ψ.toLinearEquiv.injective))
-  choose r hr1 hr0 using fun i => exists_eq_singleton_of_sum' (hAt i)
+  choose r hr1 hr0 using fun i => _root_.GlobalTheory.CompanionTheory.CuspCell.exists_eq_singleton_of_sum (hAt i)
   have hsurj : Function.Surjective r := by
     intro j
     by_contra hj
@@ -190,7 +175,7 @@ theorem exists_equiv_of_jm_ne_zero {l N : ℕ} (x y : Fin l → IrrGL (k := k)) 
 theorem jm_le_one (hA : IrreducibleAdmissibleGL) {l N : ℕ} (x y : Fin l → IrrGL (k := k)) (hx : ∑ a, (x a).1 = N)
     (hy : ∑ a, (y a).1 = N) (hxc : ∀ a, (x a).IsCusp) (hyc : ∀ a, (y a).IsCusp)
     (hinj : Function.Injective x) : jm y hy (prodIrr x hx) ≤ 1 := by
-  rw [GlobalTheory.T.jacquet_multiplicity_cuspidal_product hA x y hx hy hxc hyc]
+  rw [_root_.GlobalTheory.CompanionTheory.CuspJm.main hA x y hx hy hxc hyc]
   have : Set.ncard {e : Fin l ≃ Fin l | ∀ a, y a = x (e a)} ≤ 1 := by
     refine (Set.ncard_le_one_iff (Set.toFinite _)).2 fun {e e'} he he' => Equiv.ext fun a => hinj ?_
     exact (he a).symm.trans (he' a)

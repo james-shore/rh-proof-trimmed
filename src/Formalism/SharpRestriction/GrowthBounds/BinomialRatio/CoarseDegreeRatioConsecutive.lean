@@ -367,39 +367,8 @@ theorem kept_levels_hold : KeptLevelsBeyond :=
       exact pair_level X.p (X.seg C0 CE1 CE2 j) (segATop X.TT X.aT j) (segAPlus X.TT X.aT j) m rz ry _ t.1 t.2.1 t.2.2
         ht.1.1 hjp
 
-private theorem transported_and {P Q : (ℝ → ℝ → ℝ → ℝ → ℝ → ℝ → ℝ → ℝ → ℝ → ℝ → Prop)} (hP : TransportedAlt P) (hQ : TransportedAlt Q) :
-    TransportedAlt fun C0 CYb Cde Ck CD Cb CE1 CE2 Cm Cc =>
-      P C0 CYb Cde Ck CD Cb CE1 CE2 Cm Cc ∧ Q C0 CYb Cde Ck CD Cb CE1 CE2 Cm Cc := by
-  intro Cc hCc
-  obtain ⟨T0, hT0, hP0⟩ := hP Cc hCc
-  obtain ⟨U0, _, hQ0⟩ := hQ Cc hCc
-  refine ⟨max T0 U0, lt_max_of_lt_left hT0, fun C0 hC0 => ?_⟩
-  obtain ⟨T1, hT1, hP1⟩ := hP0 C0 (le_trans (le_max_left _ _) hC0)
-  obtain ⟨U1, _, hQ1⟩ := hQ0 C0 (le_trans (le_max_right _ _) hC0)
-  refine ⟨max T1 U1, lt_max_of_lt_left hT1, fun CE1 CE2 Cm a1 a2 a3 => ?_⟩
-  obtain ⟨T2, hT2, hP2⟩ := hP1 CE1 CE2 Cm (le_trans (le_max_left _ _) a1) (le_trans (le_max_left _ _) a2)
-    (le_trans (le_max_left _ _) a3)
-  obtain ⟨U2, _, hQ2⟩ := hQ1 CE1 CE2 Cm (le_trans (le_max_right _ _) a1) (le_trans (le_max_right _ _) a2)
-    (le_trans (le_max_right _ _) a3)
-  refine ⟨max T2 U2, lt_max_of_lt_left hT2, fun CYb Cde Ck CD Cb b1 b2 b3 b4 b5 => ⟨?_, ?_⟩⟩
-  · exact hP2 CYb Cde Ck CD Cb (le_trans (le_max_left _ _) b1) (le_trans (le_max_left _ _) b2)
-      (le_trans (le_max_left _ _) b3) (le_trans (le_max_left _ _) b4) (le_trans (le_max_left _ _) b5)
-  · exact hQ2 CYb Cde Ck CD Cb (le_trans (le_max_right _ _) b1) (le_trans (le_max_right _ _) b2)
-      (le_trans (le_max_right _ _) b3) (le_trans (le_max_right _ _) b4) (le_trans (le_max_right _ _) b5)
-
-private theorem transported_mono {P Q : (ℝ → ℝ → ℝ → ℝ → ℝ → ℝ → ℝ → ℝ → ℝ → ℝ → Prop)}
-    (h : ∀ C0 CYb Cde Ck CD Cb CE1 CE2 Cm Cc, P C0 CYb Cde Ck CD Cb CE1 CE2 Cm Cc → Q C0 CYb Cde Ck CD Cb CE1 CE2 Cm Cc)
-    (hP : TransportedAlt P) : TransportedAlt Q := by
-  intro Cc hCc
-  obtain ⟨T0, hT0, h0⟩ := hP Cc hCc
-  refine ⟨T0, hT0, fun C0 hC0 => ?_⟩
-  obtain ⟨T1, hT1, h1⟩ := h0 C0 hC0
-  refine ⟨T1, hT1, fun CE1 CE2 Cm a1 a2 a3 => ?_⟩
-  obtain ⟨T2, hT2, h2⟩ := h1 CE1 CE2 Cm a1 a2 a3
-  exact ⟨T2, hT2, fun CYb Cde Ck CD Cb b1 b2 b3 b4 b5 => h _ _ _ _ _ _ _ _ _ _ (h2 CYb Cde Ck CD Cb b1 b2 b3 b4 b5)⟩
-
-theorem kept_blocks_of_parts (h1 : KeptPairsBeyond) (h2 : KeptLevelsBeyond) (h4 : KeptThresholdsBeyond) : KeptBlocksBeyondThreshold := transported_mono (fun _ _ _ _ _ _ _ _ _ _ h => kept_block_at_of_pair_level_chain_threshold h.1 h.2.1 h.2.2.1 h.2.2.2)
-  (transported_and h1 (transported_and h2 (transported_and kept_chain_holds h4)))
+theorem kept_blocks_of_parts (h1 : KeptPairsBeyond) (h2 : KeptLevelsBeyond) (h4 : KeptThresholdsBeyond) : KeptBlocksBeyondThreshold := _root_.Formalism.MainNotions.ColumnSystems.Pf.TransportedAlt.mono (fun _ _ _ _ _ _ _ _ _ _ h => kept_block_at_of_pair_level_chain_threshold h.1 h.2.1 h.2.2.1 h.2.2.2)
+  (_root_.Formalism.MainNotions.ColumnSystems.Pf.TransportedAlt.and h1 (_root_.Formalism.MainNotions.ColumnSystems.Pf.TransportedAlt.and h2 (_root_.Formalism.MainNotions.ColumnSystems.Pf.TransportedAlt.and kept_chain_holds h4)))
 
 theorem pairC_zero {s r : ℕ} {A : ℕ} {Ai Ci : Fin s → ℕ} {mu : Fin (2 * s + 1 + 1) → Fin (r + 1) → ℤ}
     (h : IsChain (kLetters A Ai Ci) mu) : pairC mu 0 = A := by

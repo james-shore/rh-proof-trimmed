@@ -225,11 +225,8 @@ section Scale
 
 variable {K : Type} [Field K] {Δ τ : K}
 
-private theorem ofE_mul' (x y : Etau K τ) : ofE Δ (x * y) = ofE Δ x * ofE Δ y := by
-  ext <;> simp [ofE]
-
 private theorem ofE_inv (z : (Etau K τ)ˣ) : ofE Δ (z : Etau K τ) * ofE Δ ((z⁻¹ : (Etau K τ)ˣ) : Etau K τ) = 1 := by
-  rw [← ofE_mul', Units.mul_inv]
+  rw [← _root_.UpperTheory.V.Z.Sym.Loc.ofE_mul, Units.mul_inv]
   ext <;> simp [ofE, QuadraticAlgebra.re_one, QuadraticAlgebra.im_one]
 
 private noncomputable def scaleEq (Δ : K) (s : Kˣ) (z : (Etau K τ)ˣ) : Sp Δ τ ≃ₗ[Lsq K Δ] Sp Δ τ where

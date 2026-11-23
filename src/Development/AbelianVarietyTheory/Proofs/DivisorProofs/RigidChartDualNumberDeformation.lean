@@ -243,7 +243,7 @@ theorem isKS_unique_model : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     have hx : spMap (GlobalTheory.FlagMod.ev x0 U.1 hU) ≫ chart U = x0 := GlobalTheory.FlagMod.spMap_ev x0 U.2 hU
     have hv' := fun i => GlobalTheory.LieMet.isTan_map (GlobalTheory.FlagMod.ev x0 U.1 hU) hx (hv i)
     have hb' := GlobalTheory.GradedPieces.basis_map (GlobalTheory.FlagMod.ev x0 U.1 hU) hx hv hb
-    obtain ⟨u, hu, hu'⟩ := GlobalTheory.LiePull.lieBasis_of_tanBasis Y.t x0 P₀.A θm hpb _ hv' hb'
+    obtain ⟨u, hu, hu'⟩ := _root_.GlobalTheory.LiePull.exists_lieBasis_of_tanBasis Y.t x0 P₀.A θm hpb _ hv' hb'
     choose dd hdd using fun a => (GlobalTheory.KS.InvField.main K P₀.A (u a) (hu.1 a)).1
     obtain ⟨⟨φ, hφ⟩, -⟩ := GlobalTheory.KS.DlogPol.dlog_independent K P₀ n u dd hu hdd _ θm Y.t.PP.L Y.t.PP.isLB hiso
     obtain ⟨J, W, j, d, hcov, hWj, hf, hl, hdiff⟩ := hK

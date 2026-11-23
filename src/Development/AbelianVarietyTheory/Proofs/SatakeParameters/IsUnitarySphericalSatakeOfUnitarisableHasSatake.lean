@@ -77,29 +77,29 @@ theorem stab_iff (n : ℕ) (g : GL (Fin n) (w.adicCompletion E)) :
 
 theorem coset_of_elem (n : ℕ) (ϖ : w.adicCompletion E) (hϖ : IsUnifV E w ϖ) (j : ℕ) (hj : j ≤ n)
     (g : GL (Fin n) (w.adicCompletion E)) :
-    haveI := GlobalTheory.RowSatakeBound.finite_residue w
+    haveI := _root_.Formalism.UG.P.glint_finite_residueField w
     glMap g (std (w.adicCompletionIntegers E) (w.adicCompletion E) n).1 ∈
       Subtype.val '' subElem j (std (w.adicCompletionIntegers E) (w.adicCompletion E) n) →
     ∃ a ∈ GLint (Fin n) (Ov E w), ∃ b ∈ GLint (Fin n) (Ov E w),
       (g : Matrix (Fin n) (Fin n) (w.adicCompletion E)) = (a : Matrix (Fin n) (Fin n) _) * diagJ n ϖ j * (b : Matrix (Fin n) (Fin n) _) :=
-  GlobalTheory.T.mem_cartanDoubleCoset_of_lattice_between_uniformizer E w n ϖ hϖ j hj g
+  _root_.GlobalTheory.ElemCartan.mem_doubleCoset_of_subElem E w n ϖ hϖ j hj g
 
 theorem diag_elem (n : ℕ) (ϖ : w.adicCompletion E) (hϖ : IsUnifV E w ϖ) (S : Finset (Fin n))
     (d : GL (Fin n) (w.adicCompletion E))
     (hd : (d : Matrix (Fin n) (Fin n) (w.adicCompletion E)) = Matrix.diagonal (fun i => if i ∈ S then ϖ else 1)) :
-    haveI := GlobalTheory.RowSatakeBound.finite_residue w
+    haveI := _root_.Formalism.UG.P.glint_finite_residueField w
     glMap d (std (w.adicCompletionIntegers E) (w.adicCompletion E) n).1 ∈
       Subtype.val '' subElem S.card (std (w.adicCompletionIntegers E) (w.adicCompletion E) n) :=
-  GlobalTheory.T.glMap_diagUniformizer_elementarySublattice E w n ϖ hϖ S d hd
+  _root_.GlobalTheory.DiagElem.glMap_diag_mem_subElem E w n ϖ hϖ S d hd
 
 theorem elem_of_coset (n : ℕ) (ϖ : w.adicCompletion E) (hϖ : IsUnifV E w ϖ) (j : ℕ) (hj : j ≤ n)
     (g : GL (Fin n) (w.adicCompletion E)) :
-    haveI := GlobalTheory.RowSatakeBound.finite_residue w
+    haveI := _root_.Formalism.UG.P.glint_finite_residueField w
     (∃ a ∈ GLint (Fin n) (Ov E w), ∃ b ∈ GLint (Fin n) (Ov E w),
       (g : Matrix (Fin n) (Fin n) (w.adicCompletion E)) = (a : Matrix (Fin n) (Fin n) _) * diagJ n ϖ j * (b : Matrix (Fin n) (Fin n) _)) →
     glMap g (std (w.adicCompletionIntegers E) (w.adicCompletion E) n).1 ∈
       Subtype.val '' subElem j (std (w.adicCompletionIntegers E) (w.adicCompletion E) n) := by
-  haveI := GlobalTheory.RowSatakeBound.finite_residue w
+  haveI := _root_.Formalism.UG.P.glint_finite_residueField w
   rintro ⟨a, ha, b, hb, e⟩
   set S : Finset (Fin n) := Finset.univ.filter fun i => (i : ℕ) < j
   have hS : S.card = j := by
@@ -138,11 +138,11 @@ theorem heckeVec_Tj_eq_sum {n : ℕ} {V : Type} [AddCommGroup V] [Module ℂ V]
     (ρ : Representation ℂ (GL (Fin n) (w.adicCompletion E)) V) {x : V} (hx : x ∈ fixed ρ (KGL w (n := n)))
     {ϖ : w.adicCompletion E} (hϖ : IsUnifV E w ϖ) {j : ℕ} (hj : j ≤ n)
     (s : Finset (GL (Fin n) (w.adicCompletion E)))
-    (hs : haveI := GlobalTheory.RowSatakeBound.finite_residue w
+    (hs : haveI := _root_.Formalism.UG.P.glint_finite_residueField w
       Set.BijOn (fun g => glMap g (std (w.adicCompletionIntegers E) (w.adicCompletion E) n).1) s
         (Subtype.val '' subElem j (std (w.adicCompletionIntegers E) (w.adicCompletion E) n))) :
     heckeVec ρ (KGL w (n := n)) (Tj ℂ n (Ov E w) ϖ j) x = ∑ g ∈ s, ρ g x := by
-  haveI := GlobalTheory.RowSatakeBound.finite_residue w
+  haveI := _root_.Formalism.UG.P.glint_finite_residueField w
   set D := Matrix.GeneralLinearGroup.mkOfDetNeZero (diagJ n ϖ j) (diagJ_det_ne hϖ j)
   have hD : ∀ g : GL (Fin n) (w.adicCompletion E), g ∈ DoubleCoset.doubleCoset D (KGL w (n := n) : Set _) (KGL w (n := n)) ↔
       ∃ a ∈ GLint (Fin n) (Ov E w), ∃ b ∈ GLint (Fin n) (Ov E w),
@@ -209,7 +209,7 @@ theorem isUnitarySatakeAt_of_hasSatake : ∀ (E : Type) [Field E] [NumberField E
   letI cd : InnerProductSpace.Core ℂ π.V := formCore B hB hpos
   letI : NormedAddCommGroup π.V := InnerProductSpace.Core.toNormedAddCommGroup (𝕜 := ℂ)
   letI : InnerProductSpace ℂ π.V := InnerProductSpace.ofCore cd.toCore
-  haveI := GlobalTheory.RowSatakeBound.finite_residue w
+  haveI := _root_.Formalism.UG.P.glint_finite_residueField w
   have hn : ∀ y : π.V, ‖y‖ ^ 2 = (B y y).re := fun y => by
     rw [← @inner_self_eq_norm_sq ℂ]
     rfl

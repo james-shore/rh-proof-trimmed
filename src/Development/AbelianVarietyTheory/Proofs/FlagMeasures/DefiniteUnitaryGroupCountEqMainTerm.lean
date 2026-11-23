@@ -84,14 +84,6 @@ theorem GFset_eq_one_of_place (I : AutInst) (γ : I.GA) (hγ : γ ∈ I.GFset) (
       rw [hfin, hg, Matrix.map_one _ (map_zero _) (map_one _)]
     exact Subtype.ext (Units.ext (by simpa using hf))
 
-theorem one_mem_GFset_def (I : AutInst) : (1 : I.GA) ∈ I.GFset := by
-  refine ⟨1, Subgroup.one_mem _, fun v => ?_, ?_⟩
-  · rw [Units.val_one, Matrix.map_one _ (map_zero _) (map_one _), Matrix.mul_one,
-      Matrix.nonsing_inv_mul _ ((Matrix.isUnit_iff_isUnit_det _).mp (I.P_unit v))]
-    rfl
-  · rw [Units.val_one, Matrix.map_one _ (map_zero _) (map_one _)]
-    rfl
-
 theorem definite_count_of_finite : ∀ (B : RowsAut) (d : InfinitePlace B.I.F → ℝ) (p : ℕ),
     GlobalTheory.IndefiniteRowSideFullHecke.DefiniteFiniteCount.DefiniteHyp B d p → FiniteDimensional ℂ (B.I.eHom B.σs B.μf B.fund B.R B.Re) →
       (B.D : ℝ) = mainTerm B d := by
@@ -134,7 +126,7 @@ theorem definite_count_of_finite : ∀ (B : RowsAut) (d : InfinitePlace B.I.F �
   have hker : ∀ x, kern B.I (phe B d) x x = phe B d 1 := by
     intro x
     unfold kern
-    rw [tsum_eq_single (⟨1, one_mem_GFset_def B.I⟩ : B.I.GFset)]
+    rw [tsum_eq_single (⟨1, _root_.GlobalTheory.Count.Test.one_mem_GF B.I⟩ : B.I.GFset)]
     · simp
     · intro γ hγ
       by_contra hne

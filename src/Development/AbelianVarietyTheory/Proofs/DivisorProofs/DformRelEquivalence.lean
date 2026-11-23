@@ -56,9 +56,6 @@ namespace GlobalTheory.LKDef.Regroup
 
 variable {p : ℕ} [Fact p.Prime] {G : HTGroup p}
 
-theorem sh_mul' (a b : G.C) : sh G (a * b) = sh G b * sh G a := by
-  simp only [sh, map_mul, MulOpposite.unop_mul]
-
 theorem dform_rel_equivalence : Equivalence (DForm.Rel (G := G)) := by
   refine ⟨fun P => ?_, fun {P Q} h => ?_, fun {P Q R} h h' => ?_⟩
   · refine ⟨1, 1, one_pos, ?_⟩
@@ -66,14 +63,14 @@ theorem dform_rel_equivalence : Equivalence (DForm.Rel (G := G)) := by
   · obtain ⟨y, s, hs, hβ⟩ := h
     refine ⟨y⁻¹, s⁻¹, inv_pos.mpr hs, ?_⟩
     have e : sh G (y : G.C) * sh G ((y⁻¹ : G.Cˣ) : G.C) = 1 := by
-      rw [← sh_mul', Units.inv_mul, sh_one_eq]
+      rw [← _root_.GlobalTheory.LKDef.DRel.sh_mul, Units.inv_mul, sh_one_eq]
     rw [hβ]
     simp only [← Algebra.smul_def, mul_smul_comm, smul_mul_assoc, smul_smul, mul_assoc, e, mul_one,
       inv_mul_cancel₀ hs.ne', mul_inv_cancel₀ hs.ne', one_smul, Units.inv_mul_cancel_left]
   · obtain ⟨y, s, hs, hβ⟩ := h
     obtain ⟨y', s', hs', hβ'⟩ := h'
     refine ⟨y' * y, s' * s, mul_pos hs' hs, ?_⟩
-    rw [hβ', hβ, Units.val_mul, sh_mul']
+    rw [hβ', hβ, Units.val_mul, _root_.GlobalTheory.LKDef.DRel.sh_mul]
     simp only [← Algebra.smul_def, mul_smul_comm, smul_mul_assoc, smul_smul, mul_assoc, mul_comm s]
 
 theorem minpoly_conj (y : G.Cˣ) (x : G.C) : minpoly G.F ((y : G.C) * x * ((y⁻¹ : G.Cˣ) : G.C)) = minpoly G.F x :=
@@ -105,12 +102,12 @@ theorem transport_sim (β : G.C) (y γ : G.Cˣ) (s c : ℚ) (h : (γ : G.C) * β
     ((y * γ * y⁻¹ : G.Cˣ) : G.C) * (algebraMap ℚ G.C s * (y * β * sh G y)) * sh G ((y * γ * y⁻¹ : G.Cˣ) : G.C) =
       algebraMap ℚ G.C c * (algebraMap ℚ G.C s * (y * β * sh G y)) := by
   have e : sh G (y : G.C) * sh G ((y⁻¹ : G.Cˣ) : G.C) = 1 := by
-    rw [← sh_mul', Units.inv_mul, sh_one_eq]
+    rw [← _root_.GlobalTheory.LKDef.DRel.sh_mul, Units.inv_mul, sh_one_eq]
   have e' : ∀ X : G.C, sh G (y : G.C) * (sh G ((y⁻¹ : G.Cˣ) : G.C) * X) = X := by
     intro X; rw [← mul_assoc, e, one_mul]
   have h' : ∀ X : G.C, (γ : G.C) * (β * (sh G (γ : G.C) * X)) = c • (β * X) := by
     intro X; rw [← mul_assoc β, ← mul_assoc, ← mul_assoc, h, Algebra.smul_def, mul_assoc]
-  simp only [Units.val_mul, sh_mul', ← Algebra.smul_def, mul_smul_comm, smul_mul_assoc, mul_assoc, e',
+  simp only [Units.val_mul, _root_.GlobalTheory.LKDef.DRel.sh_mul, ← Algebra.smul_def, mul_smul_comm, smul_mul_assoc, mul_assoc, e',
     Units.inv_mul_cancel_left, h', smul_smul, mul_comm s c]
 
 theorem finsum_eq_mem_of_supp {α : Type} (F : α → ℂ) (s : Set α) (h : Function.support F ⊆ s) :

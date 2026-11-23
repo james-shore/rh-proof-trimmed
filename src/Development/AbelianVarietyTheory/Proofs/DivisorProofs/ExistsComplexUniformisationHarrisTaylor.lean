@@ -104,7 +104,7 @@ theorem unifAt_change {O : Type} [Ring O] {bar : O → O} {g : ℕ} {ρ ρ₂ : 
   have hc' : ∀ a z, h.symm (ρ₂ a *ᵥ z) = ρ a *ᵥ h.symm z := fun a z => by
     rw [LinearEquiv.symm_apply_eq, hc, LinearEquiv.apply_symm_apply]
   have hs : ∀ (k : ℂ) x, h.symm (k • h (P x)) = k • P x := fun k x => by simp
-  refine ⟨h1, GlobalTheory.T.comp_linearEquiv_intertwining O bar D' g ρ ρ₂ P h h2 hc, ?_, ?_, ?_, ?_, ?_⟩
+  refine ⟨h1, _root_.GlobalTheory.PELU.IsPeriod.comp_linearEquiv O bar D' g ρ ρ₂ P h h2 hc, ?_, ?_, ?_, ?_, ?_⟩
   · exact GlobalTheory.LocLift.IsExp.comp h3 (LinearEquiv.toContinuousLinearEquiv h.symm)
   · intro z
     rw [h4]
@@ -162,7 +162,7 @@ theorem exists_unifAt_of_exp (D : Datum p) {R : Type} [CommRing R] (b : Base D R
     simpa [Q] using hs
   obtain ⟨Hm, EF, hH, hpos, him, hweil⟩ := GlobalTheory.T.exists_positiveRiemannForm_of_relAmple_exponential (Sp ℂ) o.A D.g o.ab h
     (o.P.pull (lift (𝟙 o.A) (𝟙 o.A)).left) hL o.ample (𝟙 _) e Λ Q he hQi hQk
-  obtain ⟨halt, hnd⟩ := GlobalTheory.T.im_hermForm_alternating_nondegenerate_on_lattice Λ D.g Q Hm EF hQi hQs hH hpos him
+  obtain ⟨halt, hnd⟩ := _root_.GlobalTheory.HermImNondeg.im_hermForm_alternating_nondegenerate Λ D.g Q Hm EF hQi hQs hH hpos him
   have hmv : ∀ (a : D.O) (k : ℂ) (z : Fin D.g → ℂ), k • (ρ' a *ᵥ z) = ρ' a *ᵥ (k • z) := fun a k z => by
     rw [Matrix.mulVec_smul]
   have hadj : ∀ (a : D.O) x y, EF (φ a x) y = EF x (φ (D.inv a) y) := by
@@ -172,7 +172,7 @@ theorem exists_unifAt_of_exp (D : Datum p) {R : Type} [CommRing R] (b : Base D R
       show e ((k : ℂ)⁻¹ • (ρ' c *ᵥ (x : Fin D.g → ℂ))) = _
       rw [hmv, hρ]
       rfl
-    have key := GlobalTheory.T.rosati_adjoint_iff_biextension_pullbacks_isomorphic o.A D.g o.ab h o.P o.isLB o.rig₁ o.rig₂ o.symm o.ample e Λ Q EF he hQi hQk hweil
+    have key := _root_.GlobalTheory.RosatiFormAdj.lbIso_pull_iff_adjoint o.A D.g o.ab h o.P o.isLB o.rig₁ o.rig₂ o.symm o.ample e Λ Q EF he hQi hQk hweil
       (o.act.act a) (o.act.act (D.star a).unop) (φ a).toAddMonoidHom (φ (D.inv a)).toAddMonoidHom (o.act.hom a)
       (o.act.hom _) (hu a) (hu (D.inv a))
     exact key.1 (o.rosati a)

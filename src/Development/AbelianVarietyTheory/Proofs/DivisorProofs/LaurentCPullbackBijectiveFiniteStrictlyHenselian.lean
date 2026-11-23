@@ -52,6 +52,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TateTwistCohomologyZeroStrictlyHenselianEquiv
 
 @[expose] public section
 
@@ -219,39 +220,6 @@ private lemma laurentConstant_prod (q : ℕ) (T₁ T₂ : Type) [CommRing T₁] 
   exact (Function.Bijective.of_comp_iff' hΦbij _).mp (hcomp ▸ hD)
 
 open CategoryTheory Limits AlgebraicGeometry Opposite Polynomial in
-private lemma exists_cyclotomic_root_of_strictlyHenselian (q : ℕ) [NeZero q] (A : Type)
-    [CommRing A] (hA : _root_.GlobalTheory.EtC.SH A) (hq : IsUnit (q : A)) :
-    ∃ ζ : A, Polynomial.aeval ζ (Polynomial.cyclotomic q ℤ) = 0 := by
-  obtain ⟨hH, hsep⟩ := hA
-  have hqk : ((q : ℕ) : IsLocalRing.ResidueField A) ≠ 0 := by
-    have := hq.map (IsLocalRing.residue A)
-    simpa using this.ne_zero
-  have hs : (cyclotomic q (IsLocalRing.ResidueField A)).Separable :=
-    (separable_X_pow_sub_C (1 : IsLocalRing.ResidueField A) hqk one_ne_zero).of_dvd
-      (by simpa using cyclotomic.dvd_X_pow_sub_one q (IsLocalRing.ResidueField A))
-  have hdeg : (cyclotomic q (IsLocalRing.ResidueField A)).degree ≠ 0 := by
-    rw [degree_cyclotomic]
-    exact_mod_cast (Nat.totient_pos.2 (Nat.pos_of_ne_zero (NeZero.ne q))).ne'
-  obtain ⟨x, hx⟩ := IsSepClosed.exists_root _ hdeg hs
-  obtain ⟨a, rfl⟩ := IsLocalRing.residue_surjective x
-  have key : ∀ p : A[X], IsLocalRing.residue A (p.eval a) =
-      (p.map (IsLocalRing.residue A)).eval (IsLocalRing.residue A a) := by
-    intro p
-    rw [Polynomial.eval_map, Polynomial.eval₂_hom]
-  obtain ⟨ζ, hζ, -⟩ := HenselianLocalRing.is_henselian (cyclotomic q A) (cyclotomic.monic q A) a
-    (by
-      rw [← IsLocalRing.residue_eq_zero_iff, key, map_cyclotomic]
-      exact hx)
-    (by
-      rw [← IsLocalRing.residue_ne_zero_iff_isUnit, key, ← derivative_map, map_cyclotomic]
-      have := hs.aeval_derivative_ne_zero (x := IsLocalRing.residue A a)
-        (by simpa [aeval_def] using hx)
-      simpa [aeval_def] using this)
-  refine ⟨ζ, ?_⟩
-  rw [aeval_def, eval₂_eq_eval_map, map_cyclotomic]
-  exact hζ
-
-open CategoryTheory Limits AlgebraicGeometry Opposite Polynomial in
 private lemma isIdempotentElem_eq_zero_or_one_of_isLocalRing {T : Type} [CommRing T]
     [IsLocalRing T] (e : T) (he : IsIdempotentElem e) : e = 0 ∨ e = 1 := by
   rcases IsLocalRing.isUnit_or_isUnit_one_sub_self e with h | h
@@ -317,7 +285,7 @@ theorem _root_.GlobalTheory.EtC.SpecMapPullbackFunctoriality.laurent_C_pull_bije
     have hqT : IsUnit (q : T) := by simpa using hq.map (algebraMap A T)
     obtain ⟨hH, -⟩ := id hTs
     exact _root_.GlobalTheory.EtC.h_zero_pull_bijective q T (LaurentPolynomial T)
-      LaurentPolynomial.C hqT (exists_cyclotomic_root_of_strictlyHenselian q T hTs hqT)
+      LaurentPolynomial.C hqT (_root_.GlobalTheory.EtC.CyclotomicGlobalSections.exists_cyclotomic_root q T hTs hqT)
       inferInstance (fun e he => isIdempotentElem_eq_zero_or_one_of_isLocalRing e he)
       (fun e he => laurent_isIdempotentElem_eq_zero_or_one_of_isLocalRing T e he) i
 

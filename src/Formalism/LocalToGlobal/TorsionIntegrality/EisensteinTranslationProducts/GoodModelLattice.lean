@@ -45,6 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.F
 
-theorem taylorTh0 : TaylorTh0 := taylor_even_theta
-
 end Formalism.L2.Th1.F

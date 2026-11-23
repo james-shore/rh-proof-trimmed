@@ -115,7 +115,7 @@ theorem twKer_colEl_stable (hB : Lv ψ h π s B) (x : Fin (m + 1) → k) {z : V}
   induction hz using Submodule.span_induction with
   | mem y hy =>
     obtain ⟨u, v, rfl⟩ := hy
-    obtain ⟨hm, hc⟩ := ColumnElementGluing.colEl_conj_derUnip ψ h x u
+    obtain ⟨hm, hc⟩ := _root_.PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.colEl_conj_derUnip' ψ h x u
     refine Submodule.subset_span ⟨⟨_, hm⟩, π (colEl k m N h x) v, ?_⟩
     rw [hc, map_sub, map_smul]
     congr 1
@@ -147,7 +147,7 @@ theorem dens_kills (hB : Lv ψ h π s B) {A₀ : AddSubgroup (Fin (m + 1) → k)
   induction hv using Submodule.span_induction with
   | mem y hy =>
     obtain ⟨u, v₀, rfl⟩ := hy
-    obtain ⟨x, u', hu, hc⟩ := ColumnElementGluing.derUnip_decomp ψ h u
+    obtain ⟨x, u', hu, hc⟩ := _root_.PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.derUnip_decomp' ψ h u
     intro w
     have hsplit : π (u : GL (Fin N) k) v₀ - ((lvlChar k ψ N (m + 1) u : ℂˣ) : ℂ) • v₀ =
         π (colEl k m N h x) (π (u' : GL (Fin N) k) v₀ - ((lvlChar k ψ N (m + 2) u' : ℂˣ) : ℂ) • v₀) +

@@ -62,8 +62,7 @@ namespace FourierIntegralBound
 
 open Real
 
-lemma one_add_pow_le (t : ℝ) (ht : 0 ≤ t) (N : ℕ) : (1 + t) ^ N ≤ 2 ^ N * (1 + t ^ N) :=
-  _root_.UpperTheory.Reformulated.B.OneAddPowLeTwoPowMul.main t ht N
+alias one_add_pow_le := _root_.UpperTheory.Reformulated.B.OneAddPowLeTwoPowMul.main
 
 lemma pi_pow_le {d : ℕ} (z : Fin d → ℝ) (N : ℕ) : ‖z‖ ^ N ≤ 1 + ∑ i, |z i| ^ N := by
   have hs : 0 ≤ ∑ i, |z i| ^ N := Finset.sum_nonneg (fun i _ => by positivity)

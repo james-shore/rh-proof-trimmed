@@ -72,7 +72,7 @@ theorem exists_ringHom_padicAlgCl_ne_zero : ∀ (B : Type) [CommRing B] [IsDomai
     exact ringChar.Nat.cast_ringChar
   have hpB : (p : B) ≠ 0 := Nat.cast_ne_zero.2 hp0
 
-  obtain ⟨q, hq, hxq, hmax⟩ := GlobalTheory.T.exists_prime_not_mem_forall_gt_eq_maximalIdeal' B (h * p) (mul_ne_zero hh hpB) (Ideal.mul_mem_left _ _ hpm)
+  obtain ⟨q, hq, hxq, hmax⟩ := _root_.GlobalTheory.exists_prime_not_mem_forall_gt_eq_maximalIdeal B (h * p) (mul_ne_zero hh hpB) (Ideal.mul_mem_left _ _ hpm)
   have hhq : h ∉ q := fun hq' => hxq (Ideal.mul_mem_right _ _ hq')
   have hpq : (p : B) ∉ q := fun hq' => hxq (Ideal.mul_mem_left _ _ hq')
   have hqm : q ≤ maximalIdeal B := le_maximalIdeal hq.ne_top

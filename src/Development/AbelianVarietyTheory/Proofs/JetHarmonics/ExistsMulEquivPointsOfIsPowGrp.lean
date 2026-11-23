@@ -137,6 +137,6 @@ theorem exists_tateIso_of_isPowPolAV : Laws → Laws2 → Laws4 → TwistBaseCha
     simp only [hφ, Category.assoc, hact]
   · intro k hk x x' c hc
     simp only [hφ] at hc
-    exact GlobalTheory.T.weilPairing_powPolAV_eq_prod_field h1 h2 h4 htw R j A A' pA F k hk x x' c hc
+    exact _root_.GlobalTheory.WeilPower.weilIs_pow_field h1 h2 h4 htw R j A A' pA F k hk x x' c hc
 
 end GlobalTheory

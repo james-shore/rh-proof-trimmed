@@ -60,9 +60,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ConstPointCone
 
-theorem unitOn_one {A : Type} [CommRing A] : unitOn (1 : Aˣ) = 1 :=
-  map_one (Units.map (Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom.toMonoidHom)
-
 theorem dir_eq_zero_of_const : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (Q : DegPre R) (m : ℕ) (t : Fin m → R) (gam : Fin m → LinearMap.BilinForm ℤ Q.X), IsMonomial Q t gam → LinearIndependent ℤ gam → (∀ i, t i ∈ maximalIdeal R) → (∀ i y z, gam i y z = gam i z y) → ∀ (k : Type) [Field k] [CharZero k] (ρ : R →+* DualNumber k) (a : Fin m → k), (∀ r, (ρ r).snd = 0) → IsConstAlong Q t gam ρ a → a = 0 := by
   intro R _ _ _ Q m t gam hmon hli _ hs k _ _ ρ a hρ hc
   have hρc : constHom ρ = ρ := by
@@ -97,7 +94,7 @@ theorem dir_eq_zero_of_const : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocal
     have h := hrel y z τ₀ hτ e rfl zz J hJ
     rw [hW (y + z), hW y, hW z, hW 0] at h
     have h' : gm (𝟙 (Sp (DualNumber k))) zz ⊤ (unitOn e) = gm (𝟙 (Sp (DualNumber k))) zz ⊤ (unitOn 1) := by
-      rw [unitOn_one, map_one]
+      rw [_root_.GlobalTheory.HeckePoint.unitOn_one, map_one]
       have hG : ∀ G : ((Sp (DualNumber k)).presheaf.stalk zz)ˣ, G * G⁻¹ * G⁻¹ * G = 1 := fun G => by group
       rw [hG, _root_.one_mul] at h
       exact mul_right_cancel (h.symm.trans (_root_.one_mul _).symm)

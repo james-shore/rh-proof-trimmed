@@ -80,10 +80,10 @@ theorem qdet_eigen_of_killed {n : ℕ} (Q : GMod n) (d : Fin 3 → ℕ) (h : ∑
   have fm : ∀ x y, f (x * y) = f y * f x := fun _ _ => rfl
   let X : Fin n → Fin n → (Module.End ℂ Q.V)ᵐᵒᵖ := fun p q => MulOpposite.op (Q.E q p)
   have hX : GlRel X := glRel_op_transpose Q.gl
-  have hq : ∀ u, qdet X u = f (qdet Q.E u) := fun u => GlobalTheory.T.quantum_determinant_anti_homomorphism f f1 fm Q.E Q.gl u
+  have hq : ∀ u, qdet X u = f (qdet Q.E u) := fun u => _root_.GlobalTheory.CompanionTheory.RgTransport.qdet_anti f f1 fm Q.E Q.gl u
   have hb : ∀ i u, qdet (fun p q : Fin (d i) => X (stdBlocks d h ⟨i, p⟩) (stdBlocks d h ⟨i, q⟩)) u =
       f (qdet (bops Q d h i) u) := fun i u =>
-    GlobalTheory.T.quantum_determinant_anti_homomorphism f f1 fm (bops Q d h i)
+    _root_.GlobalTheory.CompanionTheory.RgTransport.qdet_anti f f1 fm (bops Q d h i)
       (glRel_comp_inj Q.gl (fun p => stdBlocks d h ⟨i, p⟩)
         (fun p q e => by simpa using (stdBlocks d h).injective e)) u
   have hspan := GlobalTheory.T.capelliDet_block_levi_congr_mod_upperBlockIdeal (Module.End ℂ Q.V)ᵐᵒᵖ d h X hX Y

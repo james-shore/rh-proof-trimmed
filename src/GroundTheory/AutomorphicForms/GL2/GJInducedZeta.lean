@@ -96,15 +96,7 @@ theorem mem_valBall_neg_iff {A : ℕ} {x : F} :
     rw [LocalField.mem_valBall_iff_le_ord hx]
     linarith
 
-theorem ordDet_eq_zero_of_mem_integralGL {y : GL (Fin n) F} (hy : y ∈ integralGL F n) : ordDet y = 0 := by
-  obtain ⟨u, rfl⟩ := hy
-  have : ((integralGLHom F n u : GL (Fin n) F) : Matrix (Fin n) (Fin n) F).det =
-      (((Matrix.GeneralLinearGroup.det u : (𝒪[F])ˣ) : 𝒪[F]) : F) := by
-    show ((RingHom.mapMatrix (𝒪[F]).subtype) (u : Matrix (Fin n) (Fin n) 𝒪[F])).det = _
-    rw [← RingHom.map_det]
-    rfl
-  rw [ordDet, this]
-  exact LocalField.ord_unit _
+alias ordDet_eq_zero_of_mem_integralGL := _root_.GroundTheory.Automorphic.GodementJacquet.ordDet_of_mem_integralGL
 
 theorem detPow_mul_of_mem_integralGL (g : GL (Fin n) F) {y : GL (Fin n) F}
     (hy : y ∈ integralGL F n) (s : ℂ) : detPow (g * y) s = detPow g s := by

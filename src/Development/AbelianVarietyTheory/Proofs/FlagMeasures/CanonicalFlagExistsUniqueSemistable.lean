@@ -123,7 +123,7 @@ variable (I : AutInst) (x : I.GA)
 theorem fg_of_le {N : Submodule (𝓞 I.E) (Fin I.n → I.E)} (h : N ≤ lamX I x) : N.FG :=
   (GlobalTheory.NearLowerCompare.lamX_isLattice I x).fg.of_le h
 
-theorem frm_unit : ∀ w, IsUnit (frm I x w).det := GlobalTheory.NearLowerCompare.frm_isUnit I x
+alias frm_unit := _root_.GlobalTheory.Count.FrameMajorant.frm_unit
 
 theorem stepLe_le (t : ℝ) : stepLe I x t ≤ lamX I x := sSup_le fun _ h => h.1
 

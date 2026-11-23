@@ -122,10 +122,6 @@ theorem archBetween_mono {Ψ : Type} [Fintype Ψ] {N : ℕ} {M R : Top.RootModel
     Ht.ArchBetween M R i u t lam s lo' hi' :=
   fun z hz val hv => Set.Icc_subset_Icc hl hh (h z hz val hv)
 
-theorem dualMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    dualMap (g.comp f) = (dualMap g).comp (dualMap f) := by
-  ext x <;> simp [dualMap]
-
 theorem spMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
     spMap (g.comp f) = spMap g ≫ spMap f := by
   simp [spMap, CommRingCat.ofHom_comp]
@@ -181,7 +177,7 @@ theorem genUnit_some (o : RootOrigin Y S M Fx) (o₀ : RootOrigin Y S₀ R Fx) (
   refine GlobalTheory.T.root_model_flag_compare E H D l Xo c Y S S₀ M R o.𝔐 o₀.𝔐 o.Fl o₀.Fl i o.e o₀.e ?_ ?_ o.lines o₀.lines r
   · rw [o.g_over, o₀.g_over, ← hi, spMap_comp, Category.assoc]
   · intro s k
-    rw [o.g_flag, o₀.g_flag, ← hi, dualMap_comp, spMap_comp, Category.assoc]
+    rw [o.g_flag, o₀.g_flag, ← hi, _root_.GlobalTheory.CompanionTheory.Ar.FlagPull.dualMap_comp, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, Category.assoc]
 
 
 open GroundTheory.Heights₂.Heights.Model in

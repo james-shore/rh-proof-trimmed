@@ -97,8 +97,8 @@ theorem exists_scale (hL : Laws) (hL₂ : Laws2) {ρ : S.Real} {p : ℕ} [Fact p
   have hA : AdmBase u.V (IsLocalRing.maximalIdeal u.V) := ⟨inferInstance, inferInstance, inferInstance, u.complete⟩
   have hB := u.D.tau_bimult
   obtain ⟨ϖ, hϖ, Q, hQ, v, hv, lam, hlam, v₁, v₂, hq⟩ := exists_val u
-  obtain ⟨x, hx, xadd, xinj, xonto⟩ := GlobalTheory.T.uniformised_model_labelled_torsion_points o Ω S ρ p y₀ u
-  obtain ⟨rig, e, hrig, he, hsec⟩ := GlobalTheory.T.exists_frames_on_uniformisedModel_fibre o Ω S ρ p y₀ u x hx
+  obtain ⟨x, hx, xadd, xinj, xonto⟩ := _root_.GlobalTheory.ZH.utest_torsion_points o Ω S ρ p y₀ u
+  obtain ⟨rig, e, hrig, he, hsec⟩ := _root_.GlobalTheory.exists_frames_on_fibre o Ω S ρ p y₀ u x hx
   obtain ⟨t, ht⟩ := hsec 1 ρ.th₁
   obtain ⟨w₀, hw₀⟩ := EvalZero.exists_normW u.U.toUnifPre rig hrig
   obtain ⟨th, ϑ, hE, hP, hgen⟩ := exists_prim_generator H h₁ h₂ h₃ h₄ u.V u.complete ϖ hϖ u.D Q hQ _ v hv u.A u.G

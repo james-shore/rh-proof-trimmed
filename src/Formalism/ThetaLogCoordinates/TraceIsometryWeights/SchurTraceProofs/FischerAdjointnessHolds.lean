@@ -268,18 +268,6 @@ private theorem glAct_eq_sum_X_mul_pderiv (LL : Letters N) (j : ℕ) (c d : Fin 
   refine Finset.sum_congr rfl fun i _ => ?_
   split_ifs <;> simp
 
-private theorem glAct_X_apply (LL : Letters N) (j : ℕ) (c d : Fin r) (i : Fin N) (e : Fin r) :
-    glAct p LL j c d (X (i, e)) = if (i : ℕ) < j then
-      (if LL.vec i = true then (if e = d then X (i, c) else 0)
-        else (if e = c then -X (i, d) else 0)) else 0 := by
-  classical
-  rw [glAct_eq_sum_X_mul_pderiv, Finset.sum_eq_single i]
-  · split_ifs <;> simp_all [pderiv_X, Pi.single_apply]
-  · intro k _ hk
-    split_ifs <;> simp [pderiv_X, Pi.single_apply, hk, Ne.symm hk]
-  · intro h
-    exact absurd (Finset.mem_univ i) h
-
 theorem glAct_C' (LL : Letters N) (j : ℕ) (c d : Fin r) (a : ℚ_[p]) : glAct p LL j c d (C a) = 0 := by
   rw [glAct_eq_sum_X_mul_pderiv]
   refine Finset.sum_eq_zero fun i _ => ?_
@@ -288,8 +276,8 @@ theorem glAct_C' (LL : Letters N) (j : ℕ) (c d : Fin r) (a : ℚ_[p]) : glAct 
 theorem glAct_glAct_X (LL : Letters N) (j : ℕ) (c d : Fin r) (hcd : c ≠ d) (v : Fin N × Fin r) :
     glAct p LL j c d (glAct p LL j c d (X v)) = 0 := by
   obtain ⟨i, e⟩ := v
-  rw [glAct_X_apply]
-  split_ifs <;> simp_all [glAct_X_apply, hcd, Ne.symm hcd]
+  rw [_root_.Formalism.GM.DimensionMonotonicity.glAct_X_gen]
+  split_ifs <;> simp_all [_root_.Formalism.GM.DimensionMonotonicity.glAct_X_gen, hcd, Ne.symm hcd]
 
 private theorem X_mem_intPol (w : Fin N × Fin r) :
     (X w : MvPolynomial (Fin N × Fin r) ℚ_[p]) ∈ IntPol p (Fin N × Fin r) :=
@@ -298,7 +286,7 @@ private theorem X_mem_intPol (w : Fin N × Fin r) :
 theorem glAct_X_int (LL : Letters N) (j : ℕ) (c d : Fin r) (v : Fin N × Fin r) :
     glAct p LL j c d (X v) ∈ IntPol p (Fin N × Fin r) := by
   obtain ⟨i, e⟩ := v
-  rw [glAct_X_apply]
+  rw [_root_.Formalism.GM.DimensionMonotonicity.glAct_X_gen]
   split_ifs <;> first
     | exact X_mem_intPol _
     | exact Submodule.zero_mem _

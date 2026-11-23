@@ -199,7 +199,7 @@ theorem core {r : ℕ} {U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r} {h : GenFrEx 
       rw [dif_pos hft]
       exact hL.evalWD f hf.1 (CAt σ) _ q _ ψ _ yq y hft.choose_spec.choose_spec.choose_spec hψ
     have hbor : evR Xo c f y = ((∏ i, t i ^ exZ Dw a i : (CAt σ)ˣ) : CAt σ) * evR Xo c f ((U σ).un k x₁) :=
-      evalAt_bor_zpow (GlobalTheory.T.framedModuli_algebraicLaws_chart_weight_integrality hS E H Dw l Xo c).2.1 (exZ Dw a) hf.1
+      evalAt_bor_zpow (_root_.GlobalTheory.Frames.algebraic_laws hS E H Dw l Xo c).2.1 (exZ Dw a) hf.1
         (fun p t y y' hb => by rw [hf.2 p t y y' hb, Units.coe_prod]) (CAt σ) t _ y (hL.unTest σ hσ k x₁) hft ht
     have h1 := hev ⟨φ (f q yq), hφA _⟩
     have h2 : ev ⟨φ (f q yq), hφA _⟩ = (∏ j, toC (t j : CAt σ) ^ exZ Dw a j) * rdU (U σ) f k x₁.1 := by

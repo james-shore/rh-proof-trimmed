@@ -85,18 +85,9 @@ theorem exists_hol_away {A : Type} [CommRing A] (ψ : ℂ → (A →+* ℂ)) (V 
   show _ = ψ u b / ψ u a ^ n
   rw [eq_div_iff (pow_ne_zero n (ha u hu)), h1]
 
-theorem spMap_comp_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  rw [← Spec.map_comp]; rfl
-
-theorem dualMap_comp_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    (dualMap g).comp (dualMap f) = dualMap (g.comp f) :=
-  by
-    ext z <;> simp [dualMap]
-
 theorem spMap_dualMap_sq {A B : Type} [CommRing A] [CommRing B] (f : A →+* B) :
     spMap (dualMap f) ≫ spMap (algebraMap A (DualNumber A)) = spMap (algebraMap B (DualNumber B)) ≫ spMap f := by
-  rw [spMap_comp_comp, spMap_comp_comp]
+  rw [_root_.GlobalTheory.spMap_comp_ring, _root_.GlobalTheory.spMap_comp_ring]
   congr 1
   exact RingHom.ext fun z => by ext <;> simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl]
 
@@ -131,7 +122,7 @@ theorem arc_descends_to_moduli : ∀ (E : Type) [Field E] [NumberField E] [IsCMF
   let e : R →+* CAt σ := ev u
   have he : e.comp ι = (show A →+* CAt σ from ψ u) := hev u hu
   have hp : GlobalTheory.AllWt.ptF (y u) = spMap e ≫ x' := by
-    rw [← cancel_mono Z.jQ, h1, Category.assoc, hx', ← Category.assoc, spMap_comp_comp, he]
+    rw [← cancel_mono Z.jQ, h1, Category.assoc, hx', ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring, he]
   refine ⟨?_, fun τ i => ?_⟩
   · show _ = spMap e ≫ x' ≫ _
     rw [← Category.assoc, ← hp]
@@ -141,7 +132,7 @@ theorem arc_descends_to_moduli : ∀ (E : Type) [Field E] [NumberField E] [IsCMF
     rw [← hw2, ← Category.assoc]
     congr 1
     apply P.hom_ext
-    · rw [hw3, Category.assoc, P.lift_fst, ← Category.assoc, spMap_comp_comp, dualMap_comp_comp, he]
+    · rw [hw3, Category.assoc, P.lift_fst, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring, _root_.GlobalTheory.Frames.Glue.dual_comp, he]
     · rw [hw1, Category.assoc, P.lift_snd, ← Category.assoc, spMap_dualMap_sq, Category.assoc, hp]
 
 end GlobalTheory.ShFam.BdArc

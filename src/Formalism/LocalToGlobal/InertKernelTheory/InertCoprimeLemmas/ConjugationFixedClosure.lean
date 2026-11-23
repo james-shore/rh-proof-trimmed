@@ -88,7 +88,7 @@ theorem fixed_mem_closure (σ : MaximalUnramifiedExtension p →+* MaximalUnrami
   intro ε hε
   have hε' : 0 < ε * ((p : ℝ) ^ k)⁻¹ := by positivity
   obtain ⟨j, hj⟩ := exists_pow_lt_of_lt_one hε' (inv_lt_one_of_one_lt₀ hp1)
-  obtain ⟨n, hn⟩ := Formalism.L2.Th1.D.fixedIsLimit (MaximalUnramifiedExtension p) p σ hσ w hw1 hσw j
+  obtain ⟨n, hn⟩ := _root_.Formalism.L2.Th1.D.fixed_is_limit (MaximalUnramifiedExtension p) p σ hσ w hw1 hσw j
   refine ⟨((n : ℚ) / (p : ℚ) ^ k : ℚ), ⟨_, rfl⟩, ?_⟩
   have hpk0 : ((p : MaximalUnramifiedExtension p) ^ k) ≠ 0 := pow_ne_zero _ (by exact_mod_cast hp.ne_zero)
   have hq : ((((n : ℚ) / (p : ℚ) ^ k : ℚ)) : ℂ_[p]) = ((((n : ℚ) / (p : ℚ) ^ k : ℚ) : MaximalUnramifiedExtension p) : ℂ_[p]) :=
@@ -112,7 +112,7 @@ theorem conjugation_fixed_closure : FixConj := by
   obtain ⟨hwm, hws⟩ := Formalism.L2.Th1.D.sqrt_in_unramified_completion D.host.d hsq h4 p h5 (FrFix.not_sq D.host.d hj) ι
   obtain ⟨w, hw⟩ : ∃ w : MaximalUnramifiedExtension p, (w : ℂ_[p]) = ι (omegaK D.host.d) := ⟨⟨_, hwm⟩, rfl⟩
   have hσw : σ w = 1 - w := hws σ hσ w hw
-  have hLI := Formalism.L2.KerInert.lamCIota p lam ι hι
+  have hLI := _root_.Formalism.L2.KerInert.lattice_embedding p lam ι hι
   have hlc : ∀ z : D.host.E, lamC lam (D.host.φ₀ z) = ι (D.host.φ₀ z) :=
     fun z => hLI.1 _ (Formalism.MainNotions.Ext.test_vector_mem_schwartz_bruhat D z)
   have hsK : D.host.sqrtMinusD ∈ D.host.K := Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.B5.br_sqrt_mem D

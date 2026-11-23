@@ -166,7 +166,7 @@ theorem norm_pow_le_at_unit_frame (E : Type) [Field E] [NumberField E] [IsCMFiel
         Real.exp (-((1 : ℕ) : ℝ) * (T.ph (I2.th (E := E) P.q P.R0) - p16 E r P.q P.m R 1)) := by
     intro r' hr' hJ' w' a'
     subst hr'
-    exact GlobalTheory.T.norm_prod_sum_theta_le_exp_torus E T DF P R 1 1 h1R le_rfl _ hsec hl2' (Fin (2 * R ^ 4)) Unit
+    exact _root_.GlobalTheory.norm_prod_sum_theta_le_exp_of_card E T DF P R 1 1 h1R le_rfl _ hsec hl2' (Fin (2 * R ^ 4)) Unit
       (by simp) hJ' (fun _ => 1) w' a' (fun _ => by simp)
   have hJ : Fintype.card Unit ≤ R ^ (2 * I2.PT.f E * r ^ 2) := by
     rw [Fintype.card_unit]; exact Nat.one_le_pow _ _ hR.pos

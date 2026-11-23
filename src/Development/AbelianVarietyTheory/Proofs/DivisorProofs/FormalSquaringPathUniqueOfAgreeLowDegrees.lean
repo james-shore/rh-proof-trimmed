@@ -65,10 +65,6 @@ theorem ringHom_eq_of_fromSpecStalk {X : Scheme.{0}} (x : X) {B : Type} [CommRin
   have := Spec.map_injective h'
   exact congrArg CommRingCat.Hom.hom this
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  rw [spMap, CommRingCat.ofHom_comp, Spec.map_comp]
-
 theorem spMap_constantCoeff_closedPoint (R : Type) [CommRing R] [IsLocalRing R] : (spMap (PowerSeries.constantCoeff (R := R))) (IsLocalRing.closedPoint (CommRingCat.of R)) = IsLocalRing.closedPoint (CommRingCat.of (PowerSeries R)) := by
   haveI : IsLocalHom (CommRingCat.Hom.hom (CommRingCat.ofHom (PowerSeries.constantCoeff (R := R)))) :=
     ⟨fun _ h => PowerSeries.isUnit_iff_constantCoeff.mpr h⟩
@@ -98,17 +94,17 @@ theorem path_unique : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] (R : Type) [C
       k.comp π = PowerSeries.C.comp β := by
     intro k hk
     apply ringHom_eq_of_fromSpecStalk s
-    rw [spMap_comp' π k, spMap_comp' β PowerSeries.C, Category.assoc, Category.assoc, hβ, hSD.str, ← Category.assoc, hk.base]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp π k, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp β PowerSeries.C, Category.assoc, Category.assoc, hβ, hSD.str, ← Category.assoc, hk.base]
   have E2 : ∀ (k : G.left.presheaf.stalk x →+* PowerSeries R), IsPath G c b (spMap k ≫ G.left.fromSpecStalk x) →
       PowerSeries.constantCoeff.comp k = β.comp ε := by
     intro k hk
     apply ringHom_eq_of_fromSpecStalk x
-    rw [spMap_comp' k PowerSeries.constantCoeff, spMap_comp' ε β, Category.assoc, Category.assoc, hSD.unit, ← Category.assoc (spMap β), hβ, hk.zero]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp k PowerSeries.constantCoeff, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp ε β, Category.assoc, Category.assoc, hSD.unit, ← Category.assoc (spMap β), hβ, hk.zero]
   have E3 : ∀ (k : G.left.presheaf.stalk x →+* PowerSeries R), IsPath G c b (spMap k ≫ G.left.fromSpecStalk x) →
       (PowerSeries.rescale c).comp k = k.comp m := by
     intro k hk
     apply ringHom_eq_of_fromSpecStalk x
-    rw [spMap_comp' k (PowerSeries.rescale c), spMap_comp' m k, Category.assoc, Category.assoc, hSD.sq, hk.scale, Category.assoc]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp k (PowerSeries.rescale c), _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp m k, Category.assoc, Category.assoc, hSD.sq, hk.scale, Category.assoc]
   subst hg hg'
   have hlow' : ∀ j < n, ∀ f, PowerSeries.coeff j (g f) = PowerSeries.coeff j (g' f) := by
     intro j hj f

@@ -41,6 +41,10 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasRigidChart
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsProperToroidalModelStructureMap
+import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.MemRangeCompIffOfIsClosedImmersion
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.AbelianVarietyCutOutBoundedDegreeTorsion
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsHomOfDerivation
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsLocalDerivationExtensionOfAffine
 
 @[expose] public section
 
@@ -67,14 +71,6 @@ theorem valR_of' (x : Sp A ⟶ Y) (V : Y.Opens) (h : ⊤ ≤ x ⁻¹ᵁ V) (f : 
   unfold valR
   rw [dite_eq_left h]
 
-theorem valR_add' (x : Sp A ⟶ Y) (V : Y.Opens) (h : ⊤ ≤ x ⁻¹ᵁ V) (f g : Γ(Y, V)) :
-    valR x V (f + g) = valR x V f + valR x V g := by
-  simp only [valR_of' x V h, map_add (f := _)]
-
-theorem valR_mul' (x : Sp A ⟶ Y) (V : Y.Opens) (h : ⊤ ≤ x ⁻¹ᵁ V) (f g : Γ(Y, V)) :
-    valR x V (f * g) = valR x V f * valR x V g := by
-  simp only [valR_of' x V h, map_mul]
-
 theorem valR_appLE' {Z : Scheme.{0}} (x : Sp A ⟶ Z) (g : Z ⟶ Y) (V : Y.Opens) (W : Z.Opens) (e : W ≤ g ⁻¹ᵁ V)
     (h : ⊤ ≤ x ⁻¹ᵁ W) (f : Γ(Y, V)) : valR x W ((g.appLE V W e).hom f) = valR (x ≫ g) V f := by
   have h' : ⊤ ≤ (x ≫ g) ⁻¹ᵁ V := h.trans (x.preimage_mono e)
@@ -92,17 +88,6 @@ theorem valR_constFn' {B : Type} [CommRing B] (x : Sp A ⟶ Y) (p : Y ⟶ Sp B) 
     (spMap ψ).appTop.hom ((Scheme.ΓSpecIso (CommRingCat.of B)).inv.hom a) at n
   rw [e', ← n]
   exact (Scheme.ΓSpecIso (CommRingCat.of A)).inv_hom_id_apply _
-
-theorem valR_spMap_comp' {A' : Type} [CommRing A'] (ψ : A →+* A') (x : Sp A ⟶ Y) (V : Y.Opens) (h : ⊤ ≤ x ⁻¹ᵁ V)
-    (f : Γ(Y, V)) : valR (spMap ψ ≫ x) V f = ψ (valR x V f) := by
-  have h' : ⊤ ≤ (spMap ψ ≫ x) ⁻¹ᵁ V := fun y _ => h (Set.mem_univ ((spMap ψ) y))
-  rw [valR_of' _ V h', valR_of' x V h]
-  have e : (spMap ψ ≫ x).appLE V ⊤ h' = x.appLE V ⊤ h ≫ (spMap ψ).appTop :=
-    (Scheme.Hom.appLE_comp_appLE (spMap ψ) x V ⊤ ⊤ h le_rfl).symm
-  have n := Scheme.ΓSpecIso_naturality (CommRingCat.ofHom ψ)
-  change ((spMap ψ ≫ x).appLE V ⊤ h' ≫ (Scheme.ΓSpecIso (CommRingCat.of A')).hom).hom f =
-    (x.appLE V ⊤ h ≫ (Scheme.ΓSpecIso (CommRingCat.of A)).hom ≫ CommRingCat.ofHom ψ).hom f
-  rw [e, Category.assoc, n]
 
 end Val
 
@@ -130,48 +115,20 @@ theorem app_injective' {Y Z : Scheme.{0}} (f : Y ⟶ Z) [IsOpenImmersion f] (O :
   have := f.isIso_app O hO
   exact (ConcreteCategory.bijective_of_isIso (f.app O)).1
 
-theorem appLE_eq_of_eq' {Y Z : Scheme.{0}} {g g' : Z ⟶ Y} (hg : g = g') (V : Y.Opens) (W : Z.Opens)
-    (e : W ≤ g ⁻¹ᵁ V) (e' : W ≤ g' ⁻¹ᵁ V) : g.appLE V W e = g'.appLE V W e' := by
-  subst hg
-  rfl
-
 theorem appLE_appLE' {Y Z Q : Scheme.{0}} (g : Z ⟶ Y) (k : Q ⟶ Z) (V : Y.Opens) (W : Z.Opens) (W' : Q.Opens)
     (e : W ≤ g ⁻¹ᵁ V) (e' : W' ≤ k ⁻¹ᵁ W) (f : Γ(Y, V)) :
     (k.appLE W W' e').hom ((g.appLE V W e).hom f) = ((k ≫ g).appLE V W' (e'.trans (k.preimage_mono e))).hom f := by
   rw [← Scheme.Hom.appLE_comp_appLE k g V W W' e e']
   rfl
 
-theorem appLE_res' {Y Z : Scheme.{0}} (g : Z ⟶ Y) {V V' : Y.Opens} {W W' : Z.Opens} (h : V' ≤ V) (h' : W' ≤ W)
-    (e : W ≤ g ⁻¹ᵁ V) (e' : W' ≤ g ⁻¹ᵁ V') (f : Γ(Y, V)) :
-    (g.appLE V' W' e').hom (resG Y h f) = resG Z h' ((g.appLE V W e).hom f) := by
-  change (Y.presheaf.map (homOfLE h).op ≫ g.appLE V' W' e').hom f = (g.appLE V W e ≫ Z.presheaf.map (homOfLE h').op).hom f
-  rw [Scheme.Hom.appLE_map, Scheme.Hom.map_appLE]
-
 theorem appLE_constFn' {R : Type} [CommRing R] {Z Q : Scheme.{0}} (p : Z ⟶ Sp R) (k : Q ⟶ Z) (W : Z.Opens)
     (W' : Q.Opens) (e' : W' ≤ k ⁻¹ᵁ W) (a : R) : (k.appLE W W' e').hom (constFn p W a) = constFn (k ≫ p) W' a := by
   unfold constFn
   exact appLE_appLE' p k ⊤ W W' _ e' _
 
-theorem constFn_spMap' {R S : Type} [CommRing R] [CommRing S] {Y : Scheme.{0}} (q : Y ⟶ Sp S) (φ : R →+* S)
-    (O : Y.Opens) (a : R) : constFn (q ≫ spMap φ) O a = constFn q O (φ a) := by
-  have h : (spMap φ).appLE ⊤ ⊤ (fun _ _ => trivial) = (spMap φ).appTop := by
-    rw [Scheme.Hom.appTop, ← Scheme.Hom.appLE_eq_app]; rfl
-  have h2 := congrArg (fun ψ => ψ.hom a) (Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom φ))
-  have h3 := congrArg (fun ψ => ψ.hom ((Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom a))
-    (Scheme.Hom.appLE_comp_appLE q (spMap φ) ⊤ ⊤ O (fun _ _ => trivial) (fun _ _ => trivial))
-  rw [h] at h3
-  simp only [CommRingCat.hom_comp, RingHom.comp_apply, CommRingCat.hom_ofHom] at h2 h3
-  unfold constFn
-  rw [← h3, h2]
-
 theorem constFn_eps_sq' {R : Type} [CommRing R] {Y : Scheme.{0}} (p : Y ⟶ Sp (DualNumber R)) (O : Y.Opens) :
     constFn p O DualNumber.eps * constFn p O DualNumber.eps = 0 := by
   simp only [constFn, ← map_mul, DualNumber.eps_mul_eps, map_zero]
-
-theorem res_constFn' {R : Type} [CommRing R] {Y : Scheme.{0}} (f : Y ⟶ Sp R) {V W : Y.Opens} (h : W ≤ V) (a : R) :
-    resG Y h (constFn f V a) = constFn f W a :=
-  congrArg (fun g => g.hom ((Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom a))
-    (f.appLE_map (U := ⊤) (fun _ _ => trivial) (homOfLE h).op)
 
 theorem res_app' {Y Z : Scheme.{0}} (f : Z ⟶ Y) {V W : Y.Opens} (h : W ≤ V) (h' : f ⁻¹ᵁ W ≤ f ⁻¹ᵁ V) (a : Γ(Y, V)) :
     resG Z h' ((f.app V).hom a) = (f.app W).hom (resG Y h a) := by
@@ -265,10 +222,10 @@ theorem real_part (O : G.left.Opens) (f a b : Γ(G.left, O))
     rw [← Over.comp_left, whiskerRight_fst, Over.comp_left]
   have k := congrArg ((redPt R ▷ G).left.appLE _ _ hjO).hom h
   simp only [map_add (f := _), map_mul, Scheme.Hom.app_eq_appLE, appLE_appLE', appLE_constFn'] at k
-  rw [appLE_eq_of_eq' (transl_left_red G v) _ _ _ le_rfl, appLE_eq_of_eq' (snd_left_red G) _ _ _ le_rfl, ef] at k
+  rw [_root_.GlobalTheory.ProjSpace.appLE_of_eq (transl_left_red G v) _ _ _ le_rfl, _root_.GlobalTheory.ProjSpace.appLE_of_eq (snd_left_red G) _ _ _ le_rfl, ef] at k
   have hr : (redPt R).left = spMap (TrivSqZeroExt.fstHom R R R).toRingHom := rfl
   have h0 : (TrivSqZeroExt.fstHom R R R).toRingHom DualNumber.eps = 0 := by simp
-  rw [hr, constFn_spMap', h0] at k
+  rw [hr, _root_.GlobalTheory.KS.DerMorK.constFn_spMap, h0] at k
   simp only [constFn, map_zero, zero_mul, add_zero] at k
   rw [← Scheme.Hom.app_eq_appLE] at k
   exact (app_injective' _ O hrange k).symm
@@ -312,8 +269,8 @@ theorem exists_isInv : ∀ (R : Type) [CommRing R] (G : Over (Sp R)) [GrpObj G] 
     refine huniq W' _ (resG _ h f) _ ?_
     have h' : (snd (tEpsG (𝟙 (Sp R))) G).left ⁻¹ᵁ W' ≤ (snd (tEpsG (𝟙 (Sp R))) G).left ⁻¹ᵁ W :=
       (snd (tEpsG (𝟙 (Sp R))) G).left.preimage_mono h
-    rw [appLE_res' _ h h' (preimage_transl G v W).ge, hab W f, hre, map_add (f := _), map_mul, res_app' _ h h',
-      res_app' _ h h', res_constFn']
+    rw [_root_.GlobalTheory.TorsionCut.appLE_resG _ h h' (preimage_transl G v W).ge, hab W f, hre, map_add (f := _), map_mul, res_app' _ h h',
+      res_app' _ h h', _root_.GlobalTheory.LocDerExt.res_const]
   · intro S _ φ g w O f hg hgO htr
     symm
     obtain ⟨g', v', hg', hv', rfl⟩ := htr
@@ -339,9 +296,9 @@ theorem exists_isInv : ∀ (R : Type) [CommRing R] (G : Over (Sp R)) [GrpObj G] 
       show ((lift kA g').left ≫ (snd (tEpsG (𝟙 (Sp R))) G).left).base y ∈ O
       rw [hk2]
       exact hgO (Set.mem_univ _)
-    rw [hT, ← valR_appLE' _ _ O _ (preimage_transl G v O).ge hx, hab O f, hre, valR_add' _ _ hx, valR_mul' _ _ hx,
+    rw [hT, ← valR_appLE' _ _ O _ (preimage_transl G v O).ge hx, hab O f, hre, _root_.GlobalTheory.Points.valR_add _ _ hx, _root_.GlobalTheory.Points.valR_mul _ _ hx,
       valR_constFn' _ _ _ hk1 _ hx, Scheme.Hom.app_eq_appLE, valR_appLE' _ _ _ _ _ hx, valR_appLE' _ _ _ _ _ hx, hk2,
-      valR_spMap_comp' _ _ _ hgO, valR_spMap_comp' _ _ _ hgO]
+      _root_.GlobalTheory.Points.valR_spMap_comp _ _ _ hgO, _root_.GlobalTheory.Points.valR_spMap_comp _ _ _ hgO]
     simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl]
 
 end GlobalTheory.InvFieldBase

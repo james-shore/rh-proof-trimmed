@@ -63,13 +63,9 @@ namespace ReciprocityTheory.ChartRestriction.G.Geo.Tor.GlobalFunctionsDvrOpen
 
 variable {V : Type} [CommRing V] [IsDomain V]
 
-theorem isLocalization_frac [IsDiscreteValuationRing V] {ϖ : V} (hϖ : Irreducible ϖ) :
-    IsLocalization.Away ϖ (FractionRing V) := by
-  first | exact Bl.general_b_fact_further.goal1 .. | (apply Bl.general_b_fact_further.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_further.goal1 <;> assumption)
-
 theorem isOpenImmersion_frac [IsDiscreteValuationRing V] {ϖ : V} (hϖ : Irreducible ϖ) :
     IsOpenImmersion (spMap (algebraMap V (FractionRing V))) := by
-  have := isLocalization_frac hϖ
+  have := _root_.Bl.general_b_fact_further.goal1 hϖ
   let e := IsLocalization.algEquiv (Submonoid.powers ϖ) (Localization.Away ϖ) (FractionRing V)
   have he : algebraMap V (FractionRing V) =
       (e : Localization.Away ϖ →+* FractionRing V).comp (algebraMap V (Localization.Away ϖ)) :=
@@ -84,7 +80,7 @@ theorem opensRange_frac [IsDiscreteValuationRing V] {ϖ : V} (hϖ : Irreducible 
     haveI := isOpenImmersion_frac hϖ
     (spMap (algebraMap V (FractionRing V))).opensRange =
       (Sp V).basicOpen ((Scheme.ΓSpecIso (CommRingCat.of V)).inv ϖ) := by
-  have := isLocalization_frac hϖ
+  have := _root_.Bl.general_b_fact_further.goal1 hϖ
   rw [basicOpen_eq_of_affine]
   ext1
   exact PrimeSpectrum.localization_away_comap_range (FractionRing V) ϖ

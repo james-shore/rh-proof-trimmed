@@ -158,7 +158,7 @@ theorem jumps_of_exact_degree : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (A
         cont := fun x => by
           show Continuous fun g => ((μ g : (↥LL.1)ˣ) : ↥LL.1) • LinearMap.id x
           exact hμ.smul continuous_const }
-    exact ((GlobalTheory.Per.FontaineTied.fontCore_all_of_tied l P AI T K) ↥LL.1 ↥(OL LL)
+    exact ((_root_.GlobalTheory.Per.FontaineAll.fontCore_of_tied l P AI T K) ↥LL.1 ↥(OL LL)
       (GlobalTheory.LocalIntegers.good_integers l LL).1 A).2.2 hcrys
   obtain ⟨-, -, hdim⟩ := (GlobalTheory.Per.Components.components_finrank l P AI T K LL ↥LL.1 (charRep μ)).1 τ
   set_option synthInstance.maxHeartbeats 200000 in

@@ -68,22 +68,11 @@ open GlobalTheory.BI
 
 namespace GlobalTheory.BrauerZero
 
-theorem step_ind_ind {G : Type} [Group G] [Finite G] (K A : Subgroup G) (hKA : K ≤ A) (ψ : K → ℂ) :
-    ind A (ind (K.subgroupOf A) (fun k => ψ ⟨((k : A) : G), k.2⟩)) = ind K ψ :=
-  GlobalTheory.T.inducedClassFunctionFromSubgroup_trans K A hKA ψ
-
 theorem inducedClassFunction_mem_degreeOneCharacterDiff {G : Type} [Group G] [Finite G] (E : Subgroup G) (f : E → ℂ) (hf : f ∈ D0 E) :
     ind E f ∈ D0 G :=
   GlobalTheory.T.inducedClassFunction_mem_inducedDegreeOneCharDiff E f hf
 
-theorem step_ind_one_sub_index_of_comm {G : Type} [Group G] [Finite G] (K : Subgroup G)
-    (hc : ∀ a b : G, a * b * a⁻¹ * b⁻¹ ∈ K) :
-    ind K (fun _ => (1 : ℂ)) - (fun _ => (K.index : ℂ)) ∈ D0 G :=
-  GlobalTheory.T.induced_one_sub_index_mem_degreeOneCharacterDiff K hc
-
-theorem step_exists_gt_commutators_le {G : Type} [Group G] [Finite G] [Group.IsNilpotent G] (K : Subgroup G)
-    (hK : K ≠ ⊤) : ∃ A : Subgroup G, K < A ∧ ∀ a ∈ A, ∀ b ∈ A, a * b * a⁻¹ * b⁻¹ ∈ K :=
-  GlobalTheory.T.exists_gt_commutator_mem_of_ne_whole K hK
+alias step_ind_one_sub_index_of_comm := _root_.GlobalTheory.BrauerZero.ind_one_sub_index_mem_D0
 
 theorem ind_one_sub_index_mem_degreeOneDiff_nilpotent {G : Type} [Group G] [Finite G] [Group.IsNilpotent G] :
     ∀ (n : ℕ) (K : Subgroup G), K.index ≤ n →
@@ -99,11 +88,11 @@ theorem ind_one_sub_index_mem_degreeOneDiff_nilpotent {G : Type} [Group G] [Fini
         ind_top (fun _ => (1 : ℂ)) (fun _ _ => rfl)
       rw [e, Subgroup.index_top]
       simp
-    · obtain ⟨A, hKA, hc⟩ := step_exists_gt_commutators_le K hKt
+    · obtain ⟨A, hKA, hc⟩ := _root_.GlobalTheory.exists_lt_commutator_mem_of_ne_top K hKt
       have h1 : ind (K.subgroupOf A) (fun _ => (1 : ℂ)) - (fun _ => ((K.subgroupOf A).index : ℂ)) ∈ D0 A :=
         step_ind_one_sub_index_of_comm (K.subgroupOf A) (fun a b => by
           rw [Subgroup.mem_subgroupOf]; simpa using hc a a.2 b b.2)
-      have h2 := inducedClassFunction_mem_degreeOneCharacterDiff A _ h1
+      have h2 := _root_.GlobalTheory.BrauerZero.ind_mem_D0_of_mem_D0 A _ h1
       have hrel := Subgroup.relIndex_mul_index hKA.le
       have hlt : 1 < K.relIndex A := by
         have h0 : (K.subgroupOf A).index ≠ 0 := Subgroup.index_ne_zero_of_finite
@@ -112,7 +101,7 @@ theorem ind_one_sub_index_mem_degreeOneDiff_nilpotent {G : Type} [Group G] [Fini
         unfold Subgroup.relIndex; omega
       have hA0 : A.index ≠ 0 := A.index_ne_zero_of_finite
       have h3 := ih A (by nlinarith)
-      have t := step_ind_ind K A hKA.le (fun _ => (1 : ℂ))
+      have t := _root_.GlobalTheory.BrauerZero.ind_ind_of_le K A hKA.le (fun _ => (1 : ℂ))
       have key : ind K (fun _ => (1 : ℂ)) - (fun _ => (K.index : ℂ)) =
           ind A (ind (K.subgroupOf A) (fun _ => (1 : ℂ)) - (fun _ => ((K.subgroupOf A).index : ℂ))) +
             ((K.subgroupOf A).index : ℤ) • (ind A (fun _ => (1 : ℂ)) - (fun _ => (A.index : ℂ))) := by
@@ -185,7 +174,7 @@ theorem central_case (G : Type) [Group G] [Finite G]
           refine sub_mem (isChar_mem_virt_complex hψ) ?_
           have e2 : (fun _ : T => ψ 1) = n • (fun _ : T => (1 : ℂ)) := by funext; simp [hn]
           rw [e2]; exact nsmul_mem (isChar_mem_virt_complex (isChar_one ℂ ℂ T)) n
-        have h1 := inducedClassFunction_mem_degreeOneCharacterDiff T _ (IH T hT _ hψV (by simp))
+        have h1 := _root_.GlobalTheory.BrauerZero.ind_mem_D0_of_mem_D0 T _ (IH T hT _ hψV (by simp))
         have h2 := ind_one_sub_index_mem_degreeOneDiff_nilpotent T.index T le_rfl
         have key : ind T ψ - (fun _ => ind T ψ 1) = ind T (ψ - fun _ => ψ 1) +
             (n : ℤ) • (ind T (fun _ => (1 : ℂ)) - fun _ => (T.index : ℂ)) := by
@@ -215,7 +204,7 @@ theorem virtualCharacter_degreeZero_mem_degreeOneDiff : ∀ (n : ℕ) (G : Type)
         ((virt_mul_comap_conj_ind_linear G).2.1 f hf E E.subtype)
     have h1 : (fun e : E => ψ e * f e) 1 = 0 := by simp [hf1]
     by_cases hlt : Nat.card E < Nat.card G
-    · exact inducedClassFunction_mem_degreeOneCharacterDiff E _ (ih E (by omega) _ hV h1)
+    · exact _root_.GlobalTheory.BrauerZero.ind_mem_D0_of_mem_D0 E _ (ih E (by omega) _ hV h1)
     · have htop : E = ⊤ := (Subgroup.card_eq_iff_eq_top E).1
         (le_antisymm (Subgroup.card_le_card_group E) (not_lt.1 hlt))
       have hVG : ind E (fun e => ψ e * f e) ∈ Virt ℂ ℂ G :=

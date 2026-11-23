@@ -67,19 +67,7 @@ theorem gamma_of_dvd {a b : ℕ} (h : a ∣ b) {δ : SL(2, ℤ)} (hδ : δ ∈ G
   · rw [← key, h3, map_zero]
   · rw [← key, h4, map_one]
 
-theorem gamma_le_gam {N l K : ℕ} (hN : N ∣ K) (hl : l ∣ K) {δ : SL(2, ℤ)} (hδ : δ ∈ Gamma K) :
-    δ ∈ Gam N l := by
-  have h1 := Gamma_mem.mp (gamma_of_dvd hN hδ)
-  have h2 := Gamma_mem.mp (gamma_of_dvd hl hδ)
-  refine Subgroup.mem_inf.mpr ⟨?_, ?_⟩
-  · rw [Gamma1_mem]; exact ⟨h1.1, h1.2.2.2, h1.2.2.1⟩
-  · rw [Gamma0_mem]; exact h2.2.2.1
-
-theorem entries_of_gamma {K : ℕ} {δ : SL(2, ℤ)} (hδ : δ ∈ Gamma K) :
-    ∀ i j, (((δ : Matrix (Fin 2) (Fin 2) ℤ) i j : ℤ) : ZMod K) = (((1 : Matrix (Fin 2) (Fin 2) ℤ) i j : ℤ) : ZMod K) := by
-  obtain ⟨h1, h2, h3, h4⟩ := Gamma_mem.mp hδ
-  intro i j
-  fin_cases i <;> fin_cases j <;> simp [h1, h2, h3, h4]
+alias gamma_le_gam := _root_.GlobalTheory.KZ.H3.mem_Gam_of_Gamma
 
 theorem step (N l w : ℕ) [Fact l.Prime] (hN : 0 < N) (hl2 : l ≠ 2) (hlN : ¬ l ∣ N) (hw : Odd w)
     (Φ : (n : ℕ) → SL(2, ℤ) → MvPolynomial (Fin 2) (ZMod (l ^ n))) (hΦ : IsFam l w (Gam N l) Φ)
@@ -140,7 +128,7 @@ theorem step (N l w : ℕ) [Fact l.Prime] (hN : 0 < N) (hl2 : l ≠ 2) (hlN : ¬
     have d1 := gamma_of_dvd (Dvd.intro _ rfl) hδ
     have d2 := gamma_of_dvd (Dvd.intro_left _ rfl) hδ
     simp only
-    rw [L'.2.2.2.2.2.1 _ 1 pt (entries_of_gamma d2), L'.2.1, sub_self, sub_zero, h1 δ d1]
+    rw [L'.2.2.2.2.2.1 _ 1 pt (_root_.GlobalTheory.KZ.H3.entries_eq_one_of_mem_Gamma d2), L'.2.1, sub_self, sub_zero, h1 δ d1]
   · intro γ hγ
     simp only
     rw [map_sub, map_sub, L'.2.2.2.2.1 _ c, hmap, ← hpγ γ hγ]

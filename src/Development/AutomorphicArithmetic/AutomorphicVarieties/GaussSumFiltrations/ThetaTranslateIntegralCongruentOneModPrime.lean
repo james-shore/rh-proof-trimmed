@@ -107,12 +107,12 @@ theorem theta_translates_integral_one : ∀ (F : Type) [Field F] [NumberField F]
       rw [div_inv_eq_mul, ← Nat.cast_mul]
       simpa using isIntegral_algebraMap (R := ℤ) (A := F) (x := ((N * N : ℕ) : ℤ))
     obtain ⟨T, hT, h0T, hle, -⟩ := GlobalTheory.HilbertThetaSeries.exists_isReps_aL F κ (N : F) (N : F)⁻¹ hNF (inv_ne_zero hNF) hint
-    refine ⟨_, GlobalTheory.T.integral_test_function_finite_fourier_transform_of_odd_prime F p ι hp2 δ hδ κ G S t hL Φ N T c hΦ hN hNp hSB hT h0T hc, ?_⟩
-    exact GlobalTheory.T.hilbertThetaSeries_periodic_inversion_formula F κ G hL.pos t hL.det (p - 1) hL.card (N : F) (N : F)⁻¹ c T Φ hNF (inv_ne_zero hNF) hle hT hSB.1 hSB.2
+    refine ⟨_, _root_.GlobalTheory.HilbertThetaSeries.GoodInv.good_wT F p ι hp2 δ hδ κ G S t hL Φ N T c hΦ hN hNp hSB hT h0T hc, ?_⟩
+    exact _root_.GlobalTheory.HilbertThetaSeries.thetaSeries_periodic_slash_frickeMatrix F κ G hL.pos t hL.det (p - 1) hL.card (N : F) (N : F)⁻¹ c T Φ hNF (inv_ne_zero hNF) hle hT hSB.1 hSB.2
 
   have hA : ∀ (b : F) (Φ : (κ → F) → ℂ), Good ι S Φ → PInt p (δ * b) →
       ∃ Ψ, Good ι S Ψ ∧ sl0 (p - 1) (toInf (aff 1 b)) (th G Φ) = th G Ψ := fun b Φ hΦ hb =>
-    ⟨_, GlobalTheory.T.integral_test_function_mul_trace_character_quad_form_of_delta_integral F p ι δ hδ κ G S t hL Φ hΦ b hb, GlobalTheory.HilbertThetaSeries.th_translate F κ G (p - 1) b Φ⟩
+    ⟨_, _root_.GlobalTheory.HilbertThetaSeries.good_mul_et_QF F p ι δ hδ κ G S t hL Φ hΦ b hb, GlobalTheory.HilbertThetaSeries.th_translate F κ G (p - 1) b Φ⟩
 
   let P : GL (Fin 2) F → Prop := fun g => Pos (toInf g) ∧
     ∃ Ψ, Good ι S Ψ ∧ sl0 (p - 1) (toInf g) (th G oneL) = th G Ψ
@@ -143,8 +143,8 @@ theorem theta_translates_integral_one : ∀ (F : Type) [Field F] [NumberField F]
     funext z
     simp [sl0, hden]
   rw [← hsub]
-  obtain ⟨a, hQ, hbd⟩ := GlobalTheory.T.thetaSeries_congr_one_mod_p_of_isometry F p ι κ G S t hL Ψ hΨ
-  refine ⟨_, GlobalTheory.T.hasQExpansion_affineTranslate_coeff F (p - 1) (th G Ψ - 1) a ε 0 hε hQ, fun ξ => ?_⟩
+  obtain ⟨a, hQ, hbd⟩ := _root_.GlobalTheory.HilbertThetaSeries.th_congr_one F p ι κ G S t hL Ψ hΨ
+  refine ⟨_, _root_.GlobalTheory.HilbertThetaSeries.QAff.hasQ_aff F (p - 1) (th G Ψ - 1) a ε 0 hε hQ, fun ξ => ?_⟩
   simpa [et] using hbd (ξ / ε)
 
 end GlobalTheory.HilbertThetaSeries
@@ -152,5 +152,3 @@ end GlobalTheory.HilbertThetaSeries
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Af UpperTheory.V.Sd GlobalTheory.HilbertThetaSeries
 open scoped Matrix
 
-theorem _root_.GlobalTheory.T.theta_translate_integral_congruent_one_mod_prime : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (p : ℕ) [Fact p.Prime] (ι : Qbar p ≃+* ℂ), p ≠ 2 → ∀ δ : F, IsDel p δ → ∀ (κ : Type) [Fintype κ] [DecidableEq κ] (G S : Matrix κ κ ℤ) (t : ℕ), LatD p G S t → ∀ γ : GL (Fin 2) F, InG p δ γ → Small ι (p : ℝ)⁻¹ (sl0 (p - 1) (toInf γ) (th G oneL) - 1) := by
-  first | exact @GlobalTheory.HilbertThetaSeries.theta_translates_integral_one | exact GlobalTheory.HilbertThetaSeries.theta_translates_integral_one | (intros; apply GlobalTheory.HilbertThetaSeries.theta_translates_integral_one <;> assumption)

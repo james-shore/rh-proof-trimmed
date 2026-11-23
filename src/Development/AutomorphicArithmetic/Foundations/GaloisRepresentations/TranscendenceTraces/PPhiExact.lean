@@ -58,11 +58,11 @@ theorem UpperTheory.Gal.TranscendenceTraces.phiExact_of :
     DSLoc → PhiExact := by
   intro hD R _ Z S p _ T hT
   obtain ⟨-, hmono, -, -, hloc, -, -⟩ := GlobalTheory.T.etaleLocal_property_calculus_rules
-  rw [GlobalTheory.T.etaleSheaf_shortComplex_exact_iff_locally]
+  rw [_root_.GlobalTheory.EtC.exactIff]
   intro U b hb
   change Sec ((phi p R).obj T.X₂) U at b
   change Sec.map ((phi p R).map T.g) b = 0 at hb
-  have h1 := (GlobalTheory.T.etaleToSheafify_locally_bijective_and_lift R (phiP p T.X₂)).1 U b
+  have h1 := (_root_.GlobalTheory.EtC.toSheafify_loc_bij_lift R (phiP p T.X₂)).1 U b
   apply hloc
   apply hmono _ _ _ h1
   rintro V g ⟨x0, hx0⟩
@@ -70,7 +70,7 @@ theorem UpperTheory.Gal.TranscendenceTraces.phiExact_of :
   have hz : phiSec p T.X₃ V (DS.map p T.g V x) = 0 := by
     rw [← phiSec_map, hx, map_res, hb]
     exact map_zero _
-  have h2 := (GlobalTheory.T.etaleToSheafify_locally_bijective_and_lift R (phiP p T.X₃)).2.1 V _ hz
+  have h2 := (_root_.GlobalTheory.EtC.toSheafify_loc_bij_lift R (phiP p T.X₃)).2.1 V _ hz
   apply hloc
   apply hmono _ _ _ h2
   intro W k hk

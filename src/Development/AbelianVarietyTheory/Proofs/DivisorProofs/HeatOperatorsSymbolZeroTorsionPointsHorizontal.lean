@@ -57,7 +57,7 @@ theorem exists_horizontal_section : ∀ (E : Type) [Field E] [NumberField E] [Is
   have hw : (spMap ρ ≫ (P.D.toPre.c y).left) ≫ P.D.toPre.P.A.hom = 𝟙 _ ≫ spMap ρ := by
     rw [Category.assoc, Over.w]; simp
   refine ⟨h₁.1.lift (spMap ρ ≫ (P.D.toPre.c y).left) (𝟙 _) hw, h₁.1.lift_snd _ _ _, h₁.1.lift_fst _ _ _, ?_⟩
-  exact GlobalTheory.T.translation_horizontal_of_commuting_heatOperators E H k m d t P gam hM hli hab Y n' v' dd hdd D q hD h hB hH hΘ ρ hρ B' inferInstance π₁ π₂ h₁ h₂ h12 y _
+  exact _root_.GlobalTheory.PtsHoriz.transl_horizontal E H k m d t P gam hM hli hab Y n' v' dd hdd D q hD h hB hH hΘ ρ hρ B' inferInstance π₁ π₂ h₁ h₂ h12 y _
     (h₁.1.lift_snd _ _ _) (h₁.1.lift_fst _ _ _)
 
 end GlobalTheory.HeatPts

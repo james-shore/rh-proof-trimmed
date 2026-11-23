@@ -89,17 +89,6 @@ theorem exists_orbit (Bj : B.RealPlaceData k ρ Wp Wq) (B0 : B.RealPlaceData k n
     rw [hno x hx ξ hξ, ContinuousLinearMap.zero_comp, smul_zero]
   rw [hK, ContinuousLinearMap.comp_zero, smul_zero]
 
-theorem norm_entry_le_gN (g : B.Mat k n) (i j : Fin (2 * n + k + 1)) : ‖g i j‖ ≤ B.gN g := by
-  unfold B.gN
-  rw [Complex.norm_def]
-  refine Real.sqrt_le_sqrt ?_
-  calc Complex.normSq (g i j) ≤ ∑ j', Complex.normSq (g i j') :=
-        Finset.single_le_sum (f := fun j' => Complex.normSq (g i j')) (fun _ _ => Complex.normSq_nonneg _)
-          (Finset.mem_univ j)
-    _ ≤ ∑ i', ∑ j', Complex.normSq (g i' j') :=
-        Finset.single_le_sum (f := fun i' => ∑ j', Complex.normSq (g i' j'))
-          (fun _ _ => Finset.sum_nonneg fun _ _ => Complex.normSq_nonneg _) (Finset.mem_univ i)
-
 theorem orbit_gen (Bj : B.RealPlaceData k ρ Wp Wq) (B0 : B.RealPlaceData k n Wp Wq) (e : p + ρ = n)
     (hz : B0.z = D.castV e (liftVec k p ρ Bj.z))
     (Z : Matrix (Fin p) (Fin p) ℂ) (μ : B.Mat k ρ) (hZ : Z.det ≠ 0) (hμ : μ ∈ B.GV k ρ)
@@ -111,7 +100,7 @@ theorem orbit_gen (Bj : B.RealPlaceData k ρ Wp Wq) (B0 : B.RealPlaceData k n Wp
   subst e
   simp only [Formalism.FourierDecayAlt.P.Dx2.MN.castM_rfl] at hg ⊢
   rw [Formalism.FourierDecayAlt.P.JCTx5.castV_rfl] at hz
-  have hm : U.mMap k p ρ Z μ ∈ B.GV k (p + ρ) := (Formalism.FourierDecayAlt.P.slice_membership k p ρ).1 Z μ hZ hμ
+  have hm : U.mMap k p ρ Z μ ∈ B.GV k (p + ρ) := (_root_.Formalism.FourierDecayAlt.P.Ux2.sliceMem k p ρ).1 Z μ hZ hμ
   refine ⟨?_, ?_, ?_⟩
   · rw [hg]
     exact Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_mul (Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_mul (Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_mul (PartialBesselProperness.sP_GV Bj x) hm) hξ.2.1)
@@ -120,12 +109,12 @@ theorem orbit_gen (Bj : B.RealPlaceData k ρ Wp Wq) (B0 : B.RealPlaceData k n Wp
       LeftFubiniLemmas.upper_isUpUni _, fun a b => ?_⟩
     have hZh : U.Zh k p ρ g = Z * G.upper (fun q : G.UT p =>
         (Matrix.of ξ.2 : B.Mat k (p + ρ)) ⟨q.1.1.val, by omega⟩ ⟨q.1.2.val, by omega⟩) := by
-      have e0 := Formalism.FourierDecayAlt.P.hat_z_on_slice k p ρ 0 0 Z μ
+      have e0 := _root_.Formalism.FourierDecayAlt.P.Ux3.zhSlice k p ρ 0 0 Z μ
       rw [LeftFubiniLemmas.rn_zero, inv_one, Matrix.one_mul, Matrix.mul_one] at e0
       rw [hg, PBQ.zh_mul_UW _ _ _ hξ.1, LeftFubiniLemmas.zh_mul_N _ _ hξ.2, PBQ.zh_sP_mul, e0,
         PBQ.nblk_upper _ hξ.2]
     rw [← hZh]
-    exact norm_entry_le_gN g _ _
+    exact _root_.Formalism.FourierDecayAlt.P.Ux5.entry_le_gN g _ _
   · obtain ⟨h, hh, m, hmN, hs⟩ := PartialBesselProperness.leftFactor_mem Bj x
     rw [← hz] at hh
     have hhu : IsUnit h.det := Formalism.QuantumDeterminants.WeylGroupFacts.isUnit_of_uh hh.1
@@ -148,10 +137,6 @@ theorem gf_castM {k a b : ℕ} (e : a = b) (z z' : Fin (2 * b + k + 1) → ℂ) 
   subst e
   rw [Formalism.FourierDecayAlt.P.JCTx5.castM_rfl, Formalism.FourierDecayAlt.P.JCTx5.castV_rfl, Formalism.FourierDecayAlt.P.JCTx5.castV_rfl]
 
-theorem castV_castV' {k a b c : ℕ} (h1 : a = b) (h2 : b = c) (v : Fin (2 * a + k + 1) → ℂ) :
-    D.castV h2 (D.castV h1 v) = D.castV (h1.trans h2) v := by
-  subst h1 h2; rfl
-
 variable {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
   [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wp] [FiniteDimensional ℂ Wq]
 
@@ -159,7 +144,7 @@ theorem lowV_top {P : M.Par} (p : KB.Pl P Wp Wq) (e : P.r + (P.r - P.r) = P.r) :
     U.lowV P.k P.r (P.r - P.r) (D.castV e.symm p.T.base.z) = (p.T.bs P.r).z ∧
       U.lowV P.k P.r (P.r - P.r) (D.castV e.symm p.T.base.z') = (p.T.bs P.r).z' := by
   unfold D.LevTower.base
-  rw [← p.T.z_lev P.r le_rfl, ← p.T.z'_lev P.r le_rfl, castV_castV', castV_castV']
+  rw [← p.T.z_lev P.r le_rfl, ← p.T.z'_lev P.r le_rfl, _root_.Formalism.FourierDecayAlt.P.Dx2.SL.castV_castV, _root_.Formalism.FourierDecayAlt.P.Dx2.SL.castV_castV]
   exact ⟨Formalism.FourierDecayAlt.P.JCTx6.Link2.lowV_liftVec rfl _ _, Formalism.FourierDecayAlt.P.JCTx6.Link2.lowV_liftVec rfl _ _⟩
 
 theorem orbit_point {P : M.Par} (p : KB.Pl P Wp Wq) (G : B.Mat P.k P.r → (Wq →L[ℂ] Wp))
@@ -177,15 +162,15 @@ theorem orbit_point {P : M.Par} (p : KB.Pl P Wp Wq) (G : B.Mat P.k P.r → (Wq �
   obtain ⟨hGV, ⟨u, hu, hb⟩, hD, hGf⟩ := orbit_gen (p.T.bs P.r) p.T.base e hz Z μ hZ hμGV x hx ξ hξ _ rfl
   refine ⟨_, hGV, hG, u, hu, hb, ?_, ?_⟩
   · rw [hD]
-    rw [Formalism.FourierDecayAlt.P.PBI.dmin_castM e _ _ _ P.r (by omega) (by omega), Formalism.FourierDecayAlt.P.hat_z_minimum_degree P.k P.r (P.r - P.r)]
-    have e0 := Formalism.FourierDecayAlt.P.hat_z_on_slice P.k P.r (P.r - P.r) 0 0 Z μ
+    rw [Formalism.FourierDecayAlt.P.PBI.dmin_castM e _ _ _ P.r (by omega) (by omega), _root_.Formalism.FourierDecayAlt.P.Ux3.zhDmin P.k P.r (P.r - P.r)]
+    have e0 := _root_.Formalism.FourierDecayAlt.P.Ux3.zhSlice P.k P.r (P.r - P.r) 0 0 Z μ
     rw [Formalism.FourierDecayAlt.P.LeftFubiniLemmas.rn_zero, inv_one, Matrix.one_mul, Matrix.mul_one] at e0
     unfold U.DjU
     rw [e0]
   · rw [hGf, gf_castM e]
     have hz0 := Formalism.FourierDecayAlt.P.PBH.inWb_castV e.symm p.T.base.z_mem
     have hz0' := Formalism.FourierDecayAlt.P.PBH.inWb_castV e.symm p.T.base.z'_mem
-    have hG0 := Formalism.FourierDecayAlt.P.level_function_slice P.k P.r (P.r - P.r) _ _ hz0 hz0' 0 0 Z μ
+    have hG0 := _root_.Formalism.FourierDecayAlt.P.Ux3.gfSlice P.k P.r (P.r - P.r) _ _ hz0 hz0' 0 0 Z μ
     rw [Formalism.FourierDecayAlt.P.LeftFubiniLemmas.rn_zero, inv_one, Matrix.one_mul, Matrix.mul_one] at hG0
     obtain ⟨hl1, hl2⟩ := lowV_top p e
     rw [hG0, hl1, hl2]

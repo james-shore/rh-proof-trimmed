@@ -84,6 +84,6 @@ theorem exists_datum_pure_vac : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Co
     GlobalTheory.T.exists_pureTensorSum_datum_routeThroughSmallVertex hL W B ρ t i j M hM Θ Θ' hΘ e Bs Γ X om om' h hTr hv
   have hψ : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.PsiUnr Bs.ψ Bs.v₁ := h.ψ ▸ GlobalTheory.T.localAddCharUnramified_of_splitsCompletelyAbovePlace W Bs.v₁ hTr.chars.good.2
   exact ⟨ΦB, hD, m, f, φ, φ₀, hsum, hSB, hvac, hv1, h0SB, h0ne, L₁, L₂, θ, hθ, hfix,
-    fun ψ₀ hψ₀ hfix' => GlobalTheory.T.heisenbergLatticeVacuum_unique_up_to_scalar Bs Γ Bs.v₁ L₁ L₂ θ hψ hL1 hL2 hSD hθ φ₀ ψ₀ h0SB h0ne hfix hψ₀ hfix'⟩
+    fun ψ₀ hψ₀ hfix' => _root_.GlobalTheory.LatVacUniq.vacuum_unique Bs Γ Bs.v₁ L₁ L₂ θ hψ hL1 hL2 hSD hθ φ₀ ψ₀ h0SB h0ne hfix hψ₀ hfix'⟩
 
 end GlobalTheory.SmallDatumVac

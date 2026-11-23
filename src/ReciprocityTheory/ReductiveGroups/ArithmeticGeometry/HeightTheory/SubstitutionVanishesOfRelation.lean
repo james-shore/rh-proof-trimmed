@@ -57,17 +57,6 @@ variable {K : Type} [Field K] [NumberField K] {ι : Type} [Fintype ι]
   [∀ c, Algebra (𝓞 K) (A c)]
   {𝒜 : (c : ι) → WT → Submodule (Ω c) (A c)}
 
-theorem ratio_self' {Ω V : Type*} [Field Ω] [AddCommGroup V] [Module Ω V] {f : V} (hf : f ≠ 0) :
-    ratio (Ω := Ω) f f = 1 := by
-  have hex : ∃ a : Ω, f = a • f := ⟨1, (one_smul Ω f).symm⟩
-  unfold ratio
-  rw [dite_eq_left hex]
-  have hs := hex.choose_spec
-  have h0 : (hex.choose - 1) • f = 0 := by rw [sub_smul, ← hs, one_smul, sub_self]
-  rcases smul_eq_zero.mp h0 with h | h
-  · exact sub_eq_zero.mp h
-  · exact absurd h hf
-
 namespace Data
 
 variable (d : Data K ι Ω WT A)
@@ -85,7 +74,7 @@ theorem substitution_comp_relation (hd : d.AxH 𝒜) (c : ι) :
         MvPolynomial.X (Sum.inr t.1.succ) * MvPolynomial.X (Sum.inl (0, t.2)) :
           MvPolynomial ((Fin (d.D + 2) × Fin (d.N + 1)) ⊕ Fin (d.D + 2)) K))) =
       ((d.pluckerSubstitution c).restrictScalars K).comp (d.relationEliminateColumn c) := by
-  have hy : d.affineCoord c (d.jc c) = 1 := ratio_self' (hd.w_base c)
+  have hy : d.affineCoord c (d.jc c) = 1 := _root_.ReciprocityTheory.ChartRestriction.G.T0.ratio_self_height (hd.w_base c)
   have hs : ∀ a, d.affineRowCombination c a = ∑ k, X (a, k) * C (d.affineCoord c k) := fun a => rfl
   have hphi_inl : ∀ p, d.linearSubstitution c (X (Sum.inl p)) = X p := by
     intro p

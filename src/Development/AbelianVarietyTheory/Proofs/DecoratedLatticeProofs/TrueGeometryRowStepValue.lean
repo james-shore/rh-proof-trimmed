@@ -44,6 +44,7 @@ import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsOneComb
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsOpenKerUnramMulTame
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.MiStarOfMid
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IsBicharPairing
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LocalLevelComparison
 
 @[expose] public section
 
@@ -65,30 +66,6 @@ open GlobalTheory.FinPl GlobalTheory.FinPl.SetCut
 
 variable {D : D7}
 
-theorem prV_comm (v : GlobalTheory.FinPl.Pl D) (z : Af ↥D.host.F ⊗[↥D.host.F] D.host.E) :
-    Formalism.UG.prV (E := D.host.E) v ((Algebra.TensorProduct.comm (↥D.host.F) (Af ↥D.host.F) D.host.E) z) =
-      (Algebra.TensorProduct.comm _ _ _) (GlobalTheory.IndefiniteRowSideFullHecke.UnramifiedCharacter.compFin D v z) := by
-  induction z using TensorProduct.induction_on with
-  | zero => rw [map_zero, map_zero, map_zero, map_zero]
-  | tmul a e =>
-    rw [Algebra.TensorProduct.comm_tmul]
-    simp only [Formalism.UG.prV, GlobalTheory.IndefiniteRowSideFullHecke.UnramifiedCharacter.compFin, AlgHom.toRingHom_eq_coe, RingHom.coe_coe,
-      Algebra.TensorProduct.map_tmul, AlgHom.id_apply, Algebra.TensorProduct.comm_tmul]
-    rfl
-  | add a b ha hb =>
-    simp only [map_add (f := _)]
-    exact congrArg₂ (· + ·) ha hb
-
-theorem prV_toEAf_congr (v : GlobalTheory.FinPl.Pl D) {y y' : AE D} (h : GlobalTheory.FinPl.compAt D v y = GlobalTheory.FinPl.compAt D v y') :
-    Formalism.UG.prV (E := D.host.E) v (toEAf D y) = Formalism.UG.prV (E := D.host.E) v (toEAf D y') := by
-  unfold GlobalTheory.FinPl.compAt at h
-  unfold toEAf
-  simp only [RingHom.comp_apply] at h ⊢
-  generalize finPart D y = z at h ⊢
-  generalize finPart D y' = z' at h ⊢
-  refine (prV_comm v z).trans (Eq.trans ?_ (prV_comm v z').symm)
-  rw [h]
-
 theorem bc_congr (V : HSp D) {n : ℕ} (hn : V.rank = n) (v : GlobalTheory.FinPl.Pl D) {g h : GA D V} {x y : GL (Fin n) (EF D)}
     (hx : x.1 = finM V hn g) (hy : y.1 = finM V hn h)
     (e : ∀ i j, GlobalTheory.FinPl.compAt D v (Formalism.L2.Theta.mt V g i j) = GlobalTheory.FinPl.compAt D v (Formalism.L2.Theta.mt V h i j)) :
@@ -98,7 +75,7 @@ theorem bc_congr (V : HSp D) {n : ℕ} (hn : V.rank = n) (v : GlobalTheory.FinPl
   change Formalism.UG.prV (E := D.host.E) v (x.1 i j) = Formalism.UG.prV (E := D.host.E) v (y.1 i j)
   rw [hx, hy]
   simp only [GlobalTheory.AdForm.finM, Matrix.reindex_apply, Matrix.submatrix_apply, Matrix.map_apply]
-  exact prV_toEAf_congr v (e _ _)
+  exact _root_.GlobalTheory.PenLevPrime.prV_toEAf_congr v (e _ _)
 
 theorem bc_eq_one (V : HSp D) {n : ℕ} (hn : V.rank = n) {P : GlobalTheory.FinPl.Pl D → Prop} {v : GlobalTheory.FinPl.Pl D} (hv : ¬ P v) {g : GA D V}
     (hg : g ∈ grpAt V P) {x : GL (Fin n) (EF D)} (hx : x.1 = finM V hn g) :

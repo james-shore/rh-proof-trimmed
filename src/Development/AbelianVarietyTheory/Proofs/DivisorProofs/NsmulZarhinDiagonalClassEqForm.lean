@@ -50,12 +50,6 @@ namespace GlobalTheory.ZarhinFam
 
 open GlobalTheory.CechPic GlobalTheory.AbDual
 
-theorem zClsDiag_comp_idPow {S : Scheme.{0}} {B Y : Over S} [GrpObj B] (b : Y ⟶ B) (n : ℕ) :
-    b ≫ (𝟙 B) ^ n = b ^ n := by
-  induction n with
-  | zero => simp only [pow_zero, MonObj.comp_one]
-  | succ n ih => rw [pow_succ, pow_succ, MonObj.comp_mul, ih, Category.comp_id]
-
 theorem zClsDiag_nsmul_evc {S : Scheme.{0}} {A B Y : Over S} [GrpObj A] [GrpObj B]
     {Q : LB (A ⊗ B).left} (hQ : Q.IsLB) (hs : IsDual B A (swap Q)) (a : Y ⟶ A) (b : Y ⟶ B) (n : ℕ) :
     n • evc hQ a b = evc hQ a (b ^ n) := by
@@ -73,7 +67,7 @@ theorem zClsDiag_key {h M d : ℕ} {S : Scheme.{0}} {t : S ⟶ Sp (cycAway M)} (
   have e : cls c.P c.isLB = evc hQ (fst c.A c.A) (snd c.A c.A ≫ la) :=
     (cls_eq_iff c.isLB (pull_isLB hQ _)).2 hZ.2.2.2.2.2.2.2
   show d • evc hQ a b = _
-  rw [e, pull_evc, lift_fst, lift_snd_assoc, Category.assoc, hZ.2.2.2.2.2.2.1, zClsDiag_comp_idPow,
+  rw [e, pull_evc, lift_fst, lift_snd_assoc, Category.assoc, hZ.2.2.2.2.2.2.1, _root_.GlobalTheory.OddDescent.comp_id_pow,
     zClsDiag_nsmul_evc hQ hZ.2.2.1]
 
 end GlobalTheory.ZarhinFam

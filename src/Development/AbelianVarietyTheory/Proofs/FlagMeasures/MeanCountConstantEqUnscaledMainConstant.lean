@@ -100,7 +100,7 @@ theorem countConst_eq_unscaledConst : PI.VolStabS.MassDataS.SWXS → ∀ (Cg cb 
   have hdet' : (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.gramE X.B.I.cm.sig X.B.I.J
       (Formalism.L2.SG.Sub.tupH (Formalism.L2.SG.TypedSets.frameOf X u'))).det ≠ 0 :=
     Formalism.L2.SG.Pf.Rescale.standard_gram_nondegenerate X.B.I.F X.B.I.E X.B.I.cm.sig X.B.I.n X.B.I.J _ _ _
-      (fun x => star_star x) hStd.2.1 (Formalism.L2.SG.Pf.Rescale.frame_stdX X u')
+      (fun x => star_star x) hStd.2.1 (_root_.MassDataLevelSSteps.FrameW.frameOf_isStd X u')
   have hPC := Formalism.L2.SG.Pf.ProdConvCut2.prodConv_holds_gen X hb ψ hI hS hLC u u'
   have hL := Formalism.L2.SG.LocVol.locTieX_of X ψ u (hLC u) (Formalism.L2.SG.Pf.LocVolPrim.primX X u locFramePrim)
   have hL' := Formalism.L2.SG.LocVol.locTieX_of X ψ u' (hLC u') (Formalism.L2.SG.Pf.LocVolPrim.primX X u' locFramePrim)

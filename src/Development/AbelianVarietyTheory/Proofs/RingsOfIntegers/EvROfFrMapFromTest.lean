@@ -77,7 +77,7 @@ theorem GlobalTheory.PlaceInt.short_value_on_cover : ∀ (E : Type) [Field E] [N
   intro E _ _ _ H Dw l Xo c n d _ hlev hnab m₀ hm₀ Λ N hU hT hL w P hP x0 g hg hsh T io y hfin
   have laws : Laws := GlobalTheory.firstFiveLaws.1
   obtain ⟨T₁, i₁, e₁, y₁, io₁, z₁, ⟨he₁, hv₁, φ₁, hφ₁, hm₁⟩, hfin₁, hio₁, hover⟩ :=
-    GlobalTheory.T.exists_finiteExtension_integralFramedPoint_lift_cover E H Dw l Xo c n d hlev T io y hfin
+    _root_.GlobalTheory.CoverPoint.exists_ext_lift_to_cover E H Dw l Xo c n d hlev T io y hfin
   have hN : 0 < N := hL.1.pos
   obtain ⟨T₂, i₂, e₂, z₂, C, ⟨he₂, hv₂, φ₂, hφ₂, hm₂⟩, hfin₂, hgood, hrat⟩ :=
     GlobalTheory.T.exists_finiteExt_uniformisedChart_rationalTorsion E H Dw d.l₂ d.Xo₂ d.c₂ hnab.1 T₁ io₁ z₁ hfin₁ (N ^ 2) (pow_pos hN 2)

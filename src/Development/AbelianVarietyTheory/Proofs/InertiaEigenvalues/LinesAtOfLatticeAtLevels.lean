@@ -420,7 +420,7 @@ theorem linesAt_of_record (D : D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW)
   have hτ : (GlobalTheory.IndefiniteRowSideFullHecke.GradedSeries.resEmb hA.2.2 τ).comp (IsScalarTower.toAlgHom ℚ_[l] ↥(K0 K) ↥K.1) =
       ((HW l).W K 1 LL hA.2.2).emb i := AlgHom.ext fun x => hpt.1 x _ rfl
   obtain ⟨hfd, hr, hfil⟩ :=
-    (GlobalTheory.T.map_Dcris_eq_DdR_crystalline_unramified l (D.loc l) (D.locA l) (D.locT l) K LL hbij T.V T.ρ hc.1).2 (GlobalTheory.IndefiniteRowSideFullHecke.GradedSeries.resEmb hA.2.2 τ)
+    (_root_.GlobalTheory.Per.DdREqDcris.map_Dcris_eq_DdR l (D.loc l) (D.locA l) (D.locT l) K LL hbij T.V T.ρ hc.1).2 (GlobalTheory.IndefiniteRowSideFullHecke.GradedSeries.resEmb hA.2.2 τ)
   rw [hτ] at hfil
   obtain ⟨u, d, hu, hd, hs⟩ := GlobalTheory.Per.Sen.adapted_basis_jumps
     (DdRE ((D.loc l).PD K) T.ρ (GlobalTheory.IndefiniteRowSideFullHecke.GradedSeries.resEmb hA.2.2 τ))
@@ -435,7 +435,7 @@ theorem linesAt_of_record (D : D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW)
     (GlobalTheory.NL.ex (Cm l) hA.2.2 T i ζ) (((Cm l).C K 1 LL hA.2.2).tie.levB_supp T i ζ) _
     (((Cm l).C K 1 LL hA.2.2).tie.levN_eq T i ζ)
     (GlobalTheory.IndefiniteRowSideFullHecke.GradedSeries.FilLet ((HW l).W K 1 LL hA.2.2) T i (GlobalTheory.IndefiniteRowSideFullHecke.GradedSeries.resEmb hA.2.2 τ))
-    (GlobalTheory.T.wach_lattice_eq_filtration_sum_at_level D HW F Cm l K 1 LL hA.2.2 T hc.1 i ζ _ hP) u d fun a => ?_⟩
+    (_root_.GlobalTheory.NL.LatFil.lat_eq_fil D HW F Cm l K 1 LL hA.2.2 T hc.1 i ζ _ hP) u d fun a => ?_⟩
   exact (GlobalTheory.Per.FilLetUnram.toDR_FilLet _ T i _ a hbij.2 hτ (hfil a)).trans (hs a)
 
 theorem senOp_of_record : ∀ (D : D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (Cm : CmpOf D.loc D.locA HW F)

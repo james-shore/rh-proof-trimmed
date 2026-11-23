@@ -55,7 +55,7 @@ theorem boundary_unit_at_equalCharacteristic_points : _root_.GlobalTheory.CovTop
   have hnorm := GlobalTheory.T.constant_length_of_reading_horizontal_section E H Dw l Xo c r U x hL Z τ Y V sig f hV hs hnv hh hf hR
   choose b hb hb' using fun σ => hnorm _ (goodEmb_goodOf c σ)
   exact ⟨⟨f, g, hf, hg, hfi, hgi, hfg, b, hb, hb'⟩, fun T io y₀ h0 hZ =>
-    _root_.GlobalTheory.T.boundary_unit_valuation_integral hP E H Dw l Xo c Y Z V τ sig f hV hs hnv hR T io y₀ h0 hZ⟩
+    _root_.GlobalTheory.BdryUnitVal.boundary_unit_at_integral_points hP E H Dw l Xo c Y Z V τ sig f hV hs hnv hR T io y₀ h0 hZ⟩
 end GlobalTheory.BdryUnit
 end
 end

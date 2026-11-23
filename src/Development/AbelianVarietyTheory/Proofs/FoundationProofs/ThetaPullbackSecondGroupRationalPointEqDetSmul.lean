@@ -61,12 +61,7 @@ namespace GlobalTheory.RatEqui.Col
 
 variable (D : D7) {N N' : ℕ}
 
-theorem conj_conj (x : D.host.E) : D.host.conj (D.host.conj x) = x := by
-  have h : ∀ y : D.host.E, D.host.φ₀ (D.host.conj y) = (starRingEnd ℂ) (D.host.φ₀ y) := fun y =>
-    D.host.conjE_apply D.host.φ₀ y
-  apply (D.host.φ₀ : D.host.E →+* ℂ).injective
-  change D.host.φ₀ _ = D.host.φ₀ _
-  rw [h, h, Complex.conj_conj]
+alias conj_conj := _root_.GlobalTheory.HomDual.conj_conj
 
 theorem adj_adj {n : ℕ} (M : Matrix (Fin n) (Fin n) D.host.E) : adj D (adj D M) = M := by
   ext i j; simp [adj, conj_conj]
@@ -95,9 +90,7 @@ theorem sd_of_moves {g : GA D N} {L : Submodule (𝓞 D.host.E) (Fin N → D.hos
   have : L = Lt g := by ext x; rw [h x, (h1 g).1 x]
   rw [this]; exact (h1 g).2
 
-theorem moves_one (N : ℕ) : Moves D ((1 : GA D N) : GL (Fin N) (AE D)) (stdL D N) := by
-  obtain ⟨Lt, h1, h2, -⟩ := exists_lattice_of_adelic_point D N
-  rw [← h2]; exact (h1 _).1
+alias moves_one := _root_.GlobalTheory.ThetaStab.moves_one
 
 theorem isRat_one (N : ℕ) : IsRat D ((1 : GA D N) : GL (Fin N) (AE D)) 1 := by
   unfold IsRat

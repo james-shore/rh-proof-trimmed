@@ -55,18 +55,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.Corev.KappaLeft
 
-theorem latV_mem_idAt {D : D7} {S : HSp D} {L : Lat S} {P : Pl D → Prop} {y : Fin S.rank → AE D}
-    (hy : y ∈ latV S L P) : ∀ r, y r ∈ idAt D P := by
-  unfold GlobalTheory.FinPl.latV GlobalTheory.FinPl.latMul at hy
-  induction hy using AddSubgroup.closure_induction with
-  | mem w hw =>
-    obtain ⟨α, -, hα, a, -, s, -, rfl⟩ := hw
-    intro r
-    exact GlobalTheory.FinPl.LatMem.tmul_mem_idAt hα _
-  | zero => intro r; exact zero_mem _
-  | add x y _ _ hx hy => intro r; exact add_mem (hx r) (hy r)
-  | neg x _ hx => intro r; exact neg_mem (hx r)
-
 end GlobalTheory.Corev.KappaLeft
 
 
@@ -154,7 +142,7 @@ theorem GlobalTheory.Corev.kappa_mem_latO_iff : ∀ (D : D7) (k : Type) [Field k
     have hv : ∀ r, (B.o.pB *ᵥ m) r ∈ idAt D P := by
       intro r
       simp only [Matrix.mulVec, dotProduct]
-      exact Ideal.sum_mem _ fun j _ => Ideal.mul_mem_left _ _ (GlobalTheory.Corev.KappaLeft.latV_mem_idAt hm j)
+      exact Ideal.sum_mem _ fun j _ => Ideal.mul_mem_left _ _ (_root_.GlobalTheory.FinPlLoc.latV_idAt hm j)
     obtain ⟨c, hc, hcv⟩ := hline B.L B.ζ B.line _ hv
     have hjp := GlobalTheory.T.lineProjection_mem_splitCoreCompletion D k ι p I P hP n' B.V₀ B.A B.L B.o B.ζ B.line α α₀ M Λ hM hα m hm
     rw [hcv, hjB] at hjp

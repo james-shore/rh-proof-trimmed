@@ -123,7 +123,7 @@ theorem satCompAt : SatCompAt := by
     unfold ordL
     rw [dite_eq_right h0, hu1]
     simp
-  exact PositivityTheory.Rg.BcB.F.Inert.lem_b E n w hw b b' ϖ ϖ' q q' σ α α' ⟨hbK, hb⟩ hb' hunif hϖ' hI hI' hs1 hS'
+  exact _root_.PositivityTheory.Rg.BcB.F.Inert.satUniq E n w hw b b' ϖ ϖ' q q' σ α α' ⟨hbK, hb⟩ hb' hunif hϖ' hI hI' hs1 hS'
 
 end PositivityTheory.Rg.BcB.F.FX
 

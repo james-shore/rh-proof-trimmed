@@ -383,7 +383,7 @@ theorem exists_shear_bound (D : D7) (n ρ p : ℕ) (hn : ρ + p = n) (M : Maps D
       (e0.symm '' (({0} : Set (D.what₂.Tau → Fin ρ → Fin p → ℂ)) ×ˢ S))) :=
     ⟨y₂, Or.inr ⟨(0, f), ⟨rfl, hsupp y hy⟩, rfl⟩, rfl⟩
   have hexp : M.sh y = e (Real.log r) * M.sh y₀ * e (-Real.log r) * M.sh y₂ := by
-    rw [← hsh₁, GlobalTheory.CompanionTheory.FJE.sh_add, ← hsum]
+    rw [← hsh₁, _root_.GlobalTheory.CompanionTheory.PcB.sh_mul, ← hsum]
   have hE : 0 ≤ Real.exp N * r ^ N := by positivity
   have hκ₀' : 0 ≤ κ₀ := zero_le_one.trans hκ₀
   have s1 := hb₀ _ hy₂C (x * e (Real.log r) * M.sh y₀ * e (-Real.log r))

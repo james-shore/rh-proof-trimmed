@@ -196,16 +196,6 @@ theorem fib_ext {T : Over (Sp k)} {p p' : T ⟶ GF t x}
     (h : p.left ≫ pullback.fst t.G.hom x = p'.left ≫ pullback.fst t.G.hom x) : p = p' :=
   Over.OverMorphism.ext (pullback.hom_ext h ((Over.w p).trans (Over.w p').symm))
 
-theorem fibPt_fst {A : Type} [CommRing A] [Algebra k A] (y : overAt x A ⟶ t.G) :
-    (fibPt t x y).left ≫ pullback.fst t.G.hom x = y.left :=
-  pullback.lift_fst _ _ _
-
-theorem homAt_fib {A B : Type} [CommRing A] [Algebra k A] [CommRing B] [Algebra k B] (f : A →ₐ[k] B)
-    (y : overAt x A ⟶ t.G) : homAt (𝟙 (Sp k)) f ≫ fibPt t x y = fibPt t x (homAt x f ≫ y) := by
-  refine fib_ext t x ?_
-  rw [Over.comp_left, Category.assoc, fibPt_fst, fibPt_fst, Over.comp_left]
-  rfl
-
 def jr (xm : ∀ m, jOG x d m 1 ⟶ t.G) (m : ℕ) :
     overAt (𝟙 (Sp k)) (Jet k (Fin 2 × Fin d) m) ⟶ GF t x ⊗ GF t x :=
   lift (fibPt t x (jptG t x d xm m (0 : Fin 2))) (fibPt t x (jptG t x d xm m (1 : Fin 2)))
@@ -227,17 +217,17 @@ theorem jr_sq (xm : ∀ m, jOG x d m 1 ⟶ t.G) (m : ℕ) :
     congr 1
     · apply Over.OverMorphism.ext
       show (jr t x xm m).left ≫ (fst (GF t x) (GF t x)).left ≫ pullback.fst t.G.hom x = _
-      rw [← Category.assoc, ← Over.comp_left, jr, lift_fst, fibPt_fst]
+      rw [← Category.assoc, ← Over.comp_left, jr, lift_fst, _root_.GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.fibPt_fst]
     · apply Over.OverMorphism.ext
       show (jr t x xm m).left ≫ (snd (GF t x) (GF t x)).left ≫ pullback.fst t.G.hom x = _
-      rw [← Category.assoc, ← Over.comp_left, jr, lift_snd, fibPt_fst]
+      rw [← Category.assoc, ← Over.comp_left, jr, lift_snd, _root_.GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.fibPt_fst]
   exact congrArg (fun f => f.left) h
 
 theorem jr_sqPt (xm : ∀ m, jOG x d m 1 ⟶ t.G) (m : ℕ) (a : t.G ⊗ t.G ⟶ t.G) :
     jr t x xm m ≫ sqPt t x a =
       fibPt t x (lift (jptG t x d xm m (0 : Fin 2)) (jptG t x d xm m (1 : Fin 2)) ≫ a) := by
   refine fib_ext t x ?_
-  rw [fibPt_fst, Over.comp_left, Over.comp_left, Category.assoc, ← jr_sq]
+  rw [_root_.GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.fibPt_fst, Over.comp_left, Over.comp_left, Category.assoc, ← jr_sq]
   show _ ≫ (toF t x _ _).left ≫ _ = _
   rw [Category.assoc]
   congr 1
@@ -270,7 +260,7 @@ theorem jr_right {f : Fin d → PS k 1 d} {m : ℕ} {b : t.G ⟶ t.G} (h : xm m 
     (I : Finset (Fin 2)) :
     jr t x xm m ≫ sqPt t x (psum t.G ![fst t.G t.G, snd t.G t.G ≫ b] I) =
       homAt (𝟙 (Sp k)) (sgR f m) ≫ fibPt t x (psum t.G ![jptG t x d xm m (0 : Fin 2), jptG t x d xm m (1 : Fin 2)] I) := by
-  rw [jr_sqPt, homAt_fib]
+  rw [jr_sqPt, _root_.GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.homAt_fibPt]
   congr 1
   refine (psum_hom (preHom _) _ I).trans (Eq.trans ?_ (psum_hom (preHom _) _ I).symm)
   refine congrArg (fun z => psum t.G z I) (funext fun i => ?_)
@@ -282,7 +272,7 @@ theorem jr_left {f : Fin d → PS k 1 d} {m : ℕ} {b : t.G ⟶ t.G} (h : xm m �
     (I : Finset (Fin 2)) :
     jr t x xm m ≫ sqPt t x (psum t.G ![fst t.G t.G ≫ b, snd t.G t.G] I) =
       homAt (𝟙 (Sp k)) (sgL f m) ≫ fibPt t x (psum t.G ![jptG t x d xm m (0 : Fin 2), jptG t x d xm m (1 : Fin 2)] I) := by
-  rw [jr_sqPt, homAt_fib]
+  rw [jr_sqPt, _root_.GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.homAt_fibPt]
   congr 1
   refine (psum_hom (preHom _) _ I).trans (Eq.trans ?_ (psum_hom (preHom _) _ I).symm)
   refine congrArg (fun z => psum t.G z I) (funext fun i => ?_)
@@ -301,7 +291,7 @@ theorem pt_q (Q : AbQuot t x) (xm : ∀ m, jOG x d m 1 ⟶ t.G) (xB : ∀ m, jOG
     (Qs : Fin d' → PS k 1 d) (hq : ∀ m, fibPt t x (xm m) ≫ Q.q = homAt (𝟙 (Sp k)) (sub1 Qs m) ≫ xB m) (m : ℕ)
     (i : Fin 2) : fibPt t x (jptG t x d xm m i) ≫ Q.q =
       homAt (𝟙 (Sp k)) (sub2 Qs m) ≫ jptG Q.tB (𝟙 (Sp k)) d' xB m i := by
-  rw [jptG, jptG, ← homAt_fib, Category.assoc, hq, ← Category.assoc, homAt_comp, ← double_substitution_jet_inclusion, ← homAt_comp,
+  rw [jptG, jptG, ← _root_.GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.homAt_fibPt, Category.assoc, hq, ← Category.assoc, homAt_comp, ← double_substitution_jet_inclusion, ← homAt_comp,
     Category.assoc]
 
 theorem jr_qq (Q : AbQuot t x) (xm : ∀ m, jOG x d m 1 ⟶ t.G) (xB : ∀ m, jOG (𝟙 (Sp k)) d' m 1 ⟶ Q.tB.G)

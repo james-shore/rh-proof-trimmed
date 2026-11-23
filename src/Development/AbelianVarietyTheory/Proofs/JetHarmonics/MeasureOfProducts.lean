@@ -81,22 +81,12 @@ theorem hasSum_pi_prod : ∀ (g : ℕ) (u : Fin g → ℕ → ℂ_[q]) (s : Fin 
     funext p
     simp [Fin.consEquiv, Fin.prod_univ_succ]
 
-theorem bd_one_pow {f : ℂ_[q]⟦X⟧} (h : Bd 1 f) (a : ℕ) : Bd 1 (f ^ a) := by
-  induction a with
-  | zero =>
-    intro n
-    rw [pow_zero, coeff_one]
-    split_ifs <;> simp
-  | succ a ih =>
-    have := ((sup_norm_laws q).1 _ _ _ _ ih h).2
-    rwa [mul_one, ← pow_succ] at this
-
 theorem shiftS_pow {ζ : ℂ_[q]} (hζ : ‖ζ - 1‖ < 1) {f : ℂ_[q]⟦X⟧} (h : Bd 1 f) (a : ℕ) :
     shiftS ζ (f ^ a) = shiftS ζ f ^ a := by
   have H := Shift.shift_laws q ζ hζ
   induction a with
   | zero => simpa using H.2.2.1 1
-  | succ a ih => rw [pow_succ, (H.2.1 _ _ ⟨1, bd_one_pow h a⟩ ⟨1, h⟩).2, ih, pow_succ]
+  | succ a ih => rw [pow_succ, (H.2.1 _ _ ⟨1, _root_.GlobalTheory.MomOne.MulSeries.bd_one_pow h a⟩ ⟨1, h⟩).2, ih, pow_succ]
 
 theorem hat_pow (ι : ℂ ≃+* ℂ_[q]) (ℓ : ℂ_[q]⟦X⟧) (hl : constantCoeff ℓ = 0) (G : ℂ → ℂ)
     (hG : AnalyticAt ℂ G 0) (a : ℕ) : hat ι ℓ (fun z => G z ^ a) = hat ι ℓ G ^ a := by
@@ -118,7 +108,7 @@ theorem measure_of_products : ∀ (d q : ℕ) [Fact q.Prime] (ι : ℂ ≃+* ℂ
   intro d q _ ι δ Ω θ hd hδ hΩ hθ hL g m a c t ht
   set ω : ℂ_[q] := Ω / ι δ with hω
   have hS : ∀ j i, Bd 1 (hat ι (C ω * logS) (U1 d (t j i) θ) ^ a i) :=
-    fun j i => bd_one_pow (hL.1 _ (ht j i)) _
+    fun j i => _root_.GlobalTheory.MomOne.MulSeries.bd_one_pow (hL.1 _ (ht j i)) _
   obtain ⟨μ, hμ1, hμ2⟩ := GlobalTheory.MultiMahler.exists_measure_of_bounded_moments q g
     (fun ν => ∑ j, ι (c j) * ∏ i, coeff (ν i) (hat ι (C ω * logS) (U1 d (t j i) θ) ^ a i))
     ⟨∑ j, ‖ι (c j)‖, fun ν => (norm_sum_le _ _).trans (Finset.sum_le_sum fun j _ => by

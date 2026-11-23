@@ -179,7 +179,7 @@ theorem locOrbG_of (hI : CompanionTheory.Lime.BM.Inputs2) (hRT : ReproTr) (hL2 :
     calc Qics C τ * uMat (γ (vOf X τ))⁻¹ * Qcs C τ * (Qics C τ * uMat (γ (vOf X τ)) * Qcs C τ)
         = Qics C τ * (uMat (γ (vOf X τ))⁻¹ * (Qcs C τ * Qics C τ) * uMat (γ (vOf X τ))) * Qcs C τ := by
           simp only [Matrix.mul_assoc]
-      _ = 1 := by rw [h2, Matrix.mul_one, uMat_inv_mul', Matrix.mul_one, h1]
+      _ = 1 := by rw [h2, Matrix.mul_one, _root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_inv_mul, Matrix.mul_one, h1]
   have hpt : ∀ x : Formalism.REAL.UJ (X.B.I.ε (vOf X τ)),
       ‖X.Wloc u (vOf X τ) x‖ₑ * ‖X.Wloc u' (vOf X τ) ((γ (vOf X τ))⁻¹ * x)‖ₑ =
         (‖a‖ₑ * ‖a'‖ₑ) * F (Formalism.FourierDecayAlt.B.rmulF yi (Matrix.of.symm (Formalism.L2.SG.RealObj.trG (Qcs C τ) (Qics C τ) x))) := by
@@ -189,7 +189,7 @@ theorem locOrbG_of (hI : CompanionTheory.Lime.BM.Inputs2) (hRT : ReproTr) (hL2 :
       show γc⁻¹ * (Formalism.L2.SG.RealObj.trG (Qcs C τ) (Qics C τ) x * yi) = _
       rw [hγinv]
       unfold Formalism.L2.SG.RealObj.trG
-      rw [uMat_mul']
+      rw [_root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_mul]
       calc Qics C τ * uMat (γ (vOf X τ))⁻¹ * Qcs C τ * (Qics C τ * uMat x * Qcs C τ * yi)
           = Qics C τ * uMat (γ (vOf X τ))⁻¹ * (Qcs C τ * Qics C τ) * uMat x * Qcs C τ * yi := by
             simp only [Matrix.mul_assoc]

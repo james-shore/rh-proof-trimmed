@@ -61,7 +61,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheo
 end GlobalTheory.RefSum.JetsUb
 theorem GlobalTheory.RefSum.JetsUb.jetNum_ub_alt : _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.CovTop.LiftsCondition fun Fm x _ ι p i PP _ => (i : ℕ) + 1 < (Fm.D x ι).R.m → GlobalTheory.RefSum.JetNum (Fm.D x ι) (DF (dat p i) (GlobalTheory.RefSum.thA (dat p i) (⟨uW p i, cZero (Fm.D x ι) ((i : ℕ) + 1), (Fm.D x ι).R.k - 2, lenT p i PP⟩ : WtPar (dat p i)).ub (GlobalTheory.RefSum.nCol (dat p i)))) (1 / 2500) := by
   intro hS
-  refine Formalism.MainNotions.Closed.imp (Formalism.MainNotions.Closed.and (Formalism.MainNotions.Closed.and hS (_root_.GlobalTheory.T.weight_parameter_strict_antitone_alt hS)) (_root_.GlobalTheory.RefSum.NumPtAlt.numbers_at_point hS)) ?_
+  refine Formalism.MainNotions.Closed.imp (Formalism.MainNotions.Closed.and (Formalism.MainNotions.Closed.and hS (_root_.GlobalTheory.QuoWt.weights_at_point_alt hS)) (_root_.GlobalTheory.RefSum.NumPtAlt.numbers_at_point hS)) ?_
   rintro eps Fm CH - ⟨⟨⟨_, _, hA⟩, ⟨_, _, hB⟩⟩, ⟨_, _, hC⟩⟩
   obtain ⟨x0, h⟩ := _root_.GlobalTheory.CovTop.EventuallyAtAllPoints.and (_root_.GlobalTheory.CovTop.EventuallyAtAllPoints.and hA hB) hC
   refine ⟨0, le_rfl, x0, fun x hx hle ι p hp i hi => ?_⟩

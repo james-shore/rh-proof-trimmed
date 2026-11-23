@@ -63,25 +63,11 @@ theorem supp_compact (p : ℕ) [Fact p.Prime] (G : HTGroup p) (L : G.Level) (f :
     obtain ⟨s, hs, k₁, hk₁, k₂, hk₂, rfl⟩ := hS g hg
     exact Set.mem_iUnion₂.2 ⟨s, hs, (k₁, k₂), ⟨hk₁, hk₂⟩, rfl⟩
 
-theorem coeff_continuous (p : ℕ) [Fact p.Prime] (G : HTGroup p) (k : ℕ) :
-    Continuous fun g : G.GAf => (LinearMap.charpoly (LinearMap.mulLeft (AfP p)
-      (((g : (AfP p ⊗[ℚ] G.C)ˣ × (AfP p)ˣ).1 : (AfP p ⊗[ℚ] G.C)ˣ) : AfP p ⊗[ℚ] G.C))).coeff k :=
-  GlobalTheory.T.continuous_charpoly_coeff_mulLeft_finiteAdeles_awayP p G k
-
-theorem bdd_at_places (p : ℕ) [Fact p.Prime] (Q : Set (AfP p)) (hQ : IsCompact Q) :
-    ∃ D : ℕ, 0 < D ∧ ∀ a ∈ Q, ∀ v : AwayP p, AfP.eval v ((D : AfP p) * a) ∈ v.1.adicCompletionIntegers ℚ :=
-  GlobalTheory.T.compact_finiteAdelesAwayP_bounded_denominators p Q hQ
-
-theorem rat_of_integral_away (p : ℕ) [Fact p.Prime] (q : ℚ)
-    (hq : ∀ v : AwayP p, algebraMap ℚ (v.1.adicCompletion ℚ) q ∈ v.1.adicCompletionIntegers ℚ) :
-    ∃ m : ℕ, ∃ z : ℤ, (p : ℚ) ^ m * q = z :=
-  GlobalTheory.T.exists_prime_pow_mul_rat_eq_int_of_integral_away p q hq
-
 theorem bdd_denom (p : ℕ) [Fact p.Prime] (Q : Set (AfP p)) (hQ : IsCompact Q) :
     ∃ D : ℕ, 0 < D ∧ ∀ q : ℚ, algebraMap ℚ (AfP p) q ∈ Q → ∃ m : ℕ, ∃ z : ℤ, (p : ℚ) ^ m * D * q = z := by
-  obtain ⟨D, hD, hQD⟩ := bdd_at_places p Q hQ
+  obtain ⟨D, hD, hQD⟩ := _root_.GlobalTheory.DenAwayCpt.exists_nat_mul_integral_of_isCompact p Q hQ
   refine ⟨D, hD, fun q hq => ?_⟩
-  obtain ⟨m, z, hz⟩ := rat_of_integral_away p (D * q) fun v => by
+  obtain ⟨m, z, hz⟩ := _root_.GlobalTheory.ratint_away p (D * q) fun v => by
     have := hQD _ hq v
     rwa [← map_natCast (algebraMap ℚ (AfP p)), ← map_mul, (AfP.eval v).commutes] at this
   exact ⟨m, z, by rw [← hz, mul_assoc]⟩
@@ -183,7 +169,7 @@ theorem exists_den_minpoly_coeff : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) 
   let cf : ℕ → G.GAf → AfP p := fun k g => (LinearMap.charpoly (LinearMap.mulLeft (AfP p)
       (((g : (AfP p ⊗[ℚ] G.C)ˣ × (AfP p)ˣ).1 : (AfP p ⊗[ℚ] G.C)ˣ) : AfP p ⊗[ℚ] G.C))).coeff k
   have hQ'c : IsCompact (⋃ k ∈ Finset.range (N + 1), cf k '' Q) :=
-    (Finset.range (N + 1)).isCompact_biUnion fun k _ => hQc.image (coeff_continuous p G k)
+    (Finset.range (N + 1)).isCompact_biUnion fun k _ => hQc.image (_root_.GlobalTheory.charpoly_coeff_continuous_GAf p G k)
   obtain ⟨D', hD'0, hD'⟩ := bdd_denom p _ hQ'c
   refine ⟨D' ^ Module.finrank G.F G.C, pow_pos hD'0 _, ?_⟩
   intro y h hfy k

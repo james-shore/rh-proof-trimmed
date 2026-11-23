@@ -44,5 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem unitary_class_mass_hermitian : PI.UJClassMass2.UJClassMass :=
-  PI.UnitaryGroupMassFormula.UJClassMass.unitary_class_mass

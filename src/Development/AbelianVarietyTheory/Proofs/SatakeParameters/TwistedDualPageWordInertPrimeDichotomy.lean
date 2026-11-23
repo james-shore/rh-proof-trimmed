@@ -57,7 +57,7 @@ theorem pageWord_inert_dichotomy : ∀ {D : D7} (L : SizeData₂ D) (C : ℝ) (j
   refine ⟨GlobalTheory.T.twistedDualOrbitPageWord_box L C j ε τ φ hR, ?_⟩
   by_cases h : φ = D.R.cc ∧ Thick D.host τ
   · obtain ⟨rfl, hτ⟩ := h
-    exact Or.inr ⟨rfl, GlobalTheory.T.twistedDualOrbitPageWord_conj_hypAT_allThick L C j ε τ l hR hl hτ⟩
+    exact Or.inr ⟨rfl, _root_.GlobalTheory.HTW.conjWord_hypAT L C j ε τ l hR hl hτ⟩
   · left
     have hLw : 3 ≤ D.host.Lw := by
       have := L.weightLength_ge_depth

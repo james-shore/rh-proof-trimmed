@@ -147,23 +147,3 @@ end GlobalTheory.FlagFrob
 
 end
 
-section
-open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.HV GlobalTheory.Ord2
-open GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.CuspRep GlobalTheory.LocLanglands GlobalTheory.LocGL Formalism.BasicNotions Formalism.BasicNotions.Loc
-open scoped Matrix
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
-
-theorem _root_.GlobalTheory.T.weilDeligne_frobenius_eigenvalue_of_full_flag : ∀ (F Ω : Type) [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] (l : ℕ) [Fact l.Prime]
-    (ι : Qbar l ≃+* ℂ) (n M : ℕ), 1 ≤ M → ∀ (m : Fin n → ℤ) (r : G F Ω →* GL (Fin n) (Qbar l)), Continuous r →
-    ∀ (w : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω) (h : IsPlaceOver A w)
-      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-      (Bw : LocBridge l F Ω (Dec (F := F) A) O) (hj : Induces Bw) (κ : Fin n → ↥(Dec (F := F) A) →* (Qbar l)ˣ),
-      FlagAt M m r A κ → IsPstAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype) →
-      ∀ (i : Fin n) (φ : ↥(Weil h)), deg φ = 1 →
-        (WD.charPol (wdAt (Loc.PP l) ι Bw h hj (r.comp (Dec (F := F) A).subtype)) φ).IsRoot
-          (((normV w : ℕ) : ℂ) ^ m i * ι ((κ i (Subgroup.inclusion (Weil_le_Dec h) φ) *
-            cycBar F Ω l (φ : G F Ω) ^ (-m i) : (Qbar l)ˣ) : Qbar l)) := by
-  first | exact @GlobalTheory.FlagFrob.isRoot_charPol_wdAt | exact GlobalTheory.FlagFrob.isRoot_charPol_wdAt | (intros; apply GlobalTheory.FlagFrob.isRoot_charPol_wdAt <;> assumption)
-
-end

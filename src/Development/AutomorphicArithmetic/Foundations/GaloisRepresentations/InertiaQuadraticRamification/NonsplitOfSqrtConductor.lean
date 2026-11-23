@@ -77,14 +77,10 @@ private theorem val_lt_of_dvd {K Ω : Type} [Field K] [NumberField K] [Field Ω]
   rw [Nat.cast_mul]
   exact v.asIdeal.mul_mem_right _ (normV_mem' v)
 
-private theorem val_prime_of_lt {Ω : Type} [Field Ω] (A : ValuationSubring Ω) (n : ℕ) :
-    n ≠ 0 → A.valuation (n : Ω) < 1 → ∃ t : ℕ, t.Prime ∧ t ∣ n ∧ A.valuation (t : Ω) < 1 :=
-  _root_.UpperTheory.Reformulated.B.Qi55.val_prime_of_lt A n
-
 private theorem fix_of_val {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω] (hS : SqrtFix)
     (A : ValuationSubring Ω) (x : Ω) (a : ℤ) (hx : x ^ 2 = (a : Ω)) (c : ℕ) (hc : c ≠ 0)
     (hd : ((8 * c : ℕ) : ℤ) ∣ a - 1) (hv : A.valuation (c : Ω) < 1) (g : G F Ω) (hg : g ∈ Dec (F := F) A) : g x = x := by
-  obtain ⟨t, ht, htc, htv⟩ := val_prime_of_lt A c hc hv
+  obtain ⟨t, ht, htc, htv⟩ := _root_.UpperTheory.Reformulated.B.Qi55.val_prime_of_lt A c hc hv
   refine (hS F Ω A x a hx).1 t ht htv (dvd_trans ?_ hd) g hg
   rw [Int.natCast_dvd_natCast]
   exact Nat.mul_dvd_mul_left 8 htc

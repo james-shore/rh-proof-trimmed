@@ -105,15 +105,15 @@ theorem projective_eventually_of_finitePresentation : ∀ (J : Type) [SmallCateg
     rw [hr, LinearMap.ker_comp, LinearEquiv.ker]
     exact (Submodule.ker_mkQ K).symm
   letI : Algebra (F.obj j) c.pt := (c.ι.app j).hom.toAlgebra
-  obtain ⟨v, w, h1, h2⟩ := GlobalTheory.T.exists_presentation_matrix_of_projective_baseChange (F.obj j) c.pt M n m π hπ r hker hproj
-  obtain ⟨k₀, f₀, hk⟩ := GlobalTheory.T.polynomial_system_eventually_solvable_colimit J F c hc j _ _ (sysPoly n m r)
+  obtain ⟨v, w, h1, h2⟩ := _root_.GlobalTheory.projective_baseChange_presentation_matrix (F.obj j) c.pt M n m π hπ r hker hproj
+  obtain ⟨k₀, f₀, hk⟩ := _root_.GlobalTheory.TorsorColim.poly_eventually_solvable J F c hc j _ _ (sysPoly n m r)
     (Sum.elim (fun p => v p.1 p.2) (fun p => w p.1 p.2))
     ((eval₂_sysPoly_eq_zero_iff _ n m r _).mpr ⟨h1, h2⟩)
   refine ⟨k₀, f₀, fun k f => ?_⟩
   letI : Algebra (F.obj j) (F.obj k) := (F.map (f₀ ≫ f)).hom.toAlgebra
   obtain ⟨y, hy⟩ := hk k f
   obtain ⟨h1', h2'⟩ := (eval₂_sysPoly_eq_zero_iff _ n m r y).mp hy
-  exact GlobalTheory.T.projective_baseChange_of_presentation_matrix_split (F.obj j) (F.obj k) M n m π hπ r hker (fun a l => y (.inl (a, l)))
+  exact _root_.GlobalTheory.projective_baseChange_of_presentation_split (F.obj j) (F.obj k) M n m π hπ r hker (fun a l => y (.inl (a, l)))
     (fun a b => y (.inr (a, b))) h1' h2'
 
 theorem projective_eventually : ∀ (J : Type) [SmallCategory J] [IsFiltered J] (F : J ⥤ CommRingCat.{0}) (c : Cocone F),
@@ -127,7 +127,7 @@ theorem projective_eventually : ∀ (J : Type) [SmallCategory J] [IsFiltered J] 
   intro J _ _ F c hc j A _ _ _ hfp
   obtain ⟨hfin, hproj⟩ := hfp
   letI : Algebra (F.obj j) c.pt := (c.ι.app j).hom.toAlgebra
-  obtain ⟨k₁, g₁, hk₁⟩ := GlobalTheory.T.eventually_finite_baseChange_filtered_colimit J F c hc j A hfin
+  obtain ⟨k₁, g₁, hk₁⟩ := _root_.GlobalTheory.FiniteColim.eventually_finite_baseChange J F c hc j A hfin
   letI : Algebra (F.obj j) (F.obj k₁) := (F.map (g₁ ≫ 𝟙 k₁)).hom.toAlgebra
   haveI : Module.Finite (F.obj k₁) (F.obj k₁ ⊗[F.obj j] A) := hk₁ k₁ (𝟙 k₁)
   haveI : Module.FinitePresentation (F.obj k₁) (F.obj k₁ ⊗[F.obj j] A) :=

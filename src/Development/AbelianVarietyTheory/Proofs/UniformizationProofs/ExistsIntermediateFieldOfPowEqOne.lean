@@ -57,22 +57,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.TorsionSeparable
 
-theorem exists_intermediateField {k Ω : Type} [Field k] [Field Ω] [Algebra k Ω] {X : Scheme.{0}}
-    (p : X ⟶ Spec (CommRingCat.of k)) [FormallyUnramified p] [LocallyOfFiniteType p]
-    (a : Spec (CommRingCat.of Ω) ⟶ X)
-    (ha : a ≫ p = Spec.map (CommRingCat.ofHom (algebraMap k Ω))) :
-    ∃ K : IntermediateField k Ω, FiniteDimensional k K ∧ Algebra.IsSeparable k K ∧
-      ∃ b : Spec (CommRingCat.of K) ⟶ X,
-        Spec.map (CommRingCat.ofHom (algebraMap K Ω)) ≫ b = a := by
-  first
-  | (rename_i h_2 h_3 h_4 h_7 h_8; revert k Ω h_2 h_3 h_4 X p h_7 h_8 a ha; exact @_root_.GlobalTheory.FiniteSeparablePoints.exists_finite_separable_point)
-  | exact @_root_.GlobalTheory.FiniteSeparablePoints.exists_finite_separable_point
-  | exact _root_.GlobalTheory.FiniteSeparablePoints.exists_finite_separable_point
-  | (apply _root_.GlobalTheory.FiniteSeparablePoints.exists_finite_separable_point <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FiniteSeparablePoints.exists_finite_separable_point <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FiniteSeparablePoints.exists_finite_separable_point <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FiniteSeparablePoints.exists_finite_separable_point ..)
-
 theorem exists_intermediateField_of_pow_eq_one {V : Type} [CommRing V]
     (G : Over (Spec (CommRingCat.of V))) [GrpObj G] [IsCommMonObj G] [LocallyOfFiniteType G.hom]
     {N : ℕ} (hN : IsUnit (N : V)) {k Ω : Type} [Field k] [Field Ω] [Algebra k Ω] (r : V →+* k)
@@ -99,7 +83,7 @@ theorem exists_intermediateField_of_pow_eq_one {V : Type} [CommRing V]
   have : FormallyUnramified (pullback.snd (mulN G N).left e) :=
     MorphismProperty.IsStableUnderBaseChange.of_isPullback (P := @FormallyUnramified)
       (IsPullback.of_hasPullback _ _) h₁
-  obtain ⟨K, hK, hK', b, hb⟩ := exists_intermediateField (pullback.snd (mulN G N).left e)
+  obtain ⟨K, hK, hK', b, hb⟩ := _root_.GlobalTheory.FiniteSeparablePoints.exists_finite_separable_point (pullback.snd (mulN G N).left e)
     (pullback.lift x.left _ hw) (pullback.lift_snd _ _ _)
   exact ⟨K, hK, hK', b ≫ pullback.fst _ _, by rw [reassoc_of% hb, pullback.lift_fst]⟩
 

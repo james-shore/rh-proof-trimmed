@@ -54,6 +54,7 @@ public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.
 public import Mathlib.Analysis.Calculus.Deriv.Add
 public import Mathlib.Analysis.Calculus.Deriv.Comp
 public import Mathlib.Analysis.Calculus.Deriv.Mul
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.CasChainB
 
 @[expose] public section
 
@@ -97,11 +98,6 @@ lemma inUJ_one (ε : Fin n → Bool) : inUJ ε (1 : Matrix (Fin n) (Fin n) ℂ) 
   unfold inUJ
   simp
 
-lemma inUJ_exp (ε : Fin n → Bool) {X : Matrix (Fin n) (Fin n) ℂ} (hX : inG ε X) (t : ℝ) :
-    inUJ ε (NormedSpace.exp ((t : ℂ) • X)) := by
-  have := LemK.ta_inUJ_mul_exp ε (inUJ_one ε) hX t
-  simpa using this
-
 end Grp
 
 section Unit
@@ -133,7 +129,7 @@ lemma hasDerivAt_coef (hσ : IsURepOn (UJset ε) σ) {D : Submodule ℂ H}
       fun t : ℝ => (((innerSL ℂ y).comp (σ g)).restrictScalars ℝ)
         (σ (NormedSpace.exp ((t : ℂ) • X)) (x : H)) := by
     funext t
-    rw [hσ.1.2 g hg _ (inUJ_exp ε hX t)]
+    rw [hσ.1.2 g hg _ (_root_.ReciprocityTheory.ChartRestriction.DS.S7.ccb_exp_inUJ ε hX t)]
     rfl
   rw [e]
   exact (((innerSL ℂ y).comp (σ g)).restrictScalars ℝ).hasFDerivAt.comp_hasDerivAt 0 (hD.deriv X hX x)

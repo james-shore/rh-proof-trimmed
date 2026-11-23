@@ -252,7 +252,7 @@ theorem ZHPre.nonempty_out : (∀ (T K : Type) [CommRing T] [IsDomain T] [IsDisc
   have hOpen : IsOpen (abLocus Q.G) := by
     rw [hAb.1]
     exact S.isOpen_setOf_TT_eq_bot M
-  have hS' := GlobalTheory.T.exists_sections_pow_line_bundle_from_local_basis hSS hU hL hL2 hT o Ω S ρ M U₀ EE Q hO hEE hSecO
+  have hS' := _root_.GlobalTheory.ZH.PowSec.exists_sections hSS hU hL hL2 hT o Ω S ρ M U₀ EE Q hO hEE hSecO
   have hcrd : ∀ (u : U₀.toScheme ⟶ Sp S.R) (a : pullback ρ.P.A.hom u ⟶ C.G.toScheme), u = C.u₀ → HEq a ex.a →
       ∀ (K : Type) [Field K] (x : Sp K ⟶ pullback ρ.P.A.hom u) (v : S.J → K),
         ρ.Crd (x ≫ pullback.fst _ _) v → Crd C.O1 C.st (x ≫ a ≫ C.G.ι) v := by
@@ -284,8 +284,8 @@ theorem ZHPre.nonempty_out : (∀ (T K : Type) [CommRing T] [IsDomain T] [IsDisc
     pol := hPol
     sec := hSec
     unif := unif_pullback_of_unif_ring hUnif o Ω S ρ M U₀ Q hO hOpen hAb hLoc hS hPol
-    theta := GlobalTheory.T.thetaDividedByConstant_nonvanishing_fibres hExt hSS hU hL hL2 hT o Ω S ρ M U₀ Q hBig hO hSec hLoc
-    secOf := GlobalTheory.T.exists_secOn_power_of_local_bases o Ω S ρ M U₀ EE Q hO.ne fun W x₀ b hb => (hS' W x₀ b hb).imp fun _ h => h.1
+    theta := _root_.GlobalTheory.ZH.ZHPre.exists_theta_div hExt hSS hU hL hL2 hT o Ω S ρ M U₀ Q hBig hO hSec hLoc
+    secOf := _root_.GlobalTheory.ZH.exists_secOn_genVal_of_bases o Ω S ρ M U₀ EE Q hO.ne fun W x₀ b hb => (hS' W x₀ b hb).imp fun _ h => h.1
     sections := hS'
     imm := fun W x₀ b hb σ hσ => by
       obtain ⟨σ', h1, h2⟩ := hS' W x₀ b hb

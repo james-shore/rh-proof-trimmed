@@ -58,6 +58,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsEqDivOfIsPullback
+import Formalism.LocalToGlobal.ProjectiveLattices.FrameCharts
 
 @[expose] public section
 
@@ -72,13 +73,6 @@ noncomputable section
 namespace GlobalTheory.SpreadTheta
 
 open GlobalTheory.ThetaDescent GlobalTheory.SymLevelDescent
-
-theorem spMap_comp_spMap {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : B →+* C) (g : A →+* B) :
-    spMap f ≫ spMap g = spMap (f.comp g) := by
-  unfold spMap
-  rw [← Spec.map_comp]
-  rfl
-
 
 open NumberField in
 theorem exists_base (R₁ : Type) [CommRing R₁] [IsDomain R₁] [CharZero R₁] (n m : ℕ) [NeZero n] [NeZero m]
@@ -233,7 +227,7 @@ theorem exists_thetaSys_spread : ∀ (R₁ : Type) [CommRing R₁] [IsDomain R�
   obtain ⟨S, ρ, h, φ₂, -, hN, hr, hgS, hp₂, hl₂, -⟩ :=
     GlobalTheory.ThetaReal.exists_thetaSys_real hL hL₂ o Ω₀ R hR hfr' P' n k j ze hn ho hk hj hun hS' lev'
   have e : spMap S.R.val.toRingHom ≫ spMap (Subalgebra.inclusion h).toRingHom = spMap R.val.toRingHom :=
-    GlobalTheory.SpreadTheta.spMap_comp_spMap _ _
+    _root_.Formalism.L2.Pj.spMap_comp_ring _ _
   have w : φ₁ ≫ P'.A.hom = (Q₀.A.hom ≫ spMap S.R.val.toRingHom) ≫ spMap (Subalgebra.inclusion h).toRingHom := by
     rw [hp₁.1.w, Category.assoc, e]
   let χ := hp₂.1.lift φ₁ (Q₀.A.hom ≫ spMap S.R.val.toRingHom) w
@@ -253,7 +247,7 @@ theorem exists_thetaSys_spread : ∀ (R₁ : Type) [CommRing R₁] [IsDomain R�
     LBIso.trans (pull_isLB hP _) (pull_isLB (pull_isLB hP _) _) (pull_isLB ρ.P.isLB _)
       (GlobalTheory.MBDesc.lbIso_pullComp hP φ₂ (ψ ≫ χ)) (GlobalTheory.RigidBundleGlue.LBIso.pull hl₂.symm (ψ ≫ χ))
   refine ⟨o, Ω₀, inferInstance, inferInstance, inferInstance, inferInstance, S, ρ, b, jj.toRingHom, ψ ≫ χ,
-    hgS.trans (hg'.trans hg), hN, hr, hcomp, (hψ.comp hχ).congr (GlobalTheory.SpreadTheta.spMap_comp_spMap _ _) rfl, ?_⟩
+    hgS.trans (hg'.trans hg), hN, hr, hcomp, (hψ.comp hχ).congr (_root_.Formalism.L2.Pj.spMap_comp_ring _ _) rfl, ?_⟩
   exact LBIso.trans A₁.isLB (pull_isLB (pull_isLB hP _) _) (pull_isLB ρ.P.isLB _) c₁
     (LBIso.trans (pull_isLB (pull_isLB hP _) _) (pull_isLB hP _) (pull_isLB ρ.P.isLB _) c₂ c₃)
 

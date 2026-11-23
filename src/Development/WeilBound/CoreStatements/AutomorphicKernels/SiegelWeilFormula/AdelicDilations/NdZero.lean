@@ -63,10 +63,10 @@ theorem ndZero (H : Hyps) {d : SD σ} (R : RD d) (hmn : d.m < d.n) {Φ : d.Fn} (
   have hL : (fun f => fc d.B.ψ d.b nb lam 𝓖 f T x) ∈ d.lamSet := ⟨nb, lam, 𝓖, T, x, hc, hT, rfl⟩
   obtain ⟨hadd, hbd⟩ := H.lamBd F E σ d _ hL
   obtain ⟨hUo, hR, hs, hp, hd, hcont, hinv, hfar⟩ := hE
-  obtain ⟨hDiff, hComm⟩ := lamDeriv (rat2 σ d.Y) _ hadd hbd U Ê hUo hd hcont hinv
+  obtain ⟨hDiff, hComm⟩ := _root_.GlobalTheory.CompanionTheory.HolFamily.functional_commutes_iteratedDeriv (rat2 σ d.Y) _ hadd hbd U Ê hUo hd hcont hinv
   obtain ⟨-, -, hI⟩ := H.tAll.2.2.2.2 F E σ d
   obtain ⟨-, hIc, hIi⟩ := hI Φ hΦ
-  have hAc := famCont U Ê hUo hd hcont _ hs j
+  have hAc := _root_.GlobalTheory.CompanionTheory.HolFamily.continuous_iteratedDeriv_family U Ê hUo hd hcont _ hs j
   have hAi : ∀ γ ∈ rat2 σ d.Y, ∀ g, iteratedDeriv j (Ê · (γ * g)) (s0 d.m d.n) = iteratedDeriv j (Ê · g) (s0 d.m d.n) :=
     fun γ hγ g => derivInv U Ê hUo _ hs γ g (fun z hz => hinv z hz γ hγ g) j
   have hLI : fc d.B.ψ d.b nb lam 𝓖 (d.I Φ) T x = 0 := by
@@ -102,7 +102,7 @@ theorem stepJ (H : Hyps) {d : SD σ} (R : RD d) (L : LD d) (R' : RD L.sd) (hmn :
   obtain ⟨-, -, hI⟩ := H.tAll.2.2.2.2 F E σ d
   obtain ⟨-, hIc, hIi⟩ := hI Φ hΦ
   have hBc : Continuous (Bj d Φ p Ê j) :=
-    (famCont U Ê hUo hd hcont _ hs j).sub (continuous_const.mul (continuous_const.mul hIc))
+    (_root_.GlobalTheory.CompanionTheory.HolFamily.continuous_iteratedDeriv_family U Ê hUo hd hcont _ hs j).sub (continuous_const.mul (continuous_const.mul hIc))
   have hBr : ∀ γ ∈ rat2 σ d.Y, ∀ g, Bj d Φ p Ê j (γ * g) = Bj d Φ p Ê j g := fun γ hγ g => by
     simp only [Bj, derivInv U Ê hUo _ hs γ g (fun z hz => hinv z hz γ hγ g) j, hIi γ hγ g]
   have hz := H.fourierZero F E σ d nb lam 𝓖 hc (Bj d Φ p Ê j) hBc (fun β hβ g => hBr _ (nbRat d hc β hβ) g) ?_

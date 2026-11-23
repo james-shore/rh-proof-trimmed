@@ -73,7 +73,7 @@ include hρ hKc hKo
 theorem hop_diagPow_mul (hr : 1 ≤ r) {μ ν : Fin n → ℤ} (hμ : IsDominant μ) (hν : IsDominant ν) :
     hop ρ hρ hKc hKo (diagPow F n μ) * hop ρ hρ hKc hKo (diagPow F n ν) =
       hop ρ hρ hKc hKo (diagPow F n (μ + ν)) := by
-  rw [diagPow_add]
+  rw [_root_.GroundTheory.Automorphic.Parabolic.diagPow_add]
   refine hop_mul hρ hKc hKo fun w hw κ hκ => ?_
   obtain ⟨a, ha, b, hb, c, hc, h⟩ := dominant_conj hr hμ hν hκ
   have hbc : ρ (b * c) w = w := hw _ (mul_mem hb hc)
@@ -123,7 +123,7 @@ theorem finrank_le_of_commBound (hr : 1 ≤ r) [ρ.IsIrreducible] [FiniteDimensi
   have hTC : ∀ μ, IsDominant μ → T (diagPow F n μ) ∈ C := by
     refine dom_induct (fun μ => T (diagPow F n μ) ∈ C) ?_ ?_ ?_
     · show T (diagPow F n 0) ∈ C
-      rw [diagPow_zero, hop_one]
+      rw [_root_.GroundTheory.Automorphic.Parabolic.diagPow_zero, hop_one]
       exact C.one_mem
     · intro i
       exact Algebra.subset_adjoin ⟨i, rfl⟩

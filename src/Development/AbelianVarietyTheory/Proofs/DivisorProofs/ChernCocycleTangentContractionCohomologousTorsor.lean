@@ -150,17 +150,6 @@ theorem evalAt_res' {C : Type} [CommRing C] (x : Sp C ⟶ X) {V U : X.Opens} (hV
   congr 1
   rw [← CommRingCat.comp_apply, Scheme.Hom.map_appLE]
 
-theorem evalAt_spMap' {C C' : Type} [CommRing C] [CommRing C'] (φ : C →+* C') (x : Sp C ⟶ X)
-    (x' : Sp C' ⟶ X) (e : spMap φ ≫ x = x') {U : X.Opens} (h : ⊤ ≤ x ⁻¹ᵁ U) (h' : ⊤ ≤ x' ⁻¹ᵁ U)
-    (f : Γ(X, U)) : φ (evalAt x U h f) = evalAt x' U h' f := by
-  subst e
-  have e : (spMap φ ≫ x).appLE U ⊤ h' ≫ (Scheme.ΓSpecIso (CommRingCat.of C')).hom =
-      x.appLE U ⊤ h ≫ (Scheme.ΓSpecIso (CommRingCat.of C)).hom ≫ CommRingCat.ofHom φ := by
-    rw [← Scheme.ΓSpecIso_naturality, ← Category.assoc,
-      ← Scheme.Hom.appLE_comp_appLE (spMap φ) x U ⊤ ⊤ h le_rfl]
-    congr 2
-  exact (congrArg (fun t ↦ t.hom f) e).symm
-
 abbrev gv (L : LB X) {C : Type} [CommRing C] (x : Sp C ⟶ X) (a b : L.ι) : C :=
   evU x (L.U a ⊓ L.U b) (L.g a b).val
 
@@ -201,7 +190,7 @@ theorem dl_gv {R : Type} [CommRing R] {D D' : Type} [CommRing D] [CommRing D'] [
   rw [dl_mul _ _ (isUnit_fst (isUnit_gv L _ hb' kb)) (isUnit_fst (isUnit_gv L _ kb ka))] at e2
   have e3 : gv L y' b a = epsHom φ (gv L y b a) := by
     rw [gv_eq L y' (le_inf kb ka), gv_eq L y (le_inf hb ha)]
-    exact (evalAt_spMap' (epsHom φ : DualNumber D →+* DualNumber D') y y' e _ _ _).symm
+    exact (_root_.GlobalTheory.Cris.ChernExists.evalAt_spMap (epsHom φ : DualNumber D →+* DualNumber D') y y' e _ _ _).symm
   rw [e3, dl_epsHom φ _ (isUnit_fst (isUnit_gv L _ hb ha))] at e2
   linear_combination e1 - e2
 

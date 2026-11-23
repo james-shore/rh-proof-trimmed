@@ -59,7 +59,7 @@ theorem descent_small : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [
     have h2 := T.j_pos
     have h3 := T.j_lt
     omega
-  obtain ⟨f, hfS, hfZ, hev⟩ := GlobalTheory.T.comp_laws_tower_bound hG E H Dw l Xo c r U h e hL Y T o B b Fr Z Rd hGR u s hs.1
+  obtain ⟨f, hfS, hfZ, hev⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.exists_section_of_trace hG E H Dw l Xo c r U h e hL Y T o B b Fr Z Rd hGR u s hs.1
   have harch := GlobalTheory.T.uniform_norm_tower_bound hG E H Dw l Xo c r U h e hL x hx Y T o B b Fr Z Rd hGR u s R hR hs.2 f hfS hev
   refine ⟨f, GlobalTheory.CompanionTheory.Ar.Plug.bdd_mem_cuspOn E H Dw l Xo c r U h e hL hp.1 hp.2 x Z u hu f hfS hfZ
       (fun σ hσ => ⟨_, harch σ hσ⟩), hev, harch, ?_⟩

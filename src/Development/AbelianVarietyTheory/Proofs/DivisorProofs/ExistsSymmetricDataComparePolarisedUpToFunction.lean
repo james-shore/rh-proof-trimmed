@@ -94,8 +94,8 @@ theorem half_exists : ∀ (R : Type) [CommRing R] [IsDomain R] (R' : Type) [Comm
   let D : DegPre R' :=
     { P := P, rig := rig, rig_gen := hrig, cub := cub, sym := sym, sym_gen := hsym, sym_rig := hsr, X := Q.X,
       c := c, c_add := cadd, psi := psi, psi_gen := hpsi }
-  obtain ⟨w, hw, hw1⟩ := GlobalTheory.T.exists_mumfordBundleIso_value_one_origin_polarised R R' Q ρ P β β₂ hpb hsq hiso
-  have hR := GlobalTheory.T.exists_fraction_constant_period_ratio_polarised R R' Q ρ D (AddEquiv.refl _) β β₂ w hpb hsq hw hc
+  obtain ⟨w, hw, hw1⟩ := _root_.GlobalTheory.PolDeg.NormIso.exists_normalised_iso R R' Q ρ P β β₂ hpb hsq hiso
+  have hR := _root_.GlobalTheory.HalfRatio.ratio_exists R R' Q ρ D (AddEquiv.refl _) β β₂ w hpb hsq hw hc
   classical
   let f : D.X → D.X → (FractionRing R')ˣ := fun a b =>
     if h : ∃ κ : (TK R').left ⟶ (TK R).left, κ ≫ jK R = jK R' ≫ spMap ρ then

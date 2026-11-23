@@ -78,7 +78,7 @@ theorem formEq_prod {V : Type} [CommRing V] [IsDomain V] (D : DegPre V) (g : GtP
       (Sum.elim (Sum.elim (fun _ : PUnit => (D.c mu).left) (DegPre.gtφT D (𝟙_ _) g.b mu)) ![(η[D.P.A]).left, g.b.left])
       (fun k => -(Sum.elim (Sum.elim (fun _ : PUnit => (-1 : ℤ)) DegPre.gtε) (DegPre.lineε 1)) k) := by
     have hu : toUnit (𝟙_ (Over (Sp V))) = 𝟙 _ := toUnit_unique _ _
-    have c0 := ThetaOne.c_zero D
+    have c0 := _root_.GlobalTheory.IndivisibleSection.c_zero_eq_one D
     have e2 : (toUnit D.P.A ≫ D.c 0) = toUnit D.P.A ≫ η[D.P.A] := by
       rw [c0, MonObj.comp_one, Hom.one_def]
     have e1 : (padd D.P.A (𝟙 D.P.A) (toUnit D.P.A ≫ η[D.P.A])) = 𝟙 D.P.A := by

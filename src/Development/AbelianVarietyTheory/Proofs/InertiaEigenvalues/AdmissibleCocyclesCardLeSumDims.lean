@@ -69,11 +69,11 @@ theorem repr_sum {k G : Type} [Field k] [Group G] {l n : ℕ} [Fact l.Prime] [Ch
   classical
   induction t using Finset.induction_on with
   | empty =>
-    have h0 := GlobalTheory.T.repr_smul_add F A (-1) (z a₀) (z a₀) (b a₀) (g a₀) (b a₀) (g a₀) (h a₀) (h a₀)
+    have h0 := _root_.GlobalTheory.TopSteps.Repr.smul_add F A (-1) (z a₀) (z a₀) (b a₀) (g a₀) (b a₀) (g a₀) (h a₀) (h a₀)
     simpa only [neg_one_smul, neg_add_cancel, Finset.sum_empty] using h0
   | insert a t ha ih =>
     rw [Finset.sum_insert ha, Finset.sum_insert ha, Finset.sum_insert ha]
-    exact GlobalTheory.T.repr_smul_add F A (c a) (z a) _ (b a) (g a) _ _ (h a) ih
+    exact _root_.GlobalTheory.TopSteps.Repr.smul_add F A (c a) (z a) _ (b a) (g a) _ _ (h a) ih
 
 theorem indep_pairs {k G : Type} [Field k] [Group G] {l n : ℕ} [Fact l.Prime] [CharP k l] [NeZero n]
     {R : RingPG k l} (F : DFun R n G) (A : Ob k G) {s : ℕ} (z : Fin s → G → Fin A.m → k)

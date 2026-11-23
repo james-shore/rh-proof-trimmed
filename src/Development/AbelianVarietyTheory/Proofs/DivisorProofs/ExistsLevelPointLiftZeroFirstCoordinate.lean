@@ -189,7 +189,7 @@ theorem exists_levPt : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H
     rw [← hn]
     exact L.o.etaA_ker a
   obtain ⟨b, hb, hbl⟩ := exists_lift_torsion_of_pull iw (mulDeg L.D l.M') _ hD L.o.t.G L.φB L.ab.1 (L.o.etaA a) l.M' hη
-  obtain ⟨p, hp0, hpb⟩ := GlobalTheory.T.exists_torusExtension_torsion_lift_zero Q hB l.M' hM c' hc' (FractionRing V) b hb
+  obtain ⟨p, hp0, hpb⟩ := _root_.GlobalTheory.TorsLiftRoot.exists_qk_zero_of_pow_eq Q hB l.M' hM c' hc' (FractionRing V) b hb
   exact ⟨p, hp0, by rw [hpb]; exact hbl⟩
 
 end GlobalTheory.UCanon

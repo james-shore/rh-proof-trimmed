@@ -163,7 +163,7 @@ theorem exists_vacuumD : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [N
         exact evI_realAd_mul r _ }
   have hω : ∀ c c', trPair F κ (p c) (q c') - trPair F κ (p c') (q c) =
       -2 * (∑ w, ∑ a, ∑ b, lineSign a b * c w a b * star (c' w a b)).im := fun c c' => by
-    rw [← GlobalTheory.T.archimedean_trace_symplectic_orthonormal_frames σ τ JA JB a₀ b₀ A C hCM hFr (U c) (U c') c c' (hU c).1 (hU c').1 (hU c).2 (hU c').2, d.form,
+    rw [← _root_.GlobalTheory.SympFramesD.symp_framesD σ τ JA JB a₀ b₀ A C hCM hFr (U c) (U c') c c' (hU c).1 (hU c').1 (hU c).2 (hU c').2, d.form,
       trPair_apply, trPair_apply, ← map_sub, ← evR_apply]
 
     simp only [dotProduct, map_sub, map_sum, map_mul]

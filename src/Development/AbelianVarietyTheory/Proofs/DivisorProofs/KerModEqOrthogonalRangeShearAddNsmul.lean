@@ -65,12 +65,12 @@ theorem ker_mod_eq_perp_range_add : ∀ {E : Type} [Field E] [NumberField E] [Is
       have e1 := hb'' ⟨w, hw⟩
       simp only [φ, AddMonoidHom.mk'_apply] at e1
       have e2 : (n : ℤ) ∣ D.EF w b := hx ⟨w, hw⟩
-      rw [ef_swap, map_sub, map_nsmul, e1, nsmul_eq_mul, Int.mul_ediv_cancel' e2]
+      rw [_root_.GlobalTheory.SimLift.form_skew, map_sub, map_nsmul, e1, nsmul_eq_mul, Int.mul_ediv_cancel' e2]
       simp
     exact (sub_eq_zero.1 h0).symm
   have hperp0 : ∀ (k : D.La), k ∈ perp D (LinearMap.range t) → ∀ z : Z, D.EF (t z) k = 0 := by
     intro k hk z
-    rw [ef_swap, hk _ ⟨z, rfl⟩, neg_zero]
+    rw [_root_.GlobalTheory.SimLift.form_skew, hk _ ⟨z, rfl⟩, neg_zero]
   constructor
   · rintro ⟨e, he⟩
     obtain ⟨b, hb, hk⟩ := hW.exists_sub_mem_perp a

@@ -76,9 +76,6 @@ theorem sum_rows_unitary' {n N : ℕ} (P Q : Matrix (Fin n) (Fin n) ℂ) (hPQ : 
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] (Ψ : Finset (E →+* ℂ)) {n N : ℕ}
 
-theorem emb_cc (τ : E →+* ℂ) (x : E) : τ (cc x) = conj (τ x) :=
-  IsCMField.complexEmbedding_complexConj E τ x
-
 theorem unit_map {h : Matrix (Fin n) (Fin n) E} (hh : ccT h * h = 1) (τ : E →+* ℂ) :
     ((h.map τ).map conj)ᵀ * h.map τ = 1 := by
   have h1 := congrArg (fun M : Matrix (Fin n) (Fin n) E => M.map τ) hh
@@ -87,7 +84,7 @@ theorem unit_map {h : Matrix (Fin n) (Fin n) E} (hh : ccT h * h = 1) (τ : E →
   rw [← h1]
   congr 1
   ext i j
-  simp [ccT, emb_cc]
+  simp [ccT, _root_.GlobalTheory.SW.Base.map_cc]
 
 def mv (h : Matrix (Fin n) (Fin n) E) (z : CM Ψ n N) : CM Ψ n N :=
   fun τ => (h.map τ.1).map conj * z τ

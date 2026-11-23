@@ -76,13 +76,11 @@ theorem psubst_fExp {ι : Type} {u : MvPowerSeries ι K} (hu : MvPowerSeries.con
     PowerSeries.subst u (fExp f) = fExp (PowerSeries.subst u f) :=
   Formalism.L2.Th1.B.subst_fExp (ι := Unit) (φ := fun _ => u) (fun _ => hu) hf
 
-theorem sigS_cc (P : PowerSeries K) : PowerSeries.constantCoeff (sigS P) = 0 := Add0.sigS_cc P
-
 theorem subst_sigma {ι : Type} (P : PowerSeries K) {u : MvPowerSeries ι K}
     (hu : MvPowerSeries.constantCoeff u = 0) :
     PowerSeries.subst u (sigma P) = u * fExp (PowerSeries.subst u (sigS P)) := by
   have hs := PowerSeries.HasSubst.of_constantCoeff_zero hu
-  rw [sigma, PowerSeries.subst_mul hs, PowerSeries.subst_X hs, psubst_fExp hu (sigS_cc P)]
+  rw [sigma, PowerSeries.subst_mul hs, PowerSeries.subst_X hs, psubst_fExp hu (_root_.Formalism.L2.Th1.B.Add0.sigS_cc P)]
 
 theorem subst_sgStar {ι : Type} (s2 : K) (P : PowerSeries K)
     {u : MvPowerSeries ι K} (hu : MvPowerSeries.constantCoeff u = 0) :
@@ -175,7 +173,7 @@ theorem wp3_apply_eq_sq_mul_sub_sq_mul {g2 g3 : K} {P : PowerSeries K} (hP : IsW
     simp
   have c0 : MvPowerSeries.constantCoeff (par0 (sigS P)) = 0 := by
     rw [addSigmaLog K g2 g3 P hP]; exact constantCoeff_fLog hN1
-  rw [← emb_wpDiff, Add0.wpDiff_eq dqRule hP.2.1, ← fExp_fLog hN1, ← addSigmaLog K g2 g3 P hP,
+  rw [← emb_wpDiff, Add0.wpDiff_eq _root_.Formalism.L2.Th1.B.difference_quotient_rule_holds hP.2.1, ← fExp_fLog hN1, ← addSigmaLog K g2 g3 P hP,
     map_mul, emb_fExp j k c0, map_sub, map_pow, map_pow, embed_pair_X_zero, embed_pair_X_one]
 
 theorem hasSubst_eval_last_zero :
@@ -301,7 +299,7 @@ theorem emb_cc (j k : Fin 3) {h : MvPowerSeries (Fin 2) K}
 theorem weierstrass_pair_ne_zero {g2 g3 : K} {P : PowerSeries K} (hP : IsWp g2 g3 P) {j k : Fin 3}
     (hjk : j ≠ k) : wp3 P j k ≠ 0 := by
   rw [wp3_apply_eq_sq_mul_sub_sq_mul hP]
-  exact mul_ne_zero (sq_sub_ne_zero hjk) (fExp_ne_zero (emb_cc j k (constantCoeff_parallelogram_defect (sigS_cc P))))
+  exact mul_ne_zero (sq_sub_ne_zero hjk) (fExp_ne_zero (emb_cc j k (constantCoeff_parallelogram_defect (_root_.Formalism.L2.Th1.B.Add0.sigS_cc P))))
 
 theorem pdX (i j : Fin 3) :
     MvPowerSeries.pderiv (R := K) i (MvPowerSeries.X j : A3) = if j = i then 1 else 0 := by
@@ -369,7 +367,7 @@ end
 
 theorem FrobStickLog_of (hS : ShearLemma) (hT : TauRule) (hD : DetRule) : FrobStickLog := by
   intro K _ _ g2 g3 P hP
-  have cE : MvPowerSeries.constantCoeff (fsE (sigS P)) = 0 := fsE_cc (sigS_cc P)
+  have cE : MvPowerSeries.constantCoeff (fsE (sigS P)) = 0 := fsE_cc (_root_.Formalism.L2.Th1.B.Add0.sigS_cc P)
   have two_ne : (2 : MvPowerSeries (Fin 3) K) ≠ 0 := by
     intro h
     have := congrArg MvPowerSeries.constantCoeff h
@@ -377,7 +375,7 @@ theorem FrobStickLog_of (hS : ShearLemma) (hT : TauRule) (hD : DetRule) : FrobSt
     exact two_ne_zero this
   have hb : ev3H (-2 * vand3 K * fExp (fsE (sigS P))) =
       -2 * (MvPowerSeries.X 0 * MvPowerSeries.X 1) * wp3 P 0 1 := by
-    rw [map_mul, map_mul, map_neg, map_ofNat, eval_last_zero_vandermonde_three, eval_last_zero_formal_exp cE, eval_last_zero_exp_parallelogram (sigS_cc P),
+    rw [map_mul, map_mul, map_neg, map_ofNat, eval_last_zero_vandermonde_three, eval_last_zero_formal_exp cE, eval_last_zero_exp_parallelogram (_root_.Formalism.L2.Th1.B.Add0.sigS_cc P),
       wp3_apply_eq_sq_mul_sub_sq_mul hP]
     ring
   refine hS K _ _ ?_ ?_ ?_
@@ -420,13 +418,13 @@ theorem FrobStick_of (hL : FrobStickLog) : FrobStick := by
   intro K _ _ g2 g3 P hP
   have h := hL K g2 g3 P hP
   have c0 : ∀ x : Fin 3, MvPowerSeries.constantCoeff
-      (at1 x (sigS P) : MvPowerSeries (Fin 3) K) = 0 := fun x => cc_psubst (by simp) (sigS_cc P)
+      (at1 x (sigS P) : MvPowerSeries (Fin 3) K) = 0 := fun x => cc_psubst (by simp) (_root_.Formalism.L2.Th1.B.Add0.sigS_cc P)
   have c3 : ∀ x : Fin 3, MvPowerSeries.constantCoeff
       (3 * at1 x (sigS P) : MvPowerSeries (Fin 3) K) = 0 := fun x => by rw [map_mul, c0, mul_zero]
-  have cS : MvPowerSeries.constantCoeff (evalSumThree (sigS P)) = 0 := cc_psubst (by simp) (sigS_cc P)
+  have cS : MvPowerSeries.constantCoeff (evalSumThree (sigS P)) = 0 := cc_psubst (by simp) (_root_.Formalism.L2.Th1.B.Add0.sigS_cc P)
   have cD : ∀ j k : Fin 3, MvPowerSeries.constantCoeff (evalDiffThree j k (sigS P)) = 0 :=
-    fun j k => cc_psubst (by simp) (sigS_cc P)
-  have cE : MvPowerSeries.constantCoeff (fsE (sigS P)) = 0 := fsE_cc (sigS_cc P)
+    fun j k => cc_psubst (by simp) (_root_.Formalism.L2.Th1.B.Add0.sigS_cc P)
+  have cE : MvPowerSeries.constantCoeff (fsE (sigS P)) = 0 := fsE_cc (_root_.Formalism.L2.Th1.B.Add0.sigS_cc P)
   have key : fExp (at1 0 (sigS P)) ^ 3 * fExp (at1 1 (sigS P)) ^ 3 * fExp (at1 2 (sigS P)) ^ 3 *
         fExp (fsE (sigS P)) =
       fExp (evalSumThree (sigS P)) * fExp (evalDiffThree 0 1 (sigS P)) * fExp (evalDiffThree 0 2 (sigS P)) *

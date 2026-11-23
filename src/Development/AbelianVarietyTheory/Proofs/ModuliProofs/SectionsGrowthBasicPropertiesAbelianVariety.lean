@@ -131,9 +131,7 @@ theorem res_cst (p : X ⟶ Sp K) {U V : X.Opens} (h : V ≤ U) (a : K) : resG X 
     (Scheme.Hom.appLE_map p (U := ⊤) (V := U) le_top (homOfLE h).op)
   exact this
 
-theorem res_res {U V W : X.Opens} (h : V ≤ U) (h' : W ≤ V) (a : Γ(X, U)) :
-    resG X h' (resG X h a) = resG X (h'.trans h) a := by
-  rw [← RingHom.comp_apply, ← CommRingCat.hom_comp, ← Functor.map_comp]; rfl
+alias res_res := _root_.GlobalTheory.Cartier.resG_resG
 
 theorem exists_h0Is (p : X ⟶ Sp K) (M : LB X)
     (hn : ∃ n : ℕ, ∀ s : Fin n → M.Sec, ∃ c : Fin n → K, c ≠ 0 ∧ ∀ j, ∑ k, cst p _ (c k) * (s k).f j = 0) :
@@ -247,7 +245,7 @@ theorem h0_le [IsIntegral X] (p : X ⟶ Sp K) {A B : LB X} (hA : A.IsLB) (hB : B
   rw [cls_tens hA hN, e]
   abel
 
-theorem isLB_pow {L : LB X} (hL : L.IsLB) (n : ℕ) : (lbPow L n).IsLB := LB.isLB_linComb hL _ _
+alias isLB_pow := _root_.GlobalTheory.isLB_lbPow
 
 theorem cls_pow_pow {L : LB X} (hL : L.IsLB) (a e : ℕ) :
     cls _ (isLB_pow (isLB_pow hL a) e) = cls _ (isLB_pow hL (a * e)) := by

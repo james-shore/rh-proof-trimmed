@@ -203,7 +203,7 @@ theorem flipAt_of (hL : R.toLevCh.Is A.μ0) (ch : Choice R)
     show ((givenStage t w ch.S.B Φ).flips .one (psiAt ch.W w) (unifAt w) (depthAt ch.G w) ((flipOrder D.R.m).take (D.R.m ^ 2))).tensor = _
     rw [htk]; rfl
   rw [hTf] at hR
-  obtain ⟨τ', hτ', heq⟩ := GlobalTheory.T.flippedFiniteTensor_of_representing_oppositePath ch.W ch.S.B ch.rm t Φ (GlobalTheory.FlipRun.flipsPolE ch.rm (flipOrder D.R.m) Pg) τ hR
+  obtain ⟨τ', hτ', heq⟩ := _root_.GlobalTheory.OppConv.flipFin_of_repFin ch.W ch.S.B ch.rm t Φ (GlobalTheory.FlipRun.flipsPolE ch.rm (flipOrder D.R.m) Pg) τ hR
   have hprod : ((flipOrder D.R.m).map c').prod = cTot ch t := by
     rw [prod_flipOrder, cTot, Finset.prod_range]
     refine Finset.prod_congr rfl fun i _ => ?_

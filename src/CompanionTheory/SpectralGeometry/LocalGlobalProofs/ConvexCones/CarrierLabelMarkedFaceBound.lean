@@ -103,7 +103,7 @@ theorem inFace_iff_of_isMarked {O : Type} [CommRing O] [IsDedekindDomain O] [Cha
     have hs2 : ∀ y, 0 ≤ (β + x) y y := fun y => by
       simp only [LinearMap.add_apply]; exact add_nonneg (hβ2 y) (hx2 y)
     refine ⟨hx1, hx2, fun y hy => inRCone_apply_self_eq_zero hxv y fun j => hvan j y hy,
-      GlobalTheory.T.invFun_evalZ_add_of_linearOn_realCone O ψ X m v hv.linear β x hβv hxv, le_antisymm ?_ ?_⟩
+      _root_.GlobalTheory.PolFan.Mark.evalZ_add_of_linearOn_inRCone O ψ X m v hv.linear β x hβv hxv, le_antisymm ?_ ?_⟩
     · rw [hβl]; exact hb _ hs1 hs2 hsum
     · obtain ⟨c, hc, e⟩ := hxv
       exact carrierDim_le_of_add_cell O bar q ψ lab hlab X hX m v hv β hβ1 hβ2 (β + x) hs1 hs2 hβv 1 c one_pos hc

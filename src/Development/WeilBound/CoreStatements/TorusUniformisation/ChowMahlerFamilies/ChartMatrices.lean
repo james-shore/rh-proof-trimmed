@@ -67,11 +67,6 @@ variable {C O : Type} [Field C] [CommRing O] [Algebra O C] {E : Type} [Field E] 
   {V Ω' : Type} [AddCommGroup V] [Module C V] [Module O V] [IsScalarTower O C V]
   [AddCommGroup Ω'] [Module C Ω'] [Module O Ω'] [IsScalarTower O C Ω']
 
-theorem pt_swap (P : HTPoint C O c κ N V Ω') (x y : V) : P.e x y = -P.e y x := by
-  have h := P.alt (x + y)
-  simp only [map_add (f := _), LinearMap.add_apply, P.alt, zero_add, add_zero] at h
-  linear_combination h
-
 theorem pt_tate (P : HTPoint C O c κ N V Ω') (m : Ix E N) :
     P.tate (dl m) = P.ρ (RingOfIntegers.basis E m.2) (P.t m.1) :=
   PositivityTheory.HtPt.Gd.tate_single P m.1 _
@@ -99,7 +94,7 @@ theorem pt_matrices {v : Valuation C NNReal} (hv : v.Integers O) (P : HTPoint C 
     exact Submodule.subset_span ⟨q, rfl⟩
   haveI : FiniteDimensional C V := Module.Finite.of_basis B
   have hnd : ∀ x, (∀ y, P.e x y = 0) → x = 0 := fun x hx =>
-    P.nondeg x fun y => by rw [pt_swap, hx, neg_zero]
+    P.nondeg x fun y => by rw [_root_.GlobalTheory.CompanionTheory.Ar.HT.PtBasic.e_skew, hx, neg_zero]
   have hei : Function.Injective (P.e : V →ₗ[C] Module.Dual C V) := by
     set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
     intro x hx
@@ -115,7 +110,7 @@ theorem pt_matrices {v : Valuation C NNReal} (hv : v.Integers O) (P : HTPoint C 
   have hwT : ∀ m, w m ∈ P.T := fun m => by
     rw [← P.perfect]
     intro x hx
-    rw [pt_swap, hw]
+    rw [_root_.GlobalTheory.CompanionTheory.Ar.HT.PtBasic.e_skew, hw]
     refine neg_mem ?_
     rw [hT] at hx
     obtain ⟨a, rfl⟩ := (Submodule.mem_span_range_iff_exists_fun O).1 hx
@@ -156,14 +151,14 @@ theorem pt_matrices {v : Valuation C NNReal} (hv : v.Integers O) (P : HTPoint C 
       rw [LinearMap.mem_ker]
       refine imp_congr_right fun _ => ?_
       change P.e y x = 0 ↔ _
-      rw [pt_swap P y x, neg_eq_zero]
+      rw [_root_.GlobalTheory.CompanionTheory.Ar.HT.PtBasic.e_skew P y x, neg_eq_zero]
     have h2 := LinearMap.BilinForm.finrank_orthogonal (B := P.e) ⟨hnd, P.nondeg⟩ (LinearMap.ker P.ht)
     rw [horth, finrank_eq_card_basis B] at h2
     omega
   · ext m m'
     apply hinj
     simp only [Matrix.transpose_apply, Matrix.neg_apply, Matrix.of_apply, map_neg, hEg]
-    exact pt_swap P _ _
+    exact _root_.GlobalTheory.CompanionTheory.Ar.HT.PtBasic.e_skew P _ _
   · ext m m'
     apply hinj
     have h := congrArg (fun f : Module.Dual C V => f (B m')) (hw m)

@@ -74,13 +74,6 @@ theorem ratPrimeDense : GroundTheory.Heights₂.Heights.HilbertSamuel.RatPrimeDe
     GroundTheory.Heights₂.Heights.HilbertSamuel.RootsBounded.proof
     GroundTheory.Heights₂.Heights.HilbertSamuel.PolyNonvanishDense.proof
 
-theorem continuous_aeval {n : ℕ} (f : MvPolynomial (Fin n) ℚ) : Continuous fun z : Fin n → ℂ => aeval z f := by
-  have : (fun z : Fin n → ℂ => aeval z f) = fun z => eval z (map (algebraMap ℚ ℂ) f) := by
-    funext z
-    rw [eval_map, aeval_def]
-  rw [this]
-  exact MvPolynomial.continuous_eval _
-
 theorem generic_dense {n : ℕ} (P : Ideal (MvPolynomial (Fin n) ℚ)) (hP : P.IsPrime) {z₀ : Fin n → ℂ}
     (hz₀ : ∀ g ∈ P, aeval z₀ g = 0) :
     ∃ z : ℕ → Fin n → ℂ, (∀ m g, aeval (z m) g = 0 ↔ g ∈ P) ∧ Tendsto z atTop (𝓝 z₀) := by
@@ -88,12 +81,12 @@ theorem generic_dense {n : ℕ} (P : Ideal (MvPolynomial (Fin n) ℚ)) (hP : P.I
   have hV : IsClosed V := by
     have : V = ⋂ g ∈ P, {z | aeval z g = 0} := by ext z; simp [V]
     rw [this]
-    exact isClosed_biInter fun g _ => isClosed_eq (continuous_aeval g) continuous_const
+    exact isClosed_biInter fun g _ => isClosed_eq (_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.RootsBounded.continuous_aeval g) continuous_const
   haveI : CompleteSpace V := hV.completeSpace_coe
   haveI : Countable (MvPolynomial (Fin n) ℚ) := (basisMonomials (Fin n) ℚ).repr.injective.countable
   let O : {f : MvPolynomial (Fin n) ℚ // f ∉ P} → Set V := fun f => {z | aeval z.1 f.1 ≠ 0}
   have hO : ∀ f, IsOpen (O f) := fun f =>
-    isOpen_ne_fun ((continuous_aeval f.1).comp continuous_subtype_val) continuous_const
+    isOpen_ne_fun ((_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.RootsBounded.continuous_aeval f.1).comp continuous_subtype_val) continuous_const
   have hD : ∀ f, Dense (O f) := fun f => by
     rw [Subtype.dense_iff]
     refine (ratPrimeDense (Fin n) P f.1 hP f.2).trans (closure_mono ?_)
@@ -177,7 +170,7 @@ theorem exists_seq_emb {B Ω : Type} [CommRing B] [IsDomain B] [Algebra.FiniteTy
     exact (hker m g).1 ((hr m g).symm.trans hb)
   refine ⟨fun m => IsFractionRing.lift (hinj m), fun b => ?_⟩
   obtain ⟨g, rfl⟩ := hπ b
-  have h1 := ((continuous_aeval (map (Int.castRingHom ℚ) g)).tendsto _).comp hl
+  have h1 := ((_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.RootsBounded.continuous_aeval (map (Int.castRingHom ℚ) g)).tendsto _).comp hl
   simp only [IsFractionRing.lift_algebraMap, hr]
   rw [hπa, hom_aeval x a g, ← aeval_map_int]
   refine h1.congr fun m => ?_

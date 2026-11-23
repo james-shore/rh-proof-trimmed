@@ -131,15 +131,15 @@ theorem near_of_unif (hV : HV) {Z : Scheme.{0}} {G₀ : Over Z} [GrpObj G₀] {L
   obtain ⟨O, hO⟩ := exists_valuationSubring v
   have hm1 : 1 ≤ m ^ 2 := Nat.one_le_pow _ _ (by omega)
   obtain ⟨φ', w', ρ', w₀, th, ϑ, cls, mu, b, τF, s, B, p₁, p₂, p₃, p₄, p₅, p₆, p₇, p₈, p₉, q₁, q₂, q₃⟩ :=
-    GlobalTheory.T.exists_adaptedBasis_at_trait_vs_generic_basis hL h₁ h₂ h₃ h₄ V hc ϖ hϖ D Q hQ _ v hv A' G hG U Z G₀ L₀ hL₀ ρ₀ χ Φ ω hω _ x gam h θ hθ (m ^ 2) r τ hm1 hτ
+    _root_.GlobalTheory.GBasis.main hL h₁ h₂ h₃ h₄ V hc ϖ hϖ D Q hQ _ v hv A' G hG U Z G₀ L₀ hL₀ ρ₀ χ Φ ω hω _ x gam h θ hθ (m ^ 2) r τ hm1 hτ
   refine ⟨B, O, q₃, fun y => (hO _).trans (mem_iff_of_valOver hϖ hv y), fun σ hσ => ⟨tab ρ' m th τF, ?_, ?_, ?_⟩⟩
   · rw [← h] at p₁
-    obtain ⟨ψ, ω', c₁, c₂⟩ := GlobalTheory.T.rigidified_bundle_two_pullbacks_compare Z G₀ L₀ hL₀ ρ₀ _ _ x (spMap gam) A.A A'.A A.L A'.L A.isLB A'.isLB φ φ' w w' ρ ρ' hA p₁
+    obtain ⟨ψ, ω', c₁, c₂⟩ := _root_.GlobalTheory.OneBasis.Compare.rigPull_compare Z G₀ L₀ hL₀ ρ₀ _ _ x (spMap gam) A.A A'.A A.L A'.L A.isLB A'.isLB φ φ' w w' ρ ρ' hA p₁
     have e : spMap σ ≫ jFK (R := R) K = jFK (R := V) (AlgebraicClosure (FractionRing V)) ≫ spMap gam := by
       rw [← Spec.map_comp, ← Spec.map_comp]
       exact congrArg (fun q => spMap q) (RingHom.ext hσ)
     rw [← e] at p₅ p₆
-    exact GlobalTheory.T.polarizedAbelian_valueTable_maps_under_baseChange hL R V gam A A' ψ ω' ρ ρ' c₁ K _ σ hσ m r θK th τK τF
+    exact _root_.GlobalTheory.OneBasis.TabMap.tab_map hL R V gam A A' ψ ω' ρ ρ' c₁ K _ σ hσ m r θK th τK τF
       (c₂ 1 (Over.mk x) (TFK (R := R) K) (TFK (R := V) _) (jFK (R := R) K) (spMap σ) rfl e _ _ _ hθK p₅)
       fun i => c₂ _ (Over.mk x) (TFK (R := R) K) (TFK (R := V) _) (jFK (R := R) K) (spMap σ) rfl e _ _ _ (hτK i) (p₆ i)
   · exact (GlobalTheory.T.thetaTable_algClosed_complete_singleValued hL V A' _ ρ' p₁.2.2.1 m n r hm hn' th τF q₁).2
@@ -243,7 +243,7 @@ theorem exists_isFrame_pow_sq : GlobalTheory.Ex.HV → Laws6 → GlobalTheory.LN
   obtain ⟨A, φA, w, ρ, hA⟩ := GlobalTheory.T.exists_rigidified_polarised_fibre_at_field_point hL.1 hL.2.1 E H _ Y.t _ _ (x₂ _ y₁)
   obtain ⟨r, τ, hτ⟩ := GlobalTheory.T.exists_thetaBasis_after_every_field_extension hL.1 hL.2.1 _ Y.t.G _ hL₀ _ _ A φA w hA.1 hA.2.1 (m ^ 2) hm2
   let K := AlgebraicClosure (FractionRing R₁)
-  have cal := GlobalTheory.T.sectionPower_calculus_geometric_fibre _ Y.t.G _ hL₀ R₁ _ A φA w hA.1 hA.2.1 K
+  have cal := _root_.GlobalTheory.OneBasis.Calc.main _ Y.t.G _ hL₀ R₁ _ A φA w hA.1 hA.2.1 K
   obtain ⟨θK, hθK, -⟩ := (cal 1).1 (Over.mk (y₁ ≫ Y.j)) (jFK (R := R₁) K) rfl θ
   choose τK hτK _ using fun i => (cal (m ^ 2)).1 (Over.mk (y₁ ≫ Y.j)) (jFK (R := R₁) K) rfl (τ i)
   have hfull := (GlobalTheory.T.thetaTable_algClosed_complete_singleValued hL R₁ A K ρ hA.2.2.1 m n r hm hno θK τK

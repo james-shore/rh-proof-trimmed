@@ -91,15 +91,7 @@ namespace GlobalTheory.TwV.FnlAwayCpl
 section Z
 variable {R : Ranks} {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [StarRing E] [Algebra F E] {N : ℕ}
 
-theorem exists_latS_pullV (sp : Spaces R F E) (J : Matrix (Fin N) (Fin N) E) (crd : GL (Fin N) E) (a : 𝓞 E)
-    (x : GL (Fin N) (E ⊗[F] FiniteAdeleRing (𝓞 F) F)) (hx : x ∈ UPts sp.cm.sig J (FiniteAdeleRing (𝓞 F) F)) (hJ : IsUnit J.det)
-    (Lb : Submodule (𝓞 E) (Fin N → E)) (hfin : Module.Finite (𝓞 E) Lb)
-    (hspan : Submodule.span E (Lb : Set (Fin N → E)) = ⊤)
-    (hint : ∀ y ∈ Lb, y ∈ dualSet (sp.cm.sig : E →+* E) J Lb)
-    (v : HeightOneSpectrum (𝓞 F)) (u : Fin N → E) (hu : u ∈ latCo sp J crd a x Lb) :
-    ∃ z : latS (F := F) (v.adicCompletion F) (intV E v) (Submodule.span (𝓞 E) (dualSet (sp.cm.sig : E →+* E) J Lb)),
-      z.1 = fun l => prV (E := E) v (pullV (F := F) (ratA F crd * x) u l) :=
-  GlobalTheory.T.companionLatticeVector_local_mem_dualBaseCompletion sp J crd a x hx hJ Lb hfin hspan hint v u hu
+alias exists_latS_pullV := _root_.GlobalTheory.CompanLocal.mem_latS_dual_of_mem_latCo
 end Z
 end GlobalTheory.TwV.FnlAwayCpl
 

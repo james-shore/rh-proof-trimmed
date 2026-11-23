@@ -1535,10 +1535,7 @@ section Lift
 variable {K : Type} [Field K] [StarRing K] {V : Type} [AddCommGroup V] [Module K V]
   {H : HermSpace K V} {r : ℕ}
 
-lemma eich_apply (H : HermSpace K V) (x v : V) (c : K) (y : V) :
-    eich H x v c y = y + (H.B y v • x - H.B y x • v) + c • H.B y x • x := by
-  simp only [Formalism.HermitianLatticeCounting.S6.eich, LinearMap.add_apply, LinearMap.id_apply, LinearMap.smul_apply, LinearMap.smulRight_apply,
-    LinearMap.flip_apply, xv_apply_eq_B_smul_sub_B_smul]
+alias eich_apply := _root_.Formalism.HermitianLatticeCounting.P.eich_apply_eq_add_wedge_add_smul
 
 def GoodMap (F F' : FlagD H r) (g : V →ₗ[K] V) : Prop :=
   (∀ x y : V, H.B (g x) (g y) = H.B x y) ∧ Function.Bijective g ∧ (∀ y ∈ V0 F F', g y = y) ∧

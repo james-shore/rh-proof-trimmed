@@ -48,5 +48,3 @@ open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.LatVal GlobalT
 open GlobalTheory.ToricTransport (coordIn)
 open scoped nonZeroDivisors
 
-theorem _root_.GlobalTheory.T.modF_finiteIdeleUpToExtension : ∀ {K E : Type} [Field K] [NumberField K] [Field E] [NumberField E] [Algebra K E] (t : (Af K)ˣ), modF (upIdele K E t) = modF t ^ Module.finrank K E := by
-  first | exact @GlobalTheory.UpIdeleMod.modF_upIdele | exact GlobalTheory.UpIdeleMod.modF_upIdele | (intros; apply GlobalTheory.UpIdeleMod.modF_upIdele <;> assumption)

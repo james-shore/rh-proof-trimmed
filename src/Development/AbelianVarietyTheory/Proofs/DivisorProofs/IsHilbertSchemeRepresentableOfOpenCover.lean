@@ -84,7 +84,7 @@ theorem GlobalTheory.HilbGlue.isHilbRep_of_cover : ∀ (S Z : Scheme.{0}) (z : Z
       fun c => (e.homEquiv_eq c).symm
     exact ⟨H, e.homEquiv (𝟙 H), fun T x => ⟨e.homEquiv.symm x, (h _).trans (e.homEquiv.apply_symm_apply x),
       fun c hc => e.homEquiv.eq_symm_apply.2 ((h c).symm.trans hc)⟩⟩
-  have hprop : IsProper u.1 := GlobalTheory.T.isProper_of_represents_hilbertFunctor_of_local z r H u hu hloc'
+  have hprop : IsProper u.1 := _root_.GlobalTheory.HilbGlue.isProper_of_represents_of_local_proper z r H u hu hloc'
   obtain ⟨h, I⟩ := u
   refine ⟨H, h, I.1.subscheme, I.1.subschemeι, hprop, inferInstance, I.2.1, I.2.2.1, I.2.2.2, ?_⟩
   intro T g V v _ h1 h2 h3

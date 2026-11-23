@@ -103,15 +103,6 @@ theorem convCalc_isProj_compl (a : G → ℂ) (ha : IsProj a) : IsProj (dirac - 
 
 variable {M : Type} [AddCommGroup M] [Module ℂ M] (ρ : Representation ℂ G M)
 
-theorem convCalc_op_conv (a b : G → ℂ) : op ρ (conv a b) = op ρ a * op ρ b := by
-  simp only [op, conv, Finset.sum_smul, Finset.sum_mul, Finset.mul_sum]
-  rw [Finset.sum_comm]
-  conv_rhs => rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun y _ => ?_
-  rw [← Equiv.sum_comp (Equiv.mulLeft y)]
-  refine Finset.sum_congr rfl fun z _ => ?_
-  simp [smul_smul, mul_comm]
-
 theorem convCalc_op_sub (a b : G → ℂ) : op ρ (a - b) = op ρ a - op ρ b := by
   simp [op, sub_smul, Finset.sum_sub_distrib]
 
@@ -123,7 +114,7 @@ theorem convCalc_op_dirac : op ρ dirac = 1 := by
 
 theorem convCalc_rk [FiniteDimensional ℂ M] (e : G → ℂ) (he : conv e e = e) :
     (rk ρ e : ℂ) = ∑ γ, e γ * LinearMap.trace ℂ M (ρ γ) := by
-  have h1 : op ρ e * op ρ e = op ρ e := by rw [← convCalc_op_conv, he]
+  have h1 : op ρ e * op ρ e = op ρ e := by rw [← _root_.GlobalTheory.BadShare.Basic.op_conv, he]
   have hp : LinearMap.IsProj (LinearMap.range (op ρ e)) (op ρ e) :=
     ⟨fun x => LinearMap.mem_range_self _ x, by
       rintro x ⟨y, rfl⟩
@@ -136,7 +127,7 @@ end
 
 theorem convCalc : ∀ (G : Type) [Group G] [Fintype G] (M : Type) [AddCommGroup M] [Module ℂ M] [FiniteDimensional ℂ M] (ρ : Representation ℂ G M), (∀ a b : G → ℂ, op ρ (conv a b) = op ρ a * op ρ b ∧ op ρ (a - b) = op ρ a - op ρ b ∧ op ρ (a + b) = op ρ a + op ρ b) ∧ op ρ dirac = 1 ∧ (∀ a b c : G → ℂ, conv (conv a b) c = conv a (conv b c) ∧ conv (a - b) c = conv a c - conv b c ∧ conv c (a - b) = conv c a - conv c b) ∧ (∀ a : G → ℂ, conv dirac a = a ∧ conv a dirac = a) ∧ (∀ a b : G → ℂ, IsProj a → IsProj b → conv a b = conv b a → IsProj (conv a b)) ∧ (∀ a : G → ℂ, IsProj a → IsProj (dirac - a)) ∧ ∀ e : G → ℂ, conv e e = e → (rk ρ e : ℂ) = ∑ γ, e γ * LinearMap.trace ℂ M (ρ γ) := by
   intro G _ _ M _ _ _ ρ
-  exact ⟨fun a b => ⟨convCalc_op_conv ρ a b, convCalc_op_sub ρ a b, convCalc_op_add ρ a b⟩, convCalc_op_dirac ρ,
+  exact ⟨fun a b => ⟨_root_.GlobalTheory.BadShare.Basic.op_conv ρ a b, convCalc_op_sub ρ a b, convCalc_op_add ρ a b⟩, convCalc_op_dirac ρ,
     fun a b c => ⟨convCalc_assoc a b c, convCalc_sub_left a b c, convCalc_sub_right a b c⟩,
     fun a => ⟨convCalc_dirac_left a, convCalc_dirac_right a⟩, convCalc_isProj_conv, convCalc_isProj_compl,
     convCalc_rk ρ⟩

@@ -71,8 +71,7 @@ theorem hJ_symm (x y : Fin n → ℂ) : hJ ε x y = star (hJ ε y x) := by
 theorem hJ_add_right (x y z : Fin n → ℂ) : hJ ε x (y + z) = hJ ε x y + hJ ε x z := by
   simp only [hJ, mulVec_add, dotProduct_add]
 
-theorem hJ_sub_right (x y z : Fin n → ℂ) : hJ ε x (y - z) = hJ ε x y - hJ ε x z := by
-  simp only [hJ, mulVec_sub, dotProduct_sub]
+alias hJ_sub_right := _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right
 
 theorem hJ_smul_right (x y : Fin n → ℂ) (c : ℂ) : hJ ε x (c • y) = c * hJ ε x y := by
   simp only [hJ, mulVec_smul, dotProduct_smul, smul_eq_mul]
@@ -89,8 +88,7 @@ theorem hJ_sum_right {ι : Type} (s : Finset ι) (x : Fin n → ℂ) (y : ι →
 theorem hJ_add_left (x y z : Fin n → ℂ) : hJ ε (x + y) z = hJ ε x z + hJ ε y z := by
   simp only [hJ, star_add, add_dotProduct]
 
-theorem hJ_sub_left (x y z : Fin n → ℂ) : hJ ε (x - y) z = hJ ε x z - hJ ε y z := by
-  simp only [hJ, star_sub, sub_dotProduct]
+alias hJ_sub_left := _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_left
 
 theorem hJ_smul_left (x y : Fin n → ℂ) (c : ℂ) : hJ ε (c • x) y = star c * hJ ε x y := by
   simp only [hJ, star_smul, smul_dotProduct, smul_eq_mul]
@@ -224,11 +222,7 @@ def sUg {n k : ℕ} (ε : Fin n → Bool) (wf : Fin k → Fin n → ℂ)
     smat_inv _ _ (Formalism.REAL.Jm_mul_self _) (Formalism.REAL.Jm_conjTranspose _) G hG hon⟩,
     smat_unitary _ _ hon (Formalism.REAL.Jm_conjTranspose _) G hG⟩
 
-theorem uMat_mul' {n : ℕ} {ε : Fin n → Bool} (a b : Formalism.REAL.UJ ε) : uMat (a * b) = uMat a * uMat b := by
-  rfl
-
-theorem uMat_inv_mul'' {n : ℕ} {ε : Fin n → Bool} (a : Formalism.REAL.UJ ε) : uMat a⁻¹ * uMat a = 1 := by
-  exact Units.inv_mul (a : (Matrix (Fin n) (Fin n) ℂ)ˣ)
+alias uMat_inv_mul'' := _root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_inv_mul
 
 theorem uMat_mul_inv'' {n : ℕ} {ε : Fin n → Bool} (a : Formalism.REAL.UJ ε) : uMat a * uMat a⁻¹ = 1 := by
   exact Units.mul_inv (a : (Matrix (Fin n) (Fin n) ℂ)ˣ)
@@ -485,7 +479,7 @@ theorem geomB_of (hL : LeviTens) (hW : WfrSpan) (hN : CplxNF) : GeomB := by
     have hh' : ∀ v, uMat (h' v) = uMat (q.1.1.1 v)⁻¹ * uMat (h v) * uMat (q.1.1.1 v) := by
       intro v
       show uMat ((q.1.1.1 v)⁻¹ * h v * q.1.1.1 v) = _
-      rw [uMat_mul', uMat_mul']
+      rw [_root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_mul, _root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_mul]
     have hfix' : ∀ v p, q.1.2 p ∈ fixedSubspaceOfRepresentative X q → uMat (h' v) *ᵥ rvc X v p = rvc X v p := by
       intro v p hp
       rw [hh', ← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec, hγ, hfixV v _ hp, ← hγ, Matrix.mulVec_mulVec,

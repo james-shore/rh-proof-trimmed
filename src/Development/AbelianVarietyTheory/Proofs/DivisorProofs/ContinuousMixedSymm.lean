@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtensionEmbeddingMixedSymmOfIsComplex
 
 @[expose] public section
 
@@ -56,16 +57,6 @@ namespace GlobalTheory.ArchDecay
 
 variable (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ]
 
-theorem continuous_mixedSymm : Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace F).symm := by
-  refine continuous_pi fun v => ?_
-  rcases v.isReal_or_isComplex with hv | hv
-  · rw [(InfinitePlace.Completion.isometry_extensionEmbeddingOfIsReal hv).isEmbedding.continuous_iff]
-    exact ((continuous_apply _).comp continuous_fst).congr fun y =>
-      (congrFun (congrArg Prod.fst ((InfiniteAdeleRing.ringEquiv_mixedSpace F).apply_symm_apply y)) ⟨v, hv⟩).symm
-  · rw [(InfinitePlace.Completion.isometry_extensionEmbedding v).isEmbedding.continuous_iff]
-    exact ((continuous_apply _).comp continuous_snd).congr fun y =>
-      (congrFun (congrArg Prod.snd ((InfiniteAdeleRing.ringEquiv_mixedSpace F).apply_symm_apply y)) ⟨v, hv⟩).symm
-
 theorem continuous_mixed : Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace F) := by
   change Continuous fun x : InfiniteAdeleRing F =>
     ((fun (v : {w : InfinitePlace F // w.IsReal}) => InfinitePlace.Completion.extensionEmbeddingOfIsReal v.2 (x v)),
@@ -75,7 +66,7 @@ theorem continuous_mixed : Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace F)
   · exact (InfinitePlace.Completion.isometry_extensionEmbedding v.1).continuous.comp (continuous_apply _)
 
 theorem continuous_infAd : Continuous (infAd F) :=
-  (continuous_mixedSymm F).prodMk continuous_const
+  (_root_.GlobalTheory.HeckeOne.continuous_ringEquiv_mixedSpace_symm F).prodMk continuous_const
 
 theorem continuous_evI_arch : Continuous (evI F) := (continuous_mixed F).comp continuous_fst
 

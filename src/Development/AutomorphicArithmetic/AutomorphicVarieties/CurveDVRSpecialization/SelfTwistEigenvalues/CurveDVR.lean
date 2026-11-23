@@ -59,11 +59,6 @@ import Mathlib.Topology.Sheaves.Init
 
 open Polynomial Matrix
 
-open IsLocalRing in
-private theorem curveDVR_prec_finite {O M : Type} [CommRing O] [IsNoetherianRing O] (I : Ideal O)
-    [IsAdicComplete I O] [AddCommGroup M] [Module O M] [Module.Finite O M] : IsPrecomplete I M :=
-  _root_.UpperTheory.Reformulated.B.PrecompleteOfFiniteOverAdicComplete.curveDVR_prec_finite I
-
 private theorem curveDVR_prec_cofinal {R : Type} [CommRing R] {I J : Ideal R} (hJI : J ≤ I) {e : ℕ}
     (he : I ^ e ≤ J) (hJ : IsPrecomplete J R) : IsPrecomplete I R := ⟨fun f hf => by
   simp only [SModEq.sub_mem, smul_eq_mul, Ideal.mul_top] at hf ⊢
@@ -102,7 +97,7 @@ private theorem curveDVR_complete {R R' : Type} [CommRing R] [IsLocalRing R] [Is
     exact (eq_maximalIdeal h4).ge
   obtain ⟨e, he⟩ := Ideal.exists_pow_le_of_le_radical_of_fg hrad (IsNoetherian.noetherian _)
   have hP : IsPrecomplete (maximalIdeal R') R' :=
-    curveDVR_prec_cofinal hle he (IsPrecomplete.map_algebraMap_iff.2 (curveDVR_prec_finite _))
+    curveDVR_prec_cofinal hle he (IsPrecomplete.map_algebraMap_iff.2 (_root_.UpperTheory.Reformulated.B.PrecompleteOfFiniteOverAdicComplete.curveDVR_prec_finite _))
   exact { toIsHausdorff := inferInstance, toIsPrecomplete := hP }
 
 open IsLocalRing in

@@ -56,24 +56,8 @@ namespace GlobalTheory.FinPl.LocProd
 
 variable {D : D7}
 
-theorem mem_congGrp_entries (V : HSp D) (I : Ideal (AE D)) (g : GA D V) :
-    g ∈ congGrp V I ↔ ∀ i j, (Formalism.L2.Theta.mt V g - 1) i j ∈ I := by
-  rw [congGrp, MonoidHom.mem_ker, MonoidHom.comp_apply, Units.ext_iff]
-  simp only [Matrix.GeneralLinearGroup.map, Units.coe_map, Units.val_one]
-  rw [← Matrix.ext_iff]
-  refine forall_congr' fun i => forall_congr' fun j => ?_
-  rw [Matrix.sub_apply, ← Ideal.Quotient.eq]
-  change ((matHom V g).1.map (Ideal.Quotient.mk I)) i j = (1 : Matrix (Fin V.rank) (Fin V.rank) (AE D ⧸ I)) i j ↔ _
-  rw [Matrix.map_apply]
-  by_cases hij : i = j
-  · subst hij
-    simp only [Matrix.one_apply_eq, map_one]
-    rfl
-  · simp only [Matrix.one_apply_ne hij, map_zero]
-    rfl
-
 theorem congGrp_mono (V : HSp D) {I J : Ideal (AE D)} (h : I ≤ J) : congGrp V I ≤ congGrp V J := fun g hg =>
-  (mem_congGrp_entries V J g).2 fun i j => h ((mem_congGrp_entries V I g).1 hg i j)
+  (_root_.GlobalTheory.FrameAt.mem_congGrp V J g).2 fun i j => h ((_root_.GlobalTheory.FrameAt.mem_congGrp V I g).1 hg i j)
 
 theorem idAt_le_idOff (P P' : Pl D → Prop) (h : ∀ w, P w → ¬ P' w) : idAt D P ≤ idOff D P' := by
   intro a ha
@@ -94,9 +78,9 @@ theorem mem_idOff_of_forall (P : Pl D → Prop) (a : AE D) (h : ∀ w, P w → a
 theorem mem_grpOff_of_forall (V : HSp D) (P : Pl D → Prop) (g : GA D V) (h : ∀ w, P w → g ∈ grpOff V (· = w)) :
     g ∈ grpOff V P := by
   unfold grpOff
-  rw [mem_congGrp_entries]
+  rw [_root_.GlobalTheory.FrameAt.mem_congGrp]
   intro i j
-  exact mem_idOff_of_forall P _ fun w hw => (mem_congGrp_entries V _ g).1 (h w hw) i j
+  exact mem_idOff_of_forall P _ fun w hw => (_root_.GlobalTheory.FrameAt.mem_congGrp V _ g).1 (h w hw) i j
 
 theorem map_list_prod_eq_one {ι G H : Type*} [Monoid G] [Monoid H] (φ : G →* H) (f : ι → G) :
     ∀ J : List ι, (∀ i ∈ J, φ (f i) = 1) → φ (J.map f).prod = 1

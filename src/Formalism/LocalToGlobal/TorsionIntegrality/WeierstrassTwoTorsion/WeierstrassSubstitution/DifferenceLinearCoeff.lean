@@ -268,13 +268,13 @@ theorem cube_mem' : CubeMem.{u} := by
     rw [MvPowerSeries.coeff_map]
     exact (MvPowerSeries.coeff d c).2
   refine ⟨?_, ?_, ?_, ?_⟩
-  · obtain ⟨c, hc, h⟩ := cubeTwoR S WS
+  · obtain ⟨c, hc, h⟩ := _root_.Formalism.L2.Th1.A.cube_two_relation S WS
     refine ⟨MvPowerSeries.map S.subtype c, mem c, ?_, ?_⟩
     · rw [MvPowerSeries.constantCoeff_map, hc, map_neg, map_one]
     · have := congrArg (MvPowerSeries.map S.subtype) (show lhs2 WS = c * fgl WS * diff2 WS from h)
       rw [map_mul, map_mul, map_quadratic_lhs, map_diff2, Fgl1.fgl_map, hW] at this
       exact this
-  · obtain ⟨e, he, h⟩ := cubeThreeR S WS
+  · obtain ⟨e, he, h⟩ := _root_.Formalism.L2.Th1.A.cube_three_relation S WS
     refine ⟨MvPowerSeries.map S.subtype e, mem e, ?_, ?_⟩
     · rw [MvPowerSeries.constantCoeff_map, he, map_neg, map_one]
     · have := congrArg (MvPowerSeries.map S.subtype)

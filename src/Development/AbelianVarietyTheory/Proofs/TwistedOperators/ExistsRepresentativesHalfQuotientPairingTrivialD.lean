@@ -50,6 +50,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsAuxiliaryVectorWittDec
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsCoreLat
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LocalSelfDualLatticeSplitPlaceDecomposition
 
 @[expose] public section
 
@@ -68,30 +69,17 @@ private theorem selfDual_core {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} 
     (G.isV (X := .core k) hk (fun j h => Node.noConfusion h)).sd
   exact ⟨isSelfDualC_neg (hV (i + 1) hi), hV i hi.le⟩
 
-private theorem nsmul_inj {D : D7} {m n : ℕ} {K : ℕ} (hK : 0 < K) {x y : Mx D m n} (h : K • x = K • y) : x = y := by
-  have inv : (K : AE D) * incA D (K : D.host.E)⁻¹ = 1 := by
-    rw [← map_natCast (incA D), ← map_mul, mul_inv_cancel₀ (Nat.cast_ne_zero.2 hK.ne'), map_one]
-  have h' := congrArg (fun z : Mx D m n => incA D (K : D.host.E)⁻¹ • z) h
-  rwa [← Nat.cast_smul_eq_nsmul (AE D), ← Nat.cast_smul_eq_nsmul (AE D), smul_smul, smul_smul, mul_comm, inv,
-    one_smul, one_smul] at h'
+private alias nsmul_inj := _root_.GlobalTheory.Mem.CoefInv.nsmul_cancel
 
-private theorem isHalf_add {D : D7} {m n : ℕ} {c : AE D} {x y : Mx D m n} (hx : IsHalf c x) (hy : IsHalf c y) :
-    IsHalf c (x + y) := fun a b => by simp only [Matrix.add_apply, mul_add, hx a b, hy a b]
+private alias isHalf_add := _root_.GlobalTheory.SplitScalar.isHalf_add
 
-private theorem isHalf_neg {D : D7} {m n : ℕ} {c : AE D} {x : Mx D m n} (hx : IsHalf c x) : IsHalf c (-x) := fun a b => by
-  simp only [Matrix.neg_apply, mul_neg, hx a b]
+private alias isHalf_neg := _root_.GlobalTheory.DownLift.SplitSep.isHalf_neg'
 
-private theorem isHalf_zero {D : D7} {m n : ℕ} (c : AE D) : IsHalf c (0 : Mx D m n) := fun a b => by simp
+private alias isHalf_zero := _root_.GlobalTheory.SplitScalar.isHalf_zero
 
-private theorem symplO_zero_right {D : D7} (S T : HSp D) (x : WO S T) : symplO S T x 0 = 0 := by
-  have := GlobalTheory.ConjHalfDual.symplO_add_right' S T x 0 0
-  simp only [add_zero] at this
-  exact (add_eq_left.1 this.symm)
+private alias symplO_zero_right := _root_.GlobalTheory.PlaceModel.symplO_zero_right
 
-private theorem symplO_neg_right {D : D7} (S T : HSp D) (x y : WO S T) : symplO S T x (-y) = -symplO S T x y := by
-  have := GlobalTheory.ConjHalfDual.symplO_add_right' S T x y (-y)
-  rw [add_neg_cancel, symplO_zero_right] at this
-  exact (neg_eq_of_add_eq_zero_right this.symm).symm
+private alias symplO_neg_right := _root_.GlobalTheory.SplitSelfDual.symplO_neg_right
 
 private theorem psi_ne_zero {F : Type*} [AddGroup F] (ψ : AddChar F ℂ) (a : F) : ψ a ≠ 0 := by
   intro h
@@ -139,13 +127,13 @@ theorem _root_.GlobalTheory.T.exists_representatives_half_quotient_pairing_trivi
       W.ψ (symplO (G.pS (.core i)) (G.pT (.core i)) u y) = 1) → K • y ∈ Λ := by
     intro y hy hyt
     refine (hdual _ (GlobalTheory.StdHalfLat.half_nsmul hy K)).2 fun l hl _ => ?_
-    rw [← GlobalTheory.DownLift.SplitSep.symplO_nsmul_swap]
+    rw [← _root_.GlobalTheory.DownLift.GenQuot.symplO_nsmul_swap]
     exact hyt _ (hKΛ l hl)
   let A : AddSubgroup (WO (G.pS (.core i)) (G.pT (.core i))) :=
     { carrier := {y | IsHalf (cA D e) y ∧ ∀ u ∈ depLat G (.core i),
         W.ψ (symplO (G.pS (.core i)) (G.pT (.core i)) u y) = 1}
       add_mem' := fun {a b} ha hb => ⟨isHalf_add ha.1 hb.1, fun u hu => by
-        rw [GlobalTheory.ConjHalfDual.symplO_add_right', AddChar.map_add_eq_mul, ha.2 u hu, hb.2 u hu, one_mul]⟩
+        rw [_root_.GlobalTheory.LatVac.symplO_add_right, AddChar.map_add_eq_mul, ha.2 u hu, hb.2 u hu, one_mul]⟩
       zero_mem' := ⟨isHalf_zero _, fun u _ => by rw [symplO_zero_right, AddChar.map_zero_eq_one]⟩
       neg_mem' := fun {a} ha => ⟨isHalf_neg ha.1, fun u hu => by
         rw [symplO_neg_right, AddChar.map_neg_eq_inv, ha.2 u hu, inv_one]⟩ }
@@ -224,7 +212,7 @@ theorem _root_.GlobalTheory.T.exists_representatives_half_quotient_pairing_trivi
     refine ⟨l, hl, hle, fun h => hne1 ?_⟩
     have hsplit : symplO (G.pS (.core i)) (G.pT (.core i)) l y =
         symplO (G.pS (.core i)) (G.pT (.core i)) l (y - y') + symplO (G.pS (.core i)) (G.pT (.core i)) l y' := by
-      rw [← GlobalTheory.ConjHalfDual.symplO_add_right', sub_add_cancel]
+      rw [← _root_.GlobalTheory.LatVac.symplO_add_right, sub_add_cancel]
     rw [hsplit, AddChar.map_add_eq_mul] at h
     exact (mul_eq_right₀ (psi_ne_zero _ _)).1 h
 

@@ -57,9 +57,7 @@ section Generic
 
 variable {E : Type} [Field E] [NumberField E] [StarRing E] {S : Formalism.BasicNotions.HSpace E} {r : ℕ} {T : E}
 
-theorem rowsLift_mem_orth {U : Submodule E S.V} {x : S.V} :
-    x ∈ orth S U ↔ ∀ y ∈ U, S.hT y x = 0 := by
-  simp only [orth, Submodule.mem_iInf, LinearMap.mem_ker]
+alias rowsLift_mem_orth := _root_.GlobalTheory.LoopC.RowSplit.mem_orth
 
 theorem rowsLift_fix_span {ι : Type} (v : ι → S.V) (s : Set ι) (n : S.V ≃ₗ[E] S.V)
     (hn : ∀ a, n (v a) = v a) : ∀ x ∈ Submodule.span E (v '' s), n x = x := by
@@ -83,15 +81,6 @@ theorem rowsLift_map_eq (U : Submodule E S.V) (n : S.V ≃ₗ[E] S.V) (hn : ∀ 
   · intro hy
     exact ⟨y, hy, hn y hy⟩
 
-theorem rowsLift_orth_iff (U : Submodule E S.V) (n : S.V ≃ₗ[E] S.V) (hi : n ∈ Formalism.HermitianLatticesTheory.isom S.hT)
-    (hn : ∀ x ∈ U, n x = x) (x : S.V) : n x ∈ orth S U ↔ x ∈ orth S U := by
-  have hi' : ∀ a b, S.hT (n a) (n b) = S.hT a b := hi
-  rw [rowsLift_mem_orth, rowsLift_mem_orth]
-  refine forall₂_congr fun y hy => ?_
-  have h := hi' y x
-  rw [hn y hy] at h
-  rw [h]
-
 theorem rowsLift_Lsub_gmap (F : LFlag S r T) (Λ : Submodule (𝓞 E) S.V) (n : S.V ≃ₗ[E] S.V)
     (hi : n ∈ Formalism.HermitianLatticesTheory.isom S.hT) (hn : ∀ x ∈ Xsp F, n x = x)
     (hq : ∀ x ∈ orth S (Xsp F), n x - x ∈ Xsp F) :
@@ -104,7 +93,7 @@ theorem rowsLift_Lsub_gmap (F : LFlag S r T) (Λ : Submodule (𝓞 E) S.V) (n : 
     obtain ⟨a, ha, b, hb, rfl⟩ := Submodule.mem_sup.mp hy1
     obtain ⟨ha1, haO⟩ := Submodule.mem_inf.mp ha
     obtain ⟨l, hl, rfl⟩ := Submodule.mem_map.mp ha1
-    have hlO : l ∈ orth S (Xsp F) := (rowsLift_orth_iff _ n hi hn l).mp haO
+    have hlO : l ∈ orth S (Xsp F) := (_root_.GlobalTheory.LoopC.RowSplit.orth_iff _ n hi hn l).mp haO
     have hd : n l - l ∈ Xsp F := hq l hlO
     refine Submodule.mem_inf.mpr ⟨Submodule.mem_sup.mpr
       ⟨l, Submodule.mem_inf.mpr ⟨hl, hlO⟩, (n l - l) + b, (toO S (Xsp F)).add_mem hd hb, ?_⟩, hyO⟩
@@ -114,7 +103,7 @@ theorem rowsLift_Lsub_gmap (F : LFlag S r T) (Λ : Submodule (𝓞 E) S.V) (n : 
     obtain ⟨hy1, hyO⟩ := Submodule.mem_inf.mp hy
     obtain ⟨a, ha, b, hb, rfl⟩ := Submodule.mem_sup.mp hy1
     obtain ⟨hl, haO⟩ := Submodule.mem_inf.mp ha
-    have hnO : n a ∈ orth S (Xsp F) := (rowsLift_orth_iff _ n hi hn a).mpr haO
+    have hnO : n a ∈ orth S (Xsp F) := (_root_.GlobalTheory.LoopC.RowSplit.orth_iff _ n hi hn a).mpr haO
     have hd : n a - a ∈ Xsp F := hq a haO
     refine Submodule.mem_inf.mpr ⟨Submodule.mem_sup.mpr
       ⟨n a, Submodule.mem_inf.mpr ⟨Submodule.mem_map.mpr ⟨a, hl, rfl⟩, hnO⟩, b - (n a - a),
@@ -214,11 +203,11 @@ theorem rowsLift : ∀ (D : D7) (u : D.what₂.Word), (Tu D u).Prime → 3 ≤ T
     · exact hfix _ hfx₁.2.1 hfx₂.2.1
   refine ⟨n₁.trans n₂.symm, hmem, ?_, ?_⟩
   · intro x hx
-    have hy : n₁ x ∈ orth (hS D) F0.X := (rowsLift_orth_iff F0.X n₁ hi₁ hfx₁.2.2 x).mpr hx
+    have hy : n₁ x ∈ orth (hS D) F0.X := (_root_.GlobalTheory.LoopC.RowSplit.orth_iff F0.X n₁ hi₁ hfx₁.2.2 x).mpr hx
     obtain ⟨w, hw⟩ : ∃ w, w = n₂.symm (n₁ x) := ⟨_, rfl⟩
     have hnw : n₂ w = n₁ x := by rw [hw, LinearEquiv.apply_symm_apply]
     have hwO : w ∈ orth (hS D) F0.X :=
-      (rowsLift_orth_iff F0.X n₂ hi₂ hfx₂.2.2 w).mp (by rw [hnw]; exact hy)
+      (_root_.GlobalTheory.LoopC.RowSplit.orth_iff F0.X n₂ hi₂ hfx₂.2.2 w).mp (by rw [hnw]; exact hy)
     have h1 : n₁ x - x ∈ F0.X := hq₁ x hx
     have h2 : n₂ w - w ∈ F0.X := hq₂ w hwO
     rw [hnw] at h2

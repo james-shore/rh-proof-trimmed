@@ -86,7 +86,7 @@ theorem actB_rot_vline'_k (R : _root_.PositivityTheory.SiegelWeilFormula.RD_k d)
       _root_.PositivityTheory.SiegelWeilFormula.KFP.cw_realAd_smul'_k, _root_.PositivityTheory.SiegelWeilFormula.KFP.cw_realAd_smul'_k, show d.cw w (_root_.PositivityTheory.SiegelWeilFormula.KFP.tw_k R W) = _ from htw.2 w]
     have hinv : d.cw w (incM F ((d.b⁻¹ : GL (Fin d.n ⊕ Fin d.n) E) : Matrix (Fin d.n ⊕ Fin d.n) (Fin d.n ⊕ Fin d.n) E)) *
         d.cw w (incM F d.b.1) = 1 := by
-      rw [← _root_.PositivityTheory.SiegelWeilFormula.KFP.cw_mul'_k, _root_.PositivityTheory.SiegelWeilFormula.KFP.incM_b_inv_mul_k, _root_.PositivityTheory.SiegelWeilFormula.KFP.cw_one'_k]
+      rw [← _root_.PositivityTheory.SiegelWeilFormula.KFP.cw_mul'_k, _root_.PositivityTheory.SiegelWeilFormula.Krd.bb'_k, _root_.PositivityTheory.SiegelWeilFormula.KFP.cw_one'_k]
     rw [Matrix.transpose_mul, Matrix.transpose_mul, ← Matrix.mul_assoc, ← Matrix.mul_assoc,
       Matrix.mul_assoc _ (d.cw w (incM F d.b.1))ᵀ, ← Matrix.transpose_mul, hinv, Matrix.transpose_one, Matrix.mul_one,
       rot_cols' d.n d.m hζ (R.sg w) t z.re z.im (d.cw w W) _ (_root_.PositivityTheory.SiegelWeilFormula.KFP.dZ_cw_rot'_k R t w)]

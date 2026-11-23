@@ -148,16 +148,6 @@ theorem TN_upper {X : Mat k r} (hX : X ∈ TN k r) (i j : Fin (2 * r + k + 1)) (
     rw [TN_ss hX, hX.2.1 a (eI k r b) (by show a.val ≤ b.val; omega)]
     simp
 
-theorem pow_upper {m : ℕ} {X : Matrix (Fin m) (Fin m) ℂ} (hX : ∀ i j : Fin m, j.val ≤ i.val → X i j = 0) (n : ℕ) :
-    ∀ i j : Fin m, j.val < i.val + n → (X ^ n) i j = 0 := by
-  first
-  | exact @_root_.GlobalTheory.StrictUpperNilpotentFlagMeasures.pow_apply_eq_zero_of_strictUpper
-  | exact _root_.GlobalTheory.StrictUpperNilpotentFlagMeasures.pow_apply_eq_zero_of_strictUpper
-  | (apply _root_.GlobalTheory.StrictUpperNilpotentFlagMeasures.pow_apply_eq_zero_of_strictUpper <;> assumption)
-  | (intros; apply _root_.GlobalTheory.StrictUpperNilpotentFlagMeasures.pow_apply_eq_zero_of_strictUpper <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.StrictUpperNilpotentFlagMeasures.pow_apply_eq_zero_of_strictUpper <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.StrictUpperNilpotentFlagMeasures.pow_apply_eq_zero_of_strictUpper ..)
-
 theorem exp_upper {m : ℕ} {X : Matrix (Fin m) (Fin m) ℂ} (hX : ∀ i j : Fin m, j.val ≤ i.val → X i j = 0) :
     NormedSpace.exp X = ∑ n ∈ Finset.range (m + 2), ((n.factorial : ℂ)⁻¹) • X ^ n := by
   rw [NormedSpace.exp_eq_tsum ℂ]
@@ -165,7 +155,7 @@ theorem exp_upper {m : ℕ} {X : Matrix (Fin m) (Fin m) ℂ} (hX : ∀ i j : Fin
   have : X ^ n = 0 := by
     ext i j
     rw [Finset.mem_range] at hn
-    exact pow_upper hX n i j (by omega)
+    exact _root_.GlobalTheory.StrictUpperNilpotentFlagMeasures.pow_apply_eq_zero_of_strictUpper hX n i j (by omega)
   rw [this, smul_zero]
 
 theorem exp_inj_upper {m : ℕ} {X Y : Matrix (Fin m) (Fin m) ℂ} (hX : ∀ i j : Fin m, j.val ≤ i.val → X i j = 0)
@@ -208,7 +198,7 @@ theorem exp_mem {X : Mat k r} (hX : X ∈ TN k r) : NormedSpace.exp X ∈ Nset k
       rw [Matrix.smul_apply, pow_succ, Matrix.mul_apply, Finset.sum_eq_zero, smul_zero]
       intro l _
       by_cases hl : l.val < i.val
-      · rw [pow_upper (TN_upper hX) n i l (by omega), zero_mul]
+      · rw [_root_.GlobalTheory.StrictUpperNilpotentFlagMeasures.pow_apply_eq_zero_of_strictUpper (TN_upper hX) n i l (by omega), zero_mul]
       · rw [h l (by omega), mul_zero]
   refine ⟨?_, fun a i hi => key _ _ fun l hl => hX.2.1 a l (by omega),
     fun i j a b c => key _ _ fun l hl => hX.2.2 l j a b (by omega)⟩
@@ -327,13 +317,8 @@ def Phi (q : EE k r) : Mat k r := uEmb k r (upper q.1) * pOf k r q.2
 
 theorem Phi_mem (q : EE k r) : Phi q ∈ Nset k r := (coord_homeo k r).1.mapsTo trivial
 
-theorem upper_zero : upper (0 : UT r → ℂ) = 1 := by
-  ext a b
-  by_cases h : a < b <;> simp [upper, h, Matrix.one_apply]
-  exact h.ne
-
 theorem Phi_zero : Phi (0 : EE k r) = 1 := by
-  rw [Phi, Prod.fst_zero, upper_zero, GlobalTheory.Amp.UEmb.uEmb_one, Matrix.one_mul]
+  rw [Phi, Prod.fst_zero, _root_.GlobalTheory.Amp.NHaar.upper_zero, GlobalTheory.Amp.UEmb.uEmb_one, Matrix.one_mul]
   ext i j
   simp [pOf, pEl, skewM, herm, Matrix.one_apply]
 

@@ -60,7 +60,7 @@ theorem sec_coprod : ∀ (R : Type) [CommRing R] (F : Shv R) (U : Scheme.{0}) (�
   let e : ∐ V ≅ U := (coproductIsCoproduct V).coconePointUniqueUpToIso hU
   have he : ∀ i, Sigma.ι V i ≫ e.hom = j i := fun i =>
     (coproductIsCoproduct V).comp_coconePointUniqueUpToIso_hom hU ⟨i⟩
-  have hb := GlobalTheory.T.sec_sigma_res_bijective R F V
+  have hb := _root_.GlobalTheory.EtC.sec_sigma_bijective R F V
   have hiso : Function.Bijective (fun x : Sec F U => Sec.res e.hom x) := by
     refine Function.bijective_iff_has_inverse.2 ⟨fun y => Sec.res e.inv y, fun x => ?_, fun y => ?_⟩
     · simp only

@@ -349,7 +349,7 @@ theorem reading_one (f f' : A ⟶ A) [IsMonHom f] [IsMonHom f']
       rw [← Over.comp_left, comp_lift]
       simp only [MonObj.comp_one]
     rw [← hq0] at h0
-    have hp := ((GlobalTheory.T.generatorReading_pullback_period_rigid S A L x0 g Φ (A ⊗ A).left _ (adφ f f') adε u).1 (A ⊗ A).left
+    have hp := ((_root_.GlobalTheory.AnVal.genRd_pull_period_rig S A L x0 g Φ (A ⊗ A).left _ (adφ f f') adε u).1 (A ⊗ A).left
       (lift (1 : A ⊗ A ⟶ A) (1 : A ⊗ A ⟶ A)).left (q 0) _ v).mpr h0
     have hone := genRd_of_specComplex Φ (q 0)
     have hsame := sameSum_adφ_adε_empty f f'

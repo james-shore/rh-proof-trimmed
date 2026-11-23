@@ -106,7 +106,7 @@ theorem local_phase_orbit_eq (M : Loc.Model F E) (hOK : M.OK) {m : ℕ} (a : Loc
   rw [Matrix.nonsing_inv_mul _ hLd, sLow_one] at hLi
   have hUi := (sa (rI a (Loc.uUp a xy.2) * rI a ρ) (rI a (Loc.uUp a xy.2) * rI a ρ)⁻¹).2
     hUp (Formalism.DoubleCosetMeasures.isUpUni_inv E hUp)
-  rw [Matrix.mul_nonsing_inv _ hUd, sUp_one] at hUi
+  rw [Matrix.mul_nonsing_inv _ hUd, _root_.Formalism.MainNotions.LocalOrbitGerms.Dec.sUp_one] at hUi
   rw [(sa _ _).1 (lowUni_rI a (lowUni_of M hl)) (lowUni_rI a (uLow_lowUni xy.1))] at hLi
   rw [(sa _ _).2 (upUni_rI a (uUp_upUni a xy.2)) (upUni_rI a (upUni_of M hρ))] at hUi
   have hph : Formalism.DoubleCosetMeasures.sLow (rI a (Loc.uLow xy'.1)) + Formalism.DoubleCosetMeasures.sUp (rI a (Loc.uUp a xy'.2)) =

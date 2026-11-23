@@ -46,6 +46,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LinkedUnramifiedChains.WeightInfinitesimalCharacters.AdmissibleUnitaryThreePoint
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.PrimitiveFrobeniusFixed.IsAdmissiblePrimeListNil
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.CharacterValueAtT
 
 @[expose] public section
 
@@ -59,20 +60,6 @@ private theorem isCM (K : Type) [Field K] [NumberField K] (h : Module.finrank �
     IsCMField K := by
   haveI : Algebra.IsQuadraticExtension ℚ K := { finrank_eq_two' := h }
   exact IsCMField.ofCMExtension ℚ K
-private theorem exists_w (K : Type) [Field K] [NumberField K] {p : ℕ} (hp : p.Prime) :
-    ∃ w : HeightOneSpectrum (𝓞 K), (p : 𝓞 K) ∈ w.asIdeal := by
-  have h1 : Ideal.span {(p : 𝓞 K)} ≠ ⊤ := by
-    intro h
-    have := congrArg Ideal.absNorm h
-    rw [Ideal.absNorm_span_natCast, Ideal.absNorm_top] at this
-    rcases Nat.pow_eq_one.1 this with h | h
-    · exact hp.ne_one h
-    · exact Module.finrank_pos.ne' h
-  obtain ⟨M, hM, hle⟩ := Ideal.exists_le_maximal _ h1
-  have hm : (p : 𝓞 K) ∈ M := hle (Ideal.mem_span_singleton_self _)
-  refine ⟨⟨M, hM.isPrime, ?_⟩, hm⟩
-  rintro rfl
-  exact hp.ne_zero (by exact_mod_cast (Ideal.mem_bot.1 hm))
 private theorem cop_norm {K : Type} [Field K] [NumberField K] {p N : ℕ} (hp : p.Prime) (hN : ¬ p ∣ N)
     {w : HeightOneSpectrum (𝓞 K)} (hw : (p : 𝓞 K) ∈ w.asIdeal) : (normV w).Coprime N := by
   have h := Ideal.absNorm_dvd_absNorm_of_le ((Ideal.span_singleton_le_iff_mem _).2 hw)
@@ -175,7 +162,7 @@ theorem UpperTheory.V.Z.J.propGK_of_numberU3U_of_oneCharU :
     clear hnd hN hd
     revert hp h30
     interval_cases p <;> decide
-  obtain ⟨w, hw⟩ := exists_w K hp
+  obtain ⟨w, hw⟩ := _root_.GlobalTheory.CharVal.exists_over K hp
   haveI : Fintype {χ : DirichletCharacter ℂ N // χ.toUnitHom.ker = H} := Fintype.ofFinite _
   obtain ⟨NN, h0, hsz, hdiv⟩ := hC e he N (NeZero.pos N) p w hp hw h7 hN hd
     {χ : DirichletCharacter ℂ N // χ.toUnitHom.ker = H} (fun χ => (χ.1 (normV w))⁻¹)

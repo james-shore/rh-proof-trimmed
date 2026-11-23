@@ -58,9 +58,7 @@ set_option synthInstance.maxHeartbeats 400000
 
 namespace GlobalTheory.GoodRefine
 
-theorem sp_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  rw [← Spec.map_comp]; rfl
+alias sp_comp := _root_.GlobalTheory.TanMod.spMap_comp'
 
 theorem sp_inj {A B : Type} [CommRing A] [CommRing B] {f g : A →+* B} (h : spMap f = spMap g) : f = g :=
   congrArg CommRingCat.Hom.hom (Spec.map_injective h)

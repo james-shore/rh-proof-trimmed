@@ -66,8 +66,8 @@ theorem exists_pack_isOfType : GlobalTheory.Published.BhattScholzeCrystallineLat
   obtain ⟨C, hC, hTay⟩ := GlobalTheory.T.integralConnection_taylorFormula_tameBreuilKisin hBS l a e ϖ LL hl (Fin B.n) B.P T I hBK
   obtain ⟨⟨jB, hcmp⟩, -⟩ := GlobalTheory.T.breuilKisin_bcris_comparison_frobenius_naturality l a e ↥(OL LL) ↥LL.1 (thetaW a LL) ϖ (Fin B.n) B.P T I
   have hhor := GlobalTheory.T.galois_fixes_crystalline_image_descentDatum l a e ϖ LL hl (Fin B.n) B.P T I jB hcmp C hC hTay
-  obtain ⟨hst, hinf⟩ := GlobalTheory.T.breuilKisin_tensorAinf_galoisStable_kummerFixed l a e ϖ LL (Fin B.n) B.P T I hBK
-  have hK7 := GlobalTheory.T.kummerTowerGalois_preserves_breuilKisinModule hBS l a e ϖ LL (Fin B.n) B.P T I hBK
+  obtain ⟨hst, hinf⟩ := _root_.GlobalTheory.BKGal.StableFix.main l a e ϖ LL (Fin B.n) B.P T I hBK
+  have hK7 := _root_.GlobalTheory.GKinfStable.main hBS l a e ϖ LL (Fin B.n) B.P T I hBK
   obtain ⟨⟨Δ, hΔ⟩, hLA⟩ := GlobalTheory.T.exists_galoisDescentDatum_and_stable l a e ϖ LL (Fin B.n) B.P T I hinf hK7
   obtain ⟨hEN, hjU⟩ := GlobalTheory.T.breuilKisin_lattice_stable_and_hodgeTate_jumps hF l a e ϖ LL hl (Fin B.n) B.P T I jB Pl AI hstd hcmp hhor
   have hj : B.P.jumps ⊆ (U : Set ℤ) := hjU _ hT.jumps

@@ -76,8 +76,8 @@ theorem tg_of_base_point : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' :
   rw [hw] at hcell
   have hΛ := (Y.rowsOK u).1 t.lam t.mem
   have hmk' : Formalism.L2.SG.TermDef.mk _ _ _ ⟨F'', hP⟩ = Formalism.L2.SG.TermDef.mk _ _ _ ⟨t.frame, t.rep.2.2.2.2⟩ := hmk
-  have hrel := (Formalism.L2.SG.Closed.TermEqIff_holds D u u' (X.Fu u) t.lam hΛ _ _).1 hmk'
-  have hcell' : IsInCell (ZhatOM (ZhatL (lf D (X.Fu u)) t.frame)) w := ((Formalism.L2.SG.Closed.TermFun_holds D u u' (X.Fu u) t.lam hΛ).2.1 _ _ hrel w).1 hcell
+  have hrel := (_root_.term_eq_iff_relation D u u' (X.Fu u) t.lam hΛ _ _).1 hmk'
+  have hcell' : IsInCell (ZhatOM (ZhatL (lf D (X.Fu u)) t.frame)) w := ((_root_.term_function_const D u u' (X.Fu u) t.lam hΛ).2.1 _ _ hrel w).1 hcell
   have hGt : Gval (lf D (X.Fu u)) t.frame ≠ 0 := by
     intro h0
     apply hG

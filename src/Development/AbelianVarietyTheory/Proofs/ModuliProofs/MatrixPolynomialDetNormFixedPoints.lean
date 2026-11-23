@@ -69,17 +69,6 @@ namespace TorsionMatrix
 section
 open Matrix
 
-theorem norm_index_range (l : ℕ) [Fact l.Prime] {κ : Type} [Fintype κ] [DecidableEq κ]
-    (M : Matrix κ κ ℤ_[l]) (hM : M.det ≠ 0) :
-    ‖M.det‖ = ‖(((LinearMap.range M.mulVecLin).toAddSubgroup.index : ℕ) : ℚ_[l])‖ := by
-  first
-  | exact @_root_.GlobalTheory.NormDetIndex.norm_det_eq_norm_index
-  | exact _root_.GlobalTheory.NormDetIndex.norm_det_eq_norm_index
-  | (apply _root_.GlobalTheory.NormDetIndex.norm_det_eq_norm_index <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NormDetIndex.norm_det_eq_norm_index <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NormDetIndex.norm_det_eq_norm_index <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NormDetIndex.norm_det_eq_norm_index ..)
-
 theorem norm_card_eq_torsion (l : ℕ) [hl : Fact l.Prime] (K : Type) [AddCommGroup K] [Finite K]
     (N : ℕ) (hN : Nat.card K ≤ N) :
     ‖((Nat.card K : ℕ) : ℚ_[l])‖ = ‖((Nat.card {x : K // l ^ N • x = 0} : ℕ) : ℚ_[l])‖ := by
@@ -348,7 +337,7 @@ theorem norm_det_eq (l : ℕ) [hl : Fact l.Prime] {κ Q : Type} [Fintype κ] [De
     rw [Matrix.mul_smul, mul_adjugate, smul_smul, hc, mul_comm]
   have a2 : (c • M.adjugate) * M = ((l : ℤ_[l]) ^ (n + 1)) • 1 := by
     rw [Matrix.smul_mul, adjugate_mul, smul_smul, hc, mul_comm]
-  rw [norm_index_range l M hdet, ← card_ker_eq_index l M _ _ a1 a2,
+  rw [_root_.GlobalTheory.NormDetIndex.norm_det_eq_norm_index l M hdet, ← card_ker_eq_index l M _ _ a1 a2,
     norm_card_eq_torsion l f.ker (n + 1) (by omega)]
   congr 2
   refine Nat.card_eq_of_bijective (fun t => ⟨⟨ev (fun i => τ i n) (fun i => h1 i n) t.1, ?_⟩,

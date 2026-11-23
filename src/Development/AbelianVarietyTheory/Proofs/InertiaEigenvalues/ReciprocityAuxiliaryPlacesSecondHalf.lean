@@ -355,7 +355,7 @@ theorem vanish_NS {bkP : BKPh X} (h : GalHyp bkP i s) (hK : IsRes i K) (hρ : ρ
     {Q : Finset (PlE D.host)} {x : Z1 (red i K ρ)} (hx : cl x ∈ selOn bkP i ρ (1 : GE N →* Kˣ) K Q)
     {S : Set (PlE D.host)} (hS : ∀ v ∉ S, v ∉ placesOver D.host.E (X.l i) ∧ v ∉ Spl (X := X) i ∧ v ∉ Q) :
     ∀ n ∈ NS N.Om S, x.1 n = 0 ∧ ∀ m, red i K ρ n m = m := by
-  refine GlobalTheory.T.cocycle_unramified_outside_vanish_on_kernel D.host.E N.Om K _ _ (contAction_red hK hρ) N.plOm S (fun v hv B hB σ hσ m => ?_) x
+  refine _root_.GlobalTheory.UnramCocycle.vanish_on_NS D.host.E N.Om K _ _ (contAction_red hK hρ) N.plOm S (fun v hv B hB σ hσ m => ?_) x
     fun v hv => mem_unrAt hx (hS v hv).1 (hS v hv).2.1 (hS v hv).2.2
   have := resTriv_of_inertia h (hS v hv).1 (hS v hv).2.1 hB hσ
   rcases hρ with rfl | hρ
@@ -381,7 +381,7 @@ theorem reciprocity : Cheb → PoitouTateTotallyComplex → CohDimTwo → TameLo
   haveI : NeZero ((X.l i : ℕ) : N.Om) := ⟨Nat.cast_ne_zero.mpr hl.ne_zero⟩
   haveI := isLocalHom_of_isRes hK
   obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot N.Om (X.l i ^ 1)
-  obtain ⟨inv, hinv, hsum⟩ := GlobalTheory.T.sum_local_inv_eq_zero_of_unramified_cocycle hPT D.host.E N.Om (X.l i) ζ hζ
+  obtain ⟨inv, hinv, hsum⟩ := _root_.GlobalTheory.sum_inv_eq_zero_of_unramified_cocycle hPT D.host.E N.Om (X.l i) ζ hζ
   obtain ⟨haux, -, hφ⟩ := id hpos
   have hS0 : ∀ q v, Over (P q) v → v ∉ placesOver D.host.E (X.l i) ∧ v ∉ Spl (X := X) i := fun q v hv =>
     ⟨fun e => (haux.1 q v hv).2.2.2.1 (X.twistExcludedPlaces_contains_residueChar i e), fun e => (haux.1 q v hv).2.2.2.1 (spl_subset e)⟩

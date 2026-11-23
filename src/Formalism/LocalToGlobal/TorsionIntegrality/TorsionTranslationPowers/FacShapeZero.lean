@@ -52,25 +52,15 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.E
 
-theorem nonsingNorm : NonsingNorm := nonsingular_norm
-theorem unitKap : UnitKap := UnitKap_of nonsingNorm
-theorem unitPsi2 : UnitPsi2 := UnitPsi2_of nonsingNorm
-theorem unitDiff : UnitDiff := UnitDiff_of nonsingNorm
-theorem intRules : IntRules := integrality_rules
-theorem unitAtRules : UnitAtRules := unit_at_rules
-theorem rootInt : RootInt := root_integral_alt
-theorem gaussMul : GaussMul := gauss_multiplicative
-theorem xTShape : XTShape := XTShape_holds
-theorem facShape : FacShape := FacShape_of intRules unitAtRules unitKap unitPsi2 unitDiff xTShape
+theorem unitKap : UnitKap := UnitKap_of _root_.Formalism.L2.Th1.E.nonsingular_norm
+theorem unitPsi2 : UnitPsi2 := UnitPsi2_of _root_.Formalism.L2.Th1.E.nonsingular_norm
+theorem unitDiff : UnitDiff := UnitDiff_of _root_.Formalism.L2.Th1.E.nonsingular_norm
+alias intRules := _root_.Formalism.L2.Th1.E.integrality_rules
+alias unitAtRules := _root_.Formalism.L2.Th1.E.unit_at_rules
+theorem facShape : FacShape := FacShape_of intRules unitAtRules unitKap unitPsi2 unitDiff _root_.UpperTheory.Reformulated.B.SeriesSubgroup.XTShape_holds
 theorem transPower : TransPower := translate_power
-theorem parSumTwo : ParSumTwo := parallelogram_sum_two
-theorem transUnit : TransUnit := TransUnit_of intRules unitAtRules rootInt facShape transPower
+theorem transUnit : TransUnit := TransUnit_of intRules unitAtRules _root_.Formalism.L2.Th1.E.root_integral_alt facShape transPower
 theorem transGauss : TransGauss := TransGauss_of intRules unitAtRules transUnit
 
-theorem prodInt : ProdInt := product_integral
-theorem substExpInt : SubstExpInt := subst_exp_integral
-theorem congIffSimeq : CongIffSimeq := congruence_iff_simeq
-theorem sumEBridge : SumEBridge := sum_series_analytic
-theorem mapCob : MapCob := map_coboundary
-
+alias prodInt := _root_.Formalism.L2.Th1.E.product_integral
 end Formalism.L2.Th1.E

@@ -134,7 +134,7 @@ theorem datum_of_aut_A_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ�
     (haut : ∀ γ ∈ GQF σ JS, ∀ γ' ∈ GQF σ JT, ∀ f, IsThetaFunOF σ JS JT ξ₀ B.ψ f → of (γ, γ') (oi (γ, γ') f) 0 = f 0) :
     ∃ ω, IsWeilDatumOF σ JS JT (fun w : InfinitePlace F => (B.emb w).1) ξ₀ B.ψ (η ^ nS) (η ^ nT) ω := by
   have hB := C.good
-  have hψ := _root_.GlobalTheory.T.standard_additive_character_sign F E σ B hB
+  have hψ := _root_.GlobalTheory.StdCharWeilDatum.isStdCharF_of_isGood_k F E σ B hB
   have hcomm : ∀ p q f, IsThetaFunOF σ JS JT ξ₀ B.ψ f → of p (oi q f) = oi q (of p f) :=
     fun p q f h => _root_.PositivityTheory.ThKW.fin_inf_comm_A_k C hO hof hi p q f h
   have hth : ∀ (w₀ : WOF F E nS nT) f, IsThetaFunOF σ JS JT ξ₀ B.ψ f →

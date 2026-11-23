@@ -71,12 +71,6 @@ open scoped MatrixGroups Matrix
 noncomputable section
 namespace GlobalTheory.HeckeTh
 
-theorem toGQ_coe (γ : SL(2, ℤ)) : toGQ (γ : Matrix (Fin 2) (Fin 2) ℤ) = ofSL γ := by
-  have h : (0:ℤ) < (γ : Matrix (Fin 2) (Fin 2) ℤ).det := by rw [γ.det_coe]; exact one_pos
-  unfold toGQ; rw [dite_eq_left h]
-  apply Subtype.ext; apply Units.ext
-  simp [ofSL, Matrix.SpecialLinearGroup.toGLPos]
-
 theorem ent_toGQ (m : Matrix (Fin 2) (Fin 2) ℤ) (h : 0 < m.det) (i j : Fin 2) : ent (toGQ m) i j = (m i j : ℚ) := by
   unfold ent toGQ; rw [dite_eq_left h]; simp [Matrix.GeneralLinearGroup.mkOfDetNeZero]
 
@@ -331,8 +325,8 @@ theorem hn_comm (X : Tower Ω ε) {M q : ℕ} {τ : SL(2, ℤ)} (hq : q.Prime) (
   have step : ∀ o, X.sl (ofSL δ) (X.sl (toGQ (repT q τ o)) u) = X.sl (toGQ (repT q τ (π o))) (X.sl (ofSL δ) u) := by
     intro o
     obtain ⟨g, hg, e⟩ := hπ o
-    rw [← X.sl_mul, ← toGQ_coe δ, ← toGQ_mul_of_pos _ _ (hr o) (sl_pos _), e, toGQ_mul_of_pos _ _ (sl_pos _) (hr _),
-      X.sl_mul, toGQ_coe, toGQ_coe, map_mul, X.sl_mul, inv_sl X hδ hu g (Subgroup.mem_inf.1 hg).1]
+    rw [← X.sl_mul, ← _root_.GlobalTheory.KZ.Betti.toGQ_sl δ, ← toGQ_mul_of_pos _ _ (hr o) (sl_pos _), e, toGQ_mul_of_pos _ _ (sl_pos _) (hr _),
+      X.sl_mul, _root_.GlobalTheory.KZ.Betti.toGQ_sl, _root_.GlobalTheory.KZ.Betti.toGQ_sl, map_mul, X.sl_mul, inv_sl X hδ hu g (Subgroup.mem_inf.1 hg).1]
   simp only [hn, MonoidHom.coe_mk, OneHom.coe_mk]
   rw [map_prod, Finset.prod_congr rfl fun o _ => step o,
     Equiv.prod_comp π fun o => X.sl (toGQ (repT q τ o)) (X.sl (ofSL δ) u)]
@@ -348,7 +342,7 @@ theorem hn_eq (X : Tower Ω ε) {q : ℕ} (hq : 0 < q) (τ : SL(2, ℤ)) (u : X.
   have hD : (0 : ℤ) < (!![(q : ℤ), 0; 0, 1] : Matrix (Fin 2) (Fin 2) ℤ).det := by
     simp [Matrix.det_fin_two, hq]
   simp only [hn, MonoidHom.coe_mk, OneHom.coe_mk]
-  rw [Fintype.prod_option, mul_comm, Finset.prod_range, ← X.sl_mul, ← toGQ_coe, ← toGQ_mul_of_pos _ _ (sl_pos _) hD]
+  rw [Fintype.prod_option, mul_comm, Finset.prod_range, ← X.sl_mul, ← _root_.GlobalTheory.KZ.Betti.toGQ_sl, ← toGQ_mul_of_pos _ _ (sl_pos _) hD]
   rfl
 
 theorem eval_kmap (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] (n : ℕ) (φ : X.K ≃+* X.K) (z : X.Khat l) (f : X.Kˣ)
@@ -448,7 +442,7 @@ theorem dl_cong [IsAlgClosed Ω] (X : Tower Ω ε) (A : ValuationSubring Ω) {N 
   haveI : IsAlgClosure ℚ Ω := isAlgClosure_of_tower X
   have hy0 : (y : X.K) ^ k ≠ 0 := pow_ne_zero _ y.ne_zero
   have hL : (u : X.K) ^ l ^ n = f / (y : X.K) ^ k := by rw [hu]; field_simp
-  have hT := GlobalTheory.T.modularTower_rootOfInvariant_T_invariant X N l n hl.out hl2 hlN hN (u : X.K) u.ne_zero (by
+  have hT := _root_.GlobalTheory.TInv.sl_T_eq X N l n hl.out hl2 hlN hN (u : X.K) u.ne_zero (by
       intro γ hγ; rw [hL, map_div₀, map_pow, hyI γ hγ, hfI γ hγ]) (by
       intro δ h1 h2
       obtain ⟨g, hgI, hg⟩ := hy δ h1 h2
@@ -456,7 +450,7 @@ theorem dl_cong [IsAlgClosed Ω] (X : Tower Ω ε) (A : ValuationSubring Ω) {N 
       refine ⟨g' / g ^ k, fun γ hγ => by rw [map_div₀, map_pow, hgI γ hγ, hg'I γ hγ], ?_⟩
       rw [mul_pow, ← map_pow, hL, map_div₀, div_mul_div_comm, hg', map_pow, ← mul_pow, hg, div_pow, ← pow_mul,
         ← pow_mul, mul_comm k])
-  exact GlobalTheory.T.logDerivQExpansion_mul_primePow_congr X A l hlA n _ _ hy0 u.ne_zero hT _ _ (GlobalTheory.ThAdd.isDl_pow hψ k) (hu ▸ hφ) r
+  exact _root_.GlobalTheory.Glue.DlPow.isDl_mul_lpow_cong X A l hlA n _ _ hy0 u.ne_zero hT _ _ (GlobalTheory.ThAdd.isDl_pow hψ k) (hu ▸ hφ) r
 
 theorem isDl_hq [IsAlgClosed Ω] (X : Tower Ω ε) (A : ValuationSubring Ω) (l : ℕ) [Fact l.Prime] (n : ℕ) {q : ℕ}
     (hq0 : 0 < q) (hqA : (q : Ω)⁻¹ ∈ A) {f : X.K} {φ : HahnSeries ℚ Ω} (h : IsDl X A l n 1 f φ) :
@@ -521,7 +515,7 @@ theorem isThB_heckeT : ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosed 
     obtain ⟨s, hs⟩ := (Nat.modEq_iff_dvd' (Nat.one_le_pow _ _ h3)).1 h2
     exact ⟨s, by rw [← hs, ← mul_pow]; have := Nat.one_le_pow w _ h3; omega⟩
 
-  have hy : ((su X τ f₀ : X.Kˣ) : X.K) = X.sl (ofSL τ) f₀ := by rw [coe_su, toGQ_coe]
+  have hy : ((su X τ f₀ : X.Kˣ) : X.K) = X.sl (ofSL τ) f₀ := by rw [coe_su, _root_.GlobalTheory.KZ.Betti.toGQ_sl]
   have hyI : Inv X (CongruenceSubgroup.Gamma1 (N * l ^ n)) ((su X τ f₀ : X.Kˣ) : X.K) := hy ▸ inv_sl X hGM hf₀I
   have hyδ : Dlt X N l n ((su X τ f₀ : X.Kˣ) : X.K) := hy ▸ dlt_sl X hGM hGN hf₀δ
   have hcl : X.cls l n (su X τ f₀ ^ a ^ w) = X.cls l n f' := by

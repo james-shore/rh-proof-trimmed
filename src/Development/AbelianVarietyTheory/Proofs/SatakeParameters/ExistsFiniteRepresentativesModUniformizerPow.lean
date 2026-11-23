@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.SatakeRes
 
 @[expose] public section
 
@@ -53,17 +54,6 @@ noncomputable section
 namespace GlobalTheory.UnramReps
 
 variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))]
-
-theorem le_ofAdd_neg_one_of_lt_one' {y : WithZero (Multiplicative ℤ)} (h : y < 1) :
-    y ≤ ((Multiplicative.ofAdd (-1 : ℤ) : Multiplicative ℤ) : WithZero (Multiplicative ℤ)) := by
-  induction y using WithZero.recZeroCoe with
-  | zero => exact zero_le'
-  | coe a =>
-    rw [← WithZero.coe_one, WithZero.coe_lt_coe] at h
-    rw [WithZero.coe_le_coe]
-    have h' : Multiplicative.toAdd a < 0 := h
-    show Multiplicative.toAdd a ≤ -1
-    omega
 
 theorem exists_residue_reps' {q : ℕ} (hq : 2 ≤ q)
     (hcard : Nat.card ((Valued.v : Valuation L (WithZero (Multiplicative ℤ))).integer ⧸
@@ -130,7 +120,7 @@ theorem exists_reps_mod_pow : ∀ (L : Type) [Field L] [Valued L (WithZero (Mult
       exact (Formalism.UG.intL L).add_mem (hRO r hr) ((Formalism.UG.intL L).mul_mem hϖO (hTO t ht))
     · intro x hx
       obtain ⟨r, hr, hxr⟩ := hR x hx
-      have hle : v (x - r) ≤ v ϖ := hϖ ▸ le_ofAdd_neg_one_of_lt_one' hxr
+      have hle : v (x - r) ≤ v ϖ := hϖ ▸ _root_.Formalism.UG.P.satake_lt_one_le hxr
       set y := (x - r) * ϖ⁻¹ with hy
       have hϖ0 : ϖ ≠ 0 := fun h => h0 (by rw [h, map_zero])
       have hyO : y ∈ Formalism.UG.intL L := by

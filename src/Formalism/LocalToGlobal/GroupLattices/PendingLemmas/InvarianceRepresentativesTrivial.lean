@@ -61,21 +61,7 @@ theorem ordP_mul [IsDomain W] [IsDiscreteValuationRing W] [IsFractionRing W Qq] 
   have hu : algebraMap W Qq (u : W) ≠ 0 := (u.isUnit.map (algebraMap W Qq)).ne_zero
   rw [← mul_assoc, ordP_mul_zpow hp (mul_ne_zero hx hu), ordP_mul_unit hp hx, ordP_eq hp]
 
-theorem colSpan_mul {k : ℕ} (A g : Matrix (Fin k) (Fin k) Qq) :
-    (colSpan W g).map ((Matrix.mulVecLin A).restrictScalars W) = colSpan W (A * g) := by
-  unfold colSpan
-  rw [Submodule.map_span]
-  congr 1
-  ext x
-  constructor
-  · rintro ⟨_, ⟨c, rfl⟩, rfl⟩
-    refine ⟨c, ?_⟩
-    ext i
-    simp [Matrix.mulVec, Matrix.mul_apply, dotProduct]
-  · rintro ⟨c, rfl⟩
-    refine ⟨_, ⟨c, rfl⟩, ?_⟩
-    ext i
-    simp [Matrix.mulVec, Matrix.mul_apply, dotProduct]
+alias colSpan_mul := _root_.Formalism.MainNotions.G.LatticeSystems.je_colSpan_mul
 
 theorem gl_det_ne {k : ℕ} (A : GL (Fin k) Qq) : (A : Matrix (Fin k) (Fin k) Qq).det ≠ 0 :=
   ((Matrix.isUnit_iff_isUnit_det _).1 A.isUnit).ne_zero

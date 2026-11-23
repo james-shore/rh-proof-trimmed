@@ -58,20 +58,6 @@ namespace GlobalTheory.GLq.GenericConstituent
 
 variable {g : ℕ} [Fact g.Prime]
 
-theorem wh_const_mul' (ψ : AddChar (ZMod g) ℂ) {n : ℕ} (c : ℂ) (f : Gn g n → ℂ) :
-    wh ψ (fun x => c * f x) = c * wh ψ f := by
-  unfold wh tr
-  rw [Finset.mul_sum]
-  refine Finset.sum_congr rfl fun x _ => ?_
-  ring
-
-theorem wh_mul_const' (ψ : AddChar (ZMod g) ℂ) {n : ℕ} (c : ℂ) (f : Gn g n → ℂ) :
-    wh ψ (fun x => f x * c) = wh ψ f * c := by
-  unfold wh tr
-  rw [Finset.sum_mul]
-  refine Finset.sum_congr rfl fun x _ => ?_
-  ring
-
 theorem wh_list_sum (ψ : AddChar (ZMod g) ℂ) {n : ℕ} (L : List (Gn g n → ℂ)) :
     wh ψ L.sum = (L.map (wh ψ)).sum := by
   induction L with
@@ -101,9 +87,7 @@ theorem ip_sum_count {G : Type} [Group G] [Fintype G] (ρ : G → ℂ) (hρ : Is
     · subst h; simp; ring
     · simp [h, Ne.symm h]
 
-theorem isChar_of_isIrr {G : Type} [Group G] {χ : G → ℂ} (h : IsIrr χ) : IsChar χ := by
-  obtain ⟨V, -, hV⟩ := h
-  exact ⟨V, hV⟩
+alias isChar_of_isIrr := _root_.GlobalTheory.CharDec.isChar_of_isIrr
 
 theorem isClass_of_isChar {n : ℕ} {χ : Gn g n → ℂ} (h : IsChar χ) : IsClass χ :=
   (GlobalTheory.charDec (Gn g n) χ).2.2.1 h
@@ -127,8 +111,8 @@ theorem wh_hcL_prod (ψ : AddChar (ZMod g) ℂ) (hψ : ψ ≠ 1) :
     rw [hcL_cons]
     unfold hc
     rw [GlobalTheory.GLq.WhMul.wh_hcT g ψ hψ p.1 (degL L) (degL (p :: L)) hdeg]
-    · simp_rw [wh_const_mul']
-      rw [wh_mul_const', ih hL', List.map_cons, List.prod_cons]
+    · simp_rw [_root_.GlobalTheory.GLq.Leibniz.wh_const_mul]
+      rw [_root_.GlobalTheory.GLq.Leibniz.wh_mul_const, ih hL', List.map_cons, List.prod_cons]
     · intro y x z
       simp only
       rw [hα]

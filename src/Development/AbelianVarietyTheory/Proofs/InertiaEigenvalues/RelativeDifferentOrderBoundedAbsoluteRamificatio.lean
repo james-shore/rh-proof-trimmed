@@ -93,7 +93,7 @@ theorem not_pow_dvd_differentIdeal_int : ∀ (L : Type) [Field L] [NumberField L
     rw [Ideal.Quotient.eq]
     have : q * c0 - c0 = -(i * c0) := by linear_combination c0 * hiq
     rw [this]; exact neg_mem (Ideal.mul_mem_right _ _ hi)
-  have htr := GlobalTheory.T.intCast_trace_eq_trace_quotient_of_mem' L l e' (la ^ (e' * e')) (J ^ e') hIQ hmul (q * c0) hx
+  have htr := _root_.GlobalTheory.intCast_trace_eq_trace_quotient_of_mem L l e' (la ^ (e' * e')) (J ^ e') hIQ hmul (q * c0) hx
   rw [hxc] at htr
   have hnot : Algebra.intTrace ℤ (𝓞 L) (q * c0) ∉ Ideal.span {((l ^ e' : ℕ) : ℤ)} := by
     intro hm

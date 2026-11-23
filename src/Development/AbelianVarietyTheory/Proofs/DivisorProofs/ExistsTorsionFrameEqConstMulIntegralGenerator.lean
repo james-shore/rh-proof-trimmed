@@ -193,7 +193,7 @@ theorem exists_frRel : ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V],
   refine ⟨l, hl0, fun x e h hx hh hext => ?_⟩
 
   obtain ⟨α, hα, hα₀, hαx⟩ := frame_values' A hx
-  obtain ⟨c, hc0, hc⟩ := GlobalTheory.T.normalisedMulIso_uniformisation_genericFibre_one_constant V _ D A G U.toUnifPre w₀ hw₀ N α hα β' hβ'
+  obtain ⟨c, hc0, hc⟩ := _root_.GlobalTheory.GenericMove.move_one_const V _ D A G U.toUnifPre w₀ hw₀ N α hα β' hβ'
   obtain ⟨u₀, hu₀⟩ := unit_origin (V := V) G U.LG N β' hβ'
   obtain ⟨i, hi⟩ := exists_chart U.LG.isLB (h.left (cpt V))
   obtain ⟨f₀, hf₀⟩ := GlobalTheory.TorsFrameInt.exists_gen_of_chart U.LG.isLB (K := Fin 1) (fun _ => h.left) (fun _ => 1)
@@ -282,7 +282,7 @@ theorem exists_frRel : ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V],
     abel
   refine ⟨f, GlobalTheory.TorsFrameInt.scale_isGen f₀ hf₀ c', fun z JA JG hA hG => ?_⟩
   obtain rfl := pt_eq z₀ z
-  have ind := GlobalTheory.T.uniformisedFrame_ratio_integralFrame_chart_independent V _ D A G U.toUnifPre w₀ hw₀ x e hx.2.1 h f (GlobalTheory.TorsFrameInt.scale_isGen f₀ hf₀ c') hext
+  have ind := _root_.GlobalTheory.Poinc.FrameIndep.frame_ratio_indep V _ D A G U.toUnifPre w₀ hw₀ x e hx.2.1 h f (GlobalTheory.TorsFrameInt.scale_isGen f₀ hf₀ c') hext
     z₀ JA JA₀ JG JG₀ hA hG hA₀ hG₀
   have w₁ : GlobalTheory.TorsFrameInt.wv w₀ x' z₀ JG₀ JA₀ = Geo.Tor.gw (Y := (TF (R := V) (FractionRing V)).left) w₀
       (x.left ≫ U.gen.inv.left) z₀ (JG₀ (toUnit (TF (R := V) (FractionRing V)) ≫ h).left) (fun _ => JA₀ x.left) := by

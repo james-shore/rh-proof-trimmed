@@ -57,7 +57,7 @@ theorem discAinf_isDomain : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK
   intro l _ K bk ρ h0 h1
   obtain ⟨N, hmul, hadd, hl, hle, hge⟩ := GlobalTheory.T.exists_gaussNorm_ainf_disc l K bk ρ h0 h1
   have hρ : (0 : ℝ) < (ρ : ℝ) := h0
-  obtain ⟨hdom, hnorm⟩ := GlobalTheory.T.isDomain_closedDiscGaugeCompletion_of_equiv_norm l (Ainf l) (bk.ev X) ρ N (ρ : ℝ) hρ hmul hadd hl hle hge
+  obtain ⟨hdom, hnorm⟩ := _root_.GlobalTheory.BSP.DiscDomain.isDomain_disc l (Ainf l) (bk.ev X) ρ N (ρ : ℝ) hρ hmul hadd hl hle hge
   refine ⟨hdom, hnorm, fun a ha => ⟨((ρ : ℝ) ^ 2 * ‖a‖)⁻¹, fun y => ?_⟩⟩
   have hpos : 0 < (ρ : ℝ) ^ 2 * ‖a‖ := mul_pos (pow_pos hρ 2) (norm_pos_iff.2 ha)
   have h := hnorm a y

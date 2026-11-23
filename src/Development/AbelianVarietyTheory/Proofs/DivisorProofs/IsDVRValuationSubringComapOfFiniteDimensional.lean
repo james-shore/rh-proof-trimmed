@@ -145,8 +145,6 @@ theorem isDiscreteValuationRing_comap (K L : Type) [Field K] [Field L] (φ : K �
     rw [this, mul_inv_cancel₀ hπ0]
   exact { hpid with not_a_field' := hnf }
 
-theorem main : ∀ (K L : Type) [Field K] [Field L] (φ : K →+* L), (letI := φ.toAlgebra; FiniteDimensional K L) → ∀ (V : ValuationSubring L) [IsDiscreteValuationRing V], IsDiscreteValuationRing (V.comap φ) := by
-  intro K L _ _ φ hfin V _
-  exact isDiscreteValuationRing_comap K L φ hfin V
+alias main := _root_.GlobalTheory.RestrictDVR.isDiscreteValuationRing_comap
 
 end GlobalTheory.RestrictDVR

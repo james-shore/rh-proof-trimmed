@@ -69,12 +69,6 @@ private def odMap {A X X' : Type} [CommRing A] [CommRing X] [CommRing X'] [Algeb
   map_add' M N := by ext i j; simp
   map_smul' c M := by ext i j; simp
 
-private theorem lift_ex {A M Q Q' : Type} [CommRing A] [AddCommGroup M] [AddCommGroup Q]
-    [AddCommGroup Q'] [Module A M] [Module A Q] [Module A Q'] (π : M →ₗ[A] Q)
-    (hπ : Function.Surjective π) (g : M →ₗ[A] Q') (hk : ∀ m, π m = 0 → g m = 0) :
-    ∃ q : Q →ₗ[A] Q', ∀ m, q (π m) = g m :=
-  _root_.UpperTheory.Reformulated.B.Qf12.lift_ex π hπ g hk
-
 theorem UpperTheory.V.Pa.B2.odHom :
     ∀ (l : ℕ) [Fact l.Prime] (L : Loc) (G G0 : Glob l L) (h : G.Hom G0) (n : ℕ) (x : NP G0.frame n) (X : Type) [CommRing X] [Algebra x.A X] (X' : Type) [CommRing X'] [Algebra x.A X'] (D D' : Dat x.A (plOf G)) (o : IsOd h x X D) (o' : IsOd h x X' D') (u : X →ₗ[x.A] X'), ∃ f : D.Hom D', Induced o o' u f := by
   intro l _ L G G0 h n x X _ _ X' _ _ D D' o o' u
@@ -115,5 +109,5 @@ theorem UpperTheory.V.Pa.B2.odHom :
       exact (congrArg u this).trans (map_zero u)
     · have : m = 0 := o.kerU w (hm.trans (map_zero _).symm)
       rw [this, map_zero]
-  choose q hq using fun w => lift_ex (D.π w) (D.surj w) (D'.π w ∘ₗ f) (hk w)
+  choose q hq using fun w => _root_.UpperTheory.Reformulated.B.Qf12.lift_ex (D.π w) (D.surj w) (D'.π w ∘ₗ f) (hk w)
   exact ⟨⟨f, q, hall, hq⟩, hf⟩

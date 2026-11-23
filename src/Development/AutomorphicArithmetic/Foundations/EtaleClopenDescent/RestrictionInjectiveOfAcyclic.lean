@@ -147,4 +147,4 @@ private lemma restr_inj : RestrInj := by
 
 end UpperTheory.Cb
 
-theorem UpperTheory.Cb.restrInj : LateralTheory.EWeil.AcycPf.RestrInj := UpperTheory.Cb.restr_inj
+alias UpperTheory.Cb.restrInj := _root_.UpperTheory.Cb.restr_inj

@@ -90,7 +90,7 @@ theorem pSeries_eq_map (L : PeriodPair) (h2 : L.g₂ ∈ M) (h3 : L.g₃ ∈ M) 
     Formalism.L2.Th1.F.pSeries L =
       PowerSeries.map (algebraMap M ℂ) (Formalism.L2.Th1.F.pOf (⟨L.g₂, h2⟩ : M) ⟨L.g₃, h3⟩) := by
   have e1 : Formalism.L2.Th1.F.pSeries L = Formalism.L2.Th1.F.pOf L.g₂ L.g₃ :=
-    Formalism.L2.Th1.F.isWpUnique ℂ _ _ _ _ (Formalism.L2.Th1.F.taylorIsWp L) (Formalism.L2.Th1.F.pOfIsWp ℂ _ _)
+    _root_.Formalism.L2.Th1.F.weierstrass_series_unique ℂ _ _ _ _ (Formalism.L2.Th1.F.taylorIsWp L) (_root_.Formalism.L2.Th1.F.weierstrass_p_of_series ℂ _ _)
   rw [e1]
   ext n
   obtain ⟨p, hp⟩ := Formalism.L2.Th1.F.Universal.isU_pOf n
@@ -127,7 +127,7 @@ theorem theta_null_coefficients : ThetaConstantTermCoefficient := by
       Formalism.L2.Th1.B.fExp (-(PowerSeries.C (Formalism.L2.Th1.F.s2 L / 2) * PowerSeries.X ^ 2)) := by
     rw [Formalism.L2.Th1.B.Map.map_fExp' j (by simp), hmap]
   have hS : Formalism.L2.Th1.F.taylor0 (Formalism.L2.Th1.F.th0 L (ω₀ / 2)) = PowerSeries.map j S := by
-    rw [Formalism.L2.Th1.F.taylorTh0 L ω₀ hω hh, map_mul, h1, h2']
+    rw [_root_.Formalism.L2.Th1.F.taylor_even_theta L ω₀ hω hh, map_mul, h1, h2']
   intro k
   rw [hS, PowerSeries.coeff_map]
   exact (PowerSeries.coeff k S).2

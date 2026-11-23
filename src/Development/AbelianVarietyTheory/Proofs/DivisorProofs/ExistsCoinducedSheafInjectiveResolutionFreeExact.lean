@@ -54,10 +54,10 @@ open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComp
 
 theorem GlobalTheory.EtC.coindRes_exists : ∀ (R S : Type) [CommRing R] [CommRing S] (φ : R →+* S) (J : Shv R) [Injective J], (∀ P : PSh, Module.Injective (ULift.{1} R) ((free R).obj P ⟶ J)) → ∃ (C : Cx R) (ε : sgl ((restr φ).obj ((coind φ).obj J)) ⟶ C), C.IsStrictlyGE 0 ∧ (∀ t, Injective (C.X t)) ∧ QuasiIso ε ∧ ∀ (P : PSh) (n : ℤ), 0 < n → Subsingleton (CohomologyClass (sgl ((free R).obj P)) C n) := by
   intro R S _ _ φ J _ hJ
-  haveI := GlobalTheory.T.etaleCoinductionComplexAugmentation_quasiIso R S φ J hJ
+  haveI := _root_.GlobalTheory.EtC.coindAug_quasiIso R S φ J hJ
   let I : InjectiveResolution ((restr φ).obj ((coind φ).obj J)) :=
     { cocomplex := coindCx φ J
-      injective := fun n => GlobalTheory.T.injective_etaleSheafOfLinearMapsFromModule R J ((scalarsRes φ).complex.X n)
+      injective := fun n => _root_.GlobalTheory.EtC.homSh_injective R J ((scalarsRes φ).complex.X n)
       ι := coindAug φ J }
   refine ⟨I.cochainComplex, I.ι', inferInstance, inferInstance, inferInstance, ?_⟩
   intro P n hn
@@ -81,7 +81,7 @@ theorem GlobalTheory.EtC.coindRes_exists : ∀ (R S : Type) [CommRing R] [CommRi
       (homSh J).map ((scalarsRes φ).complex.d (k + 2) (k + 1)).op = 0 := by
     rw [← coindCx_d]
     exact h2
-  obtain ⟨g, hg⟩ := GlobalTheory.T.exists_lift_etaleSheafOfLinearMaps_exact R J ((free R).obj P) (hJ P) _ _ _ _ _ hex _ hf'
+  obtain ⟨g, hg⟩ := _root_.GlobalTheory.EtC.lift_homSh R J ((free R).obj P) (hJ P) _ _ _ _ _ hex _ hf'
   refine ⟨g ≫ (I.cochainComplexXIso (k : ℤ) k rfl).inv, ?_⟩
   rw [I.cochainComplex_d (k : ℤ) ((k : ℤ) + 1) k (k + 1) rfl (by simp)]
   erw [Category.assoc, Iso.inv_hom_id_assoc]

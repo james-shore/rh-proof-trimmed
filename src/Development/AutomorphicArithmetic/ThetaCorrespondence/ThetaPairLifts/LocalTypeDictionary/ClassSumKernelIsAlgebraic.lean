@@ -63,10 +63,10 @@ theorem classSum_kernel_isAlgebraic : ∀ {D : D7} {T : Type} [Finite T] {L : Le
     ∀ dg : D.what₂.Tau →₀ ℕ, ∃ Ω : ℂ, Ω ≠ 0 ∧ ∀ (t : T), ∀ x ∈ GfC A, ∀ h ∈ GfC WW, ∀ k : FVar D WW.rank A.rank →₀ ℕ,
       Finsupp.mapDomain Prod.fst k = dg → IsAlgebraic ℚ (X.ker W.ψ W.θ t (MvPolynomial.monomial k 1) h x / Ω) := by
   intro D T _ L μ₀ sc G W i j A A' WW X hP hI hL hX dg
-  obtain ⟨Ω, hΩ, hjet⟩ := _root_.GlobalTheory.T.bottom_translate_jets_algebraic hP hI hL hX dg
+  obtain ⟨Ω, hΩ, hjet⟩ := _root_.GlobalTheory.BotTransJet.isAlgebraic_pureTensorO_div_period hP hI hL hX dg
   refine ⟨Ω, hΩ, fun t x hx h hh k hk => ?_⟩
-  obtain ⟨n, c, w, hc, hw, hf⟩ := _root_.GlobalTheory.T.bottom_fourier_coeff_heisenberg_expansion hP hI hL hX t
-  choose n' c' w' hc' hw' hm using fun p => _root_.GlobalTheory.T.twisted_moved_translate_algebraic hP hI hL hX t x hx h hh (w p) (hw p)
+  obtain ⟨n, c, w, hc, hw, hf⟩ := _root_.GlobalTheory.BotFourier.finite_datum_eq_sum_heisenberg hP hI hL hX t
+  choose n' c' w' hc' hw' hm using fun p => _root_.GlobalTheory.MovedAlg.moved_translate_eq_algebraic_combination hP hI hL hX t x hx h hh (w p) (hw p)
   have hψ := hX.is.isVac.1
   have hθ : IsInfFam W.θ := hX.is.isVac.2.inf
   have hv : IsThetaFunO W.ψ (GlobalTheory.Grid.neg A) WW X.vac := hX.is.isVac.2.theta
@@ -107,8 +107,8 @@ theorem classSums_isAlgebraic : ∀ {D : D7} {T : Type} [Finite T] {L : LevCh D 
     IsBottomTri W i j X →
     ∃ Ω : ℂ, Ω ≠ 0 ∧ ∀ t, ∀ h ∈ GfC WW, ∀ k, IsAlgebraic ℚ (X.I W.ψ W.θ t (MvPolynomial.monomial k 1) h / Ω) := by
   intro D T _ L μ₀ sc G W i j A A' WW X hP hI hL hX
-  obtain ⟨v, N, z, w, κ, hv, hz, hw, hκ1, hκ2, hcls⟩ := _root_.GlobalTheory.T.bottom_class_sum_integral_neg hP hI hL hX
-  obtain ⟨dg, hproj⟩ := _root_.GlobalTheory.T.twisted_real_average_kernel_isAlgebraic hP hI hL hX
+  obtain ⟨v, N, z, w, κ, hv, hz, hw, hκ1, hκ2, hcls⟩ := _root_.GlobalTheory.RowTest.BottomClassSumNeg.integral_eq_bottom_classSum hP hI hL hX
+  obtain ⟨dg, hproj⟩ := _root_.GlobalTheory.RealAvg.real_average_kernel_isAlgebraic hP hI hL hX
   obtain ⟨Ω, hΩ, hdict⟩ := _root_.GlobalTheory.BotAlgI.classSum_kernel_isAlgebraic hP hI hL hX dg
   have hv' : (v : ℂ) ≠ 0 := by exact_mod_cast hv.ne'
   refine ⟨(v : ℂ) * Ω, mul_ne_zero hv' hΩ, fun t h hh k => ?_⟩
@@ -131,17 +131,3 @@ theorem classSums_isAlgebraic : ∀ {D : D7} {T : Type} [Finite T] {L : LevCh D 
 end GlobalTheory.BotAlgI
 end
 
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
-open IsDedekindDomain NumberField GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.RowClaim
-open Formalism.L2.Host (HChar)
-open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.RowEx MeasureTheory
-
-theorem _root_.GlobalTheory.T.bottom_classSums_algebraic : ∀ {D : D7} {T : Type} [Finite T] {L : LevCh D T} {μ₀ : T} {sc : Consts} {G : GridData L sc} {W : G.Weil}
-    {i j : Fin D.R.m} {A A' WW : HSp D} {X : Tri T A A' WW}, _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, GlobalTheory.NormSum.Inp D) → L.Is μ₀ →
-    IsBottomTri W i j X →
-    ∃ Ω : ℂ, Ω ≠ 0 ∧ ∀ t, ∀ h ∈ GfC WW, ∀ k, IsAlgebraic ℚ (X.I W.ψ W.θ t (MvPolynomial.monomial k 1) h / Ω) := by
-  first | exact @_root_.GlobalTheory.BotAlgI.classSums_isAlgebraic | exact _root_.GlobalTheory.BotAlgI.classSums_isAlgebraic | (intros; apply _root_.GlobalTheory.BotAlgI.classSums_isAlgebraic <;> assumption)
-end

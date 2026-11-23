@@ -121,11 +121,6 @@ private theorem exAt {E : Type} [Field E] [NumberField E] [_root_.NumberField.Is
   simp only [dif_pos hx]
   exact hx.choose_spec
 
-private theorem emb_two {K M : Type} [Field K] [NumberField K] [Field M] [NumberField M] [Algebra K M] [IsGalois K M]
-    (h2 : Module.finrank K M = 2) (σ : M ≃ₐ[K] M) (hσ : σ ≠ 1) (τ τ' : M →+* ℂ) (hne : τ ≠ τ')
-    (he : τ.comp (algebraMap K M) = τ'.comp (algebraMap K M)) : τ.comp σ.toRingEquiv.toRingHom = τ' :=
-  _root_.UpperTheory.Reformulated.B.Qe21.emb_two h2 σ hσ τ τ' hne he
-
 end SlopeTestRemainingChoices
 
 theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.E.indNorm :
@@ -235,7 +230,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.E.indNorm :
     have e1 : m₁ τ = m := ((Dp.parEx M 2 two_pos _ τ₁ hs₁).1 τ).unique (hA₁.1 τ) ((Dp.sInfIff M 2 _ π τ₁ hτ₁ τ m).2 hm)
     have e2 : m₂ τ = m' := by
       refine ((Dp.parEx M 2 two_pos _ τ₂ hs₂).1 τ).unique (hA₂.1 τ) ((hsI τ m').2 ?_)
-      rw [emb_two h2 σ hσ τ τ' hne' hk]
+      rw [_root_.UpperTheory.Reformulated.B.Qe21.emb_two h2 σ hσ τ τ' hne' hk]
       exact (Dp.sInfIff M 2 _ π τ₁ hτ₁ τ' m').2 hm'
     have e3 : Λ (τ.comp (algebraMap K M)) = m + m' := by
       have := congrFun hΛ τ

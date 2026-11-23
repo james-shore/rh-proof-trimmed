@@ -113,11 +113,6 @@ theorem int_of_mul_reflect {f m : PowerSeries ℂ_[p]} (hf : BddSer f) (hm : Int
   rw [hmm] at h2
   linarith
 
-theorem IntSer.pow {f : PowerSeries ℂ_[p]} (hf : IntSer f) (n : ℕ) : IntSer (f ^ n) := by
-  induction n with
-  | zero => rw [pow_zero, ← map_one PowerSeries.C]; exact int_C (by simp)
-  | succ n ih => rw [pow_succ]; exact ih.mul hf
-
 theorem translate_sigma_star_neg {Λ : AddSubgroup ℂ} (h : IsLat Λ) (v z : ℂ) :
     U1 Λ v (sgStar Λ) (-z) = -U1 Λ (-v) (sgStar Λ) z := by
   simp only [U1]
@@ -226,7 +221,7 @@ theorem pull_back_split : ∀ (D : D7), Inp D → ∀ (p : ℕ) [Fact p.Prime] (
     obtain ⟨B, hB, hBe⟩ := GlobalTheory.T.thetaOrder_parameterSeries_bounded p g hok hlat' h2 h3 hdisc hσ t0 ht0n (hwp t0 hq0 ht0n).1 (2 * N ^ 2) _ h1
       (GlobalTheory.T.thetaTranslateProduct_sigmaStarPow_lattice_law g.abelian₂ hlat' t0 ht0.1 y N hNy)
     rw [h2', pow_mul] at hBe
-    have := ((IntSer.pow hE2 (N ^ 2)).bdd.mul hB).mul hTinv.bdd
+    have := ((_root_.GlobalTheory.EvenTheta.Isog.int_pow hE2 (N ^ 2)).bdd.mul hB).mul hTinv.bdd
     rwa [← hBe, mul_assoc, mul_comm T, hTi, mul_one] at this
 
   have hAm := (hmr _ hAy).1

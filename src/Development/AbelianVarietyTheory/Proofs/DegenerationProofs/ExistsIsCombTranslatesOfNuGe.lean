@@ -132,7 +132,7 @@ theorem exists_isComb_translates_of_nuGe : LL → TwistBCSpanStatement → TWM.V
     hNm th c hthc α s₀ hα hn hs₀ σ σ₁ s hσ hs hσ₁
   subst hNm
   have hLaw : Laws := hLL.1
-  obtain ⟨n, a, x, t', c', r, h, rfl⟩ := (GlobalTheory.T.valuation_nonneg_iff_span_multiplicationTranslates hLL hBC hVR hTW hUU V hc ϖ hϖ D Q hQ F v hv A G hG U w₀ ρ hN th' ϑ
+  obtain ⟨n, a, x, t', c', r, h, rfl⟩ := (_root_.GlobalTheory.UT.nuGe_zero_iff_span_translates hLL hBC hVR hTW hUU V hc ϖ hϖ D Q hQ F v hv A G hG U w₀ ρ hN th' ϑ
     hth hprim m hm hmu h3 s).1 hs
   have hA : AdmBase V (maximalIdeal V) := ⟨inferInstance, inferInstance, inferInstance, hc⟩
   have hN1 : 1 ≤ m ^ 2 := Nat.one_le_pow _ _ hm.pos

@@ -141,7 +141,7 @@ theorem herbrand_lengthIdentities_auxiliary_bound (C : Type) [Field C] (v : AddV
     refine Submodule.sub_mem_sup ?_ ?_
     · exact (m1 _).2 (hlinP x)
     · exact Fil.smul_mem g ((m2 x).1 hx)
-  obtain ⟨δ, hδ⟩ := GlobalTheory.T.exists_latticeRelativeLength_of_smul_le C v _ htf _ _ hBX fX fB d hd0 hdB
+  obtain ⟨δ, hδ⟩ := _root_.GlobalTheory.SubLen.exists_relLen_of_smul_le C v _ htf _ _ hBX fX fB d hd0 hdB
 
   have hmapB_proj : (eigSub a τ (Fin N → RS a) ⊔ Fil.restrictScalars (Int0 v)).map (proj a Fil) =
       (eigSub a τ (Fin N → RS a)).map (proj a Fil) := by
@@ -212,7 +212,7 @@ theorem herbrand_lengthIdentities_auxiliary_bound (C : Type) [Field C] (v : AddV
     refine ⟨y, Subtype.ext ?_⟩
     show cofac a τ • (y : Fin N → RS a) = d • (y : Fin N → RS a)
     rw [hPh _ ((m4 y).1 hy)]
-  obtain ⟨e₂, he₂⟩ := GlobalTheory.T.exists_latticeRelativeLength_of_smul_le C v _ htfF _ _ hle3 fFt (Module.Finite.iff_fg.mpr hfgImP) d hd0 hd3
+  obtain ⟨e₂, he₂⟩ := _root_.GlobalTheory.SubLen.exists_relLen_of_smul_le C v _ htfF _ _ hle3 fFt (Module.Finite.iff_fg.mpr hfgImP) d hd0 hd3
 
   have fgE : (eigQuot a Fil τ).FG := fgF.map _
   have fE : Module.Finite (Int0 v) (eigQuot a Fil τ) := Module.Finite.iff_fg.mpr fgE
@@ -224,7 +224,7 @@ theorem herbrand_lengthIdentities_auxiliary_bound (C : Type) [Field C] (v : AddV
   have hd4 : ∀ z ∈ eigQuot a Fil τ, d • z ∈ (eigSub a τ Fil).map ((comp a N τ).comp (incl a Fil)) := by
     rintro _ ⟨x, hx, rfl⟩
     exact ⟨⟨cofac a τ • x, Fil.smul_mem _ hx⟩, (m4 _).2 (hlinP x), hcP x⟩
-  obtain ⟨m, hm⟩ := GlobalTheory.T.exists_latticeRelativeLength_of_smul_le C v _ htfO _ _ hle4 fE fCt d hd0 hd4
+  obtain ⟨m, hm⟩ := _root_.GlobalTheory.SubLen.exists_relLen_of_smul_le C v _ htfO _ _ hle4 fE fCt d hd0 hd4
 
   have hIm5 : (imMul a (cofac a τ) Fil).map ((comp a N τ).comp (incl a Fil)) =
       (eigQuot a Fil τ).map (LinearMap.lsmul (Int0 v) (Fin N → Int0 v) d) := by

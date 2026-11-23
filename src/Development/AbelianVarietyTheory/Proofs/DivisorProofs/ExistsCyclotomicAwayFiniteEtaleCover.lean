@@ -50,13 +50,9 @@ noncomputable section
 
 namespace GlobalTheory.CycAwayCover
 
-theorem isUnit_natCast_cycAway {M : ℕ} (hM : M ≠ 0) : IsUnit (M : cycAway M) := by
-  refine isUnit_iff_exists_inv.2 ⟨⟨(M : ℂ)⁻¹, Subring.subset_closure (Or.inr rfl)⟩, ?_⟩
-  exact Subtype.ext (by simpa using mul_inv_cancel₀ (Nat.cast_ne_zero.2 hM : (M : ℂ) ≠ 0))
-
 def awayToCyc (M : ℕ) (hM : M ≠ 0) : Localization.Away (M : ℤ) →+* cycAway M :=
   IsLocalization.Away.lift (S := Localization.Away (M : ℤ)) (M : ℤ) (g := Int.castRingHom (cycAway M))
-    (by simpa using isUnit_natCast_cycAway hM)
+    (by simpa using _root_.GlobalTheory.SiegelTor.isUnit_natCast hM)
 
 theorem awayToCyc_injective {M : ℕ} (hM : M ≠ 0) : Function.Injective (awayToCyc M hM) := by
   have hle : Submonoid.powers (M : ℤ) ≤ nonZeroDivisors ℤ :=
@@ -78,7 +74,7 @@ theorem finite_awayToCyc {M : ℕ} (hM : M ≠ 0) : (awayToCyc M hM).Finite := b
       have := congrArg (algebraMap (Localization.Away (M : ℤ)) (cycAway M))
         (IsLocalization.Away.mul_invSelf (S := Localization.Away (M : ℤ)) (M : ℤ))
       simpa using this
-    exact (isUnit_natCast_cycAway hM).mul_left_cancel (h1.trans h2.symm)
+    exact (_root_.GlobalTheory.SiegelTor.isUnit_natCast hM).mul_left_cancel (h1.trans h2.symm)
   have hint : Algebra.IsIntegral (Localization.Away (M : ℤ)) (cycAway M) := by
     constructor
     rintro ⟨x, hx⟩

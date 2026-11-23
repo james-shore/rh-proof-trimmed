@@ -267,19 +267,12 @@ theorem of_psiG (u : Formalism.REAL.UJ (epsG k r)) : Matrix.of (psiG k r u) = ps
 
 theorem psiM_eq (u : Formalism.REAL.UJ (epsG k r)) : psiM k r u = PG k r * Formalism.MainNotions.S.umat u * PG k r := rfl
 
-private theorem real_Jm_mul_self_eq_one {n : ℕ} (ε : Fin n → Bool) : Formalism.REAL.Jm ε * Formalism.REAL.Jm ε = 1 := by
-  simp only [Formalism.REAL.Jm, Matrix.diagonal_mul_diagonal]
-  rw [← Matrix.diagonal_one]
-  congr 1
-  funext a
-  split_ifs <;> norm_num
-
 private theorem Jm_mul_conjTranspose_mul_Jm_mul_eq_one_of_mem_UJset {n : ℕ} {ε : Fin n → Bool} {h : Matrix (Fin n) (Fin n) ℂ}
     (hu : Formalism.REAL.inUJ ε h) : Formalism.REAL.Jm ε * hᴴ * Formalism.REAL.Jm ε * h = 1 := by
   have hu' : hᴴ * Formalism.REAL.Jm ε * h = Formalism.REAL.Jm ε := hu
   calc Formalism.REAL.Jm ε * hᴴ * Formalism.REAL.Jm ε * h = Formalism.REAL.Jm ε * (hᴴ * Formalism.REAL.Jm ε * h) := by
         simp only [Matrix.mul_assoc]
-    _ = 1 := by rw [hu', real_Jm_mul_self_eq_one]
+    _ = 1 := by rw [hu', _root_.Formalism.REAL.Jm_mul_self]
 
 private theorem exists_UJ_umat_eq_of_inUJ {n : ℕ} {ε : Fin n → Bool} (h : Matrix (Fin n) (Fin n) ℂ)
     (hu : Formalism.REAL.inUJ ε h) : ∃ v : Formalism.REAL.UJ ε, Formalism.MainNotions.S.umat v = h := by
@@ -507,7 +500,7 @@ theorem nuG_inv {μ : Measure (Mt k r)} (hμ : IsHaarOn (GV k r) μ) : (nuG μ).
   constructor
   rw [hc, ENNReal.coe_eq_one.1 hc1, one_smul]
 
-theorem nuG_openPos {μ : Measure (Mt k r)} (hμ : IsHaarOn (GV k r) μ) : (nuG μ).IsOpenPosMeasure := nuG_isOpenPosMeasure hμ
+alias nuG_openPos := _root_.ReciprocityTheory.ChartRestriction.DS.Mult1.nuG_isOpenPosMeasure
 
 end
 

@@ -221,7 +221,7 @@ theorem exists_comb_pow {R R₀ : Type} [CommRing R] [CommRing R₀] (π : R →
       away_ext fa _ _ (by rw [RingHom.comp_assoc, awR_comp, hβ, hιρ fa ρa hρa])
     have e2 : β.comp (awayToAwayLeft (P := Localization.Away (fa * fk)) fk fa) = εk :=
       away_ext fk _ _ (by rw [RingHom.comp_assoc, awL_comp, hβ, hεk])
-    have h1 := GlobalTheory.T.isAffineCombinationInChart_specMap_comp X.left Va _ _ β (Fin 1) _ _ _ _ hca
+    have h1 := _root_.GlobalTheory.SecGlue.isCombIn_spMap_comp X.left Va _ _ β (Fin 1) _ _ _ _ hca
     have h1' : IsCombIn Va (spMap ι ≫ spMap ρa ≫ ea) (spMap ι ≫ spMap ρa ≫ ta)
         ![spMap εk ≫ ek] ![ι fS ^ N] := by
       refine isCombIn_congr ?_ ?_ ?_ ?_ h1
@@ -238,7 +238,7 @@ theorem exists_comb_pow {R R₀ : Type} [CommRing R] [CommRing R₀] (π : R →
       h1' (GlobalTheory.SecGlue.preimage_spMap_comp_eq_top ι hEa)
   have sj := side fj Vj hVj ej tj ρj hρj rej hA hcj
   have sl := side fl Vl hVl el tl ρl hρl rel (land _ rEL) hcl
-  have sc := GlobalTheory.T.isAffineCombinationInChart_specMap_comp X.left W S _ ι (Fin 2) _ _ _ _ hc
+  have sc := _root_.GlobalTheory.SecGlue.isCombIn_spMap_comp X.left W S _ ι (Fin 2) _ _ _ _ hc
   have sc' : IsCombIn W (spMap ι ≫ spMap ρl ≫ el) (spMap ι ≫ c)
       ![spMap ι ≫ spMap ρl ≫ tl, spMap ι ≫ spMap ρj ≫ ej] ![1, 1 - ι fS ^ N] := by
     refine isCombIn_congr rfl rfl ?_ ?_ sc
@@ -304,7 +304,7 @@ theorem affineCombination_squareZero_lifts_cocycle {R R₀ : Type} [CommRing R] 
       IsCombIn Va ea t'a ![ta] ![algebraMap R (Localization.Away fa) fk ^ M] →
       IsCombIn W (spMap ρa ≫ ea) (spMap ρa ≫ t'a) ![spMap ρa ≫ ta] ![fS ^ M] := by
     intro fa Va hVa ea ta t'a ρa hρa rE rT h
-    have a1 := GlobalTheory.T.isAffineCombinationInChart_specMap_comp X.left Va _ S ρa (Fin 1) _ _ _ _ h
+    have a1 := _root_.GlobalTheory.SecGlue.isCombIn_spMap_comp X.left Va _ S ρa (Fin 1) _ _ _ _ h
     have a1' : IsCombIn Va (spMap ρa ≫ ea) (spMap ρa ≫ t'a) ![spMap ρa ≫ ta] ![fS ^ M] := by
       refine isCombIn_congr rfl rfl ?_ ?_ a1
       · funext i; fin_cases i; rfl

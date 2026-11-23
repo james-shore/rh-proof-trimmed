@@ -105,23 +105,15 @@ theorem comb_single_zero : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : 
   have hh : hO S T w 0 = 0 := by simp [hO]
   simp [heisO, symplOH, symplO, hh]
 
-theorem aconv_cons {G : Type} [AddMonoid G] (e : G →₀ ℂ) (l : List (G →₀ ℂ)) :
-    AddMonoidAlgebra.ofCoeff (aconv (e :: l)) = AddMonoidAlgebra.ofCoeff e * AddMonoidAlgebra.ofCoeff (aconv l) := by
-  rw [AddMonoidAlgebra.mul_def]
-  change AddMonoidAlgebra.ofCoeff (e.sum fun g a => (aconv l).sum fun h b => Finsupp.single (g + h) (a * b)) = _
-  simp only [AddMonoidAlgebra.ofCoeff_finsuppSum, AddMonoidAlgebra.ofCoeff_single, AddMonoidAlgebra.coeff_ofCoeff]
-
-theorem aconv_nil {G : Type} [AddMonoid G] : AddMonoidAlgebra.ofCoeff (aconv ([] : List (G →₀ ℂ))) = 1 := rfl
-
 theorem conv_alg : (∀ (G : Type) [AddCommMonoid G] (c d : G →₀ ℂ) (l : List (G →₀ ℂ)), aconv (aconv [c, d] :: l) = aconv (c :: d :: l)) ∧ (∀ (G : Type) [AddMonoid G] (c : G →₀ ℂ), aconv [c] = c) ∧ (∀ (G : Type) [AddMonoid G] (l : List (G →₀ ℂ)), aconv (Finsupp.single 0 1 :: l) = aconv l) ∧ (∀ (G : Type) [AddMonoid G] (l : List (G →₀ ℂ)) (H : AddSubmonoid G), (∀ x ∈ l, ∀ g ∈ x.support, g ∈ H) → ∀ g ∈ (aconv l).support, g ∈ H) ∧ (∀ (G : Type) [Monoid G] (l : List (G →₀ ℂ)) (H : Submonoid G), (∀ x ∈ l, ∀ g ∈ x.support, g ∈ H) → ∀ g ∈ (conv l).support, g ∈ H) := by
   classical
   refine ⟨fun G _ c d l => ?_, fun G _ c => ?_, fun G _ l => ?_, fun G _ l H hl => ?_, fun G _ l H hl => ?_⟩
   · apply AddMonoidAlgebra.ofCoeff_injective
-    rw [aconv_cons, aconv_cons, aconv_cons, aconv_cons, aconv_cons, aconv_nil, mul_one, mul_assoc]
+    rw [_root_.GlobalTheory.QValOuter.aconv_cons, _root_.GlobalTheory.QValOuter.aconv_cons, _root_.GlobalTheory.QValOuter.aconv_cons, _root_.GlobalTheory.QValOuter.aconv_cons, _root_.GlobalTheory.QValOuter.aconv_cons, _root_.GlobalTheory.QValOuter.aconv_nil, mul_one, mul_assoc]
   · apply AddMonoidAlgebra.ofCoeff_injective
-    rw [aconv_cons, aconv_nil, mul_one]
+    rw [_root_.GlobalTheory.QValOuter.aconv_cons, _root_.GlobalTheory.QValOuter.aconv_nil, mul_one]
   · apply AddMonoidAlgebra.ofCoeff_injective
-    rw [aconv_cons]
+    rw [_root_.GlobalTheory.QValOuter.aconv_cons]
     exact one_mul _
   · induction l with
     | nil =>
@@ -298,25 +290,6 @@ theorem εL_grp (α : Q.Ch j) : ∀ g ∈ (Q.εL j α).support, ∀ P : GlobalTh
 
 end Facts
 
-theorem gen_mem_idAt' {D : D7} (P : GlobalTheory.FinPl.Pl D → Prop) (α : Af D.host.F) (hα : ∀ w, ¬ P w → evalV D.host.F w α = 0)
-    (x : D.host.E) : (pairA D.host.F 0 α) ⊗ₜ[D.host.F] x ∈ GlobalTheory.FinPl.idAt D P := by
-  refine Ideal.mem_inf.2 ⟨?_, Ideal.mem_iInf.2 fun w => ?_⟩
-  · change (0 : Ainf D.host.F) ⊗ₜ[D.host.F] x = 0
-    exact TensorProduct.zero_tmul _ _
-  · change (evalV D.host.F w.1 α) ⊗ₜ[D.host.F] x = 0
-    rw [hα _ w.2, TensorProduct.zero_tmul]
-
-theorem latO_mx {D : D7} {S T : HSp D} {LS : Set (Fin S.rank → D.host.E)} {LT : Set (Fin T.rank → D.host.E)}
-    {P : GlobalTheory.FinPl.Pl D → Prop} {u : WO S T} (hu : u ∈ latO S T LS LT P) : GlobalTheory.FinPl.MxAt P u := by
-  induction hu using AddSubgroup.closure_induction with
-  | mem w hw =>
-    obtain ⟨α, -, hα, a, -, s, -, t, -, rfl⟩ := hw
-    intro i j
-    exact gen_mem_idAt' P α hα _
-  | zero => exact fun _ _ => zero_mem _
-  | add x y _ _ hx hy => exact fun i j => add_mem (hx i j) (hy i j)
-  | neg x _ hx => exact fun i j => neg_mem (hx i j)
-
 theorem latO_mono {D : D7} {S T : HSp D} {LS : Set (Fin S.rank → D.host.E)} {LT : Set (Fin T.rank → D.host.E)}
     {P P' : GlobalTheory.FinPl.Pl D → Prop} (h : ∀ x, P' x → P x) : latO S T LS LT P' ≤ latO S T LS LT P :=
   AddSubgroup.closure_mono fun _ ⟨α, hαi, hα, rest⟩ => ⟨α, hαi, fun v hv => hα v (fun h' => hv (h v h')), rest⟩
@@ -344,9 +317,9 @@ theorem comb_vac_at : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D
   refine ⟨(GlobalTheory.HeisComb.main D ψ S T).2.2.1 e f hf.1 (fun u hu => mx_inf (he u hu)) hstd, ?_, ?_⟩
   · intro u hu
     have h2u : 2 • u ∈ latO S T (LS : Set _) (LT : Set _) (· = p) := nsmul_mem hu 2
-    rw [hcomm _ (latO_mx h2u), hf.2.1 _ (hmono hu)]
+    rw [hcomm _ (_root_.GlobalTheory.FinPl.LatMem.latO_mxAt h2u), hf.2.1 _ (hmono hu)]
   · intro e' he' u hu hhalf
-    rw [hcomm _ (latO_mx hu), hf.2.2 e' he' u (hmono hu) hhalf]
+    rw [hcomm _ (_root_.GlobalTheory.FinPl.LatMem.latO_mxAt hu), hf.2.2 e' he' u (hmono hu) hhalf]
 
 theorem sum_om_vac_at : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (χS χT : (AE D)ˣ →* Circle) (om : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)), IsWeilDatumO ψ S T χS χT om → ∀ (LS : GlobalTheory.FinPl.Lat S) (LT : GlobalTheory.FinPl.Lat T) (p : GlobalTheory.FinPl.Pl D) (b : GA D S →₀ ℂ) (f : WO S T → ℂ), (∀ g ∈ b.support, g ∈ GlobalTheory.FinPl.grpAt S (· ≠ p)) → GlobalTheory.FinPl.Vac ψ S T LS LT (· = p) f → GlobalTheory.FinPl.Vac ψ S T LS LT (· = p) (∑ g ∈ b.support, b g • om (g, 1) f) := by
   intro D ψ S T χS χT om hw LS LT p b f hb hf
@@ -360,9 +333,9 @@ theorem sum_om_vac_at : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp
   refine ⟨GlobalTheory.Core.Rk.Collect.theta_sum b.support (fun g => b g) (fun g => om (g, 1) f) (fun g => hw.om_pres _ f hf.1), ?_, ?_⟩
   · intro u hu
     have h2u : 2 • u ∈ latO S T _ _ (· = p) := nsmul_mem hu 2
-    rw [hcomm _ (latO_mx h2u), hf.2.1 _ hu]
+    rw [hcomm _ (_root_.GlobalTheory.FinPl.LatMem.latO_mxAt h2u), hf.2.1 _ hu]
   · intro e' he' u hu hhalf
-    rw [hcomm _ (latO_mx hu), hf.2.2 e' he' u hu hhalf]
+    rw [hcomm _ (_root_.GlobalTheory.FinPl.LatMem.latO_mxAt hu), hf.2.2 e' he' u hu hhalf]
 
 theorem biComb_one {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (A S A' : HSp D) (C : WO A S → WO S A' → ℂ) :
     biComb ψ A S A' (Finsupp.single 0 1) (Finsupp.single 0 1) C = C := by

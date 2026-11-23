@@ -104,7 +104,7 @@ theorem torus_contracts_unipRad : ∀ (F E : Type) [Field F] [NumberField F] [Fi
     rw [smul_mul_assoc, smul_mul_assoc, Matrix.mul_smul, smul_smul]
   have term : ∀ α β, ‖((((frameWt t α : ℝ) : ℂ)⁻¹ * ((frameWt t β : ℝ) : ℂ)) • (P α * M₁ * P β)) i j‖ ≤ K * Bt / ratio t s := fun α β => by
     by_cases hl : frameLev s α ≤ frameLev s β
-    · have h0 : P α * M₁ * P β = 0 := GlobalTheory.T.unipotent_frame_level_triangular F E σ h n J hJ r X Y hW s m hmU w τ α β hl
+    · have h0 : P α * M₁ * P β = 0 := _root_.GlobalTheory.CompanionTheory.RapidDecay.frameIdem_mul_unipRad_mul_frameIdem F E σ h n J hJ r X Y hW s m hmU w τ α β hl
       rw [h0, smul_zero]
       simpa using div_nonneg (mul_nonneg hK0 hBt0) hr.le
     · have h1 := hK s t ht α β (not_le.1 hl)

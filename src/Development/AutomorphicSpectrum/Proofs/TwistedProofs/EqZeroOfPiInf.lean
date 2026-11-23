@@ -54,17 +54,7 @@ namespace GlobalTheory.CompanionTheory.CMAdele
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
-theorem exists_moved {σ : E →ₐ[F] E} (h : IsCMExt F E σ) : ∃ β : E, σ β ≠ β := by
-  by_contra hne
-  push Not at hne
-  have := h.2.1
-  obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
-  refine IsTotallyComplex.complexEmbedding_not_isReal τ ?_
-  rw [ComplexEmbedding.isReal_iff]
-  ext y
-  have := h.2.2.2 τ y
-  rw [hne y] at this
-  simpa using this.symm
+alias exists_moved := _root_.GlobalTheory.AdelicU.exists_cm_conj_ne
 
 theorem im_ne_zero {σ : E →ₐ[F] E} (h : IsCMExt F E σ) {β : E} (hβ : σ β ≠ β) (τ : E →+* ℂ) : (τ β).im ≠ 0 := by
   intro h0

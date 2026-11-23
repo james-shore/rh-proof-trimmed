@@ -179,7 +179,7 @@ theorem fock_locVec (W : G.Weil) {p : Pair T} {ε : AE D} {f₀ φ f : WO (G.pS 
   have hth := fun Q => GlobalTheory.Chain.InnerSteps.theta_pureTensorO W.ψ_std W.θ_is (G.cartS W.cart p) (G.onS W.onb p)
     (G.onT W.cart p) (G.onT W.onb p) hf Q
   exact ⟨hth P, fun u hu h1 h2 => GlobalTheory.Hk3.FiniteHeis.heisO_pureTensorO_of_finite W.ψ W.θ _ _ W.θ_is _ _ _ _ f hth u
-    (GlobalTheory.VacGood.infPart_latO hu) (GlobalTheory.Hk3.heisO_fix_thetaAt_off W.ψ _ _ ε _ 1 f₀ φ f h.2 u h1 h2) P⟩
+    (_root_.GlobalTheory.SplitScalar.latO_fin hu) (GlobalTheory.Hk3.heisO_fix_thetaAt_off W.ψ _ _ ε _ 1 f₀ φ f h.2 u h1 h2) P⟩
 
 abbrev latSmall (G : GridData L sc) (i j : ℕ) : Submodule (𝓞 D.host.E) (Fin (spW₁ G i j).rank → D.host.E) :=
   GlobalTheory.TripleSpaceW.conjSub (G.Λ (.grid i j))

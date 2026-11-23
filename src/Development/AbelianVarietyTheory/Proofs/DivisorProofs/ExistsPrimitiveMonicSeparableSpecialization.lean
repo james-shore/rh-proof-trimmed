@@ -98,19 +98,6 @@ theorem exists_separable_specialization {D : ℕ} (P : (MvPolynomial (Fin D) ℚ
     C (MvPolynomial.eval c (da * db))⁻¹ * (C (MvPolynomial.eval c da) * B.map (MvPolynomial.eval c)), ?_⟩
   linear_combination C (MvPolynomial.eval c (da * db))⁻¹ * key' + hinv
 
-theorem exists_mul_mem_adjoin {R F K : Type} [CommRing R] [IsDomain R] [Field F] [Algebra R F]
-    [IsFractionRing R F] [Field K] [Algebra R K] [Algebra F K] [IsScalarTower R F K] (θ z : K)
-    (hz : z ∈ Algebra.adjoin F {θ}) :
-    ∃ d : R, d ≠ 0 ∧ algebraMap R K d * z ∈ Algebra.adjoin R {θ} := by
-  first
-  | (rename_i h_3 h_4 h_5 h_6 h_7 h_8 h_9 h_10 h_11; revert R F K h_3 h_4 h_5 h_6 h_7 h_8 h_9 h_10 h_11 θ z hz; exact @_root_.GlobalTheory.TargetInequalityLemmas.target)
-  | exact @_root_.GlobalTheory.TargetInequalityLemmas.target
-  | exact _root_.GlobalTheory.TargetInequalityLemmas.target
-  | (apply _root_.GlobalTheory.TargetInequalityLemmas.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TargetInequalityLemmas.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TargetInequalityLemmas.target <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TargetInequalityLemmas.target ..)
-
 theorem exists_primitive_monic_separable_specialization :
     ∀ (K : Type) [Field K] [CharZero K] (D : ℕ) (x : Fin D → K), IsTranscendenceBasis ℚ x →
       ∀ (J : Type) [Finite J] (e : J → K), ∃ (P : Polynomial (MvPolynomial (Fin D) ℚ))
@@ -161,7 +148,7 @@ theorem exists_primitive_monic_separable_specialization :
     rw [← IntermediateField.adjoin_simple_toSubalgebra_of_isAlgebraic hθF.isAlgebraic]
     have h1 : E ≤ F⟮θ⟯ := hαE ▸ IntermediateField.adjoin_simple_le_iff.2 hαθ
     exact h1 (IntermediateField.subset_adjoin F _ ⟨j, rfl⟩)
-  choose d hd0 hdm using fun j => exists_mul_mem_adjoin (R := R) (F := F) θ (e j) (heθ j)
+  choose d hd0 hdm using fun j => _root_.GlobalTheory.TargetInequalityLemmas.main (R := R) (F := F) θ (e j) (heθ j)
 
   let P := minpoly R θ
   let ψ₀ : AdjoinRoot P →ₐ[R] K := AdjoinRoot.liftAlgHom P (Algebra.ofId R K) θ (minpoly.aeval R θ)

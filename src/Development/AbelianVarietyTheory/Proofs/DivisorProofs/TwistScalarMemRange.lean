@@ -59,9 +59,7 @@ namespace GlobalTheory.TwistScalarField
 
 open NumberField IsDedekindDomain
 
-theorem val_mul {L : Type} [Field L] [NumberField L] (χ₁ χ₂ : Formalism.L2.Host.HChar L) (v : HeightOneSpectrum (𝓞 L)) :
-    (χ₁ * χ₂).val v = χ₁.val v * χ₂.val v :=
-  by rfl
+alias val_mul := _root_.Formalism.L2.Host.HChar.val_mul
 
 theorem onId_mul {L : Type} [Field L] [NumberField L] (χ₁ χ₂ : Formalism.L2.Host.HChar L)
     (I : FractionalIdeal (nonZeroDivisors (𝓞 L)) L) : (χ₁ * χ₂).onId I = χ₁.onId I * χ₂.onId I := by

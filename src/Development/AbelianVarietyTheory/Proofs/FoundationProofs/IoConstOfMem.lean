@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsLocalValueOfQuotientAddOfCommonDenominator
 
 @[expose] public section
 
@@ -83,7 +84,7 @@ variable {X : GlobalTheory.KZ.Tower Ω ε} {A : ValuationSubring Ω} {T : Global
 theorem io_const_of_mem (h : IsClo p Ωl) (hc : IsCusp ε A T j) (hψ : IsReb T n ψ) (hio : IsIo X A T j n ψ io)
     (c : Ω) (hA : c ∈ A) : io ⟨algebraMap Ω X.K c, const_mem X _ c⟩ = j c := by
   classical
-  obtain ⟨x', hx⟩ := hio.ev ⟨algebraMap Ω X.K c, const_mem X _ c⟩ {c} (fun r => by
+  obtain ⟨x', hx⟩ := hio.ev ⟨algebraMap Ω X.K c, _root_.GlobalTheory.IoEx.alg_mem_KT X _ c⟩ {c} (fun r => by
     simp only [exp_const]
     split_ifs
     · exact ⟨hA, IntermediateField.subset_adjoin _ _ (by simp)⟩
@@ -107,7 +108,7 @@ theorem io_const (h : IsClo p Ωl) (hc : IsCusp ε A T j) (hψ : IsReb T n ψ) (
   rcases A.mem_or_inv_mem c with hA | hA
   · exact io_const_of_mem h hc hψ hio c hA
   · have h1 := io_const_of_mem h hc hψ hio c⁻¹ hA
-    have h2 : (⟨algebraMap Ω X.K c⁻¹, const_mem X _ c⁻¹⟩ : KT X (p ^ n)) = ⟨algebraMap Ω X.K c, const_mem X _ c⟩⁻¹ :=
+    have h2 : (⟨algebraMap Ω X.K c⁻¹, _root_.GlobalTheory.IoEx.alg_mem_KT X _ c⁻¹⟩ : KT X (p ^ n)) = ⟨algebraMap Ω X.K c, _root_.GlobalTheory.IoEx.alg_mem_KT X _ c⟩⁻¹ :=
       Subtype.ext (map_inv₀ _ _)
     rw [h2, map_inv₀, map_inv₀] at h1
     exact inv_injective h1

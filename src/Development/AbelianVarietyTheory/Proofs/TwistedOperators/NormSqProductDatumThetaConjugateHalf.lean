@@ -62,20 +62,9 @@ open Classical
 
 namespace GlobalTheory.PlancherelHalf
 
-theorem symplO_add_left {D : D7} (S T : HSp D) (t k y : WO S T) :
-    symplO S T (t + k) y = symplO S T t y + symplO S T k y := by
-  simp only [symplO, hO, Matrix.add_apply, mul_add, Finset.sum_add_distrib, map_add (f := _)]
-
 theorem heisO_lin {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (w : WO S T) (a : ℂ) (f₁ f₂ : WO S T → ℂ) :
     heisO ψ S T w (a • f₁ + f₂) = a • heisO ψ S T w f₁ + heisO ψ S T w f₂ := by
   funext x; simp only [heisO, Pi.add_apply, Pi.smul_apply, smul_eq_mul]; ring
-
-theorem ipO_self {D : D7} {m n : ℕ} (μ : Measure (Mx D m n)) (𝓕 : Set (Mx D m n)) (f : Mx D m n → ℂ) :
-    GlobalTheory.IndefiniteRowSideFullHecke.RestrictedTensorSplitting.ipO μ 𝓕 f f = ((nrm2 μ 𝓕 f : ℝ) : ℂ) := by
-  unfold GlobalTheory.IndefiniteRowSideFullHecke.RestrictedTensorSplitting.ipO nrm2
-  rw [← integral_complex_ofReal]
-  congr 1; funext w
-  rw [Complex.mul_conj, Complex.normSq_eq_norm_sq]
 
 theorem ipO_conj {D : D7} {m n : ℕ} (μ : Measure (Mx D m n)) (𝓕 : Set (Mx D m n)) (f g : Mx D m n → ℂ) :
     GlobalTheory.IndefiniteRowSideFullHecke.RestrictedTensorSplitting.ipO μ 𝓕 g f = starRingEnd ℂ (GlobalTheory.IndefiniteRowSideFullHecke.RestrictedTensorSplitting.ipO μ 𝓕 f g) := by
@@ -177,7 +166,7 @@ theorem normSq_thetaAt_halfProd : ∀ {D : D7} {G : Type} [Group G] [Fintype G] 
       funext PP
       show redM PP.1 (FM x) = z PP
       rw [hx3 PP.1 PP.2]; simp only [ext, dif_pos PP.2])
-    (symplO_add_left _ _)
+    (_root_.GlobalTheory.LatVac.symplO_add_left _ _)
     (by
       intro Ψ hsupp hinv
       refine ⟨fun t ht => (hsupp t ht).2, Fintype.card Gt, Fintype.card_pos, fun u hu hh t => hinv t u ⟨hu, hh⟩,
@@ -212,11 +201,11 @@ theorem normSq_thetaAt_halfProd : ∀ {D : D7} {G : Type} [Group G] [Fintype G] 
     (fun f g _ _ => ipO_conj μ 𝓧 f g)
     (fun w f₁ f₂ h₁ h₂ => ((hU f₁ f₂ h₁ h₂).2.2.2.2.1 w).2)
     hvac.theta
-    (by rw [ipO_self, hf₀n]; simp)
+    (by rw [_root_.GlobalTheory.ThetaPairingLaws.ipO_self, hf₀n]; simp)
   rw [← hΦ, ← hf'] at key
   have hn : nrm2 μ 𝓧 f' = (∑ z : Gt, ‖Gd (ext z)‖ ^ 2) / (Fintype.card Gt : ℝ) := by
     have := congrArg Complex.re key
-    rw [ipO_self, Complex.ofReal_re] at this
+    rw [_root_.GlobalTheory.ThetaPairingLaws.ipO_self, Complex.ofReal_re] at this
     rw [this]
     have h2 : ((∑ z : Gt, ‖Gd (ext z)‖ ^ 2 : ℝ) : ℂ) / (Fintype.card Gt : ℂ) =
         (((∑ z : Gt, ‖Gd (ext z)‖ ^ 2) / (Fintype.card Gt : ℝ) : ℝ) : ℂ) := by push_cast; ring

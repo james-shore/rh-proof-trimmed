@@ -82,7 +82,7 @@ theorem isNullVal_unique (hL : Laws) {N : ℕ} (hN : Odd N) {S : Type} [CommRing
   have hB := Xo.univ.t.PP.isLB
   obtain ⟨F, ⟨_, α₀, α, s₁, U, -, rfl, g₀, n₀, cα, tw, hU, a₁⟩, hv⟩ := h
   obtain ⟨F', ⟨_, β₀, β, r₁, V, -, rfl, gβ, nβ, cβ, tw', hV, b₁⟩, hv'⟩ := h'
-  obtain ⟨g₁, -, -, u₀, -⟩ := GlobalTheory.T.universal_normalised_mulByNat_pullback_iso hL E H Dw l Xo N
+  obtain ⟨g₁, -, -, u₀, -⟩ := _root_.GlobalTheory.moduli_univ_normMul hL E H Dw l Xo N
   obtain rfl : r₁ = s₁ := twist_congr hB (fun z J hJ =>
     (val_corr hJ cβ _).trans ((val_pull hJ _ _ _).trans ((val_corr hJ (u₀ β₀ gβ nβ) _).trans
       ((val_corr hJ cα _).trans ((val_pull hJ _ _ _).trans (val_corr hJ (u₀ α₀ g₀ n₀) _))).symm))) tw' tw

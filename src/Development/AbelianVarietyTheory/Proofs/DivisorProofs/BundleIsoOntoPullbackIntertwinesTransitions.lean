@@ -66,20 +66,13 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.LogKSCoc
 
-theorem res_res {X : Scheme.{0}} {U V W : X.Opens} (h : V ≤ U) (h' : W ≤ V) (a : Γ(X, U)ˣ) :
-    res h' (res h a) = res (h'.trans h) a := by
-  ext
-  change (X.presheaf.map _).hom ((X.presheaf.map _).hom _) = (X.presheaf.map _).hom _
-  rw [← CommRingCat.comp_apply, ← Functor.map_comp]
-  rfl
-
 theorem res_intertwines {Y : Scheme.{0}} {P Q A B V : Y.Opens} (a : Γ(Y, P)ˣ) (a' : Γ(Y, Q)ˣ) (m : Γ(Y, A)ˣ)
     (l : Γ(Y, B)ˣ) (hA : P ⊓ Q ≤ A) (hB : P ⊓ Q ≤ B)
     (e : res (inf_le_left : P ⊓ Q ≤ P) a = res hA m * (res hB l)⁻¹ * res (inf_le_right : P ⊓ Q ≤ Q) a')
     (h : V ≤ P) (h' : V ≤ Q) (hM : V ≤ A) (hL : V ≤ B) :
     res hM m * res h' a' = res h a * res hL l := by
   have e' := congrArg (res (le_inf h h')) e
-  simp only [map_mul, map_inv, res_res] at e'
+  simp only [map_mul, map_inv, _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res'] at e'
   rw [e', _root_.mul_right_comm, inv_mul_cancel_right]
 
 theorem gen_intertwines {Y : Scheme.{0}} (M L : LB Y) (w : LB.Iso L M) (hw : w.IsGen) (i i' : M.ι) (k k' : L.ι)
@@ -98,10 +91,10 @@ theorem iso_pull_intertwines : ∀ (Y Z : Scheme.{0}) (φ : Y ⟶ Z) (L : LB Z) 
     unfold LB.pull LB.LinComb
     dsimp only
     rw [Fintype.prod_unique, zpow_one]
-    exact res_res _ _ _
+    exact _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res' _ _ _
   rw [g] at e
-  have e₁ := congrArg Units.val (res_res hO (inf_le_left : O ⊓ O' ≤ O) (w.s (fun _ => i, k)))
-  have e₂ := congrArg Units.val (res_res hO' (inf_le_right : O ⊓ O' ≤ O') (w.s (fun _ => i', k')))
+  have e₁ := congrArg Units.val (_root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res' hO (inf_le_left : O ⊓ O' ≤ O) (w.s (fun _ => i, k)))
+  have e₂ := congrArg Units.val (_root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res' hO' (inf_le_right : O ⊓ O' ≤ O') (w.s (fun _ => i', k')))
   exact (congrArg (_ * ·) e₂).trans ((congrArg Units.val e).trans (congrArg (· * _) e₁.symm))
 
 end GlobalTheory.LogKSCoc

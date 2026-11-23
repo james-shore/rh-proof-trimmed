@@ -76,18 +76,6 @@ theorem exists_reps {G : Type} [Group G] (H N : Subgroup G) [(N.subgroupOf H).Fi
       rw [QuotientGroup.out_eq'] at this
       rw [this]
 
-theorem sum_reps_invariant {G M : Type} [Group G] [AddCommMonoid M] (H N : Subgroup G)
-    (S : Finset G) (hS : ∀ s ∈ S, s ∈ H) (hu : ∀ h ∈ H, ∃! s, s ∈ S ∧ s⁻¹ * h ∈ N)
-    (f : G → M) (hf : ∀ g, ∀ n ∈ N, f (g * n) = f g) (h : G) (hh : h ∈ H) :
-    ∑ s ∈ S, f (h * s) = ∑ s ∈ S, f s := by
-  first
-  | exact @_root_.GlobalTheory.LeftTransversalSum.sum_mul_left_transversal
-  | exact _root_.GlobalTheory.LeftTransversalSum.sum_mul_left_transversal
-  | (apply _root_.GlobalTheory.LeftTransversalSum.sum_mul_left_transversal <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LeftTransversalSum.sum_mul_left_transversal <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LeftTransversalSum.sum_mul_left_transversal <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.LeftTransversalSum.sum_mul_left_transversal ..)
-
 variable {l : ℕ} [Fact l.Prime]
 
 theorem stabilizer_finiteIndex (x : Om l) : (MulAction.stabilizer (GQ l) x).FiniteIndex := by
@@ -153,7 +141,7 @@ theorem fixed_iff_mem_Ohat : ∀ (l : ℕ) [Fact l.Prime]
       rw [← map_natCast (algebraMap ℚ_[l] (Om l))]
       exact (PadicAlgCl.norm_extends l _).trans Padic.norm_p
     have hlne : (l : Om l) ≠ 0 := by exact_mod_cast (Fact.out : l.Prime).ne_zero
-    obtain ⟨b, hbL, hb1, hb⟩ := GlobalTheory.T.cyclotomicTower_trace_almost_surjective l K L S hKL hst hS hu (l : Om l)
+    obtain ⟨b, hbL, hb1, hb⟩ := _root_.GlobalTheory.Cyc.trace_almost_onto l K L S hKL hst hS hu (l : Om l)
       (natCast_mem _ _) (by rw [hnl]; exact inv_lt_one_of_one_lt₀ hl1)
     set w : Om l := ∑ s ∈ S, s (b * x) with hw
     have hwK : w ∈ Kinf K := by
@@ -161,7 +149,7 @@ theorem fixed_iff_mem_Ohat : ∀ (l : ℕ) [Fact l.Prime]
       intro h hh
 
       rw [hw, map_sum]
-      refine sum_reps_invariant _ _ S hS hu (fun g => g (b * x)) ?_ h hh
+      refine _root_.GlobalTheory.LeftTransversalSum.sum_mul_left_transversal _ _ S hS hu (fun g => g (b * x)) ?_ h hh
       intro g n hn
       have := (IntermediateField.mem_fixingSubgroup_iff _ _).1 hn _ (L.mul_mem hbL hxL)
       simp only [AlgEquiv.mul_apply, this]

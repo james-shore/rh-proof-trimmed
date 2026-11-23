@@ -50,19 +50,6 @@ open scoped Formalism.Per NNReal
 
 namespace GlobalTheory.BSP
 
-theorem exists_residue_basis_of_isMaximal {R A : Type} [CommRing R] [CommRing A] (f : R →+* A) (m : Ideal R)
-    [hm : m.IsMaximal] (h : m.map f ≠ ⊤) :
-    ∃ (ι : Type) (b : ι → A) (i₀ : ι), b i₀ = 1 ∧
-      (∀ x : A, ∃ a : ι →₀ R, x - a.sum (fun i y => f y * b i) ∈ m.map f) ∧
-      ∀ a : ι →₀ R, a.sum (fun i y => f y * b i) ∈ m.map f → ∀ i, a i ∈ m := by
-  first
-  | exact @_root_.GlobalTheory.ClosedStatement.main
-  | exact _root_.GlobalTheory.ClosedStatement.main
-  | (apply _root_.GlobalTheory.ClosedStatement.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ClosedStatement.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ClosedStatement.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ClosedStatement.main ..)
-
 theorem isMaximal_span_l_sup_span_X (l a : ℕ) [Fact l.Prime] [NeZero a] :
     (Ideal.span {(l : (Wq l a)⟦X⟧)} ⊔ Ideal.span {(X : (Wq l a)⟦X⟧)}).IsMaximal := by
   have hmax : (Ideal.span {(l : Wq l a)}).IsMaximal := by
@@ -131,6 +118,6 @@ theorem BK.exists_residue_basis : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (b
         ∀ i, a i ∈ Ideal.span {(l : bk.S)} ⊔ Ideal.span {(X : bk.S)} := by
   intro l _ K bk
   haveI := isMaximal_span_l_sup_span_X l bk.a
-  exact exists_residue_basis_of_isMaximal bk.ev _ bk.map_span_l_sup_span_X_ne_top
+  exact _root_.GlobalTheory.ClosedStatement.main bk.ev _ bk.map_span_l_sup_span_X_ne_top
 
 end GlobalTheory.BSP

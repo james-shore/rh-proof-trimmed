@@ -127,7 +127,7 @@ theorem isCuspidal_comp_blockEmb : ∀ (F E : Type) [Field F] [NumberField F] [F
     have eS := GlobalTheory.ConstTrans.unip_eq_unipFlag F E σ hσ n J hJ r X Y hW S mS hmS hmS'
     have hCS : IsIsoCols σ J (GlobalTheory.StdPar.initCols X mS) := isIsoCols_of_isWittFrame hW hσσ hJ mS.2
     rw [hU₀, eS] at hu ⊢
-    exact conj_mem_unipFlag hJ hσσ hCS _ (GlobalTheory.ConstTrans.unip_le_parFlag F E σ hσ n J hJ r X Y hW (insert k S) S mS
+    exact conj_mem_unipFlag hJ hσσ hCS _ (_root_.GlobalTheory.StdParFlag.unip_le_parFlag F E σ hσ n J hJ r X Y hW (insert k S) S mS
       (Finset.subset_insert _ _) hmS hmS' hp) hu
   obtain ⟨π, hπc, hπm, hπs, hπk, hπr⟩ := GlobalTheory.T.exists_blockProjection_flagUnipotentRadical F E σ hσ n J hJ r X Y hW S l d h ι hι hS hk hl r' hr0 hr1 k hkv
   have hrat := GlobalTheory.T.blockEmbedding_rationalGL_mem_rationalPoints F E σ hσ n J hJ r X Y hW l d h ι hι

@@ -89,6 +89,4 @@ theorem tauTop : LeafTauTop := by
     repeat rw [tt_cast_cast]
     rfl
 
-theorem LeafTauTop_of : LeafTauTop := tauTop
-
 end LateralTheory.CohomologicalPurity.Thom

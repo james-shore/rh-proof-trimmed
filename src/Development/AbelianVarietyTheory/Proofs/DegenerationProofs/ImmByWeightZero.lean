@@ -126,28 +126,6 @@ theorem isRatio_lin {k : Type} [CommRing k] {X : Scheme.{0}} (p : X ⟶ Sp k) {H
 
 variable {k : Type} [Field k] (Φ : FibPre k)
 
-theorem isLB_H (d : ℕ) : (Φ.H d).IsLB := by
-  have key : ∀ (U V : Φ.E.B.left.Opens) (h : V ≤ U) (h' : Φ.D.q.left ⁻¹ᵁ V ≤ Φ.D.q.left ⁻¹ᵁ U)
-      (u : Γ(Φ.E.B.left, U)ˣ),
-      res h' (pullU Φ.D.q.left U u ^ d) = pullU Φ.D.q.left V (res h u) ^ d := by
-    intro U V h h' u
-    rw [map_pow]
-    congr 1
-    ext
-    exact (congrArg (fun φ => φ.hom (u : Γ(Φ.E.B.left, U))) (Φ.D.q.left.naturality (homOfLE h).op)).symm
-  refine ⟨?_, fun i => ?_, fun i j l => ?_⟩
-  · show ⨆ l, Φ.D.q.left ⁻¹ᵁ Φ.N₀.U l = ⊤
-    rw [← Scheme.Hom.preimage_iSup, Φ.isLB.cover]; rfl
-  · have := congrArg (fun u => pullU Φ.D.q.left _ u ^ d) (Φ.isLB.g_self i)
-    simp only [map_one, one_pow] at this
-    exact (key _ _ _ (Scheme.Hom.preimage_mono _ (le_inf le_rfl le_rfl)) _).trans this
-  · have := congrArg (fun u => pullU Φ.D.q.left _ u ^ d) (Φ.isLB.cocycle i j l)
-    simp only [map_mul, mul_pow] at this
-    rw [← key _ _ _ (Scheme.Hom.preimage_mono _ inf_le_left),
-      ← key _ _ _ (Scheme.Hom.preimage_mono _ (le_inf (inf_le_left.trans inf_le_right) inf_le_right)),
-      ← key _ _ _ (Scheme.Hom.preimage_mono _ (le_inf (inf_le_left.trans inf_le_left) inf_le_right))] at this
-    exact this
-
 theorem isRatio_pull {s t : Φ.N₀.Sec} {φ ψ : (Φ.H 1).Sec}
     (hφ : ∀ l, φ.f l = (Φ.D.q.left.app (Φ.N₀.U l)).hom (s.f l))
     (hψ : ∀ l, ψ.f l = (Φ.D.q.left.app (Φ.N₀.U l)).hom (t.f l))
@@ -225,7 +203,7 @@ theorem immBy_weight_zero : Out.Laws → Out.Laws2 → (∀ (k : Type) [Field k]
     exact hi
   · obtain ⟨haff, ρ, hρ, hgen⟩ := hloc ⟨i, hi⟩ trivial
     have hle := (hτ₃ ⟨i, hi⟩).ge
-    have hu := fun s => SecRatio.existsUnique_isRatio (isLB_H Φ 1) s (F i) _ hle
+    have hu := fun s => SecRatio.existsUnique_isRatio (_root_.GlobalTheory.ZH.FibPre.H_isLB Φ 1) s (F i) _ hle
     have := Φ.D.q_affine
     rw [hτ₃ ⟨i, hi⟩]
     choose r hr hr' using fun j => hu (F j)

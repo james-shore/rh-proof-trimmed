@@ -64,18 +64,6 @@ noncomputable section
 
 namespace GlobalTheory.FrameRead.LiftEquiv
 
-theorem map_rowAct_eq {R S : Type} [CommRing R] [CommRing S] (φ : R →+* S) {r n : ℕ}
-    (M : Matrix (Fin r) (Fin r) R) (f : MvPolynomial (Fin r × Fin n) R) :
-    MvPolynomial.map φ (rowAct R M f) = rowAct S (M.map φ) (MvPolynomial.map φ f) := by
-  induction f using MvPolynomial.induction_on with
-  | C a => simp [rowAct]
-  | add p q hp hq => simp only [map_add (f := _), hp, hq]
-  | mul_X p v hp =>
-    rw [map_mul, map_mul, map_mul, hp, map_X]
-    congr 1
-
-    simp [rowAct, map_sum, Matrix.map_apply]
-
 theorem rowAct_detPol_eq {R : Type} [CommRing R] {n : ℕ} (M : Matrix (Fin n) (Fin n) R) :
     rowAct R M (detPol R n) = MvPolynomial.C M.det * detPol R n := by
   unfold detPol
@@ -89,7 +77,7 @@ theorem rowAct_liftPol_eq {K C : Type} [CommRing K] [CommRing C] {n : ℕ} (e0 :
     rowAct C (M.map e0) (liftPol e0 k f) = (e0 M.det) ^ k • liftPol e0 k (rowAct K M f) := by
   unfold liftPol
   have hd : (M.map e0).det = e0 M.det := (RingHom.map_det e0 M).symm
-  rw [map_mul, map_pow, rowAct_detPol_eq, map_rowAct_eq, mul_pow, smul_eq_C_mul, map_pow, mul_assoc, hd]
+  rw [map_mul, map_pow, rowAct_detPol_eq, _root_.Formalism.UG.P.wlocal_map_rowAct, mul_pow, smul_eq_C_mul, map_pow, mul_assoc, hd]
 
 theorem grp_tprod_eq (C : Type) [CommRing C] {ι : Type} (n : ℕ) (lamW : ι → ℕ → ℕ) (g : ι → GL (Fin n) C)
     (y : ∀ τ, dualWeyl C n n (res n (lamW τ))) :

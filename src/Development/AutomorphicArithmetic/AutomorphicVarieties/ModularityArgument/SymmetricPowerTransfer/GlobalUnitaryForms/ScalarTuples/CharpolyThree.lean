@@ -61,6 +61,3 @@ private theorem charpoly_three {R : Type} [CommRing R] (N : Matrix (Fin 3) (Fin 
 
 end UpperTheory.V.Z.Sym.Glob
 
-theorem UpperTheory.V.Z.Sym.Glob.tauEx :
-    UpperTheory.V.Z.Sym.Glob.TauEx :=
-  _root_.UpperTheory.Reformulated.B.CubicCharpolyDiscriminant.tauEx

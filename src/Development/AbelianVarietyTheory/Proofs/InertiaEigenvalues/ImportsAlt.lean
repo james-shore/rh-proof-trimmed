@@ -88,7 +88,6 @@ theorem main {R F : Type} [CommRing R] [Field F] [Algebra R F] {n : Type} [Finty
   rw [he] at ht
   exact (isIntegral_algHom_iff f f.toRingHom.injective).mp ht
 
-theorem target : ∀ {R F : Type} [inst : CommRing R] [inst_1 : Field F] [inst_2 : Algebra R F] {n : Type} [inst_3 : Fintype n] [inst_4 : DecidableEq n] (M : Matrix n n F), IsIntegral R M → IsIntegral R (Matrix.trace M) :=
-  fun M h => main M h
+alias target := _root_.GlobalTheory.TargetStatementAlt.main
 
 end GlobalTheory.TargetStatementAlt

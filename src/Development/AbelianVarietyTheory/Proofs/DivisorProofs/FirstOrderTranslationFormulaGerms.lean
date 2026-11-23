@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.NonemptyIsLimitBaseChange
 
 @[expose] public section
 
@@ -95,12 +96,12 @@ theorem point_formula {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Ho
       (Over.w _).trans (Over.w _).symm
     rw [hg₀, Category.assoc, e1, ← Category.assoc, hψ₀]
     show spMap ψ₀ ≫ spMap (algebraMap S (DualNumber S)) ≫ spMap φ ≫ chart U = _
-    rw [← Category.assoc, ← Category.assoc, GlobalTheory.KSLin.spMap_comp_spMap, GlobalTheory.KSLin.spMap_comp_spMap]
+    rw [← Category.assoc, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring, _root_.GlobalTheory.spMap_comp_ring]
     congr 2
     simp only [ψ, RingHom.comp_assoc, hd]
   let a : Over.mk (g₀ ≫ t.G.hom) ⟶ tEpsG (chart U) := Over.homMk (spMap ψ) (by
     show spMap ψ ≫ spMap (algebraMap Γ(X, U.1) (DualNumber Γ(X, U.1))) ≫ chart U = g₀ ≫ t.G.hom
-    rw [hbase, ← Category.assoc, GlobalTheory.KSLin.spMap_comp_spMap])
+    rw [hbase, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring])
   choose w hw using fun b => (existsUnique_isTranslate t (ψ.comp (algebraMap Γ(X, U.1) (DualNumber Γ(X, U.1))))
     hbase (hv b)).exists
   obtain ⟨h1, h2⟩ := GlobalTheory.FirstOrderValue.valR_mul_comb E H X t U n v hv r x hx C ψ g₀ a w rfl hw O f hg₀O
@@ -113,7 +114,7 @@ theorem point_formula {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Ho
   have hzf : zO ≫ fst (tEpsG (spMap φ ≫ chart U)) t.G ≫ P = a ≫ x := by
     apply Over.OverMorphism.ext
     show z ≫ (fst (tEpsG (spMap φ ≫ chart U)) t.G).left ≫ P.left = spMap ψ ≫ x.left
-    rw [hP, ← Category.assoc, hψ₀, ← Category.assoc, GlobalTheory.KSLin.spMap_comp_spMap]
+    rw [hP, ← Category.assoc, hψ₀, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring]
   have hτ : zO ≫ lift (fst (tEpsG (spMap φ ≫ chart U)) t.G ≫ P) (snd (tEpsG (spMap φ ≫ chart U)) t.G) ≫ μ[t.G] =
       (a ≫ x) * (Over.homMk g₀ rfl : Over.mk (g₀ ≫ t.G.hom) ⟶ t.G) := by
     rw [← Category.assoc, comp_lift, hzs, hzf]

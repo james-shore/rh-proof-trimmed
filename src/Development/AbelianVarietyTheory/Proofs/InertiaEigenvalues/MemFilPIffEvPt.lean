@@ -98,9 +98,7 @@ theorem theta_xi {e : Per.Fl l} (he : IsEps e) : Per.θD l (aDp l (xi e)) = 0 :=
   rw [(thetaD_props l).2.2.2.1, (theta_eq_zero_iff_xi_dvd l e he _).2 dvd_rfl]
   rfl
 
-theorem ev_aDp (n : ℕ) (a : Per.Ainf l) :
-    Per.ev l n (aDp l a) = Ideal.Quotient.mk _ (algebraMap (Per.Ainf l) (Per.AinfP l) a) := by
-  rw [aDp, RingHom.comp_apply, GlobalTheory.RingIface.ev_alg]
+alias ev_aDp := _root_.GlobalTheory.MemLoc.CrisUnique.ev_aDp
 
 theorem mem_filtration_iff_eval_eq_zero' {e : Per.Fl l} (he : IsEps e) (n : ℕ) (y : Per.BdRp l) :
     y ∈ Per.FilP l n ↔ Per.ev l n y = 0 := by
@@ -178,19 +176,9 @@ theorem alg_mem_FilD (n : ℕ) {z : Per.BdRp l} (hz : z ∈ Per.FilP l n) :
     algebraMap (Per.BdRp l) (Per.BdR l) z ∈ Per.FilD l n :=
   GlobalTheory.RingIface.alg_mem_FilD_nat l hz
 
-theorem exists_isEps_pt (l : ℕ) [Fact l.Prime] : ∃ e : Per.Fl l, IsEps e := by
-  obtain ⟨ζ, ε, h0, -, h1, h⟩ := GlobalTheory.MemLoc.exists_zeta_eps l
-  refine ⟨ε, ?_, fun hh => h1 ?_⟩
-  · have := h 0
-    rw [h0, map_one] at this
-    exact Subtype.ext this
-  · apply (algebraMap (Om l) ℂ_[l]).injective
-    rw [← h 1, map_one]
-    exact congrArg Subtype.val hh
-
 theorem alg_mem_FilD_zero (z : Per.BdRp l) :
     algebraMap (Per.BdRp l) (Per.BdR l) z ∈ Per.FilD l 0 := by
-  obtain ⟨e, he⟩ := exists_isEps_pt l
+  obtain ⟨e, he⟩ := _root_.GlobalTheory.MemLoc.CrisUnique.exists_isEps l
   exact alg_mem_FilD 0 (((filtration_eq_xi_pow l e he).1 0 z).2 (by rw [pow_zero]; exact one_dvd z))
 
 theorem eD_ιA {P : LocPrime l} {AI : LocAinf l P} (T : LocTied l P AI) (a : Ainf l) :

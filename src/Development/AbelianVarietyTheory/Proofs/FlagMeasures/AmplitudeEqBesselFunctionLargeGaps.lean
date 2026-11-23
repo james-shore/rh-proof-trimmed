@@ -152,7 +152,7 @@ theorem exists_coef (hH : GlobalTheory.GapIn.Hyp) {Cg cb Cu cT CT C0 Cn : ℝ} (
   obtain ⟨l, b1, e1⟩ := exists_bessel_scale hH hc s1 ⟨A.H, A.σ⟩ hDG hU hgap hok
   obtain ⟨l', b2, e2⟩ := exists_bessel_scale hH hc s2 ⟨A.H, A.σ⟩ hDG hU hgap hok
   obtain ⟨⟨v, k1, n1⟩, ⟨v', k2, n2⟩, w0, η, hw0, -, hJ⟩ :=
-    GlobalTheory.T.amplitude_eq_smul_normalisedAmplitude_largeGap hH D τ w w' θ W lam' A _ l l' hθ hkg hT hT' hW hA hgap hok b1 b2 e1 e2
+    _root_.GlobalTheory.AmpNormalGap.amp_eq_smul_normalised_gap hH D τ w w' θ W lam' A _ l l' hθ hkg hT hT' hW hA hgap hok b1 b2 e1 e2
   have hw0' : w0 ≠ 0 := by
     obtain ⟨P, -, h1, -⟩ := hw0
     rintro rfl
@@ -205,7 +205,7 @@ theorem ampIsBessel : GlobalTheory.GapIn.Hyp → ∀ Cg cb Cu cT CT C0 C1 : ℝ,
       · have hq' : bcWeight _ _ (Tz _ _ W.z) (Tz _ _ W.z') q = 0 := hq
         rw [hq, hq', zero_mul, zero_mul]
       · rw [hJ _ _ _ _ hq hG.2.2.1, Real.norm_of_nonneg (Real.sqrt_nonneg _),
-          Real.sq_sqrt (GlobalTheory.AmpBessel.hs_nonneg _)]
+          Real.sq_sqrt (_root_.Formalism.MainNotions.BesselShellMomentBounds.hsNormSq_nonneg _)]
         rfl
     obtain ⟨K, hK, hM⟩ := hm₁ D large₂ C' Cl hCl ⟨hb, by nlinarith, (le_max_right _ _).trans hm⟩ hcd hZ τ w w' hTT θ hθw W hW
       μsec hsec
@@ -224,7 +224,7 @@ theorem ampIsBessel : GlobalTheory.GapIn.Hyp → ∀ Cg cb Cu cT CT C0 C1 : ℝ,
     refine le_trans ?_ (mul_le_mul_right hle _)
     rw [hA', GlobalTheory.AmpNorm.hsNormSq_smul, hJ _ _ _ _ hD h0, e, GlobalTheory.AmpNorm.hsNormSq_smul, hs,
       ← ENNReal.ofReal_mul (by positivity), Complex.norm_real, Real.norm_of_nonneg hθ'.le, one_mul, ← mul_assoc]
-    refine ENNReal.ofReal_le_ofReal (mul_le_mul_of_nonneg_right ?_ (GlobalTheory.AmpBessel.hs_nonneg _))
+    refine ENNReal.ofReal_le_ofReal (mul_le_mul_of_nonneg_right ?_ (_root_.Formalism.MainNotions.BesselShellMomentBounds.hsNormSq_nonneg _))
     have h1 : 1 ≤ large₂.sc.b ^ (|C1| * (D.R.m : ℝ) ^ 2) * θ' := by
       calc (1 : ℝ) ≤ large₂.sc.b ^ (|C1| * (D.R.m : ℝ) ^ 2 + -(C1 * (D.R.m : ℝ) ^ 2)) :=
             Real.one_le_rpow hb1 (by nlinarith [le_abs_self C1, sq_nonneg (D.R.m : ℝ)])

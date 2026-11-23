@@ -75,7 +75,7 @@ theorem norm_lminor_Gw_ge (X : Data E r) (w : V (nd X)) (τ : X.Ψ) (hw : 3 * (r
     (1 / 2 : ℝ) ^ r ≤ ‖lminor (Gw X w τ) (i0 X)‖ := by
   have hw0 : (r : ℝ) * ‖w‖ ≤ 1 := by nlinarith [norm_nonneg w]
   have hp : X.p0 ≤ r := X.p0_le
-  have key := (GlobalTheory.T.det_near_one_matrix_norm_bounds X.p0 ((Gw X w τ).submatrix (Fin.castLE X.p0_le) (Fin.castLE X.p0_le))
+  have key := (_root_.GlobalTheory.det_near_one_bounds X.p0 ((Gw X w τ).submatrix (Fin.castLE X.p0_le) (Fin.castLE X.p0_le))
     (3 * ‖w‖) (fun i j => ?_) ?_).1
   · unfold lminor
     refine le_trans ?_ key
@@ -114,7 +114,7 @@ theorem rhY_cpt_le (X : Data E r) {x0 x : Frame X.Ψ r} (hx0 : IsOrth X x0) (hx 
     have hM22 := (sumBd_weight (Mq_isUpq X hx0 hx τ)).1
     have hnorm : ∀ y, ‖lminor (gM X x0 y τ) (i0 X)‖ = ‖(Mq X x0 y τ).toBlocks₂₂.det‖ := fun y => by
       rw [det_lowerBlock_eq_conj_minor, Complex.norm_conj]; rfl
-    have hPP := GlobalTheory.T.det_near_one_matrix_norm_bounds X.p0 (((Mq X x0 x τ).toBlocks₂₂)⁻¹ * (Mq X x0 x τ).toBlocks₂₁ *
+    have hPP := _root_.GlobalTheory.det_near_one_bounds X.p0 (((Mq X x0 x τ).toBlocks₂₂)⁻¹ * (Mq X x0 x τ).toBlocks₂₁ *
         (Nw X w τ).toBlocks₁₂ + (Nw X w τ).toBlocks₂₂) (((r : ℝ) + 1) * ‖w‖)
         (fun i j => pert_entry X hx0 hx w τ i j) (by nlinarith [norm_nonneg w])
     have hP := hPP.2

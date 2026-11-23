@@ -82,7 +82,7 @@ theorem gsB_zero_apply (X : Data E r) (τ : X.Ψ) (a b : Fin r) :
 
 theorem dY_lower (X : Data E r) {x : Frame X.Ψ r} (hx : IsOrth X x) (z : V (nd X)) (τ : X.Ψ)
     (a b : Fin r) (hba : b < a) : dY X z τ a b = nmat X z τ a b := by
-  have hS := (GlobalTheory.T.unitaryChartSectionFrameEntries_hasStrictFDerivAt X hx).hasFDerivAt
+  have hS := (_root_.GlobalTheory.SUChartSection.yF_hasStrictFDerivAt X hx).hasFDerivAt
   have h1 := hasFDerivAt_pi'.1 hS τ
   have h2 := hasFDerivAt_pi'.1 h1 a
   have h3 := hasFDerivAt_pi'.1 h2 b

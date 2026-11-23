@@ -61,11 +61,7 @@ namespace RootFieldNumerics.EffN
 
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
 
-theorem smooth_comb {J : Type} [Fintype J] {ℓ : J → HermLine ι} (hℓ : ∀ j, IsSmoothHerm (ℓ j))
-    (n : J → ℤ) : IsSmoothHerm (combLine ℓ n) := by
-  show ContDiffOn ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (fun z => ∏ j, (ℓ j).h z ^ n j)
-    {z : (k : K) × ι k → ℂ | ∀ k, ∃ i, z ⟨k, i⟩ ≠ 0}
-  exact contDiffOn_prod (fun j _ => RootFieldNumerics.Ii.contDiffOn_zpow_h (ℓ j) (hℓ j) (n j))
+alias smooth_comb := _root_.GlobalTheory.CompanionTheory.Ar.Top.GeoMix.smooth_comb
 
 theorem comb_a {J : Type} [Fintype J] (ℓ : J → HermLine ι) (n : J → ℤ) :
     (combLine ℓ n).a = ∑ j, n j • (ℓ j).a := rfl

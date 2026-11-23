@@ -63,16 +63,14 @@ variable {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ}
 private def Nr (X : Tower Ω ε) (f : X.K) : Prop :=
   ∃ T : Finset Ω, ∀ s : Ω ≃ₐ[ℚ] Ω, (∀ z ∈ T, s z = z) → X.gal s f = f
 
-private theorem exp_inj (X : Tower Ω ε) : Function.Injective X.exp := X.exp.toRingHom.injective
-
 private theorem nr_j (X : Tower Ω ε) : Nr X X.jK := by
-  refine ⟨∅, fun s _ => exp_inj X ?_⟩
+  refine ⟨∅, fun s _ => _root_.GlobalTheory.K4.exp_injective X ?_⟩
   ext r
   obtain ⟨n, hn⟩ := X.j_exp.2.2 r
   rw [X.gal_exp, hn, map_intCast]
 
 private theorem nr_c (X : Tower Ω ε) (c : Ω) : Nr X (algebraMap Ω X.K c) := by
-  refine ⟨{c}, fun s hs => exp_inj X ?_⟩
+  refine ⟨{c}, fun s hs => _root_.GlobalTheory.K4.exp_injective X ?_⟩
   ext r
   rw [X.gal_exp, AlgHom.commutes, HahnSeries.algebraMap_apply']
   by_cases h : r = 0 <;> simp [h, hs c (Finset.mem_singleton_self c)]
@@ -118,7 +116,7 @@ theorem UpperTheory.V.Z.Kato.Sym.PC.galNear :
     intro b hb
     by_contra h
     push_neg at h
-    exact hb (exp_inj X (HahnSeries.ext (funext h)))
+    exact hb (_root_.GlobalTheory.K4.exp_injective X (HahnSeries.ext (funext h)))
   choose TC hTC using hc
   choose! rr hrr using hd
   refine ⟨(q.support.biUnion TC) ∪ ((q.roots.toFinset.erase f).image (fun b => (X.exp f).coeff (rr b))), ?_⟩

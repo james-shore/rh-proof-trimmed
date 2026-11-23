@@ -170,7 +170,7 @@ theorem zetaSeries_main_term : (∀ (C : Type) [Field C] [CharZero C] (v : AddVa
   intro C _ _ v l hl hv h3 d M s₀ good Gs al π t hG hdisj hal0 hal hgood hal2 hπ0 hπ0' hπ ht0 ht
     d' be b hbe0 hbe hbeg hbe1 ζ hζ
   classical
-  obtain ⟨hc1, hc2⟩ := GlobalTheory.T.chainLemma_multivariatePowerSeries_coordinate_form C v l hl hv h3 d M s₀ good Gs al π t hG hdisj hal0 hal hgood
+  obtain ⟨hc1, hc2⟩ := _root_.GlobalTheory.ChainCoord.chain C v l hl hv h3 d M s₀ good Gs al π t hG hdisj hal0 hal hgood
     hal2 hπ0 hπ0' hπ ht0 ht
   have hl3 : (3 : ℝ) ≤ l := by exact_mod_cast h3
   have hq : (0 : ℝ) < (l : ℝ) ^ 2 - 1 := by nlinarith
@@ -231,7 +231,7 @@ theorem zetaSeries_main_term : (∀ (C : Type) [Field C] [CharZero C] (v : AddVa
     intro n c
     split_ifs with h
     · obtain ⟨rfl, hc⟩ := h
-      have hf := GlobalTheory.T.weightedOrderGe_prime_pow_of_sum_pure_powers_add C v l hl hv M ((l ^ 2) ^ s₀) 1 (ρ + σ) ρ (1 + ρ) (A c) _
+      have hf := _root_.GlobalTheory.WeightFrobenius.main C v l hl hv M ((l ^ 2) ^ s₀) 1 (ρ + σ) ρ (1 + ρ) (A c) _
         (by linarith) (ha s₀ c) (hc1 s₀ le_rfl c hc)
       rw [add_sub_cancel] at hf
       refine le_trans ?_ (zetaSeries_coeff_mul_le v _ (hbe c 1) hf α)

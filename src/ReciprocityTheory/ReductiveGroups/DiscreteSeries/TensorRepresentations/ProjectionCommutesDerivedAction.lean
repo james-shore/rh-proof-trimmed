@@ -113,7 +113,7 @@ theorem layer_k_stable (hσ : IsURepOn (UJset ε) σ) (hD : IsDerivedOn ε σ D 
       intro x hx
       obtain ⟨y, hy, e⟩ := ih k hk x hx
       have h := derived_adK hσ hD hk (Matrix.single a b (1 : ℂ)) x
-      rw [tset_actM_single] at h
+      rw [_root_.ReciprocityTheory.ChartRestriction.DS.matrixAction_single] at h
       have hyx : (⟨σ k (x : H), hD.kStable k hk x x.2⟩ : D) = y := Subtype.ext e.symm
       rw [hyx] at h
       refine ⟨(actM E (k * Matrix.single a b 1 * kᴴ)) y, ?_, h.symm⟩

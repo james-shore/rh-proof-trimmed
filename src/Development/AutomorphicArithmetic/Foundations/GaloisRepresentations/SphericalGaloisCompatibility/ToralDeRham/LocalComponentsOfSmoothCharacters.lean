@@ -104,11 +104,11 @@ theorem equiv_prodIrr_chars (hGU : GlobalTheory.Published.GenericUnitaryDualGL) 
   let D : Fin h → Segment k := fun i => (Δ i).nu ((s i : ℝ) : ℂ)
   have hL' : ∀ i, IsLSeg (D i) ((δ i).nu ((s i : ℝ) : ℂ)).rep := fun i => GlobalTheory.isLSeg_nu (hL i) _
   have hG : GlobalTheory.Published.GeometricLemma :=
-    GlobalTheory.geometricLemma_of_filtration GlobalTheory.Laid.bzfin_holds GlobalTheory.geometricLemmaFiltration_holds
+    GlobalTheory.geometricLemma_of_filtration _root_.GlobalTheory.CompanionTheory.Published.bernsteinZelevinskyFiniteness _root_.CompanionTheory.Geo.geometricLemmaFiltration
   have hs2 : HasSupport ρ (∑ i, (D i).ms) :=
     GlobalTheory.CompanionTheory.Hypotheses₂.TD.hasSupport_of_isSubquotient_prodIrr (fun i => (hL' i).hasSupport) hi
       (IsSubquotient.of_injective φ.toIntertwiningMap φ.toLinearEquiv.injective)
-  have he := GlobalTheory.CompanionTheory.Hypotheses₂.TD.hasSupport_unique hG GlobalTheory.Laid.bzfin_holds hs2 hsup
+  have he := GlobalTheory.CompanionTheory.Hypotheses₂.TD.hasSupport_unique hG _root_.GlobalTheory.CompanionTheory.Published.bernsteinZelevinskyFiniteness hs2 hsup
   have hmem : ∀ i (a : ℕ), a < (D i).len → (D i).first.nu (a : ℂ) ∈ chars ξ hξ := fun i a ha => by
     rw [← he]
     exact Multiset.mem_sum.2 ⟨i, Finset.mem_univ _, Segment.mem_ms.2 (Segment.mem_carrier.2 ⟨a, ha, rfl⟩)⟩

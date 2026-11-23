@@ -140,7 +140,7 @@ theorem isLevelFn_datumFn {B : Base S T} (hB : B.Good) {Q : Finset (Pl D.host.E)
     exact ⟨(hlat t d1.1).2 ⟨d1.2, d2.2⟩, d1.1⟩
   · obtain ⟨i1, i2⟩ := (hlat u hue).1 hu
     have e1 : frMapAdj S T B.F.βS B.F.βT (t + N • u) = frMapAdj S T B.F.βS B.F.βT t + N • frMapAdj S T B.F.βS B.F.βT u := by
-      rw [GlobalTheory.RefDatumLev.frMapAdj_add', GlobalTheory.RefDatumLev.frMapAdj_nsmul']
+      rw [_root_.GlobalTheory.PlaceVec.frMapAdj_add, GlobalTheory.RefDatumLev.frMapAdj_nsmul']
     have hKu : IsHalf (halfIdem B.G.Pg (B.de.Q ∪ Q)) (N • u) := fun a b => by
       rw [Matrix.smul_apply, nsmul_eq_mul, mul_left_comm, hue a b]
     have hh : IsHalf (halfIdem B.G.Pg (B.de.Q ∪ Q)) (t + N • u) ↔ IsHalf (halfIdem B.G.Pg (B.de.Q ∪ Q)) t := by

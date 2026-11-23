@@ -512,7 +512,7 @@ theorem matching_at_T (hMT : MT.MatchT) (hU : Unr E) (hm : MOk d) (hT : w ∈ d.
   have hIR : (((iwU n w (d.b w)).relIndex (KL n w) : ℕ) : ℂ) * MT.cR n a w (d.b w) =
       (((Tail.I2 a (n - a) w).relIndex (K2 a (n - a) w) : ℕ) : ℂ) := by
     unfold MT.cR
-    rw [GlobalTheory.CompanionTheory.MatchPow.relIndex_prod, Nat.cast_mul]
+    rw [_root_.GlobalTheory.BCT.OrbProd.relIndex_prod_prod, Nat.cast_mul]
     field_simp
   have hq : ∀ s, MT.mpow w (d.qT a w s) (m + 1) = fun y =>
       (((Tail.I2 a (n - a) w).relIndex (K2 a (n - a) w) : ℕ) : ℂ) ^ (m + 1) *
@@ -571,8 +571,5 @@ theorem matchLMB3Of_main : MatchLMB3Of := by
       exact bad_inert hBI hU d hd hm ha hB hs m
 
 end GlobalTheory.CompanionTheory.LeviMatchingAssembly
-
-theorem PositivityTheory.Rg.BcB.F.MLM.matchLMB3Of_pf : PositivityTheory.Rg.BcB.F.MLM.MatchLMB3Of :=
-  GlobalTheory.CompanionTheory.LeviMatchingAssembly.matchLMB3Of_main
 
 end

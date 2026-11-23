@@ -48,6 +48,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConstantMultiplierMirabolic
 
 @[expose] public section
 
@@ -142,7 +143,7 @@ theorem Nk_unit_k {κ : GL (Fin d.n) (AE F E)} (hκ : κ ∈ (PositivityTheory.R
         ((((κ⁻¹ : GL (Fin d.n) (AE F E)) : Matrix (Fin d.n) (Fin d.n) (AE F E)).map g))ᵀ := by
       ext (i | i) (j | j) <;> simp [Nk, Dk, hf', hσφ, Matrix.star_apply]
     rw [e]
-    exact blk_unit (transpose_mem_unitaryGroup_vacuum_iwasawa (Unitary.star_mem hU)) (transpose_mem_unitaryGroup_vacuum_iwasawa hV)
+    exact blk_unit (_root_.GlobalTheory.CompanionTheory.CMMirror.transpose_mem_unitary (Unitary.star_mem hU)) (_root_.GlobalTheory.CompanionTheory.CMMirror.transpose_mem_unitary hV)
 theorem mL_mem_K_k {κ : GL (Fin d.n) (AE F E)} (hκ : κ ∈ (PositivityTheory.RgEis.adCM σ d.χ).kGL (Fin d.n)) : _root_.PositivityTheory.SiegelWeilFormula.Avac.LineFix.mL_k d κ ∈ d.K := by
   refine (d.ok.stdK _).2 ⟨fun w => ?_, fun k' hk' i j => ?_⟩
   · rw [_root_.PositivityTheory.SiegelWeilFormula.Avac.LineFix.inFrame_mL_k]; exact _root_.PositivityTheory.SiegelWeilFormula.Avac.LineFix.Nk_unit_k d hκ w

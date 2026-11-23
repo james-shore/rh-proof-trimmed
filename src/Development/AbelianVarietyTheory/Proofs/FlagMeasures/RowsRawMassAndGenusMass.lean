@@ -58,15 +58,15 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem rowsLift (D : D7) (u : D.what₂.Word) : LiftsConjugateUnderStabilizer D u := by
   intro hp h3 hs F0 he hz
-  exact GlobalTheory.T.row_lattices_same_middle_conjugate_unipotent D u hp h3 hs F0 he hz
+  exact _root_.GlobalTheory.LoopC.rowsLift D u hp h3 hs F0 he hz
 
 theorem gluingNum (D : D7) (u : D.what₂.Word) : GluingNumber D u := by
   intro hp h3 hs F0 he hz Λ hΛ
-  exact GlobalTheory.T.card_middleLattices_over_genus_lattice D u hp h3 hs F0 he hz Λ hΛ
+  exact _root_.GlobalTheory.LoopC.GluingNum.gluingNum D u hp h3 hs F0 he hz Λ hΛ
 
 theorem rowsGenus (D : D7) (u : D.what₂.Word) : OrthLatticesOneGenus D u := by
   intro hp h3 hs F0 he hz Λ hΛ
-  exact GlobalTheory.T.rowBaseLattices_mem_same_hermitianGenus D u hp h3 hs F0 he hz Λ hΛ
+  exact _root_.GlobalTheory.LoopC.RowsGenus.main D u hp h3 hs F0 he hz Λ hΛ
 
 theorem main : ∀ (D : D7) (u : D.what₂.Word), UnitaryVolumeMass.stLem3L0 D u := by
   intro D u hp h3 hs F0 he hz s hsr
@@ -77,7 +77,7 @@ theorem main : ∀ (D : D7) (u : D.what₂.Word), UnitaryVolumeMass.stLem3L0 D u
     have : (3 : ℝ) ≤ (Tu D u : ℝ) := by exact_mod_cast h3
     linarith
 
-  have hm := fun Λ (hΛ : IsRowLat D F0 Λ) => GlobalTheory.T.mass_rowLattice_orthogonal_split_prime D u F0 he hz hp hs Λ hΛ
+  have hm := fun Λ (hΛ : IsRowLat D F0 Λ) => _root_.GlobalTheory.Mass.RowPerpMass.main D u F0 he hz hp hs Λ hΛ
 
   obtain ⟨Λ₀, hΛ₀⟩ := GlobalTheory.Mass.RowEx.main D u F0 he hz hp hs
   refine ⟨?_, fun Λ hΛ => ⟨?_, (hm Λ hΛ).2⟩⟩

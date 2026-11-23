@@ -69,11 +69,6 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     [CommRing O] [Algebra O LL] [TopologicalSpace LL] {v : AddValuation LL (WithTop ℚ)} {f : ℕ}
     (W : LocWach PD LL O v f)
 
-theorem φD_smul_A (T : LocLat G Qp LL O) (a : LetA O f) (x : W.DD T) :
-    W.φD T (a • x) = W.φA a • W.φD T x := by
-  have := W.φD_smul T (algebraMap (LetA O f) W.EE a) x
-  rwa [algebraMap_smul, W.φE_ext, algebraMap_smul] at this
-
 theorem φpull_le_span {n : ℕ} (T : LocLat G Qp LL O) (b : Module.Basis (Fin n) (LetA O f) ↥(W.N T)) :
     W.φpull T ≤ Submodule.span (LetA O f) (Set.range fun j => W.φD T (b j : W.DD T)) := by
   refine Submodule.span_le.2 ?_
@@ -83,7 +78,7 @@ theorem φpull_le_span {n : ℕ} (T : LocLat G Qp LL O) (b : Module.Basis (Fin n
 
   rw [← e, map_sum]
   refine Submodule.sum_mem _ fun j _ => ?_
-  rw [φD_smul_A]
+  rw [_root_.GlobalTheory.NL.Heights.φD_smulA]
   exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨j, rfl⟩)
 
 theorem exists_inv {n : ℕ} (T : LocLat G Qp LL O) (b : Module.Basis (Fin n) (LetA O f) ↥(W.N T))

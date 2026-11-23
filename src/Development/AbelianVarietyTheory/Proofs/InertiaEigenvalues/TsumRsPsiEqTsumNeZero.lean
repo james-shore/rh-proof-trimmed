@@ -68,8 +68,7 @@ variable (E a) in
 def lowSet : Set (GA E a) := {g | (ideleModule E (GeneralLinearGroup.det g) : ℝ) ≤ 1}
 
 omit [_root_.NumberField.IsTotallyComplex E] in
-theorem continuous_absDet : Continuous fun g : GA E a => (ideleModule E (GeneralLinearGroup.det g) : ℝ) :=
-  continuous_subtype_val.comp (continuous_ideleModule.comp GeneralLinearGroup.continuous_det)
+alias continuous_absDet := _root_.GlobalTheory.RSTheta.continuous_absDet
 
 omit [_root_.NumberField.IsTotallyComplex E] in
 theorem absDet_invT (g : GA E a) : (ideleModule E (GeneralLinearGroup.det (invT a (Ad E) g)) : ℝ) =
@@ -154,7 +153,7 @@ theorem exists_tsum_norm_rsHat_le (hπ : π.IsUnitary) (hπ' : π'.IsUnitary) (h
         C * (ideleModule E (GeneralLinearGroup.det g) : ℝ) ^ K := by
   set N := K + Module.finrank ℝ (Fin a → Cinf E) with hN
   have had : 1 ≤ a * Module.finrank ℚ E := Nat.mul_pos ℓ.pos Module.finrank_pos
-  obtain ⟨M, C₁, h₁⟩ := GlobalTheory.T.summable_nonzeroRationalVector_le_shortestVector E a (traceDualIdeal E J) (a * Module.finrank ℚ E * N)
+  obtain ⟨M, C₁, h₁⟩ := _root_.GlobalTheory.RSTheta.summable_tsum_norm_le_of_le_shortest E a (traceDualIdeal E J) (a * Module.finrank ℚ E * N)
     ((Nat.le_add_left _ K).trans (Nat.le_mul_of_pos_left _ had))
   obtain ⟨C₂, h₂⟩ := exists_norm_rsHat_le J η
     (ι := {p : GA E a × (Fin a → E) // p.2 ≠ 0 ∧
@@ -227,7 +226,7 @@ theorem integrableOn_partA (hπ : π.IsUnitary) (hπ' : π'.IsUnitary) (hφ : φ
     {s : ℂ} (hs : 1 < s.re) : IntegrableOn (fun g => rsHat ℓ φ.1 φ'.1 Φ J η g 0 *
       ((ideleModule E (GeneralLinearGroup.det g) : ℝ) : ℂ) ^ (s - 1)) (𝓕 ∩ lowSet E a) μ := by
   obtain ⟨C, hC⟩ := exists_norm_rsHat_le_const J η hπ hπ' hφ hφ' hΦ
-  refine ((GlobalTheory.T.integrableOn_absDet_rpow_le_one_fundamentalDomain E a ℓ.pos μ 𝓕 h𝓕 (s.re - 1) (by linarith)).const_mul C).mono'
+  refine ((_root_.GlobalTheory.RSThetaLow.integrableOn_absDet_rpow_low E a ℓ.pos μ 𝓕 h𝓕 (s.re - 1) (by linarith)).const_mul C).mono'
     ((stronglyMeasurable_rsHat J η (continuous_bounded hπ hφ).1 (continuous_bounded hπ' hφ').1 hΦ
       continuous_const).aestronglyMeasurable.mul
       ((Complex.measurable_ofReal.comp continuous_absDet.measurable).pow_const _).aestronglyMeasurable)
@@ -254,13 +253,13 @@ theorem partB_entire (hπ : π.IsUnitary) (hπ' : π'.IsUnitary) (hφ : φ ∈ w
       (ae_restrict_mem (isClosed_le continuous_absDet continuous_const).measurableSet)
   have hδ := hlow.mono (q := fun g => 0 < (ideleModule E (GeneralLinearGroup.det g) : ℝ) ∧
     (ideleModule E (GeneralLinearGroup.det g) : ℝ) ≤ 1) fun g hg => ⟨(ideleModule E _).2, hg⟩
-  have hi := GlobalTheory.T.integrableOn_absDet_rpow_le_one_fundamentalDomain E a ℓ.pos μ 𝓕 h𝓕 1 one_pos
+  have hi := _root_.GlobalTheory.RSThetaLow.integrableOn_absDet_rpow_low E a ℓ.pos μ 𝓕 h𝓕 1 one_pos
   simp only [Real.rpow_one] at hi
   have hb := exists_tsum_norm_rsHat_le J η hπ hπ' hφ hφ' hΦ
-  have h1 := GlobalTheory.T.mellin_integral_rapidDecay_entire_of_le_one _ _ _ _ continuous_absDet.measurable hδ hi (AEStronglyMeasurable.tsum hm) fun K =>
+  have h1 := _root_.GlobalTheory.integral_mul_cpow_of_rapid_decay_entire _ _ _ _ continuous_absDet.measurable hδ hi (AEStronglyMeasurable.tsum hm) fun K =>
     (hb K).imp fun C h => hlow.mono fun g hg =>
       (norm_tsum_le_tsum_norm (poisson_rsPsi J η φ φ' hΦ g).2.1).trans (h g hg)
-  have h2 := GlobalTheory.T.mellin_integral_rapidDecay_entire_of_le_one _ _ _ _ continuous_absDet.measurable hδ hi
+  have h2 := _root_.GlobalTheory.integral_mul_cpow_of_rapid_decay_entire _ _ _ _ continuous_absDet.measurable hδ hi
     (Complex.continuous_ofReal.comp_aestronglyMeasurable (AEStronglyMeasurable.tsum fun ξ => (hm ξ).norm)) fun K =>
     (hb K).imp fun C h => hlow.mono fun g hg => by
       rw [Complex.norm_real, Real.norm_of_nonneg (tsum_nonneg fun _ => norm_nonneg _)]

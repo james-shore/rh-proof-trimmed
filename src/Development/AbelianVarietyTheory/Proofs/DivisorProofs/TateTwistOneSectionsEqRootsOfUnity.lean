@@ -60,7 +60,7 @@ theorem GlobalTheory.EtC.tw_one_mu : ∀ (q : ℕ) [NeZero q], ∃ e : ∀ (C : 
   let e : ∀ (C : Type) [CommRing C], IsUnit (q : C) → (onRings (tw q 1)).obj (CommRingCat.of C) ≃+ Additive (rootsOfUnity q C) :=
     fun C _ hC =>
       ((AddEquiv.ofBijective ((etaS q).hom.app (op (Spec (CommRingCat.of C)))).hom.toAddMonoidHom
-        ⟨GlobalTheory.T.tateTwistOneToRootsOfUnity_sections_injective q _ (hunit C hC), GlobalTheory.T.tateTwistOneToRootsOfUnity_sections_surjective q _ (hunit C hC)⟩).trans AddEquiv.ulift).trans
+        ⟨_root_.GlobalTheory.EtC.MuTw.Inj.etaS_injective q _ (hunit C hC), _root_.GlobalTheory.EtC.MuTw.etaS_surjective q _ (hunit C hC)⟩).trans AddEquiv.ulift).trans
         (MulEquiv.restrictRootsOfUnity (Scheme.ΓSpecIso (CommRingCat.of C)).commRingCatIsoToRingEquiv.toMulEquiv q).toAdditive
   refine ⟨e, ?_⟩
   intro C D _ _ φ hC hD x

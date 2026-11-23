@@ -61,7 +61,7 @@ theorem cohomology_filteredColimit : ∀ (N : CommRingCat.{0} ⥤ AbCx), Preserv
   intro J _ _ D c hc n
   have E : ∀ m : ℤ, (∀ x : ((N).obj c.pt).X m, ∃ j y, ((N).map (c.ι.app j)).f m y = x) ∧
       ∀ j (y : ((N).obj (D.obj j)).X m), ((N).map (c.ι.app j)).f m y = 0 → ∃ (k : J) (f : j ⟶ k), ((N).map (D.map f)).f m y = 0 :=
-    fun m => ((GlobalTheory.T.preservesFilteredColimits_addCommGrp_iff_elements CommRingCat.{0} (term N m)).mp (term_preserves N hN m)) J D c hc
+    fun m => ((_root_.GlobalTheory.EtC.FilteredElements.preservesFilteredColimits_iff_elements CommRingCat.{0} (term N m)).mp (term_preserves N hN m)) J D c hc
 
   have nat : ∀ {a b : CommRingCat.{0}} (g : a ⟶ b) (p q : ℤ) (x : ((N).obj a).X p),
       ((N).map g).f q (((N).obj a).d p q x) = ((N).obj b).d p q (((N).map g).f p x) := by

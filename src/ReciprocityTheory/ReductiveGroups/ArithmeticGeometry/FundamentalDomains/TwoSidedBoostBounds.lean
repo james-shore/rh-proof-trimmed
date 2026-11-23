@@ -86,11 +86,7 @@ theorem boost_upper (τ : X.Ψ) {z : Frame X.Ψ r} (hz : z ∈ X.dom) {e : Fin r
         rw [← mul_assoc, hmm, one_mul]
     _ ≤ max (σ ^ 2) (σ ^ 2)⁻¹ * X.maj z τ w := mul_le_mul_of_nonneg_left hl hM
 
-theorem c_pos (τ : X.Ψ) : 0 < X.c τ := by
-  unfold Data.c
-  have h : τ.1 X.ξ0 ≠ 0 := (map_ne_zero _).2 X.ξ0_ne
-  have := norm_pos_iff.2 h
-  linarith
+alias c_pos := _root_.ReciprocityTheory.ChartRestriction.G.FD.MajorantFamilyNorms.c_pos
 
 theorem maj_two_sided {x : Frame X.Ψ r} (hx : x ∈ X.dom) {ξ : Fin r → E} (hξ : X.IsIso ξ)
     (s : X.Ψ → ℂ) (hy : X.flow ξ s x ∈ X.dom) (τ : X.Ψ) (w : Fin r → ℂ) :

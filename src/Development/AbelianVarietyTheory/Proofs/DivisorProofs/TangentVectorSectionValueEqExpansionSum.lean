@@ -162,7 +162,7 @@ theorem value_at_tangent : AllVC fun {V} _ _ _ {D} {A} {G} _ _ U {C} _ _ {N} ν 
   have hgt : GtTan gm₀ := GlobalTheory.T.modelTangentVector_torusPoint_reduces_to_origin V hV D A G hG U y gm₀ hy hrel
   obtain ⟨W, hW1, hW2⟩ := GlobalTheory.T.integralSectionValue_tangent_eq_adicExpansionSum V hV D A G hG U y gm₀ hy hrel k (J0 y.left) J1 hjG hJ
   obtain ⟨T, hD, hT1, hT2⟩ := GlobalTheory.T.firstJetTerms_gauge_unit_mul_baseChange V D.toPre C N ν gm₀ gm hgt hpull k J1 hJ
-  obtain ⟨Θ, hΘ1, hΘ2⟩ := GlobalTheory.T.sectionValue_genericTangent_eq_unit_mul_combination V (IsLocalRing.maximalIdeal V) D A G U.toUnifPre C w₀ ρ hρ y yA hy hvec k i₀
+  obtain ⟨Θ, hΘ1, hΘ2⟩ := _root_.GlobalTheory.MBLow.TanVal.value_tangent V (IsLocalRing.maximalIdeal V) D A G U.toUnifPre C w₀ ρ hρ y yA hy hvec k i₀
     (J0 y.left) hi₀ hjG
   obtain ⟨ω, hω⟩ : ∃ ω : (DualNumber C)ˣ, (ω : DualNumber C) = dualMap (toF V C) (W : DualNumber V) :=
     ⟨Units.map (dualMap (toF V C)).toMonoidHom W, rfl⟩

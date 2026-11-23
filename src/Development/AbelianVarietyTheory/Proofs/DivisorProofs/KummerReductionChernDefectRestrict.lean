@@ -85,8 +85,8 @@ theorem res_defectSec : ∀ (Q q : ℕ) [NeZero Q], q ∣ Q → ∀ (U : Scheme.
     have hQV : IsUnit (Q : Γ(V, ⊤)) := isUnit_natCast_appTop g Q hQ
     have hQW : IsUnit (Q : Γ(W, ⊤)) := isUnit_natCast_appTop k Q hQV
     change Sec.res k (defect Q q V hg.choose) = defect Q q W (S.downward_closed hg k).choose
-    rw [GlobalTheory.T.kummerReductionChernDefect_restriction Q q hqQ W V k hg.choose hQV]
-    refine GlobalTheory.T.kummerReductionChernDefect_eq_of_pow_eq Q q hqQ W _ _ hQW ?_
+    rw [_root_.GlobalTheory.EtC.RedChern.res_defect Q q hqQ W V k hg.choose hQV]
+    refine _root_.GlobalTheory.EtC.RedChern.defect_eq_of_pow_eq Q q hqQ W _ _ hQW ?_
     rw [(S.downward_closed hg k).choose_spec, ← map_pow, hg.choose_spec, unitsMap_comp_appTop]
   obtain ⟨a, ha⟩ := (GlobalTheory.T.etaleSheafSections_ext_and_glue _ _ U).2 S hS s hcompat
   have hex : ∃ a : Sec ((res _ (tw q 1)).X 0) U, ∀ (V : Scheme.{0}) (g : V ⟶ U) (v : (Γ(V, ⊤))ˣ),
@@ -94,7 +94,7 @@ theorem res_defectSec : ∀ (Q q : ℕ) [NeZero Q], q ∣ Q → ∀ (U : Scheme.
     refine ⟨a, fun V g v hv => ?_⟩
     have hg : S.arrows g := ⟨v, hv⟩
     rw [ha V g hg]
-    exact GlobalTheory.T.kummerReductionChernDefect_eq_of_pow_eq Q q hqQ V _ _ (isUnit_natCast_appTop g Q hQ) (hg.choose_spec.trans hv.symm)
+    exact _root_.GlobalTheory.EtC.RedChern.defect_eq_of_pow_eq Q q hqQ V _ _ (isUnit_natCast_appTop g Q hQ) (hg.choose_spec.trans hv.symm)
   intro V g v hv
   exact pick_spec hex V g v hv
 

@@ -139,7 +139,7 @@ theorem slopeMax_le (h6 : GlobalTheory.Published.TamagawaSpecialUnitary) {PP A :
   have hn : normW (p.T.U ((i : ℕ) + 1)) (xiR D) (fun _ => D.sp.W ((i : ℕ) + 1)) (GlobalTheory.LevGeo.coreDict p.T.toCore ((i : ℕ) + 1))
       (Gk p i) = nrmK p.fw i := by
     funext σ f; exact hnorm _ σ f
-  obtain ⟨_, χ, hχ, hOm, -, -⟩ := GlobalTheory.T.logPeriod_eq_kroneckerCharacter_logPeriod_of_host D L p.T.Q p.fw.laws.pins.1 p.Del p.h0
+  obtain ⟨_, χ, hχ, hOm, -, -⟩ := _root_.GlobalTheory.CovTop.Period.period_eq_kronecker D L p.T.Q p.fw.laws.pins.1 p.Del p.h0
   have hgood : GoodW (p.T.U ((i : ℕ) + 1)) (xiR D) (fun _ => D.sp.W ((i : ℕ) + 1))
       (GlobalTheory.LevGeo.coreDict p.T.toCore ((i : ℕ) + 1)) (Gk p i) := ⟨by rw [hn]; exact hG.2.2.2.1, hG.2.2.2.2⟩
   have main := GlobalTheory.T.kronecker_character_frame_third h6 D _ _ _ _ _ _ _ _ hLaws χ hχ (wtA (p.κ i)) (p.κ i).n hW.dom hgood (latW_ne_bot p i hG)
@@ -196,7 +196,7 @@ theorem slopeMax_le (h6 : GlobalTheory.Published.TamagawaSpecialUnitary) {PP A :
   have hl3 : Real.log (D.host.d : ℝ) ≤ 4 * (2 * L.sc.L) := by linarith [hN.logd]
   have n1 := (GlobalTheory.T.supremum_constant_log_bound D.host.E D.R.r D.host.d _ (s + t + 1) (2 * L.sc.L) hr2 hd hM (by linarith) (by linarith)
     hl1 hlM hl2 hl3 hlw).2
-  have n2 := GlobalTheory.T.meanLogSupNormLoss_le_linear_in_weight D.host.E D.R.r (dat p i).q D.host.d _ (ofRecord D L p.Del p.h0).logOm s t (2 * L.sc.L) (by omega) hd hM
+  have n2 := _root_.GlobalTheory.LamSize.lamSup_le D.host.E D.R.r (dat p i).q D.host.d _ (ofRecord D L p.Del p.h0).logOm s t (2 * L.sc.L) (by omega) hd hM
     (by linarith) hs0 ht0 hl1 hlM hl2 hl3 hlw
   have n3 := (log_rd_le_fieldSz _).trans (hR.core_size_le p (by linarith))
   rw [hfd] at n1 n2

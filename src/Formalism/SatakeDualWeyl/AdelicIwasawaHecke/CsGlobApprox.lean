@@ -127,13 +127,6 @@ private theorem intValuation_lt_of_mem_pow_of_not_mem_pow {F : Type} [Field F] [
   lt_of_le_of_lt ((w.intValuation_le_pow_iff_mem z n).2 hz)
     (not_le.1 fun h => hDn ((w.intValuation_le_pow_iff_mem D n).1 h))
 
-private theorem valued_v_algebraMap_adicCompletion {F : Type} [Field F] [NumberField F] (w : HeightOneSpectrum (𝓞 F)) (k : F) :
-    Valued.v (algebraMap F (w.adicCompletion F) k) = w.valuation F k := by
-  first
-  | exact w.valuedAdicCompletion_eq_valuation' k
-  | rfl
-  | simp [HeightOneSpectrum.valuedAdicCompletion_eq_valuation']
-
 theorem csGlob_intAdApprox : Formalism.UG.CS.IntAdApprox := by
   intro F _ _ D hD a ha
   classical
@@ -197,7 +190,7 @@ theorem csGlob_intAdApprox : Formalism.UG.CS.IntAdApprox := by
     rw [hcoord]
     have hle : Valued.v ((a w - algebraMap (𝓞 F) (w.adicCompletion F) r0) *
         algebraMap F (w.adicCompletion F) (algebraMap (𝓞 F) F D)⁻¹) ≤ 1 := by
-      rw [map_mul, valued_v_algebraMap_adicCompletion, map_inv₀, w.valuation_of_algebraMap]
+      rw [map_mul, _root_.Formalism.UG.P.levelaf_valued_algebraMap, map_inv₀, w.valuation_of_algebraMap]
       calc _ ≤ w.intValuation D * (w.intValuation D)⁻¹ := by
             first
             | exact mul_le_mul_right (hbound w) _

@@ -68,7 +68,7 @@ theorem UpperTheory.exists_invariant_posDef_hermitian_form_autForm_unitary :
   obtain ⟨h1, h2, h3, h4, h5, _h6, h7⟩ := GlobalTheory.Mem.AdelicGroupTop.adelic_unitary_topology D V
   obtain ⟨μ, hμ⟩ : ∃ μ : Measure (GA D V), μ.IsHaarMeasure := ⟨Measure.haar, inferInstance⟩
   obtain ⟨hR, 𝓕, h𝓕⟩ := GlobalTheory.Mem.AdelicGroupFund.rightInvariant_and_exists_fundamentalDomain D V μ hμ
-  obtain ⟨C, hC, hcov⟩ := GlobalTheory.definite_unitary_cocompact V (fun τ => GlobalTheory.RepsObj.gramAt_posDef hp hs τ)
+  obtain ⟨C, hC, hcov⟩ := _root_.GlobalTheory.DefiniteQuotient.exists_compact V (fun τ => GlobalTheory.RepsObj.gramAt_posDef hp hs τ)
 
   let N : Submodule ℂ (UA D.host.E V.rank → ℂ) :=
     { carrier := {φ | Continuous φ ∧ ∀ γ ∈ ratU D.host.E V.rank, ∀ g, φ (γ * g) = φ g}

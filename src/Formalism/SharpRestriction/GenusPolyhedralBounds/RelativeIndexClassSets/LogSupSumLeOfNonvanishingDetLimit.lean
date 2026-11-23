@@ -1756,7 +1756,7 @@ theorem len_sat_le {R F : Type} [CommRing R] [IsDomain R] [IsDiscreteValuationRi
       exact hfg.of_le (Submodule.map_comap_le _ _)
     · rw [eq_top_iff, ← hTlat.2]
       exact Submodule.span_mono hTS
-  obtain ⟨w0, hw0⟩ := Formalism.LatticeIndexTer.lattice_has_basis R F U S hSlat
+  obtain ⟨w0, hw0⟩ := _root_.Formalism.LatticeIndexTer.LatticeIndexDeterminant.lattice_span_of_basis R F U S hSlat
   let w : Basis (Fin ρ) F U := w0.reindex (finCongr hfr)
   have hw : S = Submodule.span R (Set.range w) := by
     rw [Basis.range_reindex]; exact hw0

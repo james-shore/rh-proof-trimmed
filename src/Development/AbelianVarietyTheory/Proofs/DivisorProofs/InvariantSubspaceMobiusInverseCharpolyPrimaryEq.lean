@@ -122,15 +122,7 @@ theorem eq_top_of_nilpotent {F V : Type} [Field F] [AddCommGroup V] [Module F V]
   obtain ⟨w, hw, u, rfl⟩ := key m v
   simpa [hN] using hw
 
-theorem aeval_mem {F V : Type} [Field F] [AddCommGroup V] [Module F V] (g : Module.End F V)
-    (W : Submodule F V) (hW : ∀ x ∈ W, g x ∈ W) (p : F[X]) : ∀ x ∈ W, aeval g p x ∈ W := by
-  first
-  | exact @_root_.GlobalTheory.PolynomialEvaluationMembership.aeval_apply_mem
-  | exact _root_.GlobalTheory.PolynomialEvaluationMembership.aeval_apply_mem
-  | (apply _root_.GlobalTheory.PolynomialEvaluationMembership.aeval_apply_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PolynomialEvaluationMembership.aeval_apply_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PolynomialEvaluationMembership.aeval_apply_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PolynomialEvaluationMembership.aeval_apply_mem ..)
+alias aeval_mem := _root_.GlobalTheory.PolynomialEvaluationMembership.aeval_apply_mem
 
 theorem mem_image_of_mem_span {F V : Type} [Field F] [AddCommGroup V] [Module F V] (g : Module.End F V)
     (f : F[X]) {t : ℕ} (π : V →ₗ[F] (Fin t → AdjoinRoot f)) (hπ : ∀ v, π (g v) = AdjoinRoot.root f • π v)
@@ -209,7 +201,7 @@ theorem psi_primary : ∀ (F : Type) [Field F] [Finite F] (V : Type) [AddCommGro
   let G : Submodule (AdjoinRoot f) (Fin t' → AdjoinRoot f) → ℂ :=
     fun B => ∑ W ∈ Finset.univ.filter (fun W => Φ W = B), P W
   have hrk : Module.finrank (AdjoinRoot f) (Fin t' → AdjoinRoot f) = t' := by simp
-  have main := GlobalTheory.T.mobiusInversion_affine_finrank_subspaces (AdjoinRoot f) (Fin t' → AdjoinRoot f) G
+  have main := _root_.GlobalTheory.CuspGL.moebius_affine_finrank (AdjoinRoot f) (Fin t' → AdjoinRoot f) G
     ((Module.finrank F (LinearMap.ker π) : ℂ) * s f / f.natDegree) (s f) (by rw [hrk]; exact htpos) (by
       intro A
       have hA : ∀ x ∈ (A.restrictScalars F).comap π, g x ∈ (A.restrictScalars F).comap π := by

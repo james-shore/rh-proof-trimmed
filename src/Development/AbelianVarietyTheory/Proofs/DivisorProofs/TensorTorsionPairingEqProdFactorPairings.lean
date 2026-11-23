@@ -49,10 +49,6 @@ open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 namespace GlobalTheory.Mum.TensTor.PairVal
 
-theorem cubN_succ {A U : Type} [CommGroup A] [CommGroup U] (θ : A → A → A → U) (k : ℕ) (m x : A) :
-    cubN θ (k + 1) 1 m x = cubN θ k 1 m x * θ (m ^ k) m x := by
-  simp [cubN, Finset.prod_range_succ]
-
 theorem comp_one {B C : Type} [CommGroup B] [CommGroup C] {r : ℕ} {φ : B → Fin r → C}
     (h : ∀ x y j, φ (x * y) j = φ x j * φ y j) (j : Fin r) : φ 1 j = 1 := by
   have := h 1 1 j
@@ -85,7 +81,7 @@ theorem cube_prod (W : Matrix (Fin r) (Fin r) ℤ) (φ : N'.A → Fin r → N.A)
     have split : ∀ P p Q q R s : Fˣ, P * p / (Q * q * (R * s)) = P / (Q * R) * (p / (q * s)) := by
       intro P p Q q R s
       rw [_root_.mul_mul_mul_comm, div_mul_div_comm]
-    simp only [cubN_succ, split, mul_zpow, Finset.prod_mul_distrib, pow_succ]
+    simp only [_root_.GlobalTheory.CubeBalance.cubN_succ, split, mul_zpow, Finset.prod_mul_distrib, pow_succ]
     apply Additive.ofMul.injective
     have ih' := congrArg Additive.ofMul ih
     have h' := congrArg Additive.ofMul h

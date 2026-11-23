@@ -79,17 +79,6 @@ theorem norm_taylor_coeff_le (T : Finset K) (x : K) (r : ℝ) (hr : 0 ≤ r) (h 
   rw [norm_sub_rev]
   exact h z (ht.1 hz)
 
-omit [IsUltrametricDist K] in
-theorem exists_root_near [IsAlgClosed K] (p : K[X]) (hp : 0 < p.natDegree) (x : K) :
-    ∃ b ∈ p.roots, ‖p.leadingCoeff‖ * ‖b - x‖ ^ p.natDegree ≤ ‖p.eval x‖ := by
-  first
-  | exact @_root_.GlobalTheory.RootNormPowerBound.exists_root_norm_sub_pow_le
-  | exact _root_.GlobalTheory.RootNormPowerBound.exists_root_norm_sub_pow_le
-  | (apply _root_.GlobalTheory.RootNormPowerBound.exists_root_norm_sub_pow_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RootNormPowerBound.exists_root_norm_sub_pow_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RootNormPowerBound.exists_root_norm_sub_pow_le <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.RootNormPowerBound.exists_root_norm_sub_pow_le ..)
-
 end General
 
 variable {l : ℕ} [Fact l.Prime]
@@ -216,7 +205,7 @@ theorem ax_step (H : Subgroup (GQ l)) (k : ℕ) : ∀ (x : Om l) (r : ℝ) (S : 
       intro h
       rw [h, natDegree_zero] at hpd
       exact (pow_pos two_pos k).ne hpd
-    obtain ⟨b, hb, hbx⟩ := exists_root_near p (by rw [hpd]; positivity) x
+    obtain ⟨b, hb, hbx⟩ := _root_.GlobalTheory.RootNormPowerBound.exists_root_norm_sub_pow_le p (by rw [hpd]; positivity) x
     have hev := norm_taylor_coeff_le T x r hr0 (fun z hz => by
       obtain ⟨g, hg, rfl⟩ := (hTm z).1 hz
       exact hr g hg) q (by omega)

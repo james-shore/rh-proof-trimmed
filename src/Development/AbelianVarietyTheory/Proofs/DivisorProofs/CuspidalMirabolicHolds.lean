@@ -45,7 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace GlobalTheory
 
-theorem cuspidalMirabolic_holds : GlobalTheory.Published.CuspidalMirabolic :=
-  CompanionTheory.Mirab.cuspidalMirabolic
-
 end GlobalTheory

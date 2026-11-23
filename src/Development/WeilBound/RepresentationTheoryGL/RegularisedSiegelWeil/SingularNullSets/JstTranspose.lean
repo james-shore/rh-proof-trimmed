@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsFundamentalDomainOfHaar
 
 @[expose] public section
 
@@ -159,22 +160,8 @@ theorem jst_det (D : D7) (n : ℕ) : (Jst D n).det ≠ 0 := by
 theorem sig_sig (D : D7) (x : D.host.E) : D.sp.cm.sig (D.sp.cm.sig x) = x := by
   simp [Formalism.BasicNotions.CMData.sig]
 
-theorem sig_ne (D : D7) : ∃ z, D.sp.cm.sig z ≠ z := by
-  by_contra h
-  simp only [not_exists, ne_eq, not_not] at h
-  have hall : ∀ a : D.host.E, a ∈ (algebraMap D.host.F D.host.E).range := fun a =>
-    (D.sp.cm.fixed a).1 (by simpa [Formalism.BasicNotions.CMData.sig, starRingEnd_apply] using h a)
-  have hbot : (⊥ : Subalgebra D.host.F D.host.E) = ⊤ := by
-    ext a
-    simp only [Algebra.mem_top, iff_true, Algebra.mem_bot]
-    obtain ⟨b, hb⟩ := hall a
-    exact ⟨b, hb⟩
-  have := Subalgebra.bot_eq_top_iff_finrank_eq_one.1 hbot
-  rw [D.sp.cm.deg2] at this
-  norm_num at this
-
 theorem exists_skew (D : D7) : ∃ δ : D.host.E, δ ≠ 0 ∧ D.sp.cm.sig δ = -δ := by
-  obtain ⟨z, hz⟩ := sig_ne D
+  obtain ⟨z, hz⟩ := _root_.GlobalTheory.VolHeckeCompare.exists_not_fixed D
   refine ⟨z - D.sp.cm.sig z, sub_ne_zero.2 (Ne.symm hz), ?_⟩
   rw [map_sub, sig_sig]
   ring
@@ -208,7 +195,7 @@ theorem approx_loc (D : D7) (n : ℕ) (v : Pl D) (x : GLoc D.sp.cm.sig (Jst D n)
       simp [JR, map_mul]
     rw [e]
     exact uj_smul _ _ ((Ne.isUnit hδ0).map _)
-  have hd := dense_loc D.host.F D.host.E v D.sp.cm.sig (sig_sig D) (sig_ne D) (δ • Jst D n) hJ' hdet'
+  have hd := dense_loc D.host.F D.host.E v D.sp.cm.sig (sig_sig D) (_root_.GlobalTheory.VolHeckeCompare.exists_not_fixed D) (δ • Jst D n) hJ' hdet'
   have hind := (isEmbedding_matHom (Fv D.host.F v) D.sp.cm.sig (Jst D n)).isInducing
   have hind' := (isEmbedding_matHom (Fv D.host.F v) D.sp.cm.sig (δ • Jst D n)).isInducing
   obtain ⟨O₀, hO₀, rfl⟩ := hind.isOpen_iff.1 hO

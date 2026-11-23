@@ -49,6 +49,8 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.BitVec
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RegularPowerTorus
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SeparablePowerTorus
 
 @[expose] public section
 
@@ -200,7 +202,7 @@ theorem locMatch (h : LocWord) (h1 : MLM.MatchLMB2) (h2 : MLM.MatchLMWordS) (h3 
   obtain ⟨w₀, hw₀⟩ := hTne
   refine ⟨fun w hw => lpow_hecke (hO w) (hKK w) (hg0 w hw) m, ⟨w₀, hBS _ (hTB _ hw₀), fun y hy => ?_⟩, fun a ha => ?_⟩
   · rw [hfamB w₀ (hTB _ hw₀)] at hy
-    exact MLM.sepPowT E hE n d hd hM N w₀ hw₀ y hy
+    exact _root_.GlobalTheory.CompanionTheory.SepPow.sepPowT E hE n d hd hM N w₀ hw₀ y hy
   obtain ⟨hlet, hBtr, hoff, hnil⟩ := h E n d hd a ha ls N (hcnt.trans hN)
   have hloc := BlockFiniteConvolution.locOk₀ E n d hd a ha
   have hne : ∀ w, Nonempty (d.kap w) := hloc.1
@@ -234,7 +236,7 @@ theorem locMatch (h : LocWord) (h1 : MLM.MatchLMB2) (h2 : MLM.MatchLMWordS) (h3 
           · exact (hM.T w hT).1 hs
           · exact hmu (Or.inl hS0)
           · exact hmu (Or.inr ⟨hBad, hs⟩)
-        exact (MLM.muInert E n a (n - a) w hns _ _ _ _).1 hb
+        exact (_root_.GlobalTheory.CompanionTheory.MuInertPlace.muInert E n a (n - a) w hns _ _ _ _).1 hb
     · have hf : U.fam d.B d.KU (d.gU m) k lU w = MLM.wordUS d w (atPlace d w ls) := by
         simp only [U.fam, if_neg hwB]; exact hlU w hwB
       have e1 : (prodL d ls a).tr d.P d.one w = (MLM.wordLS d a ha w (atPlace d w ls)).tr d.P d.one w := by
@@ -246,9 +248,9 @@ theorem locMatch (h : LocWord) (h1 : MLM.MatchLMB2) (h2 : MLM.MatchLMWordS) (h3 
       · rw [seen_inert hs, e1, hnil w fun hG => hs hG.1]
         have := h3 E hE n d hd a ha w hwB fun hs' => absurd hs' hs
         rw [if_neg hs] at this
-        exact (MLM.muInert E n a (n - a) w hs _ _ _ _).1 this
+        exact (_root_.GlobalTheory.CompanionTheory.MuInertPlace.muInert E n a (n - a) w hs _ _ _ _).1 this
   · rw [hBtr w₀ (hTB _ hw₀)]
-    exact MLM.regPowT E hE n d hd hM a ha N w₀ hw₀
+    exact _root_.GlobalTheory.CompanionTheory.RegPow.regPowT E hE n d hd hM a ha N w₀ hw₀
 
 end PositivityTheory.Rg.BcB.F.B3
 

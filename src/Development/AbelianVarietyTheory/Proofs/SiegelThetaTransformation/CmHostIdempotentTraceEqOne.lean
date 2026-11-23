@@ -114,18 +114,6 @@ theorem cmHost_idempotent_trace_eq_one (H : Host E) : (H.w0 : E) + cc (H.w0 : E)
   have : 2 * ((H.w0 : E) + cc (H.w0 : E)) = 2 * 1 := by linear_combination h2 + h3 + hc
   exact mul_left_cancel₀ two_ne_zero this
 
-theorem finite_levQ {H : Host E} (Dw : Datum H) (l : Geo.Tor.Level H) : Finite (LevQ Dw l) := by
-  have hM : l.Mb ≠ ⊥ := by
-    intro h
-    have h₁ := l.prod
-    rw [h, Ideal.bot_mul, eq_comm, Ideal.span_singleton_eq_bot] at h₁
-    have h₂ : l.M = 0 := by exact_mod_cast h₁
-    have := l.three_le
-    omega
-  have := l.Mb.finiteQuotientOfFreeOfNeBot hM
-  have := Dw.fin
-  exact Submodule.finite_quotient_smul l.Mb (N := (⊤ : Submodule (𝓞 E) Dw.La)) Module.Finite.fg_top
-
 theorem mem_vset (Λ : GenLat E n) {M : ℕ} (hM : 3 ≤ M) (hU : Λ.Unimod) (hT : Λ.TrivAt M) :
     Λ.La ∈ Vset E n M := by
   obtain ⟨k, hk, h1, h2⟩ := hT
@@ -137,22 +125,13 @@ theorem mem_vset (Λ : GenLat E n) {M : ℕ} (hM : 3 ≤ M) (hU : Λ.Unimod) (hT
     · exact hk0
   exact ⟨GenLatCmp.fg_of_smul_le hk0 h1, (GenLatCmp.unimod_iff Λ.La).1 hU, k, hk0, hk, h1, h2⟩
 
-theorem thA_sum (idx : Fin g ≃ X.Ψ × Fin r) (hs : IsSympl X bas) {x : Frame X.Ψ r}
-    (hx : x ∈ X.dom) {T : Type} (s : Finset T) (f : T → TF n g) (hf : ∀ i, IsSB (f i)) :
-    thA X bas idx (∑ i ∈ s, f i) x = ∑ i ∈ s, thA X bas idx (f i) x := by
-  induction s using Finset.induction_on with
-  | empty => simpa using UnAct.thA_smul (X := X) (bas := bas) idx x 0 (0 : TF n g)
-  | insert a s ha ih =>
-    rw [Finset.sum_insert ha, Finset.sum_insert ha, ← ih]
-    exact UnAct.thA_add idx hs hx (hf a) (RecSum.isSB_sum s f hf)
-
 theorem theta_sum₂ (hr : X.p0 + q0 = r) (idx : Fin g ≃ X.Ψ × Fin r) (hs : IsSympl X bas) {x : Frame X.Ψ r}
     (hx : x ∈ X.dom) {T : Type} (s : Finset T) (W : T → ℂ) (f : T → TF n g) (hf : ∀ i, IsSB (f i))
     (P : Harm.Poly ℂ X.Ψ q0 X.p0 (Fin n)) :
     thP X hr bas idx (∑ i ∈ s, W i • f i) P x = ∑ i ∈ s, W i * thP X hr bas idx (f i) P x := by
   unfold thP
   rw [← Jet.polyDeriv_sum_fun P _ s W _ fun i _ => ThetaHol.differentiable_thA idx hs (hf i) hx,
-    thA_sum idx hs hx s _ fun i => TensVac.sb_smul _ (hf i)]
+    _root_.GlobalTheory.Dict.ShortVal.thA_sum idx hs hx s _ fun i => TensVac.sb_smul _ (hf i)]
   congr 1
   funext w
   simp only [UnAct.thA_smul, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
@@ -209,7 +188,7 @@ theorem change_at_point : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartInd
   intro hci E _ _ _ H Dw l Xo c _ r g X bas idx e q0 n hr eL hs hrr hn hdir hty _ nab hnab Λ h hU hh hT hT'
   have hw := cmHost_idempotent_trace_eq_one H
   have hwi : IsIntegral ℤ (H.w0 : E) := H.w0.isIntegral_coe
-  obtain ⟨hU', hmv, hu, -⟩ := (GlobalTheory.T.pushforward_preserves_harmonic_polynomials_and_lattices E H Dw l c n 0 h hh).2 Λ
+  obtain ⟨hU', hmv, hu, -⟩ := (_root_.GlobalTheory.PushKeeps.push_keeps E H Dw l c n 0 h hh).2 Λ
   have hΛ := mem_vset Λ l.three_le hU hT
   have hΛ' := mem_vset (actLat h Λ) l.three_le (hU' hU) hT'
   have hΛ1 : Λ.La ∈ Vset E n 1 := (GenLatCmp.genLat_vset E n _).2.2.1 1 _ (one_dvd _) hΛ
@@ -250,7 +229,7 @@ theorem change_at_point : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartInd
     (hN.2.2.trans inf_le_left)
   obtain ⟨-, -, -, hz2, -⟩ := ZLat.exists_reps_sum E r X g bas idx n hs hn _ hwi hw L hL _ hΛ1' N' hN'.1
     (hN'.2.2.trans inf_le_left)
-  haveI := finite_levQ Dw l
+  haveI := _root_.GlobalTheory.finite_levQ Dw l
   haveI := Fintype.ofFinite (Fin n → LevQ Dw l)
   generalize unitv (projA X bas (H.w0 : E) (tens Λ.La L) v₀) = u at hcol hu1 hp1
   generalize unitv (projA X bas (H.w0 : E) (tens (actLat h Λ).La L) v₀) = u' at hcol hu2 hp2

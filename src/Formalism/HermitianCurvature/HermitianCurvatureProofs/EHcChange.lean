@@ -135,24 +135,9 @@ theorem conj_single (P Q : Mat k r) (c d : Fin (2 * r + k + 1)) :
   simp [Matrix.mul_apply, Matrix.single_apply, Matrix.sum_apply, ite_and, mul_ite, ite_mul,
     Finset.sum_ite_eq, Finset.sum_ite_eq']
 
-private theorem psi_add_hermitian_curvature (D : Mat k r →L[ℝ] E) (g A B : Mat k r) :
-    Psi D g (A + B) = Psi D g A + Psi D g B := by
-  have h1 : hpart1 (Hpk k r) (A + B) = hpart1 (Hpk k r) A + hpart1 (Hpk k r) B := by
-    simp only [hpart1, Matrix.conjTranspose_add, mul_add, add_mul]
-    rw [← smul_add]
-    congr 1
-    abel
-  have h2 : hpart2 (Hpk k r) (A + B) = hpart2 (Hpk k r) A + hpart2 (Hpk k r) B := by
-    simp only [hpart2, Matrix.conjTranspose_add, mul_add, add_mul]
-    rw [← smul_add]
-    congr 1
-    abel
-  simp only [Psi, h1, h2, mul_add, map_add (f := _), smul_add]
-  abel
-
 theorem Psi_sum {ι : Type*} (s : Finset ι) (D : Mat k r →L[ℝ] E) (g : Mat k r) (Z : ι → Mat k r) :
     Psi D g (∑ i ∈ s, Z i) = ∑ i ∈ s, Psi D g (Z i) := by
-  exact map_sum (AddMonoidHom.mk' (Psi D g) (psi_add_hermitian_curvature D g)) Z s
+  exact map_sum (AddMonoidHom.mk' (Psi D g) (_root_.Formalism.FourierDecayAlt.P.JFxE.Psi_add D g)) Z s
 
 theorem rep1 {φ : Mat k r → E} (hφ : CkOn 1 (GV k r) φ) {g : Mat k r} (hg : g ∈ GV k r) :
     ∃ (U : Set (Mat k r)) (F : Mat k r → E), IsOpen U ∧ g ∈ U ∧ HasFDerivAt F (fderiv ℝ F g) g ∧

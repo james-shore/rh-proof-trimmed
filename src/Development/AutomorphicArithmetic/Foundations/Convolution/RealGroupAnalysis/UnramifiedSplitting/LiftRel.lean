@@ -63,21 +63,10 @@ open UpperTheory.V.Af.Smo (Eig EigAt)
 open UpperTheory.ConvolutionTheory.R2 UpperTheory.ConvolutionTheory.R2.H
 open scoped Classical
 
-private theorem nu_mul' {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (x y : GL (Fin 2) (A E)) :
-    nu F (x * y) = nu F x * nu F y := by simp only [nu, map_mul]
-
 private theorem nu_one' {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] :
     nu F (1 : GL (Fin 2) (A E)) = 1 := by simp only [nu, map_one]
 
-private theorem dM_mul' {F : Type} [Field F] [NumberField F] (s t : (A F)ˣ) : dM (s * t) = dM s * dM t :=
-  Units.ext (by
-    ext i j : 1
-    fin_cases i <;> fin_cases j <;> simp [dM, Matrix.mul_apply, Fin.sum_univ_two])
-
-private theorem dM_one' {F : Type} [Field F] [NumberField F] : dM (1 : (A F)ˣ) = 1 :=
-  Units.ext (by
-    ext i j : 1
-    fin_cases i <;> fin_cases j <;> simp [dM])
+private alias dM_one' := _root_.UpperTheory.ConvolutionTheory.R2.dM_one
 
 private theorem coordinate_embedNorm_zero {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (D : Dat F E) (u : A F) :
     D.co (D.mkE u 0) = Pi.single 0 u := by
@@ -114,7 +103,7 @@ theorem UpperTheory.ConvolutionTheory.R2.H.liftRel :
     simp only [f₁, mul_assoc]
     exact (π.cusp f hf).1.left γ _
   have hw : ∀ x, w1 W f.1 φ (x * h₀) = w1 W f₁ (W.L h₀ φ) x := fun x => funext fun g => by
-    simp only [w1, Wf, f₁, nu_mul', dM_mul', map_mul, Module.End.mul_apply, mul_assoc]
+    simp only [w1, Wf, f₁, _root_.UpperTheory.ConvolutionTheory.R2.nu_mul, _root_.UpperTheory.ConvolutionTheory.R2.dM_mul, map_mul, Module.End.mul_apply, mul_assoc]
   have hb : w1 W f.1 φ h₀ = fun g => Wf f₁ (gl g) * UpperTheory.ConvolutionTheory.R2.hat (W.Om g (W.L h₀ φ)).1 ![0, 1, 1, 0] := by
     rw [← one_mul h₀, hw, one_mul]
     funext g

@@ -221,4 +221,4 @@ theorem flatLaws_all (D : D7) : GlobalTheory.FinPl.FlatLaws D := by
 
 end GlobalTheory.FlatLawsDuality
 
-theorem GlobalTheory.FinPl.flatLaws_all : ∀ D : D7, GlobalTheory.FinPl.FlatLaws D := GlobalTheory.FlatLawsDuality.flatLaws_all
+alias GlobalTheory.FinPl.flatLaws_all := _root_.GlobalTheory.FlatLawsDuality.flatLaws_all

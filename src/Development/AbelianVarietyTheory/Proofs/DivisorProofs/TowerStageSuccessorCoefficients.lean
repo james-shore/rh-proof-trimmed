@@ -265,17 +265,6 @@ theorem isSum_of_split {S S₁ : HSp D} {Λ Λ₁ ι x y} (hs : PlaneSplit S S�
   · rw [form_smul_left, hJ, hD_swap, hxy, star_one, map_one, mul_one]
     exact mul_ne_zero (inv_ne_zero hc') hc
 
-theorem scale_ne_zero (D : D7) : D.host.AA ≠ 0 := by
-  refine mul_ne_zero ?_ (inv_ne_zero ?_)
-  · rw [FractionalIdeal.coeIdeal_ne_zero]
-    intro h
-    exact D.host.ccK_ne_bot ((Ideal.map_eq_bot_iff_of_injective (RingOfIntegers.algebraMap.injective _ _)).1 h)
-  · rw [FractionalIdeal.coeIdeal_ne_zero]
-    intro h
-    have h1 := D.host.𝔟_spec.1
-    rw [h, Ideal.bot_mul] at h1
-    exact differentIdeal_ne_bot h1
-
 theorem split_scLat {S S₁ : HSp D} {Λ Λ₁ ι x y} (hs : PlaneSplit S S₁ Λ Λ₁ ι x y)
     {𝔞 : FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E} (h𝔞 : 𝔞 ≠ 0) :
     PlaneSplit S S₁ (GlobalTheory.SkewLat.scLat 𝔞 Λ) (GlobalTheory.SkewLat.scLat 𝔞 Λ₁) ι x y := by
@@ -354,7 +343,7 @@ theorem plane_skew {B : Base D.host.F D.host.E} (hB : B.IsGood D.sp.cm.sig) {S S
     ∃ Y' H, (reS Y Y').IsSkew D.sp.cm.sig B r s ∧ Plane.IsAdapted D.sp.cm.sig B H (reS Y Y') Y₁ i₀ i₁ := by
   obtain rfl : S.rank = n := o.1
   obtain rfl : S₁.rank = n₁ := o₁.1
-  obtain ⟨x', y', ι', h, h'⟩ := isSum_of_split (split_scLat hs (scale_ne_zero D)) (ε := RingHom.id _) (fun _ => rfl)
+  obtain ⟨x', y', ι', h, h'⟩ := isSum_of_split (split_scLat hs (_root_.GlobalTheory.LatVacFull.AA_ne_zero D)) (ε := RingHom.id _) (fun _ => rfl)
     GlobalTheory.ChiGrid.cmHost_imaginaryGenerator_ne_zero Y Y₁ (overW_crd o).1 (overW_crd o₁).1 (overW_crd o).2 (overW_crd o₁).2
   exact h.adapt_skew hB.cm hs.1 h' hY hY₁ h01 h1n
 

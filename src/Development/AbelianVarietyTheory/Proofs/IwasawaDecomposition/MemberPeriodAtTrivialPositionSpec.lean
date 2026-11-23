@@ -84,18 +84,13 @@ def actFin (hθ : IsInfFam θ) (V : HSp D) : GfC V →* Module.End ℂ (AFs θ V
 open Classical in
 def actReal (hθ : IsInfFam θ) (V : HSp D) (τ : D.what₂.Tau) (g : Matrix (Fin V.rank) (Fin V.rank) ℂ) :
     Module.End ℂ (AFs θ V) :=
-  if h : g ∈ Formalism.QuantumDeterminants.UH (gramAt D V τ) then trE hθ V (atTau θ V τ g) fun φ hφ => GlobalTheory.T.isSmoothAutomorphicFunction_translate_atRealPlace D θ hθ V φ hφ τ g h else 1
+  if h : g ∈ Formalism.QuantumDeterminants.UH (gramAt D V τ) then trE hθ V (atTau θ V τ g) fun φ hφ => _root_.GlobalTheory.Mem.RealTranslate.isAutFunSm_rTr_atTau D θ hθ V φ hφ τ g h else 1
 
 theorem actReal_apply (hθ : IsInfFam θ) (V : HSp D) (τ) {g} (h : g ∈ Formalism.QuantumDeterminants.UH (gramAt D V τ)) (F : AFs θ V) (x) :
     (actReal hθ V τ g F).1 x = F.1 (x * atTau θ V τ g) := by
   rw [actReal, dif_pos h]; rfl
 
-theorem mul_mem_UH {n : ℕ} {H g h : Matrix (Fin n) (Fin n) ℂ} (hg : g ∈ Formalism.QuantumDeterminants.UH H) (hh : h ∈ Formalism.QuantumDeterminants.UH H) :
-    g * h ∈ Formalism.QuantumDeterminants.UH H := by
-  simp only [Formalism.QuantumDeterminants.UH, Set.mem_setOf_eq] at *
-  rw [conjTranspose_mul]
-  calc hᴴ * gᴴ * H * (g * h) = hᴴ * (gᴴ * H * g) * h := by simp only [Matrix.mul_assoc]
-    _ = H := by rw [hg, hh]
+alias mul_mem_UH := _root_.GlobalTheory.PointAtPlaceHom.mul_mem_UH
 
 def chrGrp (D : D7) : Subgroup (IdC D) := (GlobalTheory.T.heckeCharacter_infinityExponent_group_laws D).1.choose
 

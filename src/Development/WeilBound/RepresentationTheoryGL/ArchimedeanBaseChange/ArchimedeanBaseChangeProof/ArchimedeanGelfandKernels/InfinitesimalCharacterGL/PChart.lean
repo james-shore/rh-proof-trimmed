@@ -229,7 +229,7 @@ theorem epow_along (w : InfinitePlace E) (g : GA E a) (s : Bool) (m : ℕ) (i j 
     · simp [along_zero]
   | succ m ih =>
     simp only [PositivityTheory.RgBcC.Epow]
-    rw [Finset.sum_apply, epow_succ']
+    rw [Finset.sum_apply, _root_.GlobalTheory.TracedComatrix.epow_succ_left]
     simp only [LinearMap.sum_apply, Module.End.mul_apply, Submodule.coe_sum, along_sum, Finset.sum_apply]
     refine Finset.sum_congr rfl fun c _ => ?_
     have hev : PositivityTheory.RgBcC.Epow s m c j (along w g φ.1) =ᶠ[nhds x]

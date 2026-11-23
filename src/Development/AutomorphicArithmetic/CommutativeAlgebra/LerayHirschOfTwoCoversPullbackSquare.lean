@@ -77,7 +77,7 @@ private theorem pull_c {X Y : Spc} (f : X ⟶ Y) {n i n' i' : ℤ} (hn : n = n')
 
 private theorem pull_u {X Y : Spc} (f : X ⟶ Y) {n m i j : ℤ} (a : Ht q Y n i) (b : Ht q Y m j) :
     pull _ f _ _ (cup q a b) = cup q (pull _ f _ _ a : Ht q X n i) (pull _ f _ _ b : Ht q X m j) :=
-  GlobalTheory.T.cup_hypercohomologyPullback (ZMod q) (twPair q i j) f rfl a b
+  _root_.GlobalTheory.EtC.Pair.cup_pull (ZMod q) (twPair q i j) f rfl a b
 
 private theorem cup_cl {E : Spc} {n m i j n' i' : ℤ} (hn : n = n') (hi : i = i') (a : Ht q E n i) (b : Ht q E m j) :
     cup q (a.cast hn hi) b = (cup q a b).cast (by rw [hn]) (by rw [hi]) := by

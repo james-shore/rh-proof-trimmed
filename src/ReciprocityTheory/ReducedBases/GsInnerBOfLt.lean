@@ -173,19 +173,15 @@ lemma sum_smul_b (b : Fin d → E) (hb : LinearIndependent ℝ b) (c : Fin d →
         refine Finset.sum_congr rfl fun j _ => ?_
         rw [nu, Finset.sum_smul]
 
-lemma inner_gs_sum (b : Fin d → E) (x : Fin d → ℝ) (j : Fin d) :
-    ⟪gs b j, ∑ k, x k • gs b k⟫_ℝ = x j * ‖gs b j‖ ^ 2 := by
-  exact inner_gs_sum_smul_gs b x j
-
 lemma inner_gs_comb (b : Fin d → E) (hb : LinearIndependent ℝ b) (c : Fin d → ℝ) (j : Fin d) :
     ⟪gs b j, ∑ l, c l • b l⟫_ℝ = nu b c j * ‖gs b j‖ ^ 2 := by
-  rw [sum_smul_b b hb c, inner_gs_sum]
+  rw [sum_smul_b b hb c, _root_.ReciprocityTheory.ReducedBases.T2.inner_gs_sum_smul_gs]
 
 lemma norm_sq_comb (b : Fin d → E) (hb : LinearIndependent ℝ b) (c : Fin d → ℝ) :
     ‖∑ l, c l • b l‖ ^ 2 = ∑ j, nu b c j ^ 2 * ‖gs b j‖ ^ 2 := by
   rw [sum_smul_b b hb c, ← real_inner_self_eq_norm_sq, sum_inner]
   refine Finset.sum_congr rfl fun j _ => ?_
-  rw [real_inner_smul_left, inner_gs_sum]
+  rw [real_inner_smul_left, _root_.ReciprocityTheory.ReducedBases.T2.inner_gs_sum_smul_gs]
   ring
 
 end ReciprocityTheory.ReducedBases.T2

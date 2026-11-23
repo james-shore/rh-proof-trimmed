@@ -75,7 +75,7 @@ theorem jetCoord_eq_of_sub_mem {R : Type} [CommRing R] {G : Over (Spec (CommRing
   let c : Fin d → J := fun j => ⟨_, hδ j⟩
   have hc : ∀ j, (c j : A) * (c j : A) = 0 := fun j => mul_eq_zero_of_sq hJ2 (c j).2 (c j).2
   have he : ∀ j, epsTo R (c j : A) (hc j) (TrivSqZeroExt.inr 1) = c j := fun j => epsTo_eps _ _
-  have key := GlobalTheory.T.jetPoint_add_sqZero_eq_prod_mul_tangent R G hG d v hv x hx₁ hx₂ hx₃ A aug J hJ hJ' m ψ ψ' hψ hψ'
+  have key := _root_.GlobalTheory.jet_add_sqZero_eq_prod_mul R G hG d v hv x hx₁ hx₂ hx₃ A aug J hJ hJ' m ψ ψ' hψ hψ'
     (fun j => epsTo R (c j : A) (hc j)) (fun j => by rw [he]; exact (c j).2)
     (fun j => by rw [he]; exact (add_sub_cancel _ _).symm)
   rw [← h] at key

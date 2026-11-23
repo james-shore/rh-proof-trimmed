@@ -97,10 +97,10 @@ theorem enlarge_point : ∀ (T O : Type) [CommRing T] [IsDomain T] [IsLocalRing 
   let ρK : GlobalTheory.LocAcyc.GenFib A (Localization.AtPrime QA) →+* FractionRing A := IsLocalization.lift hu
   have hρK : ρK.comp (algebraMap (Localization.AtPrime QA) (GlobalTheory.LocAcyc.GenFib A (Localization.AtPrime QA))) =
       (algebraMap A (FractionRing A)).comp ρ := IsLocalization.lift_comp hu
-  obtain ⟨L, _, _, _, _, σL, hσL⟩ := GlobalTheory.T.zmodTorsor_exists_point_finite_separable _ (FractionRing A) ρK DA q hq actA hTor
-  obtain ⟨A₁, _, _, _, _, _, _, j, i₁, hj, hi₁, hl₁, hji, κ, hκ⟩ := GlobalTheory.T.exists_normal_local_between_alt T hAIC A i hi L
+  obtain ⟨L, _, _, _, _, σL, hσL⟩ := _root_.GlobalTheory.TorsorFieldPoint.exists_point_finite_separable _ (FractionRing A) ρK DA q hq actA hTor
+  obtain ⟨A₁, _, _, _, _, _, _, j, i₁, hj, hi₁, hl₁, hji, κ, hκ⟩ := _root_.GlobalTheory.LocAcycEmbed.exists_normal_local_between T hAIC A i hi L
   obtain ⟨EA₁, _, _, _, _, _, QA₁, _, jA₁, ψA₁, DA₁, _, _, actA₁, ρ₁, hF₁, hR₁, β, h, hβ, hh, hσ⟩ :=
-    GlobalTheory.T.exists_baseChange_fittingDatum_retraction T O P φ hφ hSH hP q hq A i EA QA jA ψA DA actA ⟨hi, _hil, _hqA, _hQA, _hjA, _hψA, hTor⟩ ρ hRet
+    _root_.GlobalTheory.KeyOriginEnlarge.exists_baseChange_fits T O P φ hφ hSH hP q hq A i EA QA jA ψA DA actA ⟨hi, _hil, _hqA, _hQA, _hjA, _hψA, hTor⟩ ρ hRet
       A₁ j i₁ hj hi₁ hl₁ hji
   obtain ⟨σ₁, hσ₁⟩ := hσ (κ.comp σL) (by
     ext x

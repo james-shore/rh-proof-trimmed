@@ -333,7 +333,7 @@ theorem chi_eq {n : ℕ} {w : Pl E} {ϖ : (w.adicCompletion E)ˣ}
     rw [ht, tdiag_val, Matrix.diagonal_apply_eq, GlobalTheory.CompanionTheory.KUFactsU.ordL_zpow hv, wexp_lt]
   unfold chiDeltaU pw
   rw [Finset.prod_congr rfl fun i _ => by rw [dite_eq_left (show (i : ℕ) < n by have := i.2; omega), hent],
-    Finset.prod_mul_distrib, ← GlobalTheory.BorelUMod.zpow_finset_sum hq0]
+    Finset.prod_mul_distrib, ← _root_.GlobalTheory.AbelianSumIdentityFirst.main hq0]
   congr 1
   · exact Finset.prod_congr rfl fun i _ => by rw [Units.val_zpow_eq_zpow_val]
   · congr 1

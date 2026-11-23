@@ -112,7 +112,7 @@ theorem ker_pow_eq_one_of_lift : ∀ (C C₀ : Type) [CommRing C] [IsLocalRing C
   let u : 𝟙_ (Over (Sp C)) ⟶ equalizer lam (1 : A ⟶ D) :=
     equalizer.lift 1 (by rw [MonObj.one_comp, MonObj.comp_one])
   have hww : (x ^ e) ^ e = 1 := by
-    have h1 := GlobalTheory.T.comp_eq_of_sqZero_agree_pairs C C₀ π hπ hsq (equalizer lam (1 : A ⟶ D)) A (k ^ e) 1
+    have h1 := _root_.GlobalTheory.comp_eq_of_sqZero_agree C C₀ π hπ hsq (equalizer lam (1 : A ⟶ D)) A (k ^ e) 1
       (fun T₀ y ↦ by
         rw [comp_pow, MonObj.comp_one]
         exact tors₀ T₀ (y ≫ k) (by rw [Category.assoc, hk, MonObj.comp_one]))
@@ -125,6 +125,6 @@ theorem ker_pow_eq_one_of_lift : ∀ (C C₀ : Type) [CommRing C] [IsLocalRing C
         MonObj.comp_one, one_pow])
     rw [comp_pow, show equalizer.lift (x ^ e) _ ≫ k = x ^ e from equalizer.lift_ι _ _, MonObj.comp_one] at h1
     exact h1
-  exact GlobalTheory.T.grpObj_eq_one_of_pow_eq_one_of_sqZero_trivial C C₀ π hπ hsq A e he T (x ^ e) hwC hww
+  exact _root_.GlobalTheory.MulUnramified.eq_one_of_pow_eq_one_thick C C₀ π hπ hsq A e he T (x ^ e) hwC hww
 
 end GlobalTheory.KerLiftUnit

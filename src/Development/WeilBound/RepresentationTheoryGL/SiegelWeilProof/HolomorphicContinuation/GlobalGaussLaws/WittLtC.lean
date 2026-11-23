@@ -68,11 +68,11 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
 def hyp : Matrix (Fin 2) (Fin 2) E := !![0, 1; 1, 0]
 
-theorem cc_one : FD.cc (1 : E) = 1 := map_one (IsCMField.complexConj E)
+alias cc_one := _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.cc_one
 
-theorem cc_zero : FD.cc (0 : E) = 0 := map_zero (IsCMField.complexConj E)
+alias cc_zero := _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.cc_zero
 
-theorem cc_neg (t : E) : FD.cc (-t) = -FD.cc t := map_neg (IsCMField.complexConj E) t
+alias cc_neg := _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.cc_neg
 
 theorem cc_div_two (t : E) : FD.cc (t / 2) = FD.cc t / 2 := by
   show IsCMField.complexConj E (t / 2) = _

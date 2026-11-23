@@ -488,7 +488,7 @@ theorem jetAtSplit_of (hC : SelfDualLatticeThetaPadicIntegrality) (f1 : KerIndFo
     intro y _
     simp only [hΨdef]
     split_ifs
-    · rw [map_inv₀, map_natCast, norm_inv, LocalJetRescaling.norm_natCast p hS1p, inv_one]
+    · rw [map_inv₀, map_natCast, norm_inv, _root_.ReciprocityTheory.ChartRestriction.L1.norm_natCast_Cl_of_not_dvd p hS1p, inv_one]
     · simp
   set s := embH (X.embC A.σ₀) A.δ (A.liftW S N N' (p * c') x) with hsdef
   have hsΛ : (c' : ℂ) • s ∈ Λ := f4 X A a b S N N' (p * c') c' x hN hN' hLa hcpos hc' (Dvd.intro_left p rfl) hx
@@ -507,7 +507,7 @@ theorem jetAtSplit_of (hC : SelfDualLatticeThetaPadicIntegrality) (f1 : KerIndFo
     intro k
     simp only [hrdef, map_mul, norm_mul, hα1 s hsΛ, hα1 k.1 (hyΛ k), one_mul]
     have hs' : (c' : ℂ) • (-s) ∈ Λ := by rw [smul_neg]; exact Λ.neg_mem hsΛ
-    obtain ⟨q, hq⟩ := XiTorsion.altE_int hSDV hs' (hyΛ k)
+    obtain ⟨q, hq⟩ := _root_.Formalism.L2.Th1.H.CharacterSumTripleLemmas.int_of_selfDual hSDV hs' (hyΛ k)
     rw [XiTorsion.altE_smul_left, XiTorsion.altE_smul_right] at hq
     rw [XiConnection.norm_phase ι _ (c' * c') (Nat.mul_pos hc' hc') q (by push_cast; linarith)]
   have ht : ∀ k, (c' : ℂ) • t k ∈ lamF A N N' := by
@@ -541,7 +541,7 @@ theorem jetAtSplit_of (hC : SelfDualLatticeThetaPadicIntegrality) (f1 : KerIndFo
         rw [LinearMap.map_smul, LinearMap.smul_apply, LinearMap.map_smulₛₗ, LinearMap.map_smul, LinearMap.smul_apply]
         simp only [smul_eq_mul, map_div₀, Complex.conj_conj]
         field_simp
-      rw [e]; exact XiTorsion.altE_int hSD (hΛq π hπ l hl) hμ
+      rw [e]; exact _root_.Formalism.L2.Th1.H.CharacterSumTripleLemmas.int_of_selfDual hSD (hΛq π hπ l hl) hμ
     obtain ⟨q, hq⟩ := hint
     simp only [hΨdef, if_pos hb0, hq]
     have hex : Complex.exp (-(2 * (Real.pi : ℂ)) * Complex.I * ((q : ℝ) : ℂ)) = 1 := by
@@ -577,7 +577,7 @@ theorem jetAtSplit_of (hC : SelfDualLatticeThetaPadicIntegrality) (f1 : KerIndFo
     rw [hx', ← Finset.sum_coe_sort S₁, Finset.mul_sum]
     refine Finset.sum_congr rfl fun k _ => ?_
     simp only [hrdef, htdef]
-    rw [XiTorsion.opU_cmul, ← KerB.opU_flat,
+    rw [_root_.Formalism.L2.Th1.H.Inv.opU_const_mul, ← KerB.opU_flat,
       Formalism.L2.Th1.H.opUMul _ (HV A.sc) (Formalism.L2.Ker.herm_HV A.sc) (-s) k.1]
     ring
 

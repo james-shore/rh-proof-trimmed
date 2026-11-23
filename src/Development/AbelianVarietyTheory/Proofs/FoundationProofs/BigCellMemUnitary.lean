@@ -147,35 +147,4 @@ theorem bigCell_submatrix (k r : ℕ) (c : Fin r → ℂ) (μ : Matrix (Fin (k +
 end BigCellUnitary
 
 
-open BigCellUnitary in
-theorem bigCell_mem_unitary : Formalism.QuantumDeterminants.BigCellMem := by
-  intro k r c μ hc hμ
-  change (bigCell k r c μ)ᴴ * Hpk k r * bigCell k r c μ = Hpk k r
-  let e := BigCellUnitary.posEquiv k r
-  have key : ((bigCell k r c μ)ᴴ * Hpk k r * bigCell k r c μ).submatrix e e =
-      (Hpk k r).submatrix e e := by
-    rw [← submatrix_mul_equiv _ _ _ e, ← submatrix_mul_equiv _ _ _ e,
-      ← conjTranspose_submatrix]
-    have hp : ⇑e = BigCellUnitary.pos k r := rfl
-    rw [hp, BigCellUnitary.gram_submatrix, BigCellUnitary.bigCell_submatrix]
-    have h1 : diagonal (fun a => star (c a)) * diagonal (fun a => (star (c a))⁻¹) =
-        (1 : Matrix (Fin r) (Fin r) ℂ) := by
-      rw [diagonal_mul_diagonal, ← diagonal_one]
-      congr 1; funext a
-      exact mul_inv_cancel₀ (star_ne_zero.2 (hc a))
-    have h2 : diagonal (fun a => star (star (c a))⁻¹) * diagonal c =
-        (1 : Matrix (Fin r) (Fin r) ℂ) := by
-      rw [diagonal_mul_diagonal, ← diagonal_one]
-      congr 1; funext a
-      rw [star_inv₀, star_star]
-      exact inv_mul_cancel₀ (hc a)
-    simp only [fromBlocks_conjTranspose, fromBlocks_multiply, conjTranspose_zero, diagonal_conjTranspose,
-      Matrix.mul_zero, Matrix.zero_mul, Matrix.mul_one, add_zero, zero_add, hμ]
-    rw [show star c = fun a => star (c a) from rfl,
-      show star (fun a => (star (c a))⁻¹) = fun a => star (star (c a))⁻¹ from rfl, h1, h2]
-  ext i j
-  obtain ⟨i, rfl⟩ := e.surjective i
-  obtain ⟨j, rfl⟩ := e.surjective j
-  exact congrFun (congrFun key i) j
-
 end GlobalTheory

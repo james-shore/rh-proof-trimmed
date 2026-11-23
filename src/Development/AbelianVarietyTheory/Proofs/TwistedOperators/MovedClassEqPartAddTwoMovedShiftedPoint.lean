@@ -75,9 +75,6 @@ open GlobalTheory.LiftLevel
 
 variable {D : D7}
 
-theorem partAt_eq_smul {S T : HSp D} (c : AE D) (w : WO S T) : partAt c w = c • w := by
-  ext i j; rfl
-
 theorem actO_smul' (S T : HSp D) (g : GA D S) (h : GA D T) (c : AE D) (x : WO S T) :
     actO S T g h (c • x) = c • actO S T g h x := by
   simp only [actO, Matrix.mul_smul, Matrix.smul_mul]
@@ -135,7 +132,7 @@ theorem moved_class : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (hn : T.rank ≤ 
     rw [this]; exact mem_sh C Lv
   have hB : (1 - cA D e) • x ∈ hatA S T (tens std (Lv.sh C.X.Λ)) := by
     have : (1 - cA D e) • x = partAt e x + partAt (1 - e - cA D e) x := by
-      rw [partAt_eq_smul, partAt_eq_smul, ← add_smul]; congr 1; ring
+      rw [_root_.GlobalTheory.LiftLevel.partAt_eq_smul, _root_.GlobalTheory.LiftLevel.partAt_eq_smul, ← add_smul]; congr 1; ring
     rw [this]; exact add_mem hE hF
   have hmov1 : IsMov (fmt T 1) (Lv.sh C.X.Λ) (Lv.sh C.X.Λ) := by
     have hmt1 : Formalism.L2.Theta.mt T 1 = 1 := by simp [Formalism.L2.Theta.mt]
@@ -146,9 +143,9 @@ theorem moved_class : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (hn : T.rank ≤ 
   obtain ⟨u₀, hu₀, hu₀e⟩ := (GlobalTheory.TensLatMove.mem_hatA_iff S T hS k₀⁻¹ 1 Λ' std (Lv.sh C.X.Λ) (Lv.sh C.X.Λ)
     hΛ' hmov1 _).1 hB
   have hv : partAt (1 - cA D e) X = u₀ := by
-    rw [partAt_eq_smul, hX, ← actO_smul', hu₀e, actO_actO_inv]
+    rw [_root_.GlobalTheory.LiftLevel.partAt_eq_smul, hX, ← actO_smul', hu₀e, actO_actO_inv]
   refine ⟨partAt (1 - cA D e) X, hv ▸ hu₀, ?_, ?_⟩
-  · rw [partAt_eq_smul, partAt_eq_smul, smul_comm (cA D e) (2 : ℕ) X, ← smul_add, ← add_smul]
+  · rw [_root_.GlobalTheory.LiftLevel.partAt_eq_smul, _root_.GlobalTheory.LiftLevel.partAt_eq_smul, smul_comm (cA D e) (2 : ℕ) X, ← smul_add, ← add_smul]
     congr 1
     rw [add_sub_cancel, one_smul]
   · have hce : cA D e * cA D e = cA D e := by rw [← map_mul, GlobalTheory.PlaceVec.idemSum_mul_self he]
@@ -171,7 +168,7 @@ theorem moved_class : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (hn : T.rank ≤ 
     have hpair := GlobalTheory.LatVac.char_sympl_eq_one C.std (GlobalTheory.Ker.Base.selfDualC_stdL hS) hT hP hR
     have hpair' : C.ψ (symplO S T (cA D e • X) ((1 - cA D e) • X)) = 1 := by
       rw [hX, ← actO_smul', ← actO_smul', GlobalTheory.SymplOInv.symplO_actO]; exact hpair
-    rw [partAt_eq_smul, partAt_eq_smul, smul_comm (cA D e) (2 : ℕ) X, two_nsmul, two_nsmul,
+    rw [_root_.GlobalTheory.LiftLevel.partAt_eq_smul, _root_.GlobalTheory.LiftLevel.partAt_eq_smul, smul_comm (cA D e) (2 : ℕ) X, two_nsmul, two_nsmul,
       GlobalTheory.SplitScalar.symplOH_add_left, GlobalTheory.SplitScalar.symplOH_add_self, GlobalTheory.LatVac.symplO_add_right,
       AddChar.map_add_eq_mul, hpair', one_mul]
 

@@ -51,6 +51,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAdicCompleteDualN
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapPairDetCovec
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsFlagFrame
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors.AlWellDefSt
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IrreducibleSpacePullbackAffineOpenOfIsDomainTens
 
 @[expose] public section
 
@@ -90,14 +91,6 @@ theorem residue_comp_appTop {F : Type} [Field F] {X : Scheme.{0}} (g : X ⟶ Sp 
   rw [← Scheme.fromSpecStalk_toSpecΓ, Category.assoc, ← Scheme.toSpecΓ_naturality_assoc,
     toSpecΓ_SpecMap_ΓSpecIso_inv, Category.comp_id, Scheme.fromSpecResidueField, Category.assoc]
 
-theorem irreducibleSpace_pullback_of_isDomain {F : Type} [Field F] {X : Scheme.{0}} (g : X ⟶ Sp F)
-    (V : X.Opens) (hV : IsAffineOpen V) (k : Type) [Field k] (f : F →+* k) :
-    letI : Algebra F Γ(X, V) :=
-      ((Scheme.ΓSpecIso (CommRingCat.of F)).inv ≫ g.appTop ≫ X.presheaf.map (homOfLE le_top).op).hom.toAlgebra
-    letI : Algebra F k := f.toAlgebra
-    IsDomain (k ⊗[F] Γ(X, V)) → IrreducibleSpace ↑(pullback (V.ι ≫ g) (spMap f)) :=
-  GlobalTheory.T.irreducibleSpace_pullback_affine_open_of_isDomain_tensor g V hV k f
-
 theorem irreducibleSpace_pullback_of_cover {F : Type} [Field F] {X : Scheme.{0}} (h : X ⟶ Sp F)
     (k : Type) [Field k] (f : F →+* k) (U : X.Opens) (hU : IsIrreducible (U : Set X))
     (hV : ∀ y ∈ U, ∃ V : X.Opens, V ≤ U ∧ y ∈ V ∧ IrreducibleSpace ↑(pullback (V.ι ≫ h) (spMap f))) :
@@ -136,7 +129,7 @@ theorem irreducibleSpace_pullback_affine {F : Type} [Field F] [CharZero F] {X : 
         rw [e2]
         exact e }
   have hd := GlobalTheory.GeomConn.isDomain_tensor j (residue_germ_injective V x hx hgen) hac k
-  exact irreducibleSpace_pullback_of_isDomain g V hV k f hd
+  exact _root_.GlobalTheory.GeomIrr.irreducibleSpace_pullback_of_isDomain_tensor g V hV k f hd
 
 theorem irreducibleSpace_pullback {F : Type} [Field F] [CharZero F] {X : Scheme.{0}} [IsReduced X]
     (g : X ⟶ Sp F) [LocallyOfFiniteType g] (x : X)
@@ -152,7 +145,7 @@ theorem irreducibleSpace_pullback {F : Type} [Field F] [CharZero F] {X : Scheme.
       · exact closure_mono (Set.singleton_subset_iff.mpr hx)
     rw [← isIrreducible_iff_closure, hc]
     exact isIrreducible_singleton.closure
-  refine irreducibleSpace_pullback_of_cover g k f U hU fun y hy => ?_
+  refine _root_.GlobalTheory.irreducibleSpace_pullback_of_cover g k f U hU fun y hy => ?_
   obtain ⟨V, hVa, hyV, hVU⟩ := TopologicalSpace.Opens.isBasis_iff_nbhd.mp X.isBasis_affineOpens hy
   refine ⟨V, hVU, hyV, irreducibleSpace_pullback_affine g x hac V hVa ((hgen y hy).mem_open V.isOpen hyV)
     (fun z hz => hgen z (hVU hz)) k f⟩

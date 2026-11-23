@@ -106,12 +106,12 @@ theorem Lam_diff : Differentiable ℂ fun z => abelian₂ μ ι m e ψ a b z 1 :
   have hRc : Continuous (rhoP ⇑ι m e 1) := by
     rw [hR]
     refine Continuous.star (Continuous.mul (Continuous.mul ?_ ?_) ?_)
-    · exact hι.matrix_det.zpow₀ e fun k => Or.inl (LoweringDerivative.isUnit_det_of_inG (hιG k)).ne_zero
+    · exact hι.matrix_det.zpow₀ e fun k => Or.inl (_root_.PositivityTheory.Rg.Sw.LVs.isUnit_det_of_inG' (hιG k)).ne_zero
     · exact (hu1.comp hι).matrix_det.zpow₀ _ fun k => Or.inl (det_first_block_ne_zero_group (hιG k))
     · exact (((hu2.comp hι).matrix_conjTranspose).matrix_mul (hu1.comp hι)).matrix_trace
   have hH : Continuous fun p : Kg × ℂ => Hf m e ψ a b p.2 (ι p.1) := by
     have h1 := continuous_Hf m e hψ hψc ha hb
-    refine h1.comp (f := fun p : Kg × ℂ => ((⟨ι p.1, hιG p.1⟩ : Gs n), p.2)) ?_
+    refine h1.comp (f := fun p : Kg × ℂ => ((⟨ι p.1, hιG p.1⟩ : _root_.PositivityTheory.Rg.Sw.LVs.GSet n), p.2)) ?_
     refine Continuous.prodMk ?_ continuous_snd
     refine Continuous.subtype_mk ?_ _
     exact hι.comp continuous_fst
@@ -186,6 +186,6 @@ end PositivityTheory.Rg.Sw.HSt.CompactCayleyBlocks
 
 namespace PositivityTheory.Rg.Sw.HSt
 
-theorem lt2 : MultiplicityOneTestOperators := CompactCayleyBlocks.lt2
+alias lt2 := _root_.PositivityTheory.Rg.Sw.HSt.CompactCayleyBlocks.lt2
 
 end PositivityTheory.Rg.Sw.HSt

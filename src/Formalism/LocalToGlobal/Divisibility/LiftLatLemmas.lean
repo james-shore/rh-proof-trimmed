@@ -436,9 +436,7 @@ theorem hv_spec (h : BlockHyp B ℓ v0 s) :
       ∀ v : InfinitePlace K, ((B.HV ℓ).map v.embedding).PosDef :=
   good_part_hermitian_spec K v0 h.conj B.S h.ok.hrat h.ok.hpos G B.r h.ok.actRat ℓ.X h.irr ℓ.P ℓ.ψ
 
-theorem zE_inj : Function.Injective (B.zE ℓ Z).mulVec := BlockDat.lf_zE_inj
-
-theorem pq_orth (h : BlockHyp B ℓ v0 s) : IsOrthProj (B.HV ℓ) (B.zE ℓ Z) (B.Pq ℓ Z) := BlockDat.lf_z_proj h
+alias pq_orth := _root_.Formalism.L2.DIV.BlockDat.lf_z_proj
 
 theorem xq_rat (h : BlockHyp B ℓ v0 s) (hr : SubHasRatBasis (B.Z0 ℓ Z)) :
     IsRatHerm (cmMax K) (B.HZ ℓ Z) (B.XQ ℓ Z) := by
@@ -448,7 +446,7 @@ theorem xq_rat (h : BlockHyp B ℓ v0 s) (hr : SubHasRatBasis (B.Z0 ℓ Z)) :
       (pq_orth (Z := Z) h)
   rw [e]
   exact (restrFrameRatHerm K (cmMax K) ConjugateWeightGram.isCMSub_cmMax (fun a ha => ConjugateWeightGram.star_mem_cmMax ha) _ _ (B.HV ℓ)
-    (hv_spec h).2.1 (hv_spec h).2.2 (B.zE ℓ Z) zE_inj hE).1
+    (hv_spec h).2.1 (hv_spec h).2.2 (B.zE ℓ Z) _root_.Formalism.L2.DIV.BlockDat.lf_zE_inj hE).1
 
 theorem equivFun_op (i : B.Pl × ℕ) (f : B.S.Forms) :
     B.S.basis.equivFun (B.op i f) = (B.opMat i).mulVec (B.S.basis.equivFun f) := by
@@ -483,15 +481,9 @@ theorem opMat_gaMat (hG : ∀ i g, Commute (B.op i) (B.r g)) (i : B.Pl × ℕ) (
   refine Finset.sum_congr rfl fun t _ => ?_
   rw [opMat_actMat hG i t]
 
-private theorem hform_eq_star_dotProduct_mulVec {n : ℕ} (H : Matrix (Fin n) (Fin n) K) (u v : Fin n → K) :
-    hform H u v = star u ⬝ᵥ (H *ᵥ v) := by
-  simp [hform, Matrix.toLinearMapₛₗ₂'_apply, dotProduct, Matrix.mulVec, Finset.mul_sum, mul_assoc]
-  simp only [starRingEnd_apply]
-  exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
-
 theorem hform_adj {n : ℕ} {H T T' : Matrix (Fin n) (Fin n) K} (h : Tᴴ * H = H * T') (x y : Fin n → K) :
     hform H (T.mulVec x) y = hform H x (T'.mulVec y) := by
-  rw [hform_eq_star_dotProduct_mulVec, hform_eq_star_dotProduct_mulVec, Matrix.star_mulVec, Matrix.dotProduct_mulVec, Matrix.vecMul_vecMul, h,
+  rw [_root_.Formalism.DivisionValues.RationalHermitianForm.hform_eq_dot, _root_.Formalism.DivisionValues.RationalHermitianForm.hform_eq_dot, Matrix.star_mulVec, Matrix.dotProduct_mulVec, Matrix.vecMul_vecMul, h,
     Matrix.mulVec_mulVec, Matrix.dotProduct_mulVec]
 
 theorem rat_of_mulVec {n d : ℕ} (E : Matrix (Fin n) (Fin d) K) (hE : Function.Injective E.mulVec)
@@ -638,9 +630,7 @@ section Poly
 
 variable {K : Type} [Field K]
 
-theorem coeff_dualPoly (s : K) (R : K[X]) (i : ℕ) :
-    (dualPoly s R).coeff i = R.leadingCoeff⁻¹ * (R.coeff (revAt R.natDegree i) * s ^ i) := by
-  exact coeff_dualPoly' s R i
+alias coeff_dualPoly := _root_.Formalism.L2.DIV.coeff_dualPoly'
 
 theorem coeff_dualPoly_of_le (s : K) (R : K[X]) {i : ℕ} (hi : i ≤ R.natDegree) :
     (dualPoly s R).coeff i = R.leadingCoeff⁻¹ * (R.coeff (R.natDegree - i) * s ^ i) := by
@@ -794,29 +784,16 @@ end Formalism.L2.DIV
 
 namespace Formalism.L2.DIV.LiftTest
 
-open Formalism.DivisionValues Formalism.L2.Indef Formalism.L2.Col Formalism.L2.DIV.Test
-
-variable (G : Type) [Group G] [Fintype G]
-
 end Formalism.L2.DIV.LiftTest
 
 namespace Formalism.L2.DIV
 
-open Formalism.DivisionValues Formalism.L2.Indef
-
 namespace BlockDat
-
-variable {K : Type} [Field K] [NumberField K] [StarRing K] {G : Type} [Group G] [Fintype G] {Pl0 : Type}
-  {B : BlockDat K G Pl0} {ℓ : Lvl K G} {Z : Submodule K B.S.Forms} {v0 : InfinitePlace K} {s : ℕ}
 
 end BlockDat
 
 end Formalism.L2.DIV
 
 namespace Formalism.L2.DIV.LiftTest
-
-open Formalism.DivisionValues Formalism.L2.Indef Formalism.L2.Col Formalism.L2.DIV.Test
-
-variable (G : Type) [Group G] [Fintype G]
 
 end Formalism.L2.DIV.LiftTest

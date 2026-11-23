@@ -104,7 +104,7 @@ theorem top_meanAll : GlobalTheory.CompanionTheory.Ar.Pub.NefRR → GlobalTheory
   obtain ⟨Y, T, o, κ, -, hCO, hTbad, hProp, hT1, -, hMS⟩ :=
     hT E H Dw l Xo c II hII hFn hGood hA hq hpq hbadT
   have hj : T.j = Dw.p := o.toTowerOrigin.j_eq
-  have hW := GlobalTheory.T.tower_weight_of_zero E H Dw l Xo c (T.M 0 (Classical.arbitrary T.Comp))
+  have hW := _root_.GlobalTheory.CompanionTheory.Ar.Plug.integer_weights_vocab E H Dw l Xo c (T.M 0 (Classical.arbitrary T.Comp))
   intro u g hgap
   obtain ⟨-, -, -, -, hl1, -, -, -, hB⟩ := hW u
   obtain ⟨hBeq, hWH⟩ := hB g
@@ -127,9 +127,9 @@ theorem top_meanAll : GlobalTheory.CompanionTheory.Ar.Pub.NefRR → GlobalTheory
     nlinarith
   have hTb : T.bad.card ≤ ⌊B⌋₊ := by rw [hTbad]; exact hbadT.trans hKB
   have hM := hMS (reW u) g hWH' ⌊B⌋₊ hfl128 hflt hTb
-  have hsl := fun Z => GlobalTheory.T.uniform_all_norm_height_bound hNef hG hG6 E H Dw l Xo c r U h e hLaws hUnif x hx Y T o κ II hCO hII hProp hT1 Z u g B
+  have hsl := fun Z => _root_.GlobalTheory.CompanionTheory.Ar.Plug.SlopeVolM.slope_sub_cost_le_compVolSlope hNef hG hG6 E H Dw l Xo c r U h e hLaws hUnif x hx Y T o κ II hCO hII hProp hT1 Z u g B
     hgap.2.1 hWH' (le_of_eq hBeq.symm)
-  obtain ⟨hc0, hc⟩ := GlobalTheory.T.cost_two_log_bound E H l B hB128 (hbad.trans hKB)
+  obtain ⟨hc0, hc⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.costTwo_bound E H l B hB128 (hbad.trans hKB)
   refine ⟨fun Z => T.slope II ⌊B⌋₊ (κ Z) (reW u) - 2 * costTwo l B * GlobalTheory.CovHt.l1 u, hsl, ?_⟩
 
   have hfin : (∑ᶠ Z, (T.slope II ⌊B⌋₊ (κ Z) (reW u) - 2 * costTwo l B * GlobalTheory.CovHt.l1 u)) =

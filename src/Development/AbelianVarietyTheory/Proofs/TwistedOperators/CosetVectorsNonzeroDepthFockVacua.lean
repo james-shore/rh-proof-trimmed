@@ -55,6 +55,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsAuxiliaryVectorWittDec
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.TowerEx
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.OmEqSumLattice
 
 @[expose] public section
 
@@ -82,9 +83,6 @@ theorem isHalf_add {e : AE D} {u v : WO S T} (hu : IsHalf e u) (hv : IsHalf e v)
 
 theorem isHalf_sub {e : AE D} {u v : WO S T} (hu : IsHalf e u) (hv : IsHalf e v) : IsHalf e (u - v) := fun i j => by
   simp only [Matrix.sub_apply, mul_sub, hu i j, hv i j]
-
-theorem isHalf_idem {e : AE D} (he : e * e = e) (u : WO S T) : IsHalf e (e • u) := fun i j => by
-  simp only [Matrix.smul_apply, smul_eq_mul, ← mul_assoc, he]
 
 theorem mxAt_of_isHalf {e : AE D} (hinf : infPart D e = 0) {u : WO S T} (hu : IsHalf e u) : MxAt (fun _ => True) u :=
   fun i j => by
@@ -209,14 +207,14 @@ theorem isLatVac_of_cos (hψ : IsStdChar D ψ (-1)) (hS : IsSelfDualC S ΛS) (hT
     have ha := GlobalTheory.PlaceModelSum.idem_smul_latO e1 hu1
     have hb := GlobalTheory.PlaceModelSum.idem_smul_latO c1 hu1
     rw [hdec u]
-    exact dbl _ _ _ (isHalf_idem e1 u) hu2 ha (isHalf_idem c1 u) hb (sub_mem (sub_mem hu1 ha) hb) (hoff u)
+    exact dbl _ _ _ (_root_.GlobalTheory.SplitLinear.isHalf_smul' e1 u) hu2 ha (_root_.GlobalTheory.SplitLinear.isHalf_smul' c1 u) hb (sub_mem (sub_mem hu1 ha) hb) (hoff u)
   · obtain ⟨hu1, hu2⟩ := hΓ u hu
     have ha := GlobalTheory.PlaceModelSum.idem_smul_latO e1 hu1
     have hb := GlobalTheory.PlaceModelSum.idem_smul_latO c1 hu1
     have hae : IsHalf e' (e • u) := isHalf_smul hu' e
     have hbe : IsHalf e' (cA D e • u) := isHalf_smul hu' _
     rw [hdec u]
-    exact sng e' he' _ _ _ (isHalf_idem e1 u) hu2 (isHalf_idem c1 u) hb (sub_mem (sub_mem hu1 ha) hb) (hoff u)
+    exact sng e' he' _ _ _ (_root_.GlobalTheory.SplitLinear.isHalf_smul' e1 u) hu2 (_root_.GlobalTheory.SplitLinear.isHalf_smul' c1 u) hb (sub_mem (sub_mem hu1 ha) hb) (hoff u)
       hae hbe (isHalf_sub (isHalf_sub hu' hae) hbe)
 
 end GlobalTheory.CosDep

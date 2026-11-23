@@ -64,12 +64,7 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.AvgFree.UnitScale
 
-theorem map_pi_scale {ι : Type} [Fintype ι] {α : ι → Type} [∀ i, MeasurableSpace (α i)]
-    (μ : ∀ i, Measure (α i)) [∀ i, SigmaFinite (μ i)] (g : ∀ i, α i → α i) (hg : ∀ i, Measurable (g i))
-    (c : ι → ℝ≥0∞) (hc0 : ∀ i, c i ≠ 0) (hct : ∀ i, c i ≠ ⊤)
-    (h : ∀ i, (μ i).map (g i) = c i • μ i) :
-    (Measure.pi μ).map (fun x i => g i (x i)) = (∏ i, c i) • Measure.pi μ :=
-  _root_.UpperTheory.Reformulated.B.MapPiScale.map_pi_scale μ g hg c hc0 hct h
+alias map_pi_scale := _root_.UpperTheory.Reformulated.B.MapPiScale.map_pi_scale
 
 end GlobalTheory.CompanionTheory.AvgFree.UnitScale
 

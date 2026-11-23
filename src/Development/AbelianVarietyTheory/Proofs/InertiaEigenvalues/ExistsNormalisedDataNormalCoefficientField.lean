@@ -190,7 +190,7 @@ theorem exists_pins_normal : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 
     exact (star_star _).symm
   choose thAd hth using fun t => GlobalTheory.T.exists_adelicSide_of_models D G Pl0 T0 A _ R hmodels i t _ _ c0' _ (h (rep t)) _ (hrepR t).2.2.1
     (hrepR t).2.2.2.2.2.1 (v₀ i (sg0 D A))
-  have hact := fun c => GlobalTheory.T.levelAction_framedPoints_isAction D G Pl0 T0 A T R hL hT hpb i c (O i).lev hlev
+  have hact := fun c => _root_.GlobalTheory.LevelActFromLevel.actLev_of_levIs D G Pl0 T0 A T R hL hT hpb i c (O i).lev hlev
   let M : OMDat T.toCore R i T0 id :=
     { c' := c', hle := hle, jL := jL, hV := hT.spaceW _ (inR i) _ rfl, c0' := c0', lev := (O i).lev, dδ := dδ,
       Cl' := fun t => Cl (rep t), fCl := fun t => fCl (rep t),

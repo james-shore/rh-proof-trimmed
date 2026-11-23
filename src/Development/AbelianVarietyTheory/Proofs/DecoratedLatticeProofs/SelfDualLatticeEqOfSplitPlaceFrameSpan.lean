@@ -63,14 +63,6 @@ open GlobalTheory.FinPl (latV idAt intAt)
 
 variable {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
-theorem e_mem_intAt (q : GlobalTheory.FinPl.SplitPt D k) : q.e ∈ intAt D (· = q.v) := by
-  refine ⟨GlobalTheory.FrameGlob.e_mem_idAt q, ?_⟩
-  have h1 : q.sec 1 = q.e := by
-    have := q.sec_pr 1
-    rwa [map_one, mul_one] at this
-  have h := (q.int_iff 1).1 (one_mem _)
-  rwa [h1] at h
-
 theorem smul_mem_latV {V : HSp D} {L : GlobalTheory.FinPl.Lat V} (hL : Submodule.IsLattice D.host.E L) {v : GlobalTheory.FinPl.Pl D}
     {z : Fin V.rank → AE D} (hz : z ∈ latV V L (· = v)) {a : AE D} (ha : a ∈ intAt D (· = v)) :
     a • z ∈ latV V L (· = v) :=
@@ -131,7 +123,7 @@ open GlobalTheory.FinPl (latV idAt intAt)
 
 theorem latV_eq : ∀ {D : D7} (V : HSp D) (t : GA D V) (Λ L N : GlobalTheory.FinPl.Lat V) (β : GL (Fin V.rank) (Lev.EAf D)) (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (q : GlobalTheory.FinPl.SplitPt D k) (Y : Type) [Fintype Y] [DecidableEq Y] (F : Frame k V.rank Y) (σ : Fin V.rank ≃ Y), t ∈ GfC V → IsSelfDualC V Λ → Formalism.L2.DIV.IsFrame β Λ → IsSelfDualC V L → IsSelfDualC V N → GlobalTheory.FinPl.Moves V t Λ L (· = q.v) → MovedTo (ofSplit q) V t β (F.β.submatrix id σ) → IntIn q V F N → GlobalTheory.FinPl.latV V L (· = q.v) = GlobalTheory.FinPl.latV V N (· = q.v) := by
   intro D V t Λ L N β k _ _ _ _ q Y _ _ F σ ht hΛ hβ hL hN hm hM hI
-  have he := e_mem_intAt q
+  have he := _root_.GlobalTheory.FinPl.FrameLat.e_mem_intAt q
 
   have hw : ∀ z : Fin V.rank → AE D, q.e • z ∈ latV V L (· = q.v) ↔ q.e • z ∈ latV V N (· = q.v) := by
     intro z

@@ -80,7 +80,7 @@ theorem colength_det : ∀ (p : ℕ) [Fact p.Prime] (k : Type) [Field k] [CharP 
     have h1 := addVal_map ψ h0
     rw [hx, AddValuation.map_zero] at h1
     exact ENat.top_ne_coe _ h1
-  have hlen := GlobalTheory.length_quot_range_eq_addVal_det u
+  have hlen := _root_.GlobalTheory.LengthCokernelFinrank.length_coker_eq_addVal_det u
   refine ⟨fun e he => ?_, fun hu => ?_, hψ⟩
   · rw [hlen, hdet] at he
     have hd : d ≠ 0 := by

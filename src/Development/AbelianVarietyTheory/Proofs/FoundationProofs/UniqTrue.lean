@@ -412,7 +412,7 @@ theorem uniq_true (hl2 : l ≠ 2) : ∃ c : ℕ, ∀ (Ω : Type) [Field Ω] [Alg
     (j : Ω →+* Qbar l), Compat l A j → ∀ m k : ℕ, k ≤ m → ∀ T X : Qbar l, ‖T‖ ≤ 1 → ‖X‖ ≤ 1 →
     (∀ σ : grp A j m, T * lamv l m (res j σ.1) - (σ • X - X) ∈ ball ((l : Qbar l) ^ k)) →
     (l : Qbar l) ^ c * T ∈ ball ((l : Qbar l) ^ k) := by
-  obtain ⟨c, hc⟩ := GlobalTheory.T.tate_discrete_inertia_kummer_coboundary_bound l hl2
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.HTTrace.main l hl2
   refine ⟨c + 1, ?_⟩
   intro Ω _ _ _ A j hj m k hkm T X hT hX hyp
   have hl := (Fact.out : l.Prime)
@@ -431,7 +431,7 @@ theorem uniq_true (hl2 : l ≠ 2) : ∃ c : ℕ, ∀ (Ω : Type) [Field Ω] [Alg
     rwa [mem_ball, norm_mul, hu₀, one_mul] at this
   obtain ⟨o, ho, hTo⟩ := exists_approx hj (n + 1) hT
   obtain ⟨x, hx, hXx⟩ := exists_approx hj (n + 1) hX
-  obtain ⟨y, hy, hyfix, hoy⟩ := GlobalTheory.T.exists_fixed_congr_axLemma_oddPrime l hl2 Ω A (overL hj) (Ine (F := ℚ) A ⊓ (cycMod ℚ Ω l m).ker)
+  obtain ⟨y, hy, hyfix, hoy⟩ := _root_.GlobalTheory.AxSen.exists_fixed_congr l hl2 Ω A (overL hj) (Ine (F := ℚ) A ⊓ (cycMod ℚ Ω l m).ker)
     (fun h hh => Ine_le_Dec A hh.1) n o ho (fun h hh => by
       obtain ⟨σ, rfl⟩ := exists_grp hj hh.1 hh.2
       rw [cgA_iff hj, res_spec]

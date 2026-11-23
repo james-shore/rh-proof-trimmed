@@ -64,9 +64,9 @@ namespace GlobalTheory.HTRank
 
 theorem finrank_quot_mSub : ∀ (k : Type) [Field k] [IsAlgClosed k] (C : Type) [CommRing C] [Module.Free ℤ C] [Module.Finite ℤ C] (H : Type 1) [AddCommGroup H] [Module k H] [FiniteDimensional k H] (σ : C →+* Module.End k H) (r : ℕ), (letI : Module (k ⊗[ℤ] C) H := Module.compHom H (Algebra.TensorProduct.lift (Algebra.ofId k (Module.End k H)) σ.toIntAlgHom (fun _ _ => Algebra.commutes _ _)).toRingHom; Module.Projective (k ⊗[ℤ] C) H) → (∀ c : C, LinearMap.charpoly (σ c) = ((LinearMap.charpoly (LinearMap.mulLeft ℤ c)) ^ r).map (Int.castRingHom k)) → ∀ χ : C →+* k, Module.finrank k (H ⧸ GlobalTheory.HTRho.mSub σ χ ⊤) = r := by
   intro k _ _ C _ _ _ H _ _ _ σ r hP hc χ
-  have e1 := GlobalTheory.T.finrank_jointWeightSpace_eq_of_charpoly k C H σ r hc χ
-  have e2 := GlobalTheory.T.finrank_weightSpace_projective_tensor_eq k C H σ hP χ
-  have hpos := GlobalTheory.T.weightSpace_tensor_ringHom_finrank_pos k C χ
+  have e1 := _root_.GlobalTheory.WeightCount.finrank_weight_eq k C H σ r hc χ
+  have e2 := _root_.GlobalTheory.WtRank.weight_finrank_eq k C H σ hP χ
+  have hpos := _root_.GlobalTheory.weightSpace_tensor_ringHom_pos k C χ
   rw [e1] at e2
   exact (Nat.eq_of_mul_eq_mul_right hpos e2).symm
 
@@ -91,11 +91,11 @@ theorem finrank_quot : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.Da
       ((LinearMap.charpoly (LinearMap.mulLeft ℤ c)) ^ (D.m * D.n)).map (Int.castRingHom k) := by
     intro c
     haveI := o₀.act.hom (algebraMap (𝓞 D.F) D.O c)
-    have e := GlobalTheory.T.charpoly_deRhamHomology_endomorphism_eq_map_ladic k o₀.A o₀.ab (o₀.act.act (algebraMap (𝓞 D.F) D.O c)) D.La
+    have e := _root_.GlobalTheory.DeRham.charpoly_push_eq k o₀.A o₀.ab (o₀.act.act (algebraMap (𝓞 D.F) D.O c)) D.La
       (DistribSMul.toLinearMap ℤ D.La (algebraMap (𝓞 D.F) D.O c)) l hl hlk (fun j => I.ev (l ^ j))
       (fun j x y => I.add (l ^ j) x y) (fun j x => I.lin (l ^ j) _ x)
       (fun j x => I.ker (l ^ j) (hposj j) (hcopj j) x) (fun j q => I.onto (l ^ j) (hposj j) (hcopj j) q)
-    rw [GlobalTheory.HTCount.crysAct_apply, e, GlobalTheory.T.charpoly_la_eq_pow p D c]
+    rw [GlobalTheory.HTCount.crysAct_apply, e, _root_.GlobalTheory.UPel.HT.Datum.charpoly_La_eq_pow p D c]
   have hproj := GlobalTheory.CrysProj.hdR_projective D.F k o₀.A o₀.ab (o₀.act.toF D)
   exact finrank_quot_mSub k (𝓞 D.F) (HdR o₀.A) ((GlobalTheory.HTCount.crysAct o₀).comp (algebraMap (𝓞 D.F) D.O))
     (D.m * D.n) hproj hc (β.comp (b.t i))

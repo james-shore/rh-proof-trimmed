@@ -101,7 +101,7 @@ theorem std_one : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
     simp only [inv_smul_smul] at e
     obtain ⟨s, hs, hsΛ⟩ := hall _ e.1
     refine ⟨s, hs, hsΛ, ?_, ?_⟩
-    · rw [← e.2.2, hsΛ, ((GlobalTheory.T.commonStabilizer_stabilizers_commensurable_volume L r k S).1 Λs hlat).2.2 s hs]
+    · rw [← e.2.2, hsΛ, ((_root_.GlobalTheory.HL.volSt L r k S).1 Λs hlat).2.2 s hs]
       unfold Frames.mu
       rw [hK]
       simp [invVol, Subgroup.relIndex_self]
@@ -291,8 +291,8 @@ theorem product_structure : ∀ {F E : Type} [Field F] [NumberField F] [Field E]
     show (Quotient.mk'' (A.lat p (Quot.mk G.LRel Γ).out) : O p) = x p
     rw [e1, e2, ← mul_smul, (orb_eq_iff _ _ _).2 ⟨h1 * h2, (G.S p).St.mul_mem hh1 hh2, rfl⟩, Quotient.out_eq']
   haveI : ∀ p, Nonempty (O p) := fun p => ⟨Quotient.mk'' ⊥⟩
-  have T5C := GlobalTheory.T.sum_prod_of_local_choices_bijection s Φ Tq U hUfin hinj hmaps hsurj gC
-  have T5M := GlobalTheory.T.sum_prod_of_local_choices_bijection s Φ Tq U hUfin hinj hmaps hsurj gM
+  have T5C := _root_.GlobalTheory.prod_sum_of_local_choices s Φ Tq U hUfin hinj hmaps hsurj gC
+  have T5M := _root_.GlobalTheory.prod_sum_of_local_choices s Φ Tq U hUfin hinj hmaps hsurj gM
   have hPs : ∀ Γ, G.IsTerm d Γ → ((∀ p, P p (A.lat p Γ)) ↔ ∀ p ∈ s, P p (A.lat p Γ)) := fun Γ hΓ =>
     ⟨fun h p _ => h p, fun h p => if hp : p ∈ s then h p hp else (KF p hp _ _ (hΓ.2 p) (hΓ.2 p)).2.2.2⟩
   have hsumC : G.amp d (fun Λ => ∀ p, P p (A.lat p Λ)) = ∑' c, if c ∈ Tq then ∏ p ∈ s, gC p (Φ c p) else 0 := by

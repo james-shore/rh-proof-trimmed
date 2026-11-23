@@ -189,14 +189,14 @@ theorem GlobalTheory.Pst.UnitLetter.exists_unit_Dpst : ∀ {l : ℕ} [Fact l.Pri
     rw [← toA_stRep ρm χ hm, hK' i g.1 g.2]
   have hK : LinearIndependent ↥(MaximalUnramifiedExtension l) w := linearIndependent_toA P ρm bD
   have hB : LinearIndependent (Bst P) w := by
-    have := GlobalTheory.RegularRing.linearIndepOn_of_invariant (K := ↥(MaximalUnramifiedExtension l)) (B := Bst P)
+    have := _root_.GlobalTheory.LinearIndependentFixed.linearIndepOn_of_fixed (K := ↥(MaximalUnramifiedExtension l)) (B := Bst P)
       (W := Bst P ⊗[ℚ_[l]] ↥L.1)
       (G := G) (fun g => actSt P ((g.1 : ↥(GK K)) : GQ l)) σ hσ hreg w hv Finset.univ
       (hK.linearIndepOn _)
     rw [Finset.coe_univ] at this
     exact linearIndepOn_univ_iff.mp this
   have hfin : finrank (Bst P) (Bst P ⊗[ℚ_[l]] ↥L.1) = d := Module.finrank_baseChange
-  obtain ⟨a, ha⟩ := GlobalTheory.T.exists_field_coeff_norm_sum_smul_ne_zero (k := ↥(MaximalUnramifiedExtension l)) w (GlobalTheory.T.exists_norm_sum_smul_ne_zero_of_linearIndependent hfin w hB)
+  obtain ⟨a, ha⟩ := _root_.GlobalTheory.exists_field_combination_norm_ne_zero (k := ↥(MaximalUnramifiedExtension l)) w (_root_.GlobalTheory.exists_combination_norm_ne_zero_of_linearIndependent hfin w hB)
   let ys := ∑ i, mulV P ↥L.1 (Fin 1 → ↥L.1) (a i) (y i)
   have hys : ys ∈ Dpst P ρm := Submodule.sum_mem _ fun i _ => mulV_mem_Dpst P ρm (a i) (y i) (hyD i)
   have hysA : toA P L ys = ∑ i, algebraMap ↥(MaximalUnramifiedExtension l) (Bst P) (a i) • w i := by
@@ -215,7 +215,7 @@ theorem GlobalTheory.Pst.UnitLetter.exists_unit_Dpst : ∀ {l : ℕ} [Fact l.Pri
     have hfix := hK₂ g0 (GK_le (K' := supExt K K₂) le_sup_right g.2)
     have h1 : Algebra.norm (Bst P) (toA P L (stRep P ρm g0 ys)) = Algebra.norm (Bst P) (toA P L ys) := by
       rw [hfix]
-    rw [toA_stRep ρm χ hm, map_mul, GlobalTheory.T.norm_tensorProduct_map_id_right, norm_one_tmul] at h1
+    rw [toA_stRep ρm χ hm, map_mul, _root_.GlobalTheory.norm_tensorProduct_map_left, norm_one_tmul] at h1
     have hν : Algebra.norm ℚ_[l] (χ g0) ≠ 0 := Algebra.norm_ne_zero_iff.mpr (hχ g0)
     refine ⟨(Algebra.norm ℚ_[l] (χ g0))⁻¹, ?_⟩
     change actSt P ((g0 : ↥(GK K)) : GQ l) _ = _

@@ -77,9 +77,9 @@ theorem centralRatio_stab_atT_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTi
   have hmul : ∀ g h : GA D (D.sp.Y 0), Formalism.L2.Theta.mt _ (g * h) = Formalism.L2.Theta.mt _ g * Formalism.L2.Theta.mt _ h :=
     fun g h => by simp [Formalism.L2.Theta.mt, map_mul]
   have hone : Formalism.L2.Theta.mt (D.sp.Y 0) 1 = 1 := by simp [Formalism.L2.Theta.mt, map_one]
-  have h3 := _root_.GlobalTheory.T.placed_bessel_translate_vector_alt W hW hr u f B hP a₀ a hA
-  have h3' := _root_.GlobalTheory.T.placed_bessel_translate_vector_alt W hW hr u' f' B' hP' a₀' a' hA'
-  have h4 := _root_.GlobalTheory.T.placed_bessel_pair_vector_alt W hW hr u u' f f' B B' hP hP' a₀ a a₀' a' hA hA' v hv hTv
+  have h3 := _root_.GlobalTheory.MiTop.tOf_fix_eR_alt W hW hr u f B hP a₀ a hA
+  have h3' := _root_.GlobalTheory.MiTop.tOf_fix_eR_alt W hW hr u' f' B' hP' a₀' a' hA'
+  have h4 := _root_.GlobalTheory.MiTop.line_ideal_atT_alt W hW hr u u' f f' B B' hP hP' a₀ a a₀' a' hA hA' v hv hTv
   have h5 := GlobalTheory.coord_first_isotropic_ne_zero W.S.X W.Q.instEq hr
   generalize _root_.GlobalTheory.MiTop.translationElement f B a₀ a = t at he h3
   generalize _root_.GlobalTheory.MiTop.translationElement f' B' a₀' a' = t' at he h3'

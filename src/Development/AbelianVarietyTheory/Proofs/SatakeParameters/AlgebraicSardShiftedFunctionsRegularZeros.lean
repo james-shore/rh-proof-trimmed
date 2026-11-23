@@ -92,14 +92,14 @@ theorem GlobalTheory.AlgSard.main : ∀ (X : Scheme.{0}) (p : X ⟶ Sp ℂ) (d :
           Ideal.span (Set.range fun j => φ j + ReciprocityTheory.ChartRestriction.G.DVR.FlatBC.algX p U (c j)) ⊔ RingHom.ker (CxPts.evHom hz) ^ 2 := by
   intro X p d _ U hU φ
   obtain ⟨C, hC, hcov⟩ := countable_charts (p := p) (d := d) hU
-  choose E hE0 hE using fun ch : AlgChart p (RingHom.id ℂ) d => GlobalTheory.T.null_negEval_of_jacobian_det_eq_zero X p d U ch φ
+  choose E hE0 hE using fun ch : AlgChart p (RingHom.id ℂ) d => _root_.GlobalTheory.ChartSard.null_negEv_of_det_eq_zero X p d U ch φ
   refine ⟨⋃ ch ∈ C, E ch, (measure_biUnion_null_iff hC).2 fun ch _ => hE0 ch, ?_⟩
   intro c hc z hz hzero
   obtain ⟨ch, hchC, hzc⟩ := hcov z hz
   have hcz : c = fun j => -evHom hz (φ j) := funext fun j => by linear_combination hzero j
   have hdet : (ch.jacMat φ z).det ≠ 0 := fun h0 =>
     hc (mem_biUnion hchC (hcz ▸ hE ch z hzc hz h0))
-  have key := GlobalTheory.T.ker_evalComplexPoint_le_span_jacobian X p d U hU ch φ z hzc hz hdet
+  have key := _root_.GlobalTheory.JacSpan.ker_le_span_jac X p d U hU ch φ z hzc hz hdet
   have e : (fun j => φ j + algX p U (c j)) = fun j => φ j - algX p U (evHom hz (φ j)) := by
     funext j; rw [hcz, map_neg, sub_eq_add_neg]
   rw [e]; exact key

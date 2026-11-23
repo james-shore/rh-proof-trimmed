@@ -106,28 +106,6 @@ theorem range_aeval {k : ℕ} (Pw : MvPolynomial (Fin N) B.KO) (hPw : Pw.IsHomog
   rw [hdeg] at h
   exact h
 
-theorem exists_ratio {Ω : Type} [Field Ω] [Algebra B.KO Ω] (gF : X.Forms →ₐ[B.KO] Ω)
-    (hB : CurveLoc.BirAt X N w gF) (hk : ∃ k, gF (X.inc wL (w k)) ≠ 0) (a : Ω) :
-    ∃ (m : ℕ) (p q : B.Cusp j (addL (wt0 D j) wL m)), gF (X.inc _ p) ≠ 0 ∧ a * gF (X.inc _ p) = gF (X.inc _ q) := by
-  obtain ⟨k0, hk0⟩ := hk
-  obtain ⟨k, g, Pw, hPw, hne, he⟩ := hB a
-  have h1 : X.inc wL (w k0) ∈ LinearMap.range (X.inc (addL (wt0 D j) wL 1)) := by
-    rw [add_zero_weight_one_eq]; exact ⟨_, rfl⟩
-  obtain ⟨p, hp⟩ := range_aeval X N w Pw hPw h1
-  have hG : X.inc wL (w k0) * X.inc (wsmul k wL) g ∈ LinearMap.range (X.inc (addL (wt0 D j) wL (1 + k))) := by
-    obtain ⟨H, hH⟩ := X.inc_mul wL _ (w k0) g
-    rw [add_comm, ← wadd_addL, addL, zero_weight_add, hH]
-    exact ⟨H, rfl⟩
-  obtain ⟨q, hq⟩ := hG
-  have hPv : gF (MvPolynomial.aeval (fun i => X.inc wL (w i)) Pw) =
-      MvPolynomial.aeval (fun i => gF (X.inc wL (w i))) Pw :=
-    MvPolynomial.comp_aeval_apply (fun i => X.inc wL (w i)) gF Pw
-  refine ⟨1 + k, p, q, ?_, ?_⟩
-  · rw [hp, map_mul, hPv]
-    exact mul_ne_zero hk0 hne
-  · rw [hp, hq, map_mul, map_mul, hPv, ← he]
-    ring
-
 def evK {F : Type} [Field F] (ev : Rp X la N →+* F) : Kp X la N →+* F :=
   ev.comp (algebraMap (Kp X la N) (Rp X la N))
 

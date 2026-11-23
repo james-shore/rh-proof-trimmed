@@ -76,9 +76,6 @@ theorem cz_single {n : ℕ} {a : Pt R n d} (ha : ∀ i, constantCoeff (a i) = 0)
   fin_cases j
   exact ha i
 
-theorem pt_noConst {n : ℕ} (j : Fin n) (i : Fin d) : constantCoeff (pt R d j i) = 0 := by
-  simp [pt]
-
 theorem ptPow_noConst {n p : ℕ} (hp : p ≠ 0) (j : Fin n) (i : Fin d) :
     constantCoeff (ptPow R d p j i) = 0 := by
   simp [ptPow, hp]
@@ -168,47 +165,35 @@ theorem calc_cmp {f : PS R 2 d} (hf : AxOne f) {φ ψ : Pt R 1 d} (hφ : ∀ i, 
     (hψ : ∀ i, constantCoeff (ψ i) = 0) :
     AxOne (ev (n := 2) ![comp1 φ P₀, comp1 ψ P₁] f) ∧
       bil (ev (n := 2) ![comp1 φ P₀, comp1 ψ P₁] f) 1 1 = (lin φ 1).transpose * bil f 1 1 * lin ψ 1 :=
-  have t := GlobalTheory.T.formal_bilinear_term_product R d f f φ ψ hf hf hφ hψ
+  have t := _root_.PositivityTheory.HtPt.Ca.bil_calc R d f f φ ψ hf hf hφ hψ
   ⟨t.2.2.2.1, t.2.2.2.2.1⟩
-
-theorem comp1_identity_left {n : ℕ} (j : Fin n) : comp1 (pt R d 0) (pt R (n := n) d j) = pt R d j :=
-  germ_comp1_zero_point_left _ (pt_noConst j)
 
 theorem calc_right {f : PS R 2 d} (hf : AxOne f) {p : ℕ} (hp0 : p ≠ 0) (hp : p ≠ 1) :
     AxOne (ev (n := 2) ![P₀, ptPow R d p 1] f) ∧ bil (ev (n := 2) ![P₀, ptPow R d p 1] f) 1 1 = 0 := by
-  have t := calc_cmp hf (φ := pt R d 0) (ψ := ptPow R d p 0) (pt_noConst 0) (ptPow_noConst hp0 0)
-  rw [comp1_identity_left, composition_frobenius_point (pt_noConst 1), pt_pow_eq, lin_tau hp, Matrix.mul_zero] at t
+  have t := calc_cmp hf (φ := pt R d 0) (ψ := ptPow R d p 0) (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0) (ptPow_noConst hp0 0)
+  rw [_root_.PositivityTheory.HtPt.Ca.comp1_identity_left, composition_frobenius_point (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 1), pt_pow_eq, lin_tau hp, Matrix.mul_zero] at t
   exact t
 
 theorem calc_left {f : PS R 2 d} (hf : AxOne f) {p : ℕ} (hp0 : p ≠ 0) (hp : p ≠ 1) :
     AxOne (ev (n := 2) ![ptPow R d p 0, P₁] f) ∧ bil (ev (n := 2) ![ptPow R d p 0, P₁] f) 1 1 = 0 := by
-  have t := calc_cmp hf (φ := ptPow R d p 0) (ψ := pt R d 0) (ptPow_noConst hp0 0) (pt_noConst 0)
-  rw [comp1_identity_left, composition_frobenius_point (pt_noConst 0), pt_pow_eq, lin_tau hp, Matrix.transpose_zero,
+  have t := calc_cmp hf (φ := ptPow R d p 0) (ψ := pt R d 0) (ptPow_noConst hp0 0) (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0)
+  rw [_root_.PositivityTheory.HtPt.Ca.comp1_identity_left, composition_frobenius_point (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0), pt_pow_eq, lin_tau hp, Matrix.transpose_zero,
     Matrix.zero_mul, Matrix.zero_mul] at t
   exact t
 
 theorem calc_map_right {f : PS R 2 d} (hf : AxOne f) {V : Pt R 1 d} (hV : ∀ i, constantCoeff (V i) = 0) :
     AxOne (ev (n := 2) ![P₀, comp1 V P₁] f) ∧
       bil (ev (n := 2) ![P₀, comp1 V P₁] f) 1 1 = bil f 1 1 * lin V 1 := by
-  have t := calc_cmp hf (φ := pt R d 0) (ψ := V) (pt_noConst 0) hV
-  rw [comp1_identity_left, lin_pt_eq_one, Matrix.transpose_one, Matrix.one_mul] at t
+  have t := calc_cmp hf (φ := pt R d 0) (ψ := V) (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0) hV
+  rw [_root_.PositivityTheory.HtPt.Ca.comp1_identity_left, lin_pt_eq_one, Matrix.transpose_one, Matrix.one_mul] at t
   exact t
 
 theorem calc_map_left {f : PS R 2 d} (hf : AxOne f) {V : Pt R 1 d} (hV : ∀ i, constantCoeff (V i) = 0) :
     AxOne (ev (n := 2) ![comp1 V P₀, P₁] f) ∧
       bil (ev (n := 2) ![comp1 V P₀, P₁] f) 1 1 = (lin V 1).transpose * bil f 1 1 := by
-  have t := calc_cmp hf (φ := V) (ψ := pt R d 0) hV (pt_noConst 0)
-  rw [comp1_identity_left, lin_pt_eq_one, Matrix.mul_one] at t
+  have t := calc_cmp hf (φ := V) (ψ := pt R d 0) hV (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0)
+  rw [_root_.PositivityTheory.HtPt.Ca.comp1_identity_left, lin_pt_eq_one, Matrix.mul_one] at t
   exact t
-
-theorem axOne_swap {f : PS R 2 d} (hf : AxOne f) : AxOne (ev (n := 2) ![P₁, P₀] f) := by
-  have c0 : ∀ i, constantCoeff ((0 : Pt R 1 d) i) = 0 := fun i => by simp
-  have c1 : ∀ i, constantCoeff (pt R (n := 1) d 0 i) = 0 := pt_noConst 0
-  constructor
-  · rw [ev_pair_ev c0 c1 (pt_noConst 1) (pt_noConst 0), ev_first c0 c1, ev_second c0 c1]
-    exact hf.2
-  · rw [ev_pair_ev c1 c0 (pt_noConst 1) (pt_noConst 0), ev_first c1 c0, ev_second c1 c0]
-    exact hf.1
 
 theorem axOne_map {S : Type} [CommRing S] (φ : R →+* S) {f : PS R 2 d} (hf : AxOne f) :
     AxOne (MvPowerSeries.map φ f) := by
@@ -221,7 +206,7 @@ theorem axOne_map {S : Type} [CommRing S] (φ : R →+* S) {f : PS R 2 d} (hf : 
       exact map_subst ha.hasSubst f
     rw [← e, h, map_one]
   have c0 : ∀ i, constantCoeff ((0 : Pt R 1 d) i) = 0 := fun i => by simp
-  have c1 : ∀ i, constantCoeff (pt R (n := 1) d 0 i) = 0 := pt_noConst 0
+  have c1 : ∀ i, constantCoeff (pt R (n := 1) d 0 i) = 0 := _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0
   constructor
   · have := key _ (cz_pair c0 c1) hf.1
     convert this using 2
@@ -238,16 +223,16 @@ theorem axOne_map {S : Type} [CommRing S] (φ : R →+* S) {f : PS R 2 d} (hf : 
 
 theorem calc_mul {f g : PS R 2 d} (hf : AxOne f) (hg : AxOne g) :
     AxOne (f * g) ∧ bil (f * g) 1 1 = bil f 1 1 + bil g 1 1 :=
-  have t := GlobalTheory.T.formal_bilinear_term_product R d f g (pt R d 0) (pt R d 0) hf hg (pt_noConst 0) (pt_noConst 0)
+  have t := _root_.PositivityTheory.HtPt.Ca.bil_calc R d f g (pt R d 0) (pt R d 0) hf hg (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0) (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0)
   ⟨t.1, t.2.1 1⟩
 
 theorem calc_swap {f : PS R 2 d} (hf : AxOne f) :
     bil (ev (n := 2) ![P₁, P₀] f) 1 1 = (bil f 1 1).transpose :=
-  (GlobalTheory.T.formal_bilinear_term_product R d f f (pt R d 0) (pt R d 0) hf hf (pt_noConst 0) (pt_noConst 0)).2.2.2.2.2.1 1 1
+  (_root_.PositivityTheory.HtPt.Ca.bil_calc R d f f (pt R d 0) (pt R d 0) hf hf (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0) (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0)).2.2.2.2.2.1 1 1
 
 theorem calc_pow {f : PS R 2 d} (hf : AxOne f) {p : ℕ} (hp : 1 ≤ p) :
     bil (ev (n := 2) ![ptPow R d p 0, ptPow R d p 1] f) p p = bil f 1 1 :=
-  (GlobalTheory.T.formal_bilinear_term_product R d f f (pt R d 0) (pt R d 0) hf hf (pt_noConst 0) (pt_noConst 0)).2.2.2.2.2.2 p p hp hp
+  (_root_.PositivityTheory.HtPt.Ca.bil_calc R d f f (pt R d 0) (pt R d 0) hf hf (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0) (_root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0)).2.2.2.2.2.2 p p hp hp
 
 theorem bil_map_eq_zero {S : Type} [CommRing S] (φ : R →+* S) {f : PS R 2 d} (h : bil f 1 1 = 0) :
     bil (MvPowerSeries.map φ f) 1 1 = 0 := by
@@ -264,8 +249,8 @@ theorem am_mul_hw {p : ℕ} [Fact p.Prime] [CharP R p] (B : FB R d O) :
   have hp1 : p ≠ 1 := (Fact.out : p.Prime).ne_one
   obtain ⟨V, hV, hact, hlin⟩ := GlobalTheory.T.multiplication_by_p_factors_frobenius R p d O B
   obtain ⟨g, hg, ha, hgb⟩ := GlobalTheory.T.pow_one_series_p_formula R p d O B
-  have c0 : ∀ i, constantCoeff (P₀ i) = 0 := pt_noConst 0
-  have c1 : ∀ i, constantCoeff (P₁ i) = 0 := pt_noConst 1
+  have c0 : ∀ i, constantCoeff (P₀ i) = 0 := _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 0
+  have c1 : ∀ i, constantCoeff (P₁ i) = 0 := _root_.ReciprocityTheory.ChartRestriction.G.TB.LogPf.cc_pt 1
   have u0 : ∀ i, constantCoeff (ptPow R (n := 2) d p 0 i) = 0 := ptPow_noConst hp0 0
   have u1 : ∀ i, constantCoeff (ptPow R (n := 2) d p 1 i) = 0 := ptPow_noConst hp0 1
   have v0 := composition_no_constant_term hV c0
@@ -292,10 +277,10 @@ theorem am_mul_hw {p : ℕ} [Fact p.Prime] [CharP R p] (B : FB R d O) :
     ⟨_, rfl⟩
   have axs2 : AxOne s2 := hs2 ▸ (calc_map_right hsym hV).1
   have bs2 : bil s2 1 1 = bil B.sy 1 1 * hw B p := by rw [hs2, (calc_map_right hsym hV).2, hlin]
-  have axg1 : AxOne g1 := hg1 ▸ axOne_swap hg
+  have axg1 : AxOne g1 := hg1 ▸ _root_.PositivityTheory.HtPt.Ca.axOne_swap hg
   have bg1 : bil g1 1 1 = (am B p).transpose := by rw [hg1, calc_swap hg, hgb]
   have axsy' : AxOne (MvPowerSeries.map (frobenius R p) sy') :=
-    axOne_map _ (hsy' ▸ axOne_swap hsym)
+    axOne_map _ (hsy' ▸ _root_.PositivityTheory.HtPt.Ca.axOne_swap hsym)
   have axt : AxOne t := ht ▸ (calc_left axsy' hp0 hp1).1
   have bt : bil t 1 1 = 0 := ht ▸ (calc_left axsy' hp0 hp1).2
   obtain ⟨g', hg'⟩ : ∃ s, s = s2 * g1 * t := ⟨_, rfl⟩
@@ -304,7 +289,7 @@ theorem am_mul_hw {p : ℕ} [Fact p.Prime] [CharP R p] (B : FB R d O) :
     rw [hg', (calc_mul (calc_mul axs2 axg1).1 axt).2, (calc_mul axs2 axg1).2, bs2, bg1, bt, add_zero]
   have cQ := cz_pair c0 u1
   have hb : pow2 B p = ev (n := 2) ![P₀, ptPow R d p 1] g' := by
-    have e1 := GlobalTheory.T.pow_two_symplectic_relation R d O B p
+    have e1 := _root_.PositivityTheory.HtPt.Cc.pow_sy R d O B p
     have f1 : ev (n := 2) ![P₀, comp1 (B.A.act (p : O)) P₁] B.sy =
         ev (n := 2) ![P₀, ptPow R d p 1] s2 := by
       rw [hA1, hs2, ev_pair_ev c0 u1 c0 v1, ev_first c0 u1, ev_comp1_pair hV cQ c1, ev_second c0 u1]
@@ -341,7 +326,7 @@ theorem am_mul_hw {p : ℕ} [Fact p.Prime] [CharP R p] (B : FB R d O) :
       ev (n := 2) ![ptPow R d p 0, ptPow R d p 1]
         (MvPowerSeries.map (frobenius R p) (pow1 B p) * g3) := by
     rw [ev_mul cP, ev_mul cP, ← hfs, ← hfs, ← h1, ← h2]
-    exact GlobalTheory.T.pow_one_pow_two_commutation R d O B p p
+    exact _root_.PositivityTheory.HtPt.Cc.pow_inter R d O B p p
 
   have axb : AxOne (pow2 B p) := hb ▸ (calc_right axg' hp0 hp1).1
   have bb : bil (pow2 B p) 1 1 = 0 := hb ▸ (calc_right axg' hp0 hp1).2

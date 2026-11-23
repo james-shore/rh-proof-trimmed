@@ -165,7 +165,7 @@ theorem subsingleton_lattice (hV : HV) {E : Type} [Field E] [NumberField E] [IsC
       exact (ThetaPtUp.isThetaPt_iff (T := baseOver (Sp C)) M.cart M.lb hy hp _).1 hv
     exact key _ (Category.id_comp _).symm x fun a => he _
   have hm : ((n ^ j : ℕ) : C) ≠ 0 := Nat.cast_ne_zero.2 (pow_pos hn.pos _).ne'
-  obtain ⟨-, c₂, c₃, -⟩ := GlobalTheory.T.thetaCoordinates_exist_unique_separate_points hL C _ M.P.A (jFK (R := M.W) C) (n ^ j) ho.pow hm D.La x hx
+  obtain ⟨-, c₂, c₃, -⟩ := _root_.GlobalTheory.CoordSep.coord_exists_unique_separate hL C _ M.P.A (jFK (R := M.W) C) (n ^ j) ho.pow hm D.La x hx
   haveI := subsingleton_of_labels N Q hQ hn ho h1 hT hj (fun q a => ∃ p, ν.QPt p q ∧ f p = x a) (fun a => ?_)
     (fun q => ?_) ?_ ?_ v (fun q hq => ?_) hle hco
   · exact ν.eX.symm.toEquiv.subsingleton

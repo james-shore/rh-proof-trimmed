@@ -119,10 +119,7 @@ theorem exists_isoMaps_cancel {S S' S'' : Scheme.{0}} {t : SAB H S} {t' : SAB H 
   refine Eq.symm ((gs_mul _ y _ hy _ _).trans ?_)
   exact congrArg₂ (· * ·) (gs_unit _ y _ hy _) (gs_res _ y _ hy _)
 
-theorem spMap_comp' {R S T : Type} [CommRing R] [CommRing S] [CommRing T] (io : R →+* S) (φ : S →+* T) :
-    spMap (φ.comp io) = spMap φ ≫ spMap io := by
-  show Spec.map _ = Spec.map _ ≫ Spec.map _
-  rw [← Spec.map_comp, ← CommRingCat.ofHom_comp]
+alias spMap_comp' := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp
 
 theorem dual_alg {S T : Type} [CommRing S] [CommRing T] (φ : S →+* T) :
     spMap (dualMap φ) ≫ spMap (algebraMap S (DualNumber S)) = spMap (algebraMap T (DualNumber T)) ≫ spMap φ := by

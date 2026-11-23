@@ -151,7 +151,7 @@ theorem shift_vac : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : 
   have hstd := Base.stdL_mem_Vset (E := E) n 1
   have hsh {L} (hL : L ∈ D.lats) : SelfD X (D.sh L) := Lev.selfD_idq D.ne_bot D.proper D.cop hL.1
   have vac := TensVac.vacua E r X g bas idx n hs hn D.w D.w_int D.w_tr
-  have ten := GlobalTheory.T.tensorLattice_selfDual_semicharacter_index E r X g bas idx n hs hn D.w D.w_int D.w_tr
+  have ten := _root_.GlobalTheory.SW.TensLat.tens_selfDual_semichar_index E r X g bas idx n hs hn D.w D.w_int D.w_tr
   have pp := GlobalTheory.Dict.ProjProj.proj_proj E r X g bas idx n hs hn D.w D.w_int D.w_tr
   have hΛ₀ : X.Λ ∈ D.lats := ⟨Lev.selfD_of_sympl hs, 1, Lev.cop_one, fun v hv => by simpa using hv,
     fun v hv => by simpa using hv⟩

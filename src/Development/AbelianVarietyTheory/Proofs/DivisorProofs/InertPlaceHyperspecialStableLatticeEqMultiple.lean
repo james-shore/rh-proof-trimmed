@@ -217,7 +217,7 @@ theorem GlobalTheory.InertLatMult.lattice_eq_mult : ∀ {D : D7} (V : HSp D) (P 
     have hconj : h⁻¹ * locMat D.sp.cm V v k * h = Formalism.UG.bc (ψ.symm : P.adicCompletion D.host.E →+* LocAlg v) U := by
       rw [ek]; group
     have hst : Stab D.sp.cm V k := by
-      rw [GlobalTheory.T.stabilises_completedLattice_iff_localMatrix_integral _ D.host.E D.sp.cm V v h hfr k hk1.2, hconj,
+      rw [_root_.GlobalTheory.PlaceComp.StabLoc.stab_iff _ D.host.E D.sp.cm V v h hfr k hk1.2, hconj,
         GlobalTheory.InertDoubleCoset.bc_mem_range_iff ψ' hO, hback, GlobalTheory.InertDoubleCoset.mem_range_iff]
       refine ⟨fun i j => (P.mem_adicCompletionIntegers (K := D.host.E)).2 (i1 i j),
         fun i j => (P.mem_adicCompletionIntegers (K := D.host.E)).2 (i2 i j)⟩

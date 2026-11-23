@@ -53,6 +53,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.ScalingSwapLemmas
 
 @[expose] public section
 
@@ -125,7 +126,7 @@ theorem expShape_of_integralClass : ∀ (D : D7) (p : ℕ) [Fact p.Prime] (g2 g3
   have hB14 := GlobalTheory.T.standard_series_b_conditions_large_prime p 2 Bc h5 le_rfl even_two hstd
 
   have hO := Formalism.L2.Th1.D.oneLetterHalf (MaximalUnramifiedExtension p) p σ hσ F hF _ f1 f2 ζ hζ _ hph
-  have h2 := (Formalism.InvariantFactorPaths.G7.Top.mapSimeq (MaximalUnramifiedExtension p) ℂ_[p] Unit (MaximalUnramifiedExtension p).subtype (Formalism.L2.Th1.D.FAux.norm_coe p)).1 _ _ hO
+  have h2 := (_root_.Formalism.InvariantFactorPaths.G7.mapSimeq_statement (MaximalUnramifiedExtension p) ℂ_[p] Unit (MaximalUnramifiedExtension p).subtype (Formalism.L2.Th1.D.FAux.norm_coe p)).1 _ _ hO
   have hsL0 : MvPowerSeries.HasSubst (fun _ : ZMod 2 => (lgF (MaximalUnramifiedExtension p) p : MvPowerSeries Unit (MaximalUnramifiedExtension p))) :=
     MvPowerSeries.hasSubst_of_constantCoeff_zero (fun _ => Formalism.L2.Th1.D.Pair.cc_lgF hl)
   have hsL : MvPowerSeries.HasSubst (fun _ : ZMod 2 => (lgF ℂ_[p] p : MvPowerSeries Unit ℂ_[p])) :=

@@ -52,21 +52,6 @@ noncomputable section
 
 namespace GlobalTheory.Mum.RatBase
 
-theorem nsmul_b' {R : Type} [CommRing R] [IsDomain R] {D : DegPre R} {F : Type} [Field F] [Algebra (FractionRing R) F]
-    {k : ℕ} {g h : GtPtF D F} (H : GtPtF.IsNsmul k g h) : h.b = g.b ^ k := by
-  obtain ⟨gs, h0, hs, rfl⟩ := H
-  have : ∀ i : Fin (k + 1), (gs i).b = g.b ^ (i : ℕ) := fun i => by
-    induction i using Fin.induction with
-    | zero => rw [Fin.val_zero, pow_zero]; exact h0.1
-    | succ i ih => rw [(hs i).1, ih, Fin.val_succ, pow_succ]; rfl
-  exact this _
-
-theorem pow_comp' {S : Scheme.{0}} {G H Z : Over S} [GrpObj G] [GrpObj H] (φ : G ⟶ H) [IsMonHom φ]
-    (x : Z ⟶ G) (n : ℕ) : (x ^ n) ≫ φ = (x ≫ φ) ^ n := by
-  induction n with
-  | zero => simp
-  | succ n ih => rw [pow_succ, pow_succ, MonObj.mul_comp, ih]
-
 theorem ratBase : ∀ {o W : Type} [CommRing o] [CommRing W] [IsLocalRing W] (T : TautBase o W) (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (iw : W →+* R) {I : Type} [Fintype I] (s : I → R) (ε : I → LinearMap.BilinForm ℤ (Fin T.r → ℤ)) (n : ℕ), IsCN R → 1 ≤ n → IsUnit (n : R) → ∀ ζ : R, IsPrimitiveRoot ζ n → ∀ (Q : Data R) (e : Q.X ≃+ (Fin T.r → ℤ)), DataFrom T iw s ε n Q e → TorsRat Q.B n → ∀ (D' : DegData R (maximalIdeal R)) (F : PFactor Q D'.toPre) (p₀ p : QkPt D'.toPre (AlgebraicClosure (FractionRing R)) n), p.y = F.e • p₀.y → GtPtAct F.o F.e p₀.g p.g → ∃ b : TF (R := R) (FractionRing R) ⟶ D'.toPre.P.A, p.g.b.left = spMap (algebraMap (FractionRing R) (AlgebraicClosure (FractionRing R))) ≫ b.left := by
   intro o W _ _ _ T R _ _ _ iw I _ s ε n _ hn _ ζ _ Q e hD hT D' F p₀ p hy hg
   haveI := F.inc_hom
@@ -76,14 +61,14 @@ theorem ratBase : ∀ {o W : Type} [CommRing o] [CommRing W] [IsLocalRing W] (T 
   let b₀ : TF (R := R) L ⟶ Q.B := p₀.g.b ≫ F.pr
   have hpb : p.g.b = b₀ ≫ F.inc := by rw [hg.1, ← F.pr_inc, Category.assoc]
   obtain ⟨h, h1, h2⟩ := p₀.eq
-  have hn1 : p₀.g.b ^ n = toUnit _ ≫ D'.toPre.c p₀.y := (nsmul_b' h1).symm.trans h2.1
+  have hn1 : p₀.g.b ^ n = toUnit _ ≫ D'.toPre.c p₀.y := (_root_.GlobalTheory.UT.TxVal.nsmul_b h1).symm.trans h2.1
   have hcpr : D'.toPre.c p₀.y ≫ F.pr = Q.c a := by
     have h3 : D'.toPre.c p₀.y ≫ F.pr ≫ F.inc = Q.c a ≫ F.inc := by
       rw [F.pr_inc, ← F.o.c_lin, ← F.xi_xp, F.c_xi]
     have h4 := congrArg (· ≫ F.pr) h3
     simpa only [Category.assoc, F.inc_pr, Category.comp_id] using h4
   have hb₀ : b₀ ^ n = toUnit _ ≫ Q.c a := by
-    rw [← pow_comp', hn1, Category.assoc, hcpr]
+    rw [← _root_.GlobalTheory.SS.FrobTorsion.pow_comp', hn1, Category.assoc, hcpr]
   obtain ⟨β, β₂, w, hpb', hsq, hw, hc, htau⟩ := hD
 
   have hcomm : (spMap iw ≫ (T.c₀ (e a)).left) ≫ T.B.hom = 𝟙 (Sp R) ≫ spMap iw := by

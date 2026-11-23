@@ -180,19 +180,11 @@ open Formalism.L2.Host (unif atFin)
 
 variable {E : Type} [Field E] [NumberField E]
 
-theorem locK_pow_eq_one {ξ : HChar E} {N : ℕ} (hf : ξ.OrderDvd N) (w : HeightOneSpectrum (𝓞 E)) (y : Eˣ) :
-    ((ξ.locK w y : ℂˣ) : ℂ) ^ N = 1 := by
-  have h : (ξ ^ N).locK w y = 1 := by rw [show ξ ^ N = 1 from hf]; rfl
-  have h2 : (ξ ^ N).locK w y = ξ.locK w y ^ N := by
-    show (ξ.1 ^ N) _ = _
-    rw [MonoidHom.pow_apply]; rfl
-  rw [← Units.val_pow_eq_pow_val, ← h2, h, Units.val_one]
-
 theorem isAwayUnit_of_locK {K : Type} [Field K] [NumberField K] [StarRing K] (σ : K →+* ℂ) {ξ : HChar E} {N : ℕ}
     (hN : 0 < N) (hf : ξ.OrderDvd N) (w : HeightOneSpectrum (𝓞 E)) (y : Eˣ) {g : K} (hg : σ g = ((ξ.locK w y : ℂˣ) : ℂ))
     {m : ℕ} (hm : 0 < m) : GlobalTheory.Square.IsAwayUnit m g := by
   refine (GlobalTheory.Square.isAwayUnit_closure K m hm).1 g N hN (σ.injective ?_)
-  rw [map_pow, hg, locK_pow_eq_one hf, map_one]
+  rw [map_pow, hg, _root_.GlobalTheory.TameTwistEps.locK_pow_eq_one hf, map_one]
 
 end GlobalTheory.ReflVal
 

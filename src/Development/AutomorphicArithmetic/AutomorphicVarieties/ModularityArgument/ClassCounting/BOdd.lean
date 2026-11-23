@@ -43,4 +43,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem UpperTheory.V.ZK.bOdd : UpperTheory.V.ZK.BOdd := PositivityTheory.KB.bOdd_zk

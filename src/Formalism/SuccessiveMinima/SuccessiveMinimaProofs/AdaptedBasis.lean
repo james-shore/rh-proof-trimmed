@@ -253,4 +253,3 @@ theorem adapted_basis_exists : AdaptedBasis := by
 
 end Formalism.FN.AdaptedBasisExistence
 
-theorem Formalism.FN.existsAdaptedBasis : Formalism.FN.AdaptedBasis := Formalism.FN.AdaptedBasisExistence.adapted_basis_exists

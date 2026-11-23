@@ -223,8 +223,8 @@ theorem act_frame (G : Gen T L₀ L) (hQ : ∀ Y, MRel T (st₀.QQ Y) (st.QQ Y))
     (hs : IsLevelStart L st) (w : List (Letter ℂ S)) (h₀ : admitted st₀ w) (h : admitted st w) (Ψ : Ix S → V) (e : Ix S) :
     T (∑ b, ((ofWord L₀ st₀ w).F e b).1 (Ψ b)) = ∑ b, ((ofWord L st w).F e b).1 (T (Ψ b)) :=
   act_tr (corr_word G hQ hq hinv hL₀ hL hs₀ hs w
-    (Formalism.FourierDecayAlt.P.admissible_rec_of_admissible (Pr V) S r₀ L₀ st₀ w h₀)
-    (Formalism.FourierDecayAlt.P.admissible_rec_of_admissible (Pr V') S r₁ L st w h)).1 Ψ e
+    (_root_.Formalism.FourierDecayAlt.P.Fr2.admissible_rec_of_admissible_word (Pr V) S r₀ L₀ st₀ w h₀)
+    (_root_.Formalism.FourierDecayAlt.P.Fr2.admissible_rec_of_admissible_word (Pr V') S r₁ L st w h)).1 Ψ e
 
 end core
 

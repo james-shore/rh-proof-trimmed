@@ -106,12 +106,6 @@ end LocRegDesc
 
 namespace LocRegDesc
 
-theorem res_res {X : Scheme.{0}} {U V W : X.Opens} (h1 : V ≤ U) (h2 : W ≤ V) (x : Γ(X, U)) :
-    (X.presheaf.map (homOfLE h2).op).hom ((X.presheaf.map (homOfLE h1).op).hom x) =
-      (X.presheaf.map (homOfLE (h2.trans h1)).op).hom x := by
-  rw [← CommRingCat.comp_apply, ← Functor.map_comp]
-  rfl
-
 end LocRegDesc
 
 namespace LocRegDesc
@@ -129,7 +123,7 @@ theorem exists_unit_kill_on_basicOpen (X : Scheme.{0}) (U : X.affineOpens) (W : 
   have key : X.basicOpen hV = X.basicOpen f ⊓ X.basicOpen h := Scheme.basicOpen_res _ _ _
   have hB : X.basicOpen hV ≤ X.basicOpen h := key ▸ inf_le_right
   have hzero : (X.presheaf.map (homOfLE (X.basicOpen_le hV)).op).hom δV = 0 := by
-    rw [hδV, res_res, ← res_res hh hB, hδ, map_zero]
+    rw [hδV, _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres, ← _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres hh hB, hδ, map_zero]
   obtain ⟨n, hn⟩ :=
     exists_pow_mul_eq_zero_of_res_basicOpen_eq_zero_of_isCompact X (U.2.basicOpen f).isCompact δV hV hzero
   obtain ⟨⟨e, m⟩, hem⟩ := IsLocalization.surj (Submonoid.powers f) δV
@@ -146,7 +140,7 @@ theorem exists_unit_kill_on_basicOpen (X : Scheme.{0}) (U : X.affineOpens) (W : 
     exact (mul_eq_zero.1 this).resolve_left (pow_ne_zero _ hρh)
   obtain ⟨g, a, hu, hg⟩ := exists_unit_mul_eq_of_flat ρ hρ (f ^ j * e) 0 0 (by simp [hc])
   refine ⟨g, hu, ?_⟩
-  rw [map_mul, res_res]
+  rw [map_mul, _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres]
   change algebraMap Γ(X, U.1) Γ(X, X.basicOpen f) g * δV = 0
   have u1 : IsUnit (algebraMap Γ(X, U.1) Γ(X, X.basicOpen f) (m : Γ(X, U.1))) :=
     IsLocalization.map_units _ m
@@ -215,7 +209,7 @@ theorem exists_unit_one (X : Scheme.{0}) (U : X.affineOpens) (W : X.Opens)
   have hδ : (X.presheaf.map (homOfLE hh).op).hom δ = 0 := by
     have u : IsUnit (algebraMap Γ(X, U.1) Γ(X, X.basicOpen h) (h ^ N)) :=
       IsLocalization.map_units _ (⟨h ^ N, N, rfl⟩ : Submonoid.powers h)
-    rw [← u.mul_left_eq_zero, hδdef, map_sub, map_mul, res_res, res_res]
+    rw [← u.mul_left_eq_zero, hδdef, map_sub, map_mul, _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres, _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres]
     change (algebraMap Γ(X, U.1) Γ(X, X.basicOpen h) a - algebraMap Γ(X, U.1) Γ(X, X.basicOpen h) g₁ *
       (X.presheaf.map (homOfLE hh).op).hom θ) * algebraMap Γ(X, U.1) Γ(X, X.basicOpen h) (h ^ N) = 0
     rw [sub_mul, _root_.mul_assoc, hsm, ← map_mul, ← map_mul, hga, mul_comm a, sub_self]

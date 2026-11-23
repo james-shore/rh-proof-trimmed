@@ -71,31 +71,7 @@ variable {D : D7}
 
 
 open scoped ComplexOrder in
-theorem cart_isCartanInv {V : HSp D} (A : Fr V) (τ : D.what₂.Tau) : IsCartanInv (gramAt D V τ) (A.cart τ) := by
-  have h1 : A.fr τ * (A.fr τ)⁻¹ = 1 := Matrix.mul_nonsing_inv _ ((Matrix.isUnit_iff_isUnit_det _).1 (A.fr_unit τ))
-  have h2 : (A.fr τ)⁻¹ * A.fr τ = 1 := mul_eq_one_comm.1 h1
-  have hJ := Formalism.REAL.Jm_mul_self (A.ε τ)
-  have hJ' := Formalism.REAL.Jm_conjTranspose (A.ε τ)
-  have hG : gramAt D V τ * A.cart τ = (A.fr τ)ᴴ * A.fr τ := by
-    rw [← A.fr_gram τ]; unfold Fr.cart
-    calc _ = (A.fr τ)ᴴ * (Formalism.REAL.Jm (A.ε τ) * (A.fr τ * (A.fr τ)⁻¹) * Formalism.REAL.Jm (A.ε τ)) * A.fr τ := by
-          simp only [Matrix.mul_assoc]
-      _ = _ := by rw [h1, Matrix.mul_one, hJ, Matrix.mul_one]
-  have hs : A.cart τ * A.cart τ = 1 := by
-    unfold Fr.cart
-    calc _ = (A.fr τ)⁻¹ * (Formalism.REAL.Jm (A.ε τ) * (A.fr τ * (A.fr τ)⁻¹) * Formalism.REAL.Jm (A.ε τ)) * A.fr τ := by
-          simp only [Matrix.mul_assoc]
-      _ = _ := by rw [h1, Matrix.mul_one, hJ, Matrix.mul_one, h2]
-  refine ⟨hs, ?_, ?_⟩
-  · have hGh : (gramAt D V τ)ᴴ = gramAt D V τ := by
-      rw [← A.fr_gram τ]; simp [Matrix.conjTranspose_mul, hJ', Matrix.mul_assoc]
-    have h3 : (A.cart τ)ᴴ * gramAt D V τ = gramAt D V τ * A.cart τ := by
-      have := congrArg Matrix.conjTranspose hG
-      rw [Matrix.conjTranspose_mul, hGh, Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose] at this
-      rw [this, hG]
-    rw [h3, Matrix.mul_assoc, hs, Matrix.mul_one]
-  · rw [hG]
-    exact Matrix.PosDef.conjTranspose_mul_self _ (Matrix.mulVec_injective_of_isUnit (A.fr_unit τ))
+alias cart_isCartanInv := _root_.GlobalTheory.CompactFockAction.cart_isCartanInv
 
 theorem exists_fr {V : HSp D} {τ : D.what₂.Tau} {s fr : Mn V.rank} {ε : Fin V.rank → Bool}
     (h : IsFrameOf (gramAt D V τ) s ε fr) : ∃ A : Fr V, A.ε τ = ε ∧ A.fr τ = fr ∧ A.cart τ = s := by

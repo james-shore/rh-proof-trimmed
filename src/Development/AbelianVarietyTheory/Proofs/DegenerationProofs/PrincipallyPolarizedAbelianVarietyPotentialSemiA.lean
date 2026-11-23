@@ -64,8 +64,7 @@ open GlobalTheory.SS
 
 namespace GlobalTheory.SemiPol
 
-theorem sp_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := (Spec.map_comp _ _).symm
+alias sp_comp := _root_.GlobalTheory.SS.WeakNeronEx.sp_comp
 
 theorem exists_prime_unit (V : Type) [CommRing V] [IsLocalRing V] :
     ∃ l : ℕ, l.Prime ∧ 3 ≤ l ∧ IsUnit (l : V) := by

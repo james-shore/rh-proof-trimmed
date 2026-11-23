@@ -93,11 +93,6 @@ theorem cauchyProduct_fourfold_finsetSum {K : Type} [Field K] {α : Type} (s₁ 
   rw [Finset.mul_sum]; refine sum_congr rfl fun c _ => ?_
   rw [Finset.mul_sum]
 
-theorem dvd_castHom_val_iff {p : ℕ} [Fact p.Prime] {n : ℕ} (hn : 1 ≤ n) (x : ZMod (p ^ (n + 1))) :
-    p ∣ (ZMod.castHom (pow_dvd_pow p (Nat.le_succ n)) (ZMod (p ^ n)) x).val ↔ p ∣ x.val := by
-  rw [ZMod.castHom_apply, ZMod.cast_eq_val, ZMod.val_natCast,
-    Nat.dvd_mod_iff (dvd_pow_self p (by omega))]
-
 theorem sum_preimage_fibre (p : ℕ) [Fact p.Prime] (n : ℕ) (hn : 1 ≤ n) (K : Type) [CommRing K]
     (X : Finset (GL (Fin 2) (ZMod (p ^ n))))
     (hX : ∀ γ ∈ X, ¬ p ∣ ((γ : Matrix (Fin 2) (Fin 2) (ZMod (p ^ n))) 0 0).val ∧ ¬ p ∣ ((γ : Matrix (Fin 2) (Fin 2) (ZMod (p ^ n))) 1 0).val)
@@ -116,8 +111,8 @@ theorem sum_preimage_fibre (p : ℕ) [Fact p.Prime] (n : ℕ) (hn : 1 ≤ n) (K 
       obtain ⟨h1, h2⟩ := hX _ h
       have e1 : ((Matrix.GeneralLinearGroup.map ρ γ : GL (Fin 2) (ZMod (p ^ n))) : Matrix (Fin 2) (Fin 2) (ZMod (p ^ n))) 0 0 = ρ ((γ : Matrix (Fin 2) (Fin 2) (ZMod (p ^ (n + 1)))) 0 0) := rfl
       have e2 : ((Matrix.GeneralLinearGroup.map ρ γ : GL (Fin 2) (ZMod (p ^ n))) : Matrix (Fin 2) (Fin 2) (ZMod (p ^ n))) 1 0 = ρ ((γ : Matrix (Fin 2) (Fin 2) (ZMod (p ^ (n + 1)))) 1 0) := rfl
-      rw [e1, hρ, dvd_castHom_val_iff hn] at h1
-      rw [e2, hρ, dvd_castHom_val_iff hn] at h2
+      rw [e1, hρ, _root_.GlobalTheory.KummerEisensteinGalois.glFibre_dvd_map_iff hn] at h1
+      rw [e2, hρ, _root_.GlobalTheory.KummerEisensteinGalois.glFibre_dvd_map_iff hn] at h2
       exact ⟨⟨h1, h2⟩, h⟩
     · exact fun h => h.2
   have hX' : (unitSet p n).filter (fun γ => γ ∈ X) = X := by

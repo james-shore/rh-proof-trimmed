@@ -77,14 +77,7 @@ theorem isIso_spMap {R R' : Type} [CommRing R] [CommRing R'] (f : R →+* R') (h
   unfold spMap
   infer_instance
 
-theorem spMap_comp {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (f : R →+* R') (g : R' →+* R'') :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  unfold spMap
-  rw [← Spec.map_comp]
-  rfl
-
-theorem exists_pull {S S' : Scheme.{0}} (f : S' ⟶ S) (t : SAB H S) : ∃ t' : SAB H S', Nonempty (SABMap t' t f) := by
-  exact exists_sab f t
+alias exists_pull := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab
 
 theorem isProper_of_map {S S' : Scheme.{0}} {t : SAB H S} {t' : SAB H S'} {f : S' ⟶ S} (m : SABMap t' t f)
     (hp : IsProper t.G.hom) : IsProper t'.G.hom :=

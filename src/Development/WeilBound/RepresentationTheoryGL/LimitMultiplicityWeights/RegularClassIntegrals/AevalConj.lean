@@ -71,16 +71,12 @@ lemma cd_aeval (P : ℂ[X]) : ∀ a b, ContDiff ℝ ∞ (fun Y : Mx n => (aeval 
     simp only [Polynomial.aeval_monomial]
     exact cd_mul (fun a b => contDiff_const) (cd_pow k)
 
-lemma conj_pow (g g' D : Matrix (Fin n) (Fin n) ℂ) (h1 : g' * g = 1) (h2 : g * g' = 1) (k : ℕ) :
-    (g' * D * g) ^ k = g' * D ^ k * g :=
-  _root_.UpperTheory.Reformulated.B.Yhd8.main g g' D h1 h2 k
-
 lemma aeval_conj (g g' D : Matrix (Fin n) (Fin n) ℂ) (h1 : g' * g = 1) (h2 : g * g' = 1) (P : ℂ[X]) :
     aeval (g' * D * g) P = g' * aeval D P * g := by
   induction P using Polynomial.induction_on' with
   | add p q hp hq => rw [map_add (f := _), map_add (f := _), hp, hq, mul_add, add_mul]
   | monomial k c =>
-    rw [Polynomial.aeval_monomial, Polynomial.aeval_monomial, conj_pow g g' D h1 h2,
+    rw [Polynomial.aeval_monomial, Polynomial.aeval_monomial, _root_.UpperTheory.Reformulated.B.Yhd8.main g g' D h1 h2,
       ← Algebra.smul_def, ← Algebra.smul_def, mul_smul_comm, smul_mul_assoc]
 
 lemma aeval_diag (l : Fin n → ℂ) (P : ℂ[X]) :

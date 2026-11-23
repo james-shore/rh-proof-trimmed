@@ -187,7 +187,7 @@ theorem GlobalTheory.SchurCharV.exists_char_of_schur : GlobalTheory.FunPr.Hypoth
     rw [inv_one, Units.val_one, Matrix.one_mul] at e
     exact (mul_eq_right₀ hY₀).mp e.symm
   let cH : GL (Fin a) (Fv F v) →* ℂ := ⟨⟨c, hone⟩, hmul⟩
-  obtain ⟨χ, hχ⟩ := GlobalTheory.ghom_factors_through_det (two_ne_zero_Fv v) cH.toHomUnits
+  obtain ⟨χ, hχ⟩ := _root_.GlobalTheory.DetFactor.factors_through_det (two_ne_zero_Fv v) cH.toHomUnits
   have hcχ : ∀ x, c x = (χ (Matrix.GeneralLinearGroup.det x) : ℂ) := fun x => by rw [← hχ x]; rfl
   let A : (Fv F v)ˣ →* ℂˣ :=
     { toFun := fun x => Units.mk0 (GlobalTheory.SplitFlip.apow x (((a + a' : ℕ) : ℂ) / 2)) (GlobalTheory.SplitFlip.apow_ne_zero _ _)

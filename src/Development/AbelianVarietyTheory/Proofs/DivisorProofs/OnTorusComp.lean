@@ -289,7 +289,7 @@ theorem pull_tors {R V : Type} [CommRing R] [IsDomain R] [IsLocalRing R] [CharZe
       algebraMap (FractionRing V) F (algebraMap V _ (f r)) := hj
   let p₁ : QkPt P.D.toPre F k := qkExt hB σ.toRingHom (hom_comp σ) p₀
   let x₁ : TFK (R := R) F ⟶ P.A.A := extPt σ x₀
-  have hx₁ : QkToAkU P.U.toUnifPre F k p₁ x₁ := (GlobalTheory.T.qkToAkU_iff_galois_equivariant GlobalTheory.firstFiveLaws R _ hR P.D P.A t.G t.semi P.U F₀ F σ k hk
+  have hx₁ : QkToAkU P.U.toUnifPre F k p₁ x₁ := (_root_.GlobalTheory.TorsionExt.qkToAkU_iff_of_qkExt GlobalTheory.firstFiveLaws R _ hR P.D P.A t.G t.semi P.U F₀ F σ k hk
     p₀ p₁ x₀ x₁ ((qkExt_iff hB _ (hom_comp σ) _ _).2 rfl) rfl).1 hx₀
   obtain ⟨τ, hτ, -⟩ := GlobalTheory.exists_qk_pull_equiv h1 h2 R V f P.D.toPre P'.D.toPre hD hB P'.D.tau_bimult F hF k
   obtain ⟨hy, hg⟩ := (hτ p₁ _).1 rfl
@@ -331,7 +331,7 @@ theorem pair_match : ∀ {Dw : Datum H} {l : Geo.Tor.Level H} (Xo : Moduli Dw l)
     congr 2
     apply hD₁.xe.injective
     rw [xl₁, AddEquiv.apply_symm_apply, AddEquiv.apply_symm_apply]
-  obtain ⟨x₀, hx₀, hpow⟩ := (GlobalTheory.T.torsionPointOfPair_exists_torsion_injective_upToEquiv R _ hR.1 C.P.D C.P.A C.t.G C.P.U C.t.semi (AlgebraicClosure (FractionRing R))
+  obtain ⟨x₀, hx₀, hpow⟩ := (_root_.GlobalTheory.TInj.torsPt_exists_inj R _ hR.1 C.P.D C.P.A C.t.G C.P.U C.t.semi (AlgebraicClosure (FractionRing R))
     l.M' hn).1 p₀
   obtain ⟨p₁, x₁, hy₁, hT₁, hq₁, hc₁⟩ := tr₁ (AlgebraicClosure (FractionRing R)) (AlgebraicClosure (FractionRing V))
     j₁ hj₁ _ hn p₀ x₀ hx₀

@@ -60,9 +60,9 @@ theorem reads : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins
   obtain ⟨k, hk⟩ := hF.ends 0 (Nat.zero_le _) (Or.inl rfl)
   have hk' : I.Reads u I.mu0 0 (fun _ => ()) (fun _ => F.to0.cls0.lev.Lb) (fun _ => F.to0.cls0.lev.U)
       (fun _ => F.to0.cls0.lev.chi) (fun c => (F.to0.cls0.y c).1) (fun c s => (F.to0.cls0.stabI c s).1) (fun _ => k ()) := hk
-  choose κ hκ using GlobalTheory.T.memberRepresentative_moved_at_twist_eq_tupleFrames I hI hP l Z u F a Q hQ hF (k ()) hk'
+  choose κ hκ using _root_.GlobalTheory.Mem.Col2.ZeroMove.main I hI hP l Z u F a Q hQ hF (k ()) hk'
   obtain ⟨K0, hLb, hUloc, hU, hchi, hy, hst⟩ :=
-    GlobalTheory.T.stepZeroChart_of_memberLevel I hI hP l Z u a Q F.to0.cls0 κ (fun c s => hk'.stab c s)
+    _root_.GlobalTheory.TwU.AtTrue.ZeroChart.chart_of_member I hI hP l Z u a Q F.to0.cls0 κ (fun c s => hk'.stab c s)
   have nQ : ∀ v, ¬ I.UnderQ I.mu0 v := fun v ⟨P, hP', _⟩ => by
     rw [I.twistPrimes_reference_tuple_eq_empty] at hP'
     simp at hP'
@@ -96,7 +96,7 @@ theorem reads : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins
     rw [hy c0] at hq
     show x ∈ (K0 ()).lev.U ↔ _
     rw [hU]
-    exact GlobalTheory.T.stepZero_level_readAsReference I hI hP l Z u a _ _ _ _ _ (k ()) hk' c0 (κ c0) _ rfl (hκ c0).2.2 x q hq
+    exact _root_.GlobalTheory.Mem.Col2.TC.LevZero.lev_zero I hI hP l Z u a _ _ _ _ _ (k ()) hk' c0 (κ c0) _ rfl (hκ c0).2.2 x q hq
   case chr =>
     intro c x κ' hg hq
     obtain ⟨c0, rfl⟩ := (I.eCls0 l u a).surjective c

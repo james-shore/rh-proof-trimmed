@@ -42,5 +42,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem mirabolic_bound : Formalism.L2.SG.GGMirabolic.MirabolicBound :=
-  PI.GGMirBoundW.mirabolicBound

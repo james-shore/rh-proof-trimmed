@@ -119,37 +119,6 @@ theorem keyVia_isPullback {φ w} (h : KeyVia x' x f φ w) : IsPullback φ x'.P.A
   obtain ⟨_, _, _, h, _⟩ := h
   exact h.1
 
-theorem keyVia_trans {φ w φ' w'} (H : KeyVia x' x f φ w) (H' : KeyVia x'' x' f' φ' w') :
-    ∃ w'', KeyVia x'' x (f'.comp f) (φ' ≫ φ) w'' ∧ ∀ (l : ℕ) (s : RR x l) (s' : RR x' l) (s'' : RR x'' l),
-      SecVia x' x φ w s' s → SecVia x'' x' φ' w' s'' s' → SecVia x'' x (φ' ≫ φ) w'' s'' s := by
-  obtain ⟨he, hg, F, hp, hw, hr, hs, hF, hε, hv⟩ := H
-  obtain ⟨he', hg', F', hp', hw', hr', hs', hF', hε', hv'⟩ := H'
-  have g := (isGen_iff w).1 hw
-  have g' := (isGen_iff w').1 hw'
-  obtain ⟨w'', T⟩ := exists_comp x'.P.isLB w w' g g' x.P.isLB x''.P.isLB
-  have he'' : eSec x''.P.A ≫ φ' ≫ φ = spMap (f'.comp f) ≫ eSec x.P.A := by
-    rw [← Category.assoc, he', Category.assoc, he, spMap_comp, Category.assoc]
-  refine ⟨w'', ⟨he'', hg'.trans hg, F'.comp F, (hp'.comp hp).congr (spMap_comp f f').symm rfl,
-    (isGen_iff w'').2 (T.pgen_comp x'.P.isLB g g'), ?_, ?_, fun a => ?_, ?_, fun i => ?_⟩,
-    fun l s s' s'' h h' => via_comp (L := x.P.L) (L' := x'.P.L) (L'' := x''.P.L) (l := l) (a := s.f) (a' := s'.f) (a'' := s''.f) T x'.P.isLB h h'⟩
-  · have r₀ := (maps_iff w _ (fun _ => eSec x.P.A) _ x'.rig x.rig (spMap f) _
-      (rigPull_le φ (spMap f) he x.P.L) (fun _ => rfl)).1 hr
-    have r₁ := (maps_iff w' _ (fun _ => eSec x'.P.A) _ x''.rig x'.rig (spMap f') _
-      (rigPull_le φ' (spMap f') he' x'.P.L) (fun _ => rfl)).1 hr'
-    have r₂ := T.pmaps_comp x'.P.isLB (fun _ => he') r₀ r₁
-    rw [← spMap_comp] at r₂
-    exact (maps_iff w'' _ (fun _ => eSec x.P.A) _ x''.rig x.rig (spMap (f'.comp f)) _
-      (rigPull_le (φ' ≫ φ) (spMap (f'.comp f)) he'' x.P.L) (fun _ => rfl)).2 r₂
-  · refine KeyPow.appLE_eq_of_stalk w'' x.th x''.th fun z j k hj hk => ?_
-    obtain ⟨i, hi⟩ := exists_chart x'.P.isLB (φ' z)
-    have a := KeyComp.stalk_of_appLE_eq w x.th x'.th hs (𝟙 _ ≫ φ') z j i hj hi
-    have b := KeyComp.stalk_of_appLE_eq w' x'.th x''.th hs' (𝟙 _) z i k hi hk
-    rw [T _ (𝟙 _) z j i k hj hi hk, ← Category.assoc, a, b, Units.val_mul, _root_.mul_assoc]
-  · rw [RingHom.comp_apply, hF, hF', RingHom.comp_apply]
-  · rw [RingHom.comp_apply, hε, hε']
-  · rw [← Category.assoc, hv', Category.assoc, hv, spMap_comp, Category.assoc]
-    rfl
-
 theorem keyVia_cancel {φ w φ'' w''} (H : KeyVia x' x f φ w) (H'' : KeyVia x'' x (f'.comp f) φ'' w'') :
     ∃ φ' w', KeyVia x'' x' f' φ' w' ∧ φ' ≫ φ = φ'' ∧ ∀ (l : ℕ) (s : RR x l) (s' : RR x' l) (s'' : RR x'' l),
       SecVia x' x φ w s' s → SecVia x'' x φ'' w'' s'' s → SecVia x'' x' φ' w' s'' s' := by

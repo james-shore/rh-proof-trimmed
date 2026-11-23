@@ -75,8 +75,8 @@ theorem key (k : ℕ) (Ψ : GL (Fin 2) (Af F) → Hn F → ℂ) (φ : GA F 2 →
         φ (g * TR.infGL F 2 u) = sl k u f fun _ => UpperHalfPlane.I := by
   set gi := Matrix.GeneralLinearGroup.map (TR.pInf F) g
   set gf := Matrix.GeneralLinearGroup.map (pFin F) g
-  obtain ⟨τ, hτ⟩ := (GlobalTheory.T.rational_GL2_infinite_finite_factor F 1).2 gi
-  have hdec := (GlobalTheory.T.rational_GL2_infinite_finite_factor F τ).1
+  obtain ⟨τ, hτ⟩ := (_root_.GlobalTheory.HilbertThetaSeries.RatPts.ratGL_real_fin F 1).2 gi
+  have hdec := (_root_.GlobalTheory.HilbertThetaSeries.RatPts.ratGL_real_fin F τ).1
   set M := toInf τ * gi
   set f := sl k M (Ψ (toFin τ * gf))
   have hf : Hol f := ((GlobalTheory.HilbertThetaSeries.HolKeep.main F k (Ψ (toFin τ * gf)) (Ψ (toFin τ * gf)) 1 (hΨ _) (hΨ _)).2.2.2.2.2 M hτ).2
@@ -119,7 +119,7 @@ theorem GlobalTheory.HilbertThetaSeries.lift_smooth_lowering : ∀ (F : Type) [F
     obtain ⟨u, hu⟩ := id hx
     have ex : x = TR.toL u.val := hu.symm
     obtain ⟨f, hf, -, hfe⟩ := key k Ψ φ hΨ hL (g * TR.infGL F 2 u)
-    obtain ⟨A, hA1, hA2, -⟩ := GlobalTheory.T.hilbert_slash_eval_smooth_weight_lowering F k f hf
+    obtain ⟨A, hA1, hA2, -⟩ := _root_.GlobalTheory.HilbertThetaSeries.arch_lift F k f hf
     set L := TR.lmul (TR.toL (u⁻¹).val)
     refine ⟨L ⁻¹' PSet F, isOpen_PSet.preimage L.continuous, ?_, ?_⟩
     · show ∀ v, 0 < (Matrix.of (L x)).det v
@@ -151,7 +151,7 @@ theorem GlobalTheory.HilbertThetaSeries.lift_smooth_lowering : ∀ (F : Type) [F
           fderiv ℝ A (Matrix.of.symm 1) (Matrix.of.symm (Matrix.single 1 0 (Pi.single v 1)))) := by
     intro g
     obtain ⟨f, hf, hfg, hfe⟩ := key k Ψ φ hΨ hL g
-    obtain ⟨A, hA1, -, hA3⟩ := GlobalTheory.T.hilbert_slash_eval_smooth_weight_lowering F k f hf
+    obtain ⟨A, hA1, -, hA3⟩ := _root_.GlobalTheory.HilbertThetaSeries.arch_lift F k f hf
     obtain ⟨h1, h2⟩ := hA3 v _ fun _ _ => rfl
     refine ⟨A, ?_, ?_, h2⟩
     · have hmem : TR.oneL F 2 ∈ PSet F := fun w => by simp
@@ -170,5 +170,3 @@ theorem GlobalTheory.HilbertThetaSeries.lift_smooth_lowering : ∀ (F : Type) [F
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Af UpperTheory.V.Sd GlobalTheory.HilbertThetaSeries
 open scoped Matrix
 
-theorem _root_.GlobalTheory.T.adelic_lift_mem_smooth_killed_by_lowering : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (k : ℕ) (Ψ : GL (Fin 2) (Af F) → Hn F → ℂ) (φ : GA F 2 → ℂ), (∀ g, Hol (Ψ g)) → IsLift k Ψ φ → ∃ h : φ ∈ TR.Sm F 2, ∀ v, TR.Eop v 0 1 ⟨φ, h⟩ - TR.Eop v 1 0 ⟨φ, h⟩ = (Complex.I * k) • (⟨φ, h⟩ : TR.Sm F 2) ∧ TR.Eop v 0 0 ⟨φ, h⟩ - TR.Eop v 1 1 ⟨φ, h⟩ = Complex.I • (TR.Eop v 0 1 ⟨φ, h⟩ + TR.Eop v 1 0 ⟨φ, h⟩) := by
-  first | exact @GlobalTheory.HilbertThetaSeries.lift_smooth_lowering | exact GlobalTheory.HilbertThetaSeries.lift_smooth_lowering | (intros; apply GlobalTheory.HilbertThetaSeries.lift_smooth_lowering <;> assumption)

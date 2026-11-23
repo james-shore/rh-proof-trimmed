@@ -98,6 +98,6 @@ theorem IntOpTwoOrth_of (h : Formalism.L2.Th1.B.ThetaZeroTwoCM) : IntOpTwoOrth :
   rw [mul_assoc]
   exact Subring.mul_mem _ ((hmem _).2 (hP m)) ((hmem _).2 (hJI m))
 
-theorem integral_operator_two_orthogonal : IntOpTwoOrth := IntOpTwoOrth_of Formalism.L2.Th1.B.th0TwoCM
+theorem integral_operator_two_orthogonal : IntOpTwoOrth := IntOpTwoOrth_of _root_.Formalism.L2.Th1.B.LCm.theta_zero_two_complex_mult
 
 end Formalism.L2.Th1.Top

@@ -50,15 +50,6 @@ private theorem val_iff_mem {F Ω : Type} [Field F] [NumberField F] [Field Ω] [
   rw [← hA]
   simp
 
-private theorem prime_mem {F : Type} [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F)) :
-    ∃ p : ℕ, p.Prime ∧ ((p : ℕ) : 𝓞 F) ∈ v.asIdeal := by
-  haveI := v.isMaximal
-  haveI : Finite (𝓞 F ⧸ v.asIdeal) := Ideal.finiteQuotientOfFreeOfNeBot _ v.ne_bot
-  letI : Field (𝓞 F ⧸ v.asIdeal) := Ideal.Quotient.field _
-  refine ⟨ringChar (𝓞 F ⧸ v.asIdeal), CharP.char_is_prime (𝓞 F ⧸ v.asIdeal) _, ?_⟩
-  rw [← Ideal.Quotient.eq_zero_iff_mem, map_natCast]
-  exact ringChar.Nat.cast_ringChar
-
 theorem UpperTheory.V.Z.Win.Birth.badOfW :
     UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.E.SplitOfDec → UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.E.UnrOfIne → SphOfUnrW → BadOfW := by
   intro hS hU hP Ω _ _ _ l _ ι K' L M _ _ _ _ _ _ _ hM ρ r π hG hr hpol hreg hatt hW hun v hv
@@ -67,7 +58,7 @@ theorem UpperTheory.V.Z.Win.Birth.badOfW :
       rw [hM, IntermediateField.fixingSubgroup_sup]
       exact ⟨hs, (IntermediateField.mem_fixingSubgroup_iff _ _).2 fun y hy => s.commutes ⟨y, hy⟩⟩
     exact (IntermediateField.mem_fixingSubgroup_iff _ _).1 this x x.2
-  obtain ⟨p, hp, hpv⟩ := prime_mem v
+  obtain ⟨p, hp, hpv⟩ := _root_.Formalism.BasicNotions.Examples₂.PlacesToy.exists_prime_mem v
   rcases hG p hp with h | ⟨hpl, h⟩
   · exact absurd (hS L M Ω v fun A hA s hs => hMfix s (h A ((val_iff_mem hA p).2 hpv) hs)) hv
   refine ⟨hU L M Ω v fun A hA s hs => hMfix s (h A ((val_iff_mem hA p).2 hpv) s hs).1, fun w hw => ?_⟩

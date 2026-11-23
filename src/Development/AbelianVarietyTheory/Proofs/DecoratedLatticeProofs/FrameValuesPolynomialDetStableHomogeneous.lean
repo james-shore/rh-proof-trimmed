@@ -160,13 +160,10 @@ theorem valC_stable (G : ι → Matrix (Fin a) (Fin a) ℂ) (lam : ι → DomWei
   simp only [y', Matrix.det_mul, mul_zpow, Finset.prod_mul_distrib]
   ring
 
-theorem natW_anti' (l : DomWeight a) : Antitone l.natW := fun i j h =>
-  Int.toNat_le_toNat (by have := l.anti h; omega)
-
 theorem isHomogeneous_of_mem_delSq (l : DomWeight a) {f : MvPolynomial (Fin a × Fin a) ℂ} (hf : f ∈ delSq ℂ a l) :
     f.IsHomogeneous (∑ r, l.natW r) := by
   have h : MvPolynomial.IsWeightedHomogeneous (Formalism.GradedWeylDivisibility.colW a a) f l.natW :=
-    (Formalism.GradedWeylDivisibility.weylLeDual ℂ a a le_rfl l.natW (natW_anti' l) hf).1
+    (Formalism.GradedWeylDivisibility.weylLeDual ℂ a a le_rfl l.natW (_root_.Formalism.L2.Col.natW_anti l) hf).1
   intro m hm
   rw [← h hm]
   simp only [Finsupp.weight_apply, Finsupp.sum, Finset.sum_apply, Formalism.GradedWeylDivisibility.colW]

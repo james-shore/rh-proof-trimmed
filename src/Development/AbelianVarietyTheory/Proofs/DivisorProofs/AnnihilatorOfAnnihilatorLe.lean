@@ -55,7 +55,7 @@ theorem LKMid.Pair.term_one_eq_pointSum : ∀ (p : ℕ) [Fact p.Prime] (G : HTGr
   have hsig : sigG G 1 = MonoidHom.id (Gr G 1) := by
     ext1 g
     exact (GlobalTheory.LKMid.SigIter.main p G 1 Nat.one_pos).1 g
-  rw [GlobalTheory.T.kottwitzPair_term_eq_pointSum_any_trivialisation p G P Kf f 1 K' f' Nat.one_pos hf hf' x t hx (inclG G 1 P.atP) 1 hN]
+  rw [_root_.GlobalTheory.LKMid.Pair.term_eq_termAt p G P Kf f 1 K' f' Nat.one_pos hf hf' x t hx (inclG G 1 P.atP) 1 hN]
   unfold Pair.termAt
   rw [hsig]
 

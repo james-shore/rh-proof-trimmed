@@ -74,7 +74,7 @@ theorem exists_norm_tower : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
   have hM : 0 < l.M := lt_of_lt_of_le (by norm_num) l.three_le
   have hs : ∀ j : ℕ, ∃ t : 𝓞 E, ((j.factorial : ℕ) : 𝓞 E) ∣ t * H.bar t - (ν j.factorial : 𝓞 E) ∧
       (l.M ∣ j.factorial → t - 1 ∈ l.Mb) := fun j =>
-    GlobalTheory.T.exists_hostNorm_mod_coprime_level_half E H l j.factorial (ν j.factorial) j.factorial_pos (hcop _ j.factorial_pos)
+    _root_.GlobalTheory.NormMod.exists_norm_mod E H l j.factorial (ν j.factorial) j.factorial_pos (hcop _ j.factorial_pos)
   choose s hs1 hs2 using hs
   let U : Ultrafilter ℕ := Filter.hyperfilter ℕ
   have hU : ∀ n : ℕ, 0 < n → ∀ᶠ j in (U : Filter ℕ), n ∣ j.factorial := by

@@ -66,8 +66,7 @@ namespace GlobalTheory.ConjNorm
 noncomputable def torTw (D : D7) (σ : D.host.E ≃ₐ[ℚ] D.host.E) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) : Tor D :=
   ⟨fun τ x => embT D τ (σ x), lamOf D cc δ⟩
 
-theorem U_zero (D : D7) (T : Tor D) {N N' : ℕ} (G : VC D N N' → ℂ) : U D T 0 G = G := by
-  funext z; simp [U, Hf]
+alias U_zero := _root_.GlobalTheory.GalTheta.U_zero
 
 theorem norm_core (D : D7) (σ : D.host.E ≃ₐ[ℚ] D.host.E)
     (hσ : ∀ a : D.host.K, σ (a : D.host.E) = (a : D.host.E))

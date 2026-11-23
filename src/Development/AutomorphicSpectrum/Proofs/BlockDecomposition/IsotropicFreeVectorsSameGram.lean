@@ -50,6 +50,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HypOneZeroZero
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TrMMemFramesEIff
+import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.HyperbolicUnitaryStabilizerCocompact
 
 @[expose] public section
 
@@ -73,18 +74,6 @@ theorem hform_add_left (x y z : Fin n → A) :
     hform s J (x + y) z = hform s J x z + hform s J y z := by
   simp only [hform, Pi.add_apply, map_add (f := _), add_mul, Finset.sum_add_distrib]
 
-theorem hform_smul_right (t : A) (x y : Fin n → A) :
-    hform s J x (t • y) = t * hform s J x y := by
-  simp only [hform, Pi.smul_apply, smul_eq_mul, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  ring
-
-theorem hform_smul_left (t : A) (x y : Fin n → A) :
-    hform s J (t • x) y = s t * hform s J x y := by
-  simp only [hform, Pi.smul_apply, smul_eq_mul, map_mul, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  ring
-
 end Form
 
 theorem exists_hyperbolic_partner {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E]
@@ -107,18 +96,18 @@ theorem exists_hyperbolic_partner {F E : Type} [Field F] [NumberField F] [Field 
   have hsq : sigR R σ q = q := herm y y
   refine ⟨y + (-(c * q)) • x, ?_, ?_, ?_⟩
   · have : hR R σ J x (y + (-(c * q)) • x) = hR R σ J x y + -(c * q) * hR R σ J x x := by
-      simp only [hR, hform_add_right, hform_smul_right]
+      simp only [hR, hform_add_right, _root_.GlobalTheory.CompanionTheory.SW.Iwa.hform_smul_right]
     rw [this, hxx, hxy]
     ring
   · have : hR R σ J (y + (-(c * q)) • x) x =
         hR R σ J y x + sigR R σ (-(c * q)) * hR R σ J x x := by
-      simp only [hR, hform_add_left, hform_smul_left]
+      simp only [hR, hform_add_left, _root_.GlobalTheory.CompanionTheory.SW.Iwa.hform_smul_left]
     rw [this, hxx, hyx]
     ring
   · have : hR R σ J (y + (-(c * q)) • x) (y + (-(c * q)) • x) =
         hR R σ J y y + -(c * q) * hR R σ J y x + (sigR R σ (-(c * q)) * hR R σ J x y +
           sigR R σ (-(c * q)) * (-(c * q) * hR R σ J x x)) := by
-      simp only [hR, hform_add_left, hform_add_right, hform_smul_left, hform_smul_right]
+      simp only [hR, hform_add_left, hform_add_right, _root_.GlobalTheory.CompanionTheory.SW.Iwa.hform_smul_left, _root_.GlobalTheory.CompanionTheory.SW.Iwa.hform_smul_right]
       ring
     rw [this, hxx, hxy, hyx, ← hq, map_neg, map_mul, hsc, hsq]
     linear_combination (-q) * hcc

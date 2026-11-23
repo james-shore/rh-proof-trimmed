@@ -66,9 +66,7 @@ namespace GlobalTheory.FinPartIrrAdm
 
 open GlobalTheory.PRep (fixed smoothPart smoothRep IsSmooth)
 
-theorem mem_fixed_iff {G X : Type} [Group G] [AddCommGroup X] [Module ℂ X] {ρ : Representation ℂ G X}
-    {K : Subgroup G} {x : X} : x ∈ fixed ρ K ↔ ∀ g ∈ K, ρ g x = x :=
-  ⟨fun h g hg => by simpa using h ⟨g, hg⟩, fun h g => by simpa using h g g.2⟩
+alias mem_fixed_iff := _root_.GlobalTheory.LGrp.mem_fixed
 
 def stabGroup {G X : Type} [Group G] [AddCommGroup X] [Module ℂ X] (ρ : Representation ℂ G X) (x : X) :
     Subgroup G :=
@@ -260,7 +258,7 @@ theorem irreducible [CompleteSpace H] (hπ : IsIrrUnitary π) (hD : HasDSComp M 
     exact inner_map_map hunit _ _ _
   have hall : ∀ n ∈ N.toSubmodule, ⟪ev n, ev (Φ - n0)⟫_ℂ = 0 := by
     intro n hn
-    obtain ⟨s, hsK, hsne, hsfix⟩ := GlobalTheory.T.exists_finsetSum_translates_fixed_compactSubgroup (finPartDSSm M hU) K hKc n (isSmooth_smoothRep _ n)
+    obtain ⟨s, hsK, hsne, hsfix⟩ := _root_.GlobalTheory.exists_finset_sum_translate_fixed (finPartDSSm M hU) K hKc n (isSmooth_smoothRep _ n)
     have hmem : ∑ g ∈ s, finPartDSSm M hU g n ∈ E :=
       hEmem _ (Submodule.sum_mem _ fun g _ => N.apply_mem_toSubmodule g hn) (mem_fixed_iff.2 hsfix)
     have h1 := (Submodule.mem_orthogonal _ _).1 horth (ev (∑ g ∈ s, finPartDSSm M hU g n))

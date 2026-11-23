@@ -46,10 +46,7 @@ open UpperTheory.ConvolutionTheory.R2
 open scoped Classical
 open UpperTheory.ConvolutionTheory.R2.C
 
-private lemma psi_rt {F : Type} [Field F] [NumberField F] (c : F) : ψ (UpperTheory.ConvolutionTheory.R2.rt c) = 1 := by
-  unfold ψ UpperTheory.ConvolutionTheory.R2.rt
-  rw [adelicChar_algebraMap]
-  simp
+private alias psi_rt := _root_.UpperTheory.ConvolutionTheory.R2.ψ_rt
 
 private lemma quadraticForm_rational_embed {F : Type} [Field F] [NumberField F] (δ : F) (ξ : Fin 4 → F) :
     q4 δ (fun i => UpperTheory.ConvolutionTheory.R2.rt (ξ i)) = UpperTheory.ConvolutionTheory.R2.rt (ξ 2 ^ 2 - δ * ξ 3 ^ 2 - ξ 1 * ξ 0) := by

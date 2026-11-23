@@ -79,28 +79,24 @@ private theorem constantCoeff_subst_X_logF_eq_zero {σ : Type} (i : σ) :
   · simp [sx_logF_const]
   · simp [MvPowerSeries.constantCoeff_X, zero_pow hd.ne']
 
-private theorem hs_lemma_2 {σ : Type} [Finite σ] :
-    MvPowerSeries.HasSubst (fun i : σ => PowerSeries.subst (MvPowerSeries.X i : MvPowerSeries σ (K0 p)) (logF p)) :=
-  MvPowerSeries.hasSubst_of_constantCoeff_zero (fun i => constantCoeff_subst_X_logF_eq_zero p i)
-
 theorem sx_inParam_X {σ : Type} [Finite σ] (i : σ) : inParam p (MvPowerSeries.X i) = sx_lX p i := by
   unfold inParam sx_lX
-  exact MvPowerSeries.subst_X (hs_lemma_2 p) i
+  exact MvPowerSeries.subst_X (_root_.Formalism.MainNotions.FormalGroupSystem.Pf.th_hasSubst_lX p) i
 
 theorem sx_inParam_add {σ : Type} [Finite σ] (f g : MvPowerSeries σ (K0 p)) :
     inParam p (f + g) = inParam p f + inParam p g := by
   unfold inParam
-  exact MvPowerSeries.subst_add (hs_lemma_2 p) f g
+  exact MvPowerSeries.subst_add (_root_.Formalism.MainNotions.FormalGroupSystem.Pf.th_hasSubst_lX p) f g
 
 theorem sx_inParam_mul {σ : Type} [Finite σ] (f g : MvPowerSeries σ (K0 p)) :
     inParam p (f * g) = inParam p f * inParam p g := by
   unfold inParam
-  exact MvPowerSeries.subst_mul (hs_lemma_2 p) f g
+  exact MvPowerSeries.subst_mul (_root_.Formalism.MainNotions.FormalGroupSystem.Pf.th_hasSubst_lX p) f g
 
 theorem sx_inParam_C_mul {σ : Type} [Finite σ] (a : K0 p) (g : MvPowerSeries σ (K0 p)) :
     inParam p (MvPowerSeries.C a * g) = MvPowerSeries.C a * inParam p g := by
   unfold inParam
-  rw [MvPowerSeries.subst_mul (hs_lemma_2 p), MvPowerSeries.subst_C]
+  rw [MvPowerSeries.subst_mul (_root_.Formalism.MainNotions.FormalGroupSystem.Pf.th_hasSubst_lX p), MvPowerSeries.subst_C]
 
 theorem sx_subst_ps {σ τ : Type} {a : σ → MvPowerSeries τ (K0 p)} (ha : MvPowerSeries.HasSubst a)
     {g : MvPowerSeries σ (K0 p)} (hg : MvPowerSeries.constantCoeff g = 0) (f : PowerSeries (K0 p)) :
@@ -114,7 +110,7 @@ theorem sx_inParam_subst {σ τ : Type} [Finite σ] [Finite τ] (a a' : σ → M
   have hA : MvPowerSeries.HasSubst a := MvPowerSeries.hasSubst_of_constantCoeff_zero ha
   have hA' : MvPowerSeries.HasSubst a' := MvPowerSeries.hasSubst_of_constantCoeff_zero ha'
   unfold inParam
-  rw [MvPowerSeries.subst_comp_subst_apply hA (hs_lemma_2 p), MvPowerSeries.subst_comp_subst_apply (hs_lemma_2 p) hA']
+  rw [MvPowerSeries.subst_comp_subst_apply hA (_root_.Formalism.MainNotions.FormalGroupSystem.Pf.th_hasSubst_lX p), MvPowerSeries.subst_comp_subst_apply (_root_.Formalism.MainNotions.FormalGroupSystem.Pf.th_hasSubst_lX p) hA']
   congr 1
   funext s
   rw [sx_subst_ps p hA' (by simp) (logF p), MvPowerSeries.subst_X hA']

@@ -193,7 +193,7 @@ theorem chain_le (χ : MulChar F R) (n : ℕ) : ∀ (N : Type) [AddCommGroup N] 
     rw [Finset.prod_range_one]
     exact mul_le_mul_right h1 _
 
-theorem chain_partial (hstep : type_of% @GlobalTheory.T.stable_hopf_order_subgroup_translation) (χ : MulChar F R) (n : ℕ) (N : Type)
+theorem chain_partial (hstep : type_of% @_root_.PositivityTheory.HtPt.Rc.step) (χ : MulChar F R) (n : ℕ) (N : Type)
     [AddCommGroup N] [Module F N] [Fintype N]
     [DecidableEq N] (AA : HopfOrder (C := C) R N) (hst : FStable F AA.carrier)
     (K : ℕ → Submodule F N) (t : ℕ → N) (h : IsChain n K t) (s : ℕ → NNReal)

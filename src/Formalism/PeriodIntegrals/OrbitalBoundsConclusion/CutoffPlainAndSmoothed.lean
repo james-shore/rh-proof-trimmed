@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem cutoff_plain_and_smoothed : Formalism.FourierDecayAlt.U.StarBoundOfCutoffOperator ∧ Formalism.FourierDecayAlt.U.StarBoundOfTwoCutoffOperator := PI.UnitaryCorollaryDerivatives.unitary_corollary_both_forms
+alias cutoff_plain_and_smoothed := _root_.PI.UnitaryCorollaryDerivatives.unitary_corollary_both_forms

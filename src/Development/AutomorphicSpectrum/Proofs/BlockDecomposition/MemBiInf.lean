@@ -369,7 +369,7 @@ theorem main : ∀ {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] (h : OL l O)
     exact ⟨trivial, V, hV, inU_G h T.obj m _ hin⟩
   have g := glue h U s m hQ hP (fun S hS j => by
     obtain ⟨α, hα⟩ := hS
-    obtain ⟨c', -⟩ := GlobalTheory.T.coordinates_restrict_affine_open (U.c α) (iInf₂_le α hα : (⨅ α ∈ S, U.U α) ≤ U.U α) (U.inter S ⟨α, hα⟩)
+    obtain ⟨c', -⟩ := _root_.GlobalTheory.CompanionTheory.CoordRes.main (U.c α) (iInf₂_le α hα : (⨅ α ∈ S, U.U α) ≤ U.U α) (U.inter S ⟨α, hα⟩)
     exact local_bij hLoc hPA hPT hCA hCP hCG h c' s (hs α) m _ _ j) j
   have tL := top_L hZ h q m _ hUs j
   have tO := top_O hZ q l s _ hUs (htop _) ((l : O) ^ m) j

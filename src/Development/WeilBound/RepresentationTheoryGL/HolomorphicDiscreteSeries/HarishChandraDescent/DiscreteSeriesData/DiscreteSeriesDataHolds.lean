@@ -45,6 +45,7 @@ public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExi
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.BridgeHW
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.EquivSigLamOfIsDS
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.ExistenceG2.DataClosGenEqTop
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.HalfSumRootsStandard
 
 @[expose] public section
 
@@ -59,14 +60,9 @@ open ReciprocityTheory.ChartRestriction.DS
 
 namespace DiscreteSeriesData
 
-theorem card_le {n : ℕ} (p : Fin n → Prop) [DecidablePred p] : ((univ.filter p).card : ℝ) ≤ n := by
-  have h := Finset.card_filter_le (Finset.univ : Finset (Fin n)) p
-  rw [Finset.card_univ, Fintype.card_fin] at h
-  exact_mod_cast h
-
 theorem npq_le {n : ℕ} (ε : Fin n → Bool) : (n : ℝ) * (pOf ε : ℝ) * (qOf ε : ℝ) ≤ (n : ℝ) ^ 3 := by
-  have h1 : (pOf ε : ℝ) ≤ n := card_le _
-  have h2 : (qOf ε : ℝ) ≤ n := card_le _
+  have h1 : (pOf ε : ℝ) ≤ n := _root_.Formalism.REAL.rho_card_le _
+  have h2 : (qOf ε : ℝ) ≤ n := _root_.Formalism.REAL.rho_card_le _
   have h0 : (0 : ℝ) ≤ n := Nat.cast_nonneg n
   have h3 : (0 : ℝ) ≤ pOf ε := Nat.cast_nonneg _
   have h4 : (0 : ℝ) ≤ qOf ε := Nat.cast_nonneg _

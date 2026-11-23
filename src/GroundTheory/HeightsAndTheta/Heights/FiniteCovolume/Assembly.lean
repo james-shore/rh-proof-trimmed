@@ -131,12 +131,11 @@ section Matrices
 
 variable (ι : Type*) [Fintype ι] [DecidableEq ι]
 
-theorem MajorantBound.full : MajorantBound.Statement ι := MajorantBound.proof ι
+alias MajorantBound.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.MajorantBound.proof
 
-theorem EigenspacesOrthogonal.full : EigenspacesOrthogonal.Statement ι :=
-  EigenspacesOrthogonal.proof ι
+alias EigenspacesOrthogonal.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.EigenspacesOrthogonal.proof
 
-theorem EigenReflection.full : EigenReflection.Statement ι := EigenReflection.proof ι
+alias EigenReflection.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.EigenReflection.proof
 
 theorem EigenReflectionMaps.full : EigenReflectionMaps.Statement ι :=
   EigenReflectionMaps.proof ι (EigenReflection.full ι) (EigenspacesOrthogonal.full ι)
@@ -144,7 +143,7 @@ theorem EigenReflectionMaps.full : EigenReflectionMaps.Statement ι :=
 theorem IsotropicSplit.full : IsotropicSplit.Statement ι :=
   IsotropicSplit.proof ι (EigenspacesOrthogonal.full ι)
 
-theorem PhaseOnMinus.full : PhaseOnMinus.Statement ι := PhaseOnMinus.proof ι
+alias PhaseOnMinus.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.PhaseOnMinus.proof
 
 theorem KTransitive.full : KTransitive.Statement ι :=
   KTransitive.proof ι (IsotropicSplit.full ι) (EigenReflectionMaps.full ι) (PhaseOnMinus.full ι)
@@ -154,30 +153,19 @@ end Matrices
 
 section Groups
 
-theorem UnfoldOrbit.full (G : Type*) [Group G] [MeasurableSpace G] [MeasurableMul G] :
-    UnfoldOrbit.Statement G :=
-  UnfoldOrbit.proof G
+alias UnfoldOrbit.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.UnfoldOrbit.proof
 
-theorem DiscreteFundamentalDomain.full (G : Type*) [Group G] [TopologicalSpace G]
-    [IsTopologicalGroup G] [LocallyCompactSpace G] [SecondCountableTopology G] [T2Space G]
-    [MeasurableSpace G] [BorelSpace G] : DiscreteFundamentalDomain.Statement G :=
-  DiscreteFundamentalDomain.proof G
+alias DiscreteFundamentalDomain.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.DiscreteFundamentalDomain.proof
 
 theorem TorusIntegralHomogeneous.full (κ : Type*) [Fintype κ] :
     TorusIntegralHomogeneous.Statement κ :=
   TorusIntegralHomogeneous.proof κ
 
-theorem BoundedIndexSubgroupsFinite.full (G : Type*) [AddCommGroup G] :
-    BoundedIndexSubgroupsFinite.Statement G :=
-  BoundedIndexSubgroupsFinite.proof G
+alias BoundedIndexSubgroupsFinite.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.BoundedIndexSubgroupsFinite.proof
 
-theorem MinkowskiVolumeForm.full (V : Type*) [NormedAddCommGroup V] [InnerProductSpace ℝ V]
-    [FiniteDimensional ℝ V] (d : ℕ) [Fact (finrank ℝ V = d)] : MinkowskiVolumeForm.Statement V d :=
-  MinkowskiVolumeForm.proof V d
+alias MinkowskiVolumeForm.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.MinkowskiVolumeForm.proof
 
-theorem VolumeFormIntComb.full (V : Type*) [NormedAddCommGroup V] [InnerProductSpace ℝ V]
-    [FiniteDimensional ℝ V] (d : ℕ) [Fact (finrank ℝ V = d)] : VolumeFormIntComb.Statement V d :=
-  VolumeFormIntComb.proof V d
+alias VolumeFormIntComb.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.VolumeFormIntComb.proof
 
 end Groups
 
@@ -185,18 +173,17 @@ section Numbers
 
 variable (E : Type*) [Field E] [NumberField E]
 
-theorem IntegerSmallAtPlaces.full : IntegerSmallAtPlaces.Statement E := IntegerSmallAtPlaces.proof E
+alias IntegerSmallAtPlaces.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.IntegerSmallAtPlaces.proof
 
-theorem CoeffLatticeBasis.full : CoeffLatticeBasis.Statement E := CoeffLatticeBasis.proof E
+alias CoeffLatticeBasis.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.CoeffLatticeBasis.proof
 
-theorem IndexLeDet.full : IndexLeDet.Statement E := IndexLeDet.proof E
+alias IndexLeDet.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.IndexLeDet.proof
 
-theorem WeightedNormSq.full : WeightedNormSq.Statement E := WeightedNormSq.proof E
+alias WeightedNormSq.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.WeightedNormSq.proof
 
-theorem IntegralFamilyBound.full : IntegralFamilyBound.Statement E := IntegralFamilyBound.proof E
+alias IntegralFamilyBound.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.IntegralFamilyBound.proof
 
-theorem WeightedSpaceDim.full [_root_.NumberField.IsTotallyComplex E] : WeightedSpaceDim.Statement E :=
-  WeightedSpaceDim.proof E
+alias WeightedSpaceDim.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.WeightedSpaceDim.proof
 
 theorem WeightedIndexBound.full [_root_.NumberField.IsTotallyComplex E] : WeightedIndexBound.Statement E :=
   WeightedIndexBound.proof E (CoeffLatticeBasis.full E) (IndexLeDet.full E) (WeightedNormSq.full E)
@@ -206,7 +193,7 @@ variable (W : Type*) [AddCommGroup W] [Module E W]
 
 theorem LineIndexNeZero.full : LineIndexNeZero.Statement E W := LineIndexNeZero.proof E W
 
-theorem LineIndexCoeffs.full : LineIndexCoeffs.Statement (E := E) W := LineIndexCoeffs.proof E W
+alias LineIndexCoeffs.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.LineIndexCoeffs.proof
 
 theorem LineCoeffsFG.full : LineCoeffsFG.Statement (E := E) W := LineCoeffsFG.proof W
 
@@ -219,9 +206,9 @@ variable {F E : Type*} [Field F] [Field E] [NumberField F] [NumberField E] [Alge
 variable {W : Type*} [AddCommGroup W] [Module E W] {ι : Type*} [Fintype ι] [DecidableEq ι]
 variable (h : HermitianForm F E W) (v : Basis ι E W)
 
-theorem HermAtPlace.full : HermAtPlace.Statement h v := HermAtPlace.proof h v
+alias HermAtPlace.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.HermAtPlace.proof
 
-theorem GramAtData.full : GramAtData.Statement h v := GramAtData.proof h v
+alias GramAtData.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.GramAtData.proof
 
 theorem ArchInvariant.full : ArchInvariant.Statement h v := ArchInvariant.proof h v
 
@@ -239,12 +226,12 @@ theorem MajorantExists.full : MajorantExists.Statement h v :=
 
 theorem ArchLatticeDiscrete.full : ArchLatticeDiscrete.Statement h v := ArchLatticeDiscrete.proof h v
 
-theorem LenCauchySchwarz.full : LenCauchySchwarz.Statement h v := LenCauchySchwarz.proof h v
+alias LenCauchySchwarz.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.LenCauchySchwarz.proof
 
 theorem BoundedInverseCompact.full : BoundedInverseCompact.Statement h v :=
   BoundedInverseCompact.proof h v
 
-theorem GramDetermines.full : GramDetermines.Statement h := GramDetermines.proof h
+alias GramDetermines.full := _root_.GroundTheory.Heights₂.Heights.FiniteCovolume.GramDetermines.proof
 
 theorem WittPartner.full : WittPartner.Statement h := WittPartner.proof h
 

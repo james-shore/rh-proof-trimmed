@@ -80,7 +80,7 @@ theorem exists_cover_step (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (
       (lt_of_le_of_lt Polynomial.degree_C_le (hPdeg ▸ hdeg))
     simpa using h0
   obtain ⟨R', i1, i2, i3, ρ, σ, hcn', hinj', hfin', hloc, hσ⟩ :=
-    GlobalTheory.LocExt.exists_isCN_cover_of_finite R C (AdjoinRoot.of P) hR hinjC hfinC
+    _root_.GlobalTheory.FiniteLocalCompleteness.main R C (AdjoinRoot.of P) hR hinjC hfinC
   let r : ResidueField R' := residue R' (σ (AdjoinRoot.root P))
   have hres : (ResidueField.map ρ).comp (residue R) = (residue R').comp ρ := ResidueField.map_comp_residue ρ
   have hr : p.eval₂ (ResidueField.map ρ) r = 0 := by

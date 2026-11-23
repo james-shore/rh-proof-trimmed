@@ -109,7 +109,7 @@ theorem local_condition_at_place_of_decomposition_le_range (L : _root_.GlobalThe
     (hG : UpperTheory.GalStar.PropsB (fun h rc => IsRecT h rc) P ι (r.comp (res F Ω K)) wt HT) {v : HeightOneSpectrum (𝓞 F)} {A : ValuationSubring Ω}
     (h : IsPlaceOver A v) (hdec : Dec (F := F) A ≤ (res F Ω K).range) {HTF : (F →+* Qbar l) → Multiset ℤ}
     (hHT : ∀ τ : K →+* Qbar l, HT τ = HTF (τ.comp (algebraMap F K))) : At π ι r HTF h := by
-  obtain ⟨w, h', i, hi⟩ := GlobalTheory.T.exists_place_completion_iso F Ω K v A h hdec
+  obtain ⟨w, h', i, hi⟩ := _root_.GlobalTheory.PlaceIsoDec.exists_placeIso_of_dec_le_range F Ω K v A h hdec
   have hlw : ((l : ℕ) : 𝓞 F) ∉ v.asIdeal → ((l : ℕ) : 𝓞 K) ∉ w.asIdeal := fun hl hw => by
     apply hl
     have e1 := (h ((l : ℕ) : 𝓞 F))
@@ -117,7 +117,7 @@ theorem local_condition_at_place_of_decomposition_le_range (L : _root_.GlobalThe
     simp only [map_natCast] at e1 e2
     exact e1.1 (e2.2 hw)
   have ST := splitTr F K a ha π P hBC v w i ⟨hi.cont, hi.loc⟩
-  obtain ⟨⟨σ', hσ'⟩, -⟩ := _root_.GlobalTheory.T.local_global_compatibility_complex_alt L K a P w
+  obtain ⟨⟨σ', hσ'⟩, -⟩ := _root_.GlobalTheory.LocCompCLit.main_alt L K a P w
   obtain ⟨rc', hrc'⟩ := recTExists K Ω A w h'
   obtain ⟨S, hS, -⟩ := GlobalTheory.T.place_over_transport_ring_iso_symm F Ω A v h K Ω A w h' _ _ i hi
   have inj : ∀ {x y : WD h} {x' y' : WD h'}, WDRel (RingEquiv.refl Ω) x x' → WDRel (RingEquiv.refl Ω) y y' → x' = y' → x = y :=
@@ -165,7 +165,7 @@ theorem local_condition_at_place_of_decomposition_le_range (L : _root_.GlobalThe
   have br : ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (Dec (F := F) A) O), Induces Bw →
       ∃ (Bw' : LocBridge l K Ω (Dec (F := K) A) O) (_ : Induces Bw'), Bw'.Kw = Bw.Kw ∧ Bw'.j = Bw.j ∧ Bw'.LL = Bw.LL :=
     fun O _ _ _ Bw hj => by
-      obtain ⟨Bw', e1, e2, e3⟩ := UpperTheory.V.Af.Cq.exBridge F K Ω l A O Bw (GlobalTheory.T.local_field_embedding_mem F Ω K l A O Bw hdec)
+      obtain ⟨Bw', e1, e2, e3⟩ := UpperTheory.V.Af.Cq.exBridge F K Ω l A O Bw (_root_.GlobalTheory.RealGal.bridge_j_mem_Kw_of_dec_le F Ω K l A O Bw hdec)
       exact ⟨Bw', fun x => by rw [e2]; exact hj x, e1, e2, e3⟩
   refine ⟨fun B hB => ST.1.2 ((plainOf K a ha P w).2 (ST.2 ⟨B, hB⟩)), fun σ hσ hp rc hrc => ?_, fun σ hσ hp O _ _ _ Bw hj => ?_,
     fun hl hp => ?_, fun O _ _ _ Bw hj σ hσ hs => ?_⟩
@@ -178,14 +178,14 @@ theorem local_condition_at_place_of_decomposition_le_range (L : _root_.GlobalThe
       exact ⟨x, hx, fun _ => inj hxx hy ((hG.away w (hlw hl) A h' rc' hrc' σ' hσ').tor g.1 g.2)⟩
     · obtain ⟨Bw', hj', e1, e2, e3⟩ := br O Bw hj
       obtain ⟨-, a2, -, a4⟩ := (hG.above _ _ (Loc.tiedP l) w A h' O Bw' hj').nice σ' hσ' rc' hrc' (Or.inr g.1) g.2
-      have hpst := (GlobalTheory.T.local_embedding_compatible_extension F Ω K l _ A O Bw Bw' e1 e2 e3 a r).2.2.2.1 a2
-      exact ⟨hpst, inj (GlobalTheory.T.local_embedding_restrict_extension F Ω K l _ A O Bw Bw' e1 e2 e3 a r hpst ι v w h h' hj hj' i hi) hy (a4.tor g.1 g.2)⟩
+      have hpst := (_root_.GlobalTheory.RealGal.dRSstCrysPstJumps_descend F Ω K l _ A O Bw Bw' e1 e2 e3 a r).2.2.2.1 a2
+      exact ⟨hpst, inj (_root_.GlobalTheory.RealGal.wdRelRes_gen F Ω K l _ A O Bw Bw' e1 e2 e3 a r hpst ι v w h h' hj hj' i hi) hy (a4.tor g.1 g.2)⟩
   · have g := up σ hσ hp
     obtain ⟨Bw', hj', e1, e2, e3⟩ := br O Bw hj
     obtain ⟨a1, -, a3, -⟩ := (hG.above _ _ (Loc.tiedP l) w A h' O Bw' hj').nice σ' hσ' rc' hrc' (Or.inr g.1) g.2
-    have D := GlobalTheory.T.local_embedding_compatible_extension F Ω K l (Loc.PP l) A O Bw Bw' e1 e2 e3 a r
+    have D := _root_.GlobalTheory.RealGal.dRSstCrysPstJumps_descend F Ω K l (Loc.PP l) A O Bw Bw' e1 e2 e3 a r
     refine ⟨D.1 a1, fun τ LL' τ' hτ => ?_⟩
-    obtain ⟨τK, τ'', hτK, hind⟩ := GlobalTheory.T.local_embedding_agree F Ω K l A O Bw Bw' e1 e2 τ LL' τ' hτ
+    obtain ⟨τK, τ'', hτK, hind⟩ := _root_.GlobalTheory.induced_embedding_extends F Ω K l A O Bw Bw' e1 e2 τ LL' τ' hτ
     have hJ := D.2.2.2.2 τK (HT τK) (a3 τK LL' τ'' hind)
     rw [hHT τK, hτK] at hJ
     exact hJ
@@ -229,7 +229,7 @@ theorem galois_rep_exists_totally_real_rank_two_of_base_change : _root_.GlobalTh
       (r : G ↥Q.1.K Ω →* GL (Fin a) (Qbar l)) (wt : ℤ) (HT : (↥Q.1.K →+* Qbar l) → Multiset ℤ),
       IsBC π P ∧ UpperTheory.GalStar.PropsB (fun h rc => IsRecT h rc) P ι r wt HT := by
     rintro ⟨Q, P, hP⟩
-    obtain ⟨hregP, χ', hχ'⟩ := _root_.GlobalTheory.T.regular_algebraic_and_polarized_of_quadratic_base_change litN F ↥Q.K Q.two a ha π χ P hreg hpol hP
+    obtain ⟨hregP, χ', hχ'⟩ := _root_.GlobalTheory.BcPolar.bc_regAlg_polarizedPair_alt litN F ↥Q.K Q.two a ha π χ P hreg hpol hP
     obtain ⟨r, wt, HT, hr⟩ := _root_.UpperTheory.Gal.SV.rowOf' litN.aut.gal ↥Q.K Ω l ι a ha P χ' hregP hχ'
     exact ⟨P, r, wt, HT, hP, hr⟩
   choose P r wt HT hP hr using key

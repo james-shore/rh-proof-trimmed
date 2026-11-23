@@ -44,9 +44,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 namespace LateralTheory.Fin.EtaleTensorPairUniversalProperty
-theorem etale_tensor_complex_degreewise_universal : LateralTheory.EtaleFoundations.EtaleTensorDegreewiseMapExists := by
-  apply LateralTheory.EtaleFoundations.etale_tensor_pairing_degreewise_universal_of_sheafification
 theorem etale_tensor_complex_universal_of_degreewise : LateralTheory.EtaleFoundations.EtaleTensorPairUniversalProperty := by
-  apply LateralTheory.EtaleFoundations.etale_tensor_universal_property_of_degreewise <;> first | exact etale_tensor_complex_degreewise_universal
-theorem intersectionNumber_baseChange : LateralTheory.EtaleFoundations.EtaleTensorPairUniversalProperty := etale_tensor_complex_universal_of_degreewise
+  apply LateralTheory.EtaleFoundations.etale_tensor_universal_property_of_degreewise <;> first | exact _root_.LateralTheory.EtaleFoundations.etale_tensor_pairing_degreewise_universal_of_sheafification
+alias intersectionNumber_baseChange := _root_.LateralTheory.Fin.EtaleTensorPairUniversalProperty.etale_tensor_complex_universal_of_degreewise
 end LateralTheory.Fin.EtaleTensorPairUniversalProperty

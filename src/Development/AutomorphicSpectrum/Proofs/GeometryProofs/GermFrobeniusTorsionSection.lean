@@ -53,12 +53,7 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Coc.Pf.PeOne
 
-theorem homAt_comp' {X : Scheme.{0}} {S : Type} [CommRing S] (x0 : Sp S ⟶ X) {A B C : Type} [CommRing A] [Algebra S A]
-    [CommRing B] [Algebra S B] [CommRing C] [Algebra S C] (f : A →ₐ[S] B) (g : B →ₐ[S] C) :
-    homAt x0 (g.comp f) = homAt x0 g ≫ homAt x0 f := by
-  ext1
-  simp only [homAt, spMap, Over.comp_left, Over.homMk_left, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
-  rfl
+alias homAt_comp' := _root_.GlobalTheory.CompanionTheory.Ar.Coc.Actp.homAt_comp
 
 theorem jetSubstP_mk_X {S : Type} [CommRing S] {κ κ' : Type} (m : ℕ) (φ : κ → MvPolynomial κ' S) (i : κ) :
     jetSubstP m φ (Ideal.Quotient.mk _ (MvPolynomial.X i)) =

@@ -55,11 +55,11 @@ theorem fontaine_litFont_assembled :
   unfold Formalism.MainNotions.InvariantsGenerators.LitFont
   intro l _ K LL hA
   unfold Formalism.MainNotions.InvariantsGenerators.FontCore
-  have hff := GlobalTheory.T.wachFunctor_fullyFaithful D HW F l K 1 LL hA.2.2
-  have hex := GlobalTheory.T.etaleFunctor_exact_on_lattices D HW F l K 1 LL hA.2.2
-  have hpd := GlobalTheory.T.exists_psi_operator_etale_phiGamma_module D HW F l K 1 LL hA.2.2
-  have hpe := GlobalTheory.T.wachFunctorRing_psiOperator_exists_of_good D HW F l K 1 LL hA.2.2
-  have hfr := GlobalTheory.T.etaleRing_free_over_frobenius_image D HW F l K 1 LL hA.2.2
+  have hff := _root_.GlobalTheory.FontaineFullyFaithful.main D HW F l K 1 LL hA.2.2
+  have hex := _root_.GlobalTheory.LatExact.W_exact D HW F l K 1 LL hA.2.2
+  have hpd := _root_.GlobalTheory.psiD_exists D HW F l K 1 LL hA.2.2
+  have hpe := _root_.GlobalTheory.psiE_exists D HW F l K 1 LL hA.2.2
+  have hfr := _root_.GlobalTheory.NL.FreeEE.ee_free D HW F l K 1 LL hA.2.2
   have hp : ((D.loc l).PD K).p = l := (D.loc l).PD_p K
   refine ⟨hff, hex, ?_, hpd⟩
   obtain ⟨ψ, h1, h2, h3⟩ := hpe

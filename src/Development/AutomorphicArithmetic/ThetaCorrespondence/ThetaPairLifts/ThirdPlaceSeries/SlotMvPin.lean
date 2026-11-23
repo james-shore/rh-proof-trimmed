@@ -59,7 +59,7 @@ theorem slot_mv_extension_with_list_geo_cl (hL : _root_.UpperTheory.Zero.LLC.Rec
   have hrows := _root_.GlobalTheory.T.rows_pass_to_moved_divisionLatticesHeights
     K B f T w Z x.Wt O x.what₂ N h O' hO'
   obtain ⟨t', hs, hgeo, hpk, hobj, hrx⟩ := hrows
-  obtain ⟨nch', xd', -, hnx, -, -, hmv⟩ := _root_.GlobalTheory.T.exists_kept_choice_upper_lattice_alt hL K B f T w Z x.Wt Z.S N h O.nch O.xd
+  obtain ⟨nch', xd', -, hnx, -, -, hmv⟩ := _root_.GlobalTheory.LayerMove.exists_kept_nChoice_thData_upL hL K B f T w Z x.Wt Z.S N h O.nch O.xd
   obtain ⟨hn1, hn2⟩ := hnx rfl
   subst hO'
   have e1 : nch' = (O.tr N h).nch := eq_of_heq hn1

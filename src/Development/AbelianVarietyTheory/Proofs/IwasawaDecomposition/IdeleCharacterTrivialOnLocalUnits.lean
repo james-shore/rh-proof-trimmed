@@ -52,17 +52,6 @@ namespace GlobalTheory.Mem.LocTriv
 
 variable {L : Type} [Field L] [NumberField L]
 
-theorem tendsto_finiteAdele {ι : Type} {l : Filter ι} (f : ι → FiniteAdeleRing (𝓞 L) L) (b : FiniteAdeleRing (𝓞 L) L)
-    (hf : ∀ i v, f i v ∈ v.adicCompletionIntegers L) (hb : ∀ v, b v ∈ v.adicCompletionIntegers L)
-    (h : ∀ v, Tendsto (fun i => f i v) l (𝓝 (b v))) : Tendsto f l (𝓝 b) := by
-  first
-  | exact @_root_.GlobalTheory.TendstoOfIntegrals.target_check
-  | exact _root_.GlobalTheory.TendstoOfIntegrals.target_check
-  | (apply _root_.GlobalTheory.TendstoOfIntegrals.target_check <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TendstoOfIntegrals.target_check <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TendstoOfIntegrals.target_check <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TendstoOfIntegrals.target_check ..)
-
 def ev (v : HeightOneSpectrum (𝓞 L)) : AdeleRing (𝓞 L) L →* v.adicCompletion L where
   toFun a := a.2 v
   map_one' := rfl
@@ -111,7 +100,7 @@ theorem part_fst (a : Ideles L) (S : Finset (HeightOneSpectrum (𝓞 L))) : (par
 theorem tendsto_part_val {a : Ideles L} (ha : a ∈ unitIdl L) (h1 : (a : AdeleRing (𝓞 L) L).1 = 1) :
     Tendsto (fun S => (part a S : AdeleRing (𝓞 L) L)) atTop (𝓝 (a : AdeleRing (𝓞 L) L)) := by
   have h2 : Tendsto (fun S => (part a S : AdeleRing (𝓞 L) L).2) atTop (𝓝 (a : AdeleRing (𝓞 L) L).2) := by
-    refine tendsto_finiteAdele _ _ (fun S v => ?_) (fun v => (ha v).le) fun v => ?_
+    refine _root_.GlobalTheory.TendstoOfIntegrals.tendsto_of_forall_integral _ _ (fun S v => ?_) (fun v => (ha v).le) fun v => ?_
     · show ev v (part a S : AdeleRing (𝓞 L) L) ∈ _
       by_cases hv : v ∈ S
       · rw [ev_part_mem a hv]

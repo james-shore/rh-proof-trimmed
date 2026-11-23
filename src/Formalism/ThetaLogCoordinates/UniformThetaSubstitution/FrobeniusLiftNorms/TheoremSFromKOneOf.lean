@@ -209,9 +209,7 @@ theorem cg_frob2_sum {p : ℕ} (hp : p.Prime) (hn : ‖(p : K)‖ = (p : ℝ)⁻
   simp only [← pow_mul, ← sq] at h2 h3
   exact cg_trans h3 h2
 
-theorem norm_pow_sub_pow {p : ℕ} {a b : K} (ha : ‖a‖ ≤ 1) (hb : ‖b‖ ≤ 1)
-    (h : ‖a - b‖ ≤ (p : ℝ)⁻¹) (k : ℕ) : ‖a ^ k - b ^ k‖ ≤ (p : ℝ)⁻¹ := by
-  first | exact Bl.general_b_fact_right'''.goal1 .. | (apply Bl.general_b_fact_right'''.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_right'''.goal1 <;> assumption) | (apply @Bl.general_b_fact_right'''.goal1 <;> assumption) | (intros; apply @Bl.general_b_fact_right'''.goal1 <;> assumption) | (apply @Bl.general_b_fact_right'''.goal1 <;> first | assumption | infer_instance) | exact @Bl.general_b_fact_right'''.goal1 K ‹_› ‹_› p a b ha hb h k | exact @Bl.general_b_fact_right'''.goal1 K ‹_› ‹_› p a b ha hb h | exact @Bl.general_b_fact_right'''.goal1 K ‹_› ‹_› p a b ha hb | exact @Bl.general_b_fact_right'''.goal1 K ‹_› ‹_› p a b ha | exact @Bl.general_b_fact_right'''.goal1 K ‹_› ‹_› p a b | exact @Bl.general_b_fact_right'''.goal1 K ‹_› ‹_› p a | exact @Bl.general_b_fact_right'''.goal1 K ‹_› ‹_› p | exact @Bl.general_b_fact_right'''.goal1 K ‹_› ‹_› | exact @Bl.general_b_fact_right'''.goal1 K ‹_› | exact @Bl.general_b_fact_right'''.goal1 K
+alias norm_pow_sub_pow := _root_.Bl.general_b_fact_right'''.goal1
 
 end Cong
 

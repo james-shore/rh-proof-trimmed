@@ -669,7 +669,7 @@ theorem countBelow_zero_space {K : Type} [Field K] (A : Submodule K (Fin 0 → K
 
 theorem card_subspaces_eq {K : Type} [Field K] [Fintype K] {n k : ℕ} (hk : k ≤ n) :
     Nat.card {U : Submodule K (Fin n → K) // finrank K U = n - k ∧ True} = Formalism.G0.gaussBinom (Fintype.card K) n k := by
-  have H := Formalism.G0.Top.typeIIDown (F := K) (P := Fin 0 → K) (Q := Fin n → K) 0 0 n k (by simp) (by simp)
+  have H := _root_.Formalism.G0.countAboveRangeCodimFormula (F := K) (P := Fin 0 → K) (Q := Fin n → K) 0 0 n k (by simp) (by simp)
   have hL : Nat.card {U : Submodule K (Fin n → K) // LinearMap.range (0 : (Fin 0 → K) →ₗ[K] (Fin n → K)) ≤ U ∧
       finrank K U + k = 0 + n} = Nat.card {U : Submodule K (Fin n → K) // finrank K U = n - k ∧ True} := by
     apply Nat.card_congr

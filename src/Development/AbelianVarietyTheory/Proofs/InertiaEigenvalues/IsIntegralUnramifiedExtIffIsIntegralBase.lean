@@ -76,7 +76,7 @@ theorem isIntegral_overExt_iff (K K' : UQ) (d : ℕ) (φ : K.E →+* K'.E) (hU :
   show IsIntegral K'.O a ↔ IsIntegral K.O a
   constructor
   · intro h
-    obtain ⟨u, hu⟩ := GlobalTheory.T.exists_integer_spanning_family_of_unramifiedExt K K' d φ hU
+    obtain ⟨u, hu⟩ := _root_.GlobalTheory.UnitLemma.Unr.exists_int_basis_of_unr K K' d φ hU
     haveI : Module.Finite K.O K'.O := by
       refine ⟨⟨Finset.univ.image u, eq_top_iff.2 fun y _ => ?_⟩⟩
       obtain ⟨c, hc⟩ := hu y

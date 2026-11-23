@@ -93,7 +93,7 @@ theorem chainNS_holds : ∀ D : D7, ChainNS D := by
         exact hb2
     · have hi' := Finset.mem_Icc.1 hi
       exact hN.2 _ (GlobalTheory.LFun.norm_val _ _)
-        (GlobalTheory.T.heckeCharQuotient_ne_one_completelySplitPrime D c hc i (k + 1) hi'.1 (by omega) (by omega) p hp w hpw hwc) _ h
+        (_root_.GlobalTheory.ChainOnto.QuotVal.val_quot_ne_one D c hc i (k + 1) hi'.1 (by omega) (by omega) p hp w hpw hwc) _ h
   intro he
   apply key
   rw [Units.val_mul, Units.val_inv_eq_inv_val, mul_comm]

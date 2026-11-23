@@ -80,7 +80,7 @@ theorem tri_msupp_of_inShW {𝔪 : Multiset (Segment k)} {w : List (IrrGL (k := 
   obtain ⟨L, rfl, hs⟩ := H
   unfold msupp
   rw [← tri_coe_flatten_decW]
-  exact Multiset.coe_eq_coe.mpr (GlobalTheory.T.perm_flatten_of_shuffle _ _ hs).symm
+  exact Multiset.coe_eq_coe.mpr (_root_.GlobalTheory.CompanionTheory.Comb.shuffle_perm_flatten _ _ hs).symm
 
 theorem tri_msupp_wtW {h : ℕ} {Γ : Fin h → Segment k} {𝔫 : Multiset (Segment k)} (H : IsOrderedForm Γ 𝔫) :
     msupp 𝔫 = (wtW Γ : Multiset (IrrGL (k := k))) := by
@@ -106,7 +106,7 @@ theorem tri (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarc
   have hadm := PositivityTheory.Tls2.BZGL.irreducibleAdmissibleGL_top
   have hw : Wd y.rep (wtW Γ) := GlobalTheory.T.langlands_rep_ordered_word_occurs hadm c.soc c.jac 𝔫 y.rep hy h' Γ hΓ
   have hsub : IsSubquotient y.rep (prodIrr x hd) := jhMult_ne_zero_iff.mp hj
-  have hw2 : Wd (prodIrr x hd) (wtW Γ) := GlobalTheory.T.word_occurs_of_subquotient _ _ (isSmooth_prodIrr x hd) hsub _ hw
+  have hw2 : Wd (prodIrr x hd) (wtW Γ) := _root_.GlobalTheory.CompanionTheory.Words.wd_of_isSubquotient _ _ (isSmooth_prodIrr x hd) hsub _ hw
   have hsh : InShW (Multiset.map Δ Finset.univ.val) (wtW Γ) :=
     GlobalTheory.T.segment_product_word_in_shuffle hadm c.jac x hd Δ hx _ (GlobalTheory.T.ordered_word_letters_cuspidal Γ) hw2
   rw [hΔ.1] at hsh
@@ -117,7 +117,7 @@ theorem tri (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarc
     have hne : Multiset.map toA 𝔪 ≠ ↑(List.map toA (List.ofFn Γ)) := by
       rw [GlobalTheory.CompanionTheory.ZcWords.coe_map_ofFn hΓ]
       exact fun e => heq (Multiset.map_injective GlobalTheory.CompanionTheory.ZcWords.toA_injective e)
-    have hlt := GlobalTheory.T.shuffle_weight_square_length_lt sNu GlobalTheory.CompanionTheory.ZcWords.sNu_injective GlobalTheory.CompanionTheory.ZcWords.sNu_aperiodic
+    have hlt := _root_.GlobalTheory.CompanionTheory.MultiSeg.Rank.sqLen_lt_of_inSh sNu GlobalTheory.CompanionTheory.ZcWords.sNu_injective GlobalTheory.CompanionTheory.ZcWords.sNu_aperiodic
       (List.map toA (List.ofFn Γ)) (Multiset.map toA 𝔪) (GlobalTheory.CompanionTheory.ZcWords.aOrdered_of_isOrderedForm hΓ)
       (GlobalTheory.CompanionTheory.ZcWords.inSh_of_inShW hsh) hne
     rw [GlobalTheory.CompanionTheory.ZcWords.coe_map_ofFn hΓ, tri_sqLen_map_toA, tri_sqLen_map_toA] at hlt

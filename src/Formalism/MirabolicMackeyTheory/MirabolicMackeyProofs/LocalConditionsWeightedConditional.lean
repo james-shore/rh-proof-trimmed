@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ImageLcv
 
 @[expose] public section
 
@@ -62,28 +63,24 @@ theorem locLen_congr {R W : Type*} [CommRing R] [AddCommGroup W] [Module R W] (p
   unfold Formalism.HermitianLatticesTheory.locLen
   rw [hA, hC]
 
-private theorem mem_localization_iff_exists_smul_mem {R W : Type*} [CommRing R] [AddCommGroup W] [Module R W] (p : Ideal R)
-    [p.IsPrime] (L : Submodule R W) (x : W) :
-    x ∈ Formalism.HermitianLatticesTheory.localization₂ p L ↔ ∃ s ∈ p.primeCompl, s • x ∈ L := Iff.rfl
-
 private theorem locP_locP' {R W : Type*} [CommRing R] [AddCommGroup W] [Module R W] (p : Ideal R)
     [p.IsPrime] (A : Submodule R W) :
     Formalism.HermitianLatticesTheory.localization₂ p (Formalism.HermitianLatticesTheory.localization₂ p A) = Formalism.HermitianLatticesTheory.localization₂ p A := by
   ext x
-  rw [mem_localization_iff_exists_smul_mem, mem_localization_iff_exists_smul_mem]
+  rw [_root_.Formalism.DivisionValues.imageLcv_mem_locP, _root_.Formalism.DivisionValues.imageLcv_mem_locP]
   constructor
   · rintro ⟨s, hs, h⟩
-    rw [mem_localization_iff_exists_smul_mem] at h
+    rw [_root_.Formalism.DivisionValues.imageLcv_mem_locP] at h
     obtain ⟨t, ht, h⟩ := h
     exact ⟨t * s, p.primeCompl.mul_mem ht hs, by rw [mul_smul]; exact h⟩
   · intro hx
-    exact ⟨1, p.primeCompl.one_mem, by rw [one_smul, mem_localization_iff_exists_smul_mem]; exact hx⟩
+    exact ⟨1, p.primeCompl.one_mem, by rw [one_smul, _root_.Formalism.DivisionValues.imageLcv_mem_locP]; exact hx⟩
 
 private theorem locP_inf' {R W : Type*} [CommRing R] [AddCommGroup W] [Module R W] (p : Ideal R)
     [p.IsPrime] (A B : Submodule R W) :
     Formalism.HermitianLatticesTheory.localization₂ p (A ⊓ B) = Formalism.HermitianLatticesTheory.localization₂ p A ⊓ Formalism.HermitianLatticesTheory.localization₂ p B := by
   ext x
-  rw [Submodule.mem_inf, mem_localization_iff_exists_smul_mem, mem_localization_iff_exists_smul_mem, mem_localization_iff_exists_smul_mem]
+  rw [Submodule.mem_inf, _root_.Formalism.DivisionValues.imageLcv_mem_locP, _root_.Formalism.DivisionValues.imageLcv_mem_locP, _root_.Formalism.DivisionValues.imageLcv_mem_locP]
   constructor
   · rintro ⟨s, hs, h⟩
     rw [Submodule.mem_inf] at h
@@ -129,11 +126,5 @@ theorem local_conditions_weighted_at_place : LocalConditionsWeightedAtPlace := b
     hM hTh1 hTh hThK h1le hle hFG hEig hMs hTs σ hσ hsc hdata a E r ha hE hT0 h0 hJ h0J
     (idxRules_inf_lat h3 h4) X θ' eX pr Mt hc hpr h4 inf_le_right ε
     (by rw [locP w _ _ _ h34]; exact hTW) d φ hinj hrng Mj Tj hMj hTj
-
-section Instance
-
-variable (K : Type) [Field K] [NumberField K] [StarRing K]
-
-end Instance
 
 end Formalism.EigenvalueLevelCeiling

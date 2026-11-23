@@ -82,28 +82,18 @@ theorem exists_dvd_sum {V ι : Type} [CommRing V] [IsDomain V] [ValuationRing V]
   obtain ⟨i, hi⟩ := key _ hne
   exact ⟨i, Finset.dvd_sum fun j hj => Dvd.dvd.mul_left (hi j hj) _⟩
 
-theorem det_mul_eq_sum {V : Type} [CommRing V] {m g : ℕ} (M : Matrix (Fin m) (Fin g) V) (C : Matrix (Fin g) (Fin m) V) :
-    (M * C).det = ∑ J : Fin m → Fin g, (∏ i, M i (J i)) * (C.submatrix J id).det := by
-  first
-  | exact @_root_.GlobalTheory.DeterminantExpansion.det_mul_expand
-  | exact _root_.GlobalTheory.DeterminantExpansion.det_mul_expand
-  | (apply _root_.GlobalTheory.DeterminantExpansion.det_mul_expand <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DeterminantExpansion.det_mul_expand <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DeterminantExpansion.det_mul_expand <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.DeterminantExpansion.det_mul_expand ..)
-
 theorem exists_minor_dvd : ∀ (V : Type) [CommRing V] [IsDomain V] [ValuationRing V] (m g : ℕ) (M : Matrix (Fin m) (Fin g) V) (C : Matrix (Fin g) (Fin m) V) (δ : V), δ ≠ 0 → M * C = δ • (1 : Matrix (Fin m) (Fin m) V) → (∃ I : Fin m → Fin g, (M.submatrix id I).det ∣ δ ^ m) ∧ ∃ J : Fin m → Fin g, (C.submatrix J id).det ∣ δ ^ m := by
   intro V _ _ _ m g M C δ hδ h
   have hd : (M * C).det = δ ^ m := by rw [h, Matrix.det_smul, Matrix.det_one, Fintype.card_fin, mul_one]
   have h0 : δ ^ m ≠ 0 := pow_ne_zero _ hδ
   constructor
-  · have e := det_mul_eq_sum C.transpose M.transpose
+  · have e := _root_.GlobalTheory.DeterminantExpansion.det_mul_expand C.transpose M.transpose
     rw [← Matrix.transpose_mul, Matrix.det_transpose, hd] at e
     obtain ⟨I, hI⟩ := exists_dvd_sum _ _ (e ▸ h0)
     refine ⟨I, ?_⟩
     rw [← e] at hI
     rwa [← Matrix.det_transpose]
-  · have e := det_mul_eq_sum M C
+  · have e := _root_.GlobalTheory.DeterminantExpansion.det_mul_expand M C
     rw [hd] at e
     obtain ⟨J, hJ⟩ := exists_dvd_sum _ _ (e ▸ h0)
     exact ⟨J, e ▸ hJ⟩

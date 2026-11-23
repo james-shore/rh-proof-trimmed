@@ -53,19 +53,6 @@ noncomputable section
 namespace GlobalTheory.Mum.RatTors
 
 
-open Polynomial in
-theorem exists_split_ext (K : Type) [Field K] (C : Type) [CommRing C] (φ : K →+* C) (hφ : φ.Finite) :
-    ∃ E : IntermediateField K (AlgebraicClosure K), FiniteDimensional K E ∧
-      ∀ (K₂ Ω : Type) [Field K₂] [Field Ω] (e : E →+* K₂) (j : K₂ →+* Ω) (ψ : C →+* Ω),
-        ψ.comp φ = j.comp (e.comp (algebraMap K E)) → ∃ ψ₀ : C →+* K₂, j.comp ψ₀ = ψ := by
-  first
-  | exact @_root_.GlobalTheory.FiniteFieldOfPoints.exists_finite_field_of_points
-  | exact _root_.GlobalTheory.FiniteFieldOfPoints.exists_finite_field_of_points
-  | (apply _root_.GlobalTheory.FiniteFieldOfPoints.exists_finite_field_of_points <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FiniteFieldOfPoints.exists_finite_field_of_points <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FiniteFieldOfPoints.exists_finite_field_of_points <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FiniteFieldOfPoints.exists_finite_field_of_points ..)
-
 end GlobalTheory.Mum.RatTors
 
 namespace GlobalTheory.Mum.RatTors
@@ -106,37 +93,14 @@ end GlobalTheory.Mum.RatTors
 
 namespace GlobalTheory.Mum.RatTors
 
-section Push
-variable {S S' : Scheme.{0}} {G : Over S} {G' : Over S'} [GrpObj G] [GrpObj G'] {f : S' ⟶ S} {φ : G'.left ⟶ G.left}
-
-theorem mulA_push (h : IsGrpPullback G' G f φ) (n : ℕ) : (mulA G' n).left ≫ φ = φ ≫ (mulA G n).left := by
-  have e := congrArg (fun z => z.left) (map_pow (pushHom h G') (𝟙 G') n)
-  have e2 : (pushHom h G' (𝟙 G')) ^ n = pushHom h G' (𝟙 G') ≫ mulA G n := by
-    rw [MonObj.comp_pow, Category.comp_id]
-  rw [e2] at e
-  calc (mulA G' n).left ≫ φ = (pushHom h G' (𝟙 G' ^ n)).left := rfl
-    _ = (pushHom h G' (𝟙 G') ≫ mulA G n).left := e
-    _ = (𝟙 G'.left ≫ φ) ≫ (mulA G n).left := rfl
-    _ = _ := by rw [Category.id_comp]
-
-theorem eta_push (h : IsGrpPullback G' G f φ) : (η[G']).left ≫ φ = f ≫ (η[G]).left := by
-  have e := congrArg (fun z => z.left) (map_one (pushHom h (Over.mk (𝟙 S'))))
-  have e' : (𝟙 S' ≫ (η[G']).left) ≫ φ = (𝟙 S' ≫ f) ≫ (η[G]).left := e
-  rwa [Category.id_comp, Category.id_comp] at e'
-
-end Push
-
 end GlobalTheory.Mum.RatTors
 
 namespace GlobalTheory.Mum.RatTors
 
-theorem spMap_inj {P Q : Type} [CommRing P] [CommRing Q] {u v : P →+* Q} (h : spMap u = spMap v) : u = v :=
-  congrArg CommRingCat.Hom.hom (Spec.map_injective h)
-
 theorem torsion_rational : ∀ (R₁ : Type) [CommRing R₁] [IsDomain R₁] [IsLocalRing R₁], Base R₁ → ∀ (A : PolAV (Sp (FractionRing R₁))) (n : ℕ), 1 ≤ n → ∃ E : IntermediateField (FractionRing R₁) (Kb R₁), FiniteDimensional (FractionRing R₁) E ∧ ∀ (R₂ : Type) [CommRing R₂] [IsDomain R₂] [IsLocalRing R₂] (i₁₂ : R₁ →+* R₂) (e : E →+* FractionRing R₂), Function.Injective i₁₂ → (∀ r : R₁, e (algebraMap (FractionRing R₁) E (algebraMap R₁ (FractionRing R₁) r)) = algebraMap R₂ (FractionRing R₂) (i₁₂ r)) → ∀ (A₂ : PolAV (Sp (FractionRing R₂))) (a : A₂.A.left ⟶ A.A.left), IsFib i₁₂ A A₂ a → ∀ x : TFK (R := R₂) (Kb R₂) ⟶ A₂.A, x ^ n = 1 → ∃ x₀ : Sp (FractionRing R₂) ⟶ A₂.A.left, x.left = spMap (algebraMap (FractionRing R₂) (Kb R₂)) ≫ x₀ := by
   intro R₁ _ _ _ _ A n hn
   obtain ⟨C, _, φ, p, hφ, hp, hpt⟩ := exists_finite_tors _ A n hn
-  obtain ⟨E, hE, hEs⟩ := exists_split_ext (FractionRing R₁) C φ hφ
+  obtain ⟨E, hE, hEs⟩ := _root_.GlobalTheory.FiniteFieldOfPoints.exists_finite_field_of_points (FractionRing R₁) C φ hφ
   refine ⟨E, hE, ?_⟩
   rintro R₂ _ _ _ i₁₂ e _ he A₂ a ⟨ga, hga, hpb, -⟩ x hx
   let j := algebraMap (FractionRing R₂) (Kb R₂)
@@ -153,11 +117,11 @@ theorem torsion_rational : ∀ (R₁ : Type) [CommRing R₁] [IsDomain R₁] [Is
     rfl
   have htors : y ≫ (mulA A.A n).left = y ≫ A.A.hom ≫ (η[A.A]).left := by
     change (x.left ≫ a) ≫ _ = (x.left ≫ a) ≫ _
-    rw [Category.assoc, ← mulA_push hpb, ← Category.assoc, h1, Category.assoc, eta_push hpb,
+    rw [Category.assoc, ← _root_.GlobalTheory.ZH.TorsFrame.mulA_comm hpb, ← Category.assoc, h1, Category.assoc, _root_.GlobalTheory.TorsFrameInt.one_comm hpb,
       ← Category.assoc (x.left ≫ a), hyh, Category.assoc]
   obtain ⟨ψ, hψ⟩ := hpt (Kb R₂) y htors
   have hψφ : ψ.comp φ = j.comp ga := by
-    refine spMap_inj ?_
+    refine _root_.GlobalTheory.ZM.DenseFib.spMap_inj ?_
     rw [GlobalTheory.Ex.spMap_comp', GlobalTheory.Ex.spMap_comp', ← hp, ← Category.assoc, ← hψ, hyh]
   obtain ⟨ψ₀, hψ₀⟩ := hEs (FractionRing R₂) (Kb R₂) e j ψ (by rw [hψφ, hge])
   have hψ₀φ : ψ₀.comp φ = ga := by

@@ -82,7 +82,7 @@ theorem conclusion_split_alt (Pr : Hypotheses₂) (D : D7) (L : SizeData₂ D) (
       ∀ v ∈ D.nd.Q i, D.nd.zeta i v ≠ 1 := by
   have fa := S.facts
   have hAJ : _root_.Formalism.MainNotions.AdmissibleParameterJ.AdmJAlt L := fa.admJ L S.par
-  have hJ : AdmissibleParameterJ.JumpConditions L := _root_.GlobalTheory.JumpStatement.holds_all_alt D L hAJ
+  have hJ : AdmissibleParameterJ.JumpConditions L := _root_.GlobalTheory.JumpSets.stmtJ_holds_alt D L hAJ
   have hJ' := hJ
   obtain ⟨⟨ep, hep⟩, hJb, hJc, -, hJe, hJf, -⟩ := hJ'
   have hfam := S.canon.fam
@@ -91,12 +91,12 @@ theorem conclusion_split_alt (Pr : Hypotheses₂) (D : D7) (L : SizeData₂ D) (
   obtain ⟨⟨dc, hdc⟩, hType⟩ := hdecl ep
   refine ⟨dc, hdc.2, fun π hπ => ?_⟩
   have hZ : π ∈ D.nd.Z i := LargeLevelLemmas.zgoodSubsetZ i hπ
-  have sp := _root_.GlobalTheory.T.set_pt_of_setup_not_twisted Pr D L P nch HW F Cm X C₂ S i hg π hπ
+  have sp := _root_.GlobalTheory.SetPtOff.main_alt_alt Pr D L P nch HW F Cm X C₂ S i hg π hπ
   have hρ := hfam.cont i π
   obtain ⟨sub, acont, a56⟩ := amb_of_setPt i X π dc sp hρ
   obtain ⟨g1, g2, g3, g4, _, g5x, g6, bk, cont, ss, dec, eps, tie, shape, font, hH2, cft⟩ := sp
-  have hG2 := _root_.GlobalTheory.T.admG2_of_setup_jumps Pr D L P nch HW F Cm X C₂ S ep hep i
-  have hG5 := _root_.GlobalTheory.T.admG5_of_setup Pr D L P nch HW F Cm X C₂ S i hg π hπ
+  have hG2 := _root_.GlobalTheory.JumpShapeAt.main_alt_alt Pr D L P nch HW F Cm X C₂ S ep hep i
+  have hG5 := _root_.GlobalTheory.NLinkTameShape.main_alt_alt Pr D L P nch HW F Cm X C₂ S i hg π hπ
   have hcr := _root_.GlobalTheory.T.decomposition_fontaine_at_places_over_l D i (X.r i) (X.ρ i) π fa.Conclusion1.1 font (hfam.good i) hρ dec hg0 hg1
   have hjp := GlobalTheory.T.decomposition_local_above D L ep hep hJb hJc hJe hJf i (X.r i) (X.ρ i) π (hfam.good i) hZ dec
   have hW : JumpsNoZero i (WpO D.nd i (X.ρ i) π) (GlobalTheory.HubX.hOf L) :=
@@ -110,14 +110,14 @@ theorem conclusion_split_alt (Pr : Hypotheses₂) (D : D7) (L : SizeData₂ D) (
   have tb9 := block_condition_at_places_of_jump_window i N hK.2.2 hC (X.r i) π _ ht (hWin i (X.r i) (hfam.good i) π)
   have tb : EmbeddingTypes.admTB i (X.r i) π dc _ := fun w hw _ C hC' => tb9 w hw C hC'
   obtain ⟨l51, l52, _⟩ := GlobalTheory.charpoly_span_and_hom_relations_of_admissible D i (X.r i) (X.ρ i) π g1
-  have h78 := _root_.GlobalTheory.T.ambT2_of_deRham_family Pr.font D L (withDc X i dc) fa.g2.1 hJ.1 hJc hfam i hg π hπ
+  have h78 := _root_.GlobalTheory.HubGood.ambAll_goodPoints_alt Pr.font D L (withDc X i dc) fa.g2.1 hJ.1 hJc hfam i hg π hπ
   rw [withDc_dc] at h78
   have hcB : ∀ k, GlobalTheory.HubLoc.cBnum (D.nd.l k) ⌊2 * L.sc.b⌋₊ D.R.t (4 * D.R.n * D.R.nV) ≤ (withDc X i dc).cB k := by
     intro k
     show _ ≤ X.cB k
     rw [S.canon.cB]; exact le_rfl
   have hCl := _root_.GlobalTheory.closingFamilyX_alt_alt Pr.font Pr.fin D HW F L (withDc X i dc)
-    (fun L' h => _root_.GlobalTheory.JumpStatement.holds_all_alt D L' h) hAJ S.par67 fa.Conclusion1.1 fa.large.2.1 hfam hcB
+    (fun L' h => _root_.GlobalTheory.JumpSets.stmtJ_holds_alt D L' h) hAJ S.par67 fa.Conclusion1.1 fa.large.2.1 hfam hcB
   have dual := hCl.2.2.1 i hg π hπ
   have h1f := hCl.2.2.2 i π
   rw [withDc_dc] at dual h1f
@@ -125,7 +125,7 @@ theorem conclusion_split_alt (Pr : Hypotheses₂) (D : D7) (L : SizeData₂ D) (
   have bka : LargeLevelLemmas.BlochKatoAnnihilators i := GlobalTheory.T.blochKatoAnnihilator_all_of_tateDuality_eulerChar Pr.bk Pr.tate Pr.euler D i
   have fin : LargeLevelLemmas.tateH1FinitenessAtPlacesOver i := GlobalTheory.T.tateFinitenessAll_of_localTateDuality Pr.tate D i
   have hA : EmbeddingTypes.admitted i (X.r i) (X.ρ i) π dc ep _ _ _ :=
-    ⟨g1, hG2, g3, g4, hG5, g5x, g6, a56, a51, l51, l52, ⟨bk, bka⟩, lc, lr, hH0, tb, GlobalTheory.T.unramifiedTrivialH1f_of_decl D i dc, cont, ss, dec, eps,
+    ⟨g1, hG2, g3, g4, hG5, g5x, g6, a56, a51, l51, l52, ⟨bk, bka⟩, lc, lr, hH0, tb, _root_.GlobalTheory.ColumnUnramified.blochKatoFinite_trivialRep_unramified_columnPlaces D i dc, cont, ss, dec, eps,
       tie, shape, font, hH2, fin, cft, h78.2.2.2, dual, h78.1, h78.2.1, h78.2.2.1, h1f, sub, acont, hType⟩
   obtain ⟨-, -, hB⟩ := GlobalTheory.T.splitCase_bound_at_point_of_admitted_items_alt Pr.artin Pr.tate Pr.euler D i (X.r i) (X.ρ i) π dc ep _ _ _ hA (fun _ _ _ => g2) hL hdc hZ
   exact ⟨hB, fun u hu => length_invariants_Wprime_divisible_le_of_nonzero_jumps i N hK.2.1 hC (X.ρ i) π _ (GlobalTheory.NLink.AmbSub.WpO_cont i (X.ρ i) π hρ) hW u

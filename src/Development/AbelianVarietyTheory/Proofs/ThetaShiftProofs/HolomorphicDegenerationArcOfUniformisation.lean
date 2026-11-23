@@ -78,7 +78,7 @@ theorem main : ReciprocityTheory.ChartRestriction.G.Out.Laws → ReciprocityTheo
   haveI : Smooth Xo.s := SmoothOfRelativeDimension.smooth D.dim Xo.s
   haveI : IsLocallyNoetherian Xo.X := LocallyOfFiniteType.isLocallyNoetherian Xo.s
   obtain ⟨Λ⟩ := GlobalTheory.ArcModel.nonempty_gtAn L₁ L₂ hU E H D l c O β _ a
-  obtain ⟨C⟩ := GlobalTheory.T.nonempty_chain_arc_witness_universal_family L₁ L₂ E H D l Xo c O β Y bF a χ W Λ hχ hgen
+  obtain ⟨C⟩ := _root_.GlobalTheory.ArcPts.nonempty_chain L₁ L₂ E H D l Xo c O β Y bF a χ W Λ hχ hgen
   choose laA hA using fun v => (GlobalTheory.GtRep.exists_rep_and_shift L₁ L₂ E H D l c O β _ a Λ l.A l.A_pos).1 (a.etaA v)
   choose laM hM using fun v => (GlobalTheory.GtRep.exists_rep_and_shift L₁ L₂ E H D l c O β _ a Λ l.M (le_trans (by norm_num) l.three_le)).1 (a.eta v)
   obtain ⟨levA, levM⟩ := GlobalTheory.ArcPts.chain_levels L₁ L₂ E H D l Xo c O β Y bF a χ W Λ C laA laM hA hM

@@ -56,7 +56,7 @@ theorem evLgG_placesOk : EvLgG fun K B f _ => KPx B f → ∀ (T : TwDat B) (w :
   refine (GlobalTheory.TwInputs.SmallField.lg_lam K).imp fun B f _ hO _ _ T w Z => ?_
   have hq := GlobalTheory.TwInputs.SmallField.auxiliary_prime_ne_type_prime K C5 c6 Cb hG B.toPre hO
   have hqp := (GlobalTheory.EX.DC.globalTwisting_spec_fact B.toPre.host).1
-  obtain ⟨w0, hw0⟩ := GlobalTheory.TwInputs.SmallField.exists_over B.toPre.host.E hqp
+  obtain ⟨w0, hw0⟩ := _root_.GlobalTheory.CharVal.exists_over B.toPre.host.E hqp
   have hmod : ∀ p ∈ [B.toPre.host.g 0, B.toPre.host.g 1, B.toPre.host.pde, B.toPre.host.pde', GlobalTheory.EX.DC.q0H B.toPre.host],
       p ≡ 1 [MOD B.toPre.host.QS * B.toPre.host.q * B.toPre.host.d] := by
     intro p hp

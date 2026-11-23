@@ -156,7 +156,7 @@ theorem polarisedAF : PolarisedAFStatement := by
       (RingHom.map_det _ _).symm
     rw [this]; exact H.isUnit_det_E.map _
   obtain ⟨hdet, hker, himg, hcpmem⟩ :=
-    GlobalTheory.T.symplectic_period_matrix_integrality C v R hv g H.Ht H.Bt _ cp hcp hEalt hEu H.form_eq_alt
+    _root_.PositivityTheory.HtPt.Rh.gp_mat C v R hv g H.Ht H.Bt _ cp hcp hEalt hEu H.form_eq_alt
 
   set L := Submodule.span R (Set.range fun k => Matrix.fromRows H.Ht H.Bt k) with hL
   have hLle : L ≤ AF :=
@@ -167,11 +167,11 @@ theorem polarisedAF : PolarisedAFStatement := by
     exact h
 
   have hkill : ∀ x : Nb p g, p • x = 0 := by intro x; ext i; simp
-  obtain ⟨cA, cN, cO, -, -, -, hA, hN, hO⟩ := GlobalTheory.T.augmentation_lengths_exist p C v R hv hp1 (Nb p g) hkill H.AA
+  obtain ⟨cA, cN, cO, -, -, -, hA, hN, hO⟩ := _root_.PositivityTheory.HtPt.Rc.lens p C v R hv hp1 (Nb p g) hkill H.AA
   have hcO : cO = v (algebraMap R C (p : R)) ^ g := hasLen_unique hv hO (PolAF.hasLen_omAA_htd H)
   have hdeg := u4 p C v R hv hp1 (Nb p g) hkill H.AA cN cO hN hO
-  obtain ⟨hcnt, hgen⟩ := GlobalTheory.T.augmentation_length_colength_bound p C v R hv hp1 (Nb p g) hkill H.AA cA cN hA hN
-  obtain ⟨eq⟩ := GlobalTheory.T.augmentation_quotient_equiv_lattice p C v R hv hp1 (Ix g) H.AA
+  obtain ⟨hcnt, hgen⟩ := _root_.PositivityTheory.HtPt.Ra.cnt p C v R hv hp1 (Nb p g) hkill H.AA cA cN hA hN
+  obtain ⟨eq⟩ := _root_.PositivityTheory.HtPt.Rh.afquot p C v R hv hp1 (Ix g) H.AA
   have hAF : HasLen v R ((Ix g → R) ⧸ AF) cA := hasLen_of_equiv eq.symm hA
   obtain ⟨hle, hLeq⟩ :=
     GlobalTheory.T.lattice_length_mono_strict C v R hv (Ix g) L AF hLle _ _ (pow_ne_zero _ hvcp) hLlen hAF

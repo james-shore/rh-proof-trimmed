@@ -53,16 +53,7 @@ namespace UpperTheory.Gal.Int.Geo.Pl.Tj.TorusKilling
 
 variable {E : Type} [Field E] [NumberField E]
 
-private theorem val_alg (u : HeightOneSpectrum (𝓞 E)) (c : 𝓞 E) :
-    Valued.v (algebraMap (𝓞 E) (u.adicCompletion E) c) = u.intValuation c := by
-  have h := HeightOneSpectrum.valuedAdicCompletion_eq_valuation' u (c : E)
-  rw [show (u.valuation E) (c : E) = u.intValuation c from HeightOneSpectrum.valuation_of_algebraMap u c] at h
-  exact h
-
-private theorem alg_int (u : HeightOneSpectrum (𝓞 E)) (c : 𝓞 E) :
-    algebraMap (𝓞 E) (u.adicCompletion E) c ∈ u.adicCompletionIntegers E := by
-  rw [HeightOneSpectrum.mem_adicCompletionIntegers, val_alg]
-  exact u.intValuation_le_one c
+private alias alg_int := _root_.Formalism.UG.P.levelaf_int_mem_v
 
 private theorem exS (w : HeightOneSpectrum (𝓞 E)) (c : 𝓞 E) (hc : c ≠ 0) :
     ∃ s : 𝓞 E, s ∉ w.asIdeal ∧ ∀ u : HeightOneSpectrum (𝓞 E), u ≠ w →
@@ -79,7 +70,7 @@ private theorem exS (w : HeightOneSpectrum (𝓞 E)) (c : 𝓞 E) (hc : c ≠ 0)
     exact w.isPrime.ne_top hQ
   obtain ⟨s, hsQ, hsw⟩ := hex
   refine ⟨s, hsw, fun u hu => ?_⟩
-  rw [val_alg, val_alg]
+  rw [_root_.Formalism.UG.P.csApprox_val_int, _root_.Formalism.UG.P.csApprox_val_int]
   rw [HeightOneSpectrum.intValuation_if_neg u hc]
   refine (HeightOneSpectrum.intValuation_le_pow_iff_mem u s _).2 ?_
   set e := (Associates.mk u.asIdeal).count (Associates.mk (Ideal.span {c})).factors with he
@@ -113,7 +104,7 @@ private theorem diag_int {n : ℕ} (u : HeightOneSpectrum (𝓞 E)) (ϖ : u.adic
       Matrix.diagonal fun k : Fin n => if (k : ℕ) < i then ϖ⁻¹ else 1) a b ∈ u.adicCompletionIntegers E := by
   rw [Matrix.smul_apply, Matrix.diagonal_apply, smul_eq_mul]
   split_ifs with h1 h2
-  · rw [HeightOneSpectrum.mem_adicCompletionIntegers, map_mul, map_inv₀, val_alg]
+  · rw [HeightOneSpectrum.mem_adicCompletionIntegers, map_mul, map_inv₀, _root_.Formalism.UG.P.csApprox_val_int]
     have h3 : u.intValuation y ≤ Valued.v ϖ := by
       rw [hϖ]
       have := (HeightOneSpectrum.intValuation_le_pow_iff_mem u y 1).2 (by rwa [pow_one])

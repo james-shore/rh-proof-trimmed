@@ -66,7 +66,7 @@ theorem wpPrimeInZ : expSer W ^ 3 * (-2 + X ^ 3 * derivative (wpReg W))
     = X ^ 3 * (-2 * (xS W).subst (expSer W) + C W.a₁ * expSer W * (xS W).subst (expSer W)
         + C W.a₃ * expSer W ^ 3) := by
   have h1 := (wpODE K W).1
-  have h2 := (wpPrimeShape K W).1
+  have h2 := (_root_.Formalism.L2.Th1.A.weierstrass_p_prime_shape K W).1
   have hq := Two.exp_mul_inv W
   have hz : (toL X : LaurentSeries K) * uPow (-1) = 1 := Plus.toL_X_mul
   have hy : (yS W).subst (expSer W) = -(xS W).subst (expSer W) := by

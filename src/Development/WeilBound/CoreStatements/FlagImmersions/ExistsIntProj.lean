@@ -58,10 +58,6 @@ open MonoidalCategory CartesianMonoidalCategory MonObj GlobalTheory.CompanionThe
 
 namespace RootFieldNumerics.RF.Fib
 
-theorem mem_eigSp {R W O : Type} [CommRing R] [AddCommGroup W] [Module R W] [CommRing O]
-    {ρ : O →+* Module.End R W} {σ : O →+* R} {w : W} : w ∈ eigSp ρ σ ↔ ∀ a, ρ a w = σ a • w := by
-  simp [eigSp, Submodule.mem_iInf, LinearMap.mem_ker, sub_eq_zero]
-
 private theorem exists_trace_dual_integral_projector {E : Type} [Field E] [NumberField E] {Ix : Type} [Fintype Ix] [DecidableEq Ix]
     (B : Module.Basis Ix ℤ (𝓞 E)) (A : Matrix Ix Ix ℤ) (d : ℤ) (hd : d ≠ 0)
     (hA : A * Algebra.traceMatrix ℤ B = d • 1) :
@@ -121,7 +117,7 @@ private theorem exists_eigSp_projector_sum_mem_and_discr_smul (E : Type) [Field 
   intro K W _ _ _ χ ρ w
   have hB : ∀ a k, a * B k = ∑ j, B.repr (a * B k) j • B j := fun a k => (B.sum_repr (a * B k)).symm
   constructor
-  · rw [mem_eigSp]
+  · rw [_root_.PositivityTheory.HtPt.Gh.mem_eig]
     intro a
     calc ρ a (∑ k, χ (z k) • ρ (B k) w) = ∑ k, χ (z k) • ρ (a * B k) w := by
 
@@ -143,7 +139,7 @@ private theorem exists_eigSp_projector_sum_mem_and_discr_smul (E : Type) [Field 
       _ = χ a • ∑ k, χ (z k) • ρ (B k) w := by
           simp [Finset.smul_sum, smul_smul, map_mul]
   · intro hw
-    rw [mem_eigSp] at hw
+    rw [_root_.PositivityTheory.HtPt.Gh.mem_eig] at hw
     simp only [hw, smul_smul]
     rw [← Finset.sum_smul]
     simp only [← map_mul]
@@ -224,7 +220,7 @@ theorem val_eig (hξ : IsCptGen ξ) {O : Type} [CommRing O] {act : O → (G ⟶ 
     {χ : O →+* Ω} {σ : O →+* V} (hσ : ∀ a, ValAt ξ z (χ a) (σ a)) {e : E} (he : e ∈ eigSp ρ χ) {w : EC}
     (hw : M.ValAt (Spec.map (CommRingCat.ofHom (algebraMap V L)) ≫ z) e (MC.pt w)) :
     w ∈ eigSp ρC ((algebraMap V L).comp σ) := by
-  rw [mem_eigSp] at he ⊢
+  rw [_root_.PositivityTheory.HtPt.Gh.mem_eig] at he ⊢
   intro a
   have hA : M.ValAt (Spec.map (CommRingCat.ofHom (algebraMap V L)) ≫ z) (ρ a e) (MC.pt (ρC a w)) := by
     obtain ⟨hc, v, ⟨hv1, hv2⟩, hv3⟩ := id hw

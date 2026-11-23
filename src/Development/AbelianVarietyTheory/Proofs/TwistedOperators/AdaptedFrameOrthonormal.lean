@@ -237,7 +237,7 @@ theorem om_fock_top_of_mat {μ0 : T} (hL : L.Is μ0) (W : G.Weil) {U : Set T} (S
       (fun τ => (v τ).1.submatrix (Fin.cast (rank_top G (j := (j : ℕ) + 1) j.2)) (Fin.cast (rank_top G (j := (j : ℕ) + 1) j.2)))
       Q := by
     apply trCol_injective G j
-    rw [hQ, map_smul, GlobalTheory.T.fockSubstitution_rowStep_rename_unitary G j u v Q]
+    rw [hQ, map_smul, _root_.GlobalTheory.RowReal.trCol_fockSubAll_unitary G j u v Q]
   show W.om (.top t j) (ptTop W g j, ptTop W g (j + 1)) _ = _
   rw [key, hQ', LinearMap.map_smul]
 

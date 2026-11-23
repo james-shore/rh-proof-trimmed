@@ -146,7 +146,7 @@ theorem cross (hSec : SecLaw) (hHt : HtLip) (hSt : PiLocalization₂) (hWL : Wal
     intro l hl g' hg' r
     obtain ⟨h1, h2⟩ := hl
     exact hb l h1.1 h1.2 h2.1 h2.2 g' hg' r
-  obtain ⟨hTG, hsum⟩ := GlobalTheory.T.holomorphic_series_uniform_tube _ _ _ t Ω hhol hcont hdom
+  obtain ⟨hTG, hsum⟩ := _root_.GlobalTheory.CompanionTheory.RgEisCross.tubeGood_tsum _ _ _ t Ω hhol hcont hdom
   have key : ∀ l ∈ tube Ω, ∀ g (w : L), outer Γ (Γ ⊓ Q) ξ H l g w =
       ∑' r : Cos (Γ ⊓ Q) Γ, Complex.exp (l.2 * ξ (rep r * g)) • H l.1 (rep r * g) w := by
     intro l hl g w

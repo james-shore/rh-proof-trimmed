@@ -56,18 +56,7 @@ noncomputable section
 
 namespace GlobalTheory.ArchBound
 
-theorem entries_bound : ∀ {n : ℕ} (P : Matrix (Fin n) (Fin n) ℂ), P.IsHermitian →
-    (∀ x : Fin n → ℂ, x ≠ 0 → 0 < (star x ⬝ᵥ P *ᵥ x).re) →
-    ∃ K : ℝ, ∀ (Y : Matrix (Fin n) (Fin n) ℂ) (s : ℝ), 0 < s → Yᴴ * P * Y = (s : ℂ) • P →
-      ∀ i j, ‖Y i j‖ ^ 2 ≤ K * s :=
-  GlobalTheory.T.hermitian_similitude_entry_sq_bound
-
-theorem majorant : ∀ {n : ℕ} (H : Matrix (Fin n) (Fin n) ℂ) (hH : H.IsHermitian), H.det ≠ 0 → sigPosH hH = 1 →
-    ∀ z : Fin n → ℂ, 0 < (star z ⬝ᵥ H *ᵥ z).re →
-    ∃ P : Matrix (Fin n) (Fin n) ℂ, P.IsHermitian ∧ (∀ x : Fin n → ℂ, x ≠ 0 → 0 < (star x ⬝ᵥ P *ᵥ x).re) ∧
-      ∀ (Y : Matrix (Fin n) (Fin n) ℂ) (s : ℝ) (c : ℂ), 0 < s → Yᴴ * H * Y = (s : ℂ) • H →
-        Y *ᵥ z = c • z → Yᴴ * P * Y = (s : ℂ) • P :=
-  GlobalTheory.T.exists_posDef_majorant_of_positiveIndex_one
+alias entries_bound := _root_.GlobalTheory.herm_scale_entry_bound
 
 variable {p : ℕ} [Fact p.Prime]
 
@@ -176,7 +165,7 @@ theorem exists_majorant (G : HTGroup p) (ha : G.a = 1) (v : InfinitePlace G.F)
     GlobalTheory.SigCong.sigPosH_congr (G.gram w) (G.gram_herm w) (G.gram_det w) Z _ hH hZ
   by_cases hw : w = v
   · subst hw
-    obtain ⟨P, hPh, hPp, hPs⟩ := majorant (herm G w β) hH hdet (hsig.trans hv) z hz
+    obtain ⟨P, hPh, hPp, hPs⟩ := _root_.GlobalTheory.exists_posDef_majorant_of_sigPosH_eq_one (herm G w β) hH hdet (hsig.trans hv) z hz
     refine ⟨P, hPh, hPp, fun y hy => ?_⟩
     obtain ⟨c, hc⟩ := hy
     exact hPs _ _ c (by exact_mod_cast y.2.2) (herm_sim G β y w) hc

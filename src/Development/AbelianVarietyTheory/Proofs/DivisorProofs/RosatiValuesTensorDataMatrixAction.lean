@@ -76,7 +76,7 @@ theorem rosGt_values : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R],
     rw [map_zpow, NumD.projB_apply, hv.1 k]
   have h1 := hmove (N'.c χ) v'.b
   rw [c_actV ν' o] at h1
-  have h2 := GlobalTheory.T.rosatiGenerator_components_torusExtension R hB D D' W T F N N' ν ν' E H ρ hρ o hact x ρ'' hT χ v'.b vs hv.1
+  have h2 := _root_.GlobalTheory.Mum.TensRos.rosVT_components R hB D D' W T F N N' ν ν' E H ρ hρ o hact x ρ'' hT χ v'.b vs hv.1
   have h3 := hv.2 (ν'.eX.symm (star x • ν'.eX χ))
   have h4 := hw.2 χ
   rw [hb] at h4

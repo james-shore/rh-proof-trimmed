@@ -80,7 +80,7 @@ theorem fixF (K : Type) [Field K] [NumberField K] [StarRing K] :
 
 theorem card_quot (hK : IsCMUnram K) :
     Nat.card ((𝓞 (cmF K))ˣ ⧸ (powMonoidHom 2 : (𝓞 (cmF K))ˣ →* (𝓞 (cmF K))ˣ).range) = 2 ^ fDeg K := by
-  rw [Formalism.HermitianLatticeCounting.Final.LocalIntegralStructure.unitsSquareIndex (cmF K) (isReal_cmF hK),
+  rw [_root_.Formalism.HermitianLatticeCounting.P.units_square_index (cmF K) (isReal_cmF hK),
     (discrTower K (cmF K) hK (fixF K)).2.1]
 
 theorem span_mul_span1 (x y : K) :

@@ -61,8 +61,8 @@ theorem isAdj_pt {A B : AbVar K} {c : Pic A.X.left} {d : Pic B.X.left} {f : A �
     (H : IsAdj c d f n h) {Y : Over (Sp K)} (x : Y ⟶ A.X) (y : Y ⟶ B.X) :
     n • lam d (x ≫ f.hom) y = lam c x (y ≫ h.hom) := by
   have H' := congrArg (CechPic.pull (lift x y).left) H
-  rw [map_zsmul, (GlobalTheory.T.abelianVarietyMumfordClass_symm_natural_additive K A A c c c (𝟙 A) _ Y (lift x y) _ _).2.1,
-    (GlobalTheory.T.abelianVarietyMumfordClass_symm_natural_additive K B B d d d (𝟙 B) _ Y (lift x y) _ _).2.1] at H'
+  rw [map_zsmul, (_root_.GlobalTheory.AV.lam_symm_nat_add K A A c c c (𝟙 A) _ Y (lift x y) _ _).2.1,
+    (_root_.GlobalTheory.AV.lam_symm_nat_add K B B d d d (𝟙 B) _ Y (lift x y) _ _).2.1] at H'
   simpa only [lift_fst_assoc, lift_snd_assoc, lift_fst, lift_snd] using H'
 
 end GlobalTheory.AV.AbVar.AdjCalc

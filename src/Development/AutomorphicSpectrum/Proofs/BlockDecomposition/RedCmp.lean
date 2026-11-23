@@ -76,7 +76,6 @@ theorem red_cmp {m n : ℕ} (h : n ≤ m) (j : ℕ) (x : Hc F κ false m j) :
     (red_cris _ h) (red_cris _ h) (SH.idc _) (fun r => (SH.idc ((base l).red h) r).symm)
     (cmp_pt F κ h) j x
 
-theorem main : ∀ {l : ℕ} [Fact l.Prime], ∀ {O : Type} [CommRing O] (F : Fn O) (κ : O →+* OC l) {m n : ℕ} (h : n ≤ m) (j : ℕ) (x : Hc F κ false m j), redHc F κ true h j ((cmpMor F κ m).pull j x) = (cmpMor F κ n).pull j (redHc F κ false h j x) :=
-  fun F κ _ _ h j x => red_cmp F κ h j x
+alias main := _root_.GlobalTheory.CompanionTheory.CrisCmp.red_cmp
 
 end GlobalTheory.CompanionTheory.CrisCmp

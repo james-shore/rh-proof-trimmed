@@ -326,7 +326,7 @@ theorem ses0 {d : ℕ} (Q : Poly Φ) (E : Frame (Φ := Φ) (d + 1)) (hQ : Q.Crit
         (β.app X).hom (c.sum fun k y => (Φ.A.map (Q.j X.T)).hom y * Φ.dp k (Q.X X.T)) =
           c'.sum fun k y => (Φ.A.map (Q.j X.T)).hom y * Φ.dp k (Q.X X.T) := by
   have hT : ∀ r, Q.Crit (fun _ => IdF.top Φ.A) r := fun r T b => ⟨fun _ _ => trivial, fun _ => trivial⟩
-  obtain ⟨β, b1, b2, b3, b4⟩ := GlobalTheory.T.filtration_critical_comparison_map Q E (fun _ => IdF.top Φ.A) (fun _ => IdF.bot Φ.A) 0
+  obtain ⟨β, b1, b2, b3, b4⟩ := _root_.GlobalTheory.CompanionTheory.PolySes.ses Q E (fun _ => IdF.top Φ.A) (fun _ => IdF.bot Φ.A) 0
     (fun _ T x _ => trivial) (hT _) (hT _) hQ hQ
   let q : ∀ T : C, Φ.A.obj T ≃ₗ[R] sqM (IdF.top Φ.A) (IdF.bot Φ.A) T := qE Φ.A
   let β₀ : Cut.P0 Q ⋙ Cut.U E ⋙ CH.modF Φ.A ⟶ Cut.P0 Q ⋙ Cut.U E ⋙ CH.modF Φ.A :=
@@ -468,7 +468,7 @@ theorem step (b : ℤ → IdF Φ'.A) (h : ∀ r T, c.S T ≤ (b r).S T) (r : ℤ
     Function.Bijective ((low m (b r) (h r) E E' e).pull j) := by
   obtain ⟨β₀, a1, a2, a3, a4⟩ := ses0 Q E hQ
   have hT : ∀ r, Q'.Crit (fun _ => IdF.top Φ'.A) r := fun r T b => ⟨fun _ _ => trivial, fun _ => trivial⟩
-  obtain ⟨β', b1, b2, b3, b4⟩ := GlobalTheory.T.filtration_critical_comparison_map Q' E' (fun _ => IdF.top Φ'.A) b r (fun _ T x _ => trivial) (hT _) (hT _) h1 h2
+  obtain ⟨β', b1, b2, b3, b4⟩ := _root_.GlobalTheory.CompanionTheory.PolySes.ses Q' E' (fun _ => IdF.top Φ'.A) b r (fun _ T x _ => trivial) (hT _) (hT _) h1 h2
   obtain ⟨i1, i2, i3⟩ := CrystallineSemistableComparison.P.ses_cochains (jW (E := E) Q (CH.modF Φ.A)) β₀ a1 a2 a3
   obtain ⟨k1, k2, k3⟩ := CrystallineSemistableComparison.P.ses_cochains (jW (E := E') Q' (sq (IdF.top Φ'.A) (b r))) β' b1 b2 b3
   have key := (CrystallineSemistableComparison.P.five _ _ i1 i2 i3 _ _ k1 k2 k3 (low m (b r) (h r) E E' e).hom (mid m (b r) (h r) he Q Q').hom

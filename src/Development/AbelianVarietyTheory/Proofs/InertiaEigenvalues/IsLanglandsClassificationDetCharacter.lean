@@ -205,11 +205,6 @@ private theorem exists_surjective_prodIrr_to_detRep (t : ℕ) {χ : kˣ →* ℂ
   refine ⟨hd, ?_⟩
   exact surj_of_equiv Φ l hl
 
-theorem exists_surjective_prodIrr (t : ℕ) {χ : kˣ →* ℂˣ} (hχ : IsSmoothChar χ) {x : Fin t → IrrGL (k := k)}
-    (hx : ∀ j, x j = (IrrGL.ofChar χ hχ).nu ((((t : ℝ) - 1) / 2 - (j : ℕ) : ℝ) : ℂ)) :
-    ∃ (hd : ∑ a, (x a).1 = t) (l : (prodIrr x hd).IntertwiningMap (detRep (Fin t) χ)), Function.Surjective l :=
-  exists_surjective_prodIrr_to_detRep t hχ hx
-
 end GlobalTheory.LocGL.DetQuot
 
 namespace GlobalTheory.LocGL
@@ -223,7 +218,7 @@ theorem isL_det : StandardCosocleGL → ∀ (k : Type) [Field k] [ValuativeRel k
       (IrrRep.det (Fin t) χ hχ).ρ := by
   intro H k _ _ _ _ _ t χ hχ
   let x : Fin t → IrrGL (k := k) := fun j => (IrrGL.ofChar χ hχ).nu ((((t : ℝ) - 1) / 2 - (j : ℕ) : ℝ) : ℂ)
-  obtain ⟨hd, l, hl⟩ := DetQuot.exists_surjective_prodIrr t hχ (x := x) (fun j => rfl)
+  obtain ⟨hd, l, hl⟩ := _root_.GlobalTheory.LocGL.DetQuot.exists_surjective_prodIrr_to_detRep t hχ (x := x) (fun j => rfl)
   have hcusp : ∀ j, (x j).IsCusp := fun j => (IrrGL.isCusp_ofChar χ hχ).nu _
   let Δ : Fin t → Segment k := fun j => Segment.single (x j) (hcusp j)
   have hfirst : ∀ j, (Δ j).first = x j := fun j => Segment.first_ofFirst _ _ _ _

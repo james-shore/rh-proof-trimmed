@@ -59,7 +59,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : Formalism.BasicNotions.D7} (Zd : LocDat D) (p : PlF D)
 
-theorem hO : (Zd.M p).L.O = (D.s.atP p).O := (Zd.agree p).2.2.2.1
+alias hO := _root_.Formalism.L2.SG.Pf.LocFacts.lf_hO
 
 theorem smul_mem_localLattice {Λ : Submodule (𝓞 D.host.E) (VS D).V} {a : (D.s.atP p).Ep} (ha : a ∈ (D.s.atP p).O)
     {v : Vp D p} (hv : v ∈ lattice₂ D Zd.M p Λ) : a • v ∈ lattice₂ D Zd.M p Λ :=
@@ -90,9 +90,6 @@ theorem gS_typed (g : Loc.SplitG (Zd.M p).L) (hs : (Zd.M p).split = some g) :
       exact_mod_cast Formalism.MainNotions.BridgeLemma.oth_ne_zero p
     push_cast
     rw [mul_inv_cancel₀ h0, map_one]
-
-theorem localLattice_mono {A B : Submodule (𝓞 D.host.E) (VS D).V} (h : A ≤ B) : lattice₂ D Zd.M p A ≤ lattice₂ D Zd.M p B :=
-  Submodule.span_mono (Set.image_mono h)
 
 theorem smul_gS_mem {Λ : Submodule (𝓞 D.host.E) (VS D).V} {T T' : D.host.E} (F : LFlag (D.sp.Y 0) D.R.rS T)
     (F' : LFlag (D.sp.Y 0) D.R.rS T') {v : Vp D p} (hv : v ∈ lattice₂ D Zd.M p Λ) :
@@ -255,7 +252,7 @@ theorem off_step {T T' : D.host.E} (F : LFlag (D.sp.Y 0) D.R.rS T) (F' : LFlag (
     {v : Vp D p} (h : ∃ w ∈ lattice₂ D Zd.M p N, v = (D.s.atP p).ιE ((gS D : ℕ) : D.host.E) • w) :
     v ∈ lattice₂ D Zd.M p (NgX Λ₁ (gS D) F F') := by
   obtain ⟨u, hu, rfl⟩ := h
-  exact smul_gS_mem Zd p F F' (localLattice_mono Zd p hN hu)
+  exact smul_gS_mem Zd p F F' (_root_.Formalism.L2.SG.Pf.BBTie.latP_mono Zd p hN hu)
 
 theorem alg1 {R V : Type} [CommRing R] [AddCommGroup V] [Module R V] (c : R) (x a b s w v : V) (e : a - x = c • w) :
     x - (b - s - c • v) = (a - b + s) - c • (w - v) ∧ x - (b + s - c • v) = (a - b - s) - c • (w - v) := by
@@ -279,7 +276,7 @@ theorem place_A (g : Loc.SplitG (Zd.M p).L) (hs : (Zd.M p).split = some g) {T T'
   have le1 : Lrep Λ₁ F ≤ Λ₁ := inf_le_left
   have le2 : Lrep Λ₁ F' ≤ Λ₁ := inf_le_left
   have hN : l - l' ∈ NgX Λ₁ (gS D) F F' :=
-    ngx_step Zd p g hs F F' h₁ (localLattice_mono Zd p le1 hw) (localLattice_mono Zd p le2 hw') e e'
+    ngx_step Zd p g hs F F' h₁ (_root_.Formalism.L2.SG.Pf.BBTie.latP_mono Zd p le1 hw) (_root_.Formalism.L2.SG.Pf.BBTie.latP_mono Zd p le2 hw') e e'
       (fun q hq => off_step Zd q F F' le1 (ho q hq)) (fun q hq => off_step Zd q F F' le2 (ho' q hq))
       (q_le_NgX Zd p g hs F F' hd)
   obtain ⟨m', hm', m, hm, d', d, hN₂⟩ := hG l' hl' l hl hN

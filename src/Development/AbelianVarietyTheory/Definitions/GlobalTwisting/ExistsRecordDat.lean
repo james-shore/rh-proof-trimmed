@@ -94,7 +94,7 @@ theorem sees_ofOk (X : PreX B.toPre) (I : ChainIn B.fields.E B.fields.K B.fields
     (eF : ∀ w, Z.seenP w = true ↔ seenC (B.primes X) u w) :
     (ofOk B C W V S N G u I J Q Z hI hJ hQ hT).Sees := by
   intro w hw P x
-  have h1 := GlobalTheory.LvT.Inh.resChar_mem_plEq (assemble B C W V S N G) w
+  have h1 := _root_.Formalism.BasicNotions.resChar_mem (assemble B C W V S N G) w
   rw [show (assemble B C W V S N G).what₂.places.resChar w = B.T u from hw.trans eT] at h1
   refine (GlobalTheory.LvT.Inh.mem_Ow_iff_valO (assemble B C W V S N G) w _).trans ?_
   have h2 := val_tauAt (GlobalTheory.BasePrimes.primes_ok B X).1 u (GlobalTheory.Mem.FieldsLaws.fields_satisfy_definite_laws B).1 h1 ⟨P.1, eS P.1 P.2⟩ _ (eF w) x

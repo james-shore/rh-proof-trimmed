@@ -207,12 +207,6 @@ theorem lact_mul {E : Type} [Field E] {Ψ : Finset (E →+* ℂ)} {r : ℕ} (γ 
     (γ : Matrix (Fin r) (Fin r) E).map τ.1 * ((γ' : Matrix (Fin r) (Fin r) E).map τ.1 * mat x τ)
   rw [Units.val_mul, Matrix.map_mul, Matrix.mul_assoc]
 
-theorem archM_mul {D : D7} (V : HSp D) (θ : Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ) (g h : GA D V) :
-    archM V θ (g * h) = archM V θ g * archM V θ h := by
-  unfold archM
-  rw [map_mul, Units.val_mul, Matrix.map_mul]
-
-
 open ReciprocityTheory.ChartRestriction.G.FD in
 theorem exists_sec (D : D7) (θ : InfFam D) (V : HSp D) (S : D.what₂.Tau → SPar) (M : DSModel V S)
     (w : D.what₂.Tau → Fin V.rank → ℤ) (Comp : Type) (X : Comp → Data D.host.E V.rank)
@@ -269,7 +263,7 @@ theorem exists_sec (D : D7) (θ : InfFam D) (V : HSp D) (S : D.what₂.Tau → S
       rw [hx]
       funext ρ
       have := hy' ρ (ε ρ) (hε ρ)
-      rw [archM_mul, hLa] at this
+      rw [_root_.GlobalTheory.PointAtPlace.archM_mul, hLa] at this
       exact this.symm
     · rw [hf _ hLu, hfP _ (hUG _), hmul, hmue _ hLu, hx, mul_assoc]
       simp only [hLa]

@@ -47,10 +47,6 @@ open scoped ENNReal
 
 namespace GlobalTheory.CompanionTheory.LatticeSum
 
-theorem tsum_prod_eq_pow (g : ℤ → ℝ≥0∞) (n : ℕ) :
-    ∑' m : Fin n → ℤ, ∏ i, g (m i) = (∑' k, g k) ^ n :=
-  _root_.UpperTheory.Reformulated.B.Yvb3.main g n
-
 def wt (k : ℤ) : ℝ := ((1 + |(k : ℝ)|) ^ 2)⁻¹
 
 theorem wt_nonneg (k : ℤ) : 0 ≤ wt k := by
@@ -102,7 +98,7 @@ theorem latSum : PositivityTheory.Rg.BcB.E1.LatSum := by
     rw [← ENNReal.ofReal_prod_of_nonneg fun i _ => wt_nonneg (m i)]
     exact ENNReal.ofReal_le_ofReal (pointwise_le n M h m)
   exact ne_top_of_le_ne_top (ENNReal.pow_ne_top hS)
-    (hle.trans_eq (tsum_prod_eq_pow (fun k => ENNReal.ofReal (wt k)) n))
+    (hle.trans_eq (_root_.UpperTheory.Reformulated.B.Yvb3.main (fun k => ENNReal.ofReal (wt k)) n))
 
 end GlobalTheory.CompanionTheory.LatticeSum
 

@@ -68,12 +68,6 @@ private theorem cu_uniq {C R : Type} [CommRing C] [CommRing R] [Algebra C R] [Is
   rw [map_sub, map_sub, h3] at this
   simpa using this
 
-private theorem cu_ex {C R : Type} [CommRing C] [CommRing R] [Algebra C R] [IsLocalRing R] {x : Ideal C}
-    (h : IsCplAt x R) {T : Type} [CommRing T] (J : Ideal T) [IsAdicComplete J T] (f : C →+* T)
-    (hf : x ≤ J.comap f) :
-    ∃ F : R →+* T, F.comp (algebraMap C R) = f ∧ maximalIdeal R ≤ J.comap F :=
-  _root_.UpperTheory.Reformulated.B.LevelOfCongruence.cu_ex h J f hf
-
 private theorem cu_le {C R : Type} [CommRing C] [CommRing R] [Algebra C R] [IsLocalRing R] {x : Ideal C}
     (h : IsCplAt x R) : x ≤ (maximalIdeal R).comap (algebraMap C R) := by
   have := h.comap_pow 1
@@ -105,8 +99,8 @@ private theorem cu_equiv {C R S : Type} [CommRing C] [CommRing R] [Algebra C R] 
     (h : IsCplAt x R) (h' : IsCplAt x S) : Nonempty (R ≃ₐ[C] S) := by
   haveI := h.complete
   haveI := h'.complete
-  obtain ⟨F, hF1, hF2⟩ := cu_ex h (maximalIdeal S) (algebraMap C S) (cu_le h')
-  obtain ⟨G, hG1, hG2⟩ := cu_ex h' (maximalIdeal R) (algebraMap C R) (cu_le h)
+  obtain ⟨F, hF1, hF2⟩ := _root_.UpperTheory.Reformulated.B.LevelOfCongruence.cu_ex h (maximalIdeal S) (algebraMap C S) (cu_le h')
+  obtain ⟨G, hG1, hG2⟩ := _root_.UpperTheory.Reformulated.B.LevelOfCongruence.cu_ex h' (maximalIdeal R) (algebraMap C R) (cu_le h)
   have e1 : G.comp F = RingHom.id R :=
     cu_uniq h (maximalIdeal R) _ _ (by rw [RingHom.comp_assoc, hF1, hG1, RingHom.id_comp])
       (fun r hr => hG2 (hF2 hr)) (fun r hr => hr)
@@ -119,7 +113,7 @@ theorem UpperTheory.V.CA.cpl_uniq :
     ∀ {C R : Type} [CommRing C] [IsNoetherianRing C] [CommRing R] [Algebra C R] [IsLocalRing R] (x : Ideal C) [x.IsMaximal], IsCplAt x R → (∀ (T : Type) [CommRing T] (J : Ideal T) [IsAdicComplete J T] (f : C →+* T), x ≤ J.comap f → ∃! F : R →+* T, F.comp (algebraMap C R) = f ∧ maximalIdeal R ≤ J.comap F) ∧ Nonempty (R ≃ₐ[C] Cpl x) ∧ x.map (algebraMap C R) = maximalIdeal R := by
   intro C R _ _ _ _ _ x _ h
   refine ⟨fun T _ J _ f hf => ?_, ?_, cu_map h⟩
-  · obtain ⟨F, hF⟩ := cu_ex h J f hf
+  · obtain ⟨F, hF⟩ := _root_.UpperTheory.Reformulated.B.LevelOfCongruence.cu_ex h J f hf
     exact ⟨F, hF, fun G hG => cu_uniq h J G F (hG.1.trans hF.1.symm) hG.2 hF.2⟩
   · obtain ⟨_, h'⟩ := cpl_is C x
     exact cu_equiv h h'

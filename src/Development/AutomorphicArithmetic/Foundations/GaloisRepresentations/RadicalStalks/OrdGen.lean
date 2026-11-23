@@ -63,18 +63,11 @@ open scoped TensorProduct
 
 namespace UpperTheory.Gal.Ord
 
-private theorem asIdeal_spMap {B k : Type} [CommRing B] [Field k] (φ : B →+* k) (u : Sp k) :
-    ((spMap φ).base u).asIdeal = RingHom.ker φ := by
-  haveI := u.isPrime
-  have hu : u.asIdeal = ⊥ := Ideal.eq_bot_of_prime _
-  show Ideal.comap φ u.asIdeal = RingHom.ker φ
-  rw [hu, RingHom.ker_eq_comap_bot]
-
 private theorem charP_of_eq_closedPoint {p : ℕ} [Fact p.Prime] {R : Type} [CommRing R] [IsLocalRing R]
     (hpR : (p : R) ∈ IsLocalRing.maximalIdeal R) {k : Type} [Field k] (β : R →+* k) (u : Sp k)
     (h : (spMap β).base u = IsLocalRing.closedPoint R) : CharP k p := by
   have hk : RingHom.ker β = IsLocalRing.maximalIdeal R := by
-    rw [← asIdeal_spMap β u, h]
+    rw [← _root_.GlobalTheory.VeryDenseFibres.spMap_apply_asIdeal β u, h]
     rfl
   have h0 : (p : k) = 0 := by
     have hm : (p : R) ∈ RingHom.ker β := by
@@ -118,7 +111,7 @@ theorem UpperTheory.Gal.Ord.ordGen :
   haveI hchar : CharP k p := charP_of_eq_closedPoint hpR β _ hβbase
   have hk : (p : k) = 0 := CharP.cast_eq_zero k p
   have hkerβ : RingHom.ker β = IsLocalRing.maximalIdeal R := by
-    rw [← asIdeal_spMap β (IsLocalRing.closedPoint k), hβbase]
+    rw [← _root_.GlobalTheory.VeryDenseFibres.spMap_apply_asIdeal β (IsLocalRing.closedPoint k), hβbase]
     rfl
   have hkerw : RingHom.ker (β.comp (b.t i)) = w := by
     rw [← RingHom.comap_ker, hkerβ, hw]
@@ -160,7 +153,7 @@ theorem UpperTheory.Gal.Ord.ordGen :
   obtain ⟨φ, hφ⟩ := GlobalTheory.T.harrisTaylor_exists_deRham_pairing p D R b N hN hNp k (spMap β) o₀
   obtain ⟨g, hKS, hgx⟩ :=
     ks p D R b N hN hNp hm k hk β o₀ i w f hkerw hnorm hf π φ hφ x hxFil hhom ⟨y0, hy0, hxy0⟩
-  obtain ⟨o', m', hlift⟩ := GlobalTheory.T.harrisTaylor_realise_kodairaSpencer_direction p D R b N hN hNp k (spMap β) o₀ β rfl φ hφ g hKS
+  obtain ⟨o', m', hlift⟩ := _root_.GlobalTheory.UPel.HT.realise_isKS p D R b N hN hNp k (spMap β) o₀ β rfl φ hφ g hKS
   have hfst : (TrivSqZeroExt.fstHom k k k).toRingHom.comp (algebraMap k (DualNumber k)) = RingHom.id k := by
     ext a
     rfl
@@ -177,7 +170,7 @@ theorem UpperTheory.Gal.Ord.ordGen :
   have hcl : (spMap (TrivSqZeroExt.fstHom k k k).toRingHom).base (IsLocalRing.closedPoint k) =
       IsLocalRing.closedPoint (DualNumber k) := by
     apply PrimeSpectrum.ext
-    refine (asIdeal_spMap (TrivSqZeroExt.fstHom k k k).toRingHom (IsLocalRing.closedPoint k)).trans ?_
+    refine (_root_.GlobalTheory.VeryDenseFibres.spMap_apply_asIdeal (TrivSqZeroExt.fstHom k k k).toRingHom (IsLocalRing.closedPoint k)).trans ?_
     exact IsLocalRing.eq_maximalIdeal
       (RingHom.ker_isMaximal_of_surjective _ (fun a => ⟨TrivSqZeroExt.inl a, rfl⟩))
   have hvz : v.base (IsLocalRing.closedPoint (DualNumber k)) = z := by

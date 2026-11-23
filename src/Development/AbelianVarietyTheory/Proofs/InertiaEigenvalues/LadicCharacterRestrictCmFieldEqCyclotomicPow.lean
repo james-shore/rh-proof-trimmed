@@ -73,10 +73,10 @@ theorem val_below_of_degree_one (E : Type) [Field E] [NumberField E] [IsCMField 
   have hχe : χ = GlobalTheory.PolChar.resReal ν * ε := by rw [hε, mul_comm χ, mul_inv_cancel_left]
   filter_upwards [(GlobalTheory.IndefiniteRowSideFullHecke.UnitaryHeckeCharacterIdele.tendsto_under (maximalRealSubfield E) E).eventually
     (GlobalTheory.HeckeSplit.eventually_unrAt χ.1 χ.2.1)] with w hu hf he
-  obtain ⟨hsp, hcard, hw'⟩ := GlobalTheory.T.degreeOne_prime_CMField_over_split_maxRealSubfield E w hf he
+  obtain ⟨hsp, hcard, hw'⟩ := _root_.GlobalTheory.SplitDegOne.main E w hf he
   refine ⟨hu, ?_⟩
-  have hεv : ε.val (w.under (𝓞 (maximalRealSubfield E))) = 1 := GlobalTheory.T.heckeChar_local_eq_one_of_trivial_on_norms_split E ε hεc _ hsp _
-  rw [hχe, Formalism.L2.Host.HChar.val_mul, hεv, mul_one, GlobalTheory.T.heckeCharRestrictMaxReal_val_eq_prod_above E ν _ (fun w' h => ⟨hν.1 w', (hw' w' h).2⟩),
+  have hεv : ε.val (w.under (𝓞 (maximalRealSubfield E))) = 1 := _root_.GlobalTheory.NormKill.loc_eq_one_of_compNorm_eq_one E ε hεc _ hsp _
+  rw [hχe, Formalism.L2.Host.HChar.val_mul, hεv, mul_one, _root_.GlobalTheory.PolChar.resReal_val_eq_prod E ν _ (fun w' h => ⟨hν.1 w', (hw' w' h).2⟩),
     Units.coe_prod, Finset.prod_congr rfl (fun w' h => by rw [hν.2.1 w', (hw' w' h).1]), Finset.prod_const, hcard,
     ← Complex.cpow_nat_mul]
   congr 1

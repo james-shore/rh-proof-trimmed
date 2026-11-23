@@ -75,14 +75,9 @@ theorem homEquiv_symm_mul' (φ : S' ⟶ S) (X : Over S') (A : Over S) [GrpObj A]
   apply ((Over.mapPullbackAdj φ).homEquiv X A).injective
   rw [homEquiv_mul', Equiv.apply_symm_apply, Equiv.apply_symm_apply, Equiv.apply_symm_apply]
 
-theorem homEquiv_left' (t : S' ⟶ S) {Y : Over S'} {A : Over S} (k : (Over.map t).obj Y ⟶ A) :
-    ((Over.mapPullbackAdj t).homEquiv Y A k).left ≫ pullback.fst A.hom t = k.left := by
-  rw [Over.mapPullbackAdj, Adjunction.mkOfHomEquiv_homEquiv]
-  exact pullback.lift_fst _ _ _
-
 theorem homEquiv_symm_left' (t : S' ⟶ S) {Y : Over S'} {A : Over S} (q : Y ⟶ (Over.pullback t).obj A) :
     (((Over.mapPullbackAdj t).homEquiv Y A).symm q).left = q.left ≫ pullback.fst A.hom t := by
-  have := homEquiv_left' t (((Over.mapPullbackAdj t).homEquiv Y A).symm q)
+  have := _root_.GlobalTheory.ZJ.GenericTorus.homEquiv_left t (((Over.mapPullbackAdj t).homEquiv Y A).symm q)
   rw [Equiv.apply_symm_apply] at this
   exact this.symm
 
@@ -143,7 +138,7 @@ def red (e : ℕ) (x : Over.mk (Spec.map φ) ⟶ G) : lvl hI e ⟶ thickObj R I 
 
 theorem red_fst (e : ℕ) (x : Over.mk (Spec.map φ) ⟶ G) :
     (red hI e x).left ≫ pullback.fst G.hom (thick R I e) = thick B (maximalIdeal B) e ≫ x.left :=
-  homEquiv_left' _ _
+  _root_.GlobalTheory.ZJ.GenericTorus.homEquiv_left _ _
 
 theorem red_snd (e : ℕ) (x : Over.mk (Spec.map φ) ⟶ G) :
     (red hI e x).left ≫ pullback.snd G.hom (thick R I e) = lev I φ hI e :=

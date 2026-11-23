@@ -189,10 +189,7 @@ theorem sum_conv {ι ι' : Type} [Fintype ι] [Fintype ι'] (k : ι → ℤ) (k'
 variable {l : ℕ} [Fact l.Prime] {P : LocPrime l} {AI : LocAinf l P} (T : LocTied l P AI)
 include T
 
-theorem isField_dR : IsField P.R.BdR := by
-  obtain ⟨C, -⟩ := GlobalTheory.MemLoc.FitsEx.exists_fits l P AI T
-  obtain ⟨_, _, -, -, -, -, _⟩ := GlobalTheory.MemLoc.BdRDVR.core_dvr l C
-  exact T.eD.toMulEquiv.isField (IsFractionRing.toField (K := Per.BdR l) (Per.BdRp l)).toIsField
+alias isField_dR := _root_.GlobalTheory.Per.FontaineBound.isField_of_tied
 
 theorem inv_t_mem (K : FinExt l) (u : P.R.BdR) (hu : (P.PD K).ι (P.PD K).t * u = 1) :
     u ∈ (P.PD K).Fil (-1) := by
@@ -217,7 +214,7 @@ theorem isDR_of_spans (h : Spans (P.PD K) ρ) : IsDR (P.PD K) ρ := by
   obtain ⟨h1, h2⟩ := GlobalTheory.T.concretePeriod_deRham_module_finrank_le l P AI T K LL V ρ
   exact le_antisymm h2 (GlobalTheory.DRFil.finrank_mul_le_finrank_DdR_of_spans (P.PD K) ρ h1 h)
 
-theorem filSpans (h : IsDR (P.PD K) ρ) : FilSpans (P.PD K) ρ := GlobalTheory.T.deRham_comparison_isFiltered l P AI T K LL V ρ h
+theorem filSpans (h : IsDR (P.PD K) ρ) : FilSpans (P.PD K) ρ := _root_.GlobalTheory.DRFil.deRham_filtered l P AI T K LL V ρ h
 
 theorem crys (h : IsCrys (P.PD K) ρ) : IsDR (P.PD K) ρ ∧ ∀ y ∈ DdR (P.PD K) ρ,
     ∃ (m : ℕ) (c : Fin m → ↥K.1) (x : Fin m → V ⊗[ℚ_[l]] P.R.B), (∀ i, x i ∈ Dcris (P.PD K) ρ) ∧

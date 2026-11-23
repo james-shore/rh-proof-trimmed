@@ -52,7 +52,7 @@ namespace GlobalTheory.BiTransfer
 theorem isBiTheta_act_left : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (A S A' : HSp D) (χA χS : (AE D)ˣ →* Circle) (oma : Om A S), IsWeilDatumO ψ A S χA χS oma → ∀ C, IsBiTheta ψ A S A' C → ∀ p, IsBiTheta ψ A S A' fun u v => oma p (fun u' => C u' v) u := by
   intro D ψ A S A' χA χS oma H C hC p
   let d := sumDec A (GlobalTheory.ChiGrid.negSp A')
-  have h := (GlobalTheory.T.weil_operator_commutes_superposition_slices_source D ψ _ A _ S d χA χS oma H _ (isThetaFunO_join d hC) Unit 0 (fun _ => 0) (fun _ => 0)
+  have h := (_root_.GlobalTheory.WeilSuperpos.weil_comm_superpos D ψ _ A _ S d χA χS oma H _ (isThetaFunO_join d hC) Unit 0 (fun _ => 0) (fun _ => 0)
     measurable_const (integrable_zero _ _ _) p).1
   simp only [join_symm] at h
   exact isBiTheta_of_join d h

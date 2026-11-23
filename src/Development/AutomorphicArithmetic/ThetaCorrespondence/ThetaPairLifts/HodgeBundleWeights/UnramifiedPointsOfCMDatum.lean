@@ -72,7 +72,7 @@ theorem unramified_points_of_CMDatum : _root_.GlobalTheory.CovTop.PublishedHodge
     have : 2 * l.M' * H.d ∣ 2 * H.d * (discr E).natAbs * l.M' :=
       ⟨(discr E).natAbs, by ring⟩
     exact h.trans this
-  obtain ⟨F', _, hdisc, hcurve⟩ := _root_.GlobalTheory.T.unramified_curve_field_existence hP E H l.M' q h3 hq hqd
+  obtain ⟨F', _, hdisc, hcurve⟩ := _root_.GlobalTheory.RefSum.UnramCurveField.exists_unramified_curve_over_field hP E H l.M' q h3 hq hqd
   let K : IntermediateField ℚ ℂ := c.F ⊔ F'
   haveI : FiniteDimensional ℚ K := IntermediateField.finiteDimensional_sup _ _
   haveI : NumberField K := ⟨⟩
@@ -86,9 +86,3 @@ theorem unramified_points_of_CMDatum : _root_.GlobalTheory.CovTop.PublishedHodge
 end GlobalTheory.UnramCM
 end
 
-section
-open GlobalTheory.IndefiniteRowSideFullHecke.DifferentConjugateDefects NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.FlatTw GlobalTheory.SlopeRec GlobalTheory.CovTop GlobalTheory.BigTop GlobalTheory.RefSum
-
-theorem _root_.GlobalTheory.T.cm_points_unramified : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l), 1 ≤ Dw.p + Dw.q → (Dw.p = 0 ∨ Dw.q = 0 ∨ (3 ≤ Dw.p + Dw.q ∧ (∃ D₁ : Datum H, D₁.p = 1 ∧ D₁.q = 0))) → (∀ p : ℕ, p.Prime → l.GoodAt p) → UnramPts Xo c (badPrimes H l) := by
-  first | exact @_root_.GlobalTheory.UnramCM.unramified_points_of_CMDatum | exact _root_.GlobalTheory.UnramCM.unramified_points_of_CMDatum | (intros; apply _root_.GlobalTheory.UnramCM.unramified_points_of_CMDatum <;> assumption)
-end

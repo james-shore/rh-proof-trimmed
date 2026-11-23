@@ -89,10 +89,7 @@ theorem fermat {p : ℕ} [hp : Fact p.Prime] (r : ℚ) (hr : ‖(r : ℚ_[p])‖
 
 variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F]
 
-theorem tp_mul {a b : F} (ha : TP a) (hb : TP b) : TP (a * b) := fun v => by
-  rw [reAt_eq, map_mul, Pi.mul_apply, ← reAt_eq, ← reAt_eq]; exact mul_pos (ha v) (hb v)
-
-theorem tp_one : TP (1 : F) := fun v => by rw [reAt_eq, map_one]; exact one_pos
+alias tp_one := _root_.GlobalTheory.HilbertThetaSeries.CmpP.tp_one
 
 theorem stab_one (g : GL (Fin 2) (Af F)) : Stab g (1 : GL (Fin 2) F) :=
   ⟨by simpa using (tp_one : TP (1 : F)), 1, 1, (KLev F 2 1).one_mem, by simp⟩
@@ -101,7 +98,7 @@ theorem stab_mul (g : GL (Fin 2) (Af F)) (γ γ' : GL (Fin 2) F) (h : Stab g γ)
   obtain ⟨ht, z, u, hu, he⟩ := h
   obtain ⟨ht', z', u', hu', he'⟩ := h'
   refine ⟨?_, z' * z, u * u', (KLev F 2 1).mul_mem hu hu', ?_⟩
-  · rw [Units.val_mul, Matrix.det_mul]; exact tp_mul ht ht'
+  · rw [Units.val_mul, Matrix.det_mul]; exact _root_.GlobalTheory.HilbertThetaSeries.CmpP.tp_mul ht ht'
   · rw [map_mul, mul_assoc, he', ← mul_assoc, ← mul_assoc, ← scal_comm, mul_assoc (Matrix.GeneralLinearGroup.scalar (Fin 2) z'), he, map_mul]
     simp only [mul_assoc]
 
@@ -140,7 +137,7 @@ open GlobalTheory.HilbertThetaSeries.GaussSumOrbitFiniteness in
 theorem orbit_seed_finite_congr : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (p : ℕ) [Fact p.Prime] (ι : Qbar p ≃+* ℂ), p ≠ 2 → ∀ δ : F, IsDel p δ → ∀ θ : Hn F → ℂ, Seed ι δ θ → ∀ y : (Af F)ˣ, AtP p δ y → {f | ∃ γ, Stab (aff y 0) γ ∧ f = sl (p - 1) (toInf γ) θ}.Finite ∧ (∀ γ, Stab (aff y 0) γ → ∀ γ', InG p δ γ' → Small ι (p : ℝ)⁻¹ (sl0 (p - 1) (toInf γ') (sl (p - 1) (toInf γ) θ) - 1)) ∧ Stab (aff y 0) (1 : GL (Fin 2) F) ∧ ∀ γ γ' : GL (Fin 2) F, Stab (aff y 0) γ → Stab (aff y 0) γ' → Stab (aff y 0) (γ * γ') ∧ Stab (aff y 0) γ⁻¹ := by
   intro F _ _ _ p _ ι hp2 δ hδ θ hθ y hy
   have hk : Even (p - 1) := (Fact.out : p.Prime).even_sub_one hp2
-  obtain ⟨-, hsl, hscal, htS, -⟩ := GlobalTheory.T.hilbert_slash_rational_matrix_properties F (p - 1) θ
+  obtain ⟨-, hsl, hscal, htS, -⟩ := _root_.GlobalTheory.HilbertThetaSeries.RatSlash.rat_slash F (p - 1) θ
   have hpos : ∀ γ : GL (Fin 2) F, TP γ.val.det → Pos (toInf γ) := fun γ h => (hsl γ).1.mpr h
 
   have hsc : ∀ (η : Fˣ) (γ : GL (Fin 2) F), TP γ.val.det →
@@ -151,7 +148,7 @@ theorem orbit_seed_finite_congr : ∀ (F : Type) [Field F] [NumberField F] [IsTo
   refine ⟨?_, ?_, stab_one _, fun γ γ' h h' => ⟨stab_mul _ γ γ' h h', stab_inv _ γ h⟩⟩
   ·
     obtain ⟨N, hN, hlev⟩ := hθ.lev
-    obtain ⟨T, hT, hcov⟩ := GlobalTheory.T.stabilizer_eq_scalar_mul_congruence_mul_finset F (aff y 0) N hN
+    obtain ⟨T, hT, hcov⟩ := _root_.GlobalTheory.HilbertThetaSeries.StabFin.finite_index F (aff y 0) N hN
     refine ((Polynomial.nthRoots 8 (1 : ℂ)).toFinset.finite_toSet.image2
       (fun ζ τ => ζ • sl (p - 1) (toInf τ) θ) T.finite_toSet).subset ?_
     rintro f ⟨γ, hγ, rfl⟩
@@ -174,7 +171,7 @@ theorem orbit_seed_finite_congr : ∀ (F : Type) [Field F] [NumberField F] [IsTo
   ·
     intro γ hγ γ' hγ'
     obtain ⟨htp, z, u, hu, he⟩ := hγ
-    obtain ⟨hmulG, -, hcmp⟩ := GlobalTheory.T.exists_inG_scalar_mul_and_abs_norm_det_mul_absF_eq F p δ hδ
+    obtain ⟨hmulG, -, hcmp⟩ := _root_.GlobalTheory.HilbertThetaSeries.CmpP.compare_at_p F p δ hδ
     obtain ⟨η, r, hG, hr0, hr1, hnorm⟩ := hcmp y y z γ u hy hy htp hu he
     set γ₁ := Matrix.GeneralLinearGroup.scalar (Fin 2) η * γ with hγ₁
     have hN : |((Algebra.norm ℚ γ₁.val.det : ℚ) : ℝ)| = (r : ℝ) ^ 2 :=
@@ -199,11 +196,11 @@ theorem orbit_seed_finite_congr : ∀ (F : Type) [Field F] [NumberField F] [IsTo
     have hc1 : ‖ι.symm (c - 1)‖ ≤ (p : ℝ)⁻¹ := by
       have : c - 1 = (((r ^ (p - 1) - 1 : ℚ)) : ℂ) := by rw [hc]; push_cast; ring
       rw [this, norm_rat]; push_cast; exact fermat r hr1
-    obtain ⟨-, -, hA, -, -, -⟩ := GlobalTheory.T.hilbertQExp_padicBound_algebra_properties F p ι _ _ _ _ c hS hS
-    obtain ⟨-, -, -, -, -, hB⟩ := GlobalTheory.T.hilbertQExp_padicBound_algebra_properties F p ι _ _ _ _ (c - 1) hS hS
-    obtain ⟨hsum, -, -, -, -, -⟩ := GlobalTheory.T.hilbertQExp_padicBound_algebra_properties F p ι _ _ _ _ 0 hA hB
+    obtain ⟨-, -, hA, -, -, -⟩ := _root_.GlobalTheory.HilbertThetaSeries.small_filtration F p ι _ _ _ _ c hS hS
+    obtain ⟨-, -, -, -, -, hB⟩ := _root_.GlobalTheory.HilbertThetaSeries.small_filtration F p ι _ _ _ _ (c - 1) hS hS
+    obtain ⟨hsum, -, -, -, -, -⟩ := _root_.GlobalTheory.HilbertThetaSeries.small_filtration F p ι _ _ _ _ 0 hA hB
     rw [e2]
-    refine (GlobalTheory.T.hilbertQExp_padicBound_algebra_properties F p ι _ _ _ _ 0 hsum hS).2.2.2.1 ?_
+    refine (_root_.GlobalTheory.HilbertThetaSeries.small_filtration F p ι _ _ _ _ 0 hsum hS).2.2.2.1 ?_
     rw [hcn, one_mul]
     exact max_le le_rfl hc1
 
@@ -212,5 +209,3 @@ end GlobalTheory.HilbertThetaSeries
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Af UpperTheory.V.Sd GlobalTheory.HilbertThetaSeries
 open scoped Matrix
 
-theorem _root_.GlobalTheory.T.hilbert_seed_orbit_finite_and_congruence : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (p : ℕ) [Fact p.Prime] (ι : Qbar p ≃+* ℂ), p ≠ 2 → ∀ δ : F, IsDel p δ → ∀ θ : Hn F → ℂ, Seed ι δ θ → ∀ y : (Af F)ˣ, AtP p δ y → {f | ∃ γ, Stab (aff y 0) γ ∧ f = sl (p - 1) (toInf γ) θ}.Finite ∧ (∀ γ, Stab (aff y 0) γ → ∀ γ', InG p δ γ' → Small ι (p : ℝ)⁻¹ (sl0 (p - 1) (toInf γ') (sl (p - 1) (toInf γ) θ) - 1)) ∧ Stab (aff y 0) (1 : GL (Fin 2) F) ∧ ∀ γ γ' : GL (Fin 2) F, Stab (aff y 0) γ → Stab (aff y 0) γ' → Stab (aff y 0) (γ * γ') ∧ Stab (aff y 0) γ⁻¹ := by
-  first | exact @GlobalTheory.HilbertThetaSeries.orbit_seed_finite_congr | exact GlobalTheory.HilbertThetaSeries.orbit_seed_finite_congr | (intros; apply GlobalTheory.HilbertThetaSeries.orbit_seed_finite_congr <;> assumption)

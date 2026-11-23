@@ -86,7 +86,7 @@ theorem diag_eig_le_of_cas_min : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (
     have hd := GlobalTheory.T.blockCasimir_eigenvalue_drops_offBlock ι M s F α β x ω y hGl hq hfalse htrue hcas j hj
     obtain ⟨U, hU, hUU⟩ := hLoc {∑ b, F j b (y b)}
     have hzU : ∑ b, F j b (y b) ∈ U := hU _ (Finset.mem_singleton_self _)
-    have him := ((GlobalTheory.T.blockDiagonalFibreCasimir_eigen_nonneg_real_unitary ι M s F U hUU).1 _ _ hzU hzj hd).1
+    have him := ((_root_.GlobalTheory.HoweR.cas_diag_unitOn ι M s F U hUU).1 _ _ hzU hzj hd).1
     set c : ℂ := (ω : ℂ) - 4 * x + 2 * α + ((Finset.univ.filter fun a => s a = true).card : ℂ)
       - ((Finset.univ.filter fun a => s a = false).card : ℂ) with hc
     have hcre : c = ((c.re : ℝ) : ℂ) := Complex.ext (by simp) (by simp [him])

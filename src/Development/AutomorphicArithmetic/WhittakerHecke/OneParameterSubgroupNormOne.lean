@@ -103,10 +103,6 @@ private theorem cv_sum (x : Cinf E) : ∑ τ : E →+* ℂ, coord τ x = ∑ w :
   unfold coord
   simp [hne.symm]
 
-private theorem cv_det {m : ℝ → Matrix (Fin a) (Fin a) ℂ} {Y : Matrix (Fin a) (Fin a) ℂ} (h0 : m 0 = 1)
-    (hd : ∀ i j, HasDerivAt (fun s => m s i j) (Y i j) 0) : HasDerivAt (fun s => (m s).det) (∑ i, Y i i) 0 :=
-  _root_.UpperTheory.Reformulated.B.MovedPointDeterminant.cv_det h0 hd
-
 end
 
 theorem UpperTheory.one_parameter_subgroup_norm_one :
@@ -118,7 +114,7 @@ theorem UpperTheory.one_parameter_subgroup_norm_one :
   obtain ⟨c, h0, hadd, hc, hd, -⟩ := UpperTheory.V.Lit.Bor.oneParam E r X
   refine ⟨c, h0, hadd, hc, hd, fun s => ?_⟩
   have hD : ∀ w : InfinitePlace E, HasDerivAt (fun s => (c s).val.det w) (∑ i, X i i w) 0 := fun w => by
-    have h1 := cv_det (m := fun s => (c s).val.map fun x => x w) (Y := fun i j => X i j w)
+    have h1 := _root_.UpperTheory.Reformulated.B.MovedPointDeterminant.cv_det (m := fun s => (c s).val.map fun x => x w) (Y := fun i j => X i j w)
       (by rw [h0]; ext i j; by_cases h : i = j <;> simp [Matrix.one_apply, h])
       fun i j => hasDerivAt_pi.1 (hasDerivAt_pi.1 (hasDerivAt_pi.1 hd i) j) w
     refine h1.congr_of_eventuallyEq (Filter.Eventually.of_forall fun s => ?_)

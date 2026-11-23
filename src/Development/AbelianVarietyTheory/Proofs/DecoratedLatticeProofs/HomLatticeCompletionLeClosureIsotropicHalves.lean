@@ -93,12 +93,6 @@ theorem sum_splitIdem_eq {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace
     refine Finset.sum_eq_zero fun i _ => ?_
     exact hα0 i w fun hv => hw ((h.mem w).2 ⟨i, hv⟩)
 
-theorem isSplitIdem_cA {e : AE D} (he : IsSplitIdem D e) : IsSplitIdem D (cA D e) := by
-  obtain ⟨h1, h2, v, ε, hε, hsum⟩ := he
-  refine ⟨by rw [← map_mul, h1], ?_, v, ε, hε, ?_⟩
-  · rw [GlobalTheory.DualPairCheck.cA_cA, mul_comm, h2]
-  · rw [GlobalTheory.DualPairCheck.cA_cA, add_comm, hsum]
-
 theorem smul_mem_halves {S T : HSp D} {LS : Set (Fin S.rank → D.host.E)} {LT : Set (Fin T.rank → D.host.E)}
     {P : Pl D → Prop} {e : AE D} (he : IsSplitIdem D e) {u : WO S T} (hu : u ∈ latO S T LS LT P) :
     e • u ∈ {x | x ∈ latO S T LS LT P ∧ ∃ e, IsSplitIdem D e ∧ IsHalf e x} := by
@@ -133,6 +127,6 @@ theorem latO_le_closure_halves : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel
   refine AddSubgroup.list_sum_mem _ fun x hx => ?_
   obtain ⟨i, -, rfl⟩ := List.mem_map.1 hx
   exact add_mem (AddSubgroup.subset_closure (smul_mem_halves (p i).split hu))
-    (AddSubgroup.subset_closure (smul_mem_halves (isSplitIdem_cA (p i).split) hu))
+    (AddSubgroup.subset_closure (smul_mem_halves (_root_.GlobalTheory.SplitScalar.isSplitIdem_conj (p i).split) hu))
 
 end GlobalTheory.HalfGen

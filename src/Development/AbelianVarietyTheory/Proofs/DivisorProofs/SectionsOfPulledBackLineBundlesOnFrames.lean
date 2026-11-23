@@ -49,11 +49,6 @@ open GlobalTheory GlobalTheory.FlagMod GlobalTheory.FlagPlucker
 
 namespace GlobalTheory.FlagPlucker
 
-theorem det_mul_eq_sum_fun {R : Type} [CommRing R] {i N : ℕ} (A : Matrix (Fin i) (Fin N) R)
-    (B : Matrix (Fin N) (Fin i) R) :
-    (A * B).det = ∑ f : Fin i → Fin N, (∏ a, A a (f a)) * (B.submatrix f id).det :=
-  _root_.GlobalTheory.DeterminantProductExpansion.main A B
-
 theorem exists_sum_minors_eq_one {R : Type} [CommRing R] {n k d : ℕ} (hd : d ≤ k) (A : Matrix (Fin n) (Fin k) R)
     (B : Matrix (Fin k) (Fin n) R) (hBA : B * A = 1) :
     ∃ c : (Fin d → Fin n) → R, ∑ r, c r * (A.submatrix r (Fin.castLE hd)).det = 1 := by
@@ -62,7 +57,7 @@ theorem exists_sum_minors_eq_one {R : Type} [CommRing R] {n k d : ℕ} (hd : d �
       Matrix.submatrix_one _ (Fin.castLE_injective _)]
   refine ⟨fun r => ∏ a, B (Fin.castLE hd a) (r a), ?_⟩
   have := congrArg Matrix.det e
-  rw [det_mul_eq_sum_fun, Matrix.det_one] at this
+  rw [_root_.GlobalTheory.DeterminantProductExpansion.det_mul_expand, Matrix.det_one] at this
   exact this
 
 end GlobalTheory.FlagPlucker

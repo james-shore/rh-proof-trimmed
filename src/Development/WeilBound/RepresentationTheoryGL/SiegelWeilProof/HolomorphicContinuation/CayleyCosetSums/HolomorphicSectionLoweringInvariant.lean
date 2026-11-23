@@ -94,18 +94,13 @@ theorem low_blocks (R : Matrix (Fin n) (Fin n) ℂ) :
 
 def raiseR (S : Matrix (Fin n) (Fin n) ℂ) : M2 n := mX 1 0 S 1 - 1
 
-private theorem Cm_mul_Cmi : Cm n * Cmi n = 1 := by
-  unfold Cm Cmi
-  rw [Matrix.fromBlocks_multiply, ← Matrix.fromBlocks_one]
-  congr 1 <;> ext i j <;> simp [Matrix.one_apply] <;> split_ifs <;> ring_nf <;> simp [Complex.I_sq] <;> ring
-
 theorem raise_eq (S : Matrix (Fin n) (Fin n) ℂ) : raiseR S = Cm n * fromBlocks 0 0 S 0 * Cmi n := by
-  have hinv : (Cm n)⁻¹ = Cmi n := Matrix.inv_eq_right_inv Cm_mul_Cmi
+  have hinv : (Cm n)⁻¹ = Cmi n := Matrix.inv_eq_right_inv _root_.PositivityTheory.Rg.Sw.LVs.cm_mul_cmi
   have hb : (fromBlocks 1 0 S 1 : M2 n) = fromBlocks 0 0 S 0 + 1 := by
     rw [← Matrix.fromBlocks_one, Matrix.fromBlocks_add]
     simp
   unfold raiseR mX
-  rw [hinv, hb, Matrix.mul_add, Matrix.add_mul, Matrix.mul_one, Cm_mul_Cmi, add_sub_cancel_right]
+  rw [hinv, hb, Matrix.mul_add, Matrix.add_mul, Matrix.mul_one, _root_.PositivityTheory.Rg.Sw.LVs.cm_mul_cmi, add_sub_cancel_right]
 
 theorem raise_blocks (S : Matrix (Fin n) (Fin n) ℂ) :
     raiseR S = fromBlocks ((-1 / 2 : ℂ) • S) ((-Complex.I / 2) • S) ((-Complex.I / 2) • S) ((1 / 2 : ℂ) • S) := by

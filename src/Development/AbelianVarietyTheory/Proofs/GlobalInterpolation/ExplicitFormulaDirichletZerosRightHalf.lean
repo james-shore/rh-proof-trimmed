@@ -63,11 +63,8 @@ namespace GlobalTheory.ExplicitFormulaRight
 
 open GlobalTheory.Mem.An
 
-theorem zfin {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (t T : ℝ) :
-    (zerosIn χ t T).Finite := (ZeroWindow.finite_and_one_le_zmult q χ t T).1
-
 theorem zsumR_eq {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (t T : ℝ) (f : ℂ → ℝ) :
-    zsumR χ t T f = ∑ ρ ∈ (zfin χ t T).toFinset, (zmult χ ρ : ℝ) * f ρ :=
+    zsumR χ t T f = ∑ ρ ∈ (_root_.GlobalTheory.Mem.An.ZeroWindow.finite_zeros χ t T).toFinset, (zmult χ ρ : ℝ) * f ρ :=
   finsum_mem_eq_finite_toFinset_sum _ _
 
 theorem recip_bound : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q),
@@ -88,7 +85,7 @@ theorem recip_bound : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q] (χ : Diri
         ((q : ℝ) ^ 2 * Real.log (3 * q) / c) * zsumR χ 0 1 (fun _ => 1) := by
       rw [zsumR_eq, zsumR_eq, Finset.mul_sum]
       refine Finset.sum_le_sum fun ρ hρ => ?_
-      obtain ⟨r0, r1, ri, rz⟩ := (zfin χ 0 1).mem_toFinset.mp hρ
+      obtain ⟨r0, r1, ri, rz⟩ := (_root_.GlobalTheory.Mem.An.ZeroWindow.finite_zeros χ 0 1).mem_toFinset.mp hρ
       have hz := ((zeros_symm_one_sub q χ hχ ρ r0 r1).1).mp rz
       have hne : (1 - ρ) ≠ 1 := by
         intro h
@@ -116,7 +113,7 @@ theorem recip_bound : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q] (χ : Diri
   have hB : zsumR χ 0 T (fun ρ => 1 / ‖ρ‖) ≤ zsumR χ 0 1 (fun ρ => 1 / ‖ρ‖) +
       zsumR χ 0 T (fun ρ => if 1 < |ρ.im| then 1 / ‖ρ‖ else 0) := by
     rw [zsumR_eq, zsumR_eq, zsumR_eq]
-    have e : (zfin χ 0 1).toFinset = (zfin χ 0 T).toFinset.filter (fun ρ => ¬ 1 < |ρ.im|) := by
+    have e : (_root_.GlobalTheory.Mem.An.ZeroWindow.finite_zeros χ 0 1).toFinset = (_root_.GlobalTheory.Mem.An.ZeroWindow.finite_zeros χ 0 T).toFinset.filter (fun ρ => ¬ 1 < |ρ.im|) := by
       ext ρ
       simp only [Set.Finite.mem_toFinset, Finset.mem_filter, zerosIn, Set.mem_setOf_eq, sub_zero,
         not_lt]
@@ -143,8 +140,8 @@ theorem left_zeros {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (u T : �
     ‖zsum χ 0 T (fun ρ => (u : ℂ) ^ ρ / ρ) -
       ∑ᶠ ρ ∈ zerosBox χ (1 / 2) T, (ord χ ρ : ℂ) * ((u : ℂ) ^ ρ / ρ)‖ ≤
       Real.sqrt u * zsumR χ 0 T (fun ρ => 1 / ‖ρ‖) := by
-  have hf := (zfin χ 0 T).subset (box_subset χ T)
-  have e : hf.toFinset = (zfin χ 0 T).toFinset.filter (fun ρ => 1 / 2 ≤ ρ.re) := by
+  have hf := (_root_.GlobalTheory.Mem.An.ZeroWindow.finite_zeros χ 0 T).subset (box_subset χ T)
+  have e : hf.toFinset = (_root_.GlobalTheory.Mem.An.ZeroWindow.finite_zeros χ 0 T).toFinset.filter (fun ρ => 1 / 2 ≤ ρ.re) := by
     ext ρ
     simp only [Set.Finite.mem_toFinset, Finset.mem_filter]
     constructor
@@ -152,7 +149,7 @@ theorem left_zeros {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (u T : �
       exact ⟨box_subset χ T h, h.1⟩
     · rintro ⟨⟨_, b, c, d⟩, a⟩
       exact ⟨a, b, by simpa using c, d⟩
-  rw [zsumR_eq, zsum, finsum_mem_eq_finite_toFinset_sum _ (zfin χ 0 T),
+  rw [zsumR_eq, zsum, finsum_mem_eq_finite_toFinset_sum _ (_root_.GlobalTheory.Mem.An.ZeroWindow.finite_zeros χ 0 T),
     finsum_mem_eq_finite_toFinset_sum _ hf, e, Finset.sum_filter, ← Finset.sum_sub_distrib,
     Finset.mul_sum]
   refine norm_sum_le_of_le _ fun ρ _ => ?_
@@ -251,7 +248,7 @@ theorem explicit_formula_right : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q]
   obtain ⟨A, HA⟩ := GlobalTheory.T.norm_psi0_add_zsum_le
   obtain ⟨B, hB, HB⟩ := recip_bound
   refine ⟨2 + |A| * (2 + B) + 2 * B, by positivity, fun q _ χ u T hT hu => ?_⟩
-  refine ⟨(zfin χ 0 T).subset (box_subset χ T), ?_⟩
+  refine ⟨(_root_.GlobalTheory.Mem.An.ZeroWindow.finite_zeros χ 0 T).subset (box_subset χ T), ?_⟩
   haveI : NeZero χ.conductor := ⟨χ.conductor_ne_zero⟩
   have hprim := χ.primitiveCharacter_isPrimitive
   have hN : (1 : ℝ) ≤ χ.conductor := by
@@ -267,7 +264,7 @@ theorem explicit_formula_right : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q]
   have hcmp : ∀ ρ : ℂ, 1 / 2 ≤ ρ.re → ρ.re < 1 →
       (LFunction χ ρ = 0 ↔ LFunction χ.primitiveCharacter ρ = 0) ∧
         ord χ ρ = ord χ.primitiveCharacter ρ := fun ρ a b =>
-    GlobalTheory.T.dirichletL_zeros_eq_primitiveCharacter_zeros q χ ρ (by linarith) (Or.inr (by rintro rfl; simp at b))
+    _root_.GlobalTheory.Lin.zeros_eq_zeros_primitiveCharacter q χ ρ (by linarith) (Or.inr (by rintro rfl; simp at b))
   have hbox : zerosBox χ (1 / 2) T = zerosBox χ.primitiveCharacter (1 / 2) T := by
     ext ρ
     constructor

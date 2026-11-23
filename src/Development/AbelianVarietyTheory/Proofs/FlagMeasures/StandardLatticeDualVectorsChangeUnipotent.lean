@@ -67,16 +67,6 @@ theorem hL_neg (x y : V) : H.h (-x) y = - H.h x y := by
   rw [add_neg_cancel, H.h_zero_left] at this
   linear_combination -this
 
-theorem hL_sub (x x' y : V) : H.h (x - x') y = H.h x y - H.h x' y := by
-  rw [sub_eq_add_neg, H.h_add_left, hL_neg]; ring
-
-theorem hL_sum {ι : Type} (s : Finset ι) (c : ι → E) (v : ι → V) (y : V) :
-    H.h (∑ i ∈ s, c i • v i) y = ∑ i ∈ s, c i * H.h (v i) y := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simp [H.h_zero_left]
-  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, H.h_add_left, H.h_smul_left, ih]
-
 theorem h_symm_zero {x y : V} (h : H.h y x = 0) : H.h x y = 0 := by
   rw [H.h_herm y x, h, map_zero]
 
@@ -119,7 +109,7 @@ theorem prF_smul (c : E) (x : V) : A.prF (c • x) = c • A.prF x := by
 
 theorem prF_sub (x y : V) : A.prF (x - y) = A.prF x - A.prF y := by
   unfold FrameD.prF
-  simp only [hL_sub, sub_smul, Finset.sum_sub_distrib]; abel
+  simp only [_root_.Formalism.MainNotions.BridgeLemma.h_sub_left, sub_smul, Finset.sum_sub_distrib]; abel
 
 def swapFun (x : V) : V :=
   ∑ a, H.h x (A.es a) • A.e a + A.prF x + ∑ a, H.h x (A.e a) • B.es a -
@@ -153,7 +143,7 @@ theorem h_esB_e (a b : Fin r) : H.h (B.es a) (A.e b) = if b = a then 1 else 0 :=
 theorem swap_es (x : V) (b : Fin r) : H.h (swapMap A B x) (B.es b) = H.h x (A.es b) := by
   rw [swapMap_apply]
   unfold swapFun
-  rw [hL_sub, H.h_add_left, H.h_add_left, hL_sum, hL_sum, hL_sum]
+  rw [_root_.Formalism.MainNotions.BridgeLemma.h_sub_left, H.h_add_left, H.h_add_left, _root_.Formalism.MainNotions.BridgeLemma.h_sum_left, _root_.Formalism.MainNotions.BridgeLemma.h_sum_left, _root_.Formalism.MainNotions.BridgeLemma.h_sum_left]
   simp only [h_e_esB A B hf, B.h_ss, mul_zero, Finset.sum_const_zero, add_zero, mul_ite, mul_one,
     Finset.sum_ite_eq', Finset.sum_ite_eq, Finset.mem_univ, if_true]
   ring
@@ -161,7 +151,7 @@ theorem swap_es (x : V) (b : Fin r) : H.h (swapMap A B x) (B.es b) = H.h x (A.es
 theorem swap_e (x : V) (b : Fin r) : H.h (swapMap A B x) (A.e b) = H.h x (A.e b) := by
   rw [swapMap_apply]
   unfold swapFun
-  rw [hL_sub, H.h_add_left, H.h_add_left, hL_sum, hL_sum, hL_sum]
+  rw [_root_.Formalism.MainNotions.BridgeLemma.h_sub_left, H.h_add_left, H.h_add_left, _root_.Formalism.MainNotions.BridgeLemma.h_sum_left, _root_.Formalism.MainNotions.BridgeLemma.h_sum_left, _root_.Formalism.MainNotions.BridgeLemma.h_sum_left]
   have hee : ∀ a, H.h (A.e a) (A.e b) = 0 := fun a => A.h_iso _ _ (Or.inl (Fin.castSucc_lt_last a).ne)
   simp only [hee, ng_prF_e, h_esB_e A B hf, mul_zero, Finset.sum_const_zero, add_zero, zero_add, mul_ite, mul_one,
     Finset.sum_ite_eq', Finset.sum_ite_eq, Finset.mem_univ, if_true, sub_zero]
@@ -243,11 +233,11 @@ theorem swap_inv (hf : B.f = A.f) (x : V) : swapMap B A (swapMap A B x) = x := b
   rw [← sub_eq_zero]
   apply eq_zero_of A
   · intro b
-    rw [hL_sub, swap_es B A hf', swap_es A B hf, sub_self]
+    rw [_root_.Formalism.MainNotions.BridgeLemma.h_sub_left, swap_es B A hf', swap_es A B hf, sub_self]
   · intro b
     have h1 := swap_e B A hf' (swapMap A B x) b
     rw [← e_eq B A hf'] at h1
-    rw [hL_sub, h1, swap_e A B hf, sub_self]
+    rw [_root_.Formalism.MainNotions.BridgeLemma.h_sub_left, h1, swap_e A B hf, sub_self]
   · have h1 := swap_prF_mem B A hf' (swapMap A B x)
     have h2 := swap_prF_mem A B hf x
     rw [hf'] at h2

@@ -53,26 +53,13 @@ open scoped TensorProduct
 
 namespace GlobalTheory
 
-theorem pow_mem_range_includeRight_of_isPurelyInseparable (k K B : Type) [Field k] [Field K]
-    [Algebra k K] [IsPurelyInseparable k K] [CommRing B] [Nontrivial B] [Algebra k B]
-    (q : ℕ) [ExpChar k q] (z : K ⊗[k] B) :
-    ∃ n : ℕ, z ^ q ^ n ∈
-      (Algebra.TensorProduct.includeRight : B →ₐ[k] K ⊗[k] B).range := by
-  first
-  | exact @_root_.GlobalTheory.PowerInRangeTensorRight.exists_pow_pow_mem_range_includeRight
-  | exact _root_.GlobalTheory.PowerInRangeTensorRight.exists_pow_pow_mem_range_includeRight
-  | (apply _root_.GlobalTheory.PowerInRangeTensorRight.exists_pow_pow_mem_range_includeRight <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowerInRangeTensorRight.exists_pow_pow_mem_range_includeRight <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowerInRangeTensorRight.exists_pow_pow_mem_range_includeRight <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PowerInRangeTensorRight.exists_pow_pow_mem_range_includeRight ..)
-
 theorem idempotent_tensor_eq_zero_or_one_of_isPurelyInseparable (k K B : Type) [Field k] [Field K]
     [Algebra k K] [IsPurelyInseparable k K] [CommRing B] [IsLocalRing B] [Algebra k B]
     (e : K ⊗[k] B) (he : IsIdempotentElem e) : e = 0 ∨ e = 1 := by
   have hinj : Function.Injective (Algebra.TensorProduct.includeRight : B →ₐ[k] K ⊗[k] B) :=
     Algebra.TensorProduct.includeRight_injective (algebraMap k K).injective
   obtain ⟨n, b, hb⟩ :=
-    pow_mem_range_includeRight_of_isPurelyInseparable k K B (ringExpChar k) e
+    _root_.GlobalTheory.PowerInRangeTensorRight.exists_pow_pow_mem_range_includeRight k K B (ringExpChar k) e
   have hpos : ringExpChar k ^ n ≠ 0 := (pow_pos (expChar_pos k _) n).ne'
   have h1 : e ^ (ringExpChar k ^ n) = e := by
     obtain ⟨m, hm⟩ := Nat.exists_eq_succ_of_ne_zero hpos

@@ -92,20 +92,9 @@ private lemma mulVec_mem_spanLt' {n r : ℕ} {e : Fin r → Fin n → ℂ} {A : 
   intro y hy
   exact hle hy
 
-private lemma inN_mul' {n r : ℕ} {ε : Fin n → Bool} {e : Fin r → Fin n → ℂ} {z : Fin n → ℂ}
-    {A B : Matrix (Fin n) (Fin n) ℂ} (hA : InN ε e z A) (hB : InN ε e z B) : InN ε e z (A * B) := by
-  have key : ∀ x : Fin n → ℂ, (A * B - 1) *ᵥ x = A *ᵥ ((B - 1) *ᵥ x) + (A - 1) *ᵥ x := by
-    intro x
-    simp only [Matrix.sub_mulVec, Matrix.one_mulVec, Matrix.mulVec_sub, Matrix.mulVec_mulVec]
-    abel
-  refine ⟨⟨fun a => ?_, ?_⟩, fun y hy => ?_⟩
-  · rw [key]; exact add_mem (mulVec_mem_spanLt' hA.1.1 _ _ (hB.1.1 a)) (hA.1.1 a)
-  · rw [key]; exact add_mem (mulVec_mem_spanLt' hA.1.1 _ _ hB.1.2) hA.1.2
-  · rw [key]; exact add_mem (mulVec_mem_spanLt' hA.1.1 _ _ (hB.2 y hy)) (hA.2 y hy)
-
 theorem ninf_mul {a b : X.B.I.Ginf} (ha : a ∈ X.NinfU u) (hb : b ∈ X.NinfU u) : a * b ∈ X.NinfU u := by
   intro v
-  exact inN_mul' (ha v) (hb v)
+  exact _root_.Formalism.L2.SG.Pf.WFL.HNL.inN_mul (ha v) (hb v)
 
 private lemma mulVec_mem_spanLt_of_left_inv {n r : ℕ} {e : Fin r → Fin n → ℂ} {A Ai : Matrix (Fin n) (Fin n) ℂ}
     (hA : ∀ b : Fin r, (A - 1) *ᵥ e b ∈ spanLt e b.1) (h2 : Ai * A = 1) (a : ℕ) :
@@ -136,12 +125,9 @@ private lemma inN_of_left_inv {n r : ℕ} {ε : Fin n → Bool} {e : Fin r → F
   · rw [key]; exact neg_mem (mulVec_mem_spanLt_of_left_inv hA.1.1 h2 _ _ hA.1.2)
   · rw [key]; exact neg_mem (mulVec_mem_spanLt_of_left_inv hA.1.1 h2 _ _ (hA.2 y hy))
 
-private lemma uMat_expU_inv_mul {n : ℕ} {ε : Fin n → Bool} (g : Formalism.REAL.UJ ε) : uMat g⁻¹ * uMat g = 1 := by
-  simp [uMat]
-
 theorem ninf_inv {a : X.B.I.Ginf} (ha : a ∈ X.NinfU u) : a⁻¹ ∈ X.NinfU u := by
   intro v
-  exact inN_of_left_inv (uMat_expU_inv_mul (a v)) (ha v)
+  exact inN_of_left_inv (_root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_inv_mul (a v)) (ha v)
 
 theorem sinf_conj {a : X.B.I.Ginf} (ha : a ∈ X.SinfU u) {n : X.B.I.Ginf} (hn : n ∈ X.NinfU u) :
     a * n * a⁻¹ ∈ X.NinfU u := by
@@ -253,10 +239,6 @@ theorem eq_one_of_smul {α : Type*} [MeasurableSpace α] (μ : Measure α) [Sigm
       μ (spanningSets μ k) / μ (spanningSets μ k) := by rw [← hx]
   rwa [ENNReal.mul_div_cancel_right hk htop, ENNReal.div_self hk htop] at h3
 
-private lemma inN_one' {n r : ℕ} (ε : Fin n → Bool) (e : Fin r → Fin n → ℂ) (z : Fin n → ℂ) :
-    InN ε e z 1 :=
-  ⟨⟨fun a => by simp, by simp⟩, fun y _ => by simp⟩
-
 section Loc
 
 variable {D : D7} (X : HidaSetting D) (u : D.what₂.Word)
@@ -278,7 +260,7 @@ theorem conj_loc_of {a : X.B.I.Ginf} (ha : a ∈ X.SinfU u) (v : InfinitePlace X
     · have e : n' w = 1 := by simp [n', Function.update_of_ne hw]
       show InN _ _ _ (uMat (n' w))
       rw [e]
-      exact inN_one' _ _ _
+      exact _root_.Formalism.L2.SG.Pf.WFL.HNL.inN_one _ _ _
   have h := sinf_conj X u ha hn' v
   have e : n' v = n := by simp [n']
   show InN _ _ _ (uMat (a v * n * (a v)⁻¹))
@@ -547,15 +529,12 @@ theorem sinf_conj_iff (u : D.what₂.Word) {a : X.B.I.Ginf} (ha : a ∈ X.SinfU 
     rwa [e] at h2
   · exact sinf_conj X u ha
 
-private lemma uMat_mul_flag_measures {n : ℕ} {ε : Fin n → Bool} (g h : Formalism.REAL.UJ ε) :
-    uMat (g * h) = uMat g * uMat h := rfl
-
 variable {θ : ℝ} (C : Choice X θ) (τ : D.what₂.Tau)
 
 theorem trG_mul (x y : Formalism.REAL.UJ (X.B.I.ε (vOf X τ))) :
     trG (C.Q τ) (C.Qi τ) (x * y) = trG (C.Q τ) (C.Qi τ) x * trG (C.Q τ) (C.Qi τ) y := by
   have hQ : C.Q τ * C.Qi τ = 1 := (C.isT τ).2.1
-  simp only [trG, uMat_mul_flag_measures, Matrix.mul_assoc]
+  simp only [trG, _root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_mul, Matrix.mul_assoc]
   rw [← Matrix.mul_assoc (C.Q τ) (C.Qi τ), hQ, Matrix.one_mul]
 
 theorem trG_inv (x : Formalism.REAL.UJ (X.B.I.ε (vOf X τ))) :
@@ -566,14 +545,14 @@ theorem trG_inv (x : Formalism.REAL.UJ (X.B.I.ε (vOf X τ))) :
   apply Matrix.inv_eq_left_inv
   simp only [trG, Matrix.mul_assoc]
   rw [← Matrix.mul_assoc (C.Q τ) (C.Qi τ), hQ, Matrix.one_mul, ← Matrix.mul_assoc (uMat x⁻¹) (uMat x),
-    uMat_expU_inv_mul, Matrix.one_mul, hQi]
+    _root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_inv_mul, Matrix.one_mul, hQi]
 
 theorem cMr_trG (γ : X.B.I.Ginf) (y : Formalism.REAL.UJ (X.B.I.ε (vOf X τ))) :
     Matrix.of (Formalism.L2.SG.RealConjugatorData.cMr C γ τ y) =
       trG (C.Q τ) (C.Qi τ) ((γ (vOf X τ))⁻¹ * y * γ (vOf X τ)) := by
   show C.Qi τ * (uMat (γ (vOf X τ)))⁻¹ * uMat y * (uMat (γ (vOf X τ)) * C.Q τ) =
     trG (C.Q τ) (C.Qi τ) ((γ (vOf X τ))⁻¹ * y * γ (vOf X τ))
-  rw [trG, uMat_mul_flag_measures, uMat_mul_flag_measures, Formalism.L2.SG.RealConjugatorData.uMat_inv']
+  rw [trG, _root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_mul, _root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_mul, Formalism.L2.SG.RealConjugatorData.uMat_inv']
   simp only [Matrix.mul_assoc]
 
 private lemma trG_mem_UH {D : D7} {X : HidaSetting D} {θ : ℝ} (C : Choice X θ) (τ : D.what₂.Tau)

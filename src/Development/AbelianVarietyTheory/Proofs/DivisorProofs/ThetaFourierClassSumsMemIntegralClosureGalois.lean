@@ -68,16 +68,6 @@ def IsSum {K X : Type} [NormedAddCommGroup K] [AddCommGroup X] (m : ℕ) (t : (F
   ∀ δ : ℝ, 0 < δ → ∃ S₀ : Finset (Fin 8 → X), ∀ S : Finset (Fin 8 → X), (∀ μ ∈ S, ∀ u, CongMod m (μ u) (ν u)) →
     (∀ μ ∈ S₀, (∀ u, CongMod m (μ u) (ν u)) → μ ∈ S) → ‖v - ∑ μ ∈ S, t μ‖ ≤ δ
 
-theorem cong_symm {X : Type} [AddCommGroup X] {m : ℕ} {x y : X} (h : CongMod m x y) : CongMod m y x := by
-  obtain ⟨w, rfl⟩ := h
-  exact ⟨-w, by simp⟩
-
-theorem cong_trans {X : Type} [AddCommGroup X] {m : ℕ} {x y z : X} (h : CongMod m x y) (h' : CongMod m y z) :
-    CongMod m x z := by
-  obtain ⟨w, rfl⟩ := h
-  obtain ⟨w', rfl⟩ := h'
-  exact ⟨w' + w, by rw [smul_add, add_assoc]⟩
-
 theorem cong_map {X Y : Type} [AddCommGroup X] [AddCommGroup Y] {m : ℕ} (e : X →+ Y) {x y : X} (h : CongMod m x y) :
     CongMod m (e x) (e y) := by
   obtain ⟨w, rfl⟩ := h
@@ -92,8 +82,8 @@ theorem IsSum.unique {K X : Type} [NormedAddCommGroup K] [AddCommGroup X] {m : �
   let S := (S₀ ∪ S₀').filter fun μ => ∀ u, CongMod m (μ u) (ν u)
   have h1 := hS S (fun μ hμ => (Finset.mem_filter.1 hμ).2)
     (fun μ hμ hh => Finset.mem_filter.2 ⟨Finset.mem_union_left _ hμ, hh⟩)
-  have h2 := hS' S (fun μ hμ u => cong_trans ((Finset.mem_filter.1 hμ).2 u) (hc u))
-    (fun μ hμ hh => Finset.mem_filter.2 ⟨Finset.mem_union_right _ hμ, fun u => cong_trans (hh u) (cong_symm (hc u))⟩)
+  have h2 := hS' S (fun μ hμ u => _root_.GlobalTheory.Poinc.GalTrans.cm_trans ((Finset.mem_filter.1 hμ).2 u) (hc u))
+    (fun μ hμ hh => Finset.mem_filter.2 ⟨Finset.mem_union_right _ hμ, fun u => _root_.GlobalTheory.Poinc.GalTrans.cm_trans (hh u) (_root_.GlobalTheory.Poinc.GalTrans.cm_symm (hc u))⟩)
   have h3 : v - v' = (v - ∑ μ ∈ S, t μ) - (v' - ∑ μ ∈ S, t μ) := by abel
   rw [h3]
   linarith [norm_sub_le (v - ∑ μ ∈ S, t μ) (v' - ∑ μ ∈ S, t μ)]
@@ -156,13 +146,6 @@ theorem normal_pred {g n : ℕ} {F : SFam g n (zetaAway n)} {W : Matrix (Fin 8) 
   first
   | exact X.normal
   | exact (GlobalTheory.isNormalScheme_iff_pred _).1 X.normal
-
-theorem three_le_level (X₁ : Setup F W i) : 3 ≤ X₁.S.r * X₁.S.N := by
-  have h1 := X₁.S.r_pos
-  have h2 : 2 ≤ X₁.ρ.n ^ X₁.ρ.k :=
-    X₁.ρ.n_prime.two_le.trans (Nat.le_self_pow (by have := X₁.ρ.two_le; omega) _)
-  have h3 := X₁.ρ.N_eq
-  nlinarith
 
 theorem exists_iso (D : Deep X₁ ε₁) {p : ℕ} [Fact p.Prime] {z₁ : X₁.M.Z} (c c' : CTrait X₁ p z₁)
     {y y' : Sp (OO p) ⟶ D.X.M.Z} (h : y ≫ D.q = c.y) (h' : y' ≫ D.q = c'.y) (hc : y' (cPt p) = y (cPt p))
@@ -349,13 +332,13 @@ theorem classSums_integralClosure : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) 
   let γ : Φ.X y₀ ≃ₗ[ℤ] Φ.X y₀ := (e y₀).trans (κσ.trans (e y₀).symm)
   have hγ : ∀ x, CongMod (X₁.S.r * X₁.S.N) (γ x) x := by
     intro x
-    have hL := three_le_level X₁
+    have hL := _root_.GlobalTheory.Poinc.GalLab.three_le_level X₁
     have hdvd : X₁.S.r * X₁.S.N ∣ D.X.S.r * D.X.S.N := by
       rw [D.sq]
       exact (D.dvd.trans (dvd_pow_self _ two_ne_zero)).mul_left _
     have hM := (Nat.div_mul_cancel hdvd).symm
     have hd : D.X.S.r * D.X.S.N / (X₁.S.r * X₁.S.N) ≠ 0 := fun h0 => by
-      have := three_le_level D.X
+      have := _root_.GlobalTheory.Poinc.GalLab.three_le_level D.X
       rw [h0] at hM
       omega
     obtain ⟨a₁, ha₁⟩ := D.lab_range (lb fun _ => e y₀ x)
@@ -368,7 +351,7 @@ theorem classSums_integralClosure : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) 
       have h5 : (e y₀).symm x = 0 := (smul_eq_zero.1 h4).resolve_left (by exact_mod_cast hd)
       simpa using congrArg (e y₀) h5) hd hM h2 0
     simpa [γ] using cong_map (e y₀).symm.toLinearMap.toAddMonoidHom h3
-  refine ⟨γ.toLinearMap, by rw [det_eq_one γ (three_le_level X₁) hγ]; simp, hγ, fun ν κ => Subtype.ext ?_⟩
+  refine ⟨γ.toLinearMap, by rw [det_eq_one γ (_root_.GlobalTheory.Poinc.GalLab.three_le_level X₁) hγ]; simp, hγ, fun ν κ => Subtype.ext ?_⟩
   rw [← hτ]
   refine (hτf _ κ).trans (hwd _ _ _ _ κ ((h₆ _).symm.trans (hκσ _ _ (hlb _))) (hlb _) fun u => ⟨0, by simp [γ]⟩)
 

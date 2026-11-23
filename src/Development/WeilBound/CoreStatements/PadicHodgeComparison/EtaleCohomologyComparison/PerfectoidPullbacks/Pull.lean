@@ -66,10 +66,10 @@ def pull' (Amp : ∀ M : Model l K, E.LineData M.X → Prop) {M N : Model l K} {
 
 theorem fmap (r : Res l K) [FiniteDimensional ℚ_[l] K] (Amp : ∀ M : Model l K, E.LineData M.X → Prop) :
     Nonempty (FMap Model.Sm r.perC r.iso (dat Amp) (pull' Amp)) := by
-  obtain ⟨N, hT⟩ := teich r
-  obtain ⟨F, -⟩ := fac_ex r hT (fun M n j x => Mid.mu_nu r N hT M n j x) (w_phi r) (fun g w => w_fix r g w)
+  obtain ⟨N, hT⟩ := _root_.CrystallineSemistableComparison.Pb.G3.teich r
+  obtain ⟨F, -⟩ := fac_ex r hT (fun M n j x => _root_.CrystallineSemistableComparison.Pb.Mid.frobenius_mu_nu_iterate r N hT M n j x) (_root_.CrystallineSemistableComparison.Pb.G3.w_phi r) (fun g w => _root_.CrystallineSemistableComparison.Pb.G3.w_fix r g w)
   exact fmap_of r Amp N F _ r.perC.c r.perC.ι r.perC.φ r.perC.σ r.perC.q r.perC.k (factsC l K r).1 (facts l K)
-    (perC_hk r) (perC_hl r) (perC_hφk r) (perC_hσk r) (w_fix r) (fun M hM j => lw_fin r M hM j)
+    (_root_.CrystallineSemistableComparison.Pb.G3.perC_hk r) (_root_.CrystallineSemistableComparison.Pb.G3.perC_hl r) (_root_.CrystallineSemistableComparison.Pb.G3.perC_hφk r) (_root_.CrystallineSemistableComparison.Pb.G3.perC_hσk r) (_root_.CrystallineSemistableComparison.Pb.G3.w_fix r) (fun M hM j => lw_fin r M hM j)
     (fun M _ j x => CompanionTheory.KM.Cris.pullD_schMap_id l r.ρ M.p (Category.id_comp _) j x)
 
 end CrystallineSemistableComparison.Pb

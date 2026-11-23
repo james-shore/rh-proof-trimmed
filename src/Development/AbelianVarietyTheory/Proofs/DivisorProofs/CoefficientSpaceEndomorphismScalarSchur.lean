@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.BesselHermitianTheta.NoncompactGapAtLeastRange
 import Formalism.LocalToGlobal.IndefiniteReal.IndefiniteWeightData
+import Formalism.LocalToGlobal.Columns.PolyFn
 
 @[expose] public section
 
@@ -67,16 +68,10 @@ theorem polyAction_ten (K : Type) [Field K] {ι : Type} [Fintype ι] {n : ℕ} (
   simp only [actP, ten, detTwK, trAct, sqAct, LinearMap.smul_apply, AlgHom.toLinearMap_apply, map_prod, hb, map_smul]
   rw [Finset.prod_smul]
 
-theorem natW_anti {n : ℕ} (lam : DomWeight n) : Antitone lam.natW := by
-  intro i j hij
-  have := lam.anti hij
-  unfold DomWeight.natW
-  omega
-
 theorem ten_ext_mem (K : Type) [Field K] {ι : Type} [Fintype ι] {n : ℕ} (lam : ι → DomWeight n) :
     (ten fun τ => extremal K n (lam τ)) ∈ VV K lam :=
   Submodule.subset_span ⟨fun τ => extremal K n (lam τ),
-    fun τ => Formalism.GradedWeylDivisibility.hwMem K n n le_rfl _ (natW_anti (lam τ)), rfl⟩
+    fun τ => Formalism.GradedWeylDivisibility.hwMem K n n le_rfl _ (_root_.Formalism.L2.Col.natW_anti (lam τ)), rfl⟩
 
 theorem endo_scalar : ∀ (K : Type) [Field K] [CharZero K] {ι : Type} [Fintype ι] {n : ℕ} (lam : ι → DomWeight n)
     (g : Module.End K (VV K lam)),

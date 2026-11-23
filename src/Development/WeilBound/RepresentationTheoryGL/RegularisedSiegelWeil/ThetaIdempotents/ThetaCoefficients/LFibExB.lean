@@ -62,7 +62,7 @@ theorem thFin (V : HSp D) (hr : 2 * r < V.rank) (μH : Measure (GA D V)) (𝓕 :
     (h𝓕 : IsFundamentalDomain (GQ V) 𝓕 μH) (T : Matrix (Fin r) (Fin r) D.host.E)
     (hT : ∀ a b, D.sp.cm.sig (T b a) = T a b) (hdet : T.det ≠ 0) :
     IsFiniteMeasureOnCompacts (thM V μH 𝓕 T) :=
-  PositivityTheory.Rg.Rsw.L.LatticeFibreBump.finCpt_of_integrable D.sp.cm.sig (GlobalTheory.DefiniteQuotient.cmExt D) V.rank V.gram
+  PositivityTheory.Rg.Rsw.L.LatticeFibreBump.finCpt_of_integrable D.sp.cm.sig (_root_.Formalism.MainNotions.UnusedSlot34.isCMExt_D D) V.rank V.gram
     (GlobalTheory.DefiniteQuotient.gram_hermND V) r hr _ fun Φ hΦ =>
       thInt V hr μH 𝓕 hμH h𝓕 T hT hdet Φ hΦ
 

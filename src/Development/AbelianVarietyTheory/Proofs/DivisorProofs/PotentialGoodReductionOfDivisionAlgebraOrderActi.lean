@@ -78,7 +78,7 @@ theorem potGood_of_divisionAlgebra_action : ∀ (V K : Type) [CommRing V] [IsDom
   haveI : IsCommMonObj (GlobalTheory.SS.spFibre G) := by
     haveI := hsa.comm
     infer_instance
-  obtain ⟨ρ, -⟩ := GlobalTheory.T.ringHom_characterEnd_of_torusExtension_action _ (GlobalTheory.SS.spFibre G) E O act₃ h3a h3b h3c h3d
+  obtain ⟨ρ, -⟩ := _root_.GlobalTheory.ringHom_charEnd_of_torusExtension _ (GlobalTheory.SS.spFibre G) E O act₃ h3a h3b h3c h3d
 
   obtain ⟨e, -⟩ := hmod
   haveI : IsIso e.hom.left := inferInstanceAs (IsIso ((Over.forget _).map e.hom))
@@ -90,7 +90,7 @@ theorem potGood_of_divisionAlgebra_action : ∀ (V K : Type) [CommRing V] [IsDom
         (f := A'.hom) (g := 𝟙 _) ⟨by rw [Category.comp_id]; exact Over.w e.hom⟩) hA'g
   have hsc : GlobalTheory.SS.SmConn G := ⟨hsa.comm, hsa.smooth, hsa.separated, hsa.quasiCompact, hsa.geomConnected⟩
   have hsp : SmoothOfRelativeDimension g (GlobalTheory.SS.spFibre G).hom := GlobalTheory.IsogRed.relDim_spFibre (K := L) G hsc g hGLg
-  have hle := GlobalTheory.T.finrank_torusExtension_characters_le_relDim _ (GlobalTheory.SS.spFibre G) E g hsp
+  have hle := _root_.GlobalTheory.finrank_torusExtension_le _ (GlobalTheory.SS.spFibre G) E g hsp
   letI := E.addCommGroup
   haveI := E.free
   haveI := E.finite
@@ -101,6 +101,6 @@ theorem potGood_of_divisionAlgebra_action : ∀ (V K : Type) [CommRing V] [IsDom
     haveI : IsProper A'.hom := inferInstanceAs (IsProper (pullback.snd A.hom f))
     rw [← Over.w e.hom]
     infer_instance
-  exact GlobalTheory.T.isAbelianScheme_semiAbelian_dvr_noSpecialTorus W L G hsa hprop E h0
+  exact _root_.GlobalTheory.ToricRankZero.isAbelianScheme_of_finrank_eq_zero W L G hsa hprop E h0
 
 end GlobalTheory.DivPotGood

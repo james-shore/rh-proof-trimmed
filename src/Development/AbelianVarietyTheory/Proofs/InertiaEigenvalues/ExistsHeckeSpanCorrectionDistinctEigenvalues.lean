@@ -127,7 +127,7 @@ theorem exists_correction_distinct_eigenvalues {Γ X A : Type} [Group Γ] [Finit
   have hidx : ∀ x, eB x * eB x = eB x := fun x => congrFun hid x
   have hidK : ∀ x, (eB x).map (toFr A) * (eB x).map (toFr A) = (eB x).map (toFr A) := fun x => by
     rw [← Matrix.map_mul, hidx]
-  choose a b hba hab hpol using fun x => GlobalTheory.T.idempotentBlockCharPoly_eq_charpoly_image ((eB x).map (toFr A)) (hidK x) (hrk x)
+  choose a b hba hab hpol using fun x => _root_.GlobalTheory.BlockCharpoly.blockPol_eq_charpoly ((eB x).map (toFr A)) (hidK x) (hrk x)
   have hbe : ∀ x, b x * (eB x).map (toFr A) = b x := fun x => by
     rw [← hab, ← Matrix.mul_assoc, hba, Matrix.one_mul]
   have hea : ∀ x, (eB x).map (toFr A) * a x = a x := fun x => by
@@ -150,7 +150,7 @@ theorem exists_correction_distinct_eigenvalues {Γ X A : Type} [Group Γ] [Finit
           rw [Algebra.smul_def, mul_left_comm]
         simp only [this, Matrix.mul_smul, Matrix.smul_mul, RingHom.id_apply, Pi.smul_apply] }
   have hφ : ∀ s x, φ s x = b x * (z • s x).map (toFr A) * a x := fun _ _ => rfl
-  obtain ⟨_, ⟨s, hs, rfl⟩, hsx⟩ := GlobalTheory.T.exists_mem_submodule_all_charpoly_separable (O := A) (K := FractionRing A) t
+  obtain ⟨_, ⟨s, hs, rfl⟩, hsx⟩ := _root_.GlobalTheory.SepGeneric.exists_separable (O := A) (K := FractionRing A) t
     ((spanRingCornerIdealModule T rep π eB).map φ) (fun x => b x * (mat (rep x) g0).map (toFr A) * a x) (by
       intro x
       by_cases hx : x = π
@@ -162,7 +162,7 @@ theorem exists_correction_distinct_eigenvalues {Γ X A : Type} [Group Γ] [Finit
             (Set.range fun g => (mat (rep x) g).map (toFr A)) := by
           rw [hab]
           exact map_mem_span_frac _ (eval_mem_span hin x)
-        obtain ⟨m, hm, hms⟩ := GlobalTheory.T.exists_mem_span_corner_charpoly_separable (mapM (toFr A) ((Units.coeHom _).comp (rep x)))
+        obtain ⟨m, hm, hms⟩ := _root_.GlobalTheory.SpanRing.exists_mem_span_corner_separable (mapM (toFr A) ((Units.coeHom _).comp (rep x)))
           (a x) (b x) (hirr x) (hba x) hmem
         obtain ⟨d, hd, w, hw, hwm⟩ := exists_denom_span_frac (mat (rep x)) hm
         obtain ⟨w', hw', rfl⟩ := exists_inRing_eval (T := T) x hw

@@ -47,14 +47,12 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.C
 
-theorem simeqIffCong : SimeqIffCong := simeq_iff_congruence
-theorem unitBallClosed : UnitBallClosed := unit_ball_closed
-theorem phOIsPh : PhOIsPh := odd_phi_is_phi
-theorem first_level_from_universal_law : FirstLevelFromUniversal := first_level_from_universal_holds
+alias phOIsPh := _root_.Formalism.L2.Th1.C.odd_phi_is_phi
+alias first_level_from_universal_law := _root_.Formalism.L2.Th1.C.first_level_from_universal_holds
 
-theorem logDerivInt : LogDerivInt := log_derivative_integral'
-theorem derivation_cube_integral_jet : ThirdJetIntegral := third_jet_integral
-theorem jetsUnramified : JetsUnramified := jets_unramified
-theorem jetsShape : JetsShape := jets_shape
+alias logDerivInt := _root_.Formalism.L2.Th1.C.log_derivative_integral'
+alias derivation_cube_integral_jet := _root_.Formalism.L2.Th1.C.third_jet_integral
+alias jetsUnramified := _root_.Formalism.L2.Th1.C.jets_unramified
+alias jetsShape := _root_.Formalism.L2.Th1.C.jets_shape
 
 end Formalism.L2.Th1.C

@@ -78,8 +78,8 @@ theorem quotEquiv_of_germ {X : Scheme.{0}} [IsIntegral X] [Algebra ℂ X.functio
 theorem exists_finCover_fibre_reduced : ∀ (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp ℂ) (d : ℕ) [SmoothOfRelativeDimension d p] [inst : Algebra ℂ X.functionField], inst = ffAlg p → IsProjOver p → ∀ S : Finset (CxPts p (RingHom.id ℂ)), ∃ (F : IntermediateField ℂ X.functionField) (x : Fin (d + 1) → F) (U : Fin (d + 1) → X.Opens), IsFinCover ℂ X.functionField x ∧ IsAffCover p U (rB ℂ X.functionField x) ∧ IsReduced ((rB ℂ X.functionField x {0}) ⧸ (Ideal.span (Set.range fun j : Fin d => (⟨_, tco_mem ℂ X.functionField x j⟩ : rB ℂ X.functionField x {0})))) ∧ ∀ y ∈ S, y ∈ CxPts.ptsIn p (RingHom.id ℂ) (U 0) ∧ ∀ j : Fin d, ∀ (hg : genericPoint X ∈ U 0) (f : Sec p (U 0)), (X.presheaf.germ (U 0) (genericPoint X) hg).hom f = algebraMap F X.functionField (x j.succ / x 0) → CxPts.ev p (RingHom.id ℂ) (U 0) f y = 0 := by
   intro X _ p d _ inst hinst hproj S
   obtain ⟨N, ι, hι, hιp⟩ := hproj
-  obtain ⟨n, f, hf, hn, hcov, hgen, hS, htr⟩ := GlobalTheory.T.exists_forms_transversal_at_complexPoints X p d N ι hι hιp S
-  obtain ⟨F, x, hFC, hAC, hx⟩ := GlobalTheory.T.exists_finiteCover_affineCover_of_forms_no_commonZero X p d hinst N ι hι hιp n f hf hn hcov hgen
+  obtain ⟨n, f, hf, hn, hcov, hgen, hS, htr⟩ := _root_.GlobalTheory.EtProj.Transv.exists_forms_transversal X p d N ι hι hιp S
+  obtain ⟨F, x, hFC, hAC, hx⟩ := _root_.GlobalTheory.EtProj.isFinCover_of_forms X p d hinst N ι hι hιp n f hf hn hcov hgen
   set U0 := GlobalTheory.EtProj.fOpen ι (f 0) with hU0
   set t : Fin d → Γ(X, U0) := fun j => GlobalTheory.EtProj.fRatio ι (f j.succ) (f 0) (hf j.succ) (hf 0) with ht_def
   have hx0 : x 0 = 1 := by
@@ -106,11 +106,11 @@ theorem exists_finCover_fibre_reduced : ∀ (X : Scheme.{0}) [IsIntegral X] (p :
     simpa [hU0] using hAC.affine {0} (Finset.singleton_nonempty 0)
   haveI : Smooth p := SmoothOfRelativeDimension.smooth d p
   haveI hart : IsArtinianRing (Γ(X, U0) ⧸ Ideal.span (Set.range t)) := by
-    haveI := GlobalTheory.T.isArtinianRing_rB_quot_span_tco_of_isFinCover ℂ X.functionField F d x hFC
+    haveI := _root_.GlobalTheory.PD.isArtinianRing_fib_quot ℂ X.functionField F d x hFC
     exact RingEquiv.isArtinianRing E.symm
   have hred : IsReduced (Γ(X, U0) ⧸ Ideal.span (Set.range t)) := by
-    refine GlobalTheory.T.isReduced_quotient_of_artinian_of_maximal_le' _ _ hart fun m hm hIm => ?_
-    obtain ⟨y, hy, rfl⟩ := GlobalTheory.T.exists_complexPoint_ker_eval_eq_maximal X p U0 hU0aff m hm
+    refine _root_.GlobalTheory.isReduced_quotient_of_artinian_of_maximal_le _ _ hart fun m hm hIm => ?_
+    obtain ⟨y, hy, rfl⟩ := _root_.GlobalTheory.MaxPt.exists_cxPts_ker_eq X p U0 hU0aff m hm
     refine htr y hy fun j => ?_
     exact hIm (Ideal.subset_span ⟨j, rfl⟩)
   refine ⟨F, x, fun i => GlobalTheory.EtProj.fOpen ι (f i), hFC, hAC, ?_, fun y hyS => ⟨(hS y hyS).1, ?_⟩⟩

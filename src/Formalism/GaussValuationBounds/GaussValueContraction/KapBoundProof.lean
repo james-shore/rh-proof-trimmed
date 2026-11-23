@@ -96,7 +96,7 @@ theorem kapBound_proof : KapBound := by
         ((∑ i ∈ (JJ.erase 0).filter (fun i => i ∈ Finset.Ico (a t) (a t + 4 * (g : ℤ))),
             padicValInt ℓ i : ℕ) : ℝ) ≤ 4 * (g : ℝ) / ((ℓ : ℝ) - 1) + Real.logb ℓ (2 * (h : ℝ)) := by
       intro t
-      have hw := Formalism.WindowSums.arc_WindowSum ℓ (a t) (4 * g) (2 * h)
+      have hw := _root_.Formalism.WindowSums.sum_padicValInt_le ℓ (a t) (4 * g) (2 * h)
         ((JJ.erase 0).filter (fun i => i ∈ Finset.Ico (a t) (a t + 4 * (g : ℤ)))) ?_ ?_ ?_
       · push_cast at hw ⊢
         exact hw

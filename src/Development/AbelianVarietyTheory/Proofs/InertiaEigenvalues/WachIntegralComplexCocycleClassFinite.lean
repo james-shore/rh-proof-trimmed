@@ -94,7 +94,7 @@ theorem main : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf 
   · obtain ⟨m, hm⟩ := ((GlobalTheory.NL.HerrComplexH1.herr_H1_description D HW F l K s LL h T hT).1.2 ⟨(y, z), hc⟩).1 h0
     have hm1 : y = ((HW l).W K s LL h).φD T m - m := congrArg Prod.fst hm
     have hm2 : z = ((HW l).W K s LL h).γ T m - m := congrArg Prod.snd hm
-    refine ⟨m, GlobalTheory.T.mem_wach_of_frobenius_gamma D HW F l K s LL h T hT (mx M) m ?_ ?_, hm1, hm2⟩
+    refine ⟨m, _root_.GlobalTheory.NL.CocycleInj.main D HW F l K s LL h T hT (mx M) m ?_ ?_, hm1, hm2⟩
     · exact hm1 ▸ hy
     · exact hm2 ▸ hz'
 

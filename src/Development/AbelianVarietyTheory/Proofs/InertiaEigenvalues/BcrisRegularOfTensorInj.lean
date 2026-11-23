@@ -74,19 +74,14 @@ theorem exists_frob (C : Core l) :
   have := C.σ_root c m hm hlm (Subtype.ext hζ)
   rw [show ζ = (c : Om l) from rfl, hg, this]; rfl
 
-theorem qB_coe (z : ℤ_[l]) : C.qB (z : ℚ_[l]) = Per.zB l z := (GlobalTheory.T.localPeriodRingsData_unramified_laws l C).2.2.1 z
-
-theorem ι_aB (a : Per.Ainf l) :
-    C.ι (Per.aB l a) = algebraMap (Per.BdRp l) (Per.BdR l) (aDp l a) := by
-  rw [GlobalTheory.RingIface.aB_eq_alg, C.ι_j, GlobalTheory.RingIface.tower, C.j_cris.on0, Subalgebra.coe_algebraMap]
-  simp only [aDp, RingHom.comp_apply]
+theorem qB_coe (z : ℤ_[l]) : C.qB (z : ℚ_[l]) = Per.zB l z := (_root_.GlobalTheory.MemLoc.ULaws.u_laws l C).2.2.1 z
 
 theorem theta_eig {b : Per.Bcris l} {y : Per.BdRp l}
     (h : C.ι b = algebraMap (Per.BdRp l) (Per.BdR l) y) {g : GQ l} {x : ℚ_[l]}
     (hx : Per.σB g b = C.qB x * b) :
     Per.σC g (Per.θD l y) = algebraMap ℚ_[l] ℂ_[l] x * Per.θD l y := by
   have h1 := congrArg C.ι hx
-  rw [(GlobalTheory.T.localPeriodRingsData_unramified_laws l C).2.2.2.2.1, map_mul, h, (ActLaws.act_laws l).2.2.2.2.2.2.2.2.2.1,
+  rw [(_root_.GlobalTheory.MemLoc.ULaws.u_laws l C).2.2.2.2.1, map_mul, h, (ActLaws.act_laws l).2.2.2.2.2.2.2.2.2.1,
     show C.ι (C.qB x) = _ from C.ι_u _, ← map_mul] at h1
   have h2 := congrArg (Per.θD l) ((BdRField.bdR_isField l).2.1 h1)
   rw [(thetaD_props l).2.2.2.2, map_mul, C.o_sec.th] at h2
@@ -104,7 +99,7 @@ theorem isUnit_of_theta {b : Per.Bcris l} {y : Per.BdRp l}
   obtain ⟨F, hF⟩ := exists_frob C
   obtain ⟨w, hw, hwI, hwF, hwφ⟩ := GlobalTheory.T.exists_unramified_period_ainf_unit l F hF (η F ^ N)⁻¹
   have h2 : C.ι (b ^ N * Per.aB l w) = algebraMap (Per.BdRp l) (Per.BdR l) (y ^ N * aDp l w) := by
-    rw [map_mul, map_pow, h, ι_aB, map_mul, map_pow]
+    rw [map_mul, map_pow, h, _root_.GlobalTheory.MemLoc.ULaws.iota_aB, map_mul, map_pow]
   have hθ : Per.θD l (y ^ N * aDp l w) ≠ 0 := by
     rw [map_mul, map_pow]
     exact mul_ne_zero (pow_ne_zero _ hy) ((hw.map _).map _).ne_zero

@@ -166,7 +166,7 @@ theorem read_in_frame (I : AutInst) (g : ℕ) (hg : g ≠ 0) {ρ k : ℕ} (e0 f0
           ∏ PP ∈ Pg, ψ0 PP (∑ i, ∑ j, if symEdge ρ k i j then
             a PP i j * ((redFn β PP x : GL (Fin I.n) (kP PP)) : Matrix (Fin I.n) (Fin I.n) (kP PP)) i j else 0)) := by
   classical
-  obtain ⟨hew, hG⟩ := GlobalTheory.T.liftFrame_gram_congr_flagGram I g e0 f0 z0 bw bwd ew hF hn β hβ
+  obtain ⟨hew, hG⟩ := _root_.GlobalTheory.FlagBasis.GramLift.gramIn_lift I g e0 f0 z0 bw bwd ew hF hn β hβ
   have hpg : ∀ PP ∈ Pg, (g : kP PP) = 0 := fun PP hPP => by
     rw [← map_natCast (Ideal.Quotient.mk PP.asIdeal)]
     exact Ideal.Quotient.eq_zero_iff_mem.2 (hdiv PP hPP)
@@ -209,7 +209,7 @@ theorem read_in_frame (I : AutInst) (g : ℕ) (hg : g ≠ 0) {ρ k : ℕ} (e0 f0
     show x ∈ I.Kset ∧ _ ↔ _
     rw [kset_iff I hβ.1]
     refine and_congr_right fun hS => ?_
-    rw [GlobalTheory.T.levelCongruence_iff_flag_conditions I g e0 f0 z0 bw bwd ew hF hn β hβ x hS]
+    rw [_root_.GlobalTheory.FlagBasis.Cong.k2cong_iff_flagCond I g e0 f0 z0 bw bwd ew hF hn β hβ x hS]
     obtain ⟨m, hm⟩ := hS
     rw [hmat x m hm, ← hm]
     refine (flagCond_map (Formalism.L2.Herm.intAf I.F I.E).subtype (ZMod' I g) ρ k ewS _).trans ?_
@@ -304,9 +304,9 @@ theorem GlobalTheory.FlagBasis.read_inst (D : D7) (e0 f0 : Fin D.R.rS → VA (in
         (congrArg _ e).trans (Formalism.L2.SG.Pf.unitaryCongruence.divN_gmul _ _ hg t)
       show star (psiEf (divN (instOf D) (D.host.g 0 * D.host.g 1) s.1)) = 1
       rw [this, hint t ht, star_one])
-    (GlobalTheory.T.exists_integralAdele_prescribed_residues_and_conj D Pg hnc)
+    (_root_.GlobalTheory.ConjResidueSurj.exists_res_and_conj D Pg hnc)
     (GlobalTheory.T.residueSupport_single_place_to_conjugatePair_position D Pg hPg.1 hnc (fun s => star (psiEf (divN (instOf D) (D.host.g 0 * D.host.g 1) s.1)) ≠ 1) fun Q hQ => by
-      obtain ⟨s, h1, h2⟩ := GlobalTheory.T.exists_finiteAdditiveChar_ne_one_at_each_prime D psiEf hadd hint hrat Q hQ
+      obtain ⟨s, h1, h2⟩ := _root_.GlobalTheory.FiniteCharNontrivial.exists_psi_ne_one D psiEf hadd hint hrat Q hQ
       exact ⟨s, h1, fun h => h2 (by simpa using congrArg star h)⟩)
   obtain ⟨a, ha1, hK⟩ := read_in_frame (instOf D) _ hg e0 f0 z0 bw bwd ew hF hn' β₀ hβ₀ Pg hPg.1 hN psiEf hadd hint ψ0 a₁ a₂ ha hχ
   have hL : (instOf D).L = Formalism.L2.Herm.crdLat (D.sp.Y 0) (D.sp.Y 0).L0 := Lv_eq_map D

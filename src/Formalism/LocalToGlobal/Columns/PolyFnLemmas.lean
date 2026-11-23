@@ -134,7 +134,7 @@ theorem fockF_blockAct (g : ι → Matrix (Fin n) (Fin n) ℂ) (f h : MvPolynomi
     fockF (blockAct ℂ g f) h = fockF f (blockAct ℂ (fun τ => (g τ)ᴴ) h) := by
   classical
   rw [blockAct_eq_sub, blockAct_eq_sub, ← bigM_conjTranspose]
-  exact Formalism.GradedWeylDivisibility.fockSubAdj _ _ _ _
+  exact _root_.Formalism.GradedWeylDivisibility.fischerInnerSubstitutionAdjoint _ _ _ _
 
 theorem map_blockAct {K : Type} [Field K] (s : K →+* ℂ) (g : ι → Matrix (Fin n) (Fin n) K)
     (P : MvPolynomial (ι × Fin n × Fin n) K) :

@@ -112,7 +112,7 @@ theorem UpperTheory.Gal.productCup_of_system.pInt_of :
     · rw [h0, map_zero]
     obtain ⟨hI, _, _, hm⟩ := hcu _ _ h0
     exact resP_eq_zero ρ _ _
-      (fun f hf => GlobalTheory.T.residue_functional_vanishes_on_omega_forms ℂ F d (xv x) hx.pd ρ hρ i _ hI (by simp) f hf) hm
+      (fun f hf => _root_.GlobalTheory.PD.ResVan.resvan ℂ F d (xv x) hx.pd ρ hρ i _ hI (by simp) f hf) hm
   refine ⟨fun L => ((-1 : ℤ) ^ (d + 1)) • resP (DR ℂ K) ρ (c (uni Finset.univ L)), ?_, ?_⟩
   · simp only [Lef.omCx, GlobalTheory.PD.cech, GlobalTheory.PD.cechC, Submodule.mem_pi]
     intro L _

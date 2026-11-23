@@ -118,7 +118,7 @@ theorem exists_periodMatrix_of_finrank (F E : Type) [Field F] [Field E] [Algebra
   have hvB : LinearIndependent B v := by
     rw [linearIndependent_iff_finset_linearIndependent]
     intro s
-    exact linearIndepOn_of_invariant (fun g c => act g c) σ hσ hreg v hv s (hvE.linearIndepOn _)
+    exact _root_.GlobalTheory.LinearIndependentFixed.linearIndepOn_of_fixed (fun g c => act g c) σ hσ hreg v hv s (hvE.linearIndepOn _)
   let Q : Matrix n n B := Matrix.of fun i j => v j i
   have hQ : ∀ g, (A g).map (algebraMap F B) * Q.map (act g) = Q := by
     intro g

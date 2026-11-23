@@ -37,6 +37,7 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Formalism.SharpRestriction.GlobalSchurBounds.TheoremThreeOfExplicitAndCompact
 
 @[expose] public section
 
@@ -93,8 +94,6 @@ theorem sq_le_dim (f r m : ℕ) (hf : 2 ≤ f) (hr : 2 ≤ r) (hm : 2 ≤ m) : r
 
 variable {D : D7} {L : SizeData₂ D}
 
-theorem one_le_L (s : Scale) : 1 ≤ s.L := Real.one_le_rpow s.one_lt_alt.le s.eps_pos.le
-
 theorem ranks_le {P : ParameterChoice' D L} (T : ParamsT D L P) :
     1 ≤ T.PP ∧ (D.R.f : ℝ) * D.R.r ≤ L.sc.b ∧ (D.R.r : ℝ) + D.R.t ≤ 2 * L.sc.b := by
   have hn : 0 < D.R.n := D.R.ord_pos
@@ -102,7 +101,7 @@ theorem ranks_le {P : ParameterChoice' D L} (T : ParamsT D L P) :
   have h2 := D.R.m_add_three_le_k
   have hf : (1 : ℝ) ≤ D.R.f := by exact_mod_cast (by unfold Ranks.f; omega : 1 ≤ D.R.f)
   have hr : (1 : ℝ) ≤ D.R.r := by exact_mod_cast (by unfold Ranks.r; omega : 1 ≤ D.R.r)
-  have hL := one_le_L L.sc
+  have hL := _root_.Formalism.MainNotions.StandardLattice.scale_one_le_L L.sc
   have hfr : (1 : ℝ) ≤ (D.R.f : ℝ) * D.R.r := one_le_mul_of_one_le_of_one_le hf hr
   have hZ : (D.R.f : ℝ) * D.R.r ≤ zBase L := le_mul_of_one_le_right (by positivity) hL
   have hZ1 : 1 ≤ zBase L := hfr.trans hZ
@@ -178,7 +177,7 @@ theorem numAt {P : ParameterChoice' D L} (T : ParamsT D L P) (hll : 1 ≤ Real.l
   have hf : (1 : ℝ) ≤ D.R.f := by exact_mod_cast (by unfold Ranks.f; omega : 1 ≤ D.R.f)
   have hr : (1 : ℝ) ≤ D.R.r := by exact_mod_cast hr1
   have hm : (1 : ℝ) ≤ D.R.m := by exact_mod_cast (by omega : 1 ≤ D.R.m)
-  have hL := one_le_L L.sc
+  have hL := _root_.Formalism.MainNotions.StandardLattice.scale_one_le_L L.sc
   have hb : 1 ≤ L.sc.b := Real.one_le_exp (by linarith)
   have hlb : Real.log L.sc.b = L.sc.L := Real.log_exp _
   have hC := abs_nonneg L.Ct

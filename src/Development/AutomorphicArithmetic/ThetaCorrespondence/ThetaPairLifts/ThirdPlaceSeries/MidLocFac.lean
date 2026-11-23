@@ -57,8 +57,8 @@ theorem mid_locFac_alt : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.toPre} {I :
   have hs : (a.G n).s + 1 + 1 = B.R.m := (a.G n).hs
   obtain ⟨c, H⟩ : ∃ c, j + 1 + c = (a.G n).s := ⟨(a.G n).s - (j + 1), by omega⟩
   have hR := (ha.tie (fun t => (nonempty_rowCh (_root_.GlobalTheory.Fam.complexLevelStructure W) hW.pk.bot.hyp.2.2.2.1.chain u a.g t).some)
-    fun t => (nonempty_colCh (D := I.rec7 l Z) u _).some).2
-  obtain ⟨C, hC0, hC⟩ := _root_.GlobalTheory.Fam.MidLoc.locXi_eq_mul_midXi_alt hW ha hR n (_root_.GlobalTheory.T.true_geometry_line_choice_value W hW u a _ _ hR n) j c H hj
+    fun t => (_root_.GlobalTheory.Fam.TopLocFac.nonempty_colCh (D := I.rec7 l Z) u _).some).2
+  obtain ⟨C, hC0, hC⟩ := _root_.GlobalTheory.Fam.MidLoc.locXi_eq_mul_midXi_alt hW ha hR n (_root_.GlobalTheory.LevUnif.unif_of_gRead_alt W hW u a _ _ hR n) j c H hj
   exact ⟨C, hC0, fun t J hJ α γ => ⟨_root_.GlobalTheory.Fam.MidLoc.intermediateXiValue a n j c H, _root_.GlobalTheory.Fam.MidLoc.midXi_isLocFac' ha hat hR n j c H, hC t J hJ α γ⟩⟩
 end GlobalTheory.Fam.MidLoc
 end

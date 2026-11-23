@@ -65,13 +65,13 @@ theorem polKer_locus_clopen : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Ty
   have hn : IsUnit ((c ^ 3 : ℕ) : Γ(Y, ⊤)) := by
     rw [hc, ← pow_mul, Nat.cast_pow]
     exact hpY.pow _
-  obtain ⟨C, _, Q, h, hC, -, -, hh, -, hT⟩ := GlobalTheory.T.harrisTaylor_pullback_bundle_dual_hom p D R b N Y s o B ψ' hB hq.2.1
+  obtain ⟨C, _, Q, h, hC, -, -, hh, -, hT⟩ := _root_.GlobalTheory.UPel.HT.ES.pullPol_dual_hom p D R b N Y s o B ψ' hB hq.2.1
   haveI := isMonHom_id_npow B c
   have hcomp : ∀ {T : Over Y} (x : T ⟶ B), x ≫ (𝟙 B) ^ c = x ^ c := fun x => by
     rw [MonObj.comp_pow, Category.comp_id]
-  obtain ⟨W₁, o₁, c₁, H₁, -⟩ := GlobalTheory.T.isClopen_torsion_kernel_locus Y B (c ^ 3) Unit (fun _ => C) (fun _ => h) B ((𝟙 B) ^ c) hB
+  obtain ⟨W₁, o₁, c₁, H₁, -⟩ := _root_.GlobalTheory.LevCover.kerlocus_open_closed Y B (c ^ 3) Unit (fun _ => C) (fun _ => h) B ((𝟙 B) ^ c) hB
     (fun _ => hC) hB (fun _ => hh) inferInstance hn
-  obtain ⟨W₂, o₂, c₂, H₂, -⟩ := GlobalTheory.T.isClopen_torsion_kernel_locus Y B (c ^ 3) Unit (fun _ => B) (fun _ => (𝟙 B) ^ c) C h hB
+  obtain ⟨W₂, o₂, c₂, H₂, -⟩ := _root_.GlobalTheory.LevCover.kerlocus_open_closed Y B (c ^ 3) Unit (fun _ => B) (fun _ => (𝟙 B) ^ c) C h hB
     (fun _ => hB) hC (fun _ => inferInstance) hh hn
   refine ⟨W₁ ∩ W₂, o₁.inter o₂, c₁.inter c₂, fun Tb t => ?_⟩
   rw [Set.subset_inter_iff, H₁, H₂]

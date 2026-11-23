@@ -82,7 +82,7 @@ theorem hodgeTateJumps_coefficientExtension : ∀ {D : D7} (L : SizeData₂ D) (
       rw [e]
       exact (D.nd.chi_cont i 1).comp continuous_inv
     exact h1.smul hP.contρ
-  refine GlobalTheory.T.jumps_of_crystalline_twist_block_decomposition L C₀ i w hw C r ρ π _ κ hR h7 (hF i w hw Cx).2.2.1
+  refine _root_.GlobalTheory.HTW.Rec.jumpIn_of_reads L C₀ i w hw C r ρ π _ κ hR h7 (hF i w hw Cx).2.2.1
     (fun z => (IntermediateField.inclusion Cx.le).commutes z)
     (fun x => hc _ (rTwO_cont D i r hP.cont x)) (hc _ hW) (fun x => hP.crys w hw Cx x) hP.dec ?_
   intro τ

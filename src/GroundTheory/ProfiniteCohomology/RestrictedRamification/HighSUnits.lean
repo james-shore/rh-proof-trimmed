@@ -135,7 +135,7 @@ theorem isIsoModCoprime_sUnitsToUnits {r : ℕ} (hr : 4 ≤ r) :
     obtain ⟨m, hm, hmy⟩ := hP (p + 1) (by omega) ((cohomologyMap (sUnitsQuotSequence K.1 ℚ̄ S).g (p + 1)).hom y')
     have hg : (cohomologyMap (sUnitsQuotSequence K.1 ℚ̄ S).g (p + 1)).hom (m • y') = 0 :=
       (map_nsmul _ m y').trans hmy
-    obtain ⟨z, hz⟩ := exists_cohomologyMap_f_eq_of_cohomologyMap_g_eq_zero hQ (p + 1) (m • y') hg
+    obtain ⟨z, hz⟩ := _root_.GroundTheory.ProfCoh.exists_cohomologyMap_f_eq hQ (p + 1) (m • y') hg
     exact ⟨m, hm, z, hz⟩
 
 def sUnitsInfl (r : ℕ) : cohomology (galSUnitsMax K.1 ℚ̄ S) r →+ cohomology (unitsLimitRep K) r :=

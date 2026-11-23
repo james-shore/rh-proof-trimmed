@@ -62,7 +62,7 @@ theorem FreeQuotientScheme_holds : FreeQuotientScheme := by
     GlobalTheory.T.quotient_of_affine_chart_cover _ _ (fun x => by
       obtain ⟨U, hU, hxU⟩ := horb x
       obtain ⟨V, W, hxV, hV, hW, hVW, hinv⟩ :=
-        GlobalTheory.T.orbit_affine_neighbourhood G X hG x U hU hxU
+        _root_.GlobalTheory.CompanionTheory.FreeQuotProof.Nbhd.exists_stable_affine_nbhd G X hG x U hU hxU
       exact ⟨V, hxV,
         GlobalTheory.T.free_action_affine_chart G X hG hfree V W hV hW hVW hinv⟩)
   haveI : IsFinite q₀ := hfin

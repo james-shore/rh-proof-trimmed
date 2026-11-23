@@ -65,14 +65,7 @@ namespace GlobalTheory.BKGal.HatVal
 variable {l : ℕ} [Fact l.Prime] {O K : Type} [CommRing O] [Algebra ℤ_[l] O]
   [NormedField K] [NormedAlgebra ℚ_[l] K] [Algebra O K] {G : Type} [Group G] [TopologicalSpace G]
 
-theorem TWincl_smul' {R R' : Type} [CommRing R] [CommRing R'] [Algebra O R] [Algebra O R'] (f : R →ₐ[O] R')
-    (T : LocLat G ℚ_[l] K O) (r : R) (z : TW R T) : TWincl f T (r • z) = f r • TWincl f T z := by
-  induction z using TensorProduct.induction_on with
-  | zero => simp only [smul_zero, map_zero]
-  | tmul s x =>
-    simp only [TWincl, smul_tmul', TensorProduct.map_tmul, AlgHom.toLinearMap_apply, LinearMap.id_apply,
-      smul_eq_mul, map_mul]
-  | add x y hx hy => simp only [smul_add, map_add (f := _), hx, hy]
+alias TWincl_smul' := _root_.GlobalTheory.BKGal.HatVal.BasisCoord.tWincl_smul'
 
 theorem TWincl_TWincl {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] [Algebra O R] [Algebra O R']
     [Algebra O R''] (f : R →ₐ[O] R') (g : R' →ₐ[O] R'') (T : LocLat G ℚ_[l] K O) (z : TW R T) :

@@ -90,7 +90,7 @@ theorem exists_pairing_Dst_Dcris_phi_one : ∀ (l : ℕ) [Fact l.Prime] (P : Loc
       have := w.2.2
       rwa [SetLike.mem_coe, LinearMap.mem_ker, LinearMap.sub_apply, LinearMap.id_apply,
         sub_eq_zero] at this
-    rw [hj, GlobalTheory.T.frobeniusTensor_crisToSemistable_comm l P K, h2]
+    rw [hj, _root_.GlobalTheory.PMon.phiV_crisIncl_comm l P K, h2]
   have hinv : ∀ x ∈ Dst P ρ, ∀ w : ↥W, ∃ c : ↥(K0 K), Polynomial.C P.tB * pr x (j w) =
       Polynomial.C (algebraMap ↥(K0 K) P.R.B c) := by
     intro x hx w

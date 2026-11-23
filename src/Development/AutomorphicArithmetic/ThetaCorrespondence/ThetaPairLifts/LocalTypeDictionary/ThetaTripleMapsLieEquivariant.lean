@@ -81,23 +81,23 @@ theorem GlobalTheory.TripleAssembly.theta_triple_maps_lie_equivariant : GlobalTh
     obtain ⟨Ti, hTi, hTi'⟩ := GlobalTheory.T.exists_real_lie_operator_theta_quotient_line Bs Γ Xc om om' R Rf hM γ hγ
     refine ⟨LinearMap.rTensor _ Ti, ?_, ?_⟩
     · intro Φ hΦ Φ' hΦ' hD
-      obtain ⟨m, f, f₁, φ, hf, hsum, rfl, rfl⟩ := _root_.GlobalTheory.T.tripleProduct_lieDeriv_left_pure_tensor hHD hPr D ψ θ hψ hθ W W₁ X A A₁ B α β hT ωA ωB hWA hWB e Bs Γ Xc om om' h hTA hTB R Rf hM τ Y hY γ hγ hγt Φ hΦ Φ' hΦ' hD
+      obtain ⟨m, f, f₁, φ, hf, hsum, rfl, rfl⟩ := _root_.GlobalTheory.TripleAssembly.exists_pure_tensor_lieDeriv_left_factor hHD hPr D ψ θ hψ hθ W W₁ X A A₁ B α β hT ωA ωB hWA hWB e Bs Γ Xc om om' h hTA hTB R Rf hM τ Y hY γ hγ hγt Φ hΦ Φ' hΦ' hD
       have hmem : (∑ i, GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure (f i) (φ i)) ∈ GlobalTheory.TripleAssembly.darbAlg Γ.M Bs.ψ Bs.emb :=
         Submodule.sum_mem _ fun i _ => Submodule.subset_span ⟨f i, φ i, (hf i).1, (hf i).2.1, (hf i).2.2.1, rfl⟩
       have hφ : ∀ i, (∀ v, φ i v ∈ GlobalTheory.WeilM.SB _) ∧ ∀ᶠ v in Filter.cofinite, φ i v = Γ.M.vac v :=
         fun i => ⟨(hf i).2.1, (hf i).2.2.1⟩
 
-      rw [_root_.GlobalTheory.T.tripleProduct_image_thetaSum_pure hHD hPr D ψ θ hψ hθ W W₁ X A A₁ B α β hT ωA ωB hWA hWB e Bs Γ Xc om om' h hTA hTB R Rf hM m f₁ φ hφ hsum, _root_.GlobalTheory.T.tripleProduct_image_thetaSum_pure hHD hPr D ψ θ hψ hθ W W₁ X A A₁ B α β hT ωA ωB hWA hWB e Bs Γ Xc om om' h hTA hTB R Rf hM m f φ hφ hmem, map_sum]
+      rw [_root_.GlobalTheory.TripleAssembly.PureImage.firstFactorMap_thetaSum_pure_tensor hHD hPr D ψ θ hψ hθ W W₁ X A A₁ B α β hT ωA ωB hWA hWB e Bs Γ Xc om om' h hTA hTB R Rf hM m f₁ φ hφ hsum, _root_.GlobalTheory.TripleAssembly.PureImage.firstFactorMap_thetaSum_pure_tensor hHD hPr D ψ θ hψ hθ W W₁ X A A₁ B α β hT ωA ωB hWA hWB e Bs Γ Xc om om' h hTA hTB R Rf hM m f φ hφ hmem, map_sum]
       refine Finset.sum_congr rfl fun i _ => ?_
       rw [LinearMap.rTensor_tmul, ← hTi _ (hf i).1 _ (hf i).2.2.2]
     · intro Φ hΦ Φ' hΦ' hD
-      obtain ⟨m, f, f₁, φ, hf, hsum, rfl, rfl⟩ := _root_.GlobalTheory.T.tripleProduct_lieDeriv_readoff hHD hPr D ψ θ hψ hθ W W₁ X A A₁ B α β hT ωA ωB hWA hWB e Bs Γ Xc om om' h hTA hTB R Rf hM τ Y hY γ hγ hγt Φ hΦ Φ' hΦ' hD
+      obtain ⟨m, f, f₁, φ, hf, hsum, rfl, rfl⟩ := _root_.GlobalTheory.TripleAssembly.ReadDerB.tripleProduct_read_lieDeriv_second_factor hHD hPr D ψ θ hψ hθ W W₁ X A A₁ B α β hT ωA ωB hWA hWB e Bs Γ Xc om om' h hTA hTB R Rf hM τ Y hY γ hγ hγt Φ hΦ Φ' hΦ' hD
       have hmem : (∑ i, GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure (f i) (φ i)) ∈ GlobalTheory.TripleAssembly.darbAlg Γ.M' Bs.ψ Bs.emb :=
         Submodule.sum_mem _ fun i _ => Submodule.subset_span ⟨f i, φ i, (hf i).1, (hf i).2.1, (hf i).2.2.1, rfl⟩
       have hφ : ∀ i, (∀ v, φ i v ∈ GlobalTheory.WeilM.SB _) ∧ ∀ᶠ v in Filter.cofinite, φ i v = Γ.M'.vac v :=
         fun i => ⟨(hf i).2.1, (hf i).2.2.1⟩
 
-      rw [_root_.GlobalTheory.T.tripleProduct_secondMap_theta_pure hHD hPr D ψ θ hψ hθ W W₁ X A A₁ B α β hT ωA ωB hWA hWB e Bs Γ Xc om om' h hTA hTB R Rf hM m f₁ φ hφ hsum, _root_.GlobalTheory.T.tripleProduct_secondMap_theta_pure hHD hPr D ψ θ hψ hθ W W₁ X A A₁ B α β hT ωA ωB hWA hWB e Bs Γ Xc om om' h hTA hTB R Rf hM m f φ hφ hmem, map_sum]
+      rw [_root_.GlobalTheory.TripleAssembly.secondFactorMap_theta_pure_tensor hHD hPr D ψ θ hψ hθ W W₁ X A A₁ B α β hT ωA ωB hWA hWB e Bs Γ Xc om om' h hTA hTB R Rf hM m f₁ φ hφ hsum, _root_.GlobalTheory.TripleAssembly.secondFactorMap_theta_pure_tensor hHD hPr D ψ θ hψ hθ W W₁ X A A₁ B α β hT ωA ωB hWA hWB e Bs Γ Xc om om' h hTA hTB R Rf hM m f φ hφ hmem, map_sum]
       refine Finset.sum_congr rfl fun i _ => ?_
       rw [LinearMap.rTensor_tmul, ← hTi' _ (hf i).1 _ (hf i).2.2.2]
   have H : ∀ τ, ∀ Y ∈ lieAt X τ, ∃ T : Module.End ℂ (GlobalTheory.TripleAssembly.PiT R Γ Rf),
@@ -132,30 +132,3 @@ theorem GlobalTheory.TripleAssembly.theta_triple_maps_lie_equivariant : GlobalTh
       T (GlobalTheory.TripleAssembly.mapB ψ e Bs Γ R Rf Φ)) ((hOp τ Y hY).trans hEq).symm)
 end
 
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
-open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionValues
-open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
-open GlobalTheory.Grid GlobalTheory.Doubling GlobalTheory.ChainFr GlobalTheory.IndefiniteRowSideFullHecke.MatchingAdjoints
-open scoped TensorProduct ComplexConjugate
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.SquareComm
-open scoped GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-
-theorem _root_.GlobalTheory.T.theta_triple_lift_lie_equivariant : GlobalTheory.Published.HoweDualityReal → _root_.GlobalTheory.FunPr.ThetaLocalInputs →
-    ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D), IsStdChar D ψ (-1) → IsInfFam θ →
-    ∀ (W W₁ X : HSp D) (A : Fr W) (A₁ : Fr W₁) (B : Fr X) (α β : (AE D)ˣ →* Circle), IsTriple W W₁ X α β →
-    ∀ (ωA : WRep W X) (ωB : WRep W₁ X), IsWeil ψ true W X β (β / α) ωA → IsWeil ψ false W₁ X α (α / β) ωB →
-    ∀ (e : Fin (W.rank + W₁.rank) ≃ Fin X.rank) (Bs : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Base D.host.F D.host.E)
-      (Γ : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Geo D.sp.cm.sig W.rank W₁.rank) (Xc : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Chars D.host.F D.host.E)
-      (om : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Rep D.sp.cm.sig Γ.V Γ.W) (om' : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Rep D.sp.cm.sig Γ.V' Γ.W)
-      (h : GlobalTheory.TripleRead.IsReading ψ A A₁ B α β e Bs Γ Xc),
-      GlobalTheory.TripleRead.IsTransp ψ true Γ.M om ωA e (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU W 1 h.JW) (GlobalTheory.TripleRead.toUX X e h.JX) →
-      GlobalTheory.TripleRead.IsTransp ψ false Γ.M' om' ωB e (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU W₁ (-1) h.JW₁) (GlobalTheory.TripleRead.toUX X e h.JX) →
-      ∀ R Rf, GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.IsMatched Bs Γ Xc om om' R Rf →
-        (∀ τ, ∀ Y ∈ lieAt X τ, ∀ Φ ∈ algF ψ θ true A B, ∀ Φ' ∈ algF ψ θ true A B, IsDer θ X (fun g => ωA (1, g)) τ Y Φ Φ' →
-            GlobalTheory.TripleAssembly.mapA ψ e Bs Γ R Rf Φ' = GlobalTheory.TripleAssembly.opLie θ ωA (algF ψ θ true A B) (GlobalTheory.TripleAssembly.mapA ψ e Bs Γ R Rf) τ Y (GlobalTheory.TripleAssembly.mapA ψ e Bs Γ R Rf Φ)) ∧
-          ∀ τ, ∀ Y ∈ lieAt X τ, ∀ Φ ∈ algF ψ θ false A₁ B, ∀ Φ' ∈ algF ψ θ false A₁ B, IsDer θ X (fun g => ωB (1, g)) τ Y Φ Φ' →
-            GlobalTheory.TripleAssembly.mapB ψ e Bs Γ R Rf Φ' = GlobalTheory.TripleAssembly.opLie θ ωA (algF ψ θ true A B) (GlobalTheory.TripleAssembly.mapA ψ e Bs Γ R Rf) τ Y (GlobalTheory.TripleAssembly.mapB ψ e Bs Γ R Rf Φ) := by
-  first | exact @_root_.GlobalTheory.TripleAssembly.theta_triple_maps_lie_equivariant | exact _root_.GlobalTheory.TripleAssembly.theta_triple_maps_lie_equivariant | (intros; apply _root_.GlobalTheory.TripleAssembly.theta_triple_maps_lie_equivariant <;> assumption)
-end

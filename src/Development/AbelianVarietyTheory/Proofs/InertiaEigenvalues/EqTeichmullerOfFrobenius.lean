@@ -315,7 +315,7 @@ theorem εroot_pow (s : ℕ) : AI.εroot s ^ l ^ s = AI.ε := by
     exact ih
 
 theorem εroot_ne_one (s : ℕ) : AI.εroot s ≠ 1 := fun h =>
-  AI.ε_ne_one (by rw [← εroot_pow AI s, h, one_pow])
+  AI.ε_ne_one (by rw [← _root_.GlobalTheory.Cyc.εroot_pow AI s, h, one_pow])
 
 theorem εroot_sub_not_unit (s : ℕ) : ¬ IsUnit (AI.εroot s - 1) := by
   intro h

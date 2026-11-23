@@ -183,32 +183,6 @@ theorem kfin_of_space {S : Submodule ℂ (K → ℂ)} [FiniteDimensional ℂ S] 
 
 end Rep
 
-section Centre
-
-open PositivityTheory.Affgl GlobalTheory.CuspRep
-
-theorem zfin_of_cofin {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {a : ℕ} {J : Set (Module.End ℂ (Sm E a))}
-    (hJ : Cofin J) {f : Sm E a} (hf : ∀ z ∈ J, z f = 0) :
-    FiniteDimensional ℂ (Submodule.span ℂ ((fun z : Module.End ℂ (Sm E a) => z f) '' Zalg E a)) := by
-  obtain ⟨-, V, hV, h⟩ := hJ
-  let ev : Module.End ℂ (Sm E a) →ₗ[ℂ] Sm E a := LinearMap.applyₗ f
-  have key : ∀ w ∈ Submodule.span ℂ {y | ∃ x ∈ Zalg E a, ∃ j ∈ J, y = x * j}, w f = 0 := fun w hw => by
-    induction hw using Submodule.span_induction with
-    | mem x hx =>
-      obtain ⟨x, -, j, hj, rfl⟩ := hx
-      rw [Module.End.mul_apply, hf j hj, map_zero]
-    | zero => rfl
-    | add x y _ _ hx hy => rw [LinearMap.add_apply, hx, hy, add_zero]
-    | smul a x _ hx => rw [LinearMap.smul_apply, hx, smul_zero]
-  refine Submodule.finiteDimensional_of_le (S₂ := V.map ev) (Submodule.span_le.2 ?_)
-  rintro _ ⟨z, hz, rfl⟩
-  obtain ⟨v, hv, w, hw, e⟩ := Submodule.mem_sup.1 (h z hz)
-  refine ⟨v, hv, ?_⟩
-  change v f = z f
-  rw [← e, LinearMap.add_apply, key w hw, add_zero]
-
-end Centre
-
 section Gelf
 
 variable {D : D7} {θ : D.what₂.Tau → (Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ)} {V : HSp D}
@@ -226,7 +200,7 @@ theorem zfin_of_gelf (hθ : IsInfFam θ) {φ : GA D V → ℂ} (hs : IsSm D.sp.c
   rintro _ ⟨z, hz, rfl⟩
   obtain ⟨u, hu, e⟩ := GlobalTheory.CentralOps.Rg.exists_center hθ R hz
   let ψ : GlobalTheory.SmoothForms.SmF θ V := ⟨φ, (GlobalTheory.SmoothForms.smooth_iff R φ).1 fun k τs Xs hX g =>
-    hs k (fun i => oneP θ V (τs i) (Xs i)) (fun i => GlobalTheory.T.unitary_lie_one_parameter_isRealOneParamSubgroupAdelic D θ hθ V _ _ (hX i)) g⟩
+    hs k (fun i => oneP θ V (τs i) (Xs i)) (fun i => _root_.GlobalTheory.UAut.isRealLine_oneP D θ hθ V _ _ (hX i)) g⟩
   exact (e ψ).symm ▸ GlobalTheory.CentralOps.mem_of_mem_center R hW hu ψ (Submodule.mem_span_singleton_self φ)
 
 end Gelf
@@ -267,7 +241,7 @@ theorem finite_slices_glPart : ∀ (D : D7) (θ : D.what₂.Tau → (Ainf D.host
   have hL : IsOpen (L : Set (GL (Fin d) (GlobalTheory.CuspRep.Af D.host.E))) := by
     refine hU.preimage ?_
     have : Continuous fun k : GL (Fin d) (GlobalTheory.CuspRep.Af D.host.E) => g₀⁻¹ * ι (finGL D.host.E d k) * g₀⁻¹⁻¹ :=
-      (continuous_const.mul (hιc.comp CompanionTheory.D.gk.Br.LIC.continuous_finGL)).mul continuous_const
+      (continuous_const.mul (hιc.comp _root_.GlobalTheory.CompanionTheory.DenseKFin.continuous_finGL)).mul continuous_const
     exact this
   choose q hq hq0 using GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart.MonicBlock.monic_block D θ hθ V c m X Y hW T l d hl ι hι hd hblk hend hprev
   let Js : Set (Module.End ℂ (Sm D.host.E d)) :=
@@ -278,7 +252,7 @@ theorem finite_slices_glPart : ∀ (D : D7) (θ : D.what₂.Tau → (Ainf D.host
     change Polynomial.aeval _ _ ∈ Zalg D.host.E d
     rw [Polynomial.aeval_eq_sum_range]
     exact Subalgebra.sum_mem _ fun i _ => Subalgebra.smul_mem _ (pow_mem h i) _
-  have hCof := GlobalTheory.T.cofinite_of_capelli_monic D.host.E d Js hJs fun τ v => ⟨q τ v, hq τ v, ⟨(τ, v), rfl⟩⟩
+  have hCof := _root_.GlobalTheory.CompanionTheory.CTFin.MonicCofin.cofin_of_monic D.host.E d Js hJs fun τ v => ⟨q τ v, hq τ v, ⟨(τ, v), rfl⟩⟩
   have hfin := GlobalTheory.CompanionTheory.CuspFinGL.Split.cuspFin D.host.E d L hL S ρ' hρ' Js hCof
   have hnorm : (finPts D.sp.cm.sig V.gram).Normal := by
     unfold finPts
@@ -324,7 +298,7 @@ theorem finite_slices_glPart : ∀ (D : D7) (θ : D.what₂.Tau → (Ainf D.host
       rw [e]
       exact coeff_repOf S hSt α (hSφ φ h1.cont h3 _)
     have haut : IsAutForm F := by
-      refine ⟨GlobalTheory.CuspBlockLeft.cuspForm_blockEmb_left_invariant _ _ D.sp.cm.sig hcm _ V.gram hJ m X Y hW K hK T l d hl ι hι hd hblk hend hprev φ hc _ hg₁, ?_, ?_, zfin_of_cofin hCof hkill, GlobalTheory.BlockForms.growth_comp_blockEmb _ _ D.sp.cm.sig hcm _ V.gram hJ m X Y hW K hK T l d hl ι hι hd hblk hend hprev φ hc _ hg₁⟩
+      refine ⟨GlobalTheory.CuspBlockLeft.cuspForm_blockEmb_left_invariant _ _ D.sp.cm.sig hcm _ V.gram hJ m X Y hW K hK T l d hl ι hι hd hblk hend hprev φ hc _ hg₁, ?_, ?_, _root_.GlobalTheory.CompanionTheory.CTFin.Slice1.zfin_of_cofin hCof hkill, GlobalTheory.BlockForms.growth_comp_blockEmb _ _ D.sp.cm.sig hcm _ V.gram hJ m X Y hW K hK T l d hl ι hι hd hblk hend hprev φ hc _ hg₁⟩
       · have e : {a | finRep D.host.E d a F = F} = {a : GL (Fin d) (GlobalTheory.CuspRep.Af D.host.E) | ∀ g, φ (ι (g * finGL D.host.E d a) * (y * g₀)) = φ (ι g * (y * g₀))} :=
           Set.ext fun a => ⟨fun e g => congrFun (congrArg Subtype.val e) g, fun e => Subtype.ext (funext e)⟩
         rw [e]

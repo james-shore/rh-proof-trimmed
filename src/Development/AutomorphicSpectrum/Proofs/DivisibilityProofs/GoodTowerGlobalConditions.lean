@@ -56,6 +56,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.WeilBound.CoreStatements.HomogeneousNonvanishing.JNormal
 
 @[expose] public section
 
@@ -71,24 +72,11 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Top.Link
 
-theorem mCoordIdeal_map {K : Type} [Fintype K] {J : K → Type} [∀ k, Fintype (J k)] {Ω₀ Ω : Type} [Field Ω₀] [Field Ω]
-    (i : Ω₀ →+* Ω) (y₀ : (Σ k, J k) → Ω₀) : mCoordIdeal (fun p => i (y₀ p)) = mCoordIdeal y₀ := by
-  have key : ∀ f : MRing J, mConeMap (fun p => i (y₀ p)) f = MvPolynomial.map i (mConeMap y₀ f) := by
-    intro f
-    induction f using MvPolynomial.induction_on with
-    | C a => simp [mConeMap]
-    | add p q hp hq => simp only [map_add (f := _), hp, hq]
-    | mul_X p n hp => simp only [map_mul, hp]; simp [mConeMap]
-  ext f
-  show mConeMap _ f = 0 ↔ mConeMap _ f = 0
-  rw [key]
-  exact map_eq_zero_iff _ (MvPolynomial.map_injective i i.injective)
-
 theorem imageZ_of_restr {K₀ K : Type} [Fintype K₀] [Fintype K] {J₀ : K₀ → Type} {J : K → Type} [∀ k, Fintype (J₀ k)]
     [∀ k, Fintype (J k)] {Ω₀ Ω : Type} [Field Ω₀] [Field Ω] (i : Ω₀ →+* Ω) (y₀ : (Σ k, J₀ k) → Ω₀) (y : (Σ k, J k) → Ω)
     {κ : K₀ → K} {v : (Σ k, J₀ k) → Σ k, J k} (hv : IsBlockMap κ v) (hy : ∀ p, y (v p) = i (y₀ p)) :
     imageZ v (mCoordIdeal y) = mCoordIdeal y₀ := by
-  rw [← GroundTheory.Heights₂.Heights.Inter.BlockRatioAlgebraic.mCoordIdeal_comp_v hv y, ← mCoordIdeal_map i y₀]
+  rw [← GroundTheory.Heights₂.Heights.Inter.BlockRatioAlgebraic.mCoordIdeal_comp_v hv y, ← _root_.PositivityTheory.UnitarySelfGeneration.JN.mCoordIdeal_map i y₀]
   congr 1
   funext p
   exact hy p
@@ -195,7 +183,7 @@ theorem link_step (hSeg : GroundTheory.Heights₂.Heights.NumbersDVR.NumericalSe
     show M₀.kA = M₁.kA
     rw [o₀.kA_eq, o₁.kA_eq]
   have : CharZero M₁'.Ω := ‹CharZero Ω›
-  obtain ⟨-, hPP₁, hCv₁, -⟩ := GlobalTheory.T.root_model_block_pullback _ _ M₁ M₁' II hII κ₁ v₁ hv₁ (imageZ_of_restr i₁ M₁.y y hv₁ hy₁)
+  obtain ⟨-, hPP₁, hCv₁, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Num.PullModel.numbers_of_cover _ _ M₁ M₁' II hII κ₁ v₁ hv₁ (imageZ_of_restr i₁ M₁.y y hv₁ hy₁)
     (fun t r => by
       cases r with
       | none => exact ⟨rfl, fun _ => rfl⟩
@@ -210,7 +198,7 @@ theorem link_step (hSeg : GroundTheory.Heights₂.Heights.NumbersDVR.NumericalSe
     obtain ⟨L, hL⟩ := hCv₁ hc₁ m
     exact ⟨L, hL.congr' (hev m)⟩
   have : CharZero M.Ω := ‹CharZero Ω›
-  obtain ⟨-, hPP₀, hCv₀, hgeo⟩ := GlobalTheory.T.root_model_block_pullback _ _ M₀ M II hII κ₀ v₀ hv₀ (imageZ_of_restr i₀ M₀.y y hv₀ hy₀)
+  obtain ⟨-, hPP₀, hCv₀, hgeo⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Num.PullModel.numbers_of_cover _ _ M₀ M II hII κ₀ v₀ hv₀ (imageZ_of_restr i₀ M₀.y y hv₀ hy₀)
     (fun t r => by
       cases r with
       | none => exact ⟨rfl, fun _ => rfl⟩

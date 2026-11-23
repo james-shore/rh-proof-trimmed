@@ -205,7 +205,7 @@ theorem jet_ptOf (m : ℕ) (u : Q V d n) :
 
 theorem lim_ext {p q : limO V d n ⟶ t.G}
     (h : ∀ m, Formalism.L2.Pj.homAt (𝟙 (Sp V)) (jetA _ m) ≫ p = Formalism.L2.Pj.homAt (𝟙 (Sp V)) (jetA _ m) ≫ q) : p = q :=
-  Over.OverMorphism.ext (GlobalTheory.T.spec_powerSeries_hom_ext_of_jets V _ _ _ _ fun m => congrArg (fun r => r.left) (h m))
+  Over.OverMorphism.ext (_root_.GlobalTheory.TransUnit.hom_ext_of_jets V _ _ _ _ fun m => congrArg (fun r => r.left) (h m))
 
 variable {κ : Type} [Fintype κ] {tg : κ → (Sp (DualNumber V) ⟶ t.G.left)} {uvec : κ → Fin d → V}
   (hc : IsChartG t (𝟙 (Sp V)) d B.G.F B.A.act tg uvec x)

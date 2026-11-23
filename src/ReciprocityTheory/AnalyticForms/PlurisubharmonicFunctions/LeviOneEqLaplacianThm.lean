@@ -167,8 +167,6 @@ theorem greenParam_main : GreenParamStatement := by
   rw [integral_congr_ae (Eventually.of_forall fun p => (greenParamFiber_main E u hu hc p).2)]
   exact integral_const_mul _ _
 
-theorem greenParam_thm : GreenParamStatement := greenParam_main
-
 end
 
 end ReciprocityTheory.AnForm.A

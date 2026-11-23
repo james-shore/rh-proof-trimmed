@@ -83,7 +83,7 @@ theorem rank_at_twisted_places_of_rec_span (hR : p.PointConditions') (hm : More 
       GlobalTheory.TraceClassRank.CompareOffOwn (T := (r.used v).full) (R := R2 p) (hrec.1.ok.laws v).p (fw2 p) j (r.lev j)
         (F2 p).P0 (F2 p).ψ0⁻¹ 1 v (ownAt D v)) :
     GlobalTheory.TraceClassRank.RankAtPlaces O := by
-  obtain ⟨hC, hOk, hLU, -⟩ := _root_.GlobalTheory.T.links2_of_single_index_twisted _ _ _ _ _ _ _ _ _ _ p hR hm.1
+  obtain ⟨hC, hOk, hLU, -⟩ := _root_.GlobalTheory.BigOn.links2_of_rows_alt _ _ _ _ _ _ _ _ _ _ p hR hm.1
   obtain ⟨hc, hinj, z, act, y, ht⟩ := hrec.1.tied
   have hX := hOk.irr
   have h1 := hC.grp.levels

@@ -74,13 +74,6 @@ private lemma summable_weierstrassP_terms (L : PeriodPair) (z : ℂ) :
     by_cases hl : (l : ℂ) = 0 <;> simp [hl]
 
 open scoped UpperHalfPlane MatrixGroups Matrix ModularForm ComplexConjugate in
-private lemma latticeEquivProd_symm_coe (L : PeriodPair) (p : ℤ × ℤ) :
-    (L.latticeEquivProd.symm p : ℂ) = p.1 * L.ω₁ + p.2 * L.ω₂ := by
-  simp [PeriodPair.latticeEquivProd, Finsupp.linearCombination_apply, Finsupp.sum_fintype,
-    PeriodPair.latticeBasis]
-
-
-open scoped UpperHalfPlane MatrixGroups Matrix ModularForm ComplexConjugate in
 lemma _root_.GlobalTheory.WpFam.hasSum_rows_G2_add_weierstrassP (τ : ℍ) (z : ℂ) :
     HasSum (fun n : ℤ => ∑' m : ℤ, 1 / (z + n * τ + m) ^ 2)
       (EisensteinSeries.G2 τ + (_root_.GlobalTheory.QFam.tauPair τ).weierstrassP z) := by
@@ -95,7 +88,7 @@ lemma _root_.GlobalTheory.WpFam.hasSum_rows_G2_add_weierstrassP (τ : ℍ) (z : 
     have := (L.latticeEquivProd.symm.toEquiv.hasSum_iff).mpr hg
     convert this using 1
     funext p
-    simp [hfdef, latticeEquivProd_symm_coe, hω₁, hω₂]
+    simp [hfdef, _root_.PeriodPair.latticeEquiv_symm_apply, hω₁, hω₂]
   have hrow : HasSum (fun n : ℤ => ∑' m : ℤ, f (n, m)) (L.weierstrassP z) :=
     hf.prod_fiberwise fun n => (hf.summable.prod_factor n).hasSum
   have hG : HasSum (fun n : ℤ => EisensteinSeries.e2Summand n τ) (EisensteinSeries.G2 τ) := by

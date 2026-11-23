@@ -181,10 +181,8 @@ lemma hsSq_one (n : ℕ) : hsSq (1 : Matrix (Fin n) (Fin n) ℂ) = n := by
 
 end CS
 
-private theorem re_le_norm' (z : ℂ) : z.re ≤ ‖z‖ := Complex.re_le_norm z
-
 private theorem neg_re_le_norm' (z : ℂ) : -z.re ≤ ‖z‖ := by
-  have h := re_le_norm' (-z)
+  have h := _root_.Complex.re_le_norm (-z)
   rwa [Complex.neg_re, norm_neg] at h
 
 theorem traceLowerBound : TraceLower := by
@@ -442,7 +440,7 @@ lemma ram_gap (n k : ℕ) (K : Matrix (Fin n) (Fin n) ℂ) (V : Matrix (Fin n) (
       = ((n : ℝ) - k) + ((K - 1) * (1 - V * Vᴴ)).trace.re := by
     rw [htr, Complex.add_re, trace_proj n k V hV, Complex.ofReal_re]
   rw [Complex.sub_re] at hre
-  have habs := re_le_norm' (((K - 1) * (1 - V * Vᴴ)).trace)
+  have habs := _root_.Complex.re_le_norm (((K - 1) * (1 - V * Vᴴ)).trace)
   have hs := Real.sqrt_nonneg ((n : ℝ) - k)
   have hm := mul_le_mul_of_nonneg_left hNK hs
   linarith

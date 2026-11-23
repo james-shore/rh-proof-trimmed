@@ -141,7 +141,7 @@ open GlobalTheory.UU.NondegGen in
 theorem GlobalTheory.UU.cubWeil_nondegenerate_generic :
     (∀ (k : Type) [Field k] [IsAlgClosed k] (B : Over (Sp k)) [GrpObj B] (g n : ℕ), IsAbelianScheme B → SmoothOfRelativeDimension g B.hom → (n : k) ≠ 0 → Nat.card {x : (𝟙_ (Over (Sp k)) ⟶ B) // x ^ n = 1} = n ^ (2 * g)) → Laws → AllSet fun {V} _ _ _ {_} {_} _ _ s => ∀ (t : Tower s) (a : t.Alg) (F : Type) [Field F] [IsAlgClosed F] [Algebra (FractionRing V) F] [Algebra.IsAlgebraic (FractionRing V) F] (N : ℕ), 1 ≤ N → ∀ x : TF (R := V) F ⟶ a.B, x ^ N = 1 → (∀ y : TF (R := V) F ⟶ a.B, y ^ N = 1 → CubWeil a.M.c N x y 1) → x = 1 := by
   intro hcard hL V _ _ _ A G _ _ s t a F _ _ _ _ N hN x hx horth
-  obtain ⟨W, _, _, _, φ, hφ, hcomp, hW, hloc, hroots, hlift⟩ := GlobalTheory.T.torsion_lift_abelianPart_finite_extension hcard V A G s t a F N hN
+  obtain ⟨W, _, _, _, φ, hφ, hcomp, hW, hloc, hroots, hlift⟩ := _root_.GlobalTheory.TorsionLift.torsion_lift hcard V A G s t a F N hN
   haveI : CharZero V := s.cdvr.2.2
   haveI : CharZero F := charZero_of_injective_ringHom
     (f := (algebraMap (FractionRing V) F).comp (algebraMap V (FractionRing V)))

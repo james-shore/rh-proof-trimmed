@@ -264,7 +264,7 @@ theorem good_pull : ∀ (D : D7) (N : NData D.R D.host D.what₂) (X : NTw D.R D
     obtain ⟨c, χ, hc, hχ, hcr⟩ := exists_chrEq_pull ha o1 (pow_ne_zero n hl.ne_zero) o2
     rw [map_one]
     refine Units.ext ((hcr _).symm.trans ?_)
-    rw [GlobalTheory.T.heckeChar_unramified_outside_of_lPower_galois_char D N a.art ha.artin _ l n hl o2 c χ hc hχ Q hQ hQl (fun v hv hc' B hB σ hσ => by
+    rw [_root_.GlobalTheory.UnramPull.unramOutside_of_corr D N a.art ha.artin _ l n hl o2 c χ hc hχ Q hQ hQl (fun v hv hc' B hB σ hσ => by
       rw [MonoidHom.comp_apply, show φ.rangeRestrict σ = 1 from Subtype.ext (hunr v hv hc' B hB σ hσ), map_one]) x h1 h2 h3 h4]
     simp
   ·

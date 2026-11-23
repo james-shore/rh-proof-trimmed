@@ -43,4 +43,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem minor_span_complement : PI.MinorSpanCompl := PI.MSC.minorSpanCompl

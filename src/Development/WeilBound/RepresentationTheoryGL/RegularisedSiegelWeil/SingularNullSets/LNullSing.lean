@@ -42,6 +42,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PositivityTheory.Rg.Rsw.L
 
-theorem nullSing : IdemEx → NullSing := GlobalTheory.CompanionTheory.NullFr.nullSing_of_idemEx
-
 end PositivityTheory.Rg.Rsw.L

@@ -77,7 +77,7 @@ theorem UpperTheory.Gal.FiniteEtaleModels.ptAll_holds :
       (pow_ne_zero _ he.1) ?_
     · exact ⟨_, lev_top o⟩
     · intro w e _ hw
-      obtain ⟨l, hl⟩ := GlobalTheory.T.exists_etaleLevelStructure_at_geometricPoint p D R b N w e hc hw S s o k x
+      obtain ⟨l, hl⟩ := _root_.GlobalTheory.UPel.HT.EtLev.exists_etLevOver_geomPt p D R b N w e hc hw S s o k x
       exact ⟨l, (lev_pow o w e l).2 hl⟩
     · rintro 𝔟 𝔠 hbc ⟨l₁, h₁⟩ ⟨l₂, h₂⟩
       exact ⟨_, hC p D R b N S s o 𝔟 𝔠 hbc _ l₁ l₂ h₁ h₂⟩

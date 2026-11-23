@@ -56,12 +56,6 @@ namespace GlobalTheory.CompanionTheory.MassCount
 
 variable {F : Type} [Field F] [NumberField F]
 
-theorem count_box [IsTotallyReal F] (N : ℕ) (hN : 0 < N) (I : Ideal (𝓞 F)) (hI : I ≠ ⊥) (B : ℝ) (hB : 0 ≤ B) :
-    {x : F | x ≠ 0 ∧ (∃ y ∈ I, (y : F) = N * x) ∧ ∀ w : InfinitePlace F, w x ≤ B}.Finite ∧
-    (({x : F | x ≠ 0 ∧ (∃ y ∈ I, (y : F) = N * x) ∧ ∀ w : InfinitePlace F, w x ≤ B}.ncard : ℕ) : ℝ) *
-      (Ideal.absNorm I : ℝ) ≤ (4 * B * N) ^ Module.finrank ℚ F :=
-  _root_.UpperTheory.Reformulated.B.GaloisBoundSecond.main N hN I hI B hB
-
 theorem norm_theta_mul [IsTotallyReal F] (θ : ℝ →+* InfiniteAdeleRing F) (ε : ℝ) (x : F) (w : InfinitePlace F) :
     ‖(θ ε * algebraMap F (InfiniteAdeleRing F) x) w‖ = |ε| * w x := by
   have hw := IsTotallyReal.isReal w
@@ -97,7 +91,7 @@ theorem countBd : PositivityTheory.Rg.Mass.CountBd := by
     rw [norm_theta_mul, abs_of_pos hε] at h
     rw [le_div_iff₀ hε, mul_comm]
     exact h.trans (hcR w)
-  obtain ⟨hfin, hcount⟩ := count_box N hN I hI (R / ε) (div_nonneg hR0 hε.le)
+  obtain ⟨hfin, hcount⟩ := _root_.UpperTheory.Reformulated.B.GaloisBoundSecond.main N hN I hI (R / ε) (div_nonneg hR0 hε.le)
   refine ⟨hfin.subset hsub, ?_⟩
   have hI0 : (0 : ℝ) < Ideal.absNorm I := by
     have : Ideal.absNorm I ≠ 0 := fun h => hI (Ideal.absNorm_eq_zero_iff.1 h)

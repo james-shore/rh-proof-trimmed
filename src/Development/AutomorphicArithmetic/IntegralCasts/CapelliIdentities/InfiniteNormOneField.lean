@@ -47,4 +47,4 @@ theorem UpperTheory.Reformulated.B.InfiniteNormOneField.infinite_norm_one_k {F E
     {ι : (NumberField.InfinitePlace F → ℂ) →+ Formalism.IndefR.DatumF.AEF F E}
     (h : PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) : {t | t * σ t = 1}.Infinite :=
   have hcm : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.IsCMExt F E σ := h.1.cm
-  UpperTheory.Reformulated.B.CapelliAbsoluteValue.abs σ hcm.2.1 hcm.2.2.2
+  _root_.UpperTheory.infinite_norm_one_elements σ hcm.2.1 hcm.2.2.2

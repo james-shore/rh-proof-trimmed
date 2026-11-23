@@ -48,6 +48,6 @@ namespace DiscreteGroups.T1.G
 
 theorem thetaFixOf_of_mult (hM : GlobalTheory.Published.CuspidalMultiplicityOne) : PositivityTheory.Rg.BcB.Desc.ThetaFixOf :=
   thetaFixOf_of (PositivityTheory.JMult1.gelfandKazhdanDual_of_rigidity PositivityTheory.AdelicQuotientData.jacquetShalikaRigidity
-    PositivityTheory.S2.CuspBdd.cuspFormsBoundedGL) CuspFormAutomorphicBounds.automorphicFormsFiniteGL hM
+    _root_.GlobalTheory.CompanionTheory.CuspFinGL.cuspFormsBoundedGL) CuspFormAutomorphicBounds.automorphicFormsFiniteGL hM
 
 end DiscreteGroups.T1.G

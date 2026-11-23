@@ -78,7 +78,7 @@ theorem isIso_stab (R : Type) [CommRing R] [IsDedekindDomain R] (i n : ℕ) (hn 
     infer_instance
   | succ m hm ih =>
     rw [stab_comp R hm (Nat.le_succ m), grpHComp.2]
-    have := PositivityTheory.v8.KStability.kStability R 2 (dedekindSR R) i m (by omega)
+    have := _root_.GlobalTheory.HomStab.kStability_main R 2 (dedekindSR R) i m (by omega)
     infer_instance
 
 theorem baseChange_bijective {M N : ModuleCat.{0} ℤ} (f : M ⟶ N) [IsIso f] :

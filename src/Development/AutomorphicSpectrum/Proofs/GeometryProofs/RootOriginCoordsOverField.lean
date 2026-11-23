@@ -90,7 +90,7 @@ theorem root_model_on_cover : Top.Given → ∀ (E : Type) [Field E] [NumberFiel
   have hdpos : 0 < Fl.deg := by
     obtain ⟨-, -, -, -, -, -, -, -, -, -, h0, -⟩ := Fl.generic
     exact h0
-  obtain ⟨br₀, hdeg₀⟩ := GlobalTheory.T.log_resolution_reindexed R.K K R.ι J R.Ω Ω R.y y bk bx i _ Fl.deg R₀ R' hh hbk hy R.arith harith'
+  obtain ⟨br₀, hdeg₀⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Chg.DegBlock.isDegreeOff_of_block R.K K R.ι J R.Ω Ω R.y y bk bx i _ Fl.deg R₀ R' hh hbk hy R.arith harith'
     R.birational hbir hholo horb hfin hdpos
   obtain ⟨hholoπ, hdeg⟩ := GlobalTheory.T.holomorphic_degree_composition _ Fl.deg Sys.X o.Re.R.X R'.X Sys.A o.Re.R.A R'.A o.Re.π hh br₀ o.Re.holo hbij
     hholo hdeg₀

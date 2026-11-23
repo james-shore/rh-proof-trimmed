@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import PositivityTheory.AutomorphicForms.PublishedInputs.RealGaloisRepresentations.IwahoriSphericalTransfer.ExistsInfiniteQcmSplitRam
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ConjOfFrobeniusMatch
 
 @[expose] public section
 
@@ -67,7 +68,7 @@ private def bad (l : ℕ) {a : ℕ} (π : CuspSub E a) (w₀ : HeightOneSpectrum
   {w | w = w₀ ∨ ((l : ℕ) : 𝓞 E) ∈ w.asIdeal ∨ ¬ ∃ B, (CG.mk π).HasSat w B}
 
 private theorem bad_finite {a : ℕ} (π : CuspSub E a) (w₀ : HeightOneSpectrum (𝓞 E)) : (bad l π w₀).Finite := by
-  have h1 := Filter.eventually_cofinite.1 (GlobalTheory.CongEx.eventually_not_mem_l E l)
+  have h1 := Filter.eventually_cofinite.1 (_root_.GlobalTheory.TripleLocal.frobConj_natCast_notMem E l)
   have h2 := Filter.eventually_cofinite.1 (GlobalTheory.CuspRep.UnrSat.eventually_hasSatGL_locRep GlobalTheory.automorphicFormsFiniteGL E a π)
   refine ((Set.finite_singleton w₀).union (h1.union h2)).subset ?_
   rintro w (h | h | h)

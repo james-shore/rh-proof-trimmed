@@ -108,9 +108,6 @@ section Tensor
 variable {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R] [Algebra F R]
   (σ : E →ₐ[F] E) {n : ℕ} (J : Matrix (Fin n) (Fin n) E)
 
-theorem sigR_inclR (a : E) : sigR R σ (inclR (F := F) R a) = inclR (F := F) R (σ a) := by
-  simp [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR]
-
 theorem sigR_sigR_of_invol (hσ : ∀ x, σ (σ x) = x) (t : R ⊗[F] E) : sigR R σ (sigR R σ t) = t := by
   induction t using TensorProduct.induction_on with
   | zero => simp
@@ -143,7 +140,7 @@ theorem isHerm_isPerfect_hR : ∀ {F E : Type} [Field F] [NumberField F] [Field 
   have hM : ∀ i j, sigR (Fv F v) σ (JR (F := F) (Fv F v) J j i) = JR (F := F) (Fv F v) J i j := by
     intro i j
     simp only [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.JR, Matrix.map_apply]
-    rw [HermForm.sigR_inclR, hJ.1]
+    rw [_root_.GlobalTheory.Mem.VolFin.sigR_inclR, hJ.1]
   exact ⟨HermForm.isHerm_hform _ _ hc hM,
     HermForm.isPerfect_hform _ _ hc (HermForm.isUnit_det_JR (F := F) (Fv F v) J hJ.2)⟩
 

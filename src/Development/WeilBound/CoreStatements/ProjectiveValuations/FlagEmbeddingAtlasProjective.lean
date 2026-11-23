@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbProj
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsAbelianSchemeAway
 
 @[expose] public section
 
@@ -55,12 +56,6 @@ private theorem pt_str {R A : Type} [CommRing R] [CommRing A] {N : ℕ}
   congr 1
   ext1
   exact RingHom.ext fun r => MvPolynomial.eval₂Hom_C c v r
-
-theorem isProper_of_proj {K : Type} [CommRing K] {P : Scheme.{0}} {t : P ⟶ Sp K} (h : IsProjOver t) : IsProper t := by
-  obtain ⟨N, j, _, e⟩ := h
-  have := isProper_str K N
-  rw [← e]
-  infer_instance
 
 theorem exists_joint {K : Type} [CommRing K] {X Z : Scheme.{0}} (s : X ⟶ Sp K) (hs : IsProjOver s) (π : Z ⟶ X)
     {I : Type} (n : I → ℕ) (g : ∀ i, Z ⟶ PSpace K (n i)) (hg : ∀ i, g i ≫ PSpace.str K (n i) = π ≫ s)
@@ -89,8 +84,8 @@ theorem isProjOver_of_joint {K : Type} [CommRing K] {X Z : Scheme.{0}} (s : X �
     IsProjOver (π ≫ s) := by
   have := Fintype.ofFinite I
   obtain ⟨P, t, q, ht, hq, H⟩ := exists_joint s hs π n g hg Finset.univ
-  have := isProper_of_proj ht
-  have := isProper_of_proj hs
+  have := _root_.GlobalTheory.SpreadAb.isProper_of_isProjOver ht
+  have := _root_.GlobalTheory.SpreadAb.isProper_of_isProjOver hs
   have : IsProper (q ≫ t) := by rw [hq]; infer_instance
   have hp : IsProper q := IsProper.of_comp q t
   have hm : Mono q := ⟨fun a a' h => ext _ a a' (H _ a a' h).1 fun i => (H _ a a' h).2 i (Finset.mem_univ i)⟩

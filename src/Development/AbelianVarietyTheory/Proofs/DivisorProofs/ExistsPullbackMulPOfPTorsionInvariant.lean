@@ -73,7 +73,7 @@ theorem PDivGroup.exists_tensorSquare_mulP_eq {p : ℕ} {R : Type} [CommRing R] 
     ∃ c : G.A n ⊗[R] G.A n, pullbackTwo (G.mulP n) c = F := by
   refine exists_tensor_map_eq_of_exact (G.mulP n : G.A n →ₗ[R] G.A (n + 1)) _
     (Test.mulP_injective G n) (fun a => ⟨fun ha => ?_, ?_⟩) F h₁ h₂
-  · exact GlobalTheory.T.exists_mulP_eq_of_transl_invariant G n a (sub_eq_zero.1 ha)
+  · exact _root_.GlobalTheory.PDivGroup.exists_mulP_eq_of_transl_eq G n a (sub_eq_zero.1 ha)
   · rintro ⟨e, rfl⟩
     exact sub_eq_zero.2 (G.transl_mulP n e)
 

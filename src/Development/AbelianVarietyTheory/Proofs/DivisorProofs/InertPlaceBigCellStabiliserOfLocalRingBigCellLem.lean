@@ -66,9 +66,9 @@ theorem exists_bigCell : (∀ {O : Type} [CommRing O] [IsLocalRing O] (c : O →
     ∀ (v : Pl (F := F)) (w : HeightOneSpectrum (𝓞 E)), Formalism.UG.IsInertAt F E v w → ∀ g ∈ GlobalTheory.DblVac.KD σ W v,
       ∃ p ∈ GlobalTheory.DblVac.KD σ W v, p ∈ GlobalTheory.DblVac.PDiag σ W ∧ p * g ∈ GlobalTheory.DblVac.KD σ W v ∧ GlobalTheory.DblVac.BigCell W v (p * g) := by
   intro H F E _ _ _ _ _ σ B d W r s hB hW v w hw g hg
-  obtain ⟨hinj, -, -, -, -, -, -⟩ := GlobalTheory.T.inertCompletionToAdeles_properties σ hw
-  obtain ⟨gmul, gone, ginj, gat, gsurj, gvec⟩ := GlobalTheory.T.adelicMatrixGluedAtInertPlace_properties hw (ι := Fin d ⊕ Fin d)
-  obtain ⟨gmul', gone', -, -, -, gvec'⟩ := GlobalTheory.T.adelicMatrixGluedAtInertPlace_properties hw (ι := Fin d)
+  obtain ⟨hinj, -, -, -, -, -, -⟩ := _root_.GlobalTheory.InertBigCell.iotaW_adelic_place σ hw
+  obtain ⟨gmul, gone, ginj, gat, gsurj, gvec⟩ := _root_.GlobalTheory.InertBigCell.glueW_props hw (ι := Fin d ⊕ Fin d)
+  obtain ⟨gmul', gone', -, -, -, gvec'⟩ := _root_.GlobalTheory.InertBigCell.glueW_props hw (ι := Fin d)
   obtain ⟨hJ, -, -⟩ := GlobalTheory.T.adelicMatrix_trivial_off_inertPlace_unitary_at_place σ hw (ι := Fin d ⊕ Fin d)
   obtain ⟨-, hdiag, hhalfblk⟩ := GlobalTheory.T.adelicMatrix_trivial_off_inertPlace_unitary_at_place σ hw (ι := Fin d)
   obtain ⟨b, δ, hb, hδ, hint, hdet, hdetinv⟩ := GlobalTheory.T.exists_unimodular_frame_inertPlace σ B W r s hB hW hw

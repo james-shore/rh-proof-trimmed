@@ -87,7 +87,7 @@ theorem nuGe_zero_of_moves : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   obtain ⟨Φ, hΦ⟩ := phiFun_of hL T.V (maximalIdeal T.V) P.D F k hk p w hw
   have h1 : PhiRel P.D.toPre F k p w s (Φ s) := (hΦ _ _).2 rfl
   have h2 : Fam.IsSmul P.D.toPre F ζ (Φ s) (ζ • Φ s) := (ReciprocityTheory.ChartRestriction.G.DVR.isSmul_iff _ _ _).2 rfl
-  obtain ⟨u, t', ⟨m, hm, hum⟩, hut, ht'⟩ := GlobalTheory.T.symmetric_lift_acts_root_of_unity_on_expansions E H Dw l Xo c T io y.1 I P F xF hx k hk σ σ' hh hh' s (Φ s) (ζ • Φ s)
+  obtain ⟨u, t', ⟨m, hm, hum⟩, hut, ht'⟩ := _root_.GlobalTheory.SymActExpansion.exists_expandsG_of_isSymAct E H Dw l Xo c T io y.1 I P F xF hx k hk σ σ' hh hh' s (Φ s) (ζ • Φ s)
     (e.symm b) b p w ζ hσ hσ' hs hmv ((he _ _).2 (e.apply_symm_apply b).symm) ((hf _ _).2 hp.symm) hw hfin h1 h2
   have h4 := (h3 T.V ϖ hϖ P.D Q hQ F v hv k hk p w hw ζ hζ hfin s _ _ h1 h2 0).1 (hν σ s hσ hs)
   have h5 := NuGe.smul Q (zero_le_val_of_pow_eq_one v hm hum) hut h4

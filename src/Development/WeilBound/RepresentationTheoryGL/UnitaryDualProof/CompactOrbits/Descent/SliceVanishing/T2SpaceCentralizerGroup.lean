@@ -58,7 +58,7 @@ open PositivityTheory.RgUd.T PositivityTheory.RgUd.T.Desc
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] {n : ℕ}
 
-theorem t2k : T2Space k := Asm.t2
+alias t2k := _root_.PositivityTheory.RgUd.T.Desc.Asm.t2
 
 theorem tdk : TotallyDisconnectedSpace k := totallyDisconnectedSpace_localField
 

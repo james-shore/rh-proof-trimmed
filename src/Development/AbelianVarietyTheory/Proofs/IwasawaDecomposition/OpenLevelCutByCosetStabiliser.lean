@@ -55,25 +55,10 @@ section CutOpen
 
 variable {E K : Type} [Field E] [NumberField E] [StarRing E] [Field K] {n : ℕ}
 
-omit [StarRing E] in
-theorem intAt_iff_val_le_one {P : HeightOneSpectrum (𝓞 E)} {a : E} : IntAt P a ↔ P.valuation E a ≤ 1 := by
-  constructor
-  · rintro ⟨r, s, hs, h⟩
-    have h1 : P.valuation E (algebraMap (𝓞 E) E s) = 1 := by
-      rw [HeightOneSpectrum.valuation_of_algebraMap, HeightOneSpectrum.intValuation_eq_one_iff]
-      exact hs
-    have h2 := congrArg (P.valuation E) h
-    rw [map_mul, h1, one_mul] at h2
-    rw [h2]
-    exact P.valuation_le_one r
-  intro h
-  obtain ⟨r, s, hs⟩ := P.exists_primeCompl_mul_eq_of_integer a h
-  exact ⟨r, s, s.2, by rw [mul_comm]; exact hs⟩
-
 theorem mem_stdAt_iff_val (P : HeightOneSpectrum (𝓞 E)) (x : Sp E n) :
     x ∈ stdAt E n P ↔ ∀ i, P.valuation E (x i) ≤ 1 := by
   rw [ciMem_stdAt]
-  exact forall_congr' fun _ => intAt_iff_val_le_one
+  exact forall_congr' fun _ => _root_.GlobalTheory.CharValCompare.intAt_iff
 
 theorem lqPrinc_mono {P : HeightOneSpectrum (𝓞 E)} {N N' : ℕ} (h : N ≤ N') {g : Sp E n ≃ₗ[E] Sp E n}
     (hg : lqPrinc P N' g) : lqPrinc P N g := by

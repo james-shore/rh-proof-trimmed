@@ -204,7 +204,7 @@ theorem ampleAt_of_isBig_pull (hN : GlobalTheory.Published.NefNumerics) {F : Typ
   letI := algebraΓOfHom p
   letI := algebraΓOfHom (f ≫ p)
   obtain ⟨n, rfl⟩ := Nat.exists_eq_add_of_le' hn
-  obtain ⟨r, A, hA, hle⟩ := GlobalTheory.T.exists_ample_sections_pullback_bound_of_genFinite F M W p f hp hq hf hr
+  obtain ⟨r, A, hA, hle⟩ := _root_.GlobalTheory.GlobalSectionsPullback.globalSectionsDim_pullback_le_generically_finite F M W p f hp hq hf hr
   obtain ⟨-, c, hc, hm⟩ := (isBig_iff (fun _ => rfl) hq hdM).1 hb
   refine ampleAt_generic hN (by rwa [strHom_eq (f := p) fun _ => rfl]) hdW hL hA (c := c / (r + 1))
     (by positivity) (hm.mono fun m hm => ?_)
@@ -386,7 +386,7 @@ theorem separate_numberField (hK : GlobalTheory.Published.NadelVanishingAndNonKl
   have hbig : IsBig ℂ (N.pull πW) :=
     isBig_of_smul_cls_eq_add_ampleAt hNN ℂ _ pC hWq _ _ _ hNC hNC (LB.isLB_triv _) 1 (x s₀) hNnC one_pos hc hAx
       (isNef_triv ℂ _)
-  have hpos := GlobalTheory.T.one_le_intersectionNumber_subvariety_through_positive hNN ℂ _ pC hWq _ _ _ hNC hNC (LB.isLB_triv _) 1 (x s₀) hNnC one_pos hc hAx
+  have hpos := _root_.GlobalTheory.PosThrough.one_le_interNumRed hNN ℂ _ pC hWq _ _ _ hNC hNC (LB.isLB_triv _) 1 (x s₀) hNnC one_pos hc hAx
     (isNef_triv ℂ _)
   have hbig' : IsBig ℂ ((N.pull πW).pull fC) := BigPull.isBig_pull ℂ _ _ pC fC hMq
     (by rw [HSCore.VanishNumberField.topologicalKrullDim_eq_of_smooth pC n hWs,
@@ -405,7 +405,7 @@ theorem separate_numberField (hK : GlobalTheory.Published.NadelVanishingAndNonKl
     fun j => hpt _ _ _ ⟨mem_pIdx.2 (hkM j trivial).1, mem_pIdx.2 (hkM j trivial).2⟩
   have hk₂ : ∀ j, ⊤ ≤ zC j ⁻¹ᵁ ((tens K.bundle B).pull πM).U (pIdx _ πM (k j)) :=
     fun j => hpt _ _ _ (mem_pIdx.2 (hkM j trivial))
-  refine GlobalTheory.T.sections_adjointNef_separate_etaleFibre hK hNN _ _ pC fC n hWq hMq hn (CanonLB.baseChange HM' K) (N.pull πW) hNC (N'.pull πM)
+  refine _root_.GlobalTheory.EtaleSep.sections_separate_fibre hK hNN _ _ pC fC n hWq hMq hn (CanonLB.baseChange HM' K) (N.pull πW) hNC (N'.pull πM)
     (B.pull πM) (LB.isLB_pull hN' πM) (LB.isLB_pull hB πM) m x (πW ⁻¹ᵁ U) hNnC hbig
     (nef_pull hNN pC (fC ≫ pC) fC hWq hMq _ hNnC) hbig' (nef_pull hNN (f ≫ p) (fC ≫ pC) πM hMp hMq N' hN'n) hm hcB
     (hxp j₀) (hpt _ _ _ (show πW (x s₀) ∈ U from hπx s₀ ▸ (hzU j₀ s₀).1)) hUC
@@ -472,7 +472,7 @@ theorem sections_separate_quotient_fibre : GlobalTheory.Published.NadelVanishing
     nef_pull hNN sX M.str M.σ hXp M.proj N' hN'n
   have hδσb : (letI := algebraΓOfHom M.str; IsBig F (δ.pull M.σ)) := big_pull_modif sX n U M hUne δ hδb
   have hNWn : (letI := algebraΓOfHom pW; IsNef F NW) :=
-    GlobalTheory.T.isNefLineBundle_of_pullback_surjective_projective F M.X W' f pW M.str NW hNW (δ.pull M.σ) (LB.isLB_pull hδ M.σ) hfp hWp' M.proj hfs hcls hδσn
+    _root_.GlobalTheory.NefDescent.isNef_of_pull F M.X W' f pW M.str NW hNW (δ.pull M.σ) (LB.isLB_pull hδ M.σ) hfp hWp' M.proj hfs hcls hδσn
   letI := algebraΓOfHom M.str
   have hfNb : IsBig F (NW.pull f) := hδσb.of_cls_eq (LB.isLB_pull hNW f) hcls
   obtain ⟨hamp, UW, hgUW, het⟩ := generic_data hNN M.str pW f n hn hfp M.proj hWp' hfs NW hNWn hfNb

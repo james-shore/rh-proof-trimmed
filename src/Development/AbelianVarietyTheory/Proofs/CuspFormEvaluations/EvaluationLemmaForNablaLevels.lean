@@ -201,7 +201,7 @@ theorem shortValue_descends : Laws → ChartIndepSt2 → ∀ (E : Type) [Field E
   haveI : _root_.IsReduced p.R := (Ideal.isRadical_iff_quotient_reduced p.I).1 p.rad
   obtain ⟨hval, hnat⟩ := GlobalTheory.T.shortThetaValue_existsUnique_natural_of_laws hL hC E H Dw d.l₂ d.Xo₂ d.c₂ d.nab₂ hnab n Λ N hU hTr hLv a P hP
     (d.w x0) β
-  have hinv := GlobalTheory.T.cover_mul_shortThetaSeries_indep_of_framed_lift hL hC E H Dw l Xo c n d hN hlev hA hnab hph Λ N hU hTr hLv a P hP x0 β
+  have hinv := _root_.GlobalTheory.ShortLiftInvariance.cover_product_indep_of_lift hL hC E H Dw l Xo c n d hN hlev hA hnab hph Λ N hU hTr hLv a P hP x0 β
   have hbc := GlobalTheory.FramedBaseChange.exists_frMap hL E H Dw l Xo c
   have hbc₂ := GlobalTheory.FramedBaseChange.exists_frMap hL E H Dw d.l₂ d.Xo₂ d.c₂
   have hcomp := (GlobalTheory.framedPoint_baseChange_laws E H Dw l Xo c).2.1

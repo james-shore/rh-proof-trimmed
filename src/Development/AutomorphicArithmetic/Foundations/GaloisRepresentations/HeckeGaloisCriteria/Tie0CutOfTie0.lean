@@ -106,25 +106,18 @@ theorem res_eq {O X : Type} [CommRing O] [IsLocalRing O] (T : Subalgebra O (X �
   rw [eq_comm, ← sub_eq_zero, ← map_sub, IsLocalRing.residue_eq_zero_iff]
   exact hy
 
-theorem hecke_res (D : D7) (i : D.nd.Loc) (x y : D.nd.X i) (w : PlE D.host) :
-    (heckePol D.nd i x w).map (IsLocalRing.residue (D.nd.O i)) = (heckePol D.nd i y w).map (IsLocalRing.residue (D.nd.O i)) := by
-  haveI := D.nd.T_local i
-  unfold heckePol
-
-  simp only [Polynomial.map_add (f := _), Polynomial.map_sum, Polynomial.map_mul, Polynomial.map_C, map_mul, res_eq (D.nd.T i) _ x y]
-
 theorem atM_iff (i : (cut D c).nd.Loc) (σ : D.what₂.FT) : AtM (cut D c).nd (cut D c).naut i σ ↔ AtM D.nd D.naut i.1 σ := by
   refine exists_congr fun Sig => and_congr Iff.rfl ⟨fun ⟨x, h⟩ => ⟨x.1, h⟩, fun ⟨x, h⟩ => ?_⟩
   obtain ⟨y⟩ := (cut D c).nd.neX i
   refine ⟨y, fun w hw => ?_⟩
   obtain ⟨p, h1, h2⟩ := h w hw
-  exact ⟨p, h1, h2.trans (hecke_res D i.1 x y.1 w)⟩
+  exact ⟨p, h1, h2.trans (_root_.Formalism.MainNotions.N.heckePol_res D i.1 x y.1 w)⟩
 
 theorem rhoBar_iff (i : (cut D c).nd.Loc) (rb : G D.host.E D.nd.Om →* GL (Fin D.R.r) (IsLocalRing.ResidueField (D.nd.O i.1))) :
     IsRhoBar (cut D c).nd i rb ↔ IsRhoBar D.nd i.1 rb := by
   refine and_congr Iff.rfl ⟨fun h x w hw B σ hB hσ => ?_, fun h x => h x.1⟩
   obtain ⟨y⟩ := (cut D c).nd.neX i
-  exact (h y w hw B σ hB hσ).trans (hecke_res D i.1 y.1 x w)
+  exact (h y w hw B σ hB hσ).trans (_root_.Formalism.MainNotions.N.heckePol_res D i.1 y.1 x w)
 
 theorem goodPart_eq (i : (cut D c).nd.Loc) : goodPartM (cut D c).nd (cut D c).naut i = goodPartM D.nd D.naut i.1 := by
   have e : {σ | (cut D c).nd.goodRow σ ∧ AtM (cut D c).nd (cut D c).naut i σ} = {σ | D.nd.goodRow σ ∧ AtM D.nd D.naut i.1 σ} :=

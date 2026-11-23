@@ -67,7 +67,7 @@ theorem main : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], IsCN R 
   intro R _ _ _ hR G _ _ hG D D' A A' U U' _ Φ w wL hw hwL hΦ hlev xe ht hc
   obtain ⟨σ, f, hE, hne⟩ := GlobalTheory.T.exists_bundleSquare_section_weightZero_nonzero R hR G hG D A U
   obtain ⟨σ', f', hE', hcorr⟩ := GlobalTheory.T.psi_square_even_terms_correspond_transport R hR G hG D D' A A' U U' Φ w wL hw hwL hΦ hlev xe ht hc σ f hE
-  exact GlobalTheory.T.isMonHom_of_squaredDegenerationData_functionalEquation R hR D D' Φ w hw hΦ xe hc f f' (GlobalTheory.T.uniformisationExpansion_functionalEquation R hR G hG D A U 2 (by norm_num) σ f hE)
-    (GlobalTheory.T.uniformisationExpansion_functionalEquation R hR G hG D' A' U' 2 (by norm_num) σ' f' hE') hcorr (GlobalTheory.T.cubicalStructure_square_transport R hR D D' Φ w hw hΦ) hne
+  exact _root_.GlobalTheory.PsiFourth.key R hR D D' Φ w hw hΦ xe hc f f' (_root_.GlobalTheory.PsiCompare.feq_of_expandsAt R hR G hG D A U 2 (by norm_num) σ f hE)
+    (_root_.GlobalTheory.PsiCompare.feq_of_expandsAt R hR G hG D' A' U' 2 (by norm_num) σ' f' hE') hcorr (_root_.GlobalTheory.cube_sq_transport R hR D D' Φ w hw hΦ) hne
 
 end GlobalTheory.PsiFourth

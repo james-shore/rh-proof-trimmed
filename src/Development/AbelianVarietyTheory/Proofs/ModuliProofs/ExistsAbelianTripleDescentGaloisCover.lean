@@ -299,7 +299,7 @@ theorem exists_sab_descent_of_galoisCover : Out.Laws → Out.Laws2 → (∀ (S :
     (fun a => (ν a).φ) hπ.mul νm (fun a => one_comm (ν a).cart) t.PP.rig t.PP.rigGen fun a => by
       obtain ⟨w, hw, -⟩ := (ν a).lin
       exact ⟨w, hw⟩
-  obtain ⟨M, hM, iM⟩ := T.exists_descent_linearised_lineBundle_galoisCover _ _ φ Ga _ t.PP.L hφ t.PP.isLB u hu₁ hu₂
+  obtain ⟨M, hM, iM⟩ := _root_.GlobalTheory.LinDescent.exists_descent_of_isGaloisCover _ _ φ Ga _ t.PP.L hφ t.PP.isLB u hu₁ hu₂
   have hc : pull φ (cls M hM) = cls t.PP.L t.PP.isLB := ((cls_eq_iff _ (pull_isLB hM φ)).2 iM).symm
   obtain ⟨PP, cub, sym, iso, -, prim, adj⟩ := PrimNorm.exists_primitive_normalisation hG E H Y A act M hA hM
     ((cls_eq_zero_iff (isLB_cube _ hM)).1 ((cls_cube _ hM).trans (theorem_of_cube_descends hG t hA gp _ hc)))

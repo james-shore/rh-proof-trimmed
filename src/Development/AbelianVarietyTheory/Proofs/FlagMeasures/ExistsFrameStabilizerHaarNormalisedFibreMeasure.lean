@@ -68,7 +68,7 @@ theorem exists_tied_haar : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
     unfold Formalism.L2.SG.LocVol.sdE
     rw [dite_eq_left hsd]
     exact hsd.choose_spec.1
-  obtain ⟨μS, hμS, hprod⟩ := GlobalTheory.T.haar_frameStabilizer_local_fixer_section_product F E σ hcm n J hJ v r P T hP μ0 hμ0 hconj _ hU
+  obtain ⟨μS, hμS, hprod⟩ := _root_.GlobalTheory.HaarSectionProd.haar_S_local F E σ hcm n J hJ v r P T hP μ0 hμ0 hconj _ hU
   refine ⟨μS, hμS, μ0, hμ0, ?_, ?_⟩
   · have hom : Formalism.L2.SG.LocVol.omAt σ J ψ v (Formalism.L2.SG.LocVol.TFl σ J v P)
         = Formalism.L2.SG.LocVol.omFam σ J ψ v (r + 1) (hermOf (Fv F v) σ (gramE σ J (F0 P)) hT) := by

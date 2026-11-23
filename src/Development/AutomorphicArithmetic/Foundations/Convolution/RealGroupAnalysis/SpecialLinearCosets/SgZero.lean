@@ -75,13 +75,10 @@ private theorem cp_rt' (c : F) : cp v (rt c) = algebraMap F (Kv v) c := rfl
 
 private theorem mk_add (u t u' t' : A F) : D.mkE u t + D.mkE u' t' = D.mkE (u + u') (t + t') :=
   (mkLaws F E D).2.1 u t u' t'
-private theorem mk_mul (u t u' t' : A F) :
-    D.mkE u t * D.mkE u' t' = D.mkE (u * u' + rt D.δ * (t * t')) (u * t' + t * u') :=
-  (mkLaws F E D).1 u t u' t'
 private theorem mk_zero : D.mkE (0 : A F) 0 = 0 := by
   have h := mk_add D (0 : A F) 0 0 0
   simpa using h
-private theorem mk_co (u t : A F) : D.co (D.mkE u t) = ![u, t] := (mkLaws F E D).2.2.2.1 u t
+private alias mk_co := _root_.UpperTheory.ConvolutionTheory.R2.Dat.co_mkE
 
 private noncomputable def sB (k : Kv v) : A E := D.mkE (sg v (k / 2)) (sg v (-(k / (2 * θ))))
 
@@ -91,7 +88,7 @@ private theorem mk_sE (hq : θ ^ 2 = algebraMap F (Kv v) D.δ) (h0 : θ ≠ 0) (
     D.mkE u t * sE D v θ k = sE D v θ ((cp v u + cp v t * θ) * k) := by
   have h2 := two_ne (F := F) v
   unfold sE
-  rw [mk_mul]
+  rw [_root_.UpperTheory.ConvolutionTheory.R2.Dat.mkE_mul]
   simp only [sg_mul', ← sg_add', map_mul, cp_sg', cp_rt']
   rw [← hq]
   congr 2
@@ -102,7 +99,7 @@ private theorem mk_sB (hq : θ ^ 2 = algebraMap F (Kv v) D.δ) (h0 : θ ≠ 0) (
     D.mkE u t * sB D v θ k = sB D v θ ((cp v u - cp v t * θ) * k) := by
   have h2 := two_ne (F := F) v
   unfold sB
-  rw [mk_mul]
+  rw [_root_.UpperTheory.ConvolutionTheory.R2.Dat.mkE_mul]
   simp only [sg_mul', ← sg_add', map_mul, cp_sg', cp_rt']
   rw [← hq]
   congr 2

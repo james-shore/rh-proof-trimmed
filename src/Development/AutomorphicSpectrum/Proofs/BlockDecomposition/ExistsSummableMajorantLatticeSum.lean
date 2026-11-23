@@ -62,10 +62,6 @@ noncomputable section
 
 variable {K : Type*} [Field K] [NumberField K] {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-theorem summable_prod_coord {α : Type*} {g : α → ℝ} (h0 : ∀ x, 0 ≤ g x) (hg : Summable g) :
-    Summable fun ξ : ι → α ↦ ∏ i, g (ξ i) :=
-  _root_.UpperTheory.Reformulated.B.Qo1.summable_prod_coord h0 hg
-
 theorem inv_mulVec_mulVec (x : ι → 𝔸[K]) (h : GL ι 𝔸[K]) :
     ((h⁻¹ : GL ι 𝔸[K]) : Matrix ι ι 𝔸[K]) *ᵥ ((h : Matrix ι ι 𝔸[K]) *ᵥ x) = x := by
   rw [Matrix.mulVec_mulVec, ← Units.val_mul, inv_mul_cancel, Units.val_one, Matrix.one_mulVec]
@@ -162,7 +158,7 @@ theorem exists_fractionalIdeal_of_isCompact (I : (FractionalIdeal (𝓞 K)⁰ K)
 theorem summable_latticeWeight_prod (J : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     Summable fun ξ : ι → K ↦
       ∏ i, latticeWeight J (Module.finrank ℤ (idealLattice K J) + 1) (ξ i) :=
-  summable_prod_coord (latticeWeight_nonneg J _)
+  _root_.UpperTheory.Reformulated.B.Qo1.summable_prod_coord (latticeWeight_nonneg J _)
     (summable_ite_mem_of_summable_idealLattice J
       (h := fun x ↦ ((1 + ‖x‖) ^ (Module.finrank ℤ (idealLattice K J) + 1))⁻¹)
       (summable_inv_one_add_norm_pow_idealLattice J))

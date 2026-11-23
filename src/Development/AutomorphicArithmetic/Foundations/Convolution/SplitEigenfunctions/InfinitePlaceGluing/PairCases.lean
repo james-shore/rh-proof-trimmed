@@ -215,10 +215,6 @@ private theorem not_both (hE : Module.finrank ℚ E = 2) {w w' u : H.P E} {v : H
   rw [key] at hr
   nlinarith
 
-private theorem pair_cases {a b c d : ℂˣ} (h : ({a, b} : Multiset ℂˣ) = {c, d}) :
-    (a = c ∧ b = d) ∨ (a = d ∧ b = c) :=
-  _root_.UpperTheory.Reformulated.B.PairCases.pair_cases h
-
 private noncomputable def Qs (a b a' b' c : ℂˣ) : PowerSeries ℂ :=
   (1 - PowerSeries.C ((a * a' * c : ℂˣ) : ℂ) * PowerSeries.X) *
     (1 - PowerSeries.C ((a * b' * c : ℂˣ) : ℂ) * PowerSeries.X) *
@@ -245,11 +241,11 @@ private theorem den_unique (hE : Module.finrank ℚ E = 2) {P : CuspSub E 2} {χ
       have c₂ := GlobalTheory.HenQ.Regroup.fiber_split E hE w₁ w₁' w₂' (hu'.trans hu.symm) (hv'.trans hu.symm) hn.symm
       rcases c₁ with rfl | rfl <;> rcases c₂ with rfl | rfl
       · exact absurd rfl hm
-      · rcases pair_cases (CG.HasSat.unique hs ht) with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;>
-          rcases pair_cases (CG.HasSat.unique hs' ht') with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;>
+      · rcases _root_.UpperTheory.Reformulated.B.PairCases.pair_cases (CG.HasSat.unique hs ht) with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;>
+          rcases _root_.UpperTheory.Reformulated.B.PairCases.pair_cases (CG.HasSat.unique hs' ht') with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;>
           simp only [Qs, Units.val_mul, map_mul] <;> ring
-      · rcases pair_cases (CG.HasSat.unique hs ht') with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;>
-          rcases pair_cases (CG.HasSat.unique hs' ht) with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;>
+      · rcases _root_.UpperTheory.Reformulated.B.PairCases.pair_cases (CG.HasSat.unique hs ht') with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;>
+          rcases _root_.UpperTheory.Reformulated.B.PairCases.pair_cases (CG.HasSat.unique hs' ht) with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;>
           simp only [Qs, Units.val_mul, map_mul] <;> ring
       · exact absurd rfl hm
     · exact (not_both hE hn hu hu' hv hr).elim
@@ -258,7 +254,7 @@ private theorem den_unique (hE : Module.finrank ℚ E = 2) {P : CuspSub E 2} {χ
     · have hN : Ideal.absNorm w₁.asIdeal = Ideal.absNorm (w₁.under (𝓞 ℚ)).asIdeal ^ 2 := by
         rw [← nv, ← nv, hu, hq]
       obtain rfl := GlobalTheory.HenQ.Regroup.fiber_inert E hE w₁ w₂ hN (hv.trans hu.symm)
-      rcases pair_cases (CG.HasSat.unique hs ht) with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;>
+      rcases _root_.UpperTheory.Reformulated.B.PairCases.pair_cases (CG.HasSat.unique hs ht) with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;>
         simp only [Qi, Units.val_mul, map_mul] <;> ring
 
 private theorem den_inv (hE : Module.finrank ℚ E = 2) {P : CuspSub E 2} {χ : HChar ℚ} {v : H.P ℚ}

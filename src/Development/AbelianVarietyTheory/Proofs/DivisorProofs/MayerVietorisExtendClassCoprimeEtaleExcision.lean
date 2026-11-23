@@ -90,8 +90,8 @@ theorem glue : ∀ (q : ℕ) (A C : Type) [CommRing A] [CommRing C] [Algebra A C
   have hB : algebraMap (Localization.Away f) (Localization.Away (algebraMap A C f)) =
       Localization.awayMap (algebraMap A C) f := rfl
   set h : Localization.Away f := algebraMap A (Localization.Away f) g with hh
-  have c1 := GlobalTheory.T.away_congr_mod_of_isCoprime A C f g hfg h1
-  have c2 := GlobalTheory.T.awayMap_span_singleton_divisibility_descends A C f g h2
+  have c1 := _root_.GlobalTheory.away_congr_of_isCoprime A C f g hfg h1
+  have c2 := _root_.GlobalTheory.awayMap_descends_divisibility A C f g h2
   rw [← hB] at c1 c2
 
   have hu1 : IsUnit (((algebraMap (Localization.Away f) (Localization.Away h)).comp
@@ -124,7 +124,7 @@ theorem glue : ∀ (q : ℕ) (A C : Type) [CommRing A] [CommRing C] [Algebra A C
     ext x
     simp only [RingHom.comp_apply, hψ, χ]
     simp [Localization.awayMap, IsLocalization.Away.map, IsLocalization.map_eq, IsLocalization.Away.lift_eq, hB]
-  obtain ⟨b, hb, -⟩ := GlobalTheory.T.localization_pullback_injective q (Localization.Away f) (Localization.Away (algebraMap A C f)) h c1 c2 n i
+  obtain ⟨b, hb, -⟩ := _root_.GlobalTheory.EtC.MVEtale.mv_etale_mid q (Localization.Away f) (Localization.Away (algebraMap A C f)) h c1 c2 n i
     (pull _ (spMap ψ) _ _ a) 0 (by
       rw [map_zero, ← pull_spMap_comp, hsq, pull_spMap_comp, ha, map_zero])
   refine ⟨b, fun ρ hρ => ?_⟩

@@ -226,30 +226,6 @@ theorem fullSmul {r : ℕ} {𝔞 : Ideal (𝓞 D.host.E)} (h : 𝔞 ≠ ⊥) {N 
   exact fun v hv => (Submodule.smul_mem_iff _ h0).1
     (Submodule.subset_span (Submodule.smul_mem_smul ha hv))
 
-theorem omegaK_congr {a b : ℕ} (Pg : Finset (Formalism.L2.DIV.Pl D.host.E))
-    {y y' : ∀ PP : Formalism.L2.DIV.Pl D.host.E, Matrix (Fin b) (Fin a) (Formalism.L2.DIV.kP PP)}
-    (h : ∀ PP ∈ Pg, y PP = y' PP) : omegaK Pg y = omegaK Pg y' := by
-  unfold omegaK
-  have hc : (∀ PP ∈ Pg, LowZero a (y PP) ∧ topL a (y PP) = 1) ↔
-      (∀ PP ∈ Pg, LowZero a (y' PP) ∧ topL a (y' PP) = 1) := forall₂_congr fun PP hP => by rw [h PP hP]
-  by_cases h1 : ∀ PP ∈ Pg, LowZero a (y PP) ∧ topL a (y PP) = 1
-  · rw [if_pos h1, if_pos (hc.1 h1)]
-  · rw [if_neg h1, if_neg (fun h2 => h1 (hc.2 h2))]
-
-theorem omegaQ_congr {a b : ℕ} (Q : Finset (Formalism.L2.DIV.Pl D.host.E)) (r : ℕ)
-    (ξ : ∀ PP : Formalism.L2.DIV.Pl D.host.E, (Formalism.L2.DIV.kP PP)ˣ →* ℂˣ) (k : ℤ)
-    {y y' : ∀ PP : Formalism.L2.DIV.Pl D.host.E, Matrix (Fin b) (Fin a) (Formalism.L2.DIV.kP PP)}
-    (h : ∀ PP ∈ Q, y PP = y' PP) : omegaQ Q r ξ k y = omegaQ Q r ξ k y' := by
-  unfold omegaQ
-  have hc : (∀ PP ∈ Q, LowZero r (y PP) ∧ IsUnit (topL r (y PP)).det) ↔
-      (∀ PP ∈ Q, LowZero r (y' PP) ∧ IsUnit (topL r (y' PP)).det) := forall₂_congr fun PP hP => by rw [h PP hP]
-  by_cases h1 : ∀ PP ∈ Q, LowZero r (y PP) ∧ IsUnit (topL r (y PP)).det
-  · rw [dite_eq_left h1, dite_eq_left (hc.1 h1)]
-    refine Finset.prod_congr rfl fun PP _ => ?_
-    rw [show (h1 PP.1 PP.2).2.unit = (hc.1 h1 PP.1 PP.2).2.unit from
-      Units.ext (by simp only [IsUnit.unit_spec, h PP.1 PP.2])]
-  · rw [dite_eq_right h1, dite_eq_right (fun h2 => h1 (hc.2 h2))]
-
 end GlobalTheory.LiftLevel.DatSum
 
 noncomputable section
@@ -410,8 +386,8 @@ theorem thPDatum_eq_levelSum : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (hn : T.
       have h3 := (GlobalTheory.FrameAdjAdd.frMapAdj_add_isIntM_redM S T βS βT _ _ hwI hnI).2 PP
       rw [add_neg_cancel, redM_frMapAdj_zero] at h3
       rw [tr_neg, eq_neg_of_add_eq_zero_right h3.symm, eq_neg_of_add_eq_zero_left h1.symm]
-    refine congrArg₂ (· * ·) (omegaK_congr Pg (fun PP hPP => (hred PP (Finset.mem_union_left _ hPP)).symm))
-      (omegaQ_congr Q T.rank ξ (-1) (fun PP hPP => (hred PP (Finset.mem_union_right _ hPP)).symm))
+    refine congrArg₂ (· * ·) (_root_.GlobalTheory.PlaceVec.omegaK_congr Pg (fun PP hPP => (hred PP (Finset.mem_union_left _ hPP)).symm))
+      (_root_.GlobalTheory.PlaceVec.omegaQ_congr Q T.rank ξ (-1) (fun PP hPP => (hred PP (Finset.mem_union_right _ hPP)).symm))
   · rw [thPDatum, if_neg hx]
     refine (finsum_eq_zero_of_forall_eq_zero fun c => ?_).symm
     rw [indL, if_neg, mul_zero]

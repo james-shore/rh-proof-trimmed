@@ -60,7 +60,7 @@ theorem nonempty_hFrame : ∀ (R : Ranks) (H : Formalism.BasicNotions.Host R) (e
   obtain ⟨eta, heta⟩ := GlobalTheory.T.host_etaTilde_character_exists R H
   obtain ⟨chi, hchi⟩ := GlobalTheory.T.exists_unramified_cmType_heckeChar_on_host R H
   obtain ⟨d, hd⟩ := GlobalTheory.T.host_delta_character_inertial_order_fifteen_exists R H H.pde H.pde_prime H.pde_mod.1 hp
-  obtain ⟨d', hd'⟩ := GlobalTheory.T.host_delta_character_inertial_order_fifteen_exists R H H.pde' H.pde'_prime H.pde_mod.2 hp'
+  obtain ⟨d', hd'⟩ := _root_.GlobalTheory.Mem.DeltaZero.delta_exists R H H.pde' H.pde'_prime H.pde_mod.2 hp'
   exact ⟨⟨P, W, mu, eta, chi, d, d', hmu, heta, hchi, hd, hd'⟩⟩
 
 end GlobalTheory

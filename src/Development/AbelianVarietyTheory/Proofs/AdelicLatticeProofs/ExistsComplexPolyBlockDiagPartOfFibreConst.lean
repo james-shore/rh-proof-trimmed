@@ -95,9 +95,7 @@ lemma evC_ltr (g y : Matrix ι ι ℂ) (f : MvPolynomial (ι × ι) ℂ) : evC (
     simp [evC, ltr, Matrix.mul_apply]
 
 omit [Fintype ι] [DecidableEq ι] in
-lemma evC_map (p : MvPolynomial (ι × ι) ℚ) (y : Matrix ι ι ℂ) :
-    evC (MvPolynomial.map (algebraMap ℚ ℂ) p) y = ev p y := by
-  rw [evC, ev, MvPolynomial.eval_map, MvPolynomial.aeval_def]
+alias evC_map := _root_.GlobalTheory.ClassFin.evC_map_rat
 
 
 omit [DecidableEq ι] in

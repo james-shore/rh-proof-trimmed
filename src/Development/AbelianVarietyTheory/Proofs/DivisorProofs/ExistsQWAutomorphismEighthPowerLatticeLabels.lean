@@ -101,9 +101,9 @@ theorem core : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matrix (Fin 8) (
   intro g n F W Z i X ε hd p _ z c yy yy' h1 h2
   obtain ⟨c₀, hc, R', fg, frac, hth, hev, ρ', ε', hS, -, hR, y₀, hy₀, u, l, j, hq, hyy, hall⟩ := h1
   obtain ⟨c₁, hc₁, R'', fg₁, frac₁, hth₁, hev₁, ρ'', ε'', hS₁, -, hR₁, y₁, hy₁, u', l', j', hq', hyy', hall'⟩ := h2
-  obtain ⟨P₀, a, a', ha, ha', hL, hL', hlab, hε⟩ := GlobalTheory.T.rechartings_thetaSetup_same_geometric_fibre_at_trait g n F W Z i X ε p z c c₀ hc R' fg frac hth hev ρ' ε' hS hR
+  obtain ⟨P₀, a, a', ha, ha', hL, hL', hlab, hε⟩ := _root_.GlobalTheory.Poinc.Spread.main g n F W Z i X ε p z c c₀ hc R' fg frac hth hev ρ' ε' hS hR
     y₀ hy₀ c₁ hc₁ R'' fg₁ frac₁ hth₁ hev₁ ρ'' ε'' hS₁ hR₁ y₁ hy₁ u u'
-  obtain ⟨e, hψ, htor⟩ := GlobalTheory.T.exists_latticeIso_of_two_padicAlgCl_uniformisations _ _ ρ' ρ'' p y₀ y₁ u u' P₀ a a' ha ha' hL hL'
+  obtain ⟨e, hψ, htor⟩ := _root_.GlobalTheory.UnifTorsK.main _ _ ρ' ρ'' p y₀ y₁ u u' P₀ a a' ha ha' hL hL'
   haveI : CharZero (FractionRing u.V) :=
     (algebraMap (FractionRing u.V) (PadicAlgCl p)).charZero
   haveI : CharZero u.V := (algebraMap u.V (FractionRing u.V)).charZero
@@ -132,8 +132,8 @@ theorem core : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matrix (Fin 8) (
   have hlabe : ∀ b (χ : u.D.toPre.X) (χ' : u'.D.toPre.X), l.yy b = QuotientAddGroup.mk χ →
       l'.yy b = QuotientAddGroup.mk χ' → CongMod (X.S.r * X.S.N) χ' (e χ) := fun b χ χ' h h' => by
     obtain ⟨w, x, x', hw, hwa, hwa', hx, hx'⟩ := hlab b
-    obtain ⟨pk, hpk⟩ := (tors _ hrN).1 x (GlobalTheory.T.uniformised_point_over_label_pow_rN_eq_one _ ρ' p y₀ u b x hx)
-    obtain ⟨pk', hpk'⟩ := (tors' _ hrN).1 x' (GlobalTheory.T.uniformised_point_over_label_pow_rN_eq_one _ ρ'' p y₁ u' b x' hx')
+    obtain ⟨pk, hpk⟩ := (tors _ hrN).1 x (_root_.GlobalTheory.LabelTorsion.pow_eq_one_of_over_label _ ρ' p y₀ u b x hx)
+    obtain ⟨pk', hpk'⟩ := (tors' _ hrN).1 x' (_root_.GlobalTheory.LabelTorsion.pow_eq_one_of_over_label _ ρ'' p y₁ u' b x' hx')
     have e1 := l.yy_eq b pk x hpk hx
     have e2 := l'.yy_eq b pk' x' hpk' hx'
     have t := htor _ pk pk' x x' w hrN hpk hpk' hw hwa hwa'
@@ -144,12 +144,12 @@ theorem core : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matrix (Fin 8) (
       CongMod m (j χ₂) (matAct E (j χ)) ∧ CongMod m (j' (e χ₂)) (matAct E (j' (e χ))) := fun m hm E χ => by
     obtain ⟨pk, rfl⟩ := GlobalTheory.LevelMove.exists_lattice_part u.D.toPre u.D.tau_bimult (PadicAlgCl p) m hm χ
     obtain ⟨x, hQ⟩ := (tors m hm).2 pk
-    obtain ⟨w, x', hw, hwa, hwa', hx'⟩ := GlobalTheory.T.torsionPoint_transfer_through_common_grpPullback (PadicAlgCl p) u.A u'.A P₀ a a' ha ha' m x (ord m pk x hQ)
+    obtain ⟨w, x', hw, hwa, hwa', hx'⟩ := _root_.GlobalTheory.PtTrans.ptTrans (PadicAlgCl p) u.A u'.A P₀ a a' ha ha' m x (ord m pk x hQ)
     obtain ⟨pk', hQ'⟩ := (tors' m hm).1 x' hx'
     have hmon := GlobalTheory.T.isMonHom_rescaled_realisation_same_genericFibre g n F W Z i X ε hd c₀ hc R' fg frac hth hev ρ' ε' hS E
     obtain ⟨x₂, hx₂φ, hx₂⟩ := GlobalTheory.T.exists_endo_image_torsion_point_uniformised_model _ ρ' p y₀ u (ε' E) hmon m x (ord m pk x hQ)
     obtain ⟨pk₂, hQ₂⟩ := (tors m hm).1 x₂ hx₂
-    obtain ⟨w₂, x₂', hw₂, hw₂a, hw₂a', hx₂'⟩ := GlobalTheory.T.torsionPoint_transfer_through_common_grpPullback (PadicAlgCl p) u.A u'.A P₀ a a' ha ha' m x₂ hx₂
+    obtain ⟨w₂, x₂', hw₂, hw₂a, hw₂a', hx₂'⟩ := _root_.GlobalTheory.PtTrans.ptTrans (PadicAlgCl p) u.A u'.A P₀ a a' ha ha' m x₂ hx₂
     obtain ⟨pk₂', hQ₂'⟩ := (tors' m hm).1 x₂' hx₂'
     have hε₂ : x₂'.left ≫ u'.φ = x'.left ≫ u'.φ ≫ (ε'' E).left := by
       have := hε E w w₂ hw hw₂ (by rw [← Category.assoc, hw₂a, hx₂φ, ← hwa]; simp only [Category.assoc])
@@ -192,6 +192,6 @@ theorem core : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matrix (Fin 8) (
     have c4 := cm_trans (cm_map j'.toAddMonoidHom (cm_map e.toAddMonoidHom c3)) c2
     simpa [matAct] using c4
 
-theorem main : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matrix (Fin 8) (Fin 8) ℤ) (Z : Scheme.{0}) (i : F.X ⟶ Z) (X : Setup F W i) (ε : Matrix (Fin 8) (Fin 8) ℤ → (X.ρ.P.A ⟶ X.ρ.P.A)), IsDiagEnd F W X.ρ.P X.u ε → ∀ (p : ℕ) [Fact p.Prime] (z : X.M.Z) (c : CTrait X p z) (yy yy' : X.S.Gam →+ ModN (X.S.r * X.S.N) (Fin 8 → c.T.D.toPre.X)), IsLab X ε c yy → IsLab X ε c yy' → ∃ θ : (Fin 8 → c.T.D.toPre.X) ≃+ (Fin 8 → c.T.D.toPre.X), (∀ v, qW W c.T.β (θ v) = qW W c.T.β v) ∧ (∀ x μ, yy x = QuotientAddGroup.mk μ → yy' x = QuotientAddGroup.mk (θ μ)) ∧ ∀ (m : ℕ), 1 ≤ m → ∀ (E : Matrix (Fin 8) (Fin 8) ℤ) (v : Fin 8 → c.T.D.toPre.X), CongMod m (θ (fun a => ∑ b, E a b • v b)) (fun a => ∑ b, E a b • θ v b) := core
+alias main := _root_.GlobalTheory.GeomCore.core
 
 end GlobalTheory.GeomCore

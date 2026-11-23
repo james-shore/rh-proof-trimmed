@@ -82,11 +82,6 @@ private theorem commuting_upper_triangular_distinct {K : Type} [Field K] (d : Fi
   intro a b hab
   fin_cases a <;> fin_cases b <;> first | exact absurd hab (by decide) | assumption
 
-private theorem diagonalize_three_by_three_split {K : Type} [Field K] (d : Fin 3 → K) (hd : Function.Injective d)
-    (M : Matrix (Fin 3) (Fin 3) K) (hM : M.charpoly = ∏ a, (X - C (d a))) :
-    ∃ h : GL (Fin 3) K, ((h⁻¹ : GL (Fin 3) K) : Matrix (Fin 3) (Fin 3) K) * M * h = Matrix.diagonal d :=
-  _root_.UpperTheory.Reformulated.B.DiagonalizeThreeByThree.diagonalize_three_by_three_split d hd M hM
-
 private theorem three_eigenvalue_product_zero {K : Type} [Field K] (d p : Fin 3 → K) (hd : Function.Injective d)
     (N : Matrix (Fin 3) (Fin 3) K)
     (h0 : (N - Matrix.scalar _ (p 0)) * (Matrix.diagonal d - Matrix.scalar _ (d 1)) *
@@ -170,7 +165,7 @@ theorem UpperTheory.V.Loc.lemma2b :
   obtain ⟨s, hs, hd⟩ := exists_inertia_distinct_characters D K
   have hηs := D.η_unr s hs
   constructor
-  · obtain ⟨h, hh⟩ := diagonalize_three_by_three_split _ hd _ (hch s hs)
+  · obtain ⟨h, hh⟩ := _root_.UpperTheory.Reformulated.B.DiagonalizeThreeByThree.diagonalize_three_by_three_split _ hd _ (hch s hs)
     have hc : ∀ (A : Matrix (Fin 3) (Fin 3) K) (c : K),
         ((h⁻¹ : GL (Fin 3) K) : Matrix (Fin 3) (Fin 3) K) * A * (h : Matrix (Fin 3) (Fin 3) K) - Matrix.scalar _ c =
           ((h⁻¹ : GL (Fin 3) K) : Matrix (Fin 3) (Fin 3) K) * (A - Matrix.scalar _ c) * (h : Matrix (Fin 3) (Fin 3) K) := by

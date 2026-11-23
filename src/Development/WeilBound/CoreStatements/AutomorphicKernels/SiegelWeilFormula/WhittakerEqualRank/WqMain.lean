@@ -174,6 +174,6 @@ theorem whitGenEqOf : WhitGenEqOf := by
 
 end PositivityTheory.SiegelWeilFormula.Gen.WQ
 
-theorem PositivityTheory.SiegelWeilFormula.Gen.whitGenEqOf : PositivityTheory.SiegelWeilFormula.Gen.WhitGenEqOf := PositivityTheory.SiegelWeilFormula.Gen.WQ.whitGenEqOf
+alias PositivityTheory.SiegelWeilFormula.Gen.whitGenEqOf := _root_.PositivityTheory.SiegelWeilFormula.Gen.WQ.whitGenEqOf
 
 end

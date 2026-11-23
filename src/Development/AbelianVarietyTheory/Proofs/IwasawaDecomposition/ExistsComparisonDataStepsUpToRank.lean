@@ -70,11 +70,6 @@ theorem fillTie_of {D : D7} (Gt : GatTies D) (u : D.what₂.Word) (v : D.what₂
   push_cast
   ring
 
-theorem reL_reL_symm {a b : ℕ} (h : a = b) {E : Type} [Field E] [NumberField E] (L : Submodule (𝓞 E) (Fin b → E)) :
-    reL h (reL h.symm L) = L := by
-  subst h
-  rw [reL_rfl, reL_rfl]
-
 theorem site_of {D : D7} (X0 : Formalism.L2.Herm.Herm0 D) (u : D.what₂.Word) (w : D.what₂.places.Pl)
     (hg : GIdx D.host (D.mem u).A.T (D.what₂.places.resChar w)) (Gt : GatTies D) (c : LatCmp D)
     (H : ∀ i (hi : i + 1 ≤ D.R.m), ∃ (Fo : FormsIn (D.fm u) (i + 1) hi) (_ : Finite Fo.Ch) (S : StepD X0 u w hg Fo),
@@ -95,7 +90,7 @@ theorem site_of {D : D7} (X0 : Formalism.L2.Herm.Herm0 D) (u : D.what₂.Word) (
       hypC := hC
       ok := hok
       siteGood_prime_torsion := hpT
-      Lb_eq := fun β => (reL_reL_symm _ _).symm }
+      Lb_eq := fun β => (_root_.GlobalTheory.Port.reL_symm _ _).symm }
 
 theorem exists_comparisonData_steps_at_baseCharacter : ∀ {K : Ctx} {B : Base} {f : Fr B.toPre} {T : TwDat B} (w : ColW B f T), K.Over B.toPre → Forced K B T → Pinned K B f T w →
     ∀ (Z : w.Lt) (t : ColumnDataSplitPrimes K w Z) (Wt : Set B.places.Pl) (nch : NChoice (w.D Z)) (_ : NchT w Z Wt nch) (Y : DivX (w.D Z)),
@@ -121,8 +116,8 @@ theorem exists_comparisonData_steps_at_baseCharacter : ∀ {K : Ctx} {B : Base} 
   have hFt : FillTie t.Gt u v hg (Fl u v hg) := fillTie_of t.Gt u v hg (Fl u v hg) (hW u v hg)
   obtain ⟨S, hS⟩ := site_of t.g.herm u v hg t.Gt t.cmp (fun i hi => by
     by_cases h2 : i + 1 + 1 ≤ (w.D Z).R.m
-    · exact GlobalTheory.T.memberFormsLayer_midStep_charts_conditions w hO hF hP Z t Wt nch hn Y hMu hQ O hStd hUnf E hE u v hg i hi h2
-    · exact GlobalTheory.T.memberFormsLayer_topStep_chart_conditions w hO hF hP Z t Wt nch hn Y hMu hQ O hStd hUnf E hE u v hg i hi (by omega))
+    · exact _root_.GlobalTheory.Mem.Top.KerOne.CertEq.stepTiesD_mid w hO hF hP Z t Wt nch hn Y hMu hQ O hStd hUnf E hE u v hg i hi h2
+    · exact _root_.GlobalTheory.Mem.Top.KerOne.CertEq.TopStep.stepTies_top w hO hF hP Z t Wt nch hn Y hMu hQ O hStd hUnf E hE u v hg i hi (by omega))
   have A : HypTiesI t.g.herm (S.inMem (w.tw Z) (Fl u v hg) ht t.Gt) t.Gt t.cmp :=
     ⟨ht, hFt, fun j hj => ⟨S.Fo j hj, S.loc (Fl u v hg) ht j hj, rfl, hS (Fl u v hg) ht j hj⟩⟩
   rw [hμ]

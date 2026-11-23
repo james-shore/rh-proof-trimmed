@@ -74,14 +74,14 @@ theorem transferOn_inert : GlobalTheory.Hk3.HoweUnram → ∀ D : D7, TransferOn
   obtain ⟨hS, hT⟩ := hunr w h
   rcases hx with ⟨hs, -⟩ | ⟨hin, c, ϖ, eS, α, hUI, heS, hxS, rfl⟩
   · exact absurd hs hv
-  obtain ⟨-, hodd, hch⟩ := (GlobalTheory.T.exists_unitaryCharts_allFinitePlaces_frameLattice D T v w h).2 hv
+  obtain ⟨-, hodd, hch⟩ := (_root_.GlobalTheory.ChartsAll.exists_charts D T v w h).2 hv
   obtain ⟨eT, heT⟩ := hch c heS.1
   have hf0 : (f : WO S T → ℂ) ≠ 0 := fun h0 => hbne (by rw [show f = 0 from Subtype.ext h0]; simp)
   obtain ⟨δ, ψ', M, ρ0, ω, s, hstd, hsf, hωom, hcT, hcS⟩ :=
     GlobalTheory.T.weilDatum_inertPlace_standard_cayley_pair D ψ S T χS χT om hW v w h hin hS hT c ϖ eS eT hUI heS heT f hf hf0
   have hq0 : (qV D.host.F v : ℂ) ≠ 0 := by exact_mod_cast hodd.pos.ne'
-  obtain ⟨hvS, hsegS⟩ := GlobalTheory.T.heckeChar_value_inert_place_and_segment D χS S.rank hW.hecS hW.resS v w h hin hS
-  obtain ⟨hvT, -⟩ := GlobalTheory.T.heckeChar_value_inert_place_and_segment D χT T.rank hW.hecT hW.resT v w h hin hT
+  obtain ⟨hvS, hsegS⟩ := _root_.GlobalTheory.ChainOnto.val_seg_of_isInertAt D χS S.rank hW.hecS hW.resS v w h hin hS
+  obtain ⟨hvT, -⟩ := _root_.GlobalTheory.ChainOnto.val_seg_of_isInertAt D χT T.rank hW.hecT hW.resT v w h hin hT
   refine Or.inr ⟨hin, c, ϖ, eT, liftPar (Units.mk0 _ hq0) S.rank T.rank α, hUI, heT, ?_, ?_⟩
   · set α' := liftPar (Units.mk0 _ hq0) S.rank T.rank α
     have e1S : embV S v (eS.symm 1) = 1 := by rw [map_one, map_one]
@@ -149,7 +149,7 @@ theorem transferOn_inert : GlobalTheory.Hk3.HoweUnram → ∀ D : D7, TransferOn
         (fun g u y => hbS g u y) f (GlobalTheory.LGrp.mem_fixed.2 hfixS) x hxS.2.1 h0 hh0).2
       have hev : (fun g => h0 g⁻¹) = h0 := funext fun g => hcom1.2.2 h0 hh0 g
       rw [← sA, sB, sC, hev, hxS.2.2 h0 hh0, map_smul, hsat]
-  · have hc := GlobalTheory.T.baseChange_thetaLiftSatakeParameter_eq_add_segment (Units.mk0 _ hq0) S.rank T.rank (by omega) α
+  · have hc := _root_.GlobalTheory.SphTheta.bcParam_liftPar (Units.mk0 _ hq0) S.rank T.rank (by omega) α
     have ht' : ((T.rank : ℤ) - S.rank) = (t : ℤ) := by omega
     rw [ht'] at hc
     have e := congrArg (Multiset.map (((-1 : ℂˣ) ^ S.rank) * ·)) hc

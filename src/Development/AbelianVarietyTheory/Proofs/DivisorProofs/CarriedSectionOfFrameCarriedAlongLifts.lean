@@ -54,13 +54,6 @@ open GlobalTheory.Mum
 noncomputable section
 namespace GlobalTheory.Mum
 
-theorem gs_sub' {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) (h : f y ∈ U) (a b : Γ(X, U)) :
-    gs f y U (a - b) = gs f y U a - gs f y U b := by simp only [gs_eq f y U h, map_sub]
-
-theorem gs_comp_map {X Y Z : Scheme.{0}} (g : Z ⟶ Y) (h : Y ⟶ X) (z : Z) (V : X.Opens) (hz : h (g z) ∈ V)
-    (a : Γ(X, V)) : gs (g ≫ h) z V a = (g.stalkMap z).hom (gs h (g z) V a) := by
-  rw [← gs_pull g h z V hz a, gs_eq_map_gs g z (h ⁻¹ᵁ V) hz, gs_pull (𝟙 Y) h (g z) V hz a, Category.id_comp]
-
 theorem secCarriedOver_of_lift {X Z P : Scheme.{0}} (q : Z ⟶ X) (p₁ : Z ⟶ P) (L : LB X) (W O : X.Opens) (hOW : O ≤ W)
     (τ : ∀ k : L.ι, Γ(Z, q ⁻¹ᵁ W ⊓ q ⁻¹ᵁ L.U k)ˣ) (d : ℕ) (B : Fin d → Γ(P, ⊤))
     (s : Fin d → ∀ k : L.ι, Γ(X, O ⊓ L.U k))
@@ -92,7 +85,7 @@ theorem secCarriedOver_of_lift {X Z P : Scheme.{0}} (q : Z ⟶ X) (p₁ : Z ⟶ 
       (gs_res g y h2 hy _).trans (gs_unit g y _ (h2 hy) _)
     have e3 : gs g y U' ((X.presheaf.map (homOfLE h3).op).hom (s l' k)) = gs g y (O ⊓ L.U k) (s l' k) :=
       gs_res g y h3 hy _
-    rw [gs_sub' g y U' hy, gs_mul g y U' hy, e1, e2, e3]
+    rw [_root_.GlobalTheory.LBGerm.gs_sub g y U' hy, gs_mul g y U' hy, e1, e2, e3]
   have hxU : x ∈ U' := ⟨⟨⟨hxO, hxk⟩, hφxO, hφxj⟩, mem_pull.2 hφxj, hxk⟩
   have key := huniq U' a x hxU (by
     intro z hz
@@ -110,12 +103,12 @@ theorem secCarriedOver_of_lift {X Z P : Scheme.{0}} (q : Z ⟶ X) (p₁ : Z ⟶ 
         (gm f' z (q ⁻¹ᵁ W ⊓ q ⁻¹ᵁ L.U j) (τ j)).val := by
       have e1 : ∀ l', gs p₁ z ⊤ (B l') = (f'.stalkMap z).hom (gs p₁ (f' z) ⊤ (B l')) := fun l' => by
         conv_lhs => rw [← hf'p]
-        exact gs_comp_map f' p₁ z ⊤ trivial _
+        exact _root_.GlobalTheory.OneBasis.ThMove.gs_comp f' p₁ z ⊤ trivial _
       have e2 : ∀ l', gs (q ≫ φ) z (O ⊓ L.U j) (s l' j) = (f'.stalkMap z).hom (gs q (f' z) (O ⊓ L.U j) (s l' j)) :=
-        fun l' => by rw [← hf'q]; exact gs_comp_map f' q z _ hmj _
+        fun l' => by rw [← hf'q]; exact _root_.GlobalTheory.OneBasis.ThMove.gs_comp f' q z _ hmj _
 
       simp only [e1, e2, ← map_mul, ← map_sum]
-      rw [← hdec (f' z) j hf'zO hf'zj, ← gs_eq_map_gs f' z _ hmWj, gs_unit f' z _ hmWj]
+      rw [← hdec (f' z) j hf'zO hf'zj, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.gs_stalkMap f' z _ hmWj, gs_unit f' z _ hmWj]
     have S3 := hdec z k hzO hzk
     rw [gs_unit (𝟙 Z) z _ hmWk] at S3
     have e4 : ∀ l', gs p₁ z ⊤ (B l') * gs q z U' (a l') =

@@ -61,7 +61,7 @@ variable {D : D7} (X : HidaSetting D)
 
 def V : ℝ := (X.B.μf (X.B.I.Kg X.B.g)).toReal
 
-theorem g_pos : 1 ≤ X.B.g := Nat.one_le_iff_ne_zero.2 (Formalism.L2.SG.Pf.RowDictPf.level_ne_zero X)
+alias g_pos := _root_.Formalism.L2.SG.PoincareInHH.Cut.one_le_g
 
 theorem Kg_fin : X.B.μf (X.B.I.Kg X.B.g) < ⊤ := by
   have hK : IsCompact X.B.I.Kset := Formalism.L2.SG.Closed.AutKCompact_holds X.B.I

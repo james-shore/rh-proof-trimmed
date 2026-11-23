@@ -502,7 +502,7 @@ theorem topSelf_pull (hN : GlobalTheory.Published.NefNumerics) {k : Type} [Field
   obtain ⟨hpr', A', hA'⟩ := (isProjOver_iff_isProper_and_exists_isAmpleLB M.str).1 M.proj
   have : IsProper M.σ := IsProper.of_comp M.σ p
   have : IsProper (strHom k (X := Y)) := e ▸ hpr
-  have h0 := GlobalTheory.T.modification_globalSectionsDim_pull_eq k Y p U D hs hp M
+  have h0 := _root_.GlobalTheory.ModifSections.modification_lineBundleGlobalSectionsDim_pull_eq k Y p U D hs hp M
   have hp₁ : IsProjOver (strHom k (X := Y)) := by rw [e]; exact hp
   have hp₂ : IsProjOver (strHom k (X := M.X)) := by rw [e']; exact M.proj
   refine ⟨inferInstance, hp₂, hd', h0, fun B hB => ?_⟩
@@ -548,7 +548,7 @@ theorem finrank_cusp_le (hQ : GlobalTheory.HSCore.Quoted) (hPr : GlobalTheory.Pu
   have hne : ∃ f : Cusp Z U u, f ≠ 0 := by
     by_contra! h0
     exact hB.1 (LinearMap.ext fun f => by rw [h0 f, map_zero]; rfl)
-  have htop := GlobalTheory.T.topSelfIntersection_nef_le_cuspFormGrowth hQ.nef E H Dw l Xo c Y X Z r U u hV hD hC hne hn.1
+  have htop := _root_.GlobalTheory.NefCuspGrowth.topSelf_le_growthOn hQ.nef E H Dw l Xo c Y X Z r U u hV hD hC hne hn.1
   rw [hG, ENNReal.ofReal_le_ofReal_iff hv, ← (hpull _ hn.1).2] at htop
   obtain ⟨d, hd⟩ : ∃ d, dimFlag Dw = d + 1 := ⟨dimFlag Dw - 1, by omega⟩
   have hP : HasNonzeroSec R.Δ₁.P := by

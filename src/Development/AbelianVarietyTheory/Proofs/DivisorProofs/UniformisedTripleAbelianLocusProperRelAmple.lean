@@ -100,7 +100,7 @@ theorem relAmple_local {O : Type} [CommRing O] [IsDomain O] [IsLocalRing O] [IsN
   obtain ⟨n, -⟩ := GlobalTheory.ObjMaps.exists_sab_comp mV mk
   let β : O →+* IsLocalRing.ResidueField V := (IsLocalRing.residue V).comp ρ
   have hpβ : GlobalTheory.LN.PolAt t (spMap β) := by
-    rw [GlobalTheory.PolLocal.spMap_comp]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
     exact GlobalTheory.LocM.PolFibre.polAt_of_map n (by haveI := hprop; infer_instance) hAk hKk
   obtain ⟨r, hr, hA⟩ := GlobalTheory.PolNearAmple.relAmple_near_of_polAt E H O t hprop (IsLocalRing.ResidueField V) β hpβ
   have hu : IsUnit r := isUnit_of_map_unit ρ r ((IsLocalRing.residue_ne_zero_iff_isUnit _).1 hr)

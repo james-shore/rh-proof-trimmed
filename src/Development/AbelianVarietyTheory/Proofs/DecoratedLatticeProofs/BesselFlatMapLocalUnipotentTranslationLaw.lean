@@ -152,10 +152,6 @@ theorem det_of_inN {F : Type} [Field F] {n : Type} [Fintype n] [DecidableEq n] {
 
 variable {D : D7}
 
-theorem heisO_zero (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (f : WO S T → ℂ) : heisO ψ S T 0 f = f := by
-  funext w
-  simp [heisO, symplOH, symplO, hO]
-
 theorem jacT_levi (ψ : AddChar (AF D.host.F) ℂ) {T T₀ : HSp D} {ρ : ℕ} (d : HypDec T T₀ ρ) (S : HSp D) (y : Mx D S.rank ρ)
     (a : GL (Fin ρ) (AE D)) (f : WO S T₀ → ℂ) : jacT ψ d S y (d.levi a) f = f := by
   have e : ∃ η, HMul.hMul (mt T (d.levi a)⁻¹) (d.incAdj S y : Mx D T.rank S.rank) = d.incY S η := by
@@ -163,7 +159,7 @@ theorem jacT_levi (ψ : AddChar (AF D.host.F) ℂ) {T T₀ : HSp D} {ρ : ℕ} (
     exact ⟨_, rfl⟩
   obtain ⟨η, e⟩ := e
   rw [jacT, cenT, ptT, e, d.incAdj_apply, d.symplOH_incY_incY, d.incY_apply, ← Matrix.mul_assoc, d.p0_jY, Matrix.zero_mul,
-    heisO_zero, AddChar.map_zero_eq_one, one_smul]
+    _root_.GlobalTheory.SplitScalar.heisO_zero, AddChar.map_zero_eq_one, one_smul]
 
 theorem grpAt_of_suppAt {e : AE D} (he : IsSplitIdem D e) {S : HSp D} {g : GA D S} (hg : SuppAt e S g) :
     g ∈ GlobalTheory.FinPl.grpAt S (fun _ => True) := by

@@ -86,7 +86,7 @@ theorem exists_denom_comm {m : ℕ} (b : Module.Basis (Fin m) F E) : ∃ c : ℕ
       (∀ k, (e : 𝔸) * (Algebra.TensorProduct.basis 𝔸 b).repr z k ∈ intRing F) →
       ((c * e : ℕ) : E ⊗[F] 𝔸) * Algebra.TensorProduct.comm F 𝔸 E z ∈ Formalism.L2.Herm.intAf F E := by
   obtain ⟨c, hc, h⟩ := GlobalTheory.HolDict.ShortVec.exists_common_denom (integralClosure ℤ E).toSubring b fun k => by
-    obtain ⟨k, hk, r, hr⟩ := GlobalTheory.SmoothForms.denom_exists_int (b k)
+    obtain ⟨k, hk, r, hr⟩ := _root_.GlobalTheory.NatMulMemRingOfIntegers.exists_nat_mul_mem_ringOfIntegers (b k)
     exact ⟨k, hk, hr ▸ r.2⟩
   refine ⟨c, hc, fun e z hz => ?_⟩
   rw [comm_eq_sum b, Finset.mul_sum]

@@ -65,47 +65,7 @@ section General
 variable {K : Type} [Field K] [NumberField K] {V : Type} [AddCommGroup V] [Module K V] [Module (𝓞 K) V]
   [IsScalarTower (𝓞 K) K V]
 
-theorem exists_smul_mem_of_mem_span (T : Submodule (𝓞 K) V) {x : V} (hx : x ∈ Submodule.span K (T : Set V)) :
-    ∃ s : 𝓞 K, s ≠ 0 ∧ s • x ∈ T := by
-  first
-  | exact @_root_.GlobalTheory.SpanScalarMembership.exists_smul_mem_of_mem_span
-  | exact _root_.GlobalTheory.SpanScalarMembership.exists_smul_mem_of_mem_span
-  | (apply _root_.GlobalTheory.SpanScalarMembership.exists_smul_mem_of_mem_span <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SpanScalarMembership.exists_smul_mem_of_mem_span <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SpanScalarMembership.exists_smul_mem_of_mem_span <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SpanScalarMembership.exists_smul_mem_of_mem_span ..)
-
-theorem exists_smul_mem_of_fg (T A : Submodule (𝓞 K) V) (hA : A.FG)
-    (hx : ∀ x ∈ A, x ∈ Submodule.span K (T : Set V)) :
-    ∃ s : 𝓞 K, s ≠ 0 ∧ ∀ x ∈ A, s • x ∈ T := by
-  classical
-  obtain ⟨G, rfl⟩ := hA
-  have h1 : ∀ x : G, ∃ s : 𝓞 K, s ≠ 0 ∧ s • (x : V) ∈ T := fun x =>
-    exists_smul_mem_of_mem_span T (hx x (Submodule.subset_span x.2))
-  choose s hs hsT using h1
-  refine ⟨∏ x, s x, Finset.prod_ne_zero_iff.mpr fun x _ => hs x, ?_⟩
-  intro x hx
-  induction hx using Submodule.span_induction with
-  | mem x hx =>
-    rw [← Finset.prod_erase_mul _ _ (Finset.mem_univ (⟨x, hx⟩ : G)), mul_smul]
-    exact T.smul_mem _ (hsT ⟨x, hx⟩)
-  | zero => simp
-  | add x y _ _ hx hy => rw [smul_add]; exact T.add_mem hx hy
-  | smul a x _ hx => rw [smul_comm]; exact T.smul_mem _ hx
-
-
-omit [Module K V] [IsScalarTower (𝓞 K) K V] in
-theorem mem_of_forall_mem_locP (T : Submodule (𝓞 K) V) {x : V}
-    (hx : ∀ w : HeightOneSpectrum (𝓞 K), x ∈ Formalism.HermitianLatticesTheory.localization₂ w.asIdeal T) : x ∈ T := by
-  let I : Ideal (𝓞 K) := T.comap (LinearMap.toSpanSingleton (𝓞 K) V x)
-  have hI : I = ⊤ := by
-    by_contra hI
-    obtain ⟨m, hm, hIm⟩ := Ideal.exists_le_maximal I hI
-    have hm0 : m ≠ ⊥ := Ring.ne_bot_of_isMaximal_of_not_isField hm (RingOfIntegers.not_isField K)
-    obtain ⟨s, hs, hsx⟩ := hx ⟨m, hm.isPrime, hm0⟩
-    exact hs (hIm (show s ∈ I from hsx))
-  have : (1 : 𝓞 K) ∈ I := by rw [hI]; trivial
-  simpa [I] using this
+alias exists_smul_mem_of_mem_span := _root_.GlobalTheory.TransLoc.exists_smul_mem_of_mem_span
 
 omit [Module K V] [IsScalarTower (𝓞 K) K V] in
 theorem locP_le_of_smul_mem (w : HeightOneSpectrum (𝓞 K)) {A B : Submodule (𝓞 K) V} {t : 𝓞 K}
@@ -131,22 +91,14 @@ variable {K : Type} [Field K] [NumberField K] {ι : Type} [Fintype ι] {n : ℕ}
 theorem colLat_one_fg : (colLat (1 : GL (Fin n) K)).FG :=
   Submodule.fg_span (Set.finite_range _)
 
-theorem span_colLat_one : Submodule.span K (colLat (1 : GL (Fin n) K) : Set (Fin n → K)) = ⊤ := by
-  rw [eq_top_iff, ← (Pi.basisFun K (Fin n)).span_eq]
-  refine Submodule.span_mono ?_
-  rintro _ ⟨j, rfl⟩
-  refine Submodule.subset_span ⟨j, ?_⟩
-  funext a
-  simp [Matrix.one_apply, Pi.single_apply]
-
 theorem exists_isBasisAt_one (M : ι → Submodule (𝓞 K) (Fin n → K))
     (hM : ∀ τ, Submodule.IsFullLattice K (M τ)) :
     ∃ t : 𝓞 K, t ≠ 0 ∧ ∀ w : HeightOneSpectrum (𝓞 K), t ∉ w.asIdeal → ∀ τ, IsBasisAt w (M τ) 1 := by
   classical
   have h1 : ∀ τ, ∃ s : 𝓞 K, s ≠ 0 ∧ ∀ x ∈ M τ, s • x ∈ colLat (1 : GL (Fin n) K) := fun τ =>
-    exists_smul_mem_of_fg _ _ (hM τ).toIsLattice.fg fun x _ => by rw [span_colLat_one]; trivial
+    _root_.GlobalTheory.TransLoc.exists_smul_le_of_fg _ _ (hM τ).toIsLattice.fg fun x _ => by rw [_root_.GlobalTheory.TransLoc.span_colLat_one]; trivial
   have h2 : ∀ τ, ∃ s : 𝓞 K, s ≠ 0 ∧ ∀ x ∈ colLat (1 : GL (Fin n) K), s • x ∈ M τ := fun τ =>
-    exists_smul_mem_of_fg _ _ colLat_one_fg fun x _ => by rw [(hM τ).span_eq_top]; trivial
+    _root_.GlobalTheory.TransLoc.exists_smul_le_of_fg _ _ colLat_one_fg fun x _ => by rw [(hM τ).span_eq_top]; trivial
   choose s hs hsM using h1
   choose s' hs' hsM' using h2
   refine ⟨∏ τ, (s τ * s' τ), Finset.prod_ne_zero_iff.mpr fun τ _ => mul_ne_zero (hs τ) (hs' τ), ?_⟩
@@ -172,7 +124,7 @@ theorem transLat_fg (hB : BasisAtEx) (lam : ι → DomWeight n) (T : Submodule (
       ∀ F ∈ transLat lam T M, s • F ∈ Formalism.HermitianLatticesTheory.localization₂ w.asIdeal T := by
     intro w
     choose B hBw using fun τ => hB K n (M τ) (hM τ) w
-    obtain ⟨s, hs, hsT⟩ := exists_smul_mem_of_fg T (T.map ((actP lam B).restrictScalars (𝓞 K))) (hT.map _) (by
+    obtain ⟨s, hs, hsT⟩ := _root_.GlobalTheory.TransLoc.exists_smul_le_of_fg T (T.map ((actP lam B).restrictScalars (𝓞 K))) (hT.map _) (by
       rintro _ ⟨x, hx, rfl⟩
       rw [hsp]
       exact polyAction_mem_VV lam B (hsp ▸ Submodule.subset_span hx))
@@ -189,7 +141,7 @@ theorem transLat_fg (hB : BasisAtEx) (lam : ι → DomWeight n) (T : Submodule (
   have hc0 : c ≠ 0 := Finset.prod_ne_zero_iff.mpr fun w _ => hs w
   have hcT : ∀ F ∈ transLat lam T M, c • F ∈ T := by
     intro F hF
-    refine mem_of_forall_mem_locP T fun w => ?_
+    refine _root_.GlobalTheory.TransLoc.mem_of_forall_locP T fun w => ?_
     by_cases hw : t ∈ w.asIdeal
     · have hw' : w ∈ hfin.toFinset := by
         simpa [Ideal.dvd_span_singleton] using hw

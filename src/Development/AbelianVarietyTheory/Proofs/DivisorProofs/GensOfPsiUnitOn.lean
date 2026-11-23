@@ -112,40 +112,6 @@ theorem diag_eq_two_mul {O : Type} [CommRing O] [StarRing O] {X : Type} [AddComm
     rw [← hβ.2 w0 y y, hβ.1]
   rw [h1, h2]; ring
 
-theorem finite_sublevel {X : Type} [AddCommGroup X] [Module.Free ℤ X] [Module.Finite ℤ X]
-    (β : LinearMap.BilinForm ℤ X) (hs : ∀ y z, β y z = β z y) (hp : ∀ y, y ≠ 0 → 0 < β y y) (C : ℤ) :
-    {y | β y y ≤ C}.Finite := by
-  classical
-  let b := Module.Free.chooseBasis ℤ X
-  have hnn : ∀ y, 0 ≤ β y y := fun y => by
-    by_cases hy : y = 0
-    · simp [hy]
-    · exact (hp y hy).le
-  let F : X → Module.Free.ChooseBasisIndex ℤ X → ℤ := fun y j => β (b j) y
-  have hinj : Function.Injective F := by
-    intro x y hxy
-    by_contra hne
-    have hz : x - y ≠ 0 := sub_ne_zero.mpr hne
-    have h0 : ∀ j, β (b j) (x - y) = 0 := fun j => by
-      rw [map_sub, sub_eq_zero]; exact congrFun hxy j
-    have h1 : β (x - y) (x - y) = 0 := by
-      generalize x - y = z at h0
-      have e := congrArg (fun w => β w z) (b.sum_repr z)
-
-      simp only [map_sum, map_smul, LinearMap.sum_apply, LinearMap.smul_apply, h0, smul_zero,
-      Finset.sum_const_zero] at e
-      exact e.symm
-    exact (hp _ hz).ne' h1
-  refine Set.Finite.of_finite_image ?_ hinj.injOn
-  refine (Set.Finite.pi' fun j => Set.finite_Icc (-(β (b j) (b j) + C)) (β (b j) (b j) + C)).subset ?_
-  rintro _ ⟨x, hx, rfl⟩ j
-  have hx' : β x x ≤ C := hx
-  have e1 := hnn (b j + x)
-  have e2 := hnn (b j - x)
-  simp only [map_add (f := _), map_sub, LinearMap.add_apply, LinearMap.sub_apply, hs x (b j)] at e1 e2
-  simp only [Set.mem_Icc, F]
-  constructor <;> nlinarith [hnn x]
-
 end GlobalTheory.UTautData
 
 namespace GlobalTheory.UTautData
@@ -370,7 +336,7 @@ theorem main (W R : Type) [CommRing W] [IsDomain W] [CommRing R] [IsDomain R] [I
   have hfin : ∀ n : ℕ, {χ | ¬ (taut D' e w0 t ht u M δ ε).PsiIn χ (I ^ n)}.Finite := fun n => by
     let B : LinearMap.BilinForm ℤ D'.X := ∑ i, δ' i
     have hB : ∀ y z, B y z = ∑ i, δ' i y z := fun y z => by simp [B, LinearMap.sum_apply]
-    refine (finite_sublevel B (fun y z => by rw [hB, hB]; exact Finset.sum_congr rfl fun i _ => (hδ'b i).1 y z)
+    refine (_root_.GlobalTheory.ToricData.finite_form_le B (fun y z => by rw [hB, hB]; exact Finset.sum_congr rfl fun i _ => (hδ'b i).1 y z)
       (fun y hy => by rw [hB]; exact hpos' y hy) (2 * n)).subset ?_
     intro χ hχ
     obtain ⟨w, k, hk, hc⟩ := hmono χ

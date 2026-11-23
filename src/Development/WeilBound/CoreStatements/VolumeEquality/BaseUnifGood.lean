@@ -157,7 +157,7 @@ theorem kUnif_good (hV : VecOfPeriods) (Y : Model Xo c (algebraMap (𝓞 c.F) c.
       F.σ = (fun τ => κ.comp (labelEmb c (sm τ))) ∧ F.form = (FU.Di k.1).EF := fun k => by
     obtain ⟨P, hP⟩ := k.2
     obtain ⟨R, -, h₂, h₃⟩ := hriem _ P hP
-    obtain ⟨F, a₁, a₂, a₃⟩ := univExists E (CMType H) j j' n g _ R _ q
+    obtain ⟨F, a₁, a₂, a₃⟩ := _root_.SheetDecomposition.Univ.exists_univFam E (CMType H) j j' n g _ R _ q
       (side_cm κ sm (hs.imp (·.1) (·.1))) h₃
     exact ⟨F, a₁, a₂, a₃.trans h₂⟩
   choose F hq hσ hform using hF

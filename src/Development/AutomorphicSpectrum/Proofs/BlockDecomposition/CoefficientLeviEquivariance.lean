@@ -63,10 +63,7 @@ open GlobalTheory.CompanionTheory.IwaAd (levi_mem_P adj_mul_adj_inv adj_inv_mul_
 
 variable {D : D7} {n ρ p : ℕ} {hn : ρ + p = n}
 
-theorem adj_zero' {k l : ℕ} : adj (0 : Mx D k l) = 0 := by
-  have h := adj_add (0 : Mx D k l) 0
-  rw [add_zero] at h
-  exact left_eq_add.1 h
+alias adj_zero' := _root_.GlobalTheory.MixModel.adj_zero
 
 theorem blkA_blk4 {R : Type} {k : ℕ} (a b c d : Matrix (Fin k) (Fin k) R) : blkA (blk4 a b c d) = a := by
   simp only [blkA, blk4, Matrix.submatrix_submatrix, Equiv.symm_comp_self, Matrix.submatrix_id_id,

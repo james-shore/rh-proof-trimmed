@@ -1001,10 +1001,10 @@ theorem key_lemma (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι ℂ)
     rw [h𝔡, NumberField.absNorm_differentIdeal K (𝓞 K), Nat.cast_natAbs, Int.cast_abs]
 
   have hSd : DiscreteTopology S := Formalism.F.discreteTopology_of_le hSL
-  have hcL := Formalism.F.covolPos _ L hLd
-  have hcS := Formalism.F.covolPos _ S hSd
-  have hcQ := Formalism.F.covolPos _ _ hQd
-  have hcD := Formalism.F.covolPos _ _ hDd
+  have hcL := _root_.Formalism.F.covol_pos' _ L hLd
+  have hcS := _root_.Formalism.F.covol_pos' _ S hSd
+  have hcQ := _root_.Formalism.F.covol_pos' _ _ hQd
+  have hcD := _root_.Formalism.F.covol_pos' _ _ hDd
   have hLSQ : Formalism.F.covol L = Formalism.F.covol S * Formalism.F.covol (Formalism.F.quot L S) := by
     apply eq_mul_of_log_eq_add hcL hcS hcQ
     unfold Formalism.F.deg at hdegQ
@@ -1098,7 +1098,7 @@ theorem ht_bot (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι ℂ) :
     unfold rkK; simp
   have h2 : zl (Formalism.HermitianLatticesTheory.realize b X) (⊥ : Submodule (𝓞 K) V) = ⊥ := satBasic_zl_bot _
   unfold ht
-  rw [h1, h2, (Formalism.F.covolBasic _).1]
+  rw [h1, h2, (_root_.Formalism.F.covol_basic_properties _).1]
   simp
 
 omit [StarRing K] [_root_.NumberField.IsTotallyComplex K] [Fintype ι] [DecidableEq ι] in
@@ -1236,7 +1236,7 @@ theorem dual_dual (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι ℂ)
     exact h
   have hcov := Formalism.RankSupermodularCovolume.covol_eq_relIndex_mul_covol _ _
     (shiftInv_zl_mono (Formalism.HermitianLatticesTheory.realize b X) hAA2) hrkeq
-  have hpos := Formalism.F.covolPos _ _ hlat2.2
+  have hpos := _root_.Formalism.F.covol_pos' _ _ hlat2.2
   rw [hcovEq] at hcov
   have hidx1 : ((zl (Formalism.HermitianLatticesTheory.realize b X) A).toAddSubgroup.relIndex
       (zl (Formalism.HermitianLatticesTheory.realize b X) A2).toAddSubgroup : ℝ) = 1 := by
@@ -1359,9 +1359,9 @@ theorem deg_R (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι ℂ)
   have hD : 0 < |(NumberField.discr K : ℝ)| :=
     abs_pos.mpr (Int.cast_ne_zero.mpr (NumberField.discr_ne_zero K))
   have hn0 : (0 : ℝ) < finrank ℚ K := by exact_mod_cast Module.finrank_pos
-  have hcR := Formalism.F.covolPos _ _ hlatR.2
-  have hcA := Formalism.F.covolPos _ _ hlatA.2
-  have hcN := Formalism.F.covolPos _ _ hlatN.2
+  have hcR := _root_.Formalism.F.covol_pos' _ _ hlatR.2
+  have hcA := _root_.Formalism.F.covol_pos' _ _ hlatA.2
+  have hcN := _root_.Formalism.F.covol_pos' _ _ hlatN.2
   have hlog := congrArg Real.log hcov
   rw [Real.log_mul (mul_pos hcR hcA).ne' (by positivity), Real.log_mul hcR.ne' hcA.ne',
     Real.log_mul (by positivity) hcN.ne', Real.log_pow, Real.log_pow] at hlog

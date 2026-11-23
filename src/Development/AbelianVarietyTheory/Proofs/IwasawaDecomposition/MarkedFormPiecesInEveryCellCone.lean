@@ -92,7 +92,7 @@ theorem inRCone_pullAdd_of_isCell : ∀ (E : Type) [Field E] [NumberField E] [Is
     have : t j = 0 := le_antisymm (not_lt.1 fun h => hj (hmem j h)) (ht j)
     rw [this, zero_smul]
   obtain ⟨j, rfl⟩ := hmem i hi
-  exact GlobalTheory.T.inRealCone_cell_of_linearPiece_through_cellPoint H.bar φ δ (fun j => pullAdd f (u (s j))) hδ (fun j => (hu _ (hs j)).2.1) (fun j => (hu _ (hs j)).2.2) h3
+  exact _root_.GlobalTheory.PolFan.inRCone_of_interior_linearOn H.bar φ δ (fun j => pullAdd f (u (s j))) hδ (fun j => (hu _ (hs j)).2.1) (fun j => (hu _ (hs j)).2.2) h3
     β c (fun j => t (s j)) hc hs hβc hsum j
 
 end GlobalTheory.PolFan.OrbMark

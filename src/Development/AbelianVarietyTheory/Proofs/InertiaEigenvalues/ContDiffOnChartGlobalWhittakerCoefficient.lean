@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.Divisors.UnrOutside
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CentreEnvelopingAlgebraCommuteRealLieSmoothing
 
 @[expose] public section
 
@@ -63,10 +64,6 @@ namespace GlobalTheory.JSW.WhitSmooth
 open GroundTheory.Automorphic.FourierWhittaker GlobalTheory.ConstTermSmooth
 
 variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {a : ℕ}
-
-theorem chart_oneL (F : GA E a → ℂ) (g : GA E a) : chart F g (oneL E a) = F g := by
-  have := chart_val F g 1
-  simpa using this
 
 theorem chart_whit (F : GA E a → ℂ) (g : GA E a) :
     chart (GlobalTheory.JSW.whit F) g = fun y => ∫ X in vecDomain E (Pos a),
@@ -127,10 +124,10 @@ theorem hasFDerivAt_chart_whit' {φ : Sm E a} (h : Good φ) (g : GA E a) :
   simp_rw [e]
   rw [integral_finsetSum _ fun i _ => ?_]
   · refine Finset.sum_congr rfl fun i _ => ?_
-    rw [integral_smul_const, ← congrFun (chart_whit _ g) (oneL E a), chart_oneL]
+    rw [integral_smul_const, ← congrFun (chart_whit _ g) (oneL E a), _root_.GlobalTheory.CentreSmooth.chart_one]
   · have hl := h.lie (Module.finBasis ℝ (Lie E a) i)
     refine (Integrable.smul_const ?_ _)
-    simp_rw [chart_oneL]
+    simp_rw [_root_.GlobalTheory.CentreSmooth.chart_one]
     exact GlobalTheory.JSW.WhitAlg.integrableOn_whit (ContAut.continuous_of_isOpen_stab E a _ hl.2) g
 
 theorem whit_mem_Sm (φ : Sm E a) (h : Good φ) : GlobalTheory.JSW.whit φ.1 ∈ Sm E a := by

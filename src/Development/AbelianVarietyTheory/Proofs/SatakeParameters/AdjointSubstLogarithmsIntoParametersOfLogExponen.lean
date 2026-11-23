@@ -315,7 +315,7 @@ theorem exists_coords_and_series (h5 : 5 ≤ l) {σ : ℂ_[l] →+* ℂ_[l]} (h�
     simp only [map_iterate hτ, map_mul (MaximalUnramifiedExtension l).subtype]
     rw [hD.dual r r']
     split_ifs <;> simp
-  obtain ⟨F, hF⟩ := (Formalism.InvariantFactorPaths.G7.Top.lawExists (MaximalUnramifiedExtension l) l hU.1 hU.2.2.1).1
+  obtain ⟨F, hF⟩ := (_root_.Formalism.InvariantFactorPaths.G7.formal_law_exists (MaximalUnramifiedExtension l) l hU.1 hU.2.2.1).1
   obtain ⟨ζ, hζ⟩ := kurRoots l (l ^ d - 1) (by have := Nat.one_lt_pow (NeZero.ne d) (show 1 < l by omega); omega) (by
     intro h
     have h1 : l ∣ l ^ d := dvd_pow_self l (NeZero.ne d)

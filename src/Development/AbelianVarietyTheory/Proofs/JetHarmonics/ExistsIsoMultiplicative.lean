@@ -125,7 +125,7 @@ theorem exists_iso_multiplicative (K : Type) [NormedField K] [IsUltrametricDist 
         f.subst (MvPowerSeries.X 0 : MvPowerSeries (Fin 2) K) *
           f.subst (MvPowerSeries.X 1 : MvPowerSeries (Fin 2) K) := by
   classical
-  obtain ⟨t, ht1, ht0, htne, htp⟩ := GlobalTheory.T.exists_formalGroup_heightOne_torsion_tower K p F hF h1 h2
+  obtain ⟨t, ht1, ht0, htne, htp⟩ := _root_.GlobalTheory.ConvSer.exists_torsion_tower K p F hF h1 h2
   obtain ⟨ζ, hζ0, hζ1, hζp, hζn⟩ := exists_root_tower K p
   obtain ⟨-, hpt⟩ := GlobalTheory.T.formalGroupNatMulSeries_eval_openDisc_properties K F hF
   obtain ⟨ho1, -, ho3⟩ := GlobalTheory.T.formalGroup_torsionTower_exact_order K p F hF t ht1 ht0 htne htp

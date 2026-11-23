@@ -90,18 +90,10 @@ variable {K L : Type} [Field K] [Field L] [Algebra K L]
   (D : Rep.{0} (ULift.{0} ℤ) G) [IsDiscreteRep D] (ρ : Rep.res ψ.toMonoidHom D ⟶ galUnits.{0} K L)
   (M : Rep.{0} (ULift.{0} ℤ) G) [IsDiscreteRep M]
 
-abbrev resEvalPair :
-    Rep.res ψ.toMonoidHom M ⊗ Rep.res ψ.toMonoidHom (dualRep D M) ⟶ Rep.res ψ.toMonoidHom D :=
-  (Rep.resFunctor ψ.toMonoidHom).map (evalPairing D M)
-
-def dualToCartier :
-    Rep.res ψ.toMonoidHom (dualRep D M) ⟶ cartierDual K L (Rep.res ψ.toMonoidHom M) :=
-  resDualPost ψ.toMonoidHom D M _ ρ
-
 omit [IsTopologicalGroup G] [IsDiscreteRep D] [IsDiscreteRep M] in
 theorem bijective_dualToCartier {n : ℕ} [NeZero n] (hL : Nonempty (galRootsOfUnity.{0} K L n ≃+ ZMod n))
     (hD : Nonempty (D ≃+ ZMod n)) (hρ : Function.Injective ρ.hom) [Finite M] (hM : ∀ m : M, n • m = 0) :
-    Function.Bijective (dualToCartier ψ D ρ M).hom := by
+    Function.Bijective (_root_.GroundTheory.ProfCoh.dualToCartierDual ψ D ρ M).hom := by
   have : Finite D := finite_of_nonempty_addEquiv hD
   have : Finite (galRootsOfUnity.{0} K L n) := finite_of_nonempty_addEquiv hL
   have : Finite (dualRep D M) := finite_dualRep
@@ -126,9 +118,9 @@ theorem bijective_dualToCartier {n : ℕ} [NeZero n] (hL : Nonempty (galRootsOfU
 
 omit [IsTopologicalGroup G] [IsDiscreteRep D] [IsDiscreteRep M] in
 theorem tensorHom_dualToCartier_cartierPairing :
-    (𝟙 (Rep.res ψ.toMonoidHom M) ⊗ₘ dualToCartier ψ D ρ M) ≫
+    (𝟙 (Rep.res ψ.toMonoidHom M) ⊗ₘ _root_.GroundTheory.ProfCoh.dualToCartierDual ψ D ρ M) ≫
         cartierPairing K L (Rep.res ψ.toMonoidHom M) =
-      resEvalPair ψ D M ≫ ρ := by
+      _root_.GroundTheory.ProfCoh.resEvalPairing ψ D M ≫ ρ := by
   refine Rep.Hom.ext (Representation.IntertwiningMap.ext (LinearMap.ext fun x => ?_))
   induction x using TensorProduct.induction_on with
   | zero => simp only [map_zero]
@@ -140,10 +132,10 @@ theorem cupPairing_dualToCartier [Finite M] [IsDiscreteRep (galUnits.{0} K L)]
     (ξ : cohomology (Rep.res ψ.toMonoidHom M) r)
     (η : cohomology (Rep.res ψ.toMonoidHom (dualRep D M)) s) :
     cupPairing (cartierPairing K L (Rep.res ψ.toMonoidHom M)) h ξ
-        ((cohomologyMap (dualToCartier ψ D ρ M) s).hom η) =
-      (cohomologyMap ρ 2).hom (cupPairing (resEvalPair ψ D M) h ξ η) := by
+        ((cohomologyMap (_root_.GroundTheory.ProfCoh.dualToCartierDual ψ D ρ M) s).hom η) =
+      (cohomologyMap ρ 2).hom (cupPairing (_root_.GroundTheory.ProfCoh.resEvalPairing ψ D M) h ξ η) := by
   have hc := cupPairing_cohomologyMap (cartierPairing K L (Rep.res ψ.toMonoidHom M))
-    (𝟙 _) (dualToCartier ψ D ρ M) h ξ η
+    (𝟙 _) (_root_.GroundTheory.ProfCoh.dualToCartierDual ψ D ρ M) h ξ η
   rw [cohomologyMap_id, ModuleCat.id_apply] at hc
   rw [hc, tensorHom_dualToCartier_cartierPairing, cohomologyMap_cupPairing]
 
@@ -168,7 +160,7 @@ theorem exists_orderTwo_pairing_zero {n : ℕ} [NeZero n] (hD : Nonempty (D ≃+
     (hρ : Function.Injective ρ.hom) (hM : ∀ m : M, n • m = 0)
     (χ : cohomology (Rep.res ψ.toMonoidHom (dualRep D M)) 2 →+ QZ) :
     ∃ ξ : cohomology (Rep.res ψ.toMonoidHom M) 0, ∀ η,
-      inv (cupPairing (resEvalPair ψ D M) (show 0 + 2 = 2 from rfl) ξ η) = χ η := by
+      inv (cupPairing (_root_.GroundTheory.ProfCoh.resEvalPairing ψ D M) (show 0 + 2 = 2 from rfl) ξ η) = χ η := by
   have hf := bijective_dualToCartier ψ D ρ M (hroots n (Nat.pos_of_ne_zero (NeZero.ne n))) hD hρ hM
   let e := cohomologyAddEquivOfIso (Rep.isoOfBijective _ hf) 2
   obtain ⟨x, hx⟩ := (real_local_duality_of_orderTwo h2 hN hG hc hneg hconj hroots
@@ -189,8 +181,8 @@ theorem exists_orderTwo_pairing_two {n : ℕ} [NeZero n] (hD : Nonempty (D ≃+ 
     (χ : cohomology (Rep.res ψ.toMonoidHom (dualRep D M)) 0 →+ QZ)
     (hχ : ∀ x ∈ normClasses (Rep.res ψ.toMonoidHom (dualRep D M)), χ x = 0) :
     ∃ ξ : cohomology (Rep.res ψ.toMonoidHom M) 2, ∀ η,
-      inv (cupPairing (resEvalPair ψ D M) (show 2 + 0 = 2 from rfl) ξ η) = χ η := by
-  set f := dualToCartier ψ D ρ M
+      inv (cupPairing (_root_.GroundTheory.ProfCoh.resEvalPairing ψ D M) (show 2 + 0 = 2 from rfl) ξ η) = χ η := by
+  set f := _root_.GroundTheory.ProfCoh.dualToCartierDual ψ D ρ M
   have hf := bijective_dualToCartier ψ D ρ M (hroots n (Nat.pos_of_ne_zero (NeZero.ne n))) hD hρ hM
   let e := cohomologyAddEquivOfIso (Rep.isoOfBijective f hf) 0
   let χ' := χ.comp e.symm.toAddMonoidHom

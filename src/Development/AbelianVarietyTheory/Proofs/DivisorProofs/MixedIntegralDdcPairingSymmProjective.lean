@@ -119,7 +119,7 @@ theorem int_cons_ofFun_symm : GlobalTheory.Published.Principalisation → ∀ (F
       (fun i => ((Fin.cons (MLine.ofFun a ha) L : Fin (e + 1) → MLine p σ) i).pull π rfl)
       (Fin.cons (MLine.ofFun (fun z => a (ptMap π rfl σ z)) fun z => (ha _).pull π rfl) fun i => (L i).pull π rfl)
       (fun i => Fin.cases (hiso.2.2.2.1 a ha) (fun j => hisoY.1 _) i)
-    have h3 := GlobalTheory.T.mixedChernIntegral_eq_mongeAmpereIntegral_compact F Y (π ≫ p) σ (e + 1) _ hA
+    have h3 := _root_.GlobalTheory.Mix.int_eq_mInt F Y (π ≫ p) σ (e + 1) _ hA
       (Fin.cons (MLine.ofFun (fun z => a (ptMap π rfl σ z)) fun z => (ha _).pull π rfl) fun i => (L i).pull π rfl)
       _ hbc'.measurable
     rw [← h1, ← h3.2 (h3.1.2 (mIntegrableCont _ _

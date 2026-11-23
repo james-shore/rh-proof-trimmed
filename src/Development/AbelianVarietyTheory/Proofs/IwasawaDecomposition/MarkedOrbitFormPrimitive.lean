@@ -89,7 +89,7 @@ theorem eq_one_of_smul_eq_of_orbFun_evalZ_eq_one :
       apply hcan
       rw [hβ', e]
       simp
-    obtain ⟨ζ₁, hζ₁⟩ := GlobalTheory.T.exists_intBilinForm_descend_along_surjective f hf β' hl hr
+    obtain ⟨ζ₁, hζ₁⟩ := _root_.GlobalTheory.exists_bilinForm_descend_of_surjective f hf β' hl hr
     let m : X₀ →ₗ[ℤ] X₀ ⧸ (CarDim.orad v : Submodule O X₀) :=
       (CarDim.orad v : Submodule O X₀).mkQ.toAddMonoidHom.toIntLinearMap
     let ζ : LinearMap.BilinForm ℤ X₀ := ζ₁.compl₁₂ m m

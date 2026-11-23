@@ -101,10 +101,6 @@ lemma herm_smul_left {n : ℕ} (H : Matrix (Fin n) (Fin n) ℂ) (c : ℂ) (v w :
     herm H (c • v) w = c * herm H v w := by
   simp [herm, Matrix.mulVec_smul]
 
-lemma eucl_eq {n : ℕ} (v : Fin n → ℂ) : eucl v = ‖(WithLp.toLp 2 v : EuclideanSpace ℂ (Fin n))‖ := by
-  rw [EuclideanSpace.norm_eq]; unfold eucl
-  simp [Complex.normSq_eq_norm_sq]
-
 lemma inner_toLp {n : ℕ} (v w : Fin n → ℂ) :
     ⟪(WithLp.toLp 2 v : EuclideanSpace ℂ (Fin n)), WithLp.toLp 2 w⟫_ℂ = star v ⬝ᵥ w := by
   rw [EuclideanSpace.inner_toLp_toLp, dotProduct_comm]
@@ -116,7 +112,7 @@ lemma inner_H (k r : ℕ) (v w : Fin (2 * r + k + 1) → ℂ) :
 
 lemma norm_H (k r : ℕ) (w : Fin (2 * r + k + 1) → ℂ) :
     ‖(WithLp.toLp 2 (Hpk k r *ᵥ w) : EuclideanSpace ℂ (Fin (2 * r + k + 1)))‖ = eucl w := by
-  rw [eucl_eq, norm_eq_sqrt_re_inner (𝕜 := ℂ), norm_eq_sqrt_re_inner (𝕜 := ℂ), inner_H, inner_toLp]
+  rw [_root_.GlobalTheory.Amp.GramFlag.eucl_eq, norm_eq_sqrt_re_inner (𝕜 := ℂ), norm_eq_sqrt_re_inner (𝕜 := ℂ), inner_H, inner_toLp]
   unfold herm
   rw [Matrix.mulVec_mulVec, (hpkFacts k r).2.1, Matrix.one_mulVec]
 
@@ -186,7 +182,7 @@ lemma pluck_flag {k r n : ℕ} (hn : n ≤ r) (z : Fin (2 * r + k + 1) → ℂ) 
       rw [hsum, hsum, inner_toLp]
       exact h2 _ _ fun h' => h (Fin.castLE_injective hn h'))
   simp only [inner_H, hsum, norm_H] at hp
-  simp only [← eucl_eq] at hp
+  simp only [← _root_.GlobalTheory.Amp.GramFlag.eucl_eq] at hp
   refine hp.trans (mul_le_mul ?_ ?_ ?_ ?_)
   · calc _ ≤ ∏ _a : Fin n, R := Finset.prod_le_prod₀ (fun _ _ => Real.sqrt_nonneg _) fun a _ => hy a
       _ = _ := by simp
@@ -279,7 +275,7 @@ lemma levi_diag_middle_mem_bessel_unitary_eucl {k r : ℕ} {m : Matrix (Fin (k +
     simp only [Matrix.mulVec_mulVec, Matrix.nonsing_inv_mul _ (G_unit hG), Matrix.one_mulVec,
       Matrix.mulVec_smul] at this
     rw [eq_inv_smul_iff₀ hc]; exact this.symm
-  rw [h5, eucl_eq, WithLp.toLp_smul, norm_smul]
+  rw [h5, _root_.GlobalTheory.Amp.GramFlag.eucl_eq, WithLp.toLp_smul, norm_smul]
   simp [bvec, abs_of_pos (ha c)]
 
 lemma Dmin_eq {k r j : ℕ} (hj : j ≤ r) (z z' : Fin (2 * r + k + 1) → ℂ) (g : Mat k r) (l : ℕ) (hl : l ≤ j) :

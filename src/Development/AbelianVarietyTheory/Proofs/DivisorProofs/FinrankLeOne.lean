@@ -92,7 +92,7 @@ theorem step [Fintype F] (ψ : AddChar F ℂ) (hψ : ψ ≠ 1) {V : Type} [AddCo
     (b : Fin r → ℕ) (σ : Representation ℂ (blockTri (κ := F) b) V) (hσ : IsCuspDatum b σ) (k : Fin r)
     (h : eig σ (colSet F b (k.val + 1)) (fun p => ψ (edgeSum (blkEdge b) (p : GL (Fin r) F))) ≠ ⊥) :
     eig σ (colSet F b k.val) (fun p => ψ (edgeSum (blkEdge b) (p : GL (Fin r) F))) ≠ ⊥ := by
-  obtain ⟨l, hl, hne⟩ := GlobalTheory.T.exists_columnCharacter_eigenSubmodule_ne_bot F ψ hψ r V b σ hσ.mono hσ.infl k h
+  obtain ⟨l, hl, hne⟩ := _root_.GlobalTheory.FinGL.LeviWh.exists_colChar_eig_ne_bot F ψ hψ r V b σ hσ.mono hσ.infl k h
   by_cases hl0 : l = 0
   · subst hl0
     by_cases hk : ∃ i, blkEdge b i k
@@ -143,8 +143,8 @@ theorem step [Fintype F] (ψ : AddChar F ℂ) (hψ : ψ ≠ 1) {V : Type} [AddCo
       apply le_antisymm
       · exact hσ.mono (show k'.val ≤ k.val by omega)
       · rw [← hbi]; exact hσ.mono (show i.val ≤ k'.val by omega)
-    obtain ⟨g, hg1, hg2⟩ := GlobalTheory.T.exists_blockTri_vecMul_eq_single_pred F r b hσ.mono k k' hk' l hl0 hl
-    have h2 := GlobalTheory.T.leviWhittakerColumnCharacter_eigen_vecMul_ne_bot F ψ r V b σ k l g hg1 hne
+    obtain ⟨g, hg1, hg2⟩ := _root_.GlobalTheory.FinGL.LeviWh.exists_blockTri_vecMul_eq_single F r b hσ.mono k k' hk' l hl0 hl
+    have h2 := _root_.GlobalTheory.FinGL.LeviWh.eig_colChar_vecMul_ne_bot F ψ r V b σ k l g hg1 hne
     rw [hg2] at h2
     rw [eig_congr σ _ _ (colChar ψ b k (Pi.single k' 1))]
     · exact h2
@@ -357,11 +357,11 @@ theorem finrank_le_one [Fintype F] (ψ : AddChar F ℂ) (hψ : ψ ≠ 1) {V : Ty
       have := congrArg Multiplicative.toAdd ((supHom F (n c)).map_one)
       have h' : edgeSum supEdge (1 : GL (Fin (n c)) F) = 0 := this
       simp only [h', AddChar.map_zero_eq_one])
-    (fun W _ _ _ τ hτ => GlobalTheory.T.whittakerSpaceDimFiniteGL_le_one F ψ hψ (n c) W τ hτ) V (a c)
+    (fun W _ _ _ τ hτ => _root_.GlobalTheory.FinGL.GGFree.whDim_le_one F ψ hψ (n c) W τ hτ) V (a c)
   choose e he1 he2 he3 he4 using hex
   have hea : ∀ c c', c ≠ c' → ∀ g, Commute (e c) (a c' g) := fun c c' hc g =>
     (he3 c _ fun h => hcomm c' c hc.symm g h).symm
-  refine GlobalTheory.T.finrank_commonFixed_le_one_of_commuting_hecke ι (fun c => GL (Fin (n c)) F) V a e he1 hea
+  refine _root_.GlobalTheory.CommutingHecke.finrank_fixed_le_one ι (fun c => GL (Fin (n c)) F) V a e he1 hea
     (fun c c' hc => he3 c' _ (hea c c' hc)) hcomm he4 ?_ _ ?_
   · intro Y hY
     have h1 : ∀ x : ∀ c, GL (Fin (n c)) F, ∀ v ∈ Y, σ (D x) v ∈ Y := by

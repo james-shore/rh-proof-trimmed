@@ -109,9 +109,9 @@ theorem isSBHalf_extFun : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [To
     ∀ Ψ ∈ SB (Matrix n n' k), IsSBHalf p.e (latO S T (LS : Set _) (LT : Set _) (· = p.v)) (extFun α β Ψ) := by
   classical
   intro D k _ _ _ _ p n n' _ _ _ _ S T α β LS LT hS hT Ψ hΨ
-  obtain ⟨Na, hNa, ha⟩ := rd_bounded D k p n n' S T α β LS LT hS hT
-  obtain ⟨Nb, hNb, hb⟩ := nsmul_mem_of_rd_int D k p n n' S T α β LS LT hS hT
-  obtain ⟨Nc, hNc, hc1, hc2⟩ := sb_uniform k n n' Ψ hΨ
+  obtain ⟨Na, hNa, ha⟩ := _root_.GlobalTheory.FinPl.RdBound.exists_nat_mul_rd_mem D k p n n' S T α β LS LT hS hT
+  obtain ⟨Nb, hNb, hb⟩ := _root_.GlobalTheory.FinPl.exists_nsmul_mem_latO_of_rd_int D k p n n' S T α β LS LT hS hT
+  obtain ⟨Nc, hNc, hc1, hc2⟩ := _root_.GlobalTheory.SBUnif.uniform k n n' Ψ hΨ
   have hhalf_add : ∀ {t u : WO S T}, IsHalf p.e u → (IsHalf p.e (t + u) ↔ IsHalf p.e t) := fun {t u} hu =>
     forall_congr' fun i => forall_congr' fun j => by
       rw [Matrix.add_apply, mul_add, hu i j, add_left_inj]
@@ -278,10 +278,10 @@ theorem overBasic : ∀ D : D7, GlobalTheory.FinPl.OverBasic D := by
       exact placeModel_induction ψ Λ hLL' hX hfin hden hTm
         (IsLatVac (heisO ψ S T) (latO S T (MS : Set (Fin S.rank → D.host.E)) (MT : Set (Fin T.rank → D.host.E)) P)) (isLatVac_zero ψ S T _)
         (fun _ _ => isLatVac_add) (fun c _ => isLatVac_smul c)
-        (fun x hx g hg => isLatVac_heis (fun u hu => symplO_off_eq_zero D k p S T _ _ P hP u hu x (hfX x hx)) hg)
-        (fun y hy g hg => isLatVac_heis (fun u hu => symplO_off_eq_zero D k p S T _ _ P hP u hu y (hfY y hy)) hg)
+        (fun x hx g hg => isLatVac_heis (fun u hu => _root_.GlobalTheory.FinPl.OffSympl.symplO_off_eq_zero D k p S T _ _ P hP u hu x (hfX x hx)) hg)
+        (fun y hy g hg => isLatVac_heis (fun u hu => _root_.GlobalTheory.FinPl.OffSympl.symplO_off_eq_zero D k p S T _ _ P hP u hu y (hfY y hy)) hg)
         hv2 hΦ
-  · have hE := extFun_latInd D k p n n' S T α β LS LT hS hT hU ΛS ΛT hLS hLT
+  · have hE := _root_.GlobalTheory.FinPl.LatIndHalf.extFun_latInd_eq_halfInd D k p n n' S T α β LS LT hS hT hU ΛS ΛT hLS hLT
     refine ⟨hS, hT, hvac, latInd_mem_SB D k p n n' S T α β LS LT hS hT ΛS ΛT hLS hLT, ⟨Tm, hTm⟩, fun T' hT' => ?_⟩
     have := hT'.vac
     rw [one_smul] at this
@@ -290,4 +290,4 @@ theorem overBasic : ∀ D : D7, GlobalTheory.FinPl.OverBasic D := by
 
 end GlobalTheory.FinPl.OverProof
 
-theorem GlobalTheory.FinPl.overBasic : ∀ D : D7, GlobalTheory.FinPl.OverBasic D := GlobalTheory.FinPl.OverProof.overBasic
+alias GlobalTheory.FinPl.overBasic := _root_.GlobalTheory.FinPl.OverProof.overBasic

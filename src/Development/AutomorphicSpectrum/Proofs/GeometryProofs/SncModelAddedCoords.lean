@@ -139,7 +139,7 @@ theorem isSncModel_pull : ∀ (X X' : Scheme.{0}) (Ω₀ Ω : Type) [Field Ω₀
       rw [hv]
       exact hblk _)
   obtain ⟨m, f₀, a₀, hf, ha, hsum, H⟩ := hsnc c hc
-  have hfin := GlobalTheory.T.kaehler_rank_transcendence_degree Ω₀ Ω I u hu hadj
+  have hfin := _root_.GlobalTheory.CompanionTheory.Kaehler.finrank_kaehlerDifferential_of_adjoin_eq_top Ω₀ Ω I u hu hadj
   have hW : ∀ w ∈ Set.range (bratio y c), algebraMap Ω₀ Ω w ∈ Set.range (bratio (addY y x') c₁) := by
     rintro _ ⟨p, rfl⟩
     exact ⟨_, (hv p).symm⟩
@@ -189,7 +189,7 @@ theorem isSncModel_pull : ∀ (X X' : Scheme.{0}) (Ω₀ Ω : Type) [Field Ω₀
         obtain ⟨d, hd⟩ := exists_seg_ratio y c hc p
         rw [hd]
         exact Algebra.subset_adjoin (Algebra.subset_adjoin ⟨d, rfl⟩))
-    obtain ⟨ψ, hψ, hψs⟩ := GlobalTheory.T.smooth_map_localization_compat Ω₀ Ω _ _ φ hφ hφs (f₀ l) (hle₀ (hf l)) h0
+    obtain ⟨ψ, hψ, hψs⟩ := _root_.GlobalTheory.CompanionTheory.Ar.LocalisedSmooth.smooth_localised Ω₀ Ω _ _ φ hφ hφs (f₀ l) (hle₀ (hf l)) h0
       (Algebra.adjoin ℚ (insert (f₀ l)⁻¹ (Set.range (bratio y c))))
       (Algebra.adjoin ℚ (insert (algebraMap Ω₀ Ω (f₀ l))⁻¹ (Set.range (bratio (addY y x') c₁))))
       (adjoin_insert_eq y c hc _).symm (adjoin_insert_eq (addY y x') c₁ hc₁ _).symm

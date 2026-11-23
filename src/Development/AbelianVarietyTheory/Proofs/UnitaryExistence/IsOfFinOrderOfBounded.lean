@@ -55,18 +55,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 
 namespace GlobalTheory.GamFree
 
-theorem pow_bounded {n : ℕ} (g x b A : Matrix (Fin n) (Fin n) ℂ) (hx : x.det ≠ 0)
-    (hb : b.BlockTriangular id) (hA : A.IsHermitian) (hm : ∀ i, FD.lminor A i ≠ 0)
-    (hg : g * x = x * b) (hbA : bᵀ * A * b.map (starRingEnd ℂ) = A) :
-    ∃ R : ℝ, ∀ (k : ℕ) (i j : Fin n), ‖(g ^ k) i j‖ ≤ R := by
-  first
-  | exact @_root_.GlobalTheory.TriangularIsometryBoundedPowers.bounded_pow_of_triangular_isometry
-  | exact _root_.GlobalTheory.TriangularIsometryBoundedPowers.bounded_pow_of_triangular_isometry
-  | (apply _root_.GlobalTheory.TriangularIsometryBoundedPowers.bounded_pow_of_triangular_isometry <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TriangularIsometryBoundedPowers.bounded_pow_of_triangular_isometry <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TriangularIsometryBoundedPowers.bounded_pow_of_triangular_isometry <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TriangularIsometryBoundedPowers.bounded_pow_of_triangular_isometry ..)
-
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ}
 
 theorem gram_unitary (G γ : Matrix (Fin r) (Fin r) E)
@@ -139,7 +127,7 @@ theorem gam_free : (∀ (Y : Type) [AddCommGroup Y] [Module.Free ℤ Y] [Module.
     intro τ
     have hg : (γ : Matrix (Fin r) (Fin r) E).map τ.1 * FD.mat x τ = FD.mat x τ * FD.mat b τ :=
       congrFun hxb τ
-    refine pow_bounded _ (FD.mat x τ) (FD.mat b τ) (FD.gram τ.1 Gm (FD.mat x τ)) (hx τ).1
+    refine _root_.GlobalTheory.TriangularIsometryBoundedPowers.bounded_pow_of_triangular_isometry _ (FD.mat x τ) (FD.mat b τ) (FD.gram τ.1 Gm (FD.mat x τ)) (hx τ).1
       (fun a c h => (hb τ).2 a c h) (FD.gram_isHermitian τ.1 hG _) (fun i h0 => ?_) hg ?_
     · have h := (hx τ).2 i
       have : FD.dmin Gm x τ i = 0 := h0

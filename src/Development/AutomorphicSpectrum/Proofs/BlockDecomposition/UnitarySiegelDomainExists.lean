@@ -124,7 +124,7 @@ theorem step {r : ℕ} (h : IsCMExt F E σ) (hJ : IsHermND σ J) {X Y : Matrix (
   obtain ⟨C', c', hC', hc', hred'⟩ := IH n' J' X' Y' hJ' hW' a' ha'
   obtain ⟨Ω, hΩc, hΩ1, hΩ⟩ := GlobalTheory.T.minimal_parabolic_rational_compact F E σ h n J hJ (r + 1) X Y hW
   have hC₁ : IsCompact ((ι '' C') * (K : Set (GAd σ J))) := (hC'.image hιc).mul hKc
-  obtain ⟨M₁, hM₁, hfirst⟩ := GlobalTheory.T.reduction_theory_height_bound F E σ h n J hJ r X Y hW a ha Ω _ hΩc hΩ1 hC₁
+  obtain ⟨M₁, hM₁, hfirst⟩ := _root_.GlobalTheory.CompanionTheory.RedCov.First.exp_neg_le F E σ h n J hJ r X Y hW a ha Ω _ hΩc hΩ1 hC₁
   obtain ⟨M₂, hM₂, hsimple⟩ := GlobalTheory.T.reduction_theory_lower_bound F E σ h n J hJ r X Y hW a ha Ω _ hΩc hΩ1 hC₁
   have hact := GlobalTheory.T.rational_unitary_witt_extension F E σ h n J hJ
   refine ⟨_, min c' (min M₁⁻¹ M₂⁻¹), hC₁, lt_min hc' (lt_min (inv_pos.2 hM₁) (inv_pos.2 hM₂)), fun g => ?_⟩

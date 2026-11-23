@@ -54,12 +54,6 @@ open Formalism.L2.SG.RealObj Formalism.L2.SG.HidaSetting
 
 namespace JL
 
-def RightInvS : Prop :=
-  ∀ (n r k : ℕ) (ε : Fin n → Bool) (e : Fin r → Fin n → ℂ) (z z' : Fin n → ℂ) (T T' : ℝ),
-    FrameLoc ε k e z z' T T' →
-    ∀ μ : Measure (Formalism.REAL.UJ ε), IsHaarS (SLoc ε e z) μ →
-    ∀ s ∈ SLoc ε e z, μ.map (fun x => x * s) = μ
-
 theorem frameLoc_swap {n r k : ℕ} {ε : Fin n → Bool} {e : Fin r → Fin n → ℂ} {z z' : Fin n → ℂ} {T T' : ℝ}
     (hF : FrameLoc ε k e z z' T T') : FrameLoc ε k e z' z T' T :=
   ⟨hF.dim, hF.k_pos, hF.sig, hF.e_li, hF.ee, hF.ez', hF.ez, hF.zz', hF.zz, hF.T'_pos, hF.T_pos⟩

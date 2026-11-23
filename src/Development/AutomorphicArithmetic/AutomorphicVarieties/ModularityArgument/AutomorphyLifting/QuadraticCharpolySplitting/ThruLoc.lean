@@ -114,7 +114,7 @@ theorem exists_char_of_ine [FiniteDimensional K L] [w.asIdeal.LiesOver v.asIdeal
     omega
   have hI : (g : G L Ω) ∈ Ine (F := L) A := deg_eq_zero_iff.1 hdeg
   have hg : ineIncl hL (⟨g, hI⟩ : Ine (F := L) A) = g := Subtype.ext rfl
-  have key := GlobalTheory.T.localArtin_comp_norm_compat K L Ω A v w hK hL aK aL haK haL
+  have key := _root_.GlobalTheory.ArtinNormU.localArtin_normU K L Ω A v w hK hL aK aL haK haL
     (ineIncl hK (ineRes (K := K) (⟨g, hI⟩ : Ine (F := L) A))) (ineIncl hL ⟨g, hI⟩) (fun _ => rfl)
   rw [← hg, ← hθ, hθχ, MonoidHom.comp_apply, key]
 

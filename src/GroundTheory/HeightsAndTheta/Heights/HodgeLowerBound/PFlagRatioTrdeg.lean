@@ -359,6 +359,6 @@ theorem proof : FlagRatioTrdeg.Statement := by
 
 end FlagRatioTrdeg
 
-theorem FlagRatioTrdeg.full : FlagRatioTrdeg.Statement := FlagRatioTrdeg.proof
+alias FlagRatioTrdeg.full := _root_.GroundTheory.Heights₂.Heights.LowerBoundFree.FlagRatioTrdeg.proof
 
 end GroundTheory.Heights₂.Heights.LowerBoundFree

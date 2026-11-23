@@ -45,4 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem tensor_compact_dense : PI.TensCpctDen := PI.tensCpctDen_of compactBounded
+theorem tensor_compact_dense : PI.TensCpctDen := PI.tensCpctDen_of _root_.PI.adCpctDen

@@ -98,7 +98,7 @@ theorem herm_of_isSatVec {N : ℕ} {V : Submodule ℂ (Sm E N)} (hV : IsDiscrete
   have h' : GlobalTheory.LFun.IsSatVecGL w (GlobalTheory.DiscLocEx.locRepD hV.stable w) ⟨φ, hφ⟩ B :=
     GlobalTheory.LFun.IsSatVecGL.of_map (ρ' := (finRep E N).comp (locGL E N w)) V.subtype (fun _ _ => rfl)
       Subtype.val_injective h
-  exact herm_of_star (GlobalTheory.T.satakeParameterGL_star_eq_inv_of_unitarisable E w N V _ _ B (isUnitarisable_locRepD hV w) h')
+  exact herm_of_star (_root_.GlobalTheory.LFun.UnitaryParam.map_star_eq_map_inv E w N V _ _ B (isUnitarisable_locRepD hV w) h')
 
 end SatakeHermitian
 

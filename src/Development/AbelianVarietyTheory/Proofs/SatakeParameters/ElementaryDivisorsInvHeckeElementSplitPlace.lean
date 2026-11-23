@@ -135,11 +135,6 @@ theorem int_mul_mem (D : D7) (u : 𝓞 D.host.E) {y : Formalism.MainNotions.Glob
   · intro x y _ _ h1 h2; rw [mul_add]; exact add_mem h1 h2
   · intro x _ h; rw [mul_neg]; exact neg_mem h
 
-theorem one_mem_int (D : D7) : (1 : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af D.host.F ⊗[D.host.F] D.host.E) ∈ intAE D :=
-  AddSubgroup.subset_closure ⟨1, fun v => by rw [map_one]; exact one_mem _, 1, rfl⟩
-
-
-
 theorem exists_model {D : D7} (V : HSp D) (P : HeightOneSpectrum (𝓞 D.host.E)) (e : Formalism.L2.Theta.AE D)
     (ϖ : 𝓞 D.host.E) (k : ℕ) (he : IsIdemAt e P) (h0 : (ϖ : D.host.E) ≠ 0) (hk : k ≤ V.rank) :
     ∃ α : GA D V, IsHeckeElt V e (ϖ : D.host.E) k α ∧
@@ -184,8 +179,8 @@ theorem exists_model {D : D7} (V : HSp D) (P : HeightOneSpectrum (𝓞 D.host.E)
       split_ifs
       · exact mul_one _
       · exact one_mul _
-  · rw [RingHom.map_one]; exact one_mem_int D
-  · rw [RingHom.map_one]; exact one_mem_int D
+  · rw [RingHom.map_one]; exact _root_.GlobalTheory.HeckeConj.one_mem_intAE D
+  · rw [RingHom.map_one]; exact _root_.GlobalTheory.HeckeConj.one_mem_intAE D
   · rw [mul_one, mul_one]
   · refine GlobalTheory.SplitScalar.adele_ext ?_ ?_
     · simp only [RingHom.map_mul, GlobalTheory.SplitScalar.infPart_splitIdem he.1, zero_mul]

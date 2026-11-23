@@ -362,43 +362,6 @@ private lemma prod_cons_eq_sum_mul_prod_cons_single {n : ℕ} (A : Matrix (Fin (
        rw [Finset.sum_eq_single i0 (fun x _ hx => by simp [hx]) (by simp)]
        simp)
 
-theorem mixedDisc_cons_eq_sum {n : ℕ} (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ)
-    (B : Fin n → Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ) :
-    mdisc (Fin.cons A B) = ∑ j, ∑ k, A j k * mixedCof B j k := by
-  have e1 : ∀ g : Fin (n + 1) → Fin (n + 1) → Equiv.Perm (Fin (n + 1)) →
-      (Fin (n + 1) → Fin (n + 1)) → ℂ,
-      ∑ j, ∑ k, ∑ σ, ∑ f, g j k σ f = ∑ σ, ∑ f, ∑ j, ∑ k, g j k σ f := by
-    intro g
-    calc ∑ j, ∑ k, ∑ σ, ∑ f, g j k σ f = ∑ j, ∑ σ, ∑ k, ∑ f, g j k σ f :=
-          Finset.sum_congr rfl fun j _ => Finset.sum_comm
-      _ = ∑ σ, ∑ j, ∑ k, ∑ f, g j k σ f := Finset.sum_comm
-      _ = ∑ σ, ∑ j, ∑ f, ∑ k, g j k σ f :=
-          Finset.sum_congr rfl fun σ _ => Finset.sum_congr rfl fun j _ => Finset.sum_comm
-      _ = ∑ σ, ∑ f, ∑ j, ∑ k, g j k σ f := Finset.sum_congr rfl fun σ _ => Finset.sum_comm
-  have ht : ∀ (σ : Equiv.Perm (Fin (n + 1))) (f : Fin (n + 1) → Fin (n + 1)),
-      (if Finset.univ.image f = Finset.univ then ((Equiv.Perm.sign σ : ℤ) : ℂ) *
-        ∏ i, (Fin.cons A B : Fin (n + 1) → Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ) (f i) (σ i) i
-        else 0) =
-      ∑ j, ∑ k, A j k * (if Finset.univ.image f = Finset.univ then
-        ((Equiv.Perm.sign σ : ℤ) : ℂ) * ∏ i, (Fin.cons (Matrix.single j k 1) B :
-          Fin (n + 1) → Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ) (f i) (σ i) i else 0) := by
-    intro σ f
-    by_cases hf : Finset.univ.image f = Finset.univ
-    · simp only [if_pos hf]
-      rw [prod_cons_eq_sum_mul_prod_cons_single A B σ f hf, Finset.mul_sum]
-      refine Finset.sum_congr rfl fun j _ => ?_
-      rw [Finset.mul_sum]
-      refine Finset.sum_congr rfl fun k _ => ?_
-      ring
-    · simp [if_neg hf]
-  rw [mdisc_eq_inv_factorial_mul_sum_sign_prod]
-  simp only [mixedCof, mdisc_eq_inv_factorial_mul_sum_sign_prod]
-  simp only [ht]
-  simp only [Finset.mul_sum, e1]
-  refine Finset.sum_congr rfl fun σ _ => Finset.sum_congr rfl fun f _ =>
-    Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun k _ => ?_
-  ring
-
 theorem maDens_cons_eq {n : ℕ} (φ : Fin n → (Fin (n + 1) → ℂ) → ℝ) (v : (Fin (n + 1) → ℂ) → ℝ)
     (z : Fin (n + 1) → ℂ) :
     maDens (Fin.cons v φ) z = ((n + 1).factorial : ℝ) * (2 / Real.pi) ^ (n + 1) *
@@ -451,7 +414,7 @@ theorem monge_ampere_density_cofactor : MaDensCofStatement := by
     push_cast
     linear_combination ((fderiv ℝ (fderiv ℝ v) z (Complex.I • Pi.single j 1)
       (Complex.I • Pi.single k 1) : ℝ) : ℂ) / 4 * Complex.I_sq
-  rw [maDens_cons_eq, mixedDisc_cons_eq_sum]
+  rw [maDens_cons_eq, _root_.ReciprocityTheory.AnForm.A.mdisc_cons_eq_sum]
   have hsum : (∑ j, ∑ k, hessC v z j k * mixedCof (fun i => hessC (φ i) z) j k) =
       ∑ j, ∑ k, hessCof φ z j k * dz j (dzb k (cplx v)) z := by
     refine Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun k _ => ?_

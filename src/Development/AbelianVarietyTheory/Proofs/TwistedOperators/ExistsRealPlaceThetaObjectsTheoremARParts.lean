@@ -64,7 +64,7 @@ theorem exists_record_theta :
   obtain ⟨X, hX⟩ := GlobalTheory.exists_provA_of_forall_exists_hasParam fun p q T lam hl =>
     GlobalTheory.CoverDS.exists_hasParam hDS p q T lam hl
   have hH1 : admH1 X := GlobalTheory.FockDeg.degrees_and_adjoints X
-  have hH2 : admH2 X := GlobalTheory.FockAlg.fock_structure X
+  have hH2 : admH2 X := _root_.GlobalTheory.JointHarm.fock_polynomials X
   have hD1 : DiscreteSeriesBlattner X := GlobalTheory.CoverDS.admissibleDiscreteSeries_of_hasParam hDS X hX
   have hQ5 : admQ5 X := GlobalTheory.Published.HarishChandraModules.admQ5_of_harishChandraModules hHC X
   have hQ6 : CoverHaarIntegration X := GlobalTheory.T.polarCoordinates_unitaryPQ_doubleCover X

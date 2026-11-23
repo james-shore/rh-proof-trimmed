@@ -84,7 +84,7 @@ theorem isInv_iff (Γ : Set (Matrix ι ι ℂ)) (f : MvPolynomial (ι × ι) ℂ
 
 theorem exists_isReynolds : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (Γ : Set (Matrix ι ι ℂ)), IsPre Γ → SS Γ → ∃ Rey, IsReynolds Γ Rey := by
   intro ι _ _ Γ hΓ hss
-  obtain ⟨Rey, h1, h2, -, -, h5, h6⟩ := GlobalTheory.T.exists_reynolds_of_completelyReducible' (MvPolynomial (ι × ι) ℂ)
+  obtain ⟨Rey, h1, h2, -, -, h5, h6⟩ := _root_.GlobalTheory.ClassFin.exists_reynolds_of_completelyReducible (MvPolynomial (ι × ι) ℂ)
     ((fun g => (ltr g).toLinearMap) '' Γ) (by
       intro U hU
       obtain ⟨U', hU', hc⟩ := GlobalTheory.T.leftTranslateMatrixPoly_completelyReducible ι Γ hΓ hss U

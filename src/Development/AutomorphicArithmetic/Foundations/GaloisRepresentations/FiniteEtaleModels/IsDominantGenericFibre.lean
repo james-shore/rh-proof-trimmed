@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.FiniteEtaleModels.IsEtIdealOfPlace
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsIntegralAndIsNormalSchemeOfSmoothDvr
 
 @[expose] public section
 
@@ -59,21 +60,6 @@ private theorem exists_geomPoint (P : Scheme.{0}) (p : P) :
   change (P.fromSpecResidueField p) ((Spec.map (CommRingCat.ofHom (algebraMap (P.residueField p)
     (AlgebraicClosure (P.residueField p))))) (IsLocalRing.closedPoint _)) = p
   exact Scheme.fromSpecResidueField_apply p _
-
-private theorem isDominant_genericFibre (O E : Type) [CommRing O] [IsDomain O] [Field E] [Algebra O E]
-    [IsFractionRing O E] {X : Scheme.{0}} (s : X ⟶ Sp O) [Flat s] :
-    IsDominant (pullback.fst s (spMap (algebraMap O E))) := by
-  refine ⟨fun x => ?_⟩
-  let gp : Sp E := (⟨⊥, Ideal.isPrime_bot⟩ : PrimeSpectrum E)
-  have hgp : spMap (algebraMap O E) gp ⤳ s x := by
-    refine (PrimeSpectrum.le_iff_specializes (R := O) _ _).1 ?_
-    show Ideal.comap (algebraMap O E) ⊥ ≤ _
-    rw [Ideal.comap_bot_of_injective _ (IsFractionRing.injective O E)]
-    exact bot_le
-  obtain ⟨x', hx', e⟩ := Flat.generalizingMap s hgp
-  refine hx'.mem_closed isClosed_closure (subset_closure ?_)
-  rw [Scheme.Pullback.range_fst]
-  exact ⟨gp, e.symm⟩
 
 private theorem eq_of_geomPoints {P Y B : Scheme.{0}} [IsReduced P] (a b : P ⟶ Y) (g : Y ⟶ B) [IsSeparated g]
     (hab : a ≫ g = b ≫ g)
@@ -114,7 +100,7 @@ theorem UpperTheory.Gal.FiniteEtaleModels.descExt_of :
   let j' : V ⟶ pullback s e := pullback.lift j σ ov
   have hj' : j' ≫ u = j := pullback.lift_fst _ _ _
   have hjσ : j' ≫ pullback.snd s e = σ := pullback.lift_snd _ _ _
-  have hdom : IsDominant u := isDominant_genericFibre O E s
+  have hdom : IsDominant u := _root_.GlobalTheory.isDominant_genericFibre_of_flat O E s
   have hsurj : Surjective j' := ⟨fun w => by
     obtain ⟨Ω, _, _, t, q, rfl⟩ := exists_geomPoint _ w
     obtain ⟨v, hv₁, hv₂⟩ := hgeo Ω (t ≫ u) (t ≫ pullback.snd s e) (by

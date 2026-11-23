@@ -728,7 +728,7 @@ theorem exists_struct (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] [IsNo
   have := Γ.quasiCompact
   have := Γ.finPres
   obtain ⟨W, hWf, hWc⟩ := PositivityTheory.HtPt.Twhopf.finite_part R Γ.G.left Γ.G.hom
-  have hsub := PositivityTheory.HtPt.Twhopf.finite_sub R T Γ W hWf hWc
+  have hsub := _root_.GlobalTheory.CompanionTheory.Ar.BT.QFGroup.isFinOpenSub_of_closedFibre R T Γ W hWf hWc
   obtain ⟨H, Γf, u, hH, _, hop, hcl, hr, hfin, hu⟩ := sub_qf R T Γ W hsub
   obtain ⟨M, C, _, _, ΓM, ΓB, iM, iB, a, b, hM, hB, _, _, ha, hbf, hbs, hpb, -⟩ :=
     PositivityTheory.HtPt.Stight.D1.finitePart_extension R D A G U p hp1 T Γ i hi H Γf u hop hfin fun g hg => hr ▸ hWc g hg

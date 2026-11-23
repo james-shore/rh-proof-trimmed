@@ -60,12 +60,6 @@ section Lin
 
 variable {m : ℕ} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 
-theorem Jm_sq (ε : Fin m → Bool) : Jm ε * Jm ε = 1 := by
-  rw [Jm, diagonal_mul_diagonal, ← diagonal_one]
-  congr 1
-  funext a
-  split_ifs <;> norm_num
-
 theorem formT_mat (ε : Fin m → Bool) (A : Matrix (Fin m) (Fin m) ℂ) (hA : A * Jm ε * Aᴴ = Jm ε) (y x : Fin m → H) :
     formT ε (fun c => ∑ d, A d c • y d) (fun c => ∑ d, A d c • x d) = formT ε y x := by
   have key : ∀ d e, ∑ c, (if ε c = true then (1:ℂ) else -1) * (starRingEnd ℂ (A d c) * A e c) = Jm ε e d := by
@@ -263,7 +257,7 @@ theorem invForm {U T T' : URep k r} {P : Mx k r} (hP : IsCayleyU k r ε P) (i : 
     (i' : M (one T') →ₗ[ℂ] M (vr k r true, U)) (hi : IsHom (one T) (vr k r true, U) i)
     (hi' : IsHom (one T') (vr k r true, U) i') :
     IsInvForm T.R T'.R fun x y => formT ε (dn U P (i' (ext1 T' y))) (dn U P (i (ext1 T x))) := by
-  have hJ : (Jm ε)⁻¹ = Jm ε := Matrix.inv_eq_left_inv (Jm_sq ε)
+  have hJ : (Jm ε)⁻¹ = Jm ε := Matrix.inv_eq_left_inv (_root_.Formalism.REAL.Jm_mul_self ε)
   have hdet : IsUnit P.det := (Matrix.isUnit_iff_isUnit_det P).mp hP.1.1
   unfold BranchingSupport.IsInvForm
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩

@@ -51,25 +51,19 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.C
 
-theorem ptClosure : PtClosure := integralPointClosure'
+alias ptClosure := _root_.Formalism.L2.Th1.C.integralPointClosure'
 theorem adjFromNorm : AdjFromNorm := adjoint_from_norm_form
-theorem normAdjAll : NormAdjAll := norm_adjoint_all_places
 theorem unitaryInv : UnitaryInv := unitary_inverse_identity
-theorem hyperbolicSum : HyperbolicSum := hyperbolic_sum_identity
+alias binomClosed := _root_.Formalism.L2.Th1.C.binomialScalarClosed'
+alias phNormClosed := _root_.Formalism.L2.Th1.C.logNormClosed'
+alias zLinClosed := _root_.Formalism.L2.Th1.C.scalarLinearClosed'
+alias zLinInt := _root_.Formalism.L2.Th1.C.scalarLinearInt'
+theorem endoAll : EndoAll := endoAll_of _root_.Formalism.L2.Th1.C.norm_adjoint_all_places
 
-theorem endIntClosed : EndIntClosed := integralEndoClosed'
-theorem binomClosed : BinomClosed := binomialScalarClosed'
-theorem phNormClosed : PhNormClosed := logNormClosed'
-theorem zLinClosed : ZLinClosed := scalarLinearClosed'
-theorem zLinInt : ZLinInt := scalarLinearInt'
-theorem endoAll : EndoAll := endoAll_of normAdjAll
-
-theorem jetAdditive : JetAdditive := jetAdditivity
-theorem jetOne : JetOne := jetOne'
-theorem jetAdj : JetAdj := jetAdjoint'
-
-theorem endIntFromDatum : EndIntFromDatum := integral_endomorphism_from_datum
-theorem phNormFromDatum : PhNormFromDatum := phi_norm_from_datum
+alias jetAdditive := _root_.Formalism.L2.Th1.C.jetAdditivity
+alias jetOne := _root_.Formalism.L2.Th1.C.jetOne'
+alias endIntFromDatum := _root_.Formalism.L2.Th1.C.integral_endomorphism_from_datum
+alias phNormFromDatum := _root_.Formalism.L2.Th1.C.phi_norm_from_datum
 theorem endoAllFromData : EndoAllFromData := endoAllFromData_of endoAll
 
 end Formalism.L2.Th1.C

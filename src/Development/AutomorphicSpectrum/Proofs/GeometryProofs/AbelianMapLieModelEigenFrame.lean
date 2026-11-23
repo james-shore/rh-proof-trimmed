@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.DefiniteFormStabilizerFiniteAwayFromP
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.ArakelovInstances.IsStrictDom
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.LiftFactorization
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.RankLie
 
 @[expose] public section
 
@@ -72,9 +73,6 @@ theorem tanW_injective (Y : Model Xo c β) {S : Type} [CommRing S] [Algebra c.F 
     Y.m.cart.1.hom_ext h (by rw [IsPullback.lift_snd, IsPullback.lift_snd])
   rw [← Y.m0.cart.1.lift_fst w _ a₁, e, IsPullback.lift_fst]
 
-theorem comp_unit {T : Scheme.{0}} {A B M : CategoryTheory.Over T} [GrpObj M] (u : B ⟶ A) : u ≫ (1 : A ⟶ M) = 1 := by
-  rw [Hom.one_def, Hom.one_def, ← Category.assoc, toUnit_unique (u ≫ toUnit A) (toUnit B)]
-
 theorem eps_alg {S : Type} [CommRing S] (a : S) :
     spMap (ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul a) ≫ spMap (algebraMap S (DualNumber S)) =
       spMap (algebraMap S (DualNumber S)) := by
@@ -100,7 +98,7 @@ theorem isTanAt_one {S : Type} [CommRing S] (x : Spec (CommRingCat.of S) ⟶ Xo.
   let k : Over.mk x ⟶ tEps x := Over.homMk (spMap (TrivSqZeroExt.fstHom S S S).toRingHom) (by
     change _ ≫ _ ≫ x = x
     rw [← Category.assoc, fst_alg, Category.id_comp])
-  exact congrArg (fun z => z.left) (comp_unit (M := Xo.univ.t.G) k)
+  exact congrArg (fun z => z.left) (_root_.ReciprocityTheory.ChartRestriction.G.Chart.comp_one'' (M := Xo.univ.t.G) k)
 
 theorem eps_one {S : Type} [CommRing S] (x : Spec (CommRingCat.of S) ⟶ Xo.X) (a : S) :
     spMap (ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul a) ≫ (1 : tEps x ⟶ Xo.univ.t.G).left =
@@ -108,7 +106,7 @@ theorem eps_one {S : Type} [CommRing S] (x : Spec (CommRingCat.of S) ⟶ Xo.X) (
   let k : tEps x ⟶ tEps x := Over.homMk (spMap (ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul a)) (by
     change _ ≫ _ ≫ x = _ ≫ x
     rw [← Category.assoc, eps_alg])
-  exact congrArg (fun z => z.left) (comp_unit (M := Xo.univ.t.G) k)
+  exact congrArg (fun z => z.left) (_root_.ReciprocityTheory.ChartRestriction.G.Chart.comp_one'' (M := Xo.univ.t.G) k)
 
 theorem isEigAt_one {S : Type} [CommRing S] [Algebra c.F S] (x : Spec (CommRingCat.of S) ⟶ Xo.X) (τ : E →+* ℂ) :
     Formalism.L2.Pj.IsEigAt c τ (Xo := Xo) (1 : tEps x ⟶ Xo.univ.t.G).left := by
@@ -124,7 +122,7 @@ theorem eps_zero_comp {S : Type} [CommRing S] (x : Spec (CommRingCat.of S) ⟶ X
     spMap (ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul (0 : S)) ≫ v = (1 : tEps x ⟶ Xo.univ.t.G).left := by
   rw [eps_zero, Category.assoc, hv.2]
   let k : tEps x ⟶ Over.mk x := Over.homMk (spMap (algebraMap S (DualNumber S))) rfl
-  exact congrArg (fun z => z.left) (comp_unit (M := Xo.univ.t.G) k)
+  exact congrArg (fun z => z.left) (_root_.ReciprocityTheory.ChartRestriction.G.Chart.comp_one'' (M := Xo.univ.t.G) k)
 
 def combPt {S : Type} [CommRing S] (x : Spec (CommRingCat.of S) ⟶ Xo.X) {n : ℕ}
     (v : Fin n → (Spec (CommRingCat.of (DualNumber S)) ⟶ Xo.univ.t.G.left))

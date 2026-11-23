@@ -92,7 +92,7 @@ lemma chiAt_nonneg (X : Data E r) (u : Fin 2 → Fin r → E) (hu : IsIsoPair X.
   obtain ⟨T, hT_eq⟩ : ∃ T, T = X.ttV (X.uvec u a) x0 τ0 := ⟨_, rfl⟩
   have hT : 0 < T := by
     rw [hT_eq, Data.ttV]
-    exact one_div_pos.2 (mul_pos (d4l4_c_pos X τ0) (Data.maj_pos (X := X) hx0 τ0 (he τ0).2))
+    exact one_div_pos.2 (mul_pos (_root_.ReciprocityTheory.ChartRestriction.G.FD.MajorantFamilyNorms.c_pos X τ0) (Data.maj_pos (X := X) hx0 τ0 (he τ0).2))
   obtain ⟨b, hb_eq⟩ : ∃ b : ℝ, b = -(4 * Real.pi * (X.chiAt χ a τ0).re * T) := ⟨_, rfl⟩
   have hb : 0 < b := by
     have h1 := mul_pos (mul_pos (mul_pos four_pos Real.pi_pos) (neg_pos.2 hneg)) hT

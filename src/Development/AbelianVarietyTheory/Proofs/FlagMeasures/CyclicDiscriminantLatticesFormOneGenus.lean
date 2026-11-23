@@ -203,19 +203,17 @@ section Primes
 
 variable {K : Type} [Field K] [NumberField K] [StarRing K]
 
-noncomputable abbrev cj : 𝓞 K →+* 𝓞 K := locBasic_sigma (genusCovol_hinj (K := K)) star_algebraMap_ringOfIntegers_mem_range
-
-theorem cj_cj (r : 𝓞 K) : cj (cj r) = r := genusCovol_hinj (by
+theorem cj_cj (r : 𝓞 K) : _root_.GlobalTheory.Mass.SplitOver.cj (_root_.GlobalTheory.Mass.SplitOver.cj r) = r := genusCovol_hinj (by
   rw [locBasic_sigma_spec, locBasic_sigma_spec, star_star])
 
-theorem mem_conj {P : Ideal (𝓞 K)} {r : 𝓞 K} : r ∈ conjIdeal (K := K) P ↔ cj r ∈ P := by
+theorem mem_conj {P : Ideal (𝓞 K)} {r : 𝓞 K} : r ∈ conjIdeal (K := K) P ↔ _root_.GlobalTheory.Mass.SplitOver.cj r ∈ P := by
   rw [locBasic_conj_eq genusCovol_hinj star_algebraMap_ringOfIntegers_mem_range, Ideal.mem_comap]
 
 theorem conj_conj (P : Ideal (𝓞 K)) : conjIdeal (K := K) (conjIdeal (K := K) P) = P := by
   ext r
   rw [mem_conj, mem_conj, cj_cj]
 
-theorem conj_eq_map (P : Ideal (𝓞 K)) : conjIdeal (K := K) P = P.map cj := by
+theorem conj_eq_map (P : Ideal (𝓞 K)) : conjIdeal (K := K) P = P.map _root_.GlobalTheory.Mass.SplitOver.cj := by
   apply le_antisymm
   · intro r hr
     rw [← cj_cj r]
@@ -235,17 +233,17 @@ theorem conj_isMaximal {P : Ideal (𝓞 K)} (hP : P.IsMaximal) : (conjIdeal (K :
 theorem conj_prod (s : Finset (Ideal (𝓞 K))) :
     conjIdeal (K := K) (∏ P ∈ s, P) = ∏ P ∈ s, conjIdeal (K := K) P := by
   simp only [conj_eq_map]
-  exact map_prod (Ideal.mapHom cj) _ s
+  exact map_prod (Ideal.mapHom _root_.GlobalTheory.Mass.SplitOver.cj) _ s
 
 theorem hcompl_conj (P : Ideal (𝓞 K)) :
     hcompl (K := K) (conjIdeal (K := K) P) = hcompl (K := K) P := by
   have key : ∀ (Q : Ideal (𝓞 K)) (s : 𝓞 K),
-      (∀ t : 𝓞 K, algebraMap (𝓞 K) K t = star (algebraMap (𝓞 K) K s) → t ∉ Q) ↔ cj s ∉ Q := by
+      (∀ t : 𝓞 K, algebraMap (𝓞 K) K t = star (algebraMap (𝓞 K) K s) → t ∉ Q) ↔ _root_.GlobalTheory.Mass.SplitOver.cj s ∉ Q := by
     intro Q s
     constructor
     · intro H; exact H _ (locBasic_sigma_spec _ _ s)
     · intro H t e
-      have : t = cj s := genusCovol_hinj (by rw [locBasic_sigma_spec, e])
+      have : t = _root_.GlobalTheory.Mass.SplitOver.cj s := genusCovol_hinj (by rw [locBasic_sigma_spec, e])
       rwa [this]
   unfold hcompl
   congr 1
@@ -257,7 +255,7 @@ theorem conj_ne (hK : IsCMUnram K) {T : ℕ} (hT : T.Prime) {P : Ideal (𝓞 K)}
     (hN : Ideal.absNorm P = T) : conjIdeal (K := K) P ≠ P := by
   intro e
   obtain ⟨θ, t, ht, hθ⟩ := hK.2.2 P hP
-  have ht' : t = cj θ := genusCovol_hinj (by rw [locBasic_sigma_spec, ht])
+  have ht' : t = _root_.GlobalTheory.Mass.SplitOver.cj θ := genusCovol_hinj (by rw [locBasic_sigma_spec, ht])
   have hc : Nat.card (𝓞 K ⧸ P) = T := by rw [← hN, Ideal.absNorm_apply, Submodule.cardQuot_apply]
   have : Finite (𝓞 K ⧸ P) := Nat.finite_of_card_ne_zero (hc ▸ hT.ne_zero)
   letI := Fintype.ofFinite (𝓞 K ⧸ P)
@@ -265,7 +263,7 @@ theorem conj_ne (hK : IsCMUnram K) {T : ℕ} (hT : T.Prime) {P : Ideal (𝓞 K)}
   obtain ⟨z, hz⟩ := φ.surjective (Ideal.Quotient.mk P θ)
   obtain ⟨n, rfl⟩ := ZMod.intCast_surjective z
   rw [map_intCast, ← map_intCast (Ideal.Quotient.mk P), eq_comm, Ideal.Quotient.eq] at hz
-  have h2 : cj (θ - (n : 𝓞 K)) ∈ P := by rw [← mem_conj, e]; exact hz
+  have h2 : _root_.GlobalTheory.Mass.SplitOver.cj (θ - (n : 𝓞 K)) ∈ P := by rw [← mem_conj, e]; exact hz
   rw [map_sub, map_intCast, ← ht'] at h2
   apply hθ
   simpa using P.sub_mem hz h2

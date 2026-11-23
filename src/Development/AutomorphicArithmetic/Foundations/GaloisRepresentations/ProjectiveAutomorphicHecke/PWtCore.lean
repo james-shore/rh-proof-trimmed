@@ -117,7 +117,7 @@ theorem UpperTheory.Gal.CertificateRingHomMap.pWtCore_of :
     simp only [g, InfinitePlace.mk_conjugate_eq, InfinitePlace.mk_embedding, if_neg (conjugate_ne v.embedding)]
   have hL : LocalSmoothExtension.Lists (LocalSmoothExtension.invPol y.val.charpoly) g := by
     intro τ
-    rw [LocalSmoothExtension.InvRoots_holds E _ h0 τ]
+    rw [_root_.UpperTheory.Gal.LocalSmoothExtension.invRoots_of E _ h0 τ]
     obtain ⟨v, hv⟩ : ∃ v : InfinitePlace E, τ = v.embedding ∨ τ = ComplexEmbedding.conjugate v.embedding := by
       refine ⟨InfinitePlace.mk τ, ?_⟩
       rcases InfinitePlace.embedding_mk_eq τ with h | h

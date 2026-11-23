@@ -55,7 +55,7 @@ theorem cartierMap_eq_extD_imp_eq_zero :
   obtain ⟨hli, hsp⟩ := GlobalTheory.T.logCoordinateWedge_linearIndependent_span_eq_top K n x hx
   have hmem : ζ ∈ Submodule.span K (Set.range (logWedge x)) := hsp ▸ Submodule.mem_top
   obtain ⟨c, rfl⟩ := (Submodule.mem_span_range_iff_exists_fun K).1 hmem
-  obtain ⟨-, Q, π, -, hQ, -, hπ, hQd, -⟩ := GlobalTheory.T.cartier_projection_properties K p n x hx
+  obtain ⟨-, Q, π, -, hQ, -, hπ, hQd, -⟩ := _root_.GlobalTheory.CartierHomotopy.cartier_projector_homotopic K p n x hx
   have hγs : γ (∑ I, c I • logWedge x I) = ∑ I, (c I ^ p) • logWedge x I := by
 
     rw [map_sum]

@@ -82,7 +82,7 @@ theorem group_sections_curve_descend : ∀ (k : Type) [Field k] (G : Over (Sp k)
   obtain ⟨S, yS, hSfg, -, hyS⟩ := Spread.exists_fg_points G₀.hom (fun _ : Unit => u ≫ φ) (fun _ => hu₀) ⊥
     Subalgebra.fg_bot
   obtain ⟨T, hT⟩ := hSfg
-  obtain ⟨Fc, hFc⟩ := GlobalTheory.T.exists_finset_away_lift_descent k P T
+  obtain ⟨Fc, hFc⟩ := _root_.GlobalTheory.localization_away_descent_range k P T
 
   set X' : L := algebraMap (Polynomial k) L X with hX'
   have haev : ∀ (c : L →ₐ[k] k) (q : Polynomial k), c (algebraMap (Polynomial k) L q) = q.eval (c X') := by
@@ -177,7 +177,7 @@ theorem group_sections_curve_descend : ∀ (k : Type) [Field k] (G : Over (Sp k)
     rw [RingHom.comp_apply, Polynomial.coe_mapRingHom, hP₁]
     exact IsLocalization.Away.algebraMap_isUnit P
   set Lm := IsLocalization.Away.lift (S := Localization.Away P₁) P₁ hPu with hLm
-  have hinj : Function.Injective Lm := GlobalTheory.T.localizationAway_polynomial_subring_lift_injective k P hP R' P₁ hPu hP₁
+  have hinj : Function.Injective Lm := _root_.GlobalTheory.descentLocInj k P hP R' P₁ hPu hP₁
   have hrange : ∀ t ∈ T, t ∈ Lm.range := hFc R' (fun x hx => hFR (by simp [F, hx])) P₁ hPu hP₁
   have hLmC : ∀ r : R', Lm (algebraMap R' (Localization.Away P₁) r) = algebraMap k L r := by
     intro r

@@ -105,7 +105,7 @@ theorem exists_gen {Λ : Lat ξ Ω} {T : Set (Cpt ξ)} (h : Λ.IsVBOn T 1 ⊤) {
 
 theorem tens_gen {G : Lat ξ Ω} {T : Set (Cpt ξ)} (hG : G.IsVBOn T 1 ⊤) (n : ℤ) {p : Cpt ξ} (hp : p ∈ T) {s : Ω}
     (hs : G.IsGenAt p s) : (Lat.tens (fun _ : Unit => G) fun _ => n).IsGenAt p (s ^ n) := by
-  have h := (GlobalTheory.T.lattice_tensor_power_line_bundle X Ω ξ Unit (fun _ => G) T (fun _ => hG) fun _ => n).2 p hp (fun _ => s) fun _ => hs
+  have h := (_root_.GlobalTheory.CompanionTheory.Ar.LatTens.tens_isVBOn X Ω ξ Unit (fun _ => G) T (fun _ => hG) fun _ => n).2 p hp (fun _ => s) fun _ => hs
   simpa using h
 
 theorem span_inv (R : Subring Ω) {s w : Ω} (hs : s ≠ 0) (h : Submodule.span R {s⁻¹} = Submodule.span R {w}) :
@@ -215,7 +215,7 @@ theorem drTie_of_hodgeCpt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
   obtain ⟨hint, -, -, hinj, -, -, -, hreg⟩ := GlobalTheory.T.hodge_cpt_interior_generic E H D l Xo c (𝓞 c.F) (algebraMap (𝓞 c.F) c.F) Y S M.Ω M.K M.ι
     M.y 𝔐 Subtype.val_injective
   have hcard := (LabelCount.labels_injective_card E H l c M.Ω 𝔐.cst).2
-  have hnoeth := (GlobalTheory.T.regAt_noetherian_model_noetherian 𝔐.X M.Ω 𝔐.ξ ℤ ((k : M.K) → M.ι k) _ 𝔐.tie).2 𝔐.all
+  have hnoeth := (_root_.GlobalTheory.CompanionTheory.Ar.CoordNoeth.noetherian_of_coordTie 𝔐.X M.Ω 𝔐.ξ ℤ ((k : M.K) → M.ι k) _ 𝔐.tie).2 𝔐.all
   haveI := hnoeth.1
   haveI := hnoeth.2
   have hpow : PowFns 𝔐.t := GlobalTheory.T.powFns_of_abelian_generic E H 𝔐.X 𝔐.t inferInstance inferInstance fun z hz => by

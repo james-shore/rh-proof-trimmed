@@ -65,11 +65,7 @@ noncomputable section
 
 namespace GlobalTheory.ZarhinWeil
 
-theorem unitOn_mul'' {k : Type} [CommRing k] (u v : kˣ) : unitOn (u * v) = unitOn u * unitOn v := map_mul (Units.map _) u v
 theorem unitOn_inv'' {k : Type} [CommRing k] (u : kˣ) : unitOn u⁻¹ = (unitOn u)⁻¹ := map_inv (Units.map _) u
-theorem unitOn_one'' {k : Type} [CommRing k] : unitOn (1 : kˣ) = 1 := map_one (Units.map _)
-theorem unitOn_pow'' {k : Type} [CommRing k] (u : kˣ) (n : ℕ) : unitOn (u ^ n) = unitOn u ^ n := map_pow (Units.map _) u n
-
 theorem weilIs_axes_swap : ∀ (h M₁ : ℕ) {Bt : Type} [CommRing Bt] (ζ : Bt) (S : Scheme.{0}) (s : S ⟶ Sp Bt) (c : SiegPre h M₁ ζ s) (n : ℤ) (T : Over S) (a b : T ⟶ c.A) (e : (Γ(T.left, ⊤))ˣ), Out.WeilIs (G2 c.A) c.P n (lift a 1) (lift 1 b) e → Out.WeilIs (G2 c.A) c.P n (lift b 1) (lift 1 a) e⁻¹ := by
   intro h M₁ Bt _ ζ S s c n T a b e he
   have hG := GlobalTheory.globalFns_holds
@@ -146,9 +142,9 @@ theorem weilIs_axes_lev : ∀ (h M : ℕ) (S : Scheme.{0}) (t : S ⟶ Sp (cycAwa
   have root : ∀ v : (Γ((Over.mk x).left, ⊤))ˣ, v ^ M = 1 → v = (v * v) ^ (m + 1) := fun v hv => by
     rw [← sq, ← pow_mul, show 2 * (m + 1) = M + 1 by omega, pow_succ, hv, _root_.one_mul]
   have hu : (unitOn (z ^ omegaStd p q)) ^ M = 1 := by
-    rw [← unitOn_pow'', ← zpow_natCast, ← zpow_mul, mul_comm, zpow_mul, zpow_natCast, hzM, one_zpow, unitOn_one'']
+    rw [← _root_.GlobalTheory.HeckePoint.unitOn_pow, ← zpow_natCast, ← zpow_mul, mul_comm, zpow_mul, zpow_natCast, hzM, one_zpow, _root_.GlobalTheory.HeckePoint.unitOn_one]
   have key : E = unitOn (z ^ omegaStd p q) := by
-    rw [root E hEM, root _ hu, hsq, ← unitOn_mul'', ← zpow_add, two_mul]
+    rw [root E hEM, root _ hu, hsq, ← _root_.GlobalTheory.ToricData.unitOn_mul, ← zpow_add, two_mul]
   rw [← key]
   exact hE
 
@@ -190,7 +186,7 @@ theorem weilIs_poincare_lev : ∀ (h M d : ℕ) (S : Scheme.{0}) (t : S ⟶ Sp (
     exact Finset.sum_congr rfl fun i _ => by ring
   have hval : unitOn (z ^ (omegaStd p q' + omegaStd q p')) =
       unitOn (z ^ omegaStd p q') * (unitOn (z ^ omegaStd p' q))⁻¹ := by
-    rw [anti, ← sub_eq_add_neg, zpow_sub, unitOn_mul'', unitOn_inv'']
+    rw [anti, ← sub_eq_add_neg, zpow_sub, _root_.GlobalTheory.ToricData.unitOn_mul, unitOn_inv'']
   rw [hval, ← hu]
   exact he
 

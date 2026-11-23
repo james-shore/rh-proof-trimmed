@@ -66,4 +66,4 @@ theorem GlobalTheory.KZ.H3.exists_kum_of_mem_A : ∀ (Ω : Type) [Field Ω] [Alg
     exact ⟨χ + χ', (GlobalTheory.T.isKummerCharacterAtLevel_add_zero_congr Ω ε X l n).1 y z χ χ' hχ hχ'⟩
   | smul c y _ hy =>
     obtain ⟨χ, hχ⟩ := hy
-    exact ⟨_, GlobalTheory.T.isKummerCharacterAtLevel_padicInt_smul Ω ε X l n c y χ hχ⟩
+    exact ⟨_, _root_.GlobalTheory.KZ.H3.kum_smul Ω ε X l n c y χ hχ⟩

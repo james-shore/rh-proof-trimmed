@@ -65,9 +65,6 @@ namespace GlobalTheory.CompactHowe.LastStep
 
 variable {D : D7} {V W : HSp D} {S S' : D.what₂.Tau → SPar}
 
-theorem Jm_allPos (k : ℕ) : Formalism.REAL.Jm (allPos k) = 1 := by
-  simp [Formalism.REAL.Jm, allPos]
-
 theorem fr_det (M : DSModel V S) (τ : D.what₂.Tau) : IsUnit (M.fr τ).det :=
   (Matrix.isUnit_iff_isUnit_det _).1 (M.fr_unit τ)
 
@@ -97,12 +94,12 @@ theorem inFr_mem (M : DSModel V S) (τ : D.what₂.Tau) {g : Matrix (Fin V.rank)
 
 theorem cart_eq_one (M : DSModel V S) (h : ∀ τ, M.ε τ = allPos V.rank) : cart M = fun _ => 1 := by
   funext τ
-  rw [cart, h, Jm_allPos, Matrix.mul_one, Matrix.nonsing_inv_mul _ (fr_det M τ)]
+  rw [cart, h, _root_.GlobalTheory.ConjTwist.Jm_allPos, Matrix.mul_one, Matrix.nonsing_inv_mul _ (fr_det M τ)]
 
 theorem isCartan_one (M : DSModel V S) (h : ∀ τ, M.ε τ = allPos V.rank) (τ : D.what₂.Tau) :
     IsCartanInv (gramAt D V τ) 1 := by
   refine ⟨Matrix.mul_one _, by simp, ?_⟩
-  rw [Matrix.mul_one, ← M.fr_gram, h, Jm_allPos]
+  rw [Matrix.mul_one, ← M.fr_gram, h, _root_.GlobalTheory.ConjTwist.Jm_allPos]
   exact Matrix.PosDef.one.conjTranspose_mul_mul_same (Matrix.mulVec_injective_iff_isUnit.2 (M.fr_unit τ))
 
 def polAct (M : DSModel V S) (M' : DSModel W S') (x₁ x₃ : D.what₂.Tau → ℤ)

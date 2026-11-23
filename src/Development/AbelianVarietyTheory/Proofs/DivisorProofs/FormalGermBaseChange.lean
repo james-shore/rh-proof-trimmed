@@ -84,7 +84,7 @@ theorem mem_zpowers_of_prime {F F' : Type} [Field F] [Field F'] [Algebra F F'] [
 theorem isCl_cusp (F : Type) [Field F] [Finite F] (θ : AlgebraicClosure F →* ℂ) (m k : ℕ) :
     IsCl (cusp θ m k) := by
   intro x y
-  have h := ((GlobalTheory.T.twistedHarishChandraInductionGL_isTwistedClassFunction F (RingHom.id F) 0 0 m (fun _ => 1) (fun _ => 1)).2.2 (rootSum θ k)).1 x y
+  have h := ((_root_.GlobalTheory.Shin.twisted_class_main F (RingHom.id F) 0 0 m (fun _ => 1) (fun _ => 1)).2.2 (rootSum θ k)).1 x y
   simp only [cusp]
   rw [h]
 
@@ -110,7 +110,7 @@ theorem kills_liftAll : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F F'] [F
   have hcard' : Nat.card F' = q ^ l := by
     rw [hqdef, hldef, Nat.card_eq_fintype_card, Nat.card_eq_fintype_card]
     exact Module.card_eq_pow_finrank
-  have hlist := GlobalTheory.T.harishChandraProductCuspidalGL_list_properties F' θ
+  have hlist := _root_.GlobalTheory.Shin.J_list_props F' θ
   have happ : ∀ (A B : List (ℕ × ℕ)) (a b : ℕ), deg A = a → deg B = b →
       J θ (A ++ B) (a + b) = hc a b (J θ A a) (J θ B b) (a + b) := by
     intro A B a b ha hb
@@ -130,7 +130,7 @@ theorem kills_liftAll : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F F'] [F
       rw [dite_eq_left ⟨1, by rw [hδ]; exact isNorm_one s 0⟩]
       rfl
     rw [h1]
-    exact GlobalTheory.T.isInCharacterIsotypicPart_self _ _ (GlobalTheory.T.isCharacter_harishChandraProductCuspidalGL_of_regular F' θ hθ [] (by simp) 0 rfl)
+    exact _root_.GlobalTheory.Shin.kills_self _ _ (_root_.GlobalTheory.Shin.isChar_J_of_reg F' θ hθ [] (by simp) 0 rfl)
   | cons p L ih =>
     intro hL n hn
     have hp := hL p List.mem_cons_self
@@ -141,29 +141,29 @@ theorem kills_liftAll : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F F'] [F
       with hAdef
     have hsplit : liftAll q l (p :: L) = A ++ liftAll q l L := by simp [liftAll, hAdef]
     have hA1 : liftAll q l [p] = A := by simp [liftAll, hAdef]
-    obtain ⟨hdA, hRA⟩ := GlobalTheory.T.lift_all_preserves_degree_and_regularity q l [p] hq2 hl (by simpa using hp)
-    obtain ⟨hdB, hRB⟩ := GlobalTheory.T.lift_all_preserves_degree_and_regularity q l L hq2 hl hLt
+    obtain ⟨hdA, hRA⟩ := _root_.GlobalTheory.liftAll_deg_reg q l [p] hq2 hl (by simpa using hp)
+    obtain ⟨hdB, hRB⟩ := _root_.GlobalTheory.liftAll_deg_reg q l L hq2 hl hLt
     rw [hA1] at hdA hRA
     have hdA' : deg A = p.1 := by rw [hdA]; simp [deg]
     have hKA : Kills (shLift s (cusp (pullθ ι θ) p.1 p.2)) (J θ A p.1) := by
       by_cases h : l ∣ p.1
-      · have := GlobalTheory.T.shintani_lift_kills_cusp_divisible_degree F F' s hl hs ι θ hθ p.1 p.2 hp.1 h hp.2
+      · have := _root_.GlobalTheory.Shin.shLift_cusp_kills_J F F' s hl hs ι θ hθ p.1 p.2 hp.1 h hp.2
         rw [hAdef, if_pos h]
         simpa only [Prod.mk.eta] using this
       · rw [hAdef, if_neg h]
-        have hu := GlobalTheory.T.shintani_lift_kills_cusp_of_degree_not_dvd F F' s hl hs ι θ hθ p.1 p.2 hp.1 h hp.2
+        have hu := _root_.GlobalTheory.Shin.shLift_cusp_kills_of_not_dvd F F' s hl hs ι θ hθ p.1 p.2 hp.1 h hp.2
         have hJ : J θ [(p.1, p.2 * ∑ i ∈ Finset.range l, q ^ (p.1 * i))] p.1 =
             cusp θ p.1 (p.2 * ∑ i ∈ Finset.range l, q ^ (p.1 * i)) := by
           rw [J_cons]
-          exact (GlobalTheory.T.harishChandraInductionGL_one_left_right_unit F' p.1 _ (isCl_cusp F' θ _ _)).2
+          exact (_root_.GlobalTheory.Shin.HcUnit.main F' p.1 _ (isCl_cusp F' θ _ _)).2
         rw [hJ]
         exact hu
     have hRA' : ∀ x ∈ A, 0 < x.1 ∧ Reg (Nat.card F') x.1 x.2 := by rw [hcard']; exact hRA
     have hRB' : ∀ x ∈ liftAll q l L, 0 < x.1 ∧ Reg (Nat.card F') x.1 x.2 := by rw [hcard']; exact hRB
-    have hcharA := GlobalTheory.T.isCharacter_harishChandraProductCuspidalGL_of_regular F' θ hθ A hRA' p.1 hdA'.symm
-    have hcharB := GlobalTheory.T.isCharacter_harishChandraProductCuspidalGL_of_regular F' θ hθ (liftAll q l L) hRB' (deg L) hdB.symm
-    rw [J_cons, GlobalTheory.T.shintaniLift_harishChandraInduction_eq_twisted F F' s hgen p.1 (deg L) _ rfl _ _ (isCl_cusp F _ _ _)
-      ((GlobalTheory.T.harishChandraProductCuspidalGL_list_properties F (pullθ ι θ)).1 L (deg L)), hsplit, happ A (liftAll q l L) p.1 (deg L) hdA' hdB]
-    exact GlobalTheory.T.twistedHarishChandra_isotypic_part F' (s : F' →+* F') p.1 (deg L) _ rfl _ _ _ _ hcharA hcharB hKA (ih hLt (deg L) rfl)
+    have hcharA := _root_.GlobalTheory.Shin.isChar_J_of_reg F' θ hθ A hRA' p.1 hdA'.symm
+    have hcharB := _root_.GlobalTheory.Shin.isChar_J_of_reg F' θ hθ (liftAll q l L) hRB' (deg L) hdB.symm
+    rw [J_cons, _root_.GlobalTheory.Shin.shLift_hc_eq_hcTw F F' s hgen p.1 (deg L) _ rfl _ _ (isCl_cusp F _ _ _)
+      ((_root_.GlobalTheory.Shin.J_list_props F (pullθ ι θ)).1 L (deg L)), hsplit, happ A (liftAll q l L) p.1 (deg L) hdA' hdB]
+    exact _root_.GlobalTheory.Shin.HcIso.kills_hcTw F' (s : F' →+* F') p.1 (deg L) _ rfl _ _ _ _ hcharA hcharB hKA (ih hLt (deg L) rfl)
 
 end GlobalTheory.Shin.DescentAll

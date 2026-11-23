@@ -57,7 +57,7 @@ namespace GlobalTheory.EndLoc.HomFixFinite
 
 theorem exists_finite_unramified : ∀ (S : Scheme.{0}) [IsLocallyNoetherian S] (A B : Over S) [GrpObj A] [IsCommMonObj A] [GrpObj B] [IsCommMonObj B] (L : LB A.left) (M : LB B.left), IsAbelianScheme A → IsAbelianScheme B → L.IsLB → M.IsLB → Out.Rigidified A L → Out.Rigidified B M → Out.RelAmple A L → Out.RelAmple B M → ∃ R : HomFixRep A B L M, IsFinite R.π ∧ FormallyUnramified R.π := by
   intro S _ A B _ _ _ _ L M hA hB hL hM rA rB aA aB
-  obtain ⟨R, hqc, hsep, hlft⟩ := GlobalTheory.T.exists_finiteType_representing_polarizedHoms_locNoeth S A B L M hA hB hL hM rA rB aA aB
+  obtain ⟨R, hqc, hsep, hlft⟩ := _root_.GlobalTheory.HomFixGlue.homFix_finiteType S A B L M hA hB hL hM rA rB aA aB
   have hpr : IsProper R.π :=
     GlobalTheory.EndLoc.HomFixProper.isProper_of_finiteType S A B L M R hA hB hL hM rA rB hqc hsep hlft
   have hun : FormallyUnramified R.π := GlobalTheory.T.formallyUnramified_homWithFixedPullback_scheme S A B L M R hA hB

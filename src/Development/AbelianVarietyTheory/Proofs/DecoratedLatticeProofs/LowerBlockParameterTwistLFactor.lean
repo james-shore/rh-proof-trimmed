@@ -147,7 +147,7 @@ theorem GlobalTheory.ChainTw.qPar_twist_lFactor : ∀ (D : D7) (c : Com D) (w : 
   rw [qPar_twist] at hα
   have hz : ∀ i ∈ Finset.Icc 1 k, Circle.toUnits ((c.μ i * (c.μ (k + 1))⁻¹) x) =
       GlobalTheory.LFun.val (F := D.host.F) (c.μ i * (c.μ (k + 1))⁻¹) PP := fun i hi =>
-    GlobalTheory.T.unramifiedHeckeChar_at_uniformizerIdele_eq_value D v φ PP hφ x ϖ hx _ (GlobalTheory.T.hecke_char_quotient_unramified_at_twist_place D c w hw PP hPP i (k + 1) (Finset.mem_Icc.1 hi).1
+    _root_.GlobalTheory.LocUnifVal.value_eq_val D v φ PP hφ x ϖ hx _ (_root_.GlobalTheory.ChainTw.quot_unrAt_twist D c w hw PP hPP i (k + 1) (Finset.mem_Icc.1 hi).1
       (by have := (Finset.mem_Icc.1 hi).2; omega) (by omega) (by omega))
   have hα' : Finset.univ.val.map α = ∑ i ∈ Finset.Icc 1 k,
       GlobalTheory.LFun.seg PP (GlobalTheory.LFun.val (F := D.host.F) (c.μ i * (c.μ (k + 1))⁻¹) PP) D.R.t := by

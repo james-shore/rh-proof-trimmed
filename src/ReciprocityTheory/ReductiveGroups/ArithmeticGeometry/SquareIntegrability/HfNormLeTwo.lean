@@ -60,7 +60,7 @@ variable {E : Type} [Field E] [NumberField E]
 
 theorem Hf_norm_le_two {dim : (E →+* ℂ) → ℕ} (e y : Vsp dim) (he : ‖e‖ = 1) (hy : ‖y‖ ≤ 2) :
     ‖Hf e y‖ ≤ 2 := by
-  rw [Hf_eq_inner']
+  rw [_root_.ReciprocityTheory.ChartRestriction.G.I2.lemS_Hf_eq_inner]
   calc ‖inner ℂ y e‖ ≤ ‖y‖ * ‖e‖ := norm_inner_le_norm y e
     _ ≤ 2 := by rw [he, mul_one]; exact hy
 

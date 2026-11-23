@@ -207,7 +207,7 @@ theorem phAt_mulBy_norm : ∀ (D : D7), GL3Theta.endInt D → GL3Theta.addInt D 
 
   set f := ePhi1 g.lam g.abelian₂ g.C g.wq with hfdef
   have hε0 : ((g.C.u⁻¹ : ℂ_[p]ˣ) : ℂ_[p]) ≠ 0 := Units.ne_zero _
-  obtain ⟨Q, hQ, hfac⟩ := GlobalTheory.T.sigmaStar_mul_sq_eq_prod_kernel_quotients g.abelian₂ hlat' β k hβst hβN
+  obtain ⟨Q, hQ, hfac⟩ := _root_.GlobalTheory.EvenTheta.MulLat.sg_mul_sq g.abelian₂ hlat' β k hβst hβN
   have hLaQ : ∀ i, ((k + 1 : ℕ) : ℂ) * Q i ∈ g.abelian₂ := fun i => by
     have e : ((k + 1 : ℕ) : ℂ) * Q i = D.host.φ₀ ((a' : D.host.K) : D.host.E) * (β * Q i) := by
       rw [hconj, ← hβN]; ring

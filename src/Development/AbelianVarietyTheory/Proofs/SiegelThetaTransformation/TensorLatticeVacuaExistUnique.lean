@@ -605,7 +605,7 @@ end Main
 theorem vacua : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (X : Data E r) (g : ℕ) (bas : (Fin g ⊕ Fin g → ℤ) ≃ₗ[ℤ] X.Λ) (idx : Fin g ≃ X.Ψ × Fin r) (n : ℕ), IsSympl X bas → Even n → ∀ w : E, IsIntegral ℤ w → w + cc w = 1 → ∀ L, SelfD X L → ∀ (M : ℕ), ∀ Λ ∈ Vset E n M, (∃ v, IsVac X bas w (tens Λ L) v) ∧ (∀ v v', IsVac X bas w (tens Λ L) v → IsSB v' → (∀ y ∈ tens Λ L, epsW X w y • heisG X bas y v' = v') → v' = ip v' v • v) ∧ (∀ φ : TF n g, IsSB φ → ∀ v, IsVac X bas w (tens Λ L) v → projA X bas w (tens Λ L) φ = ip φ v • v) ∧ ∀ L', SelfD X L' → ∀ Λ' ∈ Vset E n M, ∀ v v', IsVac X bas w (tens Λ L) v → IsVac X bas w (tens Λ' L') v' → ((tens Λ' L').relIndex (tens Λ L) : ℝ) * ‖ip v v'‖ ^ 2 = 1 := by
   intro E _ _ _ r X g bas idx n hs hn w hw htr L hL M Λ hΛ
   have good : ∀ L, SelfD X L → ∀ Λ ∈ Vset E n M, Good X w (tens Λ L) := fun L hL Λ hΛ => by
-    obtain ⟨h1, h2, h3, -⟩ := GlobalTheory.T.tensorLattice_selfDual_semicharacter_index E r X g bas idx n hs hn w hw htr L hL M Λ hΛ
+    obtain ⟨h1, h2, h3, -⟩ := _root_.GlobalTheory.SW.TensLat.tens_selfDual_semichar_index E r X g bas idx n hs hn w hw htr L hL M Λ hΛ
     exact ⟨h1, h2, h3⟩
   have hG := good L hL Λ hΛ
   exact ⟨(Good.vac hs hG).imp fun v hv => hv.1, fun v v' hv hv' h => Good.uniq hs hG hv hv' h,

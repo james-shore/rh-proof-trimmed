@@ -57,18 +57,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.TransvectionAction
 
 variable {D : D7}
 
-theorem form_mulVec_mulVec (S : HSp D) {k l : ℕ} (M : Mx D S.rank k) (N : Mx D S.rank l) (x : Fin k → AE D)
-    (y : Fin l → AE D) :
-    form S (M *ᵥ x) (N *ᵥ y) = (fun i => cA D (y i)) ⬝ᵥ ((adj N ⬝ (gA S ⬝ M)) *ᵥ x) := by
-  have h : (fun i => cA D ((N *ᵥ y) i)) = (N.map (cA D)) *ᵥ fun i => cA D (y i) := by
-    funext i
-    exact RingHom.map_mulVec (cA D) N y i
-  rw [form, h, ← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec, dotProduct_mulVec _ (adj N), adj,
-    Matrix.vecMul_transpose]
-
-theorem form_act_act (S : HSp D) (g : GA D S) (x y : VA S) : form S (act S g x) (act S g y) = form S x y := by
-  rw [act, act, form_mulVec_mulVec, mt_unitary, form]
-
 theorem act_vecX_of_mem_Nfix {V V₀ : HSp D} {ρ : ℕ} (d : HypDec V V₀ ρ) (j : Fin ρ) (a : Fin ρ → AE D)
     (ha : ∀ i, j < i → a i = 0) {m : GA D V} (hm : m ∈ Nfix d j) : act V m (vecX d a) = vecX d a := by
   have hm' : ∀ i : Fin ρ, i ≤ j → ∀ k, (mt V m ⬝ d.jX : Mx D V.rank ρ) k i = d.jX k i := by
@@ -97,7 +85,7 @@ theorem transv_trivial_after_Nfix : ∀ (D : D7), Descent D → ∀ (ψ : AddCha
   have hc := hConj V V₀ ρ d (ratVec a) v hv u m hu
   rw [hmw] at hc
   have hv' : form V (vecX d (ratVec a)) (act V m v) = 0 := by
-    rw [← hmw, form_act_act, hv]
+    rw [← hmw, _root_.GlobalTheory.TransvAdelic.form_act, hv]
   have hx' : rat x *ᵥ ratVec a = 0 := by
     rw [rat_mulVec_ratVec, hx]
     funext i

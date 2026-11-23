@@ -111,18 +111,6 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     [CommRing O] [Algebra O LL] [TopologicalSpace LL] {v : AddValuation LL (WithTop ℚ)} {n₀ : ℕ}
     (W : LocWach PD LL O v n₀)
 
-theorem sum_shift {M : Type} [AddCommMonoid M] (f : W.Gam → M) {δ : W.Gam} (hδ : δ ∈ W.DelF) :
-    ∑ g ∈ W.DelF, f (δ * g) = ∑ g ∈ W.DelF, f g := by
-  have key : ∀ g, g ∈ W.DelF ↔ IsOfFinOrder g := fun g => by rw [W.DelF_def, isOfFinOrder_iff_pow_eq_one]
-  refine Finset.sum_nbij' (fun g => δ * g) (fun g => δ⁻¹ * g) ?_ ?_ ?_ ?_ ?_
-  · intro g hg
-    exact (key _).2 (((key _).1 hδ).mul ((key _).1 hg))
-  · intro g hg
-    exact (key _).2 (((key _).1 hδ).inv.mul ((key _).1 hg))
-  · intro g _; simp
-  · intro g _; simp
-  · intro g _; rfl
-
 def tr₀ (b : O⟦X⟧) : O⟦X⟧ := ∑ δ ∈ W.DelF, W.γ₀ δ b
 
 def trA (a : LetA O n₀) : LetA O n₀ := fun t => tr₀ W (a t)
@@ -131,7 +119,7 @@ def trD (T : LocLat G Qp LL O) : W.DD T →+ ↥(DΔ W T) :=
   AddMonoidHom.codRestrict (∑ δ ∈ W.DelF, W.γD T δ).toAddMonoidHom (DΔ W T) (fun z δ hδ => by
 
     simp only [LinearMap.toAddMonoidHom_coe, LinearMap.sum_apply, map_sum, ← W.γD_mul]
-    exact sum_shift W (fun g => W.γD T g z) hδ)
+    exact _root_.GlobalTheory.Present.RedLat.sum_del W (fun g => W.γD T g z) hδ)
 
 theorem trD_coe (T : LocLat G Qp LL O) (z : W.DD T) : (trD W T z : W.DD T) = ∑ δ ∈ W.DelF, W.γD T δ z := by
   exact LinearMap.sum_apply _ _ _
@@ -139,19 +127,7 @@ theorem trD_coe (T : LocLat G Qp LL O) (z : W.DD T) : (trD W T z : W.DD T) = ∑
 theorem tr₀_inv (b : O⟦X⟧) {δ : W.Gam} (hδ : δ ∈ W.DelF) : W.γ₀ δ (tr₀ W b) = tr₀ W b := by
 
   simp only [tr₀, map_sum, ← AlgHom.mul_apply, ← map_mul]
-  exact sum_shift W (fun g => W.γ₀ g b) hδ
-
-theorem γD_smulA (T : LocLat G Qp LL O) (g : W.Gam) (a : LetA O n₀) (x : W.DD T) :
-    W.γD T g (a • x) = W.γA g a • W.γD T g x := by
-  have := W.γD_smul T g (algebraMap (LetA O n₀) W.EE a) x
-  rw [algebraMap_smul, W.γE_ext, algebraMap_smul] at this
-  exact this
-
-theorem φD_smulA (T : LocLat G Qp LL O) (a : LetA O n₀) (x : W.DD T) :
-    W.φD T (a • x) = W.φA a • W.φD T x := by
-  have := W.φD_smul T (algebraMap (LetA O n₀) W.EE a) x
-  rw [algebraMap_smul, W.φE_ext, algebraMap_smul] at this
-  exact this
+  exact _root_.GlobalTheory.Present.RedLat.sum_del W (fun g => W.γ₀ g b) hδ
 
 theorem trD_smul (T : LocLat G Qp LL O) (a : LetA O n₀) (x : ↥(DΔ W T)) :
     (trD W T (a • (x : W.DD T)) : W.DD T) = trA W a • (x : W.DD T) := by
@@ -161,7 +137,7 @@ theorem trD_smul (T : LocLat G Qp LL O) (a : LetA O n₀) (x : ↥(DΔ W T)) :
     rfl
   rw [trD_coe, h, Finset.sum_smul]
   refine Finset.sum_congr rfl fun δ hδ => ?_
-  rw [γD_smulA, x.2 δ hδ]
+  rw [_root_.GlobalTheory.WachTie.MatF.γD_smulA, x.2 δ hδ]
 
 theorem trD_mem (T : LocLat G Qp LL O) {z : W.DD T} (hz : z ∈ W.N T) : (trD W T z : W.DD T) ∈ W.N T := by
   rw [trD_coe]
@@ -298,7 +274,7 @@ theorem condB (hι : GlobalTheory.IndefiniteRowSideFullHecke.OnePlusPowerCharact
     | mem s hs => exact Submodule.subset_span ⟨s, hs, rfl⟩
     | zero => rw [map_zero]; exact Submodule.zero_mem _
     | add a b _ _ ha hb => rw [map_add (f := _)]; exact Submodule.add_mem _ ha hb
-    | smul a b _ hb => rw [φD_smulA]; exact Submodule.smul_mem _ _ hb
+    | smul a b _ hb => rw [_root_.GlobalTheory.WachTie.MatF.φD_smulA]; exact Submodule.smul_mem _ _ hb
   refine span_ind ((p.j T A q i).comp (trD W T)) (pull ((F.D A).φ i) (N (i - 1))).toAddSubgroup _ _ ?_
     (hsp (h x hx))
   rintro _ ⟨s, hs, rfl⟩ a

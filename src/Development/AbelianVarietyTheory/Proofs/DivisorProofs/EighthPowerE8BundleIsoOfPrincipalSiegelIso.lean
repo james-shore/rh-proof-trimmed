@@ -50,6 +50,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.NotSymEOfNe
 import Development.AbelianVarietyTheory.Definitions.Divisors.SymTupOne
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SiegelObjectPullbackLevelPowerCalculus
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.SiegelToroidalIntegral
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AmpleRigidLevelRigid
 
 @[expose] public section
 
@@ -76,7 +77,7 @@ theorem iso_of_sRel : ∀ (g n N : ℕ) (B : Type) [CommRing B] (ζ : B) (K : Ty
     have : IsIso ((Over.forget _).map f) := by simpa [f] using (inferInstance : IsIso φ)
     exact isIso_of_reflects_iso f (Over.forget _)
   haveI hf : IsMonHom f := ReciprocityTheory.ChartRestriction.G.Geo.Tor.isMonHom_of_mul f
-    (fun _ x y => GlobalTheory.AbelianLetters.mul_comp_of_isGrpPullback_id f hpb x y)
+    (fun _ x y => _root_.GlobalTheory.AmpleRigid.mul_comp_of_grpPullback_id f hpb x y)
   obtain ⟨ψ, hψ, -⟩ := huniv t.A (fun u => pr' u ≫ f)
   obtain ⟨χ, hχ, -⟩ := huniv' Q.A (fun u => pr u ≫ inv f)
   have h1 : ψ ≫ χ = 𝟙 _ := (huniv' t.A pr').unique (fun u => by

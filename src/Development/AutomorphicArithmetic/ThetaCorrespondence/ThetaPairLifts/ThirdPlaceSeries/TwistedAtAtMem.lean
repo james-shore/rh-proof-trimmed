@@ -38,6 +38,7 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Formalism.SharpRestriction.GlobalSchurBounds.FrameCodeOfAdditive
 
 @[expose] public section
 
@@ -50,7 +51,7 @@ namespace GlobalTheory.GalLoc
 theorem twistedAt_atMem_alt : ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, _root_.GlobalTheory.HeightCounting.Up.MemberAtLayerPoint hL fun _ _ _ _ w Z _ _ _ _ _ _ => ∃ v, TwistedAt (w.D Z) v := by
   intro hL
   refine GlobalTheory.HeightCounting.JumpsAt.evLgG_of_forall fun K B f T _ w Z Wt p0 t nch n xd c _ _ _ => ?_
-  obtain ⟨v, hv⟩ := GlobalTheory.Survey.PeriodBoundOfPlaceBound.exists_place (w.D Z) (B.host.g 0) (B.host.g_prime 0)
+  obtain ⟨v, hv⟩ := _root_.Formalism.MainNotions.Lnk.place_over (w.D Z) (B.host.g 0) (B.host.g_prime 0)
   have hW := GlobalTheory.Mem.Top.Bl.Model3.type_mem t v 0 hv
   exact ⟨v, (GlobalTheory.Mem.Top.V4.Model.mem_iff t.mu v).1 hW⟩
 end GlobalTheory.GalLoc

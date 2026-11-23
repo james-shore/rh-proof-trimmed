@@ -39,6 +39,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TripleAtt
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InertialOrderFifteenCharAuxiliaryPrimeSpec
 
 @[expose] public section
 
@@ -87,10 +88,10 @@ theorem UpperTheory.Gal.Int.Div.detEx_of :
       rw [(InfType.expo_of_infType E ν).2.1 _ hν τ]
       push_cast
       rfl
-  have hA := GlobalTheory.GoodCsdTwist.isAlgPos_mul hχ hνa
+  have hA := _root_.GlobalTheory.GalChar.isAlgPos_mul hχ hνa
   refine ⟨L (χ * ν) (n + fun _ => -((a.choose 2 : ℕ) : ℤ)), (hL _ _ hA).1, fun w hw B hB => ?_⟩
   obtain ⟨hu, hv⟩ := hval w hw B hB
-  have hcl := (hL _ _ hA).2 w (GlobalTheory.GoodCsdTwist.unrAt_mul hu (hν.1 w))
+  have hcl := (hL _ _ hA).2 w (_root_.Formalism.L2.Host.HChar.UnrAt.mul hu (hν.1 w))
   have hcard : B.card = a := by
     obtain ⟨σ, -, hs⟩ := hB
     exact hs.card

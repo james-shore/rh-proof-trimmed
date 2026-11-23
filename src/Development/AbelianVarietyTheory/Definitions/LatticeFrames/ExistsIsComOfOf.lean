@@ -75,15 +75,10 @@ theorem comb_conv (c c' : WO S T →₀ ℂ) (f : WO S T → ℂ) :
   refine Finset.sum_congr rfl fun y _ => ?_
   rw [Finsupp.sum_single_index (h0 _), GlobalTheory.WeilVacMove.heisO_heisO, smul_smul]
 
-theorem comb_unit (f : WO S T → ℂ) : comb ψ S T (Finsupp.single 0 1) f = f := by
-  rw [GlobalTheory.HeisComb.comb_eq_sum, Finsupp.sum_single_index (h := fun u (a : ℂ) => a • heisO ψ S T u f) (zero_smul ℂ _), one_smul]
-  funext w
-  simp [heisO, symplOH, symplO, hO]
-
 theorem comb_convList {α : Type} (l : List α) (c : α → WO S T →₀ ℂ) (f : WO S T → ℂ) :
     comb ψ S T (convList ψ S T (l.map c)) f = l.foldr (fun i f' => comb ψ S T (c i) f') f := by
   induction l with
-  | nil => exact comb_unit ψ S T f
+  | nil => exact _root_.GlobalTheory.FinPl.OffTest.comb_single_zero ψ S T f
   | cons i l ih => exact (comb_conv ψ S T _ _ f).trans (congrArg _ ih)
 
 variable {ψ S T}
@@ -153,16 +148,7 @@ structure StdSp (a : XPart D u) (ζ₀ : Fin a.Lz.rank → D.host.E) (π : D.hos
 
 namespace StdSp
 
-variable {a : XPart D u} {ζ₀ : Fin a.Lz.rank → D.host.E} {π : D.host.E} (H : StdSp a ζ₀ π)
-include H
-
 end StdSp
-
-section Ker
-
-variable {a : XPart D u} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] {ι : Type}
-
-end Ker
 
 end Gen
 
@@ -273,9 +259,6 @@ structure XStdBy (A : ColDat I l Z v (w.C.herm.base.Ch v)) : Prop where
 def XStd : Prop := ∃ A, XStdBy w a o G A
 
 namespace XStdBy
-
-variable {w a o G} {A : ColDat I l Z v (w.C.herm.base.Ch v)} (H : XStdBy w a o G A)
-include H
 
 end XStdBy
 

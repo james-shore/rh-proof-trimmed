@@ -54,6 +54,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 public import Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.AbsCentralAlt
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalLanglandsTransport
 
 @[expose] public section
 
@@ -87,7 +88,7 @@ theorem exists_isRc_isClassMapD_alt : ∀ (hL : _root_.UpperTheory.Zero.LLC.RecT
     exact H.dim _
   · obtain ⟨σ', e', hσ'⟩ := GlobalTheory.SerSys.LabDepth.exists_pull D I k v π' hπ' hg
     have hg' : UpperTheory.Zero.LLC.Good (GlobalTheory.LocLanglands.cls σ') :=
-      haveI := charZero_compl (D.naut.plGw k v)
+      haveI := _root_.GlobalTheory.LocLanglands.FieldCompat.charZero_compl (D.naut.plGw k v)
       good_cls_of_fixed ⟨_, ⟨D.host.g_prime k⟩, I.i k v, I.cont k v⟩ σ' hσ'
     constructor
     · intro hr
@@ -111,9 +112,9 @@ theorem typeLab_of_local_m_alt : Green → GlobalTheory.Published.ZelevinskyPoly
   intro hG hZ hDZ hL D T Rw rep L hLab hRow hDep hLT hTame
   obtain ⟨I⟩ := GlobalTheory.T.nonempty_typePlaceCompletionIdent D
   obtain ⟨rc, hrc, hcls⟩ := _root_.UpperTheory.One.M.exists_isRc_isClassMapD_alt hL D T I
-  obtain ⟨cp, hcomp, hcp⟩ := _root_.GlobalTheory.T.exists_comp_irrSm_locR_eq_rc hL D T I rc hrc Rw rep hRow hDep
-  have hP : DiscreteGroups.sglob.DzType.Rt.LabParamLe D.R.nV D L rc := DiscreteGroups.sglob.DzType.Rt.labParamLe_of D L rc hG (_root_.GlobalTheory.T.tame_gen_support_compat_of_is_rc hZ hL D T I rc hrc)
-    (fun k => GlobalTheory.T.depthZeroSupercuspidal_cuspidalModule (D.host.g k))
+  obtain ⟨cp, hcomp, hcp⟩ := _root_.GlobalTheory.TypeRec.exists_comp_irrSm_param_alt hL D T I rc hrc Rw rep hRow hDep
+  have hP : DiscreteGroups.sglob.DzType.Rt.LabParamLe D.R.nV D L rc := DiscreteGroups.sglob.DzType.Rt.labParamLe_of D L rc hG (_root_.UpperTheory.One.M.supportCompat_alt_alt hZ hL D T I rc hrc)
+    (fun k => _root_.GlobalTheory.DepthZeroCusp.depthZeroCuspidal (D.host.g k))
     (fun k v => by
       obtain ⟨κ, hκ⟩ := hTame k v
       exact _root_.DiscreteGroups.sglob.DzType.Rt.tame_param_le_of_tame_coupled hDZ hL D T I rc hrc L k v κ hκ)

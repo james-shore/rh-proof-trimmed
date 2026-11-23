@@ -92,8 +92,8 @@ theorem UpperTheory.Gal.Int.Core.exists_quadratic_CM_ext_split_at : UpperTheory.
   haveI : IsAlgClosed Ω := IsAlgClosure.isAlgClosed Y
   haveI : CharZero Ω := charZero_of_injective_algebraMap (algebraMap Y Ω).injective
   haveI : IsAlgClosure ℚ Ω := ⟨inferInstance, Algebra.IsAlgebraic.trans ℚ Y Ω⟩
-  have hRfin := GlobalTheory.T.finite_places_inertia_not_le_openSubgroup Ω F (fixGrp F Ω Y) (isOpen_fixGrp F Ω Y)
-  have hQfin := GlobalTheory.T.finite_places_inertia_not_le_openSubgroup Ω ℚ (fixGrp ℚ Ω Y) (isOpen_fixGrp ℚ Ω Y)
+  have hRfin := _root_.GlobalTheory.DelGlob.finite_not_ine_le_of_isOpen Ω F (fixGrp F Ω Y) (isOpen_fixGrp F Ω Y)
+  have hQfin := _root_.GlobalTheory.DelGlob.finite_not_ine_le_of_isOpen Ω ℚ (fixGrp ℚ Ω Y) (isOpen_fixGrp ℚ Ω Y)
   set R := hRfin.toFinset with hRdef
   set R' := hQfin.toFinset with hR'def
   set TT := hT.toFinset with hTTdef

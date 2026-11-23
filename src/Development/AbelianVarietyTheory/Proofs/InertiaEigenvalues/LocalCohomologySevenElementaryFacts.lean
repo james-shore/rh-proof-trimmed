@@ -188,16 +188,12 @@ theorem quotShape_of_equiv {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValua
   · rintro ⟨z, hz⟩; exact ⟨z, by rw [hz, LinearEquiv.apply_symm_apply]⟩
   · rintro ⟨z, hz⟩; exact ⟨z, by rw [← hz, LinearEquiv.symm_apply_apply]⟩
 
-theorem mem_integers_iff_norm_le_one {l : ℕ} [Fact l.Prime] (LL : Formalism.BasicNotions.Loc.FinExt l) (x : ↥LL.1) :
-    x ∈ Formalism.BasicNotions.Loc.OL LL ↔ ‖(x : Formalism.BasicNotions.Loc.Om l)‖ ≤ 1 :=
-  GlobalTheory.EmbInj.mem_OL_iff LL x
-
 theorem isOpen_integers {l : ℕ} [Fact l.Prime] (LL : Formalism.BasicNotions.Loc.FinExt l) :
     IsOpen (Set.range (algebraMap ↥(Formalism.BasicNotions.Loc.OL LL) ↥LL.1)) :=
   (GlobalTheory.LitGood.litGoodO l LL).2.2.2.2
 
 theorem elem : ReciprocityTheory.ChartRestriction.T2.Elem :=
   ⟨@padicInt_coeff, @mulSub_open, @contAction_quotient, @pr_eq_zero_of_coboundary,
-    @quotShape_of_equiv, @mem_integers_iff_norm_le_one, @isOpen_integers⟩
+    @quotShape_of_equiv, @_root_.GlobalTheory.EmbInj.mem_OL_iff, @isOpen_integers⟩
 
 end GlobalTheory.LocElem

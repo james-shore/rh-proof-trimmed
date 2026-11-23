@@ -166,7 +166,7 @@ theorem cM_zero' (h : Hyp L nb uM nb' w₁ cM δ) (u : Fin L.n → AE F E) : cM 
 theorem move (h : Hyp L nb uM nb' w₁ cM δ) (u : Fin L.n → AE F E) (β'' : nA σ L.Y L.b) (b : Fin L.n → AE F E) (a : AF F) :
     L.j (nb' β'') * (sM R L b * cM (u, a)) =
       sM R L (b + (tau L uM nb' δ (u, β'')).1) * cM (u, a + (tau L uM nb' δ (u, β'')).2) * L.j (nb' β'') := by
-  obtain ⟨B, A, hBA⟩ := j_move (R := R) h u β''
+  obtain ⟨B, A, hBA⟩ := _root_.PositivityTheory.SiegelWeilFormula.Act.C5.j_move' (R := R) h u β''
   suffices hτ : tau L uM nb' δ (u, β'') = (B, A) by rw [hτ]; exact hBA b a
   have e0 := hBA 0 0
   rw [sM_zero', one_mul, cM_zero' h, zero_add, zero_add] at e0

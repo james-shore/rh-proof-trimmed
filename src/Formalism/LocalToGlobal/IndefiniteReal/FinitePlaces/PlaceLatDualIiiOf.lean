@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.PlaceSum
 
 @[expose] public section
 
@@ -76,17 +77,13 @@ theorem splitIdem_mul_fI {e' : AE D} (h : IsSplitIdem D e') : e' * fI D = e' := 
         rw [map_mul, mul_assoc]
     _ = e' := by rw [pairA_mul_one, ← he]
 
-theorem splitIdem_cA {e : AE D} (h : IsSplitIdem D e) : IsSplitIdem D (cA D e) := by
-  obtain ⟨h1, h2, v, ε, hv, h3⟩ := h
-  exact ⟨by rw [← map_mul, h1], by rw [cA_cA, mul_comm, h2], v, ε, hv, by rw [cA_cA, add_comm, h3]⟩
-
 theorem idemSum_mul_fI {e : AE D} {P : Finset (Formalism.L2.DIV.Pl D.host.E)} (he : IsIdemSum e P) :
     e * fI D = e ∧ cA D e * fI D = cA D e := by
   obtain ⟨⟨es, hes, rfl⟩, -⟩ := he
 
   rw [Finset.sum_mul, map_sum, Finset.sum_mul]
   exact ⟨Finset.sum_congr rfl fun PP hPP => splitIdem_mul_fI (hes PP hPP).1,
-    Finset.sum_congr rfl fun PP hPP => splitIdem_mul_fI (splitIdem_cA (hes PP hPP).1)⟩
+    Finset.sum_congr rfl fun PP hPP => splitIdem_mul_fI (_root_.Formalism.IndefR.Fin.isSplitIdem_cA (hes PP hPP).1)⟩
 
 theorem idemSum_int {P : Finset (Formalism.L2.DIV.Pl D.host.E)} {e : AE D} (he : IsIdemSum e P) :
     finPart D e ∈ intAE D ∧ finPart D (cA D e) ∈ intAE D := by
@@ -97,7 +94,7 @@ theorem idemSum_int {P : Finset (Formalism.L2.DIV.Pl D.host.E)} {e : AE D} (he :
     exact AddSubgroup.sum_mem _ fun PP hPP => splitIdem_int (hes PP hPP).1
 
   · rw [map_sum, map_sum]
-    exact AddSubgroup.sum_mem _ fun PP hPP => splitIdem_int (splitIdem_cA (hes PP hPP).1)
+    exact AddSubgroup.sum_mem _ fun PP hPP => splitIdem_int (_root_.Formalism.IndefR.Fin.isSplitIdem_cA (hes PP hPP).1)
 
 theorem infPart_fI : infPart D (fI D) = 0 := by
   show infPart D (algebraMap (AF D.host.F) (AE D) (pairA D.host.F 0 1)) = 0

@@ -122,7 +122,7 @@ theorem bar_mem_of_mem (H : Host E) {n : ℕ} (hn : AuxiliaryInertOddPrime H n) 
       exact_mod_cast congrArg (Int.cast : ℤ → 𝓞 E) hst.symm
     rw [this]
     exact P.add_mem (P.mul_mem_left _ hnP) (P.mul_mem_left _ hm)
-  obtain ⟨u, v, rfl⟩ := exists_eq_of_mem_adjoin_quadratic_generator H ha
+  obtain ⟨u, v, rfl⟩ := _root_.GlobalTheory.CMGeneratorSquareModuli.main H ha
   have hN : (n : ℤ) ∣ (2 * u + v) ^ 2 + H.d * v ^ 2 := by
     apply key
     have : (((2 * u + v) ^ 2 + H.d * v ^ 2 : ℤ) : 𝓞 E) =

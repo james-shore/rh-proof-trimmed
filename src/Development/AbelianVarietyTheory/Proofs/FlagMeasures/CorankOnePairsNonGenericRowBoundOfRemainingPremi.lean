@@ -63,5 +63,5 @@ theorem GlobalTheory.rowNGP_of_leaves (hCB : StepChoiceConstantsC) (hPin : StepP
     stepVanishPinned_of_term (Formalism.L2.SG.NGVanish.stepTermVanish_of_form hForm)
   have hAna : StepAnalyticP := GlobalTheory.T.rowAnalyticFacts_of_four_steps hPin hVan hLoc hThmB
   have hMassData : StepAnalyticConstantsP := GlobalTheory.T.existsRowLevelWithAnalyticFacts_of_steps (tieOfCtx_of hX0) hCB hAna
-  exact GlobalTheory.T.nonGenericCorankOnePairsBound_of_splitFiniteRealRow (GlobalTheory.T.rowSplitFiniteArchimedeanParts_of_steps hMassData sizes_of_hypotheses (stepClass_of_equiv hS0) hNml hPts
+  exact _root_.GlobalTheory.NGRow.rowNG_of_cut2P (_root_.GlobalTheory.NGRow.ngCut2P_of_steps hMassData sizes_of_hypotheses (stepClass_of_equiv hS0) hNml hPts
     (stepHeight_of_normOne hN1))

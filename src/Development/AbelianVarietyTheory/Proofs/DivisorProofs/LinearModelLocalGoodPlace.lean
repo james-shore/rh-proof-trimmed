@@ -85,7 +85,7 @@ theorem swap_acts_box : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Nu
     intro u hu r hr
     simp only [actB]
     rw [← Matrix.smul_mul, hu r hr, Matrix.zero_mul]
-  have hex := GlobalTheory.T.doubledUnitaryElement_acts_localOperatorAtPlace F E σ B a a' G hT.base dd omd hspl v w hAt
+  have hex := _root_.GlobalTheory.DblActs.dbl_acts F E σ B a a' G hT.base dd omd hspl v w hAt
   obtain ⟨S, hS, hSh⟩ := GlobalTheory.T.splitting_preserves_local_schwartz dd B.ψ hT.base.std (actB (cA σ)) omd hspl.toIsSplitting v w atAct hex
   have hSlin := GlobalTheory.LocWeilAct.linear_of_acts v (omd w) S hS
   obtain ⟨c, hc⟩ := GlobalTheory.T.linear_bar_model_local_triple F E σ B a a' G X om om' hT v t ι hι d' hd' dd hdd f hf1 hf2 hf3 hf4 hf5 w hw S

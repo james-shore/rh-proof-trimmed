@@ -78,7 +78,7 @@ theorem twist_split_diagonal : ∀ (F : Type) [Field F] [NumberField F] [IsTotal
     rw [← zsmul_eq_mul]
     exact zsmul_mem hm n
   ext v
-  rw [hA, GlobalTheory.T.mem_hilbertLatticeTwist_iff_lift F N _ _ v hlev.2]
+  rw [hA, _root_.GlobalTheory.HilbFam.TwistMem.mem_twist_iff F N _ _ v hlev.2]
   constructor
   · rintro ⟨y, hy, w, hw, rfl⟩
     rw [hv0]

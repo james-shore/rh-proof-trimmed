@@ -85,7 +85,7 @@ theorem hasVals_nrm (hU : Unr E) {w : Pl E} (hw : ¬ IsSplitAt w) {ϖ : (w.adicC
     rw [GlobalTheory.CompanionTheory.UnitaryCorrection.ordL_mul_of_ne (Units.ne_zero _) (Units.ne_zero _),
       GlobalTheory.CompanionTheory.UnitaryContraction.ordL_zpow, hϖ.1,
       GlobalTheory.CompanionTheory.UnitaryCorrection.ordL_congr (b := (1 : w.adicCompletion E)) (by rw [hv, map_one]),
-      GlobalTheory.CompanionTheory.UnitaryCorrection.ordL_one]
+      _root_.Formalism.UG.P.fSatake_ord_one]
     simp
   rw [← GlobalTheory.CompanionTheory.MatchLinear.charpoly_nrmL_twConj hU a w δ m, hdu, GlobalTheory.CompanionTheory.TwSide.nrmL_diagT hw, GlobalTheory.SmGL.val_diagT,
     Matrix.charpoly_diagonal]

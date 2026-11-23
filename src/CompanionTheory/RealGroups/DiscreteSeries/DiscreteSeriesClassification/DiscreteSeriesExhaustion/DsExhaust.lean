@@ -49,7 +49,7 @@ import Mathlib.Topology.Sheaves.Init
 namespace CompanionTheory.RgExh
 
 theorem dsExhaust : GlobalTheory.Dec.DSExhaust :=
-  Fin.exhaustion_finite_length Hk.infinitesimal_character_shift Hk.hecke_algebra_exhaustion (Dec.decay_estimate Hk.infinitesimal_character_shift) U.far_regular_exhaustion
+  Fin.exhaustion_finite_length _root_.GlobalTheory.CompanionTheory.RgExhHecke.StepCharPf.stepChar Hk.hecke_algebra_exhaustion (Dec.decay_estimate _root_.GlobalTheory.CompanionTheory.RgExhHecke.StepCharPf.stepChar) U.far_regular_exhaustion
 
 theorem discreteSeriesClassification : GlobalTheory.Published.DiscreteSeriesClassification :=
   Fin.discreteSeriesClassification_of dsExhaust

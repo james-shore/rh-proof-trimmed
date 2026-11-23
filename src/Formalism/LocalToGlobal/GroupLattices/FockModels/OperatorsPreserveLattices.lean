@@ -251,7 +251,7 @@ theorem dl_indep {O Kf : Type} [CommRing O] [Field Kf] [Algebra O Kf]
   have hFh : F ∈ deltaL O Kf (m + 1) (nuOf lam) h := by
     obtain ⟨f, hf, hfe⟩ := hF
     have hst : rowAct O U f ∈ weyl O (m + 1) (m + 1) le_rfl (nuOf lam) :=
-      Formalism.UG.P.weyl_module_GL_stable O (m + 1) (m + 1) le_rfl (nuOf lam) γ f hf
+      _root_.Formalism.UG.P.wlocal_global O (m + 1) (m + 1) le_rfl (nuOf lam) γ f hf
     refine ⟨rowAct O U f, hst, ?_⟩
     have h3 : rowAct Kf (n := m + 1) h = (rowAct Kf (U.map (algebraMap O Kf))).comp (rowAct Kf g) := by
       rw [rowActMul, hU]

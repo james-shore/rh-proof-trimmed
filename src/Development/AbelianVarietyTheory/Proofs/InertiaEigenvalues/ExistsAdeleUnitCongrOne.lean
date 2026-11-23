@@ -95,16 +95,13 @@ theorem mem_of_val {v : HeightOneSpectrum (𝓞 F)} {a : v.adicCompletion F}
     (ha : Valued.v a ≤ 1) : a ∈ v.adicCompletionIntegers F :=
   (HeightOneSpectrum.mem_adicCompletionIntegers (𝓞 F) F v).2 ha
 
-theorem val_natCast_le (v : HeightOneSpectrum (𝓞 F)) (k : ℕ) : Valued.v (k : v.adicCompletion F) ≤ 1 :=
-  val_le_one (natCast_mem (HeightOneSpectrum.adicCompletionIntegers F v) k)
-
 theorem val_unit_of_rel (v : HeightOneSpectrum (𝓞 F)) (k : ℕ) {t q r : v.adicCompletion F}
     (hm : Valued.v (((2 * k + 1 : ℕ) : v.adicCompletion F)) < 1)
     (ht : Valued.v t ≤ 1) (hq : Valued.v q ≤ 1) (hr : Valued.v r ≤ 1)
     (h4 : (4 : v.adicCompletion F) = t * q + ((2 * k + 1 : ℕ) : v.adicCompletion F) * r) :
     Valued.v (-(k : v.adicCompletion F) * t) = 1 := by
   set M : v.adicCompletion F := ((2 * k + 1 : ℕ) : v.adicCompletion F) with hM
-  have hk : Valued.v (k : v.adicCompletion F) ≤ 1 := val_natCast_le v k
+  have hk : Valued.v (k : v.adicCompletion F) ≤ 1 := _root_.GlobalTheory.AdLat.valued_natCast_le_one v k
   have h2k : Valued.v (2 * (k : v.adicCompletion F)) = 1 := by
     have e : 2 * (k : v.adicCompletion F) = -1 + M := by rw [hM]; push_cast; ring
     rw [e, Valuation.map_add_eq_of_lt_left Valued.v (by rw [Valuation.map_neg, map_one]; exact hm),
@@ -197,7 +194,7 @@ theorem exists_adele_unit_congr_one : ∀ (D : D7) (m : ℕ), Odd m → ∀ (z y
     simp only [map_add (f := _), map_mul, map_natCast, map_ofNat] at this
     exact this
   have hMone : ∀ v, ¬ P v → Valued.v ((M : v.adicCompletion D.host.F)) = 1 := fun v hv =>
-    le_antisymm (val_natCast_le v M) (not_lt.1 hv)
+    le_antisymm (_root_.GlobalTheory.AdLat.valued_natCast_le_one v M) (not_lt.1 hv)
   have hMne : ∀ v, ¬ P v → (M : v.adicCompletion D.host.F) ≠ 0 := fun v hv h => by
     have := hMone v hv; rw [h, map_zero] at this; exact zero_ne_one this
   let eg : ∀ v : HeightOneSpectrum (𝓞 D.host.F), v.adicCompletion D.host.F := fun v => if P v then 1 else 0

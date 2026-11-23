@@ -66,7 +66,7 @@ theorem coeff_single_one_mul {σ R : Type} [CommRing R] [DecidableEq σ] (i : σ
 
 theorem counit_dUnit_evA : ∀ (k : Type) [CommRing k] (d : ℕ) (A : Type) [CommRing A] [Bialgebra k A] (x : Fin d → A) (hx : ∀ i, IsNilpotent (x i)), (∀ i, Coalgebra.counit (R := k) (x i) = 0) → ∀ f : MvPowerSeries (Fin d) k, Coalgebra.counit (R := k) (evA k x hx f) = constantCoeff f ∧ dUnit (R := k) (evA k x hx f) = ∑ i, lin f i • dUnit (R := k) (x i) := by
   intro k _ d A _ _ x hx h0 f
-  have hev : ∀ i, evA k x hx (X i) = x i := GlobalTheory.T.powerSeriesEvalAtNilpotent_X_eq_coordinate k (Fin d) A x hx
+  have hev : ∀ i, evA k x hx (X i) = x i := _root_.GlobalTheory.Katz.evA_X k (Fin d) A x hx
   let c0 : MvPowerSeries (Fin d) k →ₐ[k] k :=
     { (constantCoeff : MvPowerSeries (Fin d) k →+* k) with
       commutes' := fun r => by simp [MvPowerSeries.algebraMap_apply] }

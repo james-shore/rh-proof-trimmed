@@ -60,16 +60,6 @@ noncomputable section
 
 namespace GlobalTheory.OrbFinAf.MatrixUnits₂
 
-theorem exists_order (C : Type) [Ring C] [Algebra ℚ C] [FiniteDimensional ℚ C] :
-    ∃ OB : Subring C, Module.Finite ℤ OB ∧ ∀ b : C, ∃ m : ℕ, 0 < m ∧ (m : C) * b ∈ OB := by
-  first
-  | exact @_root_.GlobalTheory.MultiplierOrders.exists_order
-  | exact _root_.GlobalTheory.MultiplierOrders.exists_order
-  | (apply _root_.GlobalTheory.MultiplierOrders.exists_order <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MultiplierOrders.exists_order <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MultiplierOrders.exists_order <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.MultiplierOrders.exists_order ..)
-
 theorem isIntV_order_eventually (p : ℕ) [Fact p.Prime] (G : HTGroup p) (OB : Subring G.C)
     (hfin : Module.Finite ℤ OB) :
     ∀ᶠ v in (Filter.cofinite : Filter (AwayP p)), ∀ x ∈ OB, IsIntV G v ((1 : Qv v) ⊗ₜ[ℚ] x) := by
@@ -155,8 +145,8 @@ theorem matrixUnits_eventually : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p),
       (∀ i j k l, E i j * E k l = if j = k then E i l else 0) ∧ ∑ i, E i i = 1 ∧
       ∀ i j, IsIntV G v (E i j) := by
   intro p _ G
-  obtain ⟨OB, hfin, hspan⟩ := exists_order G.C
-  obtain ⟨N, hN, hmat⟩ := GlobalTheory.T.adjoinLocalOrderTensorPadic_matrix_almost_all G.F G.C G.n G.rankC OB hfin hspan
+  obtain ⟨OB, hfin, hspan⟩ := _root_.GlobalTheory.MultiplierOrders.exists_order G.C
+  obtain ⟨N, hN, hmat⟩ := _root_.GlobalTheory.LocMatrix.locOrder_matrix G.F G.C G.n G.rankC OB hfin hspan
   filter_upwards [finite_dvd p N hN, isIntV_order_eventually p G OB hfin, intV_order_eventually p G]
     with v hv hO hord
   haveI : Fact (primesEquiv v.1 : ℕ).Prime := ⟨(primesEquiv v.1).2⟩

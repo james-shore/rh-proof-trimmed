@@ -113,13 +113,13 @@ theorem splitAE : ∀ (G : GDatum), ∃ M : ℕ, 0 < M ∧ ∀ (p : ℕ) [Fact p
   haveI := isCentral G
   haveI := GDatum.isSimpleRing G
   haveI : FiniteDimensional G.F (ℚ ⊗[ℤ] G.O) := Module.Finite.of_restrictScalars_finite ℚ G.F _
-  obtain ⟨N, hN, hloc⟩ := GlobalTheory.T.adjoinLocalOrderTensorPadic_matrix_almost_all G.F (ℚ ⊗[ℤ] G.O) G.m (finrank_eq G) (ordB G) (ordB_finite G) (ordB_denom G)
+  obtain ⟨N, hN, hloc⟩ := _root_.GlobalTheory.LocMatrix.locOrder_matrix G.F (ℚ ⊗[ℤ] G.O) G.m (finrank_eq G) (ordB G) (ordB_finite G) (ordB_denom G)
   refine ⟨N, hN, fun p _ hp => ?_⟩
   obtain ⟨ψ, hψ⟩ := hloc p hp
   obtain ⟨ι, hι⟩ : ∃ ι : G.O ⊗[ℤ] ℤ_[p] ≃+* locOrder p (ordB G),
       ∀ o : G.O, (ι (o ⊗ₜ[ℤ] 1) : ℚ_[p] ⊗[ℚ] (ℚ ⊗[ℤ] G.O)) = (1 : ℚ_[p]) ⊗ₜ[ℚ] ((1 : ℚ) ⊗ₜ[ℤ] o) :=
-    GlobalTheory.T.exists_tensorPadicInt_equiv_adjoin_of_free_finite G.O p
-  obtain ⟨κ, hκ⟩ := GlobalTheory.T.exists_ringOfIntegersTensorPadic_equiv_adjoin G.F p
+    _root_.GlobalTheory.LocIso.tensor_padicInt_equiv_locOrder G.O p
+  obtain ⟨κ, hκ⟩ := _root_.GlobalTheory.CenOrderIso.cenOrder_equiv G.F p
   let Φ : G.O ⊗[ℤ] ℤ_[p] ≃+* Matrix (Fin G.m) (Fin G.m) (𝓞 G.F ⊗[ℤ] ℤ_[p]) :=
     ι.trans (ψ.toRingEquiv.trans κ.symm.mapMatrix)
   refine ⟨AlgEquiv.ofRingEquiv (f := Φ) fun c => ?_⟩

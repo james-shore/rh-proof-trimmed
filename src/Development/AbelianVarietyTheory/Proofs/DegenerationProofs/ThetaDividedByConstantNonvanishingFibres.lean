@@ -121,7 +121,7 @@ theorem exists_good_label (h0 : (∀ (T K : Type) [CommRing T] [IsDomain T] [IsD
   obtain ⟨F, ψ, hTM⟩ := GlobalTheory.T.exists_testMap_of_testFac h0 o Ω S ρ M U₀ Q p y y₀ u jV yV yK hTF
   have hLB := GlobalTheory.T.lineBundleIso_pullback_uniformisedThetaModel o Ω S ρ M U₀ Q p y y₀ u jV yV yK hTF F ψ hTM
   have hyN : y (cPt p) ∈ N := by rw [hy.1]; exact hzN
-  obtain ⟨t, ht, j, hj⟩ := GlobalTheory.T.exists_torsionPoint_specialFibre_section_ne_zero h1 h2 o Ω S ρ M U₀ Q big p y y₀ u jV yV yK hTF F ψ hTM hLB N σ hσ hne hyN
+  obtain ⟨t, ht, j, hj⟩ := _root_.GlobalTheory.ZH.TorsionNonzero.exists_torsion_valF_ne_zero h1 h2 o Ω S ρ M U₀ Q big p y y₀ u jV yV yK hTF F ψ hTM hLB N σ hσ hne hyN
   have hn : IsUnit ((S.r * S.N : ℕ) : Γ(Sp u.V, ⊤)) := by
     have hv : IsUnit ((S.r * S.N : ℕ) : u.V) := by
       have he : ((S.r * S.N : ℕ) : o) * ↑(S.unit.unit⁻¹) = 1 := S.unit.mul_val_inv
@@ -197,8 +197,8 @@ theorem exists_theta_div : (∀ (T K : Type) [CommRing T] [IsDomain T] [IsDiscre
     obtain ⟨Wb, hb', hz'Wb, hb1, hb2⟩ := hSec z' b hb
     obtain ⟨wb, hwb⟩ : z' ∈ Set.range Wb.ι := by rw [Scheme.Opens.range_ι]; exact hz'Wb
     have hE : Q.ExtPt b Wb hb' := ⟨hb1, hb2⟩
-    exact ⟨Wb, hb', wb, hE, hwb, GlobalTheory.T.torsionFrame_isUnit_along_section o Ω S ρ M U₀ Q ov
-      (fun α hα hn => GlobalTheory.T.exists_generator_normalised_mulByN_iso o Ω S ρ M U₀ Q ov (S.r * S.N) α hα hn) b Wb hb' wb hE⟩
+    exact ⟨Wb, hb', wb, hE, hwb, _root_.GlobalTheory.ZH.TorsFrame.frameUnit o Ω S ρ M U₀ Q ov
+      (fun α hα hn => _root_.GlobalTheory.ZH.MulExtend.exists_gen_mulRel o Ω S ρ M U₀ Q ov (S.r * S.N) α hα hn) b Wb hb' wb hE⟩
   have hcl : ∀ z' : M.Z, IsClosed ({z'} : Set M.Z) → z' ∈ N₀ → z' ∈ W →
       c₀ * S.th x₀ ≠ 0 ∧ c₀ * S.th x₀ ∈ M.O z' ∧ (c₀ * S.th x₀)⁻¹ ∈ M.O z' := by
     intro z' hz' hz'N hz'W

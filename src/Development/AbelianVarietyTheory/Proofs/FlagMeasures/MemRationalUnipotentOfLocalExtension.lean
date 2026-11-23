@@ -44,6 +44,8 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsHermND
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IdentityCellTrace.TermIdIffInSOf
+import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.CellGeo
 
 @[expose] public section
 
@@ -123,7 +125,7 @@ theorem mem_nrat_of_ext : ∀ (D : D7) (Z : LocDat D) (p : PlF D) {T : D.host.E}
       have h2 := Submodule.smul_mem _ ((u⁻¹ : (D.s.atP p).Epˣ) : (D.s.atP p).Ep) (span_scaled_le Z p F {b | b < a} h1)
       rw [← hu, smul_smul, Units.inv_mul, one_smul] at h2
       have h3 := mem_of_baseChange_mem_span p _ h2
-      exact GlobalTheory.FlagChange.Xa_mono F.fl (Nat.lt_succ_iff.1 ha') h3
+      exact _root_.Formalism.MainNotions.BridgeLemma.geo_Xa_mono F.fl (Nat.lt_succ_iff.1 ha') h3
     | zero => simp
     | add x y _ _ ihx ihy =>
       have e : γ (x + y) - (x + y) = (γ x - x) + (γ y - y) := by rw [map_add (f := _)]; abel
@@ -142,7 +144,7 @@ theorem mem_nrat_of_ext : ∀ (D : D7) (Z : LocDat D) (p : PlF D) {T : D.host.E}
           show LocFacts₂ Z.M p (baseChange₂ D p x) (baseChange₂ D p (frame F a.castSucc)) = 0
           rw [baseChangeAt_form Z.M p (Z.hcj p), GlobalTheory.LocExt.frame_castSucc]
           show (D.s.atP p).ιE ((VS D).hT (F.fl.e a) x) = 0
-          rw [GlobalTheory.FlagChange.mem_orth_X.1 hx (F.fl.e a) (GlobalTheory.FlagChange.e_mem_X F.fl a), map_zero]
+          rw [GlobalTheory.FlagChange.mem_orth_X.1 hx (F.fl.e a) (_root_.PI.UnitaryGroupMassFormula.IdCellInSW.e_mem_X F.fl a), map_zero]
         rw [h0, mul_zero]
       | zero =>
         rw [(locH Z p).h_herm, (locH Z p).h_zero_left, map_zero]

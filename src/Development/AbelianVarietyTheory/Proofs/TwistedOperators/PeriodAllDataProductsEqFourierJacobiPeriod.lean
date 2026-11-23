@@ -58,18 +58,6 @@ namespace GlobalTheory.LinkProd
 
 variable {D : D7}
 
-theorem star_psi {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdChar D ψ (-1)) (a : AF D.host.F) : star (ψ a) = ψ (-a) := by
-  have h1 : ‖ψ a‖ = 1 := hψ.1.2.1 a
-  have h2 : ψ a * star (ψ a) = 1 := by
-    rw [Complex.star_def, Complex.mul_conj', h1]; simp
-  have h3 : ψ a * ψ (-a) = 1 := by rw [← AddChar.map_add_eq_mul, add_neg_cancel, AddChar.map_zero_eq_one]
-  have h0 : ψ a ≠ 0 := by intro h; rw [h, zero_mul] at h3; exact zero_ne_one h3
-  exact mul_left_cancel₀ h0 (h2.trans h3.symm)
-
-theorem heisO_at_zero (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (w : WO S T) (f : WO S T → ℂ) :
-    heisO ψ S T w f 0 = f w := by
-  simp [heisO, symplOH_zero_left]
-
 theorem lnk_point {L L' : HSp D} {ζ : Fin L.rank → D.host.E} {ζ' : Fin L'.rank → D.host.E} (l : Lnk L ζ L' ζ')
     {W W₀ : HSp D} {ρ : ℕ} (d : HypDec W W₀ ρ) (n : GA D W) :
     l.κ W₀ (ptS d L' (zEll L' ρ ζ') n) = ptT d L (yZero L ρ ζ) n ∧
@@ -114,7 +102,7 @@ theorem perAll_box_eq_per : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (ρ : 
     rw [integral_mul_const, liftT_apply]
     congr 1
     have hcl' : omz (h, 1) (fun w => star (Ξ₂ (l.κ J.W₀ w))) = fun w => star (omL (1, h) Ξ₂ (l.κ J.W₀ w)) := hcl h
-    rw [thetaJS, jacS, hcl', Pi.smul_apply, smul_eq_mul, heisO_at_zero, star_mul', star_star, star_psi hψ, hp, hc]
+    rw [thetaJS, jacS, hcl', Pi.smul_apply, smul_eq_mul, _root_.GlobalTheory.IndefiniteRowSideFullHecke.RealDirectionThetaNonzero.heisO_apply_zero, star_mul', star_star, _root_.GlobalTheory.LinkInvTheta.star_psi hψ, hp, hc]
   unfold JacL.perAll JacL.per fjAll fjSrc
   congr 1
   funext h

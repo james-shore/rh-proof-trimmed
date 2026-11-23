@@ -250,9 +250,7 @@ section Summable
 
 variable {K : Type*} [Field K] [NumberField K]
 
-theorem summable_absNorm_rpow_inv {σ : ℝ} (hσ : 1 < σ) :
-    Summable fun I : Ideal (𝓞 K) ↦ ((absNorm I : ℝ) ^ σ)⁻¹ :=
-  _root_.UpperTheory.Reformulated.B.Qp7.summable_absNorm_rpow_inv hσ
+alias summable_absNorm_rpow_inv := _root_.UpperTheory.Reformulated.B.Qp7.summable_absNorm_rpow_inv
 
 end Summable
 

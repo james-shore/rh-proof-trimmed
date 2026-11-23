@@ -90,7 +90,7 @@ theorem skew_covol_dInv : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
   obtain ⟨ι, _, b, hbs, hbv⟩ := GlobalTheory.T.fractionalIdeal_basis_transport_measurePreserving E volume e he (Units.mk0 (dInv E (2 * t)) (dInv_ne_zero E _))
   obtain ⟨e1, he1, he1x⟩ := GlobalTheory.T.exists_cmExtension_mixedSpace_realCoords F E σ hCM
   obtain ⟨ι1, _, b1, hb1s, hb1v⟩ :=
-    GlobalTheory.T.fractionalIdeal_basis_transport_measurePreserving F volume e1 he1 (Units.mk0 (dInv F (2 * t)) (dInv_ne_zero F _))
+    _root_.GlobalTheory.SnMass.VolN.fractionalIdeal_basis_transport F volume e1 he1 (Units.mk0 (dInv F (2 * t)) (dInv_ne_zero F _))
   simp only [Units.val_mk0] at hbs hbv hb1s hb1v
   set Λ := Submodule.span ℤ (Set.range b) with hΛdef
   have hΛ : ∀ p, p ∈ Λ ↔ ∃ x ∈ dInv E (2 * t), (reV x, imV x) = p := by

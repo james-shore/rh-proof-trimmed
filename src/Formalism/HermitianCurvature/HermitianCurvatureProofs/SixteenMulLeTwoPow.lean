@@ -74,17 +74,7 @@ lemma small_f (f k : ℕ) (hfk : f ≤ k) (hk : 7 ≤ k) : (f : ℝ) * (8 / 2 ^ 
   rw [mul_div_assoc', div_le_iff₀ hpos]
   nlinarith [mul_lt_mul_of_pos_right hlog hpos]
 
-lemma vand_pos (p : ℕ) (x : ℕ → ℝ) (h : ∀ s t, 1 ≤ s → s < t → t ≤ p → x t < x s) :
-    0 < Vand p x := by
-  unfold Vand
-  apply Finset.prod_pos
-  intro i hi
-  apply Finset.prod_pos
-  intro j hj
-  rw [Finset.mem_Icc] at hi
-  rw [Finset.mem_Ioc] at hj
-  have hx := h i j hi.1 hj.1 hj.2
-  linarith
+alias vand_pos := _root_.Formalism.FourierDecayAlt.P.Sz4.vand_pos
 
 lemma anti_of_step (p : ℕ) (x : ℕ → ℝ) (h : ∀ i, 1 ≤ i → i < p → x (i + 1) < x i) :
     ∀ s t, 1 ≤ s → s < t → t ≤ p → x t < x s := by

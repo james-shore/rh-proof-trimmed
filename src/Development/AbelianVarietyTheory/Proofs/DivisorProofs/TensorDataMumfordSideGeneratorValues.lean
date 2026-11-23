@@ -85,7 +85,7 @@ theorem mside : ∀ (R : Type) [CommRing R] [IsDomain R] (I : Ideal R) (D : DegD
             h (1 : D'.P.A ⟶ D.toPre.P.A).left ^ (1 : ℤ)
         rw [mul_comm (T.pr k) (T.pr l)]
         ac_rfl
-      have H1 := GlobalTheory.T.prod_four_maps_lam_pow_eq_one U W A (fun k l => Lh (T.pr k) (T.pr l)) lamS hW
+      have H1 := _root_.GlobalTheory.SymmProd.prod_four_maps_eq_one U W A (fun k l => Lh (T.pr k) (T.pr l)) lamS hW
       have H2 : ∏ q : Fin 4 × (Fin r × Fin r), (∏ k, ∏ l, Lh (T.pr k) (T.pr l) ^
           (M q.1 q.2.1 k * M q.1 q.2.2 l)) ^ E q = 1 := by
         rw [Fintype.prod_prod_type]
@@ -136,7 +136,7 @@ theorem mside : ∀ (R : Type) [CommRing R] [IsDomain R] (I : Ideal R) (D : DegD
     rw [Category.assoc, T.c_pr]
   have lamS : ∀ k l, val (D.toPre.tau (T.xe y k) (T.xe y l)) (𝟙 _) z J =
       val (D.toPre.tau (T.xe y l) (T.xe y k)) (𝟙 _) z J := fun k l => DVR.tauK_symm hJ _ _
-  have H1 := GlobalTheory.T.prod_four_maps_lam_pow_eq_one _ W A _ lamS hW
+  have H1 := _root_.GlobalTheory.SymmProd.prod_four_maps_eq_one _ W A _ lamS hW
   have H2 : ∏ q : Fin 4 × (Fin r × Fin r), (∏ k, ∏ l, val (D.toPre.tau (T.xe y k) (T.xe y l)) (𝟙 _) z J ^
       (M q.1 q.2.1 k * M q.1 q.2.2 l)) ^ E q = 1 := by
     rw [Fintype.prod_prod_type]

@@ -56,7 +56,7 @@ namespace GlobalTheory.EtaCMType
 theorem exists_eta_cmType_k : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (B : Base F E),
     _root_.UpperTheory.TP.W.GoodK σ B → ∃ η : (AF F ⊗[F] E)ˣ →* Circle, IsHeckeCharF η ∧ ResEtaF η 1 ∧ HasExp B.emb η (fun _ => 1) := by
   intro F E _ _ _ _ _ σ B hB
-  obtain ⟨ξ, hξ, hξe⟩ := _root_.GlobalTheory.T.exists_hecke_character_trivial_exponent F E σ B hB
+  obtain ⟨ξ, hξ, hξe⟩ := _root_.GlobalTheory.WeilTypeChar.exists_weil_char_k F E σ B hB
   obtain ⟨η₀, hη₀, huniq⟩ := GlobalTheory.IdeleNormChar.globalNormIndexTwo F E hB.cm.2.2.1
   have hη₀' : IsEtaF E η₀ := hη₀
   let lam : (AF F)ˣ →* Circle := ξ.comp (idFF F E) * η₀⁻¹
@@ -71,14 +71,14 @@ theorem exists_eta_cmType_k : ∀ (F E : Type) [Field F] [NumberField F] [Field 
   have hlinf : ∀ a : (AF F)ˣ, At (evI F) ((a : AF F) - 1) → lam a = 1 := by
     intro a ha
     have e1 := hξe _ (at_idFF a ha)
-    have e2 := _root_.GlobalTheory.T.eta_character_archimedean_formula F E σ B hB η₀ hη₀' a ha
+    have e2 := _root_.GlobalTheory.EtaSignReal.eta_eq_prod_sign_k F E σ B hB η₀ hη₀' a ha
     have e3 : ξ (idFF F E a) = η₀ a := by
       apply Circle.ext
       rw [e1, e2]
       refine Finset.prod_congr rfl fun w _ => ?_
       rw [zpow_one]
     rw [hlam, e3, mul_inv_cancel]
-  obtain ⟨lam', hl'H, hl'inf, hl'res⟩ := _root_.GlobalTheory.T.extend_character_to_norm_group F E σ B hB lam hlc hlF hlinf
+  obtain ⟨lam', hl'H, hl'inf, hl'res⟩ := _root_.GlobalTheory.HeckeExtend.exists_extend_hecke_k F E σ B hB lam hlc hlF hlinf
   refine ⟨ξ * lam'⁻¹, ⟨hξ.1.mul hl'H.1.inv, fun x => ?_⟩, ⟨⟨η₀, hη₀'⟩, fun η hη a => ?_⟩, fun z hz => ?_⟩
   · change ξ _ * (lam' _)⁻¹ = 1
     rw [hξ.2, hl'H.2, inv_one, one_mul]

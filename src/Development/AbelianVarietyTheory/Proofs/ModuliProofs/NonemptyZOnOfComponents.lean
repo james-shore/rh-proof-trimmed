@@ -110,8 +110,7 @@ theorem injective_of_flat {o R : Type} [CommRing o] [IsDomain o] [CommRing R] [N
   have : Module.Flat o R := RingHom.flat_algebraMap_iff.1 h
   FaithfulSMul.algebraMap_injective o R
 
-theorem spMap_comp {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (y : R →+* R') (φ : R' →+* R'') :
-    spMap φ ≫ spMap y = spMap (φ.comp y) := (Spec.map_comp (CommRingCat.ofHom y) (CommRingCat.ofHom φ)).symm
+alias spMap_comp := _root_.GlobalTheory.spMap_comp_ring
 
 theorem exists_integral_chart {o : Type} [CommRing o] [IsDomain o] [IsNoetherianRing o] {X : Scheme.{0}} [IsReduced X]
     (s : X ⟶ Sp o) [LocallyOfFiniteType s] [Flat s] {ξ : X} (hξ : ξ ∈ genericPoints X)

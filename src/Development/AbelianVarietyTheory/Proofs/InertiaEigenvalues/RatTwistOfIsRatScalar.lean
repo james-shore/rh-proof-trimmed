@@ -399,11 +399,6 @@ end Lemmas
 
 section Main
 
-theorem natM_mem_Mb (T : CoreJ D) : ((T.Q.l.M : ℕ) : 𝓞 D.host.E) ∈ T.Q.l.Mb := by
-  have hle : T.Q.l.Mb * T.Q.l.Mb.map (T.Q.H.bar : 𝓞 D.host.E →+* 𝓞 D.host.E) ≤ T.Q.l.Mb := Ideal.mul_le_left
-  rw [T.Q.l.prod] at hle
-  exact hle (Ideal.mem_span_singleton_self _)
-
 variable {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL]
 
 theorem harmVec_eq {Rl : RealDat3 D A3 Ks} {cG : G0 Rl.Pg D.R.r ≃* G0g D.nd} {ρ : Setup D.ntw} (hpin : RealPin Rl cG ρ)
@@ -459,7 +454,7 @@ theorem ratTwist_of_isRatScalar (hRF : GlobalTheory.NT.RayField) {T : CoreJ D} [
     have h2 : T.Q.l.Mb ≤ PP.asIdeal := by
       rw [hhalf.1]
       exact Ideal.prod_le_inf.trans (Finset.inf_le hPP)
-    exact h2 (natM_mem_Mb T)
+    exact h2 (_root_.GlobalTheory.RefDatumLev.natM_mem_Mb T)
   have hdat0 := isLevDatum_vecFlat (ρ.B i j b) (hρ.base i j b) (ρ.tw i b k Q ψ) ht hadm (T.Q.l.M * C.d.pd)
     C.σ₂.fieldRange (fun PP hPP => by
       rw [Nat.cast_mul]

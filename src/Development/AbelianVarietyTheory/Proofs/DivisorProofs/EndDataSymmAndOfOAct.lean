@@ -59,10 +59,6 @@ namespace GlobalTheory.Mum.RosatiSymmetry
 
 variable {S : Scheme.{0}} (A : Over S) [GrpObj A] [IsCommMonObj A]
 
-theorem padd_comm' {T : Over S} (x y : T ⟶ A) : padd A x y = padd A y x := by
-  show x * y = y * x
-  exact mul_comm x y
-
 abbrev sw : A ⊗ A ⟶ A ⊗ A := lift (snd A A) (fst A A)
 
 theorem sw_padd (x y : A ⊗ A ⟶ A) : sw A ≫ padd A x y = padd A (sw A ≫ x) (sw A ≫ y) := by
@@ -73,13 +69,13 @@ theorem formEq_sw (f g : A ⟶ A) (Y : Scheme.{0}) (p : Y ⟶ (A ⊗ A).left) :
       (fun k => p ≫ rosatiφ A f g k) rosatiε := by
   intro U _ h
   have e0 : (sw A).left ≫ (padd A (fst A A ≫ g) (snd A A)).left = (padd A (fst A A) (snd A A ≫ g)).left := by
-    rw [← Over.comp_left, sw_padd, padd_comm']; simp only [lift_fst_assoc, lift_snd]
+    rw [← Over.comp_left, sw_padd, _root_.ReciprocityTheory.ChartRestriction.G.Out.TLinPf.padd_comm]; simp only [lift_fst_assoc, lift_snd]
   have e1 : (sw A).left ≫ (fst A A ≫ g).left = (snd A A ≫ g).left := by
     rw [← Over.comp_left, lift_fst_assoc]
   have e2 : (sw A).left ≫ (snd A A).left = (fst A A).left := by
     rw [← Over.comp_left, lift_snd]
   have e3 : (sw A).left ≫ (padd A (fst A A) (snd A A ≫ f)).left = (padd A (fst A A ≫ f) (snd A A)).left := by
-    rw [← Over.comp_left, sw_padd, padd_comm']; simp only [lift_fst, lift_snd_assoc]
+    rw [← Over.comp_left, sw_padd, _root_.ReciprocityTheory.ChartRestriction.G.Out.TLinPf.padd_comm]; simp only [lift_fst, lift_snd_assoc]
   have e4 : (sw A).left ≫ (fst A A).left = (snd A A).left := by
     rw [← Over.comp_left, lift_fst]
   have e5 : (sw A).left ≫ (snd A A ≫ f).left = (fst A A ≫ f).left := by

@@ -109,31 +109,9 @@ theorem map_sumPl (p : ∀ i, V i →ₗ[ℂ] W i) (L : ∀ i, Module.End ℂ (V
 
 end Tensor
 
-theorem i_tensirr : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (R S : ℕ) (M : ι → Formalism.BasicNotions.TH.GKMod R S), (∀ i, Formalism.MainNotions.SchurIrreducible.IrrGK (M i) ∧ GlobalTheory.RealLift.ScalarEnd (M i)) → Nontrivial (PiTensorProduct ℂ fun i => (M i).V) ∧ ∀ N : Submodule ℂ (PiTensorProduct ℂ fun i => (M i).V), (∀ i, ∀ Z ∈ Formalism.BasicNotions.TH.upq R S, ∀ y ∈ N, GlobalTheory.RealLift.atPl i ((M i).act Z) y ∈ N) → N = ⊥ ∨ N = ⊤ := GlobalTheory.TensIrr.tensor_irr
+alias i_actslaws := _root_.PositivityTheory.RL.actsLaws
 
-theorem i_locfin : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (V : ι → Type) [∀ i, AddCommGroup (V i)] [∀ i, Module ℂ (V i)] (L : ∀ i, Module.End ℂ (V i)), (∀ i, GlobalTheory.RealLift.LocFin (L i)) → GlobalTheory.RealLift.LocFin (GlobalTheory.RealLift.sumPl L) := GlobalTheory.RealLift.locFin_sumPl
-
-theorem i_expact : ∀ (F : Type) [Field F] [NumberField F] (κ V : Type) [Fintype κ] [AddCommGroup V] [Module ℂ V] (Φ : V →ₗ[ℂ] GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.SInf F κ) (L : Module.End ℂ V) (om : Multiplicative ℝ →* Module.End ℂ ((κ → Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF F) → ℂ)), GlobalTheory.RealLift.LocFin L → (∀ t, ∀ l ∈ (GlobalTheory.WeilM.adeleClass F).adm κ, l ∘ₗ om t ∈ (GlobalTheory.WeilM.adeleClass F).adm κ) → (∀ T, GlobalTheory.RealLift.SD (fun t => om (Multiplicative.ofAdd t)) (Φ T) (Φ (L T))) → ∃ U : Module.End ℂ V, GlobalTheory.RealLift.IsExp L U ∧ ∀ T, GlobalTheory.RealLift.SA (om (Multiplicative.ofAdd 1)) (Φ T) (Φ (U T)) := GlobalTheory.ExpAct.expAct_fock
-
-theorem i_actslaws : GlobalTheory.RealLift.ActsLaws := PositivityTheory.RL.actsLaws
-
-theorem i_derex : GlobalTheory.RealLift.DerEx := PositivityTheory.RL.derEx
-
-theorem i_fockex : GlobalTheory.RealLift.DerEx → GlobalTheory.RealLift.FockEx := PositivityTheory.RL.fockEx
-
-theorem i_vacline : GlobalTheory.RealLift.DerEx → GlobalTheory.RealLift.VacLine := PositivityTheory.RL.vacLine
-
-theorem i_polrange : GlobalTheory.RealLift.ActsLaws → GlobalTheory.RealLift.DerEx → GlobalTheory.RealLift.VacLine → GlobalTheory.RealLift.PolRange := PositivityTheory.ThKEnd.Comp.PR.polRange_of
-
-theorem i_genex : GlobalTheory.RealLift.GenEx := PositivityTheory.RL.genEx
-
-theorem i_lineex : GlobalTheory.RealLift.LineEx := PositivityTheory.RL.lineEx
-
-theorem i_kline : GlobalTheory.RealLift.LineEx → GlobalTheory.RealLift.KLine := PositivityTheory.RL.kLine
-
-theorem i_frameex : GlobalTheory.RealLift.FrameEx := PositivityTheory.RL.frameEx
-
-theorem i_parity : GlobalTheory.RealLift.Parity := PositivityTheory.RL.even_im_hermitian_sub
+alias i_frameex := _root_.PositivityTheory.RL.frameEx
 
 section Helpers
 
@@ -142,22 +120,6 @@ variable {ι : Type} [Fintype ι] [DecidableEq ι] {V W : ι → Type} [∀ i, A
 
 theorem atPl_eq (w : ι) (L : Module.End ℂ (V w)) :
     atPl w L = PiTensorProduct.mapMultilinear ℂ V V (Function.update (fun i => (LinearMap.id : V i →ₗ[ℂ] V i)) w L) := rfl
-
-theorem atPl_add (w : ι) (L L' : Module.End ℂ (V w)) : atPl w (L + L') = atPl w L + atPl w L' := by
-  simp only [atPl_eq, MultilinearMap.map_update_add]
-
-theorem atPl_smul (w : ι) (c : ℂ) (L : Module.End ℂ (V w)) : atPl w (c • L) = c • atPl w L := by
-  simp only [atPl_eq, MultilinearMap.map_update_smul, RingHom.id_apply]
-
-theorem atPl_one (w : ι) : atPl w (1 : Module.End ℂ (V w)) = 1 := by
-  rw [atPl_eq, show Function.update (fun i => (LinearMap.id : V i →ₗ[ℂ] V i)) w 1 = fun i => LinearMap.id by
-    funext i; by_cases h : i = w
-    · subst h; simp; rfl
-    · simp [Function.update_of_ne h]]
-  exact PiTensorProduct.map_id
-
-theorem atPl_zero (w : ι) : atPl w (0 : Module.End ℂ (V w)) = 0 := by
-  simp only [atPl_eq, MultilinearMap.map_update_zero]
 
 theorem map_surj (p : ∀ i, V i →ₗ[ℂ] W i) (hp : ∀ i, Function.Surjective (p i)) :
     Function.Surjective (PiTensorProduct.map p) := by
@@ -233,7 +195,7 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 
 theorem sumPl_zero {ι : Type} [Fintype ι] [DecidableEq ι] {V : ι → Type} [∀ i, AddCommGroup (V i)] [∀ i, Module ℂ (V i)] :
     sumPl (fun i => (0 : Module.End ℂ (V i))) = 0 := by
-  simp [sumPl, atPl_zero]
+  simp [sumPl, _root_.PositivityTheory.ThKEnd.Comp.PR.atPl_zero']
 
 include Φ in
 theorem pol_eq (hrange : LinearMap.range Φ = M.Pol B.ψ B.emb) {f : SInf F (Fin n × Fin d)} (hf : f ∈ M.Pol B.ψ B.emb) :
@@ -258,7 +220,7 @@ theorem side_quot (x t : InfinitePlace F → ℚ) (hp : ∀ w, IsLift (x w) (t w
     exact map_surj p fun w => (hp w).1
   · intro γ hγ f hf f₁ hf₁
     obtain ⟨T, rfl⟩ := pol_eq B M Φ hrange hf
-    obtain ⟨Yg, -, hY⟩ := i_genex F E σ (Fin n) P Q B.emb (incM F Y.J) 1 A hcm hA γ hγ
+    obtain ⟨Yg, -, hY⟩ := _root_.PositivityTheory.RL.genEx F E σ (Fin n) P Q B.emb (incM F Y.J) 1 A hcm hA γ hγ
     have hsd := hact γ hγ Yg hY T
     have h1 := (i_actslaws F _ (Φ T) _ f₁).1 _ (fun t => map_zero _) hsd
     have e := (i_actslaws F _ (Φ T) _ f₁).2.2.1 _ h1 hf₁
@@ -266,9 +228,9 @@ theorem side_quot (x t : InfinitePlace F → ℚ) (hp : ∀ w, IsLift (x w) (t w
     rfl
   · intro k hk f hf f₁ hf₁
     obtain ⟨T, rfl⟩ := pol_eq B M Φ hrange hf
-    obtain ⟨γ, hγ, Yg, hgen, hKC, hγ1⟩ := i_kline i_lineex F E σ (Fin n) P Q B.emb (incM F Y.J) 1 A Y.θ hcm hA hAθ k hk.1 hk.2
-    have hloc := i_locfin _ _ _ (fun w => locFin_fock1 P Q R S (Yg w) (hKC w) (c w * (Yg w).trace))
-    obtain ⟨U, hU, hSA⟩ := i_expact F (Fin n × Fin d) _ Φ _ ((om.comp (MonoidHom.inl _ _)).comp γ) hloc
+    obtain ⟨γ, hγ, Yg, hgen, hKC, hγ1⟩ := _root_.PositivityTheory.RL.kLine _root_.PositivityTheory.RL.lineEx F E σ (Fin n) P Q B.emb (incM F Y.J) 1 A Y.θ hcm hA hAθ k hk.1 hk.2
+    have hloc := _root_.GlobalTheory.RealLift.locFin_sumPl _ _ _ (fun w => locFin_fock1 P Q R S (Yg w) (hKC w) (c w * (Yg w).trace))
+    obtain ⟨U, hU, hSA⟩ := _root_.GlobalTheory.ExpAct.expAct_fock F (Fin n × Fin d) _ Φ _ ((om.comp (MonoidHom.inl _ _)).comp γ) hloc
       (fun t l hl => hadm _ l hl) (fun T => hact γ hγ Yg hgen T)
     have h1 := (i_actslaws F _ (Φ T) (Φ (U T)) f₁).2.1 _ (map_zero _) (hSA T)
     change Acts _ (om (MonoidHom.inl _ _ (γ (Multiplicative.ofAdd 1)))) _ _ at h1
@@ -322,8 +284,8 @@ theorem side_wcpt (x t : InfinitePlace F → ℚ) (hp : ∀ w, IsLift (x w) (t w
   have hpΦ : ∀ T, (PiTensorProduct.map p ∘ₗ Ψ) (Φ T) = PiTensorProduct.map p T := fun T => by
     rw [LinearMap.comp_apply, ← LinearMap.comp_apply Ψ Φ, hΨ, LinearMap.id_apply]
   obtain ⟨T, rfl⟩ := pol_eq B M Φ hrange hf
-  have hloc := i_locfin _ _ _ (fun w => locFin_fock2 P Q R S (Yg w) (hKC w) (c w * (Yg w).trace))
-  obtain ⟨U, hU, hSA⟩ := i_expact F (Fin n × Fin d) _ Φ _ ((om.comp (MonoidHom.inr _ _)).comp γ) hloc
+  have hloc := _root_.GlobalTheory.RealLift.locFin_sumPl _ _ _ (fun w => locFin_fock2 P Q R S (Yg w) (hKC w) (c w * (Yg w).trace))
+  obtain ⟨U, hU, hSA⟩ := _root_.GlobalTheory.ExpAct.expAct_fock F (Fin n × Fin d) _ Φ _ ((om.comp (MonoidHom.inr _ _)).comp γ) hloc
     (fun t l hl => hadm _ l hl) (fun T => hact γ hγ Yg hY T)
   have h1 := (i_actslaws F _ (Φ T) (Φ (U T)) f₁).2.1 _ (map_zero _) (hSA T)
   simp only [MonoidHom.coe_comp, Function.comp_apply, hγ1] at h1
@@ -338,7 +300,7 @@ theorem kReal_of_lie (hsec : GlobalTheory.RealLift.LieSecond) (hfst : GlobalTheo
   intro F E _ _ _ _ _ σ B a a' G X om om' h
   obtain ⟨hb, hg, hc, hw, hw'⟩ := h
   choose N p p' hp hp' hirr hsc using fun w => onePlace a a' G.p G.q (B.mα w - B.mβ w) hg.even (hg.kappa w)
-    (i_parity F E σ B a a' G X om om' ⟨hb, hg, hc, hw, hw'⟩ w) hg.eBig hg.aBig
+    (_root_.PositivityTheory.RL.even_im_hermitian_sub F E σ B a a' G X om om' ⟨hb, hg, hc, hw, hw'⟩ w) hg.eBig hg.aBig
   choose A hA hAθ using fun w => i_frameex _ _ _ _ _ (hg.hV.sig w) (hg.hV.cartan w)
   choose A' hA' hAθ' using fun w => i_frameex _ _ _ _ _ (hg.hV'.sig w) (hg.hV'.cartan w)
   choose C hC hCθ using fun w => i_frameex _ _ _ _ _ (hg.hW.sig w) (hg.hW.cartan w)
@@ -350,12 +312,12 @@ theorem kReal_of_lie (hsec : GlobalTheory.RealLift.LieSecond) (hfst : GlobalTheo
     rw [incM_map_piInf]; exact hC w
   have fr : Framed B.emb (incM F G.V.J) (incM F G.W.J) 1 Complex.I A C := ⟨one_mul _, hA1, hC1⟩
   have fr' : Framed B.emb (incM F G.V'.J) (incM F G.W.J) 1 Complex.I A' C := ⟨one_mul _, hA1', hC1⟩
-  have hvl := i_vacline i_derex
-  have hfe := i_fockex i_derex
+  have hvl := _root_.PositivityTheory.RL.vacLine _root_.PositivityTheory.RL.derEx
+  have hfe := _root_.PositivityTheory.RL.fockEx _root_.PositivityTheory.RL.derEx
   obtain ⟨Φ, hΦ⟩ := hfe F E σ _ _ _ _ _ _ _ B.ψ B.emb _ _ G.M.co 1 Complex.I A C hb.cm hb.std fr
   obtain ⟨Φ', hΦ'⟩ := hfe F E σ _ _ _ _ _ _ _ B.ψ B.emb _ _ G.M'.co 1 Complex.I A' C hb.cm hb.std fr'
-  have hr := i_polrange i_actslaws i_derex hvl F E σ _ _ _ _ _ _ G.V G.W G.M B.ψ B.emb A C Φ hb.cm hb.std fr hAθ hCθ hΦ
-  have hr' := i_polrange i_actslaws i_derex hvl F E σ _ _ _ _ _ _ G.V' G.W G.M' B.ψ B.emb A' C Φ' hb.cm hb.std fr' hAθ' hCθ hΦ'
+  have hr := _root_.PositivityTheory.ThKEnd.Comp.PR.polRange_of i_actslaws _root_.PositivityTheory.RL.derEx hvl F E σ _ _ _ _ _ _ G.V G.W G.M B.ψ B.emb A C Φ hb.cm hb.std fr hAθ hCθ hΦ
+  have hr' := _root_.PositivityTheory.ThKEnd.Comp.PR.polRange_of i_actslaws _root_.PositivityTheory.RL.derEx hvl F E σ _ _ _ _ _ _ G.V' G.W G.M' B.ψ B.emb A' C Φ' hb.cm hb.std fr' hAθ' hCθ hΦ'
   have hwp : IsUWeilPair (cA σ) (adeleClass F) B.ψ (-1) (incM F G.V.J) (incM F G.W.J) G.M.co X.β (X.β / X.α) om := hw
   have hwp' : IsUWeilPair (cA σ) (adeleClass F) B.ψ (-1) (incM F G.V'.J) (incM F G.W.J) G.M'.co X.α (X.α / X.β) om' := hw'
   have hW2 := hsec F E σ _ _ _ _ _ _ _ B.ψ B.emb _ _ G.M.co 1 Complex.I A C Φ _ X.β B.mβ hb.cm hb.std fr hΦ hwp.1 hc.expβ
@@ -383,14 +345,14 @@ theorem kReal_of_lie (hsec : GlobalTheory.RealLift.LieSecond) (hfst : GlobalTheo
   refine ⟨side_quot B G.M om N p Φ Ψ _ _ hp _ hx hΨ hr hb.cm A hA1 hAθ hW1 hadm,
     side_quot B G.M' om' N p' Φ' Ψ' _ _ hp' _ hx' hΨ' hr' hb.cm A' hA1' hAθ' hW1' hadm', ?_, ?_, ?_, ?_⟩
   · intro γ hγ f hf f' hf' f₁ f₁' h1 h1' e
-    obtain ⟨Yg, -, hY⟩ := i_genex F E σ (Fin (a + a')) _ _ B.emb (incM F G.W.J) Complex.I C hb.cm hC1 γ hγ
+    obtain ⟨Yg, -, hY⟩ := _root_.PositivityTheory.RL.genEx F E σ (Fin (a + a')) _ _ B.emb (incM F G.W.J) Complex.I C hb.cm hC1 γ hγ
     change (PiTensorProduct.map p ∘ₗ Ψ) f₁ = (PiTensorProduct.map p' ∘ₗ Ψ') f₁'
     rw [side_wlie B G.M om N p Φ Ψ _ _ hp _ _ hct hΨ hr C hW2 γ hγ Yg hY hf h1,
       side_wlie B G.M' om' N p' Φ' Ψ' _ _ hp' _ _ hct' hΨ' hr' C hW2' γ hγ Yg hY hf' h1']
     exact congrArg _ e
   · intro k hk f hf f' hf' f₁ f₁' h1 h1' e
     obtain ⟨γ, hγ, Yg, hgen, hKC, hγ1⟩ :=
-      i_kline i_lineex F E σ (Fin (a + a')) _ _ B.emb (incM F G.W.J) Complex.I C G.W.θ hb.cm hC1 hCθ k hk.1 hk.2
+      _root_.PositivityTheory.RL.kLine _root_.PositivityTheory.RL.lineEx F E σ (Fin (a + a')) _ _ B.emb (incM F G.W.J) Complex.I C G.W.θ hb.cm hC1 hCθ k hk.1 hk.2
     obtain ⟨T, L, U, e1, e2, hU, hL⟩ := side_wcpt B G.M om N p Φ Ψ _ _ hp _ _ hct hΨ hr C hW2 hadm γ hγ Yg hgen hKC hγ1 hf h1
     obtain ⟨T', L', U', e1', e2', hU', hL'⟩ :=
       side_wcpt B G.M' om' N p' Φ' Ψ' _ _ hp' _ _ hct' hΨ' hr' C hW2' hadm' γ hγ Yg hgen hKC hγ1 hf' h1'
@@ -399,16 +361,16 @@ theorem kReal_of_lie (hsec : GlobalTheory.RealLift.LieSecond) (hfst : GlobalTheo
     rw [e2, e2']
     rw [e1, e1'] at e
     exact exp_equiv hU hU' hL hL' e
-  · exact (i_tensirr _ _ _ N fun w => ⟨hirr w, hsc w⟩).1
+  · exact (_root_.GlobalTheory.TensIrr.tensor_irr _ _ _ N fun w => ⟨hirr w, hsc w⟩).1
   · intro N0 hN0 _
-    refine (i_tensirr _ _ _ N fun w => ⟨hirr w, hsc w⟩).2 N0 fun w Z hZ y hy => ?_
+    refine (_root_.GlobalTheory.TensIrr.tensor_irr _ _ _ N fun w => ⟨hirr w, hsc w⟩).2 N0 fun w Z hZ y hy => ?_
     obtain ⟨T, rfl⟩ := map_surj p (fun w => (hp w).1) y
     let Yg : InfinitePlace F → Mat _ _ := Function.update (fun _ => 0) w Z
     have hYu : ∀ w', Yg w' ∈ upq _ _ := fun w' => by
       by_cases h : w' = w
       · subst h; simpa [Yg] using hZ
       · simpa [Yg, Function.update_of_ne h] using zero_mem_upq _ _
-    obtain ⟨γ, hγ, hgen⟩ := i_lineex F E σ (Fin (a + a')) _ _ B.emb (incM F G.W.J) Complex.I C hb.cm hC1 Yg hYu
+    obtain ⟨γ, hγ, hgen⟩ := _root_.PositivityTheory.RL.lineEx F E σ (Fin (a + a')) _ _ B.emb (incM F G.W.J) Complex.I C hb.cm hC1 Yg hYu
     have hpΦ : (PiTensorProduct.map p ∘ₗ Ψ) (Φ T) = PiTensorProduct.map p T := by
       rw [LinearMap.comp_apply, ← LinearMap.comp_apply Ψ Φ, hΨ, LinearMap.id_apply]
     have hf : Φ T ∈ G.M.Pol B.ψ B.emb := hr ▸ LinearMap.mem_range_self Φ T
@@ -421,9 +383,9 @@ theorem kReal_of_lie (hsec : GlobalTheory.RealLift.LieSecond) (hfst : GlobalTheo
         atPl w ((N w).act Z) + (((B.mβ w : ℂ) / 2) * Z.trace) • 1 := by
       unfold sumPl
       rw [Finset.sum_eq_single w]
-      · simp [Yg, atPl_add, atPl_smul, atPl_one]
+      · simp [Yg, _root_.GlobalTheory.TensIrr.atPl_add, _root_.GlobalTheory.TensIrr.atPl_smul, _root_.GlobalTheory.TensIrr.atPl_one]
       · intro w' _ h
-        simp [Yg, Function.update_of_ne h, atPl_zero]
+        simp [Yg, Function.update_of_ne h, _root_.PositivityTheory.ThKEnd.Comp.PR.atPl_zero']
       · simp
     rw [hsum, LinearMap.add_apply, LinearMap.smul_apply, Module.End.one_apply] at hin
     simpa using N0.sub_mem hin (N0.smul_mem (((B.mβ w : ℂ) / 2) * Z.trace) hy)

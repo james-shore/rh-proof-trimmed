@@ -55,6 +55,7 @@ import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.IndefiniteReal.AutomorphicEvaluation
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RowLevelMatch
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RowsJoinPinned
+import Formalism.SharpRestriction.CuspSpanNormBounds.LowestKTypeMultiplicity
 
 @[expose] public section
 
@@ -161,7 +162,7 @@ theorem dsData_gap_integrable : ∀ {D : D7} (X : Formalism.L2.SG.HidaSetting.Hi
         have h1 := (X.low v).1
         rw [h0, norm_zero] at h1
         exact zero_ne_one h1
-      have e2 : X.dv v = d := Formalism.L2.SG.Pf.RowDictPf.fdegOf_eq hd hw
+      have e2 : X.dv v = d := _root_.Formalism.MainNotions.LowestKTypeMultiplicity.fdegOf_of_isFdeg hd hw
       rw [e2]
       exact hd
 

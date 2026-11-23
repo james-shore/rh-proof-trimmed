@@ -53,16 +53,6 @@ open scoped ENNReal ContDiff
 
 namespace GlobalTheory.OTY
 
-theorem peakFin_exists_pos_le {Y : Type} (T : Finset Y) (f : Y → ℝ) (hf : ∀ P, 0 < f P) :
-    ∃ r : ℝ, 0 < r ∧ ∀ P ∈ T, r ≤ f P := by
-  first
-  | exact @_root_.GlobalTheory.PositiveLowerBoundFinset.pos_lower_bound_on_finset
-  | exact _root_.GlobalTheory.PositiveLowerBoundFinset.pos_lower_bound_on_finset
-  | (apply _root_.GlobalTheory.PositiveLowerBoundFinset.pos_lower_bound_on_finset <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PositiveLowerBoundFinset.pos_lower_bound_on_finset <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PositiveLowerBoundFinset.pos_lower_bound_on_finset <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PositiveLowerBoundFinset.pos_lower_bound_on_finset ..)
-
 theorem peak_sections_finite : ∀ (n : ℕ) (Y : Type) [TopologicalSpace Y] [T2Space Y] [SecondCountableTopology Y] [MeasurableSpace Y] [BorelSpace Y] (ι La : Type) [AddCommGroup La] (A : WeightedAtlas n Y ι La), ∀ (C : Cover A), ∀ (H : La), (∀ i y, y ∈ (A.chart i).source → ∀ ξ : Fin n → ℂ, ξ ≠ 0 → 0 < A.leviAt i (A.ph H i) y ξ) → ∀ T : Finset Y, ∃ (q : Y → V n → ℂ) (c Cq r0 : ℝ), 0 < c ∧ 0 < r0 ∧ (∀ P ∈ T, Differentiable ℂ (q P) ∧ closedBall (A.chart (A.pick P) P) r0 ⊆ (A.chart (A.pick P)).target ∧ ∀ v ∈ closedBall (A.chart (A.pick P) P) r0, A.ph H (A.pick P) ((A.chart (A.pick P)).symm v) - 2 * (q P v).re ≤ Cq * ‖v - (A.chart (A.pick P) P)‖ ^ 2) ∧ ∀ (G : La) (p : Y → V n → ℂ), (∀ P, Differentiable ℂ (p P)) → ∃ K : ℝ, 0 ≤ K ∧ ∀ k : ℕ, ∃ F0 : ι → Y → ℂ, A.IsSSec (A.kap + (G + k • H)) F0 ∧ (∀ P ∈ T, ∀ v ∈ ball (A.chart (A.pick P) P) r0, F0 (A.pick P) ((A.chart (A.pick P)).symm v) = p P v * Complex.exp (k * q P v)) ∧ n1 C (G + k • H) F0 ≤ ENNReal.ofReal (K * Real.exp (-c * k)) := by
   intro n Y _ _ _ _ _ ι La _ A C H hH T
   classical
@@ -85,9 +75,9 @@ theorem peak_sections_finite : ∀ (n : ℕ) (Y : Type) [TopologicalSpace Y] [T2
     · intro ξ hξ
       exact hH (A.pick P) P (A.mem_pick P) ξ hξ
   choose q c Cc ρ hq hc hC hρ hsub hb using h7
-  obtain ⟨r0, hr0, hr0le⟩ := peakFin_exists_pos_le T (fun P => ρ P / 2)
+  obtain ⟨r0, hr0, hr0le⟩ := _root_.GlobalTheory.PositiveLowerBoundFinset.pos_lower_bound_on_finset T (fun P => ρ P / 2)
     (fun P => half_pos (hρ P))
-  obtain ⟨c0, hc0, hc0le⟩ := peakFin_exists_pos_le T (fun P => c P * ρ P ^ 2 / 4)
+  obtain ⟨c0, hc0, hc0le⟩ := _root_.GlobalTheory.PositiveLowerBoundFinset.pos_lower_bound_on_finset T (fun P => c P * ρ P ^ 2 / 4)
     (fun P => by have := hc P; have := hρ P; positivity)
   have hrρ : ∀ P ∈ T, r0 ≤ ρ P := fun P hP => by
     have h1 : r0 ≤ ρ P / 2 := hr0le P hP
@@ -106,7 +96,7 @@ theorem peak_sections_finite : ∀ (n : ℕ) (Y : Type) [TopologicalSpace Y] [T2
     choose K hK F hF using h9
     have hKs : 0 ≤ ∑ P ∈ T, K P := Finset.sum_nonneg fun P _ => hK P
     refine ⟨(T.card : ℝ) * ∑ P ∈ T, K P, by positivity, fun k => ?_⟩
-    obtain ⟨hs, hn⟩ := GlobalTheory.T.finSum_smoothSection_dbarEnergy_le n Y ι La A C (G + k • H) T (fun P => F P k)
+    obtain ⟨hs, hn⟩ := _root_.GlobalTheory.OTY.isSSec_finset_sum_and_n1_le_card_mul_sum n Y ι La A C (G + k • H) T (fun P => F P k)
       (fun P _ => (hF P k).1)
     refine ⟨_, hs, fun P hP v hv => ?_, hn.trans ?_⟩
     · have hv' : v ∈ ball (A.chart (A.pick P) P) (ρ P / 2) := ball_subset_ball (hr0le P hP) hv

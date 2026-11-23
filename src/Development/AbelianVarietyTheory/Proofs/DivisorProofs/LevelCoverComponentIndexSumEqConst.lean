@@ -57,8 +57,8 @@ theorem cover_degree_const : ∀ (D : D7) (j : ℕ) (H : ReciprocityTheory.Chart
   letI : Algebra c.F (CAt σ₂) := (σ₂.comp (d.eF : c.F →+* d.c₂.F)).toAlgebra
   letI : Field (CAt σ₂) := inferInstanceAs (Field ℂ)
   letI : IsAlgClosed (CAt σ₂) := inferInstanceAs (IsAlgClosed ℂ)
-  have hC := GlobalTheory.T.complexFramedLifts_equiv_movedGroupCosets D j H Dw l Xo c U dict d U₂ dict₂ hL hL₂ hd σ₂ hσ₂ pr δ hπ
-  have hK := GlobalTheory.T.card_framed_lifts_levelCover_const D j H Dw l Xo c U dict d U₂ dict₂ hL hL₂ hd σ₂ hσ₂
+  have hC := _root_.GlobalTheory.LevModel.frLifts_equiv_cosets D j H Dw l Xo c U dict d U₂ dict₂ hL hL₂ hd σ₂ hσ₂ pr δ hπ
+  have hK := _root_.GlobalTheory.LevDegree.card_lifts_const D j H Dw l Xo c U dict d U₂ dict₂ hL hL₂ hd σ₂ hσ₂
   have hfin : ∀ k (k₂ : {k₂ // pr k₂ = k}), Finite (↥((U (σ₂.comp (d.eF : c.F →+* d.c₂.F))).X k).Γ ⧸ (((U₂ σ₂).X k₂.1).Γ.map (MulAut.conj (δ k₂.1)).toMonoidHom).subgroupOf ((U (σ₂.comp (d.eF : c.F →+* d.c₂.F))).X k).Γ) := by
     intro k k₂
     have h := (hπ k₂.1).2.2.2.1

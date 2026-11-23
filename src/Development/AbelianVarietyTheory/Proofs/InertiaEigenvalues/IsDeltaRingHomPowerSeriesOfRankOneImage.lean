@@ -73,7 +73,7 @@ theorem GlobalTheory.sdelta_of_rank_one : ∀ (l : ℕ) [Fact l.Prime] (a : ℕ)
   set S := δLocus (deltaS l a) DC σ with hS
   have hXS : (X : (Wq l a)⟦X⟧) ∈ S := by
     rw [mem_δLocus, deltaS_X, map_zero, hX]
-  have hCS : ∀ w : Wq l a, PowerSeries.C w ∈ S := GlobalTheory.T.C_mem_deltaCommuteLocusSubring_of_isHausdorff l a C DC J hl hH σ
+  have hCS : ∀ w : Wq l a, PowerSeries.C w ∈ S := _root_.GlobalTheory.BSP.C_mem_δLocus_of_hausdorff l a C DC J hl hH σ
   have hpoly : ∀ p : Polynomial (Wq l a), ((p : (Wq l a)⟦X⟧)) ∈ S := by
     intro p
     induction p using Polynomial.induction_on with
@@ -82,7 +82,7 @@ theorem GlobalTheory.sdelta_of_rank_one : ∀ (l : ℕ) [Fact l.Prime] (a : ℕ)
     | monomial n w _ =>
       rw [Polynomial.coe_mul, Polynomial.coe_C, Polynomial.coe_pow, Polynomial.coe_X]
       exact S.mul_mem (hCS w) (S.pow_mem hXS _)
-  refine GlobalTheory.T.isDeltaRingHom_of_dense_deltaCommuteLocus l ((Wq l a)⟦X⟧) C (deltaS l a) DC (J.comap σ) J σ ?_ Ideal.map_comap_le hH ?_
+  refine _root_.GlobalTheory.isδMap_of_dense_δLocus l ((Wq l a)⟦X⟧) C (deltaS l a) DC (J.comap σ) J σ ?_ Ideal.map_comap_le hH ?_
   · rw [Ideal.mem_comap, map_natCast]; exact hl
   · intro x n
     refine ⟨_, hpoly (trunc (e * n) x), ?_⟩

@@ -73,19 +73,19 @@ theorem step {F Ω : Type} [Field F] [Field Ω] [Algebra F Ω] (M : RatModel F �
     ∃ (Ω' : Type) (_ : Field Ω') (_ : Algebra F Ω') (M' : RatModel F Ω') (φ : Ω →ₐ[F] Ω') (f : M'.Z ⟶ M.Z)
       (S' : Fr M' m k'), Good M' (d + (m τ - k τ - 1)) ∧ Refines S S' φ f := by
   obtain ⟨A₀, hA₀⟩ := S.nonempty (genericPoint M.Z)
-  obtain ⟨EE, hE⟩ := GlobalTheory.T.exists_lattice_dualBasisQuotientFrameBlock F Ω M ι m k S τ A₀ hA₀
+  obtain ⟨EE, hE⟩ := _root_.GlobalTheory.FlagBundle.QuotDual.exists_lat_dualBlock F Ω M ι m k S τ A₀ hA₀
   have : Nonempty (Rest m k τ) := ⟨⟨⟨k τ, hk⟩, le_rfl⟩⟩
   obtain ⟨Ω', _, _, M', φ, f, s, hP, hpr⟩ := GlobalTheory.T.exists_projectiveBundleOfLattice_isProjOver F Ω M _ EE hM.1
   have hc : Fintype.card (Rest m k τ) = m τ - k τ := by
     rw [Fintype.card_subtype, ← Fin.card_Ici ⟨k τ, hk⟩]
     exact congrArg _ (Finset.ext fun j => by simp [Fin.le_def])
-  have hA := GlobalTheory.T.isAffineSpaceCoveredMorphism F Ω Ω' M M' φ f _ EE s hP
+  have hA := _root_.GlobalTheory.FlagBundle.ProjBundle.affCover F Ω Ω' M M' φ f _ EE s hP
   rw [hc] at hA
   have hp := GlobalTheory.T.projective_bundle_points_of_rational_model F Ω Ω' M M' φ f _ EE s hP
   obtain ⟨S', hS'⟩ := GlobalTheory.T.exists_adaptedFrameFamily_longerFlag_genericLine F Ω Ω' M M' φ f ι m k k' S τ hk A₀ EE s h1 h2 hA₀ hE hp
   refine ⟨Ω', _, _, M', φ, f, S', ⟨hpr, GlobalTheory.T.affineSpaceCovered_smoothOfRelativeDimension_add F Ω Ω' M M' φ f _ d hA hM.2.1, GlobalTheory.T.geometricallyIntegral_of_affCover F Ω Ω' M M' φ f _ hA hM.2.2⟩,
     fun τ' => ?_, hP.hom, fun z' A' hA' => ?_, GlobalTheory.T.preservesRadicalPrincipalIdeals_of_affineSpaceCovered F Ω Ω' M M' φ f _ hA,
-    GlobalTheory.T.existsUnique_projectiveBundle_flagRefinement F Ω Ω' M M' φ f ι m k k' S S' τ hk A₀ EE s h1 h2 hA₀ hE hp hS'⟩
+    _root_.GlobalTheory.FlagBundle.StepLift.existsUnique_bears F Ω Ω' M M' φ f ι m k k' S S' τ hk A₀ EE s h1 h2 hA₀ hE hp hS'⟩
   · by_cases h : τ' = τ
     · subst h; exact h1 ▸ Nat.le_succ _
     · exact (h2 τ' h).ge
@@ -102,7 +102,7 @@ theorem tower {F : Type} [Field F] {ι : Type} [Fintype ι] {m : ι → ℕ} (n 
     intro Ω _ _ M d k S hM hk hn
     obtain rfl : k = m := funext fun τ => le_antisymm (hk τ)
       (Nat.sub_eq_zero_iff_le.1 (Finset.sum_eq_zero_iff.1 hn τ (Finset.mem_univ _)))
-    obtain ⟨Y, φ, f, S', h1, h2⟩ := GlobalTheory.T.exists_variety_flagRefinementBundle_of_goodModel F Ω M d ι k k S hM
+    obtain ⟨Y, φ, f, S', h1, h2⟩ := _root_.GlobalTheory.FlagBundle.exists_var_refines F Ω M d ι k k S hM
     exact ⟨Y, φ, f, S', by simpa using h1, h2⟩
   | succ n ih =>
     intro Ω _ _ M d k S hM hk hn
@@ -175,7 +175,7 @@ theorem exists_flagCpt (hS : ReciprocityTheory.AnForm.R.FinalTheorems.Snc (genBd
     refine Eq.trans ?_ ((congrArg (· ≫ spMap e.symm.toRingHom) h1).trans (Spec.map_comp _ _).symm)
     rw [← hstr]
     simp only [Category.assoc]
-  obtain ⟨y0, hy1, hy2⟩ := GlobalTheory.T.exists_framed_point_over_of_lie_eigenspace_frame E H Dw l Xo c O β Z Y.Fn (constF e Y) z _ g₀ hzs (by
+  obtain ⟨y0, hy1, hy2⟩ := _root_.GlobalTheory.ShFam.exists_frPt_ptF_over_of_eigFrame E H Dw l Xo c O β Z Y.Fn (constF e Y) z _ g₀ hzs (by
     rw [← Category.assoc, hz]; simp only [Category.assoc])
   let C : FlagCpt Z e :=
     { Y := Y, π := f ≫ j, π_str := hstr, y0 := y0, f0 := g₀, y0_x := by rw [hy1, hz], flagComponentFramedPoint_frame := by rw [hy1]; exact hy2, gr := gr,

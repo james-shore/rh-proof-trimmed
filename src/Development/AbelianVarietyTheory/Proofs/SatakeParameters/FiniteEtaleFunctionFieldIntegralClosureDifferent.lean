@@ -109,16 +109,16 @@ theorem finiteEtale_functionField : ∀ (Z Y : Scheme.{0}) [IsIntegral Z] [IsInt
     have hU₀g : genericPoint Z ∈ U₀ := GlobalTheory.VB.genericPoint_mem hm
     obtain ⟨φ, hφ1, hφ2, -, -, -⟩ := hφ U₀ hU₀g hU₀' (Z.presheaf.germ U₀ _ hU₀g).hom.range
       (Y.presheaf.germ _ _ hU₀').hom.range (fun y => RingHom.mem_range) (fun y => RingHom.mem_range) hU₀
-    exact GlobalTheory.T.finiteDimensional_of_finite_subring_hom_of_fractions _ _ _ _ φ hφ1 hφ2 (hfr Y _ hU₀' _ (fun y => RingHom.mem_range) (hU₀.preimage c))
+    exact _root_.GlobalTheory.finiteDimensional_of_finite_subring_fraction _ _ _ _ φ hφ1 hφ2 (hfr Y _ hU₀' _ (fun y => RingHom.mem_range) (hU₀.preimage c))
   · intro U hU hU' B B' hUa hB hB'
     obtain ⟨φ, hφ1, hφ2, hφ3, ⟨eB⟩, ⟨eB'⟩⟩ := hφ U hU hU' B B' hB hB' hUa
-    haveI := GlobalTheory.T.isIntegrallyClosed_sections_of_smooth_complex' Z s U hUa hU
-    haveI := GlobalTheory.T.isIntegrallyClosed_sections_of_smooth_complex' Y s' (c ⁻¹ᵁ U) (hUa.preimage c) hU'
+    haveI := _root_.GlobalTheory.isIntegrallyClosed_sections_of_smooth_complex Z s U hUa hU
+    haveI := _root_.GlobalTheory.isIntegrallyClosed_sections_of_smooth_complex Y s' (c ⁻¹ᵁ U) (hUa.preimage c) hU'
     haveI : IsIntegrallyClosed B := IsIntegrallyClosed.of_equiv eB
     haveI : IsIntegrallyClosed B' := IsIntegrallyClosed.of_equiv eB'
-    obtain ⟨r1, r2, r3⟩ := GlobalTheory.T.integralClosure_of_finite_map_integrallyClosed_subrings ℂ _ _ B B' φ hφ1 hφ2 inferInstance inferInstance (hfr Z U hU B hB hUa)
+    obtain ⟨r1, r2, r3⟩ := _root_.GlobalTheory.W1.integralClosure_of_finite_map ℂ _ _ B B' φ hφ1 hφ2 inferInstance inferInstance (hfr Z U hU B hB hUa)
       (hfr Y _ hU' B' hB' (hUa.preimage c))
-    exact ⟨r1, r2, r3, GlobalTheory.T.formally_unramified_differentials_span ℂ _ _ B B' φ hφ1 hφ3⟩
+    exact ⟨r1, r2, r3, _root_.GlobalTheory.W1.dv_mem_span_of_formallyUnramified ℂ _ _ B B' φ hφ1 hφ3⟩
 
 end GlobalTheory.W1.SchFF
 

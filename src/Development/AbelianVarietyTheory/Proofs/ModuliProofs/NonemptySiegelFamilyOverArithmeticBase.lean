@@ -124,7 +124,7 @@ theorem nonempty_sFam : Out.Laws → Out.Laws2 → (∀ (S : Scheme.{0}) (P : Ou
   obtain ⟨W, hW, hbas⟩ := exists_isE8_isSharpBasis
   obtain ⟨bas, hb⟩ := hbas h
   obtain ⟨a, w, w', hw, hw', hu⟩ := exists_matrices hW
-  obtain ⟨Mat, κ, hgood⟩ := GlobalTheory.T.isGoodThetaComplexClass_E8Sharp L1 L2 hT hU h _ W _ a w w' bas hW hb hw hw' hu
+  obtain ⟨Mat, κ, hgood⟩ := _root_.GlobalTheory.SharpGood.goodClass_sharpClass L1 L2 hT hU h _ W _ a w w' bas hW hb hw hw' hu
   obtain ⟨j₁, hj₁⟩ := hgood n hn hodd
   obtain ⟨j₂, hj₂⟩ := GlobalTheory.T.nonempty_thetaFamily_over_open_closure L1 L2 _ _ Mat κ n w w' hn hodd
   obtain ⟨j₃, hj₃⟩ := GlobalTheory.T.existsUnique_map_to_thetaFamily_openPart L1 L2 _ _ Mat κ n w w' hn hodd
@@ -151,7 +151,7 @@ theorem nonempty_sFam : Out.Laws → Out.Laws2 → (∀ (S : Scheme.{0}) (P : Ou
   have hq : IsQProjOver (F.U.ι ≫ F.Y.s) := hq.resolve_right (not_not.2 inferInstance)
   have hft := locallyOfFiniteType_of_qproj hq
   haveI : IsLocallyNoetherian F.U.toScheme := LocallyOfFiniteType.isLocallyNoetherian (F.U.ι ≫ F.Y.s)
-  obtain ⟨c, hc, hsc⟩ := GlobalTheory.T.exists_eighthPower_principalSiegel_of_dense L1 L2 hT h _ W _ a bas hW hb hu _ o b em _ _ F.univ hok F.dense
+  obtain ⟨c, hc, hsc⟩ := _root_.GlobalTheory.SharpFamily.exists_isSharp_of_dense L1 L2 hT h _ W _ a bas hW hb hu _ o b em _ _ F.univ hok F.dense
 
   have pull : ∀ (S' : Scheme.{0}) (s' : S' ⟶ Sp o) (f : S' ⟶ F.U.toScheme), f ≫ F.U.ι ≫ F.Y.s = s' →
       ∃ (c' : SiegPre h ((n ^ j) ^ 2) (b.ζ : o) s') (t : TObj (8 * h) ((n ^ j) ^ 2) _ b s'),
@@ -183,7 +183,7 @@ theorem nonempty_sFam : Out.Laws → Out.Laws2 → (∀ (S : Scheme.{0}) (P : Ou
         FromC em (SharpClass (b := b) W a bas em) t (K := S.residueField p) (S.fromSpecResidueField p) := by
       intro p hp
       haveI := charZero_residueField s' p hp
-      exact GlobalTheory.T.fromC_sharpClass_fibre_of_charZero L1 L2 h _ W _ a w w' bas hW hb hw hw' hu _ o b em hem S s' t c' hc' ht _ _
+      exact _root_.GlobalTheory.SharpFrom.fromC_sharpClass L1 L2 h _ W _ a w w' bas hW hb hw hw' hu _ o b em hem S s' t c' hc' ht _ _
     have hdense : Dense (fromSet em (SharpClass (b := b) W a bas em) t) :=
       hd.mono fun p hp => ⟨S.residueField p, inferInstance, S.fromSpecResidueField p,
         ⟨default, Scheme.fromSpecResidueField_apply p _⟩, hfrom p hp⟩

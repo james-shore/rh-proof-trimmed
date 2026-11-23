@@ -528,26 +528,9 @@ end Formalism.MainNotions.TwistedPlaces
 
 end
 
-noncomputable section
-
 namespace Formalism.MainNotions.TwistedPlaces
 
-open Formalism.BasicNotions Formalism.MainNotions NumberField IsDedekindDomain
-
-variable {D : D7} (L : SizeData₂ D)
-
-section Sums
-
-variable {C : ℝ} (hC : 0 < C) (P : ParameterChoice' D L) (hPar : ParametersPolynomiallyBounded L C P) (hL : Large L.sc.x L.sc.eps C)
-include hC P hPar hL
-
-theorem big_le_b : 4 * 10 ^ 6 * (C + 1) ^ 2 * Ub L C ^ 18 ≤ L.sc.b := sc_b_ge_const_mul_Ub_pow_eighteen L hC P hPar hL
-
-end Sums
-
 end Formalism.MainNotions.TwistedPlaces
-
-end
 
 noncomputable section
 
@@ -729,7 +712,7 @@ include hC P hPar hL
 
 theorem U_pow_eighteen_le_b : Ub L C ^ 18 ≤ L.sc.b := by
   have hU : 1 ≤ Ub L C := one_le_U L hC P hPar hL
-  have hb := big_le_b L hC P hPar hL
+  have hb := _root_.Formalism.MainNotions.TwistedPlaces.sc_b_ge_const_mul_Ub_pow_eighteen L hC P hPar hL
   have hU18 : 0 ≤ Ub L C ^ 18 := by positivity
   have hK : (1:ℝ) ≤ 4 * 10 ^ 6 * (C + 1) ^ 2 := by nlinarith [hC]
   exact le_trans (le_mul_of_one_le_left hU18 hK) hb
@@ -965,7 +948,7 @@ theorem point_bound (tb : Tab L) (hA : AdmT L tb C P) (S : Finset ℕ) (hS : ∀
     exact ⟨hS l hlS, h.1, h.2.1, h.2.2⟩)
   have s5 := sum_exc L hC P hPar hL tb hRe hExc (S.filter (fun l => l ∈ tb.exc ∧ lStar L < l)) (fun l hl => (Finset.mem_filter.1 hl).2)
   have gl := glob_le L hC P hPar hL
-  have hbig := big_le_b L hC P hPar hL
+  have hbig := _root_.Formalism.MainNotions.TwistedPlaces.sc_b_ge_const_mul_Ub_pow_eighteen L hC P hPar hL
   have hm := m_ge_one D
   have hf1 : (1 : ℝ) ≤ D.R.f := (m_ge_one D).trans (m_le_f D)
   have hL1 := L_ge_one L

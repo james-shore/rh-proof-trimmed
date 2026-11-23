@@ -94,10 +94,7 @@ end GlobalTheory.HomFixMatEx
 
 namespace GlobalTheory.HomFixMatEx
 
-theorem res_appLE {X Y : Scheme.{0}} (f : X ⟶ Y) {U : Y.Opens} {V V' : X.Opens} (e : V ≤ f ⁻¹ᵁ U) (h : V' ≤ V)
-    (x : Γ(Y, U)) :
-    (X.presheaf.map (homOfLE h).op).hom ((f.appLE U V e).hom x) = (f.appLE U V' (h.trans e)).hom x := by
-  rw [← CommRingCat.comp_apply, Scheme.Hom.appLE_map]
+alias res_appLE := _root_.GlobalTheory.RigNorm.res_appLE
 
 end GlobalTheory.HomFixMatEx
 
@@ -113,7 +110,7 @@ theorem exists_isMat : ∀ (Rg : Type) [CommRing Rg] [IsNoetherianRing Rg] (A B 
   obtain ⟨w, hw⟩ := hiso
   have eg : (Φ'.left ≫ ψB) ≫ (snd (topS Rg) B).left = Φ'.left ≫ φB' := by rw [Category.assoc, hψB]
   obtain ⟨α₀, hα₀⟩ : ∃ α₀ : LB.Gen (isoLB (L := L) (M := M) k Φ' ψA ψB), α₀.IsGen := by
-    have := GlobalTheory.T.exists_lineBundlePower_iso_reindexed_charts L M φA' Φ'.left φB' k w hw
+    have := _root_.GlobalTheory.PowIsoRe.exists_powIso L M φA' Φ'.left φB' k w hw
     show ∃ α₀ : LB.Gen (LB.div (powPull M ((Φ'.left ≫ ψB) ≫ (snd (topS Rg) B).left) (k : ℤ))
       (powPull L (ψA ≫ (snd (topS Rg) A).left) (k : ℤ))), α₀.IsGen
     rw [eg, hψA]; exact this
@@ -125,7 +122,7 @@ theorem exists_isMat : ∀ (Rg : Type) [CommRing Rg] [IsNoetherianRing Rg] (A B 
   have hz2 : zeroPt A' ≫ ((Φ'.left ≫ ψB) ≫ (snd (topS Rg) B).left) = t ≫ eSec B := by
     rw [eg, ← Category.assoc, hΦ0]; exact zero_comp Rg B R t B' φB' hpB
   have hzπ : zeroPt A' ≫ A'.hom = 𝟙 (Sp R) := Over.w η[A']
-  obtain ⟨α, hα, hrig⟩ := GlobalTheory.T.exists_rescaled_lineBundlePower_iso_generator (Z₀ := Sp Rg) L M (ψA ≫ (snd (topS Rg) A).left)
+  obtain ⟨α, hα, hrig⟩ := _root_.GlobalTheory.RigNorm.exists_rescaled_gen (Z₀ := Sp Rg) L M (ψA ≫ (snd (topS Rg) A).left)
     ((Φ'.left ≫ ψB) ≫ (snd (topS Rg) B).left) (eSec A) (eSec B) t (zeroPt A') A'.hom k eA eB α₀
     hL hM heA heB hα₀ hzπ hz1 hz2
   have key : ∀ j : Fin mB, ∃ cj : Fin mA → Γ(Sp R, ⊤), ∀ p : (Fin 1 → M.ι) × (Fin 1 → L.ι),
@@ -140,7 +137,7 @@ theorem exists_isMat : ∀ (Rg : Type) [CommRing Rg] [IsNoetherianRing Rg] (A B 
     obtain ⟨σ, hσ⟩ := GlobalTheory.T.exists_lineBundlePowerPullback_section_pullback M (snd (topS Rg) B).left (Φ'.left ≫ ψB) (k : ℤ) (bB j)
     obtain ⟨s, hs⟩ := GlobalTheory.T.power_pullback_section_exists L M (ψA ≫ (snd (topS Rg) A).left) ((Φ'.left ≫ ψB) ≫ (snd (topS Rg) B).left)
       (k : ℤ) α hα hL hM σ
-    obtain ⟨c, hc⟩ := GlobalTheory.T.exists_coeff_pullback_baseChangeStableSectionBasis Rg A L k mA bA hbA R t A' φA' hpA.1 ψA hψA s
+    obtain ⟨c, hc⟩ := _root_.GlobalTheory.HomFixMat.exists_coeff_of_isBCBasis Rg A L k mA bA hbA R t A' φA' hpA.1 ψA hψA s
     refine ⟨c, fun p => ?_⟩
     have e1 := hs p
 

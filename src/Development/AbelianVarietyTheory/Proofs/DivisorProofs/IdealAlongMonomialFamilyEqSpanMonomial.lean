@@ -60,39 +60,6 @@ open GlobalTheory GlobalTheory.USep
 
 namespace GlobalTheory.UGZero
 
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Geo.Tor.Level H}
-  {Xo : Moduli Dw l} {c : Coeff l} {φ : InvFun (𝓞 E)}
-
-theorem s_ne_zero {V : Type} [CommRing V] [IsDomain V] [IsLocalRing V] (Cm : GlobalTheory.UChart.MonoFam Xo c φ V)
-    (k : Fin Cm.m) : Cm.s k ≠ 0 := by
-  intro hk
-  have hδ : Cm.δ k ≠ 0 := Cm.cone.linearIndependent.ne_zero k
-  have hsym := (Cm.cone.mem k).1
-  obtain ⟨y, hy⟩ : ∃ y, Cm.δ k y y ≠ 0 := by
-    by_contra h
-    push_neg at h
-    apply hδ
-    refine LinearMap.ext₂ fun a b => ?_
-    have h1 := h (a + b)
-    have h2 := h a
-    have h3 := h b
-    simp only [map_add (f := _), LinearMap.add_apply] at h1
-    rw [hsym b a] at h1
-    simp only [LinearMap.zero_apply]
-    omega
-  obtain ⟨u, n, hn, hc⟩ := Cm.mono y
-  have hM : (0 : ℤ) < (l.M' : ℤ) := by exact_mod_cast GlobalTheory.LevelExist.M'_pos l
-  have hnk : n k ≠ 0 := by
-    intro h0
-    have e := hn k
-    rw [h0] at e
-    simp only [LinearMap.smul_apply, smul_eq_mul, Nat.cast_zero, mul_zero] at e
-    rcases mul_eq_zero.1 e with e | e
-    · omega
-    · exact hy e
-  apply GlobalTheory.PsiCoordLocal.ne_zero_of_coord hc
-  rw [Finset.prod_eq_zero (Finset.mem_univ k) (by rw [hk]; exact zero_pow hnk), mul_zero]
-
 end GlobalTheory.UGZero
 
 namespace GlobalTheory.UGZero
@@ -119,7 +86,7 @@ theorem idlAlong_eq_span_monomial : ∀ (E : Type) [Field E] [NumberField E] [Is
     haveI : IsDiscreteValuationRing W := ((GlobalTheory.LN.cDvr_iff W).1 hW).1
     obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible W
     have hw : ∀ k, ∃ w : ℕ, Associated (ψ (Cm.s k)) (ϖ ^ w) := fun k => by
-      have h0 : ψ (Cm.s k) ≠ 0 := fun h => s_ne_zero Cm k (hψi (h.trans (map_zero ψ).symm))
+      have h0 : ψ (Cm.s k) ≠ 0 := fun h => _root_.GlobalTheory.UChart.MonoFam.s_ne_zero Cm k (hψi (h.trans (map_zero ψ).symm))
       obtain ⟨w, u, hu⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible h0 hϖ
       exact ⟨w, ⟨u⁻¹, by rw [hu, mul_comm (u : W), _root_.mul_assoc, Units.mul_inv, _root_.mul_one]⟩⟩
     choose w hw using hw
@@ -157,7 +124,7 @@ theorem idlAlong_eq_span_monomial : ∀ (E : Type) [Field E] [NumberField E] [Is
   haveI := hNoeth
   haveI := hIC
   haveI := hchar
-  have hf0 : f ≠ 0 := Finset.prod_ne_zero_iff.2 fun k _ => pow_ne_zero _ (s_ne_zero Cm k)
+  have hf0 : f ≠ 0 := Finset.prod_ne_zero_iff.2 fun k _ => pow_ne_zero _ (_root_.GlobalTheory.UChart.MonoFam.s_ne_zero Cm k)
   have hg0 : g₀ ≠ 0 := by
     rintro rfl
     obtain ⟨W, _, _, _, ψ, hW, hψi, hψl⟩ := GlobalTheory.DvrDom.exists_cdvr_dominating V

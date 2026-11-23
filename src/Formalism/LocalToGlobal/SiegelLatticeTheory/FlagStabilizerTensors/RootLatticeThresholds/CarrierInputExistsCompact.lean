@@ -75,7 +75,7 @@ theorem carrierP_of_compact_model (hPA : P5.ThmPActualCpt) (hLEM : MA.LemmaEMode
     Formalism.FourierDecayAlt.P.RealInputsCompactSupport.real_inputs_closed_compact_support_of hPA Formalism.FourierDecayAlt.P.radial_module_form
       Formalism.FourierDecayAlt.P.positive_density_compact_support Formalism.FourierDecayAlt.P.level_form_sesquilinear_moderate
       Formalism.FourierDecayAlt.P.theorem_P_module_compact_support Formalism.FourierDecayAlt.P.radial_measure_is_haar hLEM
-      Formalism.FourierDecayAlt.P.levels_of_built_setting Formalism.FourierDecayAlt.P.slices_finite_regularity_built hMP
+      _root_.Formalism.FourierDecayAlt.P.JCTx5.levelsActualBuilt Formalism.FourierDecayAlt.P.slices_finite_regularity_built hMP
       Formalism.FourierDecayAlt.P.top_positive_semidefinite hBB Cb
   obtain ⟨CA₀, hX1⟩ := hX C₆ Cc hC₆
   refine ⟨C₄, CA₀, hC₄, ?_⟩

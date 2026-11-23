@@ -162,7 +162,7 @@ theorem tensH_of_raw : Hyps → ∀ (k r : ℕ) (ι κ : Type) [Fintype ι] [Dec
     · exact absurd (hinj (GlobalTheory.DSInequiv.param_eq_of_equiv hH k r ε _ _ _ _ (hRI I) (hRI J) U hU)) hIJ
   choose cI hc using fun I => (hP k r ε _ _ _ _ (hRI I) (hRI I)).1 _ (hform I I)
   have hunit : ∀ I, ∃ w ∈ (RI I).sm, ‖w‖ = 1 := fun I => by
-    obtain ⟨-, -, -, -, h5, -, h7, ⟨w, hw, hwK, -⟩, -⟩ := GlobalTheory.T.discreteSeries_unitary_smooth_basic hK k r ε _ _ (hRI I)
+    obtain ⟨-, -, -, -, h5, -, h7, ⟨w, hw, hwK, -⟩, -⟩ := _root_.GlobalTheory.rep_basic_of_isDS hK k r ε _ _ (hRI I)
     exact ⟨w, h5 w (h7 w hwK), hw⟩
   have hreal : ∀ I, ((cI I).re : ℂ) = cI I := fun I => by
     obtain ⟨w, hw, hn⟩ := hunit I

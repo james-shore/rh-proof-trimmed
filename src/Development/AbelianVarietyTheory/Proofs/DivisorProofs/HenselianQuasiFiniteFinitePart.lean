@@ -127,13 +127,13 @@ namespace GlobalTheory.LKCx
 open GlobalTheory.LKCx.FinPolysIrr in
 theorem finite_minpoly_fix_a_one : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p), G.a = 1 → ∀ v : InfinitePlace G.F, sigPosH (G.gram_herm v) = 1 → ∀ (L : G.Level) (f : G.GAf → ℂ), IsTest (MonoidHom.id _) L.K.toSubgroup L.K.toSubgroup f → ∀ (K' : Subgroup (Gr G 1)) (f' : Gr G 1 → ℂ), IsTest (sigG G 1) (KHT p G.m G.n 1 G.Fw) K' f' → ∀ (β : G.Cˣ) (x : (AfP p ⊗[ℚ] G.C)ˣ) (t : (AfP p)ˣ) (hx : Triv G (AfP p) β x t), sh G β = β → (∃ z : (ℝ ⊗[ℚ] G.C)ˣ, Triv G ℝ β z 1) → Set.Finite {P : Polynomial G.F | ∃ (y : grp G β) (a : Dat G v β), P = minpoly G.F (((y : G.Cˣ × ℚˣ).1 : G.Cˣ) : G.C) ∧ FixL G v β y a.2.1 ∧ f (a.1.1⁻¹ * toAfF G β x t hx y * a.1.1) * f' (a.1.2⁻¹ * toP1 G β y * a.1.2) ≠ 0} := by
   intro p _ G ha v hv L f hf K' f' hf' β x t hx hsym hR
-  obtain ⟨D, hD, hDy⟩ := GlobalTheory.T.minpoly_bounded_denominators p G L f hf β x t hx
-  obtain ⟨Bp, hBp⟩ := GlobalTheory.T.minpoly_padic_bounded p G K' f' hf' β
-  obtain ⟨m₀, hm₀⟩ := GlobalTheory.T.bounded_denominator_integral_power G.F p Bp
-  obtain ⟨S, hS⟩ := GlobalTheory.T.similitudeFactor_formGroup_bounded_of_test_support p G L f hf K' f' hf' β x t hx
+  obtain ⟨D, hD, hDy⟩ := _root_.GlobalTheory.FinPtsAway.exists_den_minpoly_coeff p G L f hf β x t hx
+  obtain ⟨Bp, hBp⟩ := _root_.GlobalTheory.LKCx.PadicPolys.minpoly_coeff_bdd p G K' f' hf' β
+  obtain ⟨m₀, hm₀⟩ := _root_.GlobalTheory.IntAwayP.exists_pow_mul_isIntegral G.F p Bp
+  obtain ⟨S, hS⟩ := _root_.GlobalTheory.SimBound.main p G L f hf K' f' hf' β x t hx
   obtain ⟨B, hB⟩ := minpoly_coeff_bdd_of_a_one p G ha v hv β hsym hR S
   have hpD : 0 < p ^ m₀ * D := Nat.mul_pos (pow_pos (Fact.out : p.Prime).pos _) hD
-  refine (GlobalTheory.T.finite_monic_bounded_polynomials G.F (G.n ^ 2) (p ^ m₀ * D) B hpD).subset ?_
+  refine (_root_.GlobalTheory.finite_monic_coeff_bdd_mul_isIntegral G.F (G.n ^ 2) (p ^ m₀ * D) B hpD).subset ?_
   rintro P ⟨y, a, rfl, hfix, hne⟩
   have h1 : f (a.1.1⁻¹ * toAfF G β x t hx y * a.1.1) ≠ 0 := left_ne_zero_of_mul hne
   have h2 : f' (a.1.2⁻¹ * toP1 G β y * a.1.2) ≠ 0 := right_ne_zero_of_mul hne

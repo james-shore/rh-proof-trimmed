@@ -78,10 +78,6 @@ theorem integrable_of_cont_bdd {m n : ℕ} (μ : Measure (Mx D m n)) [IsFiniteMe
   obtain ⟨C, hC⟩ := hb
   exact Integrable.of_bound hc.aestronglyMeasurable C (Filter.Eventually.of_forall hC)
 
-theorem symm_resS_symm {S A B : HSp D} (o : OrthDec S A B) (T : HSp D) (u : WO B T) (v : WO A T) :
-    (o.symm.resS T).symm (u, v) = (o.resS T).symm (v, u) := by
-  rw [OrthDec.resS_symm_apply, OrthDec.resS_symm_apply, add_comm]; rfl
-
 theorem symm_resT_symm {T A B : HSp D} (o : OrthDec T A B) (S : HSp D) (u : WO S B) (v : WO S A) :
     (o.symm.resT S).symm (u, v) = (o.resT S).symm (v, u) := by
   rw [OrthDec.resT_symm_apply, OrthDec.resT_symm_apply, add_comm]; rfl
@@ -114,11 +110,11 @@ theorem kernel_doubleStep : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (σ : 
     intro v w; rw [hF₂d]; simp only [AddEquiv.apply_symm_apply]
 
   have hF₁ : IsThetaFunO ψ B.V₀ J.W₀ F₁ := by
-    have h := (GlobalTheory.T.weil_operator_commutes_superposition_slices_source D ψ B.V₀ B.L B.A J.W₀ B.o.symm χz s₁.χW omz hoz Ξ₁ hΞ₁ Unit 0 (fun _ => 0) (fun _ => 0)
+    have h := (_root_.GlobalTheory.WeilSuperpos.weil_comm_superpos D ψ B.V₀ B.L B.A J.W₀ B.o.symm χz s₁.χW omz hoz Ξ₁ hΞ₁ Unit 0 (fun _ => 0) (fun _ => 0)
       measurable_const (integrable_zero _ _ _) (1, h₁)).1
     have e : F₁ = fun x => omz (1, h₁) (fun u => Ξ₁ ((B.o.symm.resS J.W₀).symm (u, (B.o.symm.resS J.W₀ x).2)))
         (B.o.symm.resS J.W₀ x).1 := by
-      funext x; rw [hF₁d, hHf]; simp only [symm_resS_symm]; rfl
+      funext x; rw [hF₁d, hHf]; simp only [_root_.GlobalTheory.WeilSlice.resS_symm_swap]; rfl
     rw [e]; exact h
   have hF₂ : IsThetaFunO ψ J.W₀ B'.V₀ F₂ := by
     have h := (GlobalTheory.T.weilRep_commutes_slice_superposition_target D ψ B'.V₀ B'.L B'.A J.W₀ B'.o.symm s₂.χV χz omz' hoz' Ξ₂ hΞ₂ Unit 0 (fun _ => 0) (fun _ => 0)
@@ -170,7 +166,7 @@ theorem kernel_doubleStep : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (σ : 
     have e : (fun u => contr l J.W₀ vL Ξ₁ Ξ₂ u v) =
         fun u => ∫ w, Gf v w * F₁ ((B.o.resS J.W₀).symm (u, l.κ J.W₀ w)) ∂(vL.μ.restrict vL.𝓕) := by
       funext u; rw [← hLine u v]; simp only [hF₁s]
-    rw [e, (GlobalTheory.T.weil_operator_commutes_superposition_slices_source D ψ B.V₀ B.A B.L J.W₀ B.o χA s₁.χW oma hoa F₁ hF₁ (WO J.W₀ B'.L) (vL.μ.restrict vL.𝓕)
+    rw [e, (_root_.GlobalTheory.WeilSuperpos.weil_comm_superpos D ψ B.V₀ B.A B.L J.W₀ B.o χA s₁.χW oma hoa F₁ hF₁ (WO J.W₀ B'.L) (vL.μ.restrict vL.𝓕)
       (l.κ J.W₀) (Gf v) (continuous_kappa l J.W₀).measurable (hGint v) (h₀, h₁)).2 0]
     refine integral_congr_ae (Filter.Eventually.of_forall fun w => ?_)
     simp only [hF₁s, hF₂s, id, hb₁d]

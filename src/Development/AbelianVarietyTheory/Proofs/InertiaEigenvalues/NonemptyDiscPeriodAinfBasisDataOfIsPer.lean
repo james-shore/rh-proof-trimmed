@@ -120,10 +120,7 @@ variable {l : ℕ} [Fact l.Prime] {K : FinExt l} (bk : BK K)
 theorem inclW_injective : Function.Injective (inclW l) :=
   WittVector.map_injective _ (IsFractionRing.injective (OCb l) (Cb l))
 
-theorem injective_of_topBasis {S A : Type} [CommRing S] [CommRing A] {s : S →+* A} {I : Ideal S} {ι : Type}
-    (TB : TopBasis s I ι) : Function.Injective s := fun a b h => by
-  have e : ∀ a, TB.c TB.i₀ (s a * TB.b TB.i₀) = a := fun a => by rw [TB.c_mul, TB.c_self, mul_one]
-  rw [← e a, h, e]
+alias injective_of_topBasis := _root_.GlobalTheory.BSP.TopBasis.injective
 
 theorem evW_mem (s : bk.S) : bk.evW s ∈ bk.OE := fun _ => ⟨0, s, 0, by simp⟩
 
@@ -188,7 +185,7 @@ theorem nonempty_height : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K
   have hZ1 : ∀ j : bk.DS bk.ρ₀ →+* bk.DA bk.ρ₀, IsDiscMap (l := _) (u := _) (ρ := _) bk.ev j → s.W * Z1.map j = Y1.map bk.iA :=
     fun j hj => Matrix.ext fun a b => congrFun (congrFun (hvZ j hj (σ b).1) a) (σ b).2
   clear_value Y1 Z1
-  have hdet : (Y1.map (inclW l)).det ≠ 0 := fun h0 => hσ (inclW_injective (by
+  have hdet : (Y1.map (inclW l)).det ≠ 0 := fun h0 => hσ (_root_.GlobalTheory.Prism.inclW_injective (by
     rw [RingHom.map_det, map_zero]; exact h0))
   obtain ⟨δ, A1, hδ, hA1⟩ := GlobalTheory.T.crystallineLattice_frobenius_rational_columns l K bk τ hτ d ρ hρ s Y1 Z1 hσ hZ1
   have hgal : ∀ g : ↥(GK K), bk.FixFlat g → τ ^ s.N • ((ρ g).map (algebraMap ℤ_[l] (Ainf l)) *

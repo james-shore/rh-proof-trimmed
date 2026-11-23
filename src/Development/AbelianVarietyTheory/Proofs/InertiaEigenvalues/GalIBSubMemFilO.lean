@@ -154,7 +154,7 @@ theorem gal_iSl_sub_mem (ϖ : PiSys l e) (C : GlobalTheory.MemLoc.Core l) (m : �
       rw [hp₀def, h3, ← smul_eq_C_mul, map_smul, smul_eq_C_mul]
     rw [h4, mul_left_comm, he]
     ring
-  refine GlobalTheory.T.acrisToBcris_mem_filtration_of_ladic_approx l O C m _ fun r => ?_
+  refine _root_.GlobalTheory.BKGal.TaylorFil.toOB_mem_filO_of_approx l O C m _ fun r => ?_
   obtain ⟨M₀, hM⟩ := ϖ.taylor_S a O K g q r
   obtain ⟨w, hw⟩ := hM (max M₀ 1) (le_max_left _ _)
   have hM1 : 0 < max M₀ 1 := lt_of_lt_of_le one_pos (le_max_right _ _)

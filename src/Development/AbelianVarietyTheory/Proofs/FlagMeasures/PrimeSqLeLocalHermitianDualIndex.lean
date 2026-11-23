@@ -137,7 +137,7 @@ theorem sq_le_local_index : ∀ (F E : Type) [Field F] [NumberField F] [Field E]
   obtain ⟨y1, hy1B, hy1⟩ := hnot1
   obtain ⟨y2, hy2B, hy2⟩ := hnot2
   have heV : sp.symm (0, 1) ∈ intV E v := by
-    have hI := (split_integral_local F E v sp h1 (sp.symm (0, 1))).2
+    have hI := (_root_.PI.SplitIntLoc.Proof.main F E v sp h1 (sp.symm (0, 1))).2
     rw [RingEquiv.apply_symm_apply] at hI
     exact hI ⟨zero_mem _, one_mem _⟩
   have hcomp : ∀ b, sp (((⟨sp.symm (0, 1), heV⟩ : intV E v) • y2) b) = (0, (sp (y2 b)).2) := by

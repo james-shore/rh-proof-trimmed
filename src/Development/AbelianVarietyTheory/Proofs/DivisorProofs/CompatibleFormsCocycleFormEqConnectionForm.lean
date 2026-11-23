@@ -125,7 +125,7 @@ theorem form_eq_connForm : ∀ (R : Type) [CommRing R] (X : Scheme.{0}) (s : X �
     (hx : x ≫ s = spMap (algebraMap R B)),
     k.1.2 (Thick.triv B x hx) = Submodule.Quotient.mk (connForm f x hx) := by
   intro R _ X s k f hk B _ _ x hx
-  obtain ⟨ρ, hadd, hmul, halg, hD, hrel, -, -⟩ := GlobalTheory.T.exists_formsMap_of_dividedPowerDerivation R B ⊥ (dp0 B) (diagExt R B).C
+  obtain ⟨ρ, hadd, hmul, halg, hD, hrel, -, -⟩ := _root_.GlobalTheory.PDForm.exists_lift_of_pdDerivation R B ⊥ (dp0 B) (diagExt R B).C
     (RingHom.ker ((diagExt R B).π : (diagExt R B).C →+* B)) (divided₂ (diagExt R B).sq) (diagExt R B).π
     (sndK R B) (sndK_mul R B) (sndK_alg R B) (sndK_dpow R B)
   have h0 := divPowerCompatDeRhamRelIdeal_zero_dividedPowers R B

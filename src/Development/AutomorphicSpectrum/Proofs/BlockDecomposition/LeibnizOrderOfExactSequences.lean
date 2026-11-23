@@ -81,7 +81,7 @@ theorem phi_product_trivial_right (ψ : AddChar k Circle) (hc : Continuous ψ) (
     MIso (phiN ψ (mcast h (prodPGn τ σ))) (prodPGn (phiN ψ τ) σ) := GlobalTheory.T.phi_product_left_rank_zero k ψ hc h1 i τ σ h hτ hσ
 theorem restriction_product_left_trivial {j n : ℕ} (π₁ : GRep k 0) (π₂ : GRep k (j + 1)) (h : 0 + (j + 1) = n + 1) (h' : 0 + j = n)
     (s₁ : IsSmooth π₁.ρ) (s₂ : IsSmooth π₂.ρ) :
-    MIso (gres ((π₁.prod π₂).cast h)) (mcast h' (prodGPn π₁ (gres π₂))) := GlobalTheory.T.restriction_product_rank_zero_left k j n π₁ π₂ h h' s₁ s₂
+    MIso (gres ((π₁.prod π₂).cast h)) (mcast h' (prodGPn π₁ (gres π₂))) := _root_.GlobalTheory.CompanionTheory.LeibRes0Left.gres_prod_zero_left' k j n π₁ π₂ h h' s₁ s₂
 theorem restriction_product_right_trivial {i n : ℕ} (π₁ : GRep k (i + 1)) (π₂ : GRep k 0) (h : (i + 1) + 0 = n + 1) (h' : i + 0 = n)
     (s₁ : IsSmooth π₁.ρ) (s₂ : IsSmooth π₂.ρ) :
     MIso (gres ((π₁.prod π₂).cast h)) (mcast h' (prodPGn (gres π₁) π₂)) := GlobalTheory.T.restriction_product_rank_zero_right k i n π₁ π₂ h h' s₁ s₂
@@ -348,10 +348,10 @@ theorem step_iso (ψ : AddChar k Circle) {r' t' a c ℓ n : ℕ} (hac : a + c = 
       ((((derivB ψ a B₁).tw ((c : ℝ) / 2)).prod ((derivB ψ c B₂).tw ((a : ℝ) / 2))).cast hs) := by
   refine giso_trans (tw_cast hs _ _) (giso_cast hs ?_)
   refine giso_trans (tw_prod _ _ _) (giso_prod ?_ ?_)
-  · refine giso_symm (giso_trans (giso_tw _ (derivB_iso ψ a B₁)) (giso_trans (tw_tw _ _ _) ?_))
+  · refine giso_symm (giso_trans (giso_tw _ (derivB_iso ψ a B₁)) (giso_trans (_root_.GlobalTheory.CompanionTheory.LeibOrd.DerivTw.tw_tw _ _ _) ?_))
     have : (a : ℝ) / 2 + (c : ℝ) / 2 = (ℓ : ℝ) / 2 := by subst hac; push_cast; ring
     rw [this]; exact giso_refl _
-  · refine giso_symm (giso_trans (giso_tw _ (derivB_iso ψ c B₂)) (giso_trans (tw_tw _ _ _) ?_))
+  · refine giso_symm (giso_trans (giso_tw _ (derivB_iso ψ c B₂)) (giso_trans (_root_.GlobalTheory.CompanionTheory.LeibOrd.DerivTw.tw_tw _ _ _) ?_))
     have : (c : ℝ) / 2 + (a : ℝ) / 2 = (ℓ : ℝ) / 2 := by subst hac; push_cast; ring
     rw [this]; exact giso_refl _
 

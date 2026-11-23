@@ -401,7 +401,7 @@ theorem height_eq_lineHt (e : ∀ k, ι k ≃ Fin (n k + 1)) (A : GroundTheory.H
     obtain ⟨i, hi⟩ := hw k
     refine ⟨i, fun h => hi ?_⟩
     rw [← hw', h, map_zero]
-  have hext := lineHt_map_scale K ι B (coordField x) L e0 w' (fun _ => 1) hnz fun _ => one_ne_zero
+  have hext := _root_.CoverDenseAlt.lineHt_invariant_base_change_scaling K ι B (coordField x) L e0 w' (fun _ => 1) hnz fun _ => one_ne_zero
   simp only [one_mul, hw'] at hext
   have hfun : (fun p => w p) = w := rfl
   rw [hfun] at hext

@@ -36,6 +36,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsTorusAbelianQuotientPDivisibleSmoothGroup
 
 @[expose] public section
 
@@ -73,7 +74,7 @@ theorem UpperTheory.Gal.FixZ.trScal_of :
     rwa [T.K_eq] at hb
   obtain ⟨rfl, hΦ⟩ := hWU p D G L ℂ gb N N (T.M N) (T.M N) z hI hA π (Over.Hom.left ψ ≫ φ.φ) (𝟙 _)
     (Over.Hom.left (𝟙 (T.M N).univ.A ^ d)) ⟨hπ, o, ψ, φ, htr, rfl⟩ (hWS p D G L gb N (T.M N) d z hd hdp hsc)
-  have hpm := GlobalTheory.DrinLev.HT.MulModel.isMonHom_id_pow (T.M N).univ.A d
+  have hpm := _root_.GlobalTheory.SS.DivSemi.isMonHom_id_pow (T.M N).univ.A d
   have hS := powMap_scal (T.M N).univ.A d k _ hw hΦ
   rw [hS] at heq
   have hfe : IsFinite (Over.Hom.left (𝟙 (T.M N).univ.A ^ d)) ∧ Etale (Over.Hom.left (𝟙 (T.M N).univ.A ^ d)) ∧

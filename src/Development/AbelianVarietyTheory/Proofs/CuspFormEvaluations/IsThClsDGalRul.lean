@@ -59,11 +59,6 @@ namespace GlobalTheory.GalTw
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}
   {Xo : Moduli Dw l} {c : Coeff l}
 
-theorem covAut_eF {n : ℕ} (d : DeltaDat Xo c n) (ta : c.F ≃+* c.F) (a : c.F) :
-    covAut d ta (d.eF a) = d.eF (ta a) := by
-  show d.eF (ta (d.eF.symm (d.eF a))) = _
-  rw [AlgEquiv.symm_apply_apply]
-
 theorem thLa_conj (hC : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartIndepSt2) {n : ℕ} (d : DeltaDat Xo c n) (ta : c.F ≃+* c.F)
     (h₂ : Fixes d.c₂ (covAut d ta)) [StarRing (𝓞 E)] (hN : IsNab d.Xo₂ d.c₂ d.nab₂) (u : c.F) (hu : u ≠ 0)
     (w w' : (Fin n → LevQ Dw d.l₂) → c.F) (hw : ∀ q, ta (w q) = u * w' q) (La : GenLat E n) (N : ℕ)
@@ -80,11 +75,11 @@ theorem thLa_conj (hC : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartIndep
   have h3 := (GlobalTheory.T.level_fourier_transform_aut_and_homogeneous E H Dw d.l₂ d.Xo₂ d.c₂ n).2.2 d.nab₂ _ La _ (d.eF u⁻¹) N _ k y₂ _ h1
   have e1 : (fun q => d.eF u⁻¹ * covAut d ta (d.eF (w q))) = fun q => d.eF (w' q) := by
     funext q
-    rw [covAut_eF, hw, ← map_mul, ← mul_assoc, inv_mul_cancel₀ hu, one_mul]
+    rw [_root_.GlobalTheory.GalTw.covAut_apply_eF, hw, ← map_mul, ← mul_assoc, inv_mul_cancel₀ hu, one_mul]
   have e2 : MvPolynomial.map (covAut d ta : d.c₂.F →+* d.c₂.F) (MvPolynomial.map (d.eF : c.F →+* d.c₂.F) P) =
       MvPolynomial.map (d.eF : c.F →+* d.c₂.F) (MvPolynomial.map (ta : c.F →+* c.F) P) := by
     rw [MvPolynomial.map_map, MvPolynomial.map_map]
-    exact congrArg (fun g => MvPolynomial.map g P) (RingHom.ext fun a => covAut_eF d ta a)
+    exact congrArg (fun g => MvPolynomial.map g P) (RingHom.ext fun a => _root_.GlobalTheory.GalTw.covAut_apply_eF d ta a)
   rw [e1, e2, map_one] at h3
   exact h3
 
@@ -102,7 +97,7 @@ theorem isThClsD_galRul : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartInd
     (inferInstance : Algebra d.c₂.F (Tw (covAut d ta) k))
     (fun a => by
       show algebraMap d.c₂.F k (covAut d ta (d.eF a)) = algebraMap c.F k (ta a)
-      rw [covAut_eF, hk'])
+      rw [_root_.GlobalTheory.GalTw.covAut_apply_eF, hk'])
     (twPt h y) (twPt h₂ y₂) hy
   refine ⟨fun cl => algebraMap d.c₂.F k (d.eF u⁻¹) * vc cl, fun cl => ?_, ?_⟩
   · rw [hx]

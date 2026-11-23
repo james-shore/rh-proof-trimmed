@@ -49,7 +49,7 @@ namespace UpperTheory.Lit.Sw47
 theorem convergent : GlobalTheory.Published.SiegelWeilUnitaryConvergent := GlobalTheory.StdUnn.sw_doubled_of_std PositivityTheory.SiegelWeilCoefficients.field
 
 theorem weilUnitary : GlobalTheory.Published.WeilSiegelFormulaUnitary :=
-  PositivityTheory.SiegelWeilFormulaUnitary.weilSiegelFormulaUnitary_of_two UpperTheory.Lit.weilThetaConvergence PositivityTheory.Rg.Wsf.weilSiegelFormula
+  PositivityTheory.SiegelWeilFormulaUnitary.weilSiegelFormulaUnitary_of_two _root_.PositivityTheory.Rg.Sw.Glob.wtc PositivityTheory.Rg.Wsf.weilSiegelFormula
 
 theorem fa : FA := fa_of convergent weilUnitary
 

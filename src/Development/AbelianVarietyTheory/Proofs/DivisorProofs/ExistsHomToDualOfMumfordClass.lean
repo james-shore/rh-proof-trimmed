@@ -89,7 +89,7 @@ theorem exists_phi : ∀ (K : Type) [Field K] (A A' : AbVar K) (P : LB (A.X ⊗ 
     exact GlobalTheory.T.abelianVarietyMumfordClass_mul_left K A c Y a a' t
   have hnorm : CechPic.pull (lift (𝟙 A.X) (1 : A.X ⟶ A.X)).left β = 0 := by
     rw [hpull, AbVar.lam, _root_.mul_one, pull_one_eq_zero, sub_self, sub_zero]
-  obtain ⟨ψ, hψ, -⟩ := GlobalTheory.T.biadditiveClass_eq_poincarePullback_unique_hom K A A' A P hP β hadd hnorm
+  obtain ⟨ψ, hψ, -⟩ := _root_.GlobalTheory.AV.FamHom.main K A A' A P hP β hadd hnorm
   refine ⟨ψ, hψ, fun hc => ?_⟩
   have hfin : IsFinite ψ.hom.left := by
     refine (GlobalTheory.T.isFinite_iff_finite_ker' K A A' ψ).2 ?_

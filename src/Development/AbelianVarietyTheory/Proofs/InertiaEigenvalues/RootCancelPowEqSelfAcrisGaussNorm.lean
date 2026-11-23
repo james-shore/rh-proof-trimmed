@@ -149,7 +149,7 @@ theorem root_cancel_pow_eq_self : ∀ (l : ℕ) [Fact l.Prime] (h s : ℕ), s < 
   have hzsucc : ∀ i, F^[i + 1] ζ = (F^[i] ζ) ^ l := fun i => Function.iterate_succ_apply' _ _ _
   have hzper : F^[o'] ζ = F^[0] ζ := Function.iterate_minimalPeriod
 
-  have hG : ∀ ρ, (l : ℝ)⁻¹ ≤ ρ → ρ < 1 → IsGauss l ρ (gC l ρ) := fun ρ h0 h1 => isGauss_gC_target l ρ h0 h1
+  have hG : ∀ ρ, (l : ℝ)⁻¹ ≤ ρ → ρ < 1 → IsGauss l ρ (gC l ρ) := fun ρ h0 h1 => _root_.GlobalTheory.PMon.Gauss.isGauss_gC_of_le l ρ h0 h1
   have htc1 : ∀ ρ, (l : ℝ)⁻¹ ≤ ρ → ρ < 1 → ∀ i, gC l ρ (tc l (F^[i] ζ)) = 1 := by
     intro ρ h0 h1 i
     rw [(gC_basic_values l ρ h0 h1).2.2.2.1]
@@ -159,7 +159,7 @@ theorem root_cancel_pow_eq_self : ∀ (l : ℕ) [Fact l.Prime] (h s : ℕ), s < 
   set x : ℕ → Formalism.Per.Acris l := fun i => w - tc l (F^[i] ζ) * w' with hx
   have hfrob : ∀ i, φc l (x i) * w' = x (i + 1) * φc l w' := by
     intro i
-    simp only [hx, map_sub, map_mul, frob_teich, hzsucc]
+    simp only [hx, map_sub, map_mul, _root_.GlobalTheory.PMon.Gauss.φc_tc, hzsucc]
     linear_combination hφ
 
   by_cases hA : ∃ i, x i = 0

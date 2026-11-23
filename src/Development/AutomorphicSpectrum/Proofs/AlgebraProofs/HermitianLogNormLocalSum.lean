@@ -104,7 +104,7 @@ theorem deg_of_local_formulas : ∀ (k E : Type) [Field k] [NumberField k] [Fiel
     have h2 : 2 * Real.log ‖j (τ r)‖ = Real.log ‖((d : ℕ) : ℂ_[ℓ])‖ := two_log_norm (j.comp τ) hr
     linear_combination h1 + (((p : ℝ) - q) / 2) * h2
   constructor
-  · have S1 := GlobalTheory.T.log_norms_of_nonzero_adelic k ρ hρ
+  · have S1 := _root_.GlobalTheory.CompanionTheory.Ar.Fl.LogNorms.isAdelic_ofElt k ρ hρ
     have S4 := GlobalTheory.T.log_norms_of_nonzero_adelic k (d : k) hdk
     have S3 := GlobalTheory.T.logIdeal_support_finite E (differentIdeal ℤ (𝓞 E)) differentIdeal_ne_bot
     refine (((S1.union S4).union S3).union hfin).subset ?_
@@ -160,8 +160,8 @@ theorem deg_of_local_formulas : ∀ (k E : Type) [Field k] [NumberField k] [Fiel
       have hae : (LogNorms.ofElt a).finSum ℓ = ∑ j : E →+* ℂ_[ℓ], Real.log ‖j a‖ := rfl
       rw [h0, hDd, hT, hD, hae]
       linear_combination (-(m / e) / 2) * g1
-    have hA := GlobalTheory.T.product_formula_log_norms k ρ hρ
-    have hE := GlobalTheory.T.product_formula_log_norms E a ha
+    have hA := _root_.GlobalTheory.CompanionTheory.Ar.Fl.product_formula_embeddings k ρ hρ
+    have hE := _root_.GlobalTheory.CompanionTheory.Ar.Fl.product_formula_embeddings E a ha
     have hG := GlobalTheory.T.product_formula_log_norms k (d : k) hdk
     have hΔ := GlobalTheory.T.different_ideal_log_sum_root_discriminant E
     have hfs : ∑ᶠ ℓ, N.finSum ℓ = 1 * (∑ᶠ ℓ, (LogNorms.ofElt ρ).finSum ℓ)

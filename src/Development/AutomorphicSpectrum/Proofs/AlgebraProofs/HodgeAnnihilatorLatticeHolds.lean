@@ -58,7 +58,7 @@ theorem mem_stdLat_iff_algebra (R : Subalgebra o Ω) {ι : Type} (v : ι → Ω)
 theorem linMap_mem_stdLat {F : Type} [Zero F] [Fintype F] {n : ℕ} (R : Subalgebra o Ω) (χ : F → Ω)
     (hχ : ∀ a, χ a ∈ R) (v : Fin n → Ω) (hv : v ∈ stdLat R (Fin n)) :
     linMap n χ v ∈ stdLat R (Fin n → F) := by
-  rw [mem_stdLat_iff_algebra] at hv ⊢
+  rw [_root_.PositivityTheory.Xgn.GoodLatticeBaseChange.mem_stdLat] at hv ⊢
   intro x
   simp only [linMap, Fintype.linearCombination_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
   exact Subalgebra.sum_mem _ fun i _ => Subalgebra.mul_mem _ (hv i) (hχ _)
@@ -76,7 +76,7 @@ theorem hodge_annihilator_lattice {o Ω : Type} [CommRing o] [Field Ω] [Algebra
   have hu' : ∀ i, u i ∈ R := (mem_stdLat_iff_algebra R u).mp hu
   refine GlobalTheory.T.locally_free_test_point_membership R p hp hp0 hN hF hI n (D.af R p (χ τ)) (H.1 τ).1 _ ⟨1, ?_⟩ ?_
   · have hy : linMap n (χ τ) (w • u) ∈ stdLat R (Fin n → F) :=
-      linMap_mem_stdLat R (χ τ) (hχ τ).2.2 _ ((mem_stdLat_iff_algebra R _).mpr fun i => by
+      linMap_mem_stdLat R (χ τ) (hχ τ).2.2 _ ((_root_.PositivityTheory.Xgn.GoodLatticeBaseChange.mem_stdLat R _).mpr fun i => by
         simpa using R.mul_mem hwR (hu' i))
     rw [LieLatticeData.af, AddSubgroup.mem_comap]
     refine AddSubgroup.mem_sup_right (AddSubgroup.mem_map.mpr ⟨_, hy, ?_⟩)
@@ -86,7 +86,7 @@ theorem hodge_annihilator_lattice {o Ω : Type} [CommRing o] [Field Ω] [Algebra
     rw [← ((H.2 C RC hRC).2 τ).1]
     have hFa := hT C RC hTP
     refine hFa.le_af τ (AddSubgroup.mem_map.mpr ⟨bcMap Ω C (Fin n) u, ?_, ?_⟩)
-    · exact (mem_stdLat_iff_algebra RC _).mpr fun i => by simpa [bcMap] using hRC _ (hu' i)
+    · exact (_root_.PositivityTheory.Xgn.GoodLatticeBaseChange.mem_stdLat RC _).mpr fun i => by simpa [bcMap] using hRC _ (hu' i)
     · ext i
       simp [bcMap]
 

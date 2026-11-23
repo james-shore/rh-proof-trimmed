@@ -79,7 +79,7 @@ theorem decompletion_matrix (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocA
     exact c2 ⟨g, hg⟩ hg1 e
   have hsub : ∀ y ∈ fixSub AI LL H, y ∈ fixSub AI LL (Hinf K : Set (GQ l)) := fun y hy =>
     mem_fixSub.2 fun g hg => mem_fixSub.1 hy g
-      ((hH g).2 ((GlobalTheory.T.cyclotomicTower_fixes_epsilonRoots_resGamma_trivial l P AI K).2 s LL h W g hg))
+      ((hH g).2 ((_root_.GlobalTheory.Decompl.hinf_fixes_εroot_and_resΓ_eq_one l P AI K).2 s LL h W g hg))
   have hπ : piR AI LL s ∈ fixSub AI LL H := by rw [← c3]; exact hE _
   have q1 := GlobalTheory.T.galoisFixedTensorWitt_complete_piAdic_modEll l P AI LL s H hπ
   have q2 := GlobalTheory.T.etaleRing_image_add_ell_pi_adic_closed l P AI K s LL h W E
@@ -94,7 +94,7 @@ theorem decompletion_matrix (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocA
 
 theorem decompletion : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW), ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL), let S := sit D.loc HW l (D.locA l) K s LL h; let E : S.Comparison₂ := ((F l).E K s LL h).tie; DecW S E := by
   intro D HW F l _ K s LL h S E
-  refine GlobalTheory.T.decW_of_matrix_criterion S E fun d Pm => ?_
+  refine _root_.GlobalTheory.DecomplRed.decW_of_matrix S E fun d Pm => ?_
   have hm := decompletion_matrix l (D.loc l) (D.locA l) K s LL h ((HW l).W K s LL h)
     ((F l).E K s LL h) {g | ∃ hg : g ∈ GK K, ((HW l).W K s LL h).resΓ ⟨g, hg⟩ = 1}
     (fun _ => Iff.rfl) d Pm

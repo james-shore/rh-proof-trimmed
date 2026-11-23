@@ -339,7 +339,7 @@ theorem degree_ratio_product_formula (D : D7) (hM : LocalBesselAndTopKernel.Fami
   have hm2 := D.R.two_le_m
   have hA := Formalism.FourierDecayAlt.P.massRatioFormula D.what₂.Tau (szaData D u) (szaData_ok D u) (szaData_MassRatios D u hM)
     (szaData_ColumnCount D u hR hs)
-  have hE := Formalism.FourierDecayAlt.P.exponent_sizes D.what₂.Tau (szaData D u) (szaData_ok D u) (szaData_LBound D u)
+  have hE := _root_.Formalism.FourierDecayAlt.P.Sz2.eaSize D.what₂.Tau (szaData D u) (szaData_ok D u) (szaData_LBound D u)
     (show 2 ≤ D.R.k by omega) (hg 0) (hg 1)
   rw [szaData_Dstar D u hR hs] at hA
   have hP : ∏ w, ((szaData D u).TcritPow w / (((szaData D u).T : ℕ) : ℝ) ^ (szaData D u).k) =

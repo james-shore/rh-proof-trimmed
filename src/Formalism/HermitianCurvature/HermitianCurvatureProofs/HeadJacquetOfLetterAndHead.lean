@@ -51,7 +51,7 @@ noncomputable section
 namespace Formalism.FourierDecayAlt.P
 
 theorem head_jacquet_of_letter_and_head (hHL : LevelPointCoordinates.HeadLetter) (hB : LevelPointCoordinates.HeadBridge) : LevelPointCoordinates.HeadJ :=
-  LevelPointCoordinates.headJ_of (word_induction_of_parts hHL z_only rules_closed) hB
+  LevelPointCoordinates.headJ_of (_root_.Formalism.FourierDecayAlt.P.LevelPointCoordinates.WordIndPf.word_induction_of_parts_holds hHL z_only rules_closed) hB
 
 theorem radial_head_of_letter_and_head (hHL : LevelPointCoordinates.HeadLetter) (hB : LevelPointCoordinates.HeadBridge) : KB.RadHead :=
   pb_radHead_of_headJ (head_jacquet_of_letter_and_head hHL hB)

@@ -58,12 +58,6 @@ namespace GlobalTheory.LimBasis
 
 variable {l : ℕ} [hl : Fact l.Prime]
 
-theorem sep (z : WCb l) (h : ∀ n, (l : WCb l) ^ n ∣ z) : z = 0 := by
-  ext m
-  obtain ⟨y, hy⟩ := h (m + 1)
-  rw [hy, mul_comm, WittVector.mul_pow_charP_coeff_zero _ (Nat.lt_succ_self m)]
-  simp
-
 def Cg {ι κ : Type} (n : ℕ) (M : Matrix ι κ (WCb l)) : Prop := ∃ Y : Matrix ι κ (WCb l), M = ((l : WCb l) ^ n) • Y
 
 section Cg
@@ -106,7 +100,7 @@ theorem Cg.map (f : WCb l →+* WCb l) {M : Matrix ι κ (WCb l)} (h : Cg n M) :
 
 theorem Cg.eq_zero {M : Matrix ι κ (WCb l)} (h : ∀ n, Cg n M) : M = 0 := by
   refine Matrix.ext fun i j => ?_
-  exact sep _ fun n => (h n).dvd i j
+  exact _root_.GlobalTheory.OEStable.eq_zero_of_forall_dvd _ fun n => (h n).dvd i j
 
 end Cg
 

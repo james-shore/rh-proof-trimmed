@@ -176,7 +176,7 @@ theorem semiPoint_of (hW : WittBasisStatement) (hB : LatDegBasisStatement)
   have hg0 := g_ne_zero S m g haniso
   have hsp : ∀ v : Fin r → K, ∃ a : 𝓞 K, a ≠ 0 ∧ a • v ∈ Lp := by
     intro v
-    obtain ⟨a, ha, hav⟩ := clear_denom L (P *ᵥ v) (by rw [hL.2]; exact Submodule.mem_top)
+    obtain ⟨a, ha, hav⟩ := _root_.Bl.general_b_fact_second_alt.goal1 L (P *ᵥ v) (by rw [hL.2]; exact Submodule.mem_top)
     refine ⟨a, ha, ⟨a • (P *ᵥ v), hav, ?_⟩⟩
     rw [map_smul, matLin_apply, Matrix.mulVec_mulVec, hQdef, Matrix.nonsing_inv_mul P hPu,
       Matrix.one_mulVec]

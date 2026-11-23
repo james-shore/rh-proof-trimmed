@@ -137,7 +137,7 @@ theorem exists_zData : ∀ (h M d : ℕ) (S : Scheme.{0}) (t : S ⟶ Sp (cycAway
   obtain ⟨B, iB, Q, hB, -, hQ, hQ'⟩ := GlobalTheory.dualAbelianScheme S c.A c.ab
   obtain ⟨la, hla, -⟩ := hQ.univ c.A c.P c.isLB (isAdditive_P c hK.1)
   have hmon := isMonHom_la c hK.1 hQ hQ' hla
-  obtain ⟨mu, hmu, h1, h2⟩ := GlobalTheory.T.exists_dualAbelianScheme_hom_comp_eq_mul_of_ker S c.A B Q la d c.ab hB hQ hQ' hmon hd
+  obtain ⟨mu, hmu, h1, h2⟩ := _root_.GlobalTheory.DualFactor.main S c.A B Q la d c.ab hB hQ hQ' hmon hd
     fun T x hx => pow_eq_one_of_la c hK hQ hla x hx
   exact ⟨B, iB, hB.comm, Q, la, mu, hB, hQ, hQ', hmon, hmu, h1, h2, hla⟩
 

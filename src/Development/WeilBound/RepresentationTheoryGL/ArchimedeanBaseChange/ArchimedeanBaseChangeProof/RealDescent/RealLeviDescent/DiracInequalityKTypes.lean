@@ -46,7 +46,7 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PositivityTheory.RgBcC.RealD
 
-theorem countG_holds : CountG := GlobalTheory.CompanionTheory.RealCountG.countG
+alias countG_holds := _root_.GlobalTheory.CompanionTheory.RealCountG.countG
 
 theorem dirac_inequality_k_types : DiracInequalityWithoutSplitComponent := GlobalTheory.CompanionTheory.DiracKType0.dirac_inequality_k_types
 

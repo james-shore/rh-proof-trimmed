@@ -60,23 +60,6 @@ section Fr
 
 variable {n' r : ℕ} [NeZero n'] {Fr : Frames n' r} {L₁ N₁ : ℕ}
 
-private theorem fr_lt_fr_of_lt (hV : Fr.Valid L₁ N₁) (j : ℤ) :
-    ∀ i i', i < i' → i' < r → Fr.fr j i < Fr.fr j i' := by
-  intro i i' hii' hi'
-  induction i' with
-  | zero => omega
-  | succ k ih =>
-    rcases Nat.lt_succ_iff_lt_or_eq.mp hii' with h | h
-    · exact (ih h (by omega)).trans (hV.2.2.1 j k hi')
-    · subst h
-      exact hV.2.2.1 j i hi'
-
-private theorem fr_le_fr_of_le (hV : Fr.Valid L₁ N₁) (j : ℤ) (i : ℕ) (hi : i < r) :
-    Fr.fr j 0 ≤ Fr.fr j i := by
-  rcases Nat.eq_zero_or_pos i with h | h
-  · rw [h]
-  · exact (fr_lt_fr_of_lt hV j 0 i h hi).le
-
 theorem exists_posU (hV : Fr.Valid L₁ N₁) (hr : 1 ≤ r) (j : ℤ) (N : ℕ) (hN : N = (Fr.LLset j).card) (x : ℤ)
     (hx : x ∈ Fr.letters j) (hW : ¬ Fr.IsW j x) : ∃ u, u < N + r ∧ posU Fr N j u = x := by
   have hlen : ((Fr.LLset j).sort (· ≤ ·)).length = N := by rw [Finset.length_sort, hN]
@@ -126,8 +109,8 @@ theorem posU_letter (hV : Fr.Valid L₁ N₁) (hr : 1 ≤ r) (j : ℤ) (N : ℕ)
     refine ⟨?_, ?_⟩
     · simp only [Frames.letters, Finset.mem_filter, Finset.mem_Icc]
       refine ⟨⟨?_, ?_⟩, hx.2⟩
-      · exact (fr_le_fr_of_le hV (j - 1) (r - 1) (by omega)).trans hx.1.1.le
-      · exact hx.1.2.le.trans (fr_le_fr_of_le hV j (r - 1) (by omega))
+      · exact (_root_.Formalism.MainNotions.G.WittFrameLocaliserOrders.frame_first_entry_le hV (j - 1) (r - 1) (by omega)).trans hx.1.1.le
+      · exact hx.1.2.le.trans (_root_.Formalism.MainNotions.G.WittFrameLocaliserOrders.frame_first_entry_le hV j (r - 1) (by omega))
     · unfold Frames.IsW
       push_neg
       exact hx.1.1
@@ -145,7 +128,7 @@ theorem posU_letter (hV : Fr.Valid L₁ N₁) (hr : 1 ≤ r) (j : ℤ) (N : ℕ)
     rw [sub_add_cancel] at hg
     refine ⟨?_, ?_⟩
     · simp only [Frames.letters, Finset.mem_filter, Finset.mem_Icc]
-      exact ⟨⟨(fr_le_fr_of_le hV (j - 1) (r - 1) (by omega)).trans hg.le, fr_le_fr_of_le hV j (r - 1) (by omega)⟩,
+      exact ⟨⟨(_root_.Formalism.MainNotions.G.WittFrameLocaliserOrders.frame_first_entry_le hV (j - 1) (r - 1) (by omega)).trans hg.le, _root_.Formalism.MainNotions.G.WittFrameLocaliserOrders.frame_first_entry_le hV j (r - 1) (by omega)⟩,
         (hV.2.2.2.2.1 j 0 (by omega)).1⟩
     · unfold Frames.IsW
       push_neg

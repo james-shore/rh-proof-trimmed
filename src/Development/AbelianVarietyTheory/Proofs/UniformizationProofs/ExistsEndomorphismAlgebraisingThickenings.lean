@@ -75,33 +75,7 @@ theorem eval₂_scale {σ R A : Type} [CommRing R] [CommRing A] (φ : R →+* A)
   rw [← hd']
   simp only [mul_pow, Finset.prod_mul_distrib, Finset.prod_pow_eq_pow_sum, _root_.mul_assoc]
 
-theorem gs_eval {R : Type} [CommRing R] (f : X ⟶ Spec (CommRingCat.of R)) (φ : X' ⟶ X) (z : X') (U : X.Opens)
-    (h : φ z ∈ U) (x : κ → Γ(X, U)) (P : MvPolynomial κ R) :
-    gs φ z U (MvPolynomial.eval₂Hom (cst f U) x P) =
-      MvPolynomial.eval₂ ((X'.presheaf.germ ⊤ z trivial).hom.comp (cst (φ ≫ f) ⊤)) (fun j => gs φ z U (x j)) P := by
-  rw [gs_eq φ z U h, MvPolynomial.coe_eval₂Hom, MvPolynomial.eval₂_comp_left, MvPolynomial.eval₂_comp_left]
-  congr 1
-  · ext r
-    simp only [RingHom.comp_apply]
-    rw [← gs_eq φ z U h]
-    simp only [GlobalTheory.AbLaw.cst, rs, RingHom.comp_apply]
-    rw [gs_res φ z le_top h, gs_eq φ z ⊤ trivial]
-    have hid : X'.presheaf.map (homOfLE (le_top : (⊤ : X'.Opens) ≤ ⊤)).op = 𝟙 _ := by
-      rw [show (homOfLE (le_top : (⊤ : X'.Opens) ≤ ⊤)) = 𝟙 _ from Subsingleton.elim _ _]
-      exact X'.presheaf.map_id _
-    rw [hid]
-    simp only [CommRingCat.hom_id, RingHom.id_apply]
-    rfl
-  · funext j
-    simp only [Function.comp_apply]
-    exact (gs_eq φ z U h _).symm
-
-theorem isUnit_gs_iff (r : X' ⟶ X) (z : X') (U : X.Opens) (h : r z ∈ U) (a : Γ(X, U)) :
-    IsUnit (gs r z U a) ↔ r z ∈ X.basicOpen a := by
-  rw [gs_eq r z U h a]
-  refine (X'.mem_basicOpen (U := r ⁻¹ᵁ U) ((r.app U).hom a) z h).symm.trans ?_
-  rw [← Scheme.Hom.preimage_basicOpen]
-  rfl
+alias isUnit_gs_iff := _root_.GlobalTheory.LBGerm.isUnit_gs_iff
 
 theorem exists_pull {M : LB X} (s : LB.Sec M) (π : X' ⟶ X) :
     ∃ t : LB.Sec (M.pull π), ∀ (Z : Scheme.{0}) (r : Z ⟶ X') (z : Z) (J), Good M z J →
@@ -143,7 +117,7 @@ private theorem gs_sec_chart_transition {X Z : Scheme.{0}} {H : LB X} (s : LB.Se
 theorem exists_end_of_thickenings : ∀ (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] (I : Ideal R), IsAdicComplete I R → ∀ (Y : Over (Spec (CommRingCat.of R))), Smooth Y.hom → IsProjBy Y.hom → ∀ f : ∀ e, (thickObj R I e Y).left ⟶ Y.left, (∀ e, f e ≫ Y.hom = pullback.fst Y.hom (thick R I e) ≫ Y.hom) → (∀ e, thickMap R I e Y ≫ f (e + 1) = f e) → ∃ g : Y ⟶ Y, ∀ e, pullback.fst Y.hom (thick R I e) ≫ g.left = f e := by
   intro R _ _ _ I hI Y hsm hpr f hf hfc
   obtain ⟨H, hH, n, s, hva⟩ := id hpr
-  obtain ⟨t, m, u, hcov, hu⟩ := GlobalTheory.T.exists_compatible_generatingSections_all_thickenings R I Y H n s hsm hH hva f hfc
+  obtain ⟨t, m, u, hcov, hu⟩ := _root_.GlobalTheory.SecTower.exists_tower R I Y H n s hsm hH hva f hfc
   have hw0 : ∀ e (i : Fin (n + 1)) (j : Fin (m + 1)), ∃ w : LB.Sec (LB.LinComb H (K := PUnit)
       (fun _ => pullback.fst Y.hom (thick R I e)) (fun _ => t)),
       ∀ (Z : Scheme.{0}) (r : Z ⟶ (thickObj R I e Y).left) (z : Z) (J), Good H z J →
@@ -215,7 +189,7 @@ theorem exists_end_of_thickenings : ∀ (R : Type) [CommRing R] [IsDomain R] [Is
     · simpa [sub_eq_zero] using h
     · intro e z k hz
       obtain ⟨J, hJ, hJe, hv⟩ := key e z k (Set.mem_iInter.1 hz ⟨⟩)
-      rw [gs_eval Y.hom _ z _ hz]
+      rw [_root_.GlobalTheory.MorAlg.gs_eval Y.hom _ z _ hz]
       simp [hv]
       ring
   have hhom : ∀ (d : ℕ) (F : MvPolynomial (Fin (n + 1)) R), F.IsHomogeneous d →
@@ -226,9 +200,9 @@ theorem exists_end_of_thickenings : ∀ (R : Type) [CommRing R] [IsDomain R] [Is
     refine GlobalTheory.T.homogeneousForm_sections_eq_zero_of_thickenings R I hI Y hsm hpr _ (Fin (n + 1)) (fun i => S i j) d F hN hF ?_
     intro e z k hz
     obtain ⟨J, hJ, hJe, hv⟩ := key e z k (Set.mem_iInter.1 hz ⟨⟩)
-    rw [gs_eval Y.hom _ z _ hz]
+    rw [_root_.GlobalTheory.MorAlg.gs_eval Y.hom _ z _ hz]
     simp only [hv]
-    have h2 := gs_eval Y.hom (f e) z (H.U (J (f e))) hJe (fun i => (s i).f (J (f e))) F
+    have h2 := _root_.GlobalTheory.MorAlg.gs_eval Y.hom (f e) z (H.U (J (f e))) hJe (fun i => (s i).f (J (f e))) F
     rw [h0, hf e] at h2
     have hz0 : gs (f e) z (H.U (J (f e))) 0 = 0 := by rw [gs_eq _ _ _ hJe, map_zero, map_zero]
     rw [eval₂_scale _ (sval (u e j) (𝟙 _) z J) (fun i => gs (f e) z (H.U (J (f e))) ((s i).f (J (f e)))) hF,

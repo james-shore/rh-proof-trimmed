@@ -57,9 +57,6 @@ section Unitary
 variable {Γ : Type} [Group Γ] [TopologicalSpace Γ] {A : Type} [NormedAddCommGroup A] [InnerProductSpace ℂ A]
   {ρ : Γ → (A →L[ℂ] A)}
 
-theorem isU_inner (hU : IsU ρ) (g : Γ) (x y : A) : ⟪ρ g x, ρ g y⟫_ℂ = ⟪x, y⟫_ℂ :=
-  (LinearIsometry.mk (ρ g).toLinearMap (hU.norm g)).inner_map_map x y
-
 theorem isU_apply_inv (hU : IsU ρ) (g : Γ) (x : A) : ρ g (ρ g⁻¹ x) = x := by
   have h := hU.mul g g⁻¹
   rw [mul_inv_cancel, hU.one] at h
@@ -68,7 +65,7 @@ theorem isU_apply_inv (hU : IsU ρ) (g : Γ) (x : A) : ρ g (ρ g⁻¹ x) = x :=
 
 theorem isU_inner_left (hU : IsU ρ) (k : Γ) (x y : A) : ⟪ρ k x, y⟫_ℂ = ⟪x, ρ k⁻¹ y⟫_ℂ := by
   conv_lhs => rw [← isU_apply_inv hU k y]
-  exact isU_inner hU k x _
+  exact _root_.GlobalTheory.CompanionTheory.Godement.inner_map hU k x _
 
 end Unitary
 
@@ -120,7 +117,7 @@ theorem form_facts (hρ : IsU ρ) (hσ : IsU σ) (hF : IsFd ν σ d) {v : B}
     Integrable (fun g => ⟪b, ρ g v⟫_ℂ * ⟪σ g w, a⟫_ℂ) ν ∧
       ‖∫ g, ⟪b, ρ g v⟫_ℂ * ⟪σ g w, a⟫_ℂ ∂ν‖ ^ 2 ≤
         ((∫ g, ‖⟪v, ρ g v⟫_ℂ‖ ∂ν) * ‖b‖ ^ 2) * (‖a‖ ^ 2 * ‖w‖ ^ 2 / d) := by
-  obtain ⟨hb1, hb2⟩ := GlobalTheory.T.matrix_coefficient_integrable_square ν ρ hρ v hv b
+  obtain ⟨hb1, hb2⟩ := _root_.GlobalTheory.CompanionTheory.GodementCoeff.sq_integrable_and_bound ν ρ hρ v hv b
   have hc : Continuous fun g => ⟪b, ρ g v⟫_ℂ := continuous_const.inner (hρ.cont v)
   have hφ : MemLp (fun g => ⟪b, ρ g v⟫_ℂ) 2 ν := (memLp_two_iff_integrable_sq_norm hc.aestronglyMeasurable).2 hb1
   obtain ⟨hψ, hψ2⟩ := coeff_sq ν hσ hF w a
@@ -184,7 +181,7 @@ theorem tMap : TMap := by
     refine (integral_mul_left_eq_self (μ := ν) (fun g => ⟪ρ k b, ρ g v⟫_ℂ * ⟪σ g w, a⟫_ℂ) k).symm.trans
       (integral_congr_ae (ae_of_all _ fun g => ?_))
     simp only [hρ.mul, hσ.mul, ContinuousLinearMap.mul_apply]
-    rw [isU_inner hρ, isU_inner_left hσ]
+    rw [_root_.GlobalTheory.CompanionTheory.Godement.inner_map hρ, isU_inner_left hσ]
   have hv' : T v = (c : ℂ) • w := ext_inner_right ℂ fun a => by
     rw [hT, inner_smul_left, Complex.conj_ofReal]
     have h1 := congrArg (starRingEnd ℂ) (h a)

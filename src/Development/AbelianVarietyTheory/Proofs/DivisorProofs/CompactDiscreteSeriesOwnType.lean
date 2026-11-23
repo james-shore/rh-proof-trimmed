@@ -38,6 +38,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GapConditionsOfLargeGaps
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.Compact
 
 @[expose] public section
 
@@ -50,17 +51,6 @@ namespace GlobalTheory.PsCo.PcEF
 open GlobalTheory.PsCo.PcEG
 
 variable {n : ℕ}
-
-theorem cpt_const {ε : Fin n → Bool} (h : pOf ε = 0 ∨ qOf ε = 0) (a b : Fin n) : ε a = ε b := by
-  rcases h with hp | hq
-  · have h1 : ∀ c, ε c = false := fun c => by
-      have := Finset.filter_eq_empty_iff.1 (Finset.card_eq_zero.1 hp) (Finset.mem_univ c)
-      simpa using this
-    rw [h1 a, h1 b]
-  · have h1 : ∀ c, ε c = true := fun c => by
-      have := Finset.filter_eq_empty_iff.1 (Finset.card_eq_zero.1 hq) (Finset.mem_univ c)
-      simpa using this
-    rw [h1 a, h1 b]
 
 theorem cpt_Jm_comm {ε : Fin n → Bool} (hc : ∀ a b, ε a = ε b) (M : Matrix (Fin n) (Fin n) ℂ) :
     Formalism.REAL.Jm ε * M = M * Formalism.REAL.Jm ε := by
@@ -88,7 +78,7 @@ theorem cpt_Kset_eq {ε : Fin n → Bool} (hc : ∀ a b, ε a = ε b) :
 
 theorem compactDiscreteSeries_ownType : CptCase := by
   intro n ε lam h
-  have hc := cpt_const h
+  have hc := _root_.ReciprocityTheory.ChartRestriction.DS.cmpt_eps_eq h
   refine ⟨fun k => ?_, ?_, ?_⟩
   · have : IsEmpty {x : Fin n × Fin n // IsPhys ε x} :=
       ⟨fun x => by

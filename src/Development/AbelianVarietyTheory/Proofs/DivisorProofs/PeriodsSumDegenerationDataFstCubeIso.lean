@@ -114,9 +114,7 @@ theorem psum_pair : psum G x {0, 1} = padd G (x 0) (x 1) := by
   show padd G (x 0) (lift (x 1) (toUnit T ≫ η[G]) ≫ μ[G]) = _
   rw [lift_comp_one_right]
 
-theorem comp_padd' {T' : Over S} (g : T' ⟶ T) (a b : T ⟶ G) : g ≫ padd G a b = padd G (g ≫ a) (g ≫ b) := by
-  unfold padd
-  rw [comp_lift_assoc]
+alias comp_padd' := _root_.ReciprocityTheory.ChartRestriction.G.Out.CubePf.comp_padd'
 
 end Psum
 

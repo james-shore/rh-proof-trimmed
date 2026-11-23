@@ -181,12 +181,6 @@ private theorem exists_ringHom_spMap_eq {R o : Type} [CommRing R] [CommRing o] (
     ∃ β : o →+* R, spMap β = g :=
   ⟨(Spec.preimage g).hom, by unfold spMap; simp⟩
 
-private theorem spMap_comp_var {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  unfold spMap
-  rw [← Spec.map_comp]
-  rfl
-
 theorem exists_sqrt : Out.Laws → ∀ (h k : ℕ) (o : Type) [CommRing o] (ζ : o) (R : Type) [CommRing R] [Algebra ℚ R] [IsNoetherianRing R] (S : Scheme.{0}) (s : S ⟶ Sp o) (c : SiegPre h k ζ s) (f : Sp R ⟶ S), 2 ≤ k → IsUnit ζ → c.Principal → ∃ (R₁ : Type) (_ : CommRing R₁) (_ : Algebra R R₁) (P : Out.PolAV (Sp R₁)) (φ : P.A.left ⟶ c.A.left), (Module.Finite R R₁ ∧ Algebra.Etale R R₁ ∧ Module.FaithfullyFlat R R₁) ∧ SqOf P c (spMap (algebraMap R R₁) ≫ f) φ ∧ TorsConst P.A 2 := by
   intro hL h k o _ ζ R _ _ _ S s c f hk hζ hc
   have pull_isLB {X Y : Scheme.{0}} {L : LB X} (hL : L.IsLB) (F : Y ⟶ X) : (L.pull F).IsLB := by
@@ -221,16 +215,16 @@ theorem exists_sqrt : Out.Laws → ∀ (h k : ℕ) (o : Type) [CommRing o] (ζ :
   haveI : IsNoetherianRing R₁ := Algebra.FiniteType.isNoetherianRing R R₁
   letI : Algebra ℚ R₁ := ((algebraMap R R₁).comp (algebraMap ℚ R)).toAlgebra
   obtain ⟨c₂, hpb₂, hc₂⟩ := pull_sieg (spMap ((algebraMap R R₁).comp β)) (spMap (algebraMap R R₁))
-    (spMap_comp_var β (algebraMap R R₁)).symm c₁ hc₁
+    (_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp β (algebraMap R R₁)).symm c₁ hc₁
   obtain ⟨φ₂, φ₂₂, hg₂, hsq₂, hiso₂, hlev₂⟩ := hpb₂
   obtain ⟨i, hi⟩ := lab₁ c₂.A φ₂ hg₂
 
-  obtain ⟨R₂, _, _, ⟨fin₂, et₂, ff₂⟩, H91⟩ := GlobalTheory.T.exists_symmetric_linearisation_square_diagonalBundle hL h k o ζ R₁ ((algebraMap R R₁).comp β) c₂ h i hc₂
+  obtain ⟨R₂, _, _, ⟨fin₂, et₂, ff₂⟩, H91⟩ := _root_.GlobalTheory.SymLin.main hL h k o ζ R₁ ((algebraMap R R₁).comp β) c₂ h i hc₂
   haveI : IsNoetherianRing R₂ := Algebra.FiniteType.isNoetherianRing R₁ R₂
   letI : Algebra ℚ R₂ := ((algebraMap R₁ R₂).comp (algebraMap ℚ R₁)).toAlgebra
   obtain ⟨c₃, hpb₃, hc₃⟩ := pull_sieg (spMap ((algebraMap R₁ R₂).comp ((algebraMap R R₁).comp β)))
     (spMap (algebraMap R₁ R₂))
-    (spMap_comp_var ((algebraMap R R₁).comp β) (algebraMap R₁ R₂)).symm c₂ hc₂
+    (_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp ((algebraMap R R₁).comp β) (algebraMap R₁ R₂)).symm c₂ hc₂
   obtain ⟨φ₃, φ₃₂, hg₃, hsq₃, hiso₃, hlev₃⟩ := hpb₃
   obtain ⟨i₃, hi₃l, hi₃⟩ := exists_pull_labels hg₃ 2 i hi
   have hLlb : (lbPow (c₂.diag.pull φ₃) 2).IsLB := isLB_lbPow (pull_isLB (diag_isLB c₂) _) 2
@@ -238,7 +232,7 @@ theorem exists_sqrt : Out.Laws → ∀ (h k : ℕ) (o : Type) [CommRing o] (ζ :
 
   obtain ⟨hmon, hfin, het, hsurj⟩ :=
     GlobalTheory.abelianScheme_id_pow_finite_etale_surjective (Sp R₂) c₃.A 2 c₃.ab (isUnit_two_sections R₂)
-  obtain ⟨M, hM, hLM, hMinv⟩ := GlobalTheory.T.exists_descent_symmetric_linearised_bundle (Sp R₂) c₃.A c₃.A ((𝟙 c₃.A) ^ 2) _ i₃ _ hLlb hmon hfin het hsurj
+  obtain ⟨M, hM, hLM, hMinv⟩ := _root_.GlobalTheory.LinDescent.exists_descent_symmetric (Sp R₂) c₃.A c₃.A ((𝟙 c₃.A) ^ 2) _ i₃ _ hLlb hmon hfin het hsurj
     (fun x => by rw [MonObj.comp_pow, Category.comp_id, ← map_pow, sq2, map_one])
     (fun k _ _ t => ⟨fun x => by rw [MonObj.comp_pow, Category.comp_id]; exact (hi₃ k t).1 x, (hi₃ k t).2⟩) u j hu
   have hLam := GlobalTheory.T.lam_iso_of_doubling_pullback_eq_diagonal_sq hL h k o ζ R₂ _ c₃ M hc₃ hM
@@ -257,7 +251,7 @@ theorem exists_sqrt : Out.Laws → ∀ (h k : ℕ) (o : Type) [CommRing o] (ζ :
   · first | exact Module.FaithfullyFlat.trans R R₁ R₂ | infer_instance
   · have e : spMap (algebraMap R R₂) ≫ f =
         ((𝟙 _ ≫ spMap (algebraMap R₁ R₂)) ≫ spMap (algebraMap R R₁)) ≫ f := by
-      rw [Category.id_comp, ← spMap_comp_var]
+      rw [Category.id_comp, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
     rw [e]
     exact hψ₀
   · intro K _ _ x y hy

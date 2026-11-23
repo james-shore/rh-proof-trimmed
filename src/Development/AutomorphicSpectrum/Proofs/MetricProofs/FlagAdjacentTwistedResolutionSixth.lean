@@ -146,10 +146,6 @@ theorem plk_ne_zero (M : FlagModel y Ψ N j) {n : ℕ} (BM : BaseMetric M n) (l 
     rw [(M.blk_none p).2 hn] at hp
     cases hp
 
-theorem not_mem_top (z : (Σ k, ι k) → ℂ) : z ∉ mcPts (⊤ : Ideal (MRing ι)) := fun h => by
-  have := h.2 1 trivial
-  simp at this
-
 end GlobalTheory.CompanionTheory.Ar.PB.WSq.FC.DensW
 
 
@@ -218,7 +214,7 @@ theorem GlobalTheory.CompanionTheory.Ar.PB.WSq.FC.dens_w : ∀ (K : Type) [Finty
   rw [hw.1] at o₀
   rw [hw.2] at o₁
   have hpr : FA.pr (q 0 x') = b' := by
-    refine BM.Rb.inj _ _ (GlobalTheory.CompanionTheory.Ar.PB.WSq.FC.DensW.not_mem_top _) (orbit_trans (orbit_symm (hbase x')) ?_)
+    refine BM.Rb.inj _ _ (_root_.GlobalTheory.CompanionTheory.Ar.PB.Proj.not_mem_mcPts_top _) (orbit_trans (orbit_symm (hbase x')) ?_)
     have o₂ := FibreCount.basePart_orbit M.blk o₀
     rw [FC.basePart_flagPt] at o₂
     exact orbit_trans o₂ hg.2.2.2

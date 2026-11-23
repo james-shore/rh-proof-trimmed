@@ -245,6 +245,6 @@ end PositivityTheory.Rg.Sw.LVs.TC
 
 namespace PositivityTheory.Rg.Sw.LVs
 
-theorem topComp : TopComp := TC.topComp
+alias topComp := _root_.PositivityTheory.Rg.Sw.LVs.TC.topComp
 
 end PositivityTheory.Rg.Sw.LVs

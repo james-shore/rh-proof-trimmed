@@ -107,15 +107,6 @@ theorem posDef_eventually_of_continuous {X n : Type*} [TopologicalSpace X] [Fint
   have := pos_of_mul_pos_right h1 (by positivity)
   simpa using this
 
-theorem gramOf_isHermitian {N : ℕ} (hd : Fin N → ℝ) (g : Matrix (Fin N) (Fin N) ℂ) :
-    (gramOf hd g).IsHermitian := by
-  unfold gramOf
-  refine isHermitian_conjTranspose_mul_mul g ?_
-  ext i j
-  by_cases h : i = j
-  · subst h; simp
-  · simp [diagonal_apply, h, Ne.symm h]
-
 theorem continuous_gramHead {N : ℕ} (hd : Fin N → ℝ) (k : ℕ) :
     Continuous fun g : Matrix (Fin N) (Fin N) ℂ => gramHead hd k g := by
   unfold gramHead gramOf
@@ -132,7 +123,7 @@ theorem isOpen_inFlagDomain (N j : ℕ) :
     refine posDef_eventually_of_continuous (fun g => -gramHead (sigForm N j) (N - j) g) (fun a b => ?_)
       (fun g => ?_) g0 hg0
     · exact ((continuous_gramHead _ _).neg).matrix_elem a b
-    · exact ((gramOf_isHermitian _ g).submatrix _).neg
+    · exact ((_root_.GlobalTheory.CompanionTheory.Ar.PB.GramSchmidtFlag.gramOf_isHermitian _ g).submatrix _).neg
   exact h1.inter h2
 
 theorem gramOf_mul_of_preserves {N : ℕ} (hd : Fin N → ℝ) (u g : Matrix (Fin N) (Fin N) ℂ)

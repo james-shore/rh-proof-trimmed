@@ -58,6 +58,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.LBLocal
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.LieBridgeA
 
 @[expose] public section
 
@@ -178,11 +179,6 @@ omit [IsCommMonObj G] [IsCommMonObj G₂] in
 theorem pow_ext {T : Over S} {u v : T ⟶ G₂} (h : ∀ i, u ≫ p.pr i = v ≫ p.pr i) : u = v :=
   p.lim.hom_ext fun ⟨i⟩ => h i
 
-theorem act_zero' : a.act 0 = 1 := by
-  have h := a.add 0 0
-  rw [add_zero] at h
-  exact left_eq_mul.1 h
-
 omit [IsCommMonObj G₂] in
 theorem isMonHom_matEnd (m : Matrix (Fin 2) (Fin 2) O) : IsMonHom (matEnd a p m) := by
   have := p.hom
@@ -197,7 +193,7 @@ theorem isMonHom_matEnd (m : Matrix (Fin 2) (Fin 2) O) : IsMonHom (matEnd a p m)
 omit [IsCommMonObj G₂] in
 theorem matEnd_scalar (c : O) (i : Fin 2) : matEnd a p (Matrix.scalar (Fin 2) c) ≫ p.pr i = p.pr i ≫ a.act c := by
   rw [matEnd_pr]
-  fin_cases i <;> simp [act_zero', MonObj.comp_one]
+  fin_cases i <;> simp [_root_.ReciprocityTheory.ChartRestriction.G.PullbackSections.oact_zero, MonObj.comp_one]
 
 omit [IsCommMonObj G₂] in
 theorem matEnd_one : matEnd a p 1 = 𝟙 G₂ := pow_ext p fun i => by

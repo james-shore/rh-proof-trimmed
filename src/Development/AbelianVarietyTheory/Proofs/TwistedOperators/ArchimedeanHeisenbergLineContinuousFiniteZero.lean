@@ -44,6 +44,7 @@ import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.Matchi
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsVacFOfIsVacVec
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.BlkGLMem
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaEqB
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtensionEmbeddingMixedSymmOfIsComplex
 
 @[expose] public section
 
@@ -63,19 +64,8 @@ namespace GlobalTheory.ArchLineCont
 
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (realAd)
 
-theorem continuous_ofMixed' (F : Type) [Field F] [NumberField F] :
-    Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace F).symm := by
-  refine continuous_pi fun v => ?_
-  rcases v.isReal_or_isComplex with hv | hv
-  · rw [(InfinitePlace.Completion.isometry_extensionEmbeddingOfIsReal hv).isEmbedding.continuous_iff]
-    exact ((continuous_apply _).comp continuous_fst).congr fun y =>
-      (congrFun (congrArg Prod.fst ((InfiniteAdeleRing.ringEquiv_mixedSpace F).apply_symm_apply y)) ⟨v, hv⟩).symm
-  · rw [(InfinitePlace.Completion.isometry_extensionEmbedding v).isEmbedding.continuous_iff]
-    exact ((continuous_apply _).comp continuous_snd).congr fun y =>
-      (congrFun (congrArg Prod.snd ((InfiniteAdeleRing.ringEquiv_mixedSpace F).apply_symm_apply y)) ⟨v, hv⟩).symm
-
 theorem continuous_realAd' (F : Type) [Field F] [NumberField F] : Continuous (realAd F) :=
-  Continuous.prodMk ((continuous_ofMixed' F).comp (continuous_algebraMap ℝ _)) continuous_const
+  Continuous.prodMk ((_root_.GlobalTheory.HeckeOne.continuous_ringEquiv_mixedSpace_symm F).comp (continuous_algebraMap ℝ _)) continuous_const
 
 
 

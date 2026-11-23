@@ -44,7 +44,5 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 namespace LateralTheory.Fin.LeafAW
-theorem etale_purity_aw : LateralTheory.CohomologicalPurity.LeafAW := by
-  apply LateralTheory.CohomologicalPurity.LeafAWCut.LeafAW_of
-theorem intersectionNumber_baseChange : LateralTheory.CohomologicalPurity.LeafAW := etale_purity_aw
+alias intersectionNumber_baseChange := _root_.LateralTheory.CohomologicalPurity.LeafAWCut.LeafAW_of
 end LateralTheory.Fin.LeafAW

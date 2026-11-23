@@ -251,7 +251,7 @@ structure DivisorReductionProperties (hres : FunctorialResolution.Blowup.StrictT
                   T.structMap) J
                 (List.map (fun D => D.comap (T.boundary.get ⟨j, hj⟩).subschemeι)
                   (T.boundary.eraseIdx j))).IsAdmissible →
-            T.ideal = imageIdealSheaf (T.boundary.get ⟨j, hj⟩).subschemeι J →
+            T.ideal = _root_.FunctorialResolution.Blowup.schemeImageIdeal (T.boundary.get ⟨j, hj⟩).subschemeι J →
               DivisorReduction.containedComponentsIdeal T j hj = ⊤
 
 theorem DivisorReductionProperties.toDivisorReductionStepProperties {hres : FunctorialResolution.Blowup.StrictTransformIsBlowupOfClosedSubscheme.{u}}

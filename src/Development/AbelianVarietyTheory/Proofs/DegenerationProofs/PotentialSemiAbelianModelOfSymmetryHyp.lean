@@ -63,9 +63,7 @@ open GlobalTheory.SS
 
 namespace GlobalTheory.SymSemistable
 
-theorem spMap_spMap {R R₁ R₂ : Type} [CommRing R] [CommRing R₁] [CommRing R₂] (a : R →+* R₁) (b : R₁ →+* R₂) :
-    spMap b ≫ spMap a = spMap (b.comp a) := by
-  rw [← Spec.map_comp, ← CommRingCat.ofHom_comp]
+alias spMap_spMap := _root_.GlobalTheory.spMap_comp_ring
 
 theorem exists_odd_prime_isUnit (V : Type) [CommRing V] [IsLocalRing V] :
     ∃ n : ℕ, n.Prime ∧ Odd n ∧ IsUnit (n : V) := by
@@ -168,7 +166,7 @@ theorem exists_factor {Ω W L : Type} [Field Ω] [CharZero Ω] [CommRing W] [Fie
 theorem potModel_semiAbelian_of_hypS : ∀ (V K : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [IsAdicComplete (IsLocalRing.maximalIdeal V) V] [Field K] [CharZero K] [Algebra V K] [IsFractionRing V K] (Q : Out.PolAV (Sp K)), (letI := Q.isAb.comm; GlobalTheory.ZH.HypS Q.A Q.L) → PotModel V K Q.A (fun _ _ _ G _ => IsSemiAbelian G) := by
   intro V K _ _ _ _ _ _ _ _ Q hS
   obtain ⟨n, np, nodd, nu⟩ := exists_odd_prime_isUnit V
-  obtain ⟨a, fam⟩ := GlobalTheory.T.exists_proper_semiAbelian_family' Q.g n np nodd
+  obtain ⟨a, fam⟩ := _root_.GlobalTheory.exists_proper_semiAbelian_family Q.g n np nodd
   let Ω := AlgebraicClosure K
   obtain ⟨o, ze, ded, ft, no, prim, ho⟩ := GlobalTheory.CycAway.exists_base Ω n a np
   obtain ⟨P, α, hg, hα, hL⟩ := exists_polarised_pull (spMap (algebraMap K Ω)) Q

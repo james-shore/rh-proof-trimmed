@@ -78,7 +78,7 @@ theorem exists_fine_invariant_fan {E : Type} [Field E] [NumberField E] [IsCMFiel
   refine ⟨φ'', k1, k2, k3, k4, k5, ?_⟩
   intro X _ _ _ _ hX m γ hγ
   have hc : IsCone H.bar φ' γ := kcone X hX m γ hγ
-  obtain ⟨hr, hf⟩ := GlobalTheory.T.linearOn_isFine_of_linearOn_polarisationBaseFunction E H g q (fineDen g (𝒩.image (· - 1))) φs (𝒩.image (· - 1)) X
+  obtain ⟨hr, hf⟩ := _root_.GlobalTheory.PolFan.linearOn_and_isFine_of_linearOn_baseFun E H g q (fineDen g (𝒩.image (· - 1))) φs (𝒩.image (· - 1)) X
     (fineDen_pos g _) hφ hq hX m γ hc.mem hc.nonneg (hlin X hX m γ hc)
   refine ⟨hr, fun N hN => ?_⟩
   have hfN := hf (N - 1) (Finset.mem_image_of_mem _ hN)

@@ -104,10 +104,10 @@ theorem tieDel_all_steps : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv 
   have hR : ∀ d : Dec J std, ∃ V : XR ((sysS H X std).Pj (j + 1)) ℂ, RealAt d (j + 1) hj1 h1 (c', L') φ V ∧
       MvPolynomial.map ι V = cK • S.Y.DelF j ((kaAt X H hT).cmp j x La.1 La.2) (srOf S.Y j La (c', L')) := by
     intro d
-    obtain ⟨V, hV, hmap⟩ := GlobalTheory.T.transportedFramePolynomial_complex_values_at_point S hPos ι hι d j hj1 h1 (c', L') φ P hPw hφκ
+    obtain ⟨V, hV, hmap⟩ := _root_.GlobalTheory.TwV.DelA.transported_frame_realAt S hPos ι hι d j hj1 h1 (c', L') φ P hPw hφκ
     refine ⟨V, hV, ?_⟩
     rw [hmap]
-    obtain ⟨hMove, hOp, hDeg⟩ := GlobalTheory.T.movedForms_operator_degrees_at_kernelSource S hDict hPos ι hι d j hj ⟨a'⟩ hN
+    obtain ⟨hMove, hOp, hDeg⟩ := _root_.GlobalTheory.TwV.DelA.moved_forms_at_source S hDict hPos ι hι d j hj ⟨a'⟩ hN
     have hEq := GlobalTheory.FrameB.equiv_frame_b S.Y d.fd2 (ltC S.g S.hLT) (GlobalTheory.FrameB.ltC_ne S.hLT)
       ((GlobalTheory.TwV.DelB.frames_invertible S).2 d) j
     have hsc : ∀ (La : (sysS H X std).Lt j) (La' : (sysS H X std).Lt (j + 1)), ((sysS H X std).Pj j).IsLatTup La.2 →
@@ -115,10 +115,10 @@ theorem tieDel_all_steps : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv 
         cK * (Formalism.L2.G.Pend.cA (sysS H X std) ℂ_[D.what₂.places.resChar w] j (BOf d.fd2 j La) * sO d ι j La) *
           ι (d.uS S j La) * ι (d.uT S j La') = scT d S ι j La'.1 La'.2 := by
       intro La La' _ _
-      have e := GlobalTheory.T.unit_mul_sourceScalar_eq_nextLevelScalar S hPos ι hι d j hj1 La La'
+      have e := _root_.GlobalTheory.TwV.DelA.unit_mul_scal_eq_scT S hPos ι hι d j hj1 La La'
       rw [hsame] at e
       exact e
-    have hDel := GlobalTheory.T.kernelSite_contractionIdentity_operatorHalf S hDict hPair hPos hLaw d ι hι (fun j => phi0 (sysS H X std) D (hT.gat_pos u w hg) ι j)
+    have hDel := _root_.GlobalTheory.TwV.DelB.delPolAt_site S hDict hPair hPos hLaw d ι hι (fun j => phi0 (sysS H X std) D (hT.gat_pos u w hg) ι j)
       (fun j c' L' => GlobalTheory.FrameB.tauV ℂ_[D.what₂.places.resChar w] d.fd2 (ltC S.g S.hLT) j (c', L'))
       (fun j c' L' => scT d S ι j c' L') (sO d ι) (gmS d) j hj cK hN hMove hOp hDeg hEq hsc
     have := hDel La hLa x Q hQ c' L' hL'

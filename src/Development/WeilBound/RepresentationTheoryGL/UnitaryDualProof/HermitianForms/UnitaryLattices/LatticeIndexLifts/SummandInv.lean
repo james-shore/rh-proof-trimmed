@@ -93,7 +93,7 @@ theorem isOpen_kers (φ : AddChar k Circle) (hφ : Continuous φ) (s : Finset (F
     simp [kers]
   rw [this]
   refine isOpen_biInter_finset fun ξ _ => ?_
-  exact (isOpen_ker φ hφ).preimage (by fun_prop)
+  exact (_root_.PositivityTheory.RgUd.Form.U.Lift2.KerOpen.isOpen_ker φ hφ).preimage (by fun_prop)
 
 theorem exists_AD (φ : AddChar k Circle) (hφ : Continuous φ) (col : (Fin n → k) → V →ₗ[ℂ] V)
     (hc0 : ∀ v, col 0 v = v) (hca : ∀ x y v, col (x + y) v = col x (col y v))

@@ -39,6 +39,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.EtaleCohomology.EtaleSheaves.PropertyDescent.BaseChange
 
 @[expose] public section
 
@@ -56,7 +57,7 @@ theorem sq {k Ω : Type} [Field k] [Field Ω] [Algebra k Ω] {R R' : Subalgebra 
     IsPullback (pullback.lift v (c ≫ toR R') (by rw [Category.assoc, toR_incl]; exact hv.w)) c
       (pullback.snd q (incl hR)) (toR R') := by
   refine IsPullback.of_right ?_ (pullback.lift_snd _ _ _) (IsPullback.of_hasPullback q (incl hR))
-  rw [pullback.lift_fst, toR_incl]; exact hv
+  rw [pullback.lift_fst, _root_.LateralTheory.E.LeafPropsDescendPf.BaseChange.toR_incl]; exact hv
 
 theorem spread_chain_base_change_to_larger_subalgebra : LateralTheory.E.SpreadingOutQuasiFiniteness.LeafBaseChangePreR := by
   intro k _ Ω _ _ R R' hR C0 C1 C2 c0 γ1 γ2 D0 D1 D2 q d1 d2 v0 v1 v2 hpre
@@ -71,7 +72,7 @@ theorem spread_chain_base_change_to_larger_subalgebra : LateralTheory.E.Spreadin
   have P0 := sq hR p0
   have P1 := sq hR p1
   have P2 := sq hR p2
-  refine ⟨_, _, _, pullback.snd q (incl hR), e1, e2, _, pullback.lift v1 ((γ1 ≫ c0) ≫ toR R') (by rw [Category.assoc, toR_incl]; exact p1.w), pullback.lift v2 ((γ2 ≫ γ1 ≫ c0) ≫ toR R') (by rw [Category.assoc, toR_incl]; exact p2.w), pullback.fst _ _, pullback.fst _ _, pullback.fst _ _,
+  refine ⟨_, _, _, pullback.snd q (incl hR), e1, e2, _, pullback.lift v1 ((γ1 ≫ c0) ≫ toR R') (by rw [Category.assoc, _root_.LateralTheory.E.LeafPropsDescendPf.BaseChange.toR_incl]; exact p1.w), pullback.lift v2 ((γ2 ≫ γ1 ≫ c0) ≫ toR R') (by rw [Category.assoc, _root_.LateralTheory.E.LeafPropsDescendPf.BaseChange.toR_incl]; exact p2.w), pullback.fst _ _, pullback.fst _ _, pullback.fst _ _,
     ⟨P0, ?_, ?_, ?_, ?_⟩, IsPullback.of_hasPullback _ _, ?_, ?_, pullback.lift_fst _ _ _,
     pullback.lift_fst _ _ _, pullback.lift_fst _ _ _⟩
   · rw [t1]; exact P1

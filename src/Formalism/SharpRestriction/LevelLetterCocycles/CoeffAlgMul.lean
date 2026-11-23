@@ -193,7 +193,7 @@ theorem secIn_of_fil (C : Formalism.MainNotions.UnusedSlot80.LevC.Ctx W) (A : Ar
     rw [hnum, hden]
     have hk : ((H : ℤ) - k i).toNat + k i = H + ((k i : ℤ) - H).toNat := by omega
     have hl2 : letE a * Vp i = letE a * (ps W 0 ^ k i * h' i) := by
-      rw [← hh' i, ← mul_assoc, Formalism.MainNotions.UnusedSlot80.DivLevR.letE_idem]
+      rw [← hh' i, ← mul_assoc, _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq]
     apply (hunit.pow (k i)).mul_left_cancel
     rw [← map_pow, ← mul_assoc, ← map_mul, ← pow_add, add_comm, hk, pow_add, map_mul, mul_comm
       (algebraMap (LetA O n) W.EE (ps W 0 ^ H)), mul_assoc, hgV i, ← map_mul, ← map_mul]

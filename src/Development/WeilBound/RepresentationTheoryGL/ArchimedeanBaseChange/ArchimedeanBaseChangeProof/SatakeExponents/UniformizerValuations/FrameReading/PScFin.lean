@@ -81,7 +81,7 @@ theorem hk_smul' (ρ : Representation ℂ (GL ι F) V) (K : Subgroup (GL ι F)) 
 
 def hkEnd (ρ : Representation ℂ (GL ι F) V) (K : Subgroup (GL ι F)) (e : GL ι F → ℂ) (he : IsHk K e) :
     Module.End ℂ (fixed ρ K) where
-  toFun v := ⟨hk ρ K e v.1, ((PositivityTheory.Rg.BcN.F2.Final.hkAlg F ι) K e e he he).2.2 V ρ v.1 v.2 |>.1⟩
+  toFun v := ⟨hk ρ K e v.1, ((_root_.GlobalTheory.CompanionTheory.HeckeAlg.hk_alg F ι) K e e he he).2.2 V ρ v.1 v.2 |>.1⟩
   map_add' v w := Subtype.ext (hk_add' ρ K e he v.1 w.1)
   map_smul' c v := Subtype.ext (hk_smul' ρ K e c v.1)
 

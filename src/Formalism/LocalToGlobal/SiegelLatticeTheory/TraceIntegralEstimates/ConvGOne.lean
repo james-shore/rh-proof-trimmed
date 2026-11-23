@@ -185,7 +185,7 @@ theorem inner_weil (w : D.what₂.Word) (z : X.B.I.Ginf) :
     refine lintegral_congr_ae ?_
     filter_upwards [hS] with s hs
     have hn : ‖X.Wu w (s * z')‖ₑ = ‖X.Wu w z'‖ₑ := by
-      rw [← ofReal_norm_eq_enorm, ← ofReal_norm_eq_enorm, norm_Wu_S X w s hs z']
+      rw [← ofReal_norm_eq_enorm, ← ofReal_norm_eq_enorm, _root_.Formalism.L2.SG.Pf.WuDec.norm_Wu_inv X w s hs z']
     rw [hmul, hGdef]
     simp only [hn]
     ring

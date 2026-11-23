@@ -79,11 +79,11 @@ theorem weilThetaConvergence_of_siegelSet (hRT : GlobalTheory.Published.SiegelSe
     rcases Nat.eq_zero_or_pos r with hr | hr
     · subst hr
       exact GlobalTheory.CompanionTheory.SiegelCone.cone_integral_zero_vars_lt_top D.host.F V.rank (2 * n) c
-    · have hw := GlobalTheory.T.witt_frame_rank_le_witt_index D V Xf Yf hW
+    · have hw := _root_.GlobalTheory.CompanionTheory.WittFrame.length_le_wittIdx D V Xf Yf hW
       have h2 : n + Formalism.MainNotions.SchurIrreducible.wittIdx V < V.rank := hV.resolve_left (by omega)
       exact GlobalTheory.T.lintegral_siegelCone_inv_modulus_lt_top_weil D.host.F V.rank r (2 * n) hc (by omega)
   calc absThetaInt V ν Φ.1 ≤ ∫⁻ g in S, absTheta V Φ.1 g ∂ν :=
-        GlobalTheory.T.theta_integral_le_fundamental_set D V ν hν Φ.1 hcontΦ S hSm hScov
+        _root_.GlobalTheory.CompanionTheory.WeilConv.absThetaInt_le_of_meets_orbits D V ν hν Φ.1 hcontΦ S hSm hScov
     _ ≤ C₁ * ∫⁻ t in GlobalTheory.SiegelSet.cone r c,
           ENNReal.ofReal (max C 0 * ∏ i, t i ^ (Module.finrank ℚ D.host.F * (2 * n))) *
             ENNReal.ofReal ((GlobalTheory.SiegelSet.modulus D.host.F V.rank t * ∏ i, t i)⁻¹) := by

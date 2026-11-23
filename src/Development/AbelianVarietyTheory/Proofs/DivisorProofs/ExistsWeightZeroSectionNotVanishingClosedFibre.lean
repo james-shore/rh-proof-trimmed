@@ -119,10 +119,7 @@ theorem unitAt_pow {S : Scheme.{0}} [IsLocallyNoetherian S] (hL : Laws) (P : Pol
       rwa [inv_mul_cancel_right] at this
   exact main m 1
 
-theorem mem_basicOpen_of_isUnit {Y Z : Scheme.{0}} (r : Z ⟶ Y) (z : Z) (U : Y.Opens) (hz : r z ∈ U) (a : Γ(Y, U))
-    (h : IsUnit (gs r z U a)) : r z ∈ Y.basicOpen a := by
-  rw [gs_eq r z U hz] at h
-  exact (SetLike.ext_iff.1 (Scheme.preimage_basicOpen r a) z).2 ((Z.mem_basicOpen _ z hz).2 h)
+alias mem_basicOpen_of_isUnit := _root_.GlobalTheory.IntegralJets.mem_basicOpen_of_isUnit
 
 theorem c_zero {R : Type} [CommRing R] [IsDomain R] (D : DegPre R) : D.c 0 = η[D.P.A] := by
   have h := D.c_add 0 0

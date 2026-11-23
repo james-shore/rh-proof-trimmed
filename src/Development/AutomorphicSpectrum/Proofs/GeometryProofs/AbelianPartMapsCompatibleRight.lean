@@ -96,11 +96,6 @@ theorem span_tmul (σ : L →+* ℂ) (V : Type) [AddCommGroup V] [Module (𝓞 L
     exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨e, rfl⟩)
   | add a b ha hb => exact Submodule.add_mem _ ha hb
 
-theorem spComp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (d : A →+* B) (c : B →+* C) :
-    spMap c ≫ spMap d = spMap (c.comp d) := by
-  simp only [spMap, ← Spec.map_comp]
-  rfl
-
 def lf {S : Scheme.{0}} {G : Over S} {R : Type} [CommRing R] {x : Sp R ⟶ S} (v : epsAt x ⟶ G) :
     Sp (DualNumber R) ⟶ G.left :=
   v.left
@@ -153,11 +148,11 @@ theorem GlobalTheory.CompanionTheory.Ar.SlopeNorm.sqAt_le : ∀ (E : Type) [Fiel
   obtain ⟨Mσ, hMσ⟩ := GlobalTheory.T.lie_model_complex_base_change X t.G L z B.carrier MB σ
   obtain ⟨Mσ', hMσ'⟩ := GlobalTheory.T.lie_model_complex_base_change (Sp (𝓞 L)) t'.G L (𝟙 _) B'.carrier MB' σ
   have hb : spMap (σ.comp (algebraMap (𝓞 L) L)) ≫ z = spMap (σ.comp e₂) ≫ z₁ := by
-    rw [← spComp (algebraMap (𝓞 L) L) σ, ← spComp e₂ σ, Category.assoc, Category.assoc, hz]
+    rw [← _root_.GlobalTheory.spMap_comp_ring (algebraMap (𝓞 L) L) σ, ← _root_.GlobalTheory.spMap_comp_ring e₂ σ, Category.assoc, Category.assoc, hz]
   have hb' : spMap (σ.comp (algebraMap (𝓞 L) L)) ≫ 𝟙 _ = spMap σ ≫ spMap (algebraMap (𝓞 L) L) := by
-    rw [Category.comp_id, spComp]
+    rw [Category.comp_id, _root_.GlobalTheory.spMap_comp_ring]
   have hb2 : spMap σ ≫ spMap e₂ = 𝟙 _ ≫ spMap (σ.comp e₂) := by
-    rw [Category.id_comp, spComp]
+    rw [Category.id_comp, _root_.GlobalTheory.spMap_comp_ring]
 
   obtain ⟨core₁, hcore₁⟩ := h.herm _ (Fibre σ B.carrier) Mσ
   have h1 : ∀ a b, (B.metric.form σ).inner a b = h.ip _ (Mσ.pt a) (Mσ.pt b) := by

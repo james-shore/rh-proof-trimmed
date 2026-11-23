@@ -81,7 +81,7 @@ theorem delAt_pull_comp {φ : V n → V n} {v : V n} (hφ : ContDiffAt ℂ 2 φ 
 
   rw [delAt_eq_sum_dOne β (φ v), map_sum]
   refine Finset.sum_congr rfl fun T _ => ?_
-  rw [map_mul, GlobalTheory.T.holomorphicDifferentialOneForm_comp_holomorphic (c := fun u => (bas n).repr (β u) T) (hβ T) hφ1]
+  rw [map_mul, _root_.GlobalTheory.CxForm.DelForm.dOne_comp_holo (c := fun u => (bas n).repr (β u) T) (hβ T) hφ1]
 
 variable {M : Type} [TopologicalSpace M] {A : HolAtlas M n}
 

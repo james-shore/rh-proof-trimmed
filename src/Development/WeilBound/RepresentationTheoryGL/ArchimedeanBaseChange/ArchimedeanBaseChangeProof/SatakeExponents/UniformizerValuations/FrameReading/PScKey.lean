@@ -55,6 +55,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.FieldNOf
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.FiniteDiscreteFamilies.PeakCone
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelIndexNeZeroOfIsOpen
 
 @[expose] public section
 
@@ -68,12 +69,6 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 namespace PositivityTheory.Rg.BcB.F.Tail.PSc
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
-
-theorem relIndex_ne_zero_open {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] {K U : Subgroup G}
-    (hK : IsCompact (K : Set G)) (hU : IsOpen (U : Set G)) : U.relIndex K ≠ 0 := by
-  haveI : CompactSpace K := isCompact_iff_compactSpace.1 hK
-  haveI := Subgroup.quotient_finite_of_isOpen (U.subgroupOf K) (hU.preimage continuous_subtype_val)
-  exact Subgroup.index_ne_zero_of_finite
 
 section Key
 
@@ -239,7 +234,7 @@ theorem key_ind {n a b : ℕ} (h : a + b = n) (w : Pl E) (K' : Subgroup (GLw n w
   have hUo : IsOpen (U : Set (GLw a w × GLw b w)) := by
     rw [hUdef, Subgroup.coe_inf, Subgroup.coe_inf, Subgroup.coe_comap]
     exact (hU₀.inter hK2o).inter (hK'o.preimage (GlobalTheory.CompanionTheory.GL3BlockMatrixLocal.continuous_dgM h w))
-  have hne : U.relIndex K2' ≠ 0 := relIndex_ne_zero_open hK2c hUo
+  have hne : U.relIndex K2' ≠ 0 := _root_.GlobalTheory.TwTrLin.relIndex_ne_zero_of_isOpen hK2c hUo
   have hf := he.2.2.2
   have hinv : ∀ g, ∀ y ∈ X, ∀ k ∈ U, ∀ m, phi3 h w e g y (m * k) = phi3 h w e g y m := by
     intro g y hy k hk m

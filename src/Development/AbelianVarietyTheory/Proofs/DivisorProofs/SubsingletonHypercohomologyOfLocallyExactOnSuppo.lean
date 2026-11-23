@@ -55,8 +55,7 @@ namespace GlobalTheory.EtC.SuppAcyc
 
 variable {R : Type} [CommRing R]
 
-theorem map_comp {F G H : Shv R} (φ : F ⟶ G) (ψ : G ⟶ H) {U : Scheme.{0}} (a : Sec F U) :
-    Sec.map (φ ≫ ψ) a = Sec.map ψ (Sec.map φ a) := rfl
+alias map_comp := _root_.GlobalTheory.EtC.exactIff_map_comp
 
 theorem map_zero' {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} : Sec.map φ (0 : Sec F U) = 0 :=
   map_zero (φ.hom.app (op U)).hom
@@ -91,7 +90,7 @@ theorem GlobalTheory.EtC.subsingleton_of_locExact_supp : ∀ (R : Type) [CommRin
 
   have hD : D.Acyclic := by
     intro k
-    rw [HomologicalComplex.exactAt_iff' D (k - 1) k (k + 1) (by simp) (by simp), GlobalTheory.T.etaleSheaf_shortComplex_exact_iff_locally]
+    rw [HomologicalComplex.exactAt_iff' D (k - 1) k (k + 1) (by simp) (by simp), _root_.GlobalTheory.EtC.exactIff]
     intro U (b : Sec (D.X k) U) hb
     change Sec.map (D.d k (k + 1)) b = 0 at hb
     have hc : Sec.map (C.d k (k + 1)) (Sec.map (ι.f k) b) = 0 := by

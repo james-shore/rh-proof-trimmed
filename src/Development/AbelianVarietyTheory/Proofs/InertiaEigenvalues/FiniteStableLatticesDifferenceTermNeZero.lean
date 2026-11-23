@@ -61,17 +61,11 @@ noncomputable section
 namespace GlobalTheory.UnitLemma.Desc
 open GlobalTheory.UnitLemma Polynomial Classical
 
-theorem isIntegral_trace_of_isIntegral'
-    (U L Ω : Type) [CommRing U] [Field L] [CommRing Ω] [Algebra U L] [Algebra L Ω] [Algebra U Ω]
-    [IsScalarTower U L Ω] [Module.Finite L Ω] (ω : Ω) (h : IsIntegral U ω) :
-    IsIntegral U (Algebra.trace L Ω ω) := by
-  apply GlobalTheory.DiscConductor.isIntegral_trace_of_isIntegral <;> assumption
-
 variable {K : UQ} (B : InvAlg K)
 
 theorem trace_mem_of_isIntegral (x : B.A) (hx : IsIntegral K.O x) :
     Algebra.trace K.E B.A x ∈ (algebraMap K.O K.E).range :=
-  IsIntegrallyClosed.isIntegral_iff.1 (isIntegral_trace_of_isIntegral' K.O K.E B.A x hx)
+  IsIntegrallyClosed.isIntegral_iff.1 (_root_.GlobalTheory.DiscConductor.isIntegral_trace_of_isIntegral K.O K.E B.A x hx)
 
 theorem trace_idem_ne_zero (e : B.A) (he : IsIdempotentElem e) (h0 : e ≠ 0) :
     Algebra.trace K.E B.A e ≠ 0 := by

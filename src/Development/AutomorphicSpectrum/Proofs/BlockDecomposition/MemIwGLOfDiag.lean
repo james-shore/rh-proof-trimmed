@@ -53,11 +53,6 @@ open scoped Pointwise
 
 namespace GlobalTheory.CompanionTheory.EigTorus
 
-theorem exists_common_eigenvector : ∀ (d : ℕ) (E : Type) [AddCommGroup E] [Module ℂ E] [FiniteDimensional ℂ E]
-    {I : Type} (T : I → Module.End ℂ E), (∀ a b, Commute (T a) (T b)) → Module.finrank ℂ E = d → 0 < d →
-    ∃ w : E, w ≠ 0 ∧ ∃ c : I → ℂ, ∀ i, T i w = c i • w :=
-  _root_.UpperTheory.Reformulated.B.Ygb8.main
-
 theorem diag_commute {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))] {n : ℕ} {g h : GL (Fin n) L}
     (hg : IsDiagM g) (hh : IsDiagM h) : g * h = h * g := by
   have key : ∀ a : GL (Fin n) L, IsDiagM a →
@@ -192,7 +187,7 @@ theorem eigU_of (hIw : IwahoriU) (hDom : DomU) (hKU : KUFacts)
   have hpos : 0 < Module.finrank ℂ S := by
     have : Nontrivial S := ⟨⟨⟨_, hw₀⟩, 0, fun h => hw₀0 (congrArg Subtype.val h)⟩⟩
     exact Module.finrank_pos
-  obtain ⟨w, hw0, c, hc⟩ := exists_common_eigenvector _ S (fun t : D.T => (D.piN ρ t).restrict (hst t))
+  obtain ⟨w, hw0, c, hc⟩ := _root_.UpperTheory.Reformulated.B.Ygb8.main _ S (fun t : D.T => (D.piN ρ t).restrict (hst t))
     (fun a b => by
       ext x
       have h : D.piN ρ a (D.piN ρ b x) = D.piN ρ b (D.piN ρ a x) := by

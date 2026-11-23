@@ -157,7 +157,7 @@ theorem isotypic_step : ∀ (O K : Type) [CommRing O] [NormedField K] [IsUltrame
   have hyd : isoProj D₂.desc c (((X : K⟦X⟧) ^ e) ^ A' • x) =
       F.app (isoProj D₁.desc c y₀) + (l : K) ^ b • isoProj D₂.desc c z₀ := by
     rw [h3, map_add (f := _), map_smul, app_isoProj]
-  have hy_iso := GlobalTheory.T.isotypicProjector_mem_isotypicPart_explicit O K l e a κ D₂.toPhiMod D₂.desc c (((X : K⟦X⟧) ^ e) ^ A' • x)
+  have hy_iso := _root_.GlobalTheory.CokerL.isoProj_mem_isotypic' O K l e a κ D₂.toPhiMod D₂.desc c (((X : K⟦X⟧) ^ e) ^ A' • x)
   have hy_v : isoProj D₂.desc c (((X : K⟦X⟧) ^ e) ^ A' • x) ∈ GlobalTheory.IndefiniteRowSideFullHecke.ImageStableDegreeBounds.vL D₂.toPhiMod A' := by
     rw [isoProj_vpow]
     exact ⟨_, GlobalTheory.T.isotypicProjector_mem_breuilKisinLattice O K l e a κ D₂.toPhiMod D₂.desc c x hx, rfl⟩
@@ -311,7 +311,7 @@ theorem kills_cokerL : ∀ (O K : Type) [CommRing O] [NormedField K] [IsUltramet
       rw [smul_sub, smul_sub, smul_comm (((X : K⟦X⟧) ^ e) ^ A') ((l : K) ^ ρ), smul_smul, ← pow_add,
         Nat.add_sub_cancel' hle, ← hth, hlpow']
       abel
-    obtain ⟨z'', hz'', hw'⟩ := GlobalTheory.T.mem_prime_pow_lattice_of_X_pow_smul_mem O K l e a κ D₂.toPhiMod A' b _ z' hwL hz'L hw
+    obtain ⟨z'', hz'', hw'⟩ := _root_.GlobalTheory.CokerL.mem_lpow_L_of_vpow_smul O K l e a κ D₂.toPhiMod A' b _ z' hwL hz'L hw
     obtain ⟨y₂, hy₂, z₂, hz₂, h2⟩ := a3 _ (vmemL (l - 2 * A') _ hh₀)
     have e1 : ((X : K⟦X⟧) ^ e) ^ (l - A') • h₀ =
         ((X : K⟦X⟧) ^ e) ^ A' • ((X : K⟦X⟧) ^ e) ^ (l - 2 * A') • h₀ := by

@@ -50,6 +50,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AnalyticDeterminants.HermRealSmul
 
 @[expose] public section
 
@@ -98,12 +99,6 @@ theorem eventually_unit (y : M2 n) (hy : InG y) :
   rw [nbar_block, ← hev]
   exact isUnit_iff_ne_zero.2 (fun h => ht ⟨h, ht0⟩)
 
-private theorem inG_mul' {x y : M2 n} (hx : InG x) (hy : InG y) : InG (x * y) := by
-  unfold InG at *
-  rw [Matrix.conjTranspose_mul]
-  calc yᴴ * xᴴ * JJ n * (x * y) = yᴴ * (xᴴ * JJ n * x) * y := by simp only [Matrix.mul_assoc]
-    _ = JJ n := by rw [hx, hy]
-
 private theorem inG_nU_herm' (s : Fin n → Fin n → ℝ) : InG (nU (herm s)) := by
   have hh : (herm s)ᴴ = herm s := by
     ext i j
@@ -119,7 +114,7 @@ theorem vanish_all (hmn : m < n) (e : ℤ) (y b : M2 n) (hy : InG y) (hb : InG b
   let G : ℝ → (Fin n → Fin n → ℝ) → ℂ := fun t s => fz m e 0 (y * nbar t * nU (herm s) * b) * ψ s
   let X : ℝ × (Fin n → Fin n → ℝ) → M2 n := fun p => y * nbar p.1 * nU (herm p.2) * b
   have hIn : ∀ p, InG (X p) := fun p =>
-    inG_mul' (inG_mul' (inG_mul' hy (inG_nbar p.1)) (inG_nU_herm' p.2)) hb
+    _root_.PositivityTheory.Rg.Sw.LVs.HolB.inG_mul (_root_.PositivityTheory.Rg.Sw.LVs.HolB.inG_mul (_root_.PositivityTheory.Rg.Sw.LVs.HolB.inG_mul hy (inG_nbar p.1)) (inG_nU_herm' p.2)) hb
   have h1 : Continuous fun p : ℝ × (Fin n → Fin n → ℝ) => nbar (n := n) p.1 := by
     unfold nbar
     exact Continuous.matrix_fromBlocks continuous_const continuous_const
@@ -152,7 +147,7 @@ theorem vanish_all (hmn : m < n) (e : ℤ) (y b : M2 n) (hy : InG y) (hb : InG b
   have hev : ∀ᶠ t in 𝓝[≠] (0 : ℝ), ∫ s in tsupport ψ, G t s = 0 := by
     filter_upwards [eventually_unit y hy] with t ht
     rw [← hInt]
-    exact vanish_inv hmn e (y * nbar t) b (inG_mul' hy (inG_nbar t)) hb ht ψ hψ
+    exact vanish_inv hmn e (y * nbar t) b (_root_.PositivityTheory.Rg.Sw.LVs.HolB.inG_mul hy (inG_nbar t)) hb ht ψ hψ
   have hlim : Tendsto (fun t => ∫ s in tsupport ψ, G t s) (𝓝[≠] 0) (𝓝 (∫ s in tsupport ψ, G 0 s)) :=
     (hc.tendsto 0).mono_left nhdsWithin_le_nhds
   have h0 : ∫ s in tsupport ψ, G 0 s = 0 :=

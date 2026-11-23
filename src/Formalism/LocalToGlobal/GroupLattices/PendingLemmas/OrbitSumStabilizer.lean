@@ -289,7 +289,7 @@ theorem adj_level {K : Type} [Field K] [CharZero K] (Rc : Finset P.Tup) (hlat : 
     rw [Finset.sum_image (fun a _ b _ h => upd_inj v L1 h)]
     exact finsum_mem_eq_finite_toFinset_sum _ (edges_fin P v i (L1 v))
   simp_rw [e1, e2]
-  exact adj C.smul (lsmul_one C) (lsmul_mul C) P.IsLatTup Rc hlat hex hst (Rel v i) (Rel_smul C v i) (Rel_lat v i)
+  exact adj C.smul (lsmul_one C) (_root_.Formalism.MainNotions.G.LatticeSystems.jd_smul_mul C) P.IsLatTup Rc hlat hex hst (Rel v i) (Rel_smul C v i) (Rel_lat v i)
     (upS v i) (dnS v i) (fun L _ L1 => mem_upS v i L L1) (fun L1 _ L => mem_dnS v i L L1) φ hφ
 
 end Conc

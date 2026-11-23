@@ -54,6 +54,6 @@ theorem modelClause_holds :
     PartI ∧ N1ab ∧ N1c ∧
       ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H),
         ToroidalLevelCompatibility (D := D) ∧ ToroidalHeckeCompatibility (D := D) :=
-  modelClause_of_rankZero GlobalTheory.T.level_and_hecke_of_zero_signature
+  modelClause_of_rankZero _root_.GlobalTheory.CompanionTheory.Ar.Top.LevelZero.main
 
 end GlobalTheory.CompanionTheory.Ar.Top

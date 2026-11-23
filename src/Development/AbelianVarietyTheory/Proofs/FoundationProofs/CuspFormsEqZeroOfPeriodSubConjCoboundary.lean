@@ -65,15 +65,6 @@ namespace GlobalTheory.HeckeFamilyMatrices.Positivity
 open Polynomial UpperHalfPlane in
 open scoped MatrixGroups ModularForm in
 open scoped Manifold in
-private lemma eichler_mem_degreeLT_succ (w : ℕ) (g : ℍ → ℂ) (τ : ℍ) :
-    _root_.GlobalTheory.HeckeFamilyMatrices.eichler w g τ ∈ ℂ[X]_(w + 1) := by
-  rw [Polynomial.mem_degreeLT, Polynomial.degree_lt_iff_coeff_zero]
-  intro m hm
-  rw [_root_.GlobalTheory.EichlerChange.coeff_eichler, Nat.choose_eq_zero_of_lt (by omega), Nat.cast_zero, zero_mul]
-
-open Polynomial UpperHalfPlane in
-open scoped MatrixGroups ModularForm in
-open scoped Manifold in
 private lemma map_conj_mem_degreeLT {n : ℕ} {p : ℂ[X]} (hp : p ∈ ℂ[X]_n) :
     p.map (starRingEnd ℂ) ∈ ℂ[X]_n := by
   rw [Polynomial.mem_degreeLT] at hp ⊢
@@ -186,8 +177,8 @@ private lemma eq_zero_of_eichler_conj_slash_relation (Γ : Subgroup SL(2, ℤ)) 
   have hk1 : k - 1 = k - 2 + 1 := by omega
   have hp' : p ∈ ℂ[X]_(k - 2 + 1) := by rw [← hk1]; exact hp
   have hmem : ∀ τ, V τ ∈ ℂ[X]_(k - 2 + 1) := fun τ =>
-    sub_mem (sub_mem (eichler_mem_degreeLT_succ _ _ _)
-      (map_conj_mem_degreeLT (eichler_mem_degreeLT_succ _ _ _))) hp'
+    sub_mem (sub_mem (_root_.GlobalTheory.EichlerLimit.eichler_mem _ _ _)
+      (map_conj_mem_degreeLT (_root_.GlobalTheory.EichlerLimit.eichler_mem _ _ _))) hp'
   have hcf : ∀ g : CuspForm (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) Γ) k, ∀ n : ℕ,
       Continuous fun τ => (_root_.GlobalTheory.HeckeFamilyMatrices.eichler (k - 2) g τ).coeff n := by
     intro g n
@@ -243,7 +234,7 @@ theorem _root_.GlobalTheory.HeckeFamilyMatrices.Positivity.eq_zero_of_per_sub_cj
           _root_.GlobalTheory.HeckeFamilyMatrices.eichler (k - 2) g τ := fun g =>
     (_root_.GlobalTheory.HeckeFamilyMatrices.PerCoc.per_mem_Z1_and_eq_slP_eichler_sub Γ k (by omega) (CuspForm.toModularFormₗ g)).2
   have hmemE : ∀ (g : ℍ → ℂ) (τ : ℍ), _root_.GlobalTheory.HeckeFamilyMatrices.eichler (k - 2) g τ ∈ ℂ[X]_(k - 2 + 1) :=
-    fun g τ => eichler_mem_degreeLT_succ _ _ _
+    fun g τ => _root_.GlobalTheory.EichlerLimit.eichler_mem _ _ _
   have hconj : ∀ p ∈ ℂ[X]_(k - 2 + 1), ∀ γ : SL(2, ℤ),
       map (starRingEnd ℂ) (_root_.GlobalTheory.HeckeFamilyMatrices.slP (k - 2) (_root_.GlobalTheory.HeckeFamilyMatrices.mat γ) p) =
         _root_.GlobalTheory.HeckeFamilyMatrices.slP (k - 2) (_root_.GlobalTheory.HeckeFamilyMatrices.mat γ) (map (starRingEnd ℂ) p) :=

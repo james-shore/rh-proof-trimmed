@@ -120,7 +120,7 @@ theorem main : ∀ (g : ℂ ≃+* ℂ) (N : ℕ) [NeZero N] (d : (ZMod N)ˣ) (k 
   have htq : ∀ α, QConj g N (t α) (t' α) := fun α =>
     qadd _ _ _ _ (qadd _ _ _ _ (hqw _ α) (hqn c₁ _ α)) (hqn c₂ _ α)
 
-  obtain ⟨F, hF, hFγ, hF0⟩ := GlobalTheory.T.exists_slTwoPermutedModularFamily_of_level N (k : ℤ) f hinv
+  obtain ⟨F, hF, hFγ, hF0⟩ := _root_.GlobalTheory.FamOfLevel.exists_family N (k : ℤ) f hinv
   have hFneg : ∀ α, F (-α) = F α := fun α => by
     have h1 := hF α (-1)
     rw [slash_neg_one_even (by exact_mod_cast hk.natCast) (F α)] at h1

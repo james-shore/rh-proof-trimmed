@@ -51,6 +51,7 @@ public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.Pi
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.PieriRules.TensRepB
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.Unique
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.ContinuousRepresentations.DerivExistsAllPosStatement
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.IsCompactInvariantOrthogonalInf
 
 @[expose] public section
 
@@ -119,11 +120,11 @@ theorem cns_cpt_dec {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : S7.KType ε 
     intro i i' hii
     by_contra hne
     have hk : x i ∈ HW.khwSub ε (HW.tensAct (HW.kunits T) (fun a b => dρ (Matrix.single a b 1)))
-        (Λ + γw (idx i)) := (HW.count_mem_khwSub_iff _ _ _ _).2 (by rw [← hidx i]; exact (hx i).2)
+        (Λ + γw (idx i)) := (_root_.ReciprocityTheory.ChartRestriction.DS.HW.tensHW_mem_khwSub _ _ _ _).2 (by rw [← hidx i]; exact (hx i).2)
     have hk' : x i' ∈ HW.khwSub ε (HW.tensAct (HW.kunits T) (fun a b => dρ (Matrix.single a b 1)))
-        (Λ + γw (idx i)) := (HW.count_mem_khwSub_iff _ _ _ _).2 (by rw [hii, ← hidx i']; exact (hx i').2)
+        (Λ + γw (idx i)) := (_root_.ReciprocityTheory.ChartRestriction.DS.HW.tensHW_mem_khwSub _ _ _ _).2 (by rw [hii, ← hidx i']; exact (hx i').2)
     exact HW.count_not_two_of_finrank_le_one _ (hP2 (idx i)) hk hk' (hx i).1 (hx i').1
-      (horth i i' hne _ (HW.count_mem_kSpan_self _ _ _) _ (HW.count_mem_kSpan_self _ _ _))
+      (horth i i' hne _ (_root_.Formalism.REAL.mem_compactSpan_self _ _ _) _ (_root_.Formalism.REAL.mem_compactSpan_self _ _ _))
   have hpiece : ∀ (ν : Fin n → ℝ) (y : PiLp 2 (fun _ : Fin n => T.V)), y ≠ 0 →
       Formalism.REAL.KHighest ε (HW.tensAct (HW.kunits T) (fun a b => dρ (Matrix.single a b 1))) ν y →
       ∃ k, μ k = ν := by
@@ -133,7 +134,7 @@ theorem cns_cpt_dec {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : S7.KType ε 
     apply hy0
     refine HW.count_eq_zero_of_orth _ htop y fun k z hz => ?_
     exact Formalism.REAL.kOrth _ n ε _ ν (μ k) y (x k) hrelR hunitR hy (hx k).2 (hno k).symm y
-      (HW.count_mem_kSpan_self _ _ _) z hz
+      (_root_.Formalism.REAL.mem_compactSpan_self _ _ _) z hz
   have hsurj : ∀ s ∈ Sm, ∃ i, idx i = s := by
     intro s hs
     obtain ⟨y, hy0, hy⟩ := hP3 s ((hSm s).1 hs)

@@ -72,7 +72,7 @@ theorem indep_of_stable (lam : ι → DomWeight n) (w : HeightOneSpectrum (𝓞 
 
 theorem nabIndep_and_delIndep : NabIndep ∧ DelIndep :=
   ⟨fun K _ _ ι _ n lam w M B B' h h' F =>
-      indep_of_stable lam w _ (GlobalTheory.T.polyAction_mem_locP_nabStd_of_isBasisAt K ι n lam w) M B B' h h' F,
+      indep_of_stable lam w _ (_root_.GlobalTheory.NabStab.polyAction_mem_locP_nabStd K ι n lam w) M B B' h h' F,
     fun K _ _ ι _ n lam w M B B' h h' F =>
       indep_of_stable lam w _ (GlobalTheory.T.polyAction_mem_locP_delStd_of_isBasisAt K ι n lam w) M B B' h h' F⟩
 

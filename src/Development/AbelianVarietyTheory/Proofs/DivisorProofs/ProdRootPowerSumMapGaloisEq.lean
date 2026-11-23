@@ -72,7 +72,7 @@ theorem prod_rootSum_map_algEquiv : ∀ (F F' : Type) [Field F] [Field F'] [Alge
   haveI : CharP F (ringChar F) := ringChar.charP F
   obtain ⟨r, hp, hcard⟩ := FiniteField.card F (ringChar F)
   have hchar : ringChar F' = ringChar F := (Algebra.ringChar_eq F F').symm
-  have key := GlobalTheory.T.rootSum_map_frobenius_pow_eq_rootSum_mul F' θ
+  have key := _root_.GlobalTheory.Shin.rootSum_map_frobeniusPow F' θ
     ((FiniteField.frobeniusAlgEquivOfAlgebraic F F' ^ n.1 : F' ≃ₐ[F] F') : F' →+* F') (r * n.1) (fun x => by
       rw [hchar, pow_mul, ← hcard]
       show (FiniteField.frobeniusAlgEquivOfAlgebraic F F' ^ n.1) x = _

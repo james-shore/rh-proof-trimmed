@@ -57,7 +57,7 @@ namespace Formalism.FourierDecayAlt.P
 
 theorem cutSH_sliceStepHer_of_sfg (h7 : CutSH.SliceFamGood) : PTie.SliceStepHer :=
   CutSH.sliceStepHer_of CutSH.family_orbital_valid CutSH.family_algebraic CutSH.representation_linear
-    cell_compatibility_identity h7 CutSH.slice_family_orbital operator_class_closed boundary_torus_adjoin
+    _root_.Formalism.FourierDecayAlt.P.CutSH.cell_compatibility h7 CutSH.slice_family_orbital operator_class_closed boundary_torus_adjoin
     unipotent_scalar_identity
 
 theorem cutSH_levTransportHer_of_sfg (h7 : CutSH.SliceFamGood) : PTie.LevTransportHer :=

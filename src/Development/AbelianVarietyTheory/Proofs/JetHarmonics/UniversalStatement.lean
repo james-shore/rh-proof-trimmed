@@ -59,18 +59,6 @@ namespace GlobalTheory.PowGerm.UnivJets
 section Alg
 variable {V : Type} [CommRing V]
 
-theorem surj_of_sq {A B : Type} [CommRing A] [Algebra V A] [CommRing B] [Algebra V B] (f : A →ₐ[V] B)
-    (aug : B →ₐ[V] V) (m : ℕ) (hI : RingHom.ker aug ^ (m + 1) = ⊥) (J : Ideal A)
-    (h1 : J.map f ≤ RingHom.ker aug) (h2 : RingHom.ker aug ≤ J.map f ⊔ RingHom.ker aug ^ 2) :
-    Function.Surjective f := by
-  first
-  | exact @_root_.GlobalTheory.SurjectiveOfKerSq.surjective_of_ker_le_map_sup_sq
-  | exact _root_.GlobalTheory.SurjectiveOfKerSq.surjective_of_ker_le_map_sup_sq
-  | (apply _root_.GlobalTheory.SurjectiveOfKerSq.surjective_of_ker_le_map_sup_sq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SurjectiveOfKerSq.surjective_of_ker_le_map_sup_sq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SurjectiveOfKerSq.surjective_of_ker_le_map_sup_sq <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SurjectiveOfKerSq.surjective_of_ker_le_map_sup_sq ..)
-
 open Chart (JetR zR jetAug_zR jet_ext jetLift jetLift_zR ker_jetAug_pow zR_mem_ker)
 
 theorem ker_aug_eq (κ : Type) (m : ℕ) : RingHom.ker (Chart.jetAug V κ m) =
@@ -109,7 +97,7 @@ theorem jet_finite (κ : Type) [Finite κ] (m : ℕ) : Module.Finite V (JetR V �
 theorem surj_of_first_order {σ κ : Type} {m : ℕ} (β : σ → κ) (hβ : Function.Surjective β)
     (f : JetR V σ m →ₐ[V] JetR V κ m)
     (hf : ∀ i, f (zR m i) - zR m (β i) ∈ RingHom.ker (Chart.jetAug V κ m) ^ 2) : Function.Surjective f := by
-  refine surj_of_sq f (Chart.jetAug V κ m) m (ker_jetAug_pow κ m) (Ideal.span (Set.range (zR m))) ?_ ?_
+  refine _root_.GlobalTheory.SurjectiveOfKerSq.surjective_of_ker_le_map_sup_sq f (Chart.jetAug V κ m) m (ker_jetAug_pow κ m) (Ideal.span (Set.range (zR m))) ?_ ?_
   · rw [Ideal.map_span, Ideal.span_le]
     rintro _ ⟨_, ⟨i, rfl⟩, rfl⟩
     have := Ideal.add_mem _ (Ideal.pow_le_self two_ne_zero (hf i)) (zR_mem_ker (R := V) m (β i))
@@ -173,9 +161,7 @@ section Geo
 variable {V : Type} [CommRing V] {G : Over (Spec (CommRingCat.of V))} [GrpObj G]
 open Chart (JetR zR jetAug_zR jet_ext ker_jetAug_pow zR_mem_ker jetTruncR dualLift dualLift_zR fstD kerD_sq)
 
-theorem spMap_id' (A : Type) [CommRing A] [Algebra V A] : Chart.spMap (AlgHom.id V A) = 𝟙 _ := by
-  apply Over.OverMorphism.ext
-  exact Spec.map_id _
+alias spMap_id' := _root_.ReciprocityTheory.ChartRestriction.G.Chart.spMap_id
 
 theorem toFirst_zR (κ : Type) (m : ℕ) (j : κ) : toFirst (V := V) κ m (zR (m + 1) j) = zR 1 j := rfl
 

@@ -62,7 +62,7 @@ namespace GlobalTheory
 theorem length_quotient_smul_range_le_finrank_mul : ∀ (O K : Type) [CommRing O] [IsDomain O] [IsPrincipalIdealRing O] [Field K] [Algebra O K] [IsFractionRing O K] (W M : Type) [AddCommGroup W] [Module K W] [Module O W] [IsScalarTower O K W] [FiniteDimensional K W] [AddCommGroup M] [Module O M] (f : M →ₗ[O] W), Function.Injective f → ∀ a : O, Module.length O (M ⧸ LinearMap.range (a • (LinearMap.id : M →ₗ[O] M))) ≤ (Module.finrank K W : ℕ∞) * Module.length O (O ⧸ Ideal.span {a}) := by
   intro O K _ _ _ _ _ _ W M _ _ _ _ _ _ _ f hf a
   set R := LinearMap.range (a • (LinearMap.id : M →ₗ[O] M)) with hR
-  refine GlobalTheory.T.length_le_of_forall_fg_submodule_length_le O (M ⧸ R) _ ?_
+  refine _root_.GlobalTheory.length_le_of_forall_fg_length_le O (M ⧸ R) _ ?_
   intro N hN
   obtain ⟨s, hs⟩ := hN
   set g := Function.surjInv (Submodule.mkQ_surjective R) with hg

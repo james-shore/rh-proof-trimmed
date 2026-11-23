@@ -230,7 +230,7 @@ theorem isog_finrank_omega : ∀ (p : ℕ) [Fact p.Prime] (T : GlobalTheory.Dieu
       Module.finrank k G.dual.omega = Module.finrank k H.dual.omega := by
   intro p _ T k _ _ _ G H q hq
   obtain ⟨h1, h2, h3⟩ := IsogDim.isog_core T q hq
-  obtain ⟨-, hd, -⟩ := GlobalTheory.T.pDivGroupIsogeny_height_eq_dual_sameDegree p k G H q hq
+  obtain ⟨-, hd, -⟩ := _root_.GlobalTheory.Dieu.height_eq_and_dual_isog p k G H q hq
   exact ⟨h1, h2, h3, (IsogDim.isog_core T (dualHom G H q) hd).2.2.symm⟩
 
 end GlobalTheory.Dieu

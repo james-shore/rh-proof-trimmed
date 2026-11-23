@@ -84,7 +84,7 @@ theorem torus_mod_intUnits_structure : ∀ (K : UQ) (B : InvAlg K), B.LieReg →
     hvi m (Units.map (Ideal.Quotient.mk m.asIdeal : B.A →* B.A ⧸ m.asIdeal) x)
   have hP : ∀ x : B.Aˣ, IsIntegral K.O (x : B.A) ↔ ∀ m, 0 ≤ Multiplicative.toAdd (w m x) := by
     intro x
-    rw [GlobalTheory.T.isIntegral_iff_forall_maximalSpectrum_residue K B hred]
+    rw [_root_.GlobalTheory.UnitLemma.isIntegral_iff_forall_maximalSpectrum K B hred]
     exact forall_congr' fun m => hw m x
   let τ : B.Aˣ →* B.Aˣ := Units.map (B.σ : B.A →* B.A)
   have hτ : ∀ x, τ (τ x) = x := fun x => Units.ext (B.σ_σ _)

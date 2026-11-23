@@ -50,5 +50,3 @@ open Formalism.UG (IsUnifV qV IsUnramInv GU KU IsInertAt Hecke IsCommensurated T
 open Formalism.MainNotions.SchurIrreducible (IsSplit)
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-theorem _root_.GlobalTheory.T.sphericalParameterTransfer_splitPlace : ∀ D : D7, TransferOn D fun v => IsSplit (E := D.host.E) v := by
-  first | exact @GlobalTheory.ChainOnto.SplitTransfer.transferOn_isSplit | exact GlobalTheory.ChainOnto.SplitTransfer.transferOn_isSplit | (intros; apply GlobalTheory.ChainOnto.SplitTransfer.transferOn_isSplit <;> assumption)

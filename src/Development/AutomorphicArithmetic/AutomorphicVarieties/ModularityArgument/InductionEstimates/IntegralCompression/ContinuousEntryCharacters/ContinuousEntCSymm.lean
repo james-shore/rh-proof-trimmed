@@ -37,6 +37,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtensionEmbeddingMixedSymmOfIsComplex
 
 @[expose] public section
 
@@ -187,15 +188,6 @@ private theorem continuous_psi (K : Type) [Field K] [NumberField K] :
   rw [e]
   exact (GroundTheory.Global.homeomorphMixedSpace K).continuous
 
-private theorem continuous_psi_symm (K : Type) [Field K] [NumberField K] :
-    Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace K).symm := by
-  have e : ⇑(InfiniteAdeleRing.ringEquiv_mixedSpace K).symm = ⇑(GroundTheory.Global.homeomorphMixedSpace K).symm := by
-    funext x
-    apply (InfiniteAdeleRing.ringEquiv_mixedSpace K).injective
-    rw [RingEquiv.apply_symm_apply, ← GroundTheory.Global.homeomorphMixedSpace_apply, Homeomorph.apply_symm_apply]
-  rw [e]
-  exact (GroundTheory.Global.homeomorphMixedSpace K).symm.continuous
-
 variable {F} {E : Type} [Field E] [NumberField E] [Algebra F E] {σ : E ≃ₐ[F] E}
 
 private def unc (κ ι : Type) : (κ → ι → ℂ) ≃+* (κ × ι → ℂ) where
@@ -214,11 +206,11 @@ private def cE (D : InfD σ 1) : mixedSpace E ≃+* (Fin 2 × InfinitePlace F �
 private theorem continuous_cE (D : InfD σ 1) : Continuous (cE D) := by
   refine continuous_pi fun p => ?_
   exact (continuous_apply p.2).comp ((continuous_cF F).comp ((continuous_psi F).comp
-    ((continuous_apply p.1).comp (D.cont.comp (continuous_psi_symm E)))))
+    ((continuous_apply p.1).comp (D.cont.comp (_root_.GlobalTheory.HeckeOne.continuous_ringEquiv_mixedSpace_symm E)))))
 
 private theorem continuous_cE_symm (D : InfD σ 1) : Continuous (cE D).symm := by
   refine (continuous_psi E).comp (D.cont_symm.comp (continuous_pi fun s => ?_))
-  exact (continuous_psi_symm F).comp ((continuous_cF_symm F).comp
+  exact (_root_.GlobalTheory.HeckeOne.continuous_ringEquiv_mixedSpace_symm F).comp ((continuous_cF_symm F).comp
     (continuous_pi fun u => continuous_apply (s, u)))
 
 private theorem ent_comp (D : InfD σ 1) (n : ℕ) (g : archGroup E n) (s : Fin 2) (u : InfinitePlace F) :

@@ -63,10 +63,10 @@ theorem hdim_pushforward_le : ∀ (k : Type) [Field k] [Infinite k] (d : ℕ), (
   have hLZ : IsNef k (L.pull (redι Z)) := hL.pull_of_isClosedImmersion (redι Z) hk
   have hdV : topologicalKrullDim (Scheme.IdealSheafData.vanishingIdeal Z).subscheme ≤ (d + 1 : ℕ) :=
     (topologicalKrullDim_red Z).trans_le hd
-  obtain ⟨C, hC⟩ := GlobalTheory.T.higher_cohomology_growth_coherent k _ hp' d (L.pull (redι Z)) hLZ hdV
+  obtain ⟨C, hC⟩ := _root_.GlobalTheory.NefBound.hdim_twist_le_of_isIntegral k _ hp' d (L.pull (redι Z)) hLZ hdV
     (fun E _ hE j hj => hY _ hp' _ hLZ E hE j hj) G i hi
   refine ⟨C, fun m => ?_⟩
-  rw [GlobalTheory.T.sheafCohomologyDim_twist_pushforward_closedImmersion k X _ (redι Z) L hL.isLB G m i]
+  rw [_root_.GlobalTheory.hdim_twist_pushforward_lbPow_of_isClosedImmersion k X _ (redι Z) L hL.isLB G m i]
   exact hC m
 
 end GlobalTheory.RRPush

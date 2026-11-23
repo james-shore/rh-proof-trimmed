@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem sum_log_p_over_p : PI.PrimeLogOverP := PI.PrimeLogOverPWork.sum_log_div_prime_le
+alias sum_log_p_over_p := _root_.PI.PrimeLogOverPWork.sum_log_div_prime_le

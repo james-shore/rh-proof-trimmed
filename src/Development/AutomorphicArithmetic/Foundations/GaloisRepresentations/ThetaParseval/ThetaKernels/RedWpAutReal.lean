@@ -61,11 +61,6 @@ theorem exists_inf_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ
       s * mMF σ JS JT θ p = mMF σ JS JT θ p * s → ∀ f, IsThetaFunOF σ JS JT ξ₀ B.ψ f → IsVacF σ JS JT ξ₀ B.ψ ι s f →
         oi p f = GlobalTheory.RealWeil.dP s (mMF σ JS JT θ p) • f :=
   _root_.PositivityTheory.ThKW.exists_inf_A_k C
-theorem det_mMF_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) {g : GAF σ JS} {h : GAF σ JT} {a b}
-    (ha : IsRatF σ JS g a) (hb : IsRatF σ JT h⁻¹ b) :
-    (mMF σ JS JT θ (g⁻¹, h⁻¹)).det = ∏ v, tauB B v (b ⊗ₖ aᵀ).det ∧
-      (mMF σ JS JT θ (g⁻¹, h⁻¹) - 1).det = ∏ v, tauB B v (b ⊗ₖ aᵀ - 1).det :=
-  _root_.PositivityTheory.ThKW.det_mMF_B_k C ha hb
 end PositivityTheory.ThKW
 end
 end

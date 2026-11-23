@@ -56,8 +56,8 @@ theorem term_moves_to_base : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u'
   intro D X Y u u' _hS w F00 F'0 FP hZ _hG _hB t₀ ht
   obtain ⟨F', ⟨hP, hmk⟩, hGv, hCell⟩ := ht
   have hrow : IsRowLat D (X.Fu u) t₀.lam := (Y.rowsOK u).1 _ t₀.mem
-  obtain ⟨hGF, hCF, -⟩ := Formalism.L2.SG.Closed.TermFun_holds D u u' (X.Fu u) t₀.lam hrow
-  have hrel := (Formalism.L2.SG.Closed.TermEqIff_holds D u u' (X.Fu u) t₀.lam hrow _ _).1 hmk
+  obtain ⟨hGF, hCF, -⟩ := _root_.term_function_const D u u' (X.Fu u) t₀.lam hrow
+  have hrel := (_root_.term_eq_iff_relation D u u' (X.Fu u) t₀.lam hrow _ _).1 hmk
   have hGt : Gval (lf D (X.Fu u)) t₀.frame ≠ 0 := by
     intro h
     apply hGv

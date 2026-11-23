@@ -83,7 +83,7 @@ theorem smallDatum_xiCpl1_sharp : ∀ (CY : ℝ) (D : D7) (N : NumDatum) (X : Fi
     exact Ideal.mul_mem_right _ _ (hT P hP)
   · intro P
     have hm := hI.hm
-    have h := GlobalTheory.T.movedDatum_small_typePrime_any_level CY D N X s Pr W Ch G sel Sg mu cst I dl χ cD pl u δ hH (N.R.m - 2) (by omega) P
+    have h := _root_.GlobalTheory.Core.Ht2.MovedDatumS.omPhi_locSmall_sharp CY D N X s Pr W Ch G sel Sg mu cst I dl χ cD pl u δ hH (N.R.m - 2) (by omega) P
       (I.h (N.R.m - 2) al P) 1 (hI.stabG _ al P (hrow P.1 P.2)) (one_mem _)
     exact GlobalTheory.ColNorms.DatOne.locSmall_joinCol h _
 

@@ -100,7 +100,7 @@ def IsContr (i : ι) (L : (⨂[ℂ] j, K j) →ₗ[ℂ] K i) : Prop := ∀ f : M
 variable [Fintype ι]
 
 theorem eq_zero_of_isContr (i : ι) {x : ⨂[ℂ] j, K j} (h : ∀ L, IsContr i L → L x = 0) : x = 0 := by
-  obtain ⟨z, rfl⟩ := GlobalTheory.Chain.IoLift.mem_range_map_subtype_of_contr ι K (fun j => if j = i then ⊥ else ⊤) x fun j L hL => by
+  obtain ⟨z, rfl⟩ := _root_.GlobalTheory.TensorContraction.mem_range_map ι K (fun j => if j = i then ⊥ else ⊤) x fun j L hL => by
     by_cases e : j = i
     · subst e; rw [if_pos rfl, h L hL]; exact zero_mem _
     · rw [if_neg e]; trivial
@@ -205,7 +205,7 @@ theorem frame_mem (M : DSModel V S) (τ : D.what₂.Tau) {k : Matrix (Fin V.rank
 theorem mem_range_inclK (h : KSm M) (x : SmT M)
     (hx : ∀ τ, ∃ E : Submodule ℂ (⨂[ℂ] τ, M.H τ), FiniteDimensional ℂ E ∧
       ∀ k ∈ maxCpt M τ, actT M τ k (inclT M x) ∈ E) : x ∈ LinearMap.range (inclK h) := by
-  obtain ⟨z, hz⟩ := GlobalTheory.Chain.IoLift.mem_range_map_subtype_of_contr _ M.H (kFin M) (inclT M x) fun τ L hL => by
+  obtain ⟨z, hz⟩ := _root_.GlobalTheory.TensorContraction.mem_range_map _ M.H (kFin M) (inclT M x) fun τ L hL => by
     obtain ⟨E, hE, hk⟩ := hx τ
     have hle : Submodule.span ℂ ((fun k => M.σ τ k (L (inclT M x))) '' Formalism.REAL.Kset (M.ε τ)) ≤ E.map L := by
       rw [Submodule.span_le]
@@ -290,11 +290,7 @@ theorem span_multi {Z : Type} [AddCommGroup Z] [Module ℂ Z] (A : PolF D W.rank
     rintro _ ⟨p, rfl⟩
     exact PiTensorProduct.ext (MultilinearMap.ext (h p)))
 
-theorem inclK_injective (h : KSm M) : Function.Injective (inclK h) := by
-  choose g hg using fun τ => LinearMap.exists_leftInverse_of_injective _ (Submodule.ker_inclusion _ _ (h τ))
-  refine Function.LeftInverse.injective (g := PiTensorProduct.map g) fun x => ?_
-  rw [inclK, ← LinearMap.comp_apply, ← PiTensorProduct.map_comp, funext hg, PiTensorProduct.map_id]
-  rfl
+alias inclK_injective := _root_.GlobalTheory.Chain.IoLift.FinTensor.inclK_injective
 
 theorem inclK_tprod (h : KSm M) (u : KVec M) :
     inclK h (PiTensorProduct.tprod ℂ u) = PiTensorProduct.tprod ℂ fun τ => (⟨u τ, h τ (u τ).2⟩ : M.sm τ) := by

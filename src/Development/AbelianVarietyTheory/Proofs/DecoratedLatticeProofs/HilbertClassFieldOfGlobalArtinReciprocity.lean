@@ -153,7 +153,7 @@ theorem art_sign_mem (ha : IsGlobalArtin art) (U : Subgroup (Gab E Ω)) (hU : Is
   obtain ⟨T, hT⟩ := GlobalTheory.PlacesOver.places_over_finset E L S
   choose M' hM' using fun v : HeightOneSpectrum (𝓞 E) => GlobalTheory.NormCompat.NormCont.norm_close_to_one E L v M
   have e0 : (j.comp (algebraMap L Ω)).comp (algebraMap E L) = j.comp (algebraMap E Ω) := RingHom.ext fun _ => rfl
-  obtain ⟨a, ha1, ha2⟩ := GlobalTheory.T.exists_norm_near_neg_one_at_real_place E L _ hj T (S.sup M') (ψ ⁻¹' {ψ _})
+  obtain ⟨a, ha1, ha2⟩ := _root_.GlobalTheory.NormSign.exists_norm_sign E L _ hj T (S.sup M') (ψ ⁻¹' {ψ _})
     (hψ.continuousAt.preimage_mem_nhds ((isOpen_discrete _).mem_nhds rfl))
   rw [e0, Set.mem_preimage, Set.mem_singleton_iff] at ha2
   have hfin : ψ (Units.map (finPart E) (diagUnits E (Units.map (Algebra.norm E (S := L)) a))) = 1 := by

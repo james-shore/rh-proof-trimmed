@@ -263,9 +263,9 @@ theorem levQ : ∃ Cp : ℝ, 0 ≤ Cp ∧ ∀ Cc : ℝ, 16 * Cp ≤ Cc →
     set y := U.gaXi (p := ph + (n + 1)) (s := 0) k ρ (Formalism.FourierDecayAlt.P.Dx2.SL.sigP (D.ptPerm h))
       (Formalism.FourierDecayAlt.P.Dx2.SL.dP (D.ptDiag h) t) ξ (fun a => a.elim0) γ with hy
     have hyG : y ∈ B.GV k (ph + (n + 1) + 0 + ρ) :=
-      Formalism.FourierDecayAlt.P.Ux10.gaXi_mem Formalism.FourierDecayAlt.P.slice_membership Formalism.FourierDecayAlt.P.radical_parametrisation _ _ hdP ξ _ hZ0 hγ
+      Formalism.FourierDecayAlt.P.Ux10.gaXi_mem _root_.Formalism.FourierDecayAlt.P.Ux2.sliceMem _root_.Formalism.FourierDecayAlt.P.Ux2.radicalParam _ _ hdP ξ _ hZ0 hγ
     have hDj : U.DjU k (ph + (n + 1) + 0) ρ y ≠ 0 := by
-      rw [Formalism.FourierDecayAlt.P.Ux10.DjU_gaXi Formalism.FourierDecayAlt.P.hat_z_on_slice]
+      rw [Formalism.FourierDecayAlt.P.Ux10.DjU_gaXi _root_.Formalism.FourierDecayAlt.P.Ux3.zhSlice]
       exact mul_ne_zero (Formalism.FourierDecayAlt.P.Ux10.det_hMat_ne _ _ hdP) hZ0
     have hc₁' := Formalism.FourierDecayAlt.P.JCTx6.Link2.ckOn_castF e2 (Formalism.FourierDecayAlt.P.JCTx6.Link2.ckOn_cutF T.base hχ hs₁ ε)
     have hc₂' := Formalism.FourierDecayAlt.P.JCTx6.Link2.ckOn_castF e2 (Formalism.FourierDecayAlt.P.JCTx6.Link2.ckOn_cutF T.base hχ hs₂ ε)

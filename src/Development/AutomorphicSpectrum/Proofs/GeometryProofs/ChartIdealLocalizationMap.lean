@@ -50,6 +50,7 @@ import Mathlib.CategoryTheory.Monoidal.Mon
 import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.SncResolutionRegularLocalRing
 
 @[expose] public section
 
@@ -71,6 +72,6 @@ theorem exists_hom_chart : ∀ (K : Type) [Fintype K] (J : K → Type) [∀ k, F
   intro K _ J _ Ω _ _ y c hc R _ θ hθ F hF S hS
   exact exists_hom_adjoin_inv (fun p : Σ k, J k => y p / y ⟨p.1, c p.1⟩)
     (θ.comp (map (algebraMap ℚ ℂ)))
-    (fun G hG => hθ _ (GlobalTheory.CompanionTheory.Ar.ChartDehom.map_mem_chartIdeal K J Ω y c hc G hG)) F hF S hS
+    (fun G hG => hθ _ (_root_.GlobalTheory.CompanionTheory.Ar.Cmp.SncRes.Reg.ker_le_chart K J Ω y c hc G hG)) F hF S hS
 
 end GlobalTheory.CompanionTheory.Ar.ChartHom

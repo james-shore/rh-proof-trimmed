@@ -62,14 +62,9 @@ theorem ofK_injective : Injective (ofK p K) := by
     congrArg (fun y : KbarMult p => ((Additive.toMul y : (PadicAlgCl p)ˣ) : PadicAlgCl p)) hab
   exact Additive.toMul.injective (Units.ext (Subtype.ext h1))
 
-theorem exists_ofK_eq (y : KbarMult p) (hy : y ∈ multOf p K) : ∃ a : Kˣ, ofK p K (Additive.ofMul a) = y := by
-  have hne : (⟨((Additive.toMul y : (PadicAlgCl p)ˣ) : PadicAlgCl p), hy⟩ : K) ≠ 0 := fun h0 =>
-    (Additive.toMul y : (PadicAlgCl p)ˣ).ne_zero (congrArg Subtype.val h0)
-  exact ⟨Units.mk0 _ hne, Additive.toMul.injective (Units.ext rfl)⟩
-
 theorem exists_normUnits (hL : FiniteDimensional ℚ_[p] L) (h : K ≤ L) :
     ∃ ν : Lˣ →* Kˣ, ∀ b, ofK p K (Additive.ofMul (ν b)) = normHom p K L (ofK p L (Additive.ofMul b)) := by
-  choose ν hν using fun b : Lˣ => exists_ofK_eq _ (normHom_mem hL h _ (ofK_mem p L (Additive.ofMul b)))
+  choose ν hν using fun b : Lˣ => _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.RecCyc.exists_ofK_eq _ (normHom_mem hL h _ (ofK_mem p L (Additive.ofMul b)))
   refine ⟨MonoidHom.mk' ν fun a b => ?_, hν⟩
   apply Additive.ofMul.injective
   apply ofK_injective (p := p) (K := K)
@@ -80,7 +75,7 @@ theorem mem_normGrp_iff_exists (a : Kˣ) :
   rw [mem_normGrp_iff]
   constructor
   · rintro ⟨y, hy, hya⟩
-    obtain ⟨b, rfl⟩ := exists_ofK_eq y hy
+    obtain ⟨b, rfl⟩ := _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.RecCyc.exists_ofK_eq y hy
     exact ⟨b, hya.symm⟩
   · rintro ⟨b, hb⟩
     exact ⟨_, ofK_mem p L _, hb.symm⟩
@@ -103,12 +98,12 @@ theorem normGrp_eq_map {L' : IntermediateField ℚ_[p] (PadicAlgCl p)} (hL' : Fi
   rw [mem_normGrp_iff_exists, Subgroup.mem_map]
   constructor
   · rintro ⟨c, hc⟩
-    obtain ⟨b, hb⟩ := exists_ofK_eq _ (normHom_mem (K := L) hL' h' _ (ofK_mem p L' (Additive.ofMul c)))
+    obtain ⟨b, hb⟩ := _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.RecCyc.exists_ofK_eq _ (normHom_mem (K := L) hL' h' _ (ofK_mem p L' (Additive.ofMul c)))
     refine ⟨b, (mem_normGrp_iff_exists b).2 ⟨c, hb⟩, Additive.ofMul.injective (ofK_injective ?_)⟩
-    rw [hν, hb, normHom_trans hL' h h' _ (ofK_mem p L' _), hc]
+    rw [hν, hb, _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.normHom_comp_normHom_of_le hL' h h' _ (ofK_mem p L' _), hc]
   · rintro ⟨b, hb, rfl⟩
     obtain ⟨c, hc⟩ := (mem_normGrp_iff_exists b).1 hb
-    exact ⟨c, by rw [hν, hc, normHom_trans hL' h h' _ (ofK_mem p L' _)]⟩
+    exact ⟨c, by rw [hν, hc, _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.normHom_comp_normHom_of_le hL' h h' _ (ofK_mem p L' _)]⟩
 
 theorem index_normGrp_tower_le {L' : IntermediateField ℚ_[p] (PadicAlgCl p)} (hL : FiniteDimensional ℚ_[p] L) (hL' : FiniteDimensional ℚ_[p] L')
     (h : K ≤ L) (h' : L ≤ L') :
@@ -132,7 +127,7 @@ theorem resChar_eq_zero (h : K ≤ L) (χ : charGrp (GK p K)) (hχ : TrivOn p K 
   apply Subtype.ext
   apply AddMonoidHom.ext
   intro s
-  exact hχ (resGK h (Additive.toMul s)) ((range_resGK h).le ⟨_, rfl⟩)
+  exact hχ (resGK h (Additive.toMul s)) ((_root_.ReciprocityTheory.DiscreteGroups.LocalClassField.range_galois_restriction h).le ⟨_, rfl⟩)
 
 theorem local_pairing_eq_zero_of_mem_normGroup (hK : FiniteDimensional ℚ_[p] K) (hL : FiniteDimensional ℚ_[p] L) (h : K ≤ L) (a : Kˣ)
     (ha : a ∈ normGrp p K L) (χ : charGrp (GK p K)) (hχ : TrivOn p K L χ) : pairK p K a χ = 0 := by

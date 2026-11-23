@@ -68,16 +68,6 @@ theorem thList_cast {S : Scheme.{0}} (G : Over S) [GrpObj G] (L : LB G.left) (ρ
     (c : Fin N → K) (H : ThList G L ρ m x θ pt c) : ∃ pt' : Fin N → (Over.mk y ⟶ G), ThList G L ρ m y (e ▸ θ) pt' c := by
   subst e; exact ⟨pt, H⟩
 
-theorem inj_comp {R V : Type} [CommRing R] [CommRing V] [IsDomain V] (φ : R →+* V) (hφ : Function.Injective φ) :
-    Function.Injective ((algebraMap V (FractionRing V)).comp φ) := by
-  rw [RingHom.coe_comp]; exact (IsFractionRing.injective V (FractionRing V)).comp hφ
-
-theorem exists_fracMap {R V : Type} [CommRing R] [IsDomain R] [CommRing V] [IsDomain V] (φ : R →+* V)
-    (hφ : Function.Injective φ) : ∃ φK : FractionRing R →+* FractionRing V,
-      φK.comp (algebraMap R (FractionRing R)) = (algebraMap V (FractionRing V)).comp φ :=
-  ⟨IsFractionRing.lift (inj_comp φ hφ), RingHom.ext fun r => by
-    rw [RingHom.comp_apply, IsFractionRing.lift_algebraMap]⟩
-
 theorem secAt_ext {S : Scheme.{0}} (G : Over S) [GrpObj G] (L : LB G.left) {R : Type} [CommRing R] {x : Sp R ⟶ S}
     {τ₁ τ₂ : SecAt G L x} (h : SecM.ofSec G τ₁ = SecM.ofSec G τ₂) : τ₁ = τ₂ :=
   ThetaRuleCompare.sec_ext fun j => congrFun (congrArg Subtype.val h) j
@@ -184,7 +174,7 @@ theorem om_ext : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Hos
   obtain ⟨φ, hφdef⟩ : ∃ φ : R →+* V, φ = φ₀.comp (algebraMap R (Localization.AtPrime p.asIdeal)) := ⟨_, rfl⟩
   have hφ : Function.Injective φ := by
     rw [hφdef, RingHom.coe_comp]; exact hinj.comp hinjp
-  obtain ⟨φK, hc⟩ := exists_fracMap φ hφ
+  obtain ⟨φK, hc⟩ := _root_.GlobalTheory.Ex.OneGenBasis.exists_fractionMap φ hφ
   have h : spMap φK ≫ spMap (algebraMap R (FractionRing R)) ≫ χ =
       spMap (algebraMap V (FractionRing V)) ≫ spMap φ ≫ χ := by
     rw [← Category.assoc, ← Category.assoc, ← spMap_comp, ← spMap_comp, hc]

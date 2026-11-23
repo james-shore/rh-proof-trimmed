@@ -61,17 +61,6 @@ open scoped ContDiff
 
 namespace GlobalTheory.HeisenbergGaussianSeries
 
-theorem exists_coercive {V : Type} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
-    (om : V →ₗ[ℝ] V →ₗ[ℝ] ℝ) (J : V →ₗ[ℝ] V) (hpos : ∀ v, v ≠ 0 → 0 < om v (J v)) :
-    ∃ c : ℝ, 0 < c ∧ ∀ v, c * ‖v‖ ^ 2 ≤ om v (J v) := by
-  first
-  | exact @_root_.GlobalTheory.IntegralPointNormSquareBound.exists_pos_mul_norm_sq_le
-  | exact _root_.GlobalTheory.IntegralPointNormSquareBound.exists_pos_mul_norm_sq_le
-  | (apply _root_.GlobalTheory.IntegralPointNormSquareBound.exists_pos_mul_norm_sq_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralPointNormSquareBound.exists_pos_mul_norm_sq_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralPointNormSquareBound.exists_pos_mul_norm_sq_le <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegralPointNormSquareBound.exists_pos_mul_norm_sq_le ..)
-
 theorem exists_exponent {V : Type} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     (om : V →ₗ[ℝ] V →ₗ[ℝ] ℝ) (J : V →ₗ[ℝ] V) :
     ∃ M : V →L[ℝ] V →L[ℝ] ℂ, ∀ y v, M y v =
@@ -110,7 +99,7 @@ theorem summable_coeff {G V : Type} [AddCommGroup G] [NormedAddCommGroup V] [Nor
     Summable fun g : Γ => ‖b g * χ (g + w) *
       Complex.exp (-(Real.pi / 2 : ℂ) * (om (p g + y) (J (p g + y)) : ℝ))‖ *
         Real.exp (R * ‖M (p g + y)‖) := by
-  obtain ⟨c, hc, hq⟩ := exists_coercive om J hpos
+  obtain ⟨c, hc, hq⟩ := _root_.GlobalTheory.IntegralPointNormSquareBound.exists_pos_mul_norm_sq_le om J hpos
   have hs := GlobalTheory.GaussCoset.summable_gaussian_coset G V p Γ U₀ hinj hfin (Real.pi / 2 * c) (by positivity) (|R| * ‖M‖) w y
   refine Summable.of_nonneg_of_le (fun g => by positivity) (fun g => ?_) hs
   by_cases hg : (g : G) + w ∈ U₀

@@ -86,13 +86,11 @@ theorem hermAt_smul (S : HSp D) (c a : AE D) (x y : Fin S.rank → AE D) :
   simp only [GlobalTheory.IwaPlace.hermAt, Pi.smul_apply, smul_eq_mul, map_mul, Finset.mul_sum]
   exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
 
-theorem cA_incA (e : D.host.E) : cA D (incA D e) = incA D (star e) := rfl
-
 theorem hermAt_ratV (S : HSp D) (x : Fin S.rank → D.host.E) :
     GlobalTheory.IwaPlace.hermAt S (ratV x) (ratV x) = incA D (star x ⬝ᵥ S.gram *ᵥ x) := by
 
   simp only [GlobalTheory.IwaPlace.hermAt, gA, rat, ratV, Matrix.map_apply, dotProduct, Matrix.mulVec, map_sum, map_mul,
-  Finset.mul_sum, cA_incA, Pi.star_apply, mul_assoc]
+  Finset.mul_sum, _root_.GlobalTheory.DualPairCheck.cA_incA, Pi.star_apply, mul_assoc]
 
 end GlobalTheory.Core.Mi.LatMatch.SplitOff
 
@@ -176,7 +174,7 @@ theorem line_part {S A L : HSp D} (o : OrthDec S A L) {ζ : Fin L.rank → D.hos
   have hsd := GlobalTheory.IwaPlace.LocSD.isSDAt_latV D S M v hM
   have hh := ((hsd.2.2 y hy).1 hyM) _ haM
   have hXY := norm_factor (D := D) hμ T _ hnorm
-  rw [ratV_vecB, ← Matrix.mulVec_smul, hermAt_jB, hl, hermAt_smul, hermAt_ratV, map_mul, hεε, cA_incA] at hh
+  rw [ratV_vecB, ← Matrix.mulVec_smul, hermAt_jB, hl, hermAt_smul, hermAt_ratV, map_mul, hεε, _root_.GlobalTheory.DualPairCheck.cA_incA] at hh
   have key : c * (algebraMap (AF D.host.F) (AE D) (GlobalTheory.SelfDualAt.cP (· = v)) * incA D (star μ⁻¹)) *
       incA D (star ζ ⬝ᵥ L.gram *ᵥ ζ) = -(incA D (T : D.host.E) * (incA D μ * c)) := by
     linear_combination (algebraMap (AF D.host.F) (AE D) (GlobalTheory.SelfDualAt.cP (· = v)) * c) * hXY -

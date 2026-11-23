@@ -139,7 +139,7 @@ theorem levelUni_typePlace : ∀ (D : D7) (T : Type) (L : LevCh D T) (μ0 : T), 
       have : (u : kP s.w) = 0 := by rw [hu]; exact Ideal.Quotient.eq_zero_iff_mem.2 hm
       exact u.ne_zero this
     have hunit : IsUnitAt s.w (atFin s.w k) := by
-      have e := GlobalTheory.ChainOnto.TameRes.val_alg s.w (k : D.host.E)
+      have e := _root_.Formalism.UG.P.levelaf_valued_algebraMap s.w (k : D.host.E)
       show Valued.v (algebraMap D.host.E (s.w.adicCompletion D.host.E) (k : D.host.E)) = 1
       rw [e, hk]
       exact GlobalTheory.ChainOnto.TameRes.valuation_eq_one_of_not_mem s.w a ha

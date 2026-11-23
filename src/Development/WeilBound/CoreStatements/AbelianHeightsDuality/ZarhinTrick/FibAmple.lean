@@ -103,8 +103,8 @@ theorem relAmple_zb (hA : IsAbelianScheme A) (hB : IsAbelianScheme B) {P : LB (A
   have h4 : IsAbelianScheme (G4 (A ⊗ B)) :=
     AbelianSchemeGerms.isAbelianScheme_tensor _ _ hAB
       (AbelianSchemeGerms.isAbelianScheme_tensor _ _ hAB (AbelianSchemeGerms.isAbelianScheme_tensor _ _ hAB hAB))
-  have hG : IsAbelianScheme ((Over.pullback s).obj (G4 (A ⊗ B))) := Z2.isAbelianScheme_pb s _ h4
-  have hfin := isFinite_mu_fibre hA hB g hgA hgB l mu m hm h₁ h₂ s L hL ha
+  have hG : IsAbelianScheme ((Over.pullback s).obj (G4 (A ⊗ B))) := _root_.GlobalTheory.isAbelianScheme_pullback_obj s _ h4
+  have hfin := _root_.PositivityTheory.PrwZar.Z2.isFinite_mu_fibre hA hB g hgA hgB l mu m hm h₁ h₂ s L hL ha
   have hlp := relAmple_lPart hA hB mu s L hL ha hfin
   have hlpLB : (lPart mu s L).IsLB := LB.isLB_linComb hL _ _
   have hzb : (zb mu α s P L).IsLB := isLB_zb mu α s hP hL
@@ -116,8 +116,8 @@ theorem relAmple_zb (hA : IsAbelianScheme A) (hB : IsAbelianScheme B) {P : LB (A
     rw [← Functor.map_comp, eMap_comp_eMap'_eq_id_pow, Z2.pb_map_id_pow]
   have hE1 : ((zb mu α s P L).pull (Over.Hom.left ((Over.pullback s).map (eMap mu α m)))).IsLB :=
     LB.isLB_pull hzb _
-  have hE := two_cls_eMap hA hB hD hD' l mu α s L hL e m hm h₁ h₂ hα hα' hE1 hlpLB
-  have hEa := relAmple_of_two_smul hG hE1 hlpLB 2 (by norm_num) hE hlp
+  have hE := _root_.PositivityTheory.PrwZar.Z2.two_cls_eMap hA hB hD hD' l mu α s L hL e m hm h₁ h₂ hα hα' hE1 hlpLB
+  have hEa := _root_.PositivityTheory.PrwZar.Z2.relAmple_of_two_smul hG hE1 hlpLB 2 (by norm_num) hE hlp
   obtain ⟨hE'fin, -, -, -⟩ := Z2.fin_surj_core hG hG ((Over.pullback s).map (eMap' mu α m))
     ((Over.pullback s).map (eMap mu α m)) (2 * m) (by omega) c1 c2 hlpLB hlp
   haveI := hE'fin
@@ -132,7 +132,7 @@ theorem relAmple_zb (hA : IsAbelianScheme A) (hB : IsAbelianScheme B) {P : LB (A
   have hM : (lbPow (zb mu α s P L) ((2 * m) ^ 2)).IsLB := GlobalTheory.isLB_lbPow hzb _
   have key : 2 • cls _ hM = 2 • cls _ hNLB := by
     rw [hN, hpow, cls_lbPow hzb, smul_smul]
-  have h3 := relAmple_of_two_smul hG hM hNLB 2 (by norm_num) key h2
+  have h3 := _root_.PositivityTheory.PrwZar.Z2.relAmple_of_two_smul hG hM hNLB 2 (by norm_num) key h2
   exact relAmple_of_lbPow hG hzb ((2 * m) ^ 2) (Nat.one_le_pow _ _ (by omega)) h3
 
 end PositivityTheory.PrwZar

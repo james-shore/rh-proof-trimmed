@@ -62,33 +62,11 @@ open Formalism.DworkPowerSeriesWeights (JetsIntegral)
 
 namespace GlobalTheory.ThLoc.LocMM
 
-theorem cmTheta_odd (b : ℤ) (hb : Odd b) (d : ℕ) : ∃ k : ℤ, cmTheta b d = cmTheta 1 d + (k : ℂ) := by
-  obtain ⟨k, rfl⟩ := hb
-  refine ⟨k, ?_⟩
-  simp only [cmTheta]
-  push_cast
-  ring
+alias cmTheta_odd := _root_.GlobalTheory.ThLoc.KapNonSplit.cmTheta_odd
 
-theorem stable_of_one {V : Type*} [AddCommGroup V] [Module ℂ V] (Λ : AddSubgroup V) (d : ℕ)
-    (h : ∀ x ∈ Λ, cmTheta 1 d • x ∈ Λ) (b : ℤ) (hb : Odd b) : ∀ x ∈ Λ, cmTheta b d • x ∈ Λ := by
-  intro x hx
-  obtain ⟨k, hk⟩ := cmTheta_odd b hb d
-  rw [hk, add_smul]
-  refine Λ.add_mem (h x hx) ?_
-  rw [Int.cast_smul_eq_zsmul]
-  exact Λ.zsmul_mem hx k
+alias stable_of_one := _root_.GlobalTheory.ThLoc.KapNonSplit.stable_of_one
 
-theorem odd_of_cmOK {a : ℕ} {b c : ℤ} {d : ℕ} (h : CmOK a b c d) : Odd b := by
-  by_contra hb
-  obtain ⟨k, rfl⟩ := Int.not_odd_iff_even.1 hb
-  have h1 := h.1
-  have h8 := h.2.2.1
-  have h2 : (d : ℤ) = 4 * ((a : ℤ) * c - k * k) := by
-    have : (k + k) ^ 2 = 4 * (k * k) := by ring
-    rw [this] at h1
-    linarith
-  generalize (a : ℤ) * c - k * k = t at h2
-  omega
+alias odd_of_cmOK := _root_.GlobalTheory.ThLoc.KapNonSplit.odd_of_cmOK
 
 theorem hermitianSelfDual_of_fourfoldBlock {n : Type} [Fintype n] (h : Matrix n n ℂ) (Λ : AddSubgroup (n → ℂ))
     (hsd : IsSelfDual (matH (blk4 h)) (pow4 Λ)) : IsSelfDual (matH h) Λ := by
@@ -156,7 +134,7 @@ theorem locNormMM : ∀ (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ), Taylor
     CmOK a₀ b₀ c₀ D.host.d → B.IsCm a₀ b₀ ha hd lam hlam →
     ∀ (p : ℕ) [Fact p.Prime] (ι : ℂ ≃+* ℂ_[p]), B.LocNormMM a₀ b₀ ha hd lam hlam p ι := by
   intro D cc δ hcc hδ B a₀ b₀ c₀ ha hd lam hlam hcm hB l _ ι
-  have hK : B.KappaAt l ι := kappaAt B hcc hδ l ι
+  have hK : B.KappaAt l ι := _root_.Formalism.L2.Ker.KS.kappaAt B hcc hδ l ι
   obtain ⟨hL, hω⟩ := hB
   have hS : StdData B.L B.ω₀ (hOne B.L D.what₂.Tau) B.lamM (alphaQ B.cq (matH (hOne B.L D.what₂.Tau)))
     (alphaQ B.cq (stdH B.L (Fin 4 × D.what₂.Tau))) B.gC := B.stdOK hcc hδ

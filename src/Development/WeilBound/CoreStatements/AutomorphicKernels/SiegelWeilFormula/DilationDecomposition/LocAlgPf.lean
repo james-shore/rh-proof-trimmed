@@ -67,19 +67,19 @@ theorem up_decomp_pf (p : GR n) (hp : (mR p).toBlocks₂₁ = 0) :
 
 theorem fam_deriv_pf (m : ℕ) (X : Fin n → ℝ) (v : Fin m → Fin n → ℂ) (r : ℕ) :
     iteratedDeriv r (fun z => fam m X z v) 0 = fP ((dil (2 * Real.pi) X ^ r) 1) v :=
-  (GlobalTheory.T.iteratedDeriv_gaussian_exponential_at_zero m n X v).2 r
+  (_root_.GlobalTheory.CompanionTheory.DilFam.main m n X v).2 r
 
 theorem fam_int_hol_pf (m : ℕ) (X : Fin n → ℝ) (K : (Fin m → Fin n → ℂ) → ℂ) (hK : Continuous K)
     (hK1 : ∀ v, ‖K v‖ ≤ 1) :
     ∃ ρ : ℝ, 0 < ρ ∧ DifferentiableOn ℂ (fun z => ∫ v, K v * fam m X z v) (Metric.ball 0 ρ) ∧
       ∀ r : ℕ, iteratedDeriv r (fun z => ∫ v, K v * fam m X z v) 0 =
         ∫ v, K v * iteratedDeriv r (fun z => fam m X z v) 0 :=
-  GlobalTheory.T.iteratedDeriv_integral_gaussian_exponential m n X K hK hK1
+  _root_.GlobalTheory.CompanionTheory.HolMean.DilatedGaussian.holomorphic_integral m n X K hK hK1
 
 theorem iteratedDeriv_eq_of_real_pf {f g : ℂ → ℂ} {ρ : ℝ} (hρ : 0 < ρ) (hf : DifferentiableOn ℂ f (Metric.ball 0 ρ))
     (hg : DifferentiableOn ℂ g (Metric.ball 0 ρ)) (hfg : ∀ s : ℝ, |s| < ρ → f s = g s) (r : ℕ) :
     iteratedDeriv r f 0 = iteratedDeriv r g 0 :=
-  GlobalTheory.T.iteratedDeriv_eq_of_eq_on_real_segment f g ρ hρ hf hg hfg r
+  _root_.GlobalTheory.CompanionTheory.ComplexAnalysis.iteratedDeriv_zero_eq_of_eq_on_real_points f g ρ hρ hf hg hfg r
 
 theorem dcell_pf (y : GR n) (hy : ((mR y).toBlocks₂₂).det ≠ 0) :
     ∃ (p nbb : GR n) (c : Matrix (Fin n) (Fin n) ℂ), (mR p).toBlocks₂₁ = 0 ∧ cᴴ = c ∧ mR nbb = nbLoc c ∧ y = p * nbb :=
@@ -100,20 +100,6 @@ theorem ft_uniq_pf {m : ℕ} (s : ℂ) (hs : s ≠ 0) (g : (Fin m → Fin n → 
     (h0 : ∀ u : Fin m → Fin n → ℂ, ∫ v, Complex.exp (2 * Real.pi * Complex.I *
       ((s * Matrix.trace ((Matrix.of u)ᴴ * Matrix.of v)).re : ℂ)) * g v = 0) : g = 0 :=
   GlobalTheory.T.fourier_injective_matrix_space m n s hs g hg hgi h0
-
-theorem up_decomp_closed : type_of% @up_decomp_pf := @up_decomp_pf
-
-theorem fam_deriv_closed : type_of% @fam_deriv_pf := @fam_deriv_pf
-
-theorem fam_int_hol_closed : type_of% @fam_int_hol_pf := @fam_int_hol_pf
-
-theorem iteratedDeriv_eq_of_real_closed : type_of% @iteratedDeriv_eq_of_real_pf := @iteratedDeriv_eq_of_real_pf
-
-theorem dcell_closed : type_of% @dcell_pf := @dcell_pf
-
-theorem hol_int_closed : type_of% @hol_int_pf := @hol_int_pf
-
-theorem ft_uniq_closed : type_of% @ft_uniq_pf := @ft_uniq_pf
 
 end PositivityTheory.SiegelWeilFormula.Kdil
 

@@ -80,7 +80,7 @@ theorem closing : GlobalTheory.Published.GlobalArtinReciprocity → GlobalTheory
       (GlobalTheory.HTW.Rec.goodO_finExt_integers (D.nd.l i) Cf.LL)
   have h01 := GlobalTheory.T.local_fields_at_auxiliary_primes D
   refine ⟨h01.1, h01.2, ?_⟩
-  exact GlobalTheory.T.theoremB_of_admittedHypotheses D HW F r ρ large₂ ep 160 C Qp (by rw [max_eq_left (by norm_num)]; linarith) hQ hW hA
+  exact _root_.GlobalTheory.TheoremB.theoremB_of_admitted D HW F r ρ large₂ ep 160 C Qp (by rw [max_eq_left (by norm_num)]; linarith) hQ hW hA
     hN5 hG1 hG2 hG3 hG4 hG5 hG6 hSet hTB hBK hKill hJump hFon hLit hPar
 
 end GlobalTheory.TwistedPlaceBound

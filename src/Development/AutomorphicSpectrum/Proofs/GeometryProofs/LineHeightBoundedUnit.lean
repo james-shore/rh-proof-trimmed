@@ -57,21 +57,6 @@ namespace GlobalTheory.CompanionTheory.Ar.Ht.FlatLine
 
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {Ω : Type} [Field Ω]
 
-theorem hasVal_inv {y : (Σ k, ι k) → Ω} {a : K → ℤ} {u : Ω} (hu : u ≠ 0) {𝕜 : Type} [Field 𝕜]
-    {z : (Σ k, ι k) → 𝕜} (hz : z ∈ ptsOver 𝕜 (mCoordIdeal y)) {val : 𝕜} (hv : val ≠ 0)
-    (h : HasVal y a u z val) : HasVal y (-a) u⁻¹ z val⁻¹ := by
-  obtain ⟨dg, dh, g, f, hg, hf, hd, hy, hfz, hgz⟩ := h
-  have hfy : aeval y f ≠ 0 := fun h0 =>
-    hfz (hz.2 f ((GroundTheory.Heights₂.Heights.Targets.BoundedSectionTransfer.mem_mCoordIdeal_iff y hf).2 h0))
-  refine ⟨dh, dg, f, g, hf, hg, fun k => ?_, ?_, ?_, ?_⟩
-  · have := hd k
-    simp only [Pi.neg_apply]
-    omega
-  · rw [hy, inv_mul_cancel_left₀ hu]
-  · rw [hgz]
-    exact mul_ne_zero hv hfz
-  · rw [hgz, inv_mul_cancel_left₀ hv]
-
 theorem aeval_embed {L 𝕜 : Type} [Field L] [Field 𝕜] (σ : L →+* 𝕜) (z : (Σ k, ι k) → L) (f : MRing ι) :
     aeval (fun p => σ (z p)) f = σ (aeval z f) :=
   (MvPolynomial.comp_aeval_apply (R := ℤ) z σ.toIntAlgHom f).symm
@@ -119,7 +104,7 @@ theorem exists_arch_bound {y : (Σ k, ι k) → Ω} {d : ℕ} (hAr : IsArithVar 
   have hp : 0 < A.h z := A.pos z hz.1
   have hn : 0 < ‖val‖ := norm_pos_iff.2 hv
   have b₁ : ‖val‖ ≤ Real.exp C₁ * A.h z ^ k := hC₁ z hz val hval
-  have b₂ : ‖val⁻¹‖ ≤ Real.exp C₂ * (A.h z ^ k)⁻¹ := hC₂ z hz val⁻¹ (hasVal_inv hu hz hv hval)
+  have b₂ : ‖val⁻¹‖ ≤ Real.exp C₂ * (A.h z ^ k)⁻¹ := hC₂ z hz val⁻¹ (_root_.GlobalTheory.CompanionTheory.Ar.Ht.UnitHt.hasVal_inv_section hu hz hv hval)
   have l₁ : Real.log ‖val‖ ≤ C₁ + k * Real.log (A.h z) := by
     have := Real.log_le_log hn b₁
     rwa [Real.log_mul (Real.exp_pos _).ne' (pow_pos hp k).ne', Real.log_exp, Real.log_pow] at this

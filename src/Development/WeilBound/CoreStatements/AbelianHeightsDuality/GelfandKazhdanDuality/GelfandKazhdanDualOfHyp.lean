@@ -65,7 +65,7 @@ variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyCompl
 
 variable (E a) in
 def dualMapC : Sm E a →ₗ⋆[ℂ] Sm E a where
-  toFun φ := ⟨fun g => star (φ.1 (invA E a g)), GlobalTheory.T.smooth_conjugate_inverse_mem φ.2⟩
+  toFun φ := ⟨fun g => star (φ.1 (invA E a g)), _root_.GlobalTheory.CompanionTheory.DualSm.conj_invA_mem_Sm φ.2⟩
   map_add' φ ψ := Subtype.ext (funext fun g => by simp)
   map_smul' c φ := Subtype.ext (funext fun g => by simp)
 
@@ -76,7 +76,7 @@ theorem act_dualMapC (o : Op E a) (φ : Sm E a) : act o (dualMapC E a φ) = dual
   GlobalTheory.T.conjugate_inverse_right_action o φ _ _
 
 theorem isCuspForm_dualMapC {φ : Sm E a} (h : IsCuspForm φ) : IsCuspForm (dualMapC E a φ) :=
-  GlobalTheory.T.cuspForm_conjugate_inverse φ _ h
+  _root_.GlobalTheory.CompanionTheory.DualCusp.isCuspForm_conj_invA φ _ h
 
 theorem dualMapC_injective : Function.Injective (dualMapC E a) := fun φ ψ h => by
   rw [← dualMapC_dualMapC φ, ← dualMapC_dualMapC ψ, h]

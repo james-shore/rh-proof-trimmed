@@ -98,13 +98,10 @@ theorem combAt_extT {P : Pl D → Prop} {T A L : HSp D} (o : OrthDec T A L) (S :
   rw [OrthDec.resT_symm_apply, Matrix.mul_zero, add_zero, Matrix.mul_apply]
   exact Ideal.sum_mem _ fun k _ => Ideal.mul_mem_left _ _ (hc x hx k j)
 
-theorem comb_eq_sum (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (c : WO S T →₀ ℂ) (F : WO S T → ℂ) :
-    comb ψ S T c F = c.sum (fun u a => a • heisO ψ S T u F) := rfl
-
 theorem comb_extS_slice (ψ : AddChar (AF D.host.F) ℂ) {S A L T : HSp D} (o : OrthDec S A L) (c : WO A T →₀ ℂ)
     (F : WO S T → ℂ) (w : WO A T) (y : WO L T) :
     comb ψ S T (extS o T c) F ((o.resS T).symm (w, y)) = comb ψ A T c (fun w' => F ((o.resS T).symm (w', y))) w := by
-  rw [comb_eq_sum, comb_eq_sum, extS, Finsupp.sum_mapDomain_index (h := fun u a => a • heisO ψ S T u F) (fun _ => zero_smul _ _) (fun _ _ _ => add_smul _ _ _)]
+  rw [_root_.GlobalTheory.HeisComb.comb_eq_sum, _root_.GlobalTheory.HeisComb.comb_eq_sum, extS, Finsupp.sum_mapDomain_index (h := fun u a => a • heisO ψ S T u F) (fun _ => zero_smul _ _) (fun _ _ _ => add_smul _ _ _)]
   simp only [Finsupp.sum, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
   refine Finset.sum_congr rfl fun u _ => ?_
   rw [heisO_resS_symm]
@@ -112,7 +109,7 @@ theorem comb_extS_slice (ψ : AddChar (AF D.host.F) ℂ) {S A L T : HSp D} (o : 
 theorem comb_extT_slice (ψ : AddChar (AF D.host.F) ℂ) {S A L T : HSp D} (o : OrthDec S A L) (c : WO T A →₀ ℂ)
     (F : WO T S → ℂ) (w : WO T A) (y : WO T L) :
     comb ψ T S (extT o T c) F ((o.resT T).symm (w, y)) = comb ψ T A c (fun w' => F ((o.resT T).symm (w', y))) w := by
-  rw [comb_eq_sum, comb_eq_sum, extT, Finsupp.sum_mapDomain_index (h := fun u a => a • heisO ψ T S u F) (fun _ => zero_smul _ _) (fun _ _ _ => add_smul _ _ _)]
+  rw [_root_.GlobalTheory.HeisComb.comb_eq_sum, _root_.GlobalTheory.HeisComb.comb_eq_sum, extT, Finsupp.sum_mapDomain_index (h := fun u a => a • heisO ψ T S u F) (fun _ => zero_smul _ _) (fun _ _ _ => add_smul _ _ _)]
   simp only [Finsupp.sum, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
   refine Finset.sum_congr rfl fun u _ => ?_
   rw [heisO_resT_symm]

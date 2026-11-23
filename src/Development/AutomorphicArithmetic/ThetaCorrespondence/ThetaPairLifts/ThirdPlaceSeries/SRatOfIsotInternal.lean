@@ -66,7 +66,7 @@ theorem sRat_of_isotInternal_alt_alt : _root_.GlobalTheory.HeightCounting.Up.Pub
   intro hp hs hi hL
   have A := StepW.and (_root_.GlobalTheory.HeightCounting.RatSide.formsC_at_state_alt hL) (StepW.and (_root_.GlobalTheory.HeightCounting.ThetaSt.main_alt_alt hL)
     (StepW.and (_root_.GlobalTheory.HeightCounting.RatSide.HeckeAtState.heckeAtState_alt hL hp.decay hs.hkTr hs.hkRead)
-    (StepW.and (_root_.GlobalTheory.T.intC_state_of_lvlPsi_stabC_heckeRd hL hp.decay hs.hkInt hs.hkTr hs.hkRead) (_root_.GlobalTheory.HeightCounting.RatSide.eigenspace_span_of_isotypicInternal_alt hp hi hL))))
+    (StepW.and (_root_.GlobalTheory.HeightCounting.RatSide.intC_of_lvlPsi_stabC_heckeRd hL hp.decay hs.hkInt hs.hkTr hs.hkRead) (_root_.GlobalTheory.HeightCounting.RatSide.eigenspace_span_of_isotypicInternal_alt hp hi hL))))
   refine StepW.trans A (StepW.of_all fun K B f T w _ _ H => ?_)
   intro P x hx
   obtain ⟨hF, hθ, hH, hI, hE⟩ := H

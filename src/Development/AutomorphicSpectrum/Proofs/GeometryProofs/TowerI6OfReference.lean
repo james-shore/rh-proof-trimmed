@@ -161,7 +161,7 @@ theorem tower_upper : ∀ (Ψ : Type) [Fintype Ψ] [DecidableEq Ψ] (N : ℕ) (T
       rootHt (T.M B c) (scale s) (T.lamS lam s) s L' (fun p => z (joinInl (T.M B c).ι (R c).ι p)) := by
     simp only [RootTower.mbarHt, RootModel.ht, rootHt, Finset.sum_div, mul_div_assoc]
     exact Finset.sum_congr rfl fun j _ => by rw [hht _ (line_smooth _ _ j)]
-  have hcl := (GlobalTheory.T.root_height_difference_bound Ψ N (T.M B c) (R c) i u _ _ _ _ _ _ hclose harch' L' z hz).2
+  have hcl := (_root_.GlobalTheory.CompanionTheory.Ar.Ht.CloseHt.close_ht Ψ N (T.M B c) (R c) i u _ _ _ _ _ _ hclose harch' L' z hz).2
   have hR : rootHt (R c) 1 (T.lamS lam s) s L' (fun p => z (joinInr (T.M B c).ι (R c).ι p)) ≤
       (l1 (T.lamS lam s) + |(s : ℝ)|) * D' := by
     refine rootHt_le _ _ _ _ _ _ _ fun j => ?_

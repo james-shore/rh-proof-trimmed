@@ -62,18 +62,6 @@ open GlobalTheory.ZM
 
 namespace GlobalTheory
 
-theorem obbuild_hf_add_left {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) (a b c : Fin g → ℂ) :
-    hermForm Hm (a + b) c = hermForm Hm a c + hermForm Hm b c := by
-  simp [hermForm, add_dotProduct]
-
-theorem obbuild_hf_add_right {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) (a b c : Fin g → ℂ) :
-    hermForm Hm a (b + c) = hermForm Hm a b + hermForm Hm a c := by
-  simp [hermForm, Matrix.mulVec_add, dotProduct_add]
-
-theorem obbuild_hf_smul_left {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) (r : ℂ) (a c : Fin g → ℂ) :
-    hermForm Hm (r • a) c = r * hermForm Hm a c := by
-  simp [hermForm, smul_dotProduct]
-
 theorem obbuild_hf_smul_right {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) (r : ℂ) (a c : Fin g → ℂ) :
     hermForm Hm a (r • c) = star r * hermForm Hm a c := by
   simp [hermForm, Matrix.mulVec_smul, dotProduct_smul]
@@ -91,7 +79,7 @@ theorem obbuild_adj {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) (s : Set (Fin g 
     induction hc using Submodule.span_induction with
     | mem x hx => exact h a ha x hx
     | zero => simp [hz]
-    | add x y _ _ hx hy => simp [obbuild_hf_add_right, hx, hy]
+    | add x y _ _ hx hy => simp [_root_.GlobalTheory.SelfCube.herm_add_right, hx, hy]
     | smul r x _ hx => rw [hr, map_smul, obbuild_hf_smul_right, obbuild_hf_smul_right]; simp [hx]
   have h2 : ∀ a c, (hermForm Hm (F a) c).im = (hermForm Hm a (F' c)).im := by
     intro a c
@@ -99,11 +87,11 @@ theorem obbuild_adj {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) (s : Set (Fin g 
     induction ha using Submodule.span_induction with
     | mem x hx => exact h1 x hx c
     | zero => simp [hz]
-    | add x y _ _ hx hy => simp [obbuild_hf_add_left, hx, hy]
-    | smul r x _ hx => rw [hr, map_smul, obbuild_hf_smul_left, obbuild_hf_smul_left]; simp [hx]
+    | add x y _ _ hx hy => simp [_root_.GlobalTheory.AppellHumbertTrivial.hermForm_add_left, hx, hy]
+    | smul r x _ hx => rw [hr, map_smul, _root_.GlobalTheory.AppellHumbertTrivial.hermForm_smul_left, _root_.GlobalTheory.AppellHumbertTrivial.hermForm_smul_left]; simp [hx]
   apply Complex.ext
   · have := h2 (Complex.I • z) z'
-    rw [map_smul, obbuild_hf_smul_left, obbuild_hf_smul_left] at this
+    rw [map_smul, _root_.GlobalTheory.AppellHumbertTrivial.hermForm_smul_left, _root_.GlobalTheory.AppellHumbertTrivial.hermForm_smul_left] at this
     simpa using this
   · exact h2 z z'
 

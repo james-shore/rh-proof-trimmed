@@ -141,7 +141,7 @@ theorem unfold_sib (I : AutInst) (D : Sib I) (s : Bool) (x : Fin I.n → I.E)
   have i6' : μf'.IsMulRightInvariant := ⟨(GlobalTheory.T.adelicUnitaryHaar_bi_invariant D.inst μf').2.2.2.1⟩
   obtain ⟨jf, hjf, hrange⟩ := GlobalTheory.T.exists_finiteAdelic_orthogonal_stabilizer_embedding I D s x A xf hp
   have hloc := GlobalTheory.T.isOrthComplementOfUnitVector_at_real_place I D s x A xf hp
-  choose jv hjc hjv using fun v => GlobalTheory.T.exists_closedEmbedding_orthogonalUnitary_realPlace I.n D.n (I.ε v) (D.ε v) s _ _ hp.1 (hloc v).1 (hloc v).2.1
+  choose jv hjc hjv using fun v => _root_.GlobalTheory.StabUnfold.exists_closedEmbedding_unitary_orthogonal I.n D.n (I.ε v) (D.ε v) s _ _ hp.1 (hloc v).1 (hloc v).2.1
     (hloc v).2.2
   obtain ⟨hK, hKg⟩ := GlobalTheory.T.mem_congruence_level_iff_orthEmbedding I D s x A xf hp jf hjf
   have hjfc := GlobalTheory.T.isClosedEmbedding_of_congruenceSubgroups_conj I D.inst jf xf hKg
@@ -173,7 +173,7 @@ theorem unfold_sib (I : AutInst) (D : Sib I) (s : Bool) (x : Fin I.n → I.E)
         rfl
       · rw [Set.indicator_of_notMem (show _ ∉ {h : I.Gf | x ∈ lamX I (1, h)} from fun h' => hg (this.1 h')),
           Set.indicator_of_notMem (show _ ∉ {h : I.Gf | x ∈ lamX I (1, h)} from hg)]
-  obtain ⟨ι, hι, r, hr1, hr2, hr3⟩ := GlobalTheory.T.latticeGaussianSumOfLength_eq_tsum_stabilizer_cosets I s x hp.2.1
+  obtain ⟨ι, hι, r, hr1, hr2, hr3⟩ := _root_.GlobalTheory.StabCosets.gaussSum_cosets I s x hp.2.1
   have hmem : ∀ γ, γ ∈ Γ ↔ γ ∈ I.GFset := fun γ => by rw [← hΓ]; rfl
   have hmemS : ∀ γ, γ ∈ Γ'.map (embA D jv jf) ↔ γ ∈ stabF I x := fun γ => by rw [← hS]; rfl
   have horb := GlobalTheory.T.lintegral_tsum_cosets_fundamentalDomain_eq_covol I.GA Γ (Γ'.map (embA D jv jf)) (I.muA μf) fund (gaussAt I x) ι r hΓc
@@ -188,7 +188,7 @@ theorem unfold_sib (I : AutInst) (D : Sib I) (s : Bool) (x : Fin I.n → I.E)
     {h : I.Gf | x ∈ lamX I (1, h)} hKo hKo' hKc' hK (fun g => by
       constructor
       · intro hg
-        obtain ⟨h, h1, k, hk, e⟩ := GlobalTheory.T.stabilizer_transitive_adelic_unit_length_vectors I s x xf g hp.2.1 hp.2.2.2.2.1 hg
+        obtain ⟨h, h1, k, hk, e⟩ := _root_.GlobalTheory.FinOrbit.exists_stab_mul_level I s x xf g hp.2.1 hp.2.2.2.2.1 hg
         obtain ⟨h', rfl⟩ := hrange h h1
         exact ⟨h', k, hk, e⟩
       · rintro ⟨h, k, hk, rfl⟩
@@ -224,8 +224,8 @@ theorem unfold_sib (I : AutInst) (D : Sib I) (s : Bool) (x : Fin I.n → I.E)
   have hd : ∀ v, 0 ≤ gaussDens (I.ε v) (sgn ℝ s) := fun v => ((GlobalTheory.T.gaussianQuadricDensity_exists_pos_continuous _ (I.ε v)).1 _ hs).2
   have hprod := Finset.prod_congr (s₁ := Finset.univ) rfl fun v _ => hq v
   rw [Finset.prod_mul_distrib, Finset.prod_mul_distrib,
-    ← ENNReal.ofReal_prod_of_nonneg fun v _ => (gauge_pos (hc v)).le,
-    ← ENNReal.ofReal_prod_of_nonneg fun v _ => (gauge_pos (hc' v)).le,
+    ← ENNReal.ofReal_prod_of_nonneg fun v _ => (_root_.GlobalTheory.GaugeTransport.pos_of_isGauge (hc v)).le,
+    ← ENNReal.ofReal_prod_of_nonneg fun v _ => (_root_.GlobalTheory.GaugeTransport.pos_of_isGauge (hc' v)).le,
     ← ENNReal.ofReal_prod_of_nonneg fun v _ => mul_nonneg (by positivity) (hd v), Finset.prod_mul_distrib,
     Finset.prod_const, Finset.card_univ, (GlobalTheory.T.autInst_degree_rootDiscriminant_rank I).2.2.2.2.1, ← pow_mul] at hprod
   have hK0 : μf I.Kset ≠ 0 := (hKo.measure_pos μf ⟨1, (Ksub I).one_mem⟩).ne'

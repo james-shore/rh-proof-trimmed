@@ -142,7 +142,7 @@ theorem GlobalTheory.Mum.exists_transl_pkg : ∀ (R : Type) [CommRing R] [IsDoma
 
   have hext : ExtLam G LG (abelian₂ G P.L.L) := by
     refine ⟨DVR.linComb_isLB _ hPL _ _, fun κ₂ hκ => ?_⟩
-    obtain ⟨c, hc⟩ := GlobalTheory.Moduli.cube_of_isLB _ A A.L A.isLB
+    obtain ⟨c, hc⟩ := _root_.GlobalTheory.AbLaw.CubeAssembly.cube_gen _ A A.L A.isLB
     have e1 : LBIso (abelian₂ _ LG) ((abelian₂ A.A L₁).pull (gen.hom ⊗ₘ gen.hom).left) :=
       GlobalTheory.ZM.SiegClause.lbIso_lam_pull gen.hom hLG hL₁ (GlobalTheory.PolBaseChange.lbIso_refl hLG)
     have e2 : LBIso (abelian₂ _ (P.L.L.pull (pullback.fst G.hom (jK R))))

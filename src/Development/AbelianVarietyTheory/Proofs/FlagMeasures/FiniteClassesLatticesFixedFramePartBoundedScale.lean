@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals
 
 @[expose] public section
 
@@ -62,29 +63,17 @@ theorem fg_of_le_fg {K V : Type} [Field K] [NumberField K] [AddCommGroup V] [Mod
     rw [Submodule.map_comap_subtype, inf_of_le_right h]
   rw [← e]; exact h1.map _
 
-theorem frame_mem_Xplus {E : Type} [Field E] [NumberField E] [StarRing E] {S : Formalism.BasicNotions.HSpace E}
-    {r : ℕ} {T : E} (F : LFlag S r T) (a : Fin (r + 1)) : frame F a ∈ Xplus F := by
-  induction a using Fin.lastCases with
-  | last =>
-    show Fin.snoc (α := fun _ => S.V) F.fl.e F.fl.z (Fin.last r) ∈ F.fl.X ⊔ E ∙ F.fl.z
-    rw [Fin.snoc_last]
-    exact Submodule.mem_sup_right (Submodule.mem_span_singleton_self _)
-  | cast i =>
-    show Fin.snoc (α := fun _ => S.V) F.fl.e F.fl.z (Fin.castSucc i) ∈ F.fl.X ⊔ E ∙ F.fl.z
-    rw [Fin.snoc_castSucc]
-    exact Submodule.mem_sup_left (Submodule.subset_span ⟨i, rfl⟩)
-
 theorem classes_fin : ∀ (D : D7) {T T' : D.host.E} (F : LFlag (D.sp.Y 0) D.R.rS T) (F' : LFlag (D.sp.Y 0) D.R.rS T'), (∀ x ∈ orth (VS D) (Xplus F ⊔ Xplus F'), x ≠ 0 → 0 < Algebra.trace ℚ D.host.E ((VS D).hT x x)) → ∀ (A : LV D) (N d c : ℕ), 0 < N → 0 < d → 0 < c → ∃ S : Finset (LV D), ∀ Λ : LV D, Submodule.IsLattice D.host.E Λ → Λ ⊓ toO (VS D) (Xplus F ⊔ Xplus F') = A → (∀ x ∈ Λ, (N : D.host.E) • x ∈ Λ ⊓ toO (VS D) (Xplus F ⊔ Xplus F') ⊔ Λ ⊓ toO (VS D) (orth (VS D) (Xplus F ⊔ Xplus F'))) → (∀ x ∈ Λ, ∀ y ∈ Λ, (d : D.host.E) * (VS D).hT x y ∈ Set.range (algebraMap (𝓞 D.host.E) D.host.E)) → (∀ y ∈ orth (VS D) (Xplus F ⊔ Xplus F'), (∀ x ∈ Λ ⊓ toO (VS D) (orth (VS D) (Xplus F ⊔ Xplus F')), (VS D).hT x y ∈ Set.range (algebraMap (𝓞 D.host.E) D.host.E)) → (c : D.host.E) • y ∈ Λ) → ∃ Λs ∈ S, ∃ γ ∈ H0 F F', Formalism.HermitianLatticesTheory.gmap γ Λs = Λ := by
   intro D T T' F F' hpos A N d c hN hd hc
   classical
   set U : Submodule D.host.E (VS D).V := Xplus F ⊔ Xplus F' with hUdef
   set W : Submodule D.host.E (VS D).V := orth (VS D) U with hWdef
-  have hcompl : IsCompl U W := GlobalTheory.T.isCompl_hermitianOrthogonal_of_totallyPositive (VS D) U hpos
+  have hcompl : IsCompl U W := _root_.GlobalTheory.isCompl_orth_of_definite (VS D) U hpos
   let hW : ↥W →ₗ⋆[D.host.E] ↥W →ₗ[D.host.E] D.host.E := (VS D).hT.domRestrict₁₂ W W
   have hWs : hW.IsSymm := (VS D).herm.domRestrict W
   have hWp : ∀ x : ↥W, x ≠ 0 → 0 < Algebra.trace ℚ D.host.E (hW x x) := fun x hx =>
     hpos x.1 x.2 (fun h => hx (Subtype.ext h))
-  obtain ⟨s, hslat, hs⟩ := GlobalTheory.T.finite_isometryClasses_definiteHermitian_boundedScale hW hWs hWp d c hd hc
+  obtain ⟨s, hslat, hs⟩ := _root_.GlobalTheory.hermLat_boundedScaleDual_finite hW hWs hWp d c hd hc
   let ι : ↥W →ₗ[𝓞 D.host.E] (VS D).V := W.subtype.restrictScalars (𝓞 D.host.E)
   let Mof : Submodule (𝓞 D.host.E) ↥W → LV D := fun L => A ⊔ L.map ι
   let Sset : Set (LV D) :=
@@ -113,8 +102,8 @@ theorem classes_fin : ∀ (D : D7) {T T' : D.host.E} (F : LFlag (D.sp.Y 0) D.R.r
     fun x y => hg x y
   obtain ⟨γ, hγi, hγU, hγW⟩ := GlobalTheory.T.exists_isometry_extend_orthogonal_by_identity (VS D) U hcompl g hgiso
   have hγH : γ ∈ H0 F F' :=
-    ⟨hγi, fun a => hγU _ (Submodule.mem_sup_left (frame_mem_Xplus F a)),
-      fun a => hγU _ (Submodule.mem_sup_right (frame_mem_Xplus F' a))⟩
+    ⟨hγi, fun a => hγU _ (Submodule.mem_sup_left (_root_.Formalism.MainNotions.LatticeGluingRadicals.d_frame_mem F a)),
+      fun a => hγU _ (Submodule.mem_sup_right (_root_.Formalism.MainNotions.LatticeGluingRadicals.d_frame_mem F' a))⟩
   have hmem : ∀ x, x ∈ Formalism.HermitianLatticesTheory.gmap γ⁻¹ Λ ↔ γ x ∈ Λ := fun x => by
     rw [Formalism.HermitianLatticesTheory.isomAct_mem_gmap]; rfl
   have hAsub : ∀ a ∈ A, a ∈ Λ ∧ a ∈ U := fun a ha => by

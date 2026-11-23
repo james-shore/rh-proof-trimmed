@@ -144,9 +144,9 @@ theorem ker_kappa_xI_comap :
   rw [ker_kappa_eq]
   erw [hk]
   rw [GlobalTheory.T.idealSheaf_comap_ideal_affineOpen_of_isAffine,
-    GlobalTheory.T.affineHilbertIdealSheafOfQuotient_ideal_top, Ideal.map_map, hTensor,
+    _root_.GlobalTheory.HilbAff.xI_ideal_top, Ideal.map_map, hTensor,
     ← Ideal.map_map, Ideal.comap_map_of_bijective _
-      (GlobalTheory.T.sectionTensorPullbackRingHom_bijective A B _ U)]
+      (_root_.GlobalTheory.HilbAff.theta_bijective A B _ U)]
   rfl
 
 end GlobalTheory.HilbAff

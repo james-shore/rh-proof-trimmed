@@ -66,7 +66,7 @@ theorem borel_ainf (F E : Type) [Field F] [NumberField F] [Field E] [NumberField
   have scA' : SecondCountableTopology (Ainf F × Af F) := scA
   haveI : SecondCountableTopology (Ainf F) :=
     (isEmbedding_prodMkLeft (0 : Af F)).secondCountableTopology
-  haveI : T2Space (Ainf F) := GlobalTheory.CompanionTheory.AdeleTop.t2Space_infiniteAdeleRing_of_numberField_field F
+  haveI : T2Space (Ainf F) := _root_.GlobalTheory.AdelicUnitaryTop.t2Space_infiniteAdeleRing_of_numberField_field F
   exact (GlobalTheory.CompanionTheory.SW.TopK.topTens_props F E σ hσ (Ainf F)).2.2.2.2.2.2.2.1 n M
 
 theorem borel_af (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]

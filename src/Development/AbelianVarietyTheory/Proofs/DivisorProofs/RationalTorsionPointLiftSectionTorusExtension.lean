@@ -162,8 +162,8 @@ theorem lift : ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V], IsCN V 
         show (spMap σ.toAlgHom.toRingHom ≫ nb.left) ≫ x₀.left = _
         rw [Category.assoc, hnx, reassoc_of% hσ])
     exact congrArg (·.left) e
-  obtain ⟨s, hs⟩ := GlobalTheory.T.galois_invariant_point_descends_to_section V hV.2.1 M hfin nb hfix
-  obtain ⟨g, hg⟩ := GlobalTheory.ConstLie.exists_isPull s g₀
+  obtain ⟨s, hs⟩ := _root_.GlobalTheory.FinDescent.galoisFixed_point_of_finite V hV.2.1 M hfin nb hfix
+  obtain ⟨g, hg⟩ := _root_.GlobalTheory.ConstLie.exists_isPullGt s g₀
   refine ⟨s ≫ x₀, g, ?_, GlobalTheory.TorsionFormCompare.tors_of_isPull s hg hg₀,
     (GlobalTheory.TorsionFormCompare.formalEq_iff _ _ _).2 (((GlobalTheory.TorsionFormCompare.formalEq_iff _ _ _).1 hform).pull s hg),
     ?_, ?_⟩

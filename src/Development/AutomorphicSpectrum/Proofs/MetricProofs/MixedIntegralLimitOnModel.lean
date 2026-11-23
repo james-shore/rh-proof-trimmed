@@ -108,7 +108,7 @@ theorem tendsto_ptsIntegral_of_chart_conv : ∀ (K : Type) [Fintype K] (ι : K �
         exact ⟨U, hU, hyU, hUs, s, hs, hsp, G', hG', fun y' hy' => by
           simpa using hrel' y' hy'⟩)
       (fun z hz _ _ _ => hgt' z hz)
-      (fun j => ((continuous_of_atlasSmooth hgt.1).comp_continuousOn
+      (fun j => ((_root_.ReciprocityTheory.AnForm.M.PLAux.smooth_continuous hgt.1).comp_continuousOn
         (M.atlas.chart j).continuousOn_symm).aestronglyMeasurable (M.atlas.chart j).open_target.measurableSet)
     have h3 := (hpush.2.2 hit).2
     have hpot : (fun i z => (fun _ : Fin n => (1 : ℝ)) i * Real.log ((L t i).h z)) = pot (L t) := by

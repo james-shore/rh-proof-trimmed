@@ -151,6 +151,4 @@ theorem LeafKumMuSurjPrim_pf : LateralTheory.E.H2CurveOrder.LeafKumMuSurjPf.Leaf
   exact prim_of_hom q B hq ((Scheme.Γ.map (g ≫ pullback.snd x (Spec.map φ)).op).hom.comp
     (Scheme.ΓSpecIso (CommRingCat.of (cycPair q B hq).Ring)).inv.hom)
 
-theorem LeafKumMuSurjPrim_of : LateralTheory.E.H2CurveOrder.LeafKumMuSurjPf.LeafKumMuSurjPrim := LeafKumMuSurjPrim_pf
-
 end LateralTheory.E.H2CurveOrder.LeafKumMuSurjPrimPf

@@ -52,6 +52,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ImportsRestSide
 
 @[expose] public section
 
@@ -62,14 +63,6 @@ namespace PositivityTheory.RgUd.TP.Desc.Piece.PAsm2
 open Polynomial PositivityTheory.RgUd.T PositivityTheory.RgUd.TP PositivityTheory.RgUd.TP.Desc PositivityTheory.RgUd.TP.Desc.Piece
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-
-theorem conj_pow' {N : ℕ} (g : GL (Fin N) k) (y : Matrix (Fin N) (Fin N) k) (n : ℕ) :
-    (g.val * y * g⁻¹.val) ^ n = g.val * y ^ n * g⁻¹.val := by
-  induction n with
-  | zero => simp
-  | succ n ih =>
-    rw [pow_succ, ih, pow_succ]
-    simp only [mul_assoc, Units.inv_mul_cancel_left]
 
 theorem roots_finite {N : ℕ} {Z : Subalgebra k (Matrix (Fin N) (Fin N) k)} (hZ : CR Z) {χ : k[X]} (hχ : χ ≠ 0) :
     {c : Matrix (Fin N) (Fin N) k | c ∈ Z ∧ aeval c χ = 0}.Finite := by
@@ -222,7 +215,7 @@ theorem pieceGood_of (hF : PositivityTheory.PfBern.Frob.FrobeniusReciprocity) (h
         refine ⟨hP2 x hx.1, ?_⟩
         have e1 : g.val * x * g⁻¹.val - rt j = g.val * (x - rt j) * g⁻¹.val := by
           rw [mul_sub, sub_mul, ← hg (rt j) (hrt j).1, mul_assoc (rt j), Units.mul_inv, mul_one]
-        rw [e1, conj_pow', hx.2, mul_zero, zero_mul]
+        rw [e1, _root_.UpperTheory.Reformulated.B.Yhc6.main, hx.2, mul_zero, zero_mul]
   have hcover : ∀ x ∈ Bz Z, x.charpoly = χ → ∃ is, x ∈ G is := by
     intro x hx hc
     have hle : ∀ t, typ D x t < N + 1 := fun t =>

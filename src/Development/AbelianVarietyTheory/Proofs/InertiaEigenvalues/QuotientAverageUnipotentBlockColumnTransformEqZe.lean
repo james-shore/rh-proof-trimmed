@@ -197,7 +197,7 @@ theorem colT_avg_blk_eq_zero (hψ : StdPsi ψ) (m : ℕ) (f : GA E a → ℂ) (h
       rw [dot_col hr, ← mul_assoc, blkU_col_mul_blkU hr1, mul_assoc, sub_eq_add_neg]
     simp_rw [e]
     rw [avg_const_mul]
-    exact congrArg _ (GlobalTheory.T.quotientAverage_translate_invariant _ _ (isCoLat_ratV _ _)
+    exact congrArg _ (_root_.GlobalTheory.CuspGeneric.avg_add_right _ _ (isCoLat_ratV _ _)
       (fun w => f (blkU (Sum.elim n w ∘ (blkEquiv a r m hr1).symm) *
           (blkU (Sum.elim z 0 ∘ (colEquiv a r (m + 1)).symm) * g)))
       (per_position (blkEquiv a r m hr1) hf.cont hl n _) (-corr n z))
@@ -276,7 +276,7 @@ theorem colT_avg_blk_eq_zero (hψ : StdPsi ψ) (m : ℕ) (f : GA E a → ℂ) (h
     funext n
     rw [hA]
     simp_rw [hΦ₂]
-  rw [hA', GlobalTheory.T.quotientAverage_adelicRationalPoints_comm E _ _ Φ₂ hPer]
+  rw [hA', _root_.GlobalTheory.CuspGeneric.avg_comm E _ _ Φ₂ hPer]
   simp_rw [hD]
   simpa using avg_const_mul (ratV E (HiIx a r (m + 1))) 0 (fun _ => (1 : ℂ))
 

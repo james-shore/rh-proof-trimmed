@@ -61,10 +61,7 @@ noncomputable section
 
 namespace GlobalTheory.RatEqui
 
-theorem conj_conj (D : D7) (x : D.host.E) : D.host.conj (D.host.conj x) = x := by
-  apply D.host.φ₀.injective
-  rw [Formalism.HC.HostAx.conjE_apply, Formalism.HC.HostAx.conjE_apply]
-  simp
+alias conj_conj := _root_.GlobalTheory.HomDual.conj_conj
 
 theorem exists_root (D : D7) (u : D.host.E) (hu : u * D.host.conj u = 1) :
     ∃ b : D.host.Eˣ, (b : D.host.E) = u * D.host.conj b := by
@@ -118,9 +115,7 @@ theorem isRat_one (D : D7) (n : ℕ) : IsRat D ((1 : GA D n) : GL (Fin n) (AE D)
   rw [Matrix.map_one _ (map_zero _) (map_one _)]
   rfl
 
-theorem moves_one (D : D7) (n : ℕ) : Moves D ((1 : GA D n) : GL (Fin n) (AE D)) (stdL D n) := by
-  obtain ⟨Lt, h1, h2, -⟩ := GlobalTheory.NormSum.exists_lattice_of_adelic_point D n
-  exact h2 ▸ (h1 1).1
+alias moves_one := _root_.GlobalTheory.ThetaStab.moves_one
 
 theorem exists_factor {D : D7} {n : ℕ} (g : GA D n) (γ : Matrix (Fin n) (Fin n) D.host.E)
     (h : IsRat D (g : GL (Fin n) (AE D)) γ) :

@@ -349,22 +349,13 @@ theorem sum_lin_bound (m : ℕ) (hm : 4 ≤ m) (S : Finset ℕ) (N : ℕ) (Y : �
 
 theorem coprime_two {l : ℕ} (hl : l.Prime) (h2 : l ≠ 2) : Nat.Coprime l 2 := (Nat.coprime_primes hl Nat.prime_two).mpr h2
 
-private theorem orderOf_iotaH_eq_addOrderOf (e : ℕ) (x : ZMod (2 ^ e)) : orderOf (iotaH e x) = addOrderOf x := by
-  let f : Multiplicative (ZMod (2 ^ e)) →* HGrp e :=
-    MonoidHom.mk' (fun a => iotaH e (Multiplicative.toAdd a))
-      (fun a b => iotaH_add e (Multiplicative.toAdd a) (Multiplicative.toAdd b))
-  have hf : Function.Injective f := fun a b h => Multiplicative.toAdd.injective (iotaH_injective e h)
-  have h := orderOf_injective f hf (Multiplicative.ofAdd x)
-  rw [orderOf_ofAdd_eq_addOrderOf] at h
-  exact h
-
 theorem hOf_ord (e l : ℕ) (hl : Nat.Coprime l 2) :
     ordH (hOf e l) =
       orderOf (hcl e (ZMod.unitOfCoprime l (Nat.Coprime.pow_right (e + 2) hl))) := by
   unfold hOf
   rw [dite_eq_left hl]
   unfold ordH
-  rw [← orderOf_iotaH_eq_addOrderOf, iotaH_iotaHInv]
+  rw [← _root_.Formalism.MainNotions.UnusedSlot33.SlopeTestRemainingChoices.orderOf_iotaH, iotaH_iotaHInv]
 
 private theorem two_pow_dvd_sq_pm_one_iff_of_odd (x : ℤ) (hx : Odd x) (N : ℕ) :
     ((2 : ℤ) ^ N ∣ x ^ 2 - 1 ∨ (2 : ℤ) ^ N ∣ x ^ 2 + 1) ↔

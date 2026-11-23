@@ -97,7 +97,7 @@ theorem exists_coord : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
     apply ht
     rw [map_zero, ← h0]
     exact (RingHom.map_det t.toRingHom W.J)
-  obtain ⟨x, hxat, hx0, hx1⟩ := GlobalTheory.T.exists_splitPlace_adelicMatrix_given_components hB.cm v t (0 : Matrix (Fin n) (Fin d) (Fv F v))
+  obtain ⟨x, hxat, hx0, hx1⟩ := _root_.GlobalTheory.SplitComps.exists_mat_comps hB.cm v t (0 : Matrix (Fin n) (Fin d) (Fv F v))
     (-((X.J.map t)⁻¹ * Y * ((W.J.map t)ᵀ)⁻¹))
   refine ⟨x, hxat, hx0, ?_⟩
   rw [hx1]

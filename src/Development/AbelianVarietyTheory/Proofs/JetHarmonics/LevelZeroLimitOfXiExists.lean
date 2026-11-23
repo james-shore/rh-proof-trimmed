@@ -119,8 +119,8 @@ theorem ptBound_of_xiExists (hXi : B.XiExists) (hA : P5.ThmPActualCpt) : ∃ C�
   have hVI := waveIsometry_of_radial hRad
   have hFP := GlobalTheory.WeightedFormPos.formPosCpt_of_xiExists hXi
   have hI4 := GlobalTheory.LiftBoundCpt.liftBound_of_xiExists hXi hA hSS hFP
-  obtain ⟨C₂, hC₂, hLS⟩ := Formalism.FourierDecayAlt.P.lemma_s_of_parts Formalism.FourierDecayAlt.P.lemma_s_induction_base
-    Formalism.FourierDecayAlt.P.lemma_s_induction_up
+  obtain ⟨C₂, hC₂, hLS⟩ := _root_.Formalism.FourierDecayAlt.P.TBBx1.lemmaSOfSteps _root_.Formalism.FourierDecayAlt.P.TBBx1.stepOne
+    _root_.Formalism.FourierDecayAlt.P.TBBx1.stepUp
   refine ⟨C₂, hC₂, ?_⟩
   intro Wp Wq _ _ _ _ _ _ P p F Λ κ₀ χ nn Y K N Cb hΛ hκ hK hKN hχ hnn hCb hF hWG hLG hI5 hTN hZN hE hB
   refine Formalism.FourierDecayAlt.P.point_bound_of_corollary_s Wp Wq P p nn χ F Y Λ K N C₂ κ₀ hC₂.le hκ hnn

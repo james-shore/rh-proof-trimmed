@@ -98,7 +98,7 @@ theorem witt_mod_base : ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplica
   have hclose : ∀ k i j, DvdPow ϖ (k + 1) (f (k + 1) i j - f k i j) := by
     intro k i j; rw [hfs]; exact (hF k (f k) (hfP k)).2 i j
 
-  have hlim := fun i j => GlobalTheory.T.exists_limit_dvdUniformizerPow_cauchy L ϖ hϖv (fun k => f k i j) (fun k => hclose k i j)
+  have hlim := fun i j => _root_.GlobalTheory.Hk3.IntWittBase.exists_limit_dvdPow L ϖ hϖv (fun k => f k i j) (fun k => hclose k i j)
   choose b hb using hlim
   let h : Matrix (Fin n') (Fin n') L := Matrix.of b
   have hhk : ∀ k i j, DvdPow ϖ (k + 1) ((h - f k) i j) := fun k i j => hb i j k

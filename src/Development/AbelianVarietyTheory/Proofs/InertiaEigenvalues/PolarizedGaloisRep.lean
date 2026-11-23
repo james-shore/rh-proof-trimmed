@@ -158,10 +158,6 @@ theorem isSSRep_conj {Γ k : Type} [Group Γ] [Field k] {n : ℕ} {ρ ρ' : Γ �
       (W'.comap (e : (Fin n → k) →ₗ[k] (Fin n → k))) := this
     rwa [Submodule.comap_map_eq_of_injective e.injective] at h2
 
-theorem isSSRep_of_mapRep {Γ k k' : Type} [Group Γ] [Field k] [Field k'] {n : ℕ} (ι : k →+* k')
-    (ρ : Γ →* GL (Fin n) k) (hρ : IsSSRep (mapRep ι ρ)) : IsSSRep ρ :=
-  _root_.GlobalTheory.RetractionComplement.isSSRep_of_mapRep ι ρ hρ
-
 section Topology
 
 variable {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
@@ -335,16 +331,6 @@ theorem isSSRep_of_prod {Γ k : Type} [Group Γ] [Field k] {n a b : ℕ} {ρ : �
         rw [add_assoc, h1]; abel
       · simp only [map_add (f := _), e.apply_symm_apply, Prod.snd_add]
         rw [add_zero, h2']
-
-section Construction
-
-variable (D : D7)
-
-variable (i : D.nd.Loc)
-
-variable {D i}
-
-end Construction
 
 end GlobalTheory.Proof.SemisimpleRepresentationIntegralConjugate
 

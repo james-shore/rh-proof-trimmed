@@ -54,12 +54,6 @@ noncomputable section
 
 namespace GlobalTheory.EtC.PrCx
 
-open SimplexCategory
-
-theorem alt_sum_zero {A : Type*} [AddCommGroup A] {n : ℕ} (G : (SimplexCategory.mk n ⟶ SimplexCategory.mk (n + 2)) → A) :
-    ∑ i : Fin (n + 3), ∑ j : Fin (n + 2), ((-1 : ℤ) ^ (i : ℕ) * (-1) ^ (j : ℕ)) • G (δ j ≫ δ i) = 0 :=
-  _root_.UpperTheory.Reformulated.B.AlternatingSumZero.alt_sum_zero G
-
 end GlobalTheory.EtC.PrCx
 
 namespace GlobalTheory.EtC.PrCx
@@ -151,7 +145,7 @@ theorem D₁_D₁ (c : Pr N →₀ ℤ) : D₁ N (D₁ N c) = 0 := by
     rcases p with _ | p
 
     · simp [d₁_succ, map_sum, D₁_single, d₁_zero]
-    have h := alt_sum_zero (n := p) (fun θ => single (⟨p, r, θ ≫ a, b⟩ : Pr N) (1 : ℤ))
+    have h := _root_.UpperTheory.Reformulated.B.AlternatingSumZero.alt_sum_zero (n := p) (fun θ => single (⟨p, r, θ ≫ a, b⟩ : Pr N) (1 : ℤ))
 
     rw [d₁_succ, map_sum]
     simp only [D₁_single, d₁_succ, Finset.smul_sum]
@@ -172,7 +166,7 @@ theorem D₂_D₂ (c : Pr N →₀ ℤ) : D₂ N (D₂ N c) = 0 := by
     rcases r with _ | r
 
     · simp [d₂_succ, map_sum, D₂_single, d₂_zero]
-    have h := alt_sum_zero (n := r) (fun θ => single (⟨p, r, a, θ ≫ b⟩ : Pr N) (1 : ℤ))
+    have h := _root_.UpperTheory.Reformulated.B.AlternatingSumZero.alt_sum_zero (n := r) (fun θ => single (⟨p, r, a, θ ≫ b⟩ : Pr N) (1 : ℤ))
 
     rw [d₂_succ, map_sum]
     simp only [D₂_single, d₂_succ, Finset.smul_sum]
@@ -248,7 +242,7 @@ theorem push_push {N M K : ℕ} (θ : SimplexCategory.mk N ⟶ SimplexCategory.m
   | single z c => simp [push_single, Category.assoc]
 
 theorem bd_bd {N : ℕ} (c : Pr N →₀ ℤ) : Pr.bd (Pr.bd c) = 0 := by
-  have h := alt_sum_zero (n := N) (fun θ => Pr.push θ c)
+  have h := _root_.UpperTheory.Reformulated.B.AlternatingSumZero.alt_sum_zero (n := N) (fun θ => Pr.push θ c)
 
   simp only [Pr.bd, map_sum, map_zsmul, push_push, Finset.smul_sum, smul_smul]
   exact h

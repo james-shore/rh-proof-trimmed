@@ -122,15 +122,7 @@ theorem sum_mem_fil {p : ℕ} [Fact p.Prime] {D : GlobalTheory.UPel.HT.Datum p} 
   rw [e]
   exact add_mem (sum_mem fun l _ => Submodule.smul_mem _ _ (h1 l)) (sum_mem fun i _ => h2 i)
 
-theorem dualNumber_local (k : Type) [Field k] : IsLocalRing (DualNumber k) :=
-  IsLocalRing.of_isUnit_or_isUnit_one_sub_self fun x ↦ by
-    by_cases h : TrivSqZeroExt.fst x = 0
-    · right
-      rw [TrivSqZeroExt.isUnit_iff_isUnit_fst]
-      simp [h]
-    · left
-      rw [TrivSqZeroExt.isUnit_iff_isUnit_fst]
-      exact isUnit_iff_ne_zero.2 h
+alias dualNumber_local := _root_.GlobalTheory.DualOpen.isLocalRing_dualNumber_field
 
 end GlobalTheory.HTCount.LieZFil
 

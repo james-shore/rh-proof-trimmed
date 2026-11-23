@@ -74,7 +74,7 @@ theorem phi_δ (z : ∀ j : Fin N, Cocycle ((chains (ZMod q)).obj B) (res _ (tw 
   rw [phi_apply, phi_apply, hs]
   refine Finset.sum_congr rfl fun j _ => ?_
   change _ = δ n m _
-  rw [GlobalTheory.T.crossProductTwisted_leibniz_rule V ℓ (twPairI q i ((j : ℕ) : ℤ)) (sub_add_cancel n _)
+  rw [_root_.GlobalTheory.PBFc.crossT_leibniz V ℓ (twPairI q i ((j : ℕ) : ℤ)) (sub_add_cancel n _)
     (show n - 2 * ((j : ℕ) : ℤ) + 1 = m - 2 * ((j : ℕ) : ℤ) by omega) rfl hnm (by omega) (by omega),
     Cocycle.δ_eq_zero (z j), crossT_zero_right, smul_zero, add_zero]
 
@@ -90,7 +90,7 @@ theorem phi_van (z : ∀ j : Fin N, Cochain ((chains (ZMod q)).obj B) (res _ (tw
   change ev₀ _ = 0
 
   rw [phi_apply, map_sum]
-  exact Finset.sum_eq_zero fun j _ => GlobalTheory.T.cochain_product_vanishing_above_degree V ℓ _ _ (α j) (z j) p (hα j) c l t h r hr hc
+  exact Finset.sum_eq_zero fun j _ => _root_.GlobalTheory.PBFc.crossT_ι_eq_zero_of_vanish V ℓ _ _ (α j) (z j) p (hα j) c l t h r hr hc
 
 theorem pull_iso_bijective {E E' : Spc} (e : E ≅ E') (F : Shv (ZMod q)) (n : ℤ) :
     Function.Bijective (pull (ZMod q) e.hom F n) := by
@@ -123,14 +123,14 @@ theorem pbf_of_model [NeZero q] (hE : Inv q E)
     intro a b hb
     apply hf2.1
     rw [Function.surjInv_eq hf2.2]
-    exact GlobalTheory.T.twisted_cocycle_classes_pullback_cup q V ℓ n i z hzd a b hb
+    exact _root_.GlobalTheory.PBFc.pbfMap_eq_cpull_aw q V ℓ n i z hzd a b hb
   have hb : Function.Bijective φ :=
     GlobalTheory.ColFilt.bijective_total_of_terms (ZMod q) (biChains (ZMod q) (twX E V))
       (fun p k h => biChains_isZero (twX E V) p k h) ((chains (ZMod q)).obj E)
       (fun j : Fin N => res _ (tw q (i - ((j : ℕ) : ℤ)))) (res _ (tw q i)) (fun j : Fin N => 2 * ((j : ℕ) : ℤ))
       (phi q V ℓ i (fun j => (z j).1)) (fun n m h α => phi_δ q V ℓ i z n m h α)
       (fun p n α hα => phi_van q V ℓ i (fun j => (z j).1) p n α hα)
-      (GlobalTheory.T.twisted_cocycle_simplicial_levels_cup q V hE ℓ i z hzc hD) n φ hφ
+      (_root_.GlobalTheory.PBFg.graded_bijective q V hE ℓ i z hzc hD) n φ hφ
   have hcomp : (pull _ (twIso E V).hom _ n) ∘ pbfMap q V n i = (cpull (awChains (ZMod q) (twX E V)) (res _ (tw q i)) n) ∘ φ :=
     funext fun x => (Function.surjInv_eq hf2.2 _).symm
   exact (Function.Bijective.of_comp_iff' hf1 _).1 (hcomp ▸ hf2.comp hb)

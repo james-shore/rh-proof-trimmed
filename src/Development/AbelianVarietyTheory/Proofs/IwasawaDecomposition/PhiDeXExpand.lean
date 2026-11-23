@@ -97,7 +97,7 @@ theorem phi_DeX_expand : ∀ (p : ℕ) [Fact p.Prime] (Lt T : Type) [Fintype Lt]
           ∏ s, MvPolynomial.eval (fun k : Fin N × Fin N => y (e s) k.1 k.2)
             (MvPolynomial.map (algebraMap ℚ ℂ_[p]) (g s (κ s))) := by
   intro p _ Lt T _ _ _ e N nu hY ι _ b g c hb hg φ y
-  have h1 := cauchy_binet_minors Lt ℂ_[p] N nu (fun s => WeylLatticeDuality.colsOf (y (e s)))
+  have h1 := _root_.PI.WwCauchyBinetWork.wwCauchyBinet_main Lt ℂ_[p] N nu (fun s => WeylLatticeDuality.colsOf (y (e s)))
   rw [finsum_eq_sum_of_fintype] at h1
   have h2 : WeylLatticeDuality.DeX N nu (fun s => WeylLatticeDuality.colsOf (y (e s))) =
       ∑ J : (∀ s, IncreasingRowChoicePerColumn N (nu s)), MvPolynomial.C (PI.WwCauchyBinet.minY N nu J

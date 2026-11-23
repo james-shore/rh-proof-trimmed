@@ -101,7 +101,7 @@ theorem pairRes_injective : ∀ {R' : Type} [CommRing R'] {X X' : Scheme.{0}} (�
     have h0 : ∀ p : Pair φ, ω.1 (op p.1.1) = 0 := fun p ↦
       (cechDeRhamCoefMapOneForms_restrictAlongFunctor (OAff s') (pairFst φ) (op p) _).symm.trans
         (congrArg (fun z : Glob1 (OPair φ s') ↦ z.1 (op p)) hω)
-    refine Subtype.ext (funext fun W ↦ GlobalTheory.T.oneForm_eq_zero_of_vanishing_on_pairs φ s' W.unop _ fun p hp ↦ ?_)
+    refine Subtype.ext (funext fun W ↦ _root_.GlobalTheory.CechDR.form_eq_zero_of_pair φ s' W.unop _ fun p hp ↦ ?_)
     rw [← ω.2 (homOfLE hp).op]
     exact h0 p
   · rw [injective_iff_map_eq_zero]
@@ -118,7 +118,7 @@ theorem pairRes_injective : ∀ {R' : Type} [CommRing R'] {X X' : Scheme.{0}} (�
     obtain ⟨G, hG, hGp⟩ := exists_cob_of_pair φ s' (cechDeRhamTotalCocyclesOne.fn _ z) g' hf
     refine Hyp1.mk_eq_zero.2 ⟨G, Tot1.ext (fun T T' a ↦ congrFun (congrFun (congrFun hG T) T') a)
       fun W ↦ ?_⟩
-    refine (sub_eq_zero.1 (GlobalTheory.T.oneForm_eq_zero_of_vanishing_on_pairs φ s' W.unop (D R' _ (G W) - z.1.2 W) fun p hp ↦ ?_))
+    refine (sub_eq_zero.1 (_root_.GlobalTheory.CechDR.form_eq_zero_of_pair φ s' W.unop (D R' _ (G W) - z.1.2 W) fun p hp ↦ ?_))
     have e := cechDeRhamTotalCocyclesOne.conn z (homOfLE hp).op
     rw [map_sub, p1_D, hGp, map_sub, hω]
     change _ - (p1 _ _ _) = _

@@ -64,17 +64,13 @@ namespace GlobalTheory.NormCover
 
 open GlobalTheory.BplusDescent
 
-theorem genericPoint_mem {X : Scheme.{0}} [IsIntegral X] {U : X.Opens} (hU : (U : Set X).Nonempty) :
-    genericPoint X ∈ U :=
-  ((genericPoint_spec X).mem_open_set_iff U.isOpen).2 (by simpa using hU)
-
 theorem isFinite_fromNormalization_fieldPt {X : Scheme.{0}} [IsIntegral X] [GlobalTheory.IsNormalScheme X]
     [IsLocallyNoetherian X] {L : Type} [Field L] [CharZero L]
     (ψ : X.presheaf.stalk (genericPoint X) ⟶ .of L) (hψ : ψ.hom.Finite) :
     IsFinite (fieldPt ψ).fromNormalization := by
   refine ⟨fun U hU => ?_⟩
   by_cases hne : (U : Set X).Nonempty
-  · have hη := genericPoint_mem hne
+  · have hη := _root_.GlobalTheory.SS.WtRat.genericPoint_mem hne
     haveI : Nonempty U := hne.to_subtype
     letI : Algebra Γ(X, U) Γ((fieldPt ψ).normalization, (fieldPt ψ).fromNormalization ⁻¹ᵁ U) :=
       ((fieldPt ψ).fromNormalization.app U).hom.toAlgebra
@@ -130,7 +126,7 @@ theorem exists_normalization_model : ∀ (k Ω : Type) [CommRing k] [IsNoetheria
   have hρs : Function.Surjective ρ.hom := by
     intro x
     obtain ⟨U, f, hU, rfl⟩ := M.onto x
-    have hη := genericPoint_mem hU
+    have hη := _root_.GlobalTheory.SS.WtRat.genericPoint_mem hU
     refine ⟨M.Z.presheaf.germ U _ hη f, ?_⟩
     have key : ∀ (g : Sp Ω ⟶ M.Z) (_ : fieldPt ρ = g) (e : ⊤ ≤ g ⁻¹ᵁ U),
         g.appLE U ⊤ e ≫ (Scheme.ΓSpecIso (.of Ω)).hom = M.Z.presheaf.germ U _ hη ≫ ρ := by
@@ -175,7 +171,7 @@ theorem exists_normalization_model : ∀ (k Ω : Type) [CommRing k] [IsNoetheria
       (Algebra.IsIntegral.isIntegral (R := M.Z.functionField) x)
     have ha0 : a ≠ 0 := nonZeroDivisors.ne_zero ha
     have hηV : genericPoint M.Z ∈ M.Z.basicOpen a := by
-      refine genericPoint_mem ?_
+      refine _root_.GlobalTheory.SS.WtRat.genericPoint_mem ?_
       rw [Set.nonempty_iff_ne_empty]
       exact fun h => ha0 ((basicOpen_eq_bot_iff a).1 (SetLike.coe_injective h))
     have hV : IsAffineOpen (M.Z.basicOpen a) := hU.basicOpen a

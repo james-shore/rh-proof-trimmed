@@ -63,9 +63,6 @@ namespace BetaGeneratingBounds
 
 variable {m k : ℕ}
 
-theorem hZ_neg' (α : Fin m → ℂ) {z : ℤ} (hz : z < 0) : hZ z α = 0 := by
-  simp [hZ, hz]
-
 theorem hZ_nat (α : Fin m → ℂ) (p : ℕ) : hZ (p : ℤ) α = hN p α := by
   simp [hZ]
 
@@ -125,9 +122,9 @@ theorem detC (α : Fin m → ℂ) (X : ℂ) (l : Fin k → ℕ) :
       push_cast
       omega
     have h0 : ∏ x : Fin k, hZ ((l x : ℤ) - x + σ x) α = 0 :=
-      Finset.prod_eq_zero (Finset.mem_univ i) (hZ_neg' α hi)
+      Finset.prod_eq_zero (Finset.mem_univ i) (_root_.PositivityTheory.RgJS.SkewJacobiTrudiStaircase.hZ_neg α hi)
     have h0' : ∏ x : Fin k, hZ (((l x + stair k x : ℕ) : ℤ) - (stair k (σ x) : ℕ)) α * X ^ (l x + stair k x - stair k (σ x)) = 0 :=
-      Finset.prod_eq_zero (Finset.mem_univ i) (by rw [hz, hZ_neg' α hi, zero_mul])
+      Finset.prod_eq_zero (Finset.mem_univ i) (by rw [hz, _root_.PositivityTheory.RgJS.SkewJacobiTrudiStaircase.hZ_neg α hi, zero_mul])
     rw [h0', h0, zero_mul]
 
 theorem ML_eq (α : Fin m → ℂ) (b : Fin k → ℂ) (X : ℂ) (L : ℕ) :
@@ -250,7 +247,7 @@ theorem entry_lim (α : Fin m → ℂ) (b : Fin k → ℂ) (X : ℂ) (i c : Fin 
     have h0 : ∑ n ∈ range s, b i ^ n * cE α X k n c = 0 := by
       refine Finset.sum_eq_zero fun n hn => ?_
       have := Finset.mem_range.1 hn
-      rw [cE, hZ_neg' α (by rw [← hs]; omega), zero_mul, mul_zero]
+      rw [cE, _root_.PositivityTheory.RgJS.SkewJacobiTrudiStaircase.hZ_neg α (by rw [← hs]; omega), zero_mul, mul_zero]
     rw [h0, zero_add, Finset.sum_mul]
     refine Finset.sum_congr rfl fun p _ => ?_
     rw [cE, ← hs, show ((s + p : ℕ) : ℤ) - (s : ℕ) = (p : ℤ) by push_cast; ring, hZ_nat,

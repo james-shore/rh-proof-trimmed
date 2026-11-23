@@ -218,19 +218,9 @@ section Size
 
 variable {D : D7}
 
-theorem rows_one_le_prod {ι : Type*} (s : Finset ι) (f : ι → ℝ) (h : ∀ i ∈ s, 1 ≤ f i) : 1 ≤ ∏ i ∈ s, f i := by
-  classical
-  revert h
-  refine Finset.induction_on s (fun _ => by simp) ?_
-  intro a s ha ih h
-  rw [Finset.prod_insert ha]
-  have h1 : 1 ≤ f a := h a (Finset.mem_insert_self a s)
-  have h2 : 1 ≤ ∏ i ∈ s, f i := ih (fun i hi => h i (Finset.mem_insert_of_mem hi))
-  nlinarith
-
 theorem rows_one_le_sizeZ (b C : ℝ) (Z : GramM D) : 1 ≤ sizeZ D b C Z := by
   unfold sizeZ
-  exact rows_one_le_prod _ _ (fun τ _ => rows_one_le_prod _ _ (fun l _ => le_max_left _ _))
+  exact _root_.Formalism.HermitianLatticeCounting.P.one_le_finset_prod_real_of_forall_one_le _ _ (fun τ _ => _root_.Formalism.HermitianLatticeCounting.P.one_le_finset_prod_real_of_forall_one_le _ _ (fun l _ => le_max_left _ _))
 
 theorem rows_absDl_nonneg (hrd : 0 < D.host.rdE) (Z : GramM D) (l : ℕ) (τ : D.what₂.Tau) : 0 ≤ absDl D Z l τ := by
   unfold absDl absReal
@@ -1024,7 +1014,7 @@ theorem rowsT_small (hS : Cnt.Stand D u u') (hrd : 0 < D.host.rdE) (t t' : D.s.T
       simp only [chSh, invSh, if_neg h0, if_pos h0'']
       ring
     · have h0'' : Dr (X.fl t) (X.fl' t') ≠ 0 := by rw [e]; exact h0'
-      have key := Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.smallTerm D.what₂.Tau
+      have key := _root_.Formalism.HermitianLatticeCounting.P.prodMinLeOfProdRatio D.what₂.Tau
         (fun τ => Lat.sh (Tu D u) (Tu D u') (X.fl t) (X.fl' t) (embS D τ))
         (fun τ => Lat.ch (Tu D u) (Tu D u') (X.fl t) (X.fl' t) (embS D τ))
         (fun τ => Lat.sh (Tu D u) (Tu D u') (X.fl t') (X.fl' t') (embS D τ))

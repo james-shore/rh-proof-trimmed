@@ -64,33 +64,11 @@ namespace FrRat
 
 variable (D : D7)
 
-theorem lamOf_mem (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) :
-    ∀ w ∈ TaylorLogMetric.lamOf D cc δ, ∃ c ∈ cc, w = δ * D.host.φ₀ (((c : 𝓞 D.host.K) : D.host.K) : D.host.E) := by
-  intro w hw
-  let S : AddSubgroup ℂ :=
-    { carrier := {w | ∃ c ∈ cc, w = δ * D.host.φ₀ (((c : 𝓞 D.host.K) : D.host.K) : D.host.E)}
-      add_mem' := fun {a b} ha hb => by
-        obtain ⟨c, hc, rfl⟩ := ha
-        obtain ⟨c', hc', rfl⟩ := hb
-        exact ⟨c + c', cc.add_mem hc hc', by push_cast; rw [map_add (f := _)]; ring⟩
-      zero_mem' := ⟨0, cc.zero_mem, by simp⟩
-      neg_mem' := fun {a} ha => by
-        obtain ⟨c, hc, rfl⟩ := ha
-        exact ⟨-c, cc.neg_mem hc, by push_cast; rw [map_neg]; ring⟩ }
-  have hle : TaylorLogMetric.lamOf D cc δ ≤ S := by
-    unfold TaylorLogMetric.lamOf
-    rw [AddSubgroup.closure_le]
-    rintro _ ⟨c, hc, rfl⟩
-    exact ⟨c, hc, rfl⟩
-  exact hle hw
-
-theorem okE (c : 𝓞 D.host.K) : IsIntegral ℤ (((c : D.host.K) : D.host.E)) := by
-  have h := (RingOfIntegers.isIntegral_coe c).map (IsScalarTower.toAlgHom ℤ D.host.K D.host.E)
-  simpa using h
+alias lamOf_mem := _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.FL.lam_mem
 
 theorem order_ideal_smul_mem (c : 𝓞 D.host.K) {a : D.host.E} (ha : a ∈ (D.host.AA0 : Submodule (𝓞 D.host.E) D.host.E)) :
     ((c : D.host.K) : D.host.E) * a ∈ (D.host.AA0 : Submodule (𝓞 D.host.E) D.host.E) := by
-  have h := Submodule.smul_mem _ (⟨((c : D.host.K) : D.host.E), okE D c⟩ : 𝓞 D.host.E) ha
+  have h := Submodule.smul_mem _ (⟨((c : D.host.K) : D.host.E), _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.FL.intK D c⟩ : 𝓞 D.host.E) ha
   exact h
 
 theorem lamMM_mem (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) :
@@ -116,7 +94,7 @@ theorem lamMM_mem (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) :
     obtain ⟨c, -, rfl⟩ := lamOf_mem D cc δ w hw
     refine ⟨((c : D.host.K) : D.host.E) * a, order_ideal_smul_mem D c ha, ?_⟩
     funext τ
-    rw [map_mul, IntegralOrthonormalChange.embT_K D τ _ (SetLike.coe_mem _)]
+    rw [map_mul, _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.FL.embT_K D τ _ (SetLike.coe_mem _)]
     ring
   exact hle hz
 
@@ -127,12 +105,6 @@ theorem order_ideal_mem_one_by_one {a : D.host.E} (ha : a ∈ (D.host.AA0 : Subm
   ext i j
   fin_cases i; fin_cases j
   simp
-
-theorem blockFourfold_hOne_eq_hOne (L : PeriodPair) (n : Type) [Fintype n] [DecidableEq n] :
-    blk4 (hOne L n) = hOne L (Fin 4 × n) := by
-  ext ⟨a, i⟩ ⟨c, j⟩
-  simp only [blk4, hOne, Matrix.smul_apply, Matrix.one_apply, Prod.mk.injEq, smul_eq_mul]
-  by_cases hac : a = c <;> by_cases hij : i = j <;> simp [hac, hij]
 
 theorem matH_hOne (L : PeriodPair) (n : Type) [Fintype n] [DecidableEq n] :
     matH (hOne L n) = Formalism.L2.Th1.H.stdH L n := rfl
@@ -233,7 +205,7 @@ theorem rational_coordinates : RatCoord := by
 
     rw [hau w i' τ, ← hX w i', map_sum]
     refine Finset.sum_congr rfl fun m _ => ?_
-    rw [map_mul, IntegralOrthonormalChange.embT_K D τ _ (SetLike.coe_mem _)]
+    rw [map_mul, _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.FL.embT_K D τ _ (SetLike.coe_mem _)]
   refine ⟨c, hc1, ?_, ?_⟩
   · intro w i' m
     refine ⟨s w i' * N * A, hS w i', ?_⟩
@@ -245,7 +217,7 @@ theorem rational_coordinates : RatCoord := by
     have hH : ∑ x, g₁.symm (Pi.single w 1) x * conj (g₁.symm (Pi.single w' 1) x) = if w = w' then 1 else 0 := by
       have h := hI (g₁.symm (Pi.single w 1)) (g₁.symm (Pi.single w' 1))
       simp only [LinearEquiv.coe_coe, LinearEquiv.apply_symm_apply] at h
-      rw [FrRat.blockFourfold_hOne_eq_hOne, FrRat.matH_hOne] at h
+      rw [_root_.Formalism.L2.Ker.blockFourfold_hOne_eq_hOne, FrRat.matH_hOne] at h
       rw [FrRat.stdH_apply', FrRat.stdH_apply'] at h
       have ha : ((Formalism.L2.Th1.F.area B.L : ℝ) : ℂ) ≠ 0 := by
         exact_mod_cast (Formalism.L2.Th1.F.PeriodAreaSignLemmas.area_pos B.L).ne'
@@ -263,7 +235,7 @@ theorem rational_coordinates : RatCoord := by
 
       rw [hc1, map_sum]
       refine Finset.sum_congr rfl fun m _ => ?_
-      rw [map_mul, IntegralOrthonormalChange.embT_K D τ _ (SetLike.coe_mem _)]
+      rw [map_mul, _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.FL.embT_K D τ _ (SetLike.coe_mem _)]
     have hG : ∀ i', D.host.φ₀ (∑ m, ∑ n, ((c w i' m : D.host.K) : D.host.E) *
         ((TaylorLogMetric.hYY D (b m) (b n) : D.host.K) : D.host.E) * D.host.conj ((c w' i' n : D.host.K) : D.host.E)) =
         ∑ τ, g₁.symm (Pi.single w 1) (i', τ) * conj (g₁.symm (Pi.single w' 1) (i', τ)) := by

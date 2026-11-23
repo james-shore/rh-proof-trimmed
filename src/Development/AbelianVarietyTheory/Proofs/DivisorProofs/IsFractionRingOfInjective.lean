@@ -203,7 +203,7 @@ theorem exists_isEtTower_tensor : ∀ {K κ L : Type} [Field K] [Field κ] [Fiel
     rw [e]
     have h1 : (algebraMap (R ⊗[ℂ] B) A).FormallyEtale :=
       RingHom.formallyEtale_algebraMap.2 (Algebra.FormallyEtale.of_isLocalization q.primeCompl)
-    exact (GlobalTheory.T.formallyEtale_baseChange_eval_hom τ he).comp h1
+    exact (_root_.GlobalTheory.formallyEtale_mvPolynomial_eval₂_tensor τ he).comp h1
   · show ((ψ (a (1 ⊗ₜ b)) : R) : K) = _
     rw [hψ, hφ, one_mul, (hev b z).1 hbz]
     rfl

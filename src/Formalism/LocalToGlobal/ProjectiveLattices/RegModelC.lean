@@ -124,7 +124,7 @@ theorem key_centre {O A : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRi
   haveI := hP
   by_cases hv : Ideal.map (algebraMap O A) (maximalIdeal O) ≤ P
   · exact Formalism.L2.Pj.RegA.reg_vertical_e f e he hf P h1 hv
-  · refine ReciprocityTheory.ChartRestriction.G.T0.reg_horizontal P hv ?_ e he f (hdvr_lemma P h1 f) hf
+  · refine _root_.ReciprocityTheory.ChartRestriction.G.T0.reg_horizontal_pf P hv ?_ e he f (hdvr_lemma P h1 f) hf
     intro htop
     apply hqq
     rw [eq_top_iff, ← htop]

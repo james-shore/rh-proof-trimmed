@@ -159,7 +159,7 @@ theorem UpperTheory.ConvolutionTheory.BW.ampRep :
         (Cm.sm_eq E n).ge (hder 𝔞.a₀ e 𝔞.smooth v).1⟩
       map_add' := fun v w => Subtype.ext (funext fun g => rconv_add _ μ _ v w _)
       map_smul' := fun c v => Subtype.ext (funext fun g => rconv_smul _ μ _ c v _) }
-  obtain ⟨d, ρ, hρ, hk⟩ := UpperTheory.finite_translates_matrix_coefficient (KA E n) (normOneGL (K := E) (n := n)) (Subgroup.inclusion maxCompact_le_normOneGL)
+  obtain ⟨d, ρ, hρ, hk⟩ := _root_.UpperTheory.Reformulated.B.ShiftMap.finite_translates_matrix_coefficient (KA E n) (normOneGL (K := E) (n := n)) (Subgroup.inclusion maxCompact_le_normOneGL)
     (continuous_subtype_val.subtype_mk _) (tens 𝔞.a₀ e) (tens 𝔞.a₀ e).continuous
     ((UpperTheory.tensorTestFunction_invariant_and_finiteDimensional_span E n hn 𝔞.a₀ e 𝔞.U 𝔞.le 𝔞.isOpen heU).2 𝔞.fin)
   obtain ⟨N, hN⟩ := UpperTheory.liftOne_rconv_tensor_moderateGrowth_uniform E n hn μ 𝔞.ν m hm 𝔞.a₀ e 𝔞.smooth

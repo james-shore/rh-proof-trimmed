@@ -101,12 +101,6 @@ theorem frac_deriv (D : Derivation K R R) :
         rw [RingHom.id_apply, Algebra.smul_def, hmul, hK, smul_zero, add_zero, algebraMap_smul] }
   exact ⟨Derivation.mk' e fun x y => hmul x y, fun r => hsnd r⟩
 
-theorem fldF_findim (t : Fin (n + 1) → Rˣ) (Bu : Subalgebra K R) (hTB : torusS K t Finset.univ ≤ Bu) (hFG : Bu.FG)
-    (hInt : ∀ b ∈ Bu, IsIntegral (torusS K t Finset.univ) b)
-    (hFrac : ∀ r : R, ∃ b ∈ Bu, ∃ b' ∈ Bu, b' ≠ 0 ∧ r * b' = b) :
-    FiniteDimensional (fldF K t) (FractionRing R) :=
-  fldF_findim_pf t Bu hTB hFG hInt hFrac
-
 theorem torus_mem_fldF (t : Fin (n + 1) → Rˣ) (S : Finset (Fin (n + 2))) :
     ∀ r ∈ torusS K t S, algebraMap R (FractionRing R) r ∈ fldF K t := fun r hr =>
   fldF_findim_pf_mem t r (torusS_le_univ t S hr)

@@ -69,25 +69,10 @@ theorem L_wildKill : ∀ {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Alg
     Formalism.ConjugateSelfDual.IsPlaceOver A P → IsOpen (φ.ker : Set (Formalism.ConjugateSelfDual.G E Ω)) → ((m : ℕ) : 𝓞 E) ∉ P.asIdeal →
     ∀ τ : Formalism.ConjugateSelfDual.G E Ω, (∀ y : Ω, y ≠ 0 → A.valuation (τ y / y - 1) < 1) → (∃ N : ℕ, φ τ ^ (m ^ N) = 1) → φ τ = 1 := GlobalTheory.T.openKerChar_wild_eq_one_of_pow_eq_one
 
-theorem L_joint : ∀ {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]
-    {M : Type} [CommGroup M] (φ : Formalism.ConjugateSelfDual.G E Ω →* M) (P : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω) (L : ℕ)
-    (γ : Formalism.ConjugateSelfDual.G E Ω) (π : Ω) (w : E),
-    Formalism.ConjugateSelfDual.IsPlaceOver A P → IsOpen (φ.ker : Set (Formalism.ConjugateSelfDual.G E Ω)) → ((L : ℕ) : 𝓞 E) ∉ P.asIdeal → Formalism.BasicNotions.TameGenAt A γ →
-    (∀ τ : Formalism.ConjugateSelfDual.G E Ω, (∀ y : Ω, y ≠ 0 → A.valuation (τ y / y - 1) < 1) → φ τ = 1) → φ γ ^ L = 1 →
-    π ≠ 0 → π ^ L = algebraMap E Ω w →
-    ∀ σ ∈ ReciprocityTheory.Gal.Ine (F := E) A, ∃ b : ℕ, φ σ = φ γ ^ b ∧ σ π = (γ π / π) ^ b * π := GlobalTheory.T.inertia_of_tameGenAt_of_char_pow_eq_one
-
 theorem L_surj : ∀ {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]
     (P : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω) (L : ℕ) (ϖ : 𝓞 E) (π : Ω),
     Formalism.ConjugateSelfDual.IsPlaceOver A P → ((L : ℕ) : 𝓞 E) ∉ P.asIdeal → ϖ ∈ P.asIdeal → ϖ ∉ P.asIdeal ^ 2 →
     π ^ L = algebraMap E Ω (ϖ : E) → ∃ σ ∈ ReciprocityTheory.Gal.Ine (F := E) A, IsPrimitiveRoot (σ π / π) L := GlobalTheory.T.exists_inertia_tameChar_primitiveRoot_of_uniformizerRoot
-
-theorem L_move : ∀ {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]
-    (P : HeightOneSpectrum (𝓞 E)) (e : ℤ) (σ : Formalism.ConjugateSelfDual.G E Ω) (u : 𝓞 E) (A₀ : ValuationSubring Ω) (ϖ₀ : 𝓞 E) (π₀ : Ω),
-    Formalism.ConjugateSelfDual.IsPlaceOver A₀ P → ϖ₀ ∈ P.asIdeal → ϖ₀ ∉ P.asIdeal ^ 2 →
-    π₀ ^ (Formalism.ConjugateSelfDual.normV P - 1) = algebraMap E Ω (ϖ₀ : E) → Formalism.L2.NX.TameRep P e σ u →
-    ∃ g : Formalism.ConjugateSelfDual.G E Ω, g * σ * g⁻¹ ∈ ReciprocityTheory.Gal.Ine (F := E) A₀ ∧
-      A₀.valuation ((g * σ * g⁻¹) π₀ / π₀ - (algebraMap E Ω (u : E)) ^ e) < 1 := GlobalTheory.T.exists_conj_inertia_tameChar_other_place
 
 theorem L_teich : ∀ {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω]
     (P : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω) (ζ : Ω),
@@ -226,7 +211,7 @@ theorem main : ∀ {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E
     L_wildKill φ P A0 m hA0 hopen hm τ hτ (hI A0 hA0 τ (GlobalTheory.TameGenPowers.wild_mem_Ine hτ))
   have hγL : φ γ ^ L = 1 := by
     rw [hLdef, mul_comm, pow_mul, hN0, one_pow]
-  have hJ := L_joint φ P A0 L γ π1 (ϖ0 : E) hA0 hopen hL hγ hw hγL hπ1ne hπ1
+  have hJ := _root_.GlobalTheory.TameJoint.exists_pow_joint φ P A0 L γ π1 (ϖ0 : E) hA0 hopen hL hγ hw hγL hπ1ne hπ1
   set ζ1 := γ π1 / π1 with hζ1def
   have hγπ1 : γ π1 = ζ1 * π1 := by rw [hζ1def, div_mul_cancel₀ _ hπ1ne]
   have hζ1L : ζ1 ^ L = 1 := by
@@ -282,7 +267,7 @@ theorem main : ∀ {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E
   have hK : ∀ (σ : Formalism.ConjugateSelfDual.G E Ω) (u : 𝓞 E) (a : ℕ), Formalism.L2.NX.TameRep P e σ u →
       A0.valuation (ζ0 ^ a - (algebraMap E Ω (u : E)) ^ e) < 1 → φ σ = φ γ ^ a := by
     intro σ u a hσ ha
-    obtain ⟨g, hg, hgv⟩ := L_move P e σ u A0 ϖ0 π0 hA0 hϖ0 hϖ0' hπ0 hσ
+    obtain ⟨g, hg, hgv⟩ := _root_.GlobalTheory.TameMove.tameRep_move P e σ u A0 ϖ0 π0 hA0 hϖ0 hϖ0' hπ0 hσ
     obtain ⟨b, hbφ, hbπ⟩ := hC _ hg
     have hφg : φ (g * σ * g⁻¹) = φ σ := by
       rw [map_mul, map_mul, mul_comm (φ g), mul_assoc, ← map_mul, mul_inv_cancel, map_one, mul_one]
@@ -312,7 +297,7 @@ theorem main : ∀ {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E
   have hX : ∀ u : 𝓞 E, u ∉ P.asIdeal → ∃ a : ℕ, A0.valuation (ζ0 ^ a - (algebraMap E Ω (u : E)) ^ e) < 1 ∧
       Formalism.L2.NX.TameRep P e (γ ^ a) u := by
     intro u hu
-    obtain ⟨a, ha⟩ := L_teich P A0 ζ0 hA0 hζ0prim u e hu
+    obtain ⟨a, ha⟩ := _root_.GlobalTheory.TamePowTeich.exists_zeta_pow_close P A0 ζ0 hA0 hζ0prim u e hu
     refine ⟨a, ha, A0, hA0, pow_mem hγ.1 a, ϖ0, π0, hϖ0, hϖ0', hπ0, ?_⟩
     rw [hγpow, mul_div_cancel_right₀ _ hπ0ne]
     exact ha

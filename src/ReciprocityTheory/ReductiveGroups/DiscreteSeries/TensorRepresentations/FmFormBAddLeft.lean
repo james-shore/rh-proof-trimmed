@@ -106,14 +106,9 @@ end
 section
 variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H] {ε : Fin n → Bool}
 
-theorem fm_kset_uj {k : Matrix (Fin n) (Fin n) ℂ} (hk : k ∈ Kset ε) : k ∈ UJset ε := by
-  obtain ⟨h1, -⟩ := rq_K_unit hk
-  show kᴴ * Jm ε * k = Jm ε
-  rw [Matrix.mul_assoc, ← hk.2, ← Matrix.mul_assoc, h1, Matrix.one_mul]
-
 theorem fm_JJ {k : Matrix (Fin n) (Fin n) ℂ} (hk : k ∈ Kset ε) (d e : Fin n) :
     ∑ c, (if ε c then (1 : ℂ) else -1) * (star (k c d) * k c e) = if d = e then (if ε d then (1 : ℂ) else -1) else 0 := by
-  have h := congrFun (congrFun (fm_kset_uj hk : kᴴ * Jm ε * k = Jm ε) d) e
+  have h := congrFun (congrFun (_root_.ReciprocityTheory.ChartRestriction.DS.UnitaryGroupOfForm.K_mem_UJ hk : kᴴ * Jm ε * k = Jm ε) d) e
   rw [Matrix.mul_apply] at h
   delta Jm at h
   simp only [Matrix.mul_diagonal, Matrix.conjTranspose_apply, Matrix.diagonal_apply] at h
@@ -127,7 +122,7 @@ theorem fm_formBH_kDiag (dual : Bool) {σ : Matrix (Fin n) (Fin n) ℂ → (H �
     ∑ c, (if ε c then (1 : ℂ) else -1) * inner ℂ (kDiag dual σ k F c) (kDiag dual σ k G c) =
       ∑ c, (if ε c then (1 : ℂ) else -1) * inner ℂ (F c) (G c) := by
   have hin : ∀ u v : H, inner ℂ (σ k u) (σ k v) = inner ℂ u v := fun u v =>
-    UnitB.sig_inner hσ (UnitB.toG k (fm_kset_uj hk)) u v
+    UnitB.sig_inner hσ (UnitB.toG k (_root_.ReciprocityTheory.ChartRestriction.DS.UnitaryGroupOfForm.K_mem_UJ hk)) u v
   set m : Fin n → Fin n → ℂ := fun c d => cond dual (star (k c d)) (k c d) with hm
   have hJ : ∀ d e, ∑ c, (if ε c then (1 : ℂ) else -1) * (star (m c d) * m c e) =
       if d = e then (if ε d then (1 : ℂ) else -1) else 0 := by

@@ -53,11 +53,11 @@ theorem acycF_of_pi_sh : ∀ (R : Type) [CommRing R] (F : Shv R) (ι : Type) [Fi
     [∀ i, CommRing (T i)] (B : Type) [CommRing B], Nonempty (B ≃+* (∀ i, T i)) → (∀ i, SH (T i)) →
     AcycF R (sp B) F := by
   intro R _ F ι _ T _ B _ ⟨e⟩ hT n hn
-  obtain ⟨hc⟩ := GlobalTheory.T.spec_pi_cofan_isColimit_of_ringEquiv ι T B e
-  have hbij := GlobalTheory.T.etaleSpaceCohomology_coprod_schemes_bijective R F (Spec (CommRingCat.of B)) ι (fun i => Spec (CommRingCat.of (T i)))
+  obtain ⟨hc⟩ := _root_.GlobalTheory.EtC.spec_pi_cofan_isColimit ι T B e
+  have hbij := _root_.GlobalTheory.coh_coprod_bijective R F (Spec (CommRingCat.of B)) ι (fun i => Spec (CommRingCat.of (T i)))
     (fun i => Spec.map (CommRingCat.ofHom ((Pi.evalRingHom T i).comp e.toRingHom))) hc n
   have hsub : ∀ i, Subsingleton (H R (sch.obj (Spec (CommRingCat.of (T i)))) F n) :=
-    fun i => GlobalTheory.T.strictlyHenselianLocalRing_acyclic_every_sheaf R (T i) (hT i) F n hn
+    fun i => _root_.GlobalTheory.EtC.b2 R (T i) (hT i) F n hn
   refine ⟨fun x y => hbij.1 ?_⟩
   funext i
   exact Subsingleton.elim _ _

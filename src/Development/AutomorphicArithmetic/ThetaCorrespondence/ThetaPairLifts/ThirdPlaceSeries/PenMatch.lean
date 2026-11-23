@@ -76,7 +76,7 @@ theorem pen_match_alt : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.toPre} {I : 
   have hs : (a.G n).s + 1 + 1 = B.R.m := (a.G n).hs
   have hd := GlobalTheory.TypePrimeUnif.intAt_div_qOf B.fields (B.primes X) (GlobalTheory.Mem.FieldsLaws.fields_ok B) (GlobalTheory.BasePrimes.primes_ok B X).1
   have hR := (hIs.tie row col).2
-  have hϖ := _root_.GlobalTheory.T.true_geometry_line_choice_value W hW u a row col hR n
+  have hϖ := _root_.GlobalTheory.LevUnif.unif_of_gRead_alt W hW u a row col hR n
   obtain ⟨S', hSame, hA'⟩ := _root_.GlobalTheory.Fam.MidLoc.exists_sameData_atType hW a hR n hϖ
   have hA : ∀ t (P : GlobalTheory.QTw.BadPr I (W.P.I.tup t)), P.1 = (a.pl n).1 → GlobalTheory.SymBridge.AtType I.Ch I.sel (I.tup (W.P.I.tup t)) (I.cst (W.P.I.tup t)) B.embLL P (_root_.GlobalTheory.Fam.TopLoc.embeddingAtLocalFactor a n) S' :=
     fun t P hP => hA' _ P hP
@@ -102,7 +102,7 @@ theorem pen_match_alt : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.toPre} {I : 
     · exact ⟨1, one_ne_zero, fun _ _ _ _ t P hP => absurd ⟨t, P, hP⟩ h0⟩
   refine ⟨C⁻¹, inv_ne_zero hC0, fun t J hJ α γ P hP z => ?_⟩
   have hAt := hA t P hP
-  obtain ⟨hf1, hf2⟩ := _root_.GlobalTheory.T.true_geometry_finite_family_alt W hW u a hIs hTr n t J hJ (a.G n).s (by omega) (J.ι _ α) P hP
+  obtain ⟨hf1, hf2⟩ := _root_.GlobalTheory.Fam.LevelFrames.frsF_mem_glint_redV_eq_alt W hW u a hIs hTr n t J hJ (a.G n).s (by omega) (J.ι _ α) P hP
   obtain ⟨hg1, hg2⟩ := _root_.GlobalTheory.T.true_geometry_finite_family_alt W hW u a hIs hTr n t J hJ ((a.G n).s + 1) (by omega) (J.ι _ γ) P hP
   refine (congrArg B.embLL (GlobalTheory.T.penultimateDatum_unchanged_frames_congruent_one I.Ch I.sel _ _ (a.G n).s P hAt.mem hAt.steps (hd P.1 hAt.mem) _ _ hf1 hf2 hg1 hg2 (homOf I l Z _ hj z) (Formalism.L2.Col.repY (J.A.p0 ((a.G n).s + 1) (J.ι _ γ)).1.2))).trans ?_
   rw [eq_inv_mul_iff_mul_eq₀ hC0]

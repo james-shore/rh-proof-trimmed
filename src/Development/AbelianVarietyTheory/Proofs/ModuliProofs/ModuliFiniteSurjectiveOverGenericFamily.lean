@@ -121,7 +121,7 @@ theorem exists_tate_of_lin (hc : l.A.Coprime l.M) {k : Type} [Field k] {Q : Type
     have h : P.mkQ (f a) = P.mkQ (s a) := LinearMap.congr_fun hf a
     rw [(hP _ _).1 h, hs]
   obtain ⟨ε, he, he'⟩ := exists_idem l
-  obtain ⟨g, g1, g2, g3⟩ := GlobalTheory.T.exists_similitude_of_aut_mod_levelIdeal E H D l l.A f hpq l.A_pos hc fun x hx => by
+  obtain ⟨g, g1, g2, g3⟩ := _root_.GlobalTheory.exists_sim_of_aut_mod E H D l l.A f hpq l.A_pos hc fun x hx => by
     have h1 : ε • x ∈ l.Mb • (⊤ : Submodule (𝓞 E) D.La) := hinj _ (by
       rw [hf, map_smul]; exact (I.ker _ hN _).2 (modN_smul_Mb l he hx))
     have h2 : x = ε • x + (1 - ε) • x := by rw [← add_smul, add_sub_cancel, one_smul]

@@ -54,22 +54,11 @@ open scoped TensorProduct Matrix
 
 namespace GlobalTheory.UnRep
 
-theorem exists_nat_smul_mem_of_span {E : Type} [Field E] [NumberField E] {n : ℕ}
-    (L : Submodule (𝓞 E) (Fin n → E)) (hL : Submodule.span E (L : Set (Fin n → E)) = ⊤)
-    (y : Fin n → E) : ∃ d : ℕ, 0 < d ∧ (d : E) • y ∈ L := by
-  first
-  | exact @_root_.GlobalTheory.NatMulIntegral.exists_nat_smul_mem
-  | exact _root_.GlobalTheory.NatMulIntegral.exists_nat_smul_mem
-  | (apply _root_.GlobalTheory.NatMulIntegral.exists_nat_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NatMulIntegral.exists_nat_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NatMulIntegral.exists_nat_smul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NatMulIntegral.exists_nat_smul_mem ..)
-
 theorem exists_nat_smul_map_mem {E : Type} [Field E] [NumberField E] {n : ℕ}
     (L : Submodule (𝓞 E) (Fin n → E)) (hfg : L.FG) (hL : Submodule.span E (L : Set (Fin n → E)) = ⊤)
     (φ : (Fin n → E) →ₗ[E] (Fin n → E)) : ∃ d : ℕ, 0 < d ∧ ∀ v ∈ L, (d : E) • φ v ∈ L := by
   classical
-  choose d hd hdL using exists_nat_smul_mem_of_span L hL
+  choose d hd hdL using _root_.GlobalTheory.NatMulIntegral.exists_nat_smul_mem L hL
   obtain ⟨S, hS⟩ := hfg
   refine ⟨∏ s ∈ S, d (φ s), Finset.prod_pos fun s _ => hd _, ?_⟩
   intro v hv

@@ -77,19 +77,19 @@ theorem chain_tower : PB.FlagHeight → PB.Inputs → SuccessiveMinimaLowerBound
   have hT1 : T.T1 II := GlobalTheory.T.tower_T1_limit II Ψ N T hP hI2 hI3
   have hW : T.ThmW II := GlobalTheory.T.tower_weil_theorem hIn.2.2.2.2.2.1 GlobalTheory.T.exists_unique_rational_statement GlobalTheory.CompanionTheory.Ar.Link.divSuppArith_holds hZ1 hZ2
     II hII Ψ N T hP hI1 hI2 hI3 hI5 hI6 hI7
-  have hI9 : I9 (Ψ := Ψ) (N := N) (hhFl Ψ N II) := GlobalTheory.T.flag_height_I9_properties hFH hIn II hII Ψ N hN
-  have hB : T.ThmB II (hhFl Ψ N II) := GlobalTheory.T.tower_theorem_B hAP II Ψ N T (hhFl Ψ N II) hP hW hI8 hI9
+  have hI9 : I9 (Ψ := Ψ) (N := N) (hhFl Ψ N II) := _root_.GlobalTheory.CompanionTheory.Ar.Top.flag_height_I9 hFH hIn II hII Ψ N hN
+  have hB : T.ThmB II (hhFl Ψ N II) := _root_.RootFieldNumerics.antisymmetry_tower_theorem hAP II Ψ N T (hhFl Ψ N II) hP hW hI8 hI9
   have he : GroundTheory.Heights₂.Heights.antisymDegree Ψ N = dimFl Ψ N := by
     simp [GroundTheory.Heights₂.Heights.antisymDegree, dimFl, Nat.choose_two_right]
   have hAr := (GlobalTheory.T.flag_variety_boundary_dimension_drop Ψ N hN).1
   rw [he] at hAr
-  have hLab : LabelInv (Ψ := Ψ) (N := N) (hhFl Ψ N II) := GlobalTheory.T.flag_height_label_invariant II hII Ψ N hN hAr
+  have hLab : LabelInv (Ψ := Ψ) (N := N) (hhFl Ψ N II) := _root_.GlobalTheory.CompanionTheory.Ar.Top.hhFl_labelInv II hII Ψ N hN hAr
   have hBA : T.ThmBA II (hhFl Ψ N II) := GlobalTheory.T.tower_theorem_B_averaged II Ψ N T (hhFl Ψ N II) hB hPA hLab
   have hTest : HhTestBound T.j (hhFl Ψ N II) := GlobalTheory.T.flag_height_test_bound hG hIn II hII Ψ N T.j T.j_pos T.j_lt
   have hA0 : T.LowerBoundAtBase II (hhFl Ψ N II) frob (2 * (C + C') + 3) rd Lval :=
-    GlobalTheory.T.test_height_bound II Ψ N T (hhFl Ψ N II) frob C C' rd Lval hC hC' hrd hP hI9 hPF hSL hTest
+    _root_.GlobalTheory.CompanionTheory.Ar.Top.test_height_bound_slope_flat II Ψ N T (hhFl Ψ N II) frob C C' rd Lval hC hC' hrd hP hI9 hPF hSL hTest
   have hK : (0 : ℝ) ≤ 2 * (C + C') + 3 := by linarith
-  have hT2' := GlobalTheory.T.tower_T2 II Ψ N T (hhFl Ψ N II) frob (2 * (C + C') + 3) C' rd Lval hK hC' hrd hP hfs hI9 hP6
+  have hT2' := _root_.GlobalTheory.CompanionTheory.Ar.Top.tower_T2_of_inputs II Ψ N T (hhFl Ψ N II) frob (2 * (C + C') + 3) C' rd Lval hK hC' hrd hP hfs hI9 hP6
     hBA hPF hA0
   have hEq : 2 * (C + C') + 3 + C' + 2 = 2 * C + 3 * C' + 5 := by ring
   rw [hEq] at hT2'

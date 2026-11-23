@@ -82,7 +82,7 @@ theorem card_le_of_nonpos (S : HSpace E) (τ : E →+* ℂ) (hτ : ∀ a, τ (st
   · have hc : LinearIndependent E (fun a => fun i => S.frame.repr (v a) i) := by
       have := hv.map' S.frame.equivFun.toLinearMap S.frame.equivFun.ker
       simpa [Function.comp_def] using this
-    exact WbDefC.linIndep_map τ _ hc
+    exact _root_.Bl.SecondBlockLemmaJ.goal1 τ _ hc
   · intro d
     have h1 : ∀ a b, star (ctau S τ (v a)) ⬝ᵥ ((S.gram.map τ) *ᵥ ctau S τ (v b)) = τ (S.hT (v a) (v b)) :=
       fun a b => (tau_hT S τ hτ (v a) (v b)).symm

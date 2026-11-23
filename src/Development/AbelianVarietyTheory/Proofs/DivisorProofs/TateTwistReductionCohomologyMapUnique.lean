@@ -64,15 +64,15 @@ theorem op_eq : ∀ (Q q : ℕ) [NeZero Q], q ∣ Q → ∀ (i : ℤ) (ρ ρ' : 
   obtain ⟨u, hu⟩ := GlobalTheory.T.exists_factor_through_extendScalars_zmod Q q hq _ _ ρ
   obtain ⟨u', hu'⟩ := GlobalTheory.T.exists_factor_through_extendScalars_zmod Q q hq _ _ ρ'
   have e1 := (GlobalTheory.T.sheafComplexSemilinearMap_comp_bijective _ _ (extπ (ZMod.castHom hq (ZMod q)) (res _ (tw Q i))) ρ u hu).1 E n x
-  have e2 := (GlobalTheory.T.sheafComplexSemilinearMap_comp_bijective _ _ (extπ (ZMod.castHom hq (ZMod q)) (res _ (tw Q i))) ρ' u' hu').1 E n x
+  have e2 := (_root_.GlobalTheory.EtC.OpComp.op_comp_bij _ _ (extπ (ZMod.castHom hq (ZMod q)) (res _ (tw Q i))) ρ' u' hu').1 E n x
   have hε := GlobalTheory.T.extendScalars_tateTwistResolution_hom_ext_augmentation Q q hq i _ u u' (fun U ζ => by rw [← hu, ← hu', h])
   haveI := GlobalTheory.T.quasiIso_extendScalars_tateTwist_augmentation Q q hq i
   haveI : (res (ZMod q) (tw q i)).IsKInjective :=
     inferInstanceAs ((injectiveResolution (tw q i)).cochainComplex.IsKInjective)
   haveI : (res (ZMod q) (tw q i)).IsStrictlyGE 0 :=
     inferInstanceAs ((injectiveResolution (tw q i)).cochainComplex.IsStrictlyGE 0)
-  obtain ⟨H⟩ := (GlobalTheory.T.extend_chainMap_along_quasiIso_kInjective (ZMod q) _ _ (res _ (tw q i)) (extAug (ZMod.castHom hq (ZMod q)) (tw Q i))).2 u u' hε
-  have e3 := ((GlobalTheory.T.hypercohomologyPullbackPushforward_functorial (ZMod q)).2.2.2.2 u u' ⟨H⟩ ((chains (ZMod q)).obj E) n).2
+  obtain ⟨H⟩ := (_root_.GlobalTheory.EtC.extHom_of_quasiIso (ZMod q) _ _ (res _ (tw q i)) (extAug (ZMod.castHom hq (ZMod q)) (tw Q i))).2 u u' hε
+  have e3 := ((_root_.GlobalTheory.EtC.ZcFun.main (ZMod q)).2.2.2.2 u u' ⟨H⟩ ((chains (ZMod q)).obj E) n).2
   rw [e1, e2, e3]
 
 end GlobalTheory.EtC.RedUniq

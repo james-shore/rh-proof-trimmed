@@ -60,14 +60,6 @@ open scoped InnerProductSpace ENNReal
 
 namespace GlobalTheory.CapelliSmooth
 
-lemma entry_conj {n : ℕ} (P P' : Matrix (Fin n) (Fin n) ℂ) (a b c d : Fin n) :
-    (P * Matrix.single a b (1 : ℂ) * P') c d = P c a * P' b d := by
-  rw [Matrix.mul_assoc, Matrix.mul_apply, Finset.sum_eq_single a]
-  · simp
-  · intro x _ hx
-    rw [Matrix.single_mul_apply_of_ne _ _ _ _ _ hx, mul_zero]
-  · simp
-
 theorem qdet_smooth : HypsG → ∀ (k r : ℕ) (ε : Fin (2 * r + k + 1) → Bool) (mu : Fin (2 * r + k + 1) → ℝ) (R : Rep k r), R.IsDG ε mu → ∀ (Q : Mx k r) (E : (Fin (2 * r + k + 1) → Fin (2 * r + k + 1) → Module.End ℂ R.smSub)), IsUnit Q → R.IsE Q E → ∀ (Y : ℂ) (w : R.smSub), Formalism.REAL.qdet E (Y + ((((2 * r + k + 1) : ℕ) : ℂ) - 1) / 2) w = (∏ s, (Y + (mu s : ℂ))) • w := by
   intro hyp k r ε mu R hR Q E hQ hE Y w
   have hK : PI.KFinSmooth := hyp.1.2.2.1
@@ -87,7 +79,7 @@ theorem qdet_smooth : HypsG → ∀ (k r : ℕ) (ε : Fin (2 * r + k + 1) → Bo
         (Q0 * Q⁻¹) * Matrix.single a b (1 : ℂ) * (Q * Q0⁻¹) := by
       simp only [Matrix.mul_assoc]
     rw [h1]
-    simp only [entry_conj, Formalism.FourierDecayAlt.Q.Econj, LinearMap.sum_apply, LinearMap.smul_apply,
+    simp only [_root_.Formalism.QuantumDeterminants.ioh_single, Formalism.FourierDecayAlt.Q.Econj, LinearMap.sum_apply, LinearMap.smul_apply,
       Submodule.coe_sum, Submodule.coe_smul]
   have h2 : (Q * Q0⁻¹) * (Q0 * Q⁻¹) = 1 := by
     rw [Matrix.mul_assoc, Matrix.nonsing_inv_mul_cancel_left _ _ hdQ0, Matrix.mul_nonsing_inv _ hdQ]

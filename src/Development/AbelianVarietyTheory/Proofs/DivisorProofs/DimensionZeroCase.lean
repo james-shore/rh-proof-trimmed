@@ -49,6 +49,7 @@ import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.IsRegularFnIffO
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoeffTopMonEqZero
 import Development.AbelianVarietyTheory.Proofs.ToricGeometry.MemSpanOfCardLe
 import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.EllipsoidStA
+import Development.AbelianVarietyTheory.Definitions.QuasicoherentCohomology.BijectiveSmulChartSec
 
 @[expose] public section
 
@@ -164,8 +165,6 @@ variable {R : Type} [CommRing R] [IsDomain R] {D : DegPre R} [Algebra (FractionR
 theorem valF_eq_valR {F : Type} [Field F] {X : Scheme.{0}} (x : Sp F ⟶ X) (U : X.Opens) (f : Γ(X, U)) :
     valF x U f = valR x U f := rfl
 
-theorem val_res {X : Scheme.{0}} {U V : X.Opens} (e : V ≤ U) (u : Γ(X, U)ˣ) : (res e u).val = resG X e u.val := rfl
-
 def frZ (ν : NumOf D ℂ N) (i : D.P.L.ι) : ℂ :=
   valF (ν.eA 1).left (D.P.L.U i ⊓ D.P.L.U (ν.J (ν.eA 1).left)) (D.P.L.g i (ν.J (ν.eA 1).left)).val * ν.rg
 
@@ -178,7 +177,7 @@ theorem frZ_compat (ν : NumOf D ℂ N) (i j : D.P.L.ι) (h : ⊤ ≤ (ν.eA 1).
   have h3 : ⊤ ≤ x ⁻¹ᵁ (D.P.L.U i ⊓ D.P.L.U j ⊓ D.P.L.U k) := fun y hy => ⟨h hy, hk hy⟩
   have c := congrArg (fun u => valR x _ (Units.val u)) (D.P.isLB.cocycle i j k)
   simp only [Units.val_mul] at c
-  rw [GlobalTheory.ZH.CrdCalc.valR_mul x _ h3, val_res, val_res, val_res, GlobalTheory.ZH.CrdCalc.valR_res x _ h3,
+  rw [GlobalTheory.ZH.CrdCalc.valR_mul x _ h3, _root_.GlobalTheory.LB.val_res, _root_.GlobalTheory.LB.val_res, _root_.GlobalTheory.LB.val_res, GlobalTheory.ZH.CrdCalc.valR_res x _ h3,
     GlobalTheory.ZH.CrdCalc.valR_res x _ h3, GlobalTheory.ZH.CrdCalc.valR_res x _ h3] at c
   simp only [valF_eq_valR]
   rw [← c]
@@ -190,7 +189,7 @@ theorem frZ_self (ν : NumOf D ℂ N) : frZ ν (ν.J (ν.eA 1).left) = ν.rg := 
   set k := ν.J x
   have hk : ⊤ ≤ x ⁻¹ᵁ D.P.L.U k := ν.good x
   have c := congrArg (fun u => valR x _ (Units.val u)) (D.P.isLB.g_self k)
-  simp only [val_res, Units.val_one] at c
+  simp only [_root_.GlobalTheory.LB.val_res, Units.val_one] at c
   rw [GlobalTheory.ZH.CrdCalc.valR_res x _ hk, GlobalTheory.ZH.CrdCalc.valR_eq x _ hk, map_one] at c
   rw [valF_eq_valR, c, _root_.one_mul]
 

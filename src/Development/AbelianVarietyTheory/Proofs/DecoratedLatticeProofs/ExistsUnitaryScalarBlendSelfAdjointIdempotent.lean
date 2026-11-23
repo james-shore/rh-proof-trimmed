@@ -46,6 +46,7 @@ import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsSing
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FlagLevelCharacterEqPsiDivN
 import Formalism.LocalToGlobal.Columns.CoefficientsModP.WeTransposeWordTransposeWord
 import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.PoincareInHH
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Bridge
 
 @[expose] public section
 
@@ -69,15 +70,10 @@ theorem hform_mulVec_two {A : Type} [CommRing A] {n : Type} [Fintype n] (σ : A 
   rw [e, e, hσ, ← vecMul_transpose, ← dotProduct_mulVec, mulVec_mulVec,
     mulVec_mulVec, Formalism.UG.cT, Matrix.mul_assoc]
 
-theorem hform_single {A : Type} [CommRing A] {n : Type} [Fintype n] [DecidableEq n] (σ : A →+* A)
-    (N : Matrix n n A) (i j : n) :
-    Formalism.UG.hform σ N (Pi.single i 1) (Pi.single j 1) = N i j := by
-  simp [Formalism.UG.hform, Pi.single_apply]
-
 theorem matrix_eq_of_hform {A : Type} [CommRing A] {n : Type} [Fintype n] [DecidableEq n] (σ : A →+* A)
     (N N' : Matrix n n A) (h : ∀ x y, Formalism.UG.hform σ N x y = Formalism.UG.hform σ N' x y) : N = N' := by
   ext i j
-  rw [← hform_single σ N i j, ← hform_single σ N' i j, h]
+  rw [← _root_.Formalism.UG.P.hform_single σ N i j, ← _root_.Formalism.UG.P.hform_single σ N' i j, h]
 
 theorem unit_of_proj {A : Type} [CommRing A] {n : Type} [Fintype n] [DecidableEq n] (σ : A →+* A)
     (J P : Matrix n n A) (c : A) (hPP : P * P = P) (hSA : Formalism.UG.cT σ P * J = J * P) (hc : c * σ c = 1) :

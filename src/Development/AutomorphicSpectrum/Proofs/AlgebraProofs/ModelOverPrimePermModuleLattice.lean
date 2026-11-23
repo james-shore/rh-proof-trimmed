@@ -70,9 +70,9 @@ theorem ckRelations_descend : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDiscre
     have e : d - (k - 1) = d + 1 - k := by omega
     rw [e]
     exact hQ
-  have TL := fun τ => GlobalTheory.T.same_generic_base_extension O Ω K ι x d hx (r τ) (VL τ) (Lie τ) (W τ) (hsame τ).1 K' ι' z hxz hfn
+  have TL := fun τ => _root_.GlobalTheory.CompanionTheory.Ar.CkPullBirat.main O Ω K ι x d hx (r τ) (VL τ) (Lie τ) (W τ) (hsame τ).1 K' ι' z hxz hfn
     (Lie' τ) (W' τ) (hpull τ).1 (hpull τ).2.1
-  have TO := fun τ => GlobalTheory.T.same_generic_base_extension O Ω K ι x d hx (s τ) (VO τ) (Om τ) (OmHT τ) (hsame τ).2 K' ι' z hxz hfn
+  have TO := fun τ => _root_.GlobalTheory.CompanionTheory.Ar.CkPullBirat.main O Ω K ι x d hx (s τ) (VO τ) (Om τ) (OmHT τ) (hsame τ).2 K' ι' z hxz hfn
     (Om' τ) (OmHT' τ) (hpull τ).2.2.1 (hpull τ).2.2.2
   have hroot : ∀ τ, rootNum O (joinCoord x z) d (r τ) (Lie' τ) (MvPolynomial.psum (Fin (r τ)) ℤ (k - 1))
       (fun j => pullDeg (L j)) Q (p : O) =

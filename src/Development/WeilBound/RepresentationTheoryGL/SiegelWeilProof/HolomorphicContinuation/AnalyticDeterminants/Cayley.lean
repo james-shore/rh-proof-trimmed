@@ -48,6 +48,6 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PositivityTheory.Rg.Sw.LVs
 
-theorem cayley : Cayley := cayley_of equivar reindex kappaFin
+theorem cayley : Cayley := cayley_of _root_.PositivityTheory.Rg.Sw.LVs.CEq.equivar_thm reindex kappaFin
 
 end PositivityTheory.Rg.Sw.LVs

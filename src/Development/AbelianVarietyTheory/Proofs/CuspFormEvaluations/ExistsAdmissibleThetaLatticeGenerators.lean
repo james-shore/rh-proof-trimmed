@@ -144,7 +144,7 @@ theorem exists_genOK : ∀ (D : D7) (T : Top D) (h : LawsP T) (hinj : Function.I
   obtain ⟨hC1, hA1, hCc, hAc, hCR, h12⟩ := hP.tie
   have htie : TieC (⟨0, 2, 0, 2, 0, 2, 0, 4, 7⟩ : KAdm) H 1 4 0 11 C2 A2 7 :=
     ⟨hC1, hA1, hCc, hAc, hCR, rfl, rfl, h12, le_rfl, le_rfl, le_rfl, le_rfl, le_rfl, le_rfl, le_rfl⟩
-  obtain ⟨-, -, -, hfrr⟩ := GlobalTheory.T.thetaRunParameters_at_typePrimes_product D _ _ j (recPJ h j hj) _ 1 4 0 11
+  obtain ⟨-, -, -, hfrr⟩ := _root_.GlobalTheory.RunParametersAtRecord.run_at_record D _ _ j (recPJ h j hj) _ 1 4 0 11
     (scalOfP (recB h.toLawsCore) hinj EX p ka wL wF Tn) large₂ H C2 A2 7 CT ka wL wF Tn nP nW h0 hP.hyp htie hP.page hsupp
   obtain ⟨N, w0, P₁, hharm, hblk, hcont, hspan, hNle, hsup⟩ :=
     GlobalTheory.T.exists_short_thetaFamily_with_block_polynomial_rules hC D T h hGam large₂ j hj wL hrowsL hL hrn hlast hfrr
@@ -164,7 +164,7 @@ theorem exists_genOK : ∀ (D : D7) (T : Top D) (h : LawsP T) (hinj : Function.I
   have hM : (recPJ h j hj).WWc (scalOfP (recB h.toLawsCore) hinj EX p ka wL wF Tn).sW wL ≤
       (recB h.toLawsCore).Mlat j wL := by
     rw [hS]
-    exact GlobalTheory.T.scaledThetaLattice_le_supLattice_every_weight D T h j hj hinj EX hOr wL
+    exact _root_.GlobalTheory.PlaceTop.thInt_of_oriented D T h j hj hinj EX hOr wL
   have hNlog := GlobalTheory.RunIn.log_two_mul_count_le_mul_size D (recB h.toLawsCore) large₂ j wL (N' + 1)
     (38 * large₂.sc.L + PO D large₂) hL hn0 hrowsL hO le_rfl hNle
   have ha : 0 ≤ lamStar D * wL.size := mul_nonneg hlam (by linarith)
@@ -199,7 +199,7 @@ theorem exists_genOK : ∀ (D : D7) (T : Top D) (h : LawsP T) (hinj : Function.I
     linarith [hO.1]
   · exact GlobalTheory.T.scaledThetaLattice_generators_noCommonZero hC D T h EX j hj (scalOfP (recB h.toLawsCore) hinj EX p ka wL wF Tn) large₂ H C2 A2 7 CT ka wL wF
       Tn nP nW h0 _ _ hP.hyp (by rw [hS]; exact hsOf.1) _ hT
-  · exact GlobalTheory.T.lower_bound_at_frames_family_with_scaled_thetaRules hC D T h EX j hj _ 1 4 0 11 (scalOfP (recB h.toLawsCore) hinj EX p ka wL wF Tn) large₂ H C2 A2 7 CT
+  · exact _root_.GlobalTheory.DegreeInterpolationBounds.i2iAt_record hC D T h EX j hj _ 1 4 0 11 (scalOfP (recB h.toLawsCore) hinj EX p ka wL wF Tn) large₂ H C2 A2 7 CT
       ka wL wF Tn nP nW h0 hP.hyp htie hP.page hsupp P₁ hharm hblk N' _
       (containsTh_of_eq_smul j P₁ _ _ _ (fun k q y => by
         simp only [scaledFamily]

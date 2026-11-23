@@ -64,7 +64,7 @@ namespace CompanionTheory.PlacePermOperatorBicommutantSpan
 
 variable {F : Type} [Field F] [NumberField F] {ι : Type} [Fintype ι]
 
-theorem oh_mul {x y : A F} (hx : x ∈ Oh F) (hy : y ∈ Oh F) : x * y ∈ Oh F := fun v => mul_mem (hx v) (hy v)
+alias oh_mul := _root_.GlobalTheory.CompanionTheory.SW.Core.Scale.mul_mem_Oh
 
 theorem oh_nat (N : ℕ) : (N : A F) ∈ Oh F := by
   induction N with

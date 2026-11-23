@@ -85,7 +85,7 @@ theorem det_product_mem_slitPlane {x : M2 n} (hx : InG x) : (u1 x).det * (ub1 x)
 
 theorem diff_fz {x : M2 n} (hx : InG x) (m : ℕ) (e : ℤ) (z : ℂ) : DifferentiableAt ℂ (fz m e z) x := by
   have hU : IsOpen {y : M2 n | det y ≠ 0} := isOpen_det_ne
-  have hxU : x ∈ {y : M2 n | det y ≠ 0} := (isUnit_det_of_inG hx).ne_zero
+  have hxU : x ∈ {y : M2 n | det y ≠ 0} := (_root_.PositivityTheory.Rg.Sw.LVs.isUnit_det_of_inG' hx).ne_zero
   have hdet : DifferentiableAt ℂ (fun y : M2 n => det y) x :=
     diffAt_of_cdo (cdo_det (fun i j => (contDiff_apply_apply ℂ i j).contDiffOn)) hU hxU
   have hu1 : DifferentiableAt ℂ (fun y : M2 n => (u1 y).det) x :=
@@ -172,6 +172,6 @@ end PositivityTheory.Rg.Sw.HSt.LoweringDerivative
 
 namespace PositivityTheory.Rg.Sw.HSt
 
-theorem lt1 : LoweringDerivativeVacuum := LoweringDerivative.lt1
+alias lt1 := _root_.PositivityTheory.Rg.Sw.HSt.LoweringDerivative.lt1
 
 end PositivityTheory.Rg.Sw.HSt

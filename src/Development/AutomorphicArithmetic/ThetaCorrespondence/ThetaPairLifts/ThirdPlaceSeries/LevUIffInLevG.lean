@@ -58,14 +58,14 @@ theorem levU_iff_inLevG_alt : ∀ {B : GlobalTheory.Mem.Base} {X : GlobalTheory.
   intro B X I l Z L hT Gi Gl Kc Yd cX ex W hA u a ha hat row col hc κ hκ y hy
   constructor
   · intro h
-    exact ⟨_root_.GlobalTheory.T.true_geometry_lattice_forward_alt W hA u a ha hat row col hc κ hκ y hy h, _root_.GlobalTheory.T.true_geometry_lattice_image_alt W hA u a ha hat row col hc κ hκ y hy h, _root_.GlobalTheory.T.true_geometry_lattice_kernel_alt W hA u a ha hat row col hc κ hκ y hy h⟩
+    exact ⟨_root_.GlobalTheory.FamTrace.LatFwd.lattice_forward_preserves_base_alt W hA u a ha hat row col hc κ hκ y hy h, _root_.GlobalTheory.FamTrace.keepsPairs_of_mem_level_alt W hA u a ha hat row col hc κ hκ y hy h, _root_.GlobalTheory.FamTrace.TraceFwd.traceAtG_of_mem_alt W hA u a ha hat row col hc κ hκ y hy h⟩
   · intro h
     refine ((_root_.GlobalTheory.MiTop.formsAtZero W u).cls0.lev.U_eq _).2 ⟨y.2, fun v => ?_⟩
     by_cases hv : (((((I.rec7 l Z).mem u).A.T : ℕ) : 𝓞 (I.rec7 l Z).host.F) ∈ v.asIdeal)
-    · exact _root_.GlobalTheory.T.true_geometry_lattice_index_alt W hA u a ha hat row col hc κ hκ y hy h v hv
+    · exact _root_.GlobalTheory.FamTrace.uloc_T_of_inLevG_alt W hA u a ha hat row col hc κ hκ y hy h v hv
     · by_cases hb : v ∈ Formalism.L2.Forms.badG (I.rec7 l Z)
-      · exact _root_.GlobalTheory.T.true_geometry_lattice_measure_alt W hA u a ha hat row col hc κ hκ y hy h v hb
-      · exact _root_.GlobalTheory.T.true_geometry_lattice_volume_alt W hA u a ha hat row col hc κ hκ y hy h v hb hv
+      · exact _root_.GlobalTheory.FamTrace.AtG.mem_Uloc_badG_alt W hA u a ha hat row col hc κ hκ y hy h v hb
+      · exact _root_.GlobalTheory.FamTrace.bc_prV_mem_Uloc_off_alt W hA u a ha hat row col hc κ hκ y hy h v hb hv
 end GlobalTheory.FamTrace
 end
 end

@@ -57,10 +57,6 @@ namespace GlobalTheory.ShearLift
 
 variable {S : Scheme.{0}}
 
-theorem isMonHom_mul {H G : Over S} [GrpObj H] [GrpObj G] [IsCommMonObj G] (f g : H ⟶ G) [IsMonHom f]
-    [IsMonHom g] : IsMonHom (f * g) :=
-  inferInstanceAs (IsMonHom (lift f g ≫ μ[G]))
-
 theorem isCommMonObj_of_isGrpPullback {S' : Scheme.{0}} {G' : Over S'} {G : Over S} [GrpObj G'] [GrpObj G]
     [IsCommMonObj G] {b : S' ⟶ S} {φ : G'.left ⟶ G.left} (h : IsGrpPullback G' G b φ) : IsCommMonObj G' := by
   have key : ∀ {T : Over S'} (x y : T ⟶ G'), x * y = y * x := by
@@ -120,7 +116,7 @@ theorem exists_lift_shear : ∀ (R R₀ : Type) [CommRing R] [CommRing R₀] (I 
     e e' he he' hie hje l hl₁ hl₂ f₀ _ hf
   haveI : IsCommMonObj B' := hBab.comm
   haveI : IsCommMonObj B₀ := isCommMonObj_of_isGrpPullback hB
-  haveI hm : IsMonHom ((fst A₀ B₀ ≫ f₀) * snd A₀ B₀) := isMonHom_mul _ _
+  haveI hm : IsMonHom ((fst A₀ B₀ ≫ f₀) * snd A₀ B₀) := _root_.GlobalTheory.Serre.isMonHom_mul _ _
   obtain ⟨σ, hσ⟩ : ∃ σ : A₀ ⊗ B₀ ⟶ A₀ ⊗ B₀, σ = lift (fst A₀ B₀) ((fst A₀ B₀ ≫ f₀) * snd A₀ B₀) := ⟨_, rfl⟩
   obtain ⟨τ, hτ⟩ : ∃ τ : A₀ ⊗ B₀ ⟶ A₀ ⊗ B₀, τ = lift (fst A₀ B₀) ((fst A₀ B₀ ≫ f₀)⁻¹ * snd A₀ B₀) := ⟨_, rfl⟩
   haveI : IsMonHom σ := by rw [hσ]; infer_instance

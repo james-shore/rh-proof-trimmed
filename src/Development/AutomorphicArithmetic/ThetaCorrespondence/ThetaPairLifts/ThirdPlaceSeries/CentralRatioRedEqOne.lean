@@ -72,7 +72,7 @@ theorem centralRatio_red_eq_one_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : Gat
   have hκ : _root_.GlobalTheory.MiTop.translationElement f' B' a₀' a' * k * (_root_.GlobalTheory.MiTop.translationElement f' B' a₀' a')⁻¹ ∈ rowJ W.S.X W.Q.instEq := by
     have := ((hconj k).1).1 hk
     simpa using this
-  obtain ⟨Γ, hΓ⟩ := _root_.GlobalTheory.T.base_moves_vector_z_alt_alt W hP hr PP hPP
+  obtain ⟨Γ, hΓ⟩ := _root_.GlobalTheory.MiTop.base_moves_vector_z_alt_bis W hP hr PP hPP
   obtain ⟨θ, hθ, hθ1, hm⟩ := hΓ u f B (by first | exact hPl | exact _root_.GlobalTheory.MiTop.PlacedConditions.placed f B hPl) a₀ a hA
   obtain ⟨θ', hθ', hθ1', hm'⟩ := hΓ u' f' B' (by first | exact hPl' | exact _root_.GlobalTheory.MiTop.PlacedConditions.placed f' B' hPl') a₀' a' hA'
   have hmul : ∀ x y : GA D (D.sp.Y 0), Formalism.IndefR.Lev.finE (Yc D 0) (show GA D (Yc D 0) from (x * y : GA D (D.sp.Y 0))) =
@@ -90,7 +90,7 @@ theorem centralRatio_red_eq_one_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : Gat
     rw [mul_assoc, hmul, hinv]
   have hT := congrArg (fun g : GA D (D.sp.Y 0) => Formalism.IndefR.Lev.finE (Yc D 0) (show GA D (Yc D 0) from g)) heq
   simp only [hmul, ht] at hT
-  have hcong := _root_.GlobalTheory.T.row_level_integral_twist_alt W hP hr u u' _ hκ (θ * c) θ' (Subring.mul_mem _ hθ hci) hθ' PP hPP (fun ei hei => by
+  have hcong := _root_.GlobalTheory.CongFlag.resS_eq_of_flag_alt W hP hr u u' _ hκ (θ * c) θ' (Subring.mul_mem _ hθ hci) hθ' PP hPP (fun ei hei => by
     have key := lattice_ratio_vector_of_scalar_factorisation (toEAf D ei) c θ θ' _ _ _ _ _ _ hc hT _ _ Γ (hm ei hei) (hm' ei hei)
     have hκE : Formalism.IndefR.Lev.finE (Yc D 0) (show GA D (Yc D 0) from (_root_.GlobalTheory.MiTop.translationElement f' B' a₀' a' * k * (_root_.GlobalTheory.MiTop.translationElement f' B' a₀' a')⁻¹ : GA D (D.sp.Y 0))) =
         Formalism.IndefR.Lev.finE (Yc D 0) (show GA D (Yc D 0) from _root_.GlobalTheory.MiTop.translationElement f' B' a₀' a') * Formalism.IndefR.Lev.finE (Yc D 0) (show GA D (Yc D 0) from k) *

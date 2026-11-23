@@ -47,6 +47,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsMidLevIff
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.IntegralPowerExpansion
 
 @[expose] public section
 
@@ -79,21 +80,13 @@ theorem exists_finiteAdele_of_denom {F : Type} [Field F] [NumberField F] (r : He
   rw [map_mul, hv1, one_mul] at h1
   exact h1
 
-theorem le_exp_neg_one_of_lt_one {x : WithZero (Multiplicative ℤ)} (hx : x < 1) : x ≤ WithZero.exp (-1) := by
-  by_cases h0 : x = 0
-  · rw [h0]; exact zero_le'
-  · rw [← WithZero.exp_log h0] at hx ⊢
-    rw [← WithZero.exp_zero, WithZero.exp_lt_exp] at hx
-    rw [WithZero.exp_le_exp]
-    omega
-
 theorem locMap_val_eq_one_iff {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
     (P : HeightOneSpectrum (𝓞 E)) (a : (P.under (𝓞 F)).adicCompletion F) :
     Valued.v (locMap F P a) = 1 ↔ Valued.v a = 1 := by
   have hle : ∀ b : (P.under (𝓞 F)).adicCompletion F, Valued.v b ≤ 1 → Valued.v (locMap F P b) ≤ 1 := fun b hb => by
     simpa using locMap_valued P 0 b (by simpa using hb)
   have hlt : ∀ b : (P.under (𝓞 F)).adicCompletion F, Valued.v b < 1 → Valued.v (locMap F P b) < 1 := fun b hb => by
-    have := locMap_valued P 1 b (by simpa using le_exp_neg_one_of_lt_one hb)
+    have := locMap_valued P 1 b (by simpa using _root_.GlobalTheory.Proof.IntegralPowerExpansion.le_exp_neg_one_of_lt_one hb)
     refine lt_of_le_of_lt this ?_
     rw [← WithZero.exp_zero, WithZero.exp_lt_exp]
     omega

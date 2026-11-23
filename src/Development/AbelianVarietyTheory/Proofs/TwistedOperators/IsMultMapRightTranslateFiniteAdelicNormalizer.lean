@@ -65,7 +65,7 @@ theorem isMultMap_rightTranslate_finite : ∀ {D : D7} {V : HSp D} {S : D.what�
   refine ⟨(LinearMap.funLeft ℂ ℂ (fun g : GA D V => g * κ)).compMultilinearMap T,
     ⟨fun v => ?_, fun v => ?_, fun v k hk g => ?_, fun τ g hg v w hw => ?_, fun τ v x => ?_⟩, fun v => rfl⟩
   ·
-    exact GlobalTheory.T.isSmoothAutomorphic_rightTranslate_finite θ V κ hκ (T v) (hT.aut v)
+    exact _root_.GlobalTheory.FinTranslate.isAutFunSm_rTr θ V κ hκ (T v) (hT.aut v)
   ·
     intro r C hC μ 𝓕 hμ h𝓕 g
     have h := hT.cusp v r C hC μ 𝓕 hμ h𝓕 (g * κ)

@@ -180,15 +180,7 @@ theorem group_action_matrix_hom : GaMatHom := by
   intro K _ _ _ S G _ _ r
   exact ⟨by rw [S.gaMat_eq_lift r, map_one], fun a b => by simp only [S.gaMat_eq_lift r, map_mul]⟩
 
-theorem mem_valLatF {K : Type} [Field K] [NumberField K] [StarRing K] {n : ℕ} {Cl V : Type}
-    [AddCommGroup V] [Module K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V]
-    (I : (Fin n → K) →ₗ[K] (Cl → V)) (N : Cl → Submodule (𝓞 K) V) (x : Fin n → K) :
-    x ∈ valLatF I N ↔ ∀ c, I x c ∈ N c := by
-  first
-  | exact ⟨fun h c => h c (Set.mem_univ c), fun h c _ => h c⟩
-  | (unfold valLatF; simp [Submodule.mem_pi])
-  | (simp only [valLatF, Submodule.mem_comap, Submodule.mem_pi, Set.mem_univ, forall_const,
-      LinearMap.restrictScalars_apply])
+alias mem_valLatF := _root_.Formalism.DivisionValues.ValuationLatticeField.mem_valLatF
 
 theorem action_preserves_lattice : ActLat := by
   intro K _ _ _ S G _ _ r hr t
@@ -475,9 +467,7 @@ section Lvl
 
 variable {K : Type} [Field K] {G : Type} [Group G] [Fintype G]
 
-theorem single_mul_lvlIdem (P : Subgroup G) (ψ : P →* Kˣ) (h : P) :
-    MonoidAlgebra.single (h : G) (1 : K) * lvlIdem P ψ = ((ψ h : Kˣ) : K) • lvlIdem P ψ := by
-  exact CSD.single_mul_lvlIdem_lemma P ψ h
+alias single_mul_lvlIdem := _root_.Formalism.L2.DIV.CSD.single_mul_lvlIdem_lemma
 
 theorem lvlIdem_idem [CharZero K] (P : Subgroup G) (ψ : P →* Kˣ) :
     lvlIdem P ψ * lvlIdem P ψ = lvlIdem P ψ := by
@@ -730,9 +720,7 @@ theorem idemOf_central (X : Finset (G → K)) (hX : ∀ χ ∈ X, IsAbsIrrChar �
   rw [Finset.mul_sum, Finset.sum_mul]
   exact Finset.sum_congr rfl fun χ hχ => chiIdem_comm_single (hX χ hχ).conj s _
 
-theorem coeff_chiIdem (χ : G → K) (t : G) :
-    (chiIdem χ).coeff t = χ 1 / (Fintype.card G : K) * χ t⁻¹ := by
-  exact coeff_chiIdem_lemma χ t
+alias coeff_chiIdem := _root_.Formalism.L2.DIV.coeff_chiIdem_lemma
 
 theorem coeff_idemOf (X : Finset (G → K)) (t : G) :
     (idemOf X).coeff t = ∑ χ ∈ X, χ 1 / (Fintype.card G : K) * χ t⁻¹ := by
@@ -1184,11 +1172,7 @@ theorem lvlOpSpec_of (h1 : CutOrthProj) (h2 : LvlIdemSpec) : LvlOpSpec := by
       _ = Pr * (S.gaMat r b * S.gaMat r a) * (F * E) := by simp only [Matrix.mul_assoc]
       _ = Pr * (S.gaMat r b * S.gaMat r a) * E := by rw [hFE]
 
-theorem exists_mul_of_range_le {K : Type} [Field K] {m n p : ℕ} {A : Matrix (Fin m) (Fin n) K}
-    {B : Matrix (Fin m) (Fin p) K}
-    (h : LinearMap.range B.mulVecLin ≤ LinearMap.range A.mulVecLin) :
-    ∃ C : Matrix (Fin n) (Fin p) K, B = A * C := by
-  exact exists_mul_lemma h
+alias exists_mul_of_range_le := _root_.Formalism.L2.DIV.exists_mul_lemma
 
 theorem cutOrthProj_of (h1 : ImESpec) (h2 : GaMatHom) (h3 : GaMatAdj) : CutOrthProj := by
   intro K _ _ _ v0 hv S hpos G _ _ r hr a hidem hself
@@ -1278,15 +1262,7 @@ theorem CSD.Good.nab_isFullLattice {K : Type} [Field K] [NumberField K] [StarRin
           span_eq_top := span_eq_top_of_scaled_dual_le S.pair _ (h.nab_lat c).fg hs
             (fun x hx => h.del_le c (h.dual_le c x hx)) }
 
-private theorem hform_eq_lemma {K : Type} [Field K] [NumberField K] [StarRing K] {m : ℕ} (M : Matrix (Fin m) (Fin m) K)
-    (u v : Fin m → K) : hform M u v = star u ⬝ᵥ (M *ᵥ v) := by
-  unfold hform
-  rw [Matrix.toLinearMapₛₗ₂'_apply]
-  simp only [dotProduct, Matrix.mulVec, Finset.mul_sum, Pi.star_apply, starRingEnd_apply, RingHom.id_apply,
-    mul_assoc]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  simp only [smul_eq_mul]
-  ring
+private alias hform_eq_lemma := _root_.Formalism.DivisionValues.RationalHermitianForm.hform_eq_dot
 
 theorem hform_smul {K : Type} [Field K] [NumberField K] [StarRing K] {n : ℕ} (c : K)
     (H : Matrix (Fin n) (Fin n) K) (y x : Fin n → K) : hform (c • H) y x = hform H y (c • x) := by

@@ -145,21 +145,10 @@ theorem HfD_div [IsDomain O] [IsFractionRing O LL] (T : LocLat G Qp LL O) {b : O
     ← smul_add, ← algebraMap_smul LL b, smul_smul, mul_inv_cancel₀ hb', one_smul]
 
 omit [TopologicalSpace Qp] in
-theorem quot_torsion [IsDomain O] [IsFractionRing O LL] (T : LocLat G Qp LL O)
-    (w : T.V ⧸ T.L.T) : ∃ b : O, b ≠ 0 ∧ b • w = 0 := by
-  first
-  | exact @_root_.GlobalTheory.QuotientLatticeTorsion.quotient_lattice_torsion
-  | exact _root_.GlobalTheory.QuotientLatticeTorsion.quotient_lattice_torsion
-  | (apply _root_.GlobalTheory.QuotientLatticeTorsion.quotient_lattice_torsion <;> assumption)
-  | (intros; apply _root_.GlobalTheory.QuotientLatticeTorsion.quotient_lattice_torsion <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.QuotientLatticeTorsion.quotient_lattice_torsion <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.QuotientLatticeTorsion.quotient_lattice_torsion ..)
-
-omit [TopologicalSpace Qp] in
 theorem Z1D_torsion [CompactSpace G] [IsDomain O] [IsFractionRing O LL] (T : LocLat G Qp LL O)
     {c : G → T.V ⧸ T.L.T} (hc : c ∈ divisibleCocycles T.L) : ∃ b : O, b ≠ 0 ∧ b • c = 0 := by
   classical
-  choose b hb hw using quot_torsion T
+  choose b hb hw using _root_.GlobalTheory.QuotientLatticeTorsion.quotient_lattice_torsion T
   have hfin := hc.1.range_finite
   refine ⟨∏ w ∈ hfin.toFinset, b w, Finset.prod_ne_zero_iff.2 fun w _ => hb w, ?_⟩
   funext g

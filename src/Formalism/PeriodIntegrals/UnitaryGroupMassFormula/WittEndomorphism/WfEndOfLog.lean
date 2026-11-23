@@ -48,6 +48,6 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PI.WfEndProof
 
-theorem wfEnd_of_log (hL : WfLog) : WfEnd := wfEnd_of witt_ring_structure witt_substitution hL
+theorem wfEnd_of_log (hL : WfLog) : WfEnd := wfEnd_of witt_ring_structure _root_.PI.WfSubstProof.wfSubst hL
 
 end PI.WfEndProof

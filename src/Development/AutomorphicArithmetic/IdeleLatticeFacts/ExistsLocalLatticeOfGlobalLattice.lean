@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.HalfIndexLattices.SplitStab
 import Development.WeilBound.ThetaLifts.Reductions.WeilPairs.AutEtaA
+import Development.WeilBound.ThetaLifts.Reductions.WeilPairs.AutEtaC
 
 @[expose] public section
 
@@ -59,14 +60,8 @@ section SlopeTestRemainingChoices
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
-private theorem ev_pair (P : HeightOneSpectrum (𝓞 E)) (α : Af F) :
-    ev F E P (algebraMap (AF F) (AEF F E) (pairA F 0 α)) =
-      GlobalTheory.LFun.complMap rfl (evalV F (P.under (𝓞 F)) α) := by
-  rw [ev_alg]
-  rfl
-
 private theorem ev_finIdem (P : HeightOneSpectrum (𝓞 E)) : ev F E P (finIdem F E) = 1 := by
-  rw [finIdem, ev_pair, map_one, map_one]
+  rw [finIdem, _root_.PositivityTheory.ThKW.AutEtaA.ev_fin, map_one, map_one]
 
 private theorem finPart_lift (y : Af F ⊗[F] E) : finPartF F E (PositivityTheory.ThKW.LatB.liftF F E y) = y := by
   induction y using TensorProduct.induction_on with
@@ -157,7 +152,7 @@ private theorem ev_mem_span (P : HeightOneSpectrum (𝓞 E)) (Λ : Submodule (�
   induction hz using AddSubgroup.closure_induction with
   | mem z hz =>
     obtain ⟨α, hα, γ, hγ, rfl⟩ := hz
-    rw [ev_map_smul, ev_pair, ev_ratWF]
+    rw [ev_map_smul, _root_.PositivityTheory.ThKW.AutEtaA.ev_fin, ev_ratWF]
     have hc : GlobalTheory.LFun.complMap rfl (evalV F (P.under (𝓞 F)) α) ∈ P.adicCompletionIntegers E :=
       GlobalTheory.LFun.complMap_mem rfl (hα _)
     exact Submodule.smul_mem _ (⟨_, hc⟩ : P.adicCompletionIntegers E) (Submodule.subset_span ⟨γ, hγ, rfl⟩)

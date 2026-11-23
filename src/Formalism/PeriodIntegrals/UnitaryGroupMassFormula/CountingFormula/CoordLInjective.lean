@@ -120,10 +120,6 @@ theorem fi_nat_mul {I : FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host
 
 variable {T : D.host.E} (F0 : FlagG (VS D) D.R.rS T) (f : Fin D.R.rS → (VS D).V)
 
-theorem M_nat_smul (M : Submodule (𝓞 D.host.E) (WbQ D F0)) (hsp : Submodule.span D.host.E (M : Set (WbQ D F0)) = ⊤)
-    (m : WbQ D F0) : ∃ k : ℕ, k ≠ 0 ∧ (k : 𝓞 D.host.E) • m ∈ M := by
-  first | exact UpperTheory.Reformulated.B.IntegralHeckeForms.M_nat_smul .. | (apply UpperTheory.Reformulated.B.IntegralHeckeForms.M_nat_smul <;> assumption) | (intros; apply UpperTheory.Reformulated.B.IntegralHeckeForms.M_nat_smul <;> assumption) | (apply @UpperTheory.Reformulated.B.IntegralHeckeForms.M_nat_smul <;> assumption) | (intros; apply @UpperTheory.Reformulated.B.IntegralHeckeForms.M_nat_smul <;> assumption) | (apply @UpperTheory.Reformulated.B.IntegralHeckeForms.M_nat_smul <;> first | assumption | infer_instance) | exact @UpperTheory.Reformulated.B.IntegralHeckeForms.M_nat_smul D T F0 M hsp m | exact @UpperTheory.Reformulated.B.IntegralHeckeForms.M_nat_smul D T F0 M hsp | exact @UpperTheory.Reformulated.B.IntegralHeckeForms.M_nat_smul D T F0 M | exact @UpperTheory.Reformulated.B.IntegralHeckeForms.M_nat_smul D T F0 | exact @UpperTheory.Reformulated.B.IntegralHeckeForms.M_nat_smul D T | exact @UpperTheory.Reformulated.B.IntegralHeckeForms.M_nat_smul D
-
 theorem vPr_perp (hf : PartnerOK D F0 f) (v : (VS D).V) : vPr D F0 f v ∈ perpS (VS D) F0.X := by
   intro x hx
   induction hx using Submodule.span_induction with
@@ -239,7 +235,7 @@ theorem lamC_span (hf : PartnerOK D F0 f) (M : Submodule (𝓞 D.host.E) (WbQ D 
   intro v _
   choose kα hkα hα using fun a => fi_nat_mul D (aaI_ne_zero D a) ((VS D).hT (f a) (vPr D F0 f v))
   choose kβ hkβ hβ using fun a => fi_nat_mul D (inv_ne_zero (aaI_ne_zero D a)) (star ((VS D).hT (F0.e a) v))
-  obtain ⟨kM, hkM, hM⟩ := M_nat_smul D F0 M hsp
+  obtain ⟨kM, hkM, hM⟩ := _root_.UpperTheory.Reformulated.B.IntegralHeckeForms.M_nat_smul D F0 M hsp
     (Submodule.Quotient.mk (⟨vPr D F0 f v, vPr_perp D F0 f hf v⟩ : perpS (VS D) F0.X))
   set K : ℕ := (∏ a, kα a) * kM * ∏ a, kβ a with hK
   have hK0 : K ≠ 0 := by

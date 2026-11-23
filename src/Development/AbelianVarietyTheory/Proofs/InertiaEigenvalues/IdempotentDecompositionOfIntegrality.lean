@@ -62,21 +62,10 @@ open Polynomial
 
 namespace GlobalTheory.JR.Et.Idem
 
-theorem isIntegral_of_forall {O : Type} [CommRing O] {ι : Type} [Finite ι] {R : ι → Type}
-    [∀ i, CommRing (R i)] [∀ i, Algebra O (R i)] (x : ∀ i, R i) (hx : ∀ i, IsIntegral O (x i)) :
-    IsIntegral O x := by
-  first
-  | exact @_root_.GlobalTheory.IntegralPi.main
-  | exact _root_.GlobalTheory.IntegralPi.main
-  | (apply _root_.GlobalTheory.IntegralPi.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralPi.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralPi.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegralPi.main ..)
-
 theorem isIntegral_single {O : Type} [CommRing O] {ι : Type} [Finite ι] [DecidableEq ι] {R : ι → Type}
     [∀ i, CommRing (R i)] [∀ i, Algebra O (R i)] (i : ι) (z : R i) (hz : IsIntegral O z) :
     IsIntegral O (Pi.single i z : ∀ j, R j) := by
-  refine isIntegral_of_forall _ fun j => ?_
+  refine _root_.GlobalTheory.IntegralPi.isIntegral_pi _ fun j => ?_
   by_cases h : j = i
   · subst h; simpa using hz
   · rw [Pi.single_eq_of_ne h]; exact isIntegral_zero

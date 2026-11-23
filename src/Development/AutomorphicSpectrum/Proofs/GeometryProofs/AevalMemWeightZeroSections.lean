@@ -67,6 +67,7 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.IsProbabi
 public import Development.AbelianVarietyTheory.Definitions.RegularCharts.ModelAt
 public import Development.AbelianVarietyTheory.Definitions.ShimuraVarieties.IsOpenOfMemIrreducibleComponentsOfFinite
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.DefiniteFormStabilizerFiniteAwayFromP
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsUnfFamily
 
 @[expose] public section
 
@@ -85,24 +86,6 @@ open scoped IntermediateField
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
   {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {r : ℕ}
-
-theorem frames_nonempty' {r : ℕ} (X : Data E r) : X.dom.Nonempty := by
-  classical
-  choose P hP hG using X.signature
-  refine ⟨fun τ => P τ, fun τ => ⟨hP τ, fun i => ?_⟩⟩
-  have h : dmin X.Gm (fun τ => P τ) τ i = ((psgn X.p0 i : ℝ) : ℂ) := by
-    have hm : mat (Ψ := X.Ψ) (fun τ => P τ) τ = P τ := rfl
-    unfold dmin lminor
-    rw [hm, hG τ, Matrix.submatrix_diagonal _ _ (Fin.castLE_injective _), Matrix.det_diagonal]
-    unfold psgn
-    rw [Complex.ofReal_prod, ← Fin.prod_univ_eq_prod_range (fun a => ((sgn X.p0 a : ℝ) : ℂ))]
-    rfl
-  rw [h, Complex.ofReal_re]
-  refine mul_self_pos.2 ?_
-  unfold psgn
-  refine Finset.prod_ne_zero_iff.2 fun a _ => ?_
-  unfold sgn
-  split_ifs <;> norm_num
 
 theorem rdU_eq_of_reads' {σ : c.F →+* ℂ} (U : Unf Xo c σ r) (h : GenFrEx Xo c) (k : U.Comp)
     (Z : Comp Xo c) (x : (U.X k).dom) (φ : Om Z →ₐ[c.F] CAt σ) (y' : FrPt Xo c (CAt σ)) (t : Ix Dw → (CAt σ)ˣ)
@@ -362,7 +345,7 @@ theorem over_unique {U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r} {h : GenFrEx Xo 
     obtain ⟨Z', S, hS, hg⟩ := GlobalTheory.GenericFrames.exists_comp_generic_off_meagre E H Dw l Xo c σ r (U σ) hσ hU h k₁
     have hd : Dense (⋂ n, (S n)ᶜ) :=
       dense_iInter_of_isOpen (fun n => (hS n).1.isOpen_compl) fun n => interior_eq_empty_iff_dense_compl.1 (hS n).2
-    obtain ⟨x, hx, hxS⟩ := hd.inter_open_nonempty _ (FourierCoefficientDomain.isOpen_dom _) (frames_nonempty' _)
+    obtain ⟨x, hx, hxS⟩ := hd.inter_open_nonempty _ (FourierCoefficientDomain.isOpen_dom _) (_root_.GlobalTheory.UnifFamily.dom_nonempty _)
     obtain ⟨φ, y₁, t, hm, hb⟩ := hg ⟨x, hx⟩ fun n hn => Set.mem_iInter.1 hxS n hn
     obtain rfl : Z' = Z := by
       by_contra hne

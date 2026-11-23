@@ -147,9 +147,7 @@ theorem exists_factor {ψ : OpenPartialHomeomorph M.Xc (Fin D.n → ℂ)} (hψ :
   rw [(M.fibre _ ((D.chart a).mem _ hb) _ hm).2 ⟨c', hc', e'⟩,
     ← (M.fibre _ (hs _ h2).1 _ hm).2 ⟨_, fun k => inv_ne_zero (hc k), rfl⟩, (hs _ h2).2]
 
-theorem isOpen_nz : IsOpen {z : (Σ k, J k) → ℂ | ∀ k, ∃ i, z ⟨k, i⟩ ≠ 0} := by
-  simp only [Set.setOf_forall, Set.setOf_exists]
-  exact isOpen_iInter_of_finite fun k => isOpen_iUnion fun i => isOpen_ne_fun (continuous_apply _) continuous_const
+alias isOpen_nz := _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.G1.isOpen_blocksNonzero
 
 variable {ref : HermLine J} {w : ((Σ k, J k) → ℂ) → ℝ} (P : PotentialCharts M.atlas)
 

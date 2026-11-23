@@ -113,12 +113,9 @@ theorem mmA_zero : V.MM (0 : C) := by
   unfold VF.MM
   simp
 
-theorem mmA_sum {ι : Type} (s : Finset ι) (f : ι → C) (h : ∀ i ∈ s, V.MM (f i)) : V.MM (∑ i ∈ s, f i) :=
-  Finset.sum_induction f (fun x => V.MM x) (fun _ _ => mmA_add) mmA_zero h
+alias mmA_sum := _root_.Formalism.L2.FormalSeriesBounds.mm_sum
 
-theorem mmA_mul_int {a b : C} (ha : V.MM a) (hb : V.Ge 0 b) : V.MM (a * b) := by
-  rw [mul_comm]
-  exact MaximalIdealCongruence.mm_mul_ge' hb ha
+alias mmA_mul_int := _root_.Formalism.L2.FormalSeriesBounds.mm_mul_ge
 
 end MM
 

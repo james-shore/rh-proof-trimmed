@@ -134,19 +134,4 @@ theorem continuous_of_valued_eq {A B Γ : Type*} [Ring A] [Ring B] [LinearOrdere
   exact hx
 
 
-open scoped WithZeroTopology in
-theorem exists_extension {K : Type} [Field K] [NumberField K] {R L : Type} [CommRing R] [IsDedekindDomain R]
-    [Field L] [Algebra R L] [IsFractionRing R L]
-    (w : HeightOneSpectrum (𝓞 K)) (u : HeightOneSpectrum R) (f : K →+* u.adicCompletion L)
-    (hf : ∀ x, Valued.v (f x) = w.valuation K x) :
-    ∃ φ : w.adicCompletion K →+* u.adicCompletion L, Continuous φ ∧
-      (∀ x : K, φ (algebraMap K _ x) = f x) ∧ ∀ y, Valued.v (φ y) = Valued.v y := by
-  first
-  | exact @_root_.GlobalTheory.ValuationExtensionContinuous.exists_extension
-  | exact _root_.GlobalTheory.ValuationExtensionContinuous.exists_extension
-  | (apply _root_.GlobalTheory.ValuationExtensionContinuous.exists_extension <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ValuationExtensionContinuous.exists_extension <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ValuationExtensionContinuous.exists_extension <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ValuationExtensionContinuous.exists_extension ..)
-
 end GlobalTheory.DenseCompl

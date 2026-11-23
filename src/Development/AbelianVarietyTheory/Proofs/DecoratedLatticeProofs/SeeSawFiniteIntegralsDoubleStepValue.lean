@@ -65,17 +65,13 @@ namespace GlobalTheory.ValFin
 
 variable {D : D7}
 
-theorem isThetaFunO_zero (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) : IsThetaFunO ψ S T 0 :=
-  ⟨fun _ _ => by simp, ⟨⊤, isOpen_univ, fun _ _ _ => by funext w; simp [heisO]⟩, continuous_const,
-    fun _ _ _ _ _ => by simp only [Pi.zero_apply]; exact contDiff_const⟩
-
 theorem isLatVac_zero (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (Λ : AddSubgroup (WO S T)) :
     IsLatVac (heisO ψ S T) Λ 0 :=
   ⟨fun _ _ => by funext w; simp [heisO], fun _ _ _ _ _ => by funext w; simp [heisO]⟩
 
 theorem isReal_zero (c : Comm D) (j : ℕ) : c.IsReal j 0 := by
-  refine ⟨⟨continuous_const, fun v => ⟨isThetaFunO_zero _ _ _, isLatVac_zero _ _ _ _⟩,
-    fun u => ⟨isThetaFunO_zero _ _ _, isLatVac_zero _ _ _ _⟩⟩, ?_⟩
+  refine ⟨⟨continuous_const, fun v => ⟨_root_.Formalism.IndefR.Fock.CCR.theta_zero _ _ _, isLatVac_zero _ _ _ _⟩,
+    fun u => ⟨_root_.Formalism.IndefR.Fock.CCR.theta_zero _ _ _, isLatVac_zero _ _ _ _⟩⟩, ?_⟩
   intro n L L' _ _ _ _ u v
   simp only [Pi.zero_apply]
   exact contDiff_const
@@ -145,7 +141,7 @@ theorem valX : ∀ (D : D7) (c : Comm D) (v : VCom c) (𝒯 : Type) (t : 𝒯 �
   · exact ⟨0, isReal_zero c j, fun s => (hT ⟨s⟩).elim⟩
   obtain ⟨s₀⟩ := hT
   refine ⟨(v.op j).app c.ψ (c.ctr j σ h ((t s₀).sBF j (σ + 1) h) ((t s₀).sFB j σ h) (v.Ψ j P₁ 1 a) (v.Ψ (j + 1) P₂ a a')),
-    ((GlobalTheory.T.seeSaw_commonRealDatum_biTheta_vacuum_contraction D c v (t s₀) (w s₀) hc hv (ht s₀) (hL s₀).vac (hL s₀).tl hFlat).1 j σ h _ _ hV₁ hV₂).2, ?_⟩
+    ((_root_.GlobalTheory.VReal.v_real D c v (t s₀) (w s₀) hc hv (ht s₀) (hL s₀).vac (hL s₀).tl hFlat).1 j σ h _ _ hV₁ hV₂).2, ?_⟩
   intro s ψ hψ y G x
   have hLs := hL s
   have hF := hLs.form
@@ -178,12 +174,12 @@ theorem valX : ∀ (D : D7) (c : Comm D) (v : VCom c) (𝒯 : Type) (t : 𝒯 �
   have hc₁ := K₁.1 (v.eG j) ((w s).eQ j) (hv.atG j).1 (hF.atQ j).1 (v.Ψ j P₁ 1 a)
   have hc₂ := K₂.1 (v.eG (j + 1)) ((w s).eQ (j + 1)) (hv.atG (j + 1)).1 (hF.atQ (j + 1)).1 (v.Ψ (j + 1) P₂ a a')
   rw [← hc₁, ← hc₂] at hQ
-  have hcell := GlobalTheory.T.seeSawDoubleStep_finiteIntegral_collapse_twistPlaces D c v (t s) (w s) hc hv (ht s) hF hLs.weil hLs.off hLs.gs hLs.qfin hContr hFlat j σ h
+  have hcell := _root_.GlobalTheory.DStepCell.cell_collapse D c v (t s) (w s) hc hv (ht s) hF hLs.weil hLs.off hLs.gs hLs.qfin hContr hFlat j σ h
     ρ₁ μ₁ ρ₂ μ₂ hn₁ hn₂ _ _ hV₁ hV₂ (fun α => (t s).rd j α ψ y) hφR G x a' ha' _ rfl _ hQ
   have hmove := GlobalTheory.T.seeSaw_iteratedIntegrand_vacuumForm_base_points D c v (t s) (w s) hc hv (ht s) hF j σ h P₁ P₂ a ha a' ha' (fun α => (t s).rd j α ψ y)
     (G.1 x) _ _ _ _ rfl rfl rfl hcell
   convert hmove using 1
-  have hrhs := GlobalTheory.T.seeSaw_unfoldedData_eq_kernelData_at_level D c v (t s) (w s) hc hv (ht s) hF hLs.gv hLs.tl hFlat hBi j σ h _ _ hV₁ hV₂
+  have hrhs := _root_.GlobalTheory.SeeSawRhs.unfolded_eq_kernel_data D c v (t s) (w s) hc hv (ht s) hF hLs.gv hLs.tl hFlat hBi j σ h _ _ hV₁ hV₂
     (fun α => (t s).rd j α ψ y) hφR
   have hct := ctr_indep c j σ h ((t s).sBF j (σ + 1) h) ((t s₀).sBF j (σ + 1) h) ((t s).sFB j σ h) ((t s₀).sFB j σ h)
     _ _ hV₁.1 hV₂.1

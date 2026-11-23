@@ -92,10 +92,8 @@ theorem quasiInverseR_of (h1 : PolFibreIsogAny) (h5 : KilledAny) : QuasiInverseR
   refine ⟨n, g, hn, hg, e, GlobalTheory.T.epi_of_finite_flat R A B B l hfl hs inferInstance _ _ ?_⟩
   rw [← Category.assoc, e, MonObj.comp_pow, MonObj.pow_comp, Category.id_comp, Category.comp_id]
 
-theorem polFibreIsogAny : PolFibreIsogAny := Z2.polFibreIsogAny
-
 theorem killedAny : KilledAny := killedAny_of Qi.killedCore
 
-theorem quasiInverseR : QuasiInverseR := quasiInverseR_of polFibreIsogAny killedAny
+theorem quasiInverseR : QuasiInverseR := quasiInverseR_of _root_.PositivityTheory.PrwZar.Z2.polFibreIsogAny killedAny
 
 end PositivityTheory.PrwZar

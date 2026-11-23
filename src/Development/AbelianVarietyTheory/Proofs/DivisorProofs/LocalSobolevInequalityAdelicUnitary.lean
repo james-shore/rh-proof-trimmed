@@ -315,7 +315,7 @@ theorem local_sobolev : ∀ (D : D7) (θ : InfFam D) (V : HSp D), IsInfFam θ �
   obtain ⟨B, hB, hBW, hBc⟩ := local_compact_nhds hW
   have hc := fun i => oneP_spec hθ V (hH (τs i)).2 (hX i)
   have hΘ := GlobalTheory.continuous_prod_ofFn_curves N (fun i => oneP θ V (τs i) (Xs i)) fun i => (hc i).1
-  obtain ⟨C₁, hC₁, h₁⟩ := GlobalTheory.T.le_mul_setIntegral_image2_of_forall_le_alt (GA D V) μ N _ (Metric.closedBall 0 S) B (K ^ N) hΘ
+  obtain ⟨C₁, hC₁, h₁⟩ := _root_.GlobalTheory.le_mul_setIntegral_image2_of_forall_le (GA D V) μ N _ (Metric.closedBall 0 S) B (K ^ N) hΘ
     (isCompact_closedBall _ _) hBc hB (pow_nonneg hK _)
   obtain ⟨C₂, hC₂, h₂⟩ := GlobalTheory.T.sq_norm_le_mul_of_iterated_one_parameter_integral_le (GA D V) N (fun i => oneP θ V (τs i) (Xs i)) s hs hc
   let w : List (Fin N) → List (D.what₂.Tau × Mt V.rank) := List.map fun i => (τs i, Xs i)
@@ -342,7 +342,7 @@ theorem local_sobolev : ∀ (D : D7) (θ : InfFam D) (V : HSp D), IsInfFam θ �
     (mul_le_mul_of_nonneg_left ?_ hC₁)
   · obtain ⟨f, a, haU, ha, hf, hf'⟩ := h x (hBW hx)
     clear_value F
-    refine GlobalTheory.T.setIntegral_le_pow_mul_setIntegral_of_expanding N _ _ K f
+    refine _root_.GlobalTheory.setIntegral_le_of_expanding N _ _ K f
       (fun t => ‖F l (y * (List.ofFn fun i => oneP θ V (τs i) (Xs i) (t i)).prod)‖ ^ 2)
       (fun t => ‖F l (y * ((List.ofFn fun i => oneP θ V (τs i) (Xs i) (t i)).prod * x))‖ ^ 2)
       (isCompact_univ_pi fun _ => isCompact_Icc) (isCompact_closedBall _ _) hK

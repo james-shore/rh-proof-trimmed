@@ -112,7 +112,7 @@ theorem scale_lattice_bound : ScaleLTB := by
   obtain ⟨hsq, hmod, hCM⟩ := Formalism.L2.Th1.Top.HAux.data ha hd hcm
   obtain ⟨g2, g3, ε, hgood, hε, hth⟩ := Formalism.L2.Th1.Top.modelInert _ _ hsq hmod hCM p h5 hnd hin ι
   obtain ⟨s2, lam, hlam, -, hLT, hCur, -⟩ :=
-    Formalism.L2.DIV.C.hostIntFree a₀ b₀ c₀ _ ha hd hcm p h5 hnd hin ι g2 g3 ε hgood hε hth
+    _root_.Formalism.L2.DIV.C.integralFree_holds a₀ b₀ c₀ _ ha hd hcm p h5 hnd hin ι g2 g3 ε hgood hε hth
   obtain ⟨σ0, F, -, -, -, -, hU0, hF, -⟩ := Formalism.L2.Th1.Top.InhA.joint p h5 1 0 0
   have hc : lam / ((g : ℂ) * δ) ≠ 0 := div_ne_zero hlam hl
   have hL : (Formalism.L2.Th1.F.scalePair B.L (lam / ((g : ℂ) * δ)) hc).lattice =

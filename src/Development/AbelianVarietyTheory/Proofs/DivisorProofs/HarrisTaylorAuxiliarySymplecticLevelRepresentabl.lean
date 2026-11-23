@@ -55,19 +55,19 @@ theorem harrisTaylorModuli_symplecticLevel_representable : ∀ (p : ℕ) [Fact p
   have hMR : IsUnit ((M : ℕ) : R) := b.unit M hMp
   have hqP : IsQProjOver (𝟙 _ ≫ pullback.snd (s ≫ spMap (Int.castRingHom (cycAway M)))
       (spMap (Int.castRingHom R))) :=
-    GlobalTheory.T.isQuasiProjective_of_finite_over_cyclotomicAway_pullback M R hMR X s hqs _ (𝟙 _) inferInstance
+    _root_.GlobalTheory.CycAwayQProj.isQProjOver_of_isFinite_pullback M R hMR X s hqs _ (𝟙 _) inferInstance
   rw [Category.id_comp] at hqP
   have hLN := GlobalTheory.T.isLocallyNoetherian_of_isQProjOver_noetherian R _ _ hqP
   obtain ⟨Z, π, v, lev, hlev, hfin, hfwd, hback⟩ :=
-    GlobalTheory.T.harrisTaylor_structures_representable_siegel_baseChange p D R b N (Module.finrank ℤ D.La / 2) M e hN hNp hM hMo hMp hep X s u hku hLN
+    _root_.GlobalTheory.UPel.HT.relRep_siegel p D R b N (Module.finrank ℤ D.La / 2) M e hN hNp hM hMo hMp hep X s u hku hLN
   refine ⟨Z, π ≫ pullback.snd _ _, π ≫ pullback.fst _ _ ≫ s, v, lev, hlev,
-    GlobalTheory.T.isQuasiProjective_of_finite_over_cyclotomicAway_pullback M R hMR X s hqs Z π hfin, ?_⟩
+    _root_.GlobalTheory.CycAwayQProj.isQProjOver_of_isFinite_pullback M R hMR X s hqs Z π hfin, ?_⟩
   intro S t t₁ o l hl
   have heS : IsUnit ((e : ℕ) : Γ(S, ⊤)) := by
     have h := (b.unit e hep).map ((t.appTop).hom.comp (Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom)
     simpa using h
   obtain ⟨f₀, ⟨hf₀s, hf₀pb⟩, hf₀u⟩ :=
-    huniv S t₁ (o.toSieg hl) heS (GlobalTheory.T.harrisTaylor_siegelObject_polarisationKernel_killed p D R b N S t o _ M t₁ l hl e hep hdual)
+    huniv S t₁ (o.toSieg hl) heS (_root_.GlobalTheory.UPel.HT.KerBy.siegKerBy_toSieg p D R b N S t o _ M t₁ l hl e hep hdual)
   obtain ⟨g, ⟨hg₁, hg₂, hgm⟩, hgu⟩ := hback S f₀ t t₁ o l hl hf₀pb
   refine ⟨g, ⟨hg₂, ?_, hgm⟩, ?_⟩
   · rw [← hf₀s, ← hg₁]

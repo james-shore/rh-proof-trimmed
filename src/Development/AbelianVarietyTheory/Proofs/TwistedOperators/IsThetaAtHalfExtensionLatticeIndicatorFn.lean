@@ -80,11 +80,6 @@ theorem smul_eq_zero_of_isHalf {e e' : AE D} (h : e' * e = 0) {x : Mx D m n} (hx
   simp only [Matrix.smul_apply, smul_eq_mul, Matrix.zero_apply]
   rw [← hx i j, ← mul_assoc, h, zero_mul]
 
-theorem isHalf_smul_idem {e : AE D} (he : e * e = e) (t : Mx D m n) : IsHalf e (e • t) := by
-  intro i j
-  simp only [Matrix.smul_apply, smul_eq_mul]
-  rw [← mul_assoc, he]
-
 def extLin (e₀ e₁ : AE D) (Λ : AddSubgroup (Mx D m n)) : (Mx D m n → ℂ) →ₗ[ℂ] (Mx D m n → ℂ) where
   toFun := extFn e₀ e₁ Λ
   map_add' Φ Ψ := by
@@ -126,8 +121,8 @@ theorem extFn_halfInd {e₀ e₁ : AE D} (h00 : e₀ * e₀ = e₀) (h11 : e₁ 
       constructor
       · rintro ⟨h0, h1⟩; rw [hdec]; exact Λ.add_mem h0 h1
       · intro h; exact ⟨hΛ0 t h, hΛ1 t h⟩
-    have a0 := isHalf_smul_idem h00 t
-    have a1 := isHalf_smul_idem h11 t
+    have a0 := _root_.GlobalTheory.SplitScalar.isHalf_smul h00 t
+    have a1 := _root_.GlobalTheory.SplitScalar.isHalf_smul h11 t
     rw [if_pos ht]
     by_cases h0 : e₀ • t ∈ Λ <;> by_cases h1 : e₁ • t ∈ Λ
     · rw [if_pos ⟨h0, a0⟩, if_pos ⟨h1, a1⟩, if_pos ⟨hiff.1 ⟨h0, h1⟩, ht⟩, one_mul]

@@ -60,18 +60,6 @@ open scoped Pointwise
 
 namespace GlobalTheory.SmoothRiesz
 
-theorem exists_mem_eq_on_of_finiteDimensional {V : Type} [AddCommGroup V] [Module ℂ V]
-    (Bf : V →ₗ[ℂ] V →ₗ⋆[ℂ] ℂ) (hpos : ∀ v, v ≠ 0 → 0 < (Bf v v).re)
-    (L : V →ₗ⋆[ℂ] ℂ) (W : Submodule ℂ V) [FiniteDimensional ℂ W] :
-    ∃ u ∈ W, ∀ w ∈ W, L w = Bf u w := by
-  first
-  | exact @_root_.GlobalTheory.ExistsRepresentation.exists_represent
-  | exact _root_.GlobalTheory.ExistsRepresentation.exists_represent
-  | (apply _root_.GlobalTheory.ExistsRepresentation.exists_represent <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ExistsRepresentation.exists_represent <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ExistsRepresentation.exists_represent <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ExistsRepresentation.exists_represent ..)
-
 theorem finite_orbit {G V : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [AddCommGroup V] [Module ℂ V] (σ : Representation ℂ G V) (hsm : IsSmooth σ)
     (K : Subgroup G) (hKc : IsCompact (K : Set G)) (y : V) :
@@ -95,7 +83,7 @@ theorem exists_eq_of_invariant {G V : Type} [Group G] [TopologicalSpace G] [IsTo
     (K : Subgroup G) (hKo : IsOpen (K : Set G)) (hKc : IsCompact (K : Set G))
     (hL : ∀ s ∈ K, ∀ w, L (σ s w) = L w) : ∃ u : V, ∀ w, L w = Bf u w := by
   haveI : FiniteDimensional ℂ (fixed σ K) := hadm.2 K hKo hKc
-  obtain ⟨u, huK, hu⟩ := exists_mem_eq_on_of_finiteDimensional Bf hpos L (fixed σ K)
+  obtain ⟨u, huK, hu⟩ := _root_.GlobalTheory.ExistsRepresentation.exists_represent Bf hpos L (fixed σ K)
   have hfix : ∀ k ∈ K, σ k u = u := fun k hk => by
     simpa using huK ⟨k, hk⟩
   refine ⟨u, fun w => ?_⟩

@@ -49,7 +49,7 @@ theorem UpperTheory.Zero.LLC.extEx :
     UpperTheory.Zero.LLC.ExtEx := by
   intro E Ω _ _ _ _ _ A w h g _ i hi n hn
   obtain ⟨E', fE, nE, _, aE, aΩ, tE, cE, w', h', hg, unr, card, _, _⟩ :=
-    GlobalTheory.T.exists_unramified_totallyComplex_ext_with_unity_roots E Ω g A w h i hi n hn
+    _root_.GlobalTheory.UnrCycExt.exists_unramified_ext E Ω g A w h i hi n hn
   obtain ⟨a', ha', _⟩ := UpperTheory.Zero.LLC.artEx E' Ω A w' h'
   haveI : w'.asIdeal.IsMaximal := w'.isMaximal
   letI : Field (𝓞 E' ⧸ w'.asIdeal) := Ideal.Quotient.field _

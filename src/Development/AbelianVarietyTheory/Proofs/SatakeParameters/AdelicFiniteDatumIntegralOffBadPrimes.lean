@@ -52,13 +52,6 @@ noncomputable section
 
 namespace GlobalTheory.TwV.AdInt
 
-theorem norm_le_one_of_isIntegral' {C : Type} [NormedField C] [IsUltrametricDist C] {x : C}
-    (hx : @IsIntegral ℤ C _ _ (Ring.toIntAlgebra C) x) : ‖x‖ ≤ 1 := by
-  have h : x ∈ (NormedField.valuation (K := C)).integer :=
-    (Valuation.integer.integers (NormedField.valuation (K := C))).mem_of_integral hx.tower_top
-  rw [Valuation.mem_integer_iff, NormedField.valuation_apply] at h
-  exact_mod_cast h
-
 theorem intOff_of_isIntegral {K : Type} [Field K] (σ : K →+* ℂ) (S : Finset ℕ) {x : K} (hx : IsIntegral ℤ x) :
     IntOff S (σ x) := by
   have hx' : IsIntegral ℤ (σ x) := map_isIntegral_int σ hx
@@ -67,7 +60,7 @@ theorem intOff_of_isIntegral {K : Type} [Field K] (σ : K →+* ℂ) (S : Finset
   rw [lamC_of_mem lam h]
   have h1 : IsIntegral ℤ (⟨σ x, h⟩ : TaylorLogMetric.Qbar) :=
     (isIntegral_algHom_iff ((algebraMap TaylorLogMetric.Qbar ℂ).toIntAlgHom) Subtype.val_injective).1 hx'
-  exact norm_le_one_of_isIntegral' (map_isIntegral_int lam h1)
+  exact _root_.GlobalTheory.HeckeVal.norm_le_one_of_isIntegral (map_isIntegral_int lam h1)
 
 end GlobalTheory.TwV.AdInt
 

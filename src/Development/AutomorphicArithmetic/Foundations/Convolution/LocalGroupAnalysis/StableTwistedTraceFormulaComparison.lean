@@ -194,7 +194,7 @@ theorem UpperTheory.ConvolutionTheory.G.stable_twisted_trace_formula_comparison 
   have splitQ : SplitQ := UpperTheory.quotient_measure_split
   have uniOf : UniOf := UpperTheory.haar_unimodular_criterion
   have haarEx : HaarEx := UpperTheory.exists_haarMeasure_adelicGL
-  have haarConst : HaarConst := UpperTheory.haar_const_of_haar_exists haarEx
+  have haarConst : HaarConst := _root_.UpperTheory.Reformulated.B.Gla1.haar_const_of_haar_exists haarEx
   have uniLoc : UniLoc := UpperTheory.local_unimodular_of_exists_haar_measure haarEx
   have rpCen : RPCen := UpperTheory.restrictedProduct_centralizer_adelicGL
   have euler : Euler := UpperTheory.eulerProduct_of_quotient_pushforward_support qpush UpperTheory.euler_product_support_finite

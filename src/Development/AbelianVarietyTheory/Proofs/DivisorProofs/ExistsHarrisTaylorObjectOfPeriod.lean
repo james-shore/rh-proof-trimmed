@@ -160,7 +160,7 @@ theorem GlobalTheory.UPel.HT.exists_obj_unifAt_of_period : ∀ (p : ℕ) [Fact p
         rw [← exp_nsmul e hadd, hz, ← hQ]
         exact hQ1 x')⟩
       rosati := fun c => by
-        refine (GlobalTheory.T.rosati_adjoint_iff_biextension_pullbacks_isomorphic A D.g hab hdim P hP r₁ r₂ hsy ham e D'.La Q D'.EF hexp hper.2.1 hker hweil
+        refine (_root_.GlobalTheory.RosatiFormAdj.lbIso_pull_iff_adjoint A D.g hab hdim P hP r₁ r₂ hsy ham e D'.La Q D'.EF hexp hper.2.1 hker hweil
           (act.act c) (act.act (D.star c).unop) (AddMonoidHom.mk' (fun x => c • x) (smul_add c))
           (AddMonoidHom.mk' (fun x => (D.star c).unop • x) (smul_add _)) (act.hom c) (act.hom _)
           (fun k x _ => hsc c _ x) (fun k x _ => hsc _ _ x)).2 ?_

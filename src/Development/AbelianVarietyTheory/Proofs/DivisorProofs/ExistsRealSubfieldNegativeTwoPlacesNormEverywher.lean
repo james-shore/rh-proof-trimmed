@@ -152,7 +152,7 @@ theorem exists_neg_two_norm_away : ∀ (M : Type) [Field M] [NumberField M] (σ 
     rw [IntermediateField.finrank_fixedField_eq_card, Nat.card_zpowers]
     exact orderOf_eq_prime hσe2 hσe1
   have hσK : ∀ x : K, σ (algebraMap K M x) = algebraMap K M x := fun x => (hmem _).1 x.2
-  obtain ⟨h, h0, hε, hε', hpos, hloc⟩ := GlobalTheory.T.exists_base_element_negative_at_two_embeddings K M hrank σ hσ hσK hconj ε ε' hεε' hεc
+  obtain ⟨h, h0, hε, hε', hpos, hloc⟩ := _root_.GlobalTheory.QuadSigns.exists_signs K M hrank σ hσ hσK hconj ε ε' hεε' hεc
   obtain ⟨s, hs⟩ : ∃ s, σ s ≠ s := by
     by_contra hc; push_neg at hc; exact hσ (RingHom.ext hc)
   set t := s - σ s with ht
@@ -166,7 +166,7 @@ theorem exists_neg_two_norm_away : ∀ (M : Type) [Field M] [NumberField M] (σ 
     have : t * t = 0 := by rw [htt, hd, map_zero]
     exact mul_self_eq_zero.1 this
   have hform := fun v => form_of_norm hrank σ hσK ht0 hσt htt v h0 (hloc v)
-  obtain ⟨x, y, hxy⟩ := GlobalTheory.T.exists_finiteAdele_sq_sub_mul_sq_eq_of_local K δ h hδ0 h0 hform
+  obtain ⟨x, y, hxy⟩ := _root_.GlobalTheory.AdelicQuadSol.exists_finiteAdele_sq_sub_mul_sq K δ h hδ0 h0 hform
   obtain ⟨Φ, hΦ⟩ := exists_toAfP K p
   let j : AfP p ⊗[ℚ] K →ₐ[ℚ] AfP p ⊗[ℚ] M :=
     Algebra.TensorProduct.map (AlgHom.id ℚ (AfP p)) (IsScalarTower.toAlgHom ℚ K M)

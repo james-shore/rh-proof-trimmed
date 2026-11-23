@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.MahlerMeasure.MahlerMeasureProofs.GamInt
 
 @[expose] public section
 
@@ -57,13 +58,11 @@ section Ops
 
 variable {p : ℕ} [hp : Fact p.Prime] {σ : Type} {r : ℕ}
 
-theorem one_le_p : (1 : ℝ) ≤ p := by exact_mod_cast hp.out.one_lt.le
-
 theorem bnd_Xl (w e : Fin r → σ) (J l : ℕ) (hl : l ≤ J) (B : ℝ) (hB : 0 ≤ B) (u : MvPolynomial σ ℚ_[p])
     (hu : Bnd B u) :
     Bnd (B * (p : ℝ) ^ ((r + 1) * Nat.log p J))
       ((((l.factorial : ℚ_[p]) ^ 2 * (J.choose l : ℚ_[p]))⁻¹) • ((tieE w e ^ l) ((tieF w e ^ l) u))) := by
-  have hp1 : (1 : ℝ) ≤ p := one_le_p
+  have hp1 : (1 : ℝ) ≤ p := _root_.Formalism.GM.gammaIntegralityLemmas.p_real_one_le
   set Mc : ℝ := (p : ℝ) ^ (Nat.log p J) with hMc
   have hM1 : 1 ≤ Mc := one_le_pow₀ hp1
   have hM : ∀ j ≤ J, ∀ k ≤ j, ‖(((j.choose k : ℕ) : ℚ_[p]))⁻¹‖ ≤ Mc := fun j hj k hk =>
@@ -95,7 +94,7 @@ theorem bnd_Xl (w e : Fin r → σ) (J l : ℕ) (hl : l ≤ J) (B : ℝ) (hB : 0
 
 theorem bnd_pow_iff (k : ℕ) (u : MvPolynomial σ ℚ_[p]) :
     Bnd ((p : ℝ) ^ k) u ↔ M.IsIntegral' p (((p : ℚ_[p]) ^ k) • u) := by
-  have hp0 : (0 : ℝ) < p := lt_of_lt_of_le zero_lt_one one_le_p
+  have hp0 : (0 : ℝ) < p := lt_of_lt_of_le zero_lt_one _root_.Formalism.GM.gammaIntegralityLemmas.p_real_one_le
   have hk : (0 : ℝ) < (p : ℝ) ^ k := pow_pos hp0 k
   refine forall_congr' fun m => ?_
   rw [MvPolynomial.coeff_smul, smul_eq_mul, norm_mul, norm_pow, Padic.norm_p, inv_pow, inv_mul_le_iff₀ hk, mul_one]
@@ -104,9 +103,9 @@ theorem bnd_phi (w e : Fin r → σ) (hw : Function.Injective w) (he : Function.
     (hr : 1 ≤ r) (o n z Λ : ℕ) (hΛ : Nat.log p (o + n + r + z) + 1 ≤ Λ) (k : ℕ) (u : MvPolynomial σ ℚ_[p])
     (hu : Bnd ((p : ℝ) ^ k) u) : Bnd ((p : ℝ) ^ (k + (r + 1) * Λ)) (tiePhi w e o n z u) := by
   have h1 := (bnd_pow_iff k u).1 hu
-  have h2 := Formalism.GM.projectorIntegral p σ r w e hw he hwe hr o n z _ h1
+  have h2 := _root_.Formalism.GM.M.PhiIntegrality.phi_integrality p σ r w e hw he hwe hr o n z _ h1
   rw [map_smul, smul_smul, ← pow_add] at h2
-  refine bnd_mono ((bnd_pow_iff _ _).2 h2) (pow_le_pow_right₀ one_le_p ?_)
+  refine bnd_mono ((bnd_pow_iff _ _).2 h2) (pow_le_pow_right₀ _root_.Formalism.GM.gammaIntegralityLemmas.p_real_one_le ?_)
   have := Nat.mul_le_mul_left (r + 1) hΛ
   omega
 
@@ -127,7 +126,7 @@ theorem norm_fock_le (U v : MvPolynomial σ ℚ_[p]) (dF : ℕ) (hdF : dF ≠ 0)
     (hv : Bnd 1 v)
     (hval : ∀ m ∈ v.support, padicValNat p dF ≤ padicValNat p (m.prod fun _ i => i.factorial) + E) :
     ‖M.fockK U v / (dF : ℚ_[p])‖ ≤ (p : ℝ) ^ (k + E) := by
-  have hp1 : (1 : ℝ) ≤ p := one_le_p
+  have hp1 : (1 : ℝ) ≤ p := _root_.Formalism.GM.gammaIntegralityLemmas.p_real_one_le
   have hp0 : (0 : ℝ) < p := lt_of_lt_of_le zero_lt_one hp1
   unfold M.fockK
   rw [Finset.sum_div]

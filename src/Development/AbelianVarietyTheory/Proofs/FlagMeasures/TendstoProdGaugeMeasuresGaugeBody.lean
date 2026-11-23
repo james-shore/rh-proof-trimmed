@@ -93,9 +93,9 @@ theorem prod_gauge_body : ∀ (n : ℕ) (ε : Fin n → Bool) (SN SM MainNotions
       Measurable fun g : Formalism.REAL.UJ ε => crd E (uMat g - 1) :=
     fun E => (continuous_crd_uMat ε E).measurable
 
-  have vMK := GlobalTheory.T.vague_limit_rescaled_measures_prod _ _ _ _ (μM.restrict s) (μK.restrict s) (fun g => crd EM (uMat g - 1))
+  have vMK := _root_.GlobalTheory.IwConst.vag_prod _ _ _ _ (μM.restrict s) (μK.restrict s) (fun g => crd EM (uMat g - 1))
     (fun g => crd EK (uMat g - 1)) volume volume dM dK (mc EM) (mc EK) vM vK
-  have vNMK := GlobalTheory.T.vague_limit_rescaled_measures_prod _ _ _ _ (μN.restrict s) ((μM.restrict s).prod (μK.restrict s))
+  have vNMK := _root_.GlobalTheory.IwConst.vag_prod _ _ _ _ (μN.restrict s) ((μM.restrict s).prod (μK.restrict s))
     (fun g => crd EN (uMat g - 1)) (Prod.map (fun g => crd EM (uMat g - 1)) (fun g => crd EK (uMat g - 1)))
     volume (volume.prod volume) dN (dM + dK) (mc EN) (Measurable.prodMap (mc EM) (mc EK)) vN vMK
   have h2 : (volume.prod volume : Measure ((Fin dM → ℝ) × (Fin dK → ℝ))).IsAddHaarMeasure :=

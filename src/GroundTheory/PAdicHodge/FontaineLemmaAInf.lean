@@ -186,7 +186,7 @@ theorem mem_span_mu_of_forall {ε : 𝒪♭} (hε : PreTilt.untilt ε = 1)
     (ha : ∀ n : ℕ, θ ((φ ^ n) a) = 0) : a ∈ Ideal.span {mu ε} := by
   have hp0 := natCast_ne_zero hε hζ
   have hJ : kerThetaFrob K p ≤ Ideal.span {mu ε} := by
-    refine le_span_singleton_of_forall_mem_eq (π := (p : AInf K p)) fun x hx => ?_
+    refine _root_.UpperTheory.Reformulated.B.Yhc2.le_span_singleton_of_forall_mem_eq (π := (p : AInf K p)) fun x hx => ?_
     rw [mem_kerThetaFrob] at hx
     obtain ⟨β, hβ⟩ := sub_one_dvd_coeff_zero hε hζ hx
     obtain ⟨v, hv⟩ := exists_eq_teichmuller_add_mul_p (x - mu ε * teichmuller p β)

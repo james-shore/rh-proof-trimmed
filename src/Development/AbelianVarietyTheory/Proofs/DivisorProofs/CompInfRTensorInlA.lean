@@ -64,15 +64,7 @@ section Lin
 
 variable {A : Type} [CommRing A] {n r : ℕ}
 
-theorem mem_span_cols_iff (C : Matrix (Fin n) (Fin r) A) (I : Set (Fin r)) (y : Fin n → A) :
-    y ∈ Submodule.span A ((fun i => Cᵀ i) '' I) ↔ ∃ a : Fin r → A, (∀ l, l ∉ I → a l = 0) ∧ C *ᵥ a = y := by
-  first
-  | exact @_root_.GlobalTheory.ColumnSumLemma.main
-  | exact _root_.GlobalTheory.ColumnSumLemma.main
-  | (apply _root_.GlobalTheory.ColumnSumLemma.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ColumnSumLemma.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ColumnSumLemma.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ColumnSumLemma.main ..)
+alias mem_span_cols_iff := _root_.GlobalTheory.ColumnSumLemma.main
 
 variable (P : Fin r → Fin r → Prop) (hPt : ∀ i l j, P i l → P l j → P i j) (hPlt : ∀ i l, P i l → i < l)
 include hPt

@@ -153,7 +153,7 @@ theorem lift_i_of_closedPoint (C : UCompact Xo c) (V : Type) [CommRing V] [IsLoc
     (fun a => hunit a (nonZeroDivisors.ne_zero a.2))
   have hψ : ψ.comp C.b = φ := RingHom.ext fun a => IsLocalization.lift_eq (M := nonZeroDivisors C.o) (S := c.F) _ a
   have hsq : g ≫ C.z = spMap ψ ≫ spMap C.b := by
-    rw [← hφ, ← hψ]; exact GlobalTheory.UTraitPt.spMap_comp_eq _ _
+    rw [← hφ, ← hψ]; exact _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp _ _
   let g₁ : Sp V ⟶ pullback C.z (spMap C.b) := pullback.lift g (spMap ψ) hsq
   have e1 : g₁ ≫ pullback.fst C.z (spMap C.b) = g := pullback.lift_fst _ _ _
   have hx₁ : g₁ (closedPoint V) = C.iF x := hinj ((Scheme.Hom.comp_apply g₁ (pullback.fst C.z (spMap C.b)) _).symm.trans

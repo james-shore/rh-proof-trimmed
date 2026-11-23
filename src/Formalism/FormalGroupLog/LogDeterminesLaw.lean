@@ -74,6 +74,6 @@ theorem homComp : HomComp := by
   apply Formalism.G.homComp_statement <;> assumption
 theorem logIffHomGa : LogIffHomGa := by
   apply Formalism.G.log_iff_hom_additive <;> assumption
-theorem substInjective : SubstInjective := substInjective_statement
+alias substInjective := _root_.Formalism.G.substInjective_statement
 
 end Formalism.G

@@ -58,15 +58,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 namespace GlobalTheory.Heat.ConjGauge
 open ReciprocityTheory.ChartRestriction.G.Semi
 
-theorem oneGen_isGen {X Y : Scheme.{0}} (L : LB X) : (LB.oneGen L (Y := Y)).IsGen := by
-  intro i j
-  have e : (LB.LinComb L (Y := Y) (K := PEmpty.{1}) PEmpty.elim PEmpty.elim).g i j = 1 := by
-    dsimp only [LB.LinComb]
-    erw [Fintype.prod_empty]
-    rfl
-  show res _ (1 : Γ(Y, _)ˣ) = _ * res _ (1 : Γ(Y, _)ˣ)
-  rw [map_one, map_one, e, _root_.one_mul]
-
 theorem exists_pullSec {X Y : Scheme.{0}} (L : LB X) (hL : L.IsLB) (m : Y ⟶ X) (T : Y ⟶ Y) (k : ℕ)
     (τ : SecM m L k) : ∃ σ : SecM (T ≫ m) L k, ∀ (Z : Scheme.{0}) (r : Z ⟶ Y) (z : Z) (J : (Z ⟶ X) → L.ι),
       Good L z J → sval σ r z J = sval τ (r ≫ T) z J := by
@@ -74,7 +65,7 @@ theorem exists_pullSec {X Y : Scheme.{0}} (L : LB X) (hL : L.IsLB) (m : Y ⟶ X)
       (Sum.elim (fun _ : Fin 1 => (k : ℤ)) PEmpty.elim) (K' := Fin 1) (fun _ => T ≫ m) (fun _ => (k : ℤ)) := by
     intro U _ h
     simp [Fintype.prod_sum_type]
-  obtain ⟨σ, hσ⟩ := exists_sec hL hF (pullMulSec τ T (LB.oneGen L (Y := Y)) (oneGen_isGen L))
+  obtain ⟨σ, hσ⟩ := exists_sec hL hF (pullMulSec τ T (LB.oneGen L (Y := Y)) (_root_.GlobalTheory.SelfUnif.oneGen_isGen L))
   refine ⟨σ, fun Z r z J hJ => ?_⟩
   rw [hσ Z r z J hJ, sval_pullMulSec τ T _ _ r z hJ, val_one, Units.val_one, _root_.mul_one]
 

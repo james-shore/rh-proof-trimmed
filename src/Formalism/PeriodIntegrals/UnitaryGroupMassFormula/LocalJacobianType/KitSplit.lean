@@ -205,7 +205,7 @@ theorem mem_iff (x : Fv F v ⊗[F] E) :
       show (a ⊗ₜ[F] (1 : E) : Fv F v ⊗[F] E) = algebraMap (Fv F v) (Fv F v ⊗[F] E) a from rfl,
       AlgHom.commutes]
     rfl
-  have key := split_integral_local F E v spl hspl ((Algebra.TensorProduct.comm F E (Fv F v)).symm x)
+  have key := _root_.PI.SplitIntLoc.Proof.main F E v spl hspl ((Algebra.TensorProduct.comm F E (Fv F v)).symm x)
   have hx : spl ((Algebra.TensorProduct.comm F E (Fv F v)).symm x) = f x := by
     show f (Algebra.TensorProduct.comm F E (Fv F v) ((Algebra.TensorProduct.comm F E (Fv F v)).symm x)) = f x
     rw [AlgEquiv.apply_symm_apply]

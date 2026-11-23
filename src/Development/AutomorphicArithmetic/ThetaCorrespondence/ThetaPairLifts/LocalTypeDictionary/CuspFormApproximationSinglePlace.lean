@@ -65,7 +65,7 @@ theorem kFinite_cusp_approx_at_one_place : _root_.GlobalTheory.FunPr.ThetaLocalI
     have := hr.add (hav.smul (-1))
     rwa [neg_one_smul, ← sub_eq_add_neg] at this
   have hψc : IsCuspFun N.V ψ := by
-    have h2 := _root_.GlobalTheory.T.kFinite_cuspForm_average_approx θ hθ hP N τ e hec φ hA hc
+    have h2 := _root_.GlobalTheory.KFinCuspApprox.isCuspForm_kFinite_average θ hθ hP N τ e hec φ hA hc
     have := GlobalTheory.MultMem.isCuspFun_add hr.toIsAutFun (hav.smul (-1)).toIsAutFun hc (GlobalTheory.MultMem.isCuspFun_smul (-1) h2)
     rwa [neg_one_smul, ← sub_eq_add_neg] at this
   have hψlev : ∀ k ∈ U, k ∈ GfC N.V → ∀ x, ψ (x * k) = ψ x := by

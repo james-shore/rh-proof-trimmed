@@ -71,10 +71,10 @@ theorem mem_omI_of_theta_alt : GlobalTheory.Published.HarishChandraFinite → Gl
   have hφ' : ∀ v, IsThetaFunO X.R.ψ (Vc D j) (Wc D j) (valAct1 (_root_.GlobalTheory.ThetaTri.standardWeilRepresentation A j (X.tupT (D.nd.mu i))) p φ v) :=
     fun v => hω.om_pres _ _ (hφ v)
   refine ⟨hφ', fun F g => ?_, fun F y => ?_⟩
-  · obtain ⟨hc1, hc2⟩ := _root_.GlobalTheory.T.form_to_vector_map_continuous_invariant hL D P X A i j hj hμ F
+  · obtain ⟨hc1, hc2⟩ := _root_.GlobalTheory.ThetaFormV.formToVectorMap_continuous_and_left_invariant hL D P X A i j hj hμ F
     exact GlobalTheory.DefiniteQuotient.integrableOn_theta D X.R.ψ hω.std (Vc D j) (Wc D j) _ _ _ hω hpd _
       (valAct1 (_root_.GlobalTheory.ThetaTri.standardWeilRepresentation A j (X.tupT (D.nd.mu i))) p φ) hφ' _ hc1 hc2 _ _ hHV hfdV g
-  · obtain ⟨hc1, hc2⟩ := _root_.GlobalTheory.T.form_to_vector_map_continuous_invariant hL D P X A i j hj hμ F
+  · obtain ⟨hc1, hc2⟩ := _root_.GlobalTheory.ThetaFormV.formToVectorMap_continuous_and_left_invariant hL D P X A i j hj hμ F
     have hmap := (Classical.choose_spec (Classical.choose_spec hc)).2.2.1
     have hey : _root_.GlobalTheory.ThetaTri.canonicalEmbedding' hc (y : Y.A) ∈ Formalism.IndefR.principalLevelFrame.Minf X.R.θ (X.PW j) (X.R.MW j (sg0 D X.A)) := by
       rw [← hmap]; exact ⟨y, y.2, rfl⟩

@@ -66,24 +66,9 @@ open GlobalTheory.ZM
 namespace GlobalTheory
 namespace ClosedPts
 
-theorem spMap_spMap {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  rw [← Spec.map_comp]
-  rfl
+alias spMap_spMap := _root_.GlobalTheory.spMap_comp_ring
 
-theorem jacobson_int : IsJacobsonRing ℤ := by
-  rw [isJacobsonRing_iff_prime_eq]
-  intro P hP
-  by_cases h : P = ⊥
-  · subst h
-    refine le_antisymm (fun x hx => ?_) Ideal.le_jacobson
-    rw [Ideal.mem_bot]
-    by_contra h0
-    have h1 := Ideal.mem_jacobson_bot.1 hx x
-    have h2 : 0 < x * x := mul_self_pos.2 h0
-    rcases Int.isUnit_iff.1 h1 with h3 | h3 <;> omega
-  · have := Ring.DimensionLEOne.maximalOfPrime h hP
-    exact Ideal.jacobson_eq_self_of_isMaximal
+alias jacobson_int := _root_.ReciprocityTheory.AnForm.R.IntegerToRational.isJacobsonRing_int
 
 theorem exists_maximal_notMem {R : Type} [CommRing R] [IsJacobsonRing R] (q : Ideal R) (f : R) (hq : q.IsPrime)
     (hf : f ∉ q) : ∃ m : Ideal R, m.IsMaximal ∧ q ≤ m ∧ f ∉ m := by
@@ -112,21 +97,7 @@ theorem finiteType_int_of_surjective {A B : Type} [CommRing A] [CommRing B] [Alg
     (hf : Function.Surjective f) : Algebra.FiniteType ℤ B :=
   Algebra.FiniteType.of_surjective f.toIntAlgHom hf
 
-theorem range_spMap_fraction (V K : Type) [CommRing V] [IsDomain V] [Field K] [Algebra V K] [IsFractionRing V K] :
-    Set.range (spMap (algebraMap V K)) = {genericPoint (Sp V)} := by
-  rw [genericPoint_eq_bot_of_affine]
-  have key : ∀ y : Sp K, spMap (algebraMap V K) y = (⊥ : PrimeSpectrum V) := fun y => by
-    refine PrimeSpectrum.ext ?_
-    change Ideal.comap (algebraMap V K) y.asIdeal = ⊥
-    have hy : y.asIdeal = (⊥ : Ideal K) := Ideal.eq_bot_of_prime (K := K) y.asIdeal (h := y.isPrime)
-    rw [hy]
-    exact Ideal.comap_bot_of_injective _ (IsFractionRing.injective V K)
-  ext z
-  constructor
-  · rintro ⟨y, rfl⟩
-    exact key y
-  · rintro rfl
-    exact ⟨(⊥ : PrimeSpectrum K), key _⟩
+alias range_spMap_fraction := _root_.GlobalTheory.GenericSpread.range_spMap_fractionRing
 
 theorem exists_pull (h2 : Out.Laws2) {o : Type} [CommRing o] {g N' : ℕ} {J : Type} {b : TBase o (N' ^ 2)}
     (Mat : J → Matrix (Fin (2 * g)) (Fin (2 * g)) ℤ) (κ : ℕ) {A B : Type} [CommRing A] [CommRing B] (e : A →+* B)

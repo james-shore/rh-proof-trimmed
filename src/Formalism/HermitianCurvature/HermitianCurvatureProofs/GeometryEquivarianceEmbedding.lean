@@ -58,6 +58,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.LinearChangeOfVariablesBis
 
 @[expose] public section
 
@@ -164,11 +165,6 @@ lemma N_wb_X {n : B.Mat k r} (hn : n ∈ Nset k r) {v : Fin (2 * r + k + 1) → 
       · simp [h, Ne.symm h]
   rw [Finset.sum_congr rfl (fun j _ => key j)]
   simp
-
-lemma sset_N {z : Fin (2 * r + k + 1) → ℂ} {n : B.Mat k r} (hn : n ∈ Nset k r) : n ∈ Sset k r z := by
-  refine ⟨1, ?_, n, hn, (one_mul n).symm⟩
-  unfold UWset
-  simp [UH]
 
 lemma N_Fsp {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) {n : B.Mat k r} (hn : n ∈ Nset k r)
     {x : Fin (2 * r + k + 1) → ℂ} (hx : x ∈ Fsp k r z) : n *ᵥ x ∈ Fsp k r z := by
@@ -291,33 +287,17 @@ lemma unitH_UH {h : B.Mat k r} (hh : h ∈ UH (Hpk k r)) (v : Fin (2 * r + k + 1
     h *ᵥ ((((Real.sqrt (Formalism.QuantumDeterminants.herm (Formalism.QuantumDeterminants.Hpk k r) v v).re)⁻¹ : ℝ) : ℂ) • v)
   rw [herm_hpk_mulVec_of_mem_uh hh, Matrix.mulVec_smul]
 
-private theorem rk_mulVec_eq_herm_smul (p q v : Fin (2 * r + k + 1) → ℂ) :
-    Rk k r p q *ᵥ v = Formalism.QuantumDeterminants.herm (Formalism.QuantumDeterminants.Hpk k r) v q • p := by
-  have e1 : Formalism.QuantumDeterminants.herm (Formalism.QuantumDeterminants.Hpk k r) v q = (star q ᵥ* Formalism.QuantumDeterminants.Hpk k r) ⬝ᵥ v := by
-    show star q ⬝ᵥ (Formalism.QuantumDeterminants.Hpk k r *ᵥ v) = _
-    exact Matrix.dotProduct_mulVec _ _ _
-  rw [e1]
-  ext i
-  simp only [Rk, Matrix.mulVec, Matrix.vecMulVec_apply, dotProduct, Pi.smul_apply, smul_eq_mul]
-  rw [Finset.sum_mul]
-  exact Finset.sum_congr rfl fun j _ => by ring
-
-private theorem dw_mulVec_eq_wbPart (v : Fin (2 * r + k + 1) → ℂ) : Dw k r *ᵥ v = PI.UnitaryGroupMassFormula.GsFr.wbPart k r v := by
-  ext i
-  simp only [Dw, Matrix.mulVec_diagonal, PI.UnitaryGroupMassFormula.GsFr.wbPart]
-  split_ifs <;> simp
-
 lemma PpG_mulVec (z z' : Fin (2 * r + k + 1) → ℂ) (g : B.Mat k r) (v : Fin (2 * r + k + 1) → ℂ) :
     PpG z z' g *ᵥ v = PI.UnitaryGroupMassFormula.GsFr.prW k r z' v -
       herm (Hpk k r) (PI.UnitaryGroupMassFormula.GsFr.prW k r z' v) (nuG' z z' g) • nuG' z z' g := by
   show (Pm k r z' - Rk k r (nuG' z z' g) (nuG' z z' g) * Pm k r z') *ᵥ v = _
   have hPm : Pm k r z' *ᵥ v = PI.UnitaryGroupMassFormula.GsFr.prW k r z' v := by
     show (Dw k r + ((Tz k r z' : ℂ))⁻¹ • (Rk k r z' z' * Dw k r)) *ᵥ v = _
-    rw [Matrix.add_mulVec, Matrix.smul_mulVec, ← Matrix.mulVec_mulVec, rk_mulVec_eq_herm_smul, dw_mulVec_eq_wbPart]
+    rw [Matrix.add_mulVec, Matrix.smul_mulVec, ← Matrix.mulVec_mulVec, _root_.PI.UnitaryGroupMassFormula.GsFr.Rk_mulVec, _root_.PI.UnitaryGroupMassFormula.GsFr.Dw_mulVec]
     show _ = PI.UnitaryGroupMassFormula.GsFr.wbPart k r v +
       (Formalism.QuantumDeterminants.herm (Formalism.QuantumDeterminants.Hpk k r) (PI.UnitaryGroupMassFormula.GsFr.wbPart k r v) z' / (Tz k r z' : ℂ)) • z'
     rw [smul_smul, div_eq_inv_mul]
-  rw [Matrix.sub_mulVec, ← Matrix.mulVec_mulVec, rk_mulVec_eq_herm_smul, hPm]
+  rw [Matrix.sub_mulVec, ← Matrix.mulVec_mulVec, _root_.PI.UnitaryGroupMassFormula.GsFr.Rk_mulVec, hPm]
 
 lemma ioG_mulVec (z z' : Fin (2 * r + k + 1) → ℂ) (g : B.Mat k r) (v : Fin (2 * r + k + 1) → ℂ) :
     ioG z z' g *ᵥ v = Phi k r z z' g *ᵥ (PpG z z' g *ᵥ v) := by
@@ -362,7 +342,7 @@ lemma det_tilde {z z' : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) (hz' :
   have hF' := Formalism.FourierDecayAlt.P.unipotent_map_frame k r z' hz'
   rw [zhat_UW (Wz.inv_mem h hh) hh', zhat_N hz hz' (Nc.inv_mem n hn) hn' g,
     Matrix.nonsing_inv_nonsing_inv n (Nc.unit n hn), Matrix.det_mul, Matrix.det_mul, Matrix.det_conjTranspose,
-    unitri_det (hF.1 n (sset_N hn)).2.1, unitri_det (hF'.1 n' (sset_N hn')).2.1]
+    unitri_det (hF.1 n (_root_.Formalism.FourierDecayAlt.P.C2x7.N_sub_S hn)).2.1, unitri_det (hF'.1 n' (_root_.Formalism.FourierDecayAlt.P.C2x7.N_sub_S hn')).2.1]
   simpa using hd
 
 end S3

@@ -61,7 +61,7 @@ theorem idemSum_mul_conj {D : D7} {P : Finset (Formalism.L2.DIV.Pl D.host.E)} {e
   obtain ⟨q0, q1, -⟩ := GlobalTheory.FunObj.Comparison₂.cpt_idemSum he₀
   obtain ⟨-, d2⟩ := GlobalTheory.StdFrames.cpt_of_isIdemAt ha
   have k : e₀ * a = a := by
-    refine GlobalTheory.DepthFix.ext_cpt ?_ fun R => ?_
+    refine _root_.GlobalTheory.FunObj.ae_ext ?_ fun R => ?_
     · rw [RingHom.map_mul, q0, zero_mul, GlobalTheory.SplitScalar.infPart_splitIdem ha.1]
     · rw [RingHom.map_mul, RingHom.map_mul]
       by_cases hR : R = Q

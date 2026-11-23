@@ -57,8 +57,7 @@ open GlobalTheory.PRep GlobalTheory.SmGL
 
 namespace UpperTheory.Lit.Mix
 
-theorem geometricLemma : GlobalTheory.Published.GeometricLemma :=
-  GlobalTheory.geometricLemma_of_filtration GlobalTheory.bernsteinZelevinskyFiniteness_holds GlobalTheory.geometricLemmaFiltration_unconditional
+alias geometricLemma := _root_.GlobalTheory.CompanionTheory.GeoLink.geometricLemma
 
 theorem polynomialRing : GlobalTheory.Published.ZelevinskyPolynomialRing :=
   GlobalTheory.zelevinskyPolynomialRing_of_parts GlobalTheory.bernsteinZelevinskyFiniteness_holds PositivityTheory.RgGu.segmentRepresentation

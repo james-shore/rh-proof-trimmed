@@ -191,7 +191,7 @@ theorem overlap [CharZero Ω] [Fact p.Prime] [IsFractionRing B Ω] (hc : ∀ x, 
     exact (WB b _).2
   have hTmem : ∀ b a, T b a ∈ loc B u hu := by
     intro b a
-    refine coef_mem_dual (DB.omHT (σ.comp c.toRingHom)) (omHT_fg _ _) WB φB hφB (fun b => T b a) ?_ b
+    refine coef_mem_dual (DB.omHT (σ.comp c.toRingHom)) (_root_.UpperTheory.Reformulated.B.FinitelyGeneratedHomology.omHT_fg _ _) WB φB hφB (fun b => T b a) ?_ b
     intro z hz
     show (∑ b, T b a • φB b) z ∈ loc B u hu
     rw [← hT a]

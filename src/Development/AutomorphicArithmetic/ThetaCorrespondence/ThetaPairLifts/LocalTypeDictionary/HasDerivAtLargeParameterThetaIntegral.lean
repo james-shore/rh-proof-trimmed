@@ -135,7 +135,7 @@ theorem convergent_theta_integral_ne_zero : _root_.GlobalTheory.FunPr.ThetaLocal
   obtain ⟨e, Bs, Γ, Xc, om, om', cA, cB, hO, hTD⟩ :=
     GlobalTheory.T.exists_placewise_seesaw_triple_over_hermitian D ψ θ hθ W W₁ X A A₁ B α β hT ν 𝓕 ν₁ 𝓕₁ hν hν₁ ωA ωB hm.weilA hm.weilB
   have hC := (hK.1 _ _ _ Bs _ _ Γ Xc om om' hTD).1.1
-  obtain ⟨c, -, hc⟩ := _root_.GlobalTheory.T.thetaIntegrals_agree_of_convergence hP hK hL D ψ θ hψ hθ W W₁ X A A₁ B α β hT ν 𝓕 ν₁ 𝓕₁ hν hν₁ ωA ωB Pm rf rl p p' hm
+  obtain ⟨c, -, hc⟩ := _root_.GlobalTheory.ThetaAgreeConv.thetaIntegrals_agree_of_integrable_kernel hP hK hL D ψ θ hψ hθ W W₁ X A A₁ B α β hT ν 𝓕 ν₁ 𝓕₁ hν hν₁ ωA ωB Pm rf rl p p' hm
   set S := algF ψ θ true A B with hS
   have hint : ∀ Φ ∈ S, ∀ h, IntegrableOn (fun g => thetaKO ωA g h Φ) 𝓕 ν := fun Φ hΦ h => integrable_big hO hC hΦ h
   have tr : ∀ (Φ : WO W X → ℂ) (h k : GA D X), thetaInt ωA ν 𝓕 (ωA (1, k) Φ) h = thetaInt ωA ν 𝓕 Φ (h * k) := by

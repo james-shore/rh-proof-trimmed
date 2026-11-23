@@ -38,6 +38,3 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-theorem UpperTheory.Gal.Spc.phiEx :
-    UpperTheory.Gal.Spc.PhiEx :=
-  UpperTheory.Gal.W2.Seed.phiEx_holds

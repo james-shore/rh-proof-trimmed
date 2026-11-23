@@ -118,7 +118,7 @@ theorem dens_cellForm : ∀ (ι : Type) [Fintype ι] (m : ι → ℕ) (n d : ℕ
     simp [kappa, hπ]
   rw [cellForm, e, dens_blocks n d (Cell m) (Root m) ε Cell.root (fun x => x.2.val)
     (fun x p q => -leviForm (cellPot ε G x) w (coordVec p) (coordVec q)) (fun x => m x.1 - 1 - x.2)
-    (fun x => by convert (GlobalTheory.T.gradedLine_potential_hessian_det_own_row ι m n d ε G w x (hG _) (hC _)).1.symm) ?_]
+    (fun x => by convert (_root_.GlobalTheory.FlagCell2.row_levi_det ι m n d ε G w x (hG _) (hC _)).1.symm) ?_]
   · congr 1
     rw [fibDens, Fintype.prod_sigma, Complex.ofReal_prod]
     refine Finset.prod_congr rfl fun τ _ => ?_
@@ -128,7 +128,7 @@ theorem dens_cellForm : ∀ (ι : Type) [Fintype ι] (m : ι → ℕ) (n d : ℕ
     congr 1
     · push_cast
       rfl
-    · convert (GlobalTheory.T.gradedLine_potential_hessian_det_own_row ι m n d ε G w ⟨τ, i⟩ (hG _) (hC _)).2 <;> rfl
+    · convert (_root_.GlobalTheory.FlagCell2.row_levi_det ι m n d ε G w ⟨τ, i⟩ (hG _) (hC _)).2 <;> rfl
   · intro x j h1 h2 b
     have h := GlobalTheory.T.ddcLeviForm_eq_zero_of_complexLine_invariant n (cellPot ε G x) w (coordVec (ε.symm (.inr j))) (coordVec b)
       (GlobalTheory.T.contDiffAt_flagCellGradedLinePotential ι m n d ε G w x (hG _) (hC _)).1 (cellPot_add ε G x j h1 h2)

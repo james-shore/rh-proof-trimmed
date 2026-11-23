@@ -72,18 +72,6 @@ theorem map_le_maximalIdeal (R S : Type) [CommRing R] [IsLocalRing R] [CommRing 
     [Algebra R S] [Module.Finite R S] : (maximalIdeal R).map (algebraMap R S) ≤ maximalIdeal S :=
   Ideal.map_le_iff_le_comap.2 (eq_maximalIdeal (Ideal.isMaximal_under_of_isIntegral_of_isMaximal (R := R) (maximalIdeal S))).ge
 
-theorem complete_of_finite (R S : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
-    [IsAdicComplete (maximalIdeal R) R] [CommRing S] [IsLocalRing S]
-    [Algebra R S] [Module.Finite R S] : IsAdicComplete (maximalIdeal S) S := by
-  first
-  | (rename_i h_2 h_3 h_4 h_5 h_6 h_7 h_8 h_9; revert R S h_2 h_3 h_4 h_5 h_6 h_7 h_8 h_9; exact @_root_.GlobalTheory.AdicCompleteFinite.isAdicComplete_of_finite)
-  | exact @_root_.GlobalTheory.AdicCompleteFinite.isAdicComplete_of_finite
-  | exact _root_.GlobalTheory.AdicCompleteFinite.isAdicComplete_of_finite
-  | (apply _root_.GlobalTheory.AdicCompleteFinite.isAdicComplete_of_finite <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AdicCompleteFinite.isAdicComplete_of_finite <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AdicCompleteFinite.isAdicComplete_of_finite <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.AdicCompleteFinite.isAdicComplete_of_finite ..)
-
 theorem tors_of_nsmul (l : ℕ) [Fact l.Prime] (Λ : Type) [CommRing Λ] [IsLocalRing Λ] [Algebra ℤ_[l] Λ]
     [Module.Finite ℤ_[l] Λ] (B : Type) [AddCommGroup B] [Module Λ B] (hB : ∀ b : B, ∃ n : ℕ, (l ^ n) • b = 0) :
     Tors Λ B := by
@@ -330,7 +318,7 @@ theorem thmS_of_selmer_functor : KernelRep → ∀ (D : Formalism.BasicNotions.D
   have hS := setup_of_auxiliary_characters i bkP s hG P d Q hA hQ
   obtain ⟨hM, h1, h2, h3⟩ := h i s _ _ Q hS
   have := IsNoetherianRing.of_finite (X.O0 i) (abelian₂ X i M ι)
-  have := complete_of_finite ℤ_[X.l i] (abelian₂ X i M ι)
+  have := _root_.GlobalTheory.AdicCompleteFinite.isAdicComplete_of_finite ℤ_[X.l i] (abelian₂ X i M ι)
   have : Finite (IsLocalRing.ResidueField (abelian₂ X i M ι)) := by
     have := hS.2.1
     have := X.twistBaseCoefficientRing_residueField_finite i

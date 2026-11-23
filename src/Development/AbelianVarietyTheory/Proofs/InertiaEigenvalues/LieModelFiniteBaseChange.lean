@@ -115,8 +115,8 @@ theorem exists_bound {π' : CuspSub E a} (hπ : π'.IsUnitary) {φ' : GA E a →
   obtain ⟨M, C₁, h₁⟩ := GlobalTheory.RSTheta.summable_tsum_norm_le_of_le_shortest E a J (a * Module.finrank ℚ E)
     GlobalTheory.RSTheta.finrank_pi_Cinf.le
   obtain ⟨K, hK, hGK⟩ := norm_mul_pow_le hG M
-  obtain ⟨ψ, rfl, -, -, B, hB⟩ := GlobalTheory.T.cuspFormRapidKernelSmoothSpan_smooth_cuspidal_bounded E a GlobalTheory.CuspOrth.cuspFormsBounded π' hπ φ' hφ
-  obtain ⟨C₂, h₂⟩ := GlobalTheory.T.cuspFormSmoothSpan_norm_le_shortRationalVector E a π' hπ ψ (Or.inr hφ) [] (latt a J) (GlobalTheory.RSTheta.isCompact_latt J) {1}
+  obtain ⟨ψ, rfl, -, -, B, hB⟩ := _root_.GlobalTheory.JSW.mspanR_smooth E a GlobalTheory.CuspOrth.cuspFormsBounded π' hπ φ' hφ
+  obtain ⟨C₂, h₂⟩ := _root_.GlobalTheory.MSpanDecay.norm_le_of_short_vector_mspanR E a π' hπ ψ (Or.inr hφ) [] (latt a J) (GlobalTheory.RSTheta.isCompact_latt J) {1}
     isCompact_singleton 1
   refine ⟨C₁ * (K * |B| * |C₂|), fun g => ?_⟩
   have hδ := GlobalTheory.RSnm.detAbs_pos g

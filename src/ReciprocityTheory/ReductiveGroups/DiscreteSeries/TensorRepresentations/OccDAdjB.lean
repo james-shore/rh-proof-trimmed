@@ -223,7 +223,7 @@ theorem adjB_star_Kset {k : Matrix (Fin n) (Fin n) ℂ} (hk : k ∈ Kset ε) : k
 theorem adjB_inner (hσ : IsURepOn (UJset ε) σ) {k : Matrix (Fin n) (Fin n) ℂ} (hk : k ∈ Kset ε) (v w : H) :
     inner ℂ (σ k v) w = inner ℂ v (σ kᴴ w) := by
   have hkU : k ∈ UJset ε := smd_inUJ_of_Kset hk
-  have hkhU : kᴴ ∈ UJset ε := smd_inUJ_of_Kset (adjB_star_Kset hk)
+  have hkhU : kᴴ ∈ UJset ε := smd_inUJ_of_Kset (_root_.ReciprocityTheory.ChartRestriction.DS.rq_KH hk)
   have hkk : k * kᴴ = 1 := by
     have := hk.1
     rw [Matrix.mem_unitaryGroup_iff] at this

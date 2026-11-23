@@ -123,7 +123,7 @@ theorem exists_pointOver : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
     exact (u'.isUnit.map kO).mul (h1.pow _)⟩
   obtain ⟨T', φ', G', m, hi, hf, -, -, U, -⟩ :=
     GlobalTheory.UnifAfterExt.exists_finite_ext_uniformised E H Dw l Xo T G t' m₂ _ m₁ hy
-  obtain ⟨f', -, hf'⟩ := GlobalTheory.CharDepth.exists_local_extension_of_integral v hv φ' hi hf.to_isIntegral kO hinj
+  obtain ⟨f', -, hf'⟩ := _root_.GlobalTheory.LocalHomExtension.exists_isLocalHom_extension v hv φ' hi hf.to_isIntegral kO hinj
   have hI : ∃ n : ℕ, ∀ a ∈ IsLocalRing.maximalIdeal T'.V ^ n, f' a ∈ Ideal.span {(p : O)} := by
     obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible T'.V
     obtain ⟨n, u, hu⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible (hp0 f') hϖ

@@ -58,10 +58,6 @@ def IsEigenSum (lam : Fin (2 * r + k + 1) → ℝ) (d : ℕ) (A : ℝ) (F : B.Ma
       ((∏ s, (Y + lam s + (ν i s : ℝ)) : ℝ) : ℂ) • (Fi i) g)) ∧
     ∀ g ∈ B.GV k r, (F) g = ∑ i, Fi i g
 
-def entryVar (g : B.Mat k r) :
-    (Fin (2 * r + k + 1) × Fin (2 * r + k + 1)) ⊕ (Fin (2 * r + k + 1) × Fin (2 * r + k + 1)) → ℂ :=
-  Sum.elim (fun x => g x.1 x.2) (fun x => star (g x.1 x.2))
-
 end
 
 end GlobalTheory.EigenSumPoly

@@ -67,10 +67,6 @@ open Formalism.L2.SG.InstExistsPf GlobalTheory.FlagBasis Formalism.L2.SG.HidaSet
 open scoped TensorProduct
 variable {D : D7}
 
-theorem sigInt_oToS (a : 𝓞 D.host.E) :
-    sigInt (instOf D) (oToS D.host.F D.host.E a) = oToS D.host.F D.host.E (GlobalTheory.IdemSupport.cO D a) :=
-  Subtype.ext (Formalism.L2.SG.Pf.unitaryCongruence.sigA_inclE (instOf D) (a : D.host.E))
-
 theorem conjRes_mk (PP : Pl D.host.E) (x : 𝓞 D.host.E) :
     GlobalTheory.SeeConjChar.conjRes PP (Ideal.Quotient.mk PP.asIdeal x) =
       Ideal.Quotient.mk (GlobalTheory.IdemSupport.cP PP).asIdeal (GlobalTheory.IdemSupport.cO D x) := rfl
@@ -78,7 +74,7 @@ theorem conjRes_mk (PP : Pl D.host.E) (x : 𝓞 D.host.E) :
 theorem conj_res_oToS (PP : Pl D.host.E) (a : 𝓞 D.host.E) :
     GlobalTheory.SeeConjChar.conjRes PP (resS D.host.F PP (sigInt (instOf D) (oToS D.host.F D.host.E a))) =
       Ideal.Quotient.mk (GlobalTheory.IdemSupport.cP PP).asIdeal a := by
-  rw [sigInt_oToS, resS_oToS, conjRes_mk, GlobalTheory.IdemSupport.cO_cO]
+  rw [_root_.GlobalTheory.ConjResidueSurj.sigInt_oToS, resS_oToS, conjRes_mk, GlobalTheory.IdemSupport.cO_cO]
 
 theorem resS_cP (PP : Pl D.host.E) (s : Formalism.L2.Herm.intAf D.host.F D.host.E) :
     resS D.host.F (GlobalTheory.IdemSupport.cP PP) s =
@@ -133,11 +129,6 @@ theorem addChar_comp_ne_one {k k' : Type} [Field k] [Field k'] (ψ : AddChar k �
   rw [RingEquiv.apply_symm_apply, ← mul_assoc, mul_inv_cancel₀ ha, one_mul, AddChar.one_apply] at this
   rw [this, AddChar.one_apply]
 
-theorem cP_cP (P : Pl D.host.E) : GlobalTheory.IdemSupport.cP (GlobalTheory.IdemSupport.cP P) = P := by
-  apply HeightOneSpectrum.ext
-  ext x
-  rw [GlobalTheory.IdemSupport.mem_cP, GlobalTheory.IdemSupport.mem_cP, GlobalTheory.IdemSupport.cO_cO]
-
 theorem sigInt_sigInt (s : Formalism.L2.Herm.intAf D.host.F D.host.E) : sigInt (instOf D) (sigInt (instOf D) s) = s :=
   Subtype.ext (Formalism.L2.SG.Pf.unitaryCongruence.sigA_sigA (instOf D) s.1)
 
@@ -183,9 +174,9 @@ theorem core (psiEf : (instOf D).E ⊗[(instOf D).F] Formalism.MainNotions.S.Af 
         (congrArg _ e).trans (Formalism.L2.SG.Pf.unitaryCongruence.divN_gmul _ _ hg t)
       show psiEf (divN (instOf D) (D.host.g 0 * D.host.g 1) s.1) = 1
       rw [this, hint t ht])
-    (GlobalTheory.T.exists_integralAdele_prescribed_residues_and_conj D Pg hnc)
+    (_root_.GlobalTheory.ConjResidueSurj.exists_res_and_conj D Pg hnc)
     (GlobalTheory.T.residueSupport_single_place_to_conjugatePair_position D Pg hdiv hnc (fun s => psiEf (divN (instOf D) (D.host.g 0 * D.host.g 1) s.1) ≠ 1)
-      fun Q hQ => GlobalTheory.T.exists_finiteAdditiveChar_ne_one_at_each_prime D psiEf hadd hint hrat Q hQ)
+      fun Q hQ => _root_.GlobalTheory.FiniteCharNontrivial.exists_psi_ne_one D psiEf hadd hint hrat Q hQ)
   have hout : ∀ PP ∈ Pg, GlobalTheory.IdemSupport.cP PP ∉ Pg := fun PP hPP h =>
     hnc PP hPP _ h ((GlobalTheory.IdemSupport.isConjPl_iff _ _).2 rfl)
   let ψ : ∀ P : Pl D.host.E, AddChar (kP P) ℂ := fun P =>
@@ -198,14 +189,14 @@ theorem core (psiEf : (instOf D).E ⊗[(instOf D).F] Formalism.MainNotions.S.Af 
   have hψ2 : ∀ PP ∈ Pg, ψ (GlobalTheory.IdemSupport.cP PP) = (ψ0 (GlobalTheory.IdemSupport.cP (GlobalTheory.IdemSupport.cP PP))).compAddMonoidHom
       ((AddMonoidHom.mulLeft (a₂ (GlobalTheory.IdemSupport.cP (GlobalTheory.IdemSupport.cP PP)))).comp
         (GlobalTheory.SeeConjChar.conjRes (GlobalTheory.IdemSupport.cP PP)).toAddMonoidHom) := fun PP hPP => by
-    have h2 : GlobalTheory.IdemSupport.cP (GlobalTheory.IdemSupport.cP PP) ∈ Pg := by rw [cP_cP]; exact hPP
+    have h2 : GlobalTheory.IdemSupport.cP (GlobalTheory.IdemSupport.cP PP) ∈ Pg := by rw [_root_.GlobalTheory.StdFrames.cP_cP]; exact hPP
     exact (if_neg (hout PP hPP)).trans (if_pos h2)
   refine ⟨ψ, fun PP hPP => ⟨?_, ?_⟩, fun s => ?_⟩
   · rw [hψ1 PP hPP]
     exact addChar_comp_ne_one _ (hψ0 PP) _ (ha PP hPP).1 _
   · rw [hψ2 PP hPP]
     refine addChar_comp_ne_one _ (hψ0 _) _ ?_ _
-    rw [cP_cP]
+    rw [_root_.GlobalTheory.StdFrames.cP_cP]
     exact (ha PP hPP).2
   · refine (hχ s).trans (Finset.prod_congr rfl fun PP hPP => ?_)
     refine (AddChar.map_add_eq_mul (ψ0 PP) _ _).trans (congrArg₂ (· * ·) ?_ ?_)
@@ -219,7 +210,7 @@ theorem core (psiEf : (instOf D).E ⊗[(instOf D).F] Formalism.MainNotions.S.Af 
         ψ0 PP (a₂ PP * resS D.host.F PP (sigInt (instOf D) s)) := by
       rintro Q rfl
       rfl
-    exact (key _ (cP_cP PP)).symm
+    exact (key _ (_root_.GlobalTheory.StdFrames.cP_cP PP)).symm
 
 theorem chiS_eq_prod : ∀ {D : D7} (X : Formalism.L2.SG.HidaSetting.HidaSetting D) (h : X.B.I = Formalism.L2.SG.InstExistsPf.instOf D) (Pg : Finset (Pl D.host.E)), (∀ PP ∈ Pg, ((D.host.g 0 * D.host.g 1 : ℕ) : 𝓞 D.host.E) ∈ PP.asIdeal) → (∀ Q : Pl D.host.E, ((D.host.g 0 * D.host.g 1 : ℕ) : 𝓞 D.host.E) ∈ Q.asIdeal → ∃ PP ∈ Pg, Q = PP ∨ Q = GlobalTheory.IdemSupport.cP PP) → (∀ PP ∈ Pg, ∀ PP' ∈ Pg, ¬ IsConjPl (D := D) PP PP') → ∃ ψ : ∀ P : Pl D.host.E, AddChar (kP P) ℂ, (∀ PP ∈ Pg, ψ PP ≠ 1 ∧ ψ (GlobalTheory.IdemSupport.cP PP) ≠ 1) ∧ ∀ c ∈ Formalism.L2.Herm.intAf D.host.F D.host.E, GlobalTheory.SeeConjChar.chiS X h c = ∏ PP ∈ Pg, ψ PP (GlobalTheory.SeeConjChar.resT PP c) * ψ (GlobalTheory.IdemSupport.cP PP) (GlobalTheory.SeeConjChar.resT (GlobalTheory.IdemSupport.cP PP) c) := by
   intro D X h Pg hdiv hcov hnc

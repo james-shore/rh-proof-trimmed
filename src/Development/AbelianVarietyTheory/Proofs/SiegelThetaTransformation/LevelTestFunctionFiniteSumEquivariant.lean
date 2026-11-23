@@ -110,21 +110,11 @@ section Congruence
 
 variable {𝔪 : Ideal (𝓞 E)} {u v w : Fin r → E}
 
-theorem cong_refl (u : Fin r → E) : Cong X 𝔪 u u :=
-  ⟨1, cop_one _, by rw [sub_self, smul_zero]; exact zero_mem _⟩
+alias cong_refl := _root_.GlobalTheory.SW.Lev.cong_refl
 
-theorem cong_symm (h : Cong X 𝔪 u v) : Cong X 𝔪 v u := by
-  obtain ⟨s, hs, h⟩ := h
-  exact ⟨s, hs, by rw [← neg_sub, smul_neg]; exact neg_mem h⟩
+alias cong_symm := _root_.GlobalTheory.SW.Lev.cong_symm
 
-theorem cong_trans (h : Cong X 𝔪 u v) (h' : Cong X 𝔪 v w) : Cong X 𝔪 u w := by
-  obtain ⟨s, hs, h⟩ := h
-  obtain ⟨t, ht, h'⟩ := h'
-  refine ⟨s * t, cop_mul hs ht, ?_⟩
-  have : (s * t) • (u - w) = t • s • (u - v) + s • t • (v - w) := by
-    rw [smul_smul, smul_smul, mul_comm t, ← smul_add, sub_add_sub_cancel]
-  rw [this]
-  exact add_mem (Submodule.smul_mem _ _ h) (Submodule.smul_mem _ _ h')
+alias cong_trans := _root_.GlobalTheory.SW.Lev.cong_trans
 
 theorem cong_map {γ : GL (Fin r) E} (hγ : Near X 𝔪 (mapL γ X.Λ)) (h : Cong X 𝔪 u v) :
     Cong X 𝔪 ((γ : Matrix (Fin r) (Fin r) E) *ᵥ u) ((γ : Matrix (Fin r) (Fin r) E) *ᵥ v) := by

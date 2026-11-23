@@ -59,13 +59,6 @@ open ReciprocityTheory.ChartRestriction.DS
 
 variable {n : ℕ}
 
-lemma inUJ_mul {ε : Fin n → Bool} {g h : Matrix (Fin n) (Fin n) ℂ} (hg : inUJ ε g) (hh : inUJ ε h) :
-    inUJ ε (g * h) := by
-  unfold inUJ at *
-  rw [Matrix.conjTranspose_mul,
-    show hᴴ * gᴴ * Jm ε * (g * h) = hᴴ * (gᴴ * Jm ε * g) * h by simp only [Matrix.mul_assoc], hg]
-  exact hh
-
 lemma capelliC_mem {M : Type*} [AddCommGroup M] [Module ℂ M] (E : Fin n → Fin n → Module.End ℂ M)
     (S : Submodule ℂ M) (hS : ∀ a b, ∀ x ∈ S, E a b x ∈ S) (u : ℂ) :
     ∀ y ∈ S, Capelli.capelliC E u y ∈ S := by
@@ -114,7 +107,7 @@ lemma sig_mem_clo (hσ : IsURepOn (UJset ε) σ) {h : Matrix (Fin n) (Fin n) ℂ
     rintro y ⟨g, hg, v, hv, rfl⟩
     show σ h (σ g (v : H)) ∈ clo V ε σ
     rw [← ContinuousLinearMap.comp_apply, ← hσ.1.2 h hh g hg]
-    exact Submodule.le_topologicalClosure _ (Submodule.subset_span ⟨h * g, inUJ_mul hh hg, v, hv, rfl⟩)
+    exact Submodule.le_topologicalClosure _ (Submodule.subset_span ⟨h * g, _root_.ReciprocityTheory.ChartRestriction.DS.smd_inUJ_mul hh hg, v, hv, rfl⟩)
   have hcl : IsClosed (((clo V ε σ).comap (σ h : H →ₗ[ℂ] H) : Submodule ℂ H) : Set H) :=
     (Submodule.isClosed_topologicalClosure _).preimage (σ h).continuous
   exact Submodule.topologicalClosure_minimal _ hle hcl hx
@@ -128,7 +121,7 @@ lemma mem_of_hasDerivAt {K : Submodule ℂ H} (hK : IsClosed (K : Set H)) {f : �
 lemma actM_mem_clo (hσ : IsURepOn (UJset ε) σ) (hD : IsDerivedOn ε σ D E) {X : Matrix (Fin n) (Fin n) ℂ}
     (hX : inG ε X) {x : D} (hx : (x : H) ∈ clo V ε σ) : ((actM E X x : D) : H) ∈ clo V ε σ :=
   mem_of_hasDerivAt (Submodule.isClosed_topologicalClosure _) (hD.deriv X hX x)
-    fun t => sig_mem_clo hσ (inUJ_exp ε hX t) hx
+    fun t => sig_mem_clo hσ (_root_.ReciprocityTheory.ChartRestriction.DS.S7.ccb_exp_inUJ ε hX t) hx
 
 lemma E_mem_clo (hσ : IsURepOn (UJset ε) σ) (hD : IsDerivedOn ε σ D E) (a b : Fin n) {x : D}
     (hx : (x : H) ∈ clo V ε σ) : ((E a b x : D) : H) ∈ clo V ε σ := by
@@ -222,7 +215,5 @@ theorem capVal_main : CapValStatement := by
 end ReciprocityTheory.ChartRestriction.DS.Lap.CapelliClosureMembership
 
 namespace ReciprocityTheory.ChartRestriction.DS.Lap
-
-theorem capVal : CapValStatement := CapelliClosureMembership.capVal_main
 
 end ReciprocityTheory.ChartRestriction.DS.Lap

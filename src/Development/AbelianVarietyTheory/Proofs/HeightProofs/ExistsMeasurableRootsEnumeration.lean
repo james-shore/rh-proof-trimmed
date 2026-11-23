@@ -90,17 +90,6 @@ theorem prod_X_sub_C_eq_X_pow_add_sum {δ : ℕ} (r : Fin δ → ℂ) :
   rw [hd, Finset.sum_range] at this
   exact this
 
-theorem exists_prod_X_sub_C_eq {δ : ℕ} (c : Fin δ → ℂ) :
-    ∃ r : Fin δ → ℂ,
-      ∏ j, (X - C (r j)) = X ^ δ + ∑ i : Fin δ, C (c i) * X ^ (i : ℕ) := by
-  first
-  | exact @_root_.GlobalTheory.MonicRootsProduct.exists_roots
-  | exact _root_.GlobalTheory.MonicRootsProduct.exists_roots
-  | (apply _root_.GlobalTheory.MonicRootsProduct.exists_roots <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MonicRootsProduct.exists_roots <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MonicRootsProduct.exists_roots <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.MonicRootsProduct.exists_roots ..)
-
 theorem exists_measurable_roots_enumeration :
     ∀ δ : ℕ, ∃ ρ : (Fin δ → ℂ) → (Fin δ → ℂ), Measurable ρ ∧ ∀ c : Fin δ → ℂ,
       ∏ i, (Polynomial.X - Polynomial.C (ρ c i)) =
@@ -147,7 +136,7 @@ theorem exists_measurable_roots_enumeration :
   obtain ⟨ρ, hρ, hρV⟩ := hemb.exists_measurable_extend (g := fun x : S => (x : Fin δ → ℂ))
     measurable_subtype_coe fun _ => inferInstance
   refine ⟨ρ, hρ, fun c => ?_⟩
-  obtain ⟨r, hr⟩ := exists_prod_X_sub_C_eq c
+  obtain ⟨r, hr⟩ := _root_.GlobalTheory.MonicRootsProduct.exists_roots c
   have hrS : r ∘ Tuple.sort (e ∘ r) ∈ S := Tuple.monotone_sort (e ∘ r)
   have hp : (∏ j, (X - C ((r ∘ Tuple.sort (e ∘ r)) j)) : ℂ[X])
       = X ^ δ + ∑ i : Fin δ, C (c i) * X ^ (i : ℕ) := by

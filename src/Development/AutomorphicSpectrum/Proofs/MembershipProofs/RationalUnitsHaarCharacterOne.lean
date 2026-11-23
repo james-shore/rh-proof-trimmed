@@ -71,12 +71,6 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.ThetaAvg
 
-theorem eq_zero_of_orth {K : Type} [TopologicalSpace K] [CompactSpace K] [MeasurableSpace K] [BorelSpace K]
-    (μ : Measure K) [IsFiniteMeasure μ] [μ.IsOpenPosMeasure] (S : Set C(K, ℂ)) (h1 : 1 ∈ S)
-    (hmul : ∀ a ∈ S, ∀ b ∈ S, a * b ∈ S) (hstar : ∀ a ∈ S, star a ∈ S)
-    (hsep : ∀ x y : K, x ≠ y → ∃ a ∈ S, a x ≠ a y) (f : C(K, ℂ)) (hf : ∀ a ∈ S, ∫ x, a x * f x ∂μ = 0) : f = 0 :=
-  _root_.UpperTheory.Reformulated.B.Qo7.eq_zero_of_orth μ S h1 hmul hstar hsep f hf
-
 def IsPer {G : Type} [AddCommGroup G] [TopologicalSpace G] (Γ : AddSubgroup G) (f : G → ℂ) : Prop :=
   Continuous f ∧ ∀ γ ∈ Γ, ∀ x, f (x + γ) = f x
 
@@ -158,7 +152,7 @@ theorem exists_mean {G : Type} [AddCommGroup G] [TopologicalSpace G] [IsTopologi
     rw [integral_map hτ.measurable.aemeasurable h.continuous.aestronglyMeasurable]
     rfl
   · obtain ⟨h, rfl⟩ := hlift f hf
-    have := eq_zero_of_orth μ (π ⁻¹' S) h1 (fun a ha b hb => hmul _ ha _ hb) (fun a ha => hstar _ ha) ?_ h ?_
+    have := _root_.UpperTheory.Reformulated.B.Qo7.eq_zero_of_orth μ (π ⁻¹' S) h1 (fun a ha b hb => hmul _ ha _ hb) (fun a ha => hstar _ ha) ?_ h ?_
     · rw [this]; rfl
     · intro p q hpq
       induction p using QuotientAddGroup.induction_on with
@@ -502,7 +496,7 @@ theorem theta_mean : ∀ (F : Type) [Field F] [NumberField F] [LocallyCompactSpa
   intro F _ _ _ _ κ _ ψ hc hne htriv L hL
   obtain ⟨-, ⟨θ, -, hθ⟩, Φ₀, hΦ₀, hΦ₀'⟩ := ThetaAdm.theta_adm F κ
   obtain ⟨hpres, hrat⟩ := AdelicHeis.schr_mem_and_thetaSum F κ ψ hc hne htriv
-  obtain ⟨hψ, hann⟩ := AdeleAnn.unitary_and_annihilator_eq F ψ hc hne htriv
+  obtain ⟨hψ, hann⟩ := _root_.UpperTheory.Reformulated.B.UnitaryAnnihilator.unitary_and_annihilator_eq F ψ hc hne htriv
   obtain ⟨C₀, hC₀, hC₀'⟩ := GroundTheory.Global.exists_isCompact_forall_exists_sub_mem F
   have hD₀ : IsCompact (C₀ ×ˢ (GroundTheory.Global.integralFiniteAdeles (𝓞 F) F : Set (FiniteAdeleRing (𝓞 F) F)) :
       Set (AdeleRing (𝓞 F) F)) := hC₀.prod (GroundTheory.Global.isCompact_integralFiniteAdeles F)

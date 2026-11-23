@@ -111,7 +111,7 @@ private theorem loc_sat (w : HeightOneSpectrum (𝓞 E)) {V : Type} [AddCommGrou
     (hB : HasSatGL w ρ {a, b}) :
     ‖(a * b : ℂ)‖ = 1 ∧ starRingEnd ℂ (a + b : ℂ) * (a * b) = a + b ∧ ‖(a : ℂ)‖ ^ 2 ≤ Formalism.UG.qV E w := by
   obtain ⟨x, hx⟩ := hB.exists_vec
-  have hs := GlobalTheory.T.satakeParameterGL_star_eq_inv_of_unitarisable E w 2 V ρ x _ hU hx
+  have hs := _root_.GlobalTheory.LFun.UnitaryParam.map_star_eq_map_inv E w 2 V ρ x _ hU hx
   obtain ⟨ϖ, hϖ⟩ := exists_isUnifV w
   obtain ⟨B0, h1, h2, h3⟩ := hU
   have k1 := GlobalTheory.T.norm_heckeEigenvalue_le_card_cosets _ (KGL w (n := 2)) V ρ B0.flip (fun u v => h1 v u) (fun u hu => h2 u hu) (fun g u v => h3 g v u) _ x _

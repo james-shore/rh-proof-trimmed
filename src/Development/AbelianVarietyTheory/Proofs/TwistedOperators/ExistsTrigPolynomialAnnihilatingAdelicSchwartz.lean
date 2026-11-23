@@ -116,7 +116,7 @@ theorem good_of_mem {Φ : (κ → AF F) → ℂ} (h : Φ ∈ schA F κ) : Good �
   induction h using Submodule.span_induction with
   | mem Φ hΦ =>
     obtain ⟨f, g, hg, rfl⟩ := hΦ
-    obtain ⟨d, hd, hinv⟩ := inv_level g hg
+    obtain ⟨d, hd, hinv⟩ := _root_.GlobalTheory.SBLevel.exists_int_level g hg
     refine ⟨d, hd, tsupport g, hg.2, fun x hx => ?_, fun x x' h1 h2 => ?_⟩
     · simp only [pureA]
       rw [image_eq_zero_of_notMem_tsupport hx, mul_zero]
@@ -207,7 +207,7 @@ theorem exists_sep (ψ : AddChar (AF F) ℂ) (hψ : IsStd ψ) (d : 𝓞 F) (a : 
   classical
   simp only [Lev, not_forall] at ha
   obtain ⟨i, hi⟩ := ha
-  obtain ⟨s, hs1, hs2⟩ := sep_char ψ hψ _ hi
+  obtain ⟨s, hs1, hs2⟩ := _root_.GlobalTheory.StdCharSep.exists_sep ψ hψ _ hi
   set c : AF F := ((0 : InfiniteAdeleRing F), algebraMap F (FiniteAdeleRing (𝓞 F) F) ((d : F)⁻¹ * s))
   have key : ∀ u : κ → FiniteAdeleRing (𝓞 F) F, vecFin u ⬝ᵥ Pi.single i c =
       ((0 : InfiniteAdeleRing F), algebraMap F (FiniteAdeleRing (𝓞 F) F) ((d : F)⁻¹) * u i *

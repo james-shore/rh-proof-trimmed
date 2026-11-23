@@ -89,7 +89,7 @@ private theorem rec_tw_diag {rc : IrrGL (k := w.adicCompletion E) → WD h} (H :
       (rc (cl σ)).lpTw s = WD.mk (WDRep.diag h fun i => (α i)⁻¹ * qPow w s) := by
   obtain ⟨hu, -⟩ := GlobalTheory.RecLaws.rec_hasSatGL H σ B hB
   obtain ⟨α, hα⟩ := ParLaws.exists_hasSatake_of_unr H hu
-  refine ⟨α, hB.unique (GlobalTheory.T.hasSatakeGL_of_hasSatakeParameters_principalSeries E w n _ σ.ρ α hα), ?_⟩
+  refine ⟨α, hB.unique (_root_.GlobalTheory.LFun.SatBridge.hasSatGL_of_hasSatake E w n _ σ.ρ α hα), ?_⟩
   have e : rc (IrrGL.of σ.ρ σ.smooth σ.irred) = WD.mk (WDRep.diag h fun i => (α i)⁻¹) :=
     ParLaws.rec_eq_diag H hα
   rw [e, WD.lpTw_mk]

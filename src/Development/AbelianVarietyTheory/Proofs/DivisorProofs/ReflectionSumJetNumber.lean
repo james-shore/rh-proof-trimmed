@@ -82,7 +82,7 @@ theorem exists_thRule_value_le : ∀ (E : Type) [Field E] [NumberField E] [IsCMF
   intro E _ _ _ H Dw l Xo c
   letI := H.starRing
   intro nab hnab T io y C hTr P hP hch φ hφ α q hα hq hMb a n hanti hs hn N cst hρN h4 hM0 hcst
-  obtain ⟨P₁, hP₁, hB⟩ := GlobalTheory.T.exists_harmonicPoly_localInvariant_nonpos_char0 E H Dw l Xo c a n hanti hs
+  obtain ⟨P₁, hP₁, hB⟩ := _root_.GlobalTheory.ResZeroDepth.exists_harmA_nuLocOf_nonpos E H Dw l Xo c a n hanti hs
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible T.V
   obtain ⟨⟨Q, hQ⟩, -⟩ := GlobalTheory.PowData.exists_powData E H Dw l Xo c T io y C P ϖ hϖ
   obtain ⟨ρ, hρ, hSB⟩ := GlobalTheory.ShortPhi.exists_shortBasis E H Dw l Xo c T io y φ hφ C P ϖ hϖ Q hQ
@@ -92,7 +92,7 @@ theorem exists_thRule_value_le : ∀ (E : Type) [Field E] [NumberField E] [IsCMF
   have hρ0 : (0 : ℝ) ≤ ρ := Nat.cast_nonneg _
   have hN0 : (0 : ℝ) ≤ N := hρ0.trans hρN'
   have hM0' : (DF Dw a : ℝ) * (2 * Real.sqrt ρ) < q := lt_of_le_of_lt (by gcongr) hM0
-  have hup := GlobalTheory.T.iInf_thetaRule_le_localValue_charZero E H Dw l Xo c nab hnab T io y C hTr P hP hch ϖ hϖ Q hQ ρ _ _ hSB α q hα hq hMb a n 1 hn one_pos h4
+  have hup := _root_.GlobalTheory.JetsLevelZero.iInf_thRule_le_nuLocOf_charZero E H Dw l Xo c nab hnab T io y C hTr P hP hch ϖ hϖ Q hQ ρ _ _ hSB α q hα hq hMb a n 1 hn one_pos h4
     hM0' P₁ hP₁
   have hloc := hB T io y C hch 1 l.M one_pos
   have hφ0 := hφ.nonneg

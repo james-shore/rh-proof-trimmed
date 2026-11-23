@@ -77,7 +77,7 @@ theorem UpperTheory.Gal.crystallineComparison.Mod.quasiInv_of :
       rw [MonObj.comp_pow, GlobalTheory.ZarhinKerB.evc_pow_left _ hAdd, ← hmul, Category.assoc, hx,
         MonObj.comp_one]
       exact IsAdditive.evc_one _ hAdd' _
-    refine GlobalTheory.T.abelianScheme_torsionPoint_trivial_of_geometric (Sp κ) o.A o.ab T (x ^ c) e (hunit T) h1 ?_
+    refine _root_.GlobalTheory.TorsionRigid.eq_one_of_geometric (Sp κ) o.A o.ab T (x ^ c) e (hunit T) h1 ?_
     intro k _ _ _ z g
     rw [MonObj.comp_pow]
     have hg : g ≫ x = 1 := hker k z (g ≫ x) (by rw [Category.assoc, hx, MonObj.comp_one])

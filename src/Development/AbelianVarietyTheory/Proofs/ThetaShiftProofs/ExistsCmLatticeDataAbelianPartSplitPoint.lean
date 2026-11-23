@@ -161,11 +161,6 @@ theorem herm_smul_smul (G : Matrix (Fin r) (Fin r) E) (a b : E) (u w : Fin r →
   simp only [FD.herm, FD.cc, Pi.smul_apply, smul_eq_mul, map_mul, Finset.mul_sum]
   exact Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ => by ring
 
-theorem herm_smul_left (G : Matrix (Fin r) (Fin r) E) (a : E) (u w : Fin r → E) :
-    herm G (a • u) w = a * herm G u w := by
-  have := herm_smul_smul G a 1 u w
-  simpa [FD.cc] using this
-
 theorem perFr_flow (X : Data E r) {ξ : Fin r → E} (hξ : herm X.Gm ξ ξ = 0) (h0 : 0 < X.p0) (s : X.Ψ → ℂ)
     (x : Frame X.Ψ r) {v : Fin r → E} (hv : herm X.Gm v ξ = 0) (τ : E →+* ℂ) (i : ℕ) :
     perFr X (X.flow ξ s x) v τ i = perFr X x v τ i := by
@@ -237,7 +232,7 @@ theorem exists_coords (X : Data E r) {ξ : Fin r → E} (hξ : herm X.Gm ξ ξ =
     (lam : Fin (r - 2) → Fin r → E) (hl : ∀ j, herm X.Gm (lam j) ξ = 0)
     (hli : LinearIndependent E (Fin.cons ξ lam : Fin (r - 2 + 1) → Fin r → E)) {v : Fin r → E}
     (hv : herm X.Gm v ξ = 0) : ∃ (c₀ : E) (c : Fin (r - 2) → E), v = c₀ • ξ + ∑ j, c j • lam j := by
-  let f : (Fin r → E) →ₗ[E] E := { X.hermL ξ with map_smul' := fun a u => herm_smul_left _ a u ξ }
+  let f : (Fin r → E) →ₗ[E] E := { X.hermL ξ with map_smul' := fun a u => _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.herm_smul_left _ a u ξ }
   have hf : ∀ u, f u = herm X.Gm u ξ := fun _ => rfl
   have hne' : LinearMap.ker f ≠ ⊤ := fun h => by
     have h1 : X.Gm.mulVec (fun b => cc (ξ b)) = 0 := by
@@ -372,7 +367,7 @@ theorem exists_cmLat (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) {
   have hσr : ∀ j, (σ (.inr j) : ℕ) < X.p0 - 1 := fun j => by simp [σ, hp0]
   have hmem : ∀ (a : (𝔄 : Submodule (𝓞 E) E)) j, (a : E) • lam j ∈ X.Λ := fun a j =>
     hΛ ▸ Submodule.subset_span ⟨a, a.2, _, (hL' j).1, rfl⟩
-  have hperp : ∀ (a : E) j, herm X.Gm (a • lam j) ξ = 0 := fun a j => by rw [herm_smul_left, (hL' j).2, mul_zero]
+  have hperp : ∀ (a : E) j, herm X.Gm (a • lam j) ξ = 0 := fun a j => by rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.herm_smul_left, (hL' j).2, mul_zero]
   let m : Fin (r - 2) → (𝔄 : Submodule (𝓞 E) E) →ₗ[𝓞 E] X.Λ := fun j =>
     { toFun := fun a => ⟨_, hmem a j⟩
       map_add' := fun a b => Subtype.ext (add_smul _ _ _)
@@ -468,7 +463,7 @@ theorem exists_cmLat_abelianPart : ∀ (E : Type) [Field E] [NumberField E] [IsC
     rw [← htξ, LinearMap.IsAlt.neg (Uw.F.Di (Uw.ik k)).alt, Uw.iso, ht]
   have hξb : ∀ (b : 𝓞 E) v, ((ξ (b • (gam v).y) : ℤ) : ℚ) =
       Algebra.trace ℚ E ((b : E) * (-(U.X k).ξ0 * herm (U.X k).Gm (Uw.φ k v : Fin r → E) ξ')) := fun b v => by
-    rw [← AnArc.La.smul_y, ← map_smul, hξy, map_smul, Submodule.coe_smul, ← algebraMap_smul E, herm_smul_left,
+    rw [← AnArc.La.smul_y, ← map_smul, hξy, map_smul, Submodule.coe_smul, ← algebraMap_smul E, _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.herm_smul_left,
       mul_left_comm]
   have hξ0 : ξ ≠ 0 := fun h0 => by
     have : (Uw.F.Di (Uw.ik k)).EF t = (Uw.F.Di (Uw.ik k)).EF 0 := LinearMap.ext fun v => by

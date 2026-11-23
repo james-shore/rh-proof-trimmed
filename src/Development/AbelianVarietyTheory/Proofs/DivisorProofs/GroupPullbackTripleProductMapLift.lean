@@ -75,14 +75,9 @@ namespace GlobalTheory.Mum.CubeCarried
 section
 variable {X Y Y' Z : Scheme.{0}}
 
-theorem gs_comp (g : Z ⟶ Y) (f : Y ⟶ X) (z : Z) (U : X.Opens) (h : f (g z) ∈ U) (a : Γ(X, U)) :
-    gs (g ≫ f) z U a = (g.stalkMap z).hom (gs f (g z) U a) := by
-  rw [← gs_pull g f z U h, gs_eq_map_gs g z (f ⁻¹ᵁ U) h, gs_eq (𝟙 Y) (g z) (f ⁻¹ᵁ U) h, gs_eq f (g z) U h]
-  rfl
-
 theorem gm_val_map (g : Z ⟶ Y) (z : Z) (U : Y.Opens) (h : g z ∈ U) (a : Γ(Y, U)ˣ) :
     (gm g z U a).val = (g.stalkMap z).hom (gm (𝟙 Y) (g z) U a).val := by
-  rw [gm_eq_map_gm g z U h]; rfl
+  rw [_root_.GlobalTheory.RigidTriv.gm_stalk g z U h]; rfl
 
 variable {L : LB X} {Γ' : Type} {F : Γ' → (X ⟶ X)}
 
@@ -168,7 +163,7 @@ theorem ctriv_of_sec (θ : L.Sec) (hθ : ∀ σ, SecCarried L θ (F σ) (w σ)) 
   generalize r ≫ f = g at hj hk ⊢
   have hj' : F σ (g z) ∈ L.U j := hj
   have e := hθ σ (g z) j k hk hj'
-  rw [gs_comp g (F σ) z _ hj', gs_eq_map_gs g z _ hk, gs_eq _ _ _ hj', e, map_mul, gs_eq (𝟙 X) (g z) _ hk]
+  rw [_root_.GlobalTheory.OneBasis.ThMove.gs_comp g (F σ) z _ hj', _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.gs_stalkMap g z _ hk, gs_eq _ _ _ hj', e, map_mul, gs_eq (𝟙 X) (g z) _ hk]
   exact congrArg₂ (· * ·) (gm_val_map g z ((L.pull (F σ)).U (fun _ => j) ⊓ L.U k)
     ⟨mem_pull.2 hj', hk⟩ _).symm rfl
 

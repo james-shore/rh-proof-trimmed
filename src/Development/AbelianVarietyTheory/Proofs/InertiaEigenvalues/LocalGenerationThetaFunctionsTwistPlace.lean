@@ -87,25 +87,6 @@ section Generic
 
 variable {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {S T : HSp D}
 
-theorem suppAt_conj {e : AE D} {V : HSp D} {g : GA D V} (h : SuppAt e V g) : SuppAt (cA D e) V g := by
-  intro i j
-  rw [GlobalTheory.DualPairCheck.cA_cA, add_comm]
-  exact h i j
-
-theorem suppAt_one (e : AE D) (V : HSp D) : SuppAt e V 1 := by
-  intro i j
-  have : mt V (1 : GA D V) = 1 := by
-    unfold Formalism.L2.Theta.mt
-    rw [map_one]; rfl
-  rw [this, sub_self, Matrix.zero_apply, mul_zero]
-
-theorem suppAt_inv {e : AE D} {V : HSp D} {g : GA D V} (h : SuppAt e V g) : SuppAt e V g⁻¹ := by
-  intro i j
-  have := congrFun (congrFun (GlobalTheory.SplitScalar.off_smul_mt_inv h) i) j
-  simp only [Matrix.smul_apply, smul_eq_mul] at this
-  rw [Matrix.sub_apply]
-  linear_combination -this
-
 theorem om_form {χS χT : (AE D)ˣ →* Circle} {om : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)}
     (hW : IsWeilDatumO ψ S T χS χT om) {a : AE D} (ha : IsSplitIdem D a) {g : GA D S} {h : GA D T}
     (hg : SuppAt a S g) (hh : SuppAt a T h) :
@@ -124,9 +105,9 @@ theorem cross_law {χS χT : (AE D)ˣ →* Circle} {om : GA D S × GA D T →* M
     (hs : HasShape ψ S T a Φ w) {c : ℂ} (hc : c ≠ 0) (ef : om (κ, 1) f = c • f) (ew : om (κ, 1) w = c • w)
     {ℓ : (WO S T → ℂ) →ₗ[ℂ] ℂ} (hℓ : InvForm ψ S T a ℓ) {x x' : WO S T} (hx : IsHalf a x) (hx' : IsHalf a x') :
     coef ψ S T a ℓ f (actO S T κ 1 x) * Φ x' = coef ψ S T a ℓ f x * Φ (actO S T κ 1 x') := by
-  obtain ⟨s, hs0, H⟩ := om_form hW ha hκ (suppAt_one a T)
+  obtain ⟨s, hs0, H⟩ := om_form hW ha hκ (_root_.GlobalTheory.WeilUniq.suppAt_one a T)
   have hne : ¬ ∀ ℓ, InvForm ψ S T a ℓ → ∀ x, IsHalf a x → ℓ (heisO ψ S T x w) = 0 := fun h =>
-    hw0 (GlobalTheory.T.splitPlace_invariantForms_separate_thetaFunctions D ψ S T hW.std a ha w hw h)
+    hw0 (_root_.GlobalTheory.DownLift.SplitSep.invForms_separate D ψ S T hW.std a ha w hw h)
   push Not at hne
   obtain ⟨ℓ₀, hℓ₀, x₀, hx₀, hne⟩ := hne
   obtain ⟨c₀, hc₀⟩ := hs ℓ₀ hℓ₀
@@ -207,8 +188,8 @@ theorem step_of_shape (R : RealDat D A Ks) (hW : R.thP_ωP) (i : Fin D.R.m) (t :
     obtain ⟨p1, p2, p3⟩ := GlobalTheory.T.localHeisenbergSpan_preserves_type_relations D G Pl0 T A Ks R hW i t Sb v hv ε a hε hae f hT hC hL f' hf'
     have p4 := GlobalTheory.T.thetaShapeRelation_drop_splitPlace D G Pl0 T A Ks R hψ i t Sb v ε a ha hε hae hth Φ f' hs
       (fun ℓ hℓ => ⟨_, fun x hx => (H ℓ hℓ x hx).trans (mul_comm _ _)⟩) p3
-    have hg' : SuppAt a (Wc D i) g⁻¹ := suppAt_inv hg
-    obtain ⟨s, hs0, E⟩ := om_form (hW i t) ha (suppAt_one a (Vc D i)) hg'
+    have hg' : SuppAt a (Wc D i) g⁻¹ := _root_.GlobalTheory.SplitPlace.suppAt_inv hg
+    obtain ⟨s, hs0, E⟩ := om_form (hW i t) ha (_root_.GlobalTheory.WeilUniq.suppAt_one a (Vc D i)) hg'
     refine ⟨s⁻¹ • R.ωP i t (1, g⁻¹) f', Submodule.smul_mem _ _ (Submodule.subset_span ⟨g⁻¹, f', p1, p2, p4, rfl⟩),
       fun ℓ hℓ x hx => ?_⟩
     have e := E ℓ hℓ f' p1.1 (actO _ _ 1 g x)
@@ -315,7 +296,7 @@ theorem step_twist : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type
       show upperLeftBlock _ (redFn (R.βV i) P'.1 (finE (Vc D i) κ)) = 1
       rw [k5 P'.1 ((hP P').2 (Or.inl P'.2)) (hne P'.1 P'.2)]
       exact blockDiagonalExtendByOnePrimeField_one _ _
-  exact cross_law (hW i t) ha (suppAt_conj k1) hT.1 hth hv0 hs (inv_ne_zero (levChi_ne_zero _ κ))
+  exact cross_law (hW i t) ha (_root_.GlobalTheory.SplitPlace.suppAt_conj k1) hT.1 hth hv0 hs (inv_ne_zero (levChi_ne_zero _ κ))
     (hT.2 κ hκ (suppIn_of_suppAt hv h0.1 hε hae k1)) (law_vP R hc.lev hW hc.thP.vP i t hκ) hℓ hx hx'
 
 end GlobalTheory.DownLift.GenTwist

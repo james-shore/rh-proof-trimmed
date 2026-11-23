@@ -76,10 +76,6 @@ theorem pullC_ninj (τ : κ → ι) (φ : E →ₗ[k] E') (c : Finset ι → E) 
     (h : ¬ Set.InjOn τ s) : pullC τ φ c s = 0 := by
   rw [pullC_apply, if_neg h]
 
-private theorem cubeSign_eq_prod' {α : Type} [LinearOrder α] (t : Finset α) (i : α) :
-    cubeSign t i = ∏ y ∈ t, if y < i then (-1 : ℤ) else 1 := by
-  rw [cubeSign.eq_1, Finset.prod_ite, Finset.prod_const, Finset.prod_const_one, mul_one]
-
 private theorem sortSign_eq_sortSign_erase_mul {α β : Type} [LinearOrder α] [LinearOrder β] (τ : β → α) {s : Finset β}
     {j : β} (hj : j ∈ s) :
     sortSign τ s = sortSign τ (s.erase j) * ((∏ y ∈ s, if j < y ∧ τ y < τ j then (-1 : ℤ) else 1) *
@@ -99,7 +95,7 @@ private theorem sortSign_eq_sortSign_erase_mul {α β : Type} [LinearOrder α] [
 private theorem sortSign_mul_cubeSign_image {α β : Type} [LinearOrder α] [LinearOrder β] (τ : β → α) {s : Finset β}
     {j : β} (hj : j ∈ s) (hinj : Set.InjOn τ s) :
     sortSign τ s * cubeSign (s.image τ) (τ j) = cubeSign s j * sortSign τ (s.erase j) := by
-  rw [sortSign_eq_sortSign_erase_mul τ hj, cubeSign_eq_prod', cubeSign_eq_prod',
+  rw [sortSign_eq_sortSign_erase_mul τ hj, _root_.GlobalTheory.PD.PullMap.cubeSign_eq_prod, _root_.GlobalTheory.PD.PullMap.cubeSign_eq_prod,
     Finset.prod_image (fun x hx y hy h => hinj hx hy h)]
   have key : ∀ y ∈ s, ((if j < y ∧ τ y < τ j then (-1 : ℤ) else 1) *
       (if y < j ∧ τ j < τ y then -1 else 1)) * (if τ y < τ j then -1 else 1) =
@@ -129,7 +125,7 @@ private theorem cubeSign_mul_sortSign_erase_eq_neg_of_collide {α β : Type} [Li
       ∏ y ∈ s, if y < b ∧ τ b < τ y then (-1 : ℤ) else 1) =
       -(cubeSign s a * ((∏ y ∈ s, if a < y ∧ τ y < τ a then (-1 : ℤ) else 1) *
       ∏ y ∈ s, if y < a ∧ τ a < τ y then (-1 : ℤ) else 1)) := by
-    rw [cubeSign_eq_prod', cubeSign_eq_prod', ← Finset.prod_mul_distrib, ← Finset.prod_mul_distrib,
+    rw [_root_.GlobalTheory.PD.PullMap.cubeSign_eq_prod, _root_.GlobalTheory.PD.PullMap.cubeSign_eq_prod, ← Finset.prod_mul_distrib, ← Finset.prod_mul_distrib,
       ← Finset.prod_mul_distrib, ← Finset.prod_mul_distrib]
     have pt : ∀ y ∈ s, (if y < b then (-1 : ℤ) else 1) * ((if b < y ∧ τ y < τ b then -1 else 1) *
         (if y < b ∧ τ b < τ y then -1 else 1)) =
@@ -250,14 +246,6 @@ theorem pullC_delta (τ : κ → ι) (φ : E →ₗ[k] E') (c : Finset ι → E)
 
 end Signs
 
-section Field
-
-variable {B B' K L : Type} [CommRing B] [CommRing B'] [IsDomain B] [IsDomain B'] [Field K] [Field L]
-  [Algebra B B'] [Algebra B K] [Algebra K L] [Algebra B' L] [Algebra B L]
-  [IsScalarTower B K L] [IsScalarTower B B' L] [IsFractionRing B K] [IsFractionRing B' L]
-
-end Field
-
 section Germ
 
 variable {Z : Scheme.{0}} [IsIntegral Z] {p : Z ⟶ Sp ℂ} [Smooth p] [inst : Algebra ℂ Z.functionField]
@@ -347,7 +335,7 @@ def cube (hinst : inst = ffAlg p) (hU : IsAffCover p U B) (a b : ℕ) :
     (cechComplex (cechCube ℂ (Omega p a) ⊤ U)).homology b ≃ₗ[ℂ]
       (GlobalTheory.PD.cech fun I => omB ℂ Z.functionField (B I) a).H (b : ℤ) :=
   letI := algΓ p
-  Classical.choose (GlobalTheory.T.cechHomologyEquivFamAlt ℂ ι (DR ℂ Z.functionField)
+  Classical.choose (_root_.GlobalTheory.cechHomologyEquivFam ℂ ι (DR ℂ Z.functionField)
     (fun I => omB ℂ Z.functionField (B I) a) (cechCube ℂ (Omega p a) ⊤ U) (gm p hinst hU a)
     (gm_inj p hinst hU a) (gm_range p hinst hU a) (gm_res p hinst hU a) b)
 
@@ -357,10 +345,6 @@ def cmp (hinst : inst = ffAlg p) (hU : IsAffCover p U B) (a b : ℕ) :
   (cechHEquivCoh ℂ hU.cover (cover_biInf hU) (Omega p a) b).symm ≪≫ₗ cube p hinst hU a b
 
 end Cmp
-
-section Bridge
-
-end Bridge
 
 section CechMem
 
@@ -763,24 +747,6 @@ private theorem kaehlerDifferential_map_eq_semiHom_m1 (K L : Type) [Field K] [Fi
     rw [LinearMap.map_smulₛₗ, algebra_compatible_smul L r]
     rfl
 
-private theorem mapDR_eq_semiHom_mDR (K L : Type) [Field K] [Field L] [Algebra ℂ K] [Algebra ℂ L] [Algebra K L]
-    [IsScalarTower ℂ K L] (x : DR ℂ K) :
-    mapDR ℂ K L x = (semiHom_algebraMap ℂ K L).mDR x := by
-  induction x using ExteriorAlgebra.induction with
-  | algebraMap r =>
-    rw [AlgHom.commutes, SemiHom.mDR_algebraMap]
-    rfl
-  | ι ω =>
-    rw [SemiHom.mDR_ι]
-    show (ExteriorAlgebra.lift K ⟨map1 ℂ K L, kaehlerOneFormsToExtensionDeRham_mul_self ℂ K L⟩) (ExteriorAlgebra.ι K ω) = _
-    rw [ExteriorAlgebra.lift_ι_apply]
-    show ExteriorAlgebra.ι L (KaehlerDifferential.map ℂ ℂ K L ω) = _
-    rw [kaehlerDifferential_map_eq_semiHom_m1]
-  | mul x y hx hy => rw [map_mul, map_mul, hx, hy]
-  | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
-
-
-
 theorem gm_trace (hc : c ≫ p = p') (hinst : inst = ffAlg p) (hinst' : inst' = ffAlg p')
     (hU : IsAffCover p U B) (hU' : IsAffCover p' (fun i => c ⁻¹ᵁ U i) B')
     (hg : GermCompat c (algebraMap Z.functionField Y.functionField))
@@ -837,7 +803,7 @@ theorem gm_trace (hc : c ≫ p = p') (hinst : inst = ffAlg p) (hinst' : inst' = 
     rw [e1, e2, e3, germSec_secTrace_eq_trace p p' hg hW hη hη' b']
     have hC : (semiHom_germSec p' hη').mDR ↑(formPull hc (cechOpen ⊤ U s) a ω) =
         mapDR ℂ Z.functionField Y.functionField ((semiHom_germSec p hη).mDR ↑ω) := by
-      rw [mapDR_eq_semiHom_mDR, ← SemiHom.coe_mOm, ← SemiHom.coe_mOm, ← SemiHom.coe_mOm]
+      rw [_root_.UpperTheory.PullbackConnectingMap.mapDR_eq_semiHom_algebraMap_mDR, ← SemiHom.coe_mOm, ← SemiHom.coe_mOm, ← SemiHom.coe_mOm]
       congr 1
       rw [SemiHom.mOm_mOm (semiHom_germSec p hη) (semiHom_algebraMap ℂ Z.functionField Y.functionField)
         (SemiHom.comp (semiHom_germSec p hη) (semiHom_algebraMap ℂ Z.functionField Y.functionField))
@@ -879,23 +845,5 @@ theorem trL_isMap (hc : c ≫ p = p') (hinst : inst = ffAlg p) (hinst' : inst' =
     exact Finset.sum_congr rfl fun i _ => map_zsmul _ _ _
 
 end TraceCmp
-
-section TraceMain
-
-open UpperTheory.GenericCoverClass
-
-variable {Z Y : Scheme.{0}} [IsIntegral Z] [IsIntegral Y] {p : Z ⟶ Sp ℂ} {p' : Y ⟶ Sp ℂ}
-  [Smooth p] [Smooth p'] [inst : Algebra ℂ Z.functionField] [inst' : Algebra ℂ Y.functionField]
-  {c : Y ⟶ Z} [IsFinite c] [Etale c] {ι : Type} [LinearOrder ι] [Fintype ι] {U : ι → Z.Opens}
-  {B : Finset ι → Subalgebra ℂ Z.functionField} {B' : Finset ι → Subalgebra ℂ Y.functionField}
-  [Algebra Z.functionField Y.functionField] [IsScalarTower ℂ Z.functionField Y.functionField]
-
-end TraceMain
-
-section Quot
-
-variable {k : Type} [Field k] {M M' : Type} [AddCommGroup M] [Module k M] [AddCommGroup M'] [Module k M']
-
-end Quot
 
 end UpperTheory.PullbackConnectingMap

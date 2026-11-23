@@ -174,7 +174,7 @@ theorem equiv_contra (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] 
     { toFun := fun φ => smoothTrace π μ φ.1
       map_add' := fun φ ψ => ha.smoothTrace_add φ.2.1 φ.2.2 ψ.2.1 ψ.2.2 isOpen_KO isCompact_KO
       map_smul' := fun c φ => ha.smoothTrace_smul φ.2.1 φ.2.2 isOpen_KO isCompact_KO c }
-  have hT := GlobalTheory.T.transpose_invariant_of_conj_invariant_distribution_GL k (Fin n) T fun g φ ψ h => by
+  have hT := _root_.GlobalTheory.GelfandKazhdan.transpose_invariant k (Fin n) T fun g φ ψ h => by
     change smoothTrace π μ ψ.1 = smoothTrace π μ φ.1
     rw [show ψ.1 = _ from funext h]
     exact smoothTrace_conj ha isOpen_KO isCompact_KO φ.2.1 φ.2.2 g

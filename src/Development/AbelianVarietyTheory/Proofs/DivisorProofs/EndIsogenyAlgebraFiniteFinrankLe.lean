@@ -54,7 +54,7 @@ namespace GlobalTheory.AV.AbVar
 theorem end_isogeny_algebra_finrank_le : ∀ (K : Type) [Field K] (A : AbVar K),
     Module.Finite ℚ (End0 A) ∧ Module.finrank ℚ (End0 A) ≤ 4 * A.dim * A.dim := by
   intro K _ A
-  obtain ⟨hfin, hfree, hrk⟩ := GlobalTheory.T.hom_finite_free_finrank_le_four_mul_dim K A A
+  obtain ⟨hfin, hfree, hrk⟩ := _root_.GlobalTheory.AV.AbVar.hom_finite_free_rank_le K A A
   let e : End A ≃ₗ[ℤ] (A ⟶ A) := End.addEquiv.toIntLinearEquiv
   haveI : Module.Finite ℤ (A ⟶ A) := hfin
   haveI : Module.Free ℤ (A ⟶ A) := hfree

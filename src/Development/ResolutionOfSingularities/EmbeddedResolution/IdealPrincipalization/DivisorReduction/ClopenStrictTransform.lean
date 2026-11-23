@@ -57,7 +57,7 @@ namespace FunctorialResolution.EmbeddedResolution
 theorem imageIdealSheaf_comap_ι_eq_self_of_support_subset {Y : Scheme.{u}} (Z : Y.IdealSheafData)
     (U : Y.Opens) (_hU : IsClosed (U : Set Y))
     (hZ : (Z.support : Set Y) ⊆ (U : Set Y)) :
-    imageIdealSheaf U.ι (Z.comap U.ι) = Z := by
+    _root_.FunctorialResolution.Blowup.schemeImageIdeal U.ι (Z.comap U.ι) = Z := by
   have hmem : ∀ x : ↥Z.subscheme, x ∈ (Z.subschemeι ⁻¹ᵁ U) := by
     intro x
     have hx : Z.subschemeι.base x ∈ (Z.support : Set Y) := by
@@ -78,7 +78,7 @@ theorem imageIdealSheaf_comap_ι_eq_self_of_support_subset {Y : Scheme.{u}} (Z :
     rw [← cancel_mono (Scheme.Opens.ι (Z.subschemeι ⁻¹ᵁ U)), Category.assoc, he,
       Category.comp_id, Category.id_comp]
   have : IsIso (Scheme.Opens.ι (Z.subschemeι ⁻¹ᵁ U)) := ⟨⟨e, h2, he⟩⟩
-  rw [imageIdealSheaf_eq_ker_subschemeι_comp, ← ker_ι_preimage_comp_subschemeι_eq_ker_comap Z U,
+  rw [_root_.FunctorialResolution.EmbeddedResolution.imageIdealSheaf_eq_ker, ← ker_ι_preimage_comp_subschemeι_eq_ker_comap Z U,
     ker_eq_ker_of_isIso_comp (Scheme.Opens.ι (Z.subschemeι ⁻¹ᵁ U) ≫ Z.subschemeι) Z.subschemeι
       (Scheme.Opens.ι (Z.subschemeι ⁻¹ᵁ U)) rfl,
     Scheme.IdealSheafData.ker_subschemeι]
@@ -115,10 +115,6 @@ theorem support_ker_opens_ι_comp {S Y : Scheme.{u}} (f : S ⟶ Y) [IsClosedImme
   rw [Scheme.Hom.support_ker, hrange]
   exact hclosed.closure_eq
 
-private theorem range_base_comp {A B C : Scheme.{u}} (a : A ⟶ B) (b : B ⟶ C) :
-    Set.range ⇑(a ≫ b).base = ⇑b.base '' Set.range ⇑a.base := by
-  rw [coe_base_comp, Set.range_comp]
-
 private theorem quasiCompact_of_isClosedEmbedding_base {A B : Scheme.{u}} (g : A ⟶ B)
     (hg : Topology.IsClosedEmbedding ⇑g.base) : QuasiCompact g := by
   constructor
@@ -131,7 +127,7 @@ private theorem range_base_preimage_ι_comp_ι_eq_of_le {S Y : Scheme.{u}} (f : 
       = Set.range ⇑(Scheme.Opens.ι (f ⁻¹ᵁ W)).base := by
   have h2 : (((U.ι ≫ f) ⁻¹ᵁ W : U.toScheme.Opens) : Set U.toScheme)
       = ⇑U.ι.base ⁻¹' ((f ⁻¹ᵁ W : S.Opens) : Set S) := rfl
-  rw [range_base_comp, Scheme.Opens.range_ι, Scheme.Opens.range_ι, h2,
+  rw [_root_.AlgebraicGeometry.Scheme.Hom.range_comp_base, Scheme.Opens.range_ι, Scheme.Opens.range_ι, h2,
     Set.image_preimage_eq_inter_range, Scheme.Opens.range_ι]
   refine Set.inter_eq_left.mpr ?_
   intro x hx

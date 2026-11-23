@@ -84,12 +84,6 @@ theorem kgT_star (X : Lie E a) : star (kgT X) = kgT X := by
   exact Fintype.sum_equiv (Function.Involutive.toPerm _ fun τ => star_star τ) _ _ fun τ => rfl
 
 omit [NumberField E] [_root_.NumberField.IsTotallyComplex E] in
-theorem kg_coord_atEmb_self (τ : E →+* ℂ) (z : ℂ) : coord τ (atEmb τ z) = z := by
-  rw [J.coord_eq]
-  unfold atEmb
-  split_ifs <;> simp_all
-
-omit [NumberField E] [_root_.NumberField.IsTotallyComplex E] in
 theorem kg_coord_atEmb_of_ne {τ τ' : E →+* ℂ} (h : InfinitePlace.mk τ' ≠ InfinitePlace.mk τ) (z : ℂ) :
     coord τ' (atEmb τ z) = 0 := by
   classical
@@ -104,7 +98,7 @@ theorem kg_sum_coord_atEmb (τ : E →+* ℂ) (z : ℂ) :
     have h1 : (InfinitePlace.mk τ).IsReal :=
       InfinitePlace.isReal_mk_iff.2 (ComplexEmbedding.isReal_iff.2 h)
     exact (InfinitePlace.not_isReal_iff_isComplex.2 (IsTotallyComplex.isComplex _)) h1
-  rw [Fintype.sum_eq_add τ (ComplexEmbedding.conjugate τ) hne.symm, J.coord_conjugate, kg_coord_atEmb_self]
+  rw [Fintype.sum_eq_add τ (ComplexEmbedding.conjugate τ) hne.symm, J.coord_conjugate, _root_.GlobalTheory.CuspRep.coord_atEmb]
   · rfl
   · rintro τ' ⟨h1, h2⟩
     refine kg_coord_atEmb_of_ne (fun h => ?_) z

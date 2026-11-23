@@ -94,7 +94,7 @@ theorem isUnit_of_frob_dvd : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : B
     ∀ M : ℕ, frobS l bk.a g ∣ bk.E ^ M * g → IsUnit g := by
   intro l _ K bk g hg M hdvd
   classical
-  obtain ⟨P, U, hU, hPm, hPd, rfl⟩ := weier l bk.a g hg
+  obtain ⟨P, U, hU, hPm, hPd, rfl⟩ := _root_.GlobalTheory.weierstrass_prep_not_dvd_l l bk.a g hg
   have h1 : frobS l bk.a (P : (Wq l bk.a)⟦X⟧) ∣ ((bk.Ep ^ M * P : Polynomial (Wq l bk.a)) : (Wq l bk.a)⟦X⟧) := by
     rw [map_mul] at hdvd
     have h3 : frobS l bk.a (P : (Wq l bk.a)⟦X⟧) ∣ bk.E ^ M * (P : (Wq l bk.a)⟦X⟧) * U := by
@@ -103,7 +103,7 @@ theorem isUnit_of_frob_dvd : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : B
       exact this
     rw [Polynomial.coe_mul, Polynomial.coe_pow]
     exact hU.dvd_mul_right.1 h3
-  have h2 := descend l bk.a P _ hPm hPd h1
+  have h2 := _root_.GlobalTheory.expand_map_dvd_of_frobS_dvd l bk.a P _ hPm hPd h1
   by_cases hd : P.natDegree = 0
   · rw [Polynomial.eq_one_of_monic_natDegree_zero hPm hd, Polynomial.coe_one, mul_one]
     exact hU
@@ -116,7 +116,7 @@ theorem isUnit_of_frob_dvd : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : B
     obtain ⟨w, hw⟩ := bk.coeff_zero
     rw [hw]
     exact mul_ne_zero hl0 w.ne_zero
-  have hP0 := coeffZero l bk.a P bk.Ep M hPm hE0 h2
+  have hP0 := _root_.GlobalTheory.coeff_zero_ne_zero_of_frobenius_dvd_pow_mul l bk.a P bk.Ep M hPm hE0 h2
   set ι := GlobalTheory.TameFrob.iotaO l bk.a with hι
   have hιinj : Function.Injective ι := GlobalTheory.TameFrob.iotaO_injective l bk.a
   set Pι := P.map ι with hPι
@@ -131,14 +131,14 @@ theorem isUnit_of_frob_dvd : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : B
   have hmax : ∀ y : Om l, Pι.IsRoot y → ‖y‖ ≤ ‖x‖ := fun y hy =>
     hxmax y (Multiset.mem_toFinset.2 ((Polynomial.mem_roots hPι0).2 hy))
   set r := ‖x‖ with hr
-  have hr1 : r < 1 := rootLt l bk.a P hPm hPd x hx
+  have hr1 : r < 1 := _root_.GlobalTheory.RootLt.norm_lt_one_of_isRoot l bk.a P hPm hPd x hx
   have hxne : x ≠ 0 := by
     rintro rfl
     apply hP0
     apply hιinj
     simpa [hPι, Polynomial.IsRoot, Polynomial.eval_zero_map, ← Polynomial.coeff_zero_eq_eval_zero] using hx
   have hr0 : 0 < r := norm_pos_iff.2 hxne
-  obtain ⟨Φ, hΦ⟩ := frobAut l bk.a
+  obtain ⟨Φ, hΦ⟩ := _root_.GlobalTheory.TameFrob.exists_algEquiv_iotaO_sigma l bk.a
   have hn : ∀ y, ‖Φ y‖ = ‖y‖ := fun y => (spectralNorm_eq_of_equiv Φ y).symm
   set z := Φ x with hzdef
   have hz : ‖z‖ = r := hn x
@@ -162,7 +162,7 @@ theorem isUnit_of_frob_dvd : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : B
   have key : ∀ z' : Om l, Polynomial.aeval z' (minpoly (↥(Kunr l bk.a)) z) = 0 → ∀ y : Om l, y ^ l = z' →
       (bk.Ep.map ι).IsRoot y := by
     intro z' hz' y hy
-    have hnz' : ‖z'‖ = r := (conj l bk.a z z' hz').trans hz
+    have hnz' : ‖z'‖ = r := (_root_.GlobalTheory.conj_norm_eq_of_minpoly_root l bk.a z z' hz').trans hz
     have hz'Q : (Q.map ι).IsRoot z' := by
       obtain ⟨c, hc⟩ := hmdvd
       rw [Polynomial.IsRoot, ← haev, hc, map_mul, hz', zero_mul]
@@ -185,8 +185,8 @@ theorem isUnit_of_frob_dvd : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : B
     rcases Nat.eq_zero_or_pos M with hM | hM
     · rw [hM, pow_zero] at h8; exact absurd h8 one_ne_zero
     · exact (pow_eq_zero_iff hM.ne').1 h8
-  have hirr := irr l bk.a bk.Ep bk.monic bk.deg_pos bk.dvd_coeff bk.coeff_zero
-  have hc := expandCoeff l bk.a bk.Ep bk.monic hirr z hz0 key
+  have hirr := _root_.GlobalTheory.TameFrob.irreducible_map_iota_of_eisenstein l bk.a bk.Ep bk.monic bk.deg_pos bk.dvd_coeff bk.coeff_zero
+  have hc := _root_.GlobalTheory.ExpandCoeff.coeff_eq_zero_of_roots l bk.a bk.Ep bk.monic hirr z hz0 key
   obtain ⟨i, hi, hci⟩ := bk.not_expand
   exact hci (hc i hi)
 

@@ -110,7 +110,7 @@ theorem bc_hyps {n' : ℕ} {TT : Finset (Fin n')} {r L₁ L₂ u M₀ G' N₁ : 
 theorem bc_count {n' : ℕ} {TT : Finset (Fin n')} {r L₁ L₂ u M₀ G' N₁ : ℕ} (hr : 1 ≤ r)
     (h : OrbitRaw n' TT r L₁ L₂ u M₀ G' N₁) : SegmentCountBounds n' TT.card G' N₁ := by
   obtain ⟨c0, c1, c2, _⟩ := bc_hyps h
-  have := Formalism.GrowthSums.Top.topCount n' (TT.map Fin.valEmbedding) L₂ (r - 1) r u M₀ G' N₁ hr c0 c1 c2 (bc_sub TT)
+  have := _root_.Formalism.GrowthSums.top_count_holds n' (TT.map Fin.valEmbedding) L₂ (r - 1) r u M₀ G' N₁ hr c0 c1 c2 (bc_sub TT)
     h.2.2.2.2
   rwa [Finset.card_map] at this
 
@@ -121,7 +121,7 @@ theorem bc_next {n' : ℕ} {TT : Finset (Fin n')} {r L₁ L₂ u M₀ G' N₁ : 
   have hg := h.2.2.2.2
   intro y hy _
   have hyn : y < n' := Finset.mem_range.mp (bc_sub TT hy)
-  obtain ⟨Dd, hD, hT, hE⟩ := Formalism.GrowthSums.Top.nextEvenTop n' (TT.map Fin.valEmbedding) L₂ (r - 1) r u M₀ G' N₁ hr c0 c1 c2
+  obtain ⟨Dd, hD, hT, hE⟩ := _root_.Formalism.GrowthSums.next_even_top_holds n' (TT.map Fin.valEmbedding) L₂ (r - 1) r u M₀ G' N₁ hr c0 c1 c2
     (bc_sub TT) hg y hyn
   obtain ⟨hD1, hD2⟩ := Finset.mem_Icc.mp hD
   have hex : ∃ d, 1 ≤ d ∧ (y + d) % n' ∈ TT.map Fin.valEmbedding ∧ Even ((y + d) % n') := ⟨Dd, hD1, hT, hE⟩
@@ -185,7 +185,7 @@ theorem bc_tile {n' : ℕ} {TT : Finset (Fin n')} {r L₁ L₂ u M₀ G' N₁ : 
     (h : OrbitRaw n' TT r L₁ L₂ u M₀ G' N₁) : MarkedTileMaxima n' (TT.map Fin.valEmbedding) r u := by
   obtain ⟨c0, _, _, _⟩ := bc_hyps h
   intro s hs hm
-  obtain ⟨f, hf, himg, hev, hgap, hbd⟩ := Formalism.G0.Top.markedRun (TT.map Fin.valEmbedding) r u s c0 hm
+  obtain ⟨f, hf, himg, hev, hgap, hbd⟩ := _root_.Formalism.G0.marked_run (TT.map Fin.valEmbedding) r u s c0 hm
   refine ⟨f, ⟨hf, himg⟩, hev, hgap, hbd, ?_⟩
   intro i y hy hne
   have hyn : y < n' := Finset.mem_range.mp (bc_sub TT hy)
@@ -216,11 +216,11 @@ theorem bc_seg {n' : ℕ} {TT : Finset (Fin n')} {r L₁ L₂ u M₀ G' N₁ : �
   have h3 := h.2.2.2.1
   intro s s' f f' hN hf hf' a b Dd
   obtain ⟨n1, n2, n3, n4, n5⟩ := hN
-  obtain ⟨g, hg, hgimg, hgev, hggap, _⟩ := Formalism.G0.Top.markedRun (TT.map Fin.valEmbedding) r u s c0 n3
-  obtain ⟨g', hg', hgimg', hgev', hggap', _⟩ := Formalism.G0.Top.markedRun (TT.map Fin.valEmbedding) r u s' c0 n4
+  obtain ⟨g, hg, hgimg, hgev, hggap, _⟩ := _root_.Formalism.G0.marked_run (TT.map Fin.valEmbedding) r u s c0 n3
+  obtain ⟨g', hg', hgimg', hgev', hggap', _⟩ := _root_.Formalism.G0.marked_run (TT.map Fin.valEmbedding) r u s' c0 n4
   have e1 : f = g := bc_enum_unique hf ⟨hg, hgimg⟩
   have e2 : f' = g' := bc_enum_unique hf' ⟨hg', hgimg'⟩
-  have hS := Formalism.GrowthSums.Top.segmentBound n' (TT.map Fin.valEmbedding) L₂ (r - 1) r u M₀ G' N₁ hr c0 c1 c2 (bc_sub TT)
+  have hS := _root_.Formalism.GrowthSums.segment_bound_holds n' (TT.map Fin.valEmbedding) L₂ (r - 1) r u M₀ G' N₁ hr c0 c1 c2 (bc_sub TT)
     h.2.2.2.2 s s' f f' n1 n2 n3 n4 n5 hf.1 hf.2 hf'.1 hf'.2
   have hmem : ∀ (φ : Fin (3 * r) → ℕ) (σ : ℕ), Enum (TT.map Fin.valEmbedding) r u σ φ → ∀ i, φ i < n' := by
     intro φ σ hφ i
@@ -299,12 +299,6 @@ def logBoundConstant (r : ℕ) (h : ℝ) : ℝ := ((h + 3) / (10 : ℝ) ^ (-((6 
 
 theorem logBoundConstant_pos (r : ℕ) (h : ℝ) (hh : 0 ≤ h) : 0 < logBoundConstant r h := by unfold logBoundConstant; positivity
 
-theorem bc_goodU_pos {de : ℝ} (h : 0 < de) : 1 ≤ goodU de := by
-  unfold goodU
-  exact Nat.one_le_iff_ne_zero.mpr (by
-    have : 0 < 1 / de := by positivity
-    exact (Nat.ceil_pos.mpr this).ne')
-
 theorem one_le_log_of_three_le_bis {x : ℝ} (hx : 3 ≤ x) : 1 ≤ Real.log x := by
   rw [Real.le_log_iff_exp_le (by linarith)]
   have := Real.exp_one_lt_d9
@@ -373,8 +367,8 @@ theorem segment_count_log_bounds (r : ℕ) (h : ℝ) (hr : 1 ≤ r) (hh : 0 ≤ 
       unfold goodG' goodEll
       exact Nat.mul_le_mul_right _ (by omega)
     omega
-  obtain ⟨t1, t2⟩ := Formalism.GrowthSums.Top.topCount n' (TT.map Fin.valEmbedding) L₂ K r (goodU de) (orbitSmallMultiplicity r h x)
-    (goodG' r de h x) (orbitWindowCount r de h x) hr (bc_goodU_pos hde) c1 le_rfl (bc_sub TT) hg
+  obtain ⟨t1, t2⟩ := _root_.Formalism.GrowthSums.top_count_holds n' (TT.map Fin.valEmbedding) L₂ K r (goodU de) (orbitSmallMultiplicity r h x)
+    (goodG' r de h x) (orbitWindowCount r de h x) hr (_root_.Formalism.MainNotions.G.WittFrameLocaliserOrders.bd_goodU_pos hde) c1 le_rfl (bc_sub TT) hg
   rw [Finset.card_map] at t1 t2
   have t1' : (n' : ℝ) ≤ (TT.card : ℝ) * (goodG' r de h x : ℝ) := by exact_mod_cast t1
   have t2' : (TT.card : ℝ) * (goodG' r de h x : ℝ) ≤ (orbitWindowCount r de h x : ℝ) * ((n' : ℝ) + (goodG' r de h x : ℝ)) := by
@@ -754,7 +748,7 @@ theorem bs_segs (TT : Finset (Fin n')) (r L₁ L₂ u M₀ G' N₁ : ℕ) (hr : 
   obtain ⟨c0, c1, c2, c3⟩ := bc_hyps h
   have h3 : 3 * G' ≤ n' := h.2.2.2.1
   have hn0 : 0 < n' := by omega
-  obtain ⟨D0, _, hT0, hE0⟩ := Formalism.GrowthSums.Top.nextEvenTop n' (TT.map Fin.valEmbedding) L₂ (r - 1) r u M₀ G' N₁ hr c0 c1 c2
+  obtain ⟨D0, _, hT0, hE0⟩ := _root_.Formalism.GrowthSums.next_even_top_holds n' (TT.map Fin.valEmbedding) L₂ (r - 1) r u M₀ G' N₁ hr c0 c1 c2
     (bc_sub TT) h.2.2.2.2 0 hn0
   obtain ⟨e1, he1, hv1⟩ := Finset.mem_map.mp hT0
   have hv1' : e1.val = (0 + D0) % n' := hv1
@@ -1187,25 +1181,13 @@ end Formalism.MainNotions.G.TopChoiceBounds
 
 end
 
-noncomputable section
-
 namespace Formalism.MainNotions.G.TopChoiceBounds
-
-open Formalism.BasicNotions Formalism.MainNotions.G Formalism.MainNotions
 
 end Formalism.MainNotions.G.TopChoiceBounds
 
-end
-
-noncomputable section
-
 namespace Formalism.MainNotions.G.TopChoiceBounds
 
-open Formalism.BasicNotions Formalism.MainNotions.G Formalism.MainNotions
-
 end Formalism.MainNotions.G.TopChoiceBounds
-
-end
 
 noncomputable section
 
@@ -1912,48 +1894,9 @@ end Formalism.MainNotions.G.TopChoiceBounds
 
 end
 
-noncomputable section
-
-open scoped BigOperators
-
 namespace Formalism.MainNotions.G.TopChoiceBounds
 
-open Formalism.BasicNotions Formalism.MainNotions.G Formalism.MainNotions Finset
-
-section Marg
-
-variable {α : Type*} [Fintype α] [DecidableEq α]
-
-end Marg
-
-variable {D : D7} {L : SizeData₂ D}
-
-
-section Sharp
-
-open Formalism.G0 Formalism.G0.TopsConditionalProbabilityWindows
-
-end Sharp
-
-section Num
-
-open Formalism.G0 Formalism.G0.TopsConditionalProbabilityWindows
-
-end Num
-
-section Assemble
-
-open Formalism.G0
-
-end Assemble
-
-section Fam
-
-end Fam
-
 end Formalism.MainNotions.G.TopChoiceBounds
-
-end
 
 noncomputable section
 
@@ -3055,13 +2998,9 @@ theorem one_le_b₂ (s : Scale) : 1 ≤ s.b := by
   unfold Scale.b Scale.L
   exact Real.one_le_exp (Real.rpow_nonneg (x_pos₂ s).le _)
 
-theorem one_lt_a (s : Scale) : 1 < s.a := by
-  unfold Scale.a
-  nlinarith [s.one_lt_alt, one_le_b₂ s]
-
 theorem scale_b'_nonneg₂ (s : Scale) : 0 ≤ s.b' := by
   unfold Scale.b' Scale.X'
-  exact div_nonneg (le_trans zero_le_one (one_lt_a s).le) (Real.exp_pos _).le
+  exact div_nonneg (le_trans zero_le_one (_root_.Formalism.MainNotions.G.TopChoiceBounds.bt_a s).le) (Real.exp_pos _).le
 
 theorem w''_nonneg₂ (s : Scale) (n : ℕ) : 0 ≤ s.w'' n := by
   unfold Scale.w''
@@ -3185,7 +3124,7 @@ theorem hLarge_proved (X : Inst D L) (K : Consts) (hK : K.Nonneg) (h1 : 1 ≤ K.
   have hkS := P.kS_le
   have hab := two_b'_le_a₂ L.sc
   have hx := x_pos₂ L.sc
-  have ha := one_lt_a L.sc
+  have ha := _root_.Formalism.MainNotions.G.TopChoiceBounds.bt_a L.sc
   have hb' := scale_b'_nonneg₂ L.sc
   have hw0 := w''_nonneg₂ L.sc D.R.n
   have hη := L.etaSz_pos

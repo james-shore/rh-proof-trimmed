@@ -64,9 +64,9 @@ theorem GlobalTheory.RedChern.redMap_cocycle_sub_eq_defects : ∀ (Q q : ℕ) [N
     rw [mul_pow, hv, hw, map_mul]
   have ea := ha V g v w hv hw
   have eb := hb V g _ _ hvq hwq
-  have d1 := GlobalTheory.T.kummerReductionChernDefect_restrict Q q hqQ U u₁ hQ V g v hv
-  have d2 := GlobalTheory.T.kummerReductionChernDefect_restrict Q q hqQ U u₂ hQ V g w hw
-  have d3 := GlobalTheory.T.kummerReductionChernDefect_restrict Q q hqQ U (u₁ * u₂) hQ V g (v * w) hvw
+  have d1 := _root_.GlobalTheory.EtC.RedChern.res_defectSec Q q hqQ U u₁ hQ V g v hv
+  have d2 := _root_.GlobalTheory.EtC.RedChern.res_defectSec Q q hqQ U u₂ hQ V g w hw
+  have d3 := _root_.GlobalTheory.EtC.RedChern.res_defectSec Q q hqQ U (u₁ * u₂) hQ V g (v * w) hvw
   have en := (redMap Q q 1).nat g 0 a
   have hsub : ∀ x y : Sec ((res _ (tw q 1)).X 0) U, Sec.res g (x - y) = Sec.res g x - Sec.res g y := fun x y => map_sub _ x y
   have hadd : ∀ x y : Sec ((res _ (tw q 1)).X 0) U, Sec.res g (x + y) = Sec.res g x + Sec.res g y := fun x y => map_add _ x y

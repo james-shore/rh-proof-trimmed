@@ -197,7 +197,7 @@ namespace ReciprocityTheory.AnForm.A
 
 open MeasureTheory Metric Set Filter Topology Real PshInh
 
-theorem isPsh_iff_isLeviPsh_thm : IsPsh_iff_isLeviPshStatement := PshLap.plurisubharmonicIffLeviNonneg_holds
+alias isPsh_iff_isLeviPsh_thm := _root_.ReciprocityTheory.AnForm.A.PshLap.plurisubharmonicIffLeviNonneg_holds
 
 theorem isPsh_sup_thm : IsPsh_supStatement := by
   intro D ι _ _ U u hU hu
@@ -219,11 +219,8 @@ theorem isPsh_sup_thm : IsPsh_supStatement := by
     refine ((hu j).2 z w hdisc).2.trans (Real.circleAverage_mono (hci j) hcs fun ζ _ => ?_)
     exact Finset.le_sup' (fun j => u j (z + ζ • w)) (Finset.mem_univ j)
 
-theorem isPsh_locallyIntegrable_thm : IsPsh_locallyIntegrableStatement :=
-  PshMean.plurisubharmonicLocallyIntegrable_holds
+alias subMeanPolydisc_thm := _root_.ReciprocityTheory.AnForm.A.PshMean.subMeanValuePolydisc_holds
 
-theorem subMeanPolydisc_thm : SubMeanPolydiscStatement := PshMean.subMeanValuePolydisc_holds
-
-theorem mollifierInhabit_thm : MollifierInhabitStatement := PshMol.circleInvariantMollifierExists_holds
+alias mollifierInhabit_thm := _root_.ReciprocityTheory.AnForm.A.PshMol.circleInvariantMollifierExists_holds
 
 end ReciprocityTheory.AnForm.A

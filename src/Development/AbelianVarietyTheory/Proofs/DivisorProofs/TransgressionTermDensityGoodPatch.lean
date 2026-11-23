@@ -114,7 +114,7 @@ theorem GlobalTheory.GoodTop.hasInt_corrDens_of_goodPatch : ∀ {F : Type} [Fiel
       rw [i.e.left_inv hyi] at ht
       exact ht.eventually h0
     simp only [corrDens, corrTop]
-    rw [GlobalTheory.T.transgressionTopCoeffComplex_eq_zero_of_cutoff_zero _ _ h1]
+    rw [_root_.GlobalTheory.GoodTop.corrC_eq_zero_of_eventuallyEq_zero _ _ h1]
     simp
   · intro j y hyS hyW hyj
     exact GlobalTheory.T.transgressionDensity_holomorphicChart_etale E O H H₀ hH hH₀ hρ hP.holo j hyS (hP.sub hyW) hyj (hP.frame y hyW)

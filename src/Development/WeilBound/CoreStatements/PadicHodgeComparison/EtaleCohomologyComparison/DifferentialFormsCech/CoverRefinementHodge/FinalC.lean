@@ -44,6 +44,8 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CechDifferentialPullback.InjectiveSequenceLift
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CechFormsAddSmul
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CechDifferentialPullback.FormCochPullPf
 
 @[expose] public section
 
@@ -53,11 +55,8 @@ namespace CrystallineSemistableComparison.Om.Nt2F
 
 open CrystallineSemistableComparison.Om.Glob CrystallineSemistableComparison.Om.Cech CrystallineSemistableComparison.Om.Nt2
 
-theorem glob_iso_c : type_of% (@CrystallineSemistableComparison.Om.Glob.glob_iso _) := CrystallineSemistableComparison.Om.GlobPf2.glob_iso
-theorem cechOm_pull_c : type_of% (@CrystallineSemistableComparison.Om.Cech.cechOm_pull _) := CrystallineSemistableComparison.Om.Cech.CechFormPull.cechOm_pull_pf
-
 theorem hodge_iso_natural_cech : type_of% (@CrystallineSemistableComparison.Om.hdg_iso _) :=
-  hdg_iso_of_ing glob_iso_c formToCO_bijective_i formToCO_smul_i cechOmAdd_smul_i cechOm_pull_c formCoch_pull_i
+  hdg_iso_of_ing _root_.CrystallineSemistableComparison.Om.GlobPf2.glob_iso _root_.GlobalTheory.CompanionTheory.OmCech.formToCO_bijective _root_.GlobalTheory.CompanionTheory.OmBridge.formToCO_smul _root_.GlobalTheory.CompanionTheory.OmCech.cechOmAdd_smul _root_.CrystallineSemistableComparison.Om.Cech.CechFormPull.cechOm_pull_pf _root_.CrystallineSemistableComparison.Om.Cech.formCoch_pull_pf
     cov_refine pullH_id pullC_id
 
 end CrystallineSemistableComparison.Om.Nt2F

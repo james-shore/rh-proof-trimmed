@@ -78,6 +78,6 @@ theorem quotMeas_ae_mem_and_measurable : PI.KFinSmooth → ∀ (k r : ℕ) (ε :
       haveI : ProperSpace Wp := FiniteDimensional.proper ℂ Wp
       infer_instance
     exact key Wp (fun g => l (R.σ g w))
-      (GlobalTheory.T.frechetContinuous_continuousOn_orbit_hasDerivAt hK k r ε mu R hDS Wp l hl.1 hl.2.1 hl.2.2.2 w hw).1
+      (_root_.Gp91.GlobalTheory.cwCont_continuousOn_hasDerivAt hK k r ε mu R hDS Wp l hl.1 hl.2.1 hl.2.2.2 w hw).1
 
 end GlobalTheory

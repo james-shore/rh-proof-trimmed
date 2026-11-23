@@ -78,7 +78,7 @@ theorem GlobalTheory.KJRealLive.clsKL_real : ∀ {B : GlobalTheory.Mem.Base} {X 
   intro j hj α γ k₁ hk₁ k₂ hk₂ P₁ P₂ hP₁₂
   have hjle : j ≤ B.R.m := Nat.le_of_succ_le hj
   have hjlt : j < B.R.m := hj
-  obtain ⟨e, he, hee⟩ := GlobalTheory.T.exists_charExponent_infinity_kernel_shift I hOk hPins l Z u a Ch₀ A hP.is j hj
+  obtain ⟨e, he, hee⟩ := _root_.GlobalTheory.AdForm.TwDat.chr_exp_shifts I hOk hPins l Z u a Ch₀ A hP.is j hj
   have hvac := hX.vc j hjlt
   have hxj := hX.xs j hjle
   have hxj1 := hX.xs (j + 1) hj

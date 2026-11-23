@@ -76,17 +76,6 @@ theorem etale_of_etale_atMaximal {A B : Type} [CommRing A] [IsLocalRing A] [Comm
     (Algebra.TensorProduct.congr e.symm AlgEquiv.refl).trans (Algebra.TensorProduct.lid A B)
   exact Algebra.Etale.of_equiv f
 
-theorem isIntegral_of_forall_apply {O : Type} [CommRing O] {ι : Type} [Finite ι] {R : ι → Type}
-    [∀ i, CommRing (R i)] [∀ i, Algebra O (R i)] (x : ∀ i, R i) (hx : ∀ i, IsIntegral O (x i)) :
-    IsIntegral O x := by
-  first
-  | exact @_root_.GlobalTheory.IntegralPi.main
-  | exact _root_.GlobalTheory.IntegralPi.main
-  | (apply _root_.GlobalTheory.IntegralPi.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralPi.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralPi.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegralPi.main ..)
-
 theorem etale_of_etale_pi {R : Type} [CommRing R] [IsNoetherianRing R] {ι : Type} [Finite ι]
     (C : ι → Type) [∀ i, CommRing (C i)] [∀ i, Algebra R (C i)] [∀ i, Module.Finite R (C i)]
     (h : Algebra.Etale R (∀ i, C i)) (i : ι) : Algebra.Etale R (C i) :=
@@ -126,7 +115,7 @@ theorem etale_integralClosure_of_isArtinianRing : ∀ (A E : Type) [CommRing A] 
       exact congrArg Subtype.val (congrFun hxy I)
     · intro l
       refine ⟨⟨ψ.symm fun I => (l I).1, ?_⟩, ?_⟩
-      · exact (isIntegral_of_forall_apply (fun I => ((l I : F I))) fun I => (l I).2).map
+      · exact (_root_.GlobalTheory.IntegralPi.isIntegral_pi (fun I => ((l I : F I))) fun I => (l I).2).map
           ψ.symm.toAlgHom
       · funext I
         apply Subtype.ext

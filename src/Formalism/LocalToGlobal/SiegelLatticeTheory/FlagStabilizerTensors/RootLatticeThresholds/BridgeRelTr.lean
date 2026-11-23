@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeCountingBound.ArchPlace
 
 @[expose] public section
 
@@ -181,7 +182,7 @@ theorem relTr_carrierOf (e : InfinitePlace D.host.E ≃ D.what₂.Tau) (he : Pla
     apply Matrix.inv_eq_right_inv
     calc Qim * A * Qm * (Qim * Ai * Qm) = Qim * (A * ((Qm * Qim) * (Ai * Qm))) := by simp only [Matrix.mul_assoc]
       _ = 1 := by rw [hTr.h2, Matrix.one_mul, ← Matrix.mul_assoc A Ai Qm, hAA, Matrix.one_mul, hTr.h1]
-  refine ⟨Bridge.delta_GV hTr (uMat_unitary _), fun ρ0 hρ => ?_⟩
+  refine ⟨Bridge.delta_GV hTr (_root_.PI.UnitaryGroupMassFormula.LCG.ap_inUJ _), fun ρ0 hρ => ?_⟩
   obtain ⟨ρ, rfl⟩ : ∃ ρ : Matrix (Fin (2 * D.R.rS + D.R.k + 1)) (Fin (2 * D.R.rS + D.R.k + 1)) ℂ, ρ = ρ0 := ⟨ρ0, rfl⟩
   have hρ1 : ρ ∈ Formalism.QuantumDeterminants.Nset D.R.k D.R.rS := hρ.1
   have hρ2 : (Qim * A * Qm)⁻¹ * ρ * (Qim * A * Qm) ∈ Formalism.QuantumDeterminants.Nset D.R.k D.R.rS := hρ.2
@@ -197,7 +198,7 @@ theorem relTr_carrierOf (e : InfinitePlace D.host.E ≃ D.what₂.Tau) (he : Pla
 
   set M := H * (Qm * ρ * Qim) * Hi with hM
   set Mi := H * (Qm * ρi * Qim) * Hi with hMi
-  have hHiH : Hi * H = 1 := uMat_inv_mul (h v)
+  have hHiH : Hi * H = 1 := _root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_inv_mul (h v)
   have hHHi : H * Hi = 1 := uMat_mul_inv (h v)
   have hMMi : M * Mi = 1 := by
     calc M * Mi = H * (Qm * (ρ * ((Qim * ((Hi * H) * (Qm * (ρi * (Qim * Hi)))))))) := by
@@ -212,7 +213,7 @@ theorem relTr_carrierOf (e : InfinitePlace D.host.E ≃ D.what₂.Tau) (he : Pla
         rw [hHiH, Matrix.one_mul, ← Matrix.mul_assoc Qim Qm, hTr.h1, Matrix.one_mul, ← Matrix.mul_assoc ρi ρ,
           hρρ', Matrix.one_mul, ← Matrix.mul_assoc Qm Qim, hTr.h2, Matrix.one_mul, hHHi]
   have hMJ : Mᴴ * Formalism.REAL.Jm (X.B.I.ε v) * M = Formalism.REAL.Jm (X.B.I.ε v) :=
-    jUnit_mul (jUnit_mul (uMat_unitary (h v)) (qrq_unit hTr hρ1.1)) (uMat_unitary (h v)⁻¹)
+    jUnit_mul (jUnit_mul (_root_.PI.UnitaryGroupMassFormula.LCG.ap_inUJ (h v)) (qrq_unit hTr hρ1.1)) (_root_.PI.UnitaryGroupMassFormula.LCG.ap_inUJ (h v)⁻¹)
   let sv : Formalism.REAL.UJ (X.B.I.ε v) := ⟨⟨M, Mi, hMMi, hMiM⟩, hMJ⟩
   let s : X.B.I.Ginf := Pi.mulSingle (M := fun v' => Formalism.REAL.UJ (X.B.I.ε v')) v sv
   have hsv : Formalism.MainNotions.S.uMat (s v) = M := by simp [s, sv, Formalism.MainNotions.S.uMat]
@@ -238,7 +239,7 @@ theorem relTr_carrierOf (e : InfinitePlace D.host.E ≃ D.what₂.Tau) (he : Pla
       · subst hv'
         show InN (X.B.I.ε v') (PtRepPf.frU X u v').e (PtRepPf.frU X u v').z (Formalism.MainNotions.S.uMat (s v'))
         rw [hsv]
-        exact Bridge.inN_conj (uMat_unitary (h v')) hHHi hHiH hHe hHz (Bridge.inN_Q hTr hρ1)
+        exact Bridge.inN_conj (_root_.PI.UnitaryGroupMassFormula.LCG.ap_inUJ (h v')) hHHi hHiH hHe hHz (Bridge.inN_Q hTr hρ1)
       · show InN _ _ _ (Formalism.MainNotions.S.uMat (s v'))
         rw [hso v' hv', huone]
         exact inN_one _ _
@@ -247,11 +248,11 @@ theorem relTr_carrierOf (e : InfinitePlace D.host.E ≃ D.what₂.Tau) (he : Pla
         show InN (X.B.I.ε v') (PtRepPf.frU X u' v').e (PtRepPf.frU X u' v').z
           (Formalism.MainNotions.S.uMat ((gamW X u u' w) v')⁻¹ * Formalism.MainNotions.S.uMat (s v') * Formalism.MainNotions.S.uMat ((gamW X u u' w) v'))
         rw [hsv, hkey]
-        exact Bridge.inN_conj (uMat_unitary (h' v')) (uMat_mul_inv (h' v')) (uMat_inv_mul (h' v')) hH'e hH'z
+        exact Bridge.inN_conj (_root_.PI.UnitaryGroupMassFormula.LCG.ap_inUJ (h' v')) (uMat_mul_inv (h' v')) (_root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_inv_mul (h' v')) hH'e hH'z
           (Bridge.inN_Q hTr' hρ2)
       · show InN _ _ _ (Formalism.MainNotions.S.uMat ((gamW X u u' w) v')⁻¹ * Formalism.MainNotions.S.uMat (s v') *
           Formalism.MainNotions.S.uMat ((gamW X u u' w) v'))
-        rw [hso v' hv', huone, Matrix.mul_one, uMat_inv_mul]
+        rw [hso v' hv', huone, Matrix.mul_one, _root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_inv_mul]
         exact inN_one _ _
   have hR := hSR w hw s hs
   have hp1 : psiU X u s = Formalism.QuantumDeterminants.psi D.R.k D.R.rS (Qim *ᵥ rv X.B.I v (X.zR u)) Formalism.QuantumDeterminants.cStd ρ := by
@@ -260,7 +261,7 @@ theorem relTr_carrierOf (e : InfinitePlace D.host.E ≃ D.what₂.Tau) (he : Pla
       (fun h0 => absurd (Finset.mem_univ v) h0)]
     show psiR (X.B.I.ε v) gg (PtRepPf.frU X u v).e (PtRepPf.frU X u v).fd (PtRepPf.frU X u v).z
       (Formalism.MainNotions.S.uMat (s v)) = _
-    rw [hsv, Bridge.psiR_conj (uMat_unitary (h v)) hHiH hHe hHf hHz gg, Bridge.psiR_Q hTr gg hgg0 hc hκ ρ]
+    rw [hsv, Bridge.psiR_conj (_root_.PI.UnitaryGroupMassFormula.LCG.ap_inUJ (h v)) hHiH hHe hHf hHz gg, Bridge.psiR_Q hTr gg hgg0 hc hκ ρ]
     rfl
   have hp2 : psiU X u' ((gamW X u u' w)⁻¹ * s * gamW X u u' w) =
       Formalism.QuantumDeterminants.psi D.R.k D.R.rS (Qim *ᵥ rv X.B.I v (X.zR u')) Formalism.QuantumDeterminants.cStd (Qim * Ai * Qm * ρ * (Qim * A * Qm)) := by
@@ -268,11 +269,11 @@ theorem relTr_carrierOf (e : InfinitePlace D.host.E ≃ D.what₂.Tau) (he : Pla
     rw [Finset.prod_eq_single v (fun v' _ hv' => by
         show psiR _ gg _ _ _ (Formalism.MainNotions.S.uMat ((gamW X u u' w) v')⁻¹ * Formalism.MainNotions.S.uMat (s v') *
           Formalism.MainNotions.S.uMat ((gamW X u u' w) v')) = 1
-        rw [hso v' hv', huone, Matrix.mul_one, uMat_inv_mul]; exact psiR_one' X v' u' gg)
+        rw [hso v' hv', huone, Matrix.mul_one, _root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_inv_mul]; exact psiR_one' X v' u' gg)
       (fun h0 => absurd (Finset.mem_univ v) h0)]
     show psiR (X.B.I.ε v) gg (PtRepPf.frU X u' v).e (PtRepPf.frU X u' v).fd (PtRepPf.frU X u' v).z
       (Gi * Formalism.MainNotions.S.uMat (s v) * G) = _
-    rw [hsv, hkey, Bridge.psiR_conj (uMat_unitary (h' v)) (uMat_inv_mul (h' v)) hH'e hH'f hH'z gg,
+    rw [hsv, hkey, Bridge.psiR_conj (_root_.PI.UnitaryGroupMassFormula.LCG.ap_inUJ (h' v)) (_root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_inv_mul (h' v)) hH'e hH'f hH'z gg,
       Bridge.psiR_Q hTr' gg hgg0 hc hκ]
     rfl
   rw [hp1, hp2] at hR

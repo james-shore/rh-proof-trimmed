@@ -47,6 +47,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.ThetaLogCoordinates.DualWeylCoordinates.DualWeylProofs.QhEquivOfCount
 
 @[expose] public section
 
@@ -97,34 +98,6 @@ lemma qh_initMinor [NeZero n] {s : ℕ} (I : Fin s → Fin n) (hs : s ≤ n) :
   ext p q
   simp [genMat, AlgHom.mapMatrix_apply, Matrix.transpose_apply]
 
-private theorem lt_colH_iff_le_of_dominant {mu : Fin n → ℤ} (hmu : Dominant mu) (t : Fin n) (c : ℤ) :
-    t.val < colH mu c ↔ c ≤ mu t := by
-  unfold colH
-  constructor
-  · intro h
-    by_contra hc
-    push_neg at hc
-    have hsub : (univ.filter fun m : Fin n => c ≤ mu m) ⊆ Iio t := by
-      intro m hm
-      simp only [mem_filter, mem_univ, true_and] at hm
-      rw [mem_Iio]
-      by_contra hmt
-      push_neg at hmt
-      have := hmu hmt
-      linarith
-    have := card_le_card hsub
-    rw [Fin.card_Iio] at this
-    omega
-  · intro h
-    have hsub : Iic t ⊆ (univ.filter fun m : Fin n => c ≤ mu m) := by
-      intro m hm
-      rw [mem_Iic] at hm
-      simp only [mem_filter, mem_univ, true_and]
-      exact le_trans h (hmu hm)
-    have := card_le_card hsub
-    rw [Fin.card_Iic] at this
-    omega
-
 lemma qh_count_all [NeZero n] {mu : Fin n → ℤ} (hmu : Dominant mu) (k : ℕ) (hk : 0 ≤ mu (lastIdx n) + k)
     {K : ℕ} (sz : Fin K → ℕ) (hsz : ∀ κ, sz κ ≤ n)
     (hshape : ∀ t : Fin n, (Formalism.GradedWeylDivisibility.shapeDeg sz t : ℤ) = mu t + k) (t : ℕ) :
@@ -155,14 +128,14 @@ lemma qh_count_all [NeZero n] {mu : Fin n → ℤ} (hmu : Dominant mu) (k : ℕ)
         have hc2 := c.2
         simp only [TCols, mem_Ioc] at hc2
         rw [mem_Ioc]
-        exact ⟨hc2.1, (lt_colH_iff_le_of_dominant hmu ⟨t, htn⟩ c.1).mp hc⟩
+        exact ⟨hc2.1, (_root_.Formalism.InvariantFactorPaths.ColumnFamilies.qh_lt_colH_iff hmu ⟨t, htn⟩ c.1).mp hc⟩
       · intro a _ b _ h
         exact Subtype.ext h
       · intro c hc
         rw [mem_Ioc] at hc
         refine ⟨⟨c, by simp only [TCols, mem_Ioc]; exact ⟨hc.1, hc.2.trans hle⟩⟩, ?_, rfl⟩
         simp only [mem_filter, mem_univ, true_and]
-        exact (lt_colH_iff_le_of_dominant hmu ⟨t, htn⟩ c).mpr hc.2
+        exact (_root_.Formalism.InvariantFactorPaths.ColumnFamilies.qh_lt_colH_iff hmu ⟨t, htn⟩ c).mpr hc.2
     have hR : (univ.filter fun x : Fin (mu (lastIdx n) + k).toNat ⊕ ↥(TCols mu) =>
         t < Sum.elim (fun _ => n) (fun c : ↥(TCols mu) => colH mu c) x).card =
         (mu (lastIdx n) + k).toNat + (univ.filter fun c : ↥(TCols mu) => t < colH mu c.1).card := by
@@ -191,12 +164,6 @@ lemma qh_count_all [NeZero n] {mu : Fin n → ℤ} (hmu : Dominant mu) (k : ℕ)
         omega
     rw [card_eq_zero.mpr (filter_false_of_mem fun κ _ => a κ),
       card_eq_zero.mpr (filter_false_of_mem fun x _ => b x)]
-
-private theorem mapCoord_mvPolynomial_int (x : MvPolynomial (Fin n × Fin n) ℤ) :
-    mapCoord (n := n) R (algebraMap _ (GLCoord ℤ n) x) =
-      algebraMap _ (GLCoord R n) (MvPolynomial.map (Int.castRingHom R) x) := by
-  unfold mapCoord
-  simp [IsLocalization.Away.lift]
 
 private theorem exists_qhM_eq_smul_det {s : ℕ} (hs : s ≤ n) (J : ℕ → Fin n) :
     ∃ (S : Finset (Fin n)) (hS : S.card = s) (ε : R), qhM R s J =
@@ -272,29 +239,10 @@ private theorem mapCoord_card_eq_finsets {h : ℕ} (J S : Finset (Fin n)) (hJ : 
       algebraMap _ (GLCoord R n)
         (Matrix.of fun a b : Fin h => genMat R n (J.orderEmbOfFin hJ a) (S.orderEmbOfFin hS b)).det := by
   unfold minorC
-  rw [mapCoord_mvPolynomial_int, RingHom.map_det]
+  rw [_root_.Formalism.InvariantFactorPaths.ColumnFamilies.qh_mapCoord_alg, RingHom.map_det]
   refine congrArg _ (congrArg Matrix.det ?_)
   ext a b
   simp [genMat]
-
-private theorem orderEmbOfFin_canT_eq_castLE [NeZero n] (mu : Fin n → ℤ) (c : ↥(TCols mu)) (a : Fin (colH mu c)) :
-    (canT mu c).1.orderEmbOfFin (canT mu c).2 a = Fin.castLE (colH_le mu c) a := by
-  have := Finset.orderEmbOfFin_unique (canT mu c).2 (f := Fin.castLE (colH_le mu c))
-    (fun x => by simp [canT]) (fun a b h => by rw [Fin.lt_def] at h ⊢; simpa using h)
-  rw [← this]
-
-private theorem mapCoord_intCast (m : ℤ) :
-    mapCoord (n := n) R ((detU n ^ m : (GLCoord ℤ n)ˣ) : GLCoord ℤ n) =
-      ((qhDet R n ^ m : (GLCoord R n)ˣ) : GLCoord R n) := by
-  have hu : Units.map (mapCoord (n := n) R).toMonoidHom (detU n) = qhDet R n := by
-    ext
-    rw [Units.coe_map, qhDet_val]
-    show mapCoord (n := n) R (algebraMap _ _ (genMat ℤ n).det) = _
-    rw [mapCoord_mvPolynomial_int, RingHom.map_det, genMat_map_coord]
-  calc mapCoord (n := n) R ((detU n ^ m : (GLCoord ℤ n)ˣ) : GLCoord ℤ n)
-      = ((Units.map (mapCoord (n := n) R).toMonoidHom (detU n ^ m) : (GLCoord R n)ˣ) : GLCoord R n) :=
-        (Units.coe_map _ _).symm
-    _ = ((qhDet R n ^ m : (GLCoord R n)ˣ) : GLCoord R n) := by rw [map_zpow, hu]
 
 lemma qh_bidet_mem [NeZero n] {mu : Fin n → ℤ} (hmu : Dominant mu) (k : ℕ) (hk : 0 ≤ mu (lastIdx n) + k)
     {K : ℕ} (sz : Fin K → ℕ) (hsz : ∀ κ, sz κ ≤ n) (I : ∀ κ, Fin (sz κ) → Fin n)
@@ -308,7 +256,7 @@ lemma qh_bidet_mem [NeZero n] {mu : Fin n → ℤ} (hmu : Dominant mu) (k : ℕ)
     have hc := c.2
     simp only [TCols, mem_Ioc] at hc
     have e0 : (⟨0, h0⟩ : Fin n) = 0 := Fin.ext (by simp)
-    exact (lt_colH_iff_le_of_dominant hmu ⟨0, h0⟩ c.1).mpr (by rw [e0]; exact hc.2)
+    exact (_root_.Formalism.InvariantFactorPaths.ColumnFamilies.qh_lt_colH_iff hmu ⟨0, h0⟩ c.1).mpr (by rw [e0]; exact hc.2)
   obtain ⟨e, he⟩ := exists_equiv_comp_eq_of_card_filter_lt_eq (fun κ : {κ // 0 < sz κ} => sz κ.1)
     (Sum.elim (fun _ => n) (fun c : ↥(TCols mu) => colH mu c)) (fun κ => κ.2)
     (by
@@ -380,14 +328,14 @@ lemma qh_bidet_mem [NeZero n] {mu : Fin n → ℤ} (hmu : Dominant mu) (k : ℕ)
           (Matrix.of fun a b : Fin (colH mu c) =>
             genMat R n (Fin.castLE (colH_le mu c) a) ((S c).orderEmbOfFin (hS c) b)).det := by
     unfold brk TMat
-    rw [map_mul, map_prod, mapCoord_intCast]
+    rw [map_mul, map_prod, _root_.Formalism.InvariantFactorPaths.ColumnFamilies.qh_mapCoord_detU]
     congr 1
     refine Finset.prod_congr rfl (fun c _ => ?_)
     rw [mapCoord_card_eq_finsets]
     refine congrArg _ (congrArg Matrix.det ?_)
     ext a b
     simp only [Matrix.of_apply]
-    rw [orderEmbOfFin_canT_eq_castLE]
+    rw [_root_.Formalism.InvariantFactorPaths.ColumnFamilies.qh_can_emb]
   have hD : ((qhDet R n ^ (-(k : ℤ)) : (GLCoord R n)ˣ) : GLCoord R n) *
       (qhDet R n : GLCoord R n) ^ (mu (lastIdx n) + k).toNat =
       ((qhDet R n ^ mu (lastIdx n) : (GLCoord R n)ˣ) : GLCoord R n) := by

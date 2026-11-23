@@ -70,7 +70,7 @@ theorem locComp_of_isRc_classMapD_cenLoc : _root_.GlobalTheory.HeightCounting.Up
   have hxi : ¬ (T.xiTw f v).UnrAt w' := by
     intro hx
     rw [← h2] at hx
-    exact hun (unr_mul hmu hx)
+    exact hun (_root_.Formalism.L2.Host.HChar.UnrAt.mul hmu hx)
   unfold TwDat.xiTw at hxi
   set M := cell (D := Dof x) l.b.Bs.exp b hA j
   have fin : ∀ P' : PlE (Dof x).host, (P' ∈ M.QP ∨ P' ∈ M.DP) → (w' = P' ∨ IsConjPl (Dof x).host w' P') →
@@ -87,7 +87,7 @@ theorem locComp_of_isRc_classMapD_cenLoc : _root_.GlobalTheory.HeightCounting.Up
   · obtain ⟨P', hP', hc⟩ := M.QP_cover w' (hQ ▸ hq)
     exact fin P' (Or.inl hP') (hc.imp Eq.symm id)
   · have hψ : (T.psi v).UnrAt w' := ((T.psi_is v).ram w').2 hq
-    have hd := fun h => hxi (unr_mul h hψ)
+    have hd := fun h => hxi (_root_.Formalism.L2.Host.HChar.UnrAt.mul h hψ)
     have hp : w' ∈ (Dof x).ntw.pD i := by
       rw [← Finset.mem_coe, (Dof x).ntw.pD_eq i, hl]
       change w' ∈ placesOver B.host.E (if B.places.resChar v = B.host.pde then B.host.pde' else B.host.pde)
@@ -97,19 +97,5 @@ theorem locComp_of_isRc_classMapD_cenLoc : _root_.GlobalTheory.HeightCounting.Up
     obtain ⟨P', hP', hc⟩ := M.DP_cover w' hp
     exact fin P' (Or.inr hP') (hc.imp Eq.symm id)
 end GlobalTheory.LevCmp.ParaPlace
-end
-section
-open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.L2 Formalism.L2.Host Formalism.L2.NT Formalism.IndefR.NX Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut NumberField IsDedekindDomain GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.R3 GlobalTheory.Mem.R3.Rw GlobalTheory.HeightCounting GlobalTheory.HeightCounting.Up
-open Formalism.AUTREP (GAf)
-open Neutral.B1 (Ideles)
-open GlobalTheory.HeckeGal (Gab IsGlobalArtin)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-
-open GlobalTheory.LevCmp
-open GlobalTheory.TwistChoice (Reading ReadsAt)
-
-theorem _root_.GlobalTheory.T.conductor_level_le_at_twisted_place_of_twOK : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, AllSt fun _ B _ T w P x => ∀ (l : _root_.GlobalTheory.HeightCounting.Up.ThirdIntermediateLevel hL x) (v : B.places.Pl) (i : (Dof x).ntw.Tw) (b : Bool) (ψ : G (Dof x).host.E (Dof x).nd.Om →* ((Dof x).ntw.Ok i (T.k v))ˣ) (hA : NX.AdmTw (Dof x) i (T.k v) (QOf P v) ψ) (j : Fin (Dof x).R.m), TwistedAt (Dof x) v → (Dof x).ntw.l i = B.places.resChar v → IntegralHeckeForms.TwOK i (T.k v) (QOf P v) ψ → ∀ u ∈ qPl (Dof x) (eta (D := Dof x) (cfOf x) w.I.xi v j), ∃ P' : PlE (Dof x).host, (P' ∈ (cell (D := Dof x) l.b.Bs.exp b hA j).QP ∨ P' ∈ (cell (D := Dof x) l.b.Bs.exp b hA j).DP) ∧ ((cell (D := Dof x) l.b.Bs.exp b hA j).sp P').v = u := by
-  first | exact @_root_.GlobalTheory.LevCmp.ParaPlace.locComp_of_isRc_classMapD_cenLoc | exact _root_.GlobalTheory.LevCmp.ParaPlace.locComp_of_isRc_classMapD_cenLoc | (intros; apply _root_.GlobalTheory.LevCmp.ParaPlace.locComp_of_isRc_classMapD_cenLoc <;> assumption)
 end
 end

@@ -48,6 +48,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.BoundAtTwoThreeFamily
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.JumpSetDistinctOfRealPlaceFacts
 
 @[expose] public section
 
@@ -61,14 +62,12 @@ open Formalism.MainNotions.AdmissibleParameterJ
 
 variable {D : D7}
 
-theorem refl_refl (q : ℚ) : AdmissibleParameterJ.refl D (AdmissibleParameterJ.refl D q) = q := by unfold AdmissibleParameterJ.refl; ring
-
 theorem refl_injective : Function.Injective (AdmissibleParameterJ.refl D) := fun a b h => by
   have := congrArg (AdmissibleParameterJ.refl D) h
-  rwa [refl_refl, refl_refl] at this
+  rwa [_root_.GlobalTheory.JumpSets.jp_refl_refl, _root_.GlobalTheory.JumpSets.jp_refl_refl] at this
 
 theorem ncard_reflS (S : Set ℚ) : (reflS D S).ncard = S.ncard :=
-  Set.ncard_preimage_of_injective_subset_range refl_injective (fun q _ => ⟨AdmissibleParameterJ.refl D q, refl_refl q⟩)
+  Set.ncard_preimage_of_injective_subset_range refl_injective (fun q _ => ⟨AdmissibleParameterJ.refl D q, _root_.GlobalTheory.JumpSets.jp_refl_refl q⟩)
 
 theorem finite_reflS {S : Set ℚ} (h : S.Finite) : (reflS D S).Finite :=
   Set.Finite.preimage (refl_injective.injOn) h
@@ -130,21 +129,10 @@ theorem lowJ_int (j : ℕ) (ρ : D.what₂.Tau) : ∀ q ∈ lowJ D j ρ, ∃ z :
   obtain ⟨z3, h3⟩ := exists_int_eq_jumpBlockCentreOffset (D := D)
   exact ⟨z1 - z2 + z3, by rw [h1, h2, h3]; push_cast; ring⟩
 
-theorem mem_blockJ (a : ℤ) : (a : ℚ) ∈ blockJ D ↔ 0 ≤ a ∧ a < D.R.t := by
-  constructor
-  · rintro ⟨c, hc, h⟩
-    have e : a = (c : ℤ) := by exact_mod_cast h
-    subst e
-    exact ⟨by positivity, by exact_mod_cast hc⟩
-  · rintro ⟨h0, h1⟩
-    refine ⟨a.toNat, by omega, ?_⟩
-    have := Int.toNat_of_nonneg h0
-    exact_mod_cast this.symm
-
 theorem mem_reflS_blockJ (a : ℤ) : (a : ℚ) ∈ reflS D (blockJ D) ↔ 0 ≤ a ∧ a < D.R.t := by
   show AdmissibleParameterJ.refl D (a : ℚ) ∈ blockJ D ↔ _
   have e : AdmissibleParameterJ.refl D (a : ℚ) = (((D.R.t : ℤ) - 1 - a : ℤ) : ℚ) := by unfold AdmissibleParameterJ.refl; push_cast; ring
-  rw [e, mem_blockJ]
+  rw [e, _root_.GlobalTheory.JumpSets.block_mem_iff]
   omega
 
 theorem mem_JJ (up : Bool) (j : ℕ) (ρ : D.what₂.Tau) (a : ℤ) : (a : ℚ) ∈ JJ D up j ρ ↔
@@ -153,7 +141,7 @@ theorem mem_JJ (up : Bool) (j : ℕ) (ρ : D.what₂.Tau) (a : ℤ) : (a : ℚ) 
   · rw [← mem_reflS_blockJ]
     simp only [JJ, cloudT, lowT, Bool.false_eq_true, if_false, Jm, Jp, reflS, Set.mem_setOf_eq, Set.mem_union]
     tauto
-  · rw [← mem_blockJ]
+  · rw [← _root_.GlobalTheory.JumpSets.block_mem_iff]
     simp only [JJ, cloudT, lowT, if_true, Jp, Set.mem_union]
     tauto
 

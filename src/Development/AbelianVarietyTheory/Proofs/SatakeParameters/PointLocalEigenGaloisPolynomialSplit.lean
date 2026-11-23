@@ -190,7 +190,7 @@ theorem main : ∀ (D : D7) (M : Formalism.L2.MtFam D), Formalism.L2.HeckeTied D
     rw [h2] at h1
     exact (smul_left_injective _ hene h1).symm
   have hcls : Formalism.L2.NCov.cls ψ = NL.mx _ _ i := by
-    refine (cls_eq_of_residue _ ψ (NL.ptX _ _ i h x).1 ?_).trans (NL.ptX _ _ i h x).2.1
+    refine (_root_.GlobalTheory.ClassResidueGenerators.cls_eq_of_generators _ ψ (NL.ptX _ _ i h x).1 ?_).trans (NL.ptX _ _ i h x).2.1
     rintro _ ⟨v, k, hvk, rfl⟩
     rw [hψv v k hvk, ← NL.ptX_hT _ _ i h x v k hvk]
     obtain ⟨hv, hk1, hk2⟩ := (Formalism.L2.genAt_iff NL h v k).2 hvk

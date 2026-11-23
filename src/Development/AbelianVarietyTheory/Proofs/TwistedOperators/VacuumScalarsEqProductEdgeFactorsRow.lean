@@ -67,7 +67,7 @@ theorem scalars_eq_edgeFactors : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : C
   have e₂ := GlobalTheory.RowVacScalar.vacScalar_eq_prod S hL t (j + 1) hj _ ?g₂ hC ?l₂ hD c₂ h₂
   · rw [e₁, e₂, ← Finset.prod_mul_distrib]
     refine Finset.prod_congr rfl fun w _ => ?_
-    exact GlobalTheory.T.splitPlaceScalars_mul_eq_oppositePath_edgeFactors S ht j hj k hk w.1 w.2 ⟨_, GlobalTheory.RowVacScalar.isIdemAt_idemAt hL G t w.2⟩
+    exact _root_.GlobalTheory.RowVacScalar.splitScal_mul_eq_oppositePath S ht j hj k hk w.1 w.2 ⟨_, GlobalTheory.RowVacScalar.isIdemAt_idemAt hL G t w.2⟩
   case g₁ =>
     dsimp only [GridData.toPair]
     exact one_mem _

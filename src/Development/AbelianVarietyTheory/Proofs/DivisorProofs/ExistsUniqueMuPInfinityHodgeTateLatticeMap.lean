@@ -50,26 +50,6 @@ open CategoryTheory Opposite Matrix GlobalTheory GlobalTheory.PDivGroup GlobalTh
 
 namespace GlobalTheory.PDivLat.ConstMu
 
-theorem frobenius_ofPadic {p : ℕ} [Fact p.Prime] {O : Type} [CommRing O] [Fact ¬IsUnit (p : O)]
-    [IsAdicComplete (Ideal.span {(p : O)}) O] (c : ℤ_[p]) :
-    WittVector.frobenius (ofPadic p O c) = ofPadic p O c := by
-  ext n
-  rw [WittVector.coeff_frobenius_charP]
-  simp only [ofPadic, RingHom.comp_apply, WittVector.map_coeff]
-  rw [← map_pow, ZMod.pow_card]
-
-theorem frobenius_phiInv' {p : ℕ} [Fact p.Prime] {O : Type} [CommRing O] [Fact ¬IsUnit (p : O)]
-    [IsAdicComplete (Ideal.span {(p : O)}) O] (a : Ainf p O) :
-    WittVector.frobenius (phiInv p O a) = a := by
-  ext n
-  rw [WittVector.coeff_frobenius_charP, phiInv, WittVector.map_coeff]
-  exact frobeniusEquiv_symm_pow_p _ p _
-
-theorem frobenius_mu' {p : ℕ} [Fact p.Prime] {O : Type} [CommRing O] [Fact ¬IsUnit (p : O)]
-    [IsAdicComplete (Ideal.span {(p : O)}) O] (ε : PreTilt O p) :
-    WittVector.frobenius (Sandwich.mu ε) = WittVector.frobenius (xi ε) * Sandwich.mu ε := by
-  conv_lhs => rw [← xi_mul_nu, map_mul, ← phiInv_mu, frobenius_phiInv']
-
 theorem existsUnique_lattMap : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgClosed C] [CharZero C] (v : Valuation C NNReal) (O : Type) [CommRing O] [Algebra O C] [Fact ¬IsUnit (p : O)] [IsAdicComplete (Ideal.span {(p : O)}) O] [IsDomain O], v.Integers O → ∀ (ε : PreTilt O p) (hε : IsPrimitiveSystem ε), ∀ g : latt (PDivGroup.mu p O) →ₗ[Ainf p O] latt (const p O), (∀ m m' : latt (PDivGroup.mu p O), (∀ t, m'.1 t = WittVector.frobenius (m.1 t)) → ∀ t, (g m').1 t = WittVector.frobenius ((g m).1 t)) → ∃! f : const p O ⟶ PDivGroup.mu p O, lattMap f = g := by
   intro p _ C _ _ _ v O _ _ _ _ _ hv ε hε g hg
   obtain ⟨ec, hec⟩ := GlobalTheory.T.ainfHodgeTateLattice_constQpModZp_equiv p C v O hv ε hε
@@ -101,7 +81,7 @@ theorem existsUnique_lattMap : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C]
       intro t
       obtain ⟨a, rfl⟩ := htate t
       rw [Submodule.coe_smul, LinearMap.smul_apply, hlval, smul_eq_mul, map_mul,
-        frobenius_ofPadic, frobenius_mu']
+        _root_.GlobalTheory.PDivLat.frobenius_ofPadic, _root_.GlobalTheory.Dieudonne.frobenius_mu]
       ring) (constGen p O)
     rw [map_smul, Submodule.coe_smul, LinearMap.smul_apply, smul_eq_mul] at h1
     rw [hb_def, ← h1]

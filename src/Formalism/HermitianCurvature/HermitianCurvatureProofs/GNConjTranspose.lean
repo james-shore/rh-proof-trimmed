@@ -104,12 +104,6 @@ section gN
 
 variable {k r : ℕ}
 
-theorem gN_conjTranspose (a : B.Mat k r) : B.gN aᴴ = B.gN a := by
-  unfold B.gN
-  congr 1
-  rw [Finset.sum_comm]
-  simp [Matrix.conjTranspose_apply, Complex.normSq_conj]
-
 theorem gv_eq_hinv {u : B.Mat k r} (hu : u ∈ B.GV k r) : u = Hpk k r * (u⁻¹)ᴴ * Hpk k r := by
   have h1 := Formalism.FourierDecayAlt.P.B6.inv_eq_hermitian_form_conjTranspose (Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_inv hu)
   rw [Matrix.nonsing_inv_nonsing_inv _ (Formalism.QuantumDeterminants.WeylGroupFacts.isUnit_of_uh hu)] at h1
@@ -120,7 +114,7 @@ theorem gN_le_inv {u : B.Mat k r} (hu : u ∈ B.GV k r) : B.gN u ≤ B.gN (Hpk k
   calc B.gN (Hpk k r * (u⁻¹)ᴴ * Hpk k r) ≤ B.gN (Hpk k r * (u⁻¹)ᴴ) * B.gN (Hpk k r) := Formalism.FourierDecayAlt.P.B6.gN_mul_le _ _
     _ ≤ B.gN (Hpk k r) * B.gN ((u⁻¹)ᴴ) * B.gN (Hpk k r) :=
         mul_le_mul_of_nonneg_right (Formalism.FourierDecayAlt.P.B6.gN_mul_le _ _) (Formalism.FourierDecayAlt.P.B6.gN_nonneg _)
-    _ = _ := by rw [gN_conjTranspose]; ring
+    _ = _ := by rw [_root_.PI.PolynomialProperness.GN.gN_conjTranspose]; ring
 
 end gN
 
@@ -232,7 +226,7 @@ theorem properA (Bj : B.RealPlaceData k ρ Wp Wq) (B0 : B.RealPlaceData k (p + �
   obtain ⟨a0, b0, c0, hRn⟩ := rn_uni (k := k) (p := p) (ρ := ρ) (-x.2)
   set R' := U.muP k p ρ q * U.Rn k p ρ (-x.2) * U.muP k p ρ q⁻¹ with hR'def
   have hR'G : R' ∈ B.GV k (p + ρ) :=
-    Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_mul (Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_mul (hmuP q hq) (LeftFubiniLemmas.rn_nset _).1) (hmuP q⁻¹ hqi)
+    Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_mul (Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_mul (hmuP q hq) (_root_.Formalism.FourierDecayAlt.P.Ux3.rn_nset _).1) (hmuP q⁻¹ hqi)
   set U1 := U.embG k p ρ h * R' * U.embG k p ρ h⁻¹ with hU1def
   have hU1G : U1 ∈ B.GV k (p + ρ) :=
     Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_mul (Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_mul (hembG h hhG) hR'G) (hembG _ (Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_inv hhG))
@@ -261,7 +255,7 @@ theorem properA (Bj : B.RealPlaceData k ρ Wp Wq) (B0 : B.RealPlaceData k (p + �
     rw [hcomm ν⁻¹ X, hcomm h⁻¹, ← Matrix.mul_assoc, hq1, Matrix.one_mul]
   have key : n1inv * (U.muP k p ρ q * g) * n' =
       U.embG k p ρ h * U.muP k p ρ q * (sP Bj x * g * n' * h') * h'⁻¹ := by
-    rw [hsP, LeftFubiniLemmas.embG_mul, hn1invdef, hU1def, hR'def]
+    rw [hsP, _root_.Formalism.FourierDecayAlt.P.Dx2.Split.embG_mul, hn1invdef, hU1def, hR'def]
     simp only [Matrix.mul_assoc]
     rw [hmid, hh'u, Matrix.mul_one]
   have hKc : n1inv * (U.muP k p ρ q * g) * n' ∈ Kc := by

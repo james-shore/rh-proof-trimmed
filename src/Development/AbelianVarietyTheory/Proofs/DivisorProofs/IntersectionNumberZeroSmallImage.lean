@@ -78,26 +78,6 @@ theorem dim_closure_add_one_le {T : Type*} [TopologicalSpace T] [QuasiSober T] {
   refine topologicalKrullDim_add_one_le isClosed_closure isClosed_closure fun z hz => ⟨y, subset_closure rfl, fun h => ?_, hyx.trans (specializes_iff_mem_closure.2 hz)⟩
   exact hx ((specializes_iff_mem_closure.2 h).mem_open hU hy)
 
-theorem withBot_le_of_add_one_le {a : WithBot ℕ∞} {n : ℕ} (h : a + 1 ≤ ((n + 1 : ℕ) : WithBot ℕ∞)) :
-    a ≤ (n : WithBot ℕ∞) := by
-  first
-  | exact @_root_.GlobalTheory.NatCastUpperBound.le_natCast_of_add_one_le
-  | exact _root_.GlobalTheory.NatCastUpperBound.le_natCast_of_add_one_le
-  | (apply _root_.GlobalTheory.NatCastUpperBound.le_natCast_of_add_one_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NatCastUpperBound.le_natCast_of_add_one_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NatCastUpperBound.le_natCast_of_add_one_le <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NatCastUpperBound.le_natCast_of_add_one_le ..)
-
-theorem withBot_lt_of_add_one_lt {a : WithBot ℕ∞} {n : ℕ} (h : a + 1 < ((n + 1 : ℕ) : WithBot ℕ∞)) :
-    a < (n : WithBot ℕ∞) := by
-  first
-  | exact @_root_.GlobalTheory.NatCastStrictBound.lt_natCast_of_add_one_lt_succ
-  | exact _root_.GlobalTheory.NatCastStrictBound.lt_natCast_of_add_one_lt_succ
-  | (apply _root_.GlobalTheory.NatCastStrictBound.lt_natCast_of_add_one_lt_succ <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NatCastStrictBound.lt_natCast_of_add_one_lt_succ <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NatCastStrictBound.lt_natCast_of_add_one_lt_succ <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NatCastStrictBound.lt_natCast_of_add_one_lt_succ ..)
-
 def sumOptionEquiv (e r : ℕ) : Fin e ⊕ Option (Fin r) ≃ Option (Fin e ⊕ Fin r) where
   toFun
     | .inl i => some (.inl i)
@@ -222,10 +202,10 @@ theorem interNum_pull_eq_zero : ∀ (κ : Type) [Field κ] (e r : ℕ) (Z W : Sc
       have h2 : topologicalKrullDim (closure ({genericPoint Z} : Set Z)) = topologicalKrullDim Z := by
         rw [(genericPoint_spec Z).def]
         exact (Homeomorph.Set.univ Z).isHomeomorph.topologicalKrullDim_eq
-      exact withBot_le_of_add_one_le (h1.trans (h2.trans_le hd))
+      exact _root_.GlobalTheory.NatCastUpperBound.le_natCast_of_add_one_le (h1.trans (h2.trans_le hd))
     · rw [Scheme.Hom.comp_apply, hιw]
       have h1 := dim_closure_add_one_le ((genericPoint_specializes w).map g.continuous)
         ((A 0).U i₀).isOpen hi₀ (fun h => hwU ((hmem w).2 h))
-      exact withBot_lt_of_add_one_lt (lt_of_le_of_lt h1 hg)
+      exact _root_.GlobalTheory.NatCastStrictBound.lt_natCast_of_add_one_lt_succ (lt_of_le_of_lt h1 hg)
 
 end GlobalTheory.PullVanish

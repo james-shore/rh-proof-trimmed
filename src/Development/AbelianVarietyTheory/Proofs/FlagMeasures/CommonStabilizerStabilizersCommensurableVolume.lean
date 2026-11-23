@@ -135,7 +135,7 @@ theorem volSt {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [IsNona
   have a2 : (S.St ⊓ MulAction.stabilizer S.GLV C).relIndex S.K0 ≠ 0 :=
     Subgroup.relIndex_ne_zero_trans b3 (hc Λ hΛ).2
   refine ⟨a1, a2, ?_, fun h hh => ?_⟩
-  · obtain ⟨h, hh, hw, -⟩ := GlobalTheory.T.latticeStabilizer_inf_le_conj_normalisingSubgroup L r k S n hn
+  · obtain ⟨h, hh, hw, -⟩ := _root_.GlobalTheory.HL.StabConj.main L r k S n hn
     have c1 : S.St ⊓ MulAction.stabilizer S.GLV C ≤ MulAut.conj h • S.K0 :=
       e2.trans (e1.le.trans (inf_le_left.trans hw))
     have c2 := (invVol_mul_pos_le_conj S.K0 (MulAut.conj h • S.K0) _ (hconj h hh).1 (hconj h hh).2

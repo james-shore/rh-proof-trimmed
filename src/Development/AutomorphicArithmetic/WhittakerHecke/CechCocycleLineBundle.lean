@@ -56,11 +56,6 @@ open GroundTheory.Arith.SchemeCoh GroundTheory.Arith.SchemeCoh.ProjSpace MvPolyn
 
 attribute [local instance] MvPolynomial.gradedAlgebra
 
-private lemma eval₂_scale {A S : Type*} [CommRing A] [CommRing S] {n : ℕ} (g : A →+* S)
-    (x : Fin n → S) (w : S) {m : ℕ} {a : MvPolynomial (Fin n) A} (ha : a.IsHomogeneous m) :
-    eval₂ g (fun l => w * x l) a = w ^ m * eval₂ g x a :=
-  _root_.UpperTheory.Reformulated.B.Qk57.eval₂_scale g x w ha
-
 set_option backward.isDefEq.respectTransparency false in
 private lemma homOfLE_appTop_topIso {W : Scheme.{0}} {U U' : W.Opens} (e : U' ≤ U) (x : Γ(W, U)) :
     (W.homOfLE e).appTop (U.topIso.inv x) = U'.topIso.inv (W.presheaf.map (homOfLE e).op x) := by
@@ -148,7 +143,7 @@ private lemma loc_agree {U U' : W.Opens} (x : Fin (M + 1) → Γ(W, U)) (x' : Fi
   calc ψ a = eval₂ (ψ'.comp C) (fun l => ψ (X m') * ψ' (X l)) a := by
         conv_lhs => rw [e1]
         rfl
-    _ = ψ (X m') ^ d * eval₂ (ψ'.comp C) (fun l => ψ' (X l)) a := eval₂_scale _ _ _ ha
+    _ = ψ (X m') ^ d * eval₂ (ψ'.comp C) (fun l => ψ' (X l)) a := _root_.UpperTheory.Reformulated.B.Qk57.eval₂_scale _ _ _ ha
     _ = ψ (X m') ^ d * ψ' a := by
         congr 1
         conv_rhs => rw [e2]

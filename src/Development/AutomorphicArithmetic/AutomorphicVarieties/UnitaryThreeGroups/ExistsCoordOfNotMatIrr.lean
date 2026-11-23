@@ -52,12 +52,6 @@ import Mathlib.Topology.Sheaves.Init
 
 open Matrix UpperTheory.V.U3
 
-private theorem single_mem_of_diag {κ : Type} [Field κ] {m : ℕ} (d : Fin m → κ)
-    (hd : Function.Injective d) (W : Submodule κ (Fin m → κ))
-    (hW : ∀ v ∈ W, Matrix.diagonal d *ᵥ v ∈ W) (v : Fin m → κ) (hv : v ∈ W) (i : Fin m)
-    (hi : v i ≠ 0) : (Pi.single i 1 : Fin m → κ) ∈ W :=
-  _root_.UpperTheory.Reformulated.B.SingleMemOfDiagonal.single_mem_of_diag d hd W hW v hv i hi
-
 private theorem exists_coord_of_not_matIrr {G κ : Type} [Group G] [Field κ] {m : ℕ}
     (H : Subgroup G) (a : G → Matrix (Fin m) (Fin m) κ) (d : Fin m → κ)
     (hd : Function.Injective d) (g₁ g₂ : G) (h₁ : g₁ ∈ H) (h₂ : g₂ ∈ H)
@@ -71,7 +65,7 @@ private theorem exists_coord_of_not_matIrr {G κ : Type} [Group G] [Field κ] {m
   have hWd : ∀ v ∈ W, Matrix.diagonal d *ᵥ v ∈ W := fun v hv => by
     rw [← hD, Matrix.sub_mulVec]
     exact W.sub_mem (hW _ h₁ _ hv) (hW _ h₂ _ hv)
-  have hs := single_mem_of_diag d hd W hWd
+  have hs := _root_.UpperTheory.Reformulated.B.SingleMemOfDiagonal.single_mem_of_diag d hd W hWd
   refine ⟨fun j => (Pi.single j 1 : Fin m → κ) ∈ W, ?_, ?_, ?_⟩
   · obtain ⟨v, hv, hv0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hb
     obtain ⟨j, hj⟩ := Function.ne_iff.1 hv0

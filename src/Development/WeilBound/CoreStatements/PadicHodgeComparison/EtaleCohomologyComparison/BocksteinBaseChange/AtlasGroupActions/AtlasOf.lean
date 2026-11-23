@@ -69,7 +69,7 @@ variable {K : IntermediateField ℚ_[l] (PadicAlgCl l)}
 theorem atlas_of {M : Model l K} (h : M.Sm) : ∃ d, Nonempty ((B.schFn M.p).Atlas d) := by
   have : Smooth M.p := h.2
   have : IsProper M.p := AdicGeo.proper_p (M := M) h.1
-  exact B.P.atlas (O := OK l K) (X := M.X) M.p
+  exact _root_.GlobalTheory.CompanionTheory.SchAtlas.exists_atlas (O := OK l K) (X := M.X) M.p
 
 variable (Amp : ∀ M : Model l K, E.LineData M.X → Prop)
 

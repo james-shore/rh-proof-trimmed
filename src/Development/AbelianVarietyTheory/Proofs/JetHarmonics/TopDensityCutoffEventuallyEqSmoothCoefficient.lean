@@ -57,10 +57,10 @@ theorem Ew_cutF_eventually_eq : ∀ (Wp Wq : Type) [NormedAddCommGroup Wp] [Inne
   simp only [Ew_eq_norm_tv_sq]
   by_cases hG : 0 < TBB.Gp p (TBB.bigPt P.r c)
   · filter_upwards [Ioo_mem_nhdsGT hG] with ε hε
-    rw [(GlobalTheory.T.topVector_cutoff_eq_and_vanish Wp Wq P p Cb χ δ ε f w c hΘ hw hχ hδχ hε.1 hf).1 hε.2]
+    rw [(_root_.GlobalTheory.TopVec.tv_cutF Wp Wq P p Cb χ δ ε f w c hΘ hw hχ hδχ hε.1 hf).1 hε.2]
   · filter_upwards [self_mem_nhdsWithin] with ε hε
     have hε' : 0 < ε := hε
-    have h := GlobalTheory.T.topVector_cutoff_eq_and_vanish Wp Wq P p Cb χ δ ε f w c hΘ hw hχ hδχ hε' hf
+    have h := _root_.GlobalTheory.TopVec.tv_cutF Wp Wq P p Cb χ δ ε f w c hΘ hw hχ hδχ hε' hf
     rw [h.2.1 ((not_lt.1 hG).trans_lt (mul_pos hδ hε')), h.2.2 (not_lt.1 hG)]
 
 end GlobalTheory.TopVec

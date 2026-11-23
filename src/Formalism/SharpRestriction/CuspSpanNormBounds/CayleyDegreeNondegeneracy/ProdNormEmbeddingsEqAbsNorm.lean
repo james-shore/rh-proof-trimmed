@@ -96,7 +96,7 @@ theorem boundedIntegers_finite_card_le (B : ℝ) (hB : 0 < B) :
     have ha : a ≠ 0 := by rintro rfl; exact hx (map_zero _)
     show 1 ≤ ∏ v : K →+* ℂ, ‖v (a : K)‖
     rw [prod_norm_embeddings_eq_abs_norm_alt]; exact one_le_abs_norm_of_ne_zero_alt K a ha
-  obtain ⟨hfin, hcard, -⟩ := Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.boxCountO (K →+* ℂ) emb.range (fun _ => B) (fun _ => hB) hmin
+  obtain ⟨hfin, hcard, -⟩ := _root_.Formalism.HermitianLatticeCounting.P.box_count_big_O (K →+* ℂ) emb.range (fun _ => B) (fun _ => hB) hmin
   have himg : emb '' (boundedIntegers K B) = {x | x ∈ emb.range ∧ ∀ v, ‖x v‖ ≤ B} := by
     ext x; constructor
     · rintro ⟨a, ha, rfl⟩; exact ⟨⟨a, rfl⟩, ha⟩
@@ -115,7 +115,7 @@ theorem card_submodules_quotient_le (d : 𝓞 K) (hd : d ≠ 0) :
     Nat.card (Submodule (𝓞 K) ((Fin 2 → 𝓞 K) ⧸ scaledFreeModule K d)) ≤ ((Algebra.norm ℤ d).natAbs ^ 2) ^ 2 := by
   have hI : Ideal.span {d} ≠ (⊥ : Ideal (𝓞 K)) := by
     rw [Ne, Ideal.span_singleton_eq_bot]; exact hd
-  have hc := Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.projQuotCard K (Fin 2 → 𝓞 K) (Ideal.span {d}) hI
+  have hc := _root_.Formalism.HermitianLatticeCounting.P.projective_quotient_card K (Fin 2 → 𝓞 K) (Ideal.span {d}) hI
   rw [Module.finrank_fin_fun, Ideal.absNorm_span_singleton] at hc
   have h0 : Algebra.norm ℤ d ≠ 0 := by
     rw [Ne, Algebra.norm_eq_zero_iff]; exact hd

@@ -91,14 +91,7 @@ theorem abs_norm_eq (h : IsType Ψ) (t : E) :
   · intro a _; exact star_star a
   · intro a _; simp only [ComplexEmbedding.conjugate_coe_eq, Complex.norm_conj]
 
-theorem isSB_of_adm {M R : ℕ} {φ : Fam E n N} (h : admitted M R φ) {Λ : Lt E n}
-    (hΛ : Λ ∈ Vset E n M) : IsSB (φ Λ) := by
-  obtain ⟨s, hs, -, h1, h2⟩ := hΛ.2.2
-  refine ⟨s * R, Nat.mul_pos hs h.pos.2, fun x hx k a => ?_, fun x y hy => ?_⟩
-  · rw [Nat.cast_mul, mul_smul]
-    exact (Base.mem_stdL _).1 (h1 _ (h.supp Λ hΛ x hx a)) k
-  · rw [Nat.cast_mul, mul_comm, mul_smul]
-    exact h.per Λ hΛ x _ fun a => h2 _ ((Base.mem_stdL _).2 fun k => hy k a)
+alias isSB_of_adm := _root_.GlobalTheory.SW.SwdHeat.isSB_member
 
 theorem bounded_of_adm {M R : ℕ} {φ : Fam E n N} (h : admitted M R φ) :
     ∃ B : ℝ, 0 ≤ B ∧ ∀ Λ ∈ Vset E n M, ∀ x, ‖φ Λ x‖ ≤ B := by

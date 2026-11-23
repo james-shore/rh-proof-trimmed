@@ -58,7 +58,7 @@ theorem bk_unr_gr : Loc.LocalPublishedTheorems → ∀ (l : ℕ) [Fact l.Prime] 
   refine ⟨fun w hw => ?_, ?_⟩
   · obtain ⟨B, hB, x, hx⟩ := hbk.away w hw
     exact ⟨B, hB, x, fun s hs => by rw [hx s hs, hcol]⟩
-  obtain ⟨ι, hιc, hιD, hιS, hιI, hιcyc, hιZ⟩ := GlobalTheory.T.crystallineClass_restrict_decompositionGroup l Ω W A hN.atL z hz hbk
+  obtain ⟨ι, hιc, hιD, hιS, hιI, hιcyc, hιZ⟩ := _root_.GlobalTheory.Ord2.bk_locEmb l Ω W A hN.atL z hz hbk
   have hup : ∀ σ, mat W (ι σ) 1 0 = 0 := fun σ => hN.upper _ (hιD σ)
   let k0 : GQ l →* Qbar l :=
     { toFun := fun σ => mat W (ι σ) 1 1

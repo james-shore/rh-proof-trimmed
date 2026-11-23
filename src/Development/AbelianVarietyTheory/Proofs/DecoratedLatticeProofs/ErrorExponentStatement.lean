@@ -62,14 +62,6 @@ variable {D : D7} {X : HidaSetting.HidaSetting D} {h : X.B.I = instOf D} {u : D.
   {V₀ A L : HSp D} {d : HypDec (D.sp.Y 0) V₀ D.R.rS} {o : OrthDec V₀ A L}
   {ζ : Fin L.rank → D.host.E} {lam : D.host.E}
 
-theorem hyp_linIndep {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) :
-    LinearIndependent D.host.E d.e.transpose := by
-  have h1 : Function.Injective d.e.mulVec := by
-    intro x y hxy
-    have := congrArg (fun v => (d.e'.conjTranspose * HSpace.gram S).mulVec v) hxy
-    simpa [Matrix.mulVec_mulVec, d.e'e] using this
-  exact Matrix.mulVec_injective_iff.mp h1
-
 theorem besPer_domN {S S₀ A L : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) (o : OrthDec S₀ A L)
     (ζ : Fin L.rank → D.host.E) {ψ : AddChar (AF ↥D.host.F) ℂ} (hψ : IsCharAF D.host.F ψ)
     (θ : D.host.E) (μ 𝓕) (ν : Measure (flagN d)) (hν : ν.IsHaarMeasure) {𝓝 𝓝' : Set (flagN d)}

@@ -50,6 +50,7 @@ import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.BitVec
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Mathlib.Algebra.MvPolynomial.Funext
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.ExponentWordRecursion
 
 @[expose] public section
 
@@ -63,12 +64,6 @@ noncomputable section
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 namespace CapWP
-
-theorem sum_flatMap' {α β M : Type*} [AddCommMonoid M] (l : List α) (f : α → List β) (φ : β → M) :
-    ((l.flatMap f).map φ).sum = (l.map fun a => ((f a).map φ).sum).sum := by
-  induction l with
-  | nil => simp
-  | cons a l ih => simp [List.flatMap_cons, List.sum_append, ih]
 
 theorem sum_filter' {α M : Type*} [AddCommMonoid M] (l : List α) (p : α → Bool) (φ : α → M) :
     ((l.filter p).map φ).sum = (l.map fun a => if p a then φ a else 0).sum := by
@@ -151,7 +146,7 @@ theorem core_eval (hD : FExpDeg) (hlen : ∀ σ, (G σ).length = t)
         ((fexp (G σ)).map fun tm => tm.1.eval ((Ys i : ℂ) + c) • W tm.2).sum =
       ((Lw G Ys lam c j).map fun tm => tm.1 • W tm.2).sum := by
   unfold Lw
-  rw [sum_flatMap', sum_toList_map]
+  rw [_root_.Formalism.FourierDecayAlt.P.ListSumInequalities.list_sum_flatMap, sum_toList_map]
   simp_rw [Finset.smul_sum]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun σ _ => ?_
@@ -236,7 +231,7 @@ theorem core_symb (hD : FExpDeg) (hS : FExpSymb) (hDet : DetShiftCoeff) (hlen : 
   rw [← hDdef, ← hPD, hP, MvPolynomial.coeff_sum] at hcoef
   rw [← hcoef]
   unfold Lw
-  rw [sum_flatMap', sum_toList_map]
+  rw [_root_.Formalism.FourierDecayAlt.P.ListSumInequalities.list_sum_flatMap, sum_toList_map]
   refine Finset.sum_congr rfl fun σ _ => ?_
   rw [← map_intCast (MvPolynomial.C : ℂ →+* MvPolynomial (Fin 2) ℂ), MvPolynomial.coeff_C_mul, coeff_listSum,
     List.map_map, sum_filter', ← List.sum_map_mul_left]

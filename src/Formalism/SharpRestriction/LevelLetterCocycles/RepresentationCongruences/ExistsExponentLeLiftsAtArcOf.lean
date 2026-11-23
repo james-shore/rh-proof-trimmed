@@ -84,12 +84,6 @@ theorem lifts_shift (W : LocWach PD LL O v n) (A : ArcP n) {T₁ T₂ : LocLat G
     · rfl
   rw [hfun]; exact h5
 
-theorem letE_idem (c : ZMod n) : (letE c : LetA O n) * letE c = letE c := by
-  funext i
-  by_cases h : i = c
-  · subst h; simp [letE]
-  · simp [letE, Pi.single_eq_of_ne h]
-
 theorem exists_exponent_le_liftsAt_arcOf [NeZero n] [Fintype (K →ₐ[Qp] LL)] [IsDomain O] [IsDiscreteValuationRing O] [IsAdicComplete (IsLocalRing.maximalIdeal O) O] (W : LocWach PD LL O v n) (hcase : Formalism.MainNotions.LiftingTheory.CaseA W)
     {T₁ T₂ : LocLat G Qp LL O} (F : LatHom T₁.L T₂.L) {b w S η m : ℕ} {up : ZMod n → Bool}
     {size Mi hi : ZMod n → ℕ} (hB : HypB PD W T₁ T₂ F b w S η m up size Mi hi)
@@ -226,7 +220,7 @@ theorem exists_exponent_le_liftsAt_arcOf [NeZero n] [Fintype (K →ₐ[Qp] LL)] 
           Subalgebra.mul_mem _ (Subalgebra.mul_mem _ hlet (hpA s)) hu₀, hkey'⟩ :
           ∃ (k : ℕ) (y : LetA O n), y ∈ W.AΔ ∧ lA W ^ k * (1 * z) = P * y)
       refine ⟨y', hy'A, ?_⟩
-      have hzz : letE c * z = z := by rw [hz, ← mul_assoc, ← mul_assoc, letE_idem]
+      have hzz : letE c * z = z := by rw [hz, ← mul_assoc, ← mul_assoc, _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq]
       rw [one_mul] at hzy
       rw [hN1eq]
       show ι z = ι (letE c * P * y')

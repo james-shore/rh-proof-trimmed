@@ -54,19 +54,15 @@ namespace GlobalTheory.CompanionTheory.ModelS.ReversedBlocks
 
 variable {n : ℕ}
 
-theorem lower_iff (P : Fin n → Prop) [DecidablePred P] (hP : ∀ a b, a ≤ b → P b → P a) (b : Fin n) :
-    P b ↔ (b : ℕ) < (univ.filter P).card :=
-  _root_.UpperTheory.Reformulated.B.Re1.lower_iff P hP b
-
 def lowC (lev : Fin n → ℕ) (a : Fin n) : ℕ := (univ.filter fun b => lev b < lev a).card
 
 def topC (lev : Fin n → ℕ) (a : Fin n) : ℕ := (univ.filter fun b => lev b ≤ lev a).card
 
 theorem lt_iff {lev : Fin n → ℕ} (hm : Monotone lev) (a b : Fin n) : lev b < lev a ↔ (b : ℕ) < lowC lev a :=
-  lower_iff (fun b => lev b < lev a) (fun _ _ h hb => lt_of_le_of_lt (hm h) hb) b
+  _root_.UpperTheory.Reformulated.B.Re1.lower_iff (fun b => lev b < lev a) (fun _ _ h hb => lt_of_le_of_lt (hm h) hb) b
 
 theorem le_iff {lev : Fin n → ℕ} (hm : Monotone lev) (a b : Fin n) : lev b ≤ lev a ↔ (b : ℕ) < topC lev a :=
-  lower_iff (fun b => lev b ≤ lev a) (fun _ _ h hb => le_trans (hm h) hb) b
+  _root_.UpperTheory.Reformulated.B.Re1.lower_iff (fun b => lev b ≤ lev a) (fun _ _ h hb => le_trans (hm h) hb) b
 
 theorem high_add_topC (lev : Fin n → ℕ) (a : Fin n) :
     (univ.filter fun b => lev a < lev b).card + topC lev a = n := by

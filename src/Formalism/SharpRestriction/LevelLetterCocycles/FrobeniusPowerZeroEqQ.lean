@@ -68,11 +68,6 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     {v : AddValuation LL (WithTop ℚ)} {n : ℕ} (W : LocWach PD LL O v n)
     (levB : ∀ T : LocLat G Qp LL O, ZMod n → LL → ↥(W.N T) →+ (ℤ → T.V ⊗[Qp] B))
 
-theorem φD_smulA' (T : LocLat G Qp LL O) (a : LetA O n) (x : W.DD T) :
-    W.φD T (a • x) = W.φA a • W.φD T x := by
-  rw [← algebraMap_smul W.EE a x, W.φD_smul, W.φE_ext, algebraMap_smul]
-  rfl
-
 theorem lA_eq (t : ℕ) : lA W ^ t = algebraMap O (LetA O n) (((PD.p : ℕ) : O) ^ t) := by
   simp [lA, map_pow, map_natCast]
 
@@ -119,7 +114,7 @@ theorem fil_of_rep (C : Formalism.MainNotions.UnusedSlot80.LevC.Ctx W) (Ti : For
   have hq : W.q = (w : LetA O n) * ps W 0 := by rw [hw, frobenius_power_zero_eq_q]
   have hφ : ∀ z, W.φD T (Λe • ((W.φD T) ^ e) z) = LU • ((W.φD T) ^ (e + 1)) z := by
     intro z
-    rw [φD_smulA', Formalism.MainNotions.UnusedSlot80.PhiPowers.pow_apply_succ]
+    rw [_root_.Formalism.MainNotions.LiftingTheory.wmap_φD_smul, Formalism.MainNotions.UnusedSlot80.PhiPowers.pow_apply_succ]
     rfl
   have hZmem : ∀ z, Formalism.MainNotions.LiftingTheory.InNΔi W T c' z → W.q ^ H • W.φD T (Λe • ((W.φD T) ^ e) z) ∈ W.N T := by
     intro z hz

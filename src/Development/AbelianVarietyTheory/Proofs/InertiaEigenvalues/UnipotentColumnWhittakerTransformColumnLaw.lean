@@ -58,7 +58,7 @@ theorem colT_blkU_mul : ∀ (E : Type) [Field E] [NumberField E] (a : ℕ) (ψ :
   intro E _ _ a ψ hψ m f hf y g
   have hper := per_coef (a := a) hψ (eLast a (m + 1)) hf.cont
     (fun c g' => hf.left _ (isMir_blkU c) g') g
-  have hT := GlobalTheory.T.quotientAverage_translate_invariant (UnipotentBlockColumnIndex a (m + 1) (m + 1) → Ad E) (ratV E (UnipotentBlockColumnIndex a (m + 1) (m + 1)))
+  have hT := _root_.GlobalTheory.CuspGeneric.avg_add_right (UnipotentBlockColumnIndex a (m + 1) (m + 1) → Ad E) (ratV E (UnipotentBlockColumnIndex a (m + 1) (m + 1)))
     (isCoLat_ratV E _) _ hper y
   have hpt : (fun x : UnipotentBlockColumnIndex a (m + 1) (m + 1) → Ad E =>
         ψ (-dot (eLast a (m + 1)) x) * f (blkU x * (blkU y * g))) =

@@ -101,8 +101,8 @@ theorem liftRowCohC_of (hT : LiftTransNeed X Y u u') (hD : IotaDictNeed X Y u u'
   obtain ⟨hpl, e₁⟩ := Term.mk.inj hp₁'
   subst hpl
   have hRL : IsRowLat D (X.Fu u) s.lam := (Y.rowsOK u).1 s.lam s.mem
-  have hEq := Formalism.L2.SG.Closed.TermEqIff_holds D u u' (X.Fu u) s.lam hRL
-  have hGF := (Formalism.L2.SG.Closed.TermFun_holds D u u' (X.Fu u) s.lam hRL).1
+  have hEq := _root_.term_eq_iff_relation D u u' (X.Fu u) s.lam hRL
+  have hGF := (_root_.term_function_const D u u' (X.Fu u) s.lam hRL).1
   have gv : ∀ x : Carrier (PD D s.lam (lf D (X.Fu u)) u'),
       Gt s.lam (lf D (X.Fu u)) (PD D s.lam (lf D (X.Fu u)) u') (TermDef.mk _ _ _ x) = Gval (lf D (X.Fu u)) x.1 := by
     intro x

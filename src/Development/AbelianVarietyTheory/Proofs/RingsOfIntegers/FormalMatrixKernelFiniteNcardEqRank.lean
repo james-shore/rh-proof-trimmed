@@ -137,8 +137,8 @@ theorem eq_zero_of_constantCoeff {V σ : Type} [CommRing V] [IsEmpty σ] (g : Mv
 theorem finite_ncard_kerM : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [IsAdicComplete (maximalIdeal V) V] [CharZero V] (d : ℕ) (O : Type) [CommRing O] [StarRing O] (B : FB V d O), FinHt B → ∀ (n : ℕ) (p p' : Matrix (Fin n) (Fin n) O) (N : ℕ), 1 ≤ N → p' * p = (N : O) • (1 : Matrix (Fin n) (Fin n) O) → jacM B p ≠ 0 → SplitKer B p → (kerM B p).Finite ∧ (kerM B p).ncard = Module.finrank V (PS V n d ⧸ Ideal.span (Set.range fun s : Fin n × Fin d => matV B p (fun j => pt V (n := n) d j) s.1 s.2)) := by
   intro V _ _ _ _ _ d O _ _ B hB n p p' N hN hp hjac hsplit
   classical
-  have hcol := GlobalTheory.T.exists_pow_span_X_le_span_formalModuleMatrix V d O B hB n p p' N hN hp
-  obtain ⟨U, hU⟩ := GlobalTheory.T.det_jacobian_formal_module_matrix_eq_const_mul_unit V d O B n p
+  have hcol := _root_.GlobalTheory.PlaceInt.exists_pow_span_X_le_span_matV V d O B hB n p p' N hN hp
+  obtain ⟨U, hU⟩ := _root_.GlobalTheory.PlaceInt.MatJac.det_jacobian_matV V d O B n p
   have hmat : ∀ x : Fin n → Pt V 0 d,
       (∀ b i, MvPowerSeries.constantCoeff (x b i) ∈ maximalIdeal V) →
       (∀ b i, evV x (matV B p (fun j => pt V (n := n) d j) b i) = matV B p x b i) ∧

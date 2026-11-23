@@ -257,7 +257,7 @@ theorem pr_kills (hB : ∀ j, ((B j).map (fun x : ℤ => (x : ℝ))).PosSemidef)
     (hK : IsKerProj (∑ j, B j) Pr) (u : Fin g → ℤ)
     (hu : ∀ v : Fin g → ℤ, (∑ j, B j) *ᵥ v = 0 → u ⬝ᵥ v = 0) :
     Pr *ᵥ (fun k => (u k : ℝ)) = 0 := by
-  obtain ⟨N, c, hN, h⟩ := GlobalTheory.T.exists_int_preimage_of_orthogonal_kernel g _ (S_symm hB) u hu
+  obtain ⟨N, c, hN, h⟩ := _root_.GlobalTheory.CompanionTheory.Ar.IntegralKernel.exists_smul_eq_mulVec g _ (S_symm hB) u hu
   have h1 : (N : ℝ) • (fun k => (u k : ℝ)) =
       (∑ j, B j).map (fun x : ℤ => (x : ℝ)) *ᵥ (fun k => (c k : ℝ)) := by
     funext k

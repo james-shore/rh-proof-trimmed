@@ -54,5 +54,5 @@ theorem GlobalTheory.AdmissibleCore.main : GlobalTheory.TwSys.Cheb → ∀ (D : 
   have hirr := hA i π hπ (X.ρ i π) hpt
   have hLive : GlobalTheory.CoefDuty.Live D.nd i := ⟨π, hZ, X.r i π, X.ρ i π, hHG, hdec, hirr⟩
   obtain ⟨r₀, ρ₀, hg₀, hw₀⟩ := hT i hLive
-  obtain ⟨S, hS, -⟩ := GlobalTheory.T.exists_globalObjects_every_family_wild hC D.nd i r₀ ρ₀ hg₀ hw₀ (X.r i) (X.ρ i) (hX.good i) π hZ hdec
+  obtain ⟨S, hS, -⟩ := _root_.GlobalTheory.ConsEveryFamilyWild.main hC D.nd i r₀ ρ₀ hg₀ hw₀ (X.r i) (X.ρ i) (hX.good i) π hZ hdec
   exact ⟨S, hS⟩

@@ -55,17 +55,17 @@ open Formalism.DivisionValues
 
 theorem enlarge_initial_lattice : EnlargeInitialLattice := by
   intro K _ _ _ Z _ _ _ _ _ w M Th1 Th hM h1 hT h1T hTM E r h W
-  have a := (idxCutLe K Z w ⊤ W M Th hM hT hTM le_top).1
-  have b := (idxCutLe K Z w ⊤ W Th Th1 hT h1 h1T le_top).1
-  have c := (idxCutLe K Z w ⊤ W Th1 Th1 h1 h1 le_rfl le_top).1
+  have a := (_root_.Formalism.EigenvalueLevelCeiling.index_truncation_le K Z w ⊤ W M Th hM hT hTM le_top).1
+  have b := (_root_.Formalism.EigenvalueLevelCeiling.index_truncation_le K Z w ⊤ W Th Th1 hT h1 h1T le_top).1
+  have c := (_root_.Formalism.EigenvalueLevelCeiling.index_truncation_le K Z w ⊤ W Th1 Th1 h1 h1 le_rfl le_top).1
   have d : cut W Th1 ≤ cut W Th := inf_le_inf_right _ h1T
-  have e := idxMono K Z w W (cut W M) (cut W Th1) (cut W Th) a c b d
+  have e := _root_.Formalism.EigenvalueLevelCeiling.index_monotone K Z w W (cut W M) (cut W Th1) (cut W Th) a c b d
   have e' : (lix w (cut W M) (cut W Th) : ℝ) ≤ (lix w (cut W M) (cut W Th1) : ℝ) := by exact_mod_cast e
   exact le_trans e' (h W)
 
 theorem twist_chain : TwChain := by
   intro K _ _ _ Z _ _ _ _ _ w W e A Th0 ThJ X₃ hA h0 hJ hle ε h
-  have a := idxMono K Z w W A _ _ hA h0 hJ (Submodule.map_mono hle)
+  have a := _root_.Formalism.EigenvalueLevelCeiling.index_monotone K Z w W A _ _ hA h0 hJ (Submodule.map_mono hle)
   have a' : (lix w A (ThJ.map (e.restrictScalars (𝓞 K))) : ℝ) ≤
       (lix w A (Th0.map (e.restrictScalars (𝓞 K))) : ℝ) := by exact_mod_cast a
   linarith
@@ -75,7 +75,7 @@ theorem local_conditions_family : OnLocalJ := by
     σ hσ hsc hdata a E r ha hE hT0 h0 hJ h0J h3 h4 h34 ε hTW d φ hinj hrng Mj Tj hMj hTj
   exact onLocal K Z w P ρ U ψ hMk V₀ e he hr M Th ThK Th0 X₃ X₄ hM hTh hThK hle hFG hEig hMs hTs σ hσ hsc hdata
     a E r ha hE hT0 h0 h3 h4 h34 ε
-    (twist_chain K Z w _ e _ Th0 ThJ X₃ (idxCutLe K Z w ⊤ _ M Th hM hTh hle le_top).1 h0 hJ h0J ε hTW)
+    (twist_chain K Z w _ e _ Th0 ThJ X₃ (_root_.Formalism.EigenvalueLevelCeiling.index_truncation_le K Z w ⊤ _ M Th hM hTh hle le_top).1 h0 hJ h0J ε hTW)
     d φ hinj hrng Mj Tj hMj hTj
 
 theorem theta_identity : ThetaIdentity := by

@@ -177,12 +177,12 @@ theorem UpperTheory.V.Z.Int.slopeAllOf :
     · exact_mod_cast add_left_cancel e
     · obtain ⟨i, -, rfl⟩ := Multiset.mem_map.1 hz
       exact ⟨m i, add_comm _ _⟩
-  obtain ⟨Q, hQ1, hQ2, hQ3, hQ4⟩ := (GlobalTheory.T.infinite_quadraticCM_goodBaseChange_split hAF E (AlgebraicClosure E) 2 n π w).nonempty
+  obtain ⟨Q, hQ1, hQ2, hQ3, hQ4⟩ := (_root_.GlobalTheory.GalCut.infinite_qcm_split_good hAF E (AlgebraicClosure E) 2 n π w).nonempty
   obtain ⟨P, hP⟩ := hQL E Q.K Q.two n hn π hQ3
   obtain ⟨⟨χ', hχ'⟩, -⟩ := GlobalTheory.T.polarizedPair_baseChange_polarized_same_weight hAF hJS hGK E Q.K 2 n hn π χ P hP ⟨hreg, hpol, trivial⟩
   have hin : GlobalTheory.GalCut.InScope .good 2 P χ' := ⟨hχ'.1, hχ'.2.1, hQ4 P hP⟩
   have hA := ReciprocityTheory.Gal.isPlaceOver_placeOf (AlgebraicClosure E) w
-  obtain ⟨w', h', i, hi⟩ := GlobalTheory.T.exists_place_completion_iso E (AlgebraicClosure E) Q.K w _ hA (hQ1 _ hA)
+  obtain ⟨w', h', i, hi⟩ := _root_.GlobalTheory.PlaceIsoDec.exists_placeIso_of_dec_le_range E (AlgebraicClosure E) Q.K w _ hA (hQ1 _ hA)
   have hund : w'.under (𝓞 E) = w := by
     have := GlobalTheory.PlaceIsoDec.liesOver_of_isPlaceOver hA h'
     ext1

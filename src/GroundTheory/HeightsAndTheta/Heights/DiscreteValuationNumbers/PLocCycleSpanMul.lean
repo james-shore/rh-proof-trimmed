@@ -56,11 +56,6 @@ open ReciprocityTheory.ChartRestriction.G.AI ReciprocityTheory.ChartRestriction.
 
 noncomputable section
 
-theorem LocCycleSpanMul.mem_minimalPrimes_iff {A : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A]
-    {z : A} (hz : z ≠ 0) (W : Ideal A) :
-    W ∈ (Ideal.span {z}).minimalPrimes ↔ W.IsPrime ∧ W.height = 1 ∧ z ∈ W :=
-  _root_.UpperTheory.Reformulated.B.Yhd1.mem_minimalPrimes_iff hz W
-
 theorem LocCycleSpanMul.proof : LocCycleSpanMul.Statement := by
   intro A _ _ _ x y hx hy W
   by_cases hP : W.IsPrime ∧ W.height = 1
@@ -71,13 +66,13 @@ theorem LocCycleSpanMul.proof : LocCycleSpanMul.Statement := by
       intro z hz
       by_cases hzW : z ∈ W
       · have hm : W ∈ (Ideal.span {z}).minimalPrimes :=
-          (LocCycleSpanMul.mem_minimalPrimes_iff hz W).mpr ⟨hp, h1, hzW⟩
+          (_root_.UpperTheory.Reformulated.B.Yhd1.mem_minimalPrimes_iff hz W).mpr ⟨hp, h1, hzW⟩
         refine ⟨?_, locLen_ne_top hm⟩
         unfold locCycle
         rw [dite_eq_left hm]
         rfl
       · have hm : W ∉ (Ideal.span {z}).minimalPrimes := fun h =>
-          hzW ((LocCycleSpanMul.mem_minimalPrimes_iff hz W).mp h).2.2
+          hzW ((_root_.UpperTheory.Reformulated.B.Yhd1.mem_minimalPrimes_iff hz W).mp h).2.2
         have h0 : locLen (A ⧸ Ideal.span {z}) ⟨W, hp⟩ = 0 := by
           have := locLen_quot_eq_zero (V := (⊥ : Ideal A)) (g := z) ⟨W, hp⟩ hzW
           rwa [bot_sup_eq] at this
@@ -99,7 +94,7 @@ theorem LocCycleSpanMul.proof : LocCycleSpanMul.Statement := by
       unfold locCycle
       rw [dite_eq_right]
       intro hm
-      have h := (LocCycleSpanMul.mem_minimalPrimes_iff hz W).mp hm
+      have h := (_root_.UpperTheory.Reformulated.B.Yhd1.mem_minimalPrimes_iff hz W).mp hm
       exact hP ⟨h.1, h.2.1⟩
     rw [hz _ (mul_ne_zero hx hy), hz x hx, hz y hy]
     simp

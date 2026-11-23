@@ -58,16 +58,12 @@ theorem coe_rt_sq (H : Host E) : (H.rt : E) ^ 2 = -(H.d : E) := by
   have h := congrArg (algebraMap (𝓞 E) E) H.rt_sq
   simpa using h
 
-theorem conj_embedding_rt (H : Host E) (τ : E →+* ℂ) :
-    starRingEnd ℂ (τ (H.rt : E)) = -τ (H.rt : E) :=
-  _root_.UpperTheory.Reformulated.B.Gc4.conj_embedding_rt H τ
-
 @[simp] theorem bar_rt (H : Host E) : H.bar H.rt = -H.rt := by
   obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
   apply RingOfIntegers.ext
   apply τ.injective
   have h := IsCMField.complexEmbedding_complexConj E τ (H.rt : E)
-  rw [H.bar_eq, h, conj_embedding_rt]
+  rw [H.bar_eq, h, _root_.UpperTheory.Reformulated.B.Gc4.conj_embedding_rt]
   simp
 
 @[simp] theorem bar_bar (H : Host E) (a : 𝓞 E) : H.bar (H.bar a) = a := by

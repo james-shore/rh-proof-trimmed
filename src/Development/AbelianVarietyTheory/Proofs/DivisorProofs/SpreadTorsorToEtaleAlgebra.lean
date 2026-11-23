@@ -77,7 +77,7 @@ theorem spread_torsor_to_etale : ∀ (T O : Type) [CommRing T] [CommRing O] [Alg
   intro T O _ _ _ _ _ P _ φ hφ hind q hq D _ _ act hD
   classical
 
-  obtain ⟨j, Dj, _, _, actj, hDj, ⟨e⟩⟩ := GlobalTheory.T.exists_zmodTorsor_model_of_filtered_colimit _ _ _ (GlobalTheory.FiniteTypeColimit.isColimit
+  obtain ⟨j, Dj, _, _, actj, hDj, ⟨e⟩⟩ := _root_.GlobalTheory.TorsorColim.exists_torsor_model_of_isColimit _ _ _ (GlobalTheory.FiniteTypeColimit.isColimit
     (CommRingCat.of (GenFib T O))) q hq D act hD
   let U := (GlobalTheory.FiniteTypeColimit.diagram (CommRingCat.of (GenFib T O))).obj j
   let u : U →+* GenFib T O := ((GlobalTheory.FiniteTypeColimit.inclusions (CommRingCat.of (GenFib T O))).app j).hom

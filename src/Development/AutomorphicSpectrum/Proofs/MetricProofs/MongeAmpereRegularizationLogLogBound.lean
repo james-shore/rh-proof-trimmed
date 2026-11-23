@@ -58,6 +58,7 @@ public import ReciprocityTheory.AnalyticForms.PotentialTheory.MaMeasure
 import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
 import Std.Tactic.BVDecide.Normalize.Prop
 import GroundTheory.HeightsAndTheta.Heights.Antisymmetric.Statements
+import ReciprocityTheory.AnalyticForms.PotentialTheory.StokesA
 
 @[expose] public section
 
@@ -90,20 +91,6 @@ theorem rsmul_one (Θ : LocPot X) : Θ.rsmul 1 = Θ := by
   funext x y
   show (1 : ℝ) * Θ.φ x y = Θ.φ x y
   simp
-
-theorem continuous_of_smooth (A : FinHolAtlas e X) {f : X → ℝ} (h : A.Smooth f) : Continuous f := by
-  rw [continuous_iff_continuousAt]
-  intro x
-  obtain ⟨j, hj⟩ := A.cover x
-  have h1 : ContinuousOn (f ∘ (A.chart j).symm) (A.chart j).target := by
-    have := (h j).continuousOn
-    simpa using this
-  have h2 : ContinuousAt ((f ∘ (A.chart j).symm) ∘ (A.chart j)) x :=
-    ContinuousAt.comp (h1.continuousAt ((A.chart j).open_target.mem_nhds ((A.chart j).map_source hj)))
-      ((A.chart j).continuousAt hj)
-  refine h2.congr ?_
-  filter_upwards [(A.chart j).open_source.mem_nhds hj] with y hy
-  simp [(A.chart j).left_inv hy]
 
 theorem smooth_zero (A : FinHolAtlas e X) : A.Smooth (0 : X → ℝ) := fun j => contDiffOn_const
 
@@ -294,7 +281,7 @@ theorem signed_rate : ConvergenceRateStatement → ∀ (e : ℕ) (σ : Type) [Fi
     have h1' := (hpsh _ _ _ (S.sing a).1 (hreg a) t ht htt₁).1 j
     have h2' := (hpsh _ _ _ (S.sing a).1 (hreg a) t' ht' (htt'.trans htt₁)).1 j
     exact h1'.sub h2'
-  have hg : Continuous (fun x => S.phT a t x - S.phT a t' x) := Rate.continuous_of_smooth S.A hgs
+  have hg : Continuous (fun x => S.phT a t x - S.phT a t' x) := _root_.ReciprocityTheory.AnForm.M.st_smooth_continuous S.A hgs
   have hPpot : ∀ i, IsPotential S.A (S.potT (w i) (if c i then t else t')) := fun i =>
     isPotentialAdd S.A _ _ (S.sing (w i)).1 (isPotential_ofFun S.A _
       (hpsh _ _ _ (S.sing (w i)).1 (hreg (w i)) _ (hτ i).1 (hτ i).2).1)

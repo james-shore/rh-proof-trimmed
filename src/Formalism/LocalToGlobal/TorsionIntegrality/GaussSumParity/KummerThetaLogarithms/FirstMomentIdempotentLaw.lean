@@ -578,7 +578,7 @@ theorem BMinus1_of' (hE : ExpSpec) : BMinus1 := by
     (letter_shift K l d σ hl).2.1
   have hZS := shiftType_zXY hl hd hball hO
   have hid := isIdMod2_letLog (K := K) (d := d) hl
-  obtain ⟨T0, hT00, hT0I, hT0s⟩ := Formalism.FG.funEqHomV K l (l ^ 2) hq (σ.comp σ) hset (ZMod d)
+  obtain ⟨T0, hT00, hT0I, hT0s⟩ := _root_.Formalism.FG.functional_equation_hom_vector K l (l ^ 2) hq (σ.comp σ) hset (ZMod d)
     (sM K d) (by intro j k; unfold sM; split_ifs <;> simp) (letLog l) hid
     (funEq_of_shift hq σ hLS) (Bool × ι) (zXY l σ om oms) (cc_zXY hl2 σ om oms)
     (funEq_of_shift hq σ hZS)

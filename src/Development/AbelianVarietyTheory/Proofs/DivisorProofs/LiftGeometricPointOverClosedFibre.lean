@@ -75,7 +75,7 @@ theorem GlobalTheory.Mum.Emb.lift_closedPoint : ∀ (R : Type) [CommRing R] [IsD
   have hg : ∃ g : E.H.toScheme, M.π (G'.hom (E.H.ι g)) = closedPoint R ∧ E.f g ∈ Set.range (ξ ≫ b) :=
     ⟨X.ι z, hcl _ hrng, hrng⟩
   have hs' : (ξ ≫ b) ≫ PSpace.str R E.N = s ≫ M.π := by rw [Category.assoc]; exact hs
-  obtain ⟨Ω', _, io, q, hq1, hq2⟩ := GlobalTheory.T.exists_lift_after_field_extension R M.S M.π G' E Ω (ξ ≫ b) s hs' hg
+  obtain ⟨Ω', _, io, q, hq1, hq2⟩ := _root_.GlobalTheory.Mum.Emb.exists_lift_fieldExt R M.S M.π G' E Ω (ξ ≫ b) s hs' hg
   let φ : E.H.toScheme ⟶ pullback M.π (PSpace.str R E.N) :=
     pullback.lift (E.H.ι ≫ G'.hom) E.f (by rw [E.f_over, Category.assoc])
   haveI : Smooth G'.hom := hG.smooth

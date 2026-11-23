@@ -86,15 +86,11 @@ def ellB : twX E V ⟶ (Functor.const SimplexCategoryᵒᵖ).obj (lineSp q) wher
   app p := colLine q hE p
   naturality _ _ _ := rfl
 
-theorem pull_cast {E₁ E₂ : Spc} (f : E₁ ⟶ E₂) {n i n' i' : ℤ} (hn : n = n') (hi : i = i') (x : Ht q E₂ n i) :
-    pull _ f _ _ (x.cast hn hi) = Ht.cast hn hi (pull _ f (tw q i) n x : Ht q E₁ n i) := by
-  subst hn hi; rfl
-
 theorem pull_cpow [NeZero q] {E₁ E₂ : Spc} (f : E₁ ⟶ E₂) (h : Inv q E₂) (x : Ht q E₂ 2 1) (k : ℕ) :
     pull _ f _ _ (cpow q x k) = cpow q (pull _ f _ _ x) k := by
   induction k with
-  | zero => rw [cpow_zero, cpow_zero, pull_cast, (a6nat_holds q).2.1 f h]
-  | succ k ih => rw [cpow_succ, cpow_succ, pull_cast, (a6nat_holds q).1, ih]
+  | zero => rw [cpow_zero, cpow_zero, _root_.GlobalTheory.EtC.pull_htCast, (a6nat_holds q).2.1 f h]
+  | succ k ih => rw [cpow_succ, cpow_succ, _root_.GlobalTheory.EtC.pull_htCast, (a6nat_holds q).1, ih]
 
 theorem mk_zcomp_ofHom {R : Type} [CommRing R] {E₁ E₂ : Spc} (f : E₁ ⟶ E₂) {F : Shv R} {n : ℤ}
     (z : Cocycle ((chains R).obj E₂) (res R F) n) :

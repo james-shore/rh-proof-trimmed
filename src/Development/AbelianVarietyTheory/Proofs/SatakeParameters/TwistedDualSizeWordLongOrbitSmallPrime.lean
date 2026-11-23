@@ -74,7 +74,7 @@ theorem wordsB_recWord_of_long_orbit : ∀ {D : D7} (L : SizeData₂ D) (_ : Par
   · rw [hjA]; exact hjn
   · rcases le_or_gt 0 C₂ with h0 | h0
     · rw [hjA]
-      exact GlobalTheory.T.mul_smallBounds_le_roundedSizeBound L C₂ C (depth L l) hR h0 hC hD.2.1
+      exact _root_.GlobalTheory.HTW.mul_small_le_bHat L C₂ C (depth L l) hR h0 hC hD.2.1
     · have h1 : (0 : ℝ) ≤ ((jA L l : ℝ) + 1) * ((((recWord L j ε (letter τ ψ)).w +
           (recWord L j ε (letter τ ψ)).S + (recWord L j ε (letter τ ψ)).η : ℕ) : ℝ) + 1) := by
         positivity

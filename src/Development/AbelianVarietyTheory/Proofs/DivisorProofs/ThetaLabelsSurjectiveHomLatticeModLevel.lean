@@ -56,13 +56,6 @@ noncomputable section
 
 namespace GlobalTheory.GSep.Labels
 
-theorem comp_pow_overScheme_grpObj {S : Scheme.{0}} {A T T' : Over S} [GrpObj A] (ρ : T' ⟶ T) (x : T ⟶ A) (n : ℕ) :
-    ρ ≫ x ^ n = (ρ ≫ x) ^ n := by
-  induction n with
-  | zero => simp only [pow_zero, MonObj.comp_one]
-  | succ n ih => rw [pow_succ, MonObj.comp_mul, ih, pow_succ]
-
-
 open GlobalTheory.TorusExt in
 attribute [local instance] gtGroup in
 theorem yy_hom : ∀ (I : Type) (X₁ : GlobalTheory.GSep.GSet) (z₁ : X₁.M.Z) (act : I → (X₁.ρ.P.A ⟶ X₁.ρ.P.A)) (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V] (ev : X₁.M.Z.presheaf.stalk z₁ →+* V) (X : Type) [AddCommGroup X] (t : X → V) (δ : I → X → X) (𝔪 : GlobalTheory.GSep.GMem X₁ z₁ act V ev X t δ), (∀ a, ∃ mu, 𝔪.YY a mu) ∧ (∀ mu, ∃ a, 𝔪.YY a mu) ∧ (∀ a mu mu', 𝔪.YY a mu → (𝔪.YY a mu' ↔ CongMod (X₁.S.r * X₁.S.N) mu' mu)) ∧ (∀ a a' mu mu', 𝔪.YY a mu → 𝔪.YY a' mu' → 𝔪.YY (a + a') (mu + mu')) := by
@@ -92,7 +85,7 @@ theorem yy_hom : ∀ (I : Type) (X₁ : GlobalTheory.GSep.GSet) (z₁ : X₁.M.Z
       ((Over.homMk (spMap ((algebraMap (FractionRing V) (AlgebraicClosure (FractionRing V))).comp 𝔪.yK)) (by simp) :
         Over.mk (spMap ((algebraMap (FractionRing V) (AlgebraicClosure (FractionRing V))).comp 𝔪.yK)) ⟶
           baseOver (Sp X₁.S.R)) ≫ X₁.ρ.pt a)
-      (by rw [← comp_pow_overScheme_grpObj, (X₁.ρ.fr_tors a).1, MonObj.comp_one])
+      (by rw [← _root_.GlobalTheory.SemiAbTorsion.comp_pow_points, (X₁.ρ.fr_tors a).1, MonObj.comp_one])
     have h1 := hc a rfl
     have h2 := hc b (by
       ext1

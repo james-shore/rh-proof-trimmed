@@ -109,7 +109,7 @@ theorem exists_pivot_pair {F E : Type} [Field F] [NumberField F] [Field E] [Numb
       IsConst B Γ Xb ob ob' R Rb cb ∧ cb ≠ 0 := by
   obtain ⟨R, Ra, h1⟩ := hM F E σ B a a' Γ Xa oa oa' ha
   obtain ⟨R', Rb, h2⟩ := hM F E σ B a a' Γ Xb ob ob' hb
-  have h3 : IsMatched B Γ Xb ob ob' R Rb := ⟨hb, _root_.GlobalTheory.T.characters_real_valued_of_equal_exponent hP F E σ B a a' Γ Xa Xb oa oa' ob ob' R ha hb h1.real, h2.fin⟩
+  have h3 : IsMatched B Γ Xb ob ob' R Rb := ⟨hb, _root_.GlobalTheory.RealMapsChars.real_embeddings_of_characters_of_same_exponent hP F E σ B a a' Γ Xa Xb oa oa' ob ob' R ha hb h1.real, h2.fin⟩
   obtain ⟨⟨-, ⟨ca, hca, -⟩, -⟩, -⟩ := (hK.1 F E σ B a a' Γ Xa oa oa' ha).2 R Ra h1
   obtain ⟨⟨-, ⟨cb, hcb, -⟩, h0⟩, -⟩ := (hK.1 F E σ B a a' Γ Xb ob ob' hb).2 R Rb h3
   exact ⟨R, Ra, Rb, ca, cb, h1, h3, hca, hcb, h0 cb hcb⟩

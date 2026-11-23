@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.PartialCoboundaryLinear
 
 @[expose] public section
 
@@ -89,34 +90,11 @@ private theorem mvSubst_sub_of_hasSubst {ι κ : Type} {φ : ι → MvPowerSerie
   | exact MvPowerSeries.subst_sub hφ f g
   | (rw [← coe_substAlgHom hφ]; exact map_sub _ f g)
 
-private theorem mvSubst_zero_of_hasSubst {ι κ : Type} {φ : ι → MvPowerSeries κ K} (hφ : HasSubst φ) :
-    subst φ (0 : MvPowerSeries ι K) = 0 := by
-  first
-  | exact MvPowerSeries.subst_zero hφ
-  | (rw [← coe_substAlgHom hφ]; exact map_zero _)
-
 private theorem powerSeries_subst_add_of_constantCoeff_eq_zero {τ : Type} {a : MvPowerSeries τ K} (ha : constantCoeff a = 0)
     (f g : PowerSeries K) :
     PowerSeries.subst a (f + g) = PowerSeries.subst a f + PowerSeries.subst a g := by
   show subst (fun _ : Unit => a) (f + g) = subst (fun _ : Unit => a) f + subst (fun _ : Unit => a) g
   exact mvSubst_add_of_hasSubst (hasSubst_finite_of_constantCoeff_eq_zero fun _ => ha) f g
-
-private theorem mvSubst_at1_eq_powerSeries_subst {ι κ : Type} {b : ι → MvPowerSeries κ K} (hb : HasSubst b) (x : ι)
-    (f : PowerSeries K) : subst b (at1 x f) = PowerSeries.subst (b x) f := by
-  unfold at1
-  have hx : HasSubst (fun _ : Unit => (X x : MvPowerSeries ι K)) := hasSubst_finite_of_constantCoeff_eq_zero fun _ => by simp
-  show subst b (subst (fun _ : Unit => (X x : MvPowerSeries ι K)) f) = subst (fun _ : Unit => b x) f
-  rw [subst_comp_subst_apply hx hb]
-  simp only [subst_X hb]
-
-private theorem powerSeries_subst_subst_eq_subst_comp {τ : Type} {a : MvPowerSeries τ K} (ha : constantCoeff a = 0)
-    {e : PowerSeries K} (he : PowerSeries.constantCoeff e = 0) (f : PowerSeries K) :
-    PowerSeries.subst (PowerSeries.subst a e) f = PowerSeries.subst a (PowerSeries.subst e f) := by
-  have h1 : HasSubst (fun _ : Unit => a) := hasSubst_finite_of_constantCoeff_eq_zero fun _ => ha
-  have h2 : HasSubst (fun _ : Unit => e) := hasSubst_finite_of_constantCoeff_eq_zero fun _ => he
-  show subst (fun _ : Unit => subst (fun _ : Unit => a) e) f =
-    subst (fun _ : Unit => a) (subst (fun _ : Unit => e) f)
-  rw [subst_comp_subst_apply h2 h1]
 
 private theorem mvSubst_powerSeries_subst_of_constantCoeff_eq_zero {ι κ : Type} {b : ι → MvPowerSeries κ K} (hb : HasSubst b)
     {a : MvPowerSeries ι K} (ha : constantCoeff a = 0) (f : PowerSeries K) :
@@ -124,15 +102,6 @@ private theorem mvSubst_powerSeries_subst_of_constantCoeff_eq_zero {ι κ : Type
   have h1 : HasSubst (fun _ : Unit => a) := hasSubst_finite_of_constantCoeff_eq_zero fun _ => ha
   show subst b (subst (fun _ : Unit => a) f) = subst (fun _ : Unit => subst b a) f
   rw [subst_comp_subst_apply h1 hb]
-
-private theorem mvSubst_subst_vec_pair_eq_subst_vec_pair {ι κ : Type} {φ : ι → MvPowerSeries κ K} (hφ : HasSubst φ)
-    {a b : MvPowerSeries ι K} (ha : constantCoeff a = 0) (hb : constantCoeff b = 0)
-    (f : MvPowerSeries (Fin 2) K) :
-    subst φ (subst ![a, b] f) = subst ![subst φ a, subst φ b] f := by
-  rw [subst_comp_subst_apply (hasSubst_vec_pair_of_constantCoeff_eq_zero ha hb) hφ]
-  congr 1
-  funext i
-  fin_cases i <;> rfl
 
 theorem constantCoeff_first_two_of_three {F : MvPowerSeries (Fin 2) K} (hF0 : constantCoeff F = 0) :
     constantCoeff (in3 F) = 0 := by
@@ -162,7 +131,7 @@ theorem diffOne_add {F : MvPowerSeries (Fin 2) K} (hF0 : constantCoeff F = 0)
 theorem swap_variables_add (H H' : MvPowerSeries (Fin 2) K) : swap2 (H + H') = swap2 H + swap2 H' := by
   have hX : ∀ i : Fin 2, constantCoeff (X i : MvPowerSeries (Fin 2) K) = 0 := fun i => by simp
   unfold swap2
-  exact mvSubst_add_of_hasSubst (hasSubst_vec_pair_of_constantCoeff_eq_zero (hX 1) (hX 0)) H H'
+  exact mvSubst_add_of_hasSubst (_root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.hasSubst_pair (hX 1) (hX 0)) H H'
 
 theorem cc_ps_gen {τ : Type} {a : MvPowerSeries τ K} (ha : constantCoeff a = 0)
     (f : PowerSeries K) : constantCoeff (PowerSeries.subst a f) = PowerSeries.constantCoeff f := by
@@ -182,13 +151,13 @@ theorem cob_hom {F FE : MvPowerSeries (Fin 2) K} {θ : PowerSeries K}
   have hX : ∀ i : Fin 2, constantCoeff (X i : MvPowerSeries (Fin 2) K) = 0 := fun i => by simp
   have hat : ∀ i : Fin 2, constantCoeff (at1 i θ) = 0 := fun i => by
     unfold at1; exact PowerSeries.constantCoeff_subst_eq_zero (hX i) θ hθ
-  have hφ : HasSubst ![at1 (0 : Fin 2) θ, at1 (1 : Fin 2) θ] := hasSubst_vec_pair_of_constantCoeff_eq_zero (hat 0) (hat 1)
+  have hφ : HasSubst ![at1 (0 : Fin 2) θ, at1 (1 : Fin 2) θ] := _root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.hasSubst_pair (hat 0) (hat 1)
   have e0 : ∀ i : Fin 2, PowerSeries.subst (![at1 (0 : Fin 2) θ, at1 (1 : Fin 2) θ] i) phE =
       at1 i (PowerSeries.subst θ phE) := by
-    intro i; fin_cases i <;> (unfold at1; exact powerSeries_subst_subst_eq_subst_comp (hX _) hθ phE)
+    intro i; fin_cases i <;> (unfold at1; exact _root_.Formalism.L2.Th1.D.Pair.ps_comp (hX _) hθ phE)
   unfold cob
-  rw [mvSubst_sub_of_hasSubst hφ, mvSubst_sub_of_hasSubst hφ, mvSubst_powerSeries_subst_of_constantCoeff_eq_zero hφ hFE0, ← h.2, mvSubst_at1_eq_powerSeries_subst hφ, mvSubst_at1_eq_powerSeries_subst hφ,
-    powerSeries_subst_subst_eq_subst_comp hF0 hθ, e0 0, e0 1]
+  rw [mvSubst_sub_of_hasSubst hφ, mvSubst_sub_of_hasSubst hφ, mvSubst_powerSeries_subst_of_constantCoeff_eq_zero hφ hFE0, ← h.2, _root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.subst_single_var hφ, _root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.subst_single_var hφ,
+    _root_.Formalism.L2.Th1.D.Pair.ps_comp hF0 hθ, e0 0, e0 1]
 
 theorem coboundary_commutes_homomorphism {F FE : MvPowerSeries (Fin 2) K} {θ : PowerSeries K}
     (hF0 : constantCoeff F = 0) (hFE0 : constantCoeff FE = 0) (h : IsHom F FE θ)
@@ -209,23 +178,23 @@ theorem coboundary_commutes_homomorphism {F FE : MvPowerSeries (Fin 2) K} {θ : 
     · exact hat3 0
     · exact hat3 1
     · exact hat3 2
-  have h01 : HasSubst ![(X 0 : MvPowerSeries (Fin 3) K), X 1] := hasSubst_vec_pair_of_constantCoeff_eq_zero (hX3 0) (hX3 1)
+  have h01 : HasSubst ![(X 0 : MvPowerSeries (Fin 3) K), X 1] := _root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.hasSubst_pair (hX3 0) (hX3 1)
   have key : PowerSeries.subst (in3 F) θ =
       subst ![at1 (0 : Fin 3) θ, at1 (1 : Fin 3) θ, at1 (2 : Fin 3) θ] (in3 FE) := by
     unfold in3
-    rw [← mvSubst_powerSeries_subst_of_constantCoeff_eq_zero h01 hF0, h.2, mvSubst_subst_vec_pair_eq_subst_vec_pair h01 (hat2 0) (hat2 1), mvSubst_at1_eq_powerSeries_subst h01, mvSubst_at1_eq_powerSeries_subst h01,
-      mvSubst_subst_vec_pair_eq_subst_vec_pair hφ3 (hX3 0) (hX3 1), subst_X hφ3, subst_X hφ3]
+    rw [← mvSubst_powerSeries_subst_of_constantCoeff_eq_zero h01 hF0, h.2, _root_.Formalism.L2.Th1.D.Pair.subst2_comp h01 (hat2 0) (hat2 1), _root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.subst_single_var h01, _root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.subst_single_var h01,
+      _root_.Formalism.L2.Th1.D.Pair.subst2_comp hφ3 (hX3 0) (hX3 1), subst_X hφ3, subst_X hφ3]
     rfl
   have key' : PowerSeries.subst ((![in3 F, X 2] : Fin 2 → MvPowerSeries (Fin 3) K) 0) θ =
       subst ![at1 (0 : Fin 3) θ, at1 (1 : Fin 3) θ, at1 (2 : Fin 3) θ] (in3 FE) := key
   unfold d1
   rw [mvSubst_sub_of_hasSubst hφ3, mvSubst_sub_of_hasSubst hφ3,
-    mvSubst_subst_vec_pair_eq_subst_vec_pair (hasSubst_vec_pair_of_constantCoeff_eq_zero (constantCoeff_first_two_of_three hF0) (hX3 2)) (hat2 0) (hat2 1),
-    mvSubst_subst_vec_pair_eq_subst_vec_pair (hasSubst_vec_pair_of_constantCoeff_eq_zero (hX3 0) (hX3 2)) (hat2 0) (hat2 1),
-    mvSubst_subst_vec_pair_eq_subst_vec_pair (hasSubst_vec_pair_of_constantCoeff_eq_zero (hX3 1) (hX3 2)) (hat2 0) (hat2 1),
-    mvSubst_subst_vec_pair_eq_subst_vec_pair hφ3 (constantCoeff_first_two_of_three hFE0) (hX3 2), mvSubst_subst_vec_pair_eq_subst_vec_pair hφ3 (hX3 0) (hX3 2), mvSubst_subst_vec_pair_eq_subst_vec_pair hφ3 (hX3 1) (hX3 2)]
-  simp only [mvSubst_at1_eq_powerSeries_subst (hasSubst_vec_pair_of_constantCoeff_eq_zero (constantCoeff_first_two_of_three hF0) (hX3 2)), mvSubst_at1_eq_powerSeries_subst (hasSubst_vec_pair_of_constantCoeff_eq_zero (hX3 0) (hX3 2)),
-    mvSubst_at1_eq_powerSeries_subst (hasSubst_vec_pair_of_constantCoeff_eq_zero (hX3 1) (hX3 2)), subst_X hφ3]
+    _root_.Formalism.L2.Th1.D.Pair.subst2_comp (_root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.hasSubst_pair (_root_.Formalism.InvariantFactorPaths.G7.GramFrameCompositionLinFacts.constantCoeff_law_first_two_of_three hF0) (hX3 2)) (hat2 0) (hat2 1),
+    _root_.Formalism.L2.Th1.D.Pair.subst2_comp (_root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.hasSubst_pair (hX3 0) (hX3 2)) (hat2 0) (hat2 1),
+    _root_.Formalism.L2.Th1.D.Pair.subst2_comp (_root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.hasSubst_pair (hX3 1) (hX3 2)) (hat2 0) (hat2 1),
+    _root_.Formalism.L2.Th1.D.Pair.subst2_comp hφ3 (_root_.Formalism.InvariantFactorPaths.G7.GramFrameCompositionLinFacts.constantCoeff_law_first_two_of_three hFE0) (hX3 2), _root_.Formalism.L2.Th1.D.Pair.subst2_comp hφ3 (hX3 0) (hX3 2), _root_.Formalism.L2.Th1.D.Pair.subst2_comp hφ3 (hX3 1) (hX3 2)]
+  simp only [_root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.subst_single_var (_root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.hasSubst_pair (_root_.Formalism.InvariantFactorPaths.G7.GramFrameCompositionLinFacts.constantCoeff_law_first_two_of_three hF0) (hX3 2)), _root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.subst_single_var (_root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.hasSubst_pair (hX3 0) (hX3 2)),
+    _root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.subst_single_var (_root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.hasSubst_pair (hX3 1) (hX3 2)), subst_X hφ3]
   first
   | (rw [key']; rfl)
   | (rw [key]; rfl)
@@ -240,9 +209,9 @@ theorem swap_commutes_subst_log {θ : PowerSeries K} (hθ : PowerSeries.constant
   have hat : ∀ i : Fin 2, constantCoeff (at1 i θ) = 0 := fun i => by
     unfold at1; exact PowerSeries.constantCoeff_subst_eq_zero (hX i) θ hθ
   unfold swap2
-  rw [mvSubst_subst_vec_pair_eq_subst_vec_pair (hasSubst_vec_pair_of_constantCoeff_eq_zero (hX 1) (hX 0)) (hat 0) (hat 1), mvSubst_subst_vec_pair_eq_subst_vec_pair (hasSubst_vec_pair_of_constantCoeff_eq_zero (hat 0) (hat 1)) (hX 1) (hX 0),
-    mvSubst_at1_eq_powerSeries_subst (hasSubst_vec_pair_of_constantCoeff_eq_zero (hX 1) (hX 0)), mvSubst_at1_eq_powerSeries_subst (hasSubst_vec_pair_of_constantCoeff_eq_zero (hX 1) (hX 0))]
-  simp only [subst_X (hasSubst_vec_pair_of_constantCoeff_eq_zero (hat 0) (hat 1))]
+  rw [_root_.Formalism.L2.Th1.D.Pair.subst2_comp (_root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.hasSubst_pair (hX 1) (hX 0)) (hat 0) (hat 1), _root_.Formalism.L2.Th1.D.Pair.subst2_comp (_root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.hasSubst_pair (hat 0) (hat 1)) (hX 1) (hX 0),
+    _root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.subst_single_var (_root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.hasSubst_pair (hX 1) (hX 0)), _root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.subst_single_var (_root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.hasSubst_pair (hX 1) (hX 0))]
+  simp only [subst_X (_root_.Formalism.InvariantFactorPaths.G7.FrobeniusSubstitution.hasSubst_pair (hat 0) (hat 1))]
   rfl
 
 theorem law_right_zero {l : ℕ} (hl : 2 ≤ l) {F : MvPowerSeries (Fin 2) K}
@@ -337,7 +306,7 @@ theorem sim_subst0 {ι τ : Type} [Finite ι] {f : MvPowerSeries ι K} {φ : ι 
     Simeq (subst φ f) 0 := by
   have hS : Formalism.InvariantFactorPaths.G7.SimeqRules := Formalism.InvariantFactorPaths.G7.equivalence_rules
   have h1 := (hS K ι).2.2.2.2 τ f 0 φ h0 hi h
-  rwa [mvSubst_zero_of_hasSubst (hasSubst_finite_of_constantCoeff_eq_zero h0)] at h1
+  rwa [_root_.Formalism.L2.Th1.D.Pair.subst_zero' (hasSubst_finite_of_constantCoeff_eq_zero h0)] at h1
 
 theorem sim_ps {τ : Type} {g : MvPowerSeries τ K} (hg0 : constantCoeff g = 0) (hg : Integral g)
     {lam : PowerSeries K} (h : Simeq (lam : MvPowerSeries Unit K) 0) :
@@ -378,7 +347,7 @@ theorem simeq_coboundary_of_simeq_zero {F : MvPowerSeries (Fin 2) K} (hF0 : cons
     {μ : MvPowerSeries (Fin 2) K} (h : Simeq μ 0) : Simeq (d1 F μ) 0 := by
   have hX : ∀ i : Fin 3, constantCoeff (X i : MvPowerSeries (Fin 3) K) = 0 := fun i => by simp
   unfold d1
-  exact simeq_sub_zero_of_simeq_zero (simeq_sub_zero_of_simeq_zero (sim_pair (constantCoeff_first_two_of_three hF0) (hX 2) (integral_law_first_two_of_three hF) (integral_X_kummer_theta_logarithms _) h)
+  exact simeq_sub_zero_of_simeq_zero (simeq_sub_zero_of_simeq_zero (sim_pair (_root_.Formalism.InvariantFactorPaths.G7.GramFrameCompositionLinFacts.constantCoeff_law_first_two_of_three hF0) (hX 2) (integral_law_first_two_of_three hF) (integral_X_kummer_theta_logarithms _) h)
     (sim_pair (hX 0) (hX 2) (integral_X_kummer_theta_logarithms _) (integral_X_kummer_theta_logarithms _) h))
     (sim_pair (hX 1) (hX 2) (integral_X_kummer_theta_logarithms _) (integral_X_kummer_theta_logarithms _) h)
 

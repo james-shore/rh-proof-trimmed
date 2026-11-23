@@ -77,7 +77,7 @@ theorem CrystallineSemistableComparison.RL.sharp_cong : ∀ {l : ℕ} [Fact l.Pr
 
 theorem CrystallineSemistableComparison.RL.tilt_ex : ∀ {l : ℕ} [Fact l.Prime] (A : PAlg l) (u : ℕ → A.U), (∀ i, u (i + 1) ^ l = u i) → ∃ a : ℕ → A.A, (∀ i, a (i + 1) ^ l = a i) ∧ ∀ i, A.sharp (a i) = u i := GlobalTheory.T.compatible_roots_lift_to_tilt
 
-theorem CrystallineSemistableComparison.RL.tilt_inj : ∀ {l : ℕ} [Fact l.Prime] (A : PAlg l) (a b : ℕ → A.A), (∀ i, a (i + 1) ^ l = a i) → (∀ i, b (i + 1) ^ l = b i) → (∀ i, A.sharp (a i) = A.sharp (b i)) → a = b := GlobalTheory.T.tilt_sequence_determined_by_sharp
+alias CrystallineSemistableComparison.RL.tilt_inj := _root_.GlobalTheory.CompanionTheory.Untilt.tilt_inj
 
 theorem CrystallineSemistableComparison.RL.filtration_multiplicative : ∀ {l : ℕ} [Fact l.Prime] (A : PAlg l), A.Fil0 0 = ⊤ ∧ (∀ i j, A.dxi0 i * A.dxi0 j = ((i + j).choose i : A.Acr0) * A.dxi0 (i + j)) ∧ (∀ k, (k.factorial : A.Acr0) * A.dxi0 k = algebraMap A.W A.Acr0 A.xi ^ k) ∧ (∀ r s, A.Fil0 r * A.Fil0 s ≤ A.Fil0 (r + s)) ∧ (∀ n r, A.Fil n r = (A.Fil0 r).map (A.mkAcr n)) ∧ (∀ n, A.PFil n = A.PFil0.map (A.mkAcr n)) ∧ (∀ n, A.Fil n 0 = ⊤) ∧ ∀ n r s, A.Fil n r * A.Fil n s ≤ A.Fil n (r + s) := GlobalTheory.T.crystalline_filtration_multiplicative
 
@@ -101,11 +101,11 @@ theorem CrystallineSemistableComparison.RL.tens : ∀ {l : ℕ} [Fact l.Prime] (
 
 theorem CrystallineSemistableComparison.RL.untilt_valuation_mod_square : ∀ {l : ℕ} [Fact l.Prime] (A : PAlg l), A.IsTest → ∃ ϖ : A.U, ϖ ^ l = (l : A.U) ∧ R.Val0 (A.U ⧸ Ideal.span {ϖ ^ 2}) ∧ R.Aic (A.U ⧸ Ideal.span {ϖ ^ 2}) := GlobalTheory.T.exists_prime_root_valuation_quotient
 
-theorem CrystallineSemistableComparison.RL.idem_au : ∀ {l : ℕ} [Fact l.Prime] (A : PAlg l) (e : A.U), IsIdempotentElem e → ∃! e₀ : A.A, IsIdempotentElem e₀ ∧ A.sharp e₀ = e := GlobalTheory.T.existsUnique_idempotent_lift_tilt
+alias CrystallineSemistableComparison.RL.idem_au := _root_.GlobalTheory.CompanionTheory.Untilt.existsUnique_idempotent_sharp
 
-theorem CrystallineSemistableComparison.RL.unit_lift : ∀ {l : ℕ} [Fact l.Prime] (A : PAlg l) (a : A.A), IsUnit (A.sharp a) → IsUnit a := GlobalTheory.T.isUnit_of_isUnit_sharp'
+alias CrystallineSemistableComparison.RL.unit_lift := _root_.GlobalTheory.CompanionTheory.Untilt.isUnit_of_isUnit_sharp
 
-theorem CrystallineSemistableComparison.RL.mu_lc : ∀ {l : ℕ} [Fact l.Prime] (A : PAlg l), R.Val (l : A.U) → ∀ (n : ℕ) (ζ : OC l), IsPrimitiveRoot ζ (l ^ n) → ∀ z : A.U, z ^ l ^ n = 1 → ∃ e : ZMod (l ^ n) → A.A, (haveI : NeZero (l ^ n) := ⟨pow_ne_zero _ (Fact.out : l.Prime).ne_zero⟩; CompleteOrthogonalIdempotents e) ∧ ∀ c, A.sharp (e c) * (z - A.oC ζ ^ c.val) = 0 := GlobalTheory.T.idempotents_of_prime_power_root_of_unity
+alias CrystallineSemistableComparison.RL.mu_lc := _root_.GlobalTheory.CompanionTheory.RootsLC.exists_idempotents_of_root_of_unity
 
 theorem CrystallineSemistableComparison.RL.cont_ex : ∀ {l : ℕ} [Fact l.Prime] (A : PAlg l) (Γ : Type) [TopologicalSpace Γ], PerfectRing (A.contR Γ) l ∧ IsAdicComplete (Ideal.span {A.contC Γ A.pi}) (A.contR Γ) ∧ A.contC Γ A.pi ∈ nonZeroDivisors (A.contR Γ) ∧ ∀ (k : ℕ) (f : A.contR Γ), f ∈ Ideal.span {A.contC Γ A.pi ^ k} ↔ ∀ γ, f.1 γ ∈ Ideal.span {A.pi ^ k} := GlobalTheory.T.continuous_functions_perfect_adic_ring
 

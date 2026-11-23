@@ -69,7 +69,7 @@ theorem purity : GlobalTheory.Published.CuspFormsBoundedGL → ∀ (E : Type) [F
     have t1 := (hm τ).twist (GlobalTheory.CuspRep.Model.absC E s)
     have t2 := (hm (NumberField.ComplexEmbedding.conjugate τ)).twist (GlobalTheory.CuspRep.Model.absC E s)
     rw [GlobalTheory.CuspRep.Model.expo_absC] at t1 t2
-    have e := GlobalTheory.T.infinitesimal_character_conjugate E a _ B hH τ _ _ t1 t2
+    have e := _root_.GlobalTheory.CompanionTheory.Clozel.hasInfChar_conj_eq E a _ B hH τ _ _ t1 t2
     have e2 := congrArg (Multiset.map fun z => z - s) e
     simp only [Multiset.map_map, Function.comp_def, add_sub_cancel_right, Multiset.map_id'] at e2
     rw [e2]

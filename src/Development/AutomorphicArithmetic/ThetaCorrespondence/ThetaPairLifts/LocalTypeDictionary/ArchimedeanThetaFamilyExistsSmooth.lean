@@ -56,7 +56,7 @@ theorem exists_archimedean_theta_family : _root_.GlobalTheory.FunPr.ThetaLocalIn
   obtain ⟨r₀, hR, hinj⟩ := GlobalTheory.T.exists_admissible_finiteFactor_archimedeanSchwartz (F := F) (Fin n × Fin d)
   have hex : ∀ (t : ℝ) (f : SInf F (Fin n × Fin d)), ∃ f₁ : SInf F (Fin n × Fin d),
       Acts (evI F) (om (1, γ (Multiplicative.ofAdd t))) ⇑f ⇑f₁ :=
-    fun t f => _root_.GlobalTheory.T.theta_action_archimedean_locality hP M ψ χX χW om hcm hstd hW _ (hγ.2 _) f
+    fun t f => _root_.GlobalTheory.ArchLocality.theta_action_local_at_archimedean_place hP M ψ χX χW om hcm hstd hW _ (hγ.2 _) f
   choose S hS using hex
   have key : ∀ t (f : SInf F (Fin n × Fin d)),
       om (1, γ (Multiplicative.ofAdd t)) (tens (evI F) ⇑f r₀) = tens (evI F) ⇑(S t f) r₀ :=

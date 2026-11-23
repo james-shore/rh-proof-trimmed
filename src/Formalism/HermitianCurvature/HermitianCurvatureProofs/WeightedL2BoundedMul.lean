@@ -384,15 +384,11 @@ open Formalism.FourierDecayAlt.LE
 open MeasureTheory Filter Topology Finset
 open scoped ComplexConjugate
 
-theorem meas_th' (B : Base) (ε σ : ℝ) : Measurable fun ω => th ε σ (B.G ω) := by
-  unfold th
-  exact ((B.G_meas).div (B.G_meas.add_const ε)).pow_const σ
-
 theorem L1 (hTR : ThetaRange) (hTL : ThetaLimit) (B : Base) (σ : ℝ) (hσ : 0 ≤ σ) (f : B.Ω → ℝ)
     (hf : Integrable f B.μ) :
     Tendsto (fun ε : ℝ => ∫ ω, th ε σ (B.G ω) * f ω ∂B.μ) (𝓝[>] 0) (𝓝 (∫ ω, f ω ∂B.μ)) := by
   refine tendsto_integral_filter_of_dominated_convergence (fun ω => ‖f ω‖) ?_ ?_ hf.norm ?_
-  · exact Eventually.of_forall fun ε => ((meas_th' B ε σ).aestronglyMeasurable.mul hf.1)
+  · exact Eventually.of_forall fun ε => ((_root_.Formalism.FourierDecayAlt.P.LEx2.meas_th B ε σ).aestronglyMeasurable.mul hf.1)
   · filter_upwards [self_mem_nhdsWithin] with ε hε
     refine Eventually.of_forall fun ω => ?_
     have h := hTR ε σ (B.G ω) hε hσ (B.G_pos ω)

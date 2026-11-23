@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.PartialSum
+import Development.AutomorphicSpectrum.Proofs.GlobalProofs.RayClassConeParametrization
 
 @[expose] public section
 
@@ -59,14 +60,6 @@ private theorem rayRel_of_mul_left' {F : Type} [Field F] [NumberField F] {𝔣 �
   calc 𝔠 * (Ideal.span {a} * I) = Ideal.span {a} * (𝔠 * I) := by ring
     _ = Ideal.span {b} * (𝔠 * J) := heq
     _ = 𝔠 * (Ideal.span {b} * J) := by ring
-
-private theorem ne_zero_of_totPos' {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {x : F}
-    (hx : TotPos F x) : x ≠ 0 := by
-  obtain ⟨w⟩ := (inferInstance : Nonempty (InfinitePlace F))
-  have h := hx (InfinitePlace.embedding_of_isReal (IsTotallyReal.isReal w))
-  intro h0
-  rw [h0, map_zero] at h
-  exact lt_irrefl _ h
 
 theorem smoothed_of
     (hcv : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (𝔣 𝔞 𝔟 𝔠 : Ideal (𝓞 F)) (J : Type) [Fintype J]
@@ -95,7 +88,7 @@ theorem smoothed_of
   have hdat := fun c : S => hcp F 𝔣 h𝔣 c.1 (hSc c.1 c.2)
   choose 𝔟 J hJ r y v hP hb using hdat
   have vne : ∀ c j i, v c j i ≠ 0 := fun c j i h =>
-    ne_zero_of_totPos' ((hP c).2.2.1 j i).2 (by simp [h])
+    _root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.TotPos.ne_zero ((hP c).2.2.1 j i).2 (by simp [h])
   let W : Finset (𝓞 F) := Finset.univ.biUnion
     (fun c : S => (Finset.univ : Finset (Σ j : J c, Fin (r c j))).image (fun p => v c p.1 p.2))
   have memW : ∀ c j i, v c j i ∈ W := fun c j i =>

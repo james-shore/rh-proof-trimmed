@@ -236,12 +236,6 @@ theorem place_smul_latO {S T : HSp D} {LS : Set (Fin S.rank → D.host.E)} {LT :
   | add x y _ _ hx hy => rw [smul_add, hx, hy]
   | neg x _ hx => rw [smul_neg, hx]
 
-theorem latO_le {S T : HSp D} {LS : Set (Fin S.rank → D.host.E)} {LT : Set (Fin T.rank → D.host.E)}
-    (Pv : HeightOneSpectrum (𝓞 D.host.F) → Prop) : latO S T LS LT Pv ≤ latO S T LS LT fun _ => True := by
-  refine AddSubgroup.closure_mono ?_
-  rintro _ ⟨α, hα, -, h⟩
-  exact ⟨α, hα, fun v hv => absurd trivial hv, h⟩
-
 theorem vacScal_eq {S T : HSp D} {βS : GL (Fin S.rank) (Lev.EAf D)} {βT : GL (Fin T.rank) (Lev.EAf D)}
     {P : Finset (Pl D.host.E)} {cS cT : ∀ PP : Pl D.host.E, (kP PP)ˣ →* ℂˣ} {g : GA D S} {h : GA D T}
     {χS χT : (AE D)ˣ →* Circle} {x y : (AE D)ˣ}
@@ -317,7 +311,7 @@ theorem om_vacuum_eq_vacScal_smul : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ
     refine hfix v ε hn (unramAt_of_tame hes hχS hε k) (unramAt_of_tame hes hχT hε k) g h hgε hhε (hstab _) f hf.2.theta
       fun u hu => ?_
     obtain ⟨a, ha, h2⟩ := GlobalTheory.FinWeilO.exists_half_of_nonSplit hn
-    have h3 := hf.2.lat.1 _ (latO_le _ (GlobalTheory.LatticeStable.smul_mem_latO D S T _ _ _ a ha u hu))
+    have h3 := hf.2.lat.1 _ (_root_.GlobalTheory.PlaceModel.latO_le_top _ (GlobalTheory.LatticeStable.smul_mem_latO D S T _ _ _ a ha u hu))
     have h4 : 2 • (a • u) = u := by
       rw [two_nsmul, ← add_smul, ← two_mul, h2, place_smul_latO hε hu]
     rwa [h4] at h3

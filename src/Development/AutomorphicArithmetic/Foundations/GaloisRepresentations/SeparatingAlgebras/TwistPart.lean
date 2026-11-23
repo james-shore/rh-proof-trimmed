@@ -50,7 +50,7 @@ theorem UpperTheory.Gal.Gen.twistPart_pf :
   intro E _ _ _ a w₀ K W J A _ θ χ hC hK F hF
   let χ' : (lev K w₀ J) →* ℂˣ := χ.comp (θ.comp
     (((cLoc w₀).comp (lev K w₀ J).subtype).codRestrict J fun c => hC c.1 c.2))
-  obtain ⟨I, G, h1, h2, rfl⟩ := GlobalTheory.T.eigenForm_eq_finite_sum_autRep_eigenForms E a W (lev K w₀ J) χ' F fun c v g => hF c.1 c.2 v g
+  obtain ⟨I, G, h1, h2, rfl⟩ := _root_.GlobalTheory.EigenDecomp.eigen_decomp E a W (lev K w₀ J) χ' F fun c v g => hF c.1 c.2 v g
   refine Submodule.sum_mem _ fun π hπ => ?_
   by_cases h0 : G π = 0
   · rw [h0]

@@ -73,17 +73,6 @@ theorem _root_.GlobalTheory.Tx.exists_unipotentInvariant_compactlySupported_weig
   | (intros; apply GlobalTheory.KappaCut.exists_kappa <;> assumption)
 end
 
-section
-open NumberField IsDedekindDomain MeasureTheory GlobalTheory.CuspRep GlobalTheory.JSW Formalism.UG GlobalTheory.LFun Formalism.L2.Host
-open scoped ENNReal ComplexConjugate ContDiff
-open Matrix
-
-
-theorem _root_.GlobalTheory.Tx.contDiffOn_chart_globalWhittakerCoefficient : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ) (φ : Sm E a),
-    IsAutForm φ → ∀ g, ContDiffOn ℝ ∞ (chart (GlobalTheory.JSW.whit φ.1) g) (invSet E a) := by
-  first | (exact @GlobalTheory.JSW.WhitSmooth.whit_contDiffOn) | (exact GlobalTheory.JSW.WhitSmooth.whit_contDiffOn) | (intros; apply GlobalTheory.JSW.WhitSmooth.whit_contDiffOn  <;> assumption)
-end
-
 open NumberField IsDedekindDomain MeasureTheory GlobalTheory.CuspRep GlobalTheory.JSW Formalism.UG GlobalTheory.LFun Formalism.L2.Host
 open scoped ENNReal ComplexConjugate ContDiff
 open Matrix
@@ -172,7 +161,7 @@ theorem GlobalTheory.JSW.MatchedVec.matched_vectors : ∀ (E : Type) [Field E] [
     congr 1
     funext y
     exact hU' u hu y
-  have hWsm := GlobalTheory.Tx.contDiffOn_chart_globalWhittakerCoefficient E (m + 1) φ' haut'
+  have hWsm := _root_.GlobalTheory.JSW.WhitSmooth.whit_contDiffOn E (m + 1) φ' haut'
   set βf : GA E (m + 1) → ℂ := fun h => (κ h : ℂ) * GlobalTheory.JSW.whit φ'.1 h with hβf
   have hβN : ∀ u ∈ GlobalTheory.JSW.NA (E := E) (a := (m + 1)), ∀ g, βf (u * g) = GlobalTheory.JSW.psiN u * βf g := by
     intro u hu g
@@ -196,14 +185,14 @@ theorem GlobalTheory.JSW.MatchedVec.matched_vectors : ∀ (E : Type) [Field E] [
     exact (hκsm g).mul (hWsm g)
   obtain ⟨b, hbN, hbC, hbU, hbsm, hbblk⟩ := GlobalTheory.T.exists_whittaker_bump_extension_schur_complement E m r S βf hβN hβC hβU hβsm
   obtain ⟨F, hFspan, hFb, hFU, hFinv, hFeig⟩ :=
-    GlobalTheory.T.kirillov_semilocal_smooth_bump E (m + r + 1) S b hbN hbC hbU hbsm π φ₀ hφ₀V ⟨x₁, hx₁S, hx₁⟩
+    _root_.GlobalTheory.JSW.KirSemi.kirillov_semilocal_bump E (m + r + 1) S b hbN hbC hbU hbsm π φ₀ hφ₀V ⟨x₁, hx₁S, hx₁⟩
   refine ⟨F, φ'.1, κ, hFspan, mem_mspanR_of_mem π' hφ'V, hFU, ?_, ⟨U', hU'o, hU'⟩, ?_, ?_, ?_, ?_,
     hκc, hκ0, hκN, ⟨C, hC, fun h _ hne => hκC h hne⟩, ⟨Uκ, hUκo, hUκ⟩, ⟨x₀, hx₀S, hκx₀, hx₀⟩⟩
   · intro w hw k hk g
     refine hFinv _ (pInf_finGL _) ?_ ?_ g
     · intro w' hw'
       have hne : w' ≠ w := fun h => hw (h ▸ hw')
-      rw [GlobalTheory.JSW.BumpShintani.map_comp_eq, pFin_finGL]
+      rw [_root_.GlobalTheory.JSW.MirPatch.Decomp.map_comp_eq, pFin_finGL]
       exact pLoc_locGL_of_ne hne _
     · intro g'
       exact congrArg (fun ψ : Sm E (m + r + 1 + 1) => ψ.1 g') (hφ₀K w hw k hk)

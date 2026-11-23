@@ -83,19 +83,7 @@ private theorem nnat {m : ℕ} (h : ¬ l ∣ m) : ‖((m : ℕ) : Qbar l)‖ = 1
   rw [← map_natCast (algebraMap ℚ_[l] (Qbar l)), norm_algebraMap']
   exact Padic.norm_natCast_eq_one_iff.2 (((Fact.out : l.Prime).coprime_iff_not_dvd).2 h)
 
-private theorem nO (c : Coef l) {x : Qbar l} (hx : x ∈ c.O) : ‖x‖ ≤ 1 := by
-  obtain ⟨⟨β⟩, h⟩ := pBasEx l c
-  obtain ⟨v, hv⟩ : ∃ v : Fin β.d → ℤ_[l], ∑ i, v i • β.e i = ⟨x, hx⟩ := ⟨_, β.e.sum_repr _⟩
-  have h1 := congrArg (fun y : c.O => (y : Qbar l)) hv
-  simp only [AddSubmonoidClass.coe_finsetSum] at h1
-  rw [← h1]
-  refine IsUltrametricDist.norm_sum_le_of_forall_le_of_nonneg zero_le_one fun i _ => ?_
-  have e : ((v i • β.e i : c.O) : Qbar l) = algebraMap ℚ_[l] (Qbar l) (v i : ℚ_[l]) * β.val i := by
-    rw [← show algebraMap ℤ_[l] (Qbar l) (v i) = algebraMap ℚ_[l] (Qbar l) (v i : ℚ_[l]) from
-      IsScalarTower.algebraMap_apply ℤ_[l] ℚ_[l] (Qbar l) (v i), ← Algebra.smul_def]
-    rfl
-  rw [e, norm_mul, norm_algebraMap']
-  exact mul_le_one₀ (v i).2 (norm_nonneg _) ((h β).1 i)
+private alias nO := _root_.UpperTheory.Reformulated.B.Rf3.norm_le_one_of_mem_coef
 
 private theorem invO (c : Coef l) {x : Qbar l} (hx : x ∈ c.O) (h1 : ‖x‖ = 1) : x⁻¹ ∈ c.O := by
   obtain ⟨⟨β⟩, h⟩ := pBasEx l c

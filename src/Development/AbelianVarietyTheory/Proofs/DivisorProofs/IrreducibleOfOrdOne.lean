@@ -96,8 +96,8 @@ theorem disc_residue_eq : ∀ {L K : Type} [Field L] [Field K] (cL : ℂ →+* L
         (Finsupp.mapDomain (fun g : S.ring => (g : L)) θ + Finsupp.single (f : L) 1) := by
   intro L K _ _ cL cK n Q hQ t u S E ψ f w θ hm hd hS hE hSt hEu hψ hc hf hw hθ hP
   classical
-  obtain ⟨hA1, hA2⟩ := GlobalTheory.T.twoDimLocalModel_primePlaces_along_parameters cL Q hQ t u hm hd
-  obtain ⟨m, z, hzU, hzG⟩ := GlobalTheory.T.isFreeModuleGenerator_kaehlerWedge_regularPair_cons cL Q hQ t u hm hd
+  obtain ⟨hA1, hA2⟩ := _root_.GlobalTheory.FieldPair.LocModelTwo.ring_eq_and_ord_eq_zero cL Q hQ t u hm hd
+  obtain ⟨m, z, hzU, hzG⟩ := _root_.GlobalTheory.FieldPair.isFreeGen_dForm_regularPair_cons cL Q hQ t u hm hd
   have hxe : (fun i => ((Fin.cons t (Fin.cons u z : Fin (m + 1) → Q) : Fin (m + 2) → Q) i : L)) =
       (Fin.cons (t : L) (Fin.cons (u : L) (fun i => (z i : L)) : Fin (m + 1) → L) : Fin (m + 2) → L) := by
     funext i
@@ -106,7 +106,7 @@ theorem disc_residue_eq : ∀ {L K : Type} [Field L] [Field K] (cL : ℂ →+* L
   have hzT := GlobalTheory.T.isTranscendenceBasis_of_kaehlerWedge_freeGenerator cL Q hQ _ _ (by omega) hzG
   have hzO := GlobalTheory.T.formOrd_freeTopForm_eq_zero_of_isPrimeOf cL Q hQ _ _ hzG
   rw [hxe] at hzT hzO
-  obtain ⟨F, hFr, hFu⟩ := GlobalTheory.T.exists_residuePlace_of_twoDimLocalModel cL cK Q hQ t u hm hd S ψ hS hSt hψ hc
+  obtain ⟨F, hFr, hFu⟩ := _root_.GlobalTheory.FieldPair.residuePlace_of_locModel cL cK Q hQ t u hm hd S ψ hS hSt hψ hc
   have hQS : ∀ q : Q, (q : L) ∈ S.ring := fun q => hS.1 q q.2
   let us : S.ring := ⟨u, hQS u⟩
   let ts : S.ring := ⟨t, hQS t⟩
@@ -178,7 +178,7 @@ theorem disc_residue_eq : ∀ {L K : Type} [Field L] [Field K] (cL : ℂ →+* L
     intro h0
     rw [h0] at hEu
     simp [Place.ord] at hEu
-  have hE1 := GlobalTheory.T.eq_unit_mul_zpow_regularLocalModel_dimTwo cL Q hQ t u hm hd E hE hEu
+  have hE1 := _root_.GlobalTheory.FieldPair.AdjUnit.eq_unit_mul_zpow cL Q hQ t u hm hd E hE hEu
   set θ' := Finsupp.mapDomain (fun g : S.ring => (g : L)) θ with hθ'
   have hφs : ∀ g ∈ (Finsupp.single h 1 - θ).support, ψ g ≠ 0 := by
     intro g hg
@@ -208,7 +208,7 @@ theorem disc_residue_eq : ∀ {L K : Type} [Field L] [Field K] (cL : ℂ →+* L
       rw [← h2]; push_cast; ring
     rw [h3]
     linarith
-  have hE2 := GlobalTheory.T.ordQ_mapDomain_residuePlace_transport cL cK Q u S E ψ F hS.1 hSu hu0 hψ hFr hFu hE1 _ hφs hφP
+  have hE2 := _root_.GlobalTheory.FieldPair.ordQ_mapDomain_residue_eq cL cK Q u S E ψ F hS.1 hSu hu0 hψ hFr hFu hE1 _ hφs hφP
   rw [hmc, hmψ, map_sub, map_sub, Place.ordQ_single, Place.ordQ_single] at hE2
   refine ⟨F, hFr, ?_⟩
   rw [Place.disc, Place.disc, hFw, map_add (f := _), Place.ordQ_single, hPη E hE]

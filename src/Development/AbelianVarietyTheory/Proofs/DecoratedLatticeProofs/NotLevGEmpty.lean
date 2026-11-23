@@ -111,7 +111,7 @@ theorem finite_H : Finite P.H := by
   haveI : Finite (G0 R.Pg D.R.r) := Finite.of_equiv G R.eG.toEquiv
   infer_instance
 
-theorem rankY {j : ℕ} (hj : j ≤ D.R.m) : (Yc D j).rank = D.R.r + j * D.R.t := GlobalTheory.Chain.StepVac.rank_Yc hj
+alias rankY := _root_.GlobalTheory.Chain.StepVac.rank_Yc
 
 theorem sd {V : HSp D} {β Λ N} (h : IsSDFrame V β Λ N) : IsSelfDualC V Λ ∧ IsFrame β Λ :=
   ⟨GlobalTheory.SDFrameLattice.isSelfDualC_of_isSDFrame D _ _ _ _ h, h.elim fun _ hc => hc.1⟩

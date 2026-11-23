@@ -101,9 +101,6 @@ private theorem exists_single_of_sum_star_mul {n : ℕ} [Star K]
   have := finrank_le_sum_sq_of_isIntegral (hz j) hj
   linarith
 
-theorem torsionOrder_le (K : Type) [Field K] [NumberField K] : Units.torsionOrder K ≤ 2 * Module.finrank ℚ K ^ 2 :=
-  Formalism.L2.SG.NGCut.TorsionTotientBound.torsionOrder_le K
-
 theorem pow_torsionOrder_eq_one {x : K} (hx : IsIntegral ℤ x) (h : ∀ φ : K →+* ℂ, ‖φ x‖ = 1) :
     x ^ Units.torsionOrder K = 1 := by
   obtain ⟨n, hn, hxn⟩ := Embeddings.pow_eq_one_of_norm_eq_one K ℂ hx h

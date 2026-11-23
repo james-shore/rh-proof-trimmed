@@ -52,13 +52,9 @@ open scoped Formalism.Per
 
 namespace GlobalTheory.Per
 
-theorem exists_factorial_mul_eq_pow (l : ℕ) [Fact l.Prime] (n : ℕ) :
-    ∃ c : ℤ_[l], ((n.factorial : ℕ) : ℤ_[l]) * c = ((l : ℕ) : ℤ_[l]) ^ n := by
-  apply Reformulated.AutPerF.exists_factorial_mul_eq_pow <;> assumption
-
 theorem exists_factorial_mul_eq_pow_ainf (l : ℕ) [Fact l.Prime] (n : ℕ) :
     ∃ c : Ainf l, ((n.factorial : ℕ) : Ainf l) * c = ((l : ℕ) : Ainf l) ^ n := by
-  obtain ⟨c, hc⟩ := exists_factorial_mul_eq_pow l n
+  obtain ⟨c, hc⟩ := _root_.Reformulated.AutPerF.exists_factorial_mul_eq_pow l n
   refine ⟨algebraMap ℤ_[l] (Ainf l) c, ?_⟩
   simpa only [map_mul, map_pow, map_natCast] using congrArg (algebraMap ℤ_[l] (Ainf l)) hc
 

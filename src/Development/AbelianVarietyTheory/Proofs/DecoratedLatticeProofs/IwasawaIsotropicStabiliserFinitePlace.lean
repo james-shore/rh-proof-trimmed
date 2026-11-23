@@ -58,7 +58,7 @@ namespace GlobalTheory.Core.Rk.IwFin
 theorem iwasawa_fin : ∀ (D : D7) (T T₀ : HSp D) (r : ℕ) (d : HypDec T T₀ r), (∀ v : FinPl D, (2 : 𝓞 D.host.F) ∈ v.asIdeal → Formalism.MainNotions.SchurIrreducible.IsSplit (E := D.host.E) v) → ∀ (v : FinPl D) (y : Gv T v), ∃ q k : Gv T v, emb D.sp.cm.sig T.gram v q ∈ stab d ∧ k ∈ stabLoc D.sp.cm.sig T.gram (frameLat T) v ∧ y = q * k := by
   intro D T T₀ r d _h2 v y
   by_cases hv : Formalism.MainNotions.SchurIrreducible.IsSplit (E := D.host.E) v
-  · exact GlobalTheory.T.iwasawa_isotropic_stabiliser_split_place D T T₀ r d v hv y
-  · exact GlobalTheory.T.iwasawa_isotropicStabilizer_inertPlace D T T₀ r d v hv y
+  · exact _root_.GlobalTheory.Core.Rk.IwFlagSplit.iwasawa_stab_split D T T₀ r d v hv y
+  · exact _root_.GlobalTheory.InertIwasawaIso.iwasawa_inert D T T₀ r d v hv y
 
 end GlobalTheory.Core.Rk.IwFin

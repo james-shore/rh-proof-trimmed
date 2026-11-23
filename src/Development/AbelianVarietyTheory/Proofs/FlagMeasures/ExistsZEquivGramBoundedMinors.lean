@@ -229,7 +229,7 @@ theorem _root_.GlobalTheory.ReducedGram.exists_reduced : ∀ (K : Type) [Field K
     intro t I J
     rw [hmin, det_submatrix_mul_diagonal, map_mul, norm_mul, hsign, mul_one, ← hmin]
     exact _root_.GlobalTheory.LoopC.CovTerm.minor_pt_le τ p t I J
-  have hbound := _root_.Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.minorBound (r + 1) (A.map τ) (W.map τ) (B.map τ) c Pb hc hA hB hW t I J
+  have hbound := _root_.Formalism.HermitianLatticeCounting.P.normMinorMulLe (r + 1) (A.map τ) (W.map τ) (B.map τ) c Pb hc hA hB hW t I J
   have hlead : ∀ l, ‖τ (_root_.Formalism.MainNotions.S.leadMinorE Z l)‖ = ‖τ (_root_.Formalism.MainNotions.S.leadMinorE P l)‖ := by
     intro l
     unfold _root_.Formalism.MainNotions.S.leadMinorE

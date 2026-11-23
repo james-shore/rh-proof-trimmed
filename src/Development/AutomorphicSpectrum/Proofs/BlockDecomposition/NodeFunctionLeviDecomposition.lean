@@ -70,7 +70,7 @@ theorem levi_eq_mul_cf (u u' : BlockIx (r + s) r → Ad E) (m m' : GA E r × GA 
       rw [h]; group
     rw [mul_assoc (lev (Ad E) r s m)⁻¹, mul_assoc (unip u)⁻¹, h2]
     group
-  obtain ⟨k₁, c₁, k₂, c₂, h₁, h₂, hm⟩ := GlobalTheory.T.levi_factor_of_unipotent_decomp v (m⁻¹ * m') _ _
+  obtain ⟨k₁, c₁, k₂, c₂, h₁, h₂, hm⟩ := _root_.GlobalTheory.CompanionTheory.LimV.LeviCf.levi_cf_integral v (m⁻¹ * m') _ _
     (mul_mem hc (inv_mem hc')) key
   refine ⟨k₁, c₁, k₂, c₂, h₁, h₂, ?_⟩
   calc m' = m * (m⁻¹ * m') := (mul_inv_cancel_left m m').symm

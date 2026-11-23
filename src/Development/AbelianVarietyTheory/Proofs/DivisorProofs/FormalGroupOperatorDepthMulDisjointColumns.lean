@@ -262,22 +262,17 @@ theorem hasSubst_of_constantCoeff_eq_zero {τ σ : Type} [Finite τ] {a : τ →
     (h : ∀ i, constantCoeff (a i) = 0) : HasSubst a :=
   ⟨fun i => by rw [h i]; exact IsNilpotent.zero, fun _ => Set.toFinite _⟩
 
-omit [CharZero C] [Fintype κ] in
-theorem colLin_const (c : κ) (e : Fin (d c)) :
-    constantCoeff (∑ a, u c a e • (X ⟨c, a⟩ : MvPowerSeries (Σ b, ι b) C)) = 0 := by
-  simp
-
 theorem expAlong_const (x : Σ b, Fin (d b)) : constantCoeff (expAlong G u x) = 0 := by
   unfold expAlong
-  exact constantCoeff_subst_eq_zero (hasSubst_of_constantCoeff_eq_zero (colLin_const u x.1))
-    (colLin_const u x.1) ((expOf_twoSided_unique C v (d x.1) (G x.1)).1.1 x.2)
+  exact constantCoeff_subst_eq_zero (hasSubst_of_constantCoeff_eq_zero (_root_.GlobalTheory.DepthField.hasSubst_lin u x.1))
+    (_root_.GlobalTheory.DepthField.hasSubst_lin u x.1) ((expOf_twoSided_unique C v (d x.1) (G x.1)).1.1 x.2)
 
 
 omit [CharZero C] [Fintype κ] in
 theorem expAlong_suppIn (x : Σ b, Fin (d b)) :
     SuppIn {y : Σ b, ι b | y.1 = x.1} (expAlong G u x) := by
   unfold expAlong
-  exact suppIn_subst (hasSubst_of_constantCoeff_eq_zero (colLin_const u x.1))
+  exact suppIn_subst (hasSubst_of_constantCoeff_eq_zero (_root_.GlobalTheory.DepthField.hasSubst_lin u x.1))
     (fun e => suppIn_sum _ _ fun a _ => suppIn_smul _ (suppIn_X rfl)) _
 
 theorem hasSubst_expAlong : HasSubst (expAlong G u) :=

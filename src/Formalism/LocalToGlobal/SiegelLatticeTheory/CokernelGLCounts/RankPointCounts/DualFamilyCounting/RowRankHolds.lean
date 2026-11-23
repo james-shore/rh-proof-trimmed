@@ -127,7 +127,7 @@ theorem rowRank_holds : RowRank := by
     rw [eq_top_iff]
     intro x _
     have hx : x ∈ Submodule.span D.host.E (A : Set (Fin (D.R.k + 1) → D.host.E)) := by rw [hAspan]; trivial
-    obtain ⟨n, hn, hnx⟩ := Formalism.MainNotions.LatticeGluingRadicals.j_exists_nat_smul_mem A hx
+    obtain ⟨n, hn, hnx⟩ := _root_.Formalism.MainNotions.LatticeGluingRadicals.j_exists_nat_smul_memL A hx
     have hn' : (n : ℚ) ≠ 0 := by exact_mod_cast hn.ne'
     have : x = (n : ℚ)⁻¹ • (n • x) := by
       rw [← Nat.cast_smul_eq_nsmul ℚ, smul_smul, inv_mul_cancel₀ hn', one_smul]

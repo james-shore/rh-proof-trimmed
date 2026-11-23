@@ -247,7 +247,7 @@ theorem lattice_of_point (hLaw : GlobalTheory.ThetaExh.ParamLaws N A) (hO : Form
       exact (continuous_const.mul hRqc).mul continuous_const
     exact continuous_pi fun p => continuous_pi fun q => continuous_of_iota N A a _ (hc.matrix_elem p q)
   have hrs : IsSSRep (mapRep (algebraMap (N.O a) (Kf N a)) rf) := by
-    refine GlobalTheory.Proof.SemisimpleRepresentationIntegralConjugate.isSSRep_of_mapRep (A.iotaQ a) _ ?_
+    refine _root_.GlobalTheory.RetractionComplement.isSSRep_of_mapRep (A.iotaQ a) _ ?_
     rw [GlobalTheory.RowRepOcc.mapRep_mapRep]
     exact GlobalTheory.Proof.SemisimpleRepresentationIntegralConjugate.isSSRep_conj (ρ := (Rq : G H.E N.Om →* GL (Fin R.nV) (Qbar (N.l a)))) Pm⁻¹
       (fun g => hPm g) hRqs

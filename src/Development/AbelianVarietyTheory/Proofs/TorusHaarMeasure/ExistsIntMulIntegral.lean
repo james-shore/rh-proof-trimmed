@@ -94,16 +94,7 @@ theorem exists_common_den {r : ℕ} (Λ : Submodule (𝓞 E) (Fin r → E)) (hΛ
 
 
 omit [IsCMField E] in
-theorem exists_int_smul_mem {r : ℕ} (Λ : Submodule (𝓞 E) (Fin r → E))
-    (hΛ : Submodule.span E (Λ : Set (Fin r → E)) = ⊤) (v : Fin r → E) :
-    ∃ k : ℤ, k ≠ 0 ∧ k • v ∈ Λ := by
-  first
-  | exact @_root_.GlobalTheory.IntegralMultiples.main
-  | exact _root_.GlobalTheory.IntegralMultiples.main
-  | (apply _root_.GlobalTheory.IntegralMultiples.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralMultiples.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralMultiples.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegralMultiples.main ..)
+alias exists_int_smul_mem := _root_.GlobalTheory.IntegralMultiples.exists_int_smul_mem
 
 theorem finite_vectors (r : ℕ) (X : Data E r) (R : ℝ) :
     {v : Fin r → E | v ∈ X.Λ ∧ ∀ (τ : X.Ψ) (a : Fin r), ‖τ.1 (v a)‖ ≤ R}.Finite := by

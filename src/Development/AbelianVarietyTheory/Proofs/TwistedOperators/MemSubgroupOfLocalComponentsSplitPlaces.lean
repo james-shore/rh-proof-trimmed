@@ -45,6 +45,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealLineOfPeriodsOnLine
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.InvolutionSphericalHeckeAnti
 
 @[expose] public section
 
@@ -73,17 +74,6 @@ theorem suppAt_one {e : AE D} {V : HSp D} : SuppAt e V 1 := fun i j => by
   rw [show mt V (1 : GA D V) = 1 from rfl, sub_self]
   simp
 
-theorem suppAt_mul {e : AE D} {V : HSp D} {g h : GA D V} (hg : SuppAt e V g) (hh : SuppAt e V h) :
-    SuppAt e V (g * h) := by
-  intro i j
-  have e1 : mt V (g * h) - 1 = (mt V g - 1) * (mt V h - 1) + (mt V g - 1) + (mt V h - 1) := by
-    rw [show mt V (g * h) = mt V g * mt V h from rfl]
-    noncomm_ring
-  have s : (e + cA D e) * ((mt V g - 1) * (mt V h - 1)) i j = ((mt V g - 1) * (mt V h - 1)) i j := by
-    rw [Matrix.mul_apply, Finset.mul_sum]
-    exact Finset.sum_congr rfl fun k _ => by rw [← mul_assoc, hg i k]
-  rw [e1, Matrix.add_apply, Matrix.add_apply, mul_add, mul_add, s, hg i j, hh i j]
-
 theorem suppAt_of_le {e e' : AE D} {V : HSp D} {g : GA D V}
     (hf : (e' + cA D e') * (e + cA D e) = e' + cA D e') (h : SuppAt e' V g) : SuppAt e V g := fun i j => by
   linear_combination (1 - (e + cA D e)) * h i j + (mt V g - 1) i j * hf
@@ -111,7 +101,7 @@ theorem exists_subgroup_elem_localComponents_subset {V : HSp D} {P : Finset (Pl 
   · intro w Q hwQ ih hQ
     obtain ⟨y, hy, sy, ly, oy⟩ := ih ((Finset.subset_insert _ _).trans hQ)
     obtain ⟨h, hh, sh, lh, oh⟩ := hw w (hQ (Finset.mem_insert_self _ _))
-    refine ⟨y * h, H.mul_mem hy hh, suppAt_mul sy sh, fun u hu => ?_, fun u hu hn => ?_⟩
+    refine ⟨y * h, H.mul_mem hy hh, _root_.GlobalTheory.SplitPlace.suppAt_mul sy sh, fun u hu => ?_, fun u hu hn => ?_⟩
     · rw [map_mul, map_mul]
       rcases Finset.mem_insert.1 hu with hu | hu
       · rw [hu, oy w (hQ (Finset.mem_insert_self _ _)) hwQ, lh, one_mul]

@@ -1229,18 +1229,6 @@ theorem cls_of_nIso (M : Loc.Model F E) {m : ℕ} (ZZ : M.Mat (m + 1)) (c : M.Cl
   exact (Quotient.sound (s := M.isoSetoid m) (show Nonempty (M.Iso ZZ (Quotient.out c)) from ⟨φ⟩)).trans
     (Quotient.out_eq (s := M.isoSetoid m) c)
 
-theorem uLow_det {n : ℕ} (x : Loc.IL n → E) : (Loc.uLow x).det = 1 := by
-  rw [Matrix.det_of_lowerTriangular _ (fun i j hij => by
-    have h' : i < j := OrderDual.toDual_lt_toDual.1 hij
-    simp [Loc.uLow, h'.ne, not_lt.2 h'.le])]
-  simp [Loc.uLow]
-
-theorem uUp_det {n : ℕ} (w : Loc.Pt E n) (y : Loc.IN w → E) : (Loc.uUp w y).det = 1 := by
-  rw [Matrix.det_of_upperTriangular (fun i j hij => by
-    have h' : j < i := hij
-    simp [Loc.uUp, h'.ne', not_lt.2 h'.le])]
-  simp [Loc.uUp]
-
 theorem cls_of_bb_ne (M : Loc.Model F E) {m : ℕ} (a : Loc.Pt E (m + 1)) (c : M.Cls m) (h : M.BB a c ≠ 0) :
     ∃ ZZ : M.Mat (m + 1), ((ZZ.Z.det : M.R) : E) = a.mat.det ∧ Quotient.mk (M.isoSetoid m) ZZ = c := by
   by_contra hno
@@ -1260,7 +1248,7 @@ theorem cls_of_bb_ne (M : Loc.Model F E) {m : ℕ} (a : Loc.Pt E (m + 1)) (c : M
       have e : M.R.subtype.mapMatrix (Matrix.of fun i j =>
           (⟨(Loc.uLow xy.1 * a.mat * Loc.uUp a xy.2) i j, hZ.1 i j⟩ : M.R)) =
           Loc.uLow xy.1 * a.mat * Loc.uUp a xy.2 := by ext; rfl
-      rw [e, Matrix.det_mul, Matrix.det_mul, uLow_det, uUp_det, one_mul, mul_one]
+      rw [e, Matrix.det_mul, Matrix.det_mul, _root_.Formalism.L2.SG.Pf.det_uLow, _root_.Formalism.L2.SG.Pf.det_uUp, one_mul, mul_one]
     · rfl
   rw [hz, integral_zero]
 
@@ -1276,7 +1264,7 @@ theorem bb_glr (M : Loc.Model F E) (hOK : M.OK) (hψ : ∀ x ∈ M.R, M.psiR x =
   haveI := hs1
   haveI := hs2
   rw [Formalism.DoubleCosetMeasures.Final.bbNorm E M.R hD.isOpen _ _ M.psiR hψ μ₁ μ₂ hv1 hv2 _ _ _
-    (Formalism.DoubleCosetMeasures.Final.suppCompact E M.R hD.isOpen hD.isCompact _ _ _ _ _ _)]
+    (_root_.Formalism.DoubleCosetMeasures.P.suppCompact E M.R hD.isOpen hD.isCompact _ _ _ _ _ _)]
   have hg := Formalism.MainNotions.LocalModelPeriodLattices.inGLR_tr a ha
   rw [finsum_eq_single _ (Formalism.FourierDecayAlt.P.A5x7.cos1 M.R (Formalism.MainNotions.LocalModelPeriodLattices.tr a))]
   · have c1 := (Formalism.FourierDecayAlt.P.A5x7.cos_eq_iff M.R _ (Formalism.FourierDecayAlt.P.A5x7.cos1 M.R (Formalism.MainNotions.LocalModelPeriodLattices.tr a))).mp rfl

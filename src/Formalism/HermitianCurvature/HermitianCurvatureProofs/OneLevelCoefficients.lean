@@ -283,6 +283,4 @@ end Formalism.FourierDecayAlt.P.OneLevelCoefficients
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem levelInequalityOfSteps : Formalism.FourierDecayAlt.TB.OneLevelOfSteps := OneLevelCoefficients.oneLevel_of_steps
-
 end Formalism.FourierDecayAlt.P

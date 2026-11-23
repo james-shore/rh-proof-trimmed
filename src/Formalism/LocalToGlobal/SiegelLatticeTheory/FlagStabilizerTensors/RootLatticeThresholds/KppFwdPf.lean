@@ -68,10 +68,6 @@ open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.Arithm
 
 variable {D : D7} (X : HidaSetting D)
 
-theorem n_pos : 0 < X.B.I.n := by
-  rw [X.n_eq, hrD D]
-  omega
-
 theorem Wq_of_smul {I : AutInst} {w : HeightOneSpectrum (𝓞 I.E)} {p : ℕ} (hp : p.Prime)
     (hcard : Nat.card (𝓞 I.E ⧸ w.asIdeal) = p) (hn : 0 < I.n) {t : I.E ⊗[I.F] Af I.F} (ht : t ∈ IntAf I.F I.E)
     (h : ∀ y ∈ I.Lf, t • y ∈ Lq I w) : t ∈ Wq I w := by
@@ -115,7 +111,7 @@ theorem ew_res (kv : Σ k : Fin 2, D.nd.PlG k) :
       sg X.B.I X.ew - (if ob then 0 else 1) ∈ Wq X.B.I (wK X kv) := by
   have hp := D.host.g_prime kv.1
   have hcard := card_wK X kv
-  have hn := n_pos X
+  have hn := _root_.MassDataIdxSteps.imA_n_pos X
   have : Fact (D.host.g kv.1).Prime := ⟨hp⟩
   have hsI : sg X.B.I X.ew ∈ IntAf X.B.I.F X.B.I.E := by
     obtain ⟨m0, c, -, hc⟩ := congW_exists (w := wc X.B.I (wK X kv)) hp (card_wKc X kv) X.ew_int
@@ -168,7 +164,7 @@ private theorem exists_conj_rhoX_JPred_of_mem_K2 (kv : Σ k : Fin 2, D.nd.PlG k)
           Matrix (Fin D.R.r) (Fin D.R.r) (ZMod (D.host.g kv.1))) := by
   have hp := D.host.g_prime kv.1
   have hcard := card_wK X kv
-  have hn := n_pos X
+  have hn := _root_.MassDataIdxSteps.imA_n_pos X
   have hg := level_mem_wB' X kv
   have : NeZero (D.host.g kv.1) := ⟨hp.ne_zero⟩
   obtain ⟨ob, hew, hsew⟩ := ew_res X kv
@@ -192,7 +188,7 @@ private theorem exists_conj_rhoX_JPred_of_mem_K2 (kv : Σ k : Fin 2, D.nd.PlG k)
   obtain ⟨Pm, hPm1, hPm2⟩ := hPm
   refine ⟨Pm, fun x hx => ?_⟩
   have hxK : (x : X.B.I.Gf) ∈ X.B.I.Kset := hx.1
-  have hxi : (x : X.B.I.Gf)⁻¹ ∈ X.K2 := (Formalism.L2.SG.Closed.level_subgroup_is_group X).2.2.1 _ hx
+  have hxi : (x : X.B.I.Gf)⁻¹ ∈ X.K2 := (_root_.Formalism.L2.SG.Pf.level_subgroup_character_unitary X).2.2.1 _ hx
   have hxiK : (x : X.B.I.Gf)⁻¹ ∈ X.B.I.Kset := hxi.1
   have hM : RedMatB X.B.I (wK X kv) (D.host.g kv.1) (redBX X kv).b (x : X.B.I.Gf)
       ((rhoX X x kv : GL (Fin D.R.r) (ZMod (D.host.g kv.1))) :
@@ -245,7 +241,7 @@ theorem kppFwd_holds : KppFwd X := by
   rw [hs]
   choose t1 t2 h1 h2 h12 using fun kv => (hPm kv x hx).2
   refine ⟨fun kv => (hPm kv x hx).1, ?_⟩
-  rw [quadratic_character_eq_additive X (x : X.B.I.Gf), chi_split X ε hε1 hεP hε (n_pos X) (argC_int X hx.1) t1 t2 h1 h2]
+  rw [quadratic_character_eq_additive X (x : X.B.I.Gf), chi_split X ε hε1 hεP hε (_root_.MassDataIdxSteps.imA_n_pos X) (argC_int X hx.1) t1 t2 h1 h2]
   exact Finset.prod_congr rfl fun kv _ => by rw [h12 kv]
 
 end Formalism.L2.SG.Pf.KppFwdPf

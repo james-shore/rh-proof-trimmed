@@ -91,10 +91,10 @@ theorem locLe_of (hd : ∀ P, dep P ≤ (I.cst a).D P)
     (h : ∀ κ : (I.stp u a i).G c.1, Keeps I κ ((I.stp u a i).rep c) → ∀ P, ∃ g g' z, Rel P g z ∧ LiftsInv I κ P g' ∧ CongE P.1 (dep P) g g') :
     GlobalTheory.TwU.LocLe (sm I l Z) (K (chOf c)).lev fb dep Rel := by
   intro P v hv κ hκ hU
-  obtain ⟨x, hx, hxκ⟩ := GlobalTheory.T.local_group_element_eq_level_component_bad_prime I hOk l Z a (B.T u) i hi bad (K (chOf c)).lev P v hv κ hκ hU
-  obtain ⟨κ', hk, -, hin⟩ := GlobalTheory.T.exists_stepGroupElement_of_chartLevel I hOk hP l Z u a i hi bad Ch chOf K k hR c fb hfb hfin ⟨x, hx⟩
+  obtain ⟨x, hx, hxκ⟩ := _root_.GlobalTheory.Mem.Col2.AdT.LocSplice.main I hOk l Z a (B.T u) i hi bad (K (chOf c)).lev P v hv κ hκ hU
+  obtain ⟨κ', hk, -, hin⟩ := _root_.GlobalTheory.Mem.Col2.AdT.exists_stepElt_of_level I hOk hP l Z u a i hi bad Ch chOf K k hR c fb hfb hfin ⟨x, hx⟩
   obtain ⟨g, g', z, hg, hl, hc⟩ := h κ' hk P
-  exact ⟨g, z, hg, hxκ fb dep g (GlobalTheory.T.rational_automorphism_congruent_near_frame_reading I hOk l Z a i fb _ dep P x g' g hl.1 (hd P) (hin P g' hl) hc)⟩
+  exact ⟨g, z, hg, hxκ fb dep g (_root_.GlobalTheory.Mem.Col2.AdT.NearCong.main I hOk l Z a i fb _ dep P x g' g hl.1 (hd P) (hin P g' hl) hc)⟩
 
 
 include hOk hP hR hfb hfin in
@@ -104,10 +104,10 @@ theorem chiIs_of (hd : ∀ P, 1 ≤ dep P ∧ dep P ≤ (I.cst a).D P)
       (((I.stp u a i).chr c.1 κ : B.fields.Kˣ) : B.fields.K) * ∏ P, z P = 1) :
     GlobalTheory.TwU.ChiIs (sm I l Z) (K (chOf c)).lev fb dep Rel := by
   intro κ g z hg
-  obtain ⟨κ', -, hχ, hin⟩ := GlobalTheory.T.exists_stepGroupElement_of_chartLevel I hOk hP l Z u a i hi bad Ch chOf K k hR c fb hfb hfin κ
+  obtain ⟨κ', -, hχ, hin⟩ := _root_.GlobalTheory.Mem.Col2.AdT.exists_stepElt_of_level I hOk hP l Z u a i hi bad Ch chOf K k hR c fb hfb hfin κ
   choose g' hg' using hex κ'
   have e := h κ' g g' z fun P => ⟨(hg P).1, hg' P,
-    GlobalTheory.T.rational_automorphisms_near_same_adelic_congruent I hOk l Z a i fb _ dep P κ.1 (g' P) (g P) (hg' P).1 (hd P).1 (hd P).2 (hin P _ (hg' P)) (hg P).2⟩
+    _root_.GlobalTheory.Mem.Col2.AdT.AdTieNear.main I hOk l Z a i fb _ dep P κ.1 (g' P) (g P) (hg' P).1 (hd P).1 (hd P).2 (hin P _ (hg' P)) (hg P).2⟩
   rw [hχ]
   exact (map_mul B.embLL _ _).symm.trans ((congrArg B.embLL e).trans (map_one _))
 
@@ -153,9 +153,9 @@ theorem lev_top (hm : i = B.R.m) :
     split_ifs with h
     · exact ⟨le_rfl, (hOk.idx_ok a).cst_ok.D_pos P⟩
     · exact ⟨by omega, (hOk.idx_ok a).depthQ P h⟩
-  refine ⟨locLe_of hOk hP hR c hfb hfin (fun P => (hd P).2) fun κ _ P => GlobalTheory.T.exists_topStep_level_congruent_blockSum_one I hOk u a i hm c.1 κ P,
-    chiIs_of hOk hP hR c hfb hfin hd (fun κ P => ?_) fun κ g g' z h => GlobalTheory.T.last_step_character_inverse_type_at_lifts I hOk u a i hm c.1 κ g g' z h⟩
-  obtain ⟨g, g', z, -, hl, -⟩ := GlobalTheory.T.exists_topStep_level_congruent_blockSum_one I hOk u a i hm c.1 κ P
+  refine ⟨locLe_of hOk hP hR c hfb hfin (fun P => (hd P).2) fun κ _ P => _root_.GlobalTheory.Mem.Col2.AdT.exists_topLev_liftsInv I hOk u a i hm c.1 κ P,
+    chiIs_of hOk hP hR c hfb hfin hd (fun κ P => ?_) fun κ g g' z h => _root_.GlobalTheory.Mem.Col2.AdT.chr_mul_prod_topVal I hOk u a i hm c.1 κ g g' z h⟩
+  obtain ⟨g, g', z, -, hl, -⟩ := _root_.GlobalTheory.Mem.Col2.AdT.exists_topLev_liftsInv I hOk u a i hm c.1 κ P
   exact ⟨g', hl⟩
 
 end Lev
@@ -225,7 +225,7 @@ theorem adTie_true : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC
       exact hxy.symm
     · show muTilQ B.host I.SQ I.C.mu0 (j.1 + 1) (QuotientGroup.mk (finIdele (afIso B.host.F B.host.E) x)) = _
       have e : (QuotientGroup.mk (finIdele (afIso B.host.F B.host.E) x) : DtQ B.host I.SQ) = QuotientGroup.mk b :=
-        mk_eq_of_snd_eq B.host I.SQ ((GlobalTheory.T.finiteAdeleFieldIdentification_eq_baseChangeRingEquiv _ _ ι hι x).symm.trans hx)
+        mk_eq_of_snd_eq B.host I.SQ ((_root_.GlobalTheory.isAdIso_eq_afIso _ _ ι hι x).symm.trans hx)
       rw [e, muTilQ_succ B.host I.SQ I.C.mu0 j, tildeQ_mk B.host I.SQ (reference_characters_factor_tame I.SQ I.C j), finPartI_eq_self hb]
       rfl
     · obtain rfl : a = I.mu0 := h
@@ -296,7 +296,7 @@ theorem adTie_true : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC
         exact (FullDt.detPt_of_reads I hOk u i (hk i hi) c y hy).trans (hdt y).symm
       · exact hDet ha i hi c y hy
     · have e := eq_of_heq hamb
-      have h := GlobalTheory.T.periodLatticeIdeal_trivial_at_chain_bad_primes I hOk u a χ
+      have h := _root_.GlobalTheory.Mem.Col2.AdT.aaUnit_sall I hOk u a χ
       rw [← e] at h
       exact h
 

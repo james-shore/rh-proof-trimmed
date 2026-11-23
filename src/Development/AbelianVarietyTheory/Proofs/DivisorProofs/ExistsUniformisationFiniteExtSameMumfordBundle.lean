@@ -60,8 +60,7 @@ theorem lam_isLB {S : Scheme.{0}} (G : Over S) [GrpObj G] [IsCommMonObj G] {L : 
     (abelian₂ G L).IsLB :=
   DVR.linComb_isLB L hL _ _
 
-theorem lbIso_pull {X Y : Scheme.{0}} {P Q : LB X} (h : LBIso P Q) (f : Y ⟶ X) : LBIso (P.pull f) (Q.pull f) :=
-  h.chartPull (ReciprocityTheory.ChartRestriction.G.Geo.Tor.chartPullPull P f f rfl) (ReciprocityTheory.ChartRestriction.G.Geo.Tor.chartPullPull Q f f rfl)
+alias lbIso_pull := _root_.GlobalTheory.RigidBundleGlue.LBIso.pull
 
 end GlobalTheory.Mum.UExt
 

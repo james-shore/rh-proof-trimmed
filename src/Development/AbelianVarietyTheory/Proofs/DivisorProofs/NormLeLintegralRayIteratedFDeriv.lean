@@ -86,7 +86,7 @@ theorem norm_le_lintegral_ray_iteratedFDeriv
     have := ((hdec j hj).norm).mul_const (‖v‖ ^ j)
     simpa using this
   have h0 : h 0 = G x := by simp [hh, hGx, hLt]
-  have main := GlobalTheory.T.norm_le_lintegral_taylor_tail_iteratedDeriv h m hhs hdec'
+  have main := _root_.GlobalTheory.taylorTail_bound h m hhs hdec'
   rw [h0] at main
   refine main.trans (lintegral_mono_ae ?_)
   filter_upwards [ae_restrict_mem measurableSet_Ioi] with t ht

@@ -168,7 +168,7 @@ theorem GlobalTheory.Poinc.exists_locTuples_theta_of_adm : ∀ (g n : ℕ), 1 �
         algebraMap T.V (FractionRing T.V) (w' : T.V) := by
       rw [hunitK, mul_comm (S.N : ℤ) (v c), zpow_mul, zpow_natCast, zpow_natCast, ← mul_pow, ← hvw c, hw',
         map_mul, map_pow, zpow_natCast]
-    have := GlobalTheory.T.uniformiser_zpow_mul_unit_exponent_unique T.irr _ _ _ _ h2
+    have := _root_.GlobalTheory.exponent_uniformiser_unique T.irr _ _ _ _ h2
     rw [this, Int.toNat_of_nonneg hq0]
   have hmR : (∏ R', ιf R') = ιf R * mult R := (Finset.mul_prod_erase Finset.univ ιf (Finset.mem_univ R)).symm
   let E : ((Fin 8 → Fin r → ZMod S.N) → ℤ) → ℤ := fun ν => ∑ c, v c * ((mult R : ℤ) * ν c)

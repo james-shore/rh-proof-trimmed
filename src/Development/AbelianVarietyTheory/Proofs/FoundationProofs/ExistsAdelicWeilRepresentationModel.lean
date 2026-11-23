@@ -59,18 +59,6 @@ open scoped BigOperators
 
 namespace GlobalTheory.FinWeil.Model
 
-theorem conjE_conjE (D : D7) (x : D.host.E) : D.host.conj (D.host.conj x) = x := by
-  apply D.host.φ₀.injective
-  rw [Formalism.HC.HostAx.conjE_apply, Formalism.HC.HostAx.conjE_apply]
-  simp
-
-theorem sgA_incE (D : D7) (x : D.host.E) : sgA D (inc D x) = inc D (D.host.conj x) := by
-  simp [sgA, inc, Formalism.UG.sigR, Formalism.UG.inclE]
-
-theorem wd_at_zero (D : D7) (T : Tor D) {a d : ℕ} (G : VC D a d → ℂ) : Wd D T 0 G = G := by
-  funext z
-  simp [Wd, wdPh, ee, qH, U, Hf]
-
 theorem pt_zero (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) {N N' : ℕ} :
     pt D (tor0 D cc δ) δ (0 : Matrix (Fin N') (Fin N) D.host.E) = 0 := by
   funext τ i j
@@ -146,7 +134,7 @@ theorem exists_isModel (D : D7) (hD : admG1 D) (cc : Ideal (𝓞 D.host.K)) (δ 
           psi0 D cc δ (∑ i, ∑ j, (w : D.host.E) * x i j * D.host.conj (y i j)) := by
         rw [← hψ.2.2.1]
 
-        simp only [gamA, incM_apply, Matrix.smul_apply, Matrix.map_apply, smul_AE, sgA_incE, map_sum, map_mul]
+        simp only [gamA, incM_apply, Matrix.smul_apply, Matrix.map_apply, smul_AE, _root_.GlobalTheory.NormSum.PtsMem.sgA_inc, map_sum, map_mul]
       show Wd D _ _ (Wd D _ _ _) = gamA ψ (w • incM D N N' x) (incM D N N' y) • Wd D _ _ _
       rw [h', h])
     (fun x m hm => hdense x m hm)
@@ -161,13 +149,13 @@ theorem exists_isModel (D : D7) (hD : admG1 D) (cc : Ideal (𝓞 D.host.K)) (δ 
       exact hv _ ((hrat z').1 ha))
   refine ⟨w, gamA ψ, WA, ⟨fun r => ?_, hw, hl, hr, halt, hadj, fun v => ?_, h2⟩, hsd, hinv, fun z F => ?_, h3⟩
   · apply RingOfIntegers.ext
-    rw [coe_sgO, coe_sgO, conjE_conjE]
+    rw [coe_sgO, coe_sgO, _root_.GlobalTheory.HomDual.conj_conj]
   · have := h1 0
     rw [map_zero] at this
     rw [this]
     apply Subtype.ext
     show Wd D _ (pt D _ δ 0) _ = _
-    rw [pt_zero, wd_at_zero]
+    rw [pt_zero, _root_.GlobalTheory.NormSum.wd_zero]
   · rw [← incM_apply, h1]
     rfl
 

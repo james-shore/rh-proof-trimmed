@@ -181,7 +181,7 @@ theorem restBeta (p : ℕ) [hp : Fact p.Prime] : RestBeta p := by
   intro h5 _ be hbe
   have := sx_ultra p
   have := Formalism.InvariantFactorPaths.G7.WModel.complete p
-  obtain ⟨F, hF⟩ := (Formalism.InvariantFactorPaths.G7.Top.lawExists (K0 p) p hp.out (sx_norm_p p)).1
+  obtain ⟨F, hF⟩ := (_root_.Formalism.InvariantFactorPaths.G7.formal_law_exists (K0 p) p hp.out (sx_norm_p p)).1
   obtain ⟨ζ0, hζ0⟩ := Formalism.FG.witt_teichmuller_root p 2 (by norm_num)
   obtain ⟨c, hc, hcc, hS⟩ := Formalism.InvariantFactorPaths.G7.Top.betaIsG (K0 p) p (sigK p).toRingHom (sx_unrOK (by omega))
     ⟨wK p ζ0, hζ0.map_of_injective (IsFractionRing.injective (WW p) (K0 p))⟩ F hF (inParam p be) (sx_betaHyp hF hbe)

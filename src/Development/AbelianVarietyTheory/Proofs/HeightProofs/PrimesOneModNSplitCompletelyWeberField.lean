@@ -234,7 +234,7 @@ theorem ncard_eq_of_tower (K M N : Type) [Field K] [NumberField K] [Field M] [Nu
       Module.finrank K M := by
   let φ : M →ₐ[K] N := IsScalarTower.toAlgHom K M N
   let e : M ≃ₐ[K] φ.fieldRange := φ.equivFieldRange
-  have h1 := GlobalTheory.T.ncard_primes_eq_finrank_of_frobenius_fixes K N φ.fieldRange 𝔭 (fun σ hσ x hx => by
+  have h1 := _root_.GlobalTheory.SplitCriterion.ncard_primes_eq_finrank_of_frob_fix K N φ.fieldRange 𝔭 (fun σ hσ x hx => by
     obtain ⟨y, rfl⟩ := hx
     exact h σ hσ y)
   rw [ncard_primes_over_eq_of_ringEquiv_comp (NumberField.RingOfIntegers.mapRingEquiv e.toRingEquiv)

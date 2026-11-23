@@ -142,7 +142,7 @@ theorem symLift_move (hL₀ : L₀.IsLB) (hL₁ : L₁.IsLB) (w : LB.Iso L₁ (L
       ⟨_, fun _ => rfl⟩
     have key : ∀ j : ℕ, val θ₀.φ ((psiO hp τ hτ).left ≫ (translT G (θ₀.pt ^ j)).left) y J₀ =
         g j / g (j + 1) * val θ.φ (𝟙 _ ≫ (translT A (θ.pt ^ j)).left) y J := fun j => by
-      rw [← psi_transl hp τ hτ _ _ (pow_rel hp τ hτ hx j).symm, val_pmaps w hc hm _ y J₀ J hG hJ, Category.id_comp]
+      rw [← psi_transl hp τ hτ _ _ (pow_rel hp τ hτ hx j).symm, _root_.ReciprocityTheory.ChartRestriction.G.PullbackSections.MixEnd.val_pmaps' w hc hm _ y J₀ J hG hJ, Category.id_comp]
       simp only [Fin.prod_univ_two, Matrix.cons_val_zero, Matrix.cons_val_one]
       rw [transl_snd, transl_pow_succ, zpow_neg, div_eq_mul_inv, hg, hg]
     have c := val_corr hG h₀.pow_eq (psiO hp τ hτ).left
@@ -159,10 +159,10 @@ theorem symLift_move (hL₀ : L₀.IsLB) (hL₁ : L₁.IsLB) (w : LB.Iso L₁ (L
     have c := val_corr hG cnu₀ (psiO hp τ hτ).left
     rw [val_symGen θ₀ nu₀ _ y hG, val_one] at c
     rw [val_symGen θ nu _ y hJ, val_one]
-    have v1 := val_pmaps w hc hm (translT A θ.pt⁻¹).left y J₀ J hG hJ
-    have v2 := val_pmaps w hcn hmn (𝟙 _) y J₀ J hG hJ
-    have v3 := val_pmaps w hc hm (negT A T).left y J₀ J hG hJ
-    have v4 := val_pmaps w hcn hmn (translT A θ.pt⁻¹).left y J₀ J hG hJ
+    have v1 := _root_.ReciprocityTheory.ChartRestriction.G.PullbackSections.MixEnd.val_pmaps' w hc hm (translT A θ.pt⁻¹).left y J₀ J hG hJ
+    have v2 := _root_.ReciprocityTheory.ChartRestriction.G.PullbackSections.MixEnd.val_pmaps' w hcn hmn (𝟙 _) y J₀ J hG hJ
+    have v3 := _root_.ReciprocityTheory.ChartRestriction.G.PullbackSections.MixEnd.val_pmaps' w hc hm (negT A T).left y J₀ J hG hJ
+    have v4 := _root_.ReciprocityTheory.ChartRestriction.G.PullbackSections.MixEnd.val_pmaps' w hcn hmn (translT A θ.pt⁻¹).left y J₀ J hG hJ
     simp only [Category.id_comp] at v2 ⊢
     rw [← psi_transl hp τ hτ θ.pt⁻¹ θ₀.pt⁻¹ (inv_rel hp τ hτ hx).symm, ← negT_push hp τ hτ, v1, v2, v3, v4] at c
     simp only [Fin.prod_univ_two, Matrix.cons_val_zero, Matrix.cons_val_one] at c

@@ -54,8 +54,8 @@ attribute [local instance] Over.cartesianMonoidalCategory
 namespace GlobalTheory.Obs
 
 theorem primE2_any_ring : PrimitiveExtendedDegTwoVanish := by
-  apply GlobalTheory.T.primitive_degree_two_extension
-  apply GlobalTheory.T.additiveClassDegreeTwo_structureSheaf_vanish
+  apply _root_.GlobalTheory.Obs.primE2_of_primO2
+  apply _root_.GlobalTheory.Obs.primitiveStructureSheafDegTwoVanish_of_cup_iso
   intro R _ A _ g hA hs
   exact ⟨(GlobalTheory.T.abelian_structure_cohomology_statement R A g hA hs).1,
     (GlobalTheory.T.abelian_structure_cohomology_statement R A g hA hs).2.1⟩

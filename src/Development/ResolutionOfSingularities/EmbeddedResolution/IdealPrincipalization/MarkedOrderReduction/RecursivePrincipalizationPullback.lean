@@ -114,7 +114,7 @@ theorem MonomialGeometryHypotheses.isAdmissible_tripleAtLength (hmg : MonomialGe
       (s.ideal s.length) T.mult (s.boundary s.length)).IsAdmissible := by
   have h := hmg.level_valid T hT s.toMarkedSequenceOfBlowups s.length le_rfl
   rw [transformAt_eq_mk T s.toMarkedSequenceOfBlowups s.length,
-    toMarkedSequence_projectionToBase s s.length] at h
+    _root_.FunctorialResolution.EmbeddedResolution.MarkedBlowupSequenceData.toMarkedSequence_projectionToBase s s.length] at h
   exact h
 
 private theorem isAdmissible_mk_congr {k : Type u} [Field k] {X : Scheme.{u}}
@@ -146,7 +146,7 @@ def SequenceOfBlowupsPullback.toMarkedPullbackSquare {T T' : MarkedIdealWithBoun
   dim_le := hdim
   isPullback := by
     have h := c.isPullback_lastMap
-    rwa [toMarkedSequence_projectionToBase, toMarkedSequence_projectionToBase] at h
+    rwa [_root_.FunctorialResolution.EmbeddedResolution.MarkedBlowupSequenceData.toMarkedSequence_projectionToBase, _root_.FunctorialResolution.EmbeddedResolution.MarkedBlowupSequenceData.toMarkedSequence_projectionToBase] at h
   valid := hval
 
 theorem lastNonMonomialPart_eq_comap_lastMap_of_pullback (hG : PrincipalizationGeometryHypotheses.{u}) (hinv : ComapIsoInvariance.{u})
@@ -419,7 +419,7 @@ private def markedPullbackSquareAtLength (T T' : MarkedIdealWithBoundary.{u}) (g
   dim_le := hdim
   isPullback := by
     have h := c.isPullback_lastMap
-    rwa [toMarkedSequence_projectionToBase, toMarkedSequence_projectionToBase] at h
+    rwa [_root_.FunctorialResolution.EmbeddedResolution.MarkedBlowupSequenceData.toMarkedSequence_projectionToBase, _root_.FunctorialResolution.EmbeddedResolution.MarkedBlowupSequenceData.toMarkedSequence_projectionToBase] at h
   valid := hJ
 
 private theorem nonempty_sequenceOfBlowupsPullback_of_markedDataOfSeq {k₁ k₂ : Type u} [Field k₁] [Field k₂]
@@ -652,7 +652,7 @@ private theorem append_proj_center_ne_base_of_orderAtLeastLocus_empty (hG : Prin
   rw [hproj] at hcon
   have hsq : IsPullback c.lastMap (s'.proj s'.length) (s.proj s.length) g := by
     have h := c.isPullback_lastMap
-    rwa [toMarkedSequence_projectionToBase, toMarkedSequence_projectionToBase] at h
+    rwa [_root_.FunctorialResolution.EmbeddedResolution.MarkedBlowupSequenceData.toMarkedSequence_projectionToBase, _root_.FunctorialResolution.EmbeddedResolution.MarkedBlowupSequenceData.toMarkedSequence_projectionToBase] at h
   obtain ⟨w, hw, -⟩ := Scheme.exists_preimage_of_isPullback hsq x y hcon.symm
   have hdimS := MonomialGeometryHypotheses.krullDimSucc_schemeAt_length_le_dim hG.monomialInputs T hT s
   have hvalS := MonomialGeometryHypotheses.isAdmissible_tripleAtLength hG.monomialInputs T hT s

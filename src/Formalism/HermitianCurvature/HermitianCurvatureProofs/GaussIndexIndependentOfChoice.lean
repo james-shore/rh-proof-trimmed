@@ -556,7 +556,7 @@ end Formalism.FourierDecayAlt.P.A6x7.Osc
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem oscillatory_integral_invariant : Formalism.FourierDecayAlt.A6.OscInvariant := A6x7.Osc.main
+alias oscillatory_integral_invariant := _root_.Formalism.FourierDecayAlt.P.A6x7.Osc.main
 
 end Formalism.FourierDecayAlt.P
 
@@ -670,7 +670,7 @@ end Formalism.FourierDecayAlt.P.A6x7.admitted
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem admissible_gauss_sum_small : Formalism.FourierDecayAlt.A6.GaussAdmSmall := A6x7.admitted.main
+alias admissible_gauss_sum_small := _root_.Formalism.FourierDecayAlt.P.A6x7.admitted.main
 
 end Formalism.FourierDecayAlt.P
 
@@ -980,4 +980,4 @@ theorem main : GaussIndep := by
 
 end Formalism.FourierDecayAlt.P.A6x7.Ind
 
-theorem Formalism.FourierDecayAlt.P.gauss_index_independent_of_choice : Formalism.FourierDecayAlt.A6.GaussIndep := Formalism.FourierDecayAlt.P.A6x7.Ind.main
+alias Formalism.FourierDecayAlt.P.gauss_index_independent_of_choice := _root_.Formalism.FourierDecayAlt.P.A6x7.Ind.main

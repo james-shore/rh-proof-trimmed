@@ -57,9 +57,6 @@ noncomputable section
 namespace GlobalTheory.FixLev
 variable {D : D7}
 
-theorem continuous_mt (V : HSp D) : Continuous (mt V) :=
-  Units.continuous_val.comp continuous_subtype_val
-
 section Local
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
   {Y : Type} [Fintype Y] [DecidableEq Y]
@@ -107,7 +104,7 @@ theorem locHom_spec (q : SplitPt D k) (V : HSp D) (F : GlobalTheory.LocMod.Frame
 theorem continuous_locHom (q : SplitPt D k) (V : HSp D) (F : GlobalTheory.LocMod.Frame k V.rank Y) :
     Continuous (locHom q V F) := by
   have h1 : Continuous fun g : GA D V => F.γ * (mt V g).map q.pr * F.β :=
-    (continuous_const.matrix_mul ((continuous_mt V).matrix_map q.cont_pr)).matrix_mul continuous_const
+    (continuous_const.matrix_mul ((_root_.GlobalTheory.MixModel.continuous_mt V).matrix_map q.cont_pr)).matrix_mul continuous_const
   refine Units.continuous_iff.2 ⟨h1, ?_⟩
   refine (h1.comp continuous_inv).congr fun g => ?_
   change F.γ * (mt V g⁻¹).map q.pr * F.β = ((locHom q V F g)⁻¹ : GL Y k).val

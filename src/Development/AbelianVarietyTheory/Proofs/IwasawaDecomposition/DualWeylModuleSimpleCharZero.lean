@@ -122,7 +122,7 @@ theorem isGLSubmodule_of_stable (k : Type) [Field k] [Infinite k] (N : ℕ) (lam
   let P : MvPolynomial (Fin N × Fin N) S :=
     rowAct S (n := N) Y.transpose (MvPolynomial.map (algebraMap k S) f)
   have hP : P ∈ Submodule.span S (MvPolynomial.map (algebraMap k S) '' (M : Set (MvPolynomial (Fin N × Fin N) k))) := by
-    refine GlobalTheory.T.mem_span_map_of_eval_mem_of_ne_zero k _ _ M Y.det (Matrix.det_mvPolynomialX_ne_zero _ _) P ?_
+    refine _root_.GlobalTheory.mem_span_map_of_eval_mem k _ _ M Y.det (Matrix.det_mvPolynomialX_ne_zero _ _) P ?_
     intro y hy
     let m0 : Matrix (Fin N) (Fin N) k := Matrix.of fun i j => y (i, j)
     have hm0 : Y.map (MvPolynomial.eval y) = m0 := by

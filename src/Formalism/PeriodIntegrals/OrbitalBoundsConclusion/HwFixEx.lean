@@ -43,4 +43,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem highest_weight_fixed_exists : PI.HwFix.HwFixedEx := PI.HwFix.UnitaryGroupMassFormula.hwFixedEx_main

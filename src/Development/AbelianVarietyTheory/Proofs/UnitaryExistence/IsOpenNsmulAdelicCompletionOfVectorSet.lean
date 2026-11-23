@@ -60,12 +60,7 @@ namespace GlobalTheory.AdLat.OpenLat
 
 variable (F : Type) [Field F] [NumberField F]
 
-theorem isOpen_integral :
-    IsOpen {a : FiniteAdeleRing (𝓞 F) F | ∀ v, a v ∈ v.adicCompletionIntegers F} := by
-  first
-  | exact @_root_.GlobalTheory.IntegralOpen.isOpen_integral
-  | exact _root_.GlobalTheory.IntegralOpen.isOpen_integral
-  | (apply _root_.GlobalTheory.IntegralOpen.isOpen_integral <;> assumption)
+alias isOpen_integral := _root_.GlobalTheory.IntegralOpen.isOpen_integral
 
 theorem exists_nsmul_adele (U : Set (FiniteAdeleRing (𝓞 F) F)) (hU : U ∈ 𝓝 (0 : FiniteAdeleRing (𝓞 F) F)) :
     ∃ N : ℕ, 0 < N ∧ ∀ a : FiniteAdeleRing (𝓞 F) F, (∀ v, a v ∈ v.adicCompletionIntegers F) → N • a ∈ U := by
@@ -86,13 +81,7 @@ variable {E : Type} [Field E] [NumberField E] [Algebra F E] {n : ℕ}
 
 
 omit [Algebra F E] in
-theorem exists_denom (L : Submodule (𝓞 E) (Fin n → E))
-    (hsp : Submodule.span E (L : Set (Fin n → E)) = ⊤) (x : Fin n → E) :
-    ∃ d : ℕ, 0 < d ∧ d • x ∈ L := by
-  first
-  | exact @_root_.GlobalTheory.NatMulMemUnitaryExistence.target
-  | exact _root_.GlobalTheory.NatMulMemUnitaryExistence.target
-  | (apply _root_.GlobalTheory.NatMulMemUnitaryExistence.target <;> assumption)
+alias exists_denom := _root_.GlobalTheory.NatMulMemUnitaryExistence.main
 
 theorem isOpen_nsmul_hat : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (n : ℕ) (L : Submodule (𝓞 E) (Fin n → E)), Submodule.span E (L : Set (Fin n → E)) = ⊤ → letI : TopologicalSpace (FiniteAdeleRing (𝓞 F) F ⊗[F] E) := moduleTopology (FiniteAdeleRing (𝓞 F) F) (FiniteAdeleRing (𝓞 F) F ⊗[F] E); (∀ N : ℕ, 0 < N → IsOpen {z : Fin n → RA F E | ∃ y ∈ hat F (L : Set (Fin n → E)), z = N • y}) ∧ ∀ W ∈ 𝓝 (0 : RA F E), ∃ N : ℕ, 0 < N ∧ ∀ y ∈ hat1 F (Set.range (algebraMap (𝓞 E) E)), N • y ∈ W := by
   intro F E _ _ _ _ _ n L hL
@@ -123,7 +112,7 @@ theorem isOpen_nsmul_hat : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
       intro k
       have hc : Continuous fun z : Fin n → RA F E => B.coord k (z i) :=
         (IsModuleTopology.continuous_of_linearMap (B.coord k)).comp (continuous_apply i)
-      have := nsmul_integral_mem_nhds F (N * d i k) (Nat.mul_pos hN (hd i k))
+      have := _root_.GlobalTheory.IntegralNeighbourhoodZero.nsmul_integral_mem_nhds_zero F (N * d i k) (Nat.mul_pos hN (hd i k))
       have h0 : B.coord k ((0 : Fin n → RA F E) i) = 0 := map_zero _
       exact hc.continuousAt.preimage_mem_nhds (x := 0) (h0 ▸ this)
     refine Filter.mem_of_superset hn fun z hz => ?_
@@ -152,7 +141,7 @@ theorem isOpen_nsmul_hat : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
     have h1 : φ ⁻¹' W ∈ 𝓝 0 := hφ.continuousAt.preimage_mem_nhds (h0 ▸ hW)
     rw [nhds_pi, Filter.mem_pi] at h1
     obtain ⟨I, -, t, ht, hsub⟩ := h1
-    obtain ⟨N, hN, hNt⟩ := exists_nsmul_adele F (⋂ k, t k) (Filter.iInter_mem.mpr ht)
+    obtain ⟨N, hN, hNt⟩ := _root_.GlobalTheory.LocalNormBound.main F (⋂ k, t k) (Filter.iInter_mem.mpr ht)
     refine ⟨N, hN, fun y hy => ?_⟩
     have hex : ∃ c, (∀ k v, c k v ∈ v.adicCompletionIntegers F) ∧ φ c = y := by
       induction hy using AddSubgroup.closure_induction with

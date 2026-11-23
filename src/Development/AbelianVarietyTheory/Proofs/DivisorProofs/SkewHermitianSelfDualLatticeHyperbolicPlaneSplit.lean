@@ -66,10 +66,7 @@ open GlobalTheory.AdelicU (splitPrime IsSplitBasis)
 section Helpers
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E} {n n₁ : ℕ}
 
-theorem sigma_sigma (h : IsCMExt F E σ) (a : E) : σ (σ a) = a := by
-  obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
-  apply τ.injective
-  rw [h.2.2.2, h.2.2.2, star_star]
+alias sigma_sigma := _root_.GlobalTheory.AdelicU.cm_conj_conj
 
 theorem form_smul_left (J : Matrix (Fin n) (Fin n) E) (c : E) (a b : Fin n → E) :
     form σ J (c • a) b = c * form σ J a b := by
@@ -263,7 +260,7 @@ theorem plane_skew : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numbe
       { skew := gram_skew hCM hY.skew ι
         sig := hsig1
         lat := hfull
-        dual := GlobalTheory.T.orthogonalComplement_hyperbolicPlane_lattice_selfDual F E σ n₁ Y.J Y.L x y ι hY.dual horth hsplit
+        dual := _root_.GlobalTheory.PlaneSkewDual.lowLat_selfDual F E σ n₁ Y.J Y.L x y ι hY.dual horth hsplit
         cartan := hθ₁
         bas := fun v => by
           show IsSplitBasis (B.τ v) (lowLat ι Y.L) (if h : v.1 ∈ B.P then β₁ ⟨v.1, h⟩ else 1)

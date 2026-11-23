@@ -169,8 +169,8 @@ theorem dvd_ord_sub {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host
   have hkO : IsUnit (k : O) := by simpa using hk.map (φ.comp g)
   have hB := P.D.tau_bimult
   have hB' := P'.D.tau_bimult
-  obtain ⟨f, i₁, p₁, s₁, a₁, w₁, c₁⟩ := GlobalTheory.T.exists_torsionMap_uniformisation_generic E H R t P hR F k hk1
-  obtain ⟨f', i₂, p₂, s₂, a₂, w₂, c₂⟩ := GlobalTheory.T.exists_torsionMap_uniformisation_generic E H W t' P' hW F k hk1
+  obtain ⟨f, i₁, p₁, s₁, a₁, w₁, c₁⟩ := _root_.GlobalTheory.GenTors.exists_torsMap_generic E H R t P hR F k hk1
+  obtain ⟨f', i₂, p₂, s₂, a₂, w₂, c₂⟩ := _root_.GlobalTheory.GenTors.exists_torsMap_generic E H W t' P' hW F k hk1
   have hs : jFK (R := R) F ≫ jK R = (TF (R := W) F).hom ≫ spMap g := by
     show spMap _ ≫ spMap _ = (spMap _ ≫ spMap _) ≫ spMap g
     rw [← Spec.map_comp, ← Spec.map_comp, ← Spec.map_comp]

@@ -62,11 +62,6 @@ section SlopeTestRemainingChoices
 
 variable {K : Type} {ι : K → Type}
 
-theorem intNumL_ofFn_eq [DecidableEq K] (F : Type) [Field F] (Q : Ideal (MRing ι F)) {n : ℕ}
-    (b : Fin n → K → ℤ) : intNumL F Q (List.ofFn b) = intNum F Q b := by
-  unfold intNumL intNum mixedDiff
-  rw [List.ofFn_get]
-
 theorem divCycle_one (P W : Ideal (MRing ι ℤ)) : divCycle P (1 : MRing ι ℤ) W = 0 := by
   unfold divCycle
   rw [dite_eq_right]
@@ -215,7 +210,7 @@ theorem vertAt_self_eq_intNum (P : Ideal (MRing ι ℤ)) (D : ℕ) (hP : IsArith
   have hgN : genNum ℚ (extTo ℚ P) (Empty.elim : Empty → K → ℤ) 1 (List.ofFn b) =
       (intNum ℚ (extTo ℚ P) b : ℝ) := by
     unfold genNum
-    simp [classList, intNumL_ofFn_eq]
+    simp [classList, _root_.GlobalTheory.CompanionTheory.Ar.Num.RecSplit.intNumL_ofFn]
   rw [hcN, hg, hgN] at hcy
   have e : MvPolynomial.map (Int.castRingHom (ZP p)) (C ((p : ℕ) : ℤ) : MRing ι ℤ) =
       C (((1 : (ZP p)ˣ) : ZP p) * ((p : ℕ) : ZP p) ^ 1) := by

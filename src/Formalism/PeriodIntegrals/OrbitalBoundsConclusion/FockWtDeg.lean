@@ -44,4 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem highestWeightDegree_le : PI.FockDegreeTwoParts.WtDeg := PI.FockWtDegWork.wtDeg

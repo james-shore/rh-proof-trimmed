@@ -138,27 +138,6 @@ def lev (G : PDivGroup p O) (n : ℕ) : G.omega →ₗ[O] Cot O (G.A n) :=
 
 theorem lev_apply (G : PDivGroup p O) (n : ℕ) (w : G.omega) : lev G n w = w.1 n := rfl
 
-private theorem prime_pow_smul_cot_eq_zero (G : PDivGroup p O) (n : ℕ) (y : Cot O (G.A n)) :
-    (p : O) ^ n • y = 0 := by
-  obtain ⟨b, rfl⟩ := AugCot.d_surjective _ y
-  obtain ⟨a, rfl⟩ := G.res_surjective n b
-  set r := counitAlgHom O (G.A (n + 1)) a
-  have hmem : mulBy O (G.A (n + 1)) (p ^ n) (a - algebraMap O _ r) ∈ RingHom.ker (G.res n) := by
-    rw [G.ker_res n]
-    apply Ideal.mem_map_of_mem
-    show a - algebraMap O _ r ∈ RingHom.ker (counitAlgHom O (G.A (n + 1)))
-    rw [RingHom.mem_ker, map_sub, AlgHom.commutes]
-    simp [r]
-  have h2 : G.res n (mulBy O _ (p ^ n) a) = algebraMap O _ r := by
-    rw [RingHom.mem_ker] at hmem
-    have := hmem
-    simp only [map_sub, AlgHomClass.commutes, sub_eq_zero] at this
-    exact this
-  rw [← Nat.cast_pow]
-  change ((p ^ n : ℕ) : O) • dUnit (R := O) (G.res n a) = 0
-  rw [← dUnit_mulBy, ← map_mulBy, h2]
-  exact AugCot.d_algebraMap _ _
-
 theorem smul_mem_of_levels [IsAdicComplete (Ideal.span {(p : O)}) O] (G : PDivGroup p O)
     (L : Submodule O G.omega) (hL : L.FG) (κ : O)
     (hκ : ∀ n (y : Cot O (G.A n)), κ • y ∈ L.map (lev G n))
@@ -241,7 +220,7 @@ theorem smul_mem_of_levels [IsAdicComplete (Ideal.span {(p : O)}) O] (G : PDivGr
     obtain ⟨t, ht⟩ := close (n + 1)
     have h1 : Φ (n + 1) (seq (n + 1)).1 = κ • W (n + 1) := by
       rw [← compatΦ, (seq (n + 1)).2, hWc]
-    rw [ht, map_add (f := _), h1, map_smul, prime_pow_smul_cot_eq_zero, add_zero]
+    rw [ht, map_add (f := _), h1, map_smul, _root_.GlobalTheory.PDivGroup.pow_smul_cot, add_zero]
   have good' : ∀ n, Φ n l = κ • W n := by
     intro n
     cases n with

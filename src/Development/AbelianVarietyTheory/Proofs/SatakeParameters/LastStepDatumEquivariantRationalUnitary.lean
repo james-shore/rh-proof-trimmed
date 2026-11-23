@@ -121,7 +121,7 @@ theorem xiPt_top_smul : UnderTie (fun {D L hT Gi Gl Kc Y cX ex t u μ St} A dtU 
       obtain ⟨y, hy⟩ := GlobalTheory.CplCosetPt.exists_sameCoset_frames t.sel (t.tup μ) (t.cst μ) (fun P => frsF t.sel (t.tup μ) q P)
         (fun P => y0At A (t.m2 + 1) (Nat.le_of_succ_le hi) β P)
       exact Classical.epsilon_spec (p := fun y => y ∈ cosetOf A (t.m2 + 1) (Nat.le_of_succ_le hi) β q) ⟨y, hy⟩
-    have hy0 := GlobalTheory.T.intAt_scaled_baseCosetRep_of_adTie D L hT Gi Gl Kc Y cX ex t u μ St A dtU a hPin hTie β
+    have hy0 := _root_.GlobalTheory.TwU.BaseCosetInt.baseCosetRep_integral_after_scaling_at_bad_prime D L hT Gi Gl Kc Y cX ex t u μ St A dtU a hPin hTie β
     refine Finset.prod_congr rfl fun P _ => ?_
     have hq0 : (qOf P.1 : t.X.E) ≠ 0 := GlobalTheory.TopStep.qOf_ne_zero
     have hqI : IntAt P.1 (qOf P.1 : t.X.E) := by simpa using IntAt.coe P.1 ((qOf P.1 : ℕ) : 𝓞 t.X.E)

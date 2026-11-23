@@ -48,6 +48,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.SharpRestriction.GlobalSchurBounds.QuadraticLogDerivCongr
 
 @[expose] public section
 
@@ -150,10 +151,6 @@ theorem frSet_congr (D : D7) (Λ : LatV D) {T : D.host.E} (F : Fg D T) (T' : D.h
     exact ⟨h1, zequiv_trans h2 h, h3⟩
   · rintro ⟨h1, h2, h3⟩
     exact ⟨h1, zequiv_trans h2 (zequiv_symm h), h3⟩
-
-theorem one_le_b (s : Scale) : 1 ≤ s.b := by
-  show 1 ≤ Real.exp (s.x ^ s.eps)
-  exact Real.one_le_exp (Real.rpow_nonneg (le_of_lt (lt_trans zero_lt_one s.one_lt_alt)) _)
 
 theorem one_le_sizeZ (D : D7) (b C : ℝ) (Z : GramM D) : 1 ≤ sizeZ D b C Z := by
   unfold sizeZ
@@ -286,7 +283,7 @@ theorem main : ∀ Cg cb Cu cT CT C0 A : ℝ, ∃ C₀ : ℝ, ∀ C ≥ C₀, �
   obtain ⟨-, -, hpos, hlat, hint, -, -⟩ := GlobalTheory.T.standardBaseFlag_complement_integralLattice D u u' F0 Λ hstand hbase hΛ
   have hsub : SubOK D (L0X D Λ (lf D F0)) P s De := subOK_of D _ P hlat.fg hpos hint hP s hr De hd
   have hNTZ : NT D u ^ 2 ≤ HHZ D large₂.sc.b C Z :=
-    NT_sq_le D u large₂.sc.b C CT (one_le_b _) hC1 hCT (hTr u).2 Z
+    NT_sq_le D u large₂.sc.b C CT (_root_.Formalism.MainNotions.Lnk.one_le_b _) hC1 hCT (hTr u).2 Z
   have hN : NT D u ^ 2 ≤ Hh := hNTZ.trans hHZ
   have hHZ0 : 0 ≤ HHZ D large₂.sc.b C Z := le_trans (sq_nonneg _) hNTZ
   have hHh0 : 0 ≤ Hh := hHZ0.trans hHZ

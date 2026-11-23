@@ -78,15 +78,15 @@ theorem idempotentCut_latticeStabilizer : ∀ (F E : Type) [Field F] [NumberFiel
       (∀ w ∉ S, ∀ γ, γ * (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.mat (GlobalTheory.FinDecomp.loc e he h))ᵀ ∈ GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.latAtV G.V' G.W w ↔
         γ ∈ GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.latAtV G.V' G.W w) := by
   intro F E _ _ _ _ _ σ B a a' G hG h
-  obtain ⟨S₁, hS₁⟩ := GlobalTheory.T.exists_finset_integral_adele_mulVec_mem_lattice_closure F E _ (mat h) G.W.L hG.hW.lat
-  obtain ⟨S₂, hS₂⟩ := GlobalTheory.T.exists_finset_integral_adele_mulVec_mem_lattice_closure F E _ (mat h⁻¹) G.W.L hG.hW.lat
+  obtain ⟨S₁, hS₁⟩ := _root_.GlobalTheory.AdelicLatticeIntegral.exists_finset_smul_mulVec_mem_closure F E _ (mat h) G.W.L hG.hW.lat
+  obtain ⟨S₂, hS₂⟩ := _root_.GlobalTheory.AdelicLatticeIntegral.exists_finset_smul_mulVec_mem_closure F E _ (mat h⁻¹) G.W.L hG.hW.lat
   refine ⟨S₁ ∪ S₂, fun S e he hS hcut => ?_⟩
   have key : ∀ w ∉ S, ∀ (X : ℕ) (Xs : Spc F E X), ∀ γ,
       γ * (mat (loc e he h))ᵀ ∈ latAtV Xs G.W w ↔ γ ∈ latAtV Xs G.W w := by
     intro w hw X Xs γ
     have hw1 : w ∉ S₁ := fun h' => hw (hS (Finset.mem_union_left _ h'))
     have hw2 : w ∉ S₂ := fun h' => hw (hS (Finset.mem_union_right _ h'))
-    refine GlobalTheory.T.tensorLattice_mul_transpose_stable_iff F E X _ Xs G.W w _ _ (mat_inv_mul (loc e he h)) ?_ ?_ γ
+    refine _root_.GlobalTheory.LatStab.latAtV_mul_transpose_iff F E X _ Xs G.W w _ _ (mat_inv_mul (loc e he h)) ?_ ?_ γ
     · intro u hu hint y hy
       rw [← Matrix.smul_mulVec, mat_loc]
       rcases hcut w hw u hu with h0 | h1

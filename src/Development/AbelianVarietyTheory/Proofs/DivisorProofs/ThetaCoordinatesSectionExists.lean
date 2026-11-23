@@ -62,11 +62,6 @@ noncomputable section
 namespace GlobalTheory.UMin.ThBdl
 open ProjSpace
 
-theorem resG_resG' {X : Scheme.{0}} {U V W : X.Opens} (h₁ : V ≤ U) (h₂ : W ≤ V) (f : Γ(X, U)) :
-    resG X h₂ (resG X h₁ f) = resG X (h₂.trans h₁) f := by
-  simp only [resG, ← CommRingCat.comp_apply, ← Functor.map_comp]
-  rfl
-
 theorem chart_sec (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (k Ω : Type) [CommRing k]
     [IsNoetherianRing k] [Field Ω] [CharZero Ω] [Algebra k Ω] (M : RatModel k Ω) (t : SAB H M.Z) (g m n : ℕ)
     (c : Fin (n + 1) → Ω) (h : M.Z ⟶ PSpace k n) (θ : SecAt t.G t.PP.L M.pt) (pt : Fin (n + 1) → (Over.mk M.pt ⟶ t.G))
@@ -115,9 +110,6 @@ end GlobalTheory.UMin.ThBdl
 
 namespace GlobalTheory.UMin.ThBdl
 
-theorem val_res' {X : Scheme.{0}} {U V : X.Opens} (e : V ≤ U) (u : Γ(X, U)ˣ) :
-    ((res e u : Γ(X, V)ˣ) : Γ(X, V)) = resG X e (u : Γ(X, U)) := rfl
-
 theorem val_pullU' {X Y : Scheme.{0}} (f : Y ⟶ X) (U : X.Opens) (u : Γ(X, U)ˣ) :
     ((pullU f U u : Γ(Y, f ⁻¹ᵁ U)ˣ) : Γ(Y, f ⁻¹ᵁ U)) = (f.app U).hom (u : Γ(X, U)) := rfl
 end GlobalTheory.UMin.ThBdl
@@ -153,9 +145,9 @@ theorem pull_theta_bundle : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
       rw [zpow_one] at e1 e2
       erw [e1]
       erw [e2]
-      erw [val_res', val_pullU', val_res', val_pullU']
+      erw [_root_.GlobalTheory.LB.val_res, val_pullU', _root_.GlobalTheory.LB.val_res, val_pullU']
       rw [O1_g_eq_ratioUnit_chart_inf, val_ratioUnit]
-      erw [app_resG, resG_resG']
+      erw [app_resG, _root_.GlobalTheory.Cartier.resG_resG]
       rfl
     have hW1 : (CechPic.tens t.PP.L (((ProjSpace.O1 k n).pull h).pull t.G.hom)).U (i, pj) ⊓
         (CechPic.tens t.PP.L (((ProjSpace.O1 k n).pull h).pull t.G.hom)).U (i', qj) ≤
@@ -168,12 +160,12 @@ theorem pull_theta_bundle : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     have e1 := congrArg (resG t.G.left hW1) (hcross _ _ (s _) (s _) (hgs _) (hgs _) i)
     have e2 := congrArg (resG t.G.left hW2) (hs (qj PUnit.unit PUnit.unit) i i')
     rw [map_mul] at e1 e2
-    erw [resG_resG', resG_resG', resG_resG'] at e1
-    erw [resG_resG', resG_resG', resG_resG'] at e2
+    erw [_root_.GlobalTheory.Cartier.resG_resG, _root_.GlobalTheory.Cartier.resG_resG, _root_.GlobalTheory.Cartier.resG_resG] at e1
+    erw [_root_.GlobalTheory.Cartier.resG_resG, _root_.GlobalTheory.Cartier.resG_resG, _root_.GlobalTheory.Cartier.resG_resG] at e2
     show resG _ _ (resG _ (hle (i, pj)) (s (pj PUnit.unit PUnit.unit) i)) = _ *
       resG _ _ (resG _ (hle (i', qj)) (s (qj PUnit.unit PUnit.unit) i'))
-    rw [resG_resG', resG_resG']
-    erw [Units.val_mul, val_res', val_res', eB, resG_resG']
+    rw [_root_.GlobalTheory.Cartier.resG_resG, _root_.GlobalTheory.Cartier.resG_resG]
+    erw [Units.val_mul, _root_.GlobalTheory.LB.val_res, _root_.GlobalTheory.LB.val_res, eB, _root_.GlobalTheory.Cartier.resG_resG]
     rw [e1, e2, mul_left_comm, ← _root_.mul_assoc]
     rfl
   · obtain ⟨a, ha⟩ := exists_mem_chart k n (h (x (IsLocalRing.closedPoint K)))

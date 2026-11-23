@@ -162,7 +162,7 @@ theorem exists_noetherian_model : ∀ (T O : Type) [CommRing T] [IsDomain T] [Is
         (GlobalTheory.NormalApprox.unitsIn_le S),
       GlobalTheory.NormalApprox.loc_isLocalRing S, GlobalTheory.NormalApprox.isUnit_of_isUnit_coe S, loc_essFiniteType S⟩
   obtain ⟨S, EA, _, _, _, _, _, e, he, β, hβ, D, _, _, actA, htorA, hlast⟩ :=
-    GlobalTheory.T.exists_torsor_descent_directedUnion_subring T (Finset T) 𝒜 hmono (fun x => ⟨{x}, hcov {x} x (Finset.mem_singleton_self x)⟩) q hq E Q D₁ act₁ htor
+    _root_.GlobalTheory.TorsorUnionDescent.exists_stage_torsor T (Finset T) 𝒜 hmono (fun x => ⟨{x}, hcov {x} x (Finset.mem_singleton_self x)⟩) q hq E Q D₁ act₁ htor
   obtain ⟨hN, hIC, hL, hU, hEF⟩ := hprop S
   have hloc : IsLocalHom (𝒜 S).subtype := ⟨fun a ha => hU a ha⟩
   have hqA : IsUnit (q : 𝒜 S) := hU _ (by simpa using hqT)

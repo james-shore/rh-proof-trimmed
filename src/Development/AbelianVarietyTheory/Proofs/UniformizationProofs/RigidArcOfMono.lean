@@ -121,7 +121,7 @@ theorem core (hL : Laws) (hL₂ : Laws2) (hL₅ : Laws5)
     simp only [Over.comp_left, Category.assoc, Over.pullback_map_left, pullback.lift_fst] at q
     rw [hfst, ← Category.assoc, hfst] at q
     exact q
-  have hlev := GlobalTheory.T.uniformisedArc_iso_matches_levelPoints hL hL₂ hL₅ E H D l Xo c k bF a O O' β β' Y Y' χ χ' W W' hD hdat ψ bc hψ hbc hfst hU hact
+  have hlev := _root_.GlobalTheory.ArcLevel.level_match hL hL₂ hL₅ E H D l Xo c k bF a O O' β β' Y Y' χ χ' W W' hD hdat ψ bc hψ hbc hfst hU hact
     y y' hy hy' hs hs'
   have hb : LBIso W.t.PP.L (W'.t.PP.L.pull ψ.hom.left) := by
     obtain ⟨w, hw, -⟩ := hU.lg

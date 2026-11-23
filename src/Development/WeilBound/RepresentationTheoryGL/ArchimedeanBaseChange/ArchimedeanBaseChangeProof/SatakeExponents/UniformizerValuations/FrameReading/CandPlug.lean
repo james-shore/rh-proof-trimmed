@@ -60,9 +60,9 @@ theorem readS : Tail.ReadS :=
     (fun E _ _ _ => PositivityTheory.Rg.BcN.F2.LocOpPf.locOp3 E)
 
 theorem candT : CandT := fun hR E _ _ _ hE n _ π _ S T F₀ F _ i s₁ s₂ Pa Pb D A G hc hG hl hne w hw hu hs =>
-  PCandLh.inert_d readT expRead RS.joinSat_holds hR E hE n π S T F₀ F i s₁ s₂ Pa Pb D A G hc hG hl hne w (F.T_le w hw hu hs)
+  PCandLh.inert_d readT expRead _root_.GlobalTheory.CompanionTheory.JoinSatPf.joinSat hR E hE n π S T F₀ F i s₁ s₂ Pa Pb D A G hc hG hl hne w (F.T_le w hw hu hs)
 
 theorem candTOut : CandTOut :=
-  candTOut_of (candS_of readS) candT (PCandLh.candLev_of readLev readT expRead RS.joinSat_holds)
+  candTOut_of (candS_of readS) candT (PCandLh.candLev_of readLev readT expRead _root_.GlobalTheory.CompanionTheory.JoinSatPf.joinSat)
 
 end PositivityTheory.Rg.BcB.F.CandPlug

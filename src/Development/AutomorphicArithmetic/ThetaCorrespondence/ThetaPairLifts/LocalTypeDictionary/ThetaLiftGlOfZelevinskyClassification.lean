@@ -55,7 +55,7 @@ namespace UpperTheory.Lit.HoweDuality
 theorem thetaLift_gl_of_zelevinsky_classification (hZ : ZelevinskyPolynomialRing) : _root_.GlobalTheory.ThetaLiftGL.ThetaLiftGeneralLinearStatement :=
   fun hBZ _ k _ _ _ _ r t μ V _ _ W _ _ σ π hrt hμs hμu hσs hσi hσu hπs hπi hθ =>
     lift_of_irr k r t μ V W σ π hrt hμs hμu hσu hπs hπi
-      (UpperTheory.Lit.Mix.top (GlobalTheory.geometricLemma_of_filtration hBZ GlobalTheory.geometricLemmaFiltration_unconditional) hBZ hZ
+      (UpperTheory.Lit.Mix.top (GlobalTheory.geometricLemma_of_filtration hBZ _root_.CompanionTheory.Geo.geometricLemmaFiltration) hBZ hZ
         k r t V σ μ hrt hσs hσi hσu hμs hμu) hθ
 end UpperTheory.Lit.HoweDuality
 end

@@ -53,13 +53,10 @@ open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComp
 noncomputable section
 namespace GlobalTheory.EtC.TensQis
 variable {R : Type} [CommRing R]
-theorem sm_comp {F G H : Shv R} (φ : F ⟶ G) (ψ : G ⟶ H) {U : Scheme.{0}} (x : Sec F U) : Sec.map (φ ≫ ψ) x = Sec.map ψ (Sec.map φ x) := rfl
 theorem sm_add {F G : Shv R} (φ ψ : F ⟶ G) {U : Scheme.{0}} (x : Sec F U) : Sec.map (φ + ψ) x = Sec.map φ x + Sec.map ψ x := rfl
 theorem sm_neg {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} (x : Sec F U) : Sec.map (-φ) x = -Sec.map φ x := rfl
 theorem sm_zero {F G : Shv R} {U : Scheme.{0}} (x : Sec F U) : Sec.map (0 : F ⟶ G) x = 0 := rfl
 theorem sm_id {F : Shv R} {U : Scheme.{0}} (x : Sec F U) : Sec.map (𝟙 F) x = x := rfl
-theorem sm_res {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U) (x : Sec F U) : Sec.map φ (Sec.res g x) = Sec.res g (Sec.map φ x) :=
-  congrArg (fun k => k.hom x) (φ.hom.naturality g.op)
 theorem sm_madd {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} (x y : Sec F U) : Sec.map φ (x + y) = Sec.map φ x + Sec.map φ y := map_add _ _ _
 theorem sm_mzero {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} : Sec.map φ (0 : Sec F U) = 0 := map_zero _
 theorem sm_munits {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} (e : ℤˣ) (x : Sec F U) : Sec.map φ (e • x) = e • Sec.map φ x := by
@@ -71,22 +68,22 @@ variable {K L : Cx R} (φ : K ⟶ L) {U : Scheme.{0}}
 
 theorem fst_inl (p : ℤ) (a : Sec (K.X (p + 1)) U) :
     Sec.map ((mappingCone.fst φ).1.v p (p + 1) rfl) (Sec.map ((mappingCone.inl φ).v (p + 1) p (by omega)) a) = a := by
-  rw [← sm_comp, mappingCone.inl_v_fst_v φ (p + 1) p rfl, sm_id]
+  rw [← _root_.GlobalTheory.EtC.exactIff_map_comp, mappingCone.inl_v_fst_v φ (p + 1) p rfl, sm_id]
 theorem fst_inr (p : ℤ) (a : Sec (L.X p) U) :
     Sec.map ((mappingCone.fst φ).1.v p (p + 1) rfl) (Sec.map ((mappingCone.inr φ).f p) a) = 0 := by
-  rw [← sm_comp, mappingCone.inr_f_fst_v φ p (p + 1) rfl, sm_zero]
+  rw [← _root_.GlobalTheory.EtC.exactIff_map_comp, mappingCone.inr_f_fst_v φ p (p + 1) rfl, sm_zero]
 theorem snd_inl (p : ℤ) (a : Sec (K.X (p + 1)) U) :
     Sec.map ((mappingCone.snd φ).v p p (add_zero p)) (Sec.map ((mappingCone.inl φ).v (p + 1) p (by omega)) a) = 0 := by
-  rw [← sm_comp, mappingCone.inl_v_snd_v φ (p + 1) p (by omega), sm_zero]
+  rw [← _root_.GlobalTheory.EtC.exactIff_map_comp, mappingCone.inl_v_snd_v φ (p + 1) p (by omega), sm_zero]
 theorem snd_inr (p : ℤ) (a : Sec (L.X p) U) :
     Sec.map ((mappingCone.snd φ).v p p (add_zero p)) (Sec.map ((mappingCone.inr φ).f p) a) = a := by
-  rw [← sm_comp, mappingCone.inr_f_snd_v φ p, sm_id]
+  rw [← _root_.GlobalTheory.EtC.exactIff_map_comp, mappingCone.inr_f_snd_v φ p, sm_id]
 theorem cone_eta (p : ℤ) (z : Sec ((mappingCone φ).X p) U) :
     z = Sec.map ((mappingCone.inl φ).v (p + 1) p (by omega)) (Sec.map ((mappingCone.fst φ).1.v p (p + 1) rfl) z) +
       Sec.map ((mappingCone.inr φ).f p) (Sec.map ((mappingCone.snd φ).v p p (add_zero p)) z) := by
   have := congrArg (fun k => Sec.map k z) (mappingCone.id_X φ p (p + 1) rfl)
   beta_reduce at this
-  rw [sm_add, sm_comp, sm_comp, sm_id] at this
+  rw [sm_add, _root_.GlobalTheory.EtC.exactIff_map_comp, _root_.GlobalTheory.EtC.exactIff_map_comp, sm_id] at this
   exact this.symm
 theorem cone_ext {p : ℤ} {z z' : Sec ((mappingCone φ).X p) U}
     (h1 : Sec.map ((mappingCone.fst φ).1.v p (p + 1) rfl) z = Sec.map ((mappingCone.fst φ).1.v p (p + 1) rfl) z')
@@ -95,12 +92,12 @@ theorem cone_ext {p : ℤ} {z z' : Sec ((mappingCone φ).X p) U}
 theorem fst_d (p : ℤ) (z : Sec ((mappingCone φ).X p) U) :
     Sec.map ((mappingCone.fst φ).1.v (p + 1) (p + 1 + 1) rfl) (Sec.map ((mappingCone φ).d p (p + 1)) z) =
       -Sec.map (K.d (p + 1) (p + 1 + 1)) (Sec.map ((mappingCone.fst φ).1.v p (p + 1) rfl) z) := by
-  rw [← sm_comp, mappingCone.d_fst_v φ p (p + 1) (p + 1 + 1) rfl rfl, sm_neg, sm_comp]
+  rw [← _root_.GlobalTheory.EtC.exactIff_map_comp, mappingCone.d_fst_v φ p (p + 1) (p + 1 + 1) rfl rfl, sm_neg, _root_.GlobalTheory.EtC.exactIff_map_comp]
 theorem snd_d (p : ℤ) (z : Sec ((mappingCone φ).X p) U) :
     Sec.map ((mappingCone.snd φ).v (p + 1) (p + 1) (add_zero _)) (Sec.map ((mappingCone φ).d p (p + 1)) z) =
       Sec.map (φ.f (p + 1)) (Sec.map ((mappingCone.fst φ).1.v p (p + 1) rfl) z) +
         Sec.map (L.d p (p + 1)) (Sec.map ((mappingCone.snd φ).v p p (add_zero p)) z) := by
-  rw [← sm_comp, mappingCone.d_snd_v φ p (p + 1) rfl, sm_add, sm_comp, sm_comp]
+  rw [← _root_.GlobalTheory.EtC.exactIff_map_comp, mappingCone.d_snd_v φ p (p + 1) rfl, sm_add, _root_.GlobalTheory.EtC.exactIff_map_comp, _root_.GlobalTheory.EtC.exactIff_map_comp]
 end Cone
 
 variable {I I' J T T' : Cx R}
@@ -124,14 +121,14 @@ def conePair (τ : Pair I J T) (τ' : Pair I' J T') (f : I ⟶ I') (u : T ⟶ T'
   mul := coneMul τ τ' f u
   nat := by
     intro V U g s t w h c b
-    rw [coneMul_apply, coneMul_apply, rs_madd, ← sm_res, ← sm_res, τ.nat, τ'.nat, ← sm_res, ← sm_res]
+    rw [coneMul_apply, coneMul_apply, rs_madd, ← _root_.GlobalTheory.EtC.exactIff_map_res, ← _root_.GlobalTheory.EtC.exactIff_map_res, τ.nat, τ'.nat, ← _root_.GlobalTheory.EtC.exactIff_map_res, ← _root_.GlobalTheory.EtC.exactIff_map_res]
   leibniz := by
     intro U s t w h c b
     apply cone_ext u
-    · rw [← sm_comp, mappingCone.d_fst_v u w (w + 1) (w + 1 + 1) rfl rfl, sm_neg, sm_comp]
+    · rw [← _root_.GlobalTheory.EtC.exactIff_map_comp, mappingCone.d_fst_v u w (w + 1) (w + 1 + 1) rfl rfl, sm_neg, _root_.GlobalTheory.EtC.exactIff_map_comp]
       simp only [coneMul_apply, sm_madd, sm_munits, fst_inl, fst_inr, add_zero, fst_d, map_neg, LinearMap.neg_apply, τ.leibniz]
       rw [Int.negOnePow_succ, Units.neg_smul, neg_add, neg_neg]
-    · rw [← sm_comp, mappingCone.d_snd_v u w (w + 1) rfl, sm_add, sm_comp, sm_comp]
+    · rw [← _root_.GlobalTheory.EtC.exactIff_map_comp, mappingCone.d_snd_v u w (w + 1) rfl, sm_add, _root_.GlobalTheory.EtC.exactIff_map_comp, _root_.GlobalTheory.EtC.exactIff_map_comp]
       simp only [coneMul_apply, sm_madd, sm_munits, snd_inl, snd_inr, fst_inl, fst_inr, zero_add, add_zero, snd_d,
         LinearMap.map_add₂, τ'.leibniz, hc, HomologicalComplex.id_f, sm_id]
       rw [hc U (s + 1) t (w + 1) (by omega), HomologicalComplex.id_f, sm_id]
@@ -180,7 +177,7 @@ theorem mul_fst_inl (f : I ⟶ I') (τ : Pair I J T) (U : Scheme.{0}) (s t w' : 
     τ.mul U s' t w' h1 (Sec.map ((mappingCone.fst f).1.v (s - 1) s' h2) (Sec.map ((mappingCone.inl f).v s (s - 1) (by omega)) a)) b =
       τ.mul U s t w' hst a b := by
   subst e
-  rw [← sm_comp, mappingCone.inl_v_fst_v, sm_id]
+  rw [← _root_.GlobalTheory.EtC.exactIff_map_comp, mappingCone.inl_v_fst_v, sm_id]
 
 theorem lift_tInl (τ : Pair I J T) (τ' : Pair I' J T') (f : I ⟶ I') (u : T ⟶ T') (hc : τ.Compat τ' f (𝟙 J) u)
     (U : Scheme.{0}) (w : ℤ) (x : Tens I J U (w + 1)) :
@@ -193,7 +190,7 @@ theorem lift_tInl (τ : Pair I J T) (τ' : Pair I' J T') (f : I ⟶ I') (u : T �
       TensorProduct.lift.tmul]
     change coneMul τ τ' f u U (s - 1) t w (by omega) (Sec.map ((mappingCone.inl f).v s (s - 1) (by omega)) a) b =
       Sec.map ((mappingCone.inl u).v (w + 1) w (by omega)) (τ.mul U s t (w + 1) hp a b)
-    rw [coneMul_apply, ← sm_comp _ ((mappingCone.snd f).v _ _ _), mappingCone.inl_v_snd_v, sm_zero, map_zero,
+    rw [coneMul_apply, ← _root_.GlobalTheory.EtC.exactIff_map_comp _ ((mappingCone.snd f).v _ _ _), mappingCone.inl_v_snd_v, sm_zero, map_zero,
       LinearMap.zero_apply, sm_mzero, add_zero, mul_fst_inl f τ U s t (w + 1) hp _ (by omega)]
   exact congrArg (fun k => k x) this
 
@@ -250,7 +247,7 @@ theorem res_tInl (f : I ⟶ I') {V U : Scheme.{0}} (g : V ⟶ U) (w : ℤ) (x : 
     congr 1
     change Sec.res g (Sec.map ((mappingCone.inl f).v s (s - 1) (by omega)) a) ⊗ₜ[ULift.{1} R] Sec.res g b =
       Sec.map ((mappingCone.inl f).v s (s - 1) (by omega)) (Sec.res g a) ⊗ₜ[ULift.{1} R] Sec.res g b
-    rw [sm_res]
+    rw [_root_.GlobalTheory.EtC.exactIff_map_res]
   exact congrArg (fun k => k x) this
 
 theorem res_tInr (f : I ⟶ I') {V U : Scheme.{0}} (g : V ⟶ U) (w : ℤ) (x : Tens I' J U w) :
@@ -264,7 +261,7 @@ theorem res_tInr (f : I ⟶ I') {V U : Scheme.{0}} (g : V ⟶ U) (w : ℤ) (x : 
     congr 1
     change Sec.res g (Sec.map ((mappingCone.inr f).f s) a) ⊗ₜ[ULift.{1} R] Sec.res g b =
       Sec.map ((mappingCone.inr f).f s) (Sec.res g a) ⊗ₜ[ULift.{1} R] Sec.res g b
-    rw [sm_res]
+    rw [_root_.GlobalTheory.EtC.exactIff_map_res]
   exact congrArg (fun k => k x) this
 
 theorem conePair_isTensor (τ : Pair I J T) (τ' : Pair I' J T') (f : I ⟶ I') (u : T ⟶ T') (hc : τ.Compat τ' f (𝟙 J) u)
@@ -277,7 +274,7 @@ theorem conePair_isTensor (τ : Pair I J T) (τ' : Pair I' J T') (f : I ⟶ I') 
     refine loc_mono _ _ _ (loc_and _ _ _ h1 h2) ?_
     rintro V g ⟨⟨x1, hx1⟩, ⟨x2, hx2⟩⟩
     refine ⟨tInl f V w x1 + tInr f V w x2, ?_⟩
-    rw [map_add (f := _), lift_tInl, lift_tInr, hx1, hx2, sm_res, sm_res, ← rs_madd, ← cone_eta]
+    rw [map_add (f := _), lift_tInl, lift_tInr, hx1, hx2, _root_.GlobalTheory.EtC.exactIff_map_res, _root_.GlobalTheory.EtC.exactIff_map_res, ← rs_madd, ← cone_eta]
   · intro U w x hx
     rw [← tDecomp f U w x, map_add (f := _), lift_tInl, lift_tInr] at hx
     have e1 : τ.lift U (w + 1) (tFst f U w x) = 0 := by
@@ -310,7 +307,7 @@ theorem tensor_quasiIso : ∀ (R : Type) [CommRing R] {I I' J T T' : Cx R} [I.Is
   intro R _ I I' J T T' _ _ _ τ τ' hτ hτ' hJ f _ u hc
   haveI : (mappingCone f).IsStrictlyGE (-1) := CochainComplex.isStrictlyGE_mappingCone f 0 0 (-1)
   have hC := GlobalTheory.mappingCone_acyclic_of_quasiIso f
-  exact TensQis.quasiIso_of_cone_acyclic u (GlobalTheory.T.acyclic_tensor_acyclic_flatEtaleComplex R (-1) 0 (TensQis.conePair τ τ' f u hc)
+  exact TensQis.quasiIso_of_cone_acyclic u (_root_.GlobalTheory.EtC.acyclic_of_isTensor R (-1) 0 (TensQis.conePair τ τ' f u hc)
     (TensQis.conePair_isTensor τ τ' f u hc hτ hτ') hJ hC)
 
 end GlobalTheory.EtC

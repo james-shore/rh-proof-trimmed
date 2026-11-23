@@ -81,7 +81,7 @@ theorem GlobalTheory.SeeConjChar.conjCharacter_eq_prod_symmetricEdge_characters 
     have hK : ((iotaX X h).toMulEquiv κ).2 ∈ X.B.I.Kset := (Formalism.L2.SG.Closed.level_subgroup_properties X).2.1 _ hK2
     rw [hdec κ hK, ← starRingEnd_apply, map_prod]
     refine Finset.prod_congr rfl fun PP hP => ?_
-    rw [GlobalTheory.T.residue_levelCharacterArgument_at_typePlace R F X h hIs hGrp β hβ hred PP hP κ hS, GlobalTheory.T.residue_conjugatePlace_characterArgument_signedSum R F X h hIs hGrp β hβ hred PP hP κ hS hK2, hc PP hP,
+    rw [_root_.GlobalTheory.SeeResAt.resT_argT R F X h hIs hGrp β hβ hred PP hP κ hS, _root_.GlobalTheory.SeeConjChar.resT_cP_argT R F X h hIs hGrp β hβ hred PP hP κ hS hK2, hc PP hP,
       map_mul, ← AddChar.map_neg_eq_conj, ← AddChar.map_neg_eq_conj, ← AddChar.map_add_eq_mul, AddChar.mulShift_apply]
     congr 1
     rw [Finset.mul_sum, ← neg_add, ← Finset.sum_add_distrib, neg_one_mul]

@@ -71,7 +71,7 @@ theorem pow_smul_d_mem (B : Subalgebra k K) {f v : K} (hf : f ∈ B) (M : ℕ) (
     rw [one_smul, ExteriorAlgebra.ιMulti_apply]
     simp
   have hc : ∀ c ∈ B, ∀ a ∈ omB k K B 1, c • a ∈ omB k K B 1 := fun c hc a ha =>
-    ((GlobalTheory.T.kahlerFormsOverSubalgebra_closure_properties k K B 1 1).2.1 a ha).2.2.2 c hc
+    ((_root_.GlobalTheory.PD.omB_alg k K B 1 1).2.1 a ha).2.2.2 c hc
   have key : (f ^ (M + M)) • ι1 (D k K v) =
       f ^ M • ι1 (D k K (v * f ^ M)) - (v * f ^ M) • ι1 (D k K (f ^ M)) := by
     rw [Derivation.leibniz, map_add (f := _), map_smul, map_smul, smul_add, smul_smul, smul_smul, pow_add,
@@ -91,8 +91,8 @@ theorem omB_iff_pow_smul : ∀ (k : Type) [Field k] [CharZero k] (F K : Type) [F
         ∃ N : ℕ, (algebraMap F K (∏ j ∈ I, x j / x i) ^ N) • y ∈ omB k K (rB k K x {i}) q := by
   intro k _ _ F K _ _ _ _ _ _ d x h I i hi q y
   set f := algebraMap F K (∏ j ∈ I, x j / x i) with hfdef
-  obtain ⟨hmono1, -⟩ := GlobalTheory.T.finite_cover_ring_localization_chart k F K d x h {i} i (Finset.mem_singleton_self i)
-  obtain ⟨-, hloc⟩ := GlobalTheory.T.finite_cover_ring_localization_chart k F K d x h I i hi
+  obtain ⟨hmono1, -⟩ := _root_.GlobalTheory.PD.rB_mono_loc k F K d x h {i} i (Finset.mem_singleton_self i)
+  obtain ⟨-, hloc⟩ := _root_.GlobalTheory.PD.rB_mono_loc k F K d x h I i hi
   have hBB' : rB k K x {i} ≤ rB k K x I := hmono1 I (Finset.singleton_subset_iff.2 hi)
   have hfB : f ∈ rB k K x {i} := by
     have hz : (∏ j ∈ I, x j / x i) ∈ rA k x {i} :=
@@ -104,7 +104,7 @@ theorem omB_iff_pow_smul : ∀ (k : Type) [Field k] [CharZero k] (F K : Type) [F
   have hfinv : f⁻¹ ∈ rB k K x I :=
     (hloc _).2 ⟨1, by rw [pow_one, inv_mul_cancel₀ hf0]; exact Subalgebra.one_mem _⟩
   have hsmul : ∀ (C : Subalgebra k K) (p : ℕ), ∀ c ∈ C, ∀ a ∈ omB k K C p, c • a ∈ omB k K C p :=
-    fun C p c hc a ha => ((GlobalTheory.T.kahlerFormsOverSubalgebra_closure_properties k K C p p).2.1 a ha).2.2.2 c hc
+    fun C p c hc a ha => ((_root_.GlobalTheory.PD.omB_alg k K C p p).2.1 a ha).2.2.2 c hc
   constructor
   · intro hy
     have hQc : ∀ (p : ℕ) (c : K) (z : DR k K), c ∈ rB k K x I →
@@ -124,7 +124,7 @@ theorem omB_iff_pow_smul : ∀ (k : Type) [Field k] [CharZero k] (F K : Type) [F
       have e : f ^ (N + N') • (a * b) = (f ^ N • a) * (f ^ N' • b) := by
         rw [pow_add, mul_smul, smul_mul_assoc, mul_smul_comm]
       rw [e]
-      exact (GlobalTheory.T.kahlerFormsOverSubalgebra_closure_properties k K (rB k K x {i}) p p').1 _ hN _ hN'
+      exact (_root_.GlobalTheory.PD.omB_alg k K (rB k K x {i}) p p').1 _ hN _ hN'
     have hQ1 : ∀ v ∈ rB k K x I, ∃ N : ℕ, f ^ N • ι1 (D k K v) ∈ omB k K (rB k K x {i}) 1 := by
       intro v hv
       obtain ⟨M, hM⟩ := (hloc v).1 hv
@@ -137,7 +137,7 @@ theorem omB_iff_pow_smul : ∀ (k : Type) [Field k] [CharZero k] (F K : Type) [F
         intro v _
         refine ⟨0, ?_⟩
         rw [pow_zero, one_smul, ExteriorAlgebra.ιMulti_zero_apply]
-        exact ((GlobalTheory.T.kahlerFormsOverSubalgebra_closure_properties k K (rB k K x {i}) 0 0).2.2.2 1).2 ⟨1, Subalgebra.one_mem _, (map_one _).symm⟩
+        exact ((_root_.GlobalTheory.PD.omB_alg k K (rB k K x {i}) 0 0).2.2.2 1).2 ⟨1, Subalgebra.one_mem _, (map_one _).symm⟩
       | succ n ih =>
         intro v hv
         rw [ExteriorAlgebra.ιMulti_succ_apply]
@@ -164,7 +164,7 @@ theorem omB_iff_pow_smul : ∀ (k : Type) [Field k] [CharZero k] (F K : Type) [F
       exact ⟨N, by rw [smul_comm]; exact Submodule.smul_mem _ r hN⟩
   · rintro ⟨N, hN⟩
     have := hsmul _ q (f⁻¹ ^ N) (pow_mem hfinv N) _
-      ((GlobalTheory.T.kahlerFormsOverSubalgebra_closure_properties k K (rB k K x {i}) q q).2.2.1 _ hBB' hN)
+      ((_root_.GlobalTheory.PD.omB_alg k K (rB k K x {i}) q q).2.2.1 _ hBB' hN)
     rwa [smul_smul, ← mul_pow, inv_mul_cancel₀ hf0, one_pow, one_smul] at this
 
 end GlobalTheory

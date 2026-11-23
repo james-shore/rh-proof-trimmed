@@ -54,12 +54,6 @@ namespace GlobalTheory.Hk3.HoweDuality.Square
 
 variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))]
 
-theorem mul_int {a b c : ℕ} {A : Matrix (Fin a) (Fin b) L} {B : Matrix (Fin b) (Fin c) L}
-    (hA : ∀ i j, A i j ∈ Formalism.UG.intL L) (hB : ∀ i j, B i j ∈ Formalism.UG.intL L) (i : Fin a) (j : Fin c) :
-    (A * B) i j ∈ Formalism.UG.intL L := by
-  rw [Matrix.mul_apply]
-  exact Subring.sum_mem _ fun k _ => Subring.mul_mem _ (hA i k) (hB k j)
-
 theorem star_int {σ : L →+* L} (hv : ∀ x, Valued.v (σ x) = Valued.v x) {a b : ℕ} {A : Matrix (Fin a) (Fin b) L}
     (hA : ∀ i j, A i j ∈ Formalism.UG.intL L) (i : Fin b) (j : Fin a) :
     (Matrix.transpose (A.map σ)) i j ∈ Formalism.UG.intL L := by
@@ -85,9 +79,9 @@ theorem gen {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))] {ϖ 
   have hQ'Q : Q' * Q = 1 := mul_eq_one_comm.mp hQQ'
   have hP'P : P' * P = 1 := mul_eq_one_comm.mp hPP'
   have hA'i : ∀ i j, (Q' * A * Matrix.transpose (Q'.map σ)) i j ∈ Formalism.UG.intL L :=
-    mul_int (mul_int hQ' hA) (star_int hv hQ')
+    _root_.GlobalTheory.Hk3.matMul_int (_root_.GlobalTheory.Hk3.matMul_int hQ' hA) (star_int hv hQ')
   have hB'i : ∀ i j, (Matrix.transpose (Q.map σ) * B * Q) i j ∈ Formalism.UG.intL L :=
-    mul_int (mul_int (star_int hv hQ) hB) hQ
+    _root_.GlobalTheory.Hk3.matMul_int (_root_.GlobalTheory.Hk3.matMul_int (star_int hv hQ) hB) hQ
   have h1 : Matrix.transpose (Q'.map σ) * Matrix.transpose (Q.map σ) = 1 := by
     rw [← Matrix.transpose_mul, ← Matrix.map_mul, hQQ', Matrix.map_one σ (map_zero σ) (map_one σ), Matrix.transpose_one]
   have hA'B' : (Q' * A * Matrix.transpose (Q'.map σ)) * (Matrix.transpose (Q.map σ) * B * Q) = 1 := by
@@ -111,7 +105,7 @@ theorem gen {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))] {ϖ 
   obtain ⟨l', hl', hG⟩ := GlobalTheory.T.completeSquare_diagonalNegPowUniformizer L ϖ σ q δ n n' _ _ ψ hU hq hA'i hB'i hA'B' hA'h hδ hpi hne a hD
   refine ⟨P' * ((P * x * Q - (Matrix.of (fun (i : Fin n') (j : Fin n) => if (i : ℕ) = (j : ℕ) ∧ 0 < a i then ϖ⁻¹ ^ a i else 0))) + l') * Q', ?_, ?_⟩
   · intro i j
-    exact mul_int (mul_int hP' (fun i j => add_mem (hE i j) (hl' i j))) hQ' i j
+    exact _root_.GlobalTheory.Hk3.matMul_int (_root_.GlobalTheory.Hk3.matMul_int hP' (fun i j => add_mem (hE i j) (hl' i j))) hQ' i j
   · have hxe : x - P' * ((P * x * Q - (Matrix.of (fun (i : Fin n') (j : Fin n) => if (i : ℕ) = (j : ℕ) ∧ 0 < a i then ϖ⁻¹ ^ a i else 0))) + l') * Q' = P' * ((Matrix.of (fun (i : Fin n') (j : Fin n) => if (i : ℕ) = (j : ℕ) ∧ 0 < a i then ϖ⁻¹ ^ a i else 0)) - l') * Q' := by
       have hx0 : x = P' * (P * x * Q) * Q' := by
         simp only [Matrix.mul_assoc, hQQ', Matrix.mul_one]
@@ -124,7 +118,7 @@ theorem gen {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))] {ϖ 
         P' * (((Matrix.of (fun (i : Fin n') (j : Fin n) => if (i : ℕ) = (j : ℕ) ∧ 0 < a i then ϖ⁻¹ ^ a i else 0)) - l') * (Q' * A * Matrix.transpose (Q'.map σ)) * Matrix.transpose (((Matrix.of (fun (i : Fin n') (j : Fin n) => if (i : ℕ) = (j : ℕ) ∧ 0 < a i then ϖ⁻¹ ^ a i else 0)) - l').map σ)) * Matrix.transpose (P'.map σ) := by
       simp only [Matrix.map_mul, Matrix.transpose_mul, Matrix.mul_assoc]
     rw [hg]
-    exact mul_int (mul_int hP' hG) (star_int hv hP')
+    exact _root_.GlobalTheory.Hk3.matMul_int (_root_.GlobalTheory.Hk3.matMul_int hP' hG) (star_int hv hP')
 
 end GlobalTheory.Hk3.HoweDuality.Square
 

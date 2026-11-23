@@ -55,26 +55,6 @@ namespace GlobalTheory.Mem.R3.Brg
 
 
 open Formalism.L2.Col in
-theorem conjIdeal_eq_conjP {E : Type} [Field E] [NumberField E] [StarRing E] (P : HeightOneSpectrum (𝓞 E)) :
-    Formalism.HermitianLatticesTheory.conjIdeal (K := E) P.asIdeal = (conjPrime₂ P).asIdeal := by
-  apply le_antisymm
-  · refine Ideal.span_le.2 ?_
-    rintro r ⟨s, hs, e⟩
-    show r ∈ (conjPrime₂ P).asIdeal
-    rw [mem_conjP]
-    have : cO E r = s := RingOfIntegers.ext (by
-      show star (r : E) = (s : E)
-      have e' : (r : E) = star (s : E) := e
-      rw [e', star_star])
-    rw [this]; exact hs
-  · intro r hr
-    rw [mem_conjP] at hr
-    refine Ideal.subset_span ⟨cO E r, hr, ?_⟩
-    show (r : E) = star (star (r : E))
-    rw [star_star]
-
-
-open Formalism.L2.Col in
 theorem g_notMem_of_levOff {X : Fields} {Pr : Primes X} (hPr : Pr.Ok)
     (P : letI := X.starE; LevOff (E := X.E) ∅ Pr.vGs ∅) (k : Fin 2) :
     ((Pr.g k : ℕ) : 𝓞 X.E) ∉ P.1.asIdeal := by
@@ -97,7 +77,7 @@ theorem g_notMem_of_levOff {X : Fields} {Pr : Primes X} (hPr : Pr.Ok)
       rw [mem_conjP]
       show cO X.E (X.conjO (Pr.piG k)) ∈ P.1.asIdeal
       exact (cO_cO (Pr.piG k)).symm ▸ h
-    exact P.2.2.2 (conjPrime₂ P.1) (Or.inr (hsub _ hc)) (conjIdeal_eq_conjP P.1).symm
+    exact P.2.2.2 (conjPrime₂ P.1) (Or.inr (hsub _ hc)) (_root_.Formalism.L2.Col.conjIdeal_asIdeal P.1).symm
   · exact P.2.2.1 (Or.inr (hsub _ ((mem_divs h0 _).2 h)))
 
 end GlobalTheory.Mem.R3.Brg
@@ -144,7 +124,7 @@ theorem values : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn X.B px) 
           rw [this]; exact hc'
         have heq : PP'.asIdeal = (Formalism.L2.Col.conjPrime₂ P.1).asIdeal :=
           PP'.isMaximal.eq_of_le (Formalism.L2.Col.conjPrime₂ P.1).isPrime.ne_top hle
-        exact hP'.2.2 PP' (Or.inr (Finset.mem_coe.2 (hQ _ h))) (heq.trans (conjIdeal_eq_conjP P.1).symm)
+        exact hP'.2.2 PP' (Or.inr (Finset.mem_coe.2 (hQ _ h))) (heq.trans (_root_.Formalism.L2.Col.conjIdeal_asIdeal P.1).symm)
     rw [hL.C, hL.xiH t]
     exact muVal_eq I hI hV i (tup_ixOf I t) P.1 hg hunr
   · show X.B.embLL (I.Ch.etaVal P.1 : X.B.LL) = _

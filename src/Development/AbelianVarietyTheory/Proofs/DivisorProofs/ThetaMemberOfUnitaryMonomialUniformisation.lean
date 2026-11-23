@@ -57,7 +57,7 @@ theorem member_of_monomial_unif : ∀ (E : Type) [Field E] [NumberField E] [IsCM
   obtain ⟨t₁, P₁, p, hG₁, hlin, hpsi⟩ := GlobalTheory.T.exists_unitaryUniformisation_baseChange_injective E H Dw l Xo c V hV t y P hG V₁ ρ fK hV₁ hinj hloc hfK
   obtain ⟨yK, x', hyK, hx', hx'u⟩ := GlobalTheory.GSep.valPt_lies_over_unitary E H Dw hpq l Xo c C X₁ act u π hL z₁ V₁ ev (spMap fK ≫ y) hreg
     (hpt.trans (Category.assoc _ _ _).symm)
-  obtain ⟨φ, hcart, hwl, hact⟩ := GlobalTheory.T.unitaryUniformisation_genericFibre_isPullback E H Dw hpq l Xo c C X₁ act u π hL V₁ hV₁ t₁ P₁ yK x' hx'
+  obtain ⟨φ, hcart, hwl, hact⟩ := _root_.GlobalTheory.USepGen.genfib_pull E H Dw hpq l Xo c C X₁ act u π hL V₁ hV₁ t₁ P₁ yK x' hx'
     (by rw [hx'u]; exact hG₁)
   obtain ⟨wl, hwl⟩ := hwl
   let e₈ : (Fin 1 → P.D.toPre.X) ≃+ P₁.D.toPre.X := (AddEquiv.piUnique fun _ : Fin 1 => P.D.toPre.X).trans p.xe.symm

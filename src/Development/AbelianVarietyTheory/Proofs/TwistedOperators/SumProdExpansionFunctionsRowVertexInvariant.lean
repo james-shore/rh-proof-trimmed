@@ -237,7 +237,7 @@ theorem local_prod (S : GridChoice W U) {t : T} {Φ : G.Datum} (β : CosFam G t)
   have hκ : ∀ w : locPl G t, inBasis (rank_vertex G t w.1 (X := (j + 1, D.R.m)) ⟨hj.le, le_rfl⟩) (S.B.β (j + 1) D.R.m) w.1
       (finG (G.V (.grid (j + 1) D.R.m)) k) ∈ givenLevel G t w.1 (j + 1, D.R.m) := fun w =>
     Subgroup.mem_iInf.1 (Subgroup.mem_inf.1 hk).1 w
-  rw [GlobalTheory.T.vacuum_scalars_eq_product_edge_factors_row S hμ hU j hj k hk c₁ c₂ h1 h2, ← Finset.prod_mul_distrib]
+  rw [_root_.GlobalTheory.RowVacScalar.scalars_eq_edgeFactors S hμ hU j hj k hk c₁ c₂ h1 h2, ← Finset.prod_mul_distrib]
   refine Finset.prod_congr rfl fun w _ => ?_
   rw [GlobalTheory.RowMoveAt.rowAt_move S hU j hj k w.1 w.2 y]
   exact GlobalTheory.T.termDatum_rowMove_level_edgeFactors S β hμ hq hc hU w j hj _ (hκ w) _ _

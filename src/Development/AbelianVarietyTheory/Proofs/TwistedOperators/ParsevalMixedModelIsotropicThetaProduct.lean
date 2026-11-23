@@ -63,11 +63,6 @@ private theorem heisO_apply (ψ : AddChar (AF D.host.F) ℂ) {S T : HSp D} (w : 
     (z : WO S T) : heisO ψ S T w g z = ψ (symplOH S T z w) * g (z + w) := by
   simp only [heisO]
 
-private theorem symplOH_zero_left_twisted_operators (S T : HSp D) (p : WO S T) : symplOH S T 0 p = 0 := by
-  have h := GlobalTheory.OrientedHeis.symplOH_add_left (0 : WO S T) 0 p
-  rw [zero_add] at h
-  linear_combination -h
-
 private theorem mul_mul_conj_mul_eq_of_mul_conj_eq_one (p a b : ℂ) (hp : p * starRingEnd ℂ p = 1) :
     p * a * starRingEnd ℂ (p * b) = a * starRingEnd ℂ b := by
   rw [map_mul]
@@ -166,12 +161,12 @@ theorem expand {V V' W : HSp D} {r : ℕ} {C C' : Matrix (Fin V.rank) (Fin r) D.
       one_smul, GlobalTheory.OrientedHeis.heisO_heisO (ψ := ψ) (isoPart V W C' (ξ.map (incA D))) (isoPart V W C' u) f, eXU,
       AddChar.map_zero_eq_one, one_smul, ← GlobalTheory.TowerRestrict.isoPart_add C', res_smul,
       GlobalTheory.TowerRestrict.res_heis_iso hs hcov hG, GlobalTheory.TowerRestrict.res_heis_mid hs, heisO_apply,
-      symplOH_zero_left_twisted_operators, AddChar.map_zero_eq_one, one_mul, zero_add]
+      _root_.GlobalTheory.MixModel.symplOH_zero_left, AddChar.map_zero_eq_one, one_mul, zero_add]
   have hAM : symplOH V W (isoPart V W C y₀) (midPart V V' W B x) = 0 := by
     rw [symplOH_eq, orth.2.1 _ _, mul_zero]
   have F0 : heisO ψ V W (isoPart V W C y₀) (heisO ψ V W (midPart V V' W B x) (heisO ψ V W (isoPart V W C' u) f)) 0 =
       heisO ψ V W (isoPart V W C' u) f (isoPart V W C y₀ + midPart V V' W B x) := by
-    rw [heisO_apply, heisO_apply ψ (midPart V V' W B x), symplOH_zero_left_twisted_operators, zero_add, hAM,
+    rw [heisO_apply, heisO_apply ψ (midPart V V' W B x), _root_.GlobalTheory.MixModel.symplOH_zero_left, zero_add, hAM,
       AddChar.map_zero_eq_one, one_mul, one_mul]
   refine ⟨hs1.congr fun ξ => ?_, ?_⟩
   · rw [key ξ, norm_mul, hψ.1.2.1, one_mul]

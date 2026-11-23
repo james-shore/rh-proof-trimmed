@@ -120,12 +120,12 @@ theorem GlobalTheory.FramePower.exists_nabValN_eq_of_harmonic : ∀ (E : Type) [
   have eF : B.FK T.Fr = C.ch.B.FK T.Fr := by
     funext i
     change MvPowerSeries.map _ (B.G.F i) = MvPowerSeries.map _ (C.ch.B.G.F i)
-    rw [GlobalTheory.ChartBiext.toK_self, hF, e1]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.gt_map_id, hF, e1]
   have eA : ∀ a, B.actK T.Fr a = C.ch.B.actK T.Fr a := by
     intro a
     funext i
     change MvPowerSeries.map _ (B.A.act a i) = MvPowerSeries.map _ (C.ch.B.A.act a i)
-    rw [GlobalTheory.ChartBiext.toK_self, hA, e2]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.gt_map_id, hA, e2]
   letI : Algebra ℚ T.V := (IsLocalization.lift (M := nonZeroDivisors ℤ) (S := ℚ) (g := Int.castRingHom T.V) (by
     rintro ⟨z, hz⟩
     have h0 : z ≠ 0 := nonZeroDivisors.ne_zero hz

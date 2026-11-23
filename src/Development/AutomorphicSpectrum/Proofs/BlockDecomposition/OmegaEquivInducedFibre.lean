@@ -182,7 +182,7 @@ theorem eq_zero_of_vecMul (e : c ⊕ d ≃ b) {κ : ℕ} (hκ : κ = Fintype.car
 theorem exists_topEmbR (e : c ⊕ d ≃ b) {κ : ℕ} (hκ : κ = Fintype.card c)
     (x : RankIn (k := k) (a := a) (b := b) {κ}) :
     ∃ y, ∃ w ∈ KO k b, x = lAct _ (topEmbR e y) w := by
-  obtain ⟨g, hg⟩ := GlobalTheory.T.exists_GL_mul_rightColumns_eq_zero_of_rank k a c d b e x.1ᵀ ((rank_transpose _).trans (x.2.trans hκ))
+  obtain ⟨g, hg⟩ := _root_.GlobalTheory.exists_gl_mul_cols_eq_zero_of_rank k a c d b e x.1ᵀ ((rank_transpose _).trans (x.2.trans hκ))
   obtain ⟨u, hu⟩ := (isUnit_transpose _).2 g.isUnit
   obtain ⟨p, hp, w, hw, h⟩ := iwasawa_blockTriangular k b (fun i => (blk (two e) i).toNat) u
   have hp' : p ∈ parab k (two e) := (mem_parab_two k).2 fun i j => hp (by

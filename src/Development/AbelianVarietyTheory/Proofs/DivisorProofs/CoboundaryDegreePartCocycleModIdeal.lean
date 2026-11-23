@@ -70,13 +70,7 @@ theorem coeff_subst_sub_mem :
 
 theorem coeff_op_of_degree_le_one : ∀ {B O : Type} [CommRing B] [CommRing O] (θ : B →+* O) {d : ℕ} {μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) B}, IsLift θ μ → ∀ {τ : Type} (u v : Fin d → MvPowerSeries τ B), (∀ j, constantCoeff (u j) = 0) → (∀ j, constantCoeff (v j) = 0) → ∀ (i : Fin d) (β : τ →₀ ℕ), β.degree ≤ 1 → coeff β (op μ u v i) = coeff β (u i + v i) := GlobalTheory.T.coeff_formalGroupLawEvalPoints_of_degree_le_one
 
-theorem coeff_prod_addLeft : ∀ {R : Type} [CommRing R] {d : ℕ} (α : Fin d ⊕ Fin d →₀ ℕ) (a b e : Fin d →₀ ℕ), coeff (Finsupp.sumElim a (Finsupp.sumElim b e)) (α.prod fun s k => (Sum.elim (fun i => (x1 i + x2 i : MvPowerSeries (Fin d ⊕ (Fin d ⊕ Fin d)) R)) x3 s) ^ k) = if α = Finsupp.sumElim (a + b) e then (∏ i, ((a + b) i).choose (a i) : R) else 0 := GlobalTheory.T.coeff_prod_pow_first_add_second_threeGroups
-
 theorem coeff_prod_addRight : ∀ {R : Type} [CommRing R] {d : ℕ} (α : Fin d ⊕ Fin d →₀ ℕ) (a b e : Fin d →₀ ℕ), coeff (Finsupp.sumElim a (Finsupp.sumElim b e)) (α.prod fun s k => (Sum.elim x1 (fun i => (x2 i + x3 i : MvPowerSeries (Fin d ⊕ (Fin d ⊕ Fin d)) R)) s) ^ k) = if α = Finsupp.sumElim a (b + e) then (∏ i, ((b + e) i).choose (b i) : R) else 0 := GlobalTheory.T.coeff_prod_pow_x1_x2_add_x3
-
-theorem coeff_evalTwoGroups_second_third_eq_zero : ∀ {R : Type} [CommRing R] {d : ℕ} (c : MvPowerSeries (Fin d ⊕ Fin d) R) (a b e : Fin d →₀ ℕ), a ≠ 0 → coeff (Finsupp.sumElim a (Finsupp.sumElim b e)) (at2 c x2 x3) = 0 := GlobalTheory.T.coeff_powerSeriesEvalTwoGroups_second_third_eq_zero
-
-theorem coeff_evalTwoGroups_first_second_eq_zero : ∀ {R : Type} [CommRing R] {d : ℕ} (c : MvPowerSeries (Fin d ⊕ Fin d) R) (a b e : Fin d →₀ ℕ), e ≠ 0 → coeff (Finsupp.sumElim a (Finsupp.sumElim b e)) (at2 c x1 x2) = 0 := GlobalTheory.T.coeff_evalTwoGroups_threeGroups_eq_zero_of_ne_zero
 
 end GlobalTheory.CobRel
 
@@ -145,9 +139,9 @@ theorem cocycle_rel_mod : ∀ (B O Q : Type) [CommRing B] [CommRing Q] [CommRing
       coeff β (Sum.elim (op μ x1 x2) x3 s) = coeff β (Sum.elim (fun i => x1 i + x2 i) x3 s) := by
     intro s β hβ
     cases s with
-    | inl i => exact coeff_op_of_degree_le_one θ hμ _ _ (fun j => (hX B j).1) (fun j => (hX B j).2.1) i β hβ
+    | inl i => exact _root_.GlobalTheory.QLog.OpLin.coeff_op_of_degree_le_one θ hμ _ _ (fun j => (hX B j).1) (fun j => (hX B j).2.1) i β hβ
     | inr i => rfl
-  obtain ⟨r2, hr2, h2⟩ := coeff_subst_sub_mem N _ _ hc2 hd2 m c hc w hw
+  obtain ⟨r2, hr2, h2⟩ := _root_.GlobalTheory.SubstMod.subst_coeff_sub_mem N _ _ hc2 hd2 m c hc w hw
   have hu2 : QLog.up (Q := Q) (Sum.elim (op μ x1 x2) x3) = Sum.elim (op (QLog.up (Q := Q) μ) x1 x2) x3 := by
     funext s
     cases s with
@@ -167,9 +161,9 @@ theorem cocycle_rel_mod : ∀ (B O Q : Type) [CommRing B] [CommRing Q] [CommRing
       (∏ i, ((a + b) i).choose (a i) : Q) * coeff (Finsupp.sumElim (a + b) e) c := by
     rw [coeff_subst (x_hasSubst _ _ (fun j => by simp [(hX Q j).1, (hX Q j).2.1]) (fun j => (hX Q j).2.2)),
       finsum_eq_single _ (Finsupp.sumElim (a + b) e)]
-    · rw [hw_def, coeff_prod_addLeft, ite_eq_left rfl, smul_eq_mul, mul_comm]
+    · rw [hw_def, _root_.GlobalTheory.BinomLeft.coeff_prod_pow_add, ite_eq_left rfl, smul_eq_mul, mul_comm]
     · intro α hα
-      rw [hw_def, coeff_prod_addLeft, ite_eq_right hα, smul_zero]
+      rw [hw_def, _root_.GlobalTheory.BinomLeft.coeff_prod_pow_add, ite_eq_right hα, smul_zero]
 
   have hc3 : ∀ s, constantCoeff (Sum.elim x1 (op μ x2 x3) s) = 0 := by
     intro s
@@ -181,8 +175,8 @@ theorem cocycle_rel_mod : ∀ (B O Q : Type) [CommRing B] [CommRing Q] [CommRing
     intro s β hβ
     cases s with
     | inl i => rfl
-    | inr i => exact coeff_op_of_degree_le_one θ hμ _ _ (fun j => (hX B j).2.1) (fun j => (hX B j).2.2) i β hβ
-  obtain ⟨r3, hr3, h3⟩ := coeff_subst_sub_mem N _ _ hc3 hd3 m c hc w hw
+    | inr i => exact _root_.GlobalTheory.QLog.OpLin.coeff_op_of_degree_le_one θ hμ _ _ (fun j => (hX B j).2.1) (fun j => (hX B j).2.2) i β hβ
+  obtain ⟨r3, hr3, h3⟩ := _root_.GlobalTheory.SubstMod.subst_coeff_sub_mem N _ _ hc3 hd3 m c hc w hw
   have hu3 : QLog.up (Q := Q) (Sum.elim x1 (op μ x2 x3)) = Sum.elim x1 (op (QLog.up (Q := Q) μ) x2 x3) := by
     funext s
     cases s with
@@ -202,16 +196,16 @@ theorem cocycle_rel_mod : ∀ (B O Q : Type) [CommRing B] [CommRing Q] [CommRing
       (∏ i, ((b + e) i).choose (b i) : Q) * coeff (Finsupp.sumElim a (b + e)) c := by
     rw [coeff_subst (x_hasSubst _ _ (fun j => (hX Q j).1) (fun j => by simp [(hX Q j).2.1, (hX Q j).2.2])),
       finsum_eq_single _ (Finsupp.sumElim a (b + e))]
-    · rw [hw_def, coeff_prod_addRight, ite_eq_left rfl, smul_eq_mul, mul_comm]
+    · rw [hw_def, _root_.GlobalTheory.BinomRight.coeff_prod_pow_second_add_third_threeGroups, ite_eq_left rfl, smul_eq_mul, mul_comm]
     · intro α hα
-      rw [hw_def, coeff_prod_addRight, ite_eq_right hα, smul_zero]
+      rw [hw_def, _root_.GlobalTheory.BinomRight.coeff_prod_pow_second_add_third_threeGroups, ite_eq_right hα, smul_zero]
 
   obtain ⟨k, hk, hk'⟩ := hcob w
   have hsplit : coeff w (cob2 (QLog.up (Q := Q) μ) c) = coeff w (at2 c x2 x3) -
       coeff w (MvPowerSeries.subst (Sum.elim (op (QLog.up (Q := Q) μ) x1 x2) x3) c) +
       coeff w (MvPowerSeries.subst (Sum.elim x1 (op (QLog.up (Q := Q) μ) x2 x3)) c) - coeff w (at2 c x1 x2) := by
     simp only [cob2, map_sub, map_add (f := _)]; rfl
-  rw [hsplit, hw_def, coeff_evalTwoGroups_second_third_eq_zero c a b e ha, coeff_evalTwoGroups_first_second_eq_zero c a b e he, ← hw_def] at hk'
+  rw [hsplit, hw_def, _root_.GlobalTheory.Katz.coeff_at2_x2_x3_eq_zero_of_first_ne_zero c a b e ha, _root_.GlobalTheory.coeff_at2_x1_x2_eq_zero_of_third_ne_zero c a b e he, ← hw_def] at hk'
   rw [hbe] at hv3
   refine ⟨-k - r2 + r3, N.add_mem (N.sub_mem (N.neg_mem hk) hr2) hr3, ?_⟩
   rw [map_add (f := _), map_sub, map_neg, ← hk', ← h2, ← h3, hv2, hv3]

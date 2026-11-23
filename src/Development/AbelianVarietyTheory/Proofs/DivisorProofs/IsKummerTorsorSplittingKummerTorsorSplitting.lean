@@ -61,17 +61,12 @@ theorem exists_comp_eq_of_injective {R : Type} [CommRing R] {A B K : Shv R} [Inj
   let S := ShortComplex.mk (kernel.ι g) g (kernel.condition g)
   have hS : S.Exact := S.exact_of_f_is_kernel (kernelIsKernel g)
   have hf : S.f ≫ φ = 0 := by
-    refine (GlobalTheory.T.bigEtaleModuleSheaf_mono_epi_iff_sections R (S.f ≫ φ)).2.2.2 0 fun U a => ?_
+    refine (_root_.GlobalTheory.EtC.mono_epi_sections R (S.f ≫ φ)).2.2.2 0 fun U a => ?_
     have h0 : Sec.map g (Sec.map (kernel.ι g) a) = 0 := by
       rw [← sec_map_comp, kernel.condition]; rfl
     change Sec.map φ (Sec.map (kernel.ι g) a) = Sec.map (0 : kernel g ⟶ K) a
     rw [h U _ h0]; rfl
   exact ⟨hS.descToInjective φ hf, hS.comp_descToInjective φ hf⟩
-
-theorem kernel_local (q : ℕ) [NeZero q] (V : Scheme.{0}) (c : (tripP q).obj (op V) →₀ ULift.{1} (ZMod q))
-    (h : (c.sum fun x r => r • (freeGen (ZMod q) unitsP V (unitsP.mk (tripP.get x).tgt) -
-      freeGen (ZMod q) unitsP V (unitsP.mk (tripP.get x).src))) = 0) :
-    (c.sum fun x r => r • resGen 1 (tripP.get x).root) = 0 := GlobalTheory.T.kummerRelation_boundary_kernel_generator_sum_zero q V c h
 
 theorem exists_isKum (q : ℕ) [NeZero q] : ∃ t, IsKum q t := by
   have hinj : Injective ((res (ZMod q) (tw q 1)).X 0) := (GlobalTheory.T.chosenInjectiveResolution_etaleSheaf_properties (ZMod q) (tw q 1)).2.1 0
@@ -86,18 +81,18 @@ theorem exists_isKum (q : ℕ) [NeZero q] : ∃ t, IsKum q t := by
     (fun U x => resGen 1 (tripP.get x).root)
     (fun V U g x => by
       unfold resGen
-      rw [sec_res_map, (GlobalTheory.T.tateTwist_sections_locally_generated q 1).2.2.2.1]
+      rw [sec_res_map, (_root_.GlobalTheory.EtC.twist_sections q 1).2.2.2.1]
       rfl)
   obtain ⟨ψ, hψ⟩ := exists_comp_eq_of_injective G Φ (fun U a ha => by
     apply sec_eq_zero_of_loc
-    refine loc_calculus.2.1 U _ _ ((GlobalTheory.T.freeEtaleSheaf_section_locally_finite_combination (ZMod q) (tripP q) U).1 a) ?_
+    refine loc_calculus.2.1 U _ _ ((_root_.GlobalTheory.EtC.free_sec_loc (ZMod q) (tripP q) U).1 a) ?_
     rintro V g ⟨c, hc⟩
     have hc' := congrArg (Sec.map G) hc
     rw [← sec_res_map, ha, res_zero', smap_sum] at hc'
     rw [sec_res_map, hc, smap_sum]
     simp only [hG] at hc'
     simp only [hΦ]
-    exact kernel_local q V c hc'.symm)
+    exact _root_.GlobalTheory.EtC.KummerSplit.relation_kernel q V c hc'.symm)
   refine ⟨fun U v => Sec.map ψ (freeGen (ZMod q) unitsP U (unitsP.mk v)), ?_, ?_⟩
   · intro V U g v _
     rw [sec_res_map, hu.2.2.1]

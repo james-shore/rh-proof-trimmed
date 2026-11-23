@@ -64,19 +64,10 @@ theorem grpPullback_id {S : Scheme.{0}} (G : Over S) [GrpObj G] : IsGrpPullback 
   rw [ex, ey, ← MonObj.comp_mul]
   exact (Category.id_comp _).trans (Category.comp_id _).symm
 
-theorem spMap_comp_ringHom {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  rw [← Spec.map_comp]; rfl
-
-theorem sec_eq_of_f {X : Scheme.{0}} {M : LB X} {s s' : LB.Sec M} (h : ∀ j, s.f j = s'.f j) : s = s' := by
-  cases s; cases s'
-  simp only [LB.Sec.mk.injEq]
-  exact funext h
-
 theorem pullS_pullS {S : Scheme.{0}} (G : Over S) [GrpObj G] {L : LB G.left} (hL : L.IsLB) (a : ℤ) {T T' T'' : Over S}
     (h : T' ⟶ T) (h' : T'' ⟶ T') (s : LB.Sec (LPow G L a T)) :
     VVRank.pullS G a h' (VVRank.pullS G a h s) = VVRank.pullS G a (h' ≫ h) s := by
-  refine sec_eq_of_f (sec_ext_val hL (fun y J hJ => ?_))
+  refine _root_.ReciprocityTheory.ChartRestriction.G.DVR.SecOps.sec_ext (sec_ext_val hL (fun y J hJ => ?_))
   refine (VVRank.sv_pullS G a h' _ (𝟙 _) y hJ).trans ((VVRank.sv_pullS G a h s _ y hJ).trans ?_)
   refine Eq.trans ?_ (VVRank.sv_pullS G a (h' ≫ h) s (𝟙 _) y hJ).symm
   rw [MonoidalCategory.comp_whiskerRight, Over.comp_left, Category.assoc]
@@ -88,7 +79,7 @@ theorem thList_ext_perm : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMo
   simp only [SecAt.pull] at h₁
   rw [pullS_pullS G hL] at h₁
   have ey : spMap φ ≫ spMap i ≫ x = spMap (φ.comp i) ≫ x := by
-    rw [← Category.assoc, spMap_comp_ringHom]
+    rw [← Category.assoc, _root_.GlobalTheory.spMap_comp_ring]
   have key : ∀ {y y' : Sp F ⟶ S} (e : y = y') (u : Over.mk y ⟶ Over.mk x) (u' : Over.mk y' ⟶ Over.mk x),
       u.left = u'.left → ∀ {p : Fin N → (Over.mk y ⟶ G)} {d : Fin N → F},
       ThList G L ρ m y (VVRank.pullS G _ u θ) p d →
@@ -98,7 +89,7 @@ theorem thList_ext_perm : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMo
     obtain rfl : u = u' := Over.OverMorphism.ext hu
     exact ⟨p, h⟩
   obtain ⟨q₁, H₁⟩ := key ey _ (Over.homMk (spMap (φ.comp i)) rfl : Over.mk (spMap (φ.comp i) ≫ x) ⟶ Over.mk x)
-    (by simp only [Over.comp_left, Over.homMk_left]; rw [spMap_comp_ringHom]) h₁
+    (by simp only [Over.comp_left, Over.homMk_left]; rw [_root_.GlobalTheory.spMap_comp_ring]) h₁
   have hPy : PolFib G L g (spMap (φ.comp i) ≫ x) :=
     (GlobalTheory.T.principallyPolarisedFibre_iff_of_grpPullback S S G L G L (𝟙 S) (𝟙 G.left) hL hL (grpPullback_id G)
       (GlobalTheory.ThetaAffineGlue.lbIso_pull_id hL) g R x).2 F (φ.comp i) hP

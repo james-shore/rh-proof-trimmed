@@ -61,7 +61,7 @@ theorem toralGal_of_holds : UpperTheory.Gal.ToralGalois.Inq → SphericalLevelCo
       (wdOf h hl ι r).mono0 ∧ (wdOf h hl ι r).charPol g = ∏ j, (X - C ((ξ j (a g) : ℂˣ) : ℂ)) := by
     intro g hg
     obtain ⟨M, _, _, _, _, _, _, _, u, h', P, χ', hP, hlift, hfix, B, hB, hchar⟩ :=
-      GlobalTheory.T.frobenius_charpoly_of_unlinked_unramified_support hI Ω E l ι n hn π χ hπ r hr w A h σ hσ ξ hξ hsupp hunl a ha g hg
+      _root_.GalTw.GlobalTheory.RoadU.exists_sph_lift_of_toral hI Ω E l ι n hn π χ hπ r hr w A h σ hσ ξ hξ hsupp hunl a ha g hg
     have hl' : ((l : ℕ) : 𝓞 M) ∉ u.asIdeal := by
       intro hm
       apply hl
@@ -72,7 +72,7 @@ theorem toralGal_of_holds : UpperTheory.Gal.ToralGalois.Inq → SphericalLevelCo
     have hF : UpperTheory.V.Af.FrobEig ι (resTo M r) u (UpperTheory.V.Af.algSat n (normV u) B) :=
       hS M Ω l ι n hn P χ' hP (resTo M r) hr' u trivial B hB hl'
     have hwd : wdOf h' hl' ι (resTo M r) = satWD h' n B :=
-      GlobalTheory.T.weilDeligneParam_eq_unramifiedSatake_of_frobenius Ω M l ι n (resTo M r) hr'.1 u hl' A h' B hF
+      _root_.GlobalTheory.RoadU.wdOf_eq_satWD_of_frobEig Ω M l ι n (resTo M r) hr'.1 u hl' A h' B hF
     have hres := GlobalTheory.AboveL.wdOf_restricts E M Ω A w u h h' l ι n r hl hl' hr.1
     obtain ⟨-, hmono, hcp⟩ := GlobalTheory.AboveL.restricts_lpDim_mono0_charPol E M Ω A w u h h' _ _ hres
     let g' : G M Ω := AlgEquiv.ofRingEquiv (f := (g : G E Ω).toRingEquiv) hfix

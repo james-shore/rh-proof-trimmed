@@ -156,7 +156,7 @@ theorem isStdX_basis : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
   have h1V : ∀ v, (1 : Matrix (Fin 1) (Fin 1) (AF F ⊗[F] E)).map (prV v) = 1 := fun v =>
     Matrix.map_one _ (map_zero _) (map_one _)
   simp only [hg, Units.val_one, hI, hV, h1I, h1V] at h1
-  have h2 := GlobalTheory.T.restrictedProduct_measure_smul_factors_eq_smul F E d b 1 M _ _ _
+  have h2 := _root_.GlobalTheory.GaugeEx.ProdScale.isProd_smul F E d b 1 M _ _ _
     (modu (Ainf F ⊗[F] E) (inclR (Ainf F) (P : Matrix (Fin M) (Fin M) E).det)) _ h1 hfin
   rw [hone, one_smul] at h2
   exact h2

@@ -306,9 +306,9 @@ theorem exists_radius {i t : ℕ} (ψ : AddChar k Circle) (hψ : Continuous ψ) 
     ∃ (s : kˣ) (hs : valuation k (s : k) ≤ 1), valuation k (s : k) < 1 ∧ (∀ y ∈ GlobalTheory.SplitWeil.cball s, ψ y = 1) ∧
       (∀ x ∈ congM k s hs ((i + 1) + t), x ∈ O ∧ dpowM ((i + 1) + t) (-1 / 2) x = 1) ∧
       (congM k s hs ((i + 1) + t + 1) : Set (Mir k ((i + 1) + t + 1))) ⊆ O₁ := by
-  obtain ⟨s₁, hs₁⟩ := GlobalTheory.T.congruence_subgroups_basis_nhds k _ O₁ hO₁
+  obtain ⟨s₁, hs₁⟩ := _root_.GlobalTheory.CompanionTheory.BZPhiPG.Onto.congM_subset_nhds k _ O₁ hO₁
   obtain ⟨s₂, hs₂⟩ := GlobalTheory.SplitWeil.exists_cball_addChar_eq_one ψ hψ
-  obtain ⟨s₃, hs₃⟩ := GlobalTheory.T.congruence_subgroups_basis_nhds k _ _ (Filter.inter_mem hO (dpowM_nhds ((i + 1) + t) (-1 / 2)))
+  obtain ⟨s₃, hs₃⟩ := _root_.GlobalTheory.CompanionTheory.BZPhiPG.Onto.congM_subset_nhds k _ _ (Filter.inter_mem hO (dpowM_nhds ((i + 1) + t) (-1 / 2)))
   obtain ⟨s₄, hs₄⟩ := exists_lt_one (k := k)
   obtain ⟨a₁, ha₁, ha₂⟩ := exists_small s₁ s₂
   obtain ⟨a₂, ha₃, ha₄⟩ := exists_small s₃ s₄

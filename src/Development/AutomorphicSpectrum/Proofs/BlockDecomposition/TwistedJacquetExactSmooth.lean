@@ -113,7 +113,7 @@ theorem twMap_range_eq_ker : ∀ {G V₁ V₂ V₃ : Type} [Group G] [Topologica
       exact hg x w0
     have hmem : (Submodule.Quotient.mk w : V₂ ⧸ LinearMap.ker g) ∈ GlobalTheory.PRep.twKer ρq N θ :=
       GlobalTheory.CompanionTheory.PRep.JacExact.twKer_reflect ρq ρ₃ hq h₃ N θ hθ hN gb hgb_inj hgb_eq _ hx
-    rw [GlobalTheory.CompanionTheory.PRep.twKer_map_closed ρ₂ ρq N θ (LinearMap.ker g).mkQ
+    rw [_root_.GlobalTheory.CompanionTheory.PRep.twKer_eq_map_of_surjective ρ₂ ρq N θ (LinearMap.ker g).mkQ
       (Submodule.mkQ_surjective _) (fun x v => rfl)] at hmem
     obtain ⟨w', hw', hw'eq⟩ := hmem
     rw [Submodule.mkQ_apply, Submodule.Quotient.eq, ← hfg, LinearMap.mem_range] at hw'eq

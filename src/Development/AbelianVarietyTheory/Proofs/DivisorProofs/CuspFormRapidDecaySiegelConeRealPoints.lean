@@ -77,7 +77,7 @@ theorem cuspForm_rapidDecay_siegel : GlobalTheory.Published.AutomorphicFormsFini
     mul_nonneg (add_nonneg hK0 hS0) hC1, ?_⟩
   intro r d hr hrt hd hprod c hc
   have hhd : height d ^ N ≤ (1 + ∑ i, r i + ∑ i, (r i)⁻¹) ^ N :=
-    pow_le_pow_left₀ (by linarith [one_le_height d]) (GlobalTheory.T.height_positiveDiagonal_le_sum_add_inv E a r d hr hd) N
+    pow_le_pow_left₀ (by linarith [one_le_height d]) (_root_.GlobalTheory.height_diagonal_le_sum E a r d hr hd) N
   have hP0 : 0 ≤ ∏ i, r i ^ lam i := Finset.prod_nonneg fun i _ => Real.rpow_nonneg (hr i).le _
   have hsplit : (max C0 0 * B ^ N + ∑ p : Fin a × Fin a, Cf p.1 p.2) * C1 * ∏ i, r i ^ lam i
       = max C0 0 * B ^ N * (C1 * ∏ i, r i ^ lam i)

@@ -102,7 +102,7 @@ theorem commutatorPairing_eighthPower_bundle : ∀ (S : Scheme.{0}) [IsLocallyNo
   have key := GlobalTheory.PairingComb.weilIs_linComb hG P'.isAb hΛ (fun ab : Fin 8 × Fin 8 => lift (pr ab.1) (pr ab.2)) hφ
     (fun ab => W ab.1 ab.2) (n := n) (x := x) (y := y) (fun ab => c ab.1 ab.2 * c ab.2 ab.1) (fun ab => by
       rw [comp_lift, comp_lift]
-      exact GlobalTheory.T.weilPairing_mumfordLambda_square S P n T _ _ _ _ (ht hx _) (ht hx _) (ht hy _) (ht hy _) _ _ (hc ab.1 ab.2) (hc ab.2 ab.1))
+      exact _root_.GlobalTheory.LamPairing.weilIs_lam S P n T _ _ _ _ (ht hx _) (ht hx _) (ht hy _) (ht hy _) _ _ (hc ab.1 ab.2) (hc ab.2 ab.1))
   refine GlobalTheory.PELFamily.weilIs_of_lbIso hG P'.isAb P'.isLB hM ?_ key
   refine LBIso.trans P'.isLB hM (LB.isLB_pull hM _) hL ?_
   have := GlobalTheory.DescendedPrincipal.lbIso_pull_id hM
@@ -194,7 +194,7 @@ theorem label_proj_eq : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R]
       exact this
     obtain ⟨z, hz, -⟩ := (q₁ (qw v) q).1 (by rw [hqw, hav])
     rw [ofAdd_sub, map_div, h₁, hz, ofAdd_add, map_mul, ofAdd_nsmul, map_pow, hτk, _root_.mul_one, div_self']
-  obtain ⟨z, hz⟩ := GlobalTheory.T.exists_eq_nsmul_of_forall_char_pow_eq_one _ F k hkF _ key
+  obtain ⟨z, hz⟩ := _root_.GlobalTheory.mem_smul_of_forall_char_pow_eq_one _ F k hkF _ key
   exact ⟨z, by rw [← hz]; abel⟩
 
 end GlobalTheory.Poinc.Eq8.Labels

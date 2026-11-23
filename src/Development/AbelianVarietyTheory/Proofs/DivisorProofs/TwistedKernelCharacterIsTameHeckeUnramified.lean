@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.KernelSpanOverClasses
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IntValuationEqOfMem
 
 @[expose] public section
 
@@ -55,24 +56,6 @@ section General
 open NumberField IsDedekindDomain Formalism.L2.Host
 
 variable {L : Type} [Field L] [NumberField L]
-
-theorem inf_triv [_root_.NumberField.IsTotallyComplex L] (χ : HChar L) {n : ℕ} (hn : 0 < n) (h : χ.OrderDvd n) (k : Lˣ) : χ.inf k = 1 := by
-  have hpow : ∀ x, χ.1 x ^ n = 1 := fun x => by
-    have h1 : (χ ^ n).1 x = 1 := by rw [show χ ^ n = 1 from h]; rfl
-    simpa using h1
-  show χ.1 (infDiag k) = 1
-  rw [infDiag, MonoidHom.finsetProd_apply, map_prod]
-  refine Finset.prod_eq_one fun w _ => ?_
-  let e := InfinitePlace.Completion.ringEquivComplexOfIsComplex (IsTotallyComplex.isComplex w)
-  obtain ⟨z, hz⟩ := IsAlgClosed.exists_pow_nat_eq (e (atInf w k : w.Completion)) hn
-  have hz0 : e.symm z ≠ 0 := by
-    intro h0
-    have h1 : z = 0 := by simpa using congrArg e h0
-    rw [h1, zero_pow hn.ne'] at hz
-    exact (atInf w k).ne_zero (e.injective (by rw [← hz, map_zero]))
-  have hk : atInf w k = Units.mk0 _ hz0 ^ n := Units.ext (e.injective (by
-    rw [← hz, Units.val_pow_eq_pow_val, map_pow, Units.val_mk0, RingEquiv.apply_symm_apply]))
-  rw [MonoidHom.comp_apply, hk, map_pow, map_pow, hpow]
 
 theorem hasInf_mul_inv {I : Type} [Fintype I] {φ : I → L →+* ℂ} {n m : I → ℤ} {α β γ : HChar L}
     (ha : α.HasInf φ n) (hb : ∀ k, β.inf k = 1) (hc : γ.HasInf φ m) : (α * β * γ⁻¹).HasInf φ (fun i => n i - m i) := by
@@ -122,7 +105,7 @@ theorem frame_char (D : D7) (C : Formalism.L2.Host.CharFrame D) (i : Fin D.R.m) 
   refine ⟨D.host.g 0 * D.host.g 1 * p, fun τ => n τ - 1,
     mul_ne_zero (mul_ne_zero (D.host.g_prime 0).ne_zero (D.host.g_prime 1).ne_zero) hp.ne_zero, fun Q hQ => ?_,
     fun Q hQ x hx => ?_, fun Q hQ x => ?_, fun Q x hx hx' => ?_,
-    hasInf_mul_inv hn (inf_triv _ ho hod) C.isEta.inf⟩
+    hasInf_mul_inv hn (_root_.GlobalTheory.TypeValues.inf_eq_one _ ho hod) C.isEta.inf⟩
   · rw [Nat.cast_mul, Nat.cast_mul] at hQ
     rcases Q.isPrime.mem_or_mem hQ with h | h
     · rcases Q.isPrime.mem_or_mem h with h | h

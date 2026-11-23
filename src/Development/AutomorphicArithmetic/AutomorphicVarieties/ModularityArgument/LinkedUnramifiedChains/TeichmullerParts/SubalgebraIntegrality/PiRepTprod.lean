@@ -47,17 +47,12 @@ section Transfer
 
 variable {G G' W W' : Type} [Group G] [Group G'] [AddCommGroup W] [Module ℂ W] [AddCommGroup W'] [Module ℂ W']
 
-private lemma irr_iff (ρ : Representation ℂ G W) :
-    ρ.IsIrreducible ↔ Nontrivial W ∧
-      ∀ N : Submodule ℂ W, (∀ g, ∀ v ∈ N, ρ g v ∈ N) → N = ⊥ ∨ N = ⊤ :=
-  _root_.UpperTheory.Reformulated.B.Ra6.irr_iff ρ
-
 private lemma transfer (ρ : Representation ℂ G W) (ρ' : Representation ℂ G' W') (φ : G' → G)
     (hφ : Function.Surjective φ) (e : W' ≃ₗ[ℂ] W)
     (h : ∀ g x, e (ρ' g x) = ρ (φ g) (e x)) (hρ : AbsIrr ρ) : AbsIrr ρ' := by
   obtain ⟨h1, h2⟩ := hρ
-  obtain ⟨hW, hN⟩ := (irr_iff ρ).1 h1
-  refine ⟨(irr_iff ρ').2 ⟨e.toEquiv.nontrivial, fun N hN' => ?_⟩, fun f hf => ?_⟩
+  obtain ⟨hW, hN⟩ := (_root_.UpperTheory.Reformulated.B.Ra6.irr_iff ρ).1 h1
+  refine ⟨(_root_.UpperTheory.Reformulated.B.Ra6.irr_iff ρ').2 ⟨e.toEquiv.nontrivial, fun N hN' => ?_⟩, fun f hf => ?_⟩
   · have hinv : ∀ g, ∀ v ∈ N.map e.toLinearMap, ρ g v ∈ N.map e.toLinearMap := by
       rintro g _ ⟨x, hx, rfl⟩
       obtain ⟨g', rfl⟩ := hφ g
@@ -117,7 +112,7 @@ private lemma Pp_equiv {α β : Type} (f : β ≃ α) (h : Pp α) : Pp β := by
   rfl
 
 private lemma absIrr_triv : AbsIrr (Representation.trivial ℂ Unit ℂ) := by
-  refine ⟨(irr_iff _).2 ⟨inferInstance, fun N _ => eq_bot_or_eq_top N⟩, fun f _ => ⟨f 1, ?_⟩⟩
+  refine ⟨(_root_.UpperTheory.Reformulated.B.Ra6.irr_iff _).2 ⟨inferInstance, fun N _ => eq_bot_or_eq_top N⟩, fun f _ => ⟨f 1, ?_⟩⟩
   refine LinearMap.ext_ring ?_
   simp
 

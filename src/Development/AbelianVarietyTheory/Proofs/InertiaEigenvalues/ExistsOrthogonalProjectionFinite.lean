@@ -89,8 +89,6 @@ theorem exists_orthogonal_projection_finite {W : Type} [AddCommGroup W] [Module 
   simp [T] at this
   simp [map_sub, this]
 
-theorem exists_orth_proj : ∀ {W : Type} [inst : AddCommGroup W] [inst_1 : Module ℂ W] (B : W →ₗ⋆[ℂ] W →ₗ[ℂ] ℂ), (∀ (v : W), ((B : W → W →ₗ[ℂ] ℂ) v : W → ℂ) v = (0 : ℂ) → v = (0 : W)) → ∀ (M : Submodule ℂ W) [FiniteDimensional ℂ ↥M] (v : W), ∃ m ∈ M, ∀ z ∈ M, ((B : W → W →ₗ[ℂ] ℂ) z : W → ℂ) (v - m) = (0 : ℂ) := by
-  intro W _ _ B hB M _ v
-  exact exists_orthogonal_projection_finite B hB M v
+alias exists_orth_proj := _root_.GlobalTheory.OrthogonalProjection.exists_orthogonal_projection_finite
 
 end GlobalTheory.OrthogonalProjection

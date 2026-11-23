@@ -175,8 +175,7 @@ theorem uMat_mul_inv (a : Formalism.REAL.UJ ε) : uMat a * uMat a⁻¹ = 1 := by
 theorem uMat_inv_mul (a : Formalism.REAL.UJ ε) : uMat a⁻¹ * uMat a = 1 := by
   rw [← Formalism.L2.SG.Pf.Tau.uMat_mul, inv_mul_cancel, Formalism.L2.SG.Pf.Tau.uMat_one]
 
-theorem continuous_uMat : Continuous fun g : Formalism.REAL.UJ ε => uMat g :=
-  Units.continuous_val.comp continuous_subtype_val
+alias continuous_uMat := _root_.Formalism.L2.SG.WuDecayPf.continuous_uMat
 
 end Formalism.L2.SG.Pf.WFL.HNL
 
@@ -185,13 +184,6 @@ namespace Formalism.L2.SG.Pf.WFL
 open Formalism.L2.SG.Pf.WFL.HNL
 
 variable {k r : ℕ}
-
-private theorem hJ_swap_eq_star {n : ℕ} (ε : Fin n → Bool) (x y : Fin n → ℂ) :
-    hJ ε y x = star (hJ ε x y) := by
-  simp only [hJ, Formalism.REAL.Jm, Matrix.mulVec_diagonal, dotProduct, star_sum, star_mul', star_star,
-    Pi.star_apply]
-  refine Finset.sum_congr rfl fun i _ => ?_
-  split_ifs <;> simp only [star_one, star_neg] <;> ring
 
 private theorem hJ_add_right' {n : ℕ} (ε : Fin n → Bool) (x y y' : Fin n → ℂ) :
     hJ ε x (y + y') = hJ ε x y + hJ ε x y' := by
@@ -247,15 +239,15 @@ private theorem eq_frame_expansion_of_isFrameJ {ε : Fin (2 * r + k + 1) → Boo
       ∑ b, hJ ε (wf b) x • wf b := by
   obtain ⟨ee, ff, ef, ez, fz, zz, ww, ew, fw, zw⟩ := hF
   have hfe : ∀ c a, hJ ε (f c) (e a) = if c = a then 1 else 0 := fun c a => by
-    rw [hJ_swap_eq_star, ef]
+    rw [_root_.Formalism.L2.SG.Pf.WFL.hJ_swap, ef]
     by_cases h : a = c
     · subst h; simp
     · simp [h, Ne.symm h]
-  have hze : ∀ a, hJ ε z0 (e a) = 0 := fun a => by rw [hJ_swap_eq_star, ez]; simp
-  have hzf : ∀ a, hJ ε z0 (f a) = 0 := fun a => by rw [hJ_swap_eq_star, fz]; simp
-  have hwe : ∀ b a, hJ ε (wf b) (e a) = 0 := fun b a => by rw [hJ_swap_eq_star, ew]; simp
-  have hwf : ∀ b a, hJ ε (wf b) (f a) = 0 := fun b a => by rw [hJ_swap_eq_star, fw]; simp
-  have hwz : ∀ b, hJ ε (wf b) z0 = 0 := fun b => by rw [hJ_swap_eq_star, zw]; simp
+  have hze : ∀ a, hJ ε z0 (e a) = 0 := fun a => by rw [_root_.Formalism.L2.SG.Pf.WFL.hJ_swap, ez]; simp
+  have hzf : ∀ a, hJ ε z0 (f a) = 0 := fun a => by rw [_root_.Formalism.L2.SG.Pf.WFL.hJ_swap, fz]; simp
+  have hwe : ∀ b a, hJ ε (wf b) (e a) = 0 := fun b a => by rw [_root_.Formalism.L2.SG.Pf.WFL.hJ_swap, ew]; simp
+  have hwf : ∀ b a, hJ ε (wf b) (f a) = 0 := fun b a => by rw [_root_.Formalism.L2.SG.Pf.WFL.hJ_swap, fw]; simp
+  have hwz : ∀ b, hJ ε (wf b) z0 = 0 := fun b => by rw [_root_.Formalism.L2.SG.Pf.WFL.hJ_swap, zw]; simp
   have key := eq_zero_of_hJ_frame_eq_zero_of_isFrameJ ⟨ee, ff, ef, ez, fz, zz, ww, ew, fw, zw⟩
     (y := x - (∑ a, hJ ε (f a) x • e a + ∑ a, hJ ε (e a) x • f a - hJ ε z0 x • z0 +
       ∑ b, hJ ε (wf b) x • wf b))
@@ -270,7 +262,7 @@ private theorem hJ_self_eq_frame_parseval {ε : Fin (2 * r + k + 1) → Bool} {e
     (x : Fin (2 * r + k + 1) → ℂ) :
     hJ ε x x = ∑ a, (hJ ε (f a) x * star (hJ ε (e a) x) + hJ ε (e a) x * star (hJ ε (f a) x)) -
       hJ ε z0 x * star (hJ ε z0 x) + ∑ b, hJ ε (wf b) x * star (hJ ε (wf b) x) := by
-  have hs : ∀ v, hJ ε x v = star (hJ ε v x) := fun v => hJ_swap_eq_star ε v x
+  have hs : ∀ v, hJ ε x v = star (hJ ε v x) := fun v => _root_.Formalism.L2.SG.Pf.WFL.hJ_swap ε v x
   rw [congrArg (hJ ε x) (eq_frame_expansion_of_isFrameJ hF x)]
   simp only [hJ_sub_right_unitary_haar_products, hJ_add_right', hJ_right_sum, hJ_smul_right_unitary_haar_products]
   simp only [hs]

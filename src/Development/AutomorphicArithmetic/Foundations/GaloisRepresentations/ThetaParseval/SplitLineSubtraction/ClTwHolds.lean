@@ -94,7 +94,7 @@ theorem UpperTheory.Gal.TP.Sub.clTw_holds :
         ((rk1 (μ.comp (Dec (F := E) A).subtype) g : GL (Fin 1) (Loc.Om l)) : Matrix (Fin 1) (Fin 1) (Loc.Om l)) :=
       Units.continuous_val.comp ck
     rw [← e3] at q3
-    have key := GlobalTheory.T.fontaineParameter_twist_potentiallySemistable l P AI hT ι E Ω A w h O Bw hj a _ _ hcs hck q1 q2 q3
+    have key := _root_.GlobalTheory.TwistParamAbove.wdAt_twist l P AI hT ι E Ω A w h O Bw hj a _ _ hcs hck q1 q2 q3
     rw [e3] at key
     rw [key]
     exact (hW E Ω A w h _ _).2.2.2 g S c (p2 g) (p1 g)

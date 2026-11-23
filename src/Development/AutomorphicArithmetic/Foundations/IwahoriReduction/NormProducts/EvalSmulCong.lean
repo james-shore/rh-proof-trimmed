@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Definitions.Foundations.LiftSLMapMulInvMem
 
 @[expose] public section
 
@@ -98,12 +99,6 @@ private theorem rep_kmap {X : Tower Ω ε} {l : ℕ} [Fact l.Prime] {n : ℕ} {a
   rw [e, h]
   rfl
 
-private theorem cls_mul (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] (n : ℕ) (a b : X.Kˣ) :
-    X.cls l n (a * b) = X.cls l n a + X.cls l n b := by
-  unfold Tower.cls
-  rw [← Submodule.Quotient.mk_add, ← TensorProduct.tmul_add]
-  rfl
-
 private theorem cls_one (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] (n : ℕ) : X.cls l n 1 = 0 := by
   unfold Tower.cls
   rw [ofMul_one, TensorProduct.tmul_zero]
@@ -114,7 +109,7 @@ private theorem cls_prod (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] (n : ℕ) {�
   classical
   induction s using Finset.induction_on with
   | empty => simpa using cls_one X l n
-  | insert i s hi ih => rw [Finset.prod_insert hi, Finset.sum_insert hi, cls_mul, ih]
+  | insert i s hi ih => rw [Finset.prod_insert hi, Finset.sum_insert hi, _root_.GlobalTheory.K4.cls_mul, ih]
 
 private theorem cls_zpow (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] (n : ℕ) (a : X.Kˣ) (z : ℤ) :
     X.cls l n (a ^ z) = (z : ℤ_[l]) • X.cls l n a := by
@@ -205,7 +200,7 @@ private theorem act_coset {X : Tower Ω ε} {l : ℕ} [Fact l.Prime] {n w : ℕ}
   have e : Units.map (X.sl (ofSL h)).toRingEquiv.toMonoidHom a = a * t ^ l ^ n := Units.ext (by simpa using ht)
   have h1 := rep_kmap hx' (X.sl (ofSL h)).toRingEquiv
   unfold Rep at h1 hx
-  rw [h1, e, cls_mul, cls_pow, add_zero, hx]
+  rw [h1, e, _root_.GlobalTheory.K4.cls_mul, cls_pow, add_zero, hx]
 
 private theorem tr_cg {X : Tower Ω ε} {l : ℕ} [Fact l.Prime] {n w : ℕ} {H G : Subgroup SL(2, ℤ)}
     (hH : H ≤ CongruenceSubgroup.Gamma (l ^ n)) {a : X.Kˣ} (ha : InvH X H (l ^ n) a) {x x' : X.Khat l}
@@ -305,7 +300,7 @@ private theorem tr_comp {X : Tower Ω ε} {l : ℕ} [Fact l.Prime] {n w : ℕ} {
   rw [Finset.sum_congr rfl fun k _ => hk k, ← Finset.smul_sum, ← cls_prod]
   have e : ∏ k, Units.map (X.sl (ofSL (δ k))).toRingEquiv.toMonoidHom a' = a * h ^ l ^ n :=
     Units.ext (by simpa [Units.coe_prod] using hp)
-  rw [e, cls_mul, cls_pow, add_zero]
+  rw [e, _root_.GlobalTheory.K4.cls_mul, cls_pow, add_zero]
   show _ = AdicCompletion.eval (idl l) (X.Kl l) n (r • x)
   rw [map_smul, hx]
 

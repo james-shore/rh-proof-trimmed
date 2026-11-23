@@ -56,18 +56,6 @@ open Matrix
 
 namespace GlobalTheory.BoundedUnitary
 
-theorem norm_eigenvalue_le_one {n : ℕ} (M : Matrix (Fin n) (Fin n) ℂ) (C : ℝ)
-    (hC : ∀ k : ℕ, ∀ i j, ‖(M ^ k) i j‖ ≤ C) (v : Fin n → ℂ) (hv : v ≠ 0) (μ : ℂ)
-    (h : M *ᵥ v = μ • v) : ‖μ‖ ≤ 1 := by
-  first
-  | exact @_root_.GlobalTheory.EigenvalueNormBound.norm_eigenvalue_le_one
-  | exact _root_.GlobalTheory.EigenvalueNormBound.norm_eigenvalue_le_one
-  | (apply _root_.GlobalTheory.EigenvalueNormBound.norm_eigenvalue_le_one <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EigenvalueNormBound.norm_eigenvalue_le_one <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EigenvalueNormBound.norm_eigenvalue_le_one <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.EigenvalueNormBound.norm_eigenvalue_le_one ..)
-
-
 open scoped ComplexOrder in
 theorem eq_one_of_posSemidef {n : ℕ} (p q : Matrix (Fin n) (Fin n) ℂ) (hp : p.PosSemidef)
     (hqp : q * p = 1) (C : ℝ) (hC : ∀ k : ℕ, ∀ i j, ‖(p ^ k) i j‖ ≤ C)
@@ -97,8 +85,8 @@ theorem eq_one_of_posSemidef {n : ℕ} (p q : Matrix (Fin n) (Fin n) ℂ) (hp : 
     have h3 : q *ᵥ v = ((hH.eigenvalues j : ℝ) : ℂ)⁻¹ • v := by
       conv_rhs => rw [h2]
       rw [smul_smul, inv_mul_cancel₀ hne, one_smul]
-    have a1 := norm_eigenvalue_le_one p C hC v hv _ h1
-    have a2 := norm_eigenvalue_le_one q C hC' v hv _ h3
+    have a1 := _root_.GlobalTheory.EigenvalueNormBound.norm_eigenvalue_le_one p C hC v hv _ h1
+    have a2 := _root_.GlobalTheory.EigenvalueNormBound.norm_eigenvalue_le_one q C hC' v hv _ h3
     rw [norm_inv, Complex.norm_real, Real.norm_of_nonneg h0] at a2
     rw [Complex.norm_real, Real.norm_of_nonneg h0] at a1
     have hpos : 0 < hH.eigenvalues j := lt_of_le_of_ne h0 (fun h => hne (by rw [← h]; simp))

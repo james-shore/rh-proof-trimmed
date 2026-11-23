@@ -56,37 +56,9 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.GKExt
 
-theorem kset_sub {n : ℕ} {ε : Fin n → Bool} {g : Matrix (Fin n) (Fin n) ℂ} (hg : g ∈ Formalism.REAL.Kset ε) :
-    g ∈ Formalism.MainNotions.S.UJset ε := by
-  have h1 := (Matrix.mem_unitaryGroup_iff').1 hg.1
-  rw [Matrix.star_eq_conjTranspose] at h1
-  show gᴴ * Formalism.REAL.Jm ε * g = Formalism.REAL.Jm ε
-  rw [Matrix.mul_assoc, ← hg.2, ← Matrix.mul_assoc, h1, Matrix.one_mul]
-
 theorem conj_back {n : ℕ} {P g : Matrix (Fin n) (Fin n) ℂ} (hP : IsUnit P) : P * (P⁻¹ * g * P) * P⁻¹ = g := by
   have hd := (Matrix.isUnit_iff_isUnit_det P).1 hP
   simp only [Matrix.mul_assoc, Matrix.mul_nonsing_inv _ hd, Matrix.mul_one, Matrix.mul_nonsing_inv_cancel_left _ _ hd]
-
-theorem conj_mem_lieAt {D : D7} {V : HSp D} {S : D.what₂.Tau → SPar} (M : DSModel V S) (τ : D.what₂.Tau)
-    {X : Matrix (Fin V.rank) (Fin V.rank) ℂ} (hX : X ∈ GlobalTheory.SmoothGlob.lieSet (M.ε τ)) :
-    (M.fr τ)⁻¹ * X * M.fr τ ∈ lieAt V τ := by
-  have hX' : Xᴴ * Formalism.REAL.Jm (M.ε τ) + Formalism.REAL.Jm (M.ε τ) * X = 0 := hX
-  have hd := (Matrix.isUnit_iff_isUnit_det _).1 (M.fr_unit τ)
-  have hc : ∀ Y : Matrix (Fin V.rank) (Fin V.rank) ℂ, ((M.fr τ)⁻¹)ᴴ * ((M.fr τ)ᴴ * Y) = Y := fun Y => by
-    rw [← Matrix.mul_assoc, ← Matrix.conjTranspose_mul, Matrix.mul_nonsing_inv _ hd, Matrix.conjTranspose_one,
-      Matrix.one_mul]
-  show ((M.fr τ)⁻¹ * X * M.fr τ)ᴴ * gramAt D V τ + gramAt D V τ * ((M.fr τ)⁻¹ * X * M.fr τ) = 0
-  rw [← M.fr_gram τ]
-  have e : ((M.fr τ)⁻¹ * X * M.fr τ)ᴴ * ((M.fr τ)ᴴ * Formalism.REAL.Jm (M.ε τ) * M.fr τ) +
-      (M.fr τ)ᴴ * Formalism.REAL.Jm (M.ε τ) * M.fr τ * ((M.fr τ)⁻¹ * X * M.fr τ) =
-      (M.fr τ)ᴴ * ((Xᴴ * Formalism.REAL.Jm (M.ε τ) + Formalism.REAL.Jm (M.ε τ) * X) * M.fr τ) := by
-    simp only [Matrix.conjTranspose_mul, Matrix.mul_assoc, hc, Matrix.mul_nonsing_inv_cancel_left _ _ hd,
-      Matrix.add_mul, Matrix.mul_add]
-  rw [e, hX', Matrix.zero_mul, Matrix.mul_zero]
-
-theorem exp_conj_inv {n : ℕ} {g : Matrix (Fin n) (Fin n) ℂ} (hg : IsUnit g) (X : Matrix (Fin n) (Fin n) ℂ) (t : ℝ) :
-    NormedSpace.exp (t • (g⁻¹ * X * g)) = g⁻¹ * NormedSpace.exp (t • X) * g := by
-  rw [← Matrix.exp_conj' _ _ hg, Matrix.mul_smul, Matrix.smul_mul]
 
 theorem conj_mem_UH {n : ℕ} {ε : Fin n → Bool} {P G : Matrix (Fin n) (Fin n) ℂ} (hP : IsUnit P)
     (h : Pᴴ * Formalism.REAL.Jm ε * P = G) {g : Matrix (Fin n) (Fin n) ℂ} (hg : g ∈ Formalism.MainNotions.S.UJset ε) :
@@ -106,7 +78,7 @@ theorem extExists : GlobalTheory.Published.HarishChandraModules → GlobalTheory
   refine existsUnique_of_exists_of_unique ?_ ?_
   · obtain ⟨U, N, hU, hTU⟩ := GlobalTheory.T.exists_common_level_growth_exponent_gKMap hHC D θ hθ V S M J χ μ 𝓕 T₀ hT₀
     obtain ⟨E, i1, i2, i3, i4, i5, i6, p, ι, hinj, hrange, hp, hπ⟩ :=
-      GlobalTheory.T.exists_smoothCuspForm_frechet_moderateGrowth_rep D θ hθ V (GlobalTheory.ChainFr.Fr.ofModel M) U N hU
+      _root_.GlobalTheory.CuspFrechet.exists_frechet D θ hθ V (GlobalTheory.ChainFr.Fr.ofModel M) U N hU
     choose π dπ hπ using hπ
     have hmem : ∀ u, T₀ u ∈ LinearMap.range ι := fun u => by
       have ha := hT₀.1 u
@@ -123,7 +95,7 @@ theorem extExists : GlobalTheory.Published.HarishChandraModules → GlobalTheory
         (w : M.H τ) = M.σ τ k (u τ) → T₀' (Function.update u τ w) = π τ k (T₀' u) := by
       intro τ k hk u w hw
       apply hinj
-      rw [(hπ τ).2.1 k (kset_sub hk), hT₀', hT₀']
+      rw [(hπ τ).2.1 k (_root_.Formalism.IndefR.FWT.kset_uj hk), hT₀', hT₀']
       have hk' : M.fr τ * ((M.fr τ)⁻¹ * k * M.fr τ) * (M.fr τ)⁻¹ = k := conj_back (M.fr_unit τ)
       have hmax : (M.fr τ)⁻¹ * k * M.fr τ ∈ GlobalTheory.IndefiniteRowSideFullHecke.KTypeExtension.maxCpt M τ := by
         change M.fr τ * ((M.fr τ)⁻¹ * k * M.fr τ) * (M.fr τ)⁻¹ ∈ Formalism.REAL.Kset (M.ε τ)
@@ -144,8 +116,8 @@ theorem extExists : GlobalTheory.Published.HarishChandraModules → GlobalTheory
         congr 1
         funext t
         show M.σ τ (M.fr τ * NormedSpace.exp (t • ((M.fr τ)⁻¹ * X * M.fr τ)) * (M.fr τ)⁻¹) y = _
-        rw [exp_conj_inv (M.fr_unit τ), conj_back (M.fr_unit τ)]
-      exact hT₀.2.2.2.2.2.2.2 τ _ (conj_mem_lieAt M τ hX) u w (by rw [hw, hd])
+        rw [_root_.GlobalTheory.SmVec.exp_conj_inv (M.fr_unit τ), conj_back (M.fr_unit τ)]
+      exact hT₀.2.2.2.2.2.2.2 τ _ (_root_.GlobalTheory.SobFrame.conj_mem_lieAt M τ hX) u w (by rw [hw, hd])
     have hcomm : ∀ τ τ', τ ≠ τ' → ∀ g ∈ Formalism.MainNotions.S.UJset (M.ε τ), ∀ g' ∈ Formalism.MainNotions.S.UJset (M.ε τ'),
         (π τ g).comp (π τ' g') = (π τ' g').comp (π τ g) := by
       intro τ τ' hne g hg g' hg'

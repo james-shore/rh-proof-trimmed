@@ -56,7 +56,7 @@ namespace Formalism.MainNotions.PairMembershipBlocks
 open Formalism.MainNotions.G Formalism.GradedWeylDivisibility Formalism.MainNotions.SourceCleaning Formalism.MainNotions.Pf14 Formalism.MainNotions.PlaneGramData Formalism.MainNotions.TestSideCounting Formalism.MainNotions.TestSideWords Formalism.MainNotions.Proposition5Numerics Formalism.MainNotions.NormalSetCounting
   Formalism.MainNotions.TraceSpectra
 
-theorem restSpec : RestSpec := Formalism.MainNotions.NormalSetCounting.restSpec
+alias restSpec := _root_.Formalism.MainNotions.NormalSetCounting.restSpec
 
 theorem prod_range_zmod {M : Type*} [CommMonoid M] (J : ℕ) [NeZero J] (f : ℕ → M) :
     ∏ i ∈ Finset.range J, f i = ∏ j : ZMod J, f j.val := by

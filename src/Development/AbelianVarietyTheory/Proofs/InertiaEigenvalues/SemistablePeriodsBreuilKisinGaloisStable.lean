@@ -91,19 +91,6 @@ theorem smul_cancel_of_isUnit {R : Type} [CommRing R] {n : Type} {c : R} (hc : I
 
 variable {l : ℕ} [hl : Fact l.Prime] {K : FinExt l}
 
-theorem gal_E (bk : BK K) (g : GQ l) : ∃ w : (Ainf l)ˣ, Per.σA g (bk.ev bk.E) = bk.ev bk.E * w := by
-  have key : ∀ h : GQ l, bk.ev bk.E ∣ Per.σA h (bk.ev bk.E) := fun h => by
-    rw [← Ideal.mem_span_singleton, bk.span_ev, RingHom.mem_ker, GlobalTheory.RingBasics.θ_σA]
-    have : Per.θ l (bk.ev bk.E) = 0 := by
-      rw [← RingHom.mem_ker, ← bk.span_ev]; exact Ideal.mem_span_singleton_self _
-    rw [this, map_zero]
-  haveI : IsDomain (Ainf l) := inclW_injective.isDomain (inclW l)
-  have h2 : Per.σA g (bk.ev bk.E) ∣ bk.ev bk.E := by
-    have := map_dvd (Per.σA g) (key g⁻¹)
-    rwa [← GlobalTheory.RingBasics.σA_mul, mul_inv_cancel, GlobalTheory.RingBasics.σA_one] at this
-  obtain ⟨w, hw⟩ := associated_of_dvd_dvd (key g) h2
-  exact ⟨w, hw.symm⟩
-
 theorem frob_zl (z : ℤ_[l]) :
     WittVector.frobenius (algebraMap ℤ_[l] (Ainf l) z) = algebraMap ℤ_[l] (Ainf l) z := by
   rw [WittVector.frobenius_eq_map_frobenius]
@@ -135,7 +122,7 @@ theorem disc_cocycle (bk : BK K) {τ : Ainf l} (hτ : bk.IsPer τ) {d : ℕ} {ρ
         bk.iS bk.E ^ s.N • (s.κ g * (s.X.map bk.iS * Z.map i).map G) ∧
       bk.iA (Per.σA (g : GQ l) τ) ^ s.N • (Y.map bk.iA * e) =
         bk.iA τ ^ s.N • (((ρ g).map (algebraMap ℤ_[l] (Ainf l))).map bk.iA * (Y.map (Per.σA (g : GQ l))).map bk.iA) :=
-  GlobalTheory.T.exists_semistable_disc_cocycle l K bk τ hτ d ρ s Y Z i hZ hi hWZ g G hG
+  _root_.GlobalTheory.BKLim.WSeed.exists_disc_cocycle l K bk τ hτ d ρ s Y Z i hZ hi hWZ g G hG
 
 theorem frob_eq (bk : BK K) {τ : Ainf l} (hτ : bk.IsPer τ) {d : ℕ} (M N : ℕ) (Y : Matrix (Fin d) (Fin d) (Ainf l))
     (A A' : Matrix (Fin d) (Fin d) bk.S) (hA : A * A' = bk.E ^ (2 * N) • (1 : Matrix (Fin d) (Fin d) bk.S))
@@ -147,7 +134,7 @@ theorem frob_eq (bk : BK K) {τ : Ainf l} (hτ : bk.IsPer τ) {d : ℕ} (M N : �
     (he : bk.iA (Per.σA g τ) ^ M • (Y.map bk.iA * e) = bk.iA τ ^ M • (P.map bk.iA * (Y.map (Per.σA g)).map bk.iA)) :
     bk.iS bk.E ^ (2 * N) • e =
       (((↑w⁻¹ : Ainf l) ^ N) • A.map bk.ev).map bk.iA * e.map Φ * ((A'.map bk.ev).map (Per.σA g)).map bk.iA :=
-  GlobalTheory.T.breuilKisin_disc_cocycle_frobenius_equation l K bk τ hτ d M N Y A A' hA hφ hdet g G Φ hG hΦ w hw P hP e he
+  _root_.GlobalTheory.BSP.CocycleFrob.frob_eq l K bk τ hτ d M N Y A A' hA hφ hdet g G Φ hG hΦ w hw P hP e he
 
 theorem bounded (bk : BK K) {d : ℕ} (h : ℕ) (C B : Matrix (Fin d) (Fin d) (Ainf l))
     (Φ : bk.DA bk.ρ₀ →+* bk.DA bk.ρ₀) (hΦ : IsDiscMap (l := _) (u := _) (ρ := _) WittVector.frobenius Φ) (e : Matrix (Fin d) (Fin d) (bk.DA bk.ρ₀))
@@ -249,7 +236,7 @@ theorem galois_stable : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) 
     intro g
     obtain ⟨G, hG⟩ := hgal bk.ρ₀ hρ0 (g : GQ l)
     obtain ⟨e, heA, heD⟩ := disc_cocycle bk hτ s Y Z i₀ hZ hi₀ (hWZ i₀ hi₀) g G hG
-    obtain ⟨w, hw⟩ := gal_E bk (g : GQ l)
+    obtain ⟨w, hw⟩ := _root_.GlobalTheory.BKLim.exists_gal_ev_E_unit bk (g : GQ l)
     have hP : ((ρ g).map (algebraMap ℤ_[l] (Ainf l))).map WittVector.frobenius =
         (ρ g).map (algebraMap ℤ_[l] (Ainf l)) := by
       ext i j; simp only [Matrix.map_apply, frob_zl]

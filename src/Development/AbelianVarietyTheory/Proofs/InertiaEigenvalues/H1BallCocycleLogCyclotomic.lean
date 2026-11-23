@@ -77,9 +77,6 @@ theorem ks_le_kinf (K : FinExt l) (s : ℕ) : Ks K s ≤ Kinf K :=
 theorem hinf_le_gj (K : FinExt l) (s : ℕ) : Hinf K ≤ Gj K s :=
   IntermediateField.fixingSubgroup_antitone (ks_le_kinf K s)
 
-theorem gj_le (K : FinExt l) (s : ℕ) : Gj K s ≤ (K0 K).fixingSubgroup :=
-  IntermediateField.fixingSubgroup_antitone (show K0 K ≤ Ks K s from le_sup_left)
-
 theorem act_inC {act : GQ l →* (PadicComplex l ≃+* PadicComplex l)} (ha : IsActC act)
     {F : IntermediateField ℚ_[l] (Om l)} {g : GQ l} (hg : g ∈ F.fixingSubgroup)
     {y : PadicComplex l} (hy : y ∈ inC F) : act g y = y := by
@@ -183,13 +180,13 @@ theorem continuous_chiC {χ : GQ l →* ℚ_[l]ˣ} (hχ : IsCyc χ) (j : ℤ) : 
 
 theorem chi_hinf {χ : GQ l →* ℚ_[l]ˣ} (hχ : IsCyc χ) (K : FinExt l) {h : GQ l} (hh : h ∈ Hinf K) :
     χ h = 1 :=
-  ((GlobalTheory.Cyc.cyc_basic l χ hχ).2.2 K h (gj_le K 0 (hinf_le_gj K 0 hh))).2.1 hh
+  ((GlobalTheory.Cyc.cyc_basic l χ hχ).2.2 K h (_root_.GlobalTheory.Cyc.cyclotomicTowerLevelGaloisSubgroup_le_fixingSubgroup_base K 0 (_root_.GlobalTheory.Cyc.AlmostTrace.Hinf_le_Gj K 0 hh))).2.1 hh
 
 theorem conj_hinf {χ : GQ l →* ℚ_[l]ˣ} (hχ : IsCyc χ) (K : FinExt l) (s : ℕ) {g h : GQ l}
     (hg : g ∈ Gj K s) (hh : h ∈ Hinf K) : g⁻¹ * h * g ∈ Hinf K := by
   have h1 : g⁻¹ * h * g ∈ Gj K s :=
-    (Gj K s).mul_mem ((Gj K s).mul_mem ((Gj K s).inv_mem hg) (hinf_le_gj K s hh)) hg
-  refine ((GlobalTheory.Cyc.cyc_basic l χ hχ).2.2 K _ (gj_le K s h1)).2.2 ?_
+    (Gj K s).mul_mem ((Gj K s).mul_mem ((Gj K s).inv_mem hg) (_root_.GlobalTheory.Cyc.AlmostTrace.Hinf_le_Gj K s hh)) hg
+  refine ((GlobalTheory.Cyc.cyc_basic l χ hχ).2.2 K _ (_root_.GlobalTheory.Cyc.cyclotomicTowerLevelGaloisSubgroup_le_fixingSubgroup_base K s h1)).2.2 ?_
   simp [chi_hinf hχ K hh]
 
 theorem modify {act : GQ l →* (PadicComplex l ≃+* PadicComplex l)} {χ : GQ l →* ℚ_[l]ˣ}
@@ -281,7 +278,7 @@ theorem exists_coeff {act : GQ l →* (PadicComplex l ≃+* PadicComplex l)} {χ
     ∃ α ∈ inC (Ks K s), ‖α‖ ≤ (l : ℝ) ^ (1 + s) ∧ ∃ b : PadicComplex l,
       ∀ σ ∈ Gj K s, c σ = logC χ σ * α + (act σ b - b) := by
   have hp : l.Prime := Fact.out
-  have hle := hinf_le_gj K s
+  have hle := _root_.GlobalTheory.Cyc.AlmostTrace.Hinf_le_Gj K s
   have hl0 : (l : PadicComplex l) ≠ 0 := by exact_mod_cast hp.ne_zero
   have hlR : (0 : ℝ) < l := by exact_mod_cast hp.pos
   obtain ⟨x, hx, hx2⟩ := GlobalTheory.T.cyclotomic_tate_maximalIdeal_kills_first_cohomology l act ha K 1 (l : PadicComplex l)
@@ -376,7 +373,7 @@ theorem coeff_eq_zero {act : GQ l →* (PadicComplex l ≃+* PadicComplex l)} {�
   have h1 := congrArg (act γ) hyx
   rw [map_mul, map_pow, map_natCast, map_add (f := _), act_inC ha hγ.1 hy.1] at h1
   have h2 : logC χ γ * α = 0 := by
-    refine T1b _ ?_ _ ((Xj K s).sub_mem (T1e γ (gj_le K s hγ.1) x hx) hx) n ?_
+    refine T1b _ ?_ _ ((Xj K s).sub_mem (T1e γ (_root_.GlobalTheory.Cyc.cyclotomicTowerLevelGaloisSubgroup_le_fixingSubgroup_base K s hγ.1) x hx) hx) n ?_
     · rw [mem_inC_iff]
       exact Subfield.mul_mem _ (logC_mem χ _ γ) hα
     · rw [hb γ hγ.1]

@@ -62,16 +62,6 @@ namespace GlobalTheory.Cyc
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem norm_pow_sub_lin_le (w : ℚ_[l]) (hw : ‖w‖ ≤ 1) (k : ℕ) :
-    ‖w ^ k - 1 - k * (w - 1)‖ ≤ ‖w - 1‖ ^ 2 := by
-  first
-  | exact @_root_.GlobalTheory.UltrametricPowerBound.main
-  | exact _root_.GlobalTheory.UltrametricPowerBound.main
-  | (apply _root_.GlobalTheory.UltrametricPowerBound.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UltrametricPowerBound.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UltrametricPowerBound.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.UltrametricPowerBound.main ..)
-
 theorem exists_nat_norm_sub_le (x : ℚ_[l]) (hx : ‖x‖ ≤ 1) :
     ∃ k : ℕ, ‖x - k‖ ≤ (l : ℝ) ^ (-1 : ℤ) := by
   let y : ℤ_[l] := ⟨x, hx⟩
@@ -121,7 +111,7 @@ theorem exists_norm_sub_pow_le (j : ℕ) (hj : Lev l j) (u s : ℚ_[l]) (hu1 : �
         _ = _ := by
           rw [← zpow_add₀ hl0.ne']; congr 1; push_cast; ring
     · rw [norm_neg, norm_mul, ht1, one_mul]
-      refine (norm_pow_sub_lin_le w hw1.le k).trans ?_
+      refine (_root_.GlobalTheory.UltrametricPowerBound.main w hw1.le k).trans ?_
       rw [hd, ← zpow_natCast, ← zpow_mul]
       apply zpow_le_zpow_right₀ hl1.le
       have := hj.1

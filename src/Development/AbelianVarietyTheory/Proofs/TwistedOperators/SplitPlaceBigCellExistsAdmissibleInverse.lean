@@ -95,7 +95,7 @@ theorem splitPlace_bigCell_exists_admissible_inverse : (∀ {R : Type} [CommRing
     (I _ k11).1 (I _ k12).1 (I _ k21).1 (I _ k22).1 (I _ k11').1 (I _ k12').1 (I _ k21').1 (I _ k22').1
   obtain ⟨G₂, hG₂, -⟩ := GlobalTheory.T.integralBlocks_leftInverse_isUnit_det_splitPlace v π₂ b₂ (GlobalTheory.DblVac.matD g) (GlobalTheory.DblVac.matD g⁻¹) hinv
     (I _ k11).2 (I _ k12).2 (I _ k21).2 (I _ k22).2 (I _ k11').2 (I _ k12').2 (I _ k21').2 (I _ k22').2
-  have hU := GlobalTheory.T.unitary_at_splitPlace_localBases σ W v π₁ π₂ b₁ b₂ hc₁ g
+  have hU := _root_.GlobalTheory.UnitFv.unitary_split σ W v π₁ π₂ b₁ b₂ hc₁ g
   have e : ∀ {m n o : Type} [Fintype n] (A : Matrix m n (v.adicCompletionIntegers F))
       (B : Matrix n o (v.adicCompletionIntegers F)),
       (A * B).map (fun x => (x : Fv F v)) = A.map (fun x => (x : Fv F v)) * B.map (fun x => (x : Fv F v)) :=

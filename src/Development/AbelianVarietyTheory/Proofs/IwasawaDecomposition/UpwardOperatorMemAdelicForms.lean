@@ -42,6 +42,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.GlobalTheory.GL6.Statement
+import Formalism.LocalToGlobal.HermitianForms.FramesLemmas
 
 @[expose] public section
 
@@ -83,7 +84,7 @@ theorem isTr_iff (emb : ι → E →+* ℂ) (γ : GL (Fin n) E) {G : ι → Matr
     rw [h τ, ← Matrix.mul_assoc, atInf_inv_mul', Matrix.one_mul]
   · rintro rfl τ
     show y.1 τ = _ * (_ * y.1 τ)
-    rw [← Matrix.mul_assoc, atInf_mul_inv', Matrix.one_mul]
+    rw [← Matrix.mul_assoc, _root_.Formalism.L2.Forms.atInf_mul_inv, Matrix.one_mul]
 
 def twist (emb : ι → E →+* ℂ) (γ : GL (Fin n) E) (G : ι → Matrix (Fin n) (Fin n) ℂ) (c : ℂ) :
     (Frames G → ℂ) →+ (Frames G → ℂ) where

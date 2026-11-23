@@ -132,7 +132,7 @@ theorem GlobalTheory.EvenOnto.chainL_and_inj : ∀ D : D7, ChainL D ∧ ∀ (c :
         ∀ n : ℕ, 1 ≤ n → Λ n ≠ 0 := by
       intro i
       by_cases hi : i ∈ Finset.range k
-      · obtain ⟨Λ, h⟩ := GlobalTheory.T.quotient_char_partial_L_entire_nonvanishing_integers D c hc i k (Finset.mem_range.1 hi) hk
+      · obtain ⟨Λ, h⟩ := _root_.GlobalTheory.EvenOnto.QuotL.quotL_entire_ne_zero D c hc i k (Finset.mem_range.1 hi) hk
         exact ⟨Λ, fun _ => h⟩
       · exact ⟨0, fun h => absurd h hi⟩
     choose Λ hΛ using hΛ

@@ -61,22 +61,10 @@ open scoped ComplexOrder
 
 namespace GlobalTheory.DefiniteFrame
 
-theorem cT_conj_eq {m p : Type} (M : Matrix m p ℂ) :
-    Formalism.UG.cT (starRingEnd ℂ) M = M.conjTranspose := by
-  ext i j; simp [Formalism.UG.cT, Matrix.conjTranspose_apply]
-
-theorem Jpq_zero (n : ℕ) : Formalism.UG.Jpq n 0 = 1 := by
-  ext i j
-  rcases i with i | i
-  · rcases j with j | j
-    · simp [Formalism.UG.Jpq, Matrix.one_apply]
-    · exact j.elim0
-  · exact i.elim0
-
 theorem posSemidef_of_hasSignature {n : ℕ} {G : Matrix (Fin n) (Fin n) ℂ}
     (h : Formalism.UG.HasSignature G n 0) : G.PosSemidef := by
   obtain ⟨e, P, hP⟩ := h
-  rw [cT_conj_eq, Jpq_zero] at hP
+  rw [_root_.Formalism.UG.P.cT_conj_eq, _root_.Formalism.UG.P.Jpq_zero] at hP
   set Q : Matrix (Fin n ⊕ Fin 0) (Fin n ⊕ Fin 0) ℂ := P.inv
   have hPQ : P.val * Q = 1 := by
     exact P.val_inv

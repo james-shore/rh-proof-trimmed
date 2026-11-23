@@ -103,26 +103,12 @@ theorem span_C_isPrime {A : Type} [CommRing A] [IsDomain A] [IsDiscreteValuation
   rw [span_C_eq_ker hϖ]
   exact RingHom.ker_isPrime _
 
-theorem isDiscreteValuationRing_atPrime_span {R : Type} [CommRing R] [IsDomain R] [IsNoetherianRing R] {π : R}
-    (h0 : π ≠ 0) [(Ideal.span {π}).IsPrime] :
-    IsDiscreteValuationRing (Localization.AtPrime (Ideal.span {π})) := by
-  have hm : IsLocalRing.maximalIdeal (Localization.AtPrime (Ideal.span {π})) =
-      Ideal.span {algebraMap R _ π} := by
-    rw [← Localization.AtPrime.map_eq_maximalIdeal, Ideal.map_span, Set.image_singleton]
-  have hinj : Function.Injective (algebraMap R (Localization.AtPrime (Ideal.span {π}))) :=
-    IsLocalization.injective _ (Ideal.span {π}).primeCompl_le_nonZeroDivisors
-  have hnf : ¬ IsField (Localization.AtPrime (Ideal.span {π})) := fun hf => by
-    rw [IsLocalRing.isField_iff_maximalIdeal_eq, hm, Ideal.span_singleton_eq_bot] at hf
-    exact h0 (hinj (hf.trans (map_zero _).symm))
-  have hp : (IsLocalRing.maximalIdeal (Localization.AtPrime (Ideal.span {π}))).IsPrincipal := ⟨_, hm⟩
-  exact ((IsDiscreteValuationRing.TFAE _ hnf).out 1 5).2 hp
-
 theorem main : ∀ (A : Type) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A] (ϖ : A), Irreducible ϖ →
     ∃ _ : (Ideal.span {(PowerSeries.C ϖ : PowerSeries A)}).IsPrime,
       IsDiscreteValuationRing (Localization.AtPrime (Ideal.span {(PowerSeries.C ϖ : PowerSeries A)})) := by
   intro A _ _ _ ϖ hϖ
   haveI := span_C_isPrime hϖ
-  refine ⟨this, isDiscreteValuationRing_atPrime_span ?_⟩
+  refine ⟨this, _root_.GlobalTheory.KeySmoothBase.isDiscreteValuationRing_atPrime_span ?_⟩
   intro h
   exact hϖ.ne_zero (PowerSeries.C_injective (h.trans (map_zero _).symm))
 

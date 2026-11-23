@@ -89,15 +89,11 @@ private theorem three_sub {Γ : Type} [Group Γ] (H A B C : Subgroup Γ) (hA : �
     exact hxB ((B.mul_mem_cancel_left (B.pow_mem h2 j)).1 h3)
   · exact hxC ((C.mul_mem_cancel_right hxy).1 h1)
 
-private theorem add_pow_nsmul {Γ W : Type} [Group Γ] [AddCommGroup W] (U : Subgroup Γ) (f : Γ → W)
-    (hf : ∀ u ∈ U, ∀ v ∈ U, f (u * v) = f u + f v) : f 1 = 0 ∧ ∀ u ∈ U, ∀ k : ℕ, f (u ^ k) = k • f u :=
-  _root_.UpperTheory.Reformulated.B.Qf49.add_pow_nsmul U f hf
-
 private theorem ex_sub {Γ W : Type} [Group Γ] [TopologicalSpace Γ] [AddCommGroup W] (U : Subgroup Γ)
     (hU : IsOpen (U : Set Γ)) (f : Γ → W) (hf : ∀ u ∈ U, ∀ v ∈ U, f (u * v) = f u + f v)
     (hlc : IsLocallyConstant fun u : U => f u) (P : AddSubgroup W) :
     ∃ K : Subgroup Γ, IsOpen (K : Set Γ) ∧ ∀ u, u ∈ K ↔ u ∈ U ∧ f u ∈ P := by
-  have h1 := (add_pow_nsmul U f hf).1
+  have h1 := (_root_.UpperTheory.Reformulated.B.Qf49.add_pow_nsmul U f hf).1
   refine ⟨{ carrier := {u | u ∈ U ∧ f u ∈ P}
             one_mem' := ⟨U.one_mem, h1 ▸ P.zero_mem⟩
             mul_mem' := fun {a b} ha hb => ⟨U.mul_mem ha.1 hb.1, hf a ha.1 b hb.1 ▸ P.add_mem ha.2 hb.2⟩
@@ -310,7 +306,7 @@ theorem UpperTheory.V.ML.pick :
   obtain ⟨x, hx⟩ := three_sub H K B (fixMu ℚ Ω (F * l)) hHK hHB
     (third Ω l (l ^ m) F r hlp hD.odd_l hF hlF hMF hr.ne_zero ρ hρ) (l ^ m) hodd.pow fun x hx =>
       (hB _).2 ⟨pow_mem hx.1 _, by
-        rw [(add_pow_nsmul U c hc.add).2 x hx.1, hc.tors x hx.1]
+        rw [(_root_.UpperTheory.Reformulated.B.Qf49.add_pow_nsmul U c hc.add).2 x hx.1, hc.tors x hx.1]
         exact zero_mem _⟩
   obtain ⟨q, A, φ, hq, hqT, hA, hφ, hφH, hφK, hφB, hφC⟩ :=
     chebQ Ω {x | x ∈ H ∧ x ∉ K ∧ x ∉ B ∧ x ∉ fixMu ℚ Ω (F * l)}

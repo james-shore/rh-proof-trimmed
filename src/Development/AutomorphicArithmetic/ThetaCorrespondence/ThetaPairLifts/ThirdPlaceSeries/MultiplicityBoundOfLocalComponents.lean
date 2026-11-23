@@ -49,7 +49,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.HeightCounting.Up
 theorem multiplicity_bound_of_local_components_alt : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → SerN → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, _root_.GlobalTheory.HeightCounting.Up.MoveToBase hL := by
   intro hP hS hL
-  refine StepW.trans (StepW.and (_root_.GlobalTheory.T.levelI_same_gal_transfer_to_levelB1_list hP hS hL) (_root_.GlobalTheory.T.exists_levelB2_carried_of_levelB1 hP hS hL)) (StepW.of_all fun K B' f' T' w' _ _ h => ?_)
+  refine StepW.trans (StepW.and (_root_.GlobalTheory.HeightCounting.Up.exists_levelB1_carried_of_levelI_same_gal hP hS hL) (_root_.GlobalTheory.HeightCounting.Up.points_preserved_under_level_transfer_alt hP hS hL)) (StepW.of_all fun K B' f' T' w' _ _ h => ?_)
   obtain ⟨h, h'⟩ := h
   intro B f T w hE hf hSt hpx hsel hJ hδ P x l P' hExt x' l' hG
   obtain ⟨x₁, ⟨l₁⟩, hC₁, hL₁⟩ := h B f T w hE hf hSt hpx hsel hJ hδ P x l P' hExt x' l' hG

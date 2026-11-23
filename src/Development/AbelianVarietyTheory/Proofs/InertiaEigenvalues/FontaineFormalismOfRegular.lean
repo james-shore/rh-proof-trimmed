@@ -66,21 +66,6 @@ open scoped Formalism.Per
 
 namespace GlobalTheory.RegularRing
 
-theorem linearIndepOn_of_invariant {K B W G ι : Type} [Field K] [CommRing B] [IsDomain B] [Algebra K B]
-    [AddCommGroup W] [Module B W] [Module K W] [IsScalarTower K B W] [Module.IsTorsionFree B W]
-    (a : G → B → B) (σ : G → W →+ W) (hσ : ∀ g b w, σ g (b • w) = a g b • σ g w)
-    (hreg : ∀ b b' : B, b ≠ 0 → (∀ g, b * a g b' = a g b * b') → ∃ c : K, b' = algebraMap K B c * b)
-    (v : ι → W) (hv : ∀ g i, σ g (v i) = v i)
-    (s : Finset ι) (h : LinearIndepOn K v s) : LinearIndepOn B v s := by
-  first
-  | (rename_i h_5 h_6 h_7 h_8 h_9 h_10 h_11 h_12 h_13; revert K B W G ι h_5 h_6 h_7 h_8 h_9 h_10 h_11 h_12 h_13 a σ hσ hreg v hv s h; exact @_root_.GlobalTheory.LinearIndependentFixed.linearIndepOn_of_fixed)
-  | exact @_root_.GlobalTheory.LinearIndependentFixed.linearIndepOn_of_fixed
-  | exact _root_.GlobalTheory.LinearIndependentFixed.linearIndepOn_of_fixed
-  | (apply _root_.GlobalTheory.LinearIndependentFixed.linearIndepOn_of_fixed <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LinearIndependentFixed.linearIndepOn_of_fixed <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LinearIndependentFixed.linearIndepOn_of_fixed <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.LinearIndependentFixed.linearIndepOn_of_fixed ..)
-
 section Generic
 
 variable {G : Type} [Group G] {Qp K₀ K : Type} [Field Qp] [Field K₀] [Field K]
@@ -165,7 +150,7 @@ theorem indepB (hf : FracInv PD) (ρ : Representation LL G V) {ι : Type} (d : �
     hd.map' (DcrisK₀ PD ρ).subtype (DcrisK₀ PD ρ).ker_subtype
   rw [linearIndependent_iff_finset_linearIndependent]
   intro s
-  exact linearIndepOn_of_invariant (fun g b => PD.actB g b) (fun g => (sig PD ρ g).toAddMonoidHom)
+  exact _root_.GlobalTheory.LinearIndependentFixed.linearIndepOn_of_fixed (fun g b => PD.actB g b) (fun g => (sig PD ρ g).toAddMonoidHom)
     (sig_smul PD ρ) hf _ (fun g i => (mem_DcrisK₀ PD ρ _).1 (d i).2 g) s (h1.linearIndepOn _)
 
 theorem finite_le₀ (hf : FracInv PD) [FiniteDimensional Qp V] (ρ : Representation LL G V) :

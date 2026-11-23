@@ -84,7 +84,7 @@ theorem mem_smul_top_of_pull_eq_zero : ∀ (R : Type) [CommRing R] (A : Over (Sp
   have := hA.proper
   obtain ⟨⟨e₁, he₁⟩, -⟩ := GlobalTheory.AbCoh.flat_baseChange_HO R (Localization.AtPrime m) A.left _ A.hom _ _ hsq0
     inferInstance inferInstance
-  obtain ⟨-, -, hbc, -⟩ := GlobalTheory.AbCoh.oStr (Localization.AtPrime m) ((Over.pullback f).obj A) g hAm hg
+  obtain ⟨-, -, hbc, -⟩ := _root_.GlobalTheory.AbCoh.oStr_of_noetherian (Localization.AtPrime m) ((Over.pullback f).obj A) g hAm hg
   let ψ : Localization.AtPrime m →+* R ⧸ m :=
     IsLocalization.lift (M := m.primeCompl) (g := Ideal.Quotient.mk m) (fun y : m.primeCompl => by
       show IsUnit (Ideal.Quotient.mk m (y : R))

@@ -55,6 +55,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.TorsionIntegrality.UniformGaussModels.OrthogonalGaussModels.OneLetterGaussTranslateOfCmCase
 
 @[expose] public section
 
@@ -147,7 +148,7 @@ theorem scale_integrality : ScaleInt := by
     rw [← hIs.2, ← hIs.1, hlat]
     exact hω
   have hsd := Kap.kap_selfDual_lamM B hcc hδ
-  have hst := Kap.kap_stable_lamM B b₀ (Kap.kap_odd hcm)
+  have hst := Kap.kap_stable_lamM B b₀ (_root_.Formalism.L2.Th1.Top.HAux.odd_b hcm)
 
   have S1 : StdData B.L B.ω₀ (hOne B.L D.what₂.Tau) B.lamM
       (alphaQ (Real.sqrt D.host.d / 2) (matH (hOne B.L D.what₂.Tau)))

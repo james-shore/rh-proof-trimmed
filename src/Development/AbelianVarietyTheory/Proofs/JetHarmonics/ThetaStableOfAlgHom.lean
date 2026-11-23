@@ -134,9 +134,9 @@ theorem levAct_theta : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartIndepS
   have key := theta_stable_of_algHom (recPJ h j hj) Φ Sc ka wL wF Tn
     (hspan wL (T.th j wL) fun f hf => by
       obtain ⟨_, hnab⟩ := h.nabPin j hj
-      exact ⟨1, ψ f, GlobalTheory.T.levelAction_mem_thetaSeries hC D T.toTop h j hj wL (ℓ g) f hf
+      exact ⟨1, ψ f, _root_.GlobalTheory.ThetaLevelMove.actLev_mem_th hC D T.toTop h j hj wL (ℓ g) f hf
         (GlobalTheory.thetaRule_mem_sec GlobalTheory.abelianSchemeLaws_all.1 hC _ _ _ _ _ _ _ hnab _ _ f hf), hone _⟩)
-    (fun w hw => hspan w (T.toTop.sh j w) fun f hf => GlobalTheory.T.levelAction_shortThetaSeries_rootOfUnity_mul hC D T hfull j hj hxi w (by
+    (fun w hw => hspan w (T.toTop.sh j w) fun f hf => _root_.GlobalTheory.ShortMove.actLev_short hC D T hfull j hj hxi w (by
       rcases hw with rfl | rfl | rfl
       · exact hr
       · exact hr.trans (Nat.le_add_right _ _)

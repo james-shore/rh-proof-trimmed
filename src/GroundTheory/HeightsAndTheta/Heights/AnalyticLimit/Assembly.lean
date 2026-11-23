@@ -57,9 +57,9 @@ namespace GroundTheory.Heights₂.Heights.AnalyticLimit
 
 open GroundTheory.Heights₂.Heights.LowerBoundFree
 
-theorem BoundingKaehler.full : BoundingKaehler.Statement := BoundingKaehler.proof
+alias BoundingKaehler.full := _root_.GroundTheory.Heights₂.Heights.AnalyticLimit.BoundingKaehler.proof
 
-theorem GreenMassZero.full : GreenMassZero.Statement := GreenMassZero.proof
+alias GreenMassZero.full := _root_.GroundTheory.Heights₂.Heights.AnalyticLimit.GreenMassZero.proof
 
 theorem UniformIntegrability.of_greenMass (h₁ : GreenMassStep.Statement)
     (h₂ : GreenMassReplace.Statement) (h₃ : GreenMassError.Statement) :

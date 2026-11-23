@@ -112,19 +112,7 @@ theorem hRes_pd (h : V →ₗ⋆[K] V →ₗ[K] K) (hp : PD h) (U : Submodule K 
     PD (hRes h U) := fun τ x hx => hp τ (x : V) (fun e => hx (Subtype.ext e))
 
 omit [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] in
-theorem pd_nondeg (h : V →ₗ⋆[K] V →ₗ[K] K) (hp : PD h) : h.Nondegenerate := by
-  obtain ⟨τ⟩ : Nonempty (K →+* ℂ) := inferInstance
-  constructor
-  · intro x hx
-    by_contra h0
-    have := hp τ x h0
-    rw [hx x] at this
-    simp at this
-  · intro x hx
-    by_contra h0
-    have := hp τ x h0
-    rw [hx x] at this
-    simp at this
+alias pd_nondeg := _root_.GlobalTheory.Mass.PrimDisc.nondeg
 
 omit [NumberField K] in
 theorem star_int (r : 𝓞 K) : star (algebraMap (𝓞 K) K r) ∈ Set.range (algebraMap (𝓞 K) K) := by
@@ -137,7 +125,7 @@ theorem gens_rank [FiniteDimensional K V] (hK : IsCMUnram K) (h : V →ₗ⋆[K]
     ∃ t : Finset V, t.card ≤ Module.finrank K V ∧
       dual h L = L ⊔ Submodule.span (𝓞 K) (t : Set V) := by
   have hnd := pd_nondeg h hp
-  have h0 := (GlobalTheory.T.hermitianLatticeDiscriminantOrder_ne_zero_unimodular K V h hK hs hnd L hL).1
+  have h0 := (_root_.GlobalTheory.Mass.DiscOrder.main K V h hK hs hnd L hL).1
   have hle : L ≤ dual h L := fun x hx => (isomAct_mem_dual h L x).2 fun y hy => hL.2 y hy x hx
   exact (GlobalTheory.T.lattice_quotient_gens_and_intermediate_count K V L (dual h L) hle h0).1
     (dualLattice (𝓞 K) K V h hs hnd star_int L hL.1).1.fg
@@ -202,7 +190,7 @@ theorem orbMass_stabilizer_le : ∀ (K V : Type) [Field K] [NumberField K] [Star
     obtain ⟨k1, k2, k3, -⟩ := GlobalTheory.T.primitive_hermitian_sublattice_discriminant_generators K V h hK hs hp L U 1 h1 h3
     refine ⟨⟨k1, h4⟩, (memB _).2 ⟨k2, ?_, ?_⟩⟩
     · exact Nat.one_le_iff_ne_zero.2
-        (GlobalTheory.T.hermitianLatticeDiscriminantOrder_ne_zero_unimodular K (perp h U) _ hK hs2 (pd_nondeg _ hp2) _ k2).1
+        (_root_.GlobalTheory.Mass.DiscOrder.main K (perp h U) _ hK hs2 (pd_nondeg _ hp2) _ k2).1
     · rw [h2, h4] at k3
       exact k3
   have fY : ∀ p ∈ A ×ˢ B, Finite (MulAction.stabilizer (MulAction.stabilizer (isom h) U) p) := by
@@ -239,7 +227,7 @@ theorem orbMass_stabilizer_le : ∀ (K V : Type) [Field K] [NumberField K] [Star
       have g1 := (GlobalTheory.T.primitive_hermitian_sublattice_discriminant_generators K V h hK hs hp L U 1 l1 l3).2.2.2
       rw [eM] at g1
       have g2 := gens_rank hK _ hs2 hp2 M' b1
-      have cnt := GlobalTheory.T.card_hermitianLattices_glued_subspace_complement K V h hK hs hp U M M' _ _ h1.1 b1 g1 g2
+      have cnt := _root_.GlobalTheory.Mass.Glue.main K V h hK hs hp U M M' _ _ h1.1 b1 g1 g2
       have sub : X ∩ (fun L : Submodule (𝓞 K) V => (latIn U L, latIn (perp h U) L)) ⁻¹' {(M, M')} ⊆
           {L : Submodule (𝓞 K) V | IsIntLat h L ∧ latIn U L = M ∧ latIn (perp h U) L = M'} :=
         fun N hN => ⟨hN.1.1, congrArg Prod.fst hN.2, congrArg Prod.snd hN.2⟩

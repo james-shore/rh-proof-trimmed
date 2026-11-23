@@ -36,6 +36,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.LevelMapFibreSimplyTransitive
 
 @[expose] public section
 
@@ -64,12 +65,9 @@ private theorem qobj' (hObj : QObj) (β : R →+* R') (hm : Match b gb β) (hN :
   subst e
   exact hObj q D R R' b gb β hm N N₀ c hN h0 hc S' s' o
 
-private theorem sec_hom {X : Scheme.{0}} {A : Over X} (e : 𝟙_ (Over X) ⟶ A) : e.left ≫ A.hom = 𝟙 X := by
-  simpa using Over.w e
-
 private theorem sec_lift {X Y : Scheme.{0}} {A : Over X} {B : Over Y} {f : X ⟶ Y} {φ : A.left ⟶ B.left}
     (hc : IsPullback φ A.hom B.hom f) (e : 𝟙_ (Over Y) ⟶ B) : ∃ l : 𝟙_ (Over X) ⟶ A, l.left ≫ φ = f ≫ e.left := by
-  refine ⟨Over.homMk (hc.lift (f ≫ e.left) (𝟙 X) (by simp [sec_hom e])) (by simp), ?_⟩
+  refine ⟨Over.homMk (hc.lift (f ≫ e.left) (𝟙 X) (by simp [_root_.GlobalTheory.LevelFibre.sec_w e])) (by simp), ?_⟩
   simp
 
 end SlopeTestRemainingChoices
@@ -141,7 +139,7 @@ theorem UpperTheory.hecke_lift_exists_of_quotient_level :
     · simp only [Category.assoc]
       rw [← hmm, hn'c, hl', reassoc_of% hys, ← C'.lv, hsm]
     · simp only [Category.assoc]
-      rw [mm.cart.1.w, reassoc_of% (sec_hom _), sec_hom l']
+      rw [mm.cart.1.w, reassoc_of% (_root_.GlobalTheory.LevelFibre.sec_w _), _root_.GlobalTheory.LevelFibre.sec_w l']
       simp
   have I3 : ∀ y' : D.La, (W.o.eta ((algebraMap (𝓞 D.F) D.O) a • y')).left ≫ q3.φ =
       (y ≫ Lj.t) ≫ (S.Y.lv y').left := by

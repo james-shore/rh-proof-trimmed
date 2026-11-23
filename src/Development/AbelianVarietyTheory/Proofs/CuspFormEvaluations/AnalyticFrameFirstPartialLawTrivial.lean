@@ -68,14 +68,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped ContDiff
 attribute [local instance] Over.cartesianMonoidalCategory
 
-theorem tay_coord {N : ℕ} (k : Fin N) : tay (fun v : Fin N → ℂ => v k) 0 = MvPowerSeries.X ((0 : Fin 1), k) := by
-  apply GlobalTheory.JetLinSub.tay_coord <;> assumption
-
-theorem jetOf_coord {N : ℕ} (m : ℕ) (k : Fin N) :
-    jetOf m (fun v : Fin N → ℂ => v k) = Ideal.Quotient.mk _ (MvPolynomial.X ((0 : Fin 1), k)) := by
-  simpa only [jetOf, tay_coord, psJet, FBIdJet.psTrunc_eq, MvPolynomial.coe_X] using
-    FBIdJet.mk_trunc_coe m (MvPolynomial.X ((0 : Fin 1), k) : MvPolynomial (Fin 1 × Fin N) ℂ)
-
 theorem jetOf_sum_coord {N : ℕ} (m : ℕ) {T : Type} (I : Finset T) (k : T → Fin N) :
     jetOf m (fun v : Fin N → ℂ => ∑ i ∈ I, v (k i)) =
       Ideal.Quotient.mk _ (∑ i ∈ I, MvPolynomial.X ((0 : Fin 1), k i)) := by
@@ -84,7 +76,7 @@ theorem jetOf_sum_coord {N : ℕ} (m : ℕ) {T : Type} (I : Finset T) (k : T →
   | empty => simpa using jetOf_const (g := N) m 0
   | insert a s ha ih =>
     simp only [Finset.sum_insert ha, map_add (f := _)]
-    rw [← ih, ← jetOf_coord, ← jetOf_add]
+    rw [← ih, ← _root_.GlobalTheory.JetLinSub.jetOf_coord, ← jetOf_add]
     · rfl
     · exact (contDiff_apply ℂ (fun _ => ℂ) _).contDiffAt
     · exact (ContDiff.sum fun i _ => contDiff_apply ℂ (fun _ => ℂ) _).contDiffAt

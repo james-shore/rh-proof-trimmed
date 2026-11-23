@@ -44,14 +44,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open NumberField GlobalTheory.LKTrip GlobalTheory.LKMid GlobalTheory.LKGeo GlobalTheory.PELU GlobalTheory.UPel.HT
 open scoped Matrix TensorProduct Classical
 
-private theorem exists_equiv_of_finrank {F : Type} [Field F] [NumberField F] {V V' : Type}
-    [AddCommGroup V] [Module ℚ V] [FiniteDimensional ℚ V]
-    [AddCommGroup V'] [Module ℚ V'] [FiniteDimensional ℚ V']
-    (φ : 𝓞 F →+* Module.End ℚ V) (φ' : 𝓞 F →+* Module.End ℚ V')
-    (h : Module.finrank ℚ V = Module.finrank ℚ V') :
-    ∃ e : V ≃ₗ[ℚ] V', ∀ (c : 𝓞 F) (v : V), e (φ c v) = φ' c (e v) :=
-  _root_.UpperTheory.Reformulated.B.ExistsEquivOfFinrank.exists_equiv_of_finrank φ φ' h
-
 private def repOn {O M : Type} [Ring O] [AddCommGroup M] [Module O M] :
     O →+* Module.End ℚ (ℚ ⊗[ℤ] M) :=
   ((Module.End.baseChangeHom ℤ ℚ M).toRingHom).comp (Module.toModuleEnd ℤ M)
@@ -66,7 +58,7 @@ theorem UpperTheory.exists_rational_equiv_of_rank :
   haveI := D.finLa
   have hfin : Module.finrank ℚ (ℚ ⊗[ℤ] Y.La) = Module.finrank ℚ (VQ D) := by
     rw [Module.finrank_baseChange, Module.finrank_baseChange, hr]
-  obtain ⟨e, he⟩ := exists_equiv_of_finrank (F := D.F)
+  obtain ⟨e, he⟩ := _root_.UpperTheory.Reformulated.B.ExistsEquivOfFinrank.exists_equiv_of_finrank (F := D.F)
     ((repOn (O := D.O) (M := Y.La)).comp (algebraMap (𝓞 D.F) D.O))
     ((repOn (O := D.O) (M := D.La)).comp (algebraMap (𝓞 D.F) D.O)) hfin
   refine ⟨e, fun c u => ?_⟩

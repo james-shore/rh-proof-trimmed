@@ -76,8 +76,7 @@ theorem exists_descent {K : Type} [Field K] (k₀ : Subfield K) [IsAlgClosed k�
   rw [← cancel_epi e₁.hom.left, ← he₂, ← Category.assoc, he₁, ← Category.assoc, ← h2]
   simp only [Over.comp_left, Category.assoc]
 
-theorem lbIso_pull {X Y : Scheme.{0}} {P Q : LB X} (h : LBIso P Q) (f : Y ⟶ X) : LBIso (P.pull f) (Q.pull f) :=
-  h.chartPull (Geo.Tor.chartPullPull P f f rfl) (Geo.Tor.chartPullPull Q f f rfl)
+alias lbIso_pull := _root_.GlobalTheory.RigidBundleGlue.LBIso.pull
 
 theorem exists_lbIso {K : Type} [Field K] (k₀ : Subfield K) (B₀ : Over (Sp k₀)) [GrpObj B₀] (B' : Over (Sp K)) [GrpObj B']
     (h₀ : IsAbelianScheme B₀) {A B₁ : Scheme.{0}} {π₀ : B'.left ⟶ B₀.left} {π₁ : B'.left ⟶ A} {β : A ⟶ B₁}

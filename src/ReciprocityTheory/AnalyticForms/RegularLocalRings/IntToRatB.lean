@@ -95,31 +95,11 @@ lemma length_le_coheight_eQ (s : LTSeries (PrimeSpectrum (MvPolynomial σ ℤ)))
       calc (t.length : ℕ∞) + 1 ≤ Order.coheight t.head + 1 := add_le_add_left h2 1
         _ ≤ Order.coheight (eQ x h0) + 1 := add_le_add_left h4 1
 
-private lemma isJacobsonRing_int_regular_local_rings : IsJacobsonRing ℤ := by
-  rw [isJacobsonRing_iff_prime_eq]
-  intro P hP
-  refine le_antisymm ?_ Ideal.le_jacobson
-  by_cases hb : P = ⊥
-  · subst hb
-    intro m hm
-    rw [Ideal.mem_jacobson_bot] at hm
-    rw [Ideal.mem_bot]
-    have h1 := Int.isUnit_iff.mp (hm 1)
-    have h2 := Int.isUnit_iff.mp (hm 2)
-    omega
-  · have hmax : P.IsMaximal := by
-      first
-        | exact Ideal.IsPrime.isMaximal hP hb
-        | exact hP.isMaximal hb
-        | exact Ideal.IsPrime.to_maximal_ideal hb
-        | exact Ring.DimensionLEOne.maximalOfPrime hb hP
-    exact sInf_le ⟨le_rfl, hmax⟩
-
 private lemma not_isMaximal_of_chZero (Q : Ideal (MvPolynomial σ ℤ)) (hQ : ChZero Q) :
     ¬ Q.IsMaximal := by
   intro hmax
   haveI := hmax
-  haveI := isJacobsonRing_int_regular_local_rings
+  haveI := _root_.ReciprocityTheory.AnForm.R.IntegerToRational.isJacobsonRing_int
   letI : Field (MvPolynomial σ ℤ ⧸ Q) := Ideal.Quotient.field Q
   have hint := MvPolynomial.comp_C_integral_of_surjective_of_isJacobsonRing
     (Ideal.Quotient.mk Q) Ideal.Quotient.mk_surjective

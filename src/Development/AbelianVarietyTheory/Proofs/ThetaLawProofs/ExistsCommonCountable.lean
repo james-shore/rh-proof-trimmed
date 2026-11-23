@@ -154,10 +154,7 @@ theorem exists_factor {S K : Type} [CommRing S] [Countable S] [Field K] (i : S �
   exact (Subfield.cardinalMk_closure_le_max _).trans
     (max_le (Cardinal.le_aleph0_iff_set_countable.2 hc) le_rfl)
 
-theorem spMap_comp' {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (f : R →+* R') (f' : R' →+* R'') :
-    spMap (f'.comp f) = spMap f' ≫ spMap f := by
-  show Spec.map _ = Spec.map _ ≫ Spec.map _
-  rw [← Spec.map_comp, ← CommRingCat.ofHom_comp]
+alias spMap_comp' := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp
 
 theorem exists_common_countable {k K : Type} [Field k] [Countable k] [Field K] (σ : k →+* K) (y₀ y₁ : KeyIn k)
     (x : KeyIn K) (h₀ : KeyPB x y₀ σ) (h₁ : KeyPB x y₁ σ) :

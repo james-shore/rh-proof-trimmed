@@ -115,9 +115,9 @@ theorem good_stage : ∀ (T O : Type) [CommRing T] [IsDomain T] [IsLocalRing T] 
       | exact Localization.AtPrime.under_maximalIdeal (Localization.AtPrime P) P
       | exact Localization.AtPrime.under_maximalIdeal
       | simpa [Ideal.under] using Localization.AtPrime.under_maximalIdeal (Localization.AtPrime P) P
-  obtain ⟨A', _, _, _, _, _, _, ι, α, hια, hα⟩ := GlobalTheory.T.exists_local_hom_to_strictly_henselian_normal T hT A i hil
+  obtain ⟨A', _, _, _, _, _, _, ι, α, hια, hα⟩ := _root_.GlobalTheory.exists_strictlyHenselian_normal_between T hT A i hil
   obtain ⟨E', _, _, _, Q', _, hQ', β, γ, h1, h2, h3⟩ :=
-    GlobalTheory.T.exists_localStage_tensor_polynomial_origin T O hO A i hil EA QA hQA jA hjA A' ι α hια hα
+    _root_.GlobalTheory.LocalStage.localStage T O hO A i hil EA QA hQA jA hjA A' ι α hια hα
   obtain ⟨hd, hn, hic, hfl⟩ := local_props A' E' Q'
   letI alg : Algebra A' (Localization.AtPrime Q') :=
     ((algebraMap (Polynomial A') (Localization.AtPrime Q')).comp Polynomial.C).toAlgebra
@@ -136,6 +136,6 @@ theorem good_stage : ∀ (T O : Type) [CommRing T] [IsDomain T] [IsLocalRing T] 
     apply hi
     rw [map_zero, ← hια, RingHom.comp_apply, h, map_zero]
   · intro 𝔭 _ _ _
-    exact GlobalTheory.T.origin_ideal_extension_prime A' 𝔭 E' Q' hQ'
+    exact _root_.GlobalTheory.OriginPrimes.origin_primes A' 𝔭 E' Q' hQ'
 
 end GlobalTheory.GoodStageOrigin

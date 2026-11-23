@@ -152,7 +152,7 @@ theorem irreducibleSpace_pullback {F : Type} [Field F] [CharZero F] {X : Scheme.
       · exact closure_mono (Set.singleton_subset_iff.mpr hx)
     rw [← isIrreducible_iff_closure, hc]
     exact isIrreducible_singleton.closure
-  refine irreducibleSpace_pullback_of_cover g k f U hU fun y hy => ?_
+  refine _root_.GlobalTheory.irreducibleSpace_pullback_of_cover g k f U hU fun y hy => ?_
   obtain ⟨V, hVa, hyV, hVU⟩ := TopologicalSpace.Opens.isBasis_iff_nbhd.mp X.isBasis_affineOpens hy
   refine ⟨V, hVU, hyV, irreducibleSpace_pullback_affine g x hac V hVa ((hgen y hy).mem_open V.isOpen hyV)
     (fun z hz => hgen z (hVU hz)) k f⟩

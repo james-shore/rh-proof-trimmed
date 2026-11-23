@@ -72,29 +72,12 @@ theorem exists_trunc_add (f : PowerSeries O) (N : ℕ) :
   obtain ⟨g, hg⟩ := h
   exact ⟨g, by rw [← hg]; ring⟩
 
-theorem algHom_ext_X (τ σ : PowerSeries O →ₐ[O] PowerSeries O) (hX : τ X = σ X)
-    (h0 : constantCoeff (τ X) = 0) : τ = σ := by
-  apply Formalism.MainNotions.WachCoordinates.Br.algHom_ext_X <;> assumption
-
 theorem algHom_eq_subst (τ : PowerSeries O →ₐ[O] PowerSeries O) (h0 : constantCoeff (τ X) = 0)
     (f : PowerSeries O) : τ f = subst (τ X) f := by
   have hs : HasSubst (τ X) := HasSubst.of_constantCoeff_zero' h0
-  have := algHom_ext_X τ ((substAlgHom hs).restrictScalars O) (by simp [substAlgHom_X]) h0
+  have := _root_.Formalism.MainNotions.WachCoordinates.Br.algHom_ext_X τ ((substAlgHom hs).restrictScalars O) (by simp [substAlgHom_X]) h0
   rw [show τ f = ((substAlgHom hs).restrictScalars O) f from DFunLike.congr_fun this f]
   simp [coe_substAlgHom]
-
-theorem cc_map (τ : PowerSeries O →ₐ[O] PowerSeries O) (h0 : constantCoeff (τ X) = 0)
-    (f : PowerSeries O) : constantCoeff (τ f) = constantCoeff f := by
-  obtain ⟨g, hg⟩ := exists_trunc_add f 1
-  have hd : X ∣ τ X := X_dvd_iff.mpr h0
-  have e : (trunc 1 f : PowerSeries O) = C (constantCoeff f) := by
-    ext m; rcases m with _ | m <;> simp [coeff_C]
-  conv_lhs => rw [hg]
-  conv_rhs => rw [hg]
-  rw [e, map_add (f := _), map_mul, map_pow, pow_one, map_add (f := _), map_add (f := _), map_mul, map_mul, pow_one]
-  have : τ (C (constantCoeff f)) = C (constantCoeff f) := τ.commutes _
-  rw [this, X_dvd_iff.mp hd, constantCoeff_X]
-  ring
 
 section Taylor
 
@@ -258,7 +241,7 @@ theorem subst_bs (l : ℕ) (hl : 1 ≤ l) (r : R) :
   have hσ0 : constantCoeff (σ X) = 0 := by rw [hσX]; exact hW0
   rw [← hσ]
   apply ode_unique (algebraMap R O ((l : R) * r))
-  · rw [cc_map σ hσ0, binomialSeries_constantCoeff, binomialSeries_constantCoeff]
+  · rw [_root_.Formalism.MainNotions.WachCoordinates.Br.constCoeff_algHom σ hσ0, binomialSeries_constantCoeff, binomialSeries_constantCoeff]
   · have hd : PowerSeries.derivative (R := O) ((1 + X) ^ l - 1 : PowerSeries O) = (l : PowerSeries O) * (1 + X) ^ (l - 1) := by
       simp only [map_sub, derivative_pow, map_add (f := _), derivative_X, derivative_one, zero_add, mul_one,
         sub_zero]
@@ -316,7 +299,7 @@ theorem func_unique (φ₀ : PowerSeries O →ₐ[O] PowerSeries O) (l : ℕ) (h
         linear_combination e1
       have e3 := congrArg constantCoeff e2
 
-      rw [map_mul, map_mul, map_pow, cc_map φ₀ hφ0, hq0, map_sum] at e3
+      rw [map_mul, map_mul, map_pow, _root_.Formalism.MainNotions.WachCoordinates.Br.constCoeff_algHom φ₀ hφ0, hq0, map_sum] at e3
       simp only [map_mul, map_pow, h0U, h0V, one_pow, mul_one, Finset.sum_const, Finset.card_range,
         nsmul_eq_mul] at e3
       have hne : ((l : O) ^ (m + 2) - l) ≠ 0 := by
@@ -479,7 +462,7 @@ theorem ps_ne (hR : RingP W) (s : ℕ) (i : ZMod n) : ps W s i ≠ 0 := by
   have h0 : constantCoeff ((W.φ₀ ^ s) X) = 0 := by
     rw [phi_pow_X W.φ₀ PD.p hl (φ₀_X_eq W)]; simp
   have := congrArg constantCoeff h
-  rw [ps_apply, cc_map _ h0, map_add (f := _), π₀₁_cc hR, zero_add, map_natCast, map_zero] at this
+  rw [ps_apply, _root_.Formalism.MainNotions.WachCoordinates.Br.constCoeff_algHom _ h0, map_add (f := _), π₀₁_cc hR, zero_add, map_natCast, map_zero] at this
   exact (Nat.cast_ne_zero.mpr (by omega : PD.p ≠ 0)) this
 
 theorem ps_mul_eq (hR : RingP W) (s : ℕ) (i : ZMod n) :

@@ -99,7 +99,7 @@ theorem vac_reads : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D
     exact Submodule.map_id _
   subst hL'
   obtain ⟨X', m, hq', hq, bas', idx', hs', -, -, hEF, hh, -, -, hfr⟩ :=
-    GlobalTheory.T.orthonormal_frame_reading_eq_conjugate_datum_theta D ψ θ V W g X bas idx hψ hθ he hV hX hs
+    _root_.GlobalTheory.AdTh.reads_iff_eq_th D ψ θ V W g X bas idx hψ hθ he hV hX hs
   obtain ⟨⟨B, hB⟩, hall⟩ := hfr x hx
   obtain ⟨hIB, -, hsB, -, -, -, -, -, hrd⟩ := hall B hB
   set C : GlobalTheory.Ker.Ctx V W := ⟨ψ, hψ, θ, hθ, X', m, g, X.p0, hq', bas', idx', hs', he⟩ with hC

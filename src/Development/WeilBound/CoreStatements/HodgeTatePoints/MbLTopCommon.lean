@@ -57,7 +57,7 @@ namespace PositivityTheory.HtPt.Mb.LTopCommon
 
 theorem exists_common_normal_model : ∀ (o : Type) [CommRing o] [Algebra.EssFiniteType ℤ o] (Ω : Type) [Field Ω] [Algebra o Ω] (κ : Type) [Finite κ] (x : κ → Ω) (M : PModel o x) (A : Type) [Finite A] (κa : A → Type) [∀ a, Finite (κa a)] (w : ∀ a, κa a → Ω) (B : Type) [Finite B] (E : B → Type) [∀ b, AddCommGroup (E b)] [∀ b, Module Ω (E b)] (L : ∀ b, Lat M.ξ (E b)) (V : ∀ b, Submodule Ω (E b)) [∀ b, FiniteDimensional Ω (V b)], (∀ a, ∃ l, w a l ≠ 0) → (∀ b, (L b).IsCohOn Set.univ) → (∀ b p, Submodule.span Ω (L b p : Set (E b)) = V b) → ∃ (κ' : Type) (_ : Finite κ') (y : κ' → Ω) (M' : PModel o y) (f : M'.X ⟶ M.X), Dominates M'.ξ M.ξ f (RingHom.id Ω) ∧ Flat.NormalCpt M'.ξ ∧ (∀ a (p' : Cpt M'.ξ), ∃ l, InChart M'.ξ (w a) l p') ∧ (∀ b, ((L b).pull M'.ξ f (AddMonoidHom.id (E b))).IsVB (Module.finrank Ω (V b)) (V b)) ∧ ∀ p : Cpt M.ξ, (∀ a, ∃ l, InChart M.ξ (w a) l p) → (∀ b, ∃ (r : ℕ) (g : Fin r → E b), (L b).IsFrameAt g p) → NormAt M'.ξ f (RingHom.id Ω) p := by
   intro o _ _ Ω _ _ κ _ x M A _ κa _ w B _ E _ _ L V _ hw hL hV
-  choose κb hκb v hv0 hv1 hv2 using fun b => PositivityTheory.HtPt.Mb.flatten o Ω κ x M (E b) (L b) (V b) (hL b) (hV b)
+  choose κb hκb v hv0 hv1 hv2 using fun b => _root_.PositivityTheory.HtPt.Mb.LFlatten.Flatten.plucker_block o Ω κ x M (E b) (L b) (V b) (hL b) (hV b)
   let κs : A ⊕ B → Type := fun s => match s with
     | .inl a => κa a
     | .inr b => κb b
@@ -70,8 +70,8 @@ theorem exists_common_normal_model : ∀ (o : Type) [CommRing o] [Algebra.EssFin
   have hws : ∀ s, ∃ l, ws s l ≠ 0 := fun s => match s with
     | .inl a => hw a
     | .inr b => hv0 b
-  obtain ⟨κ₁, _, y₁, M₁, f, hf, hch, hiso⟩ := PositivityTheory.HtPt.Mb.join_many o Ω κ x M (A ⊕ B) κs ws hws
-  obtain ⟨κ₂, hκ₂, y₂, M₂, g, hg, hN, -, hnorm⟩ := PositivityTheory.HtPt.Mb.norm_exists o Ω κ₁ y₁ M₁ Ω
+  obtain ⟨κ₁, _, y₁, M₁, f, hf, hch, hiso⟩ := _root_.PositivityTheory.HtPt.Mb.LJoinMany.join_finitely_many o Ω κ x M (A ⊕ B) κs ws hws
+  obtain ⟨κ₂, hκ₂, y₂, M₂, g, hg, hN, -, hnorm⟩ := _root_.PositivityTheory.HtPt.Mb.LNormExists.NormEx.exists_normalisation o Ω κ₁ y₁ M₁ Ω
   replace hg : Dominates M₂.ξ M₁.ξ g (RingHom.id Ω) := hg
   replace hnorm : ∀ p, NormAt M₂.ξ g (RingHom.id Ω) p := hnorm
   have hgf : Dominates M₂.ξ M.ξ (g ≫ f) (RingHom.id Ω) := by
@@ -84,7 +84,7 @@ theorem exists_common_normal_model : ∀ (o : Type) [CommRing o] [Algebra.EssFin
     obtain ⟨l, hl⟩ := hch s ⟨_, h⟩
     exact ⟨l, hl.1, fun c => h1 _ (hl.2 c)⟩
   refine ⟨κ₂, hκ₂, y₂, M₂, g ≫ f, hgf, hN, fun a => hch₂ (.inl a), fun b => ?_, fun p hp hfr => ?_⟩
-  · obtain ⟨e, hc⟩ := PositivityTheory.HtPt.Mb.pull_eq o Ω κ x M (E b) (L b) _ Ω M₂.ξ _ (E b) (AddMonoidHom.id _) (g ≫ f) (hL b) hgf
+  · obtain ⟨e, hc⟩ := _root_.PositivityTheory.HtPt.Mb.LPullEq.pull_eq_pullLoc_of_dominates o Ω κ x M (E b) (L b) _ Ω M₂.ξ _ (E b) (AddMonoidHom.id _) (g ≫ f) (hL b) hgf
     have key := hv2 b _ Ω M₂.ξ (RingHom.id Ω) (E b) (AddMonoidHom.id _) ⟨fun _ _ => rfl, fun _ _ h => h⟩
     have hu : {p' | p' ∈ ctrSet o x (RingHom.id Ω) M₂.ξ ∧ ∃ l, InChart M₂.ξ (fun l => RingHom.id Ω (v b l)) l p'}
         = Set.univ := Set.eq_univ_of_forall fun p' => ⟨hc p', hch₂ (.inr b) p'⟩

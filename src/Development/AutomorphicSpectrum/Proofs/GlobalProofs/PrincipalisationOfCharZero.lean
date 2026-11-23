@@ -90,7 +90,7 @@ theorem exists_centre_off {k : Type} [Field k] {X₁ X₂ : Scheme.{0}} (g : X�
     exact hx hx'
   · refine (GlobalTheory.T.effCartier_restrict_iff_cartier_at Z O₂).2 fun x hx => ?_
     by_contra hc
-    exact hx ⟨by_contra fun h => hc (GlobalTheory.T.cartier_at_of_not_mem_support Z x h), hc⟩
+    exact hx ⟨by_contra fun h => hc (_root_.GlobalTheory.CompanionTheory.Hypotheses₂.CentreOver.cartAt_of_notMem_support Z x h), hc⟩
 
 theorem isIntegral_of_seq {k : Type} [Field k] {X X' : Scheme.{0}} {g : X ⟶ Sp k} {E : Closeds X} {s : X' ⟶ X}
     {E' : Closeds X'} (h : IsSncBlowupSeq g E s E') (hX : IsIntegral X) :

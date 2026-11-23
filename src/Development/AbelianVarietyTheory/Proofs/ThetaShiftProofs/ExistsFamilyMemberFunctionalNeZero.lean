@@ -102,13 +102,6 @@ theorem sum_cm {r : ℕ} (X : Data E r) (g : (E →+* ℂ) → ℕ) :
     ← Finset.sum_add_distrib]
   exact Finset.sum_coe_sort X.Ψ (fun τ => g τ + g (ComplexEmbedding.conjugate τ))
 
-theorem card_cm {r : ℕ} (X : Data E r) : Fintype.card X.Ψ = fdeg E := by
-  have h := sum_cm X (fun _ => (1 : ℕ))
-  simp only [Finset.sum_const, Finset.card_univ, smul_eq_mul, mul_one] at h
-  unfold fdeg
-  rw [← NumberField.Embeddings.card E ℂ]
-  omega
-
 variable {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l} {c : Coeff l}
 
 theorem laU_dominant {σ : c.F →+* ℂ} {r : ℕ} (U : Unf Xo c σ r) {a : (E →+* ℂ) × ℕ → ℕ} {n : ℕ} (h : Dom a n)
@@ -174,7 +167,7 @@ theorem sum_spread_le {r : ℕ} (hr : 0 < r) (U : Unf Xo c c.F.val.toRingHom r) 
     · exact_mod_cast (key i).1
     · rw [Nat.cast_add]; linarith
   refine (Finset.sum_le_sum fun τ _ => h1 τ).trans ?_
-  rw [Finset.sum_add_distrib, ← Nat.cast_sum, sum_cm (U.X k) B, Finset.sum_const, Finset.card_univ, card_cm,
+  rw [Finset.sum_add_distrib, ← Nat.cast_sum, sum_cm (U.X k) B, Finset.sum_const, Finset.card_univ, _root_.ReciprocityTheory.ChartRestriction.G.FD.QuadraticCoefficientForms.card_Psi,
     nsmul_eq_mul]
   rfl
 

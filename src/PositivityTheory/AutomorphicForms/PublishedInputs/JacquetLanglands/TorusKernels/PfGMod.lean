@@ -41,6 +41,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ConstSmall
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.WModel
 
 @[expose] public section
 
@@ -54,9 +55,6 @@ namespace UpperTheory.Esk.ModulusCharacterLemmas
 
 variable {F : Type} [Field F] [NumberField F]
 
-theorem tnn {e : ℝ≥0} (he : e ≠ 0) (m : ℤ) : WithZeroMulInt.toNNReal he (WithZero.exp m) = e ^ m := by
-  rw [WithZeroMulInt.toNNReal_neg_apply he WithZero.exp_ne_zero]; rfl
-
 theorem exp_mul_pow (m : ℤ) :
     WithZero.exp m * (WithZero.exp (-1 : ℤ)) ^ m = (1 : WithZero (Multiplicative ℤ)) := by
   rw [WithZero.exp_eq_coe_ofAdd, WithZero.exp_eq_coe_ofAdd, ← WithZero.coe_zpow, ← WithZero.coe_mul,
@@ -68,7 +66,7 @@ theorem val_exp {w : Pl F} {x : w.adicCompletion F} (hx : x ≠ 0) : ∃ m : ℤ
 
 theorem norm_eq (w : Pl F) {x : w.adicCompletion F} {m : ℤ} (hm : Valued.v x = WithZero.exp m) :
     ‖x‖ = ((Ideal.absNorm w.asIdeal : ℕ) : ℝ) ^ m := by
-  rw [FinitePlace.norm_def (x := x), hm, tnn, NNReal.coe_zpow, NNReal.coe_natCast]
+  rw [FinitePlace.norm_def (x := x), hm, _root_.Formalism.InvariantFactorPaths.G7.WModel.toNNReal_exp, NNReal.coe_zpow, NNReal.coe_natCast]
 
 theorem normV_eq (w : Pl F) : normV w = Ideal.absNorm w.asIdeal := by
   simp [normV, Ideal.absNorm_apply, Submodule.cardQuot_apply]

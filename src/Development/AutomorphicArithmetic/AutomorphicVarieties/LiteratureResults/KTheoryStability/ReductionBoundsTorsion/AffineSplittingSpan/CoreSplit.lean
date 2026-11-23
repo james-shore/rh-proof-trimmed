@@ -74,15 +74,6 @@ theorem cat_fc_hi {Q : Type} [Group Q] {a c m : ℕ} (h : a + c = m) (x : Fin (a
     | (exfalso; split_ifs at hv <;> omega)
     | rfl
 
-private theorem fin_succAbove_eq_fc {n : ℕ} (i : Fin (n + 1)) (l : Fin n) : i.succAbove l = fc (i : ℕ) l := by
-  ext
-  rw [fc_val]
-  split_ifs with hl
-  · rw [Fin.succAbove_of_castSucc_lt _ _ (by rw [Fin.lt_def]; simpa using hl)]
-    rfl
-  · rw [Fin.succAbove_of_le_castSucc _ _ (by rw [Fin.le_def]; simp; omega)]
-    rfl
-
 theorem dc_cat {Q : Type} [Group Q] {a c m : ℕ} (h : a + c = m) (F : (Fin (m + 1) → Q) → ℝ)
     (x : Fin (a + 1) → Q) (z : Fin (c + 1) → Q) :
     dc F (cat x z (m + 2)) =
@@ -90,7 +81,7 @@ theorem dc_cat {Q : Type} [Group Q] {a c m : ℕ} (h : a + c = m) (F : (Fin (m +
         (-1 : ℝ) ^ (a + 1) *
           ∑ j : Fin (c + 1), (-1 : ℝ) ^ (j : ℕ) * F (cat x (fun l => z (j.succAbove l)) (m + 1)) := by
   simp only [dc]
-  simp_rw [fin_succAbove_eq_fc]
+  simp_rw [_root_.PositivityTheory.KB.SplitAffineSpectral.NormTraceLemmas.succAbove_eq_fc]
   rw [Fin.sum_univ_eq_sum_range (fun k => (-1 : ℝ) ^ k * F (fun l => cat x z (m + 2) (fc k l))) (m + 2),
     Fin.sum_univ_eq_sum_range (fun k => (-1 : ℝ) ^ k * F (cat (fun l => x (fc k l)) z (m + 1))) (a + 1),
     Fin.sum_univ_eq_sum_range (fun k => (-1 : ℝ) ^ k * F (cat x (fun l => z (fc k l)) (m + 1))) (c + 1),

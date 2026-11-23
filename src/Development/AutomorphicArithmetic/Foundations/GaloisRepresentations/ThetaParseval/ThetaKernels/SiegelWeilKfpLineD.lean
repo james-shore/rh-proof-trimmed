@@ -65,9 +65,9 @@ theorem T_vline_k (hH : _root_.PositivityTheory.SiegelWeilFormula.THeis_k) (R : 
     {W : Mx F E d.m d.n} (hW : finOne F • W = 0) (z : ℂ) (X : Mx F E d.m d.n) :
     d.T (d.dd.rho d.B.ψ (_root_.PositivityTheory.SiegelWeilFormula.KFP.vline_k R W z) Ω) X = _root_.PositivityTheory.SiegelWeilFormula.KFP.bv_k (_root_.PositivityTheory.SiegelWeilFormula.KFP.arc_k R W) z (_root_.PositivityTheory.SiegelWeilFormula.KFP.arc_k R X) * g (_root_.PositivityTheory.SiegelWeilFormula.KFP.fin_k d X) := by
   unfold _root_.PositivityTheory.SiegelWeilFormula.KFP.vline_k
-  rw [_root_.PositivityTheory.SiegelWeilFormula.KFP.T_rho_sum'_k hH hΩ, _root_.PositivityTheory.SiegelWeilFormula.KFP.psi_sp_k R hW, _root_.PositivityTheory.SiegelWeilFormula.KFP.psi_tw_k R hW, hTΩ]
+  rw [_root_.PositivityTheory.SiegelWeilFormula.KFP.T_rho_sum'_k hH hΩ, _root_.PositivityTheory.SiegelWeilFormula.KFP.psi_sp'_k R hW, _root_.PositivityTheory.SiegelWeilFormula.KFP.psi_tw'_k R hW, hTΩ]
   simp only [_root_.PositivityTheory.SiegelWeilFormula.KFP.vac_k]
-  rw [_root_.PositivityTheory.SiegelWeilFormula.KFP.gau_eq_k, _root_.PositivityTheory.SiegelWeilFormula.KFP.arc_add_k, _root_.PositivityTheory.SiegelWeilFormula.KFP.arc_realAd_k, _root_.PositivityTheory.SiegelWeilFormula.KFP.fin_add_of_k R (_root_.PositivityTheory.SiegelWeilFormula.KFP.fin_realAd_smul_k hW z.re)]
+  rw [_root_.PositivityTheory.SiegelWeilFormula.KFP.gau_eq'_k, _root_.PositivityTheory.SiegelWeilFormula.KFP.arc_add'_k, _root_.PositivityTheory.SiegelWeilFormula.KFP.arc_realAd'_k, _root_.PositivityTheory.SiegelWeilFormula.KFP.fin_add_of'_k R (_root_.PositivityTheory.SiegelWeilFormula.KFP.fin_realAd_smul'_k hW z.re)]
   simp only [_root_.PositivityTheory.SiegelWeilFormula.KFP.bv_k, _root_.PositivityTheory.SiegelWeilFormula.KFP.ev_k]
   rw [show star (Complex.exp _) = Complex.exp (conj _) from (Complex.exp_conj _).symm, Complex.ofReal_exp,
     ← mul_assoc, ← mul_assoc, ← Complex.exp_add, ← Complex.exp_add]

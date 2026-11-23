@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.IsAdmissibleSplittingCharPairMulTwist
 
 @[expose] public section
 
@@ -129,10 +130,6 @@ theorem linS (d : ℂ) (u : X → E) : A (fun Z => d • u Z) = d • A u := by
 
 end lin
 
-theorem two_cases (i : Fin 2) : i = 0 ∨ i = 1 := by
-  have h : ∀ i : Fin 2, i = 0 ∨ i = 1 := by decide
-  exact h i
-
 theorem row_family (κ : ℂ) (pl : Bool) (Y : ℂ) {U : Set (ℂ × (Fin j → Fin j → ℂ))} (hU : IsOpen U)
     (hU0 : U ⊆ {q | q.1 ≠ 0}) {Fa Fb : ℂ → Matrix (Fin j) (Fin j) ℂ → E}
     (ha : ContDiffOn ℝ ∞ (fun q : ℂ × (Fin j → Fin j → ℂ) => Fa q.1 (Matrix.of q.2)) U)
@@ -146,7 +143,7 @@ theorem row_family (κ : ℂ) (pl : Bool) (Y : ℂ) {U : Set (ℂ × (Fin j → 
   have h3 : ContDiffOn ℝ ∞ (fun q : ℂ × (Fin j → Fin j → ℂ) => q.1⁻¹) U := cd_inv.comp contDiffOn_fst hm
   have h4 : ContDiffOn ℝ ∞ (fun q : ℂ × (Fin j → Fin j → ℂ) => (conj q.1)⁻¹) U := cd_conjinv.comp contDiffOn_fst hm
   unfold row
-  rcases two_cases s with hs | hs <;> cases pl <;> simp only [hs, if_true, Bool.false_eq_true, if_false, one_ne_zero]
+  rcases _root_.Formalism.FourierDecayAlt.P.MAx3.NF.fin2 s with hs | hs <;> cases pl <;> simp only [hs, if_true, Bool.false_eq_true, if_false, one_ne_zero]
   · exact ((contDiffOn_const.smul ha).sub (h2.smul hdzb)).sub (h2.smul hb)
   · exact ((contDiffOn_const.smul ha).add (h1.smul hdz)).sub (h1.smul hb)
   · exact h4.smul ha
@@ -162,7 +159,7 @@ theorem row_comm {A : (Matrix (Fin j) (Fin j) ℂ → E) →ₗ[ℂ] (Matrix (Fi
   obtain ⟨-, hc⟩ := hA U Fa hU hUd ha
   obtain ⟨hz, hzb⟩ := hc q hq
   unfold row
-  rcases two_cases s with hs | hs <;> cases pl <;> simp only [hs, if_true, Bool.false_eq_true, if_false, one_ne_zero]
+  rcases _root_.Formalism.FourierDecayAlt.P.MAx3.NF.fin2 s with hs | hs <;> cases pl <;> simp only [hs, if_true, Bool.false_eq_true, if_false, one_ne_zero]
   · rw [linM A _ _ _ (Fa q.1) (fun Z => PBP.dzb (fun τ => Fa τ Z) q.1) (Fb q.1)]
     simp only [Pi.sub_apply, Pi.smul_apply, hzb]
   · rw [linP A _ _ _ (Fa q.1) (fun Z => PBP.dz (fun τ => Fa τ Z) q.1) (Fb q.1)]

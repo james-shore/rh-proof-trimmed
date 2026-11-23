@@ -84,7 +84,7 @@ theorem typeVec_fixed : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T0 : 
     obtain ⟨⟨q, hq, hcard, -, hqg⟩, -⟩ := hQpl P' hP'
     obtain ⟨k, hk⟩ := (hC.lev.Pg P).1 hP
     exact Formalism.IndefR.Fin.not_two_primes P.isPrime.ne_top hq (D.host.g_prime k) (hqg k)
-      (Formalism.IndefR.Fin.nat_mem_of_conj hc (Formalism.IndefR.Fin.char_mem hq hcard))
+      (_root_.GlobalTheory.LevelPlaces.natCast_mem_of_isConjPl hc (Formalism.IndefR.Fin.char_mem hq hcard))
       (Formalism.IndefR.Fin.g_mem_of_div R.toLevCh.C hk)
   have h3 : eg * cA D eQ = 0 := by
     have := congrArg (cA D) h2

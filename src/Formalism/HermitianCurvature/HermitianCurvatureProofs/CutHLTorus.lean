@@ -228,8 +228,7 @@ theorem lin_decomp (D : ℂ →L[ℝ] E) (w : ℂ) : D w = (w.re : ℂ) • D 1 
   conv_lhs => rw [hw]
   rw [map_add (f := _), map_smul, map_smul, Complex.coe_smul, Complex.coe_smul]
 
-theorem half_I : (1 / (2 * Complex.I) : ℂ) = -Complex.I / 2 := by
-  rw [one_div, mul_inv, Complex.inv_I]; ring
+alias half_I := _root_.PI.QnHermHaar.HermitianAdjointLemmas.two_I_inv
 
 theorem torus_id (D : ℂ →L[ℝ] E) (τ : ℂ) :
     D (1 / 2 * τ) + Complex.I • D (-Complex.I / 2 * τ) = τ • ((1 / 2 : ℂ) • (D 1 - Complex.I • D Complex.I)) := by

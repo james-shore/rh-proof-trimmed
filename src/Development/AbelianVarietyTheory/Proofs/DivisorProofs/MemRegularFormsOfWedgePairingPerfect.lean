@@ -193,7 +193,7 @@ theorem mem_omB_of_mul_mem_omB :
   have hI : I = ⊤ := by
     by_contra hne
     obtain ⟨P, hP, hIP⟩ := Ideal.exists_le_maximal I hne
-    obtain ⟨f, u, b, hfP, hb, hf⟩ := GlobalTheory.T.exists_local_kaehlerD_basis_smooth_subalgebra k K B (p + q) hd P
+    obtain ⟨f, u, b, hfP, hb, hf⟩ := _root_.GlobalTheory.PD.exists_local_dbasis k K B (p + q) hd P
     apply hfP
     refine hP.isPrime.mem_of_pow_mem (p + q) (hIP ?_)
     show ((f ^ (p + q) : B) : K) • y ∈ omB k K B q

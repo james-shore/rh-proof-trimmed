@@ -116,7 +116,7 @@ theorem sumOp_vacuum_lift : ∀ {R X M : Type} [CommRing R] [AddCommGroup X] [Mo
     rintro _ ⟨x, rfl⟩
     exact hmem x
   refine ⟨⟨hne, hs'fix, hspan'⟩, fun e he1 he v hv => ?_⟩
-  obtain ⟨c, rfl⟩ := GlobalTheory.T.heisenbergVacuum_unique_of_selfDual h Λ' hΛ' _ hne hs'fix hspan' v hv
+  obtain ⟨c, rfl⟩ := _root_.GlobalTheory.SphTheta.vacuum_unique_of_selfDual h Λ' hΛ' _ hne hs'fix hspan' v hv
   have hes' : e (sumOp W Λ Λ' s) = 1 := by
 
     rw [((sumOp_transversal h Λ Λ' hΛ').1 s hs (Fin n) f hf ht).1, map_sum]

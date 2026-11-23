@@ -61,14 +61,6 @@ open TopologicalSpace
 
 namespace GlobalTheory.PullAutConst
 
-theorem gm_pullChart {X Z T : Scheme.{0}} (L : LB X) (F : Z ⟶ X) (f : T ⟶ Z) (y : T) (j j' : L.ι)
-    (hj : F (f y) ∈ L.U j) (hj' : F (f y) ∈ L.U j') :
-    gm f y _ ((L.pull F).g (fun _ => j) (fun _ => j')) = gm (f ≫ F) y _ (L.g j j') := by
-  have hp : f y ∈ (L.pull F).U (fun _ => j) ⊓ (L.pull F).U (fun _ => j') := ⟨mem_pull.2 hj, mem_pull.2 hj'⟩
-  show gm f y _ (∏ _k : PUnit, (res _ (pullU F _ (L.g j j'))) ^ (1 : ℤ)) = _
-  rw [Fintype.prod_unique, zpow_one]
-  exact (gm_res f y _ hp _).trans (gm_pull f F y (L.U j ⊓ L.U j') ⟨hj, hj'⟩ _)
-
 theorem exists_glued {X Y B : Scheme.{0}} (L : LB X) (M₀ : LB Y) (β : X ⟶ Y) (wF : LB.Iso L (M₀.pull β))
     (π₁ π₂ : B ⟶ X) (w : LB.Iso (L.pull π₁) (L.pull π₂)) (hL : L.IsLB) (hM : M₀.IsLB)
     (hF : PGen wF) (hw : PGen w) (hβ : π₁ ≫ β = π₂ ≫ β) :
@@ -103,7 +95,7 @@ theorem exists_glued {X Y B : Scheme.{0}} (L : LB X) (M₀ : LB Y) (β : X ⟶ Y
       (show β (π₂ (f z)) ∈ _ by rw [← hpt]; exact ha') hc hc'
     have e₁ := hF Z (f ≫ π₁) z a a' b b' ha ha' hb hb'
     have ew := hw Z f z c c' (fun _ => b) (fun _ => b') hc hc' (mem_pull.2 hb) (mem_pull.2 hb')
-    rw [gm_pullChart L π₁ f z b b' hb hb'] at ew
+    rw [_root_.GlobalTheory.FourthSide.gm_pull_g L π₁ f z b b' hb hb'] at ew
     have hg : gm ((f ≫ π₂) ≫ β) z _ (M₀.g a a') = gm ((f ≫ π₁) ≫ β) z _ (M₀.g a a') := by
       simp only [Category.assoc, hβ]
     dsimp only

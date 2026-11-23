@@ -82,7 +82,7 @@ end An
 theorem intS_subst {K : Type} [NormedField K] [IsUltrametricDist K] [CharZero K] {θ U : K⟦X⟧}
     (hθ0 : constantCoeff θ = 0) (hθ : IntS θ) (hU : IntS U) : IntS (U.subst θ) := by
   have hR := (intRules K).2.2.2.2.2.2.2.2.2
-  have h := (substExpInt K Unit Unit (fun _ => θ) (fun _ => hθ0) (fun _ => (hR θ).1 hθ) 0 U
+  have h := (_root_.Formalism.L2.Th1.E.subst_exp_integral K Unit Unit (fun _ => θ) (fun _ => hθ0) (fun _ => (hR θ).1 hθ) 0 U
     (by simp) ((hR U).1 hU)).2.1
   exact (hR _).2 h
 
@@ -95,7 +95,7 @@ theorem v_integral_nonsingular_jet_norms : VIntegral := by
   have hp : l.Prime := Fact.out
   have hθ0 := Formalism.L2.Th1.D.EAux.cc_theta hp.two_le (ι L.g₂) (ι L.g₃) ε
   have hs := PowerSeries.HasSubst.of_constantCoeff_zero' hθ0
-  obtain ⟨hc, hI⟩ := Formalism.L2.Th1.D.phCompare ℂ_[l] l hp (ι L.g₂) (ι L.g₃) (ι (Formalism.L2.Th1.F.s2 L)) ε hε hθ
+  obtain ⟨hc, hI⟩ := _root_.Formalism.L2.Th1.D.phi_comparison ℂ_[l] l hp (ι L.g₂) (ι L.g₃) (ι (Formalism.L2.Th1.F.s2 L)) ε hε hθ
   rw [phCurve_eq] at hc hI
   have hcc : MvPowerSeries.constantCoeff
       (PowerSeries.subst (Formalism.L2.Th1.D.thetaS l (ι L.g₂) (ι L.g₃) ε) (phL l L ι) :

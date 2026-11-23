@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerPairs.IsUnitDetOfMemGV
 
 @[expose] public section
 
@@ -68,7 +69,7 @@ theorem colN {ζ : B.Mat k r} (hζ : B.inLie k r ζ) (z : Fin (2 * r + k + 1) �
     intro b hb; simp [hv b hb]
   intro i hi
   by_cases h1 : i.val < r
-  · have e := herm_es (ζ *ᵥ bvec (eI k r a)) ⟨i.val, h1⟩
+  · have e := _root_.PI.StabPairsW.herm_es (ζ *ᵥ bvec (eI k r a)) ⟨i.val, h1⟩
     rw [show eI k r ⟨i.val, h1⟩ = i from Fin.ext rfl] at e
     rw [← e]
     refine orth _ (fun b hb => ?_)
@@ -88,7 +89,7 @@ theorem colN {ζ : B.Mat k r} (hζ : B.inLie k r ζ) (z : Fin (2 * r + k + 1) �
       · exact h0
     · have e : i = esI k r ⟨2 * r + k - i.val, by omega⟩ := by
         apply Fin.ext; simp [esI]; omega
-      have e2 := herm_e (ζ *ᵥ bvec (eI k r a)) ⟨2 * r + k - i.val, by omega⟩
+      have e2 := _root_.PI.StabPairsW.herm_e (ζ *ᵥ bvec (eI k r a)) ⟨2 * r + k - i.val, by omega⟩
       rw [← e] at e2
       rw [← e2]
       refine orth _ (fun b hb => ?_)

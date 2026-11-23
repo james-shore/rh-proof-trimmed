@@ -58,7 +58,7 @@ noncomputable section
 theorem MainStatements.WeightKernel.cuspAny : MainStatements.WeightKernel.CuspAny := by
   intro D V hodd T U hNoFixed μf hμf ff hff fa hA 𝔉 hP
   have := hμf
-  have hH := (GlobalTheory.T.typeHypothesis_forms_agree D V T hNoFixed).1
+  have hH := (_root_.GlobalTheory.TypeHypForms.hypH_and_noRadicalFixed D V T hNoFixed).1
   obtain ⟨a, ha0, ha2, hpar⟩ := parabolicAtSplitPlaces D V hodd T 𝔉 hP
   obtain ⟨v, hv⟩ := hH a ha0 (by omega)
   obtain ⟨h, hh, e⟩ := hff.2.1 v

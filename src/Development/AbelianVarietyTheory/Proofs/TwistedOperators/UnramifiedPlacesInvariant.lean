@@ -116,7 +116,7 @@ theorem vac_fixed_split : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
   obtain ⟨hSB, hne, θ, hθ, heig⟩ := hT.geo.hM.vac v
   obtain ⟨φ₁, hφ₁, hact⟩ := GlobalTheory.T.weilRepresentationLocality_unitaryGroupW_pairVW F E σ B a a' G X om om' hT v k hk.1 (G.M.vac v) hSB
   have heig₁ := GlobalTheory.T.weilOperator_latticeStabiliser_right_preserves_vacuumType F E σ B a a' G X om om' hT v k hk θ hθ (G.M.vac v) hSB φ₁ hφ₁ heig hact
-  obtain ⟨c, hc⟩ := GlobalTheory.T.heisenbergSelfDualLattice_fixedFunctions_line F E σ B a a' G X om om' hT v hψ
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.LatVacLine.vacuum_line F E σ B a a' G X om om' hT v hψ
     (GlobalTheory.PsiUnrSelfDual.latAtV_selfDual F E σ B a a' G X om om' hT v hψ) θ hθ (G.M.vac v) hSB hne heig
     φ₁ hφ₁ heig₁
   subst hc

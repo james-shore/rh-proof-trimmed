@@ -92,7 +92,7 @@ theorem depth_prod [CharZero C] [DecidableEq κ] [∀ b, DecidableEq (ι b)] {F 
   | empty => simpa using depth_one G u
   | insert a s ha ih =>
     rw [Finset.prod_insert ha, Finset.sum_insert ha, ← ih]
-    refine GlobalTheory.T.formalGroupOperatorDepth_mul_disjoint_columns C v κ d G ι u {b | col b = a} _ _ (hP a) fun x hx h => ?_
+    refine _root_.GlobalTheory.FGDepth.depth_mul_of_disjoint_columns C v κ d G ι u {b | col b = a} _ _ (hP a) fun x hx h => ?_
     obtain ⟨f, hf, hxf⟩ := Finset.mem_biUnion.1 (MvPolynomial.vars_prod _ hx)
     exact ha ((show col x.1 = a from h) ▸ hP f x hxf ▸ hf)
 

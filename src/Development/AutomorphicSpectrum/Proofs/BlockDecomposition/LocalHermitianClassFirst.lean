@@ -418,7 +418,7 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (hU : Unr 
       (x : v.adicCompletion (maximalRealSubfield E) ⊗[maximalRealSubfield E] plus Q)) ≠ 0 :=
     (_root_.map_ne_zero _).2 (Units.ne_zero (Units.map (Algebra.norm (v.adicCompletion (maximalRealSubfield E)) :
       (v.adicCompletion (maximalRealSubfield E)) ⊗[maximalRealSubfield E] plus Q →* (v.adicCompletion (maximalRealSubfield E))) x))
-  rw [det_gramOn_mul (cj w) _ (aeval A m) V hM, hdet, GlobalTheory.UnitaryClasses.BaseChangeSign.ordL_mul hg0 hn0,
+  rw [det_gramOn_mul (cj w) _ (aeval A m) V hM, hdet, _root_.Formalism.UG.P.fSatake_ord_mul hg0 hn0,
     zpow_add₀ (by norm_num : (-1 : ℂ) ≠ 0), mul_comm, ← hs]
   rfl
 

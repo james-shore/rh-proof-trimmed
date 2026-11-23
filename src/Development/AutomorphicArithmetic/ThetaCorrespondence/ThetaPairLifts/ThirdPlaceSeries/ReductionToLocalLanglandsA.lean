@@ -58,9 +58,9 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem sa_of_prN_alt_alt : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → PhtCmp → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, _root_.GlobalTheory.HeightCounting.Up.SameGaloisLevelExists hL := by
   intro hP hC hL
-  have hE := _root_.GlobalTheory.T.isRayPrime_g_and_integral_range hP
-  have hR := _root_.GlobalTheory.T.depth_of_repOf_of_inputs hP
-  have hA := _root_.GlobalTheory.T.types_true_of_ray_class_alt hL hP.what₂.fin hP.what₂.berger hP.greenC hP.what₂.art hP.ray hP.what₂.cheb
+  have hE := _root_.GlobalTheory.ElemAtStates.elem_all_alt_alt hP
+  have hR := _root_.GlobalTheory.RowDepthTrue.rowDepth_allSt_alt_alt hP
+  have hA := _root_.GlobalTheory.HeightCounting.TopA.exists_sideA_alt hL hP.what₂.fin hP.what₂.berger hP.greenC hP.what₂.art hP.ray hP.what₂.cheb
   unfold _root_.GlobalTheory.HeightCounting.Up.SameGaloisLevelExists AllSt
   refine StepW.trans (StepW.and hE hR) (StepW.of_all ?_)
   intro K B f T w _ _ hq P x hLoc
@@ -100,11 +100,5 @@ theorem sa_of_prN_alt_alt : _root_.GlobalTheory.HeightCounting.Up.PublishedInput
   exact hrow
 end GlobalTheory.HeightCounting.Up
 end
-end
-section
-open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.L2 Formalism.L2.Host Formalism.L2.NT Formalism.IndefR.NX NumberField IsDedekindDomain GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.R3 GlobalTheory.Mem.R3.Rw GlobalTheory.HeightCounting GlobalTheory.HeightCounting.Up
-
-theorem _root_.GlobalTheory.T.stageASameGalois_of_inputs_phtCmp : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → PhtCmp → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, _root_.GlobalTheory.HeightCounting.Up.SameGaloisLevelExists hL := by
-  first | exact @_root_.GlobalTheory.HeightCounting.Up.sa_of_prN_alt_alt | exact _root_.GlobalTheory.HeightCounting.Up.sa_of_prN_alt_alt | (intros; apply _root_.GlobalTheory.HeightCounting.Up.sa_of_prN_alt_alt <;> assumption)
 end
 end

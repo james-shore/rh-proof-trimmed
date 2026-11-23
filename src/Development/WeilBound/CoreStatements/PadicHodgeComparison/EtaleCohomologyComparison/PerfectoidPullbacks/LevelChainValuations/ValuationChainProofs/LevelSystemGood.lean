@@ -71,7 +71,7 @@ theorem level_system_good [FiniteDimensional ℚ_[l] K] (hM : M.Sm) (U : Cov M.q
       fin := fun j => (m_fin M hM j).1
       basis := fun j _ bs w => cg_basis_pf hL M hM s U hU j bs w
       r_tr := hr
-      red_tr := fun n j z => trM_redM (QA L M s) none (l : L.A) n j z
+      red_tr := fun n j z => _root_.GlobalTheory.CompanionTheory.RedTower.trM_redM (QA L M s) none (l : L.A) n j z
       lift := ?_
       sep := ?_ }
   · intro j x hx

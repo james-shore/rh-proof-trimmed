@@ -612,7 +612,7 @@ theorem conc : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (N : ℕ) 
   obtain ⟨-, hS, hL, -⟩ := dict_holds E N
   have h8 : (0 : ℝ≥0∞) < 1 / 8 := by simp
   obtain ⟨β, hβ, hβψ⟩ := approxU ν μ α δ F hα hαc hδ hF (1 / 8) h8 k
-  obtain ⟨Ω, hΩ, hΩf⟩ := GlobalTheory.T.uniform_bound_siegel_set E N μ ι (fun i => (sm ν β)^[k] (f i)) κ (iter_fam ν hβ hfam k).cont (hk β hβ)
+  obtain ⟨Ω, hΩ, hΩf⟩ := _root_.GlobalTheory.CompanionTheory.Conc.TailU.tail_unif E N μ ι (fun i => (sm ν β)^[k] (f i)) κ (iter_fam ν hβ hfam k).cont (hk β hβ)
     (fun r h0 h1 => by
       have := hrho r h0 h1
       simp only [hκ]

@@ -178,31 +178,10 @@ lemma hwmf_cpart_sum (ε : Fin n → Bool) (Z : Matrix (Fin n) (Fin n) ℂ) :
        linear_combination (-(1 / 2) * (Z i j + (Jm ε * Zᴴ * Jm ε) i j)) * Complex.I_sq)
     | (simp [Complex.I_sq]; ring)
 
-private theorem inK_cp1_lemma (ε : Fin n → Bool) (Z : Matrix (Fin n) (Fin n) ℂ) :
-    inK ε (cpart1 ε (bdPart ε Z)) := by
-  unfold inK inG cpart1 Jm bdPart
-  constructor <;> ext a b <;>
-    simp [Matrix.mul_diagonal, Matrix.diagonal_mul, Matrix.conjTranspose_apply, Matrix.sub_mul, Matrix.mul_sub,
-      Matrix.smul_mul, Matrix.mul_smul, Complex.star_def, map_div₀] <;>
-    rcases Bool.eq_false_or_eq_true (ε a) with ha | ha <;>
-    rcases Bool.eq_false_or_eq_true (ε b) with hb | hb <;>
-    simp [ha, hb, Complex.conj_ofNat, map_ofNat] <;> ring
-
-private theorem inK_cp2_lemma_2 (ε : Fin n → Bool) (Z : Matrix (Fin n) (Fin n) ℂ) :
-    inK ε (cpart2 ε (bdPart ε Z)) := by
-  unfold inK inG cpart2 Jm bdPart
-  constructor <;> ext a b <;>
-    simp [Matrix.mul_diagonal, Matrix.diagonal_mul, Matrix.conjTranspose_apply, Matrix.sub_mul, Matrix.mul_sub,
-      Matrix.add_mul, Matrix.mul_add, Matrix.smul_mul, Matrix.mul_smul, Complex.star_def, map_div₀,
-      Complex.conj_I] <;>
-    rcases Bool.eq_false_or_eq_true (ε a) with ha | ha <;>
-    rcases Bool.eq_false_or_eq_true (ε b) with hb | hb <;>
-    simp [ha, hb, Complex.conj_ofNat, map_ofNat] <;> ring
-
 lemma hwmf_rdc (ε : Fin n → Bool) (m : Fin n → ℤ) (Z : Matrix (Fin n) (Fin n) ℂ) (x : KG ε) :
     rdc ε Z (f0K ε m) x = fderiv ℂ (f0 ε m) (toMK x) (toMK x * bdPart ε Z) := by
-  have h1 := hasDerivAt_f0K ε m (inK_cp1_lemma ε Z) x
-  have h2 := hasDerivAt_f0K ε m (inK_cp2_lemma_2 ε Z) x
+  have h1 := hasDerivAt_f0K ε m (_root_.ReciprocityTheory.ChartRestriction.DS.HW.inK_cpart1_bdPart ε Z) x
+  have h2 := hasDerivAt_f0K ε m (_root_.ReciprocityTheory.ChartRestriction.DS.HW.inK_cpart2_bdPart ε Z) x
   unfold rdc
   rw [h1.deriv, h2.deriv]
   rw [show Complex.I * fderiv ℂ (f0 ε m) (toMK x) (toMK x * cpart2 ε (bdPart ε Z)) =

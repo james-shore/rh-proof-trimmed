@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsFlagDomainModelsOfFamilyUniformisation
 
 @[expose] public section
 
@@ -51,22 +52,6 @@ namespace GlobalTheory.ConjugateMultiplicity
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 variable {E : Type} [Field E] [NumberField E] [NumberField.IsCMField E]
-
-theorem rt0_conj_neg_ne_zero (H : Host E) : starRingEnd ℂ H.rt0 = -H.rt0 := by
-
-  have hsq := H.sqrt_neg_disc_sq
-  have hd : (0 : ℝ) < H.d := by exact_mod_cast H.d_prime.pos
-  have hre := congrArg Complex.re hsq
-  have him := congrArg Complex.im hsq
-  simp only [pow_two, Complex.mul_re, Complex.mul_im, Complex.neg_re, Complex.neg_im, Complex.natCast_re,
-    Complex.natCast_im, neg_zero] at hre him
-  have h0 : H.rt0.re = 0 := by
-    by_contra hne
-    have hprod : H.rt0.re * H.rt0.im = 0 := by linarith [mul_comm H.rt0.re H.rt0.im]
-    have him0 : H.rt0.im = 0 := (mul_eq_zero.1 hprod).resolve_left hne
-    rw [him0] at hre
-    nlinarith [sq_nonneg H.rt0.re]
-  apply Complex.ext <;> simp [h0]
 
 theorem emb_rt_sq (H : Host E) (τ : E →+* ℂ) : (τ (H.rt : E)) ^ 2 = H.rt0 ^ 2 := by
   have h : (H.rt : E) ^ 2 = -(H.d : E) := by
@@ -90,11 +75,11 @@ private theorem mult_conjEmb_eq_ite {H : Host E} (D : Datum H) (τ : E →+* ℂ
 
   rcases sq_eq_sq_iff_eq_or_eq_neg.1 (emb_rt_sq H τ) with h | h
   · have h2 : ¬ conjEmb τ (H.rt : E) = H.rt0 := by
-      rw [hc, h, rt0_conj_neg_ne_zero]
+      rw [hc, h, _root_.GlobalTheory.ModelsExist.rt0_conj_neg_ne_zero]
       exact fun e => hne e.symm
     rw [if_pos h, if_neg h2]
   · have h2 : conjEmb τ (H.rt : E) = H.rt0 := by
-      rw [hc, h, map_neg, rt0_conj_neg_ne_zero, neg_neg]
+      rw [hc, h, map_neg, _root_.GlobalTheory.ModelsExist.rt0_conj_neg_ne_zero, neg_neg]
     have h3 : ¬ τ (H.rt : E) = H.rt0 := by
       rw [h]
       exact fun e => hne e.symm

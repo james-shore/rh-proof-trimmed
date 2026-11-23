@@ -388,7 +388,7 @@ theorem sq_frame_of_symmetric : LL → AllUF fun {R} _ _ {I} {D} {A} {G} _ _ U F
       rw [eG, Hom.inv_def, Category.id_comp]
       simp [Fin.prod_univ_two, mul_comm])
     (GeneratorPullback.powGen U.LG.L _ _ (LB.invGen U.LG.L _ _ U.symG) N) (powGen_isGen _ _ _ _ (invGen_isGen _ _ _ _ U.symG_gen) N)
-  obtain ⟨⟨κ, hκ⟩, hP⟩ := GlobalTheory.T.expansion_pullback_section_endomorphism hL R I hA D A G hS U F E
+  obtain ⟨⟨κ, hκ⟩, hP⟩ := _root_.GlobalTheory.UT.PullExp.main hL R I hA D A G hS U F E
     (fun a b e => neg_injective ((eh a).symm.trans (e.trans (eh b)))) N N hN hN ⟨β, hβ⟩
   have hP' := hP w₀ ρ hρ (negT A.A _) (snd _ _ ≫ ι[A.A]) (lift_snd _ _) (lift_fst _ _)
     (by rw [eA, Hom.inv_def, Category.id_comp]) α hα (corr_of_val A.isLB fun y J' hJ' => by

@@ -114,14 +114,14 @@ private theorem bil_face (hc : IsFinCover ℂ K (xv x)) {τ : DR ℂ K →ₗ[K]
     {e : DR ℂ K ⊗[ℂ] DR ℂ K} (he : e ∈ MZ F K (xv x) a (Finset.univ.erase i) J)
     {v : DR ℂ K} (hv : v ∈ omB ℂ K (rB ℂ K (xv x) (Finset.univ.erase i)) a) :
     bil τ ρ e v = 0 := by
-  have hdeg : v ∈ ⋀[K]^a Ω[K⁄ℂ] := ((GlobalTheory.T.kahlerFormsOverSubalgebra_closure_properties ℂ K _ a 0).2.1 v hv).2.2.1
+  have hdeg : v ∈ ⋀[K]^a Ω[K⁄ℂ] := ((_root_.GlobalTheory.PD.omB_alg ℂ K _ a 0).2.1 v hv).2.2.1
   have h : MZ F K (xv x) a (Finset.univ.erase i) J ≤ LinearMap.ker ((bil τ ρ).flip v) :=
     Submodule.map₂_le.2 fun m hm n _ => by
       show bil τ ρ (m ⊗ₜ n) v = 0
       rw [bil_tmul]
-      have hmem := (GlobalTheory.T.twistedDual_regularForms_finiteCover ℂ F K d (xv x) hc τ hτ (Finset.univ.erase i) hne (d - a) a
+      have hmem := (_root_.GlobalTheory.PD.twistedDual_omB ℂ F K d (xv x) hc τ hτ (Finset.univ.erase i) hne (d - a) a
         (by omega) v hdeg).2 hv m hm
-      rw [GlobalTheory.T.residue_functional_vanishes_on_omega_forms ℂ F d (xv x) hc.pd ρ hρ i _ hne (Finset.notMem_erase i _) _ hmem, zero_smul]
+      rw [_root_.GlobalTheory.PD.ResVan.resvan ℂ F d (xv x) hc.pd ρ hρ i _ hne (Finset.notMem_erase i _) _ hmem, zero_smul]
   exact h he
 
 private theorem top_zero (hc : IsFinCover ℂ K (xv x)) {τ : DR ℂ K →ₗ[K] K} (hτ : IsTop ℂ K (xv x) τ)
@@ -138,7 +138,7 @@ private theorem top_zero (hc : IsFinCover ℂ K (xv x)) {τ : DR ℂ K →ₗ[K]
   obtain ⟨hαC, hαZ⟩ := Submodule.mem_inf.1 hα
   have hαZ' : deltaL ℂ _ _ α = 0 := LinearMap.mem_ker.1 hαZ
   refine (Module.forall_dual_apply_eq_zero_iff ℂ _).1 fun φ => ?_
-  have adj := GlobalTheory.T.cechDifferential_adjoint_cupProductPairing ℂ d _ _ (fun I => MZ F K (xv x) a I J)
+  have adj := _root_.GlobalTheory.PD.CupAdj.cech_adj ℂ d _ _ (fun I => MZ F K (xv x) a I J)
     (fun I => omB ℂ K (rB ℂ K (xv x) I) a) ((bil τ ρ).compr₂ φ)
     (fun s t hs hst => monoM s t J J hs hJ hst subset_rfl) monoB
     (fun i hne e he v hv => by

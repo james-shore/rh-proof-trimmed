@@ -82,8 +82,7 @@ theorem entN_br {a b n : ℕ} (M : Mt g n) {u v : ℕ} (hu : u < b) (hv : v < b)
     entN (br a b M) u v = entN M (a + u) (a + v) :=
   entN_fun (fun i j => entN M (a + i) (a + j)) hu hv
 
-theorem coe_toG {n : ℕ} {M : Mt g n} (h : IsUnit M) : ((toG M : Gn g n) : Mt g n) = M := by
-  unfold toG; rw [dite_eq_left h]; rfl
+alias coe_toG := _root_.GlobalTheory.GLm.ParBasic.toG_val
 
 theorem toG_coe {n : ℕ} (x : Gn g n) : toG (x : Mt g n) = x := Units.ext (coe_toG x.isUnit)
 

@@ -104,11 +104,11 @@ def CommutesWithClosedImmersion (B : PrincipalizationRules.{u}) : Prop :=
     j ≫ p' = p →
     ∀ (c : ℕ), 1 ≤ c → HasEtaleCoordCodim p' j c →
     ∀ (I : X.IdealSheafData), NonzeroOnComponents I →
-      NonzeroOnComponents (imageIdealSheaf j I) →
+      NonzeroOnComponents (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) →
       InStrictNormalCrossingPosition p ([] : List X.IdealSheafData) →
       InStrictNormalCrossingPosition p' ([] : List X'.IdealSheafData) →
       IsPushforwardBlowupSeq j (B.markedBlowupSeq k X p I []).toSequenceOfBlowups
-        (B.markedBlowupSeq k X' p' (imageIdealSheaf j I) []).toSequenceOfBlowups
+        (B.markedBlowupSeq k X' p' (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) []).toSequenceOfBlowups
 
 namespace PrincipalizationRules
 
@@ -387,7 +387,7 @@ theorem isFunctorialPrincipalization_principalization (B : PrincipalizationRules
   case pushforward =>
     intro k _ _ S X pS p _ _ _ _ _ _ j _ hjp c hc hcc I hI hIX hES hEX
     rw [B.principalization_toSequenceOfBlowups hrad k S pS I hI [] hES,
-      B.principalization_toSequenceOfBlowups hrad k X p (imageIdealSheaf j I) hIX [] hEX]
+      B.principalization_toSequenceOfBlowups hrad k X p (_root_.FunctorialResolution.Blowup.schemeImageIdeal j I) hIX [] hEX]
     exact hemb k S X pS p j hjp c hc hcc I hI hIX hES hEX
   case base_change =>
     intro k _ _ X p _ _ _ I hI E hE K _ _ f _ _ _ hI' hE'

@@ -205,9 +205,7 @@ theorem lat_exists_m : ∃ m : ℕ, 1 ≤ m ∧ (∀ i, (Pi.single i (m : I.E) :
     rw [h2]
     exact mul_mem ⟨((∏ j, dd j : ℕ) : 𝓞 I.E), by simp⟩ (hB l hl i)
 
-theorem exists_m : ∃ m : ℕ, 1 ≤ m ∧ (∀ i, (Pi.single i (m : I.E) : Fin I.n → I.E) ∈ I.L) ∧
-    ∀ l ∈ I.L, ∀ i, (m : I.E) * l i ∈ Formalism.UG.intOE I.E := by
-  exact lat_exists_m I
+alias exists_m := _root_.Formalism.L2.SG.Pf.lat_exists_m
 
 def mm : ℕ := (exists_m I).choose
 
@@ -374,30 +372,17 @@ theorem alg_im_ne (v : InfinitePlace I.F) : (I.φ v (beta I)).im ≠ 0 := by
   exact NumberField.InfinitePlace.not_isReal_iff_isComplex.mpr
     (NumberField.IsTotallyComplex.isComplex _) hw
 
-private theorem thetaV_tmul_lemma_2 (v : InfinitePlace I.F) (a : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF I.F) (b : I.E) :
-    thetaV I v (a ⊗ₜ[I.F] b) = evV I v a * I.φ v b := by
-  first
-    | rfl
-    | simp [thetaV]
-
 theorem alg_theta (v : InfinitePlace I.F) (y : TT I) :
     thetaV I v y = evV I v ((alg_B I).repr y 0) + evV I v ((alg_B I).repr y 1) * I.φ v (beta I) := by
   conv_lhs => rw [alg_y_eq I y]
 
-  rw [map_sum, Fin.sum_univ_two, thetaV_tmul_lemma_2, thetaV_tmul_lemma_2, bas_zero, bas_one, map_one, mul_one]
-
-private theorem tauF_tmul_lemma (a : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF I.F) (b : I.E) :
-    tauF I (a ⊗ₜ[I.F] b) = b ⊗ₜ[I.F] a.2 := by
-  simp only [tauF, AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Algebra.TensorProduct.lift_tmul,
-    AlgHom.comp_apply, Algebra.TensorProduct.includeRight_apply, Algebra.TensorProduct.includeLeft_apply,
-    Algebra.TensorProduct.tmul_mul_tmul, one_mul, mul_one]
-  try rfl
+  rw [map_sum, Fin.sum_univ_two, _root_.Formalism.L2.SG.AdBridge.thetaV_tmul, _root_.Formalism.L2.SG.AdBridge.thetaV_tmul, bas_zero, bas_one, map_one, mul_one]
 
 theorem alg_tau (y : TT I) :
     tauF I y = (1 : I.E) ⊗ₜ[I.F] ((alg_B I).repr y 0).2 + beta I ⊗ₜ[I.F] ((alg_B I).repr y 1).2 := by
   conv_lhs => rw [alg_y_eq I y]
 
-  rw [map_sum, Fin.sum_univ_two, tauF_tmul_lemma, tauF_tmul_lemma, bas_zero, bas_one]
+  rw [map_sum, Fin.sum_univ_two, _root_.Formalism.L2.SG.AdBridge.tauF_tmul, _root_.Formalism.L2.SG.AdBridge.tauF_tmul, bas_zero, bas_one]
 
 theorem alg_comm_eq (c : Fin 2 → Af I.F) :
     Algebra.TensorProduct.comm I.F I.E (Af I.F)
@@ -465,7 +450,7 @@ theorem TT_surj (z : InfinitePlace I.F → ℂ) (w : EAf I) :
   let A : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF I.F := (xa, c 0)
   let B : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF I.F := (ya, c 1)
   refine ⟨A ⊗ₜ[I.F] (1 : I.E) + B ⊗ₜ[I.F] beta I, fun v => ?_, ?_⟩
-  · rw [map_add (f := _), thetaV_tmul_lemma_2, thetaV_tmul_lemma_2, map_one, mul_one]
+  · rw [map_add (f := _), _root_.Formalism.L2.SG.AdBridge.thetaV_tmul, _root_.Formalism.L2.SG.AdBridge.thetaV_tmul, map_one, mul_one]
     have hA : evV I v A = (xr v : ℂ) := by
       rw [alg_evV_apply, ← NumberField.InfinitePlace.Completion.extensionEmbeddingOfIsReal_apply (hv v)]
       exact congrArg _ (Function.surjInv_eq (he v) (xr v))
@@ -480,7 +465,7 @@ theorem TT_surj (z : InfinitePlace I.F → ℂ) (w : EAf I) :
     · simp only [Complex.add_im, Complex.mul_im, Complex.ofReal_re, Complex.ofReal_im, zero_mul, add_zero,
         zero_add, yr]
       exact div_mul_cancel₀ _ hb
-  · rw [map_add (f := _), tauF_tmul_lemma, tauF_tmul_lemma]
+  · rw [map_add (f := _), _root_.Formalism.L2.SG.AdBridge.tauF_tmul, _root_.Formalism.L2.SG.AdBridge.tauF_tmul]
     exact hc
 
 section AfFacts
@@ -614,11 +599,8 @@ section Coords
 
 variable (I : Formalism.MainNotions.S.AutInst)
 
-def top_bT : Module.Basis (Fin 2) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF I.F) (TT I) :=
-  Algebra.TensorProduct.basis (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF I.F) (bas I)
-
 def top_eq : TT I ≃ₗ[Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF I.F] (Fin 2 → Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF I.F) :=
-  (top_bT I).equivFun
+  (_root_.Formalism.L2.SG.Pf.alg_B I).equivFun
 
 instance top_imt : IsModuleTopology (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF I.F) (TT I) := ⟨rfl⟩
 
@@ -631,9 +613,9 @@ theorem top_cont_eq : Continuous (top_eq I) := IsModuleTopology.continuous_of_li
 theorem top_cont_symm : Continuous (top_eq I).symm := IsModuleTopology.continuous_of_linearMap (top_eq I).symm.toLinearMap
 
 theorem top_expand (y : TT I) : y = ∑ i, (top_eq I y i) ⊗ₜ[I.F] bas I i := by
-  conv_lhs => rw [← (top_bT I).sum_repr y]
+  conv_lhs => rw [← (_root_.Formalism.L2.SG.Pf.alg_B I).sum_repr y]
   refine Finset.sum_congr rfl fun i _ => ?_
-  rw [top_eq, Module.Basis.equivFun_apply, top_bT, Algebra.TensorProduct.basis_apply,
+  rw [top_eq, Module.Basis.equivFun_apply, _root_.Formalism.L2.SG.Pf.alg_B, Algebra.TensorProduct.basis_apply,
     TensorProduct.smul_tmul', smul_eq_mul, mul_one]
 
 theorem top_theta_formula (v : InfinitePlace I.F) (y : TT I) :
@@ -641,13 +623,13 @@ theorem top_theta_formula (v : InfinitePlace I.F) (y : TT I) :
   conv_lhs => rw [top_expand I y]
 
   rw [map_sum]
-  exact Finset.sum_congr rfl fun i _ => thetaV_tmul_lemma_2 I v _ _
+  exact Finset.sum_congr rfl fun i _ => _root_.Formalism.L2.SG.AdBridge.thetaV_tmul I v _ _
 
 theorem top_tau_formula (y : TT I) : tauF I y = ∑ i, bas I i ⊗ₜ[I.F] (top_eq I y i).2 := by
   conv_lhs => rw [top_expand I y]
 
   rw [map_sum]
-  exact Finset.sum_congr rfl fun i _ => tauF_tmul_lemma I _ _
+  exact Finset.sum_congr rfl fun i _ => _root_.Formalism.L2.SG.AdBridge.tauF_tmul I _ _
 
 theorem top_cont_evV (v : InfinitePlace I.F) : Continuous (evV I v) := by
   have h : ⇑(evV I v) = fun a : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF I.F =>
@@ -1068,7 +1050,7 @@ theorem tauF_sigR (x : TT I) :
     have h2 : Formalism.UG.sigR I.cm.sig (Af I.F) (b ⊗ₜ[I.F] a.2) = I.cm.sig b ⊗ₜ[I.F] a.2 := by
       simp only [Formalism.UG.sigR, AlgHom.toRingHom_eq_coe, RingHom.coe_coe,
         Algebra.TensorProduct.map_tmul, AlgHom.id_apply]
-    rw [h1, tauF_tmul_lemma, tauF_tmul_lemma, h2]
+    rw [h1, _root_.Formalism.L2.SG.AdBridge.tauF_tmul, _root_.Formalism.L2.SG.AdBridge.tauF_tmul, h2]
   | add x y hx hy => simp only [map_add (f := _), hx, hy]
 
 theorem Fm_injective : Function.Injective (Fm I) := by
@@ -1169,7 +1151,7 @@ theorem Fm_surjective : Function.Surjective (Fm I) := by
           I.J.map (I.φ v) := by
         ext a b
         simp only [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.JR, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR, Matrix.map_apply]
-        exact (thetaV_tmul_lemma_2 I v 1 (I.J a b)).trans (by rw [map_one, one_mul])
+        exact (_root_.Formalism.L2.SG.AdBridge.thetaV_tmul I v 1 (I.J a b)).trans (by rw [map_one, one_mul])
       rw [Matrix.map_mul, Matrix.map_mul, hcT, hJ, hθ1]
       have hspec := I.P_spec v
       have hx : (uMat (x.1 v))ᴴ * Formalism.REAL.Jm (I.ε v) * uMat (x.1 v) = Formalism.REAL.Jm (I.ε v) := (x.1 v).2
@@ -1195,7 +1177,7 @@ theorem Fm_surjective : Function.Surjective (Fm I) := by
           I.J.map (Formalism.UG.inclE (F := I.F) (Af I.F)) := by
         ext a b
         simp only [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.JR, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR, Matrix.map_apply]
-        exact tauF_tmul_lemma I 1 (I.J a b)
+        exact _root_.Formalism.L2.SG.AdBridge.tauF_tmul I 1 (I.J a b)
       rw [Matrix.map_mul, Matrix.map_mul, hcT, hJ, hτ1]
       exact x.2.2
   refine ⟨(⟨u, hmem⟩ : ↥(Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.HR (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF I.F) I.cm.sig I.J)), ?_⟩

@@ -45,7 +45,7 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace GlobalTheory.GenericProduct
 
-theorem oneGenericVector : OneGenericVector := GlobalTheory.T.whittakerSpaceDim_parabolicInduction_cuspidal_eq_one
+theorem oneGenericVector : OneGenericVector := _root_.GlobalTheory.FinGL.whDim_parInd_eq_one
 
 theorem genericMultOne_holds : GlobalTheory.IndefiniteRowSideFullHecke.GenericMultiplicityOne.GenericMultOne := genericMultOne oneGenericVector
 

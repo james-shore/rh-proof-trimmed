@@ -141,7 +141,7 @@ theorem exists_local_data [GlobalTheory.IsNormalScheme Y] (B : Closeds Y)
         ∀ i, Associated ((Y.presheaf.germ _ x (hc i)).hom ((σ i).f (c i))) ((e i).elim 1 t) := by
   classical
   obtain ⟨hreg, U, hxU, m, f, J, hrsp, hid⟩ := hB x
-  obtain ⟨w₀, u, hw₀, hu⟩ := GlobalTheory.T.regular_sequence_prime_divisors Y x U.1 hxU m f hreg hrsp
+  obtain ⟨w₀, u, hw₀, hu⟩ := _root_.GlobalTheory.RegParPrime.exists_primeDivisors_of_regularParams Y x U.1 hxU m f hreg hrsp
   let t : Fin m → Y.presheaf.stalk x := fun j => Y.presheaf.germ U.1 x hxU (f j)
   let e : Fin s → Option (Fin m) := fun i =>
     if h : ∃ j, j ∈ J ∧ w i = w₀ j then some h.choose else none
@@ -158,7 +158,7 @@ theorem exists_local_data [GlobalTheory.IsNormalScheme Y] (B : Closeds Y)
     · obtain ⟨j, hei, hwj⟩ : ∃ j, e i = some j ∧ w i = w₀ j := ⟨h.choose, dif_pos h, h.choose_spec.2⟩
       obtain ⟨hu1, -, -, -, hord, hoth⟩ := hu j
       refine ⟨u j, ?_, ?_⟩
-      · refine (GlobalTheory.T.cartier_divisor_mult_characterize Y (D i)).2.2.2 x (u j) fun z hz => ?_
+      · refine (_root_.GlobalTheory.Cartier.MultEff.eff_supp_eq_of_mult Y (D i)).2.2.2 x (u j) fun z hz => ?_
         by_cases hzw : z = w i
         · rw [hzw, (hmult i).1, hwj, hord]
         · rw [(hmult i).2 z hzw]
@@ -172,7 +172,7 @@ theorem exists_local_data [GlobalTheory.IsNormalScheme Y] (B : Closeds Y)
         exact algebraMap_germ hxU (f j)
     · have hei : e i = none := dif_neg h
       refine ⟨1, ?_, by rw [hei]; simp⟩
-      refine (GlobalTheory.T.cartier_divisor_mult_characterize Y (D i)).2.2.2 x 1 fun z hz => ?_
+      refine (_root_.GlobalTheory.Cartier.MultEff.eff_supp_eq_of_mult Y (D i)).2.2.2 x 1 fun z hz => ?_
       rw [(hmult i).2 z ?_, Units.val_one, (unitAt_one z).ord_eq_zero]
       rintro rfl
       have hzU : w i ∈ U.1 := hz.mem_open U.1.isOpen hxU
@@ -211,7 +211,7 @@ theorem relSnc_components : ∀ (k : Type) [Field k] [CharZero k] (Y : Scheme.{0
     have : QuasiCompact q := e ▸ inferInstance
     have := QuasiCompact.compactSpace_of_compactSpace q
     exact {}
-  have hfin := GlobalTheory.T.finite_codim_one_points_closed Y B (ne_top_of_snc B hB)
+  have hfin := _root_.GlobalTheory.Cartier.finite_coheight_one_of_ne_top Y B (ne_top_of_snc B hB)
   let S := hfin.toFinset
   let w : Fin S.card → Y := fun i => (S.equivFin.symm i).1
   have hw : Function.Injective w := fun i j h => S.equivFin.symm.injective (Subtype.ext h)
@@ -221,14 +221,14 @@ theorem relSnc_components : ∀ (k : Type) [Field k] [CharZero k] (Y : Scheme.{0
     ⟨S.equivFin ⟨v, hfin.mem_toFinset.2 ⟨h1, h2⟩⟩, by simp [w]⟩
   have hufd : ∀ x : Y, UniqueFactorizationMonoid (Y.presheaf.stalk x) :=
     AbelianProjective.ufd_stalk q
-  choose D hD using fun i => GlobalTheory.T.exists_prime_cartier_divisor Y hufd (w i) (hwS i).1
-  have heff : ∀ i, (D i).Eff := fun i => ((GlobalTheory.T.cartier_divisor_mult_characterize Y (D i)).1).2 fun z => by
+  choose D hD using fun i => _root_.GlobalTheory.primeDivisor_isCartier Y hufd (w i) (hwS i).1
+  have heff : ∀ i, (D i).Eff := fun i => ((_root_.GlobalTheory.Cartier.MultEff.eff_supp_eq_of_mult Y (D i)).1).2 fun z => by
     by_cases hz : z = w i
     · rw [hz, (hD i).1]; norm_num
     · rw [(hD i).2 z hz]
   choose σ hσ using fun i => (presents_toLB (D i)).exists_rat_eq (CartierDiv.mem_sections.2 (heff i))
   refine ⟨S.card, w, D, σ, hw, hD, hSw, ?_⟩
-  refine GlobalTheory.T.regular_sequence_stalk_snc k Y q n S.card (fun i => toLB (D i)) σ (fun i => isLB_toLB _) fun x _ => ?_
+  refine _root_.GlobalTheory.RegParams.relSnc_of_regular_params k Y q n S.card (fun i => toLB (D i)) σ (fun i => isLB_toLB _) fun x _ => ?_
   exact exists_local_data B hB w hw (fun i => (hwS i).1) (fun i => (hwS i).2) D hD σ hσ x
 
 end GlobalTheory.SncComp

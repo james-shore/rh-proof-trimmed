@@ -58,10 +58,6 @@ open scoped nonZeroDivisors
 
 namespace GlobalTheory.SigBlockSum
 
-lemma cT_eq_conjTranspose {m p : Type} (M : Matrix m p ℂ) :
-    Formalism.UG.cT (starRingEnd ℂ) M = Mᴴ := by
-  ext i j; simp [Formalism.UG.cT, Matrix.conjTranspose]
-
 def sgn (p q : ℕ) : Fin p ⊕ Fin q → ℂ := Sum.elim (fun _ => 1) (fun _ => -1)
 
 lemma fromBlocks_one_neg_one (p q : ℕ) :
@@ -97,7 +93,7 @@ theorem hasSig_smul_blk : ∀ {a b d : ℕ} (e : Fin a ⊕ Fin b ≃ Fin d) (GA 
   intro a b d e GA GB pa qa pb qb κ hκ hA hB
   obtain ⟨eA, PA, hPA⟩ := hA
   obtain ⟨eB, PB, hPB⟩ := hB
-  rw [cT_eq_conjTranspose] at hPA hPB
+  rw [_root_.Formalism.UG.P.cT_conj_eq] at hPA hPB
   have hQA := rows_reindex GA eA _ hPA
   have hQB := rows_reindex GB eB _ hPB
   set QA := (PA : Matrix (Fin pa ⊕ Fin qa) (Fin pa ⊕ Fin qa) ℂ).submatrix eA id

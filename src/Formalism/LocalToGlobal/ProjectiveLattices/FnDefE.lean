@@ -53,74 +53,11 @@ section FD
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ}
 
-theorem dmin_lact (X : Data E r) {γ : GL (Fin r) E} (hγ : γ ∈ X.Γ) (x : Frame X.Ψ r) (τ : X.Ψ)
-    (i : Fin (r + 1)) : dmin X.Gm (lact γ x) τ i = dmin X.Gm x τ i := by
-  have hconj : ∀ z : E, τ.1 (cc z) = starRingEnd ℂ (τ.1 z) := fun z =>
-    NumberField.IsCMField.complexEmbedding_complexConj E τ.1 z
-  have hcc : ∀ (b q : Fin r), cc ((Pi.single b (1 : E) : Fin r → E) q) =
-      (Pi.single b (1 : E) : Fin r → E) q := by
-    intro b q
-    by_cases h : q = b
-    · subst h
-      simp [cc]
-    · simp [cc, Pi.single_eq_of_ne h]
-  have hU : ∀ a b : Fin r, ∑ p, ∑ q, (γ : Matrix (Fin r) (Fin r) E) p a * X.Gm p q *
-      cc ((γ : Matrix (Fin r) (Fin r) E) q b) = X.Gm a b := by
-    intro a b
-    have h := (X.Γ_stab γ hγ).1 (Pi.single a 1) (Pi.single b 1)
-    simp only [herm, hcc] at h
-    simpa [Matrix.mulVec, dotProduct, Pi.single_apply] using h
-  have hUm : Matrix.transpose (γ : Matrix (Fin r) (Fin r) E) * X.Gm * (γ : Matrix (Fin r) (Fin r) E).map cc = X.Gm := by
-    ext a b
-    rw [← hU a b]
-    simp only [Matrix.mul_apply, Matrix.transpose_apply, Matrix.map_apply, Finset.sum_mul]
-    exact Finset.sum_comm
-  have hg : ∀ M : Matrix (Fin r) (Fin r) ℂ,
-      gram τ.1 X.Gm M = Matrix.transpose M * X.Gm.map τ.1 * M.map (starRingEnd ℂ) := by
-    intro M
-    ext a b
-    simp only [gram, Matrix.of_apply, hermC, col, Matrix.mul_apply, Matrix.transpose_apply,
-      Matrix.map_apply, Finset.sum_mul]
-    exact Finset.sum_comm
-  have hmat : mat (lact γ x) τ = (γ : Matrix (Fin r) (Fin r) E).map τ.1 * mat x τ := rfl
-  have hc : ((γ : Matrix (Fin r) (Fin r) E).map τ.1).map (starRingEnd ℂ) =
-      ((γ : Matrix (Fin r) (Fin r) E).map cc).map τ.1 := by
-    ext a b
-    simp only [Matrix.map_apply, hconj]
-  have e : X.Gm.map τ.1 = (Matrix.transpose (γ : Matrix (Fin r) (Fin r) E)).map τ.1 * X.Gm.map τ.1 *
-      ((γ : Matrix (Fin r) (Fin r) E).map cc).map τ.1 := by
-    conv_lhs => rw [← hUm]
-    rw [Matrix.map_mul, Matrix.map_mul]
-  have key : gram τ.1 X.Gm (mat (lact γ x) τ) = gram τ.1 X.Gm (mat x τ) := by
-    rw [hg, hg, hmat, Matrix.transpose_mul, Matrix.map_mul, hc, ← Matrix.transpose_map]
-    conv_rhs => rw [e]
-    simp only [Matrix.mul_assoc]
-  unfold dmin
-  rw [key]
-
-theorem dmin_ne_of_dom (X : Data E r) {x : Frame X.Ψ r} (hx : x ∈ X.dom) (τ : X.Ψ) (i : Fin (r + 1)) :
-    dmin X.Gm x τ i ≠ 0 := by
-  intro h0
-  have h1 : 0 < psgn X.p0 i * (dmin X.Gm x τ i).re := by
-    first
-      | exact (hx τ).2 i
-      | (simp only [Data.dom, GG, Set.mem_setOf_eq] at hx
-         exact (hx τ).2 i)
-  rw [h0] at h1
-  simp at h1
-
 theorem continuousOn_pnorm (X : Data E r) (la : Wt X.Ψ r) {P : Frame X.Ψ r → ℂ} (hP : ContinuousOn P X.dom) :
     ContinuousOn (X.pnorm la P) X.dom := by
   apply GlobalTheory.KronOff.pnorm_contOn <;> assumption
 
 end FD
-
-section Gen
-
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}
-  {Xo : Moduli Dw l} {c : Coeff l} {r : ℕ}
-
-end Gen
 
 section Core
 

@@ -57,10 +57,6 @@ namespace GlobalTheory.MemLoc.ULaws
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem alg_acris (a : Per.Ainf l) : algebraMap (Per.Ainf l) (Per.Acris l) a =
-    algebraMap (Per.Acris0 l) (Per.Acris l) (algebraMap (Per.Ainf l) (Per.Acris0 l) a) :=
-  GlobalTheory.RingIface.tower l a
-
 theorem ringHom_ext_Kur {R : Type} [CommRing R] (f g : ↥(MaximalUnramifiedExtension l) →+* R)
     (hz : ∀ z : ℤ_[l], f (algebraMap ℚ_[l] ↥(MaximalUnramifiedExtension l) (z : ℚ_[l])) =
       g (algebraMap ℚ_[l] ↥(MaximalUnramifiedExtension l) (z : ℚ_[l])))
@@ -94,7 +90,7 @@ theorem iota_aB (C : Core l) (a : Per.Ainf l) :
     C.ι (Per.aB l a) = algebraMap (Per.BdRp l) (Per.BdR l) (aDp l a) := by
   have e : Per.aB l a = algebraMap (Per.Acris l) (Per.Bcris l)
       (algebraMap (Per.Ainf l) (Per.Acris l) a) := GlobalTheory.RingIface.aB_eq_alg l a
-  rw [e, C.ι_j, alg_acris, C.j_cris.on0, Subalgebra.coe_algebraMap, aDp, RingHom.comp_apply]
+  rw [e, C.ι_j, _root_.GlobalTheory.MemLoc.algebraMap_ainf_acris_eq, C.j_cris.on0, Subalgebra.coe_algebraMap, aDp, RingHom.comp_apply]
 
 theorem iota_sigma (C : Core l) (g : GQ l) (b : Per.Bcris l) :
     C.ι (Per.σB g b) = Per.σD g (C.ι b) := by

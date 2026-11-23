@@ -61,12 +61,6 @@ theorem cross_resG_appLE {X Y : Scheme.{0}} (f : X ⟶ Y) {U : Y.Opens} {V W : X
   rw [← Scheme.Hom.appLE_map f e (homOfLE h).op]
   rfl
 
-theorem cross_resG_resG {X : Scheme.{0}} {U V W : X.Opens} (h1 : V ≤ U) (h2 : W ≤ V) (s : Γ(X, U)) :
-    resG X h2 (resG X h1 s) = resG X (h2.trans h1) s := by
-  change (X.presheaf.map _ ≫ X.presheaf.map _).hom _ = _
-  rw [← Functor.map_comp]
-  rfl
-
 theorem cross_resG_self {X : Scheme.{0}} {U : X.Opens} (h : U ≤ U) (s : Γ(X, U)) : resG X h s = s := by
   change (X.presheaf.map (𝟙 _)).hom s = s
   rw [CategoryTheory.Functor.map_id]
@@ -97,7 +91,7 @@ theorem cross_ratio_val {k Ω : Type} [CommRing k] [Field Ω] {n : ℕ} {x : Sp 
     have e2 : ratioOn U a ha b = resG _ ha (ratio k n a b) := rfl
     rw [e2, cross_appLE_resG]
     refine e.trans (congrArg (· * t) ?_)
-    exact (cross_resG_resG _ _ _).trans (cross_resG_self _ _)
+    exact (_root_.GlobalTheory.Cartier.resG_resG _ _ _).trans (cross_resG_self _ _)
   have ka := key a
   rw [ratioOn_self, map_one] at ka
   have hne : c a ≠ 0 := by
@@ -195,6 +189,6 @@ theorem cross_ratio_sections : ∀ (k Ω : Type) [CommRing k] [Field Ω] [Algebr
     L.U i ⊓ G.hom ⁻¹ᵁ (h ⁻¹ᵁ (chart k n a ⊓ chart k n b)) ≤
       L.U i ⊓ G.hom ⁻¹ᵁ (h ⁻¹ᵁ chart k n a ⊓ h ⁻¹ᵁ (chart k n a ⊓ chart k n b))))
     (huniq _ _ sa s₂ _ ⟨ha1, ha2⟩ g₂ i)
-  exact (cross_resG_resG _ _ _).symm.trans (e.trans ((cross_resG_resG _ _ _).trans (cross_resG_self _ _)))
+  exact (_root_.GlobalTheory.Cartier.resG_resG _ _ _).symm.trans (e.trans ((_root_.GlobalTheory.Cartier.resG_resG _ _ _).trans (cross_resG_self _ _)))
 
 end GlobalTheory.UMin.ThBdl

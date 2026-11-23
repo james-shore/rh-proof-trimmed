@@ -48,12 +48,6 @@ open scoped ComplexOrder
 
 namespace GlobalTheory.ConjComb
 
-theorem normSq_nonneg (D : D7) (T : TaylorLogMetric.Tor D) {a b : ℕ} (La : AddSubgroup (TaylorLogMetric.VC D a b)) (G : TaylorLogMetric.VC D a b → ℂ) :
-    0 ≤ TaylorLogMetric.normSq D T La G := by
-  unfold TaylorLogMetric.normSq
-  simp only [MeasureTheory.average_eq, smul_eq_mul]
-  exact mul_nonneg (inv_nonneg.2 MeasureTheory.measureReal_nonneg) (MeasureTheory.integral_nonneg fun z => by positivity)
-
 theorem supConst_nonneg (D : D7) (a b : ℕ) : 0 ≤ supConst D a b := by
   have h : 0 ≤ D.host.rdE := by
     exact Real.rpow_nonneg (by positivity) _
@@ -83,6 +77,6 @@ theorem conj_pres : ∀ (D : D7) (cc : Ideal (𝓞 D.host.K)) (dl : ℂ) (t0 : �
       GlobalTheory.ThetaConj.CjF.mul ⟨h1 i, h3 i, fun α => ⟨h2 i α, h4 i α⟩⟩ (hr i)
   refine ⟨hc.1, fun α => (hc.2.2 α).1, _, hc.2.1, fun α => (hc.2.2 α).2, fun z => ?_⟩
   exact sq_sum_le _ _ n _
-    (mul_nonneg (mul_nonneg (supConst_nonneg D a b) (normSq_nonneg _ _ _ _)) (Real.exp_pos _).le) (hn ρ) fun i => h5 i z
+    (mul_nonneg (mul_nonneg (supConst_nonneg D a b) (_root_.GlobalTheory.ConjJet.normSq_nonneg _ _ _ _)) (Real.exp_pos _).le) (hn ρ) fun i => h5 i z
 
 end GlobalTheory.ConjComb

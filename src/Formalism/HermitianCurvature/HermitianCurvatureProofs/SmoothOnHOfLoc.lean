@@ -77,9 +77,6 @@ section point
 variable {k r : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
   [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wp] [FiniteDimensional ℂ Wq]
 
-theorem ptSize_app (h : C.LPt) (s : ℕ) (t : ℂ) : D.ptSize (h ++ [(s, t)]) = D.ptSize h + s := by
-  simp [D.ptSize]
-
 theorem smoothOnH_of_loc {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E] {f : B.Mat k r → E}
     (hf : ∀ x ∈ B.GV k r, Formalism.FourierDecayAlt.P.CapelliWordSumExpansion.Loc ⊤ f x) : SmoothOnH (Hpk k r) f := by
   intro g₀ hg₀
@@ -111,7 +108,7 @@ theorem pt_poly (hKA : KrAA) (Bs : B.RealPlaceData k r Wp Wq) {G : B.Mat k r →
     have := Formalism.FourierDecayAlt.P.BigCellZetaMinors.dmin_sgs Bs hp g l
     rwa [sgs_pL] at this
 
-  have hsz : D.ptSize h + s = r + 1 := by rw [← ptSize_app h s t]; exact hq.2
+  have hsz : D.ptSize h + s = r + 1 := by rw [← _root_.Formalism.FourierDecayAlt.P.Dx2.SL.ptSize_append h s t]; exact hq.2
   have ht : t ≠ 0 := (hq.1 (s, t) (by simp)).2
   set i0 := D.ptSize h with hi0
   set hh := D.ptMatN h i0 with hhh
@@ -167,7 +164,7 @@ theorem pt_poly (hKA : KrAA) (Bs : B.RealPlaceData k r Wp Wq) {G : B.Mat k r →
   · rw [← hcy y, hD₁]
     set u : ℂ := (y : ℂ) + ((2 * r + k : ℕ) : ℂ) / 2 with hu
 
-    have hX1 := (Formalism.FourierDecayAlt.P.operators_commute_translations' (Wq →L[ℂ] Wp) k r Bs.z Bs.z' r le_rfl u 0 K Bs.z_mem Bs.z'_mem
+    have hX1 := (_root_.operators_commute_translations (Wq →L[ℂ] Wp) k r Bs.z Bs.z' r le_rfl u 0 K Bs.z_mem Bs.z'_mem
       (smoothOnH_of_loc hKloc) 1 h1S n0 hn0S γ hγ).1
     have e1 : (fun g => K (1 * g * n0)) = K := by
       funext g; rw [Matrix.one_mul, hKn0]
@@ -178,7 +175,7 @@ theorem pt_poly (hKA : KrAA) (Bs : B.RealPlaceData k r Wp Wq) {G : B.Mat k r →
       intro g hg
       unfold PBN.aaTop
       rw [hdσ]
-      have hX0 := (Formalism.FourierDecayAlt.P.operators_commute_translations' (Wq →L[ℂ] Wp) k r Bs.z Bs.z' r le_rfl u 0 G Bs.z_mem Bs.z'_mem
+      have hX0 := (_root_.operators_commute_translations (Wq →L[ℂ] Wp) k r Bs.z Bs.z' r le_rfl u 0 G Bs.z_mem Bs.z'_mem
         (smoothOnH_of_ckOn hG.1) σ hσS 1 h1S' g hg).1
       have e2 : (fun x => G (σ * x * 1)) = Gσ := by funext x; rw [Matrix.mul_one]
       rw [e2, Matrix.mul_one] at hX0

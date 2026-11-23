@@ -225,7 +225,7 @@ private theorem lbIso_of_pull {B : Over S} [GrpObj B] [IsCommMonObj B] (hB : IsA
   have ax2 : pull (lift (𝟙 B) (1 : B ⟶ B)).left (cls (Q₁.div Q₂) hM) = 0 := by
     rw [hc', map_sub, ← cls_pull h₁ _ (pull_isLB h₁ _), ← cls_pull h₂ _ (pull_isLB h₂ _),
       (cls_eq_zero_iff _).2 r₁', (cls_eq_zero_iff _).2 r₂', sub_zero]
-  have hadd := additive_of_cube GlobalTheory.CubeTop.cubeTheorem hB hB hM
+  have hadd := additive_of_cube _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds hB hB hM
     ((triv_ev_iff hM 1 (𝟙 B)).2 ax1) ((triv_ev_iff hM (𝟙 B) 1).2 ax2)
   have htors : (n * n) • cls (Q₁.div Q₂) hM = 0 := by
     rw [← pull_square_pow_eq_sq_smul hM hadd.1 hadd.2 n, hc', map_sub, hp, sub_self]
@@ -412,6 +412,4 @@ private theorem UpperTheory.EvaluationPowerKernel.main :
 
 end SlopeTestRemainingChoices
 
-theorem UpperTheory.exists_iso_of_pIsogeny_kernel_eq :
-    ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type) [CommRing R] (b : Base D R) (N : ℕ), 3 ≤ N → N.Coprime p → IsUnit ((p : ℕ) : R) → ∀ (c : ℕ) (T : Scheme.{0}) (s : T ⟶ Sp R) (o o₁ o₂ : Obj b N s) (ψ₁ : o.A ⟶ o₁.A) (ψ₂ : o.A ⟶ o₂.A), IsPIsog c o o₁ ψ₁ → IsPIsog c o o₂ ψ₂ → (∀ (k : Type) [Field k] [IsAlgClosed k] (x : Sp k ⟶ T) (g : Over.mk x ⟶ o.A), g ≫ ψ₁ = 1 ↔ g ≫ ψ₂ = 1) → ∃ m : ObjMap o₁ o₂ (𝟙 T), ψ₁.left ≫ m.φ = ψ₂.left :=
-  UpperTheory.EvaluationPowerKernel.main
+alias UpperTheory.exists_iso_of_pIsogeny_kernel_eq := _root_.UpperTheory.EvaluationPowerKernel.main

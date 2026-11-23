@@ -62,8 +62,6 @@ theorem norm_le_one_of_isIntegral {l : ℕ} [Fact (Nat.Prime l)] (x : PadicAlgCl
     (hx : IsIntegral ℤ_[l] x) : ‖x‖ ≤ (1 : ℝ) := by
   apply GlobalTheory.PadicNormCastBounds.norm_le_one_of_isIntegral <;> assumption
 
-theorem main : ∀ {l : ℕ} [inst : Fact (Nat.Prime l)] (x : PadicAlgCl l),
-    IsIntegral ℤ_[l] x → ‖x‖ ≤ (1 : ℝ) :=
-  fun x hx => norm_le_one_of_isIntegral x hx
+alias main := _root_.GlobalTheory.IntegralAlgebraMapNormBound.norm_le_one_of_isIntegral
 
 end GlobalTheory.IntegralAlgebraMapNormBound

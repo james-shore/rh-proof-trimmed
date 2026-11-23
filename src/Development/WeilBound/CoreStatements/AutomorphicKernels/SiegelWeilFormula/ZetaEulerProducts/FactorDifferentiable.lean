@@ -120,14 +120,4 @@ theorem factor_zo_zero (N : ℕ) (hN : 2 ≤ N) : ZO (fun s : ℂ => 1 - (N : �
     have : N = 1 := by exact_mod_cast h1
     omega
 
-theorem two_le_absNorm (K : Type) [Field K] [NumberField K] (P : HeightOneSpectrum (𝓞 K)) :
-    2 ≤ Ideal.absNorm P.asIdeal := by
-  have h0 : Ideal.absNorm P.asIdeal ≠ 0 := by
-    rw [Ne, Ideal.absNorm_eq_zero_iff]
-    exact P.ne_bot
-  have h1 : Ideal.absNorm P.asIdeal ≠ 1 := by
-    rw [Ne, Ideal.absNorm_eq_one_iff]
-    exact P.isPrime.ne_top
-  omega
-
 end PositivityTheory.Lord

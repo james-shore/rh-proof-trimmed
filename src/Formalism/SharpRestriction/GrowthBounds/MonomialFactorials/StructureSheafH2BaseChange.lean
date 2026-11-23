@@ -58,23 +58,6 @@ theorem map_glAct {N r : ℕ} (LL : ChainLetters N) (j : ℕ) (c d : Fin r) (F :
   refine Finset.sum_congr rfl fun i _ => ?_
   by_cases h1 : (i : ℕ) < j <;> by_cases h2 : LL.vec i = true <;> simp [h1, h2, pderiv_map]
 
-theorem gm_ycond_stable {N r : ℕ} [NeZero r] (LL : Formalism.GM.M.Letters N) (j : ℕ) (Mt : WithTop ℤ) (c d : Fin r) :
-    ∀ x ∈ Formalism.GM.M.YCond p (r := r) LL j Mt, Formalism.GM.M.glAct p LL j c d x ∈ Formalism.GM.M.YCond p (r := r) LL j Mt := by
-  intro x hx
-  have key : Formalism.GM.M.YCond p (r := r) LL j Mt ≤
-      (Formalism.GM.M.YCond p (r := r) LL j Mt).comap (Formalism.GM.M.glAct p LL j c d) := by
-    conv_lhs => unfold Formalism.GM.M.YCond
-    refine sSup_le fun S hS y hy => ?_
-    rw [Submodule.mem_comap]
-    unfold Formalism.GM.M.YCond
-    exact le_sSup hS (hS.2 c d y hy)
-  exact key hx
-
-theorem gm_ycond_supp {N r : ℕ} [NeZero r] (LL : Formalism.GM.M.Letters N) (j : ℕ) (Mt : WithTop ℤ) :
-    Formalism.GM.M.YCond p (r := r) LL j Mt ≤
-      restrictSupport ℚ_[p] {m : Fin N × Fin r →₀ ℕ | ((Formalism.GM.M.wt LL j 0 m : ℤ) : WithTop ℤ) ≤ Mt} :=
-  sSup_le fun _ hS => hS.1
-
 theorem map_mem_restrictSupport {σ : Type} {s : Set (σ →₀ ℕ)} (F : MvPolynomial σ ℚ_[p])
     (hF : F ∈ restrictSupport ℚ_[p] s) : map ι F ∈ restrictSupport (KK O) s := by
   rw [mem_restrictSupport_iff] at hF ⊢
@@ -87,7 +70,7 @@ theorem map_ycond {N r : ℕ} [NeZero r] (LL : ChainLetters N) (j : ℕ) (Mt : W
       restrictSupport (KK O) {m : Fin N × Fin r →₀ ℕ | ((chWt LL j 0 m : ℤ) : WithTop ℤ) ≤ Mt} := by
     rw [Submodule.span_le]
     rintro _ ⟨z, hz, rfl⟩
-    exact map_mem_restrictSupport ι z (gm_ycond_supp (gmL LL) j Mt hz)
+    exact map_mem_restrictSupport ι z (_root_.Formalism.CountingSumsFrames.ycond_le_supp (gmL LL) j Mt hz)
   have hstab : chStable (KK O) (r := r) LL j
       (Submodule.span (KK O) (map ι '' ((Formalism.GM.M.YCond p (r := r) (gmL LL) j Mt : Submodule ℚ_[p] (MvPolynomial (Fin N × Fin r) ℚ_[p])) : Set (MvPolynomial (Fin N × Fin r) ℚ_[p])))) := by
     intro c d x hx
@@ -95,7 +78,7 @@ theorem map_ycond {N r : ℕ} [NeZero r] (LL : ChainLetters N) (j : ℕ) (Mt : W
     | mem y hy =>
       obtain ⟨z, hz, rfl⟩ := hy
       apply Submodule.subset_span
-      exact ⟨_, gm_ycond_stable (gmL LL) j Mt c d z hz, (map_glAct ι LL j c d z).symm⟩
+      exact ⟨_, _root_.Formalism.CountingSumsFrames.ycond_glStable (gmL LL) j Mt c d z hz, (map_glAct ι LL j c d z).symm⟩
     | zero => simp
     | add a b _ _ ha hb =>
       rw [map_add (f := _)]

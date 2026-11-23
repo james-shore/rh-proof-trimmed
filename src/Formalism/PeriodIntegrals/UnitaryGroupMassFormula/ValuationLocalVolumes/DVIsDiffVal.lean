@@ -51,7 +51,7 @@ open Formalism.L2.SG.LocVol Formalism.MainNotions.GlobalTheoryTheory.GenusMassVo
 variable {F : Type} [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F))
 
 theorem dV_isDiffVal : IsDiffVal v (dV v) := by
-  have h : ∃ d, IsDiffVal v d := diffExists v
+  have h : ∃ d, IsDiffVal v d := _root_.PI.DiffGenLoc.UnitaryGroupMassFormula.diffExists_main v
   unfold dV
   rw [dite_eq_left h]
   exact h.choose_spec

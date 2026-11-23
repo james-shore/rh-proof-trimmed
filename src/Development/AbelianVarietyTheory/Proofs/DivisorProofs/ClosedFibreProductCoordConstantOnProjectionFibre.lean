@@ -69,7 +69,7 @@ theorem Near.closed_fibre_constant : ∀ (R : Type) [CommRing R] [IsDomain R] [I
     show (P.fromSpecResidueField w ≫ pullback.snd _ _) ≫ (O.ι ≫ pullback.fst (N.U ⊗ N.U).hom M.π) =
       (P.fromSpecResidueField w ≫ pullback.fst _ _) ≫ (O.ι ≫ pullback.fst (N.U ⊗ N.U).hom M.π)
     rw [Category.assoc, Category.assoc, pullback.condition]
-  obtain ⟨κ, hκ⟩ := GlobalTheory.T.exists_spMap_residueField_of_forall_eq_closedPoint R (P.residueField w)
+  obtain ⟨κ, hκ⟩ := _root_.GlobalTheory.Mum.spMap_factor_residueField_of_closedPoint R (P.residueField w)
     ((t ≫ O.ι ≫ pullback.fst (N.U ⊗ N.U).hom M.π) ≫ (N.U ⊗ N.U).hom) (fun u => by
       rw [Scheme.Hom.comp_apply, Scheme.Hom.comp_apply, Scheme.Hom.comp_apply, ht]; exact hcl)
   have key : ∀ (t₁ : Sp (P.residueField w) ⟶ O.toScheme),

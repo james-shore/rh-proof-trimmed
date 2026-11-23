@@ -263,12 +263,7 @@ section intg
 
 variable {μ : Measure (Mt k r)} {h : Mt k r → ℝ} {Mh : ℝ} {K : Set (Mt k r)}
 
-theorem pint_integrable (hμK : ∀ S : Set (Mt k r), IsCompact S → μ S < ∞) (hG : μ (GV k r)ᶜ = 0)
-    (hh : AEStronglyMeasurable h μ) (hMh : ∀ᵐ y ∂μ, |h y| ≤ Mh) (hK : IsCompact K)
-    {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] {Θ : Mt k r → E} (hΘ : Continuous Θ)
-    (hz : ∀ y : Mt k r, (Matrix.of y : Mat k r) ∈ GV k r → y ∉ K → Θ y = 0) :
-    Integrable (fun y => h y • Θ y) μ := by
-  exact intg_lemma hμK hG hh hMh hK hΘ hz
+alias pint_integrable := _root_.ReciprocityTheory.ChartRestriction.DS.Mult1.SmoothA.intg_lemma
 
 end intg
 
@@ -454,10 +449,7 @@ theorem V_hasDerivAt {Φ : Mat k r → ℂ} (hΦ : ContDiff ℝ ninf Φ) (hs : H
       (curveDer Y (Matrix.of x) t)
     exact h1.smul_const (X.σ (Matrix.of x) X.w)
 
-theorem V_intH {Ψ : Mat k r → ℂ} (hc : Continuous Ψ) (hs : HasCompactSupport Ψ) {h : Mat k r}
-    (hh : h ∈ GV k r) :
-    Integrable (fun x : Mt k r => Ψ (Matrix.of x) • X.σ (h * Matrix.of x) X.w) D.μG := by
-  exact vint_lemma hc hs hh
+alias V_intH := _root_.ReciprocityTheory.ChartRestriction.DS.Mult1.SmoothA.vint_lemma
 
 end vec
 

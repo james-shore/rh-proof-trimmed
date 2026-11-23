@@ -156,7 +156,7 @@ theorem exists_powOn {p : ℕ} [Fact p.Prime] (A : ValuationSubring Ω) (hp : A.
     rw [← map_pow]; congr 1; apply Subtype.ext
     show ζ ^ p ^ p ^ n = ζ
     rw [← Nat.sub_add_cancel (one_lt_pow_pow p n).le, pow_succ, hζm, one_mul]
-  obtain ⟨e, he⟩ := frob_orbit p (MulSemiringAction.toRingHom _ (IsLocalRing.ResidueField A) g)
+  obtain ⟨e, he⟩ := _root_.GlobalTheory.FixedOfPower.ringHom_apply_eq_pow p (MulSemiringAction.toRingHom _ (IsLocalRing.ResidueField A) g)
     (p ^ n) (pow_pos hpp.pos n) _ hz
   have h2 : IsLocalRing.residue A (g • a - a ^ p ^ e) = 0 := by
     rw [map_sub, IsLocalRing.ResidueField.residue_smul, map_pow, sub_eq_zero]; exact he
@@ -185,7 +185,7 @@ theorem main {p : ℕ} [Fact p.Prime] (A : ValuationSubring Ω) (hp : A.valuatio
     rw [map_natCast, ZMod.natCast_eq_natCast_iff]
     exact PowOn.modEq ((hE g n₂).mono h) (hE g n₁)
   choose χ' hχ' using fun g : A.decompositionSubgroup F =>
-    exists_padic_of_compat p (fun n => ((E g n : ℕ) : ZMod (p ^ n))) (compat g)
+    _root_.GlobalTheory.exists_padicInt_of_compatible_zmod_pow p (fun n => ((E g n : ℕ) : ZMod (p ^ n))) (compat g)
   have key : ∀ (g : A.decompositionSubgroup F) n e, PowOn p (g : Ω ≃ₐ[F] Ω) n e →
       PadicInt.toZModPow n (χ' g) = (e : ZMod (p ^ n)) := by
     intro g n e he
@@ -220,7 +220,7 @@ theorem main {p : ℕ} [Fact p.Prime] (A : ValuationSubring Ω) (hp : A.valuatio
       rw [map_sub, key g k _ he, hχ' g₀ k, sub_self]
     rw [← RingHom.mem_ker, PadicInt.ker_toZModPow, ← PadicInt.norm_le_pow_iff_mem_span_pow] at h1
     rw [dist_eq_norm]; exact lt_of_le_of_lt h1 hk
-  obtain ⟨σ, hσA, q, hq1, hσ⟩ := exists_frob_ne_one (F := F) A hp
+  obtain ⟨σ, hσA, q, hq1, hσ⟩ := _root_.GlobalTheory.exists_frob_at_place_over_prime (F := F) A hp
   let σ' : A.decompositionSubgroup F := ⟨σ, hσA⟩
   have hne : χ' σ' ≠ 0 := by
     intro h0
@@ -254,7 +254,7 @@ theorem main {p : ℕ} [Fact p.Prime] (A : ValuationSubring Ω) (hp : A.valuatio
     unfold Nat.ModEq at this
     rw [Nat.mod_eq_of_lt (by omega), Nat.mod_eq_of_lt (by omega)] at this
     exact hq1 this.symm
-  obtain ⟨ψ, hψc, hψa, hψ0, hψ1⟩ := exists_normalized p χ' hcont hadd σ' hne
+  obtain ⟨ψ, hψc, hψa, hψ0, hψ1⟩ := _root_.GlobalTheory.padicInt_hom_normalize p χ' hcont hadd σ' hne
   exact ⟨ψ, hψc, hψa, fun g hg => hψ0 g (hine g hg), hψ1⟩
 
 end main

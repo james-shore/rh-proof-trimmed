@@ -45,6 +45,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.ColSums
 
 @[expose] public section
 
@@ -259,12 +260,6 @@ theorem unitri_monomial_of_not (m : Fin r × Fin n →₀ ℕ) (hm : ¬ LowerTri
   have h1 : ¬ s.val < a.val := by omega
   simp [mem_positions, h.ne, h1, h0]
 
-theorem weight_colW (m : Fin r × Fin n →₀ ℕ) (s : Fin n) :
-    Finsupp.weight (colW r n) m s = ∑ a : Fin r, m (a, s) := by
-  rw [Finsupp.weight_apply, Finsupp.sum_fintype _ _ (by simp), Finset.sum_apply, Fintype.sum_prod_type]
-  refine Finset.sum_congr rfl fun a _ => ?_
-  simp [colW, Pi.single_apply]
-
 theorem coeffWord : Formalism.GradedWeylDivisibility.CoeffWord := by
   classical
   intro R _ r n ν F e hF he hν
@@ -278,7 +273,7 @@ theorem coeffWord : Formalism.GradedWeylDivisibility.CoeffWord := by
   by_cases hl : LowerTri m
   · rw [unitri_monomial_of_lowerTri m hl, coeff_monomial, coeff_monomial]
     refine if_congr ⟨fun h => by rw [h], fun h => ?_⟩ rfl rfl
-    refine eq_of_filter_eq m e hl he (fun s => by rw [← weight_colW, hw, hν]) fun v hv => ?_
+    refine eq_of_filter_eq m e hl he (fun s => by rw [← _root_.Formalism.GradedWeylDivisibility.lccomp_weight_colW_apply, hw, hν]) fun v hv => ?_
     have := DFunLike.congr_fun h v
     simpa [Finsupp.filter_apply, mem_positions, hv] using this
   · rw [unitri_monomial_of_not m hl, coeff_monomial, ite_eq_right (fun h : m = e => hl (h ▸ he)),

@@ -136,8 +136,8 @@ theorem mem_of_intertwiner (hnm : n ≤ m) {π : ι → Matrix.unitaryGroup (Fin
   have hW : ∀ Ψ ∈ W, ∀ τ g, colSub m τ g ∘ₗ Ψ ∈ W := fun Ψ h τ g ρ u x => by
     simp only [LinearMap.comp_apply, h ρ u x, colSub_rowSub]
   by_contra hn
-  obtain ⟨U', h0, hle, hd, hst'⟩ := GlobalTheory.T.exists_colStable_complement_of_lt ι m n X U W hst hW (lt_of_le_of_ne hU fun e => hn (e ▸ hΦ))
-  obtain ⟨Φ₁, h1, h1', a1, μ, b1⟩ := GlobalTheory.T.exists_column_highest_weight_polynomial_map ι m n X U' h0 hst'
+  obtain ⟨U', h0, hle, hd, hst'⟩ := _root_.GlobalTheory.DefLift.exists_colStable_disjoint ι m n X U W hst hW (lt_of_le_of_ne hU fun e => hn (e ▸ hΦ))
+  obtain ⟨Φ₁, h1, h1', a1, μ, b1⟩ := _root_.GlobalTheory.DefLift.exists_colHighest ι m n X U' h0 hst'
   obtain ⟨Φ₂, h2, h2', a2, μ', b2⟩ := GlobalTheory.T.exists_column_highest_weight_polynomial_map ι m n X U hU0 hst
   obtain ⟨r, hr⟩ := GlobalTheory.T.columnHighest_rowIntertwiners_proportional ι m n hnm X π hπ Φ₁ Φ₂ μ μ' h1' (fun τ u x => ⟨hle h1 τ u x, hU _ h2 τ u x⟩)
     (fun τ k l h => ⟨a1 τ k l h, a2 τ k l h⟩) fun τ k => ⟨b1 τ k, b2 τ k⟩
@@ -169,7 +169,7 @@ theorem mem_of_invariant (hnm : n ≤ m) {π : ι → Matrix.unitaryGroup (Fin m
     · exact Matrix.transpose_one
   have hrep : ∀ γ : Pol ι m n →ₗ[ℂ] X →ₗ[ℂ] ℂ, (∀ τ u P x, γ (rowSub n τ u P) (π τ u x) = γ P x) → ∃ Φ, Θ Φ = γ := by
     intro γ hγ
-    obtain ⟨d, hd⟩ := GlobalTheory.T.exists_degree_bound_of_rowUnitary_invariant_pairing ι m n X π γ hγ
+    obtain ⟨d, hd⟩ := _root_.GlobalTheory.RowSupport.exists_degree_bound ι m n X π γ hγ
     have hx : ∀ x, γ.flip x ∈ LinearMap.range B.flip := fun x => by
       obtain ⟨Q, hQ⟩ := hBr (γ.flip x) d fun α hα => by rw [LinearMap.flip_apply, hd α hα]; rfl
       exact ⟨Q, LinearMap.ext hQ⟩

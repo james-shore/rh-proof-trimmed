@@ -166,7 +166,7 @@ theorem card_submodulePairs_symm_of {X : Type} [AddCommGroup X] [Module (𝓞 E)
     have h5 : p • (p' • x) ∈ Q.asIdeal • Y₀ := Submodule.smul_mem_smul hp hx
     rw [h2] at h5
     exact (Submodule.mem_bot _).1 h5
-  obtain ⟨a, ha, c, hcQ, hc⟩ := wmp_exists_unif Q
+  obtain ⟨a, ha, c, hcQ, hc⟩ := _root_.Bl.general_b_fact_right_more.goal1 Q
   obtain ⟨s, r, hr, hsr⟩ := Q.isMaximal.exists_inv hcQ
   have key : ∀ p ∈ Q.asIdeal, ∃ t : 𝓞 E, ∀ x : X, p • x = (s * t) • (a • x) := by
     intro p hp

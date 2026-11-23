@@ -64,6 +64,6 @@ theorem res_defect : ∀ (Q q : ℕ) [NeZero Q], q ∣ Q → ∀ (V U : Scheme.{
   unfold defect
   rw [Sec.res, map_sub]
   change Sec.res g _ - Sec.res g _ = _
-  rw [(redMap Q q 1).nat g 0, (GlobalTheory.T.isKummerTorsorSplitting_kummerTorsorSplitting Q).1 V U g v hQ, (GlobalTheory.T.isKummerTorsorSplitting_kummerTorsorSplitting q).1 V U g _ hqU, map_pow]
+  rw [(redMap Q q 1).nat g 0, (_root_.GlobalTheory.EtC.KummerSplit.isKum_kumT Q).1 V U g v hQ, (_root_.GlobalTheory.EtC.KummerSplit.isKum_kumT q).1 V U g _ hqU, map_pow]
 
 end GlobalTheory.EtC.RedChern

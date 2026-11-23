@@ -158,7 +158,7 @@ theorem conjugation_acts_on_derivation : _root_.GlobalTheory.FunPr.ThetaLocalInp
     hb.std fr hAθ hCθ hΦ
   have hsp : IsUSplitting (adeleClass F) B.ψ M.co (actAB (cA σ)) om := IsUWeilPair.isUSplitting hw
   have hsp2 := GlobalTheory.WeilSchrodinger.isUSplitting_inr hsp
-  obtain ⟨c, hc⟩ := _root_.GlobalTheory.RealLift.Main.i_liescalar_alt hK hder hvl F E σ _ _ _ _ _ _ _ B.ψ B.emb _ _ M.co 1 Complex.I A C Φ _
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.LieScal.lie_algebra_acts_by_scalar hK hder hvl F E σ _ _ _ _ _ _ _ B.ψ B.emb _ _ M.co 1 Complex.I A C Φ _
     hb.cm hb.std fr hΦ hsp2
   obtain ⟨Yg, -, hY⟩ := GlobalTheory.RealLift.Main.i_genex F E σ (Fin d) _ _ B.emb (incM F W.J) Complex.I C hb.cm hC1 γ hγ
   obtain ⟨T0, rfl⟩ := GlobalTheory.RealLift.Main.pol_eq B M Φ hr hf

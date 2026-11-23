@@ -197,8 +197,8 @@ theorem acyclic_over_of_pairs (sq : IsPullback p q g h) [IsSeparated g] [IsSepar
       (fun i => q ⁻¹ᵁ B i) _ (fun j => p ⁻¹ᵁ V j) hF inferInstance hP hPc
       (by rw [← Scheme.Hom.preimage_iSup, hBc, Scheme.Hom.preimage_top])
       (by rw [← Scheme.Hom.preimage_iSup, hVc, Scheme.Hom.preimage_top])
-      (fun i _ hW => GlobalTheory.MumfordCohom.isAffineOpen_preimage_inf _ (hB i) hW)
-      (fun j _ hW => GlobalTheory.MumfordCohom.isAffineOpen_preimage_inf _ (hV j) hW)
+      (fun i _ hW => _root_.GlobalTheory.AbLaw.isAffineOpen_preimage_inf_of_isSeparated _ (hB i) hW)
+      (fun j _ hW => _root_.GlobalTheory.AbLaw.isAffineOpen_preimage_inf_of_isSeparated _ (hV j) hW)
       (fun i j => GlobalTheory.ProductAcyclic.isAffineOpen_prod sq hF (hV j) B hB hBc i) n
     have h₁ := (HomologicalComplex.exactAt_iff_isZero_homology _ _).1 (hac _ P hP hPc n)
     rw [ModuleCat.isZero_iff_subsingleton] at h₁ ⊢

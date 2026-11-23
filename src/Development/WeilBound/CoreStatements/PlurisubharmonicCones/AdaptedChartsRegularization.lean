@@ -86,31 +86,12 @@ def IsPiece (S : Finset (Fin D.n)) (g : (Fin D.n → ℂ) → (Σ k, J k) → �
       g y = torusSmul c (g y') → y = y') ∧
     ∀ y ∈ Metric.ball (0 : Fin D.n → ℂ) 2, g y ∈ D.Bd ↔ y ∈ coordDiv S
 
-private theorem conjVec_mem_mcPts_lemma {K : Type} {κ : K → Type} {P : Ideal (MRing κ)} {z : (Σ k, κ k) → ℂ}
-    (hz : z ∈ mcPts P) : conjVec z ∈ mcPts P := by
-  simp only [mcPts, Set.mem_setOf_eq] at hz ⊢
-  obtain ⟨h1, h2⟩ := hz
-  refine ⟨fun k => ?_, fun f hf => ?_⟩
-  · obtain ⟨i, hi⟩ := h1 k
-    exact ⟨i, by simpa [conjVec] using hi⟩
-  · have h := congrArg (starRingEnd ℂ) (h2 f hf)
-    rw [map_zero, MvPolynomial.eval_map, MvPolynomial.hom_eval₂] at h
-    rw [MvPolynomial.eval_map]
-    convert h using 2
-    · exact RingHom.ext_int _ _
-    · rfl
-
 private theorem star_mem_ball_lemma_2 {e : ℕ} {y : Fin e → ℂ} (hy : y ∈ Metric.ball (0 : Fin e → ℂ) 2) :
     star y ∈ Metric.ball (0 : Fin e → ℂ) 2 := by
   rw [mem_ball_zero_iff] at hy ⊢
   rw [pi_norm_lt_iff (by norm_num)] at hy ⊢
   intro i
   simpa [Pi.star_apply, Complex.star_def, Complex.norm_conj] using hy i
-
-private theorem conjVec_conjVec_lemma_3 {K : Type} {κ : K → Type} (z : (Σ k, κ k) → ℂ) :
-    conjVec (conjVec z) = z := by
-  funext p
-  simp [conjVec]
 
 private theorem conjVec_torusSmul_lemma_4 {K : Type} {κ : K → Type} (c : K → ℂ) (z : (Σ k, κ k) → ℂ) :
     conjVec (torusSmul c z) = torusSmul (fun k => starRingEnd ℂ (c k)) (conjVec z) := by
@@ -133,10 +114,10 @@ theorem IsPiece.conj {S : Finset (Fin D.n)} {g : (Fin D.n → ℂ) → (Σ k, J 
       (fun y hy => (differentiableAt_pi.1 ((hd y hy).differentiableAt
         (Metric.isOpen_ball.mem_nhds hy)) p).differentiableWithinAt)
   · intro y hy
-    exact conjVec_mem_mcPts_lemma (h2 _ (star_mem_ball_lemma_2 hy))
+    exact _root_.GlobalTheory.CompanionTheory.Ar.Cusp.SncPiece.conj_mem (h2 _ (star_mem_ball_lemma_2 hy))
   · intro y hy y' hy' c hc hyy
     have h6 := congrArg conjVec hyy
-    rw [conjVec_conjVec_lemma_3, conjVec_torusSmul_lemma_4, conjVec_conjVec_lemma_3] at h6
+    rw [_root_.GlobalTheory.CompanionTheory.Ar.Cusp.SncPiece.conj_conj, conjVec_torusSmul_lemma_4, _root_.GlobalTheory.CompanionTheory.Ar.Cusp.SncPiece.conj_conj] at h6
     have h7 := h3 _ (star_mem_ball_lemma_2 hy) _ (star_mem_ball_lemma_2 hy') _
       (fun k => by simpa using hc k) h6
     simpa using congrArg star h7
@@ -144,7 +125,7 @@ theorem IsPiece.conj {S : Finset (Fin D.n)} {g : (Fin D.n → ℂ) → (Σ k, J 
     constructor
     · intro hm
       have h8 := D.bd_conj _ hm
-      rw [conjVec_conjVec_lemma_3, h4 _ (star_mem_ball_lemma_2 hy)] at h8
+      rw [_root_.GlobalTheory.CompanionTheory.Ar.Cusp.SncPiece.conj_conj, h4 _ (star_mem_ball_lemma_2 hy)] at h8
       obtain ⟨i, hi, hi0⟩ := h8
       exact ⟨i, hi, by simpa using hi0⟩
     · intro hm

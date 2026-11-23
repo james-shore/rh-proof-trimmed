@@ -49,7 +49,7 @@ open GlobalTheory.IndefiniteRowSideFullHecke.DifferentConjugateDefects NumberFie
 namespace GlobalTheory.RefSum
 theorem refTheta_of_refCore_alt : _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.RefSum.ReferenceCore → _root_.GlobalTheory.RefSum.ReferenceTheta := by
   intro hS hR
-  have hW := _root_.GlobalTheory.T.quotient_weight_gap_bounds' hS
+  have hW := _root_.GlobalTheory.RefSum.QuoShape.quo_shape_dom_lastPos_weight_eq hS
   refine Closed.imp (Closed.and hR hW) ?_
   intro eps Fm CH inst H
   obtain ⟨⟨C, hC, a, h⟩, _, _, b, h'⟩ := H

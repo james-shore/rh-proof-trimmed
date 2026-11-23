@@ -112,7 +112,7 @@ theorem rank_pol_le_aleph0 : ∀ {F E : Type} [Field F] [NumberField F] [Field E
   have hder := GlobalTheory.T.archHeisenbergDerivatives_exist
   obtain ⟨Φ, hΦ⟩ := GlobalTheory.T.fockToSchrodingerMapExists_of_archHeisenbergDerivatives hder F E σ (Fin n) (Fin d) (Fin n × Fin d) r s r' s' B.ψ B.emb (incM F X.J)
     (incM F W.J) M.co 1 Complex.I A C hcm hstd hFramed
-  have hrange := GlobalTheory.T.fockPolynomialSpace_eq_fockImage_of_arch_laws GlobalTheory.RealLift.actsLaws hder (GlobalTheory.T.schwartzFockVacuumLineUnique_of_heisenberg_derivatives hder) F E σ n d r s r' s' X W M B.ψ B.emb A C Φ
+  have hrange := _root_.GlobalTheory.RealLift.PolRangePf.polRange_of GlobalTheory.RealLift.actsLaws hder (_root_.GlobalTheory.VacLn.vacLine_of_derEx hder) F E σ n d r s r' s' X W M B.ψ B.emb A C Φ
     hcm hstd hFramed hAθ hCθ hΦ
   rw [← hrange]
   exact (rank_range_le Φ).trans (rank_tens_le F r s r' s')

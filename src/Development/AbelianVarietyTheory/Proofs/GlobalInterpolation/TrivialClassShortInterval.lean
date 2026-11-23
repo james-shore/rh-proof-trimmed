@@ -58,14 +58,6 @@ open scoped Classical
 
 namespace GlobalTheory.Hk.ShortInt
 
-lemma one_le_ell (𝓕 : LFam) (t : ℝ) : 1 ≤ 𝓕.ell t := by
-  unfold LFam.ell
-  have hB := 𝓕.B_ge
-  have ht := abs_nonneg t
-  rw [Real.le_log_iff_exp_le (by positivity)]
-  have := Real.exp_one_lt_d9
-  nlinarith
-
 lemma zeros : ∃ c₀ A c : ℝ, 0 < c₀ ∧ c₀ ≤ 1 / 20 ∧ 0 < A ∧ 0 < c ∧ c ≤ 1 ∧ ∀ 𝓕 : LFam,
     ∃ Z : AddChar 𝓕.G ℂ → Finset ℝ, (∀ χ, 𝓕.ExcZ χ c₀ (Z χ)) ∧
       (∀ χ ψ β β', β ∈ Z χ → β' ∈ Z ψ → χ = ψ ∧ β = β') ∧
@@ -84,7 +76,7 @@ lemma zeros : ∃ c₀ A c : ℝ, 0 < c₀ ∧ c₀ ≤ 1 / 20 ∧ 0 < A ∧ 0 <
   have key : ∀ (χ : AddChar 𝓕.G ℂ) (s : ℂ), 1 - c₀ / 𝓕.ell s.im ≤ s.re → 𝓕.F χ s = 0 →
       3 / 4 ≤ s.re ∧ χ * χ = 1 ∧ s.im = 0 := by
     intro χ s hs hF
-    have hl := one_le_ell 𝓕 s.im
+    have hl := _root_.GlobalTheory.Hk.PsiExc.one_le_ell 𝓕 s.im
     have h1 : c₀ / 𝓕.ell s.im ≤ 1 / 20 := (div_le_self h0.le hl).trans h01
     have h2 : c₀ / 𝓕.ell s.im ≤ c4 / 𝓕.ell s.im := by gcongr
     have h34 : 3 / 4 ≤ s.re := by linarith
@@ -96,7 +88,7 @@ lemma zeros : ∃ c₀ A c : ℝ, 0 < c₀ ∧ c₀ ≤ 1 / 20 ∧ 0 < A ∧ 0 <
       3 / 4 ≤ β ∧ χ * χ = 1 ∧ 1 - c5 / 𝓕.ell 0 ≤ β := by
     intro χ β hβ hF
     have := key χ β (by simpa using hβ) hF
-    have hl := one_le_ell 𝓕 0
+    have hl := _root_.GlobalTheory.Hk.PsiExc.one_le_ell 𝓕 0
     have h2 : c₀ / 𝓕.ell 0 ≤ c5 / 𝓕.ell 0 := by gcongr
     exact ⟨by simpa using this.1, this.2.1, by linarith⟩
   have uniq : ∀ (χ ψ : AddChar 𝓕.G ℂ) (β β' : ℝ), 1 - c₀ / 𝓕.ell 0 ≤ β → 𝓕.F χ β = 0 →

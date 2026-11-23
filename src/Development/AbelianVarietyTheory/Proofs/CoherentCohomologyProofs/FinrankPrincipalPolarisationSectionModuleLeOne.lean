@@ -76,16 +76,7 @@ theorem le_one_of_convolution (a b : ℕ → ℕ) (g : ℕ)
   have h₂ : (if x.2 = g then 1 else 0) ≤ 1 := by split_ifs <;> omega
   exact (Nat.le_mul_of_pos_right _ hb).trans (h₁.trans ((h x.2).le.trans h₂))
 
-theorem exists_fin_affine_cover (X : Scheme.{0}) [CompactSpace X] :
-    ∃ (n : ℕ) (D : Fin n → X.Opens), (∀ i, IsAffineOpen (D i)) ∧ ⨆ i, D i = ⊤ := by
-  obtain ⟨s, hs', hs⟩ := isCompact_and_isOpen_iff_finite_and_eq_biUnion_affineOpens.mp
-    (⟨isCompact_univ, isOpen_univ⟩ : IsCompact (Set.univ : Set X) ∧ IsOpen (Set.univ : Set X))
-  have := hs'.fintype
-  let e := (Fintype.equivFin s).symm
-  refine ⟨_, fun i => (e i).1.1, fun i => (e i).1.2, ?_⟩
-  rw [e.iSup_comp (g := fun i : s => i.1.1)]
-  ext1
-  simpa using hs.symm
+alias exists_fin_affine_cover := _root_.GlobalTheory.PicZeroVan.exists_fin_affine_cover
 
 theorem isPullback_mul_snd {S : Scheme.{0}} (A : Over S) [GrpObj A] :
     IsPullback (lift (fst A A ≫ 𝟙 A) (snd A A) ≫ μ[A]).left (snd A A).left A.hom A.hom := by

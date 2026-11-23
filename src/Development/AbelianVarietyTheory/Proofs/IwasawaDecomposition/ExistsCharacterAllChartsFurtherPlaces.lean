@@ -77,7 +77,7 @@ theorem exists_locChi : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok →
       inv_mem' := fun {x} hx => hB.2.2 x hx }
   let G'' := G'.comap (reGL (rankN (I.rec7 l Z) (B.R.m - 1) (Nat.sub_le _ _)) _).toMonoidHom
   have hle : (⨆ β', ((K β').lev.Uloc v).comap (reGL (rankN (I.rec7 l Z) (B.R.m - 1) (Nat.sub_le _ _)) _).toMonoidHom) ≤ G'' :=
-    iSup_le fun β' => Subgroup.comap_mono fun x hx => GlobalTheory.T.penultimateChart_localGroup_mem_nearLevelSet I hOk hP l Z Ch0 chOf0 F u a Q h1 Ch hCh chOf K g hQ hStd hfr hk hU hchi Lb0 hLb v hv β' ⟨x, hx⟩
+    iSup_le fun β' => Subgroup.comap_mono fun x hx => _root_.GlobalTheory.Mem.Col2.QChi.mem_nearSet_chart I hOk hP l Z Ch0 chOf0 F u a Q h1 Ch hCh chOf K g hQ hStd hfr hk hU hchi Lb0 hLb v hv β' ⟨x, hx⟩
   let f : G'' →* ℂ :=
     { toFun := fun w => GlobalTheory.Mem.Col2.QChi.valV I l Z a v (reGL (rankN (I.rec7 l Z) (B.R.m - 1) (Nat.sub_le _ _)) _ w.1)
       map_one' := by
@@ -89,7 +89,7 @@ theorem exists_locChi : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok →
         rw [map_mul]
         exact hC.2 _ _ x.2 y.2 }
   refine ⟨(f.toHomUnits)⁻¹.comp (Subgroup.inclusion hle), fun β x w hw => ?_⟩
-  have hd := GlobalTheory.T.furtherPlace_penultimateChart_character_inverseValue I hOk hP l Z Ch0 chOf0 F u a Q h1 Ch hCh chOf K g hQ hStd hfr hk hF hU hchi Lb0 hLb v hv β x
+  have hd := _root_.GlobalTheory.Mem.Col2.QChi.chi_embU_mul_valV I hOk hP l Z Ch0 chOf0 F u a Q h1 Ch hCh chOf K g hQ hStd hfr hk hF hU hchi Lb0 hLb v hv β x
   show _ = (f.toHomUnits (Subgroup.inclusion hle w))⁻¹
   refine eq_inv_of_mul_eq_one_left (Units.ext ?_)
   show (((K β).lev.chi (GlobalTheory.Mem.Col2.ChartLevel.embU (K β).lev v x) : ℂˣ) : ℂ) * GlobalTheory.Mem.Col2.QChi.valV I l Z a v (reGL (rankN (I.rec7 l Z) (B.R.m - 1) (Nat.sub_le _ _)) _ w.1) = 1

@@ -49,4 +49,4 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 theorem UpperTheory.Gal.InertialTypesAlt.hcChar :
     HcChar := by
   intro F _ _ a b n hn A B hA hB
-  exact GlobalTheory.T.harishChandraInductionGL_isCharacter F a b n hn A B hA hB
+  exact _root_.GlobalTheory.Shin.HCChar.hc_isChar F a b n hn A B hA hB

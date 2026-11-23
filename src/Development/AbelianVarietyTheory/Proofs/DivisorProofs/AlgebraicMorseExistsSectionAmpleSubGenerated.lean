@@ -74,7 +74,7 @@ theorem exists_sec_of_ample_sub_generated :
   obtain ⟨C, m₀, hC⟩ := GlobalTheory.T.asymptotic_riemannRoch_ample_coherent k X hp (d + 1) (GlobalTheory.structureModule X) hsd L hL
   obtain ⟨C', m₁, hC'⟩ := GlobalTheory.T.asymptotic_riemannRoch_ample_coherent k X hp d G hGd L hL
   rw [hcut] at hlt
-  obtain ⟨m, hm1, hm⟩ := GlobalTheory.T.exists_mul_lt_of_asymptotic_bounds d (topSelfIntersection k L (d + 1)) (interNum k G (fun _ : Fin d => L))
+  obtain ⟨m, hm1, hm⟩ := _root_.GlobalTheory.morse_inequality_arith d (topSelfIntersection k L (d + 1)) (interNum k G (fun _ : Fin d => L))
     (fun m => hdim k (twist (GlobalTheory.structureModule X) (lbPow L m)) 0)
     (fun m => hdim k (twist G (lbPow L m)) 0) C C' m₀ m₁ hC hC' hlt
   have hcl : cls (lbPow L m) (isLB_lbPow hL.isLB m) =

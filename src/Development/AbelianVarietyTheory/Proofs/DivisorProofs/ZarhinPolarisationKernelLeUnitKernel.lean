@@ -83,14 +83,6 @@ namespace GlobalTheory.ZarhinFam.KerSup
 
 variable {X Y : Scheme.{0}}
 
-theorem exists_gen_of_lbIso' {P Q : LB X} (hP : P.IsLB) (hQ : Q.IsLB) (h : LBIso P Q)
-    (H : ∃ t : LB.Gen P, t.IsGen) : ∃ t : LB.Gen Q, t.IsGen := by
-  obtain ⟨w, hw⟩ := LBIso.chartPull (chartPullId P) (chartPullPull Q (𝟙 X)) h
-  obtain ⟨t, ht⟩ := H
-  obtain ⟨a, ha⟩ := gen_chartPull (chartPullPull P (𝟙 X)) t ht
-  obtain ⟨c, hc, -⟩ := exists_up ((isGen_iff w).1 hw) hQ hP a ha
-  exact gen_chartPull (chartPullUnpull Q _ (Category.id_comp _)) c hc
-
 theorem gen_pull_comp (L : LB X) (f : Y ⟶ X) {Y' : Scheme.{0}} (h : Y' ⟶ Y)
     (H : ∃ t : LB.Gen (L.pull f), t.IsGen) : ∃ t : LB.Gen (L.pull (h ≫ f)), t.IsGen := by
   obtain ⟨t, ht⟩ := H
@@ -138,14 +130,14 @@ theorem ker_pol_le_ker_polUnit : ∀ (h M d : ℕ), 0 < d → ∀ (S : Scheme.{0
     congr 1
     simp [ψ₁]
   have g2 : ∃ u : (z.P.pull (ψ₁.left ≫ (inc ⊗ₘ inc).left)).Gen, u.IsGen :=
-    KerSup.exists_gen_of_lbIso' (pull_isLB c.isLB _) (pull_isLB z.isLB _) (KerSup.lbIso_pull_pull ψ₁.left hP) g1
+    _root_.GlobalTheory.SiegelDescent.exists_gen_of_lbIso (pull_isLB c.isLB _) (pull_isLB z.isLB _) (KerSup.lbIso_pull_pull ψ₁.left hP) g1
   have e3 : ψ₁.left ≫ (inc ⊗ₘ inc).left =
       φ.left ≫ (lift (fst z.A z.A) (snd z.A z.A ≫ act (bar d (formPolUnit d)))).left := by
     rw [← Over.comp_left, ← Over.comp_left]
     congr 1
     simp only [ψ₁, φ, q, lift_map, comp_lift, lift_fst, lift_snd_assoc, Category.assoc, hbar]
   have i4 := KerSup.lbIso_pull_comp z.P φ.left (hadj (formPolUnit d))
-  have g4 := KerSup.exists_gen_of_lbIso' (pull_isLB z.isLB _) (pull_isLB z.isLB _) i4.symm
+  have g4 := _root_.GlobalTheory.SiegelDescent.exists_gen_of_lbIso (pull_isLB z.isLB _) (pull_isLB z.isLB _) i4.symm
     (KerSup.gen_congr z.P e3 g2)
   refine KerSup.gen_congr z.P ?_ g4
   rw [← Over.comp_left]

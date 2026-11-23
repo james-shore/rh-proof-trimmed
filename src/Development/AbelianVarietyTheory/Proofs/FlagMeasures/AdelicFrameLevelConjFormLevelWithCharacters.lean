@@ -169,11 +169,11 @@ theorem level_conj_frame : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
     by_contra hc
     simp only [Set.mem_union, Set.mem_ofPred_eq, not_or] at hc
     exact hv (hf_one v hc.1 hc.2)
-  obtain ⟨x0, hx0, hx0v⟩ := GlobalTheory.T.exists_adelic_unitary_of_finite_support F E n cm.sig J hf (fun v => ((hlevI v _).mp (hf_lev v)).1) hfin
+  obtain ⟨x0, hx0, hx0v⟩ := _root_.GlobalTheory.St.G.exists_adelic_of_finite_support F E n cm.sig J hf (fun v => ((hlevI v _).mp (hf_lev v)).1) hfin
   let κ : UPts cm.sig J (Ad F) := ⟨x0, hx0⟩
   have hκv : ∀ v, bc (prV (E := E) v) (κ : GL (Fin n) (E ⊗[F] Ad F)) = hf v := hx0v
   refine ⟨κ, ?_, ?_⟩
-  · exact (GlobalTheory.T.adelicLattice_carry_iff_forall_place F E n S.Lb S.Lb hL hL x0).mpr (fun v x => by
+  · exact (_root_.GlobalTheory.St.G.Carry.carry_iff F E n S.Lb S.Lb hL hL x0).mpr (fun v x => by
       rw [hx0v v]; exact ((hlevI v _).mp (hf_lev v)).2 x)
   intro y
   have hbcUP : ∀ v, bc (prV (E := E) v) (y : GL (Fin n) (E ⊗[F] Ad F)) ∈ UPts cm.sig J (v.adicCompletion F) :=
@@ -191,7 +191,7 @@ theorem level_conj_frame : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
 
   have hA : (y : GL (Fin n) (E ⊗[F] Ad F)) ∈ stabGL (hat F S.Lb) ↔
       ∀ v, bc (prV (E := E) v) (y : GL (Fin n) (E ⊗[F] Ad F)) ∈ stabGL (loc v S.Lb) :=
-    GlobalTheory.T.adelicLattice_carry_iff_forall_place F E n S.Lb S.Lb hL hL y
+    _root_.GlobalTheory.St.G.Carry.carry_iff F E n S.Lb S.Lb hL hL y
   have hB : (∀ x, (∀ z ∈ hat F S.Lb, hR cm.sig J (Ad F) z x ∈ OAd F E) → (y.1.1 - 1) *ᵥ x ∈ hat F S.Lb) ↔
       ∀ v, ∀ x ∈ loc v (dualL cm.sig J S.Lb),
         ((bc (prV (E := E) v) (y : GL (Fin n) (E ⊗[F] Ad F))).1 - 1) *ᵥ x ∈ loc v S.Lb := by
@@ -210,7 +210,7 @@ theorem level_conj_frame : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
       rw [prVec_sub_one_mulVec]
       exact h v _ (hx' v)
   have hIL := fun (hs : (y : GL (Fin n) (E ⊗[F] Ad F)) ∈ stabGL (hat F S.Lb)) =>
-    GlobalTheory.T.adelicLatticeFrame_condition_character_local F E cm n J hJ hdet k gp S.Lb Fr hgp hne hL S.Lb_int y.1 hs
+    _root_.GlobalTheory.St.G.frame_local F E cm n J hJ hdet k gp S.Lb Fr hgp hne hL S.Lb_int y.1 hs
   have hK : Fr.InK y.1 ↔ ∀ v, bc (prV (E := E) v) (y : GL (Fin n) (E ⊗[F] Ad F)) ∈ stabGL (loc v S.Lb) ∧
       (∀ x ∈ loc v (dualL cm.sig J S.Lb),
         ((bc (prV (E := E) v) (y : GL (Fin n) (E ⊗[F] Ad F))).1 - 1) *ᵥ x ∈ loc v S.Lb) ∧

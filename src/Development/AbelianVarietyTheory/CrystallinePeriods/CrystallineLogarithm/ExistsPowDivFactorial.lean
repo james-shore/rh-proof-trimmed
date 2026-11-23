@@ -1005,8 +1005,7 @@ end UnitOfRootAlt
 namespace PowDivFactorialAlt
 section
 
-theorem Bridge.RingBasics.exists_pow_div_factorial : ∀ (l : ℕ) [Fact l.Prime] (n : ℕ), ∃ c : ℤ_[l], ((n.factorial : ℕ) : ℤ_[l]) * c = ((l : ℕ) : ℤ_[l]) ^ n := by
-  apply Reformulated.AutPerF.exists_factorial_mul_eq_pow <;> assumption
+alias Bridge.RingBasics.exists_pow_div_factorial := _root_.Reformulated.AutPerF.exists_factorial_mul_eq_pow
 
 end
 end PowDivFactorialAlt

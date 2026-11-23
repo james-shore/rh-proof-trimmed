@@ -177,7 +177,7 @@ theorem integral_pure : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Nu
   obtain ⟨⟨hmi, hmv, hsum⟩, hP⟩ := hP
   obtain ⟨hsb, hae, hfin⟩ := hpure
   obtain ⟨hco, -, hint, hbb⟩ := GlobalTheory.GaugeEx.IntBasis.main F E (AlgHom.id F E) d b
-  obtain ⟨-, -, hci, hcv⟩ := GlobalTheory.T.measurableEmbedding_adelicTuple_localComponents F E d b n M
+  obtain ⟨-, -, hci, hcv⟩ := _root_.GlobalTheory.GaugeGlue.adelicTuple_measurableEmbedding F E d b n M
   haveI : FiniteDimensional F E := Module.Finite.of_basis b
   have hae' : ∀ᶠ v in Filter.cofinite, Φv v = (latV b v).indicator 1 := by
     filter_upwards [hae, hbb d' b'] with v h1 h2

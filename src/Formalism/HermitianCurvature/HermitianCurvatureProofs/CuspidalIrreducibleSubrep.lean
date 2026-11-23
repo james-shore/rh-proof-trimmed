@@ -271,10 +271,4 @@ end Formalism.FourierDecayAlt.P.CuspidalIrreducibleSubrep
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem det_matrix_xy : Formalism.FourierDecayAlt.G.DetMXY := CuspidalIrreducibleSubrep.detMXY
-
-theorem reduced_integrand_integrable : Formalism.FourierDecayAlt.G.RedIntegrable := CuspidalIrreducibleSubrep.redIntegrable
-
-theorem inner_xy_of_reduced : Formalism.FourierDecayAlt.G.InnerXYOfReduced := CuspidalIrreducibleSubrep.innerXYOfReduced
-
 end Formalism.FourierDecayAlt.P

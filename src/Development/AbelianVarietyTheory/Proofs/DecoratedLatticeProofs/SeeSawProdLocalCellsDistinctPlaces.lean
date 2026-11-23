@@ -114,9 +114,6 @@ theorem mem_grpAt (q : SplitPt D k) {V : HSp D} {g : GA D V} (hg : SuppAt q.e V 
   rw [← Matrix.map_one (Ideal.Quotient.mk (idAt D P)) (map_zero _) (map_one _), Matrix.map_apply, Ideal.Quotient.eq]
   exact idAt_le (fun v (e : v = q.v) => e ▸ hP) (mem_idAt q (hg i j))
 
-theorem mt_mul' (V : HSp D) (g h : GA D V) : mt V (g * h) = mt V g * mt V h := by
-  simp [Formalism.L2.Theta.mt]
-
 theorem sub_mul_sub (q : SplitPt D k) (q' : SplitPt D k') (hv : q'.v ≠ q.v) {V : HSp D} {g h : GA D V}
     (hg : SuppAt q.e V g) (hh : SuppAt q'.e V h) :
     (mt V g - 1) * (mt V h - 1) = 0 ∧ (mt V h - 1) * (mt V g - 1) = 0 := by
@@ -134,7 +131,7 @@ theorem commute_of_suppAt (q : SplitPt D k) (q' : SplitPt D k') (hv : q'.v ≠ q
     (hg : SuppAt q.e V g) (hh : SuppAt q'.e V h) : Commute g h := by
   obtain ⟨h1, h2⟩ := sub_mul_sub q q' hv hg hh
   have : mt V (g * h) = mt V (h * g) := by
-    rw [mt_mul', mt_mul', ← sub_eq_zero]
+    rw [_root_.GlobalTheory.BesselCompare.mt_mul, _root_.GlobalTheory.BesselCompare.mt_mul, ← sub_eq_zero]
     have e : mt V g * mt V h - mt V h * mt V g = (mt V g - 1) * (mt V h - 1) - (mt V h - 1) * (mt V g - 1) := by
       noncomm_ring
     rw [e, h1, h2, sub_zero]

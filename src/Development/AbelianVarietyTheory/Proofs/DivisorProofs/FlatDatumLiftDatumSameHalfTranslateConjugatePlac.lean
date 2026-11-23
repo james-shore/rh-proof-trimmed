@@ -108,9 +108,6 @@ namespace GlobalTheory.FlipTranslate
 open GlobalTheory.BaseCmp GlobalTheory.OnCmp Formalism.IndefR.Fin Formalism.IndefR.Fin.LevelGroupLemmas GlobalTheory.PartFlat
 open GlobalTheory.ExportSeries.Model (ct int_mul int_ct ct_mul)
 
-theorem ct_ct {D : D7} {a b : ℕ} (A : Matrix (Fin a) (Fin b) (Datum.EAf D)) : ct (ct A) = A :=
-  Matrix.ext fun _ _ => sigR_sigR D.sp.cm _
-
 theorem ct_smul {D : D7} {a b : ℕ} (c : Datum.EAf D) (A : Matrix (Fin a) (Fin b) (Datum.EAf D)) :
     ct (c • A) = GlobalTheory.AdelicLatMove.cF D c • ct A :=
   Matrix.ext fun i j => map_mul (GlobalTheory.AdelicLatMove.cF D) c (A j i)
@@ -677,7 +674,7 @@ theorem lat_facts {D : D7} {S T : HSp D} {ΛS : Submodule (𝓞 D.host.E) (Fin S
     rw [Matrix.smul_apply, map_nsmul] at h3
     rw [Matrix.smul_apply]
     convert h3 using 2
-    exact (congrFun (congrFun (ct_ct _) i) j).symm
+    exact (congrFun (congrFun (_root_.GlobalTheory.FlatVecSum.ct_ct _) i) j).symm
 
 theorem isSBHalf_actPull {D : D7} {S T : HSp D} {e : AE D} {Λ : AddSubgroup (WO S T)} {g : GA D S} {N : ℕ} (hN : N ≠ 0)
     (h1 : ∀ t, IsHalf e t → actO S T g⁻¹ 1 t ∈ Λ → t ∈ Λ) (h2 : ∀ t ∈ Λ, IsHalf e t → N • actO S T g⁻¹ 1 t ∈ Λ)
@@ -818,7 +815,7 @@ theorem pull_flat (hC : GlobalTheory.Hk3.Core R F) (i : Fin D.R.m) {Q : Finset (
       rw [dite_eq_right, mul_zero]
       intro h'
       have := int_ct (X_pint D Q e he ϖ hϖ hϖ0 _ _ _ _ iW' (gramFr_mul_inv _ _) _ hy h.2 fun PP hPP => (h' PP hPP).1)
-      rw [ct_ct] at this
+      rw [_root_.GlobalTheory.FlatVecSum.ct_ct] at this
       exact hi this
     · rw [mul_zero]
 

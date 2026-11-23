@@ -95,7 +95,7 @@ theorem theoremHSMBlock (hAIS : ArithIntersectionSystemStatement) (hResK : ResK.
   have hIso : IsomInvariance.Statement := IsomInvariance.proof (Inter.RatR.proof hPts)
   have hCM : ChangeOfModelStatement :=
     Targets.ChangeOfModel.of_found hAI3 hGr hIso GraphIsometric.proof
-  have hDim : FibreDimStatement := GlobalTheory.CompanionTheory.Ar.Giv.fibreDim
+  have hDim : FibreDimStatement := _root_.GroundTheory.Heights₂.Heights.ForSecondHalf.FibreDim.proof
   have hDG : Inter.DegreeGeneric.Statement :=
     GlobalTheory.CompanionTheory.Ar.Giv.degreeGeneric_of_degree (GlobalTheory.CompanionTheory.Ar.Giv.degree_of_system hAIS)
   have hAbs : Inter.PtsAbsIntegrable.Statement :=

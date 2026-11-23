@@ -210,9 +210,7 @@ theorem uw_inv {z : Fin (2 * r + k + 1) → ℂ} {h : Formalism.FourierDecayAlt.
       _ = w := by rw [Matrix.mulVec_mulVec, h2, Matrix.one_mulVec]
   exact ⟨⟨hi, fun a => ⟨key _ (hfix a).1, key _ (hfix a).2⟩, key _ hz⟩, h1, h2⟩
 
-theorem uh_inv {g : Formalism.FourierDecayAlt.ThreeDimData.Mx k r} (hg : g ∈ Formalism.QuantumDeterminants.UH (Formalism.QuantumDeterminants.Hpk k r)) :
-    g⁻¹ ∈ Formalism.QuantumDeterminants.UH (Formalism.QuantumDeterminants.Hpk k r) ∧ g * g⁻¹ = 1 ∧ g⁻¹ * g = 1 := by
-  exact inv_mem_UH_Hpk_and_mul_inv_of_mem hg
+alias uh_inv := _root_.Formalism.FourierDecayAlt.P.MatrixMultiplicationContinuity.inv_mem_UH_Hpk_and_mul_inv_of_mem
 
 end Groups
 

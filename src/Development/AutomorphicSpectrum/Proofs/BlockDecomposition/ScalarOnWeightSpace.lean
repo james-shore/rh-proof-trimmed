@@ -73,10 +73,6 @@ open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.R
 
 variable {n : ℕ}
 
-theorem mem_down {S : Finset (Fin n)} (hS : ∀ a b, b ≤ a → a ∈ S → b ∈ S) (a : Fin n) :
-    a ∈ S ↔ (a : ℕ) < S.card :=
-  _root_.UpperTheory.Reformulated.B.DYlb8.main hS a
-
 theorem twice_sum_Ico (m d : ℕ) :
     2 * ∑ k ∈ Finset.Ico m (m + d), (k : ℝ) = 2 * (d : ℝ) * m + d * ((d : ℝ) - 1) := by
   induction d with
@@ -93,7 +89,7 @@ theorem level_sum (lev : Fin n → ℕ) (hm : Monotone lev) (c : ℕ) :
   set d := (univ.filter fun a => lev a = c).card with hd
   set m := (univ.filter fun a => lev a < c).card with hmm
   have hlow : ∀ a, lev a < c ↔ (a : ℕ) < m := fun a => by
-    have := mem_down (S := univ.filter fun a => lev a < c) (fun x y hyx hx => by
+    have := _root_.UpperTheory.Reformulated.B.DYlb8.main (S := univ.filter fun a => lev a < c) (fun x y hyx hx => by
       rw [mem_filter] at hx ⊢
       exact ⟨mem_univ _, lt_of_le_of_lt (hm hyx) hx.2⟩) a
     simpa using this
@@ -109,7 +105,7 @@ theorem level_sum (lev : Fin n → ℕ) (hm : Monotone lev) (c : ℕ) :
       have := (mem_filter.1 h2).2
       omega
   have hup : ∀ a, lev a < c + 1 ↔ (a : ℕ) < m + d := fun a => by
-    have := mem_down (S := univ.filter fun a => lev a < c + 1) (fun x y hyx hx => by
+    have := _root_.UpperTheory.Reformulated.B.DYlb8.main (S := univ.filter fun a => lev a < c + 1) (fun x y hyx hx => by
       rw [mem_filter] at hx ⊢
       exact ⟨mem_univ _, lt_of_le_of_lt (hm hyx) hx.2⟩) a
     rw [hcard] at this
@@ -133,17 +129,5 @@ theorem level_sum (lev : Fin n → ℕ) (hm : Monotone lev) (c : ℕ) :
       omega
   rw [← twice_sum_Ico, ← hmap, Finset.sum_map]
   rfl
-
-section Alg
-
-variable {W : Type} [AddCommGroup W] [Module ℂ W]
-
-end Alg
-
-section Spaces
-
-variable {V : Type} [AddCommGroup V] [Module ℂ V]
-
-end Spaces
 
 end GlobalTheory.CompanionTheory.PairMult.Asm

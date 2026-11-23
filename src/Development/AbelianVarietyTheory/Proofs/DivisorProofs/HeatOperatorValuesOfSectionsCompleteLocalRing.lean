@@ -77,9 +77,9 @@ theorem ringOp_mem {Ω : Type} [CommRing Ω] (J : Ideal Ω) {n : ℕ} (d : Deriv
     (N : ℕ) (y : Ω) (hy : y ∈ J ^ (N + 2)) :
     ringOp ⇑d (fun a => ⇑(δ a)) Θ u p p' k y ∈ J ^ N := by
   have h1 : ∀ (D : Derivation ℤ Ω Ω) (x : Ω), x ∈ J ^ (N + 1 + 1) → D x ∈ J ^ (N + 1) := fun D x hx =>
-    GlobalTheory.SymbolOne.deriv_mem_pow D J (N + 1) x hx
+    _root_.GlobalTheory.DerivationMemPow.derivation_mem_pow_of_mem_pow_succ D J (N + 1) x hx
   have h2 : ∀ (D : Derivation ℤ Ω Ω) (x : Ω), x ∈ J ^ (N + 1) → D x ∈ J ^ N := fun D x hx =>
-    GlobalTheory.SymbolOne.deriv_mem_pow D J N x hx
+    _root_.GlobalTheory.DerivationMemPow.derivation_mem_pow_of_mem_pow_succ D J N x hx
   have le1 : J ^ (N + 1) ≤ J ^ N := Ideal.pow_le_pow_right (Nat.le_succ N)
   have le2 : J ^ (N + 2) ≤ J ^ N := Ideal.pow_le_pow_right (by omega)
   unfold ringOp

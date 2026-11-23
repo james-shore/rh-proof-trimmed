@@ -83,8 +83,6 @@ theorem hcMultDS_of_all (h0 : SmoothVectorsDense) (h1 : CalculusOnSmoothVectors)
     (h5 : CompactDerivativesBounded) (h6 : SmallMotionNeighbourhood) (h7 : FormalDegreeFiniteDim) : HCMultDS :=
   hcMultDS_of h0 h1 (casScalar_of h1 h2 h3) h4 h5 h6 h7
 
-theorem hcAdmDS_of (h : HCMultDS) : HCAdmDS := HCAdmDS_of_mult h
-
 theorem kFinSmooth_of (h : HCMultDS) : Formalism.MainNotions.LowestKTypeMultiplicity.KFinSmooth :=
   fun _ _ _ _ _ _ _ _ _ _ hσ _ hv => kfin_smoothVec (HCAdmDS_of_mult h) hσ hv
 

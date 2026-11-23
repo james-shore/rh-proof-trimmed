@@ -200,7 +200,7 @@ theorem upper : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ)
       (exists_mul_ne d1 d2 hg0 Xa.secondTheta_ne_zero) Xa.firstTheta_ne_zero) Xa.et_ne) hk
   simp only [Pi.mul_apply, ne_eq, mul_eq_zero, not_or] at hne
   obtain ⟨⟨⟨⟨h1, h2⟩, h3⟩, h4⟩, h5⟩ := hne
-  obtain ⟨x0, hx0, hs0, hpos, hmax⟩ := GlobalTheory.T.normQuotientThetaFlat_attains_sup_off_common_zeros E r X Xa Fl _ hg hO ⟨x, hx, by
+  obtain ⟨x0, hx0, hs0, hpos, hmax⟩ := _root_.GlobalTheory.QuotientMax.main E r X Xa Fl _ hg hO ⟨x, hx, by
     have p1 := pnorm_pos X (Xa.Fp + Xa.T • Xa.L) (P := fun x => ∑ q, u q * f q x) hx h1
     have p2 := pnorm_pos X ((nd X + 4) • Xa.L - Xa.Fp) hx h2
     have p3 := pnorm_pos X (2 • Xa.L - Xa.de) hx h3
@@ -208,6 +208,6 @@ theorem upper : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ)
     have p5 : 0 < ∑ k, X.pnorm Xa.L (Fl.s k) x ^ 2 :=
       Finset.sum_pos' (fun _ _ => sq_nonneg _) ⟨k, Finset.mem_univ _, pow_pos (pnorm_pos X _ hx h5) 2⟩
     positivity⟩
-  exact GlobalTheory.T.quotient_no_positive_max_off_common_zeros E r X Xa Fl _ hg.1 x0 hx0 hs0 hpos hmax
+  exact _root_.GlobalTheory.QuotNoMax.no_pos_max E r X Xa Fl _ hg.1 x0 hx0 hs0 hpos hmax
 
 end GlobalTheory.UpperModel

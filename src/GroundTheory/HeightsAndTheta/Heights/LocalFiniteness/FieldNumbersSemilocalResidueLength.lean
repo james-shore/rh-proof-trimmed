@@ -60,4 +60,4 @@ theorem GroundTheory.Heights₂.Heights.AutoClose.FieldNumbers_SemilocalResidueL
   @GroundTheory.Heights₂.Heights.FieldNumbers.SemilocalResidueLength.proof.{u} GroundTheory.Heights₂.Heights.FieldNumbers.DegZeroLocResidue.proof GroundTheory.Heights₂.Heights.AutoClose.FieldNumbers_SemilocalFiniteRank GroundTheory.Heights₂.Heights.FieldNumbers.DegZeroLocLocalize.proof
 
 theorem GroundTheory.Heights₂.Heights.AutoClose.StokesOnChart : GroundTheory.Heights₂.Heights.StokesOnChart.Statement :=
-  @GroundTheory.Heights₂.Heights.StokesOnChart.proof GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.ComplexSets.DiscriminantCover GroundTheory.Heights₂.Heights.AutoClose.CutOffLimit
+  @GroundTheory.Heights₂.Heights.StokesOnChart.proof _root_.GroundTheory.Heights₂.Heights.ComplexSets.DiscriminantCover.full GroundTheory.Heights₂.Heights.AutoClose.CutOffLimit

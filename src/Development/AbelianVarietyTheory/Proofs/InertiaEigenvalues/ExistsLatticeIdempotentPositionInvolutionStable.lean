@@ -60,9 +60,6 @@ namespace GlobalTheory.UnitLemma.Desc
 
 open GlobalTheory.UnitLemma Polynomial
 
-theorem exists_isIntegral_pow_smul : ∀ (K : UQ) (B : InvAlg K) (a : K.O), K.Small a → ∀ x : B.A,
-    ∃ k : ℕ, IsIntegral K.O ((al K a ^ k) • x) := GlobalTheory.T.exists_isIntegral_smallElement_pow_smul
-
 theorem isIntegral_or_of_fieldFactor : ∀ (K : UQ) (B : InvAlg K) (f y z : B.A), IsIdempotentElem f →
     (∀ w, f * w ≠ 0 → ∃ v, f * w * v = f) → f * y * z = f →
     IsIntegral K.O (f * y) ∨ IsIntegral K.O (f * z) := GlobalTheory.T.isIntegral_or_isIntegral_inv_in_fieldFactor
@@ -133,7 +130,7 @@ theorem exists_pos : ∀ (K : UQ) (B : InvAlg K) (ι : Type) [Fintype ι] (e π 
     (a : K.O), B.P.Separable → K.Small a → IsFrame B e π S →
     ∃ N : ℕ, ∀ M ∈ B.Lin, ∃ p : ι → ℤ, Pos B a e N M p := by
   intro K B ι _ e π S a hP ha hF
-  obtain ⟨N0, hN0⟩ := exists_pow_smul_mem_adjoin_g K B a hP ha
+  obtain ⟨N0, hN0⟩ := _root_.GlobalTheory.UnitLemma.Desc.pow_smul_mem_adjoin_gen K B a hP ha
   refine ⟨N0 + 1, fun M hM => ?_⟩
   set t := al K a with ht_def
   have ht : t ≠ 0 := al_ne a ha
@@ -148,7 +145,7 @@ theorem exists_pos : ∀ (K : UQ) (B : InvAlg K) (ι : Type) [Fintype ι] (e π 
       intro h0; apply hni; rw [← mul_smul_comm, h0]; exact isIntegral_zero
     obtain ⟨z, hz⟩ := hfld _ hy0
     have hfz : IsIntegral K.O (f * z) := by
-      rcases isIntegral_or_of_fieldFactor K B f ((t ^ (-q)) • m) z hf hfld hz with h | h
+      rcases _root_.GlobalTheory.UnitLemma.Desc.isIntegral_or_isIntegral_of_fieldFactor K B f ((t ^ (-q)) • m) z hf hfld hz with h | h
       · exact (hni (by rwa [mul_smul_comm] at h)).elim
       · exact h
     have key : (t ^ (q + N0)) • (f * r) = (t ^ N0) • ((r * (f * z)) * m) := by
@@ -168,7 +165,7 @@ theorem exists_pos : ∀ (K : UQ) (B : InvAlg K) (ι : Type) [Fintype ι] (e π 
     let P : Set ℤ := {p | ∀ m ∈ M, IsIntegral K.O ((t ^ (-p)) • (e i * m))}
     have hne : P.Nonempty := by
       obtain ⟨s, hs⟩ := hM.1.1
-      choose k hk using fun x : B.A => exists_isIntegral_pow_smul K B a ha (e i * x)
+      choose k hk using fun x : B.A => _root_.GlobalTheory.UnitLemma.Desc.smul_pow_integral K B a ha (e i * x)
       refine ⟨-((s.sup k : ℕ) : ℤ), fun m hm => ?_⟩
       rw [neg_neg, zpow_natCast]
       rw [← hs] at hm
@@ -193,7 +190,7 @@ theorem exists_pos : ∀ (K : UQ) (B : InvAlg K) (ι : Type) [Fintype ι] (e π 
         simp at this; exact hf0 this
       obtain ⟨m0, hm0, hfm0⟩ := hm0
       obtain ⟨z, hz⟩ := hfld m0 hfm0
-      obtain ⟨k, hk⟩ := exists_isIntegral_pow_smul K B a ha (f * z)
+      obtain ⟨k, hk⟩ := _root_.GlobalTheory.UnitLemma.Desc.smul_pow_integral K B a ha (f * z)
       refine ⟨k, fun p hp => ?_⟩
       by_contra hlt
       push_neg at hlt

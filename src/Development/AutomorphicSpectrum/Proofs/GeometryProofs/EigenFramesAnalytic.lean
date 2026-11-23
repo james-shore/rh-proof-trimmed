@@ -109,7 +109,7 @@ theorem exists_gen_of_unitAn : Geo.ResK.ResKStatement → GagaSections → ∀ (
   obtain ⟨W₁, hW₁, hf₁⟩ := GlobalTheory.T.frame_near_generic_point _ _ _ _ (Z.eig τ) Z.genFib D.p _ b₁ hξ hη hA hi₁ hs₁
   obtain ⟨W₂, hW₂, hf₂⟩ := GlobalTheory.T.frame_near_generic_point _ _ _ _ (Z.eig (ComplexEmbedding.conjugate τ)) Z.genFib D.q _ b₂ hξ hη hB hi₂ hs₂
   obtain ⟨hwA, ha⟩ := GlobalTheory.T.wedge_lattice_generator _ _ _ _ (Z.eig τ) D.p b₁ _ (hf₁ _ hη hW₁)
-  obtain ⟨hwB, hb⟩ := GlobalTheory.T.wedge_lattice_generator _ _ _ _ (Z.eig (ComplexEmbedding.conjugate τ)) D.q b₂ _ (hf₂ _ hη hW₂)
+  obtain ⟨hwB, hb⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Flat.WedgeFrame.wedge_eq_span_ιMulti _ _ _ _ (Z.eig (ComplexEmbedding.conjugate τ)) D.q b₂ _ (hf₂ _ hη hW₂)
   have hcoef : IsCoeffAt (Z.eig τ) (Z.eig (ComplexEmbedding.conjugate τ)) D.p D.q
       (exteriorPower.ιMulti Z.Ω D.p b₁) (exteriorPower.ιMulti Z.Ω D.q b₂)
       ⟨genPt (Z.ξ₀ ≫ Y.j), specializes_rfl⟩ 1 :=

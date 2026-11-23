@@ -85,7 +85,7 @@ theorem carU_of_star_alt (hGK : GlobalTheory.Published.GelfandKazhdanDual) (H : 
   intro E Ω _ _ _ _ _ _ l _ ι a ha π hc hr
   have hpol := isPolarized_of_isCsd hc
   obtain ⟨r, wt, HT, k⟩ := H E Ω l ι a (by omega) π _ hr
-    ⟨hpol.sign, GlobalTheory.T.cuspContragredientIsCMConjTwist_of_paired_invTranspose E a π (GlobalTheory.GalOfCusp.compNorm E _) (hGK E a _) hpol.dual⟩
+    ⟨hpol.sign, _root_.GlobalTheory.ConjDualPair.dualIsConjBy_of_paired_invT E a π (GlobalTheory.GalOfCusp.compNorm E _) (hGK E a _) hpol.dual⟩
   refine ⟨r, wt, HT, _root_.UpperTheory.GalS.isGalU_of_props_alt _ k, fun P AI T w _ A h O _ _ _ Bw hj σ hσ rc hrc n => ?_⟩
   have b := ((k.above P AI T w A h O Bw hj).nice σ hσ rc hrc (_root_.UpperTheory.GalS.star_guard'_alt hrc n) n.2.1).2.2.2
   exact ⟨b.dim, fun _ => (away_nice b n).1, fun _ _ => (away_nice b n).2⟩

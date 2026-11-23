@@ -155,6 +155,6 @@ theorem spread_of_coord (hcoord : TangentCoordinatesSmoothCommGroupLocalRing) : 
   · rw [hvw, prod_ofFn_eq T0 T0zero T0add]
 
 theorem lieAt_spread : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.Datum p) (R : Type) [CommRing R] (b : GlobalTheory.UPel.HT.Base D R) (C : Type) [CommRing C] [IsLocalRing C] (tR : R →+* C) (A : Over (Sp C)) [GrpObj A] [IsCommMonObj A], Smooth A.hom → ∀ (act : GlobalTheory.UPel.HT.OActN D.O A), GlobalTheory.UPel.HT.LieAt b act tR (spMap (RingHom.id C)) → ∀ (R' : Type) [CommRing R'] (β : R →+* R') (x : Sp R' ⟶ Sp C), x ≫ spMap tR = spMap β → GlobalTheory.UPel.HT.LieAt b act β x :=
-  spread_of_coord GlobalTheory.T.exists_tangent_coords_base_change_smooth_comm_group
+  spread_of_coord _root_.GlobalTheory.LieCoordR.exists_coords_baseChange
 
 end GlobalTheory.HTLieSpread

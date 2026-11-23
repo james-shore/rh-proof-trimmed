@@ -54,21 +54,11 @@ noncomputable section
 
 namespace GlobalTheory.FrameDiag
 
-theorem hatL_eq (I : AutInst) : Formalism.L2.Herm.hatL (F := I.F) I.L = I.Lf := by
-  show Submodule.span _ _ = Submodule.span _ _
-  congr 1
-  ext y
-  constructor
-  · rintro ⟨z, hz, rfl⟩
-    exact ⟨⟨z, hz⟩, rfl⟩
-  · rintro ⟨z, rfl⟩
-    exact ⟨z.1, z.2, rfl⟩
-
 theorem coord_zmod (I : AutInst) (g : ℕ) {β : GL (Fin I.n) (I.E ⊗[I.F] Af I.F)} (hβ : IsFrame β I.L) {v : VA I}
     (hv : v ∈ mL I g) (i : Fin I.n) :
     ZMod' I g ((((β⁻¹ : GL (Fin I.n) (I.E ⊗[I.F] Af I.F)) : Matrix (Fin I.n) (Fin I.n) (I.E ⊗[I.F] Af I.F)) *ᵥ v) i) := by
   obtain ⟨z, hz, rfl⟩ := GlobalTheory.RowIndex.mem_mL.1 hv
-  have hz' : z ∈ Formalism.L2.Herm.hatL (F := I.F) I.L := by rw [hatL_eq]; exact hz
+  have hz' : z ∈ Formalism.L2.Herm.hatL (F := I.F) I.L := by rw [_root_.GlobalTheory.FlagChi.hatL_eq_Lf]; exact hz
   refine ⟨_, (hβ z).1 hz' i, ?_⟩
   rw [Matrix.mulVec_smul]
   rfl

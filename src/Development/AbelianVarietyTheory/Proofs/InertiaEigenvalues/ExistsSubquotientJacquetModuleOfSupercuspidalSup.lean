@@ -98,7 +98,7 @@ theorem finiteRing_sq_sub_mul_sq_eq_of_card (hG : GeometricLemma) (hBZ : Bernste
     rcases Nat.eq_zero_or_pos x.1 with h0 | hpos
     · haveI : IsEmpty (Fin x.1) := by rw [h0]; infer_instance
       exact ⟨0, Fin.elim0, Equiv.equivOfIsEmpty _ _, fun a => a.elim0,
-        degZero k x.1 h0 _ x.rep _ _ _ _⟩
+        _root_.GlobalTheory.piTensor_isSubquotient_jac_degZero k x.1 h0 _ x.rep _ _ _ _⟩
     by_cases hc : IsCuspidal x.rep
     · rw [eq_singleton_of_isCusp ⟨hpos, hc⟩ hs]
       exact ⟨1, fun _ => x, GlobalTheory.JacTensor.oneBlock x.1, fun _ => Multiset.mem_singleton_self x,
@@ -142,7 +142,7 @@ theorem finiteRing_sq_sub_mul_sq_eq_of_card (hG : GeometricLemma) (hBZ : Bernste
     obtain ⟨σ, hσ⟩ := GlobalTheory.JacTensor.exists_irr_tensor_of_isSubquotient_jac hG k x.1 πI r d e Y τ hτ hτs
     have hSch : ∀ a, ∀ φ : (σ a).V →ₗ[ℂ] (σ a).V, (∀ g v, φ ((σ a).π g v) = (σ a).π g (φ v)) →
         ∃ c : ℂ, φ = c • LinearMap.id := fun a =>
-      GlobalTheory.SchurAdm.schur_admissible _ (GlobalTheory.SplitWeil.KO k (Fin (d a))) GlobalTheory.SplitFlip.isOpen_KO
+      _root_.GlobalTheory.SchurAdmissibility.schur_admissible _ (GlobalTheory.SplitWeil.KO k (Fin (d a))) GlobalTheory.SplitFlip.isOpen_KO
         GlobalTheory.SplitFlip.isCompact_KO (σ a).V (σ a).π (σ a).irr ((hBZ k).1 (Fin (d a)) (σ a).V (σ a).π (σ a).smooth (σ a).irr)
     have hirr : (piTensor fun a => (σ a).π).IsIrreducible :=
       GlobalTheory.ProdFiniteLength.piTensor_isIrreducible_of_schur _ (fun a => (σ a).irr) hSch
@@ -156,7 +156,7 @@ theorem finiteRing_sq_sub_mul_sq_eq_of_card (hG : GeometricLemma) (hBZ : Bernste
       (piTensorEquiv fun j => ((ψ j).trans (IrrGL.equivOf (y j).ρ (y j).smooth (y j).irr)).symm).trans φ
     have hz : IsSubquotient (piTensor fun j => (z j).rep) (jac e x.rep) :=
       (IsSubquotient.of_injective χ.toIntertwiningMap χ.toLinearEquiv.injective).trans hτs
-    obtain ⟨E', hE'⟩ := stage k x.1 r d e _ x.rep x.2.rep.smooth _ (fun j => (z j).rep) (fun j => (z j).2.rep.smooth) hz
+    obtain ⟨E', hE'⟩ := _root_.GlobalTheory.JacStages.isSubquotient_jac_refine k x.1 r d e _ x.rep x.2.rep.smooth _ (fun j => (z j).rep) (fun j => (z j).2.rep.smooth) hz
       T (fun a b => (u a b).1) E _ (fun a b => (u a b).rep) hsub
     refine ⟨∑ a, T a, fun c => u (finSigmaFinEquiv.symm c).1 (finSigmaFinEquiv.symm c).2, E', fun c => ?_, hE'⟩
     exact Multiset.mem_of_le (Finset.single_le_sum (f := t) (fun _ _ => Multiset.zero_le _)

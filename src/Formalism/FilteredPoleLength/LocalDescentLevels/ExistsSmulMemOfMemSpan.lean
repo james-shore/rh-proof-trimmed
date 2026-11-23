@@ -57,13 +57,6 @@ namespace Formalism.LatticeBaseChangeAlt
 
 open Module
 
-theorem exists_smul_mem_of_mem_span_alt (O K V : Type) [CommRing O] [IsDomain O]
-    [Field K] [Algebra O K] [IsFractionRing O K]
-    [AddCommGroup V] [Module K V] [Module O V] [IsScalarTower O K V]
-    (M : Submodule O V) (v : V) (hv : v ∈ Submodule.span K (M : Set V)) :
-    ∃ c : O, c ≠ 0 ∧ c • v ∈ M := by
-  first | exact Bl.SecondBlockLemmaP.goal1 .. | (apply Bl.SecondBlockLemmaP.goal1 <;> assumption) | (intros; apply Bl.SecondBlockLemmaP.goal1 <;> assumption) | (apply @Bl.SecondBlockLemmaP.goal1 <;> assumption) | (intros; apply @Bl.SecondBlockLemmaP.goal1 <;> assumption) | (apply @Bl.SecondBlockLemmaP.goal1 <;> first | assumption | infer_instance) | exact @Bl.SecondBlockLemmaP.goal1 O K V ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› M v hv | exact @Bl.SecondBlockLemmaP.goal1 O K V ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› M v | exact @Bl.SecondBlockLemmaP.goal1 O K V ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› M | exact @Bl.SecondBlockLemmaP.goal1 O K V ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› | exact @Bl.SecondBlockLemmaP.goal1 O K V ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› | exact @Bl.SecondBlockLemmaP.goal1 O K V ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› | exact @Bl.SecondBlockLemmaP.goal1 O K V ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› | exact @Bl.SecondBlockLemmaP.goal1 O K V ‹_› ‹_› ‹_› ‹_› ‹_› | exact @Bl.SecondBlockLemmaP.goal1 O K V ‹_› ‹_› ‹_› ‹_› | exact @Bl.SecondBlockLemmaP.goal1 O K V ‹_› ‹_› ‹_› | exact @Bl.SecondBlockLemmaP.goal1 O K V ‹_› ‹_› | exact @Bl.SecondBlockLemmaP.goal1 O K V ‹_› | exact @Bl.SecondBlockLemmaP.goal1 O K V | exact @Bl.SecondBlockLemmaP.goal1 O K | exact @Bl.SecondBlockLemmaP.goal1 O
-
 theorem exists_adapted_basis_alt (O K V : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     [Field K] [Algebra O K] [IsFractionRing O K]
     [AddCommGroup V] [Module K V] [Module O V] [IsScalarTower O K V] [FiniteDimensional K V]
@@ -71,7 +64,7 @@ theorem exists_adapted_basis_alt (O K V : Type) [CommRing O] [IsDomain O] [IsDis
     ∃ (b : Basis (Fin (finrank K V)) K V) (s : Set (Fin (finrank K V))),
       M ≤ Submodule.span O (Set.range b) ∧ (∀ i ∈ s, b i ∈ M ∧ b i ∈ V') ∧
         V' ≤ Submodule.span K (b '' s) := by
-  obtain ⟨b0, hb0⟩ := Formalism.LatticeIndexTer.latBasis O K V M hM
+  obtain ⟨b0, hb0⟩ := _root_.Formalism.LatticeIndexTer.LatticeIndexDeterminant.lattice_span_of_basis O K V M hM
   have hli0 : LinearIndependent O b0 :=
     (LinearIndependent.iff_fractionRing O K).mpr b0.linearIndependent
   let bO : Basis (Fin (finrank K V)) O M :=
@@ -116,7 +109,7 @@ theorem exists_adapted_basis_alt (O K V : Type) [CommRing O] [IsDomain O] [IsDis
     exact (V'.smul_mem_iff haK).mp h3
   · intro v hv
     have hv' : v ∈ Submodule.span K (M : Set V) := by rw [hM.2]; trivial
-    obtain ⟨c, hc, hcv⟩ := exists_smul_mem_of_mem_span_alt O K V M v hv'
+    obtain ⟨c, hc, hcv⟩ := _root_.Bl.SecondBlockLemmaP.goal1 O K V M v hv'
     have hcK : algebraMap O K c ≠ 0 := by
       simpa using (IsFractionRing.injective O K).ne hc
     have hcV : c • v ∈ V' := by

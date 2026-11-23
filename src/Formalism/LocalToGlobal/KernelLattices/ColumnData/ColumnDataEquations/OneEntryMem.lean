@@ -43,6 +43,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.IsAdmissibleFlagPairOfUnitriangularLeftAutomorph
 
 @[expose] public section
 
@@ -218,6 +219,6 @@ theorem thZeroSpans (hS : B.StdOK) (N N' : ℕ) : B.ThZeroSpans N N' := by
     exact al_eq D B.tor x m hm
   rw [e, h0'] at h1
   exact tens_spans B.cq B.L B.lamM (B.thMM_ne_zero hS)
-    (isThM_spans _ _ _ _ _ _ hS B.kappa_ne_zero (B.thMM_spec hS)) N N' F h1
+    (_root_.Formalism.L2.Ker.isThM_spans _ _ _ _ _ _ hS B.kappa_ne_zero (B.thMM_spec hS)) N N' F h1
 
 end Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.J

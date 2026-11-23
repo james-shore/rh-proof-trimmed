@@ -63,14 +63,6 @@ noncomputable section
 
 namespace GlobalTheory.StdUnn
 
-theorem gramAt_conjTranspose {D : D7} (V : HSp D) (τ : D.what₂.Tau) : (gramAt D V τ)ᴴ = gramAt D V τ := by
-  ext i j
-  have hcm := D.host.isCMField_hostE
-  have h1 : star (V.hT (V.frame j) (V.frame i)) = V.hT (V.frame i) (V.frame j) := V.herm.eq _ _
-  simp only [Matrix.conjTranspose_apply, gramAt, Matrix.map_apply, HSpace.gram]
-  rw [← h1]
-  exact (NumberField.IsCMField.complexEmbedding_complexConj _ (tauE D τ) _).symm
-
 theorem conj_complexPlace_traceZero_element (D : D7) (τ : D.what₂.Tau) : conj (tauE D τ D.host.xi0) = -tauE D τ D.host.xi0 := by
   have hcm := D.host.isCMField_hostE
   rw [← NumberField.IsCMField.complexEmbedding_complexConj _ (tauE D τ) _]
@@ -168,7 +160,7 @@ theorem GlobalTheory.StdUnn.sch_dRho_dualHalf : ∀ (D : D7) (ψ : AddChar (AF D
   have ha : a = -(2 * (tauE D τ D.host.xi0 * Matrix.trace (Yᴴ * gramAt D B τ * compAt θ τ x)).re) := by
     rw [ha_def]
     refine (GlobalTheory.Unf.symplAt_posSp D B A.rank τ Y (compAt θ τ x)).trans ?_
-    rw [GlobalTheory.StdUnn.re_trace_swap _ (GlobalTheory.StdUnn.conj_complexPlace_traceZero_element D τ) _ (GlobalTheory.StdUnn.gramAt_conjTranspose B τ)]
+    rw [GlobalTheory.StdUnn.re_trace_swap _ (GlobalTheory.StdUnn.conj_complexPlace_traceZero_element D τ) _ (_root_.GlobalTheory.SmoothForms.RealPts.gramAt_herm B τ)]
     ring
   show d.mixS B ψ ν 𝓨 _ x 0 = _ * d.mixS B ψ ν 𝓨 f x 0
   rw [← hq]

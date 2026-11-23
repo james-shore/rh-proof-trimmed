@@ -57,16 +57,16 @@ theorem sh_eqv_tw : ∀ (q : ℕ) (i : ℤ) (A B : Type) [CommRing A] [CommRing 
   intro q i A B _ _ φ hA hB hq
   obtain ⟨hAl, _⟩ := hA
   obtain ⟨hBl, _⟩ := hB
-  obtain ⟨ζ⟩ := GlobalTheory.T.nonempty_cyclotomicPrimitiveRoots_of_strictlyHenselian q A ⟨hAl, ‹_›⟩ hq
+  obtain ⟨ζ⟩ := _root_.GlobalTheory.EtC.prim_of_strictlyHenselian q A ⟨hAl, ‹_›⟩ hq
   let S : Scheme.{0} := Spec (CommRingCat.of A)
   let ζS : Prim q Γ(S, ⊤) := Prim.map (Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom ζ
-  have hgen := GlobalTheory.T.tateTwist_isFreeRankOne_on_generatorSection q i S ζS
+  have hgen := _root_.GlobalTheory.twGen_gen q i S ζS
   have hac : ∀ (C : Type) [CommRing C], SH C → AcycF (ZMod q) (sch.obj (Spec (CommRingCat.of C))) (tw q i) :=
-    fun C _ hC n hn => GlobalTheory.T.strictlyHenselianLocalRing_acyclic_every_sheaf (ZMod q) C hC (tw q i) n hn
-  refine GlobalTheory.T.etaleCohomologyEquiv_of_locallyConstant_bijective (ZMod q) (tw q i) S (twGen i ζS) hgen S (Spec (CommRingCat.of B)) (𝟙 S)
+    fun C _ hC n hn => _root_.GlobalTheory.EtC.b2 (ZMod q) C hC (tw q i) n hn
+  refine _root_.GlobalTheory.EtC.eqv_of_gen_lc (ZMod q) (tw q i) S (twGen i ζS) hgen S (Spec (CommRingCat.of B)) (𝟙 S)
     (Spec.map (CommRingCat.ofHom φ)) (hac A ⟨hAl, ‹_›⟩) (hac B ⟨hBl, ‹_›⟩) ?_
-  have cA := GlobalTheory.T.locallyConstant_spec_localRing_const_bijective (ZMod q) A
-  have cB := GlobalTheory.T.locallyConstant_spec_localRing_const_bijective (ZMod q) B
+  have cA := _root_.GlobalTheory.locallyConstant_spec_local_bijective (ZMod q) A
+  have cB := _root_.GlobalTheory.locallyConstant_spec_local_bijective (ZMod q) B
   have hcomp : (fun φ' : LocallyConstant S (ZMod q) => φ'.comap (Spec.map (CommRingCat.ofHom φ)).base.hom) ∘
       (fun c : ZMod q => LocallyConstant.const S c) = fun c => LocallyConstant.const _ c := by
     funext c; ext x; rfl

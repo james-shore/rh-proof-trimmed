@@ -106,9 +106,6 @@ theorem exists_of_unitary {n : ℕ} {J : Matrix (Fin n) (Fin n) E} (hJ : IsHermN
   show ((a.map (incAF F E)).map (cAF σ))ᵀ * J.map (incAF F E) * a.map (incAF F E) = J.map (incAF F E)
   rw [GenA.map_unitary, h]
 
-theorem infinite_norm_one (C : Ctx σ B JS JT ξ₀ θ ι) : {t : E | t * σ t = 1}.Infinite :=
-  _root_.UpperTheory.Reformulated.B.InfiniteNormOne.infinite_norm_one C
-
 theorem det_kron (C : Ctx σ B JS JT ξ₀ θ ι) {g : GAF σ JS} {h : GAF σ JT} {a b}
     (ha : IsRatF σ JS g a) (hb : IsRatF σ JT h⁻¹ b) :
     (b ⊗ₖ aᵀ).det * σ (b ⊗ₖ aᵀ).det = 1 ∧

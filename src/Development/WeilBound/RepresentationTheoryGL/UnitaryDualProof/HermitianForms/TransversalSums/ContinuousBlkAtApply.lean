@@ -471,60 +471,20 @@ end Glue
 
 open Glue
 
-theorem colEl_add {m N : ℕ} (h : m + 2 ≤ N) (x y : Fin (m + 1) → k) :
-    colEl k m N h (x + y) = colEl k m N h x * colEl k m N h y := by
-  exact Glue.colEl_add' h x y
+alias colEl_add := _root_.PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.colEl_add'
 
-theorem colEl_zero {m N : ℕ} (h : m + 2 ≤ N) : colEl k m N h 0 = 1 := by
-  exact Glue.colEl_zero' h
+alias colEl_zero := _root_.PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.colEl_zero'
 
-theorem continuous_colEl {m N : ℕ} (h : m + 2 ≤ N) : Continuous (colEl k m N h) := by
-  exact Glue.continuous_colEl' h
+alias blkAt_glEmb := _root_.PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.blkAt_glEmb'
 
-theorem continuous_blkAt (n N : ℕ) (h : n ≤ N) : Continuous (blkAt k n N h) := by
-  exact Glue.continuous_blkAt' n N h
+alias det_glEmb := _root_.PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.det_glEmb'
 
-theorem blkAt_glEmb {m N : ℕ} (h : m + 2 ≤ N) (g : GL (Fin (m + 1)) k) :
-    blkAt k (m + 2) N h (glEmb k (m + 1) g) = blkAt k (m + 1) N (by omega) g := by
-  exact Glue.blkAt_glEmb' h g
+alias det_unip := _root_.PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.det_unip'
 
-theorem det_glEmb (n : ℕ) (g : GL (Fin n) k) :
-    Matrix.GeneralLinearGroup.det (glEmb k n g) = Matrix.GeneralLinearGroup.det g := by
-  exact Glue.det_glEmb' n g
-
-theorem det_unip (n : ℕ) (x : Multiplicative (Fin n → k)) : Matrix.GeneralLinearGroup.det (unip k n x) = 1 := by
-  exact Glue.det_unip' n x
-
-theorem blkAt_conj_colEl {m N : ℕ} (h : m + 2 ≤ N) (g : GL (Fin (m + 1)) k) (x : Fin (m + 1) → k) :
-    blkAt k (m + 1) N (by omega) g * colEl k m N h x * (blkAt k (m + 1) N (by omega) g)⁻¹ =
-      colEl k m N h ((g : Matrix (Fin (m + 1)) (Fin (m + 1)) k) *ᵥ x) := by
-  exact Glue.blkAt_conj_colEl' h g x
-
-theorem scalAt_conj_colEl {m N : ℕ} (h : m + 2 ≤ N) (z : kˣ) (x : Fin (m + 1) → k) :
-    scalAt k (m + 1) N (by omega) z * colEl k m N h x * (scalAt k (m + 1) N (by omega) z)⁻¹ =
-      colEl k m N h ((z : k) • x) := by
-  exact Glue.scalAt_conj_colEl' h z x
-
-theorem colEl_mem_derUnip {m N : ℕ} (h : m + 2 ≤ N) (x : Fin (m + 1) → k) : colEl k m N h x ∈ derUnip k N (m + 1) := by
-  exact Glue.colEl_mem_derUnip' h x
+alias blkAt_conj_colEl := _root_.PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.blkAt_conj_colEl'
 
 theorem lvlChar_colEl (ψ : AddChar k Circle) {m N : ℕ} (h : m + 2 ≤ N) (x : Fin (m + 1) → k) :
-    lvlChar k ψ N (m + 1) ⟨colEl k m N h x, colEl_mem_derUnip h x⟩ = Circle.toUnits (ψ (xi0 k m ⬝ᵥ x)) := by
+    lvlChar k ψ N (m + 1) ⟨colEl k m N h x, _root_.PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.colEl_mem_derUnip' h x⟩ = Circle.toUnits (ψ (xi0 k m ⬝ᵥ x)) := by
   exact Glue.lvlChar_colEl' ψ h x
-
-theorem derUnip_decomp (ψ : AddChar k Circle) {m N : ℕ} (h : m + 2 ≤ N) (u : derUnip k N (m + 1)) :
-    ∃ (x : Fin (m + 1) → k) (u' : derUnip k N (m + 2)), (u : GL (Fin N) k) = colEl k m N h x * u' ∧
-      lvlChar k ψ N (m + 1) u = Circle.toUnits (ψ (xi0 k m ⬝ᵥ x)) * lvlChar k ψ N (m + 2) u' := by
-  exact Glue.derUnip_decomp' ψ h u
-
-theorem colEl_conj_derUnip (ψ : AddChar k Circle) {m N : ℕ} (h : m + 2 ≤ N) (x : Fin (m + 1) → k)
-    (u' : derUnip k N (m + 2)) :
-    ∃ hm : colEl k m N h x * (u' : GL (Fin N) k) * (colEl k m N h x)⁻¹ ∈ derUnip k N (m + 2),
-      lvlChar k ψ N (m + 2) ⟨_, hm⟩ = lvlChar k ψ N (m + 2) u' := by
-  exact Glue.colEl_conj_derUnip' ψ h x u'
-
-theorem scalAt_comm_blkAt {m N : ℕ} (h : m + 1 ≤ N) (z : kˣ) (g : GL (Fin (m + 1)) k) :
-    scalAt k (m + 1) N h z * blkAt k (m + 1) N h g = blkAt k (m + 1) N h g * scalAt k (m + 1) N h z := by
-  exact Glue.scalAt_comm_blkAt' h z g
 
 end PositivityTheory.RgUd.Form.ColumnElementGluing

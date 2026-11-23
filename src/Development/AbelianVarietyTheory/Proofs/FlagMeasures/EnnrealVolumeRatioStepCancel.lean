@@ -64,15 +64,10 @@ theorem volU_pos (i : ℕ) : 0 < volU i := by
   unfold volU
   positivity
 
-theorem vInv_pos (E : Type) [Field E] [NumberField E] : 0 < Formalism.HermitianLatticesTheory.vInv E := by
-  unfold Formalism.HermitianLatticesTheory.vInv
-  have : (0 : ℝ) < |(discr E : ℝ)| := abs_pos.2 (by exact_mod_cast discr_ne_zero E)
-  positivity
-
 theorem rankFac_mul_meanConst (E : Type) [Field E] [NumberField E] [StarRing E] (M : ℕ)
     (hL : 0 < Formalism.HermitianLatticesTheory.lValEta E M) :
     rankFac E M * meanConst E M = 2 ^ (M * Formalism.HermitianLatticesTheory.fDeg E) := by
-  have hv := vInv_pos E
+  have hv := _root_.GlobalTheory.FlagMeas.vInv_pos_of_numberField E
   unfold rankFac meanConst
   set v := Formalism.HermitianLatticesTheory.vInv E
   set f := Formalism.HermitianLatticesTheory.fDeg E
@@ -92,13 +87,13 @@ theorem rankFac_mul_meanConst (E : Type) [Field E] [NumberField E] [StarRing E] 
 
 theorem meanConst_pos (E : Type) [Field E] [NumberField E] [StarRing E] (M : ℕ)
     (hL : 0 < Formalism.HermitianLatticesTheory.lValEta E M) : 0 < meanConst E M := by
-  have hv := vInv_pos E
+  have hv := _root_.GlobalTheory.FlagMeas.vInv_pos_of_numberField E
   unfold meanConst
   positivity
 
 theorem rankFac_pos (E : Type) [Field E] [NumberField E] [StarRing E] (M : ℕ)
     (hL : 0 < Formalism.HermitianLatticesTheory.lValEta E M) : 0 < rankFac E M := by
-  have hv := vInv_pos E
+  have hv := _root_.GlobalTheory.FlagMeas.vInv_pos_of_numberField E
   unfold rankFac
   positivity
 

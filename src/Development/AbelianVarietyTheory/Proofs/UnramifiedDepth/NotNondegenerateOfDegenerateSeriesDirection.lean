@@ -209,7 +209,7 @@ theorem cubWeil_one [IsCommMonObj G] {L : RigLB G} {c : CubicalStr G L} {p : ℕ
     (fun i => by
       have := (hw (mult F a i) a b (fun j => hker _ (hn ha i j)) (fun j => hker _ (ha j))
         (fun j => hker _ (hb j))).1
-      rw [pt_mult hF hL ha, T.evalPowerSeries_eq_one_of_two_axes Ω d ph1 h₁ h₂ A e he _ _ _ (mult_mem hF hen hae i) hae hb, hρ, map_one] at this
+      rw [pt_mult hF hL ha, _root_.GlobalTheory.AlphaPair.evalPoints_eq_one_of_two_axes Ω d ph1 h₁ h₂ A e he _ _ _ (mult_mem hF hen hae i) hae hb, hρ, map_one] at this
       rw [zero_mul, add_zero]
       exact this) p hp (by rw [h0 ha hx]) rfl
   have e₂ := telescope_eq_one (cubV c z J) (P A b) (P A a) (fun i => w a (mult F b i)) (w a b) (ρ e)

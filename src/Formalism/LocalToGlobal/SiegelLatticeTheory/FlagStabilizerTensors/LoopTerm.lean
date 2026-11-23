@@ -89,8 +89,7 @@ section Point
 
 variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF))
 
-theorem tu_ne (u' : D.what₂.Word) : ((Tu D u' : ℕ) : D.host.E) ≠ 0 :=
-  Nat.cast_ne_zero.2 (D.mem u').A.T_prime.ne_zero
+alias tu_ne := _root_.Formalism.L2.SG.Corank.tu_ne_zero
 
 def IsFrameLift {u u' : D.what₂.Word} (t : D.s.Term u u') (g : (VS D).V ≃ₗ[D.host.E] (VS D).V) : Prop :=
   g ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT ∧ (∀ a, g ((X.Fu u').e a) = (repF (tc hI t)).fl.e a) ∧
@@ -498,10 +497,7 @@ end UHmem
 
 section Scale
 
-theorem rdE_pos (D : D7) : 0 < D.host.rdE := by
-  unfold Formalism.BasicNotions.Host.rdE
-  apply Real.rpow_pos_of_pos
-  exact abs_pos.2 (Int.cast_ne_zero.2 (NumberField.discr_ne_zero _))
+alias rdE_pos := _root_.Formalism.MainNotions.S.rdE_pos
 
 variable {K : Type*} [Field K] (e : K →+* ℂ) (c : ℕ → ℂ)
 
@@ -775,7 +771,7 @@ def loopTermOf (H : TieHyp W hI) (A : AmpDat X) (hV : PvalForm W hI A) (large₂
   volR_pos := volRC_pos hI hPin hCv
   gram := gram_holds W hI C (frameLiftEx_holds hI u u')
   rel := fun t hg hr τ => ⟨ptC_spec hI C t τ (relPtEx_holds hI C u u' t hg hr τ), hT t hg hr, rmeas_nuR hI C hB hPin hCv t τ (hR t hg hr τ)⟩
-  J_irr := fun t _ hn => jt_irr hI Formalism.L2.SG.Closed.AvgCore_holds Formalism.L2.SG.Closed.ChiTrivialC_holds
+  J_irr := fun t _ hn => jt_irr hI _root_.Formalism.L2.SG.TermOp.Vanish.avgCore _root_.Formalism.L2.SG.Pf.chiTrivialC_outright
     Formalism.L2.SG.TermOp.Vanish.rational_cocompact_holds Formalism.L2.SG.NonRelPf.nonRelCharC_holds t hn
   J_norm := fun t hg hr => jnorm hI C hB hPin hCv hZ (tau_nonempty D) t hg hr
 

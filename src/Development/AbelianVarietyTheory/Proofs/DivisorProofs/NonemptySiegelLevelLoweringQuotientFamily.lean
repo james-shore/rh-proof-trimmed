@@ -61,7 +61,7 @@ theorem nonempty_sQuot : ∀ (h n N : ℕ) (F : SFam h N (zetaAway N)) (j : cycA
   have hn0 : n ≠ 0 := by omega
   have hN0 : N ≠ 0 := by rintro rfl; exact (Nat.not_odd_zero hN)
   haveI : IsDedekindDomain (cycAway n) := GlobalTheory.CycAwayReg.isDedekindDomain_cycAway n
-  obtain ⟨Ga, _, _, ρ, ν, h1, hmul, hν1, hνmul, hover, hlow, hfree, htrans⟩ := GlobalTheory.T.siegelFamily_similitudeGroup_action_free_transitive h n N F j hn hN hdvd hj
+  obtain ⟨Ga, _, _, ρ, ν, h1, hmul, hν1, hνmul, hover, hlow, hfree, htrans⟩ := _root_.GlobalTheory.SiegAct.siegel_group_action h n N F j hn hN hdvd hj
   have hjf : j.Finite := (IsFinite.SpecMap_iff _).1 hfin
   have hq : IsQProjOver (F.s ≫ spMap j) :=
     (GlobalTheory.isQProjOver_baseChange_and_finite_restrict _ _ j F.X (F.s ≫ spMap j)).2 F.s hjf F.qproj

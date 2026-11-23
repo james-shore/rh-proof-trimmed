@@ -96,7 +96,7 @@ theorem inner_eq (n : ℕ) (s : ℝ) (hs : (n : ℝ) + 1 / 2 < s) : ∃ K : ENNR
       (continuous_detW _).comp (continuous_blkM.comp
         (by fun_prop : Continuous fun p : (Fin n → ℂ) × ℝ => ((b' : Matrix (Fin n) (Fin n) ℂ), p.1, p.2)))
     exact (hc.measurable.pow_const _).ennreal_ofReal
-  rw [GlobalTheory.T.lintegral_linear_change_variables_complex n _ hdet _ hgm, ← hwA]
+  rw [_root_.GlobalTheory.CompanionTheory.SiegelND.Integ.Arch.HuaInt.lintegral_eq_normSq_det_mul_lintegral_mulVec n _ hdet _ hgm, ← hwA]
   have hv : ∀ v : Fin n → ℂ, ∫⁻ d : ℝ, ENNReal.ofReal (detW (blk b' ((1 + Complex.I • (b' : Matrix (Fin n) (Fin n) ℂ)) *ᵥ v) d : Matrix (Fin (n+1)) (Fin (n+1)) ℂ) ^ (-s))
       = ENNReal.ofReal (detW (b' : Matrix (Fin n) (Fin n) ℂ) ^ (-s)) *
         (C * ENNReal.ofReal ((1 + ∑ i, Complex.normSq (v i)) ^ (-(2 * s - 1)))) := by
@@ -111,7 +111,7 @@ theorem inner_eq (n : ℕ) (s : ℝ) (hs : (n : ℝ) + 1 / 2 < s) : ∃ K : ENNR
       rw [GlobalTheory.T.detW_eq_normSq_det_one_add_I _ _ hh]
       have e : ((blk b' ((1 + Complex.I • (b' : Matrix (Fin n) (Fin n) ℂ)) *ᵥ v) d : hermC (n+1)) : Matrix (Fin (n+1)) (Fin (n+1)) ℂ)
           = blkM (b' : Matrix (Fin n) (Fin n) ℂ) ((1 + Complex.I • (b' : Matrix (Fin n) (Fin n) ℂ)) *ᵥ v) d := rfl
-      rw [e, GlobalTheory.T.detW_block_matrix_formula n _ hB hdet v d, ← hwA, Real.mul_rpow (by linarith) (by positivity),
+      rw [e, _root_.GlobalTheory.CompanionTheory.SiegelND.Integ.Arch.HuaInt.normSq_det_one_add_I_blkM n _ hB hdet v d, ← hwA, Real.mul_rpow (by linarith) (by positivity),
         ENNReal.ofReal_mul (Real.rpow_nonneg (by linarith) _)]
     simp only [hterm]
     rw [lintegral_const_mul' _ _ ENNReal.ofReal_ne_top, hD (1 + ∑ i, Complex.normSq (v i)) (by linarith)]
@@ -155,7 +155,7 @@ theorem hua_integrable : ∀ (n : ℕ) (s : ℝ), (n : ℝ) - 1 / 2 < s → ∀ 
       (((continuous_detW (n + 1)).comp continuous_subtype_val).measurable.pow_const _)
     refine ⟨hm2.aestronglyMeasurable, ?_⟩
     rw [hasFiniteIntegral_iff_ofReal (Filter.Eventually.of_forall hpos)]
-    obtain ⟨c, hc, hF⟩ := GlobalTheory.T.hermitian_haar_block_decomposition n ν (Measure.addHaar) hν inferInstance
+    obtain ⟨c, hc, hF⟩ := _root_.GlobalTheory.CompanionTheory.SiegelND.Integ.Arch.HuaInt.haar_blocks n ν (Measure.addHaar) hν inferInstance
     obtain ⟨K, hK, hI⟩ := inner_eq n s hs'
     rw [hF _ hmeas]
     simp only [hI]

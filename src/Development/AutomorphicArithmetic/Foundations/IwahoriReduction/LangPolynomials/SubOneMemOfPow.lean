@@ -47,10 +47,6 @@ import Mathlib.Tactic.ReduceModChar
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.HV GlobalTheory.Ord2 GlobalTheory.KZ GlobalTheory.Col UpperTheory.Kd.C7
 
-private theorem pow_sub_one_mem {S : Type} [CommRing S] (J : Ideal S) (p : ℕ) (hp : p.Prime) (hpJ : (p : S) ∈ J)
-    (x : S) (hx : x - 1 ∈ J) (j : ℕ) : x ^ (p ^ j) - 1 ∈ J ^ (j + 1) :=
-  _root_.UpperTheory.Reformulated.B.Qf4.pow_sub_one_mem J p hp hpJ x hx j
-
 private theorem pow_sub_pow_mem {S : Type} [CommRing S] (J : Ideal S) (x y : S) (h : x - y ∈ J) (n : ℕ) :
     x ^ n - y ^ n ∈ J := by
   obtain ⟨c, hc⟩ := sub_dvd_pow_sub_pow x y n
@@ -114,7 +110,7 @@ private theorem conv {S : Type} [CommRing S] (J : Ideal S) [IsAdicComplete J S] 
   set y : ℕ → ℕ → S := fun r k => (N^[k] (w (r + k))) ^ p ^ ((r + k - c) - (r - c)) with hy
   have hex : ∀ r, ∃ W : S, W - 1 ∈ J ∧ ∀ n K, n + c ≤ K → W - ∏ k ∈ Finset.range K, y r k ∈ J ^ n := by
     intro r
-    have h0 := fun k => pow_sub_one_mem J p hp hpJ _ (hitJ k _ (hw (r + k))) ((r + k - c) - (r - c))
+    have h0 := fun k => _root_.UpperTheory.Reformulated.B.Qf4.pow_sub_one_mem J p hp hpJ _ (hitJ k _ (hw (r + k))) ((r + k - c) - (r - c))
     exact prod_limit J (y r) c (fun k => Ideal.pow_le_self (by omega) (h0 k))
       (fun k => Ideal.pow_le_pow_right (by omega) (h0 k))
   choose W hW1 hW2 using hex
@@ -287,10 +283,10 @@ private theorem all_levels (R : Type) [CommRing R] (p : ℕ) [hp : Fact p.Prime]
     (fun r n => (Ideal.span {(p : lev R p r) ^ n}).comap (ev R p r)) hNJ
     (fun r hr x y h => by
       rw [← Ideal.Quotient.eq] at h ⊢
-      rw [colNm_apply, colNm_apply, GlobalTheory.T.ev_normOp_eq_nrm_ev_succ R p r hr hR, GlobalTheory.T.ev_normOp_eq_nrm_ev_succ R p r hr hR, h])
+      rw [colNm_apply, colNm_apply, _root_.GlobalTheory.Col.ev_normOp_eq_nrm R p r hr hR, _root_.GlobalTheory.Col.ev_normOp_eq_nrm R p r hr hR, h])
     (fun r hr n x y h => by
       rw [Ideal.mem_comap, map_sub] at h ⊢
-      rw [colNm_apply, colNm_apply, GlobalTheory.T.ev_normOp_eq_nrm_ev_succ R p r hr hR, GlobalTheory.T.ev_normOp_eq_nrm_ev_succ R p r hr hR]
+      rw [colNm_apply, colNm_apply, _root_.GlobalTheory.Col.ev_normOp_eq_nrm R p r hr hR, _root_.GlobalTheory.Col.ev_normOp_eq_nrm R p r hr hR]
       exact nrm_congr p r n hr _ _ h)
     (fun r n x hx => by
       rw [Ideal.mem_comap, Ideal.Quotient.eq_zero_iff_mem.2 hx]; exact zero_mem _)
@@ -308,7 +304,7 @@ private theorem all_levels (R : Type) [CommRing R] (p : ℕ) [hp : Fact p.Prime]
   have hU : ∀ r, IsUnit (ev R p r (G r * W r ^ p ^ (r - c))) := fun r =>
     ((hun _ (ha r)).mul ((hun _ (hW1 r)).pow _)).map _
   obtain ⟨f, hf⟩ := GlobalTheory.Col.exists_coleman_series R p σ hF (fun m => (hU (m + 1)).unit) (fun m => by
-    rw [IsUnit.unit_spec, IsUnit.unit_spec, ← GlobalTheory.T.ev_normOp_eq_nrm_ev_succ R p (m + 1) _ hR, Ideal.Quotient.eq]
+    rw [IsUnit.unit_spec, IsUnit.unit_spec, ← _root_.GlobalTheory.Col.ev_normOp_eq_nrm R p (m + 1) _ hR, Ideal.Quotient.eq]
     exact hW2 (m + 1) (by omega))
   refine ⟨f, f.isUnit, fun m hm => ?_⟩
   obtain ⟨m, rfl⟩ : ∃ k, m = k + 1 := ⟨m - 1, by omega⟩
@@ -331,7 +327,7 @@ theorem UpperTheory.Kd.C7.pExact :
       · obtain ⟨w, hwu, hw⟩ := hg m hm h
         refine ⟨w, hwu, ?_⟩
         rw [show m₀ - (m + 1) = 0 by omega, show m₀ - m = 0 by omega, max_eq_left h, max_eq_left (by omega : m₀ ≤ m + 1),
-          Function.iterate_zero_apply, Function.iterate_zero_apply, GlobalTheory.T.ev_normOp_eq_nrm_ev_succ R p m hm hF.complete, hw]
+          Function.iterate_zero_apply, Function.iterate_zero_apply, _root_.GlobalTheory.Col.ev_normOp_eq_nrm R p m hm hF.complete, hw]
       · refine ⟨1, isUnit_one, ?_⟩
         rw [one_pow, mul_one, show m₀ - m = (m₀ - (m + 1)) + 1 by omega, Function.iterate_succ_apply',
           max_eq_right h.le, max_eq_right (by omega : m + 1 ≤ m₀), colNm_apply])

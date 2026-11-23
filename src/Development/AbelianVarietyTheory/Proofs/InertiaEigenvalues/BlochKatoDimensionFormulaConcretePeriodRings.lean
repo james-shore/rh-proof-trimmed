@@ -53,7 +53,7 @@ theorem blochKatoDim_of_tied : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI
     BlochKatoDim (P.PD K) ↥LL.1 := by
   intro l _ P AI hT K LL _
   refine GlobalTheory.blochKatoDim_of_bkADim_of_fontCore l P K LL ?_
-    (GlobalTheory.Per.FontaineTied.fontCore_all_of_tied l P AI hT K)
+    (_root_.GlobalTheory.Per.FontaineAll.fontCore_of_tied l P AI hT K)
     (GlobalTheory.LocalIntegers.good_integers l LL).1
   intro LL' _ _ _ O _ _ hO A hdr
   exact (GlobalTheory.SeqDim.h1f_finrank l P AI hT K LL' O hO A hdr).2

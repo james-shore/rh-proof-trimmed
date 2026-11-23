@@ -52,13 +52,11 @@ namespace GroundTheory.Heights₂.Heights
 
 universe u v
 
-theorem TorsionEquidistribution.full : TorsionEquidistribution.Statement :=
-  TorsionEquidistribution.proof
+alias TorsionEquidistribution.full := _root_.GroundTheory.Heights₂.Heights.TorsionEquidistribution.proof
 
 theorem SupOfOrthonormalSum.full : SupOfOrthonormalSum.Statement.{u, v} :=
   SupOfOrthonormalSum.proof
 
-theorem SlopeParameterChoice.full : SlopeParameterChoice.Statement :=
-  SlopeParameterChoice.proof
+alias SlopeParameterChoice.full := _root_.GroundTheory.Heights₂.Heights.SlopeParameterChoice.proof
 
 end GroundTheory.Heights₂.Heights

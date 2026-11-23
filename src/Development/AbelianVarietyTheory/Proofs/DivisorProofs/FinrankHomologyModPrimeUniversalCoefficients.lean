@@ -67,9 +67,9 @@ theorem uct_mod_p : ∀ (C : CochainComplex (ModuleCat.{0} ℤ) ℕ) (p : ℕ) [
   rw [GlobalTheory.T.natCard_homology_restrictScalars_alt] at e
   haveI := hfin n
   haveI := hfin (n + 1)
-  have a1 := GlobalTheory.T.card_quot_range_prime_smul_eq_card_ker_mul_pow_finrank (C.homology n) p
-  have a2 := GlobalTheory.T.card_quot_range_prime_smul_eq_card_ker_mul_pow_finrank (C.homology (n + 1)) p
-  rw [← GlobalTheory.T.card_zmod_tensor_eq_card_quot_prime_multiples] at a1 a2 e
+  have a1 := _root_.GlobalTheory.card_quot_prime_smul_eq_card_ker_mul_pow_finrank (C.homology n) p
+  have a2 := _root_.GlobalTheory.card_quot_prime_smul_eq_card_ker_mul_pow_finrank (C.homology (n + 1)) p
+  rw [← _root_.GlobalTheory.card_zmod_tensor_eq_card_quot] at a1 a2 e
   have hp : 1 < p := (Fact.out : p.Prime).one_lt
   have hcp : Nat.card (ZMod p) = p := by simp
   have c1 := Module.natCard_eq_pow_finrank (K := ZMod p) (V := TensorProduct ℤ (ZMod p) (C.homology n))

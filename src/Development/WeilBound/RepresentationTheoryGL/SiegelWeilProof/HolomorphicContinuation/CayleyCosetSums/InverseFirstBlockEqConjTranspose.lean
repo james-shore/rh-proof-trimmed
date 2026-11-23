@@ -61,26 +61,18 @@ open PositivityTheory.Rg.Sw PositivityTheory.Rg.Sw.LVs PositivityTheory.Rg.Sw.HS
 
 variable {n : ℕ}
 
-theorem JJ_sq : JJ n * JJ n = -1 := by
-  simp only [JJ, fromBlocks_multiply]
-  rw [← fromBlocks_one, fromBlocks_neg]
-  simp
-
 theorem inv_of_inG {x : M2 n} (hx : InG x) : x⁻¹ = -(JJ n * xᴴ * JJ n) := by
   refine Matrix.inv_eq_left_inv ?_
   have h : xᴴ * JJ n * x = JJ n := hx
   calc -(JJ n * xᴴ * JJ n) * x = -(JJ n * (xᴴ * JJ n * x)) := by noncomm_ring
-    _ = 1 := by rw [h, JJ_sq]; simp
+    _ = 1 := by rw [h, _root_.PositivityTheory.Rg.Sw.AbsSt.IwaPf.JJ_mul_self]; simp
 
 theorem isUnit_of_inG {x : M2 n} (hx : InG x) : IsUnit x := by
   have h : (-(JJ n * xᴴ * JJ n)) * x = 1 := by
     have h : xᴴ * JJ n * x = JJ n := hx
     calc -(JJ n * xᴴ * JJ n) * x = -(JJ n * (xᴴ * JJ n * x)) := by noncomm_ring
-      _ = 1 := by rw [h, JJ_sq]; simp
+      _ = 1 := by rw [h, _root_.PositivityTheory.Rg.Sw.AbsSt.IwaPf.JJ_mul_self]; simp
   exact (Matrix.isUnit_iff_isUnit_det x).mpr (Matrix.isUnit_det_of_left_inverse h)
-
-theorem isUnit_det_of_inG {x : M2 n} (hx : InG x) : IsUnit x.det :=
-  (Matrix.isUnit_iff_isUnit_det x).mp (isUnit_of_inG hx)
 
 theorem inverse_first_block_eq_conjTranspose {x : M2 n} (hx : InG x) : ub1 x = (u1 x)ᴴ := by
   rw [ub1, inv_of_inG hx, u1]

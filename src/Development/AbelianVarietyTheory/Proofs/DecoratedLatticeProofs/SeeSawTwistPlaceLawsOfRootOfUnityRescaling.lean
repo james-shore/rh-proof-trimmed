@@ -55,6 +55,6 @@ namespace GlobalTheory.QTw
 theorem laws_of_pin_resc : ∀ (D : D7) (c : Comm D) (v : VCom c) (t : Tup c) (w : VTup t), c.Is → t.Is → v.Is → WeilOK (t := t) v → QPinU v w → QLaw v w ∧ QLast v w ∧ QFin v w :=
   fun D c v t w hc ht hv hW h =>
     GlobalTheory.QTw.RescTest.laws_of_qpinU v (fun w₀ h₀ =>
-      ⟨GlobalTheory.T.seeSawIteratedIntegralLaw_at_twist_of_factorisation D c v t w₀ hc ht hv hW h₀, GlobalTheory.T.seeSawIteratedIntegralLawLastSteps_of_localFactorisation D c v t w₀ hc ht hv hW h₀, GlobalTheory.T.seeSawFiniteCells_at_twistPlaces_of_localFactorisation D c v t w₀ hc ht hv hW h₀⟩) w h
+      ⟨_root_.GlobalTheory.QLawPf.qLaw_of_pin D c v t w₀ hc ht hv hW h₀, _root_.GlobalTheory.QLastPf.qLast_of_pin D c v t w₀ hc ht hv hW h₀, _root_.GlobalTheory.QFinMain.qFin_of_pin D c v t w₀ hc ht hv hW h₀⟩) w h
 
 end GlobalTheory.QTw

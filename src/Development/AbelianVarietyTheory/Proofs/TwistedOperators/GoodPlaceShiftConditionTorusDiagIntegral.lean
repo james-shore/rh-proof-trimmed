@@ -58,10 +58,6 @@ namespace GlobalTheory.AscFin.ShiftInt
 
 variable {D : D7}
 
-theorem mul_mem_intAt {v : GlobalTheory.FinPl.Pl D} {a b : AE D} (ha : a ∈ intAt D (· = v)) (hb : b ∈ intAt D (· = v)) :
-    a * b ∈ intAt D (· = v) :=
-  ⟨Ideal.mul_mem_right _ _ ha.1, by rw [map_mul]; exact GlobalTheory.FinPl.FrameLat.mul_mem_intAE ha.2 hb.2⟩
-
 theorem upSum_single {ρ : ℕ} {i j : Fin ρ} (hj : j.1 = i.1 + 1) (c : AE D) :
     upSum (Matrix.single i j c : Mx D ρ ρ) = c := by
   unfold upSum
@@ -116,7 +112,7 @@ theorem shift_int : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D �
   have hro : r * o ∈ idAt D (· = v) := Ideal.mul_mem_right _ _ hr
   have hRo : ∀ a : AE D, GlobalTheory.FinPl.colMul dV.jX j a ∈ latV V LV (· = v) →
       GlobalTheory.FinPl.colMul dV.jX i (r * o * a) ∈ latV V LV (· = v) :=
-    (hP (r * o) hro).2 fun o' ho' => by rw [mul_assoc]; exact hψr _ (mul_mem_intAt ho ho')
+    (hP (r * o) hro).2 fun o' ho' => by rw [mul_assoc]; exact hψr _ (_root_.GlobalTheory.IwaDecomp.intAt_mul' ho ho')
   have hN : (Matrix.single i j (r * t.1 i i * o) : Mx D ρ ρ) = t.1 ⬝ (Matrix.single i j (r * o) : Mx D ρ ρ) := by
     conv_rhs => rw [h1]
     ext a b

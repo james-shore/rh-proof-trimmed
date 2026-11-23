@@ -130,7 +130,7 @@ theorem t1 (hC : CupLaws) (P : HTPre l K) {M : Model l K} (hM : M.Sm) {D : ℕ} 
           rw [Fx, dite_eq_left (And.intro hα rfl)]
           simp only [LinearMap.comp_apply, LinearMap.flip_apply, cupL_apply]
         simp only [key, map_zsmul, map_mul]
-        rw [dfac, kap, bsum (kC K) _ (fun k φ => P.lin' M _ _ k _ φ) (b (α - a')), bsum (kC K) _ (fun k φ => P.lin' M _ _ k _ φ) (b' β)]
+        rw [dfac, kap, _root_.CrystallineSemistableComparison.Onto.sum_coord_basis_dual (kC K) _ (fun k φ => P.lin' M _ _ k _ φ) (b (α - a')), _root_.CrystallineSemistableComparison.Onto.sum_coord_basis_dual (kC K) _ (fun k φ => P.lin' M _ _ k _ φ) (b' β)]
       · intro p _ hne
         refine Finset.sum_eq_zero fun s _ => Finset.sum_eq_zero fun s' _ => ?_
         rw [tz p ?_ s s', map_zero, mul_zero]

@@ -82,10 +82,10 @@ theorem mem_of_ordGe_on : UTraitExtSt → ∀ (E : Type) [Field E] [NumberField 
   have hring : (algebraMap T.V (FractionRing T.V)).comp evT = fK.comp ((algebraMap V (FractionRing V)).comp ev') :=
     RingHom.ext fun a => (hfK (ev' a)).symm
   have hsq : jK T.V ≫ spMap evT ≫ ζ = T.y ≫ C.iF := by
-    rw [hTy, Category.assoc, hy', ← Category.assoc, GlobalTheory.USepTrait.sp_comp, ← Category.assoc, GlobalTheory.USepTrait.sp_comp, hring]
+    rw [hTy, Category.assoc, hy', ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring, hring]
   have hrange : Set.range (jK T.V ≫ spMap evT ≫ M.fromSpecStalk z₁) ⊆ (U : Set M) := by
     have e1 : jK T.V ≫ spMap evT ≫ M.fromSpecStalk z₁ = jK T.V ≫ spMap fx ≫ spMap ev' ≫ M.fromSpecStalk z₁ := by
-      rw [← GlobalTheory.USepTrait.sp_comp ev' fx, Category.assoc]
+      rw [← _root_.GlobalTheory.spMap_comp_ring ev' fx, Category.assoc]
     rw [e1]
     exact (range_jK_spMap_subset_of_injective V T.V fx hfi M (spMap ev' ≫ M.fromSpecStalk z₁)).trans
       (by simpa only [Category.assoc] using hU)
@@ -101,7 +101,7 @@ theorem mem_of_ordGe_on : UTraitExtSt → ∀ (E : Type) [Field E] [NumberField 
     simp only [Category.assoc]
   obtain ⟨n, hn, hid⟩ := hval T.V T.cdvr T.ϖ T.irr _ T.y hyχ T.t tK m1 m2 T.P T.be T.lev T.mono
   have hid' : (idlAlong J (spMap ev' ≫ ζ ≫ pullback.fst C.z (spMap C.b))).map fx = Ideal.span {T.ϖ ^ n} := by
-    rw [← GlobalTheory.TraitOrder.idlAlong_comp, ← hid, ← Category.assoc, GlobalTheory.USepTrait.sp_comp]
+    rw [← GlobalTheory.TraitOrder.idlAlong_comp, ← hid, ← Category.assoc, _root_.GlobalTheory.spMap_comp_ring]
   have hm0 : 0 < Φ.m y2 := by omega
   let k : Fin (Φ.m y2) := ⟨0, hm0⟩
   have hδ : Φ.δ y2 k = pull eq.toLinearMap T.be := LinearMap.ext₂ fun a b => (ht k).2 a b

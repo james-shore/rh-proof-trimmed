@@ -83,19 +83,6 @@ theorem exists_poly_dvd {k R : Type} [CommRing k] [IsDomain k] [CommRing R] [IsD
     (mem_nonZeroDivisors_of_ne_zero hg)
   exact ⟨Q, hQ, r, hr⟩
 
-theorem analyticAt_eval {D : ℕ} (P : MvPolynomial (Fin D) ℂ) (z : Fin D → ℂ) :
-    AnalyticAt ℂ (fun w : Fin D → ℂ => MvPolynomial.eval w P) z := by
-  induction P using MvPolynomial.induction_on
-  next a =>
-    simp only [MvPolynomial.eval_C]
-    exact analyticAt_const
-  next p q hp hq =>
-    simp only [map_add (f := _)]
-    exact hp.add hq
-  next p i hp =>
-    simp only [map_mul, MvPolynomial.eval_X]
-    exact hp.mul ((ContinuousLinearMap.proj (R := ℂ) (φ := fun _ : Fin D => ℂ) i).analyticAt z)
-
 theorem volume_poly_zero (D : ℕ) (P : MvPolynomial (Fin D) ℂ) (hP : P ≠ 0) :
     volume {v : ReciprocityTheory.L2DbarEstimates.V D | MvPolynomial.eval (fun a => v a) P = 0} = 0 := by
   obtain ⟨w, hw⟩ : ∃ w, MvPolynomial.eval w P ≠ 0 := by
@@ -103,7 +90,7 @@ theorem volume_poly_zero (D : ℕ) (P : MvPolynomial (Fin D) ℂ) (hP : P ≠ 0)
     push_neg at h
     exact hP (MvPolynomial.funext fun x => by simpa using h x)
   have h0 := ReciprocityTheory.AnForm.volume_zero_set_of_analyticOnNhd isOpen_univ isPreconnected_univ
-    (fun z _ => analyticAt_eval P z) ⟨w, mem_univ _, hw⟩
+    (fun z _ => _root_.GlobalTheory.SimpleRoots.analyticAt_mvPolynomial_eval P z) ⟨w, mem_univ _, hw⟩
   have hs : {z : Fin D → ℂ | z ∈ univ ∧ MvPolynomial.eval z P = 0} =
       {z : Fin D → ℂ | MvPolynomial.eval z P = 0} := by
     ext z

@@ -59,12 +59,6 @@ noncomputable section
 
 namespace GlobalTheory.SiegCover
 
-theorem unitOn_pow' {R : Type} [CommRing R] (u : Rˣ) (m : ℕ) : unitOn (u ^ m) = unitOn u ^ m := by
-  unfold unitOn; exact map_pow _ u m
-
-theorem unitOn_one' {R : Type} [CommRing R] : unitOn (1 : Rˣ) = 1 := by
-  unfold unitOn; exact map_one _
-
 theorem weilIs_congr_base {S : Scheme.{0}} {A : Over S} [GrpObj A] {L : LB A.left} {m : ℤ} {k : Type} [Field k]
     {y y' : Sp k ⟶ S} (e : y = y') {x₁ x₂ : Over.mk y ⟶ A} {x₁' x₂' : Over.mk y' ⟶ A}
     (h₁ : x₁.left = x₁'.left) (h₂ : x₂.left = x₂'.left) {c : Γ(Sp k, ⊤)ˣ} (H : Out.WeilIs A L m x₁ x₂ c) :

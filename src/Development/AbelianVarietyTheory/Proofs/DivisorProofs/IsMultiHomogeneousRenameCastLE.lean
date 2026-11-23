@@ -72,29 +72,6 @@ theorem isProbabilityMeasure_gaussProb {n : ℕ} (hn : 0 < n) : IsProbabilityMea
   rw [← hp.map_eq]
   infer_instance
 
-theorem eval_blockScale {B n : ℕ} (a : Fin B → ℕ) (g : MvPolynomial (Fin B × Fin n) ℂ)
-    (hm : IsMultiHomogeneous a g) (r : Fin B → ℂ) (x : Fin B × Fin n → ℂ) :
-    eval (fun p => r p.1 * x p) g = (∏ b, r b ^ a b) * eval x g := by
-  conv_lhs => rw [g.as_sum]
-  conv_rhs => rw [g.as_sum]
-
-  rw [map_sum, map_sum, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun s hs => ?_
-  rw [eval_monomial, eval_monomial]
-  have h1 : (s.prod fun p e => (r p.1 * x p) ^ e) =
-      (s.prod fun p e => r p.1 ^ e) * s.prod fun p e => x p ^ e := by
-    rw [← Finsupp.prod_mul]
-    congr 1
-    funext p e
-    rw [mul_pow]
-  have h2 : (s.prod fun p e => r p.1 ^ e) = ∏ b, r b ^ a b := by
-    rw [Finsupp.prod_fintype _ _ (fun _ => pow_zero _), Fintype.prod_prod_type]
-    refine Finset.prod_congr rfl fun b _ => ?_
-    show ∏ y, r b ^ s (b, y) = _
-    rw [Finset.prod_pow_eq_pow_sum, hm s hs b]
-  rw [h1, h2]
-  ring
-
 theorem linSubst_incl {B N n : ℕ} (h : N ≤ n) (f : MvPolynomial (Fin B × Fin N) ℂ) :
     GlobalTheory.ChowHt.linSubst (Matrix.of fun (j : Fin N) (k : Fin n) =>
                  if (j : ℕ) = (k : ℕ) then (1 : ℂ) else 0) f =
@@ -161,7 +138,7 @@ theorem gauss_blockMean {B n : ℕ} (hn : 0 < n) (δ : ℕ) (g : MvPolynomial (F
       ((Measure.pi fun _ : Fin B => sphereProb n).prod (Measure.pi fun _ : Fin B => radProb n))
       (Measure.pi fun _ : Fin B => gaussProb n) := by
     have h1 := measurePreserving_pi (fun _ : Fin B => (sphereProb n).prod (radProb n))
-      (fun _ => gaussProb n) (fun _ => GlobalTheory.T.measurePreserving_polar_gaussianProbabilityComplexSpace n hn)
+      (fun _ => gaussProb n) (fun _ => _root_.GlobalTheory.SphereMeanDrop.measurePreserving_polar_gaussProb n hn)
     have h2 := MeasurePreserving.symm _ (measurePreserving_arrowProdEquivProdArrow (UnitSphereC n)
       (Ioi (0:ℝ)) (Fin B) (fun _ => sphereProb n) (fun _ => radProb n))
     exact h1.comp h2
@@ -180,7 +157,7 @@ theorem gauss_blockMean {B n : ℕ} (hn : 0 < n) (δ : ℕ) (g : MvPolynomial (F
       rw [norm_prod]
       refine Finset.prod_congr rfl fun b _ => ?_
       rw [norm_pow, Complex.norm_real, Real.norm_eq_abs, abs_of_pos (hr b)]
-    have hs := eval_blockScale (fun _ => δ) g hm (fun b => ((q.2 b : ℝ) : ℂ)) (blockPoint q.1)
+    have hs := _root_.ReciprocityTheory.MultiplicativeHeights.eval_blockScale_eq_prod_pow_mul (fun _ => δ) g hm (fun b => ((q.2 b : ℝ) : ℂ)) (blockPoint q.1)
     rw [hfun, hs, norm_mul, hprod,
       Real.log_mul (Finset.prod_ne_zero_iff.2 fun b _ => pow_ne_zero _ (hr b).ne')
         (norm_ne_zero_iff.2 hq),

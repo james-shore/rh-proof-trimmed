@@ -144,7 +144,7 @@ theorem fam_baire [CompleteSpace H] {σ : Mx n → (H →L[ℂ] H)} (hσ : IsURe
     exact ContinuousLinearMap.opNorm_le_bound _ zero_le_one fun v => by rw [hσ.2.1 g hg v, one_mul]⟩
   obtain ⟨d, b, φ, hb⟩ := exists_frame ε
   haveI : IsUniformAddGroup (Fam ε σ) := (Fam ε σ).toAddSubgroup.isUniformAddGroup
-  haveI : CompleteSpace (Fam ε σ) := (GlobalTheory.T.isClosed_derivativeFamilies_moderateGrowth n ε H σ hρ).completeSpace_coe
+  haveI : CompleteSpace (Fam ε σ) := (_root_.GlobalTheory.TypeSum.isClosed_fam n ε H σ hρ).completeSpace_coe
   haveI := (withSeminorms_sn (ρ := σ) hb).firstCountableTopology
   haveI : (_root_.uniformity (Fam ε σ)).IsCountablyGenerated := IsUniformAddGroup.uniformity_countably_generated
   letI := UniformSpace.pseudoMetricSpace (Fam ε σ)

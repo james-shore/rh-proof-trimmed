@@ -44,6 +44,8 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HyperbolicPlaceProducts.SubgroupIndexCounts.CountO
+import Formalism.HyperbolicPlaceProducts.SubgroupIndexCounts.OmegaPow
 
 @[expose] public section
 
@@ -62,7 +64,7 @@ theorem count_index_fg {K Q : Type} [Field K] [NumberField K] [AddCommGroup Q] [
   have : Module.IsTorsionFree (𝓞 K) Q := Module.IsTorsionFree.trans_faithfulSMul (𝓞 K) K Q
   have : Module.FinitePresentation (𝓞 K) M := Module.finitePresentation_of_finite _ _
   have : Module.Projective (𝓞 K) M := Module.Flat.projective_of_finitePresentation
-  obtain ⟨h1, h2⟩ := Formalism.SLP.Final.submoduleIndexCountO K M x hx
+  obtain ⟨h1, h2⟩ := _root_.Formalism.SLP.P.card_submodules_of_index_le K M x hx
   refine ⟨h1, ?_⟩
   have hr : Module.finrank (𝓞 K) M ≤ k := by
     refine le_trans ?_ hk
@@ -74,7 +76,7 @@ theorem count_index_fg {K Q : Type} [Field K] [NumberField K] [AddCommGroup Q] [
   have hn : 1 ≤ Module.finrank ℚ K := Module.finrank_pos
   have hx1 : (1:ℝ) ≤ x := by exact_mod_cast hx
   have hx0 : (0:ℝ) < x := by linarith
-  have h4 := Formalism.SLP.Final.omegaPow (Module.finrank ℚ K) x hn hx
+  have h4 := _root_.Formalism.SLP.P.pow_primeFactors_length_le (Module.finrank ℚ K) x hn hx
   have h3 : (({N : Submodule (𝓞 K) M | N.toAddSubgroup.index = x}.ncard : ℕ) : ℝ) ≤
       ((Module.finrank ℚ K : ℕ) : ℝ) ^ (Nat.primeFactorsList x).length *
         (x : ℝ) ^ Module.finrank (𝓞 K) M := by exact_mod_cast h2

@@ -165,7 +165,7 @@ theorem cech_deg : ∀ (R : Type) [CommRing R], ∃ e : ∀ {C : Type 1} [Catego
   have hd₁ : (colH (dbl U hU F) a).d j c₁ = 0 := by
     refine (colCmp_bij U hU F (j + 1) a).1 ?_
     rw [← (colCmp U hU F a).comm, h0, map_zero]
-  obtain ⟨z, hz⟩ := GlobalTheory.T.double_complex_lead_surjective (dbl U hU F) a j
+  obtain ⟨z, hz⟩ := _root_.GlobalTheory.CompanionTheory.CechSerre.leadE_surjective (dbl U hU F) a j
     (fun p q hq => col_sub F U hU a hv p q hq.ne) ((colH (dbl U hU F) a).cls c₁ hd₁)
   have hy : (eDeg F U hU hc a hv j).symm ((CrystallineSemistableComparison.Pb.cechH F U a).cx.cls _ h0) =
       (eTot F U hU hc (a + j)).symm (clsZ (dbl U hU F) (a + j) j z) := by

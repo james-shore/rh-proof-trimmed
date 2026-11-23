@@ -131,7 +131,7 @@ theorem position_mem_of_maximal_stable : ∀ {ι : Type} [DecidableEq ι] {M₀ 
     fun g hg => hN'st _ (Or.inl ⟨g, hg, rfl⟩)
   have hst1 : ∀ j, ∀ h ∈ Op j, ∀ z ∈ N', TensorProduct.map LinearMap.id (piOp j h) z ∈ N' :=
     fun j h hh => hN'st _ (Or.inr ⟨piOp j h, ⟨j, h, hh, rfl⟩, rfl⟩)
-  have key := GlobalTheory.T.le_ker_of_local_finite_length_to_simple (Op i) Rel K φ act B hlen hmax hK hKst ?_ ?_ ?_ ?_
+  have key := _root_.GlobalTheory.TensHead.le_ker_of_simple_commuting (Op i) Rel K φ act B hlen hmax hK hKst ?_ ?_ ?_ ?_
   · have h0 := key hx
     rw [LinearMap.mem_ker, hφ, Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero] at h0
     exact h0

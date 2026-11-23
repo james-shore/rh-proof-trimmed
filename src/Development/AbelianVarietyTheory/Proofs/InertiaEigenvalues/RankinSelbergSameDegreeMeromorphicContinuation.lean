@@ -58,26 +58,7 @@ open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology GlobalThe
   GroundTheory.Global.IdeleGroup Formalism.L2.Host Formalism.UG GlobalTheory.RSNonvan
 open scoped nonZeroDivisors
 
-theorem logNorm_eq_log_ideleModule (E : Type) [Field E] [NumberField E] (d : (AdeleRing (𝓞 E) E)ˣ) :
-    GlobalTheory.Mem.Chr.CharModel.logNorm E d = Real.log (GroundTheory.Global.IdeleGroup.ideleModule E d : ℝ) :=
-  GlobalTheory.T.ideleLogAbsoluteValue_eq_log_ideleModule E d
-
-theorem natLat_iff (E : Type) [Field E] [NumberField E] (N : ℕ) (hN : 0 < N) (J : (FractionalIdeal (𝓞 E)⁰ E)ˣ)
-    (hJ : (J : FractionalIdeal (𝓞 E)⁰ E) = FractionalIdeal.spanSingleton (𝓞 E)⁰ (N : E)) (z : FiniteAdeleRing (𝓞 E) E) :
-    z ∈ GlobalTheory.RSJ.natLat E N ↔ z ∈ GroundTheory.Global.idealFiniteAdeles J :=
-  GlobalTheory.T.mem_natMultipleIntegralFiniteAdeles_iff_idealFiniteAdeles E N hN J hJ z
-
 namespace GlobalTheory.RSNonvan
-
-theorem detPow_eq {E : Type} [Field E] [NumberField E] {a : ℕ} (x : ℝ) (g : GA E a) :
-    GlobalTheory.RSJ.detPow E a x g = ((ideleModule E (GeneralLinearGroup.det g) : ℝ) ^ (x : ℝ) : ℝ) := by
-  have hpos := (ideleModule E (GeneralLinearGroup.det g)).2
-  rw [Real.rpow_def_of_pos hpos, ← logNorm_eq_log_ideleModule]
-  simp only [GlobalTheory.RSJ.detPow, chiDet, GlobalTheory.HeckeGal.Model.absPow, MonoidHom.coe_comp, Function.comp_apply]
-  change ‖Complex.exp ((x : ℂ) * (GlobalTheory.Mem.Chr.CharModel.logNorm E (GeneralLinearGroup.det g) : ℂ))‖ = _
-  rw [Complex.norm_exp]
-  congr 1
-  simp [mul_comm]
 
 theorem secInv_eq {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {a : ℕ} (ℓ : Fin a) (hℓ : (ℓ : ℕ) + 1 = a)
     (u : Fin a → Cinf E) : GlobalTheory.RSJ.secInv u = (GlobalTheory.RSTheta.rowGL ℓ u)⁻¹ := by
@@ -115,7 +96,7 @@ theorem indN_eq {E : Type} [Field E] [NumberField E] {a : ℕ} (N : ℕ) (hN : 0
       · subst h; simp [hℓ]
       · have : ¬ ((i : ℕ) + 1 = a) := fun h' => h (Fin.ext (by omega))
         simp [this, h]
-    rw [e, natLat_iff E N hN J hJ]
+    rw [e, _root_.GlobalTheory.RSJ.natLat_iff_mem_idealFiniteAdeles E N hN J hJ]
   unfold GlobalTheory.RSJ.indN
   by_cases h : ∀ i : Fin a, v i - (if (i : ℕ) + 1 = a then 1 else 0) ∈ GlobalTheory.RSJ.natLat E N
   · rw [if_pos h, Set.indicator_of_mem (key.1 h)]; rfl
@@ -129,7 +110,7 @@ theorem zint_eq_thetaZ {E : Type} [Field E] [NumberField E] [_root_.NumberField.
   unfold GlobalTheory.RSJ.Zint GlobalTheory.RSPole.thetaZ
   congr 1
   funext g
-  rw [detPow_eq]
+  rw [_root_.GlobalTheory.CellEvalDet.detPow_eq_rpow]
   congr 1
   unfold GlobalTheory.RSJ.thetaSum
   refine tsum_congr fun ξ => ?_
@@ -137,22 +118,10 @@ theorem zint_eq_thetaZ {E : Type} [Field E] [NumberField E] [_root_.NumberField.
   rw [indN_eq N hN ℓ hℓ J hJ]
   rfl
 
-open GlobalTheory.CuspRep.CuspidalL2GL in
-theorem haarFD (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ) :
-    ∃ (μ : Measure (GA E a)) (_ : μ.IsHaarMeasure) (𝓕 𝓕' : Set (GA E a)),
-      IsFundamentalDomain (ratGL E a).range 𝓕 μ ∧ IsFundamentalDomain (latticeGL E a) 𝓕' μ := by
-  haveI := CuspidalL2GL.locallyCompactSpace_GA E a
-  haveI := CuspidalL2GL.t2Space_GA E a
-  haveI := CuspidalL2GL.secondCountableTopology_GA E a
-  haveI : DiscreteTopology (ratGL E a).range := GroundTheory.Automorphic.AdelicGLn.discreteTopology_rationalGL E a
-  obtain ⟨𝓕, -, -, h𝓕⟩ := GlobalTheory.exists_isFundamentalDomain_subgroup (ratGL E a).range
-  obtain ⟨𝓕', -, -, h𝓕'⟩ := GlobalTheory.exists_isFundamentalDomain_subgroup (latticeGL E a)
-  exact ⟨Measure.haar, inferInstance, 𝓕, 𝓕', h𝓕 _, h𝓕' _⟩
-
 theorem samedeg_continuation : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ) (σ σ' : CG E a), 1 ≤ a → σ.IsUnitary → σ'.IsUnitary → ∀ T : Finset (HeightOneSpectrum (𝓞 E)), IsGood T → UnrOutside T σ → UnrOutside T σ' → ∃ F : ℂ → ℂ, (∀ x : ℝ, 0 < x → AnalyticAt ℂ F (x : ℂ)) ∧ (σ ≠ σ' → F 1 = 0) ∧ ∀ x : ℝ, 1 < x → HasProd (fun w : {w : HeightOneSpectrum (𝓞 E) // w ∉ T} => lfac σ σ' (x : ℂ) w.1) (F x / ((x : ℂ) - 1)) := by
   intro E _ _ _ a σ σ' ha hσ hσ' T hT hu hu'
-  obtain ⟨N, Φ, π, π', φ, φ', hπ, hπ', hφ, hφ', -, -, hN, hΦc, hΦs, hΦr, hZ'⟩ := GlobalTheory.T.unfoldedThetaIntegral_eq_mul_partialRankinSelbergL E a σ σ' ha hσ hσ' T hT.1 hT.2 hu hu'
-  obtain ⟨μ, hμ, 𝓕, 𝓕', h𝓕, h𝓕'⟩ := haarFD E a
+  obtain ⟨N, Φ, π, π', φ, φ', hπ, hπ', hφ, hφ', -, -, hN, hΦc, hΦs, hΦr, hZ'⟩ := _root_.GlobalTheory.ZEul.Smooth.zint_eq_mul_partialL_smooth E a σ σ' ha hσ hσ' T hT.1 hT.2 hu hu'
+  obtain ⟨μ, hμ, 𝓕, 𝓕', h𝓕, h𝓕'⟩ := _root_.GlobalTheory.RSPole.exists_haar_fundamentalDomains E a
   obtain ⟨H, hHd, hHpos, hZH⟩ := hZ' μ 𝓕 h𝓕
   obtain ⟨ω, hωu, hω⟩ := id hσ
   obtain ⟨ω', hωu', hω'⟩ := id hσ'

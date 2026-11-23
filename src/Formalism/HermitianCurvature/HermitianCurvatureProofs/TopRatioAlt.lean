@@ -103,13 +103,13 @@ theorem topRatio : TopRatio := by
   set wr : List (Wd.Letter ℝ (Fin w.length)) :=
     (D.positionted w).map fun l => (⟨l.plus, l.intersection_update_fsHerm_neg_one, l.pt.re⟩ : Wd.Letter ℝ (Fin w.length)) with hwr
   have hQ : Wd.qw (M.qC (D.parOf S v)) (D.positionted w) (y : ℂ) = ((Wd.qw q' wr y : ℝ) : ℂ) :=
-    weighted_quadratic_of_real (Fin w.length) (M.qC (D.parOf S v)) (D.positionted w) y
+    _root_.Formalism.FourierDecayAlt.P.RealWeightedForms.qwOfReal (Fin w.length) (M.qC (D.parOf S v)) (D.positionted w) y
       (by rw [PBF.qC_ofReal, Complex.ofReal_im])
       (by intro l hl; unfold D.positionted at hl; obtain ⟨j, rfl⟩ := List.mem_ofFn.1 hl; simp)
   have hLQ : Real.exp (-(1 / 2)) ≤ Wd.qw q' wr y / q' y := by
     have h4 : 4 ≤ S.Ntop := by exact_mod_cast (by linarith : (4 : ℝ) ≤ S.Ntop)
     have hlen' : wr.length ≤ S.Ntop := by simp [hwr, D.positionted]; omega
-    refine (lemma_Q_estimate (Fin w.length) q' wr S.Ntop ((S.Ntop : ℝ) ^ 2 + 1) y h4 hlen' le_rfl ?_ hqy.ne').1
+    refine (_root_.Formalism.FourierDecayAlt.P.GramProductIdentities.lemmaQ (Fin w.length) q' wr S.Ntop ((S.Ntop : ℝ) ^ 2 + 1) y h4 hlen' le_rfl ?_ hqy.ne').1
     intro l hl
     obtain ⟨l0, hl0, rfl⟩ := List.mem_map.1 hl
     unfold D.positionted at hl0
@@ -149,7 +149,7 @@ theorem topRatio : TopRatio := by
     push_cast
     rfl
   have hinter := Formalism.FourierDecayAlt.P.types_interlace (D.parOf S v) hOK ρ
-  have hx0pos : 0 < x0r := Formalism.FourierDecayAlt.P.interlacing_sign S.G.k (D.parOf S v).u (D.parOf S v).u' (M.rho (D.parOf S v) ρ) (S.l + 1) y (by omega)
+  have hx0pos : 0 < x0r := _root_.Formalism.FourierDecayAlt.P.Interlace.interlaceSign S.G.k (D.parOf S v).u (D.parOf S v).u' (M.rho (D.parOf S v) ρ) (S.l + 1) y (by omega)
     (by omega) hinter hycut 1 (by simp)
   have hD2 : (2 : ℝ) ≤ (S.Ntop : ℝ) ^ 2 - 1 := by nlinarith
   have hrf : ∀ j, 0 < rf j ∧ rf j ≤ 1 + 1 / ((S.Ntop : ℝ) ^ 2 - 1) := by
@@ -189,7 +189,7 @@ theorem topRatio : TopRatio := by
   obtain ⟨hg, hk⟩ := glob_posT hB
   have hsA := supA_nonneg S hg hk v false
 
-  have hIR := Formalism.FourierDecayAlt.P.interlacing_ratio S.G.k (D.parOf S v).u (D.parOf S v).u' (M.rho (D.parOf S v) ρ)
+  have hIR := _root_.Formalism.FourierDecayAlt.P.Interlace.interlaceRatio S.G.k (D.parOf S v).u (D.parOf S v).u' (M.rho (D.parOf S v) ρ)
     (S.l + 1) y (by omega) (by omega) hinter hycut
   have hul : 1 ≤ |y + 1 / 2 + (D.parOf S v).u (S.l + 1)| * |y + 1 / 2 + (D.parOf S v).u' (S.l + 1)| := by
     rcases hycut with ⟨h1, h2⟩ | ⟨h1, h2⟩
@@ -304,4 +304,3 @@ end
 
 end Formalism.FourierDecayAlt.P.PBL
 
-theorem Formalism.FourierDecayAlt.P.top_ratio : Formalism.FourierDecayAlt.P.PBL.TopRatio := Formalism.FourierDecayAlt.P.PBL.topRatio

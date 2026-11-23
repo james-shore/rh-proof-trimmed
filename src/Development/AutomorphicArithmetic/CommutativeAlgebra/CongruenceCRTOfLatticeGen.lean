@@ -248,7 +248,7 @@ private theorem gen_part (hLG : LatGen) (L : Link D G) (𝔞 : Ideal (𝓞 D.F))
     rw [← ew]; abel
   · intro h
     have step1 : ∀ v ∈ LaHat D, ∃ w ∈ LaHat D, mulF D a (L.actG g v - v) = N • w := fun v hv => by
-      obtain ⟨x, w', hw', rfl⟩ := GlobalTheory.T.latticeCompletion_eq_latticeVector_add_nsmul p D N hN hNp v hv
+      obtain ⟨x, w', hw', rfl⟩ := _root_.GlobalTheory.LKGeo.exists_inAf_add_nsmul_of_mem_laHat p D N hN hNp v hv
       obtain ⟨v₁, hv₁, e₁⟩ := h x
       refine ⟨v₁ + mulF D a (L.actG g w' - w'), add_mem hv₁ (mulF_mem a (sub_mem (hg _ hw') hw')), ?_⟩
       have e₂ : mulF D a (L.actG g (inAf D x) - inAf D x) = N • v₁ := by
@@ -260,9 +260,9 @@ private theorem gen_part (hLG : LatGen) (L : Link D G) (𝔞 : Ideal (𝓞 D.F))
     intro v hv
     have hu : L.actG g v - v ∈ LaHat D := sub_mem (hg v hv) hv
     obtain ⟨w₁, hw₁, e₁⟩ := step1 v hv
-    obtain ⟨y, w, hw, e₂⟩ := GlobalTheory.T.latticeCompletion_eq_latticeVector_add_nsmul p D N hN hNp _ hu
+    obtain ⟨y, w, hw, e₂⟩ := _root_.GlobalTheory.LKGeo.exists_inAf_add_nsmul_of_mem_laHat p D N hN hNp _ hu
     have hdvd : ∃ u : D.La, algebraMap (𝓞 D.F) D.O a • y = N • u := by
-      refine GlobalTheory.T.exists_latticeVector_eq_nsmul_of_adelic_nsmul p D N hN hNp (GlobalTheory.T.int_dvd_of_eq_nat_mul_integralAdeleAwayFromP p N hN hNp) _ ⟨w₁ - mulF D a w, sub_mem hw₁ (mulF_mem a hw), ?_⟩
+      refine _root_.GlobalTheory.LKGeo.LatDvd.exists_eq_nsmul_of_inAf p D N hN hNp (_root_.GlobalTheory.LKGeo.IntDvd.int_dvd_of_eq_mul_isIntAf p N hN hNp) _ ⟨w₁ - mulF D a w, sub_mem hw₁ (mulF_mem a hw), ?_⟩
       rw [e₂, map_add (f := _), mulF_inAf, map_nsmul] at e₁
       rw [smul_sub, ← e₁]; abel
     have hy : y ∈ wSub D 𝔞 1 := ((hLG p D a N 𝔞 hN hgen).1 y).1 hdvd

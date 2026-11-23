@@ -65,7 +65,7 @@ theorem isMapOf_existsUnique_and : ∀ (p : ℕ) (k : Type) [CommRing k] (d e : 
     exact (hg (ψ j) fun n => hψ n j).trans (hg (φ j) fun n => hφ j n).symm
   intro φ hφ
   have hconst : ∀ j, constantCoeff (φ j) = 0 := fun j => by
-    have h1 := (GlobalTheory.T.counit_cotangentClass_powerSeriesEvalAtNilpotent k d (G.A 0) (c.x 0) (c.nil 0) (c.aug 0) (φ j)).1
+    have h1 := (_root_.GlobalTheory.Katz.counit_dUnit_evA k d (G.A 0) (c.x 0) (c.nil 0) (c.aug 0) (φ j)).1
     change Coalgebra.counit (R := k) (c.ev 0 (φ j)) = _ at h1
     rw [← h1, hφ 0 j, CoalgHomClass.counit_comp_apply, c'.aug]
   refine ⟨hconst, fun n => ⟨fun g => ?_, fun s => ?_⟩⟩

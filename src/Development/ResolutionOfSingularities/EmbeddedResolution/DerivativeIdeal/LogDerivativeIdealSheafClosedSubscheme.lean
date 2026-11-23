@@ -162,13 +162,6 @@ private theorem logDerivIdealSheafIterate_comap_le_derivIdealSheafIterate
     (derivIdealSheafIterate k (ι ≫ p) r (A.comap ι))
     (map_logDerivIdealSheafIterate_ideal_le k p ι A r)
 
-theorem comap_logDerivIdealSheafIterate_ker_le_derivIdealSheafIterate
-    (k : Type u) [CommRing k] [IsNoetherianRing k] {X S : Scheme.{u}}
-    (p : X ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType p]
-    (ι : S ⟶ X) [IsClosedImmersion ι] [LocallyOfFiniteType (ι ≫ p)]
-    (A : X.IdealSheafData) (r : ℕ) :
-    (logDerivIdealSheafIterate k p ι.ker r A).comap ι
-      ≤ derivIdealSheafIterate k (ι ≫ p) r (A.comap ι) :=
-  logDerivIdealSheafIterate_comap_le_derivIdealSheafIterate k p ι A r
+alias comap_logDerivIdealSheafIterate_ker_le_derivIdealSheafIterate := _root_.FunctorialResolution.EmbeddedResolution.logDerivIdealSheafIterate_comap_le_derivIdealSheafIterate
 
 end FunctorialResolution.EmbeddedResolution

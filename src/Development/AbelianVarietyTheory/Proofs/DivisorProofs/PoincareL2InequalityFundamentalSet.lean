@@ -69,17 +69,11 @@ open scoped ENNReal
 
 namespace GlobalTheory.PoincareL2
 
-theorem nfac_pos' {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ} (X : Data E r) (la : Wt X.Ψ r)
-    {y : Frame X.Ψ r} (hy : y ∈ X.dom) : 0 < X.nfac la y := by
-  unfold Data.nfac
-  refine Finset.prod_pos fun τ _ => Finset.prod_pos fun i _ => Real.rpow_pos_of_pos ?_ _
-  exact norm_pos_iff.mpr (div_ne_zero (PoinPf.dmin_ne X hy τ _) (PoinPf.dmin_ne X hy τ _))
-
 theorem poincareNorm_sq_eq_weight_mul_norm_sq {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ} (X : Data E r) (la : Wt X.Ψ r)
     (P : Frame X.Ψ r → ℂ) {y : Frame X.Ψ r} (hy : y ∈ X.dom) :
     ENNReal.ofReal (X.pnorm la P y ^ 2) = ENNReal.ofReal (‖P y‖ ^ 2) * IW.Wpsi X la (fun _ => 0) y := by
   have h1 : X.pnorm la P y ^ 2 = ‖P y‖ ^ 2 * Real.exp (-phla X la y) := by
-    rw [PoinPf.exp_neg_phla X la (nfac_pos' X la hy)]
+    rw [PoinPf.exp_neg_phla X la (_root_.ReciprocityTheory.ChartRestriction.G.FD.MinimumGrowthBounds.nfac_pos X la hy)]
     change (‖P y‖ * X.nfac la y) ^ 2 = _
     ring
   have h2 : IW.Wpsi X la (fun _ => 0) y = ENNReal.ofReal (Real.exp (-(phla X la y + 0))) := by

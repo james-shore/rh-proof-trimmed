@@ -59,6 +59,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsFiniteAdeleExtendedCharacterOfCurve
 
 @[expose] public section
 
@@ -125,12 +126,6 @@ theorem pt_mem (δ : ℂ) {𝔪 : Ideal (𝓞 D.host.E)} {a d : ℕ} {z : Matrix
   rw [GlobalTheory.SkewIndex.La_skew_eq_map]
   exact ⟨z, hz, rfl⟩
 
-theorem ee_int (m : ℤ) : ee (m : ℝ) = 1 := by
-  rw [ee, ← Complex.exp_int_mul_two_pi_mul_I m]
-  congr 1
-  push_cast
-  ring
-
 theorem wd_pt_mul {δ : ℂ} (hc : Crv D ⊤ δ) {𝔪 : Ideal (𝓞 D.host.E)} (h𝔪 : 𝔪 ≠ ⊥) {a d : ℕ}
     {z y : Matrix (Fin d) (Fin a) D.host.E} (hz : z ∈ skewMat D 𝔪 a d) (hy : y ∈ skewMat D 𝔪 a d) (F : VC D a d → ℂ) :
     Wd D (tor0 D ⊤ δ) (pt D (tor0 D ⊤ δ) δ z) (Wd D (tor0 D ⊤ δ) (pt D (tor0 D ⊤ δ) δ y) F) =
@@ -140,7 +135,7 @@ theorem wd_pt_mul {δ : ℂ} (hc : Crv D ⊤ δ) {𝔪 : Ideal (𝓞 D.host.E)} 
   obtain ⟨m, hm⟩ := (GlobalTheory.T.theta_space_selfDual_pair_at_most_line D h1 ⊤ δ hc a d _ (klat_skew δ h𝔪 a d)).2.2.1 _
     (pt_mem δ (smul_mem_skewMat w hz)) _ (pt_mem δ hy)
   have h2 := (hw a d ((w : D.host.E) • z) y).1
-  rw [hm, ← Int.cast_neg, ee_int] at h2
+  rw [hm, ← Int.cast_neg, _root_.GlobalTheory.FinWeil.AdelicChar.ee_int] at h2
   rw [(hw a d z y).2.2 F]
   simp only [Matrix.smul_apply, smul_eq_mul] at h2
   rw [← h2, one_smul]
@@ -181,7 +176,7 @@ theorem wdPh_eq_one {δ : ℂ} (hc : Crv D ⊤ δ) {𝔪 : Ideal (𝓞 D.host.E)
     rw [← hn1, ← hn2, ← hn3, qH, qH, qH, qH, key]
     simp only [Complex.mul_re, Complex.sub_re, Complex.re_ofNat, Complex.im_ofNat]
     ring
-  rw [wdPh, h2, ee_int]
+  rw [wdPh, h2, _root_.GlobalTheory.FinWeil.AdelicChar.ee_int]
 
 theorem char_sum {M V : Type} [AddCommGroup M] [AddCommGroup V] (p : M →+ V) (hp : Function.Injective p)
     (Y₀ : AddSubgroup M) (A B : AddSubgroup V) (hA : A ≤ Y₀.map p) [Fintype (B ⧸ A.addSubgroupOf B)]

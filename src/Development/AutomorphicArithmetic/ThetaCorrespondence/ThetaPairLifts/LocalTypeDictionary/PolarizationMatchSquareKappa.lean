@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GoodSplitPlaceTranslationActsThroughWeil
 
 @[expose] public section
 
@@ -68,9 +69,9 @@ theorem polarization_match_square_kappa : _root_.GlobalTheory.FunPr.ThetaLocalIn
     ∀ g ∈ GfC X, ∀ ΦD ∈ algD Γ.M Bs.ψ Bs.emb, ∀ Φ₀D ∈ algD Γ.M' Bs.ψ Bs.emb, GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.PolMatch Bs Γ Xc R Rf ΦD Φ₀D → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.PolMatch Bs Γ Xc R Rf (om (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU W 1 hO.JW 1, kapX X e hO.JX g) ΦD) (om' (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU W₁ (-1) hO.JW₁ 1, kapX X e hO.JX g) Φ₀D) := by
   classical
   intro hP D ψ θ W W₁ X A A₁ B α β ν 𝓕 ν₁ 𝓕₁ ωA ωB e Bs Γ Xc om om' cA cB _ _ hO hT R Rf hM Pi rf rl p p' _ g hg ΦD _ Φ₀D _ hPM
-  rw [conjU_one_eq, conjU_one_eq]
-  have hinf := GlobalTheory.T.archimedeanSupported_smul_transposeGram_finite_sub_one D X e hO.JX g hg
-  obtain ⟨S₀, hS₀⟩ := _root_.GlobalTheory.T.spherical_vector_fixes_vacua hP _ _ _ Bs _ _ Γ Xc om om' hT
+  rw [_root_.GlobalTheory.LocWeilAct.conjU_one', _root_.GlobalTheory.LocWeilAct.conjU_one']
+  have hinf := _root_.GlobalTheory.InfKill.smul_mat_kapX_sub_one D X e hO.JX g hg
+  obtain ⟨S₀, hS₀⟩ := _root_.GlobalTheory.SphFix.spherical_fixes_pure_vacuum_vectors hP _ _ _ Bs _ _ Γ Xc om om' hT
   obtain ⟨T₀, hXT, hOn⟩ := hPM
   obtain ⟨S, l, k, hTS, hl, hprod, hkinf, hkS, hkV, hkV'⟩ := GlobalTheory.T.exists_adelicUnitary_prod_localPoints_mul_latticeStabilizer _ _ _ Bs _ _ Γ hT.geo _ hinf (T₀ ∪ S₀)
   have ext : ∀ U : Finset (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := D.host.F)), GlobalTheory.ThK.PolynomialMatching.PolMatchOn Bs Γ Xc R Rf (T₀ ∪ U) ΦD Φ₀D := by
@@ -115,7 +116,7 @@ theorem polarization_match_square_kappa : _root_.GlobalTheory.FunPr.ThetaLocalIn
       have h2 := ih fun y hy => hx y (List.mem_cons_of_mem _ hy)
       simp only [List.map_cons, List.prod_cons, mul_assoc]
       rw [split, split']
-      exact _root_.GlobalTheory.T.polynomial_matching_induction hP _ _ _ Bs _ _ Γ Xc om om' R Rf hM S x.1 h1.1 x.2 h1.2 _ _ h2
+      exact _root_.GlobalTheory.ThK.PolMatchStep.polynomial_matching_on_succ hP _ _ _ Bs _ _ Γ Xc om om' R Rf hM S x.1 h1.1 x.2 h1.2 _ _ h2
   rw [hprod]
   exact ⟨S, hXT.trans (Finset.subset_union_left.trans hTS), key l hl⟩
 end GlobalTheory.SquareAgree

@@ -109,7 +109,7 @@ theorem splitScal_mul_eq_oppositePath : ∀ {D : D7} {T : Type} {L : LevCh D T} 
       detIdl (idemAt w) (G.V (.grid (j + 1) D.R.m)) (moved S j k) := dneg
   have eqT : detIdl (idemAt w) (G.pT (Pair.chi (j + 1) D.R.m)) (moved S j k) =
       detIdl (idemAt w) (G.V (.grid (j + 1) D.R.m)) (moved S j k) := rfl
-  rw [eqS, eqT, GlobalTheory.T.determinantIdeleAtSplitPlace_moved_gridNode S t j hj k w hs, ← Circle.coe_mul]
+  rw [eqS, eqT, _root_.GlobalTheory.RowDetLocal.detIdl_moved_eq_locIdele S t j hj k w hs, ← Circle.coe_mul]
   rw [GridData.chrT, GridData.chrS]
   rw [key (G.chr (Pair.chi j D.R.m)) (G.chr (Pair.chi (j + 1) D.R.m)) L.eta _ _ hpar.symm]
   rw [Circle.coe_mul, Circle.coe_inv]

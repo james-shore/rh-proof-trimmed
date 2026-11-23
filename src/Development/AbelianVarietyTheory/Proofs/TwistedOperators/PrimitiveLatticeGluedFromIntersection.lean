@@ -75,17 +75,6 @@ theorem star_mem {E : Type} [Field E] [NumberField E] [StarRing E] {a : E}
   obtain ⟨b, rfl⟩ := h
   exact ⟨RingOfIntegers.mapRingEquiv starRingAut b, rfl⟩
 
-theorem exists_smul_mem {E : Type} [Field E] [NumberField E] {V : Type} [AddCommGroup V] [Module E V]
-    [Module (𝓞 E) V] [IsScalarTower (𝓞 E) E V] (L : Submodule (𝓞 E) V) {y : V}
-    (hy : y ∈ Submodule.span E (L : Set V)) : ∃ c : 𝓞 E, c ≠ 0 ∧ c • y ∈ L := by
-  first
-  | exact @_root_.GlobalTheory.TargetStatementSixOneSixtyEight.target
-  | exact _root_.GlobalTheory.TargetStatementSixOneSixtyEight.target
-  | (apply _root_.GlobalTheory.TargetStatementSixOneSixtyEight.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TargetStatementSixOneSixtyEight.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TargetStatementSixOneSixtyEight.target <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TargetStatementSixOneSixtyEight.target ..)
-
 theorem isLattice_capX_and_exists_glue (D : D7) (u : D.what₂.Word) (Y X : HSp D) (ι : X.V →ₗ[D.host.E] Y.V) (z : Y.V)
     (hl : IsLine Y X ι z u) (L : Submodule (𝓞 D.host.E) Y.V) (hL : IsSDIn Y (flatSp Y X ι z) L) (hp : IsPrim Y z L) :
     Submodule.IsFullLattice D.host.E (capX Y X ι L) ∧ ∃ x₀ : X.V, L = glueLat Y X ι z u (capX Y X ι L) x₀ := by
@@ -128,7 +117,7 @@ theorem isLattice_capX_and_exists_glue (D : D7) (u : D.what₂.Word) (Y X : HSp 
     have hx : ι x ∈ Submodule.span D.host.E (L : Set Y.V) := by
       rw [hsp]
       exact Submodule.mem_sup_left (LinearMap.mem_range_self ι x)
-    obtain ⟨c, hc, hcx⟩ := exists_smul_mem L hx
+    obtain ⟨c, hc, hcx⟩ := _root_.GlobalTheory.TargetStatementSixOneSixtyEight.main L hx
     have hcy : c • y ∈ capX Y X ι L := by
       change c • y ∈ Formalism.L2.Herm.crdLat X (L.comap (ι.restrictScalars (𝓞 D.host.E)))
       refine ⟨c • x, ?_, ?_⟩

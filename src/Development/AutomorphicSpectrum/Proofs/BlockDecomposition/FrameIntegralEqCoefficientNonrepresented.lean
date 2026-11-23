@@ -182,7 +182,7 @@ theorem W_eq_zero_of_obstruction (r : ℕ) (V : HSp D) (ψ : AddChar (AF D.host.
     intro y hy
     have h1 : PosOn ε (compAt θ ρ (R (u (inner V y y)))) S := hy
     rw [hRu _ (hin.2 y).1, (hin.2 y).2] at h1
-    obtain ⟨T, hT1, hT2⟩ := GlobalTheory.T.positivity_pulls_back_to_subspace _ _ _ _ ε S h1
+    obtain ⟨T, hT1, hT2⟩ := _root_.GlobalTheory.CompanionTheory.WeilSiegel.NoFrame.exists_posOn_of_gram _ _ _ _ ε S h1
     have := hT T hT1
     omega
   let z₀ : Fin n → AF D.host.F := u (rat β.1)

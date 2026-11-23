@@ -149,7 +149,7 @@ open PositivityTheory.LocalTateOrthogonality.Bk PositivityTheory.LocalTateOrthog
 
 theorem eulerQuot : Formalism.GaloisCohomology.LocalTateDualityK → Formalism.GaloisCohomology.LocalEulerCharK → ∀ (l : ℕ) [Fact l.Prime] (Lp : LocPrime l) (K : FinExt l), ∀ (LL : Type) [Field LL] [Algebra ℚ_[l] LL] [TopologicalSpace LL] (O : Type) [CommRing O] [Algebra O LL], GoodO (Qp := ℚ_[l]) LL O → ∀ (A A' : GRep ↥(GK K) ℚ_[l] LL O) (LA : Lattice (O := O) A.ρ) (LA' : Lattice (O := O) A'.ρ) (P : A.V →ₗ[LL] A'.V →ₗ[LL] LL), IsDualLat1 (Lp.PD K) LA LA' P → ∀ ϖ : O, Irreducible ϖ → ∀ (r : ℕ) (hI : StableSub LA (Ideal.span {ϖ ^ r} • ⊤ : Submodule O ↥LA.T)), ∀ hI' : StableSub LA' (Ideal.span {ϖ ^ r} • ⊤ : Submodule O ↥LA'.T), Nat.card (QuotientCohomology LA _ hI) = Nat.card {x : ↥LA.T ⧸ (Ideal.span {ϖ ^ r} • ⊤ : Submodule O ↥LA.T) // ∀ g, actQ LA _ hI g x = x} * Nat.card {x : ↥LA'.T ⧸ (Ideal.span {ϖ ^ r} • ⊤ : Submodule O ↥LA'.T) // ∀ g, actQ LA' _ hI' g x = x} * Nat.card (O ⧸ Ideal.span {ϖ}) ^ (r * finrank LL A.V * finrank ℚ_[l] ↥K.1) := by
   intro hT hE l _ Lp K LL _ _ _ O _ _ hO A A' LA LA' P hd ϖ hϖ r hI hI'
-  obtain ⟨-, hqf, -, ⟨-, hl, -⟩, -, -⟩ := GlobalTheory.T.goodO_adic_complete_compact_basis l LL O hO ϖ hϖ
+  obtain ⟨-, hqf, -, ⟨-, hl, -⟩, -, -⟩ := _root_.GlobalTheory.CompanionTheory.GoodCoeff.goodO_structure l LL O hO ϖ hϖ
   obtain ⟨ι, hι⟩ := GlobalTheory.TateTop.exists_ringHom hO
   obtain ⟨⟨hdom, hdvr, hfr⟩, -⟩ := id hO
   have := hdom
@@ -205,7 +205,7 @@ theorem eulerLe (hT : Formalism.GaloisCohomology.LocalTateDualityK) (hE : Formal
   obtain ⟨-, hr⟩ := hrank LL O hG A LA
   obtain ⟨⟨hdom, hdvr, -⟩, -⟩ := id hG
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible O
-  obtain ⟨-, hres, -⟩ := GlobalTheory.T.goodO_adic_complete_compact_basis l LL O hG ϖ hϖ
+  obtain ⟨-, hres, -⟩ := _root_.GlobalTheory.CompanionTheory.GoodCoeff.goodO_structure l LL O hG ϖ hϖ
   have hq : 2 ≤ Nat.card (O ⧸ Ideal.span {ϖ}) := by
     have : Nontrivial (O ⧸ Ideal.span {ϖ}) :=
       Ideal.Quotient.nontrivial_iff.mpr (by
@@ -345,7 +345,7 @@ theorem blochKatoLocal : GlobalTheory.Published.BlochKatoLocal := by
   intro V _ _ _ _ _ _ _ ρ hc hdR
   letI : Module ℤ_[l] V := Module.compHom V (algebraMap ℤ_[l] ℚ_[l])
   haveI : IsScalarTower ℤ_[l] ℚ_[l] V := IsScalarTower.of_algebraMap_smul fun _ _ => rfl
-  exact GlobalTheory.T.finrank_H1f_de_rham l Lp AI T K ℚ_[l] ℤ_[l] GlobalTheory.Published.BlochKato.goodO_padicInt
+  exact _root_.GlobalTheory.SeqDim.h1f_finrank l Lp AI T K ℚ_[l] ℤ_[l] GlobalTheory.Published.BlochKato.goodO_padicInt
     { V := V, ρ := ρ, cont := hc } hdR
 
 end GlobalTheory.CompanionTheory.Hypotheses₂.BK

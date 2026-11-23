@@ -46,6 +46,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.DivisorInequality
 
-theorem boundsMu : BoundsMu := slope_bounds
-
 end Formalism.DivisorInequality

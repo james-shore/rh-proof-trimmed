@@ -53,12 +53,7 @@ open Classical
 
 namespace GlobalTheory.FlagFibre
 
-theorem sp_comp {A B C' : Type} [CommRing A] [CommRing B] [CommRing C'] (a : B →+* C') (b : A →+* B) :
-    spMap (a.comp b) = spMap a ≫ spMap b := by
-  simp only [spMap, ← Spec.map_comp]; rfl
-
-theorem sp_id (A : Type) [CommRing A] : spMap (RingHom.id A) = 𝟙 _ := by
-  simp only [spMap]; exact Spec.map_id _
+alias sp_comp := _root_.GlobalTheory.ZM.NearBuild.spMap_comp
 
 theorem carries_every : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Z : Model Xo c β) (F : Type) [Field F] (e : F ≃+* c.F) (σ : c.F →+* ℂ) (N : ℕ) (U : Formalism.L2.PjFree.Unf Xo c σ N) (Φ : FlagTor Z e U), ∀ (i : U.Comp) (K : Type) [Field K] [IsAlgClosed K] (χ : c.F →+* K) (x : Sp K ⟶ gen Z), x ≫ genStr Z = spMap χ → ∀ (g g' : EigFrame Z χ (x ≫ genι Z)) (p : Sp K ⟶ (Φ.C i).Y.X), p ≫ (Φ.C i).π = x → (Φ.C i).Carries p g → ∃ p' : Sp K ⟶ (Φ.C i).Y.X, p' ≫ (Φ.C i).π = x ∧ (Φ.C i).Carries p' g' := by
   intro E _ _ _ H Dw l Xo c O _ β Z F _ e σ N U Φ i K _ _ χ x hx g g' p hp hc
@@ -85,7 +80,7 @@ theorem carries_every : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
       rw [← Category.assoc q, hq1, Category.assoc]
     refine ⟨spMap r ≫ q, ?_, GlobalTheory.T.carriedFrames_specialise_flagComponent_localRing E H Dw l Xo c O β Z F e (Φ.C j) V L (algebraMap V L)
       (IsFractionRing.injective V L) K r h3 q (ιV.comp χ) _ hxV gV (ι.comp χ) _ gL tL hTL hc' χ _ b tk hTk⟩
-    rw [Category.assoc, hq1, ← Category.assoc, ← sp_comp, h2, sp_id, Category.id_comp]
+    rw [Category.assoc, hq1, ← Category.assoc, ← sp_comp, h2, _root_.GlobalTheory.LevelFibre.spMap_id', Category.id_comp]
   obtain ⟨p₀, hp₀, hc₀⟩ := spec 0 g fun V ιV r sV h1 h2 h3 h4 h5 => (hgL V _ ιV r sV h1 h2 h3 h4).1 h5
   obtain ⟨p₁, hp₁, hc₁⟩ := spec 1 g' fun V ιV r sV h1 h2 h3 h4 h5 => (hgL V _ ιV r sV h1 h2 h3 h4).2 h5
   obtain ⟨_, -, hu⟩ := Φ.lifts K χ x hx g

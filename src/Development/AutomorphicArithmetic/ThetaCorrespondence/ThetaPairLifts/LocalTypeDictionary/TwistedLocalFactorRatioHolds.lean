@@ -56,7 +56,7 @@ namespace GlobalTheory.RowClaim
 theorem twisted_local_factor_ratio_holds : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.LocalMatching → ConstK →
     GlobalTheory.SqTop.LNe → GlobalTheory.SqTop.TriEx → GlobalTheory.SqTop.Tower → RatioK := by
   intro hP hTA hLM hC hLN hTX hTW
-  have hBF := _root_.GlobalTheory.T.bottom_triple_integral_eq_const_mul_local hP hTA hLM hLN
+  have hBF := _root_.GlobalTheory.ConstRatio.bottom_triple_integral_factorization hP hTA hLM hLN
   obtain ⟨c1, h1⟩ := hC
   obtain ⟨c5, h5⟩ := GlobalTheory.SqTop.Model.gBig_and (GlobalTheory.SqTop.Model.gBig_and hLN hTX) (GlobalTheory.SqTop.Model.gBig_and hTW hBF)
   refine ⟨max c1 c5, fun ε CF hCF => ?_⟩

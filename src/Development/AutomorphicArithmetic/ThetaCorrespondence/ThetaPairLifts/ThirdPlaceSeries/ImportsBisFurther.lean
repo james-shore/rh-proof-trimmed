@@ -60,8 +60,8 @@ theorem main_alt_alt : ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (D : D7
         NG.rt D.host.E D.R.nV x f =
           blockChar (S i s.w hw).mu (Matrix.GeneralLinearGroup.map c.toRingHom (s.loc D.R.nV x)) • f := by
     obtain ⟨v, e | e⟩ := GlobalTheory.DimPartsCompare.cover k s.w hk
-    · exact _root_.GlobalTheory.T.split_place_completion_iso_tame_alt hL D P S hT i k v s hw e htame c hc hcs Q
-    · exact _root_.GlobalTheory.T.conjugate_place_completion_iso_tame_alt hL D P S hT i k v s hw e htame c hc hcs Q
+    · exact _root_.GlobalTheory.typeVec_blockChar_fixedPlace_alt hL D P S hT i k v s hw e htame c hc hcs Q
+    · exact _root_.GlobalTheory.TypeBlockConj.main_alt_alt hL D P S hT i k v s hw e htame c hc hcs Q
   obtain ⟨f, hfS, hf0, hfe⟩ := hf
   obtain ⟨y, hy0, hy⟩ := GlobalTheory.T.local_irreducible_fixed_vectors D.host.E D.R.nV (P.M.loc i).wt (P.H.av.S i Q) (P.H.av.irr i Q) s _
     (hT.rep i s hw Q) c hc hcs (blockGrp _ D.R.r D.R.t) (blockChar (S i s.w hw).mu) (fun h hh => hh.1)

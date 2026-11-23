@@ -67,26 +67,6 @@ variable {S : Scheme.{0}}
 theorem dualMap_apply {R R' : Type} [CommRing R] [CommRing R'] (c : R →+* R') (a : DualNumber R) :
     dualMap c a = TrivSqZeroExt.inl (c a.fst) + TrivSqZeroExt.inr (c a.snd) := rfl
 
-theorem dualMap_comp_algebraMap {R R' : Type} [CommRing R] [CommRing R'] (c : R →+* R') :
-    (dualMap c).comp (algebraMap R (DualNumber R)) = (algebraMap R' (DualNumber R')).comp c := by
-  refine RingHom.ext fun r => ?_
-  simp only [RingHom.comp_apply, dualMap_apply, TrivSqZeroExt.algebraMap_eq_inl, TrivSqZeroExt.fst_inl,
-    TrivSqZeroExt.snd_inl, map_zero, TrivSqZeroExt.inr_zero, add_zero]
-
-theorem fst_comp_dualMap {R R' : Type} [CommRing R] [CommRing R'] (c : R →+* R') :
-    (TrivSqZeroExt.fstHom R' R' R').toRingHom.comp (dualMap c) =
-      c.comp (TrivSqZeroExt.fstHom R R R).toRingHom := by
-  refine RingHom.ext fun a => ?_
-  change (dualMap c a).fst = c a.fst
-  simp [dualMap_apply]
-
-theorem dualMap_comp_epsMul {R R' : Type} [CommRing R] [CommRing R'] (c : R →+* R') (r : R) :
-    (dualMap c).comp (epsMul r) = (epsMul (c r)).comp (dualMap c) := by
-  refine RingHom.ext fun a => ?_
-  change dualMap c (TrivSqZeroExt.map (r • (LinearMap.id : R →ₗ[R] R)) a) =
-    TrivSqZeroExt.map (c r • (LinearMap.id : R' →ₗ[R'] R')) (dualMap c a)
-  ext <;> simp [dualMap_apply, mul_comm]
-
 def epsPull {R R' : Type} [CommRing R] [CommRing R'] (c : R →+* R') (x : Sp R ⟶ S) :
     epsAt (spMap c ≫ x) ⟶ epsAt x :=
   Over.homMk (spMap (dualMap c)) (by
@@ -95,7 +75,7 @@ def epsPull {R R' : Type} [CommRing R] [CommRing R'] (c : R →+* R') (x : Sp R 
     congr 1
     rw [spMap, spMap, ← Spec.map_comp, ← Spec.map_comp]
     congr 1
-    exact CommRingCat.hom_ext (dualMap_comp_algebraMap c))
+    exact CommRingCat.hom_ext (_root_.GlobalTheory.CompanionTheory.Ar.SqAdd.dualMap_comp_algebraMap c))
 
 theorem one_left_pull (G : Over S) [GrpObj G] {R R' : Type} [CommRing R] [CommRing R'] (c : R →+* R')
     (x : Sp R ⟶ S) :
@@ -115,7 +95,7 @@ theorem isTanAt_pull (G : Over S) [GrpObj G] {R R' : Type} [CommRing R] [CommRin
   congr 1
   exact CommRingCat.hom_ext (by
     refine RingHom.ext fun a => ?_
-    exact (RingHom.congr_fun (fst_comp_dualMap c) a))
+    exact (RingHom.congr_fun (_root_.GlobalTheory.CompanionTheory.Ar.SqAdd.fst_comp_dualMap c) a))
 
 theorem epsPull_comp_left (G : Over S) {R R' : Type} [CommRing R] [CommRing R'] (c : R →+* R')
     (x : Sp R ⟶ S) (v : epsAt x ⟶ G) : (epsPull c x ≫ v).left = spMap (dualMap c) ≫ v.left := by
@@ -139,7 +119,7 @@ theorem exists_lift (G : Over S) [GrpObj G] {R R' : Type} [CommRing R] [CommRing
     congr 1
     rw [spMap, ← Spec.map_comp, ← Spec.map_comp]
     congr 1
-    exact CommRingCat.hom_ext (dualMap_comp_epsMul (algebraMap R R') r)
+    exact CommRingCat.hom_ext (_root_.GlobalTheory.CompanionTheory.Ar.LieCarrier.dualMap_epsMul (algebraMap R R') r)
   have hl : ∀ e, ((M'.pt (f e)).left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap R R')) ≫ (M.pt e).left) := fun e => by
     rw [hf, Category.comp_id, epsPull_comp_left]
   exact ⟨⟨⟨f, hadd⟩, hsmul⟩, hl⟩

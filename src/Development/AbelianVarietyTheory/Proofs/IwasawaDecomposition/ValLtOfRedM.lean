@@ -104,7 +104,7 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 theorem mem_intV_iff (G : GLoc F E σ gp) (j : Fin 2) (v : HeightOneSpectrum (𝓞 F)) (h : (gp j : 𝓞 F) ∈ v.asIdeal)
     (x : E ⊗[F] v.adicCompletion F) : x ∈ intV E v ↔
       (G.sp j v h x).1 ∈ v.adicCompletionIntegers F ∧ (G.sp j v h x).2 ∈ v.adicCompletionIntegers F :=
-  split_integral_local F E v (G.sp j v h) (G.sp_alg j v h) x
+  _root_.PI.SplitIntLoc.Proof.main F E v (G.sp j v h) (G.sp_alg j v h) x
 
 theorem mat_one (G : GLoc F E σ gp) (j : Fin 2) (v : HeightOneSpectrum (𝓞 F)) (h : (gp j : 𝓞 F) ∈ v.asIdeal)
     (x : GL (Fin n) (E ⊗[F] v.adicCompletion F)) : G.mat j v h 1 x = x.1.map (G.phi j v h) := by

@@ -136,7 +136,7 @@ theorem FlatHerm.inter_eq_neg_integral : ∀ (K : Type) [Fintype K] (ι : K → 
     ⟨df', dg', hf', hg', hfW, hgW, fun k => by rw [hdeg k, hCa k, hBa k]⟩
     (fun W' _ => by rw [c1]) (fun W' _ hm => c2 W' hm) (fun z hz => by
       have hzP : z ∈ mcPts (mCoordIdeal y) := ⟨hz.1, fun f hf => hz.2 f (hPW hf)⟩
-      obtain ⟨σ, hσ, -⟩ := GlobalTheory.T.complex_point_existsUnique_embedding K ι Ω F y φ hY z hzP
+      obtain ⟨σ, hσ, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Flat.existsUnique_ptOver K ι Ω F y φ hY z hzP
       have hz1 : u z = Real.log (S.κ σ) := (hu.near σ z hσ).self_of_nhds
       have hn := hnorm σ z hσ
       have hCz : C.h z = (S.κ σ * A.h z) ^ S.M := by

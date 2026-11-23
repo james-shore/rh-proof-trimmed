@@ -47,11 +47,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
-private lemma sec_map_res {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}}
-    (g : V ⟶ U) (x : Sec F U) : Sec.res g (Sec.map φ x) = Sec.map φ (Sec.res g x) := by
-  change (φ.hom.app (op U) ≫ G.obj.map g.op).hom x = (F.obj.map g.op ≫ φ.hom.app (op V)).hom x
-  rw [φ.hom.naturality]
-
 private lemma sec_map_comp {R : Type} [CommRing R] {F G H : Shv R} (a : F ⟶ G) (b : G ⟶ H)
     {U : Scheme.{0}} (x : Sec F U) : Sec.map (a ≫ b) x = Sec.map b (Sec.map a x) := rfl
 
@@ -61,7 +56,7 @@ private lemma sec_map_zero {R : Type} [CommRing R] {F G : Shv R} {U : Scheme.{0}
 private lemma res_univ_eq_zero {R : Type} [CommRing R] {A W : Scheme.{0}} (i : A ⟶ W) {Z : Shv R}
     (h : (free R).obj (yoneda.obj W) ⟶ Z) (h0 : (free R).map (yoneda.map i) ≫ h = 0) :
     Sec.res i (Sec.map h (freeGen R (yoneda.obj W) W (𝟙 W))) = 0 := by
-  rw [sec_map_res, CupSpec.freeGen_res]
+  rw [_root_.GlobalTheory.EtC.CupSpec.map_res, CupSpec.freeGen_res]
   have e : (ConcreteCategory.hom ((yoneda.obj W).map i.op)) (𝟙 W) =
       (ConcreteCategory.hom ((yoneda.map i).app (op A))) (𝟙 A) := by simp
   rw [e, ← CupSpec.freeGen_map, ← sec_map_comp, h0, sec_map_zero]
@@ -119,13 +114,13 @@ theorem UpperTheory.etale_purity_free_cover :
   intro i
   have z : Sec.map g (freeGen R (yoneda.obj (U ⊔ V : X.Opens).toScheme) i.1.toScheme (X.homOfLE (hle i))) = 0 := by
     have := res_univ_eq_zero (X.homOfLE (hle i)) g (gz i)
-    rwa [sec_map_res, CupSpec.freeGen_res, show (ConcreteCategory.hom ((yoneda.obj (U ⊔ V : X.Opens).toScheme).map
+    rwa [_root_.GlobalTheory.EtC.CupSpec.map_res, CupSpec.freeGen_res, show (ConcreteCategory.hom ((yoneda.obj (U ⊔ V : X.Opens).toScheme).map
       (X.homOfLE (hle i)).op)) (𝟙 _) = X.homOfLE (hle i) by simp] at this
-  rw [sec_map_res, CupSpec.freeGen_res]
+  rw [_root_.GlobalTheory.EtC.CupSpec.map_res, CupSpec.freeGen_res]
   have e : (ConcreteCategory.hom ((yoneda.obj (U ⊔ V : X.Opens).toScheme).map
       (pullback.fst x (X.homOfLE (hle i))).op)) x =
       (ConcreteCategory.hom ((yoneda.obj (U ⊔ V : X.Opens).toScheme).map
       (pullback.snd x (X.homOfLE (hle i))).op)) (X.homOfLE (hle i)) := by
     simp [pullback.condition]
-  rw [e, ← CupSpec.freeGen_res, ← sec_map_res, z]
+  rw [e, ← CupSpec.freeGen_res, ← _root_.GlobalTheory.EtC.CupSpec.map_res, z]
   exact map_zero _

@@ -259,12 +259,7 @@ section Mat
 
 variable {R S : Type} [CommRing R] [CommRing S] {N : ℕ}
 
-theorem minorIJ_map (f : R →+* S) (A : Matrix (Fin N) (Fin N) R) (I J : Finset (Fin N)) :
-    minorIJ (A.map f) I J = f (minorIJ A I J) := by
-  unfold minorIJ
-  split_ifs with e
-  · rw [RingHom.map_det]; rfl
-  · rw [map_zero]
+alias minorIJ_map := _root_.GlobalTheory.CompanionTheory.Ar.PB.MinorAny.minorIJ_map
 
 theorem minorIJ_mem {L : Type} [Field L] (P : Subring L) {A : Matrix (Fin N) (Fin N) L} (hA : ∀ a b, A a b ∈ P)
     (I J : Finset (Fin N)) : minorIJ A I J ∈ P := by
@@ -278,9 +273,7 @@ theorem det_mem {L : Type} [Field L] (P : Subring L) {A : Matrix (Fin N) (Fin N)
   rw [e, ← RingHom.mapMatrix_apply, ← RingHom.map_det]
   exact Subtype.coe_prop _
 
-theorem minorIJ_one (I : Finset (Fin N)) : minorIJ (1 : Matrix (Fin N) (Fin N) R) I I = 1 := by
-  unfold minorIJ
-  rw [dite_eq_left rfl, Matrix.submatrix_one _ (I.orderEmbOfFin rfl).injective, Matrix.det_one]
+alias minorIJ_one := _root_.GlobalTheory.CompanionTheory.Ar.PB.UnitComb.minorIJ_one_diag
 
 theorem detFac_one (j : ℕ) (i : Fin N) : detFac j i (1 : Matrix (Fin N) (Fin N) R) = 1 := by
   simp only [detFac, minorIJ_one]
@@ -543,7 +536,7 @@ theorem flag_fwd {F : FrameData ι Ψ N M.Ω M.blk} (hF : M.IsFrame F) {z : (Σ 
   let am := algebraMap M.Ω Φ
   let O := regRing y z
   let v : O →+* ℂ := regVal hz
-  obtain ⟨V, hOV, hpl⟩ := GlobalTheory.T.valuation_ring_extension_specialization Φ O v (regVal_local hz)
+  obtain ⟨V, hOV, hpl⟩ := _root_.GlobalTheory.CompanionTheory.Ar.ComplexPlace.exists_valuationSubring_place Φ O v (regVal_local hz)
   have hO : ∀ {s}, RegAt M.x (mCoordIdeal (basePart M.blk z)) s → am s ∈ O := fun hs => ⟨_, val_lift M hz hs⟩
   let Ag : Ψ → Matrix (Fin N) (Fin N) Φ := fun τ => (F.T τ)⁻¹.map am * M.g τ
   have hinvD : ∀ τ, ((F.T τ)⁻¹.map am).det ≠ 0 := fun τ => by

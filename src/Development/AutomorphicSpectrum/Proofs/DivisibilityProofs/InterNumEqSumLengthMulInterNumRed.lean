@@ -215,7 +215,7 @@ theorem interNum_eq_sum_length_mul_interNumRed : ∀ (κ : Type) [Field κ] (X :
         Z.isClosed.closure_subset_iff.2 (Set.singleton_subset_iff.2 (hsupp hw))
       have h1 := dim_add_one_le isClosed_closure isIrreducible_singleton.closure hZ
         (ssubset_of_subset_of_ne hwZ hne)
-      exact lt_of_add_one_le_natCast (h1.trans hdZ)
+      exact _root_.GlobalTheory.VB.lt_of_add_one_le_natCast (h1.trans hdZ)
     rcases lt_or_eq_of_le hdZ with hZlt | hZeq
     · rw [interNum_eq_zero_of_isProjOver hf _ hp (by rw [suppDim, hss]; exact hZlt) hP]
       refine (Finset.sum_eq_zero fun w _ ↦ ?_).symm

@@ -79,16 +79,13 @@ theorem cc_diff (g : GL3Theta.G1 p) {x y : MvPowerSeries (Fin 3) ℂ_[p]}
     MvPowerSeries.constantCoeff (g.lg x - g.lg y) = 0 := by
   rw [map_sub, cc_lg g hx, cc_lg g hy, sub_zero]
 
-theorem cc_Cl (g : GL3Theta.G1 p) (c : ℂ_[p]) : PowerSeries.constantCoeff (PowerSeries.C c * g.l) = 0 := by
-  rw [map_mul, GlobalTheory.SerTransport.const_l, mul_zero]
-
 theorem subst_Cl (g : GL3Theta.G1 p) (c : ℂ_[p]) {w : MvPowerSeries (Fin 3) ℂ_[p]}
     (hw : MvPowerSeries.constantCoeff w = 0) (h : PowerSeries ℂ_[p]) :
     (PowerSeries.subst w (PowerSeries.subst (PowerSeries.C c * g.l) h : PowerSeries ℂ_[p]) :
         MvPowerSeries (Fin 3) ℂ_[p]) =
       PowerSeries.subst (MvPowerSeries.C c * g.lg w) h := by
   have hw' : PowerSeries.HasSubst w := PowerSeries.HasSubst.of_constantCoeff_zero hw
-  rw [PowerSeries.subst_comp_subst_apply (PowerSeries.HasSubst.of_constantCoeff_zero' (cc_Cl g c)) hw',
+  rw [PowerSeries.subst_comp_subst_apply (PowerSeries.HasSubst.of_constantCoeff_zero' (_root_.GlobalTheory.SerTransport.const_Cl g c)) hw',
     PowerSeries.subst_mul hw', PowerSeries.subst_C]
   rfl
 

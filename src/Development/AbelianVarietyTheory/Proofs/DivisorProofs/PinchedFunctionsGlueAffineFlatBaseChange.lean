@@ -53,6 +53,7 @@ import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsAdditive
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SymplecticGenerators.StTransl
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsFrobGBaseChange
 
 @[expose] public section
 
@@ -73,10 +74,6 @@ theorem isPushout_appLE_of_isPullback {X Y S T : Scheme.{0}} {f : T ⟶ S} {g : 
     IsPushout (iX.appLE US UX hUSX) (f.appLE US UT hUST) (g.appLE UX UY h₁) (iY.appLE UT UY h₂) :=
   (isIso_pushoutSection_iff H hUST hUSX hUY).mp
     (isIso_pushoutSection_of_isAffineOpen H hUST hUSX hUY hUS hUT hUX)
-
-theorem appLE_congr_of_eq {A B : Scheme.{0}} {f g : A ⟶ B} (h : f = g) (U : B.Opens) (V : A.Opens)
-    (e₁ : V ≤ f ⁻¹ᵁ U) (e₂ : V ≤ g ⁻¹ᵁ U) : f.appLE U V e₁ = g.appLE U V e₂ := by
-  subst h; rfl
 
 end GlobalTheory.PinchLift.FlatBC
 
@@ -152,13 +149,13 @@ theorem glues_affine_of_flat_baseChange : ∀ (S : Scheme.{0}) (E X X' Z Z' : Ov
     ((snd E X).left.flat_appLE hV hW hWV) P1 P2
     (by rw [Scheme.Hom.appLE_comp_appLE, Scheme.Hom.appLE_comp_appLE]; exact P3)
     (by rw [Scheme.Hom.appLE_comp_appLE, Scheme.Hom.appLE_comp_appLE]
-        exact appLE_congr_of_eq (nat i') _ _ _ _)
+        exact _root_.GlobalTheory.SS.FrobField.appLE_congr_hom (nat i') _ _ _ _)
     (by rw [Scheme.Hom.appLE_comp_appLE, Scheme.Hom.appLE_comp_appLE]
-        exact appLE_congr_of_eq (nat p') _ _ _ _)
+        exact _root_.GlobalTheory.SS.FrobField.appLE_congr_hom (nat p') _ _ _ _)
     (by rw [Scheme.Hom.appLE_comp_appLE, Scheme.Hom.appLE_comp_appLE]
-        exact appLE_congr_of_eq hcE _ _ _ _)
+        exact _root_.GlobalTheory.SS.FrobField.appLE_congr_hom hcE _ _ _ _)
     (by rw [Scheme.Hom.appLE_comp_appLE, Scheme.Hom.appLE_comp_appLE]
-        exact appLE_congr_of_eq hcl _ _ _ _)
+        exact _root_.GlobalTheory.SS.FrobField.appLE_congr_hom hcl _ _ _ _)
     (fun b c h => by
       have := hglue V b c h
       rwa [Scheme.Hom.app_eq_appLE, Scheme.Hom.app_eq_appLE] at this) a b hab

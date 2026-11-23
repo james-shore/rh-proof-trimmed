@@ -242,7 +242,7 @@ theorem BB_eq_sum {K : Type} [CommRing K] [TopologicalSpace K] [IsTopologicalRin
     have := (hL.selfDual 1).2 R.one_mem r hr
     simpa using this
   rw [Formalism.DoubleCosetMeasures.Final.bbNorm K R hL.isOpen w.1 w.2 ψ hψ μ₁ μ₂ h1 h2 C e lam
-    (Formalism.DoubleCosetMeasures.Final.suppCompact K R hL.isOpen hL.isCompact w.1 w.2 ψ C e lam),
+    (_root_.Formalism.DoubleCosetMeasures.P.suppCompact K R hL.isOpen hL.isCompact w.1 w.2 ψ C e lam),
     finsum_eq_sum_of_support_subset (s := h.toFinset)]
   · refine Finset.sum_congr rfl fun q hq => ?_
     have h1 : IsInt R (orbZ w (rep R q)) := by simpa using hq

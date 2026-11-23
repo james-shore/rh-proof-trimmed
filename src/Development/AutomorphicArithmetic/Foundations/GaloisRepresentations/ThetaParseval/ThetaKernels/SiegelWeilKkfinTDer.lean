@@ -234,7 +234,7 @@ theorem sp_smul_left_k (c : AF F) (x y : Matrix (Fin d.m) (Fin d.n ⊕ Fin d.n) 
   rw [_root_.PositivityTheory.SiegelWeilFormula.KK.sp_anti_k, _root_.PositivityTheory.SiegelWeilFormula.KK.sp_smul_right_k, _root_.PositivityTheory.SiegelWeilFormula.KK.sp_anti_k y x]
   ring
 theorem mZ_add_k (Z Z' X : Mx F E d.m d.n) : _root_.PositivityTheory.SiegelWeilFormula.KK.mZ_k d (Z + Z') X = _root_.PositivityTheory.SiegelWeilFormula.KK.mZ_k d Z X + _root_.PositivityTheory.SiegelWeilFormula.KK.mZ_k d Z' X := by
-  simp only [_root_.PositivityTheory.SiegelWeilFormula.KK.mZ_k, Matrix.add_mul, _root_.PositivityTheory.SiegelWeilFormula.KK.sp_add_right_k, evI_add', map_add (f := _)]
+  simp only [_root_.PositivityTheory.SiegelWeilFormula.KK.mZ_k, Matrix.add_mul, _root_.PositivityTheory.SiegelWeilFormula.KK.sp_add_right_k, _root_.GlobalTheory.ThK.Dbl.Dense.evI_add, map_add (f := _)]
 theorem td_T_add_k (Φ Ψ : d.Fn) (X : Mx F E d.m d.n) : d.T (Φ + Ψ) X = d.T Φ X + d.T Ψ X := by
   simp only [_root_.PositivityTheory.SiegelWeilFormula.SD_k.T, _root_.PositivityTheory.SiegelWeilFormula.KK.rho_add_fn_k, map_add (f := _)]
 theorem T_smul_k (c : ℂ) (Φ : d.Fn) (X : Mx F E d.m d.n) : d.T (c • Φ) X = c * d.T Φ X := by

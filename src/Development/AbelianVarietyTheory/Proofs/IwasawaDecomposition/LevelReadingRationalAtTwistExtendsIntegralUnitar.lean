@@ -138,7 +138,7 @@ theorem rd_all : ∀ {F E K : Type} [Field F] [NumberField F] [Field E] [NumberF
   have h1U : (1 : UPts hc.sig (1 : Matrix (Fin n) (Fin n) E) (FiniteAdeleRing (𝓞 F) F)) ∈
       {x : UPts hc.sig (1 : Matrix (Fin n) (Fin n) E) (FiniteAdeleRing (𝓞 F) F) | (x : GL _ _) ∈ S.U} := S.U.one_mem
   obtain ⟨V, hV, hVsub⟩ := (mem_nhds_subtype _ _ _).1 (S.U_open.mem_nhds h1U)
-  obtain ⟨m₀, hm₀, hm₀N⟩ := GlobalTheory.T.congruenceOne_matrices_mem_nhds_one (F := F) (E := E) n (V ∩ {u | ∀ κ : S.U, κ.1 = u → S.chi κ = 1})
+  obtain ⟨m₀, hm₀, hm₀N⟩ := _root_.GlobalTheory.Mem.ColAd.Nbhd.congOne_nhds (F := F) (E := E) n (V ∩ {u | ∀ κ : S.U, κ.1 = u → S.chi κ = 1})
     (Filter.inter_mem hV hO)
   set m : ℕ := m₀ * ∏ w ∈ SG ∪ Q, Ideal.absNorm w.asIdeal with hm
   have hmpos : 0 < m := Nat.mul_pos hm₀ (Finset.prod_pos fun w _ =>

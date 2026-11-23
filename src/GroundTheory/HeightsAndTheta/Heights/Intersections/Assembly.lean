@@ -209,23 +209,18 @@ set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Inter
 
-theorem RegularityFunctionFieldNumber.full : GroundTheory.Heights₂.Heights.Inter.RegularityFunctionFieldNumber.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.RegularityFunctionFieldNumber.proof
+alias RegularityFunctionFieldNumber.full := _root_.GroundTheory.Heights₂.Heights.Inter.RegularityFunctionFieldNumber.proof
 
-theorem RegularityDivisorSupportClosed.full : GroundTheory.Heights₂.Heights.Inter.RegularityDivisorSupportClosed.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.RegularityDivisorSupportClosed.proof
+alias RegularityDivisorSupportClosed.full := _root_.GroundTheory.Heights₂.Heights.Inter.RegularityDivisorSupportClosed.proof
 
-theorem LocRingPow.full : GroundTheory.Heights₂.Heights.Inter.LocRingPow.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.LocRingPow.proof
+alias LocRingPow.full := _root_.GroundTheory.Heights₂.Heights.Inter.LocRingPow.proof
 
 theorem RegularityDenominator.full : GroundTheory.Heights₂.Heights.Inter.RegularityDenominator.Statement :=
   GroundTheory.Heights₂.Heights.Inter.RegularityDenominator.proof GroundTheory.Heights₂.Heights.Inter.RegularityDivisorSupportClosed.full GroundTheory.Heights₂.Heights.Inter.LocRingPow.full
 
-theorem RegularityValuationCentre.full : GroundTheory.Heights₂.Heights.Inter.RegularityValuationCentre.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.RegularityValuationCentre.proof
+alias RegularityValuationCentre.full := _root_.GroundTheory.Heights₂.Heights.Inter.RegularityValuationCentre.proof
 
-theorem RegularityRelativeClosedPoint.full : GroundTheory.Heights₂.Heights.Inter.RegularityRelativeClosedPoint.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.RegularityRelativeClosedPoint.proof
+alias RegularityRelativeClosedPoint.full := _root_.GroundTheory.Heights₂.Heights.Inter.RegularityRelativeClosedPoint.proof
 
 theorem RegularityIntegral.full : GroundTheory.Heights₂.Heights.Inter.RegularityIntegral.Statement :=
   GroundTheory.Heights₂.Heights.Inter.RegularityIntegral.proof GroundTheory.Heights₂.Heights.Inter.RegularityValuationCentre.full GroundTheory.Heights₂.Heights.Inter.RegularityRelativeClosedPoint.full
@@ -239,29 +234,23 @@ theorem RegularityLocalPrime.full : GroundTheory.Heights₂.Heights.Inter.Regula
 theorem RegularityLocalize.full : GroundTheory.Heights₂.Heights.Inter.RegularityLocalize.Statement :=
   GroundTheory.Heights₂.Heights.Inter.RegularityLocalize.proof GroundTheory.Heights₂.Heights.Inter.RegularityLocalPrime.full
 
-theorem regularityLocalDimension_holds.full : GroundTheory.Heights₂.Heights.Inter.regularityLocalDimension_holds.Statement :=
-  GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.regularityLocalDimension_holds
+alias regularityLocalDimension_holds.full := _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.regularityLocalDimension_holds
 
 theorem RegularityLocalFinite.full : GroundTheory.Heights₂.Heights.Inter.RegularityLocalFinite.Statement :=
   GroundTheory.Heights₂.Heights.Inter.RegularityLocalFinite.proof GroundTheory.Heights₂.Heights.Inter.regularityLocalDimension_holds.full
 
-theorem LocRingNoeth.full : GroundTheory.Heights₂.Heights.Inter.LocRingNoeth.Statement :=
-  GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.LocRingNoeth
+alias LocRingNoeth.full := _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.LocRingNoeth
 
-theorem pointForm_holds.full : GroundTheory.Heights₂.Heights.Inter.pointForm_holds.Statement :=
-  GroundTheory.Heights₂.Heights.Targets.Contract.pulledBackForms_topDensity_vanish
+alias pointForm_holds.full := _root_.GroundTheory.Heights₂.Heights.Targets.Contract.pulledBackForms_topDensity_vanish
 
-theorem PullbackEliminationOfVariable.full : GroundTheory.Heights₂.Heights.Inter.PullbackEliminationOfVariable.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.PullbackEliminationOfVariable.proof
+alias PullbackEliminationOfVariable.full := _root_.GroundTheory.Heights₂.Heights.Inter.PullbackEliminationOfVariable.proof
 
 theorem PullbackVanishingOfNullCycle.full : GroundTheory.Heights₂.Heights.Inter.PullbackVanishingOfNullCycle.Statement :=
   GroundTheory.Heights₂.Heights.Inter.PullbackVanishingOfNullCycle.proof GroundTheory.Heights₂.Heights.Inter.PullbackEliminationOfVariable.full
 
-theorem RankAdjoinFrac.full : GroundTheory.Heights₂.Heights.Inter.RankAdjoinFrac.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.RankAdjoinFrac.proof
+alias RankAdjoinFrac.full := _root_.GroundTheory.Heights₂.Heights.Inter.RankAdjoinFrac.proof
 
-theorem regularityEmbedding_holds.full : GroundTheory.Heights₂.Heights.Inter.regularityEmbedding_holds.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.regularityEmbedding_holds.proof
+alias regularityEmbedding_holds.full := _root_.GroundTheory.Heights₂.Heights.Inter.regularityEmbedding_holds.proof
 
 theorem ProjectivePointVertical.full : GroundTheory.Heights₂.Heights.Inter.ProjectivePointVertical.Statement :=
   GroundTheory.Heights₂.Heights.Inter.ProjectivePointVertical.proof (by intros; exact GroundTheory.Heights₂.Heights.geoNumStatement _) (by intros; exact GroundTheory.Heights₂.Heights.Targets.ExistsUnique.full _ _) (by intros; exact GroundTheory.Heights₂.Heights.Targets.ProjContract.full _ _ _ _ _)
@@ -272,11 +261,9 @@ theorem PushforwardProjectivePoint.full : GroundTheory.Heights₂.Heights.Inter.
 theorem ArithmeticIntersectionHorizontal.full : GroundTheory.Heights₂.Heights.Inter.ArithmeticIntersectionHorizontal.Statement :=
   GroundTheory.Heights₂.Heights.Inter.ArithmeticIntersectionHorizontal.proof ReciprocityTheory.ChartRestriction.G.Geo.divSuppArith GroundTheory.Heights₂.Heights.imageArith GroundTheory.Heights₂.Heights.Inter.PushforwardProjectivePoint.full
 
-theorem ArithmeticIntersectionFibreMultiHomogeneous.full : GroundTheory.Heights₂.Heights.Inter.ArithmeticIntersectionFibreMultiHomogeneous.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.ArithmeticIntersectionFibreMultiHomogeneous.proof
+alias ArithmeticIntersectionFibreMultiHomogeneous.full := _root_.GroundTheory.Heights₂.Heights.Inter.ArithmeticIntersectionFibreMultiHomogeneous.proof
 
-theorem EvalKerKrullDim.full : GroundTheory.Heights₂.Heights.Inter.EvalKerKrullDim.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.EvalKerKrullDim.proof
+alias EvalKerKrullDim.full := _root_.GroundTheory.Heights₂.Heights.Inter.EvalKerKrullDim.proof
 
 theorem FibreTranscendenceDegreeAlt.full : GroundTheory.Heights₂.Heights.Inter.FibreTranscendenceDegreeAlt.Statement :=
   GroundTheory.Heights₂.Heights.Inter.FibreTranscendenceDegreeAlt.proof GroundTheory.Heights₂.Heights.Inter.EvalKerKrullDim.full
@@ -284,20 +271,15 @@ theorem FibreTranscendenceDegreeAlt.full : GroundTheory.Heights₂.Heights.Inter
 theorem FibreDimensionZero.full : GroundTheory.Heights₂.Heights.Inter.FibreDimensionZero.Statement :=
   GroundTheory.Heights₂.Heights.Inter.FibreDimensionZero.proof GroundTheory.Heights₂.Heights.Inter.ArithmeticIntersectionFibreMultiHomogeneous.full GroundTheory.Heights₂.Heights.Inter.EvalKerKrullDim.full GroundTheory.Heights₂.Heights.Inter.FibreTranscendenceDegreeAlt.full
 
-theorem ChartRankAdjoin.full : GroundTheory.Heights₂.Heights.Inter.ChartRankAdjoin.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.ChartRankAdjoin.proof
+alias ChartRankAdjoin.full := _root_.GroundTheory.Heights₂.Heights.Inter.ChartRankAdjoin.proof
 
-theorem FnDegAdjoin.full : GroundTheory.Heights₂.Heights.Inter.FnDegAdjoin.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.FnDegAdjoin.proof
+alias FnDegAdjoin.full := _root_.GroundTheory.Heights₂.Heights.Inter.FnDegAdjoin.proof
 
-theorem ChartScalingIndep.full : GroundTheory.Heights₂.Heights.Inter.ChartScalingIndep.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.ChartScalingIndep.proof
+alias ChartScalingIndep.full := _root_.GroundTheory.Heights₂.Heights.Inter.ChartScalingIndep.proof
 
-theorem AdjoinIndepRelfinrank.full : GroundTheory.Heights₂.Heights.Inter.AdjoinIndepRelfinrank.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.AdjoinIndepRelfinrank.proof
+alias AdjoinIndepRelfinrank.full := _root_.GroundTheory.Heights₂.Heights.Inter.AdjoinIndepRelfinrank.proof
 
-theorem FinrankAdjoinRange.full : GroundTheory.Heights₂.Heights.Inter.FinrankAdjoinRange.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.FinrankAdjoinRange.proof
+alias FinrankAdjoinRange.full := _root_.GroundTheory.Heights₂.Heights.Inter.FinrankAdjoinRange.proof
 
 theorem VerticalDegreeAfterAdjoining.full : GroundTheory.Heights₂.Heights.Inter.VerticalDegreeAfterAdjoining.Statement :=
   GroundTheory.Heights₂.Heights.Inter.VerticalDegreeAfterAdjoining.proof GroundTheory.Heights₂.Heights.Inter.RankAdjoinFrac.full GroundTheory.Heights₂.Heights.Inter.FnDegAdjoin.full GroundTheory.Heights₂.Heights.Inter.ChartScalingIndep.full GroundTheory.Heights₂.Heights.Inter.AdjoinIndepRelfinrank.full GroundTheory.Heights₂.Heights.Inter.FinrankAdjoinRange.full
@@ -305,20 +287,16 @@ theorem VerticalDegreeAfterAdjoining.full : GroundTheory.Heights₂.Heights.Inte
 theorem VerticalDegree.full : GroundTheory.Heights₂.Heights.Inter.VerticalDegree.Statement :=
   GroundTheory.Heights₂.Heights.Inter.VerticalDegree.proof GroundTheory.Heights₂.Heights.Inter.FibreDimensionZero.full GroundTheory.Heights₂.Heights.Inter.ChartRankAdjoin.full GroundTheory.Heights₂.Heights.Inter.VerticalDegreeAfterAdjoining.full
 
-theorem ValCentreZ.full : GroundTheory.Heights₂.Heights.Inter.ValCentreZ.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.ValCentreZ.proof
+alias ValCentreZ.full := _root_.GroundTheory.Heights₂.Heights.Inter.ValCentreZ.proof
 
-theorem CentreOverW.full : GroundTheory.Heights₂.Heights.Inter.CentreOverW.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.CentreOverW.proof
+alias CentreOverW.full := _root_.GroundTheory.Heights₂.Heights.Inter.CentreOverW.proof
 
 theorem SemilocIntegral.full : GroundTheory.Heights₂.Heights.Inter.SemilocIntegral.Statement :=
   GroundTheory.Heights₂.Heights.Inter.SemilocIntegral.proof GroundTheory.Heights₂.Heights.Inter.ValCentreZ.full GroundTheory.Heights₂.Heights.Inter.CentreOverW.full
 
-theorem LocRingChartLoc.full : GroundTheory.Heights₂.Heights.Inter.LocRingChartLoc.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.LocRingChartLoc.proof
+alias LocRingChartLoc.full := _root_.GroundTheory.Heights₂.Heights.Inter.LocRingChartLoc.proof
 
-theorem RelAlgClosureFinite.full : GroundTheory.Heights₂.Heights.Inter.RelAlgClosureFinite.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.RelAlgClosureFinite.proof
+alias RelAlgClosureFinite.full := _root_.GroundTheory.Heights₂.Heights.Inter.RelAlgClosureFinite.proof
 
 theorem IntClosureLocFinite.full : GroundTheory.Heights₂.Heights.Inter.IntClosureLocFinite.Statement :=
   GroundTheory.Heights₂.Heights.Inter.IntClosureLocFinite.proof GroundTheory.Heights₂.Heights.Inter.RelAlgClosureFinite.full
@@ -326,11 +304,9 @@ theorem IntClosureLocFinite.full : GroundTheory.Heights₂.Heights.Inter.IntClos
 theorem LocRingIntClosureFinite.full : GroundTheory.Heights₂.Heights.Inter.LocRingIntClosureFinite.Statement :=
   GroundTheory.Heights₂.Heights.Inter.LocRingIntClosureFinite.proof GroundTheory.Heights₂.Heights.Inter.LocRingChartLoc.full GroundTheory.Heights₂.Heights.Inter.IntClosureLocFinite.full
 
-theorem LocRingFrac.full : GroundTheory.Heights₂.Heights.Inter.LocRingFrac.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.LocRingFrac.proof
+alias LocRingFrac.full := _root_.GroundTheory.Heights₂.Heights.Inter.LocRingFrac.proof
 
-theorem LocRingLocal.full : GroundTheory.Heights₂.Heights.Inter.LocRingLocal.Statement :=
-  GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.LocRingLocal
+alias LocRingLocal.full := _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.LocRingLocal
 
 theorem LocRingDimOne.full : GroundTheory.Heights₂.Heights.Inter.LocRingDimOne.Statement :=
   GroundTheory.Heights₂.Heights.Inter.LocRingDimOne.proof GroundTheory.Heights₂.Heights.Inter.LocRingFrac.full GroundTheory.Heights₂.Heights.Inter.LocRingNoeth.full GroundTheory.Heights₂.Heights.Inter.LocRingLocal.full GroundTheory.Heights₂.Heights.Inter.LocRingPow.full
@@ -338,53 +314,38 @@ theorem LocRingDimOne.full : GroundTheory.Heights₂.Heights.Inter.LocRingDimOne
 theorem SemilocFinite.full : GroundTheory.Heights₂.Heights.Inter.SemilocFinite.Statement :=
   GroundTheory.Heights₂.Heights.Inter.SemilocFinite.proof GroundTheory.Heights₂.Heights.Inter.SemilocIntegral.full GroundTheory.Heights₂.Heights.Inter.LocRingIntClosureFinite.full GroundTheory.Heights₂.Heights.Inter.LocRingDimOne.full
 
-theorem LocRingInj.full : GroundTheory.Heights₂.Heights.Inter.LocRingInj.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.LocRingInj.proof
+alias LocRingInj.full := _root_.GroundTheory.Heights₂.Heights.Inter.LocRingInj.proof
 
-theorem regularityDehomogenization_holds.full : GroundTheory.Heights₂.Heights.Inter.regularityDehomogenization_holds.Statement :=
-  GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.regularityDehomogenization_holds
+alias regularityDehomogenization_holds.full := _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.regularityDehomogenization_holds
 
-theorem GenericPointExists.full : GroundTheory.Heights₂.Heights.Inter.GenericPointExists.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.GenericPointExists.proof
+alias GenericPointExists.full := _root_.GroundTheory.Heights₂.Heights.Inter.GenericPointExists.proof
 
 theorem ThmIUnique.full : GroundTheory.Heights₂.Heights.Inter.ThmIUnique.Statement :=
   GroundTheory.Heights₂.Heights.Inter.ThmIUnique.proof GroundTheory.Heights₂.Heights.Inter.arithVarZero
 
-theorem ArithmeticIntersectionChartFinite.full : GroundTheory.Heights₂.Heights.Inter.ArithmeticIntersectionChartFinite.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.ArithmeticIntersectionChartFinite.proof
+alias ArithmeticIntersectionChartFinite.full := _root_.GroundTheory.Heights₂.Heights.Inter.ArithmeticIntersectionChartFinite.proof
 
-theorem pullbackBadImage_holds.full : GroundTheory.Heights₂.Heights.Inter.pullbackBadImage_holds.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.pullbackBadImage_holds.proof
+alias pullbackBadImage_holds.full := _root_.GroundTheory.Heights₂.Heights.Inter.pullbackBadImage_holds.proof
 
-theorem regularityLocalCardinality_holds.full : GroundTheory.Heights₂.Heights.Inter.regularityLocalCardinality_holds.Statement :=
-  GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.regularityLocalCardinality_holds
+alias regularityLocalCardinality_holds.full := _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.regularityLocalCardinality_holds
 
-theorem pullbackPushforward_holds.full : GroundTheory.Heights₂.Heights.Inter.pullbackPushforward_holds.Statement :=
-  GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.pullbackPushforward_holds
+alias pullbackPushforward_holds.full := _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.pullbackPushforward_holds
 
-theorem SemiPosTwist.full : GroundTheory.Heights₂.Heights.Inter.SemiPosTwist.Statement :=
-  GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.SemiPosTwist
+alias SemiPosTwist.full := _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.SemiPosTwist
 
-theorem RankFracDegree.full : GroundTheory.Heights₂.Heights.Inter.RankFracDegree.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.RankFracDegree.proof
+alias RankFracDegree.full := _root_.GroundTheory.Heights₂.Heights.Inter.RankFracDegree.proof
 
-theorem regularityPointsSum_holds.full : GroundTheory.Heights₂.Heights.Inter.regularityPointsSum_holds.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.regularityPointsSum_holds.proof
+alias regularityPointsSum_holds.full := _root_.GroundTheory.Heights₂.Heights.Inter.regularityPointsSum_holds.proof
 
-theorem HorizNotMem.full : GroundTheory.Heights₂.Heights.Inter.HorizNotMem.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.HorizNotMem.proof
+alias HorizNotMem.full := _root_.GroundTheory.Heights₂.Heights.Inter.HorizNotMem.proof
 
-theorem SheetHessPSD.full : GroundTheory.Heights₂.Heights.Inter.SheetHessPSD.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.SheetHessPSD.proof
+alias SheetHessPSD.full := _root_.GroundTheory.Heights₂.Heights.Inter.SheetHessPSD.proof
 
-theorem RegCurvBound.full : GroundTheory.Heights₂.Heights.Inter.RegCurvBound.Statement :=
-  GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.RegCurvBound
+alias RegCurvBound.full := _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.Closed.Inter.RegCurvBound
 
-theorem OrbitCompNonvanish.full : GroundTheory.Heights₂.Heights.Inter.OrbitCompNonvanish.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.OrbitCompNonvanish.proof
+alias OrbitCompNonvanish.full := _root_.GroundTheory.Heights₂.Heights.Inter.OrbitCompNonvanish.proof
 
-theorem pullbackDensity_holds.full : GroundTheory.Heights₂.Heights.Inter.pullbackDensity_holds.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.pullbackDensity_holds.proof
+alias pullbackDensity_holds.full := _root_.GroundTheory.Heights₂.Heights.Inter.pullbackDensity_holds.proof
 
 theorem Closed.ReciprocityTheory.ChartRestriction.G.AI.I2.Unique : ReciprocityTheory.ChartRestriction.G.AI.I2.UniqueStatement :=
   GroundTheory.Heights₂.Heights.Inter.ThmIUnique.full
@@ -400,10 +361,7 @@ theorem ArithmeticIntersectionVertical.of_remaining
     GroundTheory.Heights₂.Heights.Inter.ArithmeticIntersectionVertical.Statement :=
   GroundTheory.Heights₂.Heights.Inter.ArithmeticIntersectionVertical.proof (by intros; exact GroundTheory.Heights₂.Heights.geoNumStatement _) (by intros; exact GroundTheory.Heights₂.Heights.Targets.ExistsUnique.full _ _) (by intros; exact GroundTheory.Heights₂.Heights.Targets.ProjContract.full _ _ _ _ _) hProjDeg GroundTheory.Heights₂.Heights.Inter.VerticalDegree.full
 
-theorem FibreOverFinite.of_remaining
-    (hFibreIncomp : GroundTheory.Heights₂.Heights.Inter.FibreIncomp.Statement) :
-    GroundTheory.Heights₂.Heights.Inter.FibreOverFinite.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.FibreOverFinite.proof hFibreIncomp
+alias FibreOverFinite.of_remaining := _root_.GroundTheory.Heights₂.Heights.Inter.FibreOverFinite.proof
 
 theorem SemilocChartRatio.of_remaining
     (hFibreIncomp : GroundTheory.Heights₂.Heights.Inter.FibreIncomp.Statement) :
@@ -426,10 +384,7 @@ theorem SemilocRank.of_remaining
     GroundTheory.Heights₂.Heights.Inter.SemilocRank.Statement :=
   GroundTheory.Heights₂.Heights.Inter.SemilocRank.proof hFibreDim (GroundTheory.Heights₂.Heights.Inter.SemilocRankAdjoin.of_remaining hFibreIncomp)
 
-theorem FibreDivSupp.of_remaining
-    (hFibreIncomp : GroundTheory.Heights₂.Heights.Inter.FibreIncomp.Statement) :
-    GroundTheory.Heights₂.Heights.Inter.FibreDivSupp.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.FibreDivSupp.proof hFibreIncomp
+alias FibreDivSupp.of_remaining := _root_.GroundTheory.Heights₂.Heights.Inter.FibreDivSupp.proof
 
 theorem SemilocLengthSum.of_remaining
     (hFibreIncomp : GroundTheory.Heights₂.Heights.Inter.FibreIncomp.Statement)

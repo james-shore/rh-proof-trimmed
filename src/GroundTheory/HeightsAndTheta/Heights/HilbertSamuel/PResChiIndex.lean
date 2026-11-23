@@ -227,7 +227,7 @@ theorem resChi_sub_of_bases (d d' : HSMDatum D Ω κ) (B : Matrix (Ix κ) (Ix κ
   have hli := linIndep_rat_of_isSecBasis hb
   have hli' := linIndep_rat_of_isSecBasis hb'
   obtain ⟨B', hB'B, -⟩ := ChangeOfLattice.exists_inv_of_isInvMat hB
-  have hx' : d.x = matAct B' d'.x := by rw [hx, ChangeOfLattice.matAct_mul, hB'B, matAct_one]
+  have hx' : d.x = matAct B' d'.x := by rw [hx, ChangeOfLattice.matAct_mul, hB'B, _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.ChangeOfLatticeNested.matAct_one]
 
   have hspan : ∀ {y : Ix κ → Ω} {s : ℕ} {c : Fin s → MvPolynomial (Ix κ) ℚ}, IsSecBasis y n c →
       Submodule.span ℚ (sec ℤ y n : Set Ω) = Submodule.span ℚ (Set.range fun i => aeval y (c i)) := by

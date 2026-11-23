@@ -222,7 +222,7 @@ theorem nform : ∃ C₀ : ℝ, 0 ≤ C₀ ∧ ∀ {S : Scheme.{0}} {G : Over S}
   obtain ⟨hH, hpos, hχn, -⟩ := a.ah
   obtain ⟨bs, h, X, Y, ρ, hh, hX, hY, hR, hHh, hcoord, him⟩ :=
     exists_reduced g a.u.Λ a.Hm a.u.discrete a.u.full hH hpos hint hdual
-  have hτim : (periodMatrix X Y).map Complex.im = Y := periodMatrix_im X Y
+  have hτim : (periodMatrix X Y).map Complex.im = Y := _root_.GlobalTheory.CompanionTheory.Ar.Nform.periodMatrix_map_im X Y
   have hYs : Y.IsSymm := by
     have := hY.isHermitian
     rwa [Matrix.IsHermitian, Matrix.conjTranspose_eq_transpose_of_trivial] at this

@@ -101,7 +101,7 @@ theorem smoothed : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (�
         (∀ x ∈ W, x ∉ 𝔠) → ∃ τ : Equiv.Perm S, (∀ c, RayRel F 𝔣 (𝔠 * (τ c).1) c.1) ∧
           ∀ k : ℕ, 1 ≤ k → ∀ c, ∃ q : ℚ,
             ((Ideal.absNorm 𝔠 : ℕ) : ℂ) ^ k * Z (τ c) (1 - (k : ℂ)) - Z c (1 - (k : ℂ)) = (q : ℂ) ∧
-            ∀ l : ℕ, l.Prime → l ≠ Ideal.absNorm 𝔠 → 𝔣 ≤ Ideal.span {(l : 𝓞 F)} → 0 ≤ padicValRat l q := PositivityTheory.PfDR.h_smooth.smoothed_of classValueZ classParamCop not_dvd_absNorm
+            ∀ l : ℕ, l.Prime → l ≠ Ideal.absNorm 𝔠 → 𝔣 ≤ Ideal.span {(l : 𝓞 F)} → 0 ≤ padicValRat l q := PositivityTheory.PfDR.h_smooth.smoothed_of _root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Integrality.classTwist_value_int _root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.exists_classParam_sup_eq_top not_dvd_absNorm
 
 theorem val_add_nonneg {l : ℕ} [Fact l.Prime] {x y : ℚ} (hx : 0 ≤ padicValRat l x)
     (hy : 0 ≤ padicValRat l y) : 0 ≤ padicValRat l (x + y) := by
@@ -177,7 +177,7 @@ theorem deligneRibet : GlobalTheory.Published.DeligneRibet := by
   intro F _ _ _ l _ n hn ε hε hint 𝔠 h𝔠 k hk r r' hr hr'
   have hl : l.Prime := Fact.out
   have h𝔣 : powMod F l n ≠ ⊥ := powMod_ne_bot hl.ne_zero n
-  obtain ⟨S, hS, hd, hc⟩ := GlobalTheory.T.ray_class_group_finite_representatives F (powMod F l n) h𝔣
+  obtain ⟨S, hS, hd, hc⟩ := _root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.finRay F (powMod F l n) h𝔣
   obtain ⟨Z, hZ⟩ := exists_classZeta F (powMod F l n) h𝔣 S hS hd hc
   choose z hz using fun c : S => (hZ c).2 k hk
   have hZ1 : ∀ c : S, IsRayZeta (powMod F l n) c.1 (Z c) := fun c => (hZ c).1
@@ -189,7 +189,7 @@ theorem deligneRibet : GlobalTheory.Published.DeligneRibet := by
   have h𝔣' : powMod F l m ≠ ⊥ := powMod_ne_bot hl.ne_zero m
   obtain ⟨W, hW0, hW⟩ := smoothed F (powMod F l n) h𝔣 S hS hd hc Z hZ1
   have h𝔠m : CoprimeTo F (powMod F l m) 𝔠 := (coprimeTo_powMod_iff hm1).2 ((coprimeTo_powMod_iff hn).1 h𝔠)
-  obtain ⟨𝔠', hpr, hNp, hB, h𝔠'm, hrel, hav⟩ := deg1Ray F (powMod F l m) 𝔠 h𝔣' h𝔠m W l hW0
+  obtain ⟨𝔠', hpr, hNp, hB, h𝔠'm, hrel, hav⟩ := _root_.GlobalTheory.CompanionTheory.DegOneRay.exists_degOne_prime_in_rayClass F (powMod F l m) 𝔠 h𝔣' h𝔠m W l hW0
   have h𝔠'n : CoprimeTo F (powMod F l n) 𝔠' := (coprimeTo_powMod_iff hn).2 ((coprimeTo_powMod_iff hm1).1 h𝔠'm)
   obtain ⟨τ, hτ, hq⟩ := hW 𝔠' hpr hNp h𝔠'n.2 hav
   have hlN : l ≠ Ideal.absNorm 𝔠' := hB.ne

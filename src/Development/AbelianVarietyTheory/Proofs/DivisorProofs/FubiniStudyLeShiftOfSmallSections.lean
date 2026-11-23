@@ -52,10 +52,7 @@ namespace GlobalTheory.HSNef.FsTop
 
 variable {X : Scheme.{0}} [IsIntegral X]
 
-theorem regAt_mul' {x : X} {a b : X.functionField} (ha : RegAt x a) (hb : RegAt x b) : RegAt x (a * b) := by
-  obtain ⟨u, rfl⟩ := ha
-  obtain ⟨v, rfl⟩ := hb
-  exact ⟨u * v, map_mul _ u v⟩
+alias regAt_mul' := _root_.GlobalTheory.Cartier.RegAt.mul
 
 theorem regAt_inv_of_unitAt {x : X} {a : X.functionField} (ha : UnitAt x a) : RegAt x a⁻¹ := by
   obtain ⟨u, hu, rfl⟩ := ha

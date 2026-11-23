@@ -105,23 +105,9 @@ noncomputable def G (L : AddSubgroup E) (S : Finset E) (Th : E → α → α →
 
 end gen
 
-section ta
-variable {E : Type} [Field E] [DecidableEq E]
-
-end ta
-
-section main
-variable {E : Type} [Field E] [DecidableEq E]
-
-end main
-
 end Formalism.FourierDecayAlt.P.RecursionWithDensities.A1
 
 namespace Formalism.FourierDecayAlt.P.RecursionWithDensities.A2
-
-open Formalism.FourierDecayAlt.TA Finset Filter Topology
-open scoped ComplexConjugate InnerProductSpace
-open Formalism.FourierDecayAlt.TC
 
 end Formalism.FourierDecayAlt.P.RecursionWithDensities.A2
 
@@ -494,7 +480,7 @@ theorem theoremAAfterOfSteps : TC.TheoremAAfterOfSteps := by
       mul_le_mul_of_nonneg_left hxy (by positivity)
     linarith
   have hB0 : 0 ≤ 1 + C * ((D.r : ℝ) + 1) * (C / Θ) ^ D.f := by positivity
-  have hK0 : (TC.withTh D (fun _ _ _ _ _ => 0)).KernelPSD :=
+  have hK0 : (_root_.Formalism.FourierDecayAlt.J.withTh D (fun _ _ _ _ _ => 0)).KernelPSD :=
     ⟨hKer, fun _ _ _ Y => by
       show Matrix.PosSemidef (0 : Matrix Y Y ℂ)
       exact Matrix.PosSemidef.zero⟩
@@ -502,7 +488,7 @@ theorem theoremAAfterOfSteps : TC.TheoremAAfterOfSteps := by
       (∀ w ∈ D.Wb D.Ntop, (D.gram ε 0 w [] []).re / D.wt w ≤ σ₀) →
       D.Sf ε (D.r + 1) D.emp (T.X (D.r + 1)) ≤
         ((1 + C * ((D.r : ℝ) + 1) * (C / Θ) ^ D.f) * (∏ i ∈ Icc 1 (D.r + 1), (1 + D.e i))) * σ₀ from
-    hLS E W (TC.withTh D (fun _ _ _ _ _ => 0)) jn H Vt c hG hK0 hE hCut hA4 _ key R
+    hLS E W (_root_.Formalism.FourierDecayAlt.J.withTh D (fun _ _ _ _ _ => 0)) jn H Vt c hG hK0 hE hCut hA4 _ key R
   intro T ε hε σ₀ hσ₀
   have hempN : D.emp ∈ D.Wb D.Ntop := by
     simp [Data.Wb, D.emp_mem, D.cnt_emp]
@@ -630,16 +616,6 @@ namespace Formalism.FourierDecayAlt.P
 
 open RecursionWithDensities
 
-theorem domination_minimum_of_text : Formalism.FourierDecayAlt.TC.DomMinOfText := RecursionWithDensities.B1.domMinOfText
-
-theorem theorem_a_after : Formalism.FourierDecayAlt.TC.TheoremAAfter := RecursionWithDensities.B2.theoremAAfterOfSteps RecursionWithDensities.B1.oneLevelAfter limitStep joint_theorem_A'
-
-theorem density_le_two : Formalism.FourierDecayAlt.TC.DensLeTwo := RecursionWithDensities.J1.t_DensLeTwo
-
-theorem density_size : Formalism.FourierDecayAlt.TC.DensSize := RecursionWithDensities.J1.t_DensSize
-
-theorem sum_bound_max : Formalism.FourierDecayAlt.TC.SumBoundMax := RecursionWithDensities.J1.t_SumBoundMax
-
-theorem recursion_with_densities : Formalism.FourierDecayAlt.TC.RecursionWithDens := RecursionWithDensities.J1.t_RecursionWithDens
+theorem theorem_a_after : Formalism.FourierDecayAlt.TC.TheoremAAfter := RecursionWithDensities.B2.theoremAAfterOfSteps RecursionWithDensities.B1.oneLevelAfter limitStep _root_.Formalism.FourierDecayAlt.P.K.jointTheoremA
 
 end Formalism.FourierDecayAlt.P

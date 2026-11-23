@@ -81,21 +81,11 @@ section Rings
 
 variable {R R' : Type} [CommRing R] [CommRing R'] (f : R →+* R')
 
-theorem dualMap_comp_algebraMap :
-    (GlobalTheory.CompanionTheory.Ar.dualMap f).comp (algebraMap R (DualNumber R)) = (algebraMap R' (DualNumber R')).comp f := by
-  refine RingHom.ext fun a => TrivSqZeroExt.ext ?_ ?_ <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
-
 theorem dualMap_comp_epsMul (c : R) :
     (GlobalTheory.CompanionTheory.Ar.dualMap f).comp (ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul c) =
       (ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul (f c)).comp (GlobalTheory.CompanionTheory.Ar.dualMap f) := by
   refine RingHom.ext fun a => TrivSqZeroExt.ext ?_ ?_ <;>
     simp [GlobalTheory.CompanionTheory.Ar.dualMap, ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul, mul_comm]
-
-theorem fst_comp_dualMap :
-    (TrivSqZeroExt.fstHom R' R' R').toRingHom.comp (GlobalTheory.CompanionTheory.Ar.dualMap f) =
-      f.comp (TrivSqZeroExt.fstHom R R R).toRingHom := by
-  refine RingHom.ext fun a => ?_
-  simp [GlobalTheory.CompanionTheory.Ar.dualMap]
 
 end Rings
 
@@ -110,8 +100,8 @@ theorem isTanAtG_map {R R' : Type} [CommRing R] [CommRing R'] (f : R →+* R') {
     IsTanAtG t (spMap f ≫ x) (spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ v) := by
   refine ⟨?_, ?_⟩
   · rw [Category.assoc, h.1, ← Category.assoc, ← Category.assoc,
-      spMap_comp_eq _ _ _ _ (dualMap_comp_algebraMap f)]
-  · rw [← Category.assoc, spMap_comp_eq _ _ _ _ (fst_comp_dualMap f), Category.assoc, h.2]
+      spMap_comp_eq _ _ _ _ (_root_.GlobalTheory.CompanionTheory.Ar.SqAdd.dualMap_comp_algebraMap f)]
+  · rw [← Category.assoc, spMap_comp_eq _ _ _ _ (_root_.GlobalTheory.CompanionTheory.Ar.SqAdd.fst_comp_dualMap f), Category.assoc, h.2]
     have := comp_one_over (G := t.G) (Over.homMk (U := Over.mk (spMap f ≫ x)) (V := Over.mk x) (spMap f) rfl)
     rw [← this, Over.comp_left]
     rfl
@@ -124,7 +114,7 @@ theorem isCombAtG_map {R R' : Type} [CommRing R] [CommRing R'] (f : R →+* R') 
   obtain ⟨u, hu, hw⟩ := h
   let k : tEpsG (spMap f ≫ x) ⟶ tEpsG x := Over.homMk (spMap (GlobalTheory.CompanionTheory.Ar.dualMap f)) (by
     simp only [Over.mk_hom]
-    rw [← Category.assoc, ← Category.assoc, spMap_comp_eq _ _ _ _ (dualMap_comp_algebraMap f)])
+    rw [← Category.assoc, ← Category.assoc, spMap_comp_eq _ _ _ _ (_root_.GlobalTheory.CompanionTheory.Ar.SqAdd.dualMap_comp_algebraMap f)])
   refine ⟨fun l => k ≫ u l, fun l => ?_, ?_⟩
   · show spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (u l).left = _
     rw [hu l, ← Category.assoc, ← Category.assoc,

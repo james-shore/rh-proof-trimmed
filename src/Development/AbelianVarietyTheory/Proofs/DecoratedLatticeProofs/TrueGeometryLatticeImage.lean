@@ -184,7 +184,7 @@ theorem mat_int (D : D7) (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace
     · subst h
       rw [Matrix.one_apply_eq, Matrix.one_apply_eq, RingHom.map_one, RingHom.map_one]
     · rw [Matrix.one_apply_ne h, Matrix.one_apply_ne h, RingHom.map_zero, RingHom.map_zero]
-  have h4 := GlobalTheory.T.splitPoint_baseLattice_coords_integral_last_in_prime D k p P hP _ t ht _ hLb y (by rw [hy]; exact h3 s) r
+  have h4 := _root_.GlobalTheory.LocMod.SplitCoord.coord_int_last D k p P hP _ t ht _ hLb y (by rw [hy]; exact h3 s) r
   have h1 : p.pr ((1 : Matrix (Fin V.rank) (Fin V.rank) (AE D)) r s) = (1 : Matrix (Fin V.rank) (Fin V.rank) k) r s := by
     simp only [Matrix.one_apply]; split_ifs <;> simp
   simp only [y] at h4
@@ -196,16 +196,12 @@ theorem mat_int (D : D7) (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace
     · exact Subring.zero_mem _)
   rwa [sub_add_cancel] at this
 
-theorem mt_mul_inv {D : D7} (V : HSp D) (κ : GA D V) : mt V κ * mt V κ⁻¹ = 1 := by
-  simp only [Formalism.L2.Theta.mt]
-  rw [← Units.val_mul, ← map_mul, mul_inv_cancel, map_one, Units.val_one]
-
 theorem finM_inv {D : D7} (V : HSp D) {n : ℕ} (hn : V.rank = n) (κ : GA D V) (x : GL (Fin n) (GlobalTheory.AdForm.EF D))
     (h : GlobalTheory.AdForm.finM V hn κ = x.1) : GlobalTheory.AdForm.finM V hn κ⁻¹ = (x⁻¹).1 := by
   subst hn
   have e : GlobalTheory.AdForm.finM V rfl κ * GlobalTheory.AdForm.finM V rfl κ⁻¹ = 1 := by
     have e1 : ∀ g, GlobalTheory.AdForm.finM V rfl g = (mt V g).map (toEAf D) := fun g => rfl
-    rw [e1, e1, ← Matrix.map_mul, mt_mul_inv]
+    rw [e1, e1, ← Matrix.map_mul, _root_.GlobalTheory.MixModel.mt_mul_inv]
     exact Matrix.map_one _ (map_zero _) (map_one _)
   rw [h] at e
   exact (Units.inv_eq_of_mul_eq_one_right e).symm
@@ -289,7 +285,7 @@ theorem stdPair_fixed {B : GlobalTheory.Mem.Base} {X : GlobalTheory.Mem.PreX B.t
   refine smul_pair_eq _ _ _ _ ((mt _ κ⁻¹).map (p i).pr) (β j i).b'b _ r₀
     (GlobalTheory.T.standardPair_frameCoordinates_integral_and_functional I l Z u k ι p β Q L hS j hj i r₀ hr₀) g hg ?_ (fun r s => (k1 r s).1) (fun r s => (k2 r s).1)
     (fun s => (k2 r₀ s).2 hr₀)
-  rw [← Matrix.map_mul, mt_mul_inv]
+  rw [← Matrix.map_mul, _root_.GlobalTheory.MixModel.mt_mul_inv]
   exact Matrix.map_one _ (map_zero _) (map_one _)
 
 end GlobalTheory.FamTrace.PairsFwd

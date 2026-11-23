@@ -76,11 +76,6 @@ section Alg
 
 variable {K : Type} [Field K] {Δ τ : K}
 
-private theorem ofE_mul (x y : Etau K τ) : ofE Δ (x * y) = ofE Δ x * ofE Δ y := by ext <;> simp [ofE]
-
-private theorem ofE_one : ofE Δ (1 : Etau K τ) = 1 := by
-  ext <;> simp [ofE, QuadraticAlgebra.re_one, QuadraticAlgebra.im_one]
-
 private theorem quo_mul_inv (z : (Etau K τ)ˣ) : quo z * quo z⁻¹ = 1 := by
   have e : ∀ a b : (Etau K τ)ˣ, quo (a * b) = quo a * quo b := fun a b => by
     simp only [quo, _root_.mul_inv_rev, Units.val_mul, star_mul]; ring
@@ -90,7 +85,7 @@ private theorem quo_mul_inv (z : (Etau K τ)ˣ) : quo z * quo z⁻¹ = 1 := by
 private theorem tor_inv (z : (Etau K τ)ˣ) (x : Sp Δ τ) : tor Δ z (tor Δ z⁻¹ x) = x := by
   refine Prod.ext rfl ?_
   simp only [tor]
-  rw [← mul_assoc, ← ofE_mul, quo_mul_inv, ofE_one, one_mul]
+  rw [← mul_assoc, ← _root_.UpperTheory.V.Z.Sym.Loc.ofE_mul, quo_mul_inv, _root_.UpperTheory.V.Z.Sym.Loc.ofE_one, one_mul]
 
 end Alg
 

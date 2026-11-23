@@ -136,7 +136,7 @@ theorem lev_iff (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn X.B px) (U : 
     have hz := RowDeco.unitaryFiniteAdelicPointAsMatrix_mem_flagIwahori X I hI L hL t ⟨h, (levEnv X.toD7.sp.X' L.βX (L.datXt t)).J_le hh⟩
     exact ⟨hz, mem_grp_of_inv_mul (Xf := X.B.fields) (Formalism.L2.Col.rowTyKK I.Ch I.sel t.1).inv _ _
       (standard_level_element_hat_eq_one X px I U L eG t ⟨h, hh⟩)
-      (GlobalTheory.T.inv_reduction_mul_flagTranslation_mem_rowLevelGroup X px I U L eG hI hL hG t ⟨h, (levEnv X.toD7.sp.X' L.βX (L.datXt t)).J_le hh⟩ hz)⟩
+      (_root_.GlobalTheory.Mem.R3.RowDeco.inv_redG_mul_g0Hat_mem_grp X px I U L eG hI hL hG t ⟨h, (levEnv X.toD7.sp.X' L.βX (L.datXt t)).J_le hh⟩ hz)⟩
   · rintro ⟨hz, hg⟩
     exact GlobalTheory.T.mem_rowLevel_of_reduction_mem_levelGroup X px I U L hI hL t h hz hg
 
@@ -154,7 +154,7 @@ theorem chi_eq : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn X.B px) 
   intro X px I U L eG hI hV hL hG t k hz hg
   have hb := standard_level_element_hat_eq_one X px I U L eG t k
   have hu := inv_mul_mem_grp (Xf := X.B.fields) (Formalism.L2.Col.rowTyKK I.Ch I.sel t.1).inv _ _ hb hg
-  have h1 := GlobalTheory.T.rowLevelCharacter_translation_eq_flagCharacter X px I U L eG hI hV hL hG t ⟨k.1, (levEnv X.toD7.sp.X' L.βX (L.datXt t)).J_le k.2⟩ hz hu
+  have h1 := _root_.GlobalTheory.Mem.R3.RowChr.chr_eq_ch X px I U L eG hI hV hL hG t ⟨k.1, (levEnv X.toD7.sp.X' L.βX (L.datXt t)).J_le k.2⟩ hz hu
   exact chr_of_inv_mul (Xf := X.B.fields) (Formalism.L2.Col.rowTyKK I.Ch I.sel t.1).inv X.B.embLL _ _ hb hg hu _
     (h1.trans (congrArg Units.val ((levEnv X.toD7.sp.X' L.βX (L.datXt t)).ch_J k)))
 

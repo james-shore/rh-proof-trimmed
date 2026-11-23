@@ -68,6 +68,6 @@ theorem torsion_fixed_unramified : ∀ (R : Type) [CommRing R] [IsDomain R] [IsL
   have hmem := hT.mem
   obtain ⟨hdvr', f, hf, hirr⟩ := hT
   refine ⟨T', hdvr', f, hf, hirr, fun σ hσ x hx => ?_⟩
-  exact GlobalTheory.T.torsion_fixed_of_quotientClasses_fixed R hR D A G hG U V φ hc (n ^ j) (Nat.one_le_pow _ _ (by omega)) σ (fun v => hσ _ (hmem v)) (hQ σ hσ) x hx
+  exact _root_.GlobalTheory.Mum.TorsFixed.fixed_of_classes_fixed R hR D A G hG U V φ hc (n ^ j) (Nat.one_le_pow _ _ (by omega)) σ (fun v => hσ _ (hmem v)) (hQ σ hσ) x hx
 
 end GlobalTheory.UnramTorsPull

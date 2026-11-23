@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Foundations.ExpUpper
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsArcIsometryTorsionIntegralGauge
 
 @[expose] public section
 
@@ -62,12 +63,12 @@ theorem frob_cycAlg (l : ℕ) [Fact l.Prime] (Ω : Type) [Field Ω] [Algebra ℚ
   | mem x hx =>
     obtain ⟨n, hn⟩ := hx
     obtain ⟨y, hy⟩ := IsAlgClosed.exists_pow_nat_eq (x : Ω) hp.pos
-    have hyA : y ∈ A := mem_of_pow_mem A hp.ne_zero (hy ▸ x.2)
+    have hyA : y ∈ A := _root_.GlobalTheory.Ex.ArcLift.mem_of_pow_mem A hp.ne_zero (hy ▸ x.2)
     have e : (⟨y, hyA⟩ : A) ^ l = x := Subtype.ext (by simpa using hy)
     refine ⟨⟨y, hyA⟩, mem_cycAlg_of_pow (n := n + 1) ?_, 0, by rw [e]; ring⟩
     rw [pow_succ', pow_mul, e, hn]
   | algebraMap a =>
-    obtain ⟨b, z, h⟩ := GlobalTheory.T.fixed_element_lth_power_mod l Ω A hA a
+    obtain ⟨b, z, h⟩ := _root_.GlobalTheory.RecOne.fixA_eq_pow_add_mul l Ω A hA a
     exact ⟨algebraMap (fixA A) A b, Subalgebra.algebraMap_mem _ b, z, h⟩
   | add a b _ _ iha ihb =>
     obtain ⟨y, hy, z, rfl⟩ := iha
@@ -91,11 +92,11 @@ theorem approxRoot_fix_ineCyc : ∀ (l : ℕ) [Fact l.Prime], l ≠ 2 → ∀ (�
   haveI : CharZero Ω := algebraRat.charZero Ω
   have hF : ∀ x : A, x ∈ cycAlg l A ↔ (x : Ω) ∈ Fix Ω (ineCyc l A) := by
     intro x
-    rw [GlobalTheory.T.mem_inertiaInvariantsCyclotomicAlgebra_iff l Ω A hA x]
+    rw [_root_.GlobalTheory.RecOne.mem_cycAlg_iff l Ω A hA x]
     exact ⟨fun h g => h g g.2, fun h s hs => h ⟨s, hs⟩⟩
   haveI : NeZero ((l ^ 2 : ℕ) : Ω) := ⟨by exact_mod_cast (pow_pos hp.pos 2).ne'⟩
   obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot Ω (l ^ 2)
-  have hζA : ζ ∈ A := mem_of_pow_mem A (pow_pos hp.pos 2).ne' (by rw [hζ.pow_eq_one]; exact A.one_mem)
+  have hζA : ζ ∈ A := _root_.GlobalTheory.Ex.ArcLift.mem_of_pow_mem A (pow_pos hp.pos 2).ne' (by rw [hζ.pow_eq_one]; exact A.one_mem)
   have hζF : ζ ∈ Fix Ω (ineCyc l A) :=
     (hF ⟨ζ, hζA⟩).1 (mem_cycAlg_of_pow (n := 2) (Subtype.ext (by simpa using hζ.pow_eq_one)))
   set c : Ω := ζ - 1 with hc

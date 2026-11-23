@@ -170,32 +170,10 @@ theorem Rder_mem_cuspSub (hθ : IsInfFam θ) {τ : D.what₂.Tau} {X : Matrix (F
   show IsAutFunSm θ V _ ∧ IsCuspFun V _
   exact ⟨GlobalTheory.CuspLie.isAutFunSm_Rder hθ hX hf'.1, GlobalTheory.CuspLie.isCuspFun_Rder hθ hX hf'.1 hf'.2⟩
 
-private theorem det_gram_ne_zero' {D : D7} (V : HSp D) : V.gram.det ≠ 0 := by
-  intro h0
-  obtain ⟨c, hc0, hc⟩ := Matrix.exists_mulVec_eq_zero_iff.mpr h0
-  apply hc0
-
-  have hfr : ∀ i, V.hT (V.frame i) (∑ j, c j • V.frame j) = 0 := by
-    intro i
-    have h1 := congrFun hc i
-    simp only [Matrix.mulVec, dotProduct, Pi.zero_apply] at h1
-
-    rw [map_sum]
-    simp only [map_smul, smul_eq_mul]
-    rw [← h1]
-    refine Finset.sum_congr rfl fun j _ => ?_
-    rw [mul_comm]
-    rfl
-  have hflip : V.hT.flip (∑ j, c j • V.frame j) = 0 := V.frame.ext fun i => by simpa using hfr i
-  have hall : ∀ x, V.hT x (∑ j, c j • V.frame j) = 0 := fun x => by
-    simpa using LinearMap.congr_fun hflip x
-  have hv0 : ∑ j, c j • V.frame j = 0 := V.nondeg.2 _ hall
-  exact funext fun j => Fintype.linearIndependent_iff.mp V.frame.linearIndependent c hv0 j
-
 private theorem det_gramAt_ne_zero {D : D7} (V : HSp D) (τ : D.what₂.Tau) : (gramAt D V τ).det ≠ 0 := by
   intro h
   have h' : (V.gram.map (tauE D τ)).det = 0 := h
-  apply det_gram_ne_zero' V
+  apply _root_.Formalism.L2.Theta.gram_det_ne V
   apply (tauE D τ).injective
   rw [RingHom.map_det, map_zero]
   exact h'

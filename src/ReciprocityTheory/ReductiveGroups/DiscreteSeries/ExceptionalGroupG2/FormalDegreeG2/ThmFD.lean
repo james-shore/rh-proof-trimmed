@@ -138,7 +138,7 @@ theorem thmFD (hB3 : Lap.Base.TangentPairingStatement) {ε : Fin n → Bool} {la
         ∫⁻ z : PCoord ε → ℂ, ENNReal.ofReal (‖⟪(T t).w, fF ε (lamT lam t) (T t) (pmat z) (T t).w⟫_ℂ‖ ^ 2 * Jac z)) ≤
         ENNReal.ofReal ((t : ℝ) ^ (pOf ε * qOf ε) * (Module.finrank ℂ (T t).V : ℝ) / dfun (lamT lam t)) := by
       filter_upwards [hF, hd] with t hFt hdt
-      have F3 := lintegral_fF_coeff_sq_le_finrank_div_fdeg hFt hdt
+      have F3 := _root_.ReciprocityTheory.ChartRestriction.DS.formal_degree_inequality hFt hdt
       calc _ = ENNReal.ofReal ((t : ℝ) ^ (pOf ε * qOf ε)) * (ENNReal.ofReal (cPQ ε) *
             ∫⁻ z : PCoord ε → ℂ, ENNReal.ofReal (‖⟪(T t).w, fF ε (lamT lam t) (T t) (pmat z) (T t).w⟫_ℂ‖ ^ 2 * Jac z)) := by
             ring

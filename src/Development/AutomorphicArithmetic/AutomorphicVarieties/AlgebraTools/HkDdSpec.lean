@@ -51,11 +51,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 open MvPolynomial Equiv UpperTheory.V.AlgebraTools.Hk
 
-private theorem finset_prod_dvd_of_prime_of_dvd_imp_eq {M ι : Type} [CommRing M] (f : ι → M) (y : M) (s : Finset ι)
-    (hp : ∀ a ∈ s, Prime (f a)) (hn : ∀ a ∈ s, ∀ b ∈ s, f a ∣ f b → a = b) (hd : ∀ a ∈ s, f a ∣ y) :
-    ∏ a ∈ s, f a ∣ y :=
-  _root_.UpperTheory.Reformulated.B.Qi3.finset_prod_dvd_of_prime_of_dvd_imp_eq f y s hp hn hd
-
 private def sb {n : ℕ} (i j : Fin n) : Fin n → Fin n := fun k => if k = j then i else k
 
 private theorem dvd_sub_sb {R : Type} [CommRing R] {n : ℕ} (i j : Fin n) (y : MvPolynomial (Fin n) R) :
@@ -122,7 +117,7 @@ theorem UpperTheory.V.AlgebraTools.hkDdSpec :
   intro R _ _ n x
   have hlt : ∀ p ∈ pairs n, p.1 < p.2 := fun p hp => by simpa [pairs] using hp
   have hd : De R n ∣ alt x := by
-    refine finset_prod_dvd_of_prime_of_dvd_imp_eq _ _ _ (fun p hp => prime_sb (hlt p hp).ne) (fun p hp q hq hpq => ?_)
+    refine _root_.UpperTheory.Reformulated.B.Qi3.finset_prod_dvd_of_prime_of_dvd_imp_eq _ _ _ (fun p hp => prime_sb (hlt p hp).ne) (fun p hp q hq hpq => ?_)
       (fun p hp => (dvd_iff_sb _ _ _).2 (alt_sb (hlt p hp).ne x))
     rw [dvd_iff_sb, map_sub, rename_X, rename_X, sub_eq_zero] at hpq
     have e := X_injective hpq

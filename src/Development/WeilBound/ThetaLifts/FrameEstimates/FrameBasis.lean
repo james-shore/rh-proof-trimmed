@@ -58,11 +58,6 @@ open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.Inde
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
 
-theorem cm_invol (h : IsCMExt F E σ) (x : E) : σ (σ x) = x := by
-  obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
-  apply τ.injective
-  rw [h.2.2.2, h.2.2.2, star_star]
-
 theorem rId_zero : rId F 0 = 1 := by
   rw [rId, Real.exp_zero, sub_self, realAd, map_zero, map_zero, map_zero]
   exact add_zero (1 : AF F)
@@ -80,7 +75,7 @@ theorem form_swap (h : IsCMExt F E σ) {n : ℕ} {J : Matrix (Fin n) (Fin n) E} 
   have key : ∀ ε : E, (∀ i j, σ (J j i) = ε * J i j) → ε * ε = 1 → ∀ x y, form σ J y x = ε * σ (form σ J x y) := by
     intro ε h1 h2 x y
 
-    simp only [form, dotProduct, Matrix.mulVec, map_sum, map_mul, cm_invol h, h1, Finset.mul_sum]
+    simp only [form, dotProduct, Matrix.mulVec, map_sum, map_mul, _root_.GlobalTheory.AdelicU.cm_conj_conj h, h1, Finset.mul_sum]
     rw [Finset.sum_comm]
     refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
     linear_combination (-(y j * J j i * σ (x i))) * h2

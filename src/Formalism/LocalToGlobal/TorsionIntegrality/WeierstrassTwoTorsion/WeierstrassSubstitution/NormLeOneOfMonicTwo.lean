@@ -138,7 +138,7 @@ open Q2
 
 theorem two_curves_relation : BridgeTwoMore := by
   intro K _ _ _ W xT yT hE h2
-  obtain ⟨hroot, -, hkap, -, -, -, heven, -⟩ := twoTorsionZ K W xT yT hE h2
+  obtain ⟨hroot, -, hkap, -, -, -, heven, -⟩ := _root_.Formalism.L2.Th1.A.two_torsion_integral K W xT yT hE h2
   refine ⟨hroot, fun n hn => coeff_odd_eq_zero heven hn, ?_⟩
   rintro ⟨h1, h2', h3, h4, h6⟩ hx
   have hy : ‖yT‖ ≤ 1 := by

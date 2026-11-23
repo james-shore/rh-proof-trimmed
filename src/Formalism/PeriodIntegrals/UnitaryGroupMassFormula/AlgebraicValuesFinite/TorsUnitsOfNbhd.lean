@@ -116,7 +116,7 @@ theorem torsUnits_of_nbhd (L : Type) [Field L] [NumberField L]
     have hkM : (x ^ k) ^ M ∈ UFin L := (ufinSub L).pow_mem hk M
     exact hSn _ hkM (fun v hv => hclose _ hk v hv)
   have hz : ((χ.1 (x ^ M) : ℂˣ) : ℂ) = 1 := by
-    apply eq_one_of_forall_zpow
+    apply _root_.UpperTheory.Reformulated.B.Qk23.eq_one_of_forall_zpow
     intro k
     have e : ((χ.1 (x ^ M) : ℂˣ) : ℂ) ^ k = ((χ.1 ((x ^ k) ^ M) : ℂˣ) : ℂ) := by
       rw [← Units.val_zpow_eq_zpow_val, ← map_zpow, ← zpow_natCast, ← zpow_natCast, ← zpow_mul,

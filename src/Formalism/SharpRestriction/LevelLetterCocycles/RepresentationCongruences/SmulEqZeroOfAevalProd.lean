@@ -133,12 +133,6 @@ theorem smul_eq_zero_of_aeval_prod {O : Type*} [CommRing O] [IsDomain O] {V : Ty
       | (rw [Module.End.mul_apply, h₁, map_zero])
   rw [← hCx, hCd, map_sub, LinearMap.sub_apply, hRx, hP1F, sub_zero]
 
-private theorem emod_add_mul_ediv_eq (a b : ℤ) : a % b + b * (a / b) = a := by
-  first
-    | exact Int.emod_add_ediv a b
-    | (have h := Int.ediv_add_emod a b; linarith)
-    | (rw [Int.emod_def]; ring)
-
 private theorem card_filter_dvd_sub_mul_le_Icc_length_add (q : ℤ) (hq : 0 < q) (lo hi r : ℤ) (hlh : lo ≤ hi) :
     (((Finset.Icc lo hi).filter (fun x => q ∣ r - x)).card : ℤ) * q ≤ hi - lo + q := by
   obtain ⟨s, hs⟩ : ∃ s : Finset ℤ, s = (Finset.Icc lo hi).filter (fun x => q ∣ r - x) := ⟨_, rfl⟩
@@ -156,8 +150,8 @@ private theorem card_filter_dvd_sub_mul_le_Icc_length_add (q : ℤ) (hq : 0 < q)
     obtain ⟨u, hu⟩ := hx'.2
     obtain ⟨v, hv⟩ := hy'.2
     have hxy' : (x - lo) / q = (y - lo) / q := hxy
-    have e1 := emod_add_mul_ediv_eq (x - lo) q
-    have e2 := emod_add_mul_ediv_eq (y - lo) q
+    have e1 := _root_.Int.emod_add_mul_ediv (x - lo) q
+    have e2 := _root_.Int.emod_add_mul_ediv (y - lo) q
     have n1 := Int.emod_nonneg (x - lo) (ne_of_gt hq)
     have n2 := Int.emod_nonneg (y - lo) (ne_of_gt hq)
     have l1 := Int.emod_lt_of_pos (x - lo) hq
@@ -181,7 +175,7 @@ private theorem card_filter_dvd_sub_mul_le_Icc_length_add (q : ℤ) (hq : 0 < q)
   have hcard : s.card ≤ (Finset.Icc (0 : ℤ) ((hi - lo) / q)).card :=
     Finset.card_le_card_of_injOn (fun x : ℤ => (x - lo) / q) (by intro x hx; exact hmaps x hx) hinj
   rw [Int.card_Icc] at hcard
-  have hdiv := emod_add_mul_ediv_eq (hi - lo) q
+  have hdiv := _root_.Int.emod_add_mul_ediv (hi - lo) q
   have hnn := Int.emod_nonneg (hi - lo) (ne_of_gt hq)
   have hd0 : 0 ≤ (hi - lo) / q := Int.ediv_nonneg (by linarith) hq.le
   generalize (hi - lo) / q = w at hcard hdiv hd0

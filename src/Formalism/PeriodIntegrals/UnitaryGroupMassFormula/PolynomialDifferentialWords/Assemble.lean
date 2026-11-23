@@ -52,6 +52,6 @@ namespace PI.OpWords
 
 theorem opBound_of_vanish (hV : Vanish) : Formalism.MainNotions.TestSideCounting.OpBound :=
   opWords_of symbolMapInjective symbolMapMulLeft symbolMapMulRight symbolMapBihomogeneous weightOfEigenvector
-    polarizationBihomogeneous rttRelation pairingWeightCancel pairingDivisibility hV pairingPowMemSymbolRange
+    polarizationBihomogeneous rttRelation pairingWeightCancel _root_.PI.OpWords.WeightedHomogeneousPolynomialDifferentialWords.divT hV pairingPowMemSymbolRange
 
 end PI.OpWords

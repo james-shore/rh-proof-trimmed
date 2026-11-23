@@ -63,7 +63,7 @@ namespace UpperTheory.Gal.InertialTypesAlt.L.InflationTrace
 private theorem exists_trace {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] {n : ℕ}
     [MeasurableSpace (GL (Fin n) k)] [BorelSpace (GL (Fin n) k)] (m : Measure (GL (Fin n) k)) [m.IsHaarMeasure]
     (τ : SmIrr (GL (Fin n) k)) (φ : GL (Fin n) k → ℂ) (hφ : Test φ) : ∃ z, GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets.HasTrace m τ.ρ φ z := by
-  obtain ⟨l1, -, t1, -⟩ := UpperTheory.V.Z.Tf.Orb.gLTop_of k n
+  obtain ⟨l1, -, t1, -⟩ := _root_.UpperTheory.V.Z.Tf.Orb.gLTop k n
   have hA := (GlobalTheory.CompanionTheory.AdmDict.isAdmissible_iff τ.ρ).1 (PositivityTheory.Exh.irreducibleAdmissibleGL k n τ.V τ.ρ τ.smooth τ.irred)
   obtain ⟨A, hA1, hA2⟩ := PositivityTheory.TfC.OccursIff.exists_integralOp_of_admissible m τ.ρ hA φ hφ.1 hφ.2
   exact ⟨_, A, hA1, hA2, rfl⟩
@@ -146,7 +146,7 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.inflTrace :
   have hstab : ∀ u ∈ K1 rK n, GlobalTheory.LBC.galAct s n u ∈ K1 rK n := fun u hu => by
     have : GlobalTheory.LBC.galAct s n u ∈ (K1 rK n).map (GlobalTheory.LBC.galAct s n) := Subgroup.mem_map_of_mem _ hu
     rwa [hst1] at this
-  obtain ⟨hm1, hm2⟩ := hIM _ _ (UpperTheory.V.Z.Tf.Orb.extCont_of _ _).1 inferInstance F₀ F₁ hres.deg rk rK hres.onto₀ hres.onto₁
+  obtain ⟨hm1, hm2⟩ := hIM _ _ (_root_.UpperTheory.V.Z.Tf.Orb.extCont _ _).1 inferInstance F₀ F₁ hres.deg rk rK hres.onto₀ hres.onto₁
     hres.inc s sb hres.gal hres.frob n fb hfb
   rw [hKk, hKK] at hm1
   rw [hKk] at hm2
@@ -164,8 +164,8 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.inflTrace :
   obtain ⟨z, hz⟩ := exists_trace mF τ _ hTk
   obtain ⟨B, hB, hBt⟩ := hcT _ _ 1 z hTK hTk hMA hsupp hz
   obtain ⟨A, hA, hAt⟩ := hz
-  obtain ⟨l1, s1, t1, -⟩ := UpperTheory.V.Z.Tf.Orb.gLTop_of (v.adicCompletion F) n
-  obtain ⟨l2, s2, t2, -⟩ := UpperTheory.V.Z.Tf.Orb.gLTop_of (w.1.adicCompletion E) n
+  obtain ⟨l1, s1, t1, -⟩ := _root_.UpperTheory.V.Z.Tf.Orb.gLTop (v.adicCompletion F) n
+  obtain ⟨l2, s2, t2, -⟩ := _root_.UpperTheory.V.Z.Tf.Orb.gLTop (w.1.adicCompletion E) n
   have e1 := UpperTheory.Gal.InertialTypesAlt.L.trSum _ _ hH (KO _ n) (by rw [hKK]; exact (hUS _ n).1) (by rw [hKK]; exact (hUS _ n).2.1)
     (by rw [hKK]; exact hE1) _ τ'.ρ τ'.smooth (K1 rK n) hUKo hUKle _ hHK (I₂ : τ'.V →ₗ[ℂ] τ'.V)
     (fun x hx => by rw [hI₂c]; exact hTw.mem_fixed hst1 hx)

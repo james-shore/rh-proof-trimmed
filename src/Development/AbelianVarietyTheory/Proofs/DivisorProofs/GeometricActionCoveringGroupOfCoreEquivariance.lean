@@ -58,7 +58,7 @@ theorem GlobalTheory.geoAct_of_eqAt : ∀ {D : D7} {G : Type} [Group G] [Fintype
     have e : (O i).s0 = T.toCore.σ₀ := sOv_eq T.toCore (O i).c' (O i).hle
     rw [e]
     exact T.toCore.good_σ₀
-  obtain ⟨ρC, hρ⟩ := GlobalTheory.T.exists_level_action_cusp_form_representation T κ i (O i).lev2 ht.laws hact
+  obtain ⟨ρC, hρ⟩ := _root_.GlobalTheory.LevelRep.exists_cusp_rep T κ i (O i).lev2 ht.laws hact
     (fun g f hf => (hlift g).elim fun k hk =>
       (he i (O i).s0 hs (O i).hV g k hk f hf).1)
   refine ⟨ρC, fun σ g f => ?_, fun g f hf => ?_⟩

@@ -100,10 +100,6 @@ theorem saturated_has_complement {R : Type u_1} {V : Type u_2} [CommRing R] [IsD
       rw [hx']
       exact Submodule.add_mem_sup ⟨g (N'.mkQ m), ⟨_, rfl⟩, rfl⟩ (by simpa [N'] using hd)
 
-theorem main : ∀ {R : Type u_1} {V : Type u_2} [inst : CommRing R] [IsDedekindDomain R]
-    [inst_2 : AddCommGroup V] [inst_3 : Module R V] (N M : Submodule R V), N ≤ M →
-    Submodule.FG M → (∀ (r : R) (y : V), r ≠ (0 : R) → y ∈ M → r • y ∈ N → y ∈ N) →
-    ∃ (A : Submodule R V), A ⊓ N = ⊥ ∧ A ⊔ N = M :=
-  fun N M h1 h2 h3 => saturated_has_complement N M h1 h2 h3
+alias main := _root_.GlobalTheory.SaturatedSublatticeComplement.saturated_has_complement
 
 end GlobalTheory.SaturatedSublatticeComplement

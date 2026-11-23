@@ -383,6 +383,6 @@ end PositivityTheory.Rg.Sw.LC.Basic
 
 namespace PositivityTheory.Rg.Sw.LC
 
-theorem fockBasic : FockBasic := Basic.fockBasic
+alias fockBasic := _root_.PositivityTheory.Rg.Sw.LC.Basic.fockBasic
 
 end PositivityTheory.Rg.Sw.LC

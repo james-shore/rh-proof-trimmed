@@ -163,8 +163,8 @@ theorem exactness_of_N : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (
       Function.Exact (((HW l).W K s LL h).map ι) (((HW l).W K s LL h).map π) ∧
       Function.Surjective (((HW l).W K s LL h).map π) := GlobalTheory.EtaleExact.DD_exact D HW F (GlobalTheory.Decompl.fontaine_and_decompletion D HW F) l K s LL h
     T₀ T₁ T₂ ι π hses
-  have h4 := GlobalTheory.T.mem_wachN_of_map_mem_saturated D HW F l K s LL h T₀ T₁ T₂ ι π c0 c1 c2 hses
-  obtain ⟨c, hc⟩ := GlobalTheory.T.wachN_cokernel_killed_by_power D HW F Cm l K s LL h T₀ T₁ T₂ ι π c0 c1 c2 hses
+  have h4 := _root_.GlobalTheory.NL.KerSat.mem_N_of_map_mem D HW F l K s LL h T₀ T₁ T₂ ι π c0 c1 c2 hses
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.NL.CokerFin.coker_killed D HW F Cm l K s LL h T₀ T₁ T₂ ι π c0 c1 c2 hses
   have hp : ((D.loc l).PD K).p = l := (D.loc l).PD_p K
   refine ⟨fun x _ hx => ?_, fun y hy hy0 => ?_, fun z hz => ?_, h4, ?_⟩
   · exact hex.1 (hx.trans (map_zero _).symm)

@@ -134,9 +134,9 @@ theorem volume_unitary : ∀ (N : ℕ) (c : ℝ), IsGauge (allPos N) c →
   | zero => exact volume_zero
   | succ n ih =>
     intro c hc
-    obtain ⟨c₀, hc₀, -, hu⟩ := GlobalTheory.GaugeConst.gauge_exists_pos_unique (n + 1) (allPos (n + 1))
+    obtain ⟨c₀, hc₀, -, hu⟩ := _root_.GlobalTheory.GaugeConst.exists_unique_isGauge (n + 1) (allPos (n + 1))
     have hcpos : 0 < c := by rw [hu c hc]; exact hc₀
-    obtain ⟨c', hc'pos, hc', -⟩ := GlobalTheory.GaugeConst.gauge_exists_pos_unique n (allPos n)
+    obtain ⟨c', hc'pos, hc', -⟩ := _root_.GlobalTheory.GaugeConst.exists_unique_isGauge n (allPos n)
     have hv := ih c' hc'
     let x₀ : Fin (n + 1) → ℂ := Pi.single 0 1
     let B : Matrix (Fin (n + 1)) (Fin n) ℂ := (1 : Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ).submatrix id Fin.succ

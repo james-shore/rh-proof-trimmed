@@ -49,6 +49,7 @@ import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.CoeffRingsHaveRootsOfUnity
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsContinuousPadic
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIrreducibleFixed
 
 @[expose] public section
 
@@ -113,13 +114,6 @@ namespace GlobalTheory.EmptySecondBlock
 
 open GlobalTheory.SmGL.DepthZero
 
-theorem isSubquotient_comp' {G G' V W : Type} [Group G] [Group G'] [AddCommGroup V] [Module ℂ V] [AddCommGroup W]
-    [Module ℂ W] {σ : Representation ℂ G W} {π : Representation ℂ G V} (h : IsSubquotient σ π) (ψ : G' →* G) :
-    IsSubquotient (σ.comp ψ : Representation ℂ G' W) (π.comp ψ : Representation ℂ G' V) := by
-  obtain ⟨S, f, hf⟩ := h
-  exact ⟨⟨S.toSubmodule, fun g _ hv => S.apply_mem_toSubmodule (ψ g) hv⟩,
-    ⟨f.toLinearMap, fun g => f.isIntertwining' (ψ g)⟩, hf⟩
-
 theorem isSubquotient_of_empty_second_block : ∀ (F : Type) [Field F] [ValuativeRel F] [TopologicalSpace F] [IsNonarchimedeanLocalField F] (r : ℕ) (c : Bool → ℕ) (f : (Σ j, Fin (c j)) ≃ Fin r) (V : Type) [AddCommGroup V] [Module ℂ V] (π : Representation ℂ (GL (Fin r) F) V) (s : ∀ j, IrrRep (GL (Fin (c j)) F)), c true = 0 → IsSubquotient (piTensor fun j => (s j).ρ) (jac f π) → ∃ φ : Fin r ≃ Fin (c false), IsSubquotient ((s false).ρ.comp (reix F φ) : Representation ℂ (GL (Fin r) F) (s false).V) π := by
   intro F _ _ _ _ r c f V _ _ π s hc hsub
   refine ⟨(falseEquiv f hc).symm, ?_⟩
@@ -134,7 +128,7 @@ theorem isSubquotient_of_empty_second_block : ∀ (F : Type) [Field F] [Valuativ
       rw [jac_mk, deltaHalf_eq_one hc, inv_one, Units.val_one, one_smul, hι]⟩
   have h3 : IsSubquotient ((jac f π).comp ι) π :=
     IsSubquotient.of_surjective q (Submodule.mkQ_surjective _)
-  have h2 := isSubquotient_comp' hsub ι
+  have h2 := _root_.GlobalTheory.CuspRep.ParLaws.isSubquotient_comp hsub ι
 
   haveI := nontrivial_of_irreducible (s true).irr
   obtain ⟨w0, hw0⟩ := exists_ne (0 : (s true).V)

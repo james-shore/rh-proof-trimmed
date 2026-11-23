@@ -62,16 +62,6 @@ open scoped Topology FourierTransform
 
 namespace GlobalTheory
 
-theorem integrable_exp_neg_mul_abs_line {c : ℝ} (hc : 0 < c) :
-    Integrable (fun s : ℝ => Real.exp (-(c * |s|))) := by
-  first
-  | exact @_root_.GlobalTheory.IntegrableExpNegAbs.integrable_exp_neg_mul_abs
-  | exact _root_.GlobalTheory.IntegrableExpNegAbs.integrable_exp_neg_mul_abs
-  | (apply _root_.GlobalTheory.IntegrableExpNegAbs.integrable_exp_neg_mul_abs <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegrableExpNegAbs.integrable_exp_neg_mul_abs <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegrableExpNegAbs.integrable_exp_neg_mul_abs <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntegrableExpNegAbs.integrable_exp_neg_mul_abs ..)
-
 theorem eq_zero_of_exp_decay_of_fourier_eq_zero_on_halfLine :
     ∀ (φ : ℝ → ℂ) (R : ℝ), Continuous φ →
       (∃ A e : ℝ, 0 < e ∧ ∀ s, ‖φ s‖ ≤ A * Real.exp (-(e * |s|))) →
@@ -86,7 +76,7 @@ theorem eq_zero_of_exp_decay_of_fourier_eq_zero_on_halfLine :
     simp only [hUdef, mem_inter_iff, mem_setOf_eq, Complex.ofReal_im]
     constructor <;> linarith
   have hint : Integrable (fun s : ℝ => A * Real.exp (-(e / 2 * |s|))) :=
-    (integrable_exp_neg_mul_abs_line (half_pos he)).const_mul A
+    (_root_.GlobalTheory.IntegrableExpNegAbs.integrable_exp_neg_mul_abs (half_pos he)).const_mul A
   have hA : 0 ≤ A := by
     have := (norm_nonneg _).trans (hb 0)
     simpa using this
@@ -138,7 +128,7 @@ theorem eq_zero_of_exp_decay_of_fourier_eq_zero_on_halfLine :
     push_cast
     ring
   have hφi : Integrable φ :=
-    ((integrable_exp_neg_mul_abs_line he).const_mul A).mono' hφ.aestronglyMeasurable
+    ((_root_.GlobalTheory.IntegrableExpNegAbs.integrable_exp_neg_mul_abs he).const_mul A).mono' hφ.aestronglyMeasurable
       (Eventually.of_forall hb)
   have hinv := hφ.fourierInv_fourier_eq hφi (by rw [hF]; exact integrable_zero _ _ _)
   rw [← hinv, hF]

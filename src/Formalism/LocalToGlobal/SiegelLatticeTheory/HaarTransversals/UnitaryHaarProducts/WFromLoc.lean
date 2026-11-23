@@ -127,23 +127,23 @@ theorem wblk_core (hQK : QuotProdK) (hHN : LocHNProps) (hNU : NUnimodLoc) (hTens
   have hε : ∀ v, ε v = eps48 D.R.k D.R.rS := fun v => funext fun i =>
     (eps_eq v i).trans (by simp [epsS, eps48])
   have hlamE : ∀ v, (fun i => lamS D.R (D.hc (pl v)) (Fin.cast n_eq i)) =
-      lam48 D.R.k D.R.rS (fun i => ((D.hc (pl v)).v i : ℝ)) (fun j => ((D.hc (pl v)).b (Fin.cast (mEqR D.R) j) : ℝ)) :=
+      lam48 D.R.k D.R.rS (fun i => ((D.hc (pl v)).v i : ℝ)) (fun j => ((D.hc (pl v)).b (Fin.cast (_root_.Formalism.BasicNotions.Ranks.rS_two D.R) j) : ℝ)) :=
     fun v => funext fun i => lam_matchR D.R (D.hc (pl v)) i n_eq
   have hDS : ∀ v, IsDS (ε v) (lam48 D.R.k D.R.rS (fun i => ((D.hc (pl v)).v i : ℝ))
-      (fun j => ((D.hc (pl v)).b (Fin.cast (mEqR D.R) j) : ℝ))) (Bu.σ v) := fun v => by
+      (fun j => ((D.hc (pl v)).b (Fin.cast (_root_.Formalism.BasicNotions.Ranks.rS_two D.R) j) : ℝ))) (Bu.σ v) := fun v => by
     rw [← hlamE v]; exact Bu.ds v
   have hwL : ∀ v, IsLowUnit (ε v) (lam48 D.R.k D.R.rS (fun i => ((D.hc (pl v)).v i : ℝ))
-      (fun j => ((D.hc (pl v)).b (Fin.cast (mEqR D.R) j) : ℝ))) (Bu.σ v) (Bu.w v) := fun v => by
+      (fun j => ((D.hc (pl v)).b (Fin.cast (_root_.Formalism.BasicNotions.Ranks.rS_two D.R) j) : ℝ))) (Bu.σ v) (Bu.w v) := fun v => by
     rw [← hlamE v]; exact Bu.low v
   have hl : ∀ v, Formalism.QuantumDeterminants.IsHCParam (lam48 D.R.k D.R.rS (fun i => ((D.hc (pl v)).v i : ℝ))
-      (fun j => ((D.hc (pl v)).b (Fin.cast (mEqR D.R) j) : ℝ))) := fun v => by
+      (fun j => ((D.hc (pl v)).b (Fin.cast (_root_.Formalism.BasicNotions.Ranks.rS_two D.R) j) : ℝ))) := fun v => by
     have h := Formalism.MainNotions.S.Inh.obj_isHCParam_lamSH D.R (D.hc (pl v))
     have e : lamSH D.R (D.hc (pl v)) = lam48 D.R.k D.R.rS (fun i => ((D.hc (pl v)).v i : ℝ))
-        (fun j => ((D.hc (pl v)).b (Fin.cast (mEqR D.R) j) : ℝ)) :=
+        (fun j => ((D.hc (pl v)).b (Fin.cast (_root_.Formalism.BasicNotions.Ranks.rS_two D.R) j) : ℝ)) :=
       funext fun i => lam_matchR D.R (D.hc (pl v)) i (dimS_eq D.R)
     rwa [e] at h
-  have hGap : ∀ v, GapBig D.R.k D.R.rS (fun j => ((D.hc (pl v)).b (Fin.cast (mEqR D.R) j) : ℝ)) :=
-    fun v => hGB (mEqR D.R).symm hG (pl v)
+  have hGap : ∀ v, GapBig D.R.k D.R.rS (fun j => ((D.hc (pl v)).b (Fin.cast (_root_.Formalism.BasicNotions.Ranks.rS_two D.R) j) : ℝ)) :=
+    fun v => hGB (_root_.Formalism.BasicNotions.Ranks.rS_two D.R).symm hG (pl v)
 
   have hHset : ∀ u, Hset _ (Set.range (eC ⟨_, ιE, ιE_conj, ιE_F, bas, J_eq, L_eq, pl, φ_eq, n_eq, eps_eq⟩ L) ∪
       Set.range (fC ⟨_, ιE, ιE_conj, ιE_F, bas, J_eq, L_eq, pl, φ_eq, n_eq, eps_eq⟩ L) ∪
@@ -201,7 +201,7 @@ theorem wblk_core (hQK : QuotProdK) (hHN : LocHNProps) (hNU : NUnimodLoc) (hTens
     have hsv : ∀ v, ∃ h ∈ UWset D.R.k D.R.rS (zBv D.R.k D.R.rS (TV u)), ∃ m ∈ Nset D.R.k D.R.rS,
         Qi (ε v) (eV v) (fV v) (Pi.wfr u v) (z0v (TV u) (zV u v)) * uMat (s v) *
           Qm (eV v) (fV v) (Pi.wfr u v) (z0v (TV u) (zV u v)) = h * m :=
-      fun v => HNset_of_inS (fun k r T hT s hs h1 h2 => bessel_levi_formula k r T hT s hs h1 h2) (hFr u v) (hT u)
+      fun v => HNset_of_inS (fun k r T hT s hs h1 h2 => _root_.PI.UnitaryGroupMassFormula.BesselLevi.main k r T hT s hs h1 h2) (hFr u v) (hT u)
         (Qm_zB (hT u) _) (hs v)
     choose hB hhB mB hmB hsm using hsv
     let gH : ∀ v, Formalism.REAL.UJ (ε v) := fun v => toUJ _ (conjQ_UJ (hFr u v) (hhB v).1)

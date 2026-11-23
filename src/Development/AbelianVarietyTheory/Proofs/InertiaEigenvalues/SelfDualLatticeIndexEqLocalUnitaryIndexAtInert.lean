@@ -70,7 +70,7 @@ theorem ker_finPart_le {D : D7} {P : HeightOneSpectrum (𝓞 D.host.E)} {e : AE 
   intro a ha
   rw [RingHom.mem_ker] at ha ⊢
   refine (hC.2.2.1 a).2 ?_
-  refine GlobalTheory.LatVac.tensor_prod_eq_zero (F := D.host.F) (A := _) (B := _) _ ?_ ?_
+  refine _root_.GlobalTheory.ProductLeftMaps.main (F := D.host.F) (A := _) (B := _) _ ?_ ?_
   · show infPart D (e * a) = 0
     rw [map_mul, hC.1.2.2, zero_mul]
   · show finPart D (e * a) = 0

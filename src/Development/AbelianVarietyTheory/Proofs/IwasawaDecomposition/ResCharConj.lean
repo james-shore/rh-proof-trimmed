@@ -45,15 +45,7 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Fo
 
 namespace GlobalTheory.Mem.Top.TwFin
 
-theorem exists_over {K : Type} [Field K] [NumberField K] {l : ℕ} (hl : l.Prime) :
-    ∃ v : HeightOneSpectrum (𝓞 K), ((l : ℕ) : 𝓞 K) ∈ v.asIdeal := by
-  first
-  | exact @_root_.GlobalTheory.IsolatedTheoremFour.main
-  | exact _root_.GlobalTheory.IsolatedTheoremFour.main
-  | (apply _root_.GlobalTheory.IsolatedTheoremFour.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IsolatedTheoremFour.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IsolatedTheoremFour.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IsolatedTheoremFour.main ..)
+alias exists_over := _root_.GlobalTheory.IsolatedTheoremFour.main
 
 theorem finite_mem {K : Type} [Field K] [NumberField K] {l : ℕ} (hl : l ≠ 0) :
     {v : HeightOneSpectrum (𝓞 K) | ((l : ℕ) : 𝓞 K) ∈ v.asIdeal}.Finite := by

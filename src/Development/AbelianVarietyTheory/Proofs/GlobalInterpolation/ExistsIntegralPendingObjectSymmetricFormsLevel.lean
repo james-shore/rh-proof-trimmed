@@ -121,14 +121,6 @@ theorem cols_mulVec {E : Type} [Field E] {N n : ℕ} (hN : n + 1 = N) (A : Matri
   rw [mul_comm (z a)]
   rfl
 
-theorem hform_add_left' {E : Type} [Field E] {n : ℕ} (σ : E →+* E) (J : Matrix (Fin n) (Fin n) E) (x x' y : Fin n → E) :
-    Formalism.UG.hform σ J (x + x') y = Formalism.UG.hform σ J x y + Formalism.UG.hform σ J x' y := by
-  simp only [Formalism.UG.hform, Pi.add_apply, map_add (f := _), add_mul, Finset.sum_add_distrib]
-
-theorem hform_add_right' {E : Type} [Field E] {n : ℕ} (σ : E →+* E) (J : Matrix (Fin n) (Fin n) E) (x y y' : Fin n → E) :
-    Formalism.UG.hform σ J x (y + y') = Formalism.UG.hform σ J x y + Formalism.UG.hform σ J x y' := by
-  simp only [Formalism.UG.hform, Pi.add_apply, mul_add, Finset.sum_add_distrib]
-
 end LocalBases
 
 section Dual
@@ -152,10 +144,10 @@ theorem mem_dual_tilde_iff {D : D7} {u : D.what₂.Word} {Ch : ℕ → Type} {ch
     rw [hb, hform_smul_leftB, hform_zc_iXc, mul_zero]
   have p1 : ∀ x, hform (sigD D : D.host.E →+* D.host.E) (gramN D D.R.m le_rfl) (iXc D x)
       (iXc D a + (t / ((D.mem u).A.T : D.host.E)) • Tf.til.z0) = hform (sigD D : D.host.E →+* D.host.E) (gramP D) x a := fun x => by
-    rw [hform_add_right', hform_smul_rightB, o1, mul_zero, add_zero, hform_iXc]
+    rw [_root_.Formalism.L2.GlobalTheoryTheory.Br.hform_add_right, hform_smul_rightB, o1, mul_zero, add_zero, hform_iXc]
   have p2 : hform (sigD D : D.host.E →+* D.host.E) (gramN D D.R.m le_rfl) Tf.til.z0
       (iXc D a + (t / ((D.mem u).A.T : D.host.E)) • Tf.til.z0) = t := by
-    rw [hform_add_right', hform_smul_rightB, o2, zero_add, hzz, div_mul_cancel₀ _ hT]
+    rw [_root_.Formalism.L2.GlobalTheoryTheory.Br.hform_add_right, hform_smul_rightB, o2, zero_add, hzz, div_mul_cancel₀ _ hT]
   have hSD := (GlobalTheory.ClassLatticeSelfDual.classLattice_selfDual D u Tf.clsP c).2 a
   constructor
   · intro h
@@ -169,7 +161,7 @@ theorem mem_dual_tilde_iff {D : D7} {u : D.what₂.Word} {Ch : ℕ → Type} {ch
     obtain ⟨r, rfl⟩ := Submodule.mem_span_singleton.1 hy2
     have er : r • Tf.til.z0 = (r : D.host.E) • Tf.til.z0 := (algebraMap_smul D.host.E r _).symm
     have ex : ((iXc D).restrictScalars (𝓞 D.host.E)) x = iXc D x := rfl
-    rw [hform_add_left', er, ex, hform_smul_leftB, p1, p2]
+    rw [_root_.Formalism.L2.GlobalTheoryTheory.Br.hform_add_left, er, ex, hform_smul_leftB, p1, p2]
     refine add_mem (hSD.1 ha x hx) (mul_mem ?_ ht)
     exact ⟨⟨_, r.2.map (sigD D : D.host.E →+* D.host.E).toIntAlgHom⟩, rfl⟩
 
@@ -305,19 +297,6 @@ theorem mem_SP_of_coord_integral (D : D7) (u : D.what₂.Word) (Ch : ℕ → Typ
 
 end Localisation
 
-theorem intSpan_smul' (D : D7) {n : ℕ} (w : D.what₂.places.Pl) (lam : D.what₂.Tau → DomWeight n) (r : D.what₂.LL)
-    (hr : r ∈ intW D.what₂.places w) (p : MvPolynomial (D.what₂.Tau × Fin n × Fin n) ℂ)
-    (hp : p ∈ Formalism.MainNotions.product_first_zeroth_parts.IntSpan D w lam) : D.what₂.embLL r • p ∈ Formalism.MainNotions.product_first_zeroth_parts.IntSpan D w lam := by
-  unfold Formalism.MainNotions.product_first_zeroth_parts.IntSpan at *
-  induction hp using AddSubgroup.closure_induction with
-  | mem q hq =>
-    obtain ⟨r', f, hr', hf, rfl⟩ := hq
-    apply AddSubgroup.subset_closure
-    exact ⟨r * r', f, mul_mem hr hr', hf, by rw [map_mul, mul_smul]⟩
-  | zero => rw [smul_zero]; exact zero_mem _
-  | add p q _ _ hp hq => rw [smul_add]; exact add_mem hp hq
-  | neg p _ hp => rw [smul_neg]; exact neg_mem hp
-
 theorem root_mem_intW (D : D7) (w : D.what₂.places.Pl) (r : D.what₂.LL) (n : ℕ) (hn : 0 < n) (h : r ^ n = 1) :
     r ∈ intW D.what₂.places w := by
   show (0 : WithTop ℤ) ≤ D.what₂.places.val w r
@@ -369,13 +348,13 @@ theorem exists_integralPendingObject_symmetricFormsLevel : ∀ (D : D7) (u : D.w
     | mem y hy =>
       obtain ⟨P, hP, hPv⟩ := ((Tf.val D.R.m le_rfl (Or.inr rfl)).lat y).1 hy w ((D.fm u).til c) B' hB'
       rw [GlobalTheory.coMTS_of_gaInv D u Ch chOf Tf Bm w c B' (hBu w c) hB'eq _ P hPv, hχr]
-      exact intSpan_smul' D w _ _ hri P hP
+      exact _root_.GlobalTheory.PtCo.intSpan_smul' D w _ _ hri P hP
     | zero => rw [map_zero, Pi.zero_apply, map_zero]; exact zero_mem _
     | add y z _ _ hy hz => rw [map_add (f := _), Pi.add_apply, map_add (f := _)]; exact add_mem hy hz
     | smul a y _ hy =>
       have e : a • y = (a : D.what₂.LL) • y := rfl
       rw [e, LinearMap.map_smulₛₗ, Pi.smul_apply, map_smul]
-      exact intSpan_smul' D w _ (a : D.what₂.LL) a.2 _ hy
+      exact _root_.GlobalTheory.PtCo.intSpan_smul' D w _ (a : D.what₂.LL) a.2 _ hy
   · intro w z hz
     constructor
     · rintro ⟨y, hy, rfl⟩ c

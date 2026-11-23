@@ -52,20 +52,9 @@ open TensorProduct IsLocalRing Polynomial
 
 namespace Formalism.L2.FormalSeriesBounds.UpFBr.Pl
 
-section Complete
-
-variable {Z : Type} [CommRing Z] (π : Z) {A : Type} [CommRing A] [Algebra Z A] {N : ℕ}
-  (β : Module.Basis (Fin N) Z A)
-
-
-end Complete
-
 section Lift
 
 variable {A : Type} [CommRing A] (I : Ideal A)
-
-theorem lift_idem [IsAdicComplete I A] (ε : A) (h : ε * ε - ε ∈ I) : ∃ e : A, e * e = e ∧ e - ε ∈ I := by
-  first | exact Bl.SecondBlockLemmaI.goal1 .. | (apply Bl.SecondBlockLemmaI.goal1 <;> assumption) | (intros; apply Bl.SecondBlockLemmaI.goal1 <;> assumption)
 
 theorem idem_zero [IsHausdorff I A] {f : A} (h : f * f = f) (hf : f ∈ I) : f = 0 := by
   refine IsHausdorff.haus (I := I) ‹_› f fun n => ?_

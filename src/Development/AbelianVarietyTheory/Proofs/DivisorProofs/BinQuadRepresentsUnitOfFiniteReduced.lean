@@ -51,17 +51,6 @@ open Polynomial
 
 namespace GlobalTheory
 
-theorem binQuad_represents_unit_of_finite_reduced (S : Type) [CommRing S] [Finite S]
-    [IsReduced S] (t m f : S) (hd : IsUnit (t ^ 2 - 4 * m)) (hf : IsUnit f) :
-    ∃ a b : S, a ^ 2 + t * a * b + m * b ^ 2 = f := by
-  first
-  | exact @_root_.GlobalTheory.FieldCaseReduction.main
-  | exact _root_.GlobalTheory.FieldCaseReduction.main
-  | (apply _root_.GlobalTheory.FieldCaseReduction.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FieldCaseReduction.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FieldCaseReduction.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FieldCaseReduction.main ..)
-
 theorem norm_surj_of_finite_reduced_involution : ∀ (R : Type) [CommRing R] [Finite R]
     [IsReduced R] (τ : R →+* R), (∀ x, τ (τ x) = x) → ∀ θ : R, IsUnit (θ - τ θ) →
     ∀ f : R, IsUnit f → τ f = f → ∃ c : R, τ c * c = f := by
@@ -104,7 +93,7 @@ theorem norm_surj_of_finite_reduced_involution : ∀ (R : Type) [CommRing R] [Fi
     push_cast [fA, vA]
     rw [← hv, v.mul_inv]
   haveI : IsReduced A := ⟨fun x hx => Subtype.ext (IsNilpotent.eq_zero (hx.map A.subtype))⟩
-  obtain ⟨a, b, hab⟩ := binQuad_represents_unit_of_finite_reduced A tA mA fA hdisc hfA
+  obtain ⟨a, b, hab⟩ := _root_.GlobalTheory.FieldCaseReduction.main A tA mA fA hdisc hfA
   have hab' := congrArg Subtype.val hab
   push_cast [tA, mA, fA] at hab'
   refine ⟨(a : R) + θ * b, ?_⟩

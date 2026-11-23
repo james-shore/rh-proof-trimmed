@@ -140,9 +140,9 @@ theorem rationalIdele_mem_normOne_of_norm_eq_one {D : D7} (z : D.host.Eˣ) (hz :
 
 theorem muLaw_underTie : UnderTie (fun {D L hT Gi Gl Kc Y cX ex t u μ St} A dtU a => MuLaw t u μ dtU) := by
   intro D L hT Gi Gl Kc Y cX ex t u μ St A dtU a hP hT'
-  have hA := GlobalTheory.T.kernelChainCharacters_algebraic_unitaryPoints A dtU a hP hT'
-  have hU := GlobalTheory.T.kernelStepCharacter_eq_one_integralUnitary A dtU a hP hT'
-  have hR := GlobalTheory.T.kernelChainCharacter_normOne_eq_infinityType A dtU a hP hT'
+  have hA := _root_.GlobalTheory.TieAlgValues.mt_mem_Qbar A dtU a hP hT'
+  have hU := _root_.GlobalTheory.TieUnr.mt_eq_one_of_intUnit A dtU a hP hT'
+  have hR := _root_.GlobalTheory.TwV.mt_ratId A dtU a hP hT'
   intro i hi
   refine ⟨fun y => muOf_det dtU (i + 1) y, ⟨?_, ?_⟩, ?_, ?_, ?_⟩
   · have h1 := muOf_det (t := t) (u := u) (μ := μ) dtU (i + 1) 1

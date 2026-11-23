@@ -258,8 +258,7 @@ theorem corr_act {R : Type} [CommRing R] [Algebra O R] {x : specO O R ⟶ P.Gt} 
     (h : Corr P x y) (a : Λ) : Corr P (x ≫ P.oGt.act a) (y ≫ P.oG.act a) := fun m => by
   rw [← Category.assoc, ← Category.assoc, h, P.cmp_act]
 
-theorem spMap_spMap {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (f : R' →+* R'')
-    (g : R →+* R') : spMap f ≫ spMap g = spMap (f.comp g) := (Spec.map_comp _ _).symm
+alias spMap_spMap := _root_.Formalism.L2.Pj.spMap_comp_ring
 
 theorem LieTie.scale {Y : Scheme.{0}} {ψ : P.A.A.left ⟶ Y} {x : LieG P.Gt} {u : Sp (DualNumber C) ⟶ Y}
     (h : LieTie P ψ x u) (a : O) :

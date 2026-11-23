@@ -164,7 +164,7 @@ theorem eichler_shimura_kummer : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [Is
     exact Subsingleton.elim _ _
   have hl' : l.Prime := hl.out
   have hlpos : 0 < l := hl'.pos
-  obtain ⟨L, hL, hjL, hfd⟩ := finLev ε X hε hj M hM
+  obtain ⟨L, hL, hjL, hfd⟩ := _root_.GlobalTheory.KZ.LevelField.exists_level_field ε X hε hj M hM
   have htr : Transcendental Ω (⟨X.jK, hjL⟩ : L) := by
     intro halg
     exact jTr X (by simpa using halg.algHom L.val)
@@ -236,7 +236,7 @@ theorem eichler_shimura_kummer : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [Is
           = algebraMap Ω X.K C * (r : X.K) * h ^ (l ^ n) := by
         rw [e1, hrz, mul_pow, mul_pow, ← map_pow, he, ← pow_mul, map_mul]; ring
       rw [e3]; exact hv
-    obtain ⟨ζ, hζ, hv2⟩ := rootLift (Ω := Ω) W _ (l ^ a) (pow_pos hlpos a) hx
+    obtain ⟨ζ, hζ, hv2⟩ := _root_.GlobalTheory.exists_root_of_unity_close_of_pow_close (Ω := Ω) W _ (l ^ a) (pow_pos hlpos a) hx
     obtain ⟨e₁, he₁⟩ := IsAlgClosed.exists_pow_nat_eq e hlpos
     have he₁0 : e₁ ≠ 0 := by
       rintro rfl
@@ -264,7 +264,7 @@ theorem eichler_shimura_kummer : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [Is
     show ((z : L) : X.K) * (algebraMap Ω X.K e₁ * h ^ (l ^ k)) ^ l - algebraMap Ω X.K ζ = _
     rw [mul_pow, ← map_pow, he₁, ← pow_mul, ← pow_succ]; ring
   choose Sr hSr using key
-  obtain ⟨SE, hSE⟩ := red1 ε X hε hj M f hM hfM
+  obtain ⟨SE, hSE⟩ := _root_.GlobalTheory.KZ.kronecker_ratio_reduces_to_const ε X hε hj M f hM hfM
   refine ⟨SE ∪ M.primeFactors ∪ R.biUnion Sr, ?_⟩
   intro q hq hqS s hs σ hσ
   simp only [Finset.mem_union, Finset.mem_biUnion, not_or, not_exists, not_and] at hqS
@@ -278,7 +278,7 @@ theorem eichler_shimura_kummer : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [Is
     fun x hx => ⟨(hsV x hx).1, hsymm x hx, (hsV x hx).2⟩
   obtain ⟨W, hWa, hWb, hWc⟩ := GlobalTheory.T.exists_valuationSubring_gauss_modularFunction ε X hε hj q hq V hqV
   obtain ⟨κ, hκ, hred⟩ := hSE q hq hqE V s hqV hV' σ hσ W hWa hWc
-  have hU := unMap ε X hε hj (l ^ n) f hfU
+  have hU := _root_.GlobalTheory.KZ.Tower.Un_sl_gal ε X hε hj (l ^ n) f hfU
   have hne : ∀ g : GQ, X.sl g (f : X.K) ≠ 0 := fun g => (map_ne_zero (X.sl g)).2 f.ne_zero
   have hσU : Units.mk0 _ (hne (ofSL σ)) ∈ X.Un (l ^ n) := hU.1 _ _ rfl
   have hne2 : X.gal s.symm (X.sl (ofSL σ) (f : X.K)) ≠ 0 := (map_ne_zero (X.gal s.symm)).2 (hne _)
@@ -290,7 +290,7 @@ theorem eichler_shimura_kummer : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [Is
     UnClosure.mul_mem X _ _ _ (prod_mem_Un X _ _ _ fun j _ => hU.1 _ _ rfl) (hU.1 _ _ rfl)
   have hBU : BU ∈ X.Un (l ^ n) :=
     UnClosure.mul_mem X _ _ _ (hU.2 _ _ rfl)
-      (UnClosure.pow_mem X _ _ _ ((unMap ε X hε hj (l ^ n) _ hσU).2 s.symm _ rfl))
+      (UnClosure.pow_mem X _ _ _ ((_root_.GlobalTheory.KZ.Tower.Un_sl_gal ε X hε hj (l ^ n) _ hσU).2 s.symm _ rfl))
   have hPv : (PU : X.K) = (∏ j ∈ Finset.range q, X.sl (toGQ !![1, (j * M : ℤ); 0, (q : ℤ)]) (f : X.K)) *
       X.sl (toGQ ((σ : Matrix (Fin 2) (Fin 2) ℤ) * !![(q : ℤ), 0; 0, 1])) (f : X.K) := by
     simp only [PU, Units.val_mul, Units.coe_prod, Units.val_mk0]
@@ -302,8 +302,8 @@ theorem eichler_shimura_kummer : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [Is
     simp only [rU, Units.val_mul, Units.val_inv_eq_inv_val, div_eq_mul_inv]
   have hrM : ∀ γ ∈ CongruenceSubgroup.Gamma M, X.sl (ofSL γ) (rU : X.K) = rU := by
     intro γ hγ
-    rw [hrv, hPv, hBv, map_div₀, levKron X M q σ (f : X.K) hM hq hcop hfM hσ γ hγ, map_mul, map_pow,
-      levGal X M s (f : X.K) hM hfM γ hγ, levGal X M s.symm _ hM (lev_sl X M σ _ hfM) γ hγ]
+    rw [hrv, hPv, hBv, map_div₀, _root_.GlobalTheory.kronecker_product_level X M q σ (f : X.K) hM hq hcop hfM hσ γ hγ, map_mul, map_pow,
+      _root_.GlobalTheory.Tower.gal_level X M s (f : X.K) hM hfM γ hγ, _root_.GlobalTheory.Tower.gal_level X M s.symm _ hM (lev_sl X M σ _ hfM) γ hγ]
   obtain ⟨r0, hr0R, g, hgM, c, hc, hrep⟩ := hR rU hrUn hrM
   have hr0M : ∀ γ ∈ CongruenceSubgroup.Gamma M, X.sl (ofSL γ) (r0 : X.K) = r0 := by
     intro γ hγ

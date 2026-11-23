@@ -65,9 +65,9 @@ theorem divisionRows_pairing_vanishes_of_rational_pairing_law
     (hC : GlobalTheory.Published.DiscreteSeriesCover ∧ GlobalTheory.Published.HarishChandraModules ∧ GlobalTheory.Published.CasselmanWallach ∧ GlobalTheory.Published.HarishChandraFinite ∧
       GlobalTheory.Published.CuspRapidDecay) (x : GlobalTheory.Mem.R3.TwIn ex) (hH : Holds x.R x.F) (hB : Rw.BkLaw D)
     (hV : CxData.BtVanish (fc := x.F.fc) (x.R.toCx3 x.F)) : GlobalTheory.Cp.DivRows3G (GlobalTheory.Mem.R3.divisionPairOfAdelicFormsFaceColumnsData x) := by
-  have hRational := GlobalTheory.T.divisionPairing_rational_on_rationalPoints'
+  have hRational := _root_.GlobalTheory.Mem.R3.divisionPairing_rational_on_rationalPoints
     hC D x.G x.Pl0 x.I0 x.T x.A3 _ x.R x.F x.cG ex.p0 x.Y x.Z x.C x.pins hH
-  have hRows := (GlobalTheory.T.divisionCompatible_at_readIdentifications
+  have hRows := (_root_.GlobalTheory.divTied3_read
     hC D x.G x.Pl0 x.I0 x.T x.A3 _ x.R x.F x.cG ex.p0 x.Y x.Z x.C x.sEE Yd x.JM x.pins hH
     (fun _ _ => x.div.grp)).2 x.mjH ex.idx (hB hRational) hV
   exact {

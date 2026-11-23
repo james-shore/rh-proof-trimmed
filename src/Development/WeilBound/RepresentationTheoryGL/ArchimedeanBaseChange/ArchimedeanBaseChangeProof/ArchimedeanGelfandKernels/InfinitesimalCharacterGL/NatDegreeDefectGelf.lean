@@ -66,11 +66,6 @@ theorem epow_eq_pow {A : Type} [Ring A] {n : ℕ} (M : Fin n → Fin n → A) (k
   | zero => simp [epow, Matrix.one_apply]
   | succ k ih => simp only [epow, pow_succ, Matrix.mul_apply, ih, Matrix.of_apply]
 
-theorem epow_succ' {A : Type} [Ring A] {n : ℕ} (M : Fin n → Fin n → A) (k : ℕ) (i j : Fin n) :
-    epow M (k + 1) i j = ∑ c, M i c * epow M k c j := by
-  rw [epow_eq_pow, pow_succ', Matrix.mul_apply]
-  simp only [epow_eq_pow, Matrix.of_apply]
-
 theorem defect_sub (t : ℕ → ℂ) (m N : ℕ) (P Q : ℂ[X]) (z : ℂ) :
     defect t m N (Q - C z * P) = defect t m N Q - C z * defect t m N P := by
   simp only [defect, sub_comp, mul_comp, C_comp]

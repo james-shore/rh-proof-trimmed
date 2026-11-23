@@ -360,17 +360,7 @@ lemma aChi_eq {𝓕 : LFam} {χ : AddChar 𝓕.G ℂ} (h : χ * χ = 1) (n : ℕ
   refine Finset.sum_congr rfl fun g _ => ?_
   rcases chi_real h g with e | e <;> simp [e]
 
-lemma a_le (𝓕 : LFam) (g : 𝓕.G) (n : ℕ) : 𝓕.a g n ≤ 14 * n := by
-  rcases Nat.eq_zero_or_pos n with rfl | hn
-  · simp [𝓕.a_zero]
-  have h1 : (1 : ℝ) ≤ n := by exact_mod_cast hn
-  have h := (abs_le.1 (𝓕.count g n h1)).2
-  rw [Nat.floor_natCast] at h
-  have h2 : 𝓕.a g n ≤ ∑ m ∈ Finset.Icc 1 n, 𝓕.a g m :=
-    Finset.single_le_sum (fun m _ => 𝓕.a_nonneg g m) (Finset.mem_Icc.2 ⟨hn, le_rfl⟩)
-  have h3 : Real.sqrt n ≤ n := Real.sqrt_le_iff.2 ⟨by positivity, by nlinarith⟩
-  have h4 : 𝓕.κ * n ≤ 4 * n := mul_le_mul_of_nonneg_right 𝓕.κ_le (by positivity)
-  linarith
+alias a_le := _root_.GlobalTheory.Hk.LFam.a_le_mul
 
 lemma bRe_le {𝓕 : LFam} {χ : AddChar 𝓕.G ℂ} (h : χ * χ = 1) (n : ℕ) :
     |bRe 𝓕 χ n| ≤ (Fintype.card 𝓕.G * 14 : ℝ) * n := by

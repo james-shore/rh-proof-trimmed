@@ -83,7 +83,7 @@ theorem main : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host 
   have hw : H.w0 + star H.w0 = 1 := GlobalTheory.TauTwist.halfUnit_add_star H
   have hM : 0 < l.M' := Nat.lcm_pos (by have := l.three_le; omega) l.A_pos
   letI iD : Module (𝓞 E) (mulDeg L.D l.M').X := L.mod
-  obtain ⟨he0, hb0, hU0, oa0, hoa0, hW0⟩ := GlobalTheory.T.degenerationDataNsmulRescale_keeps_laws L.W L.D (𝓞 E) L.oa H.w0 l.M' L.even L.bimult L.w0 L.gen
+  obtain ⟨he0, hb0, hU0, oa0, hoa0, hW0⟩ := _root_.GlobalTheory.UCanon.MulDeg.mulDeg_laws L.W L.D (𝓞 E) L.oa H.w0 l.M' L.even L.bimult L.w0 L.gen
   have hne : ∃ i, ε (.inl i) ≠ 0 := by
     obtain ⟨y, hy⟩ := exists_ne (0 : L.D.X)
     have h := hdef y hy
@@ -97,7 +97,7 @@ theorem main : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host 
   set T := GlobalTheory.UTautData.taut D'' e H.w0 (fun i => s (.inl i)) (fun i => (hs i).2) (fun j => (hu j).unit) l.M'
     (fun i => ε (.inl i)) (fun j => ε (.inr j)) with hT
   let D1 : DegData R (maximalIdeal R) := ⟨T, hPE, hTB, hPI, hfin⟩
-  obtain ⟨t, P, hPD, hmod, hoD⟩ := GlobalTheory.T.exists_semiAbelian_pelUniformisation_of_norm H R hB D1 (inst := iM) oa1 hPW
+  obtain ⟨t, P, hPD, hmod, hoD⟩ := _root_.GlobalTheory.UChart.exists_sab_pelUnif_of_norm H R hB D1 (inst := iM) oa1 hPW
   have key : ∀ (Dd : DegData R (maximalIdeal R)) [im : Module (𝓞 E) Dd.toPre.X] (od : Dd.toPre.OAct (𝓞 E)),
       Dd = D1 → HEq im iM → HEq od oa1 → ∃ e' : Dd.toPre.X ≃ₗ[𝓞 E] L.D.X,
         DivFrom L Dd.toPre od iw s ε e' ∧

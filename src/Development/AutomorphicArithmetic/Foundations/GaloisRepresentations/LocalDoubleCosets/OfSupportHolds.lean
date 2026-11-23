@@ -73,6 +73,4 @@ theorem scalar_holds : Scalar := by
 
 theorem locDesc_holds : LocDesc := locDesc_of scalar_holds tracePow
 
-theorem ofSupport_holds : OfSupport := ofSupport
-
 end UpperTheory.Gal.LocD

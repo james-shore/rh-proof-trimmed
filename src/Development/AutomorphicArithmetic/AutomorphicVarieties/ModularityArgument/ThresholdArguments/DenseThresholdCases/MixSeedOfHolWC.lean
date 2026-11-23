@@ -50,6 +50,6 @@ attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toI
 section
 namespace UpperTheory.Esk
 theorem mixSeed_of_holWC_alt (w : HolWC) (P : _root_.UpperTheory.V.Af.HypothesesH') (h : UpperTheory.V.Sd.PropMHol) : _root_.UpperTheory.V.Z.Win.Birth.MixSeedP :=
-  _root_.UpperTheory.V.Z.Win.Birth.mix_birth_of_prints P (_root_.UpperTheory.Esk.pf_PropMV_sv_alt P h w (_root_.UpperTheory.Esk.pf_HRep_alt P s_HCap))
+  _root_.UpperTheory.V.Z.Win.Birth.mix_birth_of_prints P (_root_.UpperTheory.Esk.pf_PropMV_sv_alt P h w (_root_.UpperTheory.Esk.pf_HRep_alt P _root_.UpperTheory.Esk.pf_HCap))
 end UpperTheory.Esk
 end

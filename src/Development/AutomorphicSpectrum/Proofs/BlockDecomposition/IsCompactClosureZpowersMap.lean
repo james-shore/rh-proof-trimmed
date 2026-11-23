@@ -127,7 +127,7 @@ theorem ordL_norm_entry (hU : Unr E) {n : ℕ} {w : Pl E} (u : Fin n → (w.adic
   obtain ⟨-, -, hcv, -⟩ := GlobalTheory.ConjAtPlace.main E hU w
   have hinv : ordL (((u i.rev)⁻¹ : (w.adicCompletion E)ˣ) : w.adicCompletion E) = - y i.rev := by
     have h1 := GlobalTheory.CompanionTheory.UnitaryCorrection.ordL_mul_of_ne (u i.rev).ne_zero ((u i.rev)⁻¹).ne_zero
-    rw [← Units.val_mul, mul_inv_cancel, Units.val_one, GlobalTheory.CompanionTheory.UnitaryCorrection.ordL_one, hu] at h1
+    rw [← Units.val_mul, mul_inv_cancel, Units.val_one, _root_.Formalism.UG.P.fSatake_ord_one, hu] at h1
     omega
   have hmap : ordL ((Units.map (cj w : w.adicCompletion E →* w.adicCompletion E) (u i.rev)⁻¹ :
       (w.adicCompletion E)ˣ) : w.adicCompletion E) = - y i.rev := by

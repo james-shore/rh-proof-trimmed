@@ -84,12 +84,9 @@ theorem at_eq (V : HSp D) (P : Pl D → Prop) : grpAt V P = GfC V ⊓ grpOff V (
   rw [(GlobalTheory.T.unitaryFiniteAdelicGroup_split_finitePlaceSet D V ∅).2.2.2.2.2.2.2.1]
   simp only [not_not]
 
-theorem at_le_fin (V : HSp D) (P : Pl D → Prop) : grpAt V P ≤ GfC V := by
-  rw [at_eq]; exact inf_le_left
-
 theorem at_mono (V : HSp D) {P P' : Pl D → Prop} (h : ∀ p, P p → P' p) : grpAt V P ≤ grpAt V P' := by
   rw [at_eq V P']
-  exact le_inf (at_le_fin V P) (at_le_off V fun p hp hn => hn (h p hp))
+  exact le_inf (_root_.GlobalTheory.FinPl.SetCut.grpAt_le_GfC V P) (at_le_off V fun p hp hn => hn (h p hp))
 
 theorem split_two (V : HSp D) (A B : Finset (Pl D)) {x : GA D V} (hx : x ∈ GfC V)
     (ho : x ∈ grpOff V (fun p => p ∉ A ∧ p ∉ B)) :
@@ -102,7 +99,7 @@ theorem split_two (V : HSp D) (A B : Finset (Pl D)) {x : GA D V} (hx : x ∈ GfC
     exact this
   refine ⟨a.1, a.2, b.1, ?_, b.2, h1⟩
   rw [at_eq]
-  refine ⟨at_le_fin V _ b.2, ?_⟩
+  refine ⟨_root_.GlobalTheory.FinPl.SetCut.grpAt_le_GfC V _ b.2, ?_⟩
   have hb1 : b.1 ∈ grpOff V (fun p => p ∉ A ∧ p ∉ B) := by
     have : b.1 = a.1⁻¹ * x := by rw [h1]; group
     rw [this]
@@ -173,7 +170,7 @@ theorem main : ∀ (D : D7) (c : Comm D) (v : VCom c) (t : Tup c) (w : VTup t), 
   have hzf : z ∈ GfC (c.V (j + 1)) := by
     have : z = r⁻¹ * q₁ * κ⁻¹ := by rw [hdec]; group
     rw [this]
-    exact mul_mem (mul_mem (inv_mem (at_le_fin _ _ hrP)) hq₁) (inv_mem (at_le_fin _ _ hκ.1))
+    exact mul_mem (mul_mem (inv_mem (_root_.GlobalTheory.FinPl.SetCut.grpAt_le_GfC _ _ hrP)) hq₁) (inv_mem (_root_.GlobalTheory.FinPl.SetCut.grpAt_le_GfC _ _ hκ.1))
   obtain ⟨s, hs, y, hy, hy', hzs⟩ := split_two (c.V (j + 1)) v.gP w.Q hzf hz
 
   have e₁ := ((hoff j σ h _ _ k₁ (k₂ _)).1 κ hκ).1
@@ -199,7 +196,7 @@ theorem main : ∀ (D : D7) (c : Comm D) (v : VCom c) (t : Tup c) (w : VTup t), 
     rw [e₃]
     exact this
   obtain ⟨r', hr', hr'P, k, hk, hsk⟩ := (hG j σ h _ _ (vac_om hW vG hgo hyo) (k₂ _)).1 s hs hfl
-  refine ⟨r * r', mul_mem hr hr', mul_mem (at_le_fin _ _ hrP) (at_le_fin _ _ hr'P), y, hy, κ, hκ, k, hk, ?_⟩
+  refine ⟨r * r', mul_mem hr hr', mul_mem (_root_.GlobalTheory.FinPl.SetCut.grpAt_le_GfC _ _ hrP) (_root_.GlobalTheory.FinPl.SetCut.grpAt_le_GfC _ _ hr'P), y, hy, κ, hκ, k, hk, ?_⟩
   have hkP : k ∈ grpAt (c.V (j + 1)) (· ∈ v.gP) := (hv.JG (j + 1) (by omega)).1 hk
   have hcm := (GlobalTheory.T.unitaryFiniteAdelicGroup_split_finitePlaceSet D (c.V (j + 1)) v.gP).2.2.2.2.1 k hkP (y * κ)
     (mul_mem hy' (at_mono _ (fun p hp => hp.1) hκ.1))

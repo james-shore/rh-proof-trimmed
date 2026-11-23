@@ -127,9 +127,7 @@ theorem isoAt_iff {M : Model R A} {N : Model R A'} {f : A ⟶ A'} {y : M.Y.left}
     · rw [← Category.assoc]
       exact he.2 _ _ _ (by rw [Category.assoc, Scheme.Hom.isoOpensRange_inv_comp, e])
 
-theorem isPullback_j (M : Model R A) : IsPullback M.j A.hom M.Y.hom (spMap (algebraMap R K)) := by
-  refine IsPullback.of_iso_pullback ⟨M.j_hom⟩ ((Over.forget _).mapIso M.e.symm) rfl ?_
-  exact Over.w M.e.inv
+alias isPullback_j := _root_.GlobalTheory.SS.SectionTranslation.j_isPullback
 
 theorem Ext.comp {M : Model R A} {N : Model R A'} {P : Model R A''} {f : A ⟶ A'} {f' : A' ⟶ A''}
     {X X' : Scheme.{0}} {i : X ⟶ M.Y.left} {g : X ⟶ N.Y.left} {i' : X' ⟶ N.Y.left} {g' : X' ⟶ P.Y.left}

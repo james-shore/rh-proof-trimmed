@@ -204,7 +204,7 @@ theorem mem_orbit_base_iff {p : (Fin D.a0 → Matrix (Fin N) (Fin N) k) × Sp k 
   refine ⟨g, hg, (comm_span_iff D.hz _).2 fun i => ?_, ?_⟩
   · have e : D.z i = cj g⁻¹ (p.1 i) := by rw [hg, cj_inv_cj]
     rw [e, ← cj_mulM, ← cj_mulM, hc]
-  · rw [cj, PTop.aeval_conj, hχ, mul_zero, zero_mul]
+  · rw [cj, _root_.PositivityTheory.RgUd.T.Desc.Asm.aeval_conj, hχ, mul_zero, zero_mul]
 
 theorem orbit_base_idempotent_rank {p : (Fin D.a0 → Matrix (Fin N) (Fin N) k) × Sp k N} (hp : p ∈ F0 D) (t : Fin D.m) :
     IsIdempotentElem (et D p.1 p.2.1 t) ∧ (et D p.1 p.2.1 t).rank = typ D (cj (Classical.choose (mem_orbit_base_iff D hp))⁻¹ p.2.1) t := by
@@ -231,7 +231,7 @@ theorem Ys_eq (τ : Fin D.m → ℕ) (hP : ∀ g ∈ Gz Z, ∀ x ∈ piece D τ,
     have hF : p ∈ F0 D := by
       refine ⟨⟨g, hg⟩, fun i => ?_, ?_⟩
       · rw [hg, e2, ← cj_mulM, ← cj_mulM, hx _ (z_mem D i)]
-      · rw [e2, cj, PTop.aeval_conj, hχ, mul_zero, zero_mul]
+      · rw [e2, cj, _root_.PositivityTheory.RgUd.T.Desc.Asm.aeval_conj, hχ, mul_zero, zero_mul]
     refine ⟨hF, fun t => ⟨hF, ?_⟩⟩
     rw [e1, e2, et_cj, rank_cj, et, weight_map_at_base]
     exact congrFun hτ t

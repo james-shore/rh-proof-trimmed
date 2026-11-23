@@ -63,11 +63,6 @@ noncomputable section
 
 namespace GlobalTheory.Heat.TermDescent
 
-theorem gs_top_appLE {Y X : Scheme.{0}} (φ : Y ⟶ X) (y : Y) (U : X.Opens) (h : ⊤ ≤ φ ⁻¹ᵁ U) (a : Γ(X, U)) :
-    gs (𝟙 Y) y ⊤ ((φ.appLE U ⊤ h).hom a) = gs φ y U a := by
-  have e := gs_appLE φ U ⊤ h (𝟙 Y) y trivial a
-  rwa [Category.id_comp] at e
-
 theorem gs_of_valR {S : Type} [CommRing S] {X : Scheme.{0}} (x x' : Sp S ⟶ X) (V : X.Opens) (f : Γ(X, V))
     (c : Sˣ) (h : ⊤ ≤ x ⁻¹ᵁ V) (h' : ⊤ ≤ x' ⁻¹ᵁ V) (e : valR x' V f = c * valR x V f) (y : Sp S) :
     gs x' y V f = (gm (𝟙 (Sp S)) y ⊤ (unitOn c)).val * gs x y V f := by
@@ -76,7 +71,7 @@ theorem gs_of_valR {S : Type} [CommRing S] {X : Scheme.{0}} (x x' : Sp S ⟶ X) 
     have := congrArg (Scheme.ΓSpecIso (CommRingCat.of S)).inv.hom e
     rw [map_mul] at this
     simpa [unitOn] using this
-  rw [← gs_top_appLE x' y V h', ← gs_top_appLE x y V h, e', gs_mul _ y ⊤ trivial, gs_unit _ y ⊤ trivial]
+  rw [← _root_.GlobalTheory.LocDescent.gs_appLE_top x' y V h', ← _root_.GlobalTheory.LocDescent.gs_appLE_top x y V h, e', gs_mul _ y ⊤ trivial, gs_unit _ y ⊤ trivial]
 
 theorem gen_ratio {X : Scheme.{0}} (L : LB X) (hL : L.IsLB) {S : Type} [CommRing S] {K : Type} [Fintype K]
     {φ φ' : K → (Sp S ⟶ X)} (ε : K → ℤ) (e : φ = φ') (t : LB.Gen (LB.LinComb L φ ε))
@@ -108,7 +103,7 @@ open GlobalTheory.Heat.TermDescent
 theorem isTerm_of_isWt : ∀ {R : Type} [CommRing R] [IsDomain R] {Q : DegPre R} {O : Type} [CommRing O] [StarRing O] [Module O Q.X] {oa : Q.OAct O} (Y : Ray oa) (k : ℕ) (α : Q.X) (τ : SecM Y.q.left Q.P.L k) (J : Type) (V : J → Q.P.A.left.Opens) (j : J → Fin 1 → Q.P.L.ι), ⨆ i, Y.q.left ⁻¹ᵁ V i = ⊤ → (∀ i, Y.q.left ⁻¹ᵁ V i ≤ LB.wchart Q.P.L (fun _ : Fin 1 => Y.q.left) (j i)) → (∀ i, IsWt Y α (Y.q.left ⁻¹ᵁ V i) (rsT (τ.f (j i)) (Y.q.left ⁻¹ᵁ V i))) → ∃ σ' : Q.SecB k α, IsTerm Y k α σ' τ := by
   intro R _ _ Q O _ _ _ oa Y k α τ Jt V j hcov hle hwt
   have hL := Q.P.isLB
-  obtain ⟨hs, hqc⟩ := GlobalTheory.T.ray_q_surjective_and_quasiCompact Y
+  obtain ⟨hs, hqc⟩ := _root_.GlobalTheory.RayEv.Ray.surjective_quasiCompact_q Y
   have := Ray.smooth_q Y
   let t := (Y.Φ Y.H (𝟙 _)).s α
   have ht : t.IsGen := (Y.Φ Y.H (𝟙 _)).isGen α

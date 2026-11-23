@@ -136,15 +136,11 @@ theorem ringOfIntegers_hom_injective (s : 𝓞 E →+* ℂ) : Function.Injective
   rw [hk] at this
   simpa using this
 
-theorem finrank_eq_two_mul_card {Ψ : Type} [Fintype Ψ] {σ : Ψ → (𝓞 E →+* ℂ)} (hσ : IsCMFam σ) :
-    Module.finrank ℚ E = 2 * Fintype.card Ψ := by
-  apply GlobalTheory.CompanionTheory.Ar.Cusp.ShortVec.finrank_eq_two_mul <;> assumption
-
 theorem finrank_real_eq_card {Ψ : Type} [Fintype Ψ] {σ : Ψ → (𝓞 E →+* ℂ)} (hσ : IsCMFam σ) :
     Module.finrank ℚ (maximalRealSubfield E) = Fintype.card Ψ := by
   have h1 := (letI : Module.Free (maximalRealSubfield E) E := Module.Free.of_divisionRing _ _; Module.finrank_mul_finrank ℚ (maximalRealSubfield E) E)
   rw [Algebra.IsQuadraticExtension.finrank_eq_two (maximalRealSubfield E) E,
-    finrank_eq_two_mul_card hσ] at h1
+    _root_.GlobalTheory.CompanionTheory.Ar.Cusp.ShortVec.finrank_eq_two_mul hσ] at h1
   omega
 
 end Card
@@ -243,7 +239,7 @@ theorem group_mean_logPlus_le : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
   have hcard : Module.finrank ℚ (maximalRealSubfield E) = Fintype.card Ψ := finrank_real_eq_card F.cm
   have hdeg : Module.finrank ℚ E = 2 * Module.finrank ℚ (maximalRealSubfield E) := by
     rw [hcard]
-    exact finrank_eq_two_mul_card F.cm
+    exact _root_.GlobalTheory.CompanionTheory.Ar.Cusp.ShortVec.finrank_eq_two_mul F.cm
   have hfam' : ∃ a : Fin (2 * Module.finrank ℚ (maximalRealSubfield E)) → 𝓞 E,
       LinearIndependent ℚ (fun i => (a i : E)) ∧ ∀ i (s : E →+* ℂ), ‖s (a i)‖ ≤ vr := by
     obtain ⟨a, hli, hb⟩ := hfam

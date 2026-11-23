@@ -70,14 +70,6 @@ open Formalism.L2.Th1.H
 open Formalism.MainNotions
 open Formalism.L2.Ker.Cd.Inhab (mem_stdL single_mem_stdL)
 
-theorem kInterInv : InterInv :=
-  InterInv_of heisenbergComm (InterReps_of semicharacterHom) (InterFixed_of semicharacterHom) cosetRepsExist
-theorem kInterTh : InterTh := InterTh_of semicharacterHom heisenbergAnalytic
-theorem kLineTransport : LineTransport := LineTransport_of kInterInv kInterTh
-theorem kThetaVector : ThetaVector :=
-  ThetaVector_of kLineTransport ThStd_proof product_theta_mem StdSelfDual_proof StdSemiChar_proof (ThIsom_of heisenbergIsometry)
-    fourth_root
-
 theorem formV_apply (A : ℝ) (n : Type) [Fintype n] (N N' : ℕ) (z w : n → Fin N' → Fin N → ℂ) :
     formV A n N N' z w = (∑ τ, ∑ i, ∑ j, z τ i j * conj (w τ i j)) / (A : ℂ) := rfl
 
@@ -108,16 +100,12 @@ variable (L : PeriodPair) (ω₀ : ℂ) (c : ℝ) {n : Type} [Fintype n] [Decida
   (ΛM : AddSubgroup (n → ℂ)) (g : (Fin 4 × n → ℂ) ≃ₗ[ℂ] (Fin 4 × n → ℂ)) (κ : ℂ)
 
 theorem thM_spec (h : StdOK L ω₀ c ΛM g) (hκ : κ ≠ 0) : IsThM L ω₀ c ΛM g κ (thM L ω₀ c ΛM g κ) := by
-  obtain ⟨θ, h1, h2⟩ := (kThetaVector L ω₀ n _ ΛM _ _ g h κ hκ).1
+  obtain ⟨θ, h1, h2⟩ := (_root_.Formalism.L2.Th1.H.thetaVector L ω₀ n _ ΛM _ _ g h κ hκ).1
   exact Classical.epsilon_spec (p := IsThM L ω₀ c ΛM g κ) ⟨θ, h1, h2⟩
 
 theorem isThM_ne_zero (h : StdOK L ω₀ c ΛM g) (hκ : κ ≠ 0) {θ : (n → ℂ) → ℂ} (hθ : IsThM L ω₀ c ΛM g κ θ) :
     θ ≠ 0 :=
-  ((kThetaVector L ω₀ n _ ΛM _ _ g h κ hκ).2 θ hθ.1 hθ.2).1
-
-theorem isThM_spans (h : StdOK L ω₀ c ΛM g) (hκ : κ ≠ 0) {θ : (n → ℂ) → ℂ} (hθ : IsThM L ω₀ c ΛM g κ θ) :
-    ∀ F ∈ Formalism.L2.Th1.H.Th (matH (hOne L n)) (alphaQ c (matH (hOne L n))) ΛM, ∃ a : ℂ, F = a • θ :=
-  ((kThetaVector L ω₀ n _ ΛM _ _ g h κ hκ).2 θ hθ.1 hθ.2).2.2
+  ((_root_.Formalism.L2.Th1.H.thetaVector L ω₀ n _ ΛM _ _ g h κ hκ).2 θ hθ.1 hθ.2).1
 
 omit [DecidableEq n] in
 theorem tensPow_ne_zero {θ : (n → ℂ) → ℂ} (hθ : θ ≠ 0) (N N' : ℕ) : tensPow θ N N' ≠ 0 := by
@@ -255,9 +243,9 @@ theorem thMoved_mem (hL : B.LatAll) {N N' : ℕ} (h0 : B.ThZeroMem N N') {L : Su
     {L' : Submodule (𝓞 D.host.E) (Fin N' → D.host.E)} (hA : TaylorLogMetric.admitted D N N' L L') :
     B.thMoved N N' L L' ∈ Formalism.L2.Th1.H.Th (formV (TaylorLogMetric.area (TaylorLogMetric.lamOf D cc δ)) D.what₂.Tau N N') (TaylorLogMetric.al D B.tor)
       (TaylorLogMetric.La D B.tor L L') := by
-  have h1 := kInterTh _ _ (formV_herm (TaylorLogMetric.area (TaylorLogMetric.lamOf D cc δ)) D.what₂.Tau N N') _ _ _
+  have h1 := _root_.Formalism.L2.Th1.H.interTh _ _ (formV_herm (TaylorLogMetric.area (TaylorLogMetric.lamOf D cc δ)) D.what₂.Tau N N') _ _ _
     (hL.1 N N' L _ (isAdmissible_flagPair_of_unitriangular_left_automorphism hA)).2 (hL.2 N N' _ _ _ _ (first_coordinate_admissible hA) (isAdmissible_flagPair_of_unitriangular_left_automorphism hA)).1 _ h0
-  exact kInterTh _ _ (formV_herm (TaylorLogMetric.area (TaylorLogMetric.lamOf D cc δ)) D.what₂.Tau N N') _ _ _
+  exact _root_.Formalism.L2.Th1.H.interTh _ _ (formV_herm (TaylorLogMetric.area (TaylorLogMetric.lamOf D cc δ)) D.what₂.Tau N N') _ _ _
     (hL.1 N N' L L' hA).2 (hL.2 N N' _ _ _ _ (isAdmissible_flagPair_of_unitriangular_left_automorphism hA) hA).1 _ h1
 
 end Base
@@ -500,7 +488,7 @@ theorem thHalf_mem (hS : B.StdOK) (hL : B.LatAll) {N N' : ℕ} {L : Submodule (�
     {L' : Submodule (𝓞 D.host.E) (Fin N' → D.host.E)} (hA : TaylorLogMetric.admitted D N N' L L') :
     B.thHalf N N' L ∈ Formalism.L2.Th1.H.Th (formV (TaylorLogMetric.area (TaylorLogMetric.lamOf D cc δ)) D.what₂.Tau N N') (TaylorLogMetric.al D B.tor)
       (TaylorLogMetric.La D B.tor L (StandardLatticesGL3.stdL D N')) :=
-  kInterTh _ _ (formV_herm (TaylorLogMetric.area (TaylorLogMetric.lamOf D cc δ)) D.what₂.Tau N N') _ _ _
+  _root_.Formalism.L2.Th1.H.interTh _ _ (formV_herm (TaylorLogMetric.area (TaylorLogMetric.lamOf D cc δ)) D.what₂.Tau N N') _ _ _
     (hL.1 N N' L _ (isAdmissible_flagPair_of_unitriangular_left_automorphism hA)).2 (hL.2 N N' _ _ _ _ (first_coordinate_admissible hA) (isAdmissible_flagPair_of_unitriangular_left_automorphism hA)).1 _ (B.thZeroMem hS N N')
 
 end Base
@@ -672,17 +660,7 @@ theorem Base.stdOK_of' {cc : Ideal (𝓞 D.host.K)} {δ : ℂ} (B : Base D cc δ
 
 end Isom
 
-section KapInh
-
-variable {D : Car}
-
-end KapInh
-
 namespace Test
-
-open Formalism.L2.Th1.H.Inh (L7 gU stdData_seven seven_nontrivial)
-
-variable (n : Type) [Fintype n] [DecidableEq n]
 
 end Test
 

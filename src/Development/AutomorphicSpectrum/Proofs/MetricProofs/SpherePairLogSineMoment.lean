@@ -68,22 +68,20 @@ noncomputable section
 
 def crd (m : S2) : Fin 3 → ℝ := fun i => (m : E3) i
 
-def dens (a : ℂ) : ℝ := Real.pi⁻¹ / (1 + ‖a‖ ^ 2) ^ 2
-
-def stereoMeasure : Measure ℂ := volume.withDensity fun a => ENNReal.ofReal (dens a)
+def stereoMeasure : Measure ℂ := volume.withDensity fun a => ENNReal.ofReal (_root_.PositivityTheory.Xgp.fib_stereo.wt a)
 
 theorem continuous_crd : Continuous crd :=
   continuous_pi fun i => (EuclideanSpace.proj i).continuous.comp continuous_subtype_val
 
-theorem measurable_dens : Measurable dens := by
-  have : Continuous dens := by
-    unfold dens
+theorem measurable_dens : Measurable _root_.PositivityTheory.Xgp.fib_stereo.wt := by
+  have : Continuous _root_.PositivityTheory.Xgp.fib_stereo.wt := by
+    unfold _root_.PositivityTheory.Xgp.fib_stereo.wt
     refine continuous_const.div₀ (by fun_prop) fun a => ?_
     positivity
   exact this.measurable
 
-theorem dens_nonneg (a : ℂ) : 0 ≤ dens a := by
-  unfold dens
+theorem dens_nonneg (a : ℂ) : 0 ≤ _root_.PositivityTheory.Xgp.fib_stereo.wt a := by
+  unfold _root_.PositivityTheory.Xgp.fib_stereo.wt
   have := Real.pi_pos
   positivity
 
@@ -96,8 +94,8 @@ theorem measurable_nS : Measurable nS := by
   exact this.measurable
 
 theorem stereo_hyp (f : (Fin 3 → ℝ) → ℝ) (hf : Measurable f) :
-    (Integrable (fun a : ℂ => f (nS a) * dens a) ↔ Integrable (fun m : S2 => f (crd m)) sphereMeasure) ∧
-      ∫ a : ℂ, f (nS a) * dens a = ∫ m : S2, f (crd m) ∂sphereMeasure :=
+    (Integrable (fun a : ℂ => f (nS a) * _root_.PositivityTheory.Xgp.fib_stereo.wt a) ↔ Integrable (fun m : S2 => f (crd m)) sphereMeasure) ∧
+      ∫ a : ℂ, f (nS a) * _root_.PositivityTheory.Xgp.fib_stereo.wt a = ∫ m : S2, f (crd m) ∂sphereMeasure :=
   (GlobalTheory.T.sphere_measure_stereographic_integral).1 f hf
 
 theorem map_stereo : stereoMeasure.map nS = sphereMeasure.map crd := by
@@ -111,16 +109,16 @@ theorem map_stereo : stereoMeasure.map nS = sphereMeasure.map crd := by
     (integrable_const (1 : ℝ)).indicator hpre
   obtain ⟨h1, h2⟩ := stereo_hyp _ hf
   have hI := h1.2 hfI
-  have hnn : 0 ≤ᵐ[volume] fun a => s.indicator (1 : (Fin 3 → ℝ) → ℝ) (nS a) * dens a :=
+  have hnn : 0 ≤ᵐ[volume] fun a => s.indicator (1 : (Fin 3 → ℝ) → ℝ) (nS a) * _root_.PositivityTheory.Xgp.fib_stereo.wt a :=
     Eventually.of_forall fun a => mul_nonneg (Set.indicator_nonneg (fun _ _ => zero_le_one) _) (dens_nonneg a)
-  calc stereoMeasure (nS ⁻¹' s) = ∫⁻ a in nS ⁻¹' s, ENNReal.ofReal (dens a) := withDensity_apply _ hpre'
-    _ = ∫⁻ a, ENNReal.ofReal (s.indicator (1 : (Fin 3 → ℝ) → ℝ) (nS a) * dens a) := by
+  calc stereoMeasure (nS ⁻¹' s) = ∫⁻ a in nS ⁻¹' s, ENNReal.ofReal (_root_.PositivityTheory.Xgp.fib_stereo.wt a) := withDensity_apply _ hpre'
+    _ = ∫⁻ a, ENNReal.ofReal (s.indicator (1 : (Fin 3 → ℝ) → ℝ) (nS a) * _root_.PositivityTheory.Xgp.fib_stereo.wt a) := by
         rw [← lintegral_indicator hpre']
         refine lintegral_congr fun a => ?_
         by_cases ha : nS a ∈ s
         · simp [Set.indicator, ha]
         · simp [Set.indicator, ha]
-    _ = ENNReal.ofReal (∫ a, s.indicator (1 : (Fin 3 → ℝ) → ℝ) (nS a) * dens a) :=
+    _ = ENNReal.ofReal (∫ a, s.indicator (1 : (Fin 3 → ℝ) → ℝ) (nS a) * _root_.PositivityTheory.Xgp.fib_stereo.wt a) :=
         (ofReal_integral_eq_lintegral_ofReal hI hnn).symm
     _ = ENNReal.ofReal (∫ m, s.indicator (1 : (Fin 3 → ℝ) → ℝ) (crd m) ∂sphereMeasure) := by rw [h2]
     _ = sphereMeasure (crd ⁻¹' s) := by
@@ -139,7 +137,7 @@ instance : IsFiniteMeasure stereoMeasure := by
   simp
 
 theorem integral_pair (Φ : (Fin 3 → ℝ) × (Fin 3 → ℝ) → ℝ) (hΦ : Measurable Φ) :
-    ∫ p : ℂ × ℂ, dens p.1 * dens p.2 * Φ (nS p.1, nS p.2) =
+    ∫ p : ℂ × ℂ, _root_.PositivityTheory.Xgp.fib_stereo.wt p.1 * _root_.PositivityTheory.Xgp.fib_stereo.wt p.2 * Φ (nS p.1, nS p.2) =
       ∫ p : S2 × S2, Φ (crd p.1, crd p.2) ∂(sphereMeasure.prod sphereMeasure) := by
   have := FibreLocal.isProbabilityMeasure_sphere
   have hc := continuous_crd.measurable
@@ -147,13 +145,13 @@ theorem integral_pair (Φ : (Fin 3 → ℝ) × (Fin 3 → ℝ) → ℝ) (hΦ : M
   have hmap : (stereoMeasure.prod stereoMeasure).map (Prod.map nS nS) =
       (sphereMeasure.prod sphereMeasure).map (Prod.map crd crd) := by
     rw [← Measure.map_prod_map _ _ hn hn, ← Measure.map_prod_map _ _ hc hc, map_stereo]
-  have hd : Measurable fun a => ENNReal.ofReal (dens a) := ENNReal.measurable_ofReal.comp measurable_dens
+  have hd : Measurable fun a => ENNReal.ofReal (_root_.PositivityTheory.Xgp.fib_stereo.wt a) := ENNReal.measurable_ofReal.comp measurable_dens
   have hprod : stereoMeasure.prod stereoMeasure =
       (volume : Measure (ℂ × ℂ)).withDensity
-        (fun p => ENNReal.ofReal (dens p.1) * ENNReal.ofReal (dens p.2)) := by
+        (fun p => ENNReal.ofReal (_root_.PositivityTheory.Xgp.fib_stereo.wt p.1) * ENNReal.ofReal (_root_.PositivityTheory.Xgp.fib_stereo.wt p.2)) := by
     rw [stereoMeasure, prod_withDensity hd hd]
     rfl
-  have hL : ∫ p : ℂ × ℂ, dens p.1 * dens p.2 * Φ (nS p.1, nS p.2) =
+  have hL : ∫ p : ℂ × ℂ, _root_.PositivityTheory.Xgp.fib_stereo.wt p.1 * _root_.PositivityTheory.Xgp.fib_stereo.wt p.2 * Φ (nS p.1, nS p.2) =
       ∫ p, Φ (Prod.map nS nS p) ∂(stereoMeasure.prod stereoMeasure) := by
     rw [hprod, integral_withDensity_eq_integral_toReal_smul₀
       (by exact ((hd.comp measurable_fst).mul (hd.comp measurable_snd)).aemeasurable)
@@ -274,9 +272,9 @@ theorem integral_eq_moment : ∀ (ℓ : MvPolynomial (Fin 3) ℝ →ₗ[ℝ] ℝ
   rw [← h, ← integral_const_mul]
   refine integral_congr_ae (Eventually.of_forall fun p => ?_)
   have hk : logSin 1 p.1 p.2 = ker (nS p.1, nS p.2) := (GlobalTheory.T.sphere_measure_stereographic_integral).2 p.1 p.2
-  have hw : ∀ a, wS a = Real.pi * dens a := fun a => by
+  have hw : ∀ a, wS a = Real.pi * _root_.PositivityTheory.Xgp.fib_stereo.wt a := fun a => by
     have := Real.pi_ne_zero
-    simp only [wS, dens]
+    simp only [wS, _root_.PositivityTheory.Xgp.fib_stereo.wt]
     field_simp
   simp only [hk, hw]
   ring

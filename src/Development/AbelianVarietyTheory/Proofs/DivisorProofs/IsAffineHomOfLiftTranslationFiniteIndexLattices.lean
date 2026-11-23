@@ -52,6 +52,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAHOfIsFactorAH
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsHolFormConst
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsPeriodsComplexPELObject
 
 @[expose] public section
 
@@ -71,11 +72,6 @@ namespace GlobalTheory.LiftAffine
 
 section
 variable {A : Over (Sp ℂ)} [GrpObj A] {L : LB A.left} {g : ℕ} (u : HolUnif A L g)
-
-theorem sub_mem_of_ex_eq {z w : Fin g → ℂ} (h : u.ex z = u.ex w) : z - w ∈ u.Λ := by
-  have e := u.ex_add (z - w) w
-  rw [sub_add_cancel, h] at e
-  exact (u.ker _).1 (mul_eq_right.1 e.symm)
 
 theorem ex_eq_of_sub_mem {z w : Fin g → ℂ} (h : z - w ∈ u.Λ) : u.ex z = u.ex w := by
   have e := u.ex_add (z - w) w
@@ -132,7 +128,7 @@ theorem isAffineHom_of_lift : ∀ (g : ℕ) (A : Over (Sp ℂ)) [GrpObj A], IsAb
     have e1 : u'.ex (z + a) = u'.ex (z₀ + a) :=
       Over.OverMorphism.ext (ext_of_apply_closedPoint_eq B.hom (Over.w _) (Over.w _) hx')
     have hl : z - z₀ ∈ u'.Λ := by
-      simpa [add_sub_add_right_eq_sub] using sub_mem_of_ex_eq u' e1
+      simpa [add_sub_add_right_eq_sub] using _root_.GlobalTheory.PELPeriod.sub_mem_of_ex_eq u' e1
     refine ⟨Submodule.Quotient.mk ⟨z - z₀, hl⟩, ?_⟩
     have h2 : (r (Submodule.Quotient.mk ⟨z - z₀, hl⟩) - ⟨z - z₀, hl⟩ : u'.Λ) ∈ K :=
       (Submodule.Quotient.eq K).1 (hr _)

@@ -84,10 +84,6 @@ private theorem exists_int {l : ℕ} [Fact l.Prime] {H : Type*} [AddCommGroup H]
       fun c x => (map_nsmul (TensorProduct.mk ℤ_[l] ℚ_[l] H 1) c x).symm
     rw [smul_add, e1, e2, TensorProduct.tmul_add, t1, t1]
 
-private theorem exists_kill {l : ℕ} [Fact l.Prime] {H : Type*} [AddCommGroup H] [Module ℤ_[l] H]
-    (h : H) (e : (1 : ℚ_[l]) ⊗ₜ[ℤ_[l]] h = 0) : ∃ b : ℕ, (l ^ b : ℕ) • h = 0 :=
-  _root_.UpperTheory.Reformulated.B.Qk55.exists_kill h e
-
 private theorem exists_ub {α : Type*} [Fintype α] (f : α → ℕ) : ∃ s, ∀ a, f a ≤ s :=
   ⟨Finset.univ.sup f, fun a => Finset.le_sup (Finset.mem_univ a)⟩
 
@@ -138,7 +134,7 @@ theorem UpperTheory.hecke_correspondence_product :
     rw [toV_sub, toV_nsmul, toV_sum, ← pullV_toV, hw, map_nsmul, hA i W π hπ (z i) (hz i) (hsp i)]
     simp only [pullV_toV, sub_self]
   have h2 : ∀ i k, ∃ b : ℕ, (l ^ b : ℕ) • d i k = 0 := fun i k =>
-    exists_kill (H := GlobalTheory.EtC.Hl l W.spc j 0) (d i k) (hd i k)
+    _root_.UpperTheory.Reformulated.B.Qk55.exists_kill (H := GlobalTheory.EtC.Hl l W.spc j 0) (d i k) (hd i k)
   choose b' hb' using h2
   obtain ⟨b, hb⟩ := exists_ub (fun p : Fin (n + 1) × ι => b' p.1 p.2)
   refine ⟨s, b, w, hw, fun i k => ?_⟩

@@ -171,7 +171,7 @@ theorem build_prism (BS : GlobalTheory.Published.BhattScholzeCrystallineLattices
         rw [hγ, hH g hg, map_one]; rfl))
       rw [hνb, hν3, e, FCrys.tr_id]) (fun i => by
         rw [hAφ]
-        exact Finset.sum_congr rfl fun i _ => (map_mulLeft _ _).symm)
+        exact Finset.sum_congr rfl fun i _ => (_root_.GlobalTheory.HWL.EtMem.map_mulLeft _ _).symm)
     choose x hx using hm
     refine ⟨q T hT, x, card_basis T o (cb T hT), by simpa only [hx] using hbas, fun y => ?_⟩
     simp only [hx, ← hνsum]
@@ -241,7 +241,7 @@ theorem main : GlobalTheory.Published.BhattScholzeCrystallineLattices →
   refine build_prism BS E hO (P.PD_p K) ev ioH gH a z π Q
     (Algebra.TensorProduct.includeRight : WCb l →ₐ[ℤ_[l]] ↥(OL LL) ⊗[ℤ_[l]] WCb l).toRingHom
     (fun x => ?_) ha hinj hunit hγ hioH hev hπ hker hI hQ hloc hS o (hA d o) (coord_tensor o)
-    (fun w => isUnit_of_one_tmul w) (fun w => ?_) (fun g w => ?_) (GlobalTheory.T.exists_wittTilt_lattice_tensor_cancel l K LL) (fun T hT => ?_)
+    (fun w => isUnit_of_one_tmul w) (fun w => ?_) (fun g w => ?_) (_root_.GlobalTheory.HWL.exists_kappa l K LL) (fun T hT => ?_)
     (fun g => P.χQ (g : GQ l) = 1) (fun g hg => resΓ_eq_one Γ hO g ?_)
     (GlobalTheory.T.witt_twist_invariant_basis_change l P AI K s LL hG Γ R I hW E)
   · rw [I.ioE_ext, hio]

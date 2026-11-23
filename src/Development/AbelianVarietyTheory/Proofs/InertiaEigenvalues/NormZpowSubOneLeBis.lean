@@ -126,15 +126,6 @@ theorem eq_zero_of_small {r : ℕ} (X : AddSubgroup C) (hX1 : ∀ x ∈ X, ‖x�
     rw [e]; exact (h1 n z hz).2.1
   exact norm_le_zero_iff.1 (ge_of_tendsto' (tendsto_pow_atTop_nhds_zero_of_lt_one hc hc1) h3)
 
-theorem norm_zpow_sub_one_le (u : C) (hu : ‖u - 1‖ < 1) (i : ℤ) : ‖u ^ i - 1‖ ≤ ‖u - 1‖ := by
-  first
-  | exact @_root_.GlobalTheory.UnitNormPowerSubOne.norm_zpow_sub_one_le
-  | exact _root_.GlobalTheory.UnitNormPowerSubOne.norm_zpow_sub_one_le
-  | (apply _root_.GlobalTheory.UnitNormPowerSubOne.norm_zpow_sub_one_le <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UnitNormPowerSubOne.norm_zpow_sub_one_le <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UnitNormPowerSubOne.norm_zpow_sub_one_le <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.UnitNormPowerSubOne.norm_zpow_sub_one_le ..)
-
 end Abstract
 
 variable {l : ℕ} [hl : Fact l.Prime]
@@ -188,7 +179,7 @@ theorem chiC_mem_inC (χ : GQ l →* ℚ_[l]ˣ) (i : ℤ) (g : GQ l)
 theorem norm_chiC_sub_one {χ : GQ l →* ℚ_[l]ˣ} {K : FinExt l} {j : ℕ} (hj : Lev l j) {g : GQ l}
     (hg : IsGen χ K j g) (i : ℤ) : ‖chiC χ i g - 1‖ < rho1 l := by
   have h1 : ‖(χ g : ℚ_[l]) - 1‖ < rho1 l := hg.2 ▸ pow_lt_rho hj
-  have h2 := norm_zpow_sub_one_le _ (h1.trans rho_lt_one) i
+  have h2 := _root_.GlobalTheory.UnitNormPowerSubOne.norm_zpow_sub_one_le _ (h1.trans rho_lt_one) i
   have e : chiC χ i g - 1 = algebraMap ℚ_[l] (PadicComplex l) ((χ g : ℚ_[l]) ^ i - 1) := by
     simp [chiC]
   rw [e, norm_algebraMap']

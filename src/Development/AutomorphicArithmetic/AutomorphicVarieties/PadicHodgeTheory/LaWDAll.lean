@@ -60,14 +60,6 @@ import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.Tr
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.WeilDeligne GlobalTheory.GalOfCusp GlobalTheory.HeckeGal GlobalTheory.LocLanglands GlobalTheory.Published UpperTheory.V.W
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
-private theorem ex_lift {M Ω C : Type} [Field M] [NumberField M] [Field Ω] [CharZero Ω] [IsAlgClosed Ω] [Field C] [CharZero C]
-    (j : Ω →+* C) (f : M →+* C) : ∃ g : M →+* Ω, ∀ x, j (g x) = f x :=
-  _root_.UpperTheory.Reformulated.B.Qj6.ex_lift j f
-
-private theorem ex_comp {F M Ω : Type} [Field F] [NumberField F] [Field M] [NumberField M] [Field Ω] [Algebra F Ω]
-    [Algebra.IsAlgebraic F Ω] (g : M →+* Ω) : FiniteDimensional F (IntermediateField.adjoin F (Set.range g)) :=
-  _root_.UpperTheory.Reformulated.B.Qh44.ex_comp g
-
 theorem UpperTheory.V.Loc.ltAll :
     GlobalArtinReciprocity → HeckeLAdicCharacter → HeckeLAdicCharacterDeRham → AlgebraicCharacterWD → DeRhamPotSemistable → ∀ {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] {l : ℕ} [Fact l.Prime] {A : ValuationSubring Ω} {w : Plc F} (h : IsPlaceOver A w) {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (Dec (F := F) A) O) (hj : GlobalTheory.Pst.Induces Bw) (ι : Qbar l ≃+* ℂ) (wt : Emb l w → ℤ) (a : Weil h →* (w.adicCompletion F)ˣ), IsLocalArtin h a → UpperTheory.V.Loc.HasLT h Bw hj ι wt a := by
   intro hG hH hD hW hP F Ω _ _ _ _ _ l _ A w h O _ _ _ Bw hj ι wt a ha
@@ -75,9 +67,9 @@ theorem UpperTheory.V.Loc.ltAll :
   haveI : IsAlgClosed Ω := IsAlgClosure.isAlgClosed F
   haveI : Algebra.IsAlgebraic F Ω := IsAlgClosure.isAlgebraic
   obtain ⟨M, _, _, _, f, hf, δ, d, hδ, hd, hc⟩ := UpperTheory.exists_totally_imaginary_generator_of_isCMField l Bw.Kw
-  obtain ⟨g, hg⟩ := ex_lift Bw.j f
+  obtain ⟨g, hg⟩ := _root_.UpperTheory.Reformulated.B.Qj6.ex_lift Bw.j f
   let K := IntermediateField.adjoin F (Set.range g)
-  haveI : FiniteDimensional F K := ex_comp g
+  haveI : FiniteDimensional F K := _root_.UpperTheory.Reformulated.B.Qh44.ex_comp g
   haveI : NumberField K := NumberField.of_module_finite F K
   haveI : IsAlgClosure K Ω := ⟨inferInstance, inferInstance⟩
   letI : Algebra M Ω := g.toAlgebra

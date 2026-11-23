@@ -66,10 +66,6 @@ namespace GlobalTheory.ConjCompl
 def clos (D : D7) (I : Ideal (𝓞 D.host.E)) : AddSubgroup (Af D.host.F ⊗[D.host.F] D.host.E) :=
   AddSubgroup.closure {y | ∃ a ∈ intAf D.host.F, ∃ x : 𝓞 D.host.E, x ∈ I ∧ y = a ⊗ₜ[D.host.F] (x : D.host.E)}
 
-theorem intAf_mul' {F : Type} [Field F] [NumberField F] {a b : Af F} (ha : a ∈ intAf F) (hb : b ∈ intAf F) :
-    a * b ∈ intAf F := fun v => by
-  rw [map_mul]; exact mul_mem (ha v) (hb v)
-
 theorem one_mem_intAf' {F : Type} [Field F] [NumberField F] : (1 : Af F) ∈ intAf F := fun v => by
   rw [map_one]; exact one_mem _
 
@@ -90,7 +86,7 @@ theorem mul_mem_clos {I J : Ideal (𝓞 D.host.E)} {y z : Af D.host.F ⊗[D.host
       rw [Algebra.TensorProduct.tmul_mul_tmul]
       have e : (x : D.host.E) * (x' : D.host.E) = ((x * x' : 𝓞 D.host.E) : D.host.E) := rfl
       rw [e]
-      exact tmul_mem_clos (intAf_mul' ha hb) (Ideal.mul_mem_mul hx hx')
+      exact tmul_mem_clos (_root_.GlobalTheory.LatVac.mul_mem_intAf ha hb) (Ideal.mul_mem_mul hx hx')
     | zero => rw [zero_mul]; exact zero_mem _
     | add _ _ _ _ h1 h2 => rw [add_mul]; exact add_mem h1 h2
     | neg _ _ h => rw [neg_mul]; exact neg_mem h

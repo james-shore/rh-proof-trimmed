@@ -85,10 +85,10 @@ theorem isUnitaryOn_transportF_k : ∀ (F E : Type) [Field F] [NumberField F] [F
     rw [hc Ψ hΨ, ← heq]
     rfl
   have hth : IsThetaFunOF σ JS JT ξ₀ B.ψ (GlobalTheory.WeilSchrodinger.thetaTr F co B.ψ Φ) :=
-    ⟨_root_.GlobalTheory.T.doubled_lagrangian_continuous F E σ B hB hψ nS nT JS JT hS hT ξ₀ h0 hσ JA JB ξ hA hBm κ co hrat Φ hΦ,
-     _root_.GlobalTheory.T.doubled_lagrangian_unitary F E σ B hB hψ nS nT JS JT hS hT ξ₀ h0 hσ JA JB ξ hA hBm κ co hrat Φ hΦ,
-     _root_.GlobalTheory.T.doubled_lagrangian_equivariant F E σ B hB hψ nS nT JS JT hS hT ξ₀ h0 hσ JA JB ξ hA hBm κ co hrat Φ hΦ,
-     _root_.GlobalTheory.T.doubled_lagrangian_invariant_functional F E σ B hB hψ nS nT JS JT hS hT ξ₀ h0 hσ JA JB ξ hA hBm κ co hrat Φ hΦ⟩
+    ⟨_root_.GlobalTheory.ThetaQuasiRatF.thetaTr_ratWF_add_k F E σ B hB hψ nS nT JS JT hS hT ξ₀ h0 hσ JA JB ξ hA hBm κ co hrat Φ hΦ,
+     _root_.GlobalTheory.ThetaLevelF.thetaTr_levelF_k F E σ B hB hψ nS nT JS JT hS hT ξ₀ h0 hσ JA JB ξ hA hBm κ co hrat Φ hΦ,
+     _root_.GlobalTheory.ThetaTrContF.continuous_thetaTrF_k F E σ B hB hψ nS nT JS JT hS hT ξ₀ h0 hσ JA JB ξ hA hBm κ co hrat Φ hΦ,
+     _root_.GlobalTheory.ThetaSmoothF.contDiff_thetaTr_realF_k F E σ B hB hψ nS nT JS JT hS hT ξ₀ h0 hσ JA JB ξ hA hBm κ co hrat Φ hΦ⟩
   have ht := hom a b g h hh hg Φ hΦ
   calc
     _ = c * ∫⁻ w in 𝓕, ‖GlobalTheory.WeilSchrodinger.thetaTr F co B.ψ ((om (a, b)) Φ) w‖ₑ ^ 2 ∂ν := hiso _ ht.1

@@ -146,10 +146,10 @@ theorem GlobalTheory.AdForm.realOf_is : ∀ {B : GlobalTheory.Mem.Base} {X : Pre
       have := hrk (B.R.m - 1) (by omega)
       rw [show B.R.m - 1 + 1 = B.R.m by omega] at this
       omega
-    obtain ⟨h1, h2, h3, -⟩ := GlobalTheory.T.trueColumns_branchingMap_equivariant_nonzero_common I hOk hPins l Z u hN
+    obtain ⟨h1, h2, h3, -⟩ := _root_.GlobalTheory.TrueBranch.branching_true_columns I hOk hPins l Z u hN
     refine ⟨hN, h1, h2, h3, ?_⟩
     intro k hk τ
-    have hb := GlobalTheory.T.lastGroup_embedding_real_components_block_form I hOk hPins l Z u R.θ hX.inf _ hN hEmb k τ
+    have hb := _root_.GlobalTheory.EmbTopBlock.isBlock_infM_emb I hOk hPins l Z u R.θ hX.inf _ hN hEmb k τ
     have hB := (hX.xs B.R.m le_rfl).2.1
     show GlobalTheory.BranchFormula.IsBlock hN (inN R.θ _ (g.x B.R.m).B (rankN (I.rec7 l Z) B.R.m le_rfl) ((g.oT B.R.m rfl).emb (k, 1)) τ) (inN R.θ _ (fun _ => 1) (rankP (I.rec7 l Z)) k τ) 1
     rw [hB]

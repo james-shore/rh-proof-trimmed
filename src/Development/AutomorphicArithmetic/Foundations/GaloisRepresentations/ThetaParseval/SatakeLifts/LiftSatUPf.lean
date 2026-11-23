@@ -55,6 +55,6 @@ theorem UpperTheory.Gal.TP.Loc.liftSatU :
     exact ⟨w, u, hne.symm, rfl, congrArg HeightOneSpectrum.asIdeal hu⟩
   obtain ⟨t, rfl⟩ := GlobalTheory.LFun.SplitChart.exists_splitPrime_eq (GlobalTheory.GalOfCusp.isCMExt_real E) hv hvw
   obtain ⟨τ, hτ, hs⟩ := hB
-  obtain ⟨⟨τ', hτ'⟩, -⟩ := GlobalTheory.T.exists_unique_splitPlaceComponent_definiteUnitary E d U' hL.aut _ hw
+  obtain ⟨⟨τ', hτ'⟩, -⟩ := _root_.GlobalTheory.SplitComp.exists_comp_and_unique E d U' hL.aut _ hw
   exact ⟨τ', hτ', hPS E n d hnd v t χX χW τ τ' (hL.loc v t τ τ' hτ hτ')
     (hCU E n U hU _ hw τ hτ) hX hW B hs⟩

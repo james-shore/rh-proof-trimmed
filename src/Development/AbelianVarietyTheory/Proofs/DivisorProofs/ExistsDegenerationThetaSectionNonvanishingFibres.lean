@@ -69,10 +69,7 @@ theorem resG_resG {X : Scheme.{0}} {U V W : X.Opens} (h : W ≤ V) (h' : V ≤ U
   rw [← CommRingCat.comp_apply, ← Functor.map_comp]
   rfl
 
-theorem resG_self {X : Scheme.{0}} {U : X.Opens} (h : U ≤ U) (z : Γ(X, U)) : resG X h z = z := by
-  change (X.presheaf.map (homOfLE h).op).hom z = z
-  rw [show (homOfLE h).op = 𝟙 (Opposite.op U) from Subsingleton.elim _ _, X.presheaf.map_id]
-  rfl
+alias resG_self := _root_.GlobalTheory.LB.resG_self
 
 theorem basicOpen_resG {X : Scheme.{0}} {U V : X.Opens} (h : V ≤ U) (z : Γ(X, U)) :
     X.basicOpen (resG X h z) = V ⊓ X.basicOpen z :=

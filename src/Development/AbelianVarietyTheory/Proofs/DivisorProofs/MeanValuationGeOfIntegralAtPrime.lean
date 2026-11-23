@@ -51,19 +51,7 @@ namespace GlobalTheory.FunObj.SqNum.MeanValLow
 
 variable {K : Type} [Field K] [NumberField K]
 
-theorem vw_eq_zero_of_notMem (w : Formalism.PairingDivisionLocalBalance.Pl K) {a : 𝓞 K} (ha : a ∉ w.asIdeal) : Formalism.DivisionValues.vw w (a : K) = 0 := by
-  classical
-  have ha0 : (Ideal.span {a} : Ideal (𝓞 K)) ≠ 0 := by
-    rw [ne_eq, Ideal.zero_eq_bot, Ideal.span_singleton_eq_bot]
-    rintro rfl
-    exact ha w.asIdeal.zero_mem
-  unfold Formalism.DivisionValues.vw
-  rw [← FractionalIdeal.coeIdeal_span_singleton, FractionalIdeal.count_coe K _ ha0]
-  by_contra h
-  have h' : (Associates.mk w.asIdeal).count (Associates.mk (Ideal.span {a})).factors ≠ 0 := by
-    intro h0
-    exact h (by rw [h0]; rfl)
-  exact ha (Ideal.dvd_span_singleton.1 ((Associates.count_ne_zero_iff_dvd ha0 w.irreducible).1 h'))
+alias vw_eq_zero_of_notMem := _root_.GlobalTheory.Square.vw_eq_zero_of_notMem
 
 theorem vw_int_nonneg (w : Formalism.PairingDivisionLocalBalance.Pl K) (a : 𝓞 K) : 0 ≤ Formalism.DivisionValues.vw w (a : K) := by
   unfold Formalism.DivisionValues.vw

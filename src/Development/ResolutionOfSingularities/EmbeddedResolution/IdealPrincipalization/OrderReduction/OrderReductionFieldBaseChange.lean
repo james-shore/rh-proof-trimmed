@@ -67,9 +67,7 @@ def dropTrivialBoundaryBaseFieldHom (T : MarkedIdealWithBoundary.{u}) (L : Type 
 def coverBaseFieldHom (A : MarkedIdealWithBoundary.{u}) (hv : A.IsAdmissible) (L : Type u) [Field L]
     (f : A.base →+* L) : (MaxContactCoverData.coverTriple A hv).base →+* L := f
 
-theorem coverTriple_structureMorphism_eq (T : MarkedIdealWithBoundary.{u}) (hv : T.IsAdmissible) :
-    (MaxContactCoverData.coverTriple T hv).structMap = MaxContactCoverData.coverMap T hv ≫ T.structMap :=
-  MaxContactCoverData.coverTriple_structureMorphism T hv
+alias coverTriple_structureMorphism_eq := _root_.FunctorialResolution.EmbeddedResolution.MaxContactCoverData.coverTriple_structureMorphism
 
 theorem surjective_baseChange_fst (T : MarkedIdealWithBoundary.{u}) (L : Type u) [Field L]
     (f : T.base →+* L) :

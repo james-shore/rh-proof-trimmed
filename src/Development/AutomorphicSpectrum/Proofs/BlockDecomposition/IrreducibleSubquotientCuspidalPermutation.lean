@@ -54,10 +54,6 @@ open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.Loc
 
 namespace GlobalTheory.CompanionTheory.SegNcjm
 
-theorem exists_perm_of_map_eq {α : Type*} {l : ℕ} {x y : Fin l → α}
-    (h : Finset.univ.val.map y = Finset.univ.val.map x) : ∃ e : Equiv.Perm (Fin l), ∀ a, y a = x (e a) :=
-  _root_.UpperTheory.Reformulated.B.Yhb6.main h
-
 theorem exists_perm_one_le_jm : ∀ {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k]
     [IsNonarchimedeanLocalField k] (hA : GlobalTheory.Published.IrreducibleAdmissibleGL) {l N : ℕ} (x : Fin l → IrrGL (k := k))
     (hx : ∑ a, (x a).1 = N) (hxc : ∀ a, (x a).IsCusp) {V : Type} [AddCommGroup V] [Module ℂ V]
@@ -72,7 +68,7 @@ theorem exists_perm_one_le_jm : ∀ {k : Type} [Field k] [ValuativeRel k] [Topol
     GlobalTheory.CompanionTheory.Published.bernsteinZelevinskyFiniteness h2 h1
   have hcl : c = l := by simpa using congrArg Multiset.card hm
   subst hcl
-  obtain ⟨e, he⟩ := exists_perm_of_map_eq hm
+  obtain ⟨e, he⟩ := _root_.UpperTheory.Reformulated.B.Yhb6.main hm
   obtain rfl : y = fun a => x (e a) := funext he
   refine ⟨e, hy, GlobalTheory.CompanionTheory.FrobJm.one_le_jm hA _ hy π hs φ ?_⟩
   have : Nontrivial V := GlobalTheory.SmGL.nontrivial_of_irreducible hi

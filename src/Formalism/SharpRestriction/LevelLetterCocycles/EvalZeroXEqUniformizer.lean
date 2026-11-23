@@ -156,7 +156,7 @@ theorem ps_letter [IsDomain O] (W : LocWach PD LL O v n) (hR : Formalism.MainNot
       exact W.AΔ.sub_mem hpsΔ (W.AΔ.mul_mem hvΔ (W.AΔ.pow_mem hR.1 _))
   obtain ⟨gv, hgv⟩ := Formalism.MainNotions.RamifiedCoefficientChains.Sh.BT.invariant_letter_eq_evaluation W hR hvΔ a
   obtain ⟨gr, hgr⟩ := Formalism.MainNotions.RamifiedCoefficientChains.Sh.BT.invariant_letter_eq_evaluation W hR hr1 a
-  have hE := Formalism.MainNotions.RamifiedCoefficientChains.Sh.BT.letE_mul_self' (O := O) a
+  have hE := _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq (O := O) a
   refine ⟨gv * X ^ (PD.p ^ t) + C ((PD.p : ℕ) : O) * gr, ⟨gv, gr, ?_, rfl⟩, ?_⟩
   · have h1 := congrFun hgv a
     simp only [Pi.mul_apply, letE, Pi.single_eq_same, mul_one, Formalism.MainNotions.RamifiedCoefficientChains.Sh.BT.evaluation_apply] at h1
@@ -178,7 +178,7 @@ theorem finLev_of [IsDomain O] (W : LocWach PD LL O v n) (hR : Formalism.MainNot
   intro a e H
   set pO : O := ((PD.p : ℕ) : O) with hpO
   set I : Ideal O := Ideal.span {pO} with hI
-  have hE := Formalism.MainNotions.RamifiedCoefficientChains.Sh.BT.letE_mul_self' (O := O) a
+  have hE := _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq (O := O) a
   choose Fs hFs hFe using fun t => ps_letter W hR hp0 a t
   set Gall : PowerSeries O := X * (∏ t ∈ Finset.range e, Fs t ^ H t) ^ 2 with hGall
   have hWF : WF pO Gall (1 + (∑ t ∈ Finset.range e, PD.p ^ t * H t) * 2) :=

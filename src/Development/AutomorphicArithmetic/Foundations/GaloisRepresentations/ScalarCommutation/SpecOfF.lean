@@ -229,7 +229,7 @@ theorem UpperTheory.Gal.Spc.specOfF :
   choose T hT0 hT using hop
   haveI hfd' : ∀ q : DFCls G, FiniteDimensional ℂ (HeckeTraceForms.forms (Quot.out q).emb (Lv.K.toSubgroup.prod (Kp G))
       (ξ.comp (grp G (Quot.out q).β).subtype)) := fun q =>
-    forms_fin (Quot.out q).emb _ _ (GlobalTheory.T.finite_doubleCoset_definiteHermitianForm_level p G hGa Lv (Kp G) (Subgroup.Commensurable.refl _) (Quot.out q))
+    forms_fin (Quot.out q).emb _ _ (_root_.GlobalTheory.DefClassFin.finite_doubleCoset p G hGa Lv (Kp G) (Subgroup.Commensurable.refl _) (Quot.out q))
   have hmul : ∀ q, ∀ f ∈ Hecke ℂ Lv.K.toSubgroup, ∀ f' ∈ Hecke ℂ Lv.K.toSubgroup,
       T q (Formalism.UG.conv Lv.K.toSubgroup f f') = T q f * T q f' := fun q f hf f' hf' => ((hT q f hf).2.2 f' hf').1
   have hlin : ∀ q, ∀ f ∈ Hecke ℂ Lv.K.toSubgroup, ∀ f' ∈ Hecke ℂ Lv.K.toSubgroup, ∀ c : ℂ,

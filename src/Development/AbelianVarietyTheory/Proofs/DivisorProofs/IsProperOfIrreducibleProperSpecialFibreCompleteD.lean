@@ -58,7 +58,7 @@ theorem isProper_of_irreducible_of_isProper_specialFibre : ∀ (O : Type) [CommR
   obtain ⟨x₀, hx₀⟩ := hx
   have hne : Nonempty X := ⟨x₀⟩
   obtain ⟨Y, P, π, q, s, U, hπ, hUne, hiso, hproj, hq, hcomm⟩ :=
-    GlobalTheory.FormalAlg.exists_isProper_isImmersion_isProjOver O X f hsep hlft hqc hne
+    _root_.GlobalTheory.DenseClosedAffineSubsets.chow O X f hsep hlft hqc hne
   have hs : IsProper s := by
     obtain ⟨N, i, hi, rfl⟩ := hproj
     have := ReciprocityTheory.ChartRestriction.G.Geo.Tor.isProper_str O N

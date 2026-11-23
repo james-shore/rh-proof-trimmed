@@ -156,14 +156,7 @@ theorem killed_mem {z : Module.End ℂ (Sm E a)} (hz : z ∈ Zalg E a) (h0 : z �
 
 variable (ν : Measure (Lie E a)) [ν.IsAddHaarMeasure] {α : Lie E a → ℂ}
 
-theorem smoothing_add (hα : IsTest (invSet E a) α) (φ ψ : Sm E a) :
-    smoothing ν α (φ + ψ).1 = smoothing ν α φ.1 + smoothing ν α ψ.1 := by
-  funext x
-  simp only [Pi.add_apply, smoothing]
-  refine (integral_congr_ae (.of_forall fun y => ?_)).trans
-    (integral_add (hα.integrable_mul ν isOpen_invSet (φ.2 x).continuousOn)
-      (hα.integrable_mul ν isOpen_invSet (ψ.2 x).continuousOn))
-  by_cases h : IsUnit (Matrix.of y) <;> simp [chart, h, mul_add]
+alias smoothing_add := _root_.GlobalTheory.CentreSmooth.smoothing_add
 
 theorem smoothing_smul (c : ℂ) (φ : Sm E a) :
     smoothing ν α (c • φ).1 = c • smoothing ν α φ.1 := by
@@ -173,7 +166,7 @@ theorem smoothing_smul (c : ℂ) (φ : Sm E a) :
   by_cases h : IsUnit (Matrix.of y) <;> simp [chart, h, mul_left_comm]
 
 def smoothMap (hα : IsTest (invSet E a) α) (W : Submodule ℂ (Sm E a)) : W →ₗ[ℂ] Sm E a where
-  toFun w := ⟨smoothing ν α w.1.1, GlobalTheory.T.realLieSmoothing_mem_smoothAdelicFunctions E a ν α hα w.1.1 w.1.2⟩
+  toFun w := ⟨smoothing ν α w.1.1, _root_.GlobalTheory.AutGrowth.smoothing_mem_Sm E a ν α hα w.1.1 w.1.2⟩
   map_add' w w' := Subtype.ext (smoothing_add ν hα w.1 w'.1)
   map_smul' c w := Subtype.ext (smoothing_smul ν c w.1)
 
@@ -181,7 +174,7 @@ theorem smoothMap_mem (hα : IsTest (invSet E a) α) (hK : KInv α) (hφ : IsAut
     smoothMap ν hα (spanK E a φ) ∈ mapsJ φ (stabL φ) := by
   refine ⟨⟨fun k w => ?_, fun w => ⟨?_, fun γ g => ?_, fun k hk => ?_⟩⟩, fun z hz h0 w => ?_⟩
   · apply Subtype.ext; funext g
-    exact GlobalTheory.T.smoothing_right_translate_maxCompact E a ν α hK w.1.1 k g
+    exact _root_.GlobalTheory.AutGrowth.smoothing_rt_Kinf E a ν α hK w.1.1 k g
   · intro l
     obtain ⟨β, hβ, e⟩ : ∃ β, IsTest (invSet E a) β ∧
         ((l.map (lie E a)).prod (smoothMap ν hα (spanK E a φ) w)).1 = smoothing ν β w.1.1 := by
@@ -202,7 +195,7 @@ theorem smoothMap_mem (hα : IsTest (invSet E a) α) (hK : KInv α) (hφ : IsAut
     have hw : (fun x => w.1.1 (x * finGL E a k)) = w.1.1 := congrArg Subtype.val (fixed_mem hk w.2)
     simp only [smoothing]
     rw [← chart_rt_fin, hw]
-  · show (z ⟨smoothing ν α w.1.1, GlobalTheory.T.realLieSmoothing_mem_smoothAdelicFunctions E a ν α hα w.1.1 w.1.2⟩) = 0
+  · show (z ⟨smoothing ν α w.1.1, _root_.GlobalTheory.AutGrowth.smoothing_mem_Sm E a ν α hα w.1.1 w.1.2⟩) = 0
     apply Subtype.ext
     rw [GlobalTheory.T.centreEnvelopingAlgebra_commute_realLieSmoothing E a ν α hα w.1 _ z hz, killed_mem hz h0 w.2]
     funext g
@@ -218,7 +211,7 @@ theorem exists_finite_space : GlobalTheory.Published.AutomorphicFormsFiniteGL �
   let w0 : spanK E a φ := ⟨φ, self_mem_spanK φ⟩
   haveI := GlobalTheory.T.finiteDimensional_centreAnnihilatorCompatibleMaps hP E a φ hφ (stabL φ) hφ.level
   refine ⟨(mapsJ φ (stabL φ)).map (LinearMap.applyₗ w0), inferInstance, ?_, fun α hα hK =>
-    ⟨GlobalTheory.T.realLieSmoothing_mem_smoothAdelicFunctions E a ν α hα φ.1 φ.2, smoothMap ν hα _, smoothMap_mem ν hα hK hφ, rfl⟩⟩
+    ⟨_root_.GlobalTheory.AutGrowth.smoothing_mem_Sm E a ν α hα φ.1 φ.2, smoothMap ν hα _, smoothMap_mem ν hα hK hφ, rfl⟩⟩
   rintro _ ⟨T, hT, rfl⟩
   exact (hT.1.2 w0).1
 

@@ -600,8 +600,8 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 
 theorem isArcFr_of_agree : Out.Laws → Out.Laws2 → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (k : Type) [Field k] (bF : c.F →+* k) (a : ArcIn Dw l (RingHom.id c.F) k bF) (O O' : Type) [CommRing O] [CommRing O'] (β : O →+* c.F) (β' : O' →+* c.F) (Y : Model Xo c β) (Y' : Model Xo c β') (χ : Sp (PowerSeries k) ⟶ Y.X) (χ' : Sp (PowerSeries k) ⟶ Y'.X) (W : Wit Y (a.restrict β) χ) (W' : Wit Y' (a.restrict β') χ') (ψ : W.t.G ≅ W'.t.G), W.Agree W' ψ → ∀ y₀ : Sp (FractionRing (PowerSeries k)) ⟶ Xo.XF c, y₀ ≫ Y.j = Out.jK (PowerSeries k) ≫ χ → y₀ ≫ Y'.j = Out.jK (PowerSeries k) ≫ χ' → Mono Y.j → ∀ (e : ∀ τ : E →+* ℂ, Fin (Dw.mult τ) → Out.GtPt a.D₀ (epsR k)) (th : a.D₀.P.L.Sec), ThNZ th → ∀ (S : Type) [CommRing S] [Algebra c.F S] (ι : PowerSeries k →+* S) (y : FrPt Xo c S), IsUnit (ι PowerSeries.X) → IsArcFr W e th ι y → IsArcFr W' e th ι y := by
   intro hL hL2 E _ _ _ H Dw l Xo c k _ bF a O O' _ _ β β' Y Y' χ χ' W W' ψ hA y₀ hy hy' hj e th hth S _ _ ι y hι h
-  obtain ⟨θ', hθ', -⟩ := (GlobalTheory.T.existsUnique_thetaOf_alt hL hL2 E H Dw l Xo c O' β' Y' k _ (a.restrict β') χ' W' th hth).1
+  obtain ⟨θ', hθ', -⟩ := (_root_.GlobalTheory.existsUnique_thetaOf hL hL2 E H Dw l Xo c O' β' Y' k _ (a.restrict β') χ' W' th hth).1
   exact FrAgree.isArcFr_move hA y₀ hy hy' hj e th
-    (fun _ _ => (GlobalTheory.T.existsUnique_thetaOf_alt hL hL2 E H Dw l Xo c O β Y k _ (a.restrict β) χ W th hth).1.unique) θ' hθ' ι y hι h
+    (fun _ _ => (_root_.GlobalTheory.existsUnique_thetaOf hL hL2 E H Dw l Xo c O β Y k _ (a.restrict β) χ W th hth).1.unique) θ' hθ' ι y hι h
 
 end GlobalTheory.ArcQ

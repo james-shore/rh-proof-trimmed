@@ -81,14 +81,14 @@ theorem inPar_one (a n : ℕ) : InPar a (1 : GL (Fin n) F) := by
 
 theorem coe_tlG {a b n : ℕ} (hn : n = a + b) (x : GL (Fin n) F) (hx : InPar a x) :
     ((tlG a x : GL (Fin a) F) : Matrix (Fin a) (Fin a) F) = tl a (x : Matrix (Fin n) (Fin n) F) := by
-  obtain ⟨H, π, hH, -, hπ, hπ', -⟩ := GlobalTheory.T.exists_blockParabolic_subgroup_levi_projection F a b n hn
+  obtain ⟨H, π, hH, -, hπ, hπ', -⟩ := _root_.GlobalTheory.Shin.BlockPar.block_par F a b n hn
   have h := (hπ' ⟨x, (hH x).2 hx⟩).1
   rw [hπ] at h
   exact h
 
 theorem coe_brG {a b n : ℕ} (hn : n = a + b) (x : GL (Fin n) F) (hx : InPar a x) :
     ((brG a b x : GL (Fin b) F) : Matrix (Fin b) (Fin b) F) = br a b (x : Matrix (Fin n) (Fin n) F) := by
-  obtain ⟨H, π, hH, -, hπ, hπ', -⟩ := GlobalTheory.T.exists_blockParabolic_subgroup_levi_projection F a b n hn
+  obtain ⟨H, π, hH, -, hπ, hπ', -⟩ := _root_.GlobalTheory.Shin.BlockPar.block_par F a b n hn
   have h := (hπ' ⟨x, (hH x).2 hx⟩).2
   rw [hπ] at h
   exact h
@@ -97,7 +97,7 @@ theorem conj_blocks {a b n : ℕ} (hn : n = a + b) (h₁ : GL (Fin a) F) (h₂ :
     ∃ s : GL (Fin n) F, ∀ z : GL (Fin n) F, (InPar a (s⁻¹ * z * s) ↔ InPar a z) ∧
       (InPar a z → tlG a (s⁻¹ * z * s) = h₁⁻¹ * tlG a z * h₁ ∧
         brG a b (s⁻¹ * z * s) = h₂⁻¹ * brG a b z * h₂) := by
-  obtain ⟨H, π, hH, hsu, hπ, -, -⟩ := GlobalTheory.T.exists_blockParabolic_subgroup_levi_projection F a b n hn
+  obtain ⟨H, π, hH, hsu, hπ, -, -⟩ := _root_.GlobalTheory.Shin.BlockPar.block_par F a b n hn
   obtain ⟨s, hs⟩ := hsu (h₁, h₂)
   refine ⟨s.1, fun z => ⟨?_, fun hz => ?_⟩⟩
   · rw [← hH, ← hH]
@@ -311,8 +311,8 @@ theorem card_comap {H L : Type} [Group H] [Group L] (π : H →* L) (hπ : Funct
 theorem card_left [Finite F] {a b c n : ℕ} (hn : n = a + b + c) :
     Nat.card {x : GL (Fin n) F // InPar (a + b) x ∧ InPar a (tlG (a + b) x)} * Nat.card (GL (Fin (a + b)) F) =
       Nat.card {p : GL (Fin (a + b)) F // InPar a p} * Nat.card {p : GL (Fin n) F // InPar (a + b) p} := by
-  obtain ⟨H, π, hH, hsu, hπ, -, -⟩ := GlobalTheory.T.exists_blockParabolic_subgroup_levi_projection F (a + b) c n hn
-  obtain ⟨H', -, hH', -, -, -, -⟩ := GlobalTheory.T.exists_blockParabolic_subgroup_levi_projection F a b (a + b) rfl
+  obtain ⟨H, π, hH, hsu, hπ, -, -⟩ := _root_.GlobalTheory.Shin.BlockPar.block_par F (a + b) c n hn
+  obtain ⟨H', -, hH', -, -, -, -⟩ := _root_.GlobalTheory.Shin.BlockPar.block_par F a b (a + b) rfl
   have k := card_comap π hsu (H'.prod ⊤)
   have mem : ∀ p : H, p ∈ (H'.prod ⊤).comap π ↔ InPar a (tlG (a + b) p.1) := by
     intro p
@@ -337,8 +337,8 @@ theorem card_left [Finite F] {a b c n : ℕ} (hn : n = a + b + c) :
 theorem card_right [Finite F] {a b c n : ℕ} (hn : n = a + b + c) :
     Nat.card {x : GL (Fin n) F // InPar a x ∧ InPar b (brG a (b + c) x)} * Nat.card (GL (Fin (b + c)) F) =
       Nat.card {p : GL (Fin (b + c)) F // InPar b p} * Nat.card {p : GL (Fin n) F // InPar a p} := by
-  obtain ⟨H, π, hH, hsu, hπ, -, -⟩ := GlobalTheory.T.exists_blockParabolic_subgroup_levi_projection F a (b + c) n (by omega)
-  obtain ⟨H', -, hH', -, -, -, -⟩ := GlobalTheory.T.exists_blockParabolic_subgroup_levi_projection F b c (b + c) rfl
+  obtain ⟨H, π, hH, hsu, hπ, -, -⟩ := _root_.GlobalTheory.Shin.BlockPar.block_par F a (b + c) n (by omega)
+  obtain ⟨H', -, hH', -, -, -, -⟩ := _root_.GlobalTheory.Shin.BlockPar.block_par F b c (b + c) rfl
   have k := card_comap π hsu ((⊤ : Subgroup (GL (Fin a) F)).prod H')
   have mem : ∀ p : H, p ∈ ((⊤ : Subgroup (GL (Fin a) F)).prod H').comap π ↔ InPar b (brG a (b + c) p.1) := by
     intro p

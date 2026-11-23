@@ -164,7 +164,7 @@ theorem closureData : ∀ (A R : Type) [CommRing A] [IsDomain A] [IsNoetherianRi
   have htr : ∀ c ∈ closure A R D, ∃ r : R, algebraMap R (GenFib A R) r = τ c :=
     fun c hc => trace_mem hIC hinj τ q act hτ hc
   haveI : Module.Finite (GenFib A R) D := hT.1
-  obtain ⟨a, ha, hmem⟩ := GlobalTheory.T.exists_mul_mem_integralClosureOverGenericFibre A R D (Finset.univ.image x ∪ Finset.univ.image y)
+  obtain ⟨a, ha, hmem⟩ := _root_.GlobalTheory.KeyOriginNoeth.exists_common_multiple_mem_closure A R D (Finset.univ.image x ∪ Finset.univ.image y)
   set b := baseHom A R D (algebraMap A R a) with hbdef
   have hb : ∀ g, act g b = b := fun g => (act g).commutes _
   let x' : Fin n → closure A R D := fun i => ⟨b * x i, hmem _ (by simp)⟩

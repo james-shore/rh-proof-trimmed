@@ -92,7 +92,7 @@ theorem fibre_torsor : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
   obtain ⟨hd, hM, -, -, -, hE, -, -, -⟩ := id hlev
   have hLaws : ReciprocityTheory.ChartRestriction.G.Out.Laws := GlobalTheory.T.abelianScheme_laws_unconditional.1
   have hN := GlobalTheory.levelMaps_closed hLaws E H Dw hpq
-  refine ⟨⟨fun h' => ?_, fun ⟨γ, hγ, hr⟩ => ?_⟩, fun γ γ' h₁ h₂ => GlobalTheory.T.levelStructureChange_framedGeometricPoint_unique E H Dw d.l₂ d.Xo₂ d.c₂ hpq hA lift hlift k y₂ y₂' γ γ' h₁ h₂⟩
+  refine ⟨⟨fun h' => ?_, fun ⟨γ, hγ, hr⟩ => ?_⟩, fun γ γ' h₁ h₂ => _root_.GlobalTheory.LevelFree.move_unique E H Dw d.l₂ d.Xo₂ d.c₂ hpq hA lift hlift k y₂ y₂' γ γ' h₁ h₂⟩
   · obtain ⟨g, ρ, ν, hg, -, hmv, hfr⟩ :=
       GlobalTheory.exists_levMove_of_frOver hLaws E H Dw l Xo c 0 d hN hd hM hE d.r d.m hE k hk y y₂ y₂' hy h'
     obtain ⟨γ, hγ⟩ := exists_gam_of_sim d.l₂ g

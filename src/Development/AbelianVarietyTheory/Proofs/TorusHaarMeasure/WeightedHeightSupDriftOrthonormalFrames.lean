@@ -78,7 +78,7 @@ theorem weighted_sup_drift_on_orthonormal_frames :
   obtain ⟨δ, c, Ω, hδ, hc0, hc1, hΩ, hw⟩ := GlobalTheory.height_rpow_neg_distortion_contraction r X d hd τ0 S hS hirr
   refine ⟨δ, hδ, fun α hα => ?_⟩
   have hdet : ∀ y : {x // IsOrth X x}, ∀ τ : X.Ψ, (mat y.1 τ).det ≠ 0 :=
-    fun y => (GlobalTheory.T.majorant_eq_sum_norm_sq_orthonormalFrame r X y.1 y.2).1
+    fun y => (_root_.GlobalTheory.MajorantOrthFrame.maj_eq_sum_norm_sq_of_isOrth r X y.1 y.2).1
   have hpos : ∀ y : {x // IsOrth X x}, ∀ W, 0 < d y.1 W := fun y W => by
     obtain ⟨m, hm, h⟩ := GlobalTheory.HeightLower.exists_pos_le_height r X d hd y.1 (hdet y)
     exact hm.trans_le (h W)
@@ -99,7 +99,7 @@ theorem weighted_sup_drift_on_orthonormal_frames :
       rw [← Finset.sum_coe_sort] at h
       rw [Fintype.card_coe]
       exact h)
-  obtain ⟨m, hm, htop⟩ := GlobalTheory.T.exists_pos_le_latticeHeight_bot_top r X d hd
+  obtain ⟨m, hm, htop⟩ := _root_.GlobalTheory.HeightEnds.exists_pos_le_bot_top r X d hd
   obtain ⟨e, c', b, he, hc'0, hc'1, hb, hdr⟩ := GlobalTheory.weighted_sum_drift_inequality
     {x // IsOrth X x} S r t (fun i y => α i y.1) c C (m ^ (-δ)) hc0 hc1 hC
     (fun i hi y => nonneg_of_isLUB_image (fun W => (Real.rpow_pos_of_pos (hpos y W) _).le)

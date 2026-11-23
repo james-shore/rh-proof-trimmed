@@ -76,7 +76,7 @@ theorem congruence_chain_of_character {G : Type*} [Group G] (l : ℕ) [Fact l.Pr
     exact units_map_toZModPow_eq_one_iff l (k + n) (η g)
   have hlte : ∀ n, ‖(η (γ ^ l ^ n) : ℤ_[l]) - 1‖ = ‖((l : ℕ) : ℤ_[l])‖ ^ (k + n) := fun n => by
     rw [map_pow, Units.val_pow_eq_pow_val]
-    exact GlobalTheory.T.norm_pow_prime_pow_sub_one_of_norm_sub_one l _ k hk hγ n
+    exact _root_.GlobalTheory.PadicLte.norm_pow_prime_pow_sub_one l _ k hk hγ n
   refine ⟨fun n => (φ n).ker, hmem, fun n => inferInstance, fun n => ?_, fun n => ?_,
     fun n => ?_, fun n h hh => ?_⟩
   · have : NeZero (l ^ (k + n)) := ⟨pow_ne_zero _ hl⟩
@@ -89,7 +89,7 @@ theorem congruence_chain_of_character {G : Type*} [Group G] (l : ℕ) [Fact l.Pr
             (fun x y hxy => Subtype.ext (Units.ext hxy))
       _ = l ^ (k + n) := Nat.card_zmod _
   · exact (hmem n _).2 (hlte n).le
-  · obtain ⟨i, hi⟩ := GlobalTheory.T.padicInt_exists_pow_sub_norm_le_of_exact_level' l (η (γ ^ l ^ n) : ℤ_[l]) (η h : ℤ_[l]) (k + n) (by omega)
+  · obtain ⟨i, hi⟩ := _root_.GlobalTheory.padicInt_exists_pow_sub_norm_le_of_exact_level l (η (γ ^ l ^ n) : ℤ_[l]) (η h : ℤ_[l]) (k + n) (by omega)
       (hlte n) ((hmem n h).1 hh)
     refine ⟨i, (hmem (n + 1) _).2 ?_⟩
     set w : ℤ_[l]ˣ := η ((γ ^ l ^ n) ^ i) with hw

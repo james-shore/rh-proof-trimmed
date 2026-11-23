@@ -64,7 +64,7 @@ theorem isIrrAdm_of_irred : ∀ (n : ℕ) (ε : Fin n → Bool) (H : Type) [Norm
     choose Y hYf hvY hYB using fun i => hY (b i) (b i).2
     haveI : ∀ i, FiniteDimensional ℂ (Y i) := hYf
     refine Submodule.finiteDimensional_of_le (sSup_le fun S hS => ?_) (S₂ := ⨆ i, Y i)
-    obtain ⟨B, hB, rfl⟩ := (GlobalTheory.T.maxCompact_irreducible_has_highest_weight_and_iso n ε H π hU.1 hU.2.2 hK).2 Λ S₀ S hS₀ hS.2
+    obtain ⟨B, hB, rfl⟩ := (_root_.GlobalTheory.KTypeHighest.ktype_highest_weight n ε H π hU.1 hU.2.2 hK).2 Λ S₀ S hS₀ hS.2
     rw [Submodule.map_le_iff_le_comap]
     intro x hx
     have hx' : (⟨x, hx⟩ : S₀) ∈ Submodule.span ℂ (Set.range b) := b.span_eq ▸ Submodule.mem_top

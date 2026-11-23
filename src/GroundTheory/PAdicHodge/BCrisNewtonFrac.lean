@@ -136,8 +136,8 @@ theorem IsACrisFraction.norm_le {y : PadicAlgCl p} (hy : IsACrisFraction y) (h1 
   by_cases hy0 : y = 0
   · rw [hy0, norm_zero]; exact norm_nonneg _
   obtain ⟨D, hD⟩ := hy.exists_norm_eq_zpow hy0
-  have hp0 : 0 < ‖(p : PadicAlgCl p)‖ := by rw [norm_p_algCl]; exact inv_p_pos
-  have hp1 : ‖(p : PadicAlgCl p)‖ ≤ 1 := by rw [norm_p_algCl]; exact inv_p_lt_one.le
+  have hp0 : 0 < ‖(p : PadicAlgCl p)‖ := by rw [_root_.UpperTheory.Reformulated.B.CapelliMiscellany.norm_natCast_prime]; exact inv_p_pos
+  have hp1 : ‖(p : PadicAlgCl p)‖ ≤ 1 := by rw [_root_.UpperTheory.Reformulated.B.CapelliMiscellany.norm_natCast_prime]; exact inv_p_lt_one.le
   rw [hD]
   by_cases hD1 : 1 ≤ D
   · exact (zpow_le_zpow_right_of_le_one₀ hp0 hp1 hD1).trans_eq (zpow_one _)
@@ -175,9 +175,6 @@ theorem norm_sub_pow_sub_le {F : Type*} [NormedField F] [IsUltrametricDist F] (h
   rw [← h4, norm_mul]
   exact mul_le_of_le_one_left (norm_nonneg _) (mem_normInteger.1 c.2)
 
-theorem norm_p_algCl_lt_one : ‖(p : PadicAlgCl p)‖ < 1 := by
-  rw [norm_p_algCl]; exact inv_p_lt_one
-
 theorem exists_approx_of_isACrisFraction (m : ℕ) :
     ∀ y : PadicAlgCl p, IsACrisFraction y → ‖y‖ ≤ 1 →
       ∃ u ∈ unramifiedClosure p, ‖y - u‖ ≤ ‖(p : PadicAlgCl p)‖ ^ m := by
@@ -185,7 +182,7 @@ theorem exists_approx_of_isACrisFraction (m : ℕ) :
   | zero => intro y _ hy1; exact ⟨0, zero_mem _, by rw [sub_zero, pow_zero]; exact hy1⟩
   | succ m ih =>
     intro y hy hy1
-    have hp1 := norm_p_algCl_lt_one (p := p)
+    have hp1 := _root_.GroundTheory.PAdicHodge.norm_natCast_p_algCl_lt_one (p := p)
     obtain ⟨k₀, k₁, hk, hkk⟩ := exists_lt_norm_pow_sub_lt hy1 one_pos (fun k => p ^ k)
     set r := k₁ - k₀ with hr
     have hr1 : 1 ≤ r := by omega
@@ -238,7 +235,7 @@ theorem exists_approx_of_isACrisFraction (m : ℕ) :
 theorem IsACrisFraction.mem_unramifiedClosure {y : PadicAlgCl p} (hy : IsACrisFraction y) :
     y ∈ unramifiedClosure p := by
   have hpne : (p : PadicAlgCl p) ≠ 0 := Nat.cast_ne_zero.2 hp.out.ne_zero
-  have hp1 := norm_p_algCl_lt_one (p := p)
+  have hp1 := _root_.GroundTheory.PAdicHodge.norm_natCast_p_algCl_lt_one (p := p)
   have hnp0 : 0 < ‖(p : PadicAlgCl p)‖ := norm_pos_iff.2 hpne
   obtain ⟨n, hn⟩ := exists_pow_lt_of_lt_one (inv_pos.2 (zero_lt_one.trans_le (le_max_left 1 ‖y‖)))
     hp1

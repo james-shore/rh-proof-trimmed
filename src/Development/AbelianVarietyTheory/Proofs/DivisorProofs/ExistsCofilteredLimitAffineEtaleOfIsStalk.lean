@@ -51,7 +51,7 @@ namespace GlobalTheory.EtC
 theorem exists_cofiltered_limit_affine_etale_of_isStalk : ∀ (S : Scheme.{0}) (O : Type) [CommRing O] (s : Spec (CommRingCat.of O) ⟶ S), IsStalk O s → ∃ (I : Type) (_ : SmallCategory I) (_ : IsCofiltered I) (G : I ⥤ Over S) (π : (Functor.const I).obj (Over.mk s) ⟶ G), Nonempty (IsLimit (Cone.mk _ π)) ∧ ∀ i, IsAffine (G.obj i).left ∧ Etale (G.obj i).hom := by
   intro S O _ s hs
   obtain ⟨_, A, _, _, j, hj, hind, rfl⟩ := hs
-  obtain ⟨J, _, _, D, ι, ⟨hc⟩, het⟩ := GlobalTheory.T.exists_filtered_colimit_of_etale_of_indEt A O hind
+  obtain ⟨J, _, _, D, ι, ⟨hc⟩, het⟩ := _root_.GlobalTheory.EtC.exists_filtered_colimit_etale_of_indEt A O hind
   let G : Jᵒᵖ ⥤ Over S :=
     { obj := fun k => Over.mk (Spec.map (D.obj k.unop).hom ≫ j)
       map := fun {k l} f => Over.homMk (Spec.map (D.map f.unop).right) (by

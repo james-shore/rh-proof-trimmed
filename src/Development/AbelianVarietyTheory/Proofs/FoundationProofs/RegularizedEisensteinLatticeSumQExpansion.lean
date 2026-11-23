@@ -72,11 +72,8 @@ theorem hat_bounded (L : ℕ) (φ : ZMod L → ℂ) : ∃ C : ℝ, ∀ x, ‖hat
     rw [h, Complex.norm_exp_ofReal_mul_I]
   rw [this, mul_one]
 
-theorem trm_zero_eq (j : ℕ) (w : ℂ) : trm j 0 w = (w ^ j)⁻¹ := by
-  simp [trm]
-
 theorem trm_neg (j : ℕ) (w : ℂ) : trm j 0 (-w) = (-1) ^ j * trm j 0 w := by
-  rw [trm_zero_eq, trm_zero_eq, neg_pow, mul_inv, ← inv_pow, inv_neg, inv_one]
+  rw [_root_.GlobalTheory.LatSumZ.trm_zero, _root_.GlobalTheory.LatSumZ.trm_zero, neg_pow, mul_inv, ← inv_pow, inv_neg, inv_one]
 
 theorem trm_tendsto (j : ℕ) (hj : 1 ≤ j) (z : ℂ) :
     Tendsto (fun d : ℤ => trm j 0 (z + d)) cofinite (𝓝 0) := by
@@ -91,7 +88,7 @@ theorem trm_tendsto (j : ℕ) (hj : 1 ≤ j) (z : ℂ) :
   have h3 : Tendsto (fun d : ℤ => ‖z + d‖ ^ j) cofinite atTop :=
     (tendsto_pow_atTop (by omega)).comp h2
   refine h3.inv_tendsto_atTop.congr (fun d => ?_)
-  simp [trm_zero_eq, norm_inv, norm_pow]
+  simp [_root_.GlobalTheory.LatSumZ.trm_zero, norm_inv, norm_pow]
 
 theorem sum_range_eq_univ (L : ℕ) (hL : 0 < L) (φ : ZMod L → ℂ) (f : ℕ → ZMod L)
     (hf : Set.InjOn f (Finset.range L)) :

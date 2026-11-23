@@ -65,16 +65,6 @@ open scoped Pointwise ENNReal Classical
 noncomputable section
 namespace GlobalTheory.HL.SAN
 
-private theorem hf_add_left_flag_measures' {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] {E : Type} [CommRing E]
-    [Algebra F E] [TopologicalSpace E] (L : LocE F E) {N : ℕ} (Hm : Matrix (Fin N) (Fin N) E)
-    (a b y : Fin N → E) : hf L Hm (a + b) y = hf L Hm a y + hf L Hm b y := by
-  simp only [hf, Pi.add_apply, add_mul, Finset.sum_add_distrib]
-
-private theorem hf_smul_left_flag_measures' {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] {E : Type} [CommRing E]
-    [Algebra F E] [TopologicalSpace E] (L : LocE F E) {N : ℕ} (Hm : Matrix (Fin N) (Fin N) E)
-    (c : E) (a y : Fin N → E) : hf L Hm (c • a) y = c * hf L Hm a y := by
-  simp only [hf, Pi.smul_apply, smul_eq_mul, Finset.mul_sum, mul_assoc]
-
 private theorem hq_sub_left {F E : Type} [Field F] [Field E] [Algebra F E] (sig : E →ₐ[F] E) {N : ℕ}
     (Hm : Matrix (Fin N) (Fin N) E) (a b y : Fin N → E) :
     hq sig Hm (a - b) y = hq sig Hm a y - hq sig Hm b y := by
@@ -232,7 +222,7 @@ theorem core {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [A
     have := (A.loc p).lf
     have := (A.loc p).char0
     by_cases hp : p ∈ Bad
-    · obtain ⟨d, hd⟩ := GlobalTheory.T.hermitianEichlerProduct_continuous_on_lattice (A.L p) (k + 2 * r + 1) r (G.S p).Hm (fun i => A.bc p (X i))
+    · obtain ⟨d, hd⟩ := _root_.GlobalTheory.HL.EichCont.prod_eich_cont (A.L p) (k + 2 * r + 1) r (G.S p).Hm (fun i => A.bc p (X i))
         (up p) (sp p) (ep p) (fun i v => (hup p i).2.2 v) (A.lat p Λ) (hlatP.2.1 p) (c p)
       exact ⟨d, fun h => absurd hp h, hd⟩
     · refine ⟨1, fun _ => rfl, ?_⟩
@@ -322,10 +312,10 @@ theorem core {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [A
     let M : (Fin (k + 2 * r + 1) → (A.loc p).Ep) →ₗ[(A.loc p).Ep] (Fin (k + 2 * r + 1) → (A.loc p).Ep) :=
       { toFun := fun w => eich (A.L p) (G.S p).Hm (A.bc p (X i)) (A.bc p (uQ i)) ((A.loc p).ιE (sQ i)) w
         map_add' := fun a b => by
-          simp only [eich, hf_add_left_flag_measures']
+          simp only [eich, _root_.GlobalTheory.HL.Eichler.hf_add_l]
           module
         map_smul' := fun t a => by
-          simp only [eich, hf_smul_left_flag_measures', RingHom.id_apply]
+          simp only [eich, _root_.GlobalTheory.HL.Eichler.hf_smul_l, RingHom.id_apply]
           module }
     have hlin := RatExt.lin_ext (A.loc p).ιE (e' : (Fin (k + 2 * r + 1) → (A.loc p).Ep) →ₗ[(A.loc p).Ep] _) M
       (fun x => by

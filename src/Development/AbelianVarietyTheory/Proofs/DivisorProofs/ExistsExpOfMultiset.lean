@@ -99,7 +99,7 @@ theorem local_bound (E : Type) [Field E] [NumberField E] (w : HeightOneSpectrum 
     exact mul_le_mul_of_nonneg_left hnq (by positivity)
   refine fun b hb => ⟨hup b hb, ?_⟩
 
-  obtain ⟨g, hg⟩ := GlobalTheory.T.heckeTn_scalar_uniformiser_single_translation E w n V ρ ϖ hϖ x hxK
+  obtain ⟨g, hg⟩ := _root_.GlobalTheory.LFun.tn_single E w n V ρ ϖ hϖ x hxK
   have hn := hT ϖ hϖ n le_rfl
   have hsat : GlobalTheory.LFun.satEig q n B n = (B.map fun b : ℂˣ => (b : ℂ)).prod := by
     unfold GlobalTheory.LFun.satEig

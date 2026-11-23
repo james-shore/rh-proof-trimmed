@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.EpsilonPairingZeta
 import Development.AbelianVarietyTheory.Definitions.Divisors.GhostFrobenius
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FontaineXiPowSaturatedQuotientComplete
 
 @[expose] public section
 
@@ -60,13 +61,9 @@ noncomputable section
 
 namespace GlobalTheory.QLogTangent
 
-theorem smodEq_iff' {O : Type} [CommRing O] (p : O) (n : ℕ) (x y : O) :
-    x ≡ y [SMOD (Ideal.span {p} ^ n • ⊤ : Submodule O O)] ↔ p ^ n ∣ x - y := by
-  rw [SModEq.sub_mem, Ideal.span_singleton_pow, smul_eq_mul, Ideal.mul_top, Ideal.mem_span_singleton]
-
 theorem eq_zero_of_forall_dvd {O : Type} [CommRing O] (p : O) [IsHausdorff (Ideal.span {p}) O] (x : O)
     (h : ∀ n : ℕ, p ^ n ∣ x) : x = 0 :=
-  IsHausdorff.haus' x fun n => (smodEq_iff' p n x 0).2 (by simpa using h n)
+  IsHausdorff.haus' x fun n => (_root_.GlobalTheory.MemLoc.XiSat.smodEq_iff p n x 0).2 (by simpa using h n)
 
 theorem main : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgClosed C] [CharZero C] (v : Valuation C NNReal) (O : Type) [CommRing O] [Algebra O C] [Fact ¬IsUnit (p : O)] [IsAdicComplete (Ideal.span {(p : O)}) O] [IsDomain O], v.Integers O → ∀ (G : PDivGroup p O) (d : ℕ) (c : QLog.Chart G d), ∀ (E : Type) [CommRing E] [Algebra O E], IsFrame p E (RingHom.id O) → ∀ f : MvPowerSeries (Fin d) E, QL c.μ ⊤ f → ∃! l : G.dual.Lie, c.IsLie f l := by
   intro p _ C _ _ _ v O _ _ _ _ _ hv G d c E _ _ hF f hf
@@ -146,9 +143,9 @@ theorem main : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgClosed C]
         have := dvd_add ih ((pow_dvd_pow (p : O) hmn).trans (step n))
         rwa [add_comm, sub_add_sub_cancel] at this
     obtain ⟨L, hL⟩ := IsPrecomplete.prec' (I := Ideal.span {(p : O)}) (fun n => φ n (a n))
-      (fun {m n} hmn => (smodEq_iff' _ _ _ _).2 (dvd_sub_comm.1 (cauchy m n hmn)))
+      (fun {m n} hmn => (_root_.GlobalTheory.MemLoc.XiSat.smodEq_iff _ _ _ _).2 (dvd_sub_comm.1 (cauchy m n hmn)))
     refine ⟨L, fun n ψ hψ => ?_⟩
-    have h1 := (smodEq_iff' _ _ _ _).1 (hL n)
+    have h1 := (_root_.GlobalTheory.MemLoc.XiSat.smodEq_iff _ _ _ _).1 (hL n)
     have h2 := key n _ _ ((hφ n).trans hψ.symm)
     have := dvd_add (dvd_sub_comm.1 h1) h2
     rwa [sub_add_sub_cancel] at this

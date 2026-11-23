@@ -56,10 +56,7 @@ noncomputable section
 
 namespace GlobalTheory.TwMulOrder
 
-theorem loc_mono {U : Scheme.{0}} {P Q : ∀ V : Scheme.{0}, (V ⟶ U) → Prop} (h : Loc U P)
-    (hPQ : ∀ V g, P V g → Q V g) : Loc U Q := by
-  obtain ⟨S, hS, hP⟩ := h
-  exact ⟨S, hS, fun V g hg => hPQ V g (hP V g hg)⟩
+alias loc_mono := _root_.GlobalTheory.EtC.TensLocBij.locMono
 
 theorem loc_bind {U : Scheme.{0}} {P : ∀ V : Scheme.{0}, (V ⟶ U) → Prop} {Q : Scheme.{0} → Prop} (h : Loc U P)
     (hPQ : ∀ V (g : V ⟶ U), P V g → Loc V fun W _ => Q W) : Loc U fun W _ => Q W := by

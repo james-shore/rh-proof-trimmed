@@ -75,8 +75,8 @@ theorem UpperTheory.Gal.FiniteEtaleModels.repMul_holds :
   let f₁ : Over.mk π ⟶ Over.mk π₁ := Over.homMk (pullback.fst π₁ π₂) rfl
   let f₂ : Over.mk π ⟶ Over.mk π₂ := Over.homMk (pullback.snd π₁ π₂) pullback.condition.symm
   refine ⟨pullback π₁ π₂, π, fun y => (f₁ ≫ lu₁ y) * (f₂ ≫ lu₂ y), inferInstance, inferInstance, ?_, ?_⟩
-  · exact hM p D R b N S s o 𝔞 𝔟 hab _ _ _ (GlobalTheory.T.etale_level_base_change p D R b N S s o 𝔞 1 _ _ lu₁ f₁ hl₁)
-      (GlobalTheory.T.etale_level_base_change p D R b N S s o 𝔟 1 _ _ lu₂ f₂ hl₂)
+  · exact hM p D R b N S s o 𝔞 𝔟 hab _ _ _ (_root_.GlobalTheory.UPel.HT.EtLev.isEtLevOver_pull p D R b N S s o 𝔞 1 _ _ lu₁ f₁ hl₁)
+      (_root_.GlobalTheory.UPel.HT.EtLev.isEtLevOver_pull p D R b N S s o 𝔟 1 _ _ lu₂ f₂ hl₂)
   · intro T l hl
     have hA := hP p D R b N S s o 𝔞 𝔟 eb heb (by rw [← hsum, add_sub_cancel_right]; exact hea) T l hl
     have hB := hP p D R b N S s o 𝔟 𝔞 ea hea (by rw [← hsum, add_sub_cancel_left]; exact heb) T l

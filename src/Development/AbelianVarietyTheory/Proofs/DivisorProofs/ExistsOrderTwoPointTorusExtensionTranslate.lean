@@ -295,24 +295,6 @@ theorem exists_coord [IsLocalRing R] [IsIntegrallyClosed R] {xe : D₀.X ≃+ D.
     (gm_pull (𝟙 _) (jK R) z ⊤ trivial u).symm.trans (congrArg (gm (𝟙 (TK R).left) z ⊤) hu)
   exact (congrArg (· * _) (e.trans (va z J J' hJ hJ').symm)).trans (inv_mul_cancel_right _ _)
 
-theorem exists_zero (D : DegPre R) (T : Over (Sp R)) : ∃ o : GtPt D T, o.IsZero := by
-  have H : ∀ χ : D.X, ∃ s : LB.Gen (LB.LinComb D.P.L (DegPre.gtφT D T (DegPre.zeroT D T) χ) DegPre.gtε), s.IsGen ∧
-      ∀ (Z : Scheme.{0}) (r : Z ⟶ T.left) (z : Z) J, Good D.P.L z J → val s r z J = val (LB.oneGen D.P.L) r z J :=
-    fun χ => exists_gen D.P.isLB (fun U _ h => by
-      have e := prod_gt D (𝟙 T) (1 : T ⟶ D.P.A) χ h
-      rw [Category.id_comp, _root_.mul_one] at e
-      rw [Fintype.prod_empty]
-      refine Eq.trans ?_ e.symm
-      simp) (LB.oneGen D.P.L) (oneGen_isGen _)
-  choose s hs vs using H
-  refine ⟨⟨DegPre.zeroT D T, s, hs, corr_of_val D.P.isLB fun y J hJ => vs 0 _ _ y J hJ,
-    fun χ χ' => corr_of_val D.P.isLB fun y J hJ => ?_⟩, rfl, fun χ => corr_of_val D.P.isLB fun y J hJ => vs χ _ _ y J hJ⟩
-  refine (val_mul hJ _ _ _).trans (Eq.trans ?_ (val_mul hJ _ _ _).symm)
-  rw [vs _ _ _ y J hJ, vs _ _ _ y J hJ, vs _ _ _ y J hJ, val_one, _root_.one_mul, _root_.one_mul]
-  refine (val_cub D.cub (𝟙 T) hJ _ _ _).trans ?_
-  rw [Category.id_comp (DegPre.zeroT D T)]
-  exact (isCub_cubV D.cub hJ).face₃ _ _
-
 theorem exists_point : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R → ∀ (D₀ D : DegData R (maximalIdeal R))
   (β : D₀.toPre.P.A ≅ D.toPre.P.A) (xe : D₀.toPre.X ≃+ D.toPre.X), IsMonHom β.hom →
   (∀ χ, D₀.toPre.c χ ≫ β.hom = D.toPre.c (xe χ)) →
@@ -373,7 +355,7 @@ theorem exists_point : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R],
           ← hadd z₀ J J' hJ hJ' χ χ']
         refine congrArg (_ * ·) ((vc J hJ _ _ _).trans ?_)
         rw [← Category.assoc, ← Category.assoc, hu] }
-  obtain ⟨o, ho⟩ := exists_zero D.toPre E
+  obtain ⟨o, ho⟩ := _root_.GlobalTheory.FormalValue.exists_isZero D.toPre E
   refine ⟨g, rfl, ⟨o, ho, ?_, fun χ => TauPull.corr_of_dense D.toPre.P.isLB (toUnit (TK R)).left z₀ hd fun J hJ => ?_⟩,
     β, xe, mβ, hc, w, hw, fun χ => ?_⟩
   · refine ho.1.trans (Eq.trans ?_ hb.symm)

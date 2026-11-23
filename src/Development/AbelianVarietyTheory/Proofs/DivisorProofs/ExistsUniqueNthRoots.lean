@@ -52,6 +52,7 @@ public import Mathlib.Algebra.Module.BigOperators
 public import Mathlib.LinearAlgebra.Basis.Bilinear
 public import Mathlib.LinearAlgebra.Dimension.Finrank
 public import Mathlib.LinearAlgebra.Dimension.Free
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.CommutatorPairingE8SharpLevelPoints
 
 @[expose] public section
 
@@ -139,12 +140,6 @@ theorem dual_coords {ε : ι → LinearMap.BilinForm ℤ X} (hε : IsSymBasis ε
 
 variable {G : Type} [CommGroup G]
 
-theorem zpow_sumF {κ : Type} (s : Finset κ) (a : G) (f : κ → ℤ) : a ^ (∑ p ∈ s, f p) = ∏ p ∈ s, a ^ f p := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simp
-  | insert x s hx ih => rw [Finset.sum_insert hx, Finset.prod_insert hx, zpow_add, ih]
-
 theorem eq_one_of_prod_zpow {ε : ι → LinearMap.BilinForm ℤ X} (hε : IsSymBasis ε) [Module.Free ℤ X] [Module.Finite ℤ X]
     (u : ι → G) (h : ∀ x y, ∏ k, u k ^ ε k x y = 1) (k : ι) : u k = 1 := by
   let e := Module.finBasis ℤ X
@@ -152,7 +147,7 @@ theorem eq_one_of_prod_zpow {ε : ι → LinearMap.BilinForm ℤ X} (hε : IsSym
   calc u k = ∏ k', u k' ^ (if k' = k then (1 : ℤ) else 0) := by simp
     _ = ∏ k', u k' ^ (∑ p, ε k' (e p.1) (e p.2) * c p k) := by simp_rw [dual_coords hε e hc]
     _ = ∏ p, (∏ k', u k' ^ ε k' (e p.1) (e p.2)) ^ c p k := by
-      simp_rw [← Finset.prod_zpow, zpow_sumF, ← zpow_mul]
+      simp_rw [← Finset.prod_zpow, _root_.GlobalTheory.SharpWeil.zpow_sum', ← zpow_mul]
       exact Finset.prod_comm
     _ = 1 := by simp [h]
 
@@ -169,7 +164,7 @@ theorem existsUnique_coeff {ε : ι → LinearMap.BilinForm ℤ X} (hε : IsSymB
     simp_rw [← Finset.prod_zpow, ← zpow_mul]
     rw [Finset.prod_comm]
     refine Finset.prod_congr rfl fun p _ => ?_
-    rw [← zpow_sumF, ← hc p]
+    rw [← _root_.GlobalTheory.SharpWeil.zpow_sum', ← hc p]
     simp [LinearMap.sum_apply, mul_comm]
   refine ⟨fun k => ∏ p, q (e p.1) (e p.2) ^ c p k, fun x y => ?_, fun σ hσ => funext fun k => ?_⟩
   · rw [hF]

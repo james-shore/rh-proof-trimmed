@@ -45,6 +45,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace LateralTheory.E.CompositionGoal
 
-theorem goal_of : LateralTheory.E.SHExistsPf.Comp := LateralTheory.E.TruncationIsoComparison.Comp_of
+alias goal_of := _root_.LateralTheory.E.TruncationIsoComparison.Comp_of
 
 end LateralTheory.E.CompositionGoal

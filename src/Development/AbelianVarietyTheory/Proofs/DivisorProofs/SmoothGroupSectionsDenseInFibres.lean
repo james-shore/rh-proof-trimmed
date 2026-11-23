@@ -116,10 +116,10 @@ theorem exists_eval_ne_zero_of_infinite {Ω : Type} [Field Ω] (S : Set Ω) (hS 
 theorem key : ∀ (R : Type) [CommRing R] [IsLocalRing R], IsAdicComplete (maximalIdeal R) R → ∀ (A : Type) [CommRing A] [Algebra R A] [Algebra.Smooth R A] (ε : A →ₐ[R] R) (Ω : Type) [Field Ω] [Algebra R Ω], RingHom.ker (algebraMap R Ω) ≠ maximalIdeal R → IrreducibleSpace (PrimeSpectrum (TensorProduct R Ω A)) → ∀ f : TensorProduct R Ω A, ¬ IsNilpotent f → ∃ a : A →ₐ[R] R, GlobalTheory.DenseSec.pt ((Algebra.ofId R Ω).comp a) f ≠ 0 := by
   intro R _ _ hc A _ _ _ ε Ω _ _ hker hirr f hf
   obtain ⟨g, t, h, ht0, hεh, hch⟩ := chart R A ε
-  obtain ⟨Q, hQ, hQv⟩ := fibre R A g t h hch Ω hirr f hf
+  obtain ⟨Q, hQ, hQv⟩ := _root_.GlobalTheory.DenseSec.exists_poly_vanishing_of_fibre R A g t h hch Ω hirr f hf
   obtain ⟨c', hc'S, hc'Q⟩ := exists_eval_ne_zero_of_infinite _ (image_maximalIdeal_infinite hker) g Q hQ
   choose c hcm hcc using hc'S
-  obtain ⟨a, hah, hat⟩ := hensel R hc A g t h hch ε hεh c (fun i => by simpa [ht0] using hcm i)
+  obtain ⟨a, hah, hat⟩ := _root_.GlobalTheory.DenseSec.hensel_etChart R hc A g t h hch ε hεh c (fun i => by simpa [ht0] using hcm i)
   refine ⟨a, fun h0 => hc'Q ?_⟩
   have hv := hQv ((Algebra.ofId R Ω).comp a) (by simpa using (hah.map (algebraMap R Ω)).ne_zero) h0
   have hc' : c' = fun i => ((Algebra.ofId R Ω).comp a) (t i) := by
@@ -128,5 +128,5 @@ theorem key : ∀ (R : Type) [CommRing R] [IsLocalRing R], IsAdicComplete (maxim
   rw [hc']
   exact hv
 
-theorem dense_sections : ∀ (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing R], IsAdicComplete (maximalIdeal R) R → ∀ (U : Over (Sp R)), Smooth U.hom → ∀ (e : Sp R ⟶ U.left), e ≫ U.hom = 𝟙 _ → ∀ (Ω : Type) [Field Ω] (x : Sp Ω ⟶ Sp R), closedPoint R ∉ Set.range x → IrreducibleSpace (pullback U.hom x : Scheme.{0}) → ∀ O : (pullback U.hom x).Opens, (O : Set (pullback U.hom x : Scheme.{0})).Nonempty → ∃ (a : Sp R ⟶ U.left) (aΩ : Sp Ω ⟶ pullback U.hom x), a ≫ U.hom = 𝟙 _ ∧ aΩ ≫ pullback.fst _ _ = x ≫ a ∧ aΩ ≫ pullback.snd _ _ = 𝟙 _ ∧ Set.range aΩ ⊆ O := reduce key
+theorem dense_sections : ∀ (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing R], IsAdicComplete (maximalIdeal R) R → ∀ (U : Over (Sp R)), Smooth U.hom → ∀ (e : Sp R ⟶ U.left), e ≫ U.hom = 𝟙 _ → ∀ (Ω : Type) [Field Ω] (x : Sp Ω ⟶ Sp R), closedPoint R ∉ Set.range x → IrreducibleSpace (pullback U.hom x : Scheme.{0}) → ∀ O : (pullback U.hom x).Opens, (O : Set (pullback U.hom x : Scheme.{0})).Nonempty → ∃ (a : Sp R ⟶ U.left) (aΩ : Sp Ω ⟶ pullback U.hom x), a ≫ U.hom = 𝟙 _ ∧ aΩ ≫ pullback.fst _ _ = x ≫ a ∧ aΩ ≫ pullback.snd _ _ = 𝟙 _ ∧ Set.range aΩ ⊆ O := _root_.GlobalTheory.DenseAff.denseSections_of_algebraic key
 end GlobalTheory.DenseSec

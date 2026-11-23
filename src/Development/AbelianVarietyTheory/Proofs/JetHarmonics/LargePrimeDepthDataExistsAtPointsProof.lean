@@ -187,7 +187,7 @@ theorem pkgZero : (∀ (p : ℕ) [Fact p.Prime], ReciprocityTheory.ChartRestrict
       unfold Inert NumDatum.cls primeClass at *
       rw [if_neg h2, if_neg hlq, if_neg hld] at hin ⊢
       split_ifs at hin ⊢ <;> simp_all
-    obtain ⟨d, _, pos, Z, hZ, hne, hbij, hfr⟩ := GlobalTheory.T.cmType_frobenius_orbits_label_at_split_prime E H lv c N pl hT la T io C V ι hι hV hla hsp j
+    obtain ⟨d, _, pos, Z, hZ, hne, hbij, hfr⟩ := _root_.GlobalTheory.LabSplit.labelling_split E H lv c N pl hT la T io C V ι hι hV hla hsp j
     exact ⟨d, inferInstance, pos, pkg_of_labels hU hstar N j pl a hj1 hjm hpsi hp hq ha hy C3 V ι hι Y hY
       hunr nW ν hν' d pos (fun _ => 0) (Or.inr fun _ => rfl) (tauSp N pl pos) (fun _ _ _ => rfl)
       Z hZ hne hbij hfr hw s hs hrows⟩

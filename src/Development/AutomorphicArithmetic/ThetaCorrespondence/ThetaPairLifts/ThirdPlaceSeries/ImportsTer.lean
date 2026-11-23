@@ -62,13 +62,13 @@ open GlobalTheory.TopVol GlobalTheory.FinPl
 noncomputable section
 theorem GlobalTheory.TopVol.main_alt_alt : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.toPre} {I : TC B X} {l : I.Laws} {Z : TC.Later B (I.cols l)} {L : SizeData₂ (I.rec7 l Z)} {hT : GatTies (I.rec7 l Z)} {Gi : Formalism.MainNotions.G.Inst (I.rec7 l Z) L} {Gl : Formalism.MainNotions.G.LatInst (I.rec7 l Z)} {Kc : Formalism.MainNotions.G.Consts} {Yd : DivX (I.rec7 l Z)} {cX : ExtraC} {ex : Extra (I.rec7 l Z) L hT Gi Gl Kc Yd cX} (W : _root_.GlobalTheory.MiS.RealPackAlt ex), _root_.GlobalTheory.Fam.AllFamilyConditions W → ∀ (u : B.Word) (a : _root_.GlobalTheory.Fam.GeometricFamily W u), a.Is → a.True → ∃ VT : ℂ, VT ≠ 0 ∧ ∀ t (J : _root_.GlobalTheory.Fam.QuadraticExtensionData a t), J.Reads → J.VolT VT := by
   intro B X I l Z L hT Gi Gl Kc Yd cX ex W hW u a ha haT
-  obtain ⟨hle, hc, ho⟩ := _root_.GlobalTheory.T.true_geometry_level_spherical_alt W hW u a ha haT
-  have hv := _root_.GlobalTheory.T.true_geometry_subspace_property_alt W hW u a ha haT _ hle hc ho
+  obtain ⟨hle, hc, ho⟩ := _root_.GlobalTheory.TopVol.levSph_bT_compact_open_alt W hW u a ha haT
+  have hv := _root_.GlobalTheory.TopVol.volLev_top_ne_zero_alt W hW u a ha haT _ hle hc ho
   refine ⟨(volLev a.g.volT (_root_.GlobalTheory.TopVol.sphericalLevelSubgroup W a.g.bT) : ℂ), Complex.ofReal_ne_zero.2 hv, fun t J hJ => ?_⟩
-  have hA := _root_.GlobalTheory.T.true_geometry_twist_chain_identity_alt W hW u a ha haT t J hJ
-  have hK := _root_.GlobalTheory.T.mem_levSph_of_inK_of_quadraticExtensionData W hW u a ha haT t J hJ
-  have hM := _root_.GlobalTheory.T.true_geometry_twist_chain_relation_alt W hW u a ha haT t J hJ
-  have hinj := _root_.GlobalTheory.T.injective_q_v_of_reads W hW u a ha haT t J hJ
+  have hA := _root_.GlobalTheory.TopAgree.main_alt_alt W hW u a ha haT t J hJ
+  have hK := _root_.GlobalTheory.TopVol.InKConj.inK_mem_levSph_alt W hW u a ha haT t J hJ
+  have hM := _root_.GlobalTheory.TopVol.MovesAt.main_alt_alt W hW u a ha haT t J hJ
+  have hinj := _root_.GlobalTheory.TopVol.TwistPlaces.places_injective_alt W hW u a ha haT t J hJ
   set S := (I.rec7 l Z).sp.X'
   set U := _root_.GlobalTheory.TopVol.sphericalLevelSubgroup W a.g.bT
   set U' := _root_.GlobalTheory.TopVol.twistedLevelSubgroup W a.g.bT t

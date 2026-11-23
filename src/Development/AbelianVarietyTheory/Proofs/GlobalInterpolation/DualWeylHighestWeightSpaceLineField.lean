@@ -71,7 +71,7 @@ theorem rowDiv_raise_eq_zero (k : Type) [Field k] (N : ℕ) (ν : Fin N → ℕ)
   have hrow : ∀ i, ((rowDeg m i : ℕ) : ℤ) = (ν i : ℤ) + (j : ℤ) * ((Pi.single a (1:ℤ) : Fin N → ℤ) i - (Pi.single b (1:ℤ) : Fin N → ℤ) i) := by
     intro i
     have := congrFun e i
-    rw [GlobalTheory.LvT.KerLat.weight_rowZ, GlobalTheory.LvT.KerLat.weight_rowW] at this
+    rw [GlobalTheory.LvT.KerLat.weight_rowZ, _root_.Formalism.GradedWeylDivisibility.ldrow_weight_rowW] at this
     rw [this]
     simp [Pi.add_apply, Pi.smul_apply, smul_eq_mul]
   have hcast : ((∑ i : Fin N with i.val < a.val + 1, rowDeg m i : ℕ) : ℤ) =

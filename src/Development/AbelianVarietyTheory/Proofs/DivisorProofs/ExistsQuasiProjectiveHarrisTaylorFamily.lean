@@ -69,8 +69,8 @@ theorem exists_repFam_qproj : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPe
   have hg : 1 ≤ Module.finrank ℤ D.La / 2 := by
     have := D.two_le_finrank_La
     omega
-  exact GlobalTheory.T.exists_representingFamily_of_auxiliaryRepresentation p D R b N M e hN hNp hM3 hModd hMcp hep hMe he
-    (GlobalTheory.T.harrisTaylor_auxiliary_symplectic_level_representable p D R b N M e hN hNp hM3 hModd hMcp hep hMe he
-      (GlobalTheory.T.siegelKernelBoundedRepresentable_of_coprime _ M e hg hM3 hModd he0 hMe))
+  exact _root_.GlobalTheory.HTQuot.exists_representing_family_of_level_structure p D R b N M e hN hNp hM3 hModd hMcp hep hMe he
+    (_root_.GlobalTheory.UPel.HT.harrisTaylorModuli_symplecticLevel_representable p D R b N M e hN hNp hM3 hModd hMcp hep hMe he
+      (_root_.GlobalTheory.UPel.HT.sdRep_of_coprime _ M e hg hM3 hModd he0 hMe))
 
 end GlobalTheory.UPel.HT

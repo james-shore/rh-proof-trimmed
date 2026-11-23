@@ -128,7 +128,7 @@ theorem noDefect_gen (H : HermSp M V) {r : ℕ} (P : FPair H r) (hR : P.RelG (th
   have hDl : ∀ l, H.Dl t.f t.f' l = H.Dl P.A.f P.B.f l := by
     intro l
     rw [hf, hf']
-    exact GlobalTheory.T.pairingLeadingMinor_eq_of_unitriangular_changes H _ _ _ _ (GlobalTheory.T.isFamilyUnitriangularChange_of_mem_frameUnipotent H P.A n hn) (GlobalTheory.T.isFamilyUnitriangularChange_of_mem_frameUnipotent H P.B n' hn') l
+    exact _root_.GlobalTheory.MinorTri.Dl_eq_of_tri H _ _ _ _ (_root_.GlobalTheory.NFrameTri.tri_of_mem_N H P.A n hn) (_root_.GlobalTheory.NFrameTri.tri_of_mem_N H P.B n' hn') l
   have hG : H.Gdet t.f t.f' t.T t.T' = P.Gv := by
     simp only [HermSp.Gdet, hDl, hT, hT', FPair.Gv]
   have hfr : ∀ (Fr : FrameD H r) (g : V ≃ₗ[E] V), IsUnitary H g → ∀ a b,

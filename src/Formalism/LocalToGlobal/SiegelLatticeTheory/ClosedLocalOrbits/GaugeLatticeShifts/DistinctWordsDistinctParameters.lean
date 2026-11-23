@@ -50,6 +50,7 @@ import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Separation.CompletelyRegular
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.NormAdditiveCharacterTypePrimeEqOne
 
 @[expose] public section
 
@@ -644,10 +645,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open Formalism.L2.SG.Pf.IdBlocks2.UkEmb Formalism.L2.SG.Pf.IdBlocks2.TensIrr
 
-theorem jm_allPos (k : ℕ) : Formalism.REAL.Jm (allPos k) = 1 := by
-  ext a b
-  simp [Formalism.REAL.Jm, allPos, Matrix.diagonal_apply, Matrix.one_apply]
-
 theorem kset_unitary {k : ℕ} {g : Matrix (Fin k) (Fin k) ℂ} (hg : g ∈ Formalism.REAL.Kset (allPos k)) :
     gᴴ * g = 1 ∧ g * gᴴ = 1 := by
   refine ⟨?_, ?_⟩
@@ -659,7 +656,7 @@ theorem kset_unitary {k : ℕ} {g : Matrix (Fin k) (Fin k) ℂ} (hg : g ∈ Form
 theorem uj_of_unitary {k : ℕ} {g : Matrix (Fin k) (Fin k) ℂ} (hg : gᴴ * g = 1) : g ∈ UJset (allPos k) := by
   show Formalism.REAL.inUJ (allPos k) g
   unfold Formalism.REAL.inUJ
-  rw [jm_allPos, Matrix.mul_one]
+  rw [_root_.Formalism.MainNotions.BridgeLemma.Jm_allPos, Matrix.mul_one]
   exact hg
 
 variable {D : D7} (X : HidaSetting D) (u : D.what₂.Word)

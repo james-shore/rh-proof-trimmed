@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.EpsilonPairingZeta
 import Development.AbelianVarietyTheory.Definitions.Divisors.GhostFrobenius
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConstantCoeffNmul
 
 @[expose] public section
 
@@ -62,15 +63,6 @@ variable {R Q : Type} [CommRing R] [CommRing Q] [Algebra R Q] {d : ℕ} in
 variable {S : Type} [CommRing S] in
 private lemma nmul_zero (μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) S) :
     _root_.GlobalTheory.QLog.nmul μ 0 = fun _ => 0 := rfl
-
-set_option autoImplicit false in
-open MvPowerSeries TensorProduct in
-variable {R Q : Type} [CommRing R] [CommRing Q] [Algebra R Q] {d : ℕ} in
-variable {S : Type} [CommRing S] in
-private lemma nmul_succ_eq_op_X (μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) S) (k : ℕ) :
-    _root_.GlobalTheory.QLog.nmul μ (k + 1) =
-      _root_.GlobalTheory.Katz.op μ (_root_.GlobalTheory.QLog.nmul μ k) (fun i => X i) := by
-  rw [_root_.GlobalTheory.QLog.nmul, _root_.GlobalTheory.QLog.nmul, Function.iterate_succ_apply']
 
 set_option autoImplicit false in
 open MvPowerSeries TensorProduct in
@@ -102,7 +94,7 @@ private lemma constantCoeff_nmul_eq_zero' (μ : Fin d → MvPowerSeries (Fin d �
   induction k generalizing i with
   | zero => simp [nmul_zero]
   | succ k ih =>
-    rw [nmul_succ_eq_op_X]
+    rw [_root_.GlobalTheory.QLogDefect.nmul_succ]
     exact constantCoeff_katz_op_eq_zero μ hμ ih (fun j => constantCoeff_X j) i
 
 set_option autoImplicit false in
@@ -170,7 +162,7 @@ private lemma nmul_add_eq_op {μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) S}
     rw [Nat.add_zero, nmul_zero]
     exact h.symm
   | succ b ih =>
-    rw [← Nat.add_assoc, nmul_succ_eq_op_X, ih, nmul_succ_eq_op_X]
+    rw [← Nat.add_assoc, _root_.GlobalTheory.QLogDefect.nmul_succ, ih, _root_.GlobalTheory.QLogDefect.nmul_succ]
     funext i
     have hc : HasSubst (Sum.elim (_root_.GlobalTheory.QLog.nmul μ a)
         (Sum.elim (_root_.GlobalTheory.QLog.nmul μ b) fun j => (X j : MvPowerSeries (Fin d) S))) :=
@@ -207,7 +199,7 @@ private lemma subst_nmul_nmul_eq_nmul_mul {μ : Fin d → MvPowerSeries (Fin d �
     simp only [Nat.zero_mul, nmul_zero]
     exact subst_zero_divisor hm
   | succ k ih =>
-    rw [nmul_succ_eq_op_X, subst_katz_op_eq_op_subst μ (hN k) (fun j => constantCoeff_X j) hm]
+    rw [_root_.GlobalTheory.QLogDefect.nmul_succ, subst_katz_op_eq_op_subst μ (hN k) (fun j => constantCoeff_X j) hm]
     simp_rw [ih, subst_X hm]
     rw [Nat.succ_mul, nmul_add_eq_op hG]
 

@@ -332,7 +332,7 @@ theorem lemS_main (hP : Ext.PackingCount) : GSupStatement := by
         mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_left hID hK0) hq0
     _ = 2 * (q : ℝ) ^ N * K * Y.l2 q F := by ring
 
-theorem gSup (hP : Ext.PackingCount) : GSupStatement := lemS_main hP
+alias gSup := _root_.ReciprocityTheory.ChartRestriction.G.I2.lemS_main
 
 end
 

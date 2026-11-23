@@ -116,7 +116,7 @@ theorem loc_split (hσ : ∀ a, σ (σ a) = a) (hS : ∀ a ∈ S, σ a ∈ S)
     {m : GL (Fin n) A} (hm : Keeps r σ ρ κ G T ψ a m) (y : GL (Fin n) (Z.O Q)) (hy : Q ∈ T → bc f y ∈ unipSym (k Q) n ρ κ) :
     ∃ y' : GL (Fin n) (Z.O Q), bc (Z.O Q).subtype y' = bc (Z.p Q) m * bc (Z.O Q).subtype y * (bc (Z.p Q) m)⁻¹ ∧
       (Q ∈ T → bc f y' ∈ unipSym (k Q) n ρ κ ∧ ψ Q (edgeVal ρ κ (a Q) (bc f y')) = ψ Q (edgeVal ρ κ (a Q) (bc f y))) := by
-  obtain ⟨u, hu, rfl, h1⟩ := GlobalTheory.T.exists_unitary_integral_of_splitPlace_component Z σ hσ hS n G hG Q Q' h hne y
+  obtain ⟨u, hu, rfl, h1⟩ := _root_.GlobalTheory.LevNorm.exists_unitary_int_of_component Z σ hσ hS n G hG Q Q' h hne y
   have h2 : ∀ Q'' ∈ T, Q'' ≠ Q → bc (Z.pO Q'') u = 1 := fun Q'' hT e => h1 Q'' e fun e' => hQ' (e' ▸ hT)
   obtain ⟨x', e, hx', hc⟩ := hm u ⟨hu, fun Q'' hT => by
     by_cases e : Q'' = Q
@@ -157,7 +157,7 @@ theorem loc_inert (hσ : ∀ a, σ (σ a) = a) (hS : ∀ a ∈ S, σ a ∈ S) (h
     Matrix.map_injective (Z.O Q).subtype_injective
   have hgen := GlobalTheory.T.adjoin_unitaryGroup_hermitian_local_eq_top (Z.O Q) t htt ⟨_, hδ'⟩ n hn ((bc (Z.pO Q) G : GL (Fin n) (Z.O Q)) : Matrix (Fin n) (Fin n) (Z.O Q))
     (inj ((map_cT Z hs _).symm.trans (congrArg (Z.p Q).mapMatrix hG))) (Units.isUnit _)
-  refine GlobalTheory.T.isScalarMulIntegral_of_conj_integral_generators _ _ n _ _ hgen fun y hy => ?_
+  refine _root_.GlobalTheory.ScalConj.isScal_of_conj _ _ n _ _ hgen fun y hy => ?_
   obtain ⟨x, hx1, hx2⟩ := Z.gl_single Q (bc (Z.O Q).subtype y)
   obtain ⟨u, rfl⟩ := Z.gl_int (x := x) fun Q' => by
     by_cases e : Q' = Q
@@ -221,7 +221,7 @@ theorem normaliser_core (hσ : ∀ a, σ (σ a) = a) (hS : ∀ a ∈ S, σ a ∈
   have hb1 : ∀ Q ∈ T, Q ≠ bar Q := fun Q hQ e => hT Q hQ Q hQ (by rw [hbar, ← e])
   have hb2 : ∀ Q ∈ T, bar Q ∉ T := fun Q hQ e => hT Q hQ _ e (hbar Q)
   have hscT : ∀ Q ∈ T, IsScal (Z.O Q) (bc (Z.p Q) m) := fun Q hQ =>
-    GlobalTheory.T.isScalarMul_integral_of_normalizes_symmetricLevel _ _ _ (f Q) (hf0 Q) n ρ κ hn hρ (ψ Q) (hψ Q hQ) (a Q) (ha Q hQ) _
+    _root_.GlobalTheory.ScalInt.isScal_of_normalises _ _ _ (f Q) (hf0 Q) n ρ κ hn hρ (ψ Q) (hψ Q hQ) (a Q) (ha Q hQ) _
       (fun y hy => by
         obtain ⟨y', h1, h2⟩ := loc_split Z hσ hS hG (hbar Q) (hb1 Q hQ) (hb2 Q hQ) (hf Q) hm y fun _ => hy
         exact ⟨y', h1, (h2 hQ).2⟩)
@@ -267,8 +267,8 @@ theorem normaliser_core (hσ : ∀ a, σ (σ a) = a) (hS : ∀ a ∈ S, σ a ∈
       exact ⟨s, c, fun _ => h⟩
     · exact ⟨1, 1, fun h => absurd h hQ⟩
   choose s c hsc using fin
-  obtain ⟨z₂, hz₂, hr₂, -⟩ := GlobalTheory.T.exists_normOne_with_residues_at_splitPlaces Z σ hσ hS T hT s
-  obtain ⟨c', hc', hrc, hsup⟩ := GlobalTheory.T.exists_normOne_with_residues_at_splitPlaces Z σ hσ hS T hT fun Q => (s Q)⁻¹ * c Q
+  obtain ⟨z₂, hz₂, hr₂, -⟩ := _root_.GlobalTheory.LevNorm.exists_normOne_residues Z σ hσ hS T hT s
+  obtain ⟨c', hc', hrc, hsup⟩ := _root_.GlobalTheory.LevNorm.exists_normOne_residues Z σ hσ hS T hT fun Q => (s Q)⁻¹ * c Q
   let w : S := ⟨σ z₂, hS _ z₂.2⟩
   have hw : z₂ * w = 1 := Subtype.ext hz₂
   have hw' : w * z₂ = 1 := by rw [mul_comm, hw]

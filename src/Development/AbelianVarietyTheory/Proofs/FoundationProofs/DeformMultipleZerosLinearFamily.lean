@@ -179,7 +179,7 @@ theorem deform : ∀ (k J I : Type) [Field k] [CharZero k] [Fintype J] [Fintype 
         simp only [sys, map_sum, map_mul, PowerSeries.constantCoeff_C, Sum.elim_inl, Sum.elim_inr]
       have h' : ∀ j, PowerSeries.constantCoeff (((PowerSeries.derivativeFun)^[l.1] (s i j)).subst
           (PowerSeries.C ((0 : I → k) i)) : PowerSeries k) = (l.1.factorial : k) * PowerSeries.coeff l.1 (s i j) := by
-        intro j; rw [cc_subst _ _ (by simp), hA]
+        intro j; rw [_root_.GlobalTheory.TaylorSubst.constantCoeff_subst_eq _ _ (by simp), hA]
       simp only [h']
       calc ∑ j, y₀ j * ((l.1.factorial : k) * PowerSeries.coeff l.1 (s i j))
           = (l.1.factorial : k) * ∑ j, y₀ j * PowerSeries.coeff l.1 (s i j) := by

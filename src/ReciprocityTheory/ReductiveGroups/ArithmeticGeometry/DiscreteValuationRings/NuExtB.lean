@@ -102,7 +102,7 @@ theorem secB_dvd_of_vge {V : Type} [CommRing V] [IsDomain V] [IsDiscreteValuatio
     infer_instance
   have hjK : IsOpenImmersion (jK V) := by
     obtain ⟨ϖ₀, h₀⟩ := IsDiscreteValuationRing.exists_irreducible V
-    have := away_fractionRing h₀
+    have := _root_.Bl.SecondBlockLemmaO.goal1 h₀
     exact IsOpenImmersion.of_isLocalization ϖ₀
   have hjFK : IsIso (jFK (R := V) (FractionRing V)) := by
     show IsIso (Spec.map (CommRingCat.ofHom (RingHom.id (FractionRing V))))

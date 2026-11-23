@@ -49,6 +49,7 @@ import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsMatchOver
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RangeSndRel
 import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAt
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiscreteSeriesModelUnitaryIrreducibleOrthonormal
 
 @[expose] public section
 
@@ -113,7 +114,7 @@ theorem exists_ctrl_conj [CompleteSpace H] {ε : Fin n → Bool} {σ : Mx n → 
     obtain ⟨Y, hY, rfl⟩ := List.mem_map.1 hX
     exact GlobalTheory.SmVecModel.lie_conj_inv hP hG (hS₁ l' hl' Y hY)
   · rw [sobNorm_conj_back σ hP, sobNorm_conj_back σ hP]
-    exact hc _ (GlobalTheory.TypeAtCompare.conj_mem hP hG hg) w (GlobalTheory.SmVecModel.smoothVec_of_conj hP hG hw)
+    exact hc _ (_root_.GlobalTheory.HolDict.ModelRep.conj_mem hP hG hg) w (GlobalTheory.SmVecModel.smoothVec_of_conj hP hG hw)
   · rw [sobNorm_conj_back σ hP, sobNorm_conj σ hP]
     exact hd w (GlobalTheory.SmVecModel.smoothVec_of_conj hP hG hw)
 

@@ -57,7 +57,7 @@ variable {T : Type} {D : D7} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {
 end Lin
 theorem placeValuation_linAt_large : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.CuspAlongSmoothLifts.LiftsCuspidal → Big fun ch => LinAt ch := by
   intro hP hL
-  obtain ⟨a0, ha⟩ := Big.and (Big.and (_root_.GlobalTheory.T.flipRun_cusp_transition hL hP) (_root_.GlobalTheory.EndCusp.leadingForm_mem_cuspList hP)) colFn_cont_left
+  obtain ⟨a0, ha⟩ := Big.and (Big.and (_root_.GlobalTheory.FlipRun.cuspStep_of_large_flipRun hL hP) (_root_.GlobalTheory.EndCusp.leadingForm_mem_cuspList hP)) colFn_cont_left
   refine ⟨a0, fun ε CF hC => ?_⟩
   obtain ⟨x, hx⟩ := ha ε CF hC
   refine ⟨x, fun D large₂ he hxx Γ _ _ Pl0 T A Ks _ _ _ R F hS ch hch hsc => ?_⟩

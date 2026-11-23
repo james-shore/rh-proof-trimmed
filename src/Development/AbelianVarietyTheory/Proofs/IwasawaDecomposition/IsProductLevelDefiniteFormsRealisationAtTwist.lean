@@ -82,16 +82,6 @@ theorem locM_cut (s : SplitPlace L) (v : HeightOneSpectrum (𝓞 (maximalRealSub
   · rw [cutMat_one_left]; rfl
   · rw [cutMat_zero_left]
 
-theorem inLevG_one (v : HeightOneSpectrum (𝓞 (maximalRealSubfield L))) (r : ℕ) :
-    InLevG v r (1 : Matrix (Fin n) (Fin n) (v.adicCompletion (maximalRealSubfield L))) := by
-  refine ⟨inParah_one v r, fun a b _ _ => ⟨fun hba => ?_, fun hab => ?_⟩⟩
-  · have h : a ≠ b := fun e => by subst e; exact lt_irrefl _ hba
-    rw [Matrix.one_apply_ne h, map_zero]
-    exact WithZero.zero_lt_coe _
-  · subst hab
-    rw [Matrix.one_apply_eq, sub_self, map_zero]
-    exact WithZero.zero_lt_coe _
-
 end Gen
 
 theorem main : ∀ (D : D7) (X : NExpTied D) (i : D.ntw.Tw) (b : Bool) (k : ℕ) (Q : Finset (PlE D.host))
@@ -102,7 +92,7 @@ theorem main : ∀ (D : D7) (X : NExpTied D) (i : D.ntw.Tw) (b : Bool) (k : ℕ)
     fun P hP => ?_, fun P hP => ?_⟩, triv_cut_eA v κ, cut_eA_at v κ⟩
   · rw [locM_cut]; split_ifs
     · exact hG kv
-    · exact inLevG_one _ _
+    · exact _root_.Formalism.L2.NX.inLevG_one _ _
   · rw [locM_cut]; split_ifs
     · exact hQ P hP
     · exact inParah_one _ _

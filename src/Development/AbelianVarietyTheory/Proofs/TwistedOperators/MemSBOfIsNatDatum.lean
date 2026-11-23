@@ -320,13 +320,13 @@ theorem local_match (hL : L.Is μ₀) (W : G.Weil) (B : Frames G) (t : T) (i j :
   obtain ⟨ι, i1, i2⟩ := exists_mixed (M := Γ.M) (ψ := W.ψ) hS.unif hS.cond j2 hξ j4 (h := invT cc) cA hA.bij
     (fun u hu h0 φ hφ φ₁ h₁ ha => (GlobalTheory.T.heisenbergOperator_isotropic_translation_char_split hT.base.cm Γ.V Γ.W hT.geo.hV.herm hT.geo.hW.skew dV dW Γ.M W.ψ hstd _ _ _ u hu h0
       φ hφ φ₁ h₁ ha).1 ιA hA)
-    fun x u hx hu => GlobalTheory.T.tensorSymplecticForm_at_split_finite_place hT.base.cm Γ.V Γ.W hT.geo.hV.herm hT.geo.hW.skew W.ψ _ _ _ x u hx hu
+    fun x u hx hu => _root_.GlobalTheory.FlipMatch.SplitSymp.symp_at_split hT.base.cm Γ.V Γ.W hT.geo.hV.herm hT.geo.hW.skew W.ψ _ _ _ x u hx hu
   obtain ⟨ι', k1, k2⟩ := exists_mixed (M := Γ.M') (ψ := W.ψ) hS.unif hS.inv.cond j2 hξ (χ := fun x => psiLoc W.ψ v (-x))
     (fun x => by rw [j4, AddChar.inv_apply, map_neg, mul_neg]) cB hB.bij
     (fun u hu h0 φ hφ φ₁ h₁ ha => (GlobalTheory.T.heisenbergOperator_isotropic_translation_char_split hT.base.cm Γ.V' Γ.W hT.geo.hV'.herm hT.geo.hW.skew dV' dW Γ.M' W.ψ hstd _ _ _ u hu
       ((pairM_comm _ _).trans h0) φ hφ φ₁ h₁ ha).2 ιB hB)
     fun x u hx hu => by
-      rw [GlobalTheory.T.tensorSymplecticForm_at_split_finite_place hT.base.cm Γ.V' Γ.W hT.geo.hV'.herm hT.geo.hW.skew W.ψ (Bs.τ v') (Γ.V'.bas v) (Γ.W.bas v) x u hx hu, neg_sub]
+      rw [_root_.GlobalTheory.FlipMatch.SplitSymp.symp_at_split hT.base.cm Γ.V' Γ.W hT.geo.hV'.herm hT.geo.hW.skew W.ψ (Bs.τ v') (Γ.V'.bas v) (Γ.W.bas v) x u hx hu, neg_sub]
   have h1 := GivenAdm.givenLevel_open hL hw ((i : ℕ), (j : ℕ))
   have h2 := isOpen_map_invT h1.1 h1.2
   haveI hμ := isHaarMeasure_haarVol h2.1 h2.2
@@ -430,10 +430,10 @@ theorem finite_match (hL : L.Is μ₀) (W : G.Weil) (B : Frames G) (ρ : RealMat
   have hT := hm.triple
   have H := fun (w : Pl D.host.E) (hw : w ∈ locPl G t) => local_match hL W B t i j M hst h hm hti.1 hw rfl
   choose! ι ι' h1 h2 h3 using H
-  obtain ⟨f, f1, f2, f3⟩ := GlobalTheory.T.exists_gaussianVacuum_product_unitVacua hL W ρ t i j M hst e Bs Γ X om om' h hT hti.1
-  obtain ⟨f', g1, g2, g3⟩ := GlobalTheory.T.unitVacua_product_eq_gaussianDatum_smallModel hL W ρ t i j M hst e Bs Γ X om om' h hT hti
-  obtain ⟨s, hs, a⟩ := GlobalTheory.T.finiteDatum_localFunctions_eq_pureTensor_scalar hL W B ρ t i j M hst e Bs Γ X om om' h hT hti.1 f f3 ι h1
-  obtain ⟨s', hs', b⟩ := GlobalTheory.T.exists_scalar_finiteTensor_eq_datum_smallModel hL W B ρ t i j M hst e Bs Γ X om om' h hT hti f' g3 ι' h2
+  obtain ⟨f, f1, f2, f3⟩ := _root_.GlobalTheory.FlipVac.exists_gauss_vac hL W ρ t i j M hst e Bs Γ X om om' h hT hti.1
+  obtain ⟨f', g1, g2, g3⟩ := _root_.GlobalTheory.SmallVac.vac_datumB hL W ρ t i j M hst e Bs Γ X om om' h hT hti
+  obtain ⟨s, hs, a⟩ := _root_.GlobalTheory.FlipMatch.datum_placesA hL W B ρ t i j M hst e Bs Γ X om om' h hT hti.1 f f3 ι h1
+  obtain ⟨s', hs', b⟩ := _root_.GlobalTheory.SmallPlaces.exists_scalar_datum hL W B ρ t i j M hst e Bs Γ X om om' h hT hti f' g3 ι' h2
   refine ⟨s • f, s' • f', ⟨smul_ne_zero hs f1, isGauss_smul f2 hs⟩, ⟨smul_ne_zero hs' g1, isGauss_smul g2 hs'⟩, ?_⟩
   rintro n Φ τ τ' hn ⟨ε, hε, c, d⟩
   have hf : ∀ w ∈ locPl G t, IsNatDatum (unifAt w) (n w) (flipAt W t i j w (n w) (Φ w)) := fun w hw =>

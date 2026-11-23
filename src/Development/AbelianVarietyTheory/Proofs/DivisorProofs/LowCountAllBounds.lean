@@ -218,7 +218,7 @@ theorem low_count_second_bound : FactorialMultiindexBound := by
         ≤ (padicValNat p (α x).factorial : ℝ) := by
       intro x
       rw [GlobalTheory.LegendreBounds.legendre_real p hp]
-      have hd := GlobalTheory.T.digits_sum_le_mul_logb p (α x) hp
+      have hd := _root_.GlobalTheory.digits_sum_le_logb p (α x) hp
       have hlog : Real.logb p ((α x : ℝ) + 1) ≤ Real.logb p ((ex : ℝ) + 1) :=
         Real.logb_le_logb_of_le hp1 (by positivity) (by have := hle x; push_cast; exact_mod_cast (by omega : α x + 1 ≤ ex + 1))
       have h0 : (0 : ℝ) < (p : ℝ) - 1 := by linarith

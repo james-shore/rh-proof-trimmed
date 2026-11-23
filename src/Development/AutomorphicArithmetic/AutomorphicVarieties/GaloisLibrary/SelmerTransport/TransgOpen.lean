@@ -195,13 +195,6 @@ private theorem exists_ext (ρ : Representation R G M) (hρ : ContAction ρ) {U'
     rw [hL0, map_sub, hc1]
     abel
 
-private theorem exists_normal_conj_inclusion {K : Type} [Group K] {U' U : Subgroup K} [U'.Normal] (h : U' ≤ U) (u : U')
-    (g : U) : ∃ v : U', Subgroup.inclusion h u * g = g * Subgroup.inclusion h v := by
-  refine ⟨⟨(g : K)⁻¹ * u * g, Subgroup.Normal.conj_mem' ‹_› _ u.2 _⟩, ?_⟩
-  apply Subtype.ext
-  simp [mul_assoc]
-
-
 omit [IsTopologicalGroup G] [DiscreteTopology M] in
 private theorem exists_infl (ρ : Representation R G M) {U' U : Subgroup G} [U'.Normal] (h : U' ≤ U)
     [DiscreteTopology (U ⧸ U'.subgroupOf U)] (z : U' → M) (y : U → M)
@@ -218,7 +211,7 @@ private theorem exists_infl (ρ : Representation R G M) {U' U : Subgroup G} [U'.
     abel
   have hFl : ∀ (a b : U) (u : U'), F (a * Subgroup.inclusion h u) b = F a b := by
     intro a b u
-    obtain ⟨v, hv⟩ := exists_normal_conj_inclusion h u b
+    obtain ⟨v, hv⟩ := _root_.UpperTheory.V.Base.exists_inclusion_mul_eq_mul_inclusion_of_normal h u b
     have key : ρ u (y b) = y b + ρ b (z v) - z u := by
       have e1 := hL u b
       rw [hv, hR] at e1
@@ -231,7 +224,7 @@ private theorem exists_infl (ρ : Representation R G M) {U' U : Subgroup G} [U'.
     abel
   have hinv : ∀ (a b : U) (u : U'), ρ u (F a b) = F a b := by
     intro a b u
-    obtain ⟨v, hv⟩ := exists_normal_conj_inclusion h u a
+    obtain ⟨v, hv⟩ := _root_.UpperTheory.V.Base.exists_inclusion_mul_eq_mul_inclusion_of_normal h u a
     have e1 : ∀ g : U, ρ u (y g) = y (Subgroup.inclusion h u * g) - z u := by
       intro g
       rw [hL]

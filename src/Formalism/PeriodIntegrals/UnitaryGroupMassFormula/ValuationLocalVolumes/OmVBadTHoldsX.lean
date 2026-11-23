@@ -65,7 +65,7 @@ theorem omVLocU_holds : OmVLocU X ψ := fun v a Y =>
 
 theorem omVBadT_holdsX : Formalism.L2.SG.Pf.NcX.OmVSt.OmVBadT X u' ψ :=
   PI.OmVg.omVBadT_of_ffX X u' ψ (Formalism.L2.SG.Pf.NcX.OmVSt.omega_standard_holds X ψ) (Formalism.L2.SG.Pf.NcX.OmVSt.omega_lattice_holds X)
-    (OmW.omVGram_holds X u') PI.OmVe.Top.fFInertB_holds PI.OmVe.Top.fFSplitB_holds
+    (OmW.omVGram_holds X u') _root_.PI.OmVe.fFInertB_holds _root_.PI.OmVe.fFSplitB_holds
 
 end Formalism.L2.SG.Pf.NcVal.OmVSt.OmVZ
 
@@ -90,10 +90,5 @@ theorem omVZ_holdsX : Formalism.L2.SG.Pf.NcVal.OmV X u' ψ :=
 end Formalism.L2.SG.Pf.NcX.OmVSt
 
 namespace Formalism.L2.SG.Pf.NcVal.OmVSt.OmVZ
-
-open Formalism.BasicNotions Formalism.L2.SG.HidaSetting Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
-
-theorem omV_holdsX {D : D7} (X : HidaSetting D) (u' : D.what₂.Word) (ψ : AddChar (AF X.B.I.F) ℂ) : Formalism.L2.SG.Pf.NcVal.OmV X u' ψ :=
-  Formalism.L2.SG.Pf.NcX.OmVSt.omVZ_holdsX X u' ψ
 
 end Formalism.L2.SG.Pf.NcVal.OmVSt.OmVZ

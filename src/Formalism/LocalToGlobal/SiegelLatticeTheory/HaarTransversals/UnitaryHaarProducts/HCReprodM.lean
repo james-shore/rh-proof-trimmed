@@ -115,7 +115,7 @@ theorem hcReprodDSc : HCReprodDSc := by
   intro n ε lam H _ _ _ σ hDS w hw
   have hσ : IsURepOn (UJset ε) σ := hDS.2.2.1
   have hirr : IsIrredOn (UJset ε) σ := hDS.2.2.2.1
-  have hadm : AdmProjAt ε σ := Formalism.L2.SG.Pf.harishChandra_admissible n ε lam H σ hDS
+  have hadm : AdmProjAt ε σ := _root_.Formalism.L2.SG.Pf.admitted.hcAdmDS n ε lam H σ hDS
   by_cases h0 : w = 0
   · refine ⟨0, continuous_const, HasCompactSupport.zero, ?_, ?_⟩
     · simp

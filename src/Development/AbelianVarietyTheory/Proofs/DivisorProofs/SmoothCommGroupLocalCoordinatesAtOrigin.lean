@@ -64,7 +64,7 @@ namespace GlobalTheory.CoordsOrigin
 theorem coords_at_origin : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] [IsNoetherianRing R] (G : Over (Sp R)) [GrpObj G] [IsCommMonObj G], Smooth G.hom → ∀ (n : ℕ) (v : Module.Basis (Fin n) R (TanM (𝟙 (Sp R)) G)) (dd : Fin n → Fld G.left), (∀ a, IsInv G (v a) (dd a)) → ∀ δ : Fin n → Derivation ℤ (G.left.presheaf.stalk (origin G)) (G.left.presheaf.stalk (origin G)), (∀ a O (hO : origin G ∈ O) f, δ a ((G.left.presheaf.germ O (origin G) hO).hom f) = (G.left.presheaf.germ O (origin G) hO).hom (dd a O f)) → ∃ z : Fin n → G.left.presheaf.stalk (origin G), (∀ i, evO G (z i) = 0) ∧ (∀ a i, evO G (δ a (z i)) = if a = i then 1 else 0) ∧ maximalIdeal (G.left.presheaf.stalk (origin G)) = (maximalIdeal R).map (constO G) ⊔ Ideal.span (Set.range z) := by
   intro R _ _ _ _ G _ _ hsm n v dd hinv δ hδ
   letI : Algebra R (G.left.presheaf.stalk (origin G)) := (constO G).toAlgebra
-  obtain ⟨hN, hF, hFin⟩ := GlobalTheory.T.originLocalRing_noetherian_free_unitSectionConormal R G hsm
+  obtain ⟨hN, hF, hFin⟩ := _root_.GlobalTheory.CoordsOrigin.noetherian_free_cotangent R G hsm
   have key : ∀ a f, evO G (δ a f) = tanDer G (v a) f := by
     intro a f
     obtain ⟨O, hx, g, rfl⟩ := G.left.presheaf.exists_germ_eq f
@@ -98,7 +98,7 @@ theorem coords_at_origin : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing
       (∀ x y, D (x * y) = evO G x * D y + evO G y * D x) → (∀ r, D (algebraMap R _ r) = 0) →
       ∃! c : Fin n → R, ∀ x, D x = ∑ a, c a * tanDer G (v a) x := by
     intro D h1 h2 h3
-    obtain ⟨w, hw⟩ := GlobalTheory.T.exists_tangentVector_of_originDerivation R G D h1 h2 h3
+    obtain ⟨w, hw⟩ := _root_.GlobalTheory.CoordsOrigin.exists_tan_of_derivation R G D h1 h2 h3
     refine ⟨fun a => v.repr w a, ?_, ?_⟩
     · intro x
       rw [← hw x, ← hlin]

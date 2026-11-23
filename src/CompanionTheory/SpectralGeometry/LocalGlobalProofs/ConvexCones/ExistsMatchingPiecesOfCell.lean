@@ -75,6 +75,6 @@ theorem exists_pieces_match : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [
   have hB := GlobalTheory.T.exists_pullback_coordinate_of_pos O bar w0 hb φ hφ δ₀ h₀ hind v t ht hvt (CarDim.orad v : Submodule O X₀).mkQ
     (Submodule.mkQ_surjective _) τ f hτ hf hsemi u (fun i hi => (hu i hi).1) β
     (fun x y x₀ y₀ hx hy => hrel x y x₀ y₀ hx hy) m δ hδ c hc hβc
-  exact GlobalTheory.T.cone_match_rays_after_dropping_zero_coords (fun i => pullAdd f (u i)) t ht hli β hsum m δ hδi c hc hβc hA hB
+  exact _root_.GlobalTheory.PolFan.cone_match_rays_of_nonneg (fun i => pullAdd f (u i)) t ht hli β hsum m δ hδi c hc hβc hA hB
 
 end GlobalTheory.CompanionTheory.Ar.Fan.MatchingPieces

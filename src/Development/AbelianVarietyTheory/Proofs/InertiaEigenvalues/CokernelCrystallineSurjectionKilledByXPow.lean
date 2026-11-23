@@ -56,6 +56,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsMatrixFrobenius
 
 @[expose] public section
 
@@ -259,10 +260,6 @@ def ann (i : ZMod n) : Ideal (PowerSeries O) where
     rw [this, mul_smul]
     exact Submodule.smul_mem _ _ (ha y hy)
 
-theorem φD_smulA (T : LocLat G Qp LL O) (a : LetA O n) (x : W.DD T) :
-    W.φD T (a • x) = W.φA a • W.φD T x := by
-  rw [← algebraMap_smul W.EE a, W.φD_smul, W.φE_ext, algebraMap_smul]; rfl
-
 theorem φA_single (i : ZMod n) (g : PowerSeries O) :
     W.φA (Pi.single (i - 1) g) = Pi.single i (W.φ₀ g) := by
   funext j
@@ -289,7 +286,7 @@ theorem key_inclusion {ι κ : Type} [Fintype ι] [Fintype κ] (t : ι → Power
   refine Ideal.sum_mem _ fun j _ => Ideal.mul_mem_left _ _ (Ideal.mem_map_of_mem _ fun y hy => ?_)
   let φ : LetA O n →+* LetA O n := W.φA
   let Φ : W.DD T₂ →+ W.DD T₂ := (W.φD T₂).toAddMonoidHom
-  have hΦ : ∀ a x, Φ (a • x) = φ a • Φ x := φD_smulA W T₂
+  have hΦ : ∀ a x, Φ (a • x) = φ a • Φ x := _root_.GlobalTheory.WachTie.MatF.φD_smulA W T₂
   let tt : ι → LetA O n := fun j _ => t j
   have hex : ∀ a : LetA O n, ∃ z : ι → LetA O n, a = ∑ j, tt j * φ (z j) := fun a => by
     choose z hz using fun i => (ht (a i)).exists
@@ -483,4 +480,4 @@ theorem GlobalTheory.NL.CokerKill.X_pow_kills_coker : ∀ (D : Formalism.BasicNo
     (GlobalTheory.T.wachLattice_heights_from_hodgeJumps D HW F Cm l K s LL hG T₁ M h c1)
     (fun hJ => GlobalTheory.T.wachLattice_heights_from_hodgeJumps D HW F Cm l K s LL hG T₂ M h c2 fun τ i hτ a ha =>
       hJ τ i hτ a ((hj τ a).2 (Or.inr ha)))
-    (GlobalTheory.T.wachN_cokernel_killed_by_power D HW F Cm l K s LL hG T₀ T₁ T₂ ι π c0 c1 c2 hses)
+    (_root_.GlobalTheory.NL.CokerFin.coker_killed D HW F Cm l K s LL hG T₀ T₁ T₂ ι π c0 c1 c2 hses)

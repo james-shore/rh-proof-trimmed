@@ -39,6 +39,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.FiniteDimKStableSubspaceKFiniteLie
 
 @[expose] public section
 
@@ -59,18 +60,14 @@ open GlobalTheory.ArchRec
 
 namespace GlobalTheory.ArchRec.NoLiftTransfer
 
-theorem jm_mul_jm (p q : ℕ) : Jm p q * Jm p q = 1 := by
-  unfold Jm Formalism.UG.Jpq
-  simp [Matrix.fromBlocks_multiply]
-
 theorem conj_trace {p q : ℕ} {Z : Mat p q} (hZ : Z ∈ upq p q) : (starRingEnd ℂ) Z.trace = -Z.trace := by
   have h : Zᴴ * Jm p q + Jm p q * Z = 0 := hZ
 
   have h2 : Jm p q * Zᴴ * Jm p q + Z = 0 := by
     have h' := congrArg (fun X => Jm p q * X) h
-    simpa [mul_add, ← mul_assoc, jm_mul_jm] using h'
+    simpa [mul_add, ← mul_assoc, _root_.GlobalTheory.RealPar.KStabLie.Jm_sq] using h'
   have h3 : (Jm p q * Zᴴ * Jm p q).trace + Z.trace = 0 := by rw [← Matrix.trace_add, h2, Matrix.trace_zero]
-  rw [Matrix.trace_mul_comm, ← mul_assoc, jm_mul_jm, one_mul, Matrix.trace_conjTranspose] at h3
+  rw [Matrix.trace_mul_comm, ← mul_assoc, _root_.GlobalTheory.RealPar.KStabLie.Jm_sq, one_mul, Matrix.trace_conjTranspose] at h3
   rw [starRingEnd_apply]
   exact eq_neg_of_add_eq_zero_left h3
 

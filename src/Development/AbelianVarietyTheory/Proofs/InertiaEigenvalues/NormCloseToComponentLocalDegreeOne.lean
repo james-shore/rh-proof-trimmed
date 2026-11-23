@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelaf
 
 @[expose] public section
 
@@ -99,7 +100,7 @@ theorem norm_div_close_to_one : ∀ (E E' : Type) [Field E] [NumberField E] [Fie
       rw [map_sub, map_div₀, hσE, map_one]
     rw [e, hσv]
     exact hzw.trans (hle M (by omega))
-  rw [← valued_algebraMap_eq, map_sub, map_div₀, map_one]
+  rw [← _root_.Formalism.UG.P.levelaf_valued_algebraMap, map_sub, map_div₀, map_one]
   have e2 : algebraMap E (w.adicCompletion E) (Algebra.norm E z) / algebraMap E (w.adicCompletion E) c =
       (algebraMap E (w.adicCompletion E) (Algebra.norm E z) / σ z) * (σ z / algebraMap E (w.adicCompletion E) c) := by
     field_simp

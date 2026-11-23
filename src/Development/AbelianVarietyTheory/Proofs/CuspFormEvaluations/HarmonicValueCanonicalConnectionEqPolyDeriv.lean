@@ -69,7 +69,7 @@ theorem harm_nab_eq_polyDeriv : ChartIndepSt2 → ∀ (E : Type) [Field E] [Numb
   obtain ⟨N, hN, hNP, hs⟩ := GlobalTheory.exists_natCast_smul_mem_harmA E H Dw l c a n P hP
   obtain ⟨C₁, hex₁, hpin₁⟩ := hnab.2 ℂ y
   choose f₁ hf₁ using fun b => hex₁ k (F b)
-  obtain ⟨C, hd, hh, hF, hu, hgerm⟩ := GlobalTheory.T.exists_analytic_biextension_chart_complex_point E H Dw l Xo c y g ty el Φ hnab.1
+  obtain ⟨C, hd, hh, hF, hu, hgerm⟩ := _root_.GlobalTheory.AnVal.exists_analytic_chart E H Dw l Xo c y g ty el Φ hnab.1
   subst hd
   have hdiff : ∀ b, Differentiable ℂ (θ b) := fun b =>
     ((GlobalTheory.T.section_reading_existsUnique_isTheta _ _ _ _ _ Φ.toAnFr k (F b)).2.1 (θ b) (hθ b)).1

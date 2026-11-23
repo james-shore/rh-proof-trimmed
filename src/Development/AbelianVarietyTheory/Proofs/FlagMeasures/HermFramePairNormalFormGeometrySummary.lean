@@ -557,9 +557,7 @@ open NumberField in
 open scoped Pointwise ENNReal Classical in
 variable {K V : Type} [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V]
   {H : _root_.Formalism.HermitianLatticeCounting.S6.HermSpace K V} {r : ℕ} (N : _root_.GlobalTheory.DegCnt.NF H r) in
-theorem _root_.GlobalTheory.DegCnt.NFGeom.sub_proj_perp (y : V) :
-    y - _root_.GlobalTheory.DegCnt.NFGeom.proj N y ∈ _root_.GlobalTheory.HermLat.perp H N.Ist :=
-  sub_proj_mem_perp_Ist N y
+alias _root_.GlobalTheory.DegCnt.NFGeom.sub_proj_perp := _root_.GlobalTheory.DegCnt.NFGeom.sub_proj_mem_perp_Ist
 
 open NumberField in
 open scoped Pointwise ENNReal Classical in

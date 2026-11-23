@@ -56,7 +56,7 @@ namespace GlobalTheory.AV.AbVar
 
 theorem inter_pull_ample_pos : ∀ (K : Type) [Field K] (A B : AbVar K) (n : ℕ), A.dim = n + 1 → ∀ (c : Pic A.X.left) (d : Pic B.X.left), IsAmpleCls c → IsAmpleCls d → ∀ f : A ⟶ B, f ≠ 0 → 0 < inter A (Fin.cons (CechPic.pull f.hom.left d) (fun _ : Fin n => c) : Fin (n + 1) → Pic A.X.left) := by
   intro K _ A B n hdim c d hc hd f hf
-  obtain ⟨m, M, hM, s, hm, hcls, hne, horig⟩ := GlobalTheory.T.exists_section_pullbackAmple_vanishing_origin K A B f d hd hf
+  obtain ⟨m, M, hM, s, hm, hcls, hne, horig⟩ := _root_.GlobalTheory.AV.AbVar.exists_sec_pull_ample_vanish_origin K A B f d hd hf
   have htop : Out.nonzeroLocus s ≠ ⊤ := by
     intro h
     apply horig

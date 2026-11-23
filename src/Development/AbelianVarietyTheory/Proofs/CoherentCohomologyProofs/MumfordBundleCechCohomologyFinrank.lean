@@ -216,8 +216,8 @@ theorem finrank_cechLB_translDiff : ∀ (K : Type) [Field K] [IsAlgClosed K] (P 
     (fun j => (fst P.A P.A).left ⁻¹ᵁ V j) hM hsep' hD hc
     (by rw [← Scheme.Hom.preimage_iSup, hBc, Scheme.Hom.preimage_top])
     (by rw [← Scheme.Hom.preimage_iSup, hVc, Scheme.Hom.preimage_top])
-    (fun i _ h => isAffineOpen_preimage_inf _ (hB i) h)
-    (fun j _ h => isAffineOpen_preimage_inf _ (hV j) h)
+    (fun i _ h => _root_.GlobalTheory.AbLaw.isAffineOpen_preimage_inf_of_isSeparated _ (hB i) h)
+    (fun j _ h => _root_.GlobalTheory.AbLaw.isAffineOpen_preimage_inf_of_isSeparated _ (hV j) h)
     (fun i j => (over_affineOpen P (hV j) B hB hBc _ hM).1 i) n
   have e₂ := trunc₂HomologyIsoFstSingleton (0 : Fin (r + 1)) (secCube (P.A ⊗ P.A).hom
     (translDiff P.A P.L (𝟙 P.A)) fun u : Fin (P.g + 1) ⊕ₗ Fin (r + 1) =>

@@ -68,7 +68,7 @@ theorem exists_gaf {F E : Type} [Field F] [NumberField F] [Field E] [NumberField
     show Formalism.UG.cT _ _ * _ * _ = _
     have e1 : ((p.1 : Matrix (Fin n) (Fin n) (AF F ⊗[F] E)).map (sigR (AF F) σ)) =
         (p.1 : Matrix (Fin n) (Fin n) (AF F ⊗[F] E)).map (cA σ) := by
-      ext i j; exact (GlobalTheory.TransportHeisF.cA_eq_cAF σ _).symm
+      ext i j; exact (_root_.GlobalTheory.TransportF.cA_eq σ _).symm
     have e2 : JR (AF F) J = (incM F Jᵀ)ᵀ := by ext i j; rfl
     have hp' : (p.1 : Matrix (Fin n) (Fin n) (AF F ⊗[F] E))ᵀ * incM F Jᵀ *
         (p.1 : Matrix (Fin n) (Fin n) (AF F ⊗[F] E)).map (cA σ) = incM F Jᵀ := p.2

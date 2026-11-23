@@ -51,9 +51,7 @@ open scoped Pointwise
 
 namespace Formalism.BasicNotions
 
-theorem hypOdd_of_hostHyp {q d : ℕ} (h : HostHyp q d) : HypOdd q d := by
-  obtain ⟨hq, hd, hq8, hd16, -⟩ := h
-  refine ⟨hq, hd, ?_, ?_, ?_⟩ <;> rintro rfl <;> omega
+alias hypOdd_of_hostHyp := _root_.Formalism.FrobeniusOrbits.HostHyp.toHypOdd
 
 noncomputable def iotaH (e : ℕ) (i : ZMod (2 ^ e)) : HGrp e := hcl e (u5 (e + 2)) ^ i.val
 

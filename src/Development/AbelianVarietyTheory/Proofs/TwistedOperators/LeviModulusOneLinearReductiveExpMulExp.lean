@@ -77,12 +77,6 @@ theorem exists_herm_log (n : ℕ) (g : Matrix (Fin n) (Fin n) ℂ) : IsUnit g �
       L = Polynomial.aeval (gᴴ * g) p :=
   GlobalTheory.T.exists_hermitian_exp_eq_conjTranspose_mul_poly n g
 
-theorem exists_unitary_log (n : ℕ) (k : Matrix (Fin n) (Fin n) ℂ) : kᴴ * k = 1 →
-    ∃ (X : Matrix (Fin n) (Fin n) ℂ) (p : Polynomial ℂ), Xᴴ = -X ∧ NormedSpace.exp X = k ∧
-      X = Polynomial.aeval k p :=
-  GlobalTheory.T.exists_skewHermitian_log_of_unitary n k
-
-
 open scoped Matrix.Norms.L2Operator in
 theorem herm_exp_inj (n : ℕ) (A B : Matrix (Fin n) (Fin n) ℂ) (hA : Aᴴ = A) (hB : Bᴴ = B)
     (h : NormedSpace.exp A = NormedSpace.exp B) : A = B := by
@@ -199,7 +193,7 @@ theorem exists_pos_part {W : Flag n a} {g : Matrix (Fin n) (Fin n) ℂ} (hg : g 
     ∃ Y : Matrix (Fin n) (Fin n) ℂ, (∀ t : ℝ, NormedSpace.exp (t • Y) ∈ mats (leviOne ε W)) ∧
       (g * NormedSpace.exp (-Y))ᴴ * (g * NormedSpace.exp (-Y)) = 1 := by
   obtain ⟨hU, hM, hD⟩ := mem_mats_leviOne.1 hg
-  obtain ⟨L, p, hLs, hLe, hLp⟩ := exists_herm_log n g (isUnit_of_inUJ hU)
+  obtain ⟨L, p, hLs, hLe, hLp⟩ := _root_.GlobalTheory.posDef_conjTranspose_mul_self_eq_exp_polynomial n g (isUnit_of_inUJ hU)
   have hhk : ∀ i, ∀ y ∈ W i, (gᴴ * g) *ᵥ y ∈ W i := fun i y hy => by
     rw [← Matrix.mulVec_mulVec]; exact (hM i _ (hM i y hy).1).2
   have hLk : ∀ i, ∀ y ∈ W i, L *ᵥ y ∈ W i := fun i => hLp ▸ aeval_keeps (hhk i) p
@@ -217,10 +211,10 @@ theorem exists_pos_part {W : Flag n a} {g : Matrix (Fin n) (Fin n) ℂ} (hg : g 
   have hEs : ∀ s : ℝ, (NormedSpace.exp (s • L))ᴴ = NormedSpace.exp (s • L) := fun s => by
     rw [← Matrix.exp_conjTranspose, conjTranspose_smul, hLs, star_trivial]
   have hdet : ∀ i s, detOn (NormedSpace.exp (s • L)) (W i) = 1 := fun i s => by
-    obtain ⟨c, hc⟩ := detOn_exp_smul n L (W i) (hLk i)
+    obtain ⟨c, hc⟩ := _root_.GlobalTheory.FlagMeas.detOn_exp_smul n L (W i) (hLk i)
     have h1 := hc 1
     rw [one_smul, hLe, detOn_mul (fun y hy => (hM i y hy).2) (fun y hy => (hM i y hy).1),
-      detOn_conjTranspose n g (W i) (fun y hy => (hM i y hy).1) (fun y hy => (hM i y hy).2), hD i, one_mul,
+      _root_.GlobalTheory.FlagMeas.DetAdj.detOn_conjTranspose n g (W i) (fun y hy => (hM i y hy).1) (fun y hy => (hM i y hy).2), hD i, one_mul,
       one_mul, eq_comm, Real.exp_eq_one_iff] at h1
     rw [hc s, h1, mul_zero, Real.exp_zero]
   have hmem : ∀ s : ℝ, NormedSpace.exp (s • L) ∈ mats (leviOne ε W) := fun s => by
@@ -246,7 +240,7 @@ theorem exists_unit_part {W : Flag n a} {k : Matrix (Fin n) (Fin n) ℂ} (hk : k
     ∃ X : Matrix (Fin n) (Fin n) ℂ, (∀ t : ℝ, NormedSpace.exp (t • X) ∈ mats (leviOne ε W)) ∧
       NormedSpace.exp X = k := by
   obtain ⟨hU, hM, hD⟩ := mem_mats_leviOne.1 hk
-  obtain ⟨X, q, hXs, hXe, hXq⟩ := exists_unitary_log n k hu
+  obtain ⟨X, q, hXs, hXe, hXq⟩ := _root_.GlobalTheory.unitary_exists_skew_log n k hu
   have hkJ : Commute k (Jm ε) := by
     have h1 : k * kᴴ = 1 := mul_eq_one_comm.mp hu
     show k * Jm ε = Jm ε * k
@@ -273,7 +267,7 @@ theorem exists_unit_part {W : Flag n a} {k : Matrix (Fin n) (Fin n) ℂ} (hk : k
           simp only [Matrix.mul_assoc, Jm_mul_self, Matrix.mul_one]
       _ = Jm ε := by rw [hJE, hEE, Matrix.one_mul]
   · have h := detOn_mul (hk2 i) (hk1 i)
-    rw [hEE, detOn_one, detOn_conjTranspose n _ (W i) (hk1 i) (hk2 i)] at h
+    rw [hEE, detOn_one, _root_.GlobalTheory.FlagMeas.DetAdj.detOn_conjTranspose n _ (W i) (hk1 i) (hk2 i)] at h
     nlinarith [detOn_nonneg (NormedSpace.exp (t • X)) (W i)]
 
 theorem exists_exp_mul_exp {W : Flag n a} {g : Matrix (Fin n) (Fin n) ℂ} (hg : g ∈ mats (leviOne ε W)) :
@@ -311,7 +305,7 @@ theorem isLinRed_leviOne : ∀ (n : ℕ) (ε : Fin n → Bool) (a : ℕ) (j : Fi
     obtain ⟨hU, hM, hD⟩ := mem_mats_leviOne.1 hg
     refine mem_mats_leviOne.2 ⟨inUJ_conjTranspose hU, fun i y hy => ⟨(hM i y hy).2, by
       rw [conjTranspose_conjTranspose]; exact (hM i y hy).1⟩, fun i => ?_⟩
-    rw [detOn_conjTranspose n g (W i) (fun y hy => (hM i y hy).1) (fun y hy => (hM i y hy).2)]
+    rw [_root_.GlobalTheory.FlagMeas.DetAdj.detOn_conjTranspose n g (W i) (fun y hy => (hM i y hy).1) (fun y hy => (hM i y hy).2)]
     exact hD i
 
 end GlobalTheory.LeviPolar

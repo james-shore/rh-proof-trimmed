@@ -60,6 +60,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 public import Formalism.MahlerMeasure.MahlerMeasureProofs.RemoveS
 public import Formalism.PolynomialDimension.MultinomialDepth.PartnerM
+import Formalism.ThetaLogCoordinates.TraceIsometryWeights.SchurTraceProofs.LatticeBasisPolynomial
 
 @[expose] public section
 
@@ -426,7 +427,7 @@ theorem latData (hU : UDivInt) (hD : DWDivInt) (hs : 1 ≤ s) (hv : LL.vec (Fin.
       · rw [EX_succ_zero]
         exact hU p K (s + 1) LL c _ (Fin.castSucc i) k (castSucc_mem_erase i) x hx'
       · rw [EX_succ_succ]
-        refine Formalism.InvariantFactorPaths.PW.Top.divInt p (K + 1) (s + 1) LL (K + 1) _ _ (fun h => hab ?_) k x hx'
+        refine _root_.Formalism.InvariantFactorPaths.PW.divided_integral_holds p (K + 1) (s + 1) LL (K + 1) _ _ (fun h => hab ?_) k x hx'
         rw [Fin.castSucc_injective s h]
   ·
     intro μ x hx
@@ -441,7 +442,7 @@ theorem latData (hU : UDivInt) (hD : DWDivInt) (hs : 1 ≤ s) (hv : LL.vec (Fin.
   ·
     intro U hUW
     have := wtot_fd (p := p) LL J M c hs hv k0 hk0 hc
-    exact Formalism.InvariantFactorPaths.PW.Top.latBasisPol p _ U (Submodule.finiteDimensional_of_le hUW)
+    exact _root_.Formalism.InvariantFactorPaths.PW.lattice_basis_polynomial p _ U (Submodule.finiteDimensional_of_le hUW)
 
 theorem wtot_le_iso (hs : 1 ≤ s) (hv : LL.vec (Fin.last K) = true) (k0 : Fin q)
     (hk0 : K + 1 ≤ J k0) (hc : M k0 = ((c : ℤ) : WithTop ℤ)) (hmin : ∀ k, K + 1 ≤ J k → M k0 ≤ M k)

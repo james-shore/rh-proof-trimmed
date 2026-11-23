@@ -93,7 +93,7 @@ theorem measurePreserving_coord {m : ℕ} {A : ℕ → Submodule ℝ (Matrix (Fi
   have hsp0 : ∀ X, (X ∈ A 0 ∧ inG ε X) ↔ X ∈ Submodule.span ℝ (Set.range E) := fun X => by
     simpa using hsp 0 X
   have hmul0 : ∀ X ∈ A 0, ∀ Y ∈ A 0, X * Y ∈ A 0 := fun X hX Y hY => hle 0 (hmul 0 X hX Y hY).1
-  obtain ⟨σ, hσc, hσ⟩ := GlobalTheory.T.exists_orthonormal_lie_coordinates n d m ε A E hm hmul hle hinv hE hE0
+  obtain ⟨σ, hσc, hσ⟩ := _root_.GlobalTheory.NilCovSec.exists_continuous_section n d m ε A E hm hmul hle hinv hE hE0
   have hσ2 : ∀ x i, ipL (E i) (uMat (σ x) - 1) = x i := fun x => (hσ x).2
   have hinj : ∀ g h : UJ ε, uMat g - 1 ∈ A 0 → uMat h - 1 ∈ A 0 →
       (∀ i, ipL (E i) (uMat g - 1) = ipL (E i) (uMat h - 1)) → g = h := by
@@ -110,7 +110,7 @@ theorem measurePreserving_coord {m : ℕ} {A : ℕ → Submodule ℝ (Matrix (Fi
       ext x
       simpa using (hσ x).1
     · have hs' : uMat s - 1 ∈ A 0 := hs
-      have hT := GlobalTheory.T.measurePreserving_add_of_triangular d deg (fun x i => ipL (E i) (uMat (s * σ x) - 1) - x i)
+      have hT := _root_.GlobalTheory.measurePreserving_triangular_shear d deg (fun x i => ipL (E i) (uMat (s * σ x) - 1) - x i)
         (((continuous_coord E).comp (continuous_const.mul hσc)).sub continuous_id).measurable (by
           intro x y i hxy
           have h1 := sub_mem_of_coord_eq hmul hinv hE hsp (hσ x).1 (hσ y).1 (deg i) fun k hk => by
@@ -132,12 +132,12 @@ theorem measurePreserving_coord {m : ℕ} {A : ℕ → Submodule ℝ (Matrix (Fi
           ring
       rw [Measure.map_map (measurable_const_mul s) hσc.measurable, he,
         ← Measure.map_map hσc.measurable hT.measurable, hT.map_eq]
-    · have hest := fun x => GlobalTheory.T.traceCoord_sq_sum_le_hilbertSchmidt_unitaryGroup n d ε E hE (fun i => (hE0 i).2) (σ x)
+    · have hest := fun x => _root_.GlobalTheory.NilCov.sum_coord_sq_le_hs_and_hs_le n d ε E hE (fun i => (hE0 i).2) (σ x)
         ((hsp0 _).1 ⟨(A 0).sub_mem (hσ x).1 (hinv 0 _ (hσ x).1), inG_sub_inv _⟩)
       simp only [(hσ _).2] at hest
       have h0 : σ 0 = 1 := hinj _ _ (hσ 0).1 (by simp [uMat]) fun i => by
         rw [hσ2]; simp [uMat]
-      have := GlobalTheory.T.tendsto_volume_sqrt_sublevel_div_pow_eq_volume_ball d (fun x => hs (uMat (σ x) - 1))
+      have := _root_.GlobalTheory.tendsto_volume_sublevel_div_pow d (fun x => hs (uMat (σ x) - 1))
         (continuous_hs_sub_one.comp hσc).continuousAt (by simp [h0, uMat, hs])
         (fun x => (hest x).1) (fun x => (hest x).2)
       refine this.congr fun r => ?_

@@ -89,7 +89,7 @@ theorem commutes_multiProd' {p u : ℕ} (x : Irr k p) {dτ : Fin u → ℕ} (τ 
     have hN : p = N := by omega
     subst hN
     have A := ind₂_unit_right h₁ x.π x.smooth (fun a => (τ a).π) e
-    have B := GlobalTheory.T.parabolicInductionTwoBlocks_empty_product_left k p 0 h₂ _ x.π x.smooth _ _ (fun a => (τ a).π) e
+    have B := _root_.GlobalTheory.ProdReorder.ind₂_unit_left k p 0 h₂ _ x.π x.smooth _ _ (fun a => (τ a).π) e
     exact eqvT A (eqvS B)
   | succ u => exact GlobalTheory.T.inducedProductCommutes_familyProduct k p u x dτ τ hC T N e h₁ h₂
 
@@ -117,7 +117,7 @@ theorem reorderClaim_zero : ReorderClaim k 0 := by
   subst hN
   have A : Nonempty ((multiProd e fun a => (σ a).π).Equiv (multiProd e₂ fun j => (σ (ι₂ j)).π)) :=
     multiProd_empty (k := k) _ _ e e₂
-  have B := GlobalTheory.T.parabolicInductionTwoBlocks_empty_product_left k 0 0 h _ _ (isSmooth_multiProd' e₂ fun j => (σ (ι₂ j)).π) _ _
+  have B := _root_.GlobalTheory.ProdReorder.ind₂_unit_left k 0 0 h _ _ (isSmooth_multiProd' e₂ fun j => (σ (ι₂ j)).π) _ _
     (fun i => (σ (ι₁ i)).π) e₁
   exact eqvT A (eqvS B)
 

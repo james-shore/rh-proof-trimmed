@@ -63,23 +63,6 @@ namespace GlobalTheory.TransportedLine
 
 variable {D : D7}
 
-theorem exp_mem_UH_of_lie {n : ℕ} {H : Matrix (Fin n) (Fin n) ℂ} (hu : IsUnit H.det) {X : Matrix (Fin n) (Fin n) ℂ}
-    (hX : Xᴴ * H + H * X = 0) (t : ℝ) : NormedSpace.exp (t • X) ∈ Formalism.QuantumDeterminants.UH H := by
-  have hu' : IsUnit H := (isUnit_iff_isUnit_det H).2 hu
-  have e : (t • X)ᴴ = H * (-(t • X)) * H⁻¹ := by
-    have h1 : Xᴴ * H = -(H * X) := eq_neg_of_add_eq_zero_left hX
-    have h2 : Xᴴ = -(H * X) * H⁻¹ := by rw [← h1, mul_assoc, mul_nonsing_inv _ hu, mul_one]
-    rw [conjTranspose_smul, h2]
-    simp
-  show (NormedSpace.exp (t • X))ᴴ * H * NormedSpace.exp (t • X) = H
-  rw [← Matrix.exp_conjTranspose, e, Matrix.exp_conj _ _ hu', mul_assoc _ H⁻¹, nonsing_inv_mul _ hu, mul_one, mul_assoc,
-    ← Matrix.exp_add_of_commute _ _ (Commute.refl (t • X)).neg_left, neg_add_cancel, NormedSpace.exp_zero, mul_one]
-
-theorem gramAt_det_isUnit (V : HSp D) (τ : D.what₂.Tau) : IsUnit (gramAt D V τ).det := by
-  have : (gramAt D V τ).det = tauE D τ V.gram.det := (RingHom.map_det (tauE D τ) V.gram).symm
-  rw [this]
-  exact ((_root_.map_ne_zero _).2 (Formalism.L2.Theta.gram_det_ne V)).isUnit
-
 variable (X : HSp D) {k : ℕ} (e : Fin k ≃ Fin X.rank) {J : Matrix (Fin k) (Fin k) D.host.E}
     (hJ : J = D.host.xi0 • (X.gramᵀ).submatrix e e)
 
@@ -184,7 +167,7 @@ theorem exists_line_toUX_oneP : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → �
       ∀ t : ℝ, γ (Multiplicative.ofAdd t) = GlobalTheory.TripleRead.toUX X e hJ (oneP θ X τ Y t) := by
   intro D θ hθ X k e Z hJ τ Y hY
   have hU : ∀ t : ℝ, NormedSpace.exp (t • Y) ∈ Formalism.QuantumDeterminants.UH (gramAt D X τ) :=
-    exp_mem_UH_of_lie (gramAt_det_isUnit X τ) hY
+    _root_.GlobalTheory.SmoothAutCheck.exp_mem_UH (_root_.GlobalTheory.SmoothAutCheck.gramAt_unit X τ) hY
   let φ : Multiplicative ℝ →* GA D X :=
     { toFun := fun t => oneP θ X τ Y (Multiplicative.toAdd t)
       map_one' := by

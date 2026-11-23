@@ -147,7 +147,7 @@ theorem wO_stable [IsLocalRing O] {n : ℕ} (ν : Fin n → ℕ) (g : Matrix (Fi
     rw [e, ← Formalism.UG.P.wlocal_map_rowAct]
     apply map_subtype_mem_wO_of_mem_weyl
     have hw1 := Formalism.UG.P.wlocal_map_weyl (Int.castRingHom O) le_rfl ν h hh
-    have hst := Formalism.UG.Final.WeylGLStableLocal O n n le_rfl ν (Matrix.nonsingInvUnit g hg)⁻¹ _ hw1
+    have hst := _root_.Formalism.UG.P.wlocal_local O n n le_rfl ν (Matrix.nonsingInvUnit g hg)⁻¹ _ hw1
     unfold Formalism.UG.dwAct at hst
     rw [inv_inv] at hst
     exact hst

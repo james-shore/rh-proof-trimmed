@@ -697,7 +697,4 @@ end Formalism.FourierDecayAlt.P.JCTx5
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem levels_of_built_setting : Formalism.FourierDecayAlt.JCT.LevelsActualBuilt := by
-  exact Formalism.FourierDecayAlt.P.JCTx5.levelsActualBuilt
-
 end Formalism.FourierDecayAlt.P

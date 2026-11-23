@@ -108,18 +108,11 @@ theorem kset_star {n : ℕ} {ε : Fin n → Bool} {k : Matrix (Fin n) (Fin n) �
     _ = star (k * Formalism.REAL.Jm ε) := by rw [hc]
     _ = Formalism.REAL.Jm ε * star k := by rw [star_mul, hJ]
 
-private theorem mem_UJset_of_mem_Kset_twisted_operators {n : ℕ} {ε : Fin n → Bool} {k : Matrix (Fin n) (Fin n) ℂ}
-    (hk : k ∈ Formalism.REAL.Kset ε) : k ∈ Formalism.MainNotions.S.UJset ε := by
-  obtain ⟨hu, hc⟩ := hk
-  have hkk : star k * k = 1 := Matrix.mem_unitaryGroup_iff'.mp hu
-  simp only [Formalism.MainNotions.S.UJset, Set.mem_ofPred_eq, Formalism.REAL.inUJ]
-  rw [← Matrix.star_eq_conjTranspose, Matrix.mul_assoc, ← hc, ← Matrix.mul_assoc, hkk, Matrix.one_mul]
-
 private theorem subst_subst_eq_of_subst_eq_X {n : ℕ} {ε : Fin n → Bool} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     {σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)} (hσ : Formalism.MainNotions.S.IsURepOn (Formalism.MainNotions.S.UJset ε) σ)
     {k : Matrix (Fin n) (Fin n) ℂ} (hk : k ∈ Formalism.REAL.Kset ε) (y : H) : σ k (σ (star k) y) = y := by
   have hks1 : k * star k = 1 := Matrix.mem_unitaryGroup_iff.mp hk.1
-  rw [← ContinuousLinearMap.comp_apply, ← hσ.1.2 k (mem_UJset_of_mem_Kset_twisted_operators hk) (star k) (mem_UJset_of_mem_Kset_twisted_operators (kset_star hk)),
+  rw [← ContinuousLinearMap.comp_apply, ← hσ.1.2 k (_root_.Formalism.IndefR.FWT.kset_uj hk) (star k) (_root_.Formalism.IndefR.FWT.kset_uj (kset_star hk)),
     hks1, hσ.1.1]
   rfl
 
@@ -127,7 +120,7 @@ private theorem inner_urep_apply_eq_inner_star_of_mem_Kset {n : ℕ} {ε : Fin n
     {σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)} (hσ : Formalism.MainNotions.S.IsURepOn (Formalism.MainNotions.S.UJset ε) σ)
     {k : Matrix (Fin n) (Fin n) ℂ} (hk : k ∈ Formalism.REAL.Kset ε) (x y : H) :
     ⟪σ k x, y⟫_ℂ = ⟪x, σ (star k) y⟫_ℂ := by
-  let L : H →ₗᵢ[ℂ] H := ⟨(σ k).toLinearMap, hσ.2.1 k (mem_UJset_of_mem_Kset_twisted_operators hk)⟩
+  let L : H →ₗᵢ[ℂ] H := ⟨(σ k).toLinearMap, hσ.2.1 k (_root_.Formalism.IndefR.FWT.kset_uj hk)⟩
   conv_lhs => rw [← subst_subst_eq_of_subst_eq_X hσ hk y]
   exact L.inner_map_map x (σ (star k) y)
 
@@ -158,7 +151,7 @@ theorem kfin : ∀ (D : D7) (V W : HSp D) (S S' : D.what₂.Tau → SPar) (M : D
     obtain ⟨ψ', hdeg, heq⟩ := hA.invK k hk ψ
     have key : M'.σ τ k (b ψ) = b ψ' := by
       refine eq_of_inner_eq_on_dense (dense_sm M' τ) fun y => ?_
-      have hmem : M'.σ τ (star k) y ∈ M'.sm τ := sm_stable M' τ (mem_UJset_of_mem_Kset_twisted_operators (kset_star hk)) y.2
+      have hmem : M'.σ τ (star k) y ∈ M'.sm τ := sm_stable M' τ (_root_.Formalism.IndefR.FWT.kset_uj (kset_star hk)) y.2
       rw [inner_urep_apply_eq_inner_star_of_mem_Kset hσ hk]
       have e1 : F ψ ⟨_, hmem⟩ = ⟪b ψ, M'.σ τ (star k) y⟫_ℂ := hb ψ ⟨_, hmem⟩
       rw [← e1, ← hb ψ' y, hFapp, hFapp, heq ⟨_, hmem⟩ y (subst_subst_eq_of_subst_eq_X hσ hk y).symm]

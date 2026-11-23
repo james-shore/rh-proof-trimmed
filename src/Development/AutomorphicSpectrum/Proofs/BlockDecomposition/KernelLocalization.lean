@@ -59,12 +59,7 @@ attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {n : ℕ}
 
-theorem mul_mem {x y : Mat n} (hx : x ∈ GLs n) (hy : y ∈ GLs n) : x * y ∈ GLs n := by
-  have hx' : x.det ≠ 0 := hx
-  have hy' : y.det ≠ 0 := hy
-  show (x * y).det ≠ 0
-  rw [Matrix.det_mul]
-  exact mul_ne_zero hx' hy'
+alias mul_mem := _root_.GlobalTheory.CompanionTheory.WaveAll.mul_mem_GLs
 
 theorem inv_mem {x : Mat n} (hx : x ∈ GLs n) : x⁻¹ ∈ GLs n :=
   (Matrix.isUnit_nonsing_inv_det x (isUnit_iff_ne_zero.mpr hx)).ne_zero

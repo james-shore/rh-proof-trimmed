@@ -210,10 +210,6 @@ theorem eta_unit (f f' : Fin (r + 1) → V) (T T' : F) (hF' : Formalism.MainNoti
       (H.Dl f f' (r + 1) * M.L.cj (H.Dl f f' (r + 1)))) := by rw [key]; exact hG
   exact isUnit_of_mul_isUnit_left this
 
-private theorem h_sub_left' (x y z : V) : H.h (x - y) z = H.h x z - H.h y z := by
-  rw [sub_eq_add_neg, H.h_add_left, ← neg_one_smul E y, H.h_smul_left]
-  ring
-
 theorem decompU (f f' : Fin (r + 1) → V) (T T' : F) (hF : Formalism.MainNotions.ThinScalesBound.FrameK H f T)
     (hF' : Formalism.MainNotions.ThinScalesBound.FrameK H f' T') (hD : IsUnit (H.Dl f f' (r + 1)))
     (hG : IsUnit (H.Dl f f' (r + 1) * M.L.cj (H.Dl f f' (r + 1)) -
@@ -232,7 +228,7 @@ theorem decompU (f f' : Fin (r + 1) → V) (T T' : F) (hF : Formalism.MainNotion
       (Submodule.smul_mem _ _ (omP_mem_span H f f')))
     exact Submodule.subset_span ⟨Sum.inl (Fin.last r), rfl⟩
   · intro a
-    rw [h_sub_left', HermSp.h_add_left, HermSp.h_smul_left, HermSp.h_smul_left,
+    rw [_root_.Formalism.L2.SG.LsDatumA.h_sub_left, HermSp.h_add_left, HermSp.h_smul_left, HermSp.h_smul_left,
       h_omP_f H f f' hD a]
     by_cases ha : a = Fin.last r
     · subst ha
@@ -243,7 +239,7 @@ theorem decompU (f f' : Fin (r + 1) → V) (T T' : F) (hF : Formalism.MainNotion
       rw [(mem_perpX_iff H f u).mp hX i]
       ring
   · have hw : H.h (u - (α • f (Fin.last r) + β • omP H f f')) (omP H f f') = 0 := by
-      rw [h_sub_left', HermSp.h_add_left, HermSp.h_smul_left, HermSp.h_smul_left,
+      rw [_root_.Formalism.L2.SG.LsDatumA.h_sub_left, HermSp.h_add_left, HermSp.h_smul_left, HermSp.h_smul_left,
         h_z_omP H f f' hD, hβ]
       linear_combination -hα
     rw [hom'eq, HermSp.h_smul_left, H.h_herm _ (omP H f f'), hw, map_zero, mul_zero]

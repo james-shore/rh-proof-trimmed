@@ -440,7 +440,6 @@ namespace Formalism.FourierDecayAlt.P
 theorem types_interlace : Formalism.FourierDecayAlt.M.TyInterlaces := Mx3.tyInterlaces
 theorem types_complete : Formalism.FourierDecayAlt.M.TyComplete := Mx3.tyComplete
 theorem rho_raise : Formalism.FourierDecayAlt.M.RhoUp := Mx3.rhoUp
-theorem nrmFacts_statement : Formalism.FourierDecayAlt.M.NrmFacts := Mx3.nrmFacts
 theorem realPoints_statement : Formalism.FourierDecayAlt.M.RealPoints := Mx3.realPoints
 theorem weight_exact : Formalism.FourierDecayAlt.M.WExact := Mx3.wExact
 theorem interlace_sign_two : Formalism.FourierDecayAlt.M.InterlaceSignTwo := Mx3.interlaceSignTwo

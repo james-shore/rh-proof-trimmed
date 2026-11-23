@@ -120,7 +120,7 @@ theorem theta_two_levels_prim : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [Is
     rw [hx]; exact h1
   have hmuW : IsUnit (m : W) := by simpa using hmu.map f
   have hmuW' : IsUnit (m' : W) := by simpa using hmu'.map f
-  obtain ⟨a, ha, hp, hp'⟩ := GlobalTheory.T.uniformised_trait_theta_constants_two_levels_integral W hWc D A G' hG' U ρA hρA K io' m m' N N' d d' hm hm3 hmuW hm' hm3' hmuW' h2
+  obtain ⟨a, ha, hp, hp'⟩ := _root_.GlobalTheory.SiegTh.CmpUnif.cmp_unif W hWc D A G' hG' U ρA hρA K io' m m' N N' d d' hm hm3 hmuW hm' hm3' hmuW' h2
   have hcomp : (io'.comp (algebraMap W (FractionRing W))).comp f = io.comp (algebraMap V (FractionRing V)) := by
     ext x; simp [← hfK, ← hio']
   refine ⟨a, ha, ?_, ?_⟩

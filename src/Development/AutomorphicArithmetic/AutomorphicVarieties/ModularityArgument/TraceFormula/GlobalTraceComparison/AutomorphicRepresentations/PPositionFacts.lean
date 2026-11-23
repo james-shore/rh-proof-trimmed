@@ -55,8 +55,6 @@ section SlopeTestRemainingChoices
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {n : ℕ}
 
-private theorem cc (w : Pl E) : GlobalTheory.EulerTw.cPl E (GlobalTheory.EulerTw.cPl E w) = w := GlobalTheory.EulerTwU.cPl_cPl w
-
 private theorem cont_thF : Continuous (thF E n) :=
   GlobalTheory.ThetaPull.continuous_thetaGL _ (continuous_conjFin _)
 
@@ -72,7 +70,7 @@ private theorem twist_int_iff (v : Pl E) (x : GL (Fin n) (Af E)) :
   refine ⟨fun h => ?_, twist_int v x⟩
   have h1 : GeneralLinearGroup.map (pLoc E (GlobalTheory.EulerTw.cPl E (GlobalTheory.EulerTw.cPl E v))) (thF E n x) ∈
       KGL (GlobalTheory.EulerTw.cPl E (GlobalTheory.EulerTw.cPl E v)) (n := n) := by
-    rw [cc]; exact h
+    rw [_root_.GlobalTheory.EulerTwU.cPl_cPl]; exact h
   have h2 := twist_int (GlobalTheory.EulerTw.cPl E v) (thF E n x) h1
   rwa [GlobalTheory.EulerTwU.thF_thF] at h2
 
@@ -152,7 +150,7 @@ theorem slotFacts_pf : UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm.Places → S
       have e0 : GlobalTheory.EulerTw.cPl E k = i := e
       have hi0 : i ∈ S := hi
       have hk0 : k ∈ S := hk
-      have e' : GlobalTheory.EulerTw.cPl E i = k := by rw [← e0, cc]
+      have e' : GlobalTheory.EulerTw.cPl E i = k := by rw [← e0, _root_.GlobalTheory.EulerTwU.cPl_cPl]
       exact (hsplit i).1 (hi' rfl) (hsec i hi0 (e' ▸ hk0))
     · show GeneralLinearGroup.map (pLoc E k) (thF E n (thF E n (locGL E n i a))) = 1
       rw [GlobalTheory.EulerTwU.thF_thF]
@@ -183,11 +181,11 @@ theorem slotFacts_pf : UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm.Places → S
       · exact h (w, false) ⟨hw, by simp⟩
       · have hw' : GlobalTheory.EulerTw.cPl E w ∈ S := (hor w).resolve_left hw
         have hne : GlobalTheory.EulerTw.cPl E (GlobalTheory.EulerTw.cPl E w) ≠ GlobalTheory.EulerTw.cPl E w := by
-          rw [cc]
+          rw [_root_.GlobalTheory.EulerTwU.cPl_cPl]
           exact fun e => hw (e ▸ hw')
         have h1 := (twist_int_iff (n := n) (GlobalTheory.EulerTw.cPl E w) g).1
           (h (GlobalTheory.EulerTw.cPl E w, true) ⟨hw', fun _ => (hsplit _).2 hne⟩)
-        rwa [cc] at h1
+        rwa [_root_.GlobalTheory.EulerTwU.cPl_cPl] at h1
     · rintro h ⟨w, b⟩ -
       cases b
       · exact h w

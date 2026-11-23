@@ -66,7 +66,7 @@ theorem UpperTheory.galois_representation_model_over_finite_extension :
   let r' : ↥(Dec (F := F) A) →* GL (Fin n) (Qbar l) :=
     (MulAut.conj p).toMonoidHom.comp (r.comp (Dec (F := F) A).subtype)
   have hr' : ∀ s, r' s = p * r s * p⁻¹ := fun _ => rfl
-  have hc := GlobalTheory.T.fontaineParameter_invariant_under_conjugation F Ω l ι n (Loc.PP l) (Loc.AIP l) (Loc.tiedP l) w A h O Bw hj
+  have hc := _root_.GlobalTheory.PstConj.main F Ω l ι n (Loc.PP l) (Loc.AIP l) (Loc.tiedP l) w A h O Bw hj
     (r.comp (Dec (F := F) A).subtype) r' p hr' hr
   obtain ⟨hpst, hwd⟩ := hc
   have hm := wdAt_of_isPstAt ι Bw h hj hpst

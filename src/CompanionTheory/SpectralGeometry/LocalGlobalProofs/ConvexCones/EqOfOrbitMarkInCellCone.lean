@@ -72,7 +72,7 @@ theorem eq_of_orbMark_of_inRCone_cell : ∀ (O : Type) [CommRing O] [IsDedekindD
   have hlabray : ∀ (x : LinearMap.BilinForm ℤ X) (j : Fin m') (d : ℝ), 0 < d → x ∈ balForms bar X →
       (∀ y, 0 ≤ x y y) → toReal x = d • toReal (δ j) → lab.evalZ x = lab.evalZ (δ j) := by
     intro x j d hd hxb hxn hx
-    obtain ⟨a, b, ha, hb', hab⟩ := GlobalTheory.T.exists_pos_rat_multiple_of_pos_real_multiple_intForm x (δ j) d hd (hδli.ne_zero j) hx
+    obtain ⟨a, b, ha, hb', hab⟩ := _root_.GlobalTheory.posReal_multiple_rat x (δ j) d hd (hδli.ne_zero j) hx
     have h1 := hS.1 X hX x hxb hxn a ha
     have h2 := hS.1 X hX (δ j) (hδ.mem j) (hδ.nonneg j) b hb'
     rw [← h1, ← h2, hab]

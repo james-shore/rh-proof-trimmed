@@ -81,7 +81,7 @@ theorem indSet_finite (hstar : ∀ (τ : E →+* ℂ) (a : E), τ (star a) = sta
     intro h; have := hzz τ; rw [h, map_zero] at this; simp at this
 
   set bB := Module.finBasis E P
-  have hd : ∀ i, ∃ d : 𝓞 E, d ≠ 0 ∧ d • (bB i : S.V) ∈ Λ := fun i => exists_smul_mem Λ hΛ _
+  have hd : ∀ i, ∃ d : 𝓞 E, d ≠ 0 ∧ d • (bB i : S.V) ∈ Λ := fun i => _root_.Bl.general_b_fact_third_extra.goal1 Λ hΛ _
   choose d hd0 hdΛ using hd
   have hd0' : ∀ i, algebraMap (𝓞 E) E (d i) ≠ 0 := fun i => by
     rw [ne_eq, ← map_zero (algebraMap (𝓞 E) E), (IsFractionRing.injective (𝓞 E) E).eq_iff]

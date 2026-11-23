@@ -59,16 +59,6 @@ open Formalism.IndefR.Fin
 
 variable {D : D7}
 
-theorem symplO_zero_r (S T : HSp D) (x : WO S T) : symplO S T x 0 = 0 := by
-  have h := GlobalTheory.FinPl.ExtZeroLat.symplO_add_right S T x 0 0
-  simp only [add_zero] at h
-  exact left_eq_add.mp h
-
-theorem symplO_neg_r (S T : HSp D) (x y : WO S T) : symplO S T x (-y) = -symplO S T x y := by
-  have h := GlobalTheory.FinPl.ExtZeroLat.symplO_add_right S T x y (-y)
-  rw [add_neg_cancel, symplO_zero_r] at h
-  linear_combination -h
-
 theorem psi_ne_zero' (ψ : AddChar (AF D.host.F) ℂ) (a : AF D.host.F) : ψ a ≠ 0 := by
   intro h
   have := ψ.map_add_eq_mul a (-a)
@@ -97,9 +87,9 @@ def annHalf (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (e : AE D) (Λ : AddS
   add_mem' {a b} ha hb := ⟨(halfGrp S T (cA D e)).add_mem ha.1 hb.1, fun x hx hxe => by
     rw [GlobalTheory.FinPl.ExtZeroLat.symplO_add_right, AddChar.map_add_eq_mul, ha.2 x hx hxe, hb.2 x hx hxe, one_mul]⟩
   zero_mem' := ⟨(halfGrp S T (cA D e)).zero_mem, fun x _ _ => by
-    rw [symplO_zero_r, AddChar.map_zero_eq_one]⟩
+    rw [_root_.GlobalTheory.PlaceModel.symplO_zero_right, AddChar.map_zero_eq_one]⟩
   neg_mem' {a} ha := ⟨(halfGrp S T (cA D e)).neg_mem ha.1, fun x hx hxe => by
-    rw [symplO_neg_r, AddChar.map_neg_eq_inv, ha.2 x hx hxe, inv_one]⟩
+    rw [_root_.GlobalTheory.SplitSelfDual.symplO_neg_right, AddChar.map_neg_eq_inv, ha.2 x hx hxe, inv_one]⟩
 
 theorem half_inf_half {e : AE D} (he : e * cA D e = 0) (S T : HSp D) {u : WO S T}
     (h1 : IsHalf e u) (h2 : IsHalf (cA D e) u) : u = 0 := by

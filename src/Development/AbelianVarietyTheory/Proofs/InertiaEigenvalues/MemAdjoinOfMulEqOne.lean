@@ -54,10 +54,6 @@ namespace GlobalTheory.UnitLemma.TwistUnit
 
 open GlobalTheory.UnitLemma Polynomial
 
-theorem mem_adjoin_of_mul_eq_one {O A : Type} [CommRing O] [CommRing A] [Algebra O A] {s t : A}
-    (h : s * t = 1) (ht : IsIntegral O t) : t ∈ Algebra.adjoin O {s} := by
-  exact GlobalTheory.UnitLemma.UnitBase.mem_adjoin_of_mul_eq_one' h ht
-
 theorem adjoin_stab {O A : Type} [CommRing O] [CommRing A] [Algebra O A] {s : A} (L : Submodule O A)
     (hL : ∀ y ∈ L, s * y ∈ L) {a : A} (ha : a ∈ Algebra.adjoin O {s}) : ∀ y ∈ L, a * y ∈ L := by
   induction ha using Algebra.adjoin_induction with
@@ -180,7 +176,7 @@ theorem twisted_unit_eq_unit : ∀ (K : UQ) (B : InvAlg K), B.g * B.σ B.g = 1 �
       show B.σ ((β₀ : B.A) * x * a * B.σ b) = ε * ((β₀ : B.A) * x * (B.g * b) * B.σ a) by
         rw [map_mul, map_mul, map_mul, hβ, hx, B.σ_σ]; ring, hεT]
   have hgg : B.σ B.g * B.g = 1 := by rw [mul_comm]; exact hg
-  have hgad : B.g ∈ Algebra.adjoin K.O {B.σ B.g} := mem_adjoin_of_mul_eq_one hgg hi
+  have hgad : B.g ∈ Algebra.adjoin K.O {B.σ B.g} := _root_.GlobalTheory.UnitLemma.UnitBase.mem_adjoin_of_mul_eq_one' hgg hi
   ext L
   simp only [Set.mem_setOf_eq, InvAlg.X, InvAlg.herm, Units.val_mul, ← hT, ← hR]
   constructor

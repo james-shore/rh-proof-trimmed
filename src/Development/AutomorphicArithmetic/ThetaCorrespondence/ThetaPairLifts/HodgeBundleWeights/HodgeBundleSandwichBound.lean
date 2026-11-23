@@ -54,9 +54,6 @@ open GlobalTheory.FlagMod (FlagCover)
 open GlobalTheory.FlagTan (dimFlag)
 open GlobalTheory.HSApp
 namespace GlobalTheory.HSApp.Sandwich
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
-  {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {TF : TorFlag Xo c} {Z : Comp Xo c} {r : ℕ}
-  {U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r} {P : WtPar Dw} (R : Choice TF.X Z U P)
 end GlobalTheory.HSApp.Sandwich
 open GlobalTheory.HSApp.Sandwich in
 theorem GlobalTheory.HSApp.hodge_bundle_sandwich_bound : _root_.GlobalTheory.CovTop.Hypotheses'' → GlobalTheory.Published.GrothendieckDeformation → ∀ (E : Type) [Field E] [NumberField E]
@@ -66,7 +63,7 @@ theorem GlobalTheory.HSApp.hodge_bundle_sandwich_bound : _root_.GlobalTheory.Cov
     (∀ j, CuspIso TF.X Z U (P.wt j) → adjGlobal R j ≤ LinearMap.range (adjSec R ω h₁ j)) ∧
     (CuspIso TF.X Z U (P.wt 0) → LinearMap.range (adjSec R ω h₁ 0) ≤ adjGlobal R 0) := by
   intro hP hG E _ _ _ H Dw l Xo c TF Z r U P R ω hF h₁
-  have key := fun (j : ℕ) m => _root_.GlobalTheory.T.log_canonical_criterion_boundary hP hG E H Dw l Xo c TF Z hF R.toModif ω _ _ (P.kap_add j) m
+  have key := fun (j : ℕ) m => _root_.GlobalTheory.LogCanon.log_canonical_pair_iff hP hG E H Dw l Xo c TF Z hF R.toModif ω _ _ (P.kap_add j) m
   refine ⟨fun j hj => ?_, fun hj => ?_⟩
   · rintro _ ⟨f, rfl⟩
     let e := R.adjEquiv ω.ω ω.unit h₁ j (P.kap_add j)
@@ -92,16 +89,3 @@ theorem GlobalTheory.HSApp.hodge_bundle_sandwich_bound : _root_.GlobalTheory.Cov
 end
 end
 
-section
-open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory Formalism.L2.Pj Formalism.BasicNotions
-open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
-open GlobalTheory GlobalTheory.CechPic GlobalTheory.Vanishing GlobalTheory.HermTools GlobalTheory.Adelic GlobalTheory.CompHS GlobalTheory.CovTop
-open GlobalTheory.AllWt (Psi wtOf cuspOn latOn normOn petOn GoodOn GoodW bergOn framesOn)
-open GlobalTheory.FlagMod (FlagCover)
-open GlobalTheory.FlagTan (dimFlag)
-open GlobalTheory.HSApp
-
-theorem _root_.GlobalTheory.T.hodge_bundle_degree_squeeze : _root_.GlobalTheory.CovTop.Hypotheses'' → GlobalTheory.Published.GrothendieckDeformation → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (TF : TorFlag Xo c) (Z : Comp Xo c) (r : ℕ) (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (P : WtPar Dw) (R : Choice TF.X Z U P) (ω : CanId R.toModif), FnAlgClosed (Xo := Xo) (c := c) → ∀ h₁ : FreeOnOpen TF.X Z U P.u₁, (∀ j, CuspIso TF.X Z U (P.wt j) → adjGlobal R j ≤ LinearMap.range (adjSec R ω h₁ j)) ∧ (CuspIso TF.X Z U (P.wt 0) → LinearMap.range (adjSec R ω h₁ 0) ≤ adjGlobal R 0) := by
-  first | exact @_root_.GlobalTheory.HSApp.hodge_bundle_sandwich_bound | exact _root_.GlobalTheory.HSApp.hodge_bundle_sandwich_bound | (intros; apply _root_.GlobalTheory.HSApp.hodge_bundle_sandwich_bound <;> assumption)
-end

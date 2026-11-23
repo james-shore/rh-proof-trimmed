@@ -86,14 +86,14 @@ theorem main : ∀ (D : D7), FontaineAtPlacesOverL (D := D) → PotDRL D.loc →
   intro D hF hDR hBK i r hR Xs w hw hK n hPot k M hSub
   have hSum := GlobalTheory.T.isComplementedSubrep_localMatrixRep_twistedSum D i r hR Xs w hw k M hSub
   obtain ⟨hU, X', PX, hD1, hSF⟩ := GlobalTheory.T.potential_family_summand_restriction D hF hDR i r hR Xs w hw n hPot _ hSum
-  have hX' := GlobalTheory.T.tateDual_twistedSumSummand_isDeRham D hF hDR i r hR Xs w hw n hPot _ hSum X' PX hD1
+  have hX' := _root_.GlobalTheory.SummandDualDR.main D hF hDR i r hR Xs w hw n hPot _ hSum X' PX hD1
   have hGood := goodO_ringOfIntegers (D.nd.l i) (D.nbr i w hw).LL
   have hcyc : ∀ g, ∃ u : (Br.OLL D.nbr i w hw)ˣ, ((cycLL (Br.PD D.loc D.nbr i w hw) (Br.LL D.nbr i w hw) g :
       (Br.LL D.nbr i w hw)ˣ) : Br.LL D.nbr i w hw) = algebraMap (Br.OLL D.nbr i w hw) (Br.LL D.nbr i w hw) (u : Br.OLL D.nbr i w hw) := by
     intro g
     rw [← GlobalTheory.CycBridge.locChi_epsU_eq_cycLL D i w hw]
     exact ⟨Units.map (D.nbr i w hw).eO.toRingHom.toMonoidHom (epsU D.nd i ((decS D.nd w) (Br.iota D.nbr i w hw g))), rfl⟩
-  obtain ⟨LT', hLT', hopen⟩ := GlobalTheory.T.exists_dualLattice_isOpen_perfectPairing (Br.PD D.loc D.nbr i w hw) hGood hcyc _ X' PX hD1
+  obtain ⟨LT', hLT', hopen⟩ := _root_.GlobalTheory.Pass.LocDual.exists_dualLat_isOpen (Br.PD D.loc D.nbr i w hw) hGood hcyc _ X' PX hD1
     (Br.locLat D.nbr i w hw M)
   refine ⟨hU, X', PX, hSF, ?_⟩
   obtain ⟨⟨hdom, -, hfr⟩, -⟩ := hGood

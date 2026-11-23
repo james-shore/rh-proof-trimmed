@@ -63,7 +63,7 @@ namespace GroundTheory.Heights₂.Heights.Kleiman
 
 universe u w
 
-theorem GraphClosed.full : GraphClosed.Statement.{u, w} := GraphClosed.proof
+alias GraphClosed.full := _root_.GroundTheory.Heights₂.Heights.Kleiman.GraphClosed.proof
 theorem VeryAmplePow.full : VeryAmplePow.Statement.{u, w} := VeryAmplePow.proof
 
 theorem SectionExists.assembled (hTop : SectionCount.Top.Statement.{u, w})

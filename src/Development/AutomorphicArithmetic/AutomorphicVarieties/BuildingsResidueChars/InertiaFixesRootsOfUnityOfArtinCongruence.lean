@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NonemptyEquivOfRangeEq
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsPadicAlgClRingEquivComplexCompEqOfCountabl
 
 @[expose] public section
 
@@ -54,27 +55,8 @@ open GlobalTheory.WeilDeligne GlobalTheory.LocLanglands GlobalTheory.LocGL Globa
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
-private theorem UpperTheory.card_padicAlgCl_eq_continuum (p : ℕ) [Fact p.Prime] :
-    Cardinal.mk (PadicAlgCl p) = Cardinal.continuum := by
-  have hle : Cardinal.mk ℚ_[p] ≤ Cardinal.continuum := by
-    have h1 : Cardinal.mk ℚ_[p] ≤ Cardinal.mk (CauSeq ℚ (padicNorm p)) := Cardinal.mk_quotient_le
-    have h2 : Cardinal.mk (CauSeq ℚ (padicNorm p)) ≤ Cardinal.mk (ℕ → ℚ) := Cardinal.mk_subtype_le _
-    refine h1.trans (h2.trans ?_)
-    rw [Cardinal.mk_arrow, Cardinal.mk_eq_aleph0 ℚ, Cardinal.mk_nat]
-    simp
-  have hge : Cardinal.continuum ≤ Cardinal.mk ℚ_[p] := by
-    obtain ⟨f, -, -, hf⟩ :=
-      Perfect.exists_nat_bool_injection (PerfectSpace.univ_perfect (α := ℚ_[p])) Set.univ_nonempty
-    have := Cardinal.mk_le_of_injective hf
-    simpa using this
-  apply le_antisymm
-  · have := Algebra.IsAlgebraic.cardinalMk_le_max ℚ_[p] (PadicAlgCl p)
-    refine this.trans ?_
-    exact max_le hle Cardinal.aleph0_le_continuum
-  · exact hge.trans (Cardinal.mk_le_of_injective (algebraMap ℚ_[p] (PadicAlgCl p)).injective)
-
 private theorem UpperTheory.nonempty_qbar_ringEquiv_complex (p : ℕ) [Fact p.Prime] : Nonempty (Qbar p ≃+* ℂ) := by
-  have hc := UpperTheory.card_padicAlgCl_eq_continuum p
+  have hc := _root_.GlobalTheory.cardinalMk_padicAlgCl_eq_continuum p
   obtain ⟨s, hs⟩ := exists_isTranscendenceBasis ℚ (PadicAlgCl p)
   obtain ⟨t, ht⟩ := exists_isTranscendenceBasis ℚ ℂ
   have hQ : Cardinal.mk ℚ ≤ Cardinal.aleph0 := Cardinal.mk_le_aleph0

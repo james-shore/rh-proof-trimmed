@@ -107,8 +107,6 @@ theorem fam_eq_L_pf {d : SD σ} (R : RD d) {w : InfinitePlace F}
     push_cast
     ring
 
-theorem fam_eq_L_closed : type_of% @fam_eq_L_pf := @fam_eq_L_pf
-
 end PositivityTheory.SiegelWeilFormula.Kdil
 
 end

@@ -130,6 +130,6 @@ theorem nabValN_kappa_mul_pullM : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDi
   intro V _ _ _ _ _ d O _ _ B K _ _ _ h w0 hh n mu N κ hκ Ty _ r σ u hu P g
   unfold nabValN
   rw [kappa_mul_pullM_mul_expS B K h w0 hh mu N κ hκ g]
-  exact GlobalTheory.T.constantCoeff_invariant_operator_along_matrix V d O B K n mu Ty r σ u hu P _
+  exact _root_.GlobalTheory.MatChain.constantCoeff_dpolyN_matV V d O B K n mu Ty r σ u hu P _
 
 end GlobalTheory.PlaceInt

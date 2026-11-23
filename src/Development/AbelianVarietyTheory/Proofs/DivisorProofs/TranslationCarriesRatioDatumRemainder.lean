@@ -189,7 +189,7 @@ theorem GlobalTheory.HeatShiftW.shift_ratio_rem : ∀ (E : Type) [Field E] [Numb
   have hsv : ∀ (x : P.D.toPre.SecB N 0) (z : P.D.toPre.P.A.left) (J : (P.D.toPre.P.A.left ⟶ P.D.toPre.P.A.left) → P.D.toPre.P.L.ι),
       Good P.D.toPre.P.L z J → sval x T z J = (T.stalkMap z).hom (sval x (𝟙 _) (T z) (fun ψ => J (T ≫ ψ))) := by
     intro x z J hJ
-    have := GlobalTheory.HeatDefect.sval_comp_stalk x (𝟙 _) T z hJ
+    have := _root_.GlobalTheory.LN.PreForm.sval_comp_stalk x (𝟙 _) T z hJ
     rwa [Category.comp_id] at this
   have hgs : ∀ (z : P.D.toPre.P.A.left), T z ∈ U → ∀ a : Γ(P.D.toPre.P.A.left, U),
       gs (𝟙 _) z (T ⁻¹ᵁ U) ((T.app U).hom a) = (T.stalkMap z).hom (gs (𝟙 _) (T z) U a) := by
@@ -197,7 +197,7 @@ theorem GlobalTheory.HeatShiftW.shift_ratio_rem : ∀ (E : Type) [Field E] [Numb
     have e := gs_pull (𝟙 _) T z U hz a
     rw [Category.id_comp] at e
     rw [e]
-    have e' := GlobalTheory.HeatDefect.gs_comp_stalk T (𝟙 _) z U hz a
+    have e' := _root_.GlobalTheory.OneBasis.ThMove.gs_comp T (𝟙 _) z U hz a
     rwa [Category.comp_id] at e'
   refine ⟨0 + N • y, Sh σ, Sh σ', sp, sp', ?_, hsp, hsp', ?_⟩
   · intro z hz J hJ

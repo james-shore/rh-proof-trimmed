@@ -76,7 +76,7 @@ theorem rank_quot (M₁ : Submodule R X) (hM₁ : M₁.FG) (N : Submodule F X) :
       exact Submodule.mem_inf.mpr ⟨Submodule.subset_span hx1, hx2⟩
     · intro x hx
       obtain ⟨hx1, hx2⟩ := Submodule.mem_inf.mp hx
-      obtain ⟨d, hd, hd'⟩ := freeQuot_exists_smul_mem M₁ hx1
+      obtain ⟨d, hd, hd'⟩ := _root_.Bl.SecondBlockLemmaK.goal1 M₁ hx1
       have hN : d • x ∈ N := by
         rw [← algebraMap_smul F d x]
         exact N.smul_mem _ hx2

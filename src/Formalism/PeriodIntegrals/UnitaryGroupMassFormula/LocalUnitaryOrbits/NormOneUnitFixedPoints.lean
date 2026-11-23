@@ -137,10 +137,7 @@ theorem sc_mul_ne_one {q : Fv F v} (hq : q ∈ v.adicCompletionIntegers F) (h1 :
   rw [hbot, Submodule.mem_bot] at h1m
   exact one_ne_zero h1m
 
-theorem sc_mul_sc (r s : Fv F v) : sc (E := E) v r * sc (E := E) v s = sc (E := E) v (r * s) := by
-  simp only [sc, Algebra.TensorProduct.tmul_mul_tmul, mul_one]
-
-theorem sc_one : sc (E := E) v 1 = 1 := rfl
+alias sc_one := _root_.PI.OmLocU.sc_one
 
 theorem int_of_sc {r : Fv F v} (h : sc (E := E) v r ∈ OEv (E := E) v) : r ∈ v.adicCompletionIntegers F := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers]
@@ -154,7 +151,7 @@ theorem int_of_sc {r : Fv F v} (h : sc (E := E) v r ∈ OEv (E := E) v) : r ∈ 
     rw [map_inv₀]
     exact inv_lt_one_of_one_lt₀ hr
   apply sc_mul_ne_one v (hv.le : r⁻¹ ∈ v.adicCompletionIntegers F) hv h
-  rw [sc_mul_sc, inv_mul_cancel₀ hr0, sc_one]
+  rw [_root_.PI.OmLocU.sc_mul, inv_mul_cancel₀ hr0, sc_one]
 
 theorem fix_sc (hcm : IsCMExt F E σ) (s : Fv F v ⊗[F] E) (hs : sigR (Fv F v) σ s = s) :
     ∃ r : Fv F v, s = sc (E := E) v r := by
@@ -255,7 +252,7 @@ theorem normOne_of (hRes : PI.OmLocU.Red.ResAlg σ J ψ v) : PI.OmLocU.Orb.NormO
     obtain ⟨d, hd⟩ := (mem_unifO_iff v hϖ (⟨_, hDint⟩ : v.adicCompletionIntegers F)).2 hlt
     apply hθd
     refine ⟨sc (E := E) v d, sc_mem v d.2, ?_⟩
-    rw [← hDsc, sc_mul_sc]
+    rw [← hDsc, _root_.PI.OmLocU.sc_mul]
     exact congrArg (sc (E := E) v) hd
   have hε'1 : ¬ Valued.v ε' < 1 := by
     intro hlt
@@ -274,7 +271,7 @@ theorem normOne_of (hRes : PI.OmLocU.Red.ResAlg σ J ψ v) : PI.OmLocU.Orb.NormO
       exact h0
     have h2 := (redR_eq_zero v _).1 h1
     rwa [hDc] at h2
-  obtain ⟨xb, yb, hxy⟩ := PI.OmLocU.Nrm.ff_binary (redR v tO) (redR v mO) (redR v eO) hDk
+  obtain ⟨xb, yb, hxy⟩ := _root_.Bl.general_b_fact_left.goal1 (redR v tO) (redR v mO) (redR v eO) hDk
   obtain ⟨x0, hx0, hx0r⟩ := red_surj v xb
   obtain ⟨y0, hy0, hy0r⟩ := red_surj v yb
   obtain ⟨xO, hxO⟩ : ∃ xO : v.adicCompletionIntegers F, (xO : Fv F v) = x0 := ⟨⟨x0, hx0⟩, rfl⟩

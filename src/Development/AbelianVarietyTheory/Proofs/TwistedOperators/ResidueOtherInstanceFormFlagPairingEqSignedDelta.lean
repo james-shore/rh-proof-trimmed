@@ -51,6 +51,7 @@ import Formalism.LocalToGlobal.IndefiniteReal.AutomorphicEvaluation
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RowDict
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RowLevelMatch
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RowsJoinPinned
+import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.DegreeRatioFormulaStatement
 
 @[expose] public section
 
@@ -149,7 +150,7 @@ theorem resT_hT_pair_flag : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T
   have hn : (Yc D 0).rank = 2 * D.R.rS + D.R.k + 1 := by
     have e := X.n_eq
     rw [h] at e
-    have e2 := Formalism.L2.DIV.ranks_r_sym D
+    have e2 := _root_.Formalism.MainNotions.BridgeLemma.sza_r_eq D
     change (Formalism.L2.SG.InstExistsPf.instOf D).n = _
     omega
   have hsm : SmallAt PP (hY D (pairAt X h PP a) (flagAt X h PP c) - if a = c then sgnD D.R.rS D.R.k a else 0) := by

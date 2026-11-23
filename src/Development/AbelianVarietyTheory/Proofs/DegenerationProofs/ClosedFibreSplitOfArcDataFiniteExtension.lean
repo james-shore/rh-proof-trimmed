@@ -202,7 +202,7 @@ theorem same_rel (hL : Laws) (h2 : Laws2) (h4 : Laws4) (h5 : Laws5) (h6 : Laws6)
   have M₂ : Match a f u D''.toPre oD'' _ he₂ w₂ e₂ :=
     ⟨d1', d2', d3', d4', d5', fun F _ _ _ _ uF h1 h2 => (d6' F uF h1 h2).1⟩
   obtain ⟨hφe, hee, -⟩ := GlobalTheory.MatchRigid.rigid hL h2 E H D l c W₀ O' b a R f u hfi D''.toPre oD'' _ _ he₁ he₂ w₁ w₂ e₁ e₂
-    D''.tau_bimult M₁ M₂ (GlobalTheory.T.arcDatumMatch_length_symm_preimages E H D l c _ _ O' b a R f u hf hu' D''.toPre oD'' _ _ he₁ he₂ w₁ w₂ e₁ e₂ M₁ M₂)
+    D''.tau_bimult M₁ M₂ (_root_.GlobalTheory.LN.be_symm_eq_of_match E H D l c _ _ O' b a R f u hf hu' D''.toPre oD'' _ _ he₁ he₂ w₁ w₂ e₁ e₂ M₁ M₂)
     (fun F _ _ _ _ uF hF hu v hv q₀ q₁ q₂ hq₀ hy₁ hy₂ hg₁ hg₂ => by
       have hn : 1 ≤ l.M := le_trans (by norm_num) l.three_le
       have hσ : (l.M = l.A ∧ ∃ v', HEq (a.eta v) (a.etaA v') ∧ Y.oF.eta v = Y.oF.etaA v') ∨

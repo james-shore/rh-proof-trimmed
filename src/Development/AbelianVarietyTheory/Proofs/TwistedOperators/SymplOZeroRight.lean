@@ -39,6 +39,8 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.FinTensMemLatO
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.IsSelfDualCLatFrame
 
 @[expose] public section
 
@@ -78,8 +80,8 @@ theorem symplO_zero_right (S T : HSp D) (x : WO S T) : symplO S T x 0 = 0 := by
   rw [hO_zero_right, mul_zero, map_zero]
 
 theorem symplO_neg_right (S T : HSp D) (x y : WO S T) : symplO S T x (-y) = -symplO S T x y := by
-  have h := symplO_add_right S T x y (-y)
-  rw [add_neg_cancel, symplO_zero_right] at h
+  have h := _root_.GlobalTheory.LatVac.symplO_add_right S T x y (-y)
+  rw [add_neg_cancel, _root_.GlobalTheory.PlaceModel.symplO_zero_right] at h
   exact (neg_eq_of_add_eq_zero_right h.symm).symm
 
 theorem mxAt_mul {P : GlobalTheory.FinPl.Pl D → Prop} {m n k : ℕ} {a : Mx D m n} (ha : MxAt P a) (M : Mx D n k) : MxAt P (a ⬝ M) :=

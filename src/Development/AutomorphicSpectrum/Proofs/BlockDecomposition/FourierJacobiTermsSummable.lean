@@ -90,7 +90,7 @@ theorem norm_Wz_shift (M : Maps D hn) (m : Meas D ρ p) (ψ : AddChar (AF D.host
           simp only [mul_assoc]
   have e2 : M.sh (GlobalTheory.CompanionTheory.FJE.rt η + y') * M.emb e * g =
       M.sh (GlobalTheory.CompanionTheory.FJE.rt η) * (M.sh y' * M.emb e * g) := by
-    rw [← GlobalTheory.CompanionTheory.FJE.sh_add]
+    rw [← _root_.GlobalTheory.CompanionTheory.PcB.sh_mul]
     simp only [mul_assoc]
   have hv : ‖GlobalTheory.CompanionTheory.FJE.chv ψ b₀ (GlobalTheory.CompanionTheory.FJE.rt ζ₂) (GlobalTheory.CompanionTheory.FJE.rt η)‖ = 1 := hψ.2.1 _
   rw [e1, e2, GlobalTheory.T.coefficient_heisenberg_equivariance M m ψ hψ b₀ χ s f hf, norm_mul, norm_mul,
@@ -125,7 +125,7 @@ theorem domination : ∀ {D : D7} {n ρ p : ℕ} {hn : ρ + p = n} (M : Maps D h
     exact h1.mul (h2.mul continuous_const)
   obtain ⟨c, hc, hb⟩ := hdom _ ((hK.prod hK).image hΦ)
   refine ⟨fun q => ∑' η, c (q, η), hc.prod, fun q y => ?_⟩
-  obtain ⟨T, hT1, -, hT3⟩ := GlobalTheory.T.lattice_translation_preserved M ((q.out : GF D p) : G D p) (q.out : GF D p).2
+  obtain ⟨T, hT1, -, hT3⟩ := _root_.GlobalTheory.CompanionTheory.FJE.Transport.transport M ((q.out : GF D p) : G D p) (q.out : GF D p).2
   obtain ⟨a₁, ha₁, hy⟩ := hKc (T.symm (y, 0)).1
   obtain ⟨a₂, ha₂, hx⟩ := hKc (T.symm (y, 0)).2
   obtain ⟨ξ₁, rfl⟩ : ∃ ξ, GlobalTheory.CompanionTheory.FJE.rt ξ = a₁ := ha₁

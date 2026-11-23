@@ -97,7 +97,7 @@ theorem exists_ideal_coprime_conj_mul_eq_spanSingleton :
       show RingOfIntegers.mapRingHom (starRingEnd E) (RingOfIntegers.mapRingHom (starRingEnd E) x) ∈ P
       rw [hσσ]
       exact hx
-    have h3 := GlobalTheory.T.le_map_comap_of_le_conj_maximal_cmData F E hcm P Q hQm h1 h2
+    have h3 := _root_.GlobalTheory.UnramifiedConj.le_map_comap_of_le_conj F E hcm P Q hQm h1 h2
     have hpm : (Q.comap (algebraMap (𝓞 F) (𝓞 E))).IsMaximal :=
       Ideal.isMaximal_under_of_isIntegral_of_isMaximal (R := 𝓞 F) Q
     exact hp _ hpm (key _ h3)

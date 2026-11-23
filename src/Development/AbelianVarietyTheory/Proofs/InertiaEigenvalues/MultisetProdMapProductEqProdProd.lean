@@ -62,7 +62,7 @@ theorem cauchy_local {m n : ℕ} (hmn : m ≤ n) (α : Fin n → ℂ) (β : Fin 
   have hG : Summable fun l : {l : Fin m → ℕ // Antitone l} => ‖G l.1‖ := by
     refine hs.congr fun l => ?_
     simp [G, norm_pow]
-  obtain ⟨hsum, htrans⟩ := GlobalTheory.T.hasSum_regroup_antitonePartitions_by_degree G hG
+  obtain ⟨hsum, htrans⟩ := _root_.GlobalTheory.JSW.regroup_antiParts G hG
   have hc : (fun d => ∑ l ∈ antiParts m d, G l) = fun d => T ^ d * ∑ k ∈ Finset.Nat.antidiagonalTuple m d,
       ∏ j, MvPolynomial.eval₂ (Int.castRingHom ℂ) α (MvPolynomial.hsymm (Fin n) ℤ (k j)) * β j ^ (k j) := by
     funext d
@@ -71,7 +71,7 @@ theorem cauchy_local {m n : ℕ} (hmn : m ≤ n) (α : Fin n → ℂ) (β : Fin 
     simp only [G]; rw [(mem_antiParts.1 hl).1]; ring
   have h5 := GlobalTheory.T.mk_sum_hsymm_mul_prod_one_sub_eq_one α β T
   rw [← hc] at h5
-  obtain ⟨hne, hhas⟩ := GlobalTheory.T.eulerInverse_powerSeries_eval_one _ hsum (fun p : Fin n × Fin m => α p.1 * β p.2 * T) h5
+  obtain ⟨hne, hhas⟩ := _root_.GlobalTheory.JSW.eulerInverse_eval_one _ hsum (fun p : Fin n × Fin m => α p.1 * β p.2 * T) h5
   refine ⟨fun i j => ?_, ?_⟩
   · rw [Fintype.prod_prod_type] at hne
     exact Finset.prod_ne_zero_iff.1 (Finset.prod_ne_zero_iff.1 hne i (mem_univ _)) j (mem_univ _)

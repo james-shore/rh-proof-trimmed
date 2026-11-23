@@ -81,7 +81,7 @@ theorem formallyUnramified_ker : ∀ (K : Type) [Field K] [IsAlgClosed K] (B : A
   rw [HasRingHomProperty.iff_of_isAffine (P := @FormallyUnramified), hp',
     CommRingCat.hom_comp, RingHom.RespectsIso.cancel_left_isIso RingHom.FormallyUnramified.respectsIso]
   show Algebra.FormallyUnramified K Γ(Z, ⊤)
-  refine GlobalTheory.T.formally_unramified_of_dual_numbers K Γ(Z, ⊤) fun φ r => ?_
+  refine _root_.GlobalTheory.FinUnram.formallyUnramified_of_dual_const K Γ(Z, ⊤) fun φ r => ?_
 
   let q : Sp (DualNumber K) ⟶ Z := Spec.map (CommRingCat.ofHom φ.toRingHom) ≫ Z.isoSpec.inv
   have hq : q ≫ p = spMap (algebraMap K (DualNumber K)) := by

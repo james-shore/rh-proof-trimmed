@@ -127,7 +127,7 @@ theorem thr_wave (hCc : 28 * Real.exp 1 ≤ Cc) (hB : KB.IsLeadingFormSetting Cb
   have hCA : Cc ≤ S.CA := hB.2.2.2.2.2.2.2.2.2.2.2.2.2.1
   have hN : (0:ℝ) ≤ S.G.N := by unfold Sz.Glob.N; positivity
   have hcg : (0:ℝ) ≤ (28 * S.G.N / S.G.lenI) ^ (2 * (i - 1) + 0) := by positivity
-  have h := (Formalism.FourierDecayAlt.P.frame_threshold_bound_holds (InfinitePlace E) S.G S.CA S.de S.de' S.T S.T' S.l (S.pl v) hg hl
+  have h := (_root_.Formalism.FourierDecayAlt.P.PBD.frame_threshold_bound (InfinitePlace E) S.G S.CA S.de S.de' S.T S.T' S.l (S.pl v) hg hl
     (hCc.trans hCA) (fun one => supA_nonneg S hg hk v one)).1 i 0 (Real.exp 1) ((28 * S.G.N / S.G.lenI) ^ (2 * (i - 1) + 0))
     hi1 (Real.exp_pos 1).le le_rfl hcg le_rfl
   refine ⟨xw_nonneg hB i v, ?_⟩

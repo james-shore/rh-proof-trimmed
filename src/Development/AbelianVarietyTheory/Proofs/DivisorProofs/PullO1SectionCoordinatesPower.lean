@@ -59,15 +59,6 @@ theorem valR_id_resG_inv {K : Type} [Field K] {W : (Sp K).Opens} (hW : ⊤ ≤ (
   have := valR_specMap (C := K) (𝟙 (CommRingCat.of K)) a
   simpa using this
 
-theorem valR_resG' {C : Type} [CommRing C] {X : Scheme.{0}} (x : Sp C ⟶ X) {U V : X.Opens} (e : V ≤ U)
-    (h : ⊤ ≤ x ⁻¹ᵁ V) (f : Γ(X, U)) : valR x V (resG X e f) = valR x U f :=
-  valR_res x e h f
-
-theorem valR_unit_ne_zero {K : Type} [Field K] {X : Scheme.{0}} (x : Sp K ⟶ X) {W : X.Opens} (hW : ⊤ ≤ x ⁻¹ᵁ W)
-    (u : Γ(X, W)ˣ) : valR x W (u : Γ(X, W)) ≠ 0 := by
-  rw [valR_eq x W hW]
-  exact (u.isUnit.map (valMap x W hW).hom).ne_zero
-
 end GlobalTheory.SiegTh.PullO1
 
 namespace GlobalTheory.SiegTh.PullO1
@@ -81,7 +72,7 @@ theorem secCoord_vals {X : Scheme.{0}} {L : LB X} {I : Type} {σ : I → L.Sec} 
   refine ⟨fun p => valR (𝟙 (Sp K)) ((L.pull x).U (fun _ => p)) (τ.s (fun _ => p) : Γ(Sp K, _)), ?_, ?_⟩
   · intro p hp
     have hW := top_le_wchart L x p hp
-    refine ⟨valR_unit_ne_zero _ hW _, fun i => ?_⟩
+    refine ⟨_root_.GlobalTheory.ZH.FrameNorm.val_unit_ne_zero _ hW _, fun i => ?_⟩
     have e := congrArg (valR (𝟙 (Sp K)) _) (hv i (fun _ => p) (LB.wchart_le L (fun _ => x) (fun _ => p) PUnit.unit))
     dsimp only at e
     have e2 := valR_appLE (𝟙 (Sp K)) x (LB.wchart_le L (fun _ => x) (fun _ => p) PUnit.unit) hW ((σ i).f p)
@@ -107,7 +98,7 @@ theorem secCoord_vals {X : Scheme.{0}} {L : LB X} {I : Type} {σ : I → L.Sec} 
     congr 1
     rw [ProjSpace.linComb_punit_g, zpow_one]
     change valF x _ _ = valR (𝟙 (Sp K)) _ (resG (Sp K) _ ((x.app (L.U p ⊓ L.U p')).hom (L.g p p' : Γ(X, _))))
-    refine Eq.symm ((valR_resG' (𝟙 (Sp K)) _ hWW _).trans ?_)
+    refine Eq.symm ((_root_.GlobalTheory.ZH.CrdCalc.valR_res (𝟙 (Sp K)) _ hWW _).trans ?_)
     refine (valR_comp (𝟙 (Sp K)) x _ _).symm.trans ?_
     rw [Category.id_comp]
     rfl
@@ -117,9 +108,6 @@ end GlobalTheory.SiegTh.PullO1
 namespace GlobalTheory.SiegTh.PullO1
 
 variable {o Ω : Type} [CommRing o] [Field Ω] [Algebra o Ω]
-
-theorem coe_res {X : Scheme.{0}} {U V : X.Opens} (h : V ≤ U) (a : Γ(X, U)ˣ) :
-    ((res h a : Γ(X, V)ˣ) : Γ(X, V)) = resG X h (a : Γ(X, U)) := rfl
 
 theorem coe_res_mul {X : Scheme.{0}} {V P Q R : X.Opens} (a : Γ(X, P)ˣ) (b : Γ(X, Q)ˣ) (c : Γ(X, R)ˣ) (ha : V ≤ P)
     (hb : V ≤ Q) (hc : V ≤ R) :
@@ -191,7 +179,7 @@ theorem lbIso_of_vals (M : RatModel o Ω) {L A : LB M.Z} (cL : L.ι → Ω) (cA 
     have gL0 : valF M.pt _ (L.g pq.2 pq'.2 : Γ(M.Z, L.U pq.2 ⊓ L.U pq'.2)) ≠ 0 := valF_pt_ne_zero M hLL _
     dsimp only [LB.div]
     refine Units.ext (M.valF_injective hV ?_)
-    erw [coe_res_mul, coe_res]
+    erw [coe_res_mul, _root_.GlobalTheory.LB.val_res]
     rw [valF_pt_mul M hV, valF_pt_mul M hV, M.valF_resG _ hV, M.valF_resG _ hV]
     erw [M.valF_resG _ hV, M.valF_resG _ hV]
     rw [valF_pt_inv M hLL, hu _ h1, hu _ h2, ← eA, ← eL]
@@ -221,7 +209,7 @@ theorem valF_linComb_g (M : RatModel o Ω) {Y : Scheme.{0}} (L : LB Y) (φ : M.Z
   rw [ProjSpace.linComb_punit_g]
   erw [valF_pt_zpow M hV]
   congr 1
-  erw [coe_res, M.valF_resG _ hV]
+  erw [_root_.GlobalTheory.LB.val_res, M.valF_resG _ hV]
   exact (valR_comp M.pt φ (L.U (P PUnit.unit) ⊓ L.U (P' PUnit.unit)) (L.g (P PUnit.unit) (P' PUnit.unit) : Γ(Y, _))).symm
 
 end GlobalTheory.SiegTh.PullO1

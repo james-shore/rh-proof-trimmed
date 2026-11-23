@@ -60,20 +60,13 @@ private theorem unitary_pow {F : Type} [Field F] [NumberField F] (ω : HChar F) 
   have e : (ω ^ k).1 x = ω.1 x ^ k := MonoidHom.pow_apply ω.1 k x
   rw [e, Units.val_pow_eq_pow_val, norm_pow, h x, one_pow]
 
-private theorem unitary_twist {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {n : ℕ} {π : CG E n}
-    (h : π.IsUnitary) {χ : HChar E} (hχ : χ.IsUnitary) : (π.twist χ).IsUnitary := by
-  obtain ⟨ω, hω, hc⟩ := h
-  refine ⟨ω * χ ^ n, fun x => ?_, hc.twist χ⟩
-  have e : (ω * χ ^ n).1 x = ω.1 x * (χ ^ n).1 x := rfl
-  rw [e, Units.val_mul, norm_mul, hω x, unitary_pow χ hχ n x, one_mul]
-
 theorem UpperTheory.V.Z.Tf.SR.antiTw :
     AntiTw := by
   intro E _ _ _ hU
   obtain ⟨μ, e, hμ⟩ := PositivityTheory.Rg.BcB.F.Fok.Mu3.muExists E hU
   obtain ⟨hv, hinf⟩ := UpperTheory.V.Z.Tf.GaloisFromTraceFormula.muInf E μ e hμ
   have hu : (μ ^ 2).IsUnitary := unitary_pow μ hμ.1 2
-  refine ⟨μ ^ 2, ?_, fun n π hn hπ => ⟨fun i => unitary_twist hπ (unitary_pow _ hu i), fun i j hij => ?_⟩⟩
+  refine ⟨μ ^ 2, ?_, fun n π hn hπ => ⟨fun i => _root_.GlobalTheory.CuspRep.CG.IsUnitary.twist hπ (unitary_pow _ hu i), fun i j hij => ?_⟩⟩
   · filter_upwards [GlobalTheory.HeckeSplit.eventually_unrAt (μ ^ 2).1 (μ ^ 2).2.1] with w hw
     refine ⟨hw, norm_val_one _ hu w, fun hs => ?_⟩
     rw [val_pow', hv w hs]

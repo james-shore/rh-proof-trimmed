@@ -58,7 +58,7 @@ theorem modelClause_of_rankZero
     PartI ∧ N1ab ∧ N1c ∧
       ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H),
         ToroidalLevelCompatibility (D := D) ∧ ToroidalHeckeCompatibility (D := D) := by
-  refine ⟨partI_holds, moduli_schemes_exist, complex_uniformisation_holds, ?_⟩
+  refine ⟨partI_holds, _root_.GlobalTheory.Moduli.moduli_scheme_exists, _root_.GlobalTheory.closing_of_abelianSchemeLaws, ?_⟩
   intro E _ _ _ H D
   by_cases h : D.p + D.q = 0
   · exact hz E H D h

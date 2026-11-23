@@ -83,13 +83,7 @@ theorem exists_lift {A T : Over S} {Z : Scheme.{0}} (a : Z ⟶ T.left) (c : Z �
   ⟨pullback.lift a c h, pullback.lift_fst _ _ _, pullback.lift_snd _ _ _⟩
 
 omit [CommRing o] in
-theorem isPullback_whisker (A : Over S) {T T' : Over S} (h : T' ⟶ T) :
-    IsPullback (h ▷ A).left (fst T' A).left (fst T A).left h.left := by
-  have h1 : IsPullback (snd T A).left (fst T A).left A.hom T.hom := (IsPullback.of_hasPullback T.hom A.hom).flip
-  have h2 : IsPullback (snd T' A).left (fst T' A).left A.hom T'.hom := (IsPullback.of_hasPullback T'.hom A.hom).flip
-  refine IsPullback.of_right ?_ ?_ h1
-  · rw [← Over.comp_left, whiskerRight_snd, Over.w h]; exact h2
-  · rw [← Over.comp_left, ← Over.comp_left, whiskerRight_fst]
+alias isPullback_whisker := _root_.GlobalTheory.ZM.EmbedLocal.isPullback_whisker
 
 theorem emb_fibre (h₂ : Laws2) {t : TObj g (N' ^ 2) J b s} {m : ℕ} (hm : m ∣ N') {T : Over S} (hT : IsAffine T.left)
     {σ} (H : t.Emb m T σ) {K : Type} [Field K] {su : Sp K ⟶ Sp o} {u : TObj g (N' ^ 2) J b su} {x : Sp K ⟶ S}

@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsSumFrame
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.WittMixedModelUnipotentFormulas
 
 @[expose] public section
 
@@ -58,10 +59,6 @@ open GlobalTheory.AscFin
 namespace GlobalTheory.CosPerm
 
 variable {D : D7}
-
-theorem heisO_smul_fun (ψ : AddChar (AF D.host.F) ℂ) {S T : HSp D} (w : WO S T) (c : ℂ) (f : WO S T → ℂ) :
-    heisO ψ S T w (c • f) = c • heisO ψ S T w f := by
-  funext x; simp only [heisO, Pi.smul_apply, smul_eq_mul]; ring
 
 theorem heisO_star {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdChar D ψ (-1)) (S T : HSp D) (w : WO S T) (f : WO S T → ℂ) :
     heisO ψ S T w (star f) = star (heisO ψ (negSp S) T w f) := by
@@ -115,13 +112,13 @@ theorem GlobalTheory.CosPerm.cosVec_perm : All fun {D} _ _ _ {G} W _ => ∀ i, i
     exact one_ne_zero this
   have e1 := GlobalTheory.OrientedHeis.heisO_heisO (ψ := W.ψ) (S := G.pS (.chi i 0)) (T := G.pT (.chi i 0))
     (cA D e • w) ((1 - e - cA D e) • w) (W.cosVec i κ)
-  rw [h₃, heisO_smul_fun, h₂, smul_smul] at e1
+  rw [h₃, _root_.GlobalTheory.MixUnip.heisO_smul, h₂, smul_smul] at e1
   have e1' : heisO W.ψ (G.pS (.chi i 0)) (G.pT (.chi i 0)) (cA D e • w + (1 - e - cA D e) • w) (W.cosVec i κ) =
       (W.ψ (symplOH (G.pS (.chi i 0)) (G.pT (.chi i 0)) (cA D e • w) ((1 - e - cA D e) • w)))⁻¹ • ((c₃ * c₂) • W.cosVec i κ) := by
     rw [e1, inv_smul_smul₀ (hne _)]
   have e2 := GlobalTheory.OrientedHeis.heisO_heisO (ψ := W.ψ) (S := G.pS (.chi i 0)) (T := G.pT (.chi i 0))
     (e • w) (cA D e • w + (1 - e - cA D e) • w) (W.cosVec i κ)
-  rw [← hdec, e1', heisO_smul_fun, heisO_smul_fun, h₁] at e2
+  rw [← hdec, e1', _root_.GlobalTheory.MixUnip.heisO_smul, _root_.GlobalTheory.MixUnip.heisO_smul, h₁] at e2
   have hC : heisO W.ψ (G.pS (.chi i 0)) (G.pT (.chi i 0)) w (W.cosVec i κ) =
       ((W.ψ (symplOH (G.pS (.chi i 0)) (G.pT (.chi i 0)) (e • w) (cA D e • w + (1 - e - cA D e) • w)))⁻¹ *
         ((W.ψ (symplOH (G.pS (.chi i 0)) (G.pT (.chi i 0)) (cA D e • w) ((1 - e - cA D e) • w)))⁻¹ * (c₃ * c₂))) • W.cosVec i κ' := by

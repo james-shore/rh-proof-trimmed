@@ -308,17 +308,12 @@ section Roots
 
 variable {l : ℕ} [Fact l.Prime] {P : LocPrime l} (AI : LocAinf l P)
 
-theorem zeta_pow (j k : ℕ) : AI.ζ (j + k) ^ l ^ k = AI.ζ j := by
-  induction k with
-  | zero => simp
-  | succ k ih => rw [pow_succ', pow_mul, ← add_assoc, AI.ζ_succ, ih]
-
 theorem zeta_prim (j : ℕ) (hj : 1 ≤ j) :
     IsPrimitiveRoot ((AI.ζ j : OC l) : PadicComplex l) (l ^ j) := by
   obtain ⟨i, rfl⟩ := Nat.exists_eq_add_of_le hj
-  have hnot : ¬ AI.ζ (1 + i) ^ l ^ i = 1 := by rw [zeta_pow]; exact AI.ζ_one
+  have hnot : ¬ AI.ζ (1 + i) ^ l ^ i = 1 := by rw [_root_.GlobalTheory.Cyc.ζ_add_pow]; exact AI.ζ_one
   have hfin : AI.ζ (1 + i) ^ l ^ (i + 1) = 1 := by
-    rw [pow_succ, pow_mul, zeta_pow, AI.ζ_succ 0, AI.ζ_zero]
+    rw [pow_succ, pow_mul, _root_.GlobalTheory.Cyc.ζ_add_pow, AI.ζ_succ 0, AI.ζ_zero]
   have h := IsPrimitiveRoot.orderOf (AI.ζ (1 + i))
   rw [orderOf_eq_prime_pow hnot hfin, add_comm i 1] at h
   exact h.map_of_injective (f := (PadicComplexInt l).subtype) Subtype.val_injective
@@ -329,7 +324,7 @@ theorem zetaQ_mem (K : FinExt l) {j m : ℕ} (hj : j ≤ m) : P.ζQ j ∈ Ks K m
   refine (le_sup_right : _ ≤ Ks K j) (IntermediateField.subset_adjoin _ _ ?_)
   change P.ζQ j ^ l ^ j = 1
   apply (algebraMap (Om l) (PadicComplex l)).injective
-  have h := congrArg (fun x : OC l => (x : PadicComplex l)) (zeta_pow AI 0 j)
+  have h := congrArg (fun x : OC l => (x : PadicComplex l)) (_root_.GlobalTheory.Cyc.ζ_add_pow AI 0 j)
   rw [map_pow, map_one, ← PadicComplex.coe_eq, ← AI.ζ_eq]
   simpa [AI.ζ_zero] using h
 
@@ -348,7 +343,7 @@ theorem zeta_sub_one_mem (K : FinExt l) {j m : ℕ} (hj : j ≤ m) :
 theorem norm_zeta_sub_one_lt (j : ℕ) (hj : 1 ≤ j) :
     ‖((AI.ζ j - 1 : OC l) : PadicComplex l)‖ < 1 := by
   change ‖((AI.ζ j : OC l) : PadicComplex l) - 1‖ < 1
-  rw [GlobalTheory.T.norm_primitiveRoot_primePow_sub_one_padicComplex l j hj _ (zeta_prim AI j hj)]
+  rw [_root_.GlobalTheory.Cyc.norm_primitiveRoot_sub_one l j hj _ (zeta_prim AI j hj)]
   have hl : (1 : ℝ) < l := by exact_mod_cast (Fact.out : l.Prime).one_lt
   apply Real.rpow_lt_one_of_one_lt_of_neg hl
   apply div_neg_of_neg_of_pos (by norm_num)
@@ -374,7 +369,7 @@ end Roots
 theorem exists_decompletion : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW), ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL), let S := sit D.loc HW l (D.locA l) K s LL h; let E : S.Comparison₂ := ((F l).E K s LL h).tie; ∀ (T : LocLat S.G S.Qp S.LL S.O) (M0 h0 : ℕ), HypW S E T M0 h0 → ∀ (d : ℕ) (M : GQ l → Matrix (Fin d) (Fin d) (PadicComplex l)) (A : ↥(OL LL) → Matrix (Fin d) (Fin d) (PadicComplex l)), IsMat K LL T M A → ∃ (Dm : Matrix (Fin d) (Fin d) (PadicComplex l)) (U : GQ l → Matrix (Fin d) (Fin d) (PadicComplex l)) (g : GQ l), IsDec (D.locA l).actC (D.loc l).χQ K (mN l s (M0 + h0)) M Dm U g ∧ ∀ a i j, (Dm⁻¹ * A a * Dm) i j ∈ intC (Ks K (mN l s (M0 + h0))) := by
   intro D HW F l _ K s LL h S E T M0 h0 hW d M A hM
   obtain ⟨-, -, N, hN⟩ := hW
-  obtain ⟨hsw1, hsw2⟩ := GlobalTheory.T.wach_lattice_sandwich_Ainf D HW F l K s LL h T M0 h0 N hN
+  obtain ⟨hsw1, hsw2⟩ := _root_.GlobalTheory.Sandwich.sandwich D HW F l K s LL h T M0 h0 N hN
   obtain ⟨⟨ι, _, b, hli, hsp⟩, -, -, hW2, hW3, -⟩ := hN
   obtain ⟨f, o, ⟨e⟩⟩ := GlobalTheory.T.exists_basis_and_equiv_fin_prod_of_basis l K LL T d M A ι _ hM hli hsp
   generalize hn : n0 l (M0 + h0) = n
@@ -412,10 +407,10 @@ theorem exists_decompletion : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.l
     rw [map_add (f := _), map_one, map_pow, map_add (f := _), map_one, E.io_π, h2, h3] at h1
     exact add_left_cancel (h1.trans (one_add_pow_sub LL _ _))
   have hθw : θ w = AI.ζ (1 + n) - 1 := by
-    rw [map_sub, map_one, map_pow, hθ.2, show s + n = (1 + n) + (s - 1) by omega, zeta_pow]
+    rw [map_sub, map_one, map_pow, hθ.2, show s + n = (1 + n) + (s - 1) by omega, _root_.GlobalTheory.Cyc.ζ_add_pow]
   let c : PadicComplex l := ((AI.ζ (1 + n) : OC l) : PadicComplex l) - 1
   have hprim := zeta_prim AI (1 + n) (by omega)
-  obtain ⟨u, hu, hlu⟩ := GlobalTheory.T.exists_prime_eq_mul_primitiveRoot_sub_one_pow' l (M0 + h0) _ (by rw [hn]; exact hprim)
+  obtain ⟨u, hu, hlu⟩ := _root_.GlobalTheory.Cyc.Decomp.exists_prime_eq_mul_primitiveRoot_sub_one_pow l (M0 + h0) _ (by rw [hn]; exact hprim)
   have hc0 : c ≠ 0 := sub_ne_zero.2 (hprim.ne_one
     (Nat.one_lt_pow (by omega) (Fact.out : l.Prime).one_lt))
   have hsc : ∀ (r : RA LL) (k : ℕ) (v : TW (RA LL) (show LocLat ↥(GK K) ℚ_[l] ↥LL.1 ↥(OL LL) from T)),

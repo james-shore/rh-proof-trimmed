@@ -92,16 +92,6 @@ theorem isIntegrallyClosed_of_absIntClosed (T : Type) [CommRing T] [IsDomain T]
   obtain ⟨f, hf, h⟩ := hx
   exact exists_eq_of_aeval_eq_zero hT _ f hf rfl x (by rw [aeval_def]; exact h)
 
-theorem isAlgClosed_fractionRing (T : Type) [CommRing T] [IsDomain T]
-    (hT : GlobalTheory.LocAcyc.AbsIntClosed T) : IsAlgClosed (FractionRing T) := by
-  first
-  | exact @_root_.GlobalTheory.MonicRootRange.isAlgClosed_fractionRing
-  | exact _root_.GlobalTheory.MonicRootRange.isAlgClosed_fractionRing
-  | (apply _root_.GlobalTheory.MonicRootRange.isAlgClosed_fractionRing <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MonicRootRange.isAlgClosed_fractionRing <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MonicRootRange.isAlgClosed_fractionRing <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.MonicRootRange.isAlgClosed_fractionRing ..)
-
 end GlobalTheory.LocAcycEmbed
 
 namespace GlobalTheory.LocAcycEmbed
@@ -147,7 +137,7 @@ theorem exists_normal_local_between : ∀ (T : Type) [CommRing T] [IsDomain T] [
           (algebraMap A₁ (FractionRing A₁)).comp j := by
   intro T _ _ _ hT A _ _ _ _ _ _ i hi L _ _ _ _
   haveI : IsIntegrallyClosed T := isIntegrallyClosed_of_absIntClosed T hT
-  haveI : IsAlgClosed (FractionRing T) := isAlgClosed_fractionRing T hT
+  haveI : IsAlgClosed (FractionRing T) := _root_.GlobalTheory.MonicRootRange.isAlgClosed_fractionRing T hT
   have hgi : Function.Injective ((algebraMap T (FractionRing T)).comp i) :=
     (IsFractionRing.injective T (FractionRing T)).comp hi
   let φ : FractionRing A →+* FractionRing T := IsFractionRing.lift hgi

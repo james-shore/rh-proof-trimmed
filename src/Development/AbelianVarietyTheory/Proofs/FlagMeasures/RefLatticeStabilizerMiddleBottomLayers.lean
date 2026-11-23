@@ -330,9 +330,9 @@ theorem exists_stab (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (N : NF
   have hρe : ∀ a b, H.B (ρ a) (eF N b) = 0 := fun a b => Wn_B_e N (hρW a) b
   have hρe' : ∀ a b, H.B ((-ρ) a) (eF N b) = 0 := fun a b => by simp [hρe]
   have comp1 : ∀ v, gen H (JJ N) (eF N) ρ c (gen H (JJ N) (eF N) (-ρ) c' v) = v :=
-    GlobalTheory.T.hermitianUnipotentGeneratorMap_comp_neg H (JJ N) (eF N) ρ c c' hee hρe (fun a b => by simp only [hc']; ring)
+    _root_.GlobalTheory.RowStab.gen_comp_gen_neg H (JJ N) (eF N) ρ c c' hee hρe (fun a b => by simp only [hc']; ring)
   have comp2 : ∀ v, gen H (JJ N) (eF N) (-ρ) c' (gen H (JJ N) (eF N) ρ c v) = v := by
-    have := GlobalTheory.T.hermitianUnipotentGeneratorMap_comp_neg H (JJ N) (eF N) (-ρ) c' c hee hρe' (fun a b => by
+    have := _root_.GlobalTheory.RowStab.gen_comp_gen_neg H (JJ N) (eF N) (-ρ) c' c hee hρe' (fun a b => by
       simp only [hc', Pi.neg_apply, map_neg, LinearMap.neg_apply, neg_neg]; ring)
     simpa [neg_neg] using this
   set g := gen H (JJ N) (eF N) ρ c with hg
@@ -341,7 +341,7 @@ theorem exists_stab (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (N : NF
   have hs : ∀ v, s v = g v := fun v => rfl
   have hM : ∀ x ∈ L ⊓ rs (𝓞 K) N.Wn, ∀ y ∈ L ⊓ rs (𝓞 K) N.Wn, H.B x y ∈ (1 : Submodule (𝓞 K) K) :=
     fun x hx y hy => hL x hx.1 y hy.1
-  have hisom : ∀ u v, H.B (g u) (g v) = H.B u v := GlobalTheory.T.hermitianUnipotentGeneratorMap_isometry H (JJ N) (eF N) ρ c hee hρe hc
+  have hisom : ∀ u v, H.B (g u) (g v) = H.B u v := _root_.GlobalTheory.RowStab.gen_isometry H (JJ N) (eF N) ρ c hee hρe hc
   have hbij : Function.Bijective (s : V →ₗ[K] V) := s.bijective
   have cus := GlobalTheory.UnipStab.common_unipotent_stabiliser K V H hK r N
   refine ⟨s, Subgroup.mem_inf.mpr ⟨(cus.1 s).mpr ⟨⟨hisom, hbij, ?_, ?_⟩, ⟨hisom, hbij, ?_, ?_⟩⟩, ?_⟩, hs⟩

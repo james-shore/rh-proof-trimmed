@@ -42,6 +42,7 @@ import Mathlib.Tactic.ReduceModChar
 public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.GaussianProducts.ExistsRowSec
 import Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.CharacterNorms.ThInf
 import Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.ConjInv
+import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.IsotypicQuotients.NormWfLe
 
 @[expose] public section
 
@@ -62,16 +63,7 @@ private theorem nU_inv {E : Type} [Field E] [NumberField E] (b : A E) :
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
-private theorem cont_n {E : Type} [Field E] [NumberField E] :
-    Continuous fun b : A E => (gl (nU b) : GL (Fin 2) (A E)) := by
-  have hv : ∀ g : A E → A E, Continuous g →
-      Continuous fun b : A E => ((gl (nU (g b)) : GL (Fin 2) (A E)) : Matrix (Fin 2) (Fin 2) (A E)) := by
-    intro g hg
-    refine continuous_matrix fun i j => ?_
-    fin_cases i <;> fin_cases j <;> simp [nU] <;> first | exact hg | exact continuous_const
-  refine Units.continuous_iff.2 ⟨hv id continuous_id, ?_⟩
-  simp only [nU_inv]
-  exact hv _ continuous_neg
+private alias cont_n := _root_.UpperTheory.ConvolutionTheory.R2.Pp.cont_n
 
 private theorem map_unipotent_eq_one {E S : Type} [Field E] [NumberField E] [CommRing S] (p : A E →+* S) (z : A E) (hz : p z = 0) :
     Matrix.GeneralLinearGroup.map p (gl (nU z)) = 1 := by

@@ -68,27 +68,27 @@ theorem cg_r (n i j : ℕ) (x : M.Hc false n i) (y : M.Hc false n j) :
     rHof d hc M s n (i + j) (cupS M n i j x y) = cupZn L M s n i j (rHof d hc M s n i x) (rHof d hc M s n j y) := by
   refine (congrArg (rHof d hc M s n (i + j)) (cupS_apply M n i j x y)).trans ?_
   refine Eq.trans ?_ (cupZn_apply L M s n i j _ _).symm
-  exact (red_cup (d n) M.p s {⊤} ((PAlg.base l).cris n) L.lam (hc n) none).1 rfl x y
+  exact (_root_.GlobalTheory.CompanionTheory.RedCup.redMor_cup_one (d n) M.p s {⊤} ((PAlg.base l).cris n) L.lam (hc n) none).1 rfl x y
 
 theorem cg_red (n i j : ℕ) (z : HO (QA L M s) i) (w : HO (QA L M s) j) :
     redM (QA L M s) none ((l : L.A) ^ n) (i + j) (cupZ L M s i j z w) =
       cupZn L M s n i j (redM (QA L M s) none ((l : L.A) ^ n) i z) (redM (QA L M s) none ((l : L.A) ^ n) j w) := by
   refine (congrArg (redM (QA L M s) none ((l : L.A) ^ n) (i + j)) (cupZ_apply L M s i j z w)).trans ?_
   refine Eq.trans ?_ (cupZn_apply L M s n i j _ _).symm
-  exact redM_cup (QA L M s) none ((l : L.A) ^ n) rfl z w
+  exact _root_.GlobalTheory.CompanionTheory.RedCup.redM_cup (QA L M s) none ((l : L.A) ^ n) rfl z w
 
 theorem cg_b (i j : ℕ) (z : HO (QA L M s) i) (w : HO (QA L M s) j) :
     bMap M s hL hQ (i + j) (cupZ L M s i j z w) = cupW L M s i j (bMap M s hL hQ i z) (bMap M s hL hQ j w) := by
   refine (congrArg (bMap M s hL hQ (i + j)) (cupZ_apply L M s i j z w)).trans ?_
   refine Eq.trans ?_ (cupW_apply L M s i j _ _).symm
-  exact (smor_cup (smB M s hL hQ)).1 rfl z w
+  exact (_root_.GlobalTheory.CompanionTheory.SiteCup.smor_cup (smB M s hL hQ)).1 rfl z w
 
 theorem cg_mu (i j : ℕ) (v : HdR M.q i) (w : HdR M.q j) :
     muB L.γB M.q 1 s {⊤} (i + j) (cupR M i j v w) =
       cupW L M s i j (muB L.γB M.q 1 s {⊤} i v) (muB L.γB M.q 1 s {⊤} j w) := by
   refine (congrArg (muB L.γB M.q 1 s {⊤} (i + j)) (cupR_eq M i j v w)).trans ?_
   refine Eq.trans ?_ (cupW_apply L M s i j _ _).symm
-  exact (muB_cup L.γB M.q 1 s {⊤}).1 rfl v w
+  exact (_root_.GlobalTheory.CompanionTheory.SiteCup.muB_cup L.γB M.q 1 s {⊤}).1 rfl v w
 
 theorem cg_tS (n i j : ℕ) (x : M.Hc false (n + 1) i) (y : M.Hc false (n + 1) j) :
     (M.HS false (i + j)).r n (cupS M (n + 1) i j x y) = cupS M n i j ((M.HS false i).r n x) ((M.HS false j).r n y) := by
@@ -102,10 +102,10 @@ theorem cg_oneS (n : ℕ) : (M.HS false 0).r n (CH.oneH (B.OcA (B.schFn M.p) (ok
 
 theorem cg_one_r (n : ℕ) : redM (QA L M s) none ((l : L.A) ^ n) 0 (CH.oneH (sP (QA L M s)).A) =
     rHof d hc M s n 0 (CH.oneH (B.OcA (B.schFn M.p) (okToOC l K) false n)) :=
-  (red_cup (d n) M.p s {⊤} ((PAlg.base l).cris n) L.lam (hc n) none).2.symm
+  (_root_.GlobalTheory.CompanionTheory.RedCup.redMor_cup_one (d n) M.p s {⊤} ((PAlg.base l).cris n) L.lam (hc n) none).2.symm
 
 theorem cg_one_b : bMap M s hL hQ 0 (CH.oneH (sP (QA L M s)).A) = muB L.γB M.q 1 s {⊤} 0 (oneK M.q) :=
-  (smor_cup (smB M s hL hQ)).2.trans (muB_cup L.γB M.q 1 s {⊤}).2.symm
+  (_root_.GlobalTheory.CompanionTheory.SiteCup.smor_cup (smB M s hL hQ)).2.trans (_root_.GlobalTheory.CompanionTheory.SiteCup.muB_cup L.γB M.q 1 s {⊤}).2.symm
 
 theorem cupOf_rHof_good : (cupOf hL M s hQ (rHof d hc M s)).Good :=
   ⟨cg_r M s d hc, cg_red M s, cg_b hL M s hQ, cg_mu M s, cg_tS M, cg_oneS M, cg_one_r M s d hc, cg_one_b hL M s hQ⟩

@@ -63,7 +63,7 @@ theorem UpperTheory.Gal.TranscendenceTraces.redZero_of :
   · rw [h]
     simp only [Sec.map, map_zero]
   · rw [h]
-    have key := GlobalTheory.T.tateTwistReductionResolutionMap_generator Q q hqQ i V ζ (GlobalTheory.EtC.RedExists.powPrim hqQ ζ) rfl
+    have key := _root_.GlobalTheory.EtC.RedExists.red_exists Q q hqQ i V ζ (GlobalTheory.EtC.RedExists.powPrim hqQ ζ) rfl
     simp only [GlobalTheory.EtC.resGen] at key
     simp only [Sec.map, map_nsmul, map_zsmul] at key ⊢
     rw [key, hf_gen V ζ (GlobalTheory.EtC.RedExists.powPrim hqQ ζ) rfl]

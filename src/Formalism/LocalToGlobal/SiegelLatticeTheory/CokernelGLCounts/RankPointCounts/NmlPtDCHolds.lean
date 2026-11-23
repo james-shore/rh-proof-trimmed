@@ -75,7 +75,7 @@ theorem rep_at_pt (t : TauC Y u u') (hG : 1 ≤ NGPt D.host.rdE ((Tu D u : ℕ) 
   refine ⟨F', hGv, hcell, ?_⟩
   have hrow := (Y.rowsOK u).1 t.lam t.mem
   have hmk' : Formalism.L2.SG.TermDef.mk _ _ _ ⟨t.frame, t.rep.2.2.2.2⟩ = Formalism.L2.SG.TermDef.mk _ _ _ ⟨F', hP⟩ := hmk.symm
-  have hrel := (Formalism.L2.SG.Closed.TermEqIff_holds D u u' (X.Fu u) t.lam hrow _ _).1 hmk'
+  have hrel := (_root_.term_eq_iff_relation D u u' (X.Fu u) t.lam hrow _ _).1 hmk'
   obtain ⟨n, hn, m, hm, hfr, -⟩ := hrel
   refine ⟨n, NLam_SRat hn, t.lin⁻¹ * m * t.lin, NLam_transport Y t hm, fun a => ?_⟩
   have := hfr a

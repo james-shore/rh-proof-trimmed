@@ -135,7 +135,7 @@ theorem monomial_place : ∀ {L : Type} [Field L] (c : ℂ →+* L) (Q : Subring
   letI := hQ.isLocalRing
   intro r N z wt hm hdim hw0 hw1 hx
   obtain ⟨hN, hqr⟩ := isQuasiRegularSeq_of_locModel c Q hQ r z hm hdim
-  obtain ⟨V, hC, u, hu, hirr, hmV, hunit, hloc⟩ := GlobalTheory.T.exists_weightedMonomialPlace_of_isLocModel c Q hQ r z wt hN hm.symm hqr hw0 hw1
+  obtain ⟨V, hC, u, hu, hirr, hmV, hunit, hloc⟩ := _root_.GlobalTheory.exists_weightedMonomialPlace c Q hQ r z wt hN hm.symm hqr hw0 hw1
   have ht0 : (z 0 : L) ≠ 0 := fun h => hirr.ne_zero (Subtype.ext h)
   have hordt : V.ord (z 0 : L) = 1 := by
     have h := V.ord_irreducible hirr
@@ -185,7 +185,7 @@ theorem monomial_place : ∀ {L : Type} [Field L] (c : ℂ →+* L) (Q : Subring
 
   · intro y hy
     obtain ⟨xT, hxT⟩ := hx
-    obtain ⟨j, s, hjN, hsu⟩ := GlobalTheory.T.exists_residue_coordinates_of_localModel_below_place c Q hQ N r V hC u ⟨xT, hxT⟩ hmV hunit hloc
+    obtain ⟨j, s, hjN, hsu⟩ := _root_.GlobalTheory.FieldPair.exists_residue_coords_of_locModel c Q hQ N r V hC u ⟨xT, hxT⟩ hmV hunit hloc
     subst hjN
     obtain ⟨w, hw⟩ : ∃ w : Fin (r + j) → V.ring,
         w = Fin.append u fun i => (⟨s i, hC _ (s i).2⟩ : V.ring) := ⟨_, rfl⟩

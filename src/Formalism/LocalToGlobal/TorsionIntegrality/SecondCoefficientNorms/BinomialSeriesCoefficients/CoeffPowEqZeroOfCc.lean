@@ -243,8 +243,7 @@ theorem mvExp_mul_neg {f : MvPowerSeries σ K} (hf : MvPowerSeries.constantCoeff
 theorem isUnit_mvExp {f : MvPowerSeries σ K} (hf : MvPowerSeries.constantCoeff f = 0) :
     IsUnit (mvExp f) := isUnit_iff_exists_inv.2 ⟨_, mvExp_mul_neg hf⟩
 
-theorem mvExp_add {f g : MvPowerSeries σ K} (hf : MvPowerSeries.constantCoeff f = 0)
-    (hg : MvPowerSeries.constantCoeff g = 0) : mvExp (f + g) = mvExp f * mvExp g := mvExp_add_binomial_series_coefficients hf hg
+alias mvExp_add := _root_.Formalism.L2.Th1.C.mvExp_add_binomial_series_coefficients
 
 theorem mvExp_sub_mul {f g : MvPowerSeries σ K} (hf : MvPowerSeries.constantCoeff f = 0)
     (hg : MvPowerSeries.constantCoeff g = 0) : mvExp (f - g) * mvExp g = mvExp f := by

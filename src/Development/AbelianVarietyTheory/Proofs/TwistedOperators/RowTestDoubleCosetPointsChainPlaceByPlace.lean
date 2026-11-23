@@ -402,7 +402,7 @@ theorem points : Big fun {D} _ _ _ _ {T} _ _ _ _ _ _ ch => ∀ (s : ℤˣ) (t : 
         · obtain ⟨δ, hδ, hb₀f, a, ha, rfl⟩ := hbI j hji
           refine ⟨a * b₀ j, hδ, ?_⟩
           have hc : a⁻¹ * p j * b₀ j = b₀ j * (a⁻¹ * p j) :=
-            GlobalTheory.AdelicSplit.commute_GinfC_GfC _ (mul_mem (inv_mem ha) (hp.1 j)) hb₀f
+            _root_.GlobalTheory.PointAtPlaceHom.comm_of_mem _ (mul_mem (inv_mem ha) (hp.1 j)) hb₀f
           have e4 : (a * b₀ j)⁻¹ * (p j * b₀ j * cutS eL S (X j)) = a⁻¹ * p j * cutS eL S (X j) := by
             rw [_root_.mul_inv_rev, show p j * b₀ j * cutS eL S (X j) = a * (a⁻¹ * p j * b₀ j) * cutS eL S (X j) by group, hc]
             group

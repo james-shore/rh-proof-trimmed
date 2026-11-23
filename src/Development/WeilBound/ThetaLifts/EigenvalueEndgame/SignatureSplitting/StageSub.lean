@@ -60,11 +60,6 @@ theorem cnt_sub [Countable Γ] [DiscreteTopology Γ] (S : Subgroup G) : Countabl
   have ji : Function.Injective j := fun a b h => Subtype.ext (Subtype.ext (congrArg Subtype.val h :))
   exact ⟨ji.countable, DiscreteTopology.of_continuous_injective ((continuous_subtype_val.comp continuous_subtype_val).subtype_mk _) ji⟩
 
-theorem IsAv.conj_sub (hA : IsClosed (A : Set G)) (L : Lat (Γ.subgroupOf A)) {f c : G → ℂ} (h : IsAv (Γ.subgroupOf A) Subtype.val f c)
-    {γ : G} (hγ : γ ∈ Γ) (h1 : ∀ u ∈ A, γ⁻¹ * u * γ ∈ A) (h2 : ∀ u ∈ A, γ * u * γ⁻¹ ∈ A) (hf : ∀ x, f (γ * x) = f x) (x : G) :
-    c (γ * x) = c x :=
-  _root_.UpperTheory.Reformulated.B.ConjugateSubgroup.conj_sub hA L h hγ h1 h2 hf x
-
 variable [Group B] [TopologicalSpace B] [IsTopologicalGroup B] [MeasurableSpace B] [BorelSpace B]
   [LocallyCompactSpace B] [SecondCountableTopology B] [T2Space B] {ΓB : Subgroup B}
 

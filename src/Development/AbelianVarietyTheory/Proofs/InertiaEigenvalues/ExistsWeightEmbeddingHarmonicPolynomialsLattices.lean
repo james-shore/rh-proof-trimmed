@@ -116,7 +116,7 @@ theorem exists_psi {m n : ℕ} (w : Weight D n) (B : GLR D n) (hw : w.Good) (hm 
     refine (injective_iff_map_eq_zero _).2 fun P hP => Subtype.ext ?_
     exact GlobalTheory.T.harmonic_polynomial_eq_zero_of_function D m n w B hw hm P P.2 hP
   have hr : LinearMap.range hf = LinearMap.range (cfn w.lam) := by
-    rw [LinearMap.range_comp, Submodule.range_subtype, GlobalTheory.T.fockHarmonicValueSpace_map_eq_dualWeylModuleFunctions D m n w B hw hm]
+    rw [LinearMap.range_comp, Submodule.range_subtype, _root_.GlobalTheory.ExportSeries.Onto.map_harm_eq D m n w B hw hm]
     have : {φ | ∃ F : VV ℂ w.lam, φ = coefFn (RingHom.id ℂ) w.lam (F : Pol ℂ D.what₂.Tau n)} =
         (LinearMap.range (cfn w.lam) : Set (GLR D n → ℂ)) := by
       ext φ

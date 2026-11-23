@@ -64,21 +64,9 @@ namespace GoodSideLattices
 
 variable {p q r s : ℕ}
 
-theorem sd_trace_Eab (a b : Ix r s) : (Eab a b).trace = if a = b then 1 else 0 := by
-  unfold Eab
-  split_ifs with h
-  · subst h
-    simp [Matrix.trace]
-  · simp [Matrix.trace, Matrix.single, h, Ne.symm h]
+alias sd_trace_Eab := _root_.PositivityTheory.KReal.star_trace
 
-theorem sd_sb_trans {a b c : Ix r s} (h1 : sameBlock a b) (h2 : sameBlock b c) : sameBlock a c := by
-  rcases a with a | a <;> rcases b with b | b <;> rcases c with c | c <;> simp_all [sameBlock]
-
-theorem sd_sb_symm {a b : Ix r s} (h1 : sameBlock a b) : sameBlock b a := by
-  rcases a with a | a <;> rcases b with b | b <;> simp_all [sameBlock]
-
-theorem sd_sb_refl (a : Ix r s) : sameBlock a a := by
-  rcases a with a | a <;> simp [sameBlock]
+alias sd_sb_refl := _root_.PI.FockOneDegW.HwC.sameBlock_refl'
 
 def sd_hA (p q r s d : ℕ) : Submodule ℂ (FV p q r s) := homog (Ix p q × Ix r s) d
 
@@ -151,7 +139,7 @@ theorem sd_rhoA_coe (τ : ℂ) (d : ℕ) {a b : Ix r s} (hab : sameBlock a b) (u
 theorem sd_rhoA_adj (τ : ℂ) (τ0 : ℚ) (hτ : τ = τ0) (d : ℕ) : AdjK (sd_rhoA p q r s τ d) := by
   intro a b hab u v
   rw [Submodule.coe_inner, Submodule.coe_inner, sd_rhoA_coe τ d hab,
-    sd_rhoA_coe τ d (sd_sb_symm hab), sd_fvTw_apply, sd_fvTw_apply, inner_add_left,
+    sd_rhoA_coe τ d (_root_.FockRL.sameBlock_symm hab), sd_fvTw_apply, sd_fvTw_apply, inner_add_left,
     inner_add_right, inner_smul_left, inner_smul_right, adj2 p q r s a b, sd_trace_Eab,
     sd_trace_Eab]
   by_cases h : a = b
@@ -159,19 +147,11 @@ theorem sd_rhoA_adj (τ : ℂ) (τ0 : ℚ) (hτ : τ = τ0) (d : ℕ) : AdjK (sd
     simp [epsB, hab, hτ]
   · simp [epsB, hab, hτ, h, Ne.symm h]
 
-private theorem Eab_mul_Eab (a b c e : Ix r s) :
-    Eab a b * Eab c e = if b = c then Eab a e else 0 := by
-  unfold Eab
-  split_ifs with h
-  · subst h
-    simp
-  · simp [h]
-
 theorem sd_rhoA_gl (τ : ℂ) (d : ℕ) : GlK (sd_rhoA p q r s τ d) := by
   intro a b c e hab hce
   have hM : Eab a b * Eab c e - Eab c e * Eab a b =
       (if b = c then Eab a e else 0) - (if e = a then Eab c b else 0) := by
-    rw [Eab_mul_Eab, Eab_mul_Eab]
+    rw [_root_.PositivityTheory.KReal.eab_mul, _root_.PositivityTheory.KReal.eab_mul]
   have hL : IsLie (sd_fvTw p q r s τ) := lie_tw p q r s τ
   have hu : ∀ u : FV p q r s,
       sd_fvTw p q r s τ (Eab a b) (sd_fvTw p q r s τ (Eab c e) u) -
@@ -185,8 +165,8 @@ theorem sd_rhoA_gl (τ : ℂ) (d : ℕ) : GlK (sd_rhoA p q r s τ d) := by
   apply Subtype.ext
   rw [LinearMap.sub_apply, Submodule.coe_sub, Module.End.mul_apply, Module.End.mul_apply,
     sd_rhoA_coe τ d hab, sd_rhoA_coe τ d hce, sd_rhoA_coe τ d hce, sd_rhoA_coe τ d hab, hu]
-  have s1 : b = c → sameBlock a e := fun h1 => sd_sb_trans hab (by rw [h1]; exact hce)
-  have s2 : e = a → sameBlock c b := fun h2 => sd_sb_trans hce (by rw [h2]; exact hab)
+  have s1 : b = c → sameBlock a e := fun h1 => _root_.PositivityTheory.KReal.sb_trans hab (by rw [h1]; exact hce)
+  have s2 : e = a → sameBlock c b := fun h2 => _root_.PositivityTheory.KReal.sb_trans hce (by rw [h2]; exact hab)
   split_ifs with h1 h2 h2
   · rw [map_sub, LinearMap.sub_apply, LinearMap.sub_apply, Submodule.coe_sub,
       sd_rhoA_coe τ d (s1 h1), sd_rhoA_coe τ d (s2 h2)]

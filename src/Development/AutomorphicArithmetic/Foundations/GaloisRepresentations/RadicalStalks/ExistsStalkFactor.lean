@@ -140,7 +140,7 @@ private theorem exists_stalkPt [IsAlgClosed k] (K : Over (Sp k)) [GrpObj K] [IsF
   haveI : Module.Finite k (K.left.presheaf.stalk x₀) := stalkAlg_finite K x₀
   obtain ⟨c, hc⟩ := exists_alg K x₀ g₁ rfl
   refine ⟨K.left.presheaf.stalk x₀, inferInstance, inferInstance, inferInstance, inferInstance, stalkPt K x₀,
-    ?_, fun x => GlobalTheory.T.finite_group_scheme_stalk_length_constant k K inferInstance x x₀, ⟨c, hc⟩, fun v hv => ?_⟩
+    ?_, fun x => _root_.GlobalTheory.FiniteGroupSchemeLength.length_stalk_eq k K inferInstance x x₀, ⟨c, hc⟩, fun v hv => ?_⟩
   · show Mono (K.left.fromSpecStalk x₀)
     infer_instance
   · apply exists_alg
@@ -350,7 +350,7 @@ theorem UpperTheory.Gal.Ord.cnt :
     intro T _ _ u
     exact (hKiff _ _).mp ⟨spOver u ≫ y, Category.assoc _ _ _⟩
   let pt : ↥(Sp k) := IsLocalRing.closedPoint k
-  have hI := GlobalTheory.T.finrank_fiber_eq_card_sections_mul_length k K.left K.hom inferInstance (Module.length B B) hlen pt
+  have hI := _root_.GlobalTheory.FinSchemeRank.finrank_eq_card_sections_mul k K.left K.hom inferInstance (Module.length B B) hlen pt
   have hrank : Scheme.Hom.finrank K.hom pt = (Ideal.absNorm w ^ D.m) ^ D.n := by
     rw [← hqK]
     exact hdeg.rank pt

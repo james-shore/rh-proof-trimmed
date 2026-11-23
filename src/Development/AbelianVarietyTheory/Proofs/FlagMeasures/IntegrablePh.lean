@@ -119,11 +119,6 @@ def compactSub {X : Type} [TopologicalSpace X] [MeasurableSpace X] (μ : Measure
     filter_upwards [ha, Lp.coeFn_smul c a] with z h1 h2 hz
     rw [h2, Pi.smul_apply, h1 hz, smul_zero]
 
-theorem coeFn_sum_smul {X ι : Type} [MeasurableSpace X] (μ : Measure X) (s : Finset ι) (c : ι → ℂ)
-    (y : ι → Lp ℂ 2 μ) (F : ι → X → ℂ) (h : ∀ i, (y i : X → ℂ) =ᵐ[μ] F i) :
-    ((∑ i ∈ s, c i • y i : Lp ℂ 2 μ) : X → ℂ) =ᵐ[μ] fun x => ∑ i ∈ s, c i * F i x := by
-  exact _root_.GlobalTheory.SumSmulAeEq.coeFn_sum_smul_ae_eq μ s c y F h
-
 theorem ae_eq_of_pairing {X ι : Type} [Fintype ι] [TopologicalSpace X] [T2Space X] [SigmaCompactSpace X]
     [MeasurableSpace X] [BorelSpace X] (μ : Measure X) [IsLocallyFiniteMeasure μ] (k : X → ℂ) (hk : Continuous k)
     (c : ι → ℂ) (y : ι → Lp ℂ 2 μ) (F : ι → X → ℂ) (hF : ∀ i, Continuous (F i))
@@ -235,7 +230,7 @@ theorem kernelB : KernelB := by
           refine ⟨continuous_finsetSum _ fun i _ => continuous_const.mul (hF i).1, fun γ hγ x => ?_, ?_⟩
           · exact Finset.sum_congr rfl fun i _ => by rw [(hF i).2.1 γ hγ]
           · rw [hexp]
-            exact coeFn_sum_smul _ _ _ y F fun i => (hF i).2.2
+            exact _root_.GlobalTheory.SumSmulAeEq.coeFn_sum_smul_ae_eq _ _ _ y F fun i => (hF i).2.2
         exact congrFun (huniq _ _ _ h1 (hrep g hg)) x
     have z0 : IsContRep B 0 0 := ⟨continuous_const, fun _ _ _ => rfl, Lp.coeFn_zero _ _ _⟩
     have z1 : IsContRep B 0 fun z => kern B.I (phe B d) x z - ∑ i, F i x * star (F i z) := by

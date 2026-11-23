@@ -143,7 +143,7 @@ theorem mem_range_of_le_one {w : HeightOneSpectrum (𝓞 c.F)} {T : CDVR} {io : 
     (ho : OverLa w T.V io e) {b : c.F} (hb : w.valuation c.F b ≤ 1) : io b ∈ Set.range (algebraMap T.V T.Fr) := by
   by_cases h0 : b = 0
   · exact ⟨0, by simp [h0]⟩
-  refine GlobalTheory.ArcQ.RecFr.mem_of_vV_nonneg ?_
+  refine _root_.Formalism.L2.PjFree.mem_range_of_vV_nonneg ?_
   rw [ho.2]
   refine mul_nonneg (Nat.cast_nonneg _) ?_
   have := (WithZero.log_le_log ((Valuation.ne_zero_iff _).2 h0) one_ne_zero).2 hb

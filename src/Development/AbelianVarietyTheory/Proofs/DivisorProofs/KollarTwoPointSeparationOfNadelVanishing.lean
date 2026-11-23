@@ -61,7 +61,7 @@ theorem pointSeparationPair_of_vanishing :
   letI := algebraΓOfHom p
   obtain ⟨h, hpos, hsum, hh⟩ := GlobalTheory.T.exists_rational_budgets_twoPointInduction n r c hr hc hs
   have hr' : (0 : ℚ) < (r : ℚ) := by exact_mod_cast hr
-  refine GlobalTheory.T.separate_two_points_nef_big hP hV hN X p n hproj hdim M Δ m G N₀ (1 / (r : ℚ)) h x₁ x₂ hM hΔ hklt hm hG
+  refine _root_.GlobalTheory.NefBigSep.separate_nef_big hP hV hN X p n hproj hdim M Δ m G N₀ (1 / (r : ℚ)) h x₁ x₂ hM hΔ hklt hm hG
     hnef hbig ?_ h₁ h₂ hx hpos ?_ hsum (by positivity)
   · intro C hCc
     rw [hC C hCc]

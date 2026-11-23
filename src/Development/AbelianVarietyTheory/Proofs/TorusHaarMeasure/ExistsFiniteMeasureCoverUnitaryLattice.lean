@@ -69,7 +69,7 @@ theorem exists_finite_measure_cover : (∀ (r : ℕ) (X : Data E r) (H : Subgrou
     rw [← hγu τ]
     simp
   by_cases hp : X.p0 = 0 ∨ X.p0 = r
-  · haveI : CompactSpace H := GlobalTheory.T.compactSpace_realUnitaryGroup_of_definite r X H hH hp
+  · haveI : CompactSpace H := _root_.GlobalTheory.FinCovol.compactSpace_unitary_of_definite r X H hH hp
     exact ⟨Set.univ, MeasurableSet.univ, isCompact_univ.measure_lt_top,
       fun g => ⟨1, Γ.one_mem, g, Set.mem_univ _, (one_mul g).symm⟩⟩
   · have hp0 : 0 < X.p0 := Nat.pos_of_ne_zero fun h => hp (Or.inl h)
@@ -77,13 +77,13 @@ theorem exists_finite_measure_cover : (∀ (r : ℕ) (X : Data E r) (H : Subgrou
     obtain ⟨hlc, hsc, -⟩ := (GlobalTheory.UnitaryFrames.unitary_group_frames (E := E)).2 r X H hH
     have hx0 : IsOrth X (x0F X) := fun τ => (X.signature τ).choose_spec.2
     obtain ⟨σ, _, _, h, f, c, b, hk, hf, hf0, hinv, hc0, hc1, hb, hdrift, hsub⟩ :=
-      GlobalTheory.T.exists_drift_function_realUnitaryGroup r X H hH hp0 hpr (x0F X) hx0
+      _root_.GlobalTheory.DriftUnitary.exists_drift_function r X H hH hp0 hpr (x0F X) hx0
     obtain ⟨U, hU, hU1⟩ := GlobalTheory.GamDisc.gamDisc r X H hH
     refine GlobalTheory.exists_finite_measure_cover_of_drift_function H ν Γ σ h f c b
       ⟨U, hU, fun γ hγ => hU1 γ ((hΓ γ).1 hγ)⟩ hk hf hf0
       (fun γ hγ => hinv γ ((hΓ γ).1 hγ)) hc0 hc1 hb hdrift fun M => ?_
     obtain ⟨ε, hε, hM⟩ := hsub M
-    obtain ⟨K, hK, hKc⟩ := GlobalTheory.T.compact_mod_latticeStabiliser_of_le_firstMinimum r X H hH (x0F X) hx0 ε hε
+    obtain ⟨K, hK, hKc⟩ := _root_.GlobalTheory.FiniteCovolume.exists_unitaryStab_mul_compact_of_le_firstMinimum r X H hH (x0F X) hx0 ε hε
     refine ⟨K, hK, fun g hg => ?_⟩
     obtain ⟨u, hu, k, hk, e⟩ := hKc g (hM g hg)
     exact ⟨u, (hΓ u).2 hu, k, hk, e⟩

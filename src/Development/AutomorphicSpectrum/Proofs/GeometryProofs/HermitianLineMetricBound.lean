@@ -207,7 +207,7 @@ theorem local_bound : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Sp Ω �
   have hκv := hN2' z w hwN.1.1.2 hz
   have hmul := val_mul hs hκv
   rw [← hκ e t he hcls] at hmul
-  have hr := GlobalTheory.T.val_at_gen_independent_choice X Ω ξ K J y z w A.a e₀ t c₀ c₁ u (s * φ w) hξ hdeg.1 hz hc₀ hc₁w hu hmul
+  have hr := _root_.GlobalTheory.CompanionTheory.Ar.RootHt.ArchB.gen_chart_change X Ω ξ K J y z w A.a e₀ t c₀ c₁ u (s * φ w) hξ hdeg.1 hz hc₀ hc₁w hu hmul
   have hp0 : ∏ k, w ⟨k, c₀ k⟩ ^ A.a k ≠ 0 := Finset.prod_ne_zero_iff.2 fun k _ => zpow_ne_zero _ (hc₀ k)
   have hp1 : ∏ k, w ⟨k, c₁ k⟩ ^ A.a k ≠ 0 := Finset.prod_ne_zero_iff.2 fun k _ => zpow_ne_zero _ (hc₁w k)
   have hs0 : s ≠ 0 := by
@@ -264,7 +264,7 @@ theorem arch_bound : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Sp Ω ⟶
       IsCls b₀ i e t ∧ ValAt ξ z (t / gen y A.a e₀ c₀) u ∧ u ≠ 0 ∧ (gramAt h z v).det ≠ 0 ∧ x = Ex z w c₀ v ve u
   obtain ⟨C, hC⟩ := GlobalTheory.T.uniform_bound_on_closed_cone K J {w | ∃ z : Sp ℂ ⟶ X, CoordsAt ξ y z w} Bd
     (fun w ⟨z, hz⟩ k => (hz.1 k).imp fun c hc => hc.ne_zero)
-    (fun w hw hb => GlobalTheory.T.complex_points_closure_coords X Ω ξ K J y hall htie w hw hb)
+    (fun w hw hb => _root_.GlobalTheory.CompanionTheory.Ar.RootHt.ArchC.closed_coords X Ω ξ K J y hall htie w hw hb)
     (fun w x ⟨z, hz, _⟩ => ⟨z, hz⟩)
     (by
       rintro w x c hc ⟨z, hz, c₀, hc₀, f, e, v, ve, t, u, h1, h2, h3, h4, h5, h6, h7, h8, rfl⟩

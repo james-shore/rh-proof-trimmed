@@ -93,7 +93,7 @@ theorem exists_preTie : GlobalTheory.Published.GlobalArtinReciprocity → ∀ (D
   have hFa : ∀ i j b, Faithful (realRd (ysOf Bs) v₀ hρ i j b (ν i j b)) := fun i j b =>
     GlobalTheory.SeriesTie.realRd_faithful D _ _ _ _ _ _ R cG _ (ysOf Bs) v₀ ρ hρ i j b _ (hν i j b).ne intersectionNumber_baseChange.prim.unif hC.models.HW
       (hv j) (hK (idxOf D ((j : ℕ) + 1)))
-  choose PV₀ hPV₀ _ using fun j => GlobalTheory.MtRead.exists_idFrame D hF j (hstd j)
+  choose PV₀ hPV₀ _ using fun j => _root_.GlobalTheory.MtRead.IdFrameStd.exists_idFrame D hF j (hstd j)
   obtain ⟨rdV, hon, hjoin⟩ := GlobalTheory.MtRead.exists_reading hA D R.C Rw (lowAll D) Pq _ hL eig θ Bs hτ cs hV hsp hPq Γ Pl0 I0 T A3 Ks R F
     cG hC.lev rfl pins.keep hF PV₀ hPV₀ ρ hρ hp hlv hch'
   obtain ⟨Dat, th, lev, thPsi, h1, thU, thP, MtLat, g2, g3, -, t, ht⟩ := GlobalTheory.SeriesInstall.exists_tie_withSeries D ρ hρ

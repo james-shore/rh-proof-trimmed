@@ -63,7 +63,7 @@ theorem squareModelW₁_good : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Con
       X.IsHerm D.sp.cm.sig B r s → Y.IsSkew D.sp.cm.sig B r' s' →
       ∃ co vac dom, Model.IsGood (Model.mk (σ := D.sp.cm.sig) (X := X) (W := Y) co vac ((M.ν (.grid (i : ℕ) (j : ℕ))).map (conjU _ (-1) hJ)) dom) B.ψ := by
   intro D T L sc G μ₀ _hL t i j M hM B hB X Y hJ r s r' s' hX hY
-  obtain ⟨co, hco⟩ := GlobalTheory.T.exists_rational_darboux_hermitian_tensor_adeles D.sp.cm.sig B X Y r s r' s' hB hX hY
+  obtain ⟨co, hco⟩ := _root_.GlobalTheory.RatDarboux.exists_rational_darboux D.sp.cm.sig B X Y r s r' s' hB hX hY
   have hR : Node.InRange D.R.m (.grid (i : ℕ) (j : ℕ)) := ⟨i.2.le, j.2.le⟩
   have hH := (hM.vtx _ hR).haar_fund
   obtain ⟨dom, hh, hd⟩ := GlobalTheory.T.exists_haar_fundamentalDomain_conjugateUnitaryAdelicIso (spW₁ G i j) (-1) (neg_ne_zero.2 one_ne_zero) hJ _ _ hH.1 hH.2

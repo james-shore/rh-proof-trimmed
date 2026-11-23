@@ -58,10 +58,7 @@ theorem toG_coe {g : ℕ} [Fact g.Prime] {n : ℕ} (h : Gn g n) : toG (h : Mt g 
   rw [dite_eq_left h.isUnit]
   exact Units.ext (IsUnit.unit_spec _)
 
-theorem coe_toG {g : ℕ} [Fact g.Prime] {n : ℕ} {M : Mt g n} (h : IsUnit M) : ((toG M : Gn g n) : Mt g n) = M := by
-  unfold toG
-  rw [dite_eq_left h]
-  exact IsUnit.unit_spec _
+alias coe_toG := _root_.GlobalTheory.GLm.ParBasic.toG_val
 
 theorem mean_conj {G : Type} [Group G] [Fintype G] (χ F : G → ℂ) (hχ : IsClass χ) (c : ℂ) :
     mean (fun x => χ x * (c * ∑ y, F (y⁻¹ * x * y))) = c * ∑ x, F x * χ x := by

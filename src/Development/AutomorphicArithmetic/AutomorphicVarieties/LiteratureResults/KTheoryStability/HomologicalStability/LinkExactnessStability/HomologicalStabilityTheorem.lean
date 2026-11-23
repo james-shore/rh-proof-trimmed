@@ -62,7 +62,7 @@ theorem kStability_main : UpperTheory.V.Published.KStability := by
           (2 * q + s + 2 ≤ m → Function.Injective (grpHMap (stab R m m' h) q).hom) :=
         fun q m m' h hq hm => ih q hq m m' h hm
       intro m m' h hm
-      exact ⟨GlobalTheory.T.groupHomology_GL_stab_surjective_of_stableRange_induction R s hs i hyp m m' h hm, GlobalTheory.T.groupHomology_GL_stab_injective_of_stableRange_induction R s hs i hyp m m' h hm⟩
+      exact ⟨_root_.GlobalTheory.HomStab.grpHMap_stab_surjective_step R s hs i hyp m m' h hm, _root_.GlobalTheory.homStab_GL_inj_step R s hs i hyp m m' h hm⟩
   intro i n hn
   have h1 := key i n (n + 1) (Nat.le_succ n) rfl
   rw [ConcreteCategory.isIso_iff_bijective]

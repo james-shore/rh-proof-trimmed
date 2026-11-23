@@ -67,7 +67,7 @@ theorem bound_cast (k M n : ℕ) (hn : n = k + M) (lam mu : Fin n → ℝ) (u : 
   subst hn
   have hmem : ∀ i : Fin k, (i : ℕ) + 1 ∈ Icc 1 k := fun i => by
     rw [Finset.mem_Icc]; have := i.2; omega
-  have key := Formalism.HermitianLatticeCounting.Final.ExpansionTerms.sup_l2_ratio_majorant k M lam mu (fun i => u (i.val + 1)) b bv ga q0 s hk hM
+  have key := _root_.Formalism.HermitianLatticeCounting.P.first_operator_norm_bound k M lam mu (fun i => u (i.val + 1)) b bv ga q0 s hk hM
     ⟨h1, h2, fun a i => h3 a _ (hmem i), fun i => h4 (Fin.castAdd M i) i.2,
       fun i j hij => by
         have := h5 (Fin.castAdd M i) (by have := j.2; simp only [Fin.val_castAdd]; omega)

@@ -75,7 +75,7 @@ theorem projective_of_nilpotent_of_reduced_quotient (D : Type) [CommRing D] [IsA
   have hflat : Module.Flat D N := by
     apply Module.flat_of_localized_maximal
     intro P _
-    have hloc := GlobalTheory.T.localization_maximalIdeal_eq_span_nilpotent_artinian D x hx hr P
+    have hloc := _root_.GlobalTheory.localization_maximalIdeal_eq_span_of_nilpotent D x hx hr P
     have hann := GlobalTheory.T.localizedModule_mem_annSpan_smul_of_mem D P.primeCompl x N h
     haveI := GlobalTheory.T.free_of_principal_maximalIdeal_of_ker_smul_le' (Localization.AtPrime P) (algebraMap D _ x) hloc
       (LocalizedModule P.primeCompl N) inferInstance hann

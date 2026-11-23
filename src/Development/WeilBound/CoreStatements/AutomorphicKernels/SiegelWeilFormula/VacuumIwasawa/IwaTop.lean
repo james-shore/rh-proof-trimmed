@@ -46,6 +46,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.VacuumIwasawa.EmEqInr
+import Development.WeilBound.ThetaLifts.LatticeBasics.ContinuousFlat
 
 @[expose] public section
 
@@ -68,7 +69,7 @@ theorem iwaQ_of' (hT : TAll) : IwaQ := by
   obtain ⟨g, hq⟩ := q_split' L ε hd hL p lam hp
   set q := p * (L.j g)⁻¹ with hqdef
   obtain ⟨c, hc⟩ := parabolic_theta_scalar hT L.i₀ hq
-  refine ⟨q, g, k, (absE F E lam : ℝ), c, hk, by simp [hqdef, mul_assoc], absE_pos lam, fun g' => ?_, fun Φ hΦ g' X hX => ?_⟩
+  refine ⟨q, g, k, (absE F E lam : ℝ), c, hk, by simp [hqdef, mul_assoc], _root_.GlobalTheory.ThK.Dbl.absE_pos lam, fun g' => ?_, fun Φ hΦ g' X hX => ?_⟩
   · have e : L.j g' * (p * k) = (L.j g' * q * (L.j g')⁻¹) * L.j (g' * g) * k := by
       simp only [hqdef, map_mul, mul_assoc, inv_mul_cancel_left]
     rw [e, KWhit.a_mul_K d _ k hk, q_ht' L (q_conj' L hq g') (g' * g)]

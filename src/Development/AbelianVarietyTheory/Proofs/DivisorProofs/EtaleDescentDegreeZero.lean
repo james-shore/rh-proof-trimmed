@@ -59,8 +59,6 @@ noncomputable section
 
 namespace GlobalTheory.EtC.DescZero
 
-variable {R : Type} [CommRing R]
-
 end GlobalTheory.EtC.DescZero
 
 namespace GlobalTheory.EtC.DescZero
@@ -87,14 +85,6 @@ private lemma spec_map_surjective_of_integral_ker_le_nilradical (A A' : Type) [C
   obtain ⟨Q, -, hQ, hQx⟩ := Ideal.exists_ideal_over_prime_of_isIntegral p.asIdeal (⊥ : Ideal A')
     (by rw [Ideal.under_def, ← RingHom.ker_eq_comap_bot]; exact hker.trans (nilradical_le_prime _))
   exact ⟨(⟨Q, hQ⟩ : PrimeSpectrum A'), PrimeSpectrum.ext hQx⟩
-
-open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex Simplicial in
-open scoped TensorProduct in
-private lemma sec_res_comp_divisor {R : Type} [CommRing R] {F : _root_.GlobalTheory.EtC.Shv R} {W V U : Scheme}
-    (h : W ⟶ V) (g : V ⟶ U) (s : _root_.GlobalTheory.EtC.Sec F U) :
-    _root_.GlobalTheory.EtC.Sec.res (h ≫ g) s =
-      _root_.GlobalTheory.EtC.Sec.res h (_root_.GlobalTheory.EtC.Sec.res g s) := by
-  simp [_root_.GlobalTheory.EtC.Sec.res]
 
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex Simplicial in
 open scoped TensorProduct in
@@ -183,7 +173,7 @@ private lemma res_eq_of_tensorSquare_res_eq_lemma_6 {R : Type} [CommRing R] {F :
     erw [pullbackSpecIso_hom_snd]
     exact pullback.lift_snd _ _ _
   clear_value u
-  rw [← hu₀, ← hu₁, sec_res_comp_divisor, sec_res_comp_divisor, hs]
+  rw [← hu₀, ← hu₁, _root_.GlobalTheory.TwSec.res_comp, _root_.GlobalTheory.TwSec.res_comp, hs]
 
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex Simplicial in
 open scoped TensorProduct in
@@ -235,7 +225,7 @@ theorem _root_.GlobalTheory.EtC.DescZero.desc_zero : ∀ (q : ℕ) [NeZero q] (A
     ((_root_.GlobalTheory.EtC.sch.obj (Spec (CommRingCat.of A'))) _⦋0⦌) F
   obtain ⟨t, ht⟩ := hfreeY.2.1
     (fun U x => _root_.GlobalTheory.EtC.Sec.res (show U ⟶ Spec (CommRingCat.of A') from x) s)
-    (fun V U g x => sec_res_comp_divisor g (show U ⟶ Spec (CommRingCat.of A') from x) s)
+    (fun V U g x => _root_.GlobalTheory.TwSec.res_comp g (show U ⟶ Spec (CommRingCat.of A') from x) s)
   have hrep := isCls_secClass_of_val_eq_res F _ s t ht
   obtain ⟨hex, -, -, -, hpull⟩ :=
     _root_.GlobalTheory.EtC.isCls_basic (ZMod q) F (_root_.GlobalTheory.EtC.cech f) 0

@@ -55,6 +55,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.CommAlgFunctorCobou
 import Development.AbelianVarietyTheory.Definitions.Divisors.OneFormMapEqKaehlerDifferentialMap
 import Development.AbelianVarietyTheory.Definitions.Divisors.Pullback1MemHodgeFiltration
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsFrobGBaseChange
 
 @[expose] public section
 
@@ -67,10 +68,6 @@ noncomputable section
 namespace GlobalTheory.Pinch
 
 open TopologicalSpace
-
-theorem appLE_congr_hom {X Y : Scheme.{0}} {φ ψ : X ⟶ Y} (h : φ = ψ) (U : Y.Opens) (V : X.Opens)
-    (e : V ≤ φ ⁻¹ᵁ U) (e' : V ≤ ψ ⁻¹ᵁ U) : φ.appLE U V e = ψ.appLE U V e' := by
-  subst h; rfl
 
 theorem resLE_comp_of_ringHom {T P X : Scheme.{0}} (V : T.Opens) (hV : IsAffineOpen V) (U : X.affineOpens)
     (ρ : Γ(X, U.1) ⟶ Γ(T, V)) (i : P ⟶ T) (hP : IsAffineOpen (i ⁻¹ᵁ V)) (x : P ⟶ X)
@@ -282,7 +279,7 @@ theorem exists_extend_basicOpen : ∀ (R : Type) [CommRing R] (B M : Type) [Comm
     refine key.2 _ _ ?_
     have e1 := Scheme.Hom.appLE_comp_appLE (spMap (algebraMap R B)) x U.1 _ _ hx le_rfl
     have e2 := Scheme.Hom.appLE_comp_appLE (spMap (TrivSqZeroExt.fstHom B B M).toRingHom) z U.1 _ _ hz hW
-    have e3 := appLE_congr_hom hxz.symm U.1
+    have e3 := _root_.GlobalTheory.SS.FrobField.appLE_congr_hom hxz.symm U.1
       (spMap (algebraMap R B) ⁻¹ᵁ (spMap (TrivSqZeroExt.fstHom R R M).toRingHom ⁻¹ᵁ
         (Sp (TrivSqZeroExt R M)).basicOpen s)) (fun w hw => hx hw) (fun w hw => hz (hW hw))
     have := congrArg (fun q => q.hom u) (e1.trans (e3.trans e2.symm))

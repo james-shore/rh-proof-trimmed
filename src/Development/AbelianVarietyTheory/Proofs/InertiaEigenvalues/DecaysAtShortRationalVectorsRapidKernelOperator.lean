@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ModerateGrowthSpanHarishChandraFiniteForms
 
 @[expose] public section
 
@@ -51,10 +52,6 @@ noncomputable section
 namespace GlobalTheory.RapidKernelDecay
 
 variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {a : ℕ}
-
-theorem norm_pInf_apply (x : Ad E) (w : InfinitePlace E) : ‖pInf E x w‖ = ‖x.1 w‖ :=
-  (InfinitePlace.Completion.isometry_extensionEmbedding w).norm_map_of_map_zero (map_zero _) _
-
 
 omit [_root_.NumberField.IsTotallyComplex E] in
 theorem height_inv (y : GL (Fin a) (Cinf E)) : height y⁻¹ = height y := by
@@ -109,7 +106,7 @@ theorem ideleModule_det_infGL_le (z : GL (Fin a) (Cinf E)) :
   rw [h2, mul_one, pow_mul, ← Finset.card_univ, ← Finset.prod_const]
   refine Finset.prod_le_prod₀ (fun _ _ => by positivity) fun w _ => ?_
   have h1 : ‖(u : Ad E).1 w‖ ≤ a.factorial * height z ^ a := by
-    rw [← norm_pInf_apply, hinf]
+    rw [← _root_.GlobalTheory.HCF.ModGrowth.norm_pInf_apply, hinf]
     exact (norm_le_pi_norm _ w).trans (norm_det_le _ (by unfold height; linarith [norm_nonneg (toL (z⁻¹).val)]))
   have hm : w.mult ≤ 2 := by unfold InfinitePlace.mult; split_ifs <;> norm_num
   exact (pow_le_pow_left₀ (norm_nonneg _) h1 _).trans (pow_le_pow_right₀ hB hm)

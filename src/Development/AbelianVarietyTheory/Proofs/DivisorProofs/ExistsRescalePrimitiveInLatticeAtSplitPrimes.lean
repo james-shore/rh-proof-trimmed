@@ -102,10 +102,6 @@ namespace GlobalTheory.PlaneSkewScale
 
 variable {E : Type} [Field E] [NumberField E]
 
-theorem exists_smul_mem {n : ℕ} (L : Submodule (𝓞 E) (Fin n → E)) (hL : L.IsFullLattice E) (x : Fin n → E) :
-    ∃ d : 𝓞 E, d ≠ 0 ∧ d • x ∈ L := by
-  exact GlobalTheory.NonzeroSmulMembership.exists_ne_zero_smul_mem L hL x
-
 theorem exists_max {n : ℕ} (L : Submodule (𝓞 E) (Fin n → E)) (hL : L.IsFullLattice E) {x : Fin n → E} (hx : x ≠ 0)
     (w : HeightOneSpectrum (𝓞 E)) :
     ∃ s₀ : E, s₀ ≠ 0 ∧ s₀ • x ∈ L ∧ ∀ s : E, s • x ∈ L → w.valuation E s ≤ w.valuation E s₀ := by
@@ -132,7 +128,7 @@ theorem exists_max {n : ℕ} (L : Submodule (𝓞 E) (Fin n → E)) (hL : L.IsFu
     by_cases h0 : B * (w.valuation E (x j))⁻¹ = 0
     · exact ⟨0, by rw [h0]; exact zero_le'⟩
     · exact ⟨_, (WithZero.exp_log h0).ge⟩
-  obtain ⟨d, hd, hdx⟩ := exists_smul_mem L hL x
+  obtain ⟨d, hd, hdx⟩ := _root_.GlobalTheory.NonzeroSmulMembership.exists_ne_zero_smul_mem L hL x
   have hd' : algebraMap (𝓞 E) E d ≠ 0 := (map_ne_zero_iff _ (IsFractionRing.injective (𝓞 E) E)).2 hd
   let S : ℤ → Prop := fun k => ∃ s : E, s ≠ 0 ∧ s • x ∈ L ∧ w.valuation E s = WithZero.exp k
   obtain ⟨k₀, ⟨s₀, hs₀, hs₀L, hs₀v⟩, hmax⟩ := Int.exists_greatest_of_bdd (P := S)

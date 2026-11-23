@@ -92,7 +92,7 @@ theorem exists_frameMat {E : Type} [Field E] [NumberField E] [IsCMField E] {H : 
   have e1 : ∀ j, spMap (dualMap (ev (z ≫ toBase TF Z) U.1 hU)) ≫ v j =
       spMap (dualMap (ev z W₀ hz)) ≫ spMap (dualMap (ev (FlagMod.tau hW₀ ≫ toBase TF Z) U.1 hU0)) ≫ v j := by
     intro j
-    rw [← Category.assoc (spMap (dualMap (ev z W₀ hz))), TanBaseChange.spMap_comp_spMap', ← FlagMod.dualMap_comp,
+    rw [← Category.assoc (spMap (dualMap (ev z W₀ hz))), _root_.Formalism.L2.Pj.spMap_comp_ring, ← FlagMod.dualMap_comp,
       ← FlagMod.ev_spMap (ev z W₀ hz) (FlagMod.tau hW₀ ≫ toBase TF Z) U.1 hU0 (FlagMod.le_preimage_comp _ hU0),
       FlagMod.ev_congr eb U.1 (FlagMod.le_preimage_comp _ hU0) hU]
   have hz' : ⊤ ≤ (spMap (ev z W₀ hz) ≫ FlagMod.tau hW₀ ≫ inc₀ TF.X Z) ⁻¹ᵁ TF.X.F.U k :=

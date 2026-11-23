@@ -105,7 +105,7 @@ theorem flipFin_productExpansion : Big fun {D} _ _ _ _ {T} _ _ _ _ _ _ ch => Con
       have hT : Tflip ch.W ch.S.B t Φ w.1 = fun z => ∑ i ∈ Finset.univ, xw w i * (locGrid ch.G t w.1).lines₂ (GlobalTheory.SplitFlip.oppositePath D.R.m) (φw w i) z := funext (hTeq w)
       show flatTensor one_le_sLen (psiAt ch.W w.1) (unitVol w.1) (moved (locGrid ch.G t w.1) (keepAt ch.G w.1) ((repsAt ch.G t w.1).elt (β w)) (Tflip ch.W ch.S.B t Φ w.1)) _ _ = _
       rw [hT]
-      exact GlobalTheory.T.flatTensor_movedTensor_finset_sum_linear _ one_le_sLen _ _ (hψ t w.1 w.2) (unifAt w.1) (depthAt ch.G w.1) _ _ _ _ _ (fun i _ => (locGrid ch.G t w.1).isTensor_pureTensor _ _ _ _ (hnat w i)) _ _
+      exact _root_.GlobalTheory.FunObj.flatTensor_moved_sum _ one_le_sLen _ _ (hψ t w.1 w.2) (unifAt w.1) (depthAt ch.G w.1) _ _ _ _ _ (fun i _ => (locGrid ch.G t w.1).isTensor_pureTensor _ _ _ _ (hnat w i)) _ _
     simp only [key]
     rw [Finset.prod_univ_sum]
     refine Finset.sum_congr rfl fun a _ => ?_
@@ -116,7 +116,7 @@ theorem flipFin_productExpansion : Big fun {D} _ _ _ _ {T} _ _ _ _ _ _ ch => Con
     refine hCon hCL t e he τ φ' hφ' (∀ w : locPl ch.G t, Fin (n w)) (Fintype.piFinset fun w => Finset.univ) (fun a => ∏ w, xw w (a w)) (fun a i => (fun y => if IsHalf e y then ∏ w : locPl ch.G t, (fun w => φw w (a w)) w (.ex i D.R.m) (ch.S.B.coord t w.1 (X := (i, D.R.m)) (Y := (i + 1, D.R.m)) ⟨i.2.le, le_rfl⟩ ⟨i.2, le_rfl⟩ (y.map fun a => cpt w.1 (toEAf D a))) else 0)) (fun a j => (fun y => if IsHalf e y then ∏ w : locPl ch.G t, (fun w => φw w (a w)) w (.theta D.R.m j) (ch.S.B.coord t w.1 (X := (D.R.m, j + 1)) (Y := (D.R.m, j)) ⟨le_rfl, j.2⟩ ⟨le_rfl, j.2.le⟩ (y.map fun a => cpt w.1 (toEAf D a))) else 0)) fr fd ?_ ?_ M hM P h u y
     · intro a _
       exact ⟨hfr a, hfd a⟩
-    · exact GlobalTheory.T.flippedFiniteTensor_local_identity ch t Φ e τ φ' hφ' hid n xw φw hTeq
+    · exact _root_.GlobalTheory.LocAsm.flipFin_local_identity ch t Φ e τ φ' hφ' hid n xw φw hTeq
 
 end GlobalTheory.LocAsm
 

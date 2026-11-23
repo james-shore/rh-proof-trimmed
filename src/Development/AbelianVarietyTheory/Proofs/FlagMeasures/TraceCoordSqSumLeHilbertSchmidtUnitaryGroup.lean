@@ -45,6 +45,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DefClassNum
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LayerProd
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactExponentialSurjective
 
 @[expose] public section
 
@@ -62,9 +63,6 @@ private theorem hs_eq_ipL (X : Matrix (Fin n) (Fin n) ℂ) : hs X = ipL X X := b
     Complex.re_sum]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   rw [Complex.star_def, Complex.mul_conj, Complex.ofReal_re, Complex.normSq_eq_norm_sq]
-
-private theorem hs_nonneg' (X : Matrix (Fin n) (Fin n) ℂ) : 0 ≤ hs X :=
-  Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => sq_nonneg _
 
 private theorem hs_mul_le (A B : Matrix (Fin n) (Fin n) ℂ) : hs (A * B) ≤ hs A * hs B := by
 
@@ -136,7 +134,7 @@ theorem sum_coord_sq_le_hs_and_hs_le (n d : ℕ) (ε : Fin n → Bool) (E : Fin 
       _ = hs X * hs X := by rw [hYn]
   have hpara := hs_sub_add_hs_add_eq_parallelogram X Y
   have hYn : hs Y = hs X := hs_inv_eq X
-  have hnn : 0 ≤ hs (X + Y) := hs_nonneg' _
+  have hnn : 0 ≤ hs (X + Y) := _root_.Formalism.REAL.frobenius_nonneg_matrix _
   constructor <;> linarith
 
 end GlobalTheory.NilCov

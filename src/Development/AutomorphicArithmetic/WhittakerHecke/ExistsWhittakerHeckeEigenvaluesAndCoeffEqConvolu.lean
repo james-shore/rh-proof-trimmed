@@ -56,11 +56,6 @@ open UpperTheory.ConvolutionTheory.R2.G (FS2 Rw nE row)
 open UpperTheory.V.Af.Smo (EigAt)
 open scoped ComplexOrder
 
-private theorem aE_mul' {K : Type} [Field K] [NumberField K] (x y : (A K)ˣ) : aE (x * y) = aE x * aE y := by
-  refine Units.ext ?_
-  ext i j
-  fin_cases i <;> fin_cases j <;> simp [aE, Matrix.mul_apply, Fin.sum_univ_two]
-
 theorem UpperTheory.exists_whittaker_hecke_eigenvalues_and_coeff_eq_convolution :
     ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (D : Dat ℚ E) (P : CuspSub E 2) (ω χ : HChar ℚ),
         CenN P ω → Unit1 ω → (∀ a, (χ.1 a * ω.1 a) ^ 2 = 1) → ∀ (L N : ℕ), ChOk χ L → ∀ φ, admitted D ω φ → Gd D P L N φ → ∀ a, IsAs P χ N a → ∃ μ : ℕ → ℂ,
@@ -120,7 +115,7 @@ theorem UpperTheory.exists_whittaker_hecke_eigenvalues_and_coeff_eq_convolution 
       have hpin : pin n = pv v ^ k * pin m := by
         rw [hnm, ← hv, pmul _ _ (pow_pos (hpr v).pos k) hm0, ppow]
       have hg : em E (aE (iy r * pin n) * rot t) = em E (aE (pv v ^ k)) * em E (aE (iy r * pin m) * rot t) := by
-        rw [hpin, mul_left_comm, aE_mul', map_mul, map_mul, map_mul, mul_assoc]
+        rw [hpin, mul_left_comm, _root_.UpperTheory.ConvolutionTheory.R2.aE_mul, map_mul, map_mul, map_mul, mul_assoc]
       have hnv : n = normV v ^ k * m := by rw [hv]; exact hnm
       rw [hg, hM1 v hvb k _ (fun w hw => UpperTheory.kAt_diag_ideleOfNat_mul_rotation_of_not_dvd E v m r t hm0 (by rw [hv]; exact hnd) w hw), ih m hmlt hm0 hmc r t hr,
         ← mul_assoc, ← hμv v k hvb, ← hμm _ _ (pow_pos (hpr v).pos k) hm0 hcop, ← hnv]

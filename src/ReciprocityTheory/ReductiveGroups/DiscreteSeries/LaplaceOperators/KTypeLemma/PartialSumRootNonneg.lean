@@ -97,17 +97,6 @@ theorem partialSum_root_nonneg {a b : Fin n} (hab : a < b) (k : ℕ) : 0 ≤ kir
   · exfalso; omega
   · norm_num
 
-theorem partialSum_single_bounds {β : Fin n → ℝ} (hβ : InRootCone β) (k : ℕ) : 0 ≤ kirrPs k β := by
-  obtain ⟨m, rfl⟩ := hβ
-  rw [partialSum_finset_sum_eq]
-  refine Finset.sum_nonneg fun a _ => ?_
-  rw [partialSum_finset_sum_eq]
-  refine Finset.sum_nonneg fun b _ => ?_
-  split_ifs with h
-  · rw [partialSum_smul]
-    exact mul_nonneg (Nat.cast_nonneg _) (partialSum_root_nonneg h k)
-  · simp [kirrPs]
-
 theorem partialSum_add_eq {ι : Type*} (s : Finset ι) (f : ι → Fin n → ℝ) :
     kUnitWtLin (∑ i ∈ s, f i) = ∑ i ∈ s, kUnitWtLin (f i) := by
   simp only [kUnitWtLin, Finset.sum_apply, Finset.mul_sum]

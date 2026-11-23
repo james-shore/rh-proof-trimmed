@@ -60,11 +60,6 @@ section Div
 
 variable {B Q : Type} [CommRing B] [CommRing Q] [Algebra B Q] {σ : Type} {d : ℕ}
 
-theorem in_mono {N N' : Ideal B} (h : N ≤ N') {f : MvPowerSeries σ Q} (hf : In N f) : In N' f :=
-  fun α => by
-    obtain ⟨b, hb, e⟩ := hf α
-    exact ⟨b, h hb, e⟩
-
 theorem in_span_smul (p : B) {f : MvPowerSeries σ Q} (hf : In (⊤ : Ideal B) f) :
     In (Ideal.span {p}) (algebraMap B Q p • f) := fun α => by
   obtain ⟨b, -, e⟩ := hf α
@@ -135,7 +130,7 @@ theorem exists_frob_matrix : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [
       rw [smul_sub, smul_smul, hc', one_smul]
     rw [heq]
     have hp := in_span_smul (p : F.B) (hb1 i')
-    exact ⟨in_mono le_top hp, fun _ _ => hp⟩
+    exact ⟨_root_.GlobalTheory.QLog.FrobQL.in_mono le_top hp, fun _ _ => hp⟩
   · have hcol : (fun l => ((Matrix.of fun l i => Sum.elim (fun i' => b1 i' l) (fun j => b2 j l) i) *
         blk d k (p : F.B) 1) l (Sum.inr j)) = fun l => b2 j l := by
       funext l

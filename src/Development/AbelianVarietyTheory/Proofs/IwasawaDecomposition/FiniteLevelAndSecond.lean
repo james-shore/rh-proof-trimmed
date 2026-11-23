@@ -89,25 +89,6 @@ theorem pass_of {Q : V4.Slot} {p q r : AtP} (hp : Step KPx (fun _ _ _ _ => True)
 
 variable {K : Ctx} {B : Base} {f : Fr B.toPre} {T : TwDat B} {w : ColW B f T}
 
-theorem muIsW_st {P : Pre2 K w} (x : St P) : V4.MuIsW (w.st x.o.Z) f T P.Wt w.I.xi :=
-  { inj := w.ok.xi_inj
-    range := w.xi_range
-    mu0 := w.l.xi0
-    star := by
-      show w.I.xi w.I.muStar = f.del
-      rw [w.ok.xi_star, w.C_eq]
-    star' := by
-      show w.I.xi w.I.muStar' = f.del'
-      rw [w.ok.xi_star', w.C_eq]
-    tw := P.q.mu.tw
-    on := P.q.mu.on
-    off := P.q.mu.off
-    sub := P.sub
-    supp := P.supp }
-
-theorem twisted_st {P : Pre2 K w} (x : St P) (v : B.places.Pl) : TwistedAt (Dof x) v ↔ v ∈ P.Wt :=
-  (TupTieW.tupTied_of_muIsW (w.st x.o.Z) f T P.Wt w.I.xi (muIsW_st x)).1 v
-
 theorem below_plUnder {B' : Base} {f' : Fr B'.toPre} {T' : TwDat B'} {w' : ColW B' f' T'} (h : Enl B B') (Z : w.Lt) (Z' : w'.Lt)
     (v' : B'.places.Pl) : Below (w.D Z) (w'.D Z') (plUnder h v') v' := by
   intro x x' e

@@ -200,7 +200,7 @@ theorem card_le_rank (G : Top.Given) {r : ℕ} {U : ∀ σ : c.F →+* ℂ, Unf 
       Cardinal.toENat (Module.rank c.F (GlobalTheory.AllWt.cuspOn U Z ((τ + k₀) • GlobalTheory.AllWt.wtOf Dw u 0))) := by
   classical
   have hvu : (τ + k₀) • GlobalTheory.AllWt.wtOf Dw u 0 = GlobalTheory.AllWt.wtOf Dw ((τ + k₀) • u) 0 :=
-    (GlobalTheory.T.tower_weight_of_zero E H Dw l Xo c (T.M B b) u).2.2.1 _
+    (_root_.GlobalTheory.CompanionTheory.Ar.Plug.integer_weights_vocab E H Dw l Xo c (T.M B b) u).2.2.1 _
   rw [hvu, (o.toTowerOrigin.Or B b).δ_eq]
   set v : GlobalTheory.AllWt.Weight Dw := (τ + k₀) • u with hv
   have hvanti : ∀ t, StrictAnti (v t) := by
@@ -214,11 +214,11 @@ theorem card_le_rank (G : Top.Given) {r : ℕ} {U : ∀ σ : c.F →+* ℂ, Unf 
     obtain ⟨R, hR⟩ := hsm j
     have hR' := modelSmall_mono (o.toTowerOrigin.Or B b) (τ • u) (le_max_left R 0) hR
     have hm : f' j * f i ∈ modelSmall (o.toTowerOrigin.Or B b) v (max R 0 * R₀) := by
-      have := GlobalTheory.T.model_small_sections_mul E H Dw l Xo c Y T o B b (τ • u) (k₀ • u) (max R 0) R₀ (le_max_right _ _) hR₀.le _ hR' _ (hf i)
+      have := _root_.GlobalTheory.CompanionTheory.Ar.Plug.modelSmall_mul_mem E H Dw l Xo c Y T o B b (τ • u) (k₀ • u) (max R 0) R₀ (le_max_right _ _) hR₀.le _ hR' _ (hf i)
       rwa [← add_smul] at this
-    obtain ⟨g, hg1, hg2, hg3⟩ := GlobalTheory.T.comp_laws_tower_bound G E H Dw l Xo c r U h e hL Y T o B b Fr Z Rd hGeo v _ hm.1
+    obtain ⟨g, hg1, hg2, hg3⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.exists_section_of_trace G E H Dw l Xo c r U h e hL Y T o B b Fr Z Rd hGeo v _ hm.1
     refine ⟨g, ?_, hg3⟩
-    refine GlobalTheory.T.weight_zero_section_membership E H Dw l Xo c r U h e hL hp hq x Z v hvanti g hg1 hg2 fun σ hσ => ⟨_, fun z hz =>
+    refine _root_.GlobalTheory.CompanionTheory.Ar.Plug.bdd_mem_cuspOn E H Dw l Xo c r U h e hL hp hq x Z v hvanti g hg1 hg2 fun σ hσ => ⟨_, fun z hz =>
       GlobalTheory.T.uniform_norm_tower_bound G E H Dw l Xo c r U h e hL x hx Y T o B b Fr Z Rd hGeo v _ _
         (mul_nonneg (le_max_right _ _) hR₀.le) hm.2 g hg1 hg3 σ hσ z hz⟩
   choose g hg hgev using key
@@ -256,20 +256,20 @@ theorem vol_mul_flagDeg_le_growthOn : GlobalTheory.CompanionTheory.Ar.Pub.NefRR 
   have hq : 1 ≤ Dw.q := by
     have := T.j_lt
     omega
-  have hW := GlobalTheory.T.tower_weight_of_zero E H Dw l Xo c (T.M 0 (κ Z)) u
+  have hW := _root_.GlobalTheory.CompanionTheory.Ar.Plug.integer_weights_vocab E H Dw l Xo c (T.M 0 (κ Z)) u
   have hdim : GlobalTheory.CompHt.dimFlag Dw = Top.dimFl (CMType H) (Dw.p + Dw.q) := hW.2.2.2.2.2.1
   have hWH : Top.WeightHyp T.j (reW u) 1 := by
     rw [hj]
     exact hW.2.2.2.2.2.2.2.1 hp hq hu
   have hB : Top.bigB0 (reW u) 1 < (⌈Top.bigB0 (reW u) 1⌉₊ : ℝ) + 1 :=
     (Nat.le_ceil _).trans_lt (lt_add_one _)
-  obtain ⟨Fr, Rd, hGeo⟩ := GlobalTheory.T.tower_origin_component_bound E H Dw l Xo c r U h e hL Y T o.toTowerOrigin κ hκ ⌈Top.bigB0 (reW u) 1⌉₊ Z
+  obtain ⟨Fr, Rd, hGeo⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Plug.exists_geoRead E H Dw l Xo c r U h e hL Y T o.toTowerOrigin κ hκ ⌈Top.bigB0 (reW u) 1⌉₊ Z
   obtain ⟨k₀, R₀, f, -, hR₀, hf, -, hinj⟩ :=
-    GlobalTheory.T.generic_frame_component_bound G E H Dw l Xo c h Y T o _ (κ Z) Fr Z Rd II u 1 hII hT1 hWH hB
+    _root_.GlobalTheory.CompanionTheory.Ar.Plug.exists_small_basis G E H Dw l Xo c h Y T o _ (κ Z) Fr Z Rd II u 1 hII hT1 hWH hB
   have main := le_growth_of_frequently (D := Top.dimFl (CMType H) (Dw.p + Dw.q)) (k₀ := k₀)
     (T.M ⌈Top.bigB0 (reW u) 1⌉₊ (κ Z)).δ_pos (T.vol (κ Z) * Top.flagDeg (reW u))
     (fun τ => Cardinal.toENat (Module.rank c.F (GlobalTheory.AllWt.cuspOn U Z (τ • GlobalTheory.AllWt.wtOf Dw u 0)))) (fun ε hε => by
-      refine ((GlobalTheory.T.full_intersection_height_bound hRR G E H Dw l Xo c Y T o _ (κ Z) II u 1 hII hT1 hWH hB ε hε).and_eventually
+      refine ((_root_.GlobalTheory.CompanionTheory.Ar.Plug.many_sections hRR G E H Dw l Xo c Y T o _ (κ Z) II u 1 hII hT1 hWH hB ε hε).and_eventually
         (eventually_gt_atTop 0)).mono ?_
       rintro τ ⟨⟨n, f', hli, hsm, hle⟩, hτ⟩
       exact ⟨n, hle, card_le_rank G hL hx o Rd hGeo hp hq hu (by omega) hR₀ hf hinj hli hsm⟩)
@@ -280,5 +280,4 @@ end GlobalTheory.CompanionTheory.Ar.Plug.IndependentCountBound
 
 
 
-theorem _root_.GlobalTheory.CompanionTheory.Relay.uniform_norm_height_count : GlobalTheory.CompanionTheory.Ar.Pub.NefRR → Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (r : ℕ) (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (h : GenFrEx Xo c) (e : Comp Xo c → Rul Xo c), CompLaws U h e → ∀ x : ℝ, (∀ σ, GoodEmb c σ → ∀ k (τ : E →+* ℂ), ‖τ ((U σ).X k).ξ0‖ = x) → ∀ (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) [DecidableEq (CMType H)] (T : Top.RootTower (CMType H) (Dw.p + Dw.q)) (o : Top.GoodOrigin Y T) (κ : Comp Xo c ≃ T.Comp) (II : IntersectionSystem), CompOf o.toTowerOrigin κ → IsFullIntersectionSystem II → T.Proportional → T.T1 II → ∀ (Z : Comp Xo c) (u : GlobalTheory.AllWt.Weight Dw), (∀ τ, StrictAnti (u τ)) → ENNReal.ofReal (T.vol (κ Z) * Top.flagDeg (reW u)) ≤ GlobalTheory.CompHt.growthOn U Z (GlobalTheory.AllWt.wtOf Dw u 0) :=
-  GlobalTheory.CompanionTheory.Ar.Plug.IndependentCountBound.vol_mul_flagDeg_le_growthOn
+alias _root_.GlobalTheory.CompanionTheory.Relay.uniform_norm_height_count := _root_.GlobalTheory.CompanionTheory.Ar.Plug.IndependentCountBound.vol_mul_flagDeg_le_growthOn

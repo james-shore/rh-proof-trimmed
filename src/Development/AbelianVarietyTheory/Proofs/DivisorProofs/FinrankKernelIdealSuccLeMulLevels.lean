@@ -65,8 +65,8 @@ theorem finrank_quot_kerIdeal_le_mul {k A B C : Type} [Field k] [CommRing A] [Co
     (hw : ∀ a, r (u a) = w (r a)) :
     Module.finrank k (A ⧸ kerIdeal u) ≤
       Module.finrank k (C ⧸ kerIdeal w) * Module.finrank k (B ⧸ kerIdeal v) := by
-  haveI := GlobalTheory.T.isHopfIdeal_kerIdeal_of_bialgHom' k A A u
-  haveI := GlobalTheory.T.isHopfIdeal_kerIdeal_of_bialgHom' k B B v
+  haveI := _root_.GlobalTheory.PDiv.isHopfIdeal_kerIdeal_of_bialgHom k A A u
+  haveI := _root_.GlobalTheory.PDiv.isHopfIdeal_kerIdeal_of_bialgHom k B B v
   let πA : A →ₐc[k] A ⧸ kerIdeal u := Bialgebra.Quotient.mkBialgHom (kerIdeal u)
   let πB : B →ₐc[k] B ⧸ kerIdeal v := Bialgebra.Quotient.mkBialgHom (kerIdeal v)
   have hπA : Function.Surjective πA := Ideal.Quotient.mk_surjective

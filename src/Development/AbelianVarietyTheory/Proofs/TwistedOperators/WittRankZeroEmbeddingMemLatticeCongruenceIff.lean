@@ -47,6 +47,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FlagGenDiag
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.WittHyperbolicRankZeroProjMulEmb
 
 @[expose] public section
 
@@ -108,16 +109,6 @@ section Lat
 
 variable {D : D7} {S S₀ : HSp D} (d : HypDec S S₀ 0)
 
-theorem wittHyperbolicRankZero_proj_mul_emb : d.q0 * d.i₀ = 1 := by
-  apply rat_injective
-  rw [rat_mul, rat_one]
-  exact d.p0_j0
-
-theorem wittHyperbolicRankZero_emb_mul_proj : d.i₀ * d.q0 = 1 := by
-  apply rat_injective
-  rw [rat_mul, rat_one]
-  exact GlobalTheory.FinPl.VLast.Transport.rz_j0p0 d
-
 theorem finite_adelic_embedding_matrix (g : GA D S₀) : (Lev.finE S (d.emb0 g)).1 =
     HMul.hMul (HMul.hMul (d.i₀.map (Formalism.UG.inclE (F := D.host.F) (Formalism.L2.Herm.Af D.host.F)) : Matrix (Fin S.rank) (Fin S₀.rank) (Lev.EAf D))
       (Lev.finE S₀ g).1 : Matrix (Fin S.rank) (Fin S₀.rank) (Lev.EAf D))
@@ -126,7 +117,7 @@ theorem finite_adelic_embedding_matrix (g : GA D S₀) : (Lev.finE S (d.emb0 g))
     ext i k; exact GlobalTheory.LevSplit.finSw_incA _
   have e2 : d.p0.map (GlobalTheory.LevSplit.finSw D) = d.q0.map (Formalism.UG.inclE (F := D.host.F) (Formalism.L2.Herm.Af D.host.F)) := by
     ext i k; exact GlobalTheory.LevSplit.finSw_incA _
-  rw [GlobalTheory.LevSplit.finE_val, GlobalTheory.LevSplit.finE_val, GlobalTheory.FinPl.VLast.Transport.unitaryMatrix_rankZeroWittEmbedding_eq, Matrix.map_mul, Matrix.map_mul, e1, e2]
+  rw [GlobalTheory.LevSplit.finE_val, GlobalTheory.LevSplit.finE_val, _root_.GlobalTheory.WeilSrc.Zero.unitaryMatrix_wittCoreEmbedding, Matrix.map_mul, Matrix.map_mul, e1, e2]
 
 end Lat
 
@@ -154,12 +145,12 @@ theorem hatL_mulVec_rect {F E : Type} [Field F] [NumberField F] [Field E] [Numbe
 theorem inclusion_mulVec_projection_mulVec {D : D7} {S S₀ : HSp D} (d : HypDec S S₀ 0) (y : Fin S.rank → Lev.EAf D) :
     d.i₀.map (Formalism.UG.inclE (F := D.host.F) (Formalism.L2.Herm.Af D.host.F)) *ᵥ
       (d.q0.map (Formalism.UG.inclE (F := D.host.F) (Formalism.L2.Herm.Af D.host.F)) *ᵥ y) = y := by
-  rw [Matrix.mulVec_mulVec, ← Matrix.map_mul, wittHyperbolicRankZero_emb_mul_proj, Matrix.map_one _ (map_zero _) (map_one _), Matrix.one_mulVec]
+  rw [Matrix.mulVec_mulVec, ← Matrix.map_mul, _root_.GlobalTheory.TargetIsom.wittHyperbolicRankZero_emb_mul_proj, Matrix.map_one _ (map_zero _) (map_one _), Matrix.one_mulVec]
 
 theorem PI_one {D : D7} {S S₀ : HSp D} (d : HypDec S S₀ 0) (y : Fin S₀.rank → Lev.EAf D) :
     d.q0.map (Formalism.UG.inclE (F := D.host.F) (Formalism.L2.Herm.Af D.host.F)) *ᵥ
       (d.i₀.map (Formalism.UG.inclE (F := D.host.F) (Formalism.L2.Herm.Af D.host.F)) *ᵥ y) = y := by
-  rw [Matrix.mulVec_mulVec, ← Matrix.map_mul, wittHyperbolicRankZero_proj_mul_emb, Matrix.map_one _ (map_zero _) (map_one _), Matrix.one_mulVec]
+  rw [Matrix.mulVec_mulVec, ← Matrix.map_mul, _root_.GlobalTheory.TargetIsom.wittHyperbolicRankZero_proj_mul_emb, Matrix.map_one _ (map_zero _) (map_one _), Matrix.one_mulVec]
 
 theorem wittRankZero_mem_completedLattice_iff_proj_mem {D : D7} {S S₀ : HSp D} (d : HypDec S S₀ 0) (Λ : Submodule (𝓞 D.host.E) (Fin S.rank → D.host.E))
     (Λ₀ : Submodule (𝓞 D.host.E) (Fin S₀.rank → D.host.E))
@@ -177,7 +168,7 @@ theorem wittRankZero_mem_completedLattice_iff_proj_mem {D : D7} {S S₀ : HSp D}
 theorem wittRankZero_finiteAdelic_proj_embedding_mulVec {D : D7} {S S₀ : HSp D} (d : HypDec S S₀ 0) (g : GA D S₀) (x : Fin S.rank → Lev.EAf D) :
     d.q0.map (Formalism.UG.inclE (F := D.host.F) (Formalism.L2.Herm.Af D.host.F)) *ᵥ ((Lev.finE S (d.emb0 g)).1 *ᵥ x) =
       (Lev.finE S₀ g).1 *ᵥ (d.q0.map (Formalism.UG.inclE (F := D.host.F) (Formalism.L2.Herm.Af D.host.F)) *ᵥ x) := by
-  rw [finite_adelic_embedding_matrix, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, ← Matrix.mul_assoc, ← Matrix.mul_assoc, ← Matrix.map_mul, wittHyperbolicRankZero_proj_mul_emb,
+  rw [finite_adelic_embedding_matrix, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, ← Matrix.mul_assoc, ← Matrix.mul_assoc, ← Matrix.map_mul, _root_.GlobalTheory.TargetIsom.wittHyperbolicRankZero_proj_mul_emb,
     Matrix.map_one _ (map_zero _) (map_one _), Matrix.one_mul]
 
 theorem wittRankZero_embedding_mem_latticeCongruence_iff {D : D7} {S S₀ : HSp D} (d : HypDec S S₀ 0) (Λ : Submodule (𝓞 D.host.E) (Fin S.rank → D.host.E))
@@ -206,7 +197,7 @@ theorem wittRankZero_embedding_mem_latticeCongruence_iff {D : D7} {S S₀ : HSp 
     exact h2.trans ((H _).trans h3.symm)
 
 theorem wittRankZero_proj_comp_incl_mulVec_eq_self {D : D7} {S S₀ : HSp D} (d : HypDec S S₀ 0) (y : Fin S₀.rank → D.host.E) : d.q0 *ᵥ (d.i₀ *ᵥ y) = y := by
-  rw [Matrix.mulVec_mulVec, wittHyperbolicRankZero_proj_mul_emb, Matrix.one_mulVec]
+  rw [Matrix.mulVec_mulVec, _root_.GlobalTheory.TargetIsom.wittHyperbolicRankZero_proj_mul_emb, Matrix.one_mulVec]
 
 theorem vol_rankZero : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} (G : GridData L sc) (t : T) {M : GlobalTheory.FunObj.Vol G}, M.Is t →
     ∀ (n : ℕ) (hn : n + 1 = D.R.m) (f : GA D (G.V (.grid D.R.m n)) → ℂ), (∀ γ ∈ GQ (G.V (.grid D.R.m n)), ∀ g, f (γ * g) = f g) →

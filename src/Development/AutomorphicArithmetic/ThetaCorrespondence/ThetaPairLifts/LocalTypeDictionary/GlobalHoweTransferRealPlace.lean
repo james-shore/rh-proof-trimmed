@@ -67,7 +67,7 @@ theorem howe_real_place_transfer : _root_.GlobalTheory.FunPr.ThetaLocalInputs �
       g x ∈ LinearMap.ker (R.p ∘ₗ (G.M.Pol Bs.ψ Bs.emb).subtype) := by
   intro hP F E _ _ _ _ _ σ Bs a a' G Xc om om' R Rf hM hreal
   have hPair := GlobalTheory.ThK.RealUniq.isPair_V hM.triple
-  have PA : PolActs Bs G.M om := _root_.GlobalTheory.T.dualPair_preserves_polarization hP F E σ Bs _ _ _ _ G.M _ _ om _ _ _ _ hPair
+  have PA : PolActs Bs G.M om := _root_.GlobalTheory.PolActsPf.polarization_acts_of_isDualPair hP F E σ Bs _ _ _ _ G.M _ _ om _ _ _ _ hPair
   set P := G.M.Pol Bs.ψ Bs.emb with hPdef
   have key : ∀ N : Submodule ℂ ↥P, relInf Bs G om ≤ N → (∀ g ∈ opInf Bs G om, ∀ x ∈ N, g x ∈ N) →
       GlobalTheory.Published.ThetaSubInf G.M Bs.ψ Bs.emb om (N.map P.subtype) := by
@@ -104,7 +104,7 @@ theorem howe_real_place_transfer : _root_.GlobalTheory.FunPr.ThetaLocalInputs �
     apply hN
     apply hinj
     rw [h, Submodule.map_subtype_top]
-  refine ⟨_root_.GlobalTheory.T.polarization_rank_le_dim hP F E σ Bs _ _ _ _ G.M _ _ om _ _ _ _ hPair, ?_, ?_, ?_, ?_⟩
+  refine ⟨_root_.GlobalTheory.ThK.PolRank.polarization_rank_le hP F E σ Bs _ _ _ _ G.M _ _ om _ _ _ _ hPair, ?_, ?_, ?_, ?_⟩
   · obtain ⟨L, hL⟩ := hreal.1
     refine ⟨L, fun m N hN hN' => hL m (fun i => (N i).map P.subtype)
       ((Submodule.map_strictMono_of_injective P.injective_subtype).comp hN) fun i => key _ (hN' i).1 (hN' i).2⟩

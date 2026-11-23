@@ -261,13 +261,7 @@ private theorem move_all (ρ : G K Ω →* GL (Fin 3) (Qbar l)) (R : G ℚ Ω �
 
 end Move
 
-private theorem lc_of_ker {Γ C : Type} [Group Γ] [TopologicalSpace Γ] [IsTopologicalGroup Γ] [Group C] (η : Γ →* C)
-    (h : IsOpen (η.ker : Set Γ)) : IsLocallyConstant η :=
-  (IsLocallyConstant.iff_exists_open _).2 fun x =>
-    ⟨(fun y => x⁻¹ * y) ⁻¹' η.ker, h.preimage (continuous_const.mul continuous_id), by simp, fun y hy => by
-      have : η (x⁻¹ * y) = 1 := hy
-      rw [map_mul, map_inv, inv_mul_eq_one] at this
-      exact this.symm⟩
+private alias lc_of_ker := _root_.UpperTheory.Reformulated.B.LocallyConstantOfKernel.lc_of_ker
 
 end UpperTheory.V.Z.J.UnitaryRankTwoFlags
 

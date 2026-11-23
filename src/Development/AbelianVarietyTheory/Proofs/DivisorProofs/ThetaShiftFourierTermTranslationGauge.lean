@@ -53,6 +53,9 @@ import Mathlib.Tactic.ReduceModChar
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.LevelFrameOfLaws
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasRigidChart
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsUnitGeneratingSectionPullbackField
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.NormalisedThetaTranslateConstantRigidifiedPullba
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.UniformisationChartValueFormsCorrespond
 
 @[expose] public section
 
@@ -85,17 +88,6 @@ theorem cst_add' {R : Type} [CommRing R] {Z : Scheme.{0}} (q : Z ⟶ Sp R) (z : 
     cst q z (a + b) = cst q z a + cst q z b := by
   unfold cst; rw [map_add (f := _), gs_add q z ⊤ trivial]
 
-theorem cst_sub' {R : Type} [CommRing R] {Z : Scheme.{0}} (q : Z ⟶ Sp R) (z : Z) (a b : R) :
-    cst q z (a - b) = cst q z a - cst q z b := by
-  have := cst_add' q z (a - b) b
-  rw [sub_add_cancel] at this
-  rw [this, add_sub_cancel_right]
-
-theorem cst_zero' {R : Type} [CommRing R] {Z : Scheme.{0}} (q : Z ⟶ Sp R) (z : Z) : cst q z 0 = 0 := by
-  have := cst_add' q z 0 0
-  rw [add_zero] at this
-  exact left_eq_add.1 this
-
 theorem shiftEq_pt {R : Type} [CommRing R] [IsDomain R] {Q : DegPre R} {k : ℕ} {mu α : Q.X} {σ : Q.SecB k α}
     {σ₁ σ₂ : Q.SecB k (α + k • mu)} {c : R} (H : ShiftEq Q k mu α σ σ₁ c σ₂)
     (u : LB.Gen (LB.LinComb Q.P.L (DegPre.deltaφ Q (FractionRing R) k α mu) (DegPre.deltaε k))) (hu : u.IsGen)
@@ -107,13 +99,13 @@ theorem shiftEq_pt {R : Type} [CommRing R] [IsDomain R] {Q : DegPre R} {k : ℕ}
       (val u p z J).val * sval σ (p ≫ (DegPre.trF Q (FractionRing R) mu ≫ DegPre.prB Q (FractionRing R)).left) z J +
         cst (p ≫ (DegPre.BF Q (FractionRing R)).hom) z c * sval σ₂ (p ≫ (DegPre.prB Q (FractionRing R)).left) z J := by
   have e := congrArg (p.stalkMap z).hom (H u hu hc (p z) _ (good_comp' p z hJ))
-  rw [GlobalTheory.HeatDefect.sval_comp_stalk _ _ _ _ hJ, GlobalTheory.HeatDefect.sval_comp_stalk _ _ _ _ hJ,
-    GlobalTheory.HeatDefect.sval_comp_stalk _ _ _ _ hJ, e, map_add, map_mul, map_mul]
+  rw [_root_.GlobalTheory.LN.PreForm.sval_comp_stalk _ _ _ _ hJ, _root_.GlobalTheory.LN.PreForm.sval_comp_stalk _ _ _ _ hJ,
+    _root_.GlobalTheory.LN.PreForm.sval_comp_stalk _ _ _ _ hJ, e, map_add, map_mul, map_mul]
   congr 2
   · have := GlobalTheory.HeatDefect.val_comp_stalk u (𝟙 _) p z hJ
     rw [Category.comp_id] at this
     exact this.symm
-  · rw [← GlobalTheory.HeatDefect.gs_comp_stalk p (𝟙 _) z ⊤ trivial, Category.comp_id]
+  · rw [← _root_.GlobalTheory.OneBasis.ThMove.gs_comp p (𝟙 _) z ⊤ trivial, Category.comp_id]
     exact gs_scal_eq _ p z c
 
 theorem der_prod {R : Type} [CommRing R] {m : ℕ} (D : Derivation ℤ R R) (t d : Fin m → R) (hd : ∀ i, D (t i) = d i * t i)
@@ -143,12 +135,12 @@ theorem GlobalTheory.HeatShift.shift_term : ∀ (R : Type) [CommRing R] [IsDomai
     obtain ⟨u, n, h, -⟩ := hmon y
     exact ⟨n, h⟩
   choose n hn using hn
-  choose ψ₀ hψ₀g hψ₀v using fun χ => GlobalTheory.T.exists_monomialPeriod_unitPart_generator R Dd.toPre m t gam hmon χ (n χ) (hn χ)
-  obtain ⟨xp, hxq, hxv⟩ := GlobalTheory.T.exists_raynaudPoint_unitPart_coordinates R Dd.toPre O oa Y m t gam Dd.tau_bimult ht n hn ψ₀ hψ₀g hψ₀v mu
+  choose ψ₀ hψ₀g hψ₀v using fun χ => _root_.GlobalTheory.UnitPart.exists_psi_val_eq_monomial_mul R Dd.toPre m t gam hmon χ (n χ) (hn χ)
+  obtain ⟨xp, hxq, hxv⟩ := _root_.GlobalTheory.UnitPartPt.exists_unitPartPt R Dd.toPre O oa Y m t gam Dd.tau_bimult ht n hn ψ₀ hψ₀g hψ₀v mu
   have hqm : IsMonHom Y.q := Y.q_linear.isMonHom
   have hx : (xp⁻¹ ≫ Y.q) * Dd.toPre.c mu = 1 := by
     rw [← hxq, ← MonObj.mul_comp, inv_mul_cancel, MonObj.one_comp]
-  obtain ⟨e, heg, hew, hev⟩ := GlobalTheory.T.exists_raynaudGauge_generator_weight_neg R Dd.toPre O oa Y mu xp⁻¹ hx (ψ₀ mu) (hψ₀g mu)
+  obtain ⟨e, heg, hew, hev⟩ := _root_.GlobalTheory.Heat.ShiftGauge.exists_gauge R Dd.toPre O oa Y mu xp⁻¹ hx (ψ₀ mu) (hψ₀g mu)
   have hd : ∀ i, ∃ d : R, D (t i) = d * t i := fun i => by
     obtain ⟨c, hc⟩ := Ideal.mem_span_singleton.1 (hD i)
     exact ⟨c, by rw [hc, mul_comm]⟩
@@ -212,7 +204,7 @@ theorem GlobalTheory.HeatShift.shift_term : ∀ (R : Type) [CommRing R] [IsDomai
   refine ⟨B₀, b, ht0 _, ?_⟩
   intro σ σ₁ τ τ₁ ρ hS hT hT₁ hρ
 
-  have key := fun u hu hc => GlobalTheory.T.raynaudShift_unitIdentity_fractionField R Dd.toPre O oa Y Dd.tau_bimult k mu α xp A₀ B₀ P₀ (ψ₀ mu) e hxq
+  have key := fun u hu hc => _root_.GlobalTheory.ShiftUnit.shift_unit_identity R Dd.toPre O oa Y Dd.tau_bimult k mu α xp A₀ B₀ P₀ (ψ₀ mu) e hxq
     (fun Z g z J hJ => hxv Z g α z J hJ) (fun Z g z J hJ => hψ₀v mu Z g z J hJ) hev u hu hc
   obtain ⟨⟨u, hu, hc⟩, -⟩ := gen_fe (D := Dd.toPre) (F := FractionRing R) GlobalTheory.SemiRigid.globalFns k mu α
   have C1 : ∀ (Z : Scheme.{0}) (r : Z ⟶ Y.H.left) (z : Z) (J : (Z ⟶ Dd.toPre.P.A.left) → Dd.toPre.P.L.ι),
@@ -231,7 +223,7 @@ theorem GlobalTheory.HeatShift.shift_term : ∀ (R : Type) [CommRing R] [IsDomai
     have hK := key u hu hc Z g pp yp hpp1 hpp2 z J hJ
     rw [hsq T y] at hK
     have hsh := shiftEq_pt hS u hu hc pp.left z J hJ
-    rw [cst_zero', zero_mul, add_zero, ← Over.comp_left, ← Over.comp_left, hpp2, htr T pp yp hpp2, hsq T y] at hsh
+    rw [_root_.GlobalTheory.GenSecField.cst_zero', zero_mul, add_zero, ← Over.comp_left, ← Over.comp_left, hpp2, htr T pp yp hpp2, hsq T y] at hsh
     have e1 := hρ Z r z J hJ
     have e1' : r ≫ (𝟙 Y.H * (toUnit Y.H ≫ xp⁻¹)).left = yp.left := by
       show y.left ≫ _ = _
@@ -269,8 +261,8 @@ theorem GlobalTheory.HeatShift.shift_term : ∀ (R : Type) [CommRing R] [IsDomai
   apply hinj
   have hv := GlobalTheory.HeatDefect.val_comp_stalk u' (𝟙 _) p w0 gJ₁
   rw [Category.comp_id] at hv
-  rw [map_add (f := _), map_mul, map_mul, ← GlobalTheory.HeatDefect.sval_comp_stalk _ _ _ _ gJ₁, ← GlobalTheory.HeatDefect.sval_comp_stalk _ _ _ _ gJ₁,
-    ← GlobalTheory.HeatDefect.sval_comp_stalk _ _ _ _ gJ₁, ← hv, ← GlobalTheory.HeatDefect.gs_comp_stalk p (𝟙 _) w0 ⊤ trivial,
+  rw [map_add (f := _), map_mul, map_mul, ← _root_.GlobalTheory.LN.PreForm.sval_comp_stalk _ _ _ _ gJ₁, ← _root_.GlobalTheory.LN.PreForm.sval_comp_stalk _ _ _ _ gJ₁,
+    ← _root_.GlobalTheory.LN.PreForm.sval_comp_stalk _ _ _ _ gJ₁, ← hv, ← _root_.GlobalTheory.OneBasis.ThMove.gs_comp p (𝟙 _) w0 ⊤ trivial,
     Category.comp_id, gs_scal_eq]
   clear hv eJ₁ hJ hinj
   set g : Z ⟶ (TK R).left := p ≫ (fst (TF (R := R) (FractionRing R)) Dd.toPre.P.A).left ≫ jFK (R := R) (FractionRing R)
@@ -329,7 +321,7 @@ theorem GlobalTheory.HeatShift.shift_term : ∀ (R : Type) [CommRing R] [IsDomai
     ring
   have e10 : cst (g ≫ jK R) w0 (2 * (k : R) * w α + 2 * (k : R) ^ 2 * (∑ i, (n mu i : R) * d i) + 2 * (k : R) * 0) =
       cst (g ≫ jK R) w0 (2 * k * δb) - cst (g ≫ jK R) w0 (2 * k * δa) := by
-    rw [hc1, cst_sub']
+    rw [hc1, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.cst_sub]
   have hU : IsUnit (cst (g ≫ jK R) w0 B₀ * (val ((Y.Φ T yp).s (α + k • mu)) (𝟙 Z) w0 J₁).val * (val e r w0 J₁ ^ k).val) :=
     ((GlobalTheory.ExpInt.isUnit_cst g w0 (ht0 _)).mul (Units.isUnit _)).mul (Units.isUnit _)
   rw [hb'] at f7 f8

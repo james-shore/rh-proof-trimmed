@@ -92,16 +92,6 @@ theorem exists_smul_isIntegral (x : B.A) : ∃ d : K.O, d ≠ 0 ∧ IsIntegral K
   obtain ⟨d, hd, hi⟩ := h'.exists_integral_multiple
   exact ⟨d, hd, hi⟩
 
-theorem exists_smul_mem (L : Submodule K.O B.A) (hL : Submodule.span K.E (L : Set B.A) = ⊤) (x : B.A) :
-    ∃ d : K.O, d ≠ 0 ∧ d • x ∈ L := by
-  first
-  | exact @_root_.GlobalTheory.DenominatorOfSpan.exists_denominator
-  | exact _root_.GlobalTheory.DenominatorOfSpan.exists_denominator
-  | (apply _root_.GlobalTheory.DenominatorOfSpan.exists_denominator <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DenominatorOfSpan.exists_denominator <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DenominatorOfSpan.exists_denominator <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.DenominatorOfSpan.exists_denominator ..)
-
 end GlobalTheory.UnitLemma.Sandwich
 
 namespace GlobalTheory.UnitLemma.Sandwich
@@ -137,7 +127,7 @@ theorem integral_sub (hP : B.P.Separable) (a : K.O) (ha : a ∈ IsLocalRing.maxi
     rw [Module.Basis.isUnitSMul_apply, algebraMap_smul]
     exact hdi i
   let bd := (Algebra.traceForm K.E B.A).dualBasis hnd b
-  choose c hc0 hc using fun i => exists_smul_mem B L hL (bd i)
+  choose c hc0 hc using fun i => _root_.GlobalTheory.DenominatorOfSpan.exists_denominator B L hL (bd i)
   choose k hk using fun i => eventually_pow_mul_mem a ha L (bd i) (c i) (hc0 i) (hc i)
   refine ⟨Finset.univ.sup k, fun n hn y hy => ?_⟩
   have hrep := bd.sum_repr y

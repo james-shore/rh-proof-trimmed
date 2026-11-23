@@ -177,7 +177,7 @@ theorem lift_of_ext_one_subsingleton : ∀ (R : Type) [CommRing R] (G : Shv R) (
 
 theorem ext_pos_subsingleton_of_shortExact : ∀ (R : Type) [CommRing R] (G : Shv R) (S : ShortComplex (Shv R)), S.ShortExact → (∀ i : ℤ, 0 < i → Subsingleton (CohomologyClass (sgl G) (res R S.X₂) i)) → (∀ i : ℤ, 0 < i → Subsingleton (CohomologyClass (sgl G) (res R S.X₁) i)) → ∀ i : ℤ, 0 < i → Subsingleton (CohomologyClass (sgl G) (res R S.X₃) i) := by
   intro R _ G S hS h2 h1 i hi
-  obtain ⟨z, hz⟩ := GlobalTheory.T.etaleCohomology_coefficient_longExactSequence R S hS
+  obtain ⟨z, hz⟩ := _root_.GlobalTheory.EtC.coefSeq_exact R S hS
   have key : ∀ x : CohomologyClass (sgl G) (res R S.X₃) i, x = 0 := by
     intro x
     have e := (hz (sgl G) i).2.1

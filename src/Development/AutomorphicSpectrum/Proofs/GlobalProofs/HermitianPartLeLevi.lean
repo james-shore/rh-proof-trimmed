@@ -114,12 +114,12 @@ theorem proj_eq_frameProj (I : Set (Fin r)) : P σ J X Y I = GlobalTheory.Compan
 
 theorem P_sq (hCM : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame σ J X Y) (I : Set (Fin r)) :
     P σ J X Y I * P σ J X Y I = P σ J X Y I := by
-  rw [P, GlobalTheory.CompanionTheory.LeviGen.prj_mul_prj hW.xx hW.yy hW.xy (GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart.Comm.yJx hCM hJ hW),
+  rw [P, GlobalTheory.CompanionTheory.LeviGen.prj_mul_prj hW.xx hW.yy hW.xy (_root_.GlobalTheory.StdPar.yx hCM hJ hW),
     GlobalTheory.CompanionTheory.LeviGen.ind_mul_self]
 
 theorem proj_mul_X (hCM : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame σ J X Y) (I : Set (Fin r)) :
     P σ J X Y I * X = X * diagonal (ind I : Fin r → E) := by
-  rw [P, prj, Matrix.add_mul, GlobalTheory.CompanionTheory.LeviGen.prX_mul_X (GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart.Comm.yJx hCM hJ hW),
+  rw [P, prj, Matrix.add_mul, GlobalTheory.CompanionTheory.LeviGen.prX_mul_X (_root_.GlobalTheory.StdPar.yx hCM hJ hW),
     GlobalTheory.CompanionTheory.LeviGen.prY_mul_X hW.xx, add_zero]
 
 theorem proj_mul_Y (hW : IsWittFrame σ J X Y) (I : Set (Fin r)) :
@@ -230,7 +230,7 @@ theorem comm_Q (hCM : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame σ 
     rw [Matrix.map_add _ (map_add (inclR (F := F) (E := E) (AF F)))]
     simp only [Matrix.map_mul]
     try rfl
-  have h1 := GlobalTheory.CompanionTheory.LeviGen.comm_of_frame (frame_one (GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart.Comm.yJx hCM hJ hW) k)
+  have h1 := GlobalTheory.CompanionTheory.LeviGen.comm_of_frame (frame_one (_root_.GlobalTheory.StdPar.yx hCM hJ hW) k)
     (matHom_unitary g) (matHom_mul_inv g) (matHom_inv_mul g) hB hC
   have h2 := GlobalTheory.CompanionTheory.LeviGen.comm_of_frame (frame_one hW.xy k)
     (matHom_unitary g) (matHom_mul_inv g) (matHom_inv_mul g) hC hB

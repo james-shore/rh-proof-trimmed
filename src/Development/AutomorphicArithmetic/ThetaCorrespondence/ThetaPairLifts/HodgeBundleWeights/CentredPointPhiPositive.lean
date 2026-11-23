@@ -75,7 +75,7 @@ theorem degree_valuation_phi_pos (hP : _root_.GlobalTheory.CovTop.PublishedHodge
   obtain ⟨T, g, ρ, hρ, hinj, hloc, hval⟩ := GlobalTheory.T.exists_completeDVR_reading_centredValuation _ ν h1 h2 h3
   have hz := GlobalTheory.T.traitGenericPoint_mem_compactFlagSpaceOpenPart TF Z y T.Fr ((algebraMap T.V T.Fr).comp g)
     ((IsFractionRing.injective T.V T.Fr).comp hinj)
-  obtain ⟨io, hP'⟩ := GlobalTheory.T.exists_framedPoint_of_compactFlagSpaceOpenPart TF.X T.Fr _ hz
+  obtain ⟨io, hP'⟩ := _root_.GlobalTheory.CompHS.exists_frPt_of_flagOpen TF.X T.Fr _ hz
   letI := io.toAlgebra
   obtain ⟨P, hPz⟩ := hP'
   let w : Sp T.V ⟶ TF.Y.X :=
@@ -83,7 +83,7 @@ theorem degree_valuation_phi_pos (hP : _root_.GlobalTheory.CovTop.PublishedHodge
   have hw : spMap (algebraMap T.V T.Fr) ≫ w = TF.X.ptY P ≫ TF.X.π := by
     rw [hPz]
     simp only [w, spMap, CommRingCat.ofHom_comp, Spec.map_comp, Category.assoc]
-  obtain ⟨T', i, j, r, y', G, m3, Pu, t', m1, m2, hr, hv, hij, hjloc, hpt⟩ := _root_.GlobalTheory.T.exists_uniformizing_integral_frame_extension hP TF T io P w hw
+  obtain ⟨T', i, j, r, y', G, m3, Pu, t', m1, m2, hr, hv, hij, hjloc, hpt⟩ := _root_.GlobalTheory.UnifTrait.exists_extension_integral_frame_uniformizer hP TF T io P w hw
   obtain ⟨φT, hφT⟩ := GlobalTheory.SlopeRec.exists_hasPhi y' G t' m1 m2 Pu
   have hcl : ∀ {A B : Type} [CommRing A] [IsLocalRing A] [CommRing B] [IsLocalRing B] (f : A →+* B),
       (∀ a ∈ IsLocalRing.maximalIdeal A, f a ∈ IsLocalRing.maximalIdeal B) →

@@ -122,7 +122,7 @@ theorem alg_kill {ι : Type} [Fintype ι] (r s : ℕ) (hr : 0 < r) (M : ι → M
       congr 1
       refine Multiset.map_congr rfl fun x _ => ?_
       simp [hπ]
-    have := GlobalTheory.T.product_subset_sum_vanishes (R ⧸ I) r (M τ) _ _ hr hA hB hdeg hAB
+    have := _root_.GlobalTheory.CompanionTheory.SubsetSum.prod_sub_subset_sum_eq_zero_complex (R ⧸ I) r (M τ) _ _ hr hA hB hdeg hAB
     rw [polyOf_coeff r _ (Nat.sub_le r 1)] at this
     rw [Multiset.map_map]
     exact this
@@ -252,7 +252,7 @@ theorem exists_iw (r s : ℕ) (x : GA E (r + s)) : ∃ (v : BlockIx (r + s) r �
     (k : Kinf E (r + s)) (g : GL (Fin (r + s)) (Af E)),
     x = unip v * lev (Ad E) r s p * (infGL E (r + s) (Unitary.toUnits k) * finGL E (r + s) g) := by
   have h : ∑ i, (![r, s] : Fin 2 → ℕ) i = r + s := CapFactor.two_sum _
-  obtain ⟨v, hv, m, k, g, rfl⟩ := GlobalTheory.SpehInfChar.exists_iwasawa E (![r, s]) h x
+  obtain ⟨v, hv, m, k, g, rfl⟩ := _root_.GlobalTheory.IwasawaAdelic.iwasawa E (![r, s]) h x
   obtain ⟨xv, rfl⟩ := CapFactor.exists_unip_of_mem ![r, s] h hv
   refine ⟨xv, (m 0, m 1), k, g, ?_⟩
   have e := CapFactor.lev_eq_leviEmb (![r, s]) h (m 0, m 1)
@@ -313,7 +313,7 @@ theorem orbit_mem (r s : ℕ) (hr : 0 < r) (hs : 0 < s) (φ : Sm E (r + s)) (hφ
       map_add' := fun _ _ => rfl
       map_smul' := fun _ _ => rfl }
   have hmem := hS (Sm E (r + s)) (∑ τ : E →+* ℂ, ∑ i : Fin r, Eop (a := r + s) τ (Fin.castAdd s i) (Fin.castAdd s i)) ev
-    (fun x t => GlobalTheory.T.hasDerivAt_torus_translate E r s x _ t) F (funext fun t => by
+    (fun x t => _root_.GlobalTheory.CompanionTheory.Conc.TorusDeriv.hasDerivAt_aT_right E r s x _ t) F (funext fun t => by
       change (_ : Sm E (r + s)).1 (lev (Ad E) r s p * aT E (r + s) r t) = 0
       rw [GlobalTheory.T.torus_element_levi_embedding E r s t, ← map_mul]
       exact hk F hFN hFc _)
@@ -349,7 +349,7 @@ theorem killU : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsT
     intro g
     simp only [← hG]
     exact PDich.continuous_aT G r g
-  obtain ⟨p, hp, hdeg, hkill, hroot⟩ := GlobalTheory.T.exists_recurrence_polynomial (GA E (r + s)) (aT E (r + s) r) (An.ctn r φ.1) S
+  obtain ⟨p, hp, hdeg, hkill, hroot⟩ := _root_.GlobalTheory.CompanionTheory.KillDeg.killPoly_natDegree_le (GA E (r + s)) (aT E (r + s) r) (An.ctn r φ.1) S
     (fun u v => PExpFin.aT_add r u v) hcont hfin horb
   have hdict := dict_holds E (r + s)
   refine ⟨p, hp, hdeg.trans (hrank.trans hl.le), fun g => ?_, fun z hz => ?_⟩

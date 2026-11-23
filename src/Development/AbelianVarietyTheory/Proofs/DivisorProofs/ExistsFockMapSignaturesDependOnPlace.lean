@@ -66,7 +66,7 @@ theorem exists_isFockMapD : ∀ (F E : Type) [Field F] [NumberField F] [Field E]
       fderiv ℝ f x (fun i => evI F ((d.e u).1 i)) - 2 * Real.pi * Complex.I *
         (Algebra.trace ℝ (mixedEmbedding.mixedSpace F) (∑ i, x i * evI F ((d.e u).2 i)) : ℝ) * f x :=
     fun u hu f x => (hD u hu f).2 x
-  obtain ⟨hadd, hsm, hcom⟩ := GlobalTheory.T.archHeisenbergDerivative_additive_commutator σ JA JB d D hDf
+  obtain ⟨hadd, hsm, hcom⟩ := _root_.GlobalTheory.HeisDerivLaws.heis_deriv_laws σ JA JB d D hDf
   have hex := fun c : ∀ w : InfinitePlace F, Matrix (Ix (P w) (Q w)) (Ix (R w) (S w)) ℂ =>
     GlobalTheory.T.existsUnique_archimedeanMatrix_adeleExtension_of_components σ τ hCM (fun w => A w * c w * (C w)ᵀ)
   choose uOf huOf using fun c => (hex c).exists
@@ -103,14 +103,14 @@ theorem exists_isFockMapD : ∀ (F E : Type) [Field F] [NumberField F] [Field E]
     intro c c'
     ext1 f
     have h1 := hcom _ _ (huOf c).1 (huOf c').1 f
-    rw [GlobalTheory.T.archimedean_trace_symplectic_orthonormal_frames σ τ JA JB a b A C hCM hFr _ _ c c' (huOf c).1 (huOf c').1 (huOf c).2 (huOf c').2] at h1
+    rw [_root_.GlobalTheory.SympFramesD.symp_framesD σ τ JA JB a b A C hCM hFr _ _ c c' (huOf c).1 (huOf c').1 (huOf c).2 (huOf c').2] at h1
     simp only [H, LinearMap.sub_apply, Module.End.mul_apply, ContinuousLinearMap.coe_coe, LinearMap.smul_apply,
       Module.End.one_apply]
     rw [h1]
     congr 1
     push_cast
     ring
-  obtain ⟨f₀, hf₀, hv⟩ := GlobalTheory.T.exists_gaussianVacuum_frames_placeSignatures σ τ JA JB d a b A C D hCM hFr hDf
+  obtain ⟨f₀, hf₀, hv⟩ := _root_.GlobalTheory.HoweD.exists_vacuumD σ τ JA JB d a b A C D hCM hFr hDf
   have hHvac : ∀ w a b, H (Pi.single w (Matrix.single a b 1)) f₀ +
       (lineSign a b * Complex.I) • H (Pi.single w (Matrix.single a b Complex.I)) f₀ = 0 := fun w a b =>
     hv w a b _ _ (huOf _).1 (huOf _).1 (huOf _).2 (huOf _).2

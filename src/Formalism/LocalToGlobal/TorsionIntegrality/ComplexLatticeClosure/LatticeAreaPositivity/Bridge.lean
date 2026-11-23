@@ -82,7 +82,7 @@ theorem is_lattice_smul_holds : IsLatSmul := by
     rfl
   rw [h1, h0]
   apply is_lattice_closure_holds
-  have hpos := F.areaPos L
+  have hpos := _root_.Formalism.L2.Th1.F.areaPos_thm L
   unfold F.area at hpos
   have h2 : ((starRingEnd ℂ) L.ω₁ * L.ω₂).im ≠ 0 := abs_pos.mp hpos
   have h3 : (starRingEnd ℂ) (c • L.ω₁) * (c • L.ω₂) = ((Complex.normSq c : ℝ) : ℂ) * ((starRingEnd ℂ) L.ω₁ * L.ω₂) := by

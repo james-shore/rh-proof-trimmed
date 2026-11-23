@@ -252,13 +252,13 @@ theorem lat_one_std : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F :
       simpa using hF
     | succ n ih =>
       intro i ζ hζ hF
-      have h1 := GlobalTheory.T.wachExpansionLattice_full_descends D HW F Cm l K s LL h T hT _ ζ ⟨_, hζ⟩ hF
+      have h1 := _root_.GlobalTheory.NL.FullDown.full_down D HW F Cm l K s LL h T hT _ ζ ⟨_, hζ⟩ hF
       have e : i + ((n + 1 : ℕ) : Let K) - 1 = i + n := by push_cast; ring
       rw [e] at h1
       exact ih i (ζ ^ l) (hζ.pow (pow_pos (Fact.out : l.Prime).pos _) (pow_succ' l n)) h1
   obtain ⟨ζ, -, -, hζ⟩ := GlobalTheory.exists_isPt_primitiveRoot (HW l) h i
-  have hF := down s i ζ hζ (GlobalTheory.T.wach_expansions_span_full_lattice D HW F Cm l K s LL h T hT _ ζ hζ)
-  have hG := GlobalTheory.T.wachExpansionLattice_graded_of_level_le D HW F Cm l K s LL h T hT i 1 (one_pow _) hF
+  have hF := down s i ζ hζ (_root_.GlobalTheory.NL.FullLevel.full_lat D HW F Cm l K s LL h T hT _ ζ hζ)
+  have hG := _root_.GlobalTheory.NL.GradedLat.graded_of_level_le D HW F Cm l K s LL h T hT i 1 (one_pow _) hF
   haveI : Module.Finite (AA K LL) ↥(W.N T) := Module.Finite.iff_fg.2 (W.N_fg T)
   set_option synthInstance.maxHeartbeats 200000 in
   have hex : ∀ (a : AA K LL) (x : ↥(W.N T)),

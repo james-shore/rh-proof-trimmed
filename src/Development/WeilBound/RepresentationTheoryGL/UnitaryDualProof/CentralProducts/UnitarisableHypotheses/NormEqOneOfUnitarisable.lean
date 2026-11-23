@@ -179,7 +179,7 @@ theorem exists_top (ψ : AddChar k Circle) {N : ℕ} (X : GRep k N) {j₀ : ℕ}
 theorem exists_nd_pos (ψ : AddChar k Circle) (hψc : Continuous ψ) (hψ1 : ψ ≠ 1) {N : ℕ} (X : GRep k N)
     (hN : 0 < N) (hs : IsSmooth X.ρ) (hX : Nontrivial X.V) : ∃ j, 1 ≤ j ∧ ND ψ X j := by
   obtain ⟨m, rfl⟩ : ∃ m, N = m + 1 := ⟨N - 1, by omega⟩
-  obtain ⟨n, hn, hnt⟩ := GlobalTheory.T.exists_nontrivial_derivative k ψ hψc hψ1 m (resM k X.ρ).V (resM k X.ρ).ρ
+  obtain ⟨n, hn, hnt⟩ := _root_.GlobalTheory.CompanionTheory.BZMirDer.NonZero.exists_derivative_nontrivial k ψ hψc hψ1 m (resM k X.ρ).V (resM k X.ρ).ρ
     (fun v => (hs v).preimage continuous_subtype_val) hX
   obtain ⟨j, rfl⟩ := Nat.exists_eq_add_of_le hn
   obtain ⟨E⟩ := GlobalTheory.T.twisted_jacquet_iterated_phi_equiv k ψ n j (resM k X.ρ)

@@ -40,4 +40,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem discrNe' : PI.DiscrNe := DiscrNeWork.discrNe_all

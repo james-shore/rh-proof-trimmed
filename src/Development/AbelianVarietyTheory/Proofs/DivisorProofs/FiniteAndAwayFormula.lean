@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Formalism.SharpRestriction.GlobalSchurBounds.QuadraticLogDerivCongr
 
 @[expose] public section
 
@@ -93,15 +94,11 @@ theorem absNorm_splitAuxiliaryPlace_eq_prime {T : Type} {Lc : LevCh D T} (P : Gl
   rw [Ideal.absNorm_apply, Submodule.cardQuot_apply]
   exact this
 
-theorem one_le_b (s : Formalism.BasicNotions.Scale) : 1 ≤ s.b := by
-  have h : 0 ≤ s.L := Real.rpow_nonneg (by linarith [s.one_lt_alt]) _
-  exact Real.one_le_exp h
-
 variable {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.MainNotions.G.Inst D L} {Gl : Formalism.MainNotions.G.LatInst D} {Kc : Formalism.MainNotions.G.Consts} {Y : DivX D} {cX : ExtraC} {ex : Extra D L hT Gi Gl Kc Y cX} {Csz : ℝ}
 
 theorem sig_le {p : PtAt ex Csz} {CF C : ℝ} (d : FunIn p CF) (Tf : Finset (GlobalTheory.SumSize.PlL D)) (dF : GlobalTheory.SumSize.PlL D → ℤ) (hC : CF ≤ C) :
     sig d.G ≤ (d.data (fun _ => 1) Tf dF).Sig0 C p.Z.b := by
-  have hb : 1 ≤ p.Z.b := one_le_b L.sc
+  have hb : 1 ≤ p.Z.b := _root_.Formalism.MainNotions.Lnk.one_le_b L.sc
   refine le_trans (le_of_eq ?_) (GlobalTheory.FinitePlacesProbe.sigma_mono_in_constant _ hC hb)
   show _ = ∑ q ∈ d.G.pl.S0, ((d.O.ee CF p.Z.b q : ℕ) : ℝ) * Real.log (Ideal.absNorm q.asIdeal)
   refine Finset.sum_congr rfl fun v _ => ?_
@@ -135,11 +132,11 @@ theorem sum_clause {p : PtAt ex Csz} {CF C : ℝ} (d : FunIn p CF) (hC0 : 0 ≤ 
     (hsum : ∀ s : Finset (GlobalTheory.SumSize.PlL D), ∑ w ∈ s, lw w * dl w ≤ D.R.m * bOne d.G C p.Z.b / 2)
     (Tf : Finset (GlobalTheory.SumSize.PlL D)) (dF : GlobalTheory.SumSize.PlL D → ℤ) (hF : ∀ w, dF w = ⌊dl w⌋) :
     2 * ∑ w ∈ Tf, lw w * (dF w : ℝ) ≤ (d.data (fun _ => 1) Tf dF).bFP C p.Z.b := by
-  have hb : 1 ≤ p.Z.b := one_le_b L.sc
+  have hb : 1 ≤ p.Z.b := _root_.Formalism.MainNotions.Lnk.one_le_b L.sc
   have hb0 : 0 ≤ p.Z.b := by linarith
   have hL : 0 ≤ Real.log p.Z.b := Real.log_nonneg hb
   have h1 : ∑ w ∈ Tf, lw w * (dF w : ℝ) ≤ ∑ w ∈ Tf, lw w * dl w := by
-    refine Finset.sum_le_sum fun w _ => mul_le_mul_of_nonneg_left ?_ (GlobalTheory.FinitePlacesCompare.lw_nonneg w)
+    refine Finset.sum_le_sum fun w _ => mul_le_mul_of_nonneg_left ?_ (_root_.Formalism.DivisionValues.lw_nonneg' w)
     rw [hF]
     exact Int.floor_le _
   have h2 := hsum Tf
@@ -181,7 +178,3 @@ end
 end
 
 end LeafFixedPointPairing
-section
-open GlobalTheory.BigTop GlobalTheory.BigTop.Fun GlobalTheory.SumSize
-
-end

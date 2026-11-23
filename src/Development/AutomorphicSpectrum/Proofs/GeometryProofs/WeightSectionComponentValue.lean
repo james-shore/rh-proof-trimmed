@@ -225,8 +225,8 @@ theorem approx_main : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [Is
     exact comp_eq_of_mem (hLies s₀) (liesOn_chart C hm hb s₀)
   subst hZ
   haveI := C.sm
-  obtain ⟨g₀, hg₀, hReg⟩ := GlobalTheory.T.frame_chart_nonzero_denominator E H Dw l Xo c hL h C
-  obtain ⟨F, n, hNear⟩ := GlobalTheory.T.integral_frame_subalgebra_relay hG E H Dw l Xo c hCL.intAll Y la T io e₀ ho hy y C.R C.y ψ z₀ t₀ hm hb
+  obtain ⟨g₀, hg₀, hReg⟩ := _root_.ModelDimension.regular_chart_nonzero_denominator E H Dw l Xo c hL h C
+  obtain ⟨F, n, hNear⟩ := _root_.ModelDimension.integral_frame_over_cdvr hG E H Dw l Xo c hCL.intAll Y la T io e₀ ho hy y C.R C.y ψ z₀ t₀ hm hb
   let fS : C.R := evR Xo c f C.y
   have hz₀ : evR Xo c f z₀ = ψ fS := GlobalTheory.Reg.PChartModel.evR_map hL hf.1 ψ hm
   have hy₀ : evI y f = ((∏ i, t₀ i ^ GlobalTheory.AllWt.exOf Dw u 0 i : T.Frˣ) : T.Fr) * ψ fS := by

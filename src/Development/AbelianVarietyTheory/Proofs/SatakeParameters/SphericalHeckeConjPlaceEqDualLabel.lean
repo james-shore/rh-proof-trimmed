@@ -59,12 +59,6 @@ namespace GlobalTheory.SphConj
 
 variable {D : D7}
 
-theorem cA_cA' (z : Formalism.L2.Theta.AE D) : cA D (cA D z) = z := by
-  induction z using TensorProduct.induction_on with
-  | zero => rw [(cA D).map_zero, (cA D).map_zero]
-  | add x y hx hy => rw [map_add, map_add, hx, hy]
-  | tmul a x => exact congrArg (fun t => a ⊗ₜ[D.host.F] t) (star_star x)
-
 theorem cO_eq (x : 𝓞 D.host.E) : Formalism.DivisionValues.cO D.host.E x = GlobalTheory.IdemSupport.cO D x := RingOfIntegers.ext rfl
 
 theorem conjPl_eq_cP (P : HeightOneSpectrum (𝓞 D.host.E)) : conjPl P = GlobalTheory.IdemSupport.cP P := by
@@ -104,7 +98,7 @@ theorem conj_cases (V : HSp D) {Q : HeightOneSpectrum (𝓞 D.host.E)} {e f : Fo
   rcases h with ⟨hi, rfl⟩ | ⟨rfl, h2, h3⟩
   · have hc := (GlobalTheory.IdemSupport.supported_group_and_prime_idempotents V).2.2.2 Q (conjPl Q) e hi
       (isConjPl_conjPl Q)
-    exact Or.inl ⟨hi, Or.inl ⟨hc, by rw [cA_cA', add_comm]⟩⟩
+    exact Or.inl ⟨hi, Or.inl ⟨hc, by rw [_root_.Formalism.L2.Theta.cA_cA, add_comm]⟩⟩
   · have h' : IsPrimeIdem Q f f := Or.inr ⟨rfl, h2, h3⟩
     have hc := ((GlobalTheory.IdemSupport.supported_group_and_prime_idempotents V).2.2.1 Q f f h').2.1
     have ht : GlobalTheory.IdemSupport.Comparison₂ (GlobalTheory.IdemSupport.cP Q) f := by
@@ -134,7 +128,7 @@ theorem sphOp_conj (V : HSp D) (P : HeightOneSpectrum (𝓞 D.host.E)) (d : List
   have hS : OffS D ∅ P := fun v hv => absurd hv (Finset.notMem_empty v)
   rcases conj_cases V hef with ⟨hi, h'⟩ | ⟨hc, rfl⟩
   · rw [conjPl_conjPl] at h'
-    have hD := divAt_conj V (conjPl P) e ϖ d α hi hϖ hϖ2 hdiv
+    have hD := _root_.GlobalTheory.DivConj.divAt_conj V (conjPl P) e ϖ d α hi hϖ hϖ2 hdiv
     rw [← GlobalTheory.IdemSupport.cO_coe] at hD
     exact ⟨cA D e, f, GlobalTheory.IdemSupport.cO D ϖ, α, hS, h', (mem_conjPl P ϖ).1 hϖ, not_mem_sq P ϖ hϖ2,
       GlobalTheory.SphLabelOps.dualLab_pairwise hd, hJ, hχ, hα, hD, hR, hrep⟩

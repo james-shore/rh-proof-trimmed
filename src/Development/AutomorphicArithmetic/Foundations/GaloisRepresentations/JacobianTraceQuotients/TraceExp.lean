@@ -52,13 +52,6 @@ open UpperTheory.ConvolutionTheory UpperTheory.ConvolutionTheory.C UpperTheory.C
 open UpperTheory.Gal.LocD UpperTheory.Gal.InertialTypesAlt.G UpperTheory.Gal.Join
 open scoped Classical
 
-private theorem lift_eigen {T V : Type} [CommGroup T] [AddCommGroup V] [Module ℂ V]
-    (ρ : Representation ℂ T V) {ψ μ : T →* ℂˣ} {v y : V} (hψ : ∀ t, ρ t v = (ψ t : ℂ) • v)
-    (hne : μ ≠ ψ) (hy : y ∉ Submodule.span ℂ {v})
-    (hq : ∀ t, ρ t y - (μ t : ℂ) • y ∈ Submodule.span ℂ {v}) (hv : v ≠ 0) :
-    ∃ z, z ≠ 0 ∧ ∀ t, ρ t z = (μ t : ℂ) • z :=
-  _root_.UpperTheory.Reformulated.B.R4.lift_eigen ρ hψ hne hy hq hv
-
 private theorem exists_eigenchars {T : Type} [CommGroup T] (d : ℕ) : ∀ (V : Type) [AddCommGroup V] [Module ℂ V]
     [FiniteDimensional ℂ V] (ρ : Representation ℂ T V), Module.finrank ℂ V = d →
     ∃ E : Multiset (T →* ℂˣ), (∀ t, LinearMap.trace ℂ V (ρ t) = (E.map fun χ => (χ t : ℂ)).sum) ∧
@@ -90,7 +83,7 @@ private theorem exists_eigenchars {T : Type} [CommGroup T] (d : ℕ) : ∀ (V : 
       · exact ⟨v, hv, hne ▸ hψ⟩
       obtain ⟨q, hq0, hq⟩ := (h2 μ).1 ((Multiset.mem_cons.1 hμ).resolve_left hne)
       obtain ⟨y, rfl⟩ := Submodule.Quotient.mk_surjective _ q
-      refine lift_eigen ρ hψ hne (fun hy => hq0 ((Submodule.Quotient.mk_eq_zero _).2 hy)) (fun t => ?_) hv
+      refine _root_.UpperTheory.Reformulated.B.R4.lift_eigen ρ hψ hne (fun hy => hq0 ((Submodule.Quotient.mk_eq_zero _).2 hy)) (fun t => ?_) hv
       refine (Submodule.Quotient.eq _).1 ?_
       exact hq t
     · rintro ⟨y, hy, hμ⟩

@@ -42,7 +42,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PositivityTheory.jumpWindows
 
-theorem almost_everywhere_spherical_of_G1 : G1 → AlmostEverywhereSpherical :=
-  GlobalTheory.CompanionTheory.StrongMultOne.spherical_almost_everywhere_of_bounded
-
 end PositivityTheory.jumpWindows

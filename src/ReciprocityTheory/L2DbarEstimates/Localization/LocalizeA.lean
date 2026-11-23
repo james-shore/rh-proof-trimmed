@@ -48,6 +48,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 public import Mathlib.Analysis.Calculus.ContDiff.Operations
+import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.ChartSymmEventuallyEq
 
 @[expose] public section
 
@@ -120,50 +121,6 @@ theorem loc_ck_sum {M : Type*} [TopologicalSpace M] (n : ℕ) (z : M → V n) (k
   intro e he
   exact (ContDiffOn.sum fun i _ => hf i e he :
     ContDiffOn ℝ _ (fun y => ∑ i ∈ s, (f i ∘ e.symm) y) e.target)
-
-theorem loc_d_sum {M : Type*} [TopologicalSpace M] (n : ℕ) (z : M → V n) {ι : Type*}
-    (s : Finset ι) (f : ι → M → ℂ) (hf : ∀ i, Ck n z 1 (f i)) (j : Fin n) (x : M) :
-    d n z j (fun y => ∑ i ∈ s, f i y) x = ∑ i ∈ s, d n z j (f i) x := by
-  by_cases hc : ∃ e : OpenPartialHomeomorph M (V n), IsChart n z e ∧ x ∈ e.source
-  · simp only [d, dif_pos hc]
-    set e := Classical.choose hc with he_def
-    have he : IsChart n z e ∧ x ∈ e.source := Classical.choose_spec hc
-    have hdiff : ∀ i ∈ s, DifferentiableAt ℝ (f i ∘ e.symm) (z x) := by
-      intro i _
-      rw [he.1 he.2]
-      exact ((hf i e he.1).contDiffAt (e.open_target.mem_nhds (e.map_source he.2))).differentiableAt
-        (by first | simp | norm_num | exact le_rfl)
-    have hsum : ((fun y => ∑ i ∈ s, f i y) ∘ e.symm) = fun y => ∑ i ∈ s, (f i ∘ e.symm) y := rfl
-    unfold wd
-    (first | rw [hsum, fderiv_fun_sum hdiff] | rw [hsum, ← Finset.sum_fn, fderiv_sum hdiff])
-    have key : ∀ L : ι → (V n →L[ℝ] ℂ), ((∑ i ∈ s, L i) (bas n j) - Complex.I * (∑ i ∈ s, L i) (Complex.I • bas n j)) / 2 =
-        ∑ i ∈ s, (L i (bas n j) - Complex.I * L i (Complex.I • bas n j)) / 2 := by
-      intro L
-      simp only [ContinuousLinearMap.sum_apply, Finset.mul_sum, ← Finset.sum_sub_distrib, Finset.sum_div]
-    exact key _
-  · simp only [d, dif_neg hc, Finset.sum_const_zero]
-
-theorem loc_db_sum {M : Type*} [TopologicalSpace M] (n : ℕ) (z : M → V n) {ι : Type*}
-    (s : Finset ι) (f : ι → M → ℂ) (hf : ∀ i, Ck n z 1 (f i)) (j : Fin n) (x : M) :
-    db n z j (fun y => ∑ i ∈ s, f i y) x = ∑ i ∈ s, db n z j (f i) x := by
-  by_cases hc : ∃ e : OpenPartialHomeomorph M (V n), IsChart n z e ∧ x ∈ e.source
-  · simp only [db, dif_pos hc]
-    set e := Classical.choose hc with he_def
-    have he : IsChart n z e ∧ x ∈ e.source := Classical.choose_spec hc
-    have hdiff : ∀ i ∈ s, DifferentiableAt ℝ (f i ∘ e.symm) (z x) := by
-      intro i _
-      rw [he.1 he.2]
-      exact ((hf i e he.1).contDiffAt (e.open_target.mem_nhds (e.map_source he.2))).differentiableAt
-        (by first | simp | norm_num | exact le_rfl)
-    have hsum : ((fun y => ∑ i ∈ s, f i y) ∘ e.symm) = fun y => ∑ i ∈ s, (f i ∘ e.symm) y := rfl
-    unfold wdb
-    (first | rw [hsum, fderiv_fun_sum hdiff] | rw [hsum, ← Finset.sum_fn, fderiv_sum hdiff])
-    have key : ∀ L : ι → (V n →L[ℝ] ℂ), ((∑ i ∈ s, L i) (bas n j) + Complex.I * (∑ i ∈ s, L i) (Complex.I • bas n j)) / 2 =
-        ∑ i ∈ s, (L i (bas n j) + Complex.I * L i (Complex.I • bas n j)) / 2 := by
-      intro L
-      simp only [ContinuousLinearMap.sum_apply, Finset.mul_sum, ← Finset.sum_add_distrib, Finset.sum_div]
-    exact key _
-  · simp only [db, dif_neg hc, Finset.sum_const_zero]
 
 theorem loc_norm_sum_sq {E : Type*} [SeminormedAddCommGroup E] {N : ℕ} (a : Fin N → E) :
     ‖∑ i, a i‖ ^ 2 ≤ N * ∑ i, ‖a i‖ ^ 2 := by
@@ -350,22 +307,6 @@ private theorem continuous_db_apply_of_smooth {M : Type*} [TopologicalSpace M] (
   | exact hc.congr_of_eventuallyEq hEv.symm
   | exact (continuousAt_congr hEv).mp hc
 
-private theorem continuous_of_smooth_localization {M : Type*} [TopologicalSpace M] (n : ℕ) (z : M → V n)
-    (hz : IsLocalHomeomorph z) (g : M → ℂ) (hg : Smooth n z g) : Continuous g := by
-  refine continuous_iff_continuousAt.mpr fun x => ?_
-  obtain ⟨e, hx, hze⟩ := hz x
-  have he : IsChart n z e := fun y _ => by rw [hze]
-  have hW : ContinuousOn (fun y => (g ∘ e.symm) (e y)) e.source :=
-    (hg e he).continuousOn.comp e.continuousOn (fun y hy => e.map_source hy)
-  have hEv : (fun y => (g ∘ e.symm) (e y)) =ᶠ[𝓝 x] g := by
-    filter_upwards [e.open_source.mem_nhds hx] with y hy
-    simp only [Function.comp_apply, e.left_inv hy]
-  have hc := hW.continuousAt (e.open_source.mem_nhds hx)
-  first
-  | exact hc.congr hEv
-  | exact hc.congr_of_eventuallyEq hEv.symm
-  | exact (continuousAt_congr hEv).mp hc
-
 theorem loc_piece {M : Type*} [TopologicalSpace M] [T2Space M] [SecondCountableTopology M]
     [MeasurableSpace M] [BorelSpace M] (n : ℕ) (z : M → V n) (hz : IsLocalHomeomorph z)
     (hMD : MultDivStatement n M) (hMS : MultSStatement n M) (η : M → ℝ) (hη : SmoothR n z η)
@@ -381,7 +322,7 @@ theorem loc_piece {M : Type*} [TopologicalSpace M] [T2Space M] [SecondCountableT
       tsupport (locG η G) ⊆ T ∧ tsupport (locD n z η G D) ⊆ T ∧
       tsupport (locS n z η G S) ⊆ T := by
   have hsm : Smooth n z (fun y => (η y : ℂ)) := hη
-  have hCC : Continuous (fun y => (η y : ℂ)) := continuous_of_smooth_localization n z hz _ hsm
+  have hCC : Continuous (fun y => (η y : ℂ)) := _root_.ReciprocityTheory.L2DbarEstimates.Smooth.continuous n z hz _ hsm
   have hz0 : ∀ x, x ∉ tsupport η → η x = 0 := fun x hx => by
     by_contra hne
     exact hx (subset_tsupport η hne)

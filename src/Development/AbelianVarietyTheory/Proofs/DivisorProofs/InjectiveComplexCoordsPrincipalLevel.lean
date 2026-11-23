@@ -59,6 +59,6 @@ theorem iC_principal_injective : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {
     GlobalTheory.TwistPlacesObj.isForm_tw _ R.toRealDat.emb0 (GlobalTheory.QPosCompare.isForm_jX hC.base.models t)
   exact GlobalTheory.TwistPlacesObj.lin_injective ((R.toCx3 F).Θ t) hj
     ((A3.A.fam.R t).toF (A3.A.fam.lvl ⊥ 1) ((R.toCx3 F).zs.Z t))
-    (BlockDat.toF_injective _ _ _) (fun y => GlobalTheory.TwistPlacesObj.toF_mem _ _ _ y)
+    (BlockDat.toF_injective _ _ _) (fun y => _root_.Formalism.IndefR.Cx.BlockGood.toF_mem _ _ _ y)
 
 end GlobalTheory.PrimIn

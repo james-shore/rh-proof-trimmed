@@ -138,7 +138,7 @@ theorem main : ∀ (D : D7) (L : SizeData₂ D) (P : ParameterChoice' D L) (HW :
   have hg : Good (D.nbr i w hw).Kw 1 C.LL := hCg.good_one (by omega) (le_trans (le_inf le_rfl hur) le_sup_left)
   obtain ⟨Wd, hb, hB⟩ := hWd C hg
   have hrow := GlobalTheory.Survey.InertPlacesGoodSet.rowL_of_wordsB hA h11 hb hB
-  refine GlobalTheory.T.rowBound_at_place_of_latticeColengthBound D i r ρ π w hw C _ _ hrow ?_
+  refine _root_.GlobalTheory.RowAtOfColLen.main D i r ρ π w hw C _ _ hrow ?_
   have hn : ((nLet i w hw : ℕ) : ℝ) = (Formalism.MainNotions.TwistedPlaces.nLam D w : ℝ) := by
     exact_mod_cast nLet_eq_nLam hb
   have hl' : (11 : ℝ) ≤ D.nd.l i := by exact_mod_cast h11

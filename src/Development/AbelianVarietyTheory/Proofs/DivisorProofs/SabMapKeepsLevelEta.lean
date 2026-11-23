@@ -50,10 +50,6 @@ namespace GlobalTheory.UCanon
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 
-theorem toUnit_left_eq' {X : Scheme.{0}} (T : Over X) : (toUnit T).left = T.hom := by
-  have := Over.w (toUnit T)
-  simpa using this
-
 theorem grpPullback_pow_succ {S S' : Scheme.{0}} {G' : Over S'} [GrpObj G'] {G : Over S} [GrpObj G] {f : S' ⟶ S}
     {φ : G'.left ⟶ G.left} (hφ : IsGrpPullback G' G f φ) {T : Over S'} (x : T ⟶ G')
     (x₀ : Over.mk (T.hom ≫ f) ⟶ G) (hx : x₀.left = x.left ≫ φ) (n : ℕ) :
@@ -131,12 +127,12 @@ theorem sabMap_keeps_eta : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E
     rw [hn] at p p'
     have key := grpPullback_pow_succ m.cart (T := Over.mk (spMap κ)) (toUnit _ ≫ o'.etaA a')
       (toUnit (Over.mk (spMap κ ≫ spMap f)) ≫ o.etaA a') (by
-        rw [Over.comp_left, Over.comp_left, toUnit_left_eq', toUnit_left_eq']
+        rw [Over.comp_left, Over.comp_left, _root_.GlobalTheory.ObjPull.toUnit_left', _root_.GlobalTheory.ObjPull.toUnit_left']
         simp only [Over.mk_hom, Category.assoc]
         rw [hA a']) n
     have q' := congrArg Over.Hom.left p'
     have q := congrArg Over.Hom.left p
-    rw [Over.comp_left, toUnit_left_eq'] at q q'
+    rw [Over.comp_left, _root_.GlobalTheory.ObjPull.toUnit_left'] at q q'
     simp only [Over.mk_hom] at q q'
     rw [← Category.assoc, q', ← key, ← q, Category.assoc]
 

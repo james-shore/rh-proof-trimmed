@@ -63,7 +63,7 @@ namespace FunctorialResolution.EmbeddedResolution
 
 namespace OrderReductionCorrectness
 
-theorem blowupLiftEqOnControlledTransform : BlowupLiftEqOnControlledTransform.{u} := EmbeddedResolution.blowupLiftEqOnControlledTransform
+alias blowupLiftEqOnControlledTransform := _root_.FunctorialResolution.EmbeddedResolution.blowupLiftEqOnControlledTransform
 
 theorem le_of_support_subset_of_smooth : ∀ (k : Type u) [Field k] (X : Scheme.{u})
     (p : X ⟶ Spec (CommRingCat.of k)) (Z : X.IdealSheafData),

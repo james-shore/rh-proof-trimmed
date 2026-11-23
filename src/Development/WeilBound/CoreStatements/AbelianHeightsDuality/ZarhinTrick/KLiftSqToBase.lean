@@ -73,23 +73,10 @@ theorem kToBase_liftPt (G : Over S) {Y : Over (Sp Ω)} (v : Over.mk (Y.hom ≫ s
     toBase G s (kLiftPt s G v) = v :=
   Over.OverMorphism.ext (pullback.lift_fst _ _ _)
 
-theorem kToBase_inj (G : Over S) {Y : Over (Sp Ω)} {a b : Y ⟶ (Over.pullback s).obj G}
-    (h : toBase G s a = toBase G s b) : a = b := by
-  ext1
-  apply pullback.hom_ext
-  · simpa [toBase] using congrArg Over.Hom.left h
-  · exact (Over.w a).trans (Over.w b).symm
-
 theorem kToBase_comp (G : Over S) {Y Y' : Over (Sp Ω)} (h : Y' ⟶ Y) (a : Y ⟶ (Over.pullback s).obj G) :
     toBase G s (h ≫ a) = (Over.homMk h.left (by simp only [Over.mk_hom]; rw [← Category.assoc, Over.w h]) :
       Over.mk (Y'.hom ≫ s) ⟶ Over.mk (Y.hom ≫ s)) ≫ toBase G s a :=
   Over.OverMorphism.ext (Category.assoc _ _ _)
-
-theorem kToBase_one (G : Over S) [GrpObj G] {Y : Over (Sp Ω)} :
-    toBase G s (1 : Y ⟶ (Over.pullback s).obj G) = 1 := by
-  apply Over.OverMorphism.ext
-  simp only [toBase, Hom.one_def]
-  simp
 
 theorem kLift_sqToBase (G : Over S) {Y : Over (Sp Ω)} (a u : Y ⟶ (Over.pullback s).obj G) :
     (lift a u).left ≫ sqToBase G s = (lift (toBase G s a) (toBase G s u)).left := by
@@ -119,7 +106,7 @@ theorem kLam_zb_pt (hA : IsAbelianScheme A) (hB : IsAbelianScheme B) {P : LB (A 
   rw [pull_lam, lift_fst, lift_snd] at k2
   rw [← k2, ← pull_comp, kLift_sqToBase]
   unfold zc
-  rw [zcPair_pull, lift_fst, lift_snd]
+  rw [_root_.PositivityTheory.PrwZar.pull_zcPair, lift_fst, lift_snd]
 
 theorem kEvc_sym (hA : IsAbelianScheme A) {P : LB (A ⊗ B).left} (hP : P.IsLB) (l : A ⟶ B) (s : Sp Ω ⟶ S)
     (L : LB ((Over.pullback s).obj A).left) (hL : L.IsLB)
@@ -187,8 +174,8 @@ theorem kTriv_zb' (hA : IsAbelianScheme A) (hB : IsAbelianScheme B) {P : LB (A �
     let Z : Over (Sp Ω) := Over.mk (V.ι ≫ t)
     let j : Z ⟶ Over.mk t := Over.homMk V.ι rfl
     have hxV : j ≫ x = 1 := by
-      apply kToBase_inj s
-      rw [kToBase_one]
+      apply _root_.PositivityTheory.PrwZar.toBase_injective s
+      rw [_root_.PositivityTheory.PrwZar.toBase_one]
       refine zcPair_eq_one hA hB hD hD' l mu α m hm h₁ h₂ hα hα' (toBase _ s (j ≫ x)) ?_ ?_
       · intro Y w a b
         let Z' : Over (Sp Ω) := Over.mk (w.left ≫ Z.hom)
@@ -220,7 +207,7 @@ theorem kTriv_zb' (hA : IsAbelianScheme A) (hB : IsAbelianScheme B) {P : LB (A �
             = zcPair hD.isLB l mu α (ε.hom ≫ (ε.inv ≫ w ≫ toBase _ s (j ≫ x))) (ε.hom ≫ (ε.inv ≫ v)) := by
               simp
           _ = pull ε.hom.left (zcPair hD.isLB l mu α (ε.inv ≫ w ≫ toBase _ s (j ≫ x)) (ε.inv ≫ v)) :=
-              (zcPair_pull _ _ _ _ _ _ _).symm
+              (_root_.PositivityTheory.PrwZar.pull_zcPair _ _ _ _ _ _ _).symm
           _ = 0 := by
             rw [← Category.assoc, hk, ← kToBase_comp, ← kToBase_liftPt s _ (ε.inv ≫ v),
               ← kLam_zb_pt hA hB hD hD' l mu α s L hL e, ← Category.assoc,

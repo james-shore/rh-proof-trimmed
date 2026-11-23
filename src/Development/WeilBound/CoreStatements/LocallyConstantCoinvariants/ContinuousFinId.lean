@@ -70,7 +70,7 @@ theorem exists_level {w : HeightOneSpectrum (𝓞 E)} (f : (w.adicCompletion E)�
   obtain ⟨γ, hγ⟩ := Valued.mem_nhds.mp ht
   have hγ0 : MonoidWithZeroHom.ValueGroup₀.embedding γ.1 ≠ 0 := by simp
   refine ⟨(1 - WithZero.log (MonoidWithZeroHom.ValueGroup₀.embedding γ.1)).toNat, fun x hx hx1 => ?_⟩
-  refine Units.ext (GlobalTheory.CharConductor.eq_one_of_pow_near_one fun m => ?_)
+  refine Units.ext (_root_.GlobalTheory.IterationConvergence.main fun m => ?_)
   rw [← Units.val_pow_eq_pow_val, ← map_pow]
   apply hsub
   apply hγ

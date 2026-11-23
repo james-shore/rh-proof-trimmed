@@ -73,7 +73,6 @@ theorem exists_extension {H M F : Type} [CommGroup H] [CommGroup M] [Field F] [I
   have := DFunLike.congr_fun hh (Additive.ofMul x)
   exact this
 
-theorem target : ∀ {H M F : Type} [inst : CommGroup H] [inst_1 : CommGroup M] [inst_2 : Field F] [IsAlgClosed F] (Φ : H →* M), Function.Injective (⇑Φ : H → M) → ∀ (χ : H →* Fˣ), ∃ (κ : M →* Fˣ), ∀ (x : H), (κ : M → Fˣ) ((Φ : H → M) x) = (χ : H → Fˣ) x :=
-  fun Φ hΦ χ => exists_extension Φ hΦ χ
+alias target := _root_.GlobalTheory.DivisibleUnits.exists_extension
 
 end GlobalTheory.DivisibleUnits

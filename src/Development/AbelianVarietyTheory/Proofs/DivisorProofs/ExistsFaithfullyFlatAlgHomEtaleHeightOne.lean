@@ -70,11 +70,11 @@ theorem exists_faithfullyFlat_algHom : ∀ (A R C : Type) [CommRing A] [IsDomain
     rw [ht0] at hu
     exact not_isUnit_zero hu
   obtain ⟨g, -, hg⟩ := exists_integral_point A R C ρ hint s hs
-  choose f hf using GlobalTheory.T.exists_algHom_quotient_pow_lifting_point A R C ρ hρ t hker ht hEt g hg
+  choose f hf using _root_.GlobalTheory.GoodEtaleSection.exists_algHom_quot_pow A R C ρ hρ t hker ht hEt g hg
   have compat : ∀ {m n : ℕ} (hle : m ≤ n),
       (Ideal.Quotient.factorₐ R (Ideal.pow_le_pow_right (I := Ideal.span {t}) hle)).comp (f n) = f m := by
     intro m n hle
-    refine GlobalTheory.T.algHom_quotient_span_pow_eq_of_etaleLow A R C ρ hρ t hker ht hEt m _ _ fun c => ?_
+    refine _root_.GlobalTheory.GoodEtaleSection.algHom_quot_eq_of_etaleLow A R C ρ hρ t hker ht hEt m _ _ fun c => ?_
     set φ := Ideal.Quotient.factorₐ R (Ideal.pow_le_pow_right (I := Ideal.span {t}) hle)
     have h1 := hf n c
     have h2 := hf m c

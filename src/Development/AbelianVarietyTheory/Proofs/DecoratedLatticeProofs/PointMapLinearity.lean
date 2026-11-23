@@ -294,7 +294,7 @@ theorem uniform_glue : ∀ (D : D7) (V W : HSp D) (S S' : D.what₂.Tau → SPar
       ∀ x, IsThetaFunO ψ V W x → (∀ τ, vac τ x) → ∀ τ ∉ A, vac τ (GlobalTheory.Chain.ptOf ψ θ M M' x (GlobalTheory.Chain.RealIt.glue Pt)) := by
     intro χS χT ω hW A
     have hψ := hW.std
-    have comm := GlobalTheory.T.fockOperators_distinct_real_places_commute_theta D V W S S' M M' θ ψ χS χT ω hθ hW
+    have comm := _root_.GlobalTheory.TwoPlaceComm.twoPlace_comm D V W S S' M M' θ ψ χS χT ω hθ hW
     dsimp only at comm
     induction A using Finset.induction_on with
     | empty =>
@@ -348,7 +348,7 @@ theorem uniform_glue : ∀ (D : D7) (V W : HSp D) (S S' : D.what₂.Tau → SPar
       obtain ⟨K, hK⟩ := uniform_place D V W S S' M M' θ ψ hθ m X hX τ (aT τ) _ hu (Pt τ) (Qt τ)
       refine ⟨K * C', fun χS χT ω hW hE x y hx vx hy vy => ?_⟩
       have hψ := hW.std
-      have comm := GlobalTheory.T.fockOperators_distinct_real_places_commute_theta D V W S S' M M' θ ψ χS χT ω hθ hW
+      have comm := _root_.GlobalTheory.TwoPlaceComm.twoPlace_comm D V W S S' M M' θ ψ χS χT ω hθ hW
       dsimp only at comm
       have pmov : ∀ h ∈ GinfC V, (∀ τ' ∉ A, Formalism.MainNotions.StandardLattice.infMat D.sp.cm.sig V.gram (θ τ') h = 1) →
           ∀ F, IsThetaFunO ψ V W F → (vac τ F → vac τ (ω (h, 1) F)) ∧ ∀ Q, ω (h, 1) (pt τ F Q) = pt τ (ω (h, 1) F) Q := by

@@ -61,16 +61,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.TwistNZ
 
-theorem mem_nz_iff {Y : Scheme.{0}} {H : LB Y} (s : LB.Sec H) (k : H.ι)
-    {x : Y} (hk : x ∈ H.U k) : x ∈ nonzeroLocus s ↔ x ∈ Y.basicOpen (s.f k) := by
-  refine ⟨fun hx => ?_, fun hx => TopologicalSpace.Opens.mem_iSup.2 ⟨k, hx⟩⟩
-  obtain ⟨l, hl⟩ := TopologicalSpace.Opens.mem_iSup.1 hx
-  have e := congrArg Y.basicOpen (s.compat k l)
-  rw [Scheme.basicOpen_mul, Y.basicOpen_of_isUnit (H.g k l).isUnit] at e
-  erw [Scheme.basicOpen_res, Scheme.basicOpen_res] at e
-  have hx' : x ∈ H.U k ⊓ H.U l := ⟨hk, Y.basicOpen_le _ hl⟩
-  exact (e.ge ⟨hx', hx', hl⟩).2
-
 theorem twistPull_nonzero : ∀ {S : Scheme.{0}} {A : Over S} [GrpObj A] {L : LB A.left}, L.IsLB → ∀ {T : Over S} (ψ : T ⊗ A ⟶ T ⊗ A) (m : T ⊗ A ⟶ A) (hm : ψ ≫ snd T A = m) (a b : ℤ) (α : LB.Gen (LB.LinComb L (K := Fin 2) ![(snd T A).left, m.left] ![a, -b])) (s : LB.Sec (LPow A L b T)) (s' : LB.Sec (LPow A L a T)), IsTwistPull A L ψ m hm a b α s s' → ∀ p : (T ⊗ A).left, ψ.left.base p ∈ nonzeroLocus s → p ∈ nonzeroLocus s' := by
   intro S A _ L hL T ψ m hm a b α s s' H p hp
   have hcov : ∀ y : A.left, ∃ i, y ∈ L.U i := fun y => by
@@ -93,7 +83,7 @@ theorem twistPull_nonzero : ∀ {S : Scheme.{0}} {A : Over S} [GrpObj A] {L : LB
     rw [Scheme.Hom.comp_base, TopCat.comp_app] at this
     rw [this]; exact h1
   have h2 : ψ.left.base p ∈ (T ⊗ A).left.basicOpen (s.f (fun _ => j 1)) :=
-    (mem_nz_iff s _ hψ).1 hp
+    (_root_.GlobalTheory.Cartier.mem_nonzeroLocus_iff s _ hψ).1 hp
   have h3 : p ∈ (T ⊗ A).left.basicOpen ((ψ.left.app _).hom (s.f (fun _ => j 1))) := by
     rw [← Scheme.preimage_basicOpen]; exact h2
   have e := congrArg (T ⊗ A).left.basicOpen (H j)

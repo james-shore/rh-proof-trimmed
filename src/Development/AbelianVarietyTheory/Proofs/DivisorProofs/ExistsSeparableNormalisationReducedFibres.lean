@@ -210,13 +210,13 @@ theorem exists_separable_normalisation_reduced_fibres : ∀ (k A : Type) [Field 
   have key : ∃ y : A, (Polynomial.aeval (R := k) y).Finite ∧
       D k (FractionRing A) (algebraMap A (FractionRing A) y) ≠ 0 := by
     by_cases hD : D k (FractionRing A) (algebraMap A (FractionRing A) t) = 0
-    · obtain ⟨M, hM⟩ := GlobalTheory.T.noether_normalization_finite_aeval_pow_add k A t a ht
+    · obtain ⟨M, hM⟩ := _root_.GlobalTheory.noether_trick k A t a ht
       refine ⟨t ^ M + a, hM, ?_⟩
       rw [map_add (f := _), map_pow, map_add (f := _), Derivation.leibniz_pow, hD, smul_zero, smul_zero, zero_add]
       exact ha
     · exact ⟨t, ht, hD⟩
   obtain ⟨y, hy, hDy⟩ := key
   haveI := isSeparable_of_D_ne_zero hDy
-  exact ⟨y, hy, GlobalTheory.T.reduced_fibres_almost_all_of_separable_dedekind_curve k A y hy (aeval_injective_of_finite_of_not_isField k A y hy hA) this⟩
+  exact ⟨y, hy, _root_.GlobalTheory.reduced_fibres_almost_all_sep k A y hy (aeval_injective_of_finite_of_not_isField k A y hy hA) this⟩
 
 end GlobalTheory

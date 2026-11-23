@@ -56,6 +56,7 @@ import Mathlib.Topology.Sheaves.Init
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatAtVAtStable
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.DualLatticeDifferentIndex
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.BlockDeterminants.BumpLat
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermitianTensorSkewHermitianLatticeOpenCompact
 
 @[expose] public section
 
@@ -255,11 +256,7 @@ private theorem psi_triv_pk {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) (v : Pl F
   rw [mul_one] at h2
   rw [one_mul]
   exact h2
-private theorem locCo_smul'_pk {W : Type} [AddCommGroup W] [Module (AF F) W] {B : W → W → AF F} {κ : Type} [Fintype κ]
-    (co : GlobalTheory.WeilM.Darboux B κ) (v : Pl F) (a : AF F) (w : W) :
-    GlobalTheory.LatVac.locCo co v (a • w) = evFin F v a • GlobalTheory.LatVac.locCo co v w := by
-  simp only [GlobalTheory.LatVac.locCo, AddMonoidHom.coe_mk, ZeroHom.coe_mk, map_smul]
-  ext k <;> simp [smul_eq_mul, map_mul]
+private alias locCo_smul'_pk := _root_.GlobalTheory.LatOpenCpt.locCo_smul
 private theorem exists_at_pk {W : Type} [AddCommGroup W] [Module (AF F) W] {B : W → W → AF F} {κ : Type} [Fintype κ]
     (co : GlobalTheory.WeilM.Darboux B κ) (v : Pl F) (w : (κ → Fv F v) × (κ → Fv F v)) :
     ∃ z : W, At (evFin F v) z ∧ GlobalTheory.LatVac.locCo co v z = w := by

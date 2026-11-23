@@ -68,20 +68,12 @@ theorem toGL_det (g : Matrix (Fin 2) (Fin 2) ℤ) (hg : g.det ≠ 0) :
   simp only [Matrix.GeneralLinearGroup.mkOfDetNeZero, Matrix.det_fin_two]
   simp [Matrix.det_fin_two]
 
-theorem slash_smul_pos (k : ℤ) (g : Matrix (Fin 2) (Fin 2) ℤ) (hg : 0 < g.det) (c : ℂ) (f : ℍ → ℂ) :
-    (c • f) ∣[k] toGL g = c • (f ∣[k] toGL g) := by
-  rw [ModularForm.smul_slash]
-  congr 1
-  simp only [UpperHalfPlane.σ]
-  rw [if_pos (by rw [Matrix.GeneralLinearGroup.val_det_apply, toGL_det g hg.ne']; exact_mod_cast hg)]
-  rfl
-
 def ulLin (k : ℤ) (l : ℕ) (hl : 0 < l) : Module.End ℂ (ℍ → ℂ) where
   toFun := UlF k l
   map_add' f g := by simp only [UlF, hkF, SlashAction.add_slash, Finset.sum_add_distrib]
   map_smul' c f := by
     simp only [UlF, hkF, RingHom.id_apply, Finset.smul_sum]
-    refine Finset.sum_congr rfl fun j _ => slash_smul_pos k _ ?_ c f
+    refine Finset.sum_congr rfl fun j _ => _root_.GlobalTheory.HeckeFamilyMatrices.smul_slash_toGL k _ ?_ c f
     simp [ulFam, Matrix.det_fin_two]
     exact_mod_cast hl
 
@@ -106,7 +98,7 @@ def oldSp (N l : ℕ) (k : ℤ) (χ : DirichletCharacter ℂ N) (hl : 0 < l) : S
     refine ⟨c • f₁, c • f₂, fun γ hγ => ?_, fun γ hγ => ?_, ?_⟩
     · rw [CuspForm.coe_smul, ModularForm.SL_smul_slash, h₁ γ hγ, smul_comm]
     · rw [CuspForm.coe_smul, ModularForm.SL_smul_slash, h₂ γ hγ, smul_comm]
-    · rw [CuspForm.coe_smul, CuspForm.coe_smul, slash_smul_pos k _ hd, smul_add]
+    · rw [CuspForm.coe_smul, CuspForm.coe_smul, _root_.GlobalTheory.HeckeFamilyMatrices.smul_slash_toGL k _ hd, smul_add]
 
 theorem aeval_mem {M : Type*} [AddCommGroup M] [Module ℂ M] (U : Module.End ℂ M) (O : Submodule ℂ M)
     (hU : ∀ x ∈ O, U x ∈ O) (p : ℂ[X]) (x : M) (hx : x ∈ O) : aeval U p x ∈ O := by

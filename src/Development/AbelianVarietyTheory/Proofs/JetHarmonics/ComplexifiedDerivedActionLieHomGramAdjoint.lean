@@ -138,20 +138,6 @@ theorem lie_smul (a : ℝ) {X : Mx k r} (hX : InLieHpk k r X) : InLieHpk k r (a 
 theorem lie_neg {X : Mx k r} (hX : InLieHpk k r X) : InLieHpk k r (-X) := by
   simpa using lie_smul (-1) hX
 
-theorem lie_br {X Y : Mx k r} (hX : InLieHpk k r X) (hY : InLieHpk k r Y) : InLieHpk k r (X * Y - Y * X) := by
-  have h1 := eq_neg_of_add_eq_zero_left (lie_iff.1 hX)
-  have h2 := eq_neg_of_add_eq_zero_left (lie_iff.1 hY)
-  rw [lie_iff]
-  generalize Formalism.QuantumDeterminants.Hpk k r = H at h1 h2 ⊢
-  have e1 : (X * Y)ᴴ * H = H * (Y * X) := by
-    rw [conjTranspose_mul, Matrix.mul_assoc, h1, Matrix.mul_neg, ← Matrix.mul_assoc, h2, Matrix.neg_mul, neg_neg,
-      Matrix.mul_assoc]
-  have e2 : (Y * X)ᴴ * H = H * (X * Y) := by
-    rw [conjTranspose_mul, Matrix.mul_assoc, h2, Matrix.mul_neg, ← Matrix.mul_assoc, h1, Matrix.neg_mul, neg_neg,
-      Matrix.mul_assoc]
-  rw [conjTranspose_sub, Matrix.sub_mul, e1, e2, Matrix.mul_sub]
-  abel
-
 theorem dsig_add_left (R : Rep k r) {X Y : Mx k r} (hX : InLieHpk k r X) (hY : InLieHpk k r Y) {v : R.H}
     (hv : v ∈ R.sm) : dsig (k := k) (r := r) R.σ (X + Y) v =
       dsig (k := k) (r := r) R.σ X v + dsig (k := k) (r := r) R.σ Y v := by
@@ -219,9 +205,9 @@ theorem complexified_action : PI.KFinSmooth → ∀ (k r : ℕ) (ε : Fin (2 * r
       simp only [Matrix.add_mul, Matrix.mul_add, Matrix.smul_mul, Matrix.mul_smul]
       linear_combination (norm := module) Complex.I_mul_I • (Y₂ * Z₂ - Z₂ * Y₂)
     have b := GlobalTheory.DerivedBracket.derived_action_bracket hK k r ε mu R hR
-    rw [e, dC_decomp R (lie_add (lie_br h1 h3) (lie_neg (lie_br h2 h4))) (lie_add (lie_br h1 h4) (lie_br h2 h3)),
-      dsig_add_left R (lie_br h1 h3) (lie_neg (lie_br h2 h4)) hv, dsig_neg_left R (lie_br h2 h4) hv,
-      dsig_add_left R (lie_br h1 h4) (lie_br h2 h3) hv, ← b _ _ h1 h3 v hv, ← b _ _ h2 h4 v hv,
+    rw [e, dC_decomp R (lie_add (_root_.GlobalTheory.DerivedBracket.lie_bracket h1 h3) (lie_neg (_root_.GlobalTheory.DerivedBracket.lie_bracket h2 h4))) (lie_add (_root_.GlobalTheory.DerivedBracket.lie_bracket h1 h4) (_root_.GlobalTheory.DerivedBracket.lie_bracket h2 h3)),
+      dsig_add_left R (_root_.GlobalTheory.DerivedBracket.lie_bracket h1 h3) (lie_neg (_root_.GlobalTheory.DerivedBracket.lie_bracket h2 h4)) hv, dsig_neg_left R (_root_.GlobalTheory.DerivedBracket.lie_bracket h2 h4) hv,
+      dsig_add_left R (_root_.GlobalTheory.DerivedBracket.lie_bracket h1 h4) (_root_.GlobalTheory.DerivedBracket.lie_bracket h2 h3) hv, ← b _ _ h1 h3 v hv, ← b _ _ h2 h4 v hv,
       ← b _ _ h1 h4 v hv, ← b _ _ h2 h3 v hv]
     simp only [dC_decomp R h1 h2, dC_decomp R h3 h4]
     rw [hlin h1 _ (hsm h3 hv) (hsm h4 hv), hlin h2 _ (hsm h3 hv) (hsm h4 hv), hlin h3 _ (hsm h1 hv) (hsm h2 hv),

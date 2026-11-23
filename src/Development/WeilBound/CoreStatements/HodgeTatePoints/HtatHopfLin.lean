@@ -74,7 +74,7 @@ theorem valAt_mul [Finite T] (Γ : QFGroup R T) (χ : T →* Rˣ) (s : Γ(Γ.G.l
     (q : Spec (CommRingCat.of B) ⟶ Spec (CommRingCat.of R)) (y z : Over.mk q ⟶ Γ.G) :
     valAt (B := B) (y * z).left ⊤ le_top s =
       valAt (B := B) y.left ⊤ le_top s * valAt (B := B) z.left ⊤ le_top s := by
-  have h := (PositivityTheory.HtPt.Htat.ht_char_mul R T Γ χ s hs (Over.mk q)).1 y z
+  have h := (_root_.PositivityTheory.HtPt.Htat.SeparatedTensorPullback.charValues_mul R T Γ χ s hs (Over.mk q)).1 y z
   rw [valAt_top, valAt_top, valAt_top, ← map_mul]
   exact congrArg _ h
 
@@ -82,7 +82,7 @@ theorem valAt_one [Finite T] (Γ : QFGroup R T) (χ : T →* Rˣ) (s : Γ(Γ.G.l
     (hs : Γ.HasValues s (fun t => ((χ t : Rˣ) : R))) {B : Type} [CommRing B]
     (q : Spec (CommRingCat.of B) ⟶ Spec (CommRingCat.of R)) :
     valAt (B := B) (1 : Over.mk q ⟶ Γ.G).left ⊤ le_top s = 1 := by
-  have h := (PositivityTheory.HtPt.Htat.ht_char_mul R T Γ χ s hs (Over.mk q)).2
+  have h := (_root_.PositivityTheory.HtPt.Htat.SeparatedTensorPullback.charValues_mul R T Γ χ s hs (Over.mk q)).2
   rw [valAt_top]
   refine (congrArg _ h).trans ?_
   exact map_one _
@@ -226,5 +226,3 @@ theorem char_on_tangent_linear : ∀ (R : Type) [CommRing R] [IsDomain R] (T : T
 
 end PositivityTheory.HtPt.Htat.QuotientDualMap
 
-theorem PositivityTheory.HtPt.Htat.ht_linear : ∀ (R : Type) [CommRing R] [IsDomain R] (T : Type) [CommGroup T] [Finite T] (Γ : QFGroup R T) (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMonObj G] (x : Spec (CommRingCat.of R) ⟶ S) (N : ℕ) (i : Γ.G.left ⟶ G.left), Γ.IsTorsionAlong G x N i → ∀ (L : Type) [AddCommGroup L] [Module R L] (M : LieModel G x L) (χ : T →* Rˣ) (s : Γ(Γ.G.left, ⊤)), Γ.HasValues s (fun t => ((χ t : Rˣ) : R)) → ∃ l : L →ₗ[R] (R ⧸ Ideal.span {(N : R)}), ∀ (e : L) (v : Spec (CommRingCat.of (DualNumber (R ⧸ Ideal.span {(N : R)}))) ⟶ Γ.G.left), v ≫ Γ.G.hom = Spec.map (CommRingCat.ofHom ((algebraMap (R ⧸ Ideal.span {(N : R)}) (DualNumber (R ⧸ Ideal.span {(N : R)}))).comp (Ideal.Quotient.mk _))) ∧ v ≫ i = Spec.map (CommRingCat.ofHom (dualMap (Ideal.Quotient.mk (Ideal.span {(N : R)})))) ≫ (M.pt e).left → valAt v ⊤ le_top s = TrivSqZeroExt.inl 1 + TrivSqZeroExt.inr (l e) :=
-  @PositivityTheory.HtPt.Htat.QuotientDualMap.char_on_tangent_linear

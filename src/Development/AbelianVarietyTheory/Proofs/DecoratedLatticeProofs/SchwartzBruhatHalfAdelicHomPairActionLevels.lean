@@ -125,16 +125,11 @@ end GlobalTheory.SBMove
 
 namespace GlobalTheory.SBMove
 
-theorem mt_mul_inv_eq {D : D7} (V : HSp D) (g : GA D V) :
-    Formalism.L2.Theta.mt V g * Formalism.L2.Theta.mt V g⁻¹ = 1 := by
-  simp only [Formalism.L2.Theta.mt]
-  rw [← Units.val_mul, ← map_mul, mul_inv_cancel, map_one, Units.val_one]
-
 theorem actO_actO_inv {D : D7} {S T : HSp D} (g : GA D S) (h : GA D T) (x : WO S T) :
     actO S T g h (actO S T g⁻¹ h⁻¹ x) = x := by
   simp only [actO, inv_inv]
   simp only [← Matrix.mul_assoc]
-  rw [mt_mul_inv_eq, Matrix.one_mul, Matrix.mul_assoc, mt_mul_inv_eq, Matrix.mul_one]
+  rw [_root_.GlobalTheory.MixModel.mt_mul_inv, Matrix.one_mul, Matrix.mul_assoc, _root_.GlobalTheory.MixModel.mt_mul_inv, Matrix.mul_one]
 
 theorem actO_add' {D : D7} {S T : HSp D} (g : GA D S) (h : GA D T) (x y : WO S T) :
     actO S T g h (x + y) = actO S T g h x + actO S T g h y := by

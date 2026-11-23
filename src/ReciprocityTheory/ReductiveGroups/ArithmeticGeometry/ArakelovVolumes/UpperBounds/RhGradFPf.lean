@@ -29,36 +29,6 @@ theorem Zof_Zmap (z : V (nd X)) (k : Fin X.Ψ.card) : Zof (Zmap X z) k = ExF.Zt 
   change ExF.Zt X z (eΨ X (finProdFinEquiv.symm (finProdFinEquiv (k, finProdFinEquiv (a, b)))).1) _ _ = _
   simp only [Equiv.symm_apply_apply]
 
-private theorem contDiff_nM_apply (τ : X.Ψ) (a b : Fin r) :
-    ContDiff ℂ ∞ fun z : V (nd X) => ExF.nM X z τ a b := by
-  unfold ExF.nM
-  simp only [mat, Matrix.of_apply, nmat]
-  split_ifs
-  · first
-    | exact ((contDiff_piLp _).mp contDiff_id) _
-    | fun_prop
-  · exact contDiff_const
-  · exact contDiff_const
-
-private theorem det_n1_eq_one (z : V (nd X)) (τ : X.Ψ) : (ExF.n1 X z τ).det = 1 := by
-  rw [Matrix.det_of_lowerTriangular]
-  · apply Finset.prod_eq_one
-    intro i _
-    change nmat X z τ (Fin.castLE X.p0_le i) (Fin.castLE X.p0_le i) = 1
-    simp [nmat]
-  · intro i j hij
-    have hlt : i < j := OrderDual.toDual_lt_toDual.mp hij
-    rw [Fin.lt_def] at hlt
-    change nmat X z τ (Fin.castLE X.p0_le i) (Fin.castLE X.p0_le j) = 0
-    have h1 : ¬ (Fin.castLE X.p0_le j < Fin.castLE X.p0_le i) := by
-      rw [Fin.lt_def]; simp only [Fin.coe_castLE]; omega
-    have h2 : Fin.castLE X.p0_le i ≠ Fin.castLE X.p0_le j := by
-      intro h; rw [Fin.ext_iff] at h; simp only [Fin.coe_castLE] at h; omega
-    simp only [nmat, dif_neg h1, if_neg h2]
-
-private theorem inv_n1_eq_adjugate (z : V (nd X)) (τ : X.Ψ) : (ExF.n1 X z τ)⁻¹ = (ExF.n1 X z τ).adjugate := by
-  rw [Matrix.inv_def, det_n1_eq_one, Ring.inverse_one, one_smul]
-
 private theorem contDiff_det_of_contDiff_entries {n : ℕ} (M : V (nd X) → Matrix (Fin n) (Fin n) ℂ)
     (hM : ∀ i j, ContDiff ℂ ∞ fun z => M z i j) : ContDiff ℂ ∞ fun z => (M z).det := by
   simp only [Matrix.det_apply']
@@ -80,12 +50,12 @@ private theorem contDiff_adjugate_apply_of_contDiff_entries {n : ℕ} (M : V (nd
 
 theorem Zmap_contDiff : ContDiff ℂ ∞ (Zmap X) := by
   have hn1 : ∀ τ : X.Ψ, ∀ i j, ContDiff ℂ ∞ fun z : V (nd X) => ExF.n1 X z τ i j :=
-    fun τ i j => contDiff_nM_apply X τ (Fin.castLE X.p0_le i) (Fin.castLE X.p0_le j)
+    fun τ i j => _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.ExF.cd_nM X τ (Fin.castLE X.p0_le i) (Fin.castLE X.p0_le j)
   have hW : ∀ τ : X.Ψ, ∀ b c, ContDiff ℂ ∞ fun z : V (nd X) => ExF.Wm X z τ b c :=
-    fun τ b c => contDiff_nM_apply X τ (ExF.qI X b) (Fin.castLE X.p0_le c)
+    fun τ b c => _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.ExF.cd_nM X τ (ExF.qI X b) (Fin.castLE X.p0_le c)
   refine (contDiff_piLp _).mpr fun j => ?_
   change ContDiff ℂ ∞ fun z : V (nd X) => ExF.Zt X z _ _ _
-  simp only [ExF.Zt, Matrix.transpose_apply, inv_n1_eq_adjugate, Matrix.mul_apply]
+  simp only [ExF.Zt, Matrix.transpose_apply, _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.ExF.unipotentFrame_inv_eq_adjugate, Matrix.mul_apply]
   exact ContDiff.sum fun c _ => (hW _ _ _).mul (contDiff_adjugate_apply_of_contDiff_entries X (fun z => ExF.n1 X z _) (hn1 _) _ _)
 
 theorem rh_Zmap (x0 : Frame X.Ψ r) (ho : IsOrth X x0) {z : V (nd X)} (hz : z ∈ OmF X x0) :
@@ -178,7 +148,6 @@ namespace ReciprocityTheory.ChartRestriction.G.AR.Up
 
 open NumberField
 
-theorem RhGradFStatement_holds {E : Type} [Field E] [NumberField E] [IsCMField E] :
-    RhGradFStatement (E := E) := RGF.rhGradF_holds
+alias RhGradFStatement_holds := _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.RGF.rhGradF_holds
 
 end ReciprocityTheory.ChartRestriction.G.AR.Up

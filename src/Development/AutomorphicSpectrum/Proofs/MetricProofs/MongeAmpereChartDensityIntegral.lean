@@ -52,17 +52,11 @@ open scoped ComplexOrder
 
 namespace GlobalTheory.CompanionTheory.Ar.PB
 
-private theorem hessC_congr_of_eventuallyEq' {D : ℕ} {f g : (Fin D → ℂ) → ℝ} {z : Fin D → ℂ}
-    (h : f =ᶠ[𝓝 z] g) : ReciprocityTheory.AnForm.hessC f z = ReciprocityTheory.AnForm.hessC g z := by
-  have h2 : fderiv ℝ (fderiv ℝ f) z = fderiv ℝ (fderiv ℝ g) z := (h.fderiv (𝕜 := ℝ)).fderiv_eq
-  unfold ReciprocityTheory.AnForm.hessC
-  rw [h2]
-
 private theorem maDens_congr_of_hessC_eq {D : ℕ} {f g : Fin D → (Fin D → ℂ) → ℝ} {z : Fin D → ℂ}
     (h : ∀ k, f k =ᶠ[𝓝 z] g k) : ReciprocityTheory.AnForm.maDens f z = ReciprocityTheory.AnForm.maDens g z := by
   unfold ReciprocityTheory.AnForm.maDens
   rw [show (fun k => ReciprocityTheory.AnForm.hessC (f k) z) = (fun k => ReciprocityTheory.AnForm.hessC (g k) z) from
-    funext fun k => hessC_congr_of_eventuallyEq' (h k)]
+    funext fun k => _root_.ReciprocityTheory.AnForm.A.hessC_congr' (h k)]
 
 theorem paramDens_eq_normSq_mul_locDens {e : ℕ} {X : Type} [TopologicalSpace X]
     (A : FinHolAtlas e X) {V : Set (Fin e → ℂ)} {Φ : (Fin e → ℂ) → X} (P : Fin e → LocPot X)

@@ -85,7 +85,7 @@ theorem twGen_gen : ∀ (q : ℕ) (i : ℤ) (S : Scheme.{0}) (ζ : Prim q Γ(S, 
     have hU : IsEmpty U := ⟨fun u => hS.elim (s u)⟩
     exact ⟨fun _ u => (hU.elim u), fun _ hne _ => (hU.elim hne.some)⟩
   · haveI : NeZero q := ⟨hq.ne'⟩
-    obtain ⟨-, h2, h3, h4, -⟩ := GlobalTheory.T.tateTwist_sections_locally_generated q i
+    obtain ⟨-, h2, h3, h4, -⟩ := _root_.GlobalTheory.EtC.twist_sections q i
     refine ⟨fun x u => ?_, fun c hne hc => ?_⟩
     · obtain ⟨V, j, v, hj, hjv, c, hc⟩ := loc_point (h2 U (ζ.map s.appTop.hom) x) u
       refine ⟨V, j, v, (c : ZMod q), hj, hjv, ?_⟩

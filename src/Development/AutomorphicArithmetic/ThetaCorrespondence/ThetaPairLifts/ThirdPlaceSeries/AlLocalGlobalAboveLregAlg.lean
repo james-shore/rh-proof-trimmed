@@ -39,4 +39,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-theorem UpperTheory.GalS.CarUAlt.regAlg : type_of% (@UpperTheory.GalS.carU_of_regular_algebraic_purity) := @UpperTheory.GalS.carU_of_regular_algebraic_purity
+alias UpperTheory.GalS.CarUAlt.regAlg := _root_.UpperTheory.GalS.carU_of_regular_algebraic_purity

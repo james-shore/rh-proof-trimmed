@@ -108,16 +108,6 @@ theorem gram_det_pos {E : Type} [Field E] [NumberField E] [IsCMField E] {g : ℕ
   rw [← e] at hp
   exact (Complex.pos_iff.1 hp).1
 
-theorem hodgeInnerProduct_of_fibreLatticeVector {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
-    {X : Scheme.{0}} {t : SAB H X} {z : Sp ℂ ⟶ X} {g : ℕ} {Λ : Type} [AddCommGroup Λ] [Module (𝓞 E) Λ]
-    {R : RiemLat E g Λ} {A₀ : Type} {x : A₀ → Fin g → ℂ} {v : A₀ → (epsAt z ⟶ t.G)}
-    (h : FibreLatVec t z R x v) (tan : ∀ i, IsTanAt t.G z (v i)) (i j : A₀) :
-    HodgeIP t.G t.PP.L z (v i) (v j) (Real.pi * R.ip (x i) (x j)) := by
-  obtain ⟨A, _, φ, u, χ, h1, h2, -, -, -, h3⟩ := h
-  obtain ⟨v', e', d'⟩ := h3 i
-  obtain ⟨w', f', g'⟩ := h3 j
-  exact ⟨t.PP.isLB, tan i, tan j, A, inferInstance, φ, g, u, R.Hm, χ, v', w', x i, x j, h1, h2, e', f', d', g', rfl⟩
-
 section Pt
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Datum H}
@@ -143,7 +133,7 @@ theorem point_formula (Or : CptOrigin Y S₀ Dc Hd) {z : Sp ℂ ⟶ Or.𝔐.X} {
     Matrix.of fun p q => (Real.pi : ℂ) * R.ip (x τ p) (x τ q)
   have hΓ : ∀ τ, Or.𝔐.M.GramAt Or.𝔐.t.PP.L z (s τ) (Γ τ) := fun τ =>
     ⟨fun p => v (τ, p), fun p => hv (τ, p), fun p q =>
-      hodgeInnerProduct_of_fibreLatticeVector hfib (fun i => (hv i).isTanAt) (τ, p) (τ, q)⟩
+      _root_.GlobalTheory.CompanionTheory.Ar.Cusp.FibreEx.hodgeInnerProduct_eq_pi_mul_riemannForm hfib (fun i => (hv i).isTanAt) (τ, p) (τ, q)⟩
   have hdet : ∀ τ, Real.log (Γ τ).det.re = ((Dc.N - Dc.j : ℕ) : ℝ) * Real.log Real.pi +
       Real.log (R.gram (x τ)).det.re := by
     intro τ

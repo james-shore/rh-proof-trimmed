@@ -49,7 +49,7 @@ namespace GlobalTheory.MayerVietorisEqv
 
 theorem a4 : GlobalTheory.EtC.A4 := by
   intro R _ U V E U' V' E' f g f' g' p u v hu hv F hc hc' hU hV hW
-  obtain ⟨d, hex, hnat⟩ := GlobalTheory.T.exists_mayerVietoris_connecting_exact R F
+  obtain ⟨d, hex, hnat⟩ := _root_.GlobalTheory.EtC.mayerVietoris R F
   have hwf : pullback.map f g f' g' u v p hu hv ≫ pullback.fst f' g' = pullback.fst f g ≫ u := pullback.lift_fst _ _ _
   have hwg : pullback.map f g f' g' u v p hu hv ≫ pullback.snd f' g' = pullback.snd f g ≫ v := pullback.lift_snd _ _ _
   have cf : ∀ n x, pull R f F n (pull R p F n x) = pull R u F n (pull R f' F n x) := by

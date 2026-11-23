@@ -63,7 +63,4 @@ theorem smoothOn_comp_compatChart (e : ℕ) (X : Type) [TopologicalSpace X] (A :
     hG.contDiffAt (hO.mem_nhds hyO)
   exact (hGat.comp y hτ).contDiffWithinAt
 
-theorem smoothOn_comp_compatChart' : ∀ (e : ℕ) (X : Type) [TopologicalSpace X] (A : FinHolAtlas e X) (ψ : OpenPartialHomeomorph X (Fin e → ℂ)) (O : Set (Fin e → ℂ)) (G : (Fin e → ℂ) → ℝ), IsCompatChart A ψ → IsOpen O → O ⊆ ψ.target → ContDiffOn ℝ ∞ G O → A.SmoothOn (ψ.source ∩ ψ ⁻¹' O) (G ∘ ψ) :=
-  fun e X _ A ψ O G h1 h2 h3 h4 => smoothOn_comp_compatChart e X A ψ O G h1 h2 h3 h4
-
 end GlobalTheory.CompanionTheory.Metric

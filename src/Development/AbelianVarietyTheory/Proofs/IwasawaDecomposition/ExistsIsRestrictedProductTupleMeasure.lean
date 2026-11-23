@@ -64,8 +64,8 @@ theorem exists_isProd : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Nu
   haveI : Countable (HeightOneSpectrum (𝓞 F)) :=
     Function.Injective.countable (f := fun v : HeightOneSpectrum (𝓞 F) => v.asIdeal)
       (fun _ _ h => HeightOneSpectrum.ext h)
-  obtain ⟨hint, -⟩ := GlobalTheory.T.integralPointsFinitePlaceTensor_properties F E (AlgHom.id F E) d b
-  obtain ⟨hemb, hrange, -, -⟩ := GlobalTheory.T.measurableEmbedding_adelicTuple_localComponents F E d b n M
+  obtain ⟨hint, -⟩ := _root_.GlobalTheory.GaugeEx.IntBasis.main F E (AlgHom.id F E) d b
+  obtain ⟨hemb, hrange, -, -⟩ := _root_.GlobalTheory.GaugeGlue.adelicTuple_measurableEmbedding F E d b n M
   have hlat : ∀ v, (latV b v : Set (Fin n → Fin M → Fv F v ⊗[F] E)) =
       Set.pi Set.univ fun _ => Set.pi Set.univ fun _ => intV b v := by
     intro v

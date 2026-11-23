@@ -63,10 +63,6 @@ theorem le_fil_one (δ : DividedPowers J) : J ≤ fil δ 1 := by
   intro j hj
   refine Ideal.subset_span ⟨[(1, j)], by simpa using hj, by simp, by simp [δ.dpow_one hj]⟩
 
-theorem algebraMap_mem_ext (Q : PDPoly B) {j : B} (hj : j ∈ J) :
-    algebraMap B Q.P j ∈ Q.ext J :=
-  Ideal.mem_sup_left (Ideal.mem_map_of_mem _ hj)
-
 theorem e_one_mem_ext (Q : PDPoly B) : Q.e 1 ∈ Q.ext J :=
   Ideal.mem_sup_right (Ideal.subset_span ⟨0, rfl⟩)
 
@@ -75,7 +71,7 @@ theorem map_e {δ : DividedPowers J} {Q : PDPoly B} {η : DividedPowers (Q.ext J
     (h1 : g (Q.e 1) = algebraMap B Q.P μ + algebraMap B Q.P q * Q.e 1) (k : ℕ) :
     g (Q.e k) = ∑ j ∈ Finset.range (k + 1), (δ.dpow j μ * q ^ (k - j)) • Q.e (k - j) := by
   have he1 : Q.e 1 ∈ Q.ext J := e_one_mem_ext Q
-  have hm : algebraMap B Q.P μ ∈ Q.ext J := algebraMap_mem_ext Q hμ
+  have hm : algebraMap B Q.P μ ∈ Q.ext J := _root_.GlobalTheory.PDA.PDPoly.algebraMap_mem_ext Q hμ
   have hq : algebraMap B Q.P q * Q.e 1 ∈ Q.ext J := Ideal.mul_mem_left _ _ he1
   have h0 : g (Q.e k) = η.dpow k (g (Q.e 1)) := by
     rw [hgd.dpow_comp _ he1, hS.var]

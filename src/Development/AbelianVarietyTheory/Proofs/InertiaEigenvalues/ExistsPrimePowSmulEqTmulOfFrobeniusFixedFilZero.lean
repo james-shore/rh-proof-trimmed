@@ -72,22 +72,8 @@ theorem coordRight_map {R : Type} [CommRing R] {M P N : Type}
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem padicInt_ringHom_ext_pt {R : Type} [CommRing R] [IsHausdorff (Ideal.span {(l : R)}) R]
-    (f g : ℤ_[l] →+* R) (a : ℤ_[l]) : f a = g a := by
-  rw [← sub_eq_zero]
-  refine IsHausdorff.haus' (I := Ideal.span {(l : R)}) _ fun n => ?_
-  rw [SModEq.zero, smul_eq_mul, Ideal.mul_top, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
-  obtain ⟨c, hc⟩ := Ideal.mem_span_singleton.1 (PadicInt.appr_spec n a)
-  have e : a = (a.appr n : ℤ_[l]) + (l : ℤ_[l]) ^ n * c := by rw [← hc]; ring
-  refine ⟨f c - g c, ?_⟩
-  have hf := congrArg f e
-  have hg := congrArg g e
-  rw [map_add (f := _), map_mul, map_pow, map_natCast, map_natCast] at hf hg
-  rw [hf, hg]
-  ring
-
 theorem zA_eq_algebraMap_pt (a : ℤ_[l]) : Per.zA l a = algebraMap ℤ_[l] (Ainf l) a :=
-  padicInt_ringHom_ext_pt (R := WittVector l (Per.Fl l)) (Per.zA l) _ a
+  _root_.GlobalTheory.MemLoc.SecUniq.padicInt_hom_ext_pt (R := WittVector l (Per.Fl l)) (Per.zA l) _ a
 
 theorem iota_algebraMap_pt (C : GlobalTheory.MemLoc.Core l) (a : ℤ_[l]) :
     C.ι (algebraMap ℤ_[l] (Per.Bcris l) a) =

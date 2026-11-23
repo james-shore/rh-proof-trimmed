@@ -424,9 +424,6 @@ theorem map_inv_gram {D : D7} (V : HSp D) :
   · rw [← Matrix.map_mul, Matrix.mul_nonsing_inv _ hdet, Matrix.map_one _ (map_zero _) (map_one _)]
   · rw [← Matrix.map_mul, Matrix.nonsing_inv_mul _ hdet, Matrix.map_one _ (map_zero _) (map_one _)]
 
-theorem gram_herm' {D : D7} (V : HSp D) : cT (D.sp.cm.sig : D.host.E →+* D.host.E) V.gram = V.gram := by
-  funext i j; exact V.herm.eq (V.frame j) (V.frame i)
-
 theorem unitary_of {D : D7} (V : HSp D) (g : GA D V) :
     cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (AF D.host.F) D.sp.cm.sig) (matHom V g).1 * V.gram.map (incA D) * (matHom V g).1 =
       V.gram.map (incA D) := g.2
@@ -486,10 +483,10 @@ theorem commutator_levi : ∀ (D : D7) (V V' : HSp D) (r : ℕ) (C C' : Matrix (
   have hcc : cT (D.sp.cm.sig : D.host.E →+* D.host.E) C * V.gram * C = 0 := hsp.frame.2.2
   have hcc'' : cT (D.sp.cm.sig : D.host.E →+* D.host.E) C * V.gram * C' = 1 := hcc'
   have hc'c'' : cT (D.sp.cm.sig : D.host.E →+* D.host.E) C' * V.gram * C' = 0 := hc'c'
-  have hres := resolution _ hσ V.gram (gram_herm' V) C C' B V'.gram V'.gram⁻¹ (Matrix.nonsing_inv_mul _ hdet') hsp.rank
+  have hres := resolution _ hσ V.gram (_root_.GlobalTheory.AutFunCounterexample.gram_herm V) C C' B V'.gram V'.gram⁻¹ (Matrix.nonsing_inv_mul _ hdet') hsp.rank
     hcc hcc' hc'c' hc'b hsp.orth hsp.isom
   have hGhR : cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (AF D.host.F) D.sp.cm.sig) (V.gram.map (incA D)) = V.gram.map (incA D) := by
-    rw [cT_map_incA, gram_herm']
+    rw [cT_map_incA, _root_.GlobalTheory.AutFunCounterexample.gram_herm]
   have hccR := map_form C V.gram C
   rw [hcc, Matrix.map_zero _ (map_zero _)] at hccR
   have hcc'R := map_form C V.gram C'

@@ -402,15 +402,11 @@ end UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein.L3
 
 namespace UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein
 
-theorem sPoint_proof_of_slice (hsl : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F]
-    (c : HeightOneSpectrum (𝓞 F) → ℕ), {w | c w ≠ 0}.Finite → ∀ A : Ad F, slice c A ∈ schwartzBruhat F) :
-    SPois → SFin → SKern → SPoint := L3.main_of hsl
-
 end UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein
 
 namespace UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein
 
 theorem pointwise_theta_expansion : SPois → SFin → SKern → SPoint :=
-  sPoint_proof_of_slice (by intro F _ _ _ c hc A; exact slice_mem_sb hc A)
+  _root_.UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein.L3.main_of (by intro F _ _ _ c hc A; exact slice_mem_sb hc A)
 
 end UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein

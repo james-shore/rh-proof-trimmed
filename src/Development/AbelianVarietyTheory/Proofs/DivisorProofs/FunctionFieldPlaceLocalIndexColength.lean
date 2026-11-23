@@ -63,11 +63,6 @@ open GlobalTheory.Nef.OrdCalc
 
 variable {k F : Type} [Field k] [Field F] [Algebra k F]
 
-theorem const_le_one (v : Place k F) (c : k) : v.1 (algebraMap k F c) ≤ 1 := by
-  by_cases hc : c = 0
-  · simp [hc]
-  · exact (v.2.2 c hc).le
-
 theorem div_unif (v : Place k F) {π : F} (hπ : π ≠ 0) (h1 : ord v π = 1) {y : F}
     (hy : v.1 y < 1) : v.1 (π⁻¹ * y) ≤ 1 := by
   by_cases h0 : y = 0
@@ -90,7 +85,7 @@ theorem exists_residue (v : Place k F)
       smul_mem' := fun c y hy => by
         show v.1 (c • y) < 1
         rw [Algebra.smul_def, map_mul]
-        exact lt_of_le_of_lt (mul_le_of_le_one_left' (const_le_one v c)) hy }
+        exact lt_of_le_of_lt (mul_le_of_le_one_left' (_root_.GlobalTheory.Nef.place_le_one_const v c)) hy }
   have h1 : (1 : F) ∉ m := by
     show ¬ v.1 1 < 1
     simp

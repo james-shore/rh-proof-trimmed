@@ -66,7 +66,7 @@ theorem diag_inv_eq (z : Fin n → ℂ) (hz : ∀ a, ‖z a‖ = 1) :
 
 theorem isLefK_of (hGT : GamTrace) (hlam : Antitone lam) : Real.IsLefK lam (lefE n lam) (lefT n lam) := by
   have hu := (avg n lam).1
-  have hS := swapLaws_of rmLaws
+  have hS := _root_.PositivityTheory.RgBcC.Cxe.swapLaws_of _root_.PositivityTheory.RgBcC.Cxc.rmLaws'
   refine ⟨fun k => TK_f hu hS k, Tsq_f hu hS, fun k z hk hinj => ?_⟩
   have hz : ∀ a, ‖z a‖ = 1 := by
     intro a
@@ -86,7 +86,7 @@ theorem isLefK_of (hGT : GamTrace) (hlam : Antitone lam) : Real.IsLefK lam (lefE
   have hinjc : Function.Injective fun a => conj (z a) := fun a b h =>
     hinj1 ((RingHom.injective (starRingEnd ℂ)) h)
   have hρ : ((lefE n lam).ρ k) = lefFr n lam (diagonal z) := by rw [← hk]; rfl
-  have hR := rmLaws n lam
+  have hR := _root_.PositivityTheory.RgBcC.Cxc.rmLaws' n lam
   have hd : IsUnit (diagonal z).det := by
     rw [det_diagonal]; exact isUnit_iff_ne_zero.mpr (Finset.prod_ne_zero_iff.mpr fun a _ => hz0 a)
   have hdi : IsUnit ((diagonal z)⁻¹).det := by
@@ -95,7 +95,7 @@ theorem isLefK_of (hGT : GamTrace) (hlam : Antitone lam) : Real.IsLefK lam (lefE
     apply Matrix.inv_eq_right_inv
     rw [← hR.2.1 _ _ hd hdi, Matrix.mul_nonsing_inv _ hd, hR.1]
   have hch : (Rm lam (diagonal fun a => conj (z a))).trace = conj (weylChar lam z) := by
-    rw [rmChar n lam hlam _ hne hinjc, weylChar_conj]
+    rw [_root_.PositivityTheory.RgBcC.Cxc.rmChar' n lam hlam _ hne hinjc, weylChar_conj]
   constructor
   · rw [hρ]
     show LinearMap.trace ℂ (EV n lam) ((lefFr n lam (diagonal z) : EV n lam →L[ℂ] EV n lam) : EV n lam →ₗ[ℂ] EV n lam) = _
@@ -111,7 +111,7 @@ theorem isLefK_of (hGT : GamTrace) (hlam : Antitone lam) : Real.IsLefK lam (lefE
     have hinj2 : Function.Injective fun a => conj (z a) * conj (z a) := fun a b h => hinj (by
       have h' : conj (z a ^ 2) = conj (z b ^ 2) := by simpa [pow_two] using h
       exact (RingHom.injective (starRingEnd ℂ)) h')
-    rw [rmChar n lam hlam _ hne2 hinj2, ← weylChar_conj]
+    rw [_root_.PositivityTheory.RgBcC.Cxc.rmChar' n lam hlam _ hne2 hinj2, ← weylChar_conj]
     congr 2; funext a; simp [pow_two]
 
 end PositivityTheory.RgBcC

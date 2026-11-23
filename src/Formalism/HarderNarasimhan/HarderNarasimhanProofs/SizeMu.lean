@@ -218,7 +218,7 @@ theorem sizeMu_of (h1 : PlLat) : SizeMu := by
     unfold ht
     rw [hrk']
     refine mul_le_mul_of_nonneg_left ?_ (by positivity)
-    exact Formalism.F.covolAntiSameRank _ (zl ρ L) (zl ρ L') hlat'.2 (muChar_zl_mono ρ hLL')
+    exact _root_.Formalism.F.covol_anti_same_rank _ (zl ρ L) (zl ρ L') hlat'.2 (_root_.Formalism.HN.satBasic_zl_mono ρ hLL')
       (by show rk ρ L = rk ρ L'; rw [hrkL, hrkL', hrk'])
 
 theorem size_maximal_slope : SizeMu := by

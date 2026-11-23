@@ -56,7 +56,7 @@ theorem GlobalTheory.Mum.tens_pelOK : ∀ (R : Type) [CommRing R] [IsDomain R] [
   obtain ⟨s, hs⟩ := hA E ρ
   obtain ⟨Dm, e, hp, hq, he, hEF⟩ := GlobalTheory.T.exists_unitary_datum_standardLattice_tensor_unimodular E H W hpos hdet ρ hadj hw0
     (D.toPre.P.g + Module.finrank ℤ D.toPre.X) s hs
-  obtain ⟨hrk, hlie⟩ := GlobalTheory.T.lieMultiplicity_and_rank_tensorData_lattice R hR E H D D' W hpos hdet T ρ o hact s hs
+  obtain ⟨hrk, hlie⟩ := _root_.GlobalTheory.Mum.lieMult_tens R hR E H D D' W hpos hdet T ρ o hact s hs
   have hs0 : s ≠ 0 := by rintro rfl; omega
   have hX0 : 0 < Module.finrank ℤ D.toPre.X := Module.finrank_pos
   refine ⟨Dm, hp.trans hq.symm, ?_, hpsi, fun F _ _ _ => ⟨fun τ => ⟨s * D.toPre.P.g, hlie F τ, ?_⟩, fun ζ hζ hζ' => ?_⟩⟩

@@ -104,8 +104,7 @@ theorem eq_of_nu_eq {Δ Δ' : Segment k} (hΔ : PositivityTheory.UdReth2.IsCentr
   simp only [nn, add_neg_cancel, n0] at this
   exact this
 
-theorem eq_of_isLSeg' {Δ : Segment k} {δ δ' : IrrGL (k := k)} (h : IsLSeg Δ δ.rep) (h' : IsLSeg Δ δ'.rep) : δ = δ' :=
-  PositivityTheory.Lit1.eq_of_isLSeg h h'
+alias eq_of_isLSeg' := _root_.PositivityTheory.Lit1.eq_of_isLSeg
 
 end Local
 

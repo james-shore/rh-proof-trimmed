@@ -109,20 +109,6 @@ theorem exists_pair_ne_zero {G V W : Type} [Group G] [AddCommGroup V] [Module �
 
 variable {L : Type} [Field L] [NumberField L] [IsCMField L] {n : ℕ}
 
-theorem coord_conjugate (τ : L →+* ℂ) (z : Cinf L) :
-    coord (ComplexEmbedding.conjugate τ) z = starRingEnd ℂ (coord τ z) := by
-  have hm : InfinitePlace.mk (ComplexEmbedding.conjugate τ) = InfinitePlace.mk τ := InfinitePlace.mk_conjugate_eq τ
-  have hne : ComplexEmbedding.conjugate τ ≠ τ := fun h =>
-    IsTotallyComplex.complexEmbedding_not_isReal τ (ComplexEmbedding.isReal_iff.2 h)
-  rw [GlobalTheory.EmbUnitary.coord_eq, GlobalTheory.EmbUnitary.coord_eq, hm]
-  unfold GlobalTheory.EmbUnitary.twist
-  rw [hm]
-  rcases InfinitePlace.embedding_mk_eq τ with h | h
-  · rw [if_pos h, if_neg (by rw [h]; exact hne.symm)]
-    rfl
-  · rw [if_pos h, if_neg (by rw [h]; exact hne)]
-    simp
-
 theorem polyMat_embU {ι : Type} (P : ι → ι → MvPolynomial ((L →+* ℂ) × Fin n × Fin n) ℂ) (τ : L →+* ℂ)
     (x : embU n τ) : GlobalTheory.WeightRealExt.polyMat P (x : UA L n) = GlobalTheory.AlgWtHW.evM P (NG.evPt τ (cEmb τ (x : UA L n))) := by
   ext i j
@@ -138,7 +124,7 @@ theorem polyMat_embU {ι : Type} (P : ι → ι → MvPolynomial ((L →+* ℂ) 
   · rw [h2]
     have hu := Matrix.mem_unitaryGroup_iff.1 (GlobalTheory.EmbUnitary.cEmb_mem τ (x : UA L n))
     rw [Units.inv_eq_of_mul_eq_one_right hu]
-    exact coord_conjugate τ _
+    exact _root_.GlobalTheory.DefiniteBC.coord_conjugate τ _
   all_goals
     have hk : InfinitePlace.mk σ ≠ InfinitePlace.mk τ := fun h => by
       rcases InfinitePlace.mk_eq_iff.1 h with h | h
@@ -215,7 +201,7 @@ theorem weight_agree : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n
   obtain ⟨R, hfin, hrat, hcont⟩ := GlobalTheory.WeightRealExt.exists_extension L n π.toAlgWt
   obtain ⟨_, ι, _, _, b, P, hP⟩ := a.alg
   obtain ⟨e, he⟩ := GlobalTheory.EmbUnitary.exists_equiv_unitaryGroup L n τ
-  have hΦ := GlobalTheory.T.isPolynomialRepGLComplex_algebraicWeight_evalPoint L n a ι b P hP τ
+  have hΦ := _root_.GlobalTheory.AlgWtHW.isPolyRep_evPt L n a ι b P hP τ
   set Φ : GL (Fin n) ℂ → Matrix ι ι ℂ := fun A => GlobalTheory.AlgWtHW.evM P (NG.evPt τ A) with hΦd
   have hΦx : ∀ x : embU n τ, Φ (cEmb τ (x : UA L n)) = GlobalTheory.WeightRealExt.polyMat P (x : UA L n) := fun x =>
     (polyMat_embU P τ x).symm

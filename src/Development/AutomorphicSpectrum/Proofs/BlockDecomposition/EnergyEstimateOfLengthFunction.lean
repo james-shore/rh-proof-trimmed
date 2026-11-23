@@ -97,7 +97,7 @@ theorem dt_rho {ℓ : Mat n → ℝ} {χ : ℝ → ℝ} (hχ : ContDiff ℝ ∞ 
         (2 * ⟪dt (dt u) s y, dt u s y⟫_ℝ
           + (1 / 2) * ∑ p : Ix n, ⟪Rr (hm p) (dt u s) y, Rt (hm p) u s y⟫_ℝ
           + 2 * ⟪dt u s y, u s y⟫_ℝ) :=
-  ((hasDerivAt_cw hχ ℓ C r s y).mul (GlobalTheory.T.energy_density_time_derivative u hu s y hy)).deriv
+  ((hasDerivAt_cw hχ ℓ C r s y).mul (_root_.GlobalTheory.CompanionTheory.WaveSpd.hasDerivAt_dens u hu s y hy)).deriv
 
 theorem rr_cw_inner {ℓ : Mat n → ℝ} {χ : ℝ → ℝ} (hχ : ContDiff ℝ ∞ χ) (C r s : ℝ)
     {f g : Mat n → W} {y : Mat n} (hℓ : DifferentiableAt ℝ ℓ y) (hf : DifferentiableAt ℝ f y)
@@ -181,10 +181,10 @@ theorem energy_diff_ineq : ∀ {n : ℕ} {W : Type} [NormedAddCommGroup W] [Inne
   have hdu := (GlobalTheory.T.smooth_time_right_derivatives_commute u hu).1
   have hcw := sm_cw C r hℓ hχ
   let ρ : ℝ → Mat n → ℝ := fun s y => cw ℓ χ C r s y * dens u s y
-  have hρ : Sm ρ := sm_mul hcw (GlobalTheory.T.energy_density_smooth u hu).1
+  have hρ : Sm ρ := sm_mul hcw (_root_.GlobalTheory.CompanionTheory.WaveSpd.sm_dens_inner u hu).1
   let Ψ : Ix n → ℝ → Mat n → ℝ :=
     fun p s y => cw ℓ χ C r s y * ⟪Rt (hm p) u s y, dt u s y⟫_ℝ
-  have hΨ : ∀ p, Sm (Ψ p) := fun p => sm_mul hcw ((GlobalTheory.T.energy_density_smooth u hu).2 _ _ hdu)
+  have hΨ : ∀ p, Sm (Ψ p) := fun p => sm_mul hcw ((_root_.GlobalTheory.CompanionTheory.WaveSpd.sm_dens_inner u hu).2 _ _ hdu)
   obtain ⟨R, hR⟩ : ∃ R, R = r + 1 + C * (|s| + 1) := ⟨_, rfl⟩
   have hK : IsCompact {y : G n | ℓ y.val ≤ R} := hcpt R
   have hvan : ∀ s' ∈ Metric.ball s 1, ∀ y : G n, y ∉ {y : G n | ℓ y.val ≤ R} →
@@ -198,7 +198,7 @@ theorem energy_diff_ineq : ∀ {n : ℕ} {W : Type} [NormedAddCommGroup W] [Inne
     have h3 := mul_nonneg hC0 h0
     have h4 : 1 ≤ ℓ y.val + C * s' - r := by rw [hR] at hy'; nlinarith
     simp only [ρ, cw, hχ1 _ h4, zero_mul]
-  have hder := GlobalTheory.T.deriv_integral_compact_support μ ρ hρ _ hK s 1 one_pos hvan
+  have hder := _root_.GlobalTheory.CompanionTheory.WaveSpd.IntDeriv.hasDerivAt_integral_compact μ ρ hρ _ hK s 1 one_pos hvan
   refine ⟨_, hder, ?_⟩
   have hdtvan : ∀ y : G n, y ∉ {y : G n | ℓ y.val ≤ R} → dt ρ s y.val = 0 := by
     intro y hy

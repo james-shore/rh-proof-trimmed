@@ -52,17 +52,6 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 
 namespace GlobalTheory.LocTensorK
 
-private theorem ιB_algebraMap_Kur {l : ℕ} [Fact l.Prime] (P : LocPrime l) (c : ↥(MaximalUnramifiedExtension l)) :
-    P.ιB (algebraMap ↥(MaximalUnramifiedExtension l) P.R.B c) = algebraMap (Om l) P.R.BdR (c : Om l) := by
-  have hint : IsIntegral ℚ_[l] (c : Om l) := Algebra.IsIntegral.isIntegral _
-  obtain ⟨K, hc⟩ : ∃ K : FinExt l, (c : Om l) ∈ K0 K :=
-    ⟨⟨IntermediateField.adjoin ℚ_[l] {(c : Om l)},
-      IntermediateField.adjoin.finiteDimensional hint⟩,
-      IntermediateField.mem_adjoin_simple_self ℚ_[l] (c : Om l), c.2⟩
-  have h := (P.PD K).ι.commutes (⟨c, hc⟩ : ↥(K0 K))
-  rw [P.PD_ι] at h
-  exact h
-
 private theorem indep_of_frac {k Ω B D : Type} [Field k] [Field Ω] [CommRing B] [CommRing D] [Algebra k Ω]
     [IsGalois k Ω] (hD : IsField D) (o : Ω →+* D) (ι : B →+* D) (hι : Function.Injective ι)
     (hk : ∀ c : k, ∃ a : B, ι a = o (algebraMap k Ω c))
@@ -103,7 +92,7 @@ private theorem tied_tensor_inj : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) 
   haveI : IsGalois ℚ_[l] (Om l) := inferInstance
   haveI : IsGalois ↥(MaximalUnramifiedExtension l) (Om l) := inferInstance
   refine indep_of_frac (k := ↥(MaximalUnramifiedExtension l)) hD (algebraMap (Om l) P.R.BdR) (P.ιB : P.R.B →+* P.R.BdR) hι
-    (fun c => ⟨algebraMap ↥(MaximalUnramifiedExtension l) P.R.B c, ιB_algebraMap_Kur P c⟩) ?_ m x hx b hb
+    (fun c => ⟨algebraMap ↥(MaximalUnramifiedExtension l) P.R.B c, _root_.GlobalTheory.MemLoc.FitsEx.iota_alg P c⟩) ?_ m x hx b hb
   intro a c y hc h
   exact ⟨⟨y, GlobalTheory.T.mem_maxUnramified_of_crystallineRatio l P AI T a c y hc h⟩, rfl⟩
 

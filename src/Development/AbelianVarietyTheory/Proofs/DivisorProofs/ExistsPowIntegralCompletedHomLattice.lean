@@ -69,7 +69,7 @@ open scoped TensorProduct
 namespace GlobalTheory.CosetOrth.LatInt
 
 theorem exists_pow_mem (D : D7) : ∃ k : ℕ, (((D.host.QS * D.host.q) ^ k : ℕ) : 𝓞 D.host.E) ∈ D.host.𝔟 := by
-  have hb := ReciprocityTheory.ChartRestriction.G.PullbackSections.MLI.bb_ne_bot D
+  have hb := _root_.Formalism.L2.Pj.b_ne_bot D
   have h : ((D.host.QS * D.host.q : ℕ) : 𝓞 D.host.E) ∈ D.host.𝔟.radical := by
     rw [Ideal.radical_eq_sInf, Submodule.mem_sInf]
     rintro J ⟨hJ, hp⟩
@@ -116,7 +116,7 @@ theorem YYl_entry {D : D7} {N N' : ℕ} {B : Matrix (Fin N') (Fin N) D.host.E}
 theorem mul_int {D : D7} {n : 𝓞 D.host.E} (hn : n ∈ D.host.𝔟) {x : D.host.E}
     (hx : x ∈ (D.host.AA0 : Submodule (𝓞 D.host.E) D.host.E)) :
     ∃ b : 𝓞 D.host.E, algebraMap (𝓞 D.host.E) D.host.E b = algebraMap (𝓞 D.host.E) D.host.E n * x := by
-  have hb := ReciprocityTheory.ChartRestriction.G.PullbackSections.MLI.bb_ne_bot D
+  have hb := _root_.Formalism.L2.Pj.b_ne_bot D
   have h1 : algebraMap (𝓞 D.host.E) D.host.E n * x ∈
       (D.host.𝔟 : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E) * D.host.AA0 :=
     FractionalIdeal.mul_mem_mul (FractionalIdeal.mem_coeIdeal_of_mem _ hn) hx

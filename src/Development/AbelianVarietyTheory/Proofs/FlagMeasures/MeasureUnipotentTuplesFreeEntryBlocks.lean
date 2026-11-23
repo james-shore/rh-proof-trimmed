@@ -74,11 +74,11 @@ theorem sq_mp (ι : Type) [Fintype ι] (k r : ℕ) : MeasurePreserving (sq ι k 
   have h2 := volume_measurePreserving_arrowProdEquivProdArrow (UTr r → ℂ) (Fin r → Fin (k + 1) → ℂ) ι
   have h3 := volume_measurePreserving_arrowProdEquivProdArrow (UTr r → ℂ) (Fin r → ℝ) ι
   have s1 : MeasurePreserving (fun (f : ι → UTr r → ℂ) (p : UTr r) (i : ι) => f i p) volume volume :=
-    ReciprocityTheory.GeometryOfNumbersTheory.measurePreserving_swapPi (volume : Measure ℂ)
+    _root_.UpperTheory.Reformulated.B.Qe3b.measurePreserving_swapPi (volume : Measure ℂ)
   have s2 : MeasurePreserving (fun (f : ι → Fin r → Fin (k + 1) → ℂ) (p : Fin r) (i : ι) => f i p) volume volume :=
-    ReciprocityTheory.GeometryOfNumbersTheory.measurePreserving_swapPi (volume : Measure (Fin (k + 1) → ℂ))
+    _root_.UpperTheory.Reformulated.B.Qe3b.measurePreserving_swapPi (volume : Measure (Fin (k + 1) → ℂ))
   have s3 : MeasurePreserving (fun (f : ι → Fin r → ℝ) (p : Fin r) (i : ι) => f i p) volume volume :=
-    ReciprocityTheory.GeometryOfNumbersTheory.measurePreserving_swapPi (volume : Measure ℝ)
+    _root_.UpperTheory.Reformulated.B.Qe3b.measurePreserving_swapPi (volume : Measure ℝ)
   haveI u0 : SigmaFinite (volume : Measure (Fin (k + 1) → ℂ)) := inferInstance
   haveI u1 : SigmaFinite (volume : Measure (Fin r → Fin (k + 1) → ℂ)) := inferInstance
   haveI u2 : SigmaFinite (volume : Measure (ι → Fin (k + 1) → ℂ)) := inferInstance

@@ -73,11 +73,11 @@ theorem UpperTheory.epi_freeBiprodDesc_of_zariskiLocally_surjective :
       (x : P.obj (op T)),
       Sec.map ((free R).map c ≫ p) (freeGen R P T x) = Sec.map p (freeGen R Q T (c.app (op T) x)) := by
     intro P c M p T x
-    have h4 := (GlobalTheory.T.free_sections_ext_res_map R P M).2.2.2 Q c T x
+    have h4 := (_root_.GlobalTheory.EtC.free_hom_sections R P M).2.2.2 Q c T x
     show Sec.map p (Sec.map ((free R).map c) (freeGen R P T x)) = _
     rw [h4]
   have hE : Epi ((free R).map (sumD f g)) := by
-    apply (GlobalTheory.T.freeEtaleModuleSheaf_map_mono_epi_iso R (sumD f g)).2.1
+    apply (_root_.GlobalTheory.EtC.free_map_mono_epi_iso R (sumD f g)).2.1
     intro T y
     obtain ⟨S, hS, hP⟩ := h T y
     refine ⟨S, hS, fun W k hk => ?_⟩
@@ -91,7 +91,7 @@ theorem UpperTheory.epi_freeBiprodDesc_of_zariskiLocally_surjective :
   have hb : (free R).map g ≫ u = (free R).map g ≫ v := by
     simpa using congrArg (biprod.inr ≫ ·) huv
   rw [← cancel_epi ((free R).map (sumD f g))]
-  apply (GlobalTheory.T.free_sections_ext_res_map R (sumP P₁ P₂) Z).2.1
+  apply (_root_.GlobalTheory.EtC.free_hom_sections R (sumP P₁ P₂) Z).2.1
   intro T z
   rw [mc, mc]
   cases z with

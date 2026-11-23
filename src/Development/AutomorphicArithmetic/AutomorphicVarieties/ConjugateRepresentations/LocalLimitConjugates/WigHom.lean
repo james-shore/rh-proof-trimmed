@@ -107,6 +107,4 @@ open UpperTheory.V.Lit UpperTheory.V.Lit.Geo UpperTheory.V.Lit.Bor UpperTheory.V
 open scoped TensorProduct GlobalTheory.CuspRep.CuspidalL2GL
 open UpperTheory.V.Cj UpperTheory.V.Cj.H
 
-theorem UpperTheory.V.Cj.H.wigHom :
-    UpperTheory.V.Cj.H.WigHom :=
-  UpperTheory.V.Cj.H.wigner_homomorphism
+alias UpperTheory.V.Cj.H.wigHom := _root_.UpperTheory.V.Cj.H.wigner_homomorphism

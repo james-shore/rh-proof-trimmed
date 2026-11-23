@@ -210,7 +210,7 @@ theorem pb_head_support (Bj : B.RealPlaceData k ρ Wp Wq) (B0 : B.RealPlaceData 
       have hs : sP Bj x ∈ B.GV k (p + ρ) := by
         unfold sP
         rw [if_pos hx]
-        refine Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_mul (LeftFubiniLemmas.rn_nset _).1 ?_
+        refine Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_mul (_root_.Formalism.FourierDecayAlt.P.Ux3.rn_nset _).1 ?_
         rw [← Formalism.FourierDecayAlt.P.Dx2.Tower.lev_eq_embG]
         exact Formalism.FourierDecayAlt.P.Dx2.Tower.lev_GV p ρ _
           (Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_mul (Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_inv hx.1.1) (Formalism.FourierDecayAlt.P.BetaSesquilinearity.gv_inv hx.2.1))

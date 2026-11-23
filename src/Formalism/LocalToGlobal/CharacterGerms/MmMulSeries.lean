@@ -48,6 +48,8 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Presheaf
+import Formalism.LocalToGlobal.CharacterGerms.IndependenceBoundRaw
+import Formalism.LocalToGlobal.CharacterGerms.RowTiePGerm
 
 @[expose] public section
 
@@ -62,20 +64,9 @@ namespace RootsP
 
 variable {C : Type} [Field C] {V : VF C}
 
-private lemma mm_zero_lemma : V.MM (0 : C) := by
-  simp only [VF.MM, AddValuation.map_zero]
-  first
-    | exact WithTop.coe_lt_top 0
-    | exact WithTop.zero_lt_top
-    | simp
-
 private lemma ge0_zero_lemma_2 : V.Ge 0 (0 : C) := by
   simp only [VF.Ge, AddValuation.map_zero]
   exact le_top
-
-private lemma mm_add_lemma_3 {x y : C} (hx : V.MM x) (hy : V.MM y) : V.MM (x + y) := by
-  simp only [VF.MM] at hx hy ⊢
-  exact lt_of_lt_of_le (lt_min hx hy) (V.v.map_add x y)
 
 private lemma ge0_add_lemma_4 {x y : C} (hx : V.Ge 0 x) (hy : V.Ge 0 y) : V.Ge 0 (x + y) := by
   simp only [VF.Ge] at hx hy ⊢
@@ -96,20 +87,6 @@ private lemma ge0_mul_lemma_6 {x y : C} (hx : V.Ge 0 x) (hy : V.Ge 0 y) : V.Ge 0
 private lemma ge0_one_lemma_7 : V.Ge 0 (1 : C) := by
   simp [VF.Ge]
 
-private lemma ints_mul_lemma_8 {σ : Type} {F G : MvPowerSeries σ C} (hF : IntS V F) (hG : IntS V G) :
-    IntS V (F * G) := by
-  intro μ
-  rw [MvPowerSeries.coeff_mul]
-  exact Finset.sum_induction _ (fun x => V.Ge 0 x) (fun a b ha hb => ge0_add_lemma_4 ha hb) ge0_zero_lemma_2
-    (fun p _ => ge0_mul_lemma_6 (hF p.1) (hG p.2))
-
-private lemma ints_one_lemma_9 {σ : Type} : IntS V (1 : MvPowerSeries σ C) := by
-  intro μ
-  rw [MvPowerSeries.coeff_one]
-  split_ifs
-  · exact ge0_one_lemma_7
-  · exact ge0_zero_lemma_2
-
 private lemma ge_zero_of_mm {x : C} (h : V.MM x) : V.Ge 0 x := by
   simp only [VF.MM] at h
   simp only [VF.Ge]
@@ -125,7 +102,7 @@ theorem mm_mul_series {σ : Type} {A B : MvPowerSeries σ C} (hA : ∀ μ, V.MM 
     (hB : ∀ μ, V.Ge 0 (MvPowerSeries.coeff μ B)) : ∀ μ, V.MM (MvPowerSeries.coeff μ (A * B)) := by
   intro μ
   rw [MvPowerSeries.coeff_mul]
-  exact Finset.sum_induction _ (fun x => V.MM x) (fun a b ha hb => mm_add_lemma_3 ha hb) mm_zero_lemma
+  exact Finset.sum_induction _ (fun x => V.MM x) (fun a b ha hb => _root_.Formalism.L2.FormalSeriesBounds.ValuationNonnegativity.mm_add ha hb) _root_.Formalism.L2.FormalSeriesBounds.ValuationNonnegativity.mm_zero
     (fun p _ => mm_mul_lemma_5 (hA p.1) (hB p.2))
 
 theorem root_one {ζ : C} (hζ : ζ ^ V.l = 1) : V.MM (ζ - 1) := by
@@ -230,10 +207,10 @@ theorem rootsProd : ∀ (C : Type) [Field C] (V : VF C) (ζ : C), ζ ^ V.l = 1 �
     induction n with
     | zero =>
       rw [pow_zero]
-      exact RootsP.ints_one_lemma_9
+      exact _root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.intS_one
     | succ n ih =>
       rw [pow_succ]
-      exact RootsP.ints_mul_lemma_8 ih hf
+      exact _root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.intS_mul ih hf
   have key : ∀ n : ℕ, ∀ μ, V.MM (MvPowerSeries.coeff μ
       (∏ k ∈ Finset.range n, MvPowerSeries.rescale (fun i => if i = j then ζ ^ k else 1) f - f ^ n)) := by
     intro n
@@ -241,7 +218,7 @@ theorem rootsProd : ∀ (C : Type) [Field C] (V : VF C) (ζ : C), ζ ^ V.l = 1 �
     | zero =>
       intro μ
       simp only [Finset.range_zero, Finset.prod_empty, pow_zero, sub_self, map_zero]
-      exact RootsP.mm_zero_lemma
+      exact _root_.Formalism.L2.FormalSeriesBounds.ValuationNonnegativity.mm_zero
     | succ n ih =>
       intro μ
       have hid : ∏ k ∈ Finset.range (n + 1), MvPowerSeries.rescale (fun i => if i = j then ζ ^ k else 1) f -
@@ -252,7 +229,7 @@ theorem rootsProd : ∀ (C : Type) [Field C] (V : VF C) (ζ : C), ζ ^ V.l = 1 �
         rw [Finset.prod_range_succ, pow_succ]
         ring
       rw [hid, map_add (f := _)]
-      refine RootsP.mm_add_lemma_3 (RootsP.mm_mul_series ih (hG n) μ) ?_
+      refine _root_.Formalism.L2.FormalSeriesBounds.ValuationNonnegativity.mm_add (RootsP.mm_mul_series ih (hG n) μ) ?_
       rw [mul_comm]
       exact RootsP.mm_mul_series (hE n) (hpow n) μ
   exact key V.l

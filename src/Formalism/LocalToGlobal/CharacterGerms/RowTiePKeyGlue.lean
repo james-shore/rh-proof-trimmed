@@ -151,7 +151,7 @@ theorem keyLA_of (hE : KeyEigSt) (hR : KeyResSt) (hD : KeyDeltaSt) (C : Type) [F
     obtain ⟨hint, hkill⟩ := chi_kill K (w j) h0 hPw (χ j) hχ
     obtain ⟨c, hc⟩ := hR C V O n d K (χ j) hint hkill
     have heq := hD C V O n d K (χ j) c hint hc
-    rw [aeval_mulVec _ _ _ (hχ x), Polynomial.eval_prod]
+    rw [_root_.Bl.PowMulVecEigen.goal1 _ _ _ (hχ x), Polynomial.eval_prod]
     have : ∏ c' : ZMod d, Polynomial.eval (χ j x) (Polynomial.X - Polynomial.C (K.em c' x)) = 0 :=
       Finset.prod_eq_zero (Finset.mem_univ c) (by rw [Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C,
         heq, sub_self])

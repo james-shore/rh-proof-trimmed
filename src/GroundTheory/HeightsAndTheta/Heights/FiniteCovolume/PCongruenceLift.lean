@@ -60,10 +60,6 @@ noncomputable section
 
 namespace CongruenceLift
 
-theorem exists_nsmul_mem {E W : Type*} [Field E] [NumberField E] [AddCommGroup W] [Module E W]
-    {La : AddSubgroup W} (hLa : IsLattice E La) (w : W) : ∃ d : ℕ, 0 < d ∧ d • w ∈ La :=
-  _root_.UpperTheory.Reformulated.B.ExistsNsmulMem.exists_nsmul_mem hLa w
-
 theorem exists_congruence {V G : Type*} [AddCommGroup V] [Group G] [DistribMulAction G V]
     (L : AddSubgroup V) (hL : L.FG) (d : ℕ) (hd : 0 < d) :
     ∃ K : Subgroup (MulAction.stabilizer G L), K.index ≠ 0 ∧
@@ -125,7 +121,7 @@ variable {W : Type*} [AddCommGroup W] [Module E W]
 theorem CongruenceLift.proof [FiniteDimensional E W] (h : HermitianForm F E W) :
     CongruenceLift.Statement h := by
   intro D La x₀ w₀ hLa hx₀ hp h' hh'
-  obtain ⟨d, hd, hdw⟩ := CongruenceLift.exists_nsmul_mem hLa.isLattice w₀
+  obtain ⟨d, hd, hdw⟩ := _root_.UpperTheory.Reformulated.B.ExistsNsmulMem.exists_nsmul_mem hLa.isLattice w₀
   set La' : AddSubgroup (hypComplement h x₀ w₀) := La.comap (hypComplement h x₀ w₀).subtype.toAddMonoidHom
   have dec : ∀ x ∈ La, h.toSesq (d • w₀) x • x₀ ∈ La ∧ (h.toSesq x₀ x * d) • w₀ ∈ La ∧
       d • x - h.toSesq (d • w₀) x • x₀ - (h.toSesq x₀ x * d) • w₀ =

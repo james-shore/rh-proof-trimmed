@@ -60,8 +60,6 @@ set_option backward.isDefEq.respectTransparency false
 variable {C : Type u} [Category.{v} C] [Preadditive C] [HasFiniteCoproducts C]
   (Y : SimplicialObject (SimplicialObject C))
 
-theorem awop' : ∀ (n a b : ℕ), a + b = n → dD (n + 1) n ≫ awO n a b = ∑ x ∈ Finset.HasAntidiagonal.antidiagonal (n + 1), awO (n + 1) x.1 x.2 ≫ dT x.1 x.2 a b := GlobalTheory.T.dD_comp_awO_eq_sum_awO_comp_dT
-theorem evd' : ∀ {C : Type u} [Category.{v} C] [Preadditive C] (Y : SimplicialObject (SimplicialObject C)) (n : ℕ), (ev Y).map (dD (n + 1) n) = (diagCx Y).d (n + 1) n := @GlobalTheory.T.diagonal_differential_eval
 theorem totd' : ∀ {C : Type u} [Category.{v} C] [Preadditive C] [HasFiniteCoproducts C] (Y : SimplicialObject (SimplicialObject C)) (a b k : ℕ) (h : a + b = k + 1), (dbl Y).ιTotal (ComplexShape.down ℕ) a b (k + 1) (by simpa only [ComplexShape.π_def] using h) ≫ (tot Y).d (k + 1) k = ∑ x ∈ (Finset.HasAntidiagonal.antidiagonal k).attach, (ev Y).map (dT a b x.1.1 x.1.2) ≫ (dbl Y).ιTotal (ComplexShape.down ℕ) x.1.1 x.1.2 k (by simpa only [ComplexShape.π_def] using Finset.HasAntidiagonal.mem_antidiagonal.1 x.2) := @GlobalTheory.T.total_differential_eval
 
 abbrev ιz (a b n : ℕ) : ((dbl Y).X a).X b ⟶ (tot Y).X n := (dbl Y).ιTotalOrZero (ComplexShape.down ℕ) a b n
@@ -111,7 +109,7 @@ theorem shufF_comm (G : ∀ a b n : ℕ, bo a b ⟶ bo n n)
   simp only [ComplexShape.π_def] at h
 
   rw [← ιz_eq Y _ _ _ h, ← Category.assoc, ιz_d, Preadditive.sum_comp, ← Category.assoc, ιz_shufF Y G _ _ _ h,
-  ← evd', ← Functor.map_comp, hG a b n h, Functor.map_sum]
+  ← _root_.GlobalTheory.EZ.ev_map_dD_eq_diagCx_d, ← Functor.map_comp, hG a b n h, Functor.map_sum]
   refine Finset.sum_congr rfl fun x hx => ?_
   rw [Category.assoc, ιz_shufF Y G _ _ _ (Finset.HasAntidiagonal.mem_antidiagonal.1 hx), Functor.map_comp]
 
@@ -128,13 +126,13 @@ variable {C : Type u} [Category.{v} C] [Preadditive C] [HasFiniteCoproducts C]
   (Y : SimplicialObject (SimplicialObject C))
 
 theorem awF_comm (n : ℕ) : awF Y (n + 1) ≫ (tot Y).d (n + 1) n = (diagCx Y).d (n + 1) n ≫ awF Y n := by
-  rw [awF_eq, awF_eq, Preadditive.sum_comp, Preadditive.comp_sum, ← evd']
+  rw [awF_eq, awF_eq, Preadditive.sum_comp, Preadditive.comp_sum, ← _root_.GlobalTheory.EZ.ev_map_dD_eq_diagCx_d]
   simp_rw [Category.assoc, ιz_d, Preadditive.comp_sum]
   simp_rw [← Category.assoc, ← Functor.map_comp]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun y hy => ?_
 
-  rw [awop' n y.1 y.2 (Finset.HasAntidiagonal.mem_antidiagonal.1 hy), Functor.map_sum, Preadditive.sum_comp]
+  rw [_root_.GlobalTheory.EZ.awO_comm_d n y.1 y.2 (Finset.HasAntidiagonal.mem_antidiagonal.1 hy), Functor.map_sum, Preadditive.sum_comp]
 
 theorem awF_shufF (G : ∀ a b n : ℕ, bo a b ⟶ bo n n) (n : ℕ) :
     awF Y n ≫ shufF Y G n = (ev Y).map (∑ x ∈ antidiagonal n, awO n x.1 x.2 ≫ G x.1 x.2 n) := by
@@ -150,7 +148,7 @@ theorem idc_self (n : ℕ) : idc n n = 𝟙 _ := by
 
 theorem ev_idO_self (a b : ℕ) : (ev Y).map (idO a b a b) = 𝟙 _ := by
   unfold idO
-  rw [if_pos ⟨rfl, rfl⟩, ev_map_bop, idc_self, idc_self]
+  rw [if_pos ⟨rfl, rfl⟩, ev_map_bop, idc_self, _root_.GlobalTheory.EZ.idc_self]
   simp
   rfl
 
@@ -236,7 +234,7 @@ def htpyD (G : ∀ a b n : ℕ, bo a b ⟶ bo n n)
     change awF Y n ≫ shufF Y G n = _
     rw [awF_shufF, hH n]
     simp only [Functor.map_add (ev Y), Functor.map_id, Functor.map_comp]
-    rw [evd', homD, if_pos rfl, show (ev Y).map (𝟙 (bo n n)) = 𝟙 ((diagCx Y).X n) from (ev Y).map_id _]
+    rw [_root_.GlobalTheory.EZ.ev_map_dD_eq_diagCx_d, homD, if_pos rfl, show (ev Y).map (𝟙 (bo n n)) = 𝟙 ((diagCx Y).X n) from (ev Y).map_id _]
     cases n with
     | zero =>
       rw [Homotopy.dNext_zero_chainComplex]
@@ -244,7 +242,7 @@ def htpyD (G : ∀ a b n : ℕ, bo a b ⟶ bo n n)
       rw [this, Functor.map_zero, zero_comp, add_zero]
       abel
     | succ m =>
-      rw [Homotopy.dNext_succ_chainComplex, Nat.add_sub_cancel, evd', homD, if_pos rfl]
+      rw [Homotopy.dNext_succ_chainComplex, Nat.add_sub_cancel, _root_.GlobalTheory.EZ.ev_map_dD_eq_diagCx_d, homD, if_pos rfl]
       abel
 
 def htpyT (G : ∀ a b n : ℕ, bo a b ⟶ bo n n)

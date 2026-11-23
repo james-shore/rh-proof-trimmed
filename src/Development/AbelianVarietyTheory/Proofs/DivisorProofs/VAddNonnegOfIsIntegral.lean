@@ -39,6 +39,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalRingCardinality.SpanPowerMembership.Places
 
 @[expose] public section
 
@@ -54,7 +55,7 @@ theorem vAdd_add_star (D : D7) (w : D.what₂.places.Pl) (y : D.what₂.LL)
   have hp0 : ((D.what₂.places.resChar w : ℕ) : D.what₂.LL) ≠ 0 :=
     Nat.cast_ne_zero.2 (D.what₂.places.resChar_prime w).ne_zero
   have hy0 : y ≠ 0 := fun h => hp0 (by rw [← hy, h, zero_mul])
-  rw [← GlobalTheory.TypeLoss.additiveValuation_residueChar_eq_ramIndex, ← hy, GlobalTheory.TypeLoss.additiveValuation_mul_of_ne_zero _ hy0 (star_ne_zero.2 hy0)]
+  rw [← GlobalTheory.TypeLoss.additiveValuation_residueChar_eq_ramIndex, ← hy, _root_.Formalism.BasicNotions.Examples₂.PlacesToy.vAdd_mul _ hy0 (star_ne_zero.2 hy0)]
 
 theorem vAdd_nonneg_of_isIntegral {K : Type} [Field K] [NumberField K]
     (w : IsDedekindDomain.HeightOneSpectrum (𝓞 K)) {x : K}

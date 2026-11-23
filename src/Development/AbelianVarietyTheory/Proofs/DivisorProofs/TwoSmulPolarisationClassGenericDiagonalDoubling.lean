@@ -61,23 +61,6 @@ namespace GlobalTheory.Mum.DiagPic
 
 open GlobalTheory.CechPic
 
-theorem pull_inv {K : Type} [Field K] (A : PolAV (Sp K)) :
-    pull (GrpObj.inv : A.A ⟶ A.A).left (cls A.L A.isLB) = cls A.L A.isLB := by
-  obtain ⟨U, hU, ht⟩ := A.sym (default : PrimeSpectrum K)
-  have h := (cls_eq_zero_iff (LB.isLB_linComb A.isLB _ _)).2 ht
-  rw [cls_linComb A.isLB, Fin.sum_univ_two] at h
-  simp only [Matrix.cons_val_zero, Matrix.cons_val_one, one_smul, neg_smul, add_neg_eq_zero] at h
-  have hr : Set.range (𝟙 A.A.left : A.A.left ⟶ A.A.left) ⊆ Set.range (A.A.hom ⁻¹ᵁ U).ι := by
-    rw [Scheme.Opens.range_ι]
-    intro x _
-    have e : A.A.hom x = (default : PrimeSpectrum K) := Subsingleton.elim (α := PrimeSpectrum K) _ _
-    show A.A.hom x ∈ U
-    rw [e]
-    exact hU
-  have h' := congrArg (pull (IsOpenImmersion.lift (A.A.hom ⁻¹ᵁ U).ι (𝟙 _) hr)) h
-  rwa [← pull_comp, ← pull_comp, IsOpenImmersion.lift_fac_assoc, IsOpenImmersion.lift_fac, Category.id_comp,
-    pull_id] at h'
-
 theorem pull_one {S : Scheme.{0}} (A : PolAV S) {T : Over S} :
     pull (1 : T ⟶ A.A).left (cls A.L A.isLB) = 0 := by
   have h := (cls_eq_zero_iff (pull_isLB A.isLB _)).2 A.rigid
@@ -87,10 +70,10 @@ theorem pull_one {S : Scheme.{0}} (A : PolAV S) {T : Over S} :
 
 theorem lam_self {K : Type} [Field K] (A : PolAV (Sp K)) :
     lam (cls A.L A.isLB) (𝟙 A.A) (𝟙 A.A) = 2 • cls A.L A.isLB := by
-  have h := lam_mul_left A.isLB (GlobalTheory.Moduli.cube_of_isLB _ A A.L A.isLB) (𝟙 A.A) (𝟙 A.A)⁻¹ (𝟙 A.A)
+  have h := lam_mul_left A.isLB (_root_.GlobalTheory.AbLaw.CubeAssembly.cube_gen _ A A.L A.isLB) (𝟙 A.A) (𝟙 A.A)⁻¹ (𝟙 A.A)
   rw [mul_inv_cancel, lam_one_left] at h
   have e : lam (cls A.L A.isLB) (𝟙 A.A)⁻¹ (𝟙 A.A) = -(2 • cls A.L A.isLB) := by
-    rw [lam, inv_mul_cancel, pull_one, Hom.inv_def, Category.id_comp, pull_inv, Over.id_left, pull_id]
+    rw [lam, inv_mul_cancel, pull_one, Hom.inv_def, Category.id_comp, _root_.GlobalTheory.PolSpread.cls_inv, Over.id_left, pull_id]
     abel
   rw [e] at h
   exact (add_neg_eq_zero.1 h.symm)

@@ -38,6 +38,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.PublishedTheorems.GlobalTheta.IsSchwartzBruhatOfProd
+import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.InfiniteComponentCoordinatesAction
 
 @[expose] public section
 
@@ -47,16 +48,6 @@ open scoped TensorProduct ENNReal
 noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SiegelND.Coef.TestN
-
-theorem repr_map_tensor {F E : Type} [Field F] [Field E] [Algebra F E] {R R' : Type} [CommRing R] [Algebra F R]
-    [CommRing R'] [Algebra F R'] (f : R →ₐ[F] R') {d : ℕ} (b : Module.Basis (Fin d) F E) (y : R ⊗[F] E)
-    (k : Fin d) :
-    (Algebra.TensorProduct.basis R' b).repr (Algebra.TensorProduct.map f (AlgHom.id F E) y) k =
-      f ((Algebra.TensorProduct.basis R b).repr y k) := by
-  induction y using TensorProduct.induction_on with
-  | zero => simp
-  | tmul r e => simp [Algebra.TensorProduct.basis_repr_tmul]
-  | add x y hx hy => simp only [map_add (f := _), Finsupp.add_apply, hx, hy]
 
 theorem trace_map_tensor {F E : Type} [Field F] [Field E] [Algebra F E] {R R' : Type} [CommRing R] [Algebra F R]
     [CommRing R'] [Algebra F R'] (f : R →ₐ[F] R') {d : ℕ} (b : Module.Basis (Fin d) F E) (x : R ⊗[F] E) :
@@ -71,12 +62,12 @@ theorem trace_map_tensor {F E : Type} [Field F] [Field E] [Algebra F E] {R R' : 
       Algebra.TensorProduct.map f (AlgHom.id F E) x * Algebra.TensorProduct.basis R' b k := by
     rw [_root_.map_mul]
     simp [Algebra.TensorProduct.basis_apply]
-  rw [← repr_map_tensor f b, h]
+  rw [← _root_.GlobalTheory.CompanionTheory.SW.BB.RatCoord.repr_map f b, h]
 
 theorem hCo_hermMap : ∀ (F E : Type) [Field F] [Field E] [Algebra F E] (σ : E →ₐ[F] E) (R R' : Type) [CommRing R] [Algebra F R] [CommRing R'] [Algebra F R'] (f : R →ₐ[F] R') (d : ℕ) (b : Module.Basis (Fin d) F E) (n : ℕ) (S : HermR R σ n) (i : Idx n d), hCo R' σ b (hermMap f σ S) i = f (hCo R σ b S i) := by
   intro F E _ _ _ σ R R' _ _ _ _ f d b n S i
   rcases i with i | q
   · simp only [hCo, Sum.elim_inl, hermMap, Matrix.map_apply, map_mul, AlgHom.commutes, trace_map_tensor f b]
-  · simp only [hCo, Sum.elim_inr, hermMap, Matrix.map_apply, repr_map_tensor f b]
+  · simp only [hCo, Sum.elim_inr, hermMap, Matrix.map_apply, _root_.GlobalTheory.CompanionTheory.SW.BB.RatCoord.repr_map f b]
 
 end GlobalTheory.CompanionTheory.SiegelND.Coef.TestN

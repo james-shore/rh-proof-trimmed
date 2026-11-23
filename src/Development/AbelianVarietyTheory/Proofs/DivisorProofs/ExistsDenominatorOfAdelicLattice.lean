@@ -57,10 +57,6 @@ namespace GlobalTheory.CMVal.LatBound
 
 variable {E : Type} [Field E] [NumberField E]
 
-theorem coord_mul (z z' : Af E) (w : HeightOneSpectrum (𝓞 E)) : (z * z') w = z w * z' w := rfl
-
-theorem coord_add (z z' : Af E) (w : HeightOneSpectrum (𝓞 E)) : (z + z') w = z w + z' w := rfl
-
 theorem integral_of_int (b : 𝓞 E) (w : HeightOneSpectrum (𝓞 E)) :
     (algebraMap E (Af E) (algebraMap (𝓞 E) E b)) w ∈ w.adicCompletionIntegers E :=
   (HeightOneSpectrum.mem_adicCompletionIntegers _ _ _).2
@@ -92,7 +88,7 @@ theorem exists_nat_mul_integral (z : Af E) :
     congr 1
     show _ = algebraMap E (Af E) ((m.natAbs : E) * x)
     rw [map_mul, map_natCast]
-  rw [e, coord_add, coord_mul]
+  rw [e, _root_.GlobalTheory.CMVal.Euler.add_coord, _root_.GlobalTheory.CMVal.Euler.mul_coord]
   exact add_mem (integral_of_int _ w) (mul_mem (integral_natCast _ w) (ha w))
 
 theorem integral_of_mem_hatO [IsCMField E] {c : Ideal (OF E)} (hc : c ≠ ⊥) {z : Af E} (hz : z ∈ hatO c)
@@ -117,7 +113,7 @@ theorem lattice_between : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
     have hY : ∀ w : HeightOneSpectrum (𝓞 E),
         (algebraMap E (Af E) (algebraMap (𝓞 E) E x) * (d₁ : Af E) * ((d₂ : Af E) * (↑y⁻¹ : Af E))) w ∈
           w.adicCompletionIntegers E := fun w => by
-      rw [coord_mul, coord_mul]
+      rw [_root_.GlobalTheory.CMVal.Euler.mul_coord, _root_.GlobalTheory.CMVal.Euler.mul_coord]
       exact mul_mem (mul_mem (integral_of_int x w) (integral_natCast d₁ w)) (h₂ w)
     have key := GlobalTheory.CMVal.PicFin.mul_mem_hatO (Ideal.absNorm_mem c) hY
     convert key using 1
@@ -133,7 +129,7 @@ theorem lattice_between : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
         have : (↑y⁻¹ : Af E) * (y : Af E) = 1 := Units.inv_mul y
         linear_combination (-(d₁ : Af E) * algebraMap E (Af E) x) * this
       have h3 : (algebraMap E (Af E) ((d₁ : E) * x)) w ∈ w.adicCompletionIntegers E := by
-        rw [e, coord_mul]; exact mul_mem (hz w) (h₁ w)
+        rw [e, _root_.GlobalTheory.CMVal.Euler.mul_coord]; exact mul_mem (hz w) (h₁ w)
       rw [HeightOneSpectrum.mem_adicCompletionIntegers, FiniteAdeleRing.algebraMap_apply,
         HeightOneSpectrum.valuedAdicCompletion_eq_valuation'] at h3
       exact h3

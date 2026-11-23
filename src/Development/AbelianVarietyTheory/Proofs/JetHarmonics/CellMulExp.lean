@@ -53,6 +53,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.DensityLemma.PFibreBoundV
 
 @[expose] public section
 
@@ -66,8 +67,6 @@ variable {k r : ℕ}
 
 theorem eI_val (a : Fin r) : (eI k r a).val = a.val := rfl
 
-theorem esI_val (a : Fin r) : (esI k r a).val = 2 * r + k - a.val := rfl
-
 theorem cell_apply (c : Fin r → ℂ) (g : Mx k r) (p q : Fin (2 * r + k + 1)) :
     (wCell k r (Fin.last r) c * g) p q = PI.QnWCellW.cf k r c p * g (PI.QnWCellW.swp k r p) q := by
   rw [PI.QnWCellW.wCell_last, PI.QnWCellW.Wm_mul_apply]
@@ -75,7 +74,7 @@ theorem cell_apply (c : Fin r → ℂ) (g : Mx k r) (p q : Fin (2 * r + k + 1)) 
 theorem swp_e (a : Fin r) : PI.QnWCellW.swp k r (eI k r a) = esI k r a := by
   have := a.isLt
   apply Fin.ext
-  rw [PI.QnWCellW.swp_val, if_neg (by rw [eI_val]; omega), eI_val, esI_val]
+  rw [PI.QnWCellW.swp_val, if_neg (by rw [eI_val]; omega), eI_val, _root_.PI.UnitaryGroupMassFormula.DLm.NBk.esI_val]
 
 theorem swp_es (a : Fin r) : PI.QnWCellW.swp k r (esI k r a) = eI k r a := by
   rw [← swp_e, PI.QnWCellW.swp_swp]
@@ -86,7 +85,7 @@ theorem cf_e (c : Fin r → ℂ) (a : Fin r) : PI.QnWCellW.cf k r c (eI k r a) =
 theorem cf_es (c : Fin r → ℂ) (a : Fin r) : PI.QnWCellW.cf k r c (esI k r a) = c a := by
   have := a.isLt
   unfold PI.QnWCellW.cf
-  rw [if_neg (by rw [esI_val]; omega), if_neg (by rw [esI_val]; omega), esI_val, show 2 * r + k - (2 * r + k - a.val) = a.val by omega,
+  rw [if_neg (by rw [_root_.PI.UnitaryGroupMassFormula.DLm.NBk.esI_val]; omega), if_neg (by rw [_root_.PI.UnitaryGroupMassFormula.DLm.NBk.esI_val]; omega), _root_.PI.UnitaryGroupMassFormula.DLm.NBk.esI_val, show 2 * r + k - (2 * r + k - a.val) = a.val by omega,
     PI.QnWCellW.cN_val]
 
 theorem swp_eq_iff (p q : Fin (2 * r + k + 1)) : PI.QnWCellW.swp k r p = q ↔ p = PI.QnWCellW.swp k r q := by
@@ -209,7 +208,7 @@ theorem pat_hX {a b : Fin r} (hab : b.val < a.val) (s : ℂ) : QRR.Pat k r b (hX
     left; rw [eI_val, eI_val]; omega
   by_cases h2 : esI k r a = i ∧ esI k r b = j
   · obtain ⟨rfl, rfl⟩ := h2
-    right; rw [esI_val, esI_val]; omega
+    right; rw [_root_.PI.UnitaryGroupMassFormula.DLm.NBk.esI_val, _root_.PI.UnitaryGroupMassFormula.DLm.NBk.esI_val]; omega
   exfalso; apply hij
   simp [hX, Matrix.single_apply, h1, h2]
 

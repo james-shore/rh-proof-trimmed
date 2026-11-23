@@ -51,7 +51,7 @@ theorem exists_st_copyN : ∀ {K : Ctx} {B : Base} {f : Fr B.toPre} {T : TwDat B
   have fits' : RowPk.Over.Fits (⟨x.o.η, x.o.hη, x.o.V, x.o.S, N, x.o.G⟩ : P.q.Over) := ⟨x.fits.div, hG, hGA, hCen⟩
   obtain ⟨m, hc, hco⟩ := Mv.exists_moved B f T w P.Z₀ P.hX P.Wt P.z P.q _ P.intersectionNumber_baseChange P.exAt P.inGeo P.grp fits'
   obtain ⟨sg, s, h1, h2, h3⟩ := CopySide.side_copy x N hG
-  obtain ⟨r, hpin, hrep⟩ := GlobalTheory.T.adelicRowsReading_transport_laterHeckeGaloisStage x N hG hGA hCen m hc hco sg s h1 h2 h3
+  obtain ⟨r, hpin, hrep⟩ := _root_.GlobalTheory.Mem.R3.Rw.CopyRead.read_copyN x N hG hGA hCen m hc hco sg s h1 h2 h3
   exact ⟨⟨_, fits', x.G_eq, x.etaF, x.bk, m, hc, hco, s, r, hpin⟩, rfl, hrep⟩
 
 end GlobalTheory.Mem.R3.Rw

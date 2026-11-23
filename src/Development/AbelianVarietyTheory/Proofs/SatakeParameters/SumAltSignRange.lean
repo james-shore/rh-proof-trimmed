@@ -84,8 +84,4 @@ theorem vm_eq_of_shift (p : ℕ) [Fact p.Prime] (X : Sys p) (v : X.Pl) (l : ℕ)
   rw [Finset.sum_congr rfl (fun s _ => e1 s), Finset.sum_sub_distrib, ← Finset.sum_mul,
     sum_alt_sign_pos _ (X.G.P.setting v).even, zero_mul, sub_zero]
 
-theorem vm_shift_cancels : ∀ (p : ℕ) [Fact p.Prime] (X : Sys p) (v : X.Pl) (l : ℕ) (e : Fin (X.G.P.n' v) → ℤ) (k : ℤ),
-    (∀ s, X.w v l s = e s - k) → X.vm v l = ∑ s : Fin (X.G.P.n' v), (if IsOddPos s then -1 else 1) * e s :=
-  fun p _ X v l e k hk => vm_eq_of_shift p X v l e k hk
-
 end GlobalTheory.TwV.Xc

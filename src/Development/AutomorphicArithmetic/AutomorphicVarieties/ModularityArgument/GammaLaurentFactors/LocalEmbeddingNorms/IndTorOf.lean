@@ -62,10 +62,6 @@ attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 namespace UpperTheory.V.Z.Gam
 
-private theorem reps {α : Type*} (r : α → α → Prop) (hr : Equivalence r) (A : Finset α) :
-    ∃ T : Finset α, T ⊆ A ∧ (∀ t ∈ T, ∀ t' ∈ T, r t t' → t = t') ∧ ∀ a ∈ A, ∃ t ∈ T, r a t :=
-  _root_.UpperTheory.Reformulated.B.Qh68.reps r hr A
-
 private theorem swapc {α ι : Type*} (I : Finset ι) (p : ι → α → Prop) (s : Multiset α) :
     ∑ i ∈ I, (s.filter (p i)).card = (s.map fun y => (I.filter fun i => p i y).card).sum := by
   induction s using Multiset.induction_on with
@@ -184,7 +180,7 @@ theorem UpperTheory.V.Z.Gam.indTorOf :
       exact ⟨χ, h1, fun _ => ⟨ζ, hζ, rfl, h2⟩⟩
     · exact ⟨1, isSmoothChar_one, fun h => absurd h hy⟩
   choose χ hχs hχ using hχ
-  obtain ⟨T, hT1, hT2, hT3⟩ := reps _ (unr_equiv (nm w₀))
+  obtain ⟨T, hT1, hT2, hT3⟩ := _root_.UpperTheory.Reformulated.B.Qh68.reps _ (unr_equiv (nm w₀))
     (Finset.univ.biUnion fun w : PlacesOver M v => (s' w).toFinset.image (χ w))
   have hT : ∀ t ∈ T, IsSmoothChar t := fun t ht => by
     obtain ⟨w, -, h⟩ := Finset.mem_biUnion.1 (hT1 ht)

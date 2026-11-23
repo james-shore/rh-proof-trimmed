@@ -98,7 +98,7 @@ theorem rank_eig (hρ : MB.IsActOf t'.act.act ρM) {tB : SAB H (Sp L)} (m' : SAB
     (σ : L →+* ℂ) (s : 𝓞 E →+* 𝓞 L) {n : ℕ}
     (h : LieMult tB.act (spMap σ) ((σ.comp (algebraMap (𝓞 L) L)).comp s) n) : B.rank (eigSp ρM s) = n := by
   have hg : Function.Injective (σ.comp (algebraMap (𝓞 L) L)) := σ.injective.comp (IsFractionRing.injective _ _)
-  obtain ⟨W, _, _, MW, ρW, j, h1, -, -, h2⟩ := exists_model MB hρ m' _ hg (spMap σ) (spMap_comp _ _).symm
+  obtain ⟨W, _, _, MW, ρW, j, h1, -, -, h2⟩ := exists_model MB hρ m' _ hg (spMap σ) (_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp _ _).symm
   obtain ⟨x, hx, hli, hsp⟩ := exists_smul_mem_span B (eigSp ρM s) rfl
   obtain ⟨h3, h4⟩ := h2 s _ x hx hli fun z hz => (hsp z hz).imp fun u hu =>
     ⟨IsUnit.mk0 _ ((map_ne_zero_iff _ hg).2 hu.1), hu.2⟩
@@ -154,12 +154,12 @@ theorem inf_norm (hρ : MB.IsActOf t'.act.act ρM) (hfib : IsFibre (HodgeIP t'.G
   have hg : Function.Injective ((s.comp e).comp (algebraMap (𝓞 L) L)) :=
     (s.comp e).injective.comp (IsFractionRing.injective _ _)
   have hx : spMap s ≫ spMap (e.comp (algebraMap (𝓞 L) L)) = spMap ((s.comp e).comp (algebraMap (𝓞 L) L)) :=
-    (spMap_comp _ _).symm
+    (_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp _ _).symm
   obtain ⟨wK, wec, k1, k2, k3, k4, -⟩ := exists_vec MB hρ n mf _ hg (spMap s) hx (under (spMap s ≫ y))
     (Category.assoc _ _ _)
   have hfr' : IsFramed U τ (s.comp β) (spMap s ≫ y) (fun k => wec (x₁ k)) fun k => wec (x₂ k) := by
     refine ⟨?_, ?_, ?_, ?_⟩
-    · rw [Category.assoc, hy, spMap_comp]
+    · rw [Category.assoc, hy, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
     · rintro _ ⟨a, rfl⟩
       exact hU ⟨_, (Scheme.Hom.comp_apply _ _ _).symm⟩
     · rw [RingHom.comp_assoc, hs₁]
@@ -280,7 +280,7 @@ theorem fin_norm (hρ : MB.IsActOf t'.act.act ρM)
         ∃ m'' : SABMap tK _ (spMap (algebraMap V F)), n.φ = m''.φ ≫ mT.φ := by
       rintro _ n rfl
       exact sabCancel pullCubCancel E H _ _ _ _ _ _ _ _ mT n
-    exact key _ n (spMap_comp gV (algebraMap V F))
+    exact key _ n (_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp gV (algebraMap V F))
   have hfr' : IsFramed U τ β y (fun k => vec (y₁ k)) fun k => vec (y₂ k) :=
     ⟨hy, hU, hs₁ ▸ h3 s₁ _ y₁ a1 a2 fun z hz => (a3 z hz).imp fun u hu => ⟨hne u hu.1, hu.2⟩,
       hs₂ ▸ h3 s₂ _ y₂ b1 b2 fun z hz => (b3 z hz).imp fun u hu => ⟨hne u hu.1, hu.2⟩⟩

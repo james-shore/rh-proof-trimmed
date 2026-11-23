@@ -90,14 +90,14 @@ theorem exists_ne_zero_closureEtaleAt : ∀ (q : ℕ) (A : Type) [CommRing A] [I
   haveI : Module.Finite (GlobalTheory.LocAcyc.GenFib A R) DA := htor.1
   haveI := etale_of_isZTorsor _ DA q hq actA htor
   letI := GlobalTheory.KeyOriginNoeth.closureAlg A R DA
-  haveI : Module.Finite R (GlobalTheory.KeyOriginNoeth.closure A R DA) := GlobalTheory.T.finite_integralClosureOverGenericFibre_of_etale A R DA
+  haveI : Module.Finite R (GlobalTheory.KeyOriginNoeth.closure A R DA) := _root_.GlobalTheory.KeyOriginNoeth.finite_closure A R DA
   haveI : Algebra.FinitePresentation R (GlobalTheory.KeyOriginNoeth.closure A R DA) :=
     Algebra.FinitePresentation.of_finiteType.mp inferInstance
-  obtain ⟨m, hm, hE⟩ := GlobalTheory.T.exists_etale_away_of_isEtaleAt R (GlobalTheory.KeyOriginNoeth.closure A R DA)
+  obtain ⟨m, hm, hE⟩ := _root_.GlobalTheory.etale_away_of_isEtaleAt_off_submonoid R (GlobalTheory.KeyOriginNoeth.closure A R DA)
     (Algebra.algebraMapSubmonoid R (nonZeroDivisors A)) (fun Q _ hQ =>
-      GlobalTheory.T.closure_prime_regular_height A R DA Q (fun a ha => hQ _ ⟨a, mem_nonZeroDivisors_of_ne_zero ha, rfl⟩))
+      _root_.GlobalTheory.KeyOriginNoeth.isEtaleAt_closure_of_disjoint A R DA Q (fun a ha => hQ _ ⟨a, mem_nonZeroDivisors_of_ne_zero ha, rfl⟩))
   obtain ⟨a, ha, rfl⟩ := hm
   refine ⟨a, nonZeroDivisors.ne_zero ha, fun P _ hP => ?_⟩
-  exact GlobalTheory.T.etale_localization_atPrime_tensor_of_etale_away' R _ _ hE P hP
+  exact _root_.GlobalTheory.etale_localization_atPrime_tensor_of_etale_away R _ _ hE P hP
 
 end GlobalTheory.KeyOriginEnlarge

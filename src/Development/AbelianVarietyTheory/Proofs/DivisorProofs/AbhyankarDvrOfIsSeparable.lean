@@ -97,8 +97,8 @@ theorem abhyankar_dvr_of_isSeparable : ∀ (S K L : Type) [CommRing S] [IsDomain
     rcases Nat.eq_zero_or_pos e with h | h
     · subst h; simp at he
     · exact h
-  haveI hAd := GlobalTheory.T.adjoinRoot_X_pow_sub_uniformizer_isDomain S π e hπ he0
-  haveI hAv := GlobalTheory.T.isDVR_adjoinRoot_X_pow_sub_C_of_irreducible S π e hπ he0
+  haveI hAd := _root_.GlobalTheory.adjoinRoot_X_pow_sub_C_uniformizer_isDomain S π e hπ he0
+  haveI hAv := _root_.GlobalTheory.adjoinRoot_uniformiser_isDVR S π e hπ he0
   haveI : IsDomain D := φ.toMulEquiv.isDomain
   haveI : IsPrincipalIdealRing D :=
     IsPrincipalIdealRing.of_surjective φ.symm.toRingHom φ.symm.surjective
@@ -161,7 +161,7 @@ theorem abhyankar_dvr_of_isSeparable : ∀ (S K L : Type) [CommRing S] [IsDomain
           (algebraMap_isIntegral_iff.mpr inferInstance) Q)
     haveI : Q.LiesOver (maximalIdeal D) := ⟨hQu.symm⟩
     exact isUnramifiedAt_of_ramificationIdx_eq_one_of_isSeparable (maximalIdeal D) Q
-      (GlobalTheory.T.abhyankar_ramificationIdx_eq_one_alt S K L π e D ⟨φ⟩ hπ he hram hsep Q) (GlobalTheory.T.abhyankar_residueField_isSeparable_alt S K L π e D ⟨φ⟩ hπ he hram hsep Q)
+      (_root_.GlobalTheory.abhyankar_ramificationIdx_eq_one S K L π e D ⟨φ⟩ hπ he hram hsep Q) (_root_.GlobalTheory.abhyankar_residueField_isSeparable S K L π e D ⟨φ⟩ hπ he hram hsep Q)
   haveI : Algebra.FormallyUnramified D (integralClosure D (TensorProduct S D L)) := by
     rw [Algebra.formallyUnramified_iff_forall]
     intro q

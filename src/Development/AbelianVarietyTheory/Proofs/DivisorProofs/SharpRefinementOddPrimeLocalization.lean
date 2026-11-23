@@ -88,7 +88,7 @@ theorem eighthPowerFibre_thetaObj : ∀ (W : Matrix (Fin 8) (Fin 8) ℤ), IsE8 W
       bij := hbij, pairing := hpair, act := act, hom := hact1 }
   refine ⟨bT, t, ψ, ?_, ?_, hψ, hL, ?_⟩
   · exact fun a => ⟨hsh a, hκ gQ K P' B M pr hB hpr hE act hact1 hact2 a⟩
-  · exact GlobalTheory.T.e8_act_prod_eq_one W hW gQ K P' B M pr hB hpr hE act hact1 hact2
+  · exact _root_.GlobalTheory.Poinc.Sep.E8Fibration.PrimPic.e8_act_endomorphism_prod_eq_id W hW gQ K P' B M pr hB hpr hE act hact1 hact2
   · intro y hy q hq1 hq2
     obtain ⟨y', hy'1, hy'2⟩ := hpt _ y hy q hq1 hq2
     obtain ⟨c, hc, -⟩ := hbij K (𝟙 _) y' hy'2

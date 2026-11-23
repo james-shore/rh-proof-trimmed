@@ -120,14 +120,14 @@ open TensFlat in
 theorem tensor_flat_loc_exact : ∀ (R : Type) [CommRing R] (M : Shv R), FlatS M → ∀ {A B C : Shv R} (f : A ⟶ B) (g : B ⟶ C), f ≫ g = 0 → (∀ U (b : Sec B U), Sec.map g b = 0 → Loc U fun V k => ∃ a : Sec A V, Sec.map f a = Sec.res k b) → ∀ U (x : TensorProduct (ULift.{1} R) (Sec B U) (Sec M U)), (Loc U fun V k => LinearMap.rTensor _ (g.hom.app (op V)).hom (TensorProduct.map (B.obj.map k.op).hom (M.obj.map k.op).hom x) = 0) → Loc U fun V k => ∃ y : TensorProduct (ULift.{1} R) (Sec A V) (Sec M V), LinearMap.rTensor _ (f.hom.app (op V)).hom y = TensorProduct.map (B.obj.map k.op).hom (M.obj.map k.op).hom x := by
   intro R _ M hM A B C f g _ hex U x hx
   obtain ⟨P, φ, hsurj, hinj, hflat⟩ := hM
-  have h1 := (GlobalTheory.T.sectionwiseTensor_presheaf_locallyBijective R B.obj P M.obj φ hsurj hinj U).1 x
+  have h1 := (_root_.GlobalTheory.EtC.TensLocBij.main R B.obj P M.obj φ hsurj hinj U).1 x
   apply loc_trans
   refine loc_mono U _ _ (loc_and U _ _ h1 hx) ?_
   rintro V k ⟨⟨x', hx'⟩, hz⟩
   have hz0 : LinearMap.lTensor _ (φ.app (op V)).hom (LinearMap.rTensor _ (g.hom.app (op V)).hom x') = 0 := by
     rw [← rl_comm, hx']
     exact hz
-  have h2 := (GlobalTheory.T.sectionwiseTensor_presheaf_locallyBijective R C.obj P M.obj φ hsurj hinj V).2 _ hz0
+  have h2 := (_root_.GlobalTheory.EtC.TensLocBij.main R C.obj P M.obj φ hsurj hinj V).2 _ hz0
   apply loc_trans
   refine loc_mono V _ _ h2 ?_
   intro W m hm

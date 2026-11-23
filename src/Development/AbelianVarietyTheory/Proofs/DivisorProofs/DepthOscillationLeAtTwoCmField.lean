@@ -78,7 +78,7 @@ theorem oscLe_two : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : 
     rw [hnu]
     exact Finset.sum_nonneg fun f _ => (hfall f).1
   · obtain ⟨len, hlen0, -, hlenS, hlen⟩ :=
-      GlobalTheory.T.meanUpperBound_bigFactors_placeAboveTwo E H Dw l Xo c p F vd hT T io y (not_isUnit_of_overLa la ho) hy
+      _root_.GlobalTheory.RefSum.mean_bound_big_factors_at_two E H Dw l Xo c p F vd hT T io y (not_isUnit_of_overLa la ho) hy
     set b : Lt1 Dw → ℝ := fun f => if IsBig k f then (cx f : ℝ) * len f.1 else (rk f : ℝ) * cx f with hb
     have hfb : ∀ f, letI := H.starRing; nuFac p y f (cx f) ≤ ((b f : ℝ) : EReal) := by
       intro f

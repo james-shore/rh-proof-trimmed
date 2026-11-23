@@ -70,13 +70,13 @@ theorem GlobalTheory.Port.jIn_nonempty_true : ∀ {B : Base} {X : PreX B.toPre} 
   have hQ : ∀ v, v ∈ Q ↔ I.UnderQ a v := by
     intro v
     exact Finset.mem_image
-  obtain ⟨Ch, chOf, eY, Kc, hK, hCh0, hlev0, hy0⟩ := GlobalTheory.T.trueColumnChoice_goodCharts_every_stage I hI hP l Z u (C.forms u) a Q hQ (hSC u)
+  obtain ⟨Ch, chOf, eY, Kc, hK, hCh0, hlev0, hy0⟩ := _root_.GlobalTheory.TwU.AtTrue.goodCharts_all I hI hP l Z u (C.forms u) a Q hQ (hSC u)
   have hbad : ∀ v ∈ badQ (I.rec7 l Z) Q, v ∈ badG (I.rec7 l Z) ∨ I.UnderQ a v := by
     intro v hv
     rcases hv with hv | hv
     · exact Or.inl hv
     · exact Or.inr ((hQ v).1 hv)
-  obtain ⟨A, hpins, htie⟩ := GlobalTheory.T.trueColumn_kernelData_compatible_stepCharts I hI hP l Z L hT Gi Gl K Y cX ex t u a (badQ (I.rec7 l Z) Q) Ch chOf eY Kc
+  obtain ⟨A, hpins, htie⟩ := _root_.GlobalTheory.Mem.Col2.AdT.adTie_true I hI hP l Z L hT Gi Gl K Y cX ex t u a (badQ (I.rec7 l Z) Q) Ch chOf eY Kc
     full.1.base.dt hTw hSK hRd hpin hpi hDt hbad
     (fun i hi => ⟨(hK i hi).2.2.1.readsK, (hK i hi).2.1⟩) (fun i hi β => ((hK i hi).2.2.2 β).1)
     (fun i hi β => by

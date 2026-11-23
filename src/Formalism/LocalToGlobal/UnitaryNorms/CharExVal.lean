@@ -48,7 +48,7 @@ namespace Formalism.L2.Host
 
 namespace CharEx
 
-theorem algValsFin (L : Type) [Field L] [NumberField L] : AlgValsFin L := algebraic_values_finite L
+theorem algValsFin (L : Type) [Field L] [NumberField L] : AlgValsFin L := _root_.PI.AlgValsFin.W.algValsFin_main L
 
 end CharEx
 

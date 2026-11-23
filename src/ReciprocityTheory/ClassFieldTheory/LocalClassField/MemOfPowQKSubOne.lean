@@ -169,7 +169,7 @@ theorem mem_of_pow_qK_sub_one (K : IntermediateField ℚ_[p] (PadicAlgCl p)) (hK
     rw [map_sub, hσx]; ring
   have h4 : ‖σ ζ - ζ‖ < 1 := by
     rw [h3]
-    refine lt_of_le_of_lt (norm_sub_le_max' _ _) (max_lt hxc ?_)
+    refine lt_of_le_of_lt (_root_.Bl.FirstBlockLemmaD.goal1 _ _) (max_lt hxc ?_)
     rw [norm_GK]; exact hxc
   exact absurd h2 (ne_of_lt h4)
 

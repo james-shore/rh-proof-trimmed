@@ -61,6 +61,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ChartGen
+import Formalism.LocalRingCardinality.HostCls
 
 @[expose] public section
 
@@ -151,7 +152,7 @@ theorem main : ∀ (D : D7) (large₂ : SizeData₂ D) (u u' : D.what₂.Word) (
     intro L hL
     obtain ⟨a, ⟨e⟩⟩ := (hgen L₀ L hint hcyc).1 hL
     obtain ⟨b, c⟩ := GlobalTheory.Mass.PrimMeanRow.disc_of_equiv h L _ e
-    refine ⟨a, by rw [b, GlobalTheory.Mass.PrimMeanRow.finrank_E, ht_def, ← pow_mul]; ring_nf,
+    refine ⟨a, by rw [b, _root_.Formalism.BasicNotions.Host.finrank_E', ht_def, ← pow_mul]; ring_nf,
       ((GlobalTheory.Mass.DetAgree.main _ _ h hK hs hPD L a).2.2.2.1 1).1 c, ?_⟩
     intro x hx
     have h1 : ((Lat.Tu D u : ℕ) : 𝓞 D.host.E) • e (Submodule.Quotient.mk ⟨x, hx⟩) = 0 := by
@@ -168,7 +169,7 @@ theorem main : ∀ (D : D7) (large₂ : SizeData₂ D) (u u' : D.what₂.Word) (
   have hT0 : ((Lat.Tu D u : ℕ) : 𝓞 D.host.E) ≠ 0 := by exact_mod_cast hTp.ne_zero
   have hnorm : Ideal.absNorm (Ideal.span {((Lat.Tu D u : ℕ) : 𝓞 D.host.E)}) = t ^ 2 := by
     rw [Ideal.absNorm_span_singleton, Algebra.norm_natCast, RingOfIntegers.rank,
-      GlobalTheory.Mass.PrimMeanRow.finrank_E, ht_def, ← pow_mul]
+      _root_.Formalism.BasicNotions.Host.finrank_E', ht_def, ← pow_mul]
     simp only [Int.natAbs_pow, Int.natAbs_natCast]
     ring_nf
   have hP := GlobalTheory.Mass.PrimMeanOne.main GlobalTheory.Mass.MaxFormula.main _ _ h hK hs hPD
@@ -179,7 +180,7 @@ theorem main : ∀ (D : D7) (large₂ : SizeData₂ D) (u u' : D.what₂.Word) (
   have hNT1 : 1 ≤ Cnt.NT D u := one_le_pow₀ (by exact_mod_cast hTp.one_le)
   have htNT : ((t : ℕ) : ℝ) = Cnt.NT D u := by
     rw [ht_def, Cnt.NT]; push_cast; rfl
-  have hfd : fDeg D.host.E = D.R.f := GlobalTheory.Mass.PrimMeanRow.fDeg_E D
+  have hfd : fDeg D.host.E = D.R.f := _root_.Formalism.MainNotions.StandardLattice.fDeg_host D
   have hA : Cnt.massU D.host.E (D.R.k - 1) ≤ Cnt.massS D D.R.k *
       ((Real.exp 1 * Real.pi / (D.R.k * D.host.v)) ^ (D.R.k * D.R.f) *
         (2 * (D.R.k : ℝ) * D.host.rdE ^ ((1 : ℝ) / 2)) ^ D.R.f) :=

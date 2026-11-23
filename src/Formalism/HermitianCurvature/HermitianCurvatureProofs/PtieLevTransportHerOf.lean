@@ -421,7 +421,7 @@ theorem lev_ind_her {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace �
 
 theorem levTransportHer_of (hJ : PTie.JFScale) (hS : PTie.SliceStepHer) : PTie.LevTransportHer := by
   intro Wp Wq _ _ _ _ _ _ P z z' π π' X μ L st l0 Bs hD hl1 hl2 hz hz' hπ hπ' i c hc
-  obtain ⟨T, h1, h2, h3, h4, hN⟩ := Formalism.FourierDecayAlt.P.exists_normalized_tower P.k P.r Wp Wq Bs
+  obtain ⟨T, h1, h2, h3, h4, hN⟩ := _root_.Formalism.FourierDecayAlt.P.HaarMassHermitianCurvature.towerAt P.k P.r Wp Wq Bs
   obtain ⟨κ0, hκ0⟩ := hJ P.k P.r Wp Wq Bs T.base h1.symm h2.symm h3.symm h4.symm
   have e1 : T.base.z = z := h1.trans hz
   have e2 : T.base.z' = z' := h2.trans hz'
@@ -439,8 +439,5 @@ theorem levTransportHer_of (hJ : PTie.JFScale) (hS : PTie.SliceStepHer) : PTie.L
 end Formalism.FourierDecayAlt.P.PTieH
 
 namespace Formalism.FourierDecayAlt.P
-
-theorem ptie_levTransportHer_of : Formalism.FourierDecayAlt.P.PTie.JFScale → Formalism.FourierDecayAlt.P.PTie.SliceStepHer →
-    Formalism.FourierDecayAlt.P.PTie.LevTransportHer := PTieH.levTransportHer_of
 
 end Formalism.FourierDecayAlt.P

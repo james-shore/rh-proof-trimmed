@@ -82,27 +82,16 @@ theorem exists_zsmul_mem_of_span {L : Submodule (𝓞 E) V} {x : V} (hx : x ∈ 
     have h := L.smul_mem o hx
     rwa [← algebraMap_smul E o, ho, smul_assoc, smul_comm c a x, ← mul_smul] at h
 
-omit [NumberField E] [Module E V] [IsScalarTower (𝓞 E) E V] in
-theorem exists_zsmul_mem_of_fg {L M : Submodule (𝓞 E) V} (hL : ∀ x, ∃ N : ℤ, N ≠ 0 ∧ N • x ∈ L) (hM : M.FG) :
-    ∃ N : ℤ, N ≠ 0 ∧ ∀ x ∈ M, N • x ∈ L := by
-  first
-  | exact @_root_.GlobalTheory.FiniteGenIntegerScalar.exists_int_smul_mem_of_fg
-  | exact _root_.GlobalTheory.FiniteGenIntegerScalar.exists_int_smul_mem_of_fg
-  | (apply _root_.GlobalTheory.FiniteGenIntegerScalar.exists_int_smul_mem_of_fg <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FiniteGenIntegerScalar.exists_int_smul_mem_of_fg <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FiniteGenIntegerScalar.exists_int_smul_mem_of_fg <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FiniteGenIntegerScalar.exists_int_smul_mem_of_fg ..)
-
 theorem exists_commensurable {n : ℕ} (L : Submodule (𝓞 E) (Fin n → E)) (hL : Submodule.IsFullLattice E L) :
     ∃ N : ℤ, N ≠ 0 ∧ (∀ x ∈ L, ∀ i, ∃ o : 𝓞 E, (o : E) = N • x i) ∧
       ∀ (i : Fin n) (o : 𝓞 E), (Pi.single i (N • (o : E)) : Fin n → E) ∈ L := by
   let M : Submodule (𝓞 E) (Fin n → E) := Submodule.pi Set.univ fun _ => LinearMap.range (Algebra.linearMap (𝓞 E) E)
-  obtain ⟨a, ha, h₁⟩ := exists_zsmul_mem_of_fg (L := M) (M := L) (fun x => by
+  obtain ⟨a, ha, h₁⟩ := _root_.GlobalTheory.FiniteGenIntegerScalar.exists_int_smul_mem_of_fg (L := M) (M := L) (fun x => by
     classical
     have : Algebra.IsAlgebraic ℤ E := (IsFractionRing.comap_isAlgebraic_iff (K := ℚ)).2 inferInstance
     obtain ⟨b, hb, h⟩ := Algebra.IsAlgebraic.exists_integral_multiples ℤ (Finset.univ.image x)
     exact ⟨b, hb, fun i _ => ⟨⟨b • x i, h _ (Finset.mem_image_of_mem _ (Finset.mem_univ i))⟩, rfl⟩⟩) hL.fg
-  obtain ⟨b, hb, h₂⟩ := exists_zsmul_mem_of_fg (L := L)
+  obtain ⟨b, hb, h₂⟩ := _root_.GlobalTheory.FiniteGenIntegerScalar.exists_int_smul_mem_of_fg (L := L)
     (M := Submodule.span (𝓞 E) (Set.range fun i : Fin n => (Pi.single i 1 : Fin n → E)))
     (fun x => exists_zsmul_mem_of_span (by
       letI : Submodule.IsFullLattice E L := hL
@@ -147,8 +136,7 @@ theorem evalV_single_ne (v : HeightOneSpectrum (𝓞 F)) (y : Fv F v) {w : Heigh
   classical
   exact RestrictedProduct.single_eq_of_ne (fun w : HeightOneSpectrum (𝓞 F) => w.adicCompletionIntegers F) y hw
 
-theorem af_ext {a b : Af F} (h : ∀ w, evalV F w a = evalV F w b) : a = b :=
-  RestrictedProduct.ext _ _ h
+alias af_ext := _root_.GlobalTheory.AdelicU.af_ext
 
 def IntSupp (v : HeightOneSpectrum (𝓞 F)) (α : Af F) : Prop :=
   α ∈ intAf F ∧ ∀ w, ¬ w = v → evalV F w α = 0

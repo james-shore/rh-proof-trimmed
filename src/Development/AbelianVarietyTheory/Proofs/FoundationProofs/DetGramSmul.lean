@@ -122,9 +122,9 @@ theorem red_inf (E : Type) [Field E] [NumberField E] (R : Type) [NormedCommRing 
   have hc₀' : 0 ≤ c₀ := by positivity
   set c₁ : ℝ := ((2 ^ finrank ℚ E) ^ n * c₀) ^ 2 + 1 with hc₁
   have hc₁' : 0 < c₁ := by positivity
-  obtain ⟨C, hC1, hC2⟩ := GlobalTheory.T.exists_bound_inv_entries_of_bounded_entries R n G hGc hG1 ‖ε.symm.toContinuousLinearMap‖ c₁⁻¹ (inv_pos.2 hc₁')
+  obtain ⟨C, hC1, hC2⟩ := _root_.GlobalTheory.matrix_inv_entries_bounded R n G hGc hG1 ‖ε.symm.toContinuousLinearMap‖ c₁⁻¹ (inv_pos.2 hc₁')
   refine ⟨⌈c₁ * C⌉₊.factorial, max C ‖ε.symm.toContinuousLinearMap‖, Nat.factorial_pos _, fun Λ hΛ g => ?_⟩
-  obtain ⟨u, hu, hu'⟩ := GlobalTheory.T.exists_int_span_generators_of_isLattice_pi E n Λ hΛ
+  obtain ⟨u, hu, hu'⟩ := _root_.GlobalTheory.exists_intGenerators_card_eq_of_isLattice_pi E n Λ hΛ
   let φ : (Fin n → E) →ₗ[ℤ] EuclideanSpace ℝ (Fin (finrank ℝ (Fin n → R))) := AddMonoidHom.toIntLinearMap
     { toFun := fun x => ε ((fun i => τ (x i)) ᵥ* g.1)
       map_zero' := by simp [← Pi.zero_def]
@@ -159,7 +159,7 @@ theorem red_inf (E : Type) [Field E] [NumberField E] (R : Type) [NormedCommRing 
   let v : κ → Fin n → E := fun p => integralBasis E p.2 • w p.1
   have hv : ∀ p : κ, v p = RingOfIntegers.basis E p.2 • w p.1 := fun p => by
     simp only [v, integralBasis_apply]; rfl
-  obtain ⟨m, hm1, hm2⟩ := GlobalTheory.T.gram_det_eq_sq_mul_gram_det_of_mem_span _ _ _ κ φ u v (by rw [hκ, Fintype.card_fin])
+  obtain ⟨m, hm1, hm2⟩ := _root_.GlobalTheory.gram_det_index_sublattice _ _ _ κ φ u v (by rw [hκ, Fintype.card_fin])
     fun p => (hu _).1 (hv p ▸ Λ.smul_mem _ ((hu _).2 (hwu _)))
   have h5 : ∀ p : κ, φ (v p) = (2 : ℝ) ^ (l p.1 + 1) • ε (fam c.1 p) := fun p => by
     rw [hφ, ← map_smul, ← smul_comm, ← h2, ← smul_vecMul]
@@ -305,9 +305,9 @@ theorem summable_hgt (hc : IsCMExt F E σ) (hσ : ∀ x, σ (σ x) = x) (h : Q =
     (fun x ⟨y, hy⟩ => by
       have h0 : y ≠ 0 := by rintro rfl; exact x.ne_zero (hy.symm.trans (map_zero _))
       rw [show x = Units.map (inclR (F := F) (AF F)).toMonoidHom (Units.mk0 y h0) from Units.ext hy.symm, absE_inclR])
-    (one_pos.trans hb) (by rw [GlobalTheory.T.tensorIdeleNormalizedAbs_ideleHalfAtInfinity F E σ hc]; simp) (GlobalTheory.T.compact_adeles_rational_points_finite_eventually_zero F E) (red_gl F E σ hc n)
+    (one_pos.trans hb) (by rw [_root_.GlobalTheory.Eis.Conv.absE_halfE F E σ hc]; simp) (_root_.GlobalTheory.Eis.Conv.Discr.finite_and_eventually_eq_zero F E) (red_gl F E σ hc n)
     (by simpa only [← pow_mul, mul_comm _ 2, Fintype.card_fin, show (4 : ℝ) = 2 ^ 2 by norm_num] using
-      GlobalTheory.T.skewHermitian_adelic_cover_of_adele_cover F E σ hc _ _ _ hΩ₀ hcov n)
+      _root_.GlobalTheory.Eis.Conv.CovSkew.cover_skew F E σ hc _ _ _ hΩ₀ hcov n)
     (U := U) (by rw [hU]; ext i j; exact congrArg (fun x => (1 : AF F) ⊗ₜ[F] x) (hJ.1 i j))
     ((mem_rat _).2 fun a b => hU ▸ ⟨J a b, rfl⟩) (p := fun q => matHom _ σ Q (p q)) (k := fun q => matHom _ σ Q (k q))
     (fun q => by
@@ -321,7 +321,7 @@ theorem summable_hgt (hc : IsCMExt F E σ) (hσ : ∀ x, σ (σ x) = x) (h : Q =
     fun q q' hq => hi q q' (by
       rw [← map_mul, ← map_mul, ← e, ← e, ← map_inv, ← map_mul] at hq
       exact hq)
-  refine GlobalTheory.T.summable_rpow_of_fibre_card_le' X n _ C t m _ hb ht (fun q => ⟨NNReal.coe_nonneg _, ?_⟩) (by simpa only [Fintype.card_fin] using h2)
+  refine _root_.GlobalTheory.SummCount.summable_rpow_of_fibre_card_le X n _ C t m _ hb ht (fun q => ⟨NNReal.coe_nonneg _, ?_⟩) (by simpa only [Fintype.card_fin] using h2)
   rw [e, hgtH_mul continuous_absE hK _ (hk q)]
   exact h1 q _ rfl
 

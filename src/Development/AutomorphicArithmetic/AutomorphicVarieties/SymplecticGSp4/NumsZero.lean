@@ -90,10 +90,6 @@ private theorem nums_odd {Ω : Type} [Field Ω] [CharZero Ω] [IsAlgClosure ℚ 
     rw [e]
     exact ⟨h3.2, by decide, 3, 0, by decide, by simp [Raw.ps]⟩
 
-private theorem nums_lc {Γ A : Type} [Group Γ] [TopologicalSpace Γ] [IsTopologicalGroup Γ] [Group A] (ψ : Γ →* A)
-    (h : IsOpen (ψ.ker : Set Γ)) : IsLocallyConstant ψ :=
-  _root_.UpperTheory.Reformulated.B.LocallyConstantOfKernel.lc_of_ker ψ h
-
 private theorem nums_gen (P : CohomologyHyp) {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] {l : ℕ} [Fact l.Prime]
     {SP : Set (HeightOneSpectrum (𝓞 ℚ))} {T Q : Finset ℕ} (v0 : T) {pl : ℕ → ValuationSubring Ω} {K : Subgroup (G ℚ Ω)}
     (hG : X.GalData l SP T Q pl K) (hK : IsOpen (K : Set (G ℚ Ω))) {k : Type} [Field k] [Finite k] [CharP k l] {M : Type}
@@ -107,7 +103,7 @@ private theorem nums_gen (P : CohomologyHyp) {Ω : Type} [Field Ω] [Algebra ℚ
         Module.finrank k ((X.galFrame SP T Q v0 pl K).H1c ρ)) := by
   have hlc : ∀ m, IsLocallyConstant fun g => ρ g m := fun m s =>
     (QuotientGroup.isQuotientMap_mk _).isOpen_preimage.1 (by
-      have := ((nums_lc γ (Subgroup.isOpen_mono hKγ hK)).comp fun u => (u : k) • m) s
+      have := ((_root_.UpperTheory.Reformulated.B.LocallyConstantOfKernel.lc_of_ker γ (Subgroup.isOpen_mono hKγ hK)).comp fun u => (u : k) • m) s
       simp only [Function.comp_def, ← hγ] at this
       exact this)
   obtain ⟨c1, -, c3⟩ := X.galCount ⟨P.loc.lf, P.loc.lt, P.loc.le, P.gf, P.ge, P.pt⟩ Ω l v0 hG k M

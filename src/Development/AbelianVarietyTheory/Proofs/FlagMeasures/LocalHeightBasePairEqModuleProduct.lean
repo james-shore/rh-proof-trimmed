@@ -145,7 +145,7 @@ theorem point_ends {K : Type} [Field K] {r : ℕ} (w : Point K (r + 1)) :
     push_neg at hno
     apply hE
     rw [Formalism.MainNotions.BesselShellMomentBounds.ptMat_eq]
-    refine Formalism.HermitianLatticeCounting.Final.ExpansionTerms.e4aVanish K (r + 1) _ _ l (by omega) fun p hp => ?_
+    refine _root_.Formalism.HermitianLatticeCounting.P.leading_minor_vanishes_off_block_ends K (r + 1) _ _ l (by omega) fun p hp => ?_
     have hsz : ∀ p, (Formalism.MainNotions.BesselShellMomentBounds.toComp w).sizeUpTo p = (toPts w).1.sizeUpTo p := fun _ => rfl
     rw [hsz] at hp
     rcases Nat.lt_or_ge p ((toPts w).1.length + 1) with hpl | hpl

@@ -38,6 +38,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RowsRestWordColumnUnitBaseTupleAlt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.StrictHenselianAcyclic
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CentralCharacterIntegral
 
 @[expose] public section
 
@@ -48,28 +49,12 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.TypeR
 
 namespace GlobalTheory.CenAtLoc
 
-theorem mapCoef_mem_center' {R S G : Type} [CommRing R] [CommRing S] [Group G] (f : R →+* S) (z : MonoidAlgebra R G)
-    (hz : ∀ a, z * a = a * z) :
-    Formalism.MainNotions.PairedCharacterCondition.mapCoef f z ∈ Subalgebra.center S (MonoidAlgebra S G) := by
-  rw [Subalgebra.mem_center_iff]
-  intro a
-  induction a using MonoidAlgebra.induction_on with
-  | of m =>
-    have e : MonoidAlgebra.of S G m = MonoidAlgebra.mapRingHom G f (MonoidAlgebra.of R G m) := by
-      simp only [MonoidAlgebra.of_apply, MonoidAlgebra.mapRingHom_single, map_one]
-    rw [e]
-    show MonoidAlgebra.mapRingHom G f _ * MonoidAlgebra.mapRingHom G f _ =
-      MonoidAlgebra.mapRingHom G f _ * MonoidAlgebra.mapRingHom G f _
-    rw [← map_mul, ← map_mul, hz]
-  | add x y hx hy => rw [add_mul, mul_add, hx, hy]
-  | smul r x hx => rw [smul_mul_assoc, mul_smul_comm, hx]
-
 theorem zlStable_of_allT {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type}
     {A : Formalism.L2.DIV.FamIn D.what₂.LL G Pl0 T D.R.m} {P0 : Subgroup G} {ψ0 : P0 →* D.what₂.LLˣ} {P1 : Subgroup G}
     {ψ1 : P1 →* D.what₂.LLˣ} {X0 : BaseLevelRowSide D} {tp : D.what₂.Tup → T} {eG : G ≃* G0g D.nd}
     (h : AllT D A P0 ψ0 P1 ψ1 X0 tp eG) : GlobalTheory.PendOf.ZLStable D := by
   intro i z hz x
-  have hc := mapCoef_mem_center' D.what₂.embLL z hz
+  have hc := _root_.GlobalTheory.CenIntAtLoc.mapCoef_mem_center D.what₂.embLL z hz
   have key : ∀ (μ : D.what₂.Tup) (j : ℕ), 1 ≤ j → j ≤ D.R.m → ∀ x : D.what₂.MtL μ j, ∃ y : D.what₂.MtL μ j,
       D.what₂.jMt μ j y = D.ntypes.cenMt μ j ⟨_, hc⟩ (D.what₂.jMt μ j x) := by
     intro μ j h1 h2 x

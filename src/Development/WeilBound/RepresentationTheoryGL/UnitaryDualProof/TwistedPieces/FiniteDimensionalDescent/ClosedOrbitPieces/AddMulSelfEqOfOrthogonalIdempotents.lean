@@ -55,9 +55,6 @@ variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchim
 
 open PositivityTheory.RgUd.TP.Desc.Piece
 
-def Cx (Z : Subalgebra k (Matrix (Fin N) (Fin N) k)) (x : Matrix (Fin N) (Fin N) k) : Subalgebra k (Matrix (Fin N) (Fin N) k) :=
-  Algebra.adjoin k (insert x (Z : Set (Matrix (Fin N) (Fin N) k)))
-
 section
 variable {Z : Subalgebra k (Matrix (Fin N) (Fin N) k)} {x : Matrix (Fin N) (Fin N) k}
 
@@ -75,7 +72,7 @@ theorem cx_gens (hZ : CR Z) (hx : x ∈ Bz Z) :
       exact hx a h1
     · exact hZ.1 a h1 b h2
 
-theorem cx_comm (hZ : CR Z) (hx : x ∈ Bz Z) : ∀ a ∈ Cx Z x, ∀ b ∈ Cx Z x, a * b = b * a := by
+theorem cx_comm (hZ : CR Z) (hx : x ∈ Bz Z) : ∀ a ∈ _root_.PositivityTheory.RgUd.T.adj Z x, ∀ b ∈ _root_.PositivityTheory.RgUd.T.adj Z x, a * b = b * a := by
   intro a ha b hb
   have key := cx_gens hZ hx
   have h : Commute a b := by
@@ -86,11 +83,11 @@ theorem cx_comm (hZ : CR Z) (hx : x ∈ Bz Z) : ∀ a ∈ Cx Z x, ∀ b ∈ Cx Z
     exact key c hc d hd
   exact h.eq
 
-theorem z_le_cx : Z ≤ Cx Z x := fun _ h => Algebra.subset_adjoin (Set.mem_insert_of_mem _ h)
+theorem z_le_cx : Z ≤ _root_.PositivityTheory.RgUd.T.adj Z x := fun _ h => Algebra.subset_adjoin (Set.mem_insert_of_mem _ h)
 
-theorem x_mem_cx : x ∈ Cx Z x := Algebra.subset_adjoin (Set.mem_insert _ _)
+theorem x_mem_cx : x ∈ _root_.PositivityTheory.RgUd.T.adj Z x := Algebra.subset_adjoin (Set.mem_insert _ _)
 
-theorem pe_mem {d : ℕ} {c : Fin d → Matrix (Fin N) (Fin N) k} (hc : ∀ l, c l ∈ Z) : pe c x ∈ Cx Z x :=
+theorem pe_mem {d : ℕ} {c : Fin d → Matrix (Fin N) (Fin N) k} (hc : ∀ l, c l ∈ Z) : pe c x ∈ _root_.PositivityTheory.RgUd.T.adj Z x :=
   Subalgebra.sum_mem _ fun l _ => Subalgebra.mul_mem _ (z_le_cx (hc l)) (Subalgebra.pow_mem _ x_mem_cx _)
 
 end

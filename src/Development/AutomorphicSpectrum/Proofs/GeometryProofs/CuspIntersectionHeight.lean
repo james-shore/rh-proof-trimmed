@@ -71,13 +71,9 @@ section Field
 
 variable {X : Scheme.{0}} {Ω : Type} [Field Ω] {L : Type} [Field L]
 
-theorem centre_field_map (zL : Sp L ⟶ X) (e : L →+* ℂ) : centre (spMap e ≫ zL) = centre zL := by
-  refine (Scheme.Hom.comp_apply (spMap e) zL _).trans ?_
-  exact congrArg zL (Subsingleton.elim _ _)
-
 theorem val_descend (ξ : Sp Ω ⟶ X) (zL : Sp L ⟶ X) (e : L →+* ℂ) {a : Ω} {r : ℂ}
     (h : ValAt ξ (spMap e ≫ zL) a r) : ∃ t : L, ValAt ξ zL a t ∧ e t = r := by
-  have hc : centre zL = centre (spMap e ≫ zL) := (centre_field_map zL e).symm
+  have hc : centre zL = centre (spMap e ≫ zL) := (_root_.GlobalTheory.CompanionTheory.Ar.Cusp.PtHt.Vert.centre_map zL e).symm
   obtain ⟨h', s, hs, rfl⟩ := h
   have h'' : genPt ξ ⤳ centre zL := hc ▸ h'
   have hv : ValAt ξ zL a (Scheme.stalkClosedPointTo zL |>.hom (X.presheaf.stalkSpecializes (specializes_of_eq hc) s)) :=
@@ -153,7 +149,7 @@ theorem datum (hG : Top.Given) (E : Type) [Field E] [NumberField E] [IsCMField E
     rw [GroundTheory.Heights₂.Heights.LowerBoundFree.valAt, dite_eq_left hex']
     exact CxVal.unique ((tv e _ _).2 hex'.choose_spec) h1
   · have hq : (⟨centre (spMap e₀ ≫ zL), Or.𝔐.all _⟩ : Cpt Or.𝔐.ξ) = ⟨centre zL, Or.𝔐.all _⟩ :=
-      Subtype.ext (centre_field_map zL e₀)
+      Subtype.ext (_root_.GlobalTheory.CompanionTheory.Ar.Cusp.PtHt.Vert.centre_map zL e₀)
     exact hq ▸ hfr τ (Or.𝔐.all _)
 
 end Datum

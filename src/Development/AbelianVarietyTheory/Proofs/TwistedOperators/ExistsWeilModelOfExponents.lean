@@ -154,7 +154,7 @@ theorem conj_herm {D : D7} (V : HSp D) :
       ∃ L : Submodule (𝓞 D.host.E) (Fin V.rank → D.host.E), L.IsLattice D.host.E ∧
         Formalism.HermitianLatticesTheory.IsUnimodular (GlobalTheory.WeilSchrodinger.sesq D V.gramᵀ) L := by
   have hdet : V.gramᵀ.det ≠ 0 := by rw [Matrix.det_transpose]; exact gram_det_ne V
-  have hs : ∀ i j, star (V.gram i j) = V.gram j i := GlobalTheory.TripleSpace.star_gram V
+  have hs : ∀ i j, star (V.gram i j) = V.gram j i := _root_.GlobalTheory.DualPairCheck.gram_star V
   have hsd := GlobalTheory.PlaceModel.isSelfDualC_latFrame V
   refine ⟨⟨fun x y => ?_⟩, ⟨fun x hx => ?_, fun y hy => ?_⟩, Formalism.L2.Col.starLat D.host.E (GlobalTheory.PlaceModel.latFrame V),
     Formalism.L2.Col.brp_starLat_lattice _ _ hsd.1, ?_⟩

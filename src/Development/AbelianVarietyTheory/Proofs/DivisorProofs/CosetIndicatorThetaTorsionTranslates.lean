@@ -178,12 +178,6 @@ theorem pres_of_finset (D : D7) (T : TaylorLogMetric.Tor D) {a b : ℕ} (L : Sub
     rw [hF, StandardLatticesGL3.comb, ← Finset.sum_coe_sort R]
     exact (R.equivFin.symm.sum_comp (fun x : R => r x * TaylorLogMetric.U D T (y x) G w)).symm
 
-theorem HV_herm {ι : Type} [Fintype ι] {a b : ℕ} (sc : ℝ) : IsHerm (Formalism.L2.Ker.HV sc : Sesq (Formalism.L2.Ker.VV ι a b)) := by
-  intro x y
-
-  simp only [Formalism.L2.Ker.HV, LinearMap.mk₂'ₛₗ_apply, map_mul, map_sum, Complex.conj_ofReal, Complex.conj_conj]
-  simp only [mul_comm]
-
 section Host
 
 variable {D : D7} {X : Fields} (s : Seam D X) {a b : ℕ}
@@ -308,7 +302,7 @@ theorem pres_thInd : ∀ (D : D7) (X : Fields) (s : Seam D X) (cc : Ideal (𝓞 
     exact hQ' _
   · exact_mod_cast hcard
   · intro w
-    have h1 := xiInd_expand Hh (HV_herm _) (alV D.host.d (TaylorLogMetric.area (TaylorLogMetric.lamOf D cc dl))⁻¹) v
+    have h1 := xiInd_expand Hh (_root_.GlobalTheory.ThetaMove.isHerm_HV _) (alV D.host.d (TaylorLogMetric.area (TaylorLogMetric.lamOf D cc dl))⁻¹) v
       (BC (X.embC s.σ₀) dl (ambOf s B χ cD).AA S L L' c) SA SB ((ambOf s B χ cD).e a b L L') p (fun τ => w (s.iT τ))
     have h2 : toHost s (fun z => k⁻¹ * (ambOf s B χ cD).thInd S L L' c x z) w = k⁻¹ * (((Real.sqrt v : ℝ) : ℂ)⁻¹ *
       xiInd Hh (alV D.host.d (TaylorLogMetric.area (TaylorLogMetric.lamOf D cc dl))⁻¹) v

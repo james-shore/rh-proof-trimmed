@@ -56,7 +56,7 @@ theorem exactAt_uniM_low_union_aff : ∀ (R : Type) [CommRing R] (s n : ℕ), Li
     ∀ j : ℕ, n ≤ j → ∀ p : ℕ, p + s ≤ n + 1 →
       ExactAt (linkIn (uniM R (ℕ →₀ R)) (low R n ∪ aff R n j) []) p := by
   intro R _ s n h j hj p hp
-  have hsub := (T.subClosed_and_perm_and_linearEquiv_invariant_uniM R (ℕ →₀ R)).1
+  have hsub := (_root_.GlobalTheory.UniSeqBasic.main R (ℕ →₀ R)).1
   have hlow : ∀ x ∈ low R n, x j = 0 := by
     intro x hx
     have h' : ∀ i, n ≤ i → x i = 0 := hx
@@ -85,7 +85,7 @@ theorem exactAt_uniM_low_union_aff : ∀ (R : Type) [CommRing R] (s n : ℕ), Li
         exact fun i _ => Finsupp.zero_apply
       · exact hl2 x hx
     · show Finsupp.single j (1 : R) :: l ∈ uniM R (ℕ →₀ R)
-      rw [T.cons_mem_uniM_iff_map_sub_smul R (ℕ →₀ R) (Finsupp.lapply j : (ℕ →₀ R) →ₗ[R] R) _ (by rw [hφ]; simp)]
+      rw [_root_.GlobalTheory.UniModVec.cons_mem_uniM_iff_map_proj R (ℕ →₀ R) (Finsupp.lapply j : (ℕ →₀ R) →ₗ[R] R) _ (by rw [hφ]; simp)]
       convert hl3' using 2
       conv_rhs => rw [← List.map_id l]
       apply List.map_congr_left
@@ -98,7 +98,7 @@ theorem exactAt_uniM_low_union_aff : ∀ (R : Type) [CommRing R] (s n : ℕ), Li
     have hxτ : x ∈ τ := List.mem_of_getLast? hlast
     have hxaff : x ∈ aff R n j := (hτS x hxτ).resolve_left hx
     have hx1 : (Finsupp.lapply j : (ℕ →₀ R) →ₗ[R] R) x = 1 := by rw [hφ]; exact haff x hxaff
-    obtain ⟨τ', hτ'U, hlen', heq⟩ := T.linkIn_uniM_eq_shorter_of_form_eq_one R (ℕ →₀ R) (Finsupp.lapply j : (ℕ →₀ R) →ₗ[R] R) (low R n)
+    obtain ⟨τ', hτ'U, hlen', heq⟩ := _root_.GlobalTheory.SeqCx.linkIn_uniM_eq_of_form R (ℕ →₀ R) (Finsupp.lapply j : (ℕ →₀ R) →ₗ[R] R) (low R n)
       (fun y hy => by rw [hφ]; exact hlow y hy) τ hτU' x hxτ hx1
     have hL : linkIn (linkIn (uniM R (ℕ →₀ R)) (low R n ∪ aff R n j) []) (low R n) τ
         = linkIn (uniM R (ℕ →₀ R)) (low R n) τ := by
@@ -118,9 +118,3 @@ theorem exactAt_uniM_low_union_aff : ∀ (R : Type) [CommRing R] (s n : ℕ), Li
 
 end GlobalTheory
 
-section
-open GlobalTheory.SeqCx Matrix
-theorem _root_.GlobalTheory.T.exactAt_link_nil_coordSubspace_union_translate : ∀ (R : Type) [CommRing R] (s n : ℕ), LinkExactLow R s n → ∀ j : ℕ, n ≤ j → ∀ p : ℕ, p + s ≤ n + 1 → ExactAt (linkIn (uniM R (ℕ →₀ R)) (low R n ∪ aff R n j) []) p := by
-  first
-  | exact @GlobalTheory.exactAt_uniM_low_union_aff
-end

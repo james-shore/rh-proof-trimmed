@@ -43,6 +43,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagWZero
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsLagrAt
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeisenbergInvariantFormVanishesLagrangianTest
 
 @[expose] public section
 
@@ -73,36 +74,10 @@ theorem exists_ne_of_cm {F E : Type} [Field F] [NumberField F] [Field E] [Number
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
-theorem idem_smul_of_at {M : Type} [AddCommGroup M] [Module (AF F) M] (v : Pl (F := F)) (u : M)
-    (hu : At (evFin F v) u) : GlobalTheory.LatVac.liftV v (1 : Fv F v) • u = u := by
-  have h := hu (1 - GlobalTheory.LatVac.liftV v 1) (by rw [map_sub, map_one, evFin_liftV, sub_self])
-  rw [sub_smul, one_smul] at h
-  exact (sub_eq_zero.1 h).symm
-
-theorem idem_mul (v : Pl (F := F)) (x : AF F) :
-    GlobalTheory.LatVac.liftV v (1 : Fv F v) * x = GlobalTheory.LatVac.liftV v (evFin F v x) := by
-  have h := at_liftV v (1 : Fv F v) (x - GlobalTheory.LatVac.liftV v (evFin F v x)) (by rw [map_sub, evFin_liftV, sub_self])
-  have h2 := idem_smul_of_at v _ (at_liftV v (evFin F v x))
-  rw [smul_eq_mul] at h h2
-  linear_combination h + h2
-
 theorem at_idem_smul {M : Type} [AddCommGroup M] [Module (AF F) M] (v : Pl (F := F)) (z : M) :
     At (evFin F v) (GlobalTheory.LatVac.liftV v (1 : Fv F v) • z) := by
   intro u hu
   rw [smul_smul, ← smul_eq_mul, at_liftV v 1 u hu, zero_smul]
-
-theorem idem_smul_eq_zero (v : Pl (F := F)) (a : AE F E) (ha : compFin F E v a = 0) :
-    GlobalTheory.LatVac.liftV v (1 : Fv F v) • a = 0 := by
-  have key : ∀ a : AE F E, GlobalTheory.LatVac.liftV v (1 : Fv F v) • a =
-      (GlobalTheory.LatVac.liftV v).rTensor E (compFin F E v a) := by
-    intro a
-    induction a using TensorProduct.induction_on with
-    | zero => simp
-    | tmul x e =>
-      rw [TensorProduct.smul_tmul', smul_eq_mul, idem_mul]
-      simp [compFin]
-    | add x y hx hy => rw [smul_add, hx, hy, map_add (f := _), map_add (f := _)]
-  rw [key, ha, map_zero]
 
 theorem compFin_lift (v : Pl (F := F)) (q : Fv F v ⊗[F] E) :
     compFin F E v ((GlobalTheory.LatVac.liftV v).rTensor E q) = q := by
@@ -127,7 +102,7 @@ theorem exists_inv_at (v : Pl (F := F)) {n : ℕ} (M : Matrix (Fin n) (Fin n) (A
     have h0 : GlobalTheory.LatVac.liftV v (1 : Fv F v) • (N - 1) = 0 := by
       ext i j
       rw [Matrix.smul_apply, Matrix.zero_apply]
-      apply idem_smul_eq_zero
+      apply _root_.GlobalTheory.InertLagUniq.liftV_one_smul_eq_zero
       have := congrFun (congrFun hN i) j
       rw [Matrix.map_apply] at this
       rw [Matrix.sub_apply, map_sub, this]
@@ -211,7 +186,7 @@ theorem exists_scalar_inv_at : ∀ (F E : Type) [Field F] [NumberField F] [Field
     simp only [lam]
     rw [div_mul_div_comm, mul_comm ((m : E) - ξ), div_self (mul_ne_zero (hnum m) (hden m))]
   set e : AF F := GlobalTheory.LatVac.liftV v (1 : Fv F v) with he
-  have hee : e * e = e := by rw [he, idem_mul, evFin_liftV]
+  have hee : e * e = e := by rw [he, _root_.GlobalTheory.InertLagUniq.liftV_one_mul, evFin_liftV]
   have hev : evFin F v e = 1 := evFin_liftV v 1
   set c : AE F E := (1 - e) ⊗ₜ[F] (1 : E) + e ⊗ₜ[F] l with hc
   set c' : AE F E := (1 - e) ⊗ₜ[F] (1 : E) + e ⊗ₜ[F] σ l with hc'

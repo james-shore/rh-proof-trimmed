@@ -80,16 +80,6 @@ theorem Mmat_mulVec (v : Fin r → ℂ) :
   refine Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun b _ => Finset.sum_congr rfl fun m _ => ?_
   ring
 
-private lemma hermC_add_left' (u u' v : Fin r → ℂ) :
-    hermC τ G (u + u') v = hermC τ G u v + hermC τ G u' v := by
-  unfold hermC
-  simp only [Pi.add_apply, add_mul, Finset.sum_add_distrib]
-
-private lemma hermC_add_right_fundamental_domains' (u v v' : Fin r → ℂ) :
-    hermC τ G u (v + v') = hermC τ G u v + hermC τ G u v' := by
-  unfold hermC
-  simp only [Pi.add_apply, map_add (f := _), mul_add, Finset.sum_add_distrib]
-
 private lemma hermC_sum_smul_left {m : ℕ} (c : Fin m → ℂ) (q : Fin m → Fin r → ℂ) (v : Fin r → ℂ) :
     hermC τ G (∑ k, c k • q k) v = ∑ k, c k * hermC τ G (q k) v := by
   unfold hermC
@@ -119,7 +109,7 @@ theorem expand (q : Fin n → Fin r → ℂ) (x y : Fin r → ℂ) (c d : Fin n 
     (hx : ∀ l, hermC τ G x (q l) = 0) (hy : ∀ k, hermC τ G (q k) y = 0) :
     hermC τ G (x + ∑ k, c k • q k) (y + ∑ l, d l • q l) =
       hermC τ G x y + ∑ k, ∑ l, c k * conj (d l) * hermC τ G (q k) (q l) := by
-  rw [hermC_add_left', hermC_add_right_fundamental_domains', hermC_add_right_fundamental_domains']
+  rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_add_left, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_add_right, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_add_right]
   simp only [hermC_sum_smul_right, hermC_sum_smul_left, hx, hy, mul_zero, Finset.sum_const_zero, add_zero,
     Finset.mul_sum]
   rw [zero_add, Finset.sum_comm]
@@ -172,7 +162,7 @@ theorem Mmat_unitary (hgf : ∀ k, g k ∈ Submodule.span ℂ (Set.range f))
       fun l => ?_⟩
     · simp only [neg_smul, Finset.sum_neg_distrib]
       abel
-    · rw [hermC_add_left', hermC_sum_smul_left]
+    · rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_add_left, hermC_sum_smul_left]
       simp only [hf_eps τ G p f hG hf, mul_ite, mul_zero, Finset.sum_ite_eq, Finset.sum_ite_eq',
         Finset.mem_univ, if_true]
       linear_combination (-hermC τ G u (f l)) * eps_sq p l

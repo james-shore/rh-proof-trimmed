@@ -74,13 +74,13 @@ theorem weilOK_fam_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi :
       rw [← h2, (hτ j' h').1, e] at h1
       exact h1
     have hH : IsHeckeChar D (_root_.GlobalTheory.Fam.pk_z W).eta := by
-      have h1 := hecke_mul (hecke_inv hX.hecT) hμH
+      have h1 := _root_.GlobalTheory.WeilChange.hecke_mul (_root_.GlobalTheory.WeilChange.hecke_inv hX.hecT) hμH
       rwa [_root_.mul_inv_rev, inv_inv, inv_mul_cancel_right] at h1
     exact ⟨hH, resEta_of_diff hμR hX.resT⟩
   refine ⟨?_, ?_, hτ⟩
   · intro j σ h
     obtain ⟨hHη, hRη⟩ := hη (j + 2 * σ + 2) (by omega)
-    have hzH := hecke_inv hHη
+    have hzH := _root_.GlobalTheory.WeilChange.hecke_inv hHη
     have hzR := Formalism.L2.Theta.resEta_inv hRη
     have hk0 := hC.kom t j (by omega)
     have hk1 := hC.kom t (j + 1) (by omega)
@@ -100,7 +100,7 @@ theorem weilOK_fam_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi :
   · intro j h
     have e : j + 1 + 1 = D.R.m := by omega
     obtain ⟨hHη, hRη⟩ := hη j h
-    have hzH := hecke_inv hHη
+    have hzH := _root_.GlobalTheory.WeilChange.hecke_inv hHη
     have hzR := Formalism.L2.Theta.resEta_inv hRη
     have hk0 := hC.kom t j (by omega)
     have hk1 := hC.kom t (j + 1) (by omega)

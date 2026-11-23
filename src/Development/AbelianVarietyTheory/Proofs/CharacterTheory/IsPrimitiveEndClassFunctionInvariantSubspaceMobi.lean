@@ -143,7 +143,7 @@ theorem step {F : Type} [Field F] [Finite F] (s : F[X] → ℂ) (hs : IsAdditive
     intro W hWT hWA hWle
     have key := (finsum_sub (fun h : Module.End F V => h ∈ nilRad A ∧ ∀ x ∈ W, (g + h) x ∈ W)
       fun h => psi s W ((g + h.1).restrict h.2.2)).symm.trans
-        (GlobalTheory.T.sum_primitiveEndClassFunction_restrict_mixed_subspace F V A W g hg hWA hWle (psi s W) (ih W hWT))
+        (_root_.GlobalTheory.CuspGL.sum_restrict_eq_zero_of_mixed F V A W g hg hWA hWle (psi s W) (ih W hWT))
     rw [← key, sum_H]
     refine Finset.sum_congr rfl fun h _ => ?_
     by_cases hh : h ∈ nilRad A <;> simp [hh, res]

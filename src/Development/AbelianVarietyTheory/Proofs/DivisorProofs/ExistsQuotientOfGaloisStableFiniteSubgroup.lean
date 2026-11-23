@@ -94,8 +94,8 @@ theorem exists_quot_of_galois_stable : ∀ (K : Type) [Field K] (A : AbVar K) (G
     ∃ (B : AbVar K) (q : A ⟶ B), IsIsogeny q ∧ deg q = Nat.card G ∧ (ptMap q).ker = G ∧
       ∀ (C : AbVar K) (f : A ⟶ C), G ≤ (ptMap f).ker → ∃ g : B ⟶ C, q ≫ g = f := by
   intro K _ A G hfin hn hgal
-  obtain ⟨H, _, i, hi, hmono, hfinH, het, hG⟩ := GlobalTheory.T.exists_finiteEtale_subgroupScheme_of_galoisStable_points K A G hfin hn hgal
-  obtain ⟨B, q, hq, hker⟩ := GlobalTheory.T.exists_quotient_abelianVariety_by_finiteSubgroup K A H i hi hmono hfinH
+  obtain ⟨H, _, i, hi, hmono, hfinH, het, hG⟩ := _root_.GlobalTheory.FinEtSubgroup.exists_finiteEtale_subgroup_of_points K A G hfin hn hgal
+  obtain ⟨B, q, hq, hker⟩ := _root_.GlobalTheory.AV.AbVar.exists_quotient_finite K A H i hi hmono hfinH
   have : IsReduced H.left := GlobalTheory.isReduced_of_smooth_of_isReduced H.hom
 
   have hext : ∀ (Z : Over (Sp K)) [IsSeparated Z.hom] (a b : H ⟶ Z),
@@ -107,7 +107,7 @@ theorem exists_quot_of_galois_stable : ∀ (K : Type) [Field K] (A : AbVar K) (G
     ext x
     rw [MonoidHom.mem_ker, ptMap_apply, hker, hG]
   refine ⟨B, q, hq, ?_, hkerG, ?_⟩
-  · rw [GlobalTheory.AV.DegSep.deg_eq_card_ker_of_killed K A B q (Nat.card G) hn hq, hkerG]
+  · rw [_root_.GlobalTheory.AV.DegSep.deg_eq_card_ker K A B q (Nat.card G) hn hq, hkerG]
     intro T x hx
     obtain ⟨y, rfl⟩ := (hker T x).1 hx
     have := A.ab.proper

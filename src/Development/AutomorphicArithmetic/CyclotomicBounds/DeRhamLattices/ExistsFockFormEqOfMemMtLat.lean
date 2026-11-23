@@ -85,7 +85,7 @@ theorem _root_.UpperTheory.KN.exists_fock_form_eq_of_mem_mtLat :
     rw [Pi.smul_apply, hev] at hG
     exact ⟨G, (hio (smul_right_injective _ (inv_ne_zero hκ) hG)).symm⟩
   have hsp : Submodule.span D.what₂.LL {x | D.what₂.jMt (D.what₂.muTw w) (j.1 + 1) x ∈ ((D.what₂.MtLat (D.what₂.muTw w) (j.1 + 1)).gen : Set _)} = ⊤ :=
-    GlobalTheory.T.rationalLatticeTwistedTuple_span_top D w (j.1 + 1)
+    _root_.GlobalTheory.PlaceRead.span_latS D w (j.1 + 1)
   have hall : ∀ m h, ev (D.what₂.jMt (D.what₂.muTw w) (j.1 + 1) m) h ∈ Set.range (c0L j) := by
     intro m h
     have hm : m ∈ Submodule.span D.what₂.LL {x | D.what₂.jMt (D.what₂.muTw w) (j.1 + 1) x ∈ ((D.what₂.MtLat (D.what₂.muTw w) (j.1 + 1)).gen : Set _)} := by

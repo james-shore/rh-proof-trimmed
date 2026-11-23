@@ -142,7 +142,7 @@ theorem isXbetaMeasure_iff_smul_std : ∀ (F E : Type) [Field F] [NumberField F]
       rw [← e3, ← e4, ← units_fv]
       exact hfv v
     rw [a1, a2, ← hk]
-    exact GlobalTheory.T.restrictedProduct_measure_smul_factors_eq_smul F E d b 1 M ν mi mv (ri / ti) (fun v => r v / t v) hprod hfin
+    exact _root_.GlobalTheory.GaugeEx.ProdScale.isProd_smul F E d b 1 M ν mi mv (ri / ti) (fun v => r v / t v) hprod hfin
 
   obtain ⟨⟨νi0, hνi0, -⟩, hWi⟩ := GlobalTheory.T.existsUnique_selfDual_haar_measure_infinite_adeles F E σ hσ ψ hψ
   obtain ⟨μi0, hμi0, -⟩ := hWi M J hJ

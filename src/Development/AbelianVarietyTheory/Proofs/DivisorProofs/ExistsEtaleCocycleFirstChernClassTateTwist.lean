@@ -77,9 +77,7 @@ theorem res_comp {F : Shv R} {W V U : Scheme.{0}} (k : W ⟶ V) (g : V ⟶ U) (a
 theorem res_id {F : Shv R} {U : Scheme.{0}} (a : Sec F U) : Sec.res (𝟙 U) a = a := by
   simp [Sec.res]
 
-theorem res_map {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U) (a : Sec F U) :
-    Sec.res g (Sec.map φ a) = Sec.map φ (Sec.res g a) :=
-  (congrArg (fun f => f.hom a) (φ.hom.naturality g.op)).symm
+alias res_map := _root_.GlobalTheory.EtC.CupSpec.map_res
 
 theorem map_comp {F G K : Shv R} (φ : F ⟶ G) (ψ : G ⟶ K) {U : Scheme.{0}} (a : Sec F U) :
     Sec.map ψ (Sec.map φ a) = Sec.map (φ ≫ ψ) a := rfl
@@ -171,11 +169,9 @@ theorem exists_single {E : Spc} {I : Cx R} {n : ℤ} (p₀ : ℕ) (s₀ : ℤ) (
   · rw [hα]; simp only [dif_pos]
   · rw [hα]; simp only [dif_neg hp]
 
-theorem ev_add {E : Spc} {I : Cx R} {n : ℤ} (α β : Cochain ((chains R).obj E) I n) (p s h U x) :
-    ev (α + β) p s h U x = ev α p s h U x + ev β p s h U x := ((GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties R).1 α β p s h U x).1
+alias ev_add := _root_.GlobalTheory.EtC.CupSpec.ev_add
 
-theorem ev_zero {E : Spc} {I : Cx R} {n : ℤ} (p s h U x) :
-    ev (0 : Cochain ((chains R).obj E) I n) p s h U x = 0 := ((GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties R).1 0 0 p s h U x).2.2.1
+alias ev_zero := _root_.GlobalTheory.EtC.CupSpec.ev_zero
 
 theorem δ_eq_zero {E : Spc} {I : Cx R} {n m : ℤ} (hm : n + 1 = m) (α : Cochain ((chains R).obj E) I n)
     (h₀ : ∀ (U : Scheme.{0}) (x : Sx E 0 U), Sec.map (I.d n m) (ev α 0 n (by simp) U x) = 0)

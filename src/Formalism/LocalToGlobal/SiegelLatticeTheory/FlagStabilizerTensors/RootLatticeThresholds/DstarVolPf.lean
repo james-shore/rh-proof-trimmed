@@ -117,7 +117,7 @@ variable {I : Formalism.MainNotions.S.AutInst} (hb : AdBridgeIso I)
 
 theorem mem_rr_iff' (x : I.GA) :
     x ∈ Formalism.MainNotions.LeviCoordinates.rr_GF I ↔ toHA I hb x ∈ HFinIn (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF I.F) I.cm.sig I.J := by
-  have hGF := Formalism.L2.SG.Closed.AdBridgeGF_holds I (toHA I hb) (toHA_isBridge I hb)
+  have hGF := _root_.Formalism.L2.SG.AdBridge.adBridgeGF_main I (toHA I hb) (toHA_isBridge I hb)
   have hrat : ∀ h : HA (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF I.F) I.cm.sig I.J,
       h ∈ ratHA I ↔ h ∈ HFinIn (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF I.F) I.cm.sig I.J := fun h => Iff.rfl
   rw [← hrat, ← hGF, Formalism.MainNotions.LeviCoordinates.rr_mem_GF]

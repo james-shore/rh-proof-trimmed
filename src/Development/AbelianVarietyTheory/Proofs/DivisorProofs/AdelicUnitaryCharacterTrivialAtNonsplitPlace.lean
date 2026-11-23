@@ -129,7 +129,7 @@ theorem core (hc : CMData (maximalRealSubfield E) E) (V : HSpace E)
       split_ifs
       · exact map_one σ
       · exact map_zero σ) μ
-    (fun k hk => hν _ (hl1 k) ((GlobalTheory.T.stabilises_completedLattice_iff_localMatrix_integral _ E hc V v h hfr _ ((s1 _).1 (hl1 k)).2).2
+    (fun k hk => hν _ (hl1 k) ((_root_.GlobalTheory.PlaceComp.StabLoc.stab_iff _ E hc V v h hfr _ ((s1 _).1 (hl1 k)).2).2
       ((bc_mem_range_iff ψ' hO _).2 (by rw [← hφ, hl2]; exact hk)))) ⟨φ g, hmem g⟩
   rw [hinj g hg _ (hl1 ⟨φ g, hmem g⟩) (hl2 ⟨φ g, hmem g⟩).symm]
   exact key

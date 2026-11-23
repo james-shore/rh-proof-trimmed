@@ -72,21 +72,6 @@ theorem γD_letE_smul (W : LocWach PD LL O v n) (T : LocLat G Qp LL O) (g : W.Ga
   · subst h; simp [letE]
   · simp [letE, Pi.single_eq_of_ne h]
 
-theorem letE_mul_self (i : ZMod n) : (letE i : LetA O n) * letE i = letE i := by
-  funext j
-  by_cases h : j = i
-  · subst h; simp [letE]
-  · simp [letE, Pi.single_eq_of_ne h]
-
-theorem sum_letE_eq_one [NeZero n] : ∑ i : ZMod n, (letE i : LetA O n) = 1 := by
-  funext j
-  simp [letE, Finset.sum_apply, Pi.single_apply]
-
-theorem le_Mmax_of [NeZero n] (Mi : ZMod n → ℕ) (i : ZMod n) : Mi i ≤ Formalism.MainNotions.LiftingTheory.Mmax n Mi := by
-  have h := Finset.le_sup (f := fun k : ℕ => Mi (k : ZMod n)) (Finset.mem_range.2 (ZMod.val_lt i))
-  simp only [ZMod.natCast_zmod_val] at h
-  exact h
-
 theorem smul_letE_mem (W : LocWach PD LL O v n) (T : LocLat G Qp LL O) (i : ZMod n) (a : LetA O n)
     (x : W.DD T) (hx : a • x ∈ W.N T) : a • ((letE i : LetA O n) • x) ∈ W.N T := by
   rw [smul_smul, mul_comm, ← smul_smul]
@@ -102,7 +87,7 @@ theorem letE_rec (W : LocWach PD LL O v n) (T : LocLat G Qp LL O) (i : ZMod n) (
 theorem mem_N_of_letE [NeZero n] (W : LocWach PD LL O v n) (T : LocLat G Qp LL O) (x : W.DD T)
     (h : ∀ i : ZMod n, (letE i : LetA O n) • x ∈ W.N T) : x ∈ W.N T := by
   have e : x = ∑ i : ZMod n, (letE i : LetA O n) • x := by
-    rw [← Finset.sum_smul, sum_letE_eq_one, one_smul]
+    rw [← Finset.sum_smul, _root_.Formalism.MainNotions.WachCoordinates.Br.sum_letE, one_smul]
   rw [e]
   exact Submodule.sum_mem _ (fun i _ => h i)
 
@@ -154,8 +139,8 @@ theorem dss_semisimple_of_used : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf 
         (Formalism.MainNotions.LiftingTheory.Mmax _ hi) Y := by
     intro i τ a j hO hjump hj0 hjY
     have ha := hJ i τ hO a hjump
-    have hM := le_Mmax_of Mi i
-    have hH := le_Mmax_of hi i
+    have hM := _root_.Formalism.MainNotions.LiftingTheory.liftb_le_Mmax Mi i
+    have hH := _root_.Formalism.MainNotions.LiftingTheory.liftb_le_Mmax hi i
     rw [Formalism.MainNotions.LiftingTheory.xList, Finset.mem_sort, Finset.mem_image]
     refine ⟨(a, (j : ℤ)), Finset.mem_product.2 ⟨?_, ?_⟩, rfl⟩
     · simp only [Formalism.MainNotions.LiftingTheory.jumpSet, Finset.mem_filter, Finset.mem_Icc]
@@ -168,7 +153,7 @@ theorem dss_semisimple_of_used : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf 
         (Formalism.MainNotions.LiftingTheory.Mmax _ hi) Y).length ∈ ((HW l).W K 1 LL h).N T := by
     intro i
     have hDL : Formalism.MainNotions.CrystallineLiftingInputs.DL ((HW l).W K 1 LL h) T i ((letE i : LetA ↥(OL LL) _) • seq 0) := by
-      refine ⟨by rw [smul_smul, letE_mul_self], fun δ hδ => ?_⟩
+      refine ⟨by rw [smul_smul, _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq], fun δ hδ => ?_⟩
       rw [γD_letE_smul ((HW l).W K 1 LL h) T δ i (seq 0)]
       have e2 := hΔ δ hδ
       exact congrArg (fun z => (letE i : LetA ↥(OL LL) _) • z) e2

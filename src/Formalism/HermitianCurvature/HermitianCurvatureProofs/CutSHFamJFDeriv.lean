@@ -244,20 +244,12 @@ open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Form
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
-private theorem gN_pos_of_mem_GV {k r : ℕ} {g : B.Mat k r} (hg : g ∈ B.GV k r) : 0 < B.gN g := by
-  have h1 : g⁻¹ * g = 1 := ReciprocityTheory.ChartRestriction.DS.Xi.StepA.UH_inv_mul k r hg
-  have hne : g ≠ 0 := by
-    rintro rfl
-    rw [mul_zero] at h1
-    exact zero_ne_one h1
-  exact lt_of_lt_of_le (norm_pos_iff.mpr hne) (WeakDominationMajorants.Asm.sup_le_gN g)
-
 private theorem exists_bound_gN_rpow_on_compact {k r : ℕ} {S : Set (B.Mat k r)} (hS : IsCompact S) (A : ℝ) :
     ∃ R, ∀ g ∈ S ∩ B.GV k r, B.gN g ^ A ≤ R := by
   have hc : Continuous fun g : B.Mat k r => B.gN g := WeakDominationMajorants.NInt.gN_cont k r
   obtain ⟨R, hR⟩ := (hS.inter_right B5.GV_closed).exists_bound_of_continuousOn
     (f := fun g : B.Mat k r => B.gN g ^ A) (fun g hg =>
-      ((Real.continuousAt_rpow_const _ _ (Or.inl (gN_pos_of_mem_GV hg.2).ne')).comp
+      ((Real.continuousAt_rpow_const _ _ (Or.inl (_root_.Formalism.FourierDecayAlt.P.Ux1.gN_pos hg.2).ne')).comp
         hc.continuousAt).continuousWithinAt)
   exact ⟨R, fun g hg => (le_abs_self _).trans (by simpa using hR g hg)⟩
 
@@ -401,4 +393,3 @@ theorem family_orbital_derivative : CutSH.FamJFDeriv := by
 
 end Formalism.FourierDecayAlt.P.CutSHD
 
-theorem Formalism.FourierDecayAlt.P.family_orbital_derivative_identity : Formalism.FourierDecayAlt.P.CutSH.FamJFDeriv := Formalism.FourierDecayAlt.P.CutSHD.family_orbital_derivative

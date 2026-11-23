@@ -64,17 +64,17 @@ theorem divOver_restrict : ∀ (M W : Scheme.{0}) [IsIntegral M] [IsIntegral W] 
   have e := functionFieldMap_comp_constFn p f
   have hc : ∀ a, functionFieldMap f (Cartier.constFn p a) ∈ E'.ring := fun a => by
     rw [← RingHom.comp_apply, e]; exact E'.const_mem a
-  obtain ⟨z, hzy, hz⟩ := GlobalTheory.T.exists_specializes_dominatesStalk_of_regular M E'.ring y hE'
+  obtain ⟨z, hzy, hz⟩ := _root_.GlobalTheory.exists_specializes_dominatesStalk_of_regAt M E'.ring y hE'
   have hzU : z ∈ U := hzy.mem_open U.isOpen hy
-  have hfin := GlobalTheory.T.finiteDimensional_functionField_of_etale_on_open' M W f U hf ⟨y, hy⟩
+  have hfin := _root_.GlobalTheory.FunctionFieldEtale.finiteDimensional_functionField_of_etale_on_open M W f U hf ⟨y, hy⟩
   have hess' : ((functionFieldMap f).comp (Cartier.constFn p)).codRestrict E'.ring hc =
       (Cartier.constFn (f ≫ p)).codRestrict E'.ring E'.const_mem :=
     RingHom.ext fun a => Subtype.ext (RingHom.congr_fun e a)
-  obtain ⟨hdvr, hess⟩ := GlobalTheory.T.dvr_comap_finiteIndex_essFiniteType_complex W.functionField M.functionField (functionFieldMap f)
+  obtain ⟨hdvr, hess⟩ := _root_.GlobalTheory.restrict_dvr_essFiniteType W.functionField M.functionField (functionFieldMap f)
     (Cartier.constFn p) hfin E'.ring hc (hess' ▸ E'.essFiniteType)
   let E : DivOver p := ⟨E'.ring.comap (functionFieldMap f), hc, hdvr, hess⟩
   haveI : IsDiscreteValuationRing (E'.ring.comap (functionFieldMap f)) := hdvr
-  have hun := GlobalTheory.T.etale_restrict_dvr_comap_dominatesStalk M W f U hf z hzU E'.ring hz
+  have hun := _root_.GlobalTheory.trace_dvr_formallyUnramified_of_etale M W f U hf z hzU E'.ring hz
   let ψ : E.ring →+* E'.ring := (functionFieldMap f).restrict E.ring E'.ring fun _ hx => hx
   letI := ψ.toAlgebra
   have hψ : ψ.comp E.const = E'.const := RingHom.ext fun a => Subtype.ext (RingHom.congr_fun e a)
@@ -83,7 +83,7 @@ theorem divOver_restrict : ∀ (M W : Scheme.{0}) [IsIntegral M] [IsIntegral W] 
     exact RingHom.EssFiniteType.of_comp E.const h1
   have hord : ∀ g : W.functionFieldˣ,
       E'.ord (Units.map (functionFieldMap f).toMonoidHom g) = E.ord g := fun g =>
-    GlobalTheory.T.log_ordFrac_comap_formallyUnramified_dvr W.functionField M.functionField (functionFieldMap f) E'.ring ⟨hun, hft⟩ g g.ne_zero
+    _root_.GlobalTheory.RestrictOrd.log_ordFrac_comap W.functionField M.functionField (functionFieldMap f) E'.ring ⟨hun, hft⟩ g g.ne_zero
   refine ⟨E, fun g ⟨a, ha⟩ => ?_, hord, fun η hη => ?_⟩
   · show functionFieldMap f g ∈ E'.ring
     exact hE' _ ⟨f.stalkMap y a, by rw [← functionFieldMap_algebraMap, ha]⟩
@@ -92,7 +92,7 @@ theorem divOver_restrict : ∀ (M W : Scheme.{0}) [IsIntegral M] [IsIntegral W] 
     have hnW : topologicalKrullDim W = n := NadelApp.topologicalKrullDim_eq_of_smooth W p n
     have hnM : topologicalKrullDim M = n := NadelApp.topologicalKrullDim_eq_of_smooth M (f ≫ p) n
     obtain ⟨ω, hω, g, rfl, hg⟩ := E.isFormOrd_formOrd hnW hη
-    have hω' := GlobalTheory.T.isFreeGenerator_topForms_of_formallyUnramified E.const E'.const ψ hψ n hun ω hω (E'.exists_isFreeGen hnM)
+    have hω' := _root_.GlobalTheory.TopForm.isFreeGen_formMap_of_formallyUnramified E.const E'.const ψ hψ n hun ω hω (E'.exists_isFreeGen hnM)
     have key : ratPull p f n (E.toRat n ω) = E'.toRat n (TopForm.formMap n ψ hψ ω) := by
       have h1 := formMap_formMap (D := n) E.ring.subtype (functionFieldMap f)
         ((functionFieldMap f).comp E.ring.subtype) rfl rfl e

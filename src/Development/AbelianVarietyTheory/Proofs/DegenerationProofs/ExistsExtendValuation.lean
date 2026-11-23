@@ -121,9 +121,7 @@ theorem exists_extend_valuation {F K : Type} [Field F] [CharZero F] [Algebra.IsA
     simpa using hn
   exact ⟨IsFractionRing.lift hb, fun x => IsFractionRing.lift_algebraMap hb x⟩
 
-theorem mem_of_pow_mem {F : Type} [Field F] (V : ValuationSubring F) {x : F} {n : ℕ} (hn : n ≠ 0) (h : x ^ n ∈ V) : x ∈ V := by
-  rw [← V.valuation_le_one_iff] at h ⊢
-  rwa [map_pow, pow_le_one_iff hn] at h
+alias mem_of_pow_mem := _root_.GlobalTheory.Ex.ArcLift.mem_of_pow_mem
 
 theorem exists_prime_unit (O : Type) [CommRing O] [IsLocalRing O] {d : ℕ} (hd : d ≠ 0) :
     ∃ n : ℕ, n.Prime ∧ Odd n ∧ IsUnit (n : O) ∧ ¬ n ∣ d := by
@@ -176,7 +174,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Da
 theorem coord_scale (hL : Laws) (o : Full D K) {m : ℕ} (hm : Odd m) {z : baseOver (Sp K) ⟶ o.P.A} {v v' : D.La → K}
     (s : Kˣ) (hs : ∀ x, v x = s * v' x) (h : o.Coord m z v) : o.Coord m z v' := by
   haveI := o.closed
-  have hc := GlobalTheory.T.thetaCoordinates_exist_unique_separate_points hL K _ o.P (𝟙 _) m hm (Nat.cast_ne_zero.2 hm.pos.ne') _
+  have hc := _root_.GlobalTheory.CoordSep.coord_exists_unique_separate hL K _ o.P (𝟙 _) m hm (Nat.cast_ne_zero.2 hm.pos.ne') _
     (o.I.ev (m ^ 2)) fun x => (o.I.onto _ (pow_pos hm.pos 2) _).2 ⟨x, rfl⟩
   refine (hc.2.1 z _ _ h).2 ⟨s⁻¹, funext fun x => ?_⟩
   rw [Pi.smul_apply, hs, smul_eq_mul, Units.inv_mul_cancel_left]
@@ -184,7 +182,7 @@ theorem coord_scale (hL : Laws) (o : Full D K) {m : ℕ} (hm : Odd m) {z : baseO
 theorem theta_scale (hL : Laws) (o : Full D K) {m : ℕ} (hm : Odd m) {v v' : D.La → K}
     (s : Kˣ) (hs : ∀ x, v x = s * v' x) (h : o.Theta m v) : o.Theta m v' := by
   haveI := o.closed
-  have hc := GlobalTheory.T.thetaCoordinates_exist_unique_separate_points hL K _ o.P (𝟙 _) m hm (Nat.cast_ne_zero.2 hm.pos.ne') _
+  have hc := _root_.GlobalTheory.CoordSep.coord_exists_unique_separate hL K _ o.P (𝟙 _) m hm (Nat.cast_ne_zero.2 hm.pos.ne') _
     (o.I.ev (m ^ 2)) fun x => (o.I.onto _ (pow_pos hm.pos 2) _).2 ⟨x, rfl⟩
   exact (hc.2.2.1 _).2 (coord_scale hL o hm s hs ((hc.2.2.1 _).1 h))
 end

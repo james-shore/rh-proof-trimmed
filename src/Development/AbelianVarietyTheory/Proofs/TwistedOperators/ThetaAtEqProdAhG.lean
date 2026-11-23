@@ -176,9 +176,6 @@ theorem hermForm_nsmul {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) (N M : ℕ) (
   rw [hermForm_smul_left, show ((M : ℂ) • w) = (((M : ℝ) : ℂ) • w) by norm_cast, hermForm_real_smul_right]
   push_cast; ring
 
-theorem exists_nsmul_mem (X : Data E r) (u : Fin r → E) : ∃ N : ℕ, N ≠ 0 ∧ N • u ∈ X.Λ :=
-  _root_.UpperTheory.Reformulated.B.Uc15.exists_nsmul_mem X u
-
 end GlobalTheory.AHPhase
 
 namespace GlobalTheory.AHPhase
@@ -191,8 +188,8 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : D
 theorem im_hermForm_pv (W : UnfAt U k x) (Y : UnitAt W) (u v : Fin r → E) :
     (hermForm Y.Hm (pv W u) (pv W v)).im =
       ((Algebra.trace ℚ E (-(U.X k).ξ0 * herm (U.X k).Gm u v) : ℚ) : ℝ) := by
-  obtain ⟨N, hN, hu⟩ := exists_nsmul_mem (U.X k) u
-  obtain ⟨M, hM, hv⟩ := exists_nsmul_mem (U.X k) v
+  obtain ⟨N, hN, hu⟩ := _root_.UpperTheory.Reformulated.B.Uc15.exists_nsmul_mem (U.X k) u
+  obtain ⟨M, hM, hv⟩ := _root_.UpperTheory.Reformulated.B.Uc15.exists_nsmul_mem (U.X k) v
   set a := (W.φ k).symm ⟨N • u, hu⟩ with ha
   set b := (W.φ k).symm ⟨M • v, hv⟩ with hb
   have hau : (W.φ k a : Fin r → E) = (N : E) • u := by
@@ -229,17 +226,7 @@ open GlobalTheory.IndefiniteRowSideFullHecke.OrthonormalLatticeThetaValues Globa
 
 variable {D : D7}
 
-theorem theta_smul {ψ : AddChar (AF D.host.F) ℂ} {S T : HSp D} (c : ℂ) {f : WO S T → ℂ} (hf : IsThetaFunO ψ S T f) :
-    IsThetaFunO ψ S T (c • f) := {
-  quasi γ w := by simp only [Pi.smul_apply, smul_eq_mul]; rw [hf.quasi]; ring
-  level := by
-    obtain ⟨U, hUo, hU⟩ := hf.level
-    refine ⟨U, hUo, fun u hu hi => ?_⟩
-    have e : heisO ψ S T u (c • f) = c • heisO ψ S T u f := by
-      funext w; simp only [heisO, Pi.smul_apply, smul_eq_mul]; ring
-    rw [e, hU u hu hi]
-  cont := continuous_const.mul hf.cont
-  smooth k L hL hfin w := (contDiff_const.mul (hf.smooth k L hL hfin w)) }
+alias theta_smul := _root_.GlobalTheory.OrientedHeis.theta_smul
 
 theorem realPt_add (S T : HSp D) (X Y : Matrix (Fin T.rank) (Fin S.rank) D.host.E) :
     realPt S T (X + Y) = realPt S T X + realPt S T Y := by

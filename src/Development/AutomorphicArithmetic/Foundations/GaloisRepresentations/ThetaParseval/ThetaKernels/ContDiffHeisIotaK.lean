@@ -70,7 +70,7 @@ theorem contDiff_heis_iota_k (σ : E →ₐ[F] E) (B : Base F E) (hB : _root_.Up
     {θ : InfinitePlace F → (Ainf F ⊗[F] E →+* ℂ)} {ι : (InfinitePlace F → ℂ) →+ AEF F E} (hι : IsChartF θ ι)
     {f : WOF F E nS nT → ℂ} (hf : IsThetaFunOF σ JS JT ξ₀ B.ψ f) (x : WOF F E nS nT) :
     ContDiff ℝ ∞ fun v : IxF F nS nT → ℂ => heisOF σ JS JT ξ₀ B.ψ (iotaVF ι v) f x := by
-  obtain ⟨lam, hl, hlam⟩ := GlobalTheory.HeisLineDiffF.exists_log (_root_.GlobalTheory.T.standard_additive_character_sign F E σ B hB)
+  obtain ⟨lam, hl, hlam⟩ := GlobalTheory.HeisLineDiffF.exists_log (_root_.GlobalTheory.StdCharWeilDatum.isStdCharF_of_isGood_k F E σ B hB)
   let φ : (IxF F nS nT → ℂ) →+ ℂ :=
     { toFun := fun v => lam (symplOHF σ JS JT ξ₀ x (iotaVF ι v))
       map_zero' := by rw [iotaVF_zero, GlobalTheory.HeisLineDiffF.symplOHF_zero_right, map_zero]
@@ -102,7 +102,7 @@ theorem GlobalTheory.ThetaSmoothF.sm_of_thetaF_k : ∀ (F E : Type) [Field F] [N
       ∀ (hψ : IsCharAF F B.ψ) (f : BBF σ JS JT ξ₀ B.ψ), IsThetaFunOF σ JS JT ξ₀ B.ψ f.1 →
         Sm (rhoVF σ JS JT ξ₀ B.ψ hψ ι) f := by
   intro F E _ _ _ _ _ σ B hB nS nT JS JT hS hT ξ₀ hξ hξ' θ hθ ι hι hψ f hf
-  have hstd := _root_.GlobalTheory.T.standard_additive_character_sign F E σ B hB
+  have hstd := _root_.GlobalTheory.StdCharWeilDatum.isStdCharF_of_isGood_k F E σ B hB
   let H := HMF (nS := nS) (nT := nT) JS JT ξ₀ (fun w : InfinitePlace F => (B.emb w).1)
   let B₀ : (IxF F nS nT → ℂ) →ₗ[ℝ] (IxF F nS nT → ℂ) →ₗ[ℝ] ℝ :=
     LinearMap.mk₂ ℝ (fun x y => (star y ⬝ᵥ H *ᵥ x).im)
@@ -140,15 +140,15 @@ theorem GlobalTheory.ThetaSmoothF.sm_of_thetaF_k : ∀ (F E : Type) [Field F] [N
         ∀ u ∈ U, u.map (infPartF F E) = 0 → heisOF σ JS JT ξ₀ B.ψ u d = d := by
       obtain ⟨U, hU, hUf⟩ := hg.level
       exact ⟨U, hU, fun u hu hu0 =>
-        _root_.GlobalTheory.T.theta_function_rapid_decay F E σ B hB nS nT JS JT hS hT ξ₀ hξ hξ' hstd g.1 L hL hL0 u hu0 (hUf u hu hu0)⟩
+        _root_.GlobalTheory.HeisDerivCM.heisOF_deriv_fix_k F E σ B hB nS nT JS JT hS hT ξ₀ hξ hξ' hstd g.1 L hL hL0 u hu0 (hUf u hu hu0)⟩
     have hsm : ∀ (k : ℕ) (L' : (Fin k → ℝ) →+ WOF F E nS nT), Continuous L' →
         (∀ t, (L' t).map (finPartF F E) = 0) → ∀ w, ContDiff ℝ ∞ fun t => d (w + L' t) :=
-      fun k L' hL' hL'0 w => _root_.GlobalTheory.T.theta_function_integrable F E σ B hB nS nT JS JT hS hT ξ₀ hξ hξ' hstd g.1 hg L hL hL0 k L' hL' hL'0 w
+      fun k L' hL' hL'0 w => _root_.GlobalTheory.ThetaLineSmoothF.contDiff_deriv_heisOF_line_k F E σ B hB nS nT JS JT hS hT ξ₀ hξ hξ' hstd g.1 hg L hL hL0 k L' hL' hL'0 w
     have hd : IsThetaFunOF σ JS JT ξ₀ B.ψ d :=
-      ⟨fun γ w => _root_.GlobalTheory.T.theta_function_moderate_growth F E σ B hB nS nT JS JT hS hT ξ₀ hξ hξ' hstd g.1 hg L hL hL0 γ w, hlev,
+      ⟨fun γ w => _root_.GlobalTheory.ThetaDerivQuasi.deriv_heis_quasi_k F E σ B hB nS nT JS JT hS hT ξ₀ hξ hξ' hstd g.1 hg L hL hL0 γ w, hlev,
         _root_.GlobalTheory.T.theta_integral_unfolding F E σ B hB nS nT JS JT hS hT ξ₀ hξ hξ' hstd d hlev hsm, hsm⟩
     have hb := GlobalTheory.T.orientedModelThetaFunction_bounded F E σ nS nT JS JT ξ₀ B.ψ hψ d hd
     refine ⟨toBF d hd.cont hb hd.quasi, hd, fun x => ?_⟩
-    exact (_root_.GlobalTheory.T.theta_function_smooth_vectors F E σ B hB nS nT JS JT hS hT ξ₀ hξ hξ' hstd g.1 hg L hL hL0 x).hasDerivAt
+    exact (_root_.GlobalTheory.HeisLineDiffF.differentiableAt_heisOF_line_k F E σ B hB nS nT JS JT hS hT ξ₀ hξ hξ' hstd g.1 hg L hL hL0 x).hasDerivAt
 end
 end

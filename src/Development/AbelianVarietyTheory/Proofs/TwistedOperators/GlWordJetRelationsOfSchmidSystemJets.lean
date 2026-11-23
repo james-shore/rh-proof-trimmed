@@ -102,7 +102,7 @@ theorem Rw_analytic [CompleteSpace B] (l : List (Fin n × Fin n)) {g : Matrix (F
   | nil => exact h
   | cons p l ih =>
     rw [Rw_cons]
-    exact (GlobalTheory.T.holomorphicLeftInvariantDerivative_calculus_near_one n B (Rw ε l g) ih).1 (thE ε p)
+    exact (_root_.GlobalTheory.SphJetCalc.leftInvariant_calculus n B (Rw ε l g) ih).1 (thE ε p)
 
 private lemma rz_sum_clm_eventuallyEq_of_analyticAt [CompleteSpace B] {ι : Type} [Fintype ι] (L : ι → B →L[ℂ] B')
     (Z : Matrix (Fin n) (Fin n) ℂ) {k : ι → Matrix (Fin n) (Fin n) ℂ → B} (hk : ∀ i, AnalyticAt ℂ (k i) 1) :
@@ -155,7 +155,7 @@ theorem Rw_left [CompleteSpace B] (Y : Matrix (Fin n) (Fin n) ℂ) (l : List (Fi
   | nil => exact Filter.EventuallyEq.rfl
   | cons p l ih =>
     simp only [Rw_cons]
-    exact ((GlobalTheory.T.holomorphicLeftInvariantDerivative_calculus_near_one n B (Rw ε l g) (Rw_analytic ε l h)).2.2 Y (thE ε p)).trans (Rz_congr _ ih)
+    exact ((_root_.GlobalTheory.SphJetCalc.leftInvariant_calculus n B (Rw ε l g) (Rw_analytic ε l h)).2.2 Y (thE ε p)).trans (Rz_congr _ ih)
 
 theorem analytic_left [CompleteSpace B] (Y : Matrix (Fin n) (Fin n) ℂ)
     {g : Matrix (Fin n) (Fin n) ℂ → B} (h : AnalyticAt ℂ g 1) :
@@ -209,9 +209,9 @@ theorem Rw_comm [CompleteSpace B] (l₁ l₂ : List (Fin n × Fin n)) (a b c d :
     Rw ε (l₁ ++ (a, b) :: (c, d) :: l₂) g 1 - Rw ε (l₁ ++ (c, d) :: (a, b) :: l₂) g 1 =
       (if b = c then Rw ε (l₁ ++ (a, d) :: l₂) g 1 else 0) -
         (if d = a then Rw ε (l₁ ++ (c, b) :: l₂) g 1 else 0) := by
-  have T := GlobalTheory.T.holomorphicLeftInvariantDerivative_calculus_near_one n B (Rw ε l₂ g) (Rw_analytic ε l₂ h)
-  have TA := GlobalTheory.T.holomorphicLeftInvariantDerivative_calculus_near_one n B _ (T.1 (thE ε (a, b)))
-  have TZ := GlobalTheory.T.holomorphicLeftInvariantDerivative_calculus_near_one n B _ (T.1 (thE ε (c, d)))
+  have T := _root_.GlobalTheory.SphJetCalc.leftInvariant_calculus n B (Rw ε l₂ g) (Rw_analytic ε l₂ h)
+  have TA := _root_.GlobalTheory.SphJetCalc.leftInvariant_calculus n B _ (T.1 (thE ε (a, b)))
+  have TZ := _root_.GlobalTheory.SphJetCalc.leftInvariant_calculus n B _ (T.1 (thE ε (c, d)))
   have e1 : Rw ε l₁ (Rz (thE ε (a, b)) (Rz (thE ε (c, d)) (Rw ε l₂ g))) 1 -
       Rw ε l₁ (Rz (thE ε (c, d)) (Rz (thE ε (a, b)) (Rw ε l₂ g))) 1 =
       Rw ε l₁ (Rz (thE ε (a, b) * thE ε (c, d) - thE ε (c, d) * thE ε (a, b)) (Rw ε l₂ g)) 1 :=
@@ -230,7 +230,7 @@ private lemma rw_nil (g : Matrix (Fin n) (Fin n) ℂ → B) : Rw ε [] g = g := 
 
 theorem jetRel_funJet : ∀ (V W : Type) [NormedAddCommGroup V] [InnerProductSpace ℂ V] [NormedAddCommGroup W] [InnerProductSpace ℂ W] (n : ℕ) (ε : Fin n → Bool) (E : Fin n → Fin n → Module.End ℂ V) [CompleteSpace W] (Λ : Fin n → ℝ) (u : V) (j : W →ₗᵢ[ℂ] V) (f : Matrix (Fin n) (Fin n) ℂ → (W →L[ℂ] W)), AnalyticAt ℂ f 1 → FunEquiv ε E j f → FunSchmid ε E Λ u j f → JetRel ε E Λ u j (funJet ε f) := by
   intro V W _ _ _ _ n ε E _ Λ u j f hf hE hS
-  have T := GlobalTheory.T.holomorphicLeftInvariantDerivative_calculus_near_one n _ f hf
+  have T := _root_.GlobalTheory.SphJetCalc.leftInvariant_calculus n _ f hf
   refine ⟨?_, ?_, ?_, ?_⟩
   · intro l₁ l₂ a b c d
     have hc := Rw_comm ε l₁ l₂ a b c d hf

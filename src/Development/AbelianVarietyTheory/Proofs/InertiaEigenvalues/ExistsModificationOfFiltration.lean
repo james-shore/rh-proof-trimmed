@@ -80,16 +80,6 @@ theorem map_smul_ringHom {R S : Type} [CommRing R] [CommRing S] {p q : Type} (f 
   ext i j
   simp
 
-theorem l_ne_zero {l : ℕ} [Fact l.Prime] {K : FinExt l} (bk : BK K) : (l : bk.S) ≠ 0 := by
-  intro h
-  have := congrArg (PowerSeries.constantCoeff) h
-  simp only [map_natCast] at this
-  have h1 := WittVector.coeff_p_one (p := l) (R := Fq l bk.a)
-  rw [this] at h1
-  simp at h1
-
-
-
 theorem exists_modification_of_filtration : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (C : Core l) (d : ℕ) (U U' : Matrix (Fin d) (Fin d) (Per.BdR l)), U * U' = 1 → ∀ (N m : ℕ) (k : Fin m → ℤ) (c : Matrix (Fin d) (Fin m) (↥(OL K))) (β : Matrix (Fin m) (Fin d) (Per.BdR l)), (∀ i, |k i| ≤ N) → (∀ r s, U r s ∈ Per.FilD l (-(N : ℤ))) → (∀ r i, (U * c.map (C.oD.comp (K.1.val.toRingHom.comp (OL K).val.toRingHom))) r i ∈ Per.FilD l (k i)) → (∀ i j, β i j ∈ Per.FilD l (-k i)) → U * c.map (C.oD.comp (K.1.val.toRingHom.comp (OL K).val.toRingHom)) * β = 1 → ∃ (c₂ : ℕ) (X X' : Matrix (Fin d) (Fin d) (bk.S)), X * X' = ((l : bk.S) ^ c₂ * bk.E ^ (2 * N)) • (1 : Matrix (Fin d) (Fin d) (bk.S)) ∧ (∀ (B : Obj l ↥(OL K)) (f g : Hom bk.prism B), ∃ k : ℕ, ∀ i j, BK.hf f bk.E ^ (2 * N) ∣ (l : B.A) ^ k * (X'.map (BK.hf f) * X.map (BK.hf g)) i j) ∧ (∀ i j, (U * X.map ((algebraMap (Per.BdRp l) (Per.BdR l)).comp ((aDp l).comp bk.ev))) i j ∈ Per.FilD l N) ∧ (∀ i j, (X'.map ((algebraMap (Per.BdRp l) (Per.BdR l)).comp ((aDp l).comp bk.ev)) * U') i j ∈ Per.FilD l N) := by
   intro l _ K bk C d U U' hUU' N m k c β hk hU hUc hβ hUcβ
   obtain ⟨hFilP, hmul, hanti, hP, -, hxi, -⟩ := GlobalTheory.T.bdR_filtration_ker_theta_generator_facts l C (bk.ev bk.E) bk.span_ev
@@ -112,7 +102,7 @@ theorem exists_modification_of_filtration : ∀ (l : ℕ) [Fact l.Prime] (K : Fi
   have hlu : IsUnit ((l : ℕ) : Per.BdRp l) := by
     have h := (GlobalTheory.RingBasics.isUnit_l l).map (algebraMap (Per.AinfP l) (Per.BdRp l))
     rwa [map_natCast] at h
-  have hl0 := l_ne_zero bk
+  have hl0 := _root_.GlobalTheory.BSP.LocalizedLatticeBasis.l_ne_zero bk
 
   have hlift := fun r i => GlobalTheory.T.exists_breuilKisin_lift_compatible_bdR_prisms l K bk C (2 * N) (c r i)
   choose k0 s0 hs0 hnp0 using hlift

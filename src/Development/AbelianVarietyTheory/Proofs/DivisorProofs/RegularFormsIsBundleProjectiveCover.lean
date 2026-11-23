@@ -67,21 +67,21 @@ theorem omB_isBundle : ∀ (k : Type) [Field k] [CharZero k] (F K : Type) [Field
     intro I c hc w hw
     simp only [SetLike.mem_coe, Submodule.mem_comap, LinearMap.restrictScalars_apply] at hw ⊢
     rw [map_smul]
-    exact ((GlobalTheory.T.kahlerFormsOverSubalgebra_closure_properties k K _ p p).2.1 _ hw).2.2.2 c hc
+    exact ((_root_.GlobalTheory.PD.omB_alg k K _ p p).2.1 _ hw).2.2.2 c hc
   have key : ∀ i, Module.Finite (rA k x {i}) (Submodule.span (rA k x {i})
         ((omB k K (rB k K x {i}) p).comap (e.restrictScalars k) : Set W)) ∧
       Module.Projective (rA k x {i}) (Submodule.span (rA k x {i})
         ((omB k K (rB k K x {i}) p).comap (e.restrictScalars k) : Set W)) := by
     intro i
-    obtain ⟨hf1, hf2, hf3⟩ := GlobalTheory.T.finite_cover_chart_smooth_normal k F K d x hx {i} (Finset.singleton_nonempty i)
+    obtain ⟨hf1, hf2, hf3⟩ := _root_.GlobalTheory.PD.rB_finite_frac_smooth k F K d x hx {i} (Finset.singleton_nonempty i)
     haveI := hf2
     haveI := hf3
-    obtain ⟨hB1, hB2⟩ := GlobalTheory.T.span_regularForms_finite_projective_smooth k K (rB k K x {i}) p W e he hr
-    exact GlobalTheory.T.finite_projective_span_of_integralClosure' k F K (rA k x {i}) (rB k K x {i}) (fun y => Iff.rfl) hf1 (GlobalTheory.T.integralClosure_projective_over_standardOpenRing k F K d x hx i) W _
+    obtain ⟨hB1, hB2⟩ := _root_.GlobalTheory.PD.span_omB_comap_finite_projective k K (rB k K x {i}) p W e he hr
+    exact _root_.GlobalTheory.finite_projective_span_of_integralClosure k F K (rA k x {i}) (rB k K x {i}) (fun y => Iff.rfl) hf1 (_root_.GlobalTheory.integralClosure_projective_rA k F K d x hx i) W _
       (hstab {i}) hB1 hB2
-  refine ⟨fun i => ?_, fun i => (key i).2, fun I i hi => GlobalTheory.T.pulledBackForms_intersection_eq_chart_localization k F K d x hx p W e I i hi⟩
+  refine ⟨fun i => ?_, fun i => (key i).2, fun I i hi => _root_.GlobalTheory.PD.omB_comap_loc k F K d x hx p W e I i hi⟩
   obtain ⟨hfin, -⟩ := key i
-  obtain ⟨-, hf2, -⟩ := GlobalTheory.T.finite_cover_chart_smooth_normal k F K d x hx {i} (Finset.singleton_nonempty i)
+  obtain ⟨-, hf2, -⟩ := _root_.GlobalTheory.PD.rB_finite_frac_smooth k F K d x hx {i} (Finset.singleton_nonempty i)
   haveI := hf2
   haveI : FiniteDimensional F K := hx.fin
   set S : Set W := ((omB k K (rB k K x {i}) p).comap (e.restrictScalars k) : Set W) with hSdef
@@ -103,8 +103,8 @@ theorem omB_isBundle : ∀ (k : Type) [Field k] [CharZero k] (F K : Type) [Field
       | smul a z _ hz => exact hA a z hz
     · exact fun y hy => Submodule.subset_span hy
   refine ⟨s, by rw [hs, hspan], ?_⟩
-  have hK := GlobalTheory.T.kahlerFormsOverSubalgebra_comap_span_eq_top k K (rB k K x {i}) p W e he hr
-  have hF := GlobalTheory.T.span_eq_top_of_stable_of_isFractionRing' k F K (rB k K x {i}) W S (hstab {i}) hK
+  have hK := _root_.GlobalTheory.PD.omB_comap_span_eq_top k K (rB k K x {i}) p W e he hr
+  have hF := _root_.GlobalTheory.span_eq_top_of_stable_of_isFractionRing k F K (rB k K x {i}) W S (hstab {i}) hK
   rw [eq_top_iff, ← hF, Submodule.span_le]
   intro w hw
   have : w ∈ Submodule.span (rA k x {i}) (s : Set W) := by rw [hs]; exact Submodule.subset_span hw

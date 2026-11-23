@@ -59,13 +59,7 @@ open scoped Classical
 
 local instance factT (D : D7) (k : Fin 2) : Fact (D.host.g k).Prime := ⟨D.host.g_prime k⟩
 
-theorem trace_alg {G : Type} [Group G] [Fintype G] (τ : FDRep ℂ G) (a : MonoidAlgebra ℂ G) :
-    LinearMap.trace ℂ τ (Representation.asAlgebraHom τ.ρ a) = tr a τ.character := by
-  have e : Representation.asAlgebraHom τ.ρ a = ∑ x, a.coeff x • τ.ρ x :=
-    LinearMap.ext fun w => by rw [alg_apply, LinearMap.sum_apply]; rfl
-
-  rw [e, map_sum, tr]
-  exact Finset.sum_congr rfl fun x _ => map_smul _ _ _
+alias trace_alg := _root_.GlobalTheory.GLq.TrIdem.trace_asAlgebraHom
 
 section Finite
 
@@ -73,7 +67,7 @@ variable {g : ℕ} [Fact g.Prime]
 
 theorem tr_eSerC_eq (L : LabelDatum g) {n : ℕ} {χ : Gn g n → ℂ} {f : (ZMod g)[X]} (hχ : IsIrr χ)
     (hf : HasLabel L χ f) : tr (eSerC L n f) χ = χ 1 ∧ χ 1 ≠ 0 := by
-  have hfin := (GlobalTheory.T.finite_irrCharacters_and_finsum_centralIdempotents_eq_one (Gn g n)).1
+  have hfin := (_root_.GlobalTheory.GLq.irr_finite_and_finsum_zOf_eq_one (Gn g n)).1
   have hz : eSerC L n f * zOf χ = 1 * zOf χ := by
     rw [eSerC_eq_sum L n hfin, Finset.sum_mul, Finset.sum_eq_single_of_mem χ (by simp [hχ, hf]), one_mul]
     · simpa using (GlobalTheory.T.centralIdempotentOfIrrCharacter_orthogonal_central _ χ χ hχ hχ).1

@@ -58,7 +58,6 @@ theorem two_le_r_and_fdeg (D : D7) : 2 ≤ D.R.r ∧ ReciprocityTheory.ChartRest
   rw [Formalism.L2.Pj.hostSize_finrank D]
   omega
 
-theorem main : ∀ D : D7, 2 ≤ D.R.r ∧ ReciprocityTheory.ChartRestriction.G.FD.fdeg D.host.E = D.R.f :=
-  two_le_r_and_fdeg
+alias main := _root_.GlobalTheory.RankHostFacts.two_le_r_and_fdeg
 
 end GlobalTheory.RankHostFacts

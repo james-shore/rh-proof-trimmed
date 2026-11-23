@@ -205,7 +205,7 @@ theorem tail (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P) (hT : 
       have := add_mem ih (hstep n)
       rwa [sub_add_sub_cancel] at this
   have hE0 : E 0 ∈ FilB P (M : ℤ) := by
-    refine GlobalTheory.T.mem_deRhamFiltration_of_forall_ainfLattice l P AI hT M _ fun r => ?_
+    refine _root_.GlobalTheory.ExpImage.mem_FilB_of_forall_Lat l P AI hT M _ fun r => ?_
     obtain ⟨k₀, hk₀⟩ := hc2 M r
     have hk : ∀ j, ∃ k : ℕ, (l : P.R.BdR) ^ k * u P j ∈ Lat AI M r := fun j =>
       (GlobalTheory.T.bounded_and_eventually_sub_mem_Lat_alt l P AI hT _ (u_mem j) M r).1

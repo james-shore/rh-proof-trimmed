@@ -132,7 +132,7 @@ theorem one_char (Ω : Type) [Field Ω] (F : Type) [Field F] [NumberField F] [Al
       (∀ (j : Ω →+* ℂ) (c : G F Ω), (∀ x, j (c x) = starRingEnd ℂ (j x)) → r c = 1) ∧
       ∀ u ∈ T, ∀ A' : ValuationSubring Ω, IsPlaceOver A' u → ∀ g ∈ Dec (F := F) A', r g = 1 := by
   classical
-  obtain ⟨art, ha⟩ := GlobalTheory.globalArtinReciprocity_holds F Ω
+  obtain ⟨art, ha⟩ := _root_.CompanionTheory.FamInh.globalArtin F Ω
   obtain ⟨a, haL⟩ := GlobalTheory.localArtinExists_holds F Ω A v h
   obtain ⟨θ, hθs, hθf, hθ⟩ := loc_char Ω F A v h a haL χ hχ
   have hne : ∀ u ∈ T, u ≠ v := fun u hu e => hT (e ▸ hu)

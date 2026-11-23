@@ -73,11 +73,7 @@ namespace GlobalTheory.CosDatum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-theorem cA_cA₀ {D : D7} (z : AE D) : cA D (cA D z) = z := by
-  induction z using TensorProduct.induction_on with
-  | zero => simp
-  | tmul a x => show a ⊗ₜ[D.host.F] star (star x) = _; rw [star_star]
-  | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
+alias cA_cA₀ := _root_.Formalism.L2.Theta.cA_cA
 
 theorem latO_le_true {D : D7} (S T : HSp D) (LS : Set (Fin S.rank → D.host.E)) (LT : Set (Fin T.rank → D.host.E))
     (P : HeightOneSpectrum (𝓞 D.host.F) → Prop) : latO S T LS LT P ≤ latO S T LS LT fun _ => True := by
@@ -89,10 +85,7 @@ theorem isLatVac_mono {D : D7} {m n : ℕ} {hs : Mx D m n → (Mx D m n → ℂ)
     (h : Λ' ≤ Λ) {f : Mx D m n → ℂ} (hf : IsLatVac hs Λ f) : IsLatVac hs Λ' f :=
   ⟨fun u hu => hf.1 u (h hu), fun e he u hu hh => hf.2 e he u (h hu) hh⟩
 
-theorem addChar_ne_zero {A : Type} [AddGroup A] (ψ : AddChar A ℂ) (a : A) : ψ a ≠ 0 := fun h => by
-  have := ψ.map_add_eq_mul a (-a)
-  rw [add_neg_cancel, ψ.map_zero_eq_one, h, zero_mul] at this
-  exact one_ne_zero this
+alias addChar_ne_zero := _root_.Formalism.FourierDecayAlt.P.A6x4.addChar_ne_zero
 
 end GlobalTheory.CosDatum
 

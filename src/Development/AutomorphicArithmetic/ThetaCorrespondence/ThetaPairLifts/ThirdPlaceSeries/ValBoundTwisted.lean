@@ -61,9 +61,9 @@ theorem val_bound_twisted_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D
     D.what₂.embLL z * Λd s = Λ s →
     (Formalism.DivisionValues.vw (D.plEq w) z : ℝ) ≤ (Formalism.DivisionValues.vw (D.plEq w) ((D.what₂.places.resChar w : ℕ) : D.what₂.LL) : ℝ) / ((D.what₂.places.resChar w : ℕ) : ℝ) ^ 2 := by
   intro D L hT Gi Gl Kc Y cX ex Csz p CF d hp hfit hG hF hT w hw i j s Λ Λd z hs1 hs2 hΛ hΛd hz
-  obtain ⟨T₀, ψc, T, hv, h0, h0ne, hd, hψ, hT', hΛs⟩ := _root_.GlobalTheory.T.toric_ratio_field_data_conjugate_alt p CF d hp hfit hG hF hT w hw i j s Λ Λd hs1 hs2 hΛ hΛd
+  obtain ⟨T₀, ψc, T, hv, h0, h0ne, hd, hψ, hT', hΛs⟩ := _root_.GlobalTheory.ThmARatio.values_as_toric_sums_alt p CF d hp hfit hG hF hT w hw i j s Λ Λd hs1 hs2 hΛ hΛd
   obtain ⟨lam, a, u, ha, he⟩ := _root_.GlobalTheory.T.toric_ratio_field_data_cm_alt p CF d hp hfit hG hF w hw i j s hs1 hs2 T₀ ψc T hv h0 h0ne hψ hT' z
-    (by rw [← hd, hz, hΛs]) (_root_.GlobalTheory.T.toric_ratio_field_data_abelian_alt p CF d hp hfit hG hF w hw i j s hs1 hs2 T₀ ψc T hv h0 h0ne hψ hT')
+    (by rw [← hd, hz, hΛs]) (_root_.GlobalTheory.ThmAUpper.read_twisted_alt p CF d hp hfit hG hF w hw i j s hs1 hs2 T₀ ψc T hv h0 h0ne hψ hT')
   obtain ⟨N0, hN⟩ := hfit.1.powers
   exact GlobalTheory.T.twistedThetaValue_valuation_le_div_sq ex.nch w N0 lam a u z (hN w hw a ha) he
 end GlobalTheory.ThmAUpper

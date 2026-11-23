@@ -56,7 +56,7 @@ namespace GlobalTheory
 
 theorem character_on_torsion_points_eq_series : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgClosed C] [CharZero C] (v : Valuation C NNReal) (O : Type) [CommRing O] [Algebra O C], v.Integers O → ∀ [Fact ¬IsUnit (p : O)] [IsAdicComplete (Ideal.span {(p : O)}) O] (d : ℕ) (F : FGLaw O d), FH p F.F → ∀ (k : ℕ) (κ : (PS O 1 d →ₐ[O] O) → C), (∀ φ φ' ψ, Killed F.F (p ^ k) φ → Killed F.F (p ^ k) φ' → IsSum F.F φ φ' ψ → κ ψ = κ φ * κ φ') → (∀ φ, (∀ f, φ f = MvPowerSeries.constantCoeff f) → κ φ = 1) → ∃ u : PS O 1 d, ∀ φ, Killed F.F (p ^ k) φ → algebraMap O C (φ u) = κ φ := by
   intro p _ C _ _ _ v O _ _ hv _ _ d F hFH k κ hmul hone
-  obtain ⟨inst, hsum, hzero, hkill⟩ := GlobalTheory.T.exists_addCommMonoid_algHom_powerSeries_fgLaw p C v O hv d F
+  obtain ⟨inst, hsum, hzero, hkill⟩ := _root_.GlobalTheory.FormalPts.points_addCommMonoid p C v O hv d F
   letI := inst
   obtain ⟨hfree, hfin, -⟩ := hFH k
   have hinj : Function.Injective (algebraMap O C) := hv.hom_inj
@@ -121,7 +121,7 @@ theorem character_on_torsion_points_eq_series : ∀ (p : ℕ) [Fact p.Prime] (C 
     exact ⟨u, fun φ hφ => hu ⟨φ, (hkill _ _).2 hφ⟩⟩
   · intro f hf
     obtain ⟨u, hu⟩ := (hmem _).1 hf
-    obtain ⟨m, g, h, hgh⟩ := GlobalTheory.T.exists_sum_mul_eval_two_points_of_free_finite_quotient p C v O hv d J hfree hfin (ev (n := 2) ![F.F] u)
+    obtain ⟨m, g, h, hgh⟩ := _root_.GlobalTheory.series_two_points_eq_sum_mul p C v O hv d J hfree hfin (ev (n := 2) ![F.F] u)
     refine ⟨m, fun i n => algebraMap O C (n.1 (g i)), fun i n => algebraMap O C (n.1 (h i)),
       fun i => (hmem _).2 ⟨g i, fun n => rfl⟩, fun i => (hmem _).2 ⟨h i, fun n => rfl⟩, ?_⟩
     intro x y

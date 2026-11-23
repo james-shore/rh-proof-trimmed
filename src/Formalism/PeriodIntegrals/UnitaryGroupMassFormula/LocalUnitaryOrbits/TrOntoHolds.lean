@@ -86,7 +86,7 @@ theorem trOnto_holds (hstd : StdHyp σ J ψ) : TrOnto σ v := by
   have hsiθ : sigR (Fv F v) σ iθ = sc (E := E) v (iO v t) - iθ := by
     have e1 := congrArg (fun y : 𝓞 E => inclR (F := F) (Fv F v) (y : E)) hσθ
     simp only [AddSubgroupClass.coe_sub, map_sub, hinc, sigO_coe] at e1
-    rw [hiθ, sigR_incl]
+    rw [hiθ, _root_.PI.OmLocU.Orb.sigR_inclR]
     exact e1
   have htr : ∀ a b : Fv F v, (sc (E := E) v a + sc (E := E) v b * iθ) +
       sigR (Fv F v) σ (sc (E := E) v a + sc (E := E) v b * iθ) = sc (E := E) v (2 * a + b * iO v t) := by

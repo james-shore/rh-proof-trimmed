@@ -75,7 +75,7 @@ theorem contCone_of_affine_limit : ∀ (R : Type) [CommRing R] (F : Shv R), Fini
   haveI : IsAffine c.pt := Scheme.isAffine_of_isLimit c hc
   let c' : Cocone (G ⋙ Scheme.Γ.rightOp).leftOp := coconeLeftOpOfCone (Scheme.Γ.rightOp.mapCone c)
   have hc' : IsColimit c' := isColimitCoconeLeftOpOfCone _ (isLimitOfPreserves Scheme.Γ.rightOp hc)
-  have hb := GlobalTheory.T.etaleCohomology_filteredColimit_rings_finitary R F hF Iᵒᵖ _ c' hc'
+  have hb := _root_.GlobalTheory.EtC.RingContH.main R F hF Iᵒᵖ _ c' hc'
   intro n
   obtain ⟨h1, h2⟩ := hb n
   refine ⟨fun x => ?_, fun i y hy => ?_⟩

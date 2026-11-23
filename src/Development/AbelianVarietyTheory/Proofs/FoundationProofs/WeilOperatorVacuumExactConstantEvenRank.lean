@@ -112,7 +112,7 @@ theorem split_part {e : AE D} (h1 : e * e = e) (h2 : sgA D e = e)
   · have hsplit : x = Units.map (cut e h1) x * Units.map (cut (1 - e) (compl_idem h1)) x :=
       Units.ext (cut_mul_cut e h1 (x : AE D)).1.symm
     have htriv : χ.f (Units.map (cut (1 - e) (compl_idem h1)) x) = 1 := by
-      refine GlobalTheory.T.hecke_character_trivial_near_one D _ hn χ _ fun q hq hi => ?_
+      refine _root_.GlobalTheory.InertTrivial.character_trivial_at_inert D _ hn χ _ fun q hq hi => ?_
       convert VacMove.zeroAt_mul D hq ((h3 q hq).2 hi) (x - 1) using 1
       change (1 - e) * x + (1 - (1 - e)) * 1 - 1 = _
       ring

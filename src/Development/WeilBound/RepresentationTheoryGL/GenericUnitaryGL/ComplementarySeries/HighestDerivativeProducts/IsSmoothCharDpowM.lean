@@ -212,7 +212,7 @@ theorem isSmoothChar_dpow (n : ℕ) (s : ℝ) : IsSmoothChar (dpow (k := k) n s)
   (isSmoothChar_of_isUnram (isUnram_absPow k _)).detChar
 
 theorem isSmoothChar_dpowM (n : ℕ) (s : ℝ) : IsSmoothChar (dpowM (k := k) n s) :=
-  (isSmoothChar_dpow (n + 1) s).comp _ continuous_subtype_val
+  (_root_.GlobalTheory.CompanionTheory.BZPsiPG.Norm.isSmoothChar_dpow (n + 1) s).comp _ continuous_subtype_val
 
 theorem psiPG : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k], PsiPG k := by
   intro k _ _ _ _ i t τ σ hτ hσ

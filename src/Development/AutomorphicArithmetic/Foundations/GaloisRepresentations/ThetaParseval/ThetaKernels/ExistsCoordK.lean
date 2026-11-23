@@ -96,7 +96,7 @@ theorem exists_coord_k {B : Base F E} (hB : _root_.UpperTheory.TP.W.GoodK σ B) 
       GlobalTheory.TransportF.numCoordF (σ := σ) co τ (ratWF x) = (GlobalTheory.SWQ.rat y, GlobalTheory.SWQ.rat z) := fun x => by
     obtain ⟨y, z, h⟩ := hrat x
     exact ⟨y ∘ τ.symm, z ∘ τ.symm, by rw [GlobalTheory.TransportF.numCoordF_apply]; erw [h]; rfl⟩
-  obtain ⟨Φ, hΦ, h⟩ := _root_.GlobalTheory.T.schrodinger_model_intertwining F E σ B hB nS nT JS JT hS hT ξ₀ hξ hσ
+  obtain ⟨Φ, hΦ, h⟩ := _root_.GlobalTheory.ThetaOntoF.exists_thV_eqF_k F E σ B hB nS nT JS JT hS hT ξ₀ hξ hσ
     (_root_.GlobalTheory.StdCharWeilDatum.isStdCharF_of_isGood_k F E σ B hB) _ (GlobalTheory.TransportF.numCoordF (σ := σ) co τ) he hr f hf
   refine ⟨_, GlobalTheory.TransportF.comp_mem_schA τ.symm hΦ, ?_⟩
   rw [GlobalTheory.TransportF.thetaTr_eqF (σ := σ) co τ, ← h]
@@ -124,9 +124,9 @@ theorem cont_k : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberFie
   obtain ⟨Φ, hΦ, rfl⟩ := hon f hf
   obtain ⟨om, hom⟩ := _root_.GlobalTheory.TransportF.exists_isTransportF_k F E σ B hB _ _ JS _ hS hT' ξ₀ hξ hσ χS 1 hω.hecS hω.hecT hω.resS
     hω.resT ωd hω _ _ _ rfl eB _ co hrat
-  have hc := _root_.GlobalTheory.T.weil_representation_pair_equivariant F E σ B hB _ _ JS _ hS hT' ξ₀ hξ hσ χS 1 hω.hecS hω.hecT hω.resS
+  have hc := _root_.GlobalTheory.WeilContF.continuous_transportF_k F E σ B hB _ _ JS _ hS hT' ξ₀ hξ hσ χS 1 hω.hecS hω.hecT hω.resS
     hω.resT ωd hω _ _ _ rfl eB _ co hrat om hom
-  obtain ⟨l, hl, hl'⟩ := _root_.GlobalTheory.T.lagrangian_integral_theta_model F E σ B hB nS nT JT _ _ _ co hrat ν 𝓕 hν h𝓕
+  obtain ⟨l, hl, hl'⟩ := _root_.GlobalTheory.LagrThetaAdm.exists_admissible_eq_lagrangian_integral F E σ B hB nS nT JT _ _ _ co hrat ν 𝓕 hν h𝓕
   let a : GAF σ (GlobalTheory.WeilSchrodinger.DblTargetF.dblG JT) →
       UG (cA σ) (incM F (GlobalTheory.WeilSchrodinger.DblTargetF.dblG JT)ᵀ) := fun h => ⟨matHomF σ _ h, mem_UG h⟩
   have ha : Continuous a := Continuous.subtype_mk continuous_subtype_val _

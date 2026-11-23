@@ -179,7 +179,7 @@ theorem layer_covolume (E : Type) [Field E] [NumberField E] [StarRing E] (hE : I
   choose Φ hΦ1 hΦ2 using fun v => GlobalTheory.T.exists_unitary_layerCoords_to_blocks n m d _ r (U v) (B v) deg (hU v) (hW v) (hB v) (hs v) c
   set G : ι → ∀ b, Matrix (Fin (r b)) (Fin (r b)) ℂ :=
     fun v b => (U v b)ᴴ * ((P v)⁻¹ * (T b).map (φ v)) with hG
-  have hblk := fun v => GlobalTheory.T.biorthogonal_block_frames_triangular n m _ r _ (U v) _ _ (hloc (φ v) (P v) (hP v)).1 (hU v)
+  have hblk := fun v => _root_.GlobalTheory.RadCov.blockFrames_triangular n m _ r _ (U v) _ _ (hloc (φ v) (P v) (hP v)).1 (hU v)
     (hloc (φ v) (P v) (hP v)).2 (hW v)
   have hinv : ∀ v b, (G v b)⁻¹ = (T' b).map (φ v) * P v * U v b :=
     fun v b => Matrix.inv_eq_right_inv ((hblk v).1 b)
@@ -189,7 +189,7 @@ theorem layer_covolume (E : Type) [Field E] [NumberField E] [StarRing E] (hE : I
       Matrix.of (Φ v (fun i => ((P v)⁻¹ * Y.map (φ v) * P v * (B v i.1)ᴴ).trace) b) =
         G v b * (T' b * Y * T (b + c + 1)).map (φ v) * (G v (b + c + 1))⁻¹ := by
     intro Y hY v b
-    have h1 := (GlobalTheory.T.complexFlagAtEmbeddingFrame_finrank_and_lowers E n (φ v) (P v) F (hP v)).2 c Y hY
+    have h1 := (_root_.GlobalTheory.RadCov.finrank_locFlag_and_lowers E n (φ v) (P v) F (hP v)).2 c Y hY
     have hu := (Matrix.isUnit_iff_isUnit_det _).1 (hP v)
     rw [hΦ2 v _ h1, (hblk v).2 c _ h1, hinv, Matrix.map_mul, Matrix.map_mul]
     congr 2
@@ -318,8 +318,8 @@ theorem radicalCovolume : RadicalCovolume := by
       (fun y _ => by rw [(hW v).2]; trivial)
   choose B hB hBG hBs using fun v => GlobalTheory.T.exists_skew_orthonormal_basis_adapted_filtration I.n (dimN I.n j) m (I.ε v) (lowers (W v)) deg
     (lowers_succ_le (hW v).1.1) (hbot v) (hadj v) (fun c => by
-      rw [hdeg, GlobalTheory.T.finrank_matricesLoweringFiltrationBy_eq_succ_add I.n m (W v) r (U v) (hU v) (hUW v) c])
-  have hreal := fun v s => GlobalTheory.T.real_complex_span_orthonormal_skew_family I.n _ (I.ε v) (B v) s (hB v) (hBG v)
+      rw [hdeg, _root_.GlobalTheory.RadCov.finrank_lowers_eq_succ_add I.n m (W v) r (U v) (hU v) (hUW v) c])
+  have hreal := fun v s => _root_.GlobalTheory.SkewSpan.real_span I.n _ (I.ε v) (B v) s (hB v) (hBG v)
   have hle : ∀ b, F b ≤ F m := fun b => by
     rcases le_total b m with h | h
     · exact hF.1 h
@@ -404,7 +404,7 @@ theorem radicalCovolume : RadicalCovolume := by
       obtain ⟨Y, hY, hYy⟩ := (hL _).1 hy
       have hY' : w • Y ∈ lowers F c := Submodule.smul_mem _ _ hY
       have hX' := sub_mem hY' (hadjF c _ hY')
-      obtain ⟨Z, hZ, hU'⟩ := GlobalTheory.T.exists_unitary_leading_term_of_skew_layer (𝓞 I.E) I.E I.n m I.J (lowers F) w hJ I.J_det hw
+      obtain ⟨Z, hZ, hU'⟩ := _root_.GlobalTheory.RadCov.exists_unitary_of_skew_layer (𝓞 I.E) I.E I.n m I.J (lowers F) w hJ I.J_det hw
         (lowers_succ_le hF.1) (lowers_eq_bot hF.2.1 hF.2.2.1 hsp)
         (fun c X hX Y hY => lowers_mul_zero hX hY) hadjF c _ hX' (by
           have hu := I.J_det.isUnit

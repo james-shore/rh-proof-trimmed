@@ -112,7 +112,7 @@ theorem lieFirstD : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Number
     simp only [LinearMap.comp_apply, LinearEquiv.coe_coe, hr]
     rwa [swapTD_sumPl (fun w => heisOp (c w)) (fun w => heisOp (c w)ᵀ)
       (fun w f => GlobalTheory.RealLift.LieFirstPf.swapE_heisOp (c w) f)]
-  obtain ⟨c, hA⟩ := GlobalTheory.T.howeSplitting_acts_fockAction_plus_traceMultiples F E σ β α κ R S P Q ψ τ JB JA d' b a C A _ om hCM hψ hfr' hΦ' hW
+  obtain ⟨c, hA⟩ := _root_.GlobalTheory.HoweD.lieScalarD F E σ β α κ R S P Q ψ τ JB JA d' b a C A _ om hCM hψ hfr' hΦ' hW
   refine ⟨c, fun γ hγ Y hY T => ?_⟩
   have key := hA γ hγ Y hY ((swapTD P Q R S).symm T)
   simp only [LinearMap.comp_apply, LinearEquiv.coe_coe, LinearEquiv.apply_symm_apply] at key

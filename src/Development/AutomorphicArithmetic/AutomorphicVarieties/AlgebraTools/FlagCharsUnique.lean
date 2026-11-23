@@ -86,11 +86,6 @@ private theorem exists_invariant_flag_mod_l {R : Type} [CommRing R] {n : ℕ} (P
   intro i j h
   exact key j i h
 
-private theorem diag_mul {R : Type} [CommRing R] {n : ℕ} (A B : Matrix (Fin n) (Fin n) R)
-    (hA : ∀ i j, j < i → A i j = 0) (hB : ∀ i j, j < i → B i j = 0) (i : Fin n) :
-    (A * B) i i = A i i * B i i :=
-  _root_.UpperTheory.Reformulated.B.S8.diag_mul A B hA hB i
-
 theorem UpperTheory.V.AlgebraTools.flag_chars_unique :
     ∀ {R Γ : Type} [CommRing R] [IsLocalRing R] [Group Γ] {n : ℕ} (r : Γ →* GL (Fin n) R) (ψ ψ' : Fin n → Γ →* Rˣ) (g g' : GL (Fin n) R), (n : Cardinal) ≤ Cardinal.mk (ResidueField R) → Function.Injective (fun i => (residue R : R →* ResidueField R).comp ((Units.coeHom R).comp (ψ i))) → (∀ i s, residue R (ψ i s) = residue R (ψ' i s)) → (∀ s, (∀ i j, j < i → (g * r s * g⁻¹ : GL (Fin n) R) i j = 0) ∧ ∀ i, (g * r s * g⁻¹ : GL (Fin n) R) i i = (ψ i s : R)) → (∀ s, (∀ i j, j < i → (g' * r s * g'⁻¹ : GL (Fin n) R) i j = 0) ∧ ∀ i, (g' * r s * g'⁻¹ : GL (Fin n) R) i i = (ψ' i s : R)) → ψ = ψ' ∧ ∀ i j, j < i → (g * g'⁻¹ : GL (Fin n) R) i j = 0 := by
   intro R Γ _ _ _ n r ψ ψ' g g' hn hinj hres h1 h2
@@ -148,5 +143,5 @@ theorem UpperTheory.V.AlgebraTools.flag_chars_unique :
     isUnit_of_dvd_unit (Finset.dvd_prod_of_mem
       (fun k => ((g * g'⁻¹ : GL (Fin n) R) : Matrix (Fin n) (Fin n) R) k k) (Finset.mem_univ i)) hdet
   have h := congrFun (congrFun (hcomm s) i) i
-  rw [diag_mul _ _ (h1 s).1 hV, diag_mul _ _ hV (h2 s).1, (h1 s).2 i, (h2 s).2 i, mul_comm] at h
+  rw [_root_.UpperTheory.Reformulated.B.S8.diag_mul _ _ (h1 s).1 hV, _root_.UpperTheory.Reformulated.B.S8.diag_mul _ _ hV (h2 s).1, (h1 s).2 i, (h2 s).2 i, mul_comm] at h
   exact hu.mul_left_cancel h

@@ -49,6 +49,6 @@ open Formalism.BasicNotions
 
 namespace Formalism.MainNotions.DIV.Lemmas
 
-theorem kw_of_cutSB (h : CutKW.KWsb) : CutKW.KW := h minor_span_complement
+theorem kw_of_cutSB (h : CutKW.KWsb) : CutKW.KW := h _root_.PI.MSC.minorSpanCompl
 
 end Formalism.MainNotions.DIV.Lemmas

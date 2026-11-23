@@ -79,14 +79,6 @@ theorem pow_entry_commutator {A : Type} [Ring A] {n : ℕ} (E : Fin n → Fin n 
       Finset.sum_const_zero]
     split_ifs <;> simp [Finset.sum_sub_distrib] <;> abel
 
-theorem target : ∀ {A : Type} [inst : Ring A] {n : ℕ} (E : Fin n → Fin n → A), Formalism.REAL.GlRel E →
-    ∀ (a b : Fin n) (m : ℕ) (c e : Fin n),
-    E a b * ((Matrix.of : (Fin n → Fin n → A) → Matrix (Fin n) (Fin n) A) E ^ m) c e -
-      ((Matrix.of : (Fin n → Fin n → A) → Matrix (Fin n) (Fin n) A) E ^ m) c e * E a b =
-    (if b = c then ((Matrix.of : (Fin n → Fin n → A) → Matrix (Fin n) (Fin n) A) E ^ m) a e
-      else (0 : A)) -
-    if e = a then ((Matrix.of : (Fin n → Fin n → A) → Matrix (Fin n) (Fin n) A) E ^ m) c b
-      else (0 : A) :=
-  fun E hE a b m c e => pow_entry_commutator E hE a b m c e
+alias target := _root_.GlobalTheory.PowEntryCommutator.pow_entry_commutator
 
 end GlobalTheory.PowEntryCommutator

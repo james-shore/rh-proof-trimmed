@@ -78,9 +78,9 @@ theorem exact_part : ∀ (R : Type) [CommRing R] (S : ShortComplex (Shv R))
     Function.Exact (HK.ext R K (zcomp (Cocycle.ofHom e.inv) (mappingCone.fst (resMap R S.f)) (zero_add 1)) n (n + 1) rfl)
       (HK.post R K S.f (n + 1)) := by
   intro R _ S e h K n
-  obtain ⟨hid, -, hcomp, -, hhtp⟩ := GlobalTheory.T.hypercohomologyPullbackPushforward_functorial R
-  obtain ⟨-, -, hass⟩ := GlobalTheory.T.cocycleCompHomComplex_assoc_on_cohomology_classes R (add_zero n) (zero_add 1) (rfl : n + 1 = n + 1) (rfl : n + 1 = n + 1)
-  obtain ⟨x1, x2, x3⟩ := GlobalTheory.T.hypercohomology_mappingCone_second_variable_exact R K (resMap R S.f) n
+  obtain ⟨hid, -, hcomp, -, hhtp⟩ := _root_.GlobalTheory.EtC.ZcFun.main R
+  obtain ⟨-, -, hass⟩ := _root_.GlobalTheory.cocycle_comp_assoc_classes R (add_zero n) (zero_add 1) (rfl : n + 1 = n + 1) (rfl : n + 1 = n + 1)
+  obtain ⟨x1, x2, x3⟩ := _root_.GlobalTheory.EtC.coneSeqTgt_exact R K (resMap R S.f) n
   have hg : ∀ x, HK.post R K S.g n x = cpush K e.hom n (cpush K (mappingCone.inr (resMap R S.f)) n x) := by
     intro x
     rw [← hcomp]
@@ -150,7 +150,7 @@ theorem exists_connecting_cocycle : ∀ (R : Type) [CommRing R] (S : ShortComple
       ∀ w : Cocycle (sgl S.X₃) (res R S.X₁) 1, sglι S.X₃ ≫ w.1.v 0 1 (zero_add 1) = ψ →
         CohomologyClass.mk (zcomp (Cocycle.ofHom (resAug S.X₃)) z (zero_add 1)) = s • CohomologyClass.mk w := by
   intro R _ S hS
-  obtain ⟨e, ⟨h⟩⟩ := GlobalTheory.T.shortExact_mappingCone_resolution_homotopyEquiv R S hS
+  obtain ⟨e, ⟨h⟩⟩ := _root_.GlobalTheory.EtC.cone_resMap_homotopyEquiv R S hS
   refine ⟨_, exact_part R S e h, 1, ?_⟩
   intro φ ψ hφ hψ w hw
   rw [one_smul]
@@ -158,8 +158,8 @@ theorem exists_connecting_cocycle : ∀ (R : Type) [CommRing R] (S : ShortComple
   have hS' : (S.map (CochainComplex.singleFunctor (Shv R) 0)).ShortExact := hS.map_of_exact (HomologicalComplex.single _ _ _)
   haveI := mappingCone.quasiIso_descShortComplex hS'
   haveI : (res R S.X₁).IsKInjective := by unfold res; infer_instance
-  apply (GlobalTheory.T.hypercohomologyPullback_bijective_of_quasiIso R (mappingCone.descShortComplex (S.map (CochainComplex.singleFunctor (Shv R) 0)))
+  apply (_root_.GlobalTheory.EtC.cpull_bijective_of_quasiIso R (mappingCone.descShortComplex (S.map (CochainComplex.singleFunctor (Shv R) 0)))
     (res R S.X₁) 1).1
-  exact assemble _ _ _ _ _ _ _ e.homotopyHomInvId (GlobalTheory.T.mappingCone_shortExact_augmentation_class_eq R S hS hc e h) (GlobalTheory.T.mappingCone_connecting_cocycle_shortComplex_degree_zero R S hc φ ψ hφ hψ w hw)
+  exact assemble _ _ _ _ _ _ _ e.homotopyHomInvId (_root_.GlobalTheory.EtC.ConeClass.cone_class_eq R S hS hc e h) (_root_.GlobalTheory.EtC.ConeConn.cone_connecting_class R S hc φ ψ hφ hψ w hw)
 
 end GlobalTheory.EtC.LesChar

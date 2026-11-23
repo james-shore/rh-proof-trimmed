@@ -188,13 +188,7 @@ section Am
 
 variable {ε : Fin n → Bool} {p : Matrix (Fin n) (Fin n) ℂ}
 
-theorem Jm_sq (ε : Fin n → Bool) : Jm ε * Jm ε = 1 := by
-  rw [Jm, diagonal_mul_diagonal, ← diagonal_one]
-  congr 1; funext a; split_ifs <;> simp
-
-theorem Jm_hermF (ε : Fin n → Bool) : (Jm ε)ᴴ = Jm ε := by
-  rw [Jm, diagonal_conjTranspose]
-  congr 1; funext a; by_cases h : ε a <;> simp [h]
+alias Jm_sq := _root_.Formalism.REAL.Jm_mul_self
 
 theorem pJp (hW : Isot (Jm ε) W) (hp : IsPr W p) : p * Jm ε * p = 0 :=
   mat_extF fun z => by rw [← mulVec_mulVec, ← mulVec_mulVec, hp.kill (hW (hp.2.1 z)), zero_mulVec]
@@ -217,7 +211,7 @@ theorem am_add (hW : Isot (Jm ε) W) (hp : IsPr W p) (s t : ℝ) : am (Jm ε) p 
 
 theorem am_mem (hW : Isot (Jm ε) W) (hp : IsPr W p) (t : ℝ) : inUJ ε (am (Jm ε) p t) := by
   have hH : (am (Jm ε) p t)ᴴ = am (Jm ε) p t := by
-    simp only [am, conjTranspose_add, conjTranspose_one, conjTranspose_smul, conjTranspose_mul, hp.1, Jm_hermF,
+    simp only [am, conjTranspose_add, conjTranspose_one, conjTranspose_smul, conjTranspose_mul, hp.1, _root_.Formalism.REAL.Jm_conjTranspose,
       Complex.star_def, Complex.conj_ofReal, Matrix.mul_assoc]
   have hJ : am (Jm ε) p t * Jm ε = Jm ε * am (Jm ε) p (-t) := by
     simp only [am, neg_neg, Matrix.add_mul, Matrix.mul_add, Matrix.one_mul, Matrix.mul_one, Matrix.smul_mul,

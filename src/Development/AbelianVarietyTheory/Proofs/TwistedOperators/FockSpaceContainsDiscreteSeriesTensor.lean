@@ -211,8 +211,8 @@ theorem exists_embedding₂ (F : FockData T0 T1 T2) (hF : Continuous F.emb) (hrs
     have h2 := (P.restrictScalars ℝ).hasFDerivAt.comp_hasDerivAt (0 : ℝ)
       ((GlobalTheory.T.fock_derived_actions_tensor_members p q r s T0 T1 T2 F).2.2 Y hY Q)
     exact HasDerivAt.congr_of_eventuallyEq h2 (Filter.Eventually.of_forall fun u => hcomm _ _)
-  have hadjE := (GlobalTheory.T.derived_actions_adjoint_casimir_symmetric r s T2 (fockU₂ F hF) _ _ _ _ E E hE hE).1
-  obtain ⟨A, f, Eb, hfs, hEb, hEf, hf⟩ := GlobalTheory.T.exists_unitary_module_quotient_of_invariant_inner r s (polMod₂ p q r s) F.H E hadjE
+  have hadjE := (_root_.GlobalTheory.FockTensor.derived_adjoint_and_casimir r s T2 (fockU₂ F hF) _ _ _ _ E E hE hE).1
+  obtain ⟨A, f, Eb, hfs, hEb, hEf, hf⟩ := _root_.GlobalTheory.GKQuot.exists_unitary_quotient r s (polMod₂ p q r s) F.H E hadjE
   have hu : IsHW A.M.act (blattner lam') (f Φ) := by
     refine ⟨fun h => h0 ?_, map_mem_hwSub f hf hΦ⟩
     have := hEf Φ
@@ -253,9 +253,9 @@ theorem exists_embedding₂ (F : FockData T0 T1 T2) (hF : Continuous F.emb) (hrs
       exact (congrArg Eb this).trans (hEf _)
     rw [h1, h2]
     exact hE Y hY Q
-  obtain ⟨c, hc⟩ := GlobalTheory.T.exists_norm_eq_mul_of_finrank_hwSub_eq_one r s D'.HK (blattner lam') D'.U.H F.H D'.ι E₂ hirr hone D'.ι_inj
-    (GlobalTheory.T.derived_actions_adjoint_casimir_symmetric r s T2 D'.U _ _ _ _ D'.ι D'.ι D'.der D'.der).1
-    (GlobalTheory.T.derived_actions_adjoint_casimir_symmetric r s T2 (fockU₂ F hF) _ _ _ _ E₂ E₂ hE₂ hE₂).1
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.FockTensor.norm_proportional_of_irreducible r s D'.HK (blattner lam') D'.U.H F.H D'.ι E₂ hirr hone D'.ι_inj
+    (_root_.GlobalTheory.FockTensor.derived_adjoint_and_casimir r s T2 D'.U _ _ _ _ D'.ι D'.ι D'.der D'.der).1
+    (_root_.GlobalTheory.FockTensor.derived_adjoint_and_casimir r s T2 (fockU₂ F hF) _ _ _ _ E₂ E₂ hE₂ hE₂).1
   have hc0 : 0 < c := by
     have h1 := hc v'
     have h2 : 0 < ‖E₂ v'‖ := by rw [hE₂v]; exact norm_pos_iff.2 h0

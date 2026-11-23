@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsDiscreteValuationRingIntegralClosurePadicInt
 
 @[expose] public section
 
@@ -54,24 +55,6 @@ section SlopeTestRemainingChoices
 
 open Polynomial
 
-private theorem cop_intIff {l : ℕ} [Fact l.Prime] (x : PadicAlgCl l) : IsIntegral ℤ_[l] x ↔ ‖x‖ ≤ 1 := by
-  have hi : IsIntegral ℚ_[l] x := Algebra.IsIntegral.isIntegral x
-  have h0 : ‖x‖ = spectralValue (minpoly ℚ_[l] x) := rfl
-  rw [h0, spectralValue_le_one_iff (minpoly.monic hi)]
-  constructor
-  · intro h n
-    rw [minpoly.isIntegrallyClosed_eq_field_fractions' ℚ_[l] h, coeff_map]
-    exact PadicInt.norm_le_one _
-  · intro h
-    have hl' : minpoly ℚ_[l] x ∈ lifts (algebraMap ℤ_[l] ℚ_[l]) :=
-      (lifts_iff_coeff_lifts _).mpr fun n => ⟨⟨_, h n⟩, rfl⟩
-    obtain ⟨q, hq, -, hqm⟩ := lifts_and_degree_eq_and_monic hl' (minpoly.monic hi)
-    exact ⟨q, hqm, by rw [← aeval_def, ← aeval_map_algebraMap ℚ_[l], hq, minpoly.aeval]⟩
-
-private theorem cop_norm_lt {l : ℕ} [Fact l.Prime] {R : Type} [CommRing R] [IsLocalRing R] [Algebra ℤ_[l] R]
-    (y : R →ₐ[ℤ_[l]] PadicAlgCl l) (a : R) (ha : a ∈ maximalIdeal R) : ‖y a‖ < 1 :=
-  _root_.UpperTheory.Reformulated.B.MonicNormLtOne.mc_norm_lt y a ha
-
 private theorem cop_coef {l : ℕ} [Fact l.Prime] (K : IntermediateField ℚ_[l] (PadicAlgCl l)) [FiniteDimensional ℚ_[l] K] :
     ∃ c : Coef l, ∀ x ∈ K, ‖x‖ ≤ 1 → x ∈ c.O := by
   obtain ⟨h1, h2, -⟩ := UpperTheory.V.abelian₂.dvr_intClosure l K
@@ -80,7 +63,7 @@ private theorem cop_coef {l : ℕ} [Fact l.Prime] (K : IntermediateField ℚ_[l]
   let e := (integralClosure ℤ_[l] K).equivMapOfInjective f hf
   refine ⟨⟨(integralClosure ℤ_[l] K).map f, IsDiscreteValuationRing.RingEquivClass.isDiscreteValuationRing e,
     Module.Finite.equiv e.toLinearEquiv⟩, fun x hx h => ?_⟩
-  exact ⟨⟨x, hx⟩, (isIntegral_algHom_iff f hf).1 ((cop_intIff _).2 h), rfl⟩
+  exact ⟨⟨x, hx⟩, (isIntegral_algHom_iff f hf).1 ((_root_.GlobalTheory.isIntegral_padicInt_iff_norm_le_one _).2 h), rfl⟩
 
 private theorem cop_geom {R κ : Type} [CommRing R] [IsNoetherianRing R] [NormedField κ] [IsUltrametricDist κ]
     (m : Ideal R) (y : R →+* κ) (h1 : ∀ x, ‖y x‖ ≤ 1) (hm : ∀ x ∈ m, ‖y x‖ < 1) :
@@ -121,7 +104,7 @@ private theorem cop_bdd {l : ℕ} [Fact l.Prime] {R : Type} [CommRing R] [IsNoet
     rw [map_sum, TrivSqZeroExt.snd_sum]
     refine (norm_sum_le _ _).trans (Finset.sum_le_sum fun i _ => ?_)
     rw [map_smul, TrivSqZeroExt.snd_smul, Algebra.smul_def, norm_mul]
-    exact mul_le_of_le_one_left (norm_nonneg _) ((cop_intIff _).1 isIntegral_algebraMap)
+    exact mul_le_of_le_one_left (norm_nonneg _) ((_root_.GlobalTheory.isIntegral_padicInt_iff_norm_le_one _).1 isIntegral_algebraMap)
   have h7 : (F a).snd = (F (a - ∑ i, u i • b i)).snd + (F (∑ i, u i • b i)).snd := by
     rw [← TrivSqZeroExt.snd_add, ← map_add (f := _), sub_add_cancel]
   rw [h7]
@@ -158,7 +141,7 @@ private theorem cop_main {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [IsDom
   letI : Algebra ℤ_[l] R := ((algebraMap O R).comp (algebraMap ℤ_[l] O)).toAlgebra
   haveI : IsScalarTower ℤ_[l] O R := IsScalarTower.of_algebraMap_eq fun _ => rfl
   let f : R →ₐ[O] PadicAlgCl l := UpperTheory.V.U3.dualFst F
-  have hm : ∀ x ∈ maximalIdeal R, ‖(F x).fst‖ < 1 := cop_norm_lt (f.restrictScalars ℤ_[l])
+  have hm : ∀ x ∈ maximalIdeal R, ‖(F x).fst‖ < 1 := _root_.UpperTheory.Reformulated.B.MonicNormLtOne.mc_norm_lt (f.restrictScalars ℤ_[l])
   have h1 : ∀ x, ‖(F x).fst‖ ≤ 1 := by
     intro x
     obtain ⟨c, hc⟩ := IsCO.res_surj (O := O) x
@@ -167,7 +150,7 @@ private theorem cop_main {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [IsDom
       (Algebra.IsIntegral.isIntegral (R := ℤ_[l]) c).map (IsScalarTower.toAlgHom ℤ_[l] O (PadicAlgCl l))
     show ‖f x‖ ≤ 1
     rw [h2]
-    exact (IsUltrametricDist.norm_add_le_max _ _).trans (max_le (hm _ hc).le ((cop_intIff _).1 h3))
+    exact (IsUltrametricDist.norm_add_le_max _ _).trans (max_le (hm _ hc).le ((_root_.GlobalTheory.isIntegral_padicInt_iff_norm_le_one _).1 h3))
   obtain ⟨E, hE⟩ := UpperTheory.V.Loc.ptFin (l := l) R F hm
   haveI : FiniteDimensional ℚ_[l] E.1 := E.2
   obtain ⟨c', hc'⟩ := cop_coef E.1

@@ -77,7 +77,7 @@ namespace Formalism.MainNotions.G.CountingStatementReduction
 open Formalism.MainNotions.flipOneThree Formalism.GM Formalism.GM.M Formalism.InvariantFactorPaths.PW Formalism.InvariantFactorPaths.L4 Finset
 
 theorem alternative_mean_value_theorem (D : Formalism.BasicNotions.D7) (X : InstM) : ModelLatticeRank D X := fun hX =>
-  Formalism.InvariantFactorPaths.MC.Top.theoremMV7 X.p X.s X.r X.LL X.T X.a X.E X.Yl X.n₀ X.dd X.ρ hX.1 hX.2.1 hX.2.2.1 hX.2.2.2.1
+  _root_.Formalism.InvariantFactorPaths.MC.theoremMV7 X.p X.s X.r X.LL X.T X.a X.E X.Yl X.n₀ X.dd X.ρ hX.1 hX.2.1 hX.2.2.1 hX.2.2.2.1
     hX.2.2.2.2.1 hX.2.2.2.2.2.1 hX.2.2.2.2.2.2.1 hX.2.2.2.2.2.2.2.1 hX.2.2.2.2.2.2.2.2.1 hX.2.2.2.2.2.2.2.2.2.1
     hX.2.2.2.2.2.2.2.2.2.2
 
@@ -3635,10 +3635,6 @@ section RankSpan
 variable {O : Type} [CommRing O] [IsDomain O] {V : Type} [AddCommGroup V] [Module O V] [Module (KK O) V]
   [IsScalarTower O (KK O) V]
 
-theorem span_denominator (M : Submodule O V) (y : V) (hy : y ∈ Submodule.span (KK O) (M : Set V)) :
-    ∃ s : O, s ≠ 0 ∧ s • y ∈ M := by
-  first | exact Bl.general_b_fact_left_bis_form.goal1 .. | (apply Bl.general_b_fact_left_bis_form.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_left_bis_form.goal1 <;> assumption) | (apply @Bl.general_b_fact_left_bis_form.goal1 <;> assumption) | (intros; apply @Bl.general_b_fact_left_bis_form.goal1 <;> assumption) | (apply @Bl.general_b_fact_left_bis_form.goal1 <;> first | assumption | infer_instance)
-
 def toSpan (M : Submodule O V) : M →ₗ[O] (Submodule.span (KK O) (M : Set V)) where
   toFun x := ⟨x.1, Submodule.subset_span x.2⟩
   map_add' _ _ := rfl
@@ -3661,7 +3657,7 @@ instance toSpan_loc (M : Submodule O V) : IsLocalizedModule (nonZeroDivisors O) 
       simp only [Module.algebraMap_end_apply]
       rw [← algebraMap_smul (KK O) (x : O), smul_smul, mul_inv_cancel₀ hxK, one_smul]
   · intro y
-    obtain ⟨s, hs, hsy⟩ := span_denominator M y.1 y.2
+    obtain ⟨s, hs, hsy⟩ := _root_.Bl.general_b_fact_left_bis_form.goal1 M y.1 y.2
     exact ⟨(⟨s • y.1, hsy⟩, ⟨s, mem_nonZeroDivisors_of_ne_zero hs⟩), rfl⟩
   · intro x₁ x₂ h
     refine ⟨1, ?_⟩

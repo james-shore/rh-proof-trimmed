@@ -52,14 +52,14 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 namespace UpperTheory.Zero.LLC.Pr
 
-theorem exh : GlobalTheory.Published.LanglandsExhaustionGL := PositivityTheory.Exh.langlandsExhaustionGL_holds
-theorem multi : GlobalTheory.Published.LanglandsMultisegments := PositivityTheory.Exh.langlandsMultisegments_holds
-theorem cos : GlobalTheory.Published.StandardCosocleGL := PositivityTheory.Exh.standardCosocleGL_holds
-theorem bz : GlobalTheory.Published.BernsteinZelevinskyFiniteness := PositivityTheory.Prw.bernsteinZelevinskyFiniteness_holds
+alias exh := _root_.PositivityTheory.Exh.langlandsExhaustionGL_holds
+alias multi := _root_.PositivityTheory.Exh.langlandsMultisegments_holds
+alias cos := _root_.PositivityTheory.Exh.standardCosocleGL_holds
+alias bz := _root_.GlobalTheory.CompanionTheory.Published.bernsteinZelevinskyFiniteness
 theorem zel : GlobalTheory.Published.ZelevinskyPolynomialRing :=
-  PositivityTheory.Prw.zelevinskyPolynomialRing_of bz PositivityTheory.RgGu.segmentRepresentation PositivityTheory.Groth.grothendieckRingPolynomial_holds
+  _root_.GlobalTheory.zelevinskyPolynomialRing_of_parts bz PositivityTheory.RgGu.segmentRepresentation PositivityTheory.Groth.grothendieckRingPolynomial_holds
 theorem dual : GlobalTheory.Published.LanglandsDataDualGL := PositivityTheory.Pf1.LocalLanglands.LDual.langlandsDataDualGL_of_cosocle cos
-theorem adm : GlobalTheory.Published.IrreducibleAdmissibleGL := PositivityTheory.Tls2.BZGL.irreducibleAdmissibleGL_top
-theorem dzs : GlobalTheory.Published.DepthZeroSupport := GlobalTheory.SmGL.depthZeroSupport
+alias adm := _root_.PositivityTheory.Tls2.BZGL.irreducibleAdmissibleGL_top
+alias dzs := _root_.GlobalTheory.SmGL.depthZeroSupport
 
 end UpperTheory.Zero.LLC.Pr

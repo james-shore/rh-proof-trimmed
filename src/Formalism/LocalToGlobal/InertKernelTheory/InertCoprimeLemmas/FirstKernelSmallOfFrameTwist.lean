@@ -131,7 +131,7 @@ theorem first_kernel_small_of_frame (D : D7) (h5 : 5 ≤ p) (X : Sys p) [IsFract
     Formalism.L2.KerInert.RepLt.frameHypLt_of_lat X E hfin D pos large₂ Lg' fd.frM g.lam ρ hOnb hTr hρ
       (Formalism.L2.KerInert.RepFrob.frobTw_of X E h5) hMI (twInt_all X E) hL Fr
   rw [hFam]
-  exact Formalism.L2.KerInert.RepLt.K1_representatives_LT_of_dictionary Formalism.L2.KerInert.Rep.curve_dictionary Formalism.L2.KerInert.kernels_integral_inert D h5 X E
+  exact Formalism.L2.KerInert.RepLt.K1_representatives_LT_of_dictionary _root_.Formalism.L2.KerInert.BeCob.rdictMain Formalism.L2.KerInert.kernels_integral_inert D h5 X E
     hfin hLT cc δ hAt hIn hM B hcc hδ χ hχ hIn hLam pos large₂ Lg' F Fr
     (fun j La La' => by simp only [Fr]; rw [ltC_eq]) S hB hComb hFH
 

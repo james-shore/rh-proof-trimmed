@@ -57,6 +57,6 @@ theorem qFin_of_pin : ∀ (D : D7) (c : Comm D) (v : VCom c) (t : Tup c) (w : VT
   obtain ⟨F, hF⟩ := hP
   obtain ⟨h1, h2, h3⟩ := GlobalTheory.T.twistChainLevelProductOverPlaces_compact_open D c v t w F hF j σ h
   obtain ⟨T₁, hT, hS⟩ := GlobalTheory.T.firstVariable_support_finite_cells_at_twist_places D c v t w F hc ht hv hW hF j σ h
-  exact ⟨GlobalTheory.QuotientFiniteLevel.qK F j σ h, T₁, h1, h2, h3, hT, GlobalTheory.T.twistChainLevelProduct_inverse_scalar_laws D c v t w F hc ht hv hW hF j σ h, hS⟩
+  exact ⟨GlobalTheory.QuotientFiniteLevel.qK F j σ h, T₁, h1, h2, h3, hT, _root_.GlobalTheory.QFinLaw.inverse_laws D c v t w F hc ht hv hW hF j σ h, hS⟩
 
 end GlobalTheory.QFinMain

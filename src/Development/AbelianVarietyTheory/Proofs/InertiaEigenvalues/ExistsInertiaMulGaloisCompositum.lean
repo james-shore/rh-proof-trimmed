@@ -137,13 +137,13 @@ theorem inertia_of_fixes_Kur {l : ℕ} [Fact l.Prime] (i : GQ l) (hi : ∀ x ∈
   have hn : ∀ y : Om l, ‖i y‖ = ‖y‖ := fun y => (spectralNorm_eq_of_equiv i y).symm
   intro x hx
   rcases lt_or_eq_of_le hx with hlt | heq
-  · exact lt_of_le_of_lt (ReciprocityTheory.DiscreteGroups.LocalClassField.UnramifiedExtensions.norm_sub_le_max' _ _) (max_lt (by rw [hn]; exact hlt) hlt)
+  · exact lt_of_le_of_lt (_root_.Bl.FirstBlockLemmaD.goal1 _ _) (max_lt (by rw [hn]; exact hlt) hlt)
   · obtain ⟨ζ, m, hm, hζ, hxζ⟩ := ReciprocityTheory.DiscreteGroups.LocalClassField.exists_teichmuller_bar x heq
     have hm0 : 0 < m := Nat.pos_of_ne_zero (by rintro rfl; exact hm (dvd_zero l))
     have h1 : i ζ = ζ := hi ζ (IntermediateField.subset_adjoin _ _ ⟨m, hm0, hm, hζ⟩)
     have h2 : i x - x = i (x - ζ) - (x - ζ) := by rw [map_sub, h1]; ring
     rw [h2]
-    exact lt_of_le_of_lt (ReciprocityTheory.DiscreteGroups.LocalClassField.UnramifiedExtensions.norm_sub_le_max' _ _) (max_lt (by rw [hn]; exact hxζ) hxζ)
+    exact lt_of_le_of_lt (_root_.Bl.FirstBlockLemmaD.goal1 _ _) (max_lt (by rw [hn]; exact hxζ) hxζ)
 
 theorem lift : ∀ (l : ℕ) [Fact l.Prime] (K' F K'' : FinExt l), (GK K').Normal → K''.1 = K'.1 ⊔ F.1 →
     ∀ h : GQ l, h ∈ GK F → (∀ x ∈ K0 K'', h x = x) →

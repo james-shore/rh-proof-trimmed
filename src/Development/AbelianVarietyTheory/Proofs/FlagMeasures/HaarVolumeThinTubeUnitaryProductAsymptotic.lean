@@ -61,12 +61,7 @@ open scoped InnerProductSpace ENNReal
 
 namespace GlobalTheory.Tube
 
-theorem unrealify_cont {m : ℕ} : Continuous (unrealify (m := m)) := by
-  refine continuous_pi fun i => continuous_pi fun j => ?_
-  have : (fun x : EuclideanSpace ℝ (Fin m × Fin m × Bool) => unrealify x i j) =
-      fun x => (x (i, j, false) : ℂ) + (x (i, j, true) : ℂ) * Complex.I := by
-    funext x; apply Complex.ext <;> simp [unrealify]
-  rw [this]; fun_prop
+alias unrealify_cont := _root_.GlobalTheory.MatHaarDensity.continuous_unrealify
 
 theorem chart_zero (k : ℕ) (η : ℝ) : chart η (0 : Par k) = 1 := by
   have h1 : unrealify (m := k) (0 : EuclideanSpace ℝ _) = 0 := by

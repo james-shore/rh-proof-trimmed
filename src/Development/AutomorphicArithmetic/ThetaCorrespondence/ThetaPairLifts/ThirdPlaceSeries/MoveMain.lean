@@ -77,7 +77,7 @@ theorem move_main_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : 
   have hinj : Function.Injective
       (fun i : {PP // PP ∈ (_root_.GlobalTheory.Fam.pk_z W).Pg ∨ _root_.GlobalTheory.Fam.QAllAlt W PP} => (l i.1 i.2).q.v) := by
     intro i i' hii
-    apply _root_.GlobalTheory.T.level_places_under_injective' W hW
+    apply _root_.GlobalTheory.Fam.PlaceInj.under_injective_alt W hW
     simp only at hii
     rwa [(l i.1 i.2).under, (l i'.1 i'.2).under] at hii
   have key : ∀ j, j < D.R.m → ∃ t ∈ GfC (Yc D j),
@@ -96,7 +96,7 @@ theorem move_main_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : 
         GlobalTheory.SymBridge.IsOrd GlobalTheory.SymBridge.zPos e := by
       intro PP h
       obtain ⟨eqv, heqv⟩ := GlobalTheory.SymBridge.PhiAgreeProof.zPos_equiv D.R.k ((l PP h).s + 1) D.R.t j
-      have hcard := card_eq_of_frame (FY PP h j _ (hsj PP h))
+      have hcard := _root_.GlobalTheory.LocMod.Frame.card_eq (FY PP h j _ (hsj PP h))
       simp only [Fintype.card_sum, Fintype.card_fin, Fintype.card_prod] at hcard
       have hr : D.R.k + ((l PP h).s + 1) + j * D.R.t = (Yc D j).rank := by
         rw [← hcard]; have := hsj PP h; omega

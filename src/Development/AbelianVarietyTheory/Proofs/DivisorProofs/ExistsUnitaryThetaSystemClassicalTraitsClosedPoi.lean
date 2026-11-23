@@ -96,28 +96,7 @@ theorem norm_evC_lt (t : UCTrait X₁ p z₁) (a : X₁.M.Z.presheaf.stalk z₁)
   have h1 : ¬ IsUnit (X₁.M.stalkEquiv z₁ a) := fun hu => ha ((isUnit_map_iff (X₁.M.stalkEquiv z₁) a).1 hu)
   exact (RatModel.norm_val_lt_one_iff t.cen (X₁.M.stalkEquiv z₁ a).2).2 h1
 
-theorem sc_pos (t : UCTrait X₁ p z₁) : 0 < t.sc := by
-  have hϖ0 : algebraMap t.T.V (FractionRing t.T.V) t.T.ϖ ≠ 0 :=
-    (map_ne_zero_iff _ (IsFractionRing.injective _ _)).2 t.T.irr.ne_zero
-  have h0 : t.ι (algebraMap t.T.V (FractionRing t.T.V) t.T.ϖ) ≠ 0 := (map_ne_zero _).2 hϖ0
-  have hlt : ‖t.ι (algebraMap t.T.V (FractionRing t.T.V) t.T.ϖ)‖ < 1 := by
-    by_contra hge
-    push_neg at hge
-    have hinv : ‖t.ι (algebraMap t.T.V (FractionRing t.T.V) t.T.ϖ)⁻¹‖ ≤ 1 := by
-      rw [map_inv₀, norm_inv]
-      exact inv_le_one_of_one_le₀ hge
-    obtain ⟨w, hw⟩ := (t.int _).1 hinv
-    apply t.T.irr.not_isUnit
-    refine isUnit_iff_exists_inv.2 ⟨w, IsFractionRing.injective t.T.V (FractionRing t.T.V) ?_⟩
-    rw [map_mul, hw, map_one, mul_inv_cancel₀ hϖ0]
-  unfold UCTrait.sc
-  have := Real.log_neg (norm_pos_iff.2 h0) hlt
-  linarith
-
-theorem be_pos (T : UTrait Xo c) (x : T.P.D.toPre.X) (hx : x ≠ 0) : 0 < T.be x x := by
-  obtain ⟨j, hj⟩ := IsMonomial.exists_pos (IsLocalRing.maximalIdeal.isMaximal T.V).ne_top T.mono hx
-  fin_cases j
-  simpa using hj
+alias sc_pos := _root_.GlobalTheory.UPoinc.ShortBound.sc_pos
 
 theorem be_bal (T : UTrait Xo c) : T.be ∈ balForms (H.bar : 𝓞 E → 𝓞 E) T.P.D.toPre.X := by
   rw [balForms_eq_levelForms]; exact T.lev
@@ -194,7 +173,7 @@ noncomputable def sys : FPre (H.bar : 𝓞 E → 𝓞 E) (min Dw.p Dw.q) p (X₁
   rank_le y := rank_le _
   β y := (pick y).T.be
   bal y := be_bal _
-  pos y x hx := be_pos _ x hx
+  pos y x hx := _root_.GlobalTheory.UPoinc.ShortBound.be_pos _ x hx
   sc y := (pick y).sc
   sc_pos y := sc_pos _
 

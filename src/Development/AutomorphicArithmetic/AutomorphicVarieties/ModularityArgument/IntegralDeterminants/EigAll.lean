@@ -56,15 +56,6 @@ section SlopeTestRemainingChoices
 open GlobalTheory.LFun
 open Formalism.UG (IsUnifV Tj Ov diagJ GLint qV)
 
-private theorem unif_exists {E : Type} [Field E] [NumberField E] (w : HeightOneSpectrum (𝓞 E)) :
-    ∃ ϖ : w.adicCompletion E, IsUnifV E w ϖ := by
-  obtain ⟨π, hπ⟩ := w.valuation_exists_uniformizer E
-  refine ⟨algebraMap E _ π, ?_⟩
-  have h1 : Valued.v (algebraMap E (w.adicCompletion E) π) = w.valuation E π :=
-    HeightOneSpectrum.valuedAdicCompletion_eq_valuation' w π
-  rw [IsUnifV, h1, hπ]
-  rfl
-
 private theorem hecke_eq_sum {G : Type} [Group G] (K : Subgroup G) (h : G → ℂ) (h01 : ∀ g, h g ≠ 0 → h g = 1)
     (hfin : {q : G ⧸ K | h q.out ≠ 0}.Finite) : ∃ R : Finset G, (∀ g ∈ R, h g ≠ 0) ∧
       ∀ (V : Type) [AddCommGroup V] [Module ℂ V] (ρ : Representation ℂ G V) (x : V),
@@ -255,7 +246,7 @@ theorem UpperTheory.V.Z.Int.eigAll :
     change f (τ.ρ (cLoc w y) x) = RU E n y (f x) at h1
     rw [h2] at h1
     exact h1.symm
-  · obtain ⟨ϖ, hϖ⟩ := unif_exists w
+  · obtain ⟨ϖ, hϖ⟩ := _root_.GlobalTheory.LFun.exists_isUnifV w
     have hcm := Formalism.UG.Final.GLintComm E w n
     have hT := GlobalTheory.LFun.Tj_mem_hecke (n := n) hϖ j
     obtain ⟨R, hR, hRe⟩ := hecke_eq_sum (GlobalTheory.LFun.KGL w (n := n)) (Formalism.UG.Tj ℂ n (Formalism.UG.Ov E w) ϖ j) tj_one

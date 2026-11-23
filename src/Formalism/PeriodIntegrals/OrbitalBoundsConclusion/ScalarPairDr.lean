@@ -41,5 +41,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem scalar_pair_dr (D : Formalism.BasicNotions.D7) (u u' : D.what₂.Word) : PI.ScalarPairDr.ScalarDr D u u' :=
-  PI.ScalarPairDr.W.scalarDr D u u'

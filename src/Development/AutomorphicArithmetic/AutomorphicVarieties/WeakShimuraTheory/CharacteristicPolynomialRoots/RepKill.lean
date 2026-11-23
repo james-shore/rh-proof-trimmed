@@ -40,18 +40,11 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.MapRepApply
 import Development.AutomorphicArithmetic.AutomorphicVarieties.WeakShimuraTheory.RedIdeal
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.GeneralAdmissibleOfIrreducibilityStmt
 
 @[expose] public section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual Formalism.HC Formalism.MainNotions.N ReciprocityTheory.Gal IsLocalRing Polynomial UpperTheory.V UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws GlobalTheory.GalOfCusp
-
-private theorem trace_eq_of_charpoly {K : Type} [Field K] {n : ℕ} {A B : Matrix (Fin n) (Fin n) K}
-    (h : A.charpoly = B.charpoly) : A.trace = B.trace := by
-  rcases Nat.eq_zero_or_pos n with hn | hn
-  · subst hn
-    simp [Matrix.trace]
-  · haveI : Nonempty (Fin n) := ⟨⟨0, hn⟩⟩
-    rw [Matrix.trace_eq_neg_charpoly_coeff, Matrix.trace_eq_neg_charpoly_coeff, h]
 
 private theorem kill_of_charpoly {Γ K : Type} [Group Γ] [Field K] [CharZero K] {n : ℕ}
     (ρ : Γ →* GL (Fin n) K) (hss : IsSSRep ρ) (g : Γ)
@@ -61,7 +54,7 @@ private theorem kill_of_charpoly {Γ K : Type} [Group Γ] [Field K] [CharZero K]
     (Submodule.sub_mem _ (Submodule.subset_span ⟨g, rfl⟩) (Submodule.subset_span ⟨1, by simp⟩))
     (fun k => by
       rw [sub_mul, one_mul, Matrix.trace_sub, ← Units.val_mul, ← map_mul,
-        trace_eq_of_charpoly (h k), sub_self])
+        _root_.GlobalTheory.TripleResidual.trace_eq_of_charpoly_eq (h k), sub_self])
   exact Units.ext (by simpa using sub_eq_zero.mp hx)
 
 theorem UpperTheory.V.Ws.Pu.repKill :

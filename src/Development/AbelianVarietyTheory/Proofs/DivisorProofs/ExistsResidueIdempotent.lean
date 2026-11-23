@@ -158,16 +158,6 @@ theorem mem_smul_top_of_one_tmul_eq_zero (A : Type) [CommRing A] [IsLocalRing A]
   rw [← Submodule.Quotient.mk_eq_zero, ← this]
   exact (congrArg (TensorProduct.quotTensorEquivQuotSMul Λ (maximalIdeal A)) h).trans (map_zero _)
 
-theorem one_tmul_surjective (A : Type) [CommRing A] [IsLocalRing A] (Λ : Type)
-    [Ring Λ] [Algebra A Λ] (z : ResidueField A ⊗[A] Λ) : ∃ y : Λ, (1 : ResidueField A) ⊗ₜ[A] y = z := by
-  first
-  | exact @_root_.GlobalTheory.OneTensorExistence.exists_one_tmul_eq
-  | exact _root_.GlobalTheory.OneTensorExistence.exists_one_tmul_eq
-  | (apply _root_.GlobalTheory.OneTensorExistence.exists_one_tmul_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.OneTensorExistence.exists_one_tmul_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.OneTensorExistence.exists_one_tmul_eq <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.OneTensorExistence.exists_one_tmul_eq ..)
-
 theorem exists_residue_idempotent : ∀ (A : Type) [CommRing A] [IsLocalRing A] [Finite (IsLocalRing.ResidueField A)] (Λ : Type) [Ring Λ] [Algebra A Λ] [IsAzumaya A Λ] [Module.Free A Λ] [Nontrivial Λ], ∃ x : Λ, x * x - x ∈ (IsLocalRing.maximalIdeal A) • (⊤ : Submodule A Λ) ∧ (∀ y : Λ, ∃ c : A, x * y * x - c • x ∈ (IsLocalRing.maximalIdeal A) • (⊤ : Submodule A Λ)) ∧ ∃ (N : ℕ) (a b : Fin N → Λ), ∑ i, a i * x * b i - 1 ∈ (IsLocalRing.maximalIdeal A) • (⊤ : Submodule A Λ) := by
   intro A _ _ _ Λ _ _ _ _ _
   classical
@@ -183,7 +173,7 @@ theorem exists_residue_idempotent : ∀ (A : Type) [CommRing A] [IsLocalRing A] 
   have hπ : ∀ y, π y = (1 : k) ⊗ₜ[A] y := fun y => rfl
   have hker : ∀ y, π y = 0 → y ∈ (maximalIdeal A) • (⊤ : Submodule A Λ) := fun y h =>
     mem_smul_top_of_one_tmul_eq_zero A Λ y ((hπ y).symm.trans h)
-  have hsurj : ∀ z, ∃ y, π y = z := one_tmul_surjective A Λ
+  have hsurj : ∀ z, ∃ y, π y = z := _root_.GlobalTheory.OneTensorExistence.exists_one_tmul_eq A Λ
   obtain ⟨xb, hxx, hxy, N, ab, bb, hsum⟩ := exists_rankOne_idempotent k (k ⊗[A] Λ)
   obtain ⟨x, rfl⟩ := hsurj xb
   choose a ha using fun i => hsurj (ab i)

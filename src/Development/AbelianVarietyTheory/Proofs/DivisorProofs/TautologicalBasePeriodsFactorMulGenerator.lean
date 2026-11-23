@@ -145,9 +145,6 @@ section Main
 
 variable {o W V : Type} [CommRing o] [CommRing W] [IsLocalRing W] [CommRing V] [IsDomain V]
 
-theorem toUnit_left' {S : Scheme.{0}} (X : Over S) : (toUnit X).left = X.hom := by
-  simpa using Over.w (toUnit X)
-
 theorem ag_four {G : Type} [CommGroup G] (a b c d : G) :
     a⁻¹ * b * c * d⁻¹ = (a * b⁻¹ * c⁻¹ * d)⁻¹ := by
   apply Additive.ofMul.injective
@@ -223,7 +220,7 @@ theorem tauCoord_of_dataFrom (T : TautBase o W) (iw : W →+* V) {I : Type} [Fin
   have hr : (toUnit (TK V)).left ≫ p = (lift (toUnit (TK V) ≫ Q.c a) (toUnit (TK V) ≫ Q.c b)).left := by
     rw [← Over.comp_left, comp_lift]
   have hh : (toUnit (TK V)).left ≫ h = (TK V).hom ≫ spMap iw := by
-    rw [toUnit_left']
+    rw [_root_.GlobalTheory.ObjPull.toUnit_left']
   rw [hh, ← hr]
   rfl
 

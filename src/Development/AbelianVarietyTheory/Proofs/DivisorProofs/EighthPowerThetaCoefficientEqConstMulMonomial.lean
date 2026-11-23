@@ -207,7 +207,7 @@ theorem core [IsLocalRing V₁] (hV : IsCN V₁) (H : Desc f q ev k₀ u) {N : �
     obtain ⟨r, -, hr, e₁⟩ := mR 0 c₁ zK JK J₂ hJK hJ₂
     have e₂ := rel 0 c₁
     rw [hy, _root_.mul_one] at e₂
-    rw [← IsFractionRing.injective V₁ (FractionRing V₁) e₂, map_mul, h0, mul_zero, map_zero, map_zero eX, ThetaOne.c_zero,
+    rw [← IsFractionRing.injective V₁ (FractionRing V₁) e₂, map_mul, h0, mul_zero, map_zero, map_zero eX, _root_.GlobalTheory.IndivisibleSection.c_zero_eq_one,
       _root_.one_mul] at e₁
     have u₁ : IsUnit (toStk zK r) := (IsUnit.mk0 r hr).map _
     exact hne zK JK hJK ((Units.mul_right_eq_zero _).1 (u₁.mul_right_eq_zero.1 e₁.symm))

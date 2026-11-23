@@ -153,21 +153,7 @@ theorem frequently_of_curve {Y F : Type} [TopologicalSpace Y] [NontriviallyNorme
   obtain ⟨t, ht1, ht2⟩ := (h1.and h2).exists
   exact ht2 ht1
 
-theorem continuous_Delta {r : ℕ} {F : Type} [NontriviallyNormedField F] :
-    Continuous (fun a : Inv r F => Delta a) := by
-  have hc : Continuous (fun p : Fin r → F => companion p) := by
-    refine continuous_pi fun i => continuous_pi fun j => ?_
-    simp only [companion, of_apply]
-    split_ifs
-    · exact (continuous_apply i).neg
-    · exact continuous_const
-    · exact continuous_const
-  have hc' : Continuous (fun a : Inv r F => companion a.1) := hc.comp continuous_fst
-  unfold Delta
-  apply Continuous.matrix_det
-  refine continuous_pi fun i => continuous_pi fun j => ?_
-  simp only [hankel, of_apply, mom, sec]
-  exact (continuous_snd.fst).dotProduct ((hc'.pow _).matrix_mulVec continuous_const)
+alias continuous_Delta := _root_.GlobalTheory.JR.OrbitProper.cont_Delta
 
 end GlobalTheory.JR.DenseMatch
 

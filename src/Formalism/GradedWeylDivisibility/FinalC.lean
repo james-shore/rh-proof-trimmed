@@ -67,21 +67,14 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 namespace Formalism.GradedWeylDivisibility
 
-theorem minorExpLt : MinorExpLt := minorExponentLt
-theorem colLexInitMinor : ColLexInitMinor := colLexInitMinor_of minorExpLt
+theorem colLexInitMinor : ColLexInitMinor := colLexInitMinor_of _root_.Formalism.GradedWeylDivisibility.minorExponentLt
 theorem column_lex_bideterminant : ColumnLexBideterminant := columnLexBideterminant_of_initialMinor colLexInitMinor
-theorem colSums : ColSums := columnSums_holds
-theorem sSYTPeel : SSYTPeel := semistandardPeel
-theorem sSYTExists : SSYTExists := sSYTExists_of sSYTPeel
-theorem compDeg : CompDeg := componentDegree
-theorem leadComp : LeadComp := leadingComponent
-theorem peelDecomp : PeelDecomp := peelDecomposition
-theorem peelHomog : PeelHomog := sliceHomogeneous
-theorem peelLead : PeelLead := sliceLeading
-theorem evalDeg : EvalDeg := evalDegree
-theorem peelDegBound : PeelDegBound := peelDegBound_of evalDeg
-theorem twoColumn : TwoColumn := twoColumn_of peelDecomp peelHomog peelLead peelDegBound
-theorem leadInterlaced : LeadInterlaced := leadInterlaced_of compDeg leadComp twoColumn
+alias colSums := _root_.Formalism.GradedWeylDivisibility.columnSums_holds
+theorem sSYTExists : SSYTExists := sSYTExists_of _root_.Formalism.GradedWeylDivisibility.semistandardPeel
+alias compDeg := _root_.Formalism.GradedWeylDivisibility.componentDegree
+theorem peelDegBound : PeelDegBound := peelDegBound_of _root_.Formalism.GradedWeylDivisibility.evalDegree
+theorem twoColumn : TwoColumn := twoColumn_of _root_.Formalism.GradedWeylDivisibility.peelDecomposition _root_.Formalism.GradedWeylDivisibility.sliceHomogeneous _root_.Formalism.GradedWeylDivisibility.sliceLeading peelDegBound
+theorem leadInterlaced : LeadInterlaced := leadInterlaced_of compDeg _root_.Formalism.GradedWeylDivisibility.leadingComponent twoColumn
 theorem standardMonomialSpanDomain : StandardMonomialSpanDomain :=
   semistandard_module_assembly column_lex_bideterminant colSums sSYTExists leadInterlaced
 

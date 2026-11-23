@@ -94,20 +94,6 @@ theorem valF_ne_zero_of_le {F : Type} [Field F] {X : Scheme.{0}} {x : Sp F ⟶ X
   rw [e3, h0, map_zero, Scheme.basicOpen_zero] at hle
   exact hle (show (IsLocalRing.closedPoint F : Sp F) ∈ (⊤ : (Sp F).Opens) from trivial)
 
-theorem exists_point {X Y : Scheme.{0}} {K : Type} [Field K] [IsAlgClosed K] (π : X ⟶ Y) [LocallyOfFiniteType π]
-    (x : Sp K ⟶ Y) (O : X.Opens) (p : X) (hp : p ∈ O) (hx : π p = x (IsLocalRing.closedPoint K)) :
-    ∃ g : Sp K ⟶ X, g ≫ π = x ∧ ⊤ ≤ g ⁻¹ᵁ O := by
-  obtain ⟨z, hz, -⟩ := Scheme.Pullback.exists_preimage_pullback (f := π) (g := x) p (IsLocalRing.closedPoint K) hx
-  have := LocallyOfFiniteType.jacobsonSpace (pullback.snd π x)
-  obtain ⟨c, hcO, hc'⟩ := nonempty_inter_closedPoints (Z := (pullback.fst π x ⁻¹ᵁ O : Set _))
-    ⟨z, show pullback.fst π x z ∈ O from hz ▸ hp⟩ (pullback.fst π x ⁻¹ᵁ O).isOpen.isLocallyClosed
-  have hc : IsClosed {c} := hc'
-  refine ⟨pointOfClosedPoint (pullback.snd π x) c hc ≫ pullback.fst π x, ?_, fun a _ => ?_⟩
-  · rw [Category.assoc, pullback.condition, pointOfClosedPoint_comp_assoc]
-  · show pullback.fst π x (pointOfClosedPoint (pullback.snd π x) c hc a) ∈ O
-    rw [pointOfClosedPoint_apply]
-    exact hcO
-
 theorem exists_locSec : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] (L : LB G.left) (R : Type) [CommRing R] (χ : Sp R ⟶ S) [IsOpenImmersion χ] (σ : SecAt G L χ), LocallyOfFiniteType G.hom → (∀ s : Sp R, ∃ z : (Over.mk χ ⊗ G).left, (fst (Over.mk χ) G).left z = s ∧ z ∈ nonzeroLocus σ) → ∃ s : LocSec G L χ.opensRange, IsLocSec s ∧ (∀ (K : Type) [Field K] (i : R →+* K), GenIs (spMap i ≫ χ) s (SecM.ofSec G (SecAt.pull G L σ i))) ∧ FibNz s χ.opensRange := by
   intro S G _ L R _ χ _ σ hft hnz
   let q : (Over.mk χ ⊗ G).left ⟶ G.left := (snd (Over.mk χ) G).left
@@ -155,7 +141,7 @@ theorem exists_locSec : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] (L : LB G.l
     obtain ⟨j, hj⟩ := TopologicalSpace.Opens.mem_iSup.1 hz'
     rw [← hs' j] at hj
     have hb := ((Scheme.basicOpen_appLE q _ _ (hle j) (s (j 0))).le hj).2
-    obtain ⟨y, hy, hy'⟩ := exists_point G.hom x (G.left.basicOpen (s (j 0))) (q z) hb (by
+    obtain ⟨y, hy, hy'⟩ := _root_.GlobalTheory.ZH.LocThetaConv.exists_point G.hom x (G.left.basicOpen (s (j 0))) (q z) hb (by
       rw [← Scheme.Hom.comp_apply, ew, Scheme.Hom.comp_apply, hz]
       exact hs₀)
     refine ⟨y, j 0, hy, ?_, valF_ne_zero_of_le _ hy'⟩

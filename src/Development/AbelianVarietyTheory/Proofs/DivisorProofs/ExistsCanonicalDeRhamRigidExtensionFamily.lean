@@ -92,7 +92,7 @@ theorem exists_canonical_family : GlobalTheory.Published.AbelianHodgeDeRham → 
       (GlobalTheory.T.canonicalRigidifiedExtension_pullback_naturality p R R' A A' G G' t t' σ φ m c _ (isCan_canMap p hA t c)))
   · intro R _ hR A _ hA G t
     obtain ⟨N, hN⟩ := hR
-    exact GlobalTheory.T.canonical_iso_hodge_filtration_eq_range_invariant_forms p R N hN A hA G t (canMap p hA t)
+    exact _root_.GlobalTheory.PtExt.map_F1prim_eq_range_rigOfOmega p R N hN A hA G t (canMap p hA t)
       (canMap_bijective hP p ⟨N, hN⟩ hA t).2 (isCan_canMap p hA t)
   · intro R _ hR A _ hA G t h v
     obtain ⟨g, hg⟩ := GlobalTheory.T.exists_relativeDimension_abelian_torsionTower hP p R hR A hA G t

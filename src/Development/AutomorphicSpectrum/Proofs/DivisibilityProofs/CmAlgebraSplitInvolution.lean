@@ -64,23 +64,4 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 theorem isArtinian_inf : IsArtinianRing (Ainf F) :=
   inferInstanceAs (IsArtinianRing ((v : InfinitePlace F) → v.Completion))
 
-theorem sigma_invol {σ : E →ₐ[F] E} (h : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.IsCMExt F E σ) (x : E) : σ (σ x) = x := by
-  obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
-  apply τ.injective
-  rw [h.2.2.2, h.2.2.2, star_star]
-
-theorem exists_moved {σ : E →ₐ[F] E} (h : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.IsCMExt F E σ) : ∃ x, σ x ≠ x := by
-  by_contra hc
-  push_neg at hc
-  obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
-  have hr : ComplexEmbedding.IsReal τ := by
-    rw [ComplexEmbedding.isReal_iff]
-    ext x
-    have := h.2.2.2 τ x
-    rw [hc x] at this
-    exact this.symm
-  have hR : (InfinitePlace.mk τ).IsReal := ⟨τ, hr, rfl⟩
-  have := h.2.1.isComplex (InfinitePlace.mk τ)
-  exact (InfinitePlace.not_isReal_iff_isComplex.mpr this) hR
-
 end GlobalTheory.CompanionTheory.Ar.RT.ArchRing

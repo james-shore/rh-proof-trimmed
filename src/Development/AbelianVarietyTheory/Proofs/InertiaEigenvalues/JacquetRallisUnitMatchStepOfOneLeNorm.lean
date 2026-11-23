@@ -109,7 +109,7 @@ theorem unitMatchAt_of_one_le_norm : ∀ r : ℕ, UnitMatch r → ∀ (F E : Typ
       rw [← huX]; exact (GlobalTheory.T.unitary_action_hermitian_invariants_transitive F E (r + 1)).2.1 u X a hX
     have hU : orbU M (unitU (r + 1) F E) X = (if ‖a.2.2‖ ≤ 1 then 1 else 0) * orbU M' (unitU r F E) X' := by
       rw [← hL7.2.1 _ u, huX]
-      exact GlobalTheory.T.unitaryOrbitalIntegral_liftLastBasis_reduce F E r M M' X' ν a.2.2 hν1 (hΔmap _ hXL)
+      exact _root_.GlobalTheory.JR.Step.OrbULift.orbU_liftH F E r M M' X' ν a.2.2 hν1 (hΔmap _ hXL)
     have hX' : HasInv X' (inv Z) :=
       GlobalTheory.T.hermitianBlock_hasInvariants_of_lift_match F E r Z X' μ a.2.2 ν hν hμ0 hΔL (by rw [hinvL]; exact hXL)
     rw [hG, hU, hIH.1 X' hX']

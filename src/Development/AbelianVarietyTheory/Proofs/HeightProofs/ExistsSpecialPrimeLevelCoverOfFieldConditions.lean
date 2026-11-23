@@ -90,7 +90,7 @@ theorem exists_cover : ∀ (D : D7) (Q : Par D), Q.Pins → Q.Canon → ∀ p : 
       conj := Q.c.conj
       zeta_mem := by
         rw [Level.M', hA₂, hA, Nat.lcm_one_right, hM₂]
-        exact GlobalTheory.FinalJoin.Cover.zeta_mul_mem _ (by have := Q.l.three_le; omega) hp.pos hcop hz (GlobalTheory.FinalJoin.Cover.FO_le_coeff Q hP.2.2.1 hK.zetaP)
+        exact GlobalTheory.FinalJoin.Cover.zeta_mul_mem _ (by have := Q.l.three_le; omega) hp.pos hcop hz (_root_.GlobalTheory.FinalJoin.FieldAlg.recordField_le_of_pinField Q hP.2.2.1 hK.zetaP)
       le := by
         have := Q.c.le
         unfold KA at this ⊢

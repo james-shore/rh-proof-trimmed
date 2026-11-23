@@ -188,7 +188,7 @@ theorem limit (hE : PositivityTheory.Rg.Mass.Equi) (hF : IsTotallyReal F) (θ : 
 
 theorem psiSide_of_equi : PositivityTheory.Rg.Mass.Equi → PsiSide := by
   intro hE F _ _ hF θ hθ r hr li lam hli hlam S G g hG hGc hG0 hg0 hgS
-  refine ⟨GlobalTheory.T.measurable_pure_adelic_function F S G g hG fun v hv => (hgS v hv).1, ?_⟩
+  refine ⟨_root_.GlobalTheory.CompanionTheory.BasePsi.measurable_pure_rv_zero F S G g hG fun v hv => (hgS v hv).1, ?_⟩
   obtain ⟨D, hD, hD1, hDk⟩ := IdeleGroup.exists_isCompact_normOneSubgroup F
   obtain ⟨C, hC⟩ := GlobalTheory.T.theta_series_uniform_bound_compact F hF θ hθ r hr S G g hG hGc hgS D hD
   set d := Module.finrank ℚ F with hd

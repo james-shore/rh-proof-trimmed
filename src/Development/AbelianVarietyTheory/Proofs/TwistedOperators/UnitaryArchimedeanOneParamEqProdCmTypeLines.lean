@@ -73,7 +73,7 @@ theorem exists_lie_eq_exp {n : ℕ} (H : Matrix (Fin n) (Fin n) ℂ) (M : ℝ �
   letI : NormedRing (Matrix (Fin n) (Fin n) ℂ) := Matrix.linftyOpNormedRing
   letI : NormedAlgebra ℝ (Matrix (Fin n) (Fin n) ℂ) := Matrix.linftyOpNormedAlgebra
   haveI : CompleteSpace (Matrix (Fin n) (Fin n) ℂ) := FiniteDimensional.complete ℝ _
-  obtain ⟨Y, hY⟩ := GlobalTheory.banach_oneParamGroup_eq_exp M hc h0 hm
+  obtain ⟨Y, hY⟩ := _root_.GlobalTheory.ExponentialIntegralUnits.exists_exp_eq M hc h0 hm
   refine ⟨Y, ?_, hY⟩
   have hd : HasDerivAt M Y 0 := by
     have h := hasDerivAt_exp_smul_const (𝕂 := ℝ) Y 0
@@ -101,12 +101,9 @@ theorem finTens_eq_zero {z : AE D} (h : ∀ u : AF D.host.F, GlobalTheory.Indefi
   have h2 : GlobalTheory.LFun.finTens D.host.F D.host.E (algebraMap (AF D.host.F) (AE D) e) = 1 := rfl
   rwa [h2, one_mul] at h1
 
-theorem cA_smul (u : AF D.host.F) (z : AE D) : cA D (u • z) = u • cA D z :=
-  map_smul (Algebra.TensorProduct.map (AlgHom.id (AF D.host.F) (AF D.host.F)) D.sp.cm.sig) u z
-
 theorem smul_cA_sub (u : AF D.host.F) {n : ℕ} (A : Matrix (Fin n) (Fin n) (AE D)) (i j : Fin n) :
     (u • (A.map (cA D) - 1)) i j = cA D ((u • (A - 1)) i j) := by
-  simp only [Matrix.smul_apply, Matrix.sub_apply, Matrix.map_apply, cA_smul, map_sub, Matrix.one_apply]
+  simp only [Matrix.smul_apply, Matrix.sub_apply, Matrix.map_apply, _root_.GlobalTheory.FinTranslate.cA_smul, map_sub, Matrix.one_apply]
   split_ifs <;> simp
 
 theorem conjU_mem_UAt_iff (W : HSp D) (Wd : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Spc D.host.F D.host.E W.rank)

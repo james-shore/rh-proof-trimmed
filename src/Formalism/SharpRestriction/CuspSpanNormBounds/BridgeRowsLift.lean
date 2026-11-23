@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.CellDef
+import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals
 
 @[expose] public section
 
@@ -54,11 +55,6 @@ variable {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpace E}
 
 def rlift_Spl (Λ : Submodule (𝓞 E) S.V) (X : Submodule E S.V) (P P' : S.V →ₗ[E] S.V) : Prop :=
   LAdj S P P' ∧ (∀ x ∈ X, P x = x) ∧ (∀ y, P y ∈ X) ∧ LInt Λ P ∧ LInt Λ P' ∧ ∀ w y, S.hT (P' w) (P' y) = 0
-
-theorem rlift_swap {x y : S.V} (h : S.hT x y = 0) : S.hT y x = 0 := by
-  have := S.herm.eq x y
-  rw [h, map_zero] at this
-  exact this.symm
 
 theorem rlift_spl_of_retr (hcm : Formalism.HermitianLatticesTheory.IsCMUnram E) (Λ : Submodule (𝓞 E) S.V) (X : Submodule E S.V)
     (huni : Formalism.HermitianLatticesTheory.IsUnimodular S.hT Λ) (hiso : ∀ x ∈ X, ∀ y ∈ X, S.hT x y = 0)
@@ -164,7 +160,7 @@ theorem rlift_three {X : Submodule E S.V} (hiso : ∀ x ∈ X, ∀ y ∈ X, S.hT
     (hyy : S.hT y y' = 0) (hwy : S.hT w y' = 0) (hyw : S.hT y w' = 0) :
     S.hT (x + w + y) (x' + w' + y') = S.hT x y' + S.hT w w' + S.hT y x' := by
   simp only [map_add (f := _), LinearMap.add_apply]
-  rw [hiso x hx x' hx', hw' x hx, rlift_swap (hw x' hx'), hyy, hwy, hyw]
+  rw [hiso x hx x' hx', hw' x hx, _root_.Formalism.MainNotions.LatticeGluingRadicals.c_symm0 (hw x' hx'), hyy, hwy, hyw]
   ring
 
 theorem rlift_main {X : Submodule E S.V} (hiso : ∀ x ∈ X, ∀ y ∈ X, S.hT x y = 0)
@@ -193,13 +189,13 @@ theorem rlift_main {X : Submodule E S.V} (hiso : ∀ x ∈ X, ∀ y ∈ X, S.hT 
       refine rlift_three hiso (h₁.2.2.1 a) (h₁.2.2.1 b) (rlift_R_perp h₂ hiso _) (rlift_R_perp h₂ hiso _)
         (h₂.2.2.2.2.2 _ _) ?_ ?_
       · rw [← h₂.1, rlift_PR h₂, map_zero, LinearMap.zero_apply]
-      · refine rlift_swap ?_
+      · refine _root_.Formalism.MainNotions.LatticeGluingRadicals.c_symm0 ?_
         rw [← h₂.1, rlift_PR h₂, map_zero, LinearMap.zero_apply]
     have e2 : S.hT a b = S.hT (P₁ a) (P₁' b) + S.hT (rlift_R P₁ P₁' a) (rlift_R P₁ P₁' b) + S.hT (P₁' a) (P₁ b) := by
       conv_lhs => rw [rlift_decomp (P := P₁) (P' := P₁') a, rlift_decomp (P := P₁) (P' := P₁') b]
       refine rlift_three hiso (h₁.2.2.1 a) (h₁.2.2.1 b) hwa hwb (h₁.2.2.2.2.2 _ _) ?_ ?_
       · rw [← h₁.1, rlift_PR h₁, map_zero, LinearMap.zero_apply]
-      · refine rlift_swap ?_
+      · refine _root_.Formalism.MainNotions.LatticeGluingRadicals.c_symm0 ?_
         rw [← h₁.1, rlift_PR h₁, map_zero, LinearMap.zero_apply]
     have e3 : ∀ x ∈ X, ∀ y, S.hT x (P₂' y) = S.hT x y := by
       intro x hx y
@@ -211,7 +207,7 @@ theorem rlift_main {X : Submodule E S.V} (hiso : ∀ x ∈ X, ∀ y ∈ X, S.hT 
         S.hT (rlift_R P₁ P₁' a) (rlift_R P₁ P₁' b) := by
       rw [rlift_R_of_perp h₂ hwa, rlift_R_of_perp h₂ hwb]
       simp only [map_sub, LinearMap.sub_apply]
-      rw [hwb _ (h₂.2.2.1 _), rlift_swap (hwa _ (h₂.2.2.1 (rlift_R P₁ P₁' b))), hiso _ (h₂.2.2.1 _) _ (h₂.2.2.1 _)]
+      rw [hwb _ (h₂.2.2.1 _), _root_.Formalism.MainNotions.LatticeGluingRadicals.c_symm0 (hwa _ (h₂.2.2.1 (rlift_R P₁ P₁' b))), hiso _ (h₂.2.2.1 _) _ (h₂.2.2.1 _)]
       ring
     rw [e1, e2, e3 _ (h₁.2.2.1 a), e4 _ (h₁.2.2.1 b), e5]
   have hinj : Function.Injective nL := by

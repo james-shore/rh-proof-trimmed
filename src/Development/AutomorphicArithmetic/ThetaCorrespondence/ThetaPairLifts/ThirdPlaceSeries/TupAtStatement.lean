@@ -43,9 +43,3 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 
 
-section
-open GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.BigOn.Exp
-
-theorem _root_.GlobalTheory.T.twisted_conj_tuple_at' : GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Published.GlobalArtinReciprocity → GlobalTheory.Published.RayClassFieldSt → GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Published.CasselmanWallach → _root_.GlobalTheory.BigOn.Exp.TwAdmAlt → _root_.GlobalTheory.BigOn.Exp.TwistCharacter → _root_.GlobalTheory.BigOn.Exp.TwConj.TupleCondition := by
-  first | exact @_root_.GlobalTheory.BigOn.Exp.TwConj.tupAt_alt | exact _root_.GlobalTheory.BigOn.Exp.TwConj.tupAt_alt | (intros; apply _root_.GlobalTheory.BigOn.Exp.TwConj.tupAt_alt <;> assumption)
-end

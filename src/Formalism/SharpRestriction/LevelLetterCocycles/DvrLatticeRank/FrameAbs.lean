@@ -148,14 +148,6 @@ theorem span_pow_mono (π : A) {m n : ℕ} (h : m ≤ n) :
 theorem span_pow_le (π : A) {n : ℕ} (h : 1 ≤ n) : Ideal.span {π ^ n} ≤ Ideal.span ({π} : Set A) :=
   Ideal.span_singleton_le_span_singleton.mpr (dvd_pow_self π (by omega))
 
-theorem map_smul_ring (σ : A →+* A) (a : A) (X : Matrix (Fin d) (Fin d) A) :
-    (a • X).map σ = σ a • X.map σ := by
-  first | exact Bl.MatrixMapSmul.goal1 .. | (apply Bl.MatrixMapSmul.goal1 <;> assumption) | (intros; apply Bl.MatrixMapSmul.goal1 <;> assumption) | (apply @Bl.MatrixMapSmul.goal1 <;> assumption) | (intros; apply @Bl.MatrixMapSmul.goal1 <;> assumption) | (apply @Bl.MatrixMapSmul.goal1 <;> first | assumption | infer_instance) | exact @Bl.MatrixMapSmul.goal1 A ‹_› d σ a X | exact @Bl.MatrixMapSmul.goal1 A ‹_› d σ a | exact @Bl.MatrixMapSmul.goal1 A ‹_› d σ | exact @Bl.MatrixMapSmul.goal1 A ‹_› d | exact @Bl.MatrixMapSmul.goal1 A ‹_› | exact @Bl.MatrixMapSmul.goal1 A
-
-theorem map_sub_ring (σ : A →+* A) (X Y : Matrix (Fin d) (Fin d) A) :
-    (X - Y).map σ = X.map σ - Y.map σ := by
-  first | exact Bl.MatrixMapSub.goal1 .. | (apply Bl.MatrixMapSub.goal1 <;> assumption) | (intros; apply Bl.MatrixMapSub.goal1 <;> assumption) | (apply @Bl.MatrixMapSub.goal1 <;> assumption) | (intros; apply @Bl.MatrixMapSub.goal1 <;> assumption) | (apply @Bl.MatrixMapSub.goal1 <;> first | assumption | infer_instance) | exact @Bl.MatrixMapSub.goal1 A ‹_› d σ X Y | exact @Bl.MatrixMapSub.goal1 A ‹_› d σ X | exact @Bl.MatrixMapSub.goal1 A ‹_› d σ | exact @Bl.MatrixMapSub.goal1 A ‹_› d | exact @Bl.MatrixMapSub.goal1 A ‹_› | exact @Bl.MatrixMapSub.goal1 A
-
 theorem cancel_pow {π x : A} (hπ : π ∈ nonZeroDivisors A) {y : ℕ}
     (hx : π ^ y * x ∈ Ideal.span ({π ^ (y + 1)} : Set A)) : x ∈ Ideal.span ({π} : Set A) := by
   obtain ⟨t, ht⟩ := Ideal.mem_span_singleton'.mp hx
@@ -196,7 +188,7 @@ theorem mat_core {Γ : Matrix (Fin d) (Fin d) A} (hσ : ∀ a : A, σ a - a ∈ 
   refine ⟨(ev y + 1) • K + t • U + (π * t) • K, ?_⟩
   have e1 : σ (π ^ y) = (ev y + 1) * π ^ y + t * π ^ (y + 1) := by rw [ht]; ring
   have e2 : Γ * U.map σ = U + π • K := by rw [← hK']; abel
-  rw [map_smul_ring, Matrix.mul_smul, e2, e1]
+  rw [_root_.Bl.MatrixMapSmul.goal1, Matrix.mul_smul, e2, e1]
   ext i j
   simp only [Matrix.add_apply, Matrix.sub_apply, Matrix.smul_apply, smul_eq_mul]
   ring
@@ -234,7 +226,7 @@ theorem frame_exists_of_eigenvalues {Γ : Matrix (Fin d) (Fin d) A}
       have hY : Γ * (π ^ n • W).map σ = π ^ n • W + π ^ n • (ev n • W + π • R) := by
         rw [← hR]; abel
       have e : Γ * (ev n • H - π ^ n • W).map σ - (ev n • H - π ^ n • W) = π ^ (n + 1) • (-R) := by
-        rw [map_sub_ring, map_smul_ring, hσev, Matrix.mul_sub, Matrix.mul_smul, hX, hY]
+        rw [_root_.Bl.MatrixMapSub.goal1, _root_.Bl.MatrixMapSmul.goal1, hσev, Matrix.mul_sub, Matrix.mul_smul, hX, hY]
         ext i j
         simp only [Matrix.add_apply, Matrix.sub_apply, Matrix.smul_apply, Matrix.neg_apply, smul_eq_mul]
         ring
@@ -411,7 +403,7 @@ theorem exists_frame {O : Type*} [CommRing O] [Algebra O A] {σ : A →+* A}
   · have := hH.1.sub hH'.1
     rwa [sub_sub_sub_cancel_right] at this
   · have e : Γ * (H - H').map σ - (H - H') = (Γ * H.map σ - H) - (Γ * H'.map σ - H') := by
-      rw [map_sub_ring, Matrix.mul_sub]; abel
+      rw [_root_.Bl.MatrixMapSub.goal1, Matrix.mul_sub]; abel
     rw [e]
     exact hH.2.sub hH'.2
 

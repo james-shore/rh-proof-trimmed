@@ -39,6 +39,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LatSelfDualOfUnimod
 
 @[expose] public section
 
@@ -205,19 +206,10 @@ theorem pair_frame (V V' : HSp D) (ι : V'.V →ₗ[D.host.E] V.V) {p : ℕ} (U 
   rw [← h, Matrix.mul_apply]
   simp only [Matrix.mulVec, dotProduct, Formalism.L2.Theta.frameMat, LinearMap.toMatrix_apply]
 
-private theorem cT_mul_global {A : Type} [CommRing A] (σ : A →+* A) {l q s : Type} [Fintype q]
-    (M : Matrix l q A) (N : Matrix q s A) :
-    Formalism.UG.cT σ (M * N) = Formalism.UG.cT σ N * Formalism.UG.cT σ M := by
-  simp only [Formalism.UG.cT, Matrix.map_mul, Matrix.transpose_mul]
-
 private theorem cT_cT_of_involutive_global {A : Type} [CommRing A] (σ : A →+* A) (hσ : ∀ x, σ (σ x) = x) {l q : Type}
     (M : Matrix l q A) : Formalism.UG.cT σ (Formalism.UG.cT σ M) = M := by
   ext i j
   simp [Formalism.UG.cT, hσ]
-
-private theorem cT_one_global {A : Type} [CommRing A] (σ : A →+* A) {q : Type} [DecidableEq q] :
-    Formalism.UG.cT σ (1 : Matrix q q A) = 1 := by
-  simp [Formalism.UG.cT, Matrix.map_one]
 
 theorem frame_cols : ∀ (D : D7) (V V' : HSp D) (ι : V'.V →ₗ[D.host.E] V.V), HSpace.IsIsomEmb V' V ι →
     ∀ (m : ℕ) (X Y : Matrix (Fin V.rank) (Fin m) D.host.E), GlobalTheory.SiegelSet.IsWittFrame D.sp.cm.sig V.gram X Y →
@@ -246,7 +238,7 @@ theorem frame_cols : ∀ (D : D7) (V V' : HSp D) (ι : V'.V →ₗ[D.host.E] V.V
     exact (hherm _ _).symm
   have hyx : Formalism.UG.cT (D.sp.cm.sig : D.host.E →+* D.host.E) Y * V.gram * X = 1 := by
     have h := congrArg (Formalism.UG.cT (D.sp.cm.sig : D.host.E →+* D.host.E)) hW.xy
-    rw [cT_mul_global, cT_mul_global, cT_cT_of_involutive_global _ hinvol, hG, cT_one_global, ← Matrix.mul_assoc] at h
+    rw [_root_.Formalism.UG.cT_mul, _root_.Formalism.UG.cT_mul, cT_cT_of_involutive_global _ hinvol, hG, _root_.GlobalTheory.StdFrames.cT_one', ← Matrix.mul_assoc] at h
     exact h
   have hperp : ∀ v ∈ LinearMap.range ι, ∀ i : Fin m, i.val < a →
       V.hT (V.frame.equivFun.symm fun j => X j i) v = 0 ∧

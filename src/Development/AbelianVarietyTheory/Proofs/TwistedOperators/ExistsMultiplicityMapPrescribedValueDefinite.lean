@@ -204,11 +204,6 @@ private theorem clsA_eq_of_ratF_mul {h h' : GA D V} {γ : GQ V} {k : Formalism.I
     simp only [map_mul, map_inv, h1', hκ'']
     group
 
-theorem clsA_eq_of_eq {h h' : GA D V} {γ : GQ V} {k : Formalism.IndefR.Bridge.Gf V} (hk : k ∈ (levEnv V β L).J)
-    (e : (finHom V).rangeRestrict h' = Formalism.IndefR.Bridge.ratF V γ * (finHom V).rangeRestrict h * k) :
-    clsA V (lev D.sp.cm V.gram β (flag1L L)) h' = clsA V (lev D.sp.cm V.gram β (flag1L L)) h := by
-  exact clsA_eq_of_ratF_mul hk e
-
 theorem exists_form_value (c : CoefA V) (hχ : ∀ x, levFn β (flag1L L) x = 1)
     (hG : ∀ c₀ : Cl D.sp.cm V.gram (lev D.sp.cm V.gram β (flag1L L)), Gam c₀ = ⊥) (h : GA D V) (w : c.W) :
     ∃ f : Formalism.IndefR.Bridge.Gf V → c.W,
@@ -221,7 +216,7 @@ theorem exists_form_value (c : CoefA V) (hχ : ∀ x, levFn β (flag1L L) x = 1)
     (levEnv V β L).χ hχ' ((finHom V).rangeRestrict h) (fun γ q hq e => stab_trivial hG h γ q hq e) w
   refine ⟨f, hf, hfx, fun h' hne => hf0 _ ?_⟩
   rintro ⟨γ, q, hq, e⟩
-  exact hne (clsA_eq_of_eq hq e)
+  exact hne (_root_.GlobalTheory.DefFree.clsA_eq_of_ratF_mul hq e)
 
 
 private theorem apply_rangeRestrict_mul_eq_of_mem_adForms_of_mem_levS {c : CoefA V} (hχ : ∀ x, levFn β (flag1L L) x = 1) {f : Formalism.IndefR.Bridge.Gf V → c.W}
@@ -241,12 +236,6 @@ private theorem apply_rangeRestrict_mul_eq_of_mem_adForms_of_mem_levS {c : CoefA
   rw [map_one, one_mul, map_one, hc1, Units.val_one, one_smul] at e1
   rw [map_mul]
   exact e1
-
-theorem form_mul_level {c : CoefA V} (hχ : ∀ x, levFn β (flag1L L) x = 1) {f : Formalism.IndefR.Bridge.Gf V → c.W}
-    (hf : f ∈ Formalism.IndefR.Bridge.AdForms (Formalism.IndefR.Bridge.ratF V) c.coef.ρ (levEnv V β L).J (levEnv V β L).χ)
-    (g : GA D V) {k : GA D V} (hk : k ∈ levS V β (flag1L L)) :
-    f ((finHom V).rangeRestrict (g * k)) = f ((finHom V).rangeRestrict g) := by
-  exact apply_rangeRestrict_mul_eq_of_mem_adForms_of_mem_levS hχ hf g hk
 
 theorem toMap_apply {S : D.what₂.Tau → SPar} {M : DSModel V S} (c : CoefA V) (pr : c.W →ₗ[ℂ] SmT M →ₗ[ℂ] ℂ)
     (f : Formalism.IndefR.Bridge.Gf V → c.W) (v : M.Vec) (g : GA D V) : PiTensorProduct.lift.symm (c.toMap pr f) v g =
@@ -273,7 +262,7 @@ private theorem exists_mult_evAt_eq_and_vanish_off_class : ∀ (D : D7) (θ : In
       show ((Formalism.L2.DIV.levFn β (flag1L L) (finE V k) : ℂˣ) : ℂ) = 1
       rw [hχ, Units.val_one]
     have hρ : c.ρ k⁻¹ = 1 := hc.1 _ ((GfC V).inv_mem hk'.1)
-    rw [hval, hval, hchi, one_mul, form_mul_level hχ hf g hk, mul_inv_rev, map_mul, Module.End.mul_apply, hρ,
+    rw [hval, hval, hchi, one_mul, _root_.GlobalTheory.DefFree.apply_rangeRestrict_mul_eq_of_mem_adForms_of_mem_levS hχ hf g hk, mul_inv_rev, map_mul, Module.End.mul_apply, hρ,
       Module.End.one_apply]
   · ext v
     rw [evAt_apply, hval, hfx, hinv, hw, PiTensorProduct.lift.tprod]

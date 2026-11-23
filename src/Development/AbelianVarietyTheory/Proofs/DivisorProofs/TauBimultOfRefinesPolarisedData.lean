@@ -62,8 +62,7 @@ theorem exists_fracSpec {R R' : Type} [CommRing R] [IsDomain R] [CommRing R'] [I
   ext x
   simp [IsLocalization.lift_eq]
 
-theorem toUnit_left {S : Scheme.{0}} (T : Over S) : (toUnit T).left = T.hom := by
-  simpa using Over.w (toUnit T)
+alias toUnit_left := _root_.GlobalTheory.ObjPull.toUnit_left'
 
 theorem tauBimult_of_half : ∀ (R : Type) [CommRing R] [IsDomain R] (R' : Type) [CommRing R'] [IsDomain R'] (Q : Data R)
     (ρ : R →+* R') (D : DegPre R') (e : D.X ≃+ Q.X), Function.Injective ρ → Half Q ρ D e (fun _ _ => 1) →
@@ -109,7 +108,7 @@ theorem tauBimult_of_half : ∀ (R : Type) [CommRing R] [IsDomain R] (R' : Type)
     simp only [Over.comp_left, Over.homMk_left, toUnit_left, Category.assoc, hc, k]
     rw [← Category.assoc, ← Category.assoc]
     exact congrArg (· ≫ Over.Hom.left (Q.c (e χ))) hκ
-  obtain ⟨-, hw⟩ := GlobalTheory.T.mumfordBundleIso_normalised_respects_laws _ _ Q.B D.P.A Q.M ⟨D.P.L, D.rig, D.P.isLB, D.rig_gen⟩ Q.cub D.cub (spMap ρ) β β₂ w
+  obtain ⟨-, hw⟩ := _root_.GlobalTheory.LamRigid.lam_iso_laws _ _ Q.B D.P.A Q.M ⟨D.P.L, D.rig, D.P.isLB, D.rig_gen⟩ Q.cub D.cub (spMap ρ) β β₂ w
     hpb D.P.isAb hsq hgen hnorm (TK R') (toUnit (TK R') ≫ D.c a) (toUnit (TK R') ≫ D.c a') (toUnit (TK R') ≫ D.c b)
     y J J' hJ hJ'
   have hw' := hw _ _ _ (hu a) (hu a') (hu b)

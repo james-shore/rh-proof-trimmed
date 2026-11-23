@@ -50,6 +50,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Bool
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.TendstoIntUv
 
 @[expose] public section
 
@@ -73,33 +74,17 @@ section HS
 variable {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
   [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wq]
 
-theorem hs_add_l (A A' C : Wq →L[ℂ] Wp) : B.hsInner (A + A') C = B.hsInner A C + B.hsInner A' C := by
-  simp only [B.hsInner, B.hsVec, PiLp.inner_apply, ContinuousLinearMap.add_apply, inner_add_right,
-    Finset.sum_add_distrib]
-
-theorem hs_add_r (A C C' : Wq →L[ℂ] Wp) : B.hsInner A (C + C') = B.hsInner A C + B.hsInner A C' := by
-  simp only [B.hsInner, B.hsVec, PiLp.inner_apply, ContinuousLinearMap.add_apply, inner_add_left,
-    Finset.sum_add_distrib]
-
-theorem hs_smul_l (a : ℂ) (A C : Wq →L[ℂ] Wp) : B.hsInner (a • A) C = a * B.hsInner A C := by
-  simp only [B.hsInner, B.hsVec, PiLp.inner_apply, ContinuousLinearMap.coe_smul', Pi.smul_apply, inner_smul_right,
-    Finset.mul_sum]
-
-theorem hs_smul_r (a : ℂ) (A C : Wq →L[ℂ] Wp) : B.hsInner A (a • C) = conj a * B.hsInner A C := by
-  simp only [B.hsInner, B.hsVec, PiLp.inner_apply, ContinuousLinearMap.coe_smul', Pi.smul_apply, inner_smul_left,
-    Finset.mul_sum]
-
 theorem hs_neg_l (A C : Wq →L[ℂ] Wp) : B.hsInner (-A) C = -B.hsInner A C := by
-  rw [← neg_one_smul ℂ A, hs_smul_l]; ring
+  rw [← neg_one_smul ℂ A, _root_.Formalism.FourierDecayAlt.P5.hsInner_smul_left]; ring
 
 theorem hs_neg_r (A C : Wq →L[ℂ] Wp) : B.hsInner A (-C) = -B.hsInner A C := by
-  rw [← neg_one_smul ℂ C, hs_smul_r]; simp
+  rw [← neg_one_smul ℂ C, _root_.Formalism.FourierDecayAlt.P5.HerB.hs_smul_right]; simp
 
 theorem hs_zero_l (C : Wq →L[ℂ] Wp) : B.hsInner 0 C = 0 := by
-  rw [← zero_smul ℂ (0 : Wq →L[ℂ] Wp), hs_smul_l]; ring
+  rw [← zero_smul ℂ (0 : Wq →L[ℂ] Wp), _root_.Formalism.FourierDecayAlt.P5.hsInner_smul_left]; ring
 
 theorem hs_zero_r (A : Wq →L[ℂ] Wp) : B.hsInner A 0 = 0 := by
-  rw [← zero_smul ℂ (0 : Wq →L[ℂ] Wp), hs_smul_r]; simp
+  rw [← zero_smul ℂ (0 : Wq →L[ℂ] Wp), _root_.Formalism.FourierDecayAlt.P5.HerB.hs_smul_right]; simp
 
 end HS
 
@@ -376,7 +361,7 @@ theorem sumPt_plus (X : ActualOps k r z z' π π') (L : R.LevelData (Pr (RadSp k
   have hct : conj (p l) ≠ 0 := (map_ne_zero _).mpr ht
   simp only [vl, map_zero, ZeroMemClass.coe_zero, Pi.zero_apply, Submodule.coe_add, Submodule.coe_sub,
     Submodule.coe_neg, Submodule.coe_smul, Pi.add_apply, Pi.sub_apply, Pi.neg_apply, Pi.smul_apply, opv1, opv2, opv4,
-    opv5, sub_eq_add_neg, hs_add_l, hs_add_r, hs_smul_l, hs_smul_r, hs_neg_l, hs_neg_r, hs_zero_l, hs_zero_r, map_inv₀,
+    opv5, sub_eq_add_neg, _root_.Formalism.FourierDecayAlt.P5.HerB.hs_add_left, _root_.Formalism.FourierDecayAlt.P5.HerB.hs_add_right, _root_.Formalism.FourierDecayAlt.P5.hsInner_smul_left, _root_.Formalism.FourierDecayAlt.P5.HerB.hs_smul_right, hs_neg_l, hs_neg_r, hs_zero_l, hs_zero_r, map_inv₀,
     hY, Complex.conj_conj]
   field_simp
   ring
@@ -398,7 +383,7 @@ theorem sumPt_minus (X : ActualOps k r z z' π π') (L : R.LevelData (Pr (RadSp 
   have hct : conj (p l) ≠ 0 := (map_ne_zero _).mpr ht
   simp only [vl, map_zero, ZeroMemClass.coe_zero, Pi.zero_apply, Submodule.coe_add, Submodule.coe_sub,
     Submodule.coe_neg, Submodule.coe_smul, Pi.add_apply, Pi.sub_apply, Pi.neg_apply, Pi.smul_apply, opv1, opv2, opv4,
-    opv5, sub_eq_add_neg, hs_add_l, hs_add_r, hs_smul_l, hs_smul_r, hs_neg_l, hs_neg_r, hs_zero_l, hs_zero_r, map_inv₀,
+    opv5, sub_eq_add_neg, _root_.Formalism.FourierDecayAlt.P5.HerB.hs_add_left, _root_.Formalism.FourierDecayAlt.P5.HerB.hs_add_right, _root_.Formalism.FourierDecayAlt.P5.hsInner_smul_left, _root_.Formalism.FourierDecayAlt.P5.HerB.hs_smul_right, hs_neg_l, hs_neg_r, hs_zero_l, hs_zero_r, map_inv₀,
     hY, Complex.conj_conj, map_neg]
   field_simp
   ring

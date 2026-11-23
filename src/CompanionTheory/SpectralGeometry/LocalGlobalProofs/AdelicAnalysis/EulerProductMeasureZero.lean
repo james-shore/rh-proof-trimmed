@@ -80,19 +80,6 @@ theorem exists_tail_pos {ι : Type} {a : ι → ℝ} (h : Summable (fun v => |a 
   show 0 < a v
   linarith
 
-theorem countable_places (F : Type) [Field F] [NumberField F] :
-    Countable (HeightOneSpectrum (𝓞 F)) := by
-  haveI : Countable (𝓞 F) := by
-    haveI : Countable F := (Module.finBasis ℚ F).equivFun.injective.countable
-    exact RingOfIntegers.coe_injective.countable
-  haveI : Countable (Ideal (𝓞 F)) := by
-    refine Function.Surjective.countable
-      (f := fun s : Finset (𝓞 F) => Ideal.span (s : Set (𝓞 F))) ?_
-    intro I
-    exact (IsNoetherian.noetherian I : I.FG)
-  exact Function.Injective.countable (f := fun la : HeightOneSpectrum (𝓞 F) => la.asIdeal)
-    fun a b h => HeightOneSpectrum.ext h
-
 variable {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E]
 
 theorem exists_measure_intOff {d M n : ℕ} {b : Module.Basis (Fin d) F E}
@@ -147,7 +134,7 @@ theorem GlobalTheory.CompanionTheory.SW.EulerZero.euler_zero : ∀ (F E : Type) 
       · exact ⟨S₀, subset_rfl, fun S _ => by simp [hz]⟩
       · refine ⟨insert v S₀, Finset.subset_insert _ _, fun S hS => ?_⟩
         rw [Finset.prod_eq_zero (hS (Finset.mem_insert_self v S₀)) (by simp [hv]), mul_zero]
-    haveI := countable_places F
+    haveI := _root_.GlobalTheory.AdelicUnitaryTop.countable_heightOneSpectrum F
     have hcover : (Set.univ : Set (Fin n → Fin M → AF F ⊗[F] E)) ⊆
         ⋃ T : Finset (HeightOneSpectrum (𝓞 F)), intOff b (S₁ ∪ T) := by
       intro X _

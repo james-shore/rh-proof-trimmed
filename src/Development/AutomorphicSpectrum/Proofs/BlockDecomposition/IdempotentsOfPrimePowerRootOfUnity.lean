@@ -268,16 +268,16 @@ theorem exists_idempotents_of_root_of_unity {l : ℕ} [Fact l.Prime] (A : PAlg l
     apply hc
     rw [← mul_assoc, hy1]
     exact proj_mul_sub A.oC hq1 hω hz k
-  choose e he using fun k => GlobalTheory.T.existsUnique_idempotent_lift_tilt A (y k) (hy2 k)
+  choose e he using fun k => _root_.GlobalTheory.CompanionTheory.Untilt.existsUnique_idempotent_sharp A (y k) (hy2 k)
   have hzero : ∀ a : A.A, IsIdempotentElem a → A.sharp a = 0 → a = 0 := fun a ha hs =>
-    (GlobalTheory.T.existsUnique_idempotent_lift_tilt A 0 (IsIdempotentElem.zero)).unique ⟨ha, hs⟩ ⟨IsIdempotentElem.zero, sharp_zero A⟩
+    (_root_.GlobalTheory.CompanionTheory.Untilt.existsUnique_idempotent_sharp A 0 (IsIdempotentElem.zero)).unique ⟨ha, hs⟩ ⟨IsIdempotentElem.zero, sharp_zero A⟩
   have hO : OrthogonalIdempotents fun c : ZMod (l ^ n) => e c.val := by
     refine ⟨fun c => (he _).1.1, fun c d hcd => ?_⟩
     refine hzero _ ((he _).1.1.mul (he _).1.1) ?_
     rw [map_mul, (he _).1.2, (he _).1.2]
     exact hyo (ZMod.val_lt c) (ZMod.val_lt d) fun h => hcd (ZMod.val_injective _ h)
   refine ⟨fun c => e c.val, ⟨hO, ?_⟩, fun c => ?_⟩
-  · refine (GlobalTheory.T.existsUnique_idempotent_lift_tilt A 1 IsIdempotentElem.one).unique ⟨hO.isIdempotentElem_sum, ?_⟩
+  · refine (_root_.GlobalTheory.CompanionTheory.Untilt.existsUnique_idempotent_sharp A 1 IsIdempotentElem.one).unique ⟨hO.isIdempotentElem_sum, ?_⟩
       ⟨IsIdempotentElem.one, map_one _⟩
     rw [sharp_sum A hO]
     simp_rw [fun c : ZMod (l ^ n) => (he c.val).1.2]

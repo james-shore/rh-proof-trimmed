@@ -107,11 +107,11 @@ theorem upTo {P : Prop} (h : A1 → A2 → A3 → A4 → A5 → A7 → A8 → A9
     GlobalTheory.T.etaleCohomology_bijective_of_support_bijective RedCoef.a11 GlobalTheory.T.etaleCohomology_twisted_filtered_colimit_continuity UpperTheory.etaleCohomology_functorialityAxioms_hold GlobalTheory.T.etC_b3 UpperTheory.etaleCohomology_excisionAxiom_holds GlobalTheory.T.absolutelyIntegrallyClosed_domain_tateTwistAcyclic GlobalTheory.T.etaleCohomology_field_eq_galoisCohomology
     GlobalTheory.EtC.gaugeSplitting_holds H.c2 H.c3 H.c4 H.c5 H.d1
 
-theorem d2 : D2 := H.upTo (LateralTheory.E.D2.goal_of (LateralTheory.E.D2.LeafRing_of GlobalTheory.T.cup_chern_kummer_pullback_naturality GlobalTheory.T.cupProduct_gradedCommRingAxioms_hold) LateralTheory.E.D2.LeafChern_of
-  (LateralTheory.E.D2.LeafNat_of GlobalTheory.T.cup_chern_kummer_pullback_naturality)
+theorem d2 : D2 := H.upTo (LateralTheory.E.D2.goal_of (LateralTheory.E.D2.LeafRing_of _root_.GlobalTheory.EtC.a6nat_holds _root_.GlobalTheory.EtC.a6ring_holds) LateralTheory.E.D2.LeafChern_of
+  (LateralTheory.E.D2.LeafNat_of _root_.GlobalTheory.EtC.a6nat_holds)
   (LateralTheory.E.D2.LeafWhitney_of (LateralTheory.E.LeafGeomPfLoc.LeafGeom_of LateralTheory.E.LeafHalf1Pf.LeafHalf1_of
-    (LateralTheory.E.HalfDegreeVanishing.LeafHalf2_of LateralTheory.E.LeafMapWPf.LeafMapW_of)) LateralTheory.E.LeafCover2Pf.LeafCover2_of GlobalTheory.T.cup_vanishes_on_two_member_cover GlobalTheory.T.cup_chern_kummer_pullback_naturality)
-  (LateralTheory.E.D2.LeafLine_of GlobalTheory.T.cup_chern_kummer_pullback_naturality) LateralTheory.E.LeafNewtonPf.LeafNewton_of)
+    (LateralTheory.E.HalfDegreeVanishing.LeafHalf2_of LateralTheory.E.LeafMapWPf.LeafMapW_of)) LateralTheory.E.LeafCover2Pf.LeafCover2_of _root_.GlobalTheory.EtC.a6supp _root_.GlobalTheory.EtC.a6nat_holds)
+  (LateralTheory.E.D2.LeafLine_of _root_.GlobalTheory.EtC.a6nat_holds) LateralTheory.E.LeafNewtonPf.LeafNewton_of)
 
 theorem d3 : D3 := H.upTo UpperTheory.Et.D3.intersectionNumber_baseChange H.d2
 
@@ -135,9 +135,9 @@ theorem qDiag : QDiag := qDiag_holds H.inputs trIn_holds
 theorem diagEt3 : CrystallineSemistableComparison.Onto.DiagEt3 := Di.diagEt3_of H.inputs H.qDiag
 
 theorem etSide_sm (l : ℕ) [Fact l.Prime] (K : IntermediateField ℚ_[l] (PadicAlgCl l)) [FiniteDimensional ℚ_[l] K] :
-    EtSide (Model.Sm (l := l) (K := K)) := KunnethLefschetz.etSide_sm H.inputs H.qDual inSum_holds CrystallineSemistableComparison.comp CrystallineSemistableComparison.geo l K
+    EtSide (Model.Sm (l := l) (K := K)) := KunnethLefschetz.etSide_sm H.inputs H.qDual inSum_holds CrystallineSemistableComparison.comp _root_.CrystallineSemistableComparison.geoMain l K
 
-theorem etFin : CrystallineSemistableComparison.Onto.EtFin := etFin_of H.inputs H.qDual inSum_holds CrystallineSemistableComparison.comp CrystallineSemistableComparison.geo
+theorem etFin : CrystallineSemistableComparison.Onto.EtFin := etFin_of H.inputs H.qDual inSum_holds CrystallineSemistableComparison.comp _root_.CrystallineSemistableComparison.geoMain
 
 end Core
 

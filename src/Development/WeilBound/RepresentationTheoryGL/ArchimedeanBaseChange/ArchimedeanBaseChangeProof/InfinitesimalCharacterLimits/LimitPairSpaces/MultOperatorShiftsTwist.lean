@@ -162,7 +162,7 @@ theorem finGL_unip' {r s : ℕ} (x : BlockIx (r + s) r → Af E) :
     rfl
 
 theorem lev_mul_cf_int {r s : ℕ} (k : Kinf E (r + s)) (g : GL (Fin (r + s)) (Af E)) :
-    ∃ (mf : GL (Fin r) (Af E) × GL (Fin s) (Af E)) (c : GL (Fin (r + s)) (Af E)), c ∈ Cint E (r + s) ∧
+    ∃ (mf : GL (Fin r) (Af E) × GL (Fin s) (Af E)) (c : GL (Fin (r + s)) (Af E)), c ∈ _root_.GlobalTheory.CompanionTheory.LimV.KO E (r + s) ∧
       ∀ m : GA E r × GA E s, ∃ v : BlockIx (r + s) r → Ad E,
         lev (Ad E) r s m * (infGL E (r + s) (Unitary.toUnits k) * finGL E (r + s) g) =
           unip v * lev (Ad E) r s (m.1 * finGL E r mf.1, m.2 * finGL E s mf.2) * InducedTensorMap.cf (r + s) k c := by

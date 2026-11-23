@@ -70,11 +70,7 @@ attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {n : ℕ}
 
-theorem val_mem (y : G n) : y.val ∈ GLs n :=
-  ((Matrix.isUnit_iff_isUnit_det _).1 y.isUnit).ne_zero
-
-theorem mul_mem {x y : Mat n} (hx : x ∈ GLs n) (hy : y ∈ GLs n) : x * y ∈ GLs n :=
-  GlobalTheory.CompanionTheory.RCalc.mul_mem_GLs hx hy
+alias mul_mem := _root_.GlobalTheory.CompanionTheory.RCalc.mul_mem_GLs
 
 theorem inv_mem {x : Mat n} (hx : x ∈ GLs n) : x⁻¹ ∈ GLs n := by
   have h : x.det ≠ 0 := hx
@@ -92,11 +88,11 @@ theorem val_inv (z : G n) : (z⁻¹ : G n).val = z.val⁻¹ := Matrix.coe_units_
 theorem lg_val_le (hL : LgFacts) (z : G n) {x : Mat n} (hx : x ∈ GLs n) :
     lg z.val ≤ lg ((z⁻¹ : G n).val * x) + lg x := by
   obtain ⟨hsub, hinv, -⟩ := hL n
-  have hy : (z⁻¹ : G n).val * x ∈ GLs n := mul_mem (val_mem _) hx
+  have hy : (z⁻¹ : G n).val * x ∈ GLs n := mul_mem (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val _) hx
   have e : ((z⁻¹ : G n).val * x) * x⁻¹ = (z⁻¹ : G n).val := by
     rw [Matrix.mul_assoc, Matrix.mul_nonsing_inv x (isUnit_iff_ne_zero.2 hx), Matrix.mul_one]
   have h1 := hsub _ hy _ (inv_mem hx)
-  have h2 : lg (z⁻¹ : G n).val = lg z.val := by rw [val_inv, hinv _ (val_mem z)]
+  have h2 : lg (z⁻¹ : G n).val = lg z.val := by rw [val_inv, hinv _ (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val z)]
   rw [e, hinv x hx, h2] at h1
   exact h1
 
@@ -152,12 +148,12 @@ theorem continuousOn_Dk {K : Mat n → (V →L[ℂ] V)} (hK : ContDiffOn ℝ ∞
   have h2 : Continuous fun p : Mat n × G n => (p.2⁻¹ : G n).val * p.1 :=
     (continuous_valinv.comp continuous_snd).mul continuous_fst
   have h3 : ContinuousOn (fun p : Mat n × G n => fderiv ℝ K ((p.2⁻¹ : G n).val * p.1)) (GLs n ×ˢ Set.univ) :=
-    h1.comp h2.continuousOn fun p hp => mul_mem (val_mem _) hp.1
+    h1.comp h2.continuousOn fun p hp => mul_mem (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val _) hp.1
   have h4 : Continuous fun p : Mat n × G n => mulL (p.2⁻¹ : G n).val :=
     mulLL.continuous.comp (continuous_valinv.comp continuous_snd)
   have h5 : Continuous fun p : Mat n × G n => evL (f p.2.val) := by
     refine evL.continuous.comp ?_
-    exact (hf.comp_continuous Units.continuous_val val_mem).comp continuous_snd
+    exact (hf.comp_continuous Units.continuous_val _root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val).comp continuous_snd
   exact h5.continuousOn.clm_comp (h3.clm_comp h4.continuousOn)
 
 variable [MeasurableSpace (G n)] [BorelSpace (G n)] (μ : Measure (G n)) [μ.IsHaarMeasure]
@@ -178,11 +174,11 @@ theorem integrable_Lk (hL : LgFacts) {K : Mat n → (V →L[ℂ] V)} (hK : Conti
     Integrable (fun z : G n => K ((z⁻¹ : G n).val * x) (f z.val)) μ := by
   obtain ⟨R, hR⟩ := hc
   have h1 : Continuous fun z : G n => K ((z⁻¹ : G n).val * x) :=
-    hK.comp_continuous (continuous_valinv.mul continuous_const) fun z => mul_mem (val_mem _) hx
-  have h2 : Continuous fun z : G n => f z.val := hf.comp_continuous Units.continuous_val val_mem
+    hK.comp_continuous (continuous_valinv.mul continuous_const) fun z => mul_mem (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val _) hx
+  have h2 : Continuous fun z : G n => f z.val := hf.comp_continuous Units.continuous_val _root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val
   refine integrable_far μ hL (h1.clm_apply h2) (R + lg x) fun z hz => ?_
   have := lg_val_le hL z hx
-  rw [hR _ (mul_mem (val_mem _) hx) (by linarith)]
+  rw [hR _ (mul_mem (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val _) hx) (by linarith)]
   simp
 
 theorem integrable_Dk (hL : LgFacts) {K : Mat n → (V →L[ℂ] V)} (hK : ContDiffOn ℝ ∞ K (GLs n)) (hc : Cpt K)
@@ -194,12 +190,12 @@ theorem integrable_Dk (hL : LgFacts) {K : Mat n → (V →L[ℂ] V)} (hK : ContD
       fun z => ⟨hx, Set.mem_univ _⟩
   refine integrable_far μ hL h1 (R + lg x) fun z hz => ?_
   have := lg_val_le hL z hx
-  exact Dk_eq_zero f (fderiv_far hL hR (mul_mem (val_mem z⁻¹) hx) (by linarith))
+  exact Dk_eq_zero f (fderiv_far hL hR (mul_mem (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val z⁻¹) hx) (by linarith))
 
 theorem hasFDerivAt_integrand {K : Mat n → (V →L[ℂ] V)} (hK : ContDiffOn ℝ ∞ K (GLs n)) (f : Mat n → V) {x : Mat n}
     (hx : x ∈ GLs n) (z : G n) :
     HasFDerivAt (fun x' => K ((z⁻¹ : G n).val * x') (f z.val)) (Dk K f x z) x := by
-  have hy : (z⁻¹ : G n).val * x ∈ GLs n := mul_mem (val_mem _) hx
+  have hy : (z⁻¹ : G n).val * x ∈ GLs n := mul_mem (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val _) hx
   have h1 : HasFDerivAt K (fderiv ℝ K ((z⁻¹ : G n).val * x)) ((z⁻¹ : G n).val * x) :=
     (GlobalTheory.CompanionTheory.RCalc.differentiableAt_of_smooth hK hy).hasFDerivAt
   have h2 : HasFDerivAt (fun x' : Mat n => mulL (z⁻¹ : G n).val x') (mulL (z⁻¹ : G n).val) x :=
@@ -225,7 +221,7 @@ theorem hasFDerivAt_Lk [CompleteSpace V] (hL : LgFacts) {K : Mat n → (V →L[�
     have h1 := lg_val_le hL z (hB hx)
     have h2 := hlg x hx
     have h3 : R + R₀ < lg z.val := not_le.1 hz
-    exact Dk_eq_zero f (fderiv_far hL hR (mul_mem (val_mem z⁻¹) (hB hx)) (by linarith))
+    exact Dk_eq_zero f (fderiv_far hL hR (mul_mem (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val z⁻¹) (hB hx)) (by linarith))
   refine hasFDerivAt_integral_of_dominated_of_fderiv_le
     (F := fun x (z : G n) => K ((z⁻¹ : G n).val * x) (f z.val)) (F' := Dk K f)
     (bound := {z : G n | lg z.val ≤ R + R₀}.indicator fun _ => M)
@@ -419,6 +415,6 @@ theorem kerW : KerW := by
     have h1 := (h0.zOp hL hf w).2.2 x hx
     rw [h1, act_eq_Lk μ E _ (u 0) hx]
     refine integral_congr_ae (ae_of_all _ fun z => ?_)
-    simp only [inv_inv_mat (mul_mem (val_mem z⁻¹) hx)]
+    simp only [inv_inv_mat (mul_mem (_root_.GlobalTheory.CompanionTheory.LengthGL.mem_GLs_val z⁻¹) hx)]
 
 end GlobalTheory.CompanionTheory.KerWord

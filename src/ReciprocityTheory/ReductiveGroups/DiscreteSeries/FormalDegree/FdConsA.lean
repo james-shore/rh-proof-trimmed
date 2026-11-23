@@ -105,13 +105,6 @@ theorem fdc_hc_add {μ : Fin n → ℝ} {s : Fin n} (hμ : IsHCParam μ) (hs : S
     rw [Pi.add_apply, Pi.single_eq_of_ne has, add_zero]
     exact hm
 
-theorem fdc_w_ne {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KType ε Λ) : T.w ≠ 0 := by
-  letI := T.instNACG
-  intro h
-  have h1 := T.w_norm
-  rw [h, norm_zero] at h1
-  exact zero_ne_one h1
-
 theorem fdc_model {ε : Fin n → Bool} (hp : 1 ≤ pOf ε) (hq : 1 ≤ qOf ε) {μ : Fin n → ℝ} {h : ℝ}
     (hμ : IsHCParam μ) (hg : GapAtLeast ε μ h) (hh : thrStar ε + 1 < h) (T : KType ε (lowK ε μ)) :
     ∃ m : Fin n → ℤ, IsMu μ m ∧ IsPsiFor ε μ T (PsiM T m) := by
@@ -167,7 +160,7 @@ theorem fdc_ds_exists {ε : Fin n → Bool} (hp : 1 ≤ pOf ε) (hq : 1 ≤ qOf 
     (hμ : IsHCParam μ) (hg : GapAtLeast ε μ h) (hh : thrStar ε + 1 < h) : ∃ d, FdcGood ε μ d := by
   obtain ⟨T⟩ := HW.kType_exists ε μ hμ
   obtain ⟨m, -, hP⟩ := fdc_model hp hq hμ hg hh T
-  have hDS := isDS_sigLam (fdc_stdGap hμ hg hh) hP (fdc_w_ne T)
+  have hDS := isDS_sigLam (fdc_stdGap hμ hg hh) hP (_root_.ReciprocityTheory.ChartRestriction.DS.HW.KType.w_ne_zero T)
   obtain ⟨d, hd⟩ := fdcGood_of_isDS hDS
   exact ⟨d, _, inferInstance, inferInstance, _, hDS, hd⟩
 

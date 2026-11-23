@@ -41,6 +41,7 @@ import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1
 import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ConstSmall
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PublishedTheorems.GelfandKazhdanReal
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.IntegralPowerExpansion
 
 @[expose] public section
 
@@ -56,13 +57,6 @@ namespace UpperTheory.HilbertEisensteinWeightOne.OpenKernelEisenstein
 
 variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F]
 
-theorem le_exp_neg_one {a : WithZero (Multiplicative ℤ)} (h : a < 1) : a ≤ WithZero.exp (-1) := by
-  by_cases h0 : a = 0
-  · simp [h0]
-  · rw [← WithZero.exp_log h0] at h ⊢
-    rw [← WithZero.exp_zero, WithZero.exp_lt_exp] at h
-    exact WithZero.exp_le_exp.2 (by omega)
-
 theorem val_le_of_mem {w : HeightOneSpectrum (𝓞 F)} : ∀ (c : ℕ) {z : w.adicCompletionIntegers F},
     z ∈ IsLocalRing.maximalIdeal (w.adicCompletionIntegers F) ^ c →
     Valued.v (z : w.adicCompletion F) ≤ WithZero.exp (-(c : ℤ))
@@ -77,7 +71,7 @@ theorem val_le_of_mem {w : HeightOneSpectrum (𝓞 F)} : ∀ (c : ℕ) {z : w.ad
         (Valuation.mem_maximalIdeal_iff _ (Valued.v : Valuation (w.adicCompletion F) _)).1 hb
       show Valued.v ((a : w.adicCompletion F) * b) ≤ _
       rw [map_mul, show (-((c + 1 : ℕ) : ℤ)) = -(c : ℤ) + -1 by push_cast; ring, WithZero.exp_add]
-      exact mul_le_mul' h1 (le_exp_neg_one h2)
+      exact mul_le_mul' h1 (_root_.GlobalTheory.Proof.IntegralPowerExpansion.le_exp_neg_one_of_lt_one h2)
     · show Valued.v ((x : w.adicCompletion F) + y) ≤ _
       exact Valuation.map_add_le _ hx hy
 

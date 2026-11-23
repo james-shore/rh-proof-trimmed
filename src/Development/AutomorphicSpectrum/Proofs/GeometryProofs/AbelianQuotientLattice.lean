@@ -438,16 +438,12 @@ end Main
 
 section Fin
 
-theorem charVal_eq {S : Scheme.{0}} {Ch : Type} [AddCommGroup Ch] {A : Type} [CommRing A] {a : Sp A ⟶ S}
-    (w : Over.mk a ⟶ splitTorus S Ch) (χ : Ch) : GlobalTheory.CompanionTheory.Ar.charVal w χ = GlobalTheory.Diag.charVal w χ :=
-  (GlobalTheory.Diag.charVal_eq_torusFst w χ).symm
-
 theorem pt_comp_diagMap {k : Type} [Field k] {Ch : Type} [AddCommGroup Ch]
     (MT : LieModel (splitTorus (Sp k) Ch) (𝟙 _) (Ch →+ k)) (hMT : IsCocharLie MT) (δ : Ch →+ k) (u : Ch →+ Ch) :
     MT.pt (δ.comp u) = MT.pt δ ≫ GlobalTheory.Diag.diagMap (Sp k) u := by
   apply GlobalTheory.Diag.charVal_ext
   intro χ
-  rw [GlobalTheory.Diag.charVal_comp_diagMap, ← charVal_eq, ← charVal_eq, hMT, hMT]
+  rw [GlobalTheory.Diag.charVal_comp_diagMap, ← _root_.GlobalTheory.CompanionTheory.Ar.TorusPoints.charVal_eq_diag, ← _root_.GlobalTheory.CompanionTheory.Ar.TorusPoints.charVal_eq_diag, hMT, hMT]
   rfl
 
 theorem tenMap_end {k : Type} [Field k] {Ch : Type} [AddCommGroup Ch] {O : Type} [CommRing O]

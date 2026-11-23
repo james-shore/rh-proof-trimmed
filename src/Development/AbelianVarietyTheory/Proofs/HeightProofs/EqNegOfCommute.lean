@@ -173,7 +173,7 @@ theorem isFockCx_sign (h : Chart θ σ) {V W : HSp D} (hV : V.SigOK) (hW : W.Sig
   have hs' := fun τ => ((hB τ).cart hW).1
   choose g hg g' hg' hgj using fun τ => (GlobalTheory.T.complexStructureOfInvolutions_properties D V W τ _ _ (hs τ) (hs' τ)).2.2.2
   obtain ⟨k, hk, hkg⟩ := GlobalTheory.T.exists_real_point_unitary_with_components D θ σ h V g fun τ => (hg τ).1
-  obtain ⟨k', hk', hkg'⟩ := GlobalTheory.T.exists_real_point_unitary_with_components D θ σ h W g' fun τ => (hg' τ).1
+  obtain ⟨k', hk', hkg'⟩ := _root_.GlobalTheory.FockCompare.LiftUnitary.lift_unitary D θ σ h W g' fun τ => (hg' τ).1
   have hK : IsKinf θ V A k := (isKinf_iff hV hA k).2 ⟨hk, fun τ => by rw [hkg]; exact (hg τ).2⟩
   have hK' : IsKinf θ W B k' := (isKinf_iff hW hB k').2 ⟨hk', fun τ => by rw [hkg']; exact (hg' τ).2⟩
   have hact := (GlobalTheory.T.adelicUnitary_action_at_real_place D θ h.inf).2 V W k k'
@@ -360,8 +360,8 @@ theorem Chart.theta_hD (h : Chart θ σ) (hψ : IsStdChar D ψ (-1)) {f : WA V W
 
 theorem Chart.bounded (h : Chart θ σ) (hψ : IsStdChar D ψ (-1)) {f : WA V W → ℂ} (hf : IsThetaFun ψ V W f)
     (w : WA V W) : ∃ C : ℝ, ∀ x, ‖f (w + iotaW σ V W x)‖ ≤ C := by
-  refine GlobalTheory.T.exists_le_of_continuous_of_spanning_periods _ (fun x => ‖f (w + iotaW σ V W x)‖) (h.sm hf w).continuous.norm _
-    (GlobalTheory.T.span_realProjection_rationalPoints_eq_top D θ σ h V W) ?_
+  refine _root_.GlobalTheory.bddAbove_of_spanning_periods _ (fun x => ‖f (w + iotaW σ V W x)‖) (h.sm hf w).continuous.norm _
+    (_root_.GlobalTheory.FockCompare.span_piW_ratW_eq_top D θ σ h V W) ?_
   rintro _ ⟨γ, rfl⟩
   obtain ⟨N, hN, e⟩ := GlobalTheory.T.norm_thetaFunction_periodic_real_variables D θ σ h ψ hψ.1.2.1 (GlobalTheory.T.exists_pos_nat_mem_open_adele_subgroup D.host.F) V W f hf γ
   exact ⟨N, hN, fun x => by rw [map_add (f := _), ← add_assoc, e]⟩

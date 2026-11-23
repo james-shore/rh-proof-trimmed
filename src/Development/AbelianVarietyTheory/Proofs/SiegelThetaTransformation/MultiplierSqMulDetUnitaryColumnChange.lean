@@ -63,24 +63,6 @@ open scoped ComplexConjugate Real
 
 namespace GlobalTheory.Phase.Mult
 
-theorem thS_smul' {κ ι : Type} [Fintype κ] [Fintype ι] (c : ℂ) (φ : Matrix κ ι ℚ → ℂ) (τ : Matrix ι ι ℂ)
-    (ζ : κ → ι → ℂ) : thS (c • φ) τ ζ = c * thS φ τ ζ := by
-  unfold thS
-  rw [← tsum_mul_left]
-  congr 1
-  funext x
-  simp [Pi.smul_apply, smul_eq_mul, mul_assoc]
-
-theorem isSB_smul' {κ ι : Type} [Fintype κ] [Fintype ι] (c : ℂ) {φ : Matrix κ ι ℚ → ℂ} (h : IsSB φ) :
-    IsSB (c • φ) := by
-  obtain ⟨R, hR, h1, h2⟩ := h
-  refine ⟨R, hR, fun x hx => h1 x ?_, fun x y hy => ?_⟩
-  · intro h0
-    apply hx
-    simp [h0]
-  · simp only [Pi.smul_apply, smul_eq_mul]
-    rw [h2 x y hy]
-
 theorem quad_blk {n g : ℕ} (M : Matrix (Fin g) (Fin g) ℂ) (ζ : Fin n × Fin g → ℂ) :
     ζ ⬝ᵥ blk n M *ᵥ ζ = ∑ k, (fun i => ζ (k, i)) ⬝ᵥ M *ᵥ fun i => ζ (k, i) := by
   simp only [dotProduct, mulVec, blk, Matrix.of_apply, Fintype.sum_prod_type]
@@ -178,10 +160,10 @@ theorem isMu_of_fixed {n g : ℕ} {τ : Matrix (Fin g) (Fin g) ℂ} (hτ : τ �
     have hW : W = fun k => (W k ᵥ* D) ᵥ* D⁻¹ := by
       funext k
       rw [Matrix.vecMul_vecMul, Matrix.mul_nonsing_inv _ hDu, Matrix.vecMul_one]
-    rw [thS_smul', hW, hdup, mul_assoc, hT, ← hW]
+    rw [_root_.GlobalTheory.Phase.WeilPV.thS_smul, hW, hdup, mul_assoc, hT, ← hW]
     ring
   have heq := eq_of_thS_eq (Fin 2) (Fin n × Fin g) (dup φ') ((t ^ 2 * d) • ω (dup φ))
-    (hsbd' hsb') (isSB_smul' _ hsbω) B hBs hall
+    (hsbd' hsb') (_root_.GlobalTheory.Phase.WeilPV.sb_smul _ hsbω) B hBs hall
   have hpvω : PV (ω (dup φ)) :=
     GlobalTheory.T.rootOfUnityPhaseVacuum_siegelThetaTransform (Fin 2) (Fin n × Fin g) heven s hs (dup φ) (ω (dup φ)) hsbω hTω (hpvd hφ)
   obtain ⟨x, hx⟩ := Function.ne_iff.mp (hned' h0)
@@ -292,7 +274,7 @@ theorem isMu_multiplier_sq_mul_det : ∀ (E : Type) [Field E] [NumberField E] [I
     exact this.symm
   have H1 := H z
   simp only [GlobalTheory.SW.thA, hz, hz', imInv_eq] at H1
-  rw [thS_smul', thS_smul']
+  rw [_root_.GlobalTheory.Phase.WeilPV.thS_smul, _root_.GlobalTheory.Phase.WeilPV.thS_smul]
   have hne := pow_ne_zero (n / 2) hMu.ne_zero
   have H2 := mul_left_cancel₀ hne (by rw [← _root_.mul_assoc, H1]; ring :
     (hMat X bas idx x).det ^ (n / 2) *

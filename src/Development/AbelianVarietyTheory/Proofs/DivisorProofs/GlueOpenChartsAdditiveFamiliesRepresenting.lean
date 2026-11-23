@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.MemRangeOfIsPullback
 
 @[expose] public section
 
@@ -70,7 +71,7 @@ theorem glue : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A], IsAbelianScheme A �
       obtain ⟨W, hW⟩ := (hM i).chart T N hN
       exact ⟨W, fun Y a ↦ (exists_congr fun u ↦ (same_iff_map hN (hM i).fam a u).symm).trans (hW Y a)⟩)
     (fun T y p ↦ by
-      obtain ⟨K, _, _, s, hs⟩ := GlobalTheory.exists_geomPoint_through T.left p
+      obtain ⟨K, _, _, s, hs⟩ := _root_.GlobalTheory.ZM.UnivProp.exists_geomPt T.left p
       let a : Over.mk (s ≫ T.hom) ⟶ T := Over.homMk s rfl
       obtain ⟨N, hN, e⟩ := famCls_surj ((addF A).map a.op y)
       obtain ⟨i, u, h⟩ := hcov K (s ≫ T.hom) N hN

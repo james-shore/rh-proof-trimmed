@@ -109,7 +109,7 @@ theorem lattice_classes_finite_refinement : LatFin := by
       simp [hJ', map_natCast]
     rw [this]
     exact (hpos τ).smul (by exact_mod_cast hD)
-  obtain ⟨SE, hSEf, hSE⟩ := hermitian_lattice_finite E M σ J' T hσ hpos' hT
+  obtain ⟨SE, hSEf, hSE⟩ := _root_.PI.HermLatFin.UnitaryGroupMassFormula.hermLatFin_main E M σ J' T hσ hpos' hT
   let Sub : Submodule (𝓞 E) (Fin M → E) → Set (Set (Fin M → E)) := fun N₀ =>
     {s | (∃ G : AddSubgroup (Fin M → E), (G : Set (Fin M → E)) = s) ∧ (∀ x ∈ N₀, (c0 : E) • x ∈ s) ∧ s ⊆ N₀}
   refine ⟨⋃ N₀ ∈ {N₀ | N₀ ∈ SE ∧ N₀.FG}, Sub N₀,

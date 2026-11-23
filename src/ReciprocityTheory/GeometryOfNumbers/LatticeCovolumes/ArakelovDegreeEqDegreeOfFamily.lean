@@ -60,10 +60,7 @@ theorem exists_isFrame (E : Submodule (𝓞 K) V) (hE : E.FG) :
   obtain rfl := hv.length_eq_latticeRank
   exact ⟨v, hv⟩
 
-theorem IsFrame.relIndex_ne_zero {E : Submodule (𝓞 K) V} (hE : E.FG) {r : ℕ} {v : Fin r → V}
-    (hv : IsFrame K E v) :
-    (Submodule.span (𝓞 K) (Set.range v)).toAddSubgroup.relIndex E.toAddSubgroup ≠ 0 := by
-  exact hv.relIndex_span_frame_ne_zero hE
+alias IsFrame.relIndex_ne_zero := _root_.ReciprocityTheory.GeometryOfNumbersTheory.IsFrame.relIndex_span_frame_ne_zero
 
 theorem degreeOfFamily_eq_degreeOfFamily (h : HermFam K V) {E : Submodule (𝓞 K) V} (hE : E.FG) {r r' : ℕ}
     {v : Fin r → V} {v' : Fin r' → V} (hv : IsFrame K E v) (hv' : IsFrame K E v') :

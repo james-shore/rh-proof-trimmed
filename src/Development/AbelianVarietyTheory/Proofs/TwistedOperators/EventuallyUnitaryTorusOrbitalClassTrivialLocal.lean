@@ -101,7 +101,7 @@ theorem eventually_unitLoc_orbCls : ∀ (F E : Type) [Field F] [NumberField F] [
         (IsClopen.continuous_indicator ⟨Subgroup.isClosed_of_isOpen _ hK, hK⟩ continuous_const)
       have hcs : HasCompactSupport (unitLoc σ J L v) :=
         HasCompactSupport.intro hKc fun y hy => indicator_of_notMem hy _
-      have h1 := ((GlobalTheory.T.local_stable_orbital_integrals_well_defined F E σ hE r r P J hJ).1 v μ dt (unitLoc σ J L v) hμ hdt hcont hcs).2 1 φ₁ h₁
+      have h1 := ((_root_.GlobalTheory.TrPhiOK.phiOK_local F E σ hE r r P J hJ).1 v μ dt (unitLoc σ J L v) hμ hdt hcont hcs).2 1 φ₁ h₁
       have hqe : (⟨QuotientGroup.mk 1, 1, φ₁, rfl, h₁⟩ : XSet P (Fv F v) J) = q := Subtype.ext (by rw [hq]; rfl)
       rw [hqe] at h1
       obtain ⟨e, he1, he2⟩ := GlobalTheory.T.unitaryTorus_equiv_centralizer_with_measure F E σ hE r r P J hJ (Fv F v) 1 φ₁ h₁

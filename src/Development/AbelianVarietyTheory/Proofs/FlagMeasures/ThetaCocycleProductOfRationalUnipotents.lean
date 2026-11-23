@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LocOf
 import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.TermLoc
+import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals
 
 @[expose] public section
 
@@ -50,24 +51,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 noncomputable section
 
 namespace GlobalTheory.DcosetCompl
-
-section Gen
-
-variable {E : Type} [Field E] [NumberField E] [StarRing E] {S : Formalism.BasicNotions.HSpace E}
-
-theorem mem_orth_iff (U : Submodule E S.V) (v : S.V) : v ∈ orth S U ↔ ∀ y ∈ U, S.hT y v = 0 := by
-  simp [orth, Submodule.mem_iInf, LinearMap.mem_ker]
-
-theorem orth_anti {U U' : Submodule E S.V} (h : U ≤ U') : orth S U' ≤ orth S U := by
-  intro v hv
-  rw [mem_orth_iff] at hv ⊢
-  exact fun y hy => hv y (h hy)
-
-theorem le_spanE_inf (Λ : Submodule (𝓞 E) S.V) (hΛ : Submodule.IsFullLattice E Λ) (U : Submodule E S.V) :
-    U ≤ spanE S (Λ ⊓ toO S U) := by
-  exact _root_.GlobalTheory.SpanInfDenominators.le_spanE_inf_toO Λ hΛ U
-
-end Gen
 
 end GlobalTheory.DcosetCompl
 
@@ -87,7 +70,7 @@ theorem xa_eq_x_of_le {T : E} (F : Formalism.MainNotions.S.FlagG S r T) {j : ℕ
   · rintro ⟨i, rfl⟩; exact ⟨i, lt_of_lt_of_le i.2 hj, rfl⟩
 
 theorem z_mem_orth {T : E} (F : Formalism.MainNotions.S.FlagG S r T) : F.z ∈ orth S F.X := by
-  rw [mem_orth_iff]
+  rw [_root_.Formalism.MainNotions.LatticeGluingRadicals.a_mem_orth]
   intro y hy
   have : F.X ≤ LinearMap.ker (S.hT.flip F.z) := by
     unfold Formalism.MainNotions.S.FlagG.X
@@ -130,8 +113,8 @@ theorem sub_le_uue {T T' : E} (Λ : Submodule (𝓞 E) S.V) (hΛ : Submodule.IsF
     exact Submodule.mem_sup_right (Submodule.mem_span_singleton_self _)
   have hs1 : spanE S (XLam Λ F) ≤ UUE Λ F F' := Submodule.span_mono (fun x hx => h1 hx)
   have hs2 : spanE S (XLam Λ F') ≤ UUE Λ F F' := Submodule.span_mono (fun x hx => h2 hx)
-  have hl1 : Xsp F ≤ spanE S (XLam Λ F) := le_spanE_inf Λ hΛ _
-  have hl2 : Xsp F' ≤ spanE S (XLam Λ F') := le_spanE_inf Λ hΛ _
+  have hl1 : Xsp F ≤ spanE S (XLam Λ F) := _root_.GlobalTheory.SpanInfDenominators.le_spanE_inf_toO Λ hΛ _
+  have hl2 : Xsp F' ≤ spanE S (XLam Λ F') := _root_.GlobalTheory.SpanInfDenominators.le_spanE_inf_toO Λ hΛ _
   exact ⟨hl1.trans hs1, hl2.trans hs2, Submodule.subset_span h3, Submodule.subset_span h4⟩
 
 theorem uue_le {T T' : E} (Λ : Submodule (𝓞 E) S.V) (F : LFlag S r T) (F'' : LFlag S r T')
@@ -198,16 +181,16 @@ theorem th_eq_hp_gen {T T' : E} (Λ : Submodule (𝓞 E) S.V) (hΛ : Submodule.I
     rintro ⟨a, b⟩ hp
     exact hp.1.1.1
   · intro x hx
-    have hxP : x ∈ orth S (Xsp F) := orth_anti hXU hx
-    have hxP' : x ∈ orth S (Xsp F') := orth_anti hX'U hx
+    have hxP : x ∈ orth S (Xsp F) := _root_.Formalism.MainNotions.LatticeGluingRadicals.c_orth_anti hXU hx
+    have hxP' : x ∈ orth S (Xsp F') := _root_.Formalism.MainNotions.LatticeGluingRadicals.c_orth_anti hX'U hx
     refine ⟨(x, n x), ⟨⟨⟨hx, ?_⟩, ?_⟩, ?_⟩, rfl⟩
     · show n x ∈ orth S (UUE Λ F F'')
-      rw [mem_orth_iff]
+      rw [_root_.Formalism.MainNotions.LatticeGluingRadicals.a_mem_orth]
       intro w hw
       obtain ⟨w0, hw0, rfl⟩ := hUle hw
       show S.hT (n w0) (n x) = 0
       rw [hni]
-      exact (mem_orth_iff _ _).1 hx w0 hw0
+      exact (_root_.Formalism.MainNotions.LatticeGluingRadicals.a_mem_orth _ _).1 hx w0 hw0
     · show x - n x ∈ Xsp F
       have := neg_mem (hnP x hxP)
       simpa using this

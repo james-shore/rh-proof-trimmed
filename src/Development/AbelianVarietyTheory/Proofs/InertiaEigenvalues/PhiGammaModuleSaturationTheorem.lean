@@ -93,8 +93,8 @@ theorem main : ∀ {k : Type} [Field k] {l : ℕ} [Fact l.Prime] [CharP k l] (R 
       CondAB D'.φ w w' (fun i => (N i).comap ((f i).restrictScalars k⟦X⟧)) ∧
       ∀ i, CondC (D'.γ i) ((N i).comap ((f i).restrictScalars k⟦X⟧)) := by
   intro k _ l _ _ R n _ V _ _ _ _ _ _ _ _ W _ _ _ _ _ _ _ _ D D' f hf hφ hγ w w' N hN hAB hC
-  refine ⟨fun i => isLat_comap _ (hf i) (hN i), fun i => ?_, fun i x hx => ?_⟩
-  · have h := comap_pull D D' i (f (i - 1)) (f i) (hf _) (hf _) (hφ i) (hN (i - 1)).1
+  refine ⟨fun i => _root_.GlobalTheory.LatticeComap.isLat_comap _ (hf i) (hN i), fun i => ?_, fun i x hx => ?_⟩
+  · have h := _root_.GlobalTheory.IndependentSpanDual.comap_pull D D' i (f (i - 1)) (f i) (hf _) (hf _) (hφ i) (hN (i - 1)).1
     rw [← h, ← comap_sh, ← comap_sh]
     exact ⟨Submodule.comap_mono (hAB i).1, Submodule.comap_mono (hAB i).2⟩
   · rw [← comap_sh]

@@ -184,26 +184,10 @@ theorem cge_monomial {σ : Type} {a : ℝ} {c : K} (α : σ →₀ ℕ) (hc : vg
 
 theorem cge_zero_iff_Integral {σ : Type} (F : MvPolynomial σ K) : cge v 0 F ↔ Integral v F := forall_congr' fun α => vge_zero_iff v _
 
-private lemma coeff_dg_eq_mul_coeff {σ : Type} (f : (σ →₀ ℕ) → K) (F : MvPolynomial σ K) (β : σ →₀ ℕ) :
-    (dg f F).coeff β = f β * F.coeff β := by
-  classical
-  induction F using MvPolynomial.induction_on' with
-  | monomial α c =>
-    have e : monomial α c = c • (basisMonomials σ K) α := by
-      rw [coe_basisMonomials, smul_monomial, smul_eq_mul, mul_one]
-    unfold dg
-    rw [e, map_smul, Module.Basis.constr_basis, coe_basisMonomials]
-    simp only [MvPolynomial.coeff_smul, coeff_monomial, smul_eq_mul]
-    split_ifs with h
-    · subst h
-      ring
-    · simp
-  | add F G hF hG => rw [map_add (f := _), MvPolynomial.coeff_add, MvPolynomial.coeff_add, hF, hG, mul_add]
-
 theorem cge_dg {σ : Type} {a b : ℝ} {f : (σ →₀ ℕ) → K} {F : MvPolynomial σ K}
     (hf : ∀ α, vge v a (f α)) (hF : cge v b F) : cge v (a + b) (dg f F) := by
   intro β
-  rw [coeff_dg_eq_mul_coeff]
+  rw [_root_.Formalism.MainNotions.PlaneGram.coeff_dg]
   exact vge_mul v (hf β) (hF β)
 
 theorem cge_mul {σ : Type} {a b : ℝ} {F G : MvPolynomial σ K} (hF : cge v a F) (hG : cge v b G) :

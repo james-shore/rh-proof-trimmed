@@ -96,11 +96,6 @@ private theorem eig_prod {R : Type} [CommRing R] {n : ℕ} (v : Fin n → R) :
     rw [List.ofFn_succ, List.prod_cons, ← Matrix.mulVec_mulVec, ih _ (fun k => c k.succ) (fun k => h _),
       Matrix.mulVec_smul, h, Fin.prod_univ_succ, smul_smul, mul_comm]
 
-private theorem eig_ex {k : Type} [Field k] {n : ℕ} (P : Matrix (Fin n) (Fin n) k) (a : Fin n → k)
-    (hP : P.charpoly = ∏ i, (Polynomial.X - Polynomial.C (a i))) (i : Fin n) :
-    ∃ v : Fin n → k, v ≠ 0 ∧ P *ᵥ v = a i • v :=
-  _root_.UpperTheory.Reformulated.B.Qi37.eig_ex P a hP i
-
 private theorem one_zero {R : Type} [CommRing R] {n : ℕ} (c : Fin n → R) (i : Fin n)
     (hu : ∀ j, j ≠ i → IsUnit (c j)) (h : ∏ j, c j = 0) : c i = 0 := by
   rw [← Finset.mul_prod_erase _ _ (Finset.mem_univ i)] at h
@@ -180,7 +175,7 @@ private theorem u_lem {k R : Type} [Field k] [CommRing R] [Algebra k R] {n : ℕ
     ∀ y : R, (List.ofFn fun j => if j = i then 1 else P.map (algebraMap k R) -
       algebraMap R (Matrix (Fin n) (Fin n) R) (c j)).prod * (1 - 1 - algebraMap R (Matrix (Fin n) (Fin n) R) y) = 0 →
       y = 0 := by
-  obtain ⟨v, hv0, hv⟩ := eig_ex P _ hP i
+  obtain ⟨v, hv0, hv⟩ := _root_.UpperTheory.Reformulated.B.Qi37.eig_ex P _ hP i
   have hu : ∀ j, j ≠ i → IsUnit (algebraMap k R (e (c i)) - c j) := fun j hj => unit_of e hn _ (by
     rw [map_sub, AlgHom.commutes]
     exact sub_ne_zero.2 fun h => hj (hinj h).symm)

@@ -112,10 +112,10 @@ theorem isCoef_ckOn_inCC : HypsG → ∀ (k r : ℕ) (ε : Fin (2 * r + k + 1) �
   have hf : ∀ i ∈ (Finset.univ : Finset (Fin n)),
       B.CkOn ⊤ (B.GV k r) (f i) ∧ ∀ m : ℕ, B.InCC (aOf r h - 1) m (f i) := by
     intro i _
-    obtain ⟨h1, h2⟩ := GlobalTheory.T.matrix_coefficient_smooth_derivatives hK k r ε mu R (Wq →L[ℂ] Wp) (X i) (f i) hR (x i) (hsm _ (hxy i).1)
+    obtain ⟨h1, h2⟩ := _root_.Gp91.GlobalTheory.CoeffDeriv.coeff_dLR hK k r ε mu R (Wq →L[ℂ] Wp) (X i) (f i) hR (x i) (hsm _ (hxy i).1)
       (y i) (hsm _ (hxy i).2) (fun g _ => rfl)
     refine ⟨h1, fun m => ?_⟩
-    obtain ⟨c, hc⟩ := GlobalTheory.T.matrix_coefficient_decay hH k r ε mu h R hR hg hok (x i) (hxy i).1 (y i) (hxy i).2 m
+    obtain ⟨c, hc⟩ := _root_.Gp91.GlobalTheory.BesselCoefBound.coef_bound hH k r ε mu h R hR hg hok (x i) (hxy i).1 (y i) (hxy i).2 m
     refine ⟨c * ‖X i‖, Formalism.FourierDecayAlt.P.B6.smooth_on_mono le_top h1, fun u v hu hv hlen g hgG => ?_⟩
     rw [h2 u v (fun Y hY => (hu Y hY).1) (fun Y hY => (hv Y hY).1) g hgG, norm_smul, ← mul_assoc]
     exact mul_le_mul_of_nonneg_right (hc u v hu hv hlen g hgG) (norm_nonneg _)

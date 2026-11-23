@@ -103,13 +103,9 @@ theorem inChart_down {ξ : Spec (CommRingCat.of Ω) ⟶ X} {ξ' : Spec (CommRing
   rw [e]
   exact mul_mem (hd.2 j) hu.2.2
 
-theorem inChart_gen {ξ : Spec (CommRingCat.of Ω) ⟶ X} (hg : IsCptGen ξ) {ι : Type} {v : ι → Ω} {c : ι} (hc : v c ≠ 0) :
-    InChart ξ v c ⟨genPt ξ, specializes_rfl⟩ :=
-  ⟨hc, fun _ => SheetDecomposition.BBase.mem_regAt_gen hg _⟩
-
 theorem exists_mul_mem {ξ : Spec (CommRingCat.of Ω) ⟶ X} {κ : Type} {x : κ → Ω} (h : CoordTie ℤ ξ x) {c : κ}
     (hc : x c ≠ 0) (a : Ω) : ∃ t ∈ chRing ℤ x c, t ≠ 0 ∧ t * a ∈ chRing ℤ x c := by
-  obtain ⟨t, ht, hu, hta⟩ := (SheetDecomposition.regular_function_chart_adjoin X Ω ξ ℤ κ x h c ⟨genPt ξ, specializes_rfl⟩ (inChart_gen h.gen hc) a).1
+  obtain ⟨t, ht, hu, hta⟩ := (SheetDecomposition.regular_function_chart_adjoin X Ω ξ ℤ κ x h c ⟨genPt ξ, specializes_rfl⟩ (_root_.GlobalTheory.CompanionTheory.Ar.ChartFin.inChart_genPt h.gen hc) a).1
     (SheetDecomposition.BBase.mem_regAt_gen h.gen a)
   exact ⟨t, ht, hu.1, hta⟩
 

@@ -149,16 +149,7 @@ theorem fn_eq_of_generic {X : Scheme.{0}} [IsIntegral X] (ξ : X)
     exact germ_injective_of_isIntegral X (U := U) ξ hm e
   · exact fn_ext fun x hx => (hU ⟨x, hx⟩).elim
 
-theorem exists_push {X Y : Scheme.{0}} (f : Y ⟶ X) [IsOpenImmersion f] (V : Y.Opens) (u : Γ(Y, V)ˣ) :
-    ∃ t : Γ(X, f ''ᵁ V)ˣ, ∀ (Z : Scheme.{0}) (r : Z ⟶ Y) (z : Z), r z ∈ V → gm (r ≫ f) z _ t = gm r z V u := by
-  have h : V ≤ f ⁻¹ᵁ (f ''ᵁ V) := (f.preimage_image_eq V).ge
-  let t : Γ(X, f ''ᵁ V)ˣ := Units.map (f.appIso V).inv.hom.toMonoidHom u
-  have e' : Semi.res h (pullU f _ t) = u := by
-    apply Units.ext
-    rw [val_res_pullU, ← Scheme.Hom.appIso_hom']
-    exact Iso.inv_hom_id_apply _ _
-  refine ⟨t, fun Z r z hz => ?_⟩
-  rw [← e', gm_res r z h hz, gm_pull r f z _ (h hz)]
+alias exists_push := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_ext_unit
 
 theorem exists_ratio {X G : Scheme.{0}} (p₁ p₂ : X ⟶ G) {E E' : G.Opens} (t : Γ(G, E)ˣ) (t' : Γ(G, E')ˣ)
     (V : X.Opens) (h₁ : V ≤ p₁ ⁻¹ᵁ E) (h₂ : V ≤ p₂ ⁻¹ᵁ E') :

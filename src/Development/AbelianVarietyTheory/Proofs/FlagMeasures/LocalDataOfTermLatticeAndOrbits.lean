@@ -129,32 +129,6 @@ theorem tri_adapt_loc (Z : LocDat D) (p : PlF D) (g : GV D) {T : D.host.E} (F₁
     refine Finset.sum_congr rfl fun a _ => ?_
     rw [mul_assoc (frFac Z.δ p b * _), Ring.inverse_mul_cancel _ (hu a), mul_one]
 
-theorem isLattice_gmap (g : GV D) (A : LV D) (hA : Submodule.IsLattice D.host.E A) :
-    Submodule.IsLattice D.host.E (Formalism.HermitianLatticesTheory.gmap g A) := by
-  refine ⟨hA.fg.map _, ?_⟩
-  have : (Formalism.HermitianLatticesTheory.gmap g A : Set (VS D).V) = (g : (VS D).V →ₗ[D.host.E] (VS D).V) '' (A : Set (VS D).V) := rfl
-  rw [this]
-  intro s hs hli
-  let t := g.symm '' s
-  have ht : t ⊆ (A : Set (VS D).V) := by
-    rintro x ⟨y, hy, rfl⟩
-    obtain ⟨z, hz, hzy⟩ := hs hy
-    simpa [← hzy] using hz
-  have heq : (g : (VS D).V →ₗ[D.host.E] (VS D).V) '' t = s := by
-    ext x
-    simp [t]
-  change (g : (VS D).V → (VS D).V) '' t = s at heq
-  have hli' : LinearIndepOn (𝓞 D.host.E) id t := by
-    apply (linearIndepOn_id_imageₛ_iff (f := g.toLinearMap.restrictScalars (𝓞 D.host.E))
-      g.injective.injOn).1
-    change LinearIndepOn (𝓞 D.host.E) id ((g : (VS D).V → (VS D).V) '' t)
-    rw [heq]
-    exact hli
-  have hE := hA.linearIndepOn t ht hli'
-  have := (linearIndepOn_id_imageₛ_iff (f := g.toLinearMap) g.injective.injOn).2 hE
-  change LinearIndepOn D.host.E id ((g : (VS D).V → (VS D).V) '' t) at this
-  rwa [heq] at this
-
 theorem finrank_Vp_eq (p : PlF D) : Module.finrank (D.s.atP p).Ep (Vp D p) = D.R.k + 2 * D.R.rS + 1 := by
   rw [finrank_Vp]
   have h1 := D.R.m_even
@@ -186,11 +160,11 @@ theorem local_data_of_term : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u'
         (tri_map (gp p).toLinearMap (hτ p).2)
   choose y hy using hex
   refine ⟨y, ⟨?_, fun p => ⟨_, hy p, ?_⟩⟩, fun p d => ?_⟩
-  · rw [hΛ]; exact isLattice_gmap g _ hrow.1.1.toIsLattice
+  · rw [hΛ]; exact _root_.GlobalTheory.RatLocMove.isLattice_gmap' g _ hrow.1.1.toIsLattice
   · show LocNG.img (gp p) (lattice₂ D Z.M p t.lam) = _
     rw [hΛ, hlat g p (gp p) t.lam (hgp p)]
   · have hDC : Formalism.L2.SG.TermDef.DCRel t.lam (lf D (X.Fu u)) t.frame (Quot.out t.toTerm.cls).1 :=
-      (Formalism.L2.SG.Closed.TermEqIff_holds D u u' (X.Fu u) t.lam hrow ⟨t.frame, hPD⟩ (Quot.out t.toTerm.cls)).1
+      (_root_.term_eq_iff_relation D u u' (X.Fu u) t.lam hrow ⟨t.frame, hPD⟩ (Quot.out t.toTerm.cls)).1
         (Quot.out_eq t.toTerm.cls).symm
     refine (GlobalTheory.T.localData_globalTerm_independent_of_representative D Z u u' (X.Fu u) t.lam hrow t.frame (Quot.out t.toTerm.cls).1 hPD
       (Quot.out t.toTerm.cls).2 hGv hDC p (FP p) (hRel p) d).symm.trans ?_

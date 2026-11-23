@@ -53,6 +53,7 @@ import Mathlib.Topology.Sheaves.Init
 public import Mathlib.FieldTheory.Minpoly.IsIntegrallyClosed
 public import Mathlib.RingTheory.Polynomial.Cyclotomic.Basic
 public import Mathlib.RingTheory.Polynomial.Cyclotomic.Roots
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.DepthZeroLabelsOfLabelLaws
 
 @[expose] public section
 
@@ -63,23 +64,6 @@ noncomputable section
 namespace GlobalTheory.TeichGalois
 
 variable {g : ℕ} [Fact g.Prime]
-
-theorem map_zero_eq_zero (t : Formalism.CyclotomicNorms.Fbar g →* ℂ)
-    (ht : ∀ x y : Formalism.CyclotomicNorms.Fbar g, x ≠ 0 → y ≠ 0 → t x = t y → x = y) : t 0 = 0 := by
-  classical
-  have h2 : t 0 * (t 0 - 1) = 0 := by
-    rw [mul_sub, mul_one, ← map_mul, mul_zero, sub_self]
-  rcases mul_eq_zero.1 h2 with h | h
-  · exact h
-  · exfalso
-    have h1 : t 0 = 1 := sub_eq_zero.1 h
-    have hall : ∀ x, t x = 1 := fun x => by
-      have : t (x * 0) = t x * t 0 := map_mul t x 0
-      rw [mul_zero, h1, mul_one] at this
-      exact this.symm
-    obtain ⟨y, hy⟩ := Infinite.exists_notMem_finset ({0, 1} : Finset (Formalism.CyclotomicNorms.Fbar g))
-    simp only [Finset.mem_insert, Finset.mem_singleton, not_or] at hy
-    exact hy.2 (ht y 1 hy.1 one_ne_zero (by rw [hall, hall]))
 
 theorem exists_coprime_pow_eq_one {x : Formalism.CyclotomicNorms.Fbar g} (hx : x ≠ 0) :
     ∃ m : ℕ, g.Coprime m ∧ x ^ m = 1 := by
@@ -157,10 +141,10 @@ theorem lift_eq_zero_of_lift_eq_zero (t t' : Formalism.CyclotomicNorms.Fbar g �
     rw [← map_pow, hk x hx]
   have hζ := isPrimitiveRoot_map t ht hm hu
   have hζ' := isPrimitiveRoot_map t' ht' hm hu
-  have h1 : aeval (t' u) P = 0 := by rw [← heval t' (map_zero_eq_zero t' ht'), h]
+  have h1 : aeval (t' u) P = 0 := by rw [← heval t' (_root_.GlobalTheory.TameLabels.teich_zero t' ht'), h]
   have hdvd : minpoly ℤ (t' u) ∣ P := minpoly.isIntegrallyClosed_dvd (hζ'.isIntegral hm) h1
   rw [← cyclotomic_eq_minpoly hζ' hm, cyclotomic_eq_minpoly hζ hm] at hdvd
-  rw [heval t (map_zero_eq_zero t ht)]
+  rw [heval t (_root_.GlobalTheory.TameLabels.teich_zero t ht)]
   exact aeval_eq_zero_of_dvd_aeval_eq_zero hdvd (minpoly.aeval ℤ (t u))
 
 instance countable_fbar : Countable (Formalism.CyclotomicNorms.Fbar g) :=

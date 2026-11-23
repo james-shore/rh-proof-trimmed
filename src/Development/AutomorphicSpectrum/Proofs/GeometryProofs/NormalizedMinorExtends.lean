@@ -121,7 +121,7 @@ theorem normAt_exchange {F : Type} [Field F] (O : Subring F) [IsLocalRing O] {n 
     conv_rhs => rw [hZZ]
     ext a b
     simp [Matrix.mul_apply]
-  have hsum := det_mul_expand (Z.submatrix I id) (Z'.submatrix I' id)
+  have hsum := _root_.UpperTheory.Reformulated.B.DetMulExpand.det_mul_expand (Z.submatrix I id) (Z'.submatrix I' id)
   rw [hone, Matrix.det_one] at hsum
   obtain ⟨f, -, hne, hinv⟩ := exists_unit_of_sum_eq_one O Finset.univ _
     (fun f _ => O.mul_mem (O.prod_mem fun a _ => hZ _ _) (det_mem_subring O _ fun a b => hZ' _ _)) hsum.symm

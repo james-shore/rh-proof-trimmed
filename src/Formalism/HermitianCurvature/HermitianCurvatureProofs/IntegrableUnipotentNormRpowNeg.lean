@@ -156,8 +156,6 @@ section norms
 
 variable {k r : ℕ}
 
-private theorem gN_nonneg_lemma_2 (g : B.Mat k r) : 0 ≤ B.gN g := Real.sqrt_nonneg _
-
 theorem entry_le_gN (g : B.Mat k r) (i j : Fin (2 * r + k + 1)) : ‖g i j‖ ≤ B.gN g := by
   have h1 : Complex.normSq (g i j) ≤ ∑ j', Complex.normSq (g i j') :=
     Finset.single_le_sum (f := fun j' => Complex.normSq (g i j')) (fun j' _ => Complex.normSq_nonneg _)
@@ -221,7 +219,7 @@ theorem uMap_le (z : Fin (2 * r + k + 1) → ℂ) :
   choose C hC hb using fun a b => uMap_entry_le_matrix_norm (k := k) (r := r) z a b
   refine ⟨∑ a, ∑ b, C a b, Finset.sum_nonneg fun a _ => Finset.sum_nonneg fun b _ => hC a b,
     fun g a b => (hb a b g).trans ?_⟩
-  refine mul_le_mul_of_nonneg_right ?_ (gN_nonneg_lemma_2 g)
+  refine mul_le_mul_of_nonneg_right ?_ (_root_.Formalism.FourierDecayAlt.P.SliceLastLevel.tr_gN_nonneg g)
   exact (Finset.single_le_sum (f := fun b => C a b) (fun b _ => hC a b) (Finset.mem_univ b)).trans
     (Finset.single_le_sum (f := fun a => ∑ b, C a b)
       (fun a _ => Finset.sum_nonneg fun b _ => hC a b) (Finset.mem_univ a))
@@ -439,30 +437,21 @@ theorem om_int (hR : B.IsHaarOn (C6.Rset γ) μR) {M : ℝ} (hM : 0 ≤ M)
     Integrable (fun x : Mt k r => B.gN (Matrix.of x * Matrix.of n) ^ (-M)) μR := by
   refine (hI.const_mul (B.gN (Matrix.of n)⁻¹ ^ M)).mono' (om_meas_int M n).aestronglyMeasurable ?_
   filter_upwards [om_bound hR hM hn] with x hx
-  rw [Real.norm_eq_abs, abs_of_nonneg (Real.rpow_nonneg (gN_nonneg_lemma_2 _) _)]
+  rw [Real.norm_eq_abs, abs_of_nonneg (Real.rpow_nonneg (_root_.Formalism.FourierDecayAlt.P.SliceLastLevel.tr_gN_nonneg _) _)]
   exact hx
-
-private theorem gv_mul_lemma_5 {a b : B.Mat k r} (ha : a ∈ B.GV k r) (hb : b ∈ B.GV k r) :
-    a * b ∈ B.GV k r := by
-  have ha' : aᴴ * Hpk k r * a = Hpk k r := ha
-  have hb' : bᴴ * Hpk k r * b = Hpk k r := hb
-  show (a * b)ᴴ * Hpk k r * (a * b) = Hpk k r
-  calc (a * b)ᴴ * Hpk k r * (a * b) = bᴴ * (aᴴ * Hpk k r * a) * b := by
-        rw [Matrix.conjTranspose_mul]; simp only [Matrix.mul_assoc]
-    _ = Hpk k r := by rw [ha', hb']
 
 theorem om_pos (hR : B.IsHaarOn (C6.Rset γ) μR) {M : ℝ} (hM : 0 ≤ M)
     (hI : Integrable (fun x : Mt k r => B.gN (Matrix.of x) ^ (-M)) μR) {n : Mt k r}
     (hn : Matrix.of n ∈ B.GV k r) : 0 < Om μR M n := by
   unfold Om
   have hint := om_int hR hM hI hn
-  have hnn : ∀ x, 0 ≤ B.gN (Matrix.of x * Matrix.of n) ^ (-M) := fun x => Real.rpow_nonneg (gN_nonneg_lemma_2 _) _
+  have hnn : ∀ x, 0 ≤ B.gN (Matrix.of x * Matrix.of n) ^ (-M) := fun x => Real.rpow_nonneg (_root_.Formalism.FourierDecayAlt.P.SliceLastLevel.tr_gN_nonneg _) _
   rw [integral_pos_iff_support_of_nonneg hnn hint]
   have hsub : @id (Set (Mt k r)) (C6.Rset γ) ⊆
       Function.support (fun x : Mt k r => B.gN (Matrix.of x * Matrix.of n) ^ (-M)) := by
     intro x hx
     have hxG : Matrix.of x ∈ B.GV k r := (hx : Matrix.of x ∈ C6.Rset γ).1.1
-    exact (Real.rpow_pos_of_pos (PI.PolynomialProperness.GN.gN_pos (gv_mul_lemma_5 hxG hn)) _).ne'
+    exact (Real.rpow_pos_of_pos (PI.PolynomialProperness.GN.gN_pos (_root_.PI.PolynomialProperness.GN.mul_mem hxG hn)) _).ne'
   have hpos : 0 < μR (@id (Set (Mt k r)) (C6.Rset γ)) := by
     rw [pos_iff_ne_zero]
     intro h0
@@ -503,7 +492,7 @@ theorem om_lower (hR : B.IsHaarOn (C6.Rset γ) μR) {M : ℝ} (hM : 0 ≤ M)
   have hxG : Matrix.of x ∈ B.GV k r := hx.1.1
   have hc := PI.PolynomialProperness.GN.gN_pos hxG
   have hs := PI.PolynomialProperness.GN.gN_pos hσ
-  have ha := PI.PolynomialProperness.GN.gN_pos (gv_mul_lemma_5 hxG hσ)
+  have ha := PI.PolynomialProperness.GN.gN_pos (_root_.PI.PolynomialProperness.GN.mul_mem hxG hσ)
   have hle := PI.PolynomialProperness.GN.gN_mul_le (Matrix.of x) σ
   show B.gN (Matrix.of x) ^ (-M) * B.gN σ ^ (-M) ≤ B.gN (Matrix.of x * σ) ^ (-M)
   rw [← Real.mul_rpow hc.le hs.le]
@@ -527,8 +516,8 @@ theorem cut_meas [SFinite μR] (M : ℝ) : Measurable (cut μR M) := by
 
 theorem cut_nonneg (μR : Measure (Mt k r)) (M : ℝ) (p : B.SS k r) : 0 ≤ cut μR M p := by
   unfold cut Om
-  exact div_nonneg (Real.rpow_nonneg (gN_nonneg_lemma_2 _) _)
-    (integral_nonneg fun x => Real.rpow_nonneg (gN_nonneg_lemma_2 _) _)
+  exact div_nonneg (Real.rpow_nonneg (_root_.Formalism.FourierDecayAlt.P.SliceLastLevel.tr_gN_nonneg _) _)
+    (integral_nonneg fun x => Real.rpow_nonneg (_root_.Formalism.FourierDecayAlt.P.SliceLastLevel.tr_gN_nonneg _) _)
 
 theorem cut_norm (hR : B.IsHaarOn (C6.Rset γ) μR) {M : ℝ} (hM : 0 ≤ M)
     (hI : Integrable (fun x : Mt k r => B.gN (Matrix.of x) ^ (-M)) μR) (p : B.SS k r)
@@ -758,4 +747,4 @@ theorem d_orbJConv : Formalism.FourierDecayAlt.D.OrbJConv := by
 
 end Formalism.FourierDecayAlt.P.Dx3
 
-theorem Formalism.FourierDecayAlt.P.orbital_integral_converges : Formalism.FourierDecayAlt.D.OrbJConv := Formalism.FourierDecayAlt.P.Dx3.d_orbJConv
+alias Formalism.FourierDecayAlt.P.orbital_integral_converges := _root_.Formalism.FourierDecayAlt.P.Dx3.d_orbJConv

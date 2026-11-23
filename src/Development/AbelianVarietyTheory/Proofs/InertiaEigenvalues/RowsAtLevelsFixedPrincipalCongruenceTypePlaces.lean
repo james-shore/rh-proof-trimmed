@@ -61,6 +61,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FiniteCosetsHeckeSetAtSplitPlaceOutsideLevel
 
 @[expose] public section
 
@@ -184,14 +185,6 @@ theorem proj_off {n : ℕ} (s s' : SplitPlace L) (h : s'.v ≠ s.v) {x : GA L n}
   rw [this, Matrix.one_apply, Matrix.one_apply]
   split_ifs <;> simp
 
-theorem trivOutside_inv {n : ℕ} {T : Set (HeightOneSpectrum (𝓞 (maximalRealSubfield L)))}
-    {x : GA L n} (hx : TrivOutside T x) : TrivOutside T x⁻¹ := fun v hv => by
-  have h1 : (((x⁻¹ : GA L n) : GL (Fin n) (AL L)) : Matrix (Fin n) (Fin n) (AL L)) *
-      ((x : GL (Fin n) (AL L)) : Matrix (Fin n) (Fin n) (AL L)) = 1 := by simp
-  have h2 := congrArg (fun M => Matrix.map M (compAt L v)) h1
-  simp only [Matrix.map_mul, hx v hv, mul_one, Matrix.map_one _ (map_zero _) (map_one _)] at h2
-  exact h2
-
 theorem loc_le_one {g n : ℕ} (s : SplitPlace L) {x : GAf L n} {γ : GL (Fin n) (ZMod g)} (h : GlobalTheory.LabPin.RedTo s x γ) (a b : Fin n) :
     Valued.v ((s.loc n x).1 a b) ≤ 1 := by
   have h1 : Valued.v (((γ.1 a b).val : ℕ) : s.v.adicCompletion (maximalRealSubfield L)) ≤ 1 := by
@@ -202,7 +195,7 @@ theorem loc_le_one {g n : ℕ} (s : SplitPlace L) {x : GAf L n} {γ : GL (Fin n)
 theorem mem_Umax_of_isLiftAt {g : ℕ} [Fact g.Prime] {n : ℕ} (s : SplitPlace L)
     (j : ℚ_[g] ≃+* s.v.adicCompletion (maximalRealSubfield L)) (hj : Continuous j) (y : GL (Fin n) ℤ_[g]) (x : GAf L n)
     (h : IsLiftAt s j y x) : x ∈ Umax L n := by
-  have h' : IsLiftAt s j y⁻¹ x⁻¹ := ⟨trivOutside_inv h.1, by rw [map_inv, h.2, map_inv, map_inv]⟩
+  have h' : IsLiftAt s j y⁻¹ x⁻¹ := ⟨_root_.GlobalTheory.TSetFin.triv_inv h.1, by rw [map_inv, h.2, map_inv, map_inv]⟩
   exact GlobalTheory.HeckeStdFacts.mem_Umax_of_loc s x h.1 (loc_le_one s (isLift_of_isLiftAt s j hj y x h).2)
     (loc_le_one s (isLift_of_isLiftAt s j hj _ _ h').2)
 

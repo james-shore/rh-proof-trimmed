@@ -123,7 +123,7 @@ theorem mem_of_homog {Ω : Type} [Field Ω] {y : (Σ k, ι k) → Ω} {g : MRing
     (hg : IsMultiHomog g δ) (h0 : aeval y g = 0) : g ∈ mCoordIdeal y := by
   show g ∈ RingHom.ker (mConeMap y)
   rw [RingHom.mem_ker]
-  erw [mConeMap_homog y hg, h0]
+  erw [_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.ProjLine.mConeMap_eq_of_isMultiHomog y hg, h0]
   simp
 
 theorem numer_mem {Ω : Type} [Field Ω] {y : (Σ k, ι k) → Ω} {A : HermLine ι} {m : ℕ} {v : Fin N → Ω}

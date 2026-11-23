@@ -491,7 +491,7 @@ theorem integrable_ker (L : LocBessel k r) {γ : MatKR k r} (hγ : γ ∈ UH (Hp
   have key := rpow_bound (PI.PolynomialProperness.GN.gN_ge_one hA) (PI.PolynomialProperness.GN.gN_ge_one hB) (PI.PolynomialProperness.GN.gN_ge_one hu)
     (b := b) (e := e) (by
       rw [e1]
-      exact (GlobalTheory.ThA.FrobNorm.gN_mul_le _ _).trans (le_of_eq (by rw [GlobalTheory.ThA.FrobNorm.gN_inv hB]))) hb (by linarith)
+      exact (_root_.PI.PolynomialProperness.GN.gN_mul_le _ _).trans (le_of_eq (by rw [_root_.PI.PolynomialProperness.GN.gN_inv hB]))) hb (by linarith)
   have p1 : 0 ≤ Formalism.FourierDecayAlt.B.gN (lA γ q.1 * Matrix.of q.2) ^ (-e) := Real.rpow_nonneg (Real.sqrt_nonneg _) _
   have p2 : 0 ≤ Formalism.FourierDecayAlt.B.gN (lB q.1 * Matrix.of q.2) ^ (-e) := Real.rpow_nonneg (Real.sqrt_nonneg _) _
   have b1 := (hC _ hA).trans (mul_le_mul_of_nonneg_right (le_abs_self C) p1)

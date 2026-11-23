@@ -135,15 +135,11 @@ theorem halfTr_add_cA (z : AE D) : halfTr (z + cA D z) = trA z := by
   rw [← two_mul, ← mul_assoc, ← map_ofNat (algebraMap D.host.F (AF D.host.F)) 2, ← map_mul]
   norm_num
 
-theorem trace_adj (M : Mx D n n) : Matrix.trace (adj M) = cA D (Matrix.trace M) := by
-  rw [adj, Matrix.trace_transpose]
-  exact (AddMonoidHom.map_trace (cA D).toAddMonoidHom M).symm
-
 theorem pr_sym (γ : Matrix (Fin n) (Fin n) D.host.E) {x : Mx D n n} (hx : adj x = x) :
     pr (γ + γᴴ) x = trA (Matrix.trace (HMul.hMul (rat γ) x : Mx D n n)) := by
   have e1 : Matrix.trace (HMul.hMul (adj (rat γ)) x : Mx D n n) =
       cA D (Matrix.trace (HMul.hMul (rat γ) x : Mx D n n)) := by
-    rw [← trace_adj, show adj (rat γ * x) = adj x * adj (rat γ) by
+    rw [← _root_.GlobalTheory.MixModel.trace_adj, show adj (rat γ * x) = adj x * adj (rat γ) by
       simp [adj, Matrix.map_mul, Matrix.transpose_mul], hx]
     exact Matrix.trace_mul_comm _ _
   have e2 : (γ + γᴴ).map (incA D) = rat γ + adj (rat γ) := by

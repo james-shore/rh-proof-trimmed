@@ -199,7 +199,7 @@ theorem stepWellDefined (hψ : HasConductor ψ 1) : StepWellDefined ψ ν := by
 
 theorem nabs_det_of_mem {J : Subgroup (GL (n ⊕ Fin c) k)} (hJ : IsCO J) {h u : GL (n ⊕ Fin c) k} (hu : u ∈ N k n c 1)
     {g : GL n k} (hm : h⁻¹ * (u * embX c g) * h ∈ J) : nabs k (Matrix.GeneralLinearGroup.det g) = 1 :=
-  nabs_eq_one_of_valuation_eq_one (((T.isCO_prX_Cgrp_and_det_valuation_deltaR_eq_one k n c J hJ h).2 g ⟨u, hu, mem_Cgrp.2
+  nabs_eq_one_of_valuation_eq_one (((_root_.GlobalTheory.PrCompactOpen.isCO_prX_Cgrp k n c J hJ h).2 g ⟨u, hu, mem_Cgrp.2
     ⟨mul_mem (Subgroup.mem_sup_right hu) (Subgroup.mem_sup_left ⟨g, rfl⟩), hm⟩⟩).1)
 
 theorem target_law (hc : 1 ≤ c) (hJ : IsCO P.J) (H : HasTypes μ P' P Φ) (h' : GL (n' ⊕ Fin (c + 1)) k)
@@ -382,12 +382,12 @@ theorem volNat_zpow (hq : (resCard k).Prime) {J : Subgroup (GL (n ⊕ Fin c) k)}
     (isCO_subgroupOf (isOpen_isCompact_conj h hJ.1 hJ.2))
     (isCO_subgroupOf (isOpen_isCompact_conj b SplitFlip.isOpen_KO SplitFlip.isCompact_KO))
   obtain ⟨V, hV, hVU⟩ := (mem_nhds_subtype _ _ _).1 hU
-  obtain ⟨m, hm⟩ := GlobalTheory.T.rootExchangeUnipotent_exists_residueCardPow_mem_nhds k n c 1 hq u u.2 V hV
+  obtain ⟨m, hm⟩ := _root_.GlobalTheory.RootEx.UnipPow.exists_pow_mem_nhds k n c 1 hq u u.2 V hV
   exact ⟨m, hVU hm⟩
 
 theorem cosetMeasure : CosetMeasure ν := by
   intro n _ _ c hc J hJ h
-  obtain ⟨hC, hd⟩ := GlobalTheory.T.isCO_prX_Cgrp_and_det_valuation_deltaR_eq_one k n c J hJ h
+  obtain ⟨hC, hd⟩ := _root_.GlobalTheory.PrCompactOpen.isCO_prX_Cgrp k n c J hJ h
   refine ⟨hC, hd, GlobalTheory.T.exists_parabolicDoubleCosetFunction_eq_one k n c J h fun g hg => (hd g hg).2, fun hq => volNat_zpow hq hJ h, fun m hm => ?_⟩
   have hv := GlobalTheory.T.parabolicHaarVolume_conjIntersection_eq_mul k ν n c J h hC.1
   obtain ⟨h0, h1⟩ := volN_Cgrp ν hJ.1 hJ.2 h

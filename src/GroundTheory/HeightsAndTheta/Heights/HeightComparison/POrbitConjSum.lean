@@ -77,7 +77,7 @@ theorem OrbitConjSum.proof : OrbitConjSum.Statement := by
       Module.finrank L (coordField x) := by
     intro q
     obtain ⟨σ₀, rfl⟩ := hΦ q
-    rw [← card_embeddings_restrict (K := L) (L := coordField x)
+    rw [← _root_.UpperTheory.Reformulated.B.CardEmbeddingsRestrict.card_embeddings_restrict (K := L) (L := coordField x)
       (σ₀.comp (algebraMap L (coordField x)))]
     congr 1
     ext σ

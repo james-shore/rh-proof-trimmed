@@ -92,7 +92,7 @@ def exSC (R : Type) [CommRing R] (A A' : Type) [CommRing A] [CommRing A'] [Algeb
 
 theorem exSC_shortExact (R : Type) [CommRing R] (A A' : Type) [CommRing A] [CommRing A'] [Algebra A A']
     [Algebra.Etale A A'] (f : A) (hN : IsNbhd A A' f) : (exSC R A A' f).ShortExact := by
-  refine GlobalTheory.T.chain_complex_exact_square R _ _ _ _ ?_ (exSC R A A' f).zero (GlobalTheory.T.freeEtaleSheaf_excision_shortExact R A A' f hN ?_)
+  refine _root_.GlobalTheory.EtC.chains_shortExact_of_free R _ _ _ _ ?_ (exSC R A A' f).zero (_root_.GlobalTheory.EtC.MVFree.shortExact R A A' f hN ?_)
   all_goals
     simp only [biprod.lift_desc, Preadditive.neg_comp, ← Functor.map_comp, ← Spec.map_comp, ← CommRingCat.ofHom_comp,
       awayMap_comp_algebraMap, add_neg_cancel]

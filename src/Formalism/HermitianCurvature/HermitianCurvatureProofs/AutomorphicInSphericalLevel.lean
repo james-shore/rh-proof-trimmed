@@ -412,6 +412,4 @@ end Formalism.FourierDecayAlt.P.SmoothExtensionClosedSet
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem fibre_integral_smooth : PBI.FibIntSmooth := SmoothExtensionClosedSet.fibIntSmooth
-
 end Formalism.FourierDecayAlt.P

@@ -63,12 +63,6 @@ open Matrix
 
 variable {D : D7} {n : ℕ}
 
-theorem cA_invol (x : AE D) : cA D (cA D x) = x := by
-  induction x using TensorProduct.induction_on with
-  | zero => simp
-  | tmul a e => change a ⊗ₜ[D.host.F] D.sp.cm.sig (D.sp.cm.sig e) = _; rw [sig_invol]
-  | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
-
 theorem map_neg' {T : Type} [CommRing T] (f : AE D →+* T) (Y : Mx D n n) : (-Y).map f = -(Y.map f) := by
   exact Matrix.map_neg f (map_neg f) Y
 
@@ -94,12 +88,12 @@ theorem isM_of (g : G D n) (A u : Mx D n n) (h : mat g = blk4 A 0 0 u) : IsM g :
     rw [Matrix.map_one _ (map_zero _) (map_one _), Matrix.transpose_one]
   have hA : A * cj (cA D) u = 1 := by
     have h3 := congrArg (cj (cA D)) hu1
-    rwa [hcjmul, cj_cj (cA D) cA_invol, hcj1] at h3
+    rwa [hcjmul, cj_cj (cA D) _root_.Formalism.L2.Theta.cA_cA, hcj1] at h3
   have hA' : cj (cA D) u * A = 1 := (Matrix.mul_eq_one_comm_of_equiv (Equiv.refl _)).1 hA
   refine ⟨⟨A, cj (cA D) u, hA, hA'⟩, ?_⟩
   rw [h]
   congr 1
-  exact (cj_cj (cA D) cA_invol u).symm
+  exact (cj_cj (cA D) _root_.Formalism.L2.Theta.cA_cA u).symm
 
 theorem blocks_at {T : Type} [CommRing T] (f : AE D →+* T) {k : G D n} (h : (mat k).map f = 1) :
     (bA (mat k)).map f = 1 ∧ (bB (mat k)).map f = 0 ∧ (bC (mat k)).map f = 0 ∧ (bD (mat k)).map f = 1 := by

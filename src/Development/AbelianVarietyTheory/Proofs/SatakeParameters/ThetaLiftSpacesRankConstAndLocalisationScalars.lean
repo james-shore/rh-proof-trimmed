@@ -52,13 +52,7 @@ open GlobalTheory.RowCopy GlobalTheory.NRows
 theorem used_loc (D : D7) (i : D.nd.Loc) : D.nd.mu i = D.what₂.mu0 ∨ ∃ w, D.nd.mu i = D.what₂.muAt w :=
   Or.inr ⟨D.nd.w i, (D.nd.mu_w i).trans ((D.what₂.muAt_or _).resolve_left (D.nd.w_tw i)).symm⟩
 
-theorem lamPos_of_used {D : D7} (h : LamUsed D) {μ} (hμ : μ = D.what₂.mu0 ∨ ∃ w, μ = D.what₂.muAt w) {j : ℕ}
-    (h1 : 1 ≤ j) (h2 : j ≤ D.R.m) : LamPos D μ j := by
-  obtain ⟨k, rfl⟩ : ∃ k, j = k + 1 := ⟨j - 1, by omega⟩
-  exact h μ hμ ⟨k, by omega⟩
-
-theorem lamLoc {D : D7} (h : LamUsed D) (i : D.nd.Loc) : LamPos D (D.nd.mu i) (D.nd.j i) :=
-  lamPos_of_used h (used_loc D i) (D.nd.j_range i).1 (D.nd.j_range i).2
+alias lamLoc := _root_.GlobalTheory.NRows.LamUsed.loc
 
 theorem up_injective {D : D7} {μ} {j : ℕ} (h : LamPos D μ j) (hI : DirectSum.IsInternal (D.what₂.isot j)) :
     Function.Injective (D.what₂.thetaT μ j) := by
@@ -80,8 +74,8 @@ theorem rank_of {D : D7} (hI : SumRepresentations.adm8 D) (h : LamUsed D) (L : S
   intro j hj w hw
   obtain ⟨h1, h2⟩ := Finset.mem_Icc.1 hj
   have e : D.what₂.muTw w = D.what₂.muAt w := ((D.what₂.muAt_or w).resolve_left hw).symm
-  have a := up_injective (lamPos_of_used h (Or.inr ⟨w, e⟩) h1 h2) (hI j h1 h2)
-  have b := up_injective (lamPos_of_used h (Or.inl rfl) h1 h2) (hI j h1 h2)
+  have a := up_injective (_root_.GlobalTheory.NRows.LamUsed.at h (Or.inr ⟨w, e⟩) h1 h2) (hI j h1 h2)
+  have b := up_injective (_root_.GlobalTheory.NRows.LamUsed.at h (Or.inl rfl) h1 h2) (hI j h1 h2)
   unfold SizeData₂.zeroSpaceRankAtPlace SizeData₂.dZ0 Rows.Data.Zj
   rw [LinearMap.finrank_range_of_inj a, LinearMap.finrank_range_of_inj b]
 

@@ -132,7 +132,7 @@ lemma prod_eq_pfPoly (d : Fin (m + 1) → ℝ) (d' : Fin m → ℝ)
     simpa using (degree_sub_le _ _).trans_lt (max_lt hsub hsum)
   refine sub_eq_zero.mp (eq_zero_of_degree_lt_of_eval_index_eq_zero univ hinj.injOn hdeg ?_)
   intro i _
-  have hz := GlobalTheory.T.partial_fraction_diagonal_identity d d' h i
+  have hz := _root_.GlobalTheory.CompanionTheory.RgHe.Frame.pfZero d d' h i
   rw [eval_sub, eval_pfPoly _ _ _ _ (hdd' i), hz, mul_zero, eval_prod]
   simp only [eval_sub, eval_X, eval_C, sub_zero]
   exact Finset.prod_eq_zero (mem_univ i) (sub_self _)
@@ -162,7 +162,7 @@ theorem pfDer : ∀ {m : ℕ} (d : Fin (m + 1) → ℝ) (d' : Fin m → ℝ),
     have h3 := HasDerivAt.fun_sum hterm
     have h4 := ((hasDerivAt_id (d i)).sub_const (pfX d d')).fun_add h3
     exact h4.congr_deriv (by simp [sub_eq_add_neg])
-  have hf0 : f (d i) = 0 := GlobalTheory.T.partial_fraction_diagonal_identity d d' h i
+  have hf0 : f (d i) = 0 := _root_.GlobalTheory.CompanionTheory.RgHe.Frame.pfZero d d' h i
   have hprod : HasDerivAt (fun s => Q.eval s * f s)
       (Q.eval (d i) * (1 - ∑ j, pfR d d' j / (d i - d' j) ^ 2)) (d i) := by
     have := (Q.hasDerivAt (d i)).fun_mul hf

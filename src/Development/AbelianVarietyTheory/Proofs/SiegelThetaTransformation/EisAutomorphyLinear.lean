@@ -65,15 +65,7 @@ namespace GlobalTheory.SW.EisTrans
 variable {N : ℕ}
 
 
-theorem exists_mem_HnGe {E : Type} [Field E] (Ψ : Finset (E →+* ℂ)) {Z : CM Ψ N N}
-    (hZ : Z ∈ Hn Ψ N) : ∃ δ : ℝ, 0 < δ ∧ Z ∈ HnGe Ψ N δ := by
-  first
-  | exact @_root_.GlobalTheory.PosSemidefShiftByScalar.main
-  | exact _root_.GlobalTheory.PosSemidefShiftByScalar.main
-  | (apply _root_.GlobalTheory.PosSemidefShiftByScalar.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PosSemidefShiftByScalar.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PosSemidefShiftByScalar.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PosSemidefShiftByScalar.main ..)
+alias exists_mem_HnGe := _root_.GlobalTheory.PosSemidefShiftByScalar.exists_pos_mem_HnGe
 
 theorem entry_bound {C D Z : Matrix (Fin N) (Fin N) ℂ} {δ : ℝ} (hδ : 0 < δ)
     (h : D * Cᴴ = C * Dᴴ) (hQ : (C * Z + D).det ≠ 0)

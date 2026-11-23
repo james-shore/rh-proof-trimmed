@@ -51,16 +51,6 @@ open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory
 
 namespace GlobalTheory.FLam
 
-theorem exists_fixed {B : Type} [CommRing B] (q : B) [h : IsAdicComplete (Ideal.span {q}) B]
-    (σ : B →+* B) (hσ : σ q = q) (w : B) : ∃ c : B, c = -w + q * σ c := by
-  first
-  | exact @_root_.GlobalTheory.FixedPointApproximation.exists_fixed
-  | exact _root_.GlobalTheory.FixedPointApproximation.exists_fixed
-  | (apply _root_.GlobalTheory.FixedPointApproximation.exists_fixed <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FixedPointApproximation.exists_fixed <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FixedPointApproximation.exists_fixed <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FixedPointApproximation.exists_fixed ..)
-
 theorem one_add_pow_of_sq {B : Type} [CommRing B] (x : B) (hx : x * x = 0) (n : ℕ) :
     (1 + x) ^ n = 1 + n * x := by
   induction n with
@@ -90,7 +80,7 @@ theorem GlobalTheory.FLam.exists_lam : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [
   intro p _ C _ _ _ v O _ _ _ _ _ _ ε _ F u hu
   obtain ⟨w, hw⟩ := hu
   haveI : IsAdicComplete (Ideal.span {(p : F.B)}) F.B := F.frame.complete
-  obtain ⟨c, hc⟩ := exists_fixed (p : F.B) F.σ (map_natCast F.σ p) w
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.FixedPointApproximation.exists_fixed (p : F.B) F.σ (map_natCast F.σ p) w
   refine ⟨1 + F.τ * c, ⟨c, by ring⟩, ?_⟩
   have hu' : u = 1 + F.τ * w := by rw [← hw]; ring
   rw [map_add (f := _), map_one, map_mul, σ_τ, hu']

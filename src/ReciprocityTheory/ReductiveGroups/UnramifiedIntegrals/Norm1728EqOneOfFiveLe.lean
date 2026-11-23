@@ -80,7 +80,7 @@ theorem norm_1728_eq_one_of_five_le (l : ℕ) [Fact l.Prime] (h5 : 5 ≤ l) : �
     have h12 : l ∣ 12 := hl.dvd_of_dvd_pow (show l ∣ 12 ^ 3 by norm_num; exact h)
     have := Nat.le_of_dvd (by norm_num) h12
     interval_cases l <;> first | omega | exact absurd hl (by norm_num)
-  simpa using red_norm_natCast l h
+  simpa using _root_.ReciprocityTheory.ChartRestriction.L1.norm_natCast_Cl_of_not_dvd l h
 
 theorem valDiv2_norm_27 (l : ℕ) [Fact l.Prime] (h5 : 5 ≤ l) : ‖(27 : ℂ_[l])‖ = 1 := by
   have hl : l.Prime := Fact.out
@@ -89,7 +89,7 @@ theorem valDiv2_norm_27 (l : ℕ) [Fact l.Prime] (h5 : 5 ≤ l) : ‖(27 : ℂ_[
     have h12 : l ∣ 3 := hl.dvd_of_dvd_pow (show l ∣ 3 ^ 3 by norm_num; exact h)
     have := Nat.le_of_dvd (by norm_num) h12
     omega
-  simpa using red_norm_natCast l h
+  simpa using _root_.ReciprocityTheory.ChartRestriction.L1.norm_natCast_Cl_of_not_dvd l h
 
 theorem valDiv2 (d : ℕ) (L : PeriodPair) (hsq : Squarefree d) (hd4 : d % 4 = 3) (hCM : HasCMBy d L) (l : ℕ)
     [Fact l.Prime] (h5 : 5 ≤ l) (hld : ¬ l ∣ d) (ι : ℂ ≃+* ℂ_[l]) (hJ : ι (jInv L) ∈ MaximalUnramifiedExtension l)

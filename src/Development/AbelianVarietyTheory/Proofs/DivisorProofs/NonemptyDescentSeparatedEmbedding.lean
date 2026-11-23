@@ -65,28 +65,12 @@ open GlobalTheory.Desc
 
 namespace GlobalTheory.Desc.EmbeddingLemmas
 
-theorem spMap_cst {X : Scheme.{0}} [IsIntegral X] {R : Type} [CommRing R] (p : X ⟶ Sp R) :
-    spMap (Desc.cst p) = gp X ≫ p := by
-  have h : spMap (Desc.cst p) = Spec.map ((Scheme.ΓSpecIso (CommRingCat.of R)).inv ≫ p.appTop ≫
-      X.presheaf.germ ⊤ (genericPoint X) trivial) := rfl
-  rw [h, Spec.map_comp, Spec.map_comp, ← Scheme.fromSpecStalk_toSpecΓ, Category.assoc, Category.assoc,
-    ← Scheme.toSpecΓ_naturality_assoc, toSpecΓ_SpecMap_ΓSpecIso_inv, Category.comp_id]
-  rfl
-
-theorem spMap_comp' {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (a : R →+* R') (b : R' →+* R'') :
-    spMap (b.comp a) = spMap b ≫ spMap a := by
-  rw [← Spec.map_comp]; rfl
-
-theorem cst_comp {X : Scheme.{0}} [IsIntegral X] {R R' : Type} [CommRing R] [CommRing R'] (q : X ⟶ Sp R') (ρ : R →+* R') :
-    Desc.cst (q ≫ spMap ρ) = (Desc.cst q).comp ρ := by
-  have e : spMap (Desc.cst (q ≫ spMap ρ)) = spMap ((Desc.cst q).comp ρ) := by
-    rw [spMap_comp', spMap_cst, spMap_cst, Category.assoc]
-  exact congrArg CommRingCat.Hom.hom (Spec.map_injective e)
+alias cst_comp := _root_.GlobalTheory.DescSpan.cst_comp_spMap
 
 theorem cst_inj {X : Scheme.{0}} [IsIntegral X] {R : Type} [CommRing R] [IsDomain R] (p : X ⟶ Sp R) [Flat p] :
     Function.Injective (Desc.cst p) := by
   have h1 : Flat (gp X) := GlobalTheory.LocalRingGeneralisation.flat_fromSpecStalk X _
-  have h2 : Flat (spMap (Desc.cst p)) := by rw [spMap_cst]; infer_instance
+  have h2 : Flat (spMap (Desc.cst p)) := by rw [_root_.GlobalTheory.Desc.GaussPt.spMap_cst]; infer_instance
   have h3 : (Desc.cst p).Flat := (HasRingHomProperty.Spec_iff (P := @Flat)).1 h2
   algebraize [Desc.cst p]
   exact FaithfulSMul.algebraMap_injective R X.functionField
@@ -95,13 +79,7 @@ theorem baseIndexConstant_injective (σ : Setup) : Function.Injective σ.c₀ :=
   haveI := σ.ab.smooth
   exact cst_inj _
 
-theorem abelianSchemeDescent_chart_baseConstants_comp (σ : Setup) (x : Sp σ.R) : (σ.θ x).comp σ.c₀ = (Desc.cst (σ.C x).G.hom).comp (σ.ρ x) := by
-  obtain ⟨l, hl, hl'⟩ := σ.hθ x
-  have e : spMap ((σ.θ x).comp σ.c₀) = spMap ((Desc.cst (σ.C x).G.hom).comp (σ.ρ x)) := by
-    rw [spMap_comp', spMap_comp', Setup.c₀, spMap_cst, spMap_cst, ← Category.assoc, ← hl', ← hl, Category.assoc,
-      (σ.cart x).w]
-    simp only [Category.assoc]
-  exact congrArg CommRingCat.Hom.hom (Spec.map_injective e)
+alias abelianSchemeDescent_chart_baseConstants_comp := _root_.GlobalTheory.Desc.θ_comp_c₀
 
 theorem linDisj_A (σ : Setup) : LinDisj σ.c₀ (Desc.cst σ.A.hom) (RingHom.id _) := by
   haveI := σ.ab.proper
@@ -172,7 +150,7 @@ theorem onV_of (σ : Setup) (x : Sp σ.R) (P : Scheme.{0}) [IsIntegral P] (p : P
   haveI : IsDominant l := IsDominant.of_comp_of_isOpenImmersion l (σ.V x).ι
   refine ext_of_isDominant_of_isSeparated p ?_ l ?_
   · rw [Category.assoc, Category.assoc, hi, he, (σ.cart x).w, Category.assoc]
-  · rw [← Category.assoc, hl', ← Category.assoc, hl, hb', Category.assoc, ha', spMap_comp', Category.assoc]
+  · rw [← Category.assoc, hl', ← Category.assoc, hl, hb', Category.assoc, ha', _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, Category.assoc]
 
 end GlobalTheory.Desc.EmbeddingLemmas
 

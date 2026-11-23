@@ -385,9 +385,7 @@ end Formalism.L2.G.Model
 
 namespace Formalism.MainNotions.TestSideCounting
 
-theorem restTSX : RestTSX := Formalism.L2.G.Model.test_side_explicit_identification
-
 theorem restTSOp_of_opF (hOp : RestOpF) (D : Formalism.BasicNotions.D7) (CLa Ck Crk Cdeg : ℝ) : RestTSOp D CLa Ck Crk Cdeg :=
-  restTSOp_of restTSX hOp D CLa Ck Crk Cdeg
+  restTSOp_of _root_.Formalism.L2.G.Model.test_side_explicit_identification hOp D CLa Ck Crk Cdeg
 
 end Formalism.MainNotions.TestSideCounting

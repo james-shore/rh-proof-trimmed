@@ -81,8 +81,7 @@ variable (H : Sesq V) (H' : Sesq W) (hH : ∀ x y, H x y = H' (e x) (e y))
 
 include hH
 
-theorem opU_pb (x z : V) (F : W → ℂ) : opU H x (fun v => F (e v)) z = opU H' (e x) F (e z) := by
-  simp only [opU, map_add (f := _), hH]
+alias opU_pb := _root_.Formalism.L2.Ker.KS.opU_pb
 
 theorem herm_pb (h : IsHerm H') : IsHerm H := fun x y => by rw [hH, hH]; exact h _ _
 

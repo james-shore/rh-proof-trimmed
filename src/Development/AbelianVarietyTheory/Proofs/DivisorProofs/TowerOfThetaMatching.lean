@@ -57,24 +57,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.SqTower
 
-theorem gbig_and {Q₁ Q₂ : GP} (h₁ : GBig Q₁) (h₂ : GBig Q₂) : GBig (fun G μ C x b => Q₁ G μ C x b ∧ Q₂ G μ C x b) := by
-  obtain ⟨F1, h1⟩ := h₁
-  obtain ⟨F2, h2⟩ := h₂
-  refine ⟨max F1 F2, fun ε CF hCF => ?_⟩
-  obtain ⟨C1, x1, k1⟩ := h1 ε CF (le_of_max_le_left hCF)
-  obtain ⟨C2, x2, k2⟩ := h2 ε CF (le_of_max_le_right hCF)
-  exact ⟨max C1 C2, max x1 x2, fun C hC D large₂ he hx hR T Lc μ₀ hμ G =>
-    ⟨k1 C (le_of_max_le_left hC) D large₂ he (le_of_max_le_left hx) hR T Lc μ₀ hμ G,
-      k2 C (le_of_max_le_right hC) D large₂ he (le_of_max_le_right hx) hR T Lc μ₀ hμ G⟩⟩
-
-theorem gbig_mono {Q₁ Q₂ : GP} (h : GBig Q₁)
-    (H : ∀ {D : D7} {T : Type} {Lc : LevCh D T} {sc : GlobalTheory.ChiGrid.Consts} (G : GridData Lc sc) (μ₀ : T) (C x b : ℝ),
-      Lc.Is μ₀ → Q₁ G μ₀ C x b → Q₂ G μ₀ C x b) : GBig Q₂ := by
-  obtain ⟨F, h⟩ := h
-  refine ⟨F, fun ε CF hCF => ?_⟩
-  obtain ⟨C0, x0, k⟩ := h ε CF hCF
-  exact ⟨C0, x0, fun C hC D large₂ he hx hR T Lc μ₀ hμ G => H G μ₀ C _ _ hμ (k C hC D large₂ he hx hR T Lc μ₀ hμ G)⟩
-
 section Units
 
 variable {K : Type} [Field K] [NumberField K] [StarRing K]
@@ -200,7 +182,5 @@ end Descent
 end GlobalTheory.SqTower
 
 namespace GlobalTheory.SqTower
-
-open GlobalTheory.SqTower
 
 end GlobalTheory.SqTower

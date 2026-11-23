@@ -62,7 +62,7 @@ theorem main_alt_alt : GlobalTheory.Published.AutomorphicFormsFiniteGL → ∀ (
     rw [h2 hJκ] at e
     simpa using e
   have hJU : ∀ x ∈ Ds, ∀ x' ∈ Ds, (x⁻¹ * x' ∈ (P.M.loc i).J ↔ x⁻¹ * x' ∈ Umax D.host.E D.R.nV) :=
-    fun x hx x' hx' => (hJ _ (GlobalTheory.HeckeScalarAll.trivOutside_mul (GlobalTheory.HeckeScalarAll.trivOutside_inv (hDs x hx))
+    fun x hx x' hx' => (hJ _ (_root_.GlobalTheory.HeckeScalarSph.triv_mul (GlobalTheory.HeckeScalarAll.trivOutside_inv (hDs x hx))
       (hDs x' hx'))).1
   have hfinU : ((fun x : GAf D.host.E D.R.nV => (x : GAf D.host.E D.R.nV ⧸ Umax D.host.E D.R.nV)) '' Ds).Finite := by
     let φ : GAf D.host.E D.R.nV ⧸ (P.M.loc i).J → GAf D.host.E D.R.nV ⧸ Umax D.host.E D.R.nV := fun c =>
@@ -86,7 +86,7 @@ theorem main_alt_alt : GlobalTheory.Published.AutomorphicFormsFiniteGL → ∀ (
       simp only [NG.heckeD]
       refine GlobalTheory.HeckeScalarAll.finsum_cosets_eq (P.M.loc i).J (Umax D.host.E D.R.nV) Ds (fun x => f (g * x)) hJU ?_
       intro x hx x' hx' hu
-      have ht := GlobalTheory.HeckeScalarAll.trivOutside_mul (GlobalTheory.HeckeScalarAll.trivOutside_inv (hDs x hx)) (hDs x' hx')
+      have ht := _root_.GlobalTheory.HeckeScalarSph.triv_mul (GlobalTheory.HeckeScalarAll.trivOutside_inv (hDs x hx)) (hDs x' hx')
       have h1 := congrFun (hf' _ hu ht) (g * x)
       simp only [NG.rt, LinearMap.coe_mk, AddHom.coe_mk] at h1
       rw [mul_assoc, mul_inv_cancel_left] at h1

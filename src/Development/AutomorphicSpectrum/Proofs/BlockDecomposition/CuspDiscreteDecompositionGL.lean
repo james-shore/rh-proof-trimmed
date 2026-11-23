@@ -46,6 +46,6 @@ open NumberField MeasureTheory Topology GlobalTheory.AutomorphicL2Unitary Global
 namespace GlobalTheory.CompanionTheory.CuspRep
 
 theorem cuspDiscreteDecompositionGL : GlobalTheory.Published.CuspDiscreteDecompositionGL :=
-  GlobalTheory.T.cuspidal_decomposition_of_compact GlobalTheory.T.cuspidal_convolution_compact
+  _root_.GlobalTheory.CompanionTheory.CuspGL.cuspDiscreteDecompositionGL_of_compact _root_.GlobalTheory.CompanionTheory.CuspidalCompact.isCompactOperator_repOp_Rcusp
 
 end GlobalTheory.CompanionTheory.CuspRep

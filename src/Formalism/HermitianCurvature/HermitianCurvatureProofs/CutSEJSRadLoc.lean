@@ -77,14 +77,14 @@ theorem jSRadLoc_of (hU : FamCCUnif) : JSRadLoc := by
   have hr0 : 0 < P.r := by have := l.isLt; omega
   obtain rfl : l = ⟨0, hr0⟩ := Fin.ext hl
   obtain ⟨Tw, hNw, e1, e2, e3, e4, Di, Xi, μi, Li, sti, κ, hDiEq, hκ, hDi, hall⟩ :=
-    Formalism.FourierDecayAlt.P.level_transport_unitary Wp Wq P z z' π π' X μ L st l0 D hD hz hz' hπ hπ' ⟨1, by omega⟩
+    _root_.Formalism.FourierDecayAlt.P.PTieUL.levTransportU Wp Wq P z z' π π' X μ L st l0 D hD hz hz' hπ hπ' ⟨1, by omega⟩
   subst e1 e2 e3 e4
   subst hDiEq
   have hj : 0 + 1 ≤ P.r := by omega
   have hP : IsPlace P Tw.base.z Tw.base.z' Tw.base.π Tw.base.π' := hD.1
   have hPj := Formalism.FourierDecayAlt.P.JCTx5.isPlace_lev P Tw ⟨0, by omega⟩ hP
   have hPs := Formalism.FourierDecayAlt.P.JCTx5.isPlace_lev P Tw ⟨0 + 1, by omega⟩ hP
-  obtain ⟨κ0, hκ0⟩ := Formalism.FourierDecayAlt.P.jacquet_scaling P.k P.r Wp Wq D Tw.base hz hz' hπ hπ'
+  obtain ⟨κ0, hκ0⟩ := _root_.Formalism.FourierDecayAlt.P.PTieJ.jfScale P.k P.r Wp Wq D Tw.base hz hz' hπ hπ'
 
   set G0 : B.Mat P.k (P.r - 0) → (Wq →L[ℂ] Wp) := fun g => κ0 • G g with hG0
   have hG0ok : JFOKCpt (JC.parLev P 0) (Tw.bs 0).z (Tw.bs 0).z' G0 := by
@@ -110,7 +110,7 @@ theorem jSRadLoc_of (hU : FamCCUnif) : JSRadLoc := by
       rw [hκ0 G, e]
     exact (hΦ x hx).trans h2
   have hC0 : CutSH.InC Tw 0 hj Φ :=
-    CutSH.inC_seed Formalism.FourierDecayAlt.P.cell_compatibility_identity Formalism.FourierDecayAlt.P.slice_family_good
+    CutSH.inC_seed _root_.Formalism.FourierDecayAlt.P.CutSH.cell_compatibility Formalism.FourierDecayAlt.P.slice_family_good
       CutSH.slice_family_orbital hP hNw hPj hPs G0 hG0ok Φ hΦ0
   have hW : ∀ js : List (Fin 6), CutSH.InC Tw 0 hj (wOp X ⟨0, hr0⟩ js Φ) := by
     intro js

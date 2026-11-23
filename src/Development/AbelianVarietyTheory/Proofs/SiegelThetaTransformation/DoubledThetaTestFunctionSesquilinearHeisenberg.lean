@@ -231,7 +231,7 @@ theorem trace_pair (b d : Fin r → E) : ((Algebra.trace ℚ E (∑ a, b a * cc 
     ∑ τ : X.Ψ, (Data.emb τ.1 b ⬝ᵥ star (Data.emb τ.1 d) +
       Data.emb τ.1 d ⬝ᵥ star (Data.emb τ.1 b)) := by
   rw [X.trace_eq_Psi]
-  simp [dotProduct, Data.emb, DblPer.emb_cc, mul_comm]
+  simp [dotProduct, Data.emb, _root_.ReciprocityTheory.ChartRestriction.G.FD.emb_cc, mul_comm]
 
 theorem trace_bv (a₁ a₂ d : Fin r → E) :
     Algebra.trace ℚ E (∑ a, bv X a₁ a₂ a * cc (d a)) = -(1 / 2) * EF X (a₁ + a₂) d := by

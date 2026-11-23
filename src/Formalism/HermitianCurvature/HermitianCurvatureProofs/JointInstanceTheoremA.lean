@@ -50,29 +50,6 @@ open Finset NumberField Formalism.FourierDecayAlt Formalism.FourierDecayAlt.J
 
 namespace Formalism.FourierDecayAlt.P.Jx7
 
-section frames
-
-end frames
-
-section sizes
-open scoped nonZeroDivisors
-
-section Gl
-variable {ι : Type} [Fintype ι] (G : Sz.Glob ι) (C : ℝ) (de de' : ℕ → ℝ) (T T' : ℝ) (l : ℕ)
-
-end Gl
-
-end sizes
-
-section sums
-open scoped nonZeroDivisors
-
-end sums
-
-section positivity
-
-end positivity
-
 section main
 open scoped ComplexOrder
 
@@ -280,13 +257,5 @@ end kernels
 end Formalism.FourierDecayAlt.P.Jx7
 
 namespace Formalism.FourierDecayAlt.P
-
-theorem schur_product : Formalism.FourierDecayAlt.J.SchurProduct := Jx7.t_SchurProduct
-
-theorem product_domination : Formalism.FourierDecayAlt.J.ProductDomination := Jx7.t_ProductDomination
-
-theorem diagonal_scaling : Formalism.FourierDecayAlt.J.DiagScale := Jx7.t_DiagScale
-
-theorem product_lemma : Formalism.FourierDecayAlt.J.ProductLemma := Jx7.t_ProductLemma'
 
 end Formalism.FourierDecayAlt.P

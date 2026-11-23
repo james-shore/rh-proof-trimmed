@@ -51,7 +51,7 @@ open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComp
 theorem UpperTheory.exists_lift_free_to_middle_of_shortExact_acy :
     ∀ (Q : Scheme.{0} → Prop) (S : ShortComplex (Shv ℤ)), S.ShortExact → Acy Q S.X₁ → ∀ P : PSh, Supp Q P → ∀ f : (free ℤ).obj P ⟶ S.X₃, ∃ h : (free ℤ).obj P ⟶ S.X₂, h ≫ S.g = f := by
   intro Q S hS hA P hP f
-  obtain ⟨z, hz⟩ := GlobalTheory.T.etaleCohomology_coefficient_longExactSequence ℤ S hS
+  obtain ⟨z, hz⟩ := _root_.GlobalTheory.EtC.coefSeq_exact ℤ S hS
   have e := (hz (sgl ((free ℤ).obj P)) 0).2.1
   have hsub := hA P hP (0 + 1) (by norm_num)
   have h0 : HK.ext ℤ (sgl ((free ℤ).obj P)) z 0 (0 + 1) rfl (cl f) = 0 := Subsingleton.elim _ _

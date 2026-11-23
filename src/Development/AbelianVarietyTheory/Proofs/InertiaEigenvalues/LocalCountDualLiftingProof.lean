@@ -72,10 +72,10 @@ theorem main : StepLocDual := by
   unfold LocBoundP
   apply GlobalTheory.T.lengthModulo_span_le_of_forall_finset
   intro F hF
-  obtain ⟨X, hX, hle⟩ := GlobalTheory.T.localCocycles_mem_span_pushout_summandLattice D hFont i r hr Xs w hw n hPF k M hSub F hF
-  obtain ⟨hdrX, X', PX, hdX, hsX⟩ := GlobalTheory.T.potential_family_summand_restriction D hFont hPot i r hr Xs w hw n hPF X hX
-  obtain ⟨hdrU, U', PU, hsU, LT', hdU, hrk⟩ := GlobalTheory.T.crystalline_potential_family D hFont hPot hBK i r hr Xs w hw hdeg n hPF k M hSub
-  have hLift := GlobalTheory.T.liftAll_subSums_of_liftFamily_matrixFamily (Br.PD D.loc D.nbr i w hw) _ e X' U' hLF hsX hsU
+  obtain ⟨X, hX, hle⟩ := _root_.GlobalTheory.Pass.LocDual.OneX.main D hFont i r hr Xs w hw n hPF k M hSub F hF
+  obtain ⟨hdrX, X', PX, hdX, hsX⟩ := _root_.GlobalTheory.SummandDual.xdual D hFont hPot i r hr Xs w hw n hPF X hX
+  obtain ⟨hdrU, U', PU, hsU, LT', hdU, hrk⟩ := _root_.GlobalTheory.Pass.LocDualU.main D hFont hPot hBK i r hr Xs w hw hdeg n hPF k M hSub
+  have hLift := _root_.GlobalTheory.Pass.LocDual.liftAll_of_liftFam (Br.PD D.loc D.nbr i w hw) _ e X' U' hLF hsX hsU
   have hTw : IsTwistRep (1 : Br.G D.nbr i w hw →* (Br.LL D.nbr i w hw)ˣ)⁻¹ X.ρ X.ρ :=
     ⟨LinearEquiv.refl _ _, fun g x => by simp⟩
   have hHyp : BlochKatoDuality.Hyp (Br.PD D.loc D.nbr i w hw) X X (locU i w hw M hSub.1) X' U' 1 PX PU

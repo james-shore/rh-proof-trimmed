@@ -62,9 +62,9 @@ theorem exists_isUnivChart_of_isLieBasis :
   obtain ⟨x, h₁, h₂, h₃⟩ := GlobalTheory.exists_jetPoints_of_isLieBasis R G hG d v hv
   refine ⟨x, ⟨h₁, h₂, ?_⟩, h₃⟩
   intro A _ _ aug m hm y hy
-  obtain ⟨ψ, hψ, hyψ⟩ := GlobalTheory.T.exists_jetChart_coordinates_nilpotent R G hG d v hv x h₁ h₂ h₃ A aug m hm y hy
+  obtain ⟨ψ, hψ, hyψ⟩ := _root_.GlobalTheory.exists_jet_coordinates R G hG d v hv x h₁ h₂ h₃ A aug m hm y hy
   refine ⟨ψ, ⟨hψ, hyψ⟩, ?_⟩
   rintro ψ' ⟨hψ', hyψ'⟩
-  exact GlobalTheory.T.jetChart_coordinates_unique_commGroup R G hG d v hv x h₁ h₂ h₃ A aug m hm ψ' ψ hψ' hψ (hyψ'.symm.trans hyψ)
+  exact _root_.GlobalTheory.jetCoord_unique R G hG d v hv x h₁ h₂ h₃ A aug m hm ψ' ψ hψ' hψ (hyψ'.symm.trans hyψ)
 
 end GlobalTheory

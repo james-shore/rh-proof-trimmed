@@ -91,7 +91,7 @@ theorem lattice_sum_dilate_haar :
   let ν : Measure V := (volume : Measure (EuclideanSpace ℝ (Fin (Module.finrank ℝ V)))).map e
   have : ν.IsAddHaarMeasure := ContinuousLinearEquiv.isAddHaarMeasure_map e _
   have hmp : MeasurePreserving e volume ν := ⟨e.continuous.measurable, rfl⟩
-  obtain ⟨C, hC⟩ := GlobalTheory.T.zlattice_tsum_dilate_sub_integral_le_rapid _ (ZLattice.comap ℝ L e.toLinearMap) (f ∘ e)
+  obtain ⟨C, hC⟩ := _root_.GlobalTheory.latticeSum_dilate_sub_integral_le _ (ZLattice.comap ℝ L e.toLinearMap) (f ∘ e)
     (hf.comp e.contDiff) (hs.comp_homeomorph e.toHomeomorph) A
   refine ⟨C, fun x₀ t ht ht1 => ?_⟩
   have h := hC (e.symm x₀) t ht ht1

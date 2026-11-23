@@ -259,7 +259,7 @@ theorem exists_term_of_global : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u
     GlobalTheory.T.rational_unipotent_groups_lattices_global_coordinates D X Y u u' hSt hk w F00 F'0 FP hZ hG hAt G c t₀ ρ U U' hMv
   have hT0 := (GlobalTheory.T.movedTermLattice_isGlobalTerm_phase D X Y u u' hSt hk w F00 F'0 FP hZ hG hAt G c t₀ ρ U U' hMv).1
   have ht0 : Formalism.HermitianLatticesTheory.gmap t₀.lin t₀.lam' = t₀.lam := t₀.rep.2.2.2.1
-  have e3 : c.lat ρ t₀.lam = c.lat (ρ * t₀.lin) t₀.lam' := by rw [← ht0, lat_gmap']
+  have e3 : c.lat ρ t₀.lam = c.lat (ρ * t₀.lin) t₀.lam' := by rw [← ht0, _root_.GlobalTheory.HL.GCoord.lat_gmap]
   obtain ⟨⟨x, hx, hΓx⟩, ⟨x', hx', hΓx'⟩⟩ := term_eq_map G hk hT0 hΓ
   obtain ⟨n, rfl⟩ := hsurj ρ x
   obtain ⟨m, rfl⟩ := hsurj (ρ * t₀.lin) x'
@@ -269,7 +269,7 @@ theorem exists_term_of_global : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u
   have hΓm : Γ = c.lat (ρ * t₀.lin * m) t₀.lam' := by rw [hlat, hΓx', e3]
   have hγmap : Formalism.HermitianLatticesTheory.gmap (n⁻¹ * t₀.lin * m) t₀.lam' = t₀.lam := by
     apply lat_inj c (ρ * n)
-    rw [lat_gmap', ← hΓn, hΓm]
+    rw [_root_.GlobalTheory.HL.GCoord.lat_gmap, ← hΓn, hΓm]
     congr 1
     group
   have hγiso : n⁻¹ * t₀.lin * m ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT :=

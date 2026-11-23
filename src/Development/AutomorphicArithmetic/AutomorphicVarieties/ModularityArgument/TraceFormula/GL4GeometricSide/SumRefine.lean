@@ -52,18 +52,6 @@ open PositivityTheory.RgBcC PositivityTheory.RgBcC.RealD PositivityTheory.RgBcC.
 
 namespace UpperTheory.V.Z.GSp4Splitting
 
-section Avg
-
-variable {K M : Type*} [Group K] [AddCommGroup M] [Module ℂ M]
-
-private theorem exists_avg [TopologicalSpace K] [IsTopologicalGroup K] [CompactSpace K] (ρ : K →* Module.End ℂ M)
-    (hs : ∀ m, IsOpen {k | ρ k m = m}) :
-    ∃ P : M →ₗ[ℂ] M, (∀ m k, ρ k (P m) = P m) ∧ (∀ m, (∀ k, ρ k m = m) → P m = m) ∧
-      ∀ T : M →ₗ[ℂ] M, (∀ k m, T (ρ k m) = ρ k (T m)) → ∀ m, T (P m) = P (T m) :=
-  _root_.UpperTheory.Reformulated.B.ExistsAverage.exists_avg ρ hs
-
-end Avg
-
 section Core
 
 variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {n : ℕ}
@@ -101,7 +89,7 @@ private theorem core (π : CuspSub E n) (K : Subgroup (GL (Fin n) (Af E))) (hKc 
     convert h1.preimage continuous_subtype_val using 1
     ext k
     exact Subtype.ext_iff
-  obtain ⟨P, hPinv, hPfix, hPT⟩ := exists_avg ρ hs
+  obtain ⟨P, hPinv, hPfix, hPT⟩ := _root_.UpperTheory.Reformulated.B.ExistsAverage.exists_avg ρ hs
   have hcomm : ∀ T : Module.End ℂ π.V, (∀ g x, T (π.finPart g x) = π.finPart g (T x)) →
       ∀ m, T (P m) = P (T m) := fun T hT => hPT T fun k m => hT k.1 m
   let W0 : Submodule ℂ π.V := ⨅ g, LinearMap.ker (P ∘ₗ π.finPart g)

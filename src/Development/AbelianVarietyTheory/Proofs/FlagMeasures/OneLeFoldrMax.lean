@@ -57,10 +57,7 @@ open scoped InnerProductSpace ENNReal
 
 namespace GlobalTheory.Amp.AbsRange
 
-theorem one_le_foldr_max (L : List ℝ) : 1 ≤ L.foldr max 1 := by
-  induction L with
-  | nil => simp
-  | cons a L ih => exact le_trans ih (le_max_right _ _)
+alias one_le_foldr_max := _root_.GlobalTheory.Amp.PtMinor.one_le_foldr
 
 theorem le_foldr_max (L : List ℝ) (x : ℝ) (hx : x ∈ L) : x ≤ L.foldr max 1 := by
   induction L with
@@ -211,7 +208,7 @@ theorem abs_range : ∀ Cg cb Cu cT CT C0 C1 CMo : ℝ, ∃ C₀ : ℝ, ∀ C �
   obtain ⟨hN, hnorm⟩ := GlobalTheory.T.rootMeasure_eq_normalFormRootMeasure D W.z W.z' p' γ μR θ' hTF hroot hθ'0.le (by positivity)
   have hM0 : 0 ≤ max CMo 0 := le_max_right _ _
   have hH : 1 ≤ large₂.sc.b ^ (max CMo 0 * D.R.m) := Real.one_le_rpow (by linarith) (by positivity)
-  obtain ⟨hint, hbd⟩ := GlobalTheory.T.amplitude_absolutelyConvergent_operatorNorm_le D.R.k D.R.rS W.z W.z' W.π W.π' _ _ W.μG W.μW W.μW' W.νS W.νS' _ νR S.Φ S.Φ' γ
+  obtain ⟨hint, hbd⟩ := _root_.GlobalTheory.Amp.AbsConv.abs_core D.R.k D.R.rS W.z W.z' W.π W.π' _ _ W.μG W.μW W.μW' W.νS W.νS' _ νR S.Φ S.Φ' γ
     S.cN _ _ _ De hr hk' (by positivity) (by positivity) hH hS1 hS2 hM1 hM2 hTF hOK hnorm hquot
   refine ⟨hint, le_trans hbd ?_⟩
   rw [hDr']

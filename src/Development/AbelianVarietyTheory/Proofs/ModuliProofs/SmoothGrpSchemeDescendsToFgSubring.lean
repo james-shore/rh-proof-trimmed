@@ -284,7 +284,7 @@ theorem hasModel_of_two {X W : Scheme.{0}} (q : X ⟶ Sp V) [IsSeparated q] (u :
   have hRZ := finiteType_of_fg hk hR
   have : IsNoetherianRing R := Algebra.FiniteType.isNoetherianRing ℤ R
   have hφ' : IsPullback φ q q₀ (spMap (algebraMap R V)) := hφ
-  obtain ⟨R', hR', _⟩ := GlobalTheory.T.exists_fg_subalgebra_isSeparated_pullback_snd R V X₀ q₀ inferInstance inferInstance (by
+  obtain ⟨R', hR', _⟩ := _root_.GlobalTheory.SpreadSep.exists_fg_isSeparated R V X₀ q₀ inferInstance inferInstance (by
     rw [← hφ'.isoPullback_inv_snd]; infer_instance)
   exact ⟨R', inferInstance, R'.val.toRingHom, _, pullback.snd q₀ _, _, finiteType_of_fg hRZ hR', inferInstance,
     ‹_›, inferInstance, isPullback_lift hφ' _ _ (spMap_algHom_comp R'.val)⟩

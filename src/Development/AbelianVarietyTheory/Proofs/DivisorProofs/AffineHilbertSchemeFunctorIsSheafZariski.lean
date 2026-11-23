@@ -50,25 +50,6 @@ open AlgebraicGeometry CategoryTheory CategoryTheory.Limits Opposite
 universe u
 
 namespace GlobalTheory.HilbAff
-theorem glue_exists {X : Scheme.{0}} {ι : Type u} (V : ι → Scheme.{0}) (f : ∀ i, V i ⟶ X)
-    (hf : ∀ i, IsOpenImmersion (f i)) (hcov : ∀ x : X, ∃ i y, f i y = x)
-    (J : ∀ i, (V i).IdealSheafData)
-    (hJ : ∀ i j (Y : Scheme.{0}) (a : Y ⟶ V i) (a' : Y ⟶ V j), a ≫ f i = a' ≫ f j →
-      (J i).comap a = (J j).comap a') :
-    ∃ I : X.IdealSheafData, ∀ i, I.comap (f i) = J i :=
-  GlobalTheory.T.exists_idealSheaf_comap_eq_of_openCover V f hf hcov J hJ
-theorem glue_ext {X : Scheme.{0}} {ι : Type u} (V : ι → Scheme.{0}) (f : ∀ i, V i ⟶ X)
-    (hf : ∀ i, IsOpenImmersion (f i)) (hcov : ∀ x : X, ∃ i y, f i y = x)
-    (I I' : X.IdealSheafData) (h : ∀ i, I.comap (f i) = I'.comap (f i)) : I = I' :=
-  GlobalTheory.T.idealSheafData_ext_of_openCover' V f hf hcov I I' h
-theorem good_local (A B : Type) [CommRing A] [CommRing B] [Algebra A B] (r : ℕ)
-    {T : Scheme.{0}} {ι : Type u} (V : ι → Scheme.{0}) (f : ∀ i, V i ⟶ T)
-    (hf : ∀ i, IsOpenImmersion (f i)) (hcov : ∀ x : T, ∃ i y, f i y = x)
-    (g : T ⟶ Spec (CommRingCat.of A)) (I : (pullback (GlobalTheory.HilbAff.str A B) g).IdealSheafData)
-    (h : ∀ i, GlobalTheory.HilbAff.Good A B r (f i ≫ g) (I.comap (GlobalTheory.HilbAff.bc A B g (f i)))) :
-    GlobalTheory.HilbAff.Good A B r g I :=
-  GlobalTheory.T.isFiniteFlatRankClosedSubscheme_of_openCover A B r V f hf hcov g I h
-
 theorem snd_eq_of_sigma {A B : Type} [CommRing A] [CommRing B] [Algebra A B] {r : ℕ} {T : Scheme.{0}}
     {g₀ g₁ : T ⟶ Spec (CommRingCat.of A)}
     {I₀ : (pullback (str A B) g₀).IdealSheafData} {I₁ : (pullback (str A B) g₁).IdealSheafData}
@@ -188,9 +169,9 @@ theorem isSheaf_functor (A B : Type) [CommRing A] [CommRing B] [Algebra A B] (r 
     refine comap_eq_of_map_eq (x i) (x j) _ _ (by rw [p1, p1, e1]) ?_
     rw [p2, p2]
     exact hx i j Z _ _ e2
-  obtain ⟨I, hI⟩ := glue_exists (fun j : 𝒰.I₀ => pullback (str A B) (𝒰.f j ≫ g))
+  obtain ⟨I, hI⟩ := _root_.GlobalTheory.IdealGlue.exists_comap_eq (fun j : 𝒰.I₀ => pullback (str A B) (𝒰.f j ≫ g))
     (fun j : 𝒰.I₀ => bc A B g (𝒰.f j)) hoi hcov J hJ
-  have good : Good A B r g I := good_local A B r 𝒰.X 𝒰.f (fun j => inferInstance)
+  have good : Good A B r g I := _root_.GlobalTheory.HilbAff.good_of_cover A B r 𝒰.X 𝒰.f (fun j => inferInstance)
     (fun y => 𝒰.exists_eq y) g I (fun j => by rw [hI j]; exact good_transport (hg j) (x j).2.2)
   have amal : ∀ j, (functor A B r).map (𝒰.f j).op ⟨g, ⟨I, good⟩⟩ = x j := fun j =>
     sigma_eq A B r (hg j) (hI j) _ (x j).2.2
@@ -201,7 +182,7 @@ theorem isSheaf_functor (A B : Type) [CommRing A] [CommRing B] [Algebra A B] (r 
   change g' = g at e
   subst e
   have : I' = I := by
-    refine glue_ext (fun j : 𝒰.I₀ => pullback (str A B) (𝒰.f j ≫ g))
+    refine _root_.GlobalTheory.HilbAff.idealSheafData_ext_of_openCover (fun j : 𝒰.I₀ => pullback (str A B) (𝒰.f j ≫ g))
       (fun j : 𝒰.I₀ => bc A B g (𝒰.f j)) hoi hcov I' I fun j => ?_
     have := (hy' j).trans (amal j).symm
     exact congrArg Subtype.val (eq_of_heq (Sigma.mk.inj_iff.mp this).2)

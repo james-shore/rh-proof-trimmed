@@ -95,10 +95,10 @@ theorem unitaryAdelicHeight_wittEmbedding_le {V V₀ : HSp D} {ρ : ℕ} (d : Hy
   refine ⟨max (C : ℝ) 1, le_max_right _ _, fun g => ?_⟩
   have h := hC (Formalism.L2.Theta.matHom V (d.emb0 g)) (Formalism.L2.Theta.matHom V₀ g) (by
       show Formalism.L2.Theta.mt V (d.emb0 g) = d.j0 ⬝ Formalism.L2.Theta.mt V₀ g ⬝ d.p0 + (d.jX ⬝ d.pX + d.jY ⬝ d.pY)
-      rw [GlobalTheory.FlatRInv.unitaryMatrix_wittCoreEmbedding]; abel) (by
+      rw [_root_.GlobalTheory.MixModel.HypDec.unitaryMatrix_wittCoreEmbedding]; abel) (by
       rw [← map_inv, ← map_inv, ← map_inv]
       show Formalism.L2.Theta.mt V (d.emb0 g⁻¹) = d.j0 ⬝ Formalism.L2.Theta.mt V₀ g⁻¹ ⬝ d.p0 + (d.jX ⬝ d.pX + d.jY ⬝ d.pY)
-      rw [GlobalTheory.FlatRInv.unitaryMatrix_wittCoreEmbedding]; abel)
+      rw [_root_.GlobalTheory.MixModel.HypDec.unitaryMatrix_wittCoreEmbedding]; abel)
   have h' : height V (d.emb0 g) ≤ (C : ℝ) * height V₀ g := by
     unfold GlobalTheory.Grow.height; exact_mod_cast h
   exact h'.trans (mul_le_mul_of_nonneg_right (le_max_left _ _) (height_pos V₀ g).le)

@@ -238,7 +238,7 @@ theorem main : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [I
   have hx'u := h_swap0 S hux'
   have hm : ∀ v, v ∈ n₀⁻¹ • Λ ↔ n₀ v ∈ Λ := fun v => by rw [mem_smul, inv_inv]
   have hm' : ∀ v, v ∈ Λ ↔ n₀⁻¹ v ∈ n₀⁻¹ • Λ := fun v => by rw [hm, app_inv]
-  have hSD₁ : IsSD L S.Hm (n₀⁻¹ • Λ) := isSD_smul S ((isomG L S.Hm).inv_mem hn₀.1.1) hSD
+  have hSD₁ : IsSD L S.Hm (n₀⁻¹ • Λ) := _root_.GlobalTheory.HL.TermBasic.isSD_smul S ((isomG L S.Hm).inv_mem hn₀.1.1) hSD
   have H : ∀ v ∈ Λ, v ∈ perp L S.Hm S.X' → S.InTh Λ (n₀ (n₀' v) - v) := fun v hv hp => by
     rw [e₀, e₀']
     exact cong S hSD hb hu hs1 hc hx'u hv (hp _ hx'X)
@@ -259,7 +259,7 @@ theorem main : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [I
     rw [ei₀, ei₀']
     exact cong S hSD₁ hb₁ hu₁ hs₁ hc (by rw [h_neg_r, hx'u, neg_zero]) hv (hp _ hx'X)
   obtain ⟨g, hg, hfix, hgL⟩ := GlobalTheory.HL.SameTrace.exists_isometry_of_same_trace L S.Hm S.herm (n₀' • Λ) (n₀⁻¹ • Λ)
-    (isSD_smul S hn₀'.1.1 hSD) hSD₁ r (fun j : Fin r => S.f' j.castSucc) (f'_li S)
+    (_root_.GlobalTheory.HL.TermBasic.isSD_smul S hn₀'.1.1 hSD) hSD₁ r (fun j : Fin r => S.f' j.castSucc) (f'_li S)
     (fun i j => f'_perp S _ _ (by rw [← X'_eq]; exact Submodule.subset_span ⟨j, rfl⟩)) (by
       rw [X'_eq]
       intro v hv

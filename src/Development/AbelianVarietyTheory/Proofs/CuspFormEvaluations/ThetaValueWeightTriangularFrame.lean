@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import Formalism.LocalToGlobal.ProjectiveLattices.FrameCharts
 
 @[expose] public section
 
@@ -218,21 +219,13 @@ theorem sum_eq (hC : ChartIndepSt2) [StarRing (𝓞 E)] {nab : NabV Xo c} (hn : 
     (fun b => isPullSec_id _ (F b))
   have h2 : ∀ b q, nab d.pt ((N : ℤ) ^ 2) (scaleSec Xo.univ.t.G (toΓ S (t none : S)) (F b)) q =
       (t none : S) * nab d.pt ((N : ℤ) ^ 2) (F b) q :=
-    fun b q => _root_.GlobalTheory.T.connection_linear_in_section E H Dw l Xo c nab hn S d.pt N (F b) _ (t none : S) (fun _ => rfl) q
+    fun b q => _root_.GlobalTheory.nab_smul_section E H Dw l Xo c nab hn S d.pt N (F b) _ (t none : S) (fun _ => rfl) q
   have hw : wchar (ex Dw a n) t = (t none : S) ^ n * ∏ ℓ : Lt1 Dw, ((t (some ℓ) : Sˣ) : S) ^ a (ℓ.1, ℓ.2) := by
     unfold wchar ex
     simp [Fintype.prod_option]
   simp only [h2, Finset.prod_mul_distrib, Finset.prod_const, Finset.card_univ, Fintype.card_fin]
   rw [hw, _root_.mul_assoc, ← h1, Finset.mul_sum]
   exact Finset.sum_congr rfl fun m _ => by ring
-
-private lemma dualMap_comp_epsMul_cusp_form_evaluations {S T : Type} [CommRing S] [CommRing T] (f : S →+* T) (a : S) :
-    (dualMap f).comp (epsMul a) = (epsMul (f a)).comp (dualMap f) := by
-  refine RingHom.ext fun x => TrivSqZeroExt.ext ?_ ?_ <;> simp [dualMap, epsMul, mul_comm]
-
-private lemma dualMap_comp_algebraMap_cusp_form_evaluations {S T : Type} [CommRing S] [CommRing T] (f : S →+* T) :
-    (dualMap f).comp (algebraMap S (DualNumber S)) = (algebraMap T (DualNumber T)).comp f := by
-  refine RingHom.ext fun x => TrivSqZeroExt.ext ?_ ?_ <;> simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl]
 
 private lemma appLE_appLE_eq_of_comp_eq {X Y Z₁ Z₂ : Scheme.{0}} (p : X ⟶ Y) (f₁ : Y ⟶ Z₁) (f₂ : X ⟶ Z₂) (g : Z₂ ⟶ Z₁)
     (e : p ≫ f₁ = f₂ ≫ g) (W : Y.Opens) (W' : X.Opens) (h : W' ≤ p ⁻¹ᵁ W) (h₁ : W ≤ f₁ ⁻¹ᵁ ⊤)
@@ -265,7 +258,7 @@ private theorem frBor_units_map_of_frMap {S T : Type} [CommRing S] [Algebra c.F 
       show spMap (dualMap φ.toRingHom) ≫ spMap (algebraMap S (DualNumber S)) ≫ y.x =
         spMap (algebraMap T (DualNumber T)) ≫ z.x
       rw [zx, ← Category.assoc, ← Category.assoc, ← FramedBaseChange.spec_comp, ← FramedBaseChange.spec_comp,
-        dualMap_comp_algebraMap_cusp_form_evaluations])
+        _root_.Formalism.L2.Pj.dualMap_alg])
     let Fm : (tEps y.x ⟶ Xo.univ.t.G) →* (tEps z.x ⟶ Xo.univ.t.G) :=
       { toFun := fun v => g ≫ v
         map_one' := by simp
@@ -275,7 +268,7 @@ private theorem frBor_units_map_of_frMap {S T : Type} [CommRing S] [Algebra c.F 
       rw [Over.comp_left, hu1 j, zu τ j]
       change spMap (dualMap φ.toRingHom) ≫ _ = _
       rw [← Category.assoc, ← Category.assoc, ← FramedBaseChange.spec_comp, ← FramedBaseChange.spec_comp,
-        dualMap_comp_epsMul_cusp_form_evaluations]
+        _root_.Formalism.L2.Pj.dualMap_eps]
     · have hprod : (List.ofFn fun j => g ≫ u j).prod = g ≫ (List.ofFn u).prod := by
         have := map_list_prod Fm (List.ofFn u)
         simpa [Fm, List.map_ofFn, Function.comp_def] using this.symm

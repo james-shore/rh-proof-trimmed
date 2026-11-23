@@ -52,6 +52,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.TupLift
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.TermCarrierStability.TermStableHolds
 
 @[expose] public section
 
@@ -81,7 +82,7 @@ theorem lift_move {u u' : D.what₂.Word} {F0 : FlagG (VS D) D.R.rS ((Tu D u : �
       ∃ F2 ∈ CntLocal.EZ (D := D) ((Tu D u' : ℕ) : D.host.E) F0 Λ (U.conjTranspose * Z₁ * U'),
         TermDef.Rep Λ (lf D F0) (PD D Λ (lf D F0) u') t F2 ∧ ∀ b, frame F2 b = ν⁻¹ (m (frame F₁ b)) := by
   obtain ⟨p₁, e₁⟩ := r₁
-  have hFun := Formalism.L2.SG.Closed.TermFun_holds D u u' F0 Λ hΛ
+  have hFun := _root_.term_function_const D u u' F0 Λ hΛ
   obtain ⟨ν, hν, hνF⟩ := TupOnto.nLamOnto_holds D u F0 Λ hΛ hu U hU hiU
   obtain ⟨m, hm, hmF⟩ := TupOnto.nLamOnto_holds D u' F₁.fl Λ (isRowLat_of_pd hΛ p₁) hu' U' hU' hiU'
   have hm' : m ∈ NLam Λ F₁ := hm
@@ -92,7 +93,7 @@ theorem lift_move {u u' : D.what₂.Word} {F0 : FlagG (VS D) D.R.rS ((Tu D u : �
   have hf2 : ∀ b, frame F2 b = ν⁻¹ (m (frame F₁ b)) := fun b => by
     rw [Formalism.L2.SG.Saturated.frame_mapL]; rfl
   have hdc : DCRel Λ (lf D F0) F₁ F2 := ⟨ν⁻¹, Formalism.L2.SG.Pf.nlamPf_inv hν, m, hm', hf2, rfl⟩
-  have pd2 : PD D Λ (lf D F0) u' F2 := Formalism.L2.SG.Closed.TermStable_holds D u u' F0 Λ hΛ ⟨F₁, p₁⟩ F2 hdc
+  have pd2 : PD D Λ (lf D F0) u' F2 := _root_.PI.TCS.termStable_holds D u u' F0 Λ hΛ ⟨F₁, p₁⟩ F2 hdc
   have hT' : ((Tu D u' : ℕ) : D.host.E) ≠ 0 := Nat.cast_ne_zero.2 hu'
   have hFΛ : ∀ c, frame (lf D F0) c ∈ Λ := by
     intro c
@@ -168,8 +169,8 @@ theorem ez_of_normRep {u u' : D.what₂.Word} {F0 : FlagG (VS D) D.R.rS ((Tu D u
     (hn : PairVal.NormRep γ w₁ F' L U) :
     F' ∈ CntLocal.EZ (D := D) ((Tu D u' : ℕ) : D.host.E) F0 γ.lam (ZhatL (lf D F0) F') := by
   obtain ⟨⟨p₁, e₁⟩, hadm₁, -⟩ := hn
-  have hEq := Formalism.L2.SG.Closed.TermEqIff_holds D u u' F0 γ.lam hΛ
-  have hFun := Formalism.L2.SG.Closed.TermFun_holds D u u' F0 γ.lam hΛ
+  have hEq := _root_.term_eq_iff_relation D u u' F0 γ.lam hΛ
+  have hFun := _root_.term_function_const D u u' F0 γ.lam hΛ
   obtain ⟨Fa, ⟨pa, ea⟩, hGa, -⟩ := hel.2
   have hdca := (hEq ⟨Fa, pa⟩ ⟨F', p₁⟩).1 (ea.trans e₁.symm)
   obtain ⟨Fg, ⟨pg, eg⟩, hgen⟩ := hel.1.1

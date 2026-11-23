@@ -54,12 +54,6 @@ theorem eq_one_of_pow_eq_one {F : Type} [Field F] (V : ValuationSubring F) {m : 
     (h1 : V.valuation (ζ - 1) < 1) : ζ = 1 := by
   apply GlobalTheory.eq_one_of_pow_eq_one_of_val_sub_lt <;> assumption
 
-theorem main : ∀ {F : Type} [inst : Field F] (V : ValuationSubring F) {m : ℕ},
-    (ValuationSubring.valuation V : F → ValuationSubring.ValueGroup V) (↑m : F) = (1 : ValuationSubring.ValueGroup V) →
-    ∀ {ζ : F}, ζ ^ m = (1 : F) →
-    (ValuationSubring.valuation V : F → ValuationSubring.ValueGroup V) (ζ - (1 : F)) < (1 : ValuationSubring.ValueGroup V) →
-    ζ = (1 : F) := by
-  intro F _ V m hm ζ hζ h1
-  exact eq_one_of_pow_eq_one V hm hζ h1
+alias main := _root_.GlobalTheory.RootOfUnityEqOne.eq_one_of_pow_eq_one
 
 end GlobalTheory.RootOfUnityEqOne

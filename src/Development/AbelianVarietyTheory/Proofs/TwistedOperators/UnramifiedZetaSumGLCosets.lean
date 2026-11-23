@@ -84,7 +84,7 @@ theorem cartan_existsUnique (E : Type) [Field E] [NumberField E] (w : HeightOneS
       _ = _ := by rw [← e']; group
   have e3 := congrArg Units.val e2
   rw [Units.val_mul, Units.val_mul, hT, hT] at e3
-  exact Subtype.ext (Formalism.UG.Final.CartanUnique E w r ϖ hm hϖ a a' ha ha' _ (mul_mem (inv_mem hk₁') hk₁) _
+  exact Subtype.ext (_root_.Formalism.UG.P.cartan_decomposition_unique_holds E w r ϖ hm hϖ a a' ha ha' _ (mul_mem (inv_mem hk₁') hk₁) _
     (mul_mem hk₂ (inv_mem hk₂')) e3.symm).symm
 
 theorem differentiable_eulerPoly (B : Multiset ℂˣ) (a : ℂ) : Differentiable ℂ fun X : ℂ => eulerPoly B (a * X) := by

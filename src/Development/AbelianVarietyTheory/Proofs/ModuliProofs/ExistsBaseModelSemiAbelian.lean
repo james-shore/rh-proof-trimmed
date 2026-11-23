@@ -162,9 +162,9 @@ theorem exists_baseModel : (∀ (T K : Type) [CommRing T] [IsDomain T] [IsDiscre
   obtain ⟨bop, brange⟩ := (hb2' b' hb').2 rfl
   obtain ⟨C₁, q, hq, qm, qfin, qj, qφ, qp⟩ := GlobalTheory.T.exists_compactModel_above_fullLevel E H D Xo n (n ^ J) T l₁ h₁ (n * l₀.M) J β₁ b' hS
     (dvd_mul_right _ _) hdiv hβ₁ hb'
-  obtain ⟨k, r, ν, hr, hk, lev, -, -, -, -, -, rsurj⟩ := GlobalTheory.T.exists_finite_etale_surjective_levelMap E H D Xo hN1 l₀ l₁
+  obtain ⟨k, r, ν, hr, hk, lev, -, -, -, -, -, rsurj⟩ := _root_.GlobalTheory.LevelMap.exists_levelMap E H D Xo hN1 l₀ l₁
     ⟨dvd_rfl, le_rfl, by rw [hA]; exact one_dvd _⟩
-  obtain ⟨Γ, _, _, ρ₀, τ₀, ν₀, inj, quot, hω⟩ := GlobalTheory.T.moduli_level_quotient_by_finite_group L1 L2 L3 E H D Xo hD hN1 l₀ l₁ r ν k hA rfl rfl hk hr lev
+  obtain ⟨Γ, _, _, ρ₀, τ₀, ν₀, inj, quot, hω⟩ := _root_.GlobalTheory.LevQuot.exists_level_quotient L1 L2 L3 E H D Xo hD hN1 l₀ l₁ r ν k hA rfl rfl hk hr lev
   have hU : IsUnit ((n * l₀.M : ℕ) : RZ H (n * l₀.M) (n ^ J)) := isUnit_RZ H _ hS
   obtain ⟨ρ, τ, mu, hact⟩ := GlobalTheory.exists_action_model hext E H _ _ _ (Xo l₁).s (Xo l₁).univ.t β₁ C₁ _
     (pullback.lift q C₁.s hq) Γ ρ₀ τ₀ ν₀ (ded₁ β₁ hβ₁) ft₁ (Xo l₁).univ.proper inferInstance (fun g => (hω g).1) (by

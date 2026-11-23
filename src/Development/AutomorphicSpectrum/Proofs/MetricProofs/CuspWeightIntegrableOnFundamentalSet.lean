@@ -187,54 +187,7 @@ section Card
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
-theorem hom_injective (s : 𝓞 E →+* ℂ) : Function.Injective s := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
-  have hk : RingHom.ker s = ⊥ := by
-    refine Ideal.eq_bot_of_comap_eq_bot (R := ℤ) ?_
-    rw [eq_bot_iff]
-    intro m hm
-    have h1 : s (algebraMap ℤ (𝓞 E) m) = 0 := hm
-    have h2 : ((m : ℤ) : ℂ) = 0 := by simpa using h1
-    simpa using (Int.cast_eq_zero.1 h2)
-  intro a ha
-  have : a ∈ RingHom.ker s := ha
-  rw [hk] at this
-  simpa using this
-
-theorem finrank_eq_two_mul {Ψ : Type} [Fintype Ψ] {σ : Ψ → (𝓞 E →+* ℂ)} (hσ : IsCMFam σ) :
-    Module.finrank ℚ E = 2 * Fintype.card Ψ := by
-  classical
-  let e : (E →+* ℂ) ≃ (𝓞 E →+* ℂ) :=
-    { toFun := fun φ => φ.comp (algebraMap (𝓞 E) E)
-      invFun := fun s => IsFractionRing.lift (hom_injective s)
-      left_inv := fun φ => by
-        apply IsLocalization.ringHom_ext (nonZeroDivisors (𝓞 E))
-        ext x
-        simp
-      right_inv := fun s => by
-        ext x
-        simp }
-  haveI : Fintype (𝓞 E →+* ℂ) := Fintype.ofEquiv _ e
-  have hc : Fintype.card (𝓞 E →+* ℂ) = Module.finrank ℚ E := by
-    rw [← Fintype.card_congr e]
-    exact NumberField.Embeddings.card E ℂ
-  let P : (𝓞 E →+* ℂ) → Prop := fun s => ∃ τ, σ τ = s
-  let c : (𝓞 E →+* ℂ) → (𝓞 E →+* ℂ) := fun s => (starRingEnd ℂ).comp s
-  have hcc : ∀ s, c (c s) = s := fun s => by
-    ext x
-    simp [c]
-  have hP : ∀ s, P s ↔ ¬ P (c s) := hσ.2
-  have e1 : {s // P s} ≃ Ψ := (Equiv.ofInjective σ hσ.1).symm
-  have e2 : {s // ¬ P s} ≃ {s // P s} :=
-    { toFun := fun s => ⟨c s.1, by
-        by_contra hn
-        exact s.2 ((hP s.1).2 hn)⟩
-      invFun := fun s => ⟨c s.1, (hP s.1).1 s.2⟩
-      left_inv := fun s => Subtype.ext (hcc s.1)
-      right_inv := fun s => Subtype.ext (hcc s.1) }
-  have := Fintype.card_congr (Equiv.sumCompl P)
-  rw [Fintype.card_sum, Fintype.card_congr e2, Fintype.card_congr e1, hc] at this
-  omega
+alias finrank_eq_two_mul := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.ShortVec.finrank_eq_two_mul
 
 theorem one_le_rd : 1 ≤ hostRd E := by
   unfold hostRd

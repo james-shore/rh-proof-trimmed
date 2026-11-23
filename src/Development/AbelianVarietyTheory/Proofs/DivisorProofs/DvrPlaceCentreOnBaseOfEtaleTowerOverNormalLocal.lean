@@ -182,7 +182,7 @@ theorem centre_of_isEtTower : ∀ {K L : Type} [Field K] [Field L] (cK : ℂ →
         have h3 : (1 : ℕ∞) + 1 ≤ 1 := le_trans (by gcongr) h2
         exact absurd h3 (by decide)
       · exact ENat.one_le_iff_ne_zero.2 (mt Ideal.height_eq_zero_iff_eq_bot.1 hp0)
-    obtain ⟨P0, h0, h0o⟩ := GlobalTheory.T.exists_place_isPrimeOf_of_height_one_normal_localModel cK R h.base h.normal p inferInstance hp1
+    obtain ⟨P0, h0, h0o⟩ := _root_.GlobalTheory.FieldPair.exists_place_isPrimeOf_of_height_eq_one cK R h.base h.normal p inferInstance hp1
     exact ⟨P0, h0, fun g hg => (h0o g hg).trans (hι g hg).symm⟩
 
 end GlobalTheory.FieldPair

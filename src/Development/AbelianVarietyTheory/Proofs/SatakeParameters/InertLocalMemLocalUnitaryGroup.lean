@@ -115,5 +115,4 @@ theorem loc_mem_GU (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ)
 
 end GlobalTheory.InertLocUnitary
 
-theorem GlobalTheory.InertLocUnitary.main : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) (v : HeightOneSpectrum (𝓞 (maximalRealSubfield L))) (w : HeightOneSpectrum (𝓞 L)) (Dv : InertDatum L n v w), ∀ x : GAf L n, Dv.loc x ∈ GU Dv.σw n :=
-  fun L _ _ _ n v w Dv x => GlobalTheory.InertLocUnitary.loc_mem_GU L n v w Dv x
+alias GlobalTheory.InertLocUnitary.main := _root_.GlobalTheory.InertLocUnitary.loc_mem_GU

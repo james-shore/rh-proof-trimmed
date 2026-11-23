@@ -77,4 +77,4 @@ theorem GlobalTheory.SiegLev.SQuot.eq_of_siegPB : ∀ (h n N : ℕ) (o o' : Type
   rw [hx2, hy2'] at e
   have hcomp : spMap (φ2.comp φ1) = g := by
     simp only [g, spMap, CommRingCat.ofHom_comp, Spec.map_comp]
-  exact GlobalTheory.T.spec_localRing_hom_ext_of_injective_localHom R R2 (φ2.comp φ1) inferInstance (hφ2.comp hφ1) Q.X x y (by rw [hcomp]; exact e)
+  exact _root_.GlobalTheory.spec_local_hom_ext_of_injective R R2 (φ2.comp φ1) inferInstance (hφ2.comp hφ1) Q.X x y (by rw [hcomp]; exact e)

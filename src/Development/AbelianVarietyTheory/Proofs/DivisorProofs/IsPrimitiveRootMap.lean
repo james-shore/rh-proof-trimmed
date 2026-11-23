@@ -65,23 +65,6 @@ theorem sumI_zero : SumI I (fun _ : Ix => (0 : E)) 0 :=
   ⟨⊥, Submodule.fg_bot, Submodule.zero_mem _, fun _ => Submodule.zero_mem _,
     fun _ => ⟨∅, fun T _ => by simp⟩⟩
 
-theorem sumI_add {x y : Ix → E} {s t : E} (hx : SumI I x s) (hy : SumI I y t) :
-    SumI I (fun i => x i + y i) (s + t) := by
-  obtain ⟨N₁, f₁, hs₁, hx₁, h₁⟩ := hx
-  obtain ⟨N₂, f₂, hs₂, hx₂, h₂⟩ := hy
-  refine ⟨N₁ ⊔ N₂, f₁.sup f₂, Submodule.add_mem_sup hs₁ hs₂, fun i => Submodule.add_mem_sup (hx₁ i) (hx₂ i),
-    fun n => ?_⟩
-  obtain ⟨S₁, hS₁⟩ := h₁ n
-  obtain ⟨S₂, hS₂⟩ := h₂ n
-  classical
-  refine ⟨S₁ ∪ S₂, fun T hT => ?_⟩
-  have e : s + t - ∑ i ∈ T, (x i + y i) = (s - ∑ i ∈ T, x i) + (t - ∑ i ∈ T, y i) := by
-    rw [Finset.sum_add_distrib]; abel
-  rw [e]
-  exact Submodule.add_mem _
-    (Submodule.smul_mono le_rfl le_sup_left (hS₁ T (Finset.union_subset_left hT)))
-    (Submodule.smul_mono le_rfl le_sup_right (hS₂ T (Finset.union_subset_right hT)))
-
 theorem sumI_smul (c : R) {x : Ix → E} {s : E} (hx : SumI I x s) : SumI I (fun i => c • x i) (c • s) := by
   obtain ⟨N, f, hs, hxN, h⟩ := hx
   refine ⟨N, f, N.smul_mem c hs, fun i => N.smul_mem c (hxN i), fun n => ?_⟩
@@ -97,7 +80,7 @@ theorem sumI_sum {κ : Type} (F : Finset κ) (x : κ → Ix → E) (s : κ → E
   | empty => simpa using (sumI_zero (I := I) (E := E) (Ix := Ix))
   | insert a F ha ih =>
     simp only [Finset.sum_insert ha]
-    exact sumI_add (h a (Finset.mem_insert_self a F)) (ih fun j hj => h j (Finset.mem_insert_of_mem hj))
+    exact _root_.GlobalTheory.AdicSum.sumI_add (h a (Finset.mem_insert_self a F)) (ih fun j hj => h j (Finset.mem_insert_of_mem hj))
 
 theorem sumI_comp {Ix' : Type} {e : Ix' → Ix} (he : Function.Injective e) {x : Ix → E} {s : E}
     (h0 : ∀ i, i ∉ Set.range e → x i = 0) (hx : SumI I x s) : SumI I (fun j => x (e j)) s := by
@@ -158,11 +141,6 @@ theorem eStd_sub_right (g m : ℕ) (x a b : Fin g ⊕ Fin g → ZMod m) :
   simp only [eStd, Pi.sub_apply, ← Finset.sum_sub_distrib]
   exact Finset.sum_congr rfl fun _ _ => by ring
 
-theorem eStd_add_left (g m : ℕ) (x y a : Fin g ⊕ Fin g → ZMod m) :
-    eStd g m (x + y) a = eStd g m x a + eStd g m y a := by
-  simp only [eStd, Pi.add_apply, ← Finset.sum_add_distrib]
-  exact Finset.sum_congr rfl fun _ _ => by ring
-
 end GlobalTheory.Poinc.Sep.ClassSumFun
 
 namespace GlobalTheory.Poinc.Sep.ClassSumFun
@@ -170,7 +148,7 @@ open Classical
 
 theorem exists_classSum_fun : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matrix (Fin 8) (Fin 8) ℤ) (Z : Scheme.{0}) (i : F.X ⟶ Z) (X₁ : Setup F W i) (z₁ : X₁.M.Z) (act : Matrix (Fin 8) (Fin 8) ℤ → (X₁.ρ.P.A ⟶ X₁.ρ.P.A)) (x₀ : X₁.S.Gam), X₁.M.Div X₁.S.th x₀ z₁ → ∃ f : X₁.S.Gam → X₁.S.Gam → X₁.Ω₁, (∀ a b, ∀ w : X₁.M.Z, X₁.M.Div X₁.S.th x₀ w → f a b ∈ X₁.M.O w) ∧ (∀ a a' b, a - a' ∈ X₁.S.HH X₁.M z₁ → f a b = f a' b) ∧ ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V] (ev : X₁.M.Z.presheaf.stalk z₁ →+* V) (X : Type) [AddCommGroup X] (m : ℕ) (t : Fin m → V) (δ : Fin m → LinearMap.BilinForm ℤ X) (𝔪 : UMem X₁ z₁ act V ev X t δ) (C : Type) (lab : C → X₁.S.Gam), (∀ c, lab c ∈ X₁.S.HH X₁.M z₁) → ∀ T : (Fin 8 → X) → C → V, 𝔪.Terms x₀ lab T → ∀ (c : C) (a : X₁.S.Gam) (κ : Fin 8 → X), 𝔪.YY a κ → ∀ h : X₁.M.Z.presheaf.stalk z₁, X₁.M.stalkHom z₁ h = f a (lab c) → SumI (maximalIdeal V) (fun nu : Fin 8 → X => T (κ + (X₁.S.r * X₁.S.N) • nu) c) (ev h) := by
   intro g n F W Z i X₁ z₁ act x₀ hdiv
-  obtain ⟨sg, eps, hlink⟩ := GlobalTheory.T.theta_constants_torus_translates_twisted_sums g n F W Z i X₁ z₁ act x₀ hdiv
+  obtain ⟨sg, eps, hlink⟩ := _root_.GlobalTheory.Poinc.Sep.twistSum_translate g n F W Z i X₁ z₁ act x₀ hdiv
   have hm0 : 0 < X₁.S.r * X₁.S.N :=
     Nat.mul_pos (by have := X₁.S.r_pos; omega) (by have := X₁.S.N_ge; omega)
   haveI : NeZero (X₁.S.r * X₁.S.N) := ⟨hm0.ne'⟩
@@ -298,7 +276,7 @@ theorem exists_classSum_fun : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : M
         have h₀' : eStd X₁.S.g _ τ₀ d ≠ 0 := by
           rw [Weights.eStd_swap]; exact neg_ne_zero.2 h₀
         refine sum_pow_val_eq_zero hq (fun τ : X₁.S.TT X₁.M z₁ => (sg : ℤ) • eStd X₁.S.g _ (τ : X₁.S.Gam) d)
-          (fun x y => by simp only [AddSubgroup.coe_add, eStd_add_left, smul_add]) ⟨τ₀, hτ₀⟩ ?_
+          (fun x y => by simp only [AddSubgroup.coe_add, _root_.GlobalTheory.ZH.TorusPerp.eStd_add_left, smul_add]) ⟨τ₀, hτ₀⟩ ?_
         rcases Int.units_eq_one_or sg with hs | hs <;> simpa [hs] using h₀'
     have hucard : ev (ι₀ u) * (Nat.card (X₁.S.TT X₁.M z₁) : V) = 1 := by
       rw [← map_natCast ev (Nat.card _), ← map_mul, ← map_natCast ι₀ (Nat.card _), ← map_mul, hu1, map_one, map_one]

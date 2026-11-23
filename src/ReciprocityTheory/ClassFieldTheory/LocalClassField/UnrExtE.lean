@@ -79,7 +79,7 @@ theorem exists_closest {M : IntermediateField ℚ_[p] (PadicAlgCl p)}
     have e : m = x - (x - m) := by ring
     have h3 : ‖m‖ ≤ max ‖x‖ ‖x - m‖ := by
       conv_lhs => rw [e]
-      exact UnramifiedExtensions.norm_sub_le_max' _ _
+      exact _root_.Bl.FirstBlockLemmaD.goal1 _ _
     exact absurd (h3.trans (max_le le_rfl hlt.le)) (not_le.2 hmx)
 
 theorem le_of_resK_le_of_norm {M L : IntermediateField ℚ_[p] (PadicAlgCl p)}

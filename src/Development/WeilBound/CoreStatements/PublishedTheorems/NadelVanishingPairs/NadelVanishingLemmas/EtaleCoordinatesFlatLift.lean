@@ -55,9 +55,9 @@ namespace GlobalTheory.DI
 
 theorem isFlatLift_stalkMap_of_isEtCoord : ∀ (p : ℕ) [Fact p.Prime] (Y X : Scheme.{0}) (g : Y ⟶ Sp (ZMod (p ^ 2))) (f : X ⟶ Sp (ZMod p)) (π : X ⟶ Y), IsPullback π f g (spMap (ZMod.castHom (dvd_pow_self p two_ne_zero) (ZMod p))) → ∀ (U : Y.Opens) {n : ℕ} (t : Fin n → Γ(Y, U)), IsAffineOpen U → IsEtCoord g U t → ∀ y : X, π y ∈ U → IsFlatLift p (π.stalkMap y).hom := by
   intro p _ Y X g f π hP U n t hU ht y hy
-  obtain ⟨hs, hk⟩ := GlobalTheory.T.mod_p_squared_stalk_surjective p Y X g f π hP y
-  have hfl := GlobalTheory.T.etale_coordinates_stalk_flat g U t hU ht (π y) hy
+  obtain ⟨hs, hk⟩ := _root_.GlobalTheory.DI.StalkKer.stalkMap_surjective_ker p Y X g f π hP y
+  have hfl := _root_.GlobalTheory.LogPair.flat_germ_comp_cstOn_of_isEtCoord g U t hU ht (π y) hy
   refine ⟨hs, hk, fun w => ?_⟩
-  rw [GlobalTheory.T.flat_mod_p_squared_torsion p _ hfl w, hk w]
+  rw [_root_.GlobalTheory.flat_zmod_sq_mul_p_eq_zero_iff p _ hfl w, hk w]
 
 end GlobalTheory.DI

@@ -76,16 +76,16 @@ theorem subsingleton_coh_twist (hN : GlobalTheory.Published.NefNumerics) (hV : G
   have hne : Nonempty X₁ := ⟨ψ (Classical.arbitrary X)⟩
   have hP := LB.isLB_pull hL₁ ψ
   have ec : cls N hNl = cls (L₁.pull ψ) hP := (cls_eq_iff _ _).2 e
-  have n₁ := GlobalTheory.T.isNefLineBundle_of_baseChange_field K₁ k X₁ X p₁ p ψ H hp₁ L₁ hL₁ (by
+  have n₁ := _root_.GlobalTheory.NefFieldDescent.isNef_of_baseChange K₁ k X₁ X p₁ p ψ H hp₁ L₁ hL₁ (by
     letI := algebraΓOfHom p
     exact h₁.of_cls_eq hP ec.symm)
-  have b₁ := (GlobalTheory.T.isBigLineBundle_pullback_fieldExtension_iff K₁ k X₁ X p₁ p ψ H hp₁ hp
+  have b₁ := (_root_.GlobalTheory.BigFieldChange.isBig_pull_iff K₁ k X₁ X p₁ p ψ H hp₁ hp
     ((GlobalTheory.HSCore.VanishNumberField.topologicalKrullDim_eq_of_smooth p D hs).trans
       (GlobalTheory.HSCore.VanishNumberField.topologicalKrullDim_eq_of_smooth p₁ D hs₁).symm) L₁ hL₁).1 (by
     letI := algebraΓOfHom p
     exact h₂.of_cls_eq hP ec.symm)
   let C : CanonLB p₁ D := CanonLB.all p₁ D
-  have v₁ := GlobalTheory.T.kawamataViehweg_vanishing_complexEmbeddedField hN hV K₁ (GlobalTheory.KeyHouse.nonempty_ringHom_complex K₁) X₁ p₁ D hp₁ hg₁
+  have v₁ := _root_.GlobalTheory.VanishEmbedded.subsingleton_coh_canon_tens hN hV K₁ (GlobalTheory.KeyHouse.nonempty_ringHom_complex K₁) X₁ p₁ D hp₁ hg₁
     C L₁ n₁ b₁ q hq
   have hT := isLB_tens C.isLB hL₁
   have v := (GlobalTheory.T.subsingleton_lineBundleCohomology_projBaseChange_iff K₁ k X₁ X p₁ p ψ H hp₁ hp _ hT q).2 v₁

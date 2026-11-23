@@ -64,7 +64,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem hyps_of {D : D7} {X : HidaSetting D} (Y : Full X) (u u' : D.what₂.Word) (hPH : PrimeHyp D u (Tu D u')) :
     Formalism.L2.SG.Pf.StabilizerIndexVolumes.Hyps D u u' (X.Fu u) (Y.what₂ u) := by
-  refine ⟨PI.TCS.termStable_holds D u u', Formalism.L2.SG.Pf.term_equivalence_iff D u u', term_function_const D u u',
+  refine ⟨PI.TCS.termStable_holds D u u', _root_.term_eq_iff_relation D u u', term_function_const D u u',
     hPH, D.sp.Y_sig 0, Y.rowsOK u⟩
 
 theorem volIdxFinP (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.what₂.Word) (hPH : PrimeHyp D u (Tu D u')) :

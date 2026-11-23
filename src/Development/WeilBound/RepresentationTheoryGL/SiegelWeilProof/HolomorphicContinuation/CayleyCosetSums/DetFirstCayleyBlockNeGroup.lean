@@ -70,16 +70,12 @@ theorem nbar_block (y : M2 n) (t : ℝ) : (y * nbar t).toBlocks₂₁ = y.toBloc
   conv_lhs => rw [← Matrix.fromBlocks_toBlocks y]
   simp [nbar, Matrix.fromBlocks_multiply]
 
-private theorem JJ_mul_JJ_eq_neg_one : JJ n * JJ n = -1 := by
-  rw [JJ, Matrix.fromBlocks_multiply, ← Matrix.fromBlocks_one, Matrix.fromBlocks_neg]
-  simp
-
 theorem det_ne_of_inG (x : M2 n) (hx : InG x) : x.det ≠ 0 := by
   have hx' : xᴴ * JJ n * x = JJ n := hx
   have h : (-(JJ n * xᴴ * JJ n)) * x = 1 := by
     calc (-(JJ n * xᴴ * JJ n)) * x = -(JJ n * (xᴴ * JJ n * x)) := by
           simp [Matrix.mul_assoc]
-      _ = 1 := by rw [hx', JJ_mul_JJ_eq_neg_one, neg_neg]
+      _ = 1 := by rw [hx', _root_.PositivityTheory.Rg.Sw.AbsSt.IwaPf.JJ_mul_self, neg_neg]
   exact (Matrix.isUnit_det_of_left_inverse h).ne_zero
 
 theorem det_first_cayley_block_ne_group (x : M2 n) (hx : InG x) : (u1 x).det ≠ 0 := by

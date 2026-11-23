@@ -79,7 +79,7 @@ theorem nonempty_tie_of_wit (q : WPt p.s K) {c : ℝ} (b : _root_.GlobalTheory.F
       (fun b => levS _ (w.x.R.βY 0) (w.x.R.dat0 (w.x.R.toRealDat.levR w.x.F.lv2 b)))
       (fun b => Formalism.IndefR.Lev.levChi _ (w.x.R.βY 0) (w.x.R.dat0 (w.x.R.toRealDat.levR w.x.F.lv2 b))) (fun _ => w.x.R.e0) w.x.Y.eFT) :
     Nonempty b.Comparison₂ := by
-  have hI := _root_.GlobalTheory.T.recursion_local_row_condition_alt _ _ _ _ _ _ _ _ q.O.ex w.x b.R b.S w.y.y w.y.r
+  have hI := _root_.GlobalTheory.Mem.R3.RecPinsTie.main_alt_alt _ _ _ _ _ _ _ _ q.O.ex w.x b.R b.S w.y.y w.y.r
   have h3 : _root_.Formalism.IndefR.IndefiniteRealisationNormalisationDegreeThree (_root_.GlobalTheory.Mem.R3.realisationOfInput w.y.y) := by
     obtain ⟨x, a, ax, y⟩ := w
     cases ax
@@ -88,7 +88,7 @@ theorem nonempty_tie_of_wit (q : WPt p.s K) {c : ℝ} (b : _root_.GlobalTheory.F
 theorem hasTie_of_linked {hL : _root_.UpperTheory.Zero.LLC.RecTExists} (p : _root_.GlobalTheory.Mem.Top.Bl.Parameters hL) (Q : V4.Slot) :
     RowE Q (_root_.GlobalTheory.Mem.Top.Bl.BundleLinkage p) fun _ => _root_.GlobalTheory.Fc.HasCompatibility := by
   have hH := EvP.of_ev GlobalTheory.Mem.HostFrames.hostHyp_frames_ev
-  refine ((((((_root_.GlobalTheory.T.bWit_zsc_F0_heq_F0K_local_of_sc_eq hL p).and (_root_.GlobalTheory.T.bWit_C_eq_cf_of_sc_eq hL p)).and (_root_.GlobalTheory.T.bWit_Pg_eq_image_plMap_of_sc_eq hL p)).and (_root_.GlobalTheory.T.theta_level_conjugate_character_alt hL p)).and (_root_.GlobalTheory.T.local_level_character_pin_of_witness hL p)).and hH).mono
+  refine ((((((_root_.GlobalTheory.Mem.Top.Bl.bWit_zsc_F0_heq_F0K_of_sc_eq hL p).and (_root_.GlobalTheory.Mem.Top.Bl.bwit_cf_eq_alt hL p)).and (_root_.GlobalTheory.Div.PgTie.pgEq_of_linked_alt hL p)).and (_root_.GlobalTheory.Mem.R3.LinkLev.tS_fin_conj_match_alt hL p)).and (_root_.GlobalTheory.Mem.Top.Bl.locPin_level_character_of_bWit hL p)).and hH).mono
     fun κ K _ h β _ c b hl => ?_
   obtain ⟨⟨⟨⟨⟨h0, hc⟩, hg⟩, ht⟩, hl'⟩, hh⟩ := h
   obtain ⟨q, b', ⟨w⟩, e⟩ := hl

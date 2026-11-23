@@ -108,7 +108,7 @@ theorem integral_of_eqChar : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   have hA : ∀ Y : Model Xo c (la.valuation c.F).valuationSubring.subtype, PushInvertible Y.t.G Y.t.PP.L →
       ∀ y' : Sp T.V ⟶ Y.X, z ≫ Y.j = spMap (algebraMap T.V T.Fr) ≫ y' → Set.range y' ⊆ abLocus Y.t.G →
       evI y f ∈ (algebraMap T.V T.Fr).range := fun Y hP y' h3 hr =>
-    GlobalTheory.T.section_integral_equalChar_abelianLocus E H Dw l Xo c a n f hf.1 la Y hP T io hint y ⟨y', z, hz₁, hz₂, h3, hr⟩
+    _root_.GlobalTheory.EqCharGood.inV_of_extIn_eqChar E H Dw l Xo c a n f hf.1 la Y hP T io hint y ⟨y', z, hz₁, hz₂, h3, hr⟩
   rcases Nat.eq_zero_or_pos (Dw.p + Dw.q) with hD | hD
   · obtain ⟨Y, hP⟩ := GlobalTheory.SupFinite.exists_model_rank_zero Xo c hD (la.valuation c.F).valuationSubring.subtype
     obtain ⟨⟨y', ⟨-, hz₃⟩, -⟩, -⟩ :=
@@ -131,8 +131,8 @@ theorem integral_of_eqChar : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   have hint' : ∀ k : c.F, (i.comp io) k ∈ (algebraMap T'.V T'.Fr).range := fun k => by
     obtain ⟨v, hv'⟩ := hint k
     exact ⟨g v, by rw [RingHom.comp_apply, ← hv', hi]⟩
-  have key := GlobalTheory.T.cuspForm_integral_arc_section_equalChar E H Dw l Xo c r U hU la Y hP hop h4 a n f hd hf
-    (fun T₁ io₁ h₁ y₂ hy₂ => GlobalTheory.T.section_integral_equalChar_abelianLocus E H Dw l Xo c a n f hf.1 la Y hP T₁ io₁ h₁ y₂ hy₂)
+  have key := _root_.GlobalTheory.GoodTransfer.inV_of_arc_of_extIn E H Dw l Xo c r U hU la Y hP hop h4 a n f hd hf
+    (fun T₁ io₁ h₁ y₂ hy₂ => _root_.GlobalTheory.EqCharGood.inV_of_extIn_eqChar E H Dw l Xo c a n f hf.1 la Y hP T₁ io₁ h₁ y₂ hy₂)
     T' (i.comp io) hint' ⟨κ, hκ⟩ (g.comp b)
     (by rw [← RingHom.comp_assoc, e₁, RingHom.comp_assoc, hb]; rfl) ϖ hϖ a₀ (spMap g ≫ y')
     (by rw [Category.assoc, hy', sp_comp]) hA' y₁ (spMap i ≫ z)

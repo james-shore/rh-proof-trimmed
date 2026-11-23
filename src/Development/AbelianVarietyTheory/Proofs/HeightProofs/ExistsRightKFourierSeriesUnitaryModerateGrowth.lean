@@ -70,7 +70,7 @@ theorem rder_mem (ε : Fin n → Bool) (d : ℕ) (φ : KG ε → ℂ) (hφ : φ 
   induction l with
   | nil => exact hφ
   | cons X l ih =>
-    have h := (GlobalTheory.T.contDiff_matrixRightInvariantDerivative ε d _ (ih fun Y hY => hl Y (List.mem_cons_of_mem _ hY)) X (hl X List.mem_cons_self)).1
+    have h := (_root_.GlobalTheory.KFourier.rder_mem_and_hasDerivAt ε d _ (ih fun Y hY => hl Y (List.mem_cons_of_mem _ hY)) X (hl X List.mem_cons_self)).1
     exact h
 
 theorem hs_mul_toMK (ε : Fin n → Bool) (y : Mx n) (k : KG ε) : hs (y * toMK k) = hs y :=
@@ -99,7 +99,7 @@ theorem exists_rightKFourier : ∀ (n : ℕ) (ε : Fin n → Bool), ∃ e : ℕ 
       (∀ k, Summable fun i => B i k) ∧
       ∀ y ∈ UJset ε, HasSum (fun i => ∫ k, e i k * f (y * Formalism.REAL.toMK k) ∂(Formalism.REAL.muK ε)) (f y) := by
   intro n ε
-  have hker : ∀ i, IsKer ε i (kerE ε i) := fun i => isKer_kerE (GlobalTheory.T.exists_compactUnitary_fourierKernel ε i)
+  have hker : ∀ i, IsKer ε i (kerE ε i) := fun i => isKer_kerE (_root_.GlobalTheory.KFourier.exists_isKer ε i)
   refine ⟨kerE ε, fun i => continuous_of_mem (hker i).1, fun i => kFinFun_of_mem (hker i).1, ?_⟩
   intro f hf hU
   obtain ⟨N, F, hF0, hFd, hFg⟩ := hU
@@ -150,11 +150,11 @@ theorem exists_rightKFourier : ∀ (n : ℕ) (ε : Fin n → Bool), ∃ e : ℕ 
     show HasDerivAt (fun t : ℝ => rder ε l (avgK ε (kerE ε i) f (y * NormedSpace.exp (t • X))) 1)
       (rder ε [X] (rder ε l (avgK ε (kerE ε i) f y)) 1) 0
     rw [e1]
-    exact (GlobalTheory.T.contDiff_matrixRightInvariantDerivative ε i _ hR X hK).2 1
+    exact (_root_.GlobalTheory.KFourier.rder_mem_and_hasDerivAt ε i _ hR X hK).2 1
   · intro m
     exact (summable_listSum (U m) b fun u _ => hbs u).mul_left (C m)
   · intro y hy
-    have key := GlobalTheory.T.hasSum_compactUnitaryFourier_value_one ε (kerE ε) hker (fun k => f (y * toMK k)) ?_ (fun i => C 0 * ((U 0).map fun u => b u i).sum * (1 + hs y) ^ N)
+    have key := _root_.GlobalTheory.KFourier.hasSum_kFourier ε (kerE ε) hker (fun k => f (y * toMK k)) ?_ (fun i => C 0 * ((U 0).map fun u => b u i).sum * (1 + hs y) ^ N)
       (((summable_listSum (U 0) b fun u _ => hbs u).mul_left (C 0)).mul_right _) ?_
     · simpa [toMK_one] using key
     · exact hf.comp_continuous ((continuous_const.mul (continuous_toMK ε))) fun k => mul_mem_UJ hy (K_le_UJ k.2)

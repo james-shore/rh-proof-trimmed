@@ -69,32 +69,6 @@ open GlobalTheory.KeyKa
 noncomputable section
 namespace GlobalTheory.KeyGeneric
 
-section Sec
-
-variable {X X' : Scheme.{0}} {L : LB X} {L' : LB X'} {F : X' ⟶ X}
-
-theorem gs_pow' {Z : Scheme.{0}} (r : Z ⟶ X) (z : Z) (U : X.Opens) (h : r z ∈ U) (a : Γ(X, U)) (n : ℕ) :
-    gs r z U (a ^ n) = gs r z U a ^ n := by simp only [gs_eq r z U h, map_pow]
-
-theorem via_iff_stalk (w : LB.Iso L' (L.pull F)) (l : ℕ) (a' : ∀ i, Γ(X', L'.U i)) (a : ∀ j, Γ(X, L.U j)) :
-    GlobalTheory.KeyVia.Via w l a' a ↔
-    ∀ (Z : Scheme.{0}) (r : Z ⟶ X') (z : Z) j k, F (r z) ∈ L.U j → r z ∈ L'.U k →
-      gs (r ≫ F) z _ (a j) = (gw w r z j k).val ^ l * gs r z _ (a' k) := by
-  constructor
-  · intro h Z r z j k hj hk
-    have hy : r z ∈ (L.pull F).U (fun _ => j) ⊓ L'.U k := ⟨mem_pull.2 hj, hk⟩
-    have hle : (L.pull F).U (fun _ => j) ⊓ L'.U k ≤ F ⁻¹ᵁ L.U j := fun y hy => mem_pull.1 hy.1
-    refine (gs_appLE F _ _ hle r z hy _).symm.trans ((congrArg (gs r z _) (h (fun _ => j) k hle)).trans ?_)
-    rw [gs_mul _ z _ hy, gs_res _ z _ hy, gs_pow' _ z _ hy]
-    exact congrArg (· ^ l * _) (gs_unit _ z _ hy _)
-  · intro h j i hle
-    refine fn_ext fun y hy => ?_
-    refine (gs_appLE F _ _ hle (𝟙 _) y hy _).trans ((h _ (𝟙 _) y _ i (mem_pull.1 hy.1) hy.2).trans ?_)
-    rw [gs_mul _ y _ hy, gs_res _ y _ hy, gs_pow' _ y _ hy]
-    exact congrArg (· ^ l * _) (gs_unit _ y _ hy _).symm
-
-end Sec
-
 theorem keyVia_cancel {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] {x : KeyIn R} {x' : KeyIn R'}
     {x'' : KeyIn R''} {f : R →+* R'} {f' : R' →+* R''} {φ w φ'' w''} (h : KeyVia x' x f φ w)
     (h'' : KeyVia x'' x (f'.comp f) φ'' w'') :
@@ -137,7 +111,7 @@ theorem keyVia_cancel {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''
     (maps_iff w' _ (fun _ => eSec x'.P.A) _ x''.rig x'.rig (spMap f') _ (rigPull_le φ' (spMap f') he' x'.P.L)
       (fun _ => rfl)).2 (T.pmaps_cancel x.P.isLB (fun _ => he') r r''),
     (GlobalTheory.KeyCancel.appLE_eq_iff_stalk w' x'.th x''.th).2 fun Z q z i k hi hk => ?_, fun a => ?_, ?_, fun i => ?_⟩,
-    fun l s s' s'' hs' hs'' => (via_iff_stalk w' l s''.f s'.f).2 fun Z q z i k hi hk => ?_⟩
+    fun l s s' s'' hs' hs'' => (_root_.GlobalTheory.KeyLine.via_iff_stalk w' l s''.f s'.f).2 fun Z q z i k hi hk => ?_⟩
   · obtain ⟨j, hj⟩ := exists_chart x.P.isLB (φ (φ' (q z)))
     have a := (GlobalTheory.KeyCancel.appLE_eq_iff_stalk w x.th x'.th).1 hs Z (q ≫ φ') z j i hj hi
     have b := (GlobalTheory.KeyCancel.appLE_eq_iff_stalk w'' x.th x''.th).1 hs'' Z q z j k hj hk
@@ -156,8 +130,8 @@ theorem keyVia_cancel {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''
       congr 2
       ext a <;> simp [Chart.dualMapR, TrivSqZeroExt.algebraMap_eq_inl]
   · obtain ⟨j, hj⟩ := exists_chart x.P.isLB (φ (φ' (q z)))
-    have a := (via_iff_stalk w l s'.f s.f).1 hs' Z (q ≫ φ') z j i hj hi
-    have b := (via_iff_stalk w'' l s''.f s.f).1 hs'' Z q z j k hj hk
+    have a := (_root_.GlobalTheory.KeyLine.via_iff_stalk w l s'.f s.f).1 hs' Z (q ≫ φ') z j i hj hi
+    have b := (_root_.GlobalTheory.KeyLine.via_iff_stalk w'' l s''.f s.f).1 hs'' Z q z j k hj hk
     rw [T Z q z j i k hj hi hk, ← Category.assoc, a, Units.val_mul, mul_pow, _root_.mul_assoc] at b
     exact ((Units.isUnit _).pow l).mul_left_cancel b
 

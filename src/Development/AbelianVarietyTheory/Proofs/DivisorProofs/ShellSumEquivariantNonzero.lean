@@ -155,7 +155,7 @@ theorem integrableOn_shell (hϖ : IsUnif ϖ) (hram : ¬ IsUnram ν) (hcond : Con
     {φ : Matrix (Fin a) (Fin a) k → ℂ} (hφ : φ ∈ SB (Matrix (Fin a) (Fin a) k)) (m : Fin a → ℤ) (w : ℂ) :
     IntegrableOn (fun g : GL (Fin a) k => φ g.val * (ν (gdet g) : ℂ) * apow (gdet g) w) (shellSet ϖ m)
       (haarVol (KO k (Fin a))) :=
-  (GlobalTheory.T.zetaIntegralShells_vanish_beyondPeriod_ramified k ϖ hϖ ν e hram hcond a (haarVol (KO k (Fin a))) φ hφ).1 m w
+  (_root_.GlobalTheory.ShellVan.shell_lemma k ϖ hϖ ν e hram hcond a (haarVol (KO k (Fin a))) φ hφ).1 m w
 
 theorem support_finite (hϖ : IsUnif ϖ) (hram : ¬ IsUnram ν) (hcond : CondLE ϖ e ν) {a : ℕ}
     {φ : Matrix (Fin a) (Fin a) k → ℂ} (hφ : φ ∈ SB (Matrix (Fin a) (Fin a) k)) (w : ℂ) :

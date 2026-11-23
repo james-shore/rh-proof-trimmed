@@ -185,7 +185,7 @@ theorem total_le_generic : ∀ {F : Type} [Field F] [ValuativeRel F] [Topologica
   have := hM.loc
   have := hM.char0
   obtain ⟨S, ⟨c⟩⟩ := GlobalTheory.HL.CoordExist.exists_coord M hM H r k P hrank hrel
-  have T22 := GlobalTheory.T.isTerm_and_om_eq_of_coord_isTermOver M hM H r k P S c
+  have T22 := _root_.GlobalTheory.HL.CoordTermWt.terms_correspond M hM H r k P S c
   have T23 := GlobalTheory.T.hermitianFramePair_amplitude_mass_reps_eq_orbits M hM H r k P S c
   have T28 := GlobalTheory.T.framePairCoordinates_localHeight_eq_residueCard M hM H r k P S c
   have TR := GlobalTheory.HL.CoordUnip.transport M hM H r k P S c

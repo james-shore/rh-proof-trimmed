@@ -112,25 +112,12 @@ theorem repOf_apply {Γ : Type} [Group Γ] {a : ℕ} {L : FinExt l} (r : Γ →*
     repOf r g v = (r g).val *ᵥ v := by
   simp [repOf, Matrix.toLinAlgEquiv'_apply]
 
-theorem isSst_resQ' (P : LocPrime l) {K : FinExt l} {LL : Type} [Field LL] [Algebra ℚ_[l] LL]
-    [FiniteDimensional ℚ_[l] LL] {V : Type} [AddCommGroup V] [Module LL V] [Module ℚ_[l] V] [IsScalarTower ℚ_[l] LL V]
-    (ρ : Representation LL ↥(GK K) V) (h : IsSst P ρ) : IsSst P (GlobalTheory.PstCoeff.resQ ρ) := by
-  have hD : Dst P (GlobalTheory.PstCoeff.resQ ρ) = (Dst P ρ).restrictScalars ℚ_[l] := by
-    ext x
-    simp [mem_Dst, GlobalTheory.PstCoeff.stRep_resQ]
-  have e : Module.finrank ℚ_[l] ↥(Dst P (GlobalTheory.PstCoeff.resQ ρ)) =
-      Module.finrank ℚ_[l] LL * Module.finrank LL ↥(Dst P ρ) := by
-    rw [hD, Module.finrank_mul_finrank]
-    rfl
-  rw [IsSst, e, h, ← Module.finrank_mul_finrank ℚ_[l] LL V]
-  ring
-
 theorem isDR_of_isSst (P : LocPrime l) (AI : LocAinf l P) (T : LocTied l P AI) {K L : FinExt l} {a : ℕ}
     (R : Representation ↥L.1 ↥(GK K) (Fin a → ↥L.1)) (h : IsSst P R) : Formalism.MainNotions.N.IsDR (P.PD K) R := by
   haveI := L.2
   haveI : FiniteDimensional ℚ_[l] (Fin a → ↥L.1) := Module.Finite.trans ↥L.1 _
   exact (GlobalTheory.PstCoeff.isDR_resQ_iff P R).mp
-    (GlobalTheory.sst_isDR l P AI T K _ (GlobalTheory.PstCoeff.resQ R) (isSst_resQ' P R h))
+    (GlobalTheory.sst_isDR l P AI T K _ (GlobalTheory.PstCoeff.resQ R) (_root_.GlobalTheory.LayerSst.isSst_resQ P R h))
 
 theorem conj_diag {k : Type} [Field k] {a : ℕ} (W : Matrix (Fin a) (Fin a) k) (hW : IsUnit W) (d : Fin a → k) :
     (W * diagonal d * W⁻¹) * W = W * diagonal d ∧
@@ -224,8 +211,8 @@ theorem closed_of_cover : ∀ (l : ℕ) [Fact l.Prime] (K L₀ : FinExt l) (P : 
     (GlobalTheory.T.isSemistable_latticeInMatrixAlgebraLayer l K L₀ P AI T a Cl _ (Cv.tw.ρ' m) (Cv.lay m)).1 hsstCl
   have hfr : ∀ m, ∃ F : Frame bk N (Cv.tw.d' m) (fun g => (Cv.tw.ρ' m g).val),
       F.IsDR ∧ (IsCrys (P.PD K) (qRep (Cv.tw.ρ' m)) → F.IsCr) := fun m =>
-    GlobalTheory.T.exists_breuilKisinFrame_semistable_boundedJumps l K bk τp hτp P AI T N _ (Cv.tw.ρ' m) (Cv.cont' m) (hsst m)
-      (GlobalTheory.T.layer_DdR_bounds_alt l K L₀ P AI T a Cl J N hL₀ hN _ (Cv.tw.ρ' m) (Cv.lay m) hCl)
+    _root_.GlobalTheory.BKLim.exists_frame_sst l K bk τp hτp P AI T N _ (Cv.tw.ρ' m) (Cv.cont' m) (hsst m)
+      (_root_.GlobalTheory.LayerJumps.layer_DdR_bounds l K L₀ P AI T a Cl J N hL₀ hN _ (Cv.tw.ρ' m) (Cv.lay m) hCl)
   choose F hFdr hFcr using hfr
   obtain ⟨F₀, hF₀dr, hF₀cr, rr, hlink⟩ := GlobalTheory.T.exists_deRhamFrame_limitLattice_breuilKisinTower l K bk τp hτp Cv.d N Cv.ρ Cv.tw F hFdr
   have hdr0 : Formalism.MainNotions.N.IsDR (P.PD K) (qRep Cv.ρ) := GlobalTheory.T.isDeRham_of_breuilKisinFrame_isDeRham l K bk τp hτp P AI T N Cv.d Cv.ρ F₀ hF₀dr
@@ -250,7 +237,7 @@ theorem closed_of_cover : ∀ (l : ℕ) [Fact l.Prime] (K L₀ : FinExt l) (P : 
       U' * Y.map ((Per.θD l).comp (aDp l)) = Y.map ((Per.θD l).comp (aDp l)) * ((F m).ε g).map ((Per.θD l).comp (aDp l)) ∧
       U' * H.V.map (Per.θD l) = H.V.map (Per.θD l) * Matrix.diagonal fun i => z ^ ((H.p i : ℤ) - H.q) := by
     intro m
-    obtain ⟨H, -⟩ := GlobalTheory.T.exists_hodge_basis_deRham_lattice l K P AI T C hC (bk.ev bk.E) hξ _ (Cv.tw.ρ' m)
+    obtain ⟨H, -⟩ := _root_.GlobalTheory.HodgeEx.exists_hodge l K P AI T C hC (bk.ev bk.E) hξ _ (Cv.tw.ρ' m)
       (GlobalTheory.sst_isDR l P AI T K _ (qRep (Cv.tw.ρ' m)) (hsst m))
     obtain ⟨Y, -, hY, -⟩ := GlobalTheory.T.breuilKisinPreframe_bounded_poles l K bk τp hτp N _ _ (F m).toPre
     obtain ⟨U', h1, h2⟩ := (GlobalTheory.T.adaptedBasis_theta_galoisFixed_poles l K bk τp hτp C hCd N _ _ (F m) Y (hFdr m) hY H).1 g z hz
@@ -284,7 +271,7 @@ theorem closed_of_cover : ∀ (l : ℕ) [Fact l.Prime] (K L₀ : FinExt l) (P : 
     let τk : ↥K.1 →ₐ[ℚ_[l]] ↥((Cv.lay m).L k).1 :=
       (L.1.val.comp τK).codRestrict ((Cv.lay m).L k).1.toSubalgebra (fun x => (Cv.lay m).le k (hL₀ _ x))
     have hσk : ∀ x : ↥K.1, σ ((τk x : ↥((Cv.lay m).L k).1) : Om l) = (x : Om l) := hσ
-    obtain ⟨K', Hk, hKK', hcard⟩ := GlobalTheory.T.exists_hodge_basis_at_embedding l K ((Cv.lay m).L k) P AI T C hC (bk.ev bk.E) hξ a rk (repOf rk)
+    obtain ⟨K', Hk, hKK', hcard⟩ := _root_.GlobalTheory.HodgeAt.exists_hodge_at_embedding l K ((Cv.lay m).L k) P AI T C hC (bk.ev bk.E) hξ a rk (repOf rk)
       (repOf_apply rk) (isDR_of_isSst P AI T _ hsk) τk σ hσk
     have hcτ : ((Cv.lay m).L k).1.val.comp τk = L.1.val.comp τK := AlgHom.ext fun _ => rfl
     have hms : Finset.univ.val.map (fun i => (Hk.p i : ℤ) - Hk.q) = J (L.1.val.comp τK) :=
@@ -314,7 +301,7 @@ theorem closed_of_cover : ∀ (l : ℕ) [Fact l.Prime] (K L₀ : FinExt l) (P : 
     exact (hu n).1.trans (hu n).2
   have hcov := GlobalTheory.T.trace_pow_eq_along_latticeTowerCover l (↥(GK K)) L₀ a ha r Cl Cv σ U U' Bd S hS0 hUb hU'b hcomp hlayS
 
-  obtain ⟨K', HR, hKK', hcard⟩ := GlobalTheory.T.exists_hodge_basis_at_embedding l K L P AI T C hC (bk.ev bk.E) hξ a r' R hR hdrR τK σ hσ'
+  obtain ⟨K', HR, hKK', hcard⟩ := _root_.GlobalTheory.HodgeAt.exists_hodge_at_embedding l K L P AI T C hC (bk.ev bk.E) hξ a r' R hR hdrR τK σ hσ'
   have hW : IsUnit (HR.V.map (Per.θD l)) := HR.unit.map (Per.θD l).mapMatrix
   obtain ⟨huW, htr⟩ := conj_diag _ hW fun i => z ^ ((HR.p i : ℤ) - HR.q)
   have hHT := (GlobalTheory.T.isHodgeTate_iff_diagonal_adapted_basis l K K' C hCd (bk.ev bk.E) hξ a _ HR z _ hKK').1 huW

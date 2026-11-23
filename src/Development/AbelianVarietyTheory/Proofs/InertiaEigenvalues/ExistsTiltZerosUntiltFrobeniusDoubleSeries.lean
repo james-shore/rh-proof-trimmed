@@ -54,13 +54,6 @@ open scoped Formalism.Per
 
 namespace GlobalTheory.PSerExist
 
-theorem norm_l_lt_one (l : ℕ) [Fact l.Prime] : ‖(l : ℂ_[l])‖ < 1 := by
-  have h := PadicComplex.norm_extends' l (l : ℚ_[l])
-  have h2 : ‖(l : ℚ_[l])‖ < 1 := Padic.norm_p_lt_one
-  have h3 : ((l : ℚ_[l]) : ℂ_[l]) = (l : ℂ_[l]) := by push_cast; rfl
-  rw [h3] at h
-  rw [h]; exact h2
-
 theorem exists_zeros (l : ℕ) [Fact l.Prime] (h : ℕ) (μ : Fin h → ℂ_[l]) (hh : 2 ≤ h) (hμ : μ ≠ 0) :
     ∃ y : Fin h → ℕ → Fl l, (∀ a k, ‖sh (y a k)‖ ≤ ‖(l : ℂ_[l])‖) ∧
       (∀ a, ∑ i : Fin h, μ i * abelian₂ h i (y a) = 0) ∧
@@ -78,7 +71,7 @@ theorem exists_zeros (l : ℕ) [Fact l.Prime] (h : ℕ) (μ : Fin h → ℂ_[l])
       ∀ i, HasSum (fun k : ℕ => (l : ℂ_[l]) ^ k * η (z k) i) 0 :=
     fun a => hlift (x a) (hxS a) (fun _ => hxη a)
   choose y hy0 hyS hysum using hy
-  have hr : ‖(l : ℂ_[l])‖ < 1 := norm_l_lt_one l
+  have hr : ‖(l : ℂ_[l])‖ < 1 := _root_.NormPrimeLtOne.Bridge.RingBasics.norm_p_lt l
   have hyS' : ∀ a k, ‖sh (y a k)‖ ≤ ‖(l : ℂ_[l])‖ := fun a k => hyS a k
   refine ⟨y, hyS', ?_, ?_⟩
   · intro a

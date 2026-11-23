@@ -190,7 +190,7 @@ theorem isGalRepOf_of_iso [NumberField E] [IsAlgClosure E Ω] [IsCMField E] {π 
   have Ha := H.above P AI T w A h O Bw hj
   have e : ∀ s : ↥(Dec (F := E) A), r'.comp (Dec (F := E) A).subtype s = g * r.comp (Dec (F := E) A).subtype s * g⁻¹ :=
     fun s => hg s
-  obtain ⟨c1, c2, -, c4⟩ := GlobalTheory.T.padicHodgeProperties_conj_invariant l P E Ω O _ Bw m _ _ g e
+  obtain ⟨c1, c2, -, c4⟩ := _root_.GlobalTheory.ConjLocal.local_conj l P E Ω O _ Bw m _ _ g e
   exact ⟨c1 Ha.deRham, fun τ L τ' hτ => c4 _ _ (Ha.jumps τ L τ' hτ), fun σ hσ hf =>
     ⟨isSstAt_conj P Bw g e (Ha.iwahori σ hσ hf).1, fun rc hrc =>
       (wdAt_conj P ι Bw h hj g e).trans ((Ha.iwahori σ hσ hf).2 rc hrc)⟩, fun σ hσ hf => c2 (Ha.crys σ hσ hf)⟩

@@ -66,9 +66,9 @@ theorem main_alt_alt : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheo
       (Eq.rec (motive := fun n _ => PolF D D.sp.X'.rank (Yc D n).rank →ₗ[ℂ] SmT (_root_.GlobalTheory.Fam.pk_z W).MX →ₗ[ℂ] SmT ((_root_.GlobalTheory.Fam.pk_z W).MY n)) (_root_.GlobalTheory.Fam.pk_z W).ItX e) := by
     intro n e
     subst e
-    exact _root_.GlobalTheory.T.itSpans_MY_last_MX hDS hHC W hP
+    exact _root_.GlobalTheory.Core.Mi.SpanX.itSpans_pk_alt hDS hHC W hP
   refine ⟨⟨hstd, hinf, hR.x, (GlobalTheory.Unf.CoCptOf.coCpt_of_isAniso_or_posDef D D.sp.X').2 GlobalTheory.Hk3.StepX.gram_posDef_X,
-    hR.meas.μf, hR.meas.ρJ, hR.meas.ρB, fun j hj => _root_.GlobalTheory.T.itSpans_MY_succ hDS hHC W hP j hj, fun j h => spanT _ (idx_top h)⟩, fun hCol t => ?_⟩
+    hR.meas.μf, hR.meas.ρJ, hR.meas.ρB, fun j hj => _root_.GlobalTheory.Core.Mi.SpanY.itSpans_pk_alt hDS hHC W hP j hj, fun j h => spanT _ (idx_top h)⟩, fun hCol t => ?_⟩
   exact
     { sBF := fun j ρ h => ⟨((hR.row t).sBF j ρ h).1, ((hR.row t).sBF j ρ h).2.1⟩
       sFB := fun j σ h => ⟨((hR.row t).sFB j σ h).1, ((hR.row t).sFB j σ h).2.1⟩
@@ -78,8 +78,8 @@ theorem main_alt_alt : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheo
         (GlobalTheory.VecTheta.isThetaFunO_stepVec ((hR.row t).vT j h)) P
       CC := fun j _ => ⟨_, _, le_rfl⟩
       CT := ⟨_, _, le_rfl⟩
-      io := _root_.GlobalTheory.T.lift_s_eq_ci_smul_io W u hP f hR t
-      ioT := _root_.GlobalTheory.T.lift_s_last_eq_ci_succ_smul_io W u hP f hR t
+      io := _root_.GlobalTheory.Fam.LiftVol.liftS_pt_eq_cI_smul_io W u hP f hR t
+      ioT := _root_.GlobalTheory.Fam.liftS_ptT_eq_cI_smul_ioT W u hP f hR t
       cI := fun j hj => hR.meas.cIOf_ne_zero (_root_.GlobalTheory.Fam.complexLevelStructure W) t j hj
       ker := hCol.ker t
       e := hCol.e t

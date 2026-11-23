@@ -43,6 +43,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 namespace UpperTheory.Gal.InertialTypesAlt.L
 
 theorem finTrace_of_matching (h : GlobalTheory.DZA.InflMatching) : FinTrace :=
-  finTrace_holds h G.varEx_holds G.varTrace_holds G.normInt_holds
+  finTrace_holds h _root_.UpperTheory.Gal.InertialTypesAlt.G.varEx _root_.UpperTheory.Gal.InertialTypesAlt.G.varTrace _root_.UpperTheory.Gal.InertialTypesAlt.G.normInt
 
 end UpperTheory.Gal.InertialTypesAlt.L

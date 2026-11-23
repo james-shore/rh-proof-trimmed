@@ -54,6 +54,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
+import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CrystallineOrdinaryIdeals.OrdinaryIdealSaturatorsConjInvariant
 
 @[expose] public section
 
@@ -64,9 +65,6 @@ attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toI
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.GalOfCusp Matrix IsLocalRing
 open UpperTheory.V UpperTheory.V.Base UpperTheory.V.HV UpperTheory.V.Alg UpperTheory.V.U3
-private theorem conj_left_block_of_right_one {Γ R : Type} [Group Γ] [CommRing R] (M : GL (Fin 3) R) (r : Γ →* GG (m := 3) (R := R)) (g : Γ)
-    (hg : (r g).right = 1) : (conjBy M r g).left = M * (r g).left * M⁻¹ := by
-  simp [conjBy, hg]
 private theorem conj_left_block_eq_theta {Γ R : Type} [Group Γ] [CommRing R] (r : Γ →* GG (m := 3) (R := R)) (c g : Γ)
     (hc : (r c).mat = 1) (hc' : (r c).right = -1) (hg : (r g).right = 1) : (r (c⁻¹ * g * c)).left = theta (r g).left := by
   have h1 : (r c).left = 1 := Units.ext hc
@@ -255,7 +253,7 @@ theorem UpperTheory.V.U3.admissible_rank_three_of_type_one_of_automorphic_point 
     obtain ⟨-, M, h1, h2⟩ := pt_inertia_above hI D hM h _ hl
     have hF := (galEmbFam ℚ K Ω l).1 (Loc.placeJ (D.j.comp (g : Ω →+* Ω)))
     have hc : ∀ s : G K Ω, (conjBy M r (galEmb ℚ K Ω s)).left = M * D.rhoK r h.mult s * M⁻¹ := fun s =>
-      conj_left_block_of_right_one M r _ ((h.mult _).trans (hη s))
+      _root_.GlobalTheory.OrdLoc.conjBy_left M r _ ((h.mult _).trans (hη s))
     obtain ⟨κ, hκ, hκ'⟩ := exists_flag_characters_of_upper_triangular (D.rhoK r h.mult) (Dec (F := K) (Loc.placeJ (D.j.comp (g : Ω →+* Ω)))) M
       fun s hs i j hij => by
         rw [← hc]

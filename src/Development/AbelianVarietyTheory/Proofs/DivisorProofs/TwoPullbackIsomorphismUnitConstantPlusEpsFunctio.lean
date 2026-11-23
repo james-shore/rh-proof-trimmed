@@ -70,22 +70,9 @@ section Calc
 
 variable {X Y Z : Scheme.{0}}
 
-theorem pbT_pbT' (h : Z ⟶ Y) (f : Y ⟶ X) {U : X.Opens} {V : Y.Opens} {O : Z.Opens} (h₁ : V ≤ f ⁻¹ᵁ U)
-    (h₂ : O ≤ h ⁻¹ᵁ V) (s : Γ(X, U)) : pbT h (pbT f s V) O = pbT (h ≫ f) s O := by
-  rw [pbT_of_le f h₁, pbT_of_le h h₂, pbT_of_le (h ≫ f) (h₂.trans (h.preimage_mono h₁))]
-  exact congrArg (fun φ => φ.hom s) (Scheme.Hom.appLE_comp_appLE h f U V O h₁ h₂)
-
-theorem app_eq_pbT' (f : Z ⟶ Y) (U : Y.Opens) (s : Γ(Y, U)) : (f.app U).hom s = pbT f s (f ⁻¹ᵁ U) := by
-  rw [pbT_of_le f le_rfl, Scheme.Hom.app_eq_appLE]
-
-theorem val_res' {U V : X.Opens} (h : V ≤ U) (u : Γ(X, U)ˣ) : (res h u).val = rsT u.val V := (rsT_of_le h _).symm
-
 theorem pbT_id_le' {O₀ O : X.Opens} (h : O ≤ O₀) (s : Γ(X, O₀)) : pbT (𝟙 X) s O = rsT s O := by
   rw [pbT, rsT, dite_eq_left (show O ≤ (𝟙 X : X ⟶ X) ⁻¹ᵁ O₀ from h), dite_eq_left h]
   rfl
-
-theorem constFn_zero' {R : Type} [CommRing R] (q : X ⟶ Sp R) (O : X.Opens) : constFn q O 0 = 0 := by
-  rw [constFn, map_zero, map_zero]
 
 theorem constFn_comp_spMap' {R S : Type} [CommRing R] [CommRing S] (q : Y ⟶ Sp S) (x : R →+* S)
     (W : Y.Opens) (t : R) : constFn (q ≫ spMap x) W t = constFn q W (x t) := by
@@ -101,10 +88,6 @@ theorem constFn_comp_spMap' {R S : Type} [CommRing R] [CommRing S] (q : Y ⟶ Sp
 
 theorem isUnit_of_mul_eq_one' {M : Type*} [CommMonoid M] (a b : M) (h : a * b = 1) : IsUnit a :=
   ⟨⟨a, b, h, by rw [mul_comm]; exact h⟩, rfl⟩
-
-theorem isUnit_pbT (f : Z ⟶ Y) {U : Y.Opens} {O : Z.Opens} (h : O ≤ f ⁻¹ᵁ U) (u : Γ(Y, U)ˣ) :
-    IsUnit (pbT f u.val O) :=
-  isUnit_of_mul_eq_one' _ (pbT f (u⁻¹).val O) (by rw [← pbT_mul, Units.mul_inv, pbT_one f h])
 
 theorem exists_unit_glue {J : Type} (V : J → Y.Opens) (hV : ⨆ i, V i = ⊤) (a : ∀ i, Γ(Y, V i))
     (ha : ∀ i, IsUnit (a i)) (h : ∀ i l, rsT (a i) (V i ⊓ V l) = rsT (a l) (V i ⊓ V l)) :
@@ -144,7 +127,7 @@ theorem pbT_pull_g {W : Scheme.{0}} (L : LB X) (π : Y ⟶ X) (j : W ⟶ Y) (a b
     pbT j (res h₁ ((L.pull π).g a b)).val O = pbT (j ≫ π) (L.g (a PUnit.unit) (b PUnit.unit)).val O := by
   have hle : (L.pull π).U a ⊓ (L.pull π).U b ≤ π ⁻¹ᵁ (L.U (a PUnit.unit) ⊓ L.U (b PUnit.unit)) :=
     fun y hy => ⟨Set.mem_iInter.1 hy.1 PUnit.unit, Set.mem_iInter.1 hy.2 PUnit.unit⟩
-  rw [val_res', pbT_rsT j h₁ hO, val_pull_g, pbT_pbT' j π hle (hO.trans (j.preimage_mono h₁))]
+  rw [_root_.GlobalTheory.KS.AdjDlog.val_res, pbT_rsT j h₁ hO, val_pull_g, _root_.GlobalTheory.KS.InvField.pbT_pbT j π hle (hO.trans (j.preimage_mono h₁))]
 
 theorem pbT_div_g_pull {W : Scheme.{0}} (L : LB X) (π₁ π₂ : Y ⟶ X) (j : W ⟶ Y) (a b : PUnit → L.ι) (O : W.Opens)
     (hO : O ≤ j ⁻¹ᵁ ((LB.div (L.pull π₂) (L.pull π₁)).U (a, a) ⊓ (LB.div (L.pull π₂) (L.pull π₁)).U (b, b)))
@@ -233,7 +216,7 @@ theorem unitPart : ∀ (k : Type) [Field k] (R : Type) [CommRing R] (P : PolAV (
     obtain ⟨ab, hab, -⟩ := GlobalTheory.T.existsUnique_add_eps_mul_on_dualNumber_thickening k A₀.left B'.left A₀.hom B'.hom pr HP (m₀ ⁻¹ᵁ V i)
       (rsT (w.s (c i, c i)).val (pr ⁻¹ᵁ (m₀ ⁻¹ᵁ V i)))
     refine ⟨ab, ?_⟩
-    rw [app_eq_pbT', app_eq_pbT'] at hab
+    rw [_root_.GlobalTheory.KS.AdjDlog.app_eq_pbT, _root_.GlobalTheory.KS.AdjDlog.app_eq_pbT] at hab
     exact hab
   choose ab hab using hdec
 
@@ -241,9 +224,9 @@ theorem unitPart : ∀ (k : Type) [Field k] (R : Type) [CommRing R] (P : PolAV (
       pbT j (rsT (w.s (c i, c i)).val ((pr ≫ m₀) ⁻¹ᵁ V i)) O = rsT (ab i).1 O := by
     intro i O hO
     have hle : (pr ≫ m₀) ⁻¹ᵁ V i ≤ pr ⁻¹ᵁ (m₀ ⁻¹ᵁ V i) := le_rfl
-    rw [hab i, pbT_add, pbT_mul, pbT_pbT' j pr hle (hOj i O hO), pbT_pbT' j pr hle (hOj i O hO), hj1,
+    rw [hab i, pbT_add, pbT_mul, _root_.GlobalTheory.KS.InvField.pbT_pbT j pr hle (hOj i O hO), _root_.GlobalTheory.KS.InvField.pbT_pbT j pr hle (hOj i O hO), hj1,
       pbT_constFn _ _ (hOj i O hO), hj2, constFn_comp_spMap']
-    rw [show (TrivSqZeroExt.fstHom k k k).toRingHom DualNumber.eps = 0 from rfl, constFn_zero', zero_mul, add_zero,
+    rw [show (TrivSqZeroExt.fstHom k k k).toRingHom DualNumber.eps = 0 from rfl, _root_.GlobalTheory.KS.EndClass.constFn_zero', zero_mul, add_zero,
       pbT_id_le' hO]
   have hagr : ∀ i i', rsT (ab i).1 (m₀ ⁻¹ᵁ V i ⊓ m₀ ⁻¹ᵁ V i') = rsT (ab i').1 (m₀ ⁻¹ᵁ V i ⊓ m₀ ⁻¹ᵁ V i') := by
     intro i i'
@@ -253,7 +236,7 @@ theorem unitPart : ∀ (k : Type) [Field k] (R : Type) [CommRing R] (P : PolAV (
     rw [← hmod i _ inf_le_left, ← hmod i' _ inf_le_right,
       pbT_rsT j (hWC i) ((hOj i _ inf_le_left)), pbT_rsT j (hWC i') ((hOj i' _ inf_le_right))]
     have hr := congrArg (fun u : Γ(B'.left, C i ⊓ C i')ˣ => pbT j u.val (m₀ ⁻¹ᵁ V i ⊓ m₀ ⁻¹ᵁ V i')) (hw (c i, c i) (c i', c i'))
-    rw [val_res', pbT_rsT j inf_le_left hOC, Units.val_mul, pbT_mul, val_res', pbT_rsT j inf_le_right hOC] at hr
+    rw [_root_.GlobalTheory.KS.AdjDlog.val_res, pbT_rsT j inf_le_left hOC, Units.val_mul, pbT_mul, _root_.GlobalTheory.KS.AdjDlog.val_res, pbT_rsT j inf_le_right hOC] at hr
     rw [hr]
     have hg : pbT j ((LB.div (P.L.pull (pr ≫ m₀)) (P.L.pull π₁)).g (c i, c i) (c i', c i')).val
         (m₀ ⁻¹ᵁ V i ⊓ m₀ ⁻¹ᵁ V i') = 1 := by
@@ -264,7 +247,7 @@ theorem unitPart : ∀ (k : Type) [Field k] (R : Type) [CommRing R] (P : PolAV (
     have h1 := hmod i (m₀ ⁻¹ᵁ V i) le_rfl
     rw [rsT_self, pbT_rsT j (hWC i) (hOj i _ le_rfl)] at h1
     rw [← h1]
-    exact isUnit_pbT j ((hOj i _ le_rfl).trans (j.preimage_mono (hWC i))) (w.s (c i, c i))
+    exact _root_.GlobalTheory.KS.AdjDlog.isUnit_pbT j ((hOj i _ le_rfl).trans (j.preimage_mono (hWC i))) (w.s (c i, c i))
   have hcov : ⨆ i, m₀ ⁻¹ᵁ V i = ⊤ := by
     refine eq_top_iff.2 fun x _ => ?_
     have : m₀ x ∈ ⨆ i, V i := by rw [hV]; trivial

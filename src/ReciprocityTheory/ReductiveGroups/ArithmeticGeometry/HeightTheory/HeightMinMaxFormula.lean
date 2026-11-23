@@ -60,11 +60,7 @@ namespace Data
 
 variable (d : Data K ι Ω WT A)
 
-theorem HeightMinMaxFormula (hd : d.AxH 𝒜) (h : d.S1) (hI2be : d.HeightIntegralBoundEstimate) (x : Fin (d.N + 1) → K)
-    (hx : ∀ c, d.wx x c ≠ 0) (F : ι → KTp K d.D d.N)
-    (hF : ∀ c, algebraMap (KTp K d.D d.N) (KTf K d.D d.N) (F c) = d.fZ h c) :
-    d.HgtMM h (d.wx x) = ∑ c, ReciprocityTheory.MultiplicativeHeights.h0 (F c) + d.del * (harmonic d.N : ℝ) / 2 :=
-  d.height_minMax_eq_sum_heights hd h hI2be x hx F hF
+alias HeightMinMaxFormula := _root_.ReciprocityTheory.ChartRestriction.G.T0.Data.height_minMax_eq_sum_heights
 
 end Data
 

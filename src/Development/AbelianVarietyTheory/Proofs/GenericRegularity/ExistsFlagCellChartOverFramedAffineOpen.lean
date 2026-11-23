@@ -190,22 +190,16 @@ noncomputable def cellM (σ : ∀ τ, Equiv.Perm (Fin (r τ)))
 
 variable (σ : ∀ τ, Equiv.Perm (Fin (r τ))) (x : (Σ τ : T, {p : Fin (r τ) × Fin (r τ) // p.1 < p.2}) → S)
 
-theorem lowM_zero (τ : T) (i j : Fin (r τ)) (h : i < j) : lowM x τ i j = 0 := by
-  simp [lowM, h.not_gt, h.ne']
-
-theorem lowM_diag (τ : T) (i : Fin (r τ)) : lowM x τ i i = 1 := by
-  simp [lowM]
-
 theorem cellM_apply (τ : T) (i j : Fin (r τ)) : cellM σ x τ (σ τ i) j = lowM x τ i j := by
   simp [cellM]
 
 theorem cellM_shape (τ : T) : (∀ i j : Fin (r τ), i < j → cellM σ x τ ((σ τ).toEmbedding i) j = 0) ∧
     ∀ i : Fin (r τ), cellM σ x τ ((σ τ).toEmbedding i) i = 1 :=
-  ⟨fun i j h => (cellM_apply σ x τ i j).trans (lowM_zero x τ i j h),
-    fun i => (cellM_apply σ x τ i i).trans (lowM_diag x τ i)⟩
+  ⟨fun i j h => (cellM_apply σ x τ i j).trans (_root_.GlobalTheory.Reg.CellChange.lowM_upper x τ i j h),
+    fun i => (cellM_apply σ x τ i i).trans (_root_.GlobalTheory.Reg.CellChange.lowM_diag x τ i)⟩
 
 theorem isUnit_det_cellM (τ : T) : IsUnit (cellM σ x τ).det := by
-  rw [cellM, Matrix.det_permute, det_eq_one_of_lower_unitriangular _ (lowM_zero x τ) (lowM_diag x τ), _root_.mul_one]
+  rw [cellM, Matrix.det_permute, det_eq_one_of_lower_unitriangular _ (_root_.GlobalTheory.Reg.CellChange.lowM_upper x τ) (_root_.GlobalTheory.Reg.CellChange.lowM_diag x τ), _root_.mul_one]
   exact ((Equiv.Perm.sign (σ τ).symm).isUnit).map (Int.castRingHom S)
 
 theorem cellM_map {S' F : Type} [CommRing S'] [FunLike F S S'] [RingHomClass F S S'] (φ : F) (τ : T) :
@@ -249,8 +243,8 @@ theorem minor_iff (g : ∀ τ, Matrix (Fin (r τ)) (Fin (r τ)) S) :
     obtain ⟨i, rfl⟩ := (σ τ).surjective i
     rw [cellM_apply]
     rcases lt_trichotomy i j with hij | rfl | hij
-    · rw [lowM_zero _ _ _ _ hij]; exact h0 τ i j hij
-    · rw [lowM_diag]; exact h1 τ i
+    · rw [_root_.GlobalTheory.Reg.CellChange.lowM_upper _ _ _ _ hij]; exact h0 τ i j hij
+    · rw [_root_.GlobalTheory.Reg.CellChange.lowM_diag]; exact h1 τ i
     · simp [lowM, hij]
   · rintro ⟨x, b, hb, hg⟩ ⟨τ, k⟩
     exact (cell_coordinates_exists_unique S _ _ (σ τ).toEmbedding (g τ)).1.2

@@ -77,29 +77,13 @@ private theorem cd_compact {R : Type} [CommRing R] [WithIdeal R] [IsAdicComplete
   refine ⟨Set.range s, Set.finite_range s, fun x _ => ?_⟩
   refine Set.mem_biUnion (Set.mem_range_self (Ideal.Quotient.mk _ x)) ⟨x - s (Ideal.Quotient.mk _ x), hN ?_, by simp⟩
   exact Ideal.Quotient.eq.1 (hs _).symm
-private theorem cd_intIff {l : ℕ} [Fact l.Prime] (x : PadicAlgCl l) : IsIntegral ℤ_[l] x ↔ ‖x‖ ≤ 1 := by
-  have hi : IsIntegral ℚ_[l] x := Algebra.IsIntegral.isIntegral x
-  have h0 : ‖x‖ = spectralValue (minpoly ℚ_[l] x) := rfl
-  rw [h0, spectralValue_le_one_iff (minpoly.monic hi)]
-  constructor
-  · intro h n
-    rw [minpoly.isIntegrallyClosed_eq_field_fractions' ℚ_[l] h, coeff_map]
-    exact PadicInt.norm_le_one _
-  · intro h
-    have hl' : minpoly ℚ_[l] x ∈ lifts (algebraMap ℤ_[l] ℚ_[l]) :=
-      (lifts_iff_coeff_lifts _).mpr fun n => ⟨⟨_, h n⟩, rfl⟩
-    obtain ⟨q, hq, -, hqm⟩ := lifts_and_degree_eq_and_monic hl' (minpoly.monic hi)
-    exact ⟨q, hqm, by rw [← aeval_def, ← aeval_map_algebraMap ℚ_[l], hq, minpoly.aeval]⟩
-private theorem cd_norm_lt {l : ℕ} [Fact l.Prime] (c : Coef l) {R : Type} [CommRing R] [IsLocalRing R] [Algebra c.O R]
-    (y : R →ₐ[c.O] PadicAlgCl l) (a : R) (ha : a ∈ maximalIdeal R) : ‖y a‖ < 1 :=
-  _root_.UpperTheory.Reformulated.B.Gs5b.cd_norm_lt c y a ha
 private theorem cd_pow {l : ℕ} [Fact l.Prime] (c : Coef l) {R : Type} [CommRing R] [Algebra c.O R] [Alg.IsCO c.O R]
     (y : R →ₐ[c.O] PadicAlgCl l) : ∃ b : ℝ, 0 ≤ b ∧ b < 1 ∧ ∀ N : ℕ, ∀ a ∈ maximalIdeal R ^ N, ‖y a‖ ≤ b ^ N := by
   have h1 : ∀ a, ‖y a‖ ≤ 1 := fun a => by
     obtain ⟨o, ho⟩ := Alg.IsCO.res_surj (O := c.O) a
     have e : y a = y (a - algebraMap c.O R o) + algebraMap c.O _ o := by simp
     rw [e]
-    refine (IsUltrametricDist.norm_add_le_max _ _).trans (max_le (cd_norm_lt c y _ ho).le ((cd_intIff _).1 ?_))
+    refine (IsUltrametricDist.norm_add_le_max _ _).trans (max_le (_root_.UpperTheory.Reformulated.B.Gs5b.cd_norm_lt c y _ ho).le ((_root_.GlobalTheory.isIntegral_padicInt_iff_norm_le_one _).1 ?_))
     exact (Algebra.IsIntegral.isIntegral (R := ℤ_[l]) o).map (IsScalarTower.toAlgHom ℤ_[l] c.O (PadicAlgCl l))
   let J : ℝ → Ideal R := fun b =>
     { carrier := {a | ‖y a‖ ≤ max b 0}
@@ -116,7 +100,7 @@ private theorem cd_pow {l : ℕ} [Fact l.Prime] (c : Coef l) {R : Type} [CommRin
   have hb : ∃ b : ℝ, 0 ≤ b ∧ b < 1 ∧ ∀ a ∈ s, ‖y a‖ ≤ b := by
     refine ⟨(s.sup fun a => ‖y a‖₊ : NNReal), NNReal.coe_nonneg _, ?_, fun a ha => ?_⟩
     · rw [← NNReal.coe_one, NNReal.coe_lt_coe, Finset.sup_lt_iff (by simp)]
-      exact fun a ha => cd_norm_lt c y a (hs ▸ Submodule.subset_span ha)
+      exact fun a ha => _root_.UpperTheory.Reformulated.B.Gs5b.cd_norm_lt c y a (hs ▸ Submodule.subset_span ha)
     · exact NNReal.coe_le_coe.2 (Finset.le_sup (f := fun a => ‖y a‖₊) ha)
   obtain ⟨b, b0, b1, hb⟩ := hb
   have hm : ∀ a ∈ maximalIdeal R, ‖y a‖ ≤ b := fun a ha => by

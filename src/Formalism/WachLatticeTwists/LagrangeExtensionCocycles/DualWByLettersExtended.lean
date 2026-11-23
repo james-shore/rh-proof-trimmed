@@ -60,11 +60,11 @@ noncomputable section
 
 namespace Formalism.RepresentationBoundsCohomology.N2
 
-theorem lifting_theorem : StatLIFT := etaleClosed_point_lifts_simple_roots_monic
+alias lifting_theorem := _root_.Formalism.RepresentationBoundsCohomology.N2.etaleClosed_point_lifts_simple_roots_monic
 
-theorem dual_w_by_letters : StatWPrime := unit_lemma_prime_case_holds
+alias dual_w_by_letters := _root_.Formalism.RepresentationBoundsCohomology.N2.unit_lemma_prime_case_holds
 
-theorem dual_w_by_letters_extended : StatWPrimeExt := unit_lemma_prime_extension_holds
+alias dual_w_by_letters_extended := _root_.Formalism.RepresentationBoundsCohomology.N2.unit_lemma_prime_extension_holds
 
 theorem lagrange_and_w_all : StatLagrange ∧ StatLagrangeKill ∧ StatWB ∧ StatWA ∧ StatWA0 :=
   ⟨lagrange_annihilation, lagrange_resolvent_kills_class, unit_lemma_case_b_holds, unit_lemma_case_a_unconditional, unit_lemma_case_a_level_zero⟩

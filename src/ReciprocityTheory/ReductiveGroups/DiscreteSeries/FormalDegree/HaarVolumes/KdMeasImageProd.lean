@@ -60,9 +60,6 @@ open ReciprocityTheory.ChartRestriction.DS.S7
 
 variable {n : ℕ}
 
-lemma kd_volU_pos (M : ℕ) : 0 < volU M :=
-  Finset.prod_pos fun i _ => by have := Real.pi_pos; positivity
-
 def kdTM {N : ℕ} (u : UNgrp N) : Fin N → Fin N → ℂ := Matrix.of.symm (toM u)
 
 lemma continuous_kdTM {N : ℕ} : Continuous (kdTM (N := N)) := continuous_toM _
@@ -165,8 +162,8 @@ theorem dk_density (ε : Fin n → Bool) (η : ℝ) (hη : 0 < η) :
   obtain ⟨hup, hlo⟩ := kd_prod_bounds (m₁ := μp.map kdTM) (m₂ := μq.map kdTM) volume volume
     Metric.isOpen_ball.measurableSet Metric.isOpen_ball.measurableSet continuous_kdF.continuousOn
     continuous_kdF.continuousOn hip hiq _ _ _ _ hp hq hB'm hB'U
-  have hvp := kd_volU_pos (pOf ε)
-  have hvq := kd_volU_pos (qOf ε)
+  have hvp := _root_.ReciprocityTheory.ChartRestriction.DS.volU_pos' (pOf ε)
+  have hvq := _root_.ReciprocityTheory.ChartRestriction.DS.volU_pos' (qOf ε)
   have hpq : 0 < volU (pOf ε) * volU (qOf ε) := mul_pos hvp hvq
   have hvol' : (volume.prod volume) B' = volume B := hvol
   rw [hvol'] at hup hlo

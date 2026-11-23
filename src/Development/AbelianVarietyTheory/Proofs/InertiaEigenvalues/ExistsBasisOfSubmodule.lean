@@ -121,23 +121,6 @@ theorem continuous_coord {L V : Type} [Field L] [Algebra ℚ_[l] L] [Topological
     exact (hc.comp continuous_fst).smul continuous_snd⟩
   exact ⟨w.equivFunL.continuous, w.equivFunL.symm.continuous⟩
 
-theorem exists_basis_lattice {L O V : Type} [Field L] [Algebra ℚ_[l] L] [CommRing O] [Algebra O L]
-    [Algebra ℤ_[l] O] [Module.Free ℤ_[l] O] [Module.Finite ℤ_[l] O]
-    (hcomp : ∀ a : ℤ_[l], algebraMap O L (algebraMap ℤ_[l] O a) = algebraMap ℚ_[l] L (a : ℚ_[l]))
-    (hL : ∀ a : L, ∃ y : ℤ_[l], y ≠ 0 ∧ ∃ o : O, algebraMap O L o = algebraMap ℚ_[l] L y * a)
-    [AddCommGroup V] [Module L V] [Module ℚ_[l] V] [IsScalarTower ℚ_[l] L V] [Module O V]
-    [IsScalarTower O L V] (S : Submodule O V) (hfg : S.FG) (hfree : Module.Free O S)
-    (hspan : Submodule.span L (S : Set V) = ⊤) :
-    ∃ (n : ℕ) (w : Module.Basis (Fin n) ℚ_[l] V), ∀ x : V, x ∈ S ↔ ∀ i, ‖w.repr x i‖ ≤ 1 := by
-  first
-  | (rename_i h_1 h_5 h_6 h_7 h_8 h_9 h_10 h_11 h_14 h_15 h_16 h_17 h_18 h_19; revert l h_1 L O V h_5 h_6 h_7 h_8 h_9 h_10 h_11 hcomp hL h_14 h_15 h_16 h_17 h_18 h_19 S hfg hfree hspan; exact @_root_.GlobalTheory.UnitBallBasis.exists_basis_mem_iff_norm_le_one)
-  | exact @_root_.GlobalTheory.UnitBallBasis.exists_basis_mem_iff_norm_le_one
-  | exact _root_.GlobalTheory.UnitBallBasis.exists_basis_mem_iff_norm_le_one
-  | (apply _root_.GlobalTheory.UnitBallBasis.exists_basis_mem_iff_norm_le_one <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UnitBallBasis.exists_basis_mem_iff_norm_le_one <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UnitBallBasis.exists_basis_mem_iff_norm_le_one <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.UnitBallBasis.exists_basis_mem_iff_norm_le_one ..)
-
 theorem exists_mul_mem (LL : FinExt l) (a : ↥LL.1) :
     ∃ y : ℤ_[l], y ≠ 0 ∧ ∃ o : ↥(OL LL),
       algebraMap ↥(OL LL) ↥LL.1 o = algebraMap ℚ_[l] ↥LL.1 y * a := by
@@ -162,7 +145,7 @@ theorem exists_basis (l : ℕ) [Fact l.Prime] (G : Type) [Group G] [TopologicalS
         Continuous w.equivFun ∧ Continuous w.equivFun.symm := by
   haveI := Decomp.freeOL LL
   haveI := Decomp.finiteOL LL
-  obtain ⟨n, w, hw⟩ := exists_basis_lattice (l := l) (L := ↥LL.1) (O := ↥(OL LL)) (fun _ => rfl)
+  obtain ⟨n, w, hw⟩ := _root_.GlobalTheory.UnitBallBasis.exists_basis_mem_iff_norm_le_one (l := l) (L := ↥LL.1) (O := ↥(OL LL)) (fun _ => rfl)
     (exists_mul_mem LL) T.L.T T.L.fg T.L.free T.L.span
   exact ⟨n, w, hw, continuous_coord (continuous_algebraMap_ext LL) w⟩
 

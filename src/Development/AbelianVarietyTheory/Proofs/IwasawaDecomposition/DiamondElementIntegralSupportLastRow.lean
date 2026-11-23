@@ -46,6 +46,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ConjPConjP
 
 @[expose] public section
 
@@ -407,9 +408,6 @@ theorem ee_self (r : Fin n) : ee n F E v r r = 1 := by
 theorem ee_ne {j r : Fin n} (h : j ≠ r) : ee n F E v j r = 0 := by
   simp [ee, Pi.single_apply, h.symm]
 
-theorem conjP_conjP' (P : HeightOneSpectrum (𝓞 E)) : conjPrime₂ (conjPrime₂ P) = P :=
-  HeightOneSpectrum.ext (Ideal.ext fun x => by rw [mem_conjP, mem_conjP, cO_cO])
-
 theorem mem_of_smul_eq_zero {A M : Type} [CommRing A] [AddCommGroup M] [Module A M] (κ : 𝓞 E →+* A) {m : M} (hm : m ≠ 0)
     (hP : ∀ i ∈ P.asIdeal, κ i • m = 0) {d : 𝓞 E} (hd : κ d • m = 0) : d ∈ P.asIdeal := by
   by_contra hdn
@@ -547,7 +545,7 @@ theorem dia_data : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberF
     by_cases hwv : w.under (𝓞 F) = v
     · rcases hw w hwv with rfl | rfl
       · exact eP i j
-      · exact absurd (Finset.mem_singleton.2 (conjP_conjP' P)) hcw
+      · exact absurd (Finset.mem_singleton.2 (_root_.GlobalTheory.CharVal.Vp.conjP_conjP' P)) hcw
     · rw [off w hwv]
       split_ifs <;> simp
   have hi2 : ∀ w, conjPrime₂ w ∉ ({P} : Finset (HeightOneSpectrum (𝓞 E))) → ∀ i j, Valued.v (adAt F w ((δ.1⁻¹).1 i j)) ≤ 1 := by
@@ -555,7 +553,7 @@ theorem dia_data : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberF
     by_cases hwv : w.under (𝓞 F) = v
     · rcases hw w hwv with rfl | rfl
       · exact eP' i j
-      · exact absurd (Finset.mem_singleton.2 (conjP_conjP' P)) hcw
+      · exact absurd (Finset.mem_singleton.2 (_root_.GlobalTheory.CharVal.Vp.conjP_conjP' P)) hcw
     · rw [off' w hwv]
       split_ifs <;> simp
   have hU : δ.1 ∈ UAd hc n := δ.2

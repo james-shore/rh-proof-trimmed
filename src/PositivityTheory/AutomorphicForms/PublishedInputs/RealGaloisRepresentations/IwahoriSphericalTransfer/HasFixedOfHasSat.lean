@@ -131,7 +131,7 @@ theorem GlobalTheory.RealGal.unrAt_of_isoTwist : GlobalTheory.Mem.LiteralAutomor
     [IsTotallyReal F] (a : ℕ), 1 ≤ a → ∀ (π : TR.CuspSub F a) (η : HChar F), IsoTwist π η →
     ∀ (u : HeightOneSpectrum (𝓞 F)) (B : Multiset ℂˣ), π.HasSat u B → η.UnrAt u := by
   intro LN hA F _ _ _ a ha π η hT u B hB
-  have hL := GlobalTheory.T.local_global_compatibility_real hA
+  have hL := _root_.GlobalTheory.RealGal.locCompR_of_admissibleReal hA
   have L := LN.loc
   obtain ⟨σ, hσ⟩ := (hL F a π u).1
   have hσ' := isLocComp_twist hT hσ

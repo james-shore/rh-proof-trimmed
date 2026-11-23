@@ -80,16 +80,6 @@ theorem rowAct_one_apply {R : Type} [CommRing R] {r c : ℕ} (p : MvPolynomial (
     rowAct R (1 : Matrix (Fin r) (Fin r) R) p = p := by
   rw [Formalism.UG.P.wlocal_rowAct_one]; rfl
 
-theorem map_rowAct {R S : Type} [CommRing R] [CommRing S] (φ : R →+* S) {r c : ℕ}
-    (A : Matrix (Fin r) (Fin r) R) (p : MvPolynomial (Fin r × Fin c) R) :
-    map φ (rowAct R A p) = rowAct S (A.map φ) (map φ p) := by
-  have : (map φ).comp (rowAct R (n := c) A).toRingHom =
-      (rowAct S (n := c) (A.map φ)).toRingHom.comp (map φ) := by
-    apply MvPolynomial.ringHom_ext
-    · intro a; simp [rowAct]
-    · intro v; simp [rowAct]
-  exact congrArg (fun ψ => ψ p) this
-
 theorem eval_aeval_self {σ : Type} (x : σ → ℂ) (g : σ → MvPolynomial σ ℂ) (p : MvPolynomial σ ℂ) :
     eval x (aeval g p) = eval (fun v => eval x (g v)) p := by
   rw [aeval_eq_bind₁]; exact eval₂Hom_bind₁ _ _ _ _
@@ -109,7 +99,7 @@ def mcP : MvPolynomial (Fin n × Fin n) ℂ :=
 theorem eval_matrixCoeffPoly (x : Fin n × Fin n → ℂ) : eval x (mcP f) = mcF f (matOf x) := by
   have hmap : map (eval x) (rowAct (MvPolynomial (Fin n × Fin n) ℂ) (iotaC _ n k (genY n)).transpose
       (map (C : ℂ →+* MvPolynomial (Fin n × Fin n) ℂ) f)) = rowAct ℂ (iotaC ℂ n k (matOf x)).transpose f := by
-    rw [map_rowAct, map_map, Matrix.transpose_map, iotaC_map]
+    rw [_root_.Formalism.UG.P.wlocal_map_rowAct, map_map, Matrix.transpose_map, iotaC_map]
     have h1 : (eval x).comp (C : ℂ →+* MvPolynomial (Fin n × Fin n) ℂ) = RingHom.id ℂ :=
       RingHom.ext fun a => by simp
     have h2 : (genY n).map (eval x) = matOf x := by ext i j; simp [genY, matOf]

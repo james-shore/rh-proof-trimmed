@@ -163,7 +163,7 @@ end GlobalTheory.Shin.FlagDesc
 open GlobalTheory.Shin.FlagDesc in
 theorem GlobalTheory.Shin.inPar_twistedConj_iff : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F F'] [Finite F'] (s : F' ≃ₐ[F] F'), (∀ t : F' ≃ₐ[F] F', t ∈ Subgroup.zpowers s) → ∀ (a n : ℕ), a ≤ n → ∀ (γ : GL (Fin n) F) (δ y : GL (Fin n) F'), (δ : Matrix (Fin n) (Fin n) F') ∈ Algebra.adjoin F' {((incl F F' n γ : GL (Fin n) F') : Matrix (Fin n) (Fin n) F')} → nrm s δ = incl F F' n γ → (InPar a (y⁻¹ * δ * galAct F F' n s y) ↔ ∃ (y₀ : GL (Fin n) F) (p : GL (Fin n) F'), InPar a p ∧ y = incl F F' n y₀ * p ∧ InPar a (y₀⁻¹ * γ * y₀)) := by
   intro F F' _ _ _ _ s hs a n _ γ δ y hδ hN
-  obtain ⟨hfix, -, hconj, -, -⟩ := GlobalTheory.T.galoisTwistedNormGL_basic_properties F F' s hs n
+  obtain ⟨hfix, -, hconj, -, -⟩ := _root_.GlobalTheory.Shin.NrmBasic.main F F' s hs n
   have hB : ∀ x ∈ parAlg F' a n, x.map s ∈ parAlg F' a n := by
     intro M hM i j hj hi
     simp only [Matrix.map_apply]
@@ -184,7 +184,7 @@ theorem GlobalTheory.Shin.inPar_twistedConj_iff : ∀ (F F' : Type) [Field F] [F
       have := hconj 1 y
       rw [nrm_one', mul_one, inv_mul_cancel] at this
       exact this
-    obtain ⟨x, hxB, hε⟩ := GlobalTheory.T.exists_coboundary_of_norm_one_in_subalgebra F F' s hs n (parAlg F' a n) hB _ hεP hεN
+    obtain ⟨x, hxB, hε⟩ := _root_.GlobalTheory.HilbertNinety.hilbert90_matrix_subalgebra_norm_one F F' s hs n (parAlg F' a n) hB _ hεP hεN
     have hfx : galAct F F' n s (y * x⁻¹) = y * x⁻¹ := by
       rw [map_mul, map_inv]
       calc galAct F F' n s y * (galAct F F' n s x)⁻¹

@@ -95,19 +95,6 @@ theorem valR_resG {Z : Scheme.{0}} {S : Type} [CommRing S] (z : Sp S ⟶ Z) {U V
       GlobalTheory.FlagMod.ev_res z e h _ a
     _ = valR z U a := (valR_eq_ev z U _ a).symm
 
-theorem isAffineHom_of_field {K : Type} [Field K] {X : Scheme.{0}} (x0 : Sp K ⟶ X) : IsAffineHom x0 := by
-  refine ⟨fun U _ => ?_⟩
-  by_cases h : (default : PrimeSpectrum K) ∈ x0 ⁻¹ᵁ U
-  · have e : x0 ⁻¹ᵁ U = ⊤ := eq_top_iff.2 fun p _ => by
-      rwa [Subsingleton.elim (α := PrimeSpectrum K) p default]
-    rw [e]
-    exact isAffineOpen_top _
-  · have e : x0 ⁻¹ᵁ U = ⊥ := eq_bot_iff.2 fun p hp => by
-      rw [Subsingleton.elim (α := PrimeSpectrum K) p default] at hp
-      exact (h hp).elim
-    rw [e]
-    exact isAffineOpen_bot _
-
 theorem IsChartPt.of_le {K : Type} [Field K] {A : Over (Sp K)} [GrpObj A] {A' : Over (Sp (DualNumber K))}
     {Z : Scheme.{0}} {m : A.left ⟶ Z} {m' : A'.left ⟶ Z} {W₀ : Z.Opens} {d : ∀ O : Z.Opens, Γ(Z, O) → Γ(Z, O)}
     (hd : LogKS.IsField W₀ d) {Ω₀ Ω : Z.Opens} (h0 : Ω₀ ≤ Ω) (h1 : Ω ≤ W₀) {n : ℕ} {u : Fin n → (epsR K ⟶ A)}

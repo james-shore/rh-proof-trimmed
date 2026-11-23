@@ -72,7 +72,7 @@ theorem GlobalTheory.ThLoc.jetsIntegral_three (hIn : GlobalTheory.ThLoc.Inputs) 
     simpa [Formalism.L2.Th1.CM.omegaK] using this
   have hω2 : conj (Formalism.L2.Th1.CM.omegaK dK) * (lam * (a₀ : ℂ) / 2) ∉ (cmL a₀ b₀ dK ha hd lam hlam).lattice := by
     have := GlobalTheory.ThLoc.LocJets.half_notMem ha hd lam hlam hcmok (-1) (Or.inr rfl)
-    rw [GlobalTheory.ThLoc.LocJets.conj_omegaK]
+    rw [_root_.Formalism.L2.Th1.B.LCm.conj_omegaK]
     simpa [sub_eq_add_neg] using this
   obtain ⟨g₁, ε, hiso, hidx, hidx', hε, hten⟩ := l5
   obtain ⟨Dm, q0, hD, hq0, hfac, hgram⟩ :=

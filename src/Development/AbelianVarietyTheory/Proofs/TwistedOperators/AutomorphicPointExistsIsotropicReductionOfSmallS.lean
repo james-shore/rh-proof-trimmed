@@ -88,17 +88,6 @@ theorem kg_inv (I : AutInst) (m : ℕ) {k : I.Gf} (hk : k ∈ I.Kg m) : k⁻¹ �
     abel
   rw [e, hkz, Matrix.mulVec_smul, smul_neg]
 
-theorem isIsot_span (I : AutInst) (R : Submodule (𝓞 I.E) (Fin I.n → I.E)) (h0 : R ≠ ⊥)
-    (hiso : ∀ y ∈ R, ∀ z ∈ R, Formalism.UG.hform (starRingEnd I.E) I.J y z = 0) :
-    I.IsIsot (Submodule.span I.E (R : Set (Fin I.n → I.E))) := by
-  first
-  | exact @_root_.GlobalTheory.HermitianFormLinearity.main
-  | exact _root_.GlobalTheory.HermitianFormLinearity.main
-  | (apply _root_.GlobalTheory.HermitianFormLinearity.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.HermitianFormLinearity.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.HermitianFormLinearity.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.HermitianFormLinearity.main ..)
-
 theorem exists_step (I : AutInst) (x : I.GA) (q : ℕ) (hn : 1 ≤ I.n)
     (hrk : ∀ v, rkR (I.ε v) ≤ q) (hl : least I x < 1 / 2) :
     ∃ (R : Submodule (𝓞 I.E) (Fin I.n → I.E)) (lo hi : ℝ),
@@ -193,7 +182,7 @@ theorem deep_point : ∀ (I : AutInst) (x : I.GA) (g q : ℕ), 1 ≤ g → 1 ≤
     fun y hy z hz => (GlobalTheory.FlagIso.flag_isotropic I x).1 y (hRS hy) z (hRS hz)
   have hperp : R ≤ perpIn I x R := fun y hy =>
     Submodule.subset_span ⟨hRL hy, fun s hs => hisoR s hs y hy⟩
-  have hWiso : I.IsIsot (Submodule.span I.E (R : Set (Fin I.n → I.E))) := isIsot_span I R hR0 hisoR
+  have hWiso : I.IsIsot (Submodule.span I.E (R : Set (Fin I.n → I.E))) := _root_.GlobalTheory.HermitianFormLinearity.main I R hR0 hisoR
   refine ⟨_, hWiso, fun m hm => ?_⟩
   obtain ⟨⟨N, hN⟩, -, hsplit, hdense, -⟩ := GlobalTheory.UnipApprox.strong_approximation I _ hWiso
   have hU : {c : I.Gf | x.2⁻¹ * c * x.2 ∈ I.Kg g} ∈ nhds (1 : I.Gf) := by

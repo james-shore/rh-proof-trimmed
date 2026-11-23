@@ -108,11 +108,6 @@ theorem exists_sys_of_mem_span {K V H I J : Type} [Field K] [AddCommGroup V] [Mo
       (fun e => hi (congrFun e i)) le_rfl
   exact hv0 ((Submodule.disjoint_def.1 (Formalism.L2.Col.iSupIndep_eigAt hc l)) v hvl (hT' hvT))
 
-theorem dualLab_dualLab (d : List ℤ) : dualLab (dualLab d) = d := by
-  simp [dualLab, List.map_reverse, List.map_map]
-
-
-
 theorem hecke_polys_of_carries : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : Type} {A3 : FamIn3 D.what₂.LL G Pl0 I0 (List ℕ) T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat3 D A3 Ks) (F : Face3 D A3) {s : ℕ}, GlobalTheory.Chain.LiftInteg D → A3.fam3.Ok3 s → R.WeakCharacterisation F → R.toRealDat.ExAt → SchurAll R.toRealDat → (∀ p, ∀ w ∈ R.EEp3 p, LinearMap.adjoint (R.Th A3.A.μ0) w = 0 → w = 0) → ∀ p c, R.Carries p c → ∀ P ∈ A3.A.ok A3.A.μ0, RealDat.polE (A := A3.A) p.1.1 P = Formalism.L2.Col.heckePolyOf D.R.r (A3.A.q P) (fun k => c (R.pl P) (dualLab (splitLab D.R.r k))) ∧ RealDat.polW (A := A3.A) p.1.1 P = Formalism.L2.Col.heckePolyOf D.R.r (A3.A.q P) (fun k => c (R.pl P) (splitLab D.R.r k)) := by
   intro D G _ _ Pl0 I0 T A3 Ks _ _ _ R F s hI hok hW hEx hS hinj p c hcar P hP
   obtain ⟨hC, hSF, hEE, -⟩ := GlobalTheory.T.core_clauses_of_weak_characterisation R F hW hEx
@@ -193,7 +188,7 @@ theorem hecke_polys_of_carries : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {
       exact congrArg (fun U : MMap (R.MY 0) => U v) (h5.trans
         (congrArg (fun z : ℂ => z • R.HE.e w) (GlobalTheory.Hk3.Link.evC_single (Yc D 0) (R.pl P) _ d hd))))
   rw [hrY] at hrel
-  simp only [dualLab_dualLab] at hrel
+  simp only [_root_.GlobalTheory.SphLabelOps.dualLab_dualLab] at hrel
   obtain ⟨hb0, hab⟩ := hrel
   have hrr : c (R.pl P) (splitLab D.R.r D.R.r) * c (R.pl P) (dualLab (splitLab D.R.r D.R.r)) = 1 := by
     rw [hab D.R.r le_rfl, Nat.sub_self, hb0]

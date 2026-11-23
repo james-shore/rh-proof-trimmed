@@ -274,11 +274,9 @@ theorem mul_mem_Sloc (v : InfinitePlace X.B.I.F) {s t : Formalism.REAL.UJ (X.B.I
   show InS _ _ (uMat (s * t))
   rw [uMat_mul']; exact inS_mul hs ht
 
-theorem uMat_inv_mul {m : ℕ} {ε : Fin m → Bool} (s : Formalism.REAL.UJ ε) : uMat s⁻¹ * uMat s = 1 := by
-  rw [← uMat_mul', inv_mul_cancel]; rfl
+alias uMat_inv_mul := _root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_inv_mul
 
-theorem uMat_mul_inv {m : ℕ} {ε : Fin m → Bool} (s : Formalism.REAL.UJ ε) : uMat s * uMat s⁻¹ = 1 := by
-  rw [← uMat_mul', mul_inv_cancel]; rfl
+alias uMat_mul_inv := _root_.PI.UnitaryGroupMassFormula.LCG.ap_uMat_mul_inv
 
 theorem inv_mem_Sloc (v : InfinitePlace X.B.I.F) {s : Formalism.REAL.UJ (X.B.I.ε v)} (hs : s ∈ Sloc X u v) :
     s⁻¹ ∈ Sloc X u v :=
@@ -366,20 +364,7 @@ theorem nuInf_le_prod (x : X.B.I.Ginf) : nuInf X u x ≤ ∏ v, nuLocX X u v (x 
   simp only [add_zero] at ht
   exact ge_of_tendsto ht (eventually_nhdsWithin_of_forall fun δ hδ => key δ hδ)
 
-theorem norm_psiR {m r : ℕ} (ε : Fin m → Bool) (gg : ℕ) (e f : Fin r → Fin m → ℂ) (z : Fin m → ℂ)
-    (g : Matrix (Fin m) (Fin m) ℂ) : ‖psiR ε gg e f z g‖ = 1 := by
-  unfold psiR
-  set c := rootCoord ε e f z g
-  have hq : (∑ a, (c a + star (c a))) / (gg : ℂ) = (((∑ a, 2 * (c a).re) / gg : ℝ) : ℂ) := by
-    push_cast
-    congr 1
-    refine Finset.sum_congr rfl fun a _ => ?_
-    rw [show star (c a) = (starRingEnd ℂ) (c a) from rfl, Complex.add_conj]
-    push_cast; ring
-  rw [hq]
-  have : 2 * (Real.pi : ℂ) * Complex.I * (((∑ a, 2 * (c a).re) / gg : ℝ) : ℂ) =
-      ((2 * Real.pi * ((∑ a, 2 * (c a).re) / gg) : ℝ) : ℂ) * Complex.I := by push_cast; ring
-  rw [this, Complex.norm_exp_ofReal_mul_I]
+alias norm_psiR := _root_.Formalism.L2.SG.Pf.psiR_norm
 
 theorem norm_psiInf (s : X.B.I.Ginf) : ‖X.psiInfU u s‖ = 1 := by
   unfold HidaSetting.psiInfU psiInf
@@ -613,7 +598,7 @@ variable {D : D7} (X : HidaSetting D) (u : D.what₂.Word)
 def psiV (v : InfinitePlace X.B.I.F) (g : Matrix (Fin X.B.I.n) (Fin X.B.I.n) ℂ) : ℂ :=
   psiR (X.B.I.ε v) X.B.g (fun a => rv X.B.I v (X.eR a)) (fun a => rv X.B.I v (X.fR a)) (rv X.B.I v (X.zR u)) g
 
-theorem uMat_one' {m : ℕ} {ε : Fin m → Bool} : uMat (1 : Formalism.REAL.UJ ε) = 1 := rfl
+alias uMat_one' := _root_.Formalism.L2.SG.Pf.Tau.uMat_one
 
 theorem rootCoord_one (v : InfinitePlace X.B.I.F) (a : Fin D.R.rS) :
     rootCoord (X.B.I.ε v) (fun a => rv X.B.I v (X.eR a)) (fun a => rv X.B.I v (X.fR a)) (rv X.B.I v (X.zR u)) 1 a

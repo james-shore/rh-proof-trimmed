@@ -155,10 +155,6 @@ theorem weilRepresentation_source_mul (g g' : GA D V) (f : WO V W → ℂ) : ω 
   have : (g * g', (1 : GA D W)) = (g, 1) * (g', 1) := by simp
   rw [this, map_mul]; rfl
 
-theorem weilRepresentation_source_one (f : WO V W → ℂ) : ω (1, 1) f = f := by
-  have : ((1 : GA D V), (1 : GA D W)) = 1 := rfl
-  rw [this, map_one]; rfl
-
 theorem unit_product_rescale_disjoint_finsets {C : Matrix (Fin V.rank) (Fin r) D.host.E} {B : Matrix (Fin V.rank) (Fin V'.rank) D.host.E}
     (hs : GlobalTheory.IndefiniteRowSideFullHecke.AdjointIsotropicDecomposition.IsIsoSplit V V' C B) (hω : IsWeilDatumO ψ V W χS χT ω)
     {μ : Measure (Mx D W.rank r)} {𝓨 : Set (Mx D W.rank r)}
@@ -214,14 +210,14 @@ theorem unit_product_rescale_disjoint_finsets {C : Matrix (Fin V.rank) (Fin r) D
     simp only [hh] at this
     show ∫ y in 𝓨, ω (g, 1) f _ ∂μ = (c : ℂ) • ∫ y in 𝓨, f _ ∂μ
     rw [this, smul_eq_mul]
-  · exact ⟨1, one_ne_zero, fun f _ => by rw [weilRepresentation_source_one, one_smul]⟩
+  · exact ⟨1, one_ne_zero, fun f _ => by rw [_root_.GlobalTheory.UnipMean.om_one, one_smul]⟩
   · rintro a b - - ⟨c, hc, ha⟩ ⟨d, hd, hb⟩
     exact ⟨c * d, mul_ne_zero hc hd, fun f hf => by
       rw [weilRepresentation_source_mul, ha _ (hω.om_pres _ _ hf), hb f hf, smul_smul]⟩
   · rintro a - ⟨c, hc, ha⟩
     refine ⟨c⁻¹, inv_ne_zero hc, fun f hf => ?_⟩
     have := ha _ (hω.om_pres (a⁻¹, 1) f hf)
-    rw [← weilRepresentation_source_mul, mul_inv_cancel, weilRepresentation_source_one] at this
+    rw [← weilRepresentation_source_mul, mul_inv_cancel, _root_.GlobalTheory.UnipMean.om_one] at this
     rw [this, smul_smul, inv_mul_cancel₀ hc, one_smul]
 
 end Main

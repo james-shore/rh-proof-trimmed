@@ -60,7 +60,7 @@ theorem UpperTheory.Gal.UnramifiedFromSplittingCriterion.normRam :
   obtain ⟨hη1, hηp, hηev⟩ := hη
   haveI : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩
   obtain ⟨ι⟩ := GlobalTheory.nonempty_padicAlgCl_ringEquiv_complex 2
-  obtain ⟨art, hart⟩ := GlobalTheory.globalArtinReciprocity_holds K Ω
+  obtain ⟨art, hart⟩ := _root_.CompanionTheory.FamInh.globalArtin K Ω
   have halg : IsAlgPos η 0 := isAlgPos_zero_of_orderDvd hp.pos hηp
   obtain ⟨r, hrc, hr⟩ := hart.exists_isLAdicOf (ι : Qbar 2 ≃+* ℂ) halg
   have hrI : ∀ s ∈ Ine A, r s = 1 := (hr.unr_iff hart (Or.inr rfl) hA).2 hunr
@@ -68,7 +68,7 @@ theorem UpperTheory.Gal.UnramifiedFromSplittingCriterion.normRam :
     haveI : IsAlgClosure M Ω := by
       haveI : Algebra.IsAlgebraic K Ω := IsAlgClosure.isAlgebraic
       exact ⟨IsAlgClosure.isAlgClosed K, Algebra.IsAlgebraic.tower_top (K := K) M⟩
-    obtain ⟨artM, hartM⟩ := GlobalTheory.globalArtinReciprocity_holds M Ω
+    obtain ⟨artM, hartM⟩ := _root_.CompanionTheory.FamInh.globalArtin M Ω
     have hφc : Continuous (r.comp (UpperTheory.V.Af.Bc.res K Ω M)) :=
       hrc.comp (UpperTheory.V.Af.continuous_restrictScalarsHom K M Ω)
     have hbad : {w : HeightOneSpectrum (𝓞 M) | ¬ (η.UnrAt (HeightOneSpectrum.under (𝓞 K) w) ∧

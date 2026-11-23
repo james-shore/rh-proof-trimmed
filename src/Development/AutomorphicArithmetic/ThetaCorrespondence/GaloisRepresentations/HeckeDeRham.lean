@@ -41,4 +41,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem UpperTheory.Lit.heckeLAdicCharacterDeRham : GlobalTheory.Published.HeckeLAdicCharacterDeRham := HodgeLocalDeRhamField.HLdR.field_outright

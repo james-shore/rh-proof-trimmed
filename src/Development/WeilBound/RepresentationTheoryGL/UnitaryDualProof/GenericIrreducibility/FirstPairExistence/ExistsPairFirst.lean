@@ -192,17 +192,6 @@ theorem pr_perm (hF : FactorIrr k) (hC : Comm2Irr k) {h : ℕ} (f : Fin h → Ir
       rw [Equiv.Perm.coe_mul]
       exact PR_trans (ihx f) (ihy (f ∘ x))
 
-theorem prodIrr_cast {m n N : ℕ} (e : m = n) (f : Fin m → IrrGL (k := k)) (g : Fin n → IrrGL (k := k))
-    (hfg : f = g ∘ Fin.cast e) (hf : ∑ a, (f a).1 = N) (hg : ∑ a, (g a).1 = N) :
-    Nonempty ((prodIrr f hf).Equiv (prodIrr g hg)) := by
-  subst e
-  have hfg' : f = g := by
-    rw [hfg]
-    funext a
-    simp
-  subst hfg'
-  exact ⟨Representation.Equiv.refl _⟩
-
 def lastPerm {r : ℕ} (j : Fin (r + 1)) : Equiv.Perm (Fin (r + 1)) :=
   finSuccEquivLast.trans (finSuccEquiv' j).symm
 
@@ -282,7 +271,7 @@ theorem moveLast : FactorIrr k → Comm2Irr k → MoveLast k := by
       rw [← hd, ← hsumPerm, hcomp, hApp]
     subst hN
     obtain ⟨e1⟩ := (pr_perm hF hC x (lastPerm j)).2 _ hd (hsumPerm.trans hd) hirr
-    obtain ⟨eC⟩ := prodIrr_cast rfl (x ∘ lastPerm j) (Fin.append (x ∘ j.succAbove) (fun _ : Fin 1 => x j))
+    obtain ⟨eC⟩ := _root_.PositivityTheory.RgUd.Exp.Move2.nonempty_prodIrr_equiv_of_eq_comp_cast rfl (x ∘ lastPerm j) (Fin.append (x ∘ j.succAbove) (fun _ : Fin 1 => x j))
       (by rw [hcomp]; rfl) (hsumPerm.trans hd) hApp
     obtain ⟨e2⟩ := GlobalTheory.CompanionTheory.ProdStage.prod₂_prodIrr_append k r 1 _ _ (x ∘ j.succAbove) (fun _ : Fin 1 => x j) rfl hy hApp
     obtain ⟨eB⟩ := nonempty_equiv_prodIrr_one (x j) hy
@@ -328,7 +317,7 @@ theorem moveFirst : FactorIrr k → Comm2Irr k → MoveFirst k := by
       rw [← hd, ← hsumPerm, ← hsumC, hApp]
     subst hN
     obtain ⟨e1⟩ := (pr_perm hF hC x (firstPerm j)).2 _ hd (hsumPerm.trans hd) hirr
-    obtain ⟨eC⟩ := prodIrr_cast (Nat.add_comm 1 r) (Fin.append (fun _ : Fin 1 => x j) (x ∘ j.succAbove))
+    obtain ⟨eC⟩ := _root_.PositivityTheory.RgUd.Exp.Move2.nonempty_prodIrr_equiv_of_eq_comp_cast (Nat.add_comm 1 r) (Fin.append (fun _ : Fin 1 => x j) (x ∘ j.succAbove))
       (x ∘ firstPerm j) hfg hApp (hsumPerm.trans hd)
     obtain ⟨e2⟩ := GlobalTheory.CompanionTheory.ProdStage.prod₂_prodIrr_append k 1 r _ _ (fun _ : Fin 1 => x j) (x ∘ j.succAbove) hy rfl hApp
     obtain ⟨eA⟩ := nonempty_equiv_prodIrr_one (x j) hy

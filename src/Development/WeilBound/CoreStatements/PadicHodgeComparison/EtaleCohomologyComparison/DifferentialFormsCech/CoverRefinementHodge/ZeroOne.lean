@@ -186,7 +186,7 @@ theorem cechHOne_pull' : ∀ {X Y : TopCat.{0}} (f : X ⟶ Y) {κ ι : Type} (V 
       (congrArg (fun z => hC'.delta 0 z) (Subtype.ext (pullCoch_globalCocycle f φ₃ V U τ hτ s)))
   have hδ (s : S.X₃.obj.obj (op ⊤)) :
       hPull f α.τ₁ 1 (hOneProj hS s) = hOneProj hS' (r s) :=
-    (GlobalTheory.T.sheaf_pull_connecting_compat f hS hS' α 0 ((Sheaf.H.equiv₀ S.X₃ isTerminalTop).symm s)).trans
+    (_root_.GlobalTheory.CompanionTheory.CechDelta.hPull_δ f hS hS' α 0 ((Sheaf.H.equiv₀ S.X₃ isTerminalTop).symm s)).trans
       (congrArg (fun z => H.δ hS' 0 (0 + 1) rfl z) (hPull_zero f (G' := S'.X₃) α.τ₃ s))
   exact pull_eq_of_sections (cechOneProj V hC) (cechOneProj U hC') r
     (cechPullH f φ₁ V U τ hτ 1) (hPull f α.τ₁ 1)

@@ -108,8 +108,8 @@ theorem exists_moved_kappa : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀
         EqAt D q (GlobalTheory.SumSize.latAt ch.S.toGridChoice p.big y) (stdL D _)) →
       ∃ κ, Mod1All κ ∧ (∀ q ∈ Q, ∀ (_ : Fact q.Prime), UnitAt q κ) ∧ JetKap ch p x y κ := by
     intro Q hQ hQx
-    obtain ⟨r, s, x₀, hr, hs, hx₀, hsx, rfl⟩ := _root_.GlobalTheory.T.movedKappa_decomposition_exists hPr hInp ch hIs _ hns Q hQ x
-    obtain ⟨r', s', y₀, hr', hs', hy₀, hsy, rfl⟩ := _root_.GlobalTheory.T.movedKappa_decomposition_exists hPr hInp ch hIs _ hnb Q hQ y
+    obtain ⟨r, s, x₀, hr, hs, hx₀, hsx, rfl⟩ := _root_.GlobalTheory.MovedKappaDec.exists_movedKappa_decomposition hPr hInp ch hIs _ hns Q hQ x
+    obtain ⟨r', s', y₀, hr', hs', hy₀, hsy, rfl⟩ := _root_.GlobalTheory.MovedKappaDec.exists_movedKappa_decomposition hPr hInp ch hIs _ hnb Q hQ y
     obtain ⟨κ₀, hm₀, hu₀, hj₀⟩ := _root_.GlobalTheory.T.moved_vacuum_has_algebraic_root hPr hInp ch hIs p hp x₀ y₀ hx₀ hy₀
     have stepS : ∀ g ∈ splitOff (ch.G.V p.small) Q, ∀ (x' : FinPt ch.G p.small) (κ : ℂ), JetKap ch p x' y₀ κ → Mod1All κ →
         (∀ q ∈ Q, ∀ (_ : Fact q.Prime), UnitAt q κ) →
@@ -119,11 +119,11 @@ theorem exists_moved_kappa : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀
           (∀ q ∈ Q, ∀ (_ : Fact q.Prime), UnitAt q κ) →
           ∃ κ', Mod1All κ' ∧ (∀ q ∈ Q, ∀ (_ : Fact q.Prime), UnitAt q κ') ∧ JetKap ch p (g * x') y₀ κ' := by
         rintro g ⟨e, he, hoff, hsupp⟩ x' κ hj hm hu
-        obtain ⟨c, hc, hcu, hjc⟩ := _root_.GlobalTheory.T.splitting_of_moved_kappa_twist hPr hInp ch hIs p hp x' y₀ κ hj e he g 1 hsupp
+        obtain ⟨c, hc, hcu, hjc⟩ := _root_.GlobalTheory.SplitMoveKappa.movedKappa_split hPr hInp ch hIs p hp x' y₀ κ hj e he g 1 hsupp
           (by rw [OneMemClass.coe_one]; exact GlobalTheory.LeviSplitChar.suppAt_one e _)
         rw [one_mul] at hjc
-        exact ⟨c * κ, GlobalTheory.FamilyTieProof.mod1All_mul' hc hm,
-          fun q hq hf => unitAt_mul hc hm (@hcu q hf (hoff q hq)) (hu q hq hf), hjc⟩
+        exact ⟨c * κ, _root_.GlobalTheory.KappaPowMod.algebraicModulusOneAll_mul hc hm,
+          fun q hq hf => _root_.GlobalTheory.RatMoveJets.unitAt_mul hc hm (@hcu q hf (hoff q hq)) (hu q hq hf), hjc⟩
       intro g hg
       induction hg using Subgroup.closure_induction'' with
       | mem g hg => exact gen g hg
@@ -144,11 +144,11 @@ theorem exists_moved_kappa : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀
           (∀ q ∈ Q, ∀ (_ : Fact q.Prime), UnitAt q κ) →
           ∃ κ', Mod1All κ' ∧ (∀ q ∈ Q, ∀ (_ : Fact q.Prime), UnitAt q κ') ∧ JetKap ch p (s * x₀) (g * y') κ' := by
         rintro g ⟨e, he, hoff, hsupp⟩ y' κ hj hm hu
-        obtain ⟨c, hc, hcu, hjc⟩ := _root_.GlobalTheory.T.splitting_of_moved_kappa_twist hPr hInp ch hIs p hp (s * x₀) y' κ hj e he 1 g
+        obtain ⟨c, hc, hcu, hjc⟩ := _root_.GlobalTheory.SplitMoveKappa.movedKappa_split hPr hInp ch hIs p hp (s * x₀) y' κ hj e he 1 g
           (by rw [OneMemClass.coe_one]; exact GlobalTheory.LeviSplitChar.suppAt_one e _) hsupp
         rw [one_mul] at hjc
-        exact ⟨c * κ, GlobalTheory.FamilyTieProof.mod1All_mul' hc hm,
-          fun q hq hf => unitAt_mul hc hm (@hcu q hf (hoff q hq)) (hu q hq hf), hjc⟩
+        exact ⟨c * κ, _root_.GlobalTheory.KappaPowMod.algebraicModulusOneAll_mul hc hm,
+          fun q hq hf => _root_.GlobalTheory.RatMoveJets.unitAt_mul hc hm (@hcu q hf (hoff q hq)) (hu q hq hf), hjc⟩
       intro g hg
       induction hg using Subgroup.closure_induction'' with
       | mem g hg => exact gen g hg
@@ -163,8 +163,8 @@ theorem exists_moved_kappa : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀
         exact ⟨κ₂, hm₂, hu₂, by rwa [mul_assoc]⟩
     obtain ⟨κ₁, hm₁, hu₁, hj₁⟩ := stepS s hs x₀ κ₀ hj₀ hm₀ (fun q _ hf => @hu₀ q hf)
     obtain ⟨κ₂, hm₂, hu₂, hj₂⟩ := stepB s' hs' y₀ κ₁ hj₁ hm₁ hu₁
-    obtain ⟨c, hc, hcu, hjc⟩ := _root_.GlobalTheory.T.rational_jet_move_exists hPr hInp ch hIs p hp _ _ κ₂ hj₂ r r' hr hr'
-    refine ⟨c * κ₂, GlobalTheory.FamilyTieProof.mod1All_mul' hc hm₂, fun q hq hf => unitAt_mul hc hm₂ ?_ (hu₂ q hq hf), ?_⟩
+    obtain ⟨c, hc, hcu, hjc⟩ := _root_.GlobalTheory.RatMoveJets.exists_rational_move_of_jets hPr hInp ch hIs p hp _ _ κ₂ hj₂ r r' hr hr'
+    refine ⟨c * κ₂, _root_.GlobalTheory.KappaPowMod.algebraicModulusOneAll_mul hc hm₂, fun q hq hf => _root_.GlobalTheory.RatMoveJets.unitAt_mul hc hm₂ ?_ (hu₂ q hq hf), ?_⟩
     · obtain ⟨hqx, hqy⟩ := hQx q hq
       rw [mul_assoc] at hqx hqy
       exact @hcu q hf (hsx q hq) (hsy q hq) hqx hqy
@@ -179,28 +179,3 @@ end GlobalTheory.MovedKappaEx
 end
 end
 
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
-open IsDedekindDomain NumberField GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.RowClaim
-open Formalism.L2.Host (HChar)
-open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.RowEx
-open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
-
-theorem _root_.GlobalTheory.T.exists_unique_moved_kappa_jet : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, GlobalTheory.NormSum.Inp D) → ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : Type}
-    {A : FamIn D.what₂.LL Γ Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] {R : RealDat D A Ks}
-    (ch : Choice R), ch.Is → ∀ (p : Pair T), DefPair D.R.m p → ∀ (x : FinPt ch.G p.small) (y : FinPt ch.G p.big),
-    ∃ κ₀ : ℂ, Mod1All κ₀ ∧
-    (∀ (q : ℕ) [Fact q.Prime], EqAt D q (GlobalTheory.SumSize.latAt ch.S.toGridChoice p.small x) (stdL D _) →
-      EqAt D q (GlobalTheory.SumSize.latAt ch.S.toGridChoice p.big y) (stdL D _) → ∀ lam : Qbar →+* ℂ_[q], ‖lamC lam κ₀‖ = 1) ∧
-    ∀ k : FVar D (ch.G.pT p).rank (ch.G.pS p).rank →₀ ℕ,
-      fockIn ch.W ch.S.N.frC p (ch.W.om p (ch.G.toPair p ((x * ch.S.N.u p.small : FinPt ch.G p.small) : Formalism.L2.Theta.GA D (ch.G.V p.small)) ((y * ch.S.N.u p.big : FinPt ch.G p.big) : Formalism.L2.Theta.GA D (ch.G.V p.big))) (ch.S.Z.vac p))
-        (MvPolynomial.monomial k 1) 0 = ch.S.Z.c0 p * opp p ((k.prod fun v e => period ch.S.Z.δ v.1 ^ e) *
-          Formalism.MainNotions.GL3Theta.applyAt0 D (MvPolynomial.monomial k 1) fun z => κ₀ * Iop D (tor0 D D.host.ccK ch.S.Z.δ) (La0 D (tor0 D D.host.ccK ch.S.Z.δ) _ _) (Formalism.MainNotions.TaylorLogMetric.La D (tor0 D D.host.ccK ch.S.Z.δ) (GlobalTheory.MovedDict.srcLat ch.S.toGridChoice p x y) (GlobalTheory.MovedDict.tgtLat ch.S.toGridChoice p x y)) (ch.S.Z.e0 p) z) := by
-  first | exact @_root_.GlobalTheory.MovedKappaEx.exists_moved_kappa | exact _root_.GlobalTheory.MovedKappaEx.exists_moved_kappa | (intros; apply _root_.GlobalTheory.MovedKappaEx.exists_moved_kappa <;> assumption)
-end

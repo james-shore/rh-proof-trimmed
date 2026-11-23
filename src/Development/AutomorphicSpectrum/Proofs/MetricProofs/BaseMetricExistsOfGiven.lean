@@ -107,13 +107,6 @@ theorem mem_bdry_conj_iff : ∀ (K : Type) [Fintype K] (J : K → Type) [∀ k, 
     rw [e2] at h2
     exact h2.2
 
-theorem gramAt_sub {X : Scheme.{0}} {Ω : Type} [Field Ω] {G : Over X} [GrpObj G] {ξ : Spec (CommRingCat.of Ω) ⟶ X}
-    {Li : Type} [AddCommGroup Li] [Module Ω Li] {M : LieModel G ξ Li} {L : LB G.left}
-    {z : Spec (CommRingCat.of ℂ) ⟶ X} {r r' : ℕ} {b : Fin r → Li} {Γ : Matrix (Fin r) (Fin r) ℂ}
-    (h : M.GramAt L z b Γ) (e : Fin r' → Fin r) : M.GramAt L z (fun i => b (e i)) (Γ.submatrix e e) := by
-  obtain ⟨v, hv, h'⟩ := h
-  exact ⟨fun i => v (e i), fun i => hv _, fun p q => h' _ _⟩
-
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Datum H} {l : Level H}
   {Xo : Moduli D l} {c : Coeff l} {O : Type} [CommRing O] {β : O →+* c.F} {Y : Model Xo c β} {S : Finset ℕ}
   {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {Φ : Type} [Field Φ] {y : (Σ k, ι k) → Φ}
@@ -132,7 +125,7 @@ theorem gramAt_wFrame (tie : FlagTie M 𝔐) (F : FrameData ι (CMType H) (D.p +
     (h : 𝔐.M.GramAt 𝔐.t.PP.L z (gb tie F τ) Γ) :
     𝔐.M.GramAt 𝔐.t.PP.L z (tie.wFrame F τ) (wBlock (blockG Γ)) := by
   rw [wBlock_blockG]
-  have := gramAt_sub h (wEmb D.p D.q)
+  have := _root_.PositivityTheory.Xgp.c_bm_exists_hom.gramAt_sub h (wEmb D.p D.q)
   simp only [gb_wEmb] at this
   exact this
 
@@ -142,7 +135,7 @@ theorem dualGramAt_omFrame (tie : FlagTie M 𝔐) (F : FrameData ι (CMType H) (
     (hd : ∀ a b, tie.omFrame F τ a (dualFam tie F τ b) = if a = b then 1 else 0) :
     DualGramAt 𝔐.M 𝔐.t.PP.L z (𝔐.Vgen (.inr τ)) (tie.omFrame F τ) (omBlock (blockG Γ)) := by
   refine ⟨dualFam tie F τ, omBlock Γ, hd, ?_, ?_⟩
-  · have := gramAt_sub h (omEmb D.p D.q)
+  · have := _root_.PositivityTheory.Xgp.c_bm_exists_hom.gramAt_sub h (omEmb D.p D.q)
     simp only [gb_omEmb] at this
     exact this
   · have hpos : (omBlock Γ).PosDef := hp.submatrix (omEmb_strictMono D.p D.q).injective

@@ -58,6 +58,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.DegreeRatioFormulaStatement
 
 @[expose] public section
 
@@ -230,7 +231,7 @@ theorem root_push (u u' : D.what₂.Word) (w : Point D.host.E (D.R.rS + 1)) (hw 
     unfold JointQuot.muStabV
     rw [PiMeasureScaling.pi_reindex_scale (RootPatterns.idxF τ w) _ ENNReal.ofReal_ne_top (fun _ => (1 : ℂ)) fun _ => one_ne_zero]
     congr 1
-    have hka : 0 < D.host.ka := ka_pos D
+    have hka : 0 < D.host.ka := _root_.Formalism.MainNotions.BridgeLemma.sza_ka_pos D
     have hg : (X.B.g : ℝ) = gg D := by rw [X.g_eq, gg]; push_cast; rfl
     have hg0 : 0 < gg D := by
       have a := (D.host.g_prime 0).pos

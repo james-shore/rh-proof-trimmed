@@ -62,7 +62,7 @@ theorem spanC_of_state_alt : ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, St
       ∀ eig : ℕ → (Dof x).what₂.FT → ℕ → PlE (Dof x).host → ↥(Dof x).LL0, EigAd x.r.Y (SbD (Dof x)) eig →
         SpanC (SOf x) (SbD (Dof x)) θ hL' eig := by
   intro hL
-  refine (((_root_.GlobalTheory.T.mem_goodL_iff_iotaR_mem_goodW hL).and (_root_.GlobalTheory.T.iotaR_injective_at_level_a hL)).and (_root_.GlobalTheory.T.exists_hkDat_at_split_place hL)).trans (StepW.of_all fun K B f T w _ _ h => ?_)
+  refine (((_root_.GlobalTheory.EigSpanTie.mem_goodL_iff_iotaR_mem_goodW_of_level_psi hL).and (_root_.GlobalTheory.EigSpanDesc.iotaR_injective_states_alt hL)).and (_root_.GlobalTheory.HeckeDataAtState.exists_hkDat_at_state_alt hL)).trans (StepW.of_all fun K B f T w _ _ h => ?_)
   obtain ⟨⟨htie, hinj⟩, hhk⟩ := h
   intro P x hLA hI hG θ hL' hθ hlv _ _ hRd eig hEig
   exact spanC_core x.m.z.R x.m.z.F x.r.Y x.m.z.cG (kKsOf x) (hkOf x) (SbD (Dof x)) θ hL' eig hI hG

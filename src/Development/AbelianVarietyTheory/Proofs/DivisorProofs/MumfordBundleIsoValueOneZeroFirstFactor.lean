@@ -57,8 +57,7 @@ noncomputable section
 
 namespace GlobalTheory.MumRigidZero
 
-theorem comp_one_pt {S : Scheme.{0}} {X Y M : Over S} [GrpObj M] (u : Y ⟶ X) : u ≫ (1 : X ⟶ M) = 1 := by
-  rw [Hom.one_def, Hom.one_def, ← Category.assoc, toUnit_unique (u ≫ toUnit X) (toUnit Y)]
+alias comp_one_pt := _root_.ReciprocityTheory.ChartRestriction.G.Chart.comp_one''
 
 theorem one_comp_hom {S : Scheme.{0}} {X M N : Over S} [GrpObj M] [GrpObj N] (f : M ⟶ N) [IsMonHom f] :
     (1 : X ⟶ M) ≫ f = 1 := by

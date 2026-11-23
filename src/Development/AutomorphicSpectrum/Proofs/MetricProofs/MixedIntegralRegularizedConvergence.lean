@@ -319,7 +319,7 @@ theorem conv_chart_integral : ∀ (e : ℕ) (X : Type) [TopologicalSpace X] [Com
           by_contra h
           exact hyE ((hEmem n y).2 ⟨hy.1, hy.2, (not_le.1 h).le⟩)
         rw [Set.indicator_of_mem hmem]
-  obtain ⟨i1, i2, i3⟩ := GlobalTheory.T.dominated_convergence_exhaustion (volume.restrict S) (𝓝[>] (0 : ℝ)) E
+  obtain ⟨i1, i2, i3⟩ := _root_.GlobalTheory.CompanionTheory.Conv.tendsto_integral_of_exhaustion (volume.restrict S) (𝓝[>] (0 : ℝ)) E
     (fun y => Real.log (R.r ((A.chart j).symm y)))
     (fun t => locDens A (fun i => th i + LocPot.ofFun (phT i t) + Θ) j)
     (fun t y => c ((A.chart j).symm y) * GT t ((A.chart j).symm y))

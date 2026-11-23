@@ -53,6 +53,7 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.Co
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalTwists.TnOne
 import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.MapRepApply
 import Development.AutomorphicArithmetic.AutomorphicVarieties.WeakShimuraTheory.RedIdeal
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InertialOrderFifteenCharAuxiliaryPrimeSpec
 
 @[expose] public section
 
@@ -69,17 +70,6 @@ namespace AlgType
 
 variable {K Ω : Type} [Field K] [NumberField K] [Field Ω] [Algebra K Ω] [IsAlgClosure K Ω] {l : ℕ} [Fact l.Prime]
 
-private theorem isAlgPos_mul {χ χ' : HChar K} {n n' : (K →+* ℂ) → ℤ} (h : IsAlgPos χ n) (h' : IsAlgPos χ' n') :
-    IsAlgPos (χ * χ') (n + n') := fun k hk => by
-  have e : (χ * χ').inf k = χ.inf k * χ'.inf k := rfl
-  rw [e, Units.val_mul, h k hk, h' k hk, ← Finset.prod_mul_distrib]
-  exact Finset.prod_congr rfl fun φ _ => (zpow_add₀ ((map_ne_zero φ).2 k.ne_zero) _ _).symm
-
-private theorem isAlgPos_inv {χ : HChar K} {n : (K →+* ℂ) → ℤ} (h : IsAlgPos χ n) : IsAlgPos χ⁻¹ (-n) := fun k hk => by
-  have e : (χ⁻¹).inf k = (χ.inf k)⁻¹ := rfl
-  rw [e, Units.val_inv_eq_inv_val, h k hk, ← Finset.prod_inv_distrib]
-  exact Finset.prod_congr rfl fun φ _ => (zpow_neg _ _).symm
-
 def Good (art : Ideles K →* Gab K Ω) (ι : Qbar l ≃+* ℂ) (t : (K →+* ℂ) → ℤ) (ψ : G K Ω →* (Qbar l)ˣ) : Prop :=
   ∃ Y : HChar K, IsAlgPos Y t ∧ IsLAdicOf art ι Y t ψ
 
@@ -92,12 +82,12 @@ theorem good_mul {art : Ideles K →* Gab K Ω} {ι : Qbar l ≃+* ℂ} {t t' : 
     {ψ ψ' : G K Ω →* (Qbar l)ˣ} (h : Good art ι t ψ) (h' : Good art ι t' ψ') : Good art ι (t + t') (ψ * ψ') := by
   obtain ⟨Y, h1, h2⟩ := h
   obtain ⟨Y', h1', h2'⟩ := h'
-  exact ⟨Y * Y', isAlgPos_mul h1 h1', h2.mul h2'⟩
+  exact ⟨Y * Y', _root_.GlobalTheory.GalChar.isAlgPos_mul h1 h1', h2.mul h2'⟩
 
 theorem good_one {art : Ideles K →* Gab K Ω} {ι : Qbar l ≃+* ℂ} {t : (K →+* ℂ) → ℤ}
     {ψ : G K Ω →* (Qbar l)ˣ} (h : Good art ι t ψ) : Good art ι 0 1 := by
   obtain ⟨Y, h1, h2⟩ := h
-  exact good_cong ⟨Y * Y⁻¹, isAlgPos_mul h1 (isAlgPos_inv h1), h2.mul h2.inv⟩ (add_neg_cancel t) (mul_inv_cancel ψ)
+  exact good_cong ⟨Y * Y⁻¹, _root_.GlobalTheory.GalChar.isAlgPos_mul h1 (_root_.GlobalTheory.GalChar.isAlgPos_inv h1), h2.mul h2.inv⟩ (add_neg_cancel t) (mul_inv_cancel ψ)
 
 theorem good_cyc {art : Ideles K →* Gab K Ω} (ha : IsGlobalArtin art) (ι : Qbar l ≃+* ℂ) :
     Good art ι (fun _ => 1) (cycBar K Ω l) := by

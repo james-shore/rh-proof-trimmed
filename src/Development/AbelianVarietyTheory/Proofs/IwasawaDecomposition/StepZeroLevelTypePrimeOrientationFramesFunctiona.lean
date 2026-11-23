@@ -195,7 +195,7 @@ theorem colLevel_functional {R : Ranks} {F E : Type} [Field F] [NumberField F] [
       rw [sp.hermitianForm_base_coordinates] at h1
       obtain ⟨r, hr⟩ := Submodule.mem_one.1 h1
       exact ⟨r, hr⟩
-    have hm := GlobalTheory.T.unitary_maps_latS_dual F E sp.cm.sig w R.k sp.gram0 L.Lb p hgram hp0 hL _ (L.y c).1 (L.y c).2 (L.y_lat c) _ hzd
+    have hm := _root_.GlobalTheory.Mem.LevDual.unitary_carry_dual F E sp.cm.sig w R.k sp.gram0 L.Lb p hgram hp0 hL _ (L.y c).1 (L.y c).2 (L.y_lat c) _ hzd
     have ht : (bc (prV (E := E) w) (L.y c).1).1 *ᵥ (((bc (prV (E := E) w) (L.y c).1)⁻¹).1 *ᵥ
           (fun a => inclE (F := F) (w.adicCompletion F) (sp.crd0 z.1 a))) =
         (fun a => inclE (F := F) (w.adicCompletion F) (sp.crd0 z.1 a)) := by
@@ -213,11 +213,11 @@ theorem colLevel_functional {R : Ranks} {F E : Type} [Field F] [NumberField F] [
     have t4 : g ⟨_, hm⟩ ≠ 0 := fun h0 => hq (by rw [t1, h0, map_zero])
     obtain ⟨k, rfl⟩ := surj_of_card_prime hTp hB (zmultiplesHom _ (g ⟨_, hm⟩)) (m := 1) (by simpa using t4) m
     rw [zmultiplesHom_apply, smul_comm, t3, smul_zero]
-  have hex := GlobalTheory.T.exists_latS_eq_of_lattice_last_coord_dvd F E sp.cm.sig w R.k sp.gram0 L.Lb p hgram hp0 hL hinv
+  have hex := _root_.GlobalTheory.Mem.LocalDualBase.localDual_eq_add_span F E sp.cm.sig w R.k sp.gram0 L.Lb p hgram hp0 hL hinv
   obtain ⟨e, he⟩ := hex
   have hex := exists_equiv_of_cyclic hTp (L.fM_card w h) hB (L.fT w h) g (L.fT_ne w h) gne
     (fun x => x.1 ∈ latS (F := F) (w.adicCompletion F) (intV E w) L.Lb) (L.fT_L w h) gL e he
-    (GlobalTheory.T.acts_by_same_integer_statement F E sp.cm.sig w hinv hfix _ hTp h p hd _ _ (L.fM_card w h) hB hπ hgπ)
+    (_root_.GlobalTheory.PrimeOrderScalar.acts_by_same_integer F E sp.cm.sig w hinv hfix _ hTp h p hd _ _ (L.fM_card w h) hB hπ hgπ)
   obtain ⟨φ, hφ⟩ := hex
   refine ⟨φ.trans ψ, fun c z t ht => ?_⟩
   rw [tie c z t ht, AddEquiv.trans_apply, hφ]

@@ -107,7 +107,7 @@ theorem range_inter_cellOpen_subset : ∀ (O K : Type) [CommRing O] [Field K] (�
     unfold pt
     congr 1
     exact MvPolynomial.ringHom_ext (fun r => by simp) (fun i => by simp)
-  obtain ⟨x, d, hd, ht⟩ := GlobalTheory.T.exists_flagCell_of_nonvanishing_leading_minors T m k M _ _ _ w ((hc.inv b).map φ) hu (fun τ j hj => by
+  obtain ⟨x, d, hd, ht⟩ := _root_.GlobalTheory.FlagEmb.CellLU.exists_cell T m k M _ _ _ w ((hc.inv b).map φ) hu (fun τ j hj => by
     obtain ⟨hv, e⟩ := hp.plk b' w' (stdEn τ j hj)
     have := hne τ j hj _ _ _ (by rw [Category.assoc, e, spMap_pt])
     rw [map_plk] at this
@@ -118,7 +118,7 @@ theorem range_inter_cellOpen_subset : ∀ (O K : Type) [CommRing O] [Field K] (�
     congr 1
     · funext z r; simp
     · funext r; simp
-  have key := GlobalTheory.T.flagCell_point_eq_of_triangular_frames O K β X s T m M B V α c D P p0 p h hc hp k b b' w w' (MvPolynomial.eval₂Hom φ x) ψ' d
+  have key := _root_.GlobalTheory.FlagEmb.cell_pt_eq_of_tri O K β X s T m M B V α c D P p0 p h hc hp k b b' w w' (MvPolynomial.eval₂Hom φ x) ψ' d
     (by rw [hφ, cbase, ← Category.assoc, spMap_spMap, MvPolynomial.eval₂Hom_comp_C]) hd
     (by simpa only [hψ] using ht)
   obtain ⟨q⟩ : Nonempty (Sp k) := inferInstanceAs (Nonempty (PrimeSpectrum k))

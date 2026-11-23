@@ -108,7 +108,7 @@ private theorem evR_eq_of_frMap {E : Type} [Field E] [NumberField E] [IsCMField 
     (hS : Out.SecBaseChangeSt) {w : (E →+* ℂ) × ℕ → ℕ} {n : ℕ} {f : Rul Xo c} (hf : f ∈ sec Xo c w n)
     {S : Type} [CommRing S] [Algebra c.F S] (q : TRing c.F) (κ : q.R →ₐ[c.F] S) (u : FrPt Xo c q.R)
     (x : FrPt Xo c S) (h : FrMap κ u x) : evR Xo c f x = κ (f q u) := by
-  have hW := (GlobalTheory.T.framedModuli_algebraicLaws_chart_weight_integrality hS E H Dw l Xo c).2.2.1
+  have hW := (_root_.GlobalTheory.Frames.algebraic_laws hS E H Dw l Xo c).2.2.1
   unfold sec secW at hf
   obtain ⟨hn, -⟩ := hf
   unfold evR evalAt

@@ -157,7 +157,7 @@ theorem GlobalTheory.AbCoh.wedgeO_noPrimO2 : ∀ (K : Type) [Field K] [IsAlgClos
     rw [e2.finrank_eq, e1.finrank_eq, h1]; exact h2
   have hrel : ∀ t : HO1 A.hom ⊗[K] HO1 A.hom, TensorProduct.lift (cup (OAff A.hom)) t = 0 →
       TensorProduct.comm K _ _ t = t := fun t ht ↦ symm_of_prim A hprim t (by simp [ht])
-  obtain ⟨hw, hsurj, hsym⟩ := GlobalTheory.T.exteriorSquare_of_symmetric_tensor_relations K (HO1 A.hom) (HO2 A.hom) (cup (OAff A.hom)) hdim hrel
+  obtain ⟨hw, hsurj, hsym⟩ := _root_.GlobalTheory.exteriorSq_of_symm_relations K (HO1 A.hom) (HO2 A.hom) (cup (OAff A.hom)) hdim hrel
   refine ⟨hw, fun z hz ↦ ?_⟩
   obtain ⟨t, rfl⟩ := hsurj z
   exact hsym t (symm_of_prim A hprim t hz)

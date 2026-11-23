@@ -94,16 +94,14 @@ end Gen
 section Spec
 variable (R : Type) [CommRing R]
 
-theorem emb_f (p : ℕ) : ComplexShape.embeddingDownNat.f p = -(p : ℤ) := rfl
-
 theorem extKey (p : ℕ) {K L : ChainComplex (Shv R) ℕ} (φ : K ⟶ L) :
     (HomologicalComplex.eval _ _ (-(p:ℤ))).map ((ComplexShape.embeddingDownNat.extendFunctor (Shv R)).map φ) =
-      (K.extendXIso _ (emb_f p)).hom ≫ φ.f p ≫ (L.extendXIso _ (emb_f p)).inv :=
-  HomologicalComplex.extendMap_f φ _ (emb_f p)
+      (K.extendXIso _ (_root_.ComplexShape.embeddingDownNat_f p)).hom ≫ φ.f p ≫ (L.extendXIso _ (_root_.ComplexShape.embeddingDownNat_f p)).inv :=
+  HomologicalComplex.extendMap_f φ _ (_root_.ComplexShape.embeddingDownNat_f p)
 
 def chIso (p : ℕ) : chains R ⋙ HomologicalComplex.eval _ _ (-(p : ℤ)) ≅
     (evaluation SimplexCategoryᵒᵖ PSh).obj (op (SimplexCategory.mk p)) ⋙ free R :=
-  NatIso.ofComponents (fun K => ((chainsN R).obj K).extendXIso ComplexShape.embeddingDownNat (emb_f p)) (by
+  NatIso.ofComponents (fun K => ((chainsN R).obj K).extendXIso ComplexShape.embeddingDownNat (_root_.ComplexShape.embeddingDownNat_f p)) (by
     intro K L g
     change (HomologicalComplex.eval _ _ _).map ((ComplexShape.embeddingDownNat.extendFunctor (Shv R)).map
       ((chainsN R).map g)) ≫ _ = _ ≫ (free R).map (g.app _)

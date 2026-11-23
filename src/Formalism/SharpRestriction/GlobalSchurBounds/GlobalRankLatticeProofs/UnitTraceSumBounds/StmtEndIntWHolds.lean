@@ -44,7 +44,7 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.MainNotions.Ext
 
-theorem okpInertG_holds : OkpInertG := integers_inert_prime
+theorem okpInertG_holds : OkpInertG := _root_.PI.OkpW.okpInert_main
 
 theorem inertPrime_holds : InertPrime := isPrime_span_of_jacobi_neg_one
 

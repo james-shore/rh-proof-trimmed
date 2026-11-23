@@ -94,9 +94,7 @@ theorem exists_matrix {M : Type} [AddCommGroup M] [Module (𝓞 E) M] (φ ψ : M
   exact IsLocalizedModule.lift_apply (𝓞 E)⁰ φ ψ
     (fun s => (isLocalizedModule_id (𝓞 E)⁰ (Fin r → E) E).map_units s) x
 
-theorem herm_add_left (G : Matrix (Fin r) (Fin r) E) (x x' y : Fin r → E) :
-    FD.herm G (x + x') y = FD.herm G x y + FD.herm G x' y := by
-  simp [FD.herm, add_mul, Finset.sum_add_distrib]
+alias herm_add_left := _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.herm_add_left
 
 theorem herm_zero_left (G : Matrix (Fin r) (Fin r) E) (x : Fin r → E) : FD.herm G 0 x = 0 := by
   simp [FD.herm]
@@ -203,7 +201,7 @@ theorem indefinite (D : Datum H) (hp : 1 ≤ D.p) (hq : 1 ≤ D.q) (G : Matrix (
   have key : ∀ τ : E →+* ℂ, τ (H.rt : E) = H.rt0 →
       (∃ x, 0 < (τ (FD.herm G x x)).re) ∧ ∃ y, (τ (FD.herm G y y)).re < 0 := by
     intro τ hτ
-    have s := GlobalTheory.T.signature_hermitian_model_of_datum E H D r _ G φ hξ hM τ hτ
+    have s := _root_.GlobalTheory.HermSign.signature_of_model E H D r _ G φ hξ hM τ hτ
     rcases lt_or_gt_of_ne (GlobalTheory.OneSpace.im_ne τ hξ (GlobalTheory.OneSpace.rt_ne H)) with h | h
     · exact both_signs τ G (by omega) (by omega) (s.2 h)
     · exact both_signs τ G (by omega) (by omega) (s.1 h)

@@ -55,6 +55,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.UnitaryFlowCoeffEqOfTaylorSeries
 
 @[expose] public section
 
@@ -407,10 +408,10 @@ theorem expDec_of (hm : ∀ τ, (m τ).Nodup ∧ Multiset.card (m τ) = r + s) (
     refine ⟨f, hf, hq, ?_, ?_⟩
     · funext k t
       rw [h0']
-      exact congrFun (iteratedDeriv_chain (fun k t => f k (t + s₀)) hf' k) t
+      exact congrFun (_root_.GlobalTheory.SphJet.UnitaryFlow.iteratedDeriv_chain (fun k t => f k (t + s₀)) hf' k) t
     · funext k t
       rw [h0]
-      exact congrFun (iteratedDeriv_chain f hf k) t
+      exact congrFun (_root_.GlobalTheory.SphJet.UnitaryFlow.iteratedDeriv_chain f hf k) t
   refine ⟨S, G, funext fun g => ?_, fun v hv t g => ?_⟩
   · obtain ⟨f, hf, hq, -, hfe⟩ := hiter g 0
     have e0 : F.1 g = f 0 0 := by

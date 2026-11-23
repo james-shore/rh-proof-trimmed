@@ -66,15 +66,7 @@ section Tri
 
 variable {K : Type*} [Field K] {n : ℕ}
 
-theorem loUni_block {L : Matrix (Fin n) (Fin n) K} (h : Formalism.MainNotions.S.IsLoUni L) : L.BlockTriangular OrderDual.toDual :=
-  fun i j hij => (h i j).1 hij
-
-theorem det_loUni {L : Matrix (Fin n) (Fin n) K} (h : Formalism.MainNotions.S.IsLoUni L) : L.det = 1 := by
-  rw [Matrix.det_of_lowerTriangular L (loUni_block h)]
-  exact Finset.prod_eq_one fun i _ => (h i i).2 rfl
-
-theorem loUni_inv {L : Matrix (Fin n) (Fin n) K} (h : Formalism.MainNotions.S.IsLoUni L) : Formalism.MainNotions.S.IsLoUni L⁻¹ := by
-  apply Formalism.L2.SG.Pf.StabilizerIndexVolumes.lo_inv <;> assumption
+alias loUni_inv := _root_.Formalism.L2.SG.Pf.StabilizerIndexVolumes.lo_inv
 
 theorem up_conjT {E : Type} [Field E] [StarRing E] {M : Matrix (Fin n) (Fin n) E}
     (h : Formalism.MainNotions.S.IsLoUni M) : Formalism.MainNotions.S.IsUpUni M.conjTranspose := by

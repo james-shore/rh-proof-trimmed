@@ -70,7 +70,7 @@ theorem exists_markFun {O : Type} [CommRing O] (bar : O → O) (ψ lab : InvFun 
         have h2 := h.choose_spec (r a) (r b)
         rw [pull_apply]
         exact_mod_cast h1.symm.trans h2
-      rw [e, GlobalTheory.T.isMarkedBalancedIntForm_pullback_iff_splitSurjection O bar ψ lab i _ _ r s hrs]
+      rw [e, _root_.GlobalTheory.PolFan.Mark.SplitPull.isMarked_pull_iff O bar ψ lab i _ _ r s hrs]
     · have h' : ¬ ∃ β : LinearMap.BilinForm ℤ (Fin n → O), ∀ a b, B (r a) (r b) = β a b := by
         rintro ⟨β, h3⟩
         exact h ⟨pull s β, fun a b => by rw [pull_apply, ← h3, hrs, hrs]⟩
@@ -98,7 +98,7 @@ theorem evalZ_markFun {O : Type} [CommRing O] {bar : O → O} {ψ lab : InvFun O
   rw [InvFun.evalZ, w.eval_eq ht, hw]
   have e := markVal_int (bar := bar) (ψ := ψ) (lab := lab) (i := i) n (pull t β)
   simp only [pull_apply] at e
-  rw [e, GlobalTheory.T.isMarkedBalancedIntForm_pullback_iff_splitSurjection O bar ψ lab i _ _ t u htu]
+  rw [e, _root_.GlobalTheory.PolFan.Mark.SplitPull.isMarked_pull_iff O bar ψ lab i _ _ t u htu]
 
 theorem exists_markFun_props : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (q : ℕ) (ψ lab : InvFun (𝓞 E)) (i : ℕ), (∀ (X : Type) [AddCommGroup X] [Module (𝓞 E) X] [Module.Finite (𝓞 E) X] [Module.Projective (𝓞 E) X], Dominates H.bar X) → IsPolyFan H.bar q ψ → IsTwInv H ψ → IsTwInv H lab → IsCarrierDim H.bar q ψ lab → ∃ w : InvFun (𝓞 E), IsTwInv H w ∧ ∀ (X : Type) [AddCommGroup X] [Module (𝓞 E) X] [Module.Finite (𝓞 E) X] [Module.Projective (𝓞 E) X], Module.finrank (𝓞 E) X ≤ q → (∀ β ∈ balForms H.bar X, (∀ y, 0 ≤ β y y) → w.evalZ β = 0 ∨ w.evalZ β = 1) ∧ (∀ β ∈ balForms H.bar X, (∀ y, 0 ≤ β y y) → w.evalZ β = 1 → ∀ (k : ℕ) (β' : LinearMap.BilinForm ℤ X), (k : ℤ) • β' = β → k = 1) ∧ (∀ β ∈ balForms H.bar X, (∀ y, 0 ≤ β y y) → w.evalZ β = 1 → lab.evalZ β = ((i + 1 : ℕ) : ℝ)) ∧ (∀ (m : ℕ) (v : Fin m → LinearMap.BilinForm ℤ X), IsCell H.bar ψ v → (∀ β ∈ balForms H.bar X, (∀ y, 0 ≤ β y y) → InRCone v β → lab.evalZ β ≤ ((i + 1 : ℕ) : ℝ)) → ∀ β ∈ balForms H.bar X, (∀ y, 0 ≤ β y y) → ∀ β' ∈ balForms H.bar X, (∀ y, 0 ≤ β' y y) → w.evalZ β = 1 → w.evalZ β' = 1 → InRCone v β → InRCone v β' → β = β') ∧ (∀ (m : ℕ) (v : Fin m → LinearMap.BilinForm ℤ X), IsCell H.bar ψ v → ∀ β ∈ balForms H.bar X, (∀ y, 0 ≤ β y y) → InRCone v β → lab.evalZ β = ((i + 1 : ℕ) : ℝ) → ∃ β₀ ∈ balForms H.bar X, (∀ y, 0 ≤ β₀ y y) ∧ w.evalZ β₀ = 1 ∧ InRCone v β₀) := by
   intro E _ _ _ H q ψ lab i hD hψ htψ htlab hlab
@@ -120,7 +120,7 @@ theorem exists_markFun_props : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
     fun m v hv β hβ hp hc hl => ?_⟩
   · rw [ev]
     split_ifs <;> simp
-  · obtain ⟨β₀, h0, hc0⟩ := GlobalTheory.T.polFan_exists_marked_form_in_cell E H q ψ lab i hD hψ hlab X hX m v hv β hβ hp hc hl
+  · obtain ⟨β₀, h0, hc0⟩ := _root_.GlobalTheory.PolFan.Mark.exists_isMarked_inRCone E H q ψ lab i hD hψ hlab X hX m v hv β hβ hp hc hl
     exact ⟨β₀, h0.1, h0.2.1, by rw [ev, if_pos h0], hc0⟩
 
 end GlobalTheory.PolFan.Mark

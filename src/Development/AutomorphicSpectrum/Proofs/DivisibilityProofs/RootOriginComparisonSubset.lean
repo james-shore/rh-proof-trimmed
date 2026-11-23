@@ -523,7 +523,7 @@ theorem omP_ext' {Y : Model Xo c (algebraMap (𝓞 c.F) c.F)} {S : Finset ℕ} {
   obtain ⟨s0, o, ⟨m0⟩⟩ := GlobalTheory.T.abelian_scheme_point_object E H D l Xo c _ _ Y A.X A.f A.t A.m Ω A.ξ y₀ hy
   obtain ⟨s0', o', ⟨m0'⟩⟩ := GlobalTheory.T.abelian_scheme_point_object E H D l Xo c _ _ Y A'.X A'.f A'.t A'.m Ω' A'.ξ (spMap i ≫ y₀) hy'
   have := ((GlobalTheory.T.regAt_noetherian_model_noetherian _ Ω A.ξ ℤ _ _ A.tie).2 A.all).1
-  have := ((GlobalTheory.T.regAt_noetherian_model_noetherian _ Ω' A'.ξ ℤ _ _ A'.tie).2 A'.all).1
+  have := ((_root_.GlobalTheory.CompanionTheory.Ar.CoordNoeth.noetherian_of_coordTie _ Ω' A'.ξ ℤ _ _ A'.tie).2 A'.all).1
   have htors' : FullTorsion A'.t.G A'.ξ (p ^ A.R p) := by
     have := A'.tors p hp
     rwa [hR] at this
@@ -535,8 +535,8 @@ theorem omP_ext' {Y : Model Xo c (algebraMap (𝓞 c.F) c.F)} {S : Finset ℕ} {
         (OmLink.genWeil_trivial o' A'.t m0' hN hpq) A'.Li A'.M j₁ jd hpt hadj).1
     · funext p'
       have hsp : genPt A.ξ ⤳ g p'.1 := LatModel.dominates_spec hd p'
-      have hnoeth := (GlobalTheory.T.regAt_noetherian_model_noetherian A.X Ω A.ξ ℤ _ _ A.tie).1
-      have hnoeth' := (GlobalTheory.T.regAt_noetherian_model_noetherian A'.X Ω' A'.ξ ℤ _ _ A'.tie).1
+      have hnoeth := (_root_.GlobalTheory.CompanionTheory.Ar.CoordNoeth.noetherian_of_coordTie A.X Ω A.ξ ℤ _ _ A.tie).1
+      have hnoeth' := (_root_.GlobalTheory.CompanionTheory.Ar.CoordNoeth.noetherian_of_coordTie A'.X Ω' A'.ξ ℤ _ _ A'.tie).1
       have hc1 : IsIntegrallyClosed (A.X.presheaf.stalk (g p'.1)) := (A.normal _).2
       have hn1 : IsNoetherianRing (A.X.presheaf.stalk (g p'.1)) :=
         HcptPull.noeth_stalk A.tie.gen ⟨g p'.1, hsp⟩ (hnoeth _)
@@ -570,9 +570,7 @@ end GlobalTheory.CompanionTheory.Ar.OrLinked
 
 namespace GlobalTheory.CompanionTheory.Ar.OrLinked
 
-theorem spMap_spMap' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  simp [spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
+alias spMap_spMap' := _root_.GlobalTheory.spMap_comp_ring
 
 theorem spMap_inj' {A B : Type} [CommRing A] [CommRing B] {f g : A →+* B} (h : spMap f = spMap g) : f = g := by
   have := Spec.map_injective h

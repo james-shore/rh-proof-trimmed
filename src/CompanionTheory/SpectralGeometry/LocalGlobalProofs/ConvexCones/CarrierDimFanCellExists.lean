@@ -117,7 +117,7 @@ theorem exists_isMarked_inRCone : ∀ (O : Type) [CommRing O] [IsDedekindDomain 
     fun x => by simp only [hSdef, Set.Finite.mem_toFinset, Set.mem_setOf_eq]
   have hSτ : ∀ x ∈ S, InRCone τ x := fun x hx => ((hS x).1 hx).1
   have hcl : β ∈ AddSubmonoid.closure {y | IsIndec bar ψ lab β y} :=
-    GlobalTheory.T.mem_closure_sum_indecomposable_face_of_additive _ bar ψ lab X β
+    _root_.GlobalTheory.PolFan.Mark.mem_closure_isIndec _ bar ψ lab X β
       (fun x y hx hy => ⟨(hF _).2 (cone_add ((hF _).1 hx) ((hF _).1 hy)),
         evalZ_add_of_linearOn_inRCone _ ψ X n τ hτ.linear _ _ ((hF _).1 hx) ((hF _).1 hy)⟩)
       (fun x hx => hfan.integral x hx.1 hx.2.1) (fun x hx h0 => hfan.pos x hx.1 hx.2.1 h0) β ((hF _).2 hβ)

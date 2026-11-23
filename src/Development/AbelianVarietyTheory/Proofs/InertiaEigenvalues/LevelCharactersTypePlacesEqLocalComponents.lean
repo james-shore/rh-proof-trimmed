@@ -127,7 +127,7 @@ theorem GlobalTheory.TwInputs.tau_eq_locK : GlobalTheory.Published.GlobalArtinRe
   have e2 : NX.tameVal (D.ntw.chi1 i (j.1 + 1) true) (D.naut.plGw k v) 1 u = D.ntw.chi1 i (j.1 + 1) true σ := by
     unfold NX.tameVal
     rw [dite_eq_left hex]
-    refine GlobalTheory.T.tameChar_eq_of_tameRep_congr (D.naut.plGw k v) (D.ntw.twistBaseCoefficientRing_isAdic i) _ (D.ntw.twistCharacterFamily_continuous i (j.1 + 1) true) (by omega) hm
+    refine _root_.GlobalTheory.TameTau.char_eq_of_tameRep_congr (D.naut.plGw k v) (D.ntw.twistBaseCoefficientRing_isAdic i) _ (D.ntw.twistCharacterFamily_continuous i (j.1 + 1) true) (by omega) hm
       (fun A hA s hs => ?_) _ _ u u hex.choose_spec hTR (by rw [sub_self]; exact zero_mem _)
     rw [hN]
     exact D.ntw.twistCharacterFamily_tame i (j.1 + 1) true k _ hgw hl A hA s hs

@@ -60,7 +60,7 @@ theorem limit_frame_exists : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : B
   have hL : ∀ n, ∃ m, n ≤ m ∧ Link bk F₀.T (F m).T (tw.Pi m) n r := by
     subst hF₀
     exact hP
-  exact ⟨F₀, GlobalTheory.T.isDR_of_links' l K bk d N ρ tw F F₀ r hL hDR,
-    fun hCr => GlobalTheory.T.breuilKisinFrame_isCr_of_linked_tower l K bk d N ρ tw F F₀ r hL hCr, r, hL⟩
+  exact ⟨F₀, _root_.GlobalTheory.BKLim.isDR_of_links l K bk d N ρ tw F F₀ r hL hDR,
+    fun hCr => _root_.GlobalTheory.BKLim.CrLimit.isCr_of_link l K bk d N ρ tw F F₀ r hL hCr, r, hL⟩
 
 end GlobalTheory.BKLim

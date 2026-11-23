@@ -68,7 +68,7 @@ theorem eis_half_plane_w_k {B : Base F E} (hB : _root_.UpperTheory.TP.W.GoodK σ
       ∀ x, DifferentiableOn ℂ (Ê · x) {s | t < s.re} := by
   have hKc : IsCompact (K : Set (G2 σ Y)) := _root_.PositivityTheory.SiegelWeilFormula.Aeis.isCompact_K_w_k hB hK
   obtain ⟨-, hpos⟩ := _root_.PositivityTheory.SiegelWeilFormula.Aeis.height_pos_w_k hB hK hH
-  obtain ⟨C, hC⟩ := GlobalTheory.T.flat_section_growth_bound K a hKc hH hpos χ s₁ f hf
+  obtain ⟨C, hC⟩ := _root_.GlobalTheory.CompanionTheory.EisTerm.flat_norm_le_height_rpow K a hKc hH hpos χ s₁ f hf
   obtain ⟨σ₀, hσ⟩ := _root_.PositivityTheory.SiegelWeilFormula.Aeis.godement_sum_w_k hB hb hK hH
   have hsum : ∀ σ' : ℝ, σ₀ < σ' → ∀ x : G2 σ Y,
       Summable (fun q : Cos σ Y => a ((Quotient.out q).1 * x) ^ σ') := by
@@ -122,7 +122,7 @@ theorem eis_half_mod_w_k {B : Base F E} (hB : _root_.UpperTheory.TP.W.GoodK σ B
   haveI := GlobalTheory.Doubling.isTopologicalRing_tens (F := F) (E := E) (R := AF F)
   obtain ⟨ac, a0⟩ := _root_.PositivityTheory.SiegelWeilFormula.Aeis.height_pos_w_k hB hK ha
   have kc := _root_.PositivityTheory.SiegelWeilFormula.Aeis.isCompact_K_w_k hB hK
-  obtain ⟨C, hC⟩ := GlobalTheory.T.flat_section_growth_bound K a kc ha a0 χ s₁ f hf
+  obtain ⟨C, hC⟩ := _root_.GlobalTheory.CompanionTheory.EisTerm.flat_norm_le_height_rpow K a kc ha a0 χ s₁ f hf
   obtain ⟨σ₀, hG⟩ := _root_.PositivityTheory.SiegelWeilFormula.Aeis.godement_sum_w_k hB hb hK ha
   obtain ⟨W, hW, h1W, hWa⟩ := exists_nhd_one kc ac ha a0
   refine ⟨σ₀ - n / 2, fun t Ê ht hE => ?_⟩

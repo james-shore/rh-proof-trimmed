@@ -174,12 +174,6 @@ theorem shift (ψ : ℂ → ℂ) (S : Finset ℂ) (k : ℂ → ℂ) (u σ c T M 
   have a2 := hor T (abs_of_pos hT)
   linarith
 
-theorem norm_lamChi_le (𝓕 : LFam) (χ : AddChar 𝓕.G ℂ) (n : ℕ) : ‖𝓕.lamChi χ n‖ ≤ 2 * Λ n := by
-  refine le_trans ?_ (𝓕.lam_le n)
-  refine (norm_sum_le _ _).trans (Finset.sum_le_sum fun g _ => ?_)
-  rw [norm_mul, AddChar.norm_apply, one_mul, Complex.norm_real, Real.norm_eq_abs,
-    abs_of_nonneg (𝓕.lam_nonneg g n)]
-
 theorem one_le_ell (𝓕 : LFam) (t : ℝ) : 1 ≤ 𝓕.ell t := by
   rw [LFam.ell, Real.le_log_iff_exp_le (by have := 𝓕.B_ge; positivity)]
   have := Real.exp_one_lt_d9
@@ -405,7 +399,7 @@ theorem contour (𝓕 : LFam) (χ : AddChar 𝓕.G ℂ) (Z : Finset ℝ) (c₀ C
     linarith
 
 theorem norm_psi_le (𝓕 : LFam) (χ : AddChar 𝓕.G ℂ) {u : ℝ} (hu : 0 ≤ u) : ‖𝓕.psi χ u‖ ≤ 4 * u := by
-  refine (norm_sum_le _ _).trans ((Finset.sum_le_sum fun n _ => norm_lamChi_le 𝓕 χ n).trans ?_)
+  refine (norm_sum_le _ _).trans ((Finset.sum_le_sum fun n _ => _root_.GlobalTheory.Hk.LogDeriv.norm_lamChi_le 𝓕 χ n).trans ?_)
   rw [← Finset.mul_sum]
   have := GlobalTheory.Mem.An.sum_vonMangoldt_le_two_mul u hu
   linarith
@@ -542,7 +536,7 @@ theorem psi_exceptional : ∀ c₀ : ℝ, 0 < c₀ → c₀ ≤ 1 / 20 → ∃ c
       hT, Real.log_exp] at e
     have := Real.log_two_lt_d9
     nlinarith
-  have A := HP (𝓕.lamChi χ) u T (norm_lamChi_le 𝓕 χ) hT2 hTu
+  have A := HP (𝓕.lamChi χ) u T (_root_.GlobalTheory.Hk.LogDeriv.norm_lamChi_le 𝓕 χ) hT2 hTu
   have B := contour 𝓕 χ Z c₀ C u T _ hc₀ hc₁ hC hZ hu (by linarith) rfl (H 𝓕 χ Z hZ)
   have gen : ∀ a v m z : ℂ, ‖a - m + z‖ ≤ ‖a - v‖ + ‖v - m + z‖ := fun a v m z => by
     refine le_trans (le_of_eq ?_) (norm_add_le _ _)

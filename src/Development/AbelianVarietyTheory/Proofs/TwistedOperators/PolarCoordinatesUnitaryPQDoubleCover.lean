@@ -83,7 +83,7 @@ theorem shc_pos (x : ℝ) : 0 < shc x := by
 
 theorem polJ_conj {p q : ℕ} (T : GrpData p q) {k : T.G} (hk : k ∈ T.Kset) (Y : Mat p q) :
     polJ (matG T k * Y * matG T k⁻¹) = polJ Y :=
-  GlobalTheory.T.polarJacobian_blockDiag_conj_invariant p q _ _ Y (by rw [← matG_mul, mul_inv_cancel, matG_one]) hk ((Ksub T).inv_mem hk)
+  _root_.GlobalTheory.PolarU.Conj.polJ_conj p q _ _ Y (by rw [← matG_mul, mul_inv_cancel, matG_one]) hk ((Ksub T).inv_mem hk)
 
 theorem exists_conj_aOf {p q : ℕ} (T : GrpData p q) {Y : Mat p q} (hY : Y ∈ pR p q) :
     ∃ k ∈ T.Kset, ∃ h : ℕ → ℝ, Y = matG T k * aOf p q h * matG T k⁻¹ := by
@@ -131,7 +131,7 @@ theorem haar_polar {p q : ℕ} (T : GrpData p q) :
   haveI : IsLocallyFiniteMeasure
       ((volume : Measure (Fin p → Fin q → ℂ)).withDensity fun B => ENNReal.ofReal (polJ (pY B))) :=
     IsLocallyFiniteMeasure.withDensity_ofReal hJc
-  obtain ⟨c, hc, hf⟩ := GlobalTheory.T.lintegral_haar_eq_compactSubgroup_transversal T.G (Fin p → Fin q → ℂ) T.haar mK
+  obtain ⟨c, hc, hf⟩ := _root_.GlobalTheory.Twist.lintegral_haar_eq_transversal T.G (Fin p → Fin q → ℂ) T.haar mK
     (volume.withDensity fun B => ENNReal.ofReal (polJ (pY B))) T.Kset (fun B => T.expt (pY B)) hem hK0 hright
     (by
       intro h0

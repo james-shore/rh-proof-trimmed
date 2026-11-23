@@ -112,7 +112,7 @@ theorem mass_not_hasPrimeFactor_le_five (g : ℕ) [Fact g.Prime] (N : ℕ) (hN :
       UniqueFactorizationMonoid.dvd_of_mem_normalizedFactors hh, hS _ hp⟩
   have h2 := GlobalTheory.T.mass_degType_le_card_cycleType_div g N (fun s => ∀ p ∈ S, p ∉ s)
   have h3 := GlobalTheory.BadShare.card_perm_no_long_cycle N S fun p hp => (hS p hp).2.1
-  have h4 := sum_inv_primes_between_ge N hN
+  have h4 := _root_.GlobalTheory.PrimeRecip.inv_five_log_le_sum_inv_primes N hN
   have hf : (0 : ℝ) < N.factorial := by exact_mod_cast N.factorial_pos
   have h5 : ∀ p ∈ S, ((Finset.univ.filter fun σ : Equiv.Perm (Fin N) => p ∈ σ.partition.parts).card : ℝ) =
       N.factorial * ((1 : ℝ) / p) := by

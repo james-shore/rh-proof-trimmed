@@ -74,18 +74,18 @@ theorem limit_pre_exists : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK 
   have hc := GlobalTheory.T.latticeApproximation_mittagLeffler l K bk τ hτ d N ρ tw F T0 R hT0 hRO hR
   have hlim := GlobalTheory.T.mittagLeffler_image_breuilKisin_modPow l K bk d tw.d' R Yt hYt hc
   have hL3 := GlobalTheory.T.limitVector_mem_OE_and_ainf l K bk τ hτ d N ρ tw F T0 R hRO hR
-  obtain ⟨V, V', hVO, hV'O, hVV, hVlim⟩ := GlobalTheory.T.limitVectors_invertible_basis_over_OE l K bk d tw.d' R (fun n => ⟨R' n, hR'O n, hRR' n⟩) hlim hRO
+  obtain ⟨V, V', hVO, hV'O, hVV, hVlim⟩ := _root_.GlobalTheory.LimVec.invertible_basis l K bk d tw.d' R (fun n => ⟨R' n, hR'O n, hRR' n⟩) hlim hRO
   choose y1 hy1 using fun j => (hL3 _ (hVlim j)).2
   have hY1 : (Matrix.of fun i j => y1 j i).map (inclW l) = inclW l τ ^ N • (T0 * V) := by
     refine Matrix.ext fun i j => ?_
     have := congrFun (hy1 j) i
     simpa [Matrix.mulVec, dotProduct, Matrix.mul_apply] using this
-  obtain ⟨Y, Wm, Wm', hYu, hWO, hW'O, hWW, hYW, hmem⟩ := GlobalTheory.T.saturatedAinfLattice_free_over_breuilKisin l K bk τ hτ d N T0 V V' _ hT0 hVO hV'O hVV hY1
+  obtain ⟨Y, Wm, Wm', hYu, hWO, hW'O, hWW, hYW, hmem⟩ := _root_.GlobalTheory.BKLim.SatLat.main l K bk τ hτ d N T0 V V' _ hT0 hVO hV'O hVV hY1
   have hlink := GlobalTheory.T.twisted_matrix_congruence_lift_sequence l K bk τ hτ d N ρ tw F T0 R hR hlim hL3 Y (T0 * Wm) hYW hmem
   obtain ⟨Y', hYY'⟩ := GlobalTheory.T.ainf_exists_mul_eq_pow_smul_of_mod_lPow l d (2 * N) τ Y hYu (fun n => by
     obtain ⟨m, _, Rn, Q, _, h⟩ := hlink n
     exact ⟨Rn.map bk.ev * Q, h⟩)
-  obtain ⟨hfixT, A1, A1', hA1, hA1', hφ1, hAA1⟩ := GlobalTheory.T.invariantEtaleBasis_change_by_OE_unit l K bk d (fun g => (ρ g).val) T0 Wm Wm' A0 A0' hfix0 hA0 hA0' hφ0 hAA0 hWO hW'O hWW
+  obtain ⟨hfixT, A1, A1', hA1, hA1', hφ1, hAA1⟩ := _root_.GlobalTheory.ChangeEtaleBasis.main l K bk d (fun g => (ρ g).val) T0 Wm Wm' A0 A0' hfix0 hA0 hA0' hφ0 hAA0 hWO hW'O hWW
   have hTu : IsUnit (T0 * Wm) := hT0.mul ⟨⟨Wm, Wm', hWW, mul_eq_one_comm.1 hWW⟩, rfl⟩
   obtain ⟨P, hP⟩ := GlobalTheory.T.breuilKisin_basis_of_etale_invariant_bounded_poles l K bk τ hτ N d (fun g => (ρ g).val) (T0 * Wm) A1 A1' Y Y' hTu hA1 hA1' hφ1 hAA1 hfixT hYW hYY'
   obtain ⟨r, hr⟩ := GlobalTheory.T.exists_right_inverse_mod_pow_of_ev l K bk τ hτ (2 * N)

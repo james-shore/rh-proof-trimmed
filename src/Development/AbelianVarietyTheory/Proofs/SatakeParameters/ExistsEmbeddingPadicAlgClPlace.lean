@@ -56,17 +56,6 @@ open NumberField IsDedekindDomain
 
 namespace GlobalTheory
 
-theorem norm_finset_sum_lt_of_forall_lt {K : Type*} [NormedField K] [IsUltrametricDist K]
-    (s : Finset ℕ) (f : ℕ → K) {r : ℝ} (hr : 0 < r) (h : ∀ i ∈ s, ‖f i‖ < r) :
-    ‖∑ i ∈ s, f i‖ < r := by
-  first
-  | exact @_root_.GlobalTheory.NormSumLt.main
-  | exact _root_.GlobalTheory.NormSumLt.main
-  | (apply _root_.GlobalTheory.NormSumLt.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NormSumLt.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NormSumLt.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NormSumLt.main ..)
-
 theorem norm_le_one_of_isIntegral_int {K : Type*} [NormedField K] [IsUltrametricDist K]
     {z : K} (hz : IsIntegral ℤ z) : ‖z‖ ≤ 1 := by
   obtain ⟨p, hm, hp⟩ := hz
@@ -77,7 +66,7 @@ theorem norm_le_one_of_isIntegral_int {K : Type*} [NormedField K] [IsUltrametric
     hm.leadingCoeff, map_one, one_mul] at hp
   set S := ∑ i ∈ Finset.range n, (algebraMap ℤ K) (p.coeff i) * z ^ i
   have hS : ‖S‖ < ‖z‖ ^ n := by
-    refine norm_finset_sum_lt_of_forall_lt _ _ (pow_pos (by linarith) n) ?_
+    refine _root_.GlobalTheory.NormSumLt.norm_sum_lt _ _ (pow_pos (by linarith) n) ?_
     intro i hi
     rw [norm_mul, norm_pow]
     have h1 : ‖(algebraMap ℤ K) (p.coeff i)‖ ≤ 1 := by

@@ -73,10 +73,7 @@ variable {V : Type} {K' : Type} [CommRing V] [IsDomain V] [IsDiscreteValuationRi
 
 theorem vV_one : vV V (1 : K') = 0 := by simp [vV]
 
-theorem vV_pow {x : K'} (hx : x ≠ 0) (n : ℕ) : vV V (x ^ n) = n * vV V x := by
-  induction n with
-  | zero => simp [vV_one]
-  | succ n ih => rw [pow_succ, vV_mul (pow_ne_zero _ hx) hx, ih]; push_cast; ring
+alias vV_pow := _root_.GlobalTheory.PlaceExtField.vV_pow
 
 theorem vV_inv {x : K'} (hx : x ≠ 0) : vV V x⁻¹ = - vV V x := by
   have := vV_mul (V := V) hx (inv_ne_zero hx)
@@ -100,15 +97,7 @@ theorem nval_nonneg (e : ℕ) {x : K'} (hx : IsIntegral ℤ x) : 0 ≤ nval V e 
   have : (0 : ℝ) ≤ (vV V x : ℝ) := by exact_mod_cast vV_nonneg hx
   exact EReal.coe_nonneg.2 (by positivity)
 
-theorem le_nval_sum (e : ℕ) {J : Type} (s : Finset J) (f : J → K') (a : EReal) (h : ∀ i ∈ s, a ≤ nval V e (f i)) :
-    a ≤ nval V e (∑ i ∈ s, f i) := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => rw [Finset.sum_empty, nval_zero]; exact le_top
-  | insert i s hi ih =>
-    rw [Finset.sum_insert hi]
-    exact (le_min (h i (Finset.mem_insert_self _ _))
-      (ih fun k hk => h k (Finset.mem_insert_of_mem hk))).trans (nval_add e _ _)
+alias le_nval_sum := _root_.ReciprocityTheory.ChartRestriction.G.PullbackSections.le_nval_sum
 
 theorem le_nval_avg (e : ℕ) {J : Type} [Finite J] (w X : J → K') (ζ u cc b : K') (m : ℕ) (hm : 0 < m) (hζ : ζ ^ m = 1)
     (hu : u ≠ 0) (hcc : cc ≠ 0) (hw : ∀ q, IsIntegral ℤ (w q)) (ρ : ℝ)

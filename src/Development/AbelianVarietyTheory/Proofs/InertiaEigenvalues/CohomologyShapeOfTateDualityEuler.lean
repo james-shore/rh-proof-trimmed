@@ -89,7 +89,7 @@ theorem shapeG_of_localDuality (hT : Formalism.GaloisCohomology.LocalTateDuality
   have hlcε : ∀ N : ℕ, IsLocallyConstant
       (fun g : G => Ideal.Quotient.mk (Ideal.span {(p : O) ^ N}) ((ε g : Oˣ) : O)) := by
     intro N
-    have h := (GlobalTheory.T.cyclotomic_character_isLocallyConstant_mod_pow ε' hcyc' N).comp_continuous i.continuous
+    have h := (_root_.GlobalTheory.ShapeNeg.cyclotomic_isLocallyConstant_mod ε' hcyc' N).comp_continuous i.continuous
     convert h using 1
     funext g
     change Ideal.Quotient.mk _ ((ε g : Oˣ) : O) =
@@ -122,8 +122,8 @@ theorem shapeG_of_localDuality (hT : Formalism.GaloisCohomology.LocalTateDuality
     apply hσ1
     have h2 : ((ε (i.symm σ1)) ^ e)⁻¹ = 1 := Units.ext h1
     exact inv_eq_one.1 h2
-  obtain ⟨C, hC⟩ := GlobalTheory.T.h2_bounded_twist hT hK hϖ hpϖ ε' hcyc' e u ρ' hρ' σ2 hσ2 hcont
-  have hone2 := GlobalTheory.T.card_H2_level_rep_one_le hT hK hϖ u ρ' (hpn 1) (hcont 1 (hpn 1))
+  obtain ⟨C, hC⟩ := _root_.GlobalTheory.CyclotomicH2Bound.h2_bounded_cyclotomic hT hK hϖ hpϖ ε' hcyc' e u ρ' hρ' σ2 hσ2 hcont
+  have hone2 := _root_.GlobalTheory.ShapeNeg.card_H2_level_rep_le hT hK hϖ u ρ' (hpn 1) (hcont 1 (hpn 1))
   have key : ∀ n : ℕ, 0 < n →
       Finite (LinearMap.ker (ϖ ^ n • LinearMap.id : ReciprocityTheory.ChartRestriction.T2.HcLC ρ →ₗ[O] ReciprocityTheory.ChartRestriction.T2.HcLC ρ)) ∧
       (letI := GlobalTheory.ShapeNeg.levZ (M := M) p n (hpn n)
@@ -136,7 +136,7 @@ theorem shapeG_of_localDuality (hT : Formalism.GaloisCohomology.LocalTateDuality
       (GlobalTheory.ShapeNeg.levRepZ p n (hpn n) ρ') hn (hcont n (hpn n))
     have hEu := hE p K hK n (GlobalTheory.ShapeNeg.Lev M (ϖ ^ n)) (GlobalTheory.ShapeNeg.levRepZ p n (hpn n) ρ') hn
       (hcont n (hpn n))
-    obtain ⟨t0, t1⟩ := GlobalTheory.T.transfer_card_H0_H1_eq i ρ p n (ϖ ^ n) (hpn n)
+    obtain ⟨t0, t1⟩ := _root_.GlobalTheory.ShapeNeg.transfer_card_H0_H1 i ρ p n (ϖ ^ n) (hpn n)
     have hH1O : Finite (ReciprocityTheory.Gal.H1 (GlobalTheory.ShapeNeg.levRep ρ (ϖ ^ n))) :=
       Nat.finite_of_card_ne_zero (by rw [t1]; exact Nat.card_pos.ne')
     obtain ⟨hXf, hX⟩ := GlobalTheory.T.card_H1_level_rep_formula ρ ϖ n hdiv hlc hH1O

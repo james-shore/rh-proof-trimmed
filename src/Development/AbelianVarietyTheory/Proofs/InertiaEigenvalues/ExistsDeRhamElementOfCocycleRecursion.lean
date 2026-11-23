@@ -58,16 +58,10 @@ namespace GlobalTheory.ExpImage.Sum
 
 variable {l : ℕ} [Fact l.Prime] {P : LocPrime l} (AI : LocAinf l P)
 
-theorem frob_π₁ : WittVector.frobenius AI.π₁ = AI.μ := by
-  rw [LocAinf.π₁, LocAinf.μ, map_sub, map_one, WittVector.frobenius_eq_map_frobenius,
-    WittVector.map_teichmuller]
-  congr 2
-  exact (frobeniusEquiv (OCb l) l).apply_symm_apply AI.ε
-
 theorem act_μ {K : FinExt l} {h : GQ l} (hh : h ∈ Hinf K) : AI.actW h AI.μ = AI.μ := by
   have h1 : P.χQ h = 1 :=
     ((GlobalTheory.Cyc.cyc_basic l P.χQ P.χQ_cyc).2.2 K h (Hinf_le_fix hh)).2.mp hh
-  have h2 := GlobalTheory.T.cyclotomic_action_on_root_tower l P AI h 1 (by rw [h1]; simp) 0
+  have h2 := _root_.GlobalTheory.ExpImage.actT_εroot_eq_pow l P AI h 1 (by rw [h1]; simp) 0
   have h3 : AI.actT h AI.ε = AI.ε := by simpa [LocAinf.εroot] using h2
   rw [LocAinf.μ, map_sub, map_one, LocAinf.actW, WittVector.map_teichmuller]
   congr 2
@@ -91,7 +85,7 @@ theorem limit (T : LocTied l P AI) {M : ℕ} (hM : 1 ≤ M) (g : GQ l) (U : ℤ_
     (hE : ∀ n : ℕ, ∃ R₀ : ℕ, ∀ R ≥ R₀, E R ∈ Lat AI M n)
     (hS : ∀ R, ∃ z : ℤ_[l], v + (qB P (U : ℚ_[l]) * P.actQdR g (S R) - S R) = qB P (z : ℚ_[l]) - E R) :
     NearZ P M (v + (qB P (U : ℚ_[l]) * P.actQdR g b - b)) := by
-  refine GlobalTheory.T.padicInt_add_fil_closed_in_deRhamPeriodRing l P AI T M hM _ fun n => ?_
+  refine _root_.GlobalTheory.ExpImage.nearZ_of_forall_Lat l P AI T M hM _ fun n => ?_
   obtain ⟨R₀, h₀⟩ := hb n
   obtain ⟨R₁, h₁⟩ := hE n
   obtain ⟨z, hz⟩ := hS (max R₀ R₁)
@@ -134,7 +128,7 @@ theorem main : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P),
   choose η hη hη0 using hη'
   obtain ⟨u, hu0, hu⟩ := GlobalTheory.T.exists_inv_io_pi_alt l P AI T
   have small := GlobalTheory.T.prime_pow_mul_inv_pow_mem_ainfFilLattice l P AI s hs u hu0 hu M
-  obtain ⟨b, hb0, hb⟩ := GlobalTheory.T.exists_series_limit_Lat_alt l P AI M
+  obtain ⟨b, hb0, hb⟩ := _root_.GlobalTheory.ExpImage.exists_series_limit_Lat l P AI M
     (fun k => (l : P.R.BdR) ^ (s * k) * (io AI (β k) * u ^ (k + 1)))
     (fun k => by
       have h1 : (l : P.R.BdR) ^ (s * k) * io AI (β k) ∈ FilB P 0 := by
@@ -170,7 +164,7 @@ theorem main : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P),
         (AI.π₁ * η k - ((l : ℕ) : Ainf l) ^ s * η (k + 1)) (by
         rw [hβ]
         convert hstep k using 1
-        rw [← hη k, ← hη (k + 1), map_sub, map_mul, map_mul, map_pow, map_natCast, frob_π₁, AI.μ_eq]
+        rw [← hη k, ← hη (k + 1), map_sub, map_mul, map_mul, map_pow, map_natCast, _root_.GlobalTheory.ExpStep.frob_π₁, AI.μ_eq]
         ring)
       refine ⟨z, ?_⟩
       rw [step_dR AI T hu hz]

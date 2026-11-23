@@ -77,7 +77,7 @@ theorem riemLie_frameBox_le : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
     (GlobalTheory.T.mem_realLie_iff_traceFree_skew_signs E r κ p q Ψ G x σ A e hI _).2 (GlobalTheory.T.skewHermitianBasisVector_traceFreeSkewCond E r Ψ d z hd k)
   let K := Ψ × {ab : Fin r × Fin r // ab ≠ (z, z)}
   let w : K → W := fun k => ⟨boxVec d z k, hvW k⟩
-  have hdual := GlobalTheory.T.skewHermitianCoordinate_dual_basisVector E r Ψ d z hd
+  have hdual := _root_.GlobalTheory.CovTop.VolUp.FrameBox.boxCoord_boxVec E r Ψ d z hd
   have hcoord : ∀ (g : K → ℝ) j, boxCoord z j ((∑ k, g k • w k : W) : EuclideanSpace ℂ (Ψ × Fin r × Fin r)) = g j := by
     intro g j
 

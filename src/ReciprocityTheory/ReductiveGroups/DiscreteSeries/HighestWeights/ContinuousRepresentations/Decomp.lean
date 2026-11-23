@@ -81,7 +81,7 @@ theorem compRed_of (hR : KRepRelStatement) (hS : KRepStableStatement) (hP : KRep
   refine ⟨m, x, μ, fun i => ⟨(hx i).2.1, (hx i).2.2⟩, horth, htop, ?_, ?_, ?_⟩
   · exact finrank_eq_sum_of_orth _ horth htop
   · intro i k v hv
-    exact (hS n ε R _).mpr (Formalism.REAL.isCompactInvariant_compactSpan (x i)) k v hv
+    exact (hS n ε R _).mpr (_root_.Formalism.REAL.compact_span_stable (x i)) k v hv
   · intro i
     obtain ⟨T, φ, h1, h2, h3⟩ := hP n ε R (μ i) (x i) (hx i).2.1 (hx i).2.2
     exact ⟨T, φ, φ.toLinearEquiv.finrank_eq, h1, h2, h3⟩

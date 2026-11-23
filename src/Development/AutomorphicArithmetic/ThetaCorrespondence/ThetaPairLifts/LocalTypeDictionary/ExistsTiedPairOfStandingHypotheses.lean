@@ -248,7 +248,7 @@ theorem exists_tied_pair_of_standing_hypotheses (hP : _root_.GlobalTheory.FunPr.
     (hst : ∀ t, SquareStanding G t) (W : G.Weil) (rm : RealMatch W) :
     ∃ ρ : RealMatch W, ρ.vX = rm.vX ∧ ρ.vT = rm.vT ∧ ρ.Tied ∧
       ∀ (B : Frames G) (i j : Fin D.R.m) (t : T), ∃ c : ℂ, GlobalTheory.SqTower.RegConst W B ρ t i j c := by
-  have hLM := _root_.GlobalTheory.T.twisted_local_factors_match hP.howeDualityReal hP hK hTL
+  have hLM := _root_.GlobalTheory.SquareLM.twisted_square_local_matching hP.howeDualityReal hP hK hTL
   choose r hr1 hr2 hr3 hr4 using _root_.GlobalTheory.GridFrameExistence.tied_pair_square_relation hP.howeDualityReal hP hTL hLM hL hst W
   let rel' : ∀ i j : ℕ, Submodule ℂ (PolRoute G (.grid i (j + 1)) (.grid (i + 1) (j + 1)) (.grid (i + 1) j) ×
       PolRoute G (.grid i (j + 1)) (.grid i j) (.grid (i + 1) j)) := fun i j =>
@@ -281,7 +281,7 @@ theorem exists_tied_pair_of_standing_hypotheses (hP : _root_.GlobalTheory.FunPr.
   obtain ⟨Pr, q, q', -, -, H⟩ := hLM D W.ψ W.θ W.ψ_std W.θ_is _ _ _ A A₁ (frSum AV AV₁) a b
   obtain ⟨ωA, ωB, Pi, rf, rl, p, p', hm⟩ := (H _ _ hT fun τ => ⟨ha τ, hb τ⟩).1
   obtain ⟨c, hc⟩ := hr4 i j ρ A A₁ AV AV₁ hA hA₁ hV hV₁ t ωA ωB Pi rf rl p p' hm B
-  refine _root_.GlobalTheory.GridFrameExistence.tied_pair_regularization_constant hP hK (_root_.GlobalTheory.T.twisted_theta_integral_converges hP.siegelSetUnitary hP) (_root_.GlobalTheory.T.twisted_square_theta_integrals_eq hP hK hTL) hL W B ρ t (hst t) i j
+  refine _root_.GlobalTheory.GridFrameExistence.tied_pair_regularization_constant hP hK (_root_.GlobalTheory.WeilConv.twisted_weil_representation_convergence hP.siegelSetUnitary hP) (_root_.GlobalTheory.SquareAgree.twisted_theta_integrals_agree hP hK hTL) hL W B ρ t (hst t) i j
     hA hA₁ hV hV₁ hm (lam := c) ?_
   rintro _ _ ⟨a', b', τ, τ', n, Φ, hab, hn, hF, rfl, rfl⟩
   exact hc n Φ τ τ' hn hF a' b' (e i j ▸ hab)
@@ -297,15 +297,3 @@ end GlobalTheory.GridFrameExistence
 end
 end
 
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.Theta Formalism.L2.DIV IsDedekindDomain NumberField MeasureTheory
-open GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.FunObj.SqNum GlobalTheory.RowTest GlobalTheory.SqTop GlobalTheory.SqTower GlobalTheory.SplitFlip GlobalTheory.SplitWeil GlobalTheory.StdFrames GlobalTheory.ChainFr GlobalTheory.SquareDict GlobalTheory.SquareComm
-open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
-open GlobalTheory.ConstRatio (Factor)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
-
-theorem _root_.GlobalTheory.T.exists_tied_theta_pair : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.LocalMatching →
-  GBig fun {D} T _ _ G _ _ _ _ => ∀ (W : G.Weil) (B : Frames G) (ρ : RealMatch W), ∃ ρ₀ : RealMatch W, ρ₀.vX = ρ.vX ∧ ρ₀.vT = ρ.vT ∧ ρ₀.Tied ∧
-    ∀ (i j : Fin D.R.m) (t : T), ∃ c₀ : ℂ, RegConst W B ρ₀ t i j c₀ := by
-  first | exact @_root_.GlobalTheory.GridFrameExistence.exists_tied_pair | exact _root_.GlobalTheory.GridFrameExistence.exists_tied_pair | (intros; apply _root_.GlobalTheory.GridFrameExistence.exists_tied_pair <;> assumption)
-end

@@ -43,8 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PositivityTheory.RgBcC.Cxd2
 
-theorem atTrace : AtTrace := Alg.atTrace'
-
-theorem atTraceT : AtTraceT := Alg.atTraceT'
-
 end PositivityTheory.RgBcC.Cxd2

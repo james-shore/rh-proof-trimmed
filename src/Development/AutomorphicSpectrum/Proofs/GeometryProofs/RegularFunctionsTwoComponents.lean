@@ -62,19 +62,6 @@ theorem isLocalRing_regAt {X : Scheme.{0}} {Ω : Type} [Field Ω] (ξ : Spec (Co
   show IsLocalRing (genMap ξ p).range
   exact IsLocalRing.of_surjective' (genMap ξ p).rangeRestrict (genMap ξ p).rangeRestrict_surjective
 
-theorem isUnit_regAt_iff {X : Scheme.{0}} {Ω : Type} [Field Ω] (ξ : Spec (CommRingCat.of Ω) ⟶ X) (p : Cpt ξ)
-    (a : regAt ξ p) : IsUnit a ↔ unitAt ξ p (a : Ω) := by
-  constructor
-  · intro h
-    obtain ⟨b, hb⟩ := h.exists_right_inv
-    have e : (a : Ω) * (b : Ω) = 1 := congrArg Subtype.val hb
-    have ha : (a : Ω) ≠ 0 := fun h0 => by simp [h0] at e
-    refine ⟨ha, a.2, ?_⟩
-    rw [inv_eq_of_mul_eq_one_right e]
-    exact b.2
-  · rintro ⟨h0, -, h2⟩
-    exact isUnit_iff_exists_inv.2 ⟨⟨_, h2⟩, Subtype.ext (mul_inv_cancel₀ h0)⟩
-
 theorem unitAt_iff_of_dominated {X X' : Scheme.{0}} {Ω Ω' : Type} [Field Ω] [Field Ω']
     {ξ : Spec (CommRingCat.of Ω) ⟶ X} {ξ' : Spec (CommRingCat.of Ω') ⟶ X'} {i : Ω →+* Ω'} {p' : Cpt ξ'} {q : Cpt ξ}
     (h : (∀ a ∈ regAt ξ q, i a ∈ regAt ξ' p') ∧ ∀ a ∈ regAt ξ q, unitAt ξ' p' (i a) → unitAt ξ q a)
@@ -96,7 +83,7 @@ theorem eq_of_dominated_of_inChart {o : Type} [CommRing o] {Ω : Type} [Field Ω
     ((chRing o x c).val : chRing o x c →+* Ω).codRestrict (regAt M.ξ q) fun u => cq _ u.2
   have hP : ∀ u : chRing o x c, u ∈ (IsLocalRing.maximalIdeal (regAt M.ξ q)).comap f ↔ ¬ unitAt M.ξ q (u : Ω) := by
     intro u
-    rw [Ideal.mem_comap, IsLocalRing.mem_maximalIdeal, mem_nonunits_iff, isUnit_regAt_iff]
+    rw [Ideal.mem_comap, IsLocalRing.mem_maximalIdeal, mem_nonunits_iff, _root_.GlobalTheory.CompanionTheory.Ar.Centre.isUnit_regAt_iff]
     rfl
   obtain ⟨p, -, huniq⟩ := GlobalTheory.T.chart_prime_existsUnique_point o Ω κ x M c hq.1 _
     (inferInstance : ((IsLocalRing.maximalIdeal (regAt M.ξ q)).comap f).IsPrime)

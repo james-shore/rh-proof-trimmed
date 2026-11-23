@@ -161,7 +161,7 @@ theorem nfinU_of_tf {D : D7} (X : HidaSetting D) (hb : AdBridgeIso X.B.I) (u : D
 
 theorem strongApproxN_holds : MassDataMassesW.StrongApproxN := by
   intro D X u x hx
-  have hb := Formalism.L2.SG.Closed.AdBridgeIso_holds X.B.I
+  have hb := _root_.Formalism.L2.SG.Pf.adelic_isomorphism_exists X.B.I
   have : FiniteDimensional X.B.I.F X.B.I.E := Module.Finite.of_restrictScalars_finite ℚ _ _
   obtain ⟨p, rfl⟩ := (toHA X.B.I hb).surjective x
   have hsp := MassDataMassesW.split_toHA X hb MassDataMassesW.splitIso_holds p
@@ -174,7 +174,7 @@ theorem strongApproxN_holds : MassDataMassesW.StrongApproxN := by
     exact hxf
   have hy : p.2 ∈ X.NfinU u := nfinU_of_tf X hb u p.2 hxf'
   have h1K : (1 : X.B.I.Gf) ∈ X.B.I.Kset :=
-    (Formalism.L2.SG.Closed.level_subgroup_properties X).2.1 1 (Formalism.L2.SG.Closed.level_subgroup_is_group X).1
+    (Formalism.L2.SG.Closed.level_subgroup_properties X).2.1 1 (_root_.Formalism.L2.SG.Pf.level_subgroup_character_unitary X).1
   have hUo : IsOpen {w : X.B.I.Gf | w⁻¹ * p.2 ∈ X.B.I.Kset} :=
     (Formalism.L2.SG.Pf.kset_open X.B.I).preimage (continuous_inv.mul continuous_const)
   have hyU : p.2 ∈ {w : X.B.I.Gf | w⁻¹ * p.2 ∈ X.B.I.Kset} := by

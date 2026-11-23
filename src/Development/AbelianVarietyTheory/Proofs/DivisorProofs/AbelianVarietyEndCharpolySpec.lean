@@ -78,7 +78,7 @@ theorem exists_isCharpoly {K : Type} [Field K] (A : AbVar K) (f : End A) : ∃ P
   have : Module.Finite ℚ_[l] (Vl l A) := (tl_free_finrank K l hlK A).2.2.2.1
   have hcp := GlobalTheory.T.abelianVariety_degreePolynomial_map_eq_charpoly_rationalTate K l hlK A f P hPm hPd hPe
   have : Module.Finite ℤ (A ⟶ A) :=
-    (GlobalTheory.T.hom_finite_free_finrank_le_four_mul_dim K A A).1
+    (_root_.GlobalTheory.AV.AbVar.hom_finite_free_rank_le K A A).1
   have : Module.Finite ℤ (End A) :=
     Module.Finite.of_surjective (End.linearEquiv (R := ℤ) (X := A)).symm.toLinearMap
       (End.linearEquiv (R := ℤ) (X := A)).symm.surjective
@@ -114,8 +114,6 @@ theorem isCharpoly_charpoly_unique (K : Type) [Field K] (A : AbVar K) (f : End A
   refine ⟨hc, fun P hP => Polynomial.funext fun n => ?_⟩
   rw [hP.2.2 n, hc.2.2 n]
 
-theorem charpoly_spec : ∀ (K : Type) [Field K] (A : AbVar K) (f : End A),
-    IsCharpoly f (charpoly f) ∧ ∀ P, IsCharpoly f P → P = charpoly f :=
-  fun K _ A f => isCharpoly_charpoly_unique K A f
+alias charpoly_spec := _root_.GlobalTheory.AV.AbVar.isCharpoly_charpoly_unique
 
 end GlobalTheory.AV.AbVar

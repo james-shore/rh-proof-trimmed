@@ -173,7 +173,7 @@ theorem pullback_support : CutEX.PbSupp := by
     have hgSR : g ∈ SR := by
       rw [hSRdef]
       exact fun a _ b _ => by
-        rw [Metric.mem_closedBall, dist_zero_right]; exact (CutEXPbSupp.norm_entry_le_gN g a b).trans hgR
+        rw [Metric.mem_closedBall, dist_zero_right]; exact (_root_.Formalism.FourierDecayAlt.P.Ux5.entry_le_gN g a b).trans hgR
     have hGC : Gf P.k P.r p.T.base.z p.T.base.z' g ≤ Cg := (le_abs_self _).trans (hCg g hgSR)
     set Gr := Gf P.k (P.r - P.r) zr zr' (Matrix.of q.2) with hGr
     have hns : Complex.normSq (Matrix.of q.1).det = ‖(Matrix.of q.1).det‖ ^ 2 := Complex.normSq_eq_norm_sq _

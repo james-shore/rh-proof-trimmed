@@ -187,7 +187,7 @@ theorem twisted_trace_formula_elliptic_expansion (hA : AbsSum) (hF : FinCl2) (hI
     rw [finsum_eq_sum_of_support_subset (s := hB.toFinset)]
     · refine Finset.sum_congr rfl fun c hc => ?_
       rw [Set.Finite.mem_toFinset] at hc
-      rw [if_pos hc.1, MassP.mass_kap E hU a c.1.rep hc.1.1, MassP.mass_kap E hU b c.2.rep hc.1.2, pow_add]
+      rw [if_pos hc.1, _root_.GlobalTheory.BCT.mass_eq_kap E hU a c.1.rep hc.1.1, _root_.GlobalTheory.BCT.mass_eq_kap E hU b c.2.rep hc.1.2, pow_add]
       unfold orb2 pol
       ring
     · intro c hc

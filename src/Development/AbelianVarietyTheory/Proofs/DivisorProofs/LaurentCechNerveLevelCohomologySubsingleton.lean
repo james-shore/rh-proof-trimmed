@@ -73,8 +73,8 @@ theorem level_vanish : ∀ (q : ℕ) [NeZero q] (n : ℤ), (∀ (A : Type) [Comm
   Module.Finite A A' → ∀ (k : ℕ) (s i : ℤ), 2 ≤ s → s < n →
   Subsingleton (Ht q (disc.obj ((cech (laurentHom A A')).obj (op ⦋k⦌))) s i) := by
   intro q _ n hyp A _ _ hSH hq A' _ _ hfin k s i hs hsn
-  obtain ⟨_, e, -, -⟩ := GlobalTheory.T.laurentCechNerve_level_spec_tensorPower A A' k
-  have hT := GlobalTheory.T.tateTwistCohomology_laurent_vanishing_finite_algebra q n hyp A hSH hq (PiTensorProduct A fun _ : Fin (k + 1) => A')
+  obtain ⟨_, e, -, -⟩ := _root_.GlobalTheory.EtC.GmStep.LevelIso.level_iso A A' k
+  have hT := _root_.GlobalTheory.EtC.laurent_vanishing_finite q n hyp A hSH hq (PiTensorProduct A fun _ : Fin (k + 1) => A')
     (finite_piTensorProduct_const A A' (Fin (k + 1))) s i hs hsn
   haveI : Subsingleton (Ht q (disc.obj (yoneda.obj (Spec (CommRingCat.of
     (LaurentPolynomial (PiTensorProduct A fun _ : Fin (k + 1) => A')))))) s i) := hT

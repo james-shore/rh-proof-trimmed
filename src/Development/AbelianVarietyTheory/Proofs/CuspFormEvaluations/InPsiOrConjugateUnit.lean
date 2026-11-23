@@ -48,17 +48,6 @@ set_option autoImplicit false
 
 namespace GlobalTheory.FrameRead
 
-theorem inPsi_or_conjugate_unit {E : Type} [Field E] [NumberField E] [IsCMField E]
-    (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (τ : E →+* ℂ) :
-    InPsi H τ ∨ InPsi H (ComplexEmbedding.conjugate τ) := by
-  first
-  | exact @_root_.GlobalTheory.CMTypeOrConjugate.inPsi_or_inPsi_conjugate
-  | exact _root_.GlobalTheory.CMTypeOrConjugate.inPsi_or_inPsi_conjugate
-  | (apply _root_.GlobalTheory.CMTypeOrConjugate.inPsi_or_inPsi_conjugate <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CMTypeOrConjugate.inPsi_or_inPsi_conjugate <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CMTypeOrConjugate.inPsi_or_inPsi_conjugate <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CMTypeOrConjugate.inPsi_or_inPsi_conjugate ..)
-
 theorem gaStar_conj_eq_letAct : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (n : ℕ) (Ix : Type) [Fintype Ix] (pl : Ix → (E →+* ℂ)), IsEnum H pl → Dw.p + Dw.q ≤ n → ∀ (l : Level H) (c : Coeff l) (ga : Matrix (Fin n) (Fin n) E) (h : IsUnit ga.det), ga.conjTranspose * ga = 1 → gaStar (Dw := Dw) c (ga.map (IsCMField.complexConj E)) = letAct Dw pl c.F (invTrK (embGL (fun t => embF c (pl t)) (Matrix.nonsingInvUnit ga h))) := by
   intro E _ _ _ H Dw n Ix _ pl hpl _ l c ga h hU
   have hval : ((Matrix.nonsingInvUnit ga h : GL (Fin n) E) : Matrix (Fin n) (Fin n) E) = ga := rfl
@@ -90,7 +79,7 @@ theorem gaStar_conj_eq_letAct : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
     rw [IsCMField.complexEmbedding_complexConj]
     simp
   · exfalso
-    rcases inPsi_or_conjugate_unit H τ with h3 | h3
+    rcases _root_.GlobalTheory.CMTypeOrConjugate.inPsi_or_inPsi_conjugate H τ with h3 | h3
     · exact h1 ((hpl.2 τ).1 h3)
     · obtain ⟨t, ht⟩ := (hpl.2 _).1 h3
       exact h2 ⟨t, by rw [ht]; ext x; simp⟩

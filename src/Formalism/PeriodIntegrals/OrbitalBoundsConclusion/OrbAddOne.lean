@@ -41,5 +41,4 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem PI.OrbAddOne : ∀ (D : Formalism.BasicNotions.D7) (E : PI.OrbJet.Ent D), PI.OrbJet.OrbitsAddAtConjugate E :=
-  PI.OrbJet.AO.orbitsAddAtConjugate
+alias PI.OrbAddOne := _root_.PI.OrbJet.AO.orbitsAddAtConjugate

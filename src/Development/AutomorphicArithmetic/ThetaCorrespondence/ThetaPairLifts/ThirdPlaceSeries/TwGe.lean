@@ -62,10 +62,10 @@ theorem twGe_alt : GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Publis
     GlobalTheory.SerStd.SeriesRatS → _root_.GlobalTheory.BigOn.Exp.TwAdmAlt → _root_.GlobalTheory.BigOn.Exp.TwistCharacter → _root_.GlobalTheory.BigOn.Exp.TwistLowerBound := by
   intro h1 h2 h3 h4 hA hC
   have h4' := GlobalTheory.SerStdFit.seriesRat_of_seriesRatS h4
-  have hD := _root_.GlobalTheory.T.realization_embedding_compatible_alt
+  have hD := _root_.GlobalTheory.BigOn.Exp.descent_of_reading_alt
   have hR := _root_.GlobalTheory.T.adForm_eq_levelTrace_singleSeries h1 h2 h3 h4'
-  have hG := _root_.GlobalTheory.T.twisted_embedding_compatibility_rows_alt h1 h2 h3 h4' hA hC
-  have hS := _root_.GlobalTheory.T.schroedinger_ext_zero_product_vacuum_alt
+  have hG := _root_.GlobalTheory.BigOn.Exp.TwCx.twGen_cx_alt h1 h2 h3 h4' hA hC
+  have hS := _root_.GlobalTheory.BigOn.Exp.scalar_of_reading_alt
   unfold _root_.GlobalTheory.BigOn.Exp.TwistLowerBound
   unfold _root_.GlobalTheory.BigOn.Exp.CanonicalFits _root_.GlobalTheory.BigOn.Exp.TwistConditions _root_.GlobalTheory.BigOn.AtPtsAlt at hD hG hS ⊢
   unfold _root_.GlobalTheory.BigOn.Exp.TwistConditions _root_.GlobalTheory.BigOn.AtPtsAlt at hR

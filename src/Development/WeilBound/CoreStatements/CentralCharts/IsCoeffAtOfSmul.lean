@@ -203,7 +203,7 @@ theorem central (h0 : FlatLineGenerator) (h1 : FlatLineGeneratorComponent) (hS :
   refine ⟨d₁ / d₂, A.a, t, fun z w hz cc hcc => ⟨?_, fun hint s hs u hu => ?_⟩⟩
   · have hc := 𝔐.all (centre z)
     have hp : (⟨centre z, hc⟩ : Cpt 𝔐.ξ) ∈ genFibre ℤ 𝔐.ξ := fun o ho => by
-      have v1 := valAt_int (ξ := 𝔐.ξ) hc o
+      have v1 := _root_.GlobalTheory.CompanionTheory.Ar.TieValue.val_int (ξ := 𝔐.ξ) hc o
       have v2 := CxVal.inv v1 (by exact_mod_cast ho)
       obtain ⟨_, s1, e1, -⟩ := v1
       obtain ⟨_, s2, e2, -⟩ := v2

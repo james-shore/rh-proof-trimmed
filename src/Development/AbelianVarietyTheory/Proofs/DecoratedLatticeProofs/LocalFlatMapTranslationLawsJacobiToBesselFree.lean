@@ -80,14 +80,9 @@ theorem xLast_eq_rat {T T₀ : HSp D} {σ : ℕ} (d : HypDec T T₀ σ) (z : Fin
   · simp [xLast, lastMat, rat, HypDec.j0, ratV, Matrix.mulVec, dotProduct, map_sum]
   · simp [xLast, lastMat, rat, HypDec.jX]
 
-theorem e_mul_ι (x : k) : p.e * p.ι x = p.ι x := by
-  have h := p.ι_π (p.ι x)
-  rw [p.π_ι] at h
-  exact h.symm
-
 theorem ι_mul_incA (x : k) (b : D.host.E) : p.ι x * incA D b = p.ι (x * p.pr b) := by
   have h := p.ι_π (p.ι x * incA D b)
-  rw [map_mul, p.π_ι, ← mul_assoc, e_mul_ι] at h
+  rw [map_mul, p.π_ι, ← mul_assoc, _root_.GlobalTheory.LocMod.Witness.e_ι] at h
   rw [← h]; rfl
 
 theorem incA_mul_ι (x : k) (b : D.host.E) : incA D b * p.ι x = p.ι (p.pr b * x) := by
@@ -108,7 +103,7 @@ theorem infPart_e : infPart D p.e = 0 := by
   rw [h4, map_mul, h5, mul_zero]
 
 theorem infPart_ι (x : k) : infPart D (p.ι x) = 0 := by
-  rw [← e_mul_ι, map_mul, infPart_e, zero_mul]
+  rw [← _root_.GlobalTheory.LocMod.Witness.e_ι, map_mul, infPart_e, zero_mul]
 
 theorem mxAt_of_ι {m' n' : ℕ} (M : Mx D m' n') (hM : ∀ i j, ∃ x, M i j = p.ι x) :
     GlobalTheory.FinPl.MxAt (fun _ => True) M := by

@@ -67,14 +67,6 @@ theorem per_exists : ∀ (Γ : Subgroup SL(2, ℤ)), Γ.FiniteIndex → ∀ σ :
     rw [zpow_natCast, conj_pow]
   rwa [← this]
 
-theorem eichler_mem (w : ℕ) (f : ℍ → ℂ) (τ : ℍ) : eichler w f τ ∈ degreeLT ℂ (w + 1) := by
-  unfold eichler
-  refine Submodule.sum_mem _ fun j hj => ?_
-  rw [mem_degreeLT]
-  refine (degree_C_mul_X_pow_le _ _).trans_lt ?_
-  have := Finset.mem_range.1 hj
-  exact_mod_cast this
-
 theorem per_cov (Γ : Subgroup SL(2, ℤ)) (w : ℕ) (U : ℍ → ℂ[X]) (hU : ∀ τ, U τ ∈ degreeLT ℂ (w + 1))
     (heq : ∀ (γ : Γ) (τ : ℍ), slP w (mat γ) (U ((γ : SL(2, ℤ)) • τ)) = U τ) (σ : SL(2, ℤ)) (n : ℕ)
     (hγ : σ * ModularGroup.T ^ (n : ℤ) * σ⁻¹ ∈ Γ) (τ : ℍ) :
@@ -108,8 +100,8 @@ theorem decay_at_cusp : ∀ (Γ : Subgroup SL(2, ℤ)) (k : ℕ), Γ.FiniteIndex
     rwa [show w + 1 = k - 1 by omega]
   have hUdeg : ∀ τ, U τ ∈ degreeLT ℂ (w + 1) := by
     intro τ
-    refine Submodule.sub_mem _ (Submodule.sub_mem _ (eichler_mem w _ τ) ?_) hpw
-    have h0 := eichler_mem w (⇑h) τ
+    refine Submodule.sub_mem _ (Submodule.sub_mem _ (_root_.GlobalTheory.EichlerLimit.eichler_mem w _ τ) ?_) hpw
+    have h0 := _root_.GlobalTheory.EichlerLimit.eichler_mem w (⇑h) τ
     rw [mem_degreeLT] at h0 ⊢
     exact (degree_map_le).trans_lt h0
   set V : ℍ → ℂ[X] := fun τ => slP w (mat σ) (U (σ • τ)) with hV

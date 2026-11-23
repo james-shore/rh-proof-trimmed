@@ -54,19 +54,11 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.AlgTh
 
-theorem logDerJets : LogDerJets := log_derivative_jets_integral
-theorem powLogDer : PowLogDer := power_log_derivative_jets
-theorem prodScaleJets : ProdScaleJets := product_scaling_jets
-theorem linScale : LinScale := linear_scaling_jets
-theorem unitKerInt : UnitKerInt := unit_kernel_integral_coords
-theorem etPower : EtPower := etPower_of unitKerInt
-theorem etJetsSigma : EtJetsSigma := etJetsSigma_of etPower logDerJets powLogDer
+theorem etPower : EtPower := etPower_of _root_.Formalism.L2.AlgTh.unit_kernel_integral_coords
+theorem etJetsSigma : EtJetsSigma := etJetsSigma_of etPower _root_.Formalism.L2.AlgTh.log_derivative_jets_integral _root_.Formalism.L2.AlgTh.power_log_derivative_jets
 theorem etJetsTh0 : EtJetsTh0 := etJetsTh0_of etJetsSigma
-theorem etThetaZ : EtThetaZ := etThetaZ_of etJetsTh0 prodScaleJets
-theorem tensZEt : TensZEt := tensor_integral_torsion
-theorem etLoc : EtLoc := etLoc_of tensZEt etThetaZ linScale
-theorem scalarConst : ScalarConst := scalar_constant_value
-theorem xiSwap : XiSwap := xi_swap
+theorem etThetaZ : EtThetaZ := etThetaZ_of etJetsTh0 _root_.Formalism.L2.AlgTh.product_scaling_jets
+theorem etLoc : EtLoc := etLoc_of _root_.Formalism.L2.AlgTh.tensor_integral_torsion etThetaZ _root_.Formalism.L2.AlgTh.linear_scaling_jets
 theorem xiEt : XiEt := xiEt_of etLoc
 
 end Formalism.L2.AlgTh

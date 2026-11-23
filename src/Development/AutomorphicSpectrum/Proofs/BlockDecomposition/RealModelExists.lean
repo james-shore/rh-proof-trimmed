@@ -223,8 +223,8 @@ theorem evaluation_raising_lowering (lev : Fin n → ℕ) (f h : SmF n) (hf : f 
     rw [Matrix.single_apply_of_ne]
     rintro ⟨rfl, rfl⟩
     exact absurd hlt (not_lt.2 hab)
-  have d1 := GlobalTheory.T.right_derivative_lower_block_at_one n lev f h hf h1 hh _ (hX 1)
-  have d2 := GlobalTheory.T.right_derivative_lower_block_at_one n lev f h hf h1 hh _ (hX Complex.I)
+  have d1 := _root_.GlobalTheory.CompanionTheory.ModelS.DR_one_of_eqv n lev f h hf h1 hh _ (hX 1)
+  have d2 := _root_.GlobalTheory.CompanionTheory.ModelS.DR_one_of_eqv n lev f h hf h1 hh _ (hX Complex.I)
   constructor
   · simp only [e1, LinearMap.smul_apply, LinearMap.sub_apply, Submodule.coe_smul, Submodule.coe_sub, Pi.smul_apply,
       Pi.sub_apply, d1, d2, smul_eq_mul]
@@ -297,9 +297,9 @@ theorem modelEx_main : ModelEx := by
   have hKc : ∀ a b (x : cyc F), ((kF F1 F2 a b x : cyc F) : SmF n) = Kf a b x.1 := fun _ _ _ => rfl
   let f : cyc F := ⟨F, (hcyc F).2 ⟨1, A.one_mem, rfl⟩⟩
   let ev : cyc F →ₗ[ℂ] ℂ := ev1.comp (cyc F).subtype
-  obtain ⟨S₁, fd₁, hf₁, st₁⟩ := GlobalTheory.T.inducedFunction_k_finite n lam hlam lev hlev F hF
-  obtain ⟨hh1, hh2⟩ := GlobalTheory.T.inducedFunction_k_highest_weight n lam hlam lev hlev F hF
-  have hder := GlobalTheory.T.inducedFunction_derivative_at_one n lam hlam lev hlev F hF
+  obtain ⟨S₁, fd₁, hf₁, st₁⟩ := _root_.GlobalTheory.CompanionTheory.ModelS.FFin.fRaw_finite n lam hlam lev hlev F hF
+  obtain ⟨hh1, hh2⟩ := _root_.GlobalTheory.CompanionTheory.ModelS.f_highest n lam hlam lev hlev F hF
+  have hder := _root_.GlobalTheory.CompanionTheory.ModelS.FDer.fder n lam hlam lev hlev F hF
   refine model_of_ops lam lev hlev F1 F2 f ev (res_gl _ _ st1 g1) (res_gl _ _ st2 g2) ?_ ?_ ?_
     (S₁.comap (cyc F).subtype) ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_
   · intro a b c d

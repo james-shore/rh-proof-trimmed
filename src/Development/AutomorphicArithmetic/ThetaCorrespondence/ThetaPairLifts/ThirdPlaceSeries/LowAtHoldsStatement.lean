@@ -39,9 +39,3 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 
 
-section
-open GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.BigOn.Exp
-
-theorem _root_.GlobalTheory.T.lowAt : _root_.GlobalTheory.BigOn.Exp.LowerBoundAtPlace := by
-  first | exact @_root_.GlobalTheory.BigOn.Exp.lowAt_holds_alt | exact _root_.GlobalTheory.BigOn.Exp.lowAt_holds_alt | (intros; apply _root_.GlobalTheory.BigOn.Exp.lowAt_holds_alt <;> assumption)
-end

@@ -1088,6 +1088,6 @@ theorem expDual : ExpDual := expDualOfLattices nablaDual weylDual dualWeight cof
 
 theorem lastGradedOfGradedAlone : LastGradedOfGradedAlone := lastGradedOfGraded expDual
 
-theorem last_graded_of_graded_alone : LastGradedOfGradedAlone := lastGradedOfGradedAlone
+alias last_graded_of_graded_alone := _root_.Formalism.CohomologicalDescent.LD.lastGradedOfGradedAlone
 
 end Formalism.CohomologicalDescent.LD

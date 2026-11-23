@@ -246,17 +246,13 @@ theorem comb_mem_loc_adjoin_iff (p : Ideal (𝓞 K)) (L' : Submodule (𝓞 K) V'
 
 end VecSplit
 
-theorem VecSplit.cut_adjoin (S : VecSplit h h') (L' : Submodule (𝓞 K) V') :
-    S.cut (S.adjoin L') = L' := S.cut_adjoin' L'
+alias VecSplit.cut_adjoin := _root_.Formalism.HermitianLattices.Ext.L3.VecSplit.cut_adjoin'
 
-theorem VecSplit.adjoin_cut (S : VecSplit h h') (h1 : h S.x₀ S.x₀ = 1) {L : Submodule (𝓞 K) V}
-    (hL : Formalism.HermitianLatticesTheory.IsIntegralLat h L) (hx : S.x₀ ∈ L) : S.adjoin (S.cut L) = L := S.adjoin_cut' h1 hL hx
+alias VecSplit.adjoin_cut := _root_.Formalism.HermitianLattices.Ext.L3.VecSplit.adjoin_cut'
 
-theorem VecSplit.x₀_mem_adjoin (S : VecSplit h h') (L' : Submodule (𝓞 K) V') :
-    S.x₀ ∈ S.adjoin L' := S.x₀_mem_adjoin' L'
+alias VecSplit.x₀_mem_adjoin := _root_.Formalism.HermitianLattices.Ext.L3.VecSplit.x₀_mem_adjoin'
 
-theorem VecSplit.isLattice_adjoin_iff (S : VecSplit h h') (L' : Submodule (𝓞 K) V') :
-    Submodule.IsLattice K (S.adjoin L') ↔ Submodule.IsLattice K L' := S.isLattice_adjoin_iff' L'
+alias VecSplit.isLattice_adjoin_iff := _root_.Formalism.HermitianLattices.Ext.L3.VecSplit.isLattice_adjoin_iff'
 
 theorem VecSplit.isIntegralLat_adjoin_iff (hs : h.IsSymm) (S : VecSplit h h') (h1 : h S.x₀ S.x₀ = 1)
     (L' : Submodule (𝓞 K) V') :

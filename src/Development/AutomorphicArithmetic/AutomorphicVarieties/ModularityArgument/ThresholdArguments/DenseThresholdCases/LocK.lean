@@ -101,7 +101,7 @@ theorem UpperTheory.V.Z.Kato.WeilSphericalRecords.local_k_of_printed_rec_compat_
   · have hBσ := (hsat.2 _ π.finPart (hiso σ hσ) B).1 hBs
     let φ : ↥(Weil hA) := ⟨τ, mem_Weil_of_isFrob hA hτ⟩
     have hd : deg φ = 1 := deg_eq_one_iff.2 hτ
-    have h1 := GlobalTheory.T.weilDeligne_frobenius_eigenvalue_of_full_flag K Ω l ι 2 1 le_rfl m r hc w A hA _ Bw hj κ hfa hpst 0 φ hd
+    have h1 := _root_.GlobalTheory.FlagFrob.isRoot_charPol_wdAt K Ω l ι 2 1 le_rfl m r hc w A hA _ Bw hj κ hfa hpst 0 φ hd
     rw [hwd] at h1
     obtain ⟨b, hb, hzb⟩ := hFrob K Ω A w hA rc hrc 2 σ B hpl hBσ φ hd _ h1
     refine ⟨b, hb, ?_⟩

@@ -175,7 +175,7 @@ theorem exists_galRep_csd_twist_alt_alt : _root_.UpperTheory.GalS.CuspUAlt → G
     have e0 := H.aw hl hrc (hσ.twist (GlobalTheory.HeckeGal.Model.absPow E s))
     rw [_root_.GlobalTheory.CsdTwistGal.rec_twist_absPow_alt E Ω w B hB rc hrc a σ s, GlobalTheory.WeilDeligne.WD.lpTw_add] at e0
     have e1 := e0.eq_unr ((GlobalTheory.WeilDeligne.WD.unr_tw _ _).2 (_root_.UpperTheory.GalS.unr_rec_of_has_sat hrc σ S hS))
-    rw [_root_.GlobalTheory.T.charpoly_inv_eq_prod_absNorm_cpow_of_isFrob E Ω l ι a r H.cont w hl B hB rc hrc σ S hS _ e1 g hg]
+    rw [_root_.GlobalTheory.GeomFrobChar.charpoly_inv_frob_eq_prod_X_sub_C E Ω l ι a r H.cont w hl B hB rc hrc σ S hS _ e1 g hg]
     have e2 : ((-(s + (1 - (a : ℝ)) / 2) : ℝ) : ℂ) = f := by
       rw [hfre, hs]; push_cast; ring
     rw [e2]

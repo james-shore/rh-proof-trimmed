@@ -68,16 +68,6 @@ theorem kron_mul {T : Type} [Fintype T] [DecidableEq T] {J : T → Type} [∀ t,
   refine Finset.sum_congr rfl fun I' _ => ?_
   rw [Finset.prod_mul_distrib]
 
-theorem kron_one {T : Type} [Fintype T] [DecidableEq T] {J : T → Type} [∀ t, Fintype (J t)] [∀ t, DecidableEq (J t)]
-    {R : Type} [CommRing R] : (kron fun t => (1 : Matrix (J t) (J t) R)) = 1 := by
-  first
-  | exact @_root_.GlobalTheory.KroneckerIdentity.kron_identity
-  | exact _root_.GlobalTheory.KroneckerIdentity.kron_identity
-  | (apply _root_.GlobalTheory.KroneckerIdentity.kron_identity <;> assumption)
-  | (intros; apply _root_.GlobalTheory.KroneckerIdentity.kron_identity <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.KroneckerIdentity.kron_identity <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.KroneckerIdentity.kron_identity ..)
-
 theorem rhoMat_mul {n : ℕ} (la : Fin n → ℕ) (g h : Matrix (Fin n) (Fin n) K) :
     rhoMat la g * rhoMat la h = rhoMat la (h * g) := by
   rw [GlobalTheory.DefPt.rhoMat, GlobalTheory.DefPt.rhoMat, GlobalTheory.DefPt.rhoMat, Matrix.transpose_mul, map_mul, LinearMap.toMatrix_mul]
@@ -149,7 +139,7 @@ theorem fibA_isAdelic : ∀ (K : Type) [Field K] [NumberField K] (T : Type) [Fin
       rw [rhoMat_mul, Matrix.mul_nonsing_inv _ (isUnit_iff_ne_zero.mpr ((hB t).1 w)), rhoMat_one]
     rw [fibA, Matrix.smul_mul, Matrix.mul_smul, kron_mul, smul_smul, inv_mul_cancel₀ (ha w), one_smul]
     simp only [e]
-    exact kron_one
+    exact _root_.GlobalTheory.KroneckerIdentity.kron_identity
   have hinv' : ∀ w, (fibA la (a w) (B w))⁻¹ = (a w)⁻¹ • kron (fun t => rhoMat (la t) (B w t)⁻¹) :=
     fun w => Matrix.inv_eq_left_inv (hinv w)
   refine ⟨fun w h => ?_, ?_⟩

@@ -263,15 +263,7 @@ theorem isCond_iff_expAt (χ : HChar E) {𝔣 : Ideal (𝓞 E)} (h𝔣 : 𝔣 �
   · intro h
     exact ⟨h𝔣, fun v n => by rw [key]; exact h v n⟩
 
-theorem entire_eq_of_halfPlane {f g : ℂ → ℂ} (hf : Differentiable ℂ f) (hg : Differentiable ℂ g) (a : ℝ)
-    (h : ∀ s : ℂ, a < s.re → f s = g s) : f = g := by
-  first
-  | exact @_root_.GlobalTheory.EntireFunctionHalfPlane.entire_eq_of_eqOn_halfPlane
-  | exact _root_.GlobalTheory.EntireFunctionHalfPlane.entire_eq_of_eqOn_halfPlane
-  | (apply _root_.GlobalTheory.EntireFunctionHalfPlane.entire_eq_of_eqOn_halfPlane <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EntireFunctionHalfPlane.entire_eq_of_eqOn_halfPlane <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EntireFunctionHalfPlane.entire_eq_of_eqOn_halfPlane <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.EntireFunctionHalfPlane.entire_eq_of_eqOn_halfPlane ..)
+alias entire_eq_of_halfPlane := _root_.GlobalTheory.EntireFunctionHalfPlane.entire_eq_of_eqOn_halfPlane
 
 theorem IsHeckeL.unique {χ : HChar E} {f g : ℂ → ℂ} (hf : IsHeckeL χ f) (hg : IsHeckeL χ g) : f = g :=
   entire_eq_of_halfPlane hf.1 hg.1 1 fun s hs => (hf.2 s hs).unique (hg.2 s hs)

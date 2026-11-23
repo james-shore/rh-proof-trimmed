@@ -73,7 +73,6 @@ theorem clear_denominators (K : UQ) {V : Type} [AddCommGroup V] [Module (UQ.E K)
     rw [mul_comm, mul_smul, key, smul_smul, mul_comm, ← smul_smul]
     exact M.smul_mem _ h
 
-theorem main : ∀ (K : GlobalTheory.UnitLemma.UQ) {V : Type} [inst : AddCommGroup V] [inst_1 : Module (GlobalTheory.UnitLemma.UQ.E K) V] [inst_2 : Module (GlobalTheory.UnitLemma.UQ.O K) V] [IsScalarTower (GlobalTheory.UnitLemma.UQ.O K) (GlobalTheory.UnitLemma.UQ.E K) V] (M : Submodule (GlobalTheory.UnitLemma.UQ.O K) V) {x : V}, x ∈ Submodule.span (GlobalTheory.UnitLemma.UQ.E K) (↑M : Set V) → ∃ (d : GlobalTheory.UnitLemma.UQ.O K), d ≠ (0 : GlobalTheory.UnitLemma.UQ.O K) ∧ d • x ∈ M :=
-  fun K _ _ _ _ _ M _ hx => clear_denominators K M hx
+alias main := _root_.GlobalTheory.ClearDenominatorsIntegral.clear_denominators
 
 end GlobalTheory.ClearDenominatorsIntegral

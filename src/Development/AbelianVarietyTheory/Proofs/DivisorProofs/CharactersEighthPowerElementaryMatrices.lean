@@ -75,8 +75,7 @@ theorem isMonHom_of_coords {S : Scheme.{0}} {B C X : Over S} [GrpObj B] [GrpObj 
             rw [MonObj.mul_eq_mul, hm, MonObj.mul_eq_mul, MonObj.comp_mul]
             simp }
 
-theorem isMonHom_one {S : Scheme.{0}} {B C : Over S} [GrpObj B] [GrpObj C] : IsMonHom (1 : B ⟶ C) :=
-  inferInstanceAs (IsMonHom (toUnit B ≫ η[C]))
+alias isMonHom_one := _root_.GlobalTheory.Serre.isMonHom_one
 
 theorem exists_incl {S : Scheme.{0}} {B C : Over S} [GrpObj B] [GrpObj C]
     (pr : Fin 8 → (B ⟶ C)) (hpr : ∀ a, IsMonHom (pr a))

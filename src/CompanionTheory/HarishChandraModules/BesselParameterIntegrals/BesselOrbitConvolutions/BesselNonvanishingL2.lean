@@ -59,7 +59,7 @@ namespace CompanionTheory.D.Upq.BesselFunctionalConstruction
 
 open Formalism.FourierDecayAlt.P
 
-theorem decDD : DecDD := G.double_coset_decomposition
+alias decDD := _root_.Formalism.FourierDecayAlt.P.G.double_coset_decomposition
 theorem beConv : BeConv := G.bessel_integral_convergence_of_growth growth_spherical_bound
 theorem beBessel : BeBessel := PI.WBL.S5.G.beBessel_of growth_spherical_bound
 theorem normIdSm : NormIdSm :=

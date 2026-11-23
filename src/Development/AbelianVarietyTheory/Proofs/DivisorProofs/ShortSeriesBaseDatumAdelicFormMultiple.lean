@@ -147,7 +147,7 @@ theorem short_series_base : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T
   intro D G _ _ Pl0 T0 A T _ R F κ v₀ fw O hT hC i hOP hβ hU hIo hRow hPh hSp v hv hmu hQ hF0 hV hdel hMb hRun ℓ hLP hAP χ ξR ω φ hK Λ h hSB hLa N x₀ P y hUm hTb hTd hLev hAdm hPh' hio
   obtain ⟨cc, ka, δ, c0, hcc, hka, hδ, hcov, hka1, hc01, z, hz, ζ, n, hn, hζ, hrel⟩ :=
     consts_core fw O hT hC i hOP hU hIo hRow hPh hSp
-  obtain ⟨y₀, c, hrk, hint, hmain⟩ := GlobalTheory.T.centralShortSeriesTranslate_frameConstant_multiple D G Pl0 T0 A T R F κ v₀ fw O hT hC i hOP hβ hU hIo hRow hPh hSp v hv hmu hQ hF0 hV hdel hMb hRun ℓ hLP hAP χ ξR ω φ hK Λ h hSB hLa N x₀ P y hUm hTb hTd hLev hAdm hPh' hio cc ka δ c0 hcc hka hδ hcov hka1 hc01 z hz
+  obtain ⟨y₀, c, hrk, hint, hmain⟩ := _root_.GlobalTheory.HeartFrame.central_short_series_frame D G Pl0 T0 A T R F κ v₀ fw O hT hC i hOP hβ hU hIo hRow hPh hSp v hv hmu hQ hF0 hV hdel hMb hRun ℓ hLP hAP χ ξR ω φ hK Λ h hSB hLa N x₀ P y hUm hTb hTd hLev hAdm hPh' hio cc ka δ c0 hcc hka hδ hcov hka1 hc01 z hz
   have hζ0 : ζ ≠ 0 := by
     rintro rfl
     rw [zero_pow hn.ne'] at hζ

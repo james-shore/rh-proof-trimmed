@@ -121,7 +121,7 @@ theorem vb_cech (hLoc : KH.LocGr) (hPoly : KH.PolyTf) {O : Type} [CommRing O] (l
   have hg0 := fun α β (k' : Idx r (U.d β)) => (hω α (U.U α ⊓ U.U β) (hpair α β) inf_le_left _ rfl (hl2 inf_le_left) (isF _) hq2
     ((resU _ (hl2 inf_le_right)).pull r (ω β k'))).exists
   choose g' hg' using hg0
-  refine GlobalTheory.T.cover_cup_action_basis (fun W => strV q W) _ U.U _ r (fun α => Idx r (U.d α))
+  refine _root_.GlobalTheory.CompanionTheory.CechVB.vb_basis (fun W => strV q W) _ U.U _ r (fun α => Idx r (U.d α))
     (fun i => fHom (isF _) (hT i) r) (fun i a k => (resU _ (hle i a)).pull r (ω (i a) k)) (fun α β k k' => g' α β k' k)
     ?_ ?_ ?_ ?_ ?_
   · intro n i a h

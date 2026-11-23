@@ -68,10 +68,6 @@ open GlobalTheory.KZ GlobalTheory.K4 UpperTheory.Kd.K4 Polynomial
 open scoped Matrix MatrixGroups
 
 namespace UpperTheory.Kd.K4.EisensteinBasis
-open Filter Topology
-
-variable {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ}
-
 end UpperTheory.Kd.K4.EisensteinBasis
 
 namespace UpperTheory.Kd.K4.EisensteinBasis
@@ -139,24 +135,12 @@ private noncomputable def resA (X : Tower Ω ε) (M : ℕ) (γ : SL(2, ℤ)) :
 
 end UpperTheory.Kd.K4.EisensteinBasis
 
-private theorem jPoly_coe_eq_aeval_jK {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ} (X : Tower Ω ε)
-    (Γ' : Subgroup SL(2, ℤ)) (p : Polynomial Ω) :
-    ((jPoly X Γ' p : lev X Γ') : X.K) = Polynomial.aeval X.jK p := by
-  induction p using Polynomial.induction_on' with
-  | add p q hp hq => simp only [map_add (f := _), Subfield.coe_add, hp, hq]
-  | monomial n c =>
-    rw [← Polynomial.C_mul_X_pow_eq_monomial]
-    simp only [jPoly, Polynomial.coe_eval₂RingHom, Polynomial.eval₂_mul, Polynomial.eval₂_C,
-      Polynomial.eval₂_X_pow, Polynomial.eval₂_X, map_mul, map_pow, Polynomial.aeval_C, Polynomial.aeval_X]
-    push_cast
-    rfl
-
 private theorem jRat_coe_div_eq_aeval_div_aeval {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ} (X : Tower Ω ε)
     (Γ' : Subgroup SL(2, ℤ)) (p q : Polynomial Ω) :
     ((jRat X Γ' (algebraMap (Polynomial Ω) (RatFunc Ω) p / algebraMap (Polynomial Ω) (RatFunc Ω) q) :
       lev X Γ') : X.K) = Polynomial.aeval X.jK p / Polynomial.aeval X.jK q := by
   simp only [jRat, RatFunc.liftRingHom_apply_div]
-  rw [Subfield.coe_div, jPoly_coe_eq_aeval_jK, jPoly_coe_eq_aeval_jK]
+  rw [Subfield.coe_div, _root_.GlobalTheory.K4.coe_jPoly, _root_.GlobalTheory.K4.coe_jPoly]
 
 private theorem eventually_eq_of_mero_coe_eq {τ : ℂ} (hτ : τ ∈ Hs) {f g : ℂ → ℂ} (h : (f : Mero) = g) :
     ∀ᶠ y in nhdsWithin τ {τ}ᶜ, f y = g y := by
@@ -407,7 +391,7 @@ theorem UpperTheory.Kd.K4.eb :
   have hxL : x ∈ lev X (CongruenceSubgroup.Gamma M) := (hmemlev _ _).2 hMx
   letI := algRat X (CongruenceSubgroup.Gamma M)
   haveI : FiniteDimensional (RatFunc Ω) (lev X (CongruenceSubgroup.Gamma M)) :=
-    GlobalTheory.T.finiteDimensional_lev_of_gamma_le Ω ε X _ M hM le_rfl
+    _root_.GlobalTheory.K4.finiteDimensional_lev Ω ε X _ M hM le_rfl
   haveI : IsGalois (RatFunc Ω) (lev X (CongruenceSubgroup.Gamma M)) := by
     apply IsGalois.of_fixedField_eq_bot
     rw [eq_bot_iff]

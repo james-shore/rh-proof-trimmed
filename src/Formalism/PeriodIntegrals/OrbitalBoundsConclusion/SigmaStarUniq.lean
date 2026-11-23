@@ -45,4 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem sigma_star_unique : PI.SigmaStarUniq := PI.SSU.sigmaStarUniq_of area_lattice_formula
+theorem sigma_star_unique : PI.SigmaStarUniq := PI.SSU.sigmaStarUniq_of _root_.PI.AreaLatWork.areaLat

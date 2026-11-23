@@ -149,7 +149,7 @@ theorem exists_localisation [IsAlgClosed C] [CharZero C] (hv : v.Integers O) (hp
     rw [aug.commutes]
     exact e.apply_symm_apply w⟩
   have hk : RingHom.ker aug' = RingHom.ker aug := Ideal.ext fun a => map_eq_zero_iff e e.injective
-  obtain ⟨s, h1, h2, h3⟩ := GlobalTheory.finite_augmented_connected_part_localisation C W (p : W)
+  obtain ⟨s, h1, h2, h3⟩ := _root_.GlobalTheory.MonicSeparableProduct.main C W (p : W)
     (fun a ha => exists_pow_mem hW ha (Nat.cast_ne_zero.2 hp)) A aug'
   rw [hk, map_natCast] at h2
   refine ⟨s, h1, h2, fun R _ _ w hw => ?_⟩

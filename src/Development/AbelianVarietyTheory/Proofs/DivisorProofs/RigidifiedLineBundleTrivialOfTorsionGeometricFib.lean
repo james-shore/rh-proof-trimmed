@@ -121,7 +121,7 @@ theorem triv_of_geometricFibres : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A] [
             exact (congrArg (· ≫ j') hc).trans (Category.assoc _ _ _))
           ≫ pullback.fst A.hom (spMap ψ ≫ j') := (pullback.lift_fst _ _ _).symm
     rw [e, pull_comp, h0, map_zero]
-  obtain ⟨r, hr, ht⟩ := GlobalTheory.T.localTriviality_of_noetherian_descent (GlobalTheory.T.torsionLineBundle_trivial_basicOpen_of_trivial_fibre GlobalTheory.T.exists_generator_torsion_bundle_abelianScheme_sqZero) R A' hA' (M.pull φ) hM' hrig' k hk' hpow' F ψ hfib'
+  obtain ⟨r, hr, ht⟩ := _root_.GlobalTheory.LocTrivDescent.locTriv_of_noetherian (_root_.GlobalTheory.TorsionSpread.triv_basicOpen_of_triv_fibre _root_.GlobalTheory.CechPic.exists_isGen_of_lbPow_of_sqZero_abelianScheme) R A' hA' (M.pull φ) hM' hrig' k hk' hpow' F ψ hfib'
   have hrp : P ∈ PrimeSpectrum.basicOpen r := by
     intro hm
     apply hr

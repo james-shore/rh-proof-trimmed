@@ -242,7 +242,7 @@ theorem vertClose_some (hi : i.comp o₀.g = o.g) (hv : IsBlockMap κ v) (hv₀ 
   have hu : ∀ r : RootIx D, i (o₀.e r) / o.e r ≠ 0 := fun r =>
     div_ne_zero ((map_ne_zero i).2 (o₀.lines r).1) (o.lines r).1
   choose f g df dg hf hg hfP hgP hd hfg using fun r : RootIx D =>
-    exists_forms y hB (ne_zero_of_arith hA) (pullDeg κ (M.xdeg r) - pullDeg κ₀ (R.xdeg r)) (hu r)
+    exists_forms y hB (_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.UpperNormalisation.exists_coord_ne_zero hA) (pullDeg κ (M.xdeg r) - pullDeg κ₀ (R.xdeg r)) (hu r)
   refine vertClose_step y hA S o.𝔐.S_prime hq hm hmS (Finset.Iic j) (by simpa using (Finset.Iic j).card_le_univ)
     (fun k => f (τ, k)) (fun k => g (τ, k)) (fun k => df (τ, k)) (fun k => dg (τ, k))
     (fun k => i (o₀.e (τ, k)) / o.e (τ, k)) (fun k => pullHerm hv (M.x t (τ, k))) (fun k => pullHerm hv₀ (R.x t (τ, k)))
@@ -256,8 +256,8 @@ theorem vertClose_some (hi : i.comp o₀.g = o.g) (hv : IsBlockMap κ v) (hv₀ 
       hy hy₀ hy₀ (by rw [hi]; rfl) rfl hJ hJ₀ hJ₀ hdeg hA (τ, k) (f _) (g _) (df _) (dg _)
       ((GroundTheory.Heights₂.Heights.Bridge.isMultiHomog_iff _ _).2 (hf _))
       ((GroundTheory.Heights₂.Heights.Bridge.isMultiHomog_iff _ _).2 (hg _)) (funext (hd _)) (hfP _) (hgP _) (hfg _) t h0 h1 z hz
-  · obtain ⟨cM, hcM⟩ := exists_chart hv cc
-    obtain ⟨cR, hcR⟩ := exists_chart hv₀ cc
+  · obtain ⟨cM, hcM⟩ := _root_.GlobalTheory.CompanionTheory.Ar.FlagPull.exists_chart hv cc
+    obtain ⟨cR, hcR⟩ := _root_.GlobalTheory.CompanionTheory.Ar.FlagPull.exists_chart hv₀ cc
     have eM : ∀ b, M.y ⟨b, cM b⟩ = y ⟨κ b, cc (κ b)⟩ := fun b => by rw [← hy, hcM]
     have eR : ∀ b, i (R.y ⟨b, cR b⟩) = y ⟨κ₀ b, cc (κ₀ b)⟩ := fun b => by rw [← hy₀, hcR]
     have w := hval (τ, k) cM cR W (fun b => by rw [eM]; exact hc _)

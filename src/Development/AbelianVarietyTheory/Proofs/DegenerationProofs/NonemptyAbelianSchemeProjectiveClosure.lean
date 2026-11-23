@@ -105,13 +105,7 @@ theorem ProjChart.closure_eq_top {N : RatModel o Ω'} {q : N.Z ⟶ M.Z} (hq : M.
   obtain ⟨a, b, -, rfl⟩ := exists_eq_div hU hne x
   exact div_mem (key a) (key b)
 
-theorem IsHom.genericPoint_mem {N : RatModel o Ω'} {q : N.Z ⟶ M.Z} (hq : M.IsHom N φ q) {W : M.Z.Opens}
-    (hW : (W : Set M.Z).Nonempty) : q (genericPoint N.Z) ∈ W := by
-  have h1 : ⊤ ≤ (N.pt ≫ q) ⁻¹ᵁ W := by
-    rw [hq]
-    exact le_preimage_comp _ _ (M.top_le_preimage_pt hW) (le_preimage_top _)
-  rw [← N.pt_apply (IsLocalRing.closedPoint Ω')]
-  exact h1 (x := IsLocalRing.closedPoint Ω') trivial
+alias IsHom.genericPoint_mem := _root_.GlobalTheory.ZH.RatModel.IsHom.apply_genericPoint_mem
 
 theorem IsHom.mulVec_div_mem {N : RatModel o Ω'} {q : N.Z ⟶ M.Z} (hq : M.IsHom N φ q) {J : Type} [Fintype J]
     {u : J → Ω'} {i : J} {z : N.Z} (h : N.Div u i z) {m : Matrix J J Ω} (hm : ∀ j k, m j k ∈ M.O (q z)) (j : J) :
@@ -374,7 +368,7 @@ theorem nonempty_clos : GlobalTheory.UT.LL → ∀ (o Ω : Type) [CommRing o] [F
     c := fun l => l.c
     c_inv := fun l => l.c_inv
     σ := σ
-    rel := fun l R _ _ x w hw => GlobalTheory.T.homogeneousCoordinates_mulVec_of_genericValue o Ω M Ω' φ P (Q l) _ _ l.W O1 d S.J st (σ l) t (l.co φ t) l.c (hQ l) (hQf l)
+    rel := fun l R _ _ x w hw => _root_.GlobalTheory.ZH.RatModel.crd_mulVec_of_hasVal o Ω M Ω' φ P (Q l) _ _ l.W O1 d S.J st (σ l) t (l.co φ t) l.c (hQ l) (hQf l)
       (fun z => z.2) hst (hσ l) (l.eq_mulVec t) R x w hw
     imm := fun l => ?_ }⟩
   · rintro K _ x v ⟨a', ha', hv⟩

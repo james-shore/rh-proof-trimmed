@@ -134,7 +134,7 @@ theorem tame_any_at_of_is_conj_pl_tame_gen : ∀ D : D7, WildOne D → (∀ (i :
     congrArg Prod.snd hinv
   have hρM : redF D i ρ γ0 ^ M = 1 := congrArg Prod.fst hone
   have hχM : chiBar D i γ0 ^ M = 1 := congrArg Prod.snd hone
-  obtain ⟨v', j, ι, e₁, e₂, he₁, he₂, hι, hch, hχ0⟩ := _root_.GlobalTheory.T.tame_any_at_pl_gw D hG hF i π ρ hc ha hfull hρ k hl v
+  obtain ⟨v', j, ι, e₁, e₂, he₁, he₂, hι, hch, hχ0⟩ := _root_.GlobalTheory.TypeLeaf.tameAnyAt_fixed_alt_alt D hG hF i π ρ hc ha hfull hρ k hl v
   refine ⟨v', j, ι.comp θ, e₁, e₂, he₁, he₂, injPrimeTo_comp hι hθ hθo, ?_, ?_⟩
   · have h1 := charpoly_pow_of_prod _ _ _ hch (n * (M - 1))
     rw [← Units.val_pow_eq_pow_val, ← hρ1, map_mul, map_mul, map_inv _ g, Units.val_mul, Units.val_mul, Matrix.coe_units_inv,

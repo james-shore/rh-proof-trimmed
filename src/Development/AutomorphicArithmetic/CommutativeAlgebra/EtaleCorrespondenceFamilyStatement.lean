@@ -227,7 +227,7 @@ theorem UpperTheory.etaleCorrespondence_family_statement :
     LinearMap.id (tr (Fin (d + 1))) hdrid (Lef.germCompat_id Y) hleR a
   have hmL := UpperTheory.PullbackConnectingMap.pullC_isMap hL hL hJ hY (𝟙 Y) (Category.id_comp s') (AlgHom.id ℂ Y.functionField)
     LinearMap.id (tl (Fin (d + 1))) hdrid (Lef.germCompat_id Y) hleL a
-  have hfin := (GlobalTheory.T.finiteEtale_functionField_integralClosure_differentials Z Y s s' c1 h1 inferInstance inferInstance d hK hL g1).1
+  have hfin := (_root_.GlobalTheory.W1.SchFF.finiteEtale_functionField Z Y s s' c1 h1 inferInstance inferInstance d hK hL g1).1
   have hmT := UpperTheory.PullbackConnectingMap.trL_isMap (ι := Fin (d + 1)) s' h1 hK hL hU hY (fun V hV hV' g => (g1 V hV hV' g).symm) hfin a
   set z := (E d Z s (Fin (d + 1)) U (rB ℂ Z.functionField x) hK hU a p).symm (Submodule.Quotient.mk ⟨b, hb⟩) with hz
   set w := hodgePull h2 a p z with hw

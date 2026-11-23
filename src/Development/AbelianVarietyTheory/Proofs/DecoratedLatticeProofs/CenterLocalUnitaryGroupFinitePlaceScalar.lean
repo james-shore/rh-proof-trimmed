@@ -79,27 +79,18 @@ section Gen
 
 variable {A : Type} [CommRing A] {n : Type} [Fintype n] [DecidableEq n]
 
-theorem cT_add' (σ : A →+* A) (M N : Matrix n n A) : cT σ (M + N) = cT σ M + cT σ N := by
-  ext i j; simp [cT]
-
 theorem cT_sub' (σ : A →+* A) (M N : Matrix n n A) : cT σ (M - N) = cT σ M - cT σ N := by
   ext i j; simp [cT]
-
-theorem cT_smul' (σ : A →+* A) (c : A) (M : Matrix n n A) : cT σ (c • M) = σ c • cT σ M := by
-  ext i j; simp [cT]
-
-theorem cT_cT' (σ : A →+* A) (hσ : ∀ x, σ (σ x) = x) (M : Matrix n n A) : cT σ (cT σ M) = M := by
-  ext i j; simp [cT, hσ]
 
 theorem cayley_unitary (σ : A →+* A) (J B V : Matrix n n A) (s : A) (hs : σ s = s)
     (hB : cT σ B * J + J * B = 0) (hV1 : (s • (1 : Matrix n n A) - B) * V = 1) :
     cT σ ((s • (1 : Matrix n n A) + B) * V) * J * ((s • (1 : Matrix n n A) + B) * V) = J := by
   set S : Matrix n n A := s • (1 : Matrix n n A) with hSdef
-  have hS : cT σ S = S := by rw [hSdef, cT_smul', cT_one, hs]
+  have hS : cT σ S = S := by rw [hSdef, _root_.Formalism.L2.DIV.cT_smul, cT_one, hs]
   have hc : ∀ M : Matrix n n A, S * M = M * S := fun M => by
     rw [hSdef, Matrix.smul_mul, Matrix.mul_smul, Matrix.one_mul, Matrix.mul_one]
   have key : cT σ (S + B) * J * (S + B) = cT σ (S - B) * J * (S - B) := by
-    rw [cT_add', cT_sub', hS]
+    rw [_root_.Formalism.L2.DIV.cT_add, cT_sub', hS]
     have e1 : (S + cT σ B) * J * (S + B) - (S - cT σ B) * J * (S - B)
         = (S * J * B + cT σ B * J * S) + (S * J * B + cT σ B * J * S) := by noncomm_ring
     have e2 : S * J * B + cT σ B * J * S = 0 := by
@@ -150,8 +141,8 @@ theorem comm_of_comm_skew (σ : A →+* A) (hσ : ∀ x, σ (σ x) = x) (J : Mat
     rw [cT_mul, hX, ← hJi, neg_mul, ← neg_mul, Matrix.mul_assoc, hJJ', Matrix.mul_one, ← Matrix.mul_assoc, hJJ,
       Matrix.one_mul, neg_add_cancel])
   set Y := J * M
-  have h1 := hsk (Y - cT σ Y) (by rw [cT_sub', cT_cT' σ hσ, neg_sub])
-  have h2' := hsk (δ • (Y + cT σ Y)) (by rw [cT_smul', cT_add', cT_cT' σ hσ, hδσ, neg_smul, add_comm])
+  have h1 := hsk (Y - cT σ Y) (by rw [cT_sub', _root_.Formalism.L2.DIV.cT_cT σ hσ, neg_sub])
+  have h2' := hsk (δ • (Y + cT σ Y)) (by rw [_root_.Formalism.L2.DIV.cT_smul, _root_.Formalism.L2.DIV.cT_add, _root_.Formalism.L2.DIV.cT_cT σ hσ, hδσ, neg_smul, add_comm])
   have e : (2 : A) • M = J⁻¹ * (Y - cT σ Y) + (↑hδ.unit⁻¹ : A) • (J⁻¹ * (δ • (Y + cT σ Y))) := by
     rw [Matrix.mul_smul, smul_smul, IsUnit.val_inv_mul, one_smul, ← Matrix.mul_add,
       sub_add_add_cancel, ← two_smul A Y, Matrix.mul_smul, ← Matrix.mul_assoc, hJJ', Matrix.one_mul]

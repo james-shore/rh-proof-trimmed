@@ -134,26 +134,12 @@ end Unf
 
 namespace Unf
 
-variable {i : ℕ} {v : (D.mem u).A.vT} (H : Unf D u i v)
-
 end Unf
 
 lemma two_le_N (R : Ranks) (j : ℕ) : 2 ≤ R.N j := by
   have := R.m_add_three_le_k; unfold Ranks.N; omega
 
 namespace Unf
-
-variable {i : ℕ} {v : (D.mem u).A.vT} (H : Unf D u i v)
-
-
-include H
-
-section ram
-
-variable {φ : Fn D u i} (hφ : φ ∈ (D.fm u).Fi i) (hN : Nm D u i v φ = 0)
-include hφ hN
-
-end ram
 
 end Unf
 
@@ -189,13 +175,6 @@ lemma ipC_sum_right {i : ℕ} {ι : Type} [Fintype ι] (s : ι → ℂ) (F : ι 
   simp only [Finset.sum_apply, Pi.smul_apply, map_sum, map_smul, smul_eq_mul, Finset.mul_sum]
   rw [Finset.sum_comm]
   exact Finset.sum_congr rfl (fun a _ => Finset.sum_congr rfl (fun c _ => by ring))
-
-section T7
-
-variable (hF : FiSt D u) (hM : DiaMul D u) (hX : CrossDia D u) (hU : UnfAll D u)
-include hF hM hX hU
-
-end T7
 
 variable (D u)
 
@@ -634,10 +613,6 @@ theorem LemmaC_core (hR : Rat0 D u) (w : D.what₂.places.Pl) (hw : OverT D u w)
     show ((((ε ^ (D.R.k - 1))⁻¹ : (Ow D w)ˣ) : Ow D w) * _ * _) • s = _
     rw [Units.inv_mul, one_mul]
 
-lemma exists_int_smul_mem (i : ℕ) (x : Vl D u i) :
-    ∃ r : 𝓞 D.what₂.LL, r ≠ 0 ∧ r • x ∈ ((D.fm u).lat i).L := by
-  first | exact UpperTheory.Reformulated.B.DivisibilityWeightConstant.exists_int_smul_mem .. | (apply UpperTheory.Reformulated.B.DivisibilityWeightConstant.exists_int_smul_mem <;> assumption) | (intros; apply UpperTheory.Reformulated.B.DivisibilityWeightConstant.exists_int_smul_mem <;> assumption) | (apply @UpperTheory.Reformulated.B.DivisibilityWeightConstant.exists_int_smul_mem <;> assumption) | (intros; apply @UpperTheory.Reformulated.B.DivisibilityWeightConstant.exists_int_smul_mem <;> assumption) | (apply @UpperTheory.Reformulated.B.DivisibilityWeightConstant.exists_int_smul_mem <;> first | assumption | infer_instance) | exact @UpperTheory.Reformulated.B.DivisibilityWeightConstant.exists_int_smul_mem D u i x | exact @UpperTheory.Reformulated.B.DivisibilityWeightConstant.exists_int_smul_mem D u i | exact @UpperTheory.Reformulated.B.DivisibilityWeightConstant.exists_int_smul_mem D u | exact @UpperTheory.Reformulated.B.DivisibilityWeightConstant.exists_int_smul_mem D
-
 lemma finrank_ramSub : Module.finrank D.what₂.LL (D.fm u).ramSub = (D.mem u).A.du := by
   rw [← D.nuIn_range u, LinearMap.finrank_range_of_inj (D.nuIn_inj u), D.NuV_finrank u]
 
@@ -648,7 +623,7 @@ lemma ramL_ne_bot (h : 0 < (D.mem u).A.du) : (D.fm u).ramL ≠ ⊥ := by
     rw [h0, finrank_bot] at this
     omega
   obtain ⟨x, hx, hx0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot h1
-  obtain ⟨r, hr, hrx⟩ := exists_int_smul_mem 0 x
+  obtain ⟨r, hr, hrx⟩ := _root_.UpperTheory.Reformulated.B.DivisibilityWeightConstant.exists_int_smul_mem 0 x
   intro hbot
   have hmem : r • x ∈ (D.fm u).ramL := by
     refine ⟨hrx, ?_⟩
@@ -968,12 +943,6 @@ theorem deg_eq_degZ (τ : D.what₂.Tau) :
   simp only [Finset.sum_sub_distrib, Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
   rw [hN]
   ring
-
-section Shift
-
-open Formalism.MainNotions.PrimeDegreeVariant
-
-end Shift
 
 lemma blk_IntSpan (P : Pend D u) (h4 : ArchimedeanSignatureMatching P) (w : D.what₂.places.Pl)
     (p : MvPolynomial (D.what₂.Tau × Fin (D.R.N D.R.m) × Fin (D.R.N D.R.m)) ℂ)

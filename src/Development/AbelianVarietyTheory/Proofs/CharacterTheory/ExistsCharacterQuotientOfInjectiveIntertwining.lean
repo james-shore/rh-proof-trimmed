@@ -59,7 +59,7 @@ theorem exists_isChar_eq_add_of_injective : ∀ (K L : Type) [Field K] [Field L]
     (GlobalTheory.T.isCharacterOverSubfield_of_representation K L G _ (ρ.quotient _ hle)).1, fun g => ?_⟩
   rw [← map_add (f := _)]
   congr 1
-  refine GlobalTheory.T.linear_map_short_exact_commute K W V _ f.toLinearMap (LinearMap.range f.toLinearMap).mkQ (σ g) (ρ g)
+  refine _root_.GlobalTheory.trace_eq_add_of_shortExact K W V _ f.toLinearMap (LinearMap.range f.toLinearMap).mkQ (σ g) (ρ g)
     (ρ.quotient _ hle g) hf (Submodule.mkQ_surjective _) (Submodule.ker_mkQ _).symm (hcomm g) ?_
   ext v
   rfl

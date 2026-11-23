@@ -82,8 +82,8 @@ theorem main : ∀ (S : Scheme.{0}) (A B : Over S) [GrpObj A] [GrpObj B] (Q : LB
   have := hB.comm
   have := hA.proper
   have := hB.proper
-  have : Surjective la.left := GlobalTheory.T.surjective_of_dual_homomorphism_kernel_killed S A B Q la d hA hB hAB hBA hla hd hk
-  have : Flat la.left := GlobalTheory.T.flat_of_dual_homomorphism_kernel_killed S A B Q la d hA hB hAB hBA hla hd hk
+  have : Surjective la.left := _root_.GlobalTheory.DualHomSurj.surjective_of_ker_killed S A B Q la d hA hB hAB hBA hla hd hk
+  have : Flat la.left := _root_.GlobalTheory.DualHomFlat.main S A B Q la d hA hB hAB hBA hla hd hk
   have : QuasiCompact la.left := by
     have : QuasiCompact (la.left ≫ B.hom) := by rw [Over.w]; infer_instance
     exact QuasiCompact.of_comp la.left B.hom

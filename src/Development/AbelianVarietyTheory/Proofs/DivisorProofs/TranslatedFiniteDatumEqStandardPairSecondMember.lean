@@ -48,6 +48,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.FinitePrimesUnder
 import Development.AbelianVarietyTheory.Definitions.Divisors.FlatTensorVacuum
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsMatchOver
 import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.NormSmall
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.InfPartOfSplitIdem
 
 @[expose] public section
 
@@ -70,20 +71,14 @@ namespace GlobalTheory.BotMoveSnd
 
 variable {D : D7}
 
-theorem heisO_smul' {S T : HSp D} (ψ : AddChar (AF D.host.F) ℂ) (w : WO S T) (ζ : ℂ) (g : WO S T → ℂ) :
-    heisO ψ S T w (ζ • g) = ζ • heisO ψ S T w g := by
-  funext x
-  simp only [heisO, Pi.smul_apply, smul_eq_mul]
-  ring
-
 theorem isPlaceModel_smul {S T : HSp D} {ψ : AddChar (AF D.host.F) ℂ} {e : AE D} {Λ : AddSubgroup (WO S T)} {c : ℂ}
     (a : ℂ) {g₀ : WO S T → ℂ} {Tm : (WO S T → ℂ) →ₗ[ℂ] (WO S T → ℂ)}
     (hT : IsPlaceModel ψ (symplO S T) (heisO ψ S T) e Λ c g₀ Tm) :
     IsPlaceModel ψ (symplO S T) (heisO ψ S T) e Λ c (a • g₀) (a • Tm) :=
   { trans := fun Φ hΦ x hx => by
-      rw [LinearMap.smul_apply, LinearMap.smul_apply, hT.trans Φ hΦ x hx, heisO_smul']
+      rw [LinearMap.smul_apply, LinearMap.smul_apply, hT.trans Φ hΦ x hx, _root_.GlobalTheory.LatVac.heisO_smul]
     modul := fun Φ hΦ y hy => by
-      rw [LinearMap.smul_apply, LinearMap.smul_apply, hT.modul Φ hΦ y hy, heisO_smul']
+      rw [LinearMap.smul_apply, LinearMap.smul_apply, hT.modul Φ hΦ y hy, _root_.GlobalTheory.LatVac.heisO_smul]
     vac := by rw [LinearMap.smul_apply, hT.vac] }
 
 theorem isThetaAt_rescale {S T : HSp D} {ψ : AddChar (AF D.host.F) ℂ} {e : AE D} {Λ : AddSubgroup (WO S T)} {c κ : ℂ}
@@ -95,20 +90,10 @@ theorem isThetaAt_rescale {S T : HSp D} {ψ : AddChar (AF D.host.F) ℂ} {e : AE
     rwa [smul_smul, inv_mul_cancel₀ hκ, one_smul] at this
   · rw [hall _ (isPlaceModel_smul κ hT'), LinearMap.smul_apply, smul_smul, inv_mul_cancel₀ hκ, one_smul]
 
-theorem isHalf_iff_smul {m n : ℕ} (c : AE D) (u : Mx D m n) : IsHalf c u ↔ c • u = u :=
-  ⟨fun h => Matrix.ext fun i j => h i j, fun h i j => congrFun (congrFun h i) j⟩
-
-theorem isHalf_actO' {S T : HSp D} (c : AE D) (g : GA D S) (h : GA D T) {x : WO S T} (hx : IsHalf c x) :
-    IsHalf c (actO S T g h x) := by
-  rw [isHalf_iff_smul] at hx ⊢
-  rw [GlobalTheory.VacMove.actO_eq]
-  conv_rhs => rw [← hx]
-  rw [Matrix.mul_smul, Matrix.smul_mul]
-
 theorem isHalf_actO_inv_iff {S T : HSp D} (c : AE D) (g : GA D S) (h : GA D T) (x : WO S T) :
     IsHalf c (actO S T g⁻¹ h⁻¹ x) ↔ IsHalf c x := by
-  refine ⟨fun hx => ?_, isHalf_actO' c _ _⟩
-  have := isHalf_actO' c g h hx
+  refine ⟨fun hx => ?_, _root_.Formalism.IndefR.Fin.LevelGroupLemmas.Lat.isHalf_actO c _ _⟩
+  have := _root_.Formalism.IndefR.Fin.LevelGroupLemmas.Lat.isHalf_actO c g h hx
   have e := GlobalTheory.SplitHecke.actO_inv_actO (S := S) (T := T) g⁻¹ h⁻¹ x
   simp only [inv_inv] at e
   rwa [e] at this
@@ -128,7 +113,7 @@ theorem frMapAdj_move (S T : HSp D) (βS : GL (Fin S.rank) (EAf D)) (βT : GL (F
     (h : GA D T) (x : WO S T) :
     frMapAdj S T (Lev.finE S g * βS) (Lev.finE T h * βT) x = frMapAdj S T βS βT (actO S T g⁻¹ h⁻¹ x) := by
   have split : actO S T g⁻¹ h⁻¹ x = actO S T g⁻¹ 1 (actO S T 1 h⁻¹ x) := by
-    simp only [GlobalTheory.VacMove.actO_eq, inv_one, GlobalTheory.VacMove.mt_one₀, Matrix.one_mul, Matrix.mul_one]
+    simp only [GlobalTheory.VacMove.actO_eq, inv_one, _root_.GlobalTheory.BesselCompare.mt_one, Matrix.one_mul, Matrix.mul_one]
   rw [split, GlobalTheory.FreeBlockTwist.frMapAdj_actO_one, GlobalTheory.AdjAct.frMapAdj_actO, ← GlobalTheory.AdjAct.finE_inv_val, ← map_inv]
   unfold frMapAdj
   rw [map_inv (Lev.finE S), map_inv (Lev.finE T), ← Matrix.mul_assoc]

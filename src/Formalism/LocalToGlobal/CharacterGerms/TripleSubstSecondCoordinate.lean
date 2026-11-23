@@ -108,21 +108,6 @@ private theorem hasSubst_of_Z0 {σ τ : Type} [Finite σ] {a : σ → MvPowerSer
   | exact MvPowerSeries.hasSubst_of_constantCoeff_zero ha
   | exact ⟨fun s => by rw [ha s]; exact IsNilpotent.zero, fun d => Set.toFinite _⟩
 
-private theorem constantCoeff_P2_eq_zero {a b : Fin dd → MvPowerSeries τ C} (ha : ∀ i, MvPowerSeries.constantCoeff (a i) = 0)
-    (hb : ∀ i, MvPowerSeries.constantCoeff (b i) = 0) : ∀ q, MvPowerSeries.constantCoeff (P2 a b q) = 0 := by
-  intro q
-  simp only [P2]
-  split_ifs
-  exacts [ha _, hb _]
-
-private theorem constantCoeff_P3_eq_zero {a b c : Fin dd → MvPowerSeries τ C} (ha : ∀ i, MvPowerSeries.constantCoeff (a i) = 0)
-    (hb : ∀ i, MvPowerSeries.constantCoeff (b i) = 0) (hc : ∀ i, MvPowerSeries.constantCoeff (c i) = 0) :
-    ∀ q, MvPowerSeries.constantCoeff (P3 a b c q) = 0 := by
-  intro q
-  simp only [P3]
-  split_ifs
-  exacts [ha _, hb _, hc _]
-
 private theorem mvExp_zero_character_germs {σ : Type} : mvExp (0 : MvPowerSeries σ C) = 1 := by
   ext m
   rw [coeff_mvExp_eq_sum_range_of_degree_le (map_zero _) m m.degree le_rfl, Finset.sum_eq_single 0]
@@ -154,7 +139,7 @@ include hA hu hv in
 theorem subst_pair_substitution_comm (f : PS C 2 dd) :
     MvPowerSeries.subst A (MvPowerSeries.subst (P2 u v) f) =
       MvPowerSeries.subst (P2 (fun i => MvPowerSeries.subst A (u i)) (fun i => MvPowerSeries.subst A (v i))) f := by
-  rw [MvPowerSeries.subst_comp_subst_apply (hasSubst_of_Z0 (constantCoeff_P2_eq_zero hu hv)) (hasSubst_of_Z0 hA)]
+  rw [MvPowerSeries.subst_comp_subst_apply (hasSubst_of_Z0 (_root_.Formalism.L2.FormalSeriesBounds.VP.constantCoeff_pair_substitution hu hv)) (hasSubst_of_Z0 hA)]
   congr 1
   funext q
   simp only [P2]
@@ -179,8 +164,8 @@ end Subst
 
 theorem cc_addAt {a b : Fin dd → MvPowerSeries τ C} (ha : ∀ i, MvPowerSeries.constantCoeff (a i) = 0)
     (hb : ∀ i, MvPowerSeries.constantCoeff (b i) = 0) (i : Fin dd) :
-    MvPowerSeries.constantCoeff (addAt Y a b i) = 0 :=  MvPowerSeries.constantCoeff_subst_eq_zero (hasSubst_of_Z0 (constantCoeff_P2_eq_zero ha hb))
-    (constantCoeff_P2_eq_zero ha hb) (Y.B.G.const i)
+    MvPowerSeries.constantCoeff (addAt Y a b i) = 0 :=  MvPowerSeries.constantCoeff_subst_eq_zero (hasSubst_of_Z0 (_root_.Formalism.L2.FormalSeriesBounds.VP.constantCoeff_pair_substitution ha hb))
+    (_root_.Formalism.L2.FormalSeriesBounds.VP.constantCoeff_pair_substitution ha hb) (Y.B.G.const i)
 
 private theorem ev_pt_pair {n : ℕ} (x y : Pt C n dd) : ev (n := n) ![x, y] Y.h = hAt Y x y := by
   show MvPowerSeries.subst _ Y.h = MvPowerSeries.subst (P2 x y) Y.h
@@ -212,26 +197,26 @@ include ha hb hc
 theorem triple_subst_first_coordinate : (fun i => MvPowerSeries.subst (P3 a b c) (pt C dd (0 : Fin 3) i)) = a := by
   funext i
   show MvPowerSeries.subst (P3 a b c) (MvPowerSeries.X ((0 : Fin 3), i)) = a i
-  rw [MvPowerSeries.subst_X (hasSubst_of_Z0 (constantCoeff_P3_eq_zero ha hb hc))]
+  rw [MvPowerSeries.subst_X (hasSubst_of_Z0 (_root_.Formalism.L2.FormalSeriesBounds.VP.constantCoeff_triple_substitution ha hb hc))]
   simp [P3]
 
 theorem triple_subst_second_coordinate : (fun i => MvPowerSeries.subst (P3 a b c) (pt C dd (1 : Fin 3) i)) = b := by
   funext i
   show MvPowerSeries.subst (P3 a b c) (MvPowerSeries.X ((1 : Fin 3), i)) = b i
-  rw [MvPowerSeries.subst_X (hasSubst_of_Z0 (constantCoeff_P3_eq_zero ha hb hc))]
+  rw [MvPowerSeries.subst_X (hasSubst_of_Z0 (_root_.Formalism.L2.FormalSeriesBounds.VP.constantCoeff_triple_substitution ha hb hc))]
   simp [P3]
 
 theorem triple_subst_third_coordinate : (fun i => MvPowerSeries.subst (P3 a b c) (pt C dd (2 : Fin 3) i)) = c := by
   funext i
   show MvPowerSeries.subst (P3 a b c) (MvPowerSeries.X ((2 : Fin 3), i)) = c i
-  rw [MvPowerSeries.subst_X (hasSubst_of_Z0 (constantCoeff_P3_eq_zero ha hb hc))]
+  rw [MvPowerSeries.subst_X (hasSubst_of_Z0 (_root_.Formalism.L2.FormalSeriesBounds.VP.constantCoeff_triple_substitution ha hb hc))]
   simp [P3]
 
 theorem second_partial_law_at_points : MvPowerSeries.subst (P3 a b c) Y.B.ph2 =
     mvExp (hAt Y a b + hAt Y a c - hAt Y a (addAt Y b c)) := by
   have hp : ∀ (j : Fin 3) (i : Fin dd), MvPowerSeries.constantCoeff (pt C dd j i : PS C 3 dd) = 0 :=
     fun j i => MvPowerSeries.constantCoeff_X _
-  have hP3 := constantCoeff_P3_eq_zero ha hb hc
+  have hP3 := _root_.Formalism.L2.FormalSeriesBounds.VP.constantCoeff_triple_substitution ha hb hc
   have hg := Y.gauge.ph2
   rw [toK_eq, ev_pt_pair Y, ev_pt_pair Y, ev_pt_pair Y, addOf_eq] at hg
   have hcc : MvPowerSeries.constantCoeff (hAt Y (pt C dd 0) (pt C dd 1) + hAt Y (pt C dd 0) (pt C dd 2) -

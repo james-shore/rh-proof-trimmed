@@ -77,13 +77,13 @@ theorem GlobalTheory.TriMove.transport_bottom : ∀ {D : D7} {T : Type} {Lc : Le
     fun c hc => GlobalTheory.T.isConst_seesawTriple_transport_isometries IA IA' IW Y W.ψ W.θ isY.isVac.2.inf c hc⟩
   exact
     { rank := isX.rank
-      rigA := GlobalTheory.T.isometryMovedRigging_is IA _ isY.rigA
-      rigA' := GlobalTheory.T.isometryMovedRigging_is IA' _ isY.rigA'
+      rigA := _root_.GlobalTheory.TriMove.rigMove_is IA _ isY.rigA
+      rigA' := _root_.GlobalTheory.TriMove.rigMove_is IA' _ isY.rigA'
       rigW := GlobalTheory.T.isometryMovedRigging_is IW _ isY.rigW
       weil := fun t => GlobalTheory.T.isWeilDatumSignedHomPair_transport_isometries W.ψ true IA IW _ _ (Y.ω t) (isY.weil t)
       weil' := fun t => GlobalTheory.T.isWeilDatumSignedHomPair_transport_isometries W.ψ false IA' IW _ _ (Y.ω' t) (isY.weil' t)
       isVac := GlobalTheory.T.isOrientedVacuum_isometry_moved_lattices W.ψ W.θ true IA IW Y.rA.s Y.rW.s Y.rA.Λ Y.rW.Λ Y.vac isY.isVac
-      isVac' := GlobalTheory.T.isOrientedVacuum_isometry_moved_lattices W.ψ W.θ false IA' IW Y.rA'.s Y.rW.s Y.rA'.Λ Y.rW.Λ Y.vac' isY.isVac'
+      isVac' := _root_.GlobalTheory.VacMove.isVacO_move W.ψ W.θ false IA' IW Y.rA'.s Y.rW.s Y.rA'.Λ Y.rW.Λ Y.vac' isY.isVac'
       idem := isY.idem
       expo := isY.expo
       fst := fun t => by

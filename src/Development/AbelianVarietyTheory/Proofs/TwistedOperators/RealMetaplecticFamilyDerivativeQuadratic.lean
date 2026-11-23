@@ -88,7 +88,7 @@ theorem coordAll (hP : GlobalTheory.Published.RealMetaplecticRepresentation) (l 
       simp only [M, this, LinearMap.toMatrix'_comp]
     obtain ⟨X, hX⟩ := GlobalTheory.T.continuous_matrix_oneParameterGroup_eq_exp _ M hMc hM0 hMm
     have hsp : X ∈ LieAlgebra.Symplectic.sp l ℝ := by
-      refine GlobalTheory.T.mem_symplecticLieAlgebra_of_exp_smul_mem_symplecticGroup l X fun t => ?_
+      refine _root_.GlobalTheory.RealWeil.mem_sp_of_exp_mem_symplecticGroup l X fun t => ?_
       obtain ⟨N, hN⟩ := GlobalTheory.exists_symplecticGroup_of_sympl l (A t) (hs t)
       have e : Matrix.toLin' (N : Matrix (l ⊕ l) (l ⊕ l) ℝ) = A t := LinearMap.ext fun w => by
         rw [Matrix.toLin'_apply, hN]

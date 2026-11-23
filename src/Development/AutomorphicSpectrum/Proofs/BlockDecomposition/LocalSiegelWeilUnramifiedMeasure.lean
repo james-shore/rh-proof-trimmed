@@ -227,7 +227,7 @@ theorem GlobalTheory.CompanionTheory.AvgFree.bad_density : ∀ (F E : Type) [Fie
           ∃ q ∈ G, GlobalTheory.CompanionTheory.SW.rmul (Fv F v) X (eMat (Fv F v) q.1 q.2 * dMat (Fv F v) q.1 ((p.1 ^ j)⁻¹ : (Fv F v ⊗[F] E)ˣ)) ∈
             tupIn (Fv F v) (L : Set (Fv F v ⊗[F] E))) by
       by_cases h : p ∈ S
-      · obtain ⟨G, hG⟩ := GlobalTheory.T.local_lattice_character_integral F E σ hσ d b v lv hlv O S hOS L hLc hLo n M hn p h (θ p) (hθ p h).2.2 j
+      · obtain ⟨G, hG⟩ := _root_.GlobalTheory.CompanionTheory.AvgFree.nearNF_cover F E σ hσ d b v lv hlv O S hOS L hLc hLo n M hn p h (θ p) (hθ p h).2.2 j
         exact ⟨G, fun _ => hG⟩
       · exact ⟨∅, fun h' => absurd h' h⟩)
   choose G hG using hG
@@ -360,9 +360,9 @@ theorem GlobalTheory.CompanionTheory.AvgFree.exhaust_density : ∀ (F E : Type) 
   obtain ⟨O, S, hOS⟩ := GlobalTheory.T.integral_order_data_exist_at_place F E σ hσ d b v lv hlv
   obtain ⟨L, hLc, hLo, hAL⟩ := GlobalTheory.T.compact_set_contained_in_lattice F E σ hσ v O hOS.1 hOS.2.1 n M A hAc
   obtain ⟨ι, I, α, β, ρ, hρ, hs, hstep⟩ := GlobalTheory.CompanionTheory.AvgFree.bad_density F E σ hσ d b v lv hlv M J n hn hM O S hOS L hLc hLo
-  have hcl := GlobalTheory.T.local_lattice_volume_order_data F E σ hσ d b v lv hlv O S hOS L hLc hLo n M
-  obtain ⟨hmono, hfree⟩ := GlobalTheory.T.local_lattice_gauss_sum_estimate F E σ hσ d b v lv hlv O S hOS L hLc hLo n M
-  have hex := GlobalTheory.T.local_lattice_quadratic_integral F E σ hσ d b v lv hlv O S hOS L hLc hLo n M
+  have hcl := _root_.GlobalTheory.CompanionTheory.AvgFree.goodT_isClopen F E σ hσ d b v lv hlv O S hOS L hLc hLo n M
+  obtain ⟨hmono, hfree⟩ := _root_.GlobalTheory.CompanionTheory.AvgFree.goodT_mono_free F E σ hσ d b v lv hlv O S hOS L hLc hLo n M
+  have hex := _root_.GlobalTheory.CompanionTheory.AvgFree.free_tuple_mem_goodT F E σ hσ d b v lv hlv O S hOS L hLc hLo n M
   have hBc : IsCompact (tupIn (M := M) (n := n) (Fv F v) (L : Set (Fv F v ⊗[F] E))) := by
     have : tupIn (M := M) (n := n) (Fv F v) (L : Set (Fv F v ⊗[F] E)) =
         Set.pi Set.univ fun _ => Set.pi Set.univ fun _ => (L : Set (Fv F v ⊗[F] E)) := by

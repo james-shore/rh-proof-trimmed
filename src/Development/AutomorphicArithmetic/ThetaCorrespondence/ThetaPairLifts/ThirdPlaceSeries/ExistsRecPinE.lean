@@ -52,7 +52,7 @@ theorem WPt.exists_recPinE_alt : GlobalTheory.Published.GlobalArtinReciprocity �
     ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (p : _root_.GlobalTheory.Mem.Top.Bl.Parameters hL) (K : Ctx) (q : WPt p.s K), Formalism.L2.Host.LevelTied (q.w.D q.Z) →
       Formalism.L2.Rows.ZetaCompatible (q.w.D q.Z) → EntC q.x.ker → ∃ R : _root_.Formalism.L2.RecTAlt q.O.ex, _root_.GlobalTheory.Mem.Top.Bl.RecordCompatibleExtended q R := by
   intro hA hW hR hL p K q hLT hZe hE
-  obtain ⟨S, hS⟩ := _root_.GlobalTheory.T.exists_spectral_data_compatible hA hW hL p K q hLT hZe
+  obtain ⟨S, hS⟩ := _root_.GlobalTheory.Mem.Top.Bl.WPt.exists_pinned_spectral_data_compatible hA hW hL p K q hLT hZe
   obtain ⟨t, hK, hstd, hrd⟩ := GlobalTheory.Mem.Top.Bl.WPt.exists_kerTie p.s K q hE
   obtain ⟨T, hTS, hTk, hcrd, hpin, hj, ⟨⟨hw⟩⟩⟩ := _root_.GlobalTheory.Mem.Top.Bl.exists_kernel_spectral_data_at_witnesses hL p K q S t hS hK
   have hp := GlobalTheory.Mem.Top.Bl.hostPins_wpt hR p.s K q

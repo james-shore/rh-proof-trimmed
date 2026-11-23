@@ -61,14 +61,6 @@ open Filter Topology
 
 namespace GlobalTheory.KZ.MeroRoot
 
-theorem valAt {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ} (X : Tower Ω ε) (τ : ℂ) (hτ : τ ∈ Hs) :
-    ∃ W : ValuationSubring X.K, X.OverY W ∧ ∀ x : X.K, W.valuation x = 1 → ∀ φ : ℂ → ℂ,
-      X.an x = (φ : Mero) → meromorphicOrderAt φ τ = 0 := GlobalTheory.T.exists_place_over_jLine_of_upperHalfPlane_point X τ hτ
-
-theorem repAt {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ} (X : Tower Ω ε) (x : X.K) (φ : ℂ → ℂ)
-    (hφ : X.an x = (φ : Mero)) (τ : ℂ) (hτ : τ ∈ Hs) :
-    MeromorphicAt φ τ ∧ (x ≠ 0 → meromorphicOrderAt φ τ ≠ ⊤) := GlobalTheory.T.an_meromorphicAt_upperHalfPlane X x φ hφ τ hτ
-
 theorem rootHs (h : ℂ → ℂ) (m : ℕ) (hm : 0 < m) (hh : DifferentiableOn ℂ h Hs)
     (hdiv : ∀ τ ∈ Hs, ∀ k : ℤ, meromorphicOrderAt h τ = (k : WithTop ℤ) → (m : ℤ) ∣ k) :
     ∃ g : ℂ → ℂ, DifferentiableOn ℂ g Hs ∧ ∀ z ∈ Hs, g z ^ m = h z := GlobalTheory.T.exists_holomorphic_root_upperHalfPlane_of_order_dvd h m hm hh hdiv
@@ -77,7 +69,7 @@ end GlobalTheory.KZ.MeroRoot
 
 namespace GlobalTheory.KZ.MeroRoot
 
-theorem isOpen_Hs : IsOpen Hs := isOpen_lt continuous_const Complex.continuous_im
+alias isOpen_Hs := _root_.GlobalTheory.KZ.ValAt.isOpen_Hs
 
 theorem nhdsNE_of_codisc {F G : ℂ → ℂ} (hFG : F =ᶠ[codiscreteWithin Hs] G) {τ : ℂ} (hτ : τ ∈ Hs) :
     F =ᶠ[𝓝[≠] τ] G := by
@@ -87,10 +79,6 @@ theorem nhdsNE_of_codisc {F G : ℂ → ℂ} (hFG : F =ᶠ[codiscreteWithin Hs] 
   rcases hz1 with hz | hz
   · exact hz
   · exact absurd hz2 hz
-
-theorem germ_rep (x : Mero) : ∃ φ : ℂ → ℂ, x = (φ : Mero) := by
-  induction x using Filter.Germ.inductionOn with
-  | h φ => exact ⟨φ, rfl⟩
 
 theorem wt_dvd {m : ℕ} (hm : 0 < m) {k : ℤ} {u v : WithTop ℤ}
     (hk : (k : WithTop ℤ) = (m : WithTop ℤ) * u + (m : WithTop ℤ) * v) : (m : ℤ) ∣ k := by
@@ -109,15 +97,15 @@ theorem orders_dvd {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ} (
     (hab : X.an (f : X.K) * (b : Mero) = (a : Mero)) :
     ∀ τ ∈ Hs, ∀ k : ℤ, meromorphicOrderAt (fun z => a z * b z ^ (m - 1)) τ = (k : WithTop ℤ) → (m : ℤ) ∣ k := by
   intro τ hτ k hk
-  obtain ⟨W, hW, hWv⟩ := valAt X τ hτ
+  obtain ⟨W, hW, hWv⟩ := _root_.GlobalTheory.KZ.ValAt.exists_place X τ hτ
   obtain ⟨g, hg⟩ := hf W hW
-  obtain ⟨φf, hφf⟩ := germ_rep (X.an (f : X.K))
-  obtain ⟨φg, hφg⟩ := germ_rep (X.an (g : X.K))
-  obtain ⟨ψ, hψ⟩ := germ_rep (X.an ((f : X.K) / (g : X.K) ^ m))
+  obtain ⟨φf, hφf⟩ := _root_.GlobalTheory.KZ.ValAt.exists_rep (X.an (f : X.K))
+  obtain ⟨φg, hφg⟩ := _root_.GlobalTheory.KZ.ValAt.exists_rep (X.an (g : X.K))
+  obtain ⟨ψ, hψ⟩ := _root_.GlobalTheory.KZ.ValAt.exists_rep (X.an ((f : X.K) / (g : X.K) ^ m))
   have hψ0 : meromorphicOrderAt ψ τ = 0 := hWv _ hg ψ hψ
-  have hfm := (repAt X _ φf hφf τ hτ).1
-  have hgm := (repAt X _ φg hφg τ hτ).1
-  have hψm := (repAt X _ ψ hψ τ hτ).1
+  have hfm := (_root_.GlobalTheory.KZ.Tower.an_meromorphicAt X _ φf hφf τ hτ).1
+  have hgm := (_root_.GlobalTheory.KZ.Tower.an_meromorphicAt X _ φg hφg τ hτ).1
+  have hψm := (_root_.GlobalTheory.KZ.Tower.an_meromorphicAt X _ ψ hψ τ hτ).1
   have hbm : MeromorphicAt b τ :=
     ((hb.analyticOnNhd isOpen_Hs) τ hτ).meromorphicAt
 
@@ -151,7 +139,7 @@ theorem exists_mero_root : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClo
       (b : Mero) ≠ 0 ∧ X.an (f : X.K) * (b : Mero) ^ m = (a : Mero) ^ m := by
   intro Ω _ _ _ ε X _ _ m hm f hf
   obtain ⟨a, b, ha, hb, hb0, hab⟩ := X.an_mero (f : X.K)
-  obtain ⟨g, hg, hgm⟩ := rootHs (fun z => a z * b z ^ (m - 1)) m hm (ha.mul (hb.pow _))
+  obtain ⟨g, hg, hgm⟩ := _root_.GlobalTheory.RootHs.rootHs (fun z => a z * b z ^ (m - 1)) m hm (ha.mul (hb.pow _))
     (orders_dvd X m hm f hf a b hb hab)
   refine ⟨g, b, hg, hb, hb0, ?_⟩
   obtain ⟨n, rfl⟩ : ∃ n, m = n + 1 := ⟨m - 1, by omega⟩

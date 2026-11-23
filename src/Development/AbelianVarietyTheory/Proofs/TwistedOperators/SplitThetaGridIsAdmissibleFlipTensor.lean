@@ -73,10 +73,6 @@ theorem exists_split {γ : List Edge} {i j : ℕ} (hγ : IsPath γ) (h : PassesT
 theorem not_touch {γ : List Edge} {i j : ℕ} (hγ : IsPath γ) (h : PassesThrough i j γ) :
     ∀ b ∈ γ, b.src ≠ (i + 1, j + 1) ∧ b.tgt ≠ (i + 1, j + 1) := GlobalTheory.T.splitThetaGridPath_avoids_opposite_corner hγ h
 
-theorem innerVertices_flipPath {γ : List Edge} {i j : ℕ} (hγ : IsPath γ) (h : PassesThrough i j γ) :
-    ∀ X ∈ innerVertices (flipPath i j γ), X ≠ (i, j) ∧ (X ≠ (i + 1, j + 1) → X ∈ innerVertices γ) :=
-  GlobalTheory.T.mem_gridPathInnerVertices_flipGridPathAtSquare hγ h
-
 end GlobalTheory.FlipAdm
 
 noncomputable section
@@ -235,10 +231,10 @@ theorem isAdmissible_flip : ∀ {k : Type} [Field k] [ValuativeRel k] [Topologic
   obtain ⟨γ, J, T⟩ := St
   obtain ⟨hpath, -, htens, hinv⟩ := hadm
   simp only at hν hpt hlev hpath htens hinv
-  obtain ⟨l₁, l₂, hγ, hfl⟩ := exists_split hpath hpt
+  obtain ⟨l₁, l₂, hγ, hfl⟩ := _root_.GlobalTheory.SplitFlip.flipPath_split hpath hpt
   have h1 : Edge.theta i j ∈ γ := hpt.subset (by simp)
   have h2 : Edge.ex i j ∈ γ := hpt.subset (by simp)
-  refine ⟨isPath_flipPath hpath hpt, fun X _ => ?_, isTensor_flipTensor hϖ hψ he hν (hlev (i, j)).1 (hlev (i, j)).2 h1 h2 htens,
+  refine ⟨_root_.GlobalTheory.SplitFlip.isPath_flipPath hpath hpt, fun X _ => ?_, isTensor_flipTensor hϖ hψ he hν (hlev (i, j)).1 (hlev (i, j)).2 h1 h2 htens,
     fun X hX u hu => ?_⟩
   · by_cases hXW : X = (i + 1, j + 1)
     · subst hXW
@@ -247,7 +243,7 @@ theorem isAdmissible_flip : ∀ {k : Type} [Field k] [ValuativeRel k] [Topologic
     · simp only [Grid.PiLocalization₂.flip, Grid.flipLevel, Function.update_of_ne hXW]
       exact hlev X
   · simp only [Grid.PiLocalization₂.flip] at hX hu ⊢
-    obtain ⟨hX1, hX2⟩ := innerVertices_flipPath hpath hpt X hX
+    obtain ⟨hX1, hX2⟩ := _root_.GlobalTheory.SplitFlip.mem_innerVertices_flipPath hpath hpt X hX
     have huK : u ∈ KO k _ := by
       by_cases hXW : X = (i + 1, j + 1)
       · subst hXW; simpa [Grid.flipLevel] using hu
@@ -263,7 +259,7 @@ theorem isAdmissible_flip : ∀ {k : Type} [Field k] [ValuativeRel k] [Topologic
     congr 1
     by_cases hXW : X = (i + 1, j + 1)
     · subst hXW
-      exact pathAct_mulSingle_of_not_touch htens _ (not_touch hpath hpt) u
+      exact pathAct_mulSingle_of_not_touch htens _ (_root_.GlobalTheory.SplitFlip.pathAvoid hpath hpt) u
     · rw [Grid.flipLevel, Function.update_of_ne hXW] at hu
       exact hinv X (hX2 hXW) u hu
 

@@ -62,7 +62,7 @@ theorem UpperTheory.Gal.Ord.rankV :
   intro p _ k _ _ hk A _ _ hA σ V m hσ hV y hy
   obtain ⟨e, he, -⟩ := GlobalTheory.deRhamVectorExtension p
   have hn : IsNilpotent (p : k) := ⟨1, by rw [pow_one, hk]⟩
-  obtain ⟨g, hg⟩ : ∃ g, SmoothOfRelativeDimension g A.hom := GlobalTheory.T.abelianScheme_specField_smoothOfRelativeDimension k A hA
+  obtain ⟨g, hg⟩ : ∃ g, SmoothOfRelativeDimension g A.hom := _root_.GlobalTheory.AbFieldDim.exists_smoothOfRelativeDimension k A hA
   obtain ⟨G, t, -⟩ := GlobalTheory.AbelianTower.exists_pDivGroup_tower p k hn A g hA hg
   let A₁ := (Over.pullback (spMap (frobR p k hk))).obj A
   have hπ : IsGrpPullback A₁ A _ _ := isGrpPullback_pullback A (spMap (frobR p k hk))

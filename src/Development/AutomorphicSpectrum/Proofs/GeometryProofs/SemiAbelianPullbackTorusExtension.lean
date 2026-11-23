@@ -173,7 +173,7 @@ theorem main : ∀ (X : Scheme.{0}) (G : Over X) [GrpObj G] [IsCommMonObj G], Is
   have hO : IsGrpPullback GK G₀ (spMap (algebraMap (𝓞 L) L)) φO := hp.cancel hφ hw
   obtain ⟨M₀, hM₀⟩ := (GlobalTheory.CompanionTheory.Ar.LieMove.main (𝓞 L) X z G G₀ ψ V hp).1 M
   have hiff := lifts_iff (algebraMap (𝓞 L) L) hp hw M M₀ hM₀
-  obtain ⟨io, f, h1, h2, h3, h4, h5⟩ := GlobalTheory.T.torus_extension_lie_lattice (𝓞 L) L G₀ G' GK τ φO φ'
+  obtain ⟨io, f, h1, h2, h3, h4, h5⟩ := _root_.GlobalTheory.CompanionTheory.Ar.ToricQuot.lie_quot_full (𝓞 L) L G₀ G' GK τ φO φ'
     hG₀ hG' hO hφ' MT hMT V V' M₀ M'
   obtain ⟨b1, b2⟩ := image_basis bs io h3
   refine ⟨fun a => io ((Int.castAddHom (𝓞 L)).comp (bs a)), f, fun a => ?_, fun e v h => h2 e v ((hiff e v).2 h),

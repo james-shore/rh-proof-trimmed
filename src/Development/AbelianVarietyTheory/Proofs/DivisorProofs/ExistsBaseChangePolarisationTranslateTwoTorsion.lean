@@ -102,7 +102,7 @@ theorem exists_baseChange_translate : ∀ (K K' : Type) [Field K] [Field K'] (io
     refine toBase_injective hg ?_
     rw [hm, hte, toBase_one hg hm, ← MonObj.comp_mul, hy, MonObj.comp_one]
   have hwL : LBIso (A.L.pull g) P.L := ⟨w, hw⟩
-  obtain ⟨c, hc⟩ := GlobalTheory.Moduli.cube_of_isLB _ P P.L P.isLB
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.AbLaw.CubeAssembly.cube_gen _ P P.L P.isLB
   let A₁ : PolAV (Sp K') :=
     { A := P.A, isAb := P.isAb, g := P.g, smoothDim := P.smoothDim, L := rigTransl P.L t₀
       isLB := DVR.linComb_isLB _ P.isLB _ _

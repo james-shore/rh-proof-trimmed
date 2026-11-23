@@ -102,21 +102,6 @@ theorem kc_Nq_ne_zero (X : Tower Ω ε) (M q : ℕ) {f : X.K} (hf : f ≠ 0) : N
   simp only [Nq]
   exact Finset.prod_ne_zero_iff.2 fun j _ => by simpa using hf
 
-theorem kc_gal_const (X : Tower Ω ε) (s : Ω ≃ₐ[ℚ] Ω) (c : Ω) :
-    X.gal s (algebraMap Ω X.K c) = algebraMap Ω X.K (s c) := by
-  apply (X.exp : X.K →+* HahnSeries ℚ Ω).injective
-  ext r
-  show (X.exp (X.gal s (algebraMap Ω X.K c))).coeff r = (X.exp (algebraMap Ω X.K (s c))).coeff r
-  rw [X.gal_exp, AlgHom.commutes, AlgHom.commutes]
-  have e : ∀ x : Ω, (algebraMap Ω (HahnSeries ℚ Ω) x).coeff r = if r = 0 then x else 0 := by
-    intro x
-    rw [HahnSeries.algebraMap_apply']
-    have : algebraMap Ω (PowerSeries Ω) x = PowerSeries.C x := rfl
-    rw [this, HahnSeries.ofPowerSeries_C, HahnSeries.C_apply, HahnSeries.coeff_single]
-    simp
-  rw [e, e]
-  split_ifs <;> simp
-
 theorem kc_div_sub_one {L : Type} [Field L] (W : ValuationSubring L) {x y : L} (hy : W.valuation y = 1)
     (h : W.valuation (x - y) < 1) : W.valuation (x / y - 1) < 1 := by
   have hy0 : y ≠ 0 := by rintro rfl; simp at hy
@@ -145,7 +130,7 @@ theorem kron_cong_level : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClos
   have hC : algebraMap Ω X.K c ≠ 0 := (_root_.map_ne_zero _).2 hc
   have hgal : ∀ (t : Ω ≃ₐ[ℚ] Ω) (g : X.K), g ≠ 0 → X.gal t g ≠ 0 := fun t g hg => by simpa using hg
   have hE : ∀ t : Ω ≃ₐ[ℚ] Ω, X.gal t f = algebraMap Ω X.K (t c) * X.gal t a / X.gal t b := fun t => by
-    rw [eq_div_iff (hgal t b hb0), ← map_mul, hfb, map_mul, kc_gal_const]
+    rw [eq_div_iff (hgal t b hb0), ← map_mul, hfb, map_mul, _root_.GlobalTheory.KZ.ES.NF.gal_alg]
   have hC' : ∀ t : Ω ≃ₐ[ℚ] Ω, algebraMap Ω X.K (t c) ≠ 0 := fun t => (_root_.map_ne_zero _).2 (by simpa using hc)
   constructor
   · refine ⟨s c / c ^ q, ?_⟩

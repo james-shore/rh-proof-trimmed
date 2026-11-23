@@ -70,12 +70,6 @@ namespace Formalism.HermiteSiegelSlopes
 
 open Formalism.HN
 
-section GammaDefs
-
-variable {K : Type} [Field K] [NumberField K]
-
-end GammaDefs
-
 section BCDefs
 
 variable {F E ι : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
@@ -89,24 +83,6 @@ end BCDefs
 
 open scoped nonZeroDivisors
 open IsDedekindDomain
-
-section W1
-
-variable {K : Type} [Field K] [NumberField K]
-
-end W1
-
-section W2a
-
-variable {K : Type} [Field K] [NumberField K]
-
-end W2a
-
-section PullbackHopfOrder
-
-variable {K : Type} [Field K] [NumberField K] [StarRing K]
-
-end PullbackHopfOrder
 
 section W3
 
@@ -606,17 +582,13 @@ section W4final
 variable {F E ι : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
   [Fintype ι] [DecidableEq ι]
 
-theorem baseChangeMap_linearIndependent {j : ℕ} (e : Fin j → ι → F) (he : LinearIndependent F e) :
-    LinearIndependent E (fun a => bcMap (E := E) (e a)) := by
-  exact bc_linIndep e he
-
 theorem bc_index {j : ℕ} (e : Fin j → ι → F) (he : LinearIndependent F e)
     (M : Submodule (𝓞 F) (ι → F)) (hM : M.FG) (hle : Submodule.span (𝓞 F) (Set.range e) ≤ M)
     (hsp : (M : Set (ι → F)) ⊆ Submodule.span F (Set.range e)) :
     (Submodule.span (𝓞 E) (Set.range fun a => bcMap (E := E) (e a))).toAddSubgroup.relIndex
         (bcLat (E := E) M).toAddSubgroup =
       ((Submodule.span (𝓞 F) (Set.range e)).toAddSubgroup.relIndex M.toAddSubgroup) ^ finrank F E := by
-  have heE := baseChangeMap_linearIndependent (E := E) e he
+  have heE := _root_.Formalism.HermiteSiegelSlopes.bc_linIndep (E := E) e he
   obtain ⟨s, hs⟩ := hM
   obtain ⟨m, hm, hmM⟩ := exists_nat_mul_mem_span_finset e s (by
     intro x hx; exact hsp (hs ▸ Submodule.subset_span hx))
@@ -666,9 +638,6 @@ section W5
 
 variable {F E ι : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
-theorem baseChangeMap_add_vectors (x y : ι → F) : bcMap (E := E) (x + y) = bcMap x + bcMap y := by
-  exact baseChangeMap_map_add x y
-
 theorem baseChangeMap_smul_field (c : F) (x : ι → F) : bcMap (E := E) (c • x) = algebraMap F E c • bcMap x := by
   funext i
   simp [bcMap]
@@ -683,7 +652,7 @@ theorem baseChangeMap_mem_span_field {j : ℕ} (e : Fin j → ι → F) (m : ι 
   let N : Submodule F (ι → F) :=
     { carrier := {x | bcMap (E := E) x ∈ Submodule.span E (Set.range fun a => bcMap (E := E) (e a))}
       add_mem' := fun {a b} ha hb => by
-        simp only [Set.mem_setOf_eq, baseChangeMap_add_vectors] at *
+        simp only [Set.mem_setOf_eq, _root_.Formalism.HermiteSiegelSlopes.baseChangeMap_map_add] at *
         exact Submodule.add_mem _ ha hb
       zero_mem' := by
         simp only [Set.mem_setOf_eq, bcMap_zero]
@@ -695,13 +664,9 @@ theorem baseChangeMap_mem_span_field {j : ℕ} (e : Fin j → ι → F) (m : ι 
     Submodule.span_le.2 (by rintro _ ⟨a, rfl⟩; exact Submodule.subset_span ⟨a, rfl⟩)
   exact hle hm
 
-theorem baseChangeLattice_span_image (s : Set (ι → F)) :
-    bcLat (E := E) (Submodule.span (𝓞 F) s) = Submodule.span (𝓞 E) (bcMap (E := E) '' s) := by
-  exact baseChangeLattice_span s
-
 theorem baseChangeLattice_fg (M : Submodule (𝓞 F) (ι → F)) (hM : M.FG) : (bcLat (E := E) M).FG := by
   obtain ⟨s, rfl⟩ := hM
-  rw [baseChangeLattice_span_image]
+  rw [_root_.Formalism.HermiteSiegelSlopes.baseChangeLattice_span]
   exact Submodule.fg_span (s.finite_toSet.image _)
 
 theorem exists_linearIndependent_spanning (M : Submodule (𝓞 F) (ι → F)) [Finite ι] :

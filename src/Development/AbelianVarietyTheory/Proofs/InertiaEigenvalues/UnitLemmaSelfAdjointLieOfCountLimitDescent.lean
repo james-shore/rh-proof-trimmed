@@ -96,10 +96,7 @@ variable {K : UQ}
 theorem mulLeft_prod (B₁ B₂ : InvAlg K) (x : B₁.A × B₂.A) :
     LinearMap.mulLeft K.E x = (LinearMap.mulLeft K.E x.1).prodMap (LinearMap.mulLeft K.E x.2) := LinearMap.ext fun y => Prod.ext (by simp) (by simp)
 
-theorem prod_P (B₁ B₂ : InvAlg K) : (B₁.prod B₂).P = B₁.P * B₂.P := by
-  show (LinearMap.mulLeft K.E ((B₁.g, B₂.g) : B₁.A × B₂.A)).charpoly = _
-  rw [mulLeft_prod]
-  exact LinearMap.charpoly_prodMap _ _
+alias prod_P := _root_.GlobalTheory.UnitLemma.Orbit.prod_P
 
 theorem trace_prod (B₁ B₂ : InvAlg K) (x : B₁.A × B₂.A) :
     Algebra.trace K.E (B₁.A × B₂.A) x = Algebra.trace K.E B₁.A x.1 + Algebra.trace K.E B₂.A x.2 := Algebra.trace_prod_apply x

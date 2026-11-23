@@ -66,8 +66,6 @@ theorem int_one_sub {m a b : Type} [DecidableEq m] (f : a → m) (g' : b → m) 
   split_ifs
   exacts [Subring.one_mem _, Subring.zero_mem _]
 
-theorem mt_mul (S : HSp D) (a b : GA D S) : mt S (a * b) = mt S a * mt S b := by simp [Formalism.L2.Theta.mt]
-
 theorem alg_frame {n : ℕ} {Y R A' : Type} [Fintype Y] [DecidableEq Y] [CommRing R] [CommRing A'] (pr : R →+* k) (toE : R →+* A')
     (π : A' →+* k) (hmap : ∀ x, π (toE x) = pr x) (mg mt' mh b : Matrix (Fin n) (Fin n) R) (βv I : Matrix (Fin n) (Fin n) A')
     (Fβ : Matrix (Fin n) Y k) (Fγ : Matrix Y (Fin n) k) (e : Y ≃ Fin n) (hγβ : Fγ * Fβ = 1) (hb : b.map toE = βv)
@@ -107,7 +105,7 @@ theorem int_of_mem_St (q : GlobalTheory.FinPl.SplitPt D k) {PP : Formalism.L2.DI
     have := congrArg Units.val hfin
     rwa [Units.val_mul, Units.val_mul] at this
   have hg1 : mt S g * mt S t = mt S t * mt S (t⁻¹ * g * t) := by
-    rw [← mt_mul, ← mt_mul]; congr 1; group
+    rw [← _root_.GlobalTheory.BesselCompare.mt_mul, ← _root_.GlobalTheory.BesselCompare.mt_mul]; congr 1; group
   rw [alg_frame q.pr (toEAf D) π h1 (mt S g) (mt S t) (mt S (t⁻¹ * g * t)) (β.val.map (GlobalTheory.AdelicLatMove.finEmb D)) β.val
     (Formalism.L2.DIV.intGL D.host.F D.host.E S.rank Y0).val F.β F.γ e F.γβ hb' hmv hg1 hfin']
   exact int_mul (int_mul (int_one_sub _ _) hZi) (int_one_sub _ _)

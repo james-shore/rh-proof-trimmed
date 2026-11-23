@@ -252,7 +252,7 @@ theorem chr_root_eq_prod (hI : I.Ok) (hA : A.Is) (j : Fin B.R.m) (k : ℕ) (hk :
   have hfin : finM _ (rankN (I.rec7 l Z) k hk) (κ.1 * A.kA k β) = (κ₀ * A.kb k β).1 := by
     rw [GlobalTheory.RepLattice.finM_mul', h0, hkAm, Units.val_mul]
     rfl
-  have e1 := chr_root_eq hI hA j k hk _ (mul_mem hκ hkA) _ hfin _ (GlobalTheory.TwistFinPart.isDetRoot_mul' _ _ _ _ _ hx hxr) _ hq
+  have e1 := chr_root_eq hI hA j k hk _ (mul_mem hκ hkA) _ hfin _ (_root_.GlobalTheory.Member.isDetRoot_mul _ _ _ _ _ hx hxr) _ hq
   have e2 := chr_root_eq hI hA j k hk _ hkA _ hkAm _ hxr _ ((hA.base k hk β).1.of_extTo (ColIn.Q_subset_SQ I a) hd)
   have hD := muDetLaw_chain (Pr := B.primes X) I.Ch I.sel (I.tup a) (I.cst a) j.1 (B.R.N k)
   rw [muAt_eq_muAtT I.Ch I.sel (I.tup a) (I.cst a) (muqTie_of_ok _ _ _ _ _ (hI.idx_ok a)) j.1 j.2] at hD

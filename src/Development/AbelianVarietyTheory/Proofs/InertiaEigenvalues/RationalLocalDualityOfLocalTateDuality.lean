@@ -344,7 +344,7 @@ theorem ratIso_of_localTateDuality : Formalism.GaloisCohomology.LocalTateDuality
   intro hLTD p _ K O _ _ _ _ _ _ _ VT VT' _ _ _ _ _ _ _ _ _ _ _ _ _ _ G _ _ hK hO hF i D hD hinj f
   haveI := hD.cs
   haveI := hD.cs'
-  obtain ⟨inv', -, -⟩ := GlobalTheory.T.invIso_of_localTateDuality hLTD hK hO hF i hD.cyc
+  obtain ⟨inv', -, -⟩ := _root_.GlobalTheory.InvColim.inv_iso hLTD hK hO hF i hD.cyc
   have hlat' : IsLatticeIn D.T' := by
     refine ⟨Module.Finite.iff_fg.1 (GlobalTheory.dualLat_finite_free D.bT D.T hD.lat hD.perf).1, ?_⟩
     rw [eq_top_iff]
@@ -369,7 +369,7 @@ theorem ratIso_of_localTateDuality : Formalism.GaloisCohomology.LocalTateDuality
       rw [pr_swapLat_q, cup_H1_flip_eq_zero D.ρT D.ρT' (twist D.ε (FractionRing O)) D.bT D.contbT
         D.eqT (D.contbT.comp continuous_swap) (fun g x f => D.eqT g f x) hD.contT D.contT'
         ((swapLat D hD.contT inv'.toLinearMap).j' t) z (hz _), map_zero, map_zero]
-  haveI : Module.Finite O (H1 D.ρTl') := GlobalTheory.T.finIso_dualLattice_of_localTateDuality hLTD hK hO i hD
+  haveI : Module.Finite O (H1 D.ρTl') := _root_.GlobalTheory.FinIsoDualLattice.finIso_of_localTateDuality hLTD hK hO i hD
   have hnd : ∀ y : H1 D.ρT', (∀ a, D.invF (cupFG D a y) = 0) → y = 0 := by
     intro y hy
     obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible O

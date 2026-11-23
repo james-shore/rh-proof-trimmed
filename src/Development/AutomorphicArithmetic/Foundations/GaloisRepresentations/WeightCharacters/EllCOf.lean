@@ -39,6 +39,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SeparatingAlgebras.EllGrp
 
 @[expose] public section
 
@@ -66,7 +67,7 @@ theorem UpperTheory.Gal.Wt.ellC_of :
       rw [h]; group
     have h1 := hneat g γ hγ _ hfd _ (GlobalTheory.EllU.inv_finPart_mul_mem (d : UA E a)) e
     exact Subtype.ext h1
-  obtain ⟨ℓ, h1, h2⟩ := UpperTheory.Gal.Gen.ellGrp_holds (UA E a) C (ratU E a) D f hyp
+  obtain ⟨ℓ, h1, h2⟩ := _root_.UpperTheory.Gal.Gen.ellGrp_pf (UA E a) C (ratU E a) D f hyp
   have hinf : ∀ x ∈ infU E a, ∀ g, ℓ (g * x) = ℓ g := by
     intro x hx g
     have e : f ⟨x, le_sup_right (a := C) hx⟩ = 1 := Subtype.ext (GlobalTheory.EllU.finPart_of_infU hx)

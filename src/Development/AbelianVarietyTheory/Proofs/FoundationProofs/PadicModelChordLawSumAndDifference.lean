@@ -43,6 +43,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Foundations.NormSumPairRankZeroOfCurveCoordNorm
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.TaylorSeriesInParameterRescaleOfAlgebraic
 
 @[expose] public section
 
@@ -70,10 +71,6 @@ theorem chord_change {K : Type*} [Field K] [CharZero K] (e r s t a b c d : K) (h
   ring
 
 variable {p : ℕ} [Fact p.Prime]
-
-theorem lamC_coe' (lam : Qbar →+* ℂ_[p]) (x : Qbar) : lamC lam (x : ℂ) = lam x := by
-  unfold lamC
-  rw [dite_eq_left x.2]
 
 theorem W_a₁ (g : GL3Theta.G1 p) : g.W.a₁ = ((g.C.u⁻¹ : ℂ_[p]ˣ) : ℂ_[p]) * (2 * g.C.s) := by
   simp [GL3Theta.G1.W, wModel, WeierstrassCurve.variableChange_a₁]
@@ -106,15 +103,15 @@ theorem xAt_add (g : GL3Theta.G1 p) (P Q : ℂ) (h : GlobalTheory.EvenTheta.IsLa
   set B : Qbar := ⟨_, a2⟩
   set C : Qbar := ⟨_, a3⟩
   set D : Qbar := ⟨_, a4⟩
-  have eA : lamC g.lam (wpF g.abelian₂ P) = g.lam A := lamC_coe' g.lam A
-  have eB : lamC g.lam (wpD g.abelian₂ P) = g.lam B := lamC_coe' g.lam B
-  have eC : lamC g.lam (wpF g.abelian₂ Q) = g.lam C := lamC_coe' g.lam C
-  have eD : lamC g.lam (wpD g.abelian₂ Q) = g.lam D := lamC_coe' g.lam D
+  have eA : lamC g.lam (wpF g.abelian₂ P) = g.lam A := _root_.GlobalTheory.SerTransport.lamC_coe g.lam A
+  have eB : lamC g.lam (wpD g.abelian₂ P) = g.lam B := _root_.GlobalTheory.SerTransport.lamC_coe g.lam B
+  have eC : lamC g.lam (wpF g.abelian₂ Q) = g.lam C := _root_.GlobalTheory.SerTransport.lamC_coe g.lam C
+  have eD : lamC g.lam (wpD g.abelian₂ Q) = g.lam D := _root_.GlobalTheory.SerTransport.lamC_coe g.lam D
   have eS : lamC g.lam (wpF g.abelian₂ (P + Q)) =
       ((g.lam B - g.lam D) / (g.lam A - g.lam C)) ^ 2 / 4 - g.lam A - g.lam C := by
     have : wpF g.abelian₂ (P + Q) = ((((B - D) / (A - C)) ^ 2 / 4 - A - C : Qbar) : ℂ) := by
       rw [hadd]; push_cast; rfl
-    rw [this, lamC_coe']
+    rw [this, _root_.GlobalTheory.SerTransport.lamC_coe]
     simp only [map_sub, map_div₀, map_pow, map_ofNat]
   have hAC : g.lam A - g.lam C ≠ 0 := fun e =>
     hne (congrArg Subtype.val (g.lam.injective (sub_eq_zero.1 e)))
@@ -143,8 +140,8 @@ theorem yAt_neg (g : GL3Theta.G1 p) (h : GlobalTheory.EvenTheta.IsLat g.abelian�
     (a4 : wpD g.abelian₂ Q ∈ Qbar) :
     yAt g (-Q) = g.W.toAffine.negY (GlobalTheory.EvenTheta.xAt g Q) (yAt g Q) := by
   have e : lamC g.lam (-wpD g.abelian₂ Q) = -lamC g.lam (wpD g.abelian₂ Q) := by
-    have e1 := lamC_coe' g.lam (-(⟨_, a4⟩ : Qbar))
-    have e2 := lamC_coe' g.lam (⟨_, a4⟩ : Qbar)
+    have e1 := _root_.GlobalTheory.SerTransport.lamC_coe g.lam (-(⟨_, a4⟩ : Qbar))
+    have e2 := _root_.GlobalTheory.SerTransport.lamC_coe g.lam (⟨_, a4⟩ : Qbar)
     rw [map_neg, ← e2] at e1
     exact e1
   have e1 : g.W.toAffine.a₁ = _ := W_a₁ g

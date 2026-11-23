@@ -52,7 +52,7 @@ theorem UpperTheory.Gal.Gen.satEx_pf :
   classical
   intro E _ _ _ a K w hw hK U hU ⟨φ, hφU, hφ0, hφK⟩
   obtain ⟨ho, hc⟩ := GlobalTheory.LFun.SatCompare.isOpen_isCompact_KGL w a
-  obtain ⟨σ, hcomp, v, hv0, hv⟩ := GlobalTheory.T.exists_localComponent_eigenvector_splitPlace E a U hU w hw (GlobalTheory.LFun.KGL w (n := a)) ho hc 1 φ hφU hφ0
+  obtain ⟨σ, hcomp, v, hv0, hv⟩ := _root_.GlobalTheory.SplitEigen.exists_locComp_eigen E a U hU w hw (GlobalTheory.LFun.KGL w (n := a)) ho hc 1 φ hφU hφ0
     (fun x hx hxJ => by
       have := hφK x ((hK x hx).2 hxJ)
       simpa using this)

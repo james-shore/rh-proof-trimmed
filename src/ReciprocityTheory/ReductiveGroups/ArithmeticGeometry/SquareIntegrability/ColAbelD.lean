@@ -70,15 +70,11 @@ def cabOut {I : Submodule ℤ (Vsp X.dim)} (c : Col.Qc X I) : X.L := Quotient.ou
 theorem cabOut_mk {I : Submodule ℤ (Vsp X.dim)} (c : Col.Qc X I) :
     (Submodule.Quotient.mk (cabOut c) : Col.Qc X I) = c := Quotient.out_eq c
 
-private theorem Hf_eq_inner_swap' {ι : Type} [Fintype ι] (v w : EuclideanSpace ℂ ι) :
-    Hf v w = inner ℂ w v := by
-  simp [Hf, PiLp.inner_apply, RCLike.inner_apply]
-
 private theorem im_Hf_sum_real_smul {ι κ : Type} [Fintype ι] [Fintype κ] (x : EuclideanSpace ℂ ι) (r : κ → ℝ)
     (w : κ → EuclideanSpace ℂ ι) : (Hf x (∑ k, r k • w k)).im = ∑ k, r k * (Hf x (w k)).im := by
-  rw [Hf_eq_inner_swap', sum_inner, Complex.im_sum]
+  rw [_root_.ReciprocityTheory.ChartRestriction.G.I2.Col.Hf_eq_inner, sum_inner, Complex.im_sum]
   refine Finset.sum_congr rfl fun k _ => ?_
-  rw [RCLike.real_smul_eq_coe_smul (K := ℂ), inner_smul_left, RCLike.conj_ofReal, ← Hf_eq_inner_swap']
+  rw [RCLike.real_smul_eq_coe_smul (K := ℂ), inner_smul_left, RCLike.conj_ofReal, ← _root_.ReciprocityTheory.ChartRestriction.G.I2.Col.Hf_eq_inner]
   first | simp | simp [Complex.mul_im] | rfl
 
 private theorem sum_inner_ob_smul_e {ι : Type} [Fintype ι] (K : Submodule ℝ (EuclideanSpace ℂ ι)) (a : EuclideanSpace ℂ ι)
@@ -105,18 +101,12 @@ theorem cab_mem_NIp {I : Submodule ℤ (Vsp X.dim)} {γ : X.L} (h : Col.uc (IR I
     ⟨γ.2, fun a ha => hall a (Submodule.subset_span ha)⟩
   exact h2
 
-private theorem uc_sub' {I : Submodule ℤ (Vsp X.dim)} (x y : Vsp X.dim) :
-    Col.uc (IR I) (x - y) = Col.uc (IR I) x - Col.uc (IR I) y := by
-  have h2 : Col.uc (IR I) (x - y + y) = Col.uc (IR I) (x - y) + Col.uc (IR I) y := Col.uc_add _ _
-  rw [sub_add_cancel] at h2
-  exact eq_sub_of_add_eq h2.symm
-
 theorem cab_uc_ne {I : Submodule ℤ (Vsp X.dim)} {c c' : Col.Qc X I} (hne : c ≠ c') :
     Col.uc (IR I) (cabOut c : Vsp X.dim) ≠ Col.uc (IR I) (cabOut c' : Vsp X.dim) := by
   intro heq
   apply hne
   have h1 : Col.uc (IR I) ((cabOut c - cabOut c' : X.L) : Vsp X.dim) = 0 := by
-    rw [Submodule.coe_sub, uc_sub', heq, sub_self]
+    rw [Submodule.coe_sub, _root_.ReciprocityTheory.ChartRestriction.G.I2.Col.uc_sub, heq, sub_self]
   have h3 := (Submodule.Quotient.mk_eq_zero _).mpr (cab_mem_NIp h1)
   rw [Submodule.Quotient.mk_sub, sub_eq_zero, cabOut_mk, cabOut_mk] at h3
   exact h3
@@ -129,29 +119,18 @@ theorem columnVector_ne_zero {I : Submodule ℤ (Vsp X.dim)} {c : Col.Qc X I} (h
   rw [cabOut_mk] at h3
   exact h3
 
-private theorem isU_uc' {I : Submodule ℤ (Vsp X.dim)} (x : Vsp X.dim) : IsU I x (Col.uc (IR I) x) := by
-  refine ⟨?_, fun a ha => ?_⟩
-  · simp only [Col.uc]
-    exact Submodule.sum_mem _ fun k _ => Submodule.smul_mem _ _ (Col.ob (IR I) k).2
-  · conv_rhs => rw [← sum_inner_ob_smul_e (IR I) a ha]
-    rw [im_Hf_sum_real_smul]
-    simp only [Col.uc, sum_inner, real_inner_smul_left]
-    refine Finset.sum_congr rfl fun k _ => ?_
-    simp only [Submodule.coe_inner, Col.z, Col.e]
-    ring
-
 private theorem uc_mem_IR {I : Submodule ℤ (Vsp X.dim)} (x : Vsp X.dim) : Col.uc (IR I) x ∈ IR I :=
-  (isU_uc' x).1
+  (_root_.ReciprocityTheory.ChartRestriction.G.I2.Col.isU_uc x).1
 
 private theorem sqrt_b0_dist_of_ne_of_isSplit {DF : ℕ} {P : Par X DF} {I : Submodule ℤ (Vsp X.dim)} (hI : IsSplit P I)
     {c c' : Col.Qc X I} (h : c ≠ c') :
     Real.sqrt (b0 (E := E) P.q P.R0) ≤
       dist (Col.uc (IR I) (cabOut c : Vsp X.dim)) (Col.uc (IR I) (cabOut c' : Vsp X.dim)) := by
   have hne : Col.uc (IR I) ((cabOut c - cabOut c' : X.L) : Vsp X.dim) ≠ 0 := by
-    rw [Submodule.coe_sub, uc_sub']
+    rw [Submodule.coe_sub, _root_.ReciprocityTheory.ChartRestriction.G.I2.Col.uc_sub]
     exact sub_ne_zero.mpr (cab_uc_ne h)
-  have hs := hI.sep _ (cabOut c - cabOut c').2 _ (isU_uc' _) hne
-  rw [dist_eq_norm, ← uc_sub', ← Submodule.coe_sub]
+  have hs := hI.sep _ (cabOut c - cabOut c').2 _ (_root_.ReciprocityTheory.ChartRestriction.G.I2.Col.isU_uc _) hne
+  rw [dist_eq_norm, ← _root_.ReciprocityTheory.ChartRestriction.G.I2.Col.uc_sub, ← Submodule.coe_sub]
   calc Real.sqrt (b0 (E := E) P.q P.R0) ≤
         Real.sqrt (‖Col.uc (IR I) ((cabOut c - cabOut c' : X.L) : Vsp X.dim)‖ ^ 2) := Real.sqrt_le_sqrt hs
     _ = _ := Real.sqrt_sq (norm_nonneg _)
@@ -159,7 +138,7 @@ private theorem sqrt_b0_dist_of_ne_of_isSplit {DF : ℕ} {P : Par X DF} {I : Sub
 private theorem sqrt_b0_lower_bound_of_ne_zero {DF : ℕ} {P : Par X DF} {I : Submodule ℤ (Vsp X.dim)} (hI : IsSplit P I)
     {c : Col.Qc X I} (h : c ≠ 0) :
     Real.sqrt (b0 (E := E) P.q P.R0) ≤ ‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖ := by
-  have hs := hI.sep _ (cabOut c).2 _ (isU_uc' _) (columnVector_ne_zero h)
+  have hs := hI.sep _ (cabOut c).2 _ (_root_.ReciprocityTheory.ChartRestriction.G.I2.Col.isU_uc _) (columnVector_ne_zero h)
   calc Real.sqrt (b0 (E := E) P.q P.R0) ≤ Real.sqrt (‖Col.uc (IR I) (cabOut c : Vsp X.dim)‖ ^ 2) :=
         Real.sqrt_le_sqrt hs
     _ = _ := Real.sqrt_sq (norm_nonneg _)
@@ -315,31 +294,9 @@ private theorem Hf_e_e_eq_ite {ι : Type} [Fintype ι] {K : Submodule ℝ (Eucli
 private theorem Hf_p2_e_eq_zero {ι : Type} [Fintype ι] {K : Submodule ℝ (EuclideanSpace ℂ ι)}
     (hK : ∀ a ∈ K, ∀ b ∈ K, (Hf a b).im = 0) (v : EuclideanSpace ℂ ι) (j : Fin (Col.dK K)) :
     Hf (Col.p2 K v) (Col.e K j) = 0 := by
-  rw [Hf_eq_inner_swap', Col.p2, inner_sub_right, Col.p1, inner_sum]
-  simp_rw [inner_smul_right, ← Hf_eq_inner_swap', Hf_e_e_eq_ite hK]
+  rw [_root_.ReciprocityTheory.ChartRestriction.G.I2.Col.Hf_eq_inner, Col.p2, inner_sub_right, Col.p1, inner_sum]
+  simp_rw [inner_smul_right, ← _root_.ReciprocityTheory.ChartRestriction.G.I2.Col.Hf_eq_inner, Hf_e_e_eq_ite hK]
   simp [Col.z]
-
-private theorem Hf_eq_sum_z_add_Hf_p2 {ι : Type} [Fintype ι] {K : Submodule ℝ (EuclideanSpace ℂ ι)}
-    (hK : ∀ a ∈ K, ∀ b ∈ K, (Hf a b).im = 0) (v w : EuclideanSpace ℂ ι) :
-    Hf v w = ∑ k, Col.z K k v * (starRingEnd ℂ) (Col.z K k w) + Hf (Col.p2 K v) (Col.p2 K w) := by
-  have hv : v = Col.p1 K v + Col.p2 K v := by rw [Col.p2]; abel
-  have hw : w = Col.p1 K w + Col.p2 K w := by rw [Col.p2]; abel
-  have hgen : ∀ u x : EuclideanSpace ℂ ι,
-      Hf (Col.p1 K u) x = ∑ k, Col.z K k u * (starRingEnd ℂ) (Col.z K k x) := by
-    intro u x
-    rw [Hf_eq_inner_swap', Col.p1, inner_sum]
-    refine Finset.sum_congr rfl fun k _ => ?_
-    rw [inner_smul_right, ← Hf_eq_inner_swap', Hf_conj]
-    all_goals rfl
-  have h2 : Hf (Col.p2 K v) (Col.p1 K w) = 0 := by
-    rw [Hf_conj, hgen]
-    simp [Col.z, Hf_p2_e_eq_zero hK]
-  have h3 : Hf (Col.p2 K v) w = Hf (Col.p2 K v) (Col.p2 K w) := by
-    conv_lhs => rw [hw]
-    rw [Hf_eq_inner_swap', inner_add_left, ← Hf_eq_inner_swap', ← Hf_eq_inner_swap', h2, zero_add]
-  calc Hf v w = Hf (Col.p1 K v + Col.p2 K v) w := by rw [← hv]
-    _ = Hf (Col.p1 K v) w + Hf (Col.p2 K v) w := by rw [Col.Hf_add_l]
-    _ = _ := by rw [hgen, h3]
 
 private theorem im_Hf_eq_zero_on_IR {I : Submodule ℤ (Vsp X.dim)} {x : Vsp X.dim}
     (hx : ∀ a ∈ I, (Hf x a).im = 0) : ∀ a ∈ IR I, (Hf x a).im = 0 := by
@@ -381,16 +338,16 @@ theorem translate_zero_zeroModeLift (hI : IsSplit P I) (hP : Ext.PackingCount) (
   have hper := hβ'.2 _ hγ (Col.wmap (IR I) v - Col.wmap (IR I) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim))
   rw [sub_add_cancel] at hper
   have h1 : Hf v ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) = ∑ k, Col.z (IR I) k v * Col.z (IR I) k ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) + Hf (Col.wmap (IR I) v) (Col.wmap (IR I) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim)) := by
-    rw [Hf_eq_sum_z_add_Hf_p2 hK v]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.I2.Col.Hf_decomp hK v]
     simp only [hzr]
     first | rw [Col.Hf_wmap hK] | rw [Col.Hf_wmap]
   have h2 : Hf ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) = Col.S (IR I) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) + Hf (Col.wmap (IR I) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim)) (Col.wmap (IR I) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim)) := by
-    rw [Hf_eq_sum_z_add_Hf_p2 hK]
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.I2.Col.Hf_decomp hK]
     simp only [hzr, Col.S, sq]
     first | rw [Col.Hf_wmap hK] | rw [Col.Hf_wmap]
   have hzs : ∀ k, Col.z (IR I) k (v - ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim)) = Col.z (IR I) k v - Col.z (IR I) k ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) := fun k => by
     simp only [Col.z]
-    rw [Hf_eq_inner_swap', inner_sub_right, ← Hf_eq_inner_swap', ← Hf_eq_inner_swap']
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.I2.Col.Hf_eq_inner, inner_sub_right, ← _root_.ReciprocityTheory.ChartRestriction.G.I2.Col.Hf_eq_inner, ← _root_.ReciprocityTheory.ChartRestriction.G.I2.Col.Hf_eq_inner]
   have h3 : Col.S (IR I) (v - ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim)) = Col.S (IR I) v - 2 * ∑ k, Col.z (IR I) k v * Col.z (IR I) k ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) +
       Col.S (IR I) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) := by
     rw [Col.S, Col.S, Col.S]
@@ -398,7 +355,7 @@ theorem translate_zero_zeroModeLift (hI : IsSplit P I) (hP : Ext.PackingCount) (
     rw [Finset.mul_sum, ← Finset.sum_sub_distrib, ← Finset.sum_add_distrib]
     exact Finset.sum_congr rfl fun k _ => by ring
   have h4 : Hf (Col.wmap (IR I) v - Col.wmap (IR I) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim)) (Col.wmap (IR I) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim)) = Hf (Col.wmap (IR I) v) (Col.wmap (IR I) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim)) - Hf (Col.wmap (IR I) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim)) (Col.wmap (IR I) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim)) := by
-    rw [Hf_eq_inner_swap', inner_sub_right, ← Hf_eq_inner_swap', ← Hf_eq_inner_swap']
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.I2.Col.Hf_eq_inner, inner_sub_right, ← _root_.ReciprocityTheory.ChartRestriction.G.I2.Col.Hf_eq_inner, ← _root_.ReciprocityTheory.ChartRestriction.G.I2.Col.Hf_eq_inner]
   have hE : (q * Real.pi * Hf v ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) - q * Real.pi * Hf ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) / 2) +
       (q * Real.pi / 2 : ℂ) * Col.S (IR I) (v - ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim)) =
       (q * Real.pi / 2 : ℂ) * Col.S (IR I) v +
@@ -432,7 +389,7 @@ theorem cab_R (hI : IsSplit P I) (hP : Ext.PackingCount) (hA : Ext.GaussianTailB
     exact_mod_cast (by omega : 0 < P.q)
   obtain ⟨g', -, hs, -⟩ := cab_sum_nz hP hA hI
   have huc : ‖Col.uc (IR I) v‖ ≤ ‖v‖ := by
-    have hU := isU_uc' (I := I) v
+    have hU := _root_.ReciprocityTheory.ChartRestriction.G.I2.Col.isU_uc (I := I) v
     have h1 : ‖Col.uc (IR I) v‖ ^ 2 = (Hf v (Col.uc (IR I) v)).im := by
       rw [← real_inner_self_eq_norm_sq]
       exact hU.2 _ hU.1
@@ -442,7 +399,7 @@ theorem cab_R (hI : IsSplit P I) (hP : Ext.PackingCount) (hA : Ext.GaussianTailB
               | exact Complex.im_le_norm _
               | exact Complex.im_le_abs _
               | exact (le_abs_self _).trans (Complex.abs_im_le_norm _)
-        _ ≤ ‖Col.uc (IR I) v‖ * ‖v‖ := by rw [Hf_eq_inner_swap']; exact norm_inner_le_norm _ _
+        _ ≤ ‖Col.uc (IR I) v‖ * ‖v‖ := by rw [_root_.ReciprocityTheory.ChartRestriction.G.I2.Col.Hf_eq_inner]; exact norm_inner_le_norm _ _
         _ = ‖v‖ * ‖Col.uc (IR I) v‖ := mul_comm _ _
     nlinarith [norm_nonneg (Col.uc (IR I) v), norm_nonneg v]
   have hterm : ∀ c : Col.Qc X I, ‖Col.Tc X I P.q β c v‖ ≤ B * Real.exp (P.q * Real.pi * ‖v‖ ^ 2 / 2 -

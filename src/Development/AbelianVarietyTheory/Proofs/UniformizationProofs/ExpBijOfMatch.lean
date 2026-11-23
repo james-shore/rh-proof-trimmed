@@ -65,7 +65,7 @@ theorem expBij_of_match : Laws → Laws2 → ∀ (V : Type) [CommRing V] [IsDoma
   have hu := GlobalTheory.T.fourierJacobiExpansion_overField_injective V hV D.toPre A G U (FractionRing V) k
   have ht := GlobalTheory.T.exists_fourierJacobi_expansion_over_field h1 h2 V hV D.toPre A G U (FractionRing V) k hk
   have e1 := GlobalTheory.T.valueExpansion_of_chartExpansion V _ D A G U U' hM k
-  have e2 := GlobalTheory.T.chartExpansion_of_valueExpansion V _ D A G U U' hM k
+  have e2 := _root_.GlobalTheory.UU.ExpFrac.expands_of_expF V _ D A G U U' hM k
   unfold UnifPre.ExpBij
   refine ⟨fun σ => ?_, fun s => ?_⟩
   · obtain ⟨t, hσt, -⟩ := hK.1 (cast hT σ)

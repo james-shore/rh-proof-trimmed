@@ -58,7 +58,7 @@ theorem main : GlobalTheory.TwSys.Cheb → ∀ {R : Ranks} {H : Host R} {what₂
   have hconj := GlobalTheory.T.pointGaloisReps_conjugate_over_fraction_field hC N i r₀ r h₀ hr
   have hd₀ : ∃ e, GlobalTheory.IndefiniteRowSideFullHecke.CongruenceModuleMatrices.IsDecomp (t := R.t) (r₀ π) (ρ₀ π) (N.chi i) e := by
     refine ⟨S₀.e, fun g u => ?_⟩
-    rw [GlobalTheory.ConsExists.overK_apply, GlobalTheory.ConsExists.overK_apply]
+    rw [_root_.GlobalTheory.SpanIdem.overK_apply, _root_.GlobalTheory.SpanIdem.overK_apply]
     exact hS₀.2.1 g u
   have hρ := GlobalTheory.T.complement_of_characters_unique_up_to_conj N i r₀ r ρ₀ ρ π (h₀ π).2.1 (hconj π) hd₀ hd
   obtain ⟨S, hSg, hS⟩ := GlobalTheory.T.pointObjects_transport_along_conjugation_over_fraction_field N i r₀ r ρ₀ ρ π hconj hρ S₀ hS₀

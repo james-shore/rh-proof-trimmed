@@ -123,9 +123,7 @@ section Frac
 variable {R K V : Type} [CommRing R] [IsDomain R] [Field K] [Algebra R K] [IsFractionRing R K]
   [AddCommGroup V] [Module K V] [Module R V] [IsScalarTower R K V]
 
-theorem exists_smul_mem (N : Submodule R V) {v : V} (hv : v ∈ Submodule.span K (N : Set V)) :
-    ∃ c : R, c ≠ 0 ∧ c • v ∈ N := by
-  first | exact Bl.general_b_fact_third_bis_other.goal1 .. | (apply Bl.general_b_fact_third_bis_other.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_third_bis_other.goal1 <;> assumption) | (apply @Bl.general_b_fact_third_bis_other.goal1 <;> assumption) | (intros; apply @Bl.general_b_fact_third_bis_other.goal1 <;> assumption) | (apply @Bl.general_b_fact_third_bis_other.goal1 <;> first | assumption | infer_instance) | exact @Bl.general_b_fact_third_bis_other.goal1 R K V ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› N v hv | exact @Bl.general_b_fact_third_bis_other.goal1 R K V ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› N v | exact @Bl.general_b_fact_third_bis_other.goal1 R K V ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› N | exact @Bl.general_b_fact_third_bis_other.goal1 R K V ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_third_bis_other.goal1 R K V ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_third_bis_other.goal1 R K V ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_third_bis_other.goal1 R K V ‹_› ‹_› ‹_› ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_third_bis_other.goal1 R K V ‹_› ‹_› ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_third_bis_other.goal1 R K V ‹_› ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_third_bis_other.goal1 R K V ‹_› ‹_› ‹_› | exact @Bl.general_b_fact_third_bis_other.goal1 R K V ‹_› ‹_› | exact @Bl.general_b_fact_third_bis_other.goal1 R K V ‹_› | exact @Bl.general_b_fact_third_bis_other.goal1 R K V | exact @Bl.general_b_fact_third_bis_other.goal1 R K | exact @Bl.general_b_fact_third_bis_other.goal1 R
+alias exists_smul_mem := _root_.Bl.general_b_fact_third_bis_other.goal1
 
 theorem exists_smul_le {N N' : Submodule R V} (hN : N.FG)
     (hN' : Submodule.span K (N' : Set V) = ⊤) : ∃ c : R, c ≠ 0 ∧ ∀ x ∈ N, c • x ∈ N' := by

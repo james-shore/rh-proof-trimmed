@@ -130,16 +130,6 @@ theorem pointwise_le {V ι : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] [F
         simp only [Finset.mul_sum]
         exact Finset.sum_congr rfl fun s _ => by ring
 
-theorem lOneNorm_sub_single_one_le {n : ℕ} (ν : Fin n → ℤ) (s : Fin n) : n1 (ν - Pi.single s 1) ≤ n1 ν + 1 := by
-  have h1 : ∑ i, ((Pi.single s 1 : Fin n → ℤ) i).natAbs = 1 := by
-    rw [Finset.sum_eq_single s]
-    · simp
-    · intro b _ hb; simp [hb]
-    · simp
-  unfold n1
-  rw [← h1, ← Finset.sum_add_distrib]
-  exact Finset.sum_le_sum fun i _ => Int.natAbs_sub_le _ _
-
 theorem param_sub_single {n : ℕ} (lam : Fin n → ℝ) (ν : Fin n → ℤ) (s : Fin n) :
     (fun a => lam a + (((ν - Pi.single s 1) : Fin n → ℤ) a : ℝ)) =
       (fun a => lam a + (ν a : ℝ)) - Pi.single s 1 := by
@@ -155,7 +145,7 @@ theorem moment_step : HypsG → ∀ (k r : ℕ) (Wp : Type) [NormedAddCommGroup 
   have hK : PI.KFinSmooth := hH.1.2.2.1
   obtain ⟨hNum, hFam, hG, hSide⟩ := id hS
   have hν0 : n1 ν ≤ q0 := by omega
-  have hνs : ∀ s, n1 (ν - Pi.single s 1) ≤ q0 := fun s => (lOneNorm_sub_single_one_le ν s).trans hν
+  have hνs : ∀ s, n1 (ν - Pi.single s 1) ≤ q0 := fun s => (_root_.Gp91.GlobalTheory.DualStepBound.lOneNorm_sub_single_one_le ν s).trans hν
   have hDS := hFam ν hν0
   have hDSs := fun s => hFam _ (hνs s)
   obtain ⟨hBe, hdg, -⟩ := hSide ν hν0

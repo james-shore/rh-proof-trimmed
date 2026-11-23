@@ -110,13 +110,13 @@ variable {k O C : Type*} {H : Type v} [Field k] [AddCommGroup H] [Module k H] [R
 theorem finrank_ks_map_cls [FiniteDimensional k H] (σ : O →+* Module.End k H) (G Z : Submodule k H)
     (hG : ∀ a, ∀ x ∈ G, σ a x ∈ G) (hZ : ∀ a, ∀ x ∈ Z, σ a x ∈ Z) (hZG : Z ≤ G) :
     finrank k ((ksSub σ 0 G Z).map (cls G)) =
-      finrank k (homO (qAct (rAct σ G hG) (Z.comap G.subtype) (fun a x hx => hZ a x hx)) (qAct σ G hG)) := GlobalTheory.T.finrank_ksSub_map_cls_eq_finrank_homO σ G Z hG hZ hZG
+      finrank k (homO (qAct (rAct σ G hG) (Z.comap G.subtype) (fun a x hx => hZ a x hx)) (qAct σ G hG)) := _root_.GlobalTheory.HTRho.finrank_ksSub_map_cls_eq_homO σ G Z hG hZ hZG
 
 theorem finrank_homO_crt {ι W V : Type*} [Fintype ι] [AddCommGroup W] [Module k W] [FiniteDimensional k W]
     [AddCommGroup V] [Module k V] [FiniteDimensional k V] (σW : O →+* Module.End k W) (τ : O →+* Module.End k V)
     (χ : ι → C →+* k) (hχ : Function.Injective χ) (hJ : jSub τ χ ⊤ = ⊥) :
     finrank k (homO σW τ) =
-      ∑ i, finrank k (homO σW (qAct τ (mSub τ (χ i) ⊤) (mSub_stable τ (χ i) ⊤ (fun _ _ _ => trivial)))) := GlobalTheory.T.characterAugmentationSubspace_quotientAction_top σW τ χ hχ hJ
+      ∑ i, finrank k (homO σW (qAct τ (mSub τ (χ i) ⊤) (mSub_stable τ (χ i) ⊤ (fun _ _ _ => trivial)))) := _root_.GlobalTheory.HTRho.finrank_homO_eq_sum_quot σW τ χ hχ hJ
 
 theorem finrank_homO_quot {W V : Type*} [AddCommGroup W] [Module k W] [FiniteDimensional k W]
     [AddCommGroup V] [Module k V] [FiniteDimensional k V] (σW : O →+* Module.End k W) (τ : O →+* Module.End k V)
@@ -142,7 +142,7 @@ theorem finrank_sub_quot {ι : Type*} [Fintype ι] [FiniteDimensional k H] (σ :
     let Z := jSub σ χ (LinearMap.range (σ (algebraMap C O ω) - r₁ • 1))
     let σW := qAct (rAct σ G hG) (Z.comap G.subtype) (fun a x hx => hZ a x hx)
     finrank k ((G ⧸ Z.comap G.subtype) ⧸ mSub σW (χ i) ⊤) + finrank k (H ⧸ (G ⊔ mSub σ (χ i) ⊤)) =
-      finrank k (H ⧸ mSub σ (χ i) ⊤) := GlobalTheory.T.finrank_ksSub_quotient_augmentation_of_two_roots σ χ hχ Fil hFil ω r₀ r₁ hr hω hχω hG hZ hJ i
+      finrank k (H ⧸ mSub σ (χ i) ⊤) := _root_.GlobalTheory.HTRho.FilDim.finrank_fildim σ χ hχ Fil hFil ω r₀ r₁ hr hω hχω hG hZ hJ i
 
 theorem count {ι : Type*} [Fintype ι] [FiniteDimensional k H] (σ : O →+* Module.End k H)
     (χ : ι → C →+* k) (hχ : Function.Injective χ) (Fil : Submodule k H) (hFil : ∀ a, ∀ x ∈ Fil, σ a x ∈ Fil)
@@ -208,7 +208,7 @@ theorem rhoCount : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.Datum 
   obtain ⟨hFree, hHodge, -, -, -⟩ := GlobalTheory.T.abelianScheme_firstDeRham_structure
   have hA := o₀.ab
   obtain ⟨g, hg⟩ := GlobalTheory.AbVarRelDim.exists_relDim k o₀.A hA
-  obtain ⟨hfd, -, -⟩ := GlobalTheory.T.finrank_firstDeRhamHomology_hodgeFiltration_of_field hFree hHodge k o₀.A g hA hg
+  obtain ⟨hfd, -, -⟩ := _root_.GlobalTheory.finrank_HdR_Fil_of_field hFree hHodge k o₀.A g hA hg
   have hunit : ∀ n : ℕ, n.Coprime p → IsUnit (n : k) := fun n hn => by
     simpa using (b.unit n hn).map β
   set σ := GlobalTheory.HTCount.crysAct o₀ with hσ
@@ -262,14 +262,14 @@ theorem rhoCount : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.Datum 
     set w := σ (algebraMap (𝓞 D.F) D.O D.ω)
     have : β b.ρ * ((D.tr : k) - β b.ρ) = D.nm := by linear_combination -hρk
     linear_combination (norm := module) e3 - hρk • x
-  have hS2 := GlobalTheory.T.harrisTaylor_rho_part_lie_deRham_quotient p D R b N ‹_› ‹_› k t o₀ β hβ
+  have hS2 := _root_.GlobalTheory.HTLieRho.lie_rho_quot p D R b N ‹_› ‹_› k t o₀ β hβ
   have key := count σ χ hχ (Fil o₀.A) hFil D.ω (β b.ρ) ((D.tr : k) - β b.ρ) hr hω hχω D.m D.n D.m_pos
-    (GlobalTheory.T.harrisTaylor_finrank_deRham_quotient_character p D R b N ‹_› ‹_› k t o₀ β hβ) hS2.1 hS2.2
+    (_root_.GlobalTheory.HTRank.finrank_quot p D R b N ‹_› ‹_› k t o₀ β hβ) hS2.1 hS2.2
     (fun i X Y _ _ _ _ _ _ σX σY hX hY => by
       let eX := (Module.finBasis k X).equivFun
       let eY := (Module.finBasis k Y).equivFun
       rw [finrank_homO_trAct eX eY σX σY]
-      have := GlobalTheory.T.finrank_hom_harrisTaylorOrder_morita p D k hchar (χ i) _ _ (trAct eX σX) (trAct eY σY)
+      have := _root_.GlobalTheory.HTRho.finrank_homO_morita p D k hchar (χ i) _ _ (trAct eX σX) (trAct eY σY)
         (fun c => LinearMap.ext fun x => by rw [trAct_apply, hX]; simp) (fun c => LinearMap.ext fun x => by rw [trAct_apply, hY]; simp)
       rwa [← eX.finrank_eq, ← eY.finrank_eq] at this)
   rw [Fintype.card_fin] at key

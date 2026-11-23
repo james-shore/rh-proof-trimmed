@@ -46,7 +46,7 @@ open scoped Classical
 theorem UpperTheory.Gal.CertificateRingHomMap.pSchHom_of :
     UpperTheory.Gal.CertificateRingHomMap.SchHom := by
   intro n t _
-  refine ⟨fun lam c _ => UpperTheory.Gal.Schur.SchurHomog_holds ℂ n lam t c, fun m => ?_⟩
+  refine ⟨fun lam c _ => _root_.UpperTheory.Gal.Schur.schurHomog ℂ n lam t c, fun m => ?_⟩
   obtain ⟨h0, h1⟩ := UpperTheory.Gal.Schur.SchurDet_holds ℂ n t
   have h := h1 (fun _ => 0) m
   simp only [zero_add] at h

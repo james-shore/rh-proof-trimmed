@@ -111,23 +111,11 @@ theorem Hf_re (D : D7) (T : Tor D) {N N' : ℕ} (z : VC D N N') :
   rw [Complex.div_ofReal_re]
   simp only [Complex.mul_conj, Complex.re_sum, Complex.ofReal_re, Complex.normSq_eq_norm_sq]
 
-theorem Hf_add_re (D : D7) (T : Tor D) {N N' : ℕ} (z x : VC D N N') :
-    (Hf D T (z + x) (z + x)).re = (Hf D T z z).re + 2 * (Hf D T z x).re + (Hf D T x x).re := by
-  unfold Hf
-  simp only [Complex.div_ofReal_re, Complex.re_sum]
-  rw [mul_div_assoc', ← add_div, ← add_div]
-  congr 1
-  simp only [Finset.mul_sum, ← Finset.sum_add_distrib]
-  refine Finset.sum_congr rfl fun τ _ => Finset.sum_congr rfl fun i _ =>
-    Finset.sum_congr rfl fun j _ => ?_
-  simp
-  ring
-
 theorem weight_periodic (D : D7) (T : Tor D) {N N' : ℕ} (A : AddSubgroup (VC D N N'))
     (G : VC D N N' → ℂ) (hG : G ∈ ThSp D T A) (x : VC D N N') (hx : x ∈ A) (z : VC D N N') :
     ‖G (x + z)‖ ^ 2 * Real.exp (-Real.pi * (Hf D T (x + z) (x + z)).re) =
       ‖G z‖ ^ 2 * Real.exp (-Real.pi * (Hf D T z z).re) := by
-  rw [← hG.2 x hx z, add_comm x z, Hf_add_re]
+  rw [← hG.2 x hx z, add_comm x z, _root_.GlobalTheory.ThetaSupPair.Hf_add_re]
   simp only [al, U, norm_mul, norm_zpow, norm_neg, norm_one, one_zpow, one_mul, Complex.norm_exp,
     mul_pow]
   rw [mul_assoc, ← Real.exp_nat_mul, ← Real.exp_add]

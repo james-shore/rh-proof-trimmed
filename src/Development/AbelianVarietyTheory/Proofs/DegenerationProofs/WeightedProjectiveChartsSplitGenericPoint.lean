@@ -168,7 +168,7 @@ theorem split_generic : ∀ (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRi
       exact (hU _ (hb' x)).2 n
   haveI : IsAffineHom (pullback.fst G'.hom (Out.jK R')) :=
     MorphismProperty.of_isPullback (P := @IsAffineHom) (IsPullback.of_hasPullback _ _).flip inferInstance
-  have h := GlobalTheory.T.split_generic_of_based_weightedCharts R' G' (C.pull π) d c _ hd' hs' a j hB
+  have h := _root_.GlobalTheory.ZJ.Charts.split_generic_of_based R' G' (C.pull π) d c _ hd' hs' a j hB
   have hun : IsUnit (algebraMap R (FractionRing R) b) :=
     IsLocalization.map_units (FractionRing R) (⟨b, mem_nonZeroDivisors_of_ne_zero hb⟩ : nonZeroDivisors R)
   let g : R' →+* FractionRing R := IsLocalization.Away.lift b hun

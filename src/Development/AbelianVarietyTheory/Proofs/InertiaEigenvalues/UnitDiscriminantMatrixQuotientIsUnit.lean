@@ -116,7 +116,7 @@ theorem unit_split {E : Type} [NontriviallyNormedField E] [IsUltrametricDist E]
       integ_add (integ_mul hzI heI) (integ_sub integ_one heI)
     have hd := congrArg (fun m => ‖m.det‖) hprod
     simp only [Matrix.det_mul, norm_mul] at hd
-    rw [GlobalTheory.T.ultrametric_norm_det_one_add_smul E n _ ϖ h1 (integ_sub (integ_add ha₃I (integ_mul (integ_mul hy hzI) ha'I)) ha'I)]
+    rw [_root_.GlobalTheory.UnitDiscAlg.norm_det_one_add_smul E n _ ϖ h1 (integ_sub (integ_add ha₃I (integ_mul (integ_mul hy hzI) ha'I)) ha'I)]
       at hd
     have ha := GlobalTheory.T.norm_det_le_one_of_entries_norm_le_one E n _ hwI
     have hb := GlobalTheory.T.norm_det_le_one_of_entries_norm_le_one E n _ hw'I

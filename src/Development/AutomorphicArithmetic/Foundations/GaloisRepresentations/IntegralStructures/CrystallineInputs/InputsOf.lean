@@ -54,6 +54,6 @@ theorem zel : GlobalTheory.Published.ZelevinskyPolynomialRing := UpperTheory.Zer
 theorem gen : GlobalTheory.Published.GenericUnitaryDualGL := PositivityTheory.Gud.Fin.genericUnitaryDualGL_holds
 theorem ac : GlobalTheory.Published.ArthurClozelStrongTC := UpperTheory.Gal.AbelianGaloisNormality.strongTC_holds
 
-theorem inp_holds : Inp := ⟨js, gk, adm, len, exh, zel, gen, ac, hk, alg, pst⟩
+theorem inp_holds : Inp := ⟨_root_.PositivityTheory.AdelicQuotientData.jacquetShalikaRigidity, _root_.UpperTheory.Gal.AbelianGaloisNormality.gk_holds, _root_.PositivityTheory.Tls2.BZGL.irreducibleAdmissibleGL_top, _root_.PositivityTheory.Tls2.BZGL.standardFunctorsFiniteLength_top, _root_.PositivityTheory.Exh.langlandsExhaustionGL_holds, _root_.UpperTheory.Zero.LLC.Pr.zel, _root_.PositivityTheory.Gud.Fin.genericUnitaryDualGL_holds, _root_.UpperTheory.Gal.AbelianGaloisNormality.strongTC_holds, hk, alg, _root_.GlobalTheory.deRham_potentiallySemistable⟩
 
 end UpperTheory.Gal.Int.Inp

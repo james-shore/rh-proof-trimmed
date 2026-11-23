@@ -59,9 +59,9 @@ theorem sqInt_isLSeg (hE : GlobalTheory.Published.LanglandsExhaustionGL) (k : Ty
     (hC : Zl.CasselmanNecSq k) (hL : Zc.LSegExists k) (δ : IrrGL (k := k)) (h1 : 1 ≤ δ.1) (hδ : IsSqIntCoeff δ.rep) :
     ∃ Δ : Segment k, IsLSeg Δ δ.rep := by
   obtain ⟨𝔪, h𝔪⟩ := hE k δ
-  have hc := zbz1core k hS hC hL 𝔪 δ.1 δ.rep h1 δ.2.rep.smooth δ.2.rep.irr hδ h𝔪
+  have hc := _root_.GlobalTheory.CompanionTheory.SquareIntegrableSegments.card_eq_one k hS hC hL 𝔪 δ.1 δ.rep h1 δ.2.rep.smooth δ.2.rep.irr hδ h𝔪
   obtain ⟨Δ, rfl⟩ := Multiset.card_eq_one.1 hc
-  exact ⟨Δ, zblsegsingle k Δ δ.1 δ.rep h𝔪⟩
+  exact ⟨Δ, _root_.GlobalTheory.CompanionTheory.LocGL.isLSeg_of_isL_singleton k Δ δ.1 δ.rep h𝔪⟩
 
 end Zz
 

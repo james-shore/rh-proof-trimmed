@@ -55,6 +55,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.FinitePrimesUnder
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsMatchOver
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NegIdxOfIsStd
 import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.NormSmall
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilVacuumEqResidueCharDetSmul
 
 @[expose] public section
 
@@ -118,10 +119,6 @@ theorem int_of_eq {E : Type} [Field E] [NumberField E] (Q : HeightOneSpectrum (�
     (h : x = o) : algebraMap E (Q.adicCompletion E) x ∈ Q.adicCompletionIntegers E :=
   int_of_mul Q (n := 1) ((Ideal.ne_top_iff_one _).1 Q.isPrime.ne_top) (o := o) (by simpa using h)
 
-theorem mix_inv {A : Type} [CommRing A] {f x y : A} (hf : f * f = f) (h : x * y = 1) :
-    (f * x + (1 - f)) * (f * y + (1 - f)) = 1 := by
-  linear_combination f ^ 2 * h + (2 - x - y) * hf
-
 theorem cross_inv {A : Type} [CommRing A] {a a' b b' : A} (ha : a * a' = 1) (hb : b * b' = 1) : (a' * b) * (b' * a) = 1 := by
   linear_combination b * b' * ha + hb
 
@@ -140,7 +137,7 @@ theorem exists_gen (B : Ideal (𝓞 D.host.E)) (hB : B ≠ ⊥) : ∃ a a' : EAf
     rw [RingHom.map_add (f := _), RingHom.map_mul, RingHom.map_sub, h0 Q hQ]; simp
   refine ⟨f * eToEAf D β + (1 - f), f * eToEAf D (β : D.host.E)⁻¹ + (1 - f), ?_, fun c hc => ?_, fun c hc => ?_,
     fun Q hQ => c0 _ Q fun h => hQ (Ideal.dvd_iff_le.2 h)⟩
-  · exact mix_inv hff hinv
+  · exact _root_.GlobalTheory.VacLoc.unit_aux hff hinv
   · obtain ⟨b, hb, rfl⟩ := (FractionalIdeal.mem_coeIdeal _).1 hc
     refine (mem_OA_iff _).2 fun Q => ?_
     rw [RingHom.map_mul, cpt_rat]
@@ -178,7 +175,7 @@ theorem exists_gen (B : Ideal (𝓞 D.host.E)) (hB : B ≠ ⊥) : ∃ a a' : EAf
 theorem exists_gen_AA (D : D7) : ∃ a a' : EAf D, a * a' = 1 ∧ Clears a' D.host.AA ∧ Clears a D.host.AA⁻¹ ∧
     ∀ Q : Pl D.host.E, ((GlobalTheory.HalfCompare.badInt D : ℕ) : 𝓞 D.host.E) ∉ Q.asIdeal → cpt Q a = 1 := by
   obtain ⟨a, a', ha, h1, h2, h3⟩ := exists_gen D.host.ccE (GlobalTheory.HalfCompare.ccE_ne_bot D)
-  obtain ⟨b, b', hb, k1, k2, k3⟩ := exists_gen D.host.𝔟 (ReciprocityTheory.ChartRestriction.G.PullbackSections.MLI.bb_ne_bot D)
+  obtain ⟨b, b', hb, k1, k2, k3⟩ := exists_gen D.host.𝔟 (_root_.Formalism.L2.Pj.b_ne_bot D)
   refine ⟨a * b', a' * b, by linear_combination b * b' * ha + hb, h1.mul k2, ?_, fun Q hQ => ?_⟩
   · have := h2.mul k1
     unfold Formalism.BasicNotions.Host.AA Formalism.BasicNotions.Host.AA0

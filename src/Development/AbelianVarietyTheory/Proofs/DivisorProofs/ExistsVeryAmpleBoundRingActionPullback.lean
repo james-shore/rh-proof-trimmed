@@ -138,7 +138,7 @@ theorem pull_zpow (k : Type) [Field k] (B : Over (Sp k)) [GrpObj B] [IsCommMonOb
 theorem eff_nsmul {X : Scheme.{0}} [IsIntegral X] (hE0 : Eff (0 : Pic X)) {x : Pic X} (hx : Eff x) :
     ∀ n : ℕ, Eff (n • x)
   | 0 => by rw [zero_smul]; exact hE0
-  | n + 1 => by rw [succ_nsmul]; exact GlobalTheory.T.isEffectivePicClass_add_integral _ _ (eff_nsmul hE0 hx n) hx
+  | n + 1 => by rw [succ_nsmul]; exact _root_.GlobalTheory.EffBound.eff_add _ _ (eff_nsmul hE0 hx n) hx
 
 theorem eff_sum {O : Type} [CommRing O] {S : Scheme.{0}} {B : Over S} [GrpObj B] (act : OAct O B)
     {X : Scheme.{0}} [IsIntegral X] (F : (B ⟶ B) → Pic X) (c0 : Pic X) (hE0 : Eff (0 : Pic X))
@@ -170,7 +170,7 @@ theorem eff_sum {O : Type} [CommRing O] {S : Scheme.{0}} {B : Over S} [GrpObj B]
       push_cast [Nat.cast_sub h2]
       module
     rw [e]
-    exact GlobalTheory.T.isEffectivePicClass_add_integral _ _ (GlobalTheory.T.isEffectivePicClass_add_integral _ _ (GlobalTheory.T.isEffectivePicClass_add_integral _ _ (hpar P g) (eff_nsmul hE0 hP 2)) (eff_nsmul hE0 (ht _) 2))
+    exact _root_.GlobalTheory.EffBound.eff_add _ _ (_root_.GlobalTheory.EffBound.eff_add _ _ (_root_.GlobalTheory.EffBound.eff_add _ _ (hpar P g) (eff_nsmul hE0 hP 2)) (eff_nsmul hE0 (ht _) 2))
       (eff_nsmul hE0 hc0 _)
 
 end GlobalTheory.OEndDegree
@@ -191,7 +191,7 @@ theorem exists_effective_bound : ∀ (E : Type) [Field E] [NumberField E] (k : T
   obtain ⟨H, m, s, hH, hs, hsym⟩ := GlobalTheory.SymVeryAmple.exists_symmetric_veryAmpleBy k A hB hproj
   obtain ⟨r, hr⟩ : ∃ r : LB.Gen (H.pull (eSec A)), r.IsGen :=
     DVR.exists_gen_of_isLB_local (V := k) _ (pull_isLB hH _)
-  obtain ⟨M, hM⟩ := (GlobalTheory.T.abelianScheme_cubical_bundle_exists_and_maps GlobalTheory.globalFns_holds _ A hB).1 ⟨H, r, hH, hr⟩
+  obtain ⟨M, hM⟩ := (_root_.GlobalTheory.AbPackage.abelian_cp GlobalTheory.globalFns_holds _ A hB).1 ⟨H, r, hH, hr⟩
     (GlobalTheory.AbLaw.CubeProj.exists_gen_theta_abelianVariety GlobalTheory.globalFns_holds k A hB hproj H hH) hsym
   have hL : M.L.L = H := by rw [hM]
   subst hL
@@ -243,10 +243,10 @@ theorem exists_effective_bound : ∀ (E : Type) [Field E] [NumberField E] (k : T
       push_cast [Nat.cast_sub hle]
       module
     rw [e]
-    exact GlobalTheory.T.isEffectivePicClass_add_integral _ _ (eff_nsmul hE0 (hci i) _) (eff_nsmul hE0 hEc _)
+    exact _root_.GlobalTheory.EffBound.eff_add _ _ (eff_nsmul hE0 (hci i) _) (eff_nsmul hE0 hEc _)
   have hsum := eff_sum act (fun φ => pull φ.left c0) c0 hE0 hEc h1 hpar d (fun i => n i • a i)
     (fun i => K ^ 2 * ci i) hterm
-  refine GlobalTheory.T.exists_section_nonzero_chart_of_effective_class _ (LB.isLB_div (isLB_pw M.L.isLB _) (pull_isLB M.L.isLB _)) ?_
+  refine _root_.GlobalTheory.EffBound.exists_sec_of_eff _ (LB.isLB_div (isLB_pw M.L.isLB _) (pull_isLB M.L.isLB _)) ?_
   rw [cls_div (isLB_pw M.L.isLB _) (pull_isLB M.L.isLB _), cls_pw M.L.isLB, cls_pull M.L.isLB, hc0]
   have e : (((2 ^ d * ∑ i, ci i + 1) * K ^ 2 : ℕ) : ℤ) • c0 - pull (act.act (∑ i, n i • a i)).left c0 =
       ((2 ^ d * ∑ i, K ^ 2 * ci i) • c0 - pull (act.act (∑ i, n i • a i)).left c0) + (K ^ 2) • c0 := by
@@ -254,6 +254,6 @@ theorem exists_effective_bound : ∀ (E : Type) [Field E] [NumberField E] (k : T
     push_cast
     module
   rw [e]
-  exact GlobalTheory.T.isEffectivePicClass_add_integral _ _ hsum (eff_nsmul hE0 hEc _)
+  exact _root_.GlobalTheory.EffBound.eff_add _ _ hsum (eff_nsmul hE0 hEc _)
 
 end GlobalTheory.OEndDegree

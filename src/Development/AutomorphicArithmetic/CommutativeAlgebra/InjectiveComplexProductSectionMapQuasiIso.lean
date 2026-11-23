@@ -87,12 +87,12 @@ private theorem semi_bij (R : Type) [CommRing R] (L B : Cx R) [L.IsStrictlyGE 0]
       (UpperTheory.bijective_semiMap_of_locally_surjective_on_cocycles R L B ρ (fun T => Nonempty (Sx E 0 T)) hQ hs hi)
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by ring⟩
   constructor
-  · have ex := (GlobalTheory.T.hypercohomology_mappingCone_second_variable_exact ℤ ((chains ℤ).obj E) ρ.toZ m).2.2
+  · have ex := (_root_.GlobalTheory.EtC.coneSeqTgt_exact ℤ ((chains ℤ).obj E) ρ.toZ m).2.2
     set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨y, rfl⟩ := (ex x).1 hx
     rw [Subsingleton.elim y 0, map_zero]
-  · have ex := (GlobalTheory.T.hypercohomology_mappingCone_second_variable_exact ℤ ((chains ℤ).obj E) ρ.toZ (m + 1)).1
+  · have ex := (_root_.GlobalTheory.EtC.coneSeqTgt_exact ℤ ((chains ℤ).obj E) ρ.toZ (m + 1)).1
     intro x
     exact (ex x).1 (Subsingleton.elim _ _)
 
@@ -133,8 +133,8 @@ theorem UpperTheory.injectiveComplex_productSection_map_quasiIso :
   choose Θ hΘ hΘf using fun n => UpperTheory.exists_bijective_cohomologyClass_product_adjunction R W I E n
   refine ⟨fun n => (Θ n).comp (ρ.op.app E n), fun n => (hΘ n).comp (hbij n), ?_⟩
   intro n α
-  obtain ⟨β', hβ'⟩ := (GlobalTheory.T.exists_image_cocycle_semilinearSheafComplexMap R R ρ).1 E n α
-  have e1 := (GlobalTheory.T.exists_image_cocycle_semilinearSheafComplexMap R R ρ).2 E n α β' hβ'
+  obtain ⟨β', hβ'⟩ := (_root_.GlobalTheory.EtC.SemiMap.op_image_spec R R ρ).1 E n α
+  have e1 := (_root_.GlobalTheory.EtC.SemiMap.op_image_spec R R ρ).2 E n α β' hβ'
   obtain ⟨β, hβ, hβf⟩ := hΘf n β'
   refine ⟨β, ?_, ?_⟩
   · show Θ n (ρ.op.app E n (CohomologyClass.mk α)) = _

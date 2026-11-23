@@ -79,7 +79,7 @@ theorem exists_mul_eq_of_generic_unique_complexPoint : ∀ (K Ω : Type) [Field 
     by_cases hs0 : s = 0
     · exact ⟨0, B.zero_mem, 1, B.one_mem, one_ne_zero, by simp [hs0]⟩
     · exact ⟨r, hr, s, hs, hs0, div_mul_cancel₀ r hs0⟩
-  obtain ⟨F, _, i₁, i₂, hi, hne2⟩ := GlobalTheory.T.exists_ringHom_pair_eq_on_subfield_ne_of_not_mem_range L Ω a haL
+  obtain ⟨F, _, i₁, i₂, hi, hne2⟩ := _root_.GlobalTheory.exists_embeddings_agree_on_subfield_ne L Ω a haL
   letI : Algebra B A := (Subalgebra.inclusion hBA).toRingHom.toAlgebra
   haveI : IsScalarTower K B A := IsScalarTower.of_algebraMap_eq fun k => rfl
   haveI : Algebra.FiniteType K A := (Subalgebra.fg_iff_finiteType A).1 hA
@@ -97,7 +97,7 @@ theorem exists_mul_eq_of_generic_unique_complexPoint : ∀ (K Ω : Type) [Field 
   have hinj : Function.Injective (j₁.comp (algebraMap B A)) := by
     intro b c h
     exact Subtype.ext (i₁.injective h)
-  obtain ⟨q, hq, Hq⟩ := GlobalTheory.T.exists_ne_zero_forall_complexPoint_separate' B A F j₁ j₂ hj hinj ⟨a, haA⟩ hne2
+  obtain ⟨q, hq, Hq⟩ := _root_.GlobalTheory.exists_ne_zero_forall_complexPoint_separate B A F j₁ j₂ hj hinj ⟨a, haA⟩ hne2
   obtain ⟨x, hxσ, hxq, hxu⟩ := H q q.2 (fun h => hq (Subtype.ext h))
   let φ : B →+* ℂ := x.comp (algebraMap B A)
   have hφq : φ q ≠ 0 := hxq (hBA q.2)

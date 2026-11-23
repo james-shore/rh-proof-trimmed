@@ -81,7 +81,7 @@ private theorem sum_inf_zero {a : ℕ} (ρ : CuspSub E a) (hn : GlobalTheory.Dis
       Finset.sum_congr rfl fun τ _ => GlobalTheory.T.trace_operator_eigenvalue_sum E a ρ τ _ (GlobalTheory.CuspRep.ParLaws.hasInfChar_infChar (CG.mk ρ) τ) x x.2,
       ← Finset.sum_smul]
   refine GlobalTheory.CompanionTheory.TotalTrace.eq_zero_of_exp_mul_eq_one fun t => ?_
-  have h1 := GlobalTheory.T.central_eigen_exponential E a _ _ hlie t g₀
+  have h1 := _root_.GlobalTheory.CompanionTheory.Clozel.eigen_along_splitCentre E a _ _ hlie t g₀
   rw [hn _ x.2 t g₀] at h1
   exact mul_right_cancel₀ hg₀ (by rw [one_mul]; exact h1.symm)
 

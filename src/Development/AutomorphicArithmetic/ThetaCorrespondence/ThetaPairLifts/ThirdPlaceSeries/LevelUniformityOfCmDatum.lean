@@ -107,7 +107,7 @@ theorem level_uniformity_transfer_alt : _root_.GlobalTheory.HeightCounting.Up.Pu
     apply hne
     simp only [φ, AddChar.coe_mk, AddChar.one_apply, mul_one] at e1
     exact Units.ext ((embLL0 (Dof x)).injective (by rw [e1, Units.val_one, map_one]))
-  have hex := GlobalTheory.T.exists_nontrivial_addChar_zmod_eq_of_ne_one ((Dof x).host.g kv0.1) (2 ≤ (Dof x).R.r) φ hφ
+  have hex := _root_.GlobalTheory.exists_nontrivial_addChar_eq_of_ne ((Dof x).host.g kv0.1) (2 ≤ (Dof x).R.r) φ hφ
   let ψ' := hex.choose
   have hψ'1 : ψ' ≠ 1 := hex.choose_spec.1
   have hψ'φ : 2 ≤ (Dof x).R.r → ψ' = φ := hex.choose_spec.2

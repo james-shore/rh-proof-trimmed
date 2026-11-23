@@ -68,13 +68,6 @@ namespace GlobalTheory.Mum.UnifEven
 
 open GlobalTheory.UU GlobalTheory.LN
 
-theorem isAdmissible_maximalIdeal_of_completeNormalCharZero {R : Type} [CommRing R] [IsDomain R] [IsLocalRing R] (hB : Base R) : admitted R (maximalIdeal R) := by
-  refine ⟨hB.1, hB.1.2.2.2, hB.2, (maximalIdeal.isMaximal R).isPrime, ?_⟩
-  letI := Ideal.Quotient.field (maximalIdeal R)
-  infer_instance
-
-
-
 theorem exists_setting {R : Type} [CommRing R] [IsDomain R] [IsLocalRing R]
     {G : Over (Spec (CommRingCat.of R))} [GrpObj G] [IsCommMonObj G] (P : CP G) (hS : IsSemiAbelian G)
     (hE : EvenOn P) (A : PolAV (Sp (FractionRing R)))
@@ -128,7 +121,7 @@ theorem GlobalTheory.Mum.exists_unif_even : ∀ (R : Type) [CommRing R] [IsDomai
   obtain ⟨⟨hL, hL2, hL3, -, -⟩, -⟩ := GlobalTheory.lawsAndExpansions
   have hE := GlobalTheory.LN.ega_holds
   have hU := GlobalTheory.uniformisation_dvr_unconditional
-  have hR := GlobalTheory.Mum.UnifEven.isAdmissible_maximalIdeal_of_completeNormalCharZero hB
+  have hR := _root_.GlobalTheory.Mum.PreUnifEven.isAdmissibleCompleteLocalDomainPrime_of_completeNormal hB
   have := hR.1.1
   have := hR.2.2.1
   have hI := hR.2.2.2.1

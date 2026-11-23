@@ -94,7 +94,7 @@ theorem exists_poly_one (W : Submodule ℂ (Kinf E a → ℂ)) (hW : FiniteDimen
     ∃ p : Polynomial ℂ, p ≠ 0 ∧ ∀ φ : Sm E a,
       (∀ g : GA E a, (fun k : Kinf E a => (cptRep E a k φ).1 g) ∈ W) → GlobalTheory.HCF.CentralNilGL χ N φ →
         Polynomial.aeval (lapOp E a) p φ = 0 := by
-  obtain ⟨q, hq0, hq⟩ := GlobalTheory.T.exists_poly_maximalCompactCasimir_kills_KType E a W hW
+  obtain ⟨q, hq0, hq⟩ := _root_.GlobalTheory.HCKTypes.exists_casK_poly E a W hW
   let A : Option (E →+* ℂ) → Module.End ℂ (Sm E a) := fun o => o.elim (casKOp E a) fun τ => Formalism.REAL.Cas (Eop τ)
   let c : Option (E →+* ℂ) → ℂ := fun o => o.elim 2 fun _ => 4
   let P : Option (E →+* ℂ) → Polynomial ℂ := fun o =>

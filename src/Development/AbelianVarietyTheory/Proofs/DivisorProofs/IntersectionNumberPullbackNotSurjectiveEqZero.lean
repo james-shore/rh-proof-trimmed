@@ -93,7 +93,7 @@ theorem inter_pull_eq_zero_of_not_surjective : ∀ (K : Type) [Field K] (A B : A
     exact (Homeomorph.Set.univ B.X.left).isHomeomorph.topologicalKrullDim_eq
   have hB : topologicalKrullDim B.X.left ≤ (A.dim : ℕ) := by
     rw [GlobalTheory.AV.AbVar.topologicalKrullDim_eq_dim K B, hdim]
-  have h3 := GlobalTheory.PullVanish.withBot_lt_of_add_one_le_nat (h1.trans (h2.trans_le hB))
+  have h3 := _root_.GlobalTheory.VB.lt_of_add_one_le_natCast (h1.trans (h2.trans_le hB))
   have hA : topologicalKrullDim A.X.left ≤ ((0 + A.dim : ℕ) : WithBot ℕ∞) := by
     rw [Nat.zero_add, GlobalTheory.AV.AbVar.topologicalKrullDim_eq_dim K A]
   let e : Fin 0 ⊕ Fin A.dim ≃ J := (Equiv.emptySum (Fin 0) (Fin A.dim)).trans (Fintype.equivFinOfCardEq hJ).symm

@@ -89,7 +89,7 @@ theorem log_eq (Λ : E.Lift G D) (w : Cn (G ⋙ modF (AcrEl (PX q κ) n)) 2) (hw
     (y : (G.obj (s.obj (Fin.last 2))).1.obj.Acr n)
     (hy : y = B.dlog (B.DD false (G.obj (s.obj (Fin.last 2))).1.obj n) (l * n) ((GlobalTheory.CompanionTheory.FirstChernComparison.lam false n Λ).r s).val) :
     y = E.acrVal G n (s.obj (Fin.last 2)) (w s) :=
-  (E.Main.logEx l _ n).2.1 _ _ _ (GlobalTheory.CompanionTheory.FirstChernComparison.st2 false n Λ s y hy) (hw s)
+  (_root_.GlobalTheory.CompanionTheory.CrisLog.logEx l _ n).2.1 _ _ _ (GlobalTheory.CompanionTheory.FirstChernComparison.st2 false n Λ s y hy) (hw s)
 
 theorem tCo_eq (z : Cn (G ⋙ modF (AcrEl (PX q κ) n)) 2) : E.tCo G n 2 z = (tA l ^ 1 : Acris l) • z :=
   congrArg (fun a : Acris l => a • z) (pow_one (tA l : Acris l)).symm
@@ -151,7 +151,7 @@ theorem firstChern_family_exists (M : Model l K) (D : E.LineData M.X) (hD : sSup
 theorem h1_lift_of_firstChern (ht : TFil l) {e : E.EtFam l K} (he : EtP e) : ∀ (M : Model l K) (D : E.LineData M.X), Etale D.f →
     sSup (Pb.𝒱D D) = ⊤ → ∀ (r : E.Roots l) (v : M.T 2), IsEtaleFirstChernUntwisted r D v → ∃ x, IsFirstChernClassInFamily D x ∧ IsLift ht e 1 v x :=
   fun M D hf hD r v hv => (firstChern_family_exists M D hD).elim fun x hx =>
-    ((E.Main.liftEx l (R.forE l) _ M.X M.p (okToOC l K) _ (𝟭 _) D).2 hf).elim fun Λ =>
+    ((_root_.GlobalTheory.CompanionTheory.LineLift.liftEx l (R.forE l) _ M.X M.p (okToOC l K) _ (𝟭 _) D).2 hf).elim fun Λ =>
       ⟨x, hx.1, hx.2, fun n => (he.c1 M D r v hv _ (𝟭 _) Λ n).elim fun z h => h.elim fun hz h' =>
         firstChern_class_general ht M.p (okToOC l K) D n (x n) (hx.1 n) Λ (e M n 2 (v.lev n)) z hz h'.1 h'.2⟩
 

@@ -131,11 +131,6 @@ open ReciprocityTheory.ChartRestriction.G.FD
 
 variable {D : D7}
 
-theorem archM_mul (V : HSp D) (th : Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ) (g g' : GA D V) :
-    archM V th (g * g') = archM V th g * archM V th g' := by
-  unfold archM
-  rw [map_mul, Units.val_mul, Matrix.map_mul]
-
 theorem exists_rat {θ : InfFam D} (hθ : IsInfFam θ) {V : HSp D} {γ : GA D V} (hγ : γ ∈ GQ V) :
     ∃ m : GL (Fin V.rank) D.host.E, m ∈ Formalism.UG.UJ (D.sp.cm.sig : D.host.E →+* D.host.E) V.gram ∧
       ∀ ρ, archM V (θ ρ) γ = (m : Matrix (Fin V.rank) (Fin V.rank) D.host.E).map (tauE D ρ) := by
@@ -234,7 +229,7 @@ theorem zCusp_adel : ∀ (D : D7) (θ : InfFam D) (V : HSp D) (S : D.what₂.Tau
       have h1 : mat x (e ρ) = archM V (θ ρ) (γ * v * g) * x0Mat M ρ := hxm ρ _ (he ρ)
       have h2 : mat (dict g).2 (e ρ) = archM V (θ ρ) (γ * g) * x0Mat M ρ := hfr ρ _ (he ρ)
       change mat x (e ρ) = _ * mat (dict g).2 (e ρ)
-      rw [h1, h2, archM_mul, archM_mul, archM_mul, hs]
+      rw [h1, h2, _root_.GlobalTheory.PointAtPlace.archM_mul, _root_.GlobalTheory.PointAtPlace.archM_mul, _root_.GlobalTheory.PointAtPlace.archM_mul, hs]
       simp only [Matrix.mul_assoc]
     have hmu : mu v = 1 := by
       obtain ⟨ee, hee, -⟩ := hG.wt
@@ -293,7 +288,7 @@ theorem zCusp_adel : ∀ (D : D7) (θ : InfFam D) (V : HSp D) (S : D.what₂.Tau
           rw [ht ρ]
           simp only [s₀, Equiv.symm_apply_apply, mul_div_cancel₀ _ (hκ ρ)]
           rfl
-        rw [archM_mul, (hL1 _ (htv s).1).2, h3, ← Matrix.mul_assoc, hAT, Matrix.mul_assoc, hAT, ← Matrix.mul_assoc,
+        rw [_root_.GlobalTheory.PointAtPlace.archM_mul, (hL1 _ (htv s).1).2, h3, ← Matrix.mul_assoc, hAT, Matrix.mul_assoc, hAT, ← Matrix.mul_assoc,
           EmbeddingHermitianPairs.flowMat_mul _ hiso.2.1, Pi.add_apply, Complex.ofReal_add]
     simp only [key]
     rw [integral_const_mul]

@@ -69,11 +69,6 @@ theorem decoratedLattice_unitScale_functional_keeps_frames {X : Formalism.L2.Col
   · have e : p.mv (Formalism.L2.Col.DecoSet.dia1 P c p.1.1.deco) = p := dif_neg h
     rw [e]
 
-theorem finM_mul' {D : D7} (V : HSp D) {n : ℕ} (hn : V.rank = n) (g h : GA D V) :
-    finM V hn (g * h) = finM V hn g * finM V hn h := by
-  subst hn
-  exact GlobalTheory.AdForm.RdLaw.finM_mul V g h
-
 theorem ptOf_gl_dia : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins B X → ∀ (l : I.Laws) (Z : TC.Later B (I.cols l)) (u : B.Word) (a : I.ι) (Ch : ℕ → Type) (A : TwDat I l Z u a Ch), A.Is → ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (ι : Type)
     (p : ι → SplitPt (I.rec7 l Z) k) (β : ∀ j i, Frame (p i) ((I.rec7 l Z).sp.X j) (Fin ((I.rec7 l Z).sp.X j).rank))
     (Q : ∀ j, ι → Pair k (Fin ((I.rec7 l Z).sp.X j).rank)) (L : ∀ j, Lat ((I.rec7 l Z).sp.X j)),
@@ -93,7 +88,7 @@ theorem ptOf_gl_dia : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → T
   have hR := hA.reads j hj
   let y : TC.GA B (B.R.N j) := ((A.K j hj (A.chOf j c)).y ⟨c, rfl⟩).1
   refine ⟨y * δ, ?_, ?_⟩
-  · rw [Units.val_mul, hδ, finM_mul', (hA.h j hj _ ⟨c, rfl⟩).2]
+  · rw [Units.val_mul, hδ, _root_.GlobalTheory.FrameGlInt.finM_mul, (hA.h j hj _ ⟨c, rfl⟩).2]
     rfl
   · obtain ⟨p0, hk0, hN0⟩ := hR.k_std (A.chOf j c)
     have hkc := hk0.lat

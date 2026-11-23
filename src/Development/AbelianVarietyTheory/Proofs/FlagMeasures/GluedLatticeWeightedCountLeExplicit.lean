@@ -165,8 +165,8 @@ theorem glueSum_le : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.wha
   obtain ⟨-, hbdd, -, hαpos, hDI⟩ := Formalism.L2.SG.Pf.Cnt.densInputT_holds D hTied hk Y.δ Y.M Y.agree
     (locSpOf Y.δ Y.M Y.agree) u u' hT (X.Fu u) (Y.what₂ u) hR ϖ hϖ
   obtain ⟨hk2, P, q, l, hl, hS, hx⟩ := hDI
-  have hsd := (Formalism.FourierDecayAlt.Final.tc_densChain Formalism.FourierDecayAlt.Final.tc_densSum Formalism.FourierDecayAlt.Final.tc_densLeTwo
-    Formalism.FourierDecayAlt.Final.tc_densSize P q l _ _ _ _ hk2 hl hS hx).2
+  have hsd := (_root_.Formalism.FourierDecayAlt.P.DensitySumsAndDomination.densChain _root_.Formalism.FourierDecayAlt.P.DensitySumsAndDomination.densSum _root_.Formalism.FourierDecayAlt.P.RecursionWithDensities.J1.t_DensLeTwo
+    _root_.Formalism.FourierDecayAlt.P.RecursionWithDensities.J1.t_DensSize P q l _ _ _ _ hk2 hl hS hx).2
   have hdle : ∏' p, Formalism.L2.SG.CntLocal.densP (locSpOf Y.δ Y.M Y.agree) Y.δ ϖ (Formalism.L2.SG.CntLocal.Tn u)
       (Formalism.L2.SG.CntLocal.Tn u') (ZhatL (lf D (X.Fu u)) G') p ≤ 2 * ∏' p, Formalism.L2.SG.DataInst.alpD u u' p :=
     (le_csSup hbdd ⟨_, hrow, rfl⟩).trans ((div_le_iff₀ hαpos).1 hsd)

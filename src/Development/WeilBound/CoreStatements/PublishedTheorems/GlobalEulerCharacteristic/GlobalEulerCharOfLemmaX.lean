@@ -52,7 +52,7 @@ namespace PositivityTheory.Lit1.GEN
 
 theorem globalEulerChar_of_lemmaX (hX : GlobalEulerCharCoprime) : ReciprocityTheory.Gal.GlobalEulerChar := by
   intro F Ω _ _ _ _ _ l _ r M _ _ _ _ _ S rhoS
-  exact globalEulerCharAt_of_ratioOne S rhoS (ratioOne_of_lemmaX l hX)
+  exact _root_.PositivityTheory.Lit1.GEN.W_dictfwd_a.globalEulerCharAt_of_ratioOne S rhoS (ratioOne_of_lemmaX l hX)
 
 theorem globalEulerChar_full : ReciprocityTheory.Gal.GlobalEulerChar :=
   globalEulerChar_of_lemmaX X.lemmaX

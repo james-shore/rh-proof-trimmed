@@ -225,7 +225,7 @@ private theorem rec_sat (hE : GlobalTheory.Published.LanglandsExhaustionGL) (hZ 
     (hBσ : GlobalTheory.LFun.HasSatGL w σ.ρ B) (rc : IrrGL (k := w.adicCompletion E) → WD h) (hrc : UpperTheory.Zero.LLC.IsRecT h rc) :
     rc (algNorm σ) = satWD h n B ∧ UpperTheory.GalStar.Tor (rc (algNorm σ)) ∧ (rc (algNorm σ)).mono0 := by
   obtain ⟨a, ha, hL⟩ := hrc
-  obtain ⟨ξ, hξ, ϖ, hsup, hunr, hϖ, rfl⟩ := GlobalTheory.T.supercuspidal_support_characters E n hn w σ B hBσ
+  obtain ⟨ξ, hξ, ϖ, hsup, hunr, hϖ, rfl⟩ := _root_.GlobalTheory.SatSupp.hasSupport_of_hasSatGL E n hn w σ B hBσ
   have hun : Unlinked (chars ξ hξ) := unlinked_of_sat hJ E n hn π w ξ hξ ϖ hϖ hB
   set s : ℂ := (((1 - (n : ℝ)) / 2 : ℝ) : ℂ) with hs
   let ξ' : Fin n → ((w.adicCompletion E)ˣ →* ℂˣ) := fun j => ξ j * GlobalTheory.SmGL.absPow _ s

@@ -60,12 +60,6 @@ noncomputable section
 
 namespace GlobalTheory.HalfSep
 
-theorem map_infPart_eq_zero {D : D7} {S T : HSp D} {b : AE D} (hb : infPart D b = 0) {y : WO S T}
-    (hy : IsHalf b y) : y.map (infPart D) = 0 := by
-  ext i j
-  simp only [Matrix.map_apply, Matrix.zero_apply]
-  rw [← hy i j, map_mul, hb, zero_mul]
-
 theorem sep : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D), IsStdChar D ψ (-1) → ∀ (ΛS : Submodule (𝓞 D.host.E) (Fin S.rank → D.host.E)) (ΛT : Submodule (𝓞 D.host.E) (Fin T.rank → D.host.E)), IsSelfDualC S ΛS → IsSelfDualC T ΛT → ∀ (Z : Finset (Pl D.host.E)) (e : AE D), IsIdemSum e Z → ∀ f₀ Φ f : WO S T → ℂ, IsSBHalf e (latO S T ΛS ΛT fun _ => True) Φ → IsThetaAt ψ (symplO S T) (heisO ψ S T) e (latO S T ΛS ΛT fun _ => True) 1 f₀ Φ f → ∀ g : GA D S, (∀ x, Φ x ≠ 0 → Φ (actO S T g 1 x) = 0) → ∃ (n : ℕ) (a : Fin n → ℂ) (y : Fin n → WO S T), (∀ i, (y i).map (infPart D) = 0 ∧ (actO S T g⁻¹ 1 (-(y i))).map (infPart D) = 0) ∧ ∑ i, a i • heisO ψ S T (y i) f = f ∧ ∑ i, conj (a i) • heisO ψ S T (actO S T g⁻¹ 1 (-(y i))) f = 0 := by
   classical
   intro D ψ S T hψ ΛS ΛT hS hT Z e he f₀ Φ f hΦ hth g hsupp
@@ -87,7 +81,7 @@ theorem sep : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D), IsStd
     · have : ∃ t, Φ t ≠ 0 ∧ N • t = u := by
         by_contra h; exact hu (if_neg h)
       obtain ⟨t, ht, rfl⟩ := this
-      exact GlobalTheory.ThetaOrth.isHalf_nsmul (hΦ.1 t ht) N
+      exact _root_.GlobalTheory.SplitScalar.isHalf_nsmul (hΦ.1 t ht) N
     · have key : (∃ t, Φ t ≠ 0 ∧ N • t = u + (N * k) • v) ↔ ∃ t, Φ t ≠ 0 ∧ N • t = u := by
         constructor
         · rintro ⟨t, ht, h⟩
@@ -130,7 +124,7 @@ theorem sep : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D), IsStd
   have hact : ∀ i, actO S T g 1 (w i) = -(y i) := fun i => by
     have := GlobalTheory.AdelicLatMove.actO_actO_inv S T g 1 (-(y i))
     rwa [inv_one] at this
-  refine ⟨n, a, y, fun i => ⟨map_infPart_eq_zero hinfc (hy i), map_infPart_eq_zero hinfc (hwh i)⟩, ?_, ?_⟩
+  refine ⟨n, a, y, fun i => ⟨_root_.GlobalTheory.PlaceDatum.infPart_of_half hinfc (hy i), _root_.GlobalTheory.PlaceDatum.infPart_of_half hinfc (hwh i)⟩, ?_, ?_⟩
   · have e1 : (fun t => q t * Φ t) = Φ := by
       funext t
       by_cases h : Φ t = 0

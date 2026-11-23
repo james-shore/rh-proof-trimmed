@@ -193,8 +193,8 @@ theorem cptPart_le_compact (hU : Unr E) (n : ℕ) (w : Pl E) (y : GLw n w) (hs :
     intro g hg
     have hg' : g⁻¹ ∈ H0 := H0.inv_mem hg
     intro i j
-    exact ⟨hc _ (hadj g hg.1) (GlobalTheory.T.isIntegral_adicCompletionIntegers_of_isCompact_zpowers E w n g hg.2) i j,
-      hc _ (hadj g⁻¹ hg'.1) (GlobalTheory.T.isIntegral_adicCompletionIntegers_of_isCompact_zpowers E w n g⁻¹ hg'.2) i j⟩
+    exact ⟨hc _ (hadj g hg.1) (_root_.GlobalTheory.isIntegral_of_isCompact_closure_zpowers E w n g hg.2) i j,
+      hc _ (hadj g⁻¹ hg'.1) (_root_.GlobalTheory.isIntegral_of_isCompact_closure_zpowers E w n g⁻¹ hg'.2) i j⟩
   refine ⟨H0.topologicalClosure, ?_, ?_⟩
   · rw [Subgroup.topologicalClosure_coe]
     exact hB.of_isClosed_subset isClosed_closure (closure_minimal hSB hB.isClosed)

@@ -77,17 +77,12 @@ open scoped ContDiff
 
 attribute [local instance] Over.cartesianMonoidalCategory
 
-theorem tay_coord {N : ℕ} (k : Fin N) :
-    tay (fun v : Fin N → ℂ => v k) 0 = MvPowerSeries.X ((0 : Fin 1), k) := by
-  apply GlobalTheory.JetLinSub.tay_coord <;> assumption
-
-
 theorem jetN_coord {n g : ℕ} (m : ℕ) (a : ℂ) (i : Fin n) (j : Fin g) :
     jetN m (fun w : Fin n → Fin g → ℂ => a * w i j) =
       Ideal.Quotient.mk _ (MvPolynomial.C a * MvPolynomial.X (i, j)) := by
   have h1 : jetOf m (fun v : Fin (n * g) → ℂ => v (finProdFinEquiv (i, j))) =
       Ideal.Quotient.mk _ (MvPolynomial.X ((0 : Fin 1), finProdFinEquiv (i, j))) := by
-    rw [jetOf, tay_coord, psJet, FBIdJet.psTrunc_eq, ← MvPolynomial.coe_X, FBIdJet.mk_trunc_coe]
+    rw [jetOf, _root_.GlobalTheory.JetLinSub.tay_coord, psJet, FBIdJet.psTrunc_eq, ← MvPolynomial.coe_X, FBIdJet.mk_trunc_coe]
   have h2 := jetOf_mul m (f := fun _ : Fin (n * g) → ℂ => a) (h := fun v => v (finProdFinEquiv (i, j)))
     contDiffAt_const (contDiff_apply ℂ (fun _ => ℂ) _).contDiffAt
   rw [jetOf_const, h1] at h2
@@ -167,10 +162,6 @@ theorem jetMap_uniq {n m : ℕ} {ψ ψ' : Sp (Jet ℂ (Fin n × Fin g) m) ⟶ A.
   obtain ⟨_, rfl⟩ := h'
   rfl
 
-theorem e_zero_left : (Φ.e 0).left = x0 ≫ eSec A := by
-  rw [(Φ.e_ker 0).2 Φ.lat.zero_mem, Hom.one_def, Over.comp_left, Over.toUnit_left]
-  rfl
-
 theorem jetMap_aug {n m : ℕ} {ψ : Sp (Jet ℂ (Fin n × Fin g) m) ⟶ A.left}
     {Λ : (Fin n → Fin g → ℂ) →ₗ[ℂ] (Fin g → ℂ)} (h : Φ.JetMap m ψ Λ) :
     spMap ((jetAug : Jet ℂ (Fin n × Fin g) m →ₐ[ℂ] ℂ) : Jet ℂ (Fin n × Fin g) m →+* ℂ) ≫ ψ = (Φ.e 0).left := by
@@ -193,7 +184,7 @@ theorem corr_rig {n m : ℕ} {K : Type} [Fintype K] (φ : K → (Sp (Jet ℂ (Fi
     rw [hid, Category.id_comp]
   intro j j' _ _ hjj
   have hj : ∀ k, j k = j' 0 := fun k => hjj k 0 (by
-    rw [h0, ← e_zero_left Φ]; exact jetMap_aug Φ (h.1 k))
+    rw [h0, ← _root_.GlobalTheory.AnVal.AnFr.genMove_e_zero_left Φ]; exact jetMap_aug Φ (h.1 k))
   apply Units.ext
   set W := LB.wchart L.L (fun k => (homAt x0 (jetAug : Jet ℂ (Fin n × Fin g) m →ₐ[ℂ] ℂ)).left ≫ φ k) j ⊓
     LB.wchart L.L (fun _ : Fin 1 => (overAt x0 ℂ).hom ≫ eSec A) j' with hWdef
@@ -212,7 +203,7 @@ theorem corr_rig {n m : ℕ} {K : Type} [Fintype K] (φ : K → (Sp (Jet ℂ (Fi
           LB.wchart L.L φ j := Set.mem_iInter.2 fun k => Set.mem_iInter.1 hc.1 k
       rwa [hp] at this
     have hU : ⊤ ≤ (Φ.e 0).left ⁻¹ᵁ L.L.U (j' 0) := by
-      rw [e_zero_left Φ, ← h0]
+      rw [_root_.GlobalTheory.AnVal.AnFr.genMove_e_zero_left Φ, ← h0]
       exact hW2.trans (LB.wchart_le _ _ _ 0)
     refine valAt'_id_inj hW ?_
     refine (TB.ValAt.valAt'_res (𝟙 (Sp ℂ)) inf_le_left hW _).trans (Eq.trans ?_ (TB.ValAt.valAt'_res (𝟙 (Sp ℂ)) inf_le_right hW _).symm)

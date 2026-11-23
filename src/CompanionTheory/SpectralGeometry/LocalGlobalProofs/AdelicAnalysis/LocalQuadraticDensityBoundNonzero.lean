@@ -67,19 +67,9 @@ theorem exists_unif (v : HeightOneSpectrum (𝓞 F)) : ∃ π : Fv F v, Valued.v
   obtain ⟨π, hπ⟩ := v.valuation_exists_uniformizer F
   exact ⟨((π : v.adicCompletion F) : Fv F v), by rw [v.valuedAdicCompletion_eq_valuation', hπ]⟩
 
-theorem le_exp_of_lt_one {a : WithZero (Multiplicative ℤ)} (h : a < 1) : a ≤ WithZero.exp (-1 : ℤ) := by
-  rcases eq_or_ne a 0 with rfl | ha
-  · exact zero_le
-  · rw [← WithZero.exp_log ha] at h ⊢
-    have h' : WithZero.log a < 0 := by
-      rw [← WithZero.exp_lt_exp, WithZero.exp_zero]; exact h
-    rw [WithZero.exp_le_exp]
-    omega
-
 variable {v : HeightOneSpectrum (𝓞 F)} {ι : Type} [Fintype ι]
 
-theorem mem_int {x : Fv F v} : x ∈ v.adicCompletionIntegers F ↔ Valued.v x ≤ 1 := by
-  exact Iff.rfl
+alias mem_int := _root_.GlobalTheory.CompanionTheory.SW.Hensel.mem_int
 
 theorem q_int (h2 : Valued.v (2 : Fv F v) = 1) {B : Matrix ι ι (Fv F v)}
     (hB : ∀ i j, B i j ∈ v.adicCompletionIntegers F) {y : ι → Fv F v}
@@ -253,7 +243,7 @@ theorem pi_ne_zero {π : Fv F v} (hπ : Valued.v π = WithZero.exp (-1 : ℤ)) :
 theorem div_int {π : Fv F v} (hπ : Valued.v π = WithZero.exp (-1 : ℤ)) {a : Fv F v}
     (h1 : Valued.v a ≤ 1) (h2 : Valued.v a ≠ 1) : Valued.v (π⁻¹ * a) ≤ 1 := by
   have hlt : Valued.v a < 1 := lt_of_le_of_ne h1 h2
-  have hle := le_exp_of_lt_one hlt
+  have hle := _root_.GlobalTheory.CompanionTheory.SW.QuadIso.le_exp_neg_one hlt
   rw [map_mul, val_inv hπ]
   calc WithZero.exp (1 : ℤ) * Valued.v a ≤ WithZero.exp (1 : ℤ) * WithZero.exp (-1 : ℤ) :=
         mul_le_mul_of_nonneg_left hle zero_le

@@ -1,10 +1,10 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.RefLinked
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSt
+import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.HasBaseDegreeSetting
+import Development.AutomorphicSpectrum.Definitions.MetricPeriods.GeometricAbelianConnected
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.LowerBoundOfBaseSetting
 import Development.WeilBound.CoreStatements.FlagImmersions.ExistsWord
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PBlockRatioAlg
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PHFlProdLinear
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterNamed
 
 noncomputable section
 

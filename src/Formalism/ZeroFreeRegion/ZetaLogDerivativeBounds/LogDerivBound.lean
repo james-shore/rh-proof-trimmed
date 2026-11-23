@@ -1,7 +1,4 @@
 import Formalism.ZeroFreeRegion.SmallHeightLogDeriv
-import Mathlib.Analysis.Complex.BorelCaratheodory
-import Mathlib.Analysis.Complex.HasPrimitives
-import Mathlib.Analysis.Complex.Liouville
 
 open Complex Metric
 

@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FullToGlIsSelfAdjoint
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.FourierMatch
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.JacquetRallisBorderedMatrixNormalFormInvariants
+
 open GlobalTheory.JR Matrix MeasureTheory Filter Topology
 
 namespace GlobalTheory.JR.SuppBdd

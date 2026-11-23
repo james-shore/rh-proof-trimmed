@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MovedReadingSameMapsBaseReadingAgrees
-import Formalism.LocalToGlobal.Divisibility.FramesLemmas
 import Formalism.LocalToGlobal.Divisibility.ColumnFamilyPlaceCharacterComap
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FrmOfPosDef
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PosDefMapEmbeddingOfPositiveAtPlaceStatement

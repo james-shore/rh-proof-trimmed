@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LinkedUnramifiedChains.RedDefs
-import Mathlib
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.MainFin
 
 set_option linter.overlappingInstances false

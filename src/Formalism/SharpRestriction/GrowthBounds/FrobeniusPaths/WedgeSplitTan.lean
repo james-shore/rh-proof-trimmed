@@ -1,5 +1,6 @@
 import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.ColOKOfPath
 import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.EqEmptyIffSplit
+import Formalism.LatticeTheta.Statement
 
 noncomputable section
 

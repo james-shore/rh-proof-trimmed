@@ -1,10 +1,9 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.Objects
-import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.UIObjects
-import ReciprocityTheory.AnalyticForms.PotentialTheory.HessCIsHermitian
-import ReciprocityTheory.AnalyticForms.PotentialTheory.ProjectiveLinePartitionContinuousCoe
-import ReciprocityTheory.AnalyticForms.PotentialTheory.PLCurveA
-import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StTailShift
+import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.MdiscSt
+import ReciprocityTheory.AnalyticForms.PotentialTheory.IntegrableOnTargetOfTsupport
+import ReciprocityTheory.AnalyticForms.PotentialTheory.Partition
+import ReciprocityTheory.AnalyticForms.PotentialTheory.AtlasIndep
 
 set_option maxSynthPendingDepth 1
 

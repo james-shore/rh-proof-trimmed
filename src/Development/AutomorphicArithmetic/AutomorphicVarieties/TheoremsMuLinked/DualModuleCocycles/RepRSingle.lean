@@ -1,6 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.OrdinaryHeckeAlgebraIntegral
-import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.FinDefs
-import Mathlib.Algebra.DualNumber
 
 noncomputable section
 

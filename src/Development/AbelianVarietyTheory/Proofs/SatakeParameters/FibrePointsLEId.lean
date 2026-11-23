@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CoveringOfForallMem
+import Development.AbelianVarietyTheory.Definitions.Divisors.PullHlComp
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry

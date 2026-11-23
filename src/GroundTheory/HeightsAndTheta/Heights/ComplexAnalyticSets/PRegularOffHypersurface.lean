@@ -1,8 +1,8 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StRegularOffHypersurface
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.RegularLocus
 import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.StFrameGraphGeneric
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.OsgoodSeparate
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.ComplexSets

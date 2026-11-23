@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.PairingDivisors.StatementA
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsFinSetSplitPlacesCoprimeConductor
+import Formalism.PairingDivisors.StatementH
+import Development.AbelianVarietyTheory.Definitions.Divisors.EntireEqOfHalfPlane
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.AddCharTrivialIntegralFiniteAdeleMul
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FiniteIndexUnitIdlSup
 

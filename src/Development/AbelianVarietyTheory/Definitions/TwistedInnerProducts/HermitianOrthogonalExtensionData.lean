@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
-import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
 import Development.AbelianVarietyTheory.Definitions.Foundations.StrictInterlaceIffDescEnum
+import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
 
 noncomputable section
 

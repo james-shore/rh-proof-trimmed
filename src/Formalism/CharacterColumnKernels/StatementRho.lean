@@ -1,4 +1,4 @@
-import Formalism.CharacterColumnKernels.StatGlobalModule
+import Formalism.CharacterColumnKernels.CharacterColumnKernelPairSetVariant
 import Formalism.CharacterColumnKernels.StatementMF
 
 open Finset

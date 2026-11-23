@@ -3,7 +3,6 @@ import Formalism.SharpRestriction.LevelLetterCocycles.ElementDenominator
 import Formalism.SharpRestriction.LevelLetterCocycles.JsetEmb
 import Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpowers.BaseFont
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsCrystallineCyclotomicLevelOfFinrankInvariants
-import Development.AutomorphicArithmetic.ResidueCharacters.FiniteRoots
 
 noncomputable section
 

@@ -3,6 +3,7 @@ import Development.AbelianVarietyTheory.Definitions.Jets.BasicLiftAll
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.InvariantOperatorUnderJacquet
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LiftCapelliOperators
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LiftClosedUnderOperations
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.WordIntegralScaling
 
 namespace GlobalTheory.HatNF.SmoothLift
 

@@ -1,5 +1,6 @@
 import Mathlib
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
+import Formalism.RealPlaceAnalysis.StatementE
+
 open Formalism.REAL Finset
 
 namespace GlobalTheory.CapelliDiff

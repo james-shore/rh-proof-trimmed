@@ -12,7 +12,6 @@ import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.QnTInv
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.QnTPres
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.QmCapComm
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.QnHermHaar
-import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeylCellRange.ReflectionMultiplicationOnBigCell
 
 theorem Formalism.FourierDecayAlt.P.border_first_expansion : Formalism.FourierDecayAlt.Q.BorderE := by

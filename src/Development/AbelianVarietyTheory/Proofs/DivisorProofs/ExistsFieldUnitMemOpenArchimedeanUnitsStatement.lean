@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFieldUnitMemOpenArchimedeanUnits
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsRapidInf
 
 open NumberField IsDedekindDomain GlobalTheory.CuspRep Matrix
 set_option maxHeartbeats 1000000 in

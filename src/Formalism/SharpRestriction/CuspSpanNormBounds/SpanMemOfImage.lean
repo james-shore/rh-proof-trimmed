@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.CuspSpanNormBounds.StarVecMulDM
+import Formalism.SharpRestriction.CuspSpanNormBounds.TrD
 
 open MeasureTheory Matrix Finset
 

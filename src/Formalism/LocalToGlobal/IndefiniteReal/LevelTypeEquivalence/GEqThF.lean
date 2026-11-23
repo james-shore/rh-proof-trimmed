@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.GEqTie
 import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.GEqUnit
+import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
 
 noncomputable section
 

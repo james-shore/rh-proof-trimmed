@@ -1,5 +1,6 @@
 import Formalism.AdmissibleDesigns.FiniteClassesContinuousLattice
 import Formalism.AdmissibleDesigns.RankReductionIdempotentOne
+import Formalism.SharpRestriction.LevelLetterCocycles.GoodCongruenceDataOf
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 

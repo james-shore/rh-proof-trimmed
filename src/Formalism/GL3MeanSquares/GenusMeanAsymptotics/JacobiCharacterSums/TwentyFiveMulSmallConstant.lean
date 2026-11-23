@@ -1,4 +1,4 @@
-import Formalism.GL3MeanSquares.GenusMeanAsymptotics.JacobiCharacterSums.ExistsPowerSumLowerBound
+import Mathlib
 
 open Finset Complex
 

@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MultOfNotMem
+import Formalism.DegreeFormula.PointDegree.PowSum
 
 noncomputable section
 

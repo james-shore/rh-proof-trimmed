@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
-import Formalism.LocalRingCardinality.HostCls
+import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
 import Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.NuLe
 import Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.NuQDUnit
 import Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.SumFactorizationMulLogLe

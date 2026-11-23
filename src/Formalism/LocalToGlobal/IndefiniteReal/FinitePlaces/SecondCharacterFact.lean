@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.NormNatCastLtOne
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.ContinuousCoB
 
 noncomputable section
 

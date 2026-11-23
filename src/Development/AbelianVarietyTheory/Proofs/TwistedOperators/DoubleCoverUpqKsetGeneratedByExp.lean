@@ -3,6 +3,7 @@ import Formalism.SharpRestriction.Divisibility.SchurIrreducible
 import Formalism.LocalToGlobal.BesselHermitianTheta.DefsReal
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.FiniteDimKStableSubspaceKFiniteLie
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.TorusWeightVectorIffCartanWeightVector
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactExponentialSurjective
 
 open Formalism.BasicNotions.TH Formalism.MainNotions.SchurIrreducible
 

@@ -2,6 +2,9 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ChowForms.StatementsChartMax
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PProperSymm
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.LowerBoundConditional
+import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.MahlerSectionBasic
+import GroundTheory.HeightsAndTheta.Heights.ChowForms.ImportsBis
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

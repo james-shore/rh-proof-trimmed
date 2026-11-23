@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.RootWeights.GlOperatorMemIntegralEnveloping
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.IntegralEnvelopingPreservesSubmodule
 
 noncomputable section
 

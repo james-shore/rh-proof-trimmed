@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.HermitianForms.LastCoordinateUniformizerVectorSpansOrthogonalLi
-import Formalism.LocalToGlobal.HermitianForms.TransportT
 
 noncomputable section
 

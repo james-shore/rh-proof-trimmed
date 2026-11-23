@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.ProjectiveLattices.PlaceBelow
+import Formalism.LocalToGlobal.ProjectiveLattices.ChartDirectionsIntegral
 
 set_option autoImplicit false
 

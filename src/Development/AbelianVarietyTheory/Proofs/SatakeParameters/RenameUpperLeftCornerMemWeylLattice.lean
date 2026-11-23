@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
 import Formalism.SatakeDualWeyl.KpqSubgroupCompact
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LClosedeqLemmas
 
 open MvPolynomial Formalism.GradedWeylDivisibility
 

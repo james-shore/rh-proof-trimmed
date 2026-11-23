@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConvUAbsU
+import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.GindikinKarpelevich
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIdealWeight
 
 noncomputable section

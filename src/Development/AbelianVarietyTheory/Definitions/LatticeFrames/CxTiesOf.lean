@@ -1,12 +1,9 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.MiStarOfMid
+import Formalism.LocalToGlobal.IndefiniteReal.ZeroPartEigenvalueConvention
+import Formalism.LocalToGlobal.IndefiniteReal.EvTieP
+import Formalism.LocalToGlobal.IndefiniteReal.LiftGoodPartComplexEqRangeFamily
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.JoinSI
 import Formalism.LocalToGlobal.IndefiniteReal.RecTie
-import Formalism.LocalToGlobal.IndefiniteReal.RealSeparation.FramesOKg2
-import Formalism.LocalToGlobal.IndefiniteReal.RealSeparation.SignsG
-import Formalism.LocalToGlobal.IndefiniteReal.AutomorphicEvaluation
-import Formalism.LocalToGlobal.IndefiniteReal.EvalTieTOne
-import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 
 noncomputable section
 

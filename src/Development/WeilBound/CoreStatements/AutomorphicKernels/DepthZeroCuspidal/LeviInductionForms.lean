@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.DepthZeroCuspidalLL
+import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HasExponentZeroIff
 import Formalism.SharpRestriction.LevelLetterCocycles.WildPro
 
 noncomputable section

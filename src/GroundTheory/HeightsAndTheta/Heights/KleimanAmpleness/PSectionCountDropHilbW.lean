@@ -6,6 +6,8 @@ import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.VeryAmpleEmbedSecti
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.VeryAmpleEmbedNumbersSt
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.CechH0SectionsHypothesesLine
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.InterNumPointSt
+import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.Statements
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Kleiman

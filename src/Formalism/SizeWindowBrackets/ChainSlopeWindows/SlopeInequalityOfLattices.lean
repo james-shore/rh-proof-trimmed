@@ -1,8 +1,7 @@
-import Formalism.SizeWindowBrackets.SlopeHypothesesRounded
-import Formalism.SizeWindowBrackets.ChainSlopeWindows.WeightedSlopeExcessDecomposition
-import Formalism.SizeWindowBrackets.ChainSlopeWindows.LevelOfCongruence
-import Formalism.SizeWindowBrackets.ChainSlopeWindows.JointDModelAppliesUnitLattice
-import Formalism.SizeWindowBrackets.ChainSlopeWindows.ExistsNsmulMem
+import Formalism.SizeWindowBrackets.ClaimGaFree
+import Formalism.SizeWindowBrackets.QuotientSlopeBoundsWith
+import Formalism.HarderNarasimhan.StatementFrameF
+import Formalism.HarderNarasimhan.ShiftInvariance
 
 open Module NumberField Matrix
 open Formalism.CorankShareLayerCake.FR Formalism.HN

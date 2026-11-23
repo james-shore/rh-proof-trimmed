@@ -1,9 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsMonHomOfMulComp
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRescalePsiW0
-import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.PsiInOfIsPowDeg
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGeneratorTransferThroughTensorIsoStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorDataMumfordSideGeneratorValuesStatement
+
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj

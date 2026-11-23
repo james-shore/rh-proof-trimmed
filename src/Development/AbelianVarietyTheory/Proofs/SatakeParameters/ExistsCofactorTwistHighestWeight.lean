@@ -1,10 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.GlobSpecOfExists
-import Formalism.GradedWeylDivisibility.FinalD
-import Formalism.SatakeDualWeyl.KpqSubgroupCompact
-import Formalism.LocalToGlobal.Divisibility.CoefModLemmas
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PosOkId
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.GenMDetNeZeroOfNontrivial
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.DualWeylModuleStable
 
 open MvPolynomial NumberField IsDedekindDomain Formalism.GradedWeylDivisibility Formalism.MainNotions.G Formalism.L2.Col Formalism.HermitianLatticesTheory Formalism.BasicNotions Formalism.L2.DIV GlobalTheory.GO GlobalTheory.ValCmp
 

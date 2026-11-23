@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SatakeDualWeyl.StatementC
-import Formalism.QuotientMetricDivisors.RatHermLcvTwist
+import Formalism.QuotientMetricDivisors.Statement
 import Formalism.MirabolicMackeyTheory.StatementT
 
 noncomputable section

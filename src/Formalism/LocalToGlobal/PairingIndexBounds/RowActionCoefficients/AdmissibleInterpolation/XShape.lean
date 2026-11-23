@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.PairingIndexBounds.RowActionCoefficients.NumericalIdentityScalar
+import Formalism.LocalToGlobal.PairingIndexBounds.RowActionCoefficients.XFacts
 import Formalism.LocalToGlobal.PairingIndexBounds.RowActionCoefficients.AdmissibleInterpolation.EvalIdFrameRowAct
 
 open MvPolynomial

@@ -1,12 +1,11 @@
 import Development.EtaleCohomology.CohomologicalPurity.LeafMonoPf
-import Development.EtaleCohomology.CohomologicalPurity.LeafPushPf
+import Development.EtaleCohomology.CohomologicalPurity.LeafTubeCut
 import Development.EtaleCohomology.CohomologicalPurity.LeafGoodPf
 import Development.EtaleCohomology.CohomologicalPurity.LeafDeltaPf
 import Development.EtaleCohomology.CohomologicalPurity.LeafExactPf
-import Development.EtaleCohomology.CohomologicalPurity.LeafGenPf
+import Development.EtaleCohomology.CohomologicalPurity.LeafClCut
 import Development.EtaleCohomology.CohomologicalPurity.LeafImgHomPf
 import Development.EtaleCohomology.CohomologicalPurity.LeafImgPf
-import Development.EtaleCohomology.CohomologicalPurity.LeafBdCut
 import Development.EtaleCohomology.CohomologicalPurity.PresSheafify
 import Development.EtaleCohomology.CohomologicalPurity.FreePMapMk
 

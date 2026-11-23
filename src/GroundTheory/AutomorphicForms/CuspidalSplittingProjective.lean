@@ -1,5 +1,7 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.CuspidalSplittingPositivity
+import GroundTheory.AutomorphicForms.JacquetAdmissible
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

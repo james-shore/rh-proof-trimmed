@@ -1,9 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Degenerations.PullChartIsLB
-import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.IsPartPartSec
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.DivCalc
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AmplePt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.PrecompleteBases.PsbLb
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.IsPartPartSec
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open scoped CategoryTheory.Obj

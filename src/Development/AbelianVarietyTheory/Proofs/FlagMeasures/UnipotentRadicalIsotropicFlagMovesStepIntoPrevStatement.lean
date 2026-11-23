@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnipotentRadicalIsotropicFlagMovesStepIntoPrev
-import Formalism.SharpRestriction.CuspSpanNormBounds.IsTermOver
-import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.NormAdditiveCharacterTypePrimeEqOne
 
 open Formalism.MainNotions.S
 set_option maxHeartbeats 1000000 in

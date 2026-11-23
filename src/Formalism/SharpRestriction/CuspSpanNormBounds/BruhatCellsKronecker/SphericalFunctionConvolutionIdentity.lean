@@ -1,7 +1,7 @@
 import Formalism.SharpRestriction.CuspSpanNormBounds.PlaceDegreeData
-import Formalism.FlagUnipotentLattices.HalfDifferenceL1Bound
-import Formalism.FlagUnipotentLattices.MinkowskiFactorialBounds.CoefficientLeOperatorNorm
-import Formalism.FlagUnipotentLattices.MinkowskiFactorialBounds.ExtensionInterSubspace
+import Formalism.NormUnitaryBounds.Statement
+import Formalism.NormUnitaryBounds.DetPolynomialWeights.LtSuccOfMemWeightCompositions
+import Formalism.LatticeTheta.LatticeThetaProofs.InnerDualVecBasis
 
 noncomputable section
 

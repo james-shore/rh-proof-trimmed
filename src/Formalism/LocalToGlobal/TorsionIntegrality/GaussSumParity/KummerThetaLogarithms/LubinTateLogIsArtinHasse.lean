@@ -1,6 +1,6 @@
-import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.KurComplete
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.TransportFirstLevel
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.StatementE
-import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.FlowDouble
+import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.TwoTorsionU
 import Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.FinalB
 
 noncomputable section

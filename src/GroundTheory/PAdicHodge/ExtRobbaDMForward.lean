@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.PAdicHodge.ExtRobbaDMRankOne
+import GroundTheory.PAdicHodge.ExtRobbaBounded
 
 set_option maxSynthPendingDepth 1
 

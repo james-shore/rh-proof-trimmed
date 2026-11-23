@@ -1,5 +1,4 @@
 import Formalism.WachLatticeTwists.LagrangeExtensionCocycles.ExtensionCocycleProofs.MemSpanOfFrobeniusMemSpan
-import Formalism.ResultantValuation.ResultantAdjugateProofs.Window
 
 noncomputable section
 

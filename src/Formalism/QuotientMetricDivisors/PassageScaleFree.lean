@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.QuotientMetricDivisors.DualMu
-import Formalism.QuotientMetricDivisors.StatementK
+import Formalism.QuotientMetricDivisors.Statement
+import Formalism.HarderNarasimhan.QuotRealize
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix

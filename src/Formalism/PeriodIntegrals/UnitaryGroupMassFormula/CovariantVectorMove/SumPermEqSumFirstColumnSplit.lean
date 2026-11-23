@@ -1,5 +1,4 @@
-import Formalism.PeriodIntegrals.QmDefs
-import Formalism.PeriodIntegrals.QmMove
+import Formalism.RealPlaceAnalysis.StatementE
 import Formalism.RealPlaceAnalysis.RealPlaceTaylor.ShiftedGeneratorEqIteSmulAdd
 import Formalism.RealPlaceAnalysis.RealPlaceTaylor.GeneratorCommutatorQuantumDet
 

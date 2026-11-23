@@ -1,4 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.StrictMonoSnoc
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.ThirdPeelingMinorMemIdeal
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.AAvCongr
 
 open Matrix Finset
 

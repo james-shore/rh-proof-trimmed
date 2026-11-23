@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ImageCochainExists
+import Development.AbelianVarietyTheory.Definitions.Divisors.PullHlComp
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.BocksteinSheafHomotopy.BocksteinLemmas
 
 set_option backward.isDefEq.respectTransparency false

@@ -4,6 +4,7 @@ import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsInverse
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.SymplecticRealPartVanish
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.SmoothIffRealCoordinatesAndRealLines
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.ContinuousOfHeisenbergLevelAndSmooth
+import Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.StarPurelyImaginaryEqNeg
 
 noncomputable section
 

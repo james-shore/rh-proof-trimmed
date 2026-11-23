@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalRingCardinality.Params
-import Formalism.CoboundaryTransfers.Statement
 
 namespace Formalism.BasicNotions.Rows
 

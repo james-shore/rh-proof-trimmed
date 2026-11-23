@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemFiltrationOfComponentsMemEigenSpan
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.QuotientEigenDifference
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.MultiplicationKernelIdentity
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemAddValuationIntegerRingNormalizedIff
 
 open scoped NNReal
 open GlobalTheory.IndefiniteRowSideFullHecke.MultiplicationKernelIdentity GlobalTheory.HerbrandBridge

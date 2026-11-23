@@ -1,8 +1,8 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PublishedTheorems.CuspSemisimpleReal
-import Development.AutomorphicArithmetic.AutomorphicVarieties.PublishedTheorems.RepNewform
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.CuspidalFiniteness.TypePoly
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.CapCentral
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.CuspidalFiniteness.ExistsZalgOfCenterU
+
 open NumberField GlobalTheory.CuspRep UpperTheory.V
 
 private theorem sqId {A : Type} [Ring A] [Algebra ℂ A] {n : ℕ} (E : Fin n → Fin n → A) :

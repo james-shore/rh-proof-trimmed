@@ -1,11 +1,8 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.Statements
 import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.IsSaturatedFirstCoordinateLine
-import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.Comparison
-import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightOrbitCurve
-import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightOrbitDegree
-import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightRecR
-import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.CurveIsOrbit
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.FiniteSupportHeight
+import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightObjects
 import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.Reading
 
 set_option maxSynthPendingDepth 1

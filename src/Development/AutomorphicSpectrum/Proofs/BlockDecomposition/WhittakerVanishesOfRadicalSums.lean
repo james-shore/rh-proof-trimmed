@@ -1,5 +1,5 @@
 import Mathlib
-import Development.WeilBound.CoreStatements.FiniteTypeHarishChandra.SupportExistsAll
+import Development.WeilBound.CoreStatements.FiniteTypeHarishChandra.FiniteDimensionalHcSpace
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ColGeR
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PatternGroupStatement
 

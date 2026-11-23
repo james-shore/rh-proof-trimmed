@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.PadicSubsetSums.CentralIdempotents.WindowSums
-import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.EigenUniformiser
 
 namespace DualFramesAlt.eigenRingInvariants
 

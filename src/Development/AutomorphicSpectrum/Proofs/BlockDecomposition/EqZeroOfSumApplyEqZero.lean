@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsSubquotientDetRepParInd
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IwahoriProjSurjective
+import Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGeneralLinearGroup
 
 open GlobalTheory.PRep GlobalTheory.SmGL
 open scoped TensorProduct Topology

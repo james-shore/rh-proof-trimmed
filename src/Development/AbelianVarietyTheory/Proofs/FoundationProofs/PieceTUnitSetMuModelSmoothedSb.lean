@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.SumMulCoPtSbEqSumInv
-import Development.AbelianVarietyTheory.Definitions.Foundations.CoPtMu
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PieceTUnitSetEqFourPieceTRaw
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.UnitPieceMuEq
+
 open GlobalTheory.KummerEisensteinGalois
 
 namespace GlobalTheory.LambdaValuationPowers

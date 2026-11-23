@@ -1,5 +1,4 @@
 import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialOfFun
-import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.IsPshLocallyIntegrableStatement
 
 namespace ReciprocityTheory.AnForm.P
 

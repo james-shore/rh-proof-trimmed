@@ -1,5 +1,4 @@
 import Formalism.HermitianCurvature.WeylElementCommutesLevelOne
-import Formalism.FormalDegreeBessel.FinalG
 
 open Matrix MeasureTheory Filter Topology
 open scoped ENNReal NNReal

@@ -1,6 +1,4 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.AbelianSchemeQuotients.QSurjective
-import Mathlib.Algebra.DualNumber
-import Mathlib.RingTheory.Valuation.Integers
 
 noncomputable section
 

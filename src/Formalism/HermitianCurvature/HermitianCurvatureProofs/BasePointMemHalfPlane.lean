@@ -1,4 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.FderivDecomp
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.HasFDerivAtPrim
 
 open Set Filter Topology Complex
 

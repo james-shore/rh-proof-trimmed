@@ -1,10 +1,10 @@
 import Mathlib
 import Formalism.SharpRestriction.ParConsts
-import Formalism.LocalRingCardinality.DataKerI
 import Formalism.LocalRingCardinality.CoeNeZeroOfNotMem
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.NuRowNonnegLeTenMul
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ScaleFamilySizeRelationsEventually
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.YoungDiagramCardEqSumRowLenRange
+
 open Formalism.MainNotions Formalism.BasicNotions Formalism.MainNotions.G Classical
 
 namespace GlobalTheory

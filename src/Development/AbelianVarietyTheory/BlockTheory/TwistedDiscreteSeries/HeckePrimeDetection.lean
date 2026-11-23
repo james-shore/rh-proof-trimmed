@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsPointedOfIsHkIsog
+import Formalism.LocalToGlobal.ProjectiveLattices.HeckeStabSet
 
 set_option autoImplicit false
 

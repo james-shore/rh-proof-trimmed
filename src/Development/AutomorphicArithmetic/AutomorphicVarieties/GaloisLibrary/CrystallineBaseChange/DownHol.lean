@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.CrystallineBaseChange.RnStmt
-import Mathlib.Analysis.Complex.Conformal
 
 noncomputable section
 

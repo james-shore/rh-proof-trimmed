@@ -1,4 +1,8 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LowerParabolicCoordinates
+import Formalism.FormalDegreeBessel.FormalDegreeRatio.UnitaryWeylNormalHolds
+import Formalism.FormalDegreeBessel.FormalDegreeRatio.GroupFactorizationHolds
+import Formalism.FormalDegreeBessel.FormalDegreeRatio.ReverseCauchySchwarzHolds
+import Formalism.FormalDegreeBessel.FormalDegreeRatio.GNonneg
 
 open Matrix Formalism.FourierDecayAlt Formalism.QuantumDeterminants
 open scoped ComplexConjugate

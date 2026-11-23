@@ -1,10 +1,9 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.HeckeLAdicCharacterDeRham
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.CharAbove
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.DeRhamJacobian.IsdRJ
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HasPeriods
 import GroundTheory.PAdicHodge.LocalBridge
 import GroundTheory.PAdicHodge.FieldOfNormsCyclBase
-import GroundTheory.LocalFields.LubinTateLimitGalois
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemFiniteExtPadicRingOfIntegersIffNormLeOne
 
 noncomputable section

@@ -1,5 +1,5 @@
-import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.LatticeMapsOfFunctorComparison
-import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.Tensor
+import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.RhoLowerBoundLargeConductor
+import Formalism.SharpRestriction.GrowthBounds.LatticeSystems
 
 noncomputable section
 

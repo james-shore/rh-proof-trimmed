@@ -1,5 +1,6 @@
 import Mathlib
-import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.ZariskiSplit
+import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.ZariskiLocal
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Arith.SchemeCoh

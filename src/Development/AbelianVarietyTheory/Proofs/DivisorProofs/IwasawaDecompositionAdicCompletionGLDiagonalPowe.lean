@@ -1,10 +1,11 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsRapidInf
-import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.StrongMultiplicityOne
 import GroundTheory.AutomorphicForms.MultiplicityOne.Injective
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WhitMulLocGLDiagPowOfFixed
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFixedOfMemISup
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Spherical
+import GroundTheory.AutomorphicForms.MacdonaldHecke
+import GroundTheory.GlobalFields.CompletionAtPlace.Galois
+import GroundTheory.LocalFields.Ramification
+import GroundTheory.AutomorphicForms.MultiplicityOne.Functional
+
 open NumberField IsDedekindDomain GlobalTheory.CuspRep Formalism.UG GlobalTheory.LFun Matrix
 
 noncomputable section

@@ -1,9 +1,7 @@
 import Mathlib
 import Formalism.ThetaLogCoordinates.JacobiPathWeights.StatementA
 import Formalism.ThetaLogCoordinates.JacobiPathWeights.StatementE
-import Formalism.ThetaLogCoordinates.JacobiPathWeights.JacobiMinorProofs.ActFormContract
 import Formalism.ThetaLogCoordinates.JacobiPathWeights.JacobiMinorProofs.LeIffLtColHeight
-import Formalism.ThetaLogCoordinates.JacobiPathWeights.JacobiMinorProofs.PathProductHighestWeight
 import Formalism.ThetaLogCoordinates.JacobiPathWeights.JacobiMinorProofs.ExistsSuppOfEvalNe
 
 noncomputable section

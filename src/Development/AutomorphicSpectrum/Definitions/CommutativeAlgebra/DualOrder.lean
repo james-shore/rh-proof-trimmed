@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.TranslateMemIndOrder
 
 namespace GlobalTheory.CompanionTheory.Ar.BT
 

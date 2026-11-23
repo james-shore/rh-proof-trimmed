@@ -1,4 +1,4 @@
-import ReciprocityTheory.SemistableReduction.LatSemiSt
+import ReciprocityTheory.SemistableReduction.TorsionNonvanishStatement
 
 namespace ReciprocityTheory.MultiplicativeHeights
 

@@ -1,6 +1,5 @@
 import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.LargeConstantLeParamCube
 import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.SubsingletonQuotientOfIdealEqTop
-import Formalism.SharpRestriction.InertJacobiLevels.AsmIface
 
 noncomputable section
 

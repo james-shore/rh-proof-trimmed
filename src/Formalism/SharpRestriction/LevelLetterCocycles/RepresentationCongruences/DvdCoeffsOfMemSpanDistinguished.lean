@@ -1,6 +1,5 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.MemPairOfMemSingle
 import Mathlib.NumberTheory.Padics.PadicVal.Basic
-import Mathlib.Data.Nat.Choose.Factorization
 
 namespace Formalism.MainNotions.N.FrobeniusPowerSeries
 

@@ -1,6 +1,6 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.TheoremA
 import ReciprocityTheory.SemistableReduction.ComapInclusionIsLocalHom
-import ReciprocityTheory.SemistableReduction.AlgAll
+import Lemmata.GeneralBFactLast.Imports
 
 noncomputable section
 

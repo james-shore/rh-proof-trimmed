@@ -1,6 +1,6 @@
 import Mathlib
-import Development.ResolutionOfSingularities.Statements
 import Development.ResolutionOfSingularities.Foundations.Blowup.BlowupIsoOffCenter
+import Development.ResolutionOfSingularities.Statements
 
 noncomputable section
 

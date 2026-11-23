@@ -1,5 +1,4 @@
 import Formalism.TruncatedSeriesCounting.RamifiedValuationInequality
-import Formalism.WindowSums.PowerSeriesRelationList
 
 noncomputable section
 

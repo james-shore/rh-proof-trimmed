@@ -1,7 +1,7 @@
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.NotMemPlacesOverOfNe
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CuspidalGaloisUnramified
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SEtaPoint
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.WeightRegularDefinite
 
 set_option synthInstance.maxHeartbeats 200000
 

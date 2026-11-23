@@ -1,6 +1,6 @@
 import Mathlib
-import ReciprocityTheory.L2DbarEstimates.IsLocalHomeomorph
 import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.CmpbHessAtAddConst
+import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.CommFderivApply
 
 open Filter Topology MeasureTheory Metric ReciprocityTheory.L2DbarEstimates ReciprocityTheory.L2DbarEstimates.Y ComplexConjugate
 open scoped ComplexOrder

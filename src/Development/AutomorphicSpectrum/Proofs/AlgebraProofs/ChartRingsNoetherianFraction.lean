@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsLatticeFamily
-import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.BundleChernComparison
+import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsBundles
 import Development.WeilBound.CoreStatements.HodgeTatePoints.HcptgenRing
 
 noncomputable section

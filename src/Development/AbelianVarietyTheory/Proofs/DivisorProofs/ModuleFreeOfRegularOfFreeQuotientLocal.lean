@@ -1,7 +1,7 @@
 import Mathlib
 import ReciprocityTheory.CommutativeAlgebra.CohenMacaulay.ModDepthGE
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PurityFree
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AnnihilatorQuotientSmulTopOfFree
+
 open IsLocalRing
 
 namespace GlobalTheory.AnnRegSeq

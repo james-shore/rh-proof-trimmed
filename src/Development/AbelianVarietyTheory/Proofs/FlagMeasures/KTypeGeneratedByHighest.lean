@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.RealPlaceAnalysis.SmoothOnGVIff
-import Formalism.RealPlaceAnalysis.StatementU
+import Formalism.RealPlaceAnalysis.StatementKT
+import Formalism.RealPlaceAnalysis.StatementB
 import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactExponentialSurjective
-import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactCasimirHighestWeight
 import Development.AbelianVarietyTheory.BlockTheory.SiegelWeilLocal.OrbitStepSpace
 
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.REAL Formalism.QuantumDeterminants

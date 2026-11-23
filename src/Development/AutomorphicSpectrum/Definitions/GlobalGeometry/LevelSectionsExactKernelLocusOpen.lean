@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsLineGenOn
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsGenericFlag
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsGenOfIsVBOne
 
 noncomputable section
 

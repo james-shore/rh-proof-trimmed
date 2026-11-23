@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.LatticeGeometry.OperatorNormFibers.PExtInvMuA
+import Formalism.LocalToGlobal.LatticeGeometry.OperatorNormFibers.StExtInv
 
 open Module NumberField TensorProduct
 

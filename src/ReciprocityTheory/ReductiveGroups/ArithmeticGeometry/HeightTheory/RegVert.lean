@@ -1,5 +1,4 @@
 import Mathlib
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.RegAVpt
 
 namespace ReciprocityTheory.ChartRestriction.G.T0
 

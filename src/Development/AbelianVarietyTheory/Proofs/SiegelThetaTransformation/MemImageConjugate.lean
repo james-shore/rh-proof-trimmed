@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.Fischer
-import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsHeatZero
 
 open Matrix Complex NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.FD
 open scoped ComplexConjugate Classical

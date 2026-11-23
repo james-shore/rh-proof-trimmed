@@ -1,13 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.FrameTopAlt
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.PairForm
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.TailRd
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.NotBadPrimeBase
-import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ValuationEqZeroOfRootOfSUnitRatio
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsOpenKerUnramMulTame
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.TwTrans
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.PinColL
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsRatDatum
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.VacOfShape
 
 set_option genSizeOfSpec false
 set_option genInjectivity false

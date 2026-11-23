@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.Columns.ChainTwMain
-import Formalism.LocalToGlobal.Columns.WithTopLevGTop
 import Formalism.LocalToGlobal.Columns.ChainTwZero
 import Formalism.LocalToGlobal.Columns.ChainTwPsi
 import Formalism.LocalToGlobal.Columns.ChainTwAn

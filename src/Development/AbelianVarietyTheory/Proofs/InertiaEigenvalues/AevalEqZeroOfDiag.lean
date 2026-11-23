@@ -10,6 +10,7 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SpanIsLinesOfG
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIsPtPrimitiveRoot
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ISupIndepDdRE
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachExpansionLatticeGradedOfLevelLe
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AntitoneFiltrationExistsAdaptedLinearIndepSet
 
 noncomputable section
 

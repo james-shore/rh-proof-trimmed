@@ -1,6 +1,4 @@
 import Formalism.GradedWeylDivisibility.StatementD
-import Mathlib.LinearAlgebra.PiTensorProduct.Basis
-import Mathlib.RingTheory.Localization.Module
 
 open MvPolynomial PiTensorProduct
 open scoped Pointwise

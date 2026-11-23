@@ -4,6 +4,7 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutNFLeibMain
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutNFTopDomEmpty
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJALocOpAdj
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CellSmoothness
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutNFHatProdKBStmt
 
 open Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.P Formalism.FourierDecayAlt.P.CutBP Formalism.FourierDecayAlt.P.CutMP Formalism.FourierDecayAlt.P.CutMP.Gauge Formalism.MainStatements.NFTie
 

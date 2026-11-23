@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.CharacterGerms.IntSubst
+import Formalism.LocalToGlobal.CharacterGerms.Interface
 
 noncomputable section
 

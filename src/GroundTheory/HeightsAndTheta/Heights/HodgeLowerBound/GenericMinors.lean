@@ -1,6 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.Intersections.FlagPivot
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsPlueckerRatioTrdeg
+import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.HasCoverByOne
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

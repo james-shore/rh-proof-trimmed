@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Jets.ImportsAlt
-import Formalism.HermitianCurvature.HerGenC
+import Formalism.HermitianCurvature.TopDensNonnegOfKappa
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.TopVectorCutoffEqAndVanishStatement
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.HsInnerSelfEqNormSq
 

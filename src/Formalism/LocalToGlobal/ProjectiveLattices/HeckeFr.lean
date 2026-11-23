@@ -1,5 +1,4 @@
-import Formalism.LocalToGlobal.ProjectiveLattices.IsLevMove
-import Formalism.LocalToGlobal.ProjectiveLattices.HeckeStabSet
+import Formalism.LocalToGlobal.ProjectiveLattices.IsCombAt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.HeckeKer
 
 noncomputable section

@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ThetaZJetsThree
 import Formalism.LocalToGlobal.KernelLattices.AdaptedEnt
-import Formalism.LocalToGlobal.KernelLattices.FirstKernelLawReading
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.StdBases
 import Formalism.LocalRingCardinality.CoeNeZeroOfNotMem
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsStandardBasesLatticeAtPlaceOfAdaptedBasesStatement
@@ -9,6 +8,7 @@ import Development.AbelianVarietyTheory.Proofs.SatakeParameters.AtLinAdaptedCoef
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CombOfTied
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ShapeNormalisedThetaCombinationsDualBasesAtDStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.NormDgenEqOne
+
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker Classical
 
 namespace GlobalTheory.Ggeo.KerShapeD

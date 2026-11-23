@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.FourierProjections.PaUContinuous
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.PropAA
 
 namespace ReciprocityTheory.ChartRestriction.G.I2.FPw
 

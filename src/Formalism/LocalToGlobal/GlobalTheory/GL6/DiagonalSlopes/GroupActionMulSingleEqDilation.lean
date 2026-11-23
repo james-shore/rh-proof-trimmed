@@ -5,6 +5,7 @@ import Formalism.LocalToGlobal.GlobalTheory.GL6.CoordMapInjective
 import Formalism.LocalToGlobal.GlobalTheory.GL6.RamifiedLatticePropsOfModel
 import Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.DiamondCommDistinctPlaces
 import Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.LocalDiamondOfSplitIdempotent
+import Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.ComplexSpanBlockActionStable
 
 noncomputable section
 

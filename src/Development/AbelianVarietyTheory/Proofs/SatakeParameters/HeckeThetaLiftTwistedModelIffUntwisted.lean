@@ -1,12 +1,10 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.GoodGeneric
-import Formalism.LocalToGlobal.IndefiniteReal.ConcretePkgSpec
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DcOpCommOfCommute
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.LocSplitProdRight
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ForallExistsTransfer
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TypePlacesNotPairwiseConjugate
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RankWeightComponentEq
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ClassPresExtMemExtBijIsom
+import Formalism.LocalToGlobal.IndefiniteReal.BaseLiftsPackageOfPrimitiveLinks
 
 noncomputable section
 

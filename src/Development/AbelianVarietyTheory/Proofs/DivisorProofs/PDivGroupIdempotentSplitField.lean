@@ -1,10 +1,10 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RigExtMapRelFrobCompRigOfOmega
-import Development.AbelianVarietyTheory.Definitions.Divisors.WittOnFalse
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerAppEqBialgHomKernelIdealOfIdempotents
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerIdealFinrankEqPowOfIdempotent
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCocommOfSurjective
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FactorClosedImmersion
+
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup
 
 set_option autoImplicit false

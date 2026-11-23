@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.LinearIndependentRealOfIntOfDiscrete
 
 open scoped TensorProduct Matrix
 open Module Algebra

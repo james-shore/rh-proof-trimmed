@@ -1,8 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Jets.SideFam
-import Development.AbelianVarietyTheory.Definitions.Jets.SumIoPr
+import Development.AbelianVarietyTheory.Definitions.Jets.SumIoPrAlt
+import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
 import Formalism.PeriodIntegrals.QuotSetU
-import Formalism.PeriodIntegrals.QuotInv
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryQuotientCompactness.MaximalCompactIsCompact
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ExistsIsFolnerUWset
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.MatGroupHaarUniqueFiniteCompactOpenPosStatement

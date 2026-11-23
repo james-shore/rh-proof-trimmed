@@ -1,9 +1,9 @@
 import Development.WeilBound.RepresentationTheoryGL.FormalDegree.FormalDegreeHilbert.HlamStable
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.IntMuCD
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.RhoNSubNab
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.KSchur
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.HaarMirror
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.ToMKMulInv
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.ProdSubLtEqFactorial
 
 noncomputable section
 

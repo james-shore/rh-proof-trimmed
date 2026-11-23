@@ -1,8 +1,8 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SelfDualOne
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LatticeModelVacuumTranslateClassesIndependent
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DvdPowZeroIff
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.MemIntMat
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.MatrixLatticeIndexLeOfIntegralKernel
+
 open Matrix
 
 noncomputable section

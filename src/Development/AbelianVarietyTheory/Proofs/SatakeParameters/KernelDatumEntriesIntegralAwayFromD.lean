@@ -1,12 +1,11 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ThetaZJetsThree
-import Formalism.LocalToGlobal.KernelLattices.FirstKernelLawReading
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.StdBases
 import Formalism.LocalRingCardinality.CoeNeZeroOfNotMem
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CombOfTied
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralJetsRealPlaceLocalBasesStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralJetsNormalisedThetaCombinationsAwayDStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.KvalGeZeroOfIntegralJetsStatement
+
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker Classical
 
 namespace GlobalTheory.Ggeo.AdmEntInt

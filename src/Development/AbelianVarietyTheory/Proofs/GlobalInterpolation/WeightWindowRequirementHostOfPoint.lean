@@ -5,9 +5,9 @@ import Formalism.SharpRestriction.GrowthBounds.SmallOrderPrimes
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.PairRowIffQdRows
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.DisjointExceptional
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ThinScalesIffHostBound
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.LogCondLeThree
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.AuxiliaryPrimeMemAvoidedPrimes
+import Formalism.LocalToGlobal.UnitaryNorms.CharHost
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.WeightRequirementOfValid
+
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Formalism.L2.GlobalTheoryTheory GlobalTheory.EX NumberField
 
 noncomputable section

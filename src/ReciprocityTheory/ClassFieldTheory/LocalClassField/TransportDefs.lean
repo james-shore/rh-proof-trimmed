@@ -1,6 +1,6 @@
 import Mathlib
 import ReciprocityTheory.NeutralLocalFields.Reciprocity
-import ReciprocityTheory.ClassFieldTheory.LocalClassField.RecDefs
+import ReciprocityTheory.ClassFieldTheory.LocalClassField.ExistsIntEKMulVbar
 
 namespace ReciprocityTheory.DiscreteGroups.LocalClassField
 

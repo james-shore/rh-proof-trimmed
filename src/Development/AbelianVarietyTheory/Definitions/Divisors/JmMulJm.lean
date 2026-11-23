@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsAlgLowZero
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.SmoothCartan
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DefsRep
 
 noncomputable section
 

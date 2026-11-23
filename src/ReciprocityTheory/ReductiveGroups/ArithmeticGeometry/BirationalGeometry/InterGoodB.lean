@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterGoodA
+import Mathlib
 
 namespace ReciprocityTheory.ChartRestriction.G.Geo
 

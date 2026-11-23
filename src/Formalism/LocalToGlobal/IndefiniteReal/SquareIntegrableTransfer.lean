@@ -1,6 +1,6 @@
 import Formalism.LocalToGlobal.IndefiniteReal.AutomorphicEvaluation
 import Formalism.LocalToGlobal.IndefiniteReal.EvalTieTOne
-import Formalism.LocalToGlobal.IndefiniteReal.MeasurableMulGA
+import Formalism.SharpRestriction.GlobalSchurBounds.QuadraticLogDerivCongr
 
 noncomputable section
 

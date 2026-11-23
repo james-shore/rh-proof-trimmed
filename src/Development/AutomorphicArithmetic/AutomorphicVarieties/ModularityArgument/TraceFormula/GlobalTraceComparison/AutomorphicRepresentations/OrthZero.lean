@@ -1,4 +1,5 @@
 import Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.TwTrSum
+import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.StableBlock
 
 noncomputable section
 

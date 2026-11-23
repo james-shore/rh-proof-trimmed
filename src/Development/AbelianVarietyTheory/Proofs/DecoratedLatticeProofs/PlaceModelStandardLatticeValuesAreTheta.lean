@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.TiedAt
-import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.TensorOneApply
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.FourUniq
 import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.IpTheta
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.InfPartOneSubEInfSmul
@@ -8,6 +7,7 @@ import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExtendByZe
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.StandardLatticeHalfEqDoubleAnnihilatorStatement
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsFiniteRepsHalfStandardHomModNsmulStatement
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FiniteQuotientAnnihilatorStandardLatticeConjHalfStatement
+
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum MeasureTheory Matrix ValuativeRel GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Unf GlobalTheory.SplitWeil GlobalTheory.SeeSaw GlobalTheory.AdForm GlobalTheory.LocMod
 
 noncomputable section

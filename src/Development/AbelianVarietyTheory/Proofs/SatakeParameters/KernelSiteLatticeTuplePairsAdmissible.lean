@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.JointCmpEmbeddingY
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ModelsOK
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ValidForConstructedPointClassesEventuallyWorking
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.LocSpBot
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CmQuadraticFormEqAlternatingForm
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.EtaJUntw
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.KerThEntireAlgCoef
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ChiDetIdAndChiFacAlg
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsUnitDetFrameMatrixOfCharts
@@ -13,6 +13,7 @@ import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SiteFiniteDataLe
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FrameLocalLatticeSpanKernelLatticeZeroStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FrameLocalLatticeSpanKernelLatticeSuccStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SiteBaseDatumIntegralOffBadPrimesStatement
+
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.FormalGroupSystem Formalism.MainNotions.G.KAat Formalism.MainNotions.G.CmpJ Formalism.L2.Ker Formalism.L2.G.Pend Formalism.L2.KerInert GlobalTheory.TwV
 open Formalism.L2.PairingIndexBounds.F GlobalTheory.TwU
 open scoped TensorProduct Matrix

@@ -3,9 +3,6 @@ import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.NormSmal
 import Development.AbelianVarietyTheory.Definitions.Divisors.DiscreteSeriesHermitianUnique
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeLFunctionBottomPair
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SquareBottomHalfRankSumLeHalfRank
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StdMassNeZero
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockIpSelfRePos
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.VacNormNeZero
 
 open Finset
 open GlobalTheory.SqTop GlobalTheory.FunObj.SqNum

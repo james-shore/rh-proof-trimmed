@@ -1,9 +1,8 @@
 import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.GramCEqTranspose
-import Formalism.HarderNarasimhan.StatementPl
 import Development.AbelianVarietyTheory.Definitions.Divisors.BadElt
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankIInfKerEqOfIsBaseChangeFamily
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.LengthCommensurableInfRestrictScalarsOfLeSpan
+import Formalism.LocalToGlobal.IndefiniteReal.GramCEqTranspose
 
 noncomputable section
 

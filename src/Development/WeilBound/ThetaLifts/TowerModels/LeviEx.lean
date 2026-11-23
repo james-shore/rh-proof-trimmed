@@ -1,7 +1,6 @@
 import Development.WeilBound.ThetaLifts.TowerModels.PlaneHerm
-import Development.WeilBound.ThetaLifts.EigenvalueEndgame.PlaneRemovalConfiguration
-import Development.WeilBound.ThetaLifts.ConeHypotheses.PolDense
 import Development.WeilBound.ThetaLifts.TowerModels.LeviAd
+import Development.WeilBound.ThetaLifts.ConeHypotheses.PolDense
 import Development.WeilBound.ThetaLifts.TowerModels.ExistsRefl
 
 noncomputable section

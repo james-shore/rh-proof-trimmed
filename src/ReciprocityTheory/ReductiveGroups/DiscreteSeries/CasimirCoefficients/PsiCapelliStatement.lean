@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.PsiExistsOfFormula
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.IsClosedKset
 import Formalism.FormalDegreeBessel.StatementIO
 import Formalism.FormalDegreeBessel.StatementDS
 

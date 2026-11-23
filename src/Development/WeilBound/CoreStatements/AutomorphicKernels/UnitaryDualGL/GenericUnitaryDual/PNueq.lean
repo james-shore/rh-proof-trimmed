@@ -1,6 +1,8 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.AutomorphicKernels.UnitaryDualGL.TemperedEigenvalueNorms.AddOneLeOfPrecedes
 import Development.WeilBound.CoreStatements.PublishedTheorems.LanglandsClassification.Bridge
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LanglandsQuotientOfSpehTypeProductIsL
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsListPairwiseNotRel
 
 noncomputable section
 

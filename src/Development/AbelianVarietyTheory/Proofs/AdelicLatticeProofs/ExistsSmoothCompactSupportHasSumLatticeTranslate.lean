@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsSmoothPeriodicPartitionOfUnity
+
 open NumberField IsDedekindDomain NumberField.mixedEmbedding MeasureTheory Complex Classical
 open scoped ContDiff nonZeroDivisors
 

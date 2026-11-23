@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.TorsionIntegrality.UniformGaussModels.OrthShapeOne
+import Formalism.LocalToGlobal.TorsionIntegrality.UniformGaussModels.IsHypPair
 import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.StatementN
 
 noncomputable section

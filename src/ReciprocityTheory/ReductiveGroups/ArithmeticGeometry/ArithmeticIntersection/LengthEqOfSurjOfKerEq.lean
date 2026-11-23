@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.LocalLengthAdditivityTorsionFree
+import Mathlib
 
 namespace ReciprocityTheory.ChartRestriction.G.AI
 

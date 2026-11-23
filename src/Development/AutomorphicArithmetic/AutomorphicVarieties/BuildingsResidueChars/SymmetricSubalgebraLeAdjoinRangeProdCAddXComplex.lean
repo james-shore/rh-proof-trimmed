@@ -1,6 +1,5 @@
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.CuspidalFiniteness.HasUnivOfStep
-import Mathlib.RingTheory.MvPolynomial.Symmetric.FundamentalTheorem
-import Mathlib.RingTheory.Polynomial.Vieta
+import Mathlib
+import GroundTheory.AutomorphicForms.HarishChandraCentre
 
 open MvPolynomial in
 theorem UpperTheory.symmetricSubalgebra_le_adjoin_range_prod_C_add_X_complex :

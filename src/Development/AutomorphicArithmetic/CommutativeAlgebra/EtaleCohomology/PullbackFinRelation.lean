@@ -1,7 +1,6 @@
-import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.GalAwayCongr
-import GroundTheory.PAdicHodge.FontaineLemmaInvariants
+import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.AbsInvOf
+import Development.WeilBound.CoreStatements.CrystallinePeriodRings.ExistsMapEqOfPowMul
 import GroundTheory.PAdicHodge.UnramifiedFrob
-import GroundTheory.PAdicHodge.BCrisEigenWitt
 
 set_option maxSynthPendingDepth 1
 set_option maxHeartbeats 1600000

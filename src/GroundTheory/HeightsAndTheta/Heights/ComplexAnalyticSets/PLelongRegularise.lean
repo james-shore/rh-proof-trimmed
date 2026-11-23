@@ -1,7 +1,8 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StLelongRegularise
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PSheetSumMeasurable
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.LogIntPoly
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StLelongRegularise
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

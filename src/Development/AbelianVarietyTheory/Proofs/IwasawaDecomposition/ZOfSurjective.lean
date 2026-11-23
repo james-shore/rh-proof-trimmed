@@ -2,10 +2,8 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsAbsIrrCharCompIff
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.IsClassSumPairingOfIsFormsOf
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFiniteDetermining
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SpanRangeMulVec
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IpMtTie
-import Formalism.LocalToGlobal.Columns.InvariantSubspaceCoordsX
-import Formalism.LocalToGlobal.Divisibility.RowSideTie
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SpanRangeMulVec
 
 noncomputable section
 

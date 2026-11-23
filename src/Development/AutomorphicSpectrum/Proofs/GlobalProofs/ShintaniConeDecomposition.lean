@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.SiegelKlingenDeligneRibet
+import Formalism.SharpRestriction.GlobalSchurBounds.ShortIntervalPrimes
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.AbelContinuation
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.CongSubgroup
 

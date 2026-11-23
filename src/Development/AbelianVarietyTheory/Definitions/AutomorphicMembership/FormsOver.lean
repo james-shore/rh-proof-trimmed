@@ -4,6 +4,7 @@ import Formalism.LocalToGlobal.ProjectiveLattices.RecPJThAllNeBot
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FlagComponentFramedPointFrame
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RingKrullDimIntegers
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FirstIndexEqOfUnfolded
+import Development.AbelianVarietyTheory.Definitions.ThetaValues.LeCovCoeff
 
 noncomputable section
 

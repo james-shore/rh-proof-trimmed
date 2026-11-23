@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.RootWeights.SpecialiseGenericMatrixInverse
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.GeneratedModuleWeightLemmaOfInterfaces
 
 noncomputable section
 

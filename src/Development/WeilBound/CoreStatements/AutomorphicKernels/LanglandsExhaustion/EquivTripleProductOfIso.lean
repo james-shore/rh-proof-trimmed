@@ -1,7 +1,7 @@
 import Mathlib
-import Development.WeilBound.CoreStatements.AutomorphicKernels.LanglandsExhaustion.MidDefs
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NonemptyEquivMultiProdOne
+import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.MirabolicDerivatives.ColMatMulGlEmbMat
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ProductIrreducibleAppendEquivStatement
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ParabolicInductionInStagesProductOfProducts
 import BuildAid.D4
 
 noncomputable section

@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.HermitianLattices.StatementMass
 import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.ExistsIdealInClassOfNormLeSqrtDiscr
 
 open MeasureTheory NumberField Finset

@@ -2,6 +2,8 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsVerticalTwistGenDeg
 import GroundTheory.HeightsAndTheta.Heights.StabilizerCovolume.PVerticalGenericDeg
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PGenDegTwist
+import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PIntNumRatSection
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.LowerBoundFree

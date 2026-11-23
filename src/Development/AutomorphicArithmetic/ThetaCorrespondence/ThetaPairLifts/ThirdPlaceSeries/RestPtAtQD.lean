@@ -1,7 +1,7 @@
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LNotMemGset
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CuspidalGaloisUnramified
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RestPtOfPtFam
+import Formalism.SharpRestriction.LevelLetterCocycles.EmbeddingTypeJumps
 
 set_option synthInstance.maxHeartbeats 200000
 

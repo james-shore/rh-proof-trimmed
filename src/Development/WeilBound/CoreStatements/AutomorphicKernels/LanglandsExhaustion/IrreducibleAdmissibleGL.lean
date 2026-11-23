@@ -5,7 +5,6 @@ import Development.AutomorphicSpectrum.Proofs.GlobalProofs.HasSupportOfIsSubquot
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.BernsteinZelevinskyFiniteness
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.JacquetOfInducedFiltrationStatement
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.InducedCellSemisimplificationStatement
-import Development.AutomorphicSpectrum.Proofs.GlobalProofs.IrreducibleSmoothAdmissibleGLStatement
 
 noncomputable section
 

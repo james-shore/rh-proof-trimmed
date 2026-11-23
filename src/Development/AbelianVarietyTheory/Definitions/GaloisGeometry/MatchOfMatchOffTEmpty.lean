@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Statements.EllipticCurveLevels.HasLevel
+import Development.AbelianVarietyTheory.Statements.EllipticCurveLevels.ClosedAtLConclusionOfMem
 
 noncomputable section
 

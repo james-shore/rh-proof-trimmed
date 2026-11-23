@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.DepthCond
-import Formalism.LocalRingCardinality.HostCls
+import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
 
 open Module NumberField IsDedekindDomain
 

@@ -1,7 +1,6 @@
 import Mathlib
-import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.WittExtensionTheorem
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Bridge
-import Formalism.PeriodIntegrals.VolFromSW
+import Formalism.SatakeDualWeyl.Statement
+import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
 
 noncomputable section
 

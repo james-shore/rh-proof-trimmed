@@ -1,7 +1,8 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.Imports
+import Development.AbelianVarietyTheory.Definitions.Foundations.CthFac
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasQIff
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CthFacMultipliable
+
 open scoped UpperHalfPlane MatrixGroups Manifold
 open GlobalTheory.Sieg GlobalTheory.QFam
 

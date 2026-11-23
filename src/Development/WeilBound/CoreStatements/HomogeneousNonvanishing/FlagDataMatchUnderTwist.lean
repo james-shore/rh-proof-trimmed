@@ -1,5 +1,4 @@
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.TwTan
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.GlueApplyOfNotInFibre
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsHodgeLine
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterNamed
 

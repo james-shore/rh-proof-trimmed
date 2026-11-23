@@ -23,7 +23,7 @@ import Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.LvDat
 import Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfSplit
 import Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfCoeff
 import Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfHOnil
-import Formalism.SharpRestriction.LevelLetterCocycles.CoordStepsOf
+import Formalism.SharpRestriction.LevelLetterCocycles.FinalLevelsOf
 
 noncomputable section
 

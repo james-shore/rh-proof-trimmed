@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.CarrierSizes
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ChebyshevExtremalPolynomials
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.GramProductIdentities
 
 noncomputable section
 

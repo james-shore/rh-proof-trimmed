@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TameHeckeCharacterSplitPlaceLocalComponent
-import Formalism.LocalToGlobal.GaloisLevelStructure.DefsLevel
-import ReciprocityTheory.Automorphisms.SplitCoeAlgebraMap
 
 open NumberField IsDedekindDomain Formalism.L2
 

@@ -1,8 +1,7 @@
 import Formalism.AdmissibleDesigns.TheoremFromNormalizedOpenThree
-import Formalism.AdmissibleDesigns.LocRepTriv
-import Formalism.AdmissibleDesigns.ExistsLx
 import Formalism.AdmissibleDesigns.ContWRec
-import Formalism.AdmissibleDesigns.CohomZeroEquivContinuous
+import Formalism.AdmissibleDesigns.ExistsUnrDec
+import Formalism.AdmissibleDesigns.ExistsLx
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core] [hH0Fin : Fact Formalism.MainNotions.N.K.H0.FinCore]
 

@@ -1,6 +1,6 @@
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementC
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementF
-import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementG
+import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.StatementC
 
 noncomputable section
 open scoped BigOperators

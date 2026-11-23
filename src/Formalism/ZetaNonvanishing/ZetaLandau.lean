@@ -1,8 +1,4 @@
-import Formalism.StatementU
-import Formalism.ZetaNonvanishing.MeasurableGchi
-import Formalism.DefsOC
-import Formalism.ZetaRealNonvanish
-import Formalism.ZetaNonvanishing.MellinSgen
+import Formalism.StatementOC
 
 open Complex MeasureTheory Set Filter Topology
 

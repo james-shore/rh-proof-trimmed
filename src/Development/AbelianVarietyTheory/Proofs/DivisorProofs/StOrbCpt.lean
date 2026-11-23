@@ -2,6 +2,8 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.RangeShape
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasOrbIntOfIsCompactCentConj
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IndefiniteUnitaryGroupHaarIsMulRightInvariant
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsMulCommutativeCentRealUJ
+
 open MeasureTheory GlobalTheory.Orb
 
 namespace GlobalTheory.PsCo.Pc1

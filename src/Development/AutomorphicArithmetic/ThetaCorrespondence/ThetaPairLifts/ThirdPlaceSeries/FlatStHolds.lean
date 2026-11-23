@@ -1,8 +1,7 @@
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TraceBoundTuple
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RealTwLe
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Realised
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Links2OfRowsStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.VStdOfOrthonormalSpan
 
 set_option synthInstance.maxHeartbeats 200000
 

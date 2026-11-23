@@ -1,5 +1,5 @@
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.Bridge
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.ClosureK
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.Taylor
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.ExistsExpEqOfMemKset
 
 noncomputable section

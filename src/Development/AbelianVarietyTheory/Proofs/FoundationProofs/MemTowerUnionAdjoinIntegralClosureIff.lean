@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.CosetTrace
 import Development.AbelianVarietyTheory.Definitions.Foundations.NotIsTrDataGaussianIntOne
 
 open GlobalTheory.AlmostEt GlobalTheory.K5

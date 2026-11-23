@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.IdeleRoots.TorusPowers.SatakeBoundReps
+import GroundTheory.AutomorphicForms.MacdonaldHecke
 import GroundTheory.GlobalFields.LocalFieldAtPlace
 import GroundTheory.GlobalFields.KummerTheory.LocalIndexAtPlace
 

@@ -1,6 +1,7 @@
 import Mathlib
-import Development.WeilBound.CoreStatements.FiniteTypeHarishChandra.SupportExistsAll
+import Development.WeilBound.CoreStatements.FiniteTypeHarishChandra.FiniteDimensionalHcSpace
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ColGeR
+
 open ReciprocityTheory.Ty.Fin GlobalTheory.CompanionTheory.TyFin.ColStep
 
 noncomputable section

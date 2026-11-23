@@ -1,7 +1,8 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsLineDegreeDual
 import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsArith
 import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.IsSaturatedFirstCoordinateLine
+import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsLineDegreeDual
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

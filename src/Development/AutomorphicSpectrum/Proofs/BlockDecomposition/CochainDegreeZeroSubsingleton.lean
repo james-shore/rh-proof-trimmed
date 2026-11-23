@@ -1,5 +1,6 @@
 import Mathlib
-import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.MapHComp
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.CxPairing
+
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Polynomial CrystallineSemistableComparison CrystallineSemistableComparison.CH
 universe w w' v u v' u' v'' u''

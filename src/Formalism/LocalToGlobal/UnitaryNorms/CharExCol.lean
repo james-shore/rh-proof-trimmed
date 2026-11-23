@@ -1,7 +1,6 @@
-import Formalism.LocalToGlobal.UnitaryNorms.CharExHost
+import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
+import Formalism.LocalToGlobal.UnitaryNorms.CharHost
 import Formalism.LocalToGlobal.Columns.AbelianHostFieldConditions
-import Mathlib
-import Formalism.LocalToGlobal.UnitaryNorms.CharExGen
 
 noncomputable section
 

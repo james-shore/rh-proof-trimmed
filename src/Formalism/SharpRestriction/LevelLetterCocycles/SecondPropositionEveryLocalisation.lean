@@ -2,6 +2,7 @@ import Formalism.SharpRestriction.LevelLetterCocycles.LargeLevelLemmas
 import Formalism.SharpRestriction.LevelLetterCocycles.EndomorphismIndexBound
 import Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.LemmaDetPoly
 import Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.BridgeDet
+import Formalism.CharacterColumnKernels.IdempotentNormalForms.IsUnitDetOfConst
 
 noncomputable section
 

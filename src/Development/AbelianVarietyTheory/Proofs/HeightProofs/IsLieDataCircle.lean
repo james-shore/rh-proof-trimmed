@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.RealPlaceAnalysis.StatementA
 
 noncomputable section
 

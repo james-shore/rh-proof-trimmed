@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetSNeZero
-import ReciprocityTheory.SemistableReduction.AlgebraicIndependentOfDerivations
 
 open MvPolynomial Formalism.BasicNotions.TH GlobalTheory.CharPair
 

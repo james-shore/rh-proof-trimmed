@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.IntegOfMem
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.CongKSOf
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.FiniteEtaleModels.IsEtIdealOfPlace
-import Development.AbelianVarietyTheory.Definitions.Divisors.EtLevForget
+import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.IdealSplit
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelPosOfCoprime
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsHolPeriods
 
 set_option autoImplicit false
 

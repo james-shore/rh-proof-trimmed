@@ -1,8 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.IntegralLocallyConstCochainModPow
+import Development.AbelianVarietyTheory.Definitions.Foundations.NotCoboundaryConstantOne
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerTowerQqPowLevelEqQ
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsDiscreteValuationRingCyclotomicTowerLevel
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FiniteGaloisApproximation
 
 noncomputable section
 

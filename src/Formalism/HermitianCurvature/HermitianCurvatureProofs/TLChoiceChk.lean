@@ -1,5 +1,4 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.TLPlanAsm
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.BasicLift
 
 namespace Formalism.FourierDecayAlt.TL
 

@@ -1,9 +1,7 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LeviSmoothLocalization.WinUpDown
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LocalDoubleCosets.OfSupportHolds
 import Development.AutomorphicArithmetic.Foundations.Convolution.SphericalIdeles.UnlSph
-import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ExistsRealisesNeOne
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Langlands
 
 noncomputable section
 

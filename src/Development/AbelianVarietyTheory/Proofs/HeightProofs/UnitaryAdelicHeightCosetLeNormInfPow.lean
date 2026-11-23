@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.DenomBound
+import Formalism.LocalToGlobal.BesselHermitianTheta.TiedSmooth
 
 noncomputable section
 

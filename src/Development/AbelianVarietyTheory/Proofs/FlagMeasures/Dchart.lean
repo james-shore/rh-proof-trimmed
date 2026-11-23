@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.BlockAnti
-import Formalism.PeriodIntegrals.QuotInv
 import Formalism.HermitianCurvature.WeylElementCommutesLevelOne
 
 noncomputable section

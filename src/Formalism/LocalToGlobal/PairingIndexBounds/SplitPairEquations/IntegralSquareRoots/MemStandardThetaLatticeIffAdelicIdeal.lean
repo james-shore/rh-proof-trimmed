@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.IntegralSquareRoots.ConstCopies
-import Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.PullIopOf
 
 noncomputable section
 open NumberField Formalism.BasicNotions Classical Matrix

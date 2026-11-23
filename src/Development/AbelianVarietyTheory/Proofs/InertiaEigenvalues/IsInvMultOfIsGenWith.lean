@@ -2,8 +2,8 @@ import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 import Formalism.LocalRingCardinality.AdicCompletionLocal.LocTied
 import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.SenWeights
-import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.DiagonalQuotientEigen
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachDeltaInvariantCoboundaries
+import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.DiagonalQuotientEigen
 
 noncomputable section
 

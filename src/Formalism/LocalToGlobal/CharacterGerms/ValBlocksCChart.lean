@@ -1,7 +1,5 @@
 import Formalism.LocalToGlobal.CharacterGerms.RowTieSelf
-import Formalism.LocalToGlobal.CharacterGerms.BlockAdmissibleChart
-import Formalism.LocalToGlobal.CharacterGerms.RowTieAdm
-import Formalism.LocalToGlobal.CharacterGerms.RowTieJet
+import Formalism.LocalToGlobal.CharacterGerms.BlockMembershipSelfConjugate
 
 noncomputable section
 

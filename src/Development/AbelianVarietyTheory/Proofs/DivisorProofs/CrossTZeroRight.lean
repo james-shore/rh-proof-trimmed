@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasTotalBiChains
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ImageCochainExists
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProjectiveBundleFormulaOfUnitOnEtalePoints
+import GroundTheory.ProfiniteCohomology.CupProducts
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex

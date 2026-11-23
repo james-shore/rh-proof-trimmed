@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.GroupLattices.FockModels.TestSideDef
-import Formalism.LocalToGlobal.GroupLattices.FockModels.DualInclusionLattices
 
 open MvPolynomial
 

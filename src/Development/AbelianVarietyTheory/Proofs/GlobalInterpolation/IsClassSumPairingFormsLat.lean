@@ -5,8 +5,9 @@ import Development.AbelianVarietyTheory.BlockTheory.ThetaLiftGeometry.ColumnAvoi
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MinkowskiBoundComapLattice
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.LatticeExtensionAlongFieldEmbeddingDuals
 import Formalism.LocalToGlobal.Columns.ToHLat
-import Formalism.LocalToGlobal.Columns.CoefModB
 import Formalism.LocalToGlobal.Divisibility.FramesLemmas
+import Formalism.LocalToGlobal.Divisibility.ClassSumLemmas
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.TransportedWeylLatticeHermitianDuality
 
 noncomputable section
 

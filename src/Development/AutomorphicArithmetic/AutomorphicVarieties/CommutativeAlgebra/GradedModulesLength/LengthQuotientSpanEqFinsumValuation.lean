@@ -1,10 +1,5 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.GradedModulesLength.ToDegInjective
 import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.SelmerDuality.LengthDet
-import Mathlib.RingTheory.Localization.NormTrace
-import Mathlib.RingTheory.Norm.Transitivity
-import Mathlib.RingTheory.Algebraic.Integral
-import Mathlib.RingTheory.Localization.Integral
-import Mathlib.RingTheory.DedekindDomain.Instances
 
 open IsLocalRing Filter Formalism.MainNotions.V.Pf.V2.Calc UpperTheory.V.Alg UpperTheory.V.Alg.M
 open scoped nonZeroDivisors

@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.Divisibility.HeckeRI
 import Formalism.LocalToGlobal.Divisibility.InertPartitionLePartF
-import Formalism.LocalToGlobal.Divisibility.LiftLatLemmas
 
 open Module NumberField IsDedekindDomain Polynomial
 open scoped Matrix ComplexOrder

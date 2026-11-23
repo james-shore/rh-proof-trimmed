@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.HasLevelStd
-import Development.AbelianVarietyTheory.Definitions.Divisors.HasQIff
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.OmegaFactorization
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.DefiningCoordinates
 import Development.AbelianVarietyTheory.Definitions.Divisors.JetAnalytic
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TsumNatCastEq
 

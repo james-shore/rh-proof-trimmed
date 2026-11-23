@@ -1,5 +1,4 @@
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.SymRead
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RealPack
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TopReadAt
 

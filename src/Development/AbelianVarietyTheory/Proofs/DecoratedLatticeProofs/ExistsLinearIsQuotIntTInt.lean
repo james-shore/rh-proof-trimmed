@@ -8,6 +8,7 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.OpEOmTargetUnipo
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntegralCompBlocks
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CharEqOneOfOpENeZero
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.QuotientIntegralLinear
+import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.FramePositiveSum
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.RootEx GlobalTheory.StepData GlobalTheory.PosOne
 open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app app_coe)

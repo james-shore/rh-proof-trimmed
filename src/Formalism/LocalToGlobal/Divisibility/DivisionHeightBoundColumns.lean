@@ -3,10 +3,8 @@ import Formalism.LocalToGlobal.Divisibility.LiftLatInst
 import Formalism.LocalToGlobal.Divisibility.LiftLatLemmas
 import Formalism.LocalToGlobal.Columns.RowFormsRat
 import Formalism.LocalToGlobal.Columns.WmLemmas
-import Formalism.LocalToGlobal.Columns.WmpNatCardQuotEqPowFinrank
+import Formalism.HyperbolicPlaceProducts.SecondLevelArithmeticNorm
 import Formalism.LocalToGlobal.Columns.NonDeg
-import Formalism.LocalToGlobal.Columns.RowFormsGood
-import Formalism.LocalToGlobal.Columns.PathCountSymmetricHolds
 import Formalism.LocalToGlobal.Divisibility.DivisionHeightBoundStatement
 
 open Module NumberField IsDedekindDomain

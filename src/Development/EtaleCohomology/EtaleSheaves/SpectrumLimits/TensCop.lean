@@ -1,5 +1,4 @@
 import Development.EtaleCohomology.EtaleSheaves.SpectrumLimits
-import Mathlib.RingTheory.PiTensorProduct
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC

@@ -1,9 +1,6 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StatementsCurrent
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PConeLogBound
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PFsLogSmul
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PTubeFormCompare
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PlaneIdealTwoOne
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.BergmanProjective
 
 set_option maxSynthPendingDepth 1

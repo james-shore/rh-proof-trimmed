@@ -1,6 +1,6 @@
 import Mathlib
-import ReciprocityTheory.GroupCohomology.IsLowExists
-import ReciprocityTheory.GroupCohomology.LowNat
+import ReciprocityTheory.GroupCohomology.ContinuousContractNth
+import ReciprocityTheory.GroupCohomology.DEqZeroOfMemB
 import ReciprocityTheory.NeutralLocalFields.Duality
 
 namespace ReciprocityTheory.DiscreteGroups.LocalClassField

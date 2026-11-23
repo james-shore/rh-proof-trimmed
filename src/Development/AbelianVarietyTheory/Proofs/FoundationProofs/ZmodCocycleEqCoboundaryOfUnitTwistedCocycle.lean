@@ -1,7 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsFirstChernClassOfLineBundle
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerExponentOfGaloisElementIsKummerCharacterStatement
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerExponentOfGaloisElementIsKummerCharacter
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Hilbert90LocallyConstantCocycleStatement
+
 open GlobalTheory.NeedB Polynomial
 
 noncomputable section

@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ZeroMemSolSet
-import Formalism.UnipotentAdelicQuotients.EllRegCheck
 
 open ZetaZeros.D.EllReg GlobalTheory.HCA MeasureTheory
 open scoped ContDiff BoundedContinuousFunction

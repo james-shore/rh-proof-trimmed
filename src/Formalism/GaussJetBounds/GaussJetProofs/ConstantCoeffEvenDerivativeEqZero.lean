@@ -1,4 +1,4 @@
-import Formalism.GaussJetBounds.GaussJetProofs.LogarithmWeightComparison
+import Formalism.GaussJetBounds.GenLogInverse
 
 noncomputable section
 open scoped BigOperators

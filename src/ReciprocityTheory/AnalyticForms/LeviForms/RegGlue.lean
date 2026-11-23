@@ -1,8 +1,6 @@
-import ReciprocityTheory.AnalyticForms.LeviForms.RegChart
-import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PshRegMax
+import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialOfFun
+import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.IsPshLocallyIntegrableStatement
 import ReciprocityTheory.AnalyticForms.PotentialTheory.AtlasIndep
-import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShift
-import ReciprocityTheory.AnalyticForms.PotentialTheory.ContDiffAtOfIsPotential
 
 namespace ReciprocityTheory.AnForm.P
 

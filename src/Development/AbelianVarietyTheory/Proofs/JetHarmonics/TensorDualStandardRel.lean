@@ -1,5 +1,6 @@
 import Mathlib
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
+import Formalism.RealPlaceAnalysis.StatementA
+
 open Formalism.REAL
 
 namespace GlobalTheory

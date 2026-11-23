@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.HermitianForms.TiedStep
+import Formalism.LocalToGlobal.HermitianForms.IsLocBasis
 
 noncomputable section
 

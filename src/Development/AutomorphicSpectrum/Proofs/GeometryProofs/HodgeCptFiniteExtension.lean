@@ -7,8 +7,7 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.StalkSpecializesBij
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptInteriorFlag
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieLatticeDominantCompat
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeInnerProductOnSpan
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieLatticeEvalAtLocalRingStatement
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeInnerProductPullbackUniqueStatement
+
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar
 

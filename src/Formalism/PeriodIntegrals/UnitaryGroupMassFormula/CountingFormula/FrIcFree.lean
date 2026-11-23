@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DensGFR
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DensGF
 
 noncomputable section
 

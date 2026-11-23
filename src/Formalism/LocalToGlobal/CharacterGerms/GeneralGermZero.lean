@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.CharacterGerms.CoeffSingleSubstOfLowDegree
+import Formalism.LocalToGlobal.CharacterGerms.RowTieCartAdd
 
 noncomputable section
 

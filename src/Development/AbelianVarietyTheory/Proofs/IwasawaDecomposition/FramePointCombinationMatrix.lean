@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GramTransformOfCoordinateChangeImports
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExpFourClauses
-import Formalism.LocalToGlobal.ProjectiveLattices.OpenRowsFree
+import Formalism.LocalToGlobal.ProjectiveLattices.FamilyUniformisationBasePointOrthogonal
 
 set_option autoImplicit false
 

@@ -1,6 +1,7 @@
 import Development.AutomorphicArithmetic.MeanSquareBounds.PrimeSetTwoBounds
 import Formalism.PeriodIntegrals.ExplicitFormulaCounts.ExplicitFormula
 import Formalism.LandauZeroFreeBounds.NoZeroComplex
+import Formalism.GL3MeanSquares.GenusMeanAsymptotics.JacobiCharacterSums.MeanSquareHypWIff
 
 open Finset Formalism.HermitianLattices.ZeroFreeRegionGL2 Formalism.HermitianLattices.Ext.LogarithmicIntegralBounds
 

@@ -5,6 +5,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.BasePlaceNotMemChiG
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LevelHyperspecialTrivialCharacterSplitsOffPlaces
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsMeasLevW
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsMeasDef
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsMinf
 
 noncomputable section
 

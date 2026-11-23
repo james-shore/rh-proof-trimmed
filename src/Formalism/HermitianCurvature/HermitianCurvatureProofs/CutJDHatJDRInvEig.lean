@@ -1,4 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJDHatJDRInvDefs
+import Formalism.RealPlaceAnalysis.StatementU
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt
 

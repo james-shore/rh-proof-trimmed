@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.DepthTieSat
-import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.ContentZeroAtSmallPrimes
 import Formalism.SharpRestriction.Divisibility.AbelianOpenPart.OEOsInjective
 import Formalism.DropLevelBounds.ThBounds
 

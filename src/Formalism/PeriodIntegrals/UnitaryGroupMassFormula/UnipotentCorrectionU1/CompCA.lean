@@ -1,4 +1,4 @@
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnipotentCorrectionU1.CoreStar
+import Formalism.HermitianCurvature.StatementB
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.BetaSesquilinearity
 
 open Matrix

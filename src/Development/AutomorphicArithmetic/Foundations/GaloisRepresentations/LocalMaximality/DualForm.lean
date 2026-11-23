@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LocalMaximality.LiftFactorization
+import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LocalMaximality.MonoM
 
 set_option autoImplicit false
 

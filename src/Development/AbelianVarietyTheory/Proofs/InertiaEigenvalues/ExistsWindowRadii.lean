@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MooreNorm
 
 namespace GlobalTheory.PMonE
 

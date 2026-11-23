@@ -1,5 +1,6 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.SubstOfLog
+import Formalism.TorsionNormIteration.InverseIntegralClasses.IsHomOfSubstEqSmul
 
 noncomputable section
 

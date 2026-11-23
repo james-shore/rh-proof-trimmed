@@ -1,6 +1,6 @@
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SplitPlaceCompactOpenMembership
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.HeckeOpen
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SideMultiplicityFamily
 
 set_option synthInstance.maxHeartbeats 200000
 

@@ -9,7 +9,7 @@ import Development.AbelianVarietyTheory.Proofs.FlagMeasures.SpanToZero
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FramePairCoordinatesTransportUnitaryMassStatement
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HermitianFramePairCoordinatesTransportInnerDataStatement
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.TermOverFrameCoordinatesStatement
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.TermOverFrameCoordinates
+
 open ValuativeRel Formalism.MainNotions.S Formalism.MainNotions.S.Loc GlobalTheory.HL
 open scoped Pointwise ENNReal Classical
 

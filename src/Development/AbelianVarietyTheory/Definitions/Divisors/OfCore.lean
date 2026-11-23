@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.ConcretePkgSpec
+import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.NormalFam
 
 noncomputable section

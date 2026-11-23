@@ -1,7 +1,7 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJDHat
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJDHatJDCapAGrp
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.PbDegTopOfPolyTop
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.BigCellValues
+import Formalism.RealPlaceAnalysis.StatementU
 
 open Matrix
 

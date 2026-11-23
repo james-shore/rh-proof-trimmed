@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeLSeriesEqSumPrincipalPartialSeries
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.CompletedLStripBounds
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormWt
 
 open NumberField
 set_option maxHeartbeats 1000000 in

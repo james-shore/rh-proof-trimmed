@@ -1,5 +1,4 @@
 import Formalism.MahlerMeasure.QuotientUpperBoundsOfPowerBounds
-import Formalism.MahlerMeasure.MahlerMeasureProofs.DeterminantBlockLeadingTerm
 
 namespace Formalism.GM
 

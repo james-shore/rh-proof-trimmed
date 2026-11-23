@@ -1,4 +1,4 @@
-import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.Smooth
+import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.ThetaLiftTrivialOrbitTermsVanish
 import GroundTheory.HeightsAndTheta.Theta.AdelicFourierCoord
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter

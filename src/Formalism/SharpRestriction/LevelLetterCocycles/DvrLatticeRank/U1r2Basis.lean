@@ -1,7 +1,7 @@
-import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.PiNSOfPi
+import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.LevelValueSmul
+import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.DescentValuation
+import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ConstantCoeffQZeroEqP
 import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelQPfD
-import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.FramePfPt
-import Formalism.SharpRestriction.LevelLetterCocycles.DdRFull
 
 noncomputable section
 

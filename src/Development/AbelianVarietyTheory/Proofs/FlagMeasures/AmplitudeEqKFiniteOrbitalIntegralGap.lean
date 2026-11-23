@@ -1,9 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.UniqGapOfUniq
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.OnePlaceKF
-import Development.AbelianVarietyTheory.Definitions.Jets.SideFam
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplifierOfHypotheses
 import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.HaarEqSmul
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.DiscreteSeriesUnitarySmoothBasic
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnipotentRadicalInterConjugateClosedUnimodular
 
 open BranchingSupport GlobalTheory.CellAmp Formalism.BasicNotions Formalism.MainNotions.S Formalism.QuantumDeterminants Matrix MeasureTheory Finset
 open scoped InnerProductSpace ENNReal

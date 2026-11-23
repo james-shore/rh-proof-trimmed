@@ -1,6 +1,8 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LinearIndependentEigProj
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ToFirst
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.EigLat
+import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.GermComp1ZeroPointLeft
 
 noncomputable section
 

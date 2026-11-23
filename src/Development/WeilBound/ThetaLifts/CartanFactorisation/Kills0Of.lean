@@ -1,9 +1,8 @@
 import Development.WeilBound.ThetaLifts.CartanFactorisation.UpdSelf
-import Development.WeilBound.ThetaLifts.CartanFactorisation.ActsComp
 import Development.WeilBound.ThetaLifts.CartanFactorisation.RinfZero
 import Development.WeilBound.ThetaLifts.CartanFactorisation.TensOfEval
-import Development.WeilBound.ThetaLifts.CartanFactorisation.ExistsMaximalCompactInfinite
 import Development.WeilBound.ThetaLifts.LocalTheory.SplitInv
+import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
 
 noncomputable section
 

@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsEtPlace
-import Development.AbelianVarietyTheory.Definitions.Divisors.ToRepFam
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsEtLevZero
 import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.IsDivisionOfMOne
 
 noncomputable section

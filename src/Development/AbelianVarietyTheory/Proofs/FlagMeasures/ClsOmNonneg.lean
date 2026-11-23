@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.PerRowC
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FrEqvEquivalence
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.InvVolPos
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FrEqvEquivalence
 
 noncomputable section
 open scoped Classical ENNReal Pointwise

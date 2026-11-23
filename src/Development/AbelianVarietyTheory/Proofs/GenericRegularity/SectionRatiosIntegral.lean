@@ -1,9 +1,9 @@
 import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.RegXInst
 import Formalism.LocalToGlobal.ProjectiveLattices.CurveLocInst
-import Formalism.LocalToGlobal.ProjectiveLattices.TieInst
 import Formalism.LocalToGlobal.ProjectiveLattices.RealPtPf
 import Formalism.LocalToGlobal.ProjectiveLattices.GenericSectionMinimumIntegral
+
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.MainNotions.Gaps.EtaleWeightGaps Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 namespace GlobalTheory.Reg

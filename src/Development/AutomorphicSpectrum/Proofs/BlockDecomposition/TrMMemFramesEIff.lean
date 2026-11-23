@@ -1,4 +1,4 @@
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsBlockNFZeroOne
+import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.WeilSiegelTheta.BigCellDefs
 import CompanionTheory.SpectralGeometry.CountingDefinitions.AdelicEulerProducts.IsEulerProd
 
 noncomputable section

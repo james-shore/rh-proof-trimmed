@@ -1,5 +1,5 @@
 import Mathlib
-import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.RLLieF
+import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.RLLieB
 import Development.WeilBound.ThetaLifts.Reductions.MetaDef
 
 noncomputable section

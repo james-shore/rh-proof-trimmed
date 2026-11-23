@@ -1,9 +1,7 @@
 import Mathlib
 import Formalism.LocalRingCardinality.DataErr
-import Formalism.LocalRingCardinality.DataParams₂
 import Formalism.SharpRestriction.Divisibility.LiftErrorLocal
-import Formalism.SharpRestriction.GrowthBounds.WeilJacquetShalikaLaw
-import Development.AbelianVarietyTheory.BlockTheory.ThetaLiftGeometry.ColumnAvoidanceConditions
+import Formalism.LocalToGlobal.Columns.FiniteSumNonzeroLargeDepth
 
 noncomputable section
 

@@ -3,6 +3,7 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.AdjointnessPolynomi
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ConjugationContinuousOnInvertible
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CompactGroupHaarExists
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.UnipotentHeisenbergDecomposition
+import Formalism.RealPlaceAnalysis.StatementU
 
 open Matrix MeasureTheory Filter Topology
 open scoped ComplexConjugate ENNReal NNReal

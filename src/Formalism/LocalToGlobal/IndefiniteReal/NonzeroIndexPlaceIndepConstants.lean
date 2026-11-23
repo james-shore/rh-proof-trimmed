@@ -1,5 +1,5 @@
-import Formalism.LocalToGlobal.IndefiniteReal.RealPins
-import Formalism.LocalToGlobal.IndefiniteReal.CutPassage
+import Formalism.LocalToGlobal.IndefiniteReal.TrISepWith
+import Formalism.LocalToGlobal.IndefiniteReal.OneMapT
 
 noncomputable section
 

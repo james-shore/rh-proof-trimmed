@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ApartAllEmpty
+import Development.AbelianVarietyTheory.Statements.EllipticCurveLevels.HasLevel
 
 noncomputable section
 

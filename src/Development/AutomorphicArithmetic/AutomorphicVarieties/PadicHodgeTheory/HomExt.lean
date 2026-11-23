@@ -1,8 +1,9 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.IsFirstOrderDeformationOfRZero
+import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.CoRes
+import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.CoSpan
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.PtCont
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.CoExt
-import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.CoSpan
-import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.CoRes
+
 open Formalism.ConjugateSelfDual ReciprocityTheory.Gal Module UpperTheory.V.Loc UpperTheory.V.Alg UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.HV UpperTheory.V.Base IsLocalRing
 
 private theorem hx_finite {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]

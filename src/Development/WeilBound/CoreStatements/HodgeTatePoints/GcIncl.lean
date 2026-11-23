@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.LeadMinor
-import GroundTheory.HeightsAndTheta.Heights.IntegralModels.PLatticesAgree
+import GroundTheory.HeightsAndTheta.Heights.IntegralModels.Statements
 import GroundTheory.HeightsAndTheta.Heights.IntegralModels.PHeightOneIntersection
 
 open Module NumberField GlobalTheory.CompanionTheory.Ar.HT TensorProduct

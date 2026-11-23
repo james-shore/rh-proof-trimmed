@@ -1,4 +1,4 @@
-import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.HeckeFubiniCompatibility.CompatFub
+import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.HeckeFubiniCompatibility.EntZero
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LengthContinuousProperSublevel
 
 noncomputable section

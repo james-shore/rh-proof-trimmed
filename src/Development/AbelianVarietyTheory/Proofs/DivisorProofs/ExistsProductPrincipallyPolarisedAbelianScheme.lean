@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSumPolAV
 import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.ExistsProdPolAV
-import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IsProjOverIffIsProperAndExistsIsAmpleLB
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinHomIffLinEnd
 
 noncomputable section
 

@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.GroupLattices.LevelGatherings.HostPlacesWeight
+import Formalism.LocalToGlobal.GroupLattices.LevelGatherings.SecPsiMulPow
 
 noncomputable section
 

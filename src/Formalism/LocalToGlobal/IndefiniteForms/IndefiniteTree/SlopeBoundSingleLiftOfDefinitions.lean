@@ -1,11 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteForms.IndefSide
-import Formalism.LocalToGlobal.IndefiniteForms.IndefUse
+import Formalism.LogFactorialIndices.StatementSize
 import Formalism.LocalToGlobal.IndefiniteForms.IndefExample
 import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.IndefiniteTreeX
-import Formalism.MeanHeightDescent.DivisionInequalityWithCovolume
-import Formalism.MeanHeightDescent.AverageDegreeBounds.GlobalBoundRefinements
-import Formalism.ThetaSupremumBounds.LiftOperatorBoundOfFockJet
 
 open Finset Module NumberField Formalism.HN
 

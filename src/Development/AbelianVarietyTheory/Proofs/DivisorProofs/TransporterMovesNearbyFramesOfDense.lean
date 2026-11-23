@@ -4,6 +4,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTransporterMo
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniqueUpToTargetGroup
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsHolToOfOpenImmersion
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FrameActionUpperTriangularBlockExists
+import Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsFramesOfHolPeriods
 
 set_option autoImplicit false
 

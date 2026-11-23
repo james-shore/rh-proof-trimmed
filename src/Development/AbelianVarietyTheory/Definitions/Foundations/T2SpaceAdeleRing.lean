@@ -1,6 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.BesselHermitianTheta.DefsReal
 import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsAHEqOfMemRatPts
+import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsGLSubmatrix
 
 noncomputable section
 

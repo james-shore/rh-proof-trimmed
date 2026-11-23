@@ -1,9 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.IsCombAt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.RosatiAdj
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ConstGen
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsLieBasis
-import Formalism.LocalToGlobal.CMDeterminantIdeals.StatementB
+import Formalism.LocalToGlobal.CMDeterminantIdeals.DetIdeal
 
 noncomputable section
 

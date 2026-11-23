@@ -1,6 +1,5 @@
 import Mathlib
-import Formalism.UnipotentAdelicQuotients.SiegelWeilUnitaryConvergent
-import Formalism.UnipotentAdelicQuotients.StdAdditiveCharExists
+import Formalism.UnipotentAdelicQuotients.SWXSDefs
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FiniteAdeleStrongApproximationModNat
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsOpenNsmulAdelicCompletionOfVectorSet
 

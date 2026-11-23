@@ -1,4 +1,6 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ThetaSeriesUniqueness.Complete
+import Formalism.PeriodIntegrals.AreaLat
+import Formalism.PeriodIntegrals.SigmaStarUniq
 
 noncomputable section
 

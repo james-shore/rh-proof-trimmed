@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorsorsTrivialIff
+
 open IsLocalRing Polynomial
 
 namespace GlobalTheory

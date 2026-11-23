@@ -3,6 +3,7 @@ import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ChartGen
 import Development.AbelianVarietyTheory.PublishedTheorems.DiscreteSeriesUnitary₂.MaxMass
 import Formalism.HermitianLattices.FinalNeighbourConstruct
 import Formalism.FlagUnipotentLattices.CardSubgroupsOfIndexLe
+import Formalism.HermitianLattices.HermitianLatticesProofs.UnimodUnramUnique
 
 open NumberField Matrix GlobalTheory.Mass Formalism.HermitianLatticesTheory
 open scoped ENNReal Classical

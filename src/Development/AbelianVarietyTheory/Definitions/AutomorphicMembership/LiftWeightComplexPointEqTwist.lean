@@ -1,8 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.ConcretePkgSpec
 import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.ONLeaves
-import Formalism.LocalToGlobal.Divisibility.LiftLatLemmas
-import Formalism.LocalRingCardinality.DataParams
+import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
 
 set_option autoImplicit false
 

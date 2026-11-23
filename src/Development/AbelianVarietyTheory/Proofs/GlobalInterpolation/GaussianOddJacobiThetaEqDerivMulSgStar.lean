@@ -2,6 +2,8 @@ import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.ThetaConstantWeber
 import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.ThetaLine
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.DifferentiableOddTheta
+import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.ThetaZeroLogDerivative
+
 open Complex
 
 noncomputable section

@@ -1,4 +1,5 @@
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.WeightsConj
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.DualIsConjByOne
 
 noncomputable section
 

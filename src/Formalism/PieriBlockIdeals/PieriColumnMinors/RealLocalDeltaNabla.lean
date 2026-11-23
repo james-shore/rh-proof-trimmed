@@ -1,8 +1,6 @@
 import Formalism.PieriBlockIdeals.LocalFaithfullyFlat
 import Formalism.PieriBlockIdeals.PieriColumnMinors.SL2BinomialLattices
-import Formalism.RankGapBounds.TheoremALocOfLemmaA
-import Formalism.RankGapBounds.RankGapProofs.FormsTensorLocalization
-import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Wlocal
 
 open MvPolynomial TensorProduct
 

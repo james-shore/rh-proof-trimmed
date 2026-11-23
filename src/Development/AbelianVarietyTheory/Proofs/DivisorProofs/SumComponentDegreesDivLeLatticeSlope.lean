@@ -4,7 +4,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.NormNegCmConstantEq
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComponentDegreesSumLeTotalDegreeStatement
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.VolPairExAndFinVol
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.FieldSizeMonotone
-import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 
 noncomputable section
 

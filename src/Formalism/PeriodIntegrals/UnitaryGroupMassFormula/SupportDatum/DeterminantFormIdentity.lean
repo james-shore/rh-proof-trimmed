@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.CuspSpanNormBounds.LocalGroupInFamilyNontrivial
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SupportDatum.Blocks
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SupportDatum.PowModTwoOfSq
 
 noncomputable section
 

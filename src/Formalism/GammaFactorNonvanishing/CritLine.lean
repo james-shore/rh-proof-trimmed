@@ -1,5 +1,6 @@
 import Development.AutomorphicArithmetic.CharacterBoxes.EveryCharacter
 import Formalism.GammaFactorNonvanishing.RhOfRight
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.PBCLat
 
 open Complex DirichletCharacter
 

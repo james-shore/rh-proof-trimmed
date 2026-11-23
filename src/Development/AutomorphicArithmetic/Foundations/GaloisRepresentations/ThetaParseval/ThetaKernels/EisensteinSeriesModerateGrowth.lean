@@ -1,6 +1,6 @@
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EisensteinHeckeFunctionalStatement
+import Mathlib
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EisensteinHeckeFunctional
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.HalfIndexLattices.SplitStab
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.HalfIndexLattices.IsLatRepL
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.EisLeftRatK
 
 set_option synthInstance.maxHeartbeats 200000

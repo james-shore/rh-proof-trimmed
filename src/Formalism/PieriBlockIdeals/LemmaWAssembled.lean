@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PieriBlockIdeals.WEChain
+import Formalism.PieriBlockIdeals.Statement
 
 noncomputable section
 

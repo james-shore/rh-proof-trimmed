@@ -1,4 +1,5 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockDegreeOne.CoeffXMulPderivSelf
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockDegreeOne.RedDefs
 
 noncomputable section
 

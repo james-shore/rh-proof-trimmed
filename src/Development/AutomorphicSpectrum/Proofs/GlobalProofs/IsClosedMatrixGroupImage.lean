@@ -3,6 +3,8 @@ import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.Is
 import GroundTheory.AutomorphicForms.DixmierMalliavin
 import GroundTheory.AutomorphicForms.HarishChandraRegularity.ExpHaar
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsSmoothLogMemLieAlg
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HasDerivAtExpMulExpOfFiniteDimensional
+
 set_option maxSynthPendingDepth 1
 open scoped Manifold ContDiff Topology
 open MeasureTheory Set GroundTheory.Automorphic

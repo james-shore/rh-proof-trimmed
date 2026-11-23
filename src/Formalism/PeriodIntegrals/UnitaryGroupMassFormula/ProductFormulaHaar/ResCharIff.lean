@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.ProdFormulaE
+import Formalism.SharpRestriction.CuspSpanNormBounds.PsiEDef
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ProductFormulaHaar.NormMod
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ProductFormulaHaar.TrBase
 

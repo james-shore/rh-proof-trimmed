@@ -1,5 +1,4 @@
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.BuiltEx
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.HeckeOpen
 
 set_option synthInstance.maxHeartbeats 200000

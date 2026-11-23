@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.KernelLattices.ColumnData
-import Formalism.LocalToGlobal.GlobalTheory.GL3.PFourSq
 import Formalism.LocalToGlobal.KernelLattices.ColumnData.ProvisionExtensionLink
+import Formalism.LocalToGlobal.GlobalTheory.GL3.PFourSq
 
 noncomputable section
 

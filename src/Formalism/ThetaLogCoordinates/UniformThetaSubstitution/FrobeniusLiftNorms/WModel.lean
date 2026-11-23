@@ -1,6 +1,4 @@
 import Mathlib
-import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.ThmSUniform
-import Formalism.FormalGroupWitt.FormalGroupWittProofs.WittTeichmullerRoot
 
 noncomputable section
 

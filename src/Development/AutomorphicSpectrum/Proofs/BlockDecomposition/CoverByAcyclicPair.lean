@@ -1,9 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairStructureOnLine
 import CompanionTheory.HarishChandraModules.LowKTypeMultiplicity.EigenspaceCyclicDensity.CreationOperators.GeneralizedVermaModulePolynomial
-import CompanionTheory.HarishChandraModules.LowKTypeMultiplicity.EigenspaceCyclicDensity.CreationOperators.CreAnnApply
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.MemFiltOfWords
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SgMulSelf
 
 open Finset
 open scoped TensorProduct

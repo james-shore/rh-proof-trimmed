@@ -1,6 +1,5 @@
 import Mathlib
-import Formalism.FrobeniusOrbits.HostThickExists
-import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.Galois
+import Formalism.TameInertiaTowers.StatementField
 
 open NumberField IntermediateField Polynomial
 

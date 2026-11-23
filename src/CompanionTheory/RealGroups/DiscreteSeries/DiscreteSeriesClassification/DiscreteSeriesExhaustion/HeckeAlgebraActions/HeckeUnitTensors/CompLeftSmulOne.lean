@@ -1,4 +1,6 @@
 import CompanionTheory.RealGroups.DiscreteSeries.DiscreteSeriesClassification.DiscreteSeriesExhaustion.HeckeAlgebraActions.HeckeUnitTensors.ContOfFnProd
+import CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.QuantumDeterminantTensor
+import CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.PrincipalSumStatement
 
 noncomputable section
 

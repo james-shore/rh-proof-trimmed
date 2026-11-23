@@ -3,7 +3,6 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeColumns.UnitaryL
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeColumns.IdxGroup
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeColumns.IdxTop
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeColumns.OpenCompact
-import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeColumns.ClassCount
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeColumns.Transfer
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeColumns.Unfold
@@ -14,7 +13,6 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeColumns.LevelCla
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeColumns.HAdaptRed
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeColumns.AdaptedBasisEveryPlace
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MassComputations.MassUnfoldGenHolds
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MassComputations.IsHermNDOfSetting
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MassComputations.ContinuousSplitA
 
 noncomputable section

@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.HarderNarasimhan.ShiftInvariance
+import Formalism.HermitianLattices.StatementMaj
 
 open Matrix NumberField Module
 

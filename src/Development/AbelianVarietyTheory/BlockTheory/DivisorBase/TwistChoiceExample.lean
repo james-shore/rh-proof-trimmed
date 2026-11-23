@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.CutTuples2
-import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ValBasic
 
 open Module NumberField IsDedekindDomain
 

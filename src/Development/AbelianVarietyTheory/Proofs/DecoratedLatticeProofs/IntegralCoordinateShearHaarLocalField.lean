@@ -1,5 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ChLApply
+import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.StandardOrderExtendedBasisApplyLowBlock
+
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.RootEx GlobalTheory.StepData
 
 namespace GlobalTheory.CoordShear

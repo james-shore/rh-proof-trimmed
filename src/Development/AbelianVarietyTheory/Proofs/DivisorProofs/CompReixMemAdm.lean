@@ -1,10 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ZetaOn
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExtendByZeroMemSchA
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProductFunctionOnSumCoordsMemAdelicSchwartzSpace
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicThetaDistributionSumProductFunction
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicSchwartzConjMem
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjLinApply
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTopologicalRingAdeleE
+
 open scoped TensorProduct NNReal Matrix
 open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK GlobalTheory.Doubling GlobalTheory.ThK.Bot

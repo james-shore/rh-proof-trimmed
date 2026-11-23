@@ -1,8 +1,7 @@
 import Mathlib
-import Formalism.LocalToGlobal.Columns.MultiFactorialEqTripleProd
-import Formalism.LocalToGlobal.Columns.BrpStarLatLattice
+import Formalism.LocalToGlobal.Columns.StandardDeltaIntegralCoeffs
+import Formalism.LocalToGlobal.Columns.BzdConjTTranspose
 import Formalism.LocalToGlobal.LatticeGeometry.OperatorNormFibers.PExtInvMuB
-import Formalism.GL3MeanSquares.ConcavityEquidistribution
 
 open NumberField IsDedekindDomain Module MvPolynomial
 open scoped Matrix ComplexOrder

@@ -1,9 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.Columns.FiniteSumNonzeroLargeDepth
-import Formalism.LocalToGlobal.Columns.DecorationStabilizerTrivialUnipotent
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.FormsStable
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PredMemGamRanks
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsSmulOfDecoEq
 
 noncomputable section
 

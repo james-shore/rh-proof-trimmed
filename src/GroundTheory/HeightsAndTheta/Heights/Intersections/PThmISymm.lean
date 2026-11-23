@@ -4,7 +4,8 @@ import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsWellDefined
 import GroundTheory.HeightsAndTheta.Heights.Intersections.ThmIExistsFamily
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PChoice
 import GroundTheory.HeightsAndTheta.Heights.Intersections.NotLtLtOfMemMinimalPrimes
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterDivSupp
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.ExistsUniqueStatement
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Inter

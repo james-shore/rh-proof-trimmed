@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsDimX
 import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.PIntDomainDim
-import ReciprocityTheory.CommutativeAlgebra.PolynomialHeights.HeightAddRingKrullDimQuotientMvPolynomialField
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

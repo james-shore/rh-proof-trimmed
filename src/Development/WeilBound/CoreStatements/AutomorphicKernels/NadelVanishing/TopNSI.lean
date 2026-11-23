@@ -1,6 +1,6 @@
 import Development.WeilBound.CoreStatements.AutomorphicKernels.NadelVanishing.TopNadel
 import Development.WeilBound.CoreStatements.AutomorphicKernels.NadelVanishing.TopIsolated
-import Development.WeilBound.CoreStatements.AutomorphicKernels.NadelVanishing.TopPointSep
+import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.SigmaSplitSymmInl
 
 namespace NadelVanishingSeparation.NSI
 

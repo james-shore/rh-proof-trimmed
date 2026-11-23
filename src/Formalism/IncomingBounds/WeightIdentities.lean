@@ -1,13 +1,6 @@
 import Formalism.IncomingBounds.FlowDegreeBounds.MaxFlowValueAttained
 import Formalism.IncomingBounds.FlowDegreeBounds.LemmaF
 import Formalism.IncomingBounds.FlowDegreeBounds.LemmaFd
-import Formalism.IncomingBounds.IncomingBound
-import Formalism.IncomingBounds.LevelTail
-import Formalism.IncomingBounds.FlowDegreeBounds.PadicValFactorialRatioProd
-import Mathlib
-import Formalism.IncomingBounds.FlowDegreeBounds.IndexLastReductionHolds
-import Formalism.IncomingBounds.StatementThmP
-import Formalism.IncomingBounds.FlowDegreeBounds.ProdRangeEqFactorialMulProdIco
 
 namespace Formalism.IncomingBounds
 

@@ -1,8 +1,9 @@
 import Mathlib
 import Formalism.WachLatticeTwists.LatticeDualFibres.FibreDualStable
-import Formalism.GaloisCohomology.LocalTateDualityK
+import Formalism.GaloisCohomology.Statement
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FactorMemCocyclesPowQuot
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsPowMulIntegral
+
 open Formalism.RepresentationBoundsCohomology.LOC ReciprocityTheory.Gal GlobalTheory.LocDualInt
 open Formalism.NG (KO)
 

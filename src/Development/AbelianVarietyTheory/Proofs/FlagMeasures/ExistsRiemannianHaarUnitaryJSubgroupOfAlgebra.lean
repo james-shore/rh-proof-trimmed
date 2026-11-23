@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.SameKindIsometric
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DefClassNum
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsLimitOfChart
+
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas
 open Filter Topology Metric Formalism.REAL
 

@@ -1,8 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.PolyApproxZeroPadic
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsPsCharOne
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteSemisimple
+import Formalism.SharpRestriction.LevelLetterCocycles.DataN
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DetSuccEqSubSumUpdateRow
+
 open Formalism.MainNotions.N GlobalTheory.Cong GlobalTheory.PsChar
 
 noncomputable section

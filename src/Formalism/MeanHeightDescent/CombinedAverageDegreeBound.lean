@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.MeanHeightDescent.BadRowsNumeric
 
 open Finset
 

@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.SecWFrame
-import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.ProductExactness
+import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SynthesizedVectorZPairing
+import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RightInvOfModular
 
 noncomputable section
 

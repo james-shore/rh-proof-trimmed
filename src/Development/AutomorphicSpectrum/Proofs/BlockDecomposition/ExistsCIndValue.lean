@@ -1,8 +1,6 @@
 import Mathlib
 import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.LeibnizOrders.LeibnizOrd
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsOpenFixedOfSubgroup
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MulInvMemQOfRowQEq
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsGlLastRowEq
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib Topology
 open scoped TensorProduct

@@ -4,6 +4,8 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ReadingsExistRow
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CentralShiftExists
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompatiblePhaseExists
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EigenvalueBarCompatibility
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TypePlacesNotPairwiseConjugate
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.InjectiveOfIndep
 
 noncomputable section
 

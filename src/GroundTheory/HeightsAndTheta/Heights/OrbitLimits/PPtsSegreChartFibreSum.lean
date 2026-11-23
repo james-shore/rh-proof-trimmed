@@ -6,8 +6,9 @@ import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PSegreChartDim
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PDiscriminantSheetCover
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PFibreBound
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.Assembly
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSheet
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterOsgood
+import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
+import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.CoordinateIdeals.FubiniLevi
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

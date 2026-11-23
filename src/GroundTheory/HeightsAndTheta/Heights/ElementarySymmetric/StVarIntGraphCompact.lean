@@ -1,5 +1,6 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.GraphIdeal
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StatementsCurrent
 
 set_option maxSynthPendingDepth 1
 

@@ -1,5 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSEWaveJc
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSELeibnizCls
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.WaveOperatorLeL2Subspace
 
 open MeasureTheory Filter Topology
 open scoped ComplexConjugate

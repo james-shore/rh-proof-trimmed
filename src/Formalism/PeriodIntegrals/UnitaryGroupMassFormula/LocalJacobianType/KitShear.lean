@@ -2,9 +2,7 @@ import Mathlib
 import Formalism.PeriodIntegrals.LocJacTyp
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalJacobianType.Development
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalJacobianType.BoxMulAlt
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalJacobianType.KitAbs
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalJacobianType.KitSplit
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalJacobianType.BoxMul
 
 noncomputable section
 

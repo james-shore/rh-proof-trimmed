@@ -1,6 +1,6 @@
-import Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpTieAlg
-import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermFunPf
+import Formalism.LocalToGlobal.ProjectiveLattices.ThGerm
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermDVal
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.LBLocal
 
 set_option autoImplicit false
 

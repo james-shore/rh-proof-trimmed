@@ -1,10 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HeightPowerSummableRationalHermitian
-import Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.ThetaIdempotents.HeckeEta
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SiegelEisensteinConvergent
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PartialConstantTermBound
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SectionLeftInvariantRationalParabolic
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PolarPartIdentity
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter

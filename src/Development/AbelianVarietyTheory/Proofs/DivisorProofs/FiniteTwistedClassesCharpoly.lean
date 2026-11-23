@@ -7,6 +7,8 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteSqEqOneO
 import GroundTheory.GlobalFields.LocalFieldAtPlace
 import GroundTheory.LocalFields.FiniteExtension
 import GroundTheory.LocalFields.UnitsPowers
+import Development.AbelianVarietyTheory.Definitions.Divisors.SimpleTwistedTraceFormulaStable
+
 open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC GlobalTheory.BCT
 open scoped Classical TensorProduct
 

@@ -1,5 +1,6 @@
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.DecompB
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.DcAevalIntertwine
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.DecompA
 
 noncomputable section
 

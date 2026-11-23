@@ -1,5 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FibrePointsLEId
+import Development.AbelianVarietyTheory.Definitions.Divisors.PullHlComp
+
 open CategoryTheory Limits AlgebraicGeometry
 
 namespace GlobalTheory.EtC.Tr

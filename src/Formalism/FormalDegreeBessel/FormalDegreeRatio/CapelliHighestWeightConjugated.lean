@@ -1,6 +1,5 @@
 import Formalism.FormalDegreeBessel.StatementIO
 import Formalism.FormalDegreeBessel.FormalDegreeRatio.IOCentral
-import Formalism.FormalDegreeBessel.FormalDegreeRatio.IOLeft
 
 open Matrix
 open scoped ContDiff

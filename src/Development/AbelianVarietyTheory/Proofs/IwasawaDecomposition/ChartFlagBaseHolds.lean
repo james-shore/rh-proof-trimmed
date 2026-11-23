@@ -2,6 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FinrankEqZeroIff
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FlagComponentFramedPointFrame
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ChartFrameBaseHoldsStatement
+import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ModuliUnivEtaKilled
 
 noncomputable section
 

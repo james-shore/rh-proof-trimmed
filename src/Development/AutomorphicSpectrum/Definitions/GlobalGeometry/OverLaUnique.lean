@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.ProjectiveLattices.PlaceBelow
+import Formalism.LocalToGlobal.ProjectiveLattices.ChartDirectionsIntegral
 import Formalism.SharpRestriction.Divisibility.ModuliIntegralCharts
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.WchartLePreimage
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.UniformisationConclusion

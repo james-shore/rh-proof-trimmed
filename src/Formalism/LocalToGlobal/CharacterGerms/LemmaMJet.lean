@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.CharacterGerms.LemmaMLin
-import Formalism.IncomingBounds.FlowDegreeBounds.ThmPJet
 
 noncomputable section
 

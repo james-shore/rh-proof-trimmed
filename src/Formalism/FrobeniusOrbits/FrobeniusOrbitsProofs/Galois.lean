@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.FrobeniusOrbits.Statement
 import Formalism.TameInertiaTowers.TowerFieldFoundations
+import Formalism.FrobeniusOrbits.Statement
 
 open NumberField IntermediateField
 

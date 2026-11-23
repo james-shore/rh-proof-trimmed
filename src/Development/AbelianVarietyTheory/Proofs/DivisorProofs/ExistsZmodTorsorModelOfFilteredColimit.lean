@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GenFibMapAlgebraMap
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorsorsTrivialIff
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsZModTorsorIff
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFinitePresentationModelOfIsColimitStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsZmodActionModelOfIsColimitFilteredStatement

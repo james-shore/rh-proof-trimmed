@@ -3,8 +3,7 @@ import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.InfiniteCoor
 import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.AdelicUnitaryHaarMeasure
 import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.StabilizerLattices
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsCompactAdele
-import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.FundamentalDomainNeZero
-import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.FrameTransport
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.HaarUpqIsMulRightInvariant
 
 noncomputable section
 

@@ -1,5 +1,4 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMkTopCut
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.LowerParabolicCoordinates
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.HermitianFormRankZeroApply
 
 noncomputable section
 

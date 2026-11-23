@@ -2,9 +2,8 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.FlagPairDefinitePartLattice
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ChartGen
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.NormalFormDualOrthogonalLast
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.AdaptSelf
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.PairBdNonneg
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.IsNormalFormStabilizerMeasure
+import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
 
 open NumberField Formalism.HermitianLatticeCounting.S6 GlobalTheory.HermLat GlobalTheory.DegCnt GlobalTheory.DegAsm
 open scoped Pointwise ENNReal Classical

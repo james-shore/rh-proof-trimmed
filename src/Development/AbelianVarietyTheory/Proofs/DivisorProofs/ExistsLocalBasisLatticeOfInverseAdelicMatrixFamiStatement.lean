@@ -1,9 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalBasisLatticeOfInverseAdelicMatrixFami
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsAdelicOne
-import Formalism.LocalToGlobal.CMDeterminantIdeals.StatementG
-import Formalism.PolynomialDimension.WeylDim
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DegreeDeterminantLineTwoHermitianLattices
 
 open NumberField IsDedekindDomain Module Formalism.BasicNotions Formalism.L2.Pj GlobalTheory.DualWeyl GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.DefPt MvPolynomial
 open scoped Matrix

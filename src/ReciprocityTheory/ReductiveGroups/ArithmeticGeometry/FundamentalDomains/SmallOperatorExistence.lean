@@ -1,4 +1,5 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.MajorantOrthogonality
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.HermCOrthonormalCoordinates
 
 namespace ReciprocityTheory.ChartRestriction.G.FD.SmallOperatorExistence
 

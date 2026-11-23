@@ -1,5 +1,9 @@
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.UnitIdSt
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBIdAd
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.GaugeTrans
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.GaugeExp
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.CalcExp
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.LogClosed
 
 noncomputable section
 

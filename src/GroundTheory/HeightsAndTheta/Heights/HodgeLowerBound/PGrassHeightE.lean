@@ -1,7 +1,8 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsGrassHeightE
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.Assembly
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PRootHeightNE
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRedA
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.LowerBoundFree

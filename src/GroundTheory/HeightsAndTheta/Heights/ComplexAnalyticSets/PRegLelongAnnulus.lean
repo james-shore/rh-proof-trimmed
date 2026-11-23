@@ -3,6 +3,8 @@ import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StRegRadialWeigh
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StChartMassCompact
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PSheetSumMeasurable
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PFiniteProjectionCluster
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StRegLelongAnnulus
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

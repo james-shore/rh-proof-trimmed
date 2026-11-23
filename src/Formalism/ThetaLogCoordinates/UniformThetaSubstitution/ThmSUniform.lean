@@ -1,7 +1,5 @@
 import Mathlib
-import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FirstDeriv
-import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.CyclicPowerClassOfExpEquiv
-import Formalism.GaussJetBounds.StatementI
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.IsLawOfLog
 
 noncomputable section
 

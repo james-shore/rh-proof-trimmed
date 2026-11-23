@@ -1,8 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsIsLogMult
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsEtCoord
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumOrdSubOneLeOrdWedgeDifferentials
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntersectionNumberPullbackProportionalOfProporti
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CodimOnePointMinimalPrime
 
 open CategoryTheory Limits AlgebraicGeometry TopologicalSpace Filter

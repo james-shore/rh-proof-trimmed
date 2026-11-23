@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.LatLevel
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.PlaceAt
 import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.IsThetaFunOPull
 
 set_option synthInstance.maxHeartbeats 100000

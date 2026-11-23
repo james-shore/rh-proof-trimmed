@@ -1,4 +1,5 @@
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShearGL
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicFourierExpansion
 
 noncomputable section
 

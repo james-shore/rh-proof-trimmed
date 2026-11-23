@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.ArithmeticCylinders
-import Formalism.SharpRestriction.LevelLetterCocycles.SumRepresentations
 
 noncomputable section
 

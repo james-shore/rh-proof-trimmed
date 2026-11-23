@@ -1,4 +1,4 @@
-import Formalism.WachLatticeTwists.LagrangeExtensionCocycles.ExtensionCocycleProofs.ResidueQuotientHolds
+import Formalism.WachLatticeTwists.LagrangeExtensionCocycles.Statement
 
 noncomputable section
 

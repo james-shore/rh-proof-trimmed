@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.PairLift
+import Formalism.SharpRestriction.GrowthBounds.ColumnSystems
 import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.SegmentStatementHolds
 
 noncomputable section

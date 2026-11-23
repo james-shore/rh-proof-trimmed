@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.BesselHermitianTheta.TiedType
+import Formalism.LocalToGlobal.BesselHermitianTheta.TiedSmooth
 
 noncomputable section
 

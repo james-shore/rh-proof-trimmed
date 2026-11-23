@@ -1,4 +1,5 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GeneratorCountTuples.TorsBoundPow
+import Development.AutomorphicArithmetic.AutomorphicVarieties.GeneratorCountTuples.LemmaK
 
 open NumberField UpperTheory.V UpperTheory.V.K
 

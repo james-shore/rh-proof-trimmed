@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.SharpRestriction.CuspSpanNormBounds.NormalizedLocalScale
 import Formalism.HermitianCurvature.FiniteOrderIntersectionInSmooth
-import Development.AbelianVarietyTheory.Definitions.Jets.SideFam
+import Development.AbelianVarietyTheory.Definitions.Jets.SumIoPrAlt
 
 open MeasureTheory Matrix
 open scoped InnerProductSpace ENNReal

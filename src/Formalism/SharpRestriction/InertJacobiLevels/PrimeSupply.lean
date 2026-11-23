@@ -1,7 +1,7 @@
-import Formalism.SharpRestriction.InertJacobiLevels.RayPrimes
 import Formalism.SharpRestriction.InertJacobiLevels.HostFam
+import Formalism.LocalRingCardinality.DataParams₂
 import Formalism.LocalRingCardinality.SpanPowerMembership.PlacesOverNcardOfSplitInj
-import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleNewtypesIdempotentZero
+import Formalism.LocalRingCardinality.SpanPowerMembership.ExistsTameGen
 
 noncomputable section
 

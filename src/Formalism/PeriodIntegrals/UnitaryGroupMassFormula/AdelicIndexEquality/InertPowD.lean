@@ -1,7 +1,5 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicIndexEquality.InertPowDefs
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicIndexEquality.InertQRG
 import Formalism.LocalRingCardinality.SpanPowerMembership.LocAtA
-import Mathlib
 
 noncomputable section
 

@@ -1,4 +1,4 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.BetaSesquilinearity
+import Formalism.HermitianCurvature.StatementB
 
 open scoped ComplexConjugate
 

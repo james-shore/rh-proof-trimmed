@@ -1,4 +1,5 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FrameInduction.NegBound
+import Formalism.FormalDegreeBessel.FormalDegreeRatio.ReverseCauchySchwarzHolds
 
 open Matrix Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.C2
 

@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.HeckeLAdicCharacterDeRham
-import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.DeRhamJacobian.IsdRJ
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.CharAbove
 
 noncomputable section
 

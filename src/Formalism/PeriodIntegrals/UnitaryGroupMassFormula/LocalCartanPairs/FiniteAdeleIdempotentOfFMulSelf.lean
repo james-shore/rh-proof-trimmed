@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalCartanPairs.PiNonunit
+import Formalism.PeriodIntegrals.SqPair
 
 noncomputable section
 open Matrix

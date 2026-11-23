@@ -2,6 +2,8 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.LevelIso
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsLatticeComplement
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AdmissibleResidues.WitApi
+import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.HolomorphicIrreducibility.SymmetricCubePreservesSymplecticForm
+
 open UpperTheory.GalN.V
 
 noncomputable section

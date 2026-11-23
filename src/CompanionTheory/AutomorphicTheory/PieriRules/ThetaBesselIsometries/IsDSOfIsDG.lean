@@ -1,12 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Jets.SideFam
-import Development.AbelianVarietyTheory.Definitions.Jets.SumIoPrAlt
+import Formalism.HermitianCurvature.StatementC
+import Formalism.HermitianCurvature.StatementD
+import Formalism.HermitianCurvature.StatementMA
 import Development.AbelianVarietyTheory.PublishedTheorems.DiscreteSeries₂.Poulsen
-import Formalism.PeriodIntegrals.DSInfCharCap
-import Formalism.PeriodIntegrals.LowCyc
-import Formalism.PeriodIntegrals.UpqRep
-import Development.AbelianVarietyTheory.Definitions.Jets.TauZero
-import Formalism.HermitianCurvature.StatementTBB
 
 open Matrix MeasureTheory Finset
 open scoped InnerProductSpace ENNReal

@@ -8,7 +8,6 @@ import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsUniqueFactorTh
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsIsHeckeIsog
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsGenOfInvariant
 import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.PrimitiveCocycle
-import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.GlobalFnsHolds
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor

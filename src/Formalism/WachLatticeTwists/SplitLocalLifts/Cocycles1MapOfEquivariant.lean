@@ -1,8 +1,6 @@
 import Formalism.WachLatticeTwists.SplitLocalLifts.Statement
-import Formalism.WachLatticeTwists.CoprimeLiftBounds.StatBridgeChiOne
+import Formalism.WachLatticeTwists.CoprimeLiftBounds.Statement
 import Formalism.WachLatticeTwists.CoprimeLiftBounds.SelmerInjColumnPlace
-import Formalism.WachLatticeTwists.Statement
-import Formalism.CharacterColumnKernels.CharacterColumnKernelEqualityForm
 import Formalism.WachLatticeTwists.LatticeDualFibres.Statement
 
 open Finset Classical

@@ -1,4 +1,7 @@
 import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.DiscPowerTimesMonomial
+import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.OldestLetterInSegment
+import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.DplusLeBeS
+import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.CardFinRange
 
 noncomputable section
 

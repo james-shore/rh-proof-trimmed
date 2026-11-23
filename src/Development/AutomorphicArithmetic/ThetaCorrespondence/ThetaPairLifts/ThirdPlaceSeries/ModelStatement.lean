@@ -1,5 +1,4 @@
 import Development.AbelianVarietyTheory.Definitions.Divisors.SumExpSt
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExportSt
 
 set_option synthInstance.maxHeartbeats 200000

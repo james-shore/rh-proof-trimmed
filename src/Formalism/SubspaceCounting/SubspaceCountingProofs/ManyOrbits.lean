@@ -1,6 +1,4 @@
 import Formalism.SubspaceCounting.Statement
-import Formalism.SubspaceCounting.SubspaceCountingProofs.LengthLayers
-import Formalism.SubspaceCounting.SubspaceCountingProofs.WalkSharp
 
 noncomputable section
 

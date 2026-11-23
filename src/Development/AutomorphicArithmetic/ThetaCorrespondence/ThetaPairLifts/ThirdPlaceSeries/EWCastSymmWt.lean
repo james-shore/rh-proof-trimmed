@@ -1,8 +1,8 @@
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaLiftEquivariance
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CharacterChoiceData
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.MapMemISupIsLinAt
-import Development.AutomorphicArithmetic.Foundations.LocalLanglands.IsRecTOfIsRec
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaLiftGoodProjectorIntertwinesMatchedHecke
+import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.RightInv
 
 set_option synthInstance.maxHeartbeats 200000
 

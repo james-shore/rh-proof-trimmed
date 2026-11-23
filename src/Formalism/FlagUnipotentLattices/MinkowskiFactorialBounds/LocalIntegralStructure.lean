@@ -1,7 +1,6 @@
 import Formalism.FlagUnipotentLattices.DetIndexProductHyperbolicInequality
 import Formalism.FlagUnipotentLattices.DetIndexProductPlacesInequalitySq
 import Formalism.HyperbolicPlaceProducts.SecondLevelArithmeticNorm
-import Formalism.HyperbolicPlaceProducts.ArithmeticCountRevised
 
 open Module NumberField Formalism.HermitianLatticeCounting.LocalIntegralStructure nonZeroDivisors
 set_option linter.all false

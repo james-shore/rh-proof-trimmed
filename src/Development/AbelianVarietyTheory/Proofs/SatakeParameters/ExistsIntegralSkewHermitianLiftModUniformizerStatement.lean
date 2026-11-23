@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsIntegralSkewHermitianLiftModUniformizer
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DvdPowZeroIff
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CayleyTransformTrivialPhaseSkewHermitian
 
 open Matrix
 set_option maxHeartbeats 1000000 in

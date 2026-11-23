@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.ThetaCorrespondence.AlgebraicCharacters.EmbOrbit
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DenseRangeUnits
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AbsoluteGaloisAbelianizationEqOneOfMemOpenSubgro
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsOpenIdeleSubgroupContainsCongruenceUnits
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsAbelianizedGaloisHomOfClosureIso
@@ -9,6 +8,7 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GlobalArtinLoc
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ChevalleyUnits
 import GroundTheory.GlobalFields.NormResidueSymbol.FunctorialFinite
 import CompanionTheory.AutomorphicTheory.UnitriangularMeasure.AdeleCoordinateMeasure.EllipticTorusNorm
+
 open UpperTheory.Lit.CharWD GlobalTheory.Published
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.HeckeGal GlobalTheory.WeilDeligne GlobalTheory.LocLanglands
   UpperTheory.V.W GroundTheory.Global GroundTheory.Global.AdeleBaseChange GroundTheory.Global.SemiLocal

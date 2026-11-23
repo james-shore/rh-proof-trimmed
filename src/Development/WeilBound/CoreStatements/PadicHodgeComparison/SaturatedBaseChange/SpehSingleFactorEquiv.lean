@@ -1,8 +1,7 @@
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.SaturatedBaseChange.BcBackOffTOfSat
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsUnitarisableOfIsSpehOne
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HasSupportOfIsSubquotientProdIrr
-import Development.AutomorphicSpectrum.Proofs.GlobalProofs.HasSupportOfIsSubquotientProdIrr
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLocCompSplit
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsUnitarisableOfIsSpehOne
 
 noncomputable section
 

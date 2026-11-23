@@ -1,5 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.LocalParametrisation
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.AnalyticGerm
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.ComplexSets

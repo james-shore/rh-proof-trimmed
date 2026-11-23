@@ -1,7 +1,7 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.GammaLaurentFactors.PairGOps
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ArchimedeanSchwartz.HodgeTateFromSandwich
 import Development.AutomorphicArithmetic.Foundations.LocalLanglands.IsRecTOfIsRec
-import GroundTheory.GlobalFields.SemilocalAlgebras.ContinuousCompletionMap
+import GroundTheory.AutomorphicForms.GL2.GJLocalFEGamma
 
 noncomputable section
 

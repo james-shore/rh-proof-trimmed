@@ -7,7 +7,6 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairLocalAuxili
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairInvolutionContinuous
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SplitPlaceLocalElement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedOrbitalPairConvolutionStatement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PLocPrjGOfNotMem
 
 noncomputable section
 

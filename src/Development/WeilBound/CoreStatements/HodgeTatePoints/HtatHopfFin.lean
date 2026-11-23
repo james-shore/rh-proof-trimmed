@@ -3,11 +3,11 @@ import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.TranslateM
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsUnitFormLocalizationEtaleNbhd
 import GroundTheory.PAdicHodge.FiniteFlat
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.DualOrder
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.HasValues
-import Development.WeilBound.CoreStatements.HodgeTatePoints.HtatHopfEx
-import Development.WeilBound.CoreStatements.HodgeTatePoints.HtatHens
-import Development.WeilBound.CoreStatements.HomogeneousNonvanishing.BtExistsBc
-import Development.WeilBound.CoreStatements.HodgeTatePoints.HtatBcPull
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LieModel
+import Development.WeilBound.CoreStatements.HodgeTatePoints.HtatHopf
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.EigLat
+import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsExcisionNbhdAway
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.LieEig
 
 namespace PositivityTheory.HtPt.Htat
 

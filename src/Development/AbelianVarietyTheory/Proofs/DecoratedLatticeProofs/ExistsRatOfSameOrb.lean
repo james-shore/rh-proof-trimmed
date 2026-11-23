@@ -1,10 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.CosInj
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.PhiTopAgree
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.TwistPlaceCouplingIndexFiniteLevelStable
-import Formalism.LocalToGlobal.Columns.FiniteSumNonzeroLargeDepth
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.TwistPrimeRationalCosetSameOrbitIffLevel
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MemStabLocalizedStdLatticeIffIntegralGL
+
 open NumberField IsDedekindDomain Matrix ValuativeRel Formalism.L2.Col
 open scoped Classical
 

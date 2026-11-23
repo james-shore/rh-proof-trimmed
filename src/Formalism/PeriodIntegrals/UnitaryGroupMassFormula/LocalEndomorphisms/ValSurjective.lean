@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.PeriodIntegrals.LocalEnd
 
 open NumberField IsDedekindDomain
 

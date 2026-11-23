@@ -1,8 +1,8 @@
 import Mathlib
 import Development.DiscreteGroups.GlobalIrreducibility.DzMatchCut
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIneOfUnit
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GlobalArtinLocalIdeleInjectiveStatement
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalArtinInertiaIsUnitAt
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Langlands
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EqOfRootCongrOfDerivUnit
 
 noncomputable section

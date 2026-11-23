@@ -9,7 +9,6 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InvariantOfLieO
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspidalKTypeFiniteStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IrreducibleSmoothModuleUnique
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspFiniteVectorsHoldsStatement
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IrreducibleCuspidalFormL2Mem
 import GroundTheory.PAdicHodge.ACrisBdR
 
 noncomputable section

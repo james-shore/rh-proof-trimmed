@@ -1,5 +1,4 @@
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RawPackEqPow
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.PublishedInputsThirdLayer
 
 set_option synthInstance.maxHeartbeats 200000

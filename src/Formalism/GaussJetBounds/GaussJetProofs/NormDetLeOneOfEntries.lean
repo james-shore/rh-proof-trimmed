@@ -1,4 +1,4 @@
-import Formalism.GaussJetBounds.GenLogInverse
+import Mathlib
 import Formalism.GaussJetBounds.StatementD
 
 noncomputable section

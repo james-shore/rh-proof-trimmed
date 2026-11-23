@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsHeatZero
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.GCauchyStatement
 import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.SchwartzBruhatInnerProductSelfNonnegBounds
 import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.UnitaryActHalfSpace
 import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.FiniteClsAndStab
@@ -9,6 +8,7 @@ import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.Hermiti
 import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.SiegelWeilDifferenceAutomorphyLinearityStatement
 import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.SiegelWeilDifferenceInvariantNormBoundedStatement
 import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ExistsRationalMatrixMoveAdmissibleUniformLevelStatement
+
 open Matrix Complex NumberField GlobalTheory.SW Filter Topology
 open ReciprocityTheory.ChartRestriction.G.FD (cc herm)
 open scoped ComplexConjugate ComplexOrder Real Classical

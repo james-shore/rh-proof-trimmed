@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.InvariantsGenerators
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.JSmul
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ResBound
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemFixingSubgroupMaxUnramifiedOfMemLocalGalois
 
 open GlobalTheory.AdmLoc GlobalTheory.TopSteps Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions

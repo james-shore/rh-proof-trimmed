@@ -1,7 +1,5 @@
 import Mathlib
 import Development.WeilBound.ThetaLifts.Reductions.WeilPairs.RowsStackRight
-import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
-import Formalism.LocalToGlobal.IndefiniteReal.DatumF
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNeZeroConjNegOfCmExtensionStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsUnitDetGramOfHermitianSelfDualLatticeSpaceStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsUnitDetGramSkewHermitianSignatureStatement
@@ -10,6 +8,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RestrictsToQuadrati
 import Development.WeilBound.ThetaLifts.Reductions.WeilPairs.WeilPairExistence.ExistsIsWeilDatumOF
 import Development.WeilBound.ThetaLifts.Reductions.WeilPairs.WeilPairExistence.ExistsIsUWeilPairCm
 import Development.WeilBound.ThetaLifts.TowerModels.PlaneHerm
+
 open scoped TensorProduct Matrix
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open GlobalTheory.WeilM GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels

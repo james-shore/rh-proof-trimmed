@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PowForm
+
 open MeasureTheory Filter Topology
 
 namespace GlobalTheory

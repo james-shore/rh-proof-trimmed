@@ -1,9 +1,9 @@
 import Mathlib
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.CompletedLStripBounds
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormWt
+import Development.AbelianVarietyTheory.Definitions.Divisors.EntireEqOfHalfPlane
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussZero
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContinuousTerm
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GammaIntegralExpSubstitutionRealLineStatement
+
 open NumberField MeasureTheory
 
 noncomputable section

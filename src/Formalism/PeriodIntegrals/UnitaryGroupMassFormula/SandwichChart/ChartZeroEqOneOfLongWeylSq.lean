@@ -2,7 +2,6 @@ import Mathlib
 import Formalism.PeriodIntegrals.LongWeylElementSquare
 import Formalism.PeriodIntegrals.SwSand
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SandwichChart.SandwichOfOfCharts
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SandwichChart.UnrealifyRL
 
 set_option linter.unusedVariables false
 

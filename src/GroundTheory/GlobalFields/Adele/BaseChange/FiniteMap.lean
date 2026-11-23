@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.GlobalFields.SemilocalAlgebras.NormTrace
+import GroundTheory.GlobalFields.SemilocalAlgebras.Finite
 import GroundTheory.GlobalFields.CompletionAtPlace.Integers
 
 namespace GroundTheory.Global

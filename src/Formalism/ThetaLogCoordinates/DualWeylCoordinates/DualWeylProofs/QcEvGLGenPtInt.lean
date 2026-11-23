@@ -1,4 +1,4 @@
-import Formalism.ThetaLogCoordinates.DualWeylCoordinates.DualWeylProofs.QcEvGLDetUZpow
+import Formalism.ThetaLogCoordinates.DualWeylCoordinates.DefsMod
 
 noncomputable section
 

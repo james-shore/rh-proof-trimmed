@@ -1,6 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StokesObjects
-import GroundTheory.HeightsAndTheta.Heights.Intersections.NoCommonComponentCoordinatesPlane
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRedF
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

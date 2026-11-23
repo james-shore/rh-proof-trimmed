@@ -1,6 +1,6 @@
-import Development.WeilBound.ThetaLifts.SphericalLattices.HoweInert
+import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.LocalDef
 import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.ExistsEigenLift
-import Development.WeilBound.CoreStatements.LocalThetaKernels.IwasMain
+import Development.AutomorphicSpectrum.Definitions.MembershipCriteria.LaEqSqrtSmulLam
 
 noncomputable section
 

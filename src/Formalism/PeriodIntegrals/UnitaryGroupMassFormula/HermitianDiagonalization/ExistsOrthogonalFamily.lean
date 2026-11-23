@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.LocalToGlobal.AdelicCompactOpens.HermDefONFamily
 
 namespace PI.UnitaryGroupMassFormula.HermConj
 

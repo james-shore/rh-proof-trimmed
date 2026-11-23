@@ -5,6 +5,7 @@ import Formalism.HermitianCurvature.OperatorsCommuteTranslations
 import Formalism.HermitianCurvature.BigCellVanishingOfCommute
 import Formalism.HermitianCurvature.LetterProductDoubleDegreeCount
 import Formalism.HermitianCurvature.CompositeFormulaLevelZero
+import Formalism.RealPlaceAnalysis.StatementU
 
 namespace Formalism.FourierDecayAlt.D
 

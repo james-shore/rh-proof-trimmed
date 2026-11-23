@@ -2,6 +2,7 @@ import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.HermitianTraceFormVanishing
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.OrthogonalFrameDomain
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ImEmbHermSelf
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.LminorSubmatrixCastSucc
 
 open NumberField Complex ReciprocityTheory.ChartRestriction.G.FD
 open scoped ComplexConjugate

@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.TeichOnto
-import Mathlib.NumberTheory.Padics.Hensel
 
 noncomputable section
 

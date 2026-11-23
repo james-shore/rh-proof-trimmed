@@ -1,9 +1,8 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.Intersections.StSemilocResidueFrac
-import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsSemilocFinite
-import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsSemilocMaxIdeals
 import GroundTheory.HeightsAndTheta.Heights.Intersections.NotIsUnitOfNumMem
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PSemilocRankFrac
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

@@ -1,9 +1,6 @@
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.ZsmulGeneratorEqZeroOfProjection
 import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.CoprimeTwoPow
-import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.Orbits
-import Mathlib
-import Formalism.FrobeniusOrbits.Statement
-import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.OrderOfSignGroupDvdTwo
+import Formalism.FrobeniusOrbits.DiscrMaximalRealCyclotomic
 import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.CardExtendedGaloisGroup
 import Formalism.FrobeniusOrbits.HostThickExists
 

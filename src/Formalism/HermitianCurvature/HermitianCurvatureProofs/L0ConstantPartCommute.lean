@@ -1,5 +1,5 @@
 import Formalism.HermitianCurvature.StatementFr
-import Formalism.YangianSpanCharacter.YangianRelationFirst
+import Formalism.YangianSpanCharacter.YangianRTTProofs.DiagonalEntryEqOfModularRelation
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.RuleGD
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.RuleSS
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.QuasiDeterminantFromEntries

@@ -1,6 +1,6 @@
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RowLatticeFinitelyGenerated
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Realised
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSemilinearEmbSupLatticeOntoRealisationStatement
 
 set_option synthInstance.maxHeartbeats 200000
 

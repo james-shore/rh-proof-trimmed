@@ -1,5 +1,4 @@
-import Formalism.SharpRestriction.Divisibility.LocalNonemptiness.OrbitPlaces
-import Formalism.LocalRingCardinality.HostCls
+import Formalism.SharpRestriction.Divisibility.OrbitPlaces
 
 noncomputable section
 

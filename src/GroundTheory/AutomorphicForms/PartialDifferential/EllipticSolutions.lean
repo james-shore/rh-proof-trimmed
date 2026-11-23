@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.AutomorphicForms.PartialDifferential.EllipticDiffOp
+import GroundTheory.AutomorphicForms.PartialDifferential.SobolevMollifier
 
 namespace GroundTheory.Automorphic.Sobolev
 

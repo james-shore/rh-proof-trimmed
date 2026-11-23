@@ -1,14 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.HidaSetting
-import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GapAtLeast
-import Formalism.FrobeniusOrbits.RealSubfieldLeCompositum
-import Formalism.SharpRestriction.CuspSpanNormBounds.GlobAut
-import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ExistsReduction
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnramifiedDegreeOneOfNcardPlacesOver
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsReductionActionChosenPlaces
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.InflationBasic
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsChoiceOfIdem
 
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting
 open GlobalTheory.RowLev GlobalTheory.RowLev.Inhab IsDedekindDomain Matrix Formalism.UG

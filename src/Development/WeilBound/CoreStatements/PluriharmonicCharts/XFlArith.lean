@@ -1,8 +1,7 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.MetricPeriods.Pull1
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.APrime
-import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsFibreLocal
-import Development.AutomorphicSpectrum.Statements.MetricStatements.AgreementIffGuarded
+import Development.AutomorphicSpectrum.Definitions.MetricPeriods.GeometricAbelianConnected
+import GroundTheory.HeightsAndTheta.Heights.Antisymmetric.Statements
+import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FlagIndices.InstFintypeFlIdx
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PFlagArithVar
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.ImageCoord
 

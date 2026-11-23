@@ -1,4 +1,7 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PolynomialModelIsometry.IsPolyMon
+import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
+import Formalism.PeriodIntegrals.WeylForU
+import Formalism.PeriodIntegrals.HwIrred
 
 noncomputable section
 

@@ -4,6 +4,7 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecondLeviFamil
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EpowRightEqPow
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CapPNeg
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CapelliOfGelfand
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.GlRelNegTAndQdet
 
 namespace GlobalTheory.CompanionTheory.CapClsA
 

@@ -1,7 +1,5 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsEmbeddingWeight
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsEmbeddingPieces
-import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsArith
 
 set_option maxSynthPendingDepth 1
 

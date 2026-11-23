@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.InvForm
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.TwoSplitIdem
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.PlaceS
 
 set_option synthInstance.maxHeartbeats 100000
 

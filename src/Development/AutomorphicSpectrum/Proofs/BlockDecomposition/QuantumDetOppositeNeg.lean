@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.ShiftedGeneratorEqIteSmulAdd
 
 open Formalism.REAL
 

@@ -1,4 +1,4 @@
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryQuotientCompactness.SsetGroup
+import Formalism.PeriodIntegrals.QuotInv
 
 open MeasureTheory Matrix Topology
 open scoped ENNReal NNReal

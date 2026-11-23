@@ -1,5 +1,6 @@
 import Mathlib
 import GroundTheory.ArithmeticGeometry.AbelianVarieties.FunctionFieldPoint
+import GroundTheory.ArithmeticGeometry.AbelianVarieties.KernelCard
 
 namespace GroundTheory.Arith.Abelian
 

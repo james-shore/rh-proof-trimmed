@@ -2,7 +2,6 @@ import Mathlib
 import Formalism.PolynomialDimension.DigitClassSize
 import Formalism.PolynomialDimension.MultinomialDepth.HarmonicLevelCountRec
 import Formalism.PolynomialDimension.MultinomialDepth.BinomialSeriesBound
-import Formalism.PolynomialDimension.MultinomialDepth.WeylDimPosOfAntitone
 
 namespace Formalism.CountingSumsFrames.Top
 

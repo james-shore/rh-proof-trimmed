@@ -1,5 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ConjScalarThm
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilGramSignature
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TypePartBase
 
 noncomputable section
 

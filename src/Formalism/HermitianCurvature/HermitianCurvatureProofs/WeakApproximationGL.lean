@@ -1,5 +1,4 @@
 import Formalism.HermitianCurvature.StatementG
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.PhaseFunctionCriticalPoints
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ContinuousInvUpper
 
 open Matrix MeasureTheory

@@ -5,6 +5,8 @@ import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsSideExtra
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsMoreAlt
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.IsMultiProjPrimeMIdealOverGraph
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.RestrLenPrimeOfEqFinrank
+import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PPNProduct
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Kleiman.SectionsOverLocalization

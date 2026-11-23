@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.PinChar
 import Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.PinNum
 
 open Finset

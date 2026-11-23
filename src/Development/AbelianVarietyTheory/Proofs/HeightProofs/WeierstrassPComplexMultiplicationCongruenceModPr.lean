@@ -1,10 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.HeightFunctions.FiniteDimensionalOfSz
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.LFunctionPositiveConductorFourEight
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsWeierstrassPMulOde
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.QuotientEqLinearPowCharOfDerivativeEqZero
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.WeierstrassPTorsionIntegralAndDistinctMod
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.ThreeDistinctRoots
+
 open NumberField IsDedekindDomain Polynomial GlobalTheory.FieldSize
 open scoped IntermediateField
 

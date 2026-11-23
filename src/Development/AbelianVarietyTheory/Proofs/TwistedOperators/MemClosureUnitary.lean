@@ -1,10 +1,9 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
 import Formalism.LocalToGlobal.IndefiniteReal.SubgroupCharExtensionOneApply
-import Formalism.LocalToGlobal.IndefiniteReal.OrthogonalComplementCharacterisation
+import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
 import Formalism.LocalToGlobal.IndefiniteReal.DatumVec
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.UnitaryTranspose
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAdelicSplit
 import Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.EmbRelExistsUnique
 
 noncomputable section

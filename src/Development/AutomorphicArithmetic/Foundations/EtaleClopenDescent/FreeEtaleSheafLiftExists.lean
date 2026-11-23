@@ -1,5 +1,5 @@
 import Mathlib
-import Development.EtaleCohomology.EtaleSheaves.ZeroSheafMaps.LeafShMapZeroOf
+import Development.EtaleCohomology.EtaleSheaves.ZeroSheafMaps.EtaleSheafMapZeroOfLocallyZeroOnFreeSheafGenerat
 
 open CategoryTheory Limits
 

@@ -1,6 +1,6 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.AInterpSt
-import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.MdiscSt
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.CasChainA
+import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.MdiscSt
 
 namespace ReciprocityTheory.ChartRestriction.G.ArakelovGeometry
 

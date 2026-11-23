@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MulEqOfRangeLe
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AdelicDegreeFormula
 import GroundTheory.AutomorphicForms.AnisotropicHeight
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AdelicDegreeFormula
 
 noncomputable section
 

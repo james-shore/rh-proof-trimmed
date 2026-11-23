@@ -1,12 +1,12 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StSheetImageAreaSet
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PSheetImageAreaSetFrame
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PGraphAreaHolomorphic
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PAreaGraph
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PAreaGraphBound
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PAreaGraphPiece
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PAreaGraphPartition
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PGraphJacContinuous
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

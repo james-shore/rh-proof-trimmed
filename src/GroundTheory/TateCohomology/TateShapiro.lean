@@ -1,6 +1,8 @@
 import Mathlib
 import GroundTheory.TateCohomology.DiagonalSuccIsoFreeInvSingle
 import GroundTheory.TateCohomology.DimensionShift
+import GroundTheory.TateCohomology.InducedNorm
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.GroupCoh

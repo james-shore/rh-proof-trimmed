@@ -1,10 +1,10 @@
 import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.IsClosedOfCoheight
-import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.DescEval
-import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.SumNormSqUnitary
 import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.FormHeightOneEq
 import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.StCharts
 import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.ChowDegreeSection
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.Assembly
+import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.OfLeaves
+import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.DescEval
+import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.SumNormSqUnitary
 
 namespace ChowFormHeightComparison₂.CF
 

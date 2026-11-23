@@ -1,6 +1,6 @@
-import ReciprocityTheory.L2DbarEstimates.LeviForms.BergmanExistsStatement
-import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.IntegralFderivApplyEqZero
-import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.DifferentiableAtChart
+import ReciprocityTheory.L2DbarEstimates.IsLocalHomeomorph
+import ReciprocityTheory.L2DbarEstimates.WeakHolomorphy.HoloWeakStatement
+import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.MeasurableSetImageOfIsLocalHomeomorph
 
 namespace ReciprocityTheory.L2DbarEstimates.I
 

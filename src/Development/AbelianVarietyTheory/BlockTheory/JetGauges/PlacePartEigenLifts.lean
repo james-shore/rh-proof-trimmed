@@ -1,9 +1,9 @@
 import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.RecPJThAllNeBot
 import Formalism.LocalToGlobal.ProjectiveLattices.ChartDirectionsIntegral
+import Development.AutomorphicArithmetic.PrimeDiscriminants.SlopeTestRemainingChoices
 import Formalism.LocalToGlobal.ProjectiveLattices.PlaceBelow
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.GermSC
-import Development.AutomorphicArithmetic.PrimeDiscriminants.SlopeTestRemainingChoices
 
 set_option autoImplicit false
 

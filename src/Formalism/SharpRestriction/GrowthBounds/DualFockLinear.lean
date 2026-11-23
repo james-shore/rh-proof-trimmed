@@ -1,7 +1,6 @@
 import Formalism.SharpRestriction.GrowthBounds.DualFockLinear.Closed
 import Formalism.SharpRestriction.GrowthBounds.DualFockLinear.ScaleZeroIff
 import Formalism.SharpRestriction.GrowthBounds.DualFockLinear.LogSizeBoundLe
-import Formalism.SharpRestriction.GrowthBounds.DualFockLinear.OnePosDef
 import Formalism.SharpRestriction.GrowthBounds.DualFockLinear.FirstWeightLeConductor
 import Formalism.SharpRestriction.GrowthBounds.DualFockLinear.RestXiPOfNS
 

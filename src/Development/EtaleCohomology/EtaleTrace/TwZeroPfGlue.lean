@@ -1,4 +1,5 @@
 import Development.EtaleCohomology.EtaleTrace.TorsionH0PointOfLocalTwist
+import Development.EtaleCohomology.TateTwists.StrictHenselianAcyclic
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC Opposite

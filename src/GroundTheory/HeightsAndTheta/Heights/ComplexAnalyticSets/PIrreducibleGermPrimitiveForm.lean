@@ -3,6 +3,8 @@ import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StIrreducibleGer
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StFiniteFibreGermIntegral
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StZariskiAnalyticNormality
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StDiscrAdjoin
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StGenericPrimitive
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.ComplexSets

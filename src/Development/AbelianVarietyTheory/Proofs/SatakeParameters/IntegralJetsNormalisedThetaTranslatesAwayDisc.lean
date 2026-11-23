@@ -1,8 +1,8 @@
 import Mathlib
-import Formalism.LocalToGlobal.KernelLattices.KerStd
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementH
+import Formalism.LocalToGlobal.KernelLattices.ThDistC
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ThetaZJetsThree
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.FourthPowerTheta
-import Formalism.LocalToGlobal.InertKernelTheory.StatementIota
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.GoodModelTwoScaleOne
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.NormLeOneOfDisc
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.NormTwelveCubedEqOneOfFiveLePrime

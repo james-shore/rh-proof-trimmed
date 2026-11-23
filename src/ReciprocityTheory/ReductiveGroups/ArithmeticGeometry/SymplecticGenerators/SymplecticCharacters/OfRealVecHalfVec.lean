@@ -1,5 +1,7 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SymplecticGenerators.SymplecticCharacters.SubConjTransposeOfSymm
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SymplecticGenerators.SymplecticCharacters.GenBase
+import ReciprocityTheory.ThetaQuasiPeriods.Transl
+import ReciprocityTheory.ThetaQuasiPeriods.Change
 
 noncomputable section
 

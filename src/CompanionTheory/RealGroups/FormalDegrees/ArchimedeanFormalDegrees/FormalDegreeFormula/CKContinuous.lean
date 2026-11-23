@@ -1,4 +1,5 @@
 import CompanionTheory.RealGroups.FormalDegrees.ArchimedeanFormalDegrees.FormalDegreeFormula.ModelFunctionsMultiply
+import CompanionTheory.RealGroups.FormalDegrees.ArchimedeanFormalDegrees.MomB
 
 noncomputable section
 

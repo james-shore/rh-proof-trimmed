@@ -2,8 +2,6 @@ import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermCut
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBIdLB
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBIdJet
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBIdSy
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.CartesianLiftThreeCompProjection
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.LBPull
 
 set_option autoImplicit false
 

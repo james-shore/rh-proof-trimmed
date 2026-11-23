@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Jets.IsSelfOf
 import Development.AbelianVarietyTheory.Definitions.Jets.TwoPlaces
-import Formalism.LocalToGlobal.CharacterGerms.RowTieAxes
 import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.NuLocCLeNuPlEBaseChange
 import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.GeZeroOfIsIntegral
 import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.JetAt0ProdRename
@@ -13,6 +12,7 @@ import Development.AbelianVarietyTheory.Proofs.JetHarmonics.CharacterBoundPairsO
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.FlagOfLetterNumberingRowData
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.BlockProdMemChartFamilyAtPlacePairsStatement
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.NonDegenerateAndRowConditionTwoPairsOfPlacesStatement
+import Formalism.LocalToGlobal.CharacterGerms.RowTieAdm
 
 set_option autoImplicit false
 

@@ -1,9 +1,10 @@
 import Mathlib
 import Formalism.LocalToGlobal.KernelLattices.ThDistC
-import Formalism.LocalToGlobal.KernelLattices.BaseEx
+import Formalism.PeriodIntegrals.KerIso
 import Formalism.LocalToGlobal.Columns.WordFin
 import Formalism.LocalToGlobal.GlobalTheory.JetPositivity.DeltaPowTwelveEqDiscr
 import Formalism.LocalToGlobal.GlobalTheory.GL3.Statement
+import Formalism.LocalToGlobal.KernelLattices.BaseEx
 
 noncomputable section
 

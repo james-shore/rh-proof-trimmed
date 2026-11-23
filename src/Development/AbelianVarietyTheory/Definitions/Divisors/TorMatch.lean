@@ -1,8 +1,8 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.SharpOverIff
-import Development.AbelianVarietyTheory.Definitions.Uniformization.TXFrame
-import Development.AbelianVarietyTheory.Definitions.Uniformization.PointEqOfSubsingleton
-import Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.GeneratorValues
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsThetaCompact
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsToricRankOne
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsUnimodMod
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NonemptyTorusExtensionOfIsAlgClosed
 
 noncomputable section
 

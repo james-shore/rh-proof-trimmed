@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.GlobalTheory.GL4.FockSelfImEqZero
+import Formalism.BranchSandwichDivisors.BranchIsometryProofs.BranchScale
 
 noncomputable section
 

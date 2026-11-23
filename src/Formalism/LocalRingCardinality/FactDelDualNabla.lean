@@ -1,10 +1,6 @@
 import Formalism.LocalRingCardinality.DataForced
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
-import Mathlib
-import Formalism.PeriodIntegrals.LpLower
 import Formalism.LocalToGlobal.Columns.CoefficientsModP
-import Formalism.LocalRingCardinality.MinkMEqMinkowskiNumber
-import Formalism.LocalRingCardinality.CoeNeZeroOfNotMem
 
 noncomputable section
 

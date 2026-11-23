@@ -1,8 +1,8 @@
-import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementA
-import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementB
-import Formalism.GaussJetBounds.StatementN
-import Formalism.GaussJetBounds.StatementP
-import Formalism.GaussJetBounds.StatementQ
+import Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.StatementK
+import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.StatementN
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.IsPairFrame
+import Formalism.LocalToGlobal.TorsionIntegrality.UniformGaussModels.GoodModelAll
+import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.StatementC
 
 noncomputable section
 open scoped BigOperators

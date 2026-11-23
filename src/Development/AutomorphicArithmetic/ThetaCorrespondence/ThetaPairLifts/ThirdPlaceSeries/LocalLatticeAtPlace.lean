@@ -1,7 +1,7 @@
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IsCombAtReN
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RealPack
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TopReadAt
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ExistsFoldr
 
 set_option synthInstance.maxHeartbeats 200000
 

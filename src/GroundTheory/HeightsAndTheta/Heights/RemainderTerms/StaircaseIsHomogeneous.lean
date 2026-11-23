@@ -1,6 +1,5 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.Statements
-import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.StatementsFlag
 import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.IsFlagIntegralOne
 import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.FlagIntegralRealEqMulDdConst
 import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvAtTop
@@ -12,6 +11,7 @@ import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvIdealRepresenta
 import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PHomogeneousComponentMul
 import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvStaircaseComponent
 import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.PCoinvStaircaseDegree
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.RestTerms

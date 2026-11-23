@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SigmaFiniteParameterProductMeasure
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoefficientLeviEquivariance
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralShiftHerm
 
 noncomputable section
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology

@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.LieLatticeData
+import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.FlagMinor
 import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.XGraphRestrictBc
+
 open GlobalTheory.CompanionTheory.Ar.Num
 
 namespace GlobalTheory.CompanionTheory.Ar.GraphRestrict

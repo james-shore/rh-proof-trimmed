@@ -1,10 +1,10 @@
 import Mathlib
 import Formalism.LocalToGlobal.GroupLattices.ServiceOfTiedSelection
 import Formalism.LocalToGlobal.GroupLattices.AdmissibleAtGeneratorPlaces
-import Formalism.SharpRestriction.GlobalSchurBounds.PlugDgt
 import Formalism.LocalToGlobal.TieTwRecOf
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.JoinSISel
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TSelF
+import Formalism.SharpRestriction.GlobalSchurBounds.PlugDgt
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.GServT
 
 set_option synthInstance.maxHeartbeats 200000

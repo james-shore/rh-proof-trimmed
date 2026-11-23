@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.PairedCharacterCondition
-import Formalism.SharpRestriction.LevelLetterCocycles.AutomorphicSideWildInertia
+import Formalism.SharpRestriction.LevelLetterCocycles.BlochKatoPhases
 
 noncomputable section
 

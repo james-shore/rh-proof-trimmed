@@ -2,6 +2,9 @@ import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.ThClass
 import Formalism.LocalToGlobal.ProjectiveLattices.FullExists
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsUnitaryCongruentLattice
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsRationalUnitarySplitDenominatorStatement
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.StandardHermitianFormHostFieldInhabitantStatement
+
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped TensorProduct Matrix
 

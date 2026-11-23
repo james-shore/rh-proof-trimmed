@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.GroupLattices.LevelGatherings.LevelGatherings
+import Formalism.LocalToGlobal.GroupLattices.LevelGatherings.FiniteClassSetOfLe
 import Formalism.LocalRingCardinality.DataKerI
 
 noncomputable section

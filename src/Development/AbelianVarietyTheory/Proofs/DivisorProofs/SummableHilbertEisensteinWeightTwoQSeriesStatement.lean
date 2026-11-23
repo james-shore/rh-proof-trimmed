@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SummableHilbertEisensteinWeightTwoQSeries
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.OmegaFactorization
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KFacDifferentiable
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbsNormEqProd
 
 open NumberField Complex
 open scoped nonZeroDivisors

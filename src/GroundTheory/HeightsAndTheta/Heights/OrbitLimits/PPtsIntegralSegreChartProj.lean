@@ -8,6 +8,10 @@ import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StSegreChartProjFinite
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StSegreChartZeroSet
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StSegreChartAbsIntegrable
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StPtsSegreChartFibreSum
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PConePolar
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PLelongLimit
+import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PPointIntegral
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

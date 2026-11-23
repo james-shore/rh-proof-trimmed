@@ -1,7 +1,6 @@
 import Mathlib
 import GroundTheory.PAdicHodge.BStPeriod
 import GroundTheory.PAdicHodge.ACrisPhi
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.OfNatTrans
 
 noncomputable section
 

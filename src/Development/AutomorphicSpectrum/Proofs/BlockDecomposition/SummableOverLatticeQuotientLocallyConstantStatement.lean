@@ -2,10 +2,7 @@ import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SummableOverLatticeQuotientLocallyConstant
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ThetaPartD
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBoundUnitary
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermInf
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermOf
-import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.TensorLocallyCompactRingStatement
-import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteAdeleTopologyStatement
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory

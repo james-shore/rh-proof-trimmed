@@ -1,5 +1,5 @@
-import Formalism.CoboundaryTransfers.StatementBridge
-import Formalism.FrobeniusContraction.FrobeniusContractionProofs.FiniteCocyclesLeCocycles
+import Mathlib
+import Formalism.FrobeniusContraction.Statement
 
 noncomputable section
 

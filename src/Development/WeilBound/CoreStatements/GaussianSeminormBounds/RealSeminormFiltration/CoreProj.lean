@@ -1,4 +1,5 @@
 import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreLie
+import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.FockRaiseLow
 
 noncomputable section
 

@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.RootWeights.ExistsClearDenominators
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.MemWeightSpaceIffDiagonalEigen
 
 noncomputable section
 

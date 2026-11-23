@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LevelSectionsExactKernelLocusOpen
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsCptGen
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenPtSpecializes
 
 noncomputable section

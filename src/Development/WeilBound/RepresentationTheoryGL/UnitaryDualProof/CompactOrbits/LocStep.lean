@@ -1,6 +1,6 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.WhittakerLSpace
-import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.BernsteinExponentBounds.IsInvForm
+import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.MirabolicDerivatives.LeibnizDerivatives.HighestDerivProd
 
 noncomputable section
 

@@ -1,5 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.SplitMapEqZeroOfMemAnn
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIsoToBidualOfLocalFrames
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentSurjective
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AppLESecEpsZeroEpsFn
 
 set_option autoImplicit false
 

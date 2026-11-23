@@ -3,14 +3,13 @@ import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.SerFixOne
 import Formalism.UnipotentAdelicQuotients.SiegelWeilUnitaryConvergent
 import Formalism.LocalToGlobal.HilbertRowConditions.AllJoin
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.STiesR
-import Formalism.LocalToGlobal.ThresholdSelection
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.WuDecayAll
-import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.RowsDef
 import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeCountE
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.GapClosed
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.CountConstantsOfSiegelWeil
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.CountClausesClosed
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.AllRowsAtRecord
+
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.S Formalism.MainNotions.ArithmeticCylinders Formalism.L2.GlobalTheoryTheory.ConcN Formalism.L2.GlobalTheoryTheory.AllJoin Formalism.L2.SG.HidaSetting Formalism.L2.SG.RowDict Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.PackageTie2
 
 namespace GlobalTheory.IrrRowConcrete

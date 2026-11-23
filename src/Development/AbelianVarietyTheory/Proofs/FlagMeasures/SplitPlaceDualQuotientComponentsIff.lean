@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.SelfDualAt
-import Formalism.LocalToGlobal.HermitianForms.TiedStep
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.SplitIntLoc
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.DualLatticeLocalCharacterization
 

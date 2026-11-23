@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsMidLevIff
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IntegralExtensionFiniteAdelesBasicProperties
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Afsplit
+
 open NumberField IsDedekindDomain Formalism.UG Formalism.L2.Col
 open scoped TensorProduct
 

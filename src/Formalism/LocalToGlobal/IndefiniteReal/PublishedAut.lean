@@ -1,7 +1,4 @@
 import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
-import Mathlib
-import Formalism.SharpRestriction.CuspSpanNormBounds.GlobAut
-import Formalism.PeriodIntegrals.AdelClassFin
 import Formalism.SharpRestriction.CuspSpanNormBounds.DiscreteSeriesWeylDimension
 import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
 import Formalism.LocalToGlobal.IndefiniteReal.AutomorphicEvaluation

@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SplitPlaceCharacterAndTranslationCoordsSurjectiv
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsCompactIsOpenUnitsAt
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsLocIsoRefl
 
 open scoped TensorProduct NNReal Matrix
 open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes

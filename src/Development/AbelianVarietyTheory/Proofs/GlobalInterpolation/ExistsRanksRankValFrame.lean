@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.InertJacobiLevels.AsmIface
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.PairRowIffQdRows
-import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.FrameCyclicGenerator
 
 open Formalism.BasicNotions Formalism.BasicNotions.LevelStarExponents Formalism.MainNotions Formalism.MainNotions.Inhab GlobalTheory.EX NumberField
 

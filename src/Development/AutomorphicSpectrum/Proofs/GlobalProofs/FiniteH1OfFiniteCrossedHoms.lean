@@ -1,8 +1,8 @@
 import Mathlib
-import ReciprocityTheory.Hypotheses.GalCoh
+import ReciprocityTheory.Hypotheses.GalCohDefs
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.IsUnramifiedOutsideIffLeMaxUnramifiedOutside
 import GroundTheory.ProfiniteCohomology.ContinuousCochains
-import GroundTheory.ProfiniteCohomology.InflationRestriction.DegreeOne
+import GroundTheory.ProfiniteCohomology.CohomologyFunctoriality.Naturality
 
 namespace GlobalTheory.CompanionTheory.Glob
 

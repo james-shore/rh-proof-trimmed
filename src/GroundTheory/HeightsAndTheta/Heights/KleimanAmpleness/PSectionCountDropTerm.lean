@@ -3,6 +3,8 @@ import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.SectionCountDropTer
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.QuotSectionsFiniteSt
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.TwistAlg
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.TwistBundleToSubSystem
+import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.Statements
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Kleiman

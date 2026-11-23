@@ -1,7 +1,7 @@
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ArchBetween
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HeightLowerBoundChartNorm
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsVerticalBound
 import Development.WeilBound.CoreStatements.AmpleLineBundles.PtsIntegralMap
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.PCurveIsOrbit
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo NumberField GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Top GlobalTheory.CompanionTheory.Ar.Small GlobalTheory.CompanionTheory.Ar.Cmp GlobalTheory.CompanionTheory.Ar.Ht
 

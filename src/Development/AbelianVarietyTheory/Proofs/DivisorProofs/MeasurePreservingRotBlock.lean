@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.AevalEqZeroOfMemConeIdeal
-import ReciprocityTheory.SemistableReduction.TorusL2CauchyInequality
+import Formalism.DegreeFormula.FlagDegFormula
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsHeightIffOfDegreeEq
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinSubstLinSubst
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussAbsProdLeOne
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogGaussAbsSupportFinite

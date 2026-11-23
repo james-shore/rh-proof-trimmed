@@ -1,6 +1,7 @@
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.ModelIso
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.PolyCoef
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.UnitaryDense
+import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.HwIrred
 
 noncomputable section
 

@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.GlobalConditionOfLocalAgreement
+import Formalism.LatticeTheta.Statement
 
 noncomputable section
 

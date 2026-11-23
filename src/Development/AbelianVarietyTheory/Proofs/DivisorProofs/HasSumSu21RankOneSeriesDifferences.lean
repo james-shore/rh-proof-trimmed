@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConvUAbsU
+import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.GindikinKarpelevich
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemShellUIffDepth
 
 open MeasureTheory GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.SatakeBound GlobalTheory.WeylCell Formalism.UG GlobalTheory.WeylCell.WeylUnipotentShell

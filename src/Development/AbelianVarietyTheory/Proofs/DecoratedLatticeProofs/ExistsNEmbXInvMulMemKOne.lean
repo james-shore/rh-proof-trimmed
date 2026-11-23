@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.UpZeroMemLev
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.OnesRepresent
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MemLevelIffSymmetricPositionEntryPattern
+
 open ValuativeRel Matrix
 open scoped Classical
 

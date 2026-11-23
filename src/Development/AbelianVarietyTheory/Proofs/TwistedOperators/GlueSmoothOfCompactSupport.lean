@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.IsClosedEmbeddingOfLocallyCompact
 import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsAuxiliaryPlaceNotMemFinset
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TransChartSymmApply
 

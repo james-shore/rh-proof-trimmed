@@ -1,6 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsMtTieCoord
 import Formalism.LocalToGlobal.Divisibility.RowSideTie
+import Formalism.LocalToGlobal.IndefiniteReal.ConcretePkgSpec
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SpanRangeMulVec
 
 noncomputable section
 

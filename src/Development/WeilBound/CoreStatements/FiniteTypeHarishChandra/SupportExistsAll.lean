@@ -1,6 +1,5 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.FiniteTypeHarishChandra.FiniteDimensionalHcSpace
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HarishChandraLabels.SupportExistsOf
 
 open Polynomial CategoryTheory
 open Formalism.IrreducibleCountingLemmas.TYPES hiding zIdem IsCuspidal

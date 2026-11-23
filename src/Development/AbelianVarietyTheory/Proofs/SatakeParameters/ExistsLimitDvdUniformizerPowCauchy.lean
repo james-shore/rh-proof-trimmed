@@ -1,7 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SelfDualOne
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DvdPowZeroIff
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.EqZeroOfForallDvdPow
 
 open Matrix Filter Topology
 

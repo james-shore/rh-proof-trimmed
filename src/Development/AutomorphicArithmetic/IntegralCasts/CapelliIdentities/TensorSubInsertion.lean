@@ -1,8 +1,8 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.StMixedTwistShift
 import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.StCutRestrLenExact
-import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.StInterNumCut
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.StatementsCycleSplitFilt
+
 set_option maxSynthPendingDepth 1
 
 namespace UpperTheory.Reformulated.B.KleimanIntersectionNumberCut.SlopeTestRemainingChoices

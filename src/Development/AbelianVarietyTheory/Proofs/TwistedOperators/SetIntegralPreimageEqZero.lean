@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.PartFixed
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsVacFOfIsVacVec
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.QuasiOfFam
 
 open MeasureTheory
 open scoped NNReal ENNReal

@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsEigFrames
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.BdryChart
-import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.IsPshLocallyIntegrableStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.HolomorphicFamilySmoothEntriesStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.IsotropicSublatticeCovolumePositiveStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.IsotropicEigencomponentConjugateFormStatement
@@ -15,6 +14,7 @@ import Development.AutomorphicSpectrum.Proofs.MetricProofs.QuotientFamilyEigenFr
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.HolomorphicSpanCoefficientsStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsExtendLinearIndependentOfSpanStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.GramDetPosIffLinearIndependentStatement
+
 open NumberField Matrix Filter Topology GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cusp GroundTheory.Heights₂.Heights.LowerBoundFree GroundTheory.Heights₂.Heights.Regular
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.PhiI

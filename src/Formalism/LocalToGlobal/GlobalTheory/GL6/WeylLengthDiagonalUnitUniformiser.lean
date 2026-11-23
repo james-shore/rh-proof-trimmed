@@ -1,12 +1,7 @@
 import Formalism.LocalToGlobal.GlobalTheory.GL6.BwAValIntegralNonneg
-import Formalism.GL3MeanSquares.HookFormulaTorsion.ConditionIffDualEqFunctional
+import Formalism.GL3MeanSquares.FourierTransformKernelSurjective
 import Formalism.GL3MeanSquares.HookFormulaTorsion.FourierCommutesHeckeScalar
-import Formalism.GL3MeanSquares.HookFormulaTorsion.LengthQuotientBoundGeneral
-import Formalism.GL3MeanSquares.HookFormulaTorsion.LemmaCTwistRamified
-import Mathlib
 import Formalism.GL3MeanSquares.HookFormulaTorsion.DoubleCosetDecompositionAll
-import Formalism.GL3MeanSquares.HookFormulaTorsion.InvariantKernelTraceVanishes
-import Formalism.LocalToGlobal.HermitianForms.IsLocBasis
 
 noncomputable section
 

@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.InertKernelTheory.SubBSplit
-import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.QuadraticBaseChangeGL3
 import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.LocalLevelIsKOneAtT
 
 noncomputable section

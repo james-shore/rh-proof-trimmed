@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GlobalUnitaryForms.HodgeTateFromSandwich
-import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.TraceFormulaEigenvalues.FormsFin
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.EvenCardOfNotLone
 
 open NumberField UpperTheory.V.Z.Sym UpperTheory.V.Z.Sym.Glob

@@ -1,14 +1,15 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsOverVUnder
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsMoveRight
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsMidLevIff
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsRowFrame
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PhiMapsAndOmegaLaw
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CharacterArgumentFirstParabolicShift
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralDivUniformizerOfRedZero
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LevQFiniteIndexAndRoot
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RowTypeOneAddPrimeSmulEqOne
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLevelGroupModTypePrime
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.FirstCoupledKernelEquivariantCosets
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.MemZmuOfPowPred
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntAtNatCast
-import Formalism.LocalToGlobal.Columns.QthExistsBound
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.TwistedK1BlockDecomposition
+
 open NumberField IsDedekindDomain Matrix Formalism.BasicNotions Formalism.UG Formalism.L2.Col Formalism.L2.PairingIndexBounds.F Formalism.MainNotions.G.KAat Formalism.L2.Forms Formalism.L2.Ker Formalism.MainNotions Formalism.L2.DIV Formalism.MainNotions.G GlobalTheory.TwU
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

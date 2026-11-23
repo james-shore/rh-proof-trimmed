@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.AutomorphicForms.ArchimedeanWhittaker.Uniqueness
+import GroundTheory.AutomorphicForms.ArchimedeanWhittaker.MultOne
 
 namespace GroundTheory.Automorphic.ArchWhittaker
 

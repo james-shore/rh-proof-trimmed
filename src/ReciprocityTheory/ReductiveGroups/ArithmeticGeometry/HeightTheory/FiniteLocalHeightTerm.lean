@@ -1,5 +1,6 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.ArchimedeanLocalHeightTerm
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.HHINDA
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.HPlaces
 
 namespace ReciprocityTheory.ChartRestriction.G.T0
 

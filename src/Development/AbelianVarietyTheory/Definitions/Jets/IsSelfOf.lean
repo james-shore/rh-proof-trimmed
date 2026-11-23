@@ -1,10 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.CharacterGerms.NondegenerateCharts
-import Formalism.LocalToGlobal.CharacterGerms.RowTieSelf
-import Formalism.LocalToGlobal.CharacterGerms.BlockAdmissibleChart
-import Formalism.LocalToGlobal.CharacterGerms.RowTieAdm
 import Development.AbelianVarietyTheory.Definitions.TeichmullerDepth.HasTeich
 import Development.AbelianVarietyTheory.Definitions.Jets.DepthNumbersThresholdEq
+import Formalism.LocalToGlobal.CharacterGerms.RowTieSelf
 
 set_option autoImplicit false
 

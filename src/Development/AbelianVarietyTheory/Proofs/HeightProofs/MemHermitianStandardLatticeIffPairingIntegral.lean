@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.BesselHermitianTheta.TiedWeilUnr
-import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
 import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.ShiftMapsUpDown
 
 noncomputable section

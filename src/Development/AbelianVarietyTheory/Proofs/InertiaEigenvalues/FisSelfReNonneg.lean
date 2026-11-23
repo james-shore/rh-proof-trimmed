@@ -1,5 +1,6 @@
 import Mathlib
 import ReciprocityTheory.DualLattices.FischerSelfNeZero
+import ReciprocityTheory.DualLattices.FischerSmulRight
 
 noncomputable section
 

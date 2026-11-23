@@ -1,7 +1,7 @@
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LambdaLowGivesFirstIdentity
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Realised
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LeafInfinitePlaceBound
+import Development.AbelianVarietyTheory.Counterexamples.RotationExamples.LeafIPOfTwoConstants
 
 set_option synthInstance.maxHeartbeats 200000
 

@@ -1,7 +1,7 @@
 import ReciprocityTheory.DualLattices.ColengthCotangentBoundStatementOfClaim
 import ReciprocityTheory.DualLattices.PrimeHopfOrderOfAddEquiv
 import ReciprocityTheory.DualLattices.MemDualLat
-import ReciprocityTheory.DualLattices.ImportsBis
+import ReciprocityTheory.DualLattices.HasColengthEqPowMulPow
 import ReciprocityTheory.DualLattices.SqIdeal
 
 noncomputable section

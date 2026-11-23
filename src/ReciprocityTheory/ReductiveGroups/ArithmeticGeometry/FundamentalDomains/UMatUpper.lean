@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.DetSubUpper
+import Mathlib
 
 namespace ReciprocityTheory.ChartRestriction.G.FD.FrameDegreeData
 

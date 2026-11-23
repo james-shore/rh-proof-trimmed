@@ -1,4 +1,4 @@
-import Development.WeilBound.ThetaLifts.LeviDeterminants.EvStmt
+import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
 import Development.WeilBound.ThetaLifts.LeviDeterminants.EvChange
 import Development.WeilBound.ThetaLifts.LeviDeterminants.LagrangianUniqueness.GeoLeaves
 

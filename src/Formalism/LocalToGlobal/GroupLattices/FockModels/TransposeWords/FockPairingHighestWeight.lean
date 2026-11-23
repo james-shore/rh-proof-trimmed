@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.GroupLattices.FockModels.TransposeWords.FockR
+import Formalism.GradedWeylDivisibility.StatementD
 
 open MvPolynomial
 open scoped Classical

@@ -1,9 +1,8 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.FirstPointNeSecondPoint
 import GroundTheory.HeightsAndTheta.Heights.FubiniStudy
-import GroundTheory.HeightsAndTheta.Heights.FubiniStudyInvariance.Statements
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.ProjectiveLine
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.ExistsNatMulMemConeRingIntFin
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.MoriwakiSt
 
 set_option maxSynthPendingDepth 1
 

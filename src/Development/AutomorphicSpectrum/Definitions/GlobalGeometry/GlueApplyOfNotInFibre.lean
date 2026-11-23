@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsGenOfIsVBOne
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.StalkClosedPointToToStalk
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.EtaleLocalizationAtPrimeTensorOfLowHeight
 
 noncomputable section
 

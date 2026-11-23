@@ -1,5 +1,5 @@
 import Formalism.LocalToGlobal.Divisibility.CoefMod
-import Formalism.LocalToGlobal.Columns.PolyFn
+import Formalism.LocalToGlobal.HermitianForms.IsLocBasis
 
 noncomputable section
 

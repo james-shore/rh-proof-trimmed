@@ -1,6 +1,6 @@
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RankOfMulEqOne
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DirectSumDeRhamCrystallineJumpsAdd
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IntegersCompleteDVR
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.AcrisTorsionFreeComplete
+import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.BoundedOnFramesIffIntegralOnFrames
 
 namespace GlobalTheory.MulVecZeroDenominator
 

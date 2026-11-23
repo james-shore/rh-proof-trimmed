@@ -2,8 +2,6 @@ import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.LocalSituation
 import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.SelmerWindowSums
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FinrankCyclotomicExtAndCyclotomicCharSurjective
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.InclWFrobIter
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.DeRhamJumpDescent
 
 noncomputable section
 

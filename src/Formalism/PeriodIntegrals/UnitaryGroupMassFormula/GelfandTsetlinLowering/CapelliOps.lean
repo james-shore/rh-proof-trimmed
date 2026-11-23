@@ -1,7 +1,7 @@
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GelfandTsetlinLowering.ZScalarVanish
-import Formalism.RealPlaceAnalysis.RealPlaceTaylor.SatisfiesGlRelationsBilinearLeft
+import Mathlib
+import Formalism.LocalRingCardinality.DataCoeff
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.RowDivStable
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.HWRaise
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.SatisfiesGlRelationsBilinearLeft
 
 noncomputable section
 

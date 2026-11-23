@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Dchart
-import Formalism.LocalRingCardinality.DataCD
 import Formalism.FormalDegreeBessel.FinalBF
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LongWeylElement
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsHaarOnIffGroupsUnitaryUnipotent

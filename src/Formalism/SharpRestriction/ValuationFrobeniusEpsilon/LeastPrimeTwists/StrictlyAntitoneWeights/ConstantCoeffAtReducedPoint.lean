@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.SharpRestriction.ValuationFrobeniusEpsilon.LeastPrimeTwists.StrictlyAntitoneWeights.GaussianCaseFreeExponents
+import Formalism.SharpRestriction.ValuationFrobeniusEpsilon.LeastPrimeTwists.StrictlyAntitoneWeights.SigThreeSetFiniteOverField
 
 noncomputable section
 

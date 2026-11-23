@@ -1,5 +1,4 @@
-import ReciprocityTheory.DualLattices.LenIdBStatement
-import ReciprocityTheory.DualLattices.UnramifiedCokernelLowerBoundOf
+import ReciprocityTheory.DualLattices.CotangentSurjective
 
 noncomputable section
 

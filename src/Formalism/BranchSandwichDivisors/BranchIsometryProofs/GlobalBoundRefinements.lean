@@ -1,15 +1,4 @@
 import Mathlib
-import Formalism.QuotientMetricDivisors.StatementK
-import Formalism.BranchSandwichDivisors.StatementR
-import Formalism.BranchSandwichDivisors.StatementL
-import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.TheoremDivIneq
-import Formalism.BranchSandwichDivisors.BranchIsometryProofs.TransferMean
-import Formalism.BranchSandwichDivisors.BranchIsometryProofs.Transfer
-import Formalism.BranchSandwichDivisors.BranchIsometryProofs.MapScale
-import Formalism.BranchSandwichDivisors.BranchIsometryProofs.OrthSum
-import Formalism.BranchSandwichDivisors.BranchIsometryProofs.Numeric
-import Formalism.BranchSandwichDivisors.BranchIsometryProofs.Interlace
-import Formalism.BranchSandwichDivisors.BranchIsometryProofs.GoodDual
 
 open Finset Module NumberField IsDedekindDomain
 

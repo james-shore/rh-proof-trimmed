@@ -1,4 +1,7 @@
 import Formalism.SharpRestriction.GrowthBounds.FockGramWindow.LettersAtUPos
+import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.DegFactNeZero
+import Formalism.SharpRestriction.GrowthBounds.FockGramWindow.NeglogPowMul
+import Formalism.SharpRestriction.GrowthBounds.FockGramWindow.GramWindow2Proved
 
 noncomputable section
 

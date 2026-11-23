@@ -1,9 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContinuousFirstCoords
-import ReciprocityTheory.SemistableReduction.TorusL2CauchyInequality
-import ReciprocityTheory.SemistableReduction.SJCoreA
-import ReciprocityTheory.SemistableReduction.SJCoreB
 import ReciprocityTheory.SemistableReduction.SJCoreD
+import ReciprocityTheory.SemistableReduction.TorusMeanB
+import ReciprocityTheory.SemistableReduction.SphereTorusA
+
 open MeasureTheory Set MvPolynomial ReciprocityTheory.MultiplicativeHeights GlobalTheory.SphereMeanDrop
 
 noncomputable section

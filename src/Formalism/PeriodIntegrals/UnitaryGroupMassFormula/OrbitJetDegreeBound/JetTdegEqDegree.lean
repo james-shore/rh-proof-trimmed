@@ -1,7 +1,6 @@
-import Formalism.PeriodIntegrals.OrbAddUp
+import Formalism.PeriodIntegrals.OrbJetBase
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitPowerSeriesCoefficients.OrbEmb
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitPowerSeriesCoefficients.SolvableEquivalenceOfBaseChange
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitPowerSeriesCoefficients.ExpSum
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitPowerSeriesCoefficients.JetRen
 
 noncomputable section

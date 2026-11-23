@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.GaloisLevelStructure.NGalTied
 import Formalism.LocalToGlobal.GaloisLevelStructure.DefsRowLoc
+import Formalism.LocalToGlobal.GaloisLevelStructure.DefsFinTyp
 
 noncomputable section
 

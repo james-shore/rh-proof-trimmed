@@ -1,6 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ColMatchAll
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EmbFColZeroMemMram
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.WeightLawGoodOfFieldEmbedding
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.PairLeIffPairHtLe
 
 noncomputable section
 

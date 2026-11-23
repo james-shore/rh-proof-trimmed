@@ -2,7 +2,6 @@ import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.RegXInst
 import Formalism.LocalToGlobal.ProjectiveLattices.CurveLocInst
 import Formalism.LocalToGlobal.ProjectiveLattices.LocRingPf
-import Formalism.LocalToGlobal.ProjectiveLattices.TieInst
 import Formalism.LocalToGlobal.ProjectiveLattices.RealPtPf
 import Formalism.LocalToGlobal.ProjectiveLattices.HtXfer
 import Formalism.LocalToGlobal.ProjectiveLattices.CompTie
@@ -12,10 +11,9 @@ import Formalism.LocalToGlobal.ProjectiveLattices.CombAlgOfCombBound
 import Formalism.LocalToGlobal.ProjectiveLattices.ProdInLatPf
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.LawBddDataOf
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.WeightZZeroEqTwoSmulSubSelf
-import Formalism.LocalToGlobal.LatticeGeometry.CmTypeMeetsConjugatePair
+import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExtendByZeroConstMul
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.NumericalConsequencesOfPins
-import Development.AbelianVarietyTheory.Proofs.GenericRegularity.EvaluationLawsGenericFramesAtlasHold
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsCBaseValAtCx
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.KapDivFinStLocDataOf
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.NotGoodConj

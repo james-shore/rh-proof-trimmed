@@ -1,7 +1,8 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsHilbert
+import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.Objects
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ProjectiveSpaceIncrementHyp
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PHilbExactDivide
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.HilbertSamuel

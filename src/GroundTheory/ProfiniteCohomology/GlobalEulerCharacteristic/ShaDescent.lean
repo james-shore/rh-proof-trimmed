@@ -1,9 +1,9 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.MackeyFormula.CompactSupport
-import GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.InnerConj
 import GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.Descent
 import GroundTheory.ProfiniteCohomology.PoitouTate.PtCompactDualMapEqZeroOfPtCompactToGlobalEqZero
 import GroundTheory.ProfiniteCohomology.PoitouTate.PoitouTateInfinite.DescentMaps
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

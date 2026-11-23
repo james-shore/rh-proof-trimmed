@@ -1,8 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.BlockSplitAll
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsobaricDiscreteSelfDualStrongMultiplicityOne
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Mono0OfLpDimEqOne
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsEquivOfMapEq
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsReadingLaws
 
 noncomputable section
 

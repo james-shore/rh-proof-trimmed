@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.ProjectiveLattices.XcLat
+import Formalism.LocalToGlobal.ProjectiveLattices.CuspidalL2Subspace
 
 noncomputable section
 

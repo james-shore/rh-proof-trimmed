@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.GlobalTheory.BaseLatticeSelfDual
+import Formalism.LocalToGlobal.HermitianColumns.InLocalDiscriminantKernel
 
 noncomputable section
 

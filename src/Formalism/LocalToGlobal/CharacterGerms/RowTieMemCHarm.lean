@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.CharacterGerms.PderivSubGOff
+import Formalism.LocalToGlobal.CharacterGerms.RowTieMemC
 
 noncomputable section
 

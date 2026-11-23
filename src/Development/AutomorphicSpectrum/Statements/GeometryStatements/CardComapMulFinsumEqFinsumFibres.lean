@@ -1,12 +1,8 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.BdryChart
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsFlatAnIffIsConstMul
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LevelSectionsExactKernelLocusOpen
-import Development.AutomorphicSpectrum.Definitions.MetricPeriods.ClopenCondOnto
+import GroundTheory.HeightsAndTheta.Heights.Regularisation.Statements
 import Development.AbelianVarietyTheory.Definitions.Uniformization.PointEqOfSubsingleton
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.BlowupProjections.BlowupProjStatement
-import Development.AutomorphicSpectrum.PublishedTheorems.Geometry₂.GagaSections
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsGenericFlag
 
 noncomputable section
 

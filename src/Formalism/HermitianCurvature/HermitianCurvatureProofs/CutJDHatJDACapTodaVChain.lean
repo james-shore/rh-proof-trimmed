@@ -1,5 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJDHatJDACapTodaVGrpCut
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.ChainX1
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.ChainFirstIdentity
 
 open Matrix Finset
 

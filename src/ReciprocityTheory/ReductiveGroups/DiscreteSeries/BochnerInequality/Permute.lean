@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.CasValK
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.IsInfUnitary
 
 noncomputable section
 

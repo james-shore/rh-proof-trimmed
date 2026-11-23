@@ -1,5 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.FixedFrameProperty
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.HermitianFormBasics
+import Formalism.FormalDegreeBessel.FinalG
 
 open Matrix Formalism.FourierDecayAlt Formalism.QuantumDeterminants
 open scoped ComplexConjugate

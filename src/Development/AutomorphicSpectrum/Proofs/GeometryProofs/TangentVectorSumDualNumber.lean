@@ -1,8 +1,7 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.EigLat
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LieModel
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsCocharLie
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsGrpPullback
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.TangentSectionAdditiveStatement
+import Development.AutomorphicSpectrum.Proofs.GeometryProofs.TangentSectionAdditive
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open scoped CategoryTheory.Obj

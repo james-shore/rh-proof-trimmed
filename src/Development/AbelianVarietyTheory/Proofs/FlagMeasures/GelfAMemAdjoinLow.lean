@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.PolarConjTranspose
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.PermutationWordGelfandPolynomialModShorter
 import Formalism.LatticeRigidity.HeightMinimum.PowFinrankEqZeroOfTracePow
+
 open GlobalTheory.SmoothForms
 
 noncomputable section

@@ -1,10 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.CharacterGerms.ContentLargeFromSupplies
-import Formalism.LocalToGlobal.CharacterGerms.ContentZeroAt
-import Formalism.LocalToGlobal.CharacterGerms.LatticeInclusionFormsInjective
-import Formalism.LocalToGlobal.CharacterGerms.CoeffIterateZero
-import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ProdFactorialDiag
 import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CharacterBlocksAttainBound
+import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.LegendreAndCapelli
+import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ProdFactorialDiag
 
 noncomputable section
 open scoped BigOperators

@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.CuspFree
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.SiegelSpaceAlgebraHolds
-import Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.CuspMultiplicationClosed
 
 noncomputable section
 

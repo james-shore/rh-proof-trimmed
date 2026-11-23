@@ -1,4 +1,5 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.TofSpanCondition
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.GaussianTailBound
 
 namespace ReciprocityTheory.ChartRestriction.G.I2
 

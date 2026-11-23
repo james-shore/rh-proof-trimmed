@@ -1,5 +1,4 @@
 import Formalism.PeriodIntegrals.SqfLab
-import Mathlib
 
 open Polynomial
 

@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.IotaScalarOne
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FontaineAinfLocalDomainXiAdicOrderStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FontaineAinfLocalDomainXiAdicOrder
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MuCoeffZeroNeZero
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusOfPadic
 

@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AdelicHermitianForms.IsHermHyperbolic
 import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.Hat1
-import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.TransvectionIdentitiesUnitaryStatement
-import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.SpecialUnitaryHyperbolicPlaneMemTransvections
+import Development.AbelianVarietyTheory.Definitions.AdelicHermitianForms.NontrivialTransvection
+
 open NumberField IsDedekindDomain Matrix GlobalTheory.UTrans GlobalTheory.AdLat
 open scoped TensorProduct
 

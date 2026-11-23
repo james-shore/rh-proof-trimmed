@@ -1,9 +1,10 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseKummerDefs
-import GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseCupNat
+import GroundTheory.ProfiniteCohomology.PoincarePairs.Natural
+import GroundTheory.ProfiniteCohomology.PoincarePairs.Devissage
 import GroundTheory.ProfiniteCohomology.LocalTateDuality.Bockstein
-import GroundTheory.ProfiniteCohomology.PoincarePairs.IsDiscreteRepResHomCoindRes
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseCupLocal
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

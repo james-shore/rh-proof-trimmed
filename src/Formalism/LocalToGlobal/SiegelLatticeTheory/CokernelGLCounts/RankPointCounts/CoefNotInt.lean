@@ -9,7 +9,7 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountNonIntegrality.NGC
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountNonIntegrality.FrIntGOfDelta
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountNonIntegrality.NGDiff
 import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FiberCount
-import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.PartnerCount
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountNonIntegrality.Reduce
 
 noncomputable section
 

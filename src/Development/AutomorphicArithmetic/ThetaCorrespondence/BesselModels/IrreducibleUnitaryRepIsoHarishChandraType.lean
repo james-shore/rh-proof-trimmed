@@ -2,6 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselFrameTranslatedPerpOfIsFrame
 import Development.AutomorphicArithmetic.ThetaCorrespondence.BesselModels.HWSpan
 import Development.AutomorphicArithmetic.ThetaCorrespondence.BesselModels.KShift
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsWtOnIffOfTorus
 
 open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
 

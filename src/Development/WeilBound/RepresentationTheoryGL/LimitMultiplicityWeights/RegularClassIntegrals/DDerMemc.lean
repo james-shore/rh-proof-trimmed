@@ -1,5 +1,4 @@
 import Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.Variation
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsMapInfFinEquivEqProd
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GoodFunctionLineDerivative
 
 open MeasureTheory Set Filter NumberField IsDedekindDomain Matrix

@@ -1,6 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsBlowUpOverLocPointLoc
-import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.OfSteps
+import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PBlowUpModel
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.NumbersDVR

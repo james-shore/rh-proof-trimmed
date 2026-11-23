@@ -1,6 +1,7 @@
 import Mathlib
 import Formalism.LocalRingCardinality.DataKerP
-import Formalism.LocalRingCardinality.DataAmbForm
+import Formalism.LocalRingCardinality.PrincipalHermitianLattice
+
 open Formalism.BasicNotions Classical
 
 namespace GlobalTheory.KFiMu0

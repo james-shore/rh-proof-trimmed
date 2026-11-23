@@ -1,7 +1,7 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnramifiedSameDiagonal.MatchGen
 import Formalism.LocalToGlobal.GlobalTheory.UnramifiedDiagonal.DiaFun
 import Formalism.LocalToGlobal.GlobalTheory.UnramifiedDiagonal.DiaConj
-import Formalism.LocalToGlobal.GlobalTheory.UnramifiedDiagonal.HeckeRamifiedZeroOfMatchingsAndDu
+import Formalism.LocalToGlobal.GlobalTheory.UnramifiedDiagonal.TrpDia
 
 noncomputable section
 

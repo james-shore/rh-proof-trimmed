@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.LinIndToLp
+import Formalism.HermitianCurvature.StatementB
 
 noncomputable section
 

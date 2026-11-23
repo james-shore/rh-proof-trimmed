@@ -1,6 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.FinalA
 import Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.StatementE
+import Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.LogarithmicSubstitution.RestrictSecondZeroInVarOne
 
 noncomputable section
 

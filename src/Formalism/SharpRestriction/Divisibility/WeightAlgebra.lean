@@ -2,9 +2,8 @@ import Mathlib
 import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 import Formalism.LocalRingCardinality.DataParams₂
 import Formalism.LocalRingCardinality.DataParams
-import Formalism.SharpRestriction.ParamsHeightRankConstant
+import Formalism.SharpRestriction.ParConsts
 import Formalism.SharpRestriction.Divisibility.WeightFamilies
-import Formalism.SharpRestriction.Divisibility.ModuliIntegralCharts
 
 noncomputable section
 

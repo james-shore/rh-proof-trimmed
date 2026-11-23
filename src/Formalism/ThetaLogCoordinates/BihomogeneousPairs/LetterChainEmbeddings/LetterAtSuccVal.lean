@@ -1,4 +1,4 @@
-import Formalism.ThetaLogCoordinates.BihomogeneousPairs.LetterChainEmbeddings.SmulMemOfNorm
+import Formalism.MahlerMeasure.LevelLattice
 
 namespace Formalism.InvariantFactorPaths.KP.LL
 

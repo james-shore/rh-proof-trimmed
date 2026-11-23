@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.ConjugateSelfDual.StatementRest
+import Formalism.ConjugateSelfDual.Statement
 import Formalism.SharpRestriction.ValuationFrobeniusEpsilon.ScaledValuations.ValuationApplyLtOneIff
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ChebotarevDegreeOne
 

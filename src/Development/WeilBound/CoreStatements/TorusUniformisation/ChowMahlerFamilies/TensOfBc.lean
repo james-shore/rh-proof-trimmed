@@ -1,5 +1,5 @@
 import Mathlib
-import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.IsDerAt0
+import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsLatFamilyCongr
 import Development.WeilBound.CoreStatements.HodgeTatePoints.TwpairGeo
 
 open CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory TensorProduct

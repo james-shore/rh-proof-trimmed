@@ -1,7 +1,6 @@
-import Formalism.SharpRestriction.InertJacobiLevels.ExistsLarge
-import Formalism.SharpRestriction.InertJacobiLevels.AsmIface
-import Formalism.SharpRestriction.InertJacobiLevels.TiesAsm
-import Formalism.SharpRestriction.GrowthBounds.DefsInst
+import Formalism.SharpRestriction.ParConsts
+import Formalism.SharpRestriction.InertJacobiLevels.TiesCore
+import Formalism.SharpRestriction.InertJacobiLevels.TieTTwValsOfMem
 
 noncomputable section
 

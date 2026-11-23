@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.StatementG
-import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.ThmSUniform
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.CyclicPowerClassOfExpEquiv
 
 noncomputable section
 

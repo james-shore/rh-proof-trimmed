@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.GroupLattices.FockModels.FlatModels.Letter
+import Formalism.SharpRestriction.GrowthBounds.ObjSeg
 
 open MvPolynomial
 

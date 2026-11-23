@@ -2,9 +2,8 @@ import Mathlib
 import Formalism.DistinguishedUnitIdeals.PhiFreeOfBasis
 import Formalism.DistinguishedUnitIdeals.DistinguishedOrderProofs.GoodOf
 import Formalism.DistinguishedUnitIdeals.DistinguishedOrderProofs.Graded
-import Formalism.DistinguishedUnitIdeals.DistinguishedOrderProofs.ThmEPrim
-import Formalism.DistinguishedUnitIdeals.DistinguishedOrderProofs.Descent
-import Formalism.WindowSums.PowerSeriesRelationList
+import Formalism.FrobeniusContraction.Statement
+import Formalism.FrobeniusContraction.FrobeniusContractionProofs.CocycleComponentRelation
 
 namespace Formalism.ExponentWindows.E
 

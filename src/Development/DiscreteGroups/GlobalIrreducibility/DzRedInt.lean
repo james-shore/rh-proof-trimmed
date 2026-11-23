@@ -1,7 +1,7 @@
 import Mathlib
-import Development.DiscreteGroups.GlobalIrreducibility.DzIsoKO
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsCharLab
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ValuationDetOfMemKO
-import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HasExponentZeroIff
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ExistsSplitPlace
 
 noncomputable section
 

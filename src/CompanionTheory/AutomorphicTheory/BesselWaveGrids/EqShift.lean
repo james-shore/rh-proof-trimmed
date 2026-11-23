@@ -1,9 +1,7 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.PlaceSwapExists
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutNFHatProdKBStmt
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJDJDJComm
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.RadJFExists
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.ThresholdOfLargeConstant
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.LUFactorOrbitBounds
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CellIdentityShifted
 
 namespace CompanionTheory.WaveGrid.EqShift
 

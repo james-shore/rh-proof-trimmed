@@ -1,5 +1,4 @@
 import Mathlib
-import ReciprocityTheory.L2DbarEstimates.IsLocalHomeomorph
 
 noncomputable section
 

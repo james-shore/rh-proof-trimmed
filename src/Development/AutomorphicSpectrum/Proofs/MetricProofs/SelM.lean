@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.MetricPeriods.Pull1
-import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsPeriodOn
+import Development.AutomorphicSpectrum.Definitions.MetricPeriods.GeometricAbelianConnected
+import Development.AutomorphicSpectrum.Definitions.MetricPeriods.GenericBlockMatrixIsBlockDiag
 
 noncomputable section
 

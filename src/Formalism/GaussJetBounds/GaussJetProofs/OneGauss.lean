@@ -4,9 +4,8 @@ import Formalism.GaussJetBounds.MonoShapeTop
 import Formalism.GaussJetBounds.GaussJetProofs.GField
 import Formalism.GaussJetBounds.GaussJetProofs.Transfer
 import Formalism.GaussJetBounds.GaussJetProofs.FJEval
-import Formalism.GaussJetBounds.GaussJetProofs.ConstantCoeffAevalLinP
 import Formalism.GaussJetBounds.GaussJetProofs.Labels
-import Formalism.GaussJetBounds.GaussJetProofs.ThmAOp
+import Formalism.IncomingBounds.StatementThmP
 
 noncomputable section
 open scoped BigOperators

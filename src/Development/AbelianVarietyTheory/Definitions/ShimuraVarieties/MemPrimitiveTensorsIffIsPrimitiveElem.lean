@@ -1,5 +1,4 @@
 import Mathlib
-import ReciprocityTheory.DualLattices.RidConvolutionDerivation
 
 noncomputable section
 

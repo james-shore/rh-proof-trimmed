@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.UnramifiedBaseChangeEqOfSatakeEq
-import Formalism.SharpRestriction.LevelLetterCocycles.DataN
-import Development.AbelianVarietyTheory.Definitions.Divisors.LineOppositeParabolicUnitaryLeviSectionEq
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.BcParamEqOfSatUEq
 
 open Formalism.MainNotions.N
 set_option maxHeartbeats 1000000 in

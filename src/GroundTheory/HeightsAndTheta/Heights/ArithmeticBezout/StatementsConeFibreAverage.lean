@@ -1,5 +1,6 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsConeMass
+import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsConeFibre
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

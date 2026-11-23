@@ -1,6 +1,4 @@
 import Formalism.SharpRestriction.GrowthBounds.DualFockLinear.TestSideExplicitIdentification
-import Formalism.LocalToGlobal.GroupLattices.FockModels.DualInclusionLattices
-import Formalism.LocalToGlobal.GroupLattices.FockModels.MulMemRiemannRochSpaceAdd
 
 noncomputable section
 

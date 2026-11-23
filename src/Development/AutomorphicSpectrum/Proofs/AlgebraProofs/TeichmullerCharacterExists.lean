@@ -1,5 +1,4 @@
 import Mathlib
-import Development.WeilBound.CoreStatements.HodgeTatePoints.RbFund
 
 open scoped Matrix TensorProduct
 open Matrix

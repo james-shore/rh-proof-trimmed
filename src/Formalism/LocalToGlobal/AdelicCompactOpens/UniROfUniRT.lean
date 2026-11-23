@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.GaloisLevelStructure.DefsLevel
-import Mathlib
 
 namespace Formalism.L2.Props
 

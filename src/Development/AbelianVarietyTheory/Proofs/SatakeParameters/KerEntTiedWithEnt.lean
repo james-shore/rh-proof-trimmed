@@ -1,11 +1,12 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsEntC
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ColNorm
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.JetsInIffStepField
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FixedVectorEqOfStandardData
 import Formalism.LocalToGlobal.KernelLattices.TopPin
-import Formalism.LocalToGlobal.KernelLattices.InterlaceAll
+import Formalism.LocalToGlobal.HermitianForms.TiedTwGen
+import Formalism.LocalToGlobal.KernelLattices.AdaptedEnt
+import Formalism.LocalToGlobal.UnitaryNorms.CharTied
+import Formalism.LocalToGlobal.GroupLattices.TrivialTransfer.GenCoprime
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FixedVectorEqOfStandardData
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DetIdStdBot
+
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Col Formalism.L2.DIV Formalism.L2.Ker Formalism.UG Formalism.L2.Forms GlobalTheory.Mem GlobalTheory.Mem.Chr GlobalTheory.Mem.Col2 GlobalTheory.Mem.Col2.TC Matrix
 attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Host.cmStar
 

@@ -1,5 +1,4 @@
 import Formalism.RealPlaceAnalysis.UJLocCompact
-import Mathlib
 
 open Matrix Topology
 

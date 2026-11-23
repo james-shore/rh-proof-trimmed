@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.ConvolutionSmoothL2
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.HermitianFormUnitaryOneOne
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.IsProjOnOne
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.NormLeOfMeanZero
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.CuspidalSubspaceClosedRightTranslationStableStatement

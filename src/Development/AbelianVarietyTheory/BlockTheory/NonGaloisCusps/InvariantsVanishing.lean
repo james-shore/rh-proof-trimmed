@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
-import Formalism.LocalRingCardinality.AdicCompletionLocal.LocTied
+import Formalism.LocalRingCardinality.AdicCompletionLocal.InstIsAdicCompleteOCSpanSingletonSetCast
 import ReciprocityTheory.BasicDefinitions.AdRep
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle
 

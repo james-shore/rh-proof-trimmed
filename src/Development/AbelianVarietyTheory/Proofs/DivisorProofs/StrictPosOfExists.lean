@@ -2,8 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.SecondCountableTopologyOfIsProjOver
 import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.FlatLocA
 import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.DerivDerivNonposOfIsLocalMax
-import ReciprocityTheory.L2DbarEstimates.LeviForms.OfRealNormSqSumMul
-import ReciprocityTheory.L2DbarEstimates.LeviForms.LogNormSq
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleIdentityIso
 
 set_option autoImplicit false
 

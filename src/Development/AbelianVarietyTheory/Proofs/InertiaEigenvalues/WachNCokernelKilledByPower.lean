@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.SharpRestriction.LevelLetterCocycles.UsedLocalConclusion
+import Formalism.SharpRestriction.LevelLetterCocycles.GammaSemisimpleLocalOfConsequences
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NotFullBot
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemSatMOfSmul
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachModuleUniquenessCharacterisationStatement

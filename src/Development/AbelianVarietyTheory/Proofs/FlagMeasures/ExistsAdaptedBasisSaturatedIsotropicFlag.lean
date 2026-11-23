@@ -7,6 +7,7 @@ import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsFiniteAdelicPo
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsComplOfSaturated
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.AutInstDegreeRootDiscriminantRank
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsProjector
+import Formalism.SizeWindowBrackets.ChainSlopeWindows.ExistsNsmulMem
 
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas GlobalTheory.FlagBase
 

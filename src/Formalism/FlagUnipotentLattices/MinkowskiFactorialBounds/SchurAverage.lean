@@ -1,4 +1,4 @@
-import Formalism.FlagUnipotentLattices.MinkowskiFactorialBounds.LatticeSumBounds
+import Formalism.FlagUnipotentLattices.CardSubmodulesAndLinearEquivBounds
 
 open Module Matrix Formalism.HermitianLatticeCounting.LatticeSumBounds
 open scoped BigOperators ComplexConjugate

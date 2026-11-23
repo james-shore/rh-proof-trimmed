@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.IsDiscriminantTwelfthRootOfIdealLattice
-import Formalism.LocalToGlobal.GlobalTheory.LinkTiesTh
+import Formalism.SharpRestriction.GlobalSchurBounds.Joints
 
 noncomputable section
 

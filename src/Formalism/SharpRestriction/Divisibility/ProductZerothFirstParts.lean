@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 import Formalism.LocalRingCardinality.DataParams₂
-import Formalism.SharpRestriction.ParamsHeightRankConstant
+import Formalism.SharpRestriction.ParConsts
 
 noncomputable section
 

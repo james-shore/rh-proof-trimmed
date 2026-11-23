@@ -4,6 +4,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAffineHolFram
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EigFrameMatch
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.H0NeBotOfHorizontalFunction
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HolomorphicOnProjectiveConst
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ComplexPointsNonemptyDenseVarietyStatement
 
 set_option autoImplicit false
 

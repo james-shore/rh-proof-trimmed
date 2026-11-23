@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwoPiMulWeightLengthLeMaxWeightDegreeSq
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ThreeLeScaleOfPowBound
-import Development.AbelianVarietyTheory.Counterexamples.JetSurvey.OrientationExclusive
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsPageRunRecord
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons
 set_option maxHeartbeats 1000000 in

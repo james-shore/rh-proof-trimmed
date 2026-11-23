@@ -1,9 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.FWTie
-import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
-import Formalism.LocalToGlobal.ProjectiveLattices.LiftLaSpec
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.NonemptyUnitAt
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsPointedOfIsHkIsog
+import Formalism.LocalToGlobal.ProjectiveLattices.HeckeStabSet
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.NonemptyUnitAt
 
 set_option autoImplicit false
 

@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.QuasiCompact
+import Development.AbelianVarietyTheory.Definitions.Divisors.TateProductRigidificationTrivial
 
 noncomputable section
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField

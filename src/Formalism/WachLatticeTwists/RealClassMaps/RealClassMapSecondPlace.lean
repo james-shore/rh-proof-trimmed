@@ -1,5 +1,5 @@
-import Formalism.WachLatticeTwists.RealClassMaps.RealClassMapTheorem
-import Formalism.WachLatticeTwists.RealClassMaps.StatClassMapReal
+import Formalism.WachLatticeTwists.SplitClassesAll.Statement
+import Formalism.WachLatticeTwists.ShapeRowIsomorphisms.Statement
 
 open Finset Classical
 

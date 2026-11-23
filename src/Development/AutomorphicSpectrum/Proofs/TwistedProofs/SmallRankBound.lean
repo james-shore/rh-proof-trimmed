@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasLenOfLatLen
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.LocalAlgebraInertPrime
 
 open Formalism.UG GlobalTheory.SatakeWeyl GlobalTheory.InertZeta
 

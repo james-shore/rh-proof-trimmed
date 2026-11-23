@@ -1,9 +1,6 @@
 import Mathlib
-import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.LeibnizOrders.LeibnizOrd
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsLocallyConstantAddChar
+import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.MirabolicDerivatives.LeibnizDerivatives.HighestDerivProd
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PolyBall
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsRepsSumEqZero
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousMirProj
 
 noncomputable section
 open Matrix GlobalTheory.PRep GlobalTheory.BZMir GlobalTheory.SplitWeil GlobalTheory.CompanionTheory.MirFourier

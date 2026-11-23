@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.MeanXMulStarRat
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.MeanSquareAddFundamentalDomainOfCocompact
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CoefIntegralEq
+import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.CovolOneIntegralAdd
 
 noncomputable section
 

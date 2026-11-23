@@ -1,9 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IteratedDerivHeckePhiFourierTransformBound
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.OmegaFactorization
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.PartialZetaFunctionalEquation
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KFacDifferentiable
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContDiffOnHeckeEisensteinFourierTerm
 
 open NumberField Complex
 open scoped nonZeroDivisors ContDiff

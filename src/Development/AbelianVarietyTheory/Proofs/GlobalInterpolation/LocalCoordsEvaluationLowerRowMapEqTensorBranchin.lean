@@ -5,7 +5,6 @@ import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.TrueWeightsEq
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.HeightsranchOne
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RhoVrBrAtEqBrStd
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsLevelPrimePointModelRealisation
-import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.TilLatticesOfLevel
 
 noncomputable section
 

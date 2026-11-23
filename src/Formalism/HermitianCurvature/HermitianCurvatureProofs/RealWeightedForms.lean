@@ -1,4 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.DualKernelLemmas
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.TransferMatrixFactorization
 
 namespace Formalism.FourierDecayAlt.P.RealWeightedForms
 

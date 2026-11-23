@@ -1,9 +1,9 @@
 import Mathlib
-import Formalism.SatakeDualWeyl.Statement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemMatLat
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralAevalEqAevalMapOfCoprimeCharpolyStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIntegralMatrixOfMapsToFullRankLatticeStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitaryMulIntegralOfNormMaximalOrderUnitStatement
+
 open Polynomial Matrix GlobalTheory.LatOrb
 
 noncomputable section

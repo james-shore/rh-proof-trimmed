@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.KernelLattices.ThDistC
-import Formalism.LocalToGlobal.KernelLattices.ColInst
 import Formalism.LocalToGlobal.Columns.AtTLemmas
 
 open NumberField IsDedekindDomain

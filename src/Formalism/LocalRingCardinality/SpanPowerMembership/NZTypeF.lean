@@ -1,7 +1,6 @@
-import Formalism.LocalRingCardinality.SpanPowerMembership.NZTypeE
-import Mathlib
-import Formalism.CyclotomicNorms.StatementT
-import Formalism.CyclotomicNorms.NonsquarefreeBounds.IrreducibilityOfRestriction
+import Formalism.SharpRestriction.LevelLetterCocycles.DataN
+import Formalism.LocalRingCardinality.SpanPowerMembership.NZTypeD
+import Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.OneNonUnit
 
 noncomputable section
 

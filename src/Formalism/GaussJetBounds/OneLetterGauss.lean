@@ -1,6 +1,4 @@
 import Formalism.GaussJetBounds.GaussJetProofs.OneGauss
-import Formalism.GaussJetBounds.StatementS
-import Formalism.GaussJetBounds.ThmAGauss
 
 namespace Formalism.DworkPowerSeriesWeights
 

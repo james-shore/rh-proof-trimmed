@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsBoundAbsLocalLatticeCompletionEntries
-import Development.AbelianVarietyTheory.Definitions.Foundations.T2SpaceAdeleRing
+
 open scoped TensorProduct NNReal Matrix
 open NumberField IsDedekindDomain GlobalTheory.AdelicU Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 

@@ -1,8 +1,8 @@
 import Mathlib
 import ReciprocityTheory.CommutativeAlgebra.CohenMacaulay.ModDepthGE
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PurityFree
 import ReciprocityTheory.CommutativeAlgebra.CohenMacaulay.ExistsIsRegularAppendOfModDepthGE
 import ReciprocityTheory.CommutativeAlgebra.CohenMacaulay.Bridge
+
 open IsLocalRing
 
 namespace GlobalTheory

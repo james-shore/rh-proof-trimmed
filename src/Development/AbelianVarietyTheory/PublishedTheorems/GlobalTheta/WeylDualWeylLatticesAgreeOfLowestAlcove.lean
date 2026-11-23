@@ -1,8 +1,7 @@
 import Mathlib
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
-import Formalism.GradedWeylDivisibility.FinalB
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LClosedeqLemmas
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ApplyWordMemDualWeyl
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LClosedeqLemmas
 
 open MvPolynomial Formalism.BasicNotions
 

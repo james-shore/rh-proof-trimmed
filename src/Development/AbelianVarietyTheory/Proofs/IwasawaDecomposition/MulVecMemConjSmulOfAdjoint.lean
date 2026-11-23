@@ -1,9 +1,8 @@
 import Mathlib
 import Formalism.SharpRestriction.CuspSpanNormBounds.GlobAut
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ExistsReduction
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExtIdMulSupNatCastConj
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.MemExtIdSmulIff
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsProdLeOfIsRadical
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsDual
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.AutPointLatticeIntersectionSelfDualProperties
 
 open Formalism.MainNotions.S GlobalTheory.RowLev GlobalTheory.RowLev.Inhab NumberField IsDedekindDomain Matrix Formalism.UG
 open scoped TensorProduct Pointwise Classical

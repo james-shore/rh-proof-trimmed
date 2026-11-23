@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MulEqOfRangeLe
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormCVPosIdele
-import GroundTheory.AutomorphicForms.AnisotropicHeight
+import GroundTheory.AutomorphicForms.AdelicUnitaryGroups.Restricted
 
 noncomputable section
 

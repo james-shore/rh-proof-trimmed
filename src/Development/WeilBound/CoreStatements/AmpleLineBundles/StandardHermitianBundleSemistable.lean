@@ -1,4 +1,4 @@
-import Development.WeilBound.CoreStatements.AmpleLineBundles.SpanLeOfMem
+import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsOrthFull
 
 open GroundTheory.Heights₂.Heights NumberField TensorProduct ComplexAt GlobalTheory.CompanionTheory.Ar Matrix
 open scoped BigOperators ComplexOrder

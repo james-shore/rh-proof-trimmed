@@ -1,5 +1,5 @@
-import Formalism.WachLatticeTwists.RamifiedBlockRings.RamifiedBlockProofs.Normal
 import Formalism.WachLatticeTwists.RamifiedBlockRings.RightIdealImageOfSurjective
+import Formalism.CharacterColumnKernels.IdempotentNormalForms.GlobalConcreteOf
 
 open Finset Classical
 

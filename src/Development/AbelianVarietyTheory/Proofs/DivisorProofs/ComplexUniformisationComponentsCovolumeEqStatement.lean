@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComplexUniformisationComponentsCovolumeEq
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FirstIndexEqOfUnfolded
-import Formalism.LocalToGlobal.ProjectiveLattices.UnFree
 
 open NumberField
 set_option maxHeartbeats 1000000 in

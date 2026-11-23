@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsCharLab
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.PadicIntGLSmulMemPrincipalCongruenceFixed
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.InjPrimeTo
+import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
 import Development.AbelianVarietyTheory.Definitions.Foundations.SmoothPartStable
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DetCharacterIrreducibleLabel
 

@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.WignerVanishingGL
-import Formalism.RealPlaceAnalysis.StatementB
+import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.IsTemperedGLOfIsUnitaryLSeg
 
 noncomputable section
 

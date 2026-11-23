@@ -3,8 +3,7 @@ import Development.AbelianVarietyTheory.Definitions.ArchimedeanThetaValues.Carch
 import Development.AbelianVarietyTheory.Definitions.ThetaValues.Generic
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.MemFormsLowCoeffsVanishIffFourierJacobiStatement
 import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.PoincarePointwiseStatement
-import Formalism.LocalToGlobal.ProjectiveLattices.RosatiLatticeNorms.LinkFD
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.SiegelSpaceAlgebraHolds
+
 open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj Formalism.L2.Pj.QAt Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.BasicNotions GlobalTheory.ArcCM GlobalTheory.Shares
 
 namespace GlobalTheory.MaxCuspRecord

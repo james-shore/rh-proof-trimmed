@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.Foundations.Convolution.HermitianDescent.NormAlmostAll
-import Development.AutomorphicArithmetic.Foundations.Convolution.HermitianDescent.GalBase
 
 open Matrix Polynomial NumberField IsDedekindDomain
 open scoped TensorProduct

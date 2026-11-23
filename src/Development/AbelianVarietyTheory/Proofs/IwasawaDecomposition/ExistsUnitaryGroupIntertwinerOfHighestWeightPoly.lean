@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
-import ReciprocityTheory.DualLattices.FischerSelfNeZero
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TotalDegreeSubstFLe
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIntertwinerIrreducibleUnitaryHighestWeightStatement
+import ReciprocityTheory.DualLattices.ConstantCoeffRowSubst
+import ReciprocityTheory.DualLattices.FischerSelfNeZero
 
 open Formalism.MainNotions.S Matrix GlobalTheory.CompactHowe
 open scoped TensorProduct

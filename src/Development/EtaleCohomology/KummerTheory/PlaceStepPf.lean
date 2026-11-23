@@ -1,5 +1,4 @@
 import Development.EtaleCohomology.KummerTheory.PlaceExPf
-import Mathlib.RingTheory.Valuation.LocalSubring
 
 noncomputable section
 

@@ -3,6 +3,7 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLattic
 import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeLemma3
 import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeCSB
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.OrbitalIntegralAeConvergenceContinuity
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.LongWeylElement
 
 noncomputable section
 

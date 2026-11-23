@@ -1,9 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SelfDualOne
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LatticeModelVacuumTranslateClassesIndependent
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralPreimageAddImageEqLatticeStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.HermitianDualSubsetOfIntegralGramStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.HermitianFormIntegralPreimageLatticeStatement
+
 open Matrix
 
 theorem GlobalTheory.Hk3.HoweG.selfDual_lattice_of_gram_int : ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplicative ℤ))] (ϖ : L) (σ : L →+* L) (q : ℕ)

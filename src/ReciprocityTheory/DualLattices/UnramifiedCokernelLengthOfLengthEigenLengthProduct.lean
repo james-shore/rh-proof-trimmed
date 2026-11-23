@@ -1,5 +1,4 @@
 import ReciprocityTheory.DualLattices.EigenLengthFrobeniusStatement
-import ReciprocityTheory.DualLattices.FrobEqOfLe
 import ReciprocityTheory.DualLattices.StdJForm
 import ReciprocityTheory.DualLattices.UnramifiedCokernelLowerBoundOf
 

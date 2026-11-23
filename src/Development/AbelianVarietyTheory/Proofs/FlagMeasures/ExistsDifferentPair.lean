@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.FrameLats
+import Development.AbelianVarietyTheory.Definitions.Foundations.InFrameStabilizer
 
 noncomputable section
 

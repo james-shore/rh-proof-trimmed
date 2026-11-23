@@ -1,9 +1,9 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.LinksLemmas
-import Formalism.LocalToGlobal.IndefiniteReal.IsFDiagIffDiagonal
 import Formalism.LocalToGlobal.IndefiniteReal.FrameExistence.FramesExistOfDiagonalTypePlaces
 import Formalism.LocalToGlobal.IndefiniteReal.FrameExistence.NormalFrameClauses
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CmQuadraticFormEqAlternatingForm
+import Formalism.LocalToGlobal.IndefiniteReal.IsFDiagIffDiagonal
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DiagSpacesOfOver
 
 noncomputable section

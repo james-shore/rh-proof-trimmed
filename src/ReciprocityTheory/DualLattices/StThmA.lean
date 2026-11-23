@@ -1,4 +1,4 @@
-import ReciprocityTheory.DualLattices.TangentPairingStatement
+import ReciprocityTheory.DualLattices.SqZeroOfSpan
 
 noncomputable section
 

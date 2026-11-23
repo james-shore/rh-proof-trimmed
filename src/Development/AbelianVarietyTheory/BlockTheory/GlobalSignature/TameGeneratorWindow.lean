@@ -1,7 +1,5 @@
 import Mathlib
 import Formalism.SharpRestriction.ParConsts
-import Formalism.SharpRestriction.ParamsHeightRankConstant
-import Formalism.SharpRestriction.GrowthBounds.SmallOrderPrimes
 import Formalism.LocalToGlobal.UnitaryNorms.CharHost
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.DisjointExceptional
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ThinScalesIffHostBound

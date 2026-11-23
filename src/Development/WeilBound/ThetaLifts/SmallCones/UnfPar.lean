@@ -1,4 +1,5 @@
 import Development.WeilBound.CoreStatements.ThetaDilations.ContinuousPm
+import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.TensorLocallyCompactRingStatement
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology PositivityTheory.PlacePermOperatorBicommutantSpan
 open scoped TensorProduct ENNReal NNReal Matrix

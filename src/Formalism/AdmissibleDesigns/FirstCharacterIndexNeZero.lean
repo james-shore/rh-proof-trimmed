@@ -1,11 +1,10 @@
-import Formalism.AdmissibleDesigns.TheoremFromNormalizedOpenThree
-import Formalism.AdmissibleDesigns.TrivialBoundTargetOfPsi
-import Formalism.AdmissibleDesigns.YtTargetOf
-import Formalism.AdmissibleDesigns.TwistedTargetOfInputs
-import Formalism.AdmissibleDesigns.MsContW
-import Formalism.AdmissibleDesigns.TrivialBoundAtRowsOfAdmTB
+import Formalism.AdmissibleDesigns.SelmerInequalityOfInputs
+import Formalism.AdmissibleDesigns.CharacterTrivialWhereLattice
+import Formalism.AdmissibleDesigns.FiniteClassesLocalEq
+import Formalism.AdmissibleDesigns.TrCMemZ1D
+import Formalism.AdmissibleDesigns.CoboundaryMemFiniteClasses
+import Formalism.AdmissibleDesigns.ContOfInjY
 import Formalism.AdmissibleDesigns.CoefChangeRec
-import Formalism.AdmissibleDesigns.MsWApply
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core] [hH0Fin : Fact Formalism.MainNotions.N.K.H0.FinCore]
 

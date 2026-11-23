@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AutomorphicArithmetic.LocalEmbeddings.ArchSz
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnderMemAndPlaceAboveEqOfMem
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGlLatCongMove
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntegralDetCharInvertibleMatrixBallMemSubfield
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.PartialFourierSumInverseOfLatticeDepth
 

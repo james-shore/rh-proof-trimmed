@@ -2,6 +2,9 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.MatrixOfBesselTwoSidedAction
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.HaarUniquenessConjugation
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.MatGroupHaarUniqueFiniteCompactOpenPos
+import Formalism.FormalDegreeBessel.FinalG
+import Formalism.RealPlaceAnalysis.FinalF
+
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf
 open scoped ENNReal
 

@@ -1,6 +1,5 @@
 import Mathlib
-import Development.EtaleCohomology.CohomologicalPurity.LeafOffContPf
-import Development.EtaleCohomology.CohomologicalPurity.LeafHsContPfFive
+import Development.EtaleCohomology.CohomologicalPurity.LeafIndExcPf
 import Development.EtaleCohomology.CohomologicalPurity.LeafHtpyMVPf
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMayerVietorisConnectingExact
 import Development.AutomorphicArithmetic.CommutativeAlgebra.EtalePurityFreeCover

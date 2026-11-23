@@ -1,7 +1,7 @@
 import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.MassDataXTied
-import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.MassDataVolumesS
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.MassDataLevelS
 import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.MassDataXMasses
+import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.MassDataVolumesS
 
 noncomputable section
 

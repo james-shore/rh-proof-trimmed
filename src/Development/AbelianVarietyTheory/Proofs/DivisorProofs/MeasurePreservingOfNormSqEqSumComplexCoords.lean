@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContinuousFourierGau
 import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IntegrableMonomialMulConjComplexGaussian
 
 open MeasureTheory

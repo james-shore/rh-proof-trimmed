@@ -1,5 +1,4 @@
-import Formalism.SatakeDualWeyl.StatementC
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Stabstd
+import Formalism.SatakeDualWeyl.Statement
 
 noncomputable section
 

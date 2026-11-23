@@ -1,10 +1,8 @@
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SeparatingAlgebras.StGlob
-import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsIntegralOpW
-import Development.AbelianVarietyTheory.Definitions.Foundations.NotHasParamOfSubsingleton
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HasSatakeGLOfIsSatVecGL
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsLocalComponentEigenvectorSplitPlace
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SatakeParameterSphericalProductSpehQuotients
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsIntegralOpW
 
 noncomputable section
 

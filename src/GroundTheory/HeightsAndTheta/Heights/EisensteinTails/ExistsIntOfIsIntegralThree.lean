@@ -1,6 +1,6 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ArithDegree
-import GroundTheory.HeightsAndTheta.Heights.HermitianSum
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

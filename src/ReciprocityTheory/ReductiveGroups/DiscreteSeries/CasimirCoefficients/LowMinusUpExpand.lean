@@ -5,7 +5,6 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.TauP
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.DerivG
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.ByParts
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.ContinuousOnFderivPhiM
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirAlgebra.RhoEqRhoCAddRhoN
 
 noncomputable section
 

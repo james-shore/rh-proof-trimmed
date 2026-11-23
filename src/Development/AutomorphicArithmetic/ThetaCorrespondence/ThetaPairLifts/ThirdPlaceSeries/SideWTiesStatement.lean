@@ -6,7 +6,6 @@ import Development.AbelianVarietyTheory.Proofs.HeightProofs.TwDatPsiValuesInLL
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.SmallFrameAtColumnStatement
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SideOf
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SideWTies
-import Development.AutomorphicArithmetic.Foundations.LocalLanglands.IsRecTOfIsRec
 
 set_option synthInstance.maxHeartbeats 200000
 

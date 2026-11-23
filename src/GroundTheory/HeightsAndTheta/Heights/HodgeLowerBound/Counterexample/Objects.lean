@@ -1,9 +1,9 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.IsFrameOverLine
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.PermFinTwoUniv
 import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.IsSmoothHermConstLine
-import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.PCurveDivVertical
 import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsAntisym
+import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.CoordinateIdeals.Example
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

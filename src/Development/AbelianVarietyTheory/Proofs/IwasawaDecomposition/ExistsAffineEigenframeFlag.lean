@@ -2,8 +2,8 @@ import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MonoSpMapRingOfIntegersAlt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ToroidalBoundaryMetricData
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsBasisNear
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsBaseChange
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAffineStableLieEigenspaceFrame
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsBaseChange
 
 set_option autoImplicit false
 

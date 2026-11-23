@@ -1,6 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.LinksW
-import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsStepWeil
+import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LevelSubgroupRestrictedProductOfLaws
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaLiftLevelsGoodPrimesProperties
 

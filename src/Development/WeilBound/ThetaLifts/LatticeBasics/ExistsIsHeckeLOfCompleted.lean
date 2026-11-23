@@ -2,7 +2,6 @@ import Mathlib
 import Development.WeilBound.ThetaLifts.LatticeBasics.GoodNe
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.HeckeTateFunctionalEquationCM
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsCMTypeEmbedding
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeLNeZeroNat
 
 noncomputable section
 

@@ -1,7 +1,6 @@
 import Formalism.LocalToGlobal.HilbertRowConditions.AllJoin
-import Formalism.LocalToGlobal.GlobalTheory.ConcNWeight
-import Formalism.LocalToGlobal.GlobalTheory.ConcNP
 import Formalism.LocalToGlobal.ClassRec
+import Formalism.LocalToGlobal.GlobalTheory.ConcNWeight
 
 noncomputable section
 

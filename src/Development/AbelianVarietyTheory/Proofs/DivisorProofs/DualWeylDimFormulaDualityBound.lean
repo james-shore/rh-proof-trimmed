@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsAdelicOne
-import Formalism.LocalToGlobal.CMDeterminantIdeals.StatementG
 import Formalism.PolynomialDimension.WeylDim
 import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.PbSmithLam
 import Formalism.SharpRestriction.GrowthBounds.ScaleEdges.WeylDimShift

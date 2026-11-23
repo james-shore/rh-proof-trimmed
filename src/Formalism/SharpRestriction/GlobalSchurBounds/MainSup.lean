@@ -4,6 +4,7 @@ import Formalism.SharpRestriction.GlobalSchurBounds.FirstClaimLemmaTwoFourOfLemm
 import Formalism.SharpRestriction.GlobalSchurBounds.ThickPlacesCorollaryOfAnyTranslate
 import Formalism.SharpRestriction.GlobalSchurBounds.TopDensityNGeSixteen
 import Formalism.SharpRestriction.GlobalSchurBounds.JointsL
+import Formalism.GL3MeanSquares.HookFormulaTorsion.OneAddInvPowLeExpOne
 
 noncomputable section
 

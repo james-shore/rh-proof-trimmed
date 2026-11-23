@@ -1,6 +1,5 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.FormalAlgebraisation.GEClosedProj
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.FormalAlgebraisation
 import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.SchemeImage
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsIsoOfIsClosedImmersionOfThickenings
 

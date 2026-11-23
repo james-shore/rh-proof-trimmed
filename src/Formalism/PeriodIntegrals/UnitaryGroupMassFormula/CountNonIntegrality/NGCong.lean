@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountNonIntegrality.NGDefs
+import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.CntLocal
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountNonIntegrality.ValOneOfNotMem
 
 noncomputable section

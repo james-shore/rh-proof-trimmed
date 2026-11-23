@@ -1,4 +1,11 @@
 import Formalism.AdmissibleDesigns.RealDisplayAllK
+import Formalism.WachLatticeTwists.RamifiedBlockRings.LocalToDisplayFree
+import Formalism.WachLatticeTwists.CoprimeLiftBounds.CoprimeLiftProofs.TheoremNFiveDeltaClause
+import Formalism.WachLatticeTwists.SplitLocalLifts.SplitLocalLiftProofs.LocLift
+import Formalism.WachLatticeTwists.CharacterSplitJumps.CharacterJumpProofs.PropLocBK
+import Formalism.WachLatticeTwists.RealClassMaps.RealClassMapProofs.TheoremNFiveReal
+import Formalism.WachLatticeTwists.RealClassMaps.RealClassMapProofs.InRowRealOf
+import Formalism.WachLatticeTwists.RealClassMaps.RealClassMapProofs.TheoremNFiveRealAllLiftThird
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 

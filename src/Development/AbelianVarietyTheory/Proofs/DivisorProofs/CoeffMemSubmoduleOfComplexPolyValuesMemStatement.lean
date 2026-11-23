@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoeffMemSubmoduleOfComplexPolyValuesMem
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemNilRad
 
 open Matrix GlobalTheory.TorFin
 

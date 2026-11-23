@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.CNDefs
+import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.SphericalFunctionIntegrableOfLocal
 
 noncomputable section
 

@@ -1,6 +1,7 @@
 import Formalism.HermitianCurvature.StatementU
 import Formalism.FormalDegreeBessel.FinalG
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MulDiagOfTriangular
+import Formalism.RealPlaceAnalysis.StatementU
 
 open Matrix Formalism.FourierDecayAlt Formalism.FourierDecayAlt.U Formalism.REAL Formalism.QuantumDeterminants
 

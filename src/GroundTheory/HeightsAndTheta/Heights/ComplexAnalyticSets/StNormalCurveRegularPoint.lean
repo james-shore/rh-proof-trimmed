@@ -1,6 +1,7 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StNormalCurveBranchOrder
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PNormalModelOpenMapping
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StNormalModelPlace
+import GroundTheory.ArithmeticGeometry.ToricVarieties.Affine
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

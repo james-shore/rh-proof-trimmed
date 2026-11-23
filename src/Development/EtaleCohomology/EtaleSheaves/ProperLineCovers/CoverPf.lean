@@ -1,4 +1,4 @@
-import Development.EtaleCohomology.EtaleSheaves.LeafCurveCut
+import Development.EtaleCohomology.EtaleSheaves.H0TwistOverClosedField
 import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.IsDomainAndIsIntegrallyClosedAtPrimeOfSmoothOfCo
 import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsNeZeroIsStandardSmoothOfRelativeDimension
 

@@ -1,6 +1,5 @@
 import ReciprocityTheory.L2DbarEstimates.LeviForms.EventuallyDifferentiableAtOfContDiffAt
 import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.HoloSmooth
-import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.FamilyLeCoords
 
 open Complex ComplexConjugate Filter Topology
 open scoped ContDiff

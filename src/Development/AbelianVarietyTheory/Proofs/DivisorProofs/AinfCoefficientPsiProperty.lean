@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.IotaScalarOne
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusOfPadic
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TiltIsDomainValuationRing
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusOfPadic
 
 open GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.SandwichMaps GlobalTheory.DetInv Matrix TensorProduct
 

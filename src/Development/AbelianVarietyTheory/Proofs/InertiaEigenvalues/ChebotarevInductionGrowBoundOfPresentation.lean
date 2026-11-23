@@ -5,6 +5,8 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EqOneOfMemProK
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CokEquivOfExact
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CoeffMemOfPowMul
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CoeffMemOfToLamMem
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsPlaceOverMoveValCc
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GaloisTwistedSelmerAuxprimesOfMatrixAndBounds
 
 noncomputable section
 

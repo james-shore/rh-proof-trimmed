@@ -1,4 +1,4 @@
-import Formalism.YangianSpanCharacter.StatementT
+import Mathlib
 
 namespace Formalism.YangianSpanCharacter.T
 

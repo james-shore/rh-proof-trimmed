@@ -1,5 +1,4 @@
 import Formalism.PeriodIntegrals.JetsPhW
-import Mathlib
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.UnitBall
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ImportsTerAlt
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.IntMvPderiv

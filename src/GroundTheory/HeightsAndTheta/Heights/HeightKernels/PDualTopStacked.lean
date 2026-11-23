@@ -4,7 +4,8 @@ import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsDualTopBasis
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsDualStackedDegree
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsDualTopSimpleSub
 import GroundTheory.PowerSubgroups.CountableNeighbourhoods.ExistsCover
-import GroundTheory.HeightsAndTheta.Heights.KernelsLattice
+import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualLatticeBasisExists
+import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualEmbBijective
 
 set_option maxSynthPendingDepth 1
 

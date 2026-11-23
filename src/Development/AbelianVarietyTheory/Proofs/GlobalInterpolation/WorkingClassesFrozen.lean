@@ -3,9 +3,9 @@ import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ValidForConst
 import Formalism.SharpRestriction.DesignExistsOfChoices
 import Formalism.SharpRestriction.SmoothDesignExistence.DesignExistsDes
 import Formalism.SharpRestriction.PageFix
-import Formalism.SharpRestriction.Divisibility.SmallFirstModulusBelowScale
-import Formalism.SharpRestriction.GlobalSchurBounds.WeightVectorSmallSharesEight
+import Formalism.SharpRestriction.Divisibility.AbsolutelyIrreducibleSpan
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.PageDutiesOfClassSeven
+
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Pk GlobalTheory.EX GlobalTheory.Fc
 
 namespace GlobalTheory.Fc

@@ -3,9 +3,9 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.CharacterLevelBoun
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.DecGen
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.GaloisCohomologyLength.IneFixRoots
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.Places
-import Mathlib.Topology.Algebra.ClopenNhdofOne
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.DzExistsPrime
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.DerivativeLocallyConstant
+
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Module UpperTheory.V UpperTheory.V.X
 
 section SlopeTestRemainingChoices

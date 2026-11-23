@@ -1,4 +1,4 @@
-import CompanionTheory.ThickeningEstimates.LieGroupReduction.HasDerivAtSchwartzToL2
+import CompanionTheory.ThickeningEstimates.InnerProductFactorization.EqOfInner
 
 noncomputable section
 

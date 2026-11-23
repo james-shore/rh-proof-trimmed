@@ -5,14 +5,12 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsHom
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFinitePoint
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LbIsoPullComp
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeEquivOfSameCentre
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDiagEndIsMonHom
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CongModOfMkEq
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsLabOntoAndKer
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsLab
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LabelsLift
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralClosureStalkFibre
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PrimeEqOfNatCastEqZero
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemOOfPowEqOne
+
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory IsLocalRing
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM GlobalTheory.SiegelTor GlobalTheory.ZH

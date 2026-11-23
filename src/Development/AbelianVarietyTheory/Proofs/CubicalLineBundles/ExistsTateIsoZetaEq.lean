@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.CMLattices.ExistsIsThetaDegOfIsLocalModel
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsObjTwistBySimilitude
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsFormEqOne
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ModNOfDvdModulus
-import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsObjTwistBySimilitude
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsSimTrivialOfMult
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain

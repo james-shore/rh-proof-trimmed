@@ -1,5 +1,5 @@
 import Formalism.LocalToGlobal.PairingIndexBounds.HalvesRecursion.BoundedHalfModels.SplitElementExistsHolds
-import Formalism.LocalToGlobal.PairingIndexBounds.HalvesRecursion.ModelXiAll
+import Formalism.LocalToGlobal.PairingIndexBounds.HalvesRecursion.RecursiveLatticeMembership.MemLamOfIff
 
 noncomputable section
 

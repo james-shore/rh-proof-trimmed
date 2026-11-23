@@ -1,7 +1,7 @@
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsRecLawsSuppUnitSurj
-import Mathlib
 import Development.AutomorphicArithmetic.Foundations.LocalLanglands.IsRecTOfIsRec
 import Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.AbsCentralAlt
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.BlockSplitAll
 
 set_option synthInstance.maxHeartbeats 200000
 

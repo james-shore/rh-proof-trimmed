@@ -4,6 +4,10 @@ import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PVarIntGraph
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PLelongPolyLimit
 import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PIntegralIndep
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.AssemblyBase
+import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StLelongPolyLimit
+import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StLelongWeightLimit
+import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StLocalMultComap
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

@@ -4,9 +4,8 @@ import Development.AutomorphicArithmetic.CyclotomicBounds.RamifiedDiscriminants.
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Formalism.LocalRingCardinality.DataKerI
 import Formalism.SharpRestriction.GlobalSchurBounds.GL3Theta
-import Formalism.LocalToGlobal.KernelLattices.LateralTheory
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.TauPlBijective
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.NatCastMemPrimeOf
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.TauPlBijective
 
 noncomputable section
 

@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.InnerDRepSq
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.InvSqrtTwo
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.OrthonormalBasesMemUnitaryLieAlgebra
+
 open Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.SmoothGlob GlobalTheory.TypeSum GlobalTheory.TypeSum.CasBasis GlobalTheory.LowTypeDetermined
 
 noncomputable section

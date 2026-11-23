@@ -1,4 +1,4 @@
-import ReciprocityTheory.DualLattices.WtGtRowSubstXSub
+import ReciprocityTheory.DualLattices.FischerAdjointStatement
 
 noncomputable section
 

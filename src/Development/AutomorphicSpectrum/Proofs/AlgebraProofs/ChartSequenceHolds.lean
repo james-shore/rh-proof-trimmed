@@ -7,7 +7,7 @@ import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.HodgeTateChartNonUni
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.HodgeTateChartDifferentBoundStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.HodgeTateChartDivisibilityStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ProjectiveSplitModuloElementStatement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankDualAndRangeDualMapBaseChange
+
 open Module NumberField GlobalTheory.CompanionTheory.Ar.HT TensorProduct
 
 noncomputable section

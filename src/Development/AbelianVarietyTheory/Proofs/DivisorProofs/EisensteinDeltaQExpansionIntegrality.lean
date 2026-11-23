@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasQIff
-import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModQPrin
-import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModJTau
+import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModDeltaInt
 import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModEvalMF
 
 open scoped UpperHalfPlane MatrixGroups ModularForm Manifold BigOperators

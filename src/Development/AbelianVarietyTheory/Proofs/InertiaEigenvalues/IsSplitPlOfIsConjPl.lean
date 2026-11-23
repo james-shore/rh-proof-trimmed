@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.SharpRestriction.LevelLetterCocycles.TWSet
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.GaloisSideTwistedSelmerAuxiliaryPrimes
+import Formalism.SharpRestriction.LevelLetterCocycles.DataN
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsTameInertiaElementAtTwistPrime
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsPlaceOverMoveValCc
 
 noncomputable section

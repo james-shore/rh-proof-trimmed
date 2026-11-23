@@ -1,5 +1,5 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.SplitA
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.SupRatioLeOfPhaseZero
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.SplitSt
+import ReciprocityTheory.AnalyticForms.AnalyticCharts.Osgood
 
 namespace ReciprocityTheory.ChartRestriction.G.I2
 

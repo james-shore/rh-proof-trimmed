@@ -4,6 +4,7 @@ import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PredMe
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RationalFractionsRepresentPrimeNormQuotient
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExpNegOneLtOne
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralDivUniformizerOfRedZero
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.NormalFormAtPrime
 
 noncomputable section
 

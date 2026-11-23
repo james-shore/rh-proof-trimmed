@@ -2,6 +2,7 @@ import Mathlib
 import Formalism.LocalToGlobal.KernelLattices.TopLawQ
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.PenultimateKernelDiamondInvariant
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.LocalProductMeasures.MqRowSGUnif
+import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.KerEquivFr
 
 open NumberField IsDedekindDomain
 

@@ -1,6 +1,6 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.KernelsLattice
 import GroundTheory.HeightsAndTheta.Heights.LatticeLemmas.StatementsBundles
+import GroundTheory.HeightsAndTheta.Heights.KernelsLattice
 import Development.AutomorphicSpectrum.Proofs.AdelicProofs.GramMat
 
 namespace GlobalTheory.CompanionTheory.Ar.Lines

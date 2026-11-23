@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicCharacterLocalNontrivial
-import Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsAdaptedEmpty
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsBlockEmb
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsContinuousAdelicUnitaryEmbedding
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix
 open scoped TensorProduct

@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.LevelLetterCocycles.RingDataOfIdempotents
+import Formalism.SharpRestriction.LevelLetterCocycles.GoodCongruenceDataOf
 
 noncomputable section
 

@@ -1,9 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.UnitaryAtAllRows
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NormGoodRowsFiniteGroupActionStatement
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NormLiftFormsFiniteGroupActionStatement
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TranslateUnitaryLifts
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ReprMemOfBasisRational
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TranslateUnitaryLifts
 
 noncomputable section
 

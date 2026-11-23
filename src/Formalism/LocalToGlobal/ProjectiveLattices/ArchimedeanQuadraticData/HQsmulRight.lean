@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.RhoDotSelf
+import Mathlib
 import ReciprocityTheory.SemistableReduction.TorsionNonvanishStatement
 
 set_option autoImplicit false

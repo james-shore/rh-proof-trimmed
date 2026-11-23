@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.LieEntriesUnipotentBesselNCharacterization
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Dchart
+
 open MeasureTheory Matrix Filter Topology Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp GlobalTheory.CellDens
 open scoped InnerProductSpace ENNReal
 set_option maxHeartbeats 1000000 in

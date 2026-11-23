@@ -1,19 +1,15 @@
-import Formalism.LocalToGlobal.IndefiniteReal.ConcretePkgSpec
-import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.CxToPkgFamIn
+import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
 import Formalism.LocalToGlobal.IndefiniteReal.MemRangeAdjointOfKerStable
-import Formalism.LocalToGlobal.IndefiniteReal.EqZeroOfMemRangeAdjoint
-import Formalism.LocalToGlobal.IndefiniteReal.EqZeroOfRangeAdjoint
-import Formalism.LocalToGlobal.IndefiniteReal.FinrankISupLeSum
-import Formalism.LocalToGlobal.IndefiniteReal.CutPassage
-import Formalism.LocalToGlobal.IndefiniteReal.CxCutEP
-import Formalism.LocalToGlobal.IndefiniteReal.CxCutPO
+import Formalism.SizeWindowBrackets.ChainSlopeWindows.ExistsNsmulMem
+import Formalism.SizeWindowBrackets.ChainSlopeWindows.TruncatedLatticeHolds
+import Lemmata.GeneralBFactThirdAlt.Imports
 import Formalism.LocalToGlobal.IndefiniteReal.LiftCoordinatesInGoodPartOfDefinite
 import Formalism.LocalToGlobal.IndefiniteReal.EigSumLeComapSemi
 import Formalism.LocalToGlobal.IndefiniteReal.LiftGoodPartComplexEqRange
 import Formalism.LocalToGlobal.IndefiniteReal.BridgeLemmas
-import Formalism.LocalToGlobal.IndefiniteReal.ArithLemmas
+import Formalism.LocalToGlobal.LatticeGeometry.FormsK
 import Formalism.LocalRingCardinality.HeightBoundGeFourthPowerRank
+import Formalism.LocalToGlobal.IndefiniteReal.CxPass
 
 noncomputable section
 

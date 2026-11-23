@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
-import Development.AbelianVarietyTheory.Definitions.AdelicHermitianForms.IsHermHyperbolic
+
 open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open scoped TensorProduct Matrix
 

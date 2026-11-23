@@ -1,8 +1,5 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.DegreeTopEqArithDegree
-import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.FiniteSupportHeight
-import GroundTheory.HeightsAndTheta.Heights.LatticeLemmas.StatementsBundles
-import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.Slopes
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.LinearIndependentSumElimOfExact
 
 set_option maxSynthPendingDepth 1
 

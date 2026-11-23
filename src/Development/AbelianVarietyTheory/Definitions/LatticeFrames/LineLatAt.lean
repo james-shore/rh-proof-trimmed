@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.BaseMatrixGlApply
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsTransportAdelicCorrection
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.FrameTop
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DefClassNum
 
 set_option genSizeOfSpec false
 set_option genInjectivity false

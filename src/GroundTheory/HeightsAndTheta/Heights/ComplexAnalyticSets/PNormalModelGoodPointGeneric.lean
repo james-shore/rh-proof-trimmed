@@ -4,6 +4,8 @@ import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StNormalCodimOne
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StProjectionUnramifiedGeneric
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PNormalModelOpenMapping
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.RingKrullDimQuotientMinimalPrimeAddOne
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.CycDim
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

@@ -5,6 +5,7 @@ import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsH
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.IsBesPosOfBesselTied
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.BesselCharacterGenericCharacterLaws
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.IsUnitriGlEquiv
+import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.WittHyperbolicAnisotropicCommuteLevi
 
 noncomputable section
 

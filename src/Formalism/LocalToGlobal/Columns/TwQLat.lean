@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.Columns.TwQRec
+import Formalism.LocalToGlobal.Columns.TwQDCls
 import Formalism.LocalToGlobal.Columns.MemLocPOfSmul
 
 open NumberField IsDedekindDomain Matrix

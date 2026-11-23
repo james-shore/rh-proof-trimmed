@@ -9,7 +9,6 @@ import Formalism.GradedWeylDivisibility.FockSpaceTableaux.RowDivStable
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylRowGraded
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylMap
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylIntRat
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.WeylLeDual
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylNonDom
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.BideterminantDominance
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylMul
@@ -23,7 +22,6 @@ import Formalism.GradedWeylDivisibility.FockSpaceTableaux.FockSubAdj
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.FockRowAdj
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.DomPow
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.FockDiagBound
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.DualWeylDominanceOf
 
 namespace Formalism.GradedWeylDivisibility
 

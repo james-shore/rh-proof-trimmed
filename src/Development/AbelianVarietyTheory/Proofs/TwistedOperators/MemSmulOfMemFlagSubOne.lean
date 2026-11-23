@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.FlagVolumeFiltration
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.UnipotentRadicalBasic
 
 open MeasureTheory ValuativeRel Matrix IsLocalRing
 open scoped Pointwise ENNReal

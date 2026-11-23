@@ -1,8 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.SimpleSum
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ValuationDetOfMemKO
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IwasawaBlockTriangular
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.DiagPartMulDiagPart
+
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.RootEx
 
 namespace GlobalTheory.RootEx.Unram

@@ -1,4 +1,4 @@
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightConjugacy.GlueStep
+import Formalism.LocalToGlobal.GaloisLevelStructure.DefsAut
 
 noncomputable section
 

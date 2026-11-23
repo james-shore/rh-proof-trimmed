@@ -1,4 +1,4 @@
-import Formalism.ThetaLiftIndependence.Statement
+import Mathlib
 
 namespace Formalism.ThetaLiftIndependence
 

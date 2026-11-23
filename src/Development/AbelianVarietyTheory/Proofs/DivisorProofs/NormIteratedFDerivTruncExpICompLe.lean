@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzContinuousAtOfPointwiseOfBounded
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PolyMulGaussianBounded
 
 open Filter Topology

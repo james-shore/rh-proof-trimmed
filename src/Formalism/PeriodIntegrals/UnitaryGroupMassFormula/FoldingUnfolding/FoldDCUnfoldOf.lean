@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.PeriodIntegrals.FoldDCUnfold
-import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.FoldUnfold
+import Formalism.PeriodIntegrals.FoldUnfold
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FoldingUnfolding.TransExists
 
 open MeasureTheory

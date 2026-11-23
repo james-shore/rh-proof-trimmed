@@ -1,5 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSE2
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.PositionInsertionDiagonalCompat
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.ComponentFamilySettingOfSettingBis
 
 open MeasureTheory Filter Topology
 open scoped Matrix ComplexConjugate

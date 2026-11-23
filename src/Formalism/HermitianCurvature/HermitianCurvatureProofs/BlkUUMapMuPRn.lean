@@ -3,6 +3,7 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.MulVecBvecApply
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.SigmaFiniteOfHaar
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.RearrSymm
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.BigCellDiagonalMap
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.StrictUpperNeg
 
 open Matrix MeasureTheory Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.U
 open scoped ComplexConjugate

@@ -4,6 +4,8 @@ import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsSemilocFinit
 import GroundTheory.HeightsAndTheta.Heights.Intersections.StRankFracDegree
 import GroundTheory.HeightsAndTheta.Heights.Intersections.StSemilocChartRatio
 import GroundTheory.HeightsAndTheta.Heights.Intersections.AvoidRing
+import GroundTheory.HeightsAndTheta.Heights.Intersections.FlagBundleSt
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

@@ -1,6 +1,7 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.TraceBlocks
 import Development.WeilBound.ThetaLifts.Reductions.SymplOfMem
+import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.RLLieI
 
 noncomputable section
 

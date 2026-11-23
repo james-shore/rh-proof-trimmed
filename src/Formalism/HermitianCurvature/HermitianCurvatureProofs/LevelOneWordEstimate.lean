@@ -1,5 +1,5 @@
 import Formalism.HermitianCurvature.RealInputsClosedAdmissibleSettings
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.GramProductIdentities
+import Formalism.HermitianCurvature.PositionExpansionTopCoefficients
 
 namespace Formalism.FourierDecayAlt.P.PBD
 

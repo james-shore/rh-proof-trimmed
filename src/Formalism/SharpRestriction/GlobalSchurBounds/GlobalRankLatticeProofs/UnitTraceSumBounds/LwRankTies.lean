@@ -1,7 +1,6 @@
 import Formalism.SharpRestriction.GlobalSchurBounds.MainSup
 import Formalism.SharpRestriction.GlobalSchurBounds.AdmittedWeylDimension
 import Formalism.SharpRestriction.CuspSpanNormBounds.StandingHypothesesHoldFamily
-import Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLu
 import Formalism.SharpRestriction.AdmissibleParameterJoins.DIVfromGLz
 
 noncomputable section

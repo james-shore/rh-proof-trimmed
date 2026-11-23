@@ -1,5 +1,6 @@
 import Development.AutomorphicArithmetic.QuadraticCharacters.MemRealCyclotomicSubgroup
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.ExplicitFormulaErrorOfHostConditions
+import Development.AutomorphicArithmetic.QuadraticCharacters.ExceptionalCharacterCondition
 
 open Formalism.HC Formalism.FrobeniusOrbits
 

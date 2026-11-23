@@ -1,5 +1,4 @@
 import Formalism.FlagUnipotentLattices.CardSubmodulesAndLinearEquivBounds
-import Formalism.SharpRestriction.CuspSpanNormBounds.CayleyDegreeNondegeneracy.RowsNum
 
 namespace Formalism.MainNotions.BridgeLemma₂
 

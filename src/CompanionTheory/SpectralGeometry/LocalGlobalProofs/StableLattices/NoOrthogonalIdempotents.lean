@@ -1,7 +1,6 @@
 import Mathlib
 import CompanionTheory.RealGroups.UnitaryAdmissibility.ArchimedeanUnitaryDual.StDefinite
 import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.FinOfPI
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HilbertSchurOfAdjointClosed
 
 open CompanionTheory.D.gk.admitted (stdPoly word word_nil word_cons)
 

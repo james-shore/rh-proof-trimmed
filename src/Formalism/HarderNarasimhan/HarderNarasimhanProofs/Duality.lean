@@ -1,6 +1,6 @@
 import Formalism.HarderNarasimhan.DegSupermodZ
-import Formalism.LatticeSlopes.ExistsSaturatedSlopeEqMuMax
-import Formalism.HarderNarasimhan.HarderNarasimhanProofs.MuChar
+import Formalism.LatticeSlopes.LatticeSlopesProofs.SaturationProperties
+import Formalism.LatticeSlopes.LatticeSlopesProofs.OrthSum
 
 open Module Submodule
 

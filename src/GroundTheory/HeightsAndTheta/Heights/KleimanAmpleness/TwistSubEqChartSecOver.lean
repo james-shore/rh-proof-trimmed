@@ -3,6 +3,8 @@ import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsExtraMore
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PBundlePair
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ChartRingOverOneBlockBase
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.AssemblyBase
+import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTerExtra
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Kleiman.SectionsOverLocalization

@@ -1,9 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ZetaActRefl
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HomogeneityOfIsTauOfStatement
-import Development.AbelianVarietyTheory.Definitions.Divisors.TorsTransport
-import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.TranslateProduct
-import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModDefs
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HomogeneityOfIsTauOf
 
 open scoped UpperHalfPlane MatrixGroups Matrix ModularForm ComplexConjugate
 open GlobalTheory.QFam GlobalTheory.WpFam

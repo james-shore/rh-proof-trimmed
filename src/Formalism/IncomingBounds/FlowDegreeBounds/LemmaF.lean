@@ -1,5 +1,4 @@
 import Formalism.IncomingBounds.IncomingBound
-import Formalism.IncomingBounds.LevelTail
 
 noncomputable section
 open scoped BigOperators

@@ -2,6 +2,7 @@ import Formalism.LocalToGlobal.ProjectiveLattices.ChartDirectionsIntegral
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExistsBasisOfSaturated
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.LieEig
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.UniversalCharts.ChartLaw
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.UniversalCharts.UnivChartLoc
 
 set_option autoImplicit false
 

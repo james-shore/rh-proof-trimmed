@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.DifferentialTranslates.IntegralityGoodReduction
-import Mathlib.Analysis.Calculus.ParametricIntervalIntegral
 
 noncomputable section
 

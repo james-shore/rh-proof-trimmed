@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.SelfDualLatticesOneOrbit
+import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.NmHContrPos
 
 noncomputable section
 

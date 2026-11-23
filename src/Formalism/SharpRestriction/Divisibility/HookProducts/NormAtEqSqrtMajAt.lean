@@ -1,7 +1,7 @@
 import Mathlib
-import Formalism.HarderNarasimhan.ShiftInvariance
 import Formalism.LocalRingCardinality.DataArith
-import Formalism.SharpRestriction.Divisibility.HookProducts.RBTieSlope
+import Formalism.HarderNarasimhan.HarderNarasimhanProofs.HtGram
+import Formalism.HarderNarasimhan.HarderNarasimhanProofs.Rerealize
 
 open Module NumberField
 

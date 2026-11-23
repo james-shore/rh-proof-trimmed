@@ -1,4 +1,4 @@
-import Formalism.WachLatticeTwists.HodgeTateChains.XiAdicFiltrationData
+import Formalism.WachLatticeTwists.HodgeTateChains.Statement
 
 noncomputable section
 

@@ -1,6 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.AdUnimod
-import Formalism.PeriodIntegrals.UnimodIdx
+import Formalism.SharpRestriction.CuspSpanNormBounds.GlobAut
 
 noncomputable section
 

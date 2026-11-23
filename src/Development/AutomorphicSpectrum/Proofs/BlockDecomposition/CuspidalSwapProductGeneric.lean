@@ -10,7 +10,6 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WhittakerRankEx
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SwapProductSegments
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WhittakerHeredityGenericProduct
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsIrrRepInjective
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsIrreducibleSubquotientTwoBlockConstituents
 
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.RgGu
 open scoped TensorProduct

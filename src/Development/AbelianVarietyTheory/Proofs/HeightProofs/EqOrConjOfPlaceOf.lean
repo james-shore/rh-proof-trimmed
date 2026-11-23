@@ -2,8 +2,8 @@ import Mathlib
 import Formalism.LocalToGlobal.BesselHermitianTheta.IsAutFunDef
 import Formalism.LocalToGlobal.LatticeGeometry.CmTypeMeetsConjugatePair
 import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.AdelicUnitaryGroups
-import Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.EmbRelExistsUnique
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LcscAdelicUnitaryGroup
+import Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.EmbRelExistsUnique
 
 noncomputable section
 

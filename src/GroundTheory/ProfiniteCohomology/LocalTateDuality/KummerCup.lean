@@ -1,6 +1,8 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.LocalTateDuality.InjectiveCohomologyMapKummerSeqOpenFTwo
 import GroundTheory.ProfiniteCohomology.LocalTateDuality.Bockstein
+import GroundTheory.ProfiniteCohomology.PoincareDuality.DeltaPairing
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

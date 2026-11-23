@@ -1,7 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.SerreHolomorphicSections
-import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.IsAmpleLBOfRelAmpleOfIsAffine
-import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IsProjOverMorphismRestrictOfRelAmple
+import Development.AbelianVarietyTheory.Definitions.Divisors.SecondCountableTopologyOfIsProjOver
+import Development.AbelianVarietyTheory.Definitions.Divisors.HasBoundedPolesGlobalData
 
 set_option autoImplicit false
 

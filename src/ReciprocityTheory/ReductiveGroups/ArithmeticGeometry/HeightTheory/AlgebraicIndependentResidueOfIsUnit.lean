@@ -1,6 +1,5 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.TheoremA
-import ReciprocityTheory.SemistableReduction.GaussValExists
-import Mathlib
+import ReciprocityTheory.SemistableReduction.ComapInclusionIsLocalHom
 import ReciprocityTheory.SemistableReduction.GaussIndepOfLeTrdeg
 import ReciprocityTheory.SemistableReduction.IntegralClosureRankAndResidueTrdegLe
 

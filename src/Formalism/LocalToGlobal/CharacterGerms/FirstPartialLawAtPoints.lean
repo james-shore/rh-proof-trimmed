@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.CharacterGerms.TripleSubstSecondCoordinate
+import Formalism.LocalToGlobal.CharacterGerms.RowTieValU
 
 noncomputable section
 

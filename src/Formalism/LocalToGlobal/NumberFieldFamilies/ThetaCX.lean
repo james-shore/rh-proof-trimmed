@@ -1,6 +1,6 @@
 import Formalism.LocalToGlobal.NumberFieldFamilies.ThetaC
 import Formalism.LocalToGlobal.NumberFieldFamilies.ThetaCI
-import Formalism.LocalToGlobal.JointCharacters.SameChr
+import Formalism.LocalToGlobal.JointCharacters.LocEMulLocE
 
 noncomputable section
 

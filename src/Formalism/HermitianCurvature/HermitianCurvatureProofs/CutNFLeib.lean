@@ -1,5 +1,4 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutNFTopDomPtw
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.VecVSplit
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ListSumSplittings
 
 namespace Formalism.FourierDecayAlt.P.CutBP

@@ -1,5 +1,5 @@
-import Formalism.LocalToGlobal.UnitaryNorms.CharExGen
-import Formalism.LocalToGlobal.UnitaryNorms.CharUniq
+import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
+import Formalism.LocalToGlobal.UnitaryNorms.CharHost
 
 noncomputable section
 

@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.PermutesRefl
-import Formalism.LocalToGlobal.ProjectiveLattices.CuspFormsFiniteDimensionalOf
+import Formalism.LocalToGlobal.ProjectiveLattices.PetersonNormSubspace
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsWeightZeroSectionOfPeriodSpaceFunction
 
 open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain

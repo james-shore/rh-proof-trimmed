@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsQuadOfPlane
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.PolarConjTranspose
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.CommuteGelfandInvariantMatrixUnitsOfGlRel
+import Formalism.RealPlaceAnalysis.StatementA
 
 open Matrix GlobalTheory.Mem.Lift
 

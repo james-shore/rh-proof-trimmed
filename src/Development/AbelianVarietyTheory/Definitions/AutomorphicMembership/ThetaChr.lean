@@ -7,6 +7,7 @@ import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MovedR
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.HasPartAnd
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ColNorm
 import Formalism.LocalToGlobal.ClassRec
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.HostPins
 
 noncomputable section
 

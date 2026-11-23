@@ -1,6 +1,6 @@
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.CharLem
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.SmulFinsum
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.PlaceS
+import Formalism.SharpRestriction.Divisibility.KudlaSiegelWeil
+import Formalism.SharpRestriction.Divisibility.InnerProductFormulaField
 
 noncomputable section
 

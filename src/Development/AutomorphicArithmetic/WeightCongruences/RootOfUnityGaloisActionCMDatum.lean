@@ -1,6 +1,7 @@
 import Mathlib
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.InertiaGaloisSymmetry.KcEqOfPowEqOne
+import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.FrameFacts
 
 open NumberField Formalism.HC
 

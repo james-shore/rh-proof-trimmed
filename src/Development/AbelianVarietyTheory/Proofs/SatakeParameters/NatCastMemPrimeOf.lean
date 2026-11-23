@@ -1,9 +1,8 @@
 import Mathlib
 import Formalism.LocalRingCardinality.DataKerI
 import Formalism.SharpRestriction.GlobalSchurBounds.GL3Theta
-import Formalism.LocalToGlobal.KernelLattices.LateralTheory
-import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsNormSubEqOne
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.InducedTypeThetaGenusOnePermutes
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsNormSubEqOne
 
 open NumberField Filter Topology
 

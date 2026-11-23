@@ -2,9 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.NormSmall
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
 import Development.AbelianVarietyTheory.Definitions.Divisors.DiscreteSeriesHermitianUnique
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFinPt
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.SplitPart
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ApplyAt0Smul
 import Development.AbelianVarietyTheory.Definitions.Foundations.ReferenceTupleNeBaseTuple
 
 noncomputable section

@@ -1,7 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.Admissible
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselFunctionEqScalarSqNormalisedBesselTorusConStatement
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselTorusElementPropertiesStatement
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.TopPSD
+
 open Formalism.FourierDecayAlt GlobalTheory.ThA MeasureTheory Formalism.QuantumDeterminants Matrix
 open scoped InnerProductSpace
 

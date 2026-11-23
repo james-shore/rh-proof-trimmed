@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StatementsCurveVertPointLengthSteps
-import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.CurveCountObjects
 import GroundTheory.HeightsAndTheta.Heights.Intersections.MultAtPosOfMemDivSupp
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Targets

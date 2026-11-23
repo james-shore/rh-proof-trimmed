@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.EmbComb
+import Mathlib
 
 namespace ReciprocityTheory.ChartRestriction.G.I2
 open NumberField Complex

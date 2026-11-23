@@ -1,6 +1,7 @@
 import Mathlib
-import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.IdealSheafFlatComapInjective
+import Development.ResolutionOfSingularities.Foundations.Schemes.IdealSheafData
 import Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.KernelFlatBaseChange
+
 universe u
 
 open CategoryTheory Limits AlgebraicGeometry

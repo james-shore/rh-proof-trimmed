@@ -1,6 +1,7 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ArchimedeanSchwartz.HodgeTateFromSandwich
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.StrongMultiplicityOne.EigOfSat
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationDetEqOne
+import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.SmoothRepresentationsGL.MemIffLocal
 
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 

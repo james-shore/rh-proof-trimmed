@@ -1,6 +1,8 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.PKaehlerBound
 import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StBoundingKaehler
+import ReciprocityTheory.AnalyticForms.PotentialTheory.ContDiffAtOfIsPotential
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.AnalyticLimit

@@ -1,5 +1,6 @@
 import Mathlib
 import Development.WeilBound.ThetaLifts.LatticeBasics.BoxFinB
+import Development.WeilBound.ThetaLifts.LatticeBasics.BoxFinA
 
 noncomputable section
 

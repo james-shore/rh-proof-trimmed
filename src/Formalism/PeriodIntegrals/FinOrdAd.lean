@@ -1,7 +1,4 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitKron
-import Formalism.PeriodIntegrals.PowBddInt
-import Formalism.PeriodIntegrals.AdCpctDen
 
 noncomputable section
 

@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.QuotientMetricDivisors.StatementACE
 import Formalism.LogFactorialIndices.StatementSize
 
 open Module NumberField IsDedekindDomain

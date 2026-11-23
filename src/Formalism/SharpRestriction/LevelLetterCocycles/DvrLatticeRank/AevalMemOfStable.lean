@@ -1,6 +1,5 @@
-import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.AevalEndApply
-import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.Imports
-import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelQPfA
+import Formalism.SharpRestriction.LevelLetterCocycles.DownSlotProposition
+import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelFPfB
 import Lemmata.PowerMembership.PowMem
 
 noncomputable section

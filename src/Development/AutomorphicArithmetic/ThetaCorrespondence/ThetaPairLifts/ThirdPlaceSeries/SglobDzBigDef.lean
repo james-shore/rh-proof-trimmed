@@ -1,5 +1,4 @@
 import Development.DiscreteGroups.GlobalIrreducibility.DzBigDef
-import Mathlib
 import Development.AutomorphicArithmetic.Foundations.LocalLanglands.IsRecTOfIsRec
 
 set_option synthInstance.maxHeartbeats 200000

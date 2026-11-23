@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsGPull
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGDatumOneOneOne
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsEtPlace
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField

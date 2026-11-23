@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.Cint
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.CintTranslate
 
 open GlobalTheory.IdxInt
 open scoped Pointwise Classical

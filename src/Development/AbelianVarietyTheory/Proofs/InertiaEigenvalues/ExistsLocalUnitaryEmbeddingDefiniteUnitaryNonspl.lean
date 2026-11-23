@@ -1,9 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HasSatAtConstOne
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NonemptyEquivLocProdTriv
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EquivOfISupRange
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsLocCompAndIsLocLoc
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HasSatAtConstOne
 
 noncomputable section
 

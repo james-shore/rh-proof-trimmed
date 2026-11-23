@@ -1,6 +1,5 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.VAtVNeBot
 import Formalism.LocalToGlobal.ProjectiveLattices.ThClass
-import Formalism.LocalToGlobal.ProjectiveLattices.LiftLaSpec
 
 set_option autoImplicit false
 

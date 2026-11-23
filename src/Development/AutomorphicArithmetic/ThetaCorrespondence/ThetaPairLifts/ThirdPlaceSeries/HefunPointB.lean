@@ -1,9 +1,9 @@
 import Formalism.LocalToGlobal.Divisibility.DivisibilityRemainder.SharpFunctions.PointB
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LayerTwoFamilyClass
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.STiesR
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.IndefRRealT
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.PtKOfReal
+import Formalism.SharpRestriction.Divisibility.HookProducts.NormAtEqSqrtMajAt
 
 set_option synthInstance.maxHeartbeats 200000
 

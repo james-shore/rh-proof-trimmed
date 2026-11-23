@@ -1,5 +1,4 @@
 import Formalism.GradedWeylDivisibility.StatementD
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LDrowLemmas
 
 open MvPolynomial Finset
 

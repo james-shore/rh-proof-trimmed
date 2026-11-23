@@ -3,6 +3,7 @@ import Formalism.SharpRestriction.CuspSpanNormBounds.FractionFieldToGenericStalk
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsHermND
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.FlagPairDefinitePartLattice
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ChartGen
+import Formalism.HermitianLattices.StatementMass
 
 noncomputable section
 open NumberField Formalism.HermitianLatticeCounting.S6 GlobalTheory.HermLat

@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.Columns.TwQCmp
-import Formalism.LocalToGlobal.Columns.TwQThetaOpen
 
 open NumberField IsDedekindDomain
 

@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SchubGamApply
 import Formalism.DegreeFormula.PointDegree.PermExpInj
-import Development.AbelianVarietyTheory.Definitions.Foundations.CurveCl
+
 open MvPolynomial NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Classical
 

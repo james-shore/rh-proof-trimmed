@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LevelSectionsExactKernelLocusOpen
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenMapStalkSpecializes
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsGenericFlag
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.StalkClosedPointToGermTop
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenPtSpecializesOfSpecializes
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.MemRegAtOfCodimOne

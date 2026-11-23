@@ -1,5 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FibrePointsLEId
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CoveringOfForallMem
+
 open CategoryTheory Limits AlgebraicGeometry
 
 noncomputable section

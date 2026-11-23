@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.BesselHermitianTheta.TiedSmooth
+import Formalism.LocalToGlobal.BesselHermitianTheta.MinfDensity
 import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.WordDerivatives
 
 noncomputable section

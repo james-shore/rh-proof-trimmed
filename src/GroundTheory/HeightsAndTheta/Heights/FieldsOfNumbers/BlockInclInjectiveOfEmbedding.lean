@@ -1,12 +1,8 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.Statements
-import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PfContractedHypothesesExample
-import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.HomFracDegZeroEqFunField
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.StatementsRename
-import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PRenameHilbFn
-import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PRenameIntNum
-import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PRelevantPrimeDimGe
-import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.ContractRelevant
+import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PIntNumBaseChange
+import GroundTheory.ArithmeticGeometry.ToricVarieties.Affine
 
 set_option maxSynthPendingDepth 1
 

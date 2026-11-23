@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ReindexDblIncM
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DeltaTApply
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTransportF
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNonzeroThetaFunOrientedModelCm
 
 open scoped TensorProduct Matrix

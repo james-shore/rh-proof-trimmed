@@ -1,4 +1,4 @@
-import Development.WeilBound.ThetaLifts.FrameEstimates.HodgeTateFromSandwich
+import Development.WeilBound.ThetaLifts.FrameEstimates.SquareIntegrableWeilRange
 import Development.WeilBound.ThetaLifts.EigenvalueEndgame.PlaneRemovalConfiguration
 
 noncomputable section

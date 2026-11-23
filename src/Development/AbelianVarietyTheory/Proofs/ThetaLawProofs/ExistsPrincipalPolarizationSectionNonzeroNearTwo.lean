@@ -1,10 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.KeyFormula.GeomIntSelf
 import Development.AbelianVarietyTheory.Statements.FundamentalDomains.AtOfNumberField
-import Development.AbelianVarietyTheory.Statements.ThetaLevelCharacters.MemThetaLevelCharDimZero
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ValCalc
-import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsBasisOnAny
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ThetaEmbeddingSectionsBaseChangeAffine
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsBasisOnAny
+import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ValueAtNormalForm
 
 set_option autoImplicit false
 

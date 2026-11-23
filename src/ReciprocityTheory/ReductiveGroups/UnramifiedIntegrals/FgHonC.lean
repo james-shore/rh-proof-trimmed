@@ -1,6 +1,6 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgHonA
-import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgHonB
+import Formalism.TorsionNormIteration.InverseIntegralClasses.MemSpanOfNormLe
 
 noncomputable section
 

@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsRealCoord
-import Development.AbelianVarietyTheory.Definitions.AdelicHermitianForms.AdelicPair
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.AdelicTransportMeasureFirst
 
 noncomputable section

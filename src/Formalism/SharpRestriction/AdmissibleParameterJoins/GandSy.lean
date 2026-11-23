@@ -1,5 +1,5 @@
 import Formalism.SharpRestriction.Divisibility.WeightDegreeSizes
-import Formalism.SharpRestriction.GrowthBounds.WeilJacquetShalikaLaw
+import Formalism.LocalRingCardinality.Lemmas
 
 noncomputable section
 

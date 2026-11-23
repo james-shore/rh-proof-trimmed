@@ -1,4 +1,4 @@
-import Formalism.HermitianCurvature.FiniteOrderIntersectionInSmooth
+import Formalism.HermitianCurvature.StatementB
 
 open Matrix Filter Topology
 

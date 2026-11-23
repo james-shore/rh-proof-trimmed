@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.PeriodIntegrals.FglChordFactor
-import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.AddIntG
+import Formalism.PeriodIntegrals.AddIntG
 
 noncomputable section
 

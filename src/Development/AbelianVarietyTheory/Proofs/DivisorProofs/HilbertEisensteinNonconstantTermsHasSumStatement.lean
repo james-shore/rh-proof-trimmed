@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertEisensteinNonconstantTermsHasSum
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.OmegaFactorization
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.TraceDualDifferent
 
 open scoped nonZeroDivisors
 set_option maxHeartbeats 1000000 in

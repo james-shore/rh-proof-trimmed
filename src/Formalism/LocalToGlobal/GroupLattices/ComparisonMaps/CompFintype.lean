@@ -1,5 +1,5 @@
-import Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.ValUniqOf
-import Formalism.SharpRestriction.GrowthBounds.DataGChain
+import Formalism.LocalToGlobal.HermitianForms.IsLocBasis
+import Formalism.LocalToGlobal.GroupLattices.LevelGatherings.SecPsiMulPow
 
 noncomputable section
 

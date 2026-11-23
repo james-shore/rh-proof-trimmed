@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.AdelicLattices₂.AlgebraMapNormOfBasisOneSqrt
 import Development.AbelianVarietyTheory.PublishedTheorems.Landherr₂.ExistsNormTensor
 
 open NumberField IsDedekindDomain

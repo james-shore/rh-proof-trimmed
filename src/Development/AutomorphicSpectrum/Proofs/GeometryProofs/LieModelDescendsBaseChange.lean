@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.SpecStalkSpecializesComp
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelIsBaseChangeStatement
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsLieModel
 
 noncomputable section
 

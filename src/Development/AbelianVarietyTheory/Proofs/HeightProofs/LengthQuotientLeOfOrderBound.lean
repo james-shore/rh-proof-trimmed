@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.LocRingPf
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsIntegralIffMemSpanOneTmulIntegralClosure
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.FlatLength
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.MapSpanBaseChangeEquivSubmoduleOf
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.FlatLength
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.MemIntegralClosureOfMemSpan
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.MainNotions.Gaps.EtaleWeightGaps Formalism.L2.Pj

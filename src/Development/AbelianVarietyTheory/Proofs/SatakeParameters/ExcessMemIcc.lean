@@ -1,12 +1,12 @@
 import Mathlib
 import Formalism.SharpRestriction.ParConsts
-import Formalism.LocalRingCardinality.DataKerI
 import Formalism.LocalRingCardinality.CoeNeZeroOfNotMem
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ScaleFamilySizeRelationsEventually
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.BTLeFiveQuarters
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.NotMemTopPlaces
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.BlockRowsMemIcc
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.YoungDiagramCardEqSumRowLenRange
+
 open Formalism.MainNotions Formalism.BasicNotions Formalism.MainNotions.G Classical
 
 namespace GlobalTheory.ExcessLow

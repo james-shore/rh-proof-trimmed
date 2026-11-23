@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.HermitianLattices.StatementMass
 
 open MeasureTheory NumberField Finset
 

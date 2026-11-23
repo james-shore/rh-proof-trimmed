@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StrongApproximation.DedekindLFunctions
+import Formalism.SharpRestriction.CuspSpanNormBounds.PsiEDef
 
 noncomputable section
 

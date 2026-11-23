@@ -1,5 +1,6 @@
 import Development.AutomorphicArithmetic.DedekindLFunctions.SplitInertia
 import Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.ChBalance
+import Formalism.ThickAverageLoss.ThickAverageProofs.ThickAverage
 
 open Finset
 

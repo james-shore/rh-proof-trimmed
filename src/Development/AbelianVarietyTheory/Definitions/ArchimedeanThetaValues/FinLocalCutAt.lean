@@ -3,6 +3,7 @@ import Development.AbelianVarietyTheory.Definitions.ArchimedeanThetaValues.IsFra
 import Formalism.LocalToGlobal.ProjectiveLattices.PtFree
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.Rationality.FinCoreSt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.Rationality.QuotSt
+import Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.ArcLineFunctions.FunDef
 
 noncomputable section
 

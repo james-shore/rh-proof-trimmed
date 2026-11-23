@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsTorsionFormPoint
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.SiegelReframe
 
 set_option autoImplicit false
 

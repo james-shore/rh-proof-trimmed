@@ -1,6 +1,8 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsDualStackedGraph
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualTopSimpleStacked
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.MemDivSuppOfDivCycleNeZero
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

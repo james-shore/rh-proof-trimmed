@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AlgebraMapEqMk
+
 open scoped TensorProduct
 
 set_option autoImplicit false

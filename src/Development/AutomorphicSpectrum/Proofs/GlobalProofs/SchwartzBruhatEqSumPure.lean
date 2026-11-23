@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.CoefS
-import CompanionTheory.SpectralGeometry.CountingDefinitions.AdelicEulerProducts.IsEulerProd
+import Formalism.UnipotentAdelicQuotients.SWXSDefs
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.AdmCpt
 
 noncomputable section

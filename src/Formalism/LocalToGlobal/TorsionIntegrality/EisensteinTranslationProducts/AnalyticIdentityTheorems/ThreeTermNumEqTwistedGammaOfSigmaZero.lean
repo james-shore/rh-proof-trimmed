@@ -1,4 +1,6 @@
 import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.ThetaLine
+import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.Legendre
+import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.ThetaZeroLogDerivative
 
 noncomputable section
 open Filter Topology

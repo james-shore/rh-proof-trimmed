@@ -1,7 +1,7 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJASAPairL
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAGroupAdjPair
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEnTrSmooth
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJASAPairLZero
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.TopPSD
 
 open Formalism.FourierDecayAlt
 

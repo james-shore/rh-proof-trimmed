@@ -1,6 +1,6 @@
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsFundSet
-import GroundTheory.HeightsAndTheta.Heights.StabilizerCovolume.ThreeLeLevel
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.RiemannLatticeEigenProjectionStatement
+
 open NumberField Matrix GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cusp GroundTheory.Heights₂.Heights.LowerBoundFree
 
 namespace GlobalTheory.CompanionTheory.Ar.HermCoords

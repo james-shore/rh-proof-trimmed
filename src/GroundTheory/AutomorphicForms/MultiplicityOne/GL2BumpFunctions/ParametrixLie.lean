@@ -1,8 +1,6 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.ArchimedeanWhittaker.ContinuousMultilinearOfFiniteDimensional
-import GroundTheory.AutomorphicForms.DixmierMalliavinProducts
-import GroundTheory.AutomorphicForms.ArchimedeanWhittaker.Density
-import GroundTheory.AutomorphicForms.DixmierMalliavinHaarCoord
+import GroundTheory.AutomorphicForms.ArchimedeanWhittaker.MultOne
 
 open MeasureTheory Set Filter Topology
 open scoped ContDiff

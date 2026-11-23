@@ -1,5 +1,5 @@
 import Formalism.PieriBlockIdeals.StatementLC
-import Formalism.PieriBlockIdeals.PieriColumnMinors.BinaryFormsExample
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LRowdivLemmas
 
 namespace Formalism.CohomologicalDescent.LC
 

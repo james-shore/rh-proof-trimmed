@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerRelatedPairFstEqZeroOfTrivial
-import Development.AbelianVarietyTheory.Definitions.Foundations.LiftApplyOfMemAdmissibleSubalgebra
-import Development.AbelianVarietyTheory.Definitions.Foundations.IsRootOne
 
 open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ

@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ContDiffUncentre
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.LogResolutionFubiniStudyPositive
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.BiholomorphicLiftSystem
 
 open Filter Topology ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.AnForm.M GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.HodgeMetric
 open GroundTheory.Heights₂.Heights.LowerBoundFree

@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.ApplyEqOfMemAdjoin
-import Development.AbelianVarietyTheory.Definitions.Foundations.IsTopWTopWOfExists
+import Development.AbelianVarietyTheory.Definitions.Foundations.EeProd
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerCocycleTwistedCoboundaryStatement
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsReparametrizationByTowerParameterStatement
 

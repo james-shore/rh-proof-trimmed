@@ -1,5 +1,5 @@
-import Formalism.LocalToGlobal.IndefiniteReal.DoubleCosetOperators.NMjT
-import Mathlib
+import Formalism.LocalToGlobal.IndefiniteReal.DoubleCosetOperators.RatDatOfReal
+import Formalism.LocalToGlobal.IndefiniteReal.TrISepWith
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LayerTwoFamilyClass
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.STiesR
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.IndefRRealT

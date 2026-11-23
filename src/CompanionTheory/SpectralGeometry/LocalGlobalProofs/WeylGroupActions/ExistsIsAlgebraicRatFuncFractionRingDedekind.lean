@@ -1,8 +1,6 @@
 import Mathlib
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutMP2
 import Formalism.FormalDegreeBessel.FormalDegreeRatio.CapelliHighestWeightConjugated
-import CompanionTheory.HarishChandraModules.NonemptyRepresentations.ExpEntry
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.OperatorRepresentations
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.DifferentialOperatorBracket
 
 open Formalism.REAL Formalism.FourierDecayAlt Formalism.QuantumDeterminants

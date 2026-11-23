@@ -1,6 +1,8 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsPerturb
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PSectionBoundedMul
+import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.HilbertSamuel

@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.Divisibility.Frames
-import Formalism.HarderNarasimhan.HarderNarasimhanProofs.Rerealize
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder MatrixOrder

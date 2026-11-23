@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.DatEqZero
 import Formalism.LocalToGlobal.ProjectiveLattices.ThClassPinsRec
-import Formalism.LocalToGlobal.ProjectiveLattices.MulCMemSec
 import Formalism.LocalToGlobal.ProjectiveLattices.FreeBridge
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.ThExprUniqOfChartIndep2
 import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ExistsSectionOfLevelCoverThetaClassSumStatement

@@ -1,5 +1,4 @@
-import Development.EtaleCohomology.EtaleTrace.EtaleTateTwistSectionsDeterminedByPointsOfProper
-import Development.EtaleCohomology.TateTwists.StrictHenselianAcyclic
+import Development.EtaleCohomology.EtaleTrace.LadicH0LocallyConstant
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC CochainComplex.HomComplex

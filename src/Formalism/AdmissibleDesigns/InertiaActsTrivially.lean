@@ -1,4 +1,7 @@
 import Formalism.AdmissibleDesigns.NonemptyPl
+import Formalism.SharpRestriction.LevelLetterCocycles.RingDataOfIdempotents
+import Formalism.WachLatticeTwists.RealClassMaps.RealClassMapTheorem
+import Formalism.WachLatticeTwists.RealClassMaps.RealClassMapSecondPlace
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 

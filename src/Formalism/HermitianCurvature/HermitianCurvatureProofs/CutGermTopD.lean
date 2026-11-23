@@ -1,6 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGermTopVec
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.NormSumLeOfGram
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.OneSubPowLe
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.GermLocalOfFibres
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.FmSmulLeft
 
 namespace Formalism.FourierDecayAlt.P.CutBP.GT
 

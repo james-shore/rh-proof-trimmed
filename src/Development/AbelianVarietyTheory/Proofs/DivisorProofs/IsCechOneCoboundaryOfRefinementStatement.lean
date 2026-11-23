@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCechOneCoboundaryOfRefinement
-import Development.AbelianVarietyTheory.Definitions.ModuliSpaces.IsInvDer
-import Development.AbelianVarietyTheory.Proofs.ModuliProofs.PreimageTranslate
 
 open AlgebraicGeometry CategoryTheory GlobalTheory.KS
 set_option maxHeartbeats 1000000 in

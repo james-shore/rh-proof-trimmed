@@ -1,6 +1,4 @@
 import Mathlib
-import Formalism.QuotientMetricDivisors.Statement
-import Formalism.LogFactorialIndices.StatementSize
 
 open Finset NumberField IsDedekindDomain
 

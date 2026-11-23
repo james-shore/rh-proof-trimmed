@@ -1,5 +1,5 @@
-import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.IntegralFormsEqSpan
-import Formalism.LogFactorialIndices.SignedSubspaceIndex.IdxBase
+import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.SectionMonomialGenerators
+import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.LengthLeOfSemilinear
 
 noncomputable section
 

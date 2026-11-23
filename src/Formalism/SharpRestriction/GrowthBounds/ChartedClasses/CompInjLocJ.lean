@@ -1,5 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.ChartedClasses.ExistsIsCGBases
-import Formalism.SharpRestriction.GrowthBounds.ChartComparison.LocTiesOf
+import Formalism.LocalToGlobal.GroupLattices.PerfectRings.CharZeroWittQuadratic
 
 noncomputable section
 

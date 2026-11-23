@@ -1,4 +1,4 @@
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CovariantVectorMove.SumPermEqSumFirstColumnSplit
+import Formalism.PeriodIntegrals.QmDefs
 
 open Finset Formalism.REAL
 

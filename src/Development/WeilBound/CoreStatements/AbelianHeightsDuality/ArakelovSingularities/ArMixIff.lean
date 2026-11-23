@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ResidueDegreeOfIsClosedImmersion
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ArFormExists
 
 set_option autoImplicit false
 

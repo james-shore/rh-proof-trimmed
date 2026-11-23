@@ -1,6 +1,9 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsVertPointNagata
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PVertPointResidue
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.MemDivSuppOfDivCycleNeZero
+import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsVertPointLengthSteps
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

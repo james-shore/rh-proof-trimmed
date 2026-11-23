@@ -1,4 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.InvMemOfKappa
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.ScalarCommuteTransposedRMatrixEntry
 
 open Matrix MeasureTheory
 open scoped ComplexConjugate

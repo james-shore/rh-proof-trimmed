@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.PUnipotentModulusHomeo
+import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.PUnipotentModulusCoords
 
 namespace GroundTheory.Heights₂.Heights.FiniteCovolume
 

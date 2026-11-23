@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComapRangeAdjointLeBlockSum
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 
 noncomputable section
 

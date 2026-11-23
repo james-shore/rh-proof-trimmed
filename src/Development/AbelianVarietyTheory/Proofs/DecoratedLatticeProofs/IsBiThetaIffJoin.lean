@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsBiSmooth
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.ConjugateAdjointDagger
-import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsGLSubmatrix
 
 noncomputable section
 

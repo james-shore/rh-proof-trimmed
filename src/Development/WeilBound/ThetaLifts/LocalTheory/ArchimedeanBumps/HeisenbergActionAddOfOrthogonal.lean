@@ -1,5 +1,5 @@
 import Development.WeilBound.ThetaLifts.LocalTheory.ArchimedeanBumps.ArchHeisOf
-import Development.WeilBound.ThetaLifts.LocalTheory.ArchimedeanBumps.RationalWeightSuccMulInvNorm
+import GroundTheory.GlobalFields.TateThesis.GaussianComplex
 import Development.WeilBound.ThetaLifts.SmallCones.MatCancel
 import Development.WeilBound.ThetaLifts.SmallCones.ThetaUniq
 

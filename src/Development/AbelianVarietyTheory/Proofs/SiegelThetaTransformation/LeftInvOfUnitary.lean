@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalRingCardinality.DataCD
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.HaarUpqIsMulRightInvariant
+import Formalism.RealPlaceAnalysis.InstMeasurableSpaceUJ
 
 noncomputable section
 

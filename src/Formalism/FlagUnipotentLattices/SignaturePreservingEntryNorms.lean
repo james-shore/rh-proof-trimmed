@@ -1,6 +1,5 @@
 import Formalism.FlagUnipotentLattices.DetIndexProductHyperbolicInequality
 import Formalism.FlagUnipotentLattices.DetIndexProductPlacesInequalitySq
-import Mathlib
 import Formalism.FlagUnipotentLattices.MinkowskiFactorialBounds.LocalIntegralStructure
 import Formalism.FlagUnipotentLattices.MinkowskiFactorialBounds.ComplexMultiplicationRoot
 

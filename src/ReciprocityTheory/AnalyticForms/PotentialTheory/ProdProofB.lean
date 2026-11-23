@@ -1,7 +1,4 @@
 import ReciprocityTheory.AnalyticForms.PotentialTheory.ProdProofA
-import ReciprocityTheory.AnalyticForms.PotentialTheory.IntegrableOnTargetOfTsupport
-import ReciprocityTheory.AnalyticForms.PotentialTheory.Partition
-import ReciprocityTheory.AnalyticForms.PotentialTheory.ContDiffAtOfIsPotential
 
 namespace ReciprocityTheory.AnForm.M
 

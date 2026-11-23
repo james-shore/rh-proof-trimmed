@@ -1,5 +1,4 @@
 import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.FundamentalDomainCusps.HeightBoundSetup
-import Mathlib
 import Formalism.PeriodIntegrals.TransferenceCoverRad
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CoveringRadius.CoverRad
 

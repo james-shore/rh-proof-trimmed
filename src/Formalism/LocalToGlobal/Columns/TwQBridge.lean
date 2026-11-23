@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.Columns.TwQDense
+import Formalism.LocalToGlobal.Columns.TwQSpP
 
 open NumberField IsDedekindDomain
 open scoped TensorProduct

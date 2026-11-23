@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.RelPtR
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.PointUniformity
-import Formalism.SharpRestriction.CuspSpanNormBounds.WeightedUniformRotatedOfExpansion
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.RMeasP
+import Formalism.SharpRestriction.CuspSpanNormBounds.WeightedUniformRotatedOfExpansion
 
 noncomputable section
 

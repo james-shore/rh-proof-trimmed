@@ -1,6 +1,5 @@
 import Formalism.AdmissibleDesigns.HigherColumnInvariantsBound
 import Formalism.AdmissibleDesigns.InertiaActsTrivially
-import Formalism.AdmissibleDesigns.SelfGood
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 

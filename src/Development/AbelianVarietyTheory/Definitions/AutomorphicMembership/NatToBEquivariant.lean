@@ -5,7 +5,6 @@ import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.IsWeightedHomog
 import Development.AbelianVarietyTheory.Definitions.Divisors.LogAbsVpOfNormalised
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAdicColimitOfIsNilpotent
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsLinearHomPull
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ApolarMonomial
 
 set_option autoImplicit false
 

@@ -1,4 +1,4 @@
-import Formalism.MahlerMeasure.StatementTM
+import Formalism.MahlerMeasure.GoodCount
 import Formalism.MahlerMeasure.TieVars
 
 namespace Formalism.GM.M

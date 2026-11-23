@@ -1,10 +1,10 @@
 import Mathlib
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementH
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementJ
-import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementE
-import Formalism.LocalToGlobal.TorsionIntegrality.CMGoodModels.Statement
 import Formalism.LocalToGlobal.InertKernelTheory.StatementAlgT
 import Formalism.LocalToGlobal.InertKernelTheory.StatementIota
+import Formalism.LocalToGlobal.TorsionIntegrality.UniformGaussModels.StatementH
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementE
 
 noncomputable section
 

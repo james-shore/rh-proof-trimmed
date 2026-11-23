@@ -1,7 +1,6 @@
 import Formalism.LocalToGlobal.Columns.TiedGlPl
 import Formalism.LocalToGlobal.Columns.TiedGlMat
-import Formalism.LocalToGlobal.Columns.RecLevelDiv
-import Formalism.LocalToGlobal.HermitianForms.FormsTied
+import Formalism.LocalToGlobal.HermitianForms.PrkSmul
 
 open NumberField IsDedekindDomain Matrix
 open scoped TensorProduct

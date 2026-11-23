@@ -1,8 +1,7 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagModelBaseProjectionPointsStatement
-import Development.AutomorphicSpectrum.Statements.TowerExistence.GoodTowerExistsX
-import Development.AutomorphicSpectrum.Statements.MetricStatements.ExistsFlagModelBaseMetric
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.RootOnFund
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagModelBaseProjectionPoints
+import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.GoodOrigin
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsSncModel
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ContDiffUncentre
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.OmHeightslockG
 

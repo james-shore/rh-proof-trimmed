@@ -1,6 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StdCoordMapInjective
 import GroundTheory.HeightsAndTheta.Heights.ArithDegreeIdeal
+import GroundTheory.HeightsAndTheta.Heights.KernelsLattice
 
 set_option maxSynthPendingDepth 1
 

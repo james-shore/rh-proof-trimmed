@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.EigenProjectorsSplitActionStatement
+import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.EigenProjectorsSplitAction
 import Development.WeilBound.CoreStatements.HodgeTatePoints.DegLeOfEquiv
 
 open GlobalTheory.CompanionTheory.Ar.Crv

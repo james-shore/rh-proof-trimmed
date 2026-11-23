@@ -1,5 +1,7 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.PoitouTate.RealEvenTau
+import GroundTheory.ProfiniteCohomology.RealPlaces.Devissage
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

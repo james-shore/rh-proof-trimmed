@@ -1,9 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ChernDegreeComplex
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ExistsPresents
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.JoinCol
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeasurableZeroCountStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RandomSectionZeroCountStatement
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleIdentityIso
+
 open CategoryTheory AlgebraicGeometry TopologicalSpace MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)

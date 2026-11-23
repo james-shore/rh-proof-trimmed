@@ -1,5 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.DualFockLinear.DvdOfCompl
-import Formalism.SharpRestriction.GrowthBounds.DualFockLinear.TestSideCounting
+import Formalism.SharpRestriction.GrowthBounds.DualFockLinear.IsMultiHom
 
 noncomputable section
 

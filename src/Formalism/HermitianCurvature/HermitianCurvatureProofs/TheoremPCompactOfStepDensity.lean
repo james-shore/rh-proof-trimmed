@@ -1,4 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.DerivCombCongr
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.ContinuousExtensionOfFourierDecay
 
 open MeasureTheory Filter Topology
 open scoped Matrix

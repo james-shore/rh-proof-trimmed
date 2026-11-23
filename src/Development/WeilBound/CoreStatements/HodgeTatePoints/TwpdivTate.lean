@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.PairingExtends
+import Development.AbelianVarietyTheory.Definitions.Divisors.ToSpanSingletonConstGenInjective
 
 noncomputable section
 

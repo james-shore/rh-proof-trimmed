@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.DistinguishedUnitIdeals.CoprimeProd
+import Formalism.DistinguishedUnitIdeals.Statement
 
 noncomputable section
 

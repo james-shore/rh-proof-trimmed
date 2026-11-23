@@ -1,5 +1,6 @@
 import Mathlib
 import Development.EtaleCohomology.EtaleSheaves.ProjectiveLineTwoAffineChartsPolynomialGenerated
+import Development.EtaleCohomology.EtaleSheaves.LZProperCut
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry HomogeneousLocalization

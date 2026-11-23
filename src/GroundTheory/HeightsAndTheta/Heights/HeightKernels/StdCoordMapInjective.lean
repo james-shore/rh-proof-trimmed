@@ -1,14 +1,5 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.KernelsLattice
-import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.Slopes
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsLines
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PLinesLatticeBasis
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PLinesGenIndexDet
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PLinesIsLattice
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PLinesGenIndexTrans
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PLinesIdealLatticeFG
-import GroundTheory.HeightsAndTheta.Heights.MatrixCharts.DetIneq
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PLinesLineDegree
+import GroundTheory.HeightsAndTheta.Heights.HermitianLattice
 
 set_option maxSynthPendingDepth 1
 

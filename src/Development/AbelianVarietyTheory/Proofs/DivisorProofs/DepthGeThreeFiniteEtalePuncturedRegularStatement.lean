@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DepthGeThreeFiniteEtalePuncturedRegular
-import ReciprocityTheory.CommutativeAlgebra.CohenMacaulay.ModDepthGE
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PurityFree
 
 open IsLocalRing
 set_option maxHeartbeats 1000000 in

@@ -1,5 +1,4 @@
 import Formalism.HermitianCurvature.StatementFr
-import Formalism.YangianSpanCharacter.YangianRelationFirst
 
 open Matrix Formalism.YangianSpanCharacter.T Formalism.YangianSpanCharacter.Y Formalism.FourierDecayAlt.R Formalism.FourierDecayAlt.Wd Formalism.FourierDecayAlt.Fr
 

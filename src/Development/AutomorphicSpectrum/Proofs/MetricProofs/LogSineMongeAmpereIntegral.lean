@@ -6,7 +6,6 @@ import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.LintegralImageE
 import ReciprocityTheory.AnalyticForms.AnalyticCharts.Osgood
 import ReciprocityTheory.AnalyticForms.PotentialTheory.HessCIsHermitian
 import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsFibreLocal
-import GroundTheory.HeightsAndTheta.Heights.Antisymmetric.Statements
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.ContDiffAtFrameEntry
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.LogSineMongeAmpereNormalizedStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsHolomorphicNormalFrameStatement
@@ -15,6 +14,7 @@ import Development.AutomorphicSpectrum.Proofs.MetricProofs.IntegralNormSqMobDMul
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.MobiusChangeOfVariablesPairStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.AnalyticAtMobiusDetJacobianEqStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.MobiusPairAnalyticDetJacobianEqStatement
+
 open MvPolynomial MeasureTheory Filter Topology Matrix ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P GlobalTheory.CompanionTheory.Ar.PB GroundTheory.Heights₂.Heights
 open scoped ComplexOrder
 

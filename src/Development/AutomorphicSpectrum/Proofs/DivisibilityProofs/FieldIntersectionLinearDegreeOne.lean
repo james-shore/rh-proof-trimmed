@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.IsChainFirst
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.InhDivCycleOfSuppEmpty
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.MemDivSuppOfDivCycleNeZero
 
 noncomputable section
 

@@ -1,4 +1,5 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.CuspidalFiniteness.HasUnivOfStep
+import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
 
 open GroundTheory.Automorphic.HarishChandra in
 private noncomputable def UpperTheory.V.Af.CuspFin.vermaRep {n : ℕ} (lam : Fin n → ℂ) :

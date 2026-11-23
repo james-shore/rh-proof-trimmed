@@ -1,8 +1,6 @@
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmallStatement
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SmallnessCondition
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExportSt
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Realised
+import Formalism.SharpRestriction.GlobalSchurBounds.MainSup
 
 set_option synthInstance.maxHeartbeats 200000
 

@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.DeterminantProjection
-import Development.WeilBound.ThetaLifts.LatticeBasics.PairsStable
+import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
 import Development.WeilBound.ThetaLifts.LatticeBasics.ConstIdele
 
 noncomputable section

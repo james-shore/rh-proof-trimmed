@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.AdmissibleThreePrime
-import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.AdmissibleResidualTameEigenvalues
 
 set_option synthInstance.maxHeartbeats 200000

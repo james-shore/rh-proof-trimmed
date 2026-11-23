@@ -1,11 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Statements.GeometryStatements.NonemptyEquivOfCardHom
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RelOfTorsion
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.BtOrderValueEval
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsUniqueBtOrderEmbeddingStatement
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.BtOrderIsHopfOrderNoetherianStatement
-import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.HopfOrderContainsCharacters
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsUniqueTangentDualNumber
 
 namespace GlobalTheory.CompanionTheory.Ar.BT
 

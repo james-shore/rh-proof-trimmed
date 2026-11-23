@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Jets.TwoPlaces
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.ConnectionKillsSeries
 import ReciprocityTheory.DualLattices.UpBrChar
 
 set_option autoImplicit false

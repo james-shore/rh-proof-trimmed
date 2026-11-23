@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.LocalRingCardinality.DataParams
 import Formalism.LocalToGlobal.ProjectiveLattices.FullExists
-import Formalism.LocalToGlobal.ProjectiveLattices.RecPJThAllNeBot
 import Development.AbelianVarietyTheory.BlockTheory.GoodPlaces.ShortAtLevelPrime
 
 noncomputable section

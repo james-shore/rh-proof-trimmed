@@ -1,7 +1,5 @@
 import Mathlib
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
-import Formalism.LocalToGlobal.Columns.GenericUnipotentCharacter
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.FrameLats
 
 noncomputable section
 

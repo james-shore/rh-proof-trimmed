@@ -3,6 +3,8 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.Tpr
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.PosPartUnitaryMul
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CapelliOfGelfand
 import GroundTheory.PAdicHodge.AInfGalois
+import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.WignerVanishingGL
+
 open NumberField Matrix GlobalTheory.CuspRep GlobalTheory.GKCoh GlobalTheory.WignerGL GlobalTheory.WigAlg Formalism.REAL
 open scoped TensorProduct
 

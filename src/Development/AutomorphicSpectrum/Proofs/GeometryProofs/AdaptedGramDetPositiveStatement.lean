@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.AdaptedGramDetPositive
-import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsAdapted
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GramDetNeZeroOfIndep
 
 open NumberField TensorProduct Matrix GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cusp
 set_option maxHeartbeats 1000000 in

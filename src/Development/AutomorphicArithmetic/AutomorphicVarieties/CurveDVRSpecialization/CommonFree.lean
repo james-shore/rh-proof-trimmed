@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.IsUnitOrIsUnitOfAddOne
-import Mathlib.GroupTheory.CosetCover
 
 open scoped Pointwise in
 theorem UpperTheory.V.Pr.commonFree :

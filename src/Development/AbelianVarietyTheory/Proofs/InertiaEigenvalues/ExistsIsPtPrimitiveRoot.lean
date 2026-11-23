@@ -1,7 +1,8 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
-import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.GradedSeries
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CompletionLines
+import Formalism.LocalRingCardinality.AdicCompletionLocal.InstIsAdicCompleteOCSpanSingletonSetCast
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle
+
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc
 
 namespace GlobalTheory

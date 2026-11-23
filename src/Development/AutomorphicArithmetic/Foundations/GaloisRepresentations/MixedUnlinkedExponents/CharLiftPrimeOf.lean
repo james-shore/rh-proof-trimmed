@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.MixedUnlinkedExponents.GamMixedOf
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PlainTorExistsChars
 
 noncomputable section
 

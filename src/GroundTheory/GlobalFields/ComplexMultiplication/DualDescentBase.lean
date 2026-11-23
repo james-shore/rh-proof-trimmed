@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.GlobalFields.ComplexMultiplication.DualDescentField
 import GroundTheory.GlobalFields.ComplexMultiplication.BaseChangeDegree
-import GroundTheory.ArithmeticGeometry.AbelianVarieties.DualQuadratic
+import GroundTheory.ArithmeticGeometry.AbelianVarieties.DualWeil
 
 namespace GroundTheory.Global
 

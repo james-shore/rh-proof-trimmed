@@ -5,13 +5,10 @@ import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.LogGaussNormSupport
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.ContinuousHermNormGroup
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.MahlerMul
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.HeightMul
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.LineInhabitant
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.LowerBoundConditional
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PConeLogBound
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.ConeBall
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.Characterised
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PRecursion
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PCharacterised
 
 set_option maxSynthPendingDepth 1
 

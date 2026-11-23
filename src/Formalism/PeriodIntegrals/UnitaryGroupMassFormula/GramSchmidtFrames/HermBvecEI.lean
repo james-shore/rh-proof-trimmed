@@ -1,4 +1,7 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GramSchmidtFrames.MemXspIff
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CompactGroupHaarExists
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.HermitianFormFlagVector
+import Formalism.RealPlaceAnalysis.StatementU
 
 open MeasureTheory Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.C6
 open Matrix

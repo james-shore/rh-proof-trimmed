@@ -1,5 +1,5 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.LevConstOfEv
-import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelFPfB
+import Formalism.WachLatticeTwists.LagrangeExtensionCocycles.DualWByLettersExtended
 import Formalism.SharpRestriction.LevelLetterCocycles.FrobeniusPowUniformizerFactorisation
 
 noncomputable section

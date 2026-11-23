@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.MemShaKernelIffLocallyTrivial
-import Development.AbelianVarietyTheory.Definitions.Divisors.SubsingletonComplex
-import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.QuadraticClassFieldTheory
 
 noncomputable section
 open NumberField

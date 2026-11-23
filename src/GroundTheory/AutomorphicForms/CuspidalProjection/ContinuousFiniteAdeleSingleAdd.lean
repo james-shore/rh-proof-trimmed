@@ -1,7 +1,7 @@
 import Mathlib
-import GroundTheory.AutomorphicForms.CuspidalDiscreteness
+import GroundTheory.AutomorphicForms.CuspidalDiscreteness.CuspCompact
+import GroundTheory.AutomorphicForms.CuspidalDiscreteness.DecayUniform
 import GroundTheory.GlobalFields.TateThesis.AdelicCharLocal
-import GroundTheory.GlobalFields.LocalFieldAtPlace
 
 open MeasureTheory Set Function Filter Topology
 open NumberField IsDedekindDomain

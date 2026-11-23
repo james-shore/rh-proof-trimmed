@@ -1,6 +1,5 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.OrbitalIntegrals.GeoTransport
 import GroundTheory.LocalFields.Unramified
-import GroundTheory.AutomorphicForms.Measures
 
 open MeasureTheory ValuativeRel PositivityTheory.Rg.Tf.Loc
 

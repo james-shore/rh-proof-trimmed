@@ -7,6 +7,7 @@ import Development.WeilBound.CoreStatements.HomogeneousNonvanishing.VuOntoC
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.VanBdLeSpace
 import Development.WeilBound.CoreStatements.NefModelVolumes.NV
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.ToKnownTheoremsOf
+import Development.AbelianVarietyTheory.Definitions.Divisors.GenRatios
 
 section
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.BasicNotions.TH Formalism.L2.Theta ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.AllWt GlobalTheory.CompHt GlobalTheory.CovTop GlobalTheory.CovHt GlobalTheory.Mean4 GlobalTheory.Mean4O

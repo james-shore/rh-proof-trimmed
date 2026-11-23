@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Statements.GeometryStatements.CurveSemiAbelianConjecture
-import Development.AutomorphicSpectrum.Statements.GeometryStatements.SeparableFormGroupElementFixesUniquePositiveLine
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsFFCurve
+import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.GapCondExample
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.Proportional
 
 open AlgebraicGeometry CategoryTheory NumberField

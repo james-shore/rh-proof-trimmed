@@ -1,5 +1,4 @@
 import Mathlib
-import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.GramSt
 
 open MeasureTheory Topology Matrix
 open scoped ComplexOrder ENNReal Pointwise

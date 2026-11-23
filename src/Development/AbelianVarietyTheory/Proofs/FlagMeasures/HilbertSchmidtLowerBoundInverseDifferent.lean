@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.HarderNarasimhan.ShiftInvariance
-import Formalism.RealPlaceAnalysis.Complexify
 import Formalism.SizeWindowBrackets.ChainSlopeWindows.ExistsNsmulMem
 
 open Formalism.HN Formalism.HermitianLatticesTheory Matrix NumberField Finset

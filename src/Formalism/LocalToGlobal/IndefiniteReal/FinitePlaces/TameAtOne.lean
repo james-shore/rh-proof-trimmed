@@ -1,6 +1,5 @@
 import Formalism.LocalToGlobal.IndefiniteReal.DatumVec
-import Formalism.LocalToGlobal.IndefiniteReal.SubgroupCharExtensionOneApply
-import Formalism.LocalToGlobal.IndefiniteReal.WeilFull
+import Formalism.LocalToGlobal.IndefiniteReal.FockTheta.UnitBracket
 
 noncomputable section
 

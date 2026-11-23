@@ -1,4 +1,4 @@
-import ReciprocityTheory.AnalyticForms.PotentialTheory.DegreeIntA
+import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialPullbackStatement
 
 namespace ReciprocityTheory.AnForm.M
 

@@ -1,8 +1,7 @@
 import Formalism.LocalToGlobal.LatticeGeometry.ShimuraSheafOfIndefiniteSubspace
 import Formalism.LocalToGlobal.LatticeGeometry.InhabLoc
-import Formalism.LocalToGlobal.LatticeGeometry.LevPrPrime
-import Formalism.LocalToGlobal.LatticeGeometry.ViewsB
-import Formalism.LocalRingCardinality.SpanPowerMembership.UnitsPowSurjective
+import Formalism.LocalToGlobal.LatticeGeometry.InstAddCommSemigroupWt
+import Formalism.SharpRestriction.Divisibility.WeightThresholdDefs
 import Formalism.LocalRingCardinality.SpanPowerMembership.PlLBridge
 
 noncomputable section

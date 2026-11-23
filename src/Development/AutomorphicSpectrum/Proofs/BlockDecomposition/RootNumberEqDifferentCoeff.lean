@@ -1,9 +1,7 @@
 import Mathlib
-import GroundTheory.GlobalFields.AnalyticClassNumber.HeckeContinued
+import GroundTheory.GlobalFields.TateThesis.HeckeTheorem
+import GroundTheory.GlobalFields.TateThesis.Nonvanishing
 import GroundTheory.GlobalFields.TateThesis.RootNumberLocalFinite
-import GroundTheory.GlobalFields.IdeleGroups.ClassGroup
-import GroundTheory.GlobalFields.IdeleGroups.LocalConditionIndex
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.PartialZetaFunctionalEquation
 
 set_option maxSynthPendingDepth 1
 

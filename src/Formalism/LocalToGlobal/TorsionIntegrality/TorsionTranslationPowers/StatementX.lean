@@ -1,6 +1,6 @@
 import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.StatementV
-import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.StatementW
 import Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.StatementW
+import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.StatementW
 
 open PowerSeries
 

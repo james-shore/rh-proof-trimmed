@@ -1,7 +1,6 @@
 import Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.BetaCut
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.DilationScalesHeisenbergMeasure
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ConjugationInvarianceEverySetting
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.IntegralZeroFrequencyInvariant
 
 open MeasureTheory
 open scoped InnerProductSpace ENNReal

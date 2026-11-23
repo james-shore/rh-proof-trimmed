@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.MemStandardThetaLatticeIffAdelicIdeal
-import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.PullMulRight
 
 noncomputable section
 open NumberField Formalism.BasicNotions Classical Matrix

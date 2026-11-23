@@ -1,7 +1,7 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJDHatJDCapRGrpPTop
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.QminorZero
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.FirstPeelingMinorMemIdeal
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.MinorCellOfParts
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.WeylCellMulVecBasis
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.NFRadRedLocSec
 
 open Matrix
 

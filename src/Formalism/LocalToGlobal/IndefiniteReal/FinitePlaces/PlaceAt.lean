@@ -2,6 +2,7 @@ import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.PlaceSum
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.FourUniq
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.HeisSt
 import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.IpTheta
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.PlaceS
 
 noncomputable section
 

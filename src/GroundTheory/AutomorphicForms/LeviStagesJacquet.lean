@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.GeometricLemmaModular
 import GroundTheory.AutomorphicForms.GeometricLemmaCharacters
-import GroundTheory.AutomorphicForms.JacquetAdmissible
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

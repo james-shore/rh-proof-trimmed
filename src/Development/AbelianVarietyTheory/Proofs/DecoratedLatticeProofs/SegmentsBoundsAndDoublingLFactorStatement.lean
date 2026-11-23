@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SegmentsBoundsAndDoublingLFactor
-import Development.AbelianVarietyTheory.Definitions.Foundations.NormEulerPolySubOneLe
-import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.PairwiseDisjointCell
 
 open NumberField IsDedekindDomain
 set_option maxHeartbeats 1000000 in

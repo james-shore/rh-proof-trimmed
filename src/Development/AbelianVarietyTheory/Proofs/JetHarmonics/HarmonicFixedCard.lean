@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.JetGauges.BalancedFrameGauge
 import Development.AbelianVarietyTheory.BlockTheory.JetGauges.BiadditiveBalancedSeries
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.GaugeTrans
 
 set_option autoImplicit false
 

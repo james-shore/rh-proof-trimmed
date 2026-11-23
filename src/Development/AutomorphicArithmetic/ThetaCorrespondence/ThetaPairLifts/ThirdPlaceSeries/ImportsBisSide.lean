@@ -1,7 +1,6 @@
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsCanonicalModuleSuccessor
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CharacterChoiceData
-import Development.AutomorphicArithmetic.Foundations.LocalLanglands.IsRecTOfIsRec
+import Formalism.LocalToGlobal.IndefiniteReal.IsotInLeOfIntw
 
 set_option synthInstance.maxHeartbeats 200000
 

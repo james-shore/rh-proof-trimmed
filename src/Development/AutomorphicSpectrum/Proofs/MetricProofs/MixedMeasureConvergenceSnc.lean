@@ -1,6 +1,5 @@
 import Mathlib
 import ReciprocityTheory.AnalyticForms.LeviForms.UnifInt
-import ReciprocityTheory.AnalyticForms.LeviForms.TailBound
 import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.UIObjects
 import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.PGreenMassZero
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.FixedMemberBase
@@ -8,6 +7,8 @@ import Development.AutomorphicSpectrum.Proofs.MetricProofs.CompChartEventuallyEq
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.BdryIsAnalyticSubsetInteriorEmpty
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.UniformRestrictionStatementHoldsStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.UniformEnergyBoundOfSectionStatement
+import ReciprocityTheory.AnalyticForms.PotentialTheory.Pullback
+
 open MeasureTheory Metric Filter Topology ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P ReciprocityTheory.AnForm.M.FinHolAtlas
 open scoped ContDiff
 

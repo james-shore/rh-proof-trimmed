@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NonemptyEquivMultiProdOne
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.InductionContragredient
 
 noncomputable section
 

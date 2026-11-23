@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.ClassSK
 import Formalism.LocalToGlobal.HilbertRowConditions.ColumnsFunctionAtSubspaces
-import Formalism.LocalToGlobal.IndefiniteReal.PrimitivePackageFullHecke
-import Formalism.LocalToGlobal.IndefiniteReal.LinksLemmas
+import Formalism.LocalToGlobal.IndefiniteReal.BaseLiftsPackageOfPrimitiveLinks
+import Formalism.LocalToGlobal.GlobalTheory.PassageAtBaseSymmetricLevels
 import Formalism.LocalToGlobal.IndefiniteReal.SpOfRwRange
 import Formalism.LocalToGlobal.IndefiniteReal.RealSeparation.SignsG
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.STiesR
@@ -11,7 +11,6 @@ import Formalism.LocalToGlobal.IndefiniteReal.FrameExistence.NormalFrameClauses
 import Formalism.LocalToGlobal.IndefiniteReal.DoubleCosetOperators.RatDatOfReal
 import Formalism.LocalToGlobal.IndefiniteReal.AutomorphicEvaluation
 import Formalism.LocalToGlobal.IndefiniteReal.EvalTieTOne
-import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Formalism.LocalToGlobal.IndefiniteReal.RationalEmbedding
 import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedVolumeStatements.UnipotentInLevelSubgroup
 

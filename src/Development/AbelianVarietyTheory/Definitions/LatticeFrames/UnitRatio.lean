@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ValLastX
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.CombAtSingleZero
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsSumFrame
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsCombAt
 
 set_option genSizeOfSpec false

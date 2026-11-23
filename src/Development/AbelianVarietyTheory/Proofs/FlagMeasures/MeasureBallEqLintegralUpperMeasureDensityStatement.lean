@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.MeasureBallEqLintegralUpperMeasureDensity
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.UpperDens
 
 open MeasureTheory Filter Topology
 open scoped ENNReal NNReal

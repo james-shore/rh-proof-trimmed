@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.SatakeDualWeyl.DualWeylRepApply
-import Formalism.HarderNarasimhan.StatementPl
 import Formalism.LocalRingCardinality.DataArith
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.LatticeHasBasisAtEveryFinitePlace
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ActPMemLocPNabStdOfIsBasisAt

@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.Subsingleton
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsStrictlySemistableAlt
-import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.ChainOfKernelsUnique
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.JetGlue
 
 set_option autoImplicit false

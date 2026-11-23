@@ -1,6 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.GroupLattices.PendingLemmas.SuccMulSuccSubOneDivSucc
 import Formalism.LocalToGlobal.InertKernelTheory.SubBSplit
+import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.LtCNeZero
 
 open Formalism.MainNotions.G Formalism.MainNotions.FormalGroupSystem Formalism.L2.G.Pend Finset
 

@@ -1,5 +1,5 @@
 import Mathlib
-import Development.EtaleCohomology.EtaleSheaves.DerivUnit
+import Development.EtaleCohomology.EtaleSheaves.LeafRepCut
 
 open CategoryTheory AlgebraicGeometry GlobalTheory.EtC
 

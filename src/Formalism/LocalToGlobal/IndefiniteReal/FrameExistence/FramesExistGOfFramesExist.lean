@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.IndefiniteReal.FrameExistence.NormalisedAdaptedVectorZero
 import Formalism.LocalToGlobal.IndefiniteReal.FrameExistence.SelfDualFramesExistOfDiagonal
+import Formalism.LocalToGlobal.IndefiniteReal.RealSeparation.NormalFrame0
 
 noncomputable section
 

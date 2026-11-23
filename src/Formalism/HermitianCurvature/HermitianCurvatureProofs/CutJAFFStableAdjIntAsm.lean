@@ -1,5 +1,5 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAFFStableFormAdj
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.FiniteSumLocalExpansion
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAFFStableAdjIntCut
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAFFStableAdjCont
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt MeasureTheory Filter Topology
 open scoped ComplexConjugate

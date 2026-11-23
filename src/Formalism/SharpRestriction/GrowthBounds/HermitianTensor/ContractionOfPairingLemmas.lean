@@ -1,4 +1,6 @@
 import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.NuOfLoZero
+import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.MemInvariantSectionsTwoWeightIff
+import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.MemInvariantSectionsIffIntegral
 
 noncomputable section
 

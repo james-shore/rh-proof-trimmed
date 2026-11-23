@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.BlockAnti
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.UpperOff
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsHCParamOfSetup
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp

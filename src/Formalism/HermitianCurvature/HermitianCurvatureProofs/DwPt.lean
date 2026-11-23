@@ -2,6 +2,7 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.DiagonalTransferAct
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.TopDensNonnegOfKappa
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.SignedCoordinateEqSignSmul
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.QNFAsm
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.ModelWordsAssemble
 
 open Matrix MeasureTheory Finset
 open scoped ComplexConjugate

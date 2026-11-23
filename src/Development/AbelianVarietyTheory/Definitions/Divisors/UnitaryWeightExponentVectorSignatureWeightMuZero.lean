@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfComp
+import Development.AbelianVarietyTheory.Proofs.GenericRegularity.TieBaseChange
 
 noncomputable section
 

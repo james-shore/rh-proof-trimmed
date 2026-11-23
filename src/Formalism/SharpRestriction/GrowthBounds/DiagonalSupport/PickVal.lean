@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.PickLem
+import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.Proposition5OfThreeParts
 
 noncomputable section
 

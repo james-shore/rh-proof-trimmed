@@ -5,7 +5,7 @@ import Development.AbelianVarietyTheory.Proofs.ModuliProofs.PsiGenOnInteriorOfPs
 import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsGtExtOfTorsion
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.WeilQkPairingExistsUniqueTorus
 import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.AbelianSchemeLawsUnconditional
-import Development.AbelianVarietyTheory.Counterexamples.ModuliSurvey.MemOfPowEqInt
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.DetCondIffOfFieldExtension
 
 set_option autoImplicit false
 

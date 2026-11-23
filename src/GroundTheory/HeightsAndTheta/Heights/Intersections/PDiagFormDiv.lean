@@ -1,7 +1,7 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.Intersections.PDiagOrd
-import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsDiagR
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsGrassHeight
+import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsAntisym
+import GroundTheory.HeightsAndTheta.Heights.Intersections.PRFormula
+import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.Statements
 
 set_option maxSynthPendingDepth 1
 

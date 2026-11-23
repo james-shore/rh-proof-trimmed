@@ -1,7 +1,7 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.SpanSteps
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.IndepPts
 import Formalism.LocalToGlobal.ProjectiveLattices.ReadProofs
-import Formalism.LocalToGlobal.ProjectiveLattices.FrameProofs
+import Formalism.LocalToGlobal.ProjectiveLattices.CoreProofs
 
 noncomputable section
 

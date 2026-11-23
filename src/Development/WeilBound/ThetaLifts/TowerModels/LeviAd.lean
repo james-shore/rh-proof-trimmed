@@ -1,6 +1,6 @@
 import Development.WeilBound.ThetaLifts.EigenvalueEndgame.PlaneRemovalConfiguration
-import Development.WeilBound.ThetaLifts.TowerModels.LeviAlg
 import Development.AbelianVarietyTheory.Definitions.Foundations.EqPlaceIdemOfIsPrimeIdem
+import Development.WeilBound.ThetaLifts.TowerModels.LeviAlg
 
 noncomputable section
 

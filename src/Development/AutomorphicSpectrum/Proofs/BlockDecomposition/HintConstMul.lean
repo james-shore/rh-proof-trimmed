@@ -1,9 +1,8 @@
 import Mathlib
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.FrameReading.FmTools
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsSat2InvTConj
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinsumOutOfLe
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelFamInf
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsSat2InvTConj
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsLocCompAndIsLocLoc
 
 noncomputable section
 

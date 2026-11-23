@@ -1,4 +1,4 @@
-import ReciprocityTheory.AnalyticForms.RegularLocalRings.ProjBCompl
+import ReciprocityTheory.AnalyticForms.RegularLocalRings.ProjHyp
 
 namespace ReciprocityTheory.AnForm.R
 

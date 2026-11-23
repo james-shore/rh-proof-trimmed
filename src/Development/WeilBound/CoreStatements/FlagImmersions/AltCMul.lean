@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.HeckeSectionsIsotropicCommutatorPairingPower
+import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.Proportional
 
 noncomputable section
 

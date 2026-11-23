@@ -1,4 +1,4 @@
-import Formalism.TameInertiaTowers.StatementGroup
+import Mathlib
 
 namespace Formalism.TwoAdicCyclotomicDecomposition
 

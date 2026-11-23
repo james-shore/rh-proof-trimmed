@@ -1,4 +1,5 @@
 import Development.DiscreteGroups.GlobalIrreducibility.NeTopOfConj
+import Development.DiscreteGroups.GlobalIrreducibility.TopLeftXAInv
 
 noncomputable section
 

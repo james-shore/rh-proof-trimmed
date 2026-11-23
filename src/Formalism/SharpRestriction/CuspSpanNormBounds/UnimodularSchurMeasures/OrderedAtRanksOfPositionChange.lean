@@ -1,5 +1,4 @@
-import Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.ExistsTowerOfLocalSetting
-import Formalism.FormalDegreeBessel.FinalG
+import Formalism.SharpRestriction.CuspSpanNormBounds.CayleySignature
 
 noncomputable section
 

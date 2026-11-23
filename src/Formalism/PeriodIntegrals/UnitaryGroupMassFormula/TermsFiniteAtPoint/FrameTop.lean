@@ -1,5 +1,8 @@
 import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.TermsFiniteAtPoint.FrameOp
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RelativeEquivalence.DCRelEquivAllHolds
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IdentityCellTrace.TraceOneHolds
+import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.SplitRow
 
 noncomputable section
 

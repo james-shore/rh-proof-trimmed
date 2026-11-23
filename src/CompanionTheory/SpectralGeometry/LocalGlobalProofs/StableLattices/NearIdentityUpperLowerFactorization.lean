@@ -1,5 +1,5 @@
 import Mathlib
-import CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.EntryMulSubOne
+import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.MapStdPoly
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.FactorizationBis
 
 noncomputable section

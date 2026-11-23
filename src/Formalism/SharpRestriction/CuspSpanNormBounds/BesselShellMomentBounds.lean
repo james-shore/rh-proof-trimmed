@@ -1,8 +1,7 @@
 import Formalism.FlagUnipotentLattices.AlgebraicIdentityHigherDegree
-import Formalism.FormalDegreeBessel.FinalG
 import Formalism.SharpRestriction.CuspSpanNormBounds.OnePlaceEstimates
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
-import Formalism.SharpRestriction.CuspSpanNormBounds.RotatedWeightedBound
+import Formalism.FormalDegreeBessel.FinalG
 
 section PieceB2a
 

@@ -1,12 +1,14 @@
 import Mathlib
 import Formalism.LocalToGlobal.LatticeGeometry.GeometryDefinitions.ClsSum
 import Formalism.SharpRestriction.Divisibility.PlaceRankTwoOne
-import Formalism.QuotientMetricDivisors.Statement
 import Formalism.LocalToGlobal.LatticeGeometry.GeometryDefinitions.ExistsFrameOfSig
-import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ReductionSecondStep
 import Formalism.SizeWindowBrackets.ChainSlopeWindows.TruncatedLatticeHolds
 import Formalism.SharpRestriction.GlobalSchurBounds.FlipTwoThree
 import Formalism.LocalToGlobal.GlobalTheory.GL4.PMuFrames
+import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.RatHerm
+import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.IdxChange
+import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.LocBasis
+import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.LcvBasis
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix

@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LayerProd
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LamXEquivariant
 import Formalism.HarderNarasimhan.ShiftInvariance
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LamXEquivariant
 
 open GlobalTheory.Count Formalism.MainNotions.S Formalism.HN Formalism.REAL Matrix NumberField MeasureTheory Finset
 

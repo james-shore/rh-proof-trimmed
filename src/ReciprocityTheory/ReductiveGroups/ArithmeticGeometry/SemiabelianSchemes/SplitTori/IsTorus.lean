@@ -1,5 +1,4 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.SplitTori.SplitTorusAff
-import Mathlib.AlgebraicGeometry.Morphisms.FiniteType
 
 universe u
 

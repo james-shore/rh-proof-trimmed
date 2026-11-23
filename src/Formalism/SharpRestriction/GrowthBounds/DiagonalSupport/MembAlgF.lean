@@ -1,5 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.MembTop
-import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.ValuationOneEqZero
+import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.NoMonMultideg
 
 noncomputable section
 

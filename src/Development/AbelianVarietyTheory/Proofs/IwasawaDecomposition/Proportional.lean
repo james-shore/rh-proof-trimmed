@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IsProjOverMorphismRestrictOfRelAmple
-import ReciprocityTheory.AnalyticForms.RegularLocalRings.FinalTheorems
 
 noncomputable section
 

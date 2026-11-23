@@ -3,6 +3,8 @@ import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsConeLocal
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsConeFiniteFibreDim
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StatementsArea
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PConeIntegralLine
+import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsConeTangentAverage
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

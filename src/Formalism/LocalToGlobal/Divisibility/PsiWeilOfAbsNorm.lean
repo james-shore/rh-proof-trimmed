@@ -1,6 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.Divisibility.DivisionCompatibleToSub2Indef2
-import Formalism.LocalToGlobal.Columns.StdLatUnimodular
+import Formalism.LocalToGlobal.Divisibility.RowSideTie
 
 open NumberField IsDedekindDomain
 

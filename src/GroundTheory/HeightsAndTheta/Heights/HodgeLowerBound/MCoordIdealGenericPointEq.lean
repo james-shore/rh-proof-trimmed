@@ -1,9 +1,9 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.CoordinateIdeals
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.PermFinTwoUniv
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FlagComplexPointsOverX
 import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.PCurveComplexPoint
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualCurvePoint
+import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.CoordinateIdeals
 
 set_option maxSynthPendingDepth 1
 

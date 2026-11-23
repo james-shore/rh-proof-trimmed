@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
-import Formalism.LocalToGlobal.UnitaryNorms.UnrAe
 
 noncomputable section
 

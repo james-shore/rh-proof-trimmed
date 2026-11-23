@@ -1,6 +1,8 @@
 import Mathlib
 import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.FormalCechSmul
 import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.FormalAlgebra
+import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.FormalCechLemmas
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Arith.SchemeCoh

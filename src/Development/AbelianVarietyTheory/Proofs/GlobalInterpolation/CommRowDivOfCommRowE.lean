@@ -1,7 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.GoodTopBot
 import Development.AbelianVarietyTheory.PublishedTheorems.GlobalTheta.WeylDualWeylLatticesAgreeOfLowestAlcove
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GelfandTsetlinLowering.CapelliOps
+import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.GoodTopBot
 
 open MvPolynomial Formalism.GradedWeylDivisibility Formalism.BasicNotions GlobalTheory.Alc
 

@@ -1,4 +1,4 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.RightDerivativeRulePsi
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.FirstPeelingMinorMemIdeal
 
 open Matrix Finset
 

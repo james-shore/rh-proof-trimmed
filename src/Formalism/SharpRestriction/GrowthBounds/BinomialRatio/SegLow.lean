@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.RankDefs
-import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.SegmentStatementHolds
 import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.KeptFin
 import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.ChainDim
 

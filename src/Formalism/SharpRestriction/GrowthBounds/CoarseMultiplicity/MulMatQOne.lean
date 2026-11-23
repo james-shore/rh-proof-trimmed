@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.LaTwInvT
-import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.SettingCZ
 
 noncomputable section
 

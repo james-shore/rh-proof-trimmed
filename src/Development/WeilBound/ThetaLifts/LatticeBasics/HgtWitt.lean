@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.AdelicProofs.HasIwasawaOfFrame
+import Development.AutomorphicSpectrum.Proofs.MembershipProofs.CharacterAugmentationSubspaceQuotientActionTop
 
 noncomputable section
 

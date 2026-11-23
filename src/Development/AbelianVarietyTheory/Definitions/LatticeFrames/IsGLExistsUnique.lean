@@ -1,10 +1,10 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.EntryAgree
-import Formalism.LocalToGlobal.Columns.ChainInst
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.PhiTopAgree
+import Formalism.LocalToGlobal.Columns.NonDeg
+import Formalism.LocalToGlobal.Columns.CyclotomicIsCyclotomicExtension
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsAtTypeAndOrd
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ResiduesOfCompletionAtPrimeWithUniformizer
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsAddChar
 
 open NumberField IsDedekindDomain MeasureTheory ValuativeRel Matrix
 open Formalism.BasicNotions Formalism.HermitianLatticesTheory Formalism.L2.DIV Formalism.L2.Col

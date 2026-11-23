@@ -1,6 +1,6 @@
 import Formalism.LocalToGlobal.CMDeterminantIdeals.CMIdealValuations.OneLeAbsNormOfLeOne
 import Formalism.LocalToGlobal.CMDeterminantIdeals.CMIdealValuations.ProdMulLeDetIdeal
-import Formalism.LocalToGlobal.CMDeterminantIdeals.CMIdealValuations.ValuationLeOfEqAlgebraMap
+import Formalism.LocalToGlobal.CMDeterminantIdeals.StatementB
 import Formalism.LocalToGlobal.CMDeterminantIdeals.CMIdealValuations.AbsNormSpanGalois
 import Formalism.LocalToGlobal.CMDeterminantIdeals.HadamardLoc0
 

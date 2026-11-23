@@ -1,5 +1,5 @@
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.Tie0CutOfTie0
-import Mathlib
+import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.OptInEqSome
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.AwayRepIsoLoc
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CuspidalGaloisUnramified
 
 set_option synthInstance.maxHeartbeats 200000

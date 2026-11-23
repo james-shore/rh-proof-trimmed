@@ -1,8 +1,8 @@
 import Mathlib
-import Formalism.HermitianLattices.HermitianLatticesProofs.UnimodUnramUnique
 import Formalism.LocalRingCardinality.DataHost
 import Formalism.FrobeniusOrbits.HostCorollaries
 import Formalism.SatakeDualWeyl.Statement
+import Formalism.HermitianLattices.HermitianLatticesProofs.UnimodUnramUnique
 
 open IsDedekindDomain HeightOneSpectrum IsLocalRing WithZero NumberField Filter Topology
 

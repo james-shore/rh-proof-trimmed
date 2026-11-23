@@ -1,6 +1,5 @@
 import Mathlib
 import Development.EtaleCohomology.EtaleSheaves.LeafChartRing
-import Development.AutomorphicArithmetic.CommutativeAlgebra.ConnectivityOfCechDisjointCover
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC LateralTheory.E.t_E6Cut

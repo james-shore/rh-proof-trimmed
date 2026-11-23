@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNatPosDefAddNsmulPosDefHermitian
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.HilbertKodairaSpencer
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAHOfIsFactorAH
 
 set_option autoImplicit false
 

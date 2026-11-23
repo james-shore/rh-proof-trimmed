@@ -1,7 +1,5 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.IsCharZeroPt
-import Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVanishing.Counts
-import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.OrbitVanishingLocal
-import ReciprocityTheory.Hypotheses.GalCoh
+import Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVanishing.DirichletPrimeToLPartMulLPowerPart
 
 noncomputable section
 

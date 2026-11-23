@@ -1,6 +1,6 @@
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ChartOfBasis
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.UniformisationConclusion
 import Development.WeilBound.CoreStatements.HodgeTatePoints.HtatLieBc
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LocalComponentsSurjective
 
 noncomputable section
 namespace PositivityTheory.HtPt.Cd

@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.CrystallineDescent.LimOddOfLimWU3
+import Development.AbelianVarietyTheory.Statements.EllipticCurveLevels.X0OfStarCondition
 
 noncomputable section
 

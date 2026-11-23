@@ -1,6 +1,6 @@
-import Formalism.LocalToGlobal.CharacterGerms.LatticeInclusionFormsInjective
-import Formalism.FrobeniusBaseCase.FrobeniusBaseCaseProofs.SecondWayHolds
+import Formalism.LocalToGlobal.CharacterGerms.Interface
 import Formalism.FrobeniusBaseCase.Statement
+import Formalism.FrobeniusBaseCase.FrobeniusBaseCaseProofs.HasUniqueFixedPoint
 
 noncomputable section
 

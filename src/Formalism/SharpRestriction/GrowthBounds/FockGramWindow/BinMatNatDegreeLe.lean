@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.FockGramWindow.PhiPair
+import Formalism.PolynomialDimension.ChangeLatticeGoodRank
 
 noncomputable section
 

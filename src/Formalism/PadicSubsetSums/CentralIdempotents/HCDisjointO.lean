@@ -1,4 +1,4 @@
-import Formalism.PadicSubsetSums.CentralIdempotents.GaloisConjCentralIdempotent
+import Mathlib
 
 open Polynomial CategoryTheory
 noncomputable section

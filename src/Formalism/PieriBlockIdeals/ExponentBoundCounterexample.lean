@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.PieriBlockIdeals.Statement
 import Formalism.RankGapBounds.CloudMinFalse
 import Formalism.PieriBlockIdeals.StatementLA
 

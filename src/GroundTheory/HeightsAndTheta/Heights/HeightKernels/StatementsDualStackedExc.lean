@@ -1,7 +1,6 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsDualStackedGraph
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualStackedDegree
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualLatticeIndex
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

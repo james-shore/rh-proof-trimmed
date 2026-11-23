@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.InertPrimeTeichmuller.NormLeOneOfIntegralInt
 
 open NumberField
 

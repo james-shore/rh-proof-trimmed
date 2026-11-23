@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalDensityCorank.SplitCount
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DensGFL
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.FlbHZeroRight
 
 open ValuativeRel Classical
 

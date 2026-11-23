@@ -1,6 +1,4 @@
 import Mathlib
-import Formalism.LagrangeIdealLifts.Statement
-import Formalism.WindowSums.Statement
 
 noncomputable section
 

@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsMetricFrOfIsMetricOn
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ChernDegreeComplex
 
 noncomputable section
 

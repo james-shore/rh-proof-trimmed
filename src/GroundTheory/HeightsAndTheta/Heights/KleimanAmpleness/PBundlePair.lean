@@ -1,7 +1,5 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.IsGraphGenTwistBundleZero
-import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTerAlt
-import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTerExtra
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PExtension
 
 set_option maxSynthPendingDepth 1

@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.PeriodIntegrals.ClassNumImQ
 
 open NumberField
 

@@ -1,4 +1,4 @@
-import Development.EtaleCohomology.EtaleSheaves.ChernClassEvaluation
+import Development.EtaleCohomology.EtaleSheaves.ChernClassExistence
 import Development.EtaleCohomology.EtaleSheaves.ChernClassValueFirst
 import Development.EtaleCohomology.TateTwists.ExistsNaturalEtaleKummerDegreeTwoValueOfRootsKum
 

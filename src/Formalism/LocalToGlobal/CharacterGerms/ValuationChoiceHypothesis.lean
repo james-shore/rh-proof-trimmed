@@ -1,6 +1,5 @@
 import Formalism.LocalToGlobal.CharacterGerms.BiadditiveInSingleVariables
 import Formalism.DropLevelBounds.ThBounds
-import Mathlib
 import Formalism.LocalToGlobal.Divisibility.Numbers
 
 noncomputable section

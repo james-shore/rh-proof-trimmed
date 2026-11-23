@@ -1,17 +1,11 @@
 import Mathlib
 import Formalism.SatakeDualWeyl.StatementC
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelv
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.GlintPrincRelIndexNeZero
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Stabstd
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelaf
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsApprox
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.InclusionInjective
 import Formalism.SatakeDualWeyl.KpqSubgroupCompact
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsGlob
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsSpan
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Afsplit
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Bridge
-import Formalism.HermitianLattices.StatementLat
 import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.ClassCountSurj
-import Formalism.SatakeDualWeyl.DefsCS
 
 namespace Formalism.MainNotions.Gaps.CC.WA
 end Formalism.MainNotions.Gaps.CC.WA

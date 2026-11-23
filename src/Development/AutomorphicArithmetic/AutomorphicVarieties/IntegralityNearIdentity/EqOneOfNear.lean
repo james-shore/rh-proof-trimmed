@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ImportsExtraAlt
-import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.EqOneOfNear
-import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ImportsExtraBis
-import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.FinitelyGeneratedModPow
 
 namespace UpperTheory.V.Lib.Small
 

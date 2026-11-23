@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.KernelLattices.JetFieldLeKR
-import Formalism.LocalToGlobal.KernelLattices.ColInst
 
 open NumberField IsDedekindDomain
 

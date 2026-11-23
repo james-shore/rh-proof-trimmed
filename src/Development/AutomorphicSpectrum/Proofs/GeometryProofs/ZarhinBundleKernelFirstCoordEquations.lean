@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.CoordsAt
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.InjectiveOfIsCptGen
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsCptGen
 
 noncomputable section
 

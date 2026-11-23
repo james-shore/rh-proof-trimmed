@@ -1,6 +1,11 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.WeilSiegelTheta.BigCellDefs
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.SummableCell
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasDerivAtAndIsTheta
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.DoubledFlatSectionEqTranslateStandardSection
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WeilSchwartzParabolicEquivariant
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ThetaSectionContinuous
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousSymmUnitaryChart
 
 noncomputable section
 

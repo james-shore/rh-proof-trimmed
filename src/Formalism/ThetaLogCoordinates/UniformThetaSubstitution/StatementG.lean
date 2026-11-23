@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.StatementE
 import Formalism.GaussJetBounds.StatementP
+import Formalism.GrowthSums.StatementA
 
 noncomputable section
 

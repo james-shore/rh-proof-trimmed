@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.GlobalFields.ComplexMultiplication.AlgebraicityGalois
+import GroundTheory.GlobalFields.ComplexMultiplication.AlgebraicityClass
 import GroundTheory.GlobalFields.ComplexMultiplication.DualDescent
 
 namespace GroundTheory.Global

@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.RootWeights.WeightSpaceEqBotOutsideSupport
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.OperatorsKillInvariantProjection
 
 noncomputable section
 

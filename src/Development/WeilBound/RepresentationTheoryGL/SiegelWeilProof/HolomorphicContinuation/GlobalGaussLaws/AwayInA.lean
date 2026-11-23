@@ -1,6 +1,5 @@
 import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.LocOpSt
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TranslationInvariantFunctionalRestrict
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGaussianDerivative
 
 noncomputable section
 

@@ -1,9 +1,9 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.OneMapT
 import Formalism.LocalToGlobal.IndefiniteReal.FWExist
-import Formalism.LocalRingCardinality.SpanPowerMembership.Spaces
 import Development.AbelianVarietyTheory.Definitions.Divisors.MarkAd
-import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ExistsInfFamAndStdChar
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsUniqueIdeleOfLinearEquivQuotientLocal
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.EmbeddingXiZeroNeZero
 
 open NumberField Matrix IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD

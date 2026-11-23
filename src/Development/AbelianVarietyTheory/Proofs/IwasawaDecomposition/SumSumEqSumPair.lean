@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PolyRep
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.AevalDualModel
 
 set_option autoImplicit false
 

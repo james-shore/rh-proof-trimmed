@@ -1,5 +1,4 @@
 import Formalism.LocalRingCardinality.SpanPowerMembership.TwCore
-import Formalism.LocalRingCardinality.SpanPowerMembership.BasisOfBasisF
 
 noncomputable section
 

@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.UnitaryNorms.CharTied
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.AssembleLattice
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RowsRestWordColumnUnitBaseTuple
 
 noncomputable section
 

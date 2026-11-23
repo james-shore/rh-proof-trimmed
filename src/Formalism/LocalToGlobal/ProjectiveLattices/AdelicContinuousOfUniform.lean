@@ -1,5 +1,4 @@
-import Formalism.LocalToGlobal.ProjectiveLattices.ReadLeaves
-import Formalism.LocalToGlobal.ProjectiveLattices.FrameCharts
+import Formalism.LocalToGlobal.ProjectiveLattices.FamilyUniformisationBasePointOrthogonal
 
 noncomputable section
 

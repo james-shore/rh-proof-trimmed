@@ -1,5 +1,7 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.HodgeTatePoints.MhBase
+import Development.WeilBound.CoreStatements.HodgeTatePoints.TwhopfInd
+
 open CategoryTheory Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
 open GlobalTheory.CompanionTheory.Ar.BT GroundTheory.PAdicHodge
 

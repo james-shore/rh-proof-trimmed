@@ -1,7 +1,7 @@
 import CompanionTheory.HarishChandraModules.BesselParameterIntegrals.BesselOrbitConvolutions.BesselNonvanishingReduction
-import Mathlib
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ZeroOfAe
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.L2NormScaling
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.BesselNeZeroOfCyclicOrbit
 
 open MeasureTheory Matrix
 open scoped InnerProductSpace ENNReal

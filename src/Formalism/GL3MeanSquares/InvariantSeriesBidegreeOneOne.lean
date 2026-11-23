@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.FormalGroupWitt.Statement
 
 noncomputable section
 

@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.StatementI
+import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.CompInv
 import Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.CurveHyp
 
 open PowerSeries

@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.QuotientMetricDivisors.RatHermLcvTwist
-import Formalism.QuotientMetricDivisors.DualMu
-import Formalism.QuotientMetricDivisors.StatementK
+import Formalism.HarderNarasimhan.QuotRealize
+import Formalism.LogFactorialIndices.StatementSize
 import Formalism.MirabolicMackeyTheory.StatementT
 
 open Module NumberField IsDedekindDomain Finset

@@ -1,6 +1,6 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.GL2.GJFEInducedTensor
-import GroundTheory.AutomorphicForms.InductionParabolicLocal
+import GroundTheory.AutomorphicForms.GL2.GJFEInducedInv
 
 noncomputable section
 

@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ComparisonMemCechHodgeFiltration
-import Development.AbelianVarietyTheory.Definitions.Divisors.PrimitiveCrystalHodgeLiftClasses
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsKSValueOneOfRetraction
 
 set_option autoImplicit false
 

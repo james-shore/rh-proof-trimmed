@@ -1,5 +1,4 @@
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsReadingLaws
-import Mathlib
 import Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.RecLawsH
 
 set_option synthInstance.maxHeartbeats 200000

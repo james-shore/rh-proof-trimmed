@@ -1,5 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.LayerBasic
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.KUnitB
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.CasValK
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DefsRep
 
 noncomputable section

@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.PadicSubsetSums.CentralIdempotents.GaloisConjCentralIdempotent
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.BlockEmbeddingFactors
+import Formalism.PadicSubsetSums.CentralIdempotents.IsConstituent
+import Development.AbelianVarietyTheory.Definitions.Divisors.SplitDoublingNBlock
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeviTensorBlockExt
 
 noncomputable section

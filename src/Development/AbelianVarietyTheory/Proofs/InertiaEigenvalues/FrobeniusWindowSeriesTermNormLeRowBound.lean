@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MooreNorm
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RowTEqRowS
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WindowAdditive
 
 noncomputable section

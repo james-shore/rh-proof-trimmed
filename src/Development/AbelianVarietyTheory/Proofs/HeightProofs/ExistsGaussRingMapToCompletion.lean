@@ -1,6 +1,5 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.ValuationResidueLemmas
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.HDiscAE
 import Formalism.LocalToGlobal.ProjectiveLattices.CurveLoc
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.GaussRingCompletionRename
 

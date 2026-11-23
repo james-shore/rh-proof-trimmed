@@ -1,6 +1,8 @@
 import Mathlib
 import Development.AutomorphicArithmetic.ResidueCharacters.ExistsUnion
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LiftColumnRowSetup
+import Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpowers.LiftingConditionOfWindows
+import Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpowers.CrystallineLatticeOfJumpPoints
 
 noncomputable section
 

@@ -1,6 +1,8 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.DualStdModelField
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualArithVar
+import GroundTheory.HeightsAndTheta.Heights.HeightKernels.ImportsFurther
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

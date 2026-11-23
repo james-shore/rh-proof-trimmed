@@ -1,7 +1,6 @@
 import Mathlib
 import Development.DiscreteGroups.GlobalIrreducibility.DzMatchCut
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PrincipalCongruenceFixedVectorsLeSmoothVectors
-import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsSubquotientDetRepParInd
+import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.GreenRegularCharacters
 
 noncomputable section
 

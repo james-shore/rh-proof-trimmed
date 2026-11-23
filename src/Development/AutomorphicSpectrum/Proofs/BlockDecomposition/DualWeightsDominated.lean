@@ -1,6 +1,6 @@
 import Mathlib
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLeviDescent.HighestVectorsRegularLine
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WtRInjective
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsCliff
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CPoly
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DualWeightSpacesSpanStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorCharInjective

@@ -1,5 +1,7 @@
 import Development.WeilBound.ThetaLifts.Reductions.WeilPairs.AutEtaA
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.SquareOfApproximation
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.RamificationIdxEqOneOfIsSquare
+import Formalism.LocalToGlobal.IndefiniteReal.HasInfExpF
 
 noncomputable section
 

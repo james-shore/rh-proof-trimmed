@@ -1,5 +1,4 @@
 import Development.EtaleCohomology.EtaleSheaves.CupProductRingLaws
-import Development.EtaleCohomology.TateTwists.EtaleKummerClassSpecificationOfExistenceNaturali
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC

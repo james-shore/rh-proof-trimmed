@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.ConcretePkgSpec
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 
 noncomputable section
 

@@ -1,8 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.Columns.CoefColLemmas
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.BelowFiniteNonempty
-import Development.AbelianVarietyTheory.PublishedTheorems.GlobalTheta.WeylDualWeylLatticesAgreeOfLowestAlcove
-import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.SubstitutionAdjoint
+import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsUnitaryCarries
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.HermitianLatticesTheory Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker GlobalTheory.KerT

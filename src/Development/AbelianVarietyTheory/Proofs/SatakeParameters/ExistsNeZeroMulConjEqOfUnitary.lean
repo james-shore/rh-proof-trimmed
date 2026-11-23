@@ -3,7 +3,6 @@ import Formalism.LocalToGlobal.KernelLattices.KerMtPin
 import Formalism.LocalToGlobal.UnitaryNorms.CharTied
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelEntryUnramifiedUnit
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeCharFiniteOrderUnitIdele
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CharacterCmInfinityType
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker Formalism.L2.Host Formalism.L2.Col Formalism.L2.DIV

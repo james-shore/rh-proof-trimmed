@@ -1,5 +1,4 @@
 import Mathlib
-import GroundTheory.AutomorphicForms.LocallyProfinite
 
 noncomputable section
 

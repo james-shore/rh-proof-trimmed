@@ -1,5 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.XiBound
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.NormLeIntegralFsv
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelZeroEstimateProduct
 
 open Matrix MeasureTheory Filter Topology
 open scoped ComplexConjugate

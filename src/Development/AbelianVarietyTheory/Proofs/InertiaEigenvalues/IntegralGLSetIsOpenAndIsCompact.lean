@@ -1,5 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NormMulApplyLeOne
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.FourierMatch
+
 open GlobalTheory.JR Matrix MeasureTheory Filter Topology
 
 namespace GlobalTheory.JR.GLift

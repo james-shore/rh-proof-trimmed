@@ -1,5 +1,5 @@
 import Mathlib
-import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.KurDefs
+import Formalism.LocalToGlobal.TorsionIntegrality.CMGoodModels.Statement
 
 noncomputable section
 

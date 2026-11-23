@@ -1,6 +1,5 @@
-import Formalism.GL3MeanSquares.GenusMeanAsymptotics.JacobiCharacterSums.DHFinish2Of
-import Formalism.LFunctionBounds.LFunctionBoundsProofs.LPartialSum
-import Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.LGrowth
+import Mathlib
+import Formalism.GL3MeanSquares.SecondEstimateOfIntervalHypothesis
 
 open Finset Complex Classical
 

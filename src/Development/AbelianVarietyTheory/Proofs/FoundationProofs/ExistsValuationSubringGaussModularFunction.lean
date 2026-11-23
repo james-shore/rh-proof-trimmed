@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.EigenOfTwoStep
+import Development.AbelianVarietyTheory.Definitions.Foundations.OpLDOneSubMemTriv
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.NormOrderPfA
 
 noncomputable section

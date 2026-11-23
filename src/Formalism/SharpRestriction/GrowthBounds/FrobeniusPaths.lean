@@ -5,8 +5,7 @@ import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.AntitoneOfAppend
 import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.EqEmptyIffSplit
 import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.JointTypeLatticeSaturated
 import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.IntegralJointTypeSum
-import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.LiftSubstitutionCoeffDivisible
-import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.CanonicalTranslateJetIdentity
+import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.ExteriorWedgeSqZero
 
 noncomputable section
 

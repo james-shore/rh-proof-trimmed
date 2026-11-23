@@ -1,5 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.RootWeights.ExistsScalarMultipleMemDelta
-import Formalism.SharpRestriction.GrowthBounds.RootWeights.WeightEntriesBetweenExtremeHighest
+import Formalism.SharpRestriction.GrowthBounds.CovariantDegrees
 
 noncomputable section
 

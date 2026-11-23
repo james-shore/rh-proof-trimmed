@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.HeightIntegralEstimates
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.LaTIsPrime
 import ReciprocityTheory.SemistableReduction.SphereLogIntegrableStatement
 
 namespace ReciprocityTheory.ChartRestriction.G.T0

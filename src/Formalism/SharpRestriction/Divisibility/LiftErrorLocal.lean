@@ -4,13 +4,13 @@ import Formalism.LocalRingCardinality.DataParams₂
 import Formalism.LocalRingCardinality.DataNChoice
 import Formalism.LocalRingCardinality.DataErr
 import Formalism.LocalRingCardinality.DataKap
-import Formalism.SharpRestriction.ParamsHeightRankConstant
+import Formalism.SharpRestriction.ParConsts
 import Formalism.SharpRestriction.Divisibility.WeightAlgebra
-import Formalism.SharpRestriction.Divisibility.ModuliIntegralCharts
 import Formalism.SharpRestriction.LevelLetterCocycles.IntegralHeckeForms
 import Formalism.SharpRestriction.LevelLetterCocycles.TwGood
-import Formalism.SharpRestriction.GrowthBounds.WeilJacquetShalikaLaw
-import Formalism.SharpRestriction.LevelLetterCocycles.LocsCoverTw
+import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
+import Formalism.SharpRestriction.GrowthBounds.FormalGroupSystem
+import Formalism.LocalRingCardinality.DataRRMetric
 
 noncomputable section
 

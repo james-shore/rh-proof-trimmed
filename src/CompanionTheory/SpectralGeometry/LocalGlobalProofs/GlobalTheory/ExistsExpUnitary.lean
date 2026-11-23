@@ -1,5 +1,4 @@
 import Mathlib
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.ExistsExpEqOfMemKset
 
 namespace GlobalTheory.CompanionTheory.UnitaryExp
 

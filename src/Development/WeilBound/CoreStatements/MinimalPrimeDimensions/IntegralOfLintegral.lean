@@ -2,6 +2,7 @@ import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.MemMinimalPri
 import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.DifferentiableOnSheet
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PFsLogSmul
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnderEqGenericPoint
+import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PSphereMeanLinearBall
 
 set_option autoImplicit false
 

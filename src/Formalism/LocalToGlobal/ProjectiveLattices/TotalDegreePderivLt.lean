@@ -1,6 +1,5 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.PowMapMemOfPowMulMem
 import ReciprocityTheory.SemistableReduction.AlgAll
-import Mathlib
 
 set_option autoImplicit false
 

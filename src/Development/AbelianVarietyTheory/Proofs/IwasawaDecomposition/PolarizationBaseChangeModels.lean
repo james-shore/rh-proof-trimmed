@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SysExOfPol
-import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsHomBirationalModelsAmpleFrames
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HomExtNormalSt
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsIvDOfDefinite
 
 noncomputable section
 

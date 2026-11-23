@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Degenerations.AdmissibleBaseOfCompleteDvr
-import Development.AbelianVarietyTheory.Definitions.Degenerations.HomExtSt
 import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsCountableClosed
 import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.CompRel
 import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsIntegralDegenerationValuesStatement
@@ -12,6 +11,7 @@ import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsIsPullQk
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsFiniteCubeInduction
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsAddInjective
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.DetCondIffOfFieldExtension
+
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open scoped CategoryTheory.Obj BigOperators
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor

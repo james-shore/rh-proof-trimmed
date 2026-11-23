@@ -1,5 +1,5 @@
 import Formalism.SatakeDualWeyl.StatementW
-import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LRowdivLemmas
 
 open MvPolynomial
 

@@ -4,6 +4,8 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.CasC
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSheet
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StPtsBilinear
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PtsIntegrable
+import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

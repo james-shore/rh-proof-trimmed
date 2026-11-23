@@ -1,8 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CosetRefinement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftFrLifts
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharacterSumLocalConstantSecond
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharacterSumLocalConstantFifth
+import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.RedPEqZeroOfDiv
 
 noncomputable section
 

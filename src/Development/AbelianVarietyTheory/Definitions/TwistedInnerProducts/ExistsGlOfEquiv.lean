@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.SimpleSum
+import Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace
 
 open ValuativeRel Matrix IsLocalRing
 open scoped Pointwise

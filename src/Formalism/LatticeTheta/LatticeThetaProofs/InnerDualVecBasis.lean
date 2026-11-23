@@ -1,4 +1,4 @@
-import Formalism.LatticeTheta.LatticeSummableDecay
+import Formalism.LatticeTheta.Statement
 
 open MeasureTheory Filter Complex
 open scoped RealInnerProductSpace

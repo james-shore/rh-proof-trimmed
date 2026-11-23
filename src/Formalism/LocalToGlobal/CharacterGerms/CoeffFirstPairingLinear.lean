@@ -1,7 +1,6 @@
 import Formalism.LocalToGlobal.CharacterGerms.IndependenceBoundRaw
 import Formalism.LocalToGlobal.CharacterGerms.RowTiePHStab
 import Formalism.LocalToGlobal.CharacterGerms.RowTiePGerm
-import Formalism.DropLevelBounds.ConstantCoeffVanishing.UbintConstantCoeffEqZero
 import Formalism.LocalToGlobal.CharacterGerms.CoeffPowCharFrobenius
 
 noncomputable section

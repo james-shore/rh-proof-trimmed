@@ -1,4 +1,4 @@
-import Formalism.FrobeniusBaseCase.FrobeniusBaseCaseProofs.IdentityTwentyB
+import Formalism.FrobeniusBaseCase.Statement
 
 open MvPowerSeries
 

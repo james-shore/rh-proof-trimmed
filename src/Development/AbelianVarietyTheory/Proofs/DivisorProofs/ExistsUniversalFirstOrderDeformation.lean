@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsKSIffKsRel
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.CrysToDRBijective
+import Development.AbelianVarietyTheory.Definitions.Divisors.NonemptyCuspFrame
 
 set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 400000

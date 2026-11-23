@@ -1,7 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ColHeightWith
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.HtPsiLeIffExists
-import Formalism.LocalRingCardinality.DataArith
+import Formalism.SharpRestriction.GlobalSchurBounds.GL3Theta
+import Formalism.LocalToGlobal.Divisibility.DivisionHeightBoundStatement
+import Formalism.LocalToGlobal.Divisibility.Numbers
 
 noncomputable section
 

@@ -1,5 +1,5 @@
 import Development.WeilBound.CoreStatements.LocalThetaKernels.EvlLoc
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsLocallyConstantAddChar
+import Development.AutomorphicSpectrum.Proofs.MembershipProofs.ExistsEqMulApplyZero
 
 noncomputable section
 

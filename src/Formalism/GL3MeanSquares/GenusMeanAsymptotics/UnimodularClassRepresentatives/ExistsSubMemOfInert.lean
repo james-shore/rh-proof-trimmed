@@ -1,4 +1,4 @@
-import Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.NotIsPrimeMapOfSplit
+import Mathlib
 
 namespace Formalism.HermitianLattices.Ext.L3.SplitPrimeIdeals
 

@@ -1,11 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.SiegelWeilAnisotropicHermitian
-import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PolActs
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PolynomialDatumActionOfPairStatement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PolynomialDataCountableRank
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DixmierSchurOfRankLeAleph0Statement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEquivHoweDualityRealPlacesStatement
 
 noncomputable section
 

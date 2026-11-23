@@ -3,10 +3,6 @@ import ReciprocityTheory.DualLattices.WdetDegreeOfSmithRestrict
 import ReciprocityTheory.DualLattices.RestrictHopfOrderLength
 import ReciprocityTheory.DualLattices.BasechangeProjectorIdempotentAction
 import ReciprocityTheory.DualLattices.SmithNormalFormStatement
-import ReciprocityTheory.DualLattices.KilledGen
-import ReciprocityTheory.DualLattices.IdemGen
-import ReciprocityTheory.DualLattices.LenEx
-import ReciprocityTheory.DualLattices.CokernelLengthComparisonOf
 
 namespace ReciprocityTheory.PGsh.Up
 

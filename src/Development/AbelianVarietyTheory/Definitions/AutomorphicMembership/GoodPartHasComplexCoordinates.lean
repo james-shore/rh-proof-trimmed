@@ -2,12 +2,10 @@ import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.PartsOrth
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Formalism.LocalToGlobal.Divisibility.RowSideTie
-import Formalism.LocalToGlobal.IndefiniteReal.IsometricPeriodsOfHypotheses
+import Formalism.SizeWindowBrackets.ChainSlopeWindows.ExistsNsmulMem
+import Formalism.SizeWindowBrackets.ChainSlopeWindows.TruncatedLatticeHolds
+import Lemmata.GeneralBFactThirdAlt.Imports
 import Formalism.LocalToGlobal.IndefiniteReal.LiftCoordinatesInGoodPartOfDefinite
-import Formalism.LocalToGlobal.IndefiniteReal.EqZeroOfMemRangeAdjoint
-import Formalism.SharpRestriction.Divisibility.PrimeDegreeVariant
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RangeOpEqSpanOfFormsTie
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RangeGoodProjectorEqRangeGoodCoordinates
 
 noncomputable section
 

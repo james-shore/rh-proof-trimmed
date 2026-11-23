@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.SatakeDualWeyl.StatementF
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.AevalRootEqZeroIff
-import GroundTheory.LocalFields.FilteredSurj
 
 noncomputable section
 

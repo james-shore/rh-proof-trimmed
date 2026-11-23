@@ -1,5 +1,6 @@
 import Development.AbelianVarietyTheory.Definitions.Foundations.Letter
-import Development.AbelianVarietyTheory.Definitions.Foundations.IsLocallyConstantCycMod
+import Development.AbelianVarietyTheory.Definitions.Foundations.FinalTheorems
+
 open GlobalTheory.KZ GlobalTheory.Ord2 NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal UpperTheory.V
 open scoped MatrixGroups
 

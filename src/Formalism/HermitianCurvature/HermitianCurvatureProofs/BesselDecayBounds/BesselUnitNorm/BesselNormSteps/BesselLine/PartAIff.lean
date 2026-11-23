@@ -1,4 +1,4 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.BesselDecayBounds.BesselUnitNorm.BesselNormSteps.BesselLine.Development
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.BesselDecayBounds.BesselUnitNorm.BesselLine
 
 open MeasureTheory Matrix Finset
 open scoped InnerProductSpace

@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.GaloisLevelStructure.TiedRowLoc
-import Mathlib
 
 set_option synthInstance.maxHeartbeats 200000
 

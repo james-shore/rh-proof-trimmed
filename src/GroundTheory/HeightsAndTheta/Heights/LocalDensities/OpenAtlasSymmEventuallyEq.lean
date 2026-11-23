@@ -1,8 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.LocalDensities.Statements
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsSemipositiveOn
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.AMassStA
-import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterFS
 
 set_option maxSynthPendingDepth 1
 

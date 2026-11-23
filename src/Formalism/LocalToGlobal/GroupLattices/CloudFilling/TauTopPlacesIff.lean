@@ -1,7 +1,6 @@
-import Formalism.LocalToGlobal.GroupLattices.CloudFilling.WLeWjOne
+import Formalism.LocalToGlobal.GroupLattices.LevelGatherings.FiniteClassSetOfLe
 import Formalism.LocalToGlobal.GroupLattices.CloudFilling.ExistsPowOrbRep
-import Formalism.SharpRestriction.GrowthBounds.DefsInst
-import Formalism.LocalToGlobal.GroupLattices.CloudFilling.GatRecStepFrob
+import Formalism.LocalRingCardinality.SpanPowerMembership.GatTies
 
 noncomputable section
 

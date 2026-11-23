@@ -1,6 +1,6 @@
 import Mathlib
 import Development.ResolutionOfSingularities.Foundations.BlowupUniversalProperty
-import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionOfSingularities
+
 universe u
 
 open CategoryTheory CategoryTheory.Limits Opposite AlgebraicGeometry TopologicalSpace

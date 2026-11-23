@@ -1,4 +1,5 @@
 import Development.AutomorphicArithmetic.ThickFrames.MarkedLow
+import Formalism.SubspaceCounting.GoodOrbitIntervalTileCondition
 
 open Finset UpperTheory.BernoulliSumsFrobeniusOrbits Formalism.G0
 open Classical

@@ -1,5 +1,4 @@
 import Formalism.GradedWeylDivisibility.StatementB
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LFockqLemmas
 import Formalism.RealPlaceAnalysis.RealPlaceTaylor.ProdFactorialSupportSubSingle
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LFocksLemmas
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.FockRowAdj

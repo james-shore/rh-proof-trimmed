@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.SelfDualAt
-import Formalism.LocalToGlobal.HermitianForms.TiedStep
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.SplitPlaceLatticeComponentsStatement
+import Formalism.LocalToGlobal.GroupLattices.LevelGatherings.FiniteClassSetOfLe
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.SplitIntLoc
+
 open Formalism.BasicNotions Formalism.UG Formalism.L2.Forms NumberField IsDedekindDomain Matrix GlobalTheory.St.G
 open scoped TensorProduct
 

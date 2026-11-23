@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsMatrixForm
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsStrictlySemistableAlt
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.YonedaAddNaturalityLeft
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsGrothendieckAbelianPresheaf
 
 noncomputable section

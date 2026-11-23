@@ -1,8 +1,9 @@
 import Formalism.HermitianCurvature.StatementB
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.IntegralZeroFrequencyInvariant
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.AdjointnessPolynomiallyBounded
-import Formalism.FormalDegreeBessel.FinalG
-import Formalism.FormalDegreeBessel.FinalBF
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.IntegralZeroFrequencyInvariant
+import Formalism.FormalDegreeBessel.FormalDegreeRatio.BesselUnitaryEquivHolds
+import Formalism.FormalDegreeBessel.FormalDegreeRatio.BFCell
+import Formalism.RealPlaceAnalysis.StatementU
 
 open Matrix MeasureTheory Filter Topology
 open scoped ComplexConjugate ENNReal

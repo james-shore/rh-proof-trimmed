@@ -1,5 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.TheoremPCompactOfSquareDensity
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelOneSquareIntegrableGeneral
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.ParametersUPrimeForULower
 
 open MeasureTheory Filter Topology
 open scoped Matrix

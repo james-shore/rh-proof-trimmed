@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.CharacterGerms.EndomorphismLimitIntegral
+import Formalism.LocalToGlobal.CharacterGerms.CoeffSubstEqSum
 
 noncomputable section
 

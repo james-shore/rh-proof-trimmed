@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.AdmissibleParameterJoins.GandSq
+import Formalism.SharpRestriction.AdmissibleParameterJoins.GandSp
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.MemWOfNorm
 
 noncomputable section

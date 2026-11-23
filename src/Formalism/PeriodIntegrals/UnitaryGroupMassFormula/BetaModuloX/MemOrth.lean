@@ -1,7 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.Skeleton
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaUniqueness.Lemmas
-import Formalism.HermitianLattices.HermitianLatticesProofs.AutFinite
+import Formalism.SharpRestriction.CuspSpanNormBounds.FlagEEqHyperbolic
 
 noncomputable section
 

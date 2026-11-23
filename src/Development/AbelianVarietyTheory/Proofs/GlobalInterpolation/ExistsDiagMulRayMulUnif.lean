@@ -1,9 +1,9 @@
 import Mathlib
 import ReciprocityTheory.NeutralLocalFields.Reciprocity
 import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipB
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.LFunctionPositiveConductorFourEight
-import Development.AbelianVarietyTheory.Definitions.HeightFunctions.FiniteDimensionalOfSz
+import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.SmulCommClassGalIntegers
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsForallAbvSubLt
+import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
 
 noncomputable section
 

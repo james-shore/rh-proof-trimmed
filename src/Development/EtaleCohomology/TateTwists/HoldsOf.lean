@@ -12,7 +12,6 @@ import Development.EtaleCohomology.TateTwists.ExactLocPf
 import Development.EtaleCohomology.TateTwists.Delta
 import Development.EtaleCohomology.TateTwists.EtaleChainCochainExistsOfEvalData
 import Development.EtaleCohomology.TateTwists.EtaleChainCochainEvalBasicPropertiesHold
-import Development.EtaleCohomology.TateTwists.EtaleKummerTorsorRootsOfUnityListTorsionExistsOf
 
 namespace LateralTheory.Fix.EtaleKummerClassExplicitCocycle
 open LateralTheory.EtaleFoundations

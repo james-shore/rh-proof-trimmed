@@ -1,6 +1,5 @@
 import Formalism.SharpRestriction.CuspSpanNormBounds.LocalGroupInFamilyNontrivial
 import Formalism.SharpRestriction.ParConsts
-import Formalism.SharpRestriction.CuspSpanNormBounds.LeSCSCl
 
 noncomputable section
 

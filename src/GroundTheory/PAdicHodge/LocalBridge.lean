@@ -2,10 +2,10 @@ import Mathlib
 import GroundTheory.LocalFields.Examples
 import GroundTheory.LocalFields.Interface
 import GroundTheory.LocalFields.Uniqueness
-import GroundTheory.LocalFields.FiniteExtension
 import GroundTheory.LocalFields.DifferentGalois
 import GroundTheory.LocalFields.UpperNumbering
 import GroundTheory.PAdicHodge.PerfectoidField
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

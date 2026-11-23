@@ -1,5 +1,4 @@
 import Mathlib
-import ReciprocityTheory.AnalyticForms.MaIntEmpty
 import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.EventuallyDifferentiableAtOfContDiffAtTwo
 
 open Matrix Complex ComplexConjugate

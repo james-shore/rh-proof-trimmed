@@ -1,6 +1,6 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.IsMultiHomogOfIsChowForm
 import GroundTheory.HeightsAndTheta.Heights.ChowForms.Assembly
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSt
 import GroundTheory.HeightsAndTheta.Heights.ChowForms.PAffineChartTrdeg
 
 set_option maxSynthPendingDepth 1

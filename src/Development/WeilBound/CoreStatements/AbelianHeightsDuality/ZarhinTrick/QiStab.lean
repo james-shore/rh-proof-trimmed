@@ -1,5 +1,4 @@
 import Mathlib
-import Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.QiCoreDefs
 
 set_option autoImplicit false
 

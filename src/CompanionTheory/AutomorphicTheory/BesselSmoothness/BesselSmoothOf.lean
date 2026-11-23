@@ -1,4 +1,4 @@
-import Formalism.HermitianCurvature.StatementJF
+import Formalism.HermitianCurvature.StatementQ
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Matrix
 open scoped ContDiff

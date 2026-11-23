@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.JSmul
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ResBound
 
 namespace GlobalTheory.TopWindow
 

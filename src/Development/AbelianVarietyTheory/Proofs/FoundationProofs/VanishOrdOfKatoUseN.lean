@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.FinalTheorems
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.VanishOrdOfKatoUse
-import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KatoEulerSystems.KatoNOfKato
 
 noncomputable section
 

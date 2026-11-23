@@ -1,5 +1,4 @@
 import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.HermitianForms.AvgData
-import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.HermitianForms.StepForm
 
 noncomputable section
 

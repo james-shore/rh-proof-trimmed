@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.Columns.AdjointFrobeniusPreservesRamified
 import Formalism.LocalToGlobal.Columns.CoefficientsModP
-import Formalism.LocalToGlobal.Columns.AtTOwedS
 
 open NumberField IsDedekindDomain Module
 

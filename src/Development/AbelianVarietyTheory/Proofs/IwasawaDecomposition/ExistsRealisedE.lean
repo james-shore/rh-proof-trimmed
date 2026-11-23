@@ -3,6 +3,8 @@ import Formalism.LocalToGlobal.BesselHermitianTheta.AllTied
 import Formalism.LocalToGlobal.IndefiniteReal.DatumVec
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsSplittingCharacterSelf
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemberPeriodAtTrivialPositionSpec
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUniqueInfFam
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PeterssonNormSqPosAutomorphicFunctionUnitaryStatement
 
 noncomputable section
 

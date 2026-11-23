@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.TwistedAutomorphicForms.EqOneOfMemLev
-import Mathlib.RingTheory.DedekindDomain.Different
 
 open NumberField IsDedekindDomain
 

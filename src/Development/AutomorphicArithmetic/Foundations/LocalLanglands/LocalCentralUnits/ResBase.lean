@@ -1,15 +1,11 @@
 import Development.AutomorphicArithmetic.Foundations.LocalLanglands.RecTTransport
-import Mathlib
-import Development.DiscreteGroups.GlobalIrreducibility.DzMatchCut
 import Development.DiscreteGroups.GlobalIrreducibility.DzGalRes
-import Development.DiscreteGroups.GlobalIrreducibility.DzTame
-import Development.DiscreteGroups.GlobalIrreducibility.DzNormV
 import Development.DiscreteGroups.GlobalIrreducibility.DzIneEq
 import Development.DiscreteGroups.GlobalIrreducibility.ExistsIneOfVEqOne
 import Development.DiscreteGroups.GlobalIrreducibility.ContinuousResI
-import Development.DiscreteGroups.GlobalIrreducibility.DzGalW
 import Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.FinrankK
 import Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.TameRecAll
+import Development.DiscreteGroups.GlobalIrreducibility.DzGalW
 
 noncomputable section
 

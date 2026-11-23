@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.MemberChainFormsLevelPrimeEqMember
-import Formalism.LocalToGlobal.UnitaryNorms.CharRat
-import Formalism.SharpRestriction.GrowthBounds.ChartRank.HypTwA
-import Formalism.SharpRestriction.GrowthBounds.ChartRank.HypChi
 
 noncomputable section
 

@@ -1,6 +1,8 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.AnisotropicUnitaryRes
 import GroundTheory.AutomorphicForms.AnisotropicHeight
+import GroundTheory.AutomorphicForms.AnisotropicOrbit
+
 set_option maxSynthPendingDepth 1
 
 open Module Matrix TensorProduct NumberField IsDedekindDomain

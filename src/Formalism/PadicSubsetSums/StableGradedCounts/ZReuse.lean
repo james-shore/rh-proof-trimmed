@@ -1,10 +1,6 @@
 import Formalism.PadicSubsetSums.CentralIdempotents.PrimitiveRootFifteenSubOneUnit
-import Mathlib
-import Formalism.GaloisIrreducibility.NoSolvableTransitive
-import Formalism.ResultantValuation.ResultantAdjugateProofs.Window
-import Formalism.ResultantValuation.ResultantAdjugateProofs.Parabolic
+import Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.OneNonUnit
 import Formalism.ResultantValuation.ResultantAdjugateProofs.Laplace
-import Formalism.CyclotomicNorms.StatementI
 
 open Polynomial
 

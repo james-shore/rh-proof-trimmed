@@ -1,6 +1,6 @@
 import Formalism.LocalToGlobal.UnitaryNorms.MemFIffReal
-import Formalism.LocalToGlobal.UnitaryNorms.PowValCast
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostRam
+import Formalism.LocalToGlobal.UnitaryNorms.PowValCast
 
 noncomputable section
 

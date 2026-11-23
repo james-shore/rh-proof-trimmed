@@ -1,6 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.Columns.FiniteSumNonzeroLargeDepth
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.OnesRepresent
+import Formalism.HermitianLattices.HermitianLatticesProofs.UnimodUnramUnique
 
 open NumberField IsDedekindDomain MeasureTheory ValuativeRel Matrix
 open Formalism.BasicNotions Formalism.HermitianLatticesTheory Formalism.L2.DIV Formalism.L2.Col

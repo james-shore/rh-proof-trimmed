@@ -1,4 +1,4 @@
-import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.LeviOf
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsUnifAt
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.SchwartzBilinear.QuotientOutRightInvariant
 
 noncomputable section

@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.DataN
-import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.UniNilp
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsSSRepOfTraceNondegenerate
 
 open Formalism.MainNotions.N GlobalTheory.TraceSemisimple

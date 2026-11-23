@@ -1,9 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Saturated
-import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.LettersFreeOfRank
 import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.PointRingCommRing
-import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
-import Formalism.LocalRingCardinality.AdicCompletionLocal.LocTied
+import Formalism.LocalRingCardinality.AdicCompletionLocal.InstIsAdicCompleteOCSpanSingletonSetCast
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SumPart
 
 namespace GlobalTheory.WachUse

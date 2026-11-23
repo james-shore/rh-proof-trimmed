@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.JetCones.SymCapRev
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
-import Formalism.RealPlaceAnalysis.FinalF
+import Formalism.RealPlaceAnalysis.InstMeasurableSpaceUJ
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.SatisfiesGlRelationsBilinearLeft
 import Development.AutomorphicSpectrum.Proofs.JetProofs.EvFirst
 
 open GlobalTheory.CompanionTheory.AlgRepEndIrreducible PI.UpqRep Matrix

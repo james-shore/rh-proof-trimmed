@@ -1,5 +1,4 @@
 import Formalism.FilteredPoleLength.ReducedBasisBounds.LengthBaseChangeLocal
-import Formalism.FilteredPoleLength.LocalDescentLevels.MemSpanBasisFun
 
 noncomputable section
 

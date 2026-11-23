@@ -1,8 +1,6 @@
-import Formalism.PadicSubsetSums.CentralIdempotents.WindowSums
-import Formalism.PadicSubsetSums.StableGradedCounts.ARCReuse
-import Formalism.PadicSubsetSums.StableGradedCounts.LiftingTheExponent
-import Formalism.PadicSubsetSums.CentralIdempotents.CentralIdempotentIntegral
-import Formalism.PadicSubsetSums.StableGradedCounts.PadicValCardGL
+import Mathlib
+import Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.OneNonUnit
+import Formalism.ResultantValuation.ResultantAdjugateProofs.Laplace
 
 namespace Formalism.IrreducibleCountingLemmas.WindowSums
 

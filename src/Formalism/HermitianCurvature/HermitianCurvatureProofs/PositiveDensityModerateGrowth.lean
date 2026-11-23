@@ -1,5 +1,7 @@
 import Formalism.HermitianCurvature.StatementJC
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelFormSesquilinearFiniteClass
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.BigCellVanishingOfCommute
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.LieDecompositionLocal
 
 open Formalism.FourierDecayAlt Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.B Matrix
 

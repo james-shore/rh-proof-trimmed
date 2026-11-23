@@ -1,4 +1,4 @@
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.projection2.Assemble
+import Formalism.PeriodIntegrals.OneCosetSharp
 
 noncomputable section
 

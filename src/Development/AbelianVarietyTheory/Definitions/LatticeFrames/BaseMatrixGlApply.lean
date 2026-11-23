@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.FrameTop
-import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IsTameFinitePlaceHermitianAll
-import Formalism.LocalRingCardinality.PosOfIsomEmb
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DefClassNum
 
 noncomputable section
 

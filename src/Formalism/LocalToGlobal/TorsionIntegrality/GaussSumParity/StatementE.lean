@@ -1,8 +1,8 @@
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.StatementC
-import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.StatementK
-import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.StatementJ
+import Formalism.LocalToGlobal.TorsionIntegrality.CMGoodModels.Statement
+import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.CompInv
+import Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.CurveHyp
 import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.StatementK
-import Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.StatementB
 
 noncomputable section
 open scoped BigOperators

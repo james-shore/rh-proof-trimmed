@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.GL3MeanSquares.SignsFromTrianglesSquares
 
 noncomputable section
 

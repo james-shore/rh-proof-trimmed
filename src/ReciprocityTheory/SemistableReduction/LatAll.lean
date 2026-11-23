@@ -1,8 +1,7 @@
 import ReciprocityTheory.SemistableReduction.LemmaH
-import ReciprocityTheory.SemistableReduction.TorsionNonvanishStatement
 import ReciprocityTheory.SemistableReduction.ApproxGraph
 import ReciprocityTheory.SemistableReduction.ApproxBasis
-import ReciprocityTheory.SemistableReduction.Unipotent
+import ReciprocityTheory.SemistableReduction.LatSemiSt
 import ReciprocityTheory.SemistableReduction.DegAddHolds
 import ReciprocityTheory.SemistableReduction.OnePolyGrowth
 import ReciprocityTheory.SemistableReduction.BWPoly

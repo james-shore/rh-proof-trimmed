@@ -1,8 +1,8 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.LocalClassFormation.CupSymbolReal
-import GroundTheory.ProfiniteCohomology.LocalClassFormation.CupSymbolBridge
 import GroundTheory.ProfiniteCohomology.CartierDual
 import GroundTheory.ProfiniteCohomology.PoincareDuality.NsmulEqZeroOfNonemptyAddEquiv
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

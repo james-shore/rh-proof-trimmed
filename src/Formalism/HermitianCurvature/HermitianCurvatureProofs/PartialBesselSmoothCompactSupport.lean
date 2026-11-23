@@ -1,5 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.PbWords
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.LeftFubiniNormalizedTower
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.PsiContOf
+import Formalism.RealPlaceAnalysis.StatementU
 
 open Matrix MeasureTheory Filter Topology
 

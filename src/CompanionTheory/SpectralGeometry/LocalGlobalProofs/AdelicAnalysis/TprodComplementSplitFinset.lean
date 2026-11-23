@@ -1,5 +1,4 @@
 import Mathlib
-import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.InfiniteProductMultipliable
 
 open MeasureTheory Topology
 open scoped ENNReal NNReal Matrix

@@ -1,5 +1,4 @@
 import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PshBasic
-import ReciprocityTheory.AnalyticForms.AnalyticCharts.NullZero
 
 noncomputable section
 

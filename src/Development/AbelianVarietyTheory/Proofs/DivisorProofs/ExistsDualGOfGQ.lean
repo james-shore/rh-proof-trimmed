@@ -2,6 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsUnitaryOnTheta
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.FinTensMemLatO
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsInverseChart
+import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
 
 noncomputable section
 

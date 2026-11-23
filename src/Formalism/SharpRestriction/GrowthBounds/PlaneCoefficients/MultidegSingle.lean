@@ -1,5 +1,6 @@
 import Formalism.SharpRestriction.GrowthBounds.PlaneCoefficients.RestPlOf
 import Formalism.SharpRestriction.GrowthBounds.PolynomialLevels.FrRevInj
+import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.MemSupportSumMonomial
 
 noncomputable section
 

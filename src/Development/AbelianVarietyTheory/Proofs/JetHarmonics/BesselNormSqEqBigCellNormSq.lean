@@ -1,9 +1,10 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Jets.SideFam
-import Development.AbelianVarietyTheory.Definitions.Jets.SumIoPr
-import Development.AbelianVarietyTheory.Definitions.Jets.TauZero
+import Development.AbelianVarietyTheory.Definitions.Jets.SumIoPrAlt
+import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
+import Formalism.HermitianCurvature.StatementTBB
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutLemB
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.RegularityAtPlaceOfSubadditive
+
 open BranchingSupport Formalism.FourierDecayAlt Formalism.FourierDecayAlt.ThreeDimData Matrix MeasureTheory Finset
 open scoped InnerProductSpace ENNReal
 

@@ -1,6 +1,6 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.GL2.GJZetaDefs
-import GroundTheory.AutomorphicForms.MeasuresGL
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

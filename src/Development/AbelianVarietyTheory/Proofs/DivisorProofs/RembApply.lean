@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.TraceDualDifferent
 
 noncomputable section
 

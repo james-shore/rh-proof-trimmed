@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.LevelChange
-import Development.AbelianVarietyTheory.Definitions.Divisors.HxiTZeroComb
+import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.IsCoordA
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelPosOfCoprime
 
 noncomputable section
 

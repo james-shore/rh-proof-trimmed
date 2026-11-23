@@ -1,8 +1,7 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ShortWIntModel
-import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.EisensteinRecursion
 import Formalism.LocalToGlobal.TorsionIntegrality.SecondCoefficientNorms.CurveJetsUnitBall
-import Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.FinalA
+import Formalism.TorsionNormIteration.LubinTateExample
 
 noncomputable section
 

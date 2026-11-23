@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsoPartStable
-import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactExponentialSurjective
+import Formalism.RealPlaceAnalysis.FinalF
+
 open MeasureTheory Matrix Finset Formalism.MainNotions.S Formalism.REAL Formalism.QuantumDeterminants GlobalTheory.Count GlobalTheory.Dec GlobalTheory.DSId GlobalTheory.Jet
 open scoped InnerProductSpace ComplexOrder
 

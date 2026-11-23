@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.SymmetricFlagBasisVectorsApplyCentre
+import Formalism.HermitianLattices.HermitianLatticesProofs.UnimodUnramUnique
 
 open Formalism.HermitianLatticeCounting.S6 GlobalTheory.HermLat GlobalTheory.SA Matrix
 

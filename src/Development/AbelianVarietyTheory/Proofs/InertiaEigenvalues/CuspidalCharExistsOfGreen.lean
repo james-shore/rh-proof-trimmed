@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.GreenCuspidalIff
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.LabelDatum
 import Formalism.UnipotentAdelicQuotients.CuspidalCharExists
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MemRootsBarXSubC
 import Formalism.LocalToGlobal.Divisibility.ProjLemmas

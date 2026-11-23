@@ -2,6 +2,7 @@ import Mathlib
 import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnIso
 import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgPhInt
 import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.NormNatCastClOfNotDvd
+import Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.FinalA
 
 noncomputable section
 

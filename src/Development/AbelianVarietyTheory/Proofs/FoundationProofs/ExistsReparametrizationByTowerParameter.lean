@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.ApplyEqOfMemAdjoin
-import Development.AbelianVarietyTheory.Definitions.Foundations.IsTopWTopWOfExists
+import Development.AbelianVarietyTheory.Definitions.Foundations.EeProd
 
 noncomputable section
 

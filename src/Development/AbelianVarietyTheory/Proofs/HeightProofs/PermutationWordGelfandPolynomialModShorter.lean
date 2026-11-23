@@ -1,5 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsLieDataCircle
+import Formalism.RealPlaceAnalysis.StatementA
+
 open GlobalTheory.SmoothForms NumberField Matrix
 open scoped ContDiff Topology
 

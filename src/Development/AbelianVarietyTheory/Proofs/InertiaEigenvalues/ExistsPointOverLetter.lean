@@ -1,9 +1,9 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.WachCoordinates
 import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.IsExpSmulA
-import Formalism.SharpRestriction.LevelLetterCocycles.LocalizationQuotientSeparatedDvd
-import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.IsAdicCompleteOfLe
+import Formalism.LocalRingCardinality.SpanPowerMembership.NDLocE
 import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.ZpowNeOneOfClose
+import Formalism.SharpRestriction.LevelLetterCocycles.QuotientHomNonvanishingBound
 
 noncomputable section
 open Classical

@@ -2,6 +2,7 @@ import Development.WeilBound.CoreStatements.AbelianHeightsDuality.UnitaryDensity
 import Development.WeilBound.ThetaLifts.LatticeBasics.ConstOfGood
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.UniqPlugPl
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.UnitaryMatrixEqProdQuasiReflectionsStatement
+import Development.WeilBound.ThetaLifts.LatticeBasics.PairsStable
 
 noncomputable section
 

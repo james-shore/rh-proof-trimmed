@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.PadicSubsetSums.CentralIdempotents.GaloisConjCentralIdempotent
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.BlockEmbeddingFactors
+import Development.AbelianVarietyTheory.Definitions.Divisors.SplitDoublingNBlock
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeviTensorBlockExt
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.SpanRangeEqTopOfIsIrreducible
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsIrreducibleOuterTprod

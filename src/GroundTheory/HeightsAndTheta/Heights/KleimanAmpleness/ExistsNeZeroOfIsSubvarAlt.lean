@@ -7,7 +7,8 @@ import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsExtraExtra
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsFurtherExtra
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.AssemblyBase
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PGraphClosed
-import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.TwistAlg
+import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ExistsSumEqOneOfMulEqOne
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Kleiman.SectionsOverLocalization

@@ -1,8 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsCliff
 import Development.AutomorphicSpectrum.Definitions.JetCones.SymCapRev
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
-import Formalism.RealPlaceAnalysis.FinalF
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.SatisfiesGlRelationsBilinearLeft
 import Development.AutomorphicSpectrum.Proofs.JetProofs.EvFirst
 import Development.AutomorphicSpectrum.Proofs.JetProofs.GraphExtend
 

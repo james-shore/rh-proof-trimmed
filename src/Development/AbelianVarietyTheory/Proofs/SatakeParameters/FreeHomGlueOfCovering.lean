@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CoveringOfForallMem
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsZeroFreeSchOfIsEmpty
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsZeroChains
+
 open CategoryTheory Limits AlgebraicGeometry Opposite
 
 noncomputable section

@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
-import Formalism.LocalRingCardinality.DataBu
-import Formalism.LocalRingCardinality.DataTies
-import Formalism.LocalRingCardinality.DataDIVDefs
+import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
+import Formalism.LocalRingCardinality.DataDIV
+import Formalism.SharpRestriction.GrowthBounds.DataGChain
 
 noncomputable section
 

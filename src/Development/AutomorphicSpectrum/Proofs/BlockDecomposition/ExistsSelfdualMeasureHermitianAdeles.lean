@@ -1,8 +1,7 @@
 import Mathlib
-import Formalism.UnipotentAdelicQuotients.SiegelWeilUnitaryConvergent
+import Formalism.UnipotentAdelicQuotients.SWXSDefs
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsSelfDualForm
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.TensorLocallyCompactRing
-import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.TensorLocallyCompactRingStatement
 
 noncomputable section
 

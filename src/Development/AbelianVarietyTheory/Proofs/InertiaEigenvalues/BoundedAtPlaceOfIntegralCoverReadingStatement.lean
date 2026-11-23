@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BoundedAtPlaceOfIntegralCoverReading
-import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.TwistSeries
-import Development.AbelianVarietyTheory.Definitions.ThetaValues.LeCovCoeff
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.BddGood
 
 open NumberField IsDedekindDomain
 open scoped TensorProduct

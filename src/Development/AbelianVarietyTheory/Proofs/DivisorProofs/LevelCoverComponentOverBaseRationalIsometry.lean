@@ -6,6 +6,8 @@ import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsRationalIsomet
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RationalIsometryMapsFlagDomainFrames
 import Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.ExistsNotIntegralLie
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsUnfFamily
+import Development.AbelianVarietyTheory.Definitions.ThetaValues.LeCovCoeff
+
 open NumberField MeasureTheory Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.L2.Theta Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.ChartRestriction.G.AR.Inst ReciprocityTheory.ChartRestriction.G.AR.Up GlobalTheory.AllWt GlobalTheory.LevGeo GlobalTheory.LevPull GlobalTheory.FieldBC
 open scoped ENNReal
 

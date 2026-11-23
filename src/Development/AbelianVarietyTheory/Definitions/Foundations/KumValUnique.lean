@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.IsLocallyConstantCycMod
-import Development.AbelianVarietyTheory.Definitions.Foundations.CyclotomicDvdExpandOfCoprime
+import Development.AbelianVarietyTheory.Definitions.Foundations.FinalTheorems
 
 noncomputable section
 

@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.IndefiniteReal.CongNormal
-import Formalism.LocalToGlobal.IndefiniteReal.PeterssonHilbertSpace
 import Formalism.LocalToGlobal.Columns.MtRowRep
 
 noncomputable section

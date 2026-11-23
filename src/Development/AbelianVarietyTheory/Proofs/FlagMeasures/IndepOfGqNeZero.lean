@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DiagMemCongruencePairs
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.FrameLats
 
 noncomputable section
 

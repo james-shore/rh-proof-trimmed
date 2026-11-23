@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.PeriodIntegrals.FinOrdAd
+import Formalism.PeriodIntegrals.AdCpctDen
 
 noncomputable section
 

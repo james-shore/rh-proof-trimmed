@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.Columns.CoefficientsModP.NablaIndependenceHolds
-import Formalism.LocalToGlobal.Columns.CoefficientsModP.TauLatticeLatticeHolds
 
 open MvPolynomial NumberField IsDedekindDomain
 open scoped Matrix

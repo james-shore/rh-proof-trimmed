@@ -1,5 +1,4 @@
 import Formalism.LocalRingCardinality.PosOfIsomEmb
-import Mathlib
 
 noncomputable section
 

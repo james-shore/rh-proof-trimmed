@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.ThetaValues.LetAct
 import Development.AbelianVarietyTheory.Counterexamples.LevelGroupExamples.TotalDegreeEqOfMemHarmA
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LHwlineLemmas
 
 set_option autoImplicit false
 

@@ -1,6 +1,8 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ChartEqsOfParts
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.HermSumRight
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.StabilizerFixesTailCoords
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.HermSelfNeZero
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJfSSymExp
 
 open Matrix Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt
 open scoped ComplexOrder

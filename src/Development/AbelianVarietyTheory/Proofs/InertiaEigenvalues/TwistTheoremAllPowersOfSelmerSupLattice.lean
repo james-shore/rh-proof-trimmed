@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.OffRange
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.GaloisSideTwistedSelmerAuxiliaryPrimes
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AevalOneSubOne
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TwistedSelmerLengthsEqDeterminantValuation
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GaloisTwistedSelmerAuxprimesOfMatrixAndBounds
@@ -9,6 +8,7 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExportAllOfSix
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CentralIdempotentOfCommStatement
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AdmIntOfSupLawsStatement
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AdmT3OfHeckeSemisimpleStatement
+
 open GlobalTheory.LiftLeaf GlobalTheory.TwSys GlobalTheory.TwAll GlobalTheory.SupLaw Formalism.BasicNotions Formalism.MainNotions Formalism.ConjugateSelfDual ReciprocityTheory.Gal NumberField IsDedekindDomain
 
 namespace GlobalTheory.TwExportSup

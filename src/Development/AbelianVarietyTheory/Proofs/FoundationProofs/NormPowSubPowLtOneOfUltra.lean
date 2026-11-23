@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ChSumSubCMul
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.NormSubOnePowThreeLe
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SeriesEqZeroOfValsTendstoZero
 
 namespace GlobalTheory.PowerDifferenceNorm
 

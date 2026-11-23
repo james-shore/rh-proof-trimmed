@@ -1,5 +1,4 @@
 import Development.EtaleCohomology.EtaleSheaves.KummerInduction
-import Mathlib.AlgebraicGeometry.AffineTransitionLimit
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC LateralTheory.E.t_E2Cut LateralTheory.E.ContPf LateralTheory.E.ContStepPf LateralTheory.E.StepKPf

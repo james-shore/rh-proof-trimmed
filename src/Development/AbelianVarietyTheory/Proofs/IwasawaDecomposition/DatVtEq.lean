@@ -1,8 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FieldValuesMemFixedField
-import Formalism.LocalToGlobal.GaloisLevelStructure.TiedLevel
+import Formalism.LocalToGlobal.GaloisLevelStructure.DefsLevel
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.HeckeStdTwOfStd
-import Formalism.LocalToGlobal.IndefiniteReal.FrameExistence.SelfDualFramesExistOfDiagonal
 
 noncomputable section
 

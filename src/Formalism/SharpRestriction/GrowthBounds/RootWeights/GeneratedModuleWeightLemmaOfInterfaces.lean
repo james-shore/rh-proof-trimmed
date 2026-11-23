@@ -1,4 +1,6 @@
 import Formalism.SharpRestriction.GrowthBounds.RootWeights.SubstitutionPreservesOfGenerators
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.ValuationBoundDetPowerFactor
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.PropertySubmoduleWeightEntryComponent
 
 noncomputable section
 

@@ -1,5 +1,7 @@
 import Mathlib
 import GroundTheory.GlobalFields.ComplexMultiplication.BaseChangeGalois
+import GroundTheory.GlobalFields.ComplexMultiplication.BaseChangeDegree
+import GroundTheory.GlobalFields.ComplexMultiplication.AutCFixed
 
 namespace GroundTheory.Global
 

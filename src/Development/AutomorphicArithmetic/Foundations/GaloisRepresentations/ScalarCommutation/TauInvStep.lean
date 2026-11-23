@@ -1,9 +1,7 @@
 import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.AuxiliaryPrimeFunction
 import GroundTheory.AutomorphicForms.AffineBruhat
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IwahoriSubgroupDefinitionsAgree
-import Development.AutomorphicArithmetic.IwahoriCommensurability.IsCommensuratedIwahoriGl
-import Development.AutomorphicArithmetic.IwahoriCommensurability.AffineWeylSimpleReflectionCoset
+import Development.AbelianVarietyTheory.Definitions.Divisors.HolCuspLevDeltaNeBot
 
 set_option autoImplicit false
 

@@ -3,7 +3,6 @@ import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.Ba
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCompactLatticeGL
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NonemptyEquivMultiProdOne
 import Development.AbelianVarietyTheory.Definitions.Foundations.NotHasParamOfSubsingleton
-import Development.AbelianVarietyTheory.PublishedTheorems.PublishedFoundations.BranchingRankTwo
 
 noncomputable section
 

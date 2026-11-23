@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.PeriodLatticeSpans
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExponentialFamilyPeriods
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsHodgeGram
-import Development.AbelianVarietyTheory.Definitions.Uniformization.PointEqOfSubsingleton
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl GlobalTheory.CompanionTheory.Ar.Flat Filter Topology Metric

@@ -1,6 +1,6 @@
 import Development.WeilBound.ThetaLifts.LatticeBasics.UnfoldB
-import Development.WeilBound.ThetaLifts.LatticeBasics.HypothesesE
 import Development.WeilBound.CoreStatements.AutomorphicKernels.EisensteinSeriesG2.CompactStandardSubgroup.KCptPf
+import Development.WeilBound.CoreStatements.AutomorphicKernels.EisensteinSeriesG2.G2HaarMeasure.ContinuousInFrame
 
 noncomputable section
 

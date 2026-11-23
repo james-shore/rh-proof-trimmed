@@ -1,6 +1,5 @@
 import Formalism.LocalToGlobal.Columns.HeckeInert
-import Formalism.LocalToGlobal.Columns.GSetLemmas
-import Formalism.LocalToGlobal.Columns.UnipotentRightActionFunctionsW
+import Formalism.LocalToGlobal.Columns.RowForms
 
 noncomputable section
 

@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.CanonicalOfAbelianDeRham
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsKSValueOneOfRetraction
 
 set_option autoImplicit false
 

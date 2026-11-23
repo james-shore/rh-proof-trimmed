@@ -1,5 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ChartEqsOfParts
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.StabilizerFixesTailCoords
+import Formalism.RealPlaceAnalysis.StatementU
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Matrix
 

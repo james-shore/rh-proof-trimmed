@@ -1,5 +1,4 @@
 import Mathlib
-import ReciprocityTheory.CommutativeAlgebra.CohenMacaulay.ModDepthGE
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsEquivalenceFiniteEtaleBaseChangeResidueField
 
 set_option autoImplicit false

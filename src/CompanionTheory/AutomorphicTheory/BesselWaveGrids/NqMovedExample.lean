@@ -1,4 +1,6 @@
 import CompanionTheory.AutomorphicTheory.BesselWaveGrids.NQText
+import CompanionTheory.AutomorphicTheory.BesselWaveGrids.QwBound
+import CompanionTheory.AutomorphicTheory.BesselWaveGrids.InterlacingGrids.PstMul
 
 namespace CompanionTheory.WaveGrid
 

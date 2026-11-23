@@ -3,10 +3,8 @@ import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 import Formalism.LocalRingCardinality.DataParams₂
 import Formalism.LocalRingCardinality.DataDIV
 import Formalism.LocalRingCardinality.DataParamsT
-import Formalism.LocalRingCardinality.ConjSqrtMinusD
-import Formalism.SharpRestriction.ParamsHeightRankConstant
+import Formalism.SharpRestriction.ParConsts
 import Formalism.SharpRestriction.Divisibility.ModuliIntegralCharts
-import Formalism.GelfandTransference.EnergyIdentity
 
 noncomputable section
 

@@ -1,8 +1,6 @@
-import Formalism.LocalToGlobal.GlobalTheory.GL6.EqOneOfCoprimeTorsionTwoPrimes
+import Formalism.SharpRestriction.GlobalSchurBounds.ProductFirstZerothParts
+import Formalism.LocalToGlobal.HermitianForms.PrkSmul
 import Formalism.LocalToGlobal.GlobalTheory.GL6.RamifiedRankEqFinrank
-import Formalism.LocalToGlobal.GlobalTheory.GL6.Statement
-import Formalism.HarderNarasimhan.ShiftInvariance
-import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ClearDenominatorsLattice
 
 noncomputable section
 

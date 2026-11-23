@@ -2,9 +2,8 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.CombAtSingleZero
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.SingleMemIdAt
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsScaleWithBoundedGamma
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ValLast
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HomLatticeCompletionSelfAnnihilatorAtPlaces
-import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.IsSelfDualCLatFrame
 
 noncomputable section
 

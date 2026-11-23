@@ -1,9 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.Columns.CoefficientMapHeightBound
-import Formalism.LocalToGlobal.Columns.BrzoPairAtZeroRight
 import Formalism.LocalToGlobal.Columns.BzdConjTTranspose
-import Formalism.LocalToGlobal.Columns.SliceIntegralDeltaNeBot
-import Formalism.LocalToGlobal.Columns.CoefColLemmas
 
 open NumberField IsDedekindDomain Module MvPolynomial
 open scoped Matrix ComplexOrder

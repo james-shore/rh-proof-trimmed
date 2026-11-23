@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.FrameTransport
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LcscAdelicUnitaryGroup
-import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsCompactOpenUnitsSubgroupContinuousSqrt
 
 noncomputable section
 

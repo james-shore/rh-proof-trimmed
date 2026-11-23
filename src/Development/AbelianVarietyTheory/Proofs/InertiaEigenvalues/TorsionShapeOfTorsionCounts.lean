@@ -1,11 +1,12 @@
 import Mathlib
 import Formalism.CharacterColumnKernels.StatementRho
-import Formalism.GaloisCohomology.LocalTateDualityK
+import Formalism.GaloisCohomology.Statement
 import Formalism.WachLatticeTwists.CharacterSplitJumps.Statement
-import ReciprocityTheory.Hypotheses.GalCohDefs
-import ReciprocityTheory.ReductiveGroups.TraceFormulas.LatDefs
+import Formalism.WachLatticeTwists.LatticeDualFibres.FibreDualStable
+import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LevRepZApply
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteCardTorsionLevelFractionRingQuot
+
 open ReciprocityTheory.Gal
 
 noncomputable section

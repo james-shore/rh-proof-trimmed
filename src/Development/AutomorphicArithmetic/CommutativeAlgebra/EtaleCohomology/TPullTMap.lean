@@ -1,5 +1,7 @@
 import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.ZeroPull
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.MemBoundariesZeroIff
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.CechAugRow
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.MapHComp
 
 set_option backward.isDefEq.respectTransparency false
 

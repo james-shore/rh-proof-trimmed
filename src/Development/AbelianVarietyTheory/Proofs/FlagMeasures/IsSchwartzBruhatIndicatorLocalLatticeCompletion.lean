@@ -1,10 +1,9 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.GaugeUnfold
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DefClassNum
 import Formalism.LocalToGlobal.GlobalTheory.GL5.Statement
 import Development.AbelianVarietyTheory.Definitions.Foundations.HermitianSpaceBaseLatticeEqFrameLattice
-import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.SelfDualUnramifiedPlaces
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LcscAdelicUnitaryGroup
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsIntSmulEqInteger
+
 open MeasureTheory NumberField IsDedekindDomain Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open scoped TensorProduct
 

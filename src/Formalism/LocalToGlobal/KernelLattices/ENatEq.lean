@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.KernelLattices.ThEquiv
+import Formalism.LocalToGlobal.KernelLattices.ColInst
 import Formalism.LocalToGlobal.KernelLattices.ColumnData
 
 open NumberField IsDedekindDomain

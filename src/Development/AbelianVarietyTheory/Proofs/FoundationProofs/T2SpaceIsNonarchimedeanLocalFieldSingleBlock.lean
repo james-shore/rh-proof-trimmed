@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.DoubleCosetMeasures.LatticeCoset
-import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.LocalIntegralGL
+import Formalism.DoubleCosetMeasures.LowerUnipotentOrbits.IsClosedLowUni
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FromBlocksMulInv
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HasCompactSupportPhiU
 

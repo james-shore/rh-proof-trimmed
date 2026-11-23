@@ -1,7 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.Lam1
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.ThetaCompactSupport
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.PBCutInside
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.ParametersUPrimeForULower
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.SecondDefectNonneg
 
 namespace Formalism.FourierDecayAlt.P.GermRateSplit
 

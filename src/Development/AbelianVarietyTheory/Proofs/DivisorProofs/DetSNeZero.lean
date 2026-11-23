@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalRingCardinality.DataTheta
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsBilinearFischerPairingMatrixEntryPolynomia
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 
 noncomputable section
 

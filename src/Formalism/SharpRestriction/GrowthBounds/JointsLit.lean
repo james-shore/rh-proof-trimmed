@@ -1,11 +1,11 @@
 import Formalism.SharpRestriction.GrowthBounds.ValuationLowestDegreeRename
 import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.IndexOffRange
-import Formalism.ThetaLogCoordinates.JacobiPathWeights.FinalP
 import Formalism.PeriodIntegrals.AdmissibleModel.WeylDim
 import Formalism.SharpRestriction.GrowthBounds.LatticeSystems
 import Formalism.LocalRingCardinality.Lemmas
 import Formalism.SharpRestriction.GrowthBounds.CornerGLContinuity
 import Formalism.SharpRestriction.GrowthBounds.AdmissibleIntegers.FirstTermSizeBound
+import Formalism.ThetaLogCoordinates.JacobiPathWeights.FinalP
 
 noncomputable section
 open Finset Formalism.MainNotions.G

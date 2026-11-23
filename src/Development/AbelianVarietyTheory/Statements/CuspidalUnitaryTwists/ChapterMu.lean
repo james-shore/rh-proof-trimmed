@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.PetIPSmulRight
-import Development.AbelianVarietyTheory.Definitions.Foundations.RepL
-import Development.AbelianVarietyTheory.Statements.CuspidalUnitaryTwists.Chapter
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.Newform
 
 noncomputable section

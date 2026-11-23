@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.RankGapBounds.RandomSubsetCounterexample
-import Formalism.RankGapBounds.RankAndGapBounds
 
 namespace Formalism.LFunctionChainParameters.DeficitSplitLemmas
 

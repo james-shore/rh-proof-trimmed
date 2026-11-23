@@ -1,7 +1,6 @@
 import PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.SSmooth
-import PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.PolyVHasTemperateGrowth
-import GroundTheory.GlobalFields.TateThesis.TateThetaDecay
-import GroundTheory.GlobalFields.TateThesis.AdelePoissonUniform
+import GroundTheory.GlobalFields.TateThesis.GaussianSchwartz
+import GroundTheory.GlobalFields.TateThesis.LatticePoissonBasic
 
 noncomputable section
 

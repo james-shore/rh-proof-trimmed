@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.DiscreteSpectrumKFiniteDecomposition
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.DecSmoothAtGapOfDecSmooth
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.DFactsHolds
 import Development.AbelianVarietyTheory.Counterexamples.JetSurvey.ExistsIsCayleyUIff
 
 noncomputable section

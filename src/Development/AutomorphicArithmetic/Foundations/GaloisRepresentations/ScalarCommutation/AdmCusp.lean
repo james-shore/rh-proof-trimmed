@@ -1,10 +1,10 @@
 import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.AuxiliaryPrimeFunction
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.TypeSliceAlt
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugateEigenSubDegreeEq
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnfoldedEqOrbitalReps
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwOrbUEqZeroOfCusp
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IwahoriRegularSplit
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemStabilizerIff
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinsumFiberwiseOfFiniteSupportComplex
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HodgeLieBundleIntersection
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.UnitLemmaGroup
 
 theorem UpperTheory.Gal.Spc.cuspIrr_kFinite_rep_eq_centralCuspForm :
     UpperTheory.Gal.Spc.AdmCusp := by

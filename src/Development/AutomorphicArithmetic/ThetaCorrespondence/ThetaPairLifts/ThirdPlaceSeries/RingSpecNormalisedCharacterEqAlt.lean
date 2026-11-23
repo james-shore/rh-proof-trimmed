@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.EMtLevel
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.NGalTied
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.NGalLinkChar
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.LiftToGlobalDescentData

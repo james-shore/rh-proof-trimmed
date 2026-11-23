@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LinkedUnramifiedChains.TeichmullerParts.SubalgebraIntegrality.TypeVLoc
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.LitAut
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.NotMono0LpCharLpSp
 
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 200000

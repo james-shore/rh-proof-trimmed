@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.PublishedTheorems.PublishedFoundations.FiniteIntertwining
-import Formalism.BranchSandwichDivisors.DivFromPassageAndNorm
+import Formalism.BranchSandwichDivisors.BranchIsometryProofs.BranchScale
 import Formalism.LocalToGlobal.Columns.PolyFn
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.RowActCoefPolyAndUnitaryDense
 

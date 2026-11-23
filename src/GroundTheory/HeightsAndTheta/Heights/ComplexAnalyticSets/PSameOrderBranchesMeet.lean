@@ -1,9 +1,6 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StSameOrderBranchesMeet
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StBranchInCurveComponent
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StSameOrdersLiftCentre
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StBranchLift
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PNormalModelExists
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StBranchNormalisation
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

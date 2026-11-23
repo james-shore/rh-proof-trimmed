@@ -2,8 +2,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.I
 import ReciprocityTheory.AnalyticForms.RegularLocalRings.IntToRat
 import ReciprocityTheory.AnalyticForms.RegularLocalRings.BaseChangeC
 import ReciprocityTheory.AnalyticForms.RegularLocalRings.ExtCContract
-import ReciprocityTheory.AnalyticForms.RegularLocalRings.GenSmooth
-import Mathlib
 
 noncomputable section
 

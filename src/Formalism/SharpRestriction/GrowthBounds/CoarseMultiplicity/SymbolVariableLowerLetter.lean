@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.DegSplit
-import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.TopOddNeEnd
 
 noncomputable section
 

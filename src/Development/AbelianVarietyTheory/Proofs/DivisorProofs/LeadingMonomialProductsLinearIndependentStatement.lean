@@ -1,9 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeadingMonomialProductsLinearIndependent
-import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsArchOne
-import Development.AbelianVarietyTheory.BlockTheory.PoincareCuspForms.SmallUnipotentElements
-import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.IndCount
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.JetsPf
 
 open NumberField Module ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.ChartRestriction.G.AR.Inst ReciprocityTheory.ChartRestriction.G.AR.Up GlobalTheory.IndefiniteRowSideFullHecke.FrameWeightGapBounds GlobalTheory.ShareOn
 set_option maxHeartbeats 1000000 in

@@ -1,12 +1,7 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.Statements
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.SpecFirstDetFormNeZero
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.GaussNormEqCoeffGaussNorm
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterGood
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsSemipositiveOn
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSt
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsChartGram
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PConeIntegralMass
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsConeFibre
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsConeMapArea
 
 set_option maxSynthPendingDepth 1
 

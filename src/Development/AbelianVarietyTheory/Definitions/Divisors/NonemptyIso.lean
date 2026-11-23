@@ -1,7 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.ToRepFam
+import Development.AbelianVarietyTheory.Definitions.Divisors.NotCompactOfMEqOne
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSiegelObjectLoweredLevel
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ObjMapCompAlt
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsDefiniteDatumGoodObj
 
 noncomputable section
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj

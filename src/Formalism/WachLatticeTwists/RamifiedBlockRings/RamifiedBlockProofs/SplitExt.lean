@@ -1,5 +1,4 @@
-import Formalism.WachLatticeTwists.RamifiedBlockRings.ChainFromPrimitiveData
-import Formalism.CharacterColumnKernels.StatOntoLattice
+import Formalism.WachLatticeTwists.RamifiedBlockRings.DistinctEigenvalueCornerPerturbation
 
 open Finset Classical
 

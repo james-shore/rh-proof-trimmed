@@ -1,5 +1,5 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.MembershipCriterionOfLevelZero
-import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.MemOfExp
+import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.ExpPowSubOne
 
 noncomputable section
 

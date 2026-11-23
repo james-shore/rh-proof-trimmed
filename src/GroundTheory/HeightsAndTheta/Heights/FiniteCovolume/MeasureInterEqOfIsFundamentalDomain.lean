@@ -1,10 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.DivisionPairOfAdelicFormsFaceColumnsData
-import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.PUnfoldingIntegral
-import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.PDiscreteFundamentalDomain
+import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.SecondCountableTopologyArchUnitary
 import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.PScalingLaw
-import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.Statements
-import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.ReindexBasis
 
 set_option maxSynthPendingDepth 1
 

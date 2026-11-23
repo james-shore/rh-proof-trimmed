@@ -1,8 +1,7 @@
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BigImageThirdCondition
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.NormChoiceFacts
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.GaloisConditionThreeOf
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CuspidalGaloisUnramified
+import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.BaseSizes
 
 set_option synthInstance.maxHeartbeats 200000
 

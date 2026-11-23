@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.QuotientMetricDivisors.ProdFormula
+import Formalism.QuotientMetricDivisors.Statement
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.SelectionLemmas
 
 open Module NumberField IsDedekindDomain Matrix

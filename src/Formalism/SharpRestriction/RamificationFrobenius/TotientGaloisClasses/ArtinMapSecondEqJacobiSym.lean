@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.ConjEMemHostFIff
-import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.FrameCyclicGenerator
 import Formalism.FrobeniusOrbits.HostCorollaries
 
 open NumberField IntermediateField Ideal

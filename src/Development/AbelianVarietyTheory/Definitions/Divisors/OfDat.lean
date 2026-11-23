@@ -2,7 +2,6 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.TwistedPlacesOfCondition
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FieldValuesMemFixedField
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.GoodTypesOfTypesTrue
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.InertJunkColIn3
 
 noncomputable section
 

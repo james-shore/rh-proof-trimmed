@@ -1,4 +1,10 @@
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.InfinitesimalCharacterLimits.TwistStripLimits.ConclSubseq
+import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.PAscAll
+import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.PExpTw
+import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.PChord
+import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.ProjOf
+import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.ExponentialNegativity.TopNeg
+import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.PrHolds
 
 noncomputable section
 

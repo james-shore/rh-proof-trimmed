@@ -1,7 +1,7 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.AutomorphicKernels.EisensteinSeriesG2.RankOneEisenstein.GodementEis
-import GroundTheory.GlobalFields.TateThesis.TateMain
 import GroundTheory.GlobalFields.TateThesis.TateThetaDecay
+import GroundTheory.GlobalFields.TateThesis.ArchCharsUnits
 
 set_option maxSynthPendingDepth 1
 

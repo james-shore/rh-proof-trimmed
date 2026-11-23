@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Jets.SideFam
-import Formalism.HermitianCurvature.StatementTBB
+import Formalism.HermitianCurvature.RealInputsClosedAdmissibleSettings
 
 open Matrix MeasureTheory Finset
 open scoped InnerProductSpace ENNReal

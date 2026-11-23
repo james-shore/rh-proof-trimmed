@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CardLeOfSpan
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AdmissibleStd
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EqTopOfSpanImage
 
 noncomputable section
 

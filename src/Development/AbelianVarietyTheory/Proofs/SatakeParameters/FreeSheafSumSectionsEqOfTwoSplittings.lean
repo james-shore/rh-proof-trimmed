@@ -1,5 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FreeHomExtOfCovering
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CoveringOfForallMem
+
 open CategoryTheory Limits AlgebraicGeometry
 
 namespace GlobalTheory.EtC.Tr.SumEq

@@ -1,5 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AmbientSubContinuitySetup
+import Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpowers.BaseFont
+import Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpowers.LiftingConditionOfWindows
 
 noncomputable section
 

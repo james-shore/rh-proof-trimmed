@@ -1,6 +1,7 @@
 import Mathlib
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLeviDescent.InjectiveDecompositionAction
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsPermOfMapEq
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GelfandInvariantsDetermineMultiset
 
 open Finset
 

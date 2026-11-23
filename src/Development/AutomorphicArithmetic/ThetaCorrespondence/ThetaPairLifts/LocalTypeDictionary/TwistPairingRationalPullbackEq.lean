@@ -1,10 +1,6 @@
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.DiscreteSpectrumResidualClassification
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.EvenRankSelfDualUnitary
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.BernsteinUnitaryProductIrreducible
-import Mathlib
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitOff
-import Formalism.LocalToGlobal.InertKernelTheory.DefsInt
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.JetKapIff
 
 section
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV

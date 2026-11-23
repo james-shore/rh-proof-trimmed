@@ -1,9 +1,6 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.CoreExists
-import Formalism.LocalToGlobal.ProjectiveLattices.ReadProofs
 import Formalism.LocalToGlobal.ProjectiveLattices.ReadQuot
 import Formalism.LocalToGlobal.ProjectiveLattices.FamilyUniformisationBasePointOrthogonalBis
-import Formalism.LocalToGlobal.ProjectiveLattices.AllTest
-import Formalism.LocalToGlobal.ProjectiveLattices.UnitIndepOfCharts
 
 noncomputable section
 

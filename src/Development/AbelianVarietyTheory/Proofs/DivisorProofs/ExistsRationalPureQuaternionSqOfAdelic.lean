@@ -1,8 +1,9 @@
 import Development.AbelianVarietyTheory.Definitions.Divisors.OneMemH0WeightZero
-import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.NotIsCompactUnivFv
+import Formalism.LocalToGlobal.BesselHermitianTheta.TiedWeil
 import GroundTheory.GlobalFields.IdeleGroups.IdeleNorms
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsCongrIffTraceFormsIsometricCm
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.HasseNormTheoremQuadraticExtension
+
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.QSA GlobalTheory.Published
 open Matrix
 open scoped Quaternion Topology TensorProduct

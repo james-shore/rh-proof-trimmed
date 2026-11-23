@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.StatementOC
+import Formalism.Statement
 
 open Finset
 

@@ -1,7 +1,8 @@
 import Mathlib
-import Formalism.LocalToGlobal.ProjectiveLattices.PlaceBelow
+import Formalism.LocalToGlobal.ProjectiveLattices.ChartDirectionsIntegral
 import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsIntegralBasisLinearCoordinates
 import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.MemHHaOfCoeffFunctional
+
 open scoped BigOperators
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ Formalism.L2.Pj NumberField
 

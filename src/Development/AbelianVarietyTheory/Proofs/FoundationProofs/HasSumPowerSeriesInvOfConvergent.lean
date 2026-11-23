@@ -1,8 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.ZetaActRefl
+import Development.AbelianVarietyTheory.Definitions.Divisors.HasQIff
 import Development.AbelianVarietyTheory.Definitions.Foundations.MemRingOfInR
-import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModQPrin
-import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModJTau
 
 namespace GlobalTheory
 

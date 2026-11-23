@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.GramCEqTranspose
 
 noncomputable section
 

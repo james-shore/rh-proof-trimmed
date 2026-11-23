@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.Columns.ChainInst
-import Formalism.LocalToGlobal.Columns.ChainLawPhi
 import Formalism.LocalToGlobal.Columns.ReductionExistsInLatticeStabilizerHolds
 import Formalism.LocalToGlobal.Columns.BlockTriangularMulVecMemPartialFlag
 import Formalism.LocalToGlobal.Columns.RecLevelSym

@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.PeriodIntegrals.LatMin
 
 namespace PI.LatMinWork
 

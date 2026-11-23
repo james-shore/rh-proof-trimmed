@@ -1,9 +1,10 @@
 import Mathlib
 import ReciprocityTheory.AnalyticForms.PotentialTheory.Measure
-import ReciprocityTheory.AnalyticForms.PotentialTheory.Partition
-import ReciprocityTheory.AnalyticForms.PotentialTheory.LocDens
 import ReciprocityTheory.AnalyticForms.PotentialTheory.IntegrableOnTargetOfTsupport
-import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.Objects
+import ReciprocityTheory.AnalyticForms.PotentialTheory.ContDiffFubiniStudyRatioCompChart0
+import GroundTheory.HeightsAndTheta.Heights.Regularisation.IsOpenKappaOpenNeighbourhood
+import ReciprocityTheory.AnalyticForms.PotentialTheory.Partition
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.AnalyticLimit

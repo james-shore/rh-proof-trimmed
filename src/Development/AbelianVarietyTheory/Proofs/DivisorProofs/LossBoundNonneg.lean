@@ -1,10 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.LevelLossDegreeBounds
-import Formalism.SharpRestriction.ParamsHeightRankConstant
-import Formalism.LocalRingCardinality.DataMink
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.OneLeLetterBlockLength
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemHeightOneIdealIffAdditiveValuationPos
-import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
+import Formalism.SharpRestriction.GrowthBounds.FormalGroupSystem
 
 noncomputable section
 

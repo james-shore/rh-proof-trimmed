@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.RpowNegLeNormOfComponent
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsSatVecUOfIsSphericalU
-import Formalism.SatakeDualWeyl.KpqSubgroupCompact
+
 open NumberField IsDedekindDomain GlobalTheory.LatHecke Formalism.UG
 
 noncomputable section

@@ -1,6 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.OrthSubrepresentation
 import Development.AbelianVarietyTheory.Proofs.CharacterTheory.InvariantSubspaceMobiusInverseCharpolyLinearEqui
+import Development.AbelianVarietyTheory.Definitions.CommutativeAlgebra.AbByPOfComm
+
 open Polynomial GlobalTheory.CuspGL GlobalTheory.BI GlobalTheory.Shin SemidirectProduct
 open scoped Classical
 

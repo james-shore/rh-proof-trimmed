@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.Divisibility.JetBounds.JetCounting.CurveAt
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementC
 
 open scoped BigOperators
 

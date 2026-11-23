@@ -1,8 +1,5 @@
 import Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.RecLawsH
-import Development.AutomorphicArithmetic.Foundations.LocalLanglands.Multi
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ToralAndGoodOfIsSpherical
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.WeilDeligneParameterMonodromyZeroOfUnramified
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocDZOfSplitReg
 
 noncomputable section
 

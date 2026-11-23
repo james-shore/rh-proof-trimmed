@@ -2,12 +2,10 @@ import Mathlib
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.TowerOrigin
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsLatFlagPair
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IntegralClosureHeightEqOneOfLiesOver
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.SplitComps
-import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.LocalAtPlaces
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSt
 import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.ArMonoReline
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.DegreeLatticesPrimeCompareStatement
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagHeightBoundArithVarStatement
+
 open AlgebraicGeometry CategoryTheory NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Top
 open MvPolynomial Filter Topology
 open ReciprocityTheory.ChartRestriction.G.AI.I1 (IsBlockMap pullDeg)

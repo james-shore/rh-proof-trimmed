@@ -1,9 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.GlobalTheory.GL3.PFamily
 import Formalism.LocalToGlobal.GlobalTheory.GL3.ProvisionExtensionLink
-import Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.EqPAll
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.SplitPairGen
-import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.IsAdmissibleFlagPairOfUnitriangularLeftAutomorph
 
 noncomputable section
 

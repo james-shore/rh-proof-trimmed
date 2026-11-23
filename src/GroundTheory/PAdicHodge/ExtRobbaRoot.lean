@@ -1,7 +1,8 @@
 import Mathlib
 import GroundTheory.PAdicHodge.ExistsIsRootForallNormPowMulLe
 import GroundTheory.PAdicHodge.ExtRobbaPointDiv
-import GroundTheory.PAdicHodge.ExtRobbaUnits
+import GroundTheory.PAdicHodge.ExtRobbaUnion
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

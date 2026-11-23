@@ -1,6 +1,8 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StSegreSheetFormCompare
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PSheetFormCompare
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PlaneIdealTwoOne
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

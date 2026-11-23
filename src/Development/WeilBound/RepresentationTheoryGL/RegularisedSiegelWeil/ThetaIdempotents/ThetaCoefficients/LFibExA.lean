@@ -1,6 +1,5 @@
 import Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.SingularNullSets.WeakApproximationFinitePlace
 import Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.ThetaIdempotents.ThetaCoefficients.SiegelWeilHermitianFormula
-import Development.WeilBound.CoreStatements.ThetaDilations.ThetaLint
 
 noncomputable section
 

@@ -2,7 +2,6 @@ import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.FinModel
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorObjectMapsComposeCancel
 import Development.AbelianVarietyTheory.Definitions.Divisors.NonemptyHomFixRepTrivial
-import Development.AbelianVarietyTheory.Definitions.Divisors.NonemptyIso
 
 noncomputable section
 

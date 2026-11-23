@@ -1,9 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.Columns.ColForms
-import Formalism.LocalToGlobal.Columns.GSetLemmas
 import Formalism.LocalToGlobal.Columns.DecoFin
 import Formalism.LocalToGlobal.Columns.CoefColLemmas
-import Formalism.LocalToGlobal.Columns.DecorationStabilizerTrivialUnipotent
 
 open NumberField IsDedekindDomain Module
 

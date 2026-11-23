@@ -1,8 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.BesselHermitianTheta.TiedBessel
 import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.BesselDatum
-import Formalism.LocalToGlobal.BesselHermitianTheta.AllTied
-import Formalism.SharpRestriction.CuspSpanNormBounds.CayleySignature
+import Formalism.SharpRestriction.Divisibility.KudlaSiegelWeil
 
 noncomputable section
 

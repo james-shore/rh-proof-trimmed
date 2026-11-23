@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.QuotientMetricDivisors.Statement
+import Formalism.HermitianLattices.StatementLat
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix

@@ -1,5 +1,4 @@
-import Development.WeilBound.CoreStatements.VolumeEquality.RootBranches
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenPtSpecializesOfSpecializes
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsSheetCover
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegAtFractionNoetherianClosed
 
 noncomputable section

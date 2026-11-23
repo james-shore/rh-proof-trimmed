@@ -1,6 +1,9 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.InBlock
 import Formalism.LocalToGlobal.IndefiniteReal.CxPassA
+import Formalism.LocalToGlobal.IndefiniteReal.CutPassage3S
+import Formalism.LocalToGlobal.IndefiniteReal.LevelAmbTransfer
+import Formalism.LocalToGlobal.GlobalTheory.PassageBaseSymmetricLevels
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder InnerProductSpace

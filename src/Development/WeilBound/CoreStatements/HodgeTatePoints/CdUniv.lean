@@ -2,6 +2,8 @@ import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ToFirst
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.UniformisationConclusion
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.DifBijectiveOfParam
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBIdJet
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LieModel
+import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.GermComp1ZeroPointLeft
 
 noncomputable section
 namespace PositivityTheory.HtPt.Cd

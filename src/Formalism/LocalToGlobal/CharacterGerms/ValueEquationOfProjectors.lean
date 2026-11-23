@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.CharacterGerms.CoordinateChangeComp1IntertwinesAction
+import Formalism.LocalToGlobal.CharacterGerms.ValuationEqPairOfUnitGerm
 
 noncomputable section
 

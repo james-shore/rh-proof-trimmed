@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.CyclotomicNorms.StatementT
-import Formalism.GaloisIrreducibility.NoSolvableTransitive
+import Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.OneNonUnit
 
 namespace Bl.general_b_fact_second_bis
 

@@ -1,8 +1,8 @@
 import Mathlib
-import GroundTheory.GlobalFields.AnalyticClassNumber.QuadraticLegendre
-import GroundTheory.GlobalFields.AnalyticClassNumber.DirichletHecke
-import GroundTheory.GlobalFields.Artin.ConductorInduction
-import GroundTheory.GlobalFields.Artin.ConductorOneDim
+import GroundTheory.GlobalFields.AnalyticClassNumber.Quadratic
+import GroundTheory.LocalFields.ConductorTransport
+import GroundTheory.LocalFields.ArtinConductorAbelian
+import GroundTheory.LocalFields.ArtinConductorMax
 
 set_option maxSynthPendingDepth 1
 

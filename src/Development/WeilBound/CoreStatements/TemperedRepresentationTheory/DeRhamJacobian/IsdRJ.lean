@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.HeckeLAdicCharacterDeRham
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.CharAbove
 
 noncomputable section
 

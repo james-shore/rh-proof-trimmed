@@ -1,4 +1,5 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LeftPhaseRule.HasDerivAtPhase
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LeftPhaseRule.ReflectionColumnDualIsotropic
 
 open Matrix
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.Q Formalism.QuantumDeterminants.WeylGroupFacts

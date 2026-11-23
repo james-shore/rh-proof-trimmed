@@ -8,6 +8,7 @@ import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.Basic
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.BasicOpenSections.PEsGen
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.BasicOpenSections.PCorrOpEq
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.BasicOpenSections.CycAllHolds
+import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.BasicOpenSections.PNwtOne
 
 namespace UpperTheory.Gal.Mod
 

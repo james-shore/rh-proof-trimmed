@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.CountableOfIsAddFundamentalDomain
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.IsHermOfMemLZ
 
 namespace GlobalTheory.MaxCusp

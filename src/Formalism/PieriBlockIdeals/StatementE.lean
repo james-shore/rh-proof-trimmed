@@ -1,7 +1,4 @@
-import Formalism.PieriBlockIdeals.StatementTop
-import Formalism.PieriBlockIdeals.TailInequalityEventually
-import Formalism.QuotientMetricDivisors.ClassSumDualLe
-import Formalism.MirabolicMackeyTheory.StatementT
+import Formalism.PieriBlockIdeals.LatticeInclusionRealSettingAlt
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder

@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.RootWeights.DividedPowerMonomialExpansion
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.IntegralPolyLinearMapClosed
 
 noncomputable section
 

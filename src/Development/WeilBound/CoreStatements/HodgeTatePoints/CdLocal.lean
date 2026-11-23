@@ -1,5 +1,5 @@
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ChartOfBasis
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.UniformisationConclusion
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LocalComponentsSurjective
 
 noncomputable section
 namespace PositivityTheory.HtPt.Cd

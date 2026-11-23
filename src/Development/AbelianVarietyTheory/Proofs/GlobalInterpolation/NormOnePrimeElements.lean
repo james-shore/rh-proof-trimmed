@@ -4,10 +4,11 @@ import Formalism.LocalToGlobal.GlobalTheory.IsResidueClassZero
 import Formalism.SharpRestriction.GrowthBounds.SmallOrderPrimes
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.PairRowIffQdRows
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.DisjointExceptional
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ThinScalesIffHostBound
+import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.Analytic
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.LogCondLeThree
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NormOneIffOfSqrt
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NormOneModEqOneAndOfDvd
+
 open Formalism.BasicNotions Formalism.BasicNotions.LevelStarExponents Formalism.MainNotions Formalism.MainNotions.Inhab Formalism.L2.GlobalTheoryTheory GlobalTheory.EX NumberField
 
 namespace GlobalTheory.EX

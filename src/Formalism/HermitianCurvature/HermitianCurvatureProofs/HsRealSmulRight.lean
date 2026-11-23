@@ -1,4 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.NormCDZPsiCLe
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.TendstoIntUv
 
 open MeasureTheory Filter Topology
 open scoped ComplexConjugate ContDiff

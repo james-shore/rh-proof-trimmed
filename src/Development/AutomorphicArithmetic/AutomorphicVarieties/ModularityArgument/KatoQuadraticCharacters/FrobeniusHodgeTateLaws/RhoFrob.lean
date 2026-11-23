@@ -1,9 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.ZetaElementsUnramifiedOrdinaryOfEulerSystemInert
-import Development.AbelianVarietyTheory.Definitions.Foundations.HTPresNuOfPolys
 import Development.AbelianVarietyTheory.Definitions.Foundations.CycMOfNot
 import Development.AbelianVarietyTheory.Definitions.Foundations.OpLDOneSubMemTriv
-import Development.AbelianVarietyTheory.Statements.CuspidalUnitaryTwists.CuspidalUnitaryTwistsClaim
+import Development.AbelianVarietyTheory.Definitions.Foundations.HTPresNuOfPolys
+import Development.AbelianVarietyTheory.Statements.CuspidalUnitaryTwists.ChapterMu
 
 noncomputable section
 

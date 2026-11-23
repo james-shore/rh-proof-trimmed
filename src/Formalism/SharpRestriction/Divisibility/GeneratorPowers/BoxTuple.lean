@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.LemmaBStatement
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.UnifPowOf3
 
 set_option autoImplicit false
 

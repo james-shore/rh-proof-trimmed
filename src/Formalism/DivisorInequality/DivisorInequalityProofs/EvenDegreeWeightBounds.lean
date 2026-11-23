@@ -1,7 +1,5 @@
 import Mathlib
 import Formalism.DivisorInequality.DivIneqTopAnchorU
-import Formalism.DivisorInequality.DivisorInequalityProofs.BaseLevelBoundsWithCovolumeHolds
-import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.YoungDiagramTopExact
 
 open Module NumberField IsDedekindDomain Finset
 open scoped Matrix ComplexOrder

@@ -1,6 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.ConcretePkgSpec
-import Formalism.LocalToGlobal.Columns.HeckeSp
+import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
 
 noncomputable section
 

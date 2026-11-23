@@ -1,6 +1,9 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HeightComparison.POrbitChartMultLemmas
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterDivSupp
+import GroundTheory.HeightsAndTheta.Heights.HeightComparison.POrbitCurve
+import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightOrbitChartMult
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.OneChar
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.ActOmegaExpand
 
 namespace ReciprocityTheory.ChartRestriction.G.I2
 open NumberField Complex

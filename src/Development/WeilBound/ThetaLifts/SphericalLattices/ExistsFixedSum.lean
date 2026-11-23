@@ -1,7 +1,7 @@
 import Development.WeilBound.ThetaLifts.SphericalLattices.HoweInert
+import Development.WeilBound.CoreStatements.LocalThetaKernels.Locrep
 import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.ExistsEigenLift
 import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.Kcompact
-import Development.WeilBound.CoreStatements.LocalThetaKernels.Locrep
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.DeRhamEllipticIdentity
 
 noncomputable section

@@ -1,9 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.UniformizerPowerTorusMemNormalUnitarySubgroup
-import Formalism.SatakeDualWeyl.KpqSubgroupCompact
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.FIwasawa
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.FSatakeB
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.InvMemDoubleCosetAndComm
 
 open Formalism.UG Matrix
 set_option maxHeartbeats 1000000 in

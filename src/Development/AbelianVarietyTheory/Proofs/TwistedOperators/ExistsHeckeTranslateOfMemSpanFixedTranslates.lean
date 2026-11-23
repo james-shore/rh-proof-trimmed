@@ -1,6 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsPairingSingleNe
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeActsByScalarCommutative
+import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.SphericalThetaInertPlace
+
 open Matrix Formalism.UG GlobalTheory.Hk3 GlobalTheory.FinWeil GlobalTheory.SphTheta ValuativeRel Classical
 open GlobalTheory.LFun (HasSatU IsSatVecU heckeVec)
 open GlobalTheory.LGrp (bcParam extProd)

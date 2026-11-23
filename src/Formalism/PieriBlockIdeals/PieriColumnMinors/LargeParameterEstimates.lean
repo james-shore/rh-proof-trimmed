@@ -1,6 +1,4 @@
 import Formalism.PieriBlockIdeals.TailInequalityEventually
-import Formalism.PieriBlockIdeals.PieriColumnMinors.ParameterBounds
-import Formalism.PieriBlockIdeals.PieriColumnMinors.CorollaryOfParamsSevenLinkage
 
 noncomputable section
 

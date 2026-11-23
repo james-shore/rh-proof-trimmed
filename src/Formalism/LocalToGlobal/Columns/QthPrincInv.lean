@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.Columns.QthCloseScl
+import Formalism.LocalToGlobal.Columns.QthExistsBound
 
 open NumberField IsDedekindDomain
 

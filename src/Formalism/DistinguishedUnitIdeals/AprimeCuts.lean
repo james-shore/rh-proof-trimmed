@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.DistinguishedUnitIdeals.Statement
 import Formalism.TruncatedSeriesCounting.AprimeArith
 
 noncomputable section

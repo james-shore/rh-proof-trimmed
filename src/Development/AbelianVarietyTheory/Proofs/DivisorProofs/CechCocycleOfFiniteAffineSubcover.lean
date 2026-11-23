@@ -4,10 +4,10 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechGluingOfKodaira
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TranslateUnique
 import Development.AbelianVarietyTheory.Definitions.Divisors.AxesVanishingStructureSheafDegOne
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsDeRhamSheaf
-import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.CechModulesFunctorShortExactOfIsAffineOpen
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RhoIsCoc
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CardNonempty
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechPullOneBijectiveLatticeCoverStatement
+
 open AlgebraicGeometry CategoryTheory Limits NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.LogKS Formalism.L2.Pj
 open GlobalTheory.CatCoh GlobalTheory.CechDR GlobalTheory.CechFin

@@ -1,6 +1,4 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsIntersectionFamily
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.ProjDefs
-import ReciprocityTheory.GeometryOfNumbers.AsymptoticSequences.ClosingHS
 
 noncomputable section
 

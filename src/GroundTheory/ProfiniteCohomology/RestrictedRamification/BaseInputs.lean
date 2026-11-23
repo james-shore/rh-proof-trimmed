@@ -2,8 +2,7 @@ import Mathlib
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseLocal
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.Dimension
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.Finite
-import GroundTheory.ProfiniteCohomology.RestrictedRamification.FiniteRoots
-import GroundTheory.ProfiniteCohomology.RestrictedRamification.FiniteOpen
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

@@ -1,5 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.DualFockLinear.OnePosOf
-import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
+import Formalism.SharpRestriction.GrowthBounds.DualFockLinear.MemHdIff
 
 open MvPolynomial
 

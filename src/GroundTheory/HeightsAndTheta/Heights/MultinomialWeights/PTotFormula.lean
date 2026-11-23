@@ -1,6 +1,7 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.MultinomialWeights.Statements
 import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.Imports
+import GroundTheory.HeightsAndTheta.Heights.MultinomialWeights.Statements
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

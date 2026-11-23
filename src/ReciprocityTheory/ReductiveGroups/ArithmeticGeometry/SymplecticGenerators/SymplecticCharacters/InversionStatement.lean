@@ -1,6 +1,5 @@
-import ReciprocityTheory.ThetaQuasiPeriods.Change
+import ReciprocityTheory.ThetaQuasiPeriods.ThetaQuasiPeriodStatement
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SymplecticGenerators.StTransl
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SymplecticGenerators.SymplecticCharacters.SpGenStatement
 
 noncomputable section
 

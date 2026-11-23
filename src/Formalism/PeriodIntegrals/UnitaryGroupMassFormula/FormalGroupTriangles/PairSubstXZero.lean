@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.PeriodIntegrals.FglTriFactor
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalGroupTriangles.CoeffSubstUpdZero
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdditiveIntegralGroups.SubstMem
 
 noncomputable section
 

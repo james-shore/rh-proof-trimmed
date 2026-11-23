@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.IndefiniteReal.DoubleCosetOperators.ImaginaryGeneratorMulDenominator
-import Mathlib
 import Formalism.LocalToGlobal.Columns.GenericUnipotentCharacter
 
 noncomputable section

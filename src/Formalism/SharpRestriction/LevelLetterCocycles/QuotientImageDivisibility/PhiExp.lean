@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.IsExpSmulA
+import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.ExistsXPowMul
 
 noncomputable section
 open Classical

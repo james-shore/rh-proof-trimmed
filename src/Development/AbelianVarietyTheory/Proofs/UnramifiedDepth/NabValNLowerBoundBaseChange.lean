@@ -1,9 +1,9 @@
 import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.PlaceBelow
 import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.NabValNEqSumCoeffStatement
-import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.NablaValueCopiesBilinear
 import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.NabValNMap
 import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsIntegralCombinationOfMemHaO
+
 open scoped BigOperators
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ Formalism.L2.Pj NumberField
 

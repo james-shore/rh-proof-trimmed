@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PowIdeal
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PowSubSuccLe
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.IsQuasicoherentOfForallExistsAffine
 
 set_option autoImplicit false

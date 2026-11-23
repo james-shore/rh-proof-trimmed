@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.DecaysZero
+import Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.IsBand
 
 open MeasureTheory Filter Matrix Formalism.REAL Formalism.MainNotions.S GlobalTheory.FlagMeas GlobalTheory.RealInd UpperTheory.Lit.Cusp
 open GlobalTheory.Dec (IsHaarSub IsIsoC NW IsSqIntIrr)

@@ -1,4 +1,4 @@
-import Development.AutomorphicArithmetic.QuadraticCharacters.ExceptionalCharacterCondition
+import Development.AutomorphicArithmetic.QuadraticCharacters.PreHostA
 
 namespace HostParam
 

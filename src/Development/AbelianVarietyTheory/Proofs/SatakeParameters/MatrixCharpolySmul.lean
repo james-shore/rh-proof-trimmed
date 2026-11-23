@@ -1,9 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.BlockSplitAll
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsobaricDiscreteSelfDualStrongMultiplicityOne
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsReadingLaws
 import Formalism.SharpRestriction.LevelLetterCocycles.SumRepresentations
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LocalParameterLawsOfWeilDeligneIdentificationStatement
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Mono0OfLpDimEqOne
 
 noncomputable section
 

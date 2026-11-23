@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.DiagHermitianTrivialOfSumFourSquares
+import Development.AbelianVarietyTheory.Definitions.Divisors.MarkedSumIrr
 
 noncomputable section
 

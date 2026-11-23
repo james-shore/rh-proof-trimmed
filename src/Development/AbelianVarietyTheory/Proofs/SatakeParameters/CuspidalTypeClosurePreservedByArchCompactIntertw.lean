@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.BarKHomSurjective
-import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsSpanFormsNeBot
+import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HarishChandraFinite
+
 open NumberField GlobalTheory.CuspRep GlobalTheory.Published GlobalTheory.IdemAdj
 
 namespace GlobalTheory.IdemAdj

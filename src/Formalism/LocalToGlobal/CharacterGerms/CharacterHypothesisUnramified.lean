@@ -1,7 +1,4 @@
 import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrS
-import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrRP
-import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrEF
-import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrPlB
 import Formalism.LocalToGlobal.CharacterGerms.RowTiePEmbIntSt
 
 set_option autoImplicit false

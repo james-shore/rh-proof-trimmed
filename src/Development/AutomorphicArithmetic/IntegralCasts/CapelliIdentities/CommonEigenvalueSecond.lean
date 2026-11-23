@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CommonEigenvalue
 
 theorem UpperTheory.Reformulated.B.ComplexCommonEigenvectorOfFinrankEq.common_eig :
     ∀ {ι M : Type} [inst : AddCommGroup M]

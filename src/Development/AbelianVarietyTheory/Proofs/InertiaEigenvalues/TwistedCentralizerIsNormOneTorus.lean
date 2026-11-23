@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TwConj
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.FourierMatch
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MemCentIffTwConj
 
 open GlobalTheory.Tw Matrix Polynomial

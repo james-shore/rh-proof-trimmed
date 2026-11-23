@@ -1,8 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.BuiltEx
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.GaloisSideTwistedSelmerAuxiliaryPrimes
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SemisimpleOfInjective
-import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverStd
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsWildInertiaCyclotomicElement
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RingSpecNormalisedCharacterEq
 
 noncomputable section
 

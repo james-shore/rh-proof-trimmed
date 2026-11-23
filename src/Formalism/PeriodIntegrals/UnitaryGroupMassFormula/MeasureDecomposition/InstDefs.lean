@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.PeriodIntegrals.ScMuExists
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MeasureDecomposition.InstDecomp
 import Formalism.RealPlaceAnalysis.FinalF
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MeasureDecomposition.InstDecomp
 
 noncomputable section
 

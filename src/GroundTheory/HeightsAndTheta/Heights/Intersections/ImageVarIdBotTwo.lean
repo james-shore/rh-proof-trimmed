@@ -1,6 +1,5 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.Intersections.NotIsHorizontalSpanTwo
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.InhDivCycleOfSuppEmpty
+import GroundTheory.HeightsAndTheta.Heights.Intersections.IsFieldIntersectionNoBlockFam
 
 set_option maxSynthPendingDepth 1
 

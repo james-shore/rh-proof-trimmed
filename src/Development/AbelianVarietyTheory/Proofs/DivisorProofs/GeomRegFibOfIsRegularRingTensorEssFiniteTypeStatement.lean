@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeomRegFibOfIsRegularRingTensorEssFiniteType
-import ReciprocityTheory.AnalyticForms.RegularLocalRings.FinalTheorems
-import ReciprocityTheory.AnalyticForms.RegularLocalRings.FinTypeQE
 
 open IsLocalRing TensorProduct ReciprocityTheory.AnForm.R
 set_option maxHeartbeats 1000000 in

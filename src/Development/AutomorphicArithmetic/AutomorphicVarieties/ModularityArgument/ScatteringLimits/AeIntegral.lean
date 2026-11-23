@@ -1,4 +1,4 @@
-import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ScatteringLimits.Carries
+import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.TruncatedCuspIrreducibility.ScatteringLimits
 
 open MeasureTheory PositivityTheory.Rg.Tf.IntegralApplyAeEq Set Filter Topology
 open scoped InnerProductSpace ENNReal

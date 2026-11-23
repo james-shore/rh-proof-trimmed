@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.Divisibility.DefGroup
-import Formalism.LocalToGlobal.Divisibility.GoodPartHermitianSpec
+import Formalism.LocalToGlobal.Divisibility.ClassSum
 import Formalism.BranchSandwichDivisors.BranchIsometryProofs.Numeric
 import Development.AbelianVarietyTheory.Definitions.Divisors.SplitDoublingNBlock
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.CuspidalProductMultiplicity

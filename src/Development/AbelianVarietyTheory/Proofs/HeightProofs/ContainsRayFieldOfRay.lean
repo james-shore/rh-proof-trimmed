@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.LFunctionPositiveConductorFourEight
+import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.SmulCommClassGalIntegers
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.RayFieldTheta
 
 set_option autoImplicit false

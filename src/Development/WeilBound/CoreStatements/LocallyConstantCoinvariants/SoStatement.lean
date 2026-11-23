@@ -1,4 +1,5 @@
 import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.CompFinLiftE
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermitianSelfDualLatticeSpaceFormHermitianNondeg
 
 noncomputable section
 

@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.CMDeterminantIdeals.StatementA
+import Formalism.LocalToGlobal.CMDeterminantIdeals.DetIdeal
 import Formalism.LocalToGlobal.CMDeterminantIdeals.StatementB
 
 noncomputable section

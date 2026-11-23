@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GlobalSchurBounds.LinkPk
+import Formalism.SharpRestriction.GlobalSchurBounds.JointsF
 
 noncomputable section
 

@@ -2,6 +2,8 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.SectionCountTopSt
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.VeryAmpleDimSt
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.VeryAmpleDegreeSt
+import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.Statements
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Kleiman

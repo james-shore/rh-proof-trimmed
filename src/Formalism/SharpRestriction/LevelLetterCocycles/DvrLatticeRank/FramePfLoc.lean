@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.LevelLetterCocycles.ClassMapStep
+import Formalism.SharpRestriction.LevelLetterCocycles.DownSlotProposition
 
 noncomputable section
 

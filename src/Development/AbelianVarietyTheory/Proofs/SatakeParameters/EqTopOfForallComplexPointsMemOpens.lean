@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FRatioSelf
+import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.TwistingSheafOneChartEqPreimageStandardChart
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsAffCoverSpec
+
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory
 
 open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)

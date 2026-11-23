@@ -3,8 +3,6 @@ import Formalism.LocalToGlobal.ProjectiveLattices.RegXInst
 import Formalism.LocalToGlobal.ProjectiveLattices.CurveLocInst
 import Formalism.LocalToGlobal.ProjectiveLattices.LocRingPf
 import Formalism.LocalToGlobal.ProjectiveLattices.CurveSec
-import Formalism.LocalToGlobal.ProjectiveLattices.SecPtRed
-import Formalism.LocalToGlobal.ProjectiveLattices.TieInst
 import Formalism.LocalToGlobal.ProjectiveLattices.RealPtPf
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.EfRankSum
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ValuationLifting.RApprox
@@ -16,6 +14,7 @@ import Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsRatioForm
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.GaussValuationDensityGenerationLocalisationStatement
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsSubfieldValuationClosureStatement
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsIntegralCongrWeakApproximationStatement
+import Formalism.LocalToGlobal.ProjectiveLattices.TieInst
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.MainNotions.Gaps.EtaleWeightGaps Formalism.L2.Pj
 

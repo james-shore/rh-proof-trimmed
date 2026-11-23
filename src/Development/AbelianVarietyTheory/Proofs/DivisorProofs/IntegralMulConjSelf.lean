@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.PerCEmb
-import Formalism.LocalToGlobal.IndefiniteReal.ThPinsR
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.EqZeroOfLintegralEqZero
 
 open NumberField Matrix Complex MeasureTheory IsDedekindDomain

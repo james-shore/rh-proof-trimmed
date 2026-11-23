@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.DepthPays
-import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ProjExists
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LinMulti
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Adapted
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsUnitaryEmbeddingStabilizer
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IntegralRealUnitaryHaarEqProdUpqHaar

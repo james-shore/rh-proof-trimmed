@@ -1,5 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.InsertUnitMatrixZeroApply
 import Formalism.HermitianCurvature.StatementTL
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.DiagScalarCommuteTransposedRMatrix
 
 open Matrix
 

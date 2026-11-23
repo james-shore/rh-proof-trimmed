@@ -1,5 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsExtEmbedding
+import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.GamAtOfLawsCore
+import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.GramXiEqOfLawsFull
+
 open NumberField IsDedekindDomain Module ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.IndefiniteRowSideFullHecke.FrameWeightGapBounds Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.CovTop Formalism.L2.Pj GlobalTheory.FormTies GlobalTheory.Shares GlobalTheory.ShareOn GlobalTheory.ShareOn.Reading
 
 set_option autoImplicit false

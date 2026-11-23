@@ -1,8 +1,8 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeE
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeK
-import ReciprocityTheory.AnalyticForms.AnalyticCharts.NullZero
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.AnResBridgeAnalytic
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeK
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

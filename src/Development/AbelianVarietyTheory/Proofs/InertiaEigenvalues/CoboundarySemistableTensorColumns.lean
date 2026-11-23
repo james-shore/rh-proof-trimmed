@@ -1,7 +1,8 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TwistStep
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.FiltrationZeroMembership
+import Formalism.LocalRingCardinality.AdicCompletionLocal.LocTied
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.EqOfPowEqOneOfNormSubLt
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ToMatrixRepOf
+
 open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations GlobalTheory.Pst GlobalTheory.PMon TensorProduct
 open scoped Formalism.Per
 

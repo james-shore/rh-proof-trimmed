@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsArith
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsNefAmpleFibre
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsLiftModel
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.DenseChart
+import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightObjects
 import GroundTheory.HeightsAndTheta.Heights.Intersections.IsSmoothMetricOfIsSmoothHerm
 
 set_option maxSynthPendingDepth 1

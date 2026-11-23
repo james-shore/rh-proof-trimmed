@@ -1,9 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsLeadOfUnif
-import Development.AbelianVarietyTheory.Definitions.Degenerations.AdmissibleBaseOfCompleteDvr
-import Development.AbelianVarietyTheory.Definitions.Uniformization.SeriesFrame
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SectionPullbackThetaValue
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CoeIntEmbEmbP
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SmoothRayQuotient
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SectionPullbackThetaValue
 
 noncomputable section
 

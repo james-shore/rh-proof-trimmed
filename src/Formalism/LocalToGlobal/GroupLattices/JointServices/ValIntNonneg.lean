@@ -1,6 +1,5 @@
 import Formalism.LocalToGlobal.GroupLattices.JointServices
-import Formalism.LocalToGlobal.GroupLattices.JointServices.VAddEqVw
-import Formalism.LocalToGlobal.GroupLattices.JointServices.LevelOperatorFixesImage
+import Formalism.LocalToGlobal.Divisibility.ProjLemmas
 
 open Module NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.BasicNotions.DV Formalism.MainNotions.G Formalism.MainNotions.WeilJacquetShalikaLaw Formalism.L2.DIV Formalism.L2.Indef

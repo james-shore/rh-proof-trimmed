@@ -1,4 +1,4 @@
-import ReciprocityTheory.L2DbarEstimates.Mollifiers.HasCompactSupport
+import ReciprocityTheory.L2DbarEstimates.Mollifiers.MollifierL2LocTendsto
 
 namespace ReciprocityTheory.L2DbarEstimates.B
 

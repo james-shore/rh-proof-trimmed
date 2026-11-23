@@ -1,5 +1,8 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.SmoothLevOfLoc
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.DegLiftOf
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.OrbitalIntegralIdentities
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.BaseIndexConstantInjective
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.SigmaFiniteOfHaar
 
 open Matrix Finset MeasureTheory
 open scoped ComplexConjugate

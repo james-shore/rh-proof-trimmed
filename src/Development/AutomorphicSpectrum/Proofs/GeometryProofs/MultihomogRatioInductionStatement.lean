@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.MultihomogRatioInduction
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsLatFlagPair
-import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.HeckeSectionsIsotropicCommutatorPairingPower
-import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsFlagIndependence
 
 open MvPolynomial
 set_option maxHeartbeats 1000000 in

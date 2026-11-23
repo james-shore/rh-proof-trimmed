@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.MembershipCriteria.OrderOKOneInert
+import Development.AutomorphicSpectrum.Definitions.MembershipCriteria.GoodChar
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.AddCharConductorAndHaarIntegersExist
 
 open GlobalTheory.CompanionTheory.VacLoc ValuativeRel GlobalTheory.SplitWeil

@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.ActsLinOfSplitLin
+import Formalism.LocalToGlobal.IndefiniteReal.DatumVec
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemUniq
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.TendstoCut
 

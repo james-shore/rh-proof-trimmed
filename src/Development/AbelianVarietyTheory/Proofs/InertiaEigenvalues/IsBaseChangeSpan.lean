@@ -3,6 +3,8 @@ import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 import Formalism.SharpRestriction.LevelLetterCocycles.UsedLocalConclusion
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NotFullBot
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitSumTensorDualOfCrys
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitForOfTie
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsBasisMul
 
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc TensorProduct GlobalTheory.NL Formalism.MainNotions.DeltaInvariantLattices GlobalTheory.WachTensor
 

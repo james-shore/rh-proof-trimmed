@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.CompletedLStripBounds
+import Development.AbelianVarietyTheory.Definitions.Divisors.EntireEqOfHalfPlane
 
 noncomputable section
 

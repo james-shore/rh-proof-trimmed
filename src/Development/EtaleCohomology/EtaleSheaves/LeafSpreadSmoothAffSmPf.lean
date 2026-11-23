@@ -1,5 +1,4 @@
 import Development.EtaleCohomology.EtaleSheaves.LeafSpreadSmoothPf
-import Mathlib.AlgebraicGeometry.Morphisms.FinitePresentation
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite LateralTheory.E.E4 LateralTheory.E.LeafDescendVCut LateralTheory.E.LeafDescendChainPf

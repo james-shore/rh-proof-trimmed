@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsUnitDom
-import Development.AutomorphicSpectrum.Proofs.MembershipProofs.ThetaDistributionNonzeroAdmissible
+import GroundTheory.GlobalFields.TateThesis.AdelicCharDual
 import Development.AutomorphicSpectrum.Proofs.MembershipProofs.ThetaSumAdmissibility
 
 noncomputable section

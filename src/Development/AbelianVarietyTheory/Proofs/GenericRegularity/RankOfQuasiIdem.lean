@@ -2,7 +2,6 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.RegularCharts.MatrixTwoByTwoCongr
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsEigenProjectorRingOfIntegers
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsColsDetNeZeroOfMul
-import Development.AbelianVarietyTheory.Proofs.GenericRegularity.PolyChartSmoothFractionLift
 
 open NumberField
 

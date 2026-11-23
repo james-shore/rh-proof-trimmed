@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.GlobalTheory.FamRec
+import Formalism.SizeWindowBrackets.ChainSlopeWindows.ExistsNsmulMem
 
 open Module NumberField IsDedekindDomain Matrix
 

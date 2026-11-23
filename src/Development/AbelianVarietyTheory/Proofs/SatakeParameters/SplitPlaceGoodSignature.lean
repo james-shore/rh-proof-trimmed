@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.BlockTheory.ThetaLiftGeometry.ThetaLiftOfEachRow
+import Formalism.SharpRestriction.LevelLetterCocycles.DataN
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.HeckeSplitOne
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.SplitLiftOfLiftParam
 

@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.C1FieldNormSurjective
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.TsenLangRatFunc
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.C1FiniteExtensionLang
 
 open Polynomial
 

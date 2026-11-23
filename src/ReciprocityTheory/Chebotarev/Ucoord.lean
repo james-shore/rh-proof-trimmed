@@ -1,5 +1,4 @@
 import Mathlib
-import ReciprocityTheory.Chebotarev.NZIdeal
 
 open NumberField NumberField.mixedEmbedding NumberField.Units NumberField.Units.dirichletUnitTheorem
 

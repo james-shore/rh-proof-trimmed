@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalRingCardinality.DataSpaces
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeAutomorphismFiniteness.MjSmulRight
 import Lemmata.GeneralBFactThirdExtra.Imports
 
 noncomputable section

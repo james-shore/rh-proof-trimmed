@@ -1,7 +1,4 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.Statements
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StGenericPrimitive
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StDiscrAdjoin
 
 set_option maxSynthPendingDepth 1
 

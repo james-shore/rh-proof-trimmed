@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LinkedUnramifiedChains.WeightInfinitesimalCharacters.PropGKU
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.NumberU3US
+import Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVanishing.GdFacts
 
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 200000

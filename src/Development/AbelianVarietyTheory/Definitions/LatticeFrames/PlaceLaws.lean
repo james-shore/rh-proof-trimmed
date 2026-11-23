@@ -1,6 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ValLastX
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.CombAtSingleZero
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsQuasiFam
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ValueDoubleExact
 
 set_option genSizeOfSpec false
 set_option genInjectivity false

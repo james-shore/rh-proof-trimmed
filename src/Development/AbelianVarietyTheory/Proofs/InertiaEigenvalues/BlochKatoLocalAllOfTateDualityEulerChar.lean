@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.LocalSituation
-import Formalism.GaloisCohomology.LocalTateDualityK
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.RationalDualityOfAllCoefficients
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BlochKatoLocalAllPrimesOfBlochKato
+
 open Formalism Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N
 
 namespace GlobalTheory.BlochKatoLocalAllOfTateDualityEulerChar₂

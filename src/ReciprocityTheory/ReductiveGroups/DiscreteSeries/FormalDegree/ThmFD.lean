@@ -1,11 +1,10 @@
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdStep
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdUpper
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdConst
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Sandwich
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.SumNormAdjointSqEqHsOp
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdLower
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdPointwise
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdConst
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.IntegrableOfContinuousCompact
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Sandwich
 
 noncomputable section
 

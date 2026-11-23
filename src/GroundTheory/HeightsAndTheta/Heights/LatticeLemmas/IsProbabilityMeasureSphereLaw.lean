@@ -1,7 +1,8 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.LogGaussNormSupportFinite
+import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.Statements
 import GroundTheory.HeightsAndTheta.Heights.HermitianDual
 import GroundTheory.HeightsAndTheta.Heights.ArithDegree
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

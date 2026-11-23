@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.CharacterGerms.ConstantCoeffPderivUncurry
-import Formalism.LocalToGlobal.CharacterGerms.CoeffSingleSubstOfLowDegree
 
 set_option autoImplicit false
 

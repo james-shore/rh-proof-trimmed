@@ -1,7 +1,7 @@
 import Mathlib
-import ReciprocityTheory.DualLattices.TowerZeroSurjective
+import ReciprocityTheory.DualLattices.FormalChartAtZero
 import ReciprocityTheory.DualLattices.LinPairStatement
-import ReciprocityTheory.DualLattices.SubMemOfCompat
+import ReciprocityTheory.DualLattices.OneAddPowOfSq
 import ReciprocityTheory.DualLattices.CharR
 import ReciprocityTheory.DualLattices.SubMemSpan
 import ReciprocityTheory.DualLattices.ThmAAll

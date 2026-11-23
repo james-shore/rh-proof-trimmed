@@ -1,5 +1,4 @@
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.GeneralAdmissibleOfIrreducibilityStmt
-import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.IsPotCrysAtOfMono0
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.Triple
 

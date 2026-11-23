@@ -1,6 +1,4 @@
-import Formalism.LocalToGlobal.Divisibility.JetBounds.Statement
-import Formalism.LocalToGlobal.Divisibility.JetBounds.MinorProductsLattice
-import Formalism.GaussJetBounds.FinalB
+import Formalism.LocalToGlobal.Divisibility.JetBounds.IsExpansion
 import Formalism.LocalToGlobal.ExponentGrids.IntegerShiftClosedExponent
 
 open Module NumberField IsDedekindDomain

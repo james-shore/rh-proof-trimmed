@@ -4,9 +4,7 @@ import Development.AbelianVarietyTheory.Definitions.RegularCharts.Reframe
 import Development.AbelianVarietyTheory.Definitions.RegularCharts.ModelAt
 import Formalism.LocalToGlobal.ProjectiveLattices.NrmContPf
 import Formalism.LocalToGlobal.ProjectiveLattices.AxHSup
-import Formalism.LocalToGlobal.ProjectiveLattices.DivFinOfLawA3
 import Formalism.LocalToGlobal.ProjectiveLattices.FnTrdegOf
-import Formalism.LocalToGlobal.ProjectiveLattices.RegQFree
 import Formalism.LocalToGlobal.ProjectiveLattices.FrameCharts
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.UniformisationConclusion
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.MaxBoundPf

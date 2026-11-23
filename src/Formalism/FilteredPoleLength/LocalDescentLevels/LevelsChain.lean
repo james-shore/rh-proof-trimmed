@@ -1,6 +1,4 @@
 import Formalism.FilteredPoleLength.ReducedBasisBounds.LengthBaseChangeLocal
-import Formalism.FilteredPoleLength.LocalDescentLevels.MemSpanBasisFun
-import Formalism.IncomingBounds.FlowDegreeBounds.IndexLastReductionHolds
 import Formalism.FilteredPoleLength.LocalDescentLevels.FilIntegerStep
 import Formalism.FilteredPoleLength.LocalDescentLevels.BCount
 

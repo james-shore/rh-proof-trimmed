@@ -4,6 +4,8 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.QuasiRegularAlongOf
 import Development.AbelianVarietyTheory.Definitions.Divisors.LinearIndependentBasisCoords
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IndepBaseChange
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyHomologyEquiv
+import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.InhabSt
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleIdentityIso
 
 set_option autoImplicit false
 

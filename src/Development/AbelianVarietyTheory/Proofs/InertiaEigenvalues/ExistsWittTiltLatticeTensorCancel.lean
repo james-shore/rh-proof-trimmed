@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.LocalSituation
-import Formalism.LocalRingCardinality.AdicCompletionLocal.LocTied
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ConvZero
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ExistsOfLayers
+
 open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct GlobalTheory.HWL
 
 namespace GlobalTheory.HWL

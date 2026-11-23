@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsUniqueHcharOfFiniteOrder
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocUnitApply
+import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
+import ReciprocityTheory.GaloisValuations.Global
+
 open NumberField IsDedekindDomain
 
 noncomputable section

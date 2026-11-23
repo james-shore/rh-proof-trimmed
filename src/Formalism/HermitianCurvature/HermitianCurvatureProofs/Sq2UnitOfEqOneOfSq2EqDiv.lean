@@ -1,5 +1,4 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.AdmissibleOfUnitWords
-import Mathlib.Geometry.Manifold.PartitionOfUnity
 
 open Matrix Set
 open scoped ComplexConjugate ContDiff Manifold Topology

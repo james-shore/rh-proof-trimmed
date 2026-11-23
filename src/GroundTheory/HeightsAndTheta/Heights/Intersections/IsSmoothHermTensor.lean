@@ -1,5 +1,6 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.Intersections.IsSmoothHermFubiniStudyO1
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRedF
 
 set_option maxSynthPendingDepth 1
 

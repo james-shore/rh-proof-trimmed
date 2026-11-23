@@ -1,6 +1,7 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsComponentsMeetNull
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsIntersectionFamily
 import ReciprocityTheory.AnalyticForms.RegularLocalRings.MemConePtsIffChartIdeal
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.HilbertSamuel

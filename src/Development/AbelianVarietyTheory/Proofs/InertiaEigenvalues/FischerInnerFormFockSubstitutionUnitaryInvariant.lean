@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FisSelfReNonneg
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TranslateMemCoefLatFn
-import ReciprocityTheory.DualLattices.FischerSelfNeZero
+import ReciprocityTheory.DualLattices.ConstantCoeffRowSubst
 
 noncomputable section
 

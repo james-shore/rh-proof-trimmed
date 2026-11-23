@@ -1,9 +1,10 @@
 import Mathlib
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.ExistsUniqueStatement
-import GroundTheory.HeightsAndTheta.Heights.HeightComparison.IsMultiHomogIdealIff
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PIntNumPoint
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.Assembly
+import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.HomFracDegZeroEqFunField
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.ExistsUniqueStatement
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.BlockInclInjectiveOfEmbedding
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Targets

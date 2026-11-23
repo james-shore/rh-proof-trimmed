@@ -1,8 +1,8 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.MomentEntryBounds.InstLCSL
 import GroundTheory.AutomorphicForms.ReductionSiegel
-import GroundTheory.AutomorphicForms.NormDetDiagUnitsPosRealToUnits
-import GroundTheory.AutomorphicForms.ReductionLocalVolume
-import GroundTheory.GlobalFields.Adele.Discrete
+import GroundTheory.AutomorphicForms.ReductionMahler
+import GroundTheory.AutomorphicForms.ReductionLocalVolumeTorus
+import GroundTheory.AutomorphicForms.RealIwasawaIntegration
 
 noncomputable section
 

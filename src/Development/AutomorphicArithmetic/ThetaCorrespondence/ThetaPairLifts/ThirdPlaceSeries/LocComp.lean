@@ -1,5 +1,4 @@
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.DetCharacterMemPrincipalCongruenceFixedVectors
-import Mathlib
 import Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.ClassMapD
 
 set_option synthInstance.maxHeartbeats 200000

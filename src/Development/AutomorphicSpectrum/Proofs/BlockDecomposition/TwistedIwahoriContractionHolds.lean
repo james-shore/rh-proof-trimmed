@@ -1,7 +1,6 @@
 import Mathlib
 import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.IntegralUnitBaseChange.Development
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnramifiedExtensionIntegralBasis
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IwahoriFactorization
+import GroundTheory.LocalFields.Integers
 
 open PositivityTheory.Rg.Tf.Loc Matrix ValuativeRel
 

@@ -1,6 +1,6 @@
-import Formalism.WachLatticeTwists.CupProductVanishing.CupProductProofs.PropLocGKOf
-import Formalism.WachLatticeTwists.CupProductVanishing.CupProductProofs.H2MapInjectiveStatement
+import Formalism.WachLatticeTwists.LatticeDualFibres.FibreDualStable
 import ReciprocityTheory.ReductiveGroups.TraceFormulas.LatDefs
+import Formalism.WachLatticeTwists.CupProductVanishing.CupProductProofs.H2MapInjectiveStatement
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 

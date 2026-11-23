@@ -1,9 +1,9 @@
 import Mathlib
 import Formalism.HermitianCurvature.StatementM
-import Formalism.HermitianCurvature.StatementI
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.Interlace
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.Imports
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.TwoBracketsLePowMulProdEntries
+
 open Formalism.FourierDecayAlt Finset
 
 namespace GlobalTheory.NormaliserCutBound

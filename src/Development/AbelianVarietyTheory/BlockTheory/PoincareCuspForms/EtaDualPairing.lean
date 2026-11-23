@@ -1,5 +1,5 @@
 import Mathlib
-import ReciprocityTheory.DualLattices.SeriesState
+import ReciprocityTheory.DualLattices.SqZeroOfSpan
 
 noncomputable section
 

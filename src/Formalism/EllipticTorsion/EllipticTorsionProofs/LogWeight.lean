@@ -1,6 +1,7 @@
 import Mathlib
 import Formalism.EllipticTorsion.UnitCancel
 import Formalism.FormalGroupLog.LogDeterminesLaw
+import Formalism.FormalGroupLog.FormalGroupLogProofs.ConstantCoeffSubstOfZero
 
 open PowerSeries
 

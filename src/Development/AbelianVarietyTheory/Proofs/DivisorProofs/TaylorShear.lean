@@ -4,7 +4,7 @@ import Development.AbelianVarietyTheory.Definitions.ThetaValues.MemAnalyticAtZer
 import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ConstantCoeffDpolyOfAdditiveTaylorPts
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TaylorCompChainStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TaylorCoordAndEvalStatement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TaylorPolynomialEvalAlgebraFormalPropertiesStatement
+
 open Filter Topology
 
 namespace GlobalTheory.PeriodFamily

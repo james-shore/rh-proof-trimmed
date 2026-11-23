@@ -1,6 +1,7 @@
 import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.DensVSt
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.PosNear
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.DensVCos
 
 noncomputable section
 

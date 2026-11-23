@@ -1,5 +1,4 @@
 import Formalism.PieriBlockIdeals.IntegralQuotient
-import Mathlib
 
 open Polynomial
 

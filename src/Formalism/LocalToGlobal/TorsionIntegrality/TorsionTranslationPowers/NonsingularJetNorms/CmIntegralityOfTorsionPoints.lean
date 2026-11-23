@@ -1,6 +1,7 @@
 import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.StatementC
 import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.MulStableIntegral
 import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.CubeThreeR
+import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.StatementA
 
 noncomputable section
 

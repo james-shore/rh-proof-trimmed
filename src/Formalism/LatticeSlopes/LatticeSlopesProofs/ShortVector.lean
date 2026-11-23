@@ -1,5 +1,4 @@
 import Formalism.LatticeSlopes.CovolAntiSameRank
-import Formalism.LatticeSlopes.LatticeSlopesProofs.DiscreteTopologyOfLe
 import Formalism.LatticeSlopes.LatticeSlopesProofs.CovolEqGram
 
 open Module Submodule MeasureTheory

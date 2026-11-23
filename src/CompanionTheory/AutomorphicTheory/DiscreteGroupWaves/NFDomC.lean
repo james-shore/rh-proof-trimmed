@@ -1,5 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutNFMainS
 import CompanionTheory.AutomorphicTheory.DiscreteGroupWaves.NFCoreC
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutNFTopPtw
 
 namespace CompanionTheory.NFCpt
 

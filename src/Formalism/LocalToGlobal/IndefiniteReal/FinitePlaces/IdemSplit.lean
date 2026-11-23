@@ -1,6 +1,7 @@
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemOrth
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemUniq
 import Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.PsiTrCoreApprox
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.DecompositionAlmostEverywhere
+import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
 
 noncomputable section
 

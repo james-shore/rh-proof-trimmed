@@ -2,6 +2,8 @@ import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.NilT
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.AdmissibleSequenceExact
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.PPhiKNil
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.PDvdOfNil
+import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.PNilWeil
+import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.PNilRho
 
 theorem UpperTheory.Ru.crystallineComparison.nilToPhi :
     UpperTheory.Ru.crystallineComparison.NilToPhi := by

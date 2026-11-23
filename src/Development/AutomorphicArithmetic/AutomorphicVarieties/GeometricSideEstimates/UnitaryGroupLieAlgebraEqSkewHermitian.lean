@@ -1,5 +1,5 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.LieGeometryGrowth.ThStmt
-import GroundTheory.GlobalFields.Adele.Topology
+
 open UpperTheory.V.Lit.Geo NumberField Matrix GlobalTheory.CuspRep Topology Filter
 
 theorem UpperTheory.unitaryGroup_lieAlgebra_eq_skewHermitian :

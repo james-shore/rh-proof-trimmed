@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.PeriodIntegrals.GTDefs
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Wlocal
+import Formalism.LocalRingCardinality.DataCoeff
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LRowdivLemmas
 
 noncomputable section
 

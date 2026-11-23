@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.LeadMinor
+import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsCompactUnitaryPointsAtPlaceFstMemCompact
 import Development.WeilBound.CoreStatements.HodgeTatePoints.DualUnique
 
 open Module NumberField GlobalTheory.CompanionTheory.Ar.HT TensorProduct

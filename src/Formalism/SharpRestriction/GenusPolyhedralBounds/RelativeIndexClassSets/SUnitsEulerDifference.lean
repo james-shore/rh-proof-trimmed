@@ -1,9 +1,5 @@
 import Formalism.SharpRestriction.Divisibility.WeightAlgebra
-import Mathlib
 import Formalism.LogFactorialIndices.StatementIdx
-import Formalism.FilteredPoleLength.ReducedBasisBounds.LengthBaseChangeLocal
-import Formalism.FilteredPoleLength.ReducedBasisBounds.FilteredPoleLength
-import Formalism.FilteredPoleLength.ReducedBasisBounds.BetaSesquilinearity
 
 noncomputable section
 

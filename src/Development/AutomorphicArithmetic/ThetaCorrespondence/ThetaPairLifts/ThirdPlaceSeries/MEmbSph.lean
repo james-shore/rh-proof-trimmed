@@ -2,9 +2,8 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GaloisFamily
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SGoodOfLevelShape
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CompAtEqOneOfTameAt
 import Development.AutomorphicArithmetic.Foundations.LocalLanglands.Multi
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.HeckeOpen
-import Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.GoodAUIso
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FixedVectorOfMemIsotypicComponentStatement
 
 set_option synthInstance.maxHeartbeats 200000
 

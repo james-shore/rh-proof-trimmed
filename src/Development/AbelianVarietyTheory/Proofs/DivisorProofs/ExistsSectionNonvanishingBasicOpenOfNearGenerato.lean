@@ -1,8 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.QuasiCompact
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OfRingHom
+import Development.AbelianVarietyTheory.Definitions.Divisors.TateProductRigidificationTrivial
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.BlowPolSt
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AmpleOfLocalAffineCover
-import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.ExistsSecNonzeroLocusEqBasicOpen
 
 noncomputable section
 

@@ -1,5 +1,5 @@
 import Mathlib
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ArithmeticHilbertSamuelLowerBound
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsIntersectionFamily
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.BundleChernComparison
 
 namespace GlobalTheory.CompanionTheory.Ar.Num

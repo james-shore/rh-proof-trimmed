@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SelfMemSpanK
+import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HarishChandraFinite
 
 namespace GlobalTheory.ContinuousRepresentationCoefficients
 

@@ -1,11 +1,11 @@
 import Mathlib
 import ReciprocityTheory.GaloisValuations.Global
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.RingHomOfBaseOrderToFraction
-import Formalism.SharpRestriction.LevelLetterCocycles.DataN
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RootEqOfClose
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TameCharacterIndependentUniformizer
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TameRepConjugateInertia
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CharEqOfApplyRootEqStatement
+
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.L2
 
 namespace GlobalTheory.TameTau

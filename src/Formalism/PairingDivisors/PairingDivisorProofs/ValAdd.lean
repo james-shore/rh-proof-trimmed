@@ -1,7 +1,5 @@
 import Mathlib
-import Formalism.PairingDivisors.StatementA
-import Formalism.PairingDivisors.StatementN
-import Formalism.PairingDivisors.PairingDivisorProofs.Height
+import Formalism.PairingDivisors.StatementH
 
 open Module NumberField IsDedekindDomain Finset
 open Formalism.DivisionValues (vw lw conjPl)

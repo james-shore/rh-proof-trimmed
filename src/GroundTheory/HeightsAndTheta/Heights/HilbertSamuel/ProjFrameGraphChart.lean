@@ -1,6 +1,7 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsProjFrameGraphDeg
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsProjFrameGraph
 import GroundTheory.HeightsAndTheta.Heights.Intersections.QuotientMapImageZInjective
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.HilbertSamuel

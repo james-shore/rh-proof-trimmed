@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.RowSideOfCompatibleThetaPair
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FamilyHypothesesOfWorkingClassSevenDutiesStatement
-import Formalism.SharpRestriction.SmoothDesignExistence.DGamSmooth
 
 noncomputable section
 

@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.MarkSpec
+import Formalism.LocalToGlobal.ProjectiveLattices.UnifDom
 
 noncomputable section
 namespace GlobalTheory.RecDictModel

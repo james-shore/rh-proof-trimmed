@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SubstitutionInverseTransposeMaximalMinorProduct
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.VacTheta
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TotalDegreeSubstFLe
 
 open NumberField MeasureTheory
 open scoped Classical

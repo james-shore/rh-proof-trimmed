@@ -1,8 +1,8 @@
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsKSIffKsRel
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.CrysToDRBijective
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EvRFrMapOfIsReduced
+import Mathlib
+import Development.AbelianVarietyTheory.Definitions.Divisors.NonemptyCuspFrame
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PrimeSpectrumDualNumberEq
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SndEvalPtDir
+
 open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.CechPic GlobalTheory.Vanishing GlobalTheory.CompHS GlobalTheory.TangentOrigin
 open GlobalTheory.FlagMod GlobalTheory.TopForm
 open GlobalTheory.FlagTan (dimFlag psiSet TIx HIx VIx IsTanFrame IsDef IsVert KSIso kap)

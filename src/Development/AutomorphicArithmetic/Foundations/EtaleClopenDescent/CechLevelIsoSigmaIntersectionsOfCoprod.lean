@@ -1,5 +1,5 @@
 import Mathlib
-import Development.EtaleCohomology.EtaleSheaves.CechYoneda
+import Development.EtaleCohomology.EtaleSheaves.CechSigmaOf
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite

@@ -1,5 +1,4 @@
 import Mathlib
-import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.IndCount
 
 open Filter Topology Set
 open scoped ContDiff

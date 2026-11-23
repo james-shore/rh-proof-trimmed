@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.PAdicHodge.AxLemma
+import GroundTheory.PAdicHodge.GaloisOnCp
 
 open Filter Topology
 

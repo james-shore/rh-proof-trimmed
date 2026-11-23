@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.ProjectiveLattices.MulCMemSec
+import Formalism.LocalToGlobal.ProjectiveLattices.PetersonNormSubspace
 
 set_option synthInstance.maxHeartbeats 400000
 

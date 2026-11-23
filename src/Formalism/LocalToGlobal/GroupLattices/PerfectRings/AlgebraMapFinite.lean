@@ -1,4 +1,4 @@
-import Formalism.LocalRingCardinality.SpanPowerMembership.GatRing
+import Mathlib
 
 noncomputable section
 

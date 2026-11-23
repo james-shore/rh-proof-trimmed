@@ -1,7 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.AdjugateBlockSingleLastColumn
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.SubMulRight
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.HermitianFormRankZeroApply
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.StrictUpperNeg
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.SubMulRight
 
 open Matrix MeasureTheory Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.U
 open scoped ComplexConjugate

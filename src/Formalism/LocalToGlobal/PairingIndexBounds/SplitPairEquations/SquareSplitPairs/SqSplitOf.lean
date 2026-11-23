@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.SquareSplitPairs.ExistsNOne
+import Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.SquareSplitPairs.SumThreeComm
 
 noncomputable section
 open NumberField Formalism.BasicNotions Classical Matrix

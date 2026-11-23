@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.HermitianLattices.GenusCovolBound
 import Formalism.HermitianLattices.HermitianLatticesProofs.IsomAct
-import Formalism.HermitianLattices.HermitianLatticesProofs.GenusBasic
 
 open Module Matrix
 

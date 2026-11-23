@@ -1,6 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.WeakShimuraTheory.RedIdeal
-import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.CoSpan
-import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.DerHom
 
 open IsLocalRing Polynomial UpperTheory.V.Alg UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws
 

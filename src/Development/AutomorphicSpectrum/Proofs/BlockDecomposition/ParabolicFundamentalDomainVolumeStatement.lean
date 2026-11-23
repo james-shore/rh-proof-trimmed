@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ParabolicFundamentalDomainVolume
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SplitHomeoApply
 
 open MeasureTheory Topology
 open scoped ENNReal NNReal Matrix Pointwise

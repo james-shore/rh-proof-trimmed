@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.TranslateMemIndOrder
-import Development.WeilBound.CoreStatements.HodgeTatePoints.TwhopfInd
+
 open GlobalTheory.CompanionTheory.Ar.BT TensorProduct
 
 namespace GlobalTheory.CompanionTheory.Ar.BT.Induced

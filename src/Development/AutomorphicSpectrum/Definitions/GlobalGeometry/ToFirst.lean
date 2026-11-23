@@ -1,7 +1,5 @@
 import Mathlib
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermCut
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.GermComp1ZeroPointLeft
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LocalComponentsSurjective
 
 noncomputable section
 

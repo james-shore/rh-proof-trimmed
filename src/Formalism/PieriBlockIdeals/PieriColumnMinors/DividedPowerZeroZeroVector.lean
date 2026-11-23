@@ -1,5 +1,5 @@
 import Formalism.PieriBlockIdeals.StatementLD
-import Formalism.GradedWeylDivisibility.FinalD
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LRowdivLemmas
 
 open MvPolynomial
 

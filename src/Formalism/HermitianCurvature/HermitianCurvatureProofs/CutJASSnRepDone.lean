@@ -1,11 +1,10 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCModConst
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransit
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCLineNonzero
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJASSnRepThtFacts
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.SsnRepOfOpen2
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRhoExists
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.SRaiseSNorm
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.GaugeConstructionHolds
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCLineNonzero
 
 namespace Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Rep.Core.TC.MC
 

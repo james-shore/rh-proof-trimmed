@@ -1,9 +1,8 @@
 import Mathlib
 import Development.ResolutionOfSingularities.Foundations.Blowup.BlowupBasic
-import Development.ResolutionOfSingularities.Foundations.Blowup.BlowupExistence
-import Development.ResolutionOfSingularities.Foundations.Schemes.IdealSheafData
-import Development.ResolutionOfSingularities.Foundations.BlowupUniversalProperty
-import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionOfSingularities
+import Development.ResolutionOfSingularities.Foundations.Blowup.AffineBlowup
+import Development.ResolutionOfSingularities.Foundations.Schemes.SchemeMorphismProperties
+
 universe u
 
 open CategoryTheory AlgebraicGeometry CategoryTheory.Limits

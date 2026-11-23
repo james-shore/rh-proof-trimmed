@@ -2,7 +2,6 @@ import Mathlib
 import Formalism.SharpRestriction.CuspSpanNormBounds.StandingNumericalData
 import Formalism.HermitianCurvature.StatementJCT
 import Formalism.SharpRestriction.CuspSpanNormBounds.LocalModelPeriodLattices
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.SupremumAIsMajorant
 
 noncomputable section
 

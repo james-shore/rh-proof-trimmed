@@ -1,5 +1,5 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.ParabolicImageOfAdapted
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.StKHolds
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.T2SpaceScalarTensorExt
 
 noncomputable section
 

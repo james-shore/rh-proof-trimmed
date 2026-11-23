@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.ScaleEdges.ScaleNegMono
+import Formalism.SharpRestriction.GrowthBounds.TableLineDegreeFive
 import Formalism.SharpRestriction.GrowthBounds.LatticeSystems
 
 noncomputable section

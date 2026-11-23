@@ -1,11 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.PointsNonemptyUnitaryRankOne
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalPairValueLinear
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PowerSumsVanishOfTrivialFlags
+import GroundTheory.Brauer.TensorSimple
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FundamentalCharacterIdealPowers
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HopfOrderPullbackAlongHom
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularElementsBoundedPadic
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BoundedCoordinatesPPowerDenominator
 
 open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount GlobalTheory.LKCx
 open scoped TensorProduct Classical

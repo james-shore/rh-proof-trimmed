@@ -1,8 +1,9 @@
 import Mathlib
-import Formalism.GaloisCohomology.LocalTateDualityK
-import ReciprocityTheory.Hypotheses.GalCohDefs
+import Formalism.GaloisCohomology.Statement
+import Formalism.GaloisCohomology.StatementLoc
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FiniteDimensionalAdjoinRange
+
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal
 
 noncomputable section

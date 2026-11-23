@@ -1,5 +1,6 @@
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistBijective
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalAlgebraHolds
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.AdeleLC
+
 open GlobalTheory.BCT GlobalTheory.CompanionTheory.SplitConvTw
 open scoped Classical Pointwise
 

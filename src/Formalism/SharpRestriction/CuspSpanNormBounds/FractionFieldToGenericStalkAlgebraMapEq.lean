@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.SharpRestriction.CuspSpanNormBounds.Point
 
 noncomputable section
 

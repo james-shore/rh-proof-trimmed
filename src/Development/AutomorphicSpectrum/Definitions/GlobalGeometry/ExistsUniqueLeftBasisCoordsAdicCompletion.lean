@@ -4,7 +4,7 @@ import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsAdapted
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsPeriodAtRestrict
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.SlopeBoundSt
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IntegralClosureHeightEqOneOfLiesOver
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.SplitComps
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.TowerOrigin
 
 noncomputable section
 

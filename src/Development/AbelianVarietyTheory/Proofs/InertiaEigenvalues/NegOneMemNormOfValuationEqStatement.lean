@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NegOneMemNormOfValuationEq
-import GroundTheory.LocalFields.UnramifiedNormSurj
 
 open ValuativeRel
 set_option maxHeartbeats 1000000 in

@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.HypothesesAbsDet
-import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.HoweDualityGL
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsParahoricVec
 
 noncomputable section
 

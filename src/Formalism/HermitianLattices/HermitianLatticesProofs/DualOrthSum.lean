@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.HermitianLattices.DualOrthSum
-import Formalism.HermitianLattices.HermitianLatticesProofs.DualBasic
 
 noncomputable section
 

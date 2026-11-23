@@ -1,5 +1,5 @@
-import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.RedTheta
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.CharLem
+import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.FuncSt
+import Formalism.LocalToGlobal.IndefiniteReal.PHeisFC
 
 noncomputable section
 

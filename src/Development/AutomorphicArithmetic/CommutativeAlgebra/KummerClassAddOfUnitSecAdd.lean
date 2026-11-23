@@ -3,9 +3,9 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.SecClass
 import Development.AutomorphicArithmetic.CommutativeAlgebra.KumSExact
 import Development.AutomorphicArithmetic.CommutativeAlgebra.PicUnit
 import Development.AutomorphicArithmetic.CommutativeAlgebra.EqOfUnitGlobalSectionEq
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleSheafSectionsExtAndGlueStatement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TateTwistSectionsLocallyGeneratedStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsKummerTorsorSplittingKummerTorsorSplittingStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleSheafSectionsExtAndGlueStatement
+
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC
 
 private theorem prim_pow (q : ℕ) {A : Type} [CommRing A] (ζ : Prim q A) : ζ.1 ^ q = 1 := by

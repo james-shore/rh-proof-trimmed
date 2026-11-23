@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Degenerations.AdmissiblePadicIntMaximalIdeal
-import Development.AbelianVarietyTheory.BlockTheory.CMModuli.LocalFramePowerSections
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsSabCancel
 import Development.AbelianVarietyTheory.Counterexamples.ModuliSurvey.PremisesOfProper
 

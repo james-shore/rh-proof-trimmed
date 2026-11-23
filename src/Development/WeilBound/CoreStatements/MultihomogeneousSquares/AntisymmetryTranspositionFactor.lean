@@ -1,5 +1,8 @@
 import Development.WeilBound.CoreStatements.MultihomogeneousSquares.AntisymmetryFibreSquares
 import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.EvalRhoAntisymDeltaNe
+import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.RealTowerArithAgreementStatement
+import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.RealTowerGeometricAgreementStatement
+import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.FlagHeightPolynomialEvalStatement
 
 noncomputable section
 

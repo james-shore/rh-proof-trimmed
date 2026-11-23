@@ -2,6 +2,7 @@ import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GelfandTsetlinBranching.ExtremalFacts
 import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
 import Formalism.GradedWeylDivisibility.FinalD
+import Formalism.PeriodIntegrals.HwIrred
 
 noncomputable section
 

@@ -1,5 +1,5 @@
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.PartialTrace
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.GelfandHW
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.GelfandSeries
 
 noncomputable section
 

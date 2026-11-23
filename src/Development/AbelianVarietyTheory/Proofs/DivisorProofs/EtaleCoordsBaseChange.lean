@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasBoundedPolesGlobalData
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MulBoundAtBaseChange
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConjFsBasisOfUnitary
 
 set_option autoImplicit false

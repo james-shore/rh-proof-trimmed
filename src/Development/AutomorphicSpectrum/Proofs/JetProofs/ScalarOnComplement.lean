@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.JetProofs.MulExpOfMulEqZero
+import Development.AutomorphicSpectrum.PublishedTheorems.Jets₂.IsPermissibleOfCentre
 
 noncomputable section
 

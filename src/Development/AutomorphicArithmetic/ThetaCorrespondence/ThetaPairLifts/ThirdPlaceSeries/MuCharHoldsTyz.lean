@@ -1,5 +1,4 @@
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.MuCharacter
-import Mathlib
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.HeckeCharEqOfLAdicRealisation
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.HeckeCharEqOfLAdicRealisation
 
 set_option synthInstance.maxHeartbeats 200000

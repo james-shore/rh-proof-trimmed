@@ -1,6 +1,4 @@
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.WeilThetaConvergence
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.WeilEisensteinSiegelConvergence
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.WeilSiegelFormula
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MemSchwartzAOfIsSchwartzBruhat
 
 open scoped TensorProduct ENNReal Matrix Classical

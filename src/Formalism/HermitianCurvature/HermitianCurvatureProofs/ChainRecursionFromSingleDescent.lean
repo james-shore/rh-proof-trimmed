@@ -1,6 +1,5 @@
 import Formalism.HermitianCurvature.StatementQ
 import Formalism.RealPlaceAnalysis.RealPlaceTaylor.GeneratorCommutatorQuantumDet
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.SumDualVectorEqZeta
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.WeylCellConjTransposeMulApply
 
 open Matrix Finset Filter Topology

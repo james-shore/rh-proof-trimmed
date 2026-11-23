@@ -1,6 +1,5 @@
 import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.WeightedPrimeSumBound
 import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.IteratedWeightAtVanishingOrder
-import Mathlib
 
 noncomputable section
 

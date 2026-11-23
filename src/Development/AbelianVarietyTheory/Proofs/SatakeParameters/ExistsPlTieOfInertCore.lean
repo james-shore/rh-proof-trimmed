@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.GlobSpecOfExists
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FractionRingFrobeniusAlgebraMap
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsDvrExtensionEmbedding
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsPlTieOfCore
 
 open NumberField IsDedekindDomain IsLocalRing Formalism.MainNotions.G Formalism.L2.Col Formalism.BasicNotions

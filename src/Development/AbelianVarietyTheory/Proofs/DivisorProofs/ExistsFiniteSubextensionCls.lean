@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OneCompOfIsGrpPullback
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsFlagModelHermSum
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsLineBundleDescentToSubfield
+
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory
 
 namespace GlobalTheory.LBDescent

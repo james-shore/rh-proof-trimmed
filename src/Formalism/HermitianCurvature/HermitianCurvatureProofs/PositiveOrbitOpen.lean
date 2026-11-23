@@ -1,8 +1,6 @@
 import Formalism.HermitianCurvature.StatementJF
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.DilationUnipotentWeylMeasure
+import Formalism.FormalDegreeBessel.FormalDegreeRatio.UnitaryWeylNormalHolds
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.RegularisedPairingViaPhase
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.WordIntegralScaling
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.WordKeyIdentity
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.BigCellZetaMinors
 
 open Matrix MeasureTheory Filter Topology

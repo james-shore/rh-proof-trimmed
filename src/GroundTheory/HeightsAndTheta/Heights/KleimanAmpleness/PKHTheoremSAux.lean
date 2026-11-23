@@ -1,11 +1,12 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.KleimanNefness.AlgCechSt
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.KleimanNefness.AlgSFreeSt
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.KleimanNefness.AmpleSt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.KleimanNefness.AlgFiltSt
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.CechHcSubsingletonOfBij
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PGradedSubquot
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PGenSESStep
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PGenTwistGenerated
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Kleiman

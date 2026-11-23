@@ -1,7 +1,7 @@
 import Mathlib
-import Formalism.LocalToGlobal.Columns.ScaledRamifiedLattice
-import Formalism.LogVandermondeBounds.FinrankFiberSumZero
-import Formalism.LogVandermondeBounds.GaussOperatorProductFormula
+import Formalism.LocalToGlobal.Columns.ColForms
+import Formalism.LocalToGlobal.Columns.DecoFin
+import Formalism.LocalToGlobal.Columns.AlgebraMapMemMaximalIdealPowIff
 
 open NumberField IsDedekindDomain Module
 

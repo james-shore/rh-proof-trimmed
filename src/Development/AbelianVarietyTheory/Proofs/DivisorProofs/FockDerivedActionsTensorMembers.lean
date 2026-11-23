@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.SharpRestriction.Divisibility.SchurIrreducible
-import Development.AbelianVarietyTheory.Definitions.Foundations.IsFockIPOfFockData
 
 noncomputable section
 namespace GlobalTheory.FockEmbExp

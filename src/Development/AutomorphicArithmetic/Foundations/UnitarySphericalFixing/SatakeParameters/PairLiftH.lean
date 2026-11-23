@@ -3,10 +3,7 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ConjDualOfLabe
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MembersGood
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CompAtEqOneOfTameAt
 import Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.ClsEqOfLocVEqG
-import Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.GoodLem
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsIrreducibleTwist
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GoodToralTwistStable
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SplitExEveryDatum
 
 noncomputable section
 

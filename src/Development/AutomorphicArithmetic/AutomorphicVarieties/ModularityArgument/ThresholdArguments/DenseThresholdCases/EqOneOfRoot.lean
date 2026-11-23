@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SphericalDecomposition.RecSph
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.AutomorphicFormHyp
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PlainTorExistsChars
 
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 200000

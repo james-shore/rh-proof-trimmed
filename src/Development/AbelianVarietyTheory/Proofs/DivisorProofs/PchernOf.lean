@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.GaussManinPeriods
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.CrysToDRBijective
 import Development.AbelianVarietyTheory.Definitions.Divisors.AnalyticChartsRealizationCompPointEq
 import Development.AbelianVarietyTheory.Definitions.Divisors.FstTszeSec
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsPeriodHom

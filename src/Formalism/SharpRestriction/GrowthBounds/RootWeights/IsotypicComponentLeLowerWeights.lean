@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.RootWeights.CrCCommApply
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.CrRootMem
 
 noncomputable section
 

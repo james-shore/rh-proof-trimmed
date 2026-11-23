@@ -1,6 +1,6 @@
 import Mathlib
 import GroundTheory.LocalFields.Ramification
-import GroundTheory.LocalFields.Monogenic
+import GroundTheory.LocalFields.Eisenstein
 import GroundTheory.LocalFields.Unramified
 
 noncomputable section

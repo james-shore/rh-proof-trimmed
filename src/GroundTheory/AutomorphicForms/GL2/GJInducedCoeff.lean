@@ -1,6 +1,8 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.GL2.GJZetaDefs
 import GroundTheory.AutomorphicForms.HaarCosets
+import GroundTheory.AutomorphicForms.SmoothRepContragredient
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

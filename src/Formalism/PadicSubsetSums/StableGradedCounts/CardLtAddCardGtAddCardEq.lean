@@ -1,10 +1,9 @@
 import Formalism.PadicSubsetSums.CentralIdempotents.FactorOverLocalSubalgebraMonic
 import Formalism.PadicSubsetSums.StableGradedCounts.ZReuse
-import Formalism.PadicSubsetSums.CentralIdempotents.PrimitiveRootFifteenSubOneUnit
 import Formalism.PadicSubsetSums.StableGradedCounts.FactorOverLocalSubalgebra
 import Formalism.PadicSubsetSums.StableGradedCounts.CharpolyFactorAnnihilator
 import Formalism.PadicSubsetSums.StableGradedCounts.ZGoodCuspidal
-import Formalism.PadicSubsetSums.StableGradedCounts.ZBrauerNesbitt
+import Formalism.PadicSubsetSums.StableGradedCounts.ZBrauerNesbittAlg
 
 open Polynomial Filter Topology
 

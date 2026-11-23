@@ -4,6 +4,7 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FunctionFieldRatioG
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FrameMatrixChartRatios
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsArithVarOfBlockAlgebraic
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenericFlagTrdegFormula
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.IsSaturatedFirstCoordinateLine
 
 noncomputable section
 

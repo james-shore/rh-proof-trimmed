@@ -1,5 +1,7 @@
 import ReciprocityTheory.SemistableReduction.SemiDegZ
 import Lemmata.GeneralBFactSecondAlt.Imports
+import ReciprocityTheory.SemistableReduction.SemiDegG
+import ReciprocityTheory.SemistableReduction.SemiDegW
 
 noncomputable section
 

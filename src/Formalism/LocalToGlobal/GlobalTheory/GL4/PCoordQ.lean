@@ -1,12 +1,10 @@
-import Formalism.LocalToGlobal.GlobalTheory.GL4.CTEqConjTranspose
-import Formalism.LocalToGlobal.GlobalTheory.GL4.PFrLoc
 import Mathlib
 import Formalism.SharpRestriction.GlobalSchurBounds.FlipTwoThree
-import Formalism.LocalToGlobal.HermitianColumns.ColsHerm
-import Formalism.LocalToGlobal.HermitianForms.FormsTied
+import Formalism.LocalToGlobal.HermitianForms.PrkSmul
 import Formalism.GradedWeylDivisibility.StatementE
 import Formalism.SuccessiveMinima.StatementMink
-import Formalism.GL3MeanSquares.ConcavityEquidistribution
+import Formalism.SharpRestriction.GlobalSchurBounds.IntegrableOfContinuousCircleMeasure
+import Formalism.LocalToGlobal.GlobalTheory.GL4.PFrLoc
 
 noncomputable section
 

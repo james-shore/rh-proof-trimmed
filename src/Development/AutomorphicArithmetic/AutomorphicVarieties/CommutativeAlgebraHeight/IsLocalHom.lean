@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective
-import ReciprocityTheory.CommutativeAlgebra.SaturatedChains.IsSaturatedChain
 
 noncomputable section
 

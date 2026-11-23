@@ -13,8 +13,8 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HeckeConvolutio
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RelIndexNeZeroOfOpenLeStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SwapTwistedCentralizerDiagonalStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedOrbitalSwapConvolutionStatement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RightStabilizerConjBiinvariantFiniteIndexStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StabilizerIndexNeZero
+
 open GlobalTheory.BCT PositivityTheory.Rg.BcB.G8.Fin
 open scoped Classical
 

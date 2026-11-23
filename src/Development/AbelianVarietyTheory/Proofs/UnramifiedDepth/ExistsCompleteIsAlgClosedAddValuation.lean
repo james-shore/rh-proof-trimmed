@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.ProjectiveLattices.PlaceBelow
+import Formalism.LocalToGlobal.ProjectiveLattices.ChartDirectionsIntegral
 import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsAbsoluteValueOfIsDiscreteValuationRing
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsFinSiteSiteAlg
 

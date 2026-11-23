@@ -1,5 +1,5 @@
 import Mathlib
-import Development.WeilBound.CoreStatements.HodgeTatePoints.FlagbAlg
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsGenericFlag
 
 noncomputable section
 

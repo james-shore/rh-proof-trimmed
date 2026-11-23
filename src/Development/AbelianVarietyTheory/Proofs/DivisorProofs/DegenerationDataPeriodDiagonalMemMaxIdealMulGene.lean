@@ -1,8 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PeriodRel
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TauDiagEqUnitMulPsiSq
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GsJKToOpenTop
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RefiningDegenerationDataTauCoordinateUnit
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GsJKToOpenTop
+
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM GlobalTheory.SiegelTor GlobalTheory.TorRef GlobalTheory.PolDeg GlobalTheory.SiegJoin GlobalTheory.TChart

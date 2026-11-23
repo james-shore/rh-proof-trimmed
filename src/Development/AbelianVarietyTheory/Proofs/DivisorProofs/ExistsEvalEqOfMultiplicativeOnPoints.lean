@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.JetHarmonics.TensorEqZeroOfForallGeometricPoint
-import Development.AbelianVarietyTheory.Proofs.JetHarmonics.GroupLikeIntegralOfFiniteFree
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
+
 open scoped TensorProduct
 
 namespace GlobalTheory

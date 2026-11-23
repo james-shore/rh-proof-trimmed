@@ -1,12 +1,10 @@
 import Mathlib
-import Development.AutomorphicSpectrum.PublishedTheorems.Metrics₂.PoincareLelong
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSt
 import Development.AutomorphicSpectrum.PublishedTheorems.Metrics₂.SheetDensityEqSetSheetDensity
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRed
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRedF
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterGood
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterDivSupp
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSheet
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterFib
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.CxPosDens
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.CxSimple
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.SegreChartProjObjects
@@ -25,6 +23,7 @@ import Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsGoodProjFirstCo
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.MeasurableDomCellLogNormChartStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.DomCellLogNormMeasurableInvariantStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsSmoothMetricsNonnegDensityStatement
+
 open MvPolynomial MeasureTheory ReciprocityTheory.ChartRestriction.G.Geo GlobalTheory.CompanionTheory.Ar.Pub.CxInt GlobalTheory.CompanionTheory.Ar.Pub.CxComp Filter Topology
 open ReciprocityTheory.AnForm.R (conePts)
 open GlobalTheory.CompanionTheory.Ar.Pub.CxChart (chartSet chartComponents chartSection domCell absLogNorm)

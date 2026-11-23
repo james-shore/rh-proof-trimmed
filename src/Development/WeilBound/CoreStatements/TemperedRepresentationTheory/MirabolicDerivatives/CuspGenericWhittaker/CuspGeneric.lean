@@ -1,11 +1,10 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.MirabolicDerivatives.ColMatMulGlEmbMat
-import GroundTheory.AutomorphicForms.LocallyConstantCompact
+import GroundTheory.AutomorphicForms.LocallyProfinite
 import GroundTheory.AutomorphicForms.WhittakerGroups
-import GroundTheory.AutomorphicForms.WhittakerCells
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NontrivialTwJacquetOfSurjective
-import GroundTheory.AutomorphicForms.SmoothRepContragredient
-import GroundTheory.AutomorphicForms.SupercuspidalCoefficients
+import GroundTheory.AutomorphicForms.SmoothRep
+import GroundTheory.AutomorphicForms.CuspidalAdmissible
+import GroundTheory.AutomorphicForms.IwahoriFactorization
 
 noncomputable section
 

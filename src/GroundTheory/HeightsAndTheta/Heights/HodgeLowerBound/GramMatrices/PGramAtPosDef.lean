@@ -1,6 +1,8 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.GramMatrices.StatementsGramAtPosDef
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.EventuallyInFrameDomain
+import GroundTheory.HeightsAndTheta.Heights.KernelsLattice
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

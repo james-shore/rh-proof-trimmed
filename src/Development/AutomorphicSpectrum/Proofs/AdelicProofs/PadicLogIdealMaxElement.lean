@@ -1,7 +1,8 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.AdelicLattices.FactPrimes
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.LatNormGrLatNeZeroOfSpan
+import Development.AbelianVarietyTheory.Proofs.HermitianTraceForms.IsLocallyConstantRankAtStalkEigenSub
 import Development.WeilBound.CoreStatements.SesquilinearFractions.NIdeal
+
 open NumberField GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
 
 namespace GlobalTheory.CompanionTheory.Ar.Fl

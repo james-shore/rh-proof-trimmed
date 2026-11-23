@@ -1,7 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.IsCharZeroPt
-import Mathlib.Algebra.Module.Torsion.Basic
-import Mathlib.LinearAlgebra.Dual.Lemmas
-import Mathlib.FieldTheory.Finiteness
 
 open Matrix IsLocalRing ReciprocityTheory.Gal UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.UnitaryThreeInertia
 

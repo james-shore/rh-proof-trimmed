@@ -1,8 +1,6 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.CocyclesToWachVectorsBoundOfExtTool
 import Formalism.SharpRestriction.LevelLetterCocycles.BaseChangePreservesUnitaryOf
-import Formalism.SharpRestriction.LevelLetterCocycles.ExistsPosConstLagrangeCondition
 import Formalism.SharpRestriction.LevelLetterCocycles.RingConditionOfDeltaInvariants
-import Formalism.SharpRestriction.LevelLetterCocycles.LevelClauseOfOpenTool
 
 noncomputable section
 

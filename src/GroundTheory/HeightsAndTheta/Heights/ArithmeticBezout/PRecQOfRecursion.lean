@@ -2,14 +2,9 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.Statements
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.SpecFirstDetFormNeZero
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.IsMultiHomogOfIsChowForm
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.GaussNormEqCoeffGaussNorm
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PChowFormExtend
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PRadicalBaseChange
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PObjectsDivCycleGeneric
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterDivSupp
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.LowerBoundConditional
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.HeightMul
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.MahlerMul
+import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.LogIntSphere
 
 set_option maxSynthPendingDepth 1
 

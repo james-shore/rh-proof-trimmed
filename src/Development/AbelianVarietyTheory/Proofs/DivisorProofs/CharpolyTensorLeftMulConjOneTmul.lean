@@ -1,5 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsRootSelectionUnitaryRankOne
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.T2SpaceTensorRatFiniteAlgebraModuleTopology
+
 open GlobalTheory.LKTrip GlobalTheory.LKMid
 open scoped TensorProduct Classical
 

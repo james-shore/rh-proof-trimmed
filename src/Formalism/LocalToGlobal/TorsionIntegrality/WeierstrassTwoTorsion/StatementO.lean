@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.StatementG
+import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.CompInv
 
 open PowerSeries
 

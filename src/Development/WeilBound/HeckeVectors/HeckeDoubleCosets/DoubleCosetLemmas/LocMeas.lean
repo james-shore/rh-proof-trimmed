@@ -1,9 +1,6 @@
 import Development.WeilBound.HeckeVectors.HeckeDoubleCosets.DoubleCosetLemmas.ExtendedCharacterCongrOfTame
-import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsNrm
 import GroundTheory.GlobalFields.KummerTheory.LocalIndexAtPlace
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.InstBorelGL
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.T2SpaceOfIsNonarchimedeanLocalFieldFlagMeasures
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.MatrixHaarRightTranslate
 
 noncomputable section

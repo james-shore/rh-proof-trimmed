@@ -1,9 +1,8 @@
-import Formalism.HermitianCurvature.BigCellVanishingOfCommute
+import Formalism.HermitianCurvature.StatementU
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.OrbitalMeasurabilityWeakThreshold
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.PsiNormalization
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ConjugationInvarianceEverySetting
-import Formalism.FormalDegreeBessel.FormalDegreeRatio.BesselUnitaryEquivHolds
 import Formalism.FormalDegreeBessel.FormalDegreeRatio.BesselUnipotentEquivHolds
+import Formalism.RealPlaceAnalysis.StatementU
 
 open Matrix MeasureTheory Filter Topology
 

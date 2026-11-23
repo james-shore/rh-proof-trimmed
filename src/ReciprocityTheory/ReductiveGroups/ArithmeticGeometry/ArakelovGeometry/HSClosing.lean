@@ -1,4 +1,5 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.IsSmoothPts
+import ReciprocityTheory.GeometryOfNumbers.AsymptoticSequences.ClosingHS
 
 noncomputable section
 

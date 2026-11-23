@@ -1,4 +1,4 @@
-import Formalism.LocalRingCardinality.DataParamsT
+import Formalism.LocalRingCardinality.DataParams
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.FrameFacts
 
 namespace Formalism.BasicNotions

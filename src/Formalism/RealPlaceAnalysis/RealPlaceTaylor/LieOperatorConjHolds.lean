@@ -1,6 +1,4 @@
 import Formalism.RealPlaceAnalysis.SmoothOnGVIff
-import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CartanInvolutionConjTransposeMul
-import Formalism.RealPlaceAnalysis.RealPlaceTaylor.HalfSumRootsStandard
 
 open Matrix Finset
 open scoped ContDiff

@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SchurEqJtDet
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsAddHaarMeasureVolumeLie
 
 noncomputable section
 

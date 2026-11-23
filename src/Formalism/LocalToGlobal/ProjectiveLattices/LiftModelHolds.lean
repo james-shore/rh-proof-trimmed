@@ -1,4 +1,6 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.LiftModelPf
+import Formalism.LocalToGlobal.ProjectiveLattices.LiftInSt
+import Formalism.LocalToGlobal.ProjectiveLattices.LiftModelSt
 
 noncomputable section
 

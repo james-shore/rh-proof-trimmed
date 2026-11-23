@@ -1,7 +1,5 @@
 import Mathlib
-import Development.WeilBound.CoreStatements.AutomorphicKernels.BernsteinUnitaryProducts.BernsteinTheoremA.FrobeniusReciprocity.SupportedInIffOfFrob
-import GroundTheory.GlobalFields.TateThesis.NoSmallSubgroups
-import GroundTheory.AutomorphicForms.LocallyProfinite
+import Development.WeilBound.CoreStatements.AutomorphicKernels.BernsteinUnitaryProducts.BernsteinTheoremA.FrobeniusReciprocity.PullHomeoApply
 
 noncomputable section
 

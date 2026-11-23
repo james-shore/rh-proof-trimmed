@@ -1,7 +1,6 @@
 import Mathlib
-import ReciprocityTheory.DualLattices.DetPolyMulCayleyOmegaPow
-import ReciprocityTheory.DualLattices.VEqZeroOfPowEqOne
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.WeightedSumBounds.PeriodValuation
+import ReciprocityTheory.DualLattices.FischerAdjointStatement
+
 open ReciprocityTheory.PGsh MvPolynomial
 
 namespace GlobalTheory.DetPowDegree

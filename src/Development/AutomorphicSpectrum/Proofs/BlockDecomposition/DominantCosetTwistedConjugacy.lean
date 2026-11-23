@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsUnifAt
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PlaceConjugationPropertiesCmFieldStatement
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IwahoriProjSurjective
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IwahoriAndMaximalCompactCriteria
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiagRigid
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WeightExponentStrictlyAntitone
@@ -10,6 +9,7 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiagTMemIwGL
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryIwahoriOrbitalSupport
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CptPartEqInf
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactElementEigenvaluesUnits
+
 open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.BCT GlobalTheory.UnitaryBC Formalism.UG
 open scoped Classical
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField

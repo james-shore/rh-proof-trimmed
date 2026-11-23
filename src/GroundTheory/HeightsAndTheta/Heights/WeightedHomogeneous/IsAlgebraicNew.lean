@@ -1,8 +1,6 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.Objects
-import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.DualModel
-import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.Reading
-import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.IsAlgebraicAdjoinRangeIff
+import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightObjects
 
 set_option maxSynthPendingDepth 1
 

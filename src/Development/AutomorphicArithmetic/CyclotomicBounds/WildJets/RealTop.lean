@@ -1,12 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.InfClassAt
-import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.DictAt
 import Development.AbelianVarietyTheory.Definitions.Divisors.DiscreteSeriesHermitianUnique
-import Development.AbelianVarietyTheory.Definitions.Foundations.NormSumPairRankZeroOfCurveCoordNorm
-import Development.AbelianVarietyTheory.Statements.CuspidalUnitaryTwists.ExistsSmallSpherical
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicValuationThetaKernelJetBound
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HighestWeightBelow
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.VwNatCastNonneg
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.JetKapIff
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.KerFockMovedReal
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.InfOfMulFinOf
@@ -14,6 +10,8 @@ import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ThetaStepDist
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.StabOrd
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CompactPairRealAverageFockEqJetOperator
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ColumnArrowKernelRealEqDetCharMulFockKernel
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.VwNatCastNonneg
+
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
 open IsDedekindDomain NumberField Matrix GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.RowClaim GlobalTheory.TestLat GlobalTheory.SumSize
 open Formalism.DivisionValues (vw lw)

@@ -2,9 +2,9 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsVeroneseGraph
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PSecondVeronese
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PBlockImageTop
-import GroundTheory.HeightsAndTheta.Heights.Intersections.IsSmoothHermFubiniStudyO1
 import GroundTheory.HeightsAndTheta.Heights.Intersections.AvoidRing
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PThmIMultilin
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.HilbertSamuel

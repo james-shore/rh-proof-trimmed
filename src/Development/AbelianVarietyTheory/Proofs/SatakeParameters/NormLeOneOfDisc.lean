@@ -1,7 +1,7 @@
 import Mathlib
-import Formalism.LocalToGlobal.KernelLattices.KerStd
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementH
+import Formalism.LocalToGlobal.KernelLattices.ThDistC
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ThetaZJetsThree
-import Formalism.LocalToGlobal.InertKernelTheory.StatementIota
 import Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.PeriodRelations.ConjCls
 import Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.WeierstrassUniqueness.ExistsPeriodPairOfIsLat
 import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.HasCMByStable

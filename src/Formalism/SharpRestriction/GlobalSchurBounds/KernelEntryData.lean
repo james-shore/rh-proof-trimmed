@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 import Formalism.SharpRestriction.ParConsts
-import Formalism.SharpRestriction.GlobalSchurBounds.TaylorLogMetric
 import Formalism.SharpRestriction.GrowthBounds.FormalGroupSystem
 
 noncomputable section

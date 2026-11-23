@@ -1,19 +1,14 @@
-import Formalism.LocalToGlobal.Columns.ChainLawXi
-import Formalism.LocalToGlobal.Columns.ChainLawPhi
-import Formalism.LocalToGlobal.Columns.ChainLawPhiPf
-import Formalism.LocalToGlobal.Columns.XiFirstLawAllLevels
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnfoldingEquivalence.CompSymmComp
-import Formalism.LocalToGlobal.Columns.ChainTwMain
-import Formalism.LocalToGlobal.Columns.ChainTopLawB
-import Formalism.LocalToGlobal.Columns.RowFormsSym
-import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.MemGoodPrimesOfNoExceptional
-import Mathlib
-import Formalism.LocalToGlobal.Columns.FiniteSumNonzeroLargeDepth
-import Formalism.LocalToGlobal.KernelLattices.TopLawQ
-import Formalism.LocalToGlobal.KernelLattices.ColInst
-import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.ColInst
+import Formalism.LocalToGlobal.Columns.ChainInst
+import Formalism.LocalToGlobal.Columns.StdBasisFlagSubmoduleOfBlockTriangular
 import Formalism.LocalToGlobal.Columns.ChainInstY
-import Formalism.LocalToGlobal.Columns.WithTopLevGTop
+import Formalism.LocalToGlobal.Columns.RecLevelSym
+import Formalism.LocalToGlobal.Columns.FirstUnfoldingEqZeroOfNotIntegral
+import Formalism.LocalToGlobal.Columns.OcbPhiFIdxFPos
+import Formalism.PeriodIntegrals.UnfoldEquiv
+import Formalism.LocalToGlobal.Columns.ChainTw
+import Formalism.PeriodIntegrals.OneCosetSharp
+import Formalism.LocalToGlobal.Columns.ColumnsProofs.SymLevEnt
+import Formalism.LocalToGlobal.Columns.ChainTopLawB
 
 open NumberField IsDedekindDomain Module
 

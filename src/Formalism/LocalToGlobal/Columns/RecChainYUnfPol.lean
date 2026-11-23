@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.Columns.RecChainUnfOne
-import Formalism.LocalToGlobal.Columns.ChainInstY
 
 open NumberField IsDedekindDomain Module Matrix MvPolynomial
 

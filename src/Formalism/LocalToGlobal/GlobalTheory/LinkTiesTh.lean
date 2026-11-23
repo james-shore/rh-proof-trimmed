@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.GlobalTheory.LinkTiesOm
+import Formalism.SharpRestriction.GlobalSchurBounds.Joints
 
 noncomputable section
 

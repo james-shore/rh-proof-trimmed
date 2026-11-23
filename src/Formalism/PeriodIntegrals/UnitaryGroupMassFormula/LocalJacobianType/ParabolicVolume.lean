@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.PeriodIntegrals.LocJacTyp
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalJacobianType.Development
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalJacobianType.KitShear
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalJacobianType.BoxMul
 
 noncomputable section
 

@@ -1,7 +1,6 @@
 import Formalism.SharpRestriction.Divisibility.LocalQuadraticParts
-import Formalism.SharpRestriction.Divisibility.PlaceRankTwoOne
-import Formalism.SharpRestriction.GlobalSchurBounds.FlipTwoThree
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
+import Formalism.SharpRestriction.GlobalSchurBounds.FlipTwoThree
 
 noncomputable section
 

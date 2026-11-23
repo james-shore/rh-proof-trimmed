@@ -1,6 +1,6 @@
 import Mathlib
-import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.GROWCountStatement
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IntStable
+import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.FamilyLeCoords
+import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.Statements
 
 namespace GlobalTheory.CompanionTheory.Ar.HS
 

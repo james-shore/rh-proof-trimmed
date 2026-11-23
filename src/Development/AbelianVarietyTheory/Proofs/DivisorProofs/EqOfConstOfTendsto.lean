@@ -1,6 +1,9 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.TCoefMInMMul
 import Development.AbelianVarietyTheory.Definitions.Divisors.RangeShape
+import Formalism.FormalDegreeBessel.FormalDegreeRatio.GBasic
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.RightDerivativeZeroOutsideSupport
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MeasurableEmbeddingEquiv
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsMulCommutativeCentRealUJ
 
 noncomputable section
 

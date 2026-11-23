@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Bridge
 
 noncomputable section
 

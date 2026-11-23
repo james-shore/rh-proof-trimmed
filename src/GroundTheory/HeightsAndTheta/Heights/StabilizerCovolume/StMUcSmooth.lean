@@ -1,7 +1,5 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.StabilizerCovolume.HtBoundary
-import GroundTheory.HeightsAndTheta.Heights.StabilizerCovolume.BRegWeightLevi
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StNbarLeviChart
 
 set_option maxSynthPendingDepth 1
 

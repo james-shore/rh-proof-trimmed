@@ -1,6 +1,7 @@
 import Development.AutomorphicArithmetic.Foundations.Convolution.NormCharacterPowers.OrderAsym
 import Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.AbsoluteRigidity.CauchyLoc
 import PositivityTheory.AutomorphicForms.PublishedInputs.CyclicBaseChangeLifts.SplitLift
+import Development.AutomorphicArithmetic.AutomorphicVarieties.PublishedTheorems.CyclicBaseChangeC
 
 noncomputable section
 

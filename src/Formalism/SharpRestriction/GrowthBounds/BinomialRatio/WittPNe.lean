@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.SymInt
+import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.SrcHalf
 import Formalism.SharpRestriction.GrowthBounds.ScaleEdges.EdgePlane
 
 noncomputable section

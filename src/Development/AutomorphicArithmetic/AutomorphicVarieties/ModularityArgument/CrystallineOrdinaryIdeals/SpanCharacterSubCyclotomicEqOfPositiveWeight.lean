@@ -1,7 +1,8 @@
 import Mathlib
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.TriDefs
-import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.CycFacts
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.CycInertia
+import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.CycFacts
+
 open Formalism.BasicNotions Formalism.BasicNotions.Loc ReciprocityTheory.Gal Module UpperTheory.V.Loc UpperTheory.V.U3 UpperTheory.V.Alg IsLocalRing Polynomial Topology
 
 namespace GlobalTheory.CharCycIdeal

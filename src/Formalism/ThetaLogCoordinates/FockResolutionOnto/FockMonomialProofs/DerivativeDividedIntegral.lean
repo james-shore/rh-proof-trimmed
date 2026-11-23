@@ -1,5 +1,5 @@
 import Formalism.ThetaLogCoordinates.FockResolutionOnto.StatementG
-import Formalism.ThetaLogCoordinates.FockResolutionOnto.FockMonomialProofs.RaisingKeepsEarlyLetters
+import Formalism.ThetaLogCoordinates.FockResolutionOnto.FockMonomialProofs.InitPartZeroXMul
 
 namespace Formalism.InvariantFactorPaths.L4
 

@@ -1,4 +1,4 @@
-import Formalism.EllipticTorsion.WChordSeries
+import Formalism.EllipticTorsion.WSeriesUnique
 
 open PowerSeries
 

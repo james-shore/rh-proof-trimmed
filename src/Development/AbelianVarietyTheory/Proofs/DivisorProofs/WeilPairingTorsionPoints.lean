@@ -1,8 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.HermitianCurvatureForms
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CovariantSecondFundamentalForm
 import Development.AbelianVarietyTheory.Definitions.Divisors.DiagValExtTraceNonneg
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CovariantSecondFundamentalForm
 import Development.AbelianVarietyTheory.Definitions.Divisors.CurvSubQuotTautPairGram
+
 open Matrix Complex ComplexConjugate Filter Topology
 open scoped ComplexOrder ContDiff
 open GlobalTheory.HermFrame GlobalTheory.IndefiniteRowSideFullHecke.HermitianCurvatureForms

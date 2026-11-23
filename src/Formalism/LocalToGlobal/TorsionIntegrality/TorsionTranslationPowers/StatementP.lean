@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.StatementT
+import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.IsTransSys
 import Formalism.LocalToGlobal.TorsionIntegrality.SecondCoefficientNorms.IsotropicVanish
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.StatementB
 

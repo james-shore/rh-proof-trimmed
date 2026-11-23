@@ -1,8 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRCoreCut
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRDatumConst
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.SumDualVectorEqZeta
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.ActualAdjointnessFromHermitian
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.NFRadRedA
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CasimirEigenvalueCoefficients
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q NumberField
 open scoped ComplexConjugate Matrix

@@ -1,4 +1,4 @@
-import Formalism.GaloisIrreducibility.Statement
+import Mathlib
 
 namespace Formalism.GaloisIrreducibility
 open Matrix

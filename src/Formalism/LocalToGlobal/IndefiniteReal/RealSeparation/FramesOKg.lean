@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.IndefiniteReal.RealSeparation.FramesOK
+import Formalism.LocalToGlobal.IndefiniteReal.RealSeparation.NormalFrame0
 
 noncomputable section
 

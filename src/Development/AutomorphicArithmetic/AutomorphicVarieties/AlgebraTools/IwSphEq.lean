@@ -1,14 +1,10 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HeckePairTop
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwSimpleOrbit
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwPermMul
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwLenStep
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwHkTrace
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwBruhatKO
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwPermCard
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwMemIwC
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwHkApply
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwHeckePairIwC
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.IwHkNorm
+
 open ValuativeRel Matrix GlobalTheory.SmGL GlobalTheory.SplitWeil UpperTheory.V.Hi UpperTheory.V.AlgebraTools GlobalTheory.PRep
 
 private theorem hk_fixed {A G M : Type} [CommRing A] [Group G] [AddCommGroup M] [Module A M]

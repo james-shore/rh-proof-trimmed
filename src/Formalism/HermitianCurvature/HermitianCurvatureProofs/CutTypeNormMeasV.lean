@@ -1,4 +1,4 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutTypeNormMeas
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutNFTopForm
 
 namespace Formalism.FourierDecayAlt.P.CutBP.TNM
 

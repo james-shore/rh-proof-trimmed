@@ -3,6 +3,8 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsEtLevOver
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrderSurjectsMatrixAlgebraModPrimePowerStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MoritaNonemptyEquivOfLocalQuotientMatrixStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelQuotientModuleSurjection
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsHeckeMap
+
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Hecke GlobalTheory.UPel.HT.EtLev
 

@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.StdLvPr
-import Formalism.LocalToGlobal.HermitianForms.TiedTwJSym
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsSmulMemOfMemLocW
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemFiCComp
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnderTBijective
@@ -19,10 +18,10 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LevelTwistPr
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ValLtOfRedM
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LevelsTopRowSym
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ChartTiedTopLevelChain
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HermitianFormLastCoordinateUniformizerVectorSelf
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InvSmulMem
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HermitianChartComplexRationalIntegralForms
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InclMulInvMul
+
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Col Formalism.L2.DIV Formalism.L2.Ker Formalism.UG Formalism.L2.Forms GlobalTheory.Mem GlobalTheory.Mem.Chr GlobalTheory.Mem.Col2 GlobalTheory.Mem.Col2.TC Matrix
 attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Host.cmStar
 

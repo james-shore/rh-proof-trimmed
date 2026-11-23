@@ -1,8 +1,8 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsShiftVolumeBound
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsShiftSectionSeparation
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsSeparatedSmallCount
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsArith
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MixedFieldContraction.GenericFibreKerTarget
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.DiagonalDivisors.InhabitBaseStatement
+import GroundTheory.HeightsAndTheta.Heights.ArithDegree
 
 namespace PositivityTheory.Pf1.MbRank
 

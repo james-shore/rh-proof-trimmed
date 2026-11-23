@@ -2,6 +2,7 @@ import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalJacobianType.IsCompactDbox
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalJacobianType.KitScale
 import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.NcValVolOrdA
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalJacobianType.ComponentsOfD1EqZero
 
 noncomputable section
 

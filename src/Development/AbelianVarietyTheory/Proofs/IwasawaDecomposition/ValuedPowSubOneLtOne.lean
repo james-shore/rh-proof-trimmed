@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeCharacterUnramifiedAeAndExistsLevel
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsNatCongrOfAbsNormPrime
+import ReciprocityTheory.Automorphisms.PlaceA
 import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsAbsoluteValueOfIsDiscreteValuationRing
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ValuationPowSubPowLe
 

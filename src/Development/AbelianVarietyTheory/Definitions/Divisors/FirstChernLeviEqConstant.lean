@@ -1,6 +1,5 @@
 import Mathlib
-import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialPullbackStatement
-import ReciprocityTheory.AnalyticForms.LeviForms.IsRegFamilyInhabitStatement
+import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialOfFun
 import Development.AbelianVarietyTheory.Definitions.Divisors.SlopeTestRemainingChoices
 
 open MvPolynomial Formalism.DegreeFormula Formalism.BasicNotions Formalism.BasicNotions.DV Formalism.MainNotions Formalism.MainNotions.WeightThresholdDefs Filter Topology Classical

@@ -1,5 +1,4 @@
-import Formalism.PeriodIntegrals.QmColExp
-import Formalism.RealPlaceAnalysis.RealPlaceTaylor.GeneratorCommutatorQuantumDet
+import Formalism.PeriodIntegrals.QmDefs
 
 open Finset
 

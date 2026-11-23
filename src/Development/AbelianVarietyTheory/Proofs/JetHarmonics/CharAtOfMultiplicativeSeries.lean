@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Jets.JetsOnCopiesCompatibleFrames
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.UnifUniqSt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.TwistBCPf
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsCharacterOnPoints
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsUniqueJet
@@ -11,6 +10,9 @@ import Development.AbelianVarietyTheory.Proofs.JetHarmonics.MapDofIterate
 import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.RepJetAugCompTrunc
 import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.ToJetOneEqSum
 import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.RelatedMap
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsReducedTorsionGeometricFibre
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsFiniteFlatTorsionOfIsGt
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.TorusExtensionOverCompleteLocalDvrStatement
 
 noncomputable section
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry IsLocalRing

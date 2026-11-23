@@ -1,6 +1,6 @@
 import Formalism.HermitianCurvature.RealInputsClosedAdmissibleSettings
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJDHat
 import CompanionTheory.AutomorphicTheory.JacobiDiagonalBounds.TieAlg
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJDHat
 
 namespace Formalism.FourierDecayAlt.P.NormalFormRelations
 

@@ -1,6 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteForms.IndefSide
 import Formalism.LocalToGlobal.IndefiniteForms.IndefUse
+import Formalism.QuotientMetricDivisors.DivIntoDualShift
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder InnerProductSpace

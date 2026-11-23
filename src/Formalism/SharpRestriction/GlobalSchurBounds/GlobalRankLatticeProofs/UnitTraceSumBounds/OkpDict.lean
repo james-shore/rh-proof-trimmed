@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.UnitTraceSumBounds.TestVectorMemSchwartzBruhat
-import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.UnitTraceSumBounds.LemmaTwoThreeOfSiegelBound
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
 
 namespace Formalism.MainNotions.Ext

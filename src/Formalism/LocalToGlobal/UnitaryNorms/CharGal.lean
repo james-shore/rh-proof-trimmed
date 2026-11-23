@@ -1,4 +1,4 @@
-import Formalism.LocalRingCardinality.DataNChTie
+import Formalism.LocalRingCardinality.DataNChoice
 import Formalism.LocalToGlobal.UnitaryNorms.CharTied
 
 noncomputable section

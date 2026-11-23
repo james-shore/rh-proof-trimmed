@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.ShCocOn
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsLocallyConstantCycMod
 
 noncomputable section

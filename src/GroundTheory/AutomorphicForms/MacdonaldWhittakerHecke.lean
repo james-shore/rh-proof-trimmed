@@ -1,5 +1,6 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.MacdonaldWhittaker
+import GroundTheory.AutomorphicForms.MacdonaldFormula
 
 noncomputable section
 

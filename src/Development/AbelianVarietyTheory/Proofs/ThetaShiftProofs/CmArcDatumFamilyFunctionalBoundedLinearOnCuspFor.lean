@@ -12,6 +12,7 @@ import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ArcDatumCoeffici
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.LamDegreeParameters
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ModelsAtOfGoodLevel
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.TransvInOfHasPrinc
+import Formalism.LocalToGlobal.ProjectiveLattices.FreeBridge
 
 noncomputable section
 

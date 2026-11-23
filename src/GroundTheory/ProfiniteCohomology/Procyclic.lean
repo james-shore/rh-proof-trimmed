@@ -2,7 +2,7 @@ import Mathlib
 import GroundTheory.ProfiniteCohomology.ProcyclicDefs
 import GroundTheory.ProfiniteCohomology.ContinuousCochains.Functoriality
 import GroundTheory.ProfiniteCohomology.CoinducedModules.CohomologyCoindCokernelIsoHom
-import GroundTheory.ProfiniteCohomology.CohomologicalDimension.PrimaryComponentCohomologyEqBotOfScdpLt
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

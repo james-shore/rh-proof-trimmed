@@ -1,12 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.DiscreteSeriesHermitianUnique
-import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
-import Formalism.LocalToGlobal.BesselHermitianTheta.TiedSmooth
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ToTWsmallZero
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousOneP
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemSmoothFunctionsOfClosedRightDerivatives
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DefiniteThetaIntegralIntegrableContinuous
-import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsWeakOfDatum
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntegrableOnFundamentalDomain
+
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.IndefR.Datum MeasureTheory
 open scoped ContDiff ComplexOrder
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

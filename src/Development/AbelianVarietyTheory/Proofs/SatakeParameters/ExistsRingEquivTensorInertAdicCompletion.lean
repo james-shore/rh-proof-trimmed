@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.SatakeDualWeyl.KpqSubgroupCompact
-import Formalism.SatakeDualWeyl.StatementG
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.FiniteResidueFieldAdicCompletionIntegers
+import Formalism.SatakeDualWeyl.StatementG
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.IsFieldAdicCompletionTensorOfInert
 
 open IsDedekindDomain NumberField Formalism.UG GlobalTheory.SelfDualGenus

@@ -3,7 +3,7 @@ import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.AssemblyCN
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSpecialQuotDim
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PMinimalPrimeMultiHomog
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSupSpanMultiHomog
-import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PLocCyclePos
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.MemDivSuppOfDivCycleNeZero
 
 namespace BaseChangeColon.BC
 

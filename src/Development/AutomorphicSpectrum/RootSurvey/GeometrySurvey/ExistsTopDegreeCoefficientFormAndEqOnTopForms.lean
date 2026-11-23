@@ -1,9 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Statements.GeometryStatements.PropFTop
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HBBound
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.DegreeOfIsIntersectionSystem
 import GroundTheory.HeightsAndTheta.Heights.SemipositiveHeights.MetricLocal
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.PrimeLogSum
 
 noncomputable section
 

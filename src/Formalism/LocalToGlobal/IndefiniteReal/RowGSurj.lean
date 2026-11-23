@@ -1,6 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.InBlock
 import Formalism.LocalToGlobal.IndefiniteReal.CxPassSand
+import Formalism.LocalToGlobal.IndefiniteReal.EqZeroOfMemRangeAdjoint
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder InnerProductSpace

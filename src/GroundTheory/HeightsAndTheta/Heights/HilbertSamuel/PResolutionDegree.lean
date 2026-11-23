@@ -5,6 +5,8 @@ import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ResolutionPotentials
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.AnResBridge
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsProjFSMass
 import ReciprocityTheory.AnalyticForms.PotentialTheory.Stokes
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRedA
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.HilbertSamuel

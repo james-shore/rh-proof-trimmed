@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.ShimuraVarieties.IsOpenOfMemIrreducibleComponentsOfFinite
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormIdeal
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FamIdeal
+
 open AlgebraicGeometry CategoryTheory Limits
 
 namespace GlobalTheory.ClopenIdealSheaf

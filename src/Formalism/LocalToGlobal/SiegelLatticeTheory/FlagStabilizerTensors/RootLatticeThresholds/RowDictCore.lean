@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.CuspSpanNormBounds.GlobAut
-import Formalism.LocalToGlobal.NormalizedHeckeFactors.TypesDefs
+import Formalism.LocalToGlobal.UnitaryNorms.RealCyclotomicTwoPower
 
 noncomputable section
 

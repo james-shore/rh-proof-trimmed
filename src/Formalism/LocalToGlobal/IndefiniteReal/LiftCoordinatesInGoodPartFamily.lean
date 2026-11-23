@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.PrimitiveStatementsWithPassage
+import Formalism.LocalToGlobal.Divisibility.InertPartitionLePartF
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder InnerProductSpace

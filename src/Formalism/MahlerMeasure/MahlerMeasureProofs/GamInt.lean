@@ -1,5 +1,4 @@
 import Formalism.MahlerMeasure.HasOrder
-import Mathlib
 
 namespace Formalism.GM.gammaIntegralityLemmas
 

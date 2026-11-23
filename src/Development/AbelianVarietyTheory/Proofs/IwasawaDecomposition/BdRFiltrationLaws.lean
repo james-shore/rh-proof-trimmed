@@ -7,7 +7,6 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.KerThetaLoca
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.BdRPlusFiltrationEqFontaineXiPowStatement
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.BdRPlusIsDomainBdRIsFieldStatement
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemDeRhamFiltrationIffXiPowStatement
-import Development.AbelianVarietyTheory.CrystallinePeriods.RingBasics
 
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.MemLoc
 open scoped Formalism.Per

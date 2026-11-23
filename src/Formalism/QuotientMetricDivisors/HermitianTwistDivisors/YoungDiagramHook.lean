@@ -1,9 +1,4 @@
 import Formalism.QuotientMetricDivisors.TheoremDivIneqRows
-import Formalism.LogFactorialIndices.SignedSubspaceIndex.SumInterlacedBoundFails
-import Mathlib
-import Formalism.LogFactorialIndices.StatementSize
-import Formalism.LogFactorialIndices.StatementIdx
-import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.TheoremDivIneq
 
 open Finset
 

@@ -1,15 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.CuspSpanNormBounds.PlaceDegreeData
-import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
-import Formalism.SharpRestriction.CuspSpanNormBounds.GlobAut
-import Formalism.SharpRestriction.CuspSpanNormBounds.SArith
-import Formalism.FormalDegreeBessel.StatementDS
-import Formalism.RealPlaceAnalysis.SmoothOnGVIff
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.SesqEqZeroOfDiagEqZero
-import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.EigenfunctionFiniteCoefficients
-import Formalism.RealPlaceAnalysis.FinalF
-import Formalism.SharpRestriction.CuspSpanNormBounds.CayleySignature
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.SchurOrthogonalityIndefiniteUnitaryGroup
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.SatisfiesGlRelationsBilinearLeft
 
 open MeasureTheory Formalism.MainNotions.S Formalism.MainNotions.PlaceDegreeData
 open scoped InnerProductSpace

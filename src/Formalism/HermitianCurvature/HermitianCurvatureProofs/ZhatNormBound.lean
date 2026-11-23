@@ -1,4 +1,4 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.LinearChangeOfVariablesBis
+import Formalism.HermitianCurvature.FiniteOrderIntersectionInSmooth
 
 open Matrix Formalism.FourierDecayAlt Formalism.QuantumDeterminants
 open scoped ComplexConjugate

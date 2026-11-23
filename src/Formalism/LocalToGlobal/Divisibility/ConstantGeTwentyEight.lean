@@ -1,6 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.Divisibility.DivisionHeightBoundStatement
 import Formalism.LocalToGlobal.IndefiniteForms.PairingConditionOfInverseMatrixIdentity
+import Formalism.MirabolicMackeyTheory.MirabolicIsMackey
+import Formalism.DivisorInequality.BaseLevelBoundsWithCovolume
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder

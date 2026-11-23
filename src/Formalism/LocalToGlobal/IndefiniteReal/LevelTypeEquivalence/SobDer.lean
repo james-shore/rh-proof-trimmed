@@ -1,7 +1,5 @@
 import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.SobSympl
-import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.ThetaSquareIntegrable
-import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.IterEqOfRange
+import Formalism.NormUnitaryBounds.DetPolynomialWeights.LtSuccOfMemWeightCompositions
 
 noncomputable section
 

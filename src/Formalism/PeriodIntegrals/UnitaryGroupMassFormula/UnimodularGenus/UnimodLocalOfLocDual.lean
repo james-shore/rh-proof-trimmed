@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularGenus.StdLatEqSpan
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnimodularGenus.Development
 import Formalism.HermitianLattices.StatementMass
 import Formalism.HermitianLattices.HermitianLatticesProofs.LocDual
 

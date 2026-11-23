@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.StatementB
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.TrDual
 import Formalism.LocalToGlobal.TorsionIntegrality.CMGoodModels.Statement
 
 noncomputable section

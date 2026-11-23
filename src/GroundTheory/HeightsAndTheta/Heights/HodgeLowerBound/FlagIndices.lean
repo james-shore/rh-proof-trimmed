@@ -1,12 +1,9 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.Weights
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.Values
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.ProjectiveLine
-import GroundTheory.HeightsAndTheta.Heights.Regularisation.PBoundedGlue
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.CpRegPhRegOfNonneg
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FlagIndices.InstFintypeFlIdx
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsDimX
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsZhangLowerX
+import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.CpRegPhRegOfNonneg
 
 set_option maxSynthPendingDepth 1
 

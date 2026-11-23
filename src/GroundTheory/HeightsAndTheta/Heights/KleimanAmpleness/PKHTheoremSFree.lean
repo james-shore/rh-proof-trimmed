@@ -6,6 +6,8 @@ import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.KHCombContractSt
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.KHCombCyclicSt
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.KHFreeBadFiniteSt
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.CechHcSubsingletonOfBij
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.KleimanNefness.AlgSFreeSt
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Kleiman

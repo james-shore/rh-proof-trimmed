@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrAtEmb
 import Development.AbelianVarietyTheory.Definitions.Divisors.MarkAd
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsSmoothVector
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OscillatorModelValuesFourth
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugateWeilRepresentationSecond
 

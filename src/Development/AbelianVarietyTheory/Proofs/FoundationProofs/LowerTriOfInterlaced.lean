@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.GradedWeylDivisibility.StatementE
+import Formalism.GradedWeylDivisibility.FinalC
 
 open MvPolynomial Formalism.GradedWeylDivisibility
 

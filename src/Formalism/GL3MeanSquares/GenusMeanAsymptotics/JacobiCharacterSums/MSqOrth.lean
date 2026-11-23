@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.GL3MeanSquares.GenusMeanAsymptotics.JacobiCharacterSums.MeanSquareHypWIff
+import Formalism.GL3MeanSquares.SecondEstimateOfIntervalHypothesis
 
 open Finset Classical
 

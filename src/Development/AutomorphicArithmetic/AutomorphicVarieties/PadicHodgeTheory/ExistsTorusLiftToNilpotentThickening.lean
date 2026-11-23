@@ -1,8 +1,6 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.TriDefs
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.ExistsUniqueUnramifiedCocycleFrobeniusValue
-import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.FrobDense
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.IqBasic
-import Mathlib.RingTheory.Nilpotent.Exp
 
 open Formalism.BasicNotions Formalism.BasicNotions.Loc ReciprocityTheory.Gal Module Topology UpperTheory.V.Loc UpperTheory.V.U3
 

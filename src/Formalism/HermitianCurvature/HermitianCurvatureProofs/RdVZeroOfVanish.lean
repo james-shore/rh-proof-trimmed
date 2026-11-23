@@ -1,5 +1,7 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.PbWords
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LeftFubiniNormalizedTower
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.RightAverageSmoothComm
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.LocOfSmoothOnH
 
 open Matrix MeasureTheory Filter Topology
 

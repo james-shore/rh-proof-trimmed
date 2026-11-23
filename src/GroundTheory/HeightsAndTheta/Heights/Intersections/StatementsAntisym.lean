@@ -1,8 +1,8 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.APrime
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.KappaSt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MixedFieldContraction.ContractMixedFieldStatement
 import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsArith
+import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
 
 set_option maxSynthPendingDepth 1
 

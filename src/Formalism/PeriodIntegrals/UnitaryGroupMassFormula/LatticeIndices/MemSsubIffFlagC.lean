@@ -1,6 +1,5 @@
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.FrameMemSG
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.SecondProjSplitMulVec
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.StRedCore
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.MemSGIffFlagC
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.FstMemSpan
 
 noncomputable section
 

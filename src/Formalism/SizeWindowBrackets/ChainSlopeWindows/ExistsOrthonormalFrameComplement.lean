@@ -1,7 +1,5 @@
 import Formalism.SizeWindowBrackets.TraceSquareAndDiagBounds
-import Formalism.SizeWindowBrackets.FrameTraceRatioFinEquiv
 import Formalism.SizeWindowBrackets.ChainSlopeWindows.TraceConjTransposeMulSelf
-import Formalism.SizeWindowBrackets.ChainSlopeWindows.JointDModelAppliesUnitLattice
 
 open Matrix Module NumberField
 open scoped ComplexOrder

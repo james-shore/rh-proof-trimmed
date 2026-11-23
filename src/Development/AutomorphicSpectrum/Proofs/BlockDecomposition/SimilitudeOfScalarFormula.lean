@@ -1,9 +1,8 @@
 import Mathlib
 import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.BaseOneSide.PsiSide
-import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.SiegelWeilMeasureOfCongruentForm
 import Development.WeilBound.CoreStatements.ThetaDilations.EulerMove
-import Development.WeilBound.CoreStatements.ThetaDilations.SdTransport
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SimilitudeInvariance
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ScalHHermScal
+import Development.WeilBound.CoreStatements.ThetaDilations.ThetaLint
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ThetaMeasureIndependentChoices
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ThetaMeasureSimilitude
 

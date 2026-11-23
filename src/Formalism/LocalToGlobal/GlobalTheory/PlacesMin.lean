@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.GlobalTheory.PlacesP
+import Formalism.SharpRestriction.GlobalSchurBounds.FrameCodeOfAdditive
 
 open Module NumberField IsDedekindDomain
 

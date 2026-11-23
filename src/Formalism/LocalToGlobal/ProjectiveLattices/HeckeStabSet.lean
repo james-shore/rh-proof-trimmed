@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.ProjectiveLattices.RhoWApply
+import Formalism.LocalToGlobal.ProjectiveLattices.AlgebraMapCAt
 
 noncomputable section
 

@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.UniformLevelMultiplicity
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.LevelLiftConditions
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.CramerMemAdelicCompletionOfElementSet
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.AdelicElementLatticeFullAndCompletion
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.CramerMemAdelicCompletionOfElementSet
 
 open NumberField
 

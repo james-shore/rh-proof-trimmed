@@ -1,6 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutBP
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CccoefMono
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGerm
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.RegularityAtPlaceOfSubadditive
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.PBGDegLift
 
 namespace Formalism.FourierDecayAlt.P.CutBP
 

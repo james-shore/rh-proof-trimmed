@@ -1,9 +1,9 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors.StChartFH
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.GlobalSectionsRankAlgClosed
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.TwoWeightEqOneAddRoot
-import Development.AbelianVarietyTheory.Statements.ChartPoints.ChartPt
 import Development.AbelianVarietyTheory.Definitions.TeichmullerDepth.IsEigBasisIff
+import Development.AbelianVarietyTheory.Statements.ChartPoints.ChartPt
+
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF
 attribute [local instance] Over.cartesianMonoidalCategory

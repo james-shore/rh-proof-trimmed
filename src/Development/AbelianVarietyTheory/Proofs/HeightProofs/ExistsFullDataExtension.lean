@@ -2,7 +2,6 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.HeightFunctions.NormComparisonConstants
 import Formalism.LocalToGlobal.ProjectiveLattices.DepthTie
 import Development.AbelianVarietyTheory.Definitions.Jets.EmbShortThLeThetaPlain
-import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.CoeSelfDualLatticeInFrameCoordinatesEq
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ShortGenIndepConnection
 import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.ChartIndependenceUnconditional
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsCoeffDeltaOKOfCover
@@ -10,6 +9,7 @@ import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsSpecialPrimeLe
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.LawsShortOfDeltaOK
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsPsiTieOfValues
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsSecCharVal
+
 open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Pj GlobalTheory.RunJoin GlobalTheory.FinalJoin GlobalTheory.FinalJoin2 GlobalTheory.CompRat GlobalTheory.Member
 open scoped TensorProduct Matrix Topology
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

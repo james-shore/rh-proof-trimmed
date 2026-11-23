@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PowForm
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzMapBarrelledSpace
+
 open MeasureTheory Filter Topology
 
 namespace GlobalTheory.ConvSeries

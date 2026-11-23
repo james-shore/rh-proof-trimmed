@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.LocalClassFormation.FiniteVanishing.KummerOpen
-import GroundTheory.ProfiniteCohomology.LocalClassFormation.FiniteVanishing.Devissage
 import GroundTheory.ProfiniteCohomology.CartierDual
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

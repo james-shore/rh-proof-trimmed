@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.Divisibility.LinkDefN
 import Formalism.LocalToGlobal.Divisibility.LinkDIVL2R3Col
-import Formalism.LocalToGlobal.Divisibility.DivisionCompatibleToSub2Indef2
 import Formalism.LocalToGlobal.Divisibility.RecBridgeTied
 
 open Module NumberField IsDedekindDomain

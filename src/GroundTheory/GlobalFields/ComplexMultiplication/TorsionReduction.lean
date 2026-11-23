@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.GlobalFields.ComplexMultiplication.ReductionNonsingularPoints
 import GroundTheory.ArithmeticGeometry.AbelianVarieties.SingularCubic
-import GroundTheory.ArithmeticGeometry.AbelianVarieties.KodairaNeron
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Global

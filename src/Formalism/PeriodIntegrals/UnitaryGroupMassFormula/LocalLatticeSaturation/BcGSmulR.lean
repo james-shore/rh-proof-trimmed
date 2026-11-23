@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.LocLatSat
+import Formalism.SharpRestriction.CuspSpanNormBounds.PsiEDef
 
 noncomputable section
 

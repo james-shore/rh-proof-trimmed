@@ -1,4 +1,3 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.ReducedBasisStatement
 import Mathlib
 
 set_option autoImplicit false

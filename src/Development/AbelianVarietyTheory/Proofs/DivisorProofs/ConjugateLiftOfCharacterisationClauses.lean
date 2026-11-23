@@ -6,6 +6,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjFormsRescale
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaPureTensorO
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsThetaPForms
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HolShapeOfOverK
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsSelfDualCoordLatticeOfSelfDualFrame
 
 noncomputable section
 

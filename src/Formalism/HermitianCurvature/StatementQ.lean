@@ -1,6 +1,8 @@
 import Formalism.FormalDegreeBessel.StatementRP
 import Formalism.HermitianCurvature.StatementB
 import Formalism.HermitianCurvature.StatementM
+import Formalism.RealPlaceAnalysis.StatementE
+import Formalism.RealPlaceAnalysis.StatementU
 
 open Matrix Finset MeasureTheory
 open scoped ContDiff InnerProductSpace

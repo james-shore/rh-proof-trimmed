@@ -5,6 +5,8 @@ import Formalism.SharpRestriction.LevelLetterCocycles.ConvEqSum
 import Formalism.SharpRestriction.LevelLetterCocycles.EqZeroOfMemSum
 import Formalism.SharpRestriction.LevelLetterCocycles.CardBasisEq
 import Formalism.SharpRestriction.LevelLetterCocycles.UniformizerMemDeltaInvariants
+import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.LemmaDN0
+import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.RkMultVNonneg
 
 noncomputable section
 

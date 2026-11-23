@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OneMemKAt
-import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.HoweUnram
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.NormalFam
 
 noncomputable section
 

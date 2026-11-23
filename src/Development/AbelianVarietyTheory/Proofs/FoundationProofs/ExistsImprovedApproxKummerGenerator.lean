@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.CosetTrace
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ValuationAddPowSubLeStatement
 
 open GlobalTheory.AlmostEt

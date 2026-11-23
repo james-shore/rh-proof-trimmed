@@ -1,5 +1,4 @@
 import Formalism.AdmissibleDesigns.ExistsUnrDec
-import Formalism.SharpRestriction.LevelLetterCocycles.EmbeddingTypes
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 

@@ -2,9 +2,9 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.LieInj
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.EpsilonPairingZeta
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.InjectiveOfSmulMemRange
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TiltIsDomainValuationRing
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FontaineAinfLocalDomainXiAdicOrder
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MuCoeffZeroNeZero
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TiltIsDomainValuationRing
 
 open GlobalTheory GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.SandwichMaps GlobalTheory.DetInv GlobalTheory.HTLat Matrix TensorProduct
 

@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeadLApply
 import Development.AbelianVarietyTheory.Definitions.Divisors.LineSCShortExact
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ReprEqZeroOfCardNe
 
 set_option autoImplicit false
 

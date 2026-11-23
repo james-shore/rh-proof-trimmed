@@ -1,4 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.OneAddProjectionMemIsotropicSet
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.TriangularFactorMiddleRow
 
 open Matrix Finset
 

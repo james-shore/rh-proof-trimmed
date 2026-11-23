@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.TieUpR
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.OrthogonalFrameDomain
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.KaUnfoldPfA
 
 noncomputable section

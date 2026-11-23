@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.SzHypFam
-import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RowsConc
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FirstVandermondeNodeLargeOfSmallThreshold
+
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.S
 
 namespace GlobalTheory.CritLevelUpper

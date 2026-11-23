@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.RingHomOfBaseOrderToFraction
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemZpowersOfTameGen
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsTameGenAtOfValuationSubring
+import Formalism.SharpRestriction.LevelLetterCocycles.BlochKatoPhases
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCongOfCongOnFixed
+
 open NumberField IsDedekindDomain
 
 namespace GlobalTheory.TameRootSurj

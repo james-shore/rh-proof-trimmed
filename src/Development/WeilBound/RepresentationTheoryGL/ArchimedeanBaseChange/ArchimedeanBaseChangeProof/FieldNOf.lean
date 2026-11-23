@@ -1,5 +1,6 @@
 import Mathlib
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.SatakeRigidity.SplitSatPre
+import Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBaseChange.InertR
 
 noncomputable section
 

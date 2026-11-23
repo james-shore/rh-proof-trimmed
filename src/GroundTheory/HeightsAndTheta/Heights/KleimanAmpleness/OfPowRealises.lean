@@ -1,8 +1,9 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsFurtherTail
-import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsLastFurther
-import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsBisExtra
+import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.SecsTwistSysPtX
+import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.GenericPointSectionHypotheses
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsRestTer
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Kleiman.SectionsOverLocalization

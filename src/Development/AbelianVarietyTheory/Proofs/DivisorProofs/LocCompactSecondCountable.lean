@@ -4,6 +4,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIdealWeight
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DistribHaarCharTransport
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.VectorTupleProductMeasureTwoSidedAction
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.RelIndexMulMeasure
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnipLatIsOpenIsCompact
 
 open MeasureTheory GlobalTheory.PRep GlobalTheory.LGrp Formalism.UG Matrix GlobalTheory.BorelUMod
 open scoped NNReal Pointwise

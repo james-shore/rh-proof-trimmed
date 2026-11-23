@@ -1,7 +1,7 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.AutomorphicKernels.EisensteinSeriesG2.RankOneEisenstein.GodementEis
-import GroundTheory.GlobalFields.TateThesis.TateMain
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SchwartzBruhatUniformSummableMajorant
+import GroundTheory.GlobalFields.TateThesis.IdeleMeasureQuotient
+import GroundTheory.GlobalFields.TateThesis.ArchCharsUnits
 
 open NumberField Matrix MeasureTheory Filter Topology
 open scoped NumberField.AdeleRing

@@ -1,4 +1,4 @@
-import Formalism.CharacterColumnKernels.Statement
+import Mathlib
 import Formalism.CharacterColumnKernels.CharacterColumnKernelLengthBound
 
 open Finset

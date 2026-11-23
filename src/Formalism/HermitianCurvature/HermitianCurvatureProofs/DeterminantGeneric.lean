@@ -5,7 +5,6 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.OperatorRepresentat
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CapelliCoordinates
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LeftDerivativeCurves
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.AnisotropicColumnSums
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.LeftTypeAction
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.FrameEntries
 
 namespace Formalism.FourierDecayAlt.P

@@ -1,7 +1,6 @@
-import Formalism.LocalToGlobal.CharacterGerms.LeafHolds
-import Formalism.LocalToGlobal.CharacterGerms.RowTieCartAdd
+import Formalism.LocalToGlobal.CharacterGerms.RowTieVal
+import Formalism.LocalToGlobal.CharacterGerms.ConstMemTypeSetOfNonneg
 import Formalism.LocalToGlobal.CharacterGerms.LemmaMJet
-import Formalism.DropLevelBounds.ConstantCoeffVanishing.UbintConstantCoeffEqZero
 
 noncomputable section
 

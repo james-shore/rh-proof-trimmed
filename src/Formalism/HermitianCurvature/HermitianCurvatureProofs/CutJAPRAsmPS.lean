@@ -1,5 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPolyRadialCut
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJASSPointwise
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelZeroEstimateProduct
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt NumberField
 open scoped ComplexConjugate Matrix

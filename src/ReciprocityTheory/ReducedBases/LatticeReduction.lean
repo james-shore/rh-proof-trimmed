@@ -1,5 +1,4 @@
 import ReciprocityTheory.ReducedBases.GsInnerBOfLt
-import ReciprocityTheory.ReducedBases.ExistsBoundedBasis
 
 noncomputable section
 

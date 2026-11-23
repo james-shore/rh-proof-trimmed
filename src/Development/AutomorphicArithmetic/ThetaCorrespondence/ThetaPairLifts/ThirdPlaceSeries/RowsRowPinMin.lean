@@ -1,7 +1,5 @@
-import Formalism.LocalToGlobal.HilbertRowConditions.RowPinMin
-import Mathlib
+import Formalism.LocalToGlobal.HilbertRowConditions.RowPin
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LinkedFamiliesKernelFrame
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LinkedFamiliesFixedValues
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RowsRowPin
 
 set_option synthInstance.maxHeartbeats 200000

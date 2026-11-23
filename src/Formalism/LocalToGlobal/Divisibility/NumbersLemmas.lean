@@ -4,8 +4,8 @@ import Formalism.LocalRingCardinality.DataKap
 import Formalism.LocalRingCardinality.DataErr
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleWeightMiddleEntries
-import Formalism.LocalRingCardinality.HostCls
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.NonemptyFieldAxiomsCyclicPow
+import Formalism.QuotientMetricDivisors.TheoremDivIneqRowsShift
 
 noncomputable section
 

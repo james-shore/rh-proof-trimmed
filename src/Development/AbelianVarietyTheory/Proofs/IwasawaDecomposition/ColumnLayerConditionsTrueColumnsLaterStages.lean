@@ -2,10 +2,9 @@ import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemRangeOfPowG
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ColsReLev0
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsStandardColumnComparisonsTrueColumnsStatement
-import Formalism.LocalToGlobal.GroupLattices.TiedFamilies.TieTrF
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HermEqExtraTied
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.TiedColumnData
-import Formalism.SharpRestriction.GlobalSchurBounds.ThickPlacesCorollaryOfAnyTranslate
+import Formalism.LocalToGlobal.GroupLattices.TiedFamilies.TieTrF
 
 noncomputable section
 

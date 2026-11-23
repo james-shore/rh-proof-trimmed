@@ -1,4 +1,4 @@
-import Development.WeilBound.CoreStatements.HodgeTatePoints.TorusExtensionPairCorrectionEqValueQuotient
+import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.OmStable
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.RelatedPairsOrbitalTermEq
 
 open Module NumberField GlobalTheory.CompanionTheory.Ar.HT

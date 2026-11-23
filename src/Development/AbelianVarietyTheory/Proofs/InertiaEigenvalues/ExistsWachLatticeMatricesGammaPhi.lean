@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.LocalRingCardinality.AdicCompletionLocal.LocTied
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ConvZero
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.SandZero
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PeriodDiscExtensionTateElement
+
 open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct GlobalTheory.HWL GlobalTheory.HWL.Cmp
 
 noncomputable section

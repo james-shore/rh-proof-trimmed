@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FibreIff
-import Development.AbelianVarietyTheory.Proofs.GenericRegularity.LieCombBaseChange
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.RamifiedPlacesSplitEigen
 
 set_option autoImplicit false
 

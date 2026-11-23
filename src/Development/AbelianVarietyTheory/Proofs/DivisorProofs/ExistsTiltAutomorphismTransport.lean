@@ -2,6 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.IotaScalarOne
 import Development.AbelianVarietyTheory.CrystallinePeriods.RingBasics
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.AcrisTorsionFreeComplete
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.SandwichMaps
 
 open GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.SandwichMaps GlobalTheory.DetInv Matrix TensorProduct
 

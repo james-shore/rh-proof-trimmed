@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsArchOne
-import Development.AbelianVarietyTheory.PublishedTheorems.PublishedFoundations.GreenSeriesSt
 import Formalism.LocalToGlobal.GlobalTheory.IrreducibleOfCountSizes
 
 set_option autoImplicit false

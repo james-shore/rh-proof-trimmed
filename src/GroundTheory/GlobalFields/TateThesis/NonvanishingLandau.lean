@@ -1,6 +1,7 @@
 import Mathlib
 import GroundTheory.GlobalFields.TateThesis.NonvanishingPrimes
 import GroundTheory.GlobalFields.TateThesis.NonvanishingDivisorSum
+import GroundTheory.GlobalFields.TateThesis.DedekindZetaContinuation
 
 open NumberField InfinitePlace IsDedekindDomain IsDedekindDomain.HeightOneSpectrum Complex Topology
   Filter Ideal

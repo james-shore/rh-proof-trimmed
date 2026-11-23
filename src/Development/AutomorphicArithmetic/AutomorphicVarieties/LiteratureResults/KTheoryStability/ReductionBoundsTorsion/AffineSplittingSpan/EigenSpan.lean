@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.AffineSplittingSpan.Transfer
 
 noncomputable section
 

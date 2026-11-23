@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.InertKernelTheory.StatementKap
+import Formalism.LocalToGlobal.KernelLattices.KerStd
 
 noncomputable section
 open scoped BigOperators

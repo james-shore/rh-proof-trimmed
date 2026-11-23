@@ -1,6 +1,5 @@
 import Mathlib
 import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.ConjSymm
-import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.EllipsoidSt
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.MeasurePreservingSwapPi
 
 namespace ReciprocityTheory.GeometryOfNumbersTheory

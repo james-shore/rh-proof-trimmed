@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.ProdFormulaE
+import Formalism.SharpRestriction.CuspSpanNormBounds.PsiEDef
 
 noncomputable section
 

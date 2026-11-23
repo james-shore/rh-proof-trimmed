@@ -1,7 +1,6 @@
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.ModelCext
-import Formalism.RealPlaceAnalysis.StatementKT
-import Formalism.RealPlaceAnalysis.QuotientSettingHolds
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.OpEqExp
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.ModelGenA
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.SingleMulJmComm
 
 noncomputable section
 

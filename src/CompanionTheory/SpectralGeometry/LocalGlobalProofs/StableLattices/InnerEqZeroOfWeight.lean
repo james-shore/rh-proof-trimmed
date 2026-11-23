@@ -1,7 +1,7 @@
 import Mathlib
 import CompanionTheory.HarishChandraModules.LowKTypeMultiplicity.DiscreteSeriesCharacters.CapelliDeterminantBlockProduct
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
 import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.EqSmulOfWeight
+import Formalism.RealPlaceAnalysis.StatementKT
 
 open scoped InnerProductSpace
 open Formalism.REAL (KHighest IsWeight)

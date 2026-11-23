@@ -1,6 +1,6 @@
 import Mathlib
-import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
 import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.Objects
+import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
 
 set_option maxSynthPendingDepth 1
 

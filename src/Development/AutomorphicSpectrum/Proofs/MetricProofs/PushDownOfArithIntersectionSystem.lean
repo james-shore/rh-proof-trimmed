@@ -1,10 +1,7 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Statements.MetricStatements.AgreementIffGuarded
-import Development.AutomorphicSpectrum.Definitions.MetricPeriods.MetricsProjectionFormulaNef
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterNamed
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.BlowupProjections.BlowupProjStatement
+import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FlagIndices.InstFintypeFlIdx
+import Development.AutomorphicSpectrum.Definitions.MetricPeriods.GeometricAbelianConnected
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.MoriwakiSt
-import GroundTheory.HeightsAndTheta.Heights.KernelsLattice
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsPushDown
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PPushDown
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PHodgeFlagArith
@@ -13,7 +10,7 @@ import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PHodgeFlagRatioTrdeg
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PHodgeFlagRatioFieldEq
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PHodgeFlagMinorTrdeg
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.ProjectionFormulaOfArithSystem
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.GenericDegreeOfArithSystemStatement
+
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I1 ReciprocityTheory.ChartRestriction.G.AI.I4
 
 namespace GlobalTheory.CompanionTheory.Ar.Giv

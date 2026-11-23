@@ -2,11 +2,11 @@ import Mathlib
 import GroundTheory.ProfiniteCohomology.Shapiro
 import GroundTheory.ProfiniteCohomology.ColimitUnion
 import GroundTheory.ProfiniteCohomology.CohomologicalDimension.Closed
-import GroundTheory.ProfiniteCohomology.CohomologicalDimension.SubsingletonCohomologyOfPrimaryOfFinite
 import GroundTheory.ProfiniteCohomology.ClassFormations.IsIsoCohomologyMapAlongResSubgroupOfHom
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.DivisorModule
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.Brauer
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.HighInfl
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

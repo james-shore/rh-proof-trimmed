@@ -1,9 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.SiegelWeilLocal.HermitianPerpSubgroup
-import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
-import Formalism.LocalToGlobal.Columns.GenericUnipotentCharacter
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.FrameLats
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIrreducible
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.FrameLats
 
 open NumberField IsDedekindDomain MeasureTheory Matrix
 open scoped TensorProduct ENNReal Pointwise

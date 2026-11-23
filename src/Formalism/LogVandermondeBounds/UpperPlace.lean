@@ -1,4 +1,5 @@
 import Formalism.LogVandermondeBounds.LogRatioUpperBound
+import Formalism.LogVandermondeBounds.LogRatioLowerBound
 
 namespace Formalism.LogVandermondeBounds.StandardLattice
 

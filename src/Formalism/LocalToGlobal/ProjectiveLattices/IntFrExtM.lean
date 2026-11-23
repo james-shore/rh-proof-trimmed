@@ -1,9 +1,7 @@
-import Formalism.LocalToGlobal.ProjectiveLattices.CoreProofs
+import Formalism.LocalToGlobal.ProjectiveLattices.VAtVNeBot
 import Formalism.LocalToGlobal.ProjectiveLattices.ChartDirectionsIntegral
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.Clauses
-import Formalism.LocalToGlobal.ProjectiveLattices.AllTest
 import Formalism.LocalToGlobal.ProjectiveLattices.PartitionExtendByZeroAntitone
-import Formalism.LocalToGlobal.ProjectiveLattices.ExistsOfValILeOne
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbProj
 
 set_option autoImplicit false

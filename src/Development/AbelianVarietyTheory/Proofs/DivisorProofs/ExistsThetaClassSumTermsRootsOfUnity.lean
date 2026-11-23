@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTerms
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WtChar
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DeeperLevelValuesEqClassSumsPrescribedNormsStatement
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory IsLocalRing

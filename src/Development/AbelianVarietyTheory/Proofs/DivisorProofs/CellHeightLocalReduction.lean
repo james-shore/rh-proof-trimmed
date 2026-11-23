@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsGenericIffIsGenericFor
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ParIndJacPlacing
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsColReduced
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsOpenSetOfLeRank
 
 noncomputable section
 

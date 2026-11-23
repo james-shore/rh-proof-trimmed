@@ -1,4 +1,5 @@
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.FSatakeB
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.FSatakeA
 
 open Formalism.UG
 

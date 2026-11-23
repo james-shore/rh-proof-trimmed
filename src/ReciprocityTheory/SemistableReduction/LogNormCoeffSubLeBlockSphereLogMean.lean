@@ -1,4 +1,5 @@
 import ReciprocityTheory.SemistableReduction.RestBlockSubstIsMultiHomogeneous
+import ReciprocityTheory.SemistableReduction.AevalIsWeightedHomogeneous
 
 noncomputable section
 

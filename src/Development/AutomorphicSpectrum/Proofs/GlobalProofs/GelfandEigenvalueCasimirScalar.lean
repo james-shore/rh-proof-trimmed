@@ -1,9 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteDimensionalOfSlices
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsBlockEmb
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsSmoothAutomorphicFunctionTranslateAtRealPlace
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousOneP
-import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.CapelliLowestGelfandConj
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeviBlockSizesSum
+import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.TotallyPositiveExponents
 
 noncomputable section
 

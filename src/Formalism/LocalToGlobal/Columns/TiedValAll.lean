@@ -2,11 +2,7 @@ import Formalism.LocalToGlobal.Columns.TiedValFi
 import Formalism.LocalToGlobal.Columns.TiedValRat
 import Formalism.LocalToGlobal.Columns.TiedValLat
 import Formalism.LocalToGlobal.Columns.TiedValDil
-import Formalism.LocalToGlobal.Columns.TiedValNorm
-import Formalism.LocalToGlobal.Columns.TiedVal
 import Formalism.LocalToGlobal.Columns.TiedAtT
-import Formalism.LocalToGlobal.Columns.TiedValBwG
-import Formalism.LocalToGlobal.Columns.BtExistsSmulLeOfFg
 
 open NumberField IsDedekindDomain Module Matrix
 open scoped TensorProduct

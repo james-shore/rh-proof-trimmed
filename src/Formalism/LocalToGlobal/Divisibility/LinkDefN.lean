@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.Divisibility.LinkDef
-import Formalism.AdicCompletionExports.NonnegativeDivisors.Statement
 import Formalism.SharpRestriction.GlobalTheoremInputs
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverAct
+import Formalism.AdicCompletionExports.NonnegativeDivisors.Statement
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder

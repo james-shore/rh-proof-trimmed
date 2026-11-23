@@ -8,7 +8,7 @@ import Development.AutomorphicSpectrum.Proofs.MetricProofs.BiholomorphicLiftSyst
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.LiftSystemComplexConjugationStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.ConjugationAntiholomorphicChartsStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.LiftSystemRealStructureStatement
-import ReciprocityTheory.AnalyticForms.LeviForms.TailCutA
+
 open MvPolynomial Matrix ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I1 ReciprocityTheory.ChartRestriction.G.AI.I4 GlobalTheory.CompanionTheory.Ar.PB GroundTheory.Heights₂.Heights.LowerBoundFree
 open scoped ComplexOrder Classical
 

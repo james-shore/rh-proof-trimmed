@@ -1,7 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.DualExactSequence
+import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
+import Formalism.SharpRestriction.LevelLetterCocycles.LocCoh
 import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.JumpMultiplicityDual
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CyclotomicCharacterPadicBasicProperties
 
 noncomputable section
 

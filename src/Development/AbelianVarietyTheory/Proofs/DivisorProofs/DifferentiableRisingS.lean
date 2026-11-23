@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DTermOrigin
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.DefiningCoordinates
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.OmegaFactorization
 
 noncomputable section

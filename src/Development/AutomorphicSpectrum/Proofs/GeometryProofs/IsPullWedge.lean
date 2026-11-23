@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Statements.GeometryStatements.CompactConjugacyDomainLocal
-import Development.AutomorphicSpectrum.Statements.GeometryStatements.PropZ
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.GlueApplyOfNotInFibre
 
 open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain MvPolynomial

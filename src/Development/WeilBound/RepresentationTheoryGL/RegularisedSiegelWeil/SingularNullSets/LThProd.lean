@@ -1,4 +1,7 @@
 import Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.SingularNullSets.LThProdA
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ProductThetaOfSchwartzTensor
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ProductMeasureStatement
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HeckeCharacterEtaCondition
 
 noncomputable section
 

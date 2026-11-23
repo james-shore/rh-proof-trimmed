@@ -1,6 +1,9 @@
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.TermTieOf
 import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.CellFin
-import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals
+import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.CellInv
+import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.CellBru
+import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.CellMono
+import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.CellPt
 
 noncomputable section
 

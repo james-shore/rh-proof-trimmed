@@ -1,7 +1,7 @@
-import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.CrystallineBaseChange.HfStmt
+import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.WeightChange
+import GroundTheory.AutomorphicForms.AdelicGLn
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.NewformCoefficients.CuspCritAlt
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.HeckeAdjoints.HasPairingOfHerm
-import Development.AutomorphicArithmetic.AutomorphicVarieties.PublishedTheorems.RepNewform
 
 noncomputable section
 

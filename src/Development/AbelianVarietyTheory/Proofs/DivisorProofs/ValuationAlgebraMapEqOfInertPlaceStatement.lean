@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationAlgebraMapEqOfInertPlace
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
 
 open NumberField IsDedekindDomain
 open scoped Matrix

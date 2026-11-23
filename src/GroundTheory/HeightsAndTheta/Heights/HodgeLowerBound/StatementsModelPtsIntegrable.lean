@@ -1,5 +1,6 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsModelLogIntegrable
+import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsPtsBddConv
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

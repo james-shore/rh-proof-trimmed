@@ -5,7 +5,7 @@ import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GSplit
 import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.LevelCarrying
 import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.LevelCuspCharacters
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ActLevIffLevelActionOver
-import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.CardLatticeQuotientHalfLevel
+import Formalism.LocalToGlobal.ProjectiveLattices.LatPAddRight
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsRightActFunPull
 
 set_option autoImplicit false

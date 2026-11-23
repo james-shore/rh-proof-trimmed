@@ -1,9 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.TorusSections.IsTorusOf
-import Formalism.LocalToGlobal.ProjectiveLattices.AllTest
-import Formalism.LocalToGlobal.ProjectiveLattices.NormsFree
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.IsOrth
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.CuspStatementPf
+import Formalism.LocalToGlobal.ProjectiveLattices.NormsFree
 
 set_option autoImplicit false
 

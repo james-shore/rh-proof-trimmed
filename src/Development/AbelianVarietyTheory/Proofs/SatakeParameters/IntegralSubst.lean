@@ -1,8 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.GlobalSchurBounds.GL3Theta
-import Formalism.LocalRingCardinality.DataKerI
-import Formalism.LocalToGlobal.KernelLattices.LateralTheory
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.Cobdry
+import Formalism.SharpRestriction.GlobalSchurBounds.StandardLatticesGL3
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.CalcExp
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExpMvNegLogMvMul
 

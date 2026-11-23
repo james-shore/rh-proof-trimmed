@@ -1,7 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.SymTupOne
-import Development.AbelianVarietyTheory.Statements.TorsionEndomorphisms.EndDeterminedOnTorsion
-import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.SiegelToroidalIntegral
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsRatPointOfFiniteType
 
 noncomputable section
 

@@ -1,9 +1,8 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ExistsIsComOfOf
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.FrameTop
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DefClassNum
+import Development.AbelianVarietyTheory.BlockTheory.AdelicCMFields.UnitaryHeckeCharacterIdele
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsPtOfOfDecoRaw
-import Formalism.LocalToGlobal.Columns.RecLevelDiv
-import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.NotIsCompactUnivFv
-import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.WeilDatumExistence
 
 noncomputable section
 

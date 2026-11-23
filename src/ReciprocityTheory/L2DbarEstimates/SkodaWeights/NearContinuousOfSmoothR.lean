@@ -1,5 +1,6 @@
 import ReciprocityTheory.L2DbarEstimates.SkodaWeights.SmoothRLog
 import ReciprocityTheory.L2DbarEstimates.SkodaWeights.WeightedIntegralEqLintegral
+import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.IsLocalHomeomorphCompFst
 
 namespace ReciprocityTheory.L2DbarEstimates.H
 

@@ -1,6 +1,7 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LocalSystemQuotients.RedMk
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FlatThickeningQuotientStatement
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.Coords
 
 set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false

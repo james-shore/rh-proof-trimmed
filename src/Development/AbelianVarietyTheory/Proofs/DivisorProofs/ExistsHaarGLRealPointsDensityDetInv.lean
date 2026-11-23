@@ -1,7 +1,6 @@
 import Development.AbelianVarietyTheory.Definitions.Divisors.GlRes
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsExpLieAlgebraComplexUnits
-import Development.AbelianVarietyTheory.Definitions.Divisors.CentralNilGL
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqZeroOfMemWeakIn
+
 open NumberField MeasureTheory Matrix GlobalTheory.CuspRep GlobalTheory.HCA GroundTheory.Automorphic
 attribute [local instance] Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 

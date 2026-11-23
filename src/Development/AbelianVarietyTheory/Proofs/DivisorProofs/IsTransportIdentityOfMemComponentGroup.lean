@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTransp
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTransporterMovesFrameReadsInverse
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniqueUpToTargetGroup
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IdentityTransportsComponentToItself
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTransporterMovesFrameReadsInverse
 
 set_option autoImplicit false
 

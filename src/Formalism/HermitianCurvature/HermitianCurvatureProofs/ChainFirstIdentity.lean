@@ -1,5 +1,4 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.ScalarInverseSimplification
-import Formalism.RealPlaceAnalysis.RealPlaceTaylor.QuantumDetHighestWeightHolds
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.FirstExpansionIdentity
 
 open Matrix Finset
 

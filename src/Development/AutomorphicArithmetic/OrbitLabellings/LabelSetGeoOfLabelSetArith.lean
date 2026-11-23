@@ -2,8 +2,8 @@ import Mathlib
 import Development.AutomorphicArithmetic.OrbitLabellings.RowDefs
 import Formalism.LocalToGlobal.CharacterGerms.RowTieMemCHarm
 import Formalism.LocalToGlobal.CharacterGerms.RowTieFlagS
-import Formalism.LocalToGlobal.CharacterGerms.RowTieSelfCuts
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.SeparatedEmbeddingsDirectionsTypedBasisStatement
+import Formalism.LocalToGlobal.CharacterGerms.RowTieSelfCuts
 
 open scoped BigOperators
 open Classical

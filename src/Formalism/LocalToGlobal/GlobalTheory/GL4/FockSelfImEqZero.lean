@@ -1,10 +1,9 @@
-import Formalism.LocalToGlobal.GlobalTheory.GL4.BranchingLinkFamilyNormalised
-import Formalism.LocalToGlobal.GlobalTheory.GL4.ColAddGenCastSuccRename
-import Formalism.BranchSandwichDivisors.BranchIsometryProofs.XiNorm
-import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
-import Formalism.BranchSandwichDivisors.BranchIsometryProofs.BranchMap
-import Formalism.BranchSandwichDivisors.BranchIsometryProofs.BranchScale
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LFocksLemmas
+import Mathlib
+import Formalism.SharpRestriction.GlobalSchurBounds.FlipTwoThree
+import Formalism.LocalToGlobal.HermitianForms.PrkSmul
+import Formalism.GradedWeylDivisibility.StatementE
+import Formalism.SuccessiveMinima.StatementMink
+import Formalism.SharpRestriction.GlobalSchurBounds.IntegrableOfContinuousCircleMeasure
 
 noncomputable section
 

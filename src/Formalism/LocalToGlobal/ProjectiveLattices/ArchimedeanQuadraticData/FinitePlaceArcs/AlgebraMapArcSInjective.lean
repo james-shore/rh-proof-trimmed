@@ -1,8 +1,4 @@
-import Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.FinitePlaceArcs.ExistsCoeffNormOne
-import Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.FinitePlaceArcs.BeSumPf
-import Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.ArcLineFunctions.ArcSPin
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.Rationality.FinCorePf
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.Rationality.BasisChangePf
+import Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.FinitePlaceArcs.FinAtOfStatement
 
 noncomputable section
 

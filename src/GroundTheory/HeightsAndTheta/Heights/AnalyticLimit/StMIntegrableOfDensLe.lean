@@ -1,7 +1,7 @@
 import Mathlib
-import ReciprocityTheory.AnalyticForms.PotentialTheory.LocDens
-import ReciprocityTheory.AnalyticForms.PotentialTheory.MaMeasureA
-import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.Objects
+import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialOfFun
+import ReciprocityTheory.AnalyticForms.PotentialTheory.ContDiffFubiniStudyRatioCompChart0
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.AnalyticLimit

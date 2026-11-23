@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.PeriodIntegrals.KerIso
 
 noncomputable section
 open scoped BigOperators

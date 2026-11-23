@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Statements.AlgebraStatements.IsPolarisationOfRelAmple
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ExistsCrystalPairing
-import Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.FibAmpleD
-import Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.FibLamD
+import Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.IsLBZb
+import Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.FibLamA
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianDeRhamPoincareDualityOfCubeDual
 
 set_option autoImplicit false
 

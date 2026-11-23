@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsAuxiliaryPlaceNotMemFinset
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.LintegralFintypeProdEqProd
 
 open MeasureTheory Set Filter GlobalTheory.AutomorphicL2Unitary GlobalTheory.RestrMeas
 open scoped ENNReal NNReal Topology Pointwise

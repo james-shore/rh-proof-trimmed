@@ -5,6 +5,8 @@ import Formalism.SharpRestriction.GlobalSchurBounds.GlobalLinkOfBranchIdentities
 import Formalism.SharpRestriction.GlobalSchurBounds.LogXLowerFamilyOfTheorems
 import Formalism.LocalToGlobal.GlobalTheory.UnramifiedTrace.HeckeRamifiedZeroAll
 import Formalism.LocalToGlobal.ClassOfRecordOfChoice
+import Formalism.LocalToGlobal.GlobalTheory.CoordinateLengths.SecondBranchAllMembers
+import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.IntegralAtT0Lattice
 
 noncomputable section
 

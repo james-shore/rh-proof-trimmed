@@ -6,6 +6,7 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinrankLeAddOfM
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartLatticeDimensionUpperStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TendstoOfAsymptoticBoundsStatement
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PNefSectionsAsymptotic
+import Development.AutomorphicSpectrum.PublishedTheorems.Geometry₂.NefRR
 
 namespace PositivityTheory.Tls2.Nef
 

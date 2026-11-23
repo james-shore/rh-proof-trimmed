@@ -1,6 +1,6 @@
 import ReciprocityTheory.L2DbarEstimates.JacobianInterpolationStatement
 import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.ChartSymmEventuallyEq
-import ReciprocityTheory.L2DbarEstimates.LeviForms.OfRealNormSqSumMul
+import ReciprocityTheory.L2DbarEstimates.LeviForms.EventuallyDifferentiableAtOfContDiffAt
 
 namespace ReciprocityTheory.L2DbarEstimates
 

@@ -4,6 +4,7 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StripOpenRealDi
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CountableOfNumberField
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AesmIteratedDerivReal
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LowerMulJG
+import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.DilationDecomposition.LocDerBig
 
 noncomputable section
 

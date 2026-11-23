@@ -1,8 +1,6 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StLelongPolyLimit
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StatementsCurrent
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.GraphIdeal
-import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StLocalMultComap
-import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StLelongWeightLimit
 
 set_option maxSynthPendingDepth 1
 

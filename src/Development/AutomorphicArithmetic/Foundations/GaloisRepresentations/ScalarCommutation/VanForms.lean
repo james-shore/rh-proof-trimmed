@@ -3,6 +3,8 @@ import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.Scala
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.OrbZero
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BaseChangeCentralizerComm
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AlgebraMapQrOneBijective
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharpolyDvdPowOfAevalEqZero
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrbKEqZeroOfCharpolyNotSeparable
 
 set_option autoImplicit false
 

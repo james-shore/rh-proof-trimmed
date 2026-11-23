@@ -1,9 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CongruenceOnSelfDualLatticeOfDatumImage
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTransp
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MulVecMemOfFrame
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FinCongMemLevEnv
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.OmegaFormNonvanishing
 
 open NumberField IsDedekindDomain Module Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.L2.Pj Formalism.BasicNotions.TH Formalism.L2.Theta
 open scoped Matrix TensorProduct Pointwise

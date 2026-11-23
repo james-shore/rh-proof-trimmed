@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.EigenOfTwoStep
+import Development.AbelianVarietyTheory.Definitions.Foundations.OpLDOneSubMemTriv
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SpanEqTopOfIrreducibleOverAlgClosed
+
 open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ
 

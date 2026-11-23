@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasBlockOfOccurs
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelMapExists
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.JKInvOfTriv
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NormLeOneOfMemOL
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFrameOkEig
 
 set_option autoImplicit false

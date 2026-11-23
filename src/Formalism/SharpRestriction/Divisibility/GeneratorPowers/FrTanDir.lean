@@ -1,6 +1,6 @@
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FrTanPf
-import Formalism.SharpRestriction.Divisibility.GeneratorPowers.BoxTuple
-import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FrTanDirAlg
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.FamMod
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.UniformisationConclusion
 
 set_option autoImplicit false
 

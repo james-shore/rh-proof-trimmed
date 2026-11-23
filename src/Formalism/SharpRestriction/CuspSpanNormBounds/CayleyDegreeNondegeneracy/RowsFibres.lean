@@ -1,5 +1,5 @@
-import Formalism.FlagUnipotentLattices.CardSubgroupsOfIndexLe
-import Formalism.SharpRestriction.CuspSpanNormBounds.CayleyDegreeNondegeneracy.RowsRpowPow
+import Formalism.FlagUnipotentLattices.CardSubmodulesAndLinearEquivBounds
+import Formalism.FlagUnipotentLattices.MinkowskiFactorialBounds.SumComplexEmbeddingsEqSumInfinitePlace
 
 namespace Formalism.MainNotions.BridgeLemma₂
 

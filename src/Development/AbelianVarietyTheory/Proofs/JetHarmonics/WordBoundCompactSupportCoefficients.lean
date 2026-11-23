@@ -6,9 +6,6 @@ import Development.AbelianVarietyTheory.Proofs.JetHarmonics.WordOperatorRadialPo
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.RadialPictureSmulCutoffGMultiplierStatement
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.BigCellVectorNormEqRadialValueNormStatement
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.TLPlanAsm
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.RadJFExists
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CompactSupportFacts
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.QNFAsm
 
 namespace GlobalTheory.HatNF
 

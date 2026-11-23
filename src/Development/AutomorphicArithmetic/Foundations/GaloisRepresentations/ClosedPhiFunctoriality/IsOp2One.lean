@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ClosedPhiFunctoriality.IntBasisAlt
+import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ClosedPhiFunctoriality.JointApproxOfMem
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.JointApproxOfMem
 
 noncomputable section

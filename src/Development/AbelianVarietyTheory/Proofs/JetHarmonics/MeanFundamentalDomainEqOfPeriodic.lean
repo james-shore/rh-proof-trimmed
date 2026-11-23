@@ -1,5 +1,4 @@
 import Mathlib
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.ModerateCoefficientPositivity
 
 open MeasureTheory
 open scoped Pointwise

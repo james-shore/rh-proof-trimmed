@@ -1,9 +1,9 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ExistsRosatiGen
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.ETPointStatement
+import Development.AbelianVarietyTheory.Counterexamples.JetSurvey.PremisesInhabited
 import Development.AbelianVarietyTheory.BlockTheory.JetGauges.SpansOverField
 import Development.AbelianVarietyTheory.BlockTheory.JetGauges.BalancedHermitianSpace
-import Development.AbelianVarietyTheory.Counterexamples.JetSurvey.PremisesInhabited
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.SumPosOfTensorPos
 
 set_option autoImplicit false

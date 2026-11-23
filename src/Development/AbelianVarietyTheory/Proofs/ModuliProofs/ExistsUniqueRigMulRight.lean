@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Uniformization.PointEqOfSubsingleton
 import Development.AbelianVarietyTheory.BlockTheory.CMModuli.CubicalSymmetricTriv
-import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsAffineWeightUnits
+import Development.AbelianVarietyTheory.Definitions.Uniformization.ExistsUniqueTorusCompat
 
 set_option autoImplicit false
 

@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Jets.ImportsAlt
-import Formalism.HermitianCurvature.HerGenC
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ParametersUPrimeForULower
 
 open Formalism.FourierDecayAlt Formalism.REAL Formalism.QuantumDeterminants GlobalTheory.TopVec Filter Topology MeasureTheory

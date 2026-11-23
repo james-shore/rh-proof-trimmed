@@ -1,8 +1,6 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutNFTopDom
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.cut_PtwCut
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutDomCutInt
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutLemB
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutFpmDecay
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJDCCLower
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.BetaCutoffLimit
 
 namespace Formalism.FourierDecayAlt.P.CutBP
 

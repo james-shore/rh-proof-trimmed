@@ -1,4 +1,4 @@
-import Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.RealSt
+import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
 import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.PfDictDef
 
 noncomputable section

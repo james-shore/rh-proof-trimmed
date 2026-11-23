@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SemidirectVolume.ModVec
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SemidirectVolume.ProjCont
 
 noncomputable section

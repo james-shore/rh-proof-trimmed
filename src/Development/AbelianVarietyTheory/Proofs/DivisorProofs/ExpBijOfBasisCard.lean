@@ -1,8 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsBoxGenOfSection
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsProdUnif
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExpandsFunctional
-import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SvalEqZero
-import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.HasBasisOfBasis
 
 noncomputable section
 

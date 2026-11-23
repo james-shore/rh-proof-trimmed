@@ -1,5 +1,4 @@
 import Development.AutomorphicSpectrum.Statements.GeometryStatements.IsPolLatticePlane
-import Development.AutomorphicSpectrum.Statements.GeometryStatements.HTChartExists
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.TwoWeightEqOneAddRoot
 import Development.WeilBound.CoreStatements.HodgeTatePoints.WeilfunCore
 

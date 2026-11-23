@@ -1,15 +1,11 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.SlopeTestRemainingChoicesAlt
-import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAt
-import Development.AbelianVarietyTheory.Definitions.Divisors.TieTest
-import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.NormSmall
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.ToricSymbols
 import Development.AbelianVarietyTheory.Definitions.Divisors.DiscreteSeriesHermitianUnique
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NuHTwisted
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NatCastMemBelow
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIsHeckeLOfHasInf
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ConductorExponentAtPlaces
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WeightExceedsCenterBound
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NatCastMemBelow
+import Development.AbelianVarietyTheory.Definitions.Divisors.TieTest
 
 open Formalism.BasicNotions Formalism.MainNotions GlobalTheory.BigTop GlobalTheory.BigTop.Fun GlobalTheory.SqTop NumberField IsDedekindDomain
 open GlobalTheory.FunObj.SqNum (nuH halfRank IsTor)

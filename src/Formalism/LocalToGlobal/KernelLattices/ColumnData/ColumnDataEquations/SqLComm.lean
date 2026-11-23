@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLLaw
+import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLMat
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.WeightThresholdDefs
 
 noncomputable section

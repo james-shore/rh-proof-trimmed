@@ -6,6 +6,7 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TendstoSmulZ
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsUnitaryOfOrderDvd
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AdelicUnitaryTopology
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBoundUnitary
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsReframeVStdOfPosDef
 
 noncomputable section
 

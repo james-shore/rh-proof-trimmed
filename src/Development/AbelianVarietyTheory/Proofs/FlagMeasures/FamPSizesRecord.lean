@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.SharpRestriction.ParamsHeightRankConstant
+import Formalism.SharpRestriction.ParConsts
 
 open Formalism.BasicNotions Formalism.MainNotions
 

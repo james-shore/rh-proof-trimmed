@@ -1,7 +1,7 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.QuotientHomNonvanishingBound
 import Formalism.SharpRestriction.LevelLetterCocycles.LocCoh
 import Formalism.SharpRestriction.LevelLetterCocycles.LocalSituation
-import Formalism.SharpRestriction.LevelLetterCocycles.ArithmeticCylinders
+import Formalism.SharpRestriction.CuspSpanNormBounds.GlobAut
 
 noncomputable section
 

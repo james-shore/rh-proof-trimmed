@@ -9,6 +9,7 @@ mechanical steps only.
   [leanprover-community/riemann-hypothesis](https://github.com/leanprover-community/riemann-hypothesis) at `7da4577e`
 - Each stage has a receipt in `cleaning/<stage>/`
 - S1 is [PR #55](https://github.com/leanprover-community/riemann-hypothesis/pull/55) on leanprover-community/riemann-hypothesis
+- On this branch, `s4-on-s1`, S4 is on S1 after a merge of main at `bdda2f0e`, without S2. Main has S2
 
 ## Stages
 
@@ -18,7 +19,7 @@ mechanical steps only.
 | S1 | remove declarations the proof doesn't use | 150,632 | 14,473,033 | 858,404 | yes | yes | yes | 0 statements changed |
 | S2 | remove syntax Lean's own linters flag as unused | coming | | | | | | |
 | S3 | keep one copy of each duplicate theorem or definition | coming | | | | | | |
-| S4 | remove import lines each file doesn't need | coming | | | | | | |
+| S4 | remove import lines each file doesn't need | 150,632 | 14,252,250 | 858,404 | yes | yes | yes | 0 statements changed |
 
 - Compiles means Lean 4.33.1 builds every module
 - Kernel-accepted means an independent kernel (nanoda) accepts the exported proof

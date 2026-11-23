@@ -1,5 +1,5 @@
 import Formalism.AdmissibleDesigns.FiniteClassesContinuousLattice
-import Formalism.WeaklyAdmissibleFiltrations.PhtGalois
+import Formalism.WeaklyAdmissibleFiltrations.CrystallineStableLifts.ExistsPeriodRingDataHolds
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 

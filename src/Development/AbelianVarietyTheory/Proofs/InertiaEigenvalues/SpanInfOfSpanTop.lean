@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.HeckeSplitOne
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.InjPrimeTo
+import Formalism.SharpRestriction.LevelLetterCocycles.ArithmeticCylinders
+import Formalism.SharpRestriction.LevelLetterCocycles.TwGood
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.AdmissibleIndexBoundAllPowers
 
 noncomputable section

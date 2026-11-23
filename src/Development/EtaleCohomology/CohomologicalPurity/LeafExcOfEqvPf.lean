@@ -1,5 +1,4 @@
 import Development.EtaleCohomology.CohomologicalPurity.LeafExcLevelPf
-import Development.EtaleCohomology.CohomologicalPurity.LeafExcIdentPf
 import Development.EtaleCohomology.CohomologicalPurity.LeafChPushPf
 
 noncomputable section

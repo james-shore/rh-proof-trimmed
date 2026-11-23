@@ -1,6 +1,5 @@
-import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.ThetaInZIsThetaLog
-import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.StatementC
-import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.StatementK
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.StatementB
+import Formalism.LocalToGlobal.TorsionIntegrality.CMGoodModels.Statement
 
 noncomputable section
 open scoped BigOperators

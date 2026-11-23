@@ -1,7 +1,6 @@
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ParameterLargeAllPoints
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExportSt
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Realised
+import Formalism.PieriBlockIdeals.PieriColumnMinors.LargeParameterEstimates
 
 set_option synthInstance.maxHeartbeats 200000
 

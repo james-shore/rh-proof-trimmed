@@ -1,4 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CharacterStabilizerEqOne
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.SigmaFiniteOfHaar
 
 open Matrix MeasureTheory
 

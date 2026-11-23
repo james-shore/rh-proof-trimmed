@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.Columns.FiniteSumNonzeroLargeDepth
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.PhiTopAgree
-import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsAddChar
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsContinuousPadic
 
 open NumberField IsDedekindDomain MeasureTheory ValuativeRel Matrix

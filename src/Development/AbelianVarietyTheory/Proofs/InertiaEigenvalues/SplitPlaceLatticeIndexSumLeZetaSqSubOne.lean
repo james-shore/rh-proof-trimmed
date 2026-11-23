@@ -6,9 +6,10 @@ import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsPlaceChart
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RelIndexStandardLatticeTransposeInvDvrStatement
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GlIntegralInvMulOfLatticeMapEqStatement
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LatticeIndexSplitPlaceEqProductLocalStatement
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.AdjFormula
-import Formalism.LocalToGlobal.IndefiniteReal.LinksStage
-import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsNormLeHeightPow
+import Formalism.LocalToGlobal.IndefiniteReal.FockTheta.UnitBracket
+import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.WordDerivatives
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsSigmaList
+
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef
 open Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx Formalism.IndefR.Links

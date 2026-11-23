@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnramifiedDvrAdjoiningUnitRoots
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnramSub
-import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsUnramifiedExtTorsionPointsGoodReduction
 
 open IsLocalRing
 set_option maxHeartbeats 1000000 in

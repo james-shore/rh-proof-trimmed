@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.LineOppositeParabolicUnitaryLeviSectionEq
-import Formalism.SatakeDualWeyl.StatementE
 
 open GlobalTheory.LGrp Formalism.UG
 

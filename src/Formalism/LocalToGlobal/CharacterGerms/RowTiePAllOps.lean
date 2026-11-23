@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.CharacterGerms.RowTiePAllSet
 import Formalism.LocalToGlobal.CharacterGerms.RowTiePLimTy
+import Formalism.LocalToGlobal.CharacterGerms.NegMem
 
 noncomputable section
 

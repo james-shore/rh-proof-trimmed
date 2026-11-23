@@ -1,4 +1,6 @@
 import Formalism.PieriBlockIdeals.PieriColumnMinors.XiOfDepth2
+import Formalism.PieriBlockIdeals.PieriColumnMinors.LowerTriangularIntegral
+import Formalism.PieriBlockIdeals.PieriColumnMinors.HighestWeightMemWZero
 
 open MvPolynomial
 

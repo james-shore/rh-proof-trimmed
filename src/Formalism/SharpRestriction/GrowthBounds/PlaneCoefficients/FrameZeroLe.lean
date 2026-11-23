@@ -1,5 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.TwistedSubstitution.SymGSupport
-import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.PosTLSurj
+import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.SlackBoundReal
 import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.MembDd
 
 noncomputable section

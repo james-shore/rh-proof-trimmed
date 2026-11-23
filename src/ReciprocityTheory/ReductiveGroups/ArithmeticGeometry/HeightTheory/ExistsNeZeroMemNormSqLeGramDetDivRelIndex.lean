@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.TransferenceA
+import Mathlib
 
 namespace ReciprocityTheory.ChartRestriction.G.T0
 

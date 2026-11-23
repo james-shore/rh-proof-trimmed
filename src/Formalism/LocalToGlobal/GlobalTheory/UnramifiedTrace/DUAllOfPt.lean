@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.GlobalTheory.UnramifiedTrace.DuFormulaOfFibreCount
+import Formalism.LocalToGlobal.GlobalTheory.UnramifiedTrace.EopUEq
 import Formalism.LocalToGlobal.GlobalTheory.UnramifiedTrace.CardFilterSubtype
 
 noncomputable section

@@ -1,6 +1,4 @@
 import Formalism.LocalRingCardinality.SpanPowerMembership.NZLevH
-import Formalism.SharpRestriction.GrowthBounds.TensorLatticeBounds.DataLPa
-import Formalism.SharpRestriction.GrowthBounds.TensorLatticeBounds.DataLPb
 import Formalism.LocalToGlobal.GroupLattices.PerfectRings.JOInjective
 
 open MvPolynomial

@@ -4,6 +4,7 @@ import Formalism.LocalToGlobal.Divisibility.Frames
 import Formalism.LocalToGlobal.Columns.HeckeSp
 import Formalism.LocalToGlobal.Columns.AlgebraMapMemMaximalIdealPowIff
 import Formalism.LocalToGlobal.IndefiniteForms.IndefSide
+import Formalism.HermitianLattices.HermitianLatticesProofs.UnimodUnramUnique
 
 open Module NumberField IsDedekindDomain Polynomial
 open scoped Matrix ComplexOrder

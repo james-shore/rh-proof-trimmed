@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DerivHeisenbergCMRealLineFiniteInvariant
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTransportF
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwoMulInvOf
 
 open scoped TensorProduct Matrix
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes

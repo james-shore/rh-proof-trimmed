@@ -1,4 +1,4 @@
-import Formalism.LogVandermondeBounds.GaussOperatorProductFormula
+import Mathlib
 
 namespace Formalism.LogVandermondeBounds.product_first_zeroth_parts
 

@@ -1,5 +1,6 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GelfandTsetlinBranching.ExtremalFacts
 import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
+import Formalism.PeriodIntegrals.HwIrred
 
 noncomputable section
 

@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.CuspDiscreteDecompositionGL
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsFiniteMeasureQuotMeasure
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousSplitCentre
 
 noncomputable section
 

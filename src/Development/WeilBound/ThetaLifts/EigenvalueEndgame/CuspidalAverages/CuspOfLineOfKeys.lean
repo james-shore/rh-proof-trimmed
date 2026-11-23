@@ -4,6 +4,7 @@ import Development.WeilBound.ThetaLifts.EigenvalueEndgame.SignatureSplitting.AeF
 import Development.WeilBound.ThetaLifts.EigenvalueEndgame.TowerCodimensionTwo
 import Development.WeilBound.ThetaLifts.ConeHypotheses.PureEqPureA
 import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.PfDictSec
+import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
 
 noncomputable section
 

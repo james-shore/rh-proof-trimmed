@@ -1,4 +1,9 @@
 import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrSf
+import Formalism.LocalToGlobal.CharacterGerms.SelfConjugateRowData
+import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrRP
+import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrEF
+import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrPlB
+import Formalism.LocalToGlobal.CharacterGerms.CharacterHypothesisUnramified
 
 set_option autoImplicit false
 

@@ -1,4 +1,4 @@
-import Development.WeilBound.CoreStatements.OrbitDecayEstimates.CurveDerivativeDecay.OrbitDeriv
+import Development.WeilBound.CoreStatements.OrbitDecayEstimates.CurveDerivativeDecay.IntegrableOfDec
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.HeBranching
 
 noncomputable section

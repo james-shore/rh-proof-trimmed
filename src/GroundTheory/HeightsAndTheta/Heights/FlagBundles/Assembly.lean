@@ -1,6 +1,5 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.FlagBundles.Statements
-import GroundTheory.PAdicHodge.SlopeCauchyBinet
 import GroundTheory.HeightsAndTheta.Heights.FlagBundles.PDiagonalQuotient
 import GroundTheory.HeightsAndTheta.Heights.FlagBundles.PGKernelIdentity
 import GroundTheory.HeightsAndTheta.Heights.FlagBundles.PSphereHeightUniform
@@ -12,7 +11,6 @@ import GroundTheory.HeightsAndTheta.Heights.FlagBundles.PZonalBilinearFormula
 import GroundTheory.HeightsAndTheta.Heights.FlagBundles.PGHatIdentity
 import GroundTheory.HeightsAndTheta.Heights.FlagBundles.PFibreConstantClosedForm
 import GroundTheory.HeightsAndTheta.Heights.FlagBundles.PFibreIntegralInvariant
-import GroundTheory.HeightsAndTheta.Heights.FubiniStudyIntegral
 
 set_option maxSynthPendingDepth 1
 

@@ -1,7 +1,4 @@
 import Formalism.HermitianCurvature.BesselNonvanishingReduction
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LowerSmoothStability.ExistsFinStableOfMemSSup
-import Development.AbelianVarietyTheory.BlockTheory.JetGauges.SideNormalisedGap
-import Development.AbelianVarietyTheory.Counterexamples.JetSurvey.KFinDecayOfDecInf
 
 open MeasureTheory
 open scoped ENNReal

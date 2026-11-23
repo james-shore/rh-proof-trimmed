@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.OneMemH0WeightZero
-import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.NotIsCompactUnivFv
+import Formalism.LocalToGlobal.BesselHermitianTheta.TiedWeil
 import GroundTheory.GlobalFields.IdeleGroups.IdeleNorms
 
 noncomputable section

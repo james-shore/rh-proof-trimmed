@@ -1,7 +1,6 @@
 import Mathlib
-import ReciprocityTheory.Hypotheses.GalCoh
+import ReciprocityTheory.Hypotheses.GalCohDefs
 import ReciprocityTheory.GaloisValuations.ArithOfA
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CardDualZmodModuleEqCard
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.IsAlgClosureAlgebraicClosureRat
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.IsLocallyConstantRed
 

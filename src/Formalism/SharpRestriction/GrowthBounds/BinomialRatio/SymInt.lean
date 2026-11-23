@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.MapFloorMono
+import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.SrcHalf
 
 noncomputable section
 

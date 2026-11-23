@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.FlagUnipotentLattices.DetIndexProductPlacesInequalitySq
 
 open Module NumberField nonZeroDivisors Finset
 

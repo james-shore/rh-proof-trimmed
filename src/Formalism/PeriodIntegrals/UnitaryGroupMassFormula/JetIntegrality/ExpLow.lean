@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.PeriodIntegrals.JetsPhW
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.JetIntegrality.CoeffSubstOfDegreeEqOne
 
 noncomputable section
 

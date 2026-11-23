@@ -2,6 +2,7 @@ import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.ConcretePkgSpec
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.PositiveRowsTuple
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ClassPresExtMemExtBijIsom
+import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
 
 noncomputable section
 

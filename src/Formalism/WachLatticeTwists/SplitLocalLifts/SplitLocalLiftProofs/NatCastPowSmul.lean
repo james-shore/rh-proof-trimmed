@@ -1,5 +1,4 @@
 import Formalism.WachLatticeTwists.SplitLocalLifts.Statement
-import Formalism.WachLatticeTwists.LagrangeExtensionCocycles.DualWByLettersExtended
 
 noncomputable section
 

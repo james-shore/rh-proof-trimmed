@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RembApply
-import Formalism.LatticeTheta.Statement
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.TraceDualDifferent
 
 open NumberField nonZeroDivisors MeasureTheory GlobalTheory.LipschitzTR GlobalTheory.IndefiniteRowSideFullHecke.TraceDualDifferent
 open scoped FourierTransform RealInnerProductSpace

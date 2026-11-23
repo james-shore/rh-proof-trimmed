@@ -1,4 +1,4 @@
-import Development.EtaleCohomology.EtaleSheaves.LeafClosedSH0Of
+import Development.EtaleCohomology.EtaleSheaves.A9OfA0A1EigenbasisA6
 import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.BijectiveRestrictPointsOfEtaleOfHenselian
 
 noncomputable section

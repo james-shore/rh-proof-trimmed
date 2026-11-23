@@ -24,6 +24,7 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LastBlockCentra
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModulusContractingBlockLtOneStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContractingDoubleCosetMeasurableStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContractingDoubleCosetVolumeBoundStatement
+import GroundTheory.AutomorphicForms.JacquetAdmissible
 
 noncomputable section
 

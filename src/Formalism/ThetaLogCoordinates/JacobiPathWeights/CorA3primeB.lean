@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.ThetaLogCoordinates.JacobiPathWeights.StatementP
+import Formalism.ThetaLogCoordinates.JacobiPathWeights.IndexWeightsDominance
 
 noncomputable section
 

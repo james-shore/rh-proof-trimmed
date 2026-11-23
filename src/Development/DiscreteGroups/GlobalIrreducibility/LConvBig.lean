@@ -1,5 +1,6 @@
 import Development.DiscreteGroups.GlobalIrreducibility.LConvBigD
 import GroundTheory.AutomorphicForms.SmoothRepSchur
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AlgebraMapIntertwiningMapBijectiveOfIsSmooth
 
 noncomputable section
 

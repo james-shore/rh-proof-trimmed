@@ -2,8 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsOfPoint
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsMumfordFamOfSubsingleton
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsNoetherianRingCompletedStalkSiegelFibrePower
-import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsMinAt
-import Development.AbelianVarietyTheory.Definitions.Divisors.FromBase
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsThetaCompact
 
 noncomputable section
 

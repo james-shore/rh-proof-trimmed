@@ -1,6 +1,5 @@
 import Mathlib
-import Formalism.HarderNarasimhan.StatementPl
-import Formalism.HarderNarasimhan.ShiftInvariance
+import Formalism.HermitianLattices.StatementMaj
 
 open Module NumberField IsDedekindDomain
 

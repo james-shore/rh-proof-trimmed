@@ -2,10 +2,10 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.IndEtOfForallFinset
 import Development.AbelianVarietyTheory.Definitions.Divisors.DivisorSupportCondition
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsStrictHenselisation
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AlgHomExtLocalization
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IndEtaleLocalizedPiecesTrans
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsStrictHenselisationOfDirectedUnion
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsRingHomOfIsStrictHenselisation
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AlgHomExtLocalization
+
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 noncomputable section

@@ -1,5 +1,5 @@
 import Formalism.FrobeniusBaseCase.FrobeniusBaseCaseProofs.ChainI
-import Formalism.FrobeniusBaseCase.Statement
+import Formalism.FrobeniusBaseCase.FrobeniusBaseCaseProofs.HasUniqueFixedPoint
 
 open MvPowerSeries
 

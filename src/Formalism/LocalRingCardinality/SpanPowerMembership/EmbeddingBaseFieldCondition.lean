@@ -1,6 +1,5 @@
 import Formalism.LocalRingCardinality.SpanPowerMembership.RangeInclEqSpan
 import Formalism.LocalRingCardinality.DataIdx
-import Formalism.LocalRingCardinality.DataNChTie
 import Formalism.SharpRestriction.InertJacobiLevels.ExtraVal
 
 noncomputable section

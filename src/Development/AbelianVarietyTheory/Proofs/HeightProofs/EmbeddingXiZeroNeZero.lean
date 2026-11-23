@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
-import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
+import Formalism.LocalToGlobal.BesselHermitianTheta.TiedWeil
 import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasSign
 import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.WeilIdempotents
 import Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.StarPurelyImaginaryEqNeg

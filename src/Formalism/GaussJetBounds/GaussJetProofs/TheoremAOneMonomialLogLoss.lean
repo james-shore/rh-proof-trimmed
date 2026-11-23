@@ -1,7 +1,9 @@
 import Formalism.GaussJetBounds.GenLogInverse
-import Formalism.GaussJetBounds.StatementG
 import Formalism.GaussJetBounds.GaussJetProofs.ThmAJet
 import Formalism.GaussJetBounds.GaussJetProofs.LemmaRA
+import Formalism.IncomingBounds.WeightIdentities
+import Formalism.GaussJetBounds.GaussJetProofs.FrameCoeffMulLin
+import Formalism.GaussJetBounds.GaussJetProofs.CapacityLeReachCapacity
 
 noncomputable section
 open scoped BigOperators

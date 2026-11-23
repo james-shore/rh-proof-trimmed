@@ -1,5 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutNFTopDomCore
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJDHatOpA
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGaugeCut
 
 namespace Formalism.FourierDecayAlt.P.CutBP
 

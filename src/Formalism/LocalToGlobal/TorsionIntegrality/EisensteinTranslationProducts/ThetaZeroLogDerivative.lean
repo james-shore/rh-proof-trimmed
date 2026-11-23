@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.Legendre
+import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.SemiChar
 
 noncomputable section
 open scoped BigOperators ComplexConjugate

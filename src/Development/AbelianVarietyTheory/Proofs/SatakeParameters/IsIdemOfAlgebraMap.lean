@@ -1,13 +1,12 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
-import Formalism.LocalToGlobal.IndefiniteReal.SubgroupCharExtensionOneApply
+import Formalism.LocalToGlobal.Divisibility.DefGroup
 import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
-import Formalism.LocalToGlobal.Columns.HeckeSp
-import Formalism.SatakeDualWeyl.KpqSubgroupCompact
-import Formalism.SatakeDualWeyl.StatementG
+import Formalism.LocalToGlobal.Columns.RhoEqOfSmulEq
+import Formalism.LocalToGlobal.Columns.StdLatUnimodular
+import Formalism.LocalToGlobal.Columns.DecoFin
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsLocalConjugationSelfDualLatticesHost
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsAdelicUnitaryOfLocalFamilyAlmostAllTrivial
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.MemAdelicLatticeIffLocalSelfDualCompletion
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsCuspFunIffConstTerm
 
 noncomputable section
 

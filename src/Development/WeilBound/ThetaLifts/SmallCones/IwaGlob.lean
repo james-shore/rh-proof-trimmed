@@ -1,8 +1,8 @@
 import Development.WeilBound.ThetaLifts.SmallCones.ThetaUniq
 import Development.WeilBound.ThetaLifts.SmallCones.MatCancel
-import Development.WeilBound.ThetaLifts.TowerModels.ExistsRefl
 import Development.WeilBound.ThetaLifts.LatticeBasics.EulerProd
 import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.InertDef
+import Development.WeilBound.ThetaLifts.TowerModels.ExistsRefl
 
 set_option linter.unusedSectionVars false
 

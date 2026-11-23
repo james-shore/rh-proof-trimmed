@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.RhoUpperBoundSmallDepth
+import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.MemColSpanIff
 
 noncomputable section
 

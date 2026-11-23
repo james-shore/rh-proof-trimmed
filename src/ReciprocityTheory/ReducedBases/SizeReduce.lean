@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReducedBases.LatticeReduction
+import ReciprocityTheory.ReducedBases.GsInnerBOfLt
 
 noncomputable section
 

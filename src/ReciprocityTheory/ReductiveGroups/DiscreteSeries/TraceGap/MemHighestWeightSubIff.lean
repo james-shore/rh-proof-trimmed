@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.GsBasisPhys
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.FockWeights
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.BlockAnti
 
 noncomputable section

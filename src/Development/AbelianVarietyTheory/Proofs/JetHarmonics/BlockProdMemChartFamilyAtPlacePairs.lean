@@ -4,6 +4,7 @@ import Development.AbelianVarietyTheory.Definitions.Jets.TwoPlaces
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.GapParts
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ProdDetMemHaO
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.FlagOfLetterNumberingRowData
+import Formalism.LocalToGlobal.CharacterGerms.BlockAdmissibleChart
 
 set_option autoImplicit false
 

@@ -9,6 +9,7 @@ import Formalism.LocalToGlobal.JointCharacters.SameChr
 import Formalism.LocalToGlobal.HilbertRowConditions.KaTiedIffKapDef
 import Formalism.LocalToGlobal.BesselHermitianTheta.AllTied
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.EMtLevel
+import Formalism.LocalToGlobal.UnitaryNorms.JointCut
 
 noncomputable section
 

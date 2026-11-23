@@ -1,8 +1,9 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.RationalSections.IsRatSectionOn
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRes
-import GroundTheory.HeightsAndTheta.Heights.Intersections.SameOrbitOneSpecZ
+import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsArith
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.CurveCountObjects
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Targets

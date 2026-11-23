@@ -1,6 +1,6 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.FormsFiniteness.FormsFiniteAlt
 import GroundTheory.AutomorphicForms.UnitaryAdmissible.CuspFinite
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
+import Formalism.RealPlaceAnalysis.StatementE
 
 noncomputable section
 

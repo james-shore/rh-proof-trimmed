@@ -1,9 +1,9 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.FrobFieldExists
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsDimEqOne
+import Development.AbelianVarietyTheory.Definitions.Divisors.NotIsCyclicClassPolynomial
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EndCharpolyTateDetDegreeTraceStatement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TateModuleFreeFinrankTwoMulDim
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CharpolyDvdPowFinrankOfAevalEqZero
 import ReciprocityTheory.ReductiveGroups.Lattices.LatUnrCharA
+
 open CategoryTheory Polynomial NumberField IsDedekindDomain AlgebraicGeometry
 open scoped TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor

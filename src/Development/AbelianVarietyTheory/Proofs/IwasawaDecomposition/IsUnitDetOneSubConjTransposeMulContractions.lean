@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.LocalRingCardinality.DataTheta
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.OscActMonomialOfUnique
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsNegBaseY
 
 open Matrix
 open scoped ComplexOrder

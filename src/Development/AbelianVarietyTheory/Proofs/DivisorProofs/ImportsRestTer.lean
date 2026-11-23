@@ -1,6 +1,7 @@
 import Mathlib
-import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrFin
+import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrI
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsLocalHomValuationExtension
+
 open NumberField IsLocalRing Formalism.L2.FormalSeriesBounds Formalism.IncomingBounds Formalism.L2.Pj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF
 attribute [local instance] CategoryTheory.Over.cartesianMonoidalCategory

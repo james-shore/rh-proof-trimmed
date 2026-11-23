@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.GramIff
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DensGSO
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DoubleSumEqDotProduct
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SplitDensity.FiberCardHolds
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalDensityCorank.SplitCount
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DoubleSumEqDotProduct
 
 noncomputable section
 

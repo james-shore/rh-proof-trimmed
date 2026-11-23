@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.CharacterValueAtT
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ValLocCharUnit
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.AbsNormEqOfSplitFactor
 
 noncomputable section
 

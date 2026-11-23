@@ -1,4 +1,7 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.ExistsBoundIteratedFDerivCompact
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.AParamSt
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.AInterpSt
+import ReciprocityTheory.GeometryOfNumbers.PluriharmonicAnalysis.MorseGenSt
 
 noncomputable section
 

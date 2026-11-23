@@ -1,6 +1,7 @@
 import Mathlib
-import Formalism.PeriodIntegrals.FglChordFactor
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalGroupChords.SubstBivariateSeriesDifferencePair
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdditiveIntegralGroups.GlueHoldsVar
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalGroupChords.NormDeltaWc
 
 noncomputable section
 

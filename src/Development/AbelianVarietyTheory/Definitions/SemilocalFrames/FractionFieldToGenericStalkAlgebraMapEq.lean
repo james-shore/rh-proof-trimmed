@@ -1,10 +1,7 @@
 import Mathlib
 import Formalism.SharpRestriction.CuspSpanNormBounds.PsiEDef
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsContinuousPadic
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIrreducible
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NegOneNormFromCmFieldFiniteAdeles
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HostCmData
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NcardPrimesOverOfStabilizer
 
 noncomputable section
 open ValuativeRel IsDedekindDomain NumberField ComplexConjugate Formalism.MainNotions.S.Loc

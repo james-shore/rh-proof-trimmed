@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.Divisibility.JetBounds.IsExpansion
+import Formalism.GaussJetBounds.StatementS
 
 open scoped BigOperators
 

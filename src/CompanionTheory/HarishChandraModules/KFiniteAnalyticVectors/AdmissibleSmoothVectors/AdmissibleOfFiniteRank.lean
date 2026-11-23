@@ -1,5 +1,7 @@
 import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.MapStdPoly
 import CompanionTheory.HarishChandraModules.BesselParameterIntegrals.InPCommutatorOfInK
+import Formalism.PeriodIntegrals.KFinSmooth
+import Formalism.PeriodIntegrals.IsLowUnitH
 
 open MeasureTheory Matrix
 open scoped ContDiff

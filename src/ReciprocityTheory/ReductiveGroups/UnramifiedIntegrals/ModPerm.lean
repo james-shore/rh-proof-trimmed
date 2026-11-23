@@ -1,7 +1,6 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModDefs
-import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModBasic
-import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModHnf
+import Formalism.LocalToGlobal.TorsionIntegrality.CMGoodModels.Statement
 
 noncomputable section
 open scoped BigOperators Classical UpperHalfPlane MatrixGroups CongruenceSubgroup Manifold

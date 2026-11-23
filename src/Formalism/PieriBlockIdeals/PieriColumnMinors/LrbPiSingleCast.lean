@@ -1,4 +1,4 @@
-import Formalism.GradedWeylDivisibility.FinalD
+import Formalism.GradedWeylDivisibility.FinalC
 import Formalism.GradedWeylDivisibility.StatementE
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.FockQHW
 import Formalism.PieriBlockIdeals.StatementLD

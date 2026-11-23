@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.LevTrue
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.TwArgs
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TwistedArgsColumnHeq
 import Formalism.LocalToGlobal.BaseRankEqOfRealisation
 
 noncomputable section

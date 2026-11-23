@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.Divisibility.HeckeCSDICommTrRep
-import Development.AbelianVarietyTheory.Definitions.Divisors.FactorBounds
+
 open Module NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Col Matrix
 open scoped ComplexOrder
 

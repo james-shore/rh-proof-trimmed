@@ -1,7 +1,7 @@
 import Formalism.HermitianCurvature.FrameMinor
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.OperatorRepresentations
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.LemmaDDeterminantIdentity
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.RestrictionIrrelevantDoubleLevelOperator
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelNablaStarRelations
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.TwoByOneBlock
 
 open Matrix Finset
 open scoped ContDiff

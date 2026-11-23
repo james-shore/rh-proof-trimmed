@@ -1,7 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.ThetaConstantWeber
-import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.ThetaLine
+import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsVariableChangeEqLatticeCurve
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.DifferentiableOddTheta
+
 open Complex
 
 open UpperHalfPlane hiding I

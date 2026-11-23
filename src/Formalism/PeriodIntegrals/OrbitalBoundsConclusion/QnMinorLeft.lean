@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.HermitianCurvature.StatementQ
-import Formalism.FormalDegreeBessel.FormalDegreeRatio.IOLeft
 
 private theorem eabH_comp_mul_left {n : ℕ} {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E]
     (H h : Matrix (Fin n) (Fin n) ℂ) (a b : Fin n) (f : Matrix (Fin n) (Fin n) ℂ → E) :

@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.ProdEApproxGen
+import Formalism.SharpRestriction.CuspSpanNormBounds.PsiEDef
 
 noncomputable section
 

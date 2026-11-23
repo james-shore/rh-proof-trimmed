@@ -1,9 +1,7 @@
 import Mathlib
 import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 import Formalism.SharpRestriction.LevelLetterCocycles.QuotientHomNonvanishingBound
-import Formalism.SharpRestriction.LevelLetterCocycles.ArithmeticCylinders
-import Formalism.SharpRestriction.LevelLetterCocycles.DataN
-import Formalism.CyclotomicNorms.StatementI
+import Formalism.SharpRestriction.CuspSpanNormBounds.GlobAut
 
 noncomputable section
 

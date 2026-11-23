@@ -1,8 +1,4 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJDHatJDACapTodaVCut
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.QxChain
-import Formalism.FormalDegreeBessel.FormalDegreeRatio.WRWeyl
-import Formalism.FormalDegreeBessel.FormalDegreeRatio.WRPres
-import Mathlib
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt
 open scoped ContDiff Topology

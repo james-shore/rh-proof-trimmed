@@ -5,8 +5,8 @@ import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.NormalFormDu
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.AdaptSelf
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HermFrameWeightSumSameDatumLeStatement
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.CardInnerLatticesWithDefiniteTraceLeNormStatement
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.CommonUnipotentStabiliserPreservesTermsAndDatum
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.InvVolPos
+
 open NumberField Formalism.HermitianLatticeCounting.S6 GlobalTheory.HermLat GlobalTheory.DegCnt GlobalTheory.DegAsm
 open scoped Pointwise ENNReal Classical
 

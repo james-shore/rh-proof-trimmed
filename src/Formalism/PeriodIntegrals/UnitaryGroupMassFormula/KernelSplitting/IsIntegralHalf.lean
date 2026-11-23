@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.SelfDualOfDiff
+import Formalism.PeriodIntegrals.KerIso
 
 noncomputable section
 open NumberField Polynomial

@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.ProjectiveLattices.ThProps
+import Formalism.LocalToGlobal.ProjectiveLattices.IsThRule
 
 set_option autoImplicit false
 noncomputable section

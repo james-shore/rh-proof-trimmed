@@ -1,5 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.StCut1p
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.UnitaryGroupStructuralFacts
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.StDefs
 
 noncomputable section
 

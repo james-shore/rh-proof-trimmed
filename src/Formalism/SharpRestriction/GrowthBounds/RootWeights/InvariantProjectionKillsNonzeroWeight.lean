@@ -1,4 +1,7 @@
 import Formalism.SharpRestriction.GrowthBounds.RootWeights.DegreeZeroWeightsBounded
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.MemWeightSpaceIffDiagonalEigen
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.BinomialPreservesDiagonalStable
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.LoweringWordWeightOrNMinus
 
 noncomputable section
 

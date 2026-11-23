@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CentralGroupAlgebraOpPreservesIntegralLevelForms
-import Formalism.LocalToGlobal.Divisibility.ProjLemmas
 
 open NumberField
 open scoped Matrix ComplexOrder

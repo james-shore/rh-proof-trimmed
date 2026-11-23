@@ -1,7 +1,6 @@
 import Formalism.PeriodIntegrals.QmBorderES
 import Formalism.PeriodIntegrals.QmColExp
 import Formalism.PeriodIntegrals.QmRowExp
-import Formalism.RealPlaceAnalysis.RealPlaceTaylor.QuantumDetHighestWeightHolds
 
 open Finset Formalism.REAL
 

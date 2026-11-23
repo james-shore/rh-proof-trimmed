@@ -3,7 +3,6 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.SqMap
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GeneratorRatioUnitExistsStatement
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FrRatio
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermBPrim
-import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBIdSy
 
 noncomputable section
 

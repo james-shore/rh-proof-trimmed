@@ -1,8 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.CuspRapidDecaySiegelGL
+import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.CuspDiscreteDecompositionGL
+import GroundTheory.AutomorphicForms.ReductionSiegel
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqZeroOfMemWeakIn
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SetIntegralNormRmulLe
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ContinuousIntegralInvMulOfLocallyIntegrable
 
 noncomputable section
 

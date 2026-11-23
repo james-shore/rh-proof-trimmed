@@ -5,9 +5,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KottwitzTermEqDefin
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelatedPairsOrbitalTermEqStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KottwitzPairScalarIsomorphicEquivalence
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MkEqIffRelAndOutRel
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelatedPairsSamePolarization
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MarkIffOfRel
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TermEqOfSimilitudeRelStatement
 
 open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKDef GlobalTheory.LKCount
 open scoped TensorProduct Classical

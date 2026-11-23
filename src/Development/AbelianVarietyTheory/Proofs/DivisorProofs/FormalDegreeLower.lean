@@ -1,8 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.Divisibility.InnerProductFormulaField
-import Formalism.LocalToGlobal.IndefiniteReal.SubgroupCharExtensionOneApply
-import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GapAtLeast
-import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.BottomMinor
+import Formalism.LocalToGlobal.Divisibility.DefGroup
 import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.HeckeCharacterParameters
 import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.EulerProductSatake
 

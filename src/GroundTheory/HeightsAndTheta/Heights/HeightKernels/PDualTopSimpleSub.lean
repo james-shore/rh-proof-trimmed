@@ -3,6 +3,9 @@ import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsDualTopSimpl
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsDualTopSimpleStacked
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsDualTopBasisChange
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsDualStackedDegree
+import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualEmbBijective
+import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsDualTopStacked
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

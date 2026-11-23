@@ -1,11 +1,10 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.GlueApplyOfNotInFibre
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsGenericFlag
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.LatNormGrLatNeZeroOfSpan
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
+import Development.AbelianVarietyTheory.Proofs.HermitianTraceForms.IsLocallyConstantRankAtStalkEigenSub
 import Development.WeilBound.CoreStatements.HodgeTatePoints.InChartOfMemCtrSet
 import Development.WeilBound.CoreStatements.HodgeTatePoints.MbLJoinExists
 import Development.WeilBound.CoreStatements.HodgeTatePoints.MbLJoinIso
+
 open AlgebraicGeometry CategoryTheory GlobalTheory.CompanionTheory.Ar NumberField
 
 namespace PositivityTheory.HtPt.Mb.LJoinMany.JoinMany

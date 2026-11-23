@@ -1,10 +1,10 @@
 import Formalism.LocalToGlobal.PtKOfReal
 import Formalism.LocalToGlobal.Divisibility.SumLeEtaSumNum
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LayerTwoFamilyClass
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.STiesR
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.IndefRRealT
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.PtKOfReal
+import Formalism.LocalToGlobal.Divisibility.ConstantGeTwentyEightAlt
 
 set_option synthInstance.maxHeartbeats 200000
 

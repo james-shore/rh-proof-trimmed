@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.ThetaConstantWeber
+import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsVariableChangeEqLatticeCurve
 
 open Complex
 open UpperHalfPlane hiding I

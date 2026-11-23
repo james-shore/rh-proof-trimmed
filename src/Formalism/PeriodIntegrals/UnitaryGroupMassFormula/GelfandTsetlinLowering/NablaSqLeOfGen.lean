@@ -1,5 +1,5 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GelfandTsetlinLowering.LiftDefs
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LRowdivLemmas
+import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
 
 noncomputable section
 

@@ -1,7 +1,5 @@
-import Formalism.LocalToGlobal.ProjectiveLattices.RecPJThAllNeBot
+import Formalism.LocalToGlobal.ProjectiveLattices.HasDataCondition
 import Formalism.LocalToGlobal.ProjectiveLattices.ChartDirectionsIntegral
-import Formalism.LocalToGlobal.ProjectiveLattices.PlaceBelow
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.GermSC
 
 noncomputable section
 

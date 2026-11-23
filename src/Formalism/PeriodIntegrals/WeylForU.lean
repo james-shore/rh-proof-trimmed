@@ -1,4 +1,4 @@
-import Formalism.PeriodIntegrals.WeylForK
+import Formalism.PeriodIntegrals.UpqRep
 import Formalism.LocalRingCardinality.DataCoeff
 
 noncomputable section

@@ -1,6 +1,5 @@
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.MemHighestWeightSubIff
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.FockWeights
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SchSharpA
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.CFCoreA
 
 noncomputable section
 

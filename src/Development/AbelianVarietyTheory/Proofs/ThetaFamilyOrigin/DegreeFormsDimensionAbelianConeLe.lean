@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Degenerations.PullChartIsLB
 import Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.IsVVGenOfIsThetaFamily
-import Development.AbelianVarietyTheory.Proofs.ToricGeometry.ExistsIndepSections
 import Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.ExistsSectionRing
 import Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.ExistsBasisOfIsField
 import Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.CardZerosOnTorsionCosetLe

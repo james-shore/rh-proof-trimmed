@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.FockModels.TamagawaPeterssonLambdaSqNonneg
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.ToKnownTheoremsOf
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AntitoneWeightLogBound
 
 section
 namespace UpperTheory.Lit.Tam

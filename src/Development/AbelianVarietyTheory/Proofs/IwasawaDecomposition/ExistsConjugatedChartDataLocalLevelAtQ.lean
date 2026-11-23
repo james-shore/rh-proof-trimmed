@@ -1,6 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemCutQGrp
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsStepLevelConjBaseLatticeUnitaryStatement
+import Formalism.LocalToGlobal.Columns.TwQLat
+import Formalism.LocalToGlobal.Columns.TwQExact
 
 noncomputable section
 

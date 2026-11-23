@@ -1,4 +1,6 @@
 import Formalism.AdmissibleDesigns.SelfGood
+import Formalism.SharpRestriction.LevelLetterCocycles.GoodCongruenceDataOf
+import Formalism.WachLatticeTwists.ShapeRowIsomorphisms.Statement
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 

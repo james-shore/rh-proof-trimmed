@@ -1,6 +1,8 @@
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.JoinCol
 import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IntegrableMonomialMulConjComplexGaussian
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PAreaMultiplicityWeight
+import ReciprocityTheory.L2DbarEstimates.IsLocalHomeomorph
+
 open MeasureTheory ReciprocityTheory.L2DbarEstimates GlobalTheory.CompanionTheory.FSCrofton
 open scoped ENNReal ComplexConjugate
 

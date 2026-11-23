@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.WeightKernels.GoodSet
-import Mathlib.Topology.Algebra.ClopenNhdofOne
 
 noncomputable section
 

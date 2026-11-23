@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WittDecomposition.Anisotropic
 
 namespace PI.Witt
 

@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.InertJacobiLevels.TiesLat
+import Formalism.SharpRestriction.InertJacobiLevels.TieTTwValsOfMem
 
 noncomputable section
 

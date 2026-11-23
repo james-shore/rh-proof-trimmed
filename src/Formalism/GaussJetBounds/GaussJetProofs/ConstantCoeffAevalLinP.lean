@@ -1,5 +1,6 @@
 import Formalism.GaussJetBounds.StatementJ
 import Formalism.GaussJetBounds.GaussJetProofs.ThmAOp
+import Formalism.IncomingBounds.StatementThmP
 
 noncomputable section
 open scoped BigOperators

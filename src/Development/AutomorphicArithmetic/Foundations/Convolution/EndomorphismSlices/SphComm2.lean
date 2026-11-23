@@ -1,4 +1,5 @@
 import Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.CommStar
+import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.EigenvalueSeparation.FaceMapCompSuccAboveCastSucc
 
 noncomputable section
 

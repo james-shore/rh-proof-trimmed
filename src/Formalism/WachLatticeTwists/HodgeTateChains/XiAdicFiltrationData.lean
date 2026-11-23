@@ -1,5 +1,4 @@
 import Formalism.WachLatticeTwists.HodgeTateChains.InvariantsCohomologyData
-import Formalism.CharacterColumnKernels.Statement
 
 noncomputable section
 

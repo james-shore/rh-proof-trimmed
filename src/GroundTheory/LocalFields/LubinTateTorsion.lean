@@ -1,6 +1,6 @@
 import Mathlib
 import GroundTheory.LocalFields.LubinTatePoints
-import GroundTheory.LocalFields.Eisenstein
+import GroundTheory.LocalFields.Integers
 
 noncomputable section
 

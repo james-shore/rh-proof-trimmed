@@ -1,5 +1,7 @@
 import Mathlib
 import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProjectiveCohomology.Generation
+import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProjectiveCohomology.ModulesAbExact
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Arith.SchemeCoh

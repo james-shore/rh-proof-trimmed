@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
-import ReciprocityTheory.DualLattices.FischerSelfNeZero
+import ReciprocityTheory.DualLattices.FischerAdjointStatement
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TotalDegreeSubstFLe
 
 noncomputable section

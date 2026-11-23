@@ -1,6 +1,7 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.KleimanNefness.AmpleSt
-import ReciprocityTheory.AnalyticForms.RegularLocalRings.BaseChangeCB
+import ReciprocityTheory.AnalyticForms.RegularLocalRings.BaseChangeCA
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.HilbertSamuel

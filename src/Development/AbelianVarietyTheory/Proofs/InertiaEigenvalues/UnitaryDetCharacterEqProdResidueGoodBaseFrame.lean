@@ -2,7 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.AdmissibleEmptyOfGood
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.VacC
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DetCharacterProductFormula
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFinUnitIsDetRoot
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitDetRoot
 
 noncomputable section
 

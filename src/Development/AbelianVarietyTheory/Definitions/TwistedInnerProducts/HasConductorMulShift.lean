@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsGlOfEquiv
+import Development.AbelianVarietyTheory.Definitions.Foundations.SimpleSum
 
 open ValuativeRel Matrix IsLocalRing
 open scoped Pointwise

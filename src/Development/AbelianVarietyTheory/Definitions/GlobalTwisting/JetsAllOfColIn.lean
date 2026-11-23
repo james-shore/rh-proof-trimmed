@@ -9,6 +9,8 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIntMul
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.OrdSubConjEqNeg
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ValPowClassNumber
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.NormOneDetIdealTransportedLattice
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.StepBoxIffStepSuppDeg
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DefiniteBaseDataAdmissibleStatement
 
 noncomputable section
 

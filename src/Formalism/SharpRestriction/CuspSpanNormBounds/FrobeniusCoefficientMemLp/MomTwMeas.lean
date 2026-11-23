@@ -1,6 +1,6 @@
 import Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.MomTw
-import Formalism.SharpRestriction.CuspSpanNormBounds.SpanMemOfImage
 import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeCSB
+import Formalism.SharpRestriction.CuspSpanNormBounds.SpanMemOfImage
 
 open Matrix MeasureTheory
 

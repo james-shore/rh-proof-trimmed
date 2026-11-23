@@ -1,4 +1,5 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnipotentComposition.StepOne
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.BetaSesquilinearity
 
 open Matrix MvPolynomial
 open scoped ComplexConjugate

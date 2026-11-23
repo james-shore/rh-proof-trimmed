@@ -1,4 +1,4 @@
-import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
+import ReciprocityTheory.AnalyticForms.MaIntEmpty
 import ReciprocityTheory.AnalyticForms.AnalyticCharts.Osgood
 
 namespace PositivityTheory.UnitarySelfGeneration.HolomorphicMinorCharts

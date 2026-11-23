@@ -1,11 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.GlobalTheory.HLatOpsP
-import Formalism.HarderNarasimhan.ShiftInvariance
-import Formalism.HarderNarasimhan.HarderNarasimhanProofs.PolygonSlopeSum
-import Formalism.HarderNarasimhan.Statement
-import Formalism.QuotientMetricDivisors.ReductionLemmaZero
-import Formalism.QuotientMetricDivisors.FinalW
-import Formalism.LocalToGlobal.Divisibility.FramesLemmas
+import Formalism.QuotientMetricDivisors.Statement
 
 open Module NumberField IsDedekindDomain Formalism.BasicNotions Formalism.DivisionValues
 open scoped Matrix ComplexOrder

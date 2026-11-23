@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PeriodQuadFormExtendsHolomorphicPunctPolydisc
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PerValNeZero
 
 open GlobalTheory.ShFam.Hor
 

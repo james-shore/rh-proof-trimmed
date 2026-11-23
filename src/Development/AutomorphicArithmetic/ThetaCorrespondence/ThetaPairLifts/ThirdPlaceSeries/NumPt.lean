@@ -1,5 +1,4 @@
 import Development.AbelianVarietyTheory.Definitions.Divisors.ESmall
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LiftLambdaBound
 
 set_option synthInstance.maxHeartbeats 200000

@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.Divisibility.RecBridgeSel
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LinkedFamiliesKernelFrame
 
 set_option synthInstance.maxHeartbeats 200000

@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IwahoriAdmissibleSet
-import GroundTheory.AutomorphicForms.AffineBruhat
+
 open GlobalTheory.IwFn GlobalTheory.SmGL GlobalTheory.TfJl ValuativeRel Matrix
 
 namespace GlobalTheory.IwEq

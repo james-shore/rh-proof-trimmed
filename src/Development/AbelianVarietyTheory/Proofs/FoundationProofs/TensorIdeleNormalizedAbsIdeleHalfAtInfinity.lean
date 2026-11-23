@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ValHalfInf
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsCompactAdeleRingModNumberField
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.CocompactTensor
+import Formalism.LocalToGlobal.BesselHermitianTheta.TiedWeil
 
 noncomputable section
 

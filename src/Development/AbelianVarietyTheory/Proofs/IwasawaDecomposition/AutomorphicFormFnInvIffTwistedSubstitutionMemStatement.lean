@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AutomorphicFormFnInvIffTwistedSubstitutionMem
-import Formalism.LocalToGlobal.HermitianForms.IsLocBasis
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolFunApply
 
 open Formalism.L2.Forms GlobalTheory.IntegralityCompare
 set_option maxHeartbeats 1000000 in

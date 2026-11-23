@@ -1,5 +1,5 @@
-import Formalism.MahlerMeasure.LevelLattice
-import Formalism.MahlerMeasure.MahlerMeasureProofs.PhiInt
+import Formalism.MahlerMeasure.GoodCount
+import Formalism.MahlerMeasure.TieVars
 import Formalism.ThetaLogCoordinates.BihomogeneousPairs.LetterChainEmbeddings.TieFPowMulFree
 
 namespace Formalism.InvariantFactorPaths.KP.LL

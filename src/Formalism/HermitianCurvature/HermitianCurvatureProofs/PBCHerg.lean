@@ -1,4 +1,4 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.PBCSplit
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.PBCGlob
 
 namespace Formalism.FourierDecayAlt.P.PBC
 

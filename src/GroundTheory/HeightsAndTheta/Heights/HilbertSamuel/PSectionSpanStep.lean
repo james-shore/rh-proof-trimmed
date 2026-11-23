@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsSectionSpanStep
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsSpanStepHomog
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsSerreGraded
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.HilbertSamuel

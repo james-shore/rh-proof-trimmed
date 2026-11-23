@@ -1,5 +1,4 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutMP2
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelSystemAdmissibleSize
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutRegFF
 
 open Formalism.FourierDecayAlt

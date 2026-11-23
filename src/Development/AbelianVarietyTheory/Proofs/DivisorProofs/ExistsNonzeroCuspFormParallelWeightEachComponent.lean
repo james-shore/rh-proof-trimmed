@@ -3,7 +3,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.HtValOnSubset
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCuspOnRestrict
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNonzeroScalarWeightCuspFormComponentStatement
 import Formalism.LocalToGlobal.ProjectiveLattices.CuspMulOf
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.SiegelSpaceAlgebraHolds
 
 set_option autoImplicit false
 

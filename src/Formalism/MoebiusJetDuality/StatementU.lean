@@ -1,6 +1,4 @@
 import Mathlib
-import Formalism.RealPlaceAnalysis.FockPairGl
-import Formalism.SatakeDualWeyl.Statement
 
 noncomputable section
 

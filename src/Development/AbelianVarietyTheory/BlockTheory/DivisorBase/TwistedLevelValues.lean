@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
-import Formalism.LogFactorialIndices.StatementSize
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
+import Formalism.LocalToGlobal.IndefiniteReal.DatumVec
 
 noncomputable section
 

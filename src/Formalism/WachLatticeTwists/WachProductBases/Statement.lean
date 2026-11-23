@@ -1,5 +1,4 @@
 import Formalism.WachLatticeTwists.WachProductBases.OneAddPowSubOne
-import Formalism.CoboundaryTransfers.StatementAPI
 
 noncomputable section
 

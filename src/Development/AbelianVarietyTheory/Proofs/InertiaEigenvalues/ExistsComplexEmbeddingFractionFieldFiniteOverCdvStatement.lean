@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsComplexEmbeddingFractionFieldFiniteOverCdv
-import Formalism.LocalToGlobal.ProjectiveLattices.OneLtAbsNormReal
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsComplexEmbeddingFractionFieldCdvr
 
 open NumberField Formalism.L2.Pj
 set_option maxHeartbeats 1000000 in

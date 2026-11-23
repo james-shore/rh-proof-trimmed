@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ValHalfInf
+import Development.AbelianVarietyTheory.Definitions.Foundations.T2SpaceAdeleRing
 
 noncomputable section
 

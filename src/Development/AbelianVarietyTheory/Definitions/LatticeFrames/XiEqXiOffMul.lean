@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsOpenKerUnramMulTame
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.PinColL
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.EntryAgree
 
 set_option genSizeOfSpec false
 set_option genInjectivity false

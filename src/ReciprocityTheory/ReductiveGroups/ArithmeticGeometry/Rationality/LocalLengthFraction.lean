@@ -1,5 +1,4 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.Rationality.QuotShiftPf
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.Rationality.FreeQuotPf
 
 namespace ReciprocityTheory.ChartRestriction.G.FreeQuotientRank.LocalLengthFraction
 

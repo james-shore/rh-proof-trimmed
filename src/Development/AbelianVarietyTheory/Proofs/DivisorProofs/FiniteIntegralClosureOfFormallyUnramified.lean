@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleAdjoinRootXPowSubC
+
 open IsLocalRing Polynomial
 open scoped TensorProduct
 set_option synthInstance.maxHeartbeats 400000

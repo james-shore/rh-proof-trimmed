@@ -1,5 +1,5 @@
 import ReciprocityTheory.DualLattices.AinfFacts
-import ReciprocityTheory.DualLattices.ThmAFull
+import ReciprocityTheory.DualLattices.NsetExpInjectiveSurjective
 
 noncomputable section
 

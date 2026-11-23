@@ -1,7 +1,8 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.UsedLocalConclusion
 import Formalism.GaloisCohomology.LocalTateDualityK
-import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.RationalDualityOfAllCoefficients
+import Formalism.SharpRestriction.LevelLetterCocycles.LocCoh
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachLatticeLaterClausesHoldStatement
+
 open Formalism Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N
 
 namespace GlobalTheory.NL

@@ -1,8 +1,7 @@
 import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.OwnEvIntro
 import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.StandardHypothesesOfScaleHyp
-import Formalism.SharpRestriction.CuspSpanNormBounds.NonemptyParameterModels.TopsChoicePartA
-import Formalism.SharpRestriction.CuspSpanNormBounds.LocalBesselAndTopKernel
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LocalVolumePositivity
+import Formalism.SharpRestriction.CuspSpanNormBounds.NonemptyParameterModels.TopsChoicePartA
 
 noncomputable section
 

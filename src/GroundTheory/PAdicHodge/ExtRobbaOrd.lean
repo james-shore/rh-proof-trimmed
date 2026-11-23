@@ -1,6 +1,6 @@
 import Mathlib
-import GroundTheory.PAdicHodge.ExtRobbaUnits
-import GroundTheory.PAdicHodge.SlopePhiModule
+import GroundTheory.PAdicHodge.ExtRobbaUnion
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

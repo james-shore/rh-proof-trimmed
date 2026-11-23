@@ -1,5 +1,4 @@
 import Mathlib
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.MoriwakiSt
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ExistsSmallOfArVolPPos
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PTopConstantTwist
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PBirationalModelExists
@@ -7,6 +6,10 @@ import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PSmallSectionPointHeig
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PSectionOrderAtPoint
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PCurvePointsFinite
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PNefOnGenericOfSemipos
+import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PPtsIntegralZeroLowerNE
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.PCurveComplexPoint
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.PCurveIsOrbit
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.ForSecondHalf

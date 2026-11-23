@@ -1,5 +1,6 @@
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.ProjectionSquareIntegrable
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.PsiForPosGelfand
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.FormCc
 
 set_option autoImplicit false
 

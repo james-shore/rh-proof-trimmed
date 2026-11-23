@@ -1,9 +1,8 @@
 import Mathlib
 import ReciprocityTheory.NeutralLocalFields.Duality
 import ReciprocityTheory.GroupCohomology.InfRes
-import ReciprocityTheory.GroupCohomology.CardLenStatement
 import ReciprocityTheory.ClassFieldTheory.LocalClassField.KbarRepContAction
-import ReciprocityTheory.ClassFieldTheory.LocalClassField.Herbrand
+import ReciprocityTheory.ClassFieldTheory.LocalClassField.HerbrandB
 import ReciprocityTheory.ClassFieldTheory.LocalClassField.UnrDefs
 import ReciprocityTheory.ClassFieldTheory.LocalClassField.QZDefs
 

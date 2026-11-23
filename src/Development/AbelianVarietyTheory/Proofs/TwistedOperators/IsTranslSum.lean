@@ -1,8 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.HeckeValueIntegrality
 import Development.AbelianVarietyTheory.Definitions.PlaceAdaptation.AdaptStd
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.RegTie
-import Formalism.LocalToGlobal.ProjectiveLattices.CoreProofs
 
 set_option autoImplicit false
 

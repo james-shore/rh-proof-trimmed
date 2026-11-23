@@ -1,4 +1,4 @@
-import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.Smooth
+import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.ThetaLiftTrivialOrbitTermsVanish
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.SmoothRepresentationsGL.ExistsCombComb
 
 noncomputable section

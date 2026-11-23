@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Statements.MetricStatements.AgreementIffGuarded
-import Development.AutomorphicSpectrum.Definitions.MetricPeriods.MetricsProjectionFormulaNef
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterNamed
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.BlowupProjections.BlowupProjStatement
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.MoriwakiSt
 import GroundTheory.HeightsAndTheta.Heights.KernelsLattice
@@ -20,6 +18,7 @@ import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.ExistsUnique
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.ChangeOfModel
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsPermAppendSnoc
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagPointsIntegralProductFormulaStatement
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

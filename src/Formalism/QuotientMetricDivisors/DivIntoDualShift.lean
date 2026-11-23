@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.QuotientMetricDivisors.ProdFormula
+import Formalism.QuotientMetricDivisors.Statement
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix nonZeroDivisors

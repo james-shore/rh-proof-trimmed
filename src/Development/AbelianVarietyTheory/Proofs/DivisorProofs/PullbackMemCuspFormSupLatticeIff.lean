@@ -3,7 +3,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.NormNegCmConstantEq
 import Development.AbelianVarietyTheory.Definitions.Divisors.UnifOfSpaceEq
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NvalNonnegIff
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIntegralRuleRuleBaseChangeCoeffFieldIffStatement
-import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.RuleBaseChangeSectionValuesSemilinear
 
 noncomputable section
 

@@ -1,4 +1,5 @@
 import Formalism.HermitianCurvature.BesselNonvanishingReduction
+import Formalism.HermitianCurvature.StatementJF
 
 open MeasureTheory Matrix Finset
 open scoped InnerProductSpace ENNReal NNReal

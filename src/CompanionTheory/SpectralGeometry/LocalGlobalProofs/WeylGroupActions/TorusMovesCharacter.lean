@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.HermitianCurvature.BesselNonvanishingReduction
 import Formalism.PeriodIntegrals.BesselL2FixAtZero
-import Formalism.PeriodIntegrals.QuotInv
 import Formalism.FormalDegreeBessel.FormalDegreeRatio.UnitaryWeylNormalHolds
 
 open Formalism.FourierDecayAlt Formalism.FourierDecayAlt.ThreeDimData Matrix MeasureTheory Finset

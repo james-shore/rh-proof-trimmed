@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.MetricPeriods.InFlagDomainOne
 
 noncomputable section
 

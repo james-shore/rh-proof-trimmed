@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.ExistsLinearMapMultilinearMapBaseChange
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsFrameOfBijectiveStalk
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsTorsionFreeOfForallExists
 
 set_option autoImplicit false
 

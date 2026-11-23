@@ -1,5 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.HTLawAt
+import Development.AbelianVarietyTheory.Definitions.Foundations.IsLocallyConstantCycMod
+import Development.AbelianVarietyTheory.Definitions.Foundations.CyclotomicDvdExpandOfCoprime
 
 noncomputable section
 

@@ -4,6 +4,7 @@ import GroundTheory.GlobalFields.ClassFieldConsequences.IdealRayClass
 import GroundTheory.GlobalFields.ClassFieldConsequences.OpenSubgroup
 import GroundTheory.GlobalFields.ExistenceTheorem.ExistsIsAbelianGaloisRangeIdeleClassNormEqOfFini
 import GroundTheory.GlobalFields.GlobalArtinMap.ArtinMap
+import GroundTheory.LocalFields.NormCorrespondence
 
 namespace GroundTheory.Global
 

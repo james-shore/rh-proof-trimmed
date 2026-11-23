@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.FiniteMinimalPrimes
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.ChPrime
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.MapMemChartIdealOfAevalEqZero
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SpanEqTopOfForallDotEqZero
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.BoundaryOnPrimes
@@ -9,8 +8,8 @@ import Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsMulPowEqAevalOf
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsBasicOpenOfIsSncModel
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SndEqZeroOfSpan
 import ReciprocityTheory.AnalyticForms.RegularLocalRings.ConeChart
-import ReciprocityTheory.AnalyticForms.RegularLocalRings.ConeChartB
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterPCProof
+import ReciprocityTheory.AnalyticForms.RegularLocalRings.StalkLocB
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterMinor
 
 noncomputable section

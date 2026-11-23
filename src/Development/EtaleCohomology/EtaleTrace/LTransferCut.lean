@@ -1,5 +1,4 @@
 import Development.EtaleCohomology.EtaleTrace.LadicH0LocallyConstant
-import Mathlib.AlgebraicGeometry.Morphisms.FlatRank
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC

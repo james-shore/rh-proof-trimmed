@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PairingDivisors.StatementH
+import Formalism.QuotientMetricDivisors.Statement
 
 open Module NumberField IsDedekindDomain Finset
 open Formalism.DivisionValues (vw lw conjPl)

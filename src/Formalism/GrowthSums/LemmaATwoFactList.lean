@@ -1,11 +1,7 @@
-import Formalism.GrowthSums.FactorialBaseGrowth.Coarse
-import Formalism.GrowthSums.FactorialBaseGrowth.Harmonic
-import Formalism.GrowthSums.FactorialBaseGrowth.QuadraticExponentIdentity
+import Mathlib
+import Formalism.SubspaceCounting.StatementB
 import Formalism.GrowthSums.FactorialBaseGrowth.Segment
 import Formalism.GrowthSums.FactorialBaseGrowth.NextEvenTopHolds
-import Formalism.GrowthSums.FactorialBaseGrowth.LogCoef
-import Mathlib
-import Formalism.GrowthSums.FactorialBaseGrowth.PathBasisOfCount
 
 namespace Formalism.GrowthSums.Top
 

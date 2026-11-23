@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.TwoChartAtlas.TwoChartSt
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.ChartChg
 import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.ActStOf
 import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.GermEvalOneStandardPointSelf
 import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.ExistsGoodConst
@@ -19,6 +18,7 @@ import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.IsNilpotentOfMe
 import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.TwoChartAddOfPtPt
 import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.ValSerGermFnVal
 import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.ExistsFormalBiextMap
+
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.TB GlobalTheory.JetSer
 
 namespace GlobalTheory.JetRoad

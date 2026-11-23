@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CuspidalTypeClosurePreservedByArchCompactIntertw
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.BarKHomSurjective
-import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsSpanFormsNeBot
 
 open NumberField GlobalTheory.CuspRep GlobalTheory.Published GlobalTheory.IdemAdj
 set_option maxHeartbeats 1000000 in

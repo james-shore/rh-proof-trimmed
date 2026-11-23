@@ -1,6 +1,7 @@
 import Mathlib
 import Formalism.LocalRingCardinality.DataSpaces
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeAutomorphismFiniteness.FiniteOfIntegralBound
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeAutomorphismFiniteness.MjSmulRight
 
 noncomputable section
 

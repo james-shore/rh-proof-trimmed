@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.OrdinaryJacquetModules.ExtChar
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.LitAut
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LocalArtinCompNormCompat
 
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 200000

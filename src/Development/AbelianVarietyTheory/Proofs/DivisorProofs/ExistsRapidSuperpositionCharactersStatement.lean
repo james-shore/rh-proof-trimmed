@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRapidSuperpositionCharacters
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MeasurableToGLEntry
+
 open MeasureTheory GlobalTheory.JSW
 open scoped FourierTransform ContDiff
 set_option maxHeartbeats 1000000 in

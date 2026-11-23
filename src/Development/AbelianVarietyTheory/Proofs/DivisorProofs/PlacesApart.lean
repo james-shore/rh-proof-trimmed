@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ParahoricLevelLiftsExist
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TypePlacesNotPairwiseConjugate
 

@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.PublishedTheorems.Algebra₂.RegularHypothesesAndConclusion
-import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.HasAffineChartId
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FiniteFreeHom
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ShearIsoActionProjectionStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MemOrbitSelfStatement

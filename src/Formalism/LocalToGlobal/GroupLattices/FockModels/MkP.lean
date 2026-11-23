@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.GrowthBounds.LatticeSystems
-import Formalism.SharpRestriction.GrowthBounds.ObjBridge
 
 noncomputable section
 

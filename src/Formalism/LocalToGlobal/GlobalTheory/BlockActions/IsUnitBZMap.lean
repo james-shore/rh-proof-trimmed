@@ -1,4 +1,6 @@
 import Formalism.LocalToGlobal.GlobalTheory.BlockActions.IsUnitALMap
+import Formalism.LocalToGlobal.GlobalTheory.BlockActions.MapBrTenL
+import Formalism.LocalToGlobal.GlobalTheory.BlockActions.MapMemCSpanOfRat
 
 noncomputable section
 

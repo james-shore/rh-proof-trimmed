@@ -1,6 +1,4 @@
 import Formalism.SharpRestriction.GrowthBounds.LogarithmicSums.Conclusion1OfGainBoundAll
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Harmonic.Bounds
 
 noncomputable section
 

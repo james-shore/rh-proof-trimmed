@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.LemmasUnramifiedOfRingCondition
-import Formalism.SharpRestriction.LevelLetterCocycles.SecondComparisonInCoordinates
+import Formalism.SharpRestriction.LevelLetterCocycles.ExponentWindowSubsetShort
 import Formalism.SharpRestriction.LevelLetterCocycles.KillerLevCoreOf
 
 noncomputable section

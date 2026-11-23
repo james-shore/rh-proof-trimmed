@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.SharpRestriction.CuspSpanNormBounds.BlockEnds
+import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.CTEqConjTranspose
 
 open Matrix NumberField Module Formalism.BasicNotions

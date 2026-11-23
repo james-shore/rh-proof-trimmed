@@ -1,4 +1,4 @@
-import Development.AutomorphicArithmetic.CharacterBoxes.TwistForm
+import Development.AutomorphicArithmetic.CharacterBoxes.PairGood
 import Development.AutomorphicArithmetic.MeanSquareBounds.realDecomp
 import Development.AutomorphicArithmetic.MeanSquareBounds.realCond
 import Development.AutomorphicArithmetic.MeanSquareBounds.IndUnique

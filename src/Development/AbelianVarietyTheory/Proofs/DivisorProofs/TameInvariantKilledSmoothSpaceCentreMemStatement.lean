@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TameInvariantKilledSmoothSpaceCentreMem
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemKilled
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FundamentalDomainMeasureFinite
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteDimensionalCentreAnnihilatorCompatibleMaps
 
 open NumberField GlobalTheory.CuspRep GlobalTheory.AutGrowth
 set_option maxHeartbeats 1000000 in

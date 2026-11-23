@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsStepWeil
-import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.WeilSignShift
 import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ExistsInfFamAndStdChar
+import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.WeilSignShift
 
 noncomputable section
 

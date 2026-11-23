@@ -1,5 +1,5 @@
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TwConj
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.FourierMatch
+
 open GlobalTheory.Tw Matrix
 
 namespace GlobalTheory.Tw.PhiConjugateTranspose

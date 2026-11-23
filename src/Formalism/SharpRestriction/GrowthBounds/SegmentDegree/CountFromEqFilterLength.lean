@@ -1,6 +1,6 @@
-import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.DplusLeBeA
-import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.TypicalPathOrdersSmall
-import Formalism.ThetaLogCoordinates.ResidueClassEstimates.FinalT
+import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.AtypicalPathSmallWeight
+import Formalism.ThetaLogCoordinates.ResidueClassEstimates.StatementT
+import Formalism.ThetaLogCoordinates.JacobiPathWeights.LiftWord
 
 noncomputable section
 

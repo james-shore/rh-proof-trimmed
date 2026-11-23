@@ -1,10 +1,10 @@
 import Mathlib
 import Formalism.HarderNarasimhan.ShiftInvariance
-import Formalism.RealPlaceAnalysis.Complexify
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.DifferentSmulMemOfTraceIntegral
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.LatticeCoveringOfTraceDualLowerBoundStatement
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HilbertSchmidtLowerBoundInverseDifferentStatement
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ImportsTer
+
 open Formalism.HN Formalism.HermitianLatticesTheory Matrix NumberField Finset
 namespace GlobalTheory.HomCover
 

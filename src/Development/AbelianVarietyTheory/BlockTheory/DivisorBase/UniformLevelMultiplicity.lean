@@ -1,9 +1,9 @@
 import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.FamilyUniformisationBasePointOrthogonalBis
-import Formalism.LocalToGlobal.ProjectiveLattices.BaseEmbeddingInclusion
-import Formalism.LocalToGlobal.ProjectiveLattices.LiftLaSpec
-import Formalism.LocalToGlobal.ProjectiveLattices.ThClassPins
 import Formalism.LocalToGlobal.IndefiniteReal.GramCEqTranspose
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ThetaVV
+import Formalism.LocalToGlobal.Divisibility.CoefMod
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
 import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
 
 set_option autoImplicit false

@@ -1,4 +1,4 @@
-import Formalism.SizeWindowBrackets.ChainSlopeWindows.GaloisMapComplexConjugation
+import Formalism.SizeWindowBrackets.GaloisToProductIsIso
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
 
 noncomputable section

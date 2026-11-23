@@ -1,6 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.ScalRelRepFree
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaUniqueness.Lemmas
+import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.TermDef
 
 noncomputable section
 

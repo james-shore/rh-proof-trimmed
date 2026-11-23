@@ -1,6 +1,5 @@
 import Formalism.EisensteinCokernelLengths.StatementLIFTV
 import Formalism.LagrangeIdealLifts.LiftLagrangeIdealInt
-import Formalism.WindowSums.PowerSeriesRelationList
 
 namespace Formalism.ZetaNonvanishing.LIFTV
 

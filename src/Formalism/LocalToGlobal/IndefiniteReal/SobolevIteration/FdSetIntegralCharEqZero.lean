@@ -1,6 +1,6 @@
-import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.FuncSt
-import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.GinfCSecondCountable
-import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
+import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
+import Formalism.LocalToGlobal.Divisibility.DefGroup
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdicIntegersCompact.IsCompactAdicCompletionIntegers
 
 noncomputable section
 

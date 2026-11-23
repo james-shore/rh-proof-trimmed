@@ -1,7 +1,7 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.TorusInvariance.TransferInvarianceRestriction
-import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CartanInvolutionConjTransposeMul
 import Formalism.FormalDegreeBessel.FormalDegreeRatio.GBasic
-import Formalism.FormalDegreeBessel.FormalDegreeRatio.CapelliHighestWeightConjugated
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.SatisfiesGlRelationsBilinearLeft
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CartanInvolutionConjTransposeMul
 
 open Matrix Finset Filter Topology
 open scoped ContDiff

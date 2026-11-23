@@ -1,4 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutLimE
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CasimirEigenvalueCoefficients
 
 namespace Formalism.FourierDecayAlt.P.CutBP
 

@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NormMulApplyLeOne
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.FourierMatch
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.JacquetRallisTransferFactorKrylovDet
+
 open GlobalTheory.JR Matrix MeasureTheory Filter Topology
 
 noncomputable section

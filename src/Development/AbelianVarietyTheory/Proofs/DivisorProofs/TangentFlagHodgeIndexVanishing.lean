@@ -2,9 +2,6 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsUniqueIsTanFrameOfIsEmpty
 import Development.AbelianVarietyTheory.Definitions.Divisors.P22
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KodairaSpencerMatrixUnique
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsLieCombIffIsCombAt
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KodairaSpencerMatrixExists
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsTangentModuleUniversalGroupStatement
 
 set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 400000

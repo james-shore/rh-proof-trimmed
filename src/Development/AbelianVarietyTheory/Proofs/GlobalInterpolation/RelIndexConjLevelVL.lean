@@ -3,8 +3,9 @@ import Formalism.LocalRingCardinality.DataLevel
 import Formalism.LocalRingCardinality.DataLevelD
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GapAtLeast
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsHeckeOpFullDualLab
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsOpenIsCompactLevelOffFinEmpty
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.RelIndexMulMeasure
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsOpenIsCompactLevelOffFinEmpty
+
 open NumberField IsDedekindDomain Matrix Formalism.UG Formalism.BasicNotions Formalism.MainNotions.StandardLattice
 open scoped TensorProduct
 open MeasureTheory

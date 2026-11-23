@@ -4,6 +4,7 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.Law
 import Development.AbelianVarietyTheory.Counterexamples.ModuliSurvey.PremisesOfProper
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsAlgebraMapEqOfValVLeOne
 import Development.AbelianVarietyTheory.BlockTheory.JetGauges.UniformizationClosedSplit
+import Formalism.LocalToGlobal.ProjectiveLattices.HasDataCondition
 
 set_option autoImplicit false
 

@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.DegreeFormula.FlagDegFormula
 
 open MvPolynomial
 

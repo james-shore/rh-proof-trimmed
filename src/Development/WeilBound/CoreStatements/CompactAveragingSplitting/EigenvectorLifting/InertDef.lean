@@ -1,5 +1,5 @@
-import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.FinSplit
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ComplementaryThetaInert
+import Mathlib
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
 
 noncomputable section
 

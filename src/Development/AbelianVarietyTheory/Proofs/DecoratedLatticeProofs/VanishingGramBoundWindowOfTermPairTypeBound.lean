@@ -2,7 +2,6 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.TermSumBoundOfPairsAmplitude
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.TermSumBoundOfPairsAmplitudeStatement
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.PairsAmplitudeBoundOfTypeBoundStatement
-import Formalism.SharpRestriction.CuspSpanNormBounds.ThresholdCubicInequalitySignPattern
 
 namespace GlobalTheory.Core.Deg
 

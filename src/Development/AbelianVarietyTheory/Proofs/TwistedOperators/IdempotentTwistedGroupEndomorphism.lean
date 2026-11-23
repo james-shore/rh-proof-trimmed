@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsDetInt
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsUnitaryOnTheta
 
 noncomputable section
 

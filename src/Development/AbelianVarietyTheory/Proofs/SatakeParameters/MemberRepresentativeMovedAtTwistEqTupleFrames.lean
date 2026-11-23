@@ -1,16 +1,14 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ReadsMove
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.JetsInIffStepField
+import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.IndexExponentDegree
 import Formalism.LocalToGlobal.GroupLattices.Joint0
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.StepZeroClassesBijectiveSameDeco
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAdelicPointDecoratedLatticeAllTwists
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemberLevelPrimeNotMemUnderLevelPrimes
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LevOkTwists
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocalGroupElementEqLevelComponentBadPrime
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ValuedLtOfMem
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocalMoveClassRepIffLocalConditions
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.AfsplitC
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NonemptyEquivClassSet
+
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Col Formalism.L2.DIV Formalism.L2.Ker Formalism.UG Formalism.L2.Forms GlobalTheory.Mem GlobalTheory.Mem.Chr GlobalTheory.Mem.Col2 GlobalTheory.Mem.Col2.TC Matrix GlobalTheory.TwU GlobalTheory.TwU.AtTrue
 open scoped TensorProduct
 attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Host.cmStar

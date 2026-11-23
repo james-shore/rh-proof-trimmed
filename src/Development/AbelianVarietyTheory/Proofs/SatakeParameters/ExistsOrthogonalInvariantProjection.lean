@@ -2,6 +2,8 @@ import Mathlib
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.XMemOne
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PulledBackProjCoordinateRatioOverlapDivStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ProjectiveChartAffineCover
+import Development.AbelianVarietyTheory.Definitions.Divisors.DlogRatioVolumeFormNeZero
+
 open CategoryTheory AlgebraicGeometry KaehlerDifferential GlobalTheory GlobalTheory.PD ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.PD.XCover
 
 namespace GlobalTheory.PD.XCover

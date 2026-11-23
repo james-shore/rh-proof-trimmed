@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.FullExists
-import Formalism.LocalToGlobal.ProjectiveLattices.RecPJThAllNeBot
 
 noncomputable section
 

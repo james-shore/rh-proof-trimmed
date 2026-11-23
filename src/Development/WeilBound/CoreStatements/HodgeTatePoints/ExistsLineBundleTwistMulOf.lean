@@ -1,5 +1,6 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.StatementsStepTwo
+import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.Statements
 
 namespace PositivityTheory.HtPt.KtwS
 

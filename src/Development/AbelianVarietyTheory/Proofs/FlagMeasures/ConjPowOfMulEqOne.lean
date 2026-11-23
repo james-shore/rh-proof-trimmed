@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.ConvolutionSmoothL2
-import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.DiscreteSpectrumKFiniteDecomposition
-import Formalism.HarderNarasimhan.ShiftInvariance
 import Formalism.RealPlaceAnalysis.FinalF
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LamXEquivariant
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnipotentOfTracePowEqSize

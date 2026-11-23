@@ -1,7 +1,6 @@
 import Mathlib
-import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.JacConstBHR
+import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.JacConstBHB
 import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeCSB
-import Formalism.LocalRingCardinality.SpanPowerMembership.HasStrictFDerivAtExpZero
 
 noncomputable section
 

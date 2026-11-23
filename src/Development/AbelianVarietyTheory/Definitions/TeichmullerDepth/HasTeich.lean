@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.CharacterGerms.NegMem
+import Formalism.LocalToGlobal.CharacterGerms.ConstMemTypeSetOfNonneg
 
 noncomputable section
 

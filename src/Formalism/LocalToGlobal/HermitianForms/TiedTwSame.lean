@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.HermitianForms.TiedTwLv
+import Formalism.LocalToGlobal.HermitianColumns.TiedQCJoint
 
 noncomputable section
 

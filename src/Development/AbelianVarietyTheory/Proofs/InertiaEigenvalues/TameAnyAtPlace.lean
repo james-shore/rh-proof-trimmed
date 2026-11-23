@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.InjPrimeTo
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertiaCharpolyEq
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsReductionTeichmullerEmbeddingAtLocalisatioStatement
+import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GSplit
 
 noncomputable section
 

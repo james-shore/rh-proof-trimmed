@@ -1,9 +1,9 @@
 import Development.AutomorphicArithmetic.CharacterBoxes.EveryCharacter
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Hyps
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.DefiniteSideCondition
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ShapeOf
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TopShape
+import Development.AutomorphicArithmetic.CharacterBoxes.Imprimitive
 
 set_option synthInstance.maxHeartbeats 200000
 

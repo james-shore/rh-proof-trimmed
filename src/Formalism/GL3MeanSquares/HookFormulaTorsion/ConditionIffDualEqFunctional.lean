@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.GL3MeanSquares.FourierTransformKernelSurjective
+import Formalism.LogVandermondeBounds.GaussOperatorProductFormula
 
 namespace Formalism.HermitianLattices.LocalLatticeBases
 

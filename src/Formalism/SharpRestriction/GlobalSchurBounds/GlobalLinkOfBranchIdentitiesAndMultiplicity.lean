@@ -1,10 +1,10 @@
 import Formalism.SharpRestriction.GlobalSchurBounds.LinkTied
 import Formalism.LocalToGlobal.GlobalTheory.TransposeBaseMatrixInfinity
-import Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.NaturalTranslateAdelicFunction
-import Formalism.LocalToGlobal.GlobalTheory.CoordinateLengths.SecondBranchAllMembers
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CrossDiagonalMatching.UpMatch
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CrossDiagonalMatching.DnDiaMatch0FHolds
-import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.IntegralAtT0Lattice
+import Formalism.LocalToGlobal.GlobalTheory.GL6.RndLinkAdmTOf
+import Formalism.LocalToGlobal.GlobalTheory.GL6.ValuationDetBasisChange
+import Formalism.LocalToGlobal.GlobalTheory.GL6.PRLocV
+import Formalism.LocalToGlobal.LatticeGeometry.GeometryDefinitions.PClassE
+import Formalism.LocalToGlobal.GlobalTheory.CoordinateLengths.LenLen2OfCoord
 
 noncomputable section
 

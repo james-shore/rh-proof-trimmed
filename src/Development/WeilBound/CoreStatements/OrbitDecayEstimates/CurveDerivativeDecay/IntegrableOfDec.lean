@@ -1,8 +1,8 @@
 import Development.WeilBound.CoreStatements.OrbitDecayEstimates.CurveDerivativeDecay.KFiniteWordBoundIndefUnitary
-import Development.WeilBound.CoreStatements.OrbitDecayEstimates.CurveDerivativeDecay.OneLeHsG
 import Formalism.SharpRestriction.CuspSpanNormBounds.GlobAut
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.CoefDec
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SigZeroDecay
+import Development.WeilBound.CoreStatements.OrbitDecayEstimates.CurveDerivativeDecay.OneLeHsG
 
 noncomputable section
 

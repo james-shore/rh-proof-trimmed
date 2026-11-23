@@ -1,7 +1,6 @@
 import Formalism.SharpRestriction.GrowthBounds.FormalGroupSystem
 import Formalism.LocalToGlobal.GroupLattices.PerfectRings.IntermediateMapWittQuadratic
 import Formalism.LocalToGlobal.KernelLattices.FirstKernelLawReading
-import Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.IsComplRatCompl
 
 noncomputable section
 

@@ -1,12 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.SingleIndexPlacesAreTwisted
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RunsHoldOfTies
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeavesSupSpanData
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasIndexBoundOfRuns
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NumOfFjEqOfRecord
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeafDepthAllRecord
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SecondLinkOfWeightRowsStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RunNumericalConditionsHoldAlongFamilyStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NumOfFjEqOfRecord
 
 set_option autoImplicit false
 

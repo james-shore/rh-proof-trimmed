@@ -1,5 +1,7 @@
 import Formalism.SharpRestriction.GlobalSchurBounds.RamifiedLevelZeroHolds
 import Formalism.SharpRestriction.GlobalSchurBounds.TheoremThreeFamilyOfGappedMultiplicity
+import Formalism.LocalToGlobal.GlobalTheory.CoordinateLengths.SecondBranchAllMembers
+import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.IntegralAtT0Lattice
 
 noncomputable section
 

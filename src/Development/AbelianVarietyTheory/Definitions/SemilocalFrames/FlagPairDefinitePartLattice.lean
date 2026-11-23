@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.FlagUnipotentLattices.MemOfOrthogonalAnisotropic
-import Formalism.HermitianLattices.StatementMass
-import Formalism.HermitianLattices.HermitianLatticesProofs.MassBasic
-import Formalism.HermitianLattices.HermitianLatticesProofs.AutFinite
+import Formalism.ThetaLiftIndependence.Statement
+import Formalism.HermitianLattices.FinalNeighbourConstruct
+import Formalism.ThetaLiftIndependence.ThetaOrbitSums.LatLiftIndep
 
 noncomputable section
 

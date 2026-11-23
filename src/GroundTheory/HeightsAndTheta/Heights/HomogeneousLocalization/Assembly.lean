@@ -2,13 +2,11 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ComplexMetrics.Assembly
 import GroundTheory.HeightsAndTheta.Heights.HomogeneousLocalization.PFSCoord
 import GroundTheory.HeightsAndTheta.Heights.HomogeneousLocalization.PFSIndex
-import GroundTheory.HeightsAndTheta.Heights.HomogeneousLocalization.Statements
 import GroundTheory.HeightsAndTheta.Heights.HomogeneousLocalization.PFSContinuousFrame
 import GroundTheory.HeightsAndTheta.Heights.HomogeneousLocalization.PFSNormConj
 import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProjectiveSpaceChart
 import GroundTheory.HeightsAndTheta.Heights.HomogeneousLocalization.PFSFullSupport
 import GroundTheory.HeightsAndTheta.Heights.HomogeneousLocalization.PFSConjInvariant
-import GroundTheory.HeightsAndTheta.Heights.HomogeneousLocalization.IntegralMonoInnerEqZero
 
 set_option maxSynthPendingDepth 1
 

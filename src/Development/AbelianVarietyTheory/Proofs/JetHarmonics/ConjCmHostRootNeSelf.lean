@@ -1,10 +1,7 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.ThetaWeightBounds
-import Formalism.LocalToGlobal.LatticeGeometry.CmTypeMeetsConjugatePair
-import Formalism.LocalToGlobal.ProjectiveLattices.RecPJThAllNeBot
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.SupBoundPageRows
-import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.AdmissibleModuleIffLatticeQuotients
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.NormGeneratorIffPrincipal
+import Formalism.LocalToGlobal.LatticeGeometry.CmTypeMeetsConjugatePair
 
 set_option autoImplicit false
 

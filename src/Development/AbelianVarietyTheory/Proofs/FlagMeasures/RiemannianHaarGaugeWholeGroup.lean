@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.SameKindIsometric
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DefClassNum
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsLimitOfChart
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsOrthonormalBasis
 

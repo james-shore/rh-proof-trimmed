@@ -1,6 +1,13 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.IsMultiHomogIdealMap
 import Development.WeilBound.CoreStatements.PluriharmonicCharts.BlockFnFieldCompLe
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagCoverArithmeticSecondStatement
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.LogResolutionMapLocallyAnalyticStatement
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagCoverArithmeticFifthStatement
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagCoverArithmeticSixthStatement
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagCoverArithmeticSeventhStatement
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagCoverArithmeticEighthStatement
+
 open MvPolynomial MeasureTheory Filter Topology Matrix ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I1 ReciprocityTheory.ChartRestriction.G.AI.I2 ReciprocityTheory.ChartRestriction.G.AI.I4 GlobalTheory.CompanionTheory.Ar.PB GroundTheory.Heights₂.Heights GroundTheory.Heights₂.Heights.LowerBoundFree
 open scoped ComplexOrder Classical
 open GlobalTheory.CompanionTheory.Ar.PB.WSq GlobalTheory.CompanionTheory.Ar.PB.CovMap GlobalTheory.CompanionTheory.Ar.PB.CovGraph PositivityTheory.Xgp.c_algsq

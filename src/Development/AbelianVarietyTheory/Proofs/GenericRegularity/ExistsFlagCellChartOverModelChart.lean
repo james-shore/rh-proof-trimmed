@@ -1,10 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.RegularCharts.MatrixTwoByTwoCongr
 import Development.AbelianVarietyTheory.Definitions.RegularCharts.ModelAt
-import Formalism.LocalToGlobal.ProjectiveLattices.FrameCharts
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.UniformisationConclusion
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.SecBaseChangeAnySt
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.OneArc
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsFractionField
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.NonemptyLift
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.IsEigenvectorIffLieBasisCoordinates
@@ -16,6 +12,7 @@ import Development.AbelianVarietyTheory.Proofs.GenericRegularity.TieIntegral
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.TriangularInvOfDiagNe
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.IsOpenImmersionOfSurj
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.AppLEInjective
+
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.Reg
 

@@ -1,5 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.RkLe
+import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.LtCNeZero
+
 noncomputable section
 
 namespace GlobalTheory.TwV.DelA

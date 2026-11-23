@@ -1,5 +1,5 @@
-import Development.AutomorphicArithmetic.Foundations.Convolution.TwistedLocalOrbits.Match
-import Development.AutomorphicArithmetic.Foundations.Convolution.TwistedLocalOrbits.SgIterateEqSelf
+import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.IntegralUnitBaseChange.InvTransposeGLInvTransposeGL
+import Development.AutomorphicArithmetic.Foundations.Convolution.TwistedLocalOrbits.HoweSpace
 import GroundTheory.LocalFields.Unramified
 import GroundTheory.LocalFields.UnramifiedGalois
 

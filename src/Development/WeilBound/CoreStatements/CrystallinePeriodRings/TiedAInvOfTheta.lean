@@ -1,9 +1,8 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.LocalSituation
-import Formalism.SharpRestriction.LevelLetterCocycles.LocCoh
 import Development.WeilBound.CoreStatements.CrystallinePeriodRings.NonemptyThetaLOfTied
-import Development.WeilBound.CoreStatements.CrystallinePeriodRings.FilQuot
 import Development.WeilBound.CoreStatements.CrystallinePeriodRings.InvRestrictScalarsMem
+import Development.WeilBound.CoreStatements.CrystallinePeriodRings.FilQuot
 
 noncomputable section
 

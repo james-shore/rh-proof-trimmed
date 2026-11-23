@@ -1,7 +1,8 @@
-import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.BundleChernComparison
+import Mathlib
+import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsBundles
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.LieLatticeData
-import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsFlagIndependence
 import Development.WeilBound.CoreStatements.HodgeTatePoints.Gamdel
+
 open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR GlobalTheory.CompanionTheory.Ar.Num NumberField
 
 namespace GlobalTheory.CompanionTheory.Ar.Num

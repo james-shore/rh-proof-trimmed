@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.SumTotalLoss
+import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.RestCountOf
 import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.TopDegreeComparison
 
 noncomputable section

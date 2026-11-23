@@ -1,7 +1,7 @@
-import Formalism.LocalToGlobal.Columns.RecLevelStep
-import Formalism.LocalToGlobal.Columns.RecLevelTop
+import Formalism.LocalToGlobal.Columns.RecLevelAsm
+import Formalism.LocalToGlobal.Columns.RecLevelLocP
+import Formalism.LocalToGlobal.HermitianForms.IsLocBasis
 import Formalism.LocalToGlobal.Columns.TwQDefs
-import Formalism.LocalToGlobal.Columns.TwQThetaOpen
 
 open NumberField IsDedekindDomain Matrix
 open scoped TensorProduct

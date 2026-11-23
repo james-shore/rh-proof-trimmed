@@ -1,12 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.HeightFunctions.NormComparisonConstants
-import Formalism.LocalToGlobal.ProjectiveLattices.DepthTie
-import Formalism.LocalToGlobal.ProjectiveLattices.VolProofs
 import Development.AbelianVarietyTheory.Definitions.Jets.EmbShortThLeThetaPlain
-import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.CoeSelfDualLatticeInFrameCoordinatesEq
-import Development.AbelianVarietyTheory.Definitions.Foundations.CdScaleTieIff
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsCMFamHost
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnitaryAdelicQuotientVolumeIsVolume
+import Formalism.LocalToGlobal.ProjectiveLattices.VolProofs
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.L2.Pj MeasureTheory
 

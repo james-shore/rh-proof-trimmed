@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.GlobalTheory.BlockActions.InclEMemTensInt
+import Formalism.LocalToGlobal.GlobalTheory.BlockActions.LatSOfMem
 
 noncomputable section
 

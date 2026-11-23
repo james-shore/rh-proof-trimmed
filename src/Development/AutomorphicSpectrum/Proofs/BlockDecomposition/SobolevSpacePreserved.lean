@@ -15,7 +15,7 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ClosedDerivativ
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RightTranslateDerivativeIntegralStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SobolevSequenceUniformCauchyStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformLimitRightDerivativesStatement
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RwAppend
+
 open MeasureTheory Matrix Finset Filter Topology
 open scoped ContDiff ComplexConjugate InnerProductSpace ZeroAtInfty
 open PositivityTheory.RgTw (Mat G)

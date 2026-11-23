@@ -1,6 +1,5 @@
 import PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.SSmooth
 import GroundTheory.GlobalFields.TateThesis.TraceLatticePoisson
-import GroundTheory.GlobalFields.TateThesis.AdelePoisson
 
 noncomputable section
 

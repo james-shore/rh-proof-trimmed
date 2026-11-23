@@ -1,7 +1,8 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DivConstClosedPts
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OriginIdeal
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEtaleFactorOfIndEtAtPrime
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorsorsTrivial
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OriginIdeal
+
 open IsLocalRing Polynomial
 
 noncomputable section

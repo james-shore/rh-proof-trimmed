@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.PetIPSmulRight
 import Development.AbelianVarietyTheory.Definitions.Foundations.RepL
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.Newform
 import Formalism.DirichletDensity.DirichletDensityProofs.APLogDensity

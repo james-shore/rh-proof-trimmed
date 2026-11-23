@@ -4,7 +4,7 @@ import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsCris
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Acris0TorsionFree
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AcrisDivisibleOfKernelPowersStatement
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AcrisFiltrationApproxByEnvelopeKernelPowerStatement
-import Development.AbelianVarietyTheory.CrystallinePeriods.RingBasics
+
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.MemLoc
 open scoped Formalism.Per
 

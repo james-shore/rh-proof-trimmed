@@ -1,7 +1,5 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanCoefficientNonzero.Development
-import Formalism.FormalDegreeBessel.FormalDegreeRatio.UnitaryWeylNormalHolds
 import Formalism.FormalDegreeBessel.FormalDegreeRatio.BesselUnitaryEquivHolds
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.DilationUnipotentWeylMeasure
 
 open MeasureTheory Set
 open scoped InnerProductSpace ENNReal

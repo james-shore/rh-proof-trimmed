@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.Foundations.IwahoriReduction.SiegelFixedPoints.IsThBIff
-import Development.AbelianVarietyTheory.Definitions.Foundations.IsLamOfLSmulIff
 import Development.AbelianVarietyTheory.Definitions.Foundations.LiftSLMapMulInvMem
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsUniqueNormalizedCyclotomicTraceStatement
 import Development.AutomorphicArithmetic.Foundations.IwahoriReduction.SiegelFixedPoints.MemClosureOfIsIntegral
@@ -20,6 +19,7 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.EisensteinModularT
 import Development.AutomorphicArithmetic.AutomorphicVarieties.EisensteinModularTowers.Gamma0DiamondActionEq
 import Development.AutomorphicArithmetic.AutomorphicVarieties.EisensteinModularTowers.PieceTLevelRaiseEqVp
 import Development.AutomorphicArithmetic.AutomorphicVarieties.EisensteinModularTowers.PieceTDetFiberEqPieceTRootPow
+
 open scoped MatrixGroups Matrix
 open GlobalTheory.KZ GlobalTheory.K4 GlobalTheory.Glue GlobalTheory.KummerEisensteinGalois UpperTheory.Kd.L
 

@@ -1,12 +1,4 @@
 import Formalism.YangianSpanCharacter.YangianRTTProofs.TransposeSymplecticShift
-import Formalism.YangianSpanCharacter.YangianRTTProofs.RttRelation
-import Formalism.YangianSpanCharacter.StatementY
-import Formalism.YangianSpanCharacter.YangianRTTProofs.DiagonalEntryEqOfModularRelation
-import Formalism.YangianSpanCharacter.YangianRTTProofs.SpanCharacterIdentity
-import Formalism.YangianSpanCharacter.YangianRTTProofs.MinusFrameIdentity
-import Formalism.YangianSpanCharacter.StatementT
-import Formalism.FormalDegreeBessel.FinalWR
-import Formalism.YangianSpanCharacter.ExchangeGen
 
 namespace Formalism.YangianSpanCharacter.Final
 

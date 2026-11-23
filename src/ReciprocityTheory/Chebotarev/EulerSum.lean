@@ -1,4 +1,4 @@
-import ReciprocityTheory.Chebotarev.NZIdeal
+import Mathlib
 
 open NumberField Filter Topology
 

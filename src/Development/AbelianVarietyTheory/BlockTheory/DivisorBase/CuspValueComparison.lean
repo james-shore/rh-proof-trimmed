@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.CyclotomicNorms.StatementT
 import Formalism.LocalToGlobal.Divisibility.DefGroup
-import Formalism.LocalToGlobal.Divisibility.GoodPartHermitianSpec
+import Formalism.LocalToGlobal.Divisibility.ClassSum
 import Formalism.SharpRestriction.Divisibility.PrimeDegreeVariant
 import Development.AbelianVarietyTheory.Definitions.Divisors.SplitDoublingNBlock
 

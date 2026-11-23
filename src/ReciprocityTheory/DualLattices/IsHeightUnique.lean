@@ -1,4 +1,4 @@
-import ReciprocityTheory.DualLattices.HtLinStatement
+import ReciprocityTheory.DualLattices.ModuliPointsState
 import ReciprocityTheory.DualLattices.HeightFunctionalStatementOfPairingProperties
 
 noncomputable section

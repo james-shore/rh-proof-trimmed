@@ -2,6 +2,7 @@ import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverStd
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverAct
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverPoly
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverVal
+import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverThm
 
 noncomputable section
 

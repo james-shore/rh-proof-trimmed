@@ -1,8 +1,8 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.FdegOfSchur
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LUFactorOrbitBounds
 import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeLemma3
-import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeCSB
 import Formalism.SharpRestriction.CuspSpanNormBounds.LowestKTypeMultiplicity
+import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeCSB
 
 noncomputable section
 

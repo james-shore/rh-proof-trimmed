@@ -3,6 +3,7 @@ import Development.AutomorphicSpectrum.Definitions.MetricPeriods.FiniteEtaleSurj
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsSncModel
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.GlueApplyOfNotInFibre
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsFinsetOfMemNhds
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.InjectiveOfIsCptGen
 
 noncomputable section
 

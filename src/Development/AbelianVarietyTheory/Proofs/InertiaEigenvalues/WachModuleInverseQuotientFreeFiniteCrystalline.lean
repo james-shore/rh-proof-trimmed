@@ -1,11 +1,10 @@
 import Mathlib
-import Formalism.SharpRestriction.LevelLetterCocycles.UsedLocalConclusion
+import Formalism.SharpRestriction.LevelLetterCocycles.DeltaInvariantLattices
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NotFullBot
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SaturatedAndIsogenyInvariant
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachInclusionXQFrobenius
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RingsCyclotomic
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GeomSumOneAddPrime
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DvrComplete
 
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc TensorProduct GlobalTheory.NL Formalism.MainNotions.DeltaInvariantLattices
 

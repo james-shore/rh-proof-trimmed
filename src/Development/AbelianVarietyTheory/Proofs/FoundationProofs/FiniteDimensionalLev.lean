@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.HahnPowOrderLeadingCoeff
-import Development.AbelianVarietyTheory.Definitions.Foundations.EigenOfTwoStep
+import Development.AbelianVarietyTheory.Definitions.Foundations.OpLDOneSubMemTriv
 import Development.AbelianVarietyTheory.Definitions.Foundations.SiegelNeZeroIff
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SiegelUnitQExpansionCoefficients
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.QuotientIntegralHolomorphic

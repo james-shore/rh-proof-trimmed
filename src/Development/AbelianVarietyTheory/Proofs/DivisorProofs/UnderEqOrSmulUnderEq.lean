@@ -1,8 +1,8 @@
 import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.BridgeTie
+import Formalism.LocalToGlobal.IndefiniteReal.Bridge
+import Formalism.LocalToGlobal.Divisibility.CoefMod
+import Formalism.LocalToGlobal.Divisibility.DefGroup
 import Formalism.LocalToGlobal.UnitaryNorms.CharTied
-import Formalism.LocalToGlobal.Columns.DecoFin
-import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CompletelySplitPrimeHostPlaceProperties
 
 open Formalism.BasicNotions NumberField IsDedekindDomain

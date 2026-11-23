@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ComparableQuotientOfValuation
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.AcrisKummerUnits.Splits
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SurjectivePreservesClosednessComparabilityStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdempotentLocalInductionStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemIdempotentComplementIffStatement
@@ -21,10 +21,9 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ValuationPowerI
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EtaleSurjectiveLocalSectionStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SectionOverIdempotentPropertiesStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SectionOrthogonalIdempotentSumStatement
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DividedPowerIdealTorsionFree
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DividedPowerQuotientExistsStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DividedPowerMorphismCompatibleStatement
-import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.AcrisKummerUnits.Splits
+
 open CategoryTheory AlgebraicGeometry CrystallineSemistableComparison CrystallineSemistableComparison.R
 
 theorem CrystallineSemistableComparison.RL.surj_pass : ∀ {S : Type} [CommRing S] {T : Type} [CommRing T] (φ : S →+* T), Function.Surjective φ → (Aic S → Aic T) ∧ (Val0 S → Val0 T) := GlobalTheory.T.surjective_preserves_closedness_comparability

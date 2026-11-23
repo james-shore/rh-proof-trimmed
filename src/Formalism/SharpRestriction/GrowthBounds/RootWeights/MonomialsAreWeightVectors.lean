@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.RootWeights.PolynomialOperatorsGlRelations
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.StableSubspaceCompleteReducibility
 
 noncomputable section
 

@@ -1,6 +1,5 @@
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.ContinuousCoB
 import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.GinfCSecondCountable
-import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
 
 noncomputable section
 

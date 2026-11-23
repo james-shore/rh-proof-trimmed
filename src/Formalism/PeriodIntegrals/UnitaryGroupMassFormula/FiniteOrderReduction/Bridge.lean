@@ -1,5 +1,4 @@
 import Formalism.PeriodIntegrals.FinOrdRedOne
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FiniteOrderReduction.EqOneOfIsOfFinOrder
 
 noncomputable section
 

@@ -1,9 +1,9 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.GaussManinPeriods
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsKSValueOneOfRetraction
 import Development.AbelianVarietyTheory.Definitions.ThetaValues.MemAnalyticAtZeroOfEventuallyDifferentiableAt
 import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ConstantCoeffDpolyOfAdditiveTaylorPts
 import Development.AbelianVarietyTheory.Definitions.Divisors.FderivFnCongr
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.CrysToDRBijective
+
 open Filter Topology TopologicalSpace GlobalTheory.AnPer TensorProduct
 
 namespace GlobalTheory

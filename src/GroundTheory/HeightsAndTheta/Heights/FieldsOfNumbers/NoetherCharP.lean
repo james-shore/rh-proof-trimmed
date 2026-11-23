@@ -1,6 +1,6 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.NoetherReduction
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.NoetherCharPLemmas
+
 set_option maxSynthPendingDepth 1
 
 open Polynomial

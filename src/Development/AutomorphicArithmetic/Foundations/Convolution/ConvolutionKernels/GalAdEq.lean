@@ -1,6 +1,5 @@
 import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.AdUnique
-import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.AdBasic
-import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.SelmerRankBounds.EllipticityFromProductFormula
+import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.SelmerRankBounds.IsNormAlong
 import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.GalTwistEx
 import GroundTheory.GlobalFields.IdeleGroups.GaloisOnAdeles.Action
 

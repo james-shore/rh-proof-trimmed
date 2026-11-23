@@ -6,10 +6,10 @@ import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightRecR
 import GroundTheory.HeightsAndTheta.Heights.HeightComparison.POrbitCurve
 import GroundTheory.HeightsAndTheta.Heights.HeightComparison.POrbitDegree
 import GroundTheory.HeightsAndTheta.Heights.HeightComparison.PHeightRecR
-import GroundTheory.HeightsAndTheta.Heights.HeightComparison.POrbitDivVertical
-import GroundTheory.HeightsAndTheta.Heights.HeightComparison.POrbitFiniteSum
+import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightOrbitCenter
 import GroundTheory.HeightsAndTheta.Heights.HeightComparison.POrbitArchSum
 import GroundTheory.HeightsAndTheta.Heights.HeightComparison.PPtsIntegralPoints
+import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightOrbitConjSum
 
 set_option maxSynthPendingDepth 1
 

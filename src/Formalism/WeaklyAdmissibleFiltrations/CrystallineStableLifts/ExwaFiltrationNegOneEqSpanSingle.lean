@@ -1,4 +1,4 @@
-import Formalism.WeaklyAdmissibleFiltrations.CocyclesFunctorial
+import Formalism.WeaklyAdmissibleFiltrations.Statement
 
 noncomputable section
 

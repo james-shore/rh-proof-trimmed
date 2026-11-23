@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CompanionMatrixOfCoeffsCharpolyCoeffEq
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.FourierMatch
 
 open GlobalTheory.JR Matrix
 set_option maxHeartbeats 1000000 in

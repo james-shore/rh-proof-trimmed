@@ -1,8 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.PublishedTheorems.PublishedFoundations.FiniteIntertwining
-import Formalism.BranchSandwichDivisors.DivFromPassageAndNorm
-import Formalism.LocalToGlobal.Columns.PolyFn
+import Formalism.LocalToGlobal.HermitianForms.IsLocBasis
+import Formalism.LocalToGlobal.Divisibility.CoefMod
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsSsIdxInjective
+
 open MvPolynomial Formalism.BasicNotions Formalism.GradedWeylDivisibility GlobalTheory.Branching
 open Formalism.MainNotions.PrimeDegreeVariant (embGL Interlace)
 open scoped DirectSum

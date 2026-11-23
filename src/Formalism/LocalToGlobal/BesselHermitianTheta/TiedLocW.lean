@@ -1,7 +1,5 @@
 import Formalism.LocalToGlobal.BesselHermitianTheta.TiedWeil
 import Formalism.SharpRestriction.Divisibility.KudlaSiegelWeil
-import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasSign
-import Formalism.LocalToGlobal.BesselHermitianTheta.TiedKfin
 
 noncomputable section
 

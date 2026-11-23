@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.IntegralExpParamOfEquivZero
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.ConstantCoeffLawFirstTwoOfThree
 
 noncomputable section
 

@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.IndefiniteReal.InjectiveDecompositionAction
+import Formalism.LocalToGlobal.IndefiniteReal.IsWeilDatum
 
 noncomputable section
 

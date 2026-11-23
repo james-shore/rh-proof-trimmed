@@ -1,6 +1,6 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.HarishChandraRegularity.ContDiffCompCoordEquiv
-import GroundTheory.AutomorphicForms.DixmierMalliavinHaarDensity
+import GroundTheory.AutomorphicForms.DixmierMalliavinHaar
 
 namespace GroundTheory.Automorphic
 

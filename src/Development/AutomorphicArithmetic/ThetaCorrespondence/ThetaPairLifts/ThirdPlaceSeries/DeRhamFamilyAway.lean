@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.AdmissibleParameterJ
-import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.TrivialLocalCondition
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.DistinctAbsIrredConstituents
 

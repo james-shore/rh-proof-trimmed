@@ -1,6 +1,7 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.SphericalCommutative
 import GroundTheory.AutomorphicForms.InductionParabolic
+import GroundTheory.AutomorphicForms.HeckeIrreducible
 
 noncomputable section
 

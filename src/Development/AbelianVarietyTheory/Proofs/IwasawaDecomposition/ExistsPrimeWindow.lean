@@ -1,7 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.GoodChi
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RowsRestWordColumnUnitBaseTuple
 import Development.AbelianVarietyTheory.Proofs.CharacterTheory.FrobeniusTorusMinpolyDegreeRootPowerSum
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CentralBinomLePowCardPrimesBetween
 
 noncomputable section
 open Polynomial Formalism.CyclotomicNorms

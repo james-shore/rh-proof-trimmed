@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CommonEigenvalue
 
 theorem UpperTheory.Reformulated.B.CommonEigenvectorInInvariantComplexSubspace.exists_common_eigenvector :
     ∀ {ι M : Type} [inst : AddCommGroup M]

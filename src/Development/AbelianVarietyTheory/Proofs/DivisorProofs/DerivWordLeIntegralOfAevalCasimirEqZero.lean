@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.AutomorphicForms.GKModules.Casimir
+import GroundTheory.AutomorphicForms.GKModules.ZKFinite
 import GroundTheory.AutomorphicForms.HarishChandraRegularity.ExpHaar
 import GroundTheory.AutomorphicForms.HarishChandraInvariance.Compact
 import GroundTheory.AutomorphicForms.DixmierMalliavin
@@ -8,6 +8,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsInteriorEstim
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SetIntegralNormProdExpMulLeHaarStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeftSmoothingProdExpSmoothCommuteStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSobolevRepresentationProdExpStatement
+
 open MeasureTheory GroundTheory.Automorphic
 open scoped ContDiff
 

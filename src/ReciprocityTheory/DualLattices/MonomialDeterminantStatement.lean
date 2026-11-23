@@ -1,4 +1,4 @@
-import ReciprocityTheory.DualLattices.CotangentSurjective
+import ReciprocityTheory.DualLattices.TensorSpan
 
 noncomputable section
 

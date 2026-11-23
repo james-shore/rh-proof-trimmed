@@ -1,6 +1,5 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.AdmBoundsBOfAdm
 import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ArcGamLiftCore
-import Formalism.SharpRestriction.LevelLetterCocycles.LetterConditionGlobal
 import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.LiftsAtThinLetterType
 import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.CoeffXSubCPowSelf
 

@@ -1,7 +1,6 @@
 import Mathlib
-import Formalism.RealPlaceAnalysis.StatementC
-import Formalism.FormalDegreeBessel.StatementDS
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
+import Formalism.RealPlaceAnalysis.StatementB
+import Formalism.RealPlaceAnalysis.StatementE
 import Formalism.RealPlaceAnalysis.RealPlaceTaylor.ShiftedGeneratorEqIteSmulAdd
 
 open Formalism.REAL TensorProduct Finset

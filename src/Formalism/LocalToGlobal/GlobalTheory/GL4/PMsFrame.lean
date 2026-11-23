@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.GlobalSchurBounds.FlipTwoThree
-import Formalism.LocalToGlobal.HermitianColumns.ColsHerm
-import Formalism.LocalToGlobal.HermitianForms.FormsTied
+import Formalism.LocalToGlobal.HermitianForms.PrkSmul
 import Formalism.GradedWeylDivisibility.StatementE
 import Formalism.SuccessiveMinima.StatementMink
 import Formalism.SharpRestriction.GlobalSchurBounds.IntegrableOfContinuousCircleMeasure

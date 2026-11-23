@@ -1,8 +1,7 @@
 import Mathlib
 import GroundTheory.LocalFields.NormCorrespondence
-import GroundTheory.LocalFields.Existence
-import GroundTheory.LocalFields.ExistsUnitFiltrationUnitsLeAndRangePowLe
 import GroundTheory.ProfiniteCohomology.PoincareDuality.Torsion
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

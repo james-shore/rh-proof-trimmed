@@ -1,9 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MovedReadingSameMapsBaseReadingAgrees
-import Formalism.LocalToGlobal.Columns.InvariantSubspaceCoordsX
-import Formalism.LocalToGlobal.Columns.BaseLemmas
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.EventuallyCongOne
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HcParameterEAddHalfShiftLeBSucc
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MemPrinCongOfSm
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsSigmaList
+import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IntegralConjInnerMulInnerOfIsEmptyEquiv
 
 noncomputable section
 

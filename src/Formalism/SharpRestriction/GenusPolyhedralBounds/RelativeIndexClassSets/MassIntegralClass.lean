@@ -1,8 +1,5 @@
 import Formalism.SharpRestriction.InertJacobiLevels.ExtraNum
-import Formalism.ThetaLiftIndependence.Statement
-import Formalism.HermitianLattices.StatementMass
-import Formalism.ThetaLiftIndependence.ThetaOrbitSums.ClassRepsDefinite
-import Formalism.HermitianLattices.HermitianLatticesProofs.MassBasic
+import Formalism.LatticeTheta.LatticeThetaProofs.InnerDualVecBasis
 
 noncomputable section
 

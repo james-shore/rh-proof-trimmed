@@ -4,8 +4,6 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FiniteVolume
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsMulRightInvariantOfFundamentalDomain
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DefClassNum
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IdeleClassFiniteness.BorelGL
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IdeleClassFiniteness.LatticeIdealNonzero
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Spherical
 
 open NumberField IsDedekindDomain Matrix
 open scoped RestrictedProduct

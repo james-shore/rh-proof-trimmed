@@ -2,6 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.SigmaFiniteOfRealSmul
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FgOfHtNeZero
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.AutPointLatticeIntersectionSelfDualProperties
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.IsLatMeasurableConst
 
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas GlobalTheory.FlagBase GlobalTheory.LeviIso
 

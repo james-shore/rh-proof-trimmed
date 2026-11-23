@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.PlaceAt
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.PlaceInst
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.FourVac
 
 noncomputable section

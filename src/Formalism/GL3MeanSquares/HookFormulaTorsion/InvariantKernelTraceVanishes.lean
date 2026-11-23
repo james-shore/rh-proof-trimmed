@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.GL3MeanSquares.AffineFibreCountComparison
 
 namespace Formalism.HermitianLattices.RamifiedLatticeOperators.IndexDeterminantCharacterSums
 

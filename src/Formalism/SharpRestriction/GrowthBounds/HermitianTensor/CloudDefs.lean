@@ -1,5 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.CloudPropOfMapsRetractionBasis
-import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.DeltaPsiH
+import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.SingleWeightLatticeComparison
 
 noncomputable section
 

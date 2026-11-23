@@ -1,5 +1,4 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.NormLineSectionPow
-import ReciprocityTheory.SemistableReduction.LatSemiSt
 
 namespace ReciprocityTheory.ChartRestriction.G.T0
 

@@ -1,10 +1,7 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterNamed
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSt
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.BlowupProjections.BlowupProjStatement
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.ExistsUniqueStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.GenericDegreeOfArithSystemStatement
-import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FibreDim
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PfAtZero
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PPFStep
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PPFSecRed
@@ -16,7 +13,6 @@ import GroundTheory.HeightsAndTheta.Heights.Intersections.PPFFibreBij
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PPFFibreMult
 import GroundTheory.HeightsAndTheta.Heights.Intersections.EqZeroOfEventuallyEval
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PRatioAlgDep
-import GroundTheory.HeightsAndTheta.Heights.Intersections.IsMultiProjPrimeImageZ
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.Multilin
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.ExistsUnique
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.GeoNum
@@ -25,6 +21,7 @@ import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.ContractMixed
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.Contract
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.ProjContract
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.ImageArithClosed
+
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I1 ReciprocityTheory.ChartRestriction.G.AI.I4
 
 namespace GlobalTheory.CompanionTheory.Ar.Giv.ProjF

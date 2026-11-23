@@ -1,6 +1,5 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.RowDeg
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
-import Mathlib
 
 set_option autoImplicit false
 

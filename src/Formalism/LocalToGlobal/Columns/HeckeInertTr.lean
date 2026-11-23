@@ -1,5 +1,5 @@
 import Formalism.LocalToGlobal.Columns.HeckeInertLemmas
-import Formalism.LocalToGlobal.Columns.WmLemmas
+import Formalism.LocalToGlobal.Columns.AlgebraMapMemMaximalIdealPowIff
 import Formalism.LocalToGlobal.Divisibility.LiftLatInst
 
 noncomputable section

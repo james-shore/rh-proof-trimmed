@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFockMap
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockActDualPairCommutingLieActions
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
 
 open scoped TensorProduct Kronecker
 

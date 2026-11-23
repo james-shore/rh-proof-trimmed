@@ -1,9 +1,6 @@
 import Formalism.SharpRestriction.InertJacobiLevels.ExtraNew
-import Formalism.SharpRestriction.InertJacobiLevels.ExtraTheta
 import Formalism.SharpRestriction.InertJacobiLevels.ExtraVal
-import Formalism.SharpRestriction.InertJacobiLevels.ExtraNum
-import Formalism.SharpRestriction.InertJacobiLevels.ExtraGat
-import Formalism.SharpRestriction.InertJacobiLevels.ExtraEnt
+import Formalism.LocalRingCardinality.SpanPowerMembership.NDLocG
 import Formalism.LocalRingCardinality.DataMink
 
 noncomputable section

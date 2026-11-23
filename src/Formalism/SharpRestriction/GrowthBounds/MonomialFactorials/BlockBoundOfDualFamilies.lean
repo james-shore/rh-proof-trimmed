@@ -1,4 +1,6 @@
 import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.MemIntPolIff
+import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.StructureSheafH1BaseChange
+import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.PadicIntegersEmbeddingMapPrime
 
 noncomputable section
 

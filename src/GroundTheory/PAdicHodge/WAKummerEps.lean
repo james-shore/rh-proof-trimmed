@@ -1,6 +1,6 @@
 import Mathlib
 import GroundTheory.PAdicHodge.BStPeriod
-import GroundTheory.PAdicHodge.BdRTGalois
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

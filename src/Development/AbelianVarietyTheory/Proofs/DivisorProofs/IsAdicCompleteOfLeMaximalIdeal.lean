@@ -1,6 +1,6 @@
 import Mathlib
-import ReciprocityTheory.CommutativeAlgebra.CohenMacaulay.ModDepthGE
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAdicCompleteOfLeOfIsNoetherianRing
+
 open IsLocalRing
 
 namespace GlobalTheory

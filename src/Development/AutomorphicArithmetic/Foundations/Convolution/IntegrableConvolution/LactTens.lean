@@ -3,7 +3,6 @@ import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvo
 import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.JUnique
 import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LactGen
 import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LactLaws
-import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.TensSmoothAlt
 
 open MeasureTheory NumberField IsDedekindDomain
 open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.RightCosetSpace

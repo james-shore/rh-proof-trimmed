@@ -2,9 +2,8 @@ import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTwistColumns
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaEqZeroOfReal
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsAlgebraMapOfSigRFixed
-import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasChr
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilDatumUniqueOnThetaFunctionsStatement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsWeilDatumTwistHeckeCharactersStatement
+import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasChr
 
 set_option autoImplicit false
 

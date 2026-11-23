@@ -1,6 +1,4 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutBPEqShift
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.NormaliserAcrossPlaces
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutLimENF
 
 namespace Formalism.FourierDecayAlt.P.CutBPEq
 

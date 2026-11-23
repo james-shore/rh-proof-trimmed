@@ -1,5 +1,5 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.QuotientTorusMinimumBound
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.TofSpanCondition
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.SecondProjectionOrthogonalComplement
+import ReciprocityTheory.AnalyticForms.AnalyticCharts.Osgood
 
 namespace ReciprocityTheory.ChartRestriction.G.I2
 

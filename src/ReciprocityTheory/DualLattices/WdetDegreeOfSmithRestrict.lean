@@ -2,6 +2,7 @@ import ReciprocityTheory.DualLattices.EigenQuotientSmithStatement
 import ReciprocityTheory.DualLattices.PowMemCarrier
 import ReciprocityTheory.DualLattices.SumValCoord
 import ReciprocityTheory.DualLattices.VDetEqOneOfIntegral
+import ReciprocityTheory.DualLattices.RestrictedHopfOrderApproximationStatement
 
 noncomputable section
 

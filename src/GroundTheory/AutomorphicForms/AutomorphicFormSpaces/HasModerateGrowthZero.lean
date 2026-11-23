@@ -1,5 +1,6 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.AutomorphicFormSpaces.ArchSliceUAction
+import GroundTheory.AutomorphicForms.AutomorphicFormSpaces.Height
 
 open NumberField IsDedekindDomain Topology Filter Set
 open scoped NumberField.AdeleRing

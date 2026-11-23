@@ -6,6 +6,8 @@ import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsPerturbSemip
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsNefAmpleGeneric
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsNefAmpleFibre
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsZCombLimit
+import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.HilbertSamuel

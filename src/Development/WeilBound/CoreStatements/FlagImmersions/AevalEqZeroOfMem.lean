@@ -6,6 +6,8 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsArithVarOfBlockAl
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.BlockJoinInclusionsCompat
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsC2AtOfIsPotential
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.DegreeGenericOfDegree
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridge
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PLiftBirationalNef
 
 noncomputable section
 

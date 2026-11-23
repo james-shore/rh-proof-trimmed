@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.StepJumpDirect
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.GlobalCore
 
 noncomputable section
 

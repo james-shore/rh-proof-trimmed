@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IntegralClosureHeightEqOneOfLiesOver
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.DominantSmoothMapCoords
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FunctionFieldRatioGenerators
+import Development.AutomorphicSpectrum.Proofs.GeometryProofs.DominantSmoothMapCoords
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegAtFractionNoetherianClosedStatement
 
 noncomputable section

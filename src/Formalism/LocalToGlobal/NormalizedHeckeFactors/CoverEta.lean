@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverThm
-import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverLen
 
 noncomputable section
 

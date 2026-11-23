@@ -2,6 +2,7 @@ import Mathlib
 import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.CyclotomicTotient.OneAddPow
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.VecPairApply
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.RootCharOfAddNatCast
+import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.PoitouTateNineTermTransgressionZeroApply
 
 noncomputable section
 

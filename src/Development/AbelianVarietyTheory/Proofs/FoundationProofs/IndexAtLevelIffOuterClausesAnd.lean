@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.LocalRingCardinality.Lemmas
 import Formalism.SharpRestriction.GlobalSchurBounds.ProductFirstZerothParts
-import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.IndexAtLevel
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.LengthCommensurableSpanSpanOfDetNeZero
+import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.IndexAtLevel
 
 noncomputable section
 

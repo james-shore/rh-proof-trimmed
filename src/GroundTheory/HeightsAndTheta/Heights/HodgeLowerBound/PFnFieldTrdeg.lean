@@ -2,6 +2,8 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsFnFieldTrdeg
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PCoordConeArithVar
 import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.Assembly
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.IsSaturatedFirstCoordinateLine
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

@@ -1,5 +1,4 @@
 import ReciprocityTheory.DualLattices.SubgroupQuotientStatement
-import ReciprocityTheory.DualLattices.ExistsSmulMemOfMemSpan
 import ReciprocityTheory.DualLattices.MapTensorSpan
 
 noncomputable section

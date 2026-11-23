@@ -6,7 +6,7 @@ import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsSquareIdxNOfCovBy
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsSquareCardOfInvolution
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.DefiniteLatticeDiscriminantModuleCardDetSq
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsUniquePlace
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.EncardBiUnionLe
+
 open NumberField Module Matrix Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.Cnt GlobalTheory.LoopC
 open scoped ENNReal Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

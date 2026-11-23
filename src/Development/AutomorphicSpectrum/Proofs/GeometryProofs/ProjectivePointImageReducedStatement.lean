@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProjectivePointImageReduced
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.SncChartPoint
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.BlowupProjections.BlowupProjStatement
-import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ValRPullbackTwistingSheafTransition
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits TopologicalSpace Opposite MvPolynomial
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap PSpace valR)

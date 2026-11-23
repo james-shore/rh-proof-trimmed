@@ -1,6 +1,6 @@
 import Development.WeilBound.ThetaLifts.LatticeBasics.Hypotheses2
-import Development.WeilBound.ThetaLifts.LatticeBasics.SliceSeminorm
-import GroundTheory.GlobalFields.TateThesis.AdeleScaling
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNatMulIntegralOfIsCompact
+import GroundTheory.AutomorphicForms.GL2.GJMatrixAdelic
 
 noncomputable section
 

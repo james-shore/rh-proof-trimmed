@@ -2,6 +2,7 @@ import Mathlib
 import Formalism.GradedWeylDivisibility.FinalD
 import Formalism.LocalRingCardinality.DataCoeff
 import Formalism.HermitianLattices.StatementLat
+import Formalism.SatakeDualWeyl.Statement
 
 open MvPolynomial NumberField IsDedekindDomain
 open scoped Matrix

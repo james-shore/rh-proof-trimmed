@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff
 import Development.AutomorphicSpectrum.Proofs.MembershipProofs.ThetaSumAdmissibility
-import Development.AutomorphicSpectrum.Proofs.MembershipProofs.WeilRepresentationThetaEquivarianceStatement
-import GroundTheory.GlobalFields.Adele.IntegersLattice
+import Development.AutomorphicSpectrum.Proofs.MembershipProofs.ThetaDistributionHeisenbergInvariant
+import Development.AutomorphicSpectrum.Proofs.MembershipProofs.AdelicCharacterRationalDual
 
 open Matrix NumberField IsDedekindDomain GlobalTheory.WeilM MeasureTheory
 open scoped TensorProduct SchwartzMap Classical

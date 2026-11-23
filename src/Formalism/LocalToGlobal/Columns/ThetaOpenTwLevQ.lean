@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.Columns.QthConjClose
+import Formalism.LocalToGlobal.Columns.QthPrincInv
 
 open NumberField IsDedekindDomain
 

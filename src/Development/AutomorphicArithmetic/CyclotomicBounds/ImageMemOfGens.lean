@@ -1,8 +1,6 @@
 import Mathlib
-import Development.AutomorphicArithmetic.CyclotomicBounds.ZmodTwoQuadraticNeZero
-import Formalism.LocalRingCardinality.DataHost
-import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
-import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.InertiaGaloisSymmetry.CycBasic
+import Formalism.SharpRestriction.LevelLetterCocycles.DataN
+import Development.AutomorphicArithmetic.PrimeDiscriminants.CycImage
 
 namespace UpperTheory.Small
 

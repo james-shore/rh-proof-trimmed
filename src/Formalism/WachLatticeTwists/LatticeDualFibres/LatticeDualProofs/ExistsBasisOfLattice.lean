@@ -1,4 +1,4 @@
-import Formalism.WachLatticeTwists.LatticeDualFibres.StatDualFibreLattice
+import Formalism.WachLatticeTwists.LatticeDualFibres.Statement
 
 universe u
 

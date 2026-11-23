@@ -1,8 +1,8 @@
 import Mathlib
 import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.Support
-import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProjectiveCohomology.ImmersionPush
 import GroundTheory.ArithmeticGeometry.EtaleCompletion.PullbackAffine
 import GroundTheory.ArithmeticGeometry.EtaleCompletion.QcohZariski
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Arith.SchemeCoh

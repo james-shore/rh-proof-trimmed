@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective
-import Mathlib.RingTheory.AdicCompletion.Functoriality
 
 open IsLocalRing MvPowerSeries UpperTheory.V.Alg
 

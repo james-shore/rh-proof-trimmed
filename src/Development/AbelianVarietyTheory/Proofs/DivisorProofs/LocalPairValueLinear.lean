@@ -1,9 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.PointsNonemptyUnitaryRankOne
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicHaarMeasureScaling
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardAdelicCharacter
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermitianFormNegOnOrthogonalOfPositiveIndexOne
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NegDefOfHermitianMatrixPositiveIndexEqZero
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLower
 
 open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount GlobalTheory.LKCx

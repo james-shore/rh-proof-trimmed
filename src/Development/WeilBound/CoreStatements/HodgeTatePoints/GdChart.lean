@@ -1,5 +1,6 @@
 import Development.WeilBound.CoreStatements.HodgeTatePoints.GdDual
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.LeadMinor
+import Development.WeilBound.CoreStatements.HodgeTatePoints.TorusExtensionPairCorrectionEqValueQuotient
 
 open Module NumberField GlobalTheory.CompanionTheory.Ar.HT TensorProduct
 

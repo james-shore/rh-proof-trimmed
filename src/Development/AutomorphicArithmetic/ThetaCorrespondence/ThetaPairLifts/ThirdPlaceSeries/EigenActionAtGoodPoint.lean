@@ -1,6 +1,6 @@
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.JointConditionOfEigenCentralSeries
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CuspidalGaloisUnramified
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.StepJumpDirect
 
 set_option synthInstance.maxHeartbeats 200000
 

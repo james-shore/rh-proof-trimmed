@@ -1,9 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsProbabilityMeasureMuPart
-import Formalism.MeanHeightDescent.DivisionInequalityWithCovolume
-import Formalism.MeanHeightDescent.AverageDegreeBounds.GlobalBoundRefinements
-import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.DeterminantCauchySchwarz
 import Formalism.MeanHeightDescent.AverageDegreeBounds.GoodBadCut
+import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.DeterminantCauchySchwarz
+import Formalism.MeanHeightDescent.AverageDegreeBounds.MuMaxMinkowski
+import Formalism.MeanHeightDescent.AverageDegreeBounds.SpanMuMin
 
 open NumberField GlobalTheory.AllWt Module TensorProduct Matrix
 

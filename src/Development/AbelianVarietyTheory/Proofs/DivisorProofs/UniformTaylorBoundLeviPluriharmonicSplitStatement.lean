@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniformTaylorBoundLeviPluriharmonicSplit
-import ReciprocityTheory.L2DbarEstimates.IsLocalHomeomorph
+
 open Filter Topology MeasureTheory Metric ReciprocityTheory.L2DbarEstimates
 open scoped ComplexOrder
 set_option maxHeartbeats 1000000 in

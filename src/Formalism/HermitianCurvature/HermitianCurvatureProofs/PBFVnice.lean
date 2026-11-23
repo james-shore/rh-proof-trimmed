@@ -1,6 +1,7 @@
 import Formalism.HermitianCurvature.RealInputsClosedAdmissibleSettings
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelFormSesquilinearFiniteClass
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.PositiveDensityModerateGrowth
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.PBCLat
 
 noncomputable section
 

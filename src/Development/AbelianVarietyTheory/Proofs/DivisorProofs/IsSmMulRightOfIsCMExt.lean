@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemSupportWordMul
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ContinuesConst
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WordHolomorphicAndUniform
+
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta GlobalTheory.Mem.Th GlobalTheory.UAut
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 

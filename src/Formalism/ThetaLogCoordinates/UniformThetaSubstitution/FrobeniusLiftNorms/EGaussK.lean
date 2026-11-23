@@ -1,7 +1,13 @@
 import Mathlib
-import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.StatementE
 import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.StatementGK
 import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.KernelFromKOne
+import Formalism.GaussJetBounds.GaussJetProofs.GField
+import Formalism.GaussJetBounds.GaussJetProofs.FJEval
+import Formalism.GaussJetBounds.GaussJetProofs.Labels
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.KOneConsequence
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.EGauss
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.EKernel
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.EChain
 
 noncomputable section
 

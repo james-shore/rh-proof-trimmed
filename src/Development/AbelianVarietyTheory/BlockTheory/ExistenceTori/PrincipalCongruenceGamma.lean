@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.CuspidalL2Subspace
-import Formalism.LocalToGlobal.ProjectiveLattices.FamilyUniformisationBasePointOrthogonalBis
+import Formalism.LocalToGlobal.BesselHermitianTheta.TiedWeil
 
 noncomputable section
 

@@ -1,8 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsRootOne
-import Development.AbelianVarietyTheory.Definitions.Foundations.LiftApplyOfMemAdmissibleSubalgebra
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsDCReps
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.Newform
+import Formalism.SharpRestriction.LevelLetterCocycles.DataN
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.BinaryMonomialDegreeSubstExpansionStatement
 
 noncomputable section

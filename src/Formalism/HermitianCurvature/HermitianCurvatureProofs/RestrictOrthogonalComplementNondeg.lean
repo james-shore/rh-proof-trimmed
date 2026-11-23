@@ -1,4 +1,4 @@
-import Formalism.HermitianCurvature.MemParahoricTimesPrincipalCongruenceIff
+import Formalism.DoubleCosetMeasures.Statement
 
 namespace Formalism.FourierDecayAlt.P.S3x6
 open Module

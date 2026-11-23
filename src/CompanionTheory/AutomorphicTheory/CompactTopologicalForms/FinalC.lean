@@ -2,6 +2,8 @@ import CompanionTheory.AutomorphicTheory.CompactTopologicalForms.FinalS
 import CompanionTheory.AutomorphicTheory.DiscreteGroupWaves.NFDomC
 import CompanionTheory.AutomorphicTheory.LocalBesselUniqueness.NFJCutFF
 import CompanionTheory.AutomorphicTheory.LocalBesselUniqueness.NFHatProdKBS
+import CompanionTheory.AutomorphicTheory.CompactTopologicalForms.JacobiFieldSquareIntegrable
+import CompanionTheory.AutomorphicTheory.DiscreteGroupWaves.NFTopFormCpt
 
 namespace Formalism.FourierDecayAlt.P.CutBP.CompactFormNormalFormDomination
 

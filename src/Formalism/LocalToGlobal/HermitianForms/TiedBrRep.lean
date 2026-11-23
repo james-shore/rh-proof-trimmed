@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.HermitianForms.TiedBrUnit
 import Formalism.LocalToGlobal.GlobalTheory.GL4.BranchingNormalisedOfAdjoint
+import Formalism.LocalToGlobal.HermitianForms.FramesLemmas
 
 noncomputable section
 

@@ -1,5 +1,6 @@
 import Development.WeilBound.ThetaLifts.CartanFactorisation.ActsComp
 import Development.WeilBound.ThetaLifts.CartanFactorisation.UnitDef
+import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.HoweDualityReal
 
 noncomputable section
 

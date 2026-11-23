@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalOrderCompletionSurjectiveFromIntegralAdeles
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsIdemOfAlgebraMap
-import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsIntegralSplitIdempotentOverTwo
 
 open IsDedekindDomain NumberField
 open scoped TensorProduct

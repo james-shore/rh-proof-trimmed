@@ -1,7 +1,5 @@
-import Formalism.LocalToGlobal.CharacterGerms.BlockAdmissibleChart
-import Formalism.LocalToGlobal.CharacterGerms.RowTieAdm
-import Formalism.LocalToGlobal.CharacterGerms.RowTieJet
-import Formalism.LocalToGlobal.ProjectiveLattices.RowDeg
+import Formalism.LocalToGlobal.CharacterGerms.BlockMembershipSelfConjugate
+import Formalism.LocalToGlobal.CharacterGerms.RowTieVal
 
 noncomputable section
 

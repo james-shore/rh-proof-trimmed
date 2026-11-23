@@ -1,5 +1,5 @@
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.CuspDiscreteDecompositionGL
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.SiegelHeights.SiegelHeight
+import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.SiegelHeights.InfEmbGrpEq
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness
 import GroundTheory.AutomorphicForms.L2LocalComponents.Summand
 

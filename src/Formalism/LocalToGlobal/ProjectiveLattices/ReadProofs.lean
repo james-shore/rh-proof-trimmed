@@ -1,5 +1,5 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.ReadAlg
-import Formalism.LocalToGlobal.ProjectiveLattices.CuspFDOf
+import Formalism.LocalToGlobal.ProjectiveLattices.MulCMemSec
 import Formalism.LocalToGlobal.ProjectiveLattices.NormLaws
 
 noncomputable section

@@ -1,5 +1,5 @@
 import Mathlib
-import Development.WeilBound.CoreStatements.FiniteTypeHarishChandra.SupportExistsAll
+import Development.WeilBound.CoreStatements.FiniteTypeHarishChandra.FiniteDimensionalHcSpace
 import GroundTheory.AutomorphicForms.FiniteBruhat
 
 open ReciprocityTheory.Ty.Fin Formalism.IrreducibleCountingLemmas.TYPES GroundTheory.Automorphic

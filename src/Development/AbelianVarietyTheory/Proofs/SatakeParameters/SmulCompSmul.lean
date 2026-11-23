@@ -3,7 +3,6 @@ import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.TwistedStartC
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CardStabilizerForgetFr
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.LevelGroupNeTopNeBot
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PhiMapsAndOmegaLaw
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.AbsNormEqOfSplitFactor
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.HomConjEquivMemHomAt
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.XiTopInvariant
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntAtFormOfMemStdAt
@@ -11,6 +10,7 @@ import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PhiTopSource
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PhiTopTargetGen
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PhiTopTargetSym
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PhiTopTargetTwist
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.AbsNormEqOfSplitFactor
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.HermitianLatticesTheory Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker GlobalTheory.TopStep
 

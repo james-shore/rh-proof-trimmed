@@ -1,5 +1,6 @@
 import Mathlib
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.HasCharSub
+import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.QmRowForm
 
 noncomputable section
 

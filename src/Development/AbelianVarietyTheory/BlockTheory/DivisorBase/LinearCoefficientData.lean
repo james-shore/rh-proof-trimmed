@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
 import Formalism.LocalToGlobal.IndefiniteReal.SubgroupCharExtensionOneApply
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.LabelDatum
 
 noncomputable section
 

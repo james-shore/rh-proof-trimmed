@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Formalism.SharpRestriction.LevelLetterCocycles.TwGood
 import Development.AbelianVarietyTheory.Definitions.Foundations.StrictInterlaceIffDescEnum
 

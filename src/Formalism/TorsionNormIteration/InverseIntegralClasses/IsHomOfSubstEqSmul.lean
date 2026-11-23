@@ -1,4 +1,4 @@
-import Formalism.TorsionNormIteration.InvIntegralOfClass
+import Formalism.FormalGroupLog.Statement
 import Formalism.FormalGroupLog.LogDeterminesLaw
 
 noncomputable section

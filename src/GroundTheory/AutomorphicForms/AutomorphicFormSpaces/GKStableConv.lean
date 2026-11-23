@@ -1,6 +1,8 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.HarishChandraRegularity
 import GroundTheory.AutomorphicForms.DixmierMalliavinBasic
+import GroundTheory.AutomorphicForms.HarishChandraRegularity.ExpHaar
+import GroundTheory.AutomorphicForms.PartialDifferential.EllipticParametrix
 
 namespace GroundTheory.Automorphic
 

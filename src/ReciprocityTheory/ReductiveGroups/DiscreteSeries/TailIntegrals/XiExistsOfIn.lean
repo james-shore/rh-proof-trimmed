@@ -7,6 +7,9 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.OsOf
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.AStepSuccOf
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.MeasurableHaarKernelTriple
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.BStepSuccOf
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.XiIntH
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.TLeftH
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.OscillatoryBound
 
 namespace ReciprocityTheory.ChartRestriction.DS.Xi
 

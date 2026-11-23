@@ -1,6 +1,7 @@
 import Development.WeilBound.ThetaLifts.EigenvalueEndgame.EigenKilling.ConeIntegralFactorisation
 import Development.WeilBound.ThetaLifts.EigenvalueEndgame.EigenKilling.FockActionFirstEq
 import Development.WeilBound.ThetaLifts.CartanFactorisation.ExistsCharNe
+import Development.WeilBound.ThetaLifts.ConeHypotheses.PolDense
 
 noncomputable section
 

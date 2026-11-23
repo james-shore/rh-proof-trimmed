@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.BottomMinor
+import Formalism.FockGram.StatementFock
 
 noncomputable section
 

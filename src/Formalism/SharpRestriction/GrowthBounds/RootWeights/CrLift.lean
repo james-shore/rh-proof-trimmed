@@ -1,4 +1,6 @@
 import Formalism.SharpRestriction.GrowthBounds.RootWeights.CasimirIsotypicNoHigherWeight
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.V2repResIsGLRep
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.CrAevalStable
 
 noncomputable section
 

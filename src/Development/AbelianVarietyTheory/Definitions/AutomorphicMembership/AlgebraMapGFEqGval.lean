@@ -1,7 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CoordinatesFlagVector
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.GqPtOfNeZeroIff
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsColReduced
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.SameRedEquivalence
+import Development.AbelianVarietyTheory.Definitions.Divisors.SplitDoublingNBlock
 import Formalism.SharpRestriction.CuspSpanNormBounds.LocalGroupInFamilyNontrivial
 
 noncomputable section

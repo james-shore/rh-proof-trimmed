@@ -1,6 +1,6 @@
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GaugeUniqB
+import Formalism.LocalToGlobal.ProjectiveLattices.IsExpChart
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.GaugeRatio
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.CalcExp
 
 set_option autoImplicit false
 

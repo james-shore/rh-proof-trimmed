@@ -2,6 +2,7 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersecti
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterDivSuppAC
 import Lemmata.GeneralBFactBis.Imports
 import Lemmata.FirstBlockLemmaB.Imports
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterDivSuppAA
 
 noncomputable section
 

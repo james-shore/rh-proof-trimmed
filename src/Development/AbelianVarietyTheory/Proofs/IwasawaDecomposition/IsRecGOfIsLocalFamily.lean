@@ -1,6 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsTiedOfIsRecG
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsConcrete
+import Formalism.LocalToGlobal.GroupLattices.TiedFamilies.TieTrF
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocalIdentificationPlaceEqInducedRealPlaceStatement
 
 noncomputable section
 

@@ -3,6 +3,8 @@ import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsHodgeFlagN
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsHodgeFlagRatioTrdeg
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PCoordConeArithVar
 import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.Assembly
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.IsSaturatedFirstCoordinateLine
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

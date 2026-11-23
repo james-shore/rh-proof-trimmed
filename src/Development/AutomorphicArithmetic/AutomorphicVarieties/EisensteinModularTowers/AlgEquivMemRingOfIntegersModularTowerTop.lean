@@ -1,5 +1,5 @@
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsPrimitiveRootTopZeta
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.KmapSubMemOfASet
+import Development.AbelianVarietyTheory.Definitions.Foundations.OpLDOneSubMemTriv
 
 open scoped MatrixGroups Matrix
 open GlobalTheory.KZ GlobalTheory.K4 Polynomial

@@ -2,7 +2,6 @@ import Mathlib
 import GroundTheory.AutomorphicForms.Reduction
 import GroundTheory.AutomorphicForms.AutomorphicFormSpaces.Height
 import GroundTheory.AutomorphicForms.GL2Classical.Cuspidal
-import GroundTheory.AutomorphicForms.GL2Classical.KFinite
 
 open NumberField IsDedekindDomain Matrix Set Filter Topology CongruenceSubgroup
 open UpperHalfPlane hiding I I_re I_im

@@ -1,11 +1,10 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.ModuliSpaces.ExistsArBaseAway
-import Development.AbelianVarietyTheory.Proofs.CharacterTheory.W8AddTransposeEqE8
-import ReciprocityTheory.AnalyticForms.RegularLocalRings.IntToRatA
 import Development.AbelianVarietyTheory.Definitions.ModuliSpaces.NotGoodClassZeroSucc
 import Development.AbelianVarietyTheory.Definitions.ModuliSpaces.SystemPrimesDistinctLevelsGeThree
 import Development.AbelianVarietyTheory.Definitions.Degenerations.LabKerUnique
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.TestObj
+
 open NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor
 

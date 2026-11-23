@@ -1,12 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.InputExistsOfMemberExists
 import Formalism.LocalToGlobal.IndefiniteReal.OneMapT
-import Formalism.LocalToGlobal.ProjectiveLattices.FreeBridge
 import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsBaseClassLevelAdapted
-import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsWeakOfDatum
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.ColumnDataLaws
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.VacuumCharacterDeterminant
-import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.GeneralDiagonalMatrix
 
 open AlgebraicGeometry CategoryTheory NumberField Matrix MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.ThFr GlobalTheory.Dict

@@ -1,7 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.GramProductIdentities
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.DiagScalarCommuteOfEntries
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.PartialFlipCommuteDiagScalarOfFree
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.DiagScalarCommuteTransposedRMatrix
 
 namespace Formalism.FourierDecayAlt.P.DualKernelLemmas
 

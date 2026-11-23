@@ -1,10 +1,11 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.BddGood
 import Formalism.LocalToGlobal.ProjectiveLattices.ThGerm
-import Formalism.LocalToGlobal.ProjectiveLattices.MulCMemSec
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CuspFormBoundGoodPointsExtendsAllPoints
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SupSetFinitelyGenerated
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.SubsingletonOfScalar
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.NumberFieldFinitePlaceCompletionEmbedding
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.FullObjOfSecondTyping
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsProperZeroTriple
+
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj GlobalTheory.GoodPts GlobalTheory.GoodTransfer
 

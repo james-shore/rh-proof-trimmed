@@ -1,8 +1,6 @@
 import Formalism.LocalToGlobal.GlobalTheory.CoordinateLengths.IntSpanLeRat
-import Formalism.LocalToGlobal.GlobalTheory.GL6.BwAValIntegralNonneg
-import Formalism.LocalToGlobal.GlobalTheory.GL6.WeylLengthDiagonalUnitUniformiser
-import Formalism.LocalToGlobal.GroupLattices.FockModels.SwRowGenMonomial
 import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.UnitTraceSumBounds.RankConditionsOfLayerTwo
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.DualWeylModuleStable
 
 noncomputable section
 

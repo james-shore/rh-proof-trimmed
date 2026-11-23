@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.GlobalTheory.BlockActions.NormalFormAgree
+import Formalism.LocalToGlobal.GlobalTheory.BlockActions.NormOneOfPow
 
 noncomputable section
 

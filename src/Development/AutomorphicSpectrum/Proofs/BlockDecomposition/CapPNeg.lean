@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InjectiveWedgeHighestCoefficient
-import Development.AbelianVarietyTheory.Proofs.JetHarmonics.GlRelNegTAndQdet
 
 namespace GlobalTheory.CompanionTheory.PairMult
 

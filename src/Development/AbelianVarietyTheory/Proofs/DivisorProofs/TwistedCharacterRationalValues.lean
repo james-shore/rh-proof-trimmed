@@ -1,13 +1,12 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.LevelOfOfSameBut
-import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsUniqueHcharOfFiniteOrder
-import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsNormLeHeightPow
-import Development.AbelianVarietyTheory.PublishedTheorems.PublishedFoundations.NonemptyAlgHomOfIsRayOfDvd
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsSigmaList
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CmDataIsCMExtAndGramIsHermND
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemRangeSrcForm
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SecondLinkOfWeightRows
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsNormalisedTupleDataOverCoefficientField
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBaseChange
 import Formalism.LocalToGlobal.IndefiniteReal.ThPinsEx
+
 open GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.BigOn.Exp
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx

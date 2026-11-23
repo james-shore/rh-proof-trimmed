@@ -1,4 +1,4 @@
-import Development.AbelianVarietyTheory.Definitions.Foundations.Integral
+import Mathlib
 
 noncomputable section
 

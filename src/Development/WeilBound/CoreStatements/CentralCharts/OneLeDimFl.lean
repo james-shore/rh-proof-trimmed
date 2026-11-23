@@ -4,7 +4,7 @@ import Development.WeilBound.CoreStatements.CentralCharts.IsPosPotBlock
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.IsArithVarOfSncModelStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.LowerBoundHeightOnBoundaryStatement
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.BoundaryPointsClosedStatement
-import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsFinsetOfMemNhds
+import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicAtlasCoordCompatStatement
 
 noncomputable section
 

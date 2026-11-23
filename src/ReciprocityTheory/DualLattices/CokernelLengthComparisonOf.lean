@@ -1,5 +1,4 @@
 import ReciprocityTheory.DualLattices.CokernelLengthComparisonStatement
-import ReciprocityTheory.DualLattices.UnramifiedCokernelLowerBoundOf
 
 noncomputable section
 

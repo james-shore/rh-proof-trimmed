@@ -1,4 +1,7 @@
 import Formalism.LocalToGlobal.GroupLattices.JointServices.ValIntNonneg
+import Formalism.SharpRestriction.Divisibility.LocalQuadraticParts
+import Formalism.LocalToGlobal.Divisibility.JetBounds.Statement
+import Formalism.LocalToGlobal.GroupLattices.JointServices.VAddEqVw
 
 open Module NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.BasicNotions.DV Formalism.MainNotions.G Formalism.MainNotions.WeilJacquetShalikaLaw Formalism.L2.DIV Formalism.L2.Indef

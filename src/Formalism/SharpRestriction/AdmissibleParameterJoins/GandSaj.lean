@@ -1,6 +1,5 @@
-import Formalism.SharpRestriction.Divisibility.ChainOperators.PerCol
+import Formalism.SharpRestriction.Divisibility.WeightDegreeSizes
 import Formalism.SharpRestriction.AdmissibleParameterJoins.GandSx
-import Formalism.SharpRestriction.AdmissibleParameterJoins.GandSy
 
 noncomputable section
 

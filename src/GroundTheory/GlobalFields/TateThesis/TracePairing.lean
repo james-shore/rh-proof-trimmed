@@ -1,5 +1,4 @@
 import Mathlib
-import GroundTheory.GlobalFields.Adele.IntegersLattice
 
 namespace GroundTheory.Global
 

@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AvgVanish
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField
+import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.MirabolicDerivatives.LeibnizDerivatives.HighestDerivProd
+import GroundTheory.AutomorphicForms.Iwasawa
 
 noncomputable section
 

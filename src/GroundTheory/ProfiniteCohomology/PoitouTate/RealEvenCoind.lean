@@ -1,11 +1,10 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.PoitouTate.RealAbstract
 import GroundTheory.ProfiniteCohomology.PoitouTate.RealCup
-import GroundTheory.ProfiniteCohomology.RealPlaces.Induced
-import GroundTheory.ProfiniteCohomology.RealPlaces.DevissageNatural
-import GroundTheory.ProfiniteCohomology.PoincarePairs
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseCores
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseFormal
+import GroundTheory.ProfiniteCohomology.PoincarePairs
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

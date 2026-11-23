@@ -1,5 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.EigenOfTwoStep
+import Development.AbelianVarietyTheory.Definitions.Foundations.OpLDOneSubMemTriv
+
 open GlobalTheory.KZ Matrix
 
 namespace GlobalTheory

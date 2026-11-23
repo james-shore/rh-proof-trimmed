@@ -1,8 +1,7 @@
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.SbHalfHalfInd
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.FinPartDetAtInvInt
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.FstACoordOfInfPart
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemSum
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.VacExA
+import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.InfFam
 
 noncomputable section
 

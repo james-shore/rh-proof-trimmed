@@ -1,7 +1,8 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsChowFormBirationalAlgClosed
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.RenameProdMapMul
 import GroundTheory.HeightsAndTheta.Heights.ChowForms.Assembly
+import GroundTheory.HeightsAndTheta.Heights.ChowForms.PChowFormSection
+import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsChowFormBirationalAlgClosed
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

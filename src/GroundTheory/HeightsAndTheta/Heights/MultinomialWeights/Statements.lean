@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.Statements
 import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.FlagBasic
-import GroundTheory.HeightsAndTheta.Heights.Antisymmetric.Statements
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

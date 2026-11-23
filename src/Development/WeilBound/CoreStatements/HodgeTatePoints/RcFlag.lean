@@ -4,7 +4,7 @@ import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsTight
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.StepOrderRes
 import Development.WeilBound.CoreStatements.HodgeTatePoints.RangeSubtypeEq
 import Development.WeilBound.CoreStatements.HodgeTatePoints.Invres
-import Development.WeilBound.CoreStatements.HodgeTatePoints.HasLenOfEquiv
+import ReciprocityTheory.DualLattices.UpSmith
 
 noncomputable section
 

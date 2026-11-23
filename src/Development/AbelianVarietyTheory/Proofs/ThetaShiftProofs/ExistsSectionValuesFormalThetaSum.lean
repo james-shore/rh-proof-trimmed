@@ -5,6 +5,7 @@ import Development.AbelianVarietyTheory.Definitions.ArchimedeanThetaValues.Ideal
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.MemThetaShiftZero
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ToUnitCompLeft
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.SecValFeTranslate
+import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ConstFamComponentsBasisExpansion
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.ArcPts

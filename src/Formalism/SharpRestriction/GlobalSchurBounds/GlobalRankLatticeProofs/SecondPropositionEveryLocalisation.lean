@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.SharpRestriction.GlobalSchurBounds.CMFieldLemmas
 import Formalism.FrobeniusOrbits.HostCorollaries
-import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.FrameFacts
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
+import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.FrameFacts
 
 noncomputable section
 

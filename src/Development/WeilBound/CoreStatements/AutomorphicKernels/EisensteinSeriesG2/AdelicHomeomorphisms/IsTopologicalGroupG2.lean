@@ -1,5 +1,5 @@
-import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.EisensteinGrowthForms.GrowForms
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LcscAdelicUnitaryGroup
+import Mathlib
+import Development.WeilBound.ThetaLifts.LatticeBasics.Hypotheses2
 
 noncomputable section
 

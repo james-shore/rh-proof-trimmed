@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SpanRangeMulVec
-import Formalism.LocalToGlobal.Divisibility.RowSideTie
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 
 noncomputable section
 

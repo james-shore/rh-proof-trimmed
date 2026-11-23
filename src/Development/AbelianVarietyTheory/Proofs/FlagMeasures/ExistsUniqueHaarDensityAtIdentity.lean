@@ -1,12 +1,13 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.BlockAnti
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.UpperOff
 import Formalism.PeriodIntegrals.QuotInv
 import Formalism.HermitianCurvature.WeylElementCommutesLevelOne
-import Formalism.LocalRingCardinality.DataCD
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.MatGroupHaarUniqueFiniteCompactOpenPos
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsDensityOriginOfAlmostHomogeneous
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UpqExpLocalChart
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ClosedMatrixSubgroupTheoremStatement
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousMatExp
+
 open MeasureTheory Matrix Filter Topology Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
 open scoped InnerProductSpace ENNReal
 

@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.ThDistC
-import Formalism.ThetaSupremumBounds.StatementE
 
 open NumberField IsDedekindDomain MvPolynomial
 

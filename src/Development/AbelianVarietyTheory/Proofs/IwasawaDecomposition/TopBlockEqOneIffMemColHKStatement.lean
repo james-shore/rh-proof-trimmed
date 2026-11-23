@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TopBlockEqOneIffMemColHK
-import Formalism.LocalToGlobal.Columns.GenericUnipotentCharacter
-import Formalism.LocalToGlobal.Divisibility.DefGroup
 
 open NumberField IsDedekindDomain
 set_option maxHeartbeats 1000000 in

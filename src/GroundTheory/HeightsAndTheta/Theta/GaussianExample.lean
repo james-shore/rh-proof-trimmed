@@ -1,5 +1,6 @@
 import Mathlib
-import GroundTheory.AutomorphicForms.HermitianSpaces
+import GroundTheory.AutomorphicForms.QuadraticConj
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Theta

@@ -1,10 +1,10 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Jets.ImportsAlt
-import Formalism.HermitianCurvature.HerGenC
+import Formalism.HermitianCurvature.TopDensNonnegOfKappa
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ThetaCompactSupport
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.OpApplyContinuousOn
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.AdjointLeibnizExpansion
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.TopFirstOfParts
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.DerivativeRulesA1
 
 open Formalism.FourierDecayAlt Formalism.REAL Formalism.QuantumDeterminants GlobalTheory.TopVec Filter Topology MeasureTheory
 

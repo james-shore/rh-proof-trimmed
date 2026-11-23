@@ -5,7 +5,6 @@ import Formalism.SharpRestriction.LevelLetterCocycles.FinrankEqOneOfBijective
 import Formalism.SharpRestriction.LevelLetterCocycles.PhiItSmul
 import Formalism.SharpRestriction.LevelLetterCocycles.FrobeniusCocycleOfRhoData
 import Formalism.SharpRestriction.LevelLetterCocycles.RealExtOfExact
-import Formalism.SharpRestriction.LevelLetterCocycles.ArcParametersShiftInvariant
 
 noncomputable section
 

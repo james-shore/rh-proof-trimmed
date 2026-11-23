@@ -1,5 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GenFibMapAlgebraMap
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorsorsTrivialIff
+
 open CategoryTheory Limits
 open scoped TensorProduct
 

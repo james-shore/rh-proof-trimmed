@@ -1,6 +1,5 @@
 import Mathlib.Analysis.Normed.Operator.Extend
 import Mathlib.Analysis.InnerProductSpace.Subspace
-import Mathlib.LinearAlgebra.Finsupp.LinearCombination
 
 noncomputable section
 

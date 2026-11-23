@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.CrystallineInputs.OfInputs
-import Development.AbelianVarietyTheory.Statements.EllipticCurveLevels.IsQg
 
 noncomputable section
 

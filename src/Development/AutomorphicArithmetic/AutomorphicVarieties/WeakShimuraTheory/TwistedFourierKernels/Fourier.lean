@@ -1,7 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.WeakShimuraTheory.TwistedFourierKernels.IsTwistTwD
-import Mathlib.GroupTheory.FiniteAbelian.Duality
-import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
-import Mathlib.LinearAlgebra.LinearIndependent.Basic
 
 open IsLocalRing Polynomial UpperTheory.V UpperTheory.V.Alg UpperTheory.V.W UpperTheory.V.Ws.H5
 

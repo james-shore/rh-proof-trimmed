@@ -2,6 +2,10 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PFibreNormPullback
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsPullFormsGeneric
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsFibreNormDehomRoots
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeB
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsFibreNormPullback
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsFibreNormDehomIntegral
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.HilbertSamuel

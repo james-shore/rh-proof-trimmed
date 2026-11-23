@@ -1,6 +1,5 @@
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.CharpolyFromTrace.GoodLiftAlt
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.InertiaQuadraticRamification.ThreeApartOf
-import Development.AutomorphicArithmetic.Foundations.Convolution.SphericalIdeles.SphConj
 
 noncomputable section
 

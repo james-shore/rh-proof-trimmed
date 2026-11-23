@@ -1,8 +1,9 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.IterateOnePlusCasOfEq
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NormDwLeSobNorm
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CoefBoundTwo
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsRankOneIsAvg
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsInnerApprox
+
 open Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 open scoped InnerProductSpace
 

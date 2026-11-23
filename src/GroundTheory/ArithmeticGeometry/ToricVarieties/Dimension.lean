@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.ArithmeticGeometry.ToricVarieties.Normal
+import GroundTheory.ArithmeticGeometry.ToricVarieties.Affine
 
 namespace GroundTheory.Arith.Toric
 

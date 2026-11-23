@@ -1,7 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.AdelicScalarSectionLift
+import Formalism.LocalToGlobal.IndefiniteReal.OneMapT
+import Formalism.LocalToGlobal.IndefiniteReal.FWTie
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.TwistedLevelValues
-import Development.AbelianVarietyTheory.Counterexamples.RotationExamples.LevelVectorSizeBounds
 import Formalism.LocalToGlobal.IndefiniteReal.FWExist
 
 noncomputable section

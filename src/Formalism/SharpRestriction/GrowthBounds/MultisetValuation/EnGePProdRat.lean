@@ -1,5 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.AuxUOfFirstTheoremPlaceBound
-import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.JpSubstExpand
+import Formalism.SharpRestriction.GrowthBounds.FormalGroupSystem
 import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.ValuationBoundAdd
 
 noncomputable section

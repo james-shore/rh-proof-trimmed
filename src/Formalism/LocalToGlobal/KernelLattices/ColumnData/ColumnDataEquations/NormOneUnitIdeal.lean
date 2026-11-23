@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.ReductionOf
+import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.NormOneUnitIdealAlt
 
 noncomputable section
 open NumberField Formalism.BasicNotions Classical

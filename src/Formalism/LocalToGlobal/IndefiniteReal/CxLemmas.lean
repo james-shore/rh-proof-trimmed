@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.PartsOrth
 import Formalism.LocalToGlobal.Divisibility.FramesLemmas
-import Formalism.LocalToGlobal.Divisibility.RowLatLemmas
+import Formalism.LocalToGlobal.Divisibility.ProjLemmas
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder InnerProductSpace

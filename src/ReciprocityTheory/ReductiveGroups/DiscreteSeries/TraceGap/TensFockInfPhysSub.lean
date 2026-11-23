@@ -1,6 +1,5 @@
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.WKTensFockGenSub
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.TsubValInjective
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.DetOneSubEqSumMinors
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.TraceEqTraceRestrictOfRangeLe
 
 noncomputable section
 

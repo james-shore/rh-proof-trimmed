@@ -1,6 +1,5 @@
 import Mathlib
 import CompanionTheory.HarishChandraModules.LowKTypeMultiplicity.DiscreteSeriesCharacters.CapelliDeterminantBlockProduct
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.HermitianFormRankFour
 import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactExponentialSurjective
 

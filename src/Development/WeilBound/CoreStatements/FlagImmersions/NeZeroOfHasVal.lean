@@ -1,4 +1,4 @@
-import Development.WeilBound.CoreStatements.FlagImmersions.Transport
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsSheetCover
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegAtFractionNoetherianClosedStatement
 
 noncomputable section

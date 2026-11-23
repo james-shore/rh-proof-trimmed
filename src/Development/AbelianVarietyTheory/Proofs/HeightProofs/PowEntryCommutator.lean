@@ -1,4 +1,5 @@
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsLieDataCircle
+import Formalism.RealPlaceAnalysis.StatementA
 
 namespace GlobalTheory.PowEntryCommutator
 

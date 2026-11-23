@@ -1,5 +1,5 @@
 import Formalism.LocalToGlobal.CharacterGerms.RowTiePOActSg
-import Formalism.LocalToGlobal.CharacterGerms.RowTiePPTAvg
+import Formalism.LocalToGlobal.CharacterGerms.ConstMemTypeSetOfNonneg
 
 noncomputable section
 

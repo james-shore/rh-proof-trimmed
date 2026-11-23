@@ -1,7 +1,9 @@
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BaseUpperBound
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RowAtOfRatStep
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Realised
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.VStdOfOrthonormalSpan
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LinearIndependentRowsMap
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsKsFormOfAlgebraicFormsIso
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCoefScale
 
 set_option synthInstance.maxHeartbeats 200000
 

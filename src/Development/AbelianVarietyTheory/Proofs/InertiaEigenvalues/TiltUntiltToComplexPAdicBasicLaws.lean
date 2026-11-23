@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ImportsAlt
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FundamentalMapSurjective
-import Development.AbelianVarietyTheory.CrystallinePeriods.RingBasics
+
 open Formalism.Per GlobalTheory.PSer
 open scoped Formalism.Per
 

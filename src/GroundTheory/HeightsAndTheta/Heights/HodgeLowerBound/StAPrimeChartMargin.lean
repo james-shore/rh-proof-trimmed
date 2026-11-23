@@ -1,5 +1,6 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StNbarLeviChart
+import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.ChartVel
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

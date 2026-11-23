@@ -5,8 +5,7 @@ import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsEqnI
 import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.CmpaCHessComp
 import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.CmpbHessAtAddConst
 import ReciprocityTheory.L2DbarEstimates.LeviForms.DetUpdateColEq
-import ReciprocityTheory.L2DbarEstimates.LeviForms.OfRealNormSqSumMul
-import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.AApproxA
+import ReciprocityTheory.L2DbarEstimates.LeviForms.LogNormSq
 
 set_option autoImplicit false
 

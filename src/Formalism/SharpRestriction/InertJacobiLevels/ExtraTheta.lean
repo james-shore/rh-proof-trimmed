@@ -1,5 +1,5 @@
 import Formalism.LocalRingCardinality.DataTheta
-import Formalism.LocalRingCardinality.SpanPowerMembership.Spaces
+import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleRanksRankComplement
 
 noncomputable section
 

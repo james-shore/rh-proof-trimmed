@@ -1,9 +1,8 @@
-import Development.WeilBound.ThetaLifts.LeviDeterminants.ActsEx
+import Development.WeilBound.CoreStatements.LocalThetaKernels.Locrep
+import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.HalfIndexLattices.SplitStab
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.HalfIndexLattices.IsLatRepL
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.ThetaBasicK
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.ItemsThkhLocrep
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.LocRepExK
 
 set_option synthInstance.maxHeartbeats 200000
 

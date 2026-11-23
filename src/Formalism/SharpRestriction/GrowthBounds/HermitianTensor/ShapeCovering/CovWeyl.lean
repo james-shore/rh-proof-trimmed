@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.ShapeCovering.StatementY
-import Formalism.GradedWeylDivisibility.FinalD
 
 noncomputable section
 

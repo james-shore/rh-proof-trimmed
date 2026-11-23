@@ -3,10 +3,11 @@ import Development.AutomorphicSpectrum.Definitions.MetricPeriods.MetricsProjecti
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.AnalyticSystemRegularityProperties
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.MongeAmpereIntegralCongrPotentials
 import ReciprocityTheory.AnalyticForms.PotentialTheory.DegreeInt
-import ReciprocityTheory.AnalyticForms.PotentialTheory.LogInt
-import ReciprocityTheory.AnalyticForms.PotentialTheory.Pullback
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridge
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRedF
+import ReciprocityTheory.AnalyticForms.PotentialTheory.DegreeSheets
+import ReciprocityTheory.AnalyticForms.PotentialTheory.LogInt
+
 open MvPolynomial Filter Topology ReciprocityTheory.ChartRestriction.G.Geo GlobalTheory.CompanionTheory.Ar.PB
 
 namespace PositivityTheory.Xgn.SmallPotentialLimit

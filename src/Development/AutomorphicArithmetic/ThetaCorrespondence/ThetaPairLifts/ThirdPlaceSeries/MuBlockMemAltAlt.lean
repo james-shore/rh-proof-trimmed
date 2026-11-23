@@ -1,5 +1,4 @@
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TrivialPartInBaseChange
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ParLaws
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SplitStepOAltAlt
 

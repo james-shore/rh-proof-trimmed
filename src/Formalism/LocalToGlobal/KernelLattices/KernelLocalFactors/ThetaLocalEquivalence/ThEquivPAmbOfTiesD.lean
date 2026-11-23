@@ -2,7 +2,8 @@ import Mathlib
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.ThetaLocalEquivalence.ThIndEqAmbOfOf
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.LocalProductMeasures
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.RatKDeg
-import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.PeriodLatticeFinitelyGenerated
+import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.KerEquivGen
+import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.ThetaLocalEquivalence.ThEquivPStepCIff
 
 open NumberField IsDedekindDomain MvPolynomial
 

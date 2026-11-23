@@ -1,8 +1,9 @@
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AdmT4OfRationalRows
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.GalSide
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.GaloisInputs
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.IsPotCrysAtOfMono0
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HkSSOfSides
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnivSupOfXi
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.XiType
 
 set_option synthInstance.maxHeartbeats 200000
 

@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TwistStep
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.AdmSt
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ResEqIff
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FiniteDimensionalLetter
 

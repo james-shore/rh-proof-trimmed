@@ -1,6 +1,7 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.StabilizerCovolume.Objects
-import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
+import GroundTheory.HeightsAndTheta.Heights.StabilizerCovolume.ThreeLeLevel
+import GroundTheory.HeightsAndTheta.Heights.StabilizerCovolume.GaussCM
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

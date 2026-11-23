@@ -2,9 +2,7 @@ import Mathlib
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.TranslateMemIndOrder
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsUnitFormLocalizationEtaleNbhd
 import GroundTheory.PAdicHodge.FiniteFlat
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.DualOrder
 import Development.WeilBound.CoreStatements.HodgeTatePoints.TwhopfSec
-import Development.WeilBound.CoreStatements.HodgeTatePoints.TwhopfInd
 
 open CategoryTheory Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
 open GlobalTheory.CompanionTheory.Ar.BT GroundTheory.PAdicHodge

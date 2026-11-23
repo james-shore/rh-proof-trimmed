@@ -1,5 +1,6 @@
 import Mathlib
 import Development.DiscreteGroups.GlobalIrreducibility.InCellMulRightIff
+import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ValuationDetOfMemKO
 
 noncomputable section
 

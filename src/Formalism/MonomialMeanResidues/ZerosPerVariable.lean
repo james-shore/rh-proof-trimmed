@@ -1,10 +1,9 @@
 import Mathlib
-import Formalism.MeanHeightDescent.CombinedAverageDegreeBound
 import Formalism.MonomialMeanResidues.FilteredDegree
-import Formalism.MeanHeightDescent.DivisionInequalityWithCovolume
+import Formalism.HarderNarasimhan.HarderNarasimhanProofs.SizeIneq
+import Formalism.HarderNarasimhan.HarderNarasimhanProofs.SizeMu
+import Formalism.HarderNarasimhan.HarderNarasimhanProofs.HtImage
 import Formalism.HarderNarasimhan.ShiftInvariance
-import Formalism.MeanHeightDescent.AverageDegreeBounds.GoodBadCut
-import Formalism.MeanHeightDescent.AverageDegreeBounds.SpanMuMin
 import Formalism.MonomialMeanResidues.MonomialMeanProofs.SpanEqTopAndRankOfLinearIndependent
 
 namespace Formalism.HermiteSiegelSlopes

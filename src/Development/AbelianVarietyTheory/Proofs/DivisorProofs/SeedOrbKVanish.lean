@@ -1,10 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.TraceDefinitePairsEqAutomorphicTrace
-import Development.AbelianVarietyTheory.Definitions.Divisors.PointSide
-import Development.AbelianVarietyTheory.Definitions.Divisors.MaxWeightGL1EqOne
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IwahoriRegularSplit
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CuspidalCompactCharacterVanishing
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CentralSimpleAlgebraEmbeddingsConjugate
+
 open MeasureTheory Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKDef
 open scoped TensorProduct Classical
 

@@ -1,4 +1,4 @@
-import Development.EtaleCohomology.EtaleSheaves.SheafIsomorphism.LeafShIsoOf
+import Development.EtaleCohomology.EtaleSheaves.SheafIsomorphism
 import Development.EtaleCohomology.EtaleSheaves.BoundaryKernel.Formal
 
 noncomputable section

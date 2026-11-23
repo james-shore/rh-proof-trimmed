@@ -1,7 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.TamagawaSpecialUnitary
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.WeightFunctionOnFrames
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentHaarRealSUOfMap
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RealIndependentSkewMatricesStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinearIndependentComplexMapStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryLieAlgebraSpannedStatement
 
 noncomputable section
 

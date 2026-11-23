@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.MeanHeightDescent.MuMaxMinkowski
 import Formalism.HarderNarasimhan.ShiftInvariance
+import Formalism.MeanHeightDescent.MuMaxMinkowski
 
 open Module NumberField
 

@@ -1,8 +1,8 @@
 import Mathlib
 import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.IsPshLocallyIntegrableStatement
 import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialOfFun
-import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PshBasic
 import ReciprocityTheory.AnalyticForms.PotentialTheory.ContDiffFubiniStudyRatioCompChart0
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.Regular

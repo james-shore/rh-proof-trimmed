@@ -1,5 +1,7 @@
 import Development.WeilBound.ThetaLifts.CartanFactorisation.ExistsBeta
 import Development.WeilBound.CoreStatements.LocalThetaKernels.Locrep
+import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.HoweDualityUnitary
+import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.HoweDualityReal
 
 noncomputable section
 

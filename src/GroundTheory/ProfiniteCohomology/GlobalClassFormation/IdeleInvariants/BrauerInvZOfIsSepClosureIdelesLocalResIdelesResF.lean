@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.GlobalClassFormation.IdeleInvariants.Transport
 import GroundTheory.ProfiniteCohomology.GlobalClassFormation.IdeleRestriction.ExistsInfIdelesLocalResIdelesResFieldEqZeroOfInf
-import GroundTheory.GlobalFields.CompletionAtPlace
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

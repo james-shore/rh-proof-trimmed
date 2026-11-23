@@ -1,4 +1,4 @@
-import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LagrangianDecomposition.LdExOfLeaves
+import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LagrangianDecomposition.Em0Injective
 import Development.WeilBound.ThetaLifts.LatticeBasics.StdExOf
 import Development.WeilBound.ThetaLifts.LatticeBasics.FrameConj
 import Development.WeilBound.ThetaLifts.LatticeBasics.HgtInt

@@ -1,5 +1,4 @@
-import Formalism.RealPlaceAnalysis.StatementC
-import Formalism.RealPlaceAnalysis.RealPlaceTaylor.GeneratorPowUpperVanishHolds
+import Mathlib
 
 open Finset Polynomial
 

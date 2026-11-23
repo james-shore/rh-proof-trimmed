@@ -1,12 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.TransPtBase
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagCoverTransferIdealEq
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagCoverBlockFieldEqStatement
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.ScaledCoordinatesValueAtPointStatement
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.CoordinateRatioValueAtPointStatement
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagCoverFramesLiftPointStatement
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagCoverBaseBlockValueStatement
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagCoverBasePointMapsToPointsStatement
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.PartialFlagBlocks
+import Lemmata.GeneralBFact.Imports
 
 open MvPolynomial MeasureTheory Filter Topology Matrix ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I1 ReciprocityTheory.ChartRestriction.G.AI.I2 ReciprocityTheory.ChartRestriction.G.AI.I4 GlobalTheory.CompanionTheory.Ar.PB GroundTheory.Heights₂.Heights GroundTheory.Heights₂.Heights.LowerBoundFree
 open scoped ComplexOrder Classical

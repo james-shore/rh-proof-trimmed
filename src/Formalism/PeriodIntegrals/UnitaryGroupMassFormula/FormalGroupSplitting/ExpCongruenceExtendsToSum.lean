@@ -1,5 +1,4 @@
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalGroupSplitting.AddPreservesExpCongruence
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalGroupSplitting.OrthogonalSplitPolarizationVanishes
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalGroupSplitting.Development
 
 noncomputable section
 

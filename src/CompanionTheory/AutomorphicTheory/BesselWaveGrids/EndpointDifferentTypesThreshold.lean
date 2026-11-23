@@ -2,6 +2,7 @@ import CompanionTheory.AutomorphicTheory.CompactTopologicalForms.NormalFormTopDo
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.WeylGroupActions.UpdateEqUMinus
 import CompanionTheory.AutomorphicTheory.BesselWaveGrids.LimStepsOf
 import CompanionTheory.AutomorphicTheory.BesselWaveGrids.SmoothCoefficientBessel
+import CompanionTheory.AutomorphicTheory.BesselWaveGrids.AsmDiff
 
 namespace CompanionTheory.WaveGrid
 

@@ -1,10 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.RegularizedWeightUniformOnCompact
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PStokesLimitTTop
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterNamed
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.LogRatio
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.RegularizedWeightTendstoC2Statement
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.RegularChartDataPropertiesStatement
 
 open MvPolynomial MeasureTheory Filter Topology ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.ChartRestriction.G.Geo GroundTheory.Heights₂.Heights.LowerBoundFree GlobalTheory.CompanionTheory.Ar.Giv.Mix
 

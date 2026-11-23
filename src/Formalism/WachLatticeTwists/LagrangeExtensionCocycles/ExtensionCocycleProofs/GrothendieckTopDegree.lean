@@ -1,6 +1,4 @@
 import Formalism.WachLatticeTwists.LagrangeExtensionCocycles.StatementTop
-import Formalism.WachLatticeTwists.LagrangeExtensionCocycles.ExtensionCocycleProofs.MemSpanOfFrobeniusMemSpan
-import Formalism.CoboundaryTransfers.WachBridges
 
 noncomputable section
 

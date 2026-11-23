@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.EqUniformizerSmulOfLevelOne
+import Formalism.SharpRestriction.LevelLetterCocycles.CompleteOfPow
 
 noncomputable section
 

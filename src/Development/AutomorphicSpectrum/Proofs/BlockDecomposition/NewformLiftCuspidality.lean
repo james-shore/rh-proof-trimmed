@@ -1,8 +1,6 @@
 import Mathlib
-import PositivityTheory.AutomorphicForms.PublishedInputs.CuspidalContinuity.ArchimedeanCuspidal.VerticalStrips.UnramifiedEulerProductIntegral
-import GroundTheory.AutomorphicForms.CompactAbelianCharacters
-import GroundTheory.GlobalFields.TateThesis.AdelicCharDual
-import GroundTheory.GlobalFields.TateThesis.AdeleScaling
+import PositivityTheory.AutomorphicForms.PublishedInputs.CuspidalContinuity.ArchimedeanCuspidal.VerticalStrips.GammaZeroLevelMembership
+import GroundTheory.AutomorphicForms.CompactSelfAdjoint
 
 noncomputable section
 

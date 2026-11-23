@@ -1,4 +1,4 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.ThirdPeelingMinorMemIdeal
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.FirstPeelingMinorMemIdeal
 
 open Matrix Finset
 

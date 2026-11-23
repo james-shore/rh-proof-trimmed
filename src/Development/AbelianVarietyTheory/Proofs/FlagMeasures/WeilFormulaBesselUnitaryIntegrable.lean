@@ -3,7 +3,6 @@ import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.MatrixOfBess
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ClosedSubgroupBesselHaarFiniteCompactPosOpen
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.QuotientMeasureRightInvariant
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.UnitaryGroupMatGroupUnimodular
-import Development.AbelianVarietyTheory.Proofs.JetHarmonics.DecSmoothAtGapOfDecSmooth
 
 noncomputable section
 

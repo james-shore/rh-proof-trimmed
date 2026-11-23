@@ -1,6 +1,7 @@
 import Mathlib
 import GroundTheory.GlobalFields.ComplexMultiplication.DegreeOneAutomorphism
-import GroundTheory.ArithmeticGeometry.AbelianVarieties.SupersingularPowField
+import GroundTheory.GlobalFields.ComplexMultiplication.ClassGroupActionIso
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Global

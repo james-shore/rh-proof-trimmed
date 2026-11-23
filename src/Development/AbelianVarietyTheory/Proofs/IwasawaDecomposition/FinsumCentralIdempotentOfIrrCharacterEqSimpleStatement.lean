@@ -1,9 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FinsumCentralIdempotentOfIrrCharacterEqSimple
-import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoeffZeroNeOfMonicIrr
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.LabelDatum
-import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.GreenCuspidalIff
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CanonListLength
 
 open CategoryTheory Polynomial
 set_option maxHeartbeats 1000000 in

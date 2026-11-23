@@ -1,7 +1,7 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.Rigid0
-import Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVanishing.Counts
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.IsInertiaInfiniteCyclotomic
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.CongruenceNumberRankThree
+import Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVanishing.Counts
 
 noncomputable section
 

@@ -1,8 +1,8 @@
 import Mathlib
 import ReciprocityTheory.ClassFieldTheory.LocalClassField.ExistsIntEKMulVbar
 import ReciprocityTheory.ClassFieldTheory.LocalClassField.GalBasic
-import ReciprocityTheory.ClassFieldTheory.LocalClassField.Herbrand
 import ReciprocityTheory.ClassFieldTheory.LocalClassField.UnitsHerbrandF
+import ReciprocityTheory.ClassFieldTheory.LocalClassField.UnitsHerbrandE
 
 namespace ReciprocityTheory.DiscreteGroups.LocalClassField
 

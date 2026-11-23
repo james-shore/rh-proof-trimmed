@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsChartOfIsLocalRing
+import Formalism.LocalToGlobal.ProjectiveLattices.FrameCharts
 
 noncomputable section
 

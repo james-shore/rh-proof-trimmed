@@ -1,6 +1,7 @@
 import Formalism.SharpRestriction.CuspSpanNormBounds.BesselShellMomentBounds
 import Formalism.SharpRestriction.CuspSpanNormBounds.BigCellDensity
 import Formalism.SharpRestriction.CuspSpanNormBounds.IsPtRepTrDat
+import Formalism.SharpRestriction.CuspSpanNormBounds.FrameFactorGe
 
 noncomputable section
 

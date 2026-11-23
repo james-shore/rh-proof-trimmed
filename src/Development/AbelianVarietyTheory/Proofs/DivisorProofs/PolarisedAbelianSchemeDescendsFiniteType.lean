@@ -1,9 +1,9 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsGPull
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGDatumOneOneOne
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsEtPlace
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SiegPreDataDescends
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelAmpleSpreadSubring
-import Development.AbelianVarietyTheory.Proofs.ModuliProofs.SiegelObjectPullbackExistsAndPrincipal
+
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen GlobalTheory.UPel.HT.EtLev
 open scoped CategoryTheory.Obj

@@ -1,5 +1,5 @@
 import Mathlib
-import Development.WeilBound.CoreStatements.AutomorphicKernels.BernsteinUnitaryProducts.BernsteinTheoremA.FrobeniusReciprocity.SupportedInIffOfFrob
+import Development.WeilBound.CoreStatements.AutomorphicKernels.BernsteinUnitaryProducts.BernsteinTheoremA.FrobeniusReciprocity.PullHomeoApply
 import GroundTheory.AutomorphicForms.LocallyConstantCompact
 import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.FrobeniusReciprocity.PowNear
 

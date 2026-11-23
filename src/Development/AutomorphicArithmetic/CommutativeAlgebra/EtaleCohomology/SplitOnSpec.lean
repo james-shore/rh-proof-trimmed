@@ -1,4 +1,4 @@
-import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.SplitsOfSplitOn
+import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.SplitRules
 
 noncomputable section
 

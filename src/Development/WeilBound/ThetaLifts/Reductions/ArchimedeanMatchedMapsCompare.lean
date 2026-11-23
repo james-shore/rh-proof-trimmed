@@ -1,5 +1,6 @@
 import Development.WeilBound.ThetaLifts.CartanFactorisation.RealTrans
 import Development.WeilBound.ThetaLifts.Reductions.JoinDef
+import Development.WeilBound.ThetaLifts.CartanFactorisation.PolCountDef
 
 noncomputable section
 

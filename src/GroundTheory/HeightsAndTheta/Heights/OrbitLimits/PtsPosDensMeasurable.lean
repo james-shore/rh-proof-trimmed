@@ -2,6 +2,8 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StPtsPosDensIntegrable
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PtsSumMeasurableA
 import GroundTheory.HeightsAndTheta.Heights.Intersections.NoCommonComponentCoordinatesPlane
+import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

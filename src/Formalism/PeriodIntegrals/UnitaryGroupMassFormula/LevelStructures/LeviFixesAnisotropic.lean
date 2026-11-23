@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelStructures.ParabolicPreservesIsotropic
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Bridge
 
 noncomputable section
 

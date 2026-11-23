@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NormOneFiniteAdeleDetClassOfIsDetLift
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LevOkTwists
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ValDetSubOneLt
 
 noncomputable section
 

@@ -1,11 +1,8 @@
 import Formalism.LocalToGlobal.GlobalTheory.SuppSat
 import Formalism.SharpRestriction.InertJacobiLevels.TiesView
-import Formalism.SharpRestriction.Divisibility.LocalQuadraticParts
 import Formalism.SharpRestriction.AdmissibleParameterJoins.GandSk
-import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.GenericFramesLetters
-import Formalism.SharpRestriction.GrowthBounds.SmallOrderPrimes
-import Formalism.LocalRingCardinality.HostCls
 import Development.AutomorphicArithmetic.OrbitLabellings.EvenAddOrderOfHPOfPowLe
+import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.GenericFramesLetters
 
 noncomputable section
 

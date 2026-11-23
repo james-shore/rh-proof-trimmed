@@ -1,9 +1,9 @@
 import Development.AutomorphicArithmetic.Foundations.IwahoriReduction.SiegelFixedPoints.IsThBIff
-import Development.AbelianVarietyTheory.Definitions.Foundations.IsLamOfLSmulIff
 import Development.AutomorphicArithmetic.Foundations.IwahoriReduction.SiegelFixedPoints.WcocEdge0
 import Development.AbelianVarietyTheory.Definitions.Foundations.LiftSLMapMulInvMem
 import Development.AbelianVarietyTheory.Definitions.Foundations.ActWBOfInvariant
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ModularFunctionTowerIntegrality
+
 open scoped MatrixGroups Matrix
 open GlobalTheory.KZ GlobalTheory.K4 GlobalTheory.Glue GlobalTheory.KummerEisensteinGalois UpperTheory.Kd.L
 

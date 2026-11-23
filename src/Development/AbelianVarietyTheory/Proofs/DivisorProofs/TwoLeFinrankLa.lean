@@ -1,4 +1,4 @@
-import Development.AbelianVarietyTheory.Definitions.Divisors.ToRepFam
+import Development.AbelianVarietyTheory.Definitions.Divisors.NotCompactOfMEqOne
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.SiegelToroidalIntegral
 
 noncomputable section

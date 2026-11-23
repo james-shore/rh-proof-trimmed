@@ -1,10 +1,10 @@
 import Mathlib
 import Formalism.CharacterColumnKernels.StatementRho
 import Formalism.GaloisCohomology.LocalTateDualityK
-import ReciprocityTheory.Hypotheses.GalCohDefs
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LevRepZApply
 import Development.AbelianVarietyTheory.Definitions.Foundations.PowLtFirstRadius
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CardPowEqOneLeOfIsCyclicUnits
+
 open ReciprocityTheory.Gal
 
 open Polynomial IntermediateField

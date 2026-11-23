@@ -1,7 +1,7 @@
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.WeightsConj
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RecAlgNorm
-import Development.AutomorphicArithmetic.Foundations.LocalLanglands.IsRecTOfIsRec
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.DualIsConjByOne
+import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.RegularAlgebraicPurity
 
 set_option synthInstance.maxHeartbeats 200000
 

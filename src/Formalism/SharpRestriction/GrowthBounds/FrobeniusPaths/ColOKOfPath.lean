@@ -1,4 +1,5 @@
-import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.LiftedColumnCongruence
+import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.ColStepFactor
+import Formalism.LatticeTheta.Statement
 
 noncomputable section
 

@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.GMConjTranspose
+import Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.SemiCharImg
 
 noncomputable section
 open NumberField Formalism.BasicNotions Classical Matrix

@@ -1,10 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ThetaPartD
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBoundUnitary
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermInf
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermOf
-import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.TensorLocallyCompactRingStatement
-import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteAdeleTopologyStatement
+import CompanionTheory.SpectralGeometry.CountingDefinitions.AdelicEulerProducts.CountData
 
 noncomputable section
 

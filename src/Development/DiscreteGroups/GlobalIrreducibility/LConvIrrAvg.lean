@@ -1,4 +1,4 @@
-import Development.DiscreteGroups.GlobalIrreducibility.LConvIrrComm
+import Development.DiscreteGroups.GlobalIrreducibility.LConvIrrPre
 
 noncomputable section
 

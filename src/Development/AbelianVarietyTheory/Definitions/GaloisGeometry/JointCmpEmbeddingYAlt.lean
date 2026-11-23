@@ -1,9 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.MemberChainFormsLevelPrimeEqMember
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.DetIntOfLevel
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsMidLevIff
-import Formalism.LocalToGlobal.GroupLattices.StdSubAtOfRing
-import Formalism.LocalToGlobal.GroupLattices.Joint0
+import Formalism.SharpRestriction.GrowthBounds.ChartedClasses.InTwSt
 
 noncomputable section
 

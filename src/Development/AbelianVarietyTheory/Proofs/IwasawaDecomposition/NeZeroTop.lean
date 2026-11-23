@@ -1,11 +1,10 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.StdLvPr
-import Formalism.LocalToGlobal.HermitianForms.TiedTwJSym
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ValuedLtOfMem
 import Formalism.LocalToGlobal.Columns.TwQLevU
-import Formalism.LocalToGlobal.Columns.RecLevelAsm
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MemPrinCongOfSm
-import Formalism.LocalToGlobal.Columns.TiedCls
+import Formalism.LocalToGlobal.Columns.WordFin
+import Formalism.LocalToGlobal.Columns.TiedCF
 
 noncomputable section
 

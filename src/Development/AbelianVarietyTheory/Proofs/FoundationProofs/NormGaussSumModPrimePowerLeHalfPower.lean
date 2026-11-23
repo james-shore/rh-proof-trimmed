@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ChSumSubCMul
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.NormSubOnePowThreeLe
+import Formalism.SharpRestriction.ValuationFrobeniusEpsilon.LeastPrimeTwists.StrictlyAntitoneWeights.SigThreeSetFiniteOverField
 
 noncomputable section
 

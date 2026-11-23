@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralDefiniteUnitaryQuotientEqClassSum
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.VacTheta
 
 open NumberField MeasureTheory
 open scoped Classical

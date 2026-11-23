@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
 import GroundTheory.AutomorphicForms.HarishChandraCentre
+import Formalism.RealPlaceAnalysis.StatementE
 
 namespace UpperTheory.V.Af.CuspFin
 

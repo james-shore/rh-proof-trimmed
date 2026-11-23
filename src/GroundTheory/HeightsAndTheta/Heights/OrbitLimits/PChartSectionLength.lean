@@ -2,11 +2,11 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StChartSectionLength
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StChartConeLength
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PFundCycleBaseChange
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.LocalMultRadical
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.LengthLocalizedModuleQuotient
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PComplexMinimalPrimesContract
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PPrimeComplexRadical
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterDivSupp
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Targets

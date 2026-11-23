@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LowerZeroUpperBlockIndicatorSqSumEqCard
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SuppInd
 
 open Classical
 

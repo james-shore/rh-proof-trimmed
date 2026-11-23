@@ -1,7 +1,7 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsDiagR
+import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsAntisym
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.MemDivSuppOfDivCycleNeZero
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRedC
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRes
 
 set_option maxSynthPendingDepth 1
 

@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CosetRefinement
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.TopPlaceLogTheta
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ColHeightWith
 
 noncomputable section

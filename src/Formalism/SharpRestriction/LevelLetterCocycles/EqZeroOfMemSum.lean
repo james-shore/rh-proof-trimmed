@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.LatticeBoundsOfThreeParts
-import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.RkMultVNonneg
+import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.RkMultVOfNotJump
 
 noncomputable section
 

@@ -3,10 +3,10 @@ import GroundTheory.LocalFields.ConductorFormalGroup
 import GroundTheory.LocalFields.LubinTatePrimitive
 import GroundTheory.LocalFields.LubinTateTowerMaps
 import GroundTheory.LocalFields.LubinTateLimitGalois
-import GroundTheory.LocalFields.SeparableClosureValuation
 import GroundTheory.LocalFields.Monogenic
 import GroundTheory.LocalFields.Different
-import GroundTheory.LocalFields.UpperNumbering
+import GroundTheory.LocalFields.HerbrandFunction
+import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.GeneralBFactAlt
 
 noncomputable section
 

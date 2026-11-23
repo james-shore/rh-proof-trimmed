@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HyperbolicPairUnitaryTransitive
-import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.LatticeGramScalarAlmostAll
+
 open HeckeCharacterZeroLocus.SiegelWeilU
 open scoped Matrix
 set_option maxHeartbeats 1000000 in

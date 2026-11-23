@@ -1,9 +1,6 @@
 import Mathlib
 import Formalism.FrobeniusOrbits.Statement
 import Formalism.FrobeniusOrbits.DiscrMaximalRealCyclotomic
-import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.Galois
-import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.FrobMulInertia
-import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.CoprimeTwoPow
 
 open NumberField IntermediateField Ideal
 

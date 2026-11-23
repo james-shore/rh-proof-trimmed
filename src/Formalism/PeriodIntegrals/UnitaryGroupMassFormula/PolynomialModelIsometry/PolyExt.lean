@@ -1,4 +1,6 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PolynomialModelIsometry.PolyExtLem
+import Formalism.PeriodIntegrals.WeylForU
+import Formalism.PeriodIntegrals.UnitaryDense
 
 noncomputable section
 

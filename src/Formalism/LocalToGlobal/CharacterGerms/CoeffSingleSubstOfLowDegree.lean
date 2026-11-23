@@ -1,5 +1,5 @@
 import Formalism.LocalToGlobal.CharacterGerms.AbstractGermZeroCondition
-import Formalism.LocalToGlobal.CharacterGerms.RowTieCartAdd
+import Formalism.LocalToGlobal.CharacterGerms.ConstMemTypeSetOfNonneg
 
 noncomputable section
 

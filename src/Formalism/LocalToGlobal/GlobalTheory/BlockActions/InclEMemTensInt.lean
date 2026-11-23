@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.GlobalTheory.BlockActions.LatSOfMem
+import Formalism.SatakeDualWeyl.StatementC
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.AfsplitB
 
 noncomputable section

@@ -1,7 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFockMap
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryPQContinuousCharacterEqDetPowProd
-import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IntegralConjInnerMulInnerOfIsEmptyEquiv
+
 open scoped Matrix
 open Formalism.BasicNotions.TH
 

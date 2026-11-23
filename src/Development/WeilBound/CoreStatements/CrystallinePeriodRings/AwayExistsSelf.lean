@@ -1,10 +1,8 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.LocalSituation
-import Formalism.SharpRestriction.LevelLetterCocycles.LocCoh
 import GroundTheory.PAdicHodge.BCrisRegularFinal
 import GroundTheory.PAdicHodge.FundamentalSeqBCris
 import Development.WeilBound.CoreStatements.CrystallinePeriodRings.NonemptyThetaLOfTied
-import Development.WeilBound.CoreStatements.CrystallinePeriodRings.FilQuot
 import Development.WeilBound.CoreStatements.CrystallinePeriodRings.InvRestrictScalarsMem
 
 noncomputable section

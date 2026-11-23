@@ -1,9 +1,5 @@
 import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.MovDXiAtRecStep
 import Formalism.SharpRestriction.GrowthBounds.ChartComparison.PStabEq
-import Formalism.SharpRestriction.GrowthBounds.ChartedClasses.InTwSt
-import Formalism.SharpRestriction.GrowthBounds.ChartedClasses.ToLEInvApply
-import Formalism.SharpRestriction.GrowthBounds.DataGChain
-import Formalism.LocalRingCardinality.SpanPowerMembership.GatSetting
 import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.RepTwLat
 
 noncomputable section

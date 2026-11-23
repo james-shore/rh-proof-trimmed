@@ -1,7 +1,6 @@
 import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.UnitTraceSumBounds.EndIntWOf
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.WfSubst
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.WfRing
-import Mathlib
 import Formalism.PeriodIntegrals.AddIntG
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.WittLogarithm
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.WittFrobeniusEnd

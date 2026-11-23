@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsLinearHomPull
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SmoothRayQuotient
 
 noncomputable section
 

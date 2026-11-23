@@ -1,5 +1,4 @@
 import Formalism.FormalGroupLog.FormalGroupLogProofs.HomPsSubstMvSubst
-import Formalism.FormalGroupLog.FormalGroupLogProofs.ConstantCoeffSubstOfZero
 
 namespace Formalism.G
 

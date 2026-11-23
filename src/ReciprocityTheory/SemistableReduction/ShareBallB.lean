@@ -1,4 +1,4 @@
-import ReciprocityTheory.SemistableReduction.ShareBallA
+import ReciprocityTheory.SemistableReduction.ShareSt
 
 noncomputable section
 

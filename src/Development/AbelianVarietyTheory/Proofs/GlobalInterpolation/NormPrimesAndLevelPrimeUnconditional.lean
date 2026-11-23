@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.GL3MeanSquares.PrimeCountAsymptoticInProgressions
+import Formalism.GL3MeanSquares.SmoothedRemainderRealIntegralFormula
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ZerosDisc
 import Development.AbelianVarietyTheory.Definitions.Foundations.RayPrimes
 import Formalism.SharpRestriction.InertJacobiLevels.AsmIface
@@ -7,9 +7,9 @@ import Formalism.LocalToGlobal.GlobalTheory.IsResidueClassZero
 import Formalism.SharpRestriction.GrowthBounds.SmallOrderPrimes
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.PairRowIffQdRows
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.DisjointExceptional
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ThinScalesIffHostBound
+import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.Analytic
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.LogCondLeThree
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.AuxiliaryPrimeMemAvoidedPrimes
+import Formalism.LocalToGlobal.UnitaryNorms.CharHost
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExplicitRanksBasicBoundsLargeScale
 import Development.AutomorphicArithmetic.ShortNorms.Primes
 import Development.AutomorphicArithmetic.ShortNorms.normPrimesN

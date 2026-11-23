@@ -1,9 +1,10 @@
 import Mathlib
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSt
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsIntersectionFamily
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.ADensStC
-import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
 import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.LeviOneEqLaplacianThm
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ArithModel
+import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

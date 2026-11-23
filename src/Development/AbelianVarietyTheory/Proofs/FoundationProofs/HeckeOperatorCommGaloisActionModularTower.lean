@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.EigenOfTwoStep
+import Development.AbelianVarietyTheory.Definitions.Foundations.OpLDOneSubMemTriv
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SlMulToRingEquiv
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.GalBMemKummerInvariantSetStatement
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIsDiamondMatrixGamma1Gamma0OfCoprimeStatement
@@ -8,6 +8,7 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumActUpperTrian
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.GalBActDiagNatOneCommStatement
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.GaloisActionUpperTriangularHeckeReindexOnBStatement
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.GalBActCommGamma0CapGamma0LevelShimuraReciprocitStatement
+
 open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ
 

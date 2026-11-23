@@ -1,8 +1,6 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StatementsCurrent
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.EqZeroOfMemZeroLocusLineOriginIdeal
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.GraphChartEventuallyEqSheet
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StatementsSheetMeasurable
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.Statements
+import ReciprocityTheory.AnalyticForms.AnalyticCharts.Osgood
 
 set_option maxSynthPendingDepth 1
 

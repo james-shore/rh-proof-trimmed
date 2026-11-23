@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsLineGenOn
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.InjectiveOfIsCptGen
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.EtaleLocalizationAtPrimeTensorOfLowHeight
 
 noncomputable section
 

@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryDense
 
 open Matrix
 open scoped ComplexOrder

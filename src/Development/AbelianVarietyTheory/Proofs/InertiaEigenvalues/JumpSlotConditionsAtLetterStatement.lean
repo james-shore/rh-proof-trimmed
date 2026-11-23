@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.JumpPositionConditionsAtLetter
-import Formalism.SharpRestriction.LevelLetterCocycles.TableLineDegreeTwo
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemIntPts
 
 set_option maxHeartbeats 1000000 in
 theorem _root_.GlobalTheory.T.jump_position_conditions_at_letter : ∀ (l t : ℕ) (up : Bool) (Fl Fc : Finset ℤ) (η S B W0 : ℝ) (sgP σ : ℤ), 1 ≤ t → (t : ℝ) ≤ η → 0 ≤ B → 0 ≤ S →

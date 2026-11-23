@@ -1,6 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsHeatZero
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.GCauchyStatement
 
 open scoped TensorProduct LinearAlgebra.Projectivization
 

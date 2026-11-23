@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.SatakeDualWeyl.KpqSubgroupCompact
 import Formalism.ConjugateSelfDual.Statement
-import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 
 noncomputable section
 

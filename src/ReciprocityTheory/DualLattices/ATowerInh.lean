@@ -1,4 +1,4 @@
-import ReciprocityTheory.DualLattices.NsetExpInjectiveSurjective
+import ReciprocityTheory.DualLattices.SqZeroOfSpan
 
 noncomputable section
 

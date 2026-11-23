@@ -5,6 +5,7 @@ import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.EqZeroOfLinte
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.HeisenbergDerivativeCommutatorRelation
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.EmbeddingXiZeroNeZero
 import ReciprocityTheory.SemistableReduction.AlgebraicIndependentOfDerivations
+import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
 
 noncomputable section
 

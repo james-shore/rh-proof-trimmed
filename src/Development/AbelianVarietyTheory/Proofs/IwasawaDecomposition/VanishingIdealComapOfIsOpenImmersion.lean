@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsIvDOfDefinite
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.NormalisedBlowupCone
+
 open AlgebraicGeometry CategoryTheory Limits NumberField IsLocalRing TopologicalSpace
 
 namespace GlobalTheory

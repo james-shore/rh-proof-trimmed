@@ -1,9 +1,8 @@
 import Mathlib
-import Formalism.MeanHeightDescent.MuMaxMinkowski
 import Formalism.MeanHeightDescent.BadRowsNumeric
 import Formalism.MeanHeightDescent.CombinedAverageDegreeBound
-import Formalism.MeanHeightDescent.AverageDegreeBounds.CovolumeAssemblyHolds
 import Formalism.MeanHeightDescent.AverageDegreeBounds.SumComponents
+import Formalism.MeanHeightDescent.AverageDegreeBounds.CombinedAverageDegreeBoundOf
 
 open Finset Module NumberField
 

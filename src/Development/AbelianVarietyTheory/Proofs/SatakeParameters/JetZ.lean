@@ -1,11 +1,9 @@
 import Mathlib
 import Formalism.SharpRestriction.Divisibility.OrbitPlaces
-import Formalism.LocalToGlobal.GroupLattices.PendingLemmas.ExistsCoprimePowEqOne
-import Formalism.SharpRestriction.ParConsts
+import Formalism.SharpRestriction.AdmissibleParameterJoins.GandSp
+import Formalism.LocalToGlobal.GroupLattices.PerfectRings.ExistsSqEqIntCast
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsPlaceCofactorValuationLowerBound
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ModelsOK
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.Cobdry
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.DualOm
 
 noncomputable section
 

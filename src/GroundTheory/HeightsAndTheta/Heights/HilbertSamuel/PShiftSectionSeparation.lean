@@ -3,10 +3,12 @@ import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsShiftSection
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsSmallSectionPointHeight
 import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.ImportsAlt
 import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.PCurveDivVertical
-import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.IsSmoothHermConstLine
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.Counterexample
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PZhangLowerX
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PFsLineSmooth
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRedF
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterNamed
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.HilbertSamuel

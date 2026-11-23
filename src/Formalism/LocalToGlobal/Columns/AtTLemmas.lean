@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.Columns.ScaledRamifiedLattice
 import Formalism.LocalToGlobal.Columns.GSetLemmas
-import Formalism.LocalToGlobal.Columns.ColFormsLemmas
+import Formalism.LocalToGlobal.Columns.CoefColLemmas
 
 open NumberField IsDedekindDomain Module
 

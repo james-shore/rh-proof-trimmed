@@ -1,6 +1,6 @@
 import Mathlib
-import ReciprocityTheory.CommutativeAlgebra.PolynomialHeights.HeightAddRingKrullDimQuotientMvPolynomialField
-import ReciprocityTheory.AnalyticForms.RegularLocalRings.BaseChangeCB
+import ReciprocityTheory.AnalyticForms.RegularLocalRings.BaseChangeCA
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Targets

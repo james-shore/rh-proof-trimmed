@@ -2,6 +2,8 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsPFSecRed
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.ExistsUniqueStatement
 import GroundTheory.HeightsAndTheta.Heights.Intersections.TableDegreeThreeBase
+import GroundTheory.HeightsAndTheta.Heights.Intersections.AvoidRing
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Inter

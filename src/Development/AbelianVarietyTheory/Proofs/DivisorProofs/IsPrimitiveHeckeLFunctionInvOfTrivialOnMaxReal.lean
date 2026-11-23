@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.PairingDivisors.StatementA
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsFinSetSplitPlacesCoprimeConductor
+import Formalism.PairingDivisors.StatementH
+import Development.AbelianVarietyTheory.Definitions.Divisors.EntireEqOfHalfPlane
 import Formalism.LocalToGlobal.UnitaryNorms.CharTransport
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsWeakApproxUnitFinitePlace
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeCharacterUnramifiedAeAndExistsLevel

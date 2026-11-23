@@ -1,7 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelStructures.LocLevi
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelStructures.LatAdapted
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelStructures.CMInst
+import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.MassDataInst
 
 noncomputable section
 

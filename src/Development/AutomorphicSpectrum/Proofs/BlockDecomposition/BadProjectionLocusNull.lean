@@ -8,7 +8,7 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DehomogenizedEv
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PPtsSheetOnlyNull
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PCriticalFibreInfinite
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeB
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegrableOnSourceIffOfDensity
+
 set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry Limits TopologicalSpace MvPolynomial MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor

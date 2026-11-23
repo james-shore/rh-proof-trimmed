@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.CuspSpanNormBounds.CayleyDegreeNondegeneracy.RowsNum
+import Mathlib
 
 namespace Formalism.MainNotions.BridgeLemma₂
 

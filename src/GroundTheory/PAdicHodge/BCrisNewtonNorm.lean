@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.PAdicHodge.BCrisNewtonLift
 import GroundTheory.PAdicHodge.FactorizationFactorialLe
-import GroundTheory.PAdicHodge.KerTheta
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

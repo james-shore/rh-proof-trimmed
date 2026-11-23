@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.PrimeCastNeZero
+import Formalism.SharpRestriction.GrowthBounds.FormalGroupSystem
 
 noncomputable section
 

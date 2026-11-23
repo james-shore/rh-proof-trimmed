@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.GlobalTheory.ColValOfTiedSOfFin
-import Formalism.LocalToGlobal.GlobalTheory.ColMemOfIsLocBasis
 
 noncomputable section
 

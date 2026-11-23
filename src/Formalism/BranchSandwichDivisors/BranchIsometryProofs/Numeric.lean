@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.BranchSandwichDivisors.StatementR
-import Formalism.BranchSandwichDivisors.BranchIsometryProofs.Interlace
 
 open Finset
 

@@ -1,5 +1,5 @@
-import Formalism.LocalToGlobal.GaloisLevelStructure.LinkChar
-import Mathlib
+import Formalism.LocalToGlobal.GaloisLevelStructure.NGalTied
+import Formalism.LocalToGlobal.UnitaryNorms.CharTied
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.NGalTied
 
 set_option synthInstance.maxHeartbeats 200000

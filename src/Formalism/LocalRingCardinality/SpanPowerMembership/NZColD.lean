@@ -1,5 +1,4 @@
 import Formalism.LocalRingCardinality.Lemmas
-import Mathlib
 
 noncomputable section
 

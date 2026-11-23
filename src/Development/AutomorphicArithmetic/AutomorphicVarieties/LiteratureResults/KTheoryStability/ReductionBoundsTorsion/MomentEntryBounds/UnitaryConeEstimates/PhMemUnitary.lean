@@ -1,4 +1,5 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.MomentEntryBounds.ExistsFinsetCosets
+import GroundTheory.AutomorphicForms.NormDetDiagUnitsPosRealToUnits
 
 noncomputable section
 

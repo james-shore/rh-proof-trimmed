@@ -1,5 +1,4 @@
 import Mathlib
-import ReciprocityTheory.CommutativeAlgebra.PolynomialHeights.HeightAddRingKrullDimQuotientMvPolynomialField
 
 namespace ReciprocityTheory.AnForm.R
 

@@ -1,6 +1,6 @@
 import Formalism.LocalRingCardinality.DataParams₂
 import Formalism.LogFactorialIndices.StatementSize
-import Formalism.QuotientMetricDivisors.TheoremDivIneqRowsShift
+import Formalism.QuotientMetricDivisors.Statement
 import Formalism.MirabolicMackeyTheory.StatementT
 
 noncomputable section

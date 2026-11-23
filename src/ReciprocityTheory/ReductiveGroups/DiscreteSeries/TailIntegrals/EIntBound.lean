@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.InductiveHeisenbergInputs
+import Formalism.HermitianCurvature.WeylElementCommutesLevelOne
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.ScaleInt
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.HeisenbergMapContinuous
 

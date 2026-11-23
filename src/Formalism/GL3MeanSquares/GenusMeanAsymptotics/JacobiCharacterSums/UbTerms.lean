@@ -1,4 +1,5 @@
 import Formalism.GL3MeanSquares.GenusMeanAsymptotics.JacobiCharacterSums.TwentyFiveMulSmallConstant
+import Formalism.GL3MeanSquares.GenusMeanAsymptotics.JacobiCharacterSums.ExistsPowerSumLowerBound
 
 open Finset Complex
 

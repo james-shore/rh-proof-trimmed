@@ -1,8 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsReading
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemPairLat
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsLocPart
-import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.UnitCharTriangle
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemPairLat
 
 noncomputable section
 

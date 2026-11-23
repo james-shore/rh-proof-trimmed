@@ -1,6 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.PrimitiveStatementsWithPassage
 import Formalism.LocalToGlobal.IndefiniteReal.LiftGoodPartComplexEqRange
+import Formalism.LocalToGlobal.IndefiniteReal.EqZeroOfMemRangeAdjoint
+import Formalism.LocalToGlobal.IndefiniteReal.EqZeroOfRangeAdjoint
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder InnerProductSpace

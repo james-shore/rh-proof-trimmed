@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalRingCardinality.DataAmbForm
+import Formalism.LocalRingCardinality.PrincipalHermitianLattice
 
 noncomputable section
 

@@ -2,8 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsDatNeZero
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsTorsCharZero
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RigOfOmegaInjectiveOfEqZero
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.CrysToDRBijective
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.AbelianHodgeDeRham
+import Development.AbelianVarietyTheory.Definitions.Divisors.ComparisonMemCechHodgeFiltration
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CocycleTensorLiftApplyEqTwoPointValue
 
 set_option autoImplicit false

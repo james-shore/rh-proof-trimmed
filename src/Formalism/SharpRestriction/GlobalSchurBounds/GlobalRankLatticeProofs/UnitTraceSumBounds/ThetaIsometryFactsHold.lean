@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.GlobalSchurBounds.GL3Columns
-import Mathlib
 import Formalism.PeriodIntegrals.IsoDualPair
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IsometryDualPair.SymmetricMeasureL2NormEqResolutionL2
 import Formalism.PeriodIntegrals.IsoFunV
@@ -7,10 +6,9 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IsometryFunctionSpace.I
 import Formalism.PeriodIntegrals.IsoInvMetric
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.InvariantMetricIsometry.ColChoiceFintype
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MonomialFrameSpan.DetSubmatrixFun
-import Formalism.PeriodIntegrals.ScalDeg
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ScalarDegree.ScalDegMain
 import Formalism.PeriodIntegrals.IsoDerivB
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IsometryDerivative.IsoDerivB
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IsometryDerivative.ExistsOePerm
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IsometryDerivative.ApplyAt0EqSum
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.WwCauchyBinet
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.WwMain
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.WwInjective

@@ -1,4 +1,4 @@
-import Formalism.PeriodIntegrals.OrbRestrOne
+import Formalism.PeriodIntegrals.OrbJetBase
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitPowerSeriesCoefficients.KillSubst
 
 noncomputable section

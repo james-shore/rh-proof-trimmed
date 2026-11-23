@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.TendstoSumIccInvResidueCot
-import Development.AbelianVarietyTheory.Definitions.Foundations.PetIPSmulRight
 import Development.AbelianVarietyTheory.Definitions.Foundations.RepL
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.Newform
 

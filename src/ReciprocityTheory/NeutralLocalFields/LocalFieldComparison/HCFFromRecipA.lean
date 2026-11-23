@@ -1,5 +1,4 @@
 import ReciprocityTheory.NeutralLocalFields.Reciprocity
-import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HilbertClassFieldA
 
 noncomputable section
 

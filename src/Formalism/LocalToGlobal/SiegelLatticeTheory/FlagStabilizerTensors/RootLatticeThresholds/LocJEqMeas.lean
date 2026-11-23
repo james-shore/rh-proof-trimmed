@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.LocJEq
+import Formalism.FormalDegreeBessel.FormalDegreeRatio.GBasic
 
 noncomputable section
 

@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.KernelLattices.ThDistC
-import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.IndexExponentDegree
 
 open NumberField IsDedekindDomain
 

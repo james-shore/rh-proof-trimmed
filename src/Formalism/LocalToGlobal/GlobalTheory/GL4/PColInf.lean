@@ -1,6 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.GlobalTheory.GL4.PColFin
 import Formalism.LocalToGlobal.GlobalTheory.GL4.FockSelfImEqZero
+import Formalism.LocalToGlobal.Columns.BrpAevalScaleMonomial
 
 open Module NumberField IsDedekindDomain MvPolynomial
 open scoped Matrix

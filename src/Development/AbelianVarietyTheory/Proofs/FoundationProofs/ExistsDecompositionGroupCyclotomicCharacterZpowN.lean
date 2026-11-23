@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.GaloisCohomology.LocalTateDualityK
+import Formalism.GaloisCohomology.Statement
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CyclotomicCharInertiaSurjective
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology

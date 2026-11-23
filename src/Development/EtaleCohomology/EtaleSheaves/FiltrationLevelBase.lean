@@ -1,5 +1,8 @@
 import Development.EtaleCohomology.EtaleSheaves.ArchimedeanCokernel
 import Development.EtaleCohomology.EtaleSheaves.ArchimedeanRelations
+import Development.EtaleCohomology.EtaleSheaves.FiltGenPf
+import Development.EtaleCohomology.EtaleSheaves.DiscLvlPf
+import Development.EtaleCohomology.EtaleSheaves.ShiftLvlPf
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite Simplicial CochainComplex CochainComplex.HomComplex GlobalTheory.EtC

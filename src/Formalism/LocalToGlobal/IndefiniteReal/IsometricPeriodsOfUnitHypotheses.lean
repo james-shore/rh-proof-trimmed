@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.IsometricPeriodsOfHypotheses
+import Formalism.LocalToGlobal.Divisibility.RowLatLemmas
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder InnerProductSpace

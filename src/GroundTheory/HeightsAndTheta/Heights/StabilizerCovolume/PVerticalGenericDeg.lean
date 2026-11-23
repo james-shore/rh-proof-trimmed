@@ -1,13 +1,9 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.CoordinateIdeals
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.CoordinateIdeals.LineField
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsArith
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ExistsLinearIndependentOfGenerates
-import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.Cartier
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PRepresentative
-import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PIntNumRatSection
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.Assembly
-import GroundTheory.HeightsAndTheta.Heights.HeightComparison.IsMultiHomogIdealIff
+import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.CoordinateIdeals.LineField
 
 set_option maxSynthPendingDepth 1
 

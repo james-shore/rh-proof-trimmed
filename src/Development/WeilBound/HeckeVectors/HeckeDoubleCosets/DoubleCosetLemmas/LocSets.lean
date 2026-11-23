@@ -1,6 +1,4 @@
 import Development.WeilBound.HeckeVectors.HeckeDoubleCosets.DoubleCosetLemmas.LocMeas
-import Development.WeilBound.HeckeVectors.HeckeDoubleCosets.DoubleCosetLemmas.LocCount
-import Development.WeilBound.HeckeVectors.HeckeDoubleCosets.DoubleCosetLemmas.ExtendedCharacterUnit
 
 noncomputable section
 

@@ -1,16 +1,12 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.MetricPeriods.Pull1
+import Development.AutomorphicSpectrum.Definitions.MetricPeriods.GeometricAbelianConnected
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsPeriodOn
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SingularWeightMonotoneRegularization
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlatWeightExtends
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagBundlePartialBlockMapStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SncAdaptedAtlasProjection
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.PartialFlagBundleMetricLineStatement
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.LogResolutionFunctorialHolomorphic
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.LogResolutionFubiniStudyPositive
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SmoothFunctionAsDegreeZeroMetric
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PHFlProdLinear
-import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.PartialFlagBlocks
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SamePotBlock
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SingWeightRegFamilyTransport
@@ -20,6 +16,7 @@ import Development.AutomorphicSpectrum.Proofs.MetricProofs.NotMemMcPtsTop
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.WeightDescendsOfSameOrbit
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.IsSmoothHermPullHerm
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.MCoordIdealCompLeImageZ
+
 open MvPolynomial MeasureTheory Filter Topology Matrix ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I1 ReciprocityTheory.ChartRestriction.G.AI.I2 ReciprocityTheory.ChartRestriction.G.AI.I4 GlobalTheory.CompanionTheory.Ar.PB GlobalTheory.CompanionTheory.Ar.PB.FA GroundTheory.Heights₂.Heights GroundTheory.Heights₂.Heights.LowerBoundFree
 open scoped ComplexOrder Classical
 

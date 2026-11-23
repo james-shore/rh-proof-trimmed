@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpTie
+import Formalism.LocalToGlobal.ProjectiveLattices.ThGerm
 import Formalism.FormalGroupWitt.FormalGroupWittProofs.SolveV
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.ChartChg
 import Formalism.LocalToGlobal.ProjectiveLattices.SatLeaves

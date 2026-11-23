@@ -4,6 +4,7 @@ import Formalism.LocalToGlobal.IndefiniteReal.ZeroPartEigenvalueConvention
 import Formalism.LocalToGlobal.ProjectiveLattices.PlaceBelow
 import Formalism.LocalToGlobal.ProjectiveLattices.FamilyUniformisationBasePointOrthogonalBis
 import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.SlopeBoundSingleLiftOfDefinitions
+import Formalism.LocalToGlobal.ProjectiveLattices.SpanRatSmulMem
 
 open Module NumberField IsDedekindDomain
 

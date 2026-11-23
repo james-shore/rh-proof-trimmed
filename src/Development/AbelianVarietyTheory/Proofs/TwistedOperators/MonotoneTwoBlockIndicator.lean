@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.JacquetSubsetSums.JacquetSubsetSum
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.RadicalNoFixedVectors
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPermMatrixRepParabolicDoubleCoset
 

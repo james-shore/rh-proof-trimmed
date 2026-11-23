@@ -1,5 +1,4 @@
 import Mathlib
-import GroundTheory.AutomorphicForms.TraceNormComp
 import GroundTheory.AutomorphicForms.FinePartition
 import GroundTheory.AutomorphicForms.HilbertSchmidtKernel
 

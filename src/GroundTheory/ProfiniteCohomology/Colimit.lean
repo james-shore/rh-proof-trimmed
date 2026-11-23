@@ -2,8 +2,8 @@ import Mathlib
 import GroundTheory.ProfiniteCohomology.ColimitDefs
 import GroundTheory.ProfiniteCohomology.FilteredHomology
 import GroundTheory.ProfiniteCohomology.Factor
-import GroundTheory.ProfiniteCohomology.DiscreteModules.IsDiscreteRepIffForallExistsOpenNormalSubgroup
 import GroundTheory.TateCohomology.Annihilation
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

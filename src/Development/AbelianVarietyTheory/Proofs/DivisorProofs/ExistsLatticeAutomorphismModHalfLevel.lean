@@ -3,8 +3,8 @@ import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.UniformLevelMult
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.LevelLiftConditions
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RationalVectorMemIdealCompletedLatticeIffStatement
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.CongruenceLatticeFractionalMultipleAgree
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.AdelicElementLatticeFullAndCompletion
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsLevelSubgroup
+
 open NumberField IsDedekindDomain Matrix Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Mult
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.WittOnFalse
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RigExtMapRelFrobCompRigOfOmega
 import Development.AbelianVarietyTheory.Definitions.Divisors.FormalCoboundarySmul
 import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.CoeffSingleLawAdd
 

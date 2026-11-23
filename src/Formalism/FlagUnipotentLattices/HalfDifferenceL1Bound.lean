@@ -1,8 +1,5 @@
 import Mathlib
-import Formalism.LogSumExpBounds.NuclearBound
-import Formalism.LatticeRigidity.StatementD
-import Formalism.HarderNarasimhan.StatementPl
-import Formalism.HarderNarasimhan.Statement
+import Formalism.LogSumExpBounds.StatementD
 
 open Finset MeasureTheory NumberField
 open scoped ComplexOrder

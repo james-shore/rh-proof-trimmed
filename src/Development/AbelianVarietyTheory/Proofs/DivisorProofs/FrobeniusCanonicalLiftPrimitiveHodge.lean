@@ -2,8 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsDatNeZero
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsTorsCharZero
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RigOfOmegaInjectiveOfEqZero
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.CrysToDRBijective
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.AbelianHodgeDeRham
+import Development.AbelianVarietyTheory.Definitions.Divisors.ComparisonMemCechHodgeFiltration
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumTwoPointFunctionMultiplesNaturalCharP
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFaithfullyFlatPowEq
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSquare
@@ -12,6 +11,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CrystallineCocycleO
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSymmetricTwoCocycleOfAdditiveStructureTorsor
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagSumCoc
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorLiftMulByNatConvPowerComulEqSucc
+
 open CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct WithConv
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap epsR IsTangent IsGrpPullback)
 open ReciprocityTheory.ChartRestriction.G.Semi (IsAbelianScheme LB RigLB CubicalStr Theta thφ thε thK x3)

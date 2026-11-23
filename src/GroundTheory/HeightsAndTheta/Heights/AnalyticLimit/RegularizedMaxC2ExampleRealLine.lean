@@ -1,6 +1,7 @@
 import Mathlib
-import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PshRegMax
 import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.Objects
+import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PshRegMax
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.AnalyticLimit

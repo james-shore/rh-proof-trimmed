@@ -1,6 +1,5 @@
 import Formalism.SharpRestriction.InertJacobiLevels.ExtraRec
 import Formalism.LocalRingCardinality.SpanPowerMembership.TwistRecordRowDimensionZero
-import Formalism.LocalRingCardinality.DataParams
 
 noncomputable section
 

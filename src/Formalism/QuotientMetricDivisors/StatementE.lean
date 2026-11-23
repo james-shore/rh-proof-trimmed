@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.QuotientMetricDivisors.StatementJ
 
 open Finset
 

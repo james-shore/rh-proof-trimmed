@@ -2,9 +2,7 @@ import Mathlib
 import Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.HermitianCellMeasures.EmDefs
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.JacobiMapsExist
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoefficientDataExists
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SchwartzBoundFiniteInfinite
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsClosedHermSVal
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousThetaKernelComponents
 
 noncomputable section
 

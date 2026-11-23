@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.StandardCharSeparatesIntegralFiniteAdeles
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
-import GroundTheory.GlobalFields.TateThesis.AdelicCharDual
 
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 set_option maxHeartbeats 1000000 in

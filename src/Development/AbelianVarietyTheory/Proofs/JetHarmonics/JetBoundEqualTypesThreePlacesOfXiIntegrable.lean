@@ -2,8 +2,6 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Jets.SupWOfSup
 import Development.AbelianVarietyTheory.PublishedTheorems.BesselIntegrals.BesselXiIntegrable
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.Cut_BPEq
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutLimENF
-import Formalism.HermitianCurvature.HerGenC
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutBPEqDecay
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutBPEqShift
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.NormaliserAcrossPlaces

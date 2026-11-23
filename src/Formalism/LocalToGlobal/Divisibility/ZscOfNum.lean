@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.Divisibility.LinkDef
+import Formalism.LocalToGlobal.Divisibility.DivisionHeightBoundStatement
 import Formalism.LocalToGlobal.Divisibility.NumbersLink
 
 open Module NumberField IsDedekindDomain

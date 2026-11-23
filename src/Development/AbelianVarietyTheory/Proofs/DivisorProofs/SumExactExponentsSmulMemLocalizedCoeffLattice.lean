@@ -1,15 +1,13 @@
 import Mathlib
-import Formalism.PieriBlockIdeals.StatementLA
 import Formalism.LocalToGlobal.Divisibility.CoefMod
 import Formalism.LocalToGlobal.Divisibility.RowLat
-import Formalism.PieriBlockIdeals.PieriColumnMinors.ProdInitialMinorsMemDetSpan
 import Formalism.LocalToGlobal.Columns.CoefficientsModP
-import Formalism.MirabolicMackeyTheory.MirabolicMackeyProofs.RamBasic
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FinAfMemIntUIff
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.StandardWeylLatticesFockDual
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SmulMemLocPOfVal
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.WeylRowActionMemWeylLatticeSquare
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.MemClosureIff
+import Formalism.MirabolicMackeyTheory.MirabolicMackeyProofs.RamBasic
+import Formalism.PieriBlockIdeals.PieriColumnMinors.ProdInitialMinorsMemDetSpan
 
 open NumberField IsDedekindDomain MvPolynomial Formalism.BasicNotions Formalism.L2.DIV
 

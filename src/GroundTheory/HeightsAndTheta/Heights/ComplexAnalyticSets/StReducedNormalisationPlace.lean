@@ -1,6 +1,7 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StCurveResidueDegree
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.CurveNormalisationFiniteLemmas
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StCurveNormalisationLength
+import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.StatementsMChart
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

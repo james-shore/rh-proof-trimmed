@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.ArithmeticGeometry.AbelianVarieties.Torsion
+import GroundTheory.ArithmeticGeometry.AbelianVarieties.DivisionPoints
 import GroundTheory.ProfiniteCohomology.GaloisModules.Discrete
 import GroundTheory.ProfiniteCohomology.GaloisModules.FixedField
 

@@ -1,5 +1,6 @@
 import Formalism.SharpRestriction.GlobalSchurBounds.TheoremThreeOfExplicitAndCompact
 import Formalism.SharpRestriction.GlobalSchurBounds.ThickPlacesCorollaryOfAnyTranslate
+import Formalism.GL3MeanSquares.HookFormulaTorsion.OneAddInvPowLeExpOne
 
 noncomputable section
 namespace Formalism.MainNotions.StandardLattice

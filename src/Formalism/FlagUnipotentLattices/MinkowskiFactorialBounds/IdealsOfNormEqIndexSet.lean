@@ -1,4 +1,4 @@
-import Formalism.FlagUnipotentLattices.MinkowskiFactorialBounds.LatticeSumBounds
+import Formalism.FlagUnipotentLattices.CardSubmodulesAndLinearEquivBounds
 import Formalism.HyperbolicPlaceProducts.SecondLevelArithmeticNorm
 import Formalism.HyperbolicPlaceProducts.ArithmeticCountRevised
 

@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.GlobalFields.FirstInequality
 import GroundTheory.GlobalFields.ExistenceTheorem.IndexRangePowMonoidHomAdicCompletionMulNorm
-import GroundTheory.GlobalFields.KummerTheory.KummerIndexLemma
+import GroundTheory.GlobalFields.KummerTheory.KummerIndexLemma.PowerPlaces
 
 namespace GroundTheory.Global
 

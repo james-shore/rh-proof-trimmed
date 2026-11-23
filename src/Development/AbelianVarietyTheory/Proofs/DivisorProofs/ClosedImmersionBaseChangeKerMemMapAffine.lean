@@ -1,6 +1,6 @@
 import Development.AbelianVarietyTheory.Definitions.Divisors.SameIdIff
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ExistsCrystalPairing
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitsPatch
+
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
 namespace GlobalTheory

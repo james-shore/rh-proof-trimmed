@@ -1,9 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NatCastMemPlaceAt
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.EvLawsGenFrNonemptyComp
 import Formalism.LocalToGlobal.ProjectiveLattices.LocFld
-import Formalism.LocalToGlobal.ProjectiveLattices.IntAll
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCdvrReadingInCpOfFiniteResidueStatement
+
 open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.GeoTie
 
 set_option autoImplicit false

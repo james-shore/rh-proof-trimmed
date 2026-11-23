@@ -1,4 +1,4 @@
-import Formalism.PadicSubsetSums.CentralIdempotents.EigenbasisOfDistinctRoots
+import Mathlib
 
 namespace Formalism.IrreducibleCountingLemmas.GaloisIrreducibility
 

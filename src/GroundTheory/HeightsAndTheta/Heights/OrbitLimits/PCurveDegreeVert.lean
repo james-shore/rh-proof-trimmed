@@ -3,6 +3,9 @@ import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StatementsCurveDegreeVer
 import GroundTheory.HeightsAndTheta.Heights.Intersections.NotIsHorizontalOfDimOne
 import GroundTheory.HeightsAndTheta.Heights.Intersections.ArithVarZero
 import GroundTheory.HeightsAndTheta.Heights.Intersections.ExistsIsSheetFinZero
+import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRedA
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Targets

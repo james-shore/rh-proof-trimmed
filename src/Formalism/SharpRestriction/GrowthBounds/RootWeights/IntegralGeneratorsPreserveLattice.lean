@@ -1,5 +1,6 @@
 import Formalism.SharpRestriction.GrowthBounds.RootWeights.PolarizationDividedPowerMonomial
-import Formalism.SharpRestriction.GrowthBounds.RootWeights.PolynomialMemWeightSpaceIff
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.FockLatticeFiniteSpanning
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.DividedPowersPreserveZero
 
 noncomputable section
 

@@ -1,8 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.ThetaValues.FlatMemLatIffStdLat
-import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.NsmulApplyMemOfMemTensorLat
+import ReciprocityTheory.SemistableReduction.TorsionNonvanishStatement
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsSmulMemOfMemSpanFraction
-import ReciprocityTheory.SemistableReduction.ExistsIntSmulMemSpan
 import ReciprocityTheory.SemistableReduction.SemiDegCE
 import ReciprocityTheory.DualLattices.SmallLevelClassSet
 

@@ -1,15 +1,11 @@
 import Mathlib
-import Formalism.LocalToGlobal.HermitianForms.FormsTied
-import Formalism.LocalToGlobal.Columns.TiedValLatG
-import Formalism.LocalToGlobal.Columns.TiedValNorm
-import Formalism.LocalToGlobal.Columns.TiedValRat
-import Formalism.LocalToGlobal.Columns.CoefModAt
-import Formalism.LocalRingCardinality.PosOfIsomEmb
-import Formalism.QuotientMetricDivisors.ReductionLemmaZero
-import Formalism.QuotientMetricDivisors.FinalW
-import Formalism.LocalToGlobal.Divisibility.FramesLemmas
-import Formalism.LocalRingCardinality.DataArith
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.HtPsiLeIffExists
+import Formalism.LocalToGlobal.HermitianForms.LastCoordinateUniformizerVectorSpansOrthogonalLi
+import Formalism.LocalToGlobal.Columns.PolyFnLemmas
+import Formalism.LocalToGlobal.Columns.LocWLemmas
+import Formalism.LocalToGlobal.Columns.CoefficientsModP
+import Formalism.LocalToGlobal.GlobalTheory.GL6.PBwLocGen
+import Formalism.LocalToGlobal.Columns.WordFin
+import Formalism.LocalToGlobal.Columns.TiedCF
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.AutPointLatticeIntersectionSelfDualProperties
 
 open Module NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.DIV Formalism.L2.Forms

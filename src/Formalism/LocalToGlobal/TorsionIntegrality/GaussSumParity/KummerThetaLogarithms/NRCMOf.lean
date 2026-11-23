@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.BiextensionRelation
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.HomotheticLatticeIntegralS2
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.SecondLevelOfNorm
 
 noncomputable section
 open scoped BigOperators

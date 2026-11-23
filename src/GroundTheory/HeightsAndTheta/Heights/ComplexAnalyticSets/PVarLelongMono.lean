@@ -1,6 +1,9 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StVarLelongAnnulus
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PRegLogDensNonneg
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StRegLelongAnnulus
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StVarLelongMono
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

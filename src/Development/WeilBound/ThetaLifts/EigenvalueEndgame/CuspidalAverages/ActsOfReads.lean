@@ -2,6 +2,8 @@ import Development.WeilBound.ThetaLifts.EigenvalueEndgame.CuspidalAverages.Exist
 import Development.WeilBound.ThetaLifts.EigenvalueEndgame.TowerCodimensionTwo
 import Development.WeilBound.ThetaLifts.CartanFactorisation.ExistsBeta
 import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.PfDict
+import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGoodPlaceTranslateCombinationLatticeIndica
 
 noncomputable section
 

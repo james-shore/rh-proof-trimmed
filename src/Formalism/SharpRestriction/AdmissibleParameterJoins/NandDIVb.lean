@@ -1,7 +1,6 @@
 import Formalism.SharpRestriction.AdmissibleParameterJoins.NandDIVa
 import Formalism.SharpRestriction.GlobalTheoremInputs
 import Formalism.SharpRestriction.LevelLetterCocycles.SumRepresentations
-import Development.AutomorphicArithmetic.ResidueCharacters.TwistedPlaces
 
 noncomputable section
 

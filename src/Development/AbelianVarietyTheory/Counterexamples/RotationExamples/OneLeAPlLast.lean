@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.ThetaKernelFiring
+import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasSign
 
 noncomputable section
 

@@ -1,7 +1,6 @@
 import Mathlib
-import GroundTheory.TateCohomology.InducedNorm
-import GroundTheory.TateCohomology.TateAddEquivAbelianizationTateClass
 import GroundTheory.TateCohomology.PGroupFixed
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.GroupCoh

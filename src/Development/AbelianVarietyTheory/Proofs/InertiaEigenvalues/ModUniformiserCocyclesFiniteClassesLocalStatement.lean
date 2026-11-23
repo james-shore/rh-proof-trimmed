@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ModUniformiserCocyclesFiniteClassesLocal
-import Formalism.GaloisCohomology.LocalTateDualityK
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteH1H2Local
 
 open ReciprocityTheory.Gal
 set_option maxHeartbeats 1000000 in

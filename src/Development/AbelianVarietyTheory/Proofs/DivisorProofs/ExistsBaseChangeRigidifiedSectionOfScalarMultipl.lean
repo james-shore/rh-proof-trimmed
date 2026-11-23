@@ -1,7 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalisedModelUniformisationBaseChange
-import Development.AbelianVarietyTheory.Definitions.ArchimedeanThetaValues.IsThetaL2NormSquared
-import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.DualNumberRingHomExt
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.FibreFramesOnModels
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PushInvertibleModelOfIso
 
 noncomputable section
 

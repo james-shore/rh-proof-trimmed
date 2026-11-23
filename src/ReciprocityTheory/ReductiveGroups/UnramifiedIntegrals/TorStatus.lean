@@ -2,6 +2,7 @@ import Mathlib
 import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorMain
 import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.NonsingularJetNorms.ScaledTorsionPointNonsingular
 import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.NonsingularJetNorms.ExistsFinitePartOneIdeleSplitCongruenceQuotient
+import Formalism.LocalToGlobal.TorsionIntegrality.CMGoodModels.CM4
 
 noncomputable section
 open scoped Classical

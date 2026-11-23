@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.ProjectiveLattices.CuspFree
+import Formalism.LocalToGlobal.ProjectiveLattices.UnFree
 import Formalism.LocalToGlobal.ProjectiveLattices.IntegrableOnIntegrand
 
 noncomputable section

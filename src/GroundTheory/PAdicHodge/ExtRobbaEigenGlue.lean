@@ -1,6 +1,6 @@
 import Mathlib
-import GroundTheory.PAdicHodge.ExistsWeightLeOfConvergesAt
-import GroundTheory.PAdicHodge.ExtRobbaDMRankOne
+import GroundTheory.PAdicHodge.ExtRobbaFrob
+import GroundTheory.PAdicHodge.ExtRobbaUnion
 
 set_option maxSynthPendingDepth 1
 

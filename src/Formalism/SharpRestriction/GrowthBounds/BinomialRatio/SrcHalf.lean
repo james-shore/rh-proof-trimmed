@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.FinalTheorems
-import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.TopDegreeLeTwoB
 
 noncomputable section
 

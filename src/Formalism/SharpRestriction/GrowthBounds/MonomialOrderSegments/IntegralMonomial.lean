@@ -1,7 +1,5 @@
-import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.SegDefs
-import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.DigitPartMonomial
+import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.MemPolKIff
 import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.AddMemSupportOfMemSupportCoefOut
-import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.ExistsMonomialOrder
 
 noncomputable section
 

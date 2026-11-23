@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.PeriodIntegrals.DivisionRowsRationalLattice
-import Formalism.PeriodIntegrals.IdxCalc
 
 noncomputable section
 

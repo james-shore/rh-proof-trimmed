@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.InertKernelTheory.ScalG
 import Formalism.LocalToGlobal.InertKernelTheory.DefsRepLt
+import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.LtCNeZero
 
 noncomputable section
 

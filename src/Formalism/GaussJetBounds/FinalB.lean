@@ -1,16 +1,5 @@
-import Formalism.GaussJetBounds.GaussJetProofs.ConstantCoeffQuadSer
 import Formalism.GaussJetBounds.StatementN
-import Formalism.GaussJetBounds.GaussJetProofs.SubstitutionWeightBound
-import Formalism.GaussJetBounds.GenLogInverse
-import Formalism.GaussJetBounds.MonoShapeTop
-import Formalism.GaussJetBounds.GaussJetProofs.NormDetLeOneOfEntries
-import Formalism.GaussJetBounds.GaussJetProofs.ThmAOp
-import Formalism.GaussJetBounds.GaussJetProofs.FirstRowMinorDegreeLeOne
 import Formalism.GaussJetBounds.StatementQ
-import Formalism.GaussJetBounds.StatementP
-import Formalism.GaussJetBounds.GaussJetProofs.GField
-import Formalism.GaussJetBounds.GaussJetProofs.FJEval
-import Formalism.GaussJetBounds.GaussJetProofs.Labels
 
 universe u
 

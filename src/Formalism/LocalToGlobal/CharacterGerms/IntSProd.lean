@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.CharacterGerms.ConstantCoeffSinglePointZero
+import Formalism.LocalToGlobal.CharacterGerms.CartesianBoundOnCurves
 
 noncomputable section
 

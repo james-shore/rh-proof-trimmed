@@ -1,6 +1,7 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.AutomorphicKernels.MoriwakiBigness.HilbertSamuelApplications.DeepStROfUse
 import Development.WeilBound.CoreStatements.HodgeTatePoints.AhSlim
+import Development.AutomorphicSpectrum.Proofs.GlobalProofs.SemiAbelianHomExtension
 
 namespace PositivityTheory.HtPt.Ah
 

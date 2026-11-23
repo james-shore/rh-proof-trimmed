@@ -1,10 +1,9 @@
 import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.ThShort
 import Formalism.LocalToGlobal.ProjectiveLattices.ThGerm
-import Formalism.LocalToGlobal.ProjectiveLattices.IsChartIff
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.SecBaseChangeAnySt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.VtUniq
-import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FrTanAlg
+import Formalism.LocalToGlobal.ProjectiveLattices.IsChartIff
 
 set_option autoImplicit false
 

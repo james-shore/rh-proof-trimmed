@@ -1,6 +1,7 @@
 import Mathlib
 import Formalism.DropLevelBounds.Statement
-import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.WtAddSingle
+import ReciprocityTheory.DualLattices.DetPolyMulCayleyOmegaPow
+
 open Formalism.UnitaryBoundIntegral Formalism.IncomingBounds ReciprocityTheory.PGsh
 open scoped BigOperators
 

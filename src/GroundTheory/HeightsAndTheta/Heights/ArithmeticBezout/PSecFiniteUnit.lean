@@ -1,6 +1,9 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsSecFiniteUnit
 import GroundTheory.HeightsAndTheta.Heights.VerticalDivisors.AssemblyPartial
+import GroundTheory.HeightsAndTheta.Heights.VerticalDivisors.PChowSecDegree
+import GroundTheory.HeightsAndTheta.Heights.VerticalDivisors.PSecLinNZD
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.AutomorphicForms.GL2.GJFEInducedInv
+import GroundTheory.AutomorphicForms.GL2.GJFEDefs
 
 noncomputable section
 

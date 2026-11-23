@@ -1,6 +1,5 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.TieUpR
 import Formalism.LocalToGlobal.ProjectiveLattices.CuspMulOf
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.OntoStatementPfS
 
 noncomputable section
 

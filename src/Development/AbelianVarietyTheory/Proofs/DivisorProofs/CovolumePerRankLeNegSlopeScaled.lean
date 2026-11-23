@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsProbabilityMeasureMuPart
-import Formalism.QuotientMetricDivisors.Statement
 import Formalism.MeanHeightDescent.DivisionInequalityWithCovolume
 import Development.AbelianVarietyTheory.Counterexamples.RotationExamples.MeasureFailsForLargeConstant
+
 open NumberField
 
 noncomputable section

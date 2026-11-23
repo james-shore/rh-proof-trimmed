@@ -1,5 +1,5 @@
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SphericalAwayFromTypesStatement
 import Mathlib
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SphericalAwayFromTypes
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.PublishedInputsThirdLayer
 
 set_option synthInstance.maxHeartbeats 200000

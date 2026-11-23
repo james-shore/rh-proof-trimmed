@@ -1,8 +1,4 @@
 import Development.EtaleCohomology.KummerTheory.InjSlice
-import Mathlib.RingTheory.Etale.StandardEtale
-import Mathlib.Algebra.Category.CommAlgCat.FiniteType
-import Mathlib.CategoryTheory.Limits.MorphismProperty
-import Mathlib.CategoryTheory.Functor.Flat
 
 noncomputable section
 open CategoryTheory Limits GlobalTheory.EtC

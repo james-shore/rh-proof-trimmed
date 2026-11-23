@@ -1,4 +1,5 @@
 import Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil.SingularNullSets.LThCoefB
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RallisConvIffInnerProduct
 
 noncomputable section
 

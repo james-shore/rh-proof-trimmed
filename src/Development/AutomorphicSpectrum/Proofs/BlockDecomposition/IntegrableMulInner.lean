@@ -2,7 +2,6 @@ import Mathlib
 import Development.WeilBound.RepresentationTheoryGL.HolomorphicDiscreteSeries.SchurEigenProjections.EigA
 import Development.WeilBound.CoreStatements.BranchingTraces.ContinuousEmb
 import Development.WeilBound.CoreStatements.BranchingTraces.HilbertSchmidtTraces.UnitaryMatrixCoefficientDecay
-import GroundTheory.AutomorphicForms.HilbertSchmidtCompact
 import GroundTheory.AutomorphicForms.CompactSelfAdjoint
 
 noncomputable section

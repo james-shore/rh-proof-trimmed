@@ -1,5 +1,7 @@
 import Development.WeilBound.CoreStatements.VolumeEquality.BallVolDefs
 import Development.WeilBound.CoreStatements.EqualVolumeCompactOpens.LevelIndexEq
+import Formalism.LocalToGlobal.ProjectiveLattices.UnifDom
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.HasseNormTheoremQuadraticExtensionStatement
 
 noncomputable section
 

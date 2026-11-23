@@ -1,6 +1,5 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.RealPtPf
 import Formalism.LocalToGlobal.ProjectiveLattices.FrameCharts
-import Formalism.LocalToGlobal.ProjectiveLattices.ModelAt
 
 set_option synthInstance.maxHeartbeats 400000
 

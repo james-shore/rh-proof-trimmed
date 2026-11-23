@@ -1,5 +1,4 @@
 import Formalism.GaussValuationBounds.Statement
-import Formalism.WachModuleLifts.Statement
 
 namespace Formalism.NOK
 

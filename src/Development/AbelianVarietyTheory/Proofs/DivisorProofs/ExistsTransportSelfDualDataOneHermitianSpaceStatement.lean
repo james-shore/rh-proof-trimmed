@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTransportSelfDualDataOneHermitianSpace
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FirstIndexEqOfUnfolded
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSelfDualTr
 
 open NumberField
 set_option maxHeartbeats 1000000 in

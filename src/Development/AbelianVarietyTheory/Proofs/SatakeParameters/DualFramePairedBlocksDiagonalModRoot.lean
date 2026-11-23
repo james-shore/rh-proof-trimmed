@@ -1,12 +1,13 @@
 import Mathlib
 import Formalism.SharpRestriction.Divisibility.OrbitPlaces
-import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementJ
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.StdBases
-import Formalism.LocalToGlobal.KernelLattices.KerStd
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ThetaZJetsThree
-import Formalism.LocalToGlobal.InertKernelTheory.StatementIota
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementC
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementG
+import Formalism.SharpRestriction.GlobalSchurBounds.TaylorLogMetric
+import Formalism.SharpRestriction.GlobalSchurBounds.GL3Theta
+import Formalism.LocalToGlobal.AlgebraicTheory.StatementKer
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ColR
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.GramFrameComposition.Tensor
+
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker Formalism.L2.Col Classical
 open Formalism.L2.Th1.H (cmL CmOK matH IsIsom taylorMv)
 open Formalism.L2.Th1.GD (LocNorm InMul frameM thetaLin)

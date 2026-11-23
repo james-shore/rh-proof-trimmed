@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RayClassGroupIdelicFiniteIndex
-import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FiniteChars
 
 open IsDedekindDomain NumberField
 set_option maxHeartbeats 1000000 in

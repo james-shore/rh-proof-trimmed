@@ -6,6 +6,7 @@ import Development.AbelianVarietyTheory.Proofs.JetHarmonics.BilinPartCanonGaugeC
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsSymmBalancedCongrOfSeparability
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsSepDiscr
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.BilinearLogFormEvalZeroRightEqZero
+import Formalism.SharpRestriction.Divisibility.GeneratorPowers.CIndBCNab
 
 set_option autoImplicit false
 

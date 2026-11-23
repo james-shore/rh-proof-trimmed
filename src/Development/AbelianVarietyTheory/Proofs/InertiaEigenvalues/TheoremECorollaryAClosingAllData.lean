@@ -6,8 +6,8 @@ import Formalism.SharpRestriction.LevelLetterCocycles.LocalCorollaryConstant
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RecordCaseA
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FontaineFullFaithfulExactPsiStatement
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitGenExists
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FontaineAndDecompletion
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalLiftingTheoremEHypothesesAdmittedStatement
+
 open Formalism Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N
 
 namespace GlobalTheory.ThmECorA

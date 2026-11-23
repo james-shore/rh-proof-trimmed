@@ -2,7 +2,7 @@ import Development.AutomorphicArithmetic.Foundations.LocalLanglands.RecTTranspor
 import Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.ArtEx
 import Development.DiscreteGroups.GlobalIrreducibility.ExistsIneOfVEqOne
 import Development.DiscreteGroups.GlobalIrreducibility.DzTame
-import Development.DiscreteGroups.GlobalIrreducibility.DzNormV
+import Development.WeilBound.CoreStatements.AutomorphicKernels.DepthZeroCuspidal.LeviInductionForms
 import Development.WeilBound.CoreStatements.AutomorphicKernels.DepthZeroCuspidal.DepthZeroMonomial.ValLtOneIff
 
 noncomputable section

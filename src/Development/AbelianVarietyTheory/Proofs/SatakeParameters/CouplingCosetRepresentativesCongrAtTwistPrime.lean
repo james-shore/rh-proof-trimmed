@@ -1,10 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.XiTopEqProd
-import Formalism.LocalToGlobal.Columns.XtPhiTopGCongr
-import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.TopLawQ
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DatumPeriodicMulLatticeFinal
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsVectorPrescribedCosetsBadPrimesFramesStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ChartBaseCosetBoundedTypePrimesAndTwistStatement
+
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.DIV Formalism.L2.Col Formalism.MainNotions Formalism.L2.Ker GlobalTheory.TwU GlobalTheory.TwV GlobalTheory.TwTop
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

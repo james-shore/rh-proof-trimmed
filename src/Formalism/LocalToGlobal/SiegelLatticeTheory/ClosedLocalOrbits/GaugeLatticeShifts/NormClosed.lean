@@ -4,6 +4,7 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.Poincar
 import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.NormStepsColLatRepS
 import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.ChiNMul
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.NormHSBlocks
+import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.NormCoreGamProdSum
 
 noncomputable section
 

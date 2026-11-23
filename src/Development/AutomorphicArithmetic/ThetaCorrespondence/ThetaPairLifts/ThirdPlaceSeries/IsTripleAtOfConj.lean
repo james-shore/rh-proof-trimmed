@@ -1,5 +1,4 @@
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.CharpolySmulOfProd
-import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.IsPotCrysAtOfMono0
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.GalRead
 

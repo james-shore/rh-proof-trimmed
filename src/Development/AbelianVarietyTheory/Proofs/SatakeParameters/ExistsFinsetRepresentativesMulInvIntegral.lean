@@ -1,7 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SelfDualOne
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LatticeModelVacuumTranslateClassesIndependent
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Gam0
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.MemIntMat
+
 open Matrix
 
 namespace GlobalTheory.Hk3.HoweDuality.Reps

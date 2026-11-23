@@ -3,6 +3,7 @@ import Formalism.LocalToGlobal.InertKernelTheory.DefsRepFrame
 import Formalism.LocalToGlobal.InertKernelTheory.FrameLatMap
 import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.RepTwLat
 import Formalism.LocalToGlobal.InertKernelTheory.ScalG
+import Formalism.SharpRestriction.LevelLetterCocycles.TwGood
 
 noncomputable section
 

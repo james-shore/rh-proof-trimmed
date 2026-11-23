@@ -1,6 +1,6 @@
 import Formalism.LocalToGlobal.GlobalTheory.GL6.AdelicFunctionExtendsFromClasses
-import Formalism.LocalToGlobal.GlobalTheory.GL6.DiamondPreservesRationalFormZero
 import Formalism.LocalToGlobal.GlobalTheory.GL6.CongruenceNoKernelOfHeckeRamified
+import Formalism.LocalToGlobal.GlobalTheory.GL6.DiamondPreservesRationalFormZero
 
 noncomputable section
 

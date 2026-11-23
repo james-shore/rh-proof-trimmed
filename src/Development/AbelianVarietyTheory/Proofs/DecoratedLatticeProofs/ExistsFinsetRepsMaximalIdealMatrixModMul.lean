@@ -2,6 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsCoType
 import Formalism.LocalToGlobal.Columns.HeckeSp
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.BlockDetLowUEmb
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasBoundedSumsOne
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.Doubling GlobalTheory.GLDoubling GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection GlobalTheory.ZonalCellDecomposition GlobalTheory.SatakeBound GlobalTheory.ParHecke GlobalTheory.LowerHecke
 

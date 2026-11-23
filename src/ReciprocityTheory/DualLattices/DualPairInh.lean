@@ -1,5 +1,5 @@
 import ReciprocityTheory.DualLattices.ModuliPointsState
-import ReciprocityTheory.DualLattices.AinfFacts
+import ReciprocityTheory.DualLattices.ATowerInh
 
 noncomputable section
 

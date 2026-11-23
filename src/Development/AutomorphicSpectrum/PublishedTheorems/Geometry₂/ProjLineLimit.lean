@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.PublishedTheorems.Geometry₂.NefRR
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsKodairaGeneric
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PSectionsDimZero
 
 namespace GlobalTheory.CompanionTheory.Ar.Pub.NefRRModel

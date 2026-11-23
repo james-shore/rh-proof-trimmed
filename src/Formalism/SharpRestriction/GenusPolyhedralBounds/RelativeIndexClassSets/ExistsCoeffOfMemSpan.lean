@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.IntegralFormsEqSpan
+import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.SectionMonomialGenerators
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.HasseJidPow
 
 noncomputable section

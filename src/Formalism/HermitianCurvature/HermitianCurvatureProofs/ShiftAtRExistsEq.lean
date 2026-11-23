@@ -1,4 +1,4 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CellIdentityShifted
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.ThmBpAtEqOfShiftR
 
 namespace Formalism.FourierDecayAlt.P.CutBPEq
 

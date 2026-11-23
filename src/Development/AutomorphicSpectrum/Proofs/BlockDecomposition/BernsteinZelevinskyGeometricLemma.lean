@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.GeometricLemmaFiltration
+import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.ExistsCellOfIsSubquotient
 import GroundTheory.AutomorphicForms.GeometricLemma
+
 set_option maxSynthPendingDepth 1
 
 open GlobalTheory.SmGL

@@ -4,12 +4,9 @@ import Formalism.SharpRestriction.CuspSpanNormBounds.PsiEDef
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsHermND
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ComplementReferenceCompactSubgroup
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.GFrames
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.BasisOfIsCompl
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.SpanToLePerp
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FramesCommonStabiliserEqPairingMatrixStabiliser
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalExtend
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsIntegralOfQuad
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsIntSmulMemLattice
+
 open ValuativeRel Formalism.MainNotions.S.Loc GlobalTheory.HL NumberField IsDedekindDomain
 open scoped Pointwise ENNReal Classical
 

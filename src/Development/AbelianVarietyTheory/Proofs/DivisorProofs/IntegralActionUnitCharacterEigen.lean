@@ -4,6 +4,8 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilOperatorFixesCo
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardLatticeDoubleCosetClassesStabilisers
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FirstStandardPairMemberHasThetaFunction
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MulMemHatMul
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSplitCompDet
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSplitInertFactor
 
 open NumberField IsDedekindDomain
 open scoped Classical Pointwise

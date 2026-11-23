@@ -1,7 +1,5 @@
 import Mathlib
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.DifferentialOperatorBracket
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.FrameExtension
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
 import Development.AbelianVarietyTheory.Definitions.Jets.Imports
 import Development.AbelianVarietyTheory.Definitions.Jets.WigMap
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.OpNormSumSmulSqLe
@@ -10,6 +8,7 @@ import Development.AbelianVarietyTheory.Proofs.JetHarmonics.PieriRaisingSubmodul
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsTypeOfIrreducibleStable
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.CoefHasDerivAt
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsTensorStandardRep
+
 open Matrix Formalism.QuantumDeterminants Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.Qr
 open Formalism.REAL (qdet GlRel IsHW)
 

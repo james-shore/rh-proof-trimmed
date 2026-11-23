@@ -1,6 +1,7 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeColumns.HAdapt
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeColumns.MemK2HpIffBeta
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeColumns.IdxAsm
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndices.ParabolicImageOfFrameBasis
 
 noncomputable section
 

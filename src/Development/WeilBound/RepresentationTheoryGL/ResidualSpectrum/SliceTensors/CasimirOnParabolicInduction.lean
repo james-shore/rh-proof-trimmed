@@ -1,4 +1,5 @@
 import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.ExistsHasInfCharGL
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CapelliConstantTermVanishing
 
 noncomputable section
 

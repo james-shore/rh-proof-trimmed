@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIntModuleFiniteOfSeparatedOfFiniteQuotientA
-import Formalism.GaloisCohomology.LocalTateDualityK
+import Formalism.GaloisCohomology.Statement
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology
 set_option maxHeartbeats 1000000 in

@@ -5,7 +5,6 @@ import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdic
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdicHensel.PArithK
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdicHensel.PScOf
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdicHensel.PRootAt
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdicHensel.PStdForm
 
 open UpperTheory.Gal.W2.Seed
 

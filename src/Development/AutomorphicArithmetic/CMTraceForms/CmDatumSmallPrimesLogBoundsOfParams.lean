@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.LocalRingCardinality.DataParams
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
-import Development.AutomorphicArithmetic.PrimeDiscriminants.SlopeTestRemainingChoices
+import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.PrimePairSizeCondition
 import Development.AutomorphicArithmetic.CMTraceForms.SumLogPrimeFactorsMulTwoAddLogbLe
 
 open NumberField Formalism.BasicNotions Formalism.HC

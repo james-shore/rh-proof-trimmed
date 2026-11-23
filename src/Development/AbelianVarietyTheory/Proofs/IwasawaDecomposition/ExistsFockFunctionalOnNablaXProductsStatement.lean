@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFockFunctionalOnNablaXProducts
-import Formalism.UnipotentAdelicQuotients.WeylLatDual
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DualWeylEqSpanColProd
-import Formalism.LocalToGlobal.Columns.CoefficientsModP.FkPderivBlockEmbNe
 
 open MvPolynomial
 set_option maxHeartbeats 1000000 in

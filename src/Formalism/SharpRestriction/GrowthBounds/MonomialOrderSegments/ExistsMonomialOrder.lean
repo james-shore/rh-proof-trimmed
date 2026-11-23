@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.MemPolKIff
+import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.LiftBoundOfHypotheses
 
 noncomputable section
 

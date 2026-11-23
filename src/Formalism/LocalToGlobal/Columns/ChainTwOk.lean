@@ -1,11 +1,8 @@
 import Formalism.LocalToGlobal.Columns.ChainTwL
-import Formalism.LocalToGlobal.Columns.ChainOneOk
 import Formalism.LocalToGlobal.Columns.ReductionExistsInLatticeStabilizerHolds
 import Formalism.LocalToGlobal.Columns.ResidueFieldUnfoldingClaimsHold
 import Formalism.LocalToGlobal.Columns.BlockTriangularMulVecMemPartialFlag
-import Formalism.LocalToGlobal.Columns.ReducedMatrixExtensionEntry
-import Formalism.LocalToGlobal.Columns.FrameEntryAuxiliarySuperdiagonal
-import Formalism.LocalToGlobal.Columns.ColumnsProofs.SymLevEnt
+import Formalism.LocalToGlobal.Columns.Record
 
 open NumberField IsDedekindDomain Module
 

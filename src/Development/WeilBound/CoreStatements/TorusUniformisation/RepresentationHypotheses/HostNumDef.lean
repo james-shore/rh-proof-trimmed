@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.LinksLemmas
-import Formalism.LocalToGlobal.NormalizedHeckeFactors.GlobalDatumRegularityOfTypesCompatibility
+import Formalism.LocalToGlobal.GaloisLevelStructure.DefsGal
 
 namespace PositivityTheory.HostN
 

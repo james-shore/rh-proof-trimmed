@@ -3,9 +3,6 @@ import Development.AutomorphicSpectrum.PublishedTheorems.Geometry₂.NefRR
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ModelSmall
 import Development.AutomorphicSpectrum.Statements.TowerExistence.GoodTowerExistsX
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.VolumeInputs
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.OverLaUnique
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterNamed
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSt
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.TowerOriginComponentBoundStatement
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.TowerWeightOfZeroStatement
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FullIntersectionHeightBoundStatement
@@ -14,6 +11,7 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ModelSmallSectionsM
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.CompLawsTowerBoundStatement
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.UniformNormTowerBoundStatement
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.WeightZeroSectionMembershipStatement
+
 open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug

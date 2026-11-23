@@ -1,17 +1,7 @@
 import Formalism.SizeWindowBrackets.Chain2aCoreNoAnalytic
 import Formalism.SizeWindowBrackets.SmoothedRemainderRealIntegralFormula
 import Formalism.SizeWindowBrackets.SBrDiv
-import Formalism.SizeWindowBrackets.SlopeHypothesesRounded
-import Formalism.SizeWindowBrackets.ErrorFormsWeakWindowsFalse
-import Formalism.LogVandermondeBounds.LogRatioUpperBound
-import Formalism.SizeWindowBrackets.TraceSquareAndDiagBounds
-import Formalism.SizeWindowBrackets.FrameTraceRatioFinEquiv
-import Formalism.SizeWindowBrackets.GaloisToProductIsIso
-import Formalism.SizeWindowBrackets.GrowthBoundGivesRiemannHypothesis
-import Formalism.SizeWindowBrackets.SecondKindBucket
-import Formalism.SizeWindowBrackets.SlopeExcessBoundExponentZero
-import Formalism.SizeWindowBrackets.SSmall
-import Formalism.SizeWindowBrackets.JointCSlopeExists
+import Formalism.SizeWindowBrackets.RealSlopeBoundsSplit
 
 open Module NumberField Matrix IsDedekindDomain
 open Formalism.HN

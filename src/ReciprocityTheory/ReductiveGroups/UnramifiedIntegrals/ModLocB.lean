@@ -2,6 +2,7 @@ import Mathlib
 import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModGDefs
 import ReciprocityTheory.ClassFieldTheory.LocalClassField.ExistsDvdQKPowSubOne
 import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorHensel
+import ReciprocityTheory.NeutralLocalFields.HilbertClassField
 
 noncomputable section
 open scoped BigOperators Classical UpperHalfPlane

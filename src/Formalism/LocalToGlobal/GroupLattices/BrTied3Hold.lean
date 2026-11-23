@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.GroupLattices.ServJointF
 import Formalism.LocalToGlobal.HilbertRowConditions.ColumnsFunctionAtSubspaces
+import Formalism.LocalToGlobal.GroupLattices.JointServices.LevelOperatorFixesImage
 
 open Module NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.BasicNotions.DV Formalism.MainNotions.G Formalism.MainNotions.WeilJacquetShalikaLaw Formalism.L2.DIV Formalism.L2.Indef

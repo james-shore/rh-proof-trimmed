@@ -1,5 +1,6 @@
 import Mathlib
-import Formalism.GaloisCohomology.LocalTateDualityK
+import Formalism.GaloisCohomology.Statement
+
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology
 
 namespace GlobalTheory.PadicH2Separated

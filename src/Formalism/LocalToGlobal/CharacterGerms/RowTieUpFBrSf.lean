@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.CharacterGerms.CharacterHypothesisUnramified
+import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBr
 import Formalism.LocalToGlobal.CharacterGerms.RowTieCharS
 
 set_option autoImplicit false

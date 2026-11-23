@@ -1,7 +1,8 @@
 import Development.AutomorphicSpectrum.Definitions.AdelicLattices.FactPrimes
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.LatNormGrLatNeZeroOfSpan
+import Development.AbelianVarietyTheory.Proofs.HermitianTraceForms.IsLocallyConstantRankAtStalkEigenSub
 import Development.AutomorphicSpectrum.Proofs.AdelicProofs.RatProductFormulaStatement
 import Development.AutomorphicSpectrum.Proofs.AdelicProofs.SumLogIdealEqLogAbsNormStatement
+
 open NumberField GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
 
 namespace GlobalTheory.CompanionTheory.Ar.Fl

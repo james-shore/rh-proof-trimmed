@@ -1,5 +1,5 @@
 import Mathlib
-import Development.DiscreteGroups.GlobalIrreducibility.LConvKirB
+import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HasExponentZeroIff
 
 noncomputable section
 set_option linter.unusedSimpArgs false

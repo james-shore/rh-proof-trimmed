@@ -1,4 +1,4 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.DpsiIsDerivation
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.FirstPeelingMinorMemIdeal
 
 open Matrix Finset
 

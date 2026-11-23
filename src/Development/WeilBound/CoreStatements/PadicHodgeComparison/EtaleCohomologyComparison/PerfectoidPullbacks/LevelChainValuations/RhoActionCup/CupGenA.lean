@@ -1,5 +1,5 @@
 import Mathlib
-import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LevelChainValuations.GaloisCupProducts.CupGood
+import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LevelChainValuations.GaloisCupProducts.CupZnApply
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RealizationCupProductStatement
 
 set_option backward.isDefEq.respectTransparency false

@@ -3,8 +3,7 @@ import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.LevelPlusSubgrou
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.CuspAlongSmoothRows
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.ThetaSourceAction
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsThetaFam
-import Formalism.LocalToGlobal.ProjectiveLattices.FullExists
-import Formalism.LocalToGlobal.ProjectiveLattices.RecPJThAllNeBot
+import Formalism.LocalToGlobal.ProjectiveLattices.LatPAddRight
 import Development.AutomorphicArithmetic.CyclotomicBounds.RamifiedDiscriminants.FunKit
 
 noncomputable section

@@ -1,4 +1,6 @@
 import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.RestSegCore
+import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.TopOddNeEnd
+import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.IoBlockSupported
 
 noncomputable section
 

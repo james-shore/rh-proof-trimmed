@@ -2,6 +2,7 @@ import Development.WeilBound.CoreStatements.PublishedTheorems.GlobalEulerCharact
 import Development.WeilBound.CoreStatements.PublishedTheorems.GlobalEulerCharacteristic.WorkSplit
 import Development.WeilBound.CoreStatements.PublishedTheorems.GlobalEulerCharacteristic.WorkKilledB
 import Development.WeilBound.CoreStatements.PublishedTheorems.GlobalEulerCharacteristic.RatioEqOneOfCyclic
+import Development.WeilBound.CoreStatements.PublishedTheorems.GlobalEulerCharacteristic.RatioOneKilled
 
 open NumberField IsDedekindDomain CategoryTheory GroundTheory.ProfCoh GroundTheory.Global
 

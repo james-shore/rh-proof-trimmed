@@ -1,4 +1,5 @@
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdDefs
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Residue
 
 noncomputable section
 

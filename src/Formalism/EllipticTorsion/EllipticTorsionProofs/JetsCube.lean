@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.EllipticTorsion.JetsCube
-import Formalism.FormalGroupLog.LogDeterminesLaw
+import Formalism.FormalGroupLog.FormalGroupLogProofs.ConstantCoeffSubstOfZero
 
 open PowerSeries
 

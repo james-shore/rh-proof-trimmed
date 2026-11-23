@@ -1,8 +1,8 @@
 import Mathlib
-import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.StatementJ
+import Formalism.GaussJetBounds.StatementP
+import Formalism.GrowthSums.StatementA
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.CyclicPowerClassOfExpEquiv
 import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.EJoint
-import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.NormLiftLeOne
-import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.OmegaOfTraceDuality
 
 noncomputable section
 

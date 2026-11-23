@@ -1,4 +1,5 @@
 import Formalism.ThetaLogCoordinates.FockResolutionOnto.FockMonomialProofs.InitPartZeroXMul
+import Formalism.ThetaLogCoordinates.FockResolutionOnto.ShiftLastLetterThresholds
 
 namespace Formalism.InvariantFactorPaths.L4
 

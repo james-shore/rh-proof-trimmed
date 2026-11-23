@@ -1,9 +1,8 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WtChar
+import Development.AbelianVarietyTheory.Definitions.Divisors.LabRange
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GalLab
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapInverseNatCast
-import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsPullbackDegPreStrictLineBundleIso
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsMumfordFamOfSubsingleton
+import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsTorusAndQuotientHom
 
 noncomputable section
 

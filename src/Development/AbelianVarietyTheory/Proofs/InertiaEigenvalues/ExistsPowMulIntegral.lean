@@ -1,5 +1,5 @@
 import Formalism.WachLatticeTwists.LatticeDualFibres.FibreDualStable
-import Formalism.GaloisCohomology.LocalTateDualityK
+import Formalism.GaloisCohomology.Statement
 
 namespace GlobalTheory.IntegralPowerMultiple
 

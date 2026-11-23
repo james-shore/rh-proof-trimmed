@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.AdelicScalarSectionLift
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.TwistedLevelValues
+import Formalism.LocalToGlobal.IndefiniteReal.OneMapT
+import Formalism.LocalToGlobal.IndefiniteReal.FWTie
 import Formalism.LocalToGlobal.IndefiniteReal.FWExist
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SupportedSubgroupSplitCommutePrimeIdempotents
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LevelHyperspecialTrivialCharacterSplitsOffPlaces

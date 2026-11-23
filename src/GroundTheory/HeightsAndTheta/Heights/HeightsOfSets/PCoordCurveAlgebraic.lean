@@ -1,7 +1,8 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.CoordCurveDegree
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.IsSaturatedFirstCoordinateLine
 import GroundTheory.ArithmeticGeometry.AbelianVarieties.JacobianSmoothness.RingKrullDimLeRingKrullDimQuotientAddOne
 import ReciprocityTheory.AnalyticForms.RegularLocalRings.IntToRat
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

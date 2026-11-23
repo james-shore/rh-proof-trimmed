@@ -1,4 +1,5 @@
 import Formalism.LatticeTheta.LatticeThetaProofs.TorusProjIsOpenQuotientMap
+import Formalism.LatticeTheta.LatticeSummableDecay
 
 open MeasureTheory Set Complex
 open scoped RealInnerProductSpace

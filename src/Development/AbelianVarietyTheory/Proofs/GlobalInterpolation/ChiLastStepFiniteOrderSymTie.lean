@@ -1,10 +1,10 @@
 import Mathlib
 import Formalism.LocalToGlobal.HermitianForms.TiedSym
-import Formalism.LocalToGlobal.GroupLattices.DownNaturalLevelZero
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GSplit
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.GLevHChiPowEqOneAndMemRange
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.CardResidueFieldTotallyRealTypePrimeStatement
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.LamJMemRangeAndPowEqOne
+
 open Formalism.BasicNotions Formalism.L2.Forms NumberField IsDedekindDomain Matrix Formalism.UG
 open scoped TensorProduct
 

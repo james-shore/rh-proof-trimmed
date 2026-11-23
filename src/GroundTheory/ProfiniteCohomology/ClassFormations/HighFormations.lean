@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.ClassFormations.SubsingletonCohomologyTopOfThreeLeInt
-import GroundTheory.ProfiniteCohomology.LocalClassFormationAlt
 import GroundTheory.ProfiniteCohomology.GlobalClassFormation
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

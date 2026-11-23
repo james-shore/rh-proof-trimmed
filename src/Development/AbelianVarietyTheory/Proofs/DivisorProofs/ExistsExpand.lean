@@ -1,10 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsSquareIntegrableIffMemL2
-import Development.AbelianVarietyTheory.Definitions.Divisors.CentralNilGL
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExpoConjOfIsCsd
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.LanglandsSquareIntegrable
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsBlockEmb
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CommuteCapOfCommuteEop
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemZalgCommuteCompactRep
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ToGAdMat
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeviBlockSizesSum
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CommuteOfMemZalg
 
 noncomputable section

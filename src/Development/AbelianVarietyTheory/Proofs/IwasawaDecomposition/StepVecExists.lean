@@ -1,11 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.DatumVec
-import Formalism.LocalToGlobal.IndefiniteReal.SubgroupCharExtensionOneApply
 import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
-import Formalism.LocalToGlobal.IndefiniteReal.OrthogonalComplementCharacterisation
-import Formalism.LocalToGlobal.IndefiniteReal.IndefiniteWeightData
-import Formalism.LocalToGlobal.IndefiniteReal.HeckeTupleStatement
-import Formalism.LocalRingCardinality.DataExtra
+import Formalism.LocalToGlobal.IndefiniteForms.IndefSide
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EqZeroOrEqOfPlaceIdem
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IdempotentMulEqZeroOfOrthogonal
 

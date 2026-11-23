@@ -1,6 +1,5 @@
 import Formalism.LocalToGlobal.GlobalTheory.GL6.LocalBasisChangeDecompCompatible
-import Formalism.LocalToGlobal.GlobalTheory.GL6.PBwLocGlob
-import Formalism.LocalToGlobal.GlobalTheory.CoordinateLengths.PairingContinuityBound
+import Formalism.LocalToGlobal.GlobalTheory.GL6.LinearIndependentProdRenameOfCard
 
 noncomputable section
 

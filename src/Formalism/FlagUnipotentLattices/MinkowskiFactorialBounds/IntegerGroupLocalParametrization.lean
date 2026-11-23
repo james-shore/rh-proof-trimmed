@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.FlagUnipotentLattices.LatticeDeterminantIndexSq
-import Formalism.FlagUnipotentLattices.SignaturePreservingEntryNorms
+import Formalism.FlagUnipotentLattices.MinkowskiFactorialBounds.ComplexMultiplicationRoot
 
 open Module NumberField nonZeroDivisors Finset
 

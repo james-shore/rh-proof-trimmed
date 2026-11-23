@@ -1,11 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.Columns.FiniteSumNonzeroLargeDepth
-import Formalism.LocalToGlobal.Columns.BaseLemmas
-import Formalism.LocalToGlobal.Columns.RowFormsLemmas
 import Formalism.LocalToGlobal.KernelLattices.ThDistC
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.RedPEqZeroOfDiv
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.RedPDivOfUnit
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsSmulOfDecoEq
 
 open NumberField IsDedekindDomain Module
 open Formalism.BasicNotions Formalism.HermitianLatticesTheory Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker

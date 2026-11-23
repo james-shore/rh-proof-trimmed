@@ -1,12 +1,11 @@
 import Mathlib
 import Formalism.LogFactorialIndices.StatementIdx
 import Formalism.FilteredPoleLength.ReducedBasisBounds.LengthBaseChangeLocal
-import Formalism.FilteredPoleLength.ReducedBasisBounds.FilteredPoleLength
 import Formalism.FilteredPoleLength.LocalDescentLevels.LevelsChainOfAddOneLe
-import Formalism.FilteredPoleLength.ReducedBasisBounds.ReductionQuotient
-import Formalism.LogFactorialIndices.LogProductFormula
+import Formalism.FilteredPoleLength.LocalDescentLevels.MemSpanBasisFun
+import Formalism.IncomingBounds.FlowDegreeBounds.IndexLastReductionHolds
 import Formalism.FilteredPoleLength.LocalDescentLevels.LevelsChain
-import Formalism.FilteredPoleLength.LocalDescentLevels.LocalStepDescent
+import Formalism.FilteredPoleLength.LocalDescentLevels.LengthBaseChange
 
 noncomputable section
 

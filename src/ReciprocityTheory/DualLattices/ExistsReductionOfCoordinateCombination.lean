@@ -1,5 +1,5 @@
-import ReciprocityTheory.DualLattices.EmbeddingSeparatingGroupStatement
-import ReciprocityTheory.DualLattices.UnramifiedCokernelLengthOfLengthEigenLengthProduct
+import ReciprocityTheory.DualLattices.CotangentSurjective
+import ReciprocityTheory.DualLattices.SqZeroOfSpan
 
 noncomputable section
 

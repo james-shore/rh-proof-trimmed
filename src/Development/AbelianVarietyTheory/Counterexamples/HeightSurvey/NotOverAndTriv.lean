@@ -1,7 +1,7 @@
 import Mathlib
-import Formalism.LocalToGlobal.ProjectiveLattices.CompOrd
-import Formalism.LocalToGlobal.ProjectiveLattices.VAtVNeBot
-import Formalism.LocalToGlobal.ProjectiveLattices.RegQFree
+import Formalism.LocalToGlobal.ProjectiveLattices.CompData
+import Formalism.LocalToGlobal.ProjectiveLattices.OneLtAbsNormReal
+import Formalism.LocalToGlobal.ProjectiveLattices.RulInst
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.TheoremA
 
 noncomputable section

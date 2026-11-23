@@ -1,4 +1,4 @@
-import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.ArakelovDegreeEqDegreeOfFamily
+import Mathlib
 
 noncomputable section
 

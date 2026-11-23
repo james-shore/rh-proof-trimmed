@@ -2,7 +2,6 @@ import Mathlib
 import Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBaseChange.AtPlace
 import Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBaseChange.SplitS
 import Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBaseChange.LocalL
-import Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBaseChange.InertR
 import Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBaseChange.SplitSph
 import Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBaseChange.UnramB
 

@@ -13,7 +13,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryThreeRankOne
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralDepthPowerLastSimpleReflectionCellStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryWeylSimpleReflectionRevCommSqEqOneStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntertwiningLastEven
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.FIwasawa
+
 open GlobalTheory.PRep Formalism.UG GlobalTheory.LFun PositivityTheory.SphericalProduct
 open MeasureTheory GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.SatakeBound GlobalTheory.WeylCell GlobalTheory.WeylCell.WeylUnipotentShell
 

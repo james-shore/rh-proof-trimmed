@@ -1,5 +1,5 @@
 import Mathlib
-import Development.DiscreteGroups.GlobalIrreducibility.InHCorner
+import Development.DiscreteGroups.GlobalIrreducibility.LConvKirA
 import GroundTheory.GlobalFields.TateThesis.NoSmallSubgroups
 
 noncomputable section

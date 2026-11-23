@@ -1,7 +1,5 @@
 import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.QmapPres
 import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.AdBasic
-import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.PresOfOrder
-import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.AutOrder
 import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.GalTwistEx
 
 open MeasureTheory NumberField GroundTheory.Automorphic GroundTheory.Automorphic.CuspidalSpectrum GroundTheory.Automorphic.RightCosetSpace

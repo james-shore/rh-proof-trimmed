@@ -9,6 +9,7 @@ import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ScaledMatrixM
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsIntegralSplitIdempotentOverTwoStatement
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.OneEqSumPlaceIdempotentsOverTwoAddTwoMulStatement
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ProdLeftEqMaps
+import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum MeasureTheory IsDedekindDomain NumberField Matrix GlobalTheory.LatVac
 open scoped TensorProduct

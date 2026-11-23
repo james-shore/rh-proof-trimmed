@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.KppCharB
+import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.PsiCondAll
 
 noncomputable section
 

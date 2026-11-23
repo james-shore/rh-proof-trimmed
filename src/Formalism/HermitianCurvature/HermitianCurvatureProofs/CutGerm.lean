@@ -1,4 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutBP
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.PairingTriangular
 
 namespace Formalism.FourierDecayAlt.P.CutBP
 

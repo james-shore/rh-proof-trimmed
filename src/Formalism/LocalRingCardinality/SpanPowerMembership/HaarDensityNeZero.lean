@@ -1,6 +1,5 @@
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExistsDensity
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExistsOmegaLeb
-import Mathlib
 
 noncomputable section
 

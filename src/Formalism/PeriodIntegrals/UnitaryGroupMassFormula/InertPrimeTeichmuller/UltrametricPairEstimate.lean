@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.InertPrimeTeichmuller.TeichNeZero
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.InertPrimeTeichmuller.DvdPowQSub
 
 open NumberField Filter Topology
 

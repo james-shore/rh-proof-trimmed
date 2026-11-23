@@ -1,4 +1,5 @@
 import Formalism.PolynomialDimension.DigitClassSize
+import Formalism.PolynomialDimension.WeylDim
 
 open scoped BigOperators
 open Finset

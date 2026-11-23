@@ -1,7 +1,6 @@
 import Formalism.HermitianCurvature.StatementU
-import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.UsCompose
-import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.CutoffPlainAndSmoothed
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.UsCost
+import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.CutoffPlainAndSmoothed
 
 theorem Formalism.FourierDecayAlt.P.corollary_u1_truncated_alt : Formalism.FourierDecayAlt.U.StarBoundOfTwoCutoffOperator :=
   cutoff_plain_and_smoothed.2

@@ -1,4 +1,5 @@
 import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LagrangianDecomposition.SbSlice
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsContOnOfLocal
 
 noncomputable section
 

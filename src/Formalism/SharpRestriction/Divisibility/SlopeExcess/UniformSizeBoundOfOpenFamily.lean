@@ -1,11 +1,7 @@
 import Mathlib
 import Formalism.SharpRestriction.Divisibility.LiftErrorLocal
-import Formalism.LocalRingCardinality.DataKap
 import Formalism.SharpRestriction.Divisibility.WeightDegreeSizes
 import Formalism.SharpRestriction.Divisibility.AdmissibleRank.PropositionATypePrimesAdmissible
-import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ValBasic
-import Formalism.LocalRingCardinality.ColumnWeightSpreadOffTop
-import Formalism.LocalRingCardinality.IntCastDvdOfDvdIntegers
 import Formalism.SharpRestriction.AdmissibleParameterJoins.DIVfromGLbud
 import Formalism.SharpRestriction.CuspSpanNormBounds.StandingHypothesesHoldFamily
 

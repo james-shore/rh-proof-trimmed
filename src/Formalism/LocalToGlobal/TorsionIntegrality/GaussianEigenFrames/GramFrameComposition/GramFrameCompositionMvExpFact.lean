@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementA
 import Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.FinalA
+import Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.PairedSquareJets.ConstantCoeffCMulSqSum
 
 noncomputable section
 open scoped BigOperators

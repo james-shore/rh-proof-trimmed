@@ -1,5 +1,5 @@
 import Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.CmpCMemMIff
-import Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.ProdMemSpan
+import Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.DeterminantTwistRowActionMem
 
 open MvPolynomial Matrix Formalism.GradedWeylDivisibility Formalism.MainNotions.G
 

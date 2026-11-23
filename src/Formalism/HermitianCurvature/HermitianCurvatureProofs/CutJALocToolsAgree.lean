@@ -1,4 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.cut_JA_LocLemmas
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.OrbitalIntegralIdentities
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt
 

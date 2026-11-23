@@ -1,11 +1,8 @@
 import Mathlib
 import Formalism.SharpRestriction.GlobalSchurBounds.ProductFirstZerothParts
-import Formalism.SharpRestriction.GlobalSchurBounds.TaylorLogMetric
-import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 import Formalism.SharpRestriction.GlobalSchurBounds.FlipTwoThree
 import Formalism.SharpRestriction.GlobalSchurBounds.StandardLattice
 import Formalism.SharpRestriction.GlobalSchurBounds.CMFieldLemmas
-import Formalism.SharpRestriction.GlobalSchurBounds.ShortIntervalPrimes
 import Formalism.SharpRestriction.GlobalSchurBounds.LocalCountingBounds
 import Formalism.SharpRestriction.GlobalSchurBounds.ZetaZeroFreeRegion
 import Formalism.SharpRestriction.GlobalSchurBounds.GL3Theta

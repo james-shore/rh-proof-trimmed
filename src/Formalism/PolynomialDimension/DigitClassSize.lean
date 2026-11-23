@@ -1,6 +1,4 @@
 import Mathlib
-import Formalism.SubspaceCounting.Statement
-import Formalism.PolynomialDimension.WeylDim
 
 noncomputable section
 

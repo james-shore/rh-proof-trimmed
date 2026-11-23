@@ -1,6 +1,6 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GeneralLinearLevel.ExpMulVecFix
 import Formalism.FormalDegreeBessel.FinalG
-import Formalism.FormalDegreeBessel.FinalIO
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.SatisfiesGlRelationsBilinearLeft
 
 open Matrix Filter Topology
 open scoped ContDiff

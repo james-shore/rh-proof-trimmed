@@ -1,7 +1,7 @@
 import Mathlib
-import GroundTheory.AutomorphicForms.GL2.GJStandardL
+import GroundTheory.AutomorphicForms.GL2.GJStandardLEuler
+import GroundTheory.AutomorphicForms.GL2.GJStandardLFourier
 import GroundTheory.AutomorphicForms.TensorProductTheorem.CuspidalRepBasic
-import GroundTheory.AutomorphicForms.GL2Classical.HeckeSatakeRep
 
 open MeasureTheory Set Filter NumberField IsDedekindDomain
 open GroundTheory.Automorphic GroundTheory.Automorphic.HeckeAlgebra

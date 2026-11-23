@@ -1,5 +1,5 @@
 import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.FamilyPacketOfEquivalentStatement
-import Formalism.FlagUnipotentLattices.CardSubgroupsOfIndexLe
+import Formalism.FlagUnipotentLattices.MinkowskiFactorialBounds.SumComplexEmbeddingsEqSumInfinitePlace
 
 noncomputable section
 

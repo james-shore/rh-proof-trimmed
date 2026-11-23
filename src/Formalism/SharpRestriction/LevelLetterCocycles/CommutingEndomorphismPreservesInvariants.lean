@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.IntegralHeckeForms
-import Formalism.PadicSubsetSums.CentralIdempotents.CentralIdempotentIntegral
 import Formalism.SharpRestriction.LevelLetterCocycles.GaloisEquivariantKeyFunction
 
 noncomputable section

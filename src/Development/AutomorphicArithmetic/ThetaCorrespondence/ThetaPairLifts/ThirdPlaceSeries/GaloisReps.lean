@@ -1,5 +1,4 @@
 import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.TameGeneratorProjectors
-import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.IsPotCrysAtOfMono0
 
 set_option synthInstance.maxHeartbeats 200000

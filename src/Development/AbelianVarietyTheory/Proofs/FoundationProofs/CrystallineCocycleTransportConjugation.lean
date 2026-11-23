@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.LatticeConditions
-import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.TwistedTriples
 
 noncomputable section
 

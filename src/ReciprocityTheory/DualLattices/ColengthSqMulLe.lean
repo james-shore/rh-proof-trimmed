@@ -1,4 +1,5 @@
 import ReciprocityTheory.DualLattices.SumLatInvMulVec
+import ReciprocityTheory.DualLattices.ExistsUnitMinor
 
 noncomputable section
 

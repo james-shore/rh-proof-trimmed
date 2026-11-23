@@ -1,4 +1,4 @@
-import Formalism.GaussJetBounds.GenLogInverse
+import Formalism.GaussJetBounds.Statement
 import Formalism.GaussJetBounds.StatementA
 import Formalism.IncomingBounds.FlowDegreeBounds.PadicValFactorialRatioProd
 

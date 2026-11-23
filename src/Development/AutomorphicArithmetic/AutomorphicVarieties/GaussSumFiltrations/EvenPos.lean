@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AutomorphicArithmetic.AutomorphicVarieties.PublishedTheorems.Hilbert
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.KLevTop
+import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.IsCondAt
+import GroundTheory.AutomorphicForms.AdelicGLn
 
 noncomputable section
 

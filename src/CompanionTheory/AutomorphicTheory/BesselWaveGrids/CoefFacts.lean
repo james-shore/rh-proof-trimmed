@@ -1,6 +1,6 @@
 import CompanionTheory.AutomorphicTheory.SchurLimitBounds.ZuckermanDuality.Assemble
 import CompanionTheory.AutomorphicTheory.BesselSmoothness.BesselSmoothOf
-import CompanionTheory.AutomorphicTheory.BesselWaveGrids.EqShift
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.ShiftAtRExistsEq
 
 noncomputable section
 

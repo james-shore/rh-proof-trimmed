@@ -1,4 +1,6 @@
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.SecondCharacterFact
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.ExistsSplitIdem
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.NormNatCastLtOne
 
 noncomputable section
 

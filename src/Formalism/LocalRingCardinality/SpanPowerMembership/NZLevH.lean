@@ -1,5 +1,4 @@
 import Formalism.LocalRingCardinality.SpanPowerMembership.NZLevG
-import Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.DeterminantTwistRowActionMem
 
 open MvPolynomial
 

@@ -1,5 +1,4 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnipotentCorrectionU1.CoreStar
-import Mathlib
 import Lemmata.B110.ExistsMoved
 
 open Matrix

@@ -1,4 +1,4 @@
-import Development.EtaleCohomology.EtaleSheaves.LineOneCut
+import Development.EtaleCohomology.EtaleSheaves.LineHigh
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC LateralTheory.E.t_E2Cut

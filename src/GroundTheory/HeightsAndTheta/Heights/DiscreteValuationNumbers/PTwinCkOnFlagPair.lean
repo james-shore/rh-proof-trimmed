@@ -9,7 +9,7 @@ import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.InhabitFurt
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.ImportsBisTer
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsFlagIndependence
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.ClassListMapDomainPerm
-import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.AssemblyBridgeFull
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.NumbersDVR

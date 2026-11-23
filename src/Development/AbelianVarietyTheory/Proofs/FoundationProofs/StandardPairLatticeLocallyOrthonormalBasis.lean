@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.NormSumPairRankZeroOfCurveCoordNorm
-import Formalism.PairingDivisors.StatementH
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Formalism.LocalRingCardinality.ConjSqrtMinusD
 import Formalism.LocalToGlobal.ProjectiveLattices.HostRank
@@ -9,6 +8,7 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SelfDualHermitia
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HermitianLatticeNormOneOfNormOneModPrimeStatement
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsOrthonormalHermitianOfDiagPosIsSquareStatement
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HeckeCharacterTrivialNearOneStatement
+
 open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum
 open scoped BigOperators
 

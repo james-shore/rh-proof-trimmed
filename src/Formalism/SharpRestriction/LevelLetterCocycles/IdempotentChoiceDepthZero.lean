@@ -1,13 +1,8 @@
 import Mathlib
 import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
-import Formalism.LocalRingCardinality.DataParams₂
-import Formalism.LocalRingCardinality.DataParams
-import Formalism.FrobeniusOrbits.Statement
-import Formalism.GaloisCohomology.Statement
-import Formalism.SharpRestriction.LevelLetterCocycles.DecompositionData
-import Formalism.SharpRestriction.LevelLetterCocycles.LiftingTheory
+import Formalism.SharpRestriction.LevelLetterCocycles.QuotientHomNonvanishingBound
+import Formalism.SharpRestriction.LevelLetterCocycles.LocCoh
 import Formalism.SharpRestriction.LevelLetterCocycles.LocalSituation
-import Formalism.SharpRestriction.LevelLetterCocycles.LargeLevelLemmas
 
 noncomputable section
 

@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BcDensEqOfGram
-import Development.AbelianVarietyTheory.Counterexamples.ModuliSurvey.IsQProjOverOfIsProjOver
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsFlagModelHermSum
+import Development.AbelianVarietyTheory.Definitions.Divisors.ToIThCapDegOfAddNsmulDivP
 
 set_option autoImplicit false
 

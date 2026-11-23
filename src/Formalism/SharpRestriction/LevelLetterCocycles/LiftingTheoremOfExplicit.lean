@@ -1,7 +1,5 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.ElementDenominator
 import Formalism.PadicSubsetSums.StableGradedCounts.ARCReuse
-import Formalism.PadicSubsetSums.StableGradedCounts.DividedPowerCoeffValuation
-import Formalism.PadicSubsetSums.CentralIdempotents.WindowSums
 
 noncomputable section
 

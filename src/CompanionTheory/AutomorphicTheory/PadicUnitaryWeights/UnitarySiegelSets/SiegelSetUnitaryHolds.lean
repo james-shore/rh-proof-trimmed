@@ -1,7 +1,6 @@
 import Mathlib
 import CompanionTheory.ThickeningEstimates.LieGroupReduction.SiegelPar
 import GroundTheory.GlobalFields.LocalAtPlace
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousSingleV
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.BlockTriangularMemMinimalParabolic
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.SiegelSetUnitary
 

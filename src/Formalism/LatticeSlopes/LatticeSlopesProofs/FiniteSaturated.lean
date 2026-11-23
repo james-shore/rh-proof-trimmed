@@ -4,7 +4,6 @@ import Formalism.LatticeSlopes.LatticeSlopesProofs.DiscreteTopologyOfLe
 import Formalism.LatticeSlopes.LatticeSlopesProofs.CovolPos
 import Formalism.LatticeSlopes.LatticeSlopesProofs.DegQuot
 import Formalism.LatticeSlopes.LatticeSlopesProofs.SaturationProperties
-import Formalism.LatticeSlopes.LatticeSlopesProofs.MuMaxAttained
 
 open Module Submodule
 

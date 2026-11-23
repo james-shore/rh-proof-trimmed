@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.PeriodIntegrals.GTBranch
-import Formalism.PeriodIntegrals.HwIrred
 
 noncomputable section
 

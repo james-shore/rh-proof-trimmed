@@ -1,10 +1,9 @@
 import Mathlib
 import Formalism.LocalToGlobal.CharacterGerms.NondegenerateCharts
-import Formalism.LocalToGlobal.CharacterGerms.RowTieSelf
-import Formalism.LocalToGlobal.CharacterGerms.BlockAdmissibleChart
 import Formalism.LocalToGlobal.CharacterGerms.NegMem
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors.StChartF
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.CalcExp
+import Formalism.LocalToGlobal.CharacterGerms.RowTieSelf
 import Development.AbelianVarietyTheory.Definitions.TeichmullerDepth.HasTeich
 
 set_option autoImplicit false

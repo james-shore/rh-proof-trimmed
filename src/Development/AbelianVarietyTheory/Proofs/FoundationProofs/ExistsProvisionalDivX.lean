@@ -2,12 +2,8 @@ import Mathlib
 import Formalism.LocalRingCardinality.DataExtra
 import Formalism.LocalRingCardinality.DataRRMetric
 import Formalism.LocalToGlobal.LatticeGeometry.DegFlLApply
-import Formalism.LocalToGlobal.LatticeGeometry.CmTypeMeetsConjugatePair
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PointGlobalSectionsNeBot
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsProvisionalShimX
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.NonemptyRingHomComplexOfLeContinuum
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SubRkOfPsiOfEqRkOfCEmb
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsFramesNormAtEqNorm
 
 open Formalism.BasicNotions NumberField
 

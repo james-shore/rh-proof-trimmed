@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.MeanHeightDescent.DivisionInequalityWithCovolume
 import Formalism.BranchSandwichDivisors.DivFromPassageAndNorm
 
 set_option linter.deprecated false

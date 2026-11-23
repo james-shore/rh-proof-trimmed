@@ -1,5 +1,4 @@
-import Formalism.StatementOC
-import Formalism.ZetaRealNonvanish
+import Formalism.Statement
 
 open Complex MeasureTheory Set Filter Topology
 

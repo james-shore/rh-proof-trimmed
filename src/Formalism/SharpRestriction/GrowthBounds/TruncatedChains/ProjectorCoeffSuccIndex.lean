@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.TruncatedChains.PfTrunc
+import Formalism.SharpRestriction.GrowthBounds.TruncatedChains.RestPair
 
 noncomputable section
 

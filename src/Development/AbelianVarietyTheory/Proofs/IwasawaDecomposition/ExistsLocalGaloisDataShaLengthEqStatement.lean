@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLocalGaloisDataShaLengthEq
-import Formalism.GaloisCohomology.Statement
 
 open NumberField
 set_option maxHeartbeats 1000000 in

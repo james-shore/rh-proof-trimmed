@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.SharpRestriction.GlobalSchurBounds.SlopeMaxOpenOfHookTwoLeV
+import Formalism.SharpRestriction.GlobalSchurBounds.IntegrableOfContinuousCircleMeasure
 import Formalism.LocalToGlobal.GlobalTheory.GL4.PTenFrames
 
 open Module NumberField IsDedekindDomain MvPolynomial

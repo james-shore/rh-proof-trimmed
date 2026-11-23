@@ -1,5 +1,5 @@
-import Formalism.RealPlaceAnalysis.QuotientSettingHolds
-import Formalism.RealPlaceAnalysis.StatementE
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactHaarRightInvariantInst
+import Formalism.RealPlaceAnalysis.IsRightTranslationIsometric
 
 open Matrix
 open scoped ContDiff

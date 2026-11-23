@@ -1,8 +1,7 @@
 import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.RealSeparation.UnfDefs
+import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.RedTheta
 import Formalism.LocalToGlobal.IndefiniteReal.RealSeparation.BesPerSt
-import Formalism.LocalToGlobal.IndefiniteReal.OrthogonalComplementCharacterisation
-import Formalism.LocalToGlobal.IndefiniteReal.DatumVec
+import Formalism.LocalToGlobal.Divisibility.DefGroup
 
 noncomputable section
 

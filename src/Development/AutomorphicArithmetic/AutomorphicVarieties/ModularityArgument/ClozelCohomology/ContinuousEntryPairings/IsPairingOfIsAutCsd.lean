@@ -1,12 +1,8 @@
 import Mathlib
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ClozelCohomology.ContinuousEntryPairings.LocFixed
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.GuDefs
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.BcPolar
-import Development.AutomorphicArithmetic.AutomorphicVarieties.PartsConj
-import Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.SatakeParametersComplexConjugate
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharpolyScaledInverse
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CoeDualRep
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ConjOpInvolutive
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CoeDualRep
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N Polynomial GlobalTheory.CuspRep GlobalTheory.HeckeGal
 open GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Af.Bc UpperTheory.V.Af.Gu UpperTheory.V.Published GlobalTheory.MonoConj

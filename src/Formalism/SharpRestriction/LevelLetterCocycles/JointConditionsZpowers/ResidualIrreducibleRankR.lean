@@ -1,5 +1,5 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.BlochKatoPhases
-import Formalism.SharpRestriction.LevelLetterCocycles.SumRepresentations
+import Formalism.SharpRestriction.LevelLetterCocycles.QuotientHomNonvanishingBound
 
 noncomputable section
 

@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.LocalRingCardinality.DataSpaces
 import Formalism.FlagUnipotentLattices.CardSubmodulesAndLinearEquivBounds
-import Formalism.FlagUnipotentLattices.CardSubgroupsOfIndexLe
+import Formalism.FlagUnipotentLattices.MinkowskiFactorialBounds.SumComplexEmbeddingsEqSumInfinitePlace
 
 open NumberField Module Matrix Formalism.BasicNotions
 open scoped ENNReal

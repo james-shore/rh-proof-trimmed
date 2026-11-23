@@ -1,4 +1,4 @@
-import Formalism.CoboundaryTransfers.StatementAPI
+import Formalism.CoboundaryTransfers.Statement
 import Formalism.WachModuleLifts.StatementW
 import Formalism.LagrangeIdealLifts.Statement
 import Formalism.FrobeniusContraction.Statement

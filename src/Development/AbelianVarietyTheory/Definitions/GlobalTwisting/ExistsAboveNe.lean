@@ -1,10 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.KerIsTerm
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsMulAddEqOneOfNotMem
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsMulMemSpan
-import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.InvTrKEmbGLApply
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.SplitLastBlockActX
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.BranchesAlongOfIrreducible
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExtUHInjective
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.TrueWtAddSSNonneg
 
 noncomputable section
 

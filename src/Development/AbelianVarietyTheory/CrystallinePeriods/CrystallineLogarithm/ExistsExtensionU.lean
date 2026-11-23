@@ -7,9 +7,9 @@ import Development.AutomorphicArithmetic.IntegralCasts.CrystallinePeriods.Embedd
 import Development.AutomorphicArithmetic.IntegralCasts.CrystallinePeriods.PadicField
 import Development.AutomorphicArithmetic.IntegralCasts.CrystallinePeriods.Action
 import Development.AutomorphicArithmetic.IntegralCasts.CrystallinePeriods.MapEqPadicPowCyclotomicCharacter
-import Development.AutomorphicArithmetic.IntegralCasts.CrystallinePeriods.TruncLogEqOfPowEqZero
 import Development.AutomorphicArithmetic.IntegralCasts.CrystallinePeriods.Period
 import Development.AutomorphicArithmetic.IntegralCasts.CrystallinePeriods.CrisTheta
+
 namespace CrisHomExtUnit
 section
 universe u

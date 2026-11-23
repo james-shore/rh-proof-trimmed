@@ -1,5 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StokesOffDiscriminantWindow
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StStokesOffDiscriminant
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

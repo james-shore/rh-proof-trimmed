@@ -1,6 +1,4 @@
 import Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyEigA
-import Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyJointDef
-import Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyTeichDef
 
 noncomputable section
 

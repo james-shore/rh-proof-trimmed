@@ -1,5 +1,4 @@
 import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.MemMinimalPrimesIff
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.LowerBoundConditional
 
 set_option autoImplicit false
 

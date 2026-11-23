@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitVolume.SdUniq
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitVolume.DensInfSS
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.GradedPowerSeriesLemmas
 
 noncomputable section

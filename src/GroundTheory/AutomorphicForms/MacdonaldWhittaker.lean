@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.AutomorphicForms.MacdonaldFormula
+import GroundTheory.AutomorphicForms.MacdonaldHecke
 
 noncomputable section
 

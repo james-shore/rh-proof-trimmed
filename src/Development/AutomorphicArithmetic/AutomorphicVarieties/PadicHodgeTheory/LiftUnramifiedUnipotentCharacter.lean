@@ -1,8 +1,8 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.ExistsUniqueUnramifiedCocycleFrobeniusValue
-import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.FrobDense
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.IqBasic
-import Mathlib.RingTheory.Nilpotent.Exp
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.UnipotentExponentialSurjective
+import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.LocalPublishedTheorems
+
 open Formalism.BasicNotions Formalism.BasicNotions.Loc UpperTheory.V.Loc
 
 private theorem ul_exp_onto {A : Type} [CommRing A] [Algebra ℚ A] {n : A} (hn : IsNilpotent n) :

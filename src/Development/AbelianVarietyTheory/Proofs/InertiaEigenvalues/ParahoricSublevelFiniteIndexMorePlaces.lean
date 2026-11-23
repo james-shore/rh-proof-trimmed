@@ -1,6 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.LinksW
-import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsStepWeil
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelv
 
 noncomputable section

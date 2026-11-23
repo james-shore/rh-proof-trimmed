@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.IsBand
 import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.ExistsStandardIndModule
 
 noncomputable section

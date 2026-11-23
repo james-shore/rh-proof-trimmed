@@ -1,7 +1,7 @@
 import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.DefsObj
-import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.ExCusp
 import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.SInfIff
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.TemperedLocalComponents.AutBridge
+import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.ExCusp
 
 open MeasureTheory NumberField IsDedekindDomain
 open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.RightCosetSpace

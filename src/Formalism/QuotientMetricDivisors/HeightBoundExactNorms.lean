@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.QuotientMetricDivisors.Statement
-import Formalism.QuotientMetricDivisors.StatementACE
 import Formalism.HarderNarasimhan.QuotRealize
 
 open Module NumberField

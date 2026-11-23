@@ -1,5 +1,6 @@
 import Development.AbelianVarietyTheory.Definitions.Foundations.ConstTermOnMulLeftOfNormalizer
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.UnfoldingZeroMeanNormalizedSubgroup
+import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.InvariantRadonFibre
+
 open MeasureTheory
 open scoped ENNReal NNReal
 

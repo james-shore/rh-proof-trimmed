@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.SphericalThetaInertPlace
-import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.HoweUnram
+import Development.AbelianVarietyTheory.Definitions.Foundations.NotIsSplitOfIsInertAt
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.NormalFam
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsHeisTrivial
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.UnitaryGl1UnitValuation
 

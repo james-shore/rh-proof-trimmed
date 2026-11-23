@@ -1,10 +1,9 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsEntC
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.FormsPin
+import Formalism.LocalToGlobal.KernelLattices.AdaptedEnt
+import Formalism.LocalToGlobal.UnitaryNorms.CharTied
+import Formalism.LocalToGlobal.GroupLattices.TrivialTransfer.GenCoprime
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ColNorm
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.JetsInIffStepField
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FixedVectorEqOfStandardData
-import Formalism.LocalToGlobal.KernelLattices.TopPin
-import Formalism.LocalToGlobal.KernelLattices.InterlaceAll
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.BaseFieldsPrimesOk
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.EvGLawOfFixedCol
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExtUHInjective

@@ -1,5 +1,5 @@
 import Mathlib
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors.StChartFH
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors.StChartF
 import Development.AbelianVarietyTheory.Definitions.TwoChartAtlas.TwoChartSt
 import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.ExistsToJetEq
 

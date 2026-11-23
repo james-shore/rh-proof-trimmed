@@ -1,4 +1,6 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.GaussAbsMulSupportFinite
+import ReciprocityTheory.SemistableReduction.LatSemiSt
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.Qdist
 
 namespace ReciprocityTheory.ChartRestriction.G.T0.SatakeVectors
 

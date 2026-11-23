@@ -1,5 +1,4 @@
 import Formalism.FlagUnipotentLattices.IdealCountLeW
-import Formalism.HyperbolicPlaceProducts.SecondLevelArithmeticNorm
 import Lemmata.GeneralBFactSecondMore.Imports
 
 open Formalism.HermitianLatticeCounting.S6

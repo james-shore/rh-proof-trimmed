@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.KerPNonzero
+import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.IsSemiChar
 
 noncomputable section
 open scoped BigOperators ComplexConjugate

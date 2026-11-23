@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.ArithmeticGeometry.AbelianVarieties.FormalGroupInverse
+import GroundTheory.ArithmeticGeometry.AbelianVarieties.FormalGroupLaw
 
 namespace GroundTheory.Arith.Abelian
 

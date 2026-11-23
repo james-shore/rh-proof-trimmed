@@ -10,6 +10,7 @@ import Formalism.LocalToGlobal.GaloisLevelStructure.DefsRowLoc
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.LocAutHodgeTateWeightsLevelZeroDef
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CGTrue
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ConcreteTwistFrameExtraExcludedOverSmallPrimes
+import Formalism.LocalToGlobal.GaloisLevelStructure.DefsFinTyp
 
 noncomputable section
 

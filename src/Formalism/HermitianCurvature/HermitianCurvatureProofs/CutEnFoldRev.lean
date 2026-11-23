@@ -1,6 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEnAsm
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEnCVLocal
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.OperatorPreservesFusionForms
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.HasFDerivAtFsvOther
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.OrbitalIntegralIdentities
 

@@ -1,7 +1,6 @@
 import Mathlib
-import Development.WeilBound.ThetaLifts.CTKernel
+import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
 import Development.WeilBound.ThetaLifts.FrameEstimates.SquareIntegrableWeilRange
-import Development.WeilBound.ThetaLifts.TowerModels.PlaneHerm
 
 noncomputable section
 

@@ -1,4 +1,6 @@
 import Formalism.SharpRestriction.GrowthBounds.RootWeights.EquivariantInjectiveOfCyclic
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.CyclicSubmoduleIsSubrepresentation
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.EquivariantKillsCyclicOfZero
 
 noncomputable section
 

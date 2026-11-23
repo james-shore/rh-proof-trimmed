@@ -2,7 +2,8 @@ import Mathlib
 import GroundTheory.ProfiniteCohomology.RealPlaces.ConeMap
 import GroundTheory.ProfiniteCohomology.RealPlaces.NormHomotopy
 import GroundTheory.ProfiniteCohomology.RealPlaces.ConeHomotopy
-import GroundTheory.ProfiniteCohomology.CompactSupportCohomology.CompactCupEqCompactCupRight
+import GroundTheory.ProfiniteCohomology.CupProducts.ExistsCocycleMapFEqD
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

@@ -1,5 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAStarOp2
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGaugeGTrChain
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGaugeCut
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAFFStableLoc
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt

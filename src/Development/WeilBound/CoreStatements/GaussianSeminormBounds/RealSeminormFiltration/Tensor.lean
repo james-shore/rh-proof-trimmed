@@ -1,10 +1,4 @@
 import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.TensorIrr
-import Mathlib.LinearAlgebra.PiTensorProduct.Basis
-import Mathlib.RingTheory.SimpleModule.Basic
-import Mathlib.RingTheory.Algebraic.LinearIndependent
-import Mathlib.FieldTheory.IsAlgClosed.Basic
-import Mathlib.Analysis.Complex.Polynomial.Basic
-import Mathlib.Analysis.Complex.Cardinality
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.SpectrumNonemptyOfCountableRank
 
 noncomputable section

@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.ReducedBasisStatement
+import Mathlib
 
 namespace ReciprocityTheory.ChartRestriction.G.H1
 

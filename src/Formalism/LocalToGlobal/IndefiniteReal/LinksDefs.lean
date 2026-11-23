@@ -1,12 +1,11 @@
 import Formalism.LocalToGlobal.IndefiniteReal.CxToPkgFamIn
-import Formalism.LocalToGlobal.IndefiniteReal.CutTuples2
+import Formalism.LocalToGlobal.GlobalTheory.DivPassage
 import Formalism.LocalToGlobal.IndefiniteReal.SubgroupCharExtensionOneApply
 import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
-import Formalism.LocalToGlobal.IndefiniteReal.BridgeTie
-import Formalism.LocalToGlobal.IndefiniteReal.DatumVec
+import Formalism.LocalToGlobal.IndefiniteReal.Bridge
+import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
 import Formalism.LocalToGlobal.IndefiniteReal.OrthogonalComplementCharacterisation
 import Formalism.LocalToGlobal.IndefiniteReal.GramCEqTranspose
-import Formalism.LocalToGlobal.HeckeThetaElements.DefsWt
 import Formalism.LocalToGlobal.JointCharacters.LocEMulLocE
 import Formalism.LocalToGlobal.UnitaryNorms.CharTied
 

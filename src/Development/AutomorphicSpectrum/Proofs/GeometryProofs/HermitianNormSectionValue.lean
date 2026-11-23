@@ -1,5 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsPullWedge
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsPowSubMemSpanOfIsUnitModOfIsAlgClosed
+
 open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain MvPolynomial
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped ComplexOrder

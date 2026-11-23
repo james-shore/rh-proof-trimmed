@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsPosHermFormV
-import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IntMIffInt
 
 open Module.End
 

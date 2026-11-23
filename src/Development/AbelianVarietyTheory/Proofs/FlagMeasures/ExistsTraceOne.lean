@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.IsGaugeAll
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DefClassNum
 
 open NumberField
 

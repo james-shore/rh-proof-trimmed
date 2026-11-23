@@ -2,9 +2,7 @@ import Mathlib
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.GroupDict
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsSheetCover
 import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StatementsProved
-import GroundTheory.HeightsAndTheta.Heights.CountingLowerBound.Assembly
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.ExhaustStatementPfA
-import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.PMahlerCompactness
 
 noncomputable section
 

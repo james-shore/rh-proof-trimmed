@@ -13,6 +13,7 @@ import CompanionTheory.HarishChandraModules.LowKTypeMultiplicity.EigenspaceCycli
 import CompanionTheory.HarishChandraModules.LowKTypeMultiplicity.EigenspaceCyclicDensity.CreationOperators.CycDense
 import CompanionTheory.HarishChandraModules.LowKTypeMultiplicity.EigenspaceCyclicDensity.Bridge
 import Development.AutomorphicSpectrum.Proofs.SemilocalMultiplicity.DsInfCharCap
+import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.FinalAll
 
 namespace GlobalTheory.CompanionTheory.TypeCount.LowK
 

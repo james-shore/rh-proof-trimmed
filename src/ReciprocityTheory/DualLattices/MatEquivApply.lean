@@ -1,5 +1,6 @@
 import ReciprocityTheory.DualLattices.DualLenStatement
 import ReciprocityTheory.DualLattices.BlockOneMulMulBlockOne
+import ReciprocityTheory.DualLattices.ProdDvdOfIso
 
 noncomputable section
 

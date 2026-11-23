@@ -1,5 +1,5 @@
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.EqZeroOfDatumEmbeddingEqZero
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.OneParam
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SlmPhiCont
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.ModelTau
 
 noncomputable section
 

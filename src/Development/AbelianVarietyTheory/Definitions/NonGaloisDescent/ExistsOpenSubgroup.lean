@@ -3,6 +3,7 @@ import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.CoeffRingsH
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsLabOfOrder
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LabelSettingTameGenerator
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.BlocksUnique
+import Formalism.LocalRingCardinality.DataTies
 
 noncomputable section
 

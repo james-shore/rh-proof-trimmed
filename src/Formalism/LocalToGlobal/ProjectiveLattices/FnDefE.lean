@@ -1,10 +1,9 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.FnDefC
 import Formalism.LocalToGlobal.ProjectiveLattices.NrmTieDef
-import Formalism.LocalToGlobal.ProjectiveLattices.CurveOpen
+import Formalism.LocalToGlobal.ProjectiveLattices.LiftCurveSt
 import Formalism.LocalToGlobal.ProjectiveLattices.CompSplitPfB
-import Formalism.LocalToGlobal.ProjectiveLattices.CompSplitPfD
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.CompactEntryBounds
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.OrthonormalFlagTranslateHolds
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.RealPlaceEmbeddings
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.IsIntegralCc
 
 noncomputable section
 

@@ -1,8 +1,6 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StatementsCurrent
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StSliceDim
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsChartGram
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StLinearNoetherNormalization
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PChartGramMA
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PConeLogBound
 

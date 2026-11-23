@@ -1,13 +1,7 @@
 import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
-import Formalism.LocalToGlobal.IndefiniteReal.RealSeparation.ParabSt
-import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.FuncSt
-import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.BaseSt
-import Formalism.LocalToGlobal.IndefiniteReal.OrthogonalComplementCharacterisation
+import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
+import Formalism.LocalToGlobal.Divisibility.DefGroup
 import Formalism.LocalToGlobal.IndefiniteReal.FockTheta.UnitBracket
-import Formalism.LocalToGlobal.IndefiniteReal.DatumVec
-import Formalism.SharpRestriction.Divisibility.SchurIrreducible
-import Formalism.LocalToGlobal.BesselHermitianTheta.MinfDensity
-import Formalism.SharpRestriction.CuspSpanNormBounds.PlaceDegreeData
 
 noncomputable section
 

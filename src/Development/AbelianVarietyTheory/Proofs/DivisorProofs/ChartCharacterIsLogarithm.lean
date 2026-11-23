@@ -1,9 +1,11 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ESmall
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors.StChartF
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormalGroupExpTwoSidedInverseUnique
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIntProdRename
-import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.NatCastMulCoeffOfPderivEq
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.HolomorphicFamilies.ComposeLinearAction
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.FactorDepthInertBounds
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.BigBlockCharacters
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.TypedPartSplitPrimes
 
 set_option autoImplicit false
 

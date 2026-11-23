@@ -1,4 +1,4 @@
-import ReciprocityTheory.Hypotheses.GalCoh
+import ReciprocityTheory.Hypotheses.GalCohDefs
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.IsUnramifiedOutsideIffLeMaxUnramifiedOutside
 import GroundTheory.ProfiniteCohomology.ContinuousCochains
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.DifferentDvdRamifiedPrimePowerStatement

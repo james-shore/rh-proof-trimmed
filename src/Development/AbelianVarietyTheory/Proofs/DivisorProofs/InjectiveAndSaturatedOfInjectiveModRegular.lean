@@ -1,5 +1,5 @@
 import Mathlib
-import ReciprocityTheory.CommutativeAlgebra.CohenMacaulay.ModDepthGE
+
 open IsLocalRing
 
 namespace GlobalTheory

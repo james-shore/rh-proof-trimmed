@@ -1,5 +1,4 @@
 import Formalism.ThetaLogCoordinates.DualWeylCoordinates.DualWeylProofs.QaNuAntitone
-import Formalism.GradedWeylDivisibility.FinalD
 
 noncomputable section
 

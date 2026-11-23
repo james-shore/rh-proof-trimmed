@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitKronecker.PosDefFormNeZero
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitKronecker.Development
 
 namespace PI.UnitKronW
 

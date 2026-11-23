@@ -1,5 +1,8 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BorderMinorRotation.Development
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BorderMinorRotation.SkipTwoSuccAboveComp
+import Formalism.PeriodIntegrals.QmColExp
+import Formalism.PeriodIntegrals.QmBorderES
+import Formalism.PeriodIntegrals.QmBorderFull
 
 namespace PI
 

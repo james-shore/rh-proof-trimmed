@@ -1,5 +1,5 @@
 import Mathlib
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.WeightedSumBounds.TangentEqLcZero
+import ReciprocityTheory.DualLattices.VEqZeroOfPowEqOne
 
 namespace ReciprocityTheory.ChartRestriction.G.Sh.PTb
 

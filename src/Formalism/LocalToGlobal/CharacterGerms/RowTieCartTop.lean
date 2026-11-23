@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.CharacterGerms.RowTieCartAdd
+import Formalism.LocalToGlobal.CharacterGerms.ConstMemTypeSetOfNonneg
 
 namespace Formalism.L2.FormalSeriesBounds
 

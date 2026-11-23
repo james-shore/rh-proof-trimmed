@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.CuspSpanNormBounds.LinQRawRange
+import Formalism.SharpRestriction.CuspSpanNormBounds.FractionFieldToGenericStalkAlgebraMapEq
 
 noncomputable section
 

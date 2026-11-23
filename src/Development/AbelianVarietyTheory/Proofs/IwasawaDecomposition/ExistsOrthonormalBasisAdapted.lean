@@ -2,7 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NuInRange
 import Formalism.LocalRingCardinality.DataExtra
 import Formalism.LocalRingCardinality.DataTies
-import Formalism.LocalRingCardinality.Lemmas
+
 open Formalism.BasicNotions NumberField IsDedekindDomain GlobalTheory.Mem
 
 namespace GlobalTheory.Mem

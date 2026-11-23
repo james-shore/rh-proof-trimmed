@@ -1,5 +1,7 @@
 import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ScalarRelationReflexive.MapMemSupThree
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaUniqueness.Lemmas
+import Formalism.PeriodIntegrals.ScalRelRepFree
 
 noncomputable section
 

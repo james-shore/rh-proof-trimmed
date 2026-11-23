@@ -1,4 +1,4 @@
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.QuadraticFormTwoTwo.GANormSqStar
+import Formalism.HermitianCurvature.StatementQ
 
 open Matrix Finset
 open scoped ContDiff

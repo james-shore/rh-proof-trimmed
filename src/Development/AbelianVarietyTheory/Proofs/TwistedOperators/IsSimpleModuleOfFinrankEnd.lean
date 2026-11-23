@@ -1,8 +1,7 @@
 import Mathlib
-import Formalism.LocalToGlobal.Divisibility.GoodPartHermitianSpec
+import Formalism.LocalToGlobal.Divisibility.ClassSum
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.LabelDatum
-import Development.AbelianVarietyTheory.Proofs.CharacterTheory.IsCharOfIsPrimitiveRoot
-import Development.AbelianVarietyTheory.Proofs.CharacterTheory.IsCharacterOverSubfieldOfRepresentation
+
 open GlobalTheory.GLq Polynomial
 open scoped Classical
 

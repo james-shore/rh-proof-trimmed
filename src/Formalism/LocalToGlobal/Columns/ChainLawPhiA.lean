@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.Columns.ChainLawPhi
+import Formalism.LocalToGlobal.Columns.FiniteSumNonzeroLargeDepth
 import Formalism.LocalToGlobal.Columns.StdBasisFlagSubmoduleOfBlockTriangular
 
 open NumberField IsDedekindDomain Module

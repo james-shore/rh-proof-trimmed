@@ -1,5 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.IndEtOfForallFinset
+import Development.AbelianVarietyTheory.Definitions.Divisors.GalMapMul
+
 open GlobalTheory.EtC
 
 open TensorProduct

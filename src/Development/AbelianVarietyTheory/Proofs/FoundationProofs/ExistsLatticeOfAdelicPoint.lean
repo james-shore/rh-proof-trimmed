@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.NormSumPairRankZeroOfCurveCoordNorm
-import Formalism.PairingDivisors.StatementH
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsDual
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsSpan
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsGlob

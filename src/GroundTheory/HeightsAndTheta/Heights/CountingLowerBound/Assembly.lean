@@ -1,9 +1,5 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.CountingLowerBound.Statements
-import GroundTheory.HeightsAndTheta.Heights.CountingLowerBound.PInteriorDichotomy
-import GroundTheory.HeightsAndTheta.Heights.CountingLowerBound.PMinkowskiCovolumeBound
-import GroundTheory.HeightsAndTheta.Heights.CountingLowerBound.PCuspWeightBound
-import GroundTheory.HeightsAndTheta.Heights.CountingLowerBound.PShortVectorsOrthogonal
 import GroundTheory.HeightsAndTheta.Heights.CountingLowerBound.PPackingCount
 import GroundTheory.HeightsAndTheta.Heights.CountingLowerBound.PMeanCountBound
 import GroundTheory.HeightsAndTheta.Heights.CountingLowerBound.PTailBound

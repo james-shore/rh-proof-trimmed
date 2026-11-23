@@ -7,8 +7,8 @@ import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DivisibleGroupTowerC
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DivisibleGroupTowerDualStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DivisibleGroupTowerFreeStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.TateMapDualHomBidual
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConvEqOneOfForallPairing
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ImportsBisRest
+
 open CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct NumberField GlobalTheory GlobalTheory.PDivGroup GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.BT GlobalTheory.CompanionTheory.Ar.HT ReciprocityTheory.ChartRestriction.G.Semi
 
 noncomputable section

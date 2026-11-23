@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.FlagUnipotentLattices.MinkowskiFactorialBounds.LatticeSumBounds
+import Formalism.FlagUnipotentLattices.CardSubmodulesAndLinearEquivBounds
 
 noncomputable section
 

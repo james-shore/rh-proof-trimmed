@@ -3,10 +3,8 @@ import Formalism.LocalToGlobal.ProjectiveLattices.RecPJThAllNeBot
 import Formalism.LocalToGlobal.ProjectiveLattices.PlaceBelow
 import Formalism.SharpRestriction.Divisibility.AbelianOpenPart.OEOsInjective
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.LemmaBStatement
-import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermCut
-import Formalism.LocalToGlobal.ProjectiveLattices.ConjNeSelfOfCM
-import Formalism.LocalToGlobal.ProjectiveLattices.BetaAtSymm
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsExtensionAllModelsUniformized
+import Formalism.LocalToGlobal.ProjectiveLattices.FrameCharts
 
 open AlgebraicGeometry CategoryTheory NumberField IsLocalRing IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj

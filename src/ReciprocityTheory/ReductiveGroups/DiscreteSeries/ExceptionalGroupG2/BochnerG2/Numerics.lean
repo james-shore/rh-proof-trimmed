@@ -1,5 +1,5 @@
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.NumRho
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.Numerics
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.StdGap
 
 noncomputable section
 

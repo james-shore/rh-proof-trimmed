@@ -1,9 +1,9 @@
 import Mathlib
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PSheetImageAreaSetFrame
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsAreaFormulaInjSet
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsAreaFormulaLocal
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PProjectionFormula
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PCriticalImageNull
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PSheetImageAreaSetFrame
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

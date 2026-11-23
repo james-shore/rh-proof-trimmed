@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.LogVandermondeBounds.GaussOperatorProductFormula
 
 namespace Formalism.HermitianLattices.LocalLatticeBases
 

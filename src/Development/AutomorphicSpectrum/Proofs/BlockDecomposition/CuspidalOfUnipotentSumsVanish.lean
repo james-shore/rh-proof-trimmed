@@ -1,5 +1,5 @@
 import Mathlib
-import Development.WeilBound.CoreStatements.FiniteTypeHarishChandra.SupportExistsAll
+import Development.WeilBound.CoreStatements.FiniteTypeHarishChandra.FiniteDimensionalHcSpace
 
 open ReciprocityTheory.Ty.Fin
 open Formalism.IrreducibleCountingLemmas.TYPES hiding zIdem IsCuspidal

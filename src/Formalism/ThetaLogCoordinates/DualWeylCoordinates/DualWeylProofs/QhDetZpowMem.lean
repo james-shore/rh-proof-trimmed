@@ -1,4 +1,4 @@
-import Formalism.ThetaLogCoordinates.DualWeylCoordinates.StatementH
+import Formalism.ThetaLogCoordinates.DualWeylCoordinates.DefsMod
 
 noncomputable section
 

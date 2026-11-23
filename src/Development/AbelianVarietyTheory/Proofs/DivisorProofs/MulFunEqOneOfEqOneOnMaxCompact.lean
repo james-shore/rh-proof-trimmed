@@ -2,10 +2,6 @@ import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.OneMapT
 import Formalism.LocalToGlobal.ProjectiveLattices.FreeBridge
 import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsBaseClassLevelAdapted
-import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsWeakOfDatum
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.ColumnDataLaws
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.VacuumCharacterDeterminant
-import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.GeneralDiagonalMatrix
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompAtMtMul
 
 open AlgebraicGeometry CategoryTheory NumberField Matrix MeasureTheory

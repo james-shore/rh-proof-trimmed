@@ -1,7 +1,8 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LinkedUnramifiedChains.TeichmullerParts.UnramifiedTrivialInertialType
-import Mathlib
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Lbc
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ExistsRealisesNeOne
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsLevelProjLevelProj
 import GroundTheory.AutomorphicForms.SmoothRepSchur
+
 open UpperTheory.V.Z.J.D
 
 theorem UpperTheory.V.Z.J.D.schurGL :

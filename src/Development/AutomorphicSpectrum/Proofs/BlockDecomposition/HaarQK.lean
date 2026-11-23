@@ -1,6 +1,6 @@
 import Mathlib
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IsotropicMahlerBounds.OnlyIsotropic
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HaarMeasureIwasawaQuotient
+import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StatementsLineStabHaar
 
 open MeasureTheory PositivityTheory.Rg.BcB PositivityTheory.Rg.Tf.Loc
 open scoped ENNReal

@@ -3,7 +3,7 @@ import Development.ResolutionOfSingularities.EmbeddedResolution.DerivativeIdeal.
 import Development.ResolutionOfSingularities.EmbeddedResolution.DerivativeIdeal.IdealSheafOrder
 import Development.ResolutionOfSingularities.EmbeddedResolution.DerivativeIdeal.DerivativeIdealSheafOrderDecrease
 import Development.ResolutionOfSingularities.EmbeddedResolution.DerivativeIdeal.DerivativeIdealSheafSmoothPullback
-import Development.ResolutionOfSingularities.Foundations.Schemes.IdealSheafData
+
 universe u
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace

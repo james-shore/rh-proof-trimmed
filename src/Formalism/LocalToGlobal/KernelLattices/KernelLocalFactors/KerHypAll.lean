@@ -7,13 +7,13 @@ import Formalism.LocalToGlobal.Columns.ChainInstY
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.MemGoodPrimesOfNoExceptional
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.TopLawQ
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.KerEquivConcrete
-import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.RatKDeg
-import Formalism.LocalToGlobal.Columns.XiFirstLawAllLevels
-import Formalism.LocalToGlobal.Columns.ChainLawPhiPf
-import Formalism.LocalToGlobal.Columns.ChainLawXi
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnfoldingEquivalence.CompSymmComp
-import Formalism.LocalToGlobal.Columns.ChainLawPhi
-import Formalism.LocalToGlobal.Columns.ChainLawTw
+import Formalism.LocalToGlobal.Columns.OcbPhiFIdxFPos
+import Formalism.LocalToGlobal.Columns.FirstUnfoldingEqZeroOfNotIntegral
+import Formalism.LocalToGlobal.Columns.ColumnsProofs.ChainCounts
+import Formalism.LocalToGlobal.Columns.RecLevelSym
+import Formalism.PeriodIntegrals.UnfoldEquiv
+import Formalism.LocalToGlobal.Columns.ChainTw
+import Formalism.PeriodIntegrals.OneCosetSharp
 
 open NumberField IsDedekindDomain
 

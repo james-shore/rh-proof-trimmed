@@ -1,6 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.QminorZero
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.LiftClosedUnderOperations
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelFormSesquilinearFiniteClass
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.OrbitalIntegralIdentities
+import Formalism.RealPlaceAnalysis.StatementU
 
 open Matrix
 

@@ -1,4 +1,4 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.SignPermutationIdentity
+import Formalism.HermitianCurvature.OperatorsCommuteTranslations
 
 open Matrix Finset
 

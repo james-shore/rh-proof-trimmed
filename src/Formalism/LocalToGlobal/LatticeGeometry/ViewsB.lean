@@ -1,6 +1,4 @@
-import Formalism.LocalToGlobal.LatticeGeometry.ShimuraSheafOfIndefiniteSubspace
-import Formalism.SharpRestriction.Divisibility.IntegralModelsLocalData
-import Formalism.SharpRestriction.Divisibility.BoundaryLocalData
+import Formalism.LocalToGlobal.LatticeGeometry.CompNe
 import Formalism.SharpRestriction.Divisibility.WeightThresholdDefs
 
 noncomputable section

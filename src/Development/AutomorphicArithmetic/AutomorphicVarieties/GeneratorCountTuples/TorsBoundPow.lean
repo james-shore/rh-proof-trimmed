@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicArithmetic.AutomorphicVarieties.GeneratorCountTuples.LemmaK
+import Formalism.GaloisCohomology.Statement
 
 noncomputable section
 

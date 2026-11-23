@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothReal
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.MemUJsetOfKset
+import Formalism.LocalToGlobal.IndefiniteReal.FWExist
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.SatisfiesGlRelationsBilinearLeft
 
 open Matrix Finset Formalism.MainNotions.S
 open scoped InnerProductSpace

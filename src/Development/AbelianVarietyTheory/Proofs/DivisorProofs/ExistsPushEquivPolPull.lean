@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilEqOneComplex
-import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsPushEquiv
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.WeilRos
 
 set_option autoImplicit false
 

@@ -1,10 +1,11 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.MemPass
+import Development.AbelianVarietyTheory.Definitions.Divisors.HasLevelStd
+import Development.AbelianVarietyTheory.Definitions.Divisors.TorsTransport
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsTrSelf
 import Development.AbelianVarietyTheory.Definitions.Divisors.ZetaActRefl
-import Development.AbelianVarietyTheory.Definitions.Divisors.TorsTransport
 import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModDefs
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLatticeDecompositionOfIdeleApprox
+
 open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.HilbFam GlobalTheory.WpFam GlobalTheory.QFam ReciprocityTheory.ChartRestriction.L1
 open scoped UpperHalfPlane nonZeroDivisors Matrix
 

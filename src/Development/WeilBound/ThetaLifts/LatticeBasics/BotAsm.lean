@@ -1,6 +1,7 @@
 import Mathlib
 import Development.WeilBound.ThetaLifts.LatticeBasics.HodgeTateFromSandwich
 import Development.WeilBound.ThetaLifts.LatticeBasics.ExistsIsHeckeLOfCompleted
+import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
 
 noncomputable section
 

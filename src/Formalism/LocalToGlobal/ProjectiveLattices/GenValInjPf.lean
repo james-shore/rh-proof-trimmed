@@ -1,8 +1,6 @@
-import Formalism.LocalToGlobal.ProjectiveLattices.CurveOpen
-import Formalism.LocalToGlobal.ProjectiveLattices.ChartWD
-import Formalism.LocalToGlobal.ProjectiveLattices.AllTest
+import Formalism.LocalToGlobal.ProjectiveLattices.LiftCurveSt
 import Formalism.LocalToGlobal.ProjectiveLattices.HasDataCondition
-import Formalism.LocalToGlobal.ProjectiveLattices.VAddIntNonneg
+import Formalism.LocalToGlobal.ProjectiveLattices.IsGenFrGenFr
 
 noncomputable section
 

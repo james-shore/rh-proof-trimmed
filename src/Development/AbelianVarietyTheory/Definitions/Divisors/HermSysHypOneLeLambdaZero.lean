@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.IntegralBound
+import Development.AbelianVarietyTheory.Definitions.Divisors.WellChosen
 import Development.AbelianVarietyTheory.Definitions.Divisors.JoinCastSucc
 import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.RealCubicMeans.LogMeanShares.LogMeanStatements.HSClaim
 

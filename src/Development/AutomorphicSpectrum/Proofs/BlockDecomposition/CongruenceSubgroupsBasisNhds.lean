@@ -1,8 +1,7 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AvgVanish
+import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.LeibnizOrders.LeibnizOrd
+import GroundTheory.AutomorphicForms.Iwasawa
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MulMemBall
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsOpenFixedOfSubgroup
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG
 open scoped TensorProduct Topology

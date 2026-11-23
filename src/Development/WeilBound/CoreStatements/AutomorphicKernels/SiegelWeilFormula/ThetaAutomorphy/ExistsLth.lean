@@ -6,7 +6,7 @@ import Development.WeilBound.ThetaLifts.FrameEstimates.SiegelAll
 import Development.WeilBound.ThetaLifts.FrameEstimates.FundamentalDomainFiniteVolume
 import Development.WeilBound.ThetaLifts.CartanFactorisation.Unimod
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdmittedFormEqAdelicThetaDistributionStatement
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzMapBarrelledSpaceStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzMapBarrelledSpace
 
 noncomputable section
 

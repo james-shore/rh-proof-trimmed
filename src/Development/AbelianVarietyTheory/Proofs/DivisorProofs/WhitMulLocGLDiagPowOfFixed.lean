@@ -3,6 +3,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.IsRapidInf
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ShintaniFormulaStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AutomorphicFormGLContinuous
 import GroundTheory.AutomorphicForms.MultiplicityOne.Functional
+import GroundTheory.AutomorphicForms.MultiplicityOne.Equivariance
 
 noncomputable section
 

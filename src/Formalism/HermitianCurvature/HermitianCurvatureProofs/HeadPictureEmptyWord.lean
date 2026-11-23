@@ -1,5 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelPointCoordinates
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceInductionLevel
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.MemLevelZeroOfMemGroup
 
 open Matrix MeasureTheory
 open scoped ComplexConjugate

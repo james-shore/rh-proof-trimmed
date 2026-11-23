@@ -2,9 +2,9 @@ import Mathlib
 import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 import Formalism.SharpRestriction.LevelLetterCocycles.QuotientHomNonvanishingBound
 import Formalism.SharpRestriction.ParamsHeightRankConstant
-import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.SplitPlaceTypes
 import Formalism.LocalRingCardinality.HostCls
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.NotDvdDiscrHost
+import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.SplitPlaceTypes
 
 noncomputable section
 

@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.ThetaLogCoordinates.JacobiPathWeights.StatementP
 import Formalism.ThetaLogCoordinates.JacobiPathWeights.JacobiMinorProofs.LeIffLtColHeight
-import Formalism.ThetaLogCoordinates.JacobiPathWeights.JacobiMinorProofs.LinearIndependentOfLead
 
 noncomputable section
 

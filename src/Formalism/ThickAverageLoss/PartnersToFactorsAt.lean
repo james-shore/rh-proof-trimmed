@@ -1,7 +1,5 @@
 import Formalism.JacobiWeightFamilies.Statement
-import Formalism.StatementU
-import Formalism.CorankShare.StatementFR
-import Mathlib.Analysis.Fourier.FiniteAbelian.PontryaginDuality
+import Formalism.StatementOC
 
 open Finset ArithmeticFunction
 

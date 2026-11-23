@@ -1,5 +1,4 @@
 import Mathlib
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ValuationLifting.LiftSt
 
 namespace ReciprocityTheory.ChartRestriction.G.Lift.VA
 

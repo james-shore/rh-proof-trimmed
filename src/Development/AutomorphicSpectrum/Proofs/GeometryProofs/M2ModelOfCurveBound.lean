@@ -17,9 +17,8 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.EigenspaceDecomposi
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieOmegaLatticeVectorBundleStatement
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelFiniteProjectiveStatement
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieLatticeStableUnderAction
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsUnitIffUnitAt
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsLieModel
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelExistsUniqueAct
+
 open AlgebraicGeometry CategoryTheory NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
 

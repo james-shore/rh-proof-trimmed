@@ -1,7 +1,7 @@
 import Mathlib
 import ReciprocityTheory.GaloisValuations.Global
 import ReciprocityTheory.NeutralLocalFields.HilbertClassField
-import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HilbertClassFieldA
+
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Neutral.HilbertClassField
 
 namespace GlobalTheory

@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.GlobalTheory.GL4.CfMemTwId
+import Formalism.LocalToGlobal.Columns.FockNormSubstitutionBound
 
 open Module NumberField IsDedekindDomain MvPolynomial
 open scoped Matrix

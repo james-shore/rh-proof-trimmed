@@ -2,6 +2,7 @@ import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ClosedPhiFunctoriality.IsOp2One
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ClosedAtL
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsSstAtOfIsCrysAt
+import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ClosedPhiFunctoriality.IntBasisAlt
 
 noncomputable section
 

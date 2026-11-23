@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.DistinguishedUnitIdeals.FrobeniusDiffBijective
+import Formalism.DistinguishedUnitIdeals.StatementE
 import Formalism.DistinguishedUnitIdeals.ExistsConstOfInvariantMod
 
 noncomputable section

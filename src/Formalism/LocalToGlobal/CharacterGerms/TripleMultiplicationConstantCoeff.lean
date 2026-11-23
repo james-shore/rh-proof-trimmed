@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.CharacterGerms.IndexRaiseFirst
+import Formalism.LocalToGlobal.CharacterGerms.ConstantZeroRestrictPoints
 
 set_option autoImplicit false
 

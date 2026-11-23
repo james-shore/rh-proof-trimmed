@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.MeanHeightDescent.CombinedAverageDegreeBound
+import Formalism.MeanHeightDescent.BadRowsNumeric
 
 open Finset
 

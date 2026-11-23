@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.RootOfUnityEightQMemCoeffGaloisSubfield
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.FiniteResidueFieldAdicCompletionIntegers
-import Formalism.LocalRingCardinality.SpanPowerMembership.Spaces
+import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleRanksRankComplement
 import Formalism.SharpRestriction.InertJacobiLevels.HostFam
 
 open Formalism.BasicNotions NumberField IsDedekindDomain GlobalTheory.Mem

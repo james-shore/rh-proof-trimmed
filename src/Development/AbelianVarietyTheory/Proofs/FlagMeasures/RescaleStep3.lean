@@ -1,8 +1,6 @@
 import Mathlib
 import Formalism.UnipotentAdelicQuotients.SiegelWeilUnitaryConvergent
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LevelMatchIff
-import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.LocVol
-import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.Volumes
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.SiegelWeilNarrowOfWide
 import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.StdChar
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FourMulAddFiveLeRank

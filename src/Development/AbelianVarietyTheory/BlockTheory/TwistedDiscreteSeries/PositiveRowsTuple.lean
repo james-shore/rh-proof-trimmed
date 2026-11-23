@@ -1,8 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
-import Formalism.SharpRestriction.ElevenLe
-import Formalism.LocalRingCardinality.DataParams
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.LabelDatum
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 
 noncomputable section
 

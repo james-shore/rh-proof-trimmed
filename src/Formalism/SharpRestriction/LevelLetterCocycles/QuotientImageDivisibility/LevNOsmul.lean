@@ -1,6 +1,5 @@
-import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.MemOfExp
-import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.PchainDN
-import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.NDlCoords
+import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.GammaLevelsExpansion
+import Formalism.SharpRestriction.LevelLetterCocycles.LocalizationQuotientSeparatedDvd
 
 noncomputable section
 open Classical

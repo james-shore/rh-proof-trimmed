@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.HasConductorMulShift
-import Development.AbelianVarietyTheory.Definitions.Foundations.SecondCountableAndT2LocalField
 
 open ValuativeRel Matrix IsLocalRing
 open scoped Pointwise

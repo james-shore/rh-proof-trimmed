@@ -1,7 +1,6 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsPtsBddConv
 import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PMuLineNormEq
-import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PMuFrameExists
 
 set_option maxSynthPendingDepth 1
 

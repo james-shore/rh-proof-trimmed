@@ -1,5 +1,5 @@
 import Mathlib
-import Development.DiscreteGroups.GlobalIrreducibility.DzFeMat
+import Development.DiscreteGroups.GlobalIrreducibility.DzFeCut
 
 noncomputable section
 

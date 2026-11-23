@@ -1,9 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.InstBorelGL
-import Development.AutomorphicSpectrum.Proofs.GlobalProofs.MemIntegralGLIffIntegralUnitDet
-import Development.AutomorphicSpectrum.Proofs.GlobalProofs.LocalFieldUniformizerNormPropertiesStatement
 import GroundTheory.AutomorphicForms.GL2.GJUnramifiedCosets
-import Development.AutomorphicSpectrum.Proofs.GlobalProofs.IwasawaDecompositionUpperTriangular
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.SphericalZetaCosets
 
 open MeasureTheory Matrix GlobalTheory.CompanionTheory.QL

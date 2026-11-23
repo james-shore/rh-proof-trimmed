@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ColumnCompatibleSelection
 import Development.AbelianVarietyTheory.Definitions.Divisors.BaseRankDimension
-import Development.AbelianVarietyTheory.Definitions.Divisors.RowSideOfCompatibleThetaPair
+import Development.AbelianVarietyTheory.Definitions.Divisors.TupleReadBaseTupleEqFamily
 import Formalism.LocalToGlobal.IndefiniteReal.NonzeroIndexPlaceIndepConstants
 
 noncomputable section

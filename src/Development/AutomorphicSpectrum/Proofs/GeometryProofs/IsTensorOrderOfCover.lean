@@ -1,11 +1,6 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Statements.GeometryStatements.NonemptyEquivOfCardHom
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.TranslateMemIndOrder
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsUnitFormLocalizationEtaleNbhd
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.HasValues
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.CharacterSectionMultiplicative
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.BtOrderValueEval
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorusPointOverFractionField
+import GroundTheory.PAdicHodge.FiniteFlat
 
 noncomputable section
 

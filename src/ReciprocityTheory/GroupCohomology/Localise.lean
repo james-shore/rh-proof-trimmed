@@ -1,4 +1,5 @@
 import ReciprocityTheory.GroupCohomology.LocaliseA
+import ReciprocityTheory.GroupCohomology.TransgressionStatement
 
 namespace ReciprocityTheory.Coh
 

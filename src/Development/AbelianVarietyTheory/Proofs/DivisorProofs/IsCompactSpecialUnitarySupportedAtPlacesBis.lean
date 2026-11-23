@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.NotIsCompactUnivFv
 import GroundTheory.GlobalFields.LocalAtPlace
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousSingleV
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ModerateGrowthOfHasCompactSupport
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ClosureDivMem
 

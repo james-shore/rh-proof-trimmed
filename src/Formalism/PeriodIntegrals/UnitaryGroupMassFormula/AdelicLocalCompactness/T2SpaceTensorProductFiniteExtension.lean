@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.FrameTransport
+import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.AdeleLC
 
 noncomputable section

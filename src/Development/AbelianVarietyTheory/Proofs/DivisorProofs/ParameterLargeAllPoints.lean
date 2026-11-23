@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AtPtsImp
-import Formalism.PieriBlockIdeals.PieriColumnMinors.LargeParameterEstimates
 
 set_option autoImplicit false
 

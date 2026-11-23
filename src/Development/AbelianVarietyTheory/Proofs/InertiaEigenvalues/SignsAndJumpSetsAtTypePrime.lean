@@ -1,9 +1,9 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.AdmissibleParameterJ
-import Formalism.SharpRestriction.LevelLetterCocycles.PairedCharacterCondition
 import Formalism.LocalToGlobal.LatticeGeometry.CmTypeMeetsConjugatePair
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EqOfStabilizerTrivial
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InducesWAndExistsEmb
+
 open NumberField IsDedekindDomain Formalism Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations Module
 
 noncomputable section

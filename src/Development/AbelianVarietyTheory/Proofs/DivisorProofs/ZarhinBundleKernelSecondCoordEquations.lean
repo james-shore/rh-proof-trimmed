@@ -1,5 +1,5 @@
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ZphiPowPr
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsAdditiveOfUniversal
+import Mathlib
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KappaOK
 
 noncomputable section
 

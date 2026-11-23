@@ -1,4 +1,6 @@
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.Phi2
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.UHMulInv
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.DetEqMulMinorOfColZero
 
 noncomputable section
 

@@ -11,8 +11,6 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormValueOnTangentV
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmpFormEqZeroOfTangent
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteProjectiveOfLocalBasis
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTangentIffTanS
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsIsLieBasisBaseChange
-import Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsAbelianSchemeOfIsGrpPullback
 
 set_option autoImplicit false
 

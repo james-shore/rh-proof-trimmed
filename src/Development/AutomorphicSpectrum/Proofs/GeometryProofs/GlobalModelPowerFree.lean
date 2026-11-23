@@ -6,6 +6,7 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ModelFibresPowerFre
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.PowFnsOfAbelianGenericStatement
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsLocalization
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PullbackStalkIsDomainEtale
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocalSystemBasesNonempty
 
 noncomputable section
 

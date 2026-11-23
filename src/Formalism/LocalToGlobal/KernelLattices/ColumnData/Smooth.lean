@@ -2,11 +2,7 @@ import Mathlib
 import Formalism.LocalToGlobal.KernelLattices.ColumnData
 import Formalism.LocalToGlobal.KernelLattices.ColumnData.IsAdmissibleFlagPairOfUnitriangularLeftAutomorph
 import Formalism.LocalToGlobal.KernelLattices.ColumnData.StdOKP
-import Formalism.LocalToGlobal.KernelLattices.ColumnData.SelfDual
-import Formalism.LocalToGlobal.KernelLattices.ColumnData.BaseExP
-import Formalism.LocalToGlobal.PairingIndexBounds.HalvesRecursion.RecursiveLatticeMembership.MemLamOfIff
-import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
-import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
+import Formalism.LocalToGlobal.GlobalTheory.GL3.PLinkThU
 
 open NumberField IsDedekindDomain
 

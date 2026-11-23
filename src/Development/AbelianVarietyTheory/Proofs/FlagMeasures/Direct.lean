@@ -1,10 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.LocWSOf
-import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.VolPin
-import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.JacobianCoordinates
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.NCoords
+import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.PoincareConstantEq
+import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.ParametersTermRelations
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsUniquePlace
-import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 
 noncomputable section
 open scoped Classical ENNReal

@@ -1,7 +1,7 @@
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.InfinitesimalCharacterLimits.AllLeaves
 import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.PIndMap
-import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.PProjA
 import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.PPrAut
+import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.PProjA
 
 noncomputable section
 

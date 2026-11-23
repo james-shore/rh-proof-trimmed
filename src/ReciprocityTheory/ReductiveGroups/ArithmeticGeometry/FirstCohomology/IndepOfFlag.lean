@@ -1,5 +1,5 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.ReducedBasisStatement
-import ReciprocityTheory.ReducedBases.LatticeReduction
+import Mathlib
+import ReciprocityTheory.ReducedBases.GsInnerBOfLt
 
 noncomputable section
 

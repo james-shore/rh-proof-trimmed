@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.CxPassSk
-import Formalism.LocalToGlobal.IndefiniteReal.TraceOfDiag
-import Formalism.LocalToGlobal.GlobalTheory.DivPassageP
-import Formalism.LocalToGlobal.GlobalTheory.PassageBaseSymmetricLevels
+import Formalism.SizeWindowBrackets.ChainSlopeWindows.ExistsNsmulMem
+import Formalism.SizeWindowBrackets.ChainSlopeWindows.TruncatedLatticeHolds
+import Lemmata.GeneralBFactThirdAlt.Imports
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder InnerProductSpace

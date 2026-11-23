@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.LocalRingCardinality.DataKerI
 import Formalism.SharpRestriction.GlobalSchurBounds.GL3Theta
-import Formalism.LocalToGlobal.KernelLattices.LateralTheory
 import Formalism.LocalToGlobal.KernelLattices.XiIndCClass
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G

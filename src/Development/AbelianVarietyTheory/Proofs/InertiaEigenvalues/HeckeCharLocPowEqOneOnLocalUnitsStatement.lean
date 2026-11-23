@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HeckeCharLocPowEqOneOnLocalUnits
-import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeCharacterUnramifiedAeAndExistsLevel
 
 open NumberField IsDedekindDomain
 set_option maxHeartbeats 1000000 in

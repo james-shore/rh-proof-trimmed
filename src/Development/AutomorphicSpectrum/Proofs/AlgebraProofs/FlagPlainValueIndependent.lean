@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FlagIndependenceStatement
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PTwinFlagPlainValueIndep
-import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PTwinFlagPairIff
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PTwinVertDivSupportFibre
+import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PTwinFlagPairIff
 
 namespace GlobalTheory.CompanionTheory.CommAlg.FlagPlainValue
 

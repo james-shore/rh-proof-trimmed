@@ -1,7 +1,6 @@
 import Mathlib
-import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.NGAnalytic
+import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.NGData
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LocClosed
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.AtBase
 
 noncomputable section
 

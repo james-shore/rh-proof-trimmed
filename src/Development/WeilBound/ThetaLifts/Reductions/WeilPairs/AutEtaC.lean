@@ -1,4 +1,7 @@
 import Development.WeilBound.ThetaLifts.Reductions.WeilPairs.AutEtaB
+import Development.WeilBound.ThetaLifts.Reductions.WeilPairs.EtaDef
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmQuadraticCharacterEqProdRealSigns
+import Development.WeilBound.ThetaLifts.Reductions.WeilPairs.AutDef
 
 noncomputable section
 

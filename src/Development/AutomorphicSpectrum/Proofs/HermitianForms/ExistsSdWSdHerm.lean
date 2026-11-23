@@ -1,6 +1,5 @@
 import Mathlib
-import Formalism.UnipotentAdelicQuotients.SiegelWeilUnitaryConvergent
-import Formalism.UnipotentAdelicQuotients.StdAdditiveCharExists
+import Formalism.UnipotentAdelicQuotients.SWXSDefs
 import Development.AutomorphicSpectrum.Proofs.HermitianForms.IndicatorInSchrodingerSpanStatement
 import Development.AutomorphicSpectrum.Proofs.HermitianForms.AdelicCharacterLocalNontrivial
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSmallDualLattices

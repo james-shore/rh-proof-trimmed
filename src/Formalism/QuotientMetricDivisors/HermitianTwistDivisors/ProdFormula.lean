@@ -1,5 +1,4 @@
 import Formalism.QuotientMetricDivisors.ProdFormula
-import Formalism.LogFactorialIndices.SignedSubspaceIndex.LogProductFormula
 
 open Module NumberField IsDedekindDomain
 

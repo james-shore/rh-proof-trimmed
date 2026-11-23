@@ -1,6 +1,4 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CWConsPlus
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.LoeZeroOfPsd
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.ParametersUPrimeForULower
 
 namespace Formalism.FourierDecayAlt.P.PBL
 

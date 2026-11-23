@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.UnipotentAdelicQuotients.SiegelWeilUnitaryConvergent
+import Formalism.UnipotentAdelicQuotients.SWXSDefs
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
 
 noncomputable section

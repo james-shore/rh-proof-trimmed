@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ValuationLeOneOfMemZmu
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LastTwoStepsGuarded
 
 noncomputable section
 

@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.HermitianCurvature.WeylElementCommutesLevelOne
+import Formalism.HermitianCurvature.StatementB
 
 namespace GlobalTheory.HCXi
 

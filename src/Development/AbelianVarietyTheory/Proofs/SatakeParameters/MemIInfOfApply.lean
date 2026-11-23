@@ -1,7 +1,5 @@
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.NormalFam
-import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.HoweUnram
-import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsStepWeil
-import Formalism.SatakeDualWeyl.KpqSubgroupCompact
+import Mathlib
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 
 namespace GlobalTheory.IndependentInfimum
 

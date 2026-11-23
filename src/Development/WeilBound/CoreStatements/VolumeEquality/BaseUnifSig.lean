@@ -1,4 +1,4 @@
-import Development.WeilBound.CoreStatements.VolumeEquality.BaseUnifDefs
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsSheetCover
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.CuspCorrespondenceBound
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsEmbLabel
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LabelEmbCompInjective

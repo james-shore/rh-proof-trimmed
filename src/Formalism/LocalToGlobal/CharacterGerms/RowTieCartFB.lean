@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.CharacterGerms.CoeffAlongCvCongr
+import Formalism.LocalToGlobal.CharacterGerms.ConstMemTypeSetOfNonneg
 
 noncomputable section
 

@@ -1,5 +1,5 @@
 import Formalism.LocalRingCardinality.DataArith
-import Formalism.LocalToGlobal.ExponentGrids.ExponentGridsProofs.NormaliserValuationBound
+import Formalism.QuotientMetricDivisors.Statement
 
 open Module NumberField IsDedekindDomain
 open Formalism.BasicNotions (vAdd)

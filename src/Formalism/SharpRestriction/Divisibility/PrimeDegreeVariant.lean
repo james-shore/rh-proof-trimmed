@@ -3,7 +3,6 @@ import Formalism.LocalRingCardinality.PrincipalHermitianLattice
 import Formalism.LocalRingCardinality.DataKap
 import Formalism.SharpRestriction.ParConsts
 import Formalism.SharpRestriction.LevelLetterCocycles.ArithmeticCylinders
-import Formalism.CyclotomicNorms.NonsquarefreeBounds.NonsquarefreeMonicBoundHolds
 
 noncomputable section
 

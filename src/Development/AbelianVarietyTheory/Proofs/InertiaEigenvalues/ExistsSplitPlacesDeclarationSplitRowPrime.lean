@@ -4,6 +4,7 @@ import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.SplitPlaceTyp
 import Development.AbelianVarietyTheory.Counterexamples.NonGaloisSurvey.SplitRowIffOfIsEmpty
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ConjugatePlaces
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SplitRowAt
+import Formalism.LocalToGlobal.ProjectiveLattices.SpanRatSmulMem
 
 noncomputable section
 

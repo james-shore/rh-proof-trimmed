@@ -1,6 +1,6 @@
 import Development.WeilBound.ThetaLifts.EigenvalueEndgame.OrthogonalDecomposition.PairLocOf
-import Development.WeilBound.ThetaLifts.EigenvalueEndgame.OrthogonalDecomposition.Imports
 import Development.WeilBound.ThetaLifts.LatticeBasics.SchToPol
+import Development.WeilBound.ThetaLifts.EigenvalueEndgame.OrthogonalDecomposition.Imports
 
 noncomputable section
 

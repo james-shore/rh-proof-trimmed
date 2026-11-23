@@ -1,8 +1,6 @@
 import Mathlib
-import Formalism.LocalToGlobal.Columns.CoefficientsModP.PairingNondegenerateHolds
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LRowstLemmas
 import Formalism.LocalToGlobal.Divisibility.CoefMod
-import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
+import Formalism.LocalToGlobal.HermitianForms.IsLocBasis
 
 open MvPolynomial Formalism.GradedWeylDivisibility Formalism.L2.DIV
 

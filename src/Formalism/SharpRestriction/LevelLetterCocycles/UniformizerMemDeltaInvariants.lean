@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.LatticeBoundsOfThreeParts
 import Formalism.SharpRestriction.LevelLetterCocycles.LengthNeTopOfSmul
-import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.LemmaDN0
 
 noncomputable section
 

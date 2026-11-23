@@ -1,7 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.StandardFiveNontrivial
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.CharIdem
 import Formalism.SharpRestriction.LevelLetterCocycles.ArithmeticCylinders
+import Development.AbelianVarietyTheory.Definitions.Foundations.StandardFiveNontrivial
 
 noncomputable section
 open Polynomial Classical

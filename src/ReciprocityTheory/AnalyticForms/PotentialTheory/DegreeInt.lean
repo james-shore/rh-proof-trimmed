@@ -2,6 +2,10 @@ import ReciprocityTheory.AnalyticForms.PotentialTheory.Degree
 import ReciprocityTheory.AnalyticForms.PotentialTheory.PotentialContDiffAt
 import ReciprocityTheory.AnalyticForms.PotentialTheory.LocDens
 import ReciprocityTheory.AnalyticForms.PotentialTheory.DegreeIntB
+import ReciprocityTheory.AnalyticForms.PotentialTheory.ContDiffAtOfIsPotential
+import ReciprocityTheory.AnalyticForms.PotentialTheory.IntegrableOnTargetOfTsupport
+import ReciprocityTheory.AnalyticForms.PotentialTheory.AnalyticSubsetChartLocal
+import ReciprocityTheory.AnalyticForms.PotentialTheory.DegreeIntA
 
 namespace ReciprocityTheory.AnForm.M
 

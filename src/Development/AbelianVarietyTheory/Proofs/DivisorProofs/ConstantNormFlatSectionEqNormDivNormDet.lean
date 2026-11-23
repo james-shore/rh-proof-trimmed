@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.EigLatLe
-import Formalism.LocalToGlobal.ProjectiveLattices.LiftLaSpec
 import Formalism.LocalToGlobal.ProjectiveLattices.AxHSupA
 import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.MetricDataUnique
 import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.MetricChangeOfFrame
@@ -11,9 +10,6 @@ import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.CuspFormValueL
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.FrameChangeExistsUniqueInvertible
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TestValueEqConstMulReadingSecZ
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsAlgebraicOfNormConst
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsFramedPointBaseChangeAlgebraMap
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FramedPointReducedFromTestRing
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FramedModuliAlgebraicLawsChartWeightIntegrality
 
 open CategoryTheory GlobalTheory.Frames NumberField IsDedekindDomain Module Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.L2.Pj GlobalTheory.DualWeyl GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.CompHt GlobalTheory.DefPt ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD
 open scoped Matrix Classical

@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.CharacterGerms.RowTieValU
+import Formalism.LocalToGlobal.CharacterGerms.IntSProd
 
 noncomputable section
 

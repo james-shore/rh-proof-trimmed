@@ -1,8 +1,6 @@
 import Mathlib
 import Formalism.HermitianCurvature.BesselNonvanishingReduction
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DegVand
-import Formalism.LocalRingCardinality.DataTies
-import Formalism.FormalDegreeBessel.FinalG
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselOneOfUniq
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.OpnFrobCompare
 

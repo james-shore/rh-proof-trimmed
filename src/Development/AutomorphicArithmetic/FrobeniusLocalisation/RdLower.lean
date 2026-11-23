@@ -1,4 +1,5 @@
 import Development.AutomorphicArithmetic.FrobeniusLocalisation.DiffDefs
+import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.FrameFacts
 
 open NumberField Ideal Formalism.HC Formalism.FrobeniusOrbits
 open scoped Pointwise

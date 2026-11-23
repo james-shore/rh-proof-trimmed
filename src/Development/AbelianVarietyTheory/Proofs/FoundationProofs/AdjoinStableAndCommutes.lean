@@ -1,5 +1,5 @@
-import Development.AbelianVarietyTheory.Definitions.Foundations.EigenOfTwoStep
-import Development.AbelianVarietyTheory.Definitions.Foundations.LiftApplyOfMemAdmissibleSubalgebra
+import Mathlib
+import Development.AbelianVarietyTheory.Definitions.Foundations.OpLDOneSubMemTriv
 
 namespace GlobalTheory.AdjoinStableCommutes
 

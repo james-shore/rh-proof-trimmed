@@ -1,5 +1,6 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterDivSuppA
 import Lemmata.GeneralBFactTerForm.Imports
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSt
 
 noncomputable section
 

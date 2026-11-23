@@ -1,4 +1,4 @@
-import Formalism.AdmissibleDesigns.LengthSemilinear
+import Formalism.AdmissibleDesigns.NonemptyPl
 import Formalism.AdmissibleDesigns.FinDimOfLat
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]

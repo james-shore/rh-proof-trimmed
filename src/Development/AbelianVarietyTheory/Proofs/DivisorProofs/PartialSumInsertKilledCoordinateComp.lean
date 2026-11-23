@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSumPolAV
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinHomIffLinEnd
 
 noncomputable section
 

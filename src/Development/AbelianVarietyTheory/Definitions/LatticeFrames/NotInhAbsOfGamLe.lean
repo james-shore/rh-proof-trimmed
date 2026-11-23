@@ -2,8 +2,6 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.MiPinnedWithFinIff
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.KerInclOn
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.VanishingGramTermsBoundParams
-import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.ThetaSourceAction
-import Formalism.LocalRingCardinality.HeightBoundGeFourthPowerRank
 
 noncomputable section
 

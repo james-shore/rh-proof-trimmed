@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.LocalToGlobal.TorsionIntegrality.CMGoodModels.Statement
 import Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.StatementK
 
 noncomputable section

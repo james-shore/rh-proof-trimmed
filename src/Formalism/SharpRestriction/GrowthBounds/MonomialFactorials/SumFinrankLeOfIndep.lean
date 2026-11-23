@@ -1,6 +1,6 @@
 import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.RestSumSpan
 import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.RestDimBCProved
-import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.BlockValuationOverZpHolds
+import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.BlockValuationZpOfLatticeInclusion
 import Formalism.MahlerMeasure.MahlerMeasureProofs.SSDirect
 
 noncomputable section

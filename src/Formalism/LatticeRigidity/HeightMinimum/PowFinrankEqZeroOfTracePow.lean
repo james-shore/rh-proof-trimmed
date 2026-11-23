@@ -1,4 +1,3 @@
-import Formalism.LatticeRigidity.StatementD
 import Mathlib
 
 namespace Formalism.SA.P

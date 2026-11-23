@@ -1,7 +1,9 @@
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RunWeightArch
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExportSt
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Realised
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.FieldSmallIffOpo
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.ParametersOkOfLaws
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsPageRunRecordSubFour
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RunModel
 
 set_option synthInstance.maxHeartbeats 200000
 

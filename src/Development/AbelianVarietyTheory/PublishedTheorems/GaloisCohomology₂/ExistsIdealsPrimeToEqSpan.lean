@@ -5,6 +5,7 @@ import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.Ex
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnitOpenAndCongrOpen
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FiniteIndexUnitIdlSup
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DenseRangeUnits
+import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
 
 set_option autoImplicit false
 

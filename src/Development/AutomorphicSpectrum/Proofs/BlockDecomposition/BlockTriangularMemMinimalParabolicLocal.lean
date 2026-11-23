@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsHermRingRat
+import Development.WeilBound.ThetaLifts.Reductions.SiegelCore
 
 noncomputable section
 

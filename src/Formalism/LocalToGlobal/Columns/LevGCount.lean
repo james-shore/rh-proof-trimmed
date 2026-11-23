@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.Columns.GenericUnipotentCharacter
-import Formalism.GL3MeanSquares.HookFormulaTorsion.DimensionMassJointBound
+import Formalism.LogVandermondeBounds.LogVandermondeProofs.CardStabilizerVector
 
 noncomputable section
 

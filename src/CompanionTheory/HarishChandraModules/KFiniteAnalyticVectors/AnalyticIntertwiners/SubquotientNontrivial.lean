@@ -1,6 +1,9 @@
 import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AnalyticIntertwiners.Clause1
 import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.FinalAll
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.IteratedDerivOrbit
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.DetPbC
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.DecMoments
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.DecSum
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.CasChainB
 
 open Matrix
 

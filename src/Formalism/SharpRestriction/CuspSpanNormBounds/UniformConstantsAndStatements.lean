@@ -3,9 +3,8 @@ import Formalism.SharpRestriction.CuspSpanNormBounds.StandingNumericalData
 import Formalism.SharpRestriction.CuspSpanNormBounds.IsTermOver
 import Formalism.SharpRestriction.CuspSpanNormBounds.FlagEEqHyperbolic
 import Formalism.SharpRestriction.CuspSpanNormBounds.LeadMinorK
-import Formalism.SharpRestriction.CuspSpanNormBounds.RotatedWeightedBound
 import Formalism.SharpRestriction.CuspSpanNormBounds.LocalGroupInFamilyNontrivial
-import Formalism.SharpRestriction.CuspSpanNormBounds.LeSCSCl
+import Formalism.SharpRestriction.ParConsts
 import Formalism.SharpRestriction.CuspSpanNormBounds.CongruenceAtSplitFrobeniusHolds
 
 noncomputable section

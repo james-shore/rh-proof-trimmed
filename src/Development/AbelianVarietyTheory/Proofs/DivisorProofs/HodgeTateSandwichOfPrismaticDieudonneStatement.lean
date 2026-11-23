@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HodgeTateSandwichOfPrismaticDieudonne
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.EpsilonPairingZeta
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.InjectiveOfSmulMemRange
 
 open GlobalTheory.Sandwich
 set_option maxHeartbeats 1000000 in

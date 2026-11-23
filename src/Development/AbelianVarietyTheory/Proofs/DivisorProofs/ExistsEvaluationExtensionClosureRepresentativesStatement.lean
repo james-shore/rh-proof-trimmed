@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEvaluationExtensionClosureRepresentatives
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocallyIntegrableRep
+
 open MeasureTheory
 open scoped ContDiff
 set_option maxHeartbeats 1000000 in

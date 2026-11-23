@@ -1,6 +1,6 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsAntisym
-import GroundTheory.HeightsAndTheta.Heights.Intersections.PRFormula
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterDivSupp
 
 set_option maxSynthPendingDepth 1
 

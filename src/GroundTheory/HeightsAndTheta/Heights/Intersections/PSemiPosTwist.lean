@@ -5,6 +5,9 @@ import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ArithModel
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.ADensStC
 import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
 import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.LeviOneEqLaplacianThm
+import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRedF
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

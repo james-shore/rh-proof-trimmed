@@ -1,5 +1,4 @@
-import ReciprocityTheory.AnalyticForms.LeviForms.IsRegFamilyInhabitStatement
-import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
+import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialOfFun
 
 namespace ReciprocityTheory.AnForm.P
 

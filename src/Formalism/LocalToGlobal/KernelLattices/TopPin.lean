@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.KernelLattices.FirstKernelLawReading
-import Mathlib
 import Formalism.LocalToGlobal.KernelLattices.ColInst
 import Formalism.LocalToGlobal.KernelLattices.MatrixKernelDiamondCommutation
 import Formalism.LocalToGlobal.Columns.ChainInstY

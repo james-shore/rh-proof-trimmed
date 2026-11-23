@@ -3,7 +3,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.IsGaloisCover
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.OmegaPullOmegaTraceOfSecTraceOne
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.SortSign
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.KaehlerOneFormsToExtensionDeRhamMulSelf
-import Development.AbelianVarietyTheory.Definitions.Divisors.ProdFam
 
 set_option autoImplicit false
 

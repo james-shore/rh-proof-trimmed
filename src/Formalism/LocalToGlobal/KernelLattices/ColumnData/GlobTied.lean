@@ -1,11 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.Columns.WordFin
 import Formalism.LocalToGlobal.Columns.ReferenceKernelEquivOfLastComponent
-import Formalism.LocalToGlobal.Columns.ChainInst
-import Formalism.LocalToGlobal.Columns.RecLevelSym
-import Formalism.LocalToGlobal.KernelLattices.ColInst
-import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.ColInst
-import Formalism.LocalToGlobal.Columns.ChainInstY
 
 open NumberField IsDedekindDomain
 

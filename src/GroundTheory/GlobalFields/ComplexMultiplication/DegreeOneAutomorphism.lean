@@ -1,10 +1,11 @@
 import Mathlib
 import GroundTheory.GlobalFields.ComplexMultiplication.IsogenyDegreeOne
 import GroundTheory.GlobalFields.ComplexMultiplication.WeberFunctionAutomorphisms
-import GroundTheory.GlobalFields.ComplexMultiplication.ClassGroupActionIso
-import GroundTheory.GlobalFields.ComplexMultiplication.BaseChangeDescent
-import GroundTheory.GlobalFields.ComplexMultiplication.DifferentialConstantField
-import GroundTheory.GlobalFields.ComplexMultiplication.DualDescentBase
+import GroundTheory.GlobalFields.ComplexMultiplication.AnalyticAlgebraicPoints
+import GroundTheory.ArithmeticGeometry.AbelianVarieties.FormalGroupReduction
+import GroundTheory.ArithmeticGeometry.AbelianVarieties.KodairaNeron
+import GroundTheory.GlobalFields.ComplexMultiplication.JInvariant
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Global

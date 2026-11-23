@@ -5,6 +5,8 @@ import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PAreaFormulaInjSet
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PAreaFormulaLocal
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PChartGramMA
 import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.CmpbHessAtAddConst
+import ReciprocityTheory.L2DbarEstimates.LeviForms.DetUpdateColEq
+import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.CmpaCHessComp
 
 set_option autoImplicit false
 

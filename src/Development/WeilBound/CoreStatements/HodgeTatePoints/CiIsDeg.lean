@@ -1,8 +1,8 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Statements.GeometryStatements.CurveSemiAbelianConjecture
-import Development.AutomorphicSpectrum.Statements.GeometryStatements.SeparableFormGroupElementFixesUniquePositiveLine
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsFFCurve
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.Proportional
 import Development.WeilBound.CoreStatements.HodgeTatePoints.OfMem
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LocalComponentsSurjective
 
 set_option backward.isDefEq.respectTransparency false
 

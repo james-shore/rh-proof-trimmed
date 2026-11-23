@@ -1,9 +1,8 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Jets.SideFam
-import Development.AbelianVarietyTheory.Definitions.Jets.SumIoPr
-import Development.AbelianVarietyTheory.Proofs.JetHarmonics.CayleyExistsAndAny
+import Development.AbelianVarietyTheory.Definitions.Jets.SumIoPrAlt
+import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.HaarUniquenessConjugation
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.UhMeasurableSet
+import Formalism.FormalDegreeBessel.FinalG
 
 open BranchingSupport Formalism.FourierDecayAlt Formalism.FourierDecayAlt.ThreeDimData Matrix MeasureTheory Finset
 open scoped InnerProductSpace ENNReal

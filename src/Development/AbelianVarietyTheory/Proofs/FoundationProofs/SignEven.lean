@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.JacquetSubsetSums.JacquetSubsetSum
-import Formalism.QuotientMetricDivisors.Statement
 
 namespace GlobalTheory
 

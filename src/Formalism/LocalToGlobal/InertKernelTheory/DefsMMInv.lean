@@ -1,5 +1,5 @@
-import Formalism.LocalToGlobal.InertKernelTheory.DefsMM
-import Formalism.SharpRestriction.GlobalSchurBounds.GL3Theta
+import Mathlib
+import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.IsAdmissibleFlagPairOfUnitriangularLeftAutomorph
 
 noncomputable section
 

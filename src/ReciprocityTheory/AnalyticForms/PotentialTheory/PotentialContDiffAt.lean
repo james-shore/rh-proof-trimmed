@@ -1,5 +1,5 @@
 import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialPullbackStatement
-import ReciprocityTheory.AnalyticForms.PotentialTheory.IntegrableOnTargetOfTsupport
+import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.MdiscSt
 import ReciprocityTheory.AnalyticForms.PotentialTheory.HessCIsHermitian
 
 namespace ReciprocityTheory.AnForm.M

@@ -1,5 +1,4 @@
-import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.EqPOf
-import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.SelfDualCovolume
+import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.NormOneUnitIdealAlt
 
 noncomputable section
 open NumberField Formalism.BasicNotions Classical

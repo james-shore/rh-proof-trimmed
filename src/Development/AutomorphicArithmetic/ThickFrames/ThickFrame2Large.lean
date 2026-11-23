@@ -1,6 +1,7 @@
 import Development.AutomorphicArithmetic.ThickFrames.MarkedLow
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.FrameFacts
 import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.ThickExists
+import Formalism.SubspaceCounting.GoodOrbitIntervalTileCondition
 
 open Finset UpperTheory.BernoulliSumsFrobeniusOrbits Formalism.G0
 

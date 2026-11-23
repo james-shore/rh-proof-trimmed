@@ -1,7 +1,7 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.CovolumeGram
 import GroundTheory.HeightsAndTheta.Heights.HermitianEuclidean
-import GroundTheory.HeightsAndTheta.Heights.ArithDegreeExact
+import GroundTheory.HeightsAndTheta.Heights.ArithDegree
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.Slopes
 
 namespace GroundTheory.Heights₂.Heights
 

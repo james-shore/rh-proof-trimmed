@@ -1,8 +1,8 @@
 import Mathlib
 import Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.EtaleCoordinates
 import Development.ResolutionOfSingularities.EmbeddedResolution.DerivativeIdeal.DerivativesInBlowupCharts
-import Development.ResolutionOfSingularities.EmbeddedResolution.DerivativeIdeal.DerivativeIdeal
 import Development.ResolutionOfSingularities.EmbeddedResolution.DerivativeIdeal.LogDerivativeIdeal
+
 namespace FunctorialResolution.EmbeddedResolution
 namespace EtaleCoordinates
 

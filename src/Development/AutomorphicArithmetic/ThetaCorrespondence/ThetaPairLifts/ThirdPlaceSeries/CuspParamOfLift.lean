@@ -1,6 +1,8 @@
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCuspParamGoodRow
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ParLaws
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.RowParamOfThetaLiftBaseChange
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CuspOfGoodRow
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NodupIntShift
 
 set_option synthInstance.maxHeartbeats 200000
 

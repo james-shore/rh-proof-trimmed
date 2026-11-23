@@ -1,8 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.EndOmega
-import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.TranslateProduct
-import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.StatementC
-import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.StatementK
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.IsLawOfLog
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsUnramifiedNearIntegralComplexPadicStatement
 
 noncomputable section

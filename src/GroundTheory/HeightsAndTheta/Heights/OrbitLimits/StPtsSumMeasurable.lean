@@ -1,6 +1,7 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSt
-import GroundTheory.HeightsAndTheta.Heights.Intersections.StPtsAbsIntegrable
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRes
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

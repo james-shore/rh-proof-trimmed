@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.IndefiniteReal.OneMapEq
+import Formalism.LocalToGlobal.IndefiniteReal.OneMapT
 import Formalism.LocalToGlobal.IndefiniteReal.FWTie
 
 noncomputable section

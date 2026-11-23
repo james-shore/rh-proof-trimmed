@@ -1,5 +1,4 @@
 import Mathlib
-import GroundTheory.ArithmeticGeometry.ModularCurves.WeierstrassCharts
 
 open CategoryTheory AlgebraicGeometry DirectSum
 

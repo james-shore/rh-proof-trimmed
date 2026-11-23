@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.HarderNarasimhan.QuotRealize
 
 open Module NumberField
 

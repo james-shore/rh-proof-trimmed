@@ -1,7 +1,7 @@
 import Formalism.LocalToGlobal.InertKernelTheory.FrameInt
 import Formalism.LocalToGlobal.TorsionIntegrality.UniformGaussModels.FinalFree
-import Formalism.LocalToGlobal.GroupLattices.PendingLemmas.ExistsCoprimePowEqOne
 import Formalism.LocalToGlobal.GroupLattices.PendingLemmas.FrobeniusSqIterateTeichmuller
+import Formalism.LocalToGlobal.GroupLattices.PendingLemmas.ExistsCoprimePowEqOne
 
 noncomputable section
 

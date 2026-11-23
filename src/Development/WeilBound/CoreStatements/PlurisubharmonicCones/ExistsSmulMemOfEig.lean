@@ -1,4 +1,6 @@
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.AbelianPartHeightLinear
+import GroundTheory.HeightsAndTheta.Heights.CountingLowerBound.PInteriorDichotomy
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.NormalizedDegreeOrthogonalSumStatement
 
 noncomputable section
 

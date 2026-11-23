@@ -1,4 +1,4 @@
-import Formalism.LatticeTheta.LatticeSummableDecay
+import Mathlib
 
 open MeasureTheory Set
 open scoped NNReal ENNReal

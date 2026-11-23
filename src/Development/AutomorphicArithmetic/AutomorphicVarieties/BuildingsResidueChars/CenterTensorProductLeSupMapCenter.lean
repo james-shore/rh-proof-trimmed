@@ -1,5 +1,5 @@
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.CuspidalFiniteness.HasUnivOfStep
-import Mathlib.Algebra.Algebra.Subalgebra.Centralizer
+import Mathlib
+import GroundTheory.AutomorphicForms.HarishChandraCentre
 
 theorem UpperTheory.center_tensorProduct_le_sup_map_center :
     ∀ (A B : Type) [Ring A] [Algebra ℂ A] [Ring B] [Algebra ℂ B], Subalgebra.center ℂ (TensorProduct ℂ A B) ≤ (Subalgebra.center ℂ A).map (Algebra.TensorProduct.includeLeft : A →ₐ[ℂ] TensorProduct ℂ A B) ⊔ (Subalgebra.center ℂ B).map (Algebra.TensorProduct.includeRight : B →ₐ[ℂ] TensorProduct ℂ A B) := by

@@ -1,5 +1,4 @@
 import Formalism.GradedWeylDivisibility.StatementA
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.DomPow
 import Formalism.RealPlaceAnalysis.RealPlaceTaylor.ProdFactorialSupportSubSingle
 
 open MvPolynomial Finset

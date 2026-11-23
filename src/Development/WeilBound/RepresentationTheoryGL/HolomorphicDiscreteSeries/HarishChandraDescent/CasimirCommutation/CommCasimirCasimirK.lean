@@ -1,5 +1,5 @@
 import Development.WeilBound.RepresentationTheoryGL.HolomorphicDiscreteSeries.HarishChandraDescent.Descent
-import Mathlib.Analysis.InnerProductSpace.JointEigenspace
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirAlgebra.CasimirKKhwVec
 
 noncomputable section
 

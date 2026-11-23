@@ -1,6 +1,5 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PublishedTheorems.Hilbert
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.GalUnitary
-import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ShapeFacts
 
 noncomputable section
 

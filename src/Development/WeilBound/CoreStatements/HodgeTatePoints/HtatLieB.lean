@@ -1,7 +1,8 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieChartOfSmoothChart
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.TangentVectorSumDualNumber
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieLatticeVectorBundleOfSmooth
+import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieChart
+import Development.AutomorphicSpectrum.Proofs.GeometryProofs.TangentVectorOfDualHomStatement
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open scoped CategoryTheory.Obj

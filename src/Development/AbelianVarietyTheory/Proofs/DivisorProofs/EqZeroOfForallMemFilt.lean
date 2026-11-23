@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntDerApply
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DerivationTaylorPowerSeriesOfDerivationsKill
+
 open IsLocalRing GlobalTheory.FormalOrigin
 
 namespace GlobalTheory.FormalOrigin.Extend

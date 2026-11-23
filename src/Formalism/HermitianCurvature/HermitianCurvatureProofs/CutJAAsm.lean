@@ -1,8 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAQQ
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJDAsm
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.BetaSesquilinearity
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.RegularisedPairingViaPhase
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.SeminormCompletion
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.TopPSD
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt MeasureTheory
 open scoped ComplexConjugate

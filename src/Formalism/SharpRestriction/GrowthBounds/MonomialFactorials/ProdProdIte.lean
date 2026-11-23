@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.ValFactSumLe
+import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.GoodCountMem
 
 noncomputable section
 

@@ -1,4 +1,6 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.IsMultiHomogIdealChain
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.SupportSubsetMonoBox
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.AbsProdSubProdSubLinLe
 
 noncomputable section
 

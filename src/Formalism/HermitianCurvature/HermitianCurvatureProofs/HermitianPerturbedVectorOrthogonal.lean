@@ -1,4 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.HermitianInsertionVectorOrthogonal
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.StrictMonoSnoc
 
 open Matrix Finset
 

@@ -2,8 +2,8 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.SameOffRefl
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.NatCastMemOfPlace
 import Formalism.LocalToGlobal.GlobalTheory.GL3.NormNatCoprime
-import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.EqOfLeOfAbsNormEq
 import Formalism.LocalRingCardinality.ConjSqrtMinusD
+import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.EqOfLeOfAbsNormEq
 
 noncomputable section
 

@@ -1,5 +1,5 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ExistsPhiBridge
-import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ArcLenThreeThickLetters
+import Formalism.SharpRestriction.LevelLetterCocycles.AdmBoundsBOfAdm
 
 open scoped TensorProduct
 

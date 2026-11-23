@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.HermitianForms.PsiZeroNontrivialCharacter
+import Formalism.LocalToGlobal.HermitianForms.IsLocBasis
 import Formalism.LocalToGlobal.HermitianForms.DetShiftShW
 
 noncomputable section

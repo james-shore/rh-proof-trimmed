@@ -13,8 +13,8 @@ import GroundTheory.HeightsAndTheta.Heights.ChowForms.PChowFormExists
 import GroundTheory.HeightsAndTheta.Heights.ChowForms.PLengthQuotientDet
 import GroundTheory.HeightsAndTheta.Heights.ChowForms.POrdPolynomialLocalization
 import GroundTheory.HeightsAndTheta.Heights.ChowForms.PChowFormBirational
-import GroundTheory.HeightsAndTheta.Heights.ChowForms.PSectionOrder
-import GroundTheory.HeightsAndTheta.Heights.ChowForms.PChowFormSection
+import GroundTheory.HeightsAndTheta.Heights.ChowForms.StatementsSectionOrder
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

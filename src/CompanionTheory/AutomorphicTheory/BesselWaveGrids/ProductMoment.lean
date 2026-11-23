@@ -1,5 +1,9 @@
 import CompanionTheory.AutomorphicTheory.BesselWaveGrids.BigCellDerivativeExpansionOfIsDSOfCoefOf
-import Mathlib
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.RegularityAtPlaceOfSubadditive
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.NormSqUnitNormalizationLe
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.FixesWedgeAndForm
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.LenEqOfUnitriangular
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.HermCmpWedgeEqDet
 
 open BranchingSupport Formalism.FourierDecayAlt Formalism.FourierDecayAlt.ThreeDimData Matrix MeasureTheory Finset CompanionTheory.WaveGrid.Ball
 open scoped InnerProductSpace ENNReal

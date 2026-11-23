@@ -1,5 +1,6 @@
 import Formalism.GaussJetBounds.FrameJetEval
 import Formalism.GaussJetBounds.GaussJetProofs.ConstantCoeffAevalLinP
+import Formalism.IncomingBounds.StatementThmP
 
 noncomputable section
 open scoped BigOperators

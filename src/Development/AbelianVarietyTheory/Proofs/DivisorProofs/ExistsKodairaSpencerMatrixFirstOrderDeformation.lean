@@ -1,7 +1,7 @@
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsKSIffKsRel
+import Mathlib
+import Development.AbelianVarietyTheory.Definitions.Divisors.NonemptyCuspFrame
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.CrysToDRBijective
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EvRFrMapOfIsReduced
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PrimeSpectrumDualNumberEq
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.LawsProved
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsKSRIffIsKS
 import Development.AbelianVarietyTheory.Definitions.Divisors.P22
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRingActionOfIsGrpPullback

@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.CuspidalL2Subspace
-import Formalism.LocalToGlobal.ProjectiveLattices.FreeBridge
-import Formalism.LocalToGlobal.ProjectiveLattices.VolProofs
+import Formalism.LocalToGlobal.ProjectiveLattices.NormsFree
 import Formalism.LocalToGlobal.GlobalTheory.GL5.FamilyMassVolumeIdentityOfClassDecomp
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsProbabilityMeasureAutQuotientNormalized
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.DetNeZeroOfOrth

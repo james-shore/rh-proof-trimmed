@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenericFlagOverGenericField
+import Development.AutomorphicSpectrum.Proofs.GeometryProofs.CoordTieCompEquiv
 
 noncomputable section
 

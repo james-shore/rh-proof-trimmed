@@ -2,8 +2,6 @@ import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.RealPins
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfSEEofTT
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LayerTwoFamilyClass
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.STiesR
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.IndefRRealT
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.IndefRRealPins
 
 set_option synthInstance.maxHeartbeats 200000

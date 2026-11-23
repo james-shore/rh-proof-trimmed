@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.OneMapT
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ActLevOfLiftsOfEqOne
-import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.MemLatOIffExistsActO
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FrameUniformEmbeddingSecond
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.MemLatOIffExistsActO
 
 set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 400000

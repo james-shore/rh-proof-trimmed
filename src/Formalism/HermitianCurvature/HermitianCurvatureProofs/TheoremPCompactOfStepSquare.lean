@@ -1,4 +1,4 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelOneSquareIntegrableGeneral
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.TheoremPCompactOfStepDensity
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHChk
 
 namespace Formalism.FourierDecayAlt.P5.HerD

@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.RestValBdG
+import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.SlackBoundReal
 
 noncomputable section
 

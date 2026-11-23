@@ -1,9 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.InfClassAt
-import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.DictAt
 import Development.AbelianVarietyTheory.Definitions.Divisors.DiscreteSeriesHermitianUnique
-import Development.AbelianVarietyTheory.Definitions.Foundations.NormSumPairRankZeroOfCurveCoordNorm
-import Development.AbelianVarietyTheory.Statements.CuspidalUnitaryTwists.ExistsSmallSpherical
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicValuationThetaKernelJetBound
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HighestWeightBelow
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.VwNatCastNonneg
@@ -11,11 +8,11 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.JetKapIff
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.KerFockMovedReal
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsThetaAtOfVac
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockJetGaussianEntireOriginGridFrames
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsThetaFunOOfThetaAt
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PtYAndItYOfPair
 import Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.RealTop
 import Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.AttExp
 import Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.RatReal
+
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
 open IsDedekindDomain NumberField Matrix GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.RowClaim GlobalTheory.TestLat GlobalTheory.SumSize
 open Formalism.DivisionValues (vw lw)

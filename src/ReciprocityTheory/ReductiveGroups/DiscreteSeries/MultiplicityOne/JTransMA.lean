@@ -1,4 +1,3 @@
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.TransposeUnitary
 import Mathlib
 
 noncomputable section

@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.IndefiniteReal.RealSeparation.ParabSt
+import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.RedTheta
 
 noncomputable section
 

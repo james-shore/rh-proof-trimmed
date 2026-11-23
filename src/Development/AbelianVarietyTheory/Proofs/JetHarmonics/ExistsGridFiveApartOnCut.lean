@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.HermitianCurvature.StatementM
-import Formalism.HermitianCurvature.StatementI
+
 open Formalism.FourierDecayAlt Finset
 
 namespace GlobalTheory

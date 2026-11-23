@@ -2,9 +2,9 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FixedCoefficientFieldInComplex
 import Development.AbelianVarietyTheory.Definitions.HeightFunctions.JointQ
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CmQuadraticFormEqAlternatingForm
-import Formalism.LocalToGlobal.UnitaryNorms.CharProd
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ContinuousIdeleCharLocalFactorization
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsWeakApproxUnitFinitePlace
+import Formalism.LocalToGlobal.UnitaryNorms.CharProd
 
 noncomputable section
 

@@ -1,6 +1,5 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterGood
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsIntersectionFamily
 
 set_option maxSynthPendingDepth 1
 

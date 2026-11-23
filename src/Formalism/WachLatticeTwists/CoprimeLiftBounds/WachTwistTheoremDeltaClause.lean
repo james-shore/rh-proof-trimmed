@@ -1,5 +1,4 @@
 import Formalism.WachLatticeTwists.CoprimeLiftBounds.StatBridgeChiOne
-import Formalism.WachLatticeTwists.CoprimeLiftBounds.SelmerInjColumnPlace
 
 open Finset Classical
 

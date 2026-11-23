@@ -1,5 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetGNeZero
+import Formalism.LocalToGlobal.Divisibility.CoefMod
+
 open Classical MvPolynomial
 open scoped Matrix ComplexOrder
 

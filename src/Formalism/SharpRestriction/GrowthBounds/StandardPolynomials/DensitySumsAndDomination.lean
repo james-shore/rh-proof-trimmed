@@ -1,7 +1,7 @@
 import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.RestSegCore
 import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.RecursionWithDensities
 import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.LatticeLeSpanPsiImage
-import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.DivDerZero
+import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.CthMonomial
 
 noncomputable section
 

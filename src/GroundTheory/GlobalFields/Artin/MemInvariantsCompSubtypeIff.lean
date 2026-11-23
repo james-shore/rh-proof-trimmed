@@ -1,5 +1,4 @@
 import Mathlib
-import GroundTheory.GlobalFields.Artin.LogCharpoly
 
 noncomputable section
 

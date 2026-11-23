@@ -1,4 +1,6 @@
 import Development.EtaleCohomology.KummerTheory.BockCut
+import Development.EtaleCohomology.TateTwists.EtaleTateTwistSectionsLocallyGenerated
+import Development.EtaleCohomology.TateTwists.EtaleSheafMonoEpiSectionCriteria
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC

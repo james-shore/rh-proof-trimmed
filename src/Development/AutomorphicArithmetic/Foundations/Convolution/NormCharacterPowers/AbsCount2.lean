@@ -1,4 +1,4 @@
-import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.AnalyticSeries.NeZeroOne
+import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.AnalyticSeries.AnalyticAtTsum
 import Development.AutomorphicArithmetic.Foundations.Convolution.NormCharacterPowers.OrderAsym
 
 noncomputable section

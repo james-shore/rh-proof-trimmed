@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.MemSmulLatCoord
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DensGS
 
 noncomputable section
 

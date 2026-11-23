@@ -1,7 +1,6 @@
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.Weights
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.BigCas
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.KUnitB
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.Numerics
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.NumRho
 
 noncomputable section
 

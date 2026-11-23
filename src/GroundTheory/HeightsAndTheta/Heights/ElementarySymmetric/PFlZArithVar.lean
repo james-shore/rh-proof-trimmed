@@ -1,9 +1,9 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FlagIndices.InstFintypeFlIdx
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FlagComplexPointsOverX
-import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.StatementsFlZIdealEqCoord
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PFlagArithVar
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PBlockRatioAlg
+import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.StatementsFlZIdealEqCoord
 
 set_option maxSynthPendingDepth 1
 

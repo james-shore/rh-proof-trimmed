@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EnvRepAllEnvIncl
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsEnvelopingAlgHomUnitaryLieAlgebra
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsSquareIntegrableIffMemL2
+import Development.AbelianVarietyTheory.PublishedTheorems.SiegelWeil₂.AutomorphicFormsFiniteIdeal
 
 noncomputable section
 

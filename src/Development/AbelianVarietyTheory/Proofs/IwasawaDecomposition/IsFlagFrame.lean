@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.LineModel
-import Development.AbelianVarietyTheory.Statements.HeightBoundStatement.HTBoundSt
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.DegFrame
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsNatDiagIffIsDiag
 
 set_option autoImplicit false
 

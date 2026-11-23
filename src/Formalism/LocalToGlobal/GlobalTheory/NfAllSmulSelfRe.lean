@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.GlobalTheory.MemIffOfLocBasisG
+import Formalism.LocalToGlobal.GlobalTheory.ActAllMemIntSpanAtG
 import Formalism.LocalToGlobal.GlobalTheory.GL4.PColInf
 import Formalism.LocalToGlobal.HermitianForms.FormsTied
 

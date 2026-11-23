@@ -1,6 +1,5 @@
-import Development.DiscreteGroups.PiInvariants.CompactSupportTwists.NoPiHk
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SatakeParametersOfTwist
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.SubsingletonRankZero
+import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.PowerBoundFastDecay
+import GroundTheory.AutomorphicForms.MacdonaldHecke
 
 noncomputable section
 

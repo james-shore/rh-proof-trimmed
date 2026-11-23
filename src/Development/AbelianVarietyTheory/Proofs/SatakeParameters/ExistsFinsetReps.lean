@@ -1,9 +1,9 @@
 import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
-import Formalism.LocalToGlobal.IndefiniteReal.SubgroupCharExtensionOneApply
+import Formalism.LocalToGlobal.Divisibility.DefGroup
 import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
-import Formalism.LocalToGlobal.Columns.HeckeSp
-import Formalism.SatakeDualWeyl.KpqSubgroupCompact
-import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
+import Formalism.LocalToGlobal.Columns.RhoEqOfSmulEq
+import Formalism.LocalToGlobal.Columns.StdLatUnimodular
+import Formalism.LocalToGlobal.Columns.DecoFin
 
 namespace GlobalTheory.FinsetConjugateRepresentatives
 

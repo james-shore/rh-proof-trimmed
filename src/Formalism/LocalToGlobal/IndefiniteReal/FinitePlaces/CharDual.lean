@@ -1,5 +1,5 @@
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.CharStd
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.CharCompl
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.CharLem
 
 noncomputable section
 

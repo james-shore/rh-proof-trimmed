@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EmbedsInRegularRepresentationCopiesComplexEmbedd
-import Development.AbelianVarietyTheory.Definitions.Divisors.BadElt
 
 open Module NumberField
 set_option maxHeartbeats 1000000 in

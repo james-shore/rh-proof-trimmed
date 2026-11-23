@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelProductIndex.Development
+import Formalism.SatakeDualWeyl.StatementC
 
 open NumberField IsDedekindDomain Formalism.UG
 open scoped TensorProduct

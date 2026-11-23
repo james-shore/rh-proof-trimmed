@@ -2,7 +2,6 @@ import Mathlib
 import ReciprocityTheory.DualLattices.CotangentSurjective
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsTight
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.StepOrderRes
-import Development.WeilBound.CoreStatements.HodgeTatePoints.PowCongr
 import Development.WeilBound.CoreStatements.HodgeTatePoints.RdBase
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.StableHopfOrderFundamentalCharacterStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.StableHopfOrderSubgroupTranslationStatement

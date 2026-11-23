@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.ThDistC
+import Formalism.HermitianLattices.HermitianLatticesProofs.IndexBasic
 
 open NumberField IsDedekindDomain
 

@@ -1,6 +1,6 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.CyclicCupBrauer
-import GroundTheory.ProfiniteCohomology.CupProducts.Cocycles
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

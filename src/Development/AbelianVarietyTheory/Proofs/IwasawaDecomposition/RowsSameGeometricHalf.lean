@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ChoiceSide
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.WithLocPre
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CongrFunHeq
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ClassSumEq
 

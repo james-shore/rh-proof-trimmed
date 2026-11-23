@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.SumMulSumProd
+import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.MembTop
 
 noncomputable section
 

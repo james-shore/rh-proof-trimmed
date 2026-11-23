@@ -2,6 +2,7 @@ import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdicHensel.PadicUnitNorm
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.HodgeTrAt
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.IntegOfMem
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.LimWPhi
 
 noncomputable section
 

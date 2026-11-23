@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.AdelicHermitianForms.IsHermForm
 import Formalism.LocalToGlobal.ProjectiveLattices.ThClass
+import Development.AbelianVarietyTheory.Definitions.AdelicHermitianForms.IsHermForm
 
 open NumberField IsDedekindDomain GlobalTheory.AdLat GlobalTheory.UnRep ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open scoped TensorProduct Matrix

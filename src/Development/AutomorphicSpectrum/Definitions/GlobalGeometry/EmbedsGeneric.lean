@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.SplitComps
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.TowerOrigin
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsSncModel
 
 noncomputable section

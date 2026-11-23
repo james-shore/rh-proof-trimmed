@@ -1,5 +1,5 @@
-import Formalism.LocalToGlobal.IndefiniteReal.NonzeroIndexPlaceIndepConstants
-import Mathlib
+import Formalism.LocalToGlobal.IndefiniteReal.TrISepWith
+import Formalism.LocalToGlobal.IndefiniteReal.OneMapT
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LayerTwoFamilyClass
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.STiesR
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.IndefRRealT

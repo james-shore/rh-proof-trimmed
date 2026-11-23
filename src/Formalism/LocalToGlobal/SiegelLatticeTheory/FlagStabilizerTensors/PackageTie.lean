@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.HermitianCurvature.StatementPB
 import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
-import Formalism.LocalRingCardinality.DataParamsS
+import Formalism.LocalRingCardinality.DataParams₂
 
 noncomputable section
 

@@ -2,7 +2,6 @@ import Formalism.SharpRestriction.LevelLetterCocycles.CrystallineLiftingInputs
 import Formalism.SharpRestriction.LevelLetterCocycles.RelayGeneralCaseOfAdmissible
 import Formalism.SharpRestriction.LevelLetterCocycles.BaseChangePreservesUnitaryOf
 import Formalism.SharpRestriction.LevelLetterCocycles.LevelClauseOfOpenTool
-import Formalism.SharpRestriction.LevelLetterCocycles.CompleteOfPow
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.IntegerSpanGenerators
 
 open Classical

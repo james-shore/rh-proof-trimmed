@@ -1,7 +1,7 @@
 import Mathlib
-import Development.DiscreteGroups.GlobalIrreducibility.DzMatchCut
+import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.LocalLanglandsGL
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PrincipalCongruenceFixedVectorsLeSmoothVectors
 import Development.DiscreteGroups.GlobalIrreducibility.DzIsoRes
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.EmbedsLevelZeroDepthZero
 
 noncomputable section
 

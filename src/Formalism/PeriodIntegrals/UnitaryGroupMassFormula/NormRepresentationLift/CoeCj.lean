@@ -1,6 +1,5 @@
 import Mathlib
-import Formalism.SharpRestriction.CuspSpanNormBounds.IsPrimitiveSub
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.NormRepresentationLift.ActsByFrameAct
+import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 
 noncomputable section
 

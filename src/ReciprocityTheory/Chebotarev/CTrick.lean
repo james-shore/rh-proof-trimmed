@@ -1,7 +1,5 @@
-import ReciprocityTheory.Chebotarev.Ucoord
+import Mathlib
 import ReciprocityTheory.Chebotarev.NZIdeal
-import ReciprocityTheory.Chebotarev.EulerSum
-import ReciprocityTheory.Chebotarev.EulerLim
 
 open NumberField NumberField.mixedEmbedding NumberField.Units
 

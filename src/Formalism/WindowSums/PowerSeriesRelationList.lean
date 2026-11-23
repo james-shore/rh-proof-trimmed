@@ -1,11 +1,9 @@
-import Formalism.WindowSums.AnnihilatorPolynomials.DistinctTerms
 import Formalism.WindowSums.Statement
 import Formalism.WindowSums.AnnihilatorPolynomials.EvalOneSmulDecomposition
 import Formalism.WindowSums.AnnihilatorPolynomials.ZpowVal
 import Formalism.WindowSums.AnnihilatorPolynomials.ValProd
 import Formalism.WindowSums.AnnihilatorPolynomials.WindowSum
 import Formalism.WindowSums.AnnihilatorPolynomials.Lagrange
-import Formalism.WachModuleLifts.StatementW
 
 namespace Formalism.WindowSums
 

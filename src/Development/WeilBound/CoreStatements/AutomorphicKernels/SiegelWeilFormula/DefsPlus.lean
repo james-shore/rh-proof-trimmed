@@ -1,4 +1,4 @@
-import Development.WeilBound.ThetaLifts.LatticeBasics.HypothesesS
+import Development.WeilBound.ThetaLifts.LatticeBasics.HypothesesE
 
 noncomputable section
 

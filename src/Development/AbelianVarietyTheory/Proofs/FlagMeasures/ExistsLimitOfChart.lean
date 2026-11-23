@@ -1,9 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.LayerProd
-import Formalism.HarderNarasimhan.ShiftInvariance
 import Formalism.RealPlaceAnalysis.FinalF
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.NonemptyCompactDualHaar
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousMatExp
+
 open GlobalTheory.Count Formalism.MainNotions.S Formalism.HN Formalism.REAL Matrix NumberField MeasureTheory Finset
 open scoped InnerProductSpace
 open Filter Topology Metric

@@ -2,14 +2,9 @@ import Mathlib
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.ThetaLocalEquivalence.ThEquivPAmbOfTiesD
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.RkConj
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.RkThindEq
-import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.ColInst
-import Formalism.LocalToGlobal.Columns.ChainOneOk
-import Formalism.LocalToGlobal.Columns.ReductionExistsInLatticeStabilizerHolds
-import Formalism.LocalToGlobal.Columns.ResidueFieldUnfoldingClaimsHold
-import Formalism.LocalToGlobal.Columns.BlockTriangularMulVecMemPartialFlag
-import Formalism.LocalToGlobal.Columns.ReducedMatrixExtensionEntry
-import Formalism.LocalToGlobal.Columns.FrameEntryAuxiliarySuperdiagonal
-import Formalism.LocalToGlobal.Columns.ColumnsProofs.SymLevEnt
+import Formalism.PeriodIntegrals.OneCosetSharp
+import Formalism.LocalToGlobal.KernelLattices.ColumnData.AmbOfENeSd
+import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SplitPairOfGen
 
 open NumberField IsDedekindDomain
 

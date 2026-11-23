@@ -4,7 +4,7 @@ import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PadTru
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsIsHodgeFrameIff
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MemSupportBDIff
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NotIsBettiZero
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TwoMulCardPsi
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.LocStOfLoc
 
 set_option autoImplicit false
 

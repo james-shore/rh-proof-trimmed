@@ -2,7 +2,9 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsArith
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsResChiBounds
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.CNormSt
-import ReciprocityTheory.GeometryOfNumbers.SphericalMonomials.ChiPSt
+import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.FibreSt
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.HilbertSamuel

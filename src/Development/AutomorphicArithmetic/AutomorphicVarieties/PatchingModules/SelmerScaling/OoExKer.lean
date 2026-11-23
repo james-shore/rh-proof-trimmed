@@ -1,10 +1,10 @@
-import Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.SelmerScaling.EpC
+import Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.SelmerScaling.SelmerSpannedByKappaLaurent
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.CaCplCo
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.CaCplDvr
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.CaCplEx
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.CaCplLift
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.CoEvLow
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.CoMvps
+import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.CaCplLift
+import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.CaCplEx
 
 open IsLocalRing Matrix UpperTheory.V.Alg UpperTheory.V.W UpperTheory.V.AlgebraTools UpperTheory.V.Pa
 

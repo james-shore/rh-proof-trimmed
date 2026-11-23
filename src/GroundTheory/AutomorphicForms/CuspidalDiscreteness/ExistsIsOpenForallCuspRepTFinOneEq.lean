@@ -1,6 +1,7 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness.SummandsContRep
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness.FixedOpen
+import GroundTheory.AutomorphicForms.GKModules.Garding
 
 open MeasureTheory Set Filter Topology Function
 open scoped InnerProductSpace

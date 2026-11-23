@@ -1,9 +1,9 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.FiniteSupportHeight
-import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.Objects
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.DenseChart
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ArithmeticHilbertSamuelLowerBound
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSt
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.RationalSections.IsRatSectionOn
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

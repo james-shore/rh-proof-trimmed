@@ -1,6 +1,5 @@
 import Formalism.LocalToGlobal.GlobalTheory.GL4.ClassMapArchimedean
-import Formalism.LocalToGlobal.GlobalTheory.GL4.LowerSlopeInequalityFamily
-import Formalism.SharpRestriction.GlobalSchurBounds.TotallyPositiveTraceGeOfNormDiscr
+import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.UnitTraceSumBounds.UpperSlopeOfMaximalConstant
 
 noncomputable section
 

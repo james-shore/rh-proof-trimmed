@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.RosatiNormLEOfStarNormLE
-import Development.AbelianVarietyTheory.PublishedTheorems.Landherr₂.DimEqZero
 
 set_option autoImplicit false
 

@@ -1,6 +1,5 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.EffectiveHilbertSamuel.Objects
-import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PshBasic
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.BergmanObjects
 
 set_option maxSynthPendingDepth 1
 

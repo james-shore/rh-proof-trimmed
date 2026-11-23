@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.IsChainFirst
+import GroundTheory.HeightsAndTheta.Heights.Antisymmetric.Statements
 
 noncomputable section
 

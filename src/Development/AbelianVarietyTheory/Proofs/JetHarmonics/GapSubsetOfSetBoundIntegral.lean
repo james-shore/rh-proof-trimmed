@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.FlagUnipotentLattices.UnipotentStabiliserCharacterisation
-import Formalism.FormalDegreeBessel.FormalDegreeRatio.DSFdeg
 import Development.AbelianVarietyTheory.BlockTheory.JetGauges.DegreeProportionalWords
 
 open Finset

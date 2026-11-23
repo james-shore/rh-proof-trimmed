@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.TruncatedSeriesCounting.RamifiedValuationInequality
-import Formalism.TruncatedSeriesCounting.LengthQuotientLeOfPowSMul
 
 noncomputable section
 

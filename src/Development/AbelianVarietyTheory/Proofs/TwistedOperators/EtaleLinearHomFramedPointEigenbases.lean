@@ -1,8 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsIsCan
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.HkRelFrOfTransportIff
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsUniqueTangentLift
-import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.BijectiveRestrictPointsOfEtaleOfHenselian
+import Development.AbelianVarietyTheory.Definitions.ModuliSpaces.KerScheme
 
 set_option autoImplicit false
 

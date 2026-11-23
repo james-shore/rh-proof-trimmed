@@ -1,6 +1,5 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StRiemannExtensionAnalytic
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PRiemannExtensionAnalytic
+import ReciprocityTheory.AnalyticForms.AnalyticCharts.Osgood
 
 set_option maxSynthPendingDepth 1
 

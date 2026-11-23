@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.GroupLattices.TiedFamilies.TieStd
+import Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.TiedRec
 import Formalism.LocalToGlobal.GroupLattices.TiedFamilies.IntSplitOf
 import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.LocIdFr
 import Formalism.LocalToGlobal.HermitianForms.BothLemmas

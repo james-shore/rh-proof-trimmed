@@ -3,7 +3,7 @@ import Development.AbelianVarietyTheory.Definitions.CMLattices.LamLetters
 import Development.AbelianVarietyTheory.Definitions.CMLattices.ExistsIsThetaDegOfIsLocalModel
 import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.UnivFrame
 import Formalism.LocalToGlobal.ProjectiveLattices.VAtVNeBot
-import Formalism.LocalToGlobal.CMDeterminantIdeals.StatementS
+import Formalism.LocalToGlobal.CMDeterminantIdeals.StatementG
 
 set_option autoImplicit false
 

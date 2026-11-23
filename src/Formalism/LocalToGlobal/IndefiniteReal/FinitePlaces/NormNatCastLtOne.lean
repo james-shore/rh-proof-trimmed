@@ -1,5 +1,4 @@
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.FiniteAdeleSndAlgebraMap
-import ReciprocityTheory.AdeleApproximation.AdeleIntA
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.ContinuousCoB
 
 noncomputable section
 

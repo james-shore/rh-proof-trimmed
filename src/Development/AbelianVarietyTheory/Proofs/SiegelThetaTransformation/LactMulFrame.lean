@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsSystem
-import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsHeatZero
+import Development.AbelianVarietyTheory.Definitions.ThetaValues.PolyDerivSmulLetter
+import Development.AbelianVarietyTheory.Definitions.ThetaValues.ExistsMemRowHighestTotalDegreeEqTwo
 
 namespace GlobalTheory.LeftActionFrameMul
 

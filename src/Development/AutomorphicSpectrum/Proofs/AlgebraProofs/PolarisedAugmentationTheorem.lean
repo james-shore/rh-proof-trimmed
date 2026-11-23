@@ -4,7 +4,6 @@ import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsTight
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.StepOrderRes
 import Development.AutomorphicSpectrum.Statements.AlgebraStatements.PolarisedAFStatement
 import ReciprocityTheory.DualLattices.HasLenCokerDet
-import ReciprocityTheory.DualLattices.ProdDvdOfIso
 import ReciprocityTheory.DualLattices.PowMemCarrier
 import ReciprocityTheory.DualLattices.MemAugIdeal
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.AugmentationQuotientEquivLatticeStatement
@@ -12,6 +11,7 @@ import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.AugmentationLengthCo
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SymplecticPeriodMatrixIntegralityStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.LatticeLengthMonoStrictStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.AugmentationLengthsExistStatement
+
 open ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Up GlobalTheory.CompanionTheory.Ar.GR
 open scoped Matrix
 

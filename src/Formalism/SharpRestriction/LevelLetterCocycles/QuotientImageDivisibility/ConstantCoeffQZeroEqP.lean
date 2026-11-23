@@ -1,8 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.LocalizationQuotientSeparatedDvd
 import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.SmulSAddLeft
-import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.ExistsInfFilVEqBot
-import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.IndepOfSpan
 
 noncomputable section
 open Classical

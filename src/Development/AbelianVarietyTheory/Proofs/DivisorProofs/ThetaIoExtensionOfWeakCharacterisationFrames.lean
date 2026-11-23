@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.IndefiniteReal.BaseLiftsPackageOfPrimitiveLinks
+import Formalism.LocalToGlobal.IndefiniteReal.ZeroPartEigenvalueConvention
 import Formalism.LocalToGlobal.IndefiniteReal.OneMapT
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FormsModelHolomorphicIntegralExtremalWeight
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LowestKTypeSmoothModelsOnThetaTargets
@@ -6,6 +6,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExtremalVectorsHolo
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeChoiceClausesOfWeakCharacterisationAtFaceAl
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IoExtCore
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.VStdOfOrthonormalSpan
+
 open Formalism.BasicNotions Formalism.MainNotions NumberField IsDedekindDomain Formalism.L2 Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.FWT
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 

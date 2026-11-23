@@ -1,5 +1,7 @@
 import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.HQTracePos
+import Formalism.HermitianLattices.HermitianLatticesProofs.AutFinite
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaUniqueness.Lemmas
 
 noncomputable section
 

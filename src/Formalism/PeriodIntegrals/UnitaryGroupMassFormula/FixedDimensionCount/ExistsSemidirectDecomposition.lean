@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.SiegelLatticeTheory.SiegelMassRatios.ClassAct
-import Formalism.LocalToGlobal.SiegelLatticeTheory.SiegelMassRatios.ColsDim
 
 noncomputable section
 

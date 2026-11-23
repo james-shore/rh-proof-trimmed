@@ -1,6 +1,6 @@
 import Formalism.WachLatticeTwists.RamifiedBlockRings.RamifiedBlockProofs.CompositeOfChainHolds
-import Formalism.WachLatticeTwists.RamifiedBlockRings.RamifiedBlockProofs.SplitExt
 import Formalism.WachLatticeTwists.RealDisplaySplitting.RealDisplayProofs.SurjectionOfRankOneIdempotent
+import Formalism.WachLatticeTwists.CoprimeLiftBounds.CoprimeLiftProofs.TheoremNFiveDeltaClause
 
 open Finset Classical
 

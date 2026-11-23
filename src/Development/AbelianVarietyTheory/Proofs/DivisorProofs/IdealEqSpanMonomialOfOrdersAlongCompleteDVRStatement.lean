@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IdealEqSpanMonomialOfOrdersAlongCompleteDVR
-import Development.AbelianVarietyTheory.Definitions.Divisors.SpecializesGenericImage
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsRatPointOfFiniteType
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsMonoFamNontrivial
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField

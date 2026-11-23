@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.JacobiTrudi
+import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.Statements
 
 noncomputable section
 

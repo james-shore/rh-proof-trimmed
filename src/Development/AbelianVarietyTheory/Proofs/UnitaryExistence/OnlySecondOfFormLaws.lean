@@ -1,10 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ContinuousIffCrdA
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.AdelicElementLatticeFullAndCompletion
+import Formalism.LocalToGlobal.ProjectiveLattices.VolProofs
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LcscAdelicUnitaryGroupStatement
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.InvariantProbabilityLatticeQuotientUniqueStatement
-import Formalism.LocalToGlobal.GlobalTheory.GL5.FamilyMassVolumeIdentityOfClassDecomp
-import Formalism.SatakeDualWeyl.Statement
 
 noncomputable section
 

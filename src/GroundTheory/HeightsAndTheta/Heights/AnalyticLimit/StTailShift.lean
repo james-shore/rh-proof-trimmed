@@ -1,8 +1,5 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.Objects
-import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.UIObjects
-import ReciprocityTheory.AnalyticForms.PotentialTheory.ProjectiveLinePartitionContinuousCoe
-import ReciprocityTheory.AnalyticForms.PotentialTheory.HessCIsHermitian
 
 set_option maxSynthPendingDepth 1
 

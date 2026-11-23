@@ -1,5 +1,6 @@
 import Formalism.AdmissibleDesigns.TwistedTargetOfInputs
 import Formalism.AdmissibleDesigns.FiniteClassesLocalEq
+import Formalism.AdmissibleDesigns.YtTargetOf
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 

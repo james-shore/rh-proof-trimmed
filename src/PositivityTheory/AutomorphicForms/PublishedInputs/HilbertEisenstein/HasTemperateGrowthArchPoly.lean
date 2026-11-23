@@ -1,6 +1,5 @@
 import PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.SExpDefs
-import GroundTheory.GlobalFields.TateThesis.EulerFactorsFourierInfinite
-import GroundTheory.GlobalFields.IdeleGroups.ClassGroup
+import GroundTheory.GlobalFields.TateThesis.EulerFactorsInfinite
 
 noncomputable section
 

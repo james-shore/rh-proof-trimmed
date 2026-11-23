@@ -1,13 +1,9 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.FirstPointNeSecondPoint
 import GroundTheory.HeightsAndTheta.Heights.FubiniStudy
-import GroundTheory.HeightsAndTheta.Heights.FubiniStudyInvariance.Statements
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.ProjectiveLine
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.ExistsNatMulMemConeRingIntFin
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PGeoNumCut
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PDivCycleMul
-import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PVocabDivCycle
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRed
 
 set_option maxSynthPendingDepth 1
 

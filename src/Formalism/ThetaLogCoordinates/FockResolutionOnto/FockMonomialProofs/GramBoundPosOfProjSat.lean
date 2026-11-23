@@ -1,6 +1,7 @@
 import Formalism.ThetaLogCoordinates.FockResolutionOnto.StatementH
 import Formalism.ThetaLogCoordinates.FockResolutionOnto.FockMonomialProofs.GramBoundUnconditionalOfSat
 import Formalism.ThetaLogCoordinates.FockResolutionOnto.FockMonomialProofs.Vanish
+import Formalism.ThetaLogCoordinates.FockResolutionOnto.FockMonomialProofs.DerivativeKeepsSpaceHolds
 
 namespace Formalism.InvariantFactorPaths.L4
 

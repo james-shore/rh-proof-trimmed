@@ -1,4 +1,4 @@
-import Development.EtaleCohomology.EtaleSheaves.LeafKillCut
+import Development.EtaleCohomology.EtaleSheaves.H0TwistOverClosedField
 import Development.EtaleCohomology.EtaleSheaves.KummerSequence.LeafKumMuMapPf
 import Development.EtaleCohomology.EtaleSheaves.KummerSequence.LeafKumMuInjPfGlue
 import Development.EtaleCohomology.EtaleSheaves.KummerSequence.TwLocGenPf

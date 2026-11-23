@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.BlockSplitAll
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsobaricDiscreteSelfDualStrongMultiplicityOne
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsReadingLaws
 import Formalism.LocalToGlobal.GaloisLevelStructure.TiedHecke
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.HeckeStdTwOfStd
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverAct
@@ -8,6 +7,8 @@ import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CoeffMonicPolySu
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FiniteCosetsHeckeSetAtSplitPlaceOutsideLevelStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ComplexHeckeEigenvectorDescendsToCoefficientFielStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SplitExEveryDatumStatement
+import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverEta
+
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal Polynomial NumberField IsDedekindDomain GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.RowTie GlobalTheory.SplitRead
 
 noncomputable section

@@ -1,5 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IncreasingRowChoicePerColumn
+import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.WwCauchyBinet
+
 open MvPolynomial
 
 noncomputable section

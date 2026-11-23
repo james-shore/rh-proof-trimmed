@@ -1,7 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.TailRd
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.VacOfShape
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.OnFramesRdApply
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.SmallPair
 
 noncomputable section
 

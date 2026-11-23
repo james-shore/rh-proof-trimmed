@@ -1,4 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.FirstDerivativeAtNormalSet
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelZeroEstimateProduct
 
 open Matrix Finset MeasureTheory
 open scoped ComplexConjugate

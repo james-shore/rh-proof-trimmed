@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.NotIsCompactUnivFv
+import Formalism.LocalToGlobal.BesselHermitianTheta.TiedWeil
 
 noncomputable section
 

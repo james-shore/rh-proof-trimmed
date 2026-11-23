@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.LatIntZero
+import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsVariableChangeEqLatticeCurve
 import Formalism.LocalToGlobal.KernelLattices.LateralTheory
 import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.IntStd
 

@@ -1,5 +1,6 @@
 import CompanionTheory.HarishChandraModules.BesselParameterIntegrals.BesselOrbitConvolutions.BesselNonvanishingReduction
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.BesselDecayBounds.SchurDecayBounds.BeBesselOf
+import Formalism.SharpRestriction.CuspSpanNormBounds.KfinOfMemLowKSub
 
 open MeasureTheory Matrix
 open scoped InnerProductSpace ENNReal

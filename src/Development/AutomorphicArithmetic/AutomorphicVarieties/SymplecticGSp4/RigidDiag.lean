@@ -1,8 +1,8 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.LocDefs
 import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.EptInt
 import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.PtInSmul
-import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.LMemMax
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.NormLeOneOfIsIntegral
+
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal IsLocalRing UpperTheory.V UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement
 
 private theorem block_of_comm {K : Type} [NormedField K] [IsUltrametricDist K] (M X : M4 K) (d : Fin 4 → K)

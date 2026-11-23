@@ -2,6 +2,8 @@ import Mathlib
 import GroundTheory.PAdicHodge.SenTateCharLevels
 import GroundTheory.PAdicHodge.SenTateCharStep
 import GroundTheory.PAdicHodge.SenTateCharClosure
+import GroundTheory.PAdicHodge.SenTateCharUnitPow
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

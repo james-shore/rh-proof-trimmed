@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
-import Development.AutomorphicArithmetic.IntegralCasts.RegAlgFam
+import Development.AutomorphicArithmetic.IntegralCasts.AlgebraicInfinityType.InfinityType
 import Development.AbelianVarietyTheory.Definitions.Foundations.SmoothPartStable
 
 noncomputable section

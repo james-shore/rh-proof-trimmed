@@ -1,4 +1,4 @@
-import Formalism.PolynomialDimension.FrameSum
+import Mathlib
 
 noncomputable section
 

@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.PinnedIntegrability
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBoundUnitary
 
 noncomputable section

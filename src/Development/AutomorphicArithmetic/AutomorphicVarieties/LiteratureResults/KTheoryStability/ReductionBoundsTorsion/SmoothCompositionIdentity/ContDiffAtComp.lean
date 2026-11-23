@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.BasicForm
 
 noncomputable section
 

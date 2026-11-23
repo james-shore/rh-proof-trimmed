@@ -1,9 +1,8 @@
-import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.ExistsFull
-import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.ExistsExtZ
+import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.RightOnto
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FibRepApply
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OmegaEquivInducedFibre
 import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.SoStatement
-import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.PfSurj
-import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.ContinuousFinId
-import Development.WeilBound.ThetaLifts.CartanFactorisation.CartanConj
+import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
 
 noncomputable section
 

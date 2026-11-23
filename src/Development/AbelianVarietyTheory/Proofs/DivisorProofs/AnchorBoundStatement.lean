@@ -2,8 +2,8 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.CovolXOfCovol
 import Development.AbelianVarietyTheory.Definitions.Divisors.ToKnownTheoremsOf
 import Development.AbelianVarietyTheory.Definitions.Divisors.QuoIff
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HostBoundHolds
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeightBoundHolds
+import Development.AbelianVarietyTheory.Definitions.Divisors.HtValOnSubset
+import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.SubsingletonQuotientOfIdealEqTop
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjCmHostRootNeSelf
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AnchoredWeightIndefiniteLiftGaps
 

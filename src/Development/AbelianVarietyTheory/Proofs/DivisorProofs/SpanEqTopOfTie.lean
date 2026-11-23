@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TypePartBase
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ClassPresBasic
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilGramSignature
 
 noncomputable section
 

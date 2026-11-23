@@ -1,8 +1,8 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.NormalFam
+import Formalism.LocalToGlobal.IndefiniteReal.ConcretePkgSpec
 import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.PermutesRefl
-import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.TupPrimeEmpty
 import Formalism.LocalToGlobal.IndefiniteReal.OneMapT
+import Formalism.LocalToGlobal.IndefiniteReal.FWExist
 
 set_option autoImplicit false
 

@@ -1,4 +1,6 @@
 import Formalism.LocalToGlobal.CharacterGerms.NatCastMulTmul
+import Formalism.LocalToGlobal.CharacterGerms.CompleteOfBasis
+import Formalism.LocalToGlobal.CharacterGerms.DetNeZeroOfChars
 
 set_option autoImplicit false
 

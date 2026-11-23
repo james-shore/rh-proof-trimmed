@@ -1,4 +1,4 @@
-import Formalism.CharacterColumnKernels.StatBlockRhoCount
+import Formalism.CharacterColumnKernels.StatementRho
 import Formalism.CharacterColumnKernels.StatGlobalModule
 
 open Finset Classical

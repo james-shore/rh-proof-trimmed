@@ -1,6 +1,6 @@
 import Mathlib
-import GroundTheory.PAdicHodge.SlopePhiModule
 import GroundTheory.PAdicHodge.SlopeBezout
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

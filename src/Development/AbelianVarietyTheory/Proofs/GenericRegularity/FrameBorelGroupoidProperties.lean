@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.RegularCharts.Reframe
-import Formalism.LocalToGlobal.ProjectiveLattices.FrameCharts
+import Formalism.LocalToGlobal.ProjectiveLattices.CoreProofs
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.UniformisationConclusion
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.SecBaseChangeAnySt
 import Formalism.LocalToGlobal.ProjectiveLattices.IntAllProofFree

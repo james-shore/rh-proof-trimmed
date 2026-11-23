@@ -1,5 +1,4 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LowerParabolicCoordinates
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.StabilizerFourthCondition
 
 open Matrix Formalism.FourierDecayAlt Formalism.QuantumDeterminants
 

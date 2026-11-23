@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.GradNPfB
+import Formalism.SharpRestriction.LevelLetterCocycles.DeltaInvariantUniformizer
 
 noncomputable section
 

@@ -1,5 +1,4 @@
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SideEigenConductor
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.HeckeOpen
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ForcedByAutomorphicSemisimpleData
 

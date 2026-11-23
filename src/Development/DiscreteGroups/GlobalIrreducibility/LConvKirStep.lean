@@ -1,5 +1,7 @@
 import Mathlib
 import Development.DiscreteGroups.GlobalIrreducibility.LConvKirC
+import Development.DiscreteGroups.GlobalIrreducibility.LConvKirB
+import Development.DiscreteGroups.GlobalIrreducibility.ContinuousKinv2
 
 noncomputable section
 set_option linter.unusedSimpArgs false

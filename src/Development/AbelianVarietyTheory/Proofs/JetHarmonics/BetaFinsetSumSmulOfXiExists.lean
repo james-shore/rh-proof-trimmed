@@ -4,7 +4,7 @@ import Formalism.HermitianCurvature.StatementQ
 import Formalism.HermitianCurvature.LetterProductDoubleDegreeCount
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelFormSesquilinearFiniteClass
 import Development.AbelianVarietyTheory.PublishedTheorems.BesselIntegrals.BesselXiIntegrable
-import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.XiExistsOfBesselXiIntegrable
+import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.ExistsConeMeasurePosRank
 
 open Formalism.FourierDecayAlt Formalism.REAL Formalism.QuantumDeterminants Finset
 

@@ -1,4 +1,4 @@
-import Formalism.PeriodIntegrals.HookBound
+import Formalism.GradedWeylDivisibility.StatementB
 import Formalism.LocalToGlobal.Columns.CoefficientsModP.WeTransposeWordTransposeWord
 
 noncomputable section

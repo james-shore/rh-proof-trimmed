@@ -1,6 +1,6 @@
 import Development.AbelianVarietyTheory.Definitions.Divisors.IndEtOfForallFinset
 import Development.AbelianVarietyTheory.Definitions.Divisors.DivisorSupportCondition
-import Mathlib.RingTheory.TensorProduct.IncludeLeftSubRight
+
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex Simplicial TensorProduct GlobalTheory.EtC
 
 namespace GlobalTheory.EtC

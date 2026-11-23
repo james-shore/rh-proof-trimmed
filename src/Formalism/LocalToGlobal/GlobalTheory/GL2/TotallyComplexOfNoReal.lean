@@ -1,8 +1,8 @@
-import Formalism.LocalToGlobal.GlobalTheory.GL2.Statement
-import Formalism.SharpRestriction.GlobalSchurBounds.FirstClaimLemmaTwoFourOfLemmaTwoThree
+import Formalism.SharpRestriction.GlobalSchurBounds.ShortIntervalPrimes
+import Formalism.LocalToGlobal.UnitaryNorms.MemFIffReal
+import Formalism.SizeWindowBrackets.SmoothedRemainderRealIntegralFormula
+import Formalism.GL3MeanSquares.SecondEstimateOfIntervalHypothesis
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
-import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.Principal
-import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.SplitK
 import Formalism.UnipotentAdelicQuotients.ClassNumberQuad
 
 noncomputable section

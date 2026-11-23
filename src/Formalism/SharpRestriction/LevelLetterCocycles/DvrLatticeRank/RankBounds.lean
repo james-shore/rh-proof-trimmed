@@ -1,8 +1,7 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.SecondPropositionRingAll
-import Formalism.SharpRestriction.LevelLetterCocycles.ModelKStep
 import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.RankInverseBounds
 import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.RankLinkProof
-import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.GradNPfB
+import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.GradNPfA
 import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.FrobPiNPf
 
 noncomputable section

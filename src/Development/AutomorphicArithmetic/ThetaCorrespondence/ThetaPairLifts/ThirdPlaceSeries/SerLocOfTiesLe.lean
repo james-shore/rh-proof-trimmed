@@ -1,5 +1,4 @@
 import Development.DiscreteGroups.GlobalIrreducibility.SerLocOfTiesLe
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LocComp
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LocTypeOfSerParamLe
 

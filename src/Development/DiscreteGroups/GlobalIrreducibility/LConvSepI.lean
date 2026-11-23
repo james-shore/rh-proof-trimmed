@@ -1,6 +1,7 @@
 import Mathlib
 import Development.DiscreteGroups.GlobalIrreducibility.LConvCut
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HasCompactSupportDescend
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HaarIsMulRightInvariant
 
 noncomputable section
 

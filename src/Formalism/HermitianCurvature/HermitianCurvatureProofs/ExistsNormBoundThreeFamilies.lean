@@ -2,7 +2,6 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.WaveLocalBuiltPlace
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.PbFormPos
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.PBGWaveMain
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.GramLocSetCApp
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.PBFCstmt
 
 namespace Formalism.FourierDecayAlt.P.PBL
 

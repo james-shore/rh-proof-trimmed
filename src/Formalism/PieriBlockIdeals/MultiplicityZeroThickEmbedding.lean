@@ -1,5 +1,4 @@
 import Formalism.PieriBlockIdeals.LemmaWFromLattice
-import Formalism.PieriBlockIdeals.MertensReciprocalElementary
 
 noncomputable section
 

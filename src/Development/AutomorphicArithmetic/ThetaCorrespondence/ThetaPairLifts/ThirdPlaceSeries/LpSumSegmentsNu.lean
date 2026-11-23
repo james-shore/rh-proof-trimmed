@@ -1,5 +1,4 @@
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SumSegmentsLanglands
-import Mathlib
 import Development.AutomorphicArithmetic.Foundations.LocalLanglands.IsRecTOfIsRec
 import Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.AbsCentralAlt
 

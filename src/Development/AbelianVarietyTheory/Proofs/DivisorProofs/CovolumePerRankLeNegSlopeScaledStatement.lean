@@ -1,9 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CovolumePerRankLeNegSlopeScaled
-import Development.AbelianVarietyTheory.Definitions.Foundations.IsProbabilityMeasureMuPart
-import Formalism.QuotientMetricDivisors.Statement
-import Formalism.MeanHeightDescent.DivisionInequalityWithCovolume
-import Development.AbelianVarietyTheory.Counterexamples.RotationExamples.MeasureFailsForLargeConstant
 
 open NumberField
 set_option maxHeartbeats 1000000 in

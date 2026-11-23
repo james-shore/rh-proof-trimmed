@@ -3,6 +3,7 @@ import Formalism.LocalToGlobal.ProjectiveLattices.ExistsParameterConditions
 import Formalism.LocalToGlobal.ProjectiveLattices.DatumOfRecordSignature
 import Formalism.LocalToGlobal.ProjectiveLattices.DatProofs
 import Formalism.LocalToGlobal.ProjectiveLattices.CuspidalL2Subspace
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.HeckeKer
 
 noncomputable section
 

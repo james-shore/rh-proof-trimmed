@@ -1,4 +1,5 @@
 import Formalism.FockGram.StatementHerm
+import Formalism.FockGram.StatementLat
 
 open Matrix LinearMap Module
 

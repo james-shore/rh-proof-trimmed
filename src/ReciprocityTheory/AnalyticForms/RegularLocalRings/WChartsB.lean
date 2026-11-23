@@ -1,4 +1,5 @@
 import ReciprocityTheory.AnalyticForms.RegularLocalRings.WChartsA
+import ReciprocityTheory.AnalyticForms.RegularLocalRings.LogResStC
 
 namespace ReciprocityTheory.AnForm.R
 

@@ -7,8 +7,6 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIdeleA
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRealCharacter
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetBlockConj
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MulFunEqOneOfEqOneOnMaxCompact
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsAlgebraMapOfSigRFixed
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsFundamentalDomainOfHaar
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.FWT Formalism.L2.Pj
 open MeasureTheory IsDedekindDomain NumberField Matrix

@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.SharpRestriction.LevelLetterCocycles.UsedLocalConclusion
+import Formalism.SharpRestriction.LevelLetterCocycles.DeltaInvariantLattices
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NotFullBot
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RingsCyclotomic
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FreeAndInvariantsGen

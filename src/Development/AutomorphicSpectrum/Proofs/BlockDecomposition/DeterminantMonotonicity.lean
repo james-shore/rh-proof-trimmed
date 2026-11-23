@@ -1,6 +1,5 @@
 import Mathlib
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IsotropicMahlerBounds.LogAbsoluteWedges.WedgeSub
-import GroundTheory.HeightsAndTheta.Heights.MatrixCharts.DetIneq
 
 open Matrix PositivityTheory.Rg.BcB.D1
 

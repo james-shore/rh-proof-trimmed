@@ -2,6 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RembApply
 import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.FinrankMulDiscrRpowLeSumSqOfMemTraceDual
 import Formalism.LatticeTheta.Statement
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.TraceDualDifferent
 
 open NumberField nonZeroDivisors MeasureTheory GlobalTheory.LipschitzTR GlobalTheory.IndefiniteRowSideFullHecke.TraceDualDifferent
 open scoped FourierTransform RealInnerProductSpace

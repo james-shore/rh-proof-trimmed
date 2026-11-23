@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.CharacterGerms.FirstVanishingAt
+import Formalism.LocalToGlobal.CharacterGerms.RankMaximalOfNondegenerateOfUnitSeriesIntegral
 import Formalism.LocalToGlobal.CharacterGerms.PderivDoubleMultiplicationJacobian
 import Formalism.LocalToGlobal.CharacterGerms.RowTieCartAdd
 

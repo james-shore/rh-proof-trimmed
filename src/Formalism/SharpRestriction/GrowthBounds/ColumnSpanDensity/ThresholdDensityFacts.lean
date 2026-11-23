@@ -1,4 +1,7 @@
 import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.DensAbs
+import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.DensityNumericalFacts
+import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.TwoHundredLeRadius
+import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.ThresholdFinalFacts
 
 noncomputable section
 

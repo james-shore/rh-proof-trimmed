@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.TheoremOfAlternateForm
+import Formalism.SharpRestriction.GrowthBounds.FormalGroupSystem
 import Formalism.SharpRestriction.GrowthBounds.LatticeSystems
 
 noncomputable section

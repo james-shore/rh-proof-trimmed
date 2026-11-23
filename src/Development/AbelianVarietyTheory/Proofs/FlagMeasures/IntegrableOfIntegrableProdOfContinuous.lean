@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.LintegralFintypeProdEqProd
+import Development.AbelianVarietyTheory.Definitions.Foundations.IsRestrictedProdFinAwayIffIsProdMeasureFinAway
 
 noncomputable section
 

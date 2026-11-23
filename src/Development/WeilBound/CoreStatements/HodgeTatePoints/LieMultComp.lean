@@ -1,19 +1,16 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Statements.GeometryStatements.KeyBadSt
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsThetaMeanSquareNorm
 import Development.AutomorphicSpectrum.Statements.GeometryStatements.ZhangDimensionPushDownGrassmannianHeightBounds
-import GroundTheory.HeightsAndTheta.Heights.KernelsLattice
-import GroundTheory.HeightsAndTheta.Heights.LatticeLemmas.StatementsBundles
 import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.RulePow
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsLevelGoodAtAllPrimesAndIdx
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsLieCoordinatesLieMultIff
-import Development.WeilBound.CoreStatements.HodgeTatePoints.KftwoHost
 import Development.WeilBound.CoreStatements.HodgeTatePoints.KftwoSquare
+import Development.WeilBound.CoreStatements.HodgeTatePoints.KftwoModel
+import Development.WeilBound.CoreStatements.HodgeTatePoints.KftwoHost
 import Development.WeilBound.CoreStatements.HodgeTatePoints.KftwoDatum
 import Development.WeilBound.CoreStatements.HodgeTatePoints.KftwoPoint
 import Development.WeilBound.CoreStatements.HodgeTatePoints.KftwoExt
 import Development.WeilBound.CoreStatements.HodgeTatePoints.KftwoFrame
-import Development.WeilBound.CoreStatements.HodgeTatePoints.KftwoModel
 
 noncomputable section
 

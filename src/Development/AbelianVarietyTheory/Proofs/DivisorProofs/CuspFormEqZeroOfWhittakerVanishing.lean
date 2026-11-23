@@ -1,9 +1,9 @@
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsRapidInf
-import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.StrongMultiplicityOne
 import GroundTheory.AutomorphicForms.MultiplicityOne.Injective
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AutomorphicFormGLContinuousStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConstantTermEqZeroStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsConjFiniteUnipotentMemOpenSubgroup
+
 open NumberField IsDedekindDomain GlobalTheory.CuspRep Formalism.UG GlobalTheory.LFun Matrix
 
 namespace GlobalTheory.JSW

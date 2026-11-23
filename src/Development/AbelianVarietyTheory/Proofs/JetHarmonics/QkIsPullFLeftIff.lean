@@ -1,7 +1,6 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.IsNsmul
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.LBCorr
-import Development.AbelianVarietyTheory.BlockTheory.JetGauges.TorusExtensionPoints
 
 set_option autoImplicit false
 

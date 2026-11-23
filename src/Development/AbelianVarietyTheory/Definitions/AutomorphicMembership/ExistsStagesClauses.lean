@@ -1,12 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RationalRootsDef
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsMuIsRamified
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.NotMtStableOfFree
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CoordMapBasisFun
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsProvisionalDivX
-import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsParametersOver
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsNsmulMemOfSpan
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FourMulRootLt
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ResCharConj
 
 noncomputable section
 

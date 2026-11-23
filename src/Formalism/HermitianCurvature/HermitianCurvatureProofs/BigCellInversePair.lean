@@ -1,5 +1,5 @@
 import Formalism.HermitianCurvature.StatementJF
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.RegularisedPairingViaPhase
+import Formalism.FormalDegreeBessel.FormalDegreeRatio.UnitaryWeylNormalHolds
 import Formalism.FormalDegreeBessel.FinalG
 
 open Matrix MeasureTheory Filter

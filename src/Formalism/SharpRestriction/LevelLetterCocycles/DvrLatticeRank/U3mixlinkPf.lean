@@ -1,10 +1,10 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.UpPositionOfModels
 import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.MixLocal
-import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.WLocal
 import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.KapPiPf
 import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.PhibOLComplete
 import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.GeneratorBoundOfHypotheses
-import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.GradNPfC
+import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.NinLamPf
+import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.GamPiPf
 
 noncomputable section
 

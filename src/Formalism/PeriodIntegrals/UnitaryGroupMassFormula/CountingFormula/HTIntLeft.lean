@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.CommonMult
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.EichLApply
 
 noncomputable section
 

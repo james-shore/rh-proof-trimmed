@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.LocalToGlobal.HermitianForms.DefsGH
-import Formalism.LocalToGlobal.Columns.RecLevelLocT
+import Formalism.LocalToGlobal.HermitianForms.IsLocBasis
+import Formalism.LocalToGlobal.Columns.RecLevel
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ImportsExtra
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsSplittingOfCharacter
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsAddEquivField

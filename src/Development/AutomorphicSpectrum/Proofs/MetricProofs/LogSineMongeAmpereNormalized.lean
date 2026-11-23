@@ -3,7 +3,6 @@ import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsTwiceDifferen
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.CompRightEqZero
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.KappaSt
 import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsFibreLocal
-import GroundTheory.HeightsAndTheta.Heights.Antisymmetric.Statements
 import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PDiagFibreFubini
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SphereMeasureStereographicIntegralStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.XiPotentialHessianDecompositionStatement
@@ -18,6 +17,7 @@ import Development.AutomorphicSpectrum.Proofs.MetricProofs.ComplexHessianTwoPoin
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.ComplexHessianBlockCombinationStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SpherePairLogSineMomentStatement
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SphereMomentPowerStatement
+
 open MvPolynomial MeasureTheory Filter Topology Matrix ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P GlobalTheory.CompanionTheory.Ar.PB GroundTheory.Heights₂.Heights
 open scoped ComplexOrder
 open ReciprocityTheory.ChartRestriction.G.AI GroundTheory.Heights₂.Heights.Inter

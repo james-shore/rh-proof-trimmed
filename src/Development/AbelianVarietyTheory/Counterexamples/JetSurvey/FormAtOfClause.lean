@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.ETExSt
-import Formalism.SharpRestriction.Divisibility.GeneratorPowers.ETPointStatement
-import Formalism.LocalToGlobal.ProjectiveLattices.Adm3OfExtension
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.DegProd
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.FamMod
 
 set_option autoImplicit false
 

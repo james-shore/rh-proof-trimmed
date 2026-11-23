@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitaryLieBasis
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.EmbGLMemRealSU
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.Signature
 
 open NumberField Matrix GlobalTheory.SUVol ReciprocityTheory.ChartRestriction.G.FD
 set_option maxHeartbeats 1000000 in

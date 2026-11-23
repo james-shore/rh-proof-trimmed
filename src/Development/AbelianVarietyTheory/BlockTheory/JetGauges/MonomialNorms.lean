@@ -1,8 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.RosatiLatticeNorms.LamObj
 import Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.ArcLineFunctions.ArcDatumIsArcPointBasis
-import Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.ArchimedeanUniqueness.MetricDef
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.FundamentalDomainPointBound
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.ModelLat
 
 noncomputable section

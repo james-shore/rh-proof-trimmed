@@ -1,5 +1,4 @@
 import Formalism.GaussJetBounds.GenLogInverse
-import Formalism.FormalGroupWitt.WeightInvariance
 
 noncomputable section
 open scoped BigOperators

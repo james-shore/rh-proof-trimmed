@@ -1,6 +1,5 @@
 import Formalism.LocalToGlobal.GlobalTheory.PassageAtBaseSymmetricLevels
 import Formalism.LocalToGlobal.GlobalTheory.DivPassageP
-import Formalism.BranchSandwichDivisors.DivFromPassageAndNorm
 
 set_option linter.style.haveILetI false
 

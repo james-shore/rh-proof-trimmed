@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.IsUnitOrIsUnitOfAddOne
-import Mathlib.LinearAlgebra.LinearIndependent.Basic
 
 open Polynomial
 

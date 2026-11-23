@@ -1,6 +1,6 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.BaseChangeUnits.QuadraticInductionGL2Alt
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.CmBridge
-import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ArchimedeanSchwartz.ExpIndep
+import Development.AbelianVarietyTheory.Definitions.Divisors.ZetaPair
 
 noncomputable section
 

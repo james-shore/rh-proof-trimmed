@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHolomorphicLocalInverseOfInjOn
-import ReciprocityTheory.L2DbarEstimates.IsLocalHomeomorph
-import Development.AbelianVarietyTheory.Proofs.ModuliProofs.NotInjOnOfFderivEqZero
 
 open scoped Topology
 open ReciprocityTheory.L2DbarEstimates (V)

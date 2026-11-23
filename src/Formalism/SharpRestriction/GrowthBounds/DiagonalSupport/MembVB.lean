@@ -1,4 +1,6 @@
 import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.PreChainLe
+import Formalism.SharpRestriction.GrowthBounds.TwistedSubstitution.MemLin
+import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.SlackBoundJoint
 
 noncomputable section
 

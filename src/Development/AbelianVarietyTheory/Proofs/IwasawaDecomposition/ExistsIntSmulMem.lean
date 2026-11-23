@@ -1,9 +1,10 @@
 import Mathlib
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
-import Formalism.LocalRingCardinality.DataMink
 import Formalism.LocalRingCardinality.DataErr
 import Formalism.LocalToGlobal.GlobalTheory.IsResidueClassZero
+import Formalism.LocalRingCardinality.DataMink
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ImportsTer
+
 open NumberField Formalism.BasicNotions
 
 namespace GlobalTheory.AutLattice

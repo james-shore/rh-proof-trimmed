@@ -1,5 +1,4 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryQuotientCompactness.SsetGroup
-import Mathlib.Analysis.CStarAlgebra.Matrix
 
 open MeasureTheory Matrix
 

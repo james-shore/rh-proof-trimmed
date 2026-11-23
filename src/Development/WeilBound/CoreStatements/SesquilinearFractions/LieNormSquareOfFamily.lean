@@ -1,4 +1,6 @@
 import Development.WeilBound.CoreStatements.SesquilinearFractions.HermFormSelfEqRe
+import Development.AbelianVarietyTheory.Statements.PrincipalLattices.PrimeSpectrumDualEq
+
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Matrix GlobalTheory GlobalTheory.CM GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl

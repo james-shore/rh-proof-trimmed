@@ -4,15 +4,11 @@ import GroundTheory.GlobalFields.Artin.OneDim
 import GroundTheory.GlobalFields.Artin.Series
 import GroundTheory.GlobalFields.Artin.OneDimExistence
 import GroundTheory.GlobalFields.Artin.InductionLocal
-import GroundTheory.GlobalFields.AnalyticClassNumber.HeckeContinued
 import GroundTheory.LocalFields.BrauerInductionPrime
-import GroundTheory.LocalFields.BrauerInductionCharacters
-import GroundTheory.LocalFields.BrauerInductionInduced
 import GroundTheory.LocalFields.BrauerInductionClifford
-import GroundTheory.GlobalFields.TateThesis.FiniteOrderParams
-import GroundTheory.GlobalFields.Artin.Regular
-import GroundTheory.GlobalFields.TateThesis.DedekindZetaContinuation
-import GroundTheory.LocalFields.DifferentGalois
+import GroundTheory.LocalFields.Different
+import GroundTheory.LocalFields.LowerIndex
+import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.GeneralBFactAlt
 
 set_option maxSynthPendingDepth 1
 

@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.GaussValuationBounds.Statement
 
 noncomputable section
 

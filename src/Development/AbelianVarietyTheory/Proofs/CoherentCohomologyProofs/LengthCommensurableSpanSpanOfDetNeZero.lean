@@ -4,7 +4,6 @@ import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.ExistsDu
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.LengthQuotientSpanSingleton
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.LengthSelfEqTop
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.Imports
-import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.RelLengthSpanEqAddValDet
 
 open Module IsDiscreteValuationRing
 

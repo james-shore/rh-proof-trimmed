@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.HeightFunctions.ConclOfInputs4
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.NoCommonZeroSt
-import Formalism.LocalToGlobal.ProjectiveLattices.DepthTie
-import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.ModulusPosOfThirdHypothesis
+import Formalism.LocalToGlobal.BesselHermitianTheta.TiedWeil
+import Formalism.LocalToGlobal.Divisibility.CoefMod
+import Formalism.LocalToGlobal.ProjectiveLattices.HostRank
 
 set_option autoImplicit false
 

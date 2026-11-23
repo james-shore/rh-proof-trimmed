@@ -1,6 +1,6 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseCupGlob
-import GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseCupLocal
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

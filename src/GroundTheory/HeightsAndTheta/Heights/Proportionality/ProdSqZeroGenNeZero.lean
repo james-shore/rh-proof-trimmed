@@ -1,6 +1,6 @@
 import Mathlib
-import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.IsPshLocallyIntegrableStatement
-import GroundTheory.HeightsAndTheta.Heights.FubiniStudyChern
+import GroundTheory.HeightsAndTheta.Heights.FubiniStudyCharts
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.Proportionality

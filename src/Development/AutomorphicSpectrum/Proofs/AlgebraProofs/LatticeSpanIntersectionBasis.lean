@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.LocalRingModTEmbedsStrictHenselian
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.EigCoordApply
+import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.LocalRingModTEmbedsStrictHenselian
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat
 

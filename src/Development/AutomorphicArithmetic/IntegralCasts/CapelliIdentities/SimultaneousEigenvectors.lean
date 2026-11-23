@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CommonEigenvalue
 
 theorem UpperTheory.Reformulated.B.SimultaneousEigenvectorInvariantSubspace.simEig :
     ∀ {K M : Type} [inst : Field K] [IsAlgClosed K] [inst_2 : AddCommGroup M]

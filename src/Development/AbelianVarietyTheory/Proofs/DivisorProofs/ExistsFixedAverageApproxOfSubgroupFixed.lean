@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocallyIntegrableRep
+
 open MeasureTheory
 open scoped ContDiff
 

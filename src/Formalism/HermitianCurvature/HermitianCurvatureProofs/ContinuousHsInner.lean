@@ -1,4 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.StandardPairingDecay
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceCompactSupportCoefficient
+import Formalism.HermitianCurvature.HerGenC
 
 open Matrix MeasureTheory Topology
 

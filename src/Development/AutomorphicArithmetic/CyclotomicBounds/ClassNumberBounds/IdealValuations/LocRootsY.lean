@@ -1,4 +1,4 @@
-import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.IdealValuations.LocDefY
+import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.TotallyRealRoots.GalDefs
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsRootCongruence
 
 open KStar.TotallyRealRoots

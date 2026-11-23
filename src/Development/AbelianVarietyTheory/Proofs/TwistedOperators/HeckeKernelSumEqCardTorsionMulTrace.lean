@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsIsCan
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeIsogenyThetaGeneratorTransport
+import Development.AbelianVarietyTheory.Definitions.ModuliSpaces.KerScheme
 
 set_option autoImplicit false
 

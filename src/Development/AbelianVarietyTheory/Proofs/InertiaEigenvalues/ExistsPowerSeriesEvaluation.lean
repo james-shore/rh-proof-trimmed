@@ -1,9 +1,8 @@
 import Mathlib
 import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NotFullBot
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemRangeOfIsIntegral
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsInvFilD
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemFilPIffEvPt
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NotFullBot
 
 section
 open Formalism Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc TensorProduct GlobalTheory.MemLoc

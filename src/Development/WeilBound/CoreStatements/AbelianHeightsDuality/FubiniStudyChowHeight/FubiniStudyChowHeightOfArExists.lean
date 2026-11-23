@@ -2,8 +2,8 @@ import Mathlib
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.FubiniStudyChowHeight
 import Development.AbelianVarietyTheory.Definitions.Divisors.ToKnownTheoremsOf
 import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.ChowFormHeightOfArch
-import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.IntegralOfLintegral
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MahlerSectionStatementHolds
+import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.IntegralOfLintegral
 
 set_option autoImplicit false
 

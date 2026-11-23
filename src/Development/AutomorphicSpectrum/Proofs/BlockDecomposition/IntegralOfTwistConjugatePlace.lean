@@ -2,7 +2,7 @@ import Mathlib
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.EulerFactorLevels.EulerFinOf
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemKUConjOfComp
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocEqOneOfMemGam
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProductOfLocalLevelsUnitaryIsOpenIsCompactIsLeve
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjSrcMemOrb
 
 noncomputable section
 

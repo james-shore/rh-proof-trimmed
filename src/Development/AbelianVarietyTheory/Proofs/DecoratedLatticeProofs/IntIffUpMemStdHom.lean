@@ -1,8 +1,9 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IsLocFac
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsCombAt
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsRatDatum
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.UpImageIntegralMatrixMemCompletedHomLattice
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsIntegralMatrixUpImageCompletedHomLattice
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ExistsUnitarySupportedAtPlaceOfMulEqIdem
+
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum MeasureTheory Matrix ValuativeRel GlobalTheory.SeeSaw GlobalTheory.AdForm GlobalTheory.LocMod NumberField
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 

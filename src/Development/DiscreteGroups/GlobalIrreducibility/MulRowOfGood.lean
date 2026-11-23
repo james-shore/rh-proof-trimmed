@@ -1,4 +1,4 @@
-import Development.DiscreteGroups.GlobalIrreducibility.ColUSingleOfGe
+import Development.DiscreteGroups.GlobalIrreducibility.MulMemBall
 
 noncomputable section
 

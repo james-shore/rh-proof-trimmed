@@ -1,5 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.TorusMatchPf
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.Semichar
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.NonemptyUnitAt
 
 noncomputable section
 

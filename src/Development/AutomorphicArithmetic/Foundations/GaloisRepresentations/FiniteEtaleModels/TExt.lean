@@ -1,5 +1,6 @@
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.FiniteEtaleModels.LiftUnit
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLevelGeometricFibre
+import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ModuliUnivEtaKilled
 
 set_option autoImplicit false
 

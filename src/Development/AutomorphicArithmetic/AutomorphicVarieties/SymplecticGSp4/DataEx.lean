@@ -12,11 +12,11 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVanishing
 import Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVanishing.BchiFacts
 import Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVanishing.CompIne
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CharacterLevelBounds.PlacesQ
-import Development.AutomorphicArithmetic.AutomorphicVarieties.PrimitiveFrobeniusFixed.PlaceBasic
 import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.ExistsPrimitiveOddDirichletCharacterTwoPow
 import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.ExistsDirichletCharacterPrimeOfOrderOfDvd
 import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.TwoPowLtSqMulOfPrimitiveCharPowEqOne
 import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.ExistsPrimitiveTwoPowTwistMul
+
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal IsLocalRing UpperTheory.V UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement
 
 private theorem dirX {O : Type} [CommRing O] [IsDomain O] {l d N p n c : ℕ} [NeZero l] [NeZero N] [NeZero p]

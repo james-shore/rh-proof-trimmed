@@ -2,13 +2,11 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.CovolXOfCovol
 import Development.AbelianVarietyTheory.Definitions.Divisors.ToKnownTheoremsOf
 import Development.AbelianVarietyTheory.Definitions.Divisors.EigLatLe
-import Development.AbelianVarietyTheory.Definitions.Divisors.QuoIff
+import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LiftLambdaBound
+import Formalism.LocalToGlobal.ProjectiveLattices.ModelAt
 import Development.AbelianVarietyTheory.Definitions.Divisors.UnifOfSpaceEq
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.GeneralDiagonalMatrix
-import Development.AbelianVarietyTheory.Proofs.GenericRegularity.MemRangeOfIsAlgebraicRatFun
-import Formalism.LocalToGlobal.ProjectiveLattices.CompFin
-import Formalism.LocalToGlobal.ProjectiveLattices.ModelAt
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LiftLambdaBound
+import Development.AbelianVarietyTheory.Definitions.Divisors.QuoIff
 
 set_option synthInstance.maxHeartbeats 200000
 

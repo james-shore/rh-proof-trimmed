@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.FtFockZeroLeft
+import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.FTDefs
 import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.OtherStart
 
 noncomputable section

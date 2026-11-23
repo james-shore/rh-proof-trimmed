@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.QLev
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.FrameTopAlt
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ProdDat
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsLocPlOff
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ExistsFoldr

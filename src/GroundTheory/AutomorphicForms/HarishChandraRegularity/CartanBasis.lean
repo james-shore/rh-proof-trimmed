@@ -1,6 +1,5 @@
 import Mathlib
-import GroundTheory.AutomorphicForms.GKModules.Casimir
-import GroundTheory.AutomorphicForms.RealGroupsLie
+import GroundTheory.AutomorphicForms.GKModules.ZKFinite
 
 namespace GroundTheory.Automorphic
 

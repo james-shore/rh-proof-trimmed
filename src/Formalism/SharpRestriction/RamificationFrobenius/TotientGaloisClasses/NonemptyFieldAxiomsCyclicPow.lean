@@ -1,5 +1,8 @@
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.ArtinMapSecondEqJacobiSymOfModEq
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.EqOfPowEqOne
+import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.DiscriminantRealSubfield
+import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.DiscrB
+import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.OrdUnimod
 
 open NumberField IntermediateField Ideal
 open scoped Pointwise

@@ -1,9 +1,9 @@
 import Mathlib
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
 import Formalism.PeriodIntegrals.DSInfCharCap
 import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.DiscreteSpectrumKFiniteDecomposition
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.CapelliOperatorOnUnitaryCoefficientEqDerived
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ElementaryTracePowerCyclicWords
+
 open scoped InnerProductSpace
 
 namespace GlobalTheory.CompanionTheory.CycWordTrace

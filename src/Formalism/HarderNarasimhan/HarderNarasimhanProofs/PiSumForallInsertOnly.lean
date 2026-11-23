@@ -1,11 +1,5 @@
-import Formalism.HarderNarasimhan.DegSupermodZ
-import Formalism.HarderNarasimhan.HarderNarasimhanProofs.SatBasic
-import Formalism.HarderNarasimhan.HarderNarasimhanProofs.DegSupermod
-import Formalism.HarderNarasimhan.HarderNarasimhanProofs.MuChar
-import Formalism.HarderNarasimhan.HarderNarasimhanProofs.PolygonSlopeSum
-import Formalism.LatticeSlopes.ExistsSaturatedSlopeEqMuMax
-import Formalism.LatticeSlopes.LatticeSlopesProofs.DiscreteTopologyOfLe
-import Formalism.LatticeSlopes.LatticeSlopesProofs.ShortVector
+import Formalism.HarderNarasimhan.Statement
+import Formalism.LatticeSlopes.LatticeSlopesProofs.GramDetLe
 
 open Module Submodule
 

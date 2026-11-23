@@ -1,4 +1,4 @@
-import Formalism.LocalRingCardinality.DataParams
+import Formalism.LocalRingCardinality.DataParams₂
 import Formalism.SharpRestriction.LevelLetterCocycles.QuotientHomNonvanishingBound
 import Formalism.SharpRestriction.LevelLetterCocycles.BlochKatoPhases
 

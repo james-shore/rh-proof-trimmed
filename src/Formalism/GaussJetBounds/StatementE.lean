@@ -1,5 +1,4 @@
-import Formalism.GaussJetBounds.StatementA
-import Formalism.GaussJetBounds.StatementC
+import Formalism.GaussJetBounds.Statement
 
 noncomputable section
 open scoped BigOperators

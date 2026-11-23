@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.NotCompactOfMEqOne
-import Development.AbelianVarietyTheory.Definitions.ModuliSpaces.IsGaloisCover
+import Development.AbelianVarietyTheory.Definitions.ModuliSpaces.GoodClass
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ThetaUnifAV
 
 noncomputable section
 

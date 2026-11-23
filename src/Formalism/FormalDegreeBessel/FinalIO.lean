@@ -1,6 +1,5 @@
 import Formalism.FormalDegreeBessel.FormalDegreeRatio.IOLeft
-import Formalism.FormalDegreeBessel.FormalDegreeRatio.IOCentral
-import Formalism.FormalDegreeBessel.FormalDegreeRatio.CapelliHighestWeightConjugated
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.SatisfiesGlRelationsBilinearLeft
 
 namespace Formalism.QuantumDeterminants
 

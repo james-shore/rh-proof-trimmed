@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.HermitianLattices.StatementMaj
-import Formalism.HermitianLattices.HermitianLatticesProofs.MajLattice
+import Formalism.HermitianLattices.DefsCS
 
 open NumberField
 open scoped nonZeroDivisors

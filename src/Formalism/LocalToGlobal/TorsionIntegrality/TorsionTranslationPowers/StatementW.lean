@@ -1,5 +1,5 @@
-import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.StatementA
-import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.StatementS
+import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.IsTransSys
+import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.EndoZInstance
 
 open PowerSeries
 

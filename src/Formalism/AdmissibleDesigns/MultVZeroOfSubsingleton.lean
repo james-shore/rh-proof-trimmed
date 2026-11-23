@@ -1,6 +1,6 @@
 import Formalism.AdmissibleDesigns.TensSubsingleton
-import Formalism.AdmissibleDesigns.InvariantsEqBotIff
 import Formalism.AdmissibleDesigns.CohomZeroEquivContinuous
+import Formalism.AdmissibleDesigns.InvariantsEqBotIff
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 

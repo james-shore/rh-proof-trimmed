@@ -1,7 +1,8 @@
 import Mathlib
 import GroundTheory.PAdicHodge.ExtRobbaDMApprox
-import GroundTheory.PAdicHodge.ExtRobbaUnits
-import GroundTheory.PAdicHodge.ExtRobbaNewton
+import GroundTheory.PAdicHodge.ExtRobbaUnion
+import GroundTheory.PAdicHodge.ExtRobbaDMForward
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

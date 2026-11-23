@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NatCastNeZeroPs
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsPotential
 
 noncomputable section
 

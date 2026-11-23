@@ -3,6 +3,7 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SchurOrthogonality.CzDi
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SchurOrthogonality.CiEvalMSmul
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SchurOrthogonality.CfEqSumOfSubset
 import Formalism.GradedWeylDivisibility.FinalD
+import Formalism.PeriodIntegrals.HwIrred
 
 noncomputable section
 

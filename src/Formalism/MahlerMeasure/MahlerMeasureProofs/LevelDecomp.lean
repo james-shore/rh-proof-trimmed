@@ -1,5 +1,4 @@
-import Formalism.MahlerMeasure.IsIntegral
-import Formalism.MahlerMeasure.MahlerMeasureProofs.LevelAct
+import Formalism.MahlerMeasure.LevelSum
 
 namespace Formalism.GM
 

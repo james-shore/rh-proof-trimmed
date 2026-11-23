@@ -1,7 +1,5 @@
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NStageTrivialCharacterCoeffEq
-import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.SplitK
-import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.DiscrB
-import Formalism.CyclotomicNorms.NonsquarefreeBounds.NonsquarefreeMonicBoundHolds
+import Mathlib
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RowsRestWordColumnUnitBaseTuple
 
 namespace GlobalTheory.RingHomOfIsIntegral
 

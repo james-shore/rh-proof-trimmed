@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.HilbertSchurUnitaryIrreducibleScalar
+import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
 
 namespace GlobalTheory
 

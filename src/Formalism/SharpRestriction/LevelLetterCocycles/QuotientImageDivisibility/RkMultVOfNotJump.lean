@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.WeaklyAdmissibleFiltrations.Statement
-import Formalism.WeaklyAdmissibleFiltrations.CocyclesFunctorial
 
 noncomputable section
 

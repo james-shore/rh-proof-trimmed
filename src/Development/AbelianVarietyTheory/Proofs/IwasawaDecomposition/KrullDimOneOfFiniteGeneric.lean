@@ -1,10 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.NefFibOfIsNef
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemLocalSubringGenericPoint
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsTorsionFreeOfForallExists
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RingKrullDimLeOfIsAlgebraic
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RingKrullDimIntegers
 import Development.AbelianVarietyTheory.Definitions.Divisors.EqOfSpecializesOfFinite
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmallSectionHeightLowerBound
 
 set_option autoImplicit false
 

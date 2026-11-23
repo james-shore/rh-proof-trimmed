@@ -1,4 +1,4 @@
-import Formalism.LatticeSlopes.Statement
+import Mathlib
 
 namespace Formalism.F
 

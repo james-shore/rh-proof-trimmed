@@ -1,5 +1,4 @@
 import Formalism.HarderNarasimhan.DefsPl
-import Formalism.LatticeSlopes.ExistsSaturatedSlopeEqMuMax
 
 open Module
 

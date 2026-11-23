@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGDatumOneOneOne
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasDivPlace
-import Development.AbelianVarietyTheory.Definitions.Divisors.CompactBIffCompact
 
 noncomputable section
 

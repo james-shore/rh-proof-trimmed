@@ -1,6 +1,4 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.FormalSeriesValueAtTwoPointsGenericPoints
-import Mathlib.RingTheory.PowerSeries.Substitution
-import Mathlib.Analysis.SpecialFunctions.Log.Base
 
 namespace Formalism.MainNotions.N.FrobeniusPowerSeries
 

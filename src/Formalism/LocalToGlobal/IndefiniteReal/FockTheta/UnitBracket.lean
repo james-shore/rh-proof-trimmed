@@ -1,8 +1,8 @@
 import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
-import Formalism.LocalToGlobal.IndefiniteReal.DatumVec
-import Formalism.LocalToGlobal.BesselHermitianTheta.TiedSmooth
-import Formalism.RealPlaceAnalysis.FockPairGl
-import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasSign
+import Formalism.LocalToGlobal.Divisibility.DefGroup
+import Formalism.SharpRestriction.Divisibility.KudlaSiegelWeil
+import Formalism.SharpRestriction.Divisibility.InnerProductFormulaField
+import Formalism.LocalToGlobal.BesselHermitianTheta.TiedKfin
 
 noncomputable section
 

@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.FdOfCharts
-import Formalism.LocalToGlobal.GroupLattices.PendingLemmas.InvarianceRepresentativesLaw
 
 noncomputable section
 

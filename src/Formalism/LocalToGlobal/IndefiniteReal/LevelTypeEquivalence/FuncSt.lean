@@ -1,5 +1,4 @@
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.StdCharExists
-import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.ThetaSquareIntegrable
+import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
 
 noncomputable section
 

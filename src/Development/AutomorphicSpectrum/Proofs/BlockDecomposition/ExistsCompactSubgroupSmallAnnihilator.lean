@@ -1,10 +1,5 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.MirabolicDerivatives.TwistedKernels.ExPhiPlusOnto
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.AddCharConductorAndHaarIntegersExist
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousMirProj
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicCharacterEqStatement
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedKernelConjugation
 
 open Matrix GlobalTheory.PRep GlobalTheory.BZMir GlobalTheory.BZMir.Fun GlobalTheory.SplitWeil ValuativeRel
 open scoped Topology

@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.RealPlaceAnalysis.SmoothOnGVIff
-import Formalism.FormalDegreeBessel.StatementG
+
 open Matrix
 
 noncomputable section

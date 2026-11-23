@@ -1,8 +1,6 @@
 import Mathlib
-import Formalism.PeriodIntegrals.ParahoricIdxZ
+import Formalism.DoubleCosetMeasures.StatementZ
 import Formalism.DoubleCosetMeasures.LowerUnipotentOrbits.LemmaU
-import Formalism.DoubleCosetMeasures.LowerUnipotentOrbits.MeasureUniformizerMatrixSetMulCard
-import Formalism.DoubleCosetMeasures.LowerUnipotentOrbits.RelIndexMulMeasure
 
 noncomputable section
 

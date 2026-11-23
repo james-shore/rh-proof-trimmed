@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StableLatticeEqZpowStdInertCompletion
-import Formalism.SatakeDualWeyl.KpqSubgroupCompact
 
 open IsDedekindDomain NumberField
 open scoped Matrix

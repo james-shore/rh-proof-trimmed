@@ -3,6 +3,7 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.Haar
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.PhiDecayCore
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.LholClmEventually
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.IntegrA
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.IntegrableOfDecayVG
 
 noncomputable section
 

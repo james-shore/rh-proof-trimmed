@@ -1,6 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HomogeneousLocalization
-import GroundTheory.HeightsAndTheta.Heights.ArithDegreeExact
+import GroundTheory.HeightsAndTheta.Heights.ArithDegree
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

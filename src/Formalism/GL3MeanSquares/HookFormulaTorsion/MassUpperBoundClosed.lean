@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.GL3MeanSquares.MassLowerBoundClosed
 import Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.SiegelMassRatioOfLI
-import Formalism.HermitianLattices.HermitianLatticesProofs.MassTelescope
-import Formalism.LogVandermondeBounds.HookGammaAmgmMultinomialBounds
+import Formalism.LogVandermondeBounds.LogVandermondeVariationUnbounded
+import Formalism.LogVandermondeBounds.LogVandermondeProofs.CardStabilizerVector
 
 open NumberField Finset
 

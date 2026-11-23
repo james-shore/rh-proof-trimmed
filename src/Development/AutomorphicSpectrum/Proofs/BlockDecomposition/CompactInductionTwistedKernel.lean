@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsOpenFixedOfSubgroup
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsFiniteSupport
 
 open GlobalTheory.PRep Topology
 

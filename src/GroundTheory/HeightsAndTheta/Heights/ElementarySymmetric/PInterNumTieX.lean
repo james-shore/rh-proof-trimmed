@@ -2,9 +2,10 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.GenericPointSectionHypotheses
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.RestrLenPrimeOfEqFinrank
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PRestrLenRestrict
-import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.AssemblyBase
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PIdealTwistFamily
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PTildeVanish
+import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSurjectiveClosed
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Kleiman

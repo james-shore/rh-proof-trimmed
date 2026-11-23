@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.PeriodIntegrals.SmithMat
 
 namespace PI.SmithWork
 

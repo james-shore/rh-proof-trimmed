@@ -1,6 +1,5 @@
 import Mathlib
 import CompanionTheory.HarishChandraModules.LowKTypeMultiplicity.DiscreteSeriesCharacters.CapelliDeterminantBlockProduct
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
 
 open Matrix
 

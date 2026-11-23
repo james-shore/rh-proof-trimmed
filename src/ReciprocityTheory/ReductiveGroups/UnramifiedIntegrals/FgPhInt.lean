@@ -1,6 +1,6 @@
 import Mathlib
-import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgDefs
 import Formalism.LocalToGlobal.TorsionIntegrality.SecondCoefficientNorms.CurveJetsUnitBall
+import Formalism.TorsionNormIteration.LubinTateExample
 
 noncomputable section
 

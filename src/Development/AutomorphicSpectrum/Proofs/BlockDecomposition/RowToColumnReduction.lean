@@ -1,6 +1,5 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.FiniteTypeHarishChandra.SupportExistsAll
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PatternGroupStatement
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HasLabelTransportEquiv
 
 open Formalism.IrreducibleCountingLemmas.TYPES hiding zIdem IsCuspidal

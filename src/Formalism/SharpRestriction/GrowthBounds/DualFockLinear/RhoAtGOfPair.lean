@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.DualFockLinear.RestCloudBOfTop
+import Formalism.SharpRestriction.GrowthBounds.DualFockLinear.VFlatSupported
 import Formalism.LocalToGlobal.GroupLattices.FockModels.TestSideEdge
 
 noncomputable section

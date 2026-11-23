@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.IsDCReps
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.MemRightInvRightTwisted
 
 noncomputable section

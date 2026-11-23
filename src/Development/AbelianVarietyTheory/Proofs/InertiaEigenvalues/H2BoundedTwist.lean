@@ -1,8 +1,9 @@
 import Mathlib
-import Formalism.CharacterColumnKernels.StatementRho
+import Formalism.CharacterColumnKernels.StatementN
+import Formalism.CharacterColumnKernels.StatementMF
 import Formalism.GaloisCohomology.LocalTateDualityK
-import ReciprocityTheory.Hypotheses.GalCohDefs
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LevRepZApply
+
 open ReciprocityTheory.Gal
 
 noncomputable section

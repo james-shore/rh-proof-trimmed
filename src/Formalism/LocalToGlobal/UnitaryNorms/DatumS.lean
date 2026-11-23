@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.ClassS
 import Formalism.LocalToGlobal.UnitaryNorms.DefsDatum
+import Formalism.LocalToGlobal.PlaceMapInjectivity.MapPlInjective
 
 noncomputable section
 

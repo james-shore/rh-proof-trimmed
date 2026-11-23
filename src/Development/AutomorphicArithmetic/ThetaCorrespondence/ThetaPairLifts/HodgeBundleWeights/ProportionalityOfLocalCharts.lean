@@ -1,7 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEffCartierCompl
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.Hypotheses2
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.BaseWeightLineBundleIsNef
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.SymplecticFormBasisChange
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlagDegreeFormula
 
 section
 open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField

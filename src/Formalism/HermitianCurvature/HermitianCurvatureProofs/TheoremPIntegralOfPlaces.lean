@@ -1,9 +1,8 @@
 import Formalism.HermitianCurvature.StatementJC
-import Formalism.HermitianCurvature.LowerBlockNormalisedBoundFromComponents
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.BlockEstimatesSumForm
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.BigCellZetaMinors
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.RegularisedPairingViaPhase
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelSizesJointMean
+import Formalism.RealPlaceAnalysis.StatementU
 
 open Formalism.FourierDecayAlt
 

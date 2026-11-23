@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.ThGerm
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.UniversalCharts.SpanXLeKerAevalZero
 
 set_option autoImplicit false
 

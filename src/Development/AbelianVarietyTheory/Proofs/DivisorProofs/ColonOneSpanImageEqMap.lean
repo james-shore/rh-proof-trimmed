@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.PointShiftSt
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Dets
+
 open NumberField
 open scoped nonZeroDivisors
 

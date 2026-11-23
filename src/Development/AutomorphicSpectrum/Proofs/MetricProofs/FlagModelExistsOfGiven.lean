@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Statements.TowerExistence.GoodTowerExistsX
+import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.GoodOrigin
 import Development.AutomorphicSpectrum.Statements.MetricStatements.ExistsFlagModelBaseMetric
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.RootOnFund
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.ColFlags

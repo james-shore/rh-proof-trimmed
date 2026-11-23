@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.Alternates
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
-import Formalism.FrobeniusOrbits.HostCorollaries
 import Development.AutomorphicArithmetic.CyclotomicBounds.PlaceOfLetterInjective
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ComplexConjugationOrbitOneRealPlaceStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.AtMostTwoThickInWindowLongOrbitStatement
@@ -9,6 +8,7 @@ import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CyclicWordNoThre
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.OrderOfEqMaxTwoOfSignNegImplicitStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.AtMostOneThickShortOrbitStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CyclicWordNoThreeMarkedOfAtMostTwoInWindowStatement
+
 open GlobalTheory.HTW Formalism.BasicNotions Formalism.FrobeniusOrbits
 
 namespace GlobalTheory.HTW.InertWord

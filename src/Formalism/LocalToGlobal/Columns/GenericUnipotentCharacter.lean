@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.Divisibility.Tuples
-import Formalism.GL3MeanSquares.RankMulPowThreeHalvesLeFourthPower
 
 noncomputable section
 

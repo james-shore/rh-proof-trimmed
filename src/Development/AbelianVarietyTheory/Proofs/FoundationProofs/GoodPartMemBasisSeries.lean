@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.IntegralHeckeForms
 import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.ToricLatticeDenominators
-import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.LengthCommensurableSpanSpanOfDetNeZero
+import Development.AbelianVarietyTheory.Definitions.QuasicoherentCohomology.LengthCommensurableMapIffOfInjective
 
 noncomputable section
 

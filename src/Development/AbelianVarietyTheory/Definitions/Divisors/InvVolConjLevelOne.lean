@@ -4,7 +4,7 @@ import Formalism.LocalToGlobal.IndefiniteReal.BridgeTie
 import Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.EmbRelExistsUnique
 import Development.AbelianVarietyTheory.Definitions.Divisors.GridTestLatticeLargestSlopeBound
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGivenStageEqOne
-import Development.AbelianVarietyTheory.Definitions.Divisors.MiddleNotMem
+import Development.AbelianVarietyTheory.Definitions.Divisors.FlatTensorVacuum
 import Development.AbelianVarietyTheory.Definitions.Divisors.KernelNormConstantSpec
 
 noncomputable section

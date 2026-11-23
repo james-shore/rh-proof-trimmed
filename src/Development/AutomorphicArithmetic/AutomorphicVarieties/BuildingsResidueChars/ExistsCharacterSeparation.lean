@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.PerDeriv
-import Mathlib.Analysis.Fourier.FiniteAbelian.PontryaginDuality
 
 open UpperTheory.V.Sd.Eis
 

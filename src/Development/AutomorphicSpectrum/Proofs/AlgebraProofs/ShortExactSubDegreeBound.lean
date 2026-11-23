@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsSplitGaussChars
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.GapCondExample
 import Development.WeilBound.CoreStatements.HodgeTatePoints.DegLeOfEquiv
+
 open GlobalTheory.CompanionTheory.Ar.Crv
 
 namespace GlobalTheory.CompanionTheory.Ar.Crv.SubDegSes

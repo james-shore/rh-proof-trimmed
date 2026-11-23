@@ -1,6 +1,7 @@
 import Mathlib
 import GroundTheory.PAdicHodge.ExtRobbaDMRankOne
-import GroundTheory.PAdicHodge.SemilinearResidue
+import GroundTheory.PAdicHodge.ExtRobbaFrob
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

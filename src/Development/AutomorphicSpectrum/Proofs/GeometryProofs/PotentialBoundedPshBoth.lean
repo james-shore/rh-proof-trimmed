@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsTwiceDifferentiableAt
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SectionBoundaryClosedAndCodense
+import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
 
 open ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P Filter Topology
 open scoped ContDiff

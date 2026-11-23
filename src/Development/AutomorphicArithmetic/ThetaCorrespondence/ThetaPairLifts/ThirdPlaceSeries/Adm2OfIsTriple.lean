@@ -1,7 +1,7 @@
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemMaximalIdealIff
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.IsTripleAtOfConj
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SGalRead
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSmallRingElemOfFractionMapIntegral
 
 set_option synthInstance.maxHeartbeats 200000
 

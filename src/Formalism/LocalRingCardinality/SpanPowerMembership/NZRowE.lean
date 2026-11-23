@@ -1,10 +1,7 @@
 import Formalism.LocalRingCardinality.SpanPowerMembership.CodeRecordDiscriminantLevel
 import Formalism.LocalRingCardinality.SpanPowerMembership.NZColH
 import Formalism.LocalRingCardinality.DataIdx
-import Formalism.LocalRingCardinality.SpanPowerMembership.DivXExample
-import Formalism.LocalRingCardinality.DataAmbForm
-import Formalism.LocalRingCardinality.DataKap
-import Formalism.LocalRingCardinality.DataDIVDefs
+import Formalism.LocalRingCardinality.SpanPowerMembership.PlOver
 import Formalism.LocalRingCardinality.SpanPowerMembership.NZRowA
 import Formalism.LocalRingCardinality.SpanPowerMembership.NZRowC
 import Formalism.LocalRingCardinality.SpanPowerMembership.NZTypeH

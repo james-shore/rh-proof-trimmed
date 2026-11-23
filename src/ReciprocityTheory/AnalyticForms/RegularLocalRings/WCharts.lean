@@ -2,6 +2,7 @@ import ReciprocityTheory.AnalyticForms.RegularLocalRings.WChartsA
 import ReciprocityTheory.AnalyticForms.RegularLocalRings.WChartsB
 import ReciprocityTheory.AnalyticForms.RegularLocalRings.WChartsC
 import ReciprocityTheory.AnalyticForms.RegularLocalRings.WChartsD
+import ReciprocityTheory.AnalyticForms.RegularLocalRings.ProjBCompl
 
 namespace ReciprocityTheory.AnForm.R
 

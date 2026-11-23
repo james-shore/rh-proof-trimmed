@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.BlocksUnique
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.BaseChangeNonempty
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.WdOfMono0L
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Mono0OfLpDimEqOne
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsEquivOfMapEq
 

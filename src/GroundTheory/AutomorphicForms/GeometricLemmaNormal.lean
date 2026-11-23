@@ -1,9 +1,10 @@
 import Mathlib
-import GroundTheory.AutomorphicForms.GeometricLemmaUnnormalized
+import GroundTheory.AutomorphicForms.GeometricLemmaJacquetCell
+import GroundTheory.AutomorphicForms.GeometricLemmaCellSurjective
 import GroundTheory.AutomorphicForms.GeometricLemmaCharacters
 import GroundTheory.AutomorphicForms.GeometricLemmaModular
 import GroundTheory.AutomorphicForms.GeometricLemmaCellChar
-import GroundTheory.AutomorphicForms.GeometricLemmaCellSurjective
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

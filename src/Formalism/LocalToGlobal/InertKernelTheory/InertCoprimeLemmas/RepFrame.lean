@@ -1,7 +1,7 @@
-import Formalism.LocalToGlobal.InertKernelTheory.FrameLatMap
+import Formalism.LocalToGlobal.InertKernelTheory.FrameInt
 import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.LocalLevelIsKOneAtT
-import Formalism.LocalToGlobal.InertKernelTheory.StatementJets
 import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.IntBasis
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.StatementC
 
 noncomputable section
 

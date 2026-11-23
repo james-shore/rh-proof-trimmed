@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.ThPinsR
-import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.StandardHermitianSpace
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.CompletedLatticeEqAdelicCompletionAndGram
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.AdelicCompletionRationalPointsAndApproximation
+import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.StandardHermitianSpace
 
 noncomputable section
 

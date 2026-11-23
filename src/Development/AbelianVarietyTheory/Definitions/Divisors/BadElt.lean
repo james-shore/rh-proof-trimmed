@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.ArithmeticCylinders
-import Formalism.LocalToGlobal.Divisibility.GoodPartHermitianSpec
+import Formalism.LocalToGlobal.Divisibility.ClassSum
 
 noncomputable section
 

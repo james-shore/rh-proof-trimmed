@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.QuotientMetricDivisors.Complement2Normaliser
 import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ValBasic
-import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ProdFormula
 
 open Module NumberField IsDedekindDomain Finset
 

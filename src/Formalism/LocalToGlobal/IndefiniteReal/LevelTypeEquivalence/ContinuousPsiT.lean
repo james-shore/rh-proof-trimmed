@@ -1,9 +1,8 @@
 import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.SymplOHZeroRight
-import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.AdlEqZeroOfMemNbhd
+import Formalism.LocalToGlobal.AdelicCompactOpens.IntAdelesCompactOpen
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdicIntegersCompact.IsCompactAdicCompletionIntegers
 import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.GrowthNorm
-import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.IpTheta
-import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.ContinuousSplitInv
+import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.AtTauExUniqueHolds
 
 noncomputable section
 

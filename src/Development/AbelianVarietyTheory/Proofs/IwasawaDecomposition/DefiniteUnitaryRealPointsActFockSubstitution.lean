@@ -5,6 +5,7 @@ import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.PureTensorLIn
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.OmPureTensorOOfFinite
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PureTensorOMulSource
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MaximalCompactActsOnRealVacuaByDetPowers
+import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsStepWeil
 
 noncomputable section
 

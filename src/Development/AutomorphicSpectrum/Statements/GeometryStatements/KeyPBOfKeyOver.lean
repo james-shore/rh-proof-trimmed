@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Statements.GeometryStatements.KeyBadSt
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsThetaMeanSquareNorm
 
 noncomputable section
 

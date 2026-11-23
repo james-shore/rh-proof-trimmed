@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.SigmaSplit
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BirigidifiedPullbackMulPairIsoTensorPowSq
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsTjCorrDiagModel
 
 open UpperTheory.Gal.LocalSmoothExtension
 

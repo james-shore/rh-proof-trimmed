@@ -1,4 +1,4 @@
-import Formalism.SatakeDualWeyl.Statement
+import Mathlib
 import Formalism.GradedWeylDivisibility.StatementA
 
 noncomputable section

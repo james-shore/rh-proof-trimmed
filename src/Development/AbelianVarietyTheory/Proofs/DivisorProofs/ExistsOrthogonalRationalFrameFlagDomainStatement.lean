@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOrthogonalRationalFrameFlagDomain
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.HermitianTraceFormVanishing
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ImEmbHermSelf
 
 open NumberField
 set_option maxHeartbeats 1000000 in

@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.ResidueCharacters.RowDef
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.BoundAtTwoThreeFamilyFon
 
 set_option synthInstance.maxHeartbeats 200000

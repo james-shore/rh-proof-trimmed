@@ -2,10 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.HeightFunctions.JointQ
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.AssembleLattice
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.SetUnipotentTranslate
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.LFunctionPositiveConductorFourEight
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.AuxiliaryPrimeMemAvoidedPrimes
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.HostSzOfSizes
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.XLeZBaseOfPowLeN
 
 set_option autoImplicit false
 

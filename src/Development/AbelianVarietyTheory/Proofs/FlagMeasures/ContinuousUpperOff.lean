@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.BlockAnti
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.UpperOff
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ShearMeasurability
 
 noncomputable section

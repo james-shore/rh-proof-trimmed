@@ -1,6 +1,8 @@
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LpCharEtaBack
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CuspidalGaloisUnramified
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SplitComponentsDeterminedByPointOfBaseChange
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ForallFieldIffForallSubgroup
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsoLocAppendSingleton
 
 set_option synthInstance.maxHeartbeats 200000
 

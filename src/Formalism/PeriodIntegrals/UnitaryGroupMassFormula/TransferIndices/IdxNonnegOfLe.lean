@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.PeriodIntegrals.IdxCalc
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.TransferIndices.DvTransferIdxOf
 
 noncomputable section
 

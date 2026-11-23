@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicArithmetic.Foundations.IwahoriReduction.NormProducts.InvMod
+import Development.AbelianVarietyTheory.Definitions.Foundations.IsZetaTW
 
 noncomputable section
 

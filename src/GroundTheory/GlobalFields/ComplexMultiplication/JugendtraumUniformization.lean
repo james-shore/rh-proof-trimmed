@@ -1,6 +1,6 @@
 import Mathlib
 import GroundTheory.GlobalFields.ComplexMultiplication.MainTheorem
-import GroundTheory.GlobalFields.ComplexMultiplication.WeberFunctionAutomorphisms
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Global

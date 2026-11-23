@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapPairDetCovec
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProjectionStatementHolds
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GradedLineBundleExists
 
 set_option autoImplicit false
 open CategoryTheory Limits AlgebraicGeometry NumberField IsDedekindDomain

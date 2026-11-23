@@ -4,8 +4,6 @@ import Formalism.SuccessiveMinima.SuccessiveMinimaProofs.GjScale
 import Formalism.SuccessiveMinima.SuccessiveMinimaProofs.SuccMin
 import Formalism.SuccessiveMinima.SuccessiveMinimaProofs.AdaptedBasis
 import Formalism.SuccessiveMinima.SuccessiveMinimaProofs.MeasureEqCovolumeMulVolumeImage
-import Mathlib
-import Formalism.SuccessiveMinima.DefsMink
 
 namespace Formalism.FN
 

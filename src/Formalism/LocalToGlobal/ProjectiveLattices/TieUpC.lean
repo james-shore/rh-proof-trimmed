@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.ProjectiveLattices.TieUpA
+import Formalism.LocalToGlobal.ProjectiveLattices.CurveComp
 
 noncomputable section
 

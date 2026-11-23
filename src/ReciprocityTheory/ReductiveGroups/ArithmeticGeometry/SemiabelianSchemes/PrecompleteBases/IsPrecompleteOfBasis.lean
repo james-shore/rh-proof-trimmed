@@ -1,14 +1,6 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.GenericFiberGluing.SemistableCompleteSplit
-import Mathlib.RingTheory.AdjoinRoot
-import Mathlib.RingTheory.DiscreteValuationRing.TFAE
 import Mathlib.RingTheory.AdicCompletion.Noetherian
-import Mathlib.RingTheory.Ideal.GoingUp
-import Mathlib.FieldTheory.Minpoly.Field
-import Mathlib.FieldTheory.Tower
 import Mathlib.Algebra.Polynomial.Eval.Irreducible
-import Mathlib.RingTheory.Polynomial.UniqueFactorization
-import Mathlib.Algebra.Polynomial.Lifts
-import Mathlib.RingTheory.LocalRing.ResidueField.Basic
 
 set_option autoImplicit false
 

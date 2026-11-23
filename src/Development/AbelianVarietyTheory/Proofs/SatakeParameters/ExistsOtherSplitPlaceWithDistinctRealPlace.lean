@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.EqOneOfMemLev
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsPrimeSplitCm
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host
 open GlobalTheory.HeckeUnrExt

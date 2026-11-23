@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.IntegralSquareRoots.ConstCopies
-import Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.SemiCharImg
 
 noncomputable section
 open scoped BigOperators ComplexConjugate

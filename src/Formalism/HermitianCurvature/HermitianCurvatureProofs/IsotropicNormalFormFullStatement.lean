@@ -1,4 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.HermitianPerturbedVectorOrthogonal
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.RightDerivativeRulePsi
 
 open Matrix Finset
 

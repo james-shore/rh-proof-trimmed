@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsImagQuadraticSubfieldOfToricCMFieldData
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.VpBounds
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.LatticeNormTransport
 
 open NumberField GlobalTheory.CMVal GlobalTheory.IndefiniteRowSideFullHecke.LatticeNormTransport
 set_option maxHeartbeats 1000000 in

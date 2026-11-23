@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.DiscreteSpectrumKFiniteDecomposition
-import Formalism.RealPlaceAnalysis.QuotientSettingHolds
+import Formalism.RealPlaceAnalysis.StatementU
 
 open Matrix Formalism.REAL Filter Topology
 open scoped InnerProductSpace Matrix.Norms.L2Operator

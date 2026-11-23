@@ -6,6 +6,7 @@ import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.EnInParamKProd
 import Formalism.FormalGroupWitt.FormalGroupWittProofs.WittTeichmullerRoot
 import Formalism.LocalToGlobal.TorsionIntegrality.SecondCoefficientNorms.BinomialSeriesCoefficients.CoeffPowEqZeroOfCc
 import Formalism.LocalToGlobal.TorsionIntegrality.SecondCoefficientNorms.BinomialSeriesCoefficients.DegreeLeOfMemAntidiagonal
+import Formalism.SharpRestriction.GrowthBounds.ObjPol
 
 noncomputable section
 

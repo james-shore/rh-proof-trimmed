@@ -1,6 +1,5 @@
 import Mathlib
-import Formalism.PieriBlockIdeals.StatementLC
-import Formalism.PieriBlockIdeals.StatementLP
+import Formalism.PieriBlockIdeals.LemmaDSkeletonUnit
 import Formalism.PieriBlockIdeals.StatementLR
 
 namespace Formalism.CohomologicalDescent.ColumnMinorsFromPieri

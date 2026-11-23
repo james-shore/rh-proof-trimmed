@@ -11,9 +11,8 @@ import Formalism.LocalRingCardinality.DataAmbForm
 import Formalism.LocalRingCardinality.DataRRMetric
 import Formalism.LocalRingCardinality.DataNChoice
 import Formalism.SharpRestriction.ParConsts
-import Formalism.SharpRestriction.ParamsHeightRankConstant
+import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.FiltrationCocycleLiftCriterion
 import Formalism.SharpRestriction.GlobalSchurBounds.ZetaZeroFreeRegion
-import Formalism.SharpRestriction.Divisibility.PlaceRankTwoOne
 import Formalism.SharpRestriction.LevelLetterCocycles.TwGood
 
 noncomputable section

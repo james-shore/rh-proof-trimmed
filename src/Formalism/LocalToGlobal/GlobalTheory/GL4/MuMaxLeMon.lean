@@ -1,4 +1,6 @@
 import Formalism.LocalToGlobal.Columns.MultiFactorialEqTripleProd
+import Formalism.LocalToGlobal.Columns.MaxSlopeOrthogonalNegLog
+import Formalism.LocalToGlobal.LatticeGeometry.OperatorNormFibers.PDescentCutA
 
 open NumberField IsDedekindDomain Module MvPolynomial
 open scoped Matrix ComplexOrder

@@ -1,4 +1,4 @@
-import Development.EtaleCohomology.DivisorCycles.CycleCount
+import Development.EtaleCohomology.DivisorCycles.OpenCoset
 
 open Matrix
 

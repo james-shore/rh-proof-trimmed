@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.PhisBSelfAdj
+import Formalism.SharpRestriction.GrowthBounds.CountingStatementReduction
 import Formalism.MahlerMeasure.MahlerMeasureProofs.PhiInt
 
 noncomputable section

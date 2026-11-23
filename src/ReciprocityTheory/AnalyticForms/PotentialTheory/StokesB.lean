@@ -1,4 +1,5 @@
 import ReciprocityTheory.AnalyticForms.PotentialTheory.StokesA
+import ReciprocityTheory.AnalyticForms.AnalyticCharts.Partition
 
 namespace ReciprocityTheory.AnForm.M
 

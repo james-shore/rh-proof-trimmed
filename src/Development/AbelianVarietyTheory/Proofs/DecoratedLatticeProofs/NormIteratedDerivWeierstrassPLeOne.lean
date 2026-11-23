@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.NotRedOfMem
-import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.WeierstrassPAddOfNeOfDerivNeZero
 
 open Formalism.L2.Th1.F GlobalTheory.Klein
 open scoped ComplexConjugate BigOperators

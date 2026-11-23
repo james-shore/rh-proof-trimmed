@@ -1,8 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RowsRestWordColumnUnitBaseTupleAlt
-import Formalism.LocalToGlobal.IndefiniteReal.LinksStage
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LinearIndependentSemilinearOfBasis
 import Formalism.SharpRestriction.Divisibility.AbsolutelyIrreducibleSpan
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsFramesNormAtEqNorm
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsRestrictedFrames
 
 noncomputable section
 

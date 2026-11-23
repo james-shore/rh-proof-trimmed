@@ -1,6 +1,5 @@
-import Formalism.LocalToGlobal.IndefiniteReal.PeterssonHilbertSpace
+import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.KFiniteSmoothVectors.Garding
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.KFiniteSmoothVectors.DenseWeakVectors
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BesselDerivatives.ExpSup
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ChainRuleSmooth.ExpIntertwine
 

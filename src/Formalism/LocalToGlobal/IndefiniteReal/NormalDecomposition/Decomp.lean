@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.IndefiniteReal.NormalDecomposition.DecompOfNormalStatement
-import Formalism.LocalToGlobal.IndefiniteReal.EigenDecomposition
 
 open scoped InnerProductSpace
 

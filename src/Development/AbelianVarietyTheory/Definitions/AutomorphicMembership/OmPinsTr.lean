@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.Wp3ApplyEqSqMulSubSqMul
+import Formalism.LocalToGlobal.IndefiniteReal.EigenDecomposition
 
 noncomputable section
 

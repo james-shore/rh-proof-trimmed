@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.GroupLattices.FockModels.TransposeWords.FormSK
+import Formalism.LocalToGlobal.GroupLattices.FockModels.TransposeWords.DualWeylIn
 
 open MvPolynomial
 

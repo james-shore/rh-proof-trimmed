@@ -1,5 +1,7 @@
 import Formalism.AdmissibleDesigns.PiEquiv2
 import Formalism.AdmissibleDesigns.FiniteClassesContinuousLattice
+import Formalism.AdmissibleDesigns.RealDisplayAllK
+import Formalism.AdmissibleDesigns.DisplayForms
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core] [hH0Fin : Fact Formalism.MainNotions.N.K.H0.FinCore]
 

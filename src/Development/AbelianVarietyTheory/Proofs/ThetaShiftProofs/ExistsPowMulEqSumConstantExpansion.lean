@@ -4,6 +4,7 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.Sec
 import Development.AbelianVarietyTheory.Definitions.ArchimedeanThetaValues.IdealPart
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.IsAdicCompleteIdealEps
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.SecValFeTranslate
+import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ConstFamComponentsBasisExpansion
 
 noncomputable section
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField

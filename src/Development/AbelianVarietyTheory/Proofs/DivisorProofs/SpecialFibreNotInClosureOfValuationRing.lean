@@ -1,7 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpecialFibreNotInClosure
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.EpsilonPairingZeta
 import Development.AbelianVarietyTheory.Definitions.Divisors.HodgeTateLatticePointFinrankTateModule
+import Development.AbelianVarietyTheory.Definitions.Divisors.TorsionTowersOfDivisibleGroup
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.EpsilonPairingZeta
 
 set_option autoImplicit false
 

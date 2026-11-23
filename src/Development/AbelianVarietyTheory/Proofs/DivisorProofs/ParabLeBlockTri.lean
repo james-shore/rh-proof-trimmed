@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.PadicSubsetSums.CentralIdempotents.GaloisConjCentralIdempotent
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.CuspidalProductMultiplicity
+import Formalism.PadicSubsetSums.CentralIdempotents.IsConstituent
 
 noncomputable section
 

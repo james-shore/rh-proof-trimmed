@@ -1,5 +1,7 @@
 import Formalism.SharpRestriction.GrowthBounds.RootWeights.LoweringSpanHighestComponentIntegral
 import Formalism.SharpRestriction.GrowthBounds.RootWeights.InvariantDenominatorLinftyBound
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.HighestWeightLatticeOfFirstPart
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.ExistsScalarMultipleMemDelta
 
 noncomputable section
 

@@ -1,4 +1,4 @@
-import Formalism.GaussJetBounds.GaussJetProofs.SubstitutionWeightBound
+import Formalism.GaussJetBounds.Statement
 
 noncomputable section
 open scoped BigOperators

@@ -2,8 +2,6 @@ import Mathlib
 import Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsDefs
 import Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsGsEquiv
 import Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsLocal
-import Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsRep
-import Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsDualPf
 
 noncomputable section
 

@@ -1,7 +1,7 @@
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RationalCoverBound
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Realised
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ChiMulPsiInvMemCoreStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralFormsEqSpanIntegralRationalFormsStatement
 
 set_option synthInstance.maxHeartbeats 200000
 

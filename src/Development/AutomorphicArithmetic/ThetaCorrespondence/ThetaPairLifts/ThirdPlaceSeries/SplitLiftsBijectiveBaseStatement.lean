@@ -1,5 +1,5 @@
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SplitRowsUniformLinksRankStatement
 import Mathlib
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SplitRowsUniformLinksRank
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Realised
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SplitLiftsBijectiveBase
 

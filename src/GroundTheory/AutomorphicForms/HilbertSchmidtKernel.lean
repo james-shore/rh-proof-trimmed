@@ -1,5 +1,4 @@
 import Mathlib
-import GroundTheory.AutomorphicForms.HilbertSchmidt
 
 namespace GroundTheory.Automorphic.L2Kernel
 

@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.IndefiniteReal.TensCastR
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.NGalTiedRowLoc
 
 set_option synthInstance.maxHeartbeats 200000

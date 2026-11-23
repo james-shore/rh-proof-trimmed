@@ -1,7 +1,8 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightPtsIntegralPoints
-import GroundTheory.HeightsAndTheta.Heights.HeightComparison.POrbitCurve
+import GroundTheory.ArithmeticGeometry.ToricVarieties.Affine
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeB
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

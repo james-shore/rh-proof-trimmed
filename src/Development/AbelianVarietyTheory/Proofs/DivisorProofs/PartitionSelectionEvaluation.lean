@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.CountsIrreducibilityConstants
 import Development.AbelianVarietyTheory.Definitions.Divisors.MapBaseTiedSel
-import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.WorkingClassesFrozen
 
 open Formalism.BasicNotions Formalism.MainNotions GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem.Top GlobalTheory.Fc
 

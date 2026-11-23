@@ -1,4 +1,4 @@
-import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.TotallyRealRoots.LeNuIffPowMemPrinc
+import Mathlib
 
 namespace KStar.TotallyRealRoots
 

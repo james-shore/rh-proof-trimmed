@@ -1,9 +1,9 @@
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightIrreducible.ClosedEqNablaC
+import Mathlib
+import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.EvalFrameOrd
+import Formalism.GradedWeylDivisibility.StatementA
+import Formalism.GradedWeylDivisibility.StatementB
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LRowdivLemmas
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LGradedLemmas
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LHwinLemmas
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.ClosedEqNabla
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.FockQRowDivAdj
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LFocksLemmas
 
 open MvPolynomial Formalism.GradedWeylDivisibility Formalism.REAL
 

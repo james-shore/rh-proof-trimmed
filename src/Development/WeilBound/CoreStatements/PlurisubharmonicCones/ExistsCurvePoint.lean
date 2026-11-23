@@ -1,11 +1,7 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.PlurisubharmonicCones.AevalZeroOfMem
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PFunctionFieldFinite
-import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PMChartTrdeg
-import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PMChartHomog
-import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PMChartDehomog
 import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PNefAddBlock
-import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.ProjContract
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PBlockRatioAlg
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ProjectionFormulaDegree
 

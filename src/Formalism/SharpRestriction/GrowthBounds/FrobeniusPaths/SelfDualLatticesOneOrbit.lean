@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.NmHContrPos
+import Formalism.SharpRestriction.GrowthBounds.StatementOfDegreeAndBound
 import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.ExteriorWedgeSqZero
 
 noncomputable section

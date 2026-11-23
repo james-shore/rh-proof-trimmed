@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.TorsionIntegrality.CMGoodModels.Statement
 import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.ExistsFieldCmCurvesUnitDiscriminant
-import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsGoodReductionAlgebraicWeierstrassModel
 
 open GlobalTheory GlobalTheory.CMCurves
 

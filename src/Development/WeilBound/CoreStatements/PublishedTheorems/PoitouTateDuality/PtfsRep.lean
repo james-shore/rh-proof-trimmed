@@ -1,5 +1,5 @@
 import Mathlib
-import Development.WeilBound.CoreStatements.PublishedTheorems.PoitouTateDuality.PtfsDefs
+import ReciprocityTheory.Hypotheses.GalCoh
 import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohCmp
 
 noncomputable section

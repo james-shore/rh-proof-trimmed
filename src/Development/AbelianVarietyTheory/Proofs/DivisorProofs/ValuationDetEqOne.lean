@@ -1,12 +1,10 @@
 import Mathlib
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.RealCusp
 import GroundTheory.AutomorphicForms.ReductionSplitting
-import Development.AbelianVarietyTheory.Definitions.Divisors.ZetaPair
 import GroundTheory.AutomorphicForms.MacdonaldWhittakerHecke
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.SmoothRepresentationsGL.SphDict
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.SmoothRepresentationsGL.MemIffLocal
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralCosetsDetFiniteSum
-import Formalism.ArtinHasse.ArtinHasseProofs.SymmSeries
+import Development.AbelianVarietyTheory.Definitions.Divisors.ZetaPair
 
 noncomputable section
 

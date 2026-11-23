@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.DistinguishedUnitIdeals.CoprimeProd
+import Formalism.DistinguishedUnitIdeals.Statement
 import Formalism.EisensteinCokernelLengths.FactorialValuationBounds.LemmaCRam
 
 noncomputable section

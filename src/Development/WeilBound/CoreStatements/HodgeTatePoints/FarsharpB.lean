@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Statements.GeometryStatements.HodgeTateCokerSharp
+import Development.AbelianVarietyTheory.Definitions.Divisors.ToSpanSingletonConstGenInjective
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConvEqOneOfForallPairing
 
 noncomputable section

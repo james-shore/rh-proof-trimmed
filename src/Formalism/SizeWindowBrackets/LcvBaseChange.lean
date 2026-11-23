@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.HarderNarasimhan.StatementMod
+import Formalism.HermitianLattices.StatementLat
 
 open Module NumberField
 

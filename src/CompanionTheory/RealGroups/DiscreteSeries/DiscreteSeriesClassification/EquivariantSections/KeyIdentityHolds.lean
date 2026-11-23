@@ -10,6 +10,7 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactExhausti
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BetaWeightOfTorusFactsStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TransferStatementStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KeyPropositionOfComponentsStatement
+import CompanionTheory.RealGroups.DiscreteSeries.DiscreteSeriesClassification.InConeRefl
 
 namespace CompanionTheory.RgDs.K
 

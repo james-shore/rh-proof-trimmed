@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.IsZetaSystemFixedExponent
+import Development.AbelianVarietyTheory.Definitions.Foundations.IsZetaTW
 
 noncomputable section
 

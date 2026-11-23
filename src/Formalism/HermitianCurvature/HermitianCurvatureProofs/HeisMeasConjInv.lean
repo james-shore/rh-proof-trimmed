@@ -1,7 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.UwClosedSubgroup
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LongWeylElement
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.HeisenbergLeviConjugationMeasure
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.UnipotentHeisenbergDecomposition
+import Formalism.RealPlaceAnalysis.StatementU
 
 open Matrix MeasureTheory
 open scoped ComplexConjugate

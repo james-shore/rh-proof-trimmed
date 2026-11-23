@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.SplitLevelConjugates.IsPrincipalCongruenceAt
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsLocalComponentEigenvectorAtSplitPlaceIsoty
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ConjEqOfNormalises
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocMemKOneOfSame
 

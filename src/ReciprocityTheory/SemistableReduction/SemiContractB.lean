@@ -1,5 +1,4 @@
 import ReciprocityTheory.SemistableReduction.LatSemiSt
-import ReciprocityTheory.SemistableReduction.SemiContractA
 
 namespace ReciprocityTheory.MultiplicativeHeights
 

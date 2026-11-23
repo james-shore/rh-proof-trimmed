@@ -1,5 +1,6 @@
 import Development.AutomorphicArithmetic.DedekindLFunctions.RunBaseDimensionLeRankAddGenusTerm
 import Formalism.SizeWindowBrackets.ChainSlopeWindows.PChain
+import Formalism.SizeWindowBrackets.ChainSlopeWindows.LipschitzWeightAndMinimum
 
 open Finset
 

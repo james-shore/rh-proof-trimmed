@@ -1,5 +1,4 @@
 import Formalism.HermitianCurvature.FiniteOrderIntersectionInSmooth
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.LowerParabolicCoordinates
 
 open Matrix MeasureTheory Formalism.FourierDecayAlt
 

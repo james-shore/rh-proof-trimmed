@@ -1,5 +1,5 @@
 import Formalism.LocalToGlobal.LatticeGeometry.Inhabited
-import Formalism.LocalToGlobal.LatticeGeometry.GeometryDefinitions.ClsSum
+import Formalism.LocalToGlobal.LatticeGeometry.LevPrPrime
 
 noncomputable section
 

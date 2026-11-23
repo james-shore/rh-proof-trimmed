@@ -1,6 +1,4 @@
 import Development.AbelianVarietyTheory.Definitions.Foundations.PetIPSmulRight
-import Development.AbelianVarietyTheory.Definitions.Foundations.RepL
-import Development.AbelianVarietyTheory.Statements.CuspidalUnitaryTwists.Chapter
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.Newform
 
 open UpperHalfPlane Complex MeasureTheory CongruenceSubgroup GlobalTheory.EisM UpperTheory.V.Af Filter Topology

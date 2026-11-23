@@ -1,7 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NuInRange
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RowsRestWordColumnUnitBaseTuple
 import Formalism.LocalRingCardinality.DataExtra
-import Formalism.LocalRingCardinality.DataTies
+import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
 import Formalism.LocalRingCardinality.Lemmas
 
 open Formalism.BasicNotions NumberField IsDedekindDomain GlobalTheory.Mem

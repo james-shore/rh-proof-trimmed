@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.CoupledSumOfEntries
+import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.HeckeValueEstimateOfRecordValue
 
 noncomputable section
 

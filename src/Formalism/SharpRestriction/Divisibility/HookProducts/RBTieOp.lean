@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.HarderNarasimhan.ShiftInvariance
+import Formalism.HarderNarasimhan.QuotRealize
 import Formalism.SharpRestriction.Divisibility.HookProducts.RBTieFrame
 
 open Matrix NumberField Module

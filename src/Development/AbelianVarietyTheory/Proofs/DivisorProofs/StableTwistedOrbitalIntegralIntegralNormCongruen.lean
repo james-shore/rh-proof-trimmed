@@ -1,8 +1,9 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.LinearDescent
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.UnitLemmaGroup
 import Development.AbelianVarietyTheory.Definitions.Divisors.GaloisRepOfPolarizedCuspidal
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StableTwistedOrbitalProduct
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBallSubset
+
 open NumberField GlobalTheory.UnitaryBC IsDedekindDomain Matrix Polynomial GlobalTheory.CuspRep Formalism.UG GlobalTheory.BCT
 open scoped Classical
 

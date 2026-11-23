@@ -1,6 +1,4 @@
 import Mathlib
-import Formalism.UnipotentAdelicQuotients.HaarProductClosedCompact
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HaarProductClosedCompactHolds
 
 set_option linter.unusedSectionVars false
 

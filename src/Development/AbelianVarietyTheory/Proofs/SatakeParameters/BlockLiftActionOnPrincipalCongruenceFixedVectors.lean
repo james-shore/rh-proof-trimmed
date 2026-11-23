@@ -1,7 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.DetCharacterMemPrincipalCongruenceFixedVectors
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.BlockSplitAll
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsReadingLaws
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsTypeGroupBlockLift
+
 open GlobalTheory.GLq GlobalTheory.GLp GlobalTheory.SerSys
 
 namespace GlobalTheory.SerSys.BlockLift

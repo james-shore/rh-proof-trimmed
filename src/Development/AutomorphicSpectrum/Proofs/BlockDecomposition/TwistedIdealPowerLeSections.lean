@@ -1,6 +1,5 @@
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformVanishing
-import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.FormalIdealMul
-import GroundTheory.ArithmeticGeometry.SchemeCohomology.CechNaturality.Linear
+
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry GroundTheory.Arith.SchemeCoh GlobalTheory.CompanionTheory.GE
 
 set_option autoImplicit false

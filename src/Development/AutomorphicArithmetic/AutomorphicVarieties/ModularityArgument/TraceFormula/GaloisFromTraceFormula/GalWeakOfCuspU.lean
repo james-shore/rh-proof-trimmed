@@ -1,5 +1,6 @@
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.SatakeRigidity.FullThetaHolds
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.StringRepresentations.UnrRecOfHasSat
+import Formalism.SharpRestriction.LevelLetterCocycles.LinearIndependentSmulOfNeZero
+import Formalism.LocalToGlobal.GroupLattices.LevelCharts.FinIdx
 
 noncomputable section
 

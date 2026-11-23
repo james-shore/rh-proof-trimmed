@@ -1,6 +1,5 @@
 import Mathlib
 import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.CountSt
-import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.InhabSt
 
 set_option autoImplicit false
 

@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.FrobeniusLocalPairs.FrobFactsAlt
-import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.OrbitalIntegrals.BrMain
-import Development.AutomorphicArithmetic.Foundations.Convolution.TraceSplitting.Places
+import GroundTheory.LocalFields.Unramified
+import GroundTheory.LocalFields.UnramifiedGalois
 
 noncomputable section
 

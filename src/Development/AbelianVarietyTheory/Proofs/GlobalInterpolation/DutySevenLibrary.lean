@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ValidForConstructedPointClassesEventuallyWorking
-import Formalism.SharpRestriction.DesignExistsOfChoices
-import Formalism.SharpRestriction.SmoothDesignExistence.DesignExistsDes
+import Formalism.SharpRestriction.GlobalSchurBounds.TieGlobal
+import Formalism.SharpRestriction.LevelLetterCocycles.AlignN
 import Formalism.SharpRestriction.PageFix
 import Formalism.SharpRestriction.Divisibility.SmallFirstModulusBelowScale
 import Formalism.SharpRestriction.GlobalSchurBounds.WeightVectorSmallSharesEight

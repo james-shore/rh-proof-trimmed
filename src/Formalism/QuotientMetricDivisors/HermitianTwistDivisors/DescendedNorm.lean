@@ -1,7 +1,5 @@
 import Mathlib
 import Formalism.QuotientMetricDivisors.HeightBoundExactNorms
-import Formalism.QuotientMetricDivisors.ProdFormula
-import Formalism.QuotientMetricDivisors.StatementACE
 import Formalism.HarderNarasimhan.HarderNarasimhanProofs.SlopeIneqMean
 
 open Module NumberField

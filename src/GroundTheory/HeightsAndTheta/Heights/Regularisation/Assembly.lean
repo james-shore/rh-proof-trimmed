@@ -1,11 +1,8 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.Regularisation.PMaxOscillation
-import GroundTheory.HeightsAndTheta.Heights.Regularisation.PMollifierLowerBound
-import GroundTheory.HeightsAndTheta.Heights.Regularisation.PChartComparison
-import GroundTheory.HeightsAndTheta.Heights.Regularisation.PCutoffs
+import GroundTheory.HeightsAndTheta.Heights.Regularisation.Statements
+import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PshMoll
+import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.PGlueRegularised
-import GroundTheory.HeightsAndTheta.Heights.Regularisation.ChartFun
-import GroundTheory.HeightsAndTheta.Heights.Regularisation.IsCompactImageClosureMid
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.PExpExtension
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.PosSemidefOfIntQuadNonneg
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.PKernelPositive
@@ -17,6 +14,7 @@ import GroundTheory.HeightsAndTheta.Heights.MatrixCharts.PInvEntryDeriv
 import GroundTheory.HeightsAndTheta.Heights.MatrixCharts.PMatrixDetDeriv
 import GroundTheory.HeightsAndTheta.Heights.MatrixCharts.PGramEntryDeriv
 import GroundTheory.HeightsAndTheta.Heights.MatrixCharts.PLogDetGramDeriv
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Regular

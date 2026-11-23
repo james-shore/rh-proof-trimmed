@@ -1,9 +1,10 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ToRingActOpOfRingAct
 import Development.AbelianVarietyTheory.Definitions.Divisors.NonemptyHomFixRepTrivial
-import Development.AbelianVarietyTheory.Definitions.ModuliSpaces.IsGaloisCover
+import Development.AbelianVarietyTheory.Definitions.ModuliSpaces.FiniteHomogeneousInf
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RigidifiedBundlePullbackIsoOfLocalIsoAbelianHom
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HomFixedPullbackRepresentableGlueStatement
+
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.EndLoc

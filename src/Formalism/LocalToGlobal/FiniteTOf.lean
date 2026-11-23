@@ -1,9 +1,6 @@
 import Formalism.LocalToGlobal.IndefiniteRealisationChoice
 import Formalism.LocalToGlobal.PtKOfReal
 import Formalism.LocalToGlobal.Divisibility.ArithClauseRec
-import Mathlib
-import Formalism.LocalToGlobal.Divisibility.DivisibilityConstruction.RBDGam
-import Formalism.LocalToGlobal.HilbertRowConditions.ColumnsFunctionAtSubspaces
 
 noncomputable section
 

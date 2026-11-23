@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.FamilyUniformisationBasePointOrthogonal
-import Formalism.LocalToGlobal.ProjectiveLattices.ChiProofs
+import Formalism.LocalToGlobal.ProjectiveLattices.AllTest
+import Formalism.LocalToGlobal.ProjectiveLattices.UnitIndepOfCharts
 
 noncomputable section
 

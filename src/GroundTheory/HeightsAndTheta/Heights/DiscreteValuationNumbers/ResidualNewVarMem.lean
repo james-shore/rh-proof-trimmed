@@ -3,6 +3,8 @@ import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.ImportsLast
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PDivCycleMul
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PComponentDim
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.RingKrullDimQuotientLeComapAddOne
+import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.LocalizedQuotientIsSimpleModuleOfMul
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.NumbersDVR

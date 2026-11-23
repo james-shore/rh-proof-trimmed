@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DivConstClosedPts
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OriginIdeal
+
 open IsLocalRing Polynomial
 
 open scoped TensorProduct

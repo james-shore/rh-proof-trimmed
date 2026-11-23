@@ -1,4 +1,4 @@
-import Development.AutomorphicArithmetic.CharacterBoxes.TwistForm
+import Development.AutomorphicArithmetic.CharacterBoxes.PairGood
 import Development.AutomorphicArithmetic.CharacterBoxes.RealSplit
 
 open Formalism.HC UpperTheory.Top

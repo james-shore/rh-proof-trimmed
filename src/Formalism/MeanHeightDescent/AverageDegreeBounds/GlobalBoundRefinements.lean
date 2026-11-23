@@ -1,14 +1,9 @@
 import Mathlib
-import Formalism.MeanHeightDescent.MuMaxMinkowski
-import Formalism.MeanHeightDescent.BadRowsNumeric
-import Formalism.MeanHeightDescent.CombinedAverageDegreeBound
-import Formalism.QuotientMetricDivisors.StatementK
-import Formalism.MeanHeightDescent.AverageDegreeBounds.CovolumeAssemblyHolds
-import Formalism.MeanHeightDescent.AverageDegreeBounds.CovolumeFullAssemblyHolds
-import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.TheoremDivIneq
-import Formalism.MeanHeightDescent.AverageDegreeBounds.SpanMuMin
-import Formalism.MeanHeightDescent.AverageDegreeBounds.TwistLower
-import Formalism.MeanHeightDescent.AverageDegreeBounds.MuMaxMinkowski
+import Formalism.HarderNarasimhan.StatementPl
+import Formalism.LatticeSlopes.ExistsSaturatedSlopeEqMuMax
+import Formalism.HarderNarasimhan.HarderNarasimhanProofs.SatBasic
+import Formalism.HarderNarasimhan.HarderNarasimhanProofs.MuChar
+import Formalism.HarderNarasimhan.HarderNarasimhanProofs.SizeIneq
 
 namespace Formalism.ExtensionFiltration
 

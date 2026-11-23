@@ -4,6 +4,7 @@ import Development.AutomorphicSpectrum.Proofs.GlobalProofs.HasSupportOfIsSubquot
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.BernsteinZelevinskyFinitenessStatement
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.GeometricLemmaOfFiltrationStatement
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.GeometricSplitting.Imports
+import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.GenericUnlinkedGL
 
 noncomputable section
 

@@ -1,7 +1,6 @@
 import Mathlib
 import GroundTheory.GlobalFields.Artin.PlacesGalois
 import GroundTheory.GlobalFields.Artin.Series
-import GroundTheory.GlobalFields.Artin.InflationTower
 
 set_option maxSynthPendingDepth 1
 

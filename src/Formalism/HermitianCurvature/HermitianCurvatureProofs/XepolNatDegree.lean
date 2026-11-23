@@ -1,5 +1,4 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.RadDZKapLeft
-import Mathlib.LinearAlgebra.Lagrange
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Polynomial
 

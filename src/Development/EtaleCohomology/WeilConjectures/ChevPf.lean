@@ -1,5 +1,4 @@
 import Development.EtaleCohomology.WeilConjectures.ContinCut
-import Mathlib.NumberTheory.Padics.ProperSpace
 
 namespace LateralTheory.EWeil.ChevPf
 

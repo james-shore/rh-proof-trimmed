@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OfE
+import Development.WeilBound.CoreStatements.ThetaDilations.ThetaLint
 
 noncomputable section
 

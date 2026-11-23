@@ -1,6 +1,6 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.AutomorphyLifting.UnitaryGaloisFamilies.IrrCaseT
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CharpolySmulScaleRoots
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalLanglandsExtensionPreservesCuspidal
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LpCharCompatibilities
 
 noncomputable section
 

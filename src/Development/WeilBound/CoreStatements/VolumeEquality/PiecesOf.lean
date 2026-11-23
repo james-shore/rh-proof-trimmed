@@ -1,4 +1,6 @@
 import Development.WeilBound.CoreStatements.VolumeEquality.Pieces
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsGroupDictionaryStatement
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsFundamentalSetStatement
 
 noncomputable section
 

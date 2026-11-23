@@ -3,7 +3,7 @@ import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.Assemb
 import Formalism.LocalToGlobal.ProjectiveLattices.ExistsParameterConditions
 import Formalism.LocalToGlobal.ProjectiveLattices.RecCond
 import Formalism.LocalToGlobal.ProjectiveLattices.DatProofs
-import Formalism.LocalToGlobal.ProjectiveLattices.DepthTie
+import Formalism.LocalToGlobal.ProjectiveLattices.ChartDirectionsIntegral
 import Formalism.LocalToGlobal.UnitaryNorms.MemFIffReal
 
 noncomputable section

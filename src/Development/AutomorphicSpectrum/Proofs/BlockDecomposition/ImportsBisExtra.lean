@@ -1,9 +1,6 @@
 import Mathlib
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.FrameReading.FmTools
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinsumOutOfLe
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelFamInf
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousPairProjection
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelIndexNeZeroOfIsOpen
 
 noncomputable section
 

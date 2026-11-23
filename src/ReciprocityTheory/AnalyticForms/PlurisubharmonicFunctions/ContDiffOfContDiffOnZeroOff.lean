@@ -1,6 +1,6 @@
 import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.GreenOfPoincareLelongHyperplane
-import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.HessCRestrictThm
 import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.LintegralImageEqLintegralNormSqDetMul
+import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PartsSt
 
 namespace ReciprocityTheory.AnForm.A
 

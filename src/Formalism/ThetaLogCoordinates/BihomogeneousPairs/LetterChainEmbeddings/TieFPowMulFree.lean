@@ -1,6 +1,4 @@
-import Formalism.MahlerMeasure.MahlerMeasureProofs.RemoveS
-import Formalism.MahlerMeasure.MahlerMeasureProofs.LevelDecomp
-import Mathlib
+import Formalism.MahlerMeasure.TieVars
 
 namespace Formalism.InvariantFactorPaths.KP.LL
 

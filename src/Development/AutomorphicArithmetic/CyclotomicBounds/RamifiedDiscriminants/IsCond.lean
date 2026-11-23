@@ -3,7 +3,7 @@ import Formalism.LocalRingCardinality.DataHost
 import Formalism.LocalToGlobal.UnitaryNorms.RealCyclotomicTwoPower
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
 import Development.AutomorphicArithmetic.PrimeDiscriminants.CycImage
-import Development.AutomorphicArithmetic.PrimeDiscriminants.RamDiscr
+import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.FrameFacts
 
 open NumberField
 

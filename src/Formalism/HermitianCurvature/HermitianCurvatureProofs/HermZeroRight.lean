@@ -1,4 +1,7 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJfSSymDefs
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.NormFormOneUnitary.HermitianOrthogonalProjectionVector
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PolynomialProperness.HermProjRight
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PolynomialProperness.CoreInst
 
 open Matrix Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt
 

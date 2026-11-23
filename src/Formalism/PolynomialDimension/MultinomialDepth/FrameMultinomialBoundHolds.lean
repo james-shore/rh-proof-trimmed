@@ -1,4 +1,5 @@
 import Formalism.PolynomialDimension.StatementNum
+import Formalism.PolynomialDimension.WeylDim
 
 noncomputable section
 

@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.MemEigSpOfMemHtDual
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.GlueApplyOfNotInFibre
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.TwoWeightEqOneAddRoot
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.CoordsAt
 
 noncomputable section
 

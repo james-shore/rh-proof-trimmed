@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.LocalRingCardinality.DataKerI
 import Formalism.SharpRestriction.Divisibility.LocalQuadraticParts
-import Formalism.SharpRestriction.GlobalSchurBounds.GL3Theta
 import Formalism.LocalToGlobal.KernelLattices.ThDistC
 
 open NumberField IsDedekindDomain

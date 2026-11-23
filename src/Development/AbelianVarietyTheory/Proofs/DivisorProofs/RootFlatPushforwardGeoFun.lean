@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.PointsNonemptyUnitaryRankOne
-import Development.AbelianVarietyTheory.Definitions.Divisors.MarkedSumIrr
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BoundedCoordinatesPPowerDenominator
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularElementsBoundedPadic
 

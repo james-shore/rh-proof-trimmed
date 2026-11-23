@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.PeriodIntegrals.WeakApproxDVR
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeakApproximationDVR.SmOneOfNotIsUnit
 
 noncomputable section

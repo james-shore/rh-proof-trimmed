@@ -1,7 +1,7 @@
 import Mathlib
-import Formalism.QuotientMetricDivisors.ProdFormula
+import Formalism.QuotientMetricDivisors.Statement
 import Formalism.QuotientMetricDivisors.DivIntoDual
-import Formalism.QuotientMetricDivisors.ReductionLemmaZero
+import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.VwEqZeroOfNotMem
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix

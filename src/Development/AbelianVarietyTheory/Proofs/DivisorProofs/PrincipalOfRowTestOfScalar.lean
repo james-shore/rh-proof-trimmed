@@ -1,8 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMemRangeToF
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ClassPresExtMemExtBijIsom
-import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.TranslateRepresentations
 import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
+import Development.AbelianVarietyTheory.Definitions.Divisors.SplitDoublingNBlock
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ClassPresExtMemExtBijIsom
 
 noncomputable section
 

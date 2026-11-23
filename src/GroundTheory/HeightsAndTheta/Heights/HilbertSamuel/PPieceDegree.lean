@@ -1,9 +1,9 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsPieceDegree
-import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
-import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.Objects
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PEmbeddingWeight
-import GroundTheory.HeightsAndTheta.Heights.Intersections.PRFormula
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsArith
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.DenseChart
+import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightObjects
+import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsAntisym
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterDivSupp
 import GroundTheory.GlobalFields.ComplexMultiplication.ExistsRingEquivExtendOfIsTranscendenceBasis
 
 set_option maxSynthPendingDepth 1

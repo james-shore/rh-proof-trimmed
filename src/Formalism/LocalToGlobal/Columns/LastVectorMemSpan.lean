@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.Columns.HermitianFormLastCoordinateUniformizerVectorSelf
+import Formalism.LocalToGlobal.Columns.HxMemMap
 import Formalism.LocalToGlobal.HermitianForms.BothLemmas
 
 open NumberField IsDedekindDomain Module Matrix

@@ -2,9 +2,8 @@ import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsPosHermFormV
 import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IntMIffInt
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PhDetMulIntegral
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HeisenbergReproducingKernelSumSpec
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IntegralUnfoldFundamentalDomain
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IntegralGaussianUnitaryPos
+
 open Complex MeasureTheory GlobalTheory.UnitaryTheta
 open scoped BigOperators ComplexConjugate Real Classical
 

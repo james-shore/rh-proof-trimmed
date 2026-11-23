@@ -1,5 +1,6 @@
 import Mathlib
-import Formalism.LocalToGlobal.ProjectiveLattices.PlaceBelow
+import Formalism.LocalToGlobal.ProjectiveLattices.ChartDirectionsIntegral
+
 open scoped BigOperators
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ Formalism.L2.Pj NumberField
 

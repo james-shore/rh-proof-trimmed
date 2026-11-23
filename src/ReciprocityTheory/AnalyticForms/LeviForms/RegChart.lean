@@ -1,6 +1,5 @@
-import ReciprocityTheory.AnalyticForms.LeviForms.IsRegFamilyInhabitStatement
-import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PshMoll
-import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PshExt
+import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialOfFun
+import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.IsPshLocallyIntegrableStatement
 
 namespace ReciprocityTheory.AnForm.P
 

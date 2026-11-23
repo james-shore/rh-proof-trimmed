@@ -1,6 +1,7 @@
 import Mathlib
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.SwapLoc
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.ExistsUnique
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.SwapLoc
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

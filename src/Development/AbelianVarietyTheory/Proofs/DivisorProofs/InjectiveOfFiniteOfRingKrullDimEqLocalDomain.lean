@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsUnifOfIsMumfordOf
-import ReciprocityTheory.CommutativeAlgebra.SaturatedChains.Integral
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.CohenStructureFiniteOverNormalCompleteSubring
+
 open IsLocalRing
 
 namespace GlobalTheory

@@ -2,7 +2,6 @@ import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PlacesBelowSplitCoprimeConductorOfAdmissible
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFinSetSplitPlacesCoprimeConductor
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CompletelySplitPrimeHostPlaceProperties
-import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsNormSubEqOne
 
 noncomputable section
 

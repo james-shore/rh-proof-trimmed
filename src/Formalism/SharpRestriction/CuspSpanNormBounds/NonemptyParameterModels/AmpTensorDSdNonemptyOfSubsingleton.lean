@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.CuspSpanNormBounds.SBridge
-import Formalism.FormalDegreeBessel.FinalG
 import Formalism.SharpRestriction.CuspSpanNormBounds.OnePlaceEstimates
 
 open MeasureTheory Matrix Finset

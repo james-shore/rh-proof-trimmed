@@ -1,9 +1,10 @@
 import Mathlib
-import Formalism.CharacterColumnKernels.StatementRho
-import Formalism.GaloisCohomology.LocalTateDualityK
-import ReciprocityTheory.Hypotheses.GalCohDefs
+import Formalism.CharacterColumnKernels.StatementN
+import Formalism.CharacterColumnKernels.StatementMF
+import Formalism.GaloisCohomology.Statement
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LevRepZApply
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteCardTorsionLevelFractionRingQuot
+
 open ReciprocityTheory.Gal
 
 namespace GlobalTheory.ShapeNeg

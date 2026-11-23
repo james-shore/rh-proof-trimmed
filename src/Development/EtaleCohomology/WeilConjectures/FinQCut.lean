@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.DivisorSupportCondition
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
-import Development.EtaleCohomology.KummerTheory.AdicLimPf
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC GlobalTheory.Et

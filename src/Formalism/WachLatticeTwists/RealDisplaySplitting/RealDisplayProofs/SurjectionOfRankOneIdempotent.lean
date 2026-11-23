@@ -1,5 +1,5 @@
 import Formalism.WachLatticeTwists.RealDisplaySplitting.SurjectionRankOneIdempotent
-import Formalism.WachLatticeTwists.RamifiedBlockRings.RamifiedBlockProofs.Normal
+import Formalism.CharacterColumnKernels.IdempotentNormalForms.GlobalConcreteOf
 
 open Finset Classical
 

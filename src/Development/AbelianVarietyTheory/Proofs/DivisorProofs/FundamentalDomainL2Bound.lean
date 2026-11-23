@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocallyIntegrableRep
 
 open MeasureTheory Set
 open scoped ENNReal

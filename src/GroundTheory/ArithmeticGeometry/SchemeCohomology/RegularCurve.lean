@@ -1,5 +1,6 @@
 import Mathlib
-import GroundTheory.ArithmeticGeometry.SchemeCohomology.RegularSmooth
+import GroundTheory.ArithmeticGeometry.SchemeCohomology.RegularLocalDomain
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Arith.SchemeCoh

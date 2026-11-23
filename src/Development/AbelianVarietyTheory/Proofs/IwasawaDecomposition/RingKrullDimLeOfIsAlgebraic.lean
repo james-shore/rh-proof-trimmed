@@ -6,6 +6,7 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.BijectiveAlgebra
 import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.IsIsoMorphismRestrictOfLocalDominantSections
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsIsoStalkMapOfFlatOfSurjectiveOnStalks
 import ReciprocityTheory.CommutativeAlgebra.SaturatedChains.AlgStep
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsProjOverCompFinite
 
 set_option autoImplicit false
 

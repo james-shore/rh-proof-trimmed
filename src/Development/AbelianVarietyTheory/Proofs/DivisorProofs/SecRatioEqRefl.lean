@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.FormalEnd
+import Development.AbelianVarietyTheory.Definitions.Divisors.TateProductRigidificationTrivial
 
 noncomputable section
 

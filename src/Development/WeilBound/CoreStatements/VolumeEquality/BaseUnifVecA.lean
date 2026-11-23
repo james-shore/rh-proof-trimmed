@@ -1,4 +1,4 @@
-import Development.WeilBound.CoreStatements.VolumeEquality.BaseUnifDefsB
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsSheetCover
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FibreLatticeBaseChangeConj
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelPullbackEquivalence
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.VerticalDerivativeInCoordinates

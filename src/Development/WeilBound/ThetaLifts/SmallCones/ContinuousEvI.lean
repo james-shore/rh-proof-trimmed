@@ -1,5 +1,5 @@
 import Development.WeilBound.ThetaLifts.SmallCones.SliceSummable
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsCompactAdeleRingModNumberField
+import Development.WeilBound.ThetaLifts.TowerModels.PlaneHerm
 
 set_option linter.unusedSectionVars false
 

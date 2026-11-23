@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.DensitySumsAndDomination
+import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.SymbolVariableLowerLetter
 
 noncomputable section
 

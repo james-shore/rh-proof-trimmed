@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsTheta
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsActIffIsDiagEnd
 
 noncomputable section
 

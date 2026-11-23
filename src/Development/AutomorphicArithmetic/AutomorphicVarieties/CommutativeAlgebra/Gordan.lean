@@ -1,6 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective
-import Mathlib.Data.Finsupp.PWO
-import Mathlib.Data.Finsupp.WellFounded
 
 open IsLocalRing MvPowerSeries UpperTheory.V.Alg
 

@@ -1,7 +1,11 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSystemOf
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsStableComplBot
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHeckeHermitianPairing
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RePosOfIsMultIP
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.DefiniteUnitaryCocompact
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AdelicUnitaryUnimodularExistsFundamentalDomain
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FundamentalDomainSetIntegralMulRight
+
 open NumberField IsDedekindDomain TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.IndefR GlobalTheory.UnitaryBC GlobalTheory.FrameAut Formalism.CohomologicalDescent.DepthNonnegative
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

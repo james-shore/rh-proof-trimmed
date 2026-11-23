@@ -1,9 +1,7 @@
 import Mathlib
-import Formalism.LocalToGlobal.CharacterGerms.ContentLargeFromSupplies
-import Formalism.LocalToGlobal.CharacterGerms.ContentZeroAt
-import Formalism.LocalToGlobal.CharacterGerms.LatticeInclusionFormsInjective
-import Formalism.LocalToGlobal.CharacterGerms.CoeffIterateZero
-import Formalism.LocalToGlobal.CharacterGerms.CartesianBoundOnCurves
+import Formalism.LocalToGlobal.CharacterGerms.GeNatCast
+import Formalism.IncomingBounds.StatementThmP
+import Formalism.LocalToGlobal.Divisibility.Numbers
 
 noncomputable section
 open scoped BigOperators

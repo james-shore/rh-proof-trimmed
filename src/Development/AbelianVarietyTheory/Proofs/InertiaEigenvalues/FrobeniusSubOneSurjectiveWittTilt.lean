@@ -2,9 +2,6 @@ import Mathlib
 import Development.AbelianVarietyTheory.CrystallinePeriods.RingBasics
 import Formalism.SharpRestriction.LevelLetterCocycles.ElementDenominator
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.ASWitt
-import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.ASRoot
-import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.ASSmall
-import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.ASGlue
 
 namespace GlobalTheory.ArtinSchreierTilt
 

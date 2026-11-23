@@ -2,7 +2,7 @@ import Mathlib
 import Development.WeilBound.CoreStatements.AutomorphicKernels.LocalGlobalCompatibility.TemperedLocalGlobal.WeilGroupRestriction.IwahoriCompatibilityOfChains
 import Development.WeilBound.CoreStatements.AutomorphicKernels.LocalGlobalCompatibility.WdRestrict
 import Formalism.LocalRingCardinality.SpanPowerMembership.NDLocD
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FiniteDimensionalAdjoinRange
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RowsRestWordColumnUnitBaseTuple
 
 noncomputable section
 

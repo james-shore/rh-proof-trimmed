@@ -1,8 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormPeriodSq
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.CharLem
+import Formalism.LocalToGlobal.IndefiniteReal.PHeisFC
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardLatticeDoubleCosetClassesStabilisers
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.DefiniteThetaPairTestVectorExpansion
 
 open NumberField MeasureTheory
 open scoped Classical

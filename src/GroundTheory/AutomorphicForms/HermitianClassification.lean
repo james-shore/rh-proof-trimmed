@@ -1,10 +1,8 @@
 import Mathlib
-import GroundTheory.AutomorphicForms.HermitianDisc
 import GroundTheory.AutomorphicForms.HermitianWitt
+import GroundTheory.LocalFields.ExistsUnitFiltrationUnitsLeRangeNormUnits
 import GroundTheory.AutomorphicForms.UnitarySplit
-import GroundTheory.AutomorphicForms.HermitianSpaces
 import GroundTheory.LocalFields.HerbrandLocal
-import GroundTheory.LocalFields.FiniteExtension
 import GroundTheory.LocalFields.UnramifiedHensel
 
 noncomputable section

@@ -1,4 +1,4 @@
-import ReciprocityTheory.ThetaQuasiPeriods.Transl
+import ReciprocityTheory.ThetaQuasiPeriods.ThetaQuasiPeriodStatement
 
 noncomputable section
 

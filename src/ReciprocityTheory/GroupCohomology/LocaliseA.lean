@@ -1,4 +1,4 @@
-import ReciprocityTheory.GroupCohomology.TransgressionStatement
+import ReciprocityTheory.GroupCohomology.ContinuousContractNth
 import ReciprocityTheory.GroupCohomology.DEqZeroOfMemB
 
 namespace ReciprocityTheory.Coh

@@ -2,9 +2,9 @@ import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MixedFieldContraction.ContractMixedFieldStatement
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PFibreMultiHomog
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PEvalKerKrullDim
-import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.PIntDomainDim
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PCoordConeArithVar
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.ChangeOfModel
+import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.PIntDomainDim
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

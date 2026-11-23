@@ -2,9 +2,10 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StLelongMassNearSmall
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StRegMassNearSmall
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StVarMassNearSmall
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.CutOffNear
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PLelongLimitOnZero
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PSliceImmersiveGeneral
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.CutOffNear
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

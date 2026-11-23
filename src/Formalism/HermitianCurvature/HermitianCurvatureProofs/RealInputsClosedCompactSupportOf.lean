@@ -1,5 +1,6 @@
 import Formalism.HermitianCurvature.ArchimedeanUniformConstantsCompactSupport
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.PBJoint
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.SecondPolynomialClauses
 
 open Finset NumberField MeasureTheory Formalism.FourierDecayAlt
 

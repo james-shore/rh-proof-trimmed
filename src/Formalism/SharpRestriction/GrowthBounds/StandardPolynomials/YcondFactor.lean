@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.TCoreDef
+import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.MultidegAdd
 import Formalism.SharpRestriction.GrowthBounds.PolBridge
 
 noncomputable section

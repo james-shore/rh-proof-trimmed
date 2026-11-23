@@ -1,4 +1,4 @@
-import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.InertiaRamification.Average
+import Mathlib
 
 namespace KStar.Ram
 

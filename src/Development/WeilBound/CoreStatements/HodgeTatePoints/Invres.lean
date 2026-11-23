@@ -1,8 +1,8 @@
 import Mathlib
-import ReciprocityTheory.DualLattices.CotangentSurjective
+import ReciprocityTheory.DualLattices.ExistsSmulMemOfMemSpan
+import ReciprocityTheory.DualLattices.MemDualLat
+import ReciprocityTheory.DualLattices.ImportsBis
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsTight
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.StepOrderRes
-import ReciprocityTheory.DualLattices.PowMemCarrier
 
 noncomputable section
 

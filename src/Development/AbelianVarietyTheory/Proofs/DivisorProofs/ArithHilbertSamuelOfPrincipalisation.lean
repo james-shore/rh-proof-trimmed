@@ -4,7 +4,6 @@ import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.SmallSecTe
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AmpleArithHilbertSamuelOfPrincipalisationStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ArithHilbertSamuelNefOfAmpleStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SemiPullOfPrincipalisation
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ArCalcOfPrincipalisation
 
 namespace GlobalTheory
 

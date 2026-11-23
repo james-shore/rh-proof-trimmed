@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsFinSetSplitPlacesCoprimeConductor
+import Development.AbelianVarietyTheory.Definitions.Divisors.EntireEqOfHalfPlane
 
 noncomputable section
 

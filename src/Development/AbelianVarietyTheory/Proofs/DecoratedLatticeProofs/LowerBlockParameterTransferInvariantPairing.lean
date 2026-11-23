@@ -2,7 +2,6 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsCoType
 import Formalism.LocalToGlobal.Columns.HeckeSp
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SumRepsDatumEq
-import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LowerDiagonalBlockAsGLMemIntegralGeneralLinear
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HeckeIdentityIntegral
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.GenValAddSegL
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsParahoricAndIntegralGLDoubleCosetReps
@@ -10,6 +9,7 @@ import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.InSuppMulL
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.OmTwoTorusLeft
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SumNegIndic
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SumEqGenVal
+
 open MeasureTheory ValuativeRel Matrix GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.Doubling GlobalTheory.GLDoubling GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection GlobalTheory.ZonalCellDecomposition GlobalTheory.SatakeBound GlobalTheory.ParHecke
 
 noncomputable section

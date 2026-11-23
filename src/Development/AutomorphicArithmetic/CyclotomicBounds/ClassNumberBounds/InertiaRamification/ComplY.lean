@@ -2,7 +2,6 @@ import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.Iner
 import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.InertiaRamification.LocDiffY
 import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.InertiaRamification.FieldDefs
 import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.InertiaRamification.EmbDefY
-import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.HeckeCharacterChoice.SplitDef
 
 namespace KStar.Ram
 

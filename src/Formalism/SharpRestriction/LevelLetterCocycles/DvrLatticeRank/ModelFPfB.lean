@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelFPfA
+import Formalism.SharpRestriction.LevelLetterCocycles.DownSlotProposition
 import Formalism.SharpRestriction.LevelLetterCocycles.MapCompZero
 
 noncomputable section

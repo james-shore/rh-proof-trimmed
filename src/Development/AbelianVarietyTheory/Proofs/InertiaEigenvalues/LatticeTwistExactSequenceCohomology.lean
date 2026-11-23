@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle
-import Formalism.GaloisCohomology.LocalTateDualityK
 
 noncomputable section
 

@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.GlobalFields.ComplexMultiplication.AlgebraicityGalois
+import GroundTheory.GlobalFields.ComplexMultiplication.AlgebraicityHom
 
 open NumberField Module WeierstrassCurve GroundTheory.Arith.Abelian IntermediateField Polynomial
 

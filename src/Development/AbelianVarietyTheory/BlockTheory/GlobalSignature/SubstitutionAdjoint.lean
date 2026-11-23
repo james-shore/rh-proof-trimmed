@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.KernelLattices.ThDistC
+import Formalism.HermitianLattices.HermitianLatticesProofs.UnimodUnramUnique
 
 open NumberField IsDedekindDomain MvPolynomial
 open scoped Matrix

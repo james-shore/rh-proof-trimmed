@@ -1,11 +1,8 @@
 import Formalism.FormalDegreeBessel.FormalDegreeRatio.WRWeyl
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.RuleGD
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.RuleSS
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.RuleInv
 import Formalism.FormalDegreeBessel.FinalIO
-import Formalism.FormalDegreeBessel.FinalBF
 import Formalism.SharpRestriction.CuspSpanNormBounds.ChoiceOfModulusAndDiscriminant
 import Formalism.SharpRestriction.CuspSpanNormBounds.RadialRules
+import Formalism.HermitianCurvature.StatementR
 
 open scoped ContDiff Topology
 open Filter

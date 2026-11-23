@@ -1,11 +1,7 @@
 import Formalism.SharpRestriction.GlobalSchurBounds.GL3Theta
-import Formalism.SharpRestriction.GlobalSchurBounds.GL3Columns
-import Formalism.SharpRestriction.GlobalSchurBounds.ShortIntervalPrimes
-import Mathlib
 import Formalism.SharpRestriction.GlobalSchurBounds.KernelEntryData
 import Formalism.SharpRestriction.GlobalSchurBounds.FirstClaimLemmaTwoFourOfLemmaTwoThree
 import Formalism.SharpRestriction.DesignExistsOfChoices
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.NormOnePowerPrincipal.PowPrincipal
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalBasisAtPrime.MemPrimeComplIff
 
 namespace Formalism.MainNotions.GL3Theta

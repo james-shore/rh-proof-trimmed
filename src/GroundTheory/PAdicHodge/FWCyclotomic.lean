@@ -1,8 +1,6 @@
 import Mathlib
 import GroundTheory.PAdicHodge.FWCyclotomicNorm
 import GroundTheory.PAdicHodge.FWGalois
-import GroundTheory.PAdicHodge.FWCharP
-import GroundTheory.PAdicHodge.PerfectoidCriterion
 
 set_option maxSynthPendingDepth 1
 

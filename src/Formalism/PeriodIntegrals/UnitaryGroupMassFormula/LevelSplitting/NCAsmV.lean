@@ -1,6 +1,7 @@
 import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelSplitting.NCDefs
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelSplitting.SemiAlg
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LevelSplitting.FiniteAdelesSecondCountable
 
 noncomputable section
 

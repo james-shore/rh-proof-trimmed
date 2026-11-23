@@ -1,9 +1,9 @@
 import Mathlib
-import Formalism.LocalToGlobal.ProjectiveLattices.CrudeVal
+import Formalism.LocalToGlobal.ProjectiveLattices.PlaceBelow
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.HasMultiplier
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ConjEmbRtOfNe
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.OverLaUnique
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IntegralClosureHeightEqOneOfLiesOver
+import Development.AbelianVarietyTheory.Proofs.HermitianTraceForms.IsLocallyConstantRankAtStalkEigenSub
+import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.InstFintypeSumElim
 
 noncomputable section
 

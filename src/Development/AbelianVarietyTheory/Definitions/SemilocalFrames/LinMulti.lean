@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
-import Formalism.PeriodIntegrals.BesselMapUniq
+import Formalism.PeriodIntegrals.UpqRep
 
 noncomputable section
 

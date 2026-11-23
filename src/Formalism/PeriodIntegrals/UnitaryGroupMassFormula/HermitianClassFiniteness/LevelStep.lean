@@ -1,4 +1,6 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HermitianClassFiniteness.LevelB
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.LocalAlgebraInertPrime
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelv
 
 noncomputable section
 

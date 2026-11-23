@@ -1,5 +1,5 @@
 import Formalism.LocalToGlobal.CharacterGerms.ScaledSecondIntegral
-import Formalism.LocalToGlobal.CharacterGerms.BiadditiveInSingleVariables
+import Formalism.IncomingBounds.StatementThmP
 
 noncomputable section
 

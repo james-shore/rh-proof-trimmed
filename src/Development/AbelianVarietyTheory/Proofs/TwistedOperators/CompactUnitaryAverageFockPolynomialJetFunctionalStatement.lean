@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CompactUnitaryAverageFockPolynomialJetFunctional
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.EvalAtOneExtremalMul
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TotalDegreeSubstFLe
-import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MvZOneEqMapUnivSubst
 
 open Formalism.BasicNotions Formalism.L2.DIV MeasureTheory
 open scoped Matrix

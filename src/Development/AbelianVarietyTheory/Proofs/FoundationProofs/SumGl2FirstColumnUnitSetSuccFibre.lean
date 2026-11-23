@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.PieceEqPieceT
+import Development.AbelianVarietyTheory.Definitions.Foundations.Integral
 
 noncomputable section
 

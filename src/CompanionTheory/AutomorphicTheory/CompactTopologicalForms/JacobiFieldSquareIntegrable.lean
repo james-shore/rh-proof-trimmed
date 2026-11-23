@@ -1,7 +1,7 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutLimENF
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutFpmDecay
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.BetaCutoffLimit
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutERAsm
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.cut_PtwCut
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutERComm
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutERCapAdjAsm
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutERCapAdjS
 

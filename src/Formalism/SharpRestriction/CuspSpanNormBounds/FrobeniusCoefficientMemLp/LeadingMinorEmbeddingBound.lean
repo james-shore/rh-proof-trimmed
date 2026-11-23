@@ -1,6 +1,4 @@
 import Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.ProdLeProdSubOneLe
-import Formalism.SharpRestriction.CuspSpanNormBounds.GramProductLeHeightBoundTwo
-import Formalism.SharpRestriction.CuspSpanNormBounds.CongruenceAtSplitFrobeniusHolds
 
 set_option linter.unusedVariables false
 

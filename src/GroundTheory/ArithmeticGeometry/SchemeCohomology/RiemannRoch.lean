@@ -1,11 +1,10 @@
 import Mathlib
-import GroundTheory.ArithmeticGeometry.SchemeCohomology.QuotEqZeroOfNotPrimeDivisor
+import GroundTheory.ArithmeticGeometry.SchemeCohomology.CurveCohomology
 import GroundTheory.ArithmeticGeometry.SchemeCohomology.CurveDivisors
 import GroundTheory.FunctionField.ExistsBoundDegSubFinrankL
 import GroundTheory.ArithmeticGeometry.SchemeCohomology.CurveCanonical
 import GroundTheory.ArithmeticGeometry.SchemeCohomology.CurveFunctionField
 import GroundTheory.ArithmeticGeometry.SchemeCohomology.CurveProper
-import GroundTheory.FunctionField.WeilDifferential
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Topology Module MonoidalCategory
 

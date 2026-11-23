@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedQuadraticUniformizerTraceNorm
-import GroundTheory.LocalFields.UnramifiedNormSurj
-import GroundTheory.LocalFields.UnramifiedGalois
 
 open ValuativeRel
 set_option maxHeartbeats 1000000 in

@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IndepOfGqNeZero
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.IsMassConst
-import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.FractionFieldToGenericStalkAlgebraMapEq
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DiagMemCongruencePairs
 
 noncomputable section
 

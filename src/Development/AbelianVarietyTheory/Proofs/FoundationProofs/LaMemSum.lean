@@ -1,5 +1,4 @@
 import Development.AbelianVarietyTheory.Definitions.Foundations.NormSumPairRankZeroOfCurveCoordNorm
-import Formalism.PairingDivisors.StatementH
 
 namespace GlobalTheory.LatticeSumMembership
 

@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.SharpRestriction.CuspSpanNormBounds.IsTermOver
+import Formalism.SharpRestriction.CuspSpanNormBounds.FractionFieldToGenericStalkAlgebraMapEq
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.T2SpaceOfIsNonarchimedeanLocalFieldFlagMeasures
 
 open ValuativeRel Formalism.MainNotions.S Formalism.MainNotions.S.Loc MeasureTheory

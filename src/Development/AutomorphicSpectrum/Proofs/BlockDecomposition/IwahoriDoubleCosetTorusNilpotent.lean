@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiagPairs
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MeasureCballZpow
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.GindikinKarpelevich
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IwahoriTraceOfBorelCasselman
 
 noncomputable section
 

@@ -1,6 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.FactorsLEOfIndex
 import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.FinrankTensor
-import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.InvariantSectionsTransportGL
 
 noncomputable section
 

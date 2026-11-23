@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.MinkowskiDividesFactorialOfBound
-import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.NcardPrimesOverOfSplitsCompl
 import Formalism.FlagUnipotentLattices.CardSubgroupsOfIndexLe
 
 noncomputable section

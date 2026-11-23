@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.SecondCountableAndT2LocalField
+import Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace
 
 noncomputable section
 

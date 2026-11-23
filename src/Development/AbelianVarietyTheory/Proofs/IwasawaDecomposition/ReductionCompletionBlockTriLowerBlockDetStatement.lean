@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ReductionCompletionBlockTriLowerBlockDet
-import Formalism.LocalToGlobal.Divisibility.DefGroup
-import Formalism.LocalToGlobal.GaloisLevelStructure.DefsLevel
-import ReciprocityTheory.Automorphisms.SplitCoeAlgebraMap
 
 open NumberField IsDedekindDomain Formalism.L2 Formalism.L2.DIV
 

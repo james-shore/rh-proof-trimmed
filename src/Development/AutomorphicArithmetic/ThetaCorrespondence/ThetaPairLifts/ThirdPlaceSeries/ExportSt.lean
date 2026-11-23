@@ -1,6 +1,6 @@
 import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.SingleIndexPlacesAreTwisted
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Realised
+import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.ONPage
 
 set_option synthInstance.maxHeartbeats 200000
 

@@ -1,4 +1,4 @@
-import ReciprocityTheory.L2DbarEstimates.JacobianInterpolationStatement
+import ReciprocityTheory.L2DbarEstimates.IsLocalHomeomorph
 
 universe u
 

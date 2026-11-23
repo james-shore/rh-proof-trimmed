@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsSymmetricElementaryDivisorsUnitary
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HeckeVecMemFixed
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsAntiJFrame
 
 open Formalism.UG GlobalTheory.PRep GlobalTheory.LFun
 set_option maxHeartbeats 1000000 in

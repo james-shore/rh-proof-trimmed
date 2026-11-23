@@ -1,7 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsoRows
-import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.HaarMapLinearScalingByDeterminant
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LcscAdelicUnitaryGroup
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
+import Formalism.UnipotentAdelicQuotients.SWXSDefs
 
 noncomputable section
 

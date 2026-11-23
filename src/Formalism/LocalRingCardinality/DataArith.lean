@@ -2,7 +2,6 @@ import Mathlib
 import Formalism.LocalRingCardinality.Params
 import Formalism.HarderNarasimhan.StatementPl
 import Formalism.HarderNarasimhan.QuotRealize
-import Formalism.CorankShare.StatementFR
 
 open Module NumberField IsDedekindDomain
 

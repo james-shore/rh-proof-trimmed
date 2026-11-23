@@ -1,12 +1,12 @@
-import Formalism.LocalToGlobal.Columns.HeckeSp
+import Mathlib
+import Formalism.LocalToGlobal.Columns.RhoEqOfSmulEq
 import Formalism.LocalToGlobal.Columns.StdLatUnimodular
+import Formalism.LocalToGlobal.Columns.DecoFin
 import Formalism.LocalToGlobal.Columns.Adelic
-import Formalism.LocalToGlobal.Columns.ScaledRamifiedLattice
-import Formalism.LogVandermondeBounds.LogRatioLowerBound
-import Formalism.GradedWeylDivisibility.StatementD
-import Formalism.HermitianLattices.StatementMass
-import Formalism.FlagUnipotentLattices.MemOfOrthogonalAnisotropic
+import Formalism.LocalToGlobal.Columns.ColForms
+import Formalism.LocalToGlobal.Columns.AlgebraMapMemMaximalIdealPowIff
 import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
+import Formalism.LogVandermondeBounds.LogRatioLowerBound
 
 noncomputable section
 

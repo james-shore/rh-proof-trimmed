@@ -1,4 +1,5 @@
 import Formalism.YangianSpanCharacter.ExchangeGen
+import Formalism.YangianSpanCharacter.StatementT
 
 namespace Formalism.FourierDecayAlt.W
 

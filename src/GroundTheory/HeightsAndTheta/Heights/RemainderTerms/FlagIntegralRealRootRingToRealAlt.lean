@@ -1,6 +1,8 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.IsPowerSumDecompositionHomogeneousComponent
 import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.FlagIntegralRealEqMulDdConst
+import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.FlagBasic
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.RestTerms

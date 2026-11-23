@@ -1,7 +1,6 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.PlurisubharmonicCones.Imports
 import Development.WeilBound.CoreStatements.PlurisubharmonicCones.ExistsJoin
-import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.Birational
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptGoodReductionDegreeStatement
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptLabelBasesStatement
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptBirationalArithVarStatement

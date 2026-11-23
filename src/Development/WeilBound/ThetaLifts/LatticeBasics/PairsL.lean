@@ -1,8 +1,8 @@
 import Development.WeilBound.ThetaLifts.LatticeBasics.PairsStable
-import Development.WeilBound.ThetaLifts.LatticeBasics.PairsD
 import Development.WeilBound.ThetaLifts.ConeHypotheses.PureEqPureA
 import Development.WeilBound.ThetaLifts.CartanFactorisation.CartanConj
 import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.InertDef
+import Development.WeilBound.ThetaLifts.LatticeBasics.PairsD
 
 noncomputable section
 

@@ -1,8 +1,8 @@
 import Mathlib
-import Development.ResolutionOfSingularities.Foundations.Blowup.BlowupProperties
 import Development.ResolutionOfSingularities.Foundations.BlowupUniversalProperty
 import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionOfSingularities
 import Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.StrictNormalCrossings
+
 universe u
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace

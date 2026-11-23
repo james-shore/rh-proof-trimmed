@@ -1,5 +1,8 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.NormLineSectionPow
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.PolyL2EqSqrtCoeffSum
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.MinkSat
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.SatDegLe
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.HupsChooseRatio
 
 namespace ReciprocityTheory.ChartRestriction.G.T0
 

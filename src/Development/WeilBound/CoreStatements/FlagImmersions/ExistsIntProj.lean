@@ -1,6 +1,5 @@
 import Development.WeilBound.CoreStatements.FlagImmersions.FibSandwich
 import Development.WeilBound.CoreStatements.HodgeTatePoints.GhModel
-import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DifferentGeneratorDualIntegral
 
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedSectionVars false

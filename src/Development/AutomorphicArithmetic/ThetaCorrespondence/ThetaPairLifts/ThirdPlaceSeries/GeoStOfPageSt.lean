@@ -1,8 +1,8 @@
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeometricFromPageEstimate
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExportSt
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Realised
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Links2OfRowsStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeavesSupSpanData
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasIndexBoundOfRuns
 
 set_option synthInstance.maxHeartbeats 200000
 

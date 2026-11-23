@@ -1,7 +1,7 @@
-import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.Bracket
+import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.NotKept
+import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.CoarseDegreesLargeBeyond
 import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.PairFacts
 import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.WtBound
-import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.KeptBlocksOfSLine
 
 noncomputable section
 

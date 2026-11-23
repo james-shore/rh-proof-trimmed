@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.EvAtParabNeZero
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPermMatrixRepParabolicDoubleCoset
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IwasawaBlockTriangular
 
 noncomputable section
 

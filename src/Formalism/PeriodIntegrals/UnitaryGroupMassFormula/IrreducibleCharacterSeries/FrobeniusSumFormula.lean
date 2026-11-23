@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IrreducibleCharacterSeries.IrrCharIff
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IrreducibleCharacterSeries.ConjugateCharacterFormula
+import Formalism.LocalToGlobal.UnitaryNorms.RealCyclotomicTwoPower
+import Formalism.PadicSubsetSums.CentralIdempotents.IsConstituent
 
 noncomputable section
 open CategoryTheory Formalism.IrreducibleCountingLemmas.TYPES

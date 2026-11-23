@@ -1,4 +1,5 @@
 import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.AwayInC
+import Formalism.LocalToGlobal.ProjectiveLattices.ThGerm
 
 noncomputable section
 

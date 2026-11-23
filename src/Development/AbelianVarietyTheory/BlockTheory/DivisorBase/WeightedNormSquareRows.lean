@@ -1,9 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.Divisibility.DivisionHeightBoundStatement
 import Formalism.LocalToGlobal.Divisibility.Numbers
-import Formalism.LocalToGlobal.Columns.FiniteSumNonzeroLargeDepth
-import Formalism.LocalToGlobal.Columns.ToHLat
-import Formalism.LocalToGlobal.Columns.RowFormsLemmas
+import Formalism.LocalToGlobal.Columns.DecorationStabilizerTrivialUnipotent
 
 open NumberField IsDedekindDomain
 

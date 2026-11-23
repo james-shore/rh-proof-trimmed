@@ -1,8 +1,6 @@
-import Formalism.PeriodIntegrals.WeylForU
-import Formalism.PeriodIntegrals.UnitaryDense
-import Formalism.PeriodIntegrals.HwIrred
-import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
-import Formalism.GradedWeylDivisibility.FinalC
+import Formalism.PeriodIntegrals.UpqRep
+import Formalism.LocalRingCardinality.DataCoeff
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LRowdivLemmas
 
 noncomputable section
 

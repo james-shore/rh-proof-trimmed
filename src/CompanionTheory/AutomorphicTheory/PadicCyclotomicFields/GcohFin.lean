@@ -1,5 +1,4 @@
 import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohCmp
-import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohTateA
 
 open CategoryTheory GroundTheory.ProfCoh ReciprocityTheory.Gal ValuativeRel Formalism.GaloisCohomology
 

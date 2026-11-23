@@ -1,7 +1,5 @@
 import Mathlib
-import Formalism.QuotientMetricDivisors.StatementJ
-import Formalism.QuotientMetricDivisors.StatementK
-import Formalism.QuotientMetricDivisors.RatHermLcvTwist
+import Formalism.QuotientMetricDivisors.Statement
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder

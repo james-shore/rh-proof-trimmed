@@ -1,5 +1,8 @@
 import Formalism.BranchSandwichDivisors.StatementW
 import Formalism.GradedWeylDivisibility.FinalD
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LClosedeqLemmas
+import Formalism.GradedWeylDivisibility.FinalB
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LDrowLemmas
 
 open MvPolynomial Formalism.GradedWeylDivisibility
 open Formalism.REAL

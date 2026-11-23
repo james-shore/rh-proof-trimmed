@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.ThShort
-import Formalism.LocalToGlobal.ProjectiveLattices.IsLevMove
-import Formalism.LocalToGlobal.ProjectiveLattices.ThGerm
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
 
 set_option autoImplicit false
 

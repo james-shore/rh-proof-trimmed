@@ -5,7 +5,6 @@ import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.GaloisSideT
 import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.TameGeneratorProjectors
 import Development.AbelianVarietyTheory.BlockTheory.TorsionBlocks.JumpDictionary
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InertialOrderFifteenCharAuxiliaryPrimeSpec
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PolarizedGaloisRep
 
 noncomputable section
 

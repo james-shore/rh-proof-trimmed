@@ -1,7 +1,9 @@
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Decomp
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.Unitary
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.TraceFormulaA
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.TraceFormulaM
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.TraceFormulaJ
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.TraceFormulaK
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdegTransfer
 
 noncomputable section
 

@@ -1,6 +1,5 @@
-import Formalism.NormUnitaryBounds.Statement
+import Mathlib
 import Formalism.LatticeSlopes.CovolAntiSameRank
-import Formalism.LatticeSlopes.LatticeSlopesProofs.DiscreteTopologyOfLe
 import Formalism.LatticeSlopes.LatticeSlopesProofs.CovolEqGram
 import Formalism.LatticeSlopes.LatticeSlopesProofs.CovolPos
 import Formalism.LatticeSlopes.LatticeSlopesProofs.CovolEqCovolume

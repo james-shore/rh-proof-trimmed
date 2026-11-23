@@ -1,10 +1,12 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CosetRefinement
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.TopPlaceLogTheta
 import Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.PeriodRelations.Period
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MeanLogPeriodConjugatesEqChowlaSelberg
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.InducedTypeThetaGenusOnePermutes
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ExistsPowPrincipalFractionalIdeal
+import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.MeanPeriodLogarithms
+import Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.EpsteinZeta.LatITopBasis
+import Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.DifferentIdeal.AbsNormInvMulDifferent
 
 noncomputable section
 

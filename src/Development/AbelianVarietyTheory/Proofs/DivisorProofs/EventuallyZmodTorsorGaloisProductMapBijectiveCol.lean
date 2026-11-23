@@ -1,6 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsZModTorsorIff
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BijectiveBaseChangeDescendsFilteredColimitStatement
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorsorsTrivialIff
+
 open CategoryTheory Limits TensorProduct
 
 namespace GlobalTheory.TorsorColim

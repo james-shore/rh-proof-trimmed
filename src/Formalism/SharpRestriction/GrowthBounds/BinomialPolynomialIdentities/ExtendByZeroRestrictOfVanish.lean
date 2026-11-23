@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.PeBnOfLt
+import Formalism.ThetaLogCoordinates.JacobiPathWeights.PathBasisTheorem
 
 noncomputable section
 

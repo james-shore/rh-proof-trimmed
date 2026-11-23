@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.CharacterGerms.RowTieCuts
+import Formalism.LocalToGlobal.CharacterGerms.RowTieVal
 
 set_option autoImplicit false
 

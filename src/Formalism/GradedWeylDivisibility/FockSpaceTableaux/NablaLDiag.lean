@@ -1,4 +1,4 @@
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.NablaLBasis
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LDlatLemmas
 
 open MvPolynomial
 

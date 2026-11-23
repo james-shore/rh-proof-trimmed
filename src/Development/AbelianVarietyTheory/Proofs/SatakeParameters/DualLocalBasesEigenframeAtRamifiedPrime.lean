@@ -3,7 +3,7 @@ import Formalism.SharpRestriction.Divisibility.OrbitPlaces
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussianEigenFrames.StatementJ
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.StdBases
 import Formalism.LocalToGlobal.KernelLattices.KerStd
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ThetaZJetsThree
+import Formalism.SharpRestriction.GlobalSchurBounds.GL3Columns
 import Formalism.LocalToGlobal.InertKernelTheory.StatementIota
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ColR
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.InertiaInvolutionRealPlacePairsStatement
@@ -15,6 +15,7 @@ import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DualFrameColumns
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DualLocalBasesPairDualModRootMinusDStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PairEmbeddingsCongrModRootMinusDStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DualFramePairedBlocksDiagonalModRootStatement
+
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker Formalism.L2.Col Classical
 open Formalism.L2.Th1.H (cmL CmOK matH IsIsom taylorMv)
 open Formalism.L2.Th1.GD (LocNorm InMul frameM thetaLin)

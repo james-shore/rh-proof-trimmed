@@ -1,6 +1,6 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.AnisotropicUnitaryCompact
-import GroundTheory.AutomorphicForms.AnisotropicDivisionCompact
+
 set_option maxSynthPendingDepth 1
 
 open Module Matrix TensorProduct Topology NumberField IsDedekindDomain

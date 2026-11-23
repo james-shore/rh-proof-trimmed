@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.SquareSplitPairs.SumThreeComm
+import Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.SquareSplitPairs.HomLMulPres
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsSmulMemLattice
 
 noncomputable section

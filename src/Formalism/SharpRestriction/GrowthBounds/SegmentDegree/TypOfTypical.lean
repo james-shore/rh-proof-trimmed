@@ -1,4 +1,7 @@
 import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.ProdIccOneEqProdRange
+import Formalism.ThetaLogCoordinates.ResidueClassEstimates.FinalT
+import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.TypicalPathOrdersSmall
+import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.WindowSmall
 
 noncomputable section
 

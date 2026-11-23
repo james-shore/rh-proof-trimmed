@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.SatakeDualWeyl.Statement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemMatLat
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharpolyEqPowOfIrreducible
 

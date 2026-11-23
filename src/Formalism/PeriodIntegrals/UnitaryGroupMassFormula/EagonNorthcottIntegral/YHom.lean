@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.PeriodIntegrals.EagonNorthcottZ
 
 noncomputable section
 

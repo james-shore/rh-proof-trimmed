@@ -1,4 +1,4 @@
-import Formalism.PeriodIntegrals.FockDegreeTwoParts
+import Formalism.PeriodIntegrals.JointBlockShapes.JointShape
 
 noncomputable section
 

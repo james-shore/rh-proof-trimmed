@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasDivPlace
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PowEqPowOfModEqSim
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntegralAdeleLimitCompatibleIntSystemStatement
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsDefiniteDatumGoodObj
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompactSpaceIntegers
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField

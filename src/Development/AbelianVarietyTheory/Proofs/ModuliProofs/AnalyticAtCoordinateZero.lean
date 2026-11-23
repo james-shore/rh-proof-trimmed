@@ -1,6 +1,6 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsHolPeriods
-import Development.AbelianVarietyTheory.Proofs.ToricGeometry.TangentBijectionOfValues
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.GlobalSectionsRankAlgClosed
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.EventuallyEqOfAdditiveOfHasFDerivAt
 
 noncomputable section

@@ -1,11 +1,10 @@
 import ReciprocityTheory.GroupCohomology.TransgressionStatement
 import ReciprocityTheory.GroupCohomology.DEqZeroOfMemB
-import ReciprocityTheory.GroupCohomology.LowHolds
-import ReciprocityTheory.GroupCohomology.LowNat
+import ReciprocityTheory.GroupCohomology.ComapZeroCoboundariesEqBot
 import ReciprocityTheory.GroupCohomology.ConnNatHolds
 import ReciprocityTheory.GroupCohomology.PairHomFCoeOfId
 import ReciprocityTheory.GroupCohomology.InfRes
-import ReciprocityTheory.GroupCohomology.ResNormalHolds
+import ReciprocityTheory.GroupCohomology.PartialProdCoe
 
 namespace ReciprocityTheory.Coh
 

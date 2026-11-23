@@ -1,6 +1,4 @@
-import Formalism.SubspaceCounting.GoodOrbitIntervalTileCondition
-import Mathlib
-import Formalism.ThetaLogCoordinates.ProductIdealMonotone.ParamDefs
+import Formalism.SubspaceCounting.Statement
 
 noncomputable section
 

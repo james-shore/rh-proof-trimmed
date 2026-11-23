@@ -1,7 +1,5 @@
 import Mathlib
-import ReciprocityTheory.DualLattices.CotangentSurjective
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsTight
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.StepOrderRes
+import Development.WeilBound.CoreStatements.HodgeTatePoints.RbProj
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FundamentalIdealFrobeniusPowersStatement
 import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.XXgrROm
 

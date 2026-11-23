@@ -3,7 +3,6 @@ import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsTwiceDifferen
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.CompRightEqZero
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.KappaSt
 import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsFibreLocal
-import GroundTheory.HeightsAndTheta.Heights.Antisymmetric.Statements
 import ReciprocityTheory.AnalyticForms.LeviForms.HomDens
 import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
 

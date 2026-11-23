@@ -3,6 +3,7 @@ import GroundTheory.GlobalFields.ComplexMultiplication.FrobeniusAtPrimesIsogeny
 import GroundTheory.GlobalFields.ComplexMultiplication.FrobeniusAtPrimesLocal
 import GroundTheory.GlobalFields.ComplexMultiplication.BadPrimesFinite
 import GroundTheory.GlobalFields.ComplexMultiplication.AlgebraicityDescent
+import GroundTheory.GlobalFields.ComplexMultiplication.AlgebraicityGalois
 
 namespace GroundTheory.Global
 namespace Elliptic

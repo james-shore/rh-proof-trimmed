@@ -1,6 +1,4 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.ExistsGoodPlacesEveryConjugate
-import Formalism.SharpRestriction.SmoothDesignExistence.DGamSmooth
-import Formalism.SharpRestriction.LevelLetterCocycles.TwGood
 
 noncomputable section
 

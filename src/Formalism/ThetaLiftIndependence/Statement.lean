@@ -1,8 +1,5 @@
 import Mathlib
 import Formalism.HermitianLattices.StatementLat
-import Formalism.AlphaUniqueness.Statement
-import Formalism.LatticeTheta.Statement
-import Formalism.SatakeDualWeyl.Statement
 
 noncomputable section
 

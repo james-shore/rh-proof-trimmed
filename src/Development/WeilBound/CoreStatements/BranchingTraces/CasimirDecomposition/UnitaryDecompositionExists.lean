@@ -1,4 +1,5 @@
 import Development.WeilBound.CoreStatements.BranchingTraces.CasimirDecomposition.ExtensionFixesSmoothVectors
+import Formalism.SharpRestriction.CuspSpanNormBounds.NonemptyParameterModels.NumericSettingWithGapSatisfiable
 
 open Matrix Finset
 open scoped InnerProductSpace Classical

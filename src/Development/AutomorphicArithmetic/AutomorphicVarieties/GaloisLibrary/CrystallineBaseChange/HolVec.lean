@@ -3,6 +3,7 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.Crys
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.CrystallineBaseChange.LieX0EqRaisingLowering
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.CrystallineBaseChange.Sl2Low
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.CapCentral
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.PBCLat
 
 noncomputable section
 

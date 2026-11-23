@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.Divisibility.OrbitPlaces
 import Formalism.LocalToGlobal.GroupLattices.PendingLemmas.ExistsCoprimePowEqOne
-import Formalism.SharpRestriction.ParConsts
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsPlaceCofactorValuationLowerBound
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ModelsOK
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.Cobdry
@@ -11,7 +10,6 @@ import Development.AbelianVarietyTheory.Proofs.SatakeParameters.OrbitBoundOverSe
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FockRowsOfFillsStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ServedPrimePropertiesStatement
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CofactorLowerBoundOfPlaceBoundWittStatement
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.HasSubstCoordZA
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CoeffApplyDPIvOfKvalGe
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.FormalGroupSystem Formalism.FrobeniusOrbits GlobalTheory.TwU Classical

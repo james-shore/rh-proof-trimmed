@@ -1,4 +1,4 @@
-import ReciprocityTheory.SemistableReduction.SemiDegE
+import ReciprocityTheory.SemistableReduction.SemiDegSt
 
 noncomputable section
 

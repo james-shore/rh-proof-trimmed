@@ -1,7 +1,7 @@
 import Formalism.LocalToGlobal.InertKernelTheory.OneCopyTh1S
 import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.MMModel
 import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.SigmaAlg
-import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.AnalyticIdentityTheorems.LatticeOnly
+import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.NonsingularJetNorms.Joints
 
 noncomputable section
 

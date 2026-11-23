@@ -2,9 +2,6 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.EpsZeroCompOfIsTanAtG
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsBlockMetricDiagForm
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsCommonModOfIsDiag
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUniqueTangentOfValues
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TanEvBaseChange
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TanEvLinearCombination
 
 set_option autoImplicit false
 

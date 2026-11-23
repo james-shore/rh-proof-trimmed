@@ -1,13 +1,7 @@
 import Formalism.GaussJetBounds.GenLogInverse
-import Formalism.GaussJetBounds.StatementE
+import Formalism.GaussJetBounds.StatementA
 import Formalism.GaussJetBounds.GaussJetProofs.SubstitutionWeightBound
 import Formalism.GaussJetBounds.GaussJetProofs.PureCrossTermWeight
-import Formalism.GaussJetBounds.GaussJetProofs.AsmRDotAddRight
-import Formalism.GaussJetBounds.GaussJetProofs.OneLetterRadiusIdentity
-import Formalism.IncomingBounds.WeightIdentities
-import Formalism.GaussJetBounds.OneLetterRadius
-import Formalism.GaussJetBounds.GaussJetProofs.FrameCoeffMulLin
-import Formalism.GaussJetBounds.GaussJetProofs.CapacityLeReachCapacity
 
 noncomputable section
 open scoped BigOperators

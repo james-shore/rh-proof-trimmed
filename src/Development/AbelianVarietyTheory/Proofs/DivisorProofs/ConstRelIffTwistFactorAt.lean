@@ -6,6 +6,7 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsFinitePlac
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HeckeCharEqProdLocalComponentsApproximating
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FiniteIdeleExistsLocalApprox
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HeckeCharEqOneOfTrivialFinitePartOne
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTwistColumns
 
 set_option autoImplicit false
 

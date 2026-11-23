@@ -4,6 +4,8 @@ import GroundTheory.ProfiniteCohomology.RestrictedRamification.MkFiniteEmbedding
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseCupKummer
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseKummer
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseCupGlob
+import GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseCupNat
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

@@ -1,5 +1,6 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.Objects
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.DenseChart
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

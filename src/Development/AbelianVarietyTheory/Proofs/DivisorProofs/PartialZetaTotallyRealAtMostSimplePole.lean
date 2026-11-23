@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.OmegaFactorization
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.PartialZetaFunctionalEquation
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KFacDifferentiable
 import ReciprocityTheory.Chebotarev.EulerSum
+
 open NumberField Complex Filter Topology
 open scoped nonZeroDivisors ContDiff
 open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization GlobalTheory.HeckeTwo

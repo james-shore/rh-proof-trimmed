@@ -1,5 +1,4 @@
 import ReciprocityTheory.SemistableReduction.SphereLogIntegrableStatement
-import ReciprocityTheory.SemistableReduction.SJCoreA
 
 noncomputable section
 

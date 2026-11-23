@@ -1,5 +1,5 @@
-import Formalism.LocalToGlobal.NumberFieldFamilies.NPartCNdStd
-import Formalism.LocalToGlobal.NumberFieldFamilies.GamCSpec
+import Formalism.LocalToGlobal.NumberFieldFamilies.NPartCNd
+import Formalism.LocalToGlobal.UnitaryNorms.RealCyclotomicTwoPower
 
 noncomputable section
 

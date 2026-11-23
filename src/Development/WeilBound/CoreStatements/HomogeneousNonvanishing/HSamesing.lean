@@ -1,6 +1,4 @@
 import Development.AutomorphicSpectrum.Statements.GeometryStatements.CmpPair
-import Development.AutomorphicSpectrum.Statements.GeometryStatements.CmpSt
-import Development.AutomorphicSpectrum.Statements.GeometryStatements.PadicIntegersHenselianFiniteResidue
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.Proportional
 
 open MvPolynomial AlgebraicGeometry CategoryTheory NumberField Filter Topology ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cmp

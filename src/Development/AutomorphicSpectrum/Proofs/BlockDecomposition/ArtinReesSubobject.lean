@@ -1,9 +1,8 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PowSubSuccLe
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SubobjectLeIffAffineSections
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecsMapArrow
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdealPowerSubobjectSections
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SubobjectPullbackSections
+
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry GroundTheory.Arith.SchemeCoh GlobalTheory.CompanionTheory.GE
 
 set_option autoImplicit false

@@ -1,8 +1,7 @@
 import Mathlib
 import GroundTheory.PAdicHodge.WAFracAnn
 import GroundTheory.PAdicHodge.WAPeriodT
-import GroundTheory.PAdicHodge.BCrisNewtonApprox
-import GroundTheory.PAdicHodge.ACrisGalois
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

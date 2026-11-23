@@ -1,7 +1,6 @@
 import Mathlib
 import GroundTheory.ArithmeticGeometry.SchemeCohomology.InvertibleSheaf
-import GroundTheory.ArithmeticGeometry.SchemeCohomology.WeilDivisor
-import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.Objects
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.Model

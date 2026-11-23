@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.FirstMinimumPos
+import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.GROWCountStatement
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.JetIndepStatement
 
 namespace ReciprocityTheory.ChartRestriction.G.AR

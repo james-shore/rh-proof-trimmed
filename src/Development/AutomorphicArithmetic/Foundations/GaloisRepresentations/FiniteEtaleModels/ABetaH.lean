@@ -1,6 +1,8 @@
 import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.FiniteEtaleModels.GalOfKer
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIntIntCast
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeVectorBundlePullback
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeEndomorphismIntegralApproximation
 
 set_option autoImplicit false
 

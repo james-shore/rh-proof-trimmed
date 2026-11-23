@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.CuspSpanNormBounds.IsPrimitiveSub
-import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.TermDef
+import Formalism.SharpRestriction.CuspSpanNormBounds.FlagEEqHyperbolic
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.NormRepresentationLift.ActsByFrameAct
 
 noncomputable section

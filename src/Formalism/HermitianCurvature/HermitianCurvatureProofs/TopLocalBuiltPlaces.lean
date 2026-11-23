@@ -1,4 +1,7 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.LamSumPos
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.SizeAtMinusW
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.LenEqLenI
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.LoeSubStates
 
 namespace Formalism.FourierDecayAlt.P.PBL
 

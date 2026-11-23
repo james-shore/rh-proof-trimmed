@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.PiTensorSubmoduleEqTopOfAbsolutelyIrreducibleSta
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FiniteSupport
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchurAndTensorSubmodule
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ScalarOfComm
 
 open scoped TensorProduct
 set_option maxHeartbeats 1000000 in

@@ -1,5 +1,5 @@
 import Mathlib
-import ReciprocityTheory.DualLattices.CharTableIsUnit
+import ReciprocityTheory.DualLattices.TensorSpan
 
 noncomputable section
 

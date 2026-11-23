@@ -7,6 +7,7 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups
 import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.GlobalEulerCharRatOfNeTwo
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.FrameCount
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.TateFin
+import Development.AbelianVarietyTheory.Proofs.HermitianTraceForms.ExistsOrthogonalBasisDotProductApplyEq
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N Formalism.BasicNotions Formalism.BasicNotions.Loc Matrix IsLocalRing Module
 open UpperTheory.V UpperTheory.V.Base UpperTheory.V.HV UpperTheory.V.Alg UpperTheory.V.U3

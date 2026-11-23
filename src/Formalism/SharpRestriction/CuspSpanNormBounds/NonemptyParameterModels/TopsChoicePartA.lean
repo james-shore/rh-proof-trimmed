@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.CuspSpanNormBounds.DiagonalEntryIdentity
+import Formalism.SharpRestriction.CuspSpanNormBounds.WeightedMirrorLevelOperator
 
 noncomputable section
 

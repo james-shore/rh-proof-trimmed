@@ -1,7 +1,6 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.AdelicUnitaryGroups.Restricted
-import GroundTheory.AutomorphicForms.AdelicUnitaryGroups.LatticeCompact
-import GroundTheory.AutomorphicForms.AdelicUnitaryGroups.Anisotropic
+import GroundTheory.GlobalFields.LocalAtPlace
 import GroundTheory.GlobalFields.Adele.Discrete
 import GroundTheory.GlobalFields.Adele.Topology
 

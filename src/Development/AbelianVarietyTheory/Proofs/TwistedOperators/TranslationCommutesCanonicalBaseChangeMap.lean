@@ -1,4 +1,5 @@
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsIsCan
+import Development.AbelianVarietyTheory.Definitions.ModuliSpaces.KerScheme
 
 set_option autoImplicit false
 

@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsCompactDualHaar
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.NonemptyCompactDualHaar
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousMatExp
 import ReciprocityTheory.GeometryOfNumbers.PluriharmonicAnalysis.LogDetSt

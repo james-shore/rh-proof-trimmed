@@ -1,5 +1,6 @@
 import Development.AutomorphicArithmetic.FrobeniusLocalisation.SizeDefs
 import Development.AutomorphicArithmetic.FrobeniusLocalisation.FrobGSpec
+import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.CoprimeTwoPow
 
 open UpperTheory.HF
 

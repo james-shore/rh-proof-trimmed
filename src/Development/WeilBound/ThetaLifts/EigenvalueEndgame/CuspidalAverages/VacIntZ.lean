@@ -3,6 +3,7 @@ import Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.PsiUnrOfNot
 import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.PfDictAd
 import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.LmOfLinBar
 import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.PfDictSec
+import Development.AutomorphicSpectrum.Proofs.MembershipProofs.ExistsInvariantForm
 
 noncomputable section
 

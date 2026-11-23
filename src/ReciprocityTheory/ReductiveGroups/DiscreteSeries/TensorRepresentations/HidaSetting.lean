@@ -1,6 +1,6 @@
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Resolvent
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Residue
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.RigidityTheorems.MultOne
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Residue
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.RigidityTheorems.IsInLieAlgebraISmulAddConjTranspose
 
 noncomputable section

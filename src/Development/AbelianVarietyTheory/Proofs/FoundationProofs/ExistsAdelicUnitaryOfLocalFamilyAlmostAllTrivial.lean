@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ReLatSelf
+import Formalism.SharpRestriction.GlobalSchurBounds.StandardLattice
 import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.AdelicUnitaryGroups
 import Formalism.LocalToGlobal.BesselHermitianTheta.IsAutFunDef
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsCuspFunIffConstTerm

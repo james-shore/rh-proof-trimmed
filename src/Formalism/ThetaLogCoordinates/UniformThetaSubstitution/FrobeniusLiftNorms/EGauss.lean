@@ -1,9 +1,6 @@
 import Mathlib
 import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.StatementG
-import Formalism.GaussJetBounds.GaussJetProofs.GField
-import Formalism.GaussJetBounds.GaussJetProofs.FJEval
-import Formalism.GaussJetBounds.GaussJetProofs.Labels
-import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.KOneConsequence
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.StatementE
 
 noncomputable section
 

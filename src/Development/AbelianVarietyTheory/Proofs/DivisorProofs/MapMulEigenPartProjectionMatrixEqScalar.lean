@@ -1,5 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsUnitTwoMulRhoSubTr
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MatActApply
+
 open Matrix NumberField GlobalTheory.UPel.HT GlobalTheory.UPel.HT.LieLin GlobalTheory.UPel.HT.LieLin.RankIdeal
 
 namespace GlobalTheory.UPel.HT.LieLin.RankIdeal

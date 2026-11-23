@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinHomIffLinEnd
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsProjOverWeierstrass
 
 noncomputable section
 

@@ -6,6 +6,8 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DeepLevelCoverPrinc
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumWeightSpreadLeExponentNormAdd
 import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.LogExpMulLeOfGeneratorSupBound
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsTotallyComplexExt
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsComponentWeight
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.MultAddMultConjugate
 
 open CategoryTheory AlgebraicGeometry NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Theta

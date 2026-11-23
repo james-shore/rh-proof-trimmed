@@ -1,5 +1,5 @@
 import Formalism.PeriodIntegrals.UJClassMass
-import Formalism.ThetaLiftIndependence.ThetaOrbitSums.LatLiftIndep
+import Formalism.HermitianLattices.StatementMass
 
 open NumberField Formalism.HermitianLatticesTheory Formalism.ThetaLiftIndependence
 

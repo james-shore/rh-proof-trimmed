@@ -5,8 +5,7 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedJacquetI
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsSmoothIterPhi
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AdjacentQuotientOfTwoSegment
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsCIndValue
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NonemptyEquivOfRangeEq
-import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.BernsteinZelevinskyGL.TopAdm
+import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.BernsteinExponentBounds.IsInvForm
 
 noncomputable section
 

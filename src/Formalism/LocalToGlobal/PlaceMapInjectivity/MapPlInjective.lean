@@ -1,4 +1,3 @@
-import Formalism.ConjugateSelfDual.StatementRest
 import Mathlib
 
 noncomputable section

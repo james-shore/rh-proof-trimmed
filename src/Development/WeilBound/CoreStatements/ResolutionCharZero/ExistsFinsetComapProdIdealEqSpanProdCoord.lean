@@ -1,8 +1,7 @@
 import Mathlib
-import Development.ResolutionOfSingularities.Statements
 import Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.StrictNormalCrossingsClopen
-import Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.StrictNormalCrossingsChartNormalization
 import Development.AutomorphicSpectrum.PublishedTheorems.Geometry₂.NotSubsetOfDenseCompl
+import Development.ResolutionOfSingularities.Statements
 
 universe u
 

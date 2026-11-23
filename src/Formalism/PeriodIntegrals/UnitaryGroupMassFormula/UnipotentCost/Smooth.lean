@@ -1,5 +1,5 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnipotentCost.LetterSize
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.SymmetricScalarBlockMatrixMul
+import Formalism.FormalDegreeBessel.FinalG
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.BetaSesquilinearity
 
 open Matrix Filter Topology

@@ -1,6 +1,6 @@
 import Formalism.LocalToGlobal.GlobalTheory.GL6.PBwDecomp
-import Formalism.LocalToGlobal.GlobalTheory.GL1.CompactFixesLattice.ExistsDenOfIsCompact
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsScale
+import Formalism.LocalToGlobal.GlobalTheory.GL1.CompactFixesLattice.ExistsDenOfIsCompact
 
 noncomputable section
 

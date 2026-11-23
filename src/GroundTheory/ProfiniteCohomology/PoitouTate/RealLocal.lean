@@ -1,8 +1,9 @@
 import Mathlib
-import GroundTheory.ProfiniteCohomology.PoitouTate.RealAbstract
+import GroundTheory.ProfiniteCohomology.PoitouTate.RealDefs
 import GroundTheory.ProfiniteCohomology.PoitouTate.BrauerInvZOfIsSepClosureCohomologyULiftIntAddEqu
 import GroundTheory.ProfiniteCohomology.RealPlaces.GSDefs
 import GroundTheory.ProfiniteCohomology.RealPlaces.LocalDualityPlace
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

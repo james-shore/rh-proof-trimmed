@@ -1,8 +1,8 @@
 import GroundTheory.HeightsAndTheta.Heights.LocalFiniteness.HilbertSamuelIrreducibleBasicOpenConnected
 import GroundTheory.HeightsAndTheta.Heights.LocalFiniteness.FieldNumbersSemilocalLengthSum
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PDivCycleMinimal
-import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PFibreRelDim
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PSemilocalLength
+
 set_option maxSynthPendingDepth 1
 
 theorem GroundTheory.Heights₂.Heights.AutoClose.FieldNumbers_SemilocalLength.{u} : GroundTheory.Heights₂.Heights.FieldNumbers.SemilocalLength.Statement.{u} :=

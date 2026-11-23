@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.GlobalTheory
+import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.DigitPartMonomial
 
 noncomputable section
 

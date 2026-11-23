@@ -1,8 +1,7 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
-import Formalism.LocalRingCardinality.AdicCompletionLocal.LocTied
+import Formalism.LocalRingCardinality.AdicCompletionLocal.InstIsAdicCompleteOCSpanSingletonSetCast
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TwistedModelAdmissibleCocycles
 
 noncomputable section
 

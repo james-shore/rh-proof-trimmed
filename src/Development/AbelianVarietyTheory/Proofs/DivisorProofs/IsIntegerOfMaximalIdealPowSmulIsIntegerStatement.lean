@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIntegerOfMaximalIdealPowSmulIsInteger
-import ReciprocityTheory.CommutativeAlgebra.CohenMacaulay.ModDepthGE
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RegularLocalRingNormalDomain
 
 open IsLocalRing TensorProduct Pointwise
 set_option maxHeartbeats 1000000 in

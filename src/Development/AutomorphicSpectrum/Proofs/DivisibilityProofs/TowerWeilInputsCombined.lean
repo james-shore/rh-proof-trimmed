@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.RefLinked
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSt
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagVarietyBoundaryDimensionDropStatement
 import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.TestHeightBoundStatement
 import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.FlagHeightLabelInvariantStatement
@@ -15,6 +14,7 @@ import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.FlagHeightI9Pro
 import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.TowerT1LimitStatement
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.DivSuppArithHolds
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsUniqueRationalStatementStatement
+
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Top
 
 namespace GlobalTheory.CompanionTheory.Ar.Top

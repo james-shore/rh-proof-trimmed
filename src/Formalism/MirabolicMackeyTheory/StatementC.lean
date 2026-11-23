@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.MirabolicMackeyTheory.StatementT
+import Formalism.QuotientMetricDivisors.Statement
 
 open Module NumberField IsDedekindDomain
 

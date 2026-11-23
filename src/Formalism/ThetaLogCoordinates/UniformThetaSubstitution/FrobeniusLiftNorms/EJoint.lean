@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.StatementE
-import Formalism.GaussJetBounds.GaussJetProofs.ConstantCoeffAevalLinP
+import Formalism.GaussJetBounds.Statement
+import Formalism.GaussJetBounds.StatementI
 
 noncomputable section
 

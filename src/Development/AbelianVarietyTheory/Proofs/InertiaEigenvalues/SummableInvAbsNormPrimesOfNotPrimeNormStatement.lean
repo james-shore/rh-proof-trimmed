@@ -1,7 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SummableInvAbsNormPrimesOfNotPrimeNorm
-import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.IdealCharacterLContinuationNeZeroOne
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InfinitelyManyPrimesInRayClass
+import Formalism.LatticeTheta.Statement
+import Formalism.LatticeTheta.LatticeThetaProofs.InnerDualVecBasis
+
 open NumberField IsDedekindDomain NumberField.mixedEmbedding Filter Topology Asymptotics Polynomial
 open scoped ContDiff Classical
 set_option maxHeartbeats 1000000 in

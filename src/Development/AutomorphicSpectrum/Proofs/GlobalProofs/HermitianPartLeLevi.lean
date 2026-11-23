@@ -1,7 +1,8 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsAdaptedEmpty
+import Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteDimensionalOfSlices
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.LeviEqISupParts
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsUnitOfComm
+
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

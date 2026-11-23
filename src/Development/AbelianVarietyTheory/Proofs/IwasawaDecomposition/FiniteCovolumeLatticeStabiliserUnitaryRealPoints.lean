@@ -4,7 +4,7 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsDataLa
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLeGramEqSgn
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsIntegralConj
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FiniteCovolumeRealPoints
-import Development.AbelianVarietyTheory.Definitions.Foundations.CdScaleTieIff
+import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.ExistsFiniteMeasureCoverOfDriftFunction
 
 namespace GlobalTheory.MixedSignature
 

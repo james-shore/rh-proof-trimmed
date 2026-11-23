@@ -1,4 +1,4 @@
-import Formalism.ThetaLogCoordinates.TraceIsometryWeights.StatementA
+import Formalism.ThetaLogCoordinates.TraceIsometryWeights.DivStable
 import Formalism.PolynomialDimension.MultinomialDepth.MonoCount
 
 namespace Formalism.InvariantFactorPaths.PW

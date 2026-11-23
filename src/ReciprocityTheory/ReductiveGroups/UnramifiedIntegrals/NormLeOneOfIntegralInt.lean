@@ -1,5 +1,5 @@
 import Mathlib
-import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ExistsTeichmullerRepModPrime
+import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.KurDefs
 
 noncomputable section
 

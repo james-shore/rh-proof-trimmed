@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.StabiliserCovolumeLeRootCoordinateCover
-import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.LoopTerm
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.OfRoots
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.MeasurePreservingAffine
 
 open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.TermTieOf Formalism.L2.SG.LoopTieOf
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

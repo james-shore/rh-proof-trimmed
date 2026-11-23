@@ -2,8 +2,8 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.JetSplitAmb
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ValidForConstructedPointClassesEventuallyWorking
 import Formalism.LocalToGlobal.GroupLattices.AdmissibleAtGeneratorPlaces
-import Formalism.SharpRestriction.AdmissibleParameterJoins.GandSaj
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PeriodValuationBoundTypePrimePlaceOfChainAgreemeStatement
+
 open Formalism.BasicNotions Formalism.MainNotions GlobalTheory.Fc GlobalTheory.Mem.Top GlobalTheory.AtG
 
 namespace GlobalTheory.AtG

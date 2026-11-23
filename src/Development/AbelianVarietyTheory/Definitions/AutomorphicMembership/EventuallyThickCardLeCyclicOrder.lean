@@ -2,7 +2,6 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.EvenCeil
 import Formalism.LocalToGlobal.Divisibility.Numbers
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.PairRowIffQdRows
 
 noncomputable section
 

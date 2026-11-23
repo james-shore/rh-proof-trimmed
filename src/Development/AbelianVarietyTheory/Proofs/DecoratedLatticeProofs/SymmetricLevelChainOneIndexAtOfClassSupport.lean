@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.AllPositions
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.EventuallyCompSideMulEq
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.UnipotentRadicalBasic
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.OpEOmTargetUnipotent
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntegralCompBlocks

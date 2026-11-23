@@ -1,11 +1,7 @@
 import Mathlib
 import Development.ResolutionOfSingularities.EmbeddedResolution.IteratedBlowups.Saturation
-import Development.ResolutionOfSingularities.EmbeddedResolution.IteratedBlowups.StrictTransform
-import Development.ResolutionOfSingularities.Foundations.Blowup.StrictTransform
-import Development.ResolutionOfSingularities.Foundations.Schemes.IdealSheafData
-import Development.ResolutionOfSingularities.Foundations.BlowupUniversalProperty
-import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionOfSingularities
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.SaturationByPowers
+
 universe u
 
 open CategoryTheory AlgebraicGeometry CategoryTheory.Limits

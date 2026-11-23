@@ -1,7 +1,5 @@
 import Mathlib
 import Formalism.WindowSums.Statement
-import Formalism.FrobeniusContraction.Statement
-import Formalism.LagrangeIdealLifts.Statement
 
 noncomputable section
 

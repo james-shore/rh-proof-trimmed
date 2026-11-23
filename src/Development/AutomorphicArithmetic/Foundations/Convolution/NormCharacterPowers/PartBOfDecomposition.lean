@@ -1,7 +1,6 @@
 import Development.AutomorphicArithmetic.Foundations.Convolution.NormCharacterPowers.SumSatUnit
-import Development.AutomorphicArithmetic.Foundations.Convolution.NormCharacterPowers.BcSumD
-import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.GaloisGenerators.LocRoots
 import Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.JacquetShalikaRigidity
+import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.GaloisGenerators.LocRoots
 
 noncomputable section
 

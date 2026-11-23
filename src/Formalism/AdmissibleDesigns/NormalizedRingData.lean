@@ -1,4 +1,7 @@
 import Formalism.AdmissibleDesigns.RealDisplayAllKOf
+import Formalism.SharpRestriction.LevelLetterCocycles.DistinctEigenvalueCornerPerturbationOfBlocks
+import Formalism.SharpRestriction.LevelLetterCocycles.RingDataOfIdempotents
+import Formalism.WachLatticeTwists.RealDisplaySplitting.RealDisplayProofs.IdempotentRankOneAtPoint
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 

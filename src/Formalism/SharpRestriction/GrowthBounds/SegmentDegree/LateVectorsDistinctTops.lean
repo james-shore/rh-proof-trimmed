@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.DiscriminantNonzeroOfInjectiveTops
+import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.OldestLetterInSegment
 
 noncomputable section
 

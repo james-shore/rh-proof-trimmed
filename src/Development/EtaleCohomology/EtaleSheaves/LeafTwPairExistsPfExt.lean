@@ -1,5 +1,4 @@
 import Development.EtaleCohomology.EtaleSheaves.LeafTwPairExistsPf
-import Mathlib.Algebra.Homology.DerivedCategory.KInjective
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC

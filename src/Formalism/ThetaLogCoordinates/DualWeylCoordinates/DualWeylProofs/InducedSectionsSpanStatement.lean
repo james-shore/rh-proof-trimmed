@@ -1,4 +1,6 @@
 import Formalism.ThetaLogCoordinates.DualWeylCoordinates.DualWeylProofs.QhCountAll
+import Formalism.ThetaLogCoordinates.DualWeylCoordinates.StatementH
+import Formalism.ThetaLogCoordinates.DualWeylCoordinates.DualWeylProofs.QhEquivOfCount
 
 noncomputable section
 

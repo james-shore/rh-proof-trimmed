@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DensGS
+import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.CntLocal
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DensGSDvr
 
 noncomputable section

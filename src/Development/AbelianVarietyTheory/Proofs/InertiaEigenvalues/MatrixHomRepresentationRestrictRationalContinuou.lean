@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TwistStep
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.AdmSt
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.KroneckerTransposeMulVec
+
 open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations GlobalTheory.Pst GlobalTheory.PMon TensorProduct
 open scoped Formalism.Per
 

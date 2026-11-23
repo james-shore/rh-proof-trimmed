@@ -2,14 +2,8 @@ import Formalism.SizeWindowBrackets.SlopesHypothesisFinitePlaces
 import Formalism.HarderNarasimhan.HarderNarasimhanProofs.DiscreteSpanOfLinIndep
 import Formalism.HarderNarasimhan.HarderNarasimhanProofs.SizeMu
 import Formalism.HarderNarasimhan.HarderNarasimhanProofs.HtGram
-import Formalism.HarderNarasimhan.HarderNarasimhanProofs.MuChar
 import Formalism.HarderNarasimhan.HarderNarasimhanProofs.DualPl
-import Formalism.SizeWindowBrackets.RealSlopeBoundsSplit
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.Ring
-import Mathlib.Data.Fintype.BigOperators
+import Formalism.HermitianLattices.StatementLat
 
 open Module NumberField
 

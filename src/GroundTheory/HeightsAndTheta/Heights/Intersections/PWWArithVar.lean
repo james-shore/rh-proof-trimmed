@@ -1,6 +1,5 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsDiagR
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsGrassHeight
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.Assembly
 
 set_option maxSynthPendingDepth 1

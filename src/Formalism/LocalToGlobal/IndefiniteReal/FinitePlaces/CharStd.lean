@@ -1,12 +1,9 @@
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IntegrableOnOfPeriodic
+import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
+import Formalism.LocalToGlobal.IndefiniteReal.PHeisThP
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.StdCharExists
 import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.InfFam
-import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.PHeisFCA
 import Formalism.LocalToGlobal.IndefiniteReal.PHeisThC
 import ReciprocityTheory.AdeleApproximation.AdeleIntA
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegerSubgroupIntersection.IsOpenIntSub
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegerSubgroupIntersection.Imports
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IntegerSubgroupIntersection.IntInterAlt
 
 noncomputable section
 

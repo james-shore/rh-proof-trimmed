@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsCoType
 import Formalism.LocalToGlobal.Columns.HeckeSp
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasBoundedSumsOne
 
 noncomputable section
 

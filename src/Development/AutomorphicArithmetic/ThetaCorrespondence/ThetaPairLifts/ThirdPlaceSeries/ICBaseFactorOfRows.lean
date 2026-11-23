@@ -1,6 +1,4 @@
 import Development.AbelianVarietyTheory.Definitions.Divisors.TieTest
-import Formalism.LocalToGlobal.IndefiniteReal.CxLemmas
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Realised
 
 set_option synthInstance.maxHeartbeats 200000

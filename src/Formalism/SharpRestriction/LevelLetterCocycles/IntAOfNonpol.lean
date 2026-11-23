@@ -1,6 +1,5 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.LetterPull
 import Formalism.SharpRestriction.LevelLetterCocycles.ArcCoordinatesOfLevelZeroParts
-import Formalism.SharpRestriction.LevelLetterCocycles.CancelUnitMulUniformizerPow
 import Formalism.SharpRestriction.LevelLetterCocycles.UniversalGeneralOfRestriction
 
 noncomputable section

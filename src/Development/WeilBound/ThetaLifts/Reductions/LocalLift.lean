@@ -1,4 +1,5 @@
 import Development.WeilBound.ThetaLifts.Reductions.NormExpSubLe
+import Development.WeilBound.ThetaLifts.Reductions.MetaDef
 
 noncomputable section
 

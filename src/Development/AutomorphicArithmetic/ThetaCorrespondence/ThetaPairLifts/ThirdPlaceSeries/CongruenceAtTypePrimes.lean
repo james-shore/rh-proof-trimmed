@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.CongruenceSingleEndomorphism
-import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.TrivialLocalCondition
 
 set_option synthInstance.maxHeartbeats 200000

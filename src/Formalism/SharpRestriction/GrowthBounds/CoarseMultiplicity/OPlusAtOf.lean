@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.SymbolFormOfOrthogonality
+import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.TopDegreeLeTwoB
 
 noncomputable section
 

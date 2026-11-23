@@ -1,5 +1,4 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceOmBlock
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.FormModel
 
 namespace Formalism.FourierDecayAlt.P.FormNormSumIdentities
 

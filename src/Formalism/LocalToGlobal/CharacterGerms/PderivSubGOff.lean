@@ -1,7 +1,5 @@
-import Formalism.LocalToGlobal.CharacterGerms.RowTieMemC
-import Formalism.LocalToGlobal.CharacterGerms.SelfConjugateRowData
-import Formalism.LocalToGlobal.CharacterGerms.RowTieMemCDeg
-import Formalism.LocalToGlobal.CharacterGerms.FinTwoNeOneSub
+import Formalism.LocalToGlobal.CharacterGerms.RowTieVal
+import Formalism.LocalToGlobal.CharacterGerms.PlugUP
 
 noncomputable section
 

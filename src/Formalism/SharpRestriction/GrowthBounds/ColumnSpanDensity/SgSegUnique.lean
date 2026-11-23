@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.MeanDefs
+import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.RhoLowerBoundLargeConductor
 import Formalism.SharpRestriction.GrowthBounds.TopChoiceBounds
 
 noncomputable section

@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.LatDictZAbs
-import Formalism.HermitianLattices.HermitianLatticesProofs.LocDual
+import Formalism.HermitianLattices.HermitianLatticesProofs.UnimodUnramUnique
 
 noncomputable section
 

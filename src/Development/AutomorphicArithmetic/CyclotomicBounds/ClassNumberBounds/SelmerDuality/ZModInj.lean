@@ -1,4 +1,4 @@
-import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.SelmerDuality.H1cEqH1
+import Mathlib
 
 namespace KStar.Selmer
 

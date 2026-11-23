@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.DistinguishedUnitIdeals.UnivPart
 
 noncomputable section
 

@@ -1,5 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ExistsHaarStabilizer
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.InverseSplitting
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.Block3MulBlocks
 
 namespace Formalism.FourierDecayAlt.P.StabilizerDisintegration.UC
 

@@ -1,8 +1,8 @@
-import Formalism.SharpRestriction.LevelLetterCocycles.LemCStep
-import Formalism.SharpRestriction.LevelLetterCocycles.ModelKStep
+import Formalism.SharpRestriction.LevelLetterCocycles.DownSlotProposition
 import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.UnivLinkPfA
 import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.U3upPfFilCAnti
 import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.FramePfPt
+import Formalism.SharpRestriction.LevelLetterCocycles.LemCStep
 
 noncomputable section
 

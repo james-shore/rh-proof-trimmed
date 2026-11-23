@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuadraticSubfieldRootDiscriminant
 import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsFlatSecRankZero
-import Formalism.MeanHeightDescent.DivisionInequalityWithCovolume
+
 open NumberField IsDedekindDomain Formalism.BasicNotions GlobalTheory.AllWt GlobalTheory.FlatLine
 
 namespace GlobalTheory

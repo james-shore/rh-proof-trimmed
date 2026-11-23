@@ -1,5 +1,7 @@
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.MetAndHolds
 import Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.ArtEx
+import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsSteinberg
+import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.HeckeLAdicCharacterDeRham
 
 noncomputable section
 

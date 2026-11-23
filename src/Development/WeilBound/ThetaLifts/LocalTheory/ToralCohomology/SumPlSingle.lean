@@ -1,5 +1,6 @@
 import Development.WeilBound.ThetaLifts.LocalTheory.ToralCohomology.ShiftLow
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFockMap
+import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreCyc
 
 noncomputable section
 

@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.PeriodIntegrals.VolFromSW
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitVolume.DensVNA
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension
 
 noncomputable section
 

@@ -1,9 +1,10 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.MoriwakiHSFull
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PRelSectionsLarge
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PRelChartPoly
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PRelOneStep
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PRelTorsionBound
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PRelSectionsLarge
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Targets

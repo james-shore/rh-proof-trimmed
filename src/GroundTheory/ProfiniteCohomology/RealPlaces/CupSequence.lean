@@ -1,5 +1,7 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.RealPlaces.HomologyMapProdFstProdLeftHomology
+import GroundTheory.ProfiniteCohomology.PoincareDuality.DeltaPairing
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

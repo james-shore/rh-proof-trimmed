@@ -1,32 +1,8 @@
 import Formalism.GaussJetBounds.OneLetterGaussJets.OddLevelGainSum
-import Formalism.GaussJetBounds.StatementA
-import Formalism.GaussJetBounds.GaussJetProofs.CapacityLeReachCapacity
-import Formalism.GaussJetBounds.GenLogInverse
-import Formalism.GaussJetBounds.OneLetterRadius
-import Formalism.GaussJetBounds.GaussJetProofs.AsmRDotAddRight
-import Formalism.GaussJetBounds.GaussJetProofs.LemmaRA
-import Formalism.GaussJetBounds.GaussJetProofs.NormNatCastEqPowPadicValNat
-import Formalism.GaussJetBounds.GaussJetProofs.SubstitutionWeightBound
 import Formalism.IncomingBounds.WeightIdentities
-import Formalism.GaussJetBounds.StatementJ
-import Formalism.GaussJetBounds.GaussJetProofs.TheoremAOneMonomialLogLoss
-import Formalism.GaussJetBounds.GaussJetProofs.ThmAOp
-import Formalism.GaussJetBounds.GaussJetProofs.ConstantCoeffAevalLinP
-import Formalism.GaussJetBounds.StatementM
-import Formalism.GaussJetBounds.GaussJetProofs.FrameA
-import Formalism.GaussJetBounds.GaussJetProofs.Generic
-import Formalism.GaussJetBounds.StatementS
-import Formalism.GaussJetBounds.StatementU
-import Formalism.GaussJetBounds.OneLetterGauss
-import Formalism.GradedWeylDivisibility.FinalD
-import Formalism.GaussJetBounds.GaussJetProofs.OrbMul
-import Formalism.GaussJetBounds.StatementQ
-import Formalism.GaussJetBounds.GaussJetProofs.ConstantCoeffQuadSer
-import Formalism.GaussJetBounds.StatementN
-import Formalism.GaussJetBounds.MonoShapeTop
-import Formalism.GaussJetBounds.GaussJetProofs.NormDetLeOneOfEntries
+import Formalism.GradedWeylDivisibility.StatementA
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LRowdivLemmas
 import Formalism.GaussJetBounds.OneLetterGaussJets.OneLetterGaussProofs.CompanionTheory
-import Formalism.GaussJetBounds.GaussJetProofs.OneGauss
 
 universe u v w
 

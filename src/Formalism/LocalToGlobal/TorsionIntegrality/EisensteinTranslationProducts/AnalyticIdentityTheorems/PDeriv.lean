@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.ThetaLine
+import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.Legendre
 
 noncomputable section
 open scoped Topology

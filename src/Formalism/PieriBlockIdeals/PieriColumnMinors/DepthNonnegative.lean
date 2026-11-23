@@ -1,14 +1,9 @@
 import Formalism.PieriBlockIdeals.BlockIdealBound5Derived
 import Formalism.PieriBlockIdeals.PieriColumnMinors.ProdInitialMinorsMemDetSpan
 import Formalism.PieriBlockIdeals.PieriColumnMinors.UnitNormBounds
-import Mathlib
-import Formalism.PieriBlockIdeals.Statement
-import Formalism.RankGapBounds.LargePrimeFactor
-import Formalism.PieriBlockIdeals.PieriColumnMinors.LabelSumNeedsLeFalse
-import Formalism.GradedWeylDivisibility.FinalC
-import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LDbasisLemmas
 import Formalism.RankGapBounds.RankGapProofs.FormsTensorLocalization
-import Formalism.PieriBlockIdeals.PieriColumnMinors.RegularCuspidalTrace
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LDbasisLemmas
+import Formalism.PieriBlockIdeals.PieriColumnMinors.LastGradedImpliesOneBlock
 
 noncomputable section
 

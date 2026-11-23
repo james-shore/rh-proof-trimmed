@@ -1,6 +1,5 @@
 import Mathlib
-import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModDefs
-import ReciprocityTheory.NeutralLocalFields.HilbertClassField
+import Formalism.LocalToGlobal.TorsionIntegrality.CMGoodModels.Statement
 
 noncomputable section
 open scoped BigOperators Classical

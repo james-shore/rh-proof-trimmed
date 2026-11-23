@@ -1,11 +1,9 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.Hypotheses2
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.LocIsotypic
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.RTwist
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.AdeleLC
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAveragingProjection
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SatakeParametersOfTwist
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsOpenIsCompactUnitaryIntegralPoints
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIsSplitChartOfBasis
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAveragingProjection
+
 open NumberField IsDedekindDomain Formalism.L2.Host Formalism.ConjugateSelfDual UpperTheory.V UpperTheory.V.Af
 open GlobalTheory.CuspRep (SmIrr Af invT finId pFin)
 open scoped Matrix

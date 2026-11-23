@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.DefiniteIndexDimensionCounts
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ColLieApply
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FiniteDimensionalModel
 import Development.AbelianVarietyTheory.Definitions.Foundations.StandardFiveNontrivial
 

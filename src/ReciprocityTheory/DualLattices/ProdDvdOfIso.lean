@@ -1,4 +1,4 @@
-import ReciprocityTheory.DualLattices.IsLocalOfIntegers
+import ReciprocityTheory.DualLattices.CotangentSurjective
 
 noncomputable section
 

@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryDensity.GramStep
 
 open Matrix MvPolynomial
 open scoped ComplexOrder

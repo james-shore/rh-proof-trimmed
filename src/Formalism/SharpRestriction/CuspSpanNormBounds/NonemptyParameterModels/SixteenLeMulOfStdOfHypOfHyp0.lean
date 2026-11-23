@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.CuspSpanNormBounds.StandingHypothesesHoldFamily
-import Formalism.SharpRestriction.CuspSpanNormBounds.NonemptyParameterModels.AmpTensorDSdNonemptyOfSubsingleton
 
 noncomputable section
 

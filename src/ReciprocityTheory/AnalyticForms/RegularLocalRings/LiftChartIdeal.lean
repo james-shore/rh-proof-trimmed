@@ -1,5 +1,7 @@
 import ReciprocityTheory.AnalyticForms.RegularLocalRings.ProjBCompl
 import ReciprocityTheory.AnalyticForms.RegularLocalRings.EvalValChartCoord
+import ReciprocityTheory.AnalyticForms.RegularLocalRings.MemBasicOpenSecHomIff
+import ReciprocityTheory.AnalyticForms.RegularLocalRings.BijOnClosedPointsOfIsIso
 
 namespace ReciprocityTheory.AnForm.R
 

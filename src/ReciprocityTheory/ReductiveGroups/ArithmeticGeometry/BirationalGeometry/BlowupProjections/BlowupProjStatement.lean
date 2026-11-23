@@ -1,5 +1,5 @@
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
-import ReciprocityTheory.AnalyticForms.RegularLocalRings.LogResStC
+import ReciprocityTheory.AnalyticForms.RegularLocalRings.FinalTheorems
 
 noncomputable section
 

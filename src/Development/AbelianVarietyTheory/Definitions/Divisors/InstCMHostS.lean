@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.ConjSubConjSub
-import ReciprocityTheory.Automorphisms.Unitary
+import Formalism.LocalToGlobal.IndefiniteReal.PrincipalLevelFrame
+import Formalism.LocalToGlobal.GaloisLevelStructure.TiedHecke
 
 noncomputable section
 

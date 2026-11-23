@@ -3,6 +3,8 @@ import Development.AutomorphicSpectrum.Definitions.AdelicLattices.FactPrimes
 import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsFlatSecRankZero
 import Development.AutomorphicSpectrum.Proofs.AdelicProofs.SumLogEmbeddingsEqNorm
 import Development.WeilBound.CoreStatements.SesquilinearFractions.NPlaces
+import Development.WeilBound.CoreStatements.SesquilinearFractions.NIdeal
+
 open NumberField IsDedekindDomain GlobalTheory.CompanionTheory.Ar.Fl
 
 noncomputable section

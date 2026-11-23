@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.ExpUpper
-import Development.AbelianVarietyTheory.Definitions.Foundations.Imports
+import Development.AbelianVarietyTheory.Definitions.Foundations.CthFac
 
 noncomputable section
 

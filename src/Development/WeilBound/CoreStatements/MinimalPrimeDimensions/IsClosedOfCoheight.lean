@@ -2,8 +2,8 @@ import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.SpecializesIf
 import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.IsProjPrimeOfRelComps
 import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.ResGAppLE
 import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.LeDimQuotientHorizontal
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ResidueDegreeOfIsClosedImmersion
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PCharacterised
+import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.LowerBoundConditional
 
 set_option autoImplicit false
 

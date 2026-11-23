@@ -1,6 +1,6 @@
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RowGoodLatticeNeBot
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Realised
+import Formalism.LocalToGlobal.IndefiniteReal.PrimitivePackageFullHecke
 
 set_option synthInstance.maxHeartbeats 200000
 

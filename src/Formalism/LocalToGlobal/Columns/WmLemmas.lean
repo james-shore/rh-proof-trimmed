@@ -1,8 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.Columns.UnipotentRightActionFunctionsW
-import Formalism.LocalToGlobal.Columns.HeckeSpCount
-import Formalism.LocalToGlobal.Columns.HeckeSp
-import Formalism.LocalToGlobal.Columns.GSetLemmas
+import Formalism.LocalToGlobal.Columns.AlgebraMapMemMaximalIdealPowIff
 
 open NumberField IsDedekindDomain Module Polynomial
 

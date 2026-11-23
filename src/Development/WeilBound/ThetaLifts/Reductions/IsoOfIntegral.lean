@@ -1,4 +1,4 @@
-import Development.WeilBound.ThetaLifts.Reductions.HasDerivAtSchwartzToL2
+import Development.WeilBound.ThetaLifts.CartanFactorisation.EqOfInner
 
 noncomputable section
 

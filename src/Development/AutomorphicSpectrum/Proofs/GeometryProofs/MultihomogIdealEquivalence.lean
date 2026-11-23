@@ -1,7 +1,8 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsLatFlagPair
-import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.HeckeSectionsIsotropicCommutatorPairingPower
-import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsFlagIndependence
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsHodgeLine
+import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.Proportional
+import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.LaurentCechNerveLevelSpecTensorPower
+
 open MvPolynomial
 
 namespace GlobalTheory.CompanionTheory.Ggeo.CompMem

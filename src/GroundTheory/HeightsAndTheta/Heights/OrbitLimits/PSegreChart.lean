@@ -2,6 +2,8 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StSegreChart
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StSegreChartDim
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.StSegreChartIntegral
+import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

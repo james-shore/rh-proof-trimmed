@@ -3,6 +3,7 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors.StChar
 import Development.AbelianVarietyTheory.Definitions.TwoChartAtlas.TwoChartSt
 import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.LawRightUnit
 import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.FormalGroupLawCompMulNZero
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.GaugeExp
 
 set_option autoImplicit false
 

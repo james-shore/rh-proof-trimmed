@@ -1,6 +1,4 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.ExpPowSubOne
-import Formalism.SharpRestriction.LevelLetterCocycles.LocalizationQuotientSeparatedDvd
-import Formalism.JumpKernelCokernel.JumpShiftProofs.InvConst
 
 noncomputable section
 open Classical

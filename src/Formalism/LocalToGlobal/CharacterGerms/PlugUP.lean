@@ -1,10 +1,8 @@
 import Formalism.LocalToGlobal.CharacterGerms.CharacteristicFromRanks
-import ReciprocityTheory.DualLattices.LengthDegreeAbelianVariety
-import ReciprocityTheory.DualLattices.LengthDegreeOfFrobenius
-import ReciprocityTheory.DualLattices.FrobeniusOfGroupDivisorsRank
-import ReciprocityTheory.DualLattices.KilledGen
-import ReciprocityTheory.DualLattices.IdemGen
-import ReciprocityTheory.DualLattices.LenEx
+import ReciprocityTheory.DualLattices.CotangentSurjective
+import ReciprocityTheory.DualLattices.MatEquivApply
+import ReciprocityTheory.DualLattices.SqZeroOfSpan
+import ReciprocityTheory.DualLattices.IsUnitOfNotMem
 import Formalism.SharpRestriction.GrowthBounds.FittingIdeal.DetMulMemFitt0
 
 noncomputable section

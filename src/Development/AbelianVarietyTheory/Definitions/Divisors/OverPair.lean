@@ -1,5 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsIntegralOpW
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Langlands
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.MatchOfMatchOffTEmpty
 
 noncomputable section
 

@@ -1,5 +1,5 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.NewformCoefficients.CuspCritAlt
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FiniteAdeleStrongApproximationModNat
+import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.KLevTop
 
 open NumberField IsDedekindDomain GlobalTheory.CuspRep
 

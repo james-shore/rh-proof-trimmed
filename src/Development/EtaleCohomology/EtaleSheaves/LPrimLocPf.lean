@@ -1,4 +1,5 @@
 import Development.EtaleCohomology.EtaleSheaves.LeafKumSpecPfEv
+import Development.AbelianVarietyTheory.Definitions.Divisors.SecClass
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC

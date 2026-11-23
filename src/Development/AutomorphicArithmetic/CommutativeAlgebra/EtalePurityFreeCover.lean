@@ -1,6 +1,6 @@
 import Mathlib
 import Development.EtaleCohomology.CohomologicalPurity.LeafHtpyMVPf
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FreeHomSections
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsZeroChains
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleSheafSectionsSepGlueOfSurjectiveFamily
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC

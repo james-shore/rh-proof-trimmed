@@ -4,6 +4,7 @@ import CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.Parabol
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.FlagFacts
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.HaarExistence
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ParabolicMeasureModulus
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsGaugeMeasuresIsotropicFlagParabolicStatement
 
 noncomputable section
 

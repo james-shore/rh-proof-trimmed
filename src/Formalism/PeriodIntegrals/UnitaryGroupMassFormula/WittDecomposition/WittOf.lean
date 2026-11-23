@@ -1,6 +1,7 @@
 import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WittDecomposition.Nondeg
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WittDecomposition.EnlargeStep
+import Formalism.PeriodIntegrals.WittExtension
 
 namespace PI.Witt
 

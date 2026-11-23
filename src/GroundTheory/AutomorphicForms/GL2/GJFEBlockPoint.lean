@@ -1,5 +1,6 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.GL2.GJFEHeightsilinear
+import GroundTheory.AutomorphicForms.GL2.GJFEBlockKernel
 
 noncomputable section
 

@@ -4,6 +4,7 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PlacesBelowSplit
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ValuedEqOneOfLe
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.AddCharTrivialIntegralFiniteAdeleMul
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUnitaryRationalInfTypeSubgroupAndInfTypeUnique
+import Formalism.PairingDivisors.StatementA
 
 noncomputable section
 

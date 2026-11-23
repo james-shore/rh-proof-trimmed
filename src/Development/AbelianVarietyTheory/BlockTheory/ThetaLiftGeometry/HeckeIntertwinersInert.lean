@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.ConcretePkgSpec
+import Formalism.SatakeDualWeyl.StatementG
 
 noncomputable section
 

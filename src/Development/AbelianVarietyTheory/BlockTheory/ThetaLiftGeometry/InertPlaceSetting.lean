@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
 import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
-import Formalism.SatakeDualWeyl.StatementG
+import Formalism.SatakeDualWeyl.StatementF
 
 noncomputable section
 

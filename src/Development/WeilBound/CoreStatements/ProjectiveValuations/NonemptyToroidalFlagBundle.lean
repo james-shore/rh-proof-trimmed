@@ -2,8 +2,8 @@ import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.MulCMemSec
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsLevelGoodAtAllPrimesAndIdx
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsVanBdOfMemExtVanZ
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.DenseInterior
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ToroidalFlagNonempty
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PushInvertibleOfHasTheta
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj
 

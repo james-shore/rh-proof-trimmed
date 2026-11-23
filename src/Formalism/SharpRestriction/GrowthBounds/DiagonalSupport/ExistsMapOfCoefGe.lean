@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.MembDefs
-import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.DecompositionOfThreeParts
 
 noncomputable section
 

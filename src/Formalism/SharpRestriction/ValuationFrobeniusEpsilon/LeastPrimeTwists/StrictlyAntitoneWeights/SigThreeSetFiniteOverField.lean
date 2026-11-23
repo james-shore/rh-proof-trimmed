@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.SharpRestriction.ValuationFrobeniusEpsilon.UnitaryThreeHeightBounds
-import Formalism.SharpRestriction.ValuationFrobeniusEpsilon.LeastPrimeTwists.StrictlyAntitoneWeights.AntitoneWeightsLemma.LiteratureFamilyBoundOfMembers
 
 noncomputable section
 

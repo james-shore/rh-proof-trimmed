@@ -1,4 +1,6 @@
 import Development.EtaleCohomology.EtaleSheaves.LeafSpreadVCut
+import Development.EtaleCohomology.EtaleSheaves.LeafGeoCut
+import Development.EtaleCohomology.EtaleSheaves.LeafGeoVCut
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite LateralTheory.E.E4 LateralTheory.E.LeafGeoVCut

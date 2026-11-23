@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsHeatZero
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.GCauchyStatement
+import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.FirstCoordinateAdmissible
 import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.FiniteClsAndStab
 import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.NeBotOfNorm
 

@@ -1,6 +1,9 @@
 import Mathlib
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.LatticeUnimodular
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DifferentCoprimeSplit
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.PartnerVectorExists
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.LatticeFlagExists
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.CoordLInjective
 
 namespace PI.UnitaryGroupMassFormula.CntFormula.RowsMassW
 

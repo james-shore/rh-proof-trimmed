@@ -1,7 +1,5 @@
-import Formalism.SharpRestriction.GrowthBounds.AevalValuation.RestSpec
-import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.MemSupportSumMonomial
+import Formalism.SharpRestriction.GrowthBounds.PlaneCoefficients.PlaneCoeffOneTTens
 import Formalism.SharpRestriction.GrowthBounds.PlaneCoefficients.DigOKAddInl
-import Formalism.SharpRestriction.GrowthBounds.PlaneCoefficients.TensZeroRight
 
 noncomputable section
 

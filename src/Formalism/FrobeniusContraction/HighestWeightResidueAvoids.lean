@@ -1,4 +1,4 @@
-import Formalism.FrobeniusContraction.Statement
+import Mathlib
 import Formalism.FrobeniusContraction.StatementTop
 
 noncomputable section

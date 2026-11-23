@@ -1,6 +1,6 @@
 import Development.AbelianVarietyTheory.Definitions.Divisors.DivisorSupportCondition
 import Development.AbelianVarietyTheory.Definitions.Divisors.SecClass
-import Development.EtaleCohomology.TateTwists.EtaleCupAlexanderWhitneyLeibnizOfSucc
+import Development.EtaleCohomology.TateTwists.EtaleCochainDifferentialEvaluationDegreeZero
 import Development.EtaleCohomology.TateTwists.EtaleAlexanderWhitneyCupLeibnizOfPairing
 
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC

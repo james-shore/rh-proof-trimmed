@@ -3,7 +3,7 @@ import Formalism.SharpRestriction.ParConsts
 import Formalism.SharpRestriction.GrowthBounds.ObjSeg
 import Formalism.SharpRestriction.GrowthBounds.ObjBridge
 import Formalism.SharpRestriction.GrowthBounds.ColumnSystems
-import Formalism.MahlerMeasure.WithMargin
+import Formalism.MahlerMeasure.StatementTM
 
 noncomputable section
 

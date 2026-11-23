@@ -2,7 +2,6 @@ import Formalism.LocalToGlobal.HermitianForms.FormsTied
 import Formalism.SharpRestriction.GlobalSchurBounds.ProductFirstZerothParts
 import Formalism.LocalToGlobal.GroupLattices.TrivialTransfer.GramTotallyDefinite
 import Formalism.LocalToGlobal.GlobalTheory.GL6.RndLinkAdmTOf
-import Formalism.LocalToGlobal.GlobalTheory.GL6.PSplitT
 
 noncomputable section
 

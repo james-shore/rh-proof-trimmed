@@ -6,6 +6,8 @@ import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTailFurther
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTailExtra
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsFurtherExtra
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.GenericPtZeroNeZero
+import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTerAlt
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Kleiman.SectionsOverLocalization

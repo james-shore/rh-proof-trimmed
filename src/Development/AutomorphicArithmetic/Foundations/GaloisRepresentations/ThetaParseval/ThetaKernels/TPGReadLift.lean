@@ -4,7 +4,6 @@ import Development.WeilBound.ThetaLifts.LatticeBasics.LocUnrInert
 import Development.WeilBound.ThetaLifts.CartanFactorisation.TensOfEval
 import Development.WeilBound.ThetaLifts.LocalTheory.ConeShifts.ActsRhoFin
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.HalfIndexLattices.SplitStab
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.HalfIndexLattices.IsLatRepL
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.ThetaBasicK
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.GalTPDefs
 

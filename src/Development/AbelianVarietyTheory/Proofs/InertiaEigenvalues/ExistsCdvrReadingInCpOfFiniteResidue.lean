@@ -1,9 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NatCastMemPlaceAt
-import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.HeckePrimeDetection
 import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsUTestNontrivial
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsPlaceEmb
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FiniteAndIntegral
+
 open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.GeoTie
 
 set_option autoImplicit false

@@ -4,7 +4,7 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLattic
 import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SigmaFiniteOfFcG
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.HaarUniquenessConjugation
 import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeCSB
-import Formalism.FormalDegreeBessel.FormalDegreeRatio.GroupFactorizationHolds
+import Formalism.RealPlaceAnalysis.FinalF
 
 noncomputable section
 

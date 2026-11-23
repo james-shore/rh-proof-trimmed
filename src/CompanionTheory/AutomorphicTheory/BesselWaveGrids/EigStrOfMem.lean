@@ -1,4 +1,8 @@
 import CompanionTheory.AutomorphicTheory.BesselWaveGrids.KDecayOfGap
+import CompanionTheory.AutomorphicTheory.BesselWaveGrids.AsmDiff
+import CompanionTheory.AutomorphicTheory.BesselWaveGrids.GridsText
+import CompanionTheory.AutomorphicTheory.BesselWaveGrids.LettersPoly
+import CompanionTheory.AutomorphicTheory.BesselWaveGrids.EqShift
 
 noncomputable section
 

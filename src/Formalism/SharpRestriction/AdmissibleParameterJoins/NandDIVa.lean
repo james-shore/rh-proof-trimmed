@@ -1,4 +1,4 @@
-import Formalism.LocalRingCardinality.DataParams₂
+import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 import Formalism.LocalRingCardinality.DataDIV
 
 noncomputable section

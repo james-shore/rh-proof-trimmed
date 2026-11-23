@@ -1,7 +1,5 @@
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.InterlaceDifferenceShiftInvariant
 import Formalism.LocalToGlobal.HermitianForms.FormsTied
-import Formalism.LocalToGlobal.HermitianForms.TiedBrInj
-import Formalism.LocalToGlobal.HermitianForms.Interlace
 import Formalism.SharpRestriction.GlobalSchurBounds.LinkMin
 
 noncomputable section

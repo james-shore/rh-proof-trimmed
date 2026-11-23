@@ -1,9 +1,5 @@
 import Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.AbsCentral
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RecProductSpehSatake
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ValuationLtOneIffTendsto
-import Mathlib
-import Development.AutomorphicArithmetic.Foundations.LocalLanglands.IsRecTOfIsRec
-import Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.AbsCentralAlt
 
 set_option synthInstance.maxHeartbeats 200000
 

@@ -3,7 +3,6 @@ import Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpowers.Cry
 import Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpowers.KsMono
 import Formalism.SharpRestriction.LevelLetterCocycles.EmbeddingTypes
 import Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpowers.CoefficientCompatibilityOf
-import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpowers.CommutingEndomorphismCondition
 
 noncomputable section

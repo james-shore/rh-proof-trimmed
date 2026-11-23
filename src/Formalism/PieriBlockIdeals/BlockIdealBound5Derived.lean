@@ -4,8 +4,7 @@ import Formalism.RankGapBounds.TheoremALocOfLemmaA
 import Formalism.PieriBlockIdeals.Statement
 import Formalism.PieriBlockIdeals.FactorialValuationSum
 import Formalism.PieriBlockIdeals.StatementLA
-import Formalism.RankGapBounds.LargePrimeFactor
-import Formalism.PieriBlockIdeals.LemmaWAssembled
+import Formalism.PieriBlockIdeals.BranchingBoundLastGradedOneRow
 
 noncomputable section
 

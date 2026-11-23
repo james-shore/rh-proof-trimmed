@@ -1,4 +1,5 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StandardSlopeBound.NablaBasis
+import Formalism.PeriodIntegrals.HookBound
 
 noncomputable section
 

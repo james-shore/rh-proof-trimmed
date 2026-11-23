@@ -1,6 +1,4 @@
-import Formalism.GaussJetBounds.StatementN
-import Formalism.GaussJetBounds.GaussJetProofs.ConstantCoeffAevalLinP
-import Formalism.FormalGroupLog.FormalGroupLogProofs.ChainRule
+import Formalism.GaussJetBounds.Statement
 
 noncomputable section
 open scoped BigOperators

@@ -1,6 +1,6 @@
 import Mathlib
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.HodgeWedgeFields.H1CommutesBaseChange
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUniqueIsPullForm
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfIsBaseChange
 import Development.WeilBound.CoreStatements.AutomorphicKernels.AbelianDeRham.AbelianSchemeCharts.FinSys
 import Development.WeilBound.CoreStatements.AutomorphicKernels.AbelianDeRham.AbelianSchemeCharts.IsOpenImmersionProdChart
 

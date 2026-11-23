@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.BrgStdR
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemClosureUnitary
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAdelicSplit
 
 noncomputable section
 

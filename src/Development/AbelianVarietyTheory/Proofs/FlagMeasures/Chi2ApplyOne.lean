@@ -1,9 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.InstExists
-import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.PoincareInHH
-import Formalism.SharpRestriction.GlobalSchurBounds.StandardLattice
-import Formalism.LocalRingCardinality.DataTies
-import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.LevelSubgroupCharacterUnitary
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicUnimodularity.ConstructionA
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.DEqFinrankHHX
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FEqAndRdEq

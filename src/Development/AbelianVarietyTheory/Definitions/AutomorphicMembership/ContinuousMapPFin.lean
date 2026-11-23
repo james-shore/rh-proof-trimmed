@@ -2,7 +2,7 @@ import Mathlib
 import Formalism.LocalToGlobal.Divisibility.CoefModLemmas
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsSplitAtOfIsSplitPl
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NonemptyEquivLocProdTriv
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HasSatAtConstOne
+import Development.AbelianVarietyTheory.PublishedTheorems.PublishedFoundations.BranchingRankTwo
 
 noncomputable section
 

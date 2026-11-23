@@ -1,4 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.Rationality.QuotSt
+import Mathlib
 import Lemmata.MiscLemmasJ.Imports
 
 namespace ReciprocityTheory.ChartRestriction.G.FreeQuotientRank

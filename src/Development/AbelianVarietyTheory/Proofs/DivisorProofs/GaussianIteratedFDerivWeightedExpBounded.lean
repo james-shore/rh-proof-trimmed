@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PowForm
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PolyMulGaussianBounded
+
 open MeasureTheory Filter Topology
 
 noncomputable section

@@ -1,9 +1,9 @@
 import Mathlib
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.DifferentialOperatorBracket
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.DiagonalTransferAction
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.QminorIntertwiningApply
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.IntertwinerDOpOfStabiliser
+
 open Matrix Formalism.QuantumDeterminants Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.Qr
 open Formalism.REAL (qdet GlRel IsHW)
 namespace GlobalTheory

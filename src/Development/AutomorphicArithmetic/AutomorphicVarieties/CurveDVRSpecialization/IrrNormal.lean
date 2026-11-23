@@ -1,9 +1,6 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.IsUnitOrIsUnitOfAddOne
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.CharPerm
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.CliffPrime
-import Mathlib.RingTheory.Ideal.GoingUp
-import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
-import Mathlib.LinearAlgebra.Charpoly.ToMatrix
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExtIntegral
 
 open Matrix Polynomial UpperTheory.V.U3 UpperTheory.V.Alg

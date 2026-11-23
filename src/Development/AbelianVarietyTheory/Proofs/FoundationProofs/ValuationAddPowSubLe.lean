@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.CosetTrace
 
 namespace GlobalTheory.AlmostEt
 

@@ -1,6 +1,5 @@
 import Mathlib
-import Formalism.PairingDivisors.StatementA
-import Formalism.PairingDivisors.StatementX
+import Formalism.PairingDivisors.StatementH
 import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ValBasic
 import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ProdFormula
 

@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.GlobalSchurBounds.KernelEntryData
+import Formalism.SharpRestriction.GrowthBounds.ObjPol
 
 noncomputable section
 

@@ -1,6 +1,6 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.TypePrimeCongruences
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CuspidalGaloisUnramified
+import Formalism.SharpRestriction.LevelLetterCocycles.AutomorphicSideWildInertia
 
 set_option synthInstance.maxHeartbeats 200000
 

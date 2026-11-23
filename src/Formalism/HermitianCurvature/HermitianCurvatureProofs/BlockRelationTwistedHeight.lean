@@ -1,4 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.MeasurableEmbeddingLevM
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.ScalarCommuteTransposedRMatrixEntry
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.DiagScalarCommuteTransposedRMatrix
 
 open Matrix MeasureTheory Filter Topology
 open scoped ComplexConjugate ContDiff ENNReal

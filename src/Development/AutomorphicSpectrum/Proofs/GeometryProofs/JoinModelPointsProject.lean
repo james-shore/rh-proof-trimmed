@@ -4,6 +4,7 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsArithVarOfBlockAl
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ValuationCoordsComplexPoint
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsValuationSubringExtension
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PPullFormsGeneric
+import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.IsSaturatedFirstCoordinateLine
 
 noncomputable section
 

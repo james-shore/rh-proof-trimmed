@@ -1,4 +1,4 @@
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.IsCompactZetaLe
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.QQMemAdjAlgCpt
 
 open Matrix MeasureTheory Filter Topology
 open scoped ComplexConjugate InnerProductSpace ContDiff

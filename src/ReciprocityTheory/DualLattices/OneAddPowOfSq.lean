@@ -1,4 +1,6 @@
 import ReciprocityTheory.DualLattices.NsetExpInjectiveSurjective
+import ReciprocityTheory.DualLattices.SeriesState
+import ReciprocityTheory.DualLattices.TangentPairingStatement
 
 noncomputable section
 

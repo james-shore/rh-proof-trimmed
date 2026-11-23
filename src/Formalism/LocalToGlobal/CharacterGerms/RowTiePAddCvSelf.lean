@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.CharacterGerms.RowTiePCartSelfSt
 import Formalism.LocalToGlobal.CharacterGerms.RowTieGermI
+import Formalism.LocalToGlobal.CharacterGerms.RowTieCartAdd
 
 noncomputable section
 

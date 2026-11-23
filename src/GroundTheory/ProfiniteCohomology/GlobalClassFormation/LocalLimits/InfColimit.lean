@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.GlobalClassFormation.LocalLimits.InfRange
 import GroundTheory.ProfiniteCohomology.GlobalClassFormation.IdeleLimits.LocalTransition
-import GroundTheory.ProfiniteCohomology.FilteredHomology
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

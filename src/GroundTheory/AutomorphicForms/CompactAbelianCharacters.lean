@@ -1,8 +1,7 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.CompactSelfAdjoint
-import GroundTheory.AutomorphicForms.HilbertSchmidtCompact
-import GroundTheory.AutomorphicForms.HilbertSchmidtKernel
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsCharNeOne
+
 set_option maxSynthPendingDepth 1
 
 open MeasureTheory Filter Topology Module End

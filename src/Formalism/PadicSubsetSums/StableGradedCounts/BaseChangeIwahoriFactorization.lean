@@ -1,4 +1,4 @@
-import Formalism.PadicSubsetSums.CentralIdempotents.SchurOrthogonalityCompact
+import Mathlib
 import Lemmata.FirstBlockLemmaG.Imports
 import Lemmata.MiscLemmasA.Imports
 

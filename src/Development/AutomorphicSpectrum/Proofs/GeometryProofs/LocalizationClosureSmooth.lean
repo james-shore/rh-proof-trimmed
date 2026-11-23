@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsUnitOfSumEqOne
+import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProdUpdateDiv
 
 noncomputable section
 

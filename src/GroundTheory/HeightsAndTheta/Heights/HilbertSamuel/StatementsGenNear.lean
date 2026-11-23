@@ -1,7 +1,8 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.GeneratedModOfSubsingleton
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsGradedSubquot
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PQuotPartGraded
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.KleimanNefness.AmpleSt
+import ReciprocityTheory.AnalyticForms.RegularLocalRings.BaseChangeCA
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsArith
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.HilbertSamuel

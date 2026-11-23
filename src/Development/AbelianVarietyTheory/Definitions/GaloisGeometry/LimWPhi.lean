@@ -1,6 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.HasLevelOffOf
 import Development.AbelianVarietyTheory.Definitions.Divisors.GenOf
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.CuspFormLimitTwoPlaces
 
 noncomputable section
 

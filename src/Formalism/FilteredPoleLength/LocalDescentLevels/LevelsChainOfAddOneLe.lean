@@ -1,8 +1,4 @@
 import Mathlib
-import Formalism.FilteredPoleLength.ReducedBasisBounds.LengthBaseChangeLocal
-import Formalism.FilteredPoleLength.ReducedBasisBounds.FilteredPoleLength
-import Formalism.FilteredPoleLength.LocalDescentLevels.LevelsChain
-import Formalism.FilteredPoleLength.LocalDescentLevels.LengthBaseChange
 
 namespace Formalism.LatticeBaseChangeAlt
 

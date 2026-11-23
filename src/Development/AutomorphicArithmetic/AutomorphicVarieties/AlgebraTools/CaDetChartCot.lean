@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.CotInd
-import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.DetLocus
 
 open IsLocalRing UpperTheory.V.AlgebraTools
 

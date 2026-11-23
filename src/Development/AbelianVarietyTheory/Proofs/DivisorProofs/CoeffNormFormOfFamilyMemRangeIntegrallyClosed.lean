@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.ShimuraVarieties.IsOpenOfMemIrreducibleComponentsOfFinite
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormIdeal
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FamIdeal
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CharpolyDvdPowFinrankOfAevalEqZero
+
 open AlgebraicGeometry CategoryTheory Limits
 
 noncomputable section

@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DetPowerProductMulMemDelWShiftIff
-import Formalism.UnipotentAdelicQuotients.WeylLatDual
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolFunApply
 
 open GlobalTheory.IntegralityCompare
 set_option maxHeartbeats 1000000 in

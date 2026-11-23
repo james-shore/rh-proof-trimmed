@@ -1,6 +1,7 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.KerEqBotOfCoord
-import GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsFurtherBis
+import GroundTheory.HeightsAndTheta.Heights.Intersections.IsFieldIntersectionNoBlockFam
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

@@ -1,8 +1,9 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsSplitting
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsTestRep
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.QuadraticStarStructure
 import GroundTheory.LocalFields.UnramifiedNormSurj
 import GroundTheory.LocalFields.UnramifiedGalois
+
 open GlobalTheory.JR Matrix MeasureTheory Filter Topology
 
 namespace GlobalTheory.JR.NonNorm

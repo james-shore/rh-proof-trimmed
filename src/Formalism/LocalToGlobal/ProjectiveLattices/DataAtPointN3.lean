@@ -1,6 +1,7 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.TowerOfAt
 import Formalism.LocalToGlobal.ProjectiveLattices.BetaAtSymm
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.UniformisationConclusion
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.BaseOver
 
 noncomputable section
 

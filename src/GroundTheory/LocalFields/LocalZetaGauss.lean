@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.LocalFields.LocalZetaEpsilon
+import GroundTheory.LocalFields.LocalZetaChar
 
 noncomputable section
 

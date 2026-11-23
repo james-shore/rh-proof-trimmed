@@ -1,5 +1,5 @@
 import Mathlib
-import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PshBasic
+import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.IsPshLocallyIntegrableStatement
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsAlgAtlasAtlasOf
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ContinuousAndSmul
 

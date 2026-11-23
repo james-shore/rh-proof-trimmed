@@ -5,8 +5,9 @@ import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StBranchPlace
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StSameOrderBranchesMeet
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StPlaceHasBranch
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StOrdDeterminesPlace
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StCurveResidueDegree
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StOrdFiniteNonZeroDivisor
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StCurveResidueDegree
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

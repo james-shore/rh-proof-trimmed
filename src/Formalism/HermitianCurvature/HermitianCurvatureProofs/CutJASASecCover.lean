@@ -1,8 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJASASectionCut
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.BigCellDiagonalMap
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.WCellMemOmPlus
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.NFRadRedA
-import Formalism.FormalDegreeBessel.FinalG
+import Formalism.RealPlaceAnalysis.StatementU
 
 open Matrix
 open scoped ContDiff

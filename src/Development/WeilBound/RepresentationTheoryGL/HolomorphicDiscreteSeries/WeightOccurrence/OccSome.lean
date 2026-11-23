@@ -1,5 +1,5 @@
 import Development.WeilBound.CoreStatements.BranchingTraces.HeBranching
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.LaplaceFoundations.IsHWSmooth
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.IsClosedKset
 
 noncomputable section
 

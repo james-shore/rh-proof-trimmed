@@ -4,7 +4,6 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsSchwartzTr
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DerivedActionIntertwinesOfGroupStatement
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SchwartzEqGaussianOfFderivAddEqZeroStatement
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfOrthogonalSchrodingerGaussianStatement
-import GroundTheory.GlobalFields.TateThesis.GaussianSchwartz
 
 noncomputable section
 

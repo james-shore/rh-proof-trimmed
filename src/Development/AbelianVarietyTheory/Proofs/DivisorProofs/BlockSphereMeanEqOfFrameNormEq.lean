@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.AevalEqZeroOfMemConeIdeal
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.SjIffJensenInequality
+import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.SphereBlockLogMean
 
 set_option autoImplicit false
 

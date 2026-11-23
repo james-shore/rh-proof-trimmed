@@ -1,7 +1,7 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJABddSSn
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJABddScalBound
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GramSchmidtFrames.WbPartOfInWb
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GramSchmidtFrames.GsFramesOfIso
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.ZinvBound
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.TheoremPIntegralOfPlaces
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GramSchmidtFrames.PhiMulVec
 
 open Formalism.FourierDecayAlt
 

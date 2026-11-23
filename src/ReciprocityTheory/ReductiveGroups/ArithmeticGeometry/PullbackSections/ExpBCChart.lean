@@ -1,5 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.JetSubstPCompJetBC
-import Formalism.LocalToGlobal.ProjectiveLattices.IsExpChart
+import Formalism.SharpRestriction.Divisibility.GeneratorPowers.CIndBC
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.BcField
 
 set_option autoImplicit false

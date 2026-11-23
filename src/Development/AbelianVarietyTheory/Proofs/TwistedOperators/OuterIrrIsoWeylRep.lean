@@ -1,6 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NonemptyInvFunEquiv
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsPiTensorMvPolynomialProdEquivStatement
+import Formalism.BranchSandwichDivisors.BranchIsometryProofs.BranchMap
+import Formalism.BranchSandwichDivisors.BranchIsometryProofs.XiNorm
 
 noncomputable section
 

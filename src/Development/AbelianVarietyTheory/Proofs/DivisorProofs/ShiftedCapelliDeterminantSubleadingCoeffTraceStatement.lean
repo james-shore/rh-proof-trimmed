@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ShiftedCapelliDeterminantSubleadingCoeffTrace
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemNilRad
 
 open Matrix GlobalTheory.TorFin
 set_option maxHeartbeats 1000000 in

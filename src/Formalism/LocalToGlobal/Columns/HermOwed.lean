@@ -1,7 +1,7 @@
 import Formalism.LocalToGlobal.Columns.ValuationPosIffMemSeen
-import Formalism.LocalToGlobal.Columns.LocalLevelIsKOneEverywhere
-import Formalism.LocalToGlobal.Columns.RecLevelLocK
-import Formalism.LocalToGlobal.Columns.RecLevelLocT
+import Formalism.LocalToGlobal.Columns.ExistsPlaceOverFirstPrime
+import Formalism.PeriodIntegrals.SplitIntLoc
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SplitPrimeIntegers.ExistsUnitDiff
 
 open NumberField IsDedekindDomain Module Matrix
 open scoped TensorProduct

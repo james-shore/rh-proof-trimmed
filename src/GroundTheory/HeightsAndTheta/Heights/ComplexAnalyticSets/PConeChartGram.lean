@@ -1,7 +1,7 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StatementsCurrent
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsChartGram
-import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PConeIntegralMass
+import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.Statements
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.Statements
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsSemipositiveOn
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StatementsArea
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PConeChartArea
 

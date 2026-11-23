@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsSepClosedResidueFieldPowerSeriesComplex
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NearbyCyclesDegreeZeroEquiv
 
 noncomputable section
 

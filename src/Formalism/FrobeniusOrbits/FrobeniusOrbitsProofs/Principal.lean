@@ -2,7 +2,7 @@ import Mathlib
 import Formalism.FrobeniusOrbits.HostDiffSupport
 import Formalism.FrobeniusOrbits.RealSubfieldLeCompositum
 import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.Inertia
-import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.Decomp
+import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.FrobMulInertia
 
 open NumberField IntermediateField Ideal
 open scoped Pointwise nonZeroDivisors

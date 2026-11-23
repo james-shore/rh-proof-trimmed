@@ -1,6 +1,5 @@
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.PairRowIffQdRows
-import Development.AutomorphicArithmetic.CharacterBoxes.TwistForm
-import Development.AutomorphicArithmetic.CharacterBoxes.EventuallyRankLeRpowOfLtOneDivFiftytwo
+import Development.AutomorphicArithmetic.CharacterBoxes.PairGood
 import Development.AutomorphicArithmetic.MeanSquareBounds.IndUnique
 import Development.AutomorphicArithmetic.MeanSquareBounds.TwistPrim
 

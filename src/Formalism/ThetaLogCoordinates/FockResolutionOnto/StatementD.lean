@@ -1,4 +1,4 @@
-import Formalism.ThetaLogCoordinates.FockResolutionOnto.StatementC
+import Formalism.ThetaLogCoordinates.FockResolutionOnto.ShiftLastLetterThresholds
 
 namespace Formalism.InvariantFactorPaths.L4
 

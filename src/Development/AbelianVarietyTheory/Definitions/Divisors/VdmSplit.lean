@@ -1,10 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.DatumEquiv
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.SupTrace
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.FockWeightWedgeLowerModes
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.CoordSpan
+import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.DiscreteSeriesCharacter
 import ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.Statement
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.PsiExistsStatement
 
 noncomputable section
 

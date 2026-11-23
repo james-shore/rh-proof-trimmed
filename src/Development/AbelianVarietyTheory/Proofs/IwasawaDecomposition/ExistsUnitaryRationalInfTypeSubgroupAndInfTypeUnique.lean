@@ -1,8 +1,7 @@
 import Mathlib
 import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
-import Formalism.LocalToGlobal.Divisibility.Tuples
-import Formalism.LocalToGlobal.UnitaryNorms.CharTied
+import Formalism.LocalRingCardinality.DataTheta
 import Formalism.LocalToGlobal.UnitaryNorms.CharUniq
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsRationalUnitaryDeterminantMapRationalUnitaryTo
 

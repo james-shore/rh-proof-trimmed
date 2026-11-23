@@ -1,8 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.Bridge
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsDCOfMemDoubleCoset
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsAntiInvolutionOfChars
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.NormalFamilyOrthogonalDecomposition
 
 noncomputable section
 

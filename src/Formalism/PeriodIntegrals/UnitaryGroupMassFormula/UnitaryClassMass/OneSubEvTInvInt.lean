@@ -1,5 +1,5 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.UnitaryClassMass.LSBase
-import Formalism.PeriodIntegrals.UnitaryApproxFin
+import Formalism.PeriodIntegrals.UnitaryApprox
 
 open NumberField PI.UJClassFin PI.UnitaryGroupMassFormula.UJClassFin IsDedekindDomain
 open scoped TensorProduct RestrictedProduct

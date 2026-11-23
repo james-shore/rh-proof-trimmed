@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SpanRepMatrixEqTopOfAbsIrreducible
+import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.ResidualConstruction
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InvariantAll
+
 open scoped BigOperators
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N GlobalTheory.IndefiniteRowSideFullHecke.CongruenceModuleMatrices
 

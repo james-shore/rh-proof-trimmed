@@ -1,7 +1,6 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.MetricPeriods.Pull1
+import Development.AutomorphicSpectrum.Definitions.MetricPeriods.GeometricAbelianConnected
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.APrime
-import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsFibreLocal
 import Development.AutomorphicSpectrum.Statements.MetricStatements.AgreementIffGuarded
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.FormPolyIsHomogeneousAndEval
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.KillNoneFormPoly

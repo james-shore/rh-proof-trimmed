@@ -1,4 +1,5 @@
 import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AnalyticIntertwiners.GelfandCentralHolds
+import CompanionTheory.AutomorphicTheory.HarishChandraMultiplicity.HCMult
 
 open Matrix
 open scoped InnerProductSpace

@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RegularSemisimpleFibres.PowerMatchingTraces.MatchPowAlt
-import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.LocFlath
 import Development.WeilBound.CoreStatements.AutomorphicKernels.ResidualSpectrumHilbertSum.ResidualSpectrumTensors.IsLocCompTwistFills
 
 open MeasureTheory NumberField IsDedekindDomain Filter

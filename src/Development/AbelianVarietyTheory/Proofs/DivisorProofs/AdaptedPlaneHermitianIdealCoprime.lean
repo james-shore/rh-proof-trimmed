@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDualFamilyOfIsLattice
-import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
 
 noncomputable section
 

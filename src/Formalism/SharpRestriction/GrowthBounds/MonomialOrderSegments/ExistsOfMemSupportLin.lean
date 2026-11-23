@@ -1,5 +1,6 @@
 import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.TestBoundOfRhoAndNormSets
 import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.SegDefs
+import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.DigitPartMonomial
 
 noncomputable section
 

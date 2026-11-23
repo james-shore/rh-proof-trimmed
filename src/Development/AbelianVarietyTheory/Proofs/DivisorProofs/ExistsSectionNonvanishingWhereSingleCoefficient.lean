@@ -1,5 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.QuasiCompact
+import Development.AbelianVarietyTheory.Definitions.Divisors.TateProductRigidificationTrivial
+
 open AlgebraicGeometry CategoryTheory Limits
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out
 

@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.CuspSpanNormBounds.RootMeasBig
+import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
 
 noncomputable section
 

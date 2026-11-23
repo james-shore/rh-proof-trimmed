@@ -3,7 +3,6 @@ import Formalism.SharpRestriction.CuspSpanNormBounds.LocalDataRealPlace
 import Formalism.SharpRestriction.CuspSpanNormBounds.IsGramNorm
 import Formalism.SharpRestriction.CuspSpanNormBounds.PSDKOnOfPSDK
 import Formalism.SharpRestriction.CuspSpanNormBounds.FamilyBlockLiftEstimate
-import Formalism.SharpRestriction.ParamsHeightRankConstant
 
 open Matrix MeasureTheory NumberField Filter Topology Polynomial
 open scoped ContDiff

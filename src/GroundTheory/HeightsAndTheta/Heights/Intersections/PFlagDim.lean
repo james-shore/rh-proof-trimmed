@@ -1,6 +1,7 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.Intersections.FlagDimSt
-import GroundTheory.ArithmeticGeometry.AbelianVarieties.JacobianSmoothness.RingKrullDimLeRingKrullDimQuotientAddOne
+import GroundTheory.HeightsAndTheta.Heights.Intersections.ProjLineRankTwoPushforwardHypotheses
+import GroundTheory.ArithmeticGeometry.ToricVarieties.Affine
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

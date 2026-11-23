@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.RootWeights.FockLatticeFiniteSpanning
+import Formalism.SharpRestriction.GrowthBounds.CovariantDegrees
 
 noncomputable section
 

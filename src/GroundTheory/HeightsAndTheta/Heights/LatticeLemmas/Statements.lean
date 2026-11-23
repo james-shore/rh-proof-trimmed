@@ -1,5 +1,6 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.LatticeLemmas.StatementsExamples
+import GroundTheory.HeightsAndTheta.Heights.LatticeLemmas.StatementsLocal
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.LatticeLemmas

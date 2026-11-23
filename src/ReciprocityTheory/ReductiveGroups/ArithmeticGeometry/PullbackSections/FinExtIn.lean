@@ -1,6 +1,4 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.FullExists
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.ThValDescIn
-import Formalism.LocalToGlobal.ProjectiveLattices.RecPJThAllNeBot
 import Formalism.LocalToGlobal.ProjectiveLattices.ChartDirectionsIntegral
 
 set_option autoImplicit false

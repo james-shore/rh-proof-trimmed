@@ -1,6 +1,5 @@
 import Development.AutomorphicArithmetic.ResidueCharacters.TwistedPlaces
 import Formalism.SharpRestriction.LevelLetterCocycles.WachCoordinates
-import Formalism.SharpRestriction.LevelLetterCocycles.ArcLiftingSetup
 import Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpowers.LiftingConditionOfCrystallineLift
 
 noncomputable section

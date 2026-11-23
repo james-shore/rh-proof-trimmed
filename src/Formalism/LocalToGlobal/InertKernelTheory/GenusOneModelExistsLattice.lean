@@ -1,5 +1,4 @@
-import Formalism.LocalToGlobal.InertKernelTheory.StatementBe
-import Formalism.LocalToGlobal.InertKernelTheory.DefsSigma
+import Formalism.LocalToGlobal.GroupLattices.PendingLemmas.CoeffOneLNe
 
 noncomputable section
 

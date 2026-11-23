@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.RealisedChainTorusEq
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.FiniteDimensionalMram
 
 noncomputable section
 

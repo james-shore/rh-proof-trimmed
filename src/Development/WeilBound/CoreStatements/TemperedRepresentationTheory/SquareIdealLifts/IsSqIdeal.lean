@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.PrimitiveCrystalHodgeLiftClasses
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.AbelianLifting
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsKSValueOneOfRetraction
 
 set_option autoImplicit false
 

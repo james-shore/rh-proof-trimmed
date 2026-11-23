@@ -5,6 +5,8 @@ import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsGradedSubmod
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsClosedPtFibreLift
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsChartNakayamaGen
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsGenNearMul
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PQuotPartGraded
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.HilbertSamuel

@@ -4,9 +4,9 @@ import Formalism.LocalToGlobal.Columns.CoefficientsModP.LatticeBasisExistsHolds
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PatchAtSelf
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.InvMemDoubleCosetAndComm
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SameAtOfLocalizationEq
-import Formalism.LocalRingCardinality.SpanPowerMembership.Places
 import Formalism.LocalToGlobal.Columns.TwQCmp
 import Formalism.LocalToGlobal.Columns.ReferenceActionRationalLevels
+
 open NumberField IsDedekindDomain Formalism.HermitianLatticesTheory Formalism.L2.Col GlobalTheory.InertExchange
 open Classical
 

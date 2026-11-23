@@ -1,6 +1,7 @@
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.BiextensionRelation
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.HomotheticLatticeIntegralS2
 import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.EisensteinRecursion
+import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.HasCMByStable
 
 noncomputable section
 open scoped BigOperators

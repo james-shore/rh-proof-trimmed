@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SchurDeterminants.SchurYOffClr
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SchurDeterminants.PairSplit
+import GroundTheory.HeightsAndTheta.Heights.RemainderTerms.JacobiTrudi
 
 noncomputable section
 

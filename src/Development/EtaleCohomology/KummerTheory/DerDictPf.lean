@@ -1,4 +1,5 @@
 import Development.EtaleCohomology.KummerTheory.BockCut
+import Development.EtaleCohomology.TateTwists.EtaleInjectiveResolutionBasicProperties
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC

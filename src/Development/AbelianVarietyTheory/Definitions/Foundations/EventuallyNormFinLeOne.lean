@@ -1,7 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.GlobalSchurBounds.StandardLattice
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.EqOrConjOfPlaceOf
-import Development.AbelianVarietyTheory.Proofs.HeightProofs.MemAdelicLatticeIffLocalSelfDualCompletion
 
 noncomputable section
 

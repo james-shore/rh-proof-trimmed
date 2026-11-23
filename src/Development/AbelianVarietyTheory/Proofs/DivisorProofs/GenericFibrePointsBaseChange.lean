@@ -1,6 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComapMaximalIdealEqOrigin
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMulMemIntegralClosureOverGenericFibre
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PointAtZero
+
 open IsLocalRing Polynomial
 open scoped TensorProduct
 

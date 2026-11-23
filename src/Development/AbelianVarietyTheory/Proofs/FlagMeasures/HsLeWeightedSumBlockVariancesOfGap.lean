@@ -1,5 +1,8 @@
 import Mathlib
 import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactExponentialSurjective
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.ComplexificationHolds
+
 open Matrix Finset Formalism.MainNotions.S Formalism.REAL Formalism.QuantumDeterminants
 
 namespace GlobalTheory.GapSum

@@ -6,6 +6,7 @@ import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsSumF
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IsTameFinitePlaceHermitianAll
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SmulColMul
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IncAdjYZeroMulVec
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.VacOfShape
 
 noncomputable section
 

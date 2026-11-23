@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoefInjective
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ClassPresBasic
 
 noncomputable section
 

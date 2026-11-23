@@ -2,8 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FixedVectorEqOfStandardData
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsTwIffCanonEq
 import Formalism.LocalToGlobal.KernelLattices.TopPin
-import Formalism.LocalToGlobal.KernelLattices.InterlaceAll
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.JetsInIffStepField
+import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.IndexExponentDegree
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HermitianChartComplexRationalIntegralFormsStatement
 import Formalism.LocalToGlobal.KernelLattices.ColumnData.DiagramFitsSourceRank
 import Formalism.UnipotentAdelicQuotients.WeylLatDual
@@ -12,6 +11,7 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DominantWeig
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MainProofStatement
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsPolynomialModelValueRationalStepStatement
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LatticeIffIntegralWeylCoordinatesStatement
+
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Col Formalism.L2.DIV Formalism.L2.Ker Formalism.UG Formalism.L2.Forms GlobalTheory.Mem GlobalTheory.Mem.Chr GlobalTheory.Mem.Col2 GlobalTheory.Mem.Col2.TC Matrix
 attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Host.cmStar
 

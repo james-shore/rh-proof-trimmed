@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.GlobalTheory.GL6.Statement
+import Formalism.SharpRestriction.GlobalSchurBounds.ProductFirstZerothParts
 import Formalism.LocalToGlobal.HermitianForms.FormsTied
 
 noncomputable section

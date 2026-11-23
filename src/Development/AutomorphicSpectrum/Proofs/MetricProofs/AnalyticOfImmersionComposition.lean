@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Proofs.MetricProofs.SameOrbitRefl
+import Development.AutomorphicSpectrum.Definitions.MetricPeriods.GenericBlockMatrixIsBlockDiag
 
 namespace GlobalTheory.CompanionTheory.Metric.Rigid
 

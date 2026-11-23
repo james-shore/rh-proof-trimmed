@@ -1,6 +1,5 @@
 import Mathlib
 import ReciprocityTheory.DualLattices.VEqZeroOfPowEqOne
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.WeightedSumBounds.PtOrderProdSub
 
 namespace ReciprocityTheory.ChartRestriction.G.Sh
 

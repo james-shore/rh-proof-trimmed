@@ -1,6 +1,7 @@
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MapMemA
-import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.ImageStableDegreeBounds
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ExistsAlgebraMapEqRoot
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PowerSeriesExistsUniqueDecompOverFrobeniusLikeEnStatement
+
 open PowerSeries GlobalTheory.BK Matrix GlobalTheory.LiftCoker
 
 noncomputable section

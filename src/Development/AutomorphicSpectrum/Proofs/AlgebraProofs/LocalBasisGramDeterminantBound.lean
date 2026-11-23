@@ -6,7 +6,6 @@ import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PadicIntegralIffDeno
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ExistsNotMemSubConjStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.GramDeterminantLogDifferentStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ExistsLocalBasisStatement
-import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SesqSesquilinearSkewHermitianStatement
 
 noncomputable section
 

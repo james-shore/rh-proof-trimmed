@@ -1,5 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsMahler
+import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.Characterised
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

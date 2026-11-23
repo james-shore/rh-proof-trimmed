@@ -1,6 +1,6 @@
 import Formalism.FlagUnipotentLattices.StabiliserComplementDecomposition
-import Formalism.FlagUnipotentLattices.AlgebraicIdentityHigherDegree
 import Formalism.FormalDegreeBessel.FinalG
+import Formalism.FlagUnipotentLattices.MinkowskiFactorialBounds.IntegrableOnIoiTruncatedPowerMoment
 
 open Finset Matrix
 open scoped ComplexConjugate TensorProduct

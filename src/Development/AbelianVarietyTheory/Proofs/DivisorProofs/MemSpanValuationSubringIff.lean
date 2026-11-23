@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsBasisOfBot
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.QuotientEigenDifference
+import Development.AbelianVarietyTheory.Definitions.Divisors.IotaScalarOne
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.SandwichMaps
 
 noncomputable section
 

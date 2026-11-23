@@ -1,5 +1,4 @@
 import Formalism.FlagUnipotentLattices.DetIndexProductHyperbolicInequality
-import Formalism.HyperbolicPlaceProducts.ArithmeticCountRevised
 
 open Module NumberField Formalism.HermitianLatticeCounting.LocalIntegralStructure
 

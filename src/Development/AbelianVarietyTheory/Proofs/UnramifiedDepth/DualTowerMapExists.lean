@@ -1,7 +1,6 @@
 import Mathlib
-import ReciprocityTheory.DualLattices.TowerZeroSurjective
-import ReciprocityTheory.DualLattices.LinPairStatement
-import ReciprocityTheory.DualLattices.SubMemOfCompat
+import ReciprocityTheory.DualLattices.FormalChartAtZero
+import ReciprocityTheory.DualLattices.ATowerInh
 import ReciprocityTheory.DualLattices.IsFibreSq
 import ReciprocityTheory.DualLattices.DualPairInh
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.UniversalCharts.LePreimageOfNil

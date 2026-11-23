@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Langlands
-import Development.DiscreteGroups.GlobalIrreducibility.LConvCut
 
 noncomputable section
 

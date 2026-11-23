@@ -1,5 +1,5 @@
 import Formalism.PeriodIntegrals.HermitianGenusExtension.SemilocalHermitianLattices.MassSt
-import Mathlib
+import Formalism.HermitianLattices.StatementMass
 
 open NumberField Module
 

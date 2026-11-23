@@ -1,7 +1,8 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.JetCones.SymCapRev
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
-import Formalism.RealPlaceAnalysis.FinalF
+import Formalism.RealPlaceAnalysis.InstMeasurableSpaceUJ
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.SatisfiesGlRelationsBilinearLeft
+
 open GlobalTheory.CompanionTheory.AlgRepEndIrreducible PI.UpqRep Matrix
 open scoped InnerProductSpace
 

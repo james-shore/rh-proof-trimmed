@@ -1,5 +1,5 @@
-import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.RingIndep
-import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.MemColSpanIff
+import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.RhoLowerBoundLargeConductor
+import Formalism.SharpRestriction.GrowthBounds.LatticeSystems
 
 noncomputable section
 

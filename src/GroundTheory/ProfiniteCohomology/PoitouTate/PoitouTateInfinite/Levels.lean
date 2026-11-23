@@ -1,11 +1,8 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.PoitouTate.PoitouTateInfinite.Restrict
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.BrauerFrob
-import GroundTheory.ProfiniteCohomology.RestrictedRamification.ClassFieldGSUnram
-import GroundTheory.ProfiniteCohomology.GlobalClassFormation.IdeleCohomology.Ramified
-import GroundTheory.ProfiniteCohomology.InflationRestriction.DegreeOne
-import GroundTheory.ProfiniteCohomology.Procyclic
-import GroundTheory.ProfiniteCohomology.CupProducts.Functoriality
+import GroundTheory.GlobalFields.ClassFieldConsequences.CongruenceSubgroupLeStandardOpenSubgroup
+import GroundTheory.GlobalFields.ClassFieldConsequences.ConductorLocal
 import GroundTheory.ProfiniteCohomology.CupProducts.Pairing
 import GroundTheory.LocalFields.WildInertia
 

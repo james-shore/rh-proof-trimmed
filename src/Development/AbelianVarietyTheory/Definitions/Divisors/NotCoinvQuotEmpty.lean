@@ -1,10 +1,8 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Divisors.SecMapApply
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.HoweDualityUnitary
+import Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff
+import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
 import Development.AbelianVarietyTheory.Definitions.Divisors.AdelicAdmissibleSmul
-import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.KudlaSplittingSplitUnitary
 import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.SumSquaresNeThreeThreeAdic
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilObjectsInhabited
 
 noncomputable section
 

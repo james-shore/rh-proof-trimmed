@@ -1,4 +1,5 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SquarePairLocal.PowerSeriesExpansionImageDenseWithDenominator
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SquarePairLocal.MemFixSub
 
 noncomputable section
 open NumberField IsDedekindDomain HeightOneSpectrum WithZero IsLocalRing Topology Filter

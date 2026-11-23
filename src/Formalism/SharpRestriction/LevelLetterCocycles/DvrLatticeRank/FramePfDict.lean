@@ -1,7 +1,6 @@
-import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.FramePfPt
-import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.DvdOfCoeffSubstXPowNeZero
-import Formalism.SharpRestriction.LevelLetterCocycles.DeltaInvariantUniformizer
-import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.GradNPfA
+import Formalism.SharpRestriction.LevelLetterCocycles.LamPS
+import Formalism.WachLatticeTwists.LagrangeExtensionCocycles.DualWByLettersExtended
+import Formalism.SharpRestriction.LevelLetterCocycles.FrobeniusPowUniformizerFactorisation
 
 noncomputable section
 

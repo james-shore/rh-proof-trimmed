@@ -1,7 +1,6 @@
 import Mathlib
 import ReciprocityTheory.Hypotheses.GalCoh
 import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohFin
-import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohField
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsPrimeMemAsIdeal
 
 namespace GlobalTheory.Laid

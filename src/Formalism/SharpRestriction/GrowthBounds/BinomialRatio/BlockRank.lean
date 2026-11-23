@@ -1,5 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.CountDefs
-import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.SegLow
+import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.ChainDim
 import Formalism.SharpRestriction.GrowthBounds.CountingStatementReduction
 import Formalism.SharpRestriction.GrowthBounds.ProjectionOfIsotypicDecomposition
 

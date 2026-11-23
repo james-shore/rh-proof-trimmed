@@ -1,6 +1,7 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpowers.RhoFam
 import Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpowers.LocalErrorBoundPlaces
 import Formalism.SharpRestriction.LevelLetterCocycles.TwGood
+import Formalism.SharpRestriction.LevelLetterCocycles.EmbeddingTypes
 
 noncomputable section
 

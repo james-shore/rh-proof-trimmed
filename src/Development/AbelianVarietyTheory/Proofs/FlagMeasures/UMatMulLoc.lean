@@ -1,10 +1,10 @@
 import Mathlib
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.LocWSOf
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.VolPin
-import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.JacobianCoordinates
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.EquivPf
-import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.AmpRelAtPt
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.SigmaFiniteOfHaar
+import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.JacobianCoordinates
+import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.AmpRelAtPt
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.CellRep
 
 open scoped Classical ENNReal

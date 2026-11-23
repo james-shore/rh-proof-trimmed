@@ -5,7 +5,6 @@ import Development.AutomorphicArithmetic.LocalEmbeddings.ReBaseReal
 import Development.AutomorphicArithmetic.LocalEmbeddings.ReBaseArch
 import Development.AutomorphicArithmetic.LocalEmbeddings.ReBaseZeta
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MatchedDataRestrictionUnique
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MatchedLocalIsomorphismScalars
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SplitPlaceCharacterComponentSmoothUnitaryConductStatement
 
 open scoped TensorProduct Matrix

@@ -1,7 +1,4 @@
-import Formalism.WachLatticeTwists.RamifiedBlockRings.RamifiedBlockProofs.RankDiagIte
-import Formalism.WachLatticeTwists.RamifiedBlockRings.RightIdealImageOfSurjective
-import Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.BridgeDet
-import Formalism.CharacterColumnKernels.IdempotentNormalForms.IsUnitDetOfConst
+import Formalism.WachLatticeTwists.RamifiedBlockRings.RamifiedBlockProofs.RingDataObjects
 
 open Finset Classical
 

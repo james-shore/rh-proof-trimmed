@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.GaloisCohomology.LocalTateDualityK
-import ReciprocityTheory.Hypotheses.GalCoh
+import Formalism.GaloisCohomology.Statement
+
 open NumberField IsDedekindDomain Representation Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology
 
 noncomputable section

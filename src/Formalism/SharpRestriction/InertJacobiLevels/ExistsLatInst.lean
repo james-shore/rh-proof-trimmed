@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.InertJacobiLevels.LambdaRealEqShiftedWeight
+import Formalism.SharpRestriction.InertJacobiLevels.TieTTwValsOfMem
 import Formalism.SharpRestriction.InertJacobiLevels.ExtraGatC
 
 noncomputable section

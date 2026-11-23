@@ -1,6 +1,5 @@
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.LemmaBStatement
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.ExistsRosatiGen
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.BOfNsmulLeft
 
 set_option autoImplicit false
 

@@ -1,5 +1,4 @@
 import Development.EtaleCohomology.WeilConjectures.ArtinCut
-import Development.EtaleCohomology.KummerTheory.InjSlice
 
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC

@@ -1,4 +1,5 @@
-import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.IntegralUnitBaseChange.Development
+import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.IntegralUnitBaseChange.InvTransposeGLInvTransposeGL
+
 open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.Descent

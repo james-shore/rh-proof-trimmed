@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DifferentiableOfIsSm
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.InducedSectionZFinite
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsBlockEmb
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ContinuousConjFin
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ToGAdMat
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeviBlockSizesSum
 
 noncomputable section
 

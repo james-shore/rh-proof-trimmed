@@ -1,6 +1,6 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StAreaGraphPiece
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.VolumeLtHausdorffUnitBallTwenty
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

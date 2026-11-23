@@ -1,8 +1,6 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.Weights
-import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.Values
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.ProjectiveLine
-import GroundTheory.HeightsAndTheta.Heights.Regularisation.PBoundedGlue
 
 set_option maxSynthPendingDepth 1
 

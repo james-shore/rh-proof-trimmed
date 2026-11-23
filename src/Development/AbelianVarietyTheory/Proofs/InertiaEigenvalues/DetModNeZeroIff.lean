@@ -1,8 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.HeckeFlatSpecialisation
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.GaussBinomMulProd
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsOfMemDoubleCosetK
-import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.IntegralMatrixTranslation
+import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.GaussianBinomialFormula
+import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.LatticeCosetUniformizer
 
 open scoped Classical BigOperators
 open IsLocalRing Module Matrix

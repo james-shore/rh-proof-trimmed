@@ -1,5 +1,5 @@
 import Formalism.LocalToGlobal.CMDeterminantIdeals.StatementB
-import Formalism.LocalToGlobal.CMDeterminantIdeals.CoeffMemOfLoc
+import ReciprocityTheory.SemistableReduction.LatSemiSt
 
 noncomputable section
 

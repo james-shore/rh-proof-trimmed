@@ -3,6 +3,7 @@ import Formalism.SharpRestriction.CuspSpanNormBounds.LocalGroupInFamilyNontrivia
 import Formalism.SharpRestriction.CuspSpanNormBounds.UniformConstantsAndStatements
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleClassGroupCardPos
+import Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.FramesPt
 
 noncomputable section
 

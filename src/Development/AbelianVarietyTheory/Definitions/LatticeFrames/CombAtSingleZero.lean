@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ValLast
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ValueDoubleExact
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.JointSmooth
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsSumFrame
 
 set_option genSizeOfSpec false
 set_option genInjectivity false

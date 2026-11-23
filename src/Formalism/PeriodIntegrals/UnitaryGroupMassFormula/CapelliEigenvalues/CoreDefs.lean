@@ -1,4 +1,5 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CapelliEigenvalues.SmRight
+import Formalism.PeriodIntegrals.DSInfCharCap
 
 open Matrix PI.UpqRep
 

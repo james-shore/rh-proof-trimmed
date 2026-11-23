@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.MirabolicMackeyTheory.StatementT
-import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ValBasic
 
 namespace Formalism.EigenvalueLevelCeiling
 

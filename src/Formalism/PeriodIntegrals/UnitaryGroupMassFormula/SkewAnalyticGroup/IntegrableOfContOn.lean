@@ -1,4 +1,4 @@
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SkewAnalyticGroup.HasDerivAtShift
+import Formalism.HermitianCurvature.StatementQ
 
 open Matrix MeasureTheory Filter Topology Set
 open scoped ContDiff ENNReal

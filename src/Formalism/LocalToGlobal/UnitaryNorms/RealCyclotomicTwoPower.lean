@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.FrobeniusOrbits.RealSubfieldLeCompositum
-import Formalism.FrobeniusOrbits.HostDiffSupport
 
 noncomputable section
 

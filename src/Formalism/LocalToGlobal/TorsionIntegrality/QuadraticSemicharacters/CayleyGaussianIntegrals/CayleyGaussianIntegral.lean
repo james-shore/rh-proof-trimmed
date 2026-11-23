@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.CayleyIdentity
+import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.KerPNonzero
 
 noncomputable section
 open scoped BigOperators ComplexConjugate

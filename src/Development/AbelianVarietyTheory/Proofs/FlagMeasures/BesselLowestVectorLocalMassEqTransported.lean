@@ -3,10 +3,10 @@ import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ConstC
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.QuotientMeasureRightInvariant
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.UnitaryGroupMatGroupUnimodular
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.BesselSubgroupProductMeasureIsHaar
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.UhMeasurableSet
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ContinuousMulMt
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ReproducingFormulaReduction
 import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeCSB
+
 open scoped Classical ENNReal
 open MeasureTheory Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.LocWSOf GlobalTheory.TypeAsm
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EigCongr
+import Development.AbelianVarietyTheory.Definitions.Divisors.SplitDoublingNBlock
 
 noncomputable section
 

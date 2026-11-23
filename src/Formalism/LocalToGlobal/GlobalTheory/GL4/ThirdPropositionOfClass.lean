@@ -1,6 +1,6 @@
 import Formalism.LocalToGlobal.GlobalTheory.GL4.LowerSlopeInequalityFamily
-import Formalism.LocalToGlobal.Columns.BrzoPairAtZeroRight
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.AlternatingFormStandardHermitian
+import Formalism.LocalToGlobal.Columns.BrzoPairAtZeroRight
 
 open Module NumberField IsDedekindDomain
 

@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ResBound
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Saturated
 
 noncomputable section
 namespace GlobalTheory.Present

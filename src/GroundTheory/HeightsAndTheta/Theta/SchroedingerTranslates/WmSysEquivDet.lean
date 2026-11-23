@@ -1,7 +1,6 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Theta.EisensteinZeta.WeilPolarization.WmSysObjects
 import GroundTheory.HeightsAndTheta.Theta.SchroedingerTranslates.ExistsInverseFontaineElementMemFilNegOne
-import GroundTheory.HeightsAndTheta.Theta.LocallyCompactField.Countability
 
 noncomputable section
 

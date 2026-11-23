@@ -1,4 +1,4 @@
-import Formalism.PolynomialDimension.FrameSum
+import Mathlib
 
 open scoped BigOperators
 open Finset

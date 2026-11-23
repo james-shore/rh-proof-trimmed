@@ -3,7 +3,7 @@ import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.Admi
 import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmFourteen
 import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmissibleExternalProduct
 import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths
-import Formalism.SharpRestriction.GrowthBounds.GLWeightTheory
+import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.CanonicalTranslateJetIdentity
 
 namespace Formalism.MainNotions.G.ColumnFamilies
 

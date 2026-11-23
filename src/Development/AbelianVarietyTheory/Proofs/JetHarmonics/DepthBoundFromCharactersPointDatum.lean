@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Jets.ColValMonomial
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.UnifUniqSt
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.TwistBCPf
 import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.RosIdSt
 import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ExistsBasisOfCoord
 import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ValuationThetaRatioEqBilinear
@@ -11,6 +9,9 @@ import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsGenOfTop
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.SurjectiveAppTop
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.DerivativeCongruenceGermIntegralTranslateStatement
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.SumProdConstMul
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ColValueMulOfDisjointColumns
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ValLeOfMemSpan
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsEigenColumn
 
 set_option autoImplicit false
 

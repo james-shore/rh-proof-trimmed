@@ -1,9 +1,8 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.BlockAnti
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.UpperOff
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.MajorantFlagLengthsInvarianceTorusPositivity
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.GramSchmidtLengths
 import Formalism.FlagUnipotentLattices.CardSubgroupsOfIndexLe
-import Formalism.FormalDegreeBessel.FinalG
 
 noncomputable section
 

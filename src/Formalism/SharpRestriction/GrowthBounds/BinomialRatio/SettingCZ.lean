@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.SettingCharZeroAt
-import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.FinrankTensor
 
 noncomputable section
 

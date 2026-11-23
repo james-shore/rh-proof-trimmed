@@ -3,9 +3,7 @@ import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsGlob
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsScale
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsDual
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsSpan
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsApprox
 import Formalism.LocalToGlobal.LatticeGeometry.GeometryDefinitions.SingleFacts
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.SignatureConjugationInvariant
 
 noncomputable section
 

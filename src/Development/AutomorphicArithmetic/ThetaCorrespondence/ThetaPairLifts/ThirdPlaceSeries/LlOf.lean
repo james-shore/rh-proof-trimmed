@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.AbsCentral
-import Mathlib
 
 set_option synthInstance.maxHeartbeats 200000
 

@@ -1,5 +1,8 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.IsScaleStable
+import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PConeChartArea
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PConePolar
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PConeSliceSheetParam
 
 set_option maxSynthPendingDepth 1
 

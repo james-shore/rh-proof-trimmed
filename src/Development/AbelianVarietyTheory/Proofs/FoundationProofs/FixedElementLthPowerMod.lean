@@ -3,6 +3,7 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemCycAlgOfPow
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.VanishOrdOfKatoUseN
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.InertiaFixedValuationEqZpowPrimeRatAlgClosure
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PowFixedOfAlgebraic
+import Development.AbelianVarietyTheory.Definitions.Foundations.NotIsTrDataGaussianIntOne
 
 noncomputable section
 

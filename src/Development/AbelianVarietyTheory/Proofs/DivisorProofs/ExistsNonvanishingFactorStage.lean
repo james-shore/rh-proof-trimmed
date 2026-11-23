@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.RegConst
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SquareConstantProportionalRegular
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RealMatchingTiedRegularizationConstant
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StageFactorNonvanishingScalars
 
 noncomputable section

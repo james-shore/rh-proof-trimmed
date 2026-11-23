@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AutomorphicArithmetic.AutomorphicVarieties.HermiteNormalForms.Hadam
 
 open Matrix
 open scoped ComplexOrder

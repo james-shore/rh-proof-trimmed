@@ -1,4 +1,5 @@
 import Formalism.CharacterColumnKernels.IdempotentNormalForms.CharacterColumnKernelsOfBlockChiCOfBlockChiOne
+import Formalism.CharacterColumnKernels.IdempotentNormalForms.BlockChiOneFullOf
 
 open Finset Classical
 

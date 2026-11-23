@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.KernelLattices.KerMemPin
+import Formalism.LocalToGlobal.KernelLattices.FirstKernelLawReading
 
 open NumberField IsDedekindDomain
 

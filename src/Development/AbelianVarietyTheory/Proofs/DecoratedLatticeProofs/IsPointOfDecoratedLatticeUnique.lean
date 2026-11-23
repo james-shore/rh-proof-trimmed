@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ReferenceCharactersFactorTame
-import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsGlob
+
 open NumberField IsDedekindDomain
 
 noncomputable section

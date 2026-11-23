@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.RootWeights.DeltaIntegralEnvelopingStable
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.ExistsIntegralWeightProjections
 
 noncomputable section
 

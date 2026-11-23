@@ -1,5 +1,4 @@
 import Development.AutomorphicArithmetic.CyclotomicBounds.RamifiedDiscriminants.FunKit
-import Mathlib
 import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.StepUnfold
 import Development.AbelianVarietyTheory.Definitions.Divisors.DiscreteSeriesHermitianUnique
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.PairPtsClasses
@@ -10,6 +9,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationLeOneOfMem
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitThetaGridIsAdmissibleFlipTensor
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.StepType
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FirstVertexWeilOrbitValueStatement
+
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
 open IsDedekindDomain NumberField MeasureTheory Matrix ValuativeRel GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.SplitFlip GlobalTheory.SplitWeil GlobalTheory.StepData
 open GlobalTheory.RowTest GlobalTheory.StdFrames GlobalTheory.RowClaim

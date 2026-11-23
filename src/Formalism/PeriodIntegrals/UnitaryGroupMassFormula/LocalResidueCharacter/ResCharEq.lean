@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.PinHostLoc
+import Formalism.SharpRestriction.CuspSpanNormBounds.PsiEDef
 
 noncomputable section
 

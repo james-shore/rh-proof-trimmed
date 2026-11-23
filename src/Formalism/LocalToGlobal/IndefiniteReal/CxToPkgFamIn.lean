@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.CxLemmas
-import Formalism.LocalToGlobal.Divisibility.LiftLatLemmas
 import Formalism.LocalToGlobal.Divisibility.DivisionHeightBoundStatement
 
 open Module NumberField IsDedekindDomain

@@ -1,5 +1,4 @@
 import Mathlib
-import GroundTheory.LocalFields.BrauerInductionSpan
 
 noncomputable section
 

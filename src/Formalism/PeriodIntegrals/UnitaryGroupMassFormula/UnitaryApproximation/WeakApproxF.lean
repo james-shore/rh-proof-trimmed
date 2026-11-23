@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryApproxFin
+import Formalism.PeriodIntegrals.UnitaryApprox
 
 noncomputable section
 

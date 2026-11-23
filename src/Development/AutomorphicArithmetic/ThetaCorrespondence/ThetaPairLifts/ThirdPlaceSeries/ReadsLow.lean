@@ -1,9 +1,8 @@
-import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ReadsLow
 import Mathlib
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.Live
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RealPack
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.GeoAll
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.QuadraticExtensionData
-import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TopReadAt
 
 set_option synthInstance.maxHeartbeats 200000
 

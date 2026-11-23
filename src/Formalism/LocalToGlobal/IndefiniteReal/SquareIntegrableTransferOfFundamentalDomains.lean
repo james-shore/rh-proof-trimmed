@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.IndefiniteReal.SquareIntegrableTransfer
 import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.UnimodGA
+import Formalism.LocalToGlobal.IndefiniteReal.MeasurableMulGA
 
 noncomputable section
 

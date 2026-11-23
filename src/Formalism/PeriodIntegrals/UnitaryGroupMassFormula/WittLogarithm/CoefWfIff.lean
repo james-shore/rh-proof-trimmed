@@ -1,4 +1,4 @@
-import Formalism.PeriodIntegrals.InvSerSub
+import Formalism.PeriodIntegrals.ExpIntW
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ExponentialIntegrality.InvNatMemWf
 
 noncomputable section

@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.RealObj
-import Formalism.HermitianCurvature.StatementJCT
+import Formalism.HermitianCurvature.StatementMA
 
 noncomputable section
 

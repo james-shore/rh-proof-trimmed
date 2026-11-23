@@ -1,4 +1,4 @@
-import Formalism.CharacterColumnKernels.StatGlobalModule
+import Formalism.CharacterColumnKernels.StatementN
 
 open Finset Classical
 

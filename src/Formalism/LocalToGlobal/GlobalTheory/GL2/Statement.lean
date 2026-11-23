@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.GlobalSchurBounds.ShortIntervalPrimes
-import Formalism.SharpRestriction.GlobalSchurBounds.Chosen
 import Formalism.LocalToGlobal.UnitaryNorms.MemFIffReal
 import Formalism.SizeWindowBrackets.SmoothedRemainderRealIntegralFormula
 import Formalism.GL3MeanSquares.SecondEstimateOfIntervalHypothesis

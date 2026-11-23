@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.MaxVSpanSingleton
-import Formalism.LocalToGlobal.Columns.BaseLemmas
 import Formalism.LocalRingCardinality.SpanPowerMembership.Places
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.NormalFormAtPrime
 import Development.AbelianVarietyTheory.Definitions.Foundations.AbsCharNotUnitary
@@ -15,6 +14,7 @@ import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.LocCharEqZpow
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.SpanImageLeOf
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ConjPConjP
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsComapPrime
+import Formalism.LocalToGlobal.Columns.DecorationStabilizerTrivialUnipotent
 
 open NumberField IsDedekindDomain WithZero
 

@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.MembershipCriteria.GoodChar
-import Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace
+import Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff
+import Development.AutomorphicSpectrum.Definitions.MembershipCriteria.LaEqSqrtSmulLam
 
 noncomputable section
 

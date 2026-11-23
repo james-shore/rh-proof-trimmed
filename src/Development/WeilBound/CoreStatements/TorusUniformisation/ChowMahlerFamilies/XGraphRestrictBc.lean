@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.LieLatticeData
+import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.FlagMinor
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.LocallyFreeFiniteProjectiveBaseChange
+
 open GlobalTheory.CompanionTheory.Ar.Num
 
 namespace PositivityTheory.Xgn.A_graph_restrict_bc

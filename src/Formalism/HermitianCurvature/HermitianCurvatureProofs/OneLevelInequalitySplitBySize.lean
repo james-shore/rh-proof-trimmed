@@ -2,9 +2,7 @@ import Formalism.HermitianCurvature.StatementTB
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.PositiveSemidefinitePullback
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.BlockStartPoints
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.FormDomination
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.FinitePointSets
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.OneLevelCoefficients
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.AntidiagMulDiagonal
 
 namespace Formalism.FourierDecayAlt.P
 

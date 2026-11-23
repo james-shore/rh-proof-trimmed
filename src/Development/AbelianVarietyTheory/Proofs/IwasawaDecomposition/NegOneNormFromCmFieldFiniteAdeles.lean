@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.RootOfUnityEightQMemCoeffGaloisSubfield
-import Formalism.LocalRingCardinality.SpanPowerMembership.Spaces
+import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleRanksRankComplement
 import Formalism.SharpRestriction.InertJacobiLevels.HostFam
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsRootQuadratic
 

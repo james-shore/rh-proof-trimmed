@@ -1,5 +1,5 @@
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SizeCount.Development
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.OrbitSumCount.TauPlBijective
+import Formalism.SharpRestriction.Divisibility.OrbitPlaces
 
 noncomputable section
 

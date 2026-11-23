@@ -1,5 +1,5 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.Lam1
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.OmLongContinuousOn
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.KloostermanDensityOfParts
 
 namespace Formalism.FourierDecayAlt.P.GermRateSplit
 

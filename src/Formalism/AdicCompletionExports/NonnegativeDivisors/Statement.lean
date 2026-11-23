@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.LocalToGlobal.Divisibility.LiftLatLemmas
-import Formalism.QuotientMetricDivisors.SixthReductionExplicit
+import Formalism.LocalToGlobal.Divisibility.LiftLat
+import Formalism.LocalToGlobal.Divisibility.ProjLemmas
 
 noncomputable section
 

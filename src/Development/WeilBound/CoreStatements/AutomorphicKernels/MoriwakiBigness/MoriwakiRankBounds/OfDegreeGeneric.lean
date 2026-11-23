@@ -1,12 +1,11 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.TendstoFinrankVeryAmple
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PBigIffGenDeg
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PSemiposTwist
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PNefOnGenericOfSemipos
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PChartLatRank
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PSectionLatticeFinite
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.AssemblyBase
 import Development.WeilBound.CoreStatements.AutomorphicKernels.MoriwakiBigness.MoriwakiRankBounds.Development
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PSemiposTwist
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PKodairaSection
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsCoordNeZero
 
 namespace PositivityTheory.Pf1.MbRank
 

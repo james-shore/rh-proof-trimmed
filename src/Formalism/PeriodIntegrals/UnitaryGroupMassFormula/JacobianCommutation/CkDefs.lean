@@ -1,8 +1,5 @@
-import Formalism.HermitianCurvature.BigCellVanishingOfCommute
-import Formalism.HermitianCurvature.StatementJF
-import Formalism.HermitianCurvature.WeylElementCommutesLevelOne
-import Formalism.FormalDegreeBessel.FinalBF
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.RegularisedPairingViaPhase
+import Formalism.HermitianCurvature.StatementB
+import Formalism.HermitianCurvature.StatementQ
 
 open MeasureTheory Filter Topology Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt
 

@@ -1,9 +1,9 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.SubsingletonCohomologyOneGalUnitsSubgroupOf
 import GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.CohomologyKummer
-import GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.CohomologyGal
 import GroundTheory.ProfiniteCohomology.LocalClassFormation.FiniteVanishing.KummerOpen
 import GroundTheory.ProfiniteCohomology.PoincareDuality.Torsion
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

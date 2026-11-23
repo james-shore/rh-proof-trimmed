@@ -1,7 +1,5 @@
 import Mathlib
 import Formalism.SharpRestriction.ValuationFrobeniusEpsilon.LiftInvariantsFinrankEq
-import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.CoeffXMulPart
-import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.FiltLePow
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.NoethLocalHausdorff
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.Imports
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.MemPowOfCoeffMem

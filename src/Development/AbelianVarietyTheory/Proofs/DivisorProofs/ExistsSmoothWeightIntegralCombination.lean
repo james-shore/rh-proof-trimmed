@@ -1,9 +1,9 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsMetricFrOfIsMetricOn
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ChernDegreeComplex
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChernIntegralIndependentOfCoefficient
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChernPartCombinationPower
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DivisorOfTensorSectionAdd
+
 open CategoryTheory AlgebraicGeometry MvPolynomial MeasureTheory Filter Topology
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open ReciprocityTheory.L2DbarEstimates (V)

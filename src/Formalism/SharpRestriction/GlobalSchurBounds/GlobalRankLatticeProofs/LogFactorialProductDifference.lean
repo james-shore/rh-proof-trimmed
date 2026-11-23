@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.LemmaFiveOneOfTheoremTwo
+import Formalism.LogVandermondeBounds.LogVandermondeProofs.UpperPlaceHolds
 
 noncomputable section
 namespace Formalism.MainNotions.StandardLattice

@@ -1,15 +1,6 @@
 import Formalism.SizeWindowBrackets.FrameTraceRatioFinEquiv
 import Formalism.HarderNarasimhan.ShiftInvariance
 import Formalism.SizeWindowBrackets.ChainSlopeWindows.TraceConjTransposeMulSelf
-import Formalism.SizeWindowBrackets.SlopeExcessBoundExponentZero
-import Formalism.SizeWindowBrackets.RealSlopeBoundsSplit
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.Ring
-import Mathlib.Data.Fintype.BigOperators
-import Formalism.RankGapBounds.RankGapProofs.WeightedMeanData
-import Formalism.SizeWindowBrackets.ChainSlopeWindows.ExistsNsmulMem
 
 open Module NumberField Matrix
 open Formalism.CorankShareLayerCake.FR Formalism.HN

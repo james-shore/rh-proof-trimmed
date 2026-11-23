@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.HermitianForms.TiedBrProof
 import Formalism.LocalToGlobal.HermitianForms.TiedSym
+import Formalism.LocalToGlobal.HermitianForms.Interlace
 
 noncomputable section
 

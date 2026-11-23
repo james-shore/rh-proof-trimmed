@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.Lemma5aAt
+import Formalism.SharpRestriction.GrowthBounds.CovariantDegrees
 
 noncomputable section
 

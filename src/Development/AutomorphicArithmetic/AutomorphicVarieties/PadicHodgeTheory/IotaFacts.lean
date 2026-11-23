@@ -2,6 +2,8 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.I
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.IqBasic
 import Formalism.LocalRingCardinality.SpanPowerMembership.NDLocC
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.IofAdd
+import Development.AbelianVarietyTheory.Proofs.HermitianTraceForms.ExistsOrthogonalBasisDotProductApplyEq
+
 open Formalism.ConjugateSelfDual Formalism.BasicNotions Formalism.BasicNotions.Loc ReciprocityTheory.Gal Module UpperTheory.V.Loc Topology NumberField IsDedekindDomain
 
 section SlopeTestRemainingChoices

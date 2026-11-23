@@ -6,6 +6,8 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FourierInversion
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FourierInversionZeroCompactQuotient
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.AeZeroOfSmall
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeisThetaLaws
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.QuasiOfFam
+
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links MeasureTheory IsDedekindDomain NumberField Matrix
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Unf GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.SepRows
 open scoped TensorProduct

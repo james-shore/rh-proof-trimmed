@@ -1,5 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NablaSchur
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LCcompLemmas
+import Formalism.GradedWeylDivisibility.FockSpaceTableaux.PeelDegBound
 
 open MvPolynomial Formalism.GradedWeylDivisibility
 

@@ -1,9 +1,9 @@
 import Formalism.SizeWindowBrackets.SlopeHypothesesRounded
 import Formalism.SizeWindowBrackets.ErrorFormsWeakWindowsFalse
-import Formalism.LogVandermondeBounds.LogRatioUpperBound
-import Formalism.SizeWindowBrackets.ChainSlopeWindows.LevelOfCongruence
+import Formalism.RankGapBounds.RankGapProofs.WeightedMeanData
 import Formalism.SizeWindowBrackets.ChainSlopeWindows.SubThreeMulLogTwoLe
-import Formalism.LogVandermondeBounds.HookGammaAmgmMultinomialBounds
+import Formalism.LogVandermondeBounds.LogVandermondeVariationUnbounded
+import Formalism.LogVandermondeBounds.LogVandermondeProofs.CardStabilizerVector
 
 open Real
 

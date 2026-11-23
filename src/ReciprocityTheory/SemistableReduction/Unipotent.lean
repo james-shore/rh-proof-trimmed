@@ -1,5 +1,6 @@
 import ReciprocityTheory.SemistableReduction.UnipotentA
 import ReciprocityTheory.SemistableReduction.UnipotentB
+import ReciprocityTheory.SemistableReduction.LatSemiSt
 
 namespace ReciprocityTheory.MultiplicativeHeights
 

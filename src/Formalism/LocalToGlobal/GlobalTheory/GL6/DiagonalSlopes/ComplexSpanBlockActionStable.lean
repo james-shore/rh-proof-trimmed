@@ -1,8 +1,8 @@
-import Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.AdelicFunctionRightTranslateDiamond
-import Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.CharacterFiniteLevelZeroOfForms
+import Formalism.SharpRestriction.GlobalSchurBounds.ProductFirstZerothParts
+import Formalism.LocalToGlobal.HermitianForms.FormsTied
+import Formalism.LocalToGlobal.GroupLattices.DownNaturalLevelZero
+import Formalism.LocalToGlobal.Divisibility.CoefMod
 import Formalism.LocalToGlobal.HermitianForms.FramesLemmas
-import Formalism.LocalToGlobal.Columns.PolyFnLemmas
-import Formalism.LocalToGlobal.GlobalTheory.GL6.Statement
 
 noncomputable section
 

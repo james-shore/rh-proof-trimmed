@@ -1,6 +1,5 @@
-import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.BaseSt
-import Mathlib
-import Formalism.LocalRingCardinality.DataCD
+import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
+import Formalism.LocalToGlobal.Divisibility.DefGroup
 
 noncomputable section
 

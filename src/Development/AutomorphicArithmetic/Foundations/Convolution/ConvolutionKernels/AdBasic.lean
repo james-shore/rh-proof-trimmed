@@ -1,5 +1,5 @@
-import GroundTheory.AutomorphicForms.AutomorphicFormSpaces.Height
-import GroundTheory.AutomorphicForms.ReductionMahler
+import Mathlib
+import GroundTheory.AutomorphicForms.Reduction
 import Formalism.LocalToGlobal.UnitaryNorms.CharTransport
 
 open NumberField IsDedekindDomain GroundTheory.Automorphic GroundTheory.Automorphic.Reduction Formalism.L2.Host

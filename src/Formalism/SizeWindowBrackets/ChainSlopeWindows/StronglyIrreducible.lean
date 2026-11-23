@@ -1,5 +1,4 @@
 import Formalism.SizeWindowBrackets.FirstPrimeNeSecondPrime
-import Formalism.ThickAverageLoss.ThickAverageProofs.Balance
 
 open Finset ArithmeticFunction
 

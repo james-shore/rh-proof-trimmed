@@ -1,5 +1,5 @@
 import Mathlib
-import ReciprocityTheory.DualLattices.HtLinStatement
+import ReciprocityTheory.DualLattices.SqZeroOfSpan
 
 noncomputable section
 

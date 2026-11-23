@@ -3,10 +3,10 @@ import Formalism.LocalToGlobal.ProjectiveLattices.PetersonNormSubspace
 import Formalism.LocalToGlobal.ProjectiveLattices.CompOrd
 import Formalism.LocalToGlobal.ProjectiveLattices.CompHt
 import Formalism.LocalToGlobal.ProjectiveLattices.FreeBridge
-import Formalism.LocalToGlobal.ProjectiveLattices.FrameCharts
 import Formalism.LocalToGlobal.ProjectiveLattices.GenFrPf
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsCombAtGMulVec
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsFramedPointBaseChangeAlgebraMap
+import Formalism.LocalToGlobal.ProjectiveLattices.FrameCharts
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.EqOfUnitriangularOfEqLowerMul
 
 open AlgebraicGeometry CategoryTheory Limits NumberField Topology ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj

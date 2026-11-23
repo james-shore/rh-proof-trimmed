@@ -1,6 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.VectorVanishesBigCell
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.SymmetricScalarBlockMatrixMul
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.DirectionsInParabolic
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.SettingConstruction
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.HomogeneityNaturalDegree
 
 open Matrix Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.U
 

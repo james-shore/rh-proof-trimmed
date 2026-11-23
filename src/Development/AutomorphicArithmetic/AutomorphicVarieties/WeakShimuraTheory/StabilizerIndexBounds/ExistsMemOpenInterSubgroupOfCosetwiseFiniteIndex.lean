@@ -1,6 +1,5 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.WeilGroupCharacters.UniversalOrdinaryDeterminantRing
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.IsUnitOrIsUnitOfAddOne
-import Mathlib.Topology.Algebra.ClopenNhdofOne
 
 open IsLocalRing Polynomial Matrix UpperTheory.V
 

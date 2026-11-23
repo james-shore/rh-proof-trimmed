@@ -1,4 +1,4 @@
-import Development.AutomorphicArithmetic.Foundations.Convolution.GeneralizedMeasures.HeckeFinAlt
+import Development.AutomorphicArithmetic.Foundations.Convolution.GeneralizedMeasures.LocHeckeInert
 import GroundTheory.AutomorphicForms.CompactFormulaCountable
 
 open MeasureTheory NumberField IsDedekindDomain MvPolynomial Filter

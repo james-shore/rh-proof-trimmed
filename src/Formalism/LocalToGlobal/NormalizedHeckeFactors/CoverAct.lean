@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverEta
+import Formalism.LocalToGlobal.NormalizedHeckeFactors.HeckeStdTwOfStd
 
 noncomputable section
 

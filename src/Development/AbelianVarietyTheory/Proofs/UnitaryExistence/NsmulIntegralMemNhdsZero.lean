@@ -1,4 +1,4 @@
-import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.Hat1
+import Mathlib
 
 namespace GlobalTheory.IntegralNeighbourhoodZero
 

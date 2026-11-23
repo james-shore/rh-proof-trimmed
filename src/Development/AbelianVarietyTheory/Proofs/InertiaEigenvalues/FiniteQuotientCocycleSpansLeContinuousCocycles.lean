@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.LenCob
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.GlobalCore
 import Formalism.SharpRestriction.LevelLetterCocycles.IdempotentChoiceDepthZero
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteQuotientCocycleSpanRhoCharLeCocycles
 

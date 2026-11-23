@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.FstHomCompSqzOfLeibniz
-import ReciprocityTheory.DualLattices.EvCotStatement
+import ReciprocityTheory.DualLattices.TowerZeroSurjective
 
 noncomputable section
 

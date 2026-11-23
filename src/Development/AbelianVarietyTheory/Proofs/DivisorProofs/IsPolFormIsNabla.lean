@@ -1,10 +1,10 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.IntLatGEqCanLatOfSurjective
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ExistsCrystalPairing
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GroupLiftTangentCompatibility
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCompOfIsFilLift
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianDualCrystal
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeFirstDeRhamStructure
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GroupLiftTangentCompatibility
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.Cris GlobalTheory.DeRham GlobalTheory.LogKS GlobalTheory.LogDR GlobalTheory.CanExtM

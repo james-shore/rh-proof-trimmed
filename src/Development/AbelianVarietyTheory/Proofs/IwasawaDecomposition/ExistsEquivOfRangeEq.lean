@@ -1,10 +1,7 @@
 import Mathlib
-import Formalism.LocalToGlobal.IndefiniteReal.ConcretePkgSpec
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Formalism.LocalRingCardinality.DataRRMetric
 import Formalism.LocalRingCardinality.Lemmas
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PlaceCharacterEqReferenceIff
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ClassPresExtMemExtBijIsom
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FunIffRowSlopeBound
 
 noncomputable section
 

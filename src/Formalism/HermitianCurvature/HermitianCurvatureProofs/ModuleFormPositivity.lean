@@ -1,6 +1,7 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.PrStarFst
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.TransferWordEntriesMem
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.DualKernelLemmas
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.PartialFlipCommuteDiagScalarOfFree
 
 namespace Formalism.FourierDecayAlt.P.PBF
 

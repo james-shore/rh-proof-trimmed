@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.TermsFiniteAtPoint.CarrierRow
+import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.TermDef
 import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.Saturated
 
 noncomputable section

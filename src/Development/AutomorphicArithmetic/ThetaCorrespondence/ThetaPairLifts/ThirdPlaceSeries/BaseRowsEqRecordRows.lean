@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.BaseRowsEqRecordRows
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LinkedFamiliesKernelFrame
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RowSideDetermined
 

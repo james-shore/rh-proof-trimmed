@@ -1,5 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.AlgebraMapGFEqGval
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CoordinatesFlagVector
 
 noncomputable section
 

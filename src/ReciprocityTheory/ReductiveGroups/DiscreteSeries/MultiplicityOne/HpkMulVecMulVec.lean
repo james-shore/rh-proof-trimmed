@@ -1,5 +1,4 @@
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.StDiagExists
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.StSchurW
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.StDefs
 
 noncomputable section
 

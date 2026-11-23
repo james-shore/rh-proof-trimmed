@@ -1,5 +1,6 @@
-import Development.AbelianVarietyTheory.Definitions.Foundations.CosetTrace
+import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.NotIsTrDataGaussianIntOne
+
 open GlobalTheory.AlmostEt GlobalTheory.K5
 open scoped NNReal
 

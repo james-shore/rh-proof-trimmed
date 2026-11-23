@@ -1,12 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.RealTB
-import Formalism.LocalToGlobal.IndefiniteReal.RealPins
-import Formalism.LocalToGlobal.IndefiniteReal.RealRec
-import Formalism.LocalToGlobal.IndefiniteReal.DoubleCosetOperators.NMjT
-import Formalism.LocalRingCardinality.DataNChTie
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsBasisTensor
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FractionFieldEmbeddingCompat
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsKsFormOfAlgebraicFormsIso
+import Formalism.LocalToGlobal.IndefiniteReal.RecTie
+import Formalism.LocalToGlobal.Divisibility.DefGroupLemmas
+import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.FractionalBaseInclusion
 
 namespace LinearIndependenceOfCarries
 section

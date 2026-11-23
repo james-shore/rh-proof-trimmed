@@ -1,4 +1,5 @@
 import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AnalyticIntertwiners.NilpotentOfPowerTraces
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.PropsEquivB
 
 open Matrix Topology Filter
 open scoped InnerProductSpace NNReal ENNReal

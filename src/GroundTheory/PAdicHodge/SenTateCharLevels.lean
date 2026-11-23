@@ -1,6 +1,6 @@
 import Mathlib
 import GroundTheory.PAdicHodge.SenTateCharTower
-import GroundTheory.PAdicHodge.SenTateCharUnitPow
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

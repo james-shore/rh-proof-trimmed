@@ -1,6 +1,7 @@
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeEigensystemMultiplicities
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.HeckeOpen
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CoeffMonicPolySum
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SplitExEveryDatumStatement
 
 set_option synthInstance.maxHeartbeats 200000
 

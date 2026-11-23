@@ -1,11 +1,10 @@
 import Formalism.LocalToGlobal.GroupLattices.PendingLemmas.RecLev
-import Formalism.LocalToGlobal.GroupLattices.PendingLemmas.CembCL
-import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.PtStep0
 import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.KerTh
-import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.LtCNeZero
-import Formalism.LocalToGlobal.GroupLattices.LevelCharts.ClsSEqIffExistsLevCSmul
-import Formalism.LocalToGlobal.GroupLattices.LevelCharts.FiniteClassSetOfFiniteIndex
 import Formalism.LocalToGlobal.GroupLattices.LevelGatherings.GramDetIsUnit
+import Formalism.LocalToGlobal.GroupLattices.LevelCharts.FiniteClassSetOfFiniteIndex
+import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.PtStep0
+import Formalism.LocalToGlobal.GroupLattices.PendingLemmas.CembCL
+import Formalism.LocalToGlobal.GroupLattices.LevelCharts.ClsSEqIffExistsLevCSmul
 
 noncomputable section
 

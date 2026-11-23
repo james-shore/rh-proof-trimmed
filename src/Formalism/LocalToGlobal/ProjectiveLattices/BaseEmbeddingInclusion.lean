@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.PetersonNormSubspace
-import Formalism.LocalToGlobal.IndefiniteReal.GramCEqTranspose
 
 noncomputable section
 

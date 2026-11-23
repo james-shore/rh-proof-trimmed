@@ -1,8 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OneVectorOfMultiplicityOne
-import Formalism.LocalToGlobal.IndefiniteReal.CxToPkgFamIn
-import Formalism.LocalToGlobal.Divisibility.RowLat
-import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.RationalRowTestKernel
+import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
+import Development.AbelianVarietyTheory.Definitions.Divisors.SplitDoublingNBlock
 
 noncomputable section
 

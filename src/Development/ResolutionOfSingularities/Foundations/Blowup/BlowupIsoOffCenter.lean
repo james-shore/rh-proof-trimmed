@@ -1,8 +1,8 @@
 import Mathlib
 import Development.ResolutionOfSingularities.Foundations.Blowup.BlowupBasic
 import Development.ResolutionOfSingularities.Foundations.Blowup.BlowupCoproduct
-import Development.ResolutionOfSingularities.Foundations.Blowup.BlowupOpenCover
 import Development.ResolutionOfSingularities.Foundations.Blowup.BlowupProperties
+
 universe u
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace

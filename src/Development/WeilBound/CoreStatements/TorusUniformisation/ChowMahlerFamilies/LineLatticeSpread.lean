@@ -1,7 +1,8 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LevelSectionsExactKernelLocusOpen
-import Development.AutomorphicSpectrum.Proofs.GeometryProofs.StalkClosedPointToGermTop
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsGenericFlag
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenMapGermEqGenMapGerm
+import Development.AutomorphicSpectrum.Proofs.GeometryProofs.StalkClosedPointToGermTop
+
 open AlgebraicGeometry CategoryTheory Limits GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Flat
 
 namespace PositivityTheory.Xgn.LineLatticeSpread

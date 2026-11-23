@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.RootWeights.V2repResIsGLRep
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.V2repExistsHwv
 
 noncomputable section
 

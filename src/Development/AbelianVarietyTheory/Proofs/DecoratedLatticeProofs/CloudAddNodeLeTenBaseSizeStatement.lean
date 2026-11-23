@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.CloudAddNodeLeTenBaseSize
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.PairRowIffQdRows
-import Formalism.SharpRestriction.ElevenLe
 
 open Formalism.BasicNotions Formalism.MainNotions GlobalTheory.EX
 set_option maxHeartbeats 1000000 in

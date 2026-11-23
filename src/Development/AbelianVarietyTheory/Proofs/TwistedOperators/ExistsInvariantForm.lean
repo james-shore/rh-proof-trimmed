@@ -1,8 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.HasFiniteLengthOfIsIrreducible
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.BlockTriangularOneAddMat
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IwasawaBlockTriangular
-import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IwahoriProjSurjective
 
 open MeasureTheory GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL Topology
 open scoped ENNReal

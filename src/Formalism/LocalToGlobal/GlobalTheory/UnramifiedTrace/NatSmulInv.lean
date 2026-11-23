@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.GlobalTheory.UnramifiedTrace.TNotinSq
+import Formalism.LocalToGlobal.GlobalTheory.UnramifiedTrace.TripMem
 
 noncomputable section
 

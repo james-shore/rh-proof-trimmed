@@ -1,4 +1,4 @@
-import Formalism.CoboundaryTransfers.StatementAPI
+import Formalism.CoboundaryTransfers.Statement
 
 noncomputable section
 

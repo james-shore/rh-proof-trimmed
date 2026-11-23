@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.GroupLattices.FockModels.TransposeWords.FockPairingHighestWeight
+import Formalism.LocalToGlobal.GroupLattices.FockModels.TransposeWords.FockR
 import Formalism.ThetaLogCoordinates.SandwichModelDomains.StatementW
 
 open MvPolynomial

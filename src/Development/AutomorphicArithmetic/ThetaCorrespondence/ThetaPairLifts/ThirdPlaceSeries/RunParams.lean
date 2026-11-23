@@ -1,8 +1,9 @@
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaBoundLengthUnit
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LiftLambdaBound
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.HostN
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.WtNZ
+import Formalism.LocalToGlobal.ProjectiveLattices.HostSize
+import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.RealBounds
 
 set_option synthInstance.maxHeartbeats 200000
 

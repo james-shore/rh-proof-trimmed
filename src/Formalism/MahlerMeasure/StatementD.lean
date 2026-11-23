@@ -1,4 +1,4 @@
-import Formalism.MahlerMeasure.StatementB
+import Formalism.MahlerMeasure.Statement
 
 namespace Formalism.GM
 

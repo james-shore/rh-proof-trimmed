@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ValuationLocalVolumes.GramAugT
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ValuationLocalVolumes.OmVBadTOfThreeX
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ValuationLocalVolumes.QuadRoot
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ValuationLocalVolumes.IsoExtOf
 
 noncomputable section
 

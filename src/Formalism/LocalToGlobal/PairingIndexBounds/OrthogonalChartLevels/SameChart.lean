@@ -1,6 +1,4 @@
 import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.PtRec
-import Formalism.LocalToGlobal.HermitianColumns.ZeroPointScaledByCharacter
-import Formalism.LocalToGlobal.GroupLattices.LevelGatherings.PosCompatOfBase
 import Formalism.LocalToGlobal.InertKernelTheory.DefsRepRec
 
 noncomputable section

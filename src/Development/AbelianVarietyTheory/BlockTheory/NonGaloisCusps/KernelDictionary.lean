@@ -1,8 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MapCSmulMulVec
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.RoundDown
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.OfKillsOne
 
 noncomputable section
 

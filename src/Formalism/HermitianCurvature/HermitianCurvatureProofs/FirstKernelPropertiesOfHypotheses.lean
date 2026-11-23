@@ -1,6 +1,5 @@
 import Formalism.HermitianCurvature.BlockKernelPropertiesOfSteps
 import Formalism.DoubleCosetMeasures.LowerUnipotentOrbits.MulInvBlockDiagApplySameBlock
-import Formalism.DoubleCosetMeasures.LowerUnipotentOrbits.LowUniMulVecELast
 
 set_option maxHeartbeats 400000
 

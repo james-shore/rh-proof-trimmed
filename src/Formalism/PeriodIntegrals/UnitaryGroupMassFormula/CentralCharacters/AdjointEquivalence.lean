@@ -1,4 +1,4 @@
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CentralCharacters.CentralScalar
+import Formalism.PeriodIntegrals.DSInfCharCap
 
 noncomputable section
 

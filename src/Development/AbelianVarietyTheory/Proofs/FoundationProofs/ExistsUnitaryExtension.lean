@@ -1,11 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Foundations.NormSumPairRankZeroOfCurveCoordNorm
-import Formalism.PairingDivisors.StatementH
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsGlob
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsDual
-import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.MuCardLeTwo
-import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.CardTrivialFirstComponent
-import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.FrameFacts
+import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.Orbits
 import Development.AutomorphicArithmetic.WeightCongruences.IsRootOfIntegral
 
 open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum

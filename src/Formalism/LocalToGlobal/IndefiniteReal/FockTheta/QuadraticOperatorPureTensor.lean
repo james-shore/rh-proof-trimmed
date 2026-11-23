@@ -1,10 +1,7 @@
-import Formalism.LocalToGlobal.IndefiniteReal.FockTheta.RealPlaceImaginaryGeneratorReEqZero
-import Formalism.LocalToGlobal.IndefiniteReal.FockTheta.TraceSingleMulSingle
+import Formalism.LocalToGlobal.IndefiniteReal.FockTheta.UnitBracket
 import Formalism.LocalToGlobal.IndefiniteReal.PHeisFC
-import Formalism.PeriodIntegrals.HookBound
 import Formalism.LocalToGlobal.IndefiniteReal.FockTheta.ConjPurelyImaginaryGenerator
-import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.ContinuousSplitInv
-import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.HookBound
+import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.ContinuousTensMap
 
 noncomputable section
 

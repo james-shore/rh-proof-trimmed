@@ -1,5 +1,4 @@
 import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.DifferentiableAtLocalCoordinates
-import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.IteratedFDerivEqZeroOfIsBigO
 
 namespace ReciprocityTheory.L2DbarEstimates.Y
 

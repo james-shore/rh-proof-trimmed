@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.Bridge
-import Formalism.SatakeDualWeyl.KpqSubgroupCompact
+
 open MeasureTheory
 
 namespace GlobalTheory

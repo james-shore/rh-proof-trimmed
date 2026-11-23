@@ -4,6 +4,8 @@ import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsClosedPoi
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PIntChowFormExists
 import GroundTheory.HeightsAndTheta.Heights.VerticalDivisors.PChowFormHomog
 import GroundTheory.HeightsAndTheta.Heights.VerticalDivisors.PNormFormIrreducible
+import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsChowDegreeClosedPoint
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

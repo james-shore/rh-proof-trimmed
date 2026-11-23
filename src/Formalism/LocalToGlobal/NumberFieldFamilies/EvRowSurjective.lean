@@ -1,7 +1,7 @@
 import Formalism.LocalToGlobal.Columns.InvariantSubspaceCoordsX
 import Formalism.LocalToGlobal.Divisibility.HeckeCSDICommTrRep
-import Formalism.LocalToGlobal.GroupLattices.JointServices.LevelOperatorFixesImage
 import Formalism.LocalToGlobal.Columns.RecPerFF
+import Formalism.LocalToGlobal.GroupLattices.JointServices.LevelOperatorFixesImage
 
 open NumberField IsDedekindDomain Module
 

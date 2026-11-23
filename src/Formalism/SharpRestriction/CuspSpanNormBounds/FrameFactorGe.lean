@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.CuspSpanNormBounds.BcWeightEqZeroOf
+import Formalism.SharpRestriction.CuspSpanNormBounds.OnePlaceEstimates
 
 open MeasureTheory Matrix Finset
 

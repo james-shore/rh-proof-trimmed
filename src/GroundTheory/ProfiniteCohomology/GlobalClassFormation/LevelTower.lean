@@ -2,7 +2,7 @@ import Mathlib
 import GroundTheory.ProfiniteCohomology.GlobalClassFormation.LevelCyclic
 import GroundTheory.ProfiniteCohomology.LocalClassFormation.OrderInfRes
 import GroundTheory.GlobalFields.IdeleClassGroup.IdeleClassEquivIdeleClassMapOfComm
-import GroundTheory.TateCohomology.InfRes
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

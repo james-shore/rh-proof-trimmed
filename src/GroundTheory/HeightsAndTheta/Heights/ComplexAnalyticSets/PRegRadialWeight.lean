@@ -7,9 +7,9 @@ import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StRadialPrimitiv
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StMaDensLogPow
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PMaDensChain
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PChartMassCompact
-import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PSheetSumMeasurable
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PFiniteProjectionCluster
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PCutOffBoundaryBound
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

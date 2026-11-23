@@ -1,4 +1,4 @@
-import Formalism.StatementFL
+import Formalism.Statement
 
 open Complex
 

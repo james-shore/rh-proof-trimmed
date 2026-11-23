@@ -2,7 +2,6 @@ import Development.WeilBound.CoreStatements.CompactAveragingSplitting.Eigenvecto
 import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.VaceigenDual
 import Development.WeilBound.CoreStatements.LocalThetaKernels.IwasAd
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.RamificationIdxEqOneOfIsSquare
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDualFamilyOfIsLattice
 
 noncomputable section
 

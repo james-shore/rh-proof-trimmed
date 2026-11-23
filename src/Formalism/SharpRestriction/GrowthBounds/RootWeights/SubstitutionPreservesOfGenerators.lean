@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.RootWeights.PropertySubmoduleWeightEntryComponent
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.BinomialStableContainsComponents
 
 noncomputable section
 

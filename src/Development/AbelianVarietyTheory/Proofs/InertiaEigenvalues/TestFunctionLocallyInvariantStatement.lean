@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TestFunctionLocallyInvariant
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsTestRep
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnifConst
 
 open GlobalTheory.JR Matrix MeasureTheory Filter Topology
 set_option maxHeartbeats 1000000 in

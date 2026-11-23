@@ -2,6 +2,8 @@ import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.GenericPointSectionHypotheses
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.StatementsTildeVanish
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.StatementsIdealTwist
+import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.Statements
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.Kleiman

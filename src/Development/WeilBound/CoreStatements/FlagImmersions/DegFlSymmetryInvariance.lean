@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.CompactGapsGE
-import Formalism.DegreeFormula.FlagDegFormula
+
 open MvPolynomial Filter Topology GlobalTheory.CompanionTheory.Ar.Top
 
 namespace RootFieldNumerics

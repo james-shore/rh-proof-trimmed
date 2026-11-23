@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.FWExist
-import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasChr
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TameOnOne
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsCharFamIsVacVec
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsSelfDualCoordLatticeOfSelfDualFrameStatement
@@ -13,7 +12,6 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TypePlacesLocalD
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TwistPlacesLocalDatumBlockTriangularLawStatement
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.StepSplittingCharactersTameLevelResidueStatement
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.VacuumFixedNonsplitPlaceOfCharacterFrameStatement
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsInvariantForm
 
 noncomputable section
 

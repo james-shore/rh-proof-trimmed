@@ -1,7 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ClassCounting.SelmerOrderCounts.TwoLe
-import Mathlib.RingTheory.RootsOfUnity.Complex
-import Mathlib.RingTheory.Polynomial.Cyclotomic.Basic
-import Mathlib.LinearAlgebra.Matrix.Permutation
 
 open NumberField IsDedekindDomain UpperTheory.V UpperTheory.V.ZK UpperTheory.V.ZK.Ct
 

@@ -1,5 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.Imports
-import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.IoBlockSupported
+import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.LevOfSymVar
 
 noncomputable section
 

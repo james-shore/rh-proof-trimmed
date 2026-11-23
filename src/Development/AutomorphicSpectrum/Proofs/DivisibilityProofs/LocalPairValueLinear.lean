@@ -1,6 +1,4 @@
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.BundleChernComparison
-import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsFlagIndependence
-import Mathlib
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.LocPairValLinear
 
 open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR GlobalTheory.CompanionTheory.Ar.Num

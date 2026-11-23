@@ -1,5 +1,4 @@
 import Formalism.SizeWindowBrackets.SSmall
-import Formalism.SizeWindowBrackets.ChainSlopeWindows.GaloisMapComplexConjugation
 
 open Finset
 

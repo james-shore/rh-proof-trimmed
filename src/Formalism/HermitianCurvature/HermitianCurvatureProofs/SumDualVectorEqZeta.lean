@@ -1,7 +1,6 @@
 import Formalism.HermitianCurvature.StatementQ
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.RegularisedPairingViaPhase
 import Formalism.FormalDegreeBessel.FinalWR
-import Formalism.FormalDegreeBessel.FinalG
 
 open Matrix Finset Filter Topology
 open scoped ContDiff

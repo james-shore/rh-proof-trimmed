@@ -1,6 +1,8 @@
 import ReciprocityTheory.DualLattices.MatEquivApply
 import ReciprocityTheory.DualLattices.CokernelLengthComparisonOf
 import ReciprocityTheory.DualLattices.StdJForm
+import ReciprocityTheory.DualLattices.IsLocalOfIntegers
+import ReciprocityTheory.DualLattices.UnramifiedCokernelLowerBoundOf
 
 noncomputable section
 

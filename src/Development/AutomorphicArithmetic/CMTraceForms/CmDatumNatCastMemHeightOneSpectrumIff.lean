@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
-import Development.AutomorphicArithmetic.PrimeDiscriminants.SlopeTestRemainingChoices
+import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.PrimePairSizeCondition
 
 open NumberField Formalism.HC IsDedekindDomain
 

@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.RealCubicMeans.LeafBounds.PackedMeans.IndexMeans.MeansPf
-import Mathlib.NumberTheory.NumberField.Discriminant.Defs
 
 noncomputable section
 

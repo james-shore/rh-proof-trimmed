@@ -1,9 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.CharacterGerms.NondegenerateCharts
-import Formalism.LocalToGlobal.CharacterGerms.RowTieSelf
-import Formalism.LocalToGlobal.CharacterGerms.BlockAdmissibleChart
 import Formalism.LocalToGlobal.CharacterGerms.NegMem
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors.StChartF
+import Formalism.LocalToGlobal.CharacterGerms.ValNonnegLeadingCoeffOfMemTySet
 import Development.AbelianVarietyTheory.Definitions.TeichmullerDepth.HasTeich
 
 noncomputable section

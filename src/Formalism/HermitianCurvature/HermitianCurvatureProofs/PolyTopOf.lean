@@ -1,4 +1,6 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.SmoothOnHOfLoc
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.RaisingCompactSupport
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CoeffOfValues
 
 open Matrix MeasureTheory
 

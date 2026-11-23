@@ -2,7 +2,6 @@ import Formalism.SharpRestriction.AdmissibleParameterJoins.GandSy
 import Formalism.SharpRestriction.SmoothDesignExistence.SumOverPrimesHypotheses
 import Formalism.SharpRestriction.AdmissibleParameterJoins.DIVfromGLs
 import Formalism.SharpRestriction.Divisibility.ChainOperators.PerCol
-import Formalism.SharpRestriction.AdmissibleParameterJoins.GandSaj
 
 noncomputable section
 

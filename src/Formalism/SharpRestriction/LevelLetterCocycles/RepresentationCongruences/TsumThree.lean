@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.InvSubOneSqLeInv
 
 noncomputable section
 

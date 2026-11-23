@@ -2,8 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.PrimitiveGermFrames
 import Formalism.LocalToGlobal.ProjectiveLattices.IsChartIff
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermDJet
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ValCalc
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.LBCorr
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.SabPull
 
 set_option autoImplicit false
 

@@ -1,5 +1,5 @@
 import Formalism.LocalToGlobal.Columns.CoefModX
-import Formalism.LocalToGlobal.Columns.CoefficientsModP.FkPderivBlockEmbNe
+import Formalism.LocalToGlobal.Columns.CoefficientsModP.FkMapInitMinor
 import Formalism.LocalToGlobal.Columns.CoefficientsModP.NablaIndependenceHolds
 import Formalism.LocalToGlobal.Columns.CoefficientsModP.TauLatticeLatticeHolds
 

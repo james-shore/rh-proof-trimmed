@@ -1,9 +1,9 @@
 import Mathlib
-import Formalism.PairingDivisors.StatementA
+import Formalism.PairingDivisors.StatementH
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsFinSetSplitPlacesCoprimeConductor
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasSumZeroOfTwoLe
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ValuedEqOneOfLe
-import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.TsumIdealMulAbsNormCpowEqExpTsum
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RayLSeriesEulerProduct
 
 noncomputable section
 

@@ -1,5 +1,4 @@
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.BlockCharIntegral
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CuspidalGaloisUnramified
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SEtaChi
 

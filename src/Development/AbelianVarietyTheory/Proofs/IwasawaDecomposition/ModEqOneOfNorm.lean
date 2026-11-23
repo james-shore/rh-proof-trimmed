@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.DuStarPos
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.SpreadLe
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.AssembleLattice
+import Formalism.LocalRingCardinality.SpanPowerMembership.FmZeroHLatEmpty
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RowsRestWordColumnUnitBaseTuple
 import Formalism.SharpRestriction.InertJacobiLevels.HostFam
 
 open Formalism.BasicNotions NumberField IsDedekindDomain GlobalTheory.Mem

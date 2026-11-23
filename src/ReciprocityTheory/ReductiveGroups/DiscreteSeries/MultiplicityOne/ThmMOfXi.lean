@@ -3,9 +3,6 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.InHolds
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JBeHerm
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JBePos
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JSchurW
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.StSInt
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JSchurG
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JPairs
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JBeConv
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JBeEquiv
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JRepro
@@ -24,6 +21,7 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JDichoW
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JMixed
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JRankOne
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.XiExistsOfIn
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JPairs
 
 namespace ReciprocityTheory.ChartRestriction.DS.Mult1
 

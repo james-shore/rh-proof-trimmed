@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MeasurableToGLEntry
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsAddHaarMeasureVolumeLie
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzFourierSuperposition
+
 open MeasureTheory GlobalTheory.JSW
 open scoped FourierTransform ContDiff
 

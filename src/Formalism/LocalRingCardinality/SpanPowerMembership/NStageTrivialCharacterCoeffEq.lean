@@ -1,6 +1,6 @@
-import Formalism.LocalRingCardinality.DataTies
+import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
+import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
 import Formalism.LocalRingCardinality.SpanPowerMembership.RankRecordRowDimensionZero
-import Formalism.LocalRingCardinality.SpanPowerMembership.SignSplitEquivInl
 
 noncomputable section
 

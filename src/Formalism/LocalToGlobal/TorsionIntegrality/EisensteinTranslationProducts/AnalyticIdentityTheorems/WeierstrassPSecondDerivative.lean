@@ -1,4 +1,6 @@
 import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.TranslateProduct
+import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.Legendre
+import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.ThetaLine
 
 noncomputable section
 open scoped BigOperators ComplexConjugate Topology

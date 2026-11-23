@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.ZeroMemSolSet
-import Formalism.UnipotentAdelicQuotients.EllRegCheck
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DwSmoothLocalLinear
 
 open ZetaZeros.D.EllReg GlobalTheory.HCA MeasureTheory Filter Topology

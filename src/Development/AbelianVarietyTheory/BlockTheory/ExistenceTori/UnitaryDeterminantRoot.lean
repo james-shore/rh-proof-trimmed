@@ -1,9 +1,9 @@
 import Mathlib
 import Formalism.LocalToGlobal.ProjectiveLattices.ThShort
-import Formalism.LocalToGlobal.ProjectiveLattices.ThGerm
-import Formalism.LocalToGlobal.ProjectiveLattices.IsLevMove
-import Formalism.LocalToGlobal.ProjectiveLattices.LiftLaSpec
-import Formalism.LocalToGlobal.ProjectiveLattices.NormsFree
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
+import Formalism.LocalToGlobal.ProjectiveLattices.UnFree
+import Formalism.LocalToGlobal.ProjectiveLattices.RulInst
+import Formalism.LocalToGlobal.ProjectiveLattices.OneLtAbsNormReal
 import Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.ComplexResidueRing
 
 noncomputable section

@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.AlgebraicTheory.StatementD
+import Formalism.LocalToGlobal.AlgebraicTheory.StatementB
 import Formalism.LocalToGlobal.KernelLattices.ThDistC
 
 noncomputable section

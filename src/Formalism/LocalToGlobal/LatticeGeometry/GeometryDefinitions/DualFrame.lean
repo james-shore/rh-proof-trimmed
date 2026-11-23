@@ -1,5 +1,4 @@
-import Formalism.HermitianLattices.HermitianLatticesProofs.DualLattice
-import Formalism.QuotientMetricDivisors.Statement
+import Mathlib
 import Formalism.SatakeDualWeyl.Statement
 
 noncomputable section

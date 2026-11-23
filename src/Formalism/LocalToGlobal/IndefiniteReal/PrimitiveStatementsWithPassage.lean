@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.FaceOf3
-import Formalism.LocalToGlobal.IndefiniteReal.CxCoreRG
+import Formalism.LocalToGlobal.IndefiniteForms.PairingConditionOfInverseMatrixIdentity
 import Formalism.LocalToGlobal.IndefiniteReal.LiftCoordinatesInGoodPartOfDefinite
 import Formalism.LocalToGlobal.IndefiniteReal.EigSumLeComapSemi
 import Formalism.LocalToGlobal.IndefiniteReal.CxHecke

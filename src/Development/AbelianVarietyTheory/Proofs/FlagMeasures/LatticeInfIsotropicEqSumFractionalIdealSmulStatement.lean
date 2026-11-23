@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.LatticeInfIsotropicEqSumFractionalIdealSmul
-import Formalism.SharpRestriction.CuspSpanNormBounds.IsPrimitiveSub
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Ia
 
 open NumberField
 set_option maxHeartbeats 1000000 in

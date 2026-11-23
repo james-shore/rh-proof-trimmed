@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CmDataConjIsConjOf
-import Formalism.LocalRingCardinality.DataSpaces
-import Formalism.LocalToGlobal.Divisibility.TuplesLemmas
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.DIV
 set_option maxHeartbeats 1000000 in

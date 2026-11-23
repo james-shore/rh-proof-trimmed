@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.Columns.FiniteSumNonzeroLargeDepth
-import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.SandwichNormalForm
 
 open NumberField IsDedekindDomain
 

@@ -1,5 +1,6 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.StNbarLeviChartReg
+import GroundTheory.HeightsAndTheta.Heights.StabilizerCovolume.CuspFamily
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

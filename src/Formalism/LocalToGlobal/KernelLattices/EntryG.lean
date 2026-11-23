@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.ExponentGrids.EntryG
-import Formalism.LocalToGlobal.KernelLattices.ColInst
 
 noncomputable section
 open scoped BigOperators ComplexConjugate

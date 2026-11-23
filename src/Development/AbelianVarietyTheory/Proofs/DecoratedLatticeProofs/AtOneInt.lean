@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.BlockTheory.SiegelEisenstein.UnitPairEmbedding
-import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ValQOfValQr
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.CosInj
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsReindexIff
 
 noncomputable section

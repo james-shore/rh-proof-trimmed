@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.SatakeDualWeyl.Statement
 
 noncomputable section
 

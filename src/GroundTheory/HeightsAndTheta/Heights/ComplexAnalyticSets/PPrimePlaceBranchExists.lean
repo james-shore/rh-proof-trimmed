@@ -5,6 +5,8 @@ import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StNormalModelDis
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StNormalModelProjectionLocallyInjective
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PNormalModelExists
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PLocalDimDomain
+import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StNormalCurveBranchOrder
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

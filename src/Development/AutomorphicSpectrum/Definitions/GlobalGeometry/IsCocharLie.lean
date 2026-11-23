@@ -1,6 +1,6 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LieModel
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsGrpPullback
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LieModel
 
 noncomputable section
 

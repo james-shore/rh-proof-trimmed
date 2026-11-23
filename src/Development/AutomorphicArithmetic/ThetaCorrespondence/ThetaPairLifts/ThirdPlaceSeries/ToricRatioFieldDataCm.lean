@@ -10,8 +10,8 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAutCentre
 import CompanionTheory.AutomorphicTheory.PlaceSeparation.IsOpenQuotientMapArt0
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NormalFormToricRatio
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsCMValueHeckeCharacterAuxiliarySetOfEmpty
-import Development.AbelianVarietyTheory.Definitions.Divisors.IsValCharTwist
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Realised
+import Formalism.LocalRingCardinality.SpanPowerMembership.ExistsHomOfBasis
 
 set_option synthInstance.maxHeartbeats 200000
 

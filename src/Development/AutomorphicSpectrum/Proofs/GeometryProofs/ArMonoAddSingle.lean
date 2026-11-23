@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.Statements.GeometryStatements.PropFTop
+import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.NumberField
 
 noncomputable section
 

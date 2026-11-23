@@ -2,9 +2,6 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirVolumeRatios.VolumeCla
 import Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirVolumeRatios.VolumeClassRepresentatives.ChangeOfVariables
 import Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirVolumeRatios.DetNorm
 import Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.CnDensNonneg
-import Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.CNDefs
-import Formalism.FlagUnipotentLattices.HalfDifferenceL1Bound
-import Formalism.HermitianLattices.StatementMass
 
 noncomputable section
 

@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.UnivFrame
 import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.NormConst
-import Formalism.LocalToGlobal.ProjectiveLattices.CuspFree
 import Formalism.LocalToGlobal.ProjectiveLattices.RdOrbIntOfLatZ
 import Formalism.LocalToGlobal.ProjectiveLattices.AllTest
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.FundamentalDomainPointBound

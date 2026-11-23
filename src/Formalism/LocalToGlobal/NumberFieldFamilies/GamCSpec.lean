@@ -1,6 +1,5 @@
 import Formalism.LocalToGlobal.NumberFieldFamilies.NPartCNd
-import Formalism.SharpRestriction.LevelLetterCocycles.DataN
-import Formalism.LocalToGlobal.NormalizedHeckeFactors.TypesDefs
+import Formalism.LocalToGlobal.UnitaryNorms.RealCyclotomicTwoPower
 
 noncomputable section
 

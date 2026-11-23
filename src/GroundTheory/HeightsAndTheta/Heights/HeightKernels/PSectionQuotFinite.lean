@@ -1,8 +1,9 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsVertRIndexSteps
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PCurveCharts
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PVertRIndex
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsArith
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSectionIndexNorm
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

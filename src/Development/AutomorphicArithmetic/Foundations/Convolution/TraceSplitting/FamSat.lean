@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AutomorphicArithmetic.Foundations.Convolution.TraceSplitting.NormCharSplit
+import Development.AutomorphicArithmetic.Foundations.Convolution.NormCharacterPowers.LiftPow
 import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.ExCusp
 import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.SSatIff
-import Development.AutomorphicArithmetic.Foundations.Convolution.NormCharacterPowers.LiftPow
 
 open NumberField IsDedekindDomain Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V.Published UpperTheory.CBC PositivityTheory.RgJS
 

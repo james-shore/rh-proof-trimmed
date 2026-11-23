@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.SelfDualUnimodular.LocalLatticeDictionary.SelfDualRestr
+import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.WittExtensionTheorem
 
 noncomputable section
 

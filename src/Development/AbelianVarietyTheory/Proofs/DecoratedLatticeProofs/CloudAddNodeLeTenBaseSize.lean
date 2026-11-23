@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.PairRowIffQdRows
-import Formalism.SharpRestriction.ElevenLe
 import Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.HostTorsionOrderLe
+
 open Formalism.BasicNotions Formalism.MainNotions GlobalTheory.EX
 
 namespace GlobalTheory

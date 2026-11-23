@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StatementsAdelicLattices
+import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StatementsAdelicSplit
 import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.IsIntegralVecCoordsOfMemAdelicLatticeOne
 
 set_option linter.unusedSectionVars false

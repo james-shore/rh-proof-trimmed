@@ -1,9 +1,6 @@
 import Mathlib
-import Formalism.LogFactorialIndices.StatementSize
 import Formalism.LogFactorialIndices.StatementIdx
 import Formalism.LogFactorialIndices.SignedSubspaceIndex.IdxBase
-import Formalism.LogFactorialIndices.SignedSubspaceIndex.IdxDet
-import Formalism.LogFactorialIndices.SignedSubspaceIndex.SubspaceLatticeIndex
 
 noncomputable section
 

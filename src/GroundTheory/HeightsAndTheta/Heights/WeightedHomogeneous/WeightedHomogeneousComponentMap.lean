@@ -1,11 +1,9 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.Objects
-import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.DualModel
 import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.Reading
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.AssemblyCN
-import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PConservationOfNumberLE
-import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PGenericCycleCorresp
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PIntNumBaseChange
+import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PGenericCycleCorresp
 
 set_option maxSynthPendingDepth 1
 

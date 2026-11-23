@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.HeightFunctions.XiValIffXiAt
-import Formalism.LocalToGlobal.ProjectiveLattices.DepthTie
+import Formalism.LocalToGlobal.ProjectiveLattices.ChartDirectionsIntegral
 import Development.AbelianVarietyTheory.Definitions.Jets.EmbShortThLeThetaPlain
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsCompletedIsometryInducingHalfLevelAutomorp
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsAdelicUnitaryOfLatticeIsometries

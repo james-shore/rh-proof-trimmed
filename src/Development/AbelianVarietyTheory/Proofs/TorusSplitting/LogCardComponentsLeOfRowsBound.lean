@@ -4,7 +4,6 @@ import Formalism.LocalToGlobal.ProjectiveLattices.EtArch
 import Formalism.LocalToGlobal.ProjectiveLattices.FreeBridge
 import Formalism.LocalToGlobal.ProjectiveLattices.HostSize
 import Formalism.LocalToGlobal.ProjectiveLattices.CompHt
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.SupBoundPageRows
 import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.LogCardCompUnfLe
 import Development.AbelianVarietyTheory.Proofs.TorusSplitting.ExistsPerfectTraceIdeal
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.NumericalConsequencesOfPins

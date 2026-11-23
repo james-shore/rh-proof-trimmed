@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.HarderNarasimhan.ShiftInvariance
-import Formalism.RealPlaceAnalysis.Complexify
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.TransferenceCoverHolds
+
 open Formalism.HN Formalism.HermitianLatticesTheory Matrix NumberField Finset
 
 namespace GlobalTheory.TraceCover

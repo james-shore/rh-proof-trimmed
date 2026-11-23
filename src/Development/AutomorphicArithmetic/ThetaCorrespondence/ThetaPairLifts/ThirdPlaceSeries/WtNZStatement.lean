@@ -1,5 +1,5 @@
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeightBoundHoldsStatement
 import Mathlib
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeightBoundHolds
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LiftWeightNumerator
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.WtNZ
 

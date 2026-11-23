@@ -2,8 +2,9 @@ import Mathlib
 import GroundTheory.PAdicHodge.BCrisEigenWitt
 import GroundTheory.PAdicHodge.LocalBridge
 import GroundTheory.PAdicHodge.UnramifiedACris
-import GroundTheory.PAdicHodge.UnramifiedClosure
 import GroundTheory.LocalFields.WeilGroupDefs
+import GroundTheory.PAdicHodge.UnramifiedClosure
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

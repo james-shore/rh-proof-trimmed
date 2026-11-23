@@ -1,8 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.UnitaryLieGeneratorsRep
-import Formalism.SatakeDualWeyl.Statement
-import Formalism.FormalDegreeBessel.StatementG
 import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IntegralConjInnerMulInnerOfIsEmptyEquiv
+
 open Matrix
 
 namespace GlobalTheory.DefiniteFrame

@@ -1,5 +1,4 @@
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.MeasurableBetGm
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JReproB
 
 noncomputable section
 

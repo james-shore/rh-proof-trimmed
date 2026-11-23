@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.PairingIndexBounds.ModelLatticeMoves.IsBichar
+import Mathlib
 import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.IsSemiChar
 
 noncomputable section

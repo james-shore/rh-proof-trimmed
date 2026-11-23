@@ -1,5 +1,6 @@
 import Mathlib
 import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModGDefs
+import ReciprocityTheory.NeutralLocalFields.HilbertClassField
 
 noncomputable section
 open scoped BigOperators Classical UpperHalfPlane

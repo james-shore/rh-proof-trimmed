@@ -1,9 +1,10 @@
 import Mathlib
-import GroundTheory.ProfiniteCohomology.InflationRestriction
+import GroundTheory.ProfiniteCohomology.InflationRestriction.Higher
+import GroundTheory.ProfiniteCohomology.InflationRestriction.FiveTerm
 import GroundTheory.ProfiniteCohomology.GaloisCohomology.Kummer
-import GroundTheory.ProfiniteCohomology.CohomologyFunctoriality.Naturality
 import GroundTheory.ProfiniteCohomology.CupProducts
 import GroundTheory.ProfiniteCohomology.CupProducts.Projection
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

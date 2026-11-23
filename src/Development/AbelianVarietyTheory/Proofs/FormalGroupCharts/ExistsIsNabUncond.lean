@@ -1,10 +1,7 @@
 import Mathlib
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermCut
 import Formalism.LocalToGlobal.ProjectiveLattices.ThShort
-import Formalism.SharpRestriction.Divisibility.GeneratorPowers.ThExprUniqOfChartIndep2
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpTie
-import Formalism.SharpRestriction.Divisibility.GeneratorPowers.CIndBC
-import Formalism.LocalToGlobal.ProjectiveLattices.IsExpChart
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.SecBaseChangeAnySt
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.AllUniformizationLawsHold
 import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsIsNab

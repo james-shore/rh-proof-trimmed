@@ -2,6 +2,7 @@ import Mathlib
 import GroundTheory.LocalFields.Different
 import GroundTheory.LocalFields.LowerIndexQuotient
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.MinpolyProductMap
+import GroundTheory.LocalFields.Monogenic
 
 noncomputable section
 

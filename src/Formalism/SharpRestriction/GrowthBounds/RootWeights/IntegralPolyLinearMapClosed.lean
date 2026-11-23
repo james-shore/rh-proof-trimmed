@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.RootWeights.ValuationNonnegIffIntegral
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.FockLatticeFiniteSpanning
 
 noncomputable section
 

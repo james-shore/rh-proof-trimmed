@@ -1,6 +1,7 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.FiniteBruhat
-import GroundTheory.AutomorphicForms.InductionParabolicGroups
+import GroundTheory.AutomorphicForms.Iwasawa
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

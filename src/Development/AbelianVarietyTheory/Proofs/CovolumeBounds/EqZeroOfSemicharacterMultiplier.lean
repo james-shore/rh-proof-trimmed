@@ -2,6 +2,7 @@ import Mathlib
 import ReciprocityTheory.ThetaQuasiPeriods.Change
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.ContinuousRl
 import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.ExistsEventuallyNormRiemannThetaTermLe
+import ReciprocityTheory.ThetaQuasiPeriods.Transl
 
 noncomputable section
 

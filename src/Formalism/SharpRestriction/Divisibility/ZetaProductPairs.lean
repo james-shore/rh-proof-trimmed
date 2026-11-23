@@ -5,10 +5,9 @@ import Formalism.LocalRingCardinality.DataAmbForm
 import Formalism.LocalRingCardinality.DataDIV
 import Formalism.LocalRingCardinality.DataTheta
 import Formalism.SharpRestriction.ParConsts
-import Formalism.SharpRestriction.ParamsHeightRankConstant
 import Formalism.SharpRestriction.GlobalSchurBounds.ProductFirstZerothParts
 import Formalism.SharpRestriction.Divisibility.SchurIrreducible
-import Formalism.DoubleCosetMeasures.StatementV
+import Formalism.DoubleCosetMeasures.StatementZ
 
 noncomputable section
 

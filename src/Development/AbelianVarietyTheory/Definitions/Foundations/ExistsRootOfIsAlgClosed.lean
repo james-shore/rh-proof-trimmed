@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.Letter
+import Development.AbelianVarietyTheory.Definitions.Foundations.ExpUpper
 
 noncomputable section
 

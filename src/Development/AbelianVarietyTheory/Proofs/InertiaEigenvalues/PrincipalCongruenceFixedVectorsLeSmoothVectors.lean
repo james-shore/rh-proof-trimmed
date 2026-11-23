@@ -4,7 +4,6 @@ import Development.AbelianVarietyTheory.PublishedTheorems.PublishedFoundations.B
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.DetCharacterMemPrincipalCongruenceFixedVectors
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemChainVecsDet
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.LabelEqOfSuppAdds
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SeriesEqProdOfParabolicInductionChainStatement
 
 noncomputable section
 

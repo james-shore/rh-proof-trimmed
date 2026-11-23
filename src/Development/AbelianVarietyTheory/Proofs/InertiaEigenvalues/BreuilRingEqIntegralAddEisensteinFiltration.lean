@@ -1,5 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.ImagePolynomialAction
+import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ExistsAlgebraMapEqRoot
+
 open PowerSeries GlobalTheory.BK
 
 noncomputable section

@@ -8,9 +8,9 @@ import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.LatticeFamilyModelCo
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.LatticeFamilyModelChernStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.LatticeFamilyInjectiveModelStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.LatticeFactsOfNormalHoldsStatement
-import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.HodgeAnnihilatorLatticeHoldsStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ModelRefinementExistsStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ModelOverModPLatticeEigenSplitStatement
+
 open MvPolynomial GlobalTheory.CompanionTheory.Ar.Num GroundTheory.Heights₂.Heights.NumbersDVR
 open ReciprocityTheory.ChartRestriction.G.Geo (ChartBundle chartRing)
 open GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.NumbersDVR.Bundles (mseg mcIdeal chartMon joinCoord bcCoord pullDeg restrictChart fnField ck rootNum SameGeneric LatLE IsPull IsPullBC)

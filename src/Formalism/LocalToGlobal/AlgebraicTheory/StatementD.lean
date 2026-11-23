@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.AlgebraicTheory.StatementC
+import Formalism.LocalToGlobal.AlgebraicTheory.StatementB
 import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.UnitaryConstant
 
 noncomputable section

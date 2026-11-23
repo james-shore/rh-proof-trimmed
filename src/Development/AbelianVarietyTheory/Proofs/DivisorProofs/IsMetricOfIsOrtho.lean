@@ -1,7 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.UnifMetricScalar
 import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.CuspFormValueLeSupNormAtOrthonormalFrame
-import Formalism.LocalToGlobal.ProjectiveLattices.RosatiLatticeNorms.LinkFD
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.FundamentalDomainExtension.NearSupremumBounds.FdFjNearSupOf
 
 noncomputable section
 

@@ -1,7 +1,8 @@
 import Mathlib
-import Development.ResolutionOfSingularities.Foundations.Blowup.BlowupBasic
+import Development.ResolutionOfSingularities.Foundations.Schemes.IdealSheafData
+import Development.ResolutionOfSingularities.Foundations.BlowupUniversalProperty
 import Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.SmoothCoordinateCodimension
-import Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.StrictNormalCrossings
+
 universe u
 
 open CategoryTheory AlgebraicGeometry

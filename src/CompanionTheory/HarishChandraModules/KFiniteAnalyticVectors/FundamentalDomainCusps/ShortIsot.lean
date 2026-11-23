@@ -1,6 +1,6 @@
 import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.FundamentalDomainCusps.CompactIntegralBoundedByQuotientNorm
-import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.FundamentalDomainCusps.NilpAlg
 import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.RowsDef
+import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.FundamentalDomainCusps.NilpAlg
 
 open Matrix MeasureTheory NumberField Topology
 open scoped ENNReal

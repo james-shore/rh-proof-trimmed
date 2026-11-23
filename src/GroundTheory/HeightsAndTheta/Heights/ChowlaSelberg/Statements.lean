@@ -1,8 +1,8 @@
 import Mathlib
 import GroundTheory.GlobalFields.ComplexMultiplication.ClassGroupAction
-import GroundTheory.GlobalFields.ComplexMultiplication.JInvariant
 import GroundTheory.GlobalFields.ComplexMultiplication.DifferentialConstantField
 import GroundTheory.GlobalFields.AnalyticClassNumber.Quadratic
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.ChowlaSelberg

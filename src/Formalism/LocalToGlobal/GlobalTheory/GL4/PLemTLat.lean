@@ -1,7 +1,5 @@
 import Formalism.LocalToGlobal.GlobalTheory.GL4.PLemTEmb
 import Formalism.LocalToGlobal.GlobalTheory.GL4.PLemTArith
-import Mathlib
-import Formalism.PeriodIntegrals.Transference
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.TransferenceCover
 
 noncomputable section

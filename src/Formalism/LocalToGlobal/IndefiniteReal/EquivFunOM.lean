@@ -1,5 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.CxCutPO
+import Formalism.HermitianLattices.HermitianLatticesProofs.MajBasic
 
 open Module NumberField IsDedekindDomain Polynomial
 open scoped Matrix ComplexOrder InnerProductSpace

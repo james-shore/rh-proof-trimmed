@@ -1,5 +1,4 @@
 import ReciprocityTheory.SemistableReduction.LatSemiSt
-import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.IndependentSectionsUpperCount
 
 noncomputable section
 

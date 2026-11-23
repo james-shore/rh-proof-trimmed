@@ -1,5 +1,4 @@
 import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.MeasurableSetImageOfIsLocalHomeomorph
-import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.TsupportDbSubset
 
 namespace ReciprocityTheory.L2DbarEstimates
 

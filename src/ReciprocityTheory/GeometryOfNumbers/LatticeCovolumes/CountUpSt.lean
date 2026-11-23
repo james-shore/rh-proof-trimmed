@@ -1,5 +1,5 @@
-import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.CountSt
-import Mathlib
+import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.ArakelovDegreeEqDegreeOfFamily
+import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.CountStB
 
 noncomputable section
 

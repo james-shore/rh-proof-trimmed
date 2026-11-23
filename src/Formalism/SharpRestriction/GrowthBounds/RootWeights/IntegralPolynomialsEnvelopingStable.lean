@@ -3,6 +3,9 @@ import Formalism.SharpRestriction.GrowthBounds.RootWeights.ExistsHighestWeightVe
 import Formalism.SharpRestriction.GrowthBounds.RootWeights.ExponentFactorialAddSingleOne
 import Formalism.SharpRestriction.GrowthBounds.RootWeights.MultidegreePartFinitelyGenerated
 import Formalism.SharpRestriction.GrowthBounds.RootWeights.IntegralGeneratorsPreserveLattice
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.HighestWeightDominantHolds
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.ValuationNonnegIffIntegral
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.DividedPowerMonomialExpansion
 
 noncomputable section
 

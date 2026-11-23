@@ -2,6 +2,7 @@ import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsEtLevOver
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.RangeSubsetOfGeom
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsFiniteEtaleLatticeTorsionHom
+import Development.AbelianVarietyTheory.Definitions.Divisors.IsHeckeMap
 
 noncomputable section
 

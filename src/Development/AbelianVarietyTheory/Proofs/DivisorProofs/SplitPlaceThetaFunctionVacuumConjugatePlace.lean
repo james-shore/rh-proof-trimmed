@@ -1,9 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNsmulFix
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntAFSmulMemLatOF
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqZeroOfTraceMul
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContinuousPlaceAt
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCompactShellNsmul
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DoubledDarbouxCoordsCompat
 
 open scoped TensorProduct Matrix
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes

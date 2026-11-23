@@ -1,10 +1,5 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StRegSection
-import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.Objects
-import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.ConvergenceRate
-import ReciprocityTheory.AnalyticForms.PotentialTheory.HessCIsHermitian
-import ReciprocityTheory.AnalyticForms.PotentialTheory.ProjectiveLinePartitionContinuousCoe
-import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.Telescoping
+import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.StLemmaETailLog
 
 set_option maxSynthPendingDepth 1
 

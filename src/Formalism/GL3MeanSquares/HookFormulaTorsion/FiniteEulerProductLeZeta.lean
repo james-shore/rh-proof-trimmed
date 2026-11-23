@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.GL3MeanSquares.RankMulPowThreeHalvesLeFourthPower
-import Formalism.LogVandermondeBounds.LogVandermondeVariationUnbounded
 
 namespace Formalism.HermitianLattices.GenusMassVolumes
 

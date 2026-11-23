@@ -1,9 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.DivisionOfDeterminantCharacter
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.LimWPhi
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.HasLevelOffOf
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.SplitLineSubtraction.RowDefOfOdd
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.GenericMulOfProd
-import Development.WeilBound.CoreStatements.PadicHodgeComparison.CocharacterLieDivisors.StGalW
 
 noncomputable section
 

@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.BlocksUnique
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.LocAutHodgeTateWeightsLevelZeroDef
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.WdOfMono0L
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FillPreservesIdempotent
 
 noncomputable section

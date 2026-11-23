@@ -1,5 +1,5 @@
 import Development.WeilBound.CoreStatements.HodgeTatePoints.TwpdivHopf
-import Development.WeilBound.CoreStatements.HodgeTatePoints.TwhopfInd
+import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.DualOrder
 
 open GlobalTheory.CompanionTheory.Ar.BT
 

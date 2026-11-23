@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.BigCellConjI
+import Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.FramesTor
 import Formalism.SharpRestriction.CuspSpanNormBounds.LeadMinorK
 
 noncomputable section

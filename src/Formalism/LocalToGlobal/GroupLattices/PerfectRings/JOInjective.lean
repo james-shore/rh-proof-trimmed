@@ -1,6 +1,7 @@
 import Formalism.SharpRestriction.GrowthBounds.UnramifiedQuadraticSetting
 import Formalism.LocalToGlobal.GroupLattices.PerfectRings.ExistsSqEqIntCast
 import Formalism.LocalToGlobal.GroupLattices.PerfectRings.AlgebraMapFinite
+import Formalism.LocalRingCardinality.SpanPowerMembership.GatRing
 
 noncomputable section
 

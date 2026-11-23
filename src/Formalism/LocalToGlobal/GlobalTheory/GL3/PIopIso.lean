@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.GlobalTheory.GL3.PLinkThIndep
+import Formalism.LocalToGlobal.GlobalTheory.GL3.Statement
 import Formalism.LocalToGlobal.GlobalTheory.GL3.PLinkThU
 import Formalism.GL3MeanSquares.HookFormulaTorsion.SquareEqDiagOfQuadraticEven
 

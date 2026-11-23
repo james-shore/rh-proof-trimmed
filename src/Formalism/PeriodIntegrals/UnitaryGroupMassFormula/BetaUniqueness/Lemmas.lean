@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.BetaLUniq
+import Formalism.SharpRestriction.CuspSpanNormBounds.IsPrimitiveSub
 import Lemmata.GeneralBFactThirdRest.Imports
 
 noncomputable section

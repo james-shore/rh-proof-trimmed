@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AutomorphicSpectrum.PublishedTheorems.Algebra₂.FarguesHodgeTate
+import Development.AbelianVarietyTheory.Definitions.Divisors.ToSpanSingletonConstGenInjective
 
 noncomputable section
 

@@ -1,4 +1,6 @@
 import Development.EtaleCohomology.KummerTheory.BockCut
+import Development.EtaleCohomology.TateTwists.EtaleTateTwistSectionsLocallyGenerated
+import Development.EtaleCohomology.TateTwists.EtaleLocalPropertyBasicClosure
 
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC
 

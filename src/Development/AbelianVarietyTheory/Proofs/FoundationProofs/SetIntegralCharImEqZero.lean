@@ -1,6 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsPosHermFormV
-import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IntMIffInt
+
 open Complex MeasureTheory GlobalTheory.UnitaryTheta
 open scoped BigOperators ComplexConjugate Real Classical Pointwise
 

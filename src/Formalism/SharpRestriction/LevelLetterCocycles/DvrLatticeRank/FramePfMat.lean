@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.FrameAbs
-import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.DvdOfCoeffSubstXPowNeZero
 
 noncomputable section
 

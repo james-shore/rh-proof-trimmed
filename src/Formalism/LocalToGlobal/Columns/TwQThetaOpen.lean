@@ -1,4 +1,5 @@
 import Formalism.LocalToGlobal.Columns.FiniteSumNonzeroLargeDepth
+import Formalism.HermitianLattices.HermitianLatticesProofs.UnimodUnramUnique
 
 open NumberField IsDedekindDomain Module Matrix
 

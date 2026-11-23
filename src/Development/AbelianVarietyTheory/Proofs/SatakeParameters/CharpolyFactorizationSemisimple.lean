@@ -1,8 +1,8 @@
 import Mathlib
-import Formalism.SharpRestriction.LevelLetterCocycles.SumRepresentations
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.WeightRegularOfExt
+import Formalism.ConjugateSelfDual.Statement
+import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
+import Formalism.SharpRestriction.LevelLetterCocycles.QuotientHomNonvanishingBound
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PolarizedGaloisRep
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SecondClosedOfFirstClosed
 
 noncomputable section
 

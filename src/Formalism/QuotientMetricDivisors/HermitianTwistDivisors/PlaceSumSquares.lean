@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.QuotientMetricDivisors.UntwistedChoice
-import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ConjugateWeightLatticeOfGeneral
+import Formalism.LogFactorialIndices.SignedSubspaceIndex.LogProductFormula
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder

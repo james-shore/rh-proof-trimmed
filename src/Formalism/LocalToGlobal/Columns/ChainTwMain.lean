@@ -1,4 +1,7 @@
 import Formalism.LocalToGlobal.Columns.ChainTwCst
+import Formalism.LocalToGlobal.Columns.ReducedMatrixExtensionEntry
+import Formalism.LocalToGlobal.Columns.FrameEntryAuxiliarySuperdiagonal
+import Formalism.LocalToGlobal.Columns.ColumnsProofs.SymLevEnt
 
 open NumberField IsDedekindDomain Module
 

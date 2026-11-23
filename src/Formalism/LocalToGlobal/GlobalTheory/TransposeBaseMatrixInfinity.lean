@@ -1,5 +1,6 @@
 import Formalism.LocalToGlobal.GlobalTheory.NatInvMemIntW
 import Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.ExistsPrimeToLe
+import Formalism.LocalToGlobal.GlobalTheory.ColMemOfIsLocBasis
 
 noncomputable section
 

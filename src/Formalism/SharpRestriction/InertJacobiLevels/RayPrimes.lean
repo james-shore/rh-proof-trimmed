@@ -1,5 +1,5 @@
 import Formalism.SharpRestriction.InertJacobiLevels.HostFam
-import Formalism.SharpRestriction.FamCore
+import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 
 noncomputable section
 

@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.PermRepSingle
-import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.HomologicalStability.LinkExactnessStability.GroupHomologyLongExactMapsNaturalOfRes
 
 open CategoryTheory CategoryTheory.Limits GlobalTheory.HomStab
 namespace GlobalTheory.HomStab

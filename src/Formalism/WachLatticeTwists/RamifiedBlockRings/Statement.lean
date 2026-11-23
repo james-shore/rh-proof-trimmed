@@ -1,4 +1,4 @@
-import Formalism.CharacterColumnKernels.StatOntoLattice
+import Formalism.CharacterColumnKernels.StatementN
 import Formalism.TruncatedSeriesCounting.LemmaDetPoly
 
 open Finset Classical

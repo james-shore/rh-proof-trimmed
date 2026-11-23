@@ -1,6 +1,6 @@
-import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.CanonicalTranslateJetIdentity
+import Formalism.SharpRestriction.GrowthBounds.StatementOfDegreeAndBound
 import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.EqEmptyIffSplit
-import Mathlib
+import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.ExteriorWedgeSqZero
 
 noncomputable section
 

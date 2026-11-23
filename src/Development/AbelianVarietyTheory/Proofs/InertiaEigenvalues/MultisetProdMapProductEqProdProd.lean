@@ -4,6 +4,7 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CauchyIdentity
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MkSumProdHsymmMulProdOneSubStatement
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EulerInversePowerSeriesEvalOneStatement
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HasSumRegroupAntitonePartitionsByDegreeStatement
+import Development.AbelianVarietyTheory.Definitions.Divisors.UnrOutside
 
 noncomputable section
 

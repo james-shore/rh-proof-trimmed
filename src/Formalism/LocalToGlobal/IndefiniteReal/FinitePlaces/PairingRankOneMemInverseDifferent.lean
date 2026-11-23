@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.LatMod
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemSplit
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.CharDual
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.FactPrincipalDatum
 import Formalism.SharpRestriction.CuspSpanNormBounds.NonemptyParameterModels.TermTiesEmptyOfLargeIndex

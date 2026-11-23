@@ -1,7 +1,5 @@
 import Mathlib
 import Formalism.FrobeniusOrbits.Statement
-import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.CoprimeTwoPow
-import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.Galois
 
 open Polynomial
 

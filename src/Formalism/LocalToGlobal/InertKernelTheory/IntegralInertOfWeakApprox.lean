@@ -1,5 +1,14 @@
 import Formalism.LocalToGlobal.InertKernelTheory.IntegralInertOfWeakApproxTheta
 import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.AlgKleinPf
+import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.IntEasy
+import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.IntPull
+import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.IntWeak
+import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.GlobalOrthonormalBasisFour
+import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.IntAsm
+import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.ThFourIntOf
+import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.UnitSubstOfLoc
+import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.MMFour
+import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.OneCopyTh1SOfIsom
 
 namespace Formalism.L2.KerInert
 

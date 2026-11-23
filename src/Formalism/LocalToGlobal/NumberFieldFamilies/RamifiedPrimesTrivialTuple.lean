@@ -1,5 +1,5 @@
-import Formalism.LocalToGlobal.UnitaryNorms.CharDiv
-import Formalism.LocalToGlobal.UnitaryNorms.UnrAEPf
+import Formalism.LocalRingCardinality.DataDIV
+import Formalism.LocalToGlobal.UnitaryNorms.CharTied
 
 noncomputable section
 

@@ -1,8 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ChainParSucc
-import Formalism.LocalRingCardinality.HeightBoundGeFourthPowerRank
 import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.ConcreteSettingExists
-import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
+import Formalism.LocalRingCardinality.HeightBoundGeFourthPowerRank
+
 open Formalism.BasicNotions
 
 namespace GlobalTheory.Core.Rk.GapOfNodes

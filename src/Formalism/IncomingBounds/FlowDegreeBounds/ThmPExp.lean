@@ -1,5 +1,4 @@
 import Formalism.IncomingBounds.DefsThmP
-import Formalism.IncomingBounds.FlowDegreeBounds.ProdRangeEqFactorialMulProdIco
 
 noncomputable section
 open scoped BigOperators

@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsOneParameterInUnitaryArchimedeanMaxCompact
-import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
 
 open NumberField IsDedekindDomain
 

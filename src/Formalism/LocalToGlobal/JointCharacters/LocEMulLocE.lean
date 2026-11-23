@@ -1,5 +1,5 @@
 import Formalism.LocalToGlobal.BesselHermitianTheta.TiedWeil
-import Formalism.LocalToGlobal.UnitaryNorms.CharTied
+import Formalism.LocalToGlobal.UnitaryNorms.CharHost
 
 noncomputable section
 

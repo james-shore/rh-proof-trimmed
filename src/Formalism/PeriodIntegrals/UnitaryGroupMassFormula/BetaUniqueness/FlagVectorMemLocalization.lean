@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.BetaLUniq
+import Formalism.SharpRestriction.CuspSpanNormBounds.IsPrimitiveSub
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaUniqueness.Lemmas
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaUniqueness.EqZeroOfNormLtOne
 

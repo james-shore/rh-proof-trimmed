@@ -3,7 +3,6 @@ import Development.AbelianVarietyTheory.Definitions.LatticeFrames.CombAtSingleZe
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsCombAt
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsRatDatum
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsTransportAdelicCorrection
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsScaleWithBoundedGamma
 
 set_option genSizeOfSpec false
 set_option genInjectivity false

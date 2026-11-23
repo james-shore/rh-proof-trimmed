@@ -1,6 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.Foundations.ApplyEqOfMemAdjoin
-import Development.AbelianVarietyTheory.Definitions.Foundations.IsTopWTopWOfExists
+import Development.AbelianVarietyTheory.Definitions.Foundations.EeProd
 
 open GlobalTheory.K5 GlobalTheory.Glue
 

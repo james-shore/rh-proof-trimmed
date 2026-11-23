@@ -1,5 +1,6 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.GL2Classical.EigenformTranslates
+import GroundTheory.AutomorphicForms.GL2Classical.UnitaryEigenSpan
 
 open NumberField Matrix CongruenceSubgroup ModularForm Complex Filter MeasureTheory
 open UpperHalfPlane hiding I I_re I_im

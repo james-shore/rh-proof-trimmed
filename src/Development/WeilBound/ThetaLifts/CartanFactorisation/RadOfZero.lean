@@ -1,5 +1,5 @@
 import Development.WeilBound.ThetaLifts.CartanFactorisation.SpanOrbitStab
-import Development.WeilBound.ThetaLifts.CartanFactorisation.CartanConj
+import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
 
 noncomputable section
 

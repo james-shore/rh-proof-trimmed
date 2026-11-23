@@ -1,9 +1,9 @@
 import Mathlib
 import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FirstDeriv
-import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.TopsChoicePartA
 import Formalism.FormalGroupLog.FormalGroupLogProofs.HomPsSubstMvSubst
 import Formalism.TorsionNormIteration.LubinTateExample
 import Formalism.FormalGroupWitt.FormalGroupWittProofs.FrobSqV
+import Formalism.FormalGroupLog.LogDeterminesLaw
 
 noncomputable section
 

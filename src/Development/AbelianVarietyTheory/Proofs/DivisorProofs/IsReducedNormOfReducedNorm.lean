@@ -1,9 +1,6 @@
 import Mathlib
 import GroundTheory.Brauer.Splitting
-import GroundTheory.Brauer.SkolemNoether
-import GroundTheory.Brauer.BaseChangeCSA
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetGenMatIsHomogeneous
-import Development.AbelianVarietyTheory.Definitions.Divisors.LandherrCSA
 
 noncomputable section
 

@@ -4,6 +4,8 @@ import ReciprocityTheory.AnalyticForms.PotentialTheory.Stokes
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsBlockResolutionDegreeIntegral
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsGenDegGeomDeg
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.AnResBridge
+import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.HilbertSamuel

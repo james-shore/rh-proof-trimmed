@@ -1,5 +1,5 @@
 import Mathlib
-import Development.DiscreteGroups.GlobalIrreducibility.LConvCut
+import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HasExponentZeroIff
 
 noncomputable section
 open Matrix GlobalTheory.SmGL GlobalTheory.Whittaker GlobalTheory.LocLanglands

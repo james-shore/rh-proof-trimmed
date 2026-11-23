@@ -1,12 +1,7 @@
 import Formalism.SharpRestriction.GlobalSchurBounds.MassRatioUnfoldedOfTheoremTwo
-import Formalism.SharpRestriction.GlobalSchurBounds.TheoremThreeUnderScaleOfGeneral
-import Formalism.LocalToGlobal.GlobalTheory.GL5.PClassDecomp
 import Formalism.GL3MeanSquares.HookFormulaTorsion.MassUpperBoundClosed
-import Formalism.SharpRestriction.GlobalSchurBounds.StandardLattice
-import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeCSchur
-import Formalism.SharpRestriction.CuspSpanNormBounds.DiscreteSeriesWeylDimension
-import Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLe
 import Formalism.PeriodIntegrals.ExplicitFormulaCounts.WeylForK
+import Formalism.LocalToGlobal.GlobalTheory.GL5.PClassDecomp
 
 noncomputable section
 

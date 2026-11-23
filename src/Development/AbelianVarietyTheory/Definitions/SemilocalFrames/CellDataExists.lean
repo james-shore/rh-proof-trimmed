@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.OnePlaceKF
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.BigCellDecomposition
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.SettingConstruction
 
 open MeasureTheory Matrix
 open scoped InnerProductSpace ENNReal

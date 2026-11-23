@@ -1,8 +1,8 @@
 import Mathlib
 import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
-import Development.AbelianVarietyTheory.Definitions.Foundations.SmoothPartStable
-import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TwConj
+import Formalism.RealPlaceAnalysis.StatementA
+import Formalism.RealPlaceAnalysis.StatementB
+import Formalism.RealPlaceAnalysis.StatementE
 
 open Finset
 

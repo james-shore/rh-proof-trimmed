@@ -1,7 +1,8 @@
 import Mathlib
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ExistsCrystalPairing
-import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.GeometricallyConnectedOfSurjective
-import Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsIsoFibreOfPullback
+import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.CrystallinePull2SumCup
+import Development.AbelianVarietyTheory.Definitions.Divisors.MapSmulOfIsHausdorff
+import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsVariableChangeEisensteinCurve
+
 set_option autoImplicit false
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj

@@ -2,6 +2,7 @@ import Mathlib
 import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
 import Formalism.SatakeDualWeyl.KpqSubgroupCompact
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LClosedeqLemmas
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.DualWeylModuleStable
 
 open MvPolynomial
 

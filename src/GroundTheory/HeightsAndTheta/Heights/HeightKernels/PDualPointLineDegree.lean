@@ -3,6 +3,8 @@ import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsLineDegreeDu
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.IsArithVarBotDualBlocksUnit
 import GroundTheory.HeightsAndTheta.Heights.Intersections.NotIsHorizontalOfDimOne
 import GroundTheory.HeightsAndTheta.Heights.Intersections.ArithVarZero
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRed
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

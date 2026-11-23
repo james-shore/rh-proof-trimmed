@@ -1,6 +1,7 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutNFApxDom
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutNFApxDomThQ
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.DominatedL2OperatorBoundHolds
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEnTrSmooth
 
 namespace Formalism.FourierDecayAlt.P.CutBP
 

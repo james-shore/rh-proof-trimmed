@@ -1,17 +1,11 @@
 import Formalism.SubspaceCounting.Statement
-import Formalism.SubspaceCounting.SubspaceCountingProofs.LengthLayers
 import Formalism.SubspaceCounting.StatementB
-import Formalism.SubspaceCounting.SubspaceCountingProofs.ManyOrbits
+import Formalism.SubspaceCounting.SubspaceCountingProofs.WalkSharp
 import Formalism.SubspaceCounting.SubspaceCountingProofs.QVandermonde
-import Formalism.SubspaceCounting.SubspaceCountingProofs.TopsChoicePartB
 import Formalism.SubspaceCounting.SubspaceCountingProofs.SubspaceCount
 import Formalism.SubspaceCounting.SubspaceCountingProofs.TypeIIDown
-import Formalism.SubspaceCounting.SubspaceCountingProofs.WalkSharp
-import Formalism.SubspaceCounting.SubspaceCountingProofs.ManyOrbitsRefined
 import Formalism.SubspaceCounting.GoodOrbitIntervalTileCondition
 import Formalism.SubspaceCounting.SubspaceCountingProofs.MarkedRun
-import Formalism.SubspaceCounting.SubspaceCountingProofs.DetDivides
-import Formalism.SubspaceCounting.StatementW
 
 namespace Formalism.G0.Top
 

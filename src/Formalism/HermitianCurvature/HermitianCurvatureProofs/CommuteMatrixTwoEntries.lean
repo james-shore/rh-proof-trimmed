@@ -1,7 +1,7 @@
 import Formalism.HermitianCurvature.TopDensNonnegOfKappa
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.LiftMemMatrixAlgebra
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.FsvMulFsvNeg
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.FrameOfAdmissibleWord
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.LiftMemMatrixAlgebra
 
 open Matrix MeasureTheory
 open scoped ComplexConjugate

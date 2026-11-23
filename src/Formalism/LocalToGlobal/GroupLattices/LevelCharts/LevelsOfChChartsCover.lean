@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.GroupLattices.LevelCharts.LevelsOfCh
+import Formalism.LocalToGlobal.GroupLattices.LevelCharts.FiniteCompG
 
 noncomputable section
 

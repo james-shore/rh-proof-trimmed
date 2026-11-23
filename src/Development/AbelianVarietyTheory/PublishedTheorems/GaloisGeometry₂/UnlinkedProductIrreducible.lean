@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.BlockSplitAll
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsReadingLaws
 
 noncomputable section
 

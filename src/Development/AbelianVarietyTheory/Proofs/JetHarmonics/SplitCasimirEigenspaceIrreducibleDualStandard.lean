@@ -1,10 +1,10 @@
 import Mathlib
 import Formalism.HermitianCurvature.CapelliDeterminantAndBranching
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.IrreducibleCapelliModules
-import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
-import Development.AbelianVarietyTheory.Definitions.Jets.Imports
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.HwComponentTensorDualStandard
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.TensorDualStandardRel
+import Formalism.RealPlaceAnalysis.ThirdArithmeticHolds
+
 open Formalism.REAL Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.Qr
 
 namespace GlobalTheory

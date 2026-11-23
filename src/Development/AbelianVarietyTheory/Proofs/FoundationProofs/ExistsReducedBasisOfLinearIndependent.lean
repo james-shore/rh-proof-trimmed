@@ -3,6 +3,7 @@ import ReciprocityTheory.ReducedBases.ExistsRedOf
 import ReciprocityTheory.ReducedBases.PrefixProdGeOne
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.IntegralModuleBases.NormGsoSqLeTwoPowMulOfValEqAdd
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsBimultiplicativeOfSecondQuotConst
+import ReciprocityTheory.ReducedBases.ExistsBoundedBasis
 
 noncomputable section
 

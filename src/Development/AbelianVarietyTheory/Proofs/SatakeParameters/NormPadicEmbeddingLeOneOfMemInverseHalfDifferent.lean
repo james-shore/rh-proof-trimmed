@@ -3,7 +3,7 @@ import Development.AutomorphicArithmetic.CyclotomicBounds.RamifiedDiscriminants.
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Formalism.LocalRingCardinality.DataKerI
 import Formalism.SharpRestriction.GlobalSchurBounds.GL3Theta
-import Formalism.LocalToGlobal.KernelLattices.LateralTheory
+import Formalism.SharpRestriction.GlobalSchurBounds.StandardLatticesGL3
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.TauPlBijective
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.InducedTypeThetaGenusOnePermutes
 import Formalism.LocalToGlobal.ProjectiveLattices.HostRank

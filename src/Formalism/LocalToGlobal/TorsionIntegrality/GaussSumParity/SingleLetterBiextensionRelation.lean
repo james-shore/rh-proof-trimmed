@@ -1,8 +1,6 @@
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.FinalOfNRDense
-import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.StatementG
-import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.BiextensionRelation
-import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.KummerThetaLogarithms.NRCMOf
 import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.KummerThetaLogarithms.SecondLogDerivativeUnique
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.KummerThetaLogarithms.NRCMOf
 
 namespace Formalism.L2.Th1.D
 

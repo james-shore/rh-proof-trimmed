@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.BejjSmulLeft
+import Formalism.SharpRestriction.GrowthBounds.CountingStatementReduction
 
 noncomputable section
 

@@ -1,9 +1,9 @@
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.Triple
-import Mathlib
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.IsTripleAtOfConj
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.FrobMatchRho
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.FrobMatchT
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.HkSat
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.UnrAtOfMulLeft
 
 set_option synthInstance.maxHeartbeats 200000
 

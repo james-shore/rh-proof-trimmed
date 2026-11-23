@@ -1,10 +1,9 @@
 import Formalism.LocalToGlobal.IndefiniteReal.DatumVec
 import Formalism.LocalToGlobal.IndefiniteReal.SubgroupCharExtensionOneApply
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.TameAtOne
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.PlaceS
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemUniq
 import Formalism.LocalToGlobal.Divisibility.DefGroupLemmas
-import Mathlib.NumberTheory.NumberField.ClassNumber
+import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
 
 noncomputable section
 

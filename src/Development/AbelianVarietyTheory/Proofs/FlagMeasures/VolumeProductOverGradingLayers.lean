@@ -1,5 +1,6 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IpLEqZeroOfMemSpan
+import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DefClassNum
+
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas
 
 namespace GlobalTheory.LayerBox

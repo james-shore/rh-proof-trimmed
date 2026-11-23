@@ -1,6 +1,5 @@
 import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AnalyticIntertwiners.GrowthOfBasic
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.UniqueA
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.Taylor
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.PropsEquivB
 
 open Matrix
 open scoped InnerProductSpace

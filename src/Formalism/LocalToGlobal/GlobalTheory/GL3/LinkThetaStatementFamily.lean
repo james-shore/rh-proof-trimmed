@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalToGlobal.GlobalTheory.GL3.IsometryLinkageAtSplitPrime
+import Formalism.LocalToGlobal.GlobalTheory.GL3.ProvisionExtensionLink
 import Formalism.LocalToGlobal.PairingIndexBounds.HalvesRecursion.RecursiveLatticeMembership.MemLamOfIff
 
 noncomputable section

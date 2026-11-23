@@ -1,7 +1,6 @@
 import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.AwayFact
 import Development.AutomorphicSpectrum.Proofs.MembershipProofs.BoundMulTranslate
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsSchwartzPolyMulGauss
-import Mathlib
 
 noncomputable section
 

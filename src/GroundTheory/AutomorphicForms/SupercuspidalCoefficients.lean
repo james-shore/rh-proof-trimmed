@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.AutomorphicForms.JacquetAdmissible
+import GroundTheory.AutomorphicForms.CuspidalAdmissible
 import GroundTheory.AutomorphicForms.IwahoriFactorization
 import GroundTheory.AutomorphicForms.SmoothRepContragredient
 

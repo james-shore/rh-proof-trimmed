@@ -1,5 +1,4 @@
 import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.UnitTraceSumBounds.EmbeddingPermutesLetters
-import Mathlib
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.EmbTraceSum
 
 namespace Formalism.MainNotions.Ext

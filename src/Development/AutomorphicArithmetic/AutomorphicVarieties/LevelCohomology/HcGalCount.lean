@@ -3,10 +3,10 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.Hc
 import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.HcGlobEuler
 import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.HcLocEuler
 import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.HcGalTail
-import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.HcGalIdx
 import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.HcUrIndex
 import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.HcUrAbs
 import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.HcDecZhat
+
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Module UpperTheory.V UpperTheory.V.X
 
 theorem UpperTheory.V.X.galCount :

@@ -1,4 +1,4 @@
-import Formalism.GaussJetBounds.StatementQ
+import Formalism.GaussJetBounds.StatementN
 import Formalism.LocalToGlobal.TorsionIntegrality.SecondCoefficientNorms.JetExpShape
 import Formalism.FormalGroupLog.Statement
 

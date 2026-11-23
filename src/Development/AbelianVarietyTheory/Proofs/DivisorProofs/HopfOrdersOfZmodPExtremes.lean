@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DivConstClosedPts
+import Development.AbelianVarietyTheory.BlockTheory.CMModuli.ProjectiveSpaceOverSpec
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OriginIdeal
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorIsLocalRingOfUniquePrimeOverStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorLocalizationAtPrimeIsDomainOfIsLocalRingEtStatement
@@ -7,6 +7,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSubMemMaximal
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNormalLocalDomainOverHenselianPrimeStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OriginIdealUniquePrimeOver
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatTensorKernelMemMapIdeal
+
 open IsLocalRing Polynomial
 open scoped TensorProduct
 

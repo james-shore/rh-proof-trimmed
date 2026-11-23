@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.LevTrue
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsStdFr
 
 noncomputable section
 

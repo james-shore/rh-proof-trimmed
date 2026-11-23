@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.ReducedTensors
-import GroundTheory.HeightsAndTheta.Heights.FubiniStudyMetric
 import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProjectiveCohomology.TwistingSheafAlt
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

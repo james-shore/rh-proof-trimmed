@@ -1,5 +1,4 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.SecondDefectNonneg
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.LenEqLenI
 
 namespace Formalism.FourierDecayAlt.P.PBL
 

@@ -1,8 +1,9 @@
 import CompanionTheory.AutomorphicTheory.BesselWaveGrids.TiedNum
 import CompanionTheory.AutomorphicTheory.BesselWaveGrids.NormalizedMeasureScaling
 import CompanionTheory.AutomorphicTheory.BesselWaveGrids.PowFourLeRpowNineHalves
-import Formalism.SharpRestriction.CuspSpanNormBounds.TheoremBConstants
-import Formalism.SharpRestriction.CuspSpanNormBounds.RatioInvLeFrameFactor
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsBesselMapSmBesselCharIff
+import CompanionTheory.AutomorphicTheory.BesselWaveGrids.TypeHC
+import CompanionTheory.AutomorphicTheory.BesselWaveGrids.NqOfLamData
 
 noncomputable section
 

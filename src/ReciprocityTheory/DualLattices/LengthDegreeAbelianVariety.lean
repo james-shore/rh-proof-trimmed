@@ -1,11 +1,8 @@
 import ReciprocityTheory.DualLattices.ColengthSqMulLeProd
-import Mathlib
-import ReciprocityTheory.DualLattices.CotangentSurjective
 import ReciprocityTheory.DualLattices.LengthDegreeOfFrobenius
 import ReciprocityTheory.DualLattices.KilledGen
 import ReciprocityTheory.DualLattices.IdemGen
 import ReciprocityTheory.DualLattices.LenEx
-import ReciprocityTheory.DualLattices.CokernelLengthComparisonOf
 
 noncomputable section
 

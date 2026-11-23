@@ -1,5 +1,4 @@
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.UnipotentSums
-import Formalism.HermitianCurvature.HermitianCurvatureProofs.FixedFrameProperty
 
 open Matrix Formalism.FourierDecayAlt Formalism.QuantumDeterminants
 open scoped ComplexConjugate

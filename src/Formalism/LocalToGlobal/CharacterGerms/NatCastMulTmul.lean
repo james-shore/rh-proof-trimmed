@@ -1,5 +1,4 @@
-import Formalism.LocalToGlobal.CharacterGerms.CompleteOfBasis
-import Formalism.LocalToGlobal.CharacterGerms.DetNeZeroOfChars
+import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrPl
 
 set_option autoImplicit false
 

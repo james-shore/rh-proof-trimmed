@@ -1,6 +1,6 @@
 import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.IsotypicQuotients.IsotypQuot
-import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.FockOperators.XApply
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.CmBridge
+import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.FockOperators.XApply
 
 noncomputable section
 

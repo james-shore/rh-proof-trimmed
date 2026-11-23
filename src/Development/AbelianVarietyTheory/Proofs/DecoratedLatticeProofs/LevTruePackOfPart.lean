@@ -5,6 +5,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.RowSideOfCompatible
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IsTypePlacesOfLevCh
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.CornerCoordinateAutomatic
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.LevTrue
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsUnitaryOfOrderDvd
 
 noncomputable section
 

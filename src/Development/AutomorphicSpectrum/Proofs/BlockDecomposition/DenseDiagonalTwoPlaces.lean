@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.NotIsCompactUnivFv
-import GroundTheory.GlobalFields.Adele.WeakApprox
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousSingleV
 
 noncomputable section

@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.ShiftAtRExistsEq
-import Formalism.HermitianCurvature.FrameExists2
 import Development.AbelianVarietyTheory.Definitions.Jets.WigMap
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsShiftedTypesLowerBound
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.WeylGroupActions.TypeExponentsConsecutiveGapStatement
@@ -8,6 +7,7 @@ import CompanionTheory.SpectralGeometry.LocalGlobalProofs.WeylGroupActions.Wigne
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.WeylGroupActions.WignerMapPolynomialOperatorStatement
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.WeylGroupActions.WignerMapUpperBoundStatement
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.WeylGroupActions.WignerPlusMinusDecompositionStatement
+
 open Formalism.FourierDecayAlt Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.P.CutBP2 Formalism.FourierDecayAlt.P.CutBPEq Matrix
 
 namespace GlobalTheory.CompanionTheory.WignerShift

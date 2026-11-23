@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.SumSingleApplyZero
+import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.PsiCutSupported
 import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.OldestLetterInSegment
 
 noncomputable section

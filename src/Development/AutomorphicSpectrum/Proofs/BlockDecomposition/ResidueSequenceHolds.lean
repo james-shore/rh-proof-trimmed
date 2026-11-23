@@ -16,6 +16,7 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemHPGIffConjug
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ClosedCellInducingCharacterStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OpenCellInducingCharacterStatement
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothParabolicInductionProductStatement
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.EventuallyInv
 
 noncomputable section
 

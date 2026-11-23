@@ -1,5 +1,6 @@
 import Mathlib
 import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.RelIndexNeZeroAndLeOfNsmulMem
+import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StatementsAdelicLattices
 
 set_option linter.unusedSectionVars false
 

@@ -1,10 +1,8 @@
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.JetSplitAmb
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.JetOpIntegral
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.JetsInIffStepField
-import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.ValidForConstructedPointClassesEventuallyWorking
-import Formalism.SharpRestriction.ElevenLe
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.KernelsOverOfFamily
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CmQuadraticFormEqAlternatingForm
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.EtaJUntw
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.DisjointReferenceTwistPrimes
+
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Ker GlobalTheory.AtG
 
 namespace GlobalTheory.Mem.Col2.KerRat

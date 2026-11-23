@@ -1,7 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LinkedUnramifiedChains.CmpPrime
-import Mathlib.LinearAlgebra.Eigenspace.Pi
-import Mathlib.LinearAlgebra.Eigenspace.Zero
-import Mathlib.LinearAlgebra.Charpoly.BaseChange
 
 open Polynomial TensorProduct
 

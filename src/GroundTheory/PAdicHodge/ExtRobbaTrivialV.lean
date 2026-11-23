@@ -1,9 +1,9 @@
 import Mathlib
-import GroundTheory.PAdicHodge.SlopeRobbaPure
-import GroundTheory.PAdicHodge.ExtRobbaEigenStep
-import GroundTheory.PAdicHodge.ExtRobbaOrd
-import GroundTheory.PAdicHodge.DMTeichPow
+import GroundTheory.PAdicHodge.SlopeFrobenius
+import GroundTheory.PAdicHodge.SlopePhiSub
+import GroundTheory.PAdicHodge.ExtRobbaEigenGlue
 import GroundTheory.PAdicHodge.DMTeichBasic
+import GroundTheory.PAdicHodge.ExistsWeightLeOfConvergesAt
 
 set_option maxSynthPendingDepth 1
 

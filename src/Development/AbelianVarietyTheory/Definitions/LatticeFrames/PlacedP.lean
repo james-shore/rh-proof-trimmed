@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.Framed
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ChartZero
 
 noncomputable section
 

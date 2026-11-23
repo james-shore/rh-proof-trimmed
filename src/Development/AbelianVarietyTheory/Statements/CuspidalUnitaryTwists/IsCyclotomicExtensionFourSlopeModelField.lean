@@ -1,7 +1,6 @@
-import Development.AbelianVarietyTheory.Statements.CuspidalUnitaryTwists.SlopeE
+import Development.AbelianVarietyTheory.Definitions.Foundations.IsSelfDualE
+import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.RealCubicMeans.LeafBounds.MeanMaxLeaf.LeafMMFree
 import Formalism.LocalToGlobal.Columns.CoefficientsModP.PairingNondegenerateHolds
-import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
-import Formalism.HarderNarasimhan.ShiftInvariance
 
 open NumberField
 open Formalism.BasicNotions Formalism.L2.DIV Formalism.L2.Indef.Tree.ArchimedeanLeafBounds.Cuts

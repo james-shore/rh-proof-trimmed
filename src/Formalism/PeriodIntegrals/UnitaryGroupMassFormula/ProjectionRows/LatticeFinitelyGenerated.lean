@@ -1,7 +1,7 @@
 import Mathlib
-import Formalism.PeriodIntegrals.DivisionRowsRationalLattice
+import Formalism.PeriodIntegrals.SameFormAllLevels
+import Formalism.LocalRingCardinality.DataArith
 import Formalism.SizeWindowBrackets.ChainSlopeWindows.TruncatedLatticeHolds
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeIndexDeterminant.NegLogValuation
 
 noncomputable section
 

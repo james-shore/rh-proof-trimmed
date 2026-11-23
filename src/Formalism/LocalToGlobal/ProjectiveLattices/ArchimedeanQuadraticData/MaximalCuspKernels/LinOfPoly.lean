@@ -1,5 +1,4 @@
 import Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.ArcLineFunctions.ArcDatumIsArcPointBasis
-import Formalism.LocalToGlobal.ProjectiveLattices.AllTest
 
 noncomputable section
 

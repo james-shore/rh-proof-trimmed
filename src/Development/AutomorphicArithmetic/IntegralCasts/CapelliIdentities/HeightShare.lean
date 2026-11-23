@@ -1,31 +1,20 @@
 import Mathlib
 import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
-import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.ConjEMemHostFIff
-import Formalism.LocalRingCardinality.Params
-import Formalism.LocalRingCardinality.DataHost
-import Formalism.FrobeniusOrbits.Statement
-import Formalism.SharpRestriction.CuspSpanNormBounds.Point
-import Formalism.HermitianLattices.StatementLat
-import Formalism.HarderNarasimhan.Statement
-import Formalism.FrobeniusOrbits.HostThickExists
-import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.ZsmulGeneratorEqZeroOfProjection
-import Formalism.LocalRingCardinality.DataSpaces
-import Formalism.WeaklyAdmissibleFiltrations.Statement
-import Formalism.LocalRingCardinality.DataRows
-import Formalism.SatakeDualWeyl.Statement
-import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
-import Formalism.HarderNarasimhan.StatementPl
-import Formalism.HermitianLattices.StatementMass
-import Formalism.LocalRingCardinality.DataArith
-import Formalism.SharpRestriction.CuspSpanNormBounds.PsiEDef
-import Formalism.LatticeSlopes.Statement
-import Formalism.FockGram.StatementHerm
-import Formalism.ThetaLiftIndependence.Statement
-import Formalism.SharpRestriction.CuspSpanNormBounds.DataS
-import Formalism.LocalRingCardinality.DataKernels
-import Formalism.HermitianLattices.StatementMaj
-import Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.IntegralSquareRoots.HenselQuad
-import Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.IntegralSquareRoots.SecondConstantOfGaussSum
+import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.SelfDualCovolume
+import Formalism.SharpRestriction.GlobalSchurBounds.TaylorLogMetric
+import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.CayleyGaussianIntegralsCongrFact
+import Formalism.SharpRestriction.GlobalSchurBounds.ProductFirstZerothParts
+import Formalism.SharpRestriction.GlobalSchurBounds.FlipTwoThree
+import Formalism.SharpRestriction.GlobalSchurBounds.StandardLattice
+import Formalism.SharpRestriction.GlobalSchurBounds.CMFieldLemmas
+import Formalism.SharpRestriction.GlobalSchurBounds.LocalCountingBounds
+import Formalism.SharpRestriction.GlobalSchurBounds.ZetaZeroFreeRegion
+import Formalism.SharpRestriction.GlobalSchurBounds.KernelEntryData
+import Formalism.SharpRestriction.GlobalSchurBounds.QuadraticLogDerivCongr
+import Formalism.SharpRestriction.GlobalSchurBounds.Joints
+import Formalism.LocalRingCardinality.SpanPowerMembership
+import Formalism.LocalToGlobal.GlobalTheory.GL3.Statement
+import Formalism.LocalToGlobal.GlobalTheory.GL3.PLinkThU
 
 theorem UpperTheory.Reformulated.B.HeightShare.star_sqrt_neg :
     ∀ {D : Formalism.BasicNotions.D7} (x : D.host.E) (n : ℕ),

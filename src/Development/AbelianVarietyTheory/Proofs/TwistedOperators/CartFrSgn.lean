@@ -5,6 +5,8 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ChosenSeries
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.RapidDecayLift
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.AdjointIsotropicDecomposition
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.KTypeExtension
+import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.HarishChandraModulesOn
+import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.BarMatrix
 
 noncomputable section
 

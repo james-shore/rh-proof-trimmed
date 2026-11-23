@@ -1,6 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PinsMerge
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsOmegaField
+import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ActLevAndActBC
+import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsEmbExt
 
 set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 200000

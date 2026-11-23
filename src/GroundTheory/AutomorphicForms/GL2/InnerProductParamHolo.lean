@@ -1,5 +1,4 @@
 import Mathlib
-import GroundTheory.GlobalFields.ComplexMultiplication.Residue
 
 open MeasureTheory Set Filter Topology Metric
 

@@ -1,11 +1,12 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.ScaledExample
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsDualEnergy
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualLineSemipositive
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualArithVar
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PCoordConeArithVar
 import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.PIntDomainDim
 import GroundTheory.HeightsAndTheta.Heights.HeightKernels.ReMulOfPos
+import GroundTheory.HeightsAndTheta.Heights.Intersections.Statements
+import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualArithVar
+import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsDualEnergy
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

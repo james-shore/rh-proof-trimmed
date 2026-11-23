@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.DivisionPairOfAdelicFormsFaceColumnsData
-import Formalism.LocalToGlobal.IndefiniteReal.NonzeroIndexPlaceIndepConstants
 import Formalism.LocalToGlobal.Divisibility.TupUsed
 
 noncomputable section

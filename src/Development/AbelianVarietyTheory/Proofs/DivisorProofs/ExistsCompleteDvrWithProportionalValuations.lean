@@ -1,6 +1,7 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCdvrDominating
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsRatPointOfFiniteType
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDvrOfDimOne
+
 open IsLocalRing
 
 namespace GlobalTheory.PropDvr

@@ -1,7 +1,6 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasDefect
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasRigidChart
-import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ToroidalCompactificationBis
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusInvariantHeatOperatorActsOnFourierTerms
 import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.MvPowerSeriesSubstConstTermsLocalAlgHomSpec
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsRem
@@ -9,6 +8,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDivSec
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsRatioTwoMul
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ClosedFibreRemIndep
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TranslationCarriesRatioDatumRemainderStatement
+
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField IsLocalRing
 open scoped CategoryTheory.Obj Matrix TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj

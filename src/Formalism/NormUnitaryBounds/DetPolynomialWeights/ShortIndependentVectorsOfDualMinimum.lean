@@ -1,7 +1,5 @@
-import Formalism.NormUnitaryBounds.Statement
+import Mathlib
 import Formalism.NormUnitaryBounds.DetPolynomialWeights.ExistsNeZeroNormLeRankDivOfDualMinimum
-import Formalism.LatticeSlopes.CovolAntiSameRank
-import Formalism.LatticeSlopes.LatticeSlopesProofs.DiscreteTopologyOfLe
 import Formalism.LatticeSlopes.LatticeSlopesProofs.SaturationProperties
 import Formalism.LatticeSlopes.LatticeSlopesProofs.DegQuot
 

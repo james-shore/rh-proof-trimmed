@@ -1,6 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiagonalTorusCommutative
-import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.LocalBaseChange.ElementaryCosets.CosetMap
 
 open GlobalTheory.PRep GlobalTheory.SmGL ValuativeRel
 set_option maxHeartbeats 1000000 in

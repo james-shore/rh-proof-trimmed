@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.Hat1
 
 open IsDedekindDomain NumberField Filter Topology
 

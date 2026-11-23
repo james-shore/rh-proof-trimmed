@@ -1,9 +1,7 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Definitions.ThetaValues.GamAt
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.CongrOfDvdModulus
-import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsHermCoordOfDatum
 import Formalism.LocalToGlobal.ProjectiveLattices.FamilyUniformisationBasePointOrthogonal
-import Formalism.LocalToGlobal.LatticeGeometry.DegFlLApply
 
 noncomputable section
 

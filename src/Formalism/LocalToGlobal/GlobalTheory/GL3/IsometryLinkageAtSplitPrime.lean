@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.LocalToGlobal.GlobalTheory.GL3.PUnitBasis
-import Formalism.LocalToGlobal.GlobalTheory.GL3.IsometryLinkageTrivialLevel
+import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.IsAdmissibleFlagPairOfUnitriangularLeftAutomorph
+import Formalism.LocalToGlobal.GlobalTheory.GL3.PStdChar
 
 noncomputable section
 

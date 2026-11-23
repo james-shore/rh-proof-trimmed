@@ -1,8 +1,8 @@
 import Mathlib
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.FinModel
-import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.FiniteEtaleModels.BaseOnto
+import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.IsGen
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTranslA
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GenModelEqGenericFibre
+import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsIsGHeckeMapForget
 
 set_option autoImplicit false
 

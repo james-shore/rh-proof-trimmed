@@ -1,4 +1,6 @@
 import Formalism.AdmissibleDesigns.BlockTwistedCyclotomic
+import Formalism.WachLatticeTwists.ShapeRowIsomorphisms.ShapeRowProofs.Clause5Row
+import Formalism.WachLatticeTwists.RealClassMaps.RealClassMapProofs.TheoremNFiveRealAllLiftThird
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 

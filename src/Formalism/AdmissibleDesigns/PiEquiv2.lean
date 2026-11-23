@@ -1,5 +1,5 @@
-import Formalism.AdmissibleDesigns.NormalizedRingData
-import Formalism.AdmissibleDesigns.DisplayForms
+import Formalism.AdmissibleDesigns.NonemptyPl
+import Formalism.AdmissibleDesigns.ExistsWildInertiaCyclotomicGenerator
 import Formalism.AdmissibleDesigns.RankReductionIdempotentOne
 import Formalism.AdmissibleDesigns.FgTopContinuousLinearMap
 import Formalism.AdmissibleDesigns.HigherColumnInvariantsBound

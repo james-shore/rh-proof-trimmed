@@ -1,7 +1,8 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.LocDefs
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.PtFinFinite
-import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CoproductGeometry
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.MonicNormLtOne
+import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CoproductGeometry
+
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal IsLocalRing UpperTheory.V UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement
 
 section SlopeTestRemainingChoices

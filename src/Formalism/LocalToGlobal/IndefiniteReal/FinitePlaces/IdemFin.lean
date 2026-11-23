@@ -1,4 +1,6 @@
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemSplit
+import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemOrth
+import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
 
 noncomputable section
 

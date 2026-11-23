@@ -1,5 +1,6 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsLines
+import GroundTheory.HeightsAndTheta.Heights.KernelsLattice
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights

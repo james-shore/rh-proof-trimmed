@@ -1,5 +1,4 @@
 import Mathlib
-import Formalism.PolynomialDimension.WeylDim
 
 noncomputable section
 

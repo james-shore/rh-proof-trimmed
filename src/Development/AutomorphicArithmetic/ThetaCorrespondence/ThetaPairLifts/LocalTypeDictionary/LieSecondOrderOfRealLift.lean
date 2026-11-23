@@ -1,7 +1,6 @@
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.DiscreteSpectrumResidualClassification
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LieSecondOfPrints
 import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.BernsteinUnitaryProductIrreducible
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LieSecondOfPrintsStatement
 
 section
 noncomputable section

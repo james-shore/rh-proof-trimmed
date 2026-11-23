@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.LocalRingCardinality.DataParams
+import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 
 open NumberField Formalism Formalism.BasicNotions
 

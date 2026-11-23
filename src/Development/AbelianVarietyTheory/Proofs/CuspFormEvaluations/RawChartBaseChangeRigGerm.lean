@@ -1,7 +1,6 @@
 import Mathlib
-import Formalism.LocalToGlobal.ProjectiveLattices.ThShort
+import Formalism.LocalToGlobal.ProjectiveLattices.IsThRule
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.CIndBC
-import Formalism.SharpRestriction.Divisibility.GeneratorPowers.ThExprUniqOfChartIndep2
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermCut
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.SecBaseChangeAnySt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.JetSubstPCompJetBC

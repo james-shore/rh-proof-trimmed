@@ -1,4 +1,4 @@
-import Development.WeilBound.ThetaLifts.Reductions.MetaDef
+import Development.WeilBound.ThetaLifts.CartanFactorisation.EqOfInner
 
 noncomputable section
 

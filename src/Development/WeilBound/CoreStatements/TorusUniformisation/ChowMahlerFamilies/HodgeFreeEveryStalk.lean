@@ -7,7 +7,7 @@ import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.RepresentationBasisL
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HeightCharFreeGeometricStatement
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FormalGermBaseChangeStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FormalIsomorphismTransportStatement
-import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FormalHermitianActionPairingStatement
+
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped CategoryTheory.Obj

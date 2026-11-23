@@ -2,6 +2,7 @@ import Mathlib
 import Formalism.HermitianLattices.StatementMaj
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CommonMajorizingLattice
 import Lemmata.GeneralBFactSecondRest.Imports
+import Formalism.HermitianLattices.DefsCS
 
 open NumberField NumberField.InfinitePlace NumberField.mixedEmbedding Module
 open scoped Matrix

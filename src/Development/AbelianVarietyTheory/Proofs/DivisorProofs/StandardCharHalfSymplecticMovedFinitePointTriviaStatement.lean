@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardCharHalfSymplecticMovedFinitePointTrivia
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormPeriodSq
-import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.CharLem
 
 open NumberField MeasureTheory
 open scoped Classical

@@ -1,6 +1,5 @@
 import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.AuxiliaryPrimeFunction
 import Development.WeilBound.ThetaLifts.LatticeBasics.BoxFinC
-import Development.WeilBound.ThetaLifts.LatticeBasics.FinLevel
 import Development.WeilBound.CoreStatements.AutomorphicKernels.EisensteinSeriesG2.CompactStandardSubgroup.KCptPf
 import GroundTheory.PAdicHodge.NormalizedTrace
 

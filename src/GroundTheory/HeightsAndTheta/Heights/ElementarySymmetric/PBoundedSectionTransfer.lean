@@ -1,5 +1,5 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PSmallGenTwist
+import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsArith
 import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsAntisym
 import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.Reading
 import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.PConeTrdeg

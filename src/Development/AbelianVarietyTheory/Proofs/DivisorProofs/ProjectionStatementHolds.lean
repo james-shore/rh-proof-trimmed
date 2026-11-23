@@ -1,12 +1,8 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapPairDetCovec
-import Development.AbelianVarietyTheory.Statements.HeightBoundStatement.HTBoundSt
-import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.LineModel
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GrNormPush
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsFlagFrame
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MultiplicationLatticeSecond
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocalSystemModelMap
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GradedLineBundleExists
 
 set_option autoImplicit false
 

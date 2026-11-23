@@ -1,5 +1,8 @@
 import Formalism.LocalToGlobal.CharacterGerms.RowTiePAxesSelfSt
 import Formalism.LocalToGlobal.CharacterGerms.RowTieCartFB
+import Formalism.LocalToGlobal.CharacterGerms.ValNonnegLeadingCoeffOfMemTySet
+import Formalism.LocalToGlobal.CharacterGerms.GeOfPowEqOne
+import Formalism.LocalToGlobal.CharacterGerms.CoeffAlongCvCongr
 
 noncomputable section
 

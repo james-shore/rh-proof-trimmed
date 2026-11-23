@@ -3,7 +3,6 @@ import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.CoP
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.LocalBasisRepLatticeIntegralCoordsSpecStatement
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.MemLocWDelAtrIffStatement
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.InvTrKEmbGLApply
-import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SpanMapNabKDelK
 
 noncomputable section
 

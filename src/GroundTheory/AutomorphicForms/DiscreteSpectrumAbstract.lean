@@ -1,5 +1,6 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.UnitaryRepresentations
+import GroundTheory.AutomorphicForms.UnitaryRepresentations.Integrated
 
 namespace GroundTheory.Automorphic
 

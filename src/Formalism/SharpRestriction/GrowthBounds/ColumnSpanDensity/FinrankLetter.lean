@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.FinrankTensor
+import Formalism.PolynomialDimension.MultinomialDepth.WeylDimPosOfAntitone
 
 noncomputable section
 

@@ -1,11 +1,11 @@
 import Formalism.SharpRestriction.GlobalSchurBounds.SlopeMaxOpenOfHookTwoLeV
 import Formalism.LocalRingCardinality.PosOfIsomEmb
 import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.TransferenceMinima
-import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.UnitTraceSumBounds.UpperSlopeOfMaximalConstant
-import Formalism.LocalToGlobal.GlobalTheory.GL4.PLemTLat
-import Formalism.LocalToGlobal.GlobalTheory.GL4.PCoordH
-import Formalism.LocalToGlobal.GlobalTheory.GL4.MapIntRatComplex
-import Formalism.LocalToGlobal.GlobalTheory.HLatOpsP
+import Formalism.LocalToGlobal.HermitianForms.PrkSmul
+import Formalism.LocalToGlobal.GlobalTheory.GL4.PFrLoc
+import Formalism.LocalToGlobal.GlobalTheory.GL4.FockSelfImEqZero
+import Formalism.SizeWindowBrackets.ChainSlopeWindows.ExistsNsmulMem
+import Formalism.SizeWindowBrackets.ChainSlopeWindows.TruncatedLatticeHolds
 
 noncomputable section
 

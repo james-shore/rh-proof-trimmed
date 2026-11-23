@@ -1,6 +1,4 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.DifferentialTranslates.IntegralityGoodReduction
-import Mathlib.RepresentationTheory.Homological.GroupCohomology.LongExactSequence
-import Mathlib.LinearAlgebra.Dimension.Basic
 
 noncomputable section
 

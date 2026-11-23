@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.PackageTie
-import Formalism.HermitianCurvature.StatementB
 
 noncomputable section
 

@@ -1,5 +1,5 @@
 import Formalism.LocalToGlobal.HermitianForms.TiedBrCl
-import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.LowerTieChain
+import Formalism.LocalToGlobal.LatticeGeometry.GeometryDefinitions.DefsNN
 
 noncomputable section
 

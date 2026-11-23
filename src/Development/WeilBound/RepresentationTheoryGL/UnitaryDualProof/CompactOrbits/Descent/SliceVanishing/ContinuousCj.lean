@@ -1,5 +1,6 @@
 import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CompactOrbits.Descent.SliceVanishing.DistrC
 import GroundTheory.AutomorphicForms.WhittakerDistribution
+import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.CompactOrbits.Descent.NilpotentPowers.IsNilpotentPowSub
 
 noncomputable section
 

@@ -1,4 +1,5 @@
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtSideGood
+import Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.EtaleCohomologyIndEtaleBaseChange
 
 namespace UpperTheory.Gal.KunnethLefschetz
 

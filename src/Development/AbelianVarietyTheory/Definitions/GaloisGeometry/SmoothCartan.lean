@@ -1,7 +1,7 @@
 import Mathlib
 import GroundTheory.AutomorphicForms.GKModules.SmoothVectors
 import GroundTheory.AutomorphicForms.GKModules.RightRegular
-import GroundTheory.AutomorphicForms.DiscreteSpectrumAbstract
+import GroundTheory.AutomorphicForms.UnitaryRepresentations
 import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.BasicForm
 
 noncomputable section

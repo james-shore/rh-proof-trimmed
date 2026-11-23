@@ -1,5 +1,4 @@
 import Mathlib
-import ReciprocityTheory.ThetaSummability.RealCoinvariants.GlRelZero
 
 noncomputable section
 

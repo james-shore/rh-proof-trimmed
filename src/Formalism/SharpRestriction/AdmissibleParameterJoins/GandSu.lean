@@ -1,4 +1,4 @@
-import Formalism.SharpRestriction.AdmissibleParameterJoins.GandSt
+import Formalism.SharpRestriction.AdmissibleParameterJoins.GandSq
 
 noncomputable section
 

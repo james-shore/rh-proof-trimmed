@@ -1,5 +1,7 @@
 import Mathlib
 import GroundTheory.ProfiniteCohomology.PoitouTate.Abstract
+import GroundTheory.ProfiniteCohomology.PoincarePairs
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

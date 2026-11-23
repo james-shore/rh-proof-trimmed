@@ -1,5 +1,5 @@
-import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.SortGetDSpec
-import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.ThresholdPowerBoundOfCounts
+import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.AtypicalPathSmallWeight
+import Formalism.SharpRestriction.GrowthBounds.ValuationLowestDegreeMapFractionField
 
 noncomputable section
 

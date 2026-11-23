@@ -1,4 +1,4 @@
-import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialPullbackStatement
+import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialOfFun
 import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PartsSt
 
 namespace ReciprocityTheory.AnForm.M.PLAux

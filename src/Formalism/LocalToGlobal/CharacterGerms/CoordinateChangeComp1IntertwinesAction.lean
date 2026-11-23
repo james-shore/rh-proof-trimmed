@@ -1,4 +1,4 @@
-import Formalism.LocalToGlobal.CharacterGerms.FirstPartialLawAtPoints
+import Formalism.LocalToGlobal.CharacterGerms.TripleSubstSecondCoordinate
 
 noncomputable section
 

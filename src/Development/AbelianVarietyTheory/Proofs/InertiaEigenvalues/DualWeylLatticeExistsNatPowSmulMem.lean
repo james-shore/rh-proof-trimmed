@@ -1,7 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.Columns.CoefModAt
-import Formalism.LocalToGlobal.Divisibility.CoefModLemmas
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ActPMemLocPNabStdOfIsBasisAt
+
 open NumberField
 
 noncomputable section

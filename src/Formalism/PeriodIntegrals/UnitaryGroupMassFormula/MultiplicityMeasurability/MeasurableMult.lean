@@ -1,5 +1,5 @@
 import Mathlib
-import Formalism.PeriodIntegrals.FoldMult
+import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.FoldBound
 
 open MeasureTheory
 open scoped ENNReal NNReal

@@ -1,10 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.WuDecayAll
 import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedVolumeStatements.SettingExistsOfGap
-import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.QuotProdK
-import Formalism.RealPlaceAnalysis.FinalF
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalDegreeSquareIntegrable.Closed
-import Formalism.SharpRestriction.CuspSpanNormBounds.ExpansionFromLemmaB
+import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.WFLStepsLocHNProps
 
 noncomputable section
 

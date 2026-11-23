@@ -1,6 +1,5 @@
 import Development.AutomorphicArithmetic.AutomorphicVarieties.WeilGroupCharacters.RepAlg
 import Formalism.PadicSubsetSums.StableGradedCounts.ZBrauerNesbitt
-import Mathlib.RepresentationTheory.Semisimple
 
 open Polynomial Matrix UpperTheory.V.W
 

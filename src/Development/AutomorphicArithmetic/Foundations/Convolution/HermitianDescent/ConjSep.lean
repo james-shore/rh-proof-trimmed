@@ -1,6 +1,5 @@
 import Development.AutomorphicArithmetic.Foundations.Convolution.HermitianDescent.NormAlmostAll
 import Development.WeilBound.CoreStatements.HomogeneousNonvanishing.TwGFree
-import Mathlib
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.EqZeroOfAevalEqZero
 
 open Matrix Polynomial NumberField IsDedekindDomain

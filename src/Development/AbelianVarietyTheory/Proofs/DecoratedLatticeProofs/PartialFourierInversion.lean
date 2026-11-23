@@ -1,5 +1,5 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ContrFactor
+import Development.AbelianVarietyTheory.Definitions.LatticeFrames.OnesRepresent
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.AllPositions
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FourierTransformInversionLocalFieldPi
 

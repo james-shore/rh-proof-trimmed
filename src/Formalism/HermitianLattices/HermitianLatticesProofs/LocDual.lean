@@ -1,6 +1,5 @@
 import Mathlib
 import Formalism.HermitianLattices.StatementLat
-import Formalism.HermitianLattices.HermitianLatticesProofs.DualBasic
 import Formalism.HermitianLattices.HermitianLatticesProofs.LocBasic
 
 noncomputable section

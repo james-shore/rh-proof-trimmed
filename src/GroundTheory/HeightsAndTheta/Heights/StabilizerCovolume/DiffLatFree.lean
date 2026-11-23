@@ -1,6 +1,7 @@
 import Mathlib
-import GroundTheory.HeightsAndTheta.Heights.StabilizerCovolume.DifferentLatIndex
-import GroundTheory.HeightsAndTheta.Heights.StabilizerCovolume.PDifferentExtNorm
+import GroundTheory.HeightsAndTheta.Heights.StabilizerCovolume.EigenLatDifferent
+import GroundTheory.HeightsAndTheta.Heights.StabilizerCovolume.RecordEigen
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

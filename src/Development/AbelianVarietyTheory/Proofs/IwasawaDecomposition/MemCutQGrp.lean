@@ -1,12 +1,10 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FiniteChart
+import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.StdLvPr
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsMemberStepCharts
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LevOkTwists
-import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LevQFiniteIndexAndRoot
-import Formalism.LocalToGlobal.Columns.TwQBOpen
-import Formalism.LocalToGlobal.Columns.TwQExact
-import Formalism.LocalToGlobal.Columns.TwQLat
+import Formalism.LocalToGlobal.Columns.TwQLevU
 import Formalism.LocalToGlobal.Columns.TwQLev
+import Formalism.LocalToGlobal.Columns.WordFin
+import Formalism.LocalToGlobal.Columns.TiedCF
 
 noncomputable section
 

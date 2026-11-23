@@ -1,7 +1,7 @@
 import Mathlib
-import Formalism.LocalToGlobal.ProjectiveLattices.AxHSup
+import Formalism.LocalToGlobal.ProjectiveLattices.CompOrd
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.LaTIsPrime
 import Formalism.LocalToGlobal.ProjectiveLattices.FrameCharts
-import Development.AbelianVarietyTheory.Counterexamples.LevelGroupExamples.ChosenEqOfAllRules
 
 noncomputable section
 

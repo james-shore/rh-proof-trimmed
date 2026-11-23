@@ -1,4 +1,7 @@
 import Development.EtaleCohomology.KummerTheory.BockCut
+import Development.EtaleCohomology.TateTwists.EtaleSheafMonoEpiSectionCriteria
+import Development.EtaleCohomology.TateTwists.EtaleSheafShortComplexExactIffLocallyLifts
+import Development.EtaleCohomology.TateTwists.EtaleLocalPropertyBasicClosure
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 

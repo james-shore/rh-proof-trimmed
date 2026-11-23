@@ -2,7 +2,6 @@ import Formalism.GaussJetBounds.GaussJetProofs.SubstitutionWeightBound
 import Formalism.GaussJetBounds.GaussJetProofs.LogarithmWeightComparison
 import Formalism.GaussJetBounds.GaussJetProofs.NormNatCastEqPowPadicValNat
 import Formalism.GaussJetBounds.GaussJetProofs.OneLetterRadiusIdentity
-import Formalism.GaussJetBounds.GaussJetProofs.PureCrossTermWeight
 import Formalism.GaussJetBounds.GaussJetProofs.LogStep
 import Formalism.GaussJetBounds.GaussJetProofs.SwappedParitySeriesBinomialForm
 import Formalism.GaussJetBounds.GaussJetProofs.ExistsNeZeroOfFinsumNeZero

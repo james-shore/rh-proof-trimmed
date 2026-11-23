@@ -1,7 +1,5 @@
 import Mathlib
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsLatFamilyCongr
-import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.RelatedPairsOrbitalTermEq
-import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DifferentGeneratorDualIntegral
 import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.DualIntegralLattice
 
 namespace PositivityTheory.Xgn.GramDeterminantUnit

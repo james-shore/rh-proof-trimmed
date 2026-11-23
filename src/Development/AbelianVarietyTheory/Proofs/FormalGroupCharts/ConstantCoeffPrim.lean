@@ -1,5 +1,4 @@
 import Mathlib
-import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.EqCOfPderivZero
 
 set_option autoImplicit false
 

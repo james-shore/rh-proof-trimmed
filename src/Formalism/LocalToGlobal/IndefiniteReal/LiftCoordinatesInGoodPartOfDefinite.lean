@@ -1,9 +1,7 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.CutTuples2
-import Formalism.LocalToGlobal.IndefiniteReal.MemRangeAdjointOfKerStable
 import Formalism.LocalToGlobal.IndefiniteReal.CxToPkgFamIn
-import Formalism.LocalToGlobal.Divisibility.ProjLemmas
-import Formalism.LocalToGlobal.Divisibility.RowLatLemmas
+import Formalism.LocalToGlobal.IndefiniteReal.MemRangeAdjointOfKerStable
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder InnerProductSpace

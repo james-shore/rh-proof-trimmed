@@ -1,9 +1,8 @@
 import Mathlib
 import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.ComplementarySeries.SegmentJacquetSubquotients.HasFiniteLengthJacSub
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspidalPairSubGeneric
-import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsSmoothIterPhi
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WordOccursProductInterleave
-import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AlgebraMapIntertwiningMapBijectiveOfIsSmooth
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsSmoothIterPhi
 
 noncomputable section
 

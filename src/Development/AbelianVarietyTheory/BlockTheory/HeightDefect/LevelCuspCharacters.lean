@@ -1,6 +1,6 @@
 import Mathlib
 import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.ExampleSatisfiesConditionsAtFive
-import Formalism.LocalRingCardinality.DataParams
+import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 
 open NumberField IsDedekindDomain Polynomial
 

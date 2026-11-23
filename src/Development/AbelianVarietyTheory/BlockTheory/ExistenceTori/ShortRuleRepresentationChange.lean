@@ -1,6 +1,6 @@
 import Mathlib
-import Formalism.LocalToGlobal.ProjectiveLattices.ThProps
-import Formalism.LocalToGlobal.ProjectiveLattices.ThGerm
+import Formalism.LocalToGlobal.ProjectiveLattices.IsThRule
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
 import Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.ReflexNormIndexIdeal
 import Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.NormFactorThetaValue
 import Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.DeltaDatumCombinedCoefficient

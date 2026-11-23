@@ -1,8 +1,5 @@
 import Mathlib
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DualWeylLatticeExistsNatPowSmulMem
-import Formalism.LocalToGlobal.Columns.CoefModAt
-import Formalism.LocalToGlobal.Divisibility.CoefModLemmas
-import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ActPMemLocPNabStdOfIsBasisAt
 
 open NumberField
 set_option maxHeartbeats 1000000 in

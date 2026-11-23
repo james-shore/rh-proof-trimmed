@@ -3,8 +3,8 @@ import GroundTheory.ProfiniteCohomology.RestrictedRamification.DimensionKummer
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.DimensionSylow
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.SurjectiveOfInjectiveOfInjective
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.FiniteOpen
-import GroundTheory.ProfiniteCohomology.RestrictedRamification.BaseChangeMackey
 import GroundTheory.ProfiniteCohomology.CompactSupportCohomology
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.ProfCoh

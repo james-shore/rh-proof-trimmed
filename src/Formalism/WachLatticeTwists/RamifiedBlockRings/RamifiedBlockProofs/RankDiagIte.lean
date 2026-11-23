@@ -1,7 +1,5 @@
-import Formalism.WachLatticeTwists.RamifiedBlockRings.RamifiedBlockProofs.CMemPolyT
-import Formalism.WachLatticeTwists.RamifiedBlockRings.RamifiedBlockProofs.Normal
-import Formalism.WachLatticeTwists.RamifiedBlockRings.RamifiedBlockProofs.BurnsideMat
-import Formalism.CharacterColumnKernels.StatOntoLattice
+import Formalism.WachLatticeTwists.RamifiedBlockRings.DistinctEigenvalueCornerPerturbation
+import Formalism.CharacterColumnKernels.IdempotentNormalForms.GlobalConcreteOf
 
 open Finset Classical
 

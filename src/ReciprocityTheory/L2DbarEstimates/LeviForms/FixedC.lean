@@ -1,4 +1,6 @@
 import ReciprocityTheory.L2DbarEstimates.LeviForms.FixedA
+import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.TsupportDbSubset
+import ReciprocityTheory.L2DbarEstimates.LeviForms.HoloClosedNeed
 
 universe u
 

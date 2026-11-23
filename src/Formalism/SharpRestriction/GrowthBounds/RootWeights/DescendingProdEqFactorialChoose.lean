@@ -1,4 +1,5 @@
 import Formalism.SharpRestriction.GrowthBounds.RootWeights.PolarizationDividedPowerSumSucc
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.StableSubspaceCompleteReducibility
 
 noncomputable section
 

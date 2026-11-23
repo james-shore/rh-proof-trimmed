@@ -1,7 +1,7 @@
 import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
-import Mathlib
 import Formalism.LocalToGlobal.IndefiniteReal.SmExpSmulContDiff
 import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeCSchur
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.KFiniteSmoothVectors.DenseWeakVectors
 
 noncomputable section
 

@@ -1,7 +1,5 @@
-import Formalism.HermitianCurvature.Statement
+import Mathlib
 import Formalism.HermitianCurvature.StatementI
-import Formalism.HermitianCurvature.StatementL
-import Formalism.HermitianCurvature.StatementW
 
 namespace Formalism.FourierDecayAlt.S6
 

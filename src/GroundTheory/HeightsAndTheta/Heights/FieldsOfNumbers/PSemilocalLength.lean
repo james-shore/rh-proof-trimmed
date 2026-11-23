@@ -4,6 +4,8 @@ import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.StatementsFibreRelDi
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.StatementsDivCycleMinimal
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.StatementsConeLocalLength
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PDivCycleSupport
+import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.StatementsSemilocalLength
+
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.FieldNumbers

@@ -119,14 +119,11 @@ theorem isLocalization_unif (h : IsUnif A ϖ) :
   constructor
   · first
     | (rintro ⟨_, n, rfl⟩; rw [map_pow]; exact h.isUnit.pow n)
-    | (rintro _ ⟨n, rfl⟩; rw [map_pow]; exact h.isUnit.pow n)
   · intro x
     obtain ⟨n, hn⟩ := h.denom x
     refine ⟨⟨⟨ϖ ^ n • x, hn⟩, ⟨_, n, rfl⟩⟩, ?_⟩
     first
     | simp [Algebra.smul_def, mul_comm]
-    | (show x * (algebraMap O A ϖ) ^ n = ϖ ^ n • x
-       rw [Algebra.smul_def, map_pow, mul_comm])
   · intro a b hab
     refine ⟨1, ?_⟩
     rw [Subtype.ext hab]

@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.hyperspecial_stabilizer_transfer_conj_selfDual_lat
     (∀ (P : HeightOneSpectrum (𝓞 D.host.E)) e f, IsPrimeIdem P e f → ∀ x,
       x ∈ locU V.rank P ↔ cj j h₀ x ∈ GfC V ∧ SuppF V f (cj j h₀ x)) →
     ∀ (P : HeightOneSpectrum (𝓞 D.host.E)) x, cj j h₀ x ∈ GlobalTheory.Hk3.hyp V P ↔ x ∈ KP V.rank P := by
-  first | exact @GlobalTheory.TransferHyp.cj_mem_hyp_iff | exact GlobalTheory.TransferHyp.cj_mem_hyp_iff | (intros; apply GlobalTheory.TransferHyp.cj_mem_hyp_iff <;> assumption)
+  first | exact @GlobalTheory.TransferHyp.cj_mem_hyp_iff

@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.substitution_inverse_transpose_maximalMinorProduct
     GlobalTheory.CompactHowe.substF (fun _ => (1 : Matrix (Fin X.B.rank) (Fin X.B.rank) ℂ)) (fun τ => (G τ)⁻¹.transpose)
       (MvPolynomial.rename X.var (minorPol D T)) =
       (∏ τ, ((G τ)⁻¹.det) ^ P.n τ) • MvPolynomial.rename X.var (minorPol D T) := by
-  first | exact @GlobalTheory.NormDict.substF_invT_minorPol | exact GlobalTheory.NormDict.substF_invT_minorPol | (intros; apply GlobalTheory.NormDict.substF_invT_minorPol <;> assumption)
+  first | exact @GlobalTheory.NormDict.substF_invT_minorPol

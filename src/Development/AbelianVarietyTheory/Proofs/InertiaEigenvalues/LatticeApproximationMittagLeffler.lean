@@ -93,7 +93,7 @@ theorem mittagLeffler_approx : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk :
         inclW l τ ^ N • (inclW l τ ^ N • (1 : Matrix (Fin (tw.d' m)) (Fin (tw.d' m)) (WCb l))) := by
       rw [smul_smul, ← pow_add, ← two_mul, ← map_pow]
       ext i j
-      by_cases h : i = j <;> simp [h, Matrix.one_apply]
+      by_cases h : i = j <;> simp [h]
     rw [← hu.smul_left_cancel, ← Matrix.smul_mul, h1, h2]
   let qi : Ainf l →+* WCb l ⧸ I := q.comp (inclW l)
   have hv : ∀ {a b : ℕ} (M : Matrix (Fin a) (Fin b) (Ainf l)) (v : Fin b → Ainf l),
@@ -171,7 +171,7 @@ theorem mittagLeffler_approx : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk :
       rw [F2, Matrix.mul_assoc ((zW (tw.Pi m)).map q), F5, Matrix.mul_smul, Matrix.mul_one, Matrix.smul_mul,
         Matrix.smul_mul, F3, Matrix.one_mul, F4]
       simp only [Matrix.smul_mul, Matrix.mul_smul, Matrix.smul_mulVec, smul_smul]
-      first | rfl | (congr 1; ring)
+      first | (congr 1; ring)
     rw [L, Rr]
     congr 1
     ring

@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.covolumePerRank_le_neg_slope_scaled : ∀ (K V : T
     (∀ v (c : Fin d → K), Formalism.HermitianLatticesTheory.normAt (Pi.basisFun K (Fin d)) X v c = s * N v.embedding (∑ k, c k • b k)) →
     Submodule.IsFullLattice K (L.comap ((Fintype.linearCombination K b).restrictScalars (𝓞 K))) →
     Formalism.DivisionValues.lcv X (L.comap ((Fintype.linearCombination K b).restrictScalars (𝓞 K))) / (d : ℝ) ≤ -GlobalTheory.AllWt.slope_sq N L := by
-  first | exact @GlobalTheory.CovolCore.lcv_div_le_neg_slope_sq | exact GlobalTheory.CovolCore.lcv_div_le_neg_slope_sq | (intros; apply GlobalTheory.CovolCore.lcv_div_le_neg_slope_sq <;> first | assumption | exact (show Submodule.IsFullLattice _ _ from by assumption).toIsLattice)
+  first | exact @GlobalTheory.CovolCore.lcv_div_le_neg_slope_sq

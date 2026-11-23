@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.exists_pow_idempotent_adelicLattice_mod_prime : �
     W.L.IsLattice E → ∀ (v : Pl (F := F)) (p : ℕ), 0 < p → (p : 𝓞 F) ∈ v.asIdeal →
     ∀ f : Matrix (Fin d) (Fin d) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)), (∀ z ∈ GlobalTheory.InertSph.latAt W v, f *ᵥ z ∈ GlobalTheory.InertSph.latAt W v) →
     ∃ N : ℕ, 0 < N ∧ ∀ z ∈ GlobalTheory.InertSph.latAt W v, ∃ y ∈ GlobalTheory.InertSph.latAt W v, (f ^ (2 * N)) *ᵥ z - (f ^ N) *ᵥ z = p • y := by
-  first | exact @GlobalTheory.LatIdem.exists_pow_idem | exact GlobalTheory.LatIdem.exists_pow_idem | (intros; apply GlobalTheory.LatIdem.exists_pow_idem <;> assumption)
+  first | exact @GlobalTheory.LatIdem.exists_pow_idem

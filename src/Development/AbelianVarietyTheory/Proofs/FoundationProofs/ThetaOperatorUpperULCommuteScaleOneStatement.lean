@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.thetaOperator_upperU_l_commute_scale_one : ∀ (Ω
   IsLat 1 φ →
   IsThB X A N l (n + 1) (X.act l (sgD N l d : Matrix (Fin 2) (Fin 2) ℤ) b) φ →
     IsThB X A N l n (X.act l (sgD N l d : Matrix (Fin 2) (Fin 2) ℤ) (X.heckeU l b)) (uq l φ) := by
-  first | exact @GlobalTheory.ThHeckeU.isThB_act_heckeU | exact GlobalTheory.ThHeckeU.isThB_act_heckeU | (intros; apply GlobalTheory.ThHeckeU.isThB_act_heckeU <;> assumption)
+  first | exact @GlobalTheory.ThHeckeU.isThB_act_heckeU

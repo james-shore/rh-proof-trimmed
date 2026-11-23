@@ -42,4 +42,4 @@ import Mathlib.Topology.Sheaves.Init
 
 
 theorem _root_.GlobalTheory.T.differentLocalIdentity_familiesLemmaH : Formalism.L2.SG.FamDefs.HTie := by
-  first | exact @GlobalTheory.HTieLeaf.main | exact GlobalTheory.HTieLeaf.main | (intros; apply GlobalTheory.HTieLeaf.main <;> assumption)
+  first | exact @GlobalTheory.HTieLeaf.main

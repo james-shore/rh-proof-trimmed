@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.theta_integral_moderate_growth_of_bounded_kernel :
     ∀ Φ₀ Φ₀D, IsDatum Γ.M' ψ cB Φ₀D Φ₀ → Γ.M'.Conv om' Φ₀D →
     (∃ (C : ℝ) (k : ℕ), ∀ g h, ‖GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.theta om' Φ₀D g h‖ ≤ C * (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ht h : ℝ) ^ k) →
     ModInt θ ωB ν₁ 𝓕₁ Φ₀ := by
-  first | exact @GlobalTheory.ModGrowth.modInt_of_bound | exact GlobalTheory.ModGrowth.modInt_of_bound | (intros; apply GlobalTheory.ModGrowth.modInt_of_bound <;> assumption)
+  first | exact @GlobalTheory.ModGrowth.modInt_of_bound

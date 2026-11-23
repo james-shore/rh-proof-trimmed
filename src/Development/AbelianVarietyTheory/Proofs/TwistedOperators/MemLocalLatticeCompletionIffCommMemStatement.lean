@@ -59,4 +59,4 @@ open scoped TensorProduct
 
 
 theorem _root_.GlobalTheory.T.mem_localLatticeCompletion_iff_comm_mem : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {n : ℕ} (L : Submodule (𝓞 E) (Fin n → E)) (v : HeightOneSpectrum (𝓞 F)) (y : Fin n → Fv F v ⊗[F] E), y ∈ GlobalTheory.AdelicU.latLoc F L v ↔ (fun i => Algebra.TensorProduct.comm F (Fv F v) E (y i)) ∈ Formalism.L2.Herm.locL v L := by
-  first | exact @GlobalTheory.TwistLat.mem_latLoc_iff_comm_mem_locL | exact GlobalTheory.TwistLat.mem_latLoc_iff_comm_mem_locL | (intros; apply GlobalTheory.TwistLat.mem_latLoc_iff_comm_mem_locL <;> assumption)
+  first | exact @GlobalTheory.TwistLat.mem_latLoc_iff_comm_mem_locL

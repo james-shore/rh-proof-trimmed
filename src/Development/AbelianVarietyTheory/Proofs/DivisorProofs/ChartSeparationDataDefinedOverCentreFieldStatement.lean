@@ -47,4 +47,4 @@ open ReciprocityTheory.AnForm.R GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.chartSeparation_data_defined_over_centre_field : GlobalTheory.Poinc.Sep.SepSt := by
-  first | exact @GlobalTheory.Poinc.Sep.sepSt | exact GlobalTheory.Poinc.Sep.sepSt | (intros; apply GlobalTheory.Poinc.Sep.sepSt <;> assumption)
+  first | exact @GlobalTheory.Poinc.Sep.sepSt

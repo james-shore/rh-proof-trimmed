@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.halfPoint_mem_sum_translate_of_annihilator : All f
       (∀ v ∈ GlobalTheory.ChiGrid.hatMx (G.modul • GlobalTheory.ChiGrid.homLat (G.latS (.core i)) (G.latT (.core i))), W.ψ (symplO (G.pS (.core i)) (G.pT (.core i)) (actO _ _ 1 g (e • v)) y) = 1) →
       W.ψ (symplO (G.pS (.core i)) (G.pT (.core i)) Z y) = 1) →
     ∃ a ∈ GlobalTheory.ChiGrid.hatMx (G.modul • GlobalTheory.ChiGrid.homLat (G.latS (.core i)) (G.latT (.core i))), ∃ b ∈ GlobalTheory.ChiGrid.hatMx (G.modul • GlobalTheory.ChiGrid.homLat (G.latS (.core i)) (G.latT (.core i))), Z = e • a + actO (G.pS (.core i)) (G.pT (.core i)) 1 g (e • b) := by
-  first | exact @GlobalTheory.AnnSum.ann_sum | exact GlobalTheory.AnnSum.ann_sum | (intros; apply GlobalTheory.AnnSum.ann_sum <;> assumption)
+  first | exact @GlobalTheory.AnnSum.ann_sum

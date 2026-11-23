@@ -91,11 +91,11 @@ theorem sum_eq (hC : Calc ε σ D) {c : ℝ} (hc : ∀ v ∈ D, Cas ε σ v = (c
     refine Finset.sum_congr rfl fun p _ => ?_
     rw [inner_smul_left, hC.skew _ (hgen p) _ (hC.mem _ (hgen p) v hv) v hv,
       inner_self_eq_norm_sq_to_K]
-    apply Complex.ext <;> simp [Complex.mul_re, Complex.mul_im] <;> ring
+    apply Complex.ext <;> simp [Complex.mul_re, Complex.mul_im]
   have h2 : ((c * ‖v‖ ^ 2 : ℝ) : ℂ) =
       ((∑ p, wt p * sg ε p * ‖dS σ (gen ε p) v‖ ^ 2 : ℝ) : ℂ) := by
     rw [Complex.ofReal_sum, ← key, hc v hv, inner_smul_left, inner_self_eq_norm_sq_to_K]
-    apply Complex.ext <;> simp [Complex.mul_re, Complex.mul_im] <;> ring
+    apply Complex.ext <;> simp [Complex.mul_re, Complex.mul_im]
   exact (Complex.ofReal_inj.1 h2).symm
 
 end GeneratorWeights

@@ -49,4 +49,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.heckeOperator_preserves_supLattice_realSide : GlobalTheory.Published.CuspRapidDecay → GlobalTheory.IndefiniteRowSideFullHecke.UnusedSlot39.HeckeInt → GlobalTheory.IndefiniteRowSideFullHecke.SplitOffDetection.HeckeTransform → GlobalTheory.HeckeSupSt.HeckeReadTie → ∀ (D : D7) (X : RealSide D) j, GlobalTheory.IndefiniteRowSideFullHecke.LatticesOverBalls.HkSupAt X.core X.R.toRealDat j := by
-  first | exact @GlobalTheory.HeckeSupReal.hkSupAt_realSide | exact GlobalTheory.HeckeSupReal.hkSupAt_realSide | (intros; apply GlobalTheory.HeckeSupReal.hkSupAt_realSide <;> assumption)
+  first | exact @GlobalTheory.HeckeSupReal.hkSupAt_realSide

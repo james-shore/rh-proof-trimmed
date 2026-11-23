@@ -54,4 +54,4 @@ open scoped Classical
 open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.TrIdem
 
 theorem _root_.GlobalTheory.T.typeIdempotentOperator_fix_span_images : ∀ (D : D7) (V : HSp D) (T : TypeDataG V) (μf : ∀ v, Measure (GLoc D.sp.cm.sig V.gram v)), (∀ v, (μf v).IsHaarMeasure) → ∀ (W : Type) [AddCommGroup W] [Module ℂ W] (σ : Representation ℂ (GfC V) W), GlobalTheory.PRep.IsSmooth σ → ∀ (v : T.S) (x : W), x ∈ Submodule.span ℂ {y | ∃ φ : T.W v →ₗ[ℂ] W, (∀ (k : Kv V v) z, φ (T.τ v ((T.frame v).red k) z) = σ (locFin V v k) (φ z)) ∧ y ∈ LinearMap.range φ} → smoothOp (σ.comp (locFin V v)) (μf v) (T.idem μf v) x = x := by
-  first | exact @GlobalTheory.idemOp_fix_span | exact GlobalTheory.idemOp_fix_span | (intros; apply GlobalTheory.idemOp_fix_span <;> assumption)
+  first | exact @GlobalTheory.idemOp_fix_span

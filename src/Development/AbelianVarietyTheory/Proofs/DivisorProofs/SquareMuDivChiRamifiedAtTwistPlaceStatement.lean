@@ -47,4 +47,4 @@ open GlobalTheory.ChiGrid GlobalTheory.SqTop
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.square_mu_div_chi_ramified_at_twist_place : ∀ {D : D7} {T : Type} {Lc : LevCh D T} {sc : Consts} (G : GridData Lc sc) (μ₀ : T), Lc.Is μ₀ → ∀ (t : T) (v : HeightOneSpectrum (𝓞 D.host.F)) (e : AF D.host.F), IsPlaceIdem D v e → v ∉ G.pl.S0 → ∀ PP ∈ Lc.Q t, (_root_.IsDedekindDomain.HeightOneSpectrum.under (𝓞 D.host.F) PP) = v → ∀ i j : Fin D.R.m, ¬ GlobalTheory.WeilParts.UnramAt e (Lc.mu t (j + 1) / G.ch.chi (D.R.m - i)) := by
-  first | exact @GlobalTheory.SqTop.not_unramAt_twist | exact GlobalTheory.SqTop.not_unramAt_twist | (intros; apply GlobalTheory.SqTop.not_unramAt_twist <;> assumption)
+  first | exact @GlobalTheory.SqTop.not_unramAt_twist

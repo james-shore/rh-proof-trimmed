@@ -46,4 +46,4 @@ open Classical
 
 theorem _root_.GlobalTheory.T.uniformisedAlongAllTraits_restrict_affineOpen : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMonObj G] (L : RigLB G) (W : S.Opens) (hW : IsAffineOpen W),
     IsSemiAbelian G → UnifAlong G L.L → UnifAlong (KeyVals.bG G hW.fromSpec) (KeyVals.bL L hW.fromSpec).L := by
-  first | exact @GlobalTheory.KeyVals.unifAlong_affineOpen | exact GlobalTheory.KeyVals.unifAlong_affineOpen | (intros; apply GlobalTheory.KeyVals.unifAlong_affineOpen <;> assumption)
+  first | exact @GlobalTheory.KeyVals.unifAlong_affineOpen

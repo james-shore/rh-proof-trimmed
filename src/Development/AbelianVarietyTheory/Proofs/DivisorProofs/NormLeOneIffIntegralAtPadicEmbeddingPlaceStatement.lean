@@ -56,4 +56,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.norm_le_one_iff_integral_at_padicEmbedding_place : ∀ (K : Type) [Field K] [NumberField K] (l : ℕ) [Fact l.Prime] (w : HeightOneSpectrum (𝓞 K)) (e0 : K →+* PadicAlgCl l), AtPlace w e0 → ∀ x : K, ‖e0 x‖ ≤ 1 ↔ ∃ s : 𝓞 K, s ∉ w.asIdeal ∧ ∃ r : 𝓞 K, (s : K) * x = r := by
-  first | exact @GlobalTheory.FrameRead.norm_le_one_iff_integral_at | exact GlobalTheory.FrameRead.norm_le_one_iff_integral_at | (intros; apply GlobalTheory.FrameRead.norm_le_one_iff_integral_at <;> assumption)
+  first | exact @GlobalTheory.FrameRead.norm_le_one_iff_integral_at

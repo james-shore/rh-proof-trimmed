@@ -53,4 +53,4 @@ open GlobalTheory.LatVal (Sz)
 open GlobalTheory.CMVal (latDisc)
 
 theorem _root_.GlobalTheory.T.exists_algebraic_of_rational_valuation : ∀ (l : ℕ) [Fact l.Prime] (lam : algebraicClosure ℚ ℂ →+* ℂ_[l]), ∀ q : ℚ, ∃ c : ℂ, c ≠ 0 ∧ Sz l lam (-(q : ℝ)) c ∧ Sz l lam q c⁻¹ := by
-  first | exact @GlobalTheory.QFam.exists_sz_scale | exact GlobalTheory.QFam.exists_sz_scale | (intros; apply GlobalTheory.QFam.exists_sz_scale <;> assumption)
+  first | exact @GlobalTheory.QFam.exists_sz_scale

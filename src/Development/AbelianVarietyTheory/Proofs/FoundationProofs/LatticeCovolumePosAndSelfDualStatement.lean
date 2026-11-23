@@ -48,4 +48,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.latticeCovolume_pos_and_selfDual : ∀ (L : PeriodPair) (Λ : AddSubgroup ℂ), (∀ z : ℂ, z ∈ Λ ↔ z ∈ L.lattice) → 0 < area Λ ∧ ∀ z : ℂ, z ∈ Λ ↔ ∀ w ∈ Λ, ∃ m : ℤ, (z * (starRingEnd ℂ) w).im / area Λ = m := by
-  first | exact @GlobalTheory.PlaneLattice.area_pos_and_selfDual | exact GlobalTheory.PlaneLattice.area_pos_and_selfDual | (intros; apply GlobalTheory.PlaneLattice.area_pos_and_selfDual <;> assumption)
+  first | exact @GlobalTheory.PlaneLattice.area_pos_and_selfDual

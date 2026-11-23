@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.exists_splitLattice_datum_every_signature : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (p q : ℕ), (∃ D₁ : Datum H, D₁.p = 1 ∧ D₁.q = 0) → ∃ D₀ : Datum H, D₀.p = p ∧ D₀.q = q ∧ SplitLat D₀ := by
-  first | exact @GlobalTheory.CompRat.exists_splitLat_of_signature | exact GlobalTheory.CompRat.exists_splitLat_of_signature | (intros; apply GlobalTheory.CompRat.exists_splitLat_of_signature <;> assumption)
+  first | exact @GlobalTheory.CompRat.exists_splitLat_of_signature

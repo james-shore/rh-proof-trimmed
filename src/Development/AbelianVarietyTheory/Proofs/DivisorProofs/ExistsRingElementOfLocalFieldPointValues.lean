@@ -98,7 +98,7 @@ theorem glue_field_points (R : Type) [CommRing R]
     intro K _ i k hk
     let j : Localization.Away (f k) →+* K :=
       IsLocalization.Away.lift (f k) (isUnit_iff_ne_zero.mpr hk)
-    have hj : j.comp (algebraMap R _) = i := by first | exact IsLocalization.Away.lift_comp _ | exact IsLocalization.lift_comp _
+    have hj : j.comp (algebraMap R _) = i := by first | exact IsLocalization.lift_comp _
     refine ⟨j (c k), ?_, ?_⟩
     · have := hc k K j
       rwa [hj] at this

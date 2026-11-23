@@ -49,4 +49,4 @@ noncomputable section
 theorem _root_.GlobalTheory.T.hasLocalLatticeMatrices_inv : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} (t : T) (B : Frames G) {j : ℕ}
     (hj : j ≤ D.R.m) (x : GA D (G.V (.grid D.R.m j)))
     (g : ∀ w : locPl G t, GL (Fin ((locGrid G t w.1).rank (D.R.m, j))) (Kw w.1)), HasLoc t B hj x g → HasLoc t B hj x⁻¹ (fun w => (g w)⁻¹) := by
-  first | exact @GlobalTheory.RowVal.hasLoc_inv | exact GlobalTheory.RowVal.hasLoc_inv | (intros; apply GlobalTheory.RowVal.hasLoc_inv <;> assumption)
+  first | exact @GlobalTheory.RowVal.hasLoc_inv

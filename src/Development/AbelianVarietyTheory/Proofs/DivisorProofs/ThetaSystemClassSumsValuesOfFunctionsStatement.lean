@@ -49,4 +49,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UT ReciprocityTheory.ChartRestriction.G.DVR
 
 theorem _root_.GlobalTheory.T.thetaSystem_classSums_values_of_functions : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matrix (Fin 8) (Fin 8) ℤ) (Z : Scheme.{0}) (i : F.X ⟶ Z) (X₁ : Setup F W i) (z₁ : X₁.M.Z) (act : Matrix (Fin 8) (Fin 8) ℤ → (X₁.ρ.P.A ⟶ X₁.ρ.P.A)) (x₀ : X₁.S.Gam) (Φ : VPre (id : ℤ → ℤ) g W (X₁.M.Z.presheaf.stalk z₁)) (lab : Φ.Q → X₁.S.Gam), IsGeo X₁ z₁ act x₀ Φ lab → Φ.Exact (X₁.S.r * X₁.S.N) := by
-  first | exact @GlobalTheory.Poinc.Sep.ExactSums.exact_of_isGeo | exact GlobalTheory.Poinc.Sep.ExactSums.exact_of_isGeo | (intros; apply GlobalTheory.Poinc.Sep.ExactSums.exact_of_isGeo <;> assumption)
+  first | exact @GlobalTheory.Poinc.Sep.ExactSums.exact_of_isGeo

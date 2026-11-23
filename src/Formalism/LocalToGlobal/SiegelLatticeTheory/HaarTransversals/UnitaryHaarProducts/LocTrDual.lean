@@ -59,30 +59,20 @@ open Classical in
 theorem single_at (y : Fv F v) : (singleV F v y) v = y := by
   first
     | exact Pi.single_eq_same v y
-    | exact Pi.single_eq_same (f := fun w : HeightOneSpectrum (𝓞 F) => w.adicCompletion F) v y
-    | simp [singleV]
-    | rfl
 
 open Classical in
 theorem single_at_ne (y : Fv F v) {w : HeightOneSpectrum (𝓞 F)} (h : w ≠ v) : (singleV F v y) w = 0 := by
   first
     | exact Pi.single_eq_of_ne h y
-    | exact Pi.single_eq_of_ne' (Ne.symm h) y
-    | simp [singleV, h]
 
 theorem alg_at (q : F) (w : HeightOneSpectrum (𝓞 F)) :
     (algebraMap F (Af F) q) w = (q : w.adicCompletion F) := by
   first
     | rfl
-    | simp
 
 theorem val_coe (w : HeightOneSpectrum (𝓞 F)) (q : F) :
     Valued.v (q : w.adicCompletion F) = w.valuation F q := by
   first
-    | exact valuedAdicCompletion_eq_valuation w q
-    | exact w.valuedAdicCompletion_eq_valuation q
-    | exact valuedAdicCompletion_eq_valuation q
-    | exact valuedAdicCompletion_eq_valuation F w q
     | simp
 
 theorem val_int_le (w : HeightOneSpectrum (𝓞 F)) (d : 𝓞 F) :
@@ -90,20 +80,12 @@ theorem val_int_le (w : HeightOneSpectrum (𝓞 F)) (d : 𝓞 F) :
   rw [val_coe w]
   first
     | exact w.valuation_le_one d
-    | exact w.valuation_le_one F d
-    | exact valuation_le_one w d
-    | exact valuation_le_one F w d
-    | simp
 
 private theorem diff_coe_lemma :
     ((differentIdeal ℤ (𝓞 F) : Ideal (𝓞 F)) : FractionalIdeal (𝓞 F)⁰ F) =
       (FractionalIdeal.dual ℤ ℚ (1 : FractionalIdeal (𝓞 F)⁰ F))⁻¹ := by
   first
-    | exact coeIdeal_differentIdeal ℤ ℚ
     | exact coeIdeal_differentIdeal (A := ℤ) (K := ℚ) (L := F) (B := 𝓞 F)
-    | exact coeIdeal_differentIdeal (A := ℤ) (K := ℚ)
-    | exact coeIdeal_differentIdeal ℤ ℚ F (𝓞 F)
-    | rw [coeIdeal_differentIdeal (A := ℤ) (K := ℚ)]
 
 theorem trace_int_of (q : F)
     (h : ∀ d0 ∈ differentIdeal ℤ (𝓞 F), q * algebraMap (𝓞 F) F d0 ∈ (algebraMap (𝓞 F) F).range) :
@@ -138,13 +120,11 @@ theorem sub_at (a b : Af F) (w : HeightOneSpectrum (𝓞 F)) : (a - b) w = a w -
 theorem mem_intAd {a : Af F} : a ∈ Formalism.UG.intAd F ↔ ∀ w, Valued.v (a w) ≤ 1 := by
   first
     | exact Iff.rfl
-    | exact ⟨fun h w => h w, fun h w => h w⟩
 
 theorem val_alg (w : HeightOneSpectrum (𝓞 F)) (q : F) :
     Valued.v (algebraMap F (w.adicCompletion F) q) = w.valuation F q := by
   first
     | exact val_coe w q
-    | simp [val_coe]
 
 theorem bwd (x : Fv F v) (hx : Formalism.L2.SG.LocVol.dV v * x ∈ v.adicCompletionIntegers F)
     (y : Fv F v) (hy : y ∈ v.adicCompletionIntegers F) (q : F)

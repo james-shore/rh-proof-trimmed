@@ -48,4 +48,4 @@ import Mathlib.Topology.Sheaves.Init
 open scoped Matrix
 
 theorem _root_.GlobalTheory.T.continuous_matrix_oneParameterGroup_eq_exp : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (M : ℝ → Matrix ι ι ℝ), Continuous M → M 0 = 1 → (∀ s t, M (s + t) = M s * M t) → ∃ X : Matrix ι ι ℝ, ∀ t, M t = NormedSpace.exp (t • X) := by
-  first | exact @GlobalTheory.matrix_oneParamGroup_eq_exp | exact GlobalTheory.matrix_oneParamGroup_eq_exp | (intros; apply GlobalTheory.matrix_oneParamGroup_eq_exp <;> assumption)
+  first | exact @GlobalTheory.matrix_oneParamGroup_eq_exp

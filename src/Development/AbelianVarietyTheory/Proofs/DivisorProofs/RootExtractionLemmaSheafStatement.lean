@@ -47,4 +47,4 @@ import Development.AbelianVarietyTheory.Definitions.Foundations.IsSatFrame
 open MvPowerSeries ReciprocityTheory.PGsh ReciprocityTheory.ChartRestriction.G.Sh GlobalTheory.FGDepth
 
 theorem _root_.GlobalTheory.T.root_extraction_lemma_sheaf : RootStatement := by
-  first | exact @GlobalTheory.RootTrick.root_statement | exact GlobalTheory.RootTrick.root_statement | (intros; apply GlobalTheory.RootTrick.root_statement <;> assumption)
+  first | exact @GlobalTheory.RootTrick.root_statement

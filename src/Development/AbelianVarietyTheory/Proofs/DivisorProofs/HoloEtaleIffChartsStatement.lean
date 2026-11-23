@@ -49,4 +49,4 @@ open MeasureTheory Filter Topology Metric ReciprocityTheory.L2DbarEstimates Reci
 open scoped ENNReal ContDiff
 
 theorem _root_.GlobalTheory.T.holo_iff_differentiableOn_charts_of_etale : ∀ (n : ℕ) (Y : Type) [TopologicalSpace Y] [T2Space Y] [SecondCountableTopology Y] [MeasurableSpace Y] [BorelSpace Y] (ι La : Type) [AddCommGroup La] (A : WeightedAtlas n Y ι La), ∀ (U : Set Y) (z : Y → V n), Etale A U z → ∀ u : Y → ℂ, (Holo n (fun y : U => z y) (fun y : U => u y) ↔ ∀ i, DifferentiableOn ℂ (u ∘ (A.chart i).symm) ((A.chart i).target ∩ (A.chart i).symm ⁻¹' U)) := by
-  first | exact @GlobalTheory.holo_etale_iff_charts | exact GlobalTheory.holo_etale_iff_charts | (intros; apply GlobalTheory.holo_etale_iff_charts <;> assumption)
+  first | exact @GlobalTheory.holo_etale_iff_charts

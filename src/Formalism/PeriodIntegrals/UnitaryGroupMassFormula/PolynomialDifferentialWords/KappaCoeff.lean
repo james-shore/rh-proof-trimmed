@@ -86,7 +86,7 @@ lemma exists_sumElim (n : Fin k ⊕ Fin k →₀ ℕ) : ∃ m g : Fin k →₀ �
   refine ⟨Finsupp.comapDomain Sum.inl n Sum.inl_injective.injOn,
     Finsupp.comapDomain Sum.inr n Sum.inr_injective.injOn, ?_⟩
   ext v
-  rcases v with i | i <;> simp [Finsupp.comapDomain_apply]
+  rcases v with i | i <;> simp
 
 lemma pol_ext {P Q : Pol K k}
     (h : ∀ m g : Fin k →₀ ℕ, AddMonoidAlgebra.coeff P (Finsupp.sumElim m g) = AddMonoidAlgebra.coeff Q (Finsupp.sumElim m g)) : P = Q := by
@@ -115,7 +115,7 @@ lemma coeff_term (P : MvPolynomial (Fin k) K) (m g g' : Fin k →₀ ℕ) :
     by_cases h1 : u = m <;> by_cases h2 : g' = g <;> simp [h1, h2]
   next p q hp hq =>
     rw [map_add (f := _), add_mul, MvPolynomial.coeff_add, hp, hq]
-    split_ifs <;> simp [MvPolynomial.coeff_add]
+    split_ifs <;> simp
 
 lemma mono_val (g : Fin k →₀ ℕ) :
     (mono K k d g : MvPolynomial (Fin k) K) = if g.degree = d then monomial g 1 else 0 := by
@@ -185,7 +185,7 @@ lemma prodFact_add_single (g : Fin k →₀ ℕ) (i : Fin k) :
   have h1 : ∏ j ∈ Finset.univ.erase i, (((g + single i 1 : Fin k →₀ ℕ) j).factorial : K) =
       ∏ j ∈ Finset.univ.erase i, ((g j).factorial : K) := by
     refine Finset.prod_congr rfl fun j hj => ?_
-    simp [Finsupp.single_apply, Finset.ne_of_mem_erase hj, Ne.symm (Finset.ne_of_mem_erase hj)]
+    simp [Finset.ne_of_mem_erase hj]
   rw [h1, Finsupp.add_apply, Finsupp.single_eq_same, Nat.factorial_succ, Nat.cast_mul]
   push_cast
   ring

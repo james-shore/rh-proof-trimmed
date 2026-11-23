@@ -137,11 +137,7 @@ theorem exists_root {R : Type} (K : Type*) [CommRing R] [IsDomain R]
     (hn : IsUnit ((Module.finrank K L : ℕ) : R)) :
     ∃ ρ : L, ρ ^ Module.finrank K L = algebraMap K L (algebraMap R K π) := by
   first
-  | exact @_root_.GlobalTheory.GaloisPowerRoots.exists_pow_finrank_eq
-  | exact _root_.GlobalTheory.GaloisPowerRoots.exists_pow_finrank_eq
   | (apply _root_.GlobalTheory.GaloisPowerRoots.exists_pow_finrank_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.GaloisPowerRoots.exists_pow_finrank_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.GaloisPowerRoots.exists_pow_finrank_eq <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.GaloisPowerRoots.exists_pow_finrank_eq ..)
 
 theorem mem_range_of_pow_eq_one {R : Type*} (K : Type*) [CommRing R] [HenselianLocalRing R]

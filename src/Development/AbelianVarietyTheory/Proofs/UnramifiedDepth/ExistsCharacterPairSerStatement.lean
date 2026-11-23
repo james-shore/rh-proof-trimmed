@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G.Chart (sp spMap)
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_character_pairSer_alt : ∀ (R₀ : Type) [CommRing R₀] (B : BX R₀) (O : LAlg R₀) (g : ℕ) (F : FGLaw (O : Type) g) (Y : ∀ R : LAlg R₀, LHom O R → (Fin g → (R : Type)) → B.G R), BXChart B O F.F Y → ∀ (p : ℕ), ¬ IsUnit (p : (O : Type)) → IsAdicComplete (Ideal.span {(p : (O : Type))}) (O : Type) → ∀ τ : ℕ → B.G O, (∀ n, (p ^ (n + 1)) • τ n = 0) → (∀ n, τ n = p • τ (n + 1)) → ∃ u : PS (O : Type) 1 g, IsCh F.F u ∧ PairSer B O Y p τ u := by
-  first | exact @GlobalTheory.ChF.exists_character_pairSer | exact GlobalTheory.ChF.exists_character_pairSer | (intros; apply GlobalTheory.ChF.exists_character_pairSer <;> assumption)
+  first | exact @GlobalTheory.ChF.exists_character_pairSer

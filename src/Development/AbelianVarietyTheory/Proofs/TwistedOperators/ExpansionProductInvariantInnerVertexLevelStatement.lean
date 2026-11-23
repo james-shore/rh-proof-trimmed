@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.expansion_product_invariant_inner_vertex_level : �
       (τ.sum fun d a => a * (∏ j', movedCol S d j hj ((S.N.u (.top (j + 1)))⁻¹ * k * S.N.u (.top (j + 1))) j' (w j')) *
           ∏ i, S.Z.vec (d.2 i) (z i)) =
         τ.sum fun d a => a * (∏ j', S.Z.vec (d.1 j') (w j')) * ∏ i, S.Z.vec (d.2 i) (z i) := by
-  first | exact @GlobalTheory.ExpansionInvariance.product_invariant | exact GlobalTheory.ExpansionInvariance.product_invariant | (intros; apply GlobalTheory.ExpansionInvariance.product_invariant <;> assumption)
+  first | exact @GlobalTheory.ExpansionInvariance.product_invariant

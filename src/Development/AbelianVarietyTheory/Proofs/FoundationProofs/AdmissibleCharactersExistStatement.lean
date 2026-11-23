@@ -46,4 +46,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.admissible_characters_exist : ∀ D : D7, GaussSumTripleConstant D := by
-  first | exact @GlobalTheory.TripleIntertwiner.triple_constant | exact GlobalTheory.TripleIntertwiner.triple_constant | (intros; apply GlobalTheory.TripleIntertwiner.triple_constant <;> assumption)
+  first | exact @GlobalTheory.TripleIntertwiner.triple_constant

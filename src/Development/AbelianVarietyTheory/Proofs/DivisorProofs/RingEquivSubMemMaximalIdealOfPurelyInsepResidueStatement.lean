@@ -67,4 +67,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.ringEquiv_sub_mem_maximalIdeal_of_purelyInsep_residue : ∀ (A R R' : Type) [CommRing A] [CommRing R] [IsLocalRing R] [CommRing R'] [IsLocalRing R'] (b : A →+* R) (θ : R →+* R') [IsLocalHom θ] (q : ℕ) [ExpChar (ResidueField R) q] (σ : R' ≃+* R'), (∀ x : ResidueField R, ∃ n : ℕ, ∃ a : A, x ^ q ^ n = residue R (b a)) → (∀ a, σ (θ (b a)) = θ (b a)) → ∀ r, σ (θ r) - θ r ∈ maximalIdeal R' := by
-  first | exact @GlobalTheory.ResFix.sigma_fix_mod_max | exact GlobalTheory.ResFix.sigma_fix_mod_max | (intros; apply GlobalTheory.ResFix.sigma_fix_mod_max <;> assumption)
+  first | exact @GlobalTheory.ResFix.sigma_fix_mod_max

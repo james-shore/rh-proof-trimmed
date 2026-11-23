@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.schwartz_theta_polynomial_growth : ∀ (F E : Type
     ∀ Φ ∈ schA F (Fin n × Fin d), ∃ (C : ℝ) (k : ℕ), ∀ g h, ∃ m : ℕ, 1 ≤ m ∧ (m : ℝ) ≤ C * ((ht g : ℝ) * ht h) ^ k ∧
       ∀ (x : Fin n × Fin d → AF F) (ξ : Fin n × Fin d → F), (∀ i, (x i).2 = (algebraMap F (AF F) (ξ i)).2) →
         om (g, h) Φ x ≠ 0 → ∀ i, IsIntegral ℤ ((m : F) * ξ i) := by
-  first | exact @GlobalTheory.FinDenom.exists_denominator_of_finite_component | exact GlobalTheory.FinDenom.exists_denominator_of_finite_component | (intros; apply GlobalTheory.FinDenom.exists_denominator_of_finite_component <;> assumption)
+  first | exact @GlobalTheory.FinDenom.exists_denominator_of_finite_component

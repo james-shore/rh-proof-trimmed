@@ -48,4 +48,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UT ReciprocityTheory.ChartRestriction.G.DVR
 
 theorem _root_.GlobalTheory.T.fibre_points_joined_by_specialisation_chain : ∀ (X₁ : GlobalTheory.GSep.GSet) (z₁ : X₁.M.Z) (Y : RatModel X₁.o₁ X₁.Ω₁) (πY : Y.Z ⟶ X₁.M.Z), GlobalTheory.GSep.ZHAbove X₁ Y πY → ∀ y y' : Y.Z, πY y = z₁ → πY y' = z₁ → Relation.EqvGen (fun a b : Y.Z => πY a = z₁ ∧ πY b = z₁ ∧ a ⤳ b) y y' := by
-  first | exact @GlobalTheory.GSep.fibre_chain | exact GlobalTheory.GSep.fibre_chain | (intros; apply GlobalTheory.GSep.fibre_chain <;> assumption)
+  first | exact @GlobalTheory.GSep.fibre_chain

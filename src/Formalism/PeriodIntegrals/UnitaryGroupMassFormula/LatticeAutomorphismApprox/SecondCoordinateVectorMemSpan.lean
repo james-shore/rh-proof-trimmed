@@ -57,7 +57,6 @@ open Formalism.MainNotions.S PI.ScRefExists
 theorem gp_int (I : AutInst) (v : HeightOneSpectrum (𝓞 I.F)) (ε : RV I v) (p1 : RV I v →+* KV I v)
     (hp : IsAdaptedFirstProjection I v ε p1) : ∀ x ∈ Formalism.UG.intOE I.E, p1 (inclV I v x) ∈ OV I v := by
   first
-  | exact hp.2.2.2.1
   | exact hp.2.2.2
 
 def hl (I : AutInst) (v : HeightOneSpectrum (𝓞 I.F)) (X Y : Fin I.n → RV I v) : RV I v :=

@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.exists_semilinear_descent_to_baseChange_of_form : 
       (∀ (f : WL →ₗ[LL] WL) (fr : WK →ₗ[Ks] WK), (∀ w : WK, (fr w : WL) = f w) →
         ∀ x, Φ (f x) = LinearMap.baseChange KT fr (Φ x)) ∧
       ∀ w : WK, Φ (w : WL) = (1 : KT) ⊗ₜ[Ks] w := by
-  first | exact @GlobalTheory.exists_semilinear_descent_to_baseChange | exact GlobalTheory.exists_semilinear_descent_to_baseChange | (intros; apply GlobalTheory.exists_semilinear_descent_to_baseChange <;> assumption)
+  first | exact @GlobalTheory.exists_semilinear_descent_to_baseChange

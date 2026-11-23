@@ -49,4 +49,4 @@ open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.exists_residueHom_zmod_at_typePlace : ∀ (D : D7) (kv : Σ k : Fin 2, D.nd.PlG k) (s : SplitPlace D.host.E), s.w = NX.pG D kv →
     Nonempty (s.v.adicCompletionIntegers (maximalRealSubfield D.host.E) →+* ZMod (D.host.g kv.1)) := by
-  first | exact @GlobalTheory.TypePlaceResidue.residueHom_zmod | exact GlobalTheory.TypePlaceResidue.residueHom_zmod | (intros; apply GlobalTheory.TypePlaceResidue.residueHom_zmod <;> assumption)
+  first | exact @GlobalTheory.TypePlaceResidue.residueHom_zmod

@@ -92,7 +92,7 @@ theorem UpperTheory.V.AlgebraTools.topNil_map :
       show S i * S j = S j * S i
       apply LinearMap.ext
       intro p
-      simp [S, Module.End.mul_apply, hTx i j, hT'x i j]
+      simp [S, hTx i j, hT'x i j]
     obtain ⟨⟨C, hC, hstab⟩, -⟩ := topNil_free R κ (M × M') S hS
     let φ : Module.End R (M × M') := (LinearMap.inr R M M').comp (f.comp (LinearMap.fst R M M'))
     have hφ : ∀ i, Commute φ (S i) := by
@@ -100,7 +100,7 @@ theorem UpperTheory.V.AlgebraTools.topNil_map :
       show φ * S i = S i * φ
       apply LinearMap.ext
       intro p
-      simp [φ, S, Module.End.mul_apply, hf]
+      simp [φ, S, hf]
     have hmem : ((x, 0) : M × M') ∈ topNil (IsLocalRing.maximalIdeal R) S ⊔ C := by
       rw [hC.sup_eq_top]
       exact Submodule.mem_top

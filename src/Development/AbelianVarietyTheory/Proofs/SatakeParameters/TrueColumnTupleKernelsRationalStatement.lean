@@ -46,4 +46,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.trueColumnTupleKernels_rational : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins B X → ∀ (l : I.Laws) (Z : TC.Later B (I.cols l)) (l0 : I.Law0 l) (Tw : TwForms (I.rec7 l Z)), ColIn.JetsIn I → Tw = I.tw l l0 Z → ∀ (u : B.Word) (a : I.ι) j, j < B.R.m → (Tw.fm u a).KRat j := by
-  first | exact @GlobalTheory.TwU.AtTrue.tuple_kernels_rational | exact GlobalTheory.TwU.AtTrue.tuple_kernels_rational | (intros; apply GlobalTheory.TwU.AtTrue.tuple_kernels_rational <;> assumption)
+  first | exact @GlobalTheory.TwU.AtTrue.tuple_kernels_rational

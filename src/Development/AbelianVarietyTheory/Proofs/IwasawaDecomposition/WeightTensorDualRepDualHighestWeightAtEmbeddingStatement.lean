@@ -51,4 +51,4 @@ open scoped TensorProduct
 theorem _root_.GlobalTheory.T.weightTensorDualRep_dual_highestWeight_at_embedding : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) (ι : Type) [Fintype ι] (K : Type) [Field K]
     (emb : ι → L →+* K) (lam : ι → DomWeight n), GlobalTheory.AlgWtF.CMDist emb → ∀ τ₀ : ι,
       NX.HWAtF (IsCMField.complexConj L : L →+* L) (GlobalTheory.AlgWtF.wtRepF emb lam).dual (emb τ₀) (lam τ₀).w := by
-  first | exact @GlobalTheory.AlgWtF.DDHw.dd_hwAt | exact GlobalTheory.AlgWtF.DDHw.dd_hwAt | (intros; apply GlobalTheory.AlgWtF.DDHw.dd_hwAt <;> assumption)
+  first | exact @GlobalTheory.AlgWtF.DDHw.dd_hwAt

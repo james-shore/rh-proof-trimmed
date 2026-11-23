@@ -47,4 +47,4 @@ open GlobalTheory.ChainOnto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.thetaLiftChain_surjective_of_adjoint_nonvanishing : ∀ D : D7, FinDim D → MetEx D → EigSpan D → ParIndep D → ChainUp D → OntoAll D := by
-  first | exact @GlobalTheory.ChainOnto.ontoAll_of_chainUp | exact GlobalTheory.ChainOnto.ontoAll_of_chainUp | (intros; apply GlobalTheory.ChainOnto.ontoAll_of_chainUp <;> assumption)
+  first | exact @GlobalTheory.ChainOnto.ontoAll_of_chainUp

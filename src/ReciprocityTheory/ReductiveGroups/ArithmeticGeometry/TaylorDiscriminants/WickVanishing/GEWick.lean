@@ -102,10 +102,8 @@ theorem foldr_add (L : List ι) (m : ι →₀ ℕ) (f g : PS k 1 d) :
 private theorem Dof_C_mul (v : Fin d → k) (r : k) (f : PS k 1 d) :
     Dof F v (C r * f) = C r * Dof F v f := by
   first
-  | (simp only [Dof, ← MvPowerSeries.smul_eq_C_mul, map_smul, mul_smul_comm, Finset.smul_sum]; done)
+  | (simp only [Dof, ← MvPowerSeries.smul_eq_C_mul, Finset.smul_sum]; done)
   | (simp only [Dof, ← MvPowerSeries.smul_eq_C_mul, Derivation.map_smul, mul_smul_comm, Finset.smul_sum]; done)
-  | (simp only [Dof, Finset.mul_sum, Derivation.leibniz, smul_eq_mul, mul_add, Finset.sum_add_distrib]; done)
-  | (have hp := (pderiv : Unit))
 
 theorem foldr_Cmul (L : List ι) (m : ι →₀ ℕ) (r : k) (f : PS k 1 d) :
     L.foldr (fun l h => (Dof F (u l))^[m l] h) (C r * f) =
@@ -245,10 +243,10 @@ theorem degLt_secondOrder (c : ι → ι → k) {n : ℕ} {P : MvPolynomial ι k
 theorem degLt_iterate (c : ι → ι → k) (n j : ℕ) {P : MvPolynomial ι k} (h : DegLt (n + j) P) :
     DegLt n ((secondOrder k c)^[j] P) := by
   induction j generalizing P with
-  | zero => first | exact h | simpa using h
+  | zero => first | exact h
   | succ j ih =>
     rw [Function.iterate_succ_apply]
-    exact ih (degLt_secondOrder c (n := n + j) (by first | exact h | simpa [Nat.add_assoc] using h))
+    exact ih (degLt_secondOrder c (n := n + j) (by first | exact h))
 
 theorem eq_zero_of_degLt_zero {P : MvPolynomial ι k} (h : DegLt 0 P) : P = 0 := by
   ext m

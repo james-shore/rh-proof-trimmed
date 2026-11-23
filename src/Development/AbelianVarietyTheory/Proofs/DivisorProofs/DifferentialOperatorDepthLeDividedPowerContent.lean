@@ -210,7 +210,7 @@ theorem depth_le_content : ∀ (C : Type) [Field C] [CharZero C] (v : AddValuati
         ∑ a, u b a e * if y = ⟨b, a⟩ then 1 else 0 := by
     intro b e y
 
-    simp only [map_sum, coeff_smul, coeff_X, Finsupp.single_left_inj one_ne_zero, smul_eq_mul]
+    simp only [map_sum, coeff_smul, coeff_X, Finsupp.single_left_inj one_ne_zero]
   set A := expAlong G u with hAdef
   have hA0 : ∀ x, constantCoeff (A x) = 0 := fun x =>
     constantCoeff_subst_eq_zero (hasSubst_of_constantCoeff_zero (hlin0 x.1)) (hlin0 x.1)
@@ -230,7 +230,7 @@ theorem depth_le_content : ∀ (C : Type) [Field C] [CharZero C] (v : AddValuati
     refine ⟨by simp [hYdef, hA0], fun z => ?_⟩
     rw [map_sub, hYdef]
 
-    simp only [map_sum, coeff_smul, hA1, smul_eq_mul, coeff_X,
+    simp only [map_sum, coeff_smul, hA1, coeff_X,
     Finsupp.single_left_inj one_ne_zero]
     simp_rw [Finset.mul_sum]
     rw [sub_eq_zero]

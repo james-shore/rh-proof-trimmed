@@ -49,4 +49,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.finiteAdeleCM_mem_integral_of_idempotent : ∀ {D : D7} {e : AE D}, e * e = e → toEAf D e ∈ Formalism.L2.Herm.intAf D.host.F D.host.E := by
-  first | exact @GlobalTheory.IdemFin.toEAf_mem_intAf_of_idem | exact GlobalTheory.IdemFin.toEAf_mem_intAf_of_idem | (intros; apply GlobalTheory.IdemFin.toEAf_mem_intAf_of_idem <;> assumption)
+  first | exact @GlobalTheory.IdemFin.toEAf_mem_intAf_of_idem

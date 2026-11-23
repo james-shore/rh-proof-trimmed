@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.automorphism_congr_one_on_adjoin_root_uniformiser 
     ∀ (ϖ : W), Irreducible ϖ → ∀ (l : ℕ), l ≠ 0 → ∀ (x : F), x ^ l = algebraMap W F ϖ →
     ∀ (g : F ≃ₐ[FractionRing W] F) (b : F), b ∈ IntermediateField.adjoin (FractionRing W) {x} →
     O.valuation b ≤ 1 → O.valuation (g b - b) < 1 := by
-  first | exact @GlobalTheory.RootOfUniformiserDVR.cong_on_adjoin | exact GlobalTheory.RootOfUniformiserDVR.cong_on_adjoin | (intros; apply GlobalTheory.RootOfUniformiserDVR.cong_on_adjoin <;> assumption)
+  first | exact @GlobalTheory.RootOfUniformiserDVR.cong_on_adjoin

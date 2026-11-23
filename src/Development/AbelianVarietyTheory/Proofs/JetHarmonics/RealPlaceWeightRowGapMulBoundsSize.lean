@@ -199,7 +199,7 @@ theorem gap_bounds : ∀ (D : D7) (L : SizeData₂ D) (Pm : ParameterChoice' D L
     congr 1
     split_ifs with h
     · rfl
-    · exact absurd (by first | exact hjm | exact ⟨hj1, hj2⟩) h
+    · exact absurd (by first | exact ⟨hj1, hj2⟩) h
   have c1 := L.cloud_v (plOf D z) ⟨D.R.k - 2, hv⟩
   have c2 := abs_le.1 (L.be_close (plOf D z) ⟨0, hm⟩ ⟨j - 1, hjm⟩)
   rw [Rat.cast_sub] at c2

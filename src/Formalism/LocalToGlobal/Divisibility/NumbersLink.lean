@@ -698,14 +698,12 @@ theorem ofNum_hB (j : J) : (ofNum N eJ δ T Nc lam0 C0 ce Ch Sw C1 H).hB j = N.h
     show (∑ i, ph (N.nuPad δ ((eJ j).1 + 1) ρ i)) - (∑ i, N.nuPad δ ((eJ j).1 + 1) ρ i) * N.logOm = _
     unfold NumDatum.kerPlace
     rw [N.sum_phPad δ hj, N.sum_nuPad δ hj]
-    try ring
   · show Ch * (N.R.f : ℝ) * (N.Nm : ℝ) ^ 2 * (N.La + (N.R.m : ℝ) ^ 3 * N.sc.L) = _
     ring
 
 theorem ofNum_hX (j : J) : (ofNum N eJ δ T Nc lam0 C0 ce Ch Sw C1 H).hX j = N.hX Ch ((eJ j).1 + 1) := by
   unfold RecNums.hX NumDatum.hX
   simp only [ofNum]
-  try rfl
 
 theorem ofNum_hu : (ofNum N eJ δ T Nc lam0 C0 ce Ch Sw C1 H).hu = N.hU Ch δ T := by
   unfold RecNums.hu NumDatum.hU

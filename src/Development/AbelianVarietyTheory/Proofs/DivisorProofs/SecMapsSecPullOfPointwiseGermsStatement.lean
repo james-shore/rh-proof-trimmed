@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.secMaps_secPull_of_pointwise_germs : ∀ {Y XA XG 
           (show Γ(XA, (LL.pull φ).U j ⊓ LP.U i) from (ψ.s (j, i)).val) * resG _ inf_le_right (th.f i)) →
       GlobalTheory.Cartier.SecMaps e σ' σ →
       GlobalTheory.Cartier.SecMaps w₀ (GlobalTheory.Cartier.secPull th θ) (GlobalTheory.Cartier.secPull σ' fst) := by
-  first | exact @GlobalTheory.secMaps_secPull_of_pointwise | exact GlobalTheory.secMaps_secPull_of_pointwise | (intros; apply GlobalTheory.secMaps_secPull_of_pointwise <;> assumption)
+  first | exact @GlobalTheory.secMaps_secPull_of_pointwise

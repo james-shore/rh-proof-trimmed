@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.fixingSubgroupOfIntermediateField_properties : ∀
  (∃ e : (Ω ≃ₐ[K] Ω) ≃* GlobalTheory.K4.geo F K Ω, (∀ g x, ((e g : GlobalTheory.K4.geo F K Ω) : Ω ≃ₐ[F] Ω) x = g x) ∧ Continuous e ∧ Continuous e.symm) ∧
  (Normal F K → (GlobalTheory.K4.geo F K Ω).Normal) ∧ (IsGalois K Ω → IsCompact (GlobalTheory.K4.geo F K Ω : Set (Ω ≃ₐ[F] Ω))) ∧
  (∀ (B : ValuationSubring Ω) (r g : Ω ≃ₐ[F] Ω), GlobalTheory.NeedB.Inert B r → GlobalTheory.NeedB.Inert (B.comap (g : Ω →+* Ω)) (g⁻¹ * r * g)) := by
-  first | exact @GlobalTheory.K4.geo_facts | exact GlobalTheory.K4.geo_facts | (intros; apply GlobalTheory.K4.geo_facts <;> assumption)
+  first | exact @GlobalTheory.K4.geo_facts

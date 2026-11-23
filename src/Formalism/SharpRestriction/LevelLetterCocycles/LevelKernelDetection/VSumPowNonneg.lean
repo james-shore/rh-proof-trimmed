@@ -131,7 +131,6 @@ private theorem pow_sub_one_eq_sub_one_mul_geom_sum (w : LL) (n : ℕ) :
     w ^ n - 1 = (w - 1) * ∑ j ∈ Finset.range n, w ^ j := by
   first
   | exact (mul_geom_sum w n).symm
-  | (rw [mul_comm]; exact (geom_sum_mul w n).symm)
 
 theorem v_pow_sub_one_ge (w : LL) (hw : (0 : WithTop ℚ) ≤ v w) (i : ℕ) :
     v (w - 1) ≤ v (w ^ i - 1) := by
@@ -219,7 +218,6 @@ theorem v_pow_prime (p : ℕ) (hp : p.Prime) (hodd : p ≠ 2) (hvp : v (p : LL) 
   have hN : ∑ j ∈ Finset.range p, j = p * k := by rw [hpk]; exact sum_range_two_mul_add_one_eq k
   have hA : (∑ j ∈ Finset.range p, (j : LL)) = (p : LL) * (k : LL) := by
     first
-    | exact_mod_cast congrArg (Nat.cast : ℕ → LL) hN
     | (have h := congrArg (Nat.cast : ℕ → LL) hN; push_cast at h; exact h)
   have hvA : 1 ≤ v (∑ j ∈ Finset.range p, (j : LL)) := by
     rw [hA, AddValuation.map_mul, hvp]

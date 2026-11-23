@@ -51,4 +51,4 @@ open GlobalTheory.Core.Rk.IP
 
 
 theorem _root_.GlobalTheory.T.partial_L_trivial_rep_twist_eq_prod_hecke_L : ∀ {D : D7} (χ : (AE D)ˣ →* Circle) (Sf : Finset (FinPl D)) (n : ℕ), GlobalTheory.LFun.UnrOff χ (Sf : Set (FinPl D)) → EqRight (fun s => ∏ i ∈ Finset.range n, GlobalTheory.LFun.charL χ⁻¹ (Sf : Set (FinPl D)) (s + (n : ℂ) / 2 - i)) (fun s => GlobalTheory.LFun.LSD D Sf (GlobalTheory.BottomRallis.trivPar n) χ (s + 1 / 2)) := by
-  first | exact @GlobalTheory.RallisEuler.trivPar_euler | exact GlobalTheory.RallisEuler.trivPar_euler | (intros; apply GlobalTheory.RallisEuler.trivPar_euler <;> assumption)
+  first | exact @GlobalTheory.RallisEuler.trivPar_euler

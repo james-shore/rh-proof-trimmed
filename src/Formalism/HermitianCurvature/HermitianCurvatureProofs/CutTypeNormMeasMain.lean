@@ -293,9 +293,7 @@ theorem typeNormMeas_of_typeComm_houseMeas (hTC : TypeComm) (hHM : HouseMeas) : 
     symm
     rw [norm_eq_zero]
     first
-      | exact WithLp.toLp_zero 2 _
       | rfl
-      | (ext i; simp)
 
 end main
 

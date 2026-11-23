@@ -53,4 +53,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelA
 open GlobalTheory.OrbitSep
 
 theorem _root_.GlobalTheory.T.exists_descent_linearised_lineBundle_finiteGroup_quotient : ∀ (F : Type) [Field F] [NumberField F] (X W : Scheme.{0}) [IsIntegral X] (q : X ⟶ W) (sW : W ⟶ Sp F) (Γ : Type) [Group Γ] [Finite Γ] (ρ : Γ →* Aut X) (L : LB X) (hL : L.IsLB), IsProjOver (q ≫ sW) → IsAffineQuotient ρ q → RatLin ρ L hL → ∃ (N : LB W) (hN : N.IsLB), CechPic.pull q (cls N hN) = cls L hL := by
-  first | exact @GlobalTheory.QuotDescent.descent | exact GlobalTheory.QuotDescent.descent | (intros; apply GlobalTheory.QuotDescent.descent <;> assumption)
+  first | exact @GlobalTheory.QuotDescent.descent

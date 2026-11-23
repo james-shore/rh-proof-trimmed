@@ -65,7 +65,6 @@ theorem resChar_mem' (D : Formalism.BasicNotions.D7) (p : PlF D) : ((Loc.resChar
   rw [← Ideal.Quotient.eq_zero_iff_mem, map_natCast]
   first
   | exact ringChar.Nat.cast_ringChar
-  | (unfold Loc.resChar; exact ringChar.Nat.cast_ringChar)
 
 theorem val_resChar_lt (D : Formalism.BasicNotions.D7) (p : PlF D) :
     valuation (D.s.atP p).Fp (((Loc.resChar p : ℕ) : (D.s.atP p).Fp)) < 1 := by
@@ -122,17 +121,14 @@ theorem unitAt_mul_natCast (D : Formalism.BasicNotions.D7) (p : PlF D) : ∃ n :
     push_cast
     first
     | (field_simp; done)
-    | (field_simp; ring)
   · refine ⟨D.host.g 0, ?_⟩
     push_cast
     first
     | (field_simp; done)
-    | (field_simp; ring)
   · refine ⟨D.host.g 0 * D.host.g 1, ?_⟩
     push_cast
     first
     | (field_simp; done)
-    | (field_simp; ring)
 
 theorem algMap_mem_O (D : Formalism.BasicNotions.D7) (p : PlF D) (c : (D.s.atP p).Fp) (hc : c ∈ 𝒪[(D.s.atP p).Fp]) :
     algebraMap (D.s.atP p).Fp (D.s.atP p).Ep c ∈ (D.s.atP p).O := by

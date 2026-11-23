@@ -47,4 +47,3 @@ theorem _root_.GlobalTheory.T.leftQuotientCovolume_withDensity_detNormSq : ∀ (
   intro E _ _ hE j hj Λ hΛ F hF
   first
   | exact GlobalTheory.DetSlab.covol_withDensity_detNorm E hE j hj Λ hΛ F hF
-  | exact GlobalTheory.DetSlab.covol_withDensity_detNorm E hE j hj Λ hΛ.toIsLattice F hF

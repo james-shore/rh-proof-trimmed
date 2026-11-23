@@ -161,11 +161,7 @@ theorem antisym_strictAnti {m : ℕ} {l : Fin m → ℕ} (hl : Antitone l) :
 theorem antisym_gap {m : ℕ} {s : Fin m → ℕ} (hs : StrictAnti s) :
     ∀ (k : ℕ) (i j : Fin m), (j : ℕ) = i + k → s j + k ≤ s i := by
   first
-  | exact @_root_.GlobalTheory.StrictAntiAddLe.add_le_of_strictAnti
-  | exact _root_.GlobalTheory.StrictAntiAddLe.add_le_of_strictAnti
   | (apply _root_.GlobalTheory.StrictAntiAddLe.add_le_of_strictAnti <;> assumption)
-  | (intros; apply _root_.GlobalTheory.StrictAntiAddLe.add_le_of_strictAnti <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.StrictAntiAddLe.add_le_of_strictAnti <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.StrictAntiAddLe.add_le_of_strictAnti ..)
 
 

@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.Dec
 
 theorem _root_.GlobalTheory.T.psi_holomorphic_near_positive_matrices_at_one : PsBasic := by
-  first | exact @GlobalTheory.Dec.psBasic | exact GlobalTheory.Dec.psBasic | (intros; apply GlobalTheory.Dec.psBasic <;> assumption)
+  first | exact @GlobalTheory.Dec.psBasic

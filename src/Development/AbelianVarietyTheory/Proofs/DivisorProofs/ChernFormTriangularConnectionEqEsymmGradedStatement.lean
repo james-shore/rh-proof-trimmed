@@ -48,4 +48,4 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts G
 open scoped Matrix ContDiff ComplexOrder
 
 theorem _root_.GlobalTheory.T.chernForm_triangular_connection_eq_esymm_graded : ∀ (F : Type) [Field F] (σ : F →+* ℂ) (X : Var F) (ι : Type) [Finite ι] (m : ι → ℕ) (E : Fr (ratOf X) m m) (H : Mat m X.Fn → CxPts X.str σ → Mat m ℂ), IsMetricFr E H → ∀ τ j p, chernFld (atlas X σ) (fun y z => ldPart (gramAt E H τ y z)) j p = aeval (fun i => grF E H ⟨τ, i⟩ p) (esymm (Fin (m τ)) ℂ j) := by
-  first | exact @GlobalTheory.ChernCalc.chernFld_ldPart_eq_esymm_grF | exact GlobalTheory.ChernCalc.chernFld_ldPart_eq_esymm_grF | (intros; apply GlobalTheory.ChernCalc.chernFld_ldPart_eq_esymm_grF <;> assumption)
+  first | exact @GlobalTheory.ChernCalc.chernFld_ldPart_eq_esymm_grF

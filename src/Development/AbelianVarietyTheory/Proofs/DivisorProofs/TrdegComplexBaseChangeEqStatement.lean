@@ -49,4 +49,4 @@ import Mathlib.Topology.Sheaves.Init
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.trdeg_tensor_complex_eq : ∀ {K κ' : Type} [Field K] [Field κ'] [Algebra ℂ K] [Algebra ℂ κ'] [IsDomain (K ⊗[ℂ] κ')], Algebra.trdeg K (K ⊗[ℂ] κ') = Algebra.trdeg ℂ κ' := by
-  first | exact @GlobalTheory.trdeg_complex_baseChange_eq | exact GlobalTheory.trdeg_complex_baseChange_eq | (intros; apply GlobalTheory.trdeg_complex_baseChange_eq <;> assumption)
+  first | exact @GlobalTheory.trdeg_complex_baseChange_eq

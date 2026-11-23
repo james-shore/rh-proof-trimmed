@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.definiteBottomTriple_weilMove_rightTranslate : ∀
     ∀ c : T → ℂ, Y.IsConst W.ψ W.θ c →
       (GlobalTheory.BotFrames.reRig Y X.rA X.rA' X.rW (fun t => κ t • Y.ω t ((g t)⁻¹, (h t)⁻¹) (Y.f t))
         (fun t => κ' t • Y.ω' t ((g' t)⁻¹, (h t)⁻¹) (Y.f' t))).IsConst W.ψ W.θ fun t => κ t / κ' t * c t := by
-  first | exact @GlobalTheory.BotTranslate.translate | exact GlobalTheory.BotTranslate.translate | (intros; apply GlobalTheory.BotTranslate.translate <;> assumption)
+  first | exact @GlobalTheory.BotTranslate.translate

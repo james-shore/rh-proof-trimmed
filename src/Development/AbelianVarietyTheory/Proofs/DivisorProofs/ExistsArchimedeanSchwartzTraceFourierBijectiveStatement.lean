@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.exists_archimedeanSchwartz_traceFourier_bijective 
     ∃ ei : SInf F κ →L[ℂ] SInf F κ, Function.Bijective ei ∧ ∀ (f : SInf F κ) (y : κ → mixedEmbedding.mixedSpace F),
       ei f y = ∫ x, f x * Complex.exp (-(2 * Real.pi * Complex.I) *
         (Algebra.trace ℝ (mixedEmbedding.mixedSpace F) (x ⬝ᵥ y) : ℝ)) ∂μ := by
-  first | exact @GlobalTheory.ArchFourier.exists_fourier_sInf | exact GlobalTheory.ArchFourier.exists_fourier_sInf | (intros; apply GlobalTheory.ArchFourier.exists_fourier_sInf <;> assumption)
+  first | exact @GlobalTheory.ArchFourier.exists_fourier_sInf

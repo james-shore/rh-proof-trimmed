@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.L1 (DD jT IsMF)
 open ModularForm (E₄ E₆)
 
 theorem _root_.GlobalTheory.T.eq_or_eq_neg_of_weierstrassP_torsion_eq : ∀ (N : ℕ) [NeZero N] (τ : ℍ) (x y : Fin 2 → ZMod N), x ≠ 0 → y ≠ 0 → wp N x τ = wp N y τ → x = y ∨ x = -y := by
-  first | exact @GlobalTheory.FN.WpSep.main | exact GlobalTheory.FN.WpSep.main | (intros; apply GlobalTheory.FN.WpSep.main <;> assumption)
+  first | exact @GlobalTheory.FN.WpSep.main

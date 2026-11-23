@@ -47,4 +47,4 @@ open GlobalTheory.ChainOnto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.thetaChain_heckeParams_trivialBound_rapidDecay : GlobalTheory.Published.CuspRapidDecay → ∀ D : D7, LevFacts D → ParBound D := by
-  first | exact @GlobalTheory.ChainOnto.parBound_of_rapidDecay | exact GlobalTheory.ChainOnto.parBound_of_rapidDecay | (intros; apply GlobalTheory.ChainOnto.parBound_of_rapidDecay <;> assumption)
+  first | exact @GlobalTheory.ChainOnto.parBound_of_rapidDecay

@@ -91,11 +91,7 @@ theorem comm_pow_of_apply (E : Fin n → Fin n → A) (hE : Formalism.REAL.GlRel
     (c e : Fin n) : E a b * (Matrix.of E ^ m) c e - (Matrix.of E ^ m) c e * E a b =
       (if b = c then (Matrix.of E ^ m) a e else 0) - (if e = a then (Matrix.of E ^ m) c b else 0) := by
   first
-  | exact @_root_.GlobalTheory.PowEntryCommutator.target
-  | exact _root_.GlobalTheory.PowEntryCommutator.target
   | (apply _root_.GlobalTheory.PowEntryCommutator.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowEntryCommutator.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowEntryCommutator.target <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.PowEntryCommutator.target ..)
 
 end GelfandCentral

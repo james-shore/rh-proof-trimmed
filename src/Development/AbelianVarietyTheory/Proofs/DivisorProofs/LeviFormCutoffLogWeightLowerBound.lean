@@ -202,8 +202,7 @@ theorem levi_cutLog_lower : ∀ (χ : ℝ → ℝ) (A : ℝ), ContDiff ℝ ∞ �
   have hρC : (ρ : ℂ) ≠ 0 := by exact_mod_cast hρ.ne'
   have hv : ∀ y : V n, ‖y‖ ^ 2 / ρ ^ 2 = v y := by
     intro y
-    simp only [hvdef, hLapp, Complex.normSq_mul, Complex.normSq_inv, Complex.normSq_ofReal,
-      EuclideanSpace.norm_sq_eq, Complex.normSq_eq_norm_sq, Finset.sum_div]
+    simp only [hvdef, hLapp, EuclideanSpace.norm_sq_eq, Complex.normSq_eq_norm_sq, Finset.sum_div]
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [Complex.norm_mul, norm_inv, Complex.norm_real, Real.norm_eq_abs, abs_of_pos hρ]
     field_simp

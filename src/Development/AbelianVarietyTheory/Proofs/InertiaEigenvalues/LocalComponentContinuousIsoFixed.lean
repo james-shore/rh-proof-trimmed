@@ -63,11 +63,7 @@ theorem exists_eigen_family {G V W ι : Type} [Group G] [TopologicalSpace G] [Is
     (hinv : ∀ k ∈ K, ∑ i, T i (ρ k (y i)) = θ k • ∑ i, T i (y i)) :
     ∃ u : ι → V, (∀ j, ∀ h ∈ K, ρ h (u j) = θ h • u j) ∧ ∑ i, T i (u i) = ∑ i, T i (y i) := by
   first
-  | exact @_root_.GlobalTheory.EigenFamilyStabilizer.exists_eigen_family
-  | exact _root_.GlobalTheory.EigenFamilyStabilizer.exists_eigen_family
   | (apply _root_.GlobalTheory.EigenFamilyStabilizer.exists_eigen_family <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EigenFamilyStabilizer.exists_eigen_family <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EigenFamilyStabilizer.exists_eigen_family <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.EigenFamilyStabilizer.exists_eigen_family ..)
 
 

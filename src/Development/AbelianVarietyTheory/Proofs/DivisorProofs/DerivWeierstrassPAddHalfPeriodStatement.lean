@@ -50,4 +50,4 @@ open NumberField IsDedekindDomain WeierstrassCurve GlobalTheory GlobalTheory.Pub
 open scoped IntermediateField BigOperators Topology
 
 theorem _root_.GlobalTheory.T.derivWeierstrassP_add_half_period' : ∀ (L : PeriodPair) (a t : ℂ), a ∉ L.lattice → 2 * a ∈ L.lattice → t ∉ L.lattice → t + a ∉ L.lattice → L.derivWeierstrassP (t + a) * (L.weierstrassP t - L.weierstrassP a) ^ 2 = -(3 * L.weierstrassP a ^ 2 - L.g₂ / 4) * L.derivWeierstrassP t := by
-  first | exact @GlobalTheory.derivWeierstrassP_add_half_period | exact GlobalTheory.derivWeierstrassP_add_half_period | (intros; apply GlobalTheory.derivWeierstrassP_add_half_period <;> assumption)
+  first | exact @GlobalTheory.derivWeierstrassP_add_half_period

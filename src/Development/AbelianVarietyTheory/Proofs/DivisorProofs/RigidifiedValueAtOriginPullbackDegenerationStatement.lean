@@ -48,4 +48,4 @@ open GlobalTheory.Mum
 
 
 theorem _root_.GlobalTheory.T.rigidifiedValueAtOrigin_pullback_degeneration : ∀ (R R' : Type) [CommRing R] [IsDomain R] [CommRing R'] [IsDomain R'] (φ : R →+* R') (D : DegPre R) (D' : DegPre R') (hD : IsPullDeg φ D D') (k : ℕ) (x : D'.X) (b : D.SecB k (hD.xe x)) (b' : D'.SecB k x) (v : R), PullB hD x b b' → OrigVal D b v → OrigVal D' b' (φ v) := by
-  first | exact @GlobalTheory.Mum.OrigValPull.origVal_pull | exact GlobalTheory.Mum.OrigValPull.origVal_pull | (intros; apply GlobalTheory.Mum.OrigValPull.origVal_pull <;> assumption)
+  first | exact @GlobalTheory.Mum.OrigValPull.origVal_pull

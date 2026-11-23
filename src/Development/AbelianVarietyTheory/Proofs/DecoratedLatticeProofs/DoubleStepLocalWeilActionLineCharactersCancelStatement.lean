@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.doubleStep_local_weil_action_line_characters_cance
     Φ₁'.1 = om Q.μ₁ a x Φ₁.1 → Φ₂'.1 = om Q.μ₂ x y Φ₂.1 →
     S.val c₁ c₂ (S.s₁.om (Q.gl₀ a, Q.gl₁ x) (T₁ Φ₁)) (S.s₂.om (Q.gl₁ x, Q.gl₂ y) (T₂ Φ₂)) φ F 1 1 1 =
       S.val c₁ c₂ (T₁ Φ₁') (T₂ Φ₂') φ F 1 1 1 := by
-  first | exact @GlobalTheory.QPl.LineCancel.val_om_loc | exact GlobalTheory.QPl.LineCancel.val_om_loc | (intros; apply GlobalTheory.QPl.LineCancel.val_om_loc <;> assumption)
+  first | exact @GlobalTheory.QPl.LineCancel.val_om_loc

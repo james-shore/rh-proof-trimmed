@@ -297,8 +297,8 @@ theorem evalP : EvalPStatement := by
             ((0 : Fin (2 * r + k + 1)).succAbove ∘ Fin.cast hkn) (om - 1) := by
         rw [CapelliMinorRestriction.cminor_reindex _ (capIdx k r) hcapinj]
         congr 1 <;> funext i <;> apply Fin.ext <;> delta capIdx <;>
-          simp only [Function.comp_apply, Fin.succAbove_last, Fin.succAbove_zero, Fin.val_cast,
-            Fin.val_castSucc, Fin.val_succ]
+          simp only [Function.comp_apply, Fin.succAbove_last, Fin.val_cast,
+            Fin.val_castSucc]
       rw [CapelliMinorRestriction.cminor_cast _ hkn] at hcm
       have h1 := LinearMap.congr_fun hB1 ⟨(v : D), hvS⟩
       simp only [LinearMap.comp_apply, LinearMap.smul_apply] at h1

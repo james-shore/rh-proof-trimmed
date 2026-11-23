@@ -118,10 +118,10 @@ theorem residue_rows_injective {t t' : Fin (k + 1)} (h : rowsR k r t = rowsR k r
   by_contra hne
   rcases lt_or_gt_of_ne (fun e => hne (Fin.ext e) : t.val ≠ t'.val) with hl | hl
   · have := congrArg Fin.val (congrFun h ⟨r + t.val, by have := t'.isLt; omega⟩)
-    simp only [rowsR_val, Fin.val_mk] at this
+    simp only [rowsR_val] at this
     split_ifs at this <;> omega
   · have := congrArg Fin.val (congrFun h ⟨r + t'.val, by have := t.isLt; omega⟩)
-    simp only [rowsR_val, Fin.val_mk] at this
+    simp only [rowsR_val] at this
     split_ifs at this <;> omega
 
 theorem rowsR_mem (t : Fin (k + 1)) : rowsR k r t ∈ jSetR k r := by
@@ -247,7 +247,7 @@ theorem claimA (J : Fin (r + k) → Fin (2 * r + k + 1)) (hJ : StrictMono J) (σ
     rw [if_neg (by omega), if_pos hq, e]
     omega
   · rw [hgt q hq, hJeq, rowsR_val]
-    simp only [Fin.val_mk]
+    simp only
     split_ifs <;> omega
 
 end det

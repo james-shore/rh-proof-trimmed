@@ -45,4 +45,4 @@ open Matrix MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotio
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.localBesselJFactor_all_words_of_gap : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (sOf hF)) (C : Choice X 1) (hB : WuBessel C) (u u' : D.what₂.Word), Formalism.L2.SG.ConcreteSettingExists.GapHyp D → JFactN hI C hB u u' := by
-  first | exact @GlobalTheory.JFactTie.jFactN_all | exact GlobalTheory.JFactTie.jFactN_all | (intros; apply GlobalTheory.JFactTie.jFactN_all <;> assumption)
+  first | exact @GlobalTheory.JFactTie.jFactN_all

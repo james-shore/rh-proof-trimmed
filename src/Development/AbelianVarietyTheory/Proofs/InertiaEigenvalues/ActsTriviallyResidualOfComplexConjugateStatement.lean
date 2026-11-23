@@ -46,4 +46,4 @@ import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.Po
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.BlochKatoReduction Formalism.MainNotions.BlochKatoReduction.Gen GlobalTheory.TwSys GlobalTheory.SelFun GlobalTheory.Published GlobalTheory.Published.PoitouTate GlobalTheory.ResSel
 
 theorem _root_.GlobalTheory.T.actsTriviallyResidual_of_complexConjugate : ∀ (D : Formalism.BasicNotions.D7) (N : NData D.R D.host D.what₂) (X : NTw D.R D.host D.what₂ D.LL0 N) (i : X.Tw) (s : X.Sig i), SelfDual i s → ∀ g g' : GE N, IsCj X g g' → ResTriv i s g → ResTriv i s g' := by
-  first | exact @GlobalTheory.ResTrivConj.resTriv_conj | exact GlobalTheory.ResTrivConj.resTriv_conj | (intros; apply GlobalTheory.ResTrivConj.resTriv_conj <;> assumption)
+  first | exact @GlobalTheory.ResTrivConj.resTriv_conj

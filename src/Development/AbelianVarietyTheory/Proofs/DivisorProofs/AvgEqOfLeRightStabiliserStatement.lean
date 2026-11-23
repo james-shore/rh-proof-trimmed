@@ -45,4 +45,4 @@ open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep 
 open scoped Classical TensorProduct
 
 theorem _root_.GlobalTheory.T.avg_eq_of_le_rightStabiliser : ∀ (H : Type) [Group H] (u : H → ℂ) (S : Subgroup H), S ≤ rStab u → S.index ≠ 0 → avg u = (S.index : ℂ)⁻¹ * ∑ᶠ q : H ⧸ S, u q.out := by
-  first | exact @GlobalTheory.BCT.avg_eq_of_le_rStab | exact GlobalTheory.BCT.avg_eq_of_le_rStab | (intros; apply GlobalTheory.BCT.avg_eq_of_le_rStab <;> assumption)
+  first | exact @GlobalTheory.BCT.avg_eq_of_le_rStab

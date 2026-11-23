@@ -47,4 +47,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.closedDisc_toDisc_injective_of_adicBasis : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (A : Type) [CommRing A] (s : bk.S →+* A) (ι : Type), TopBasis s bk.J ι → ∀ ρ : ℝ≥0, 0 < ρ → ρ < 1 → Function.Injective (toDisc l (s X) ρ) ∧ (∀ n : ℕ, ∃ r : ℝ, 0 < r ∧ ∀ x : A, ‖toDisc l (s X) ρ x‖ ≤ r → x ∈ (bk.J ^ n).map s) ∧ ∀ ρ' : ℝ≥0, 0 < ρ' → ρ' ≤ ρ → ∀ R : Disc l (s X) ρ →+* Disc l (s X) ρ', IsDiscMap (l := _) (u := _) (ρ := _) (RingHom.id A) R → Function.Injective R := by
-  first | exact @GlobalTheory.BSP.toDisc_injective_of_topBasis | exact GlobalTheory.BSP.toDisc_injective_of_topBasis | (intros; apply GlobalTheory.BSP.toDisc_injective_of_topBasis <;> assumption)
+  first | exact @GlobalTheory.BSP.toDisc_injective_of_topBasis

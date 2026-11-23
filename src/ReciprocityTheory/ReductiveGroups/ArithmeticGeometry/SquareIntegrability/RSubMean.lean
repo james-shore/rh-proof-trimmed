@@ -90,7 +90,7 @@ lemma rsm_gauss_total (N : ℕ) :
     ∫ z : EuclideanSpace ℂ (Fin N), Real.exp (-‖z‖ ^ 2) = Real.pi ^ N := by
   have h := GaussianFourier.integral_rexp_neg_mul_sq_norm (V := EuclideanSpace ℂ (Fin N)) one_pos
   simp only [neg_mul, one_mul, div_one] at h
-  first | rw [h] | erw [h]
+  first | rw [h]
   rw [rsm_finrank, show ((↑(2 * N) : ℝ) / 2) = ((N : ℕ) : ℝ) by push_cast; ring, Real.rpow_natCast]
 
 lemma rsm_gauss_integrable (N : ℕ) :
@@ -317,7 +317,7 @@ theorem sq_norm_zero_le_gauss_ball {N : ℕ} (F : EuclideanSpace ℂ (Fin N) →
       Real.exp (-‖z‖ ^ 2) * ‖F z‖ ^ 2 := by
     intro θ
     refine rsm_rot_int N F _ ?_ _
-    first | simp | simp [norm_circleMap_zero] | simp [abs_circleMap_zero]
+    first | simp
   have hswap : ∫ z in closedBall (0 : EuclideanSpace ℂ (Fin N)) (Real.sqrt (2 * N)),
         ∫ θ in Ioc (0 : ℝ) (2 * Real.pi), Real.exp (-‖z‖ ^ 2) * ‖F (circleMap 0 1 θ • z)‖ ^ 2
       = ∫ θ in Ioc (0 : ℝ) (2 * Real.pi), ∫ z in closedBall (0 : EuclideanSpace ℂ (Fin N)) (Real.sqrt (2 * N)),
@@ -328,7 +328,7 @@ theorem sq_norm_zero_le_gauss_ball {N : ℕ} (F : EuclideanSpace ℂ (Fin N) →
           Real.exp (-‖z‖ ^ 2) * ‖F (circleMap 0 1 θ • z)‖ ^ 2
       = ∫ z in closedBall (0 : EuclideanSpace ℂ (Fin N)) (Real.sqrt (2 * N)),
           ‖F z‖ ^ 2 * Real.exp (-‖z‖ ^ 2) := by
-    first | rw [integral_const_mul] | rw [integral_mul_left]
+    first | rw [integral_const_mul]
     rw [hswap]
     simp only [hJθ]
     rw [← intervalIntegral.integral_of_le hpi.le, intervalIntegral.integral_const, smul_eq_mul, sub_zero,
@@ -340,7 +340,7 @@ theorem sq_norm_zero_le_gauss_ball {N : ℕ} (F : EuclideanSpace ℂ (Fin N) →
         ‖F 0‖ ^ 2 * Real.exp (-‖z‖ ^ 2)
       = ‖F 0‖ ^ 2 * ∫ z in closedBall (0 : EuclideanSpace ℂ (Fin N)) (Real.sqrt (2 * N)),
         Real.exp (-‖z‖ ^ 2) := by
-    first | rw [integral_const_mul] | rw [integral_mul_left]
+    first | rw [integral_const_mul]
   have hmono : ∫ z in closedBall (0 : EuclideanSpace ℂ (Fin N)) (Real.sqrt (2 * N)),
         ‖F 0‖ ^ 2 * Real.exp (-‖z‖ ^ 2)
       ≤ ∫ z in closedBall (0 : EuclideanSpace ℂ (Fin N)) (Real.sqrt (2 * N)),
@@ -360,6 +360,6 @@ theorem sq_norm_zero_le_gauss_ball {N : ℕ} (F : EuclideanSpace ℂ (Fin N) →
       2 * ∫ z in Metric.closedBall (0 : EuclideanSpace ℂ (Fin N)) (Real.sqrt (2 * N)),
         ‖F z‖ ^ 2 * Real.exp (-‖z‖ ^ 2) := by linarith
   rw [div_mul_eq_mul_div]
-  first | exact (le_div_iff₀ hp).mpr h3 | exact (le_div_iff hp).mpr h3
+  first | exact (le_div_iff₀ hp).mpr h3
 
 end ReciprocityTheory.ChartRestriction.G.I2

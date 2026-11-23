@@ -49,4 +49,4 @@ open GlobalTheory.ToricTransport (coordIn)
 open scoped nonZeroDivisors
 
 theorem _root_.GlobalTheory.T.finiteIdele_module_exists_rat : ∀ {E : Type} [Field E] [NumberField E] (y : (Af E)ˣ), ∃ q : ℚ, modF y = q := by
-  first | exact @GlobalTheory.CMVal.ModFRat.modF_rat | exact GlobalTheory.CMVal.ModFRat.modF_rat | (intros; apply GlobalTheory.CMVal.ModFRat.modF_rat <;> assumption)
+  first | exact @GlobalTheory.CMVal.ModFRat.modF_rat

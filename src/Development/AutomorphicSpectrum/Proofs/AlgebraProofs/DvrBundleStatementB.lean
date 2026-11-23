@@ -197,7 +197,7 @@ theorem exists_flag {M : ℕ} {W : Type} [AddCommGroup W] [Module Ω W] {ϖ : O}
   have p1 : IsPull O x z B' (EB 1) := (hEB 1).1
   have tri : ∀ i j : Fin M, i < j → w.repr (w i) j = 0 := by
     intro i j hij
-    simp [Module.Basis.repr_self, Finsupp.single_apply, ne_of_lt hij]
+    simp [Module.Basis.repr_self, ne_of_lt hij]
   have s01 := (GlobalTheory.T.chart_bundle_base_extension_unique O Ω K ι x M W B B' K' ι' z (EB 0) (EB 1) p0 p1).2.1 hs
   obtain ⟨-, f, g, hf⟩ := GlobalTheory.T.same_generic_flag_comparison O Ω (K ⊕ K') (Sum.elim ι ι') (joinCoord x z) ϖ hϖ d hM' M W
     (EB 0) (EB 1) s01 w w (b 0) (b 1) (hEB 0).2 (hEB 1).2 tri

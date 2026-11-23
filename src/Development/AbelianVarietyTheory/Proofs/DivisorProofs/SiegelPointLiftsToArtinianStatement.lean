@@ -45,4 +45,4 @@ open GlobalTheory.ZM GlobalTheory.SiegLev GlobalTheory.SiegelTor
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.siegel_point_lifts_to_artinian : ∀ (g n : ℕ), 1 ≤ g → 3 ≤ n → Odd n → ∀ F : SFam g n (zetaAway n), ∀ (C : Type) [CommRing C] [IsLocalRing C] [IsArtinianRing C] (β : cycAway n →+* C) (c : SiegPre g n (zetaAway n) (spMap β)), c.Principal → ∃ f : Sp C ⟶ F.X, f ≫ F.s = spMap β ∧ SiegPB c F.univ f := by
-  first | exact @GlobalTheory.SiegelArtin.main | exact GlobalTheory.SiegelArtin.main | (intros; apply GlobalTheory.SiegelArtin.main <;> assumption)
+  first | exact @GlobalTheory.SiegelArtin.main

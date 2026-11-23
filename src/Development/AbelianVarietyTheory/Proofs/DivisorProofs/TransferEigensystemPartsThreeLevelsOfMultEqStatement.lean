@@ -50,4 +50,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.PrimIn
 
 theorem _root_.GlobalTheory.T.transfer_eigensystem_parts_three_levels_of_mult_eq : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T0 : Type} {A : FamIn D.what₂.LL G Pl0 T0 D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), ∀ s : ℕ, A.fam.Ok s → GlobalTheory.Hk3.Core R F → GlobalTheory.Hk3.SchurAll R → GoodStable A.X → GlobalTheory.CuspMult.CuspDecomp D → GlobalTheory.CuspMult.MultEq R → ∀ SF, GlobalTheory.Hk3.IsSF R SF → GlobalTheory.TrCopy.TRLev R F SF := by
-  first | exact @GlobalTheory.TrLevMult.trLev_of_multEq | exact GlobalTheory.TrLevMult.trLev_of_multEq | (intros; apply GlobalTheory.TrLevMult.trLev_of_multEq <;> assumption)
+  first | exact @GlobalTheory.TrLevMult.trLev_of_multEq

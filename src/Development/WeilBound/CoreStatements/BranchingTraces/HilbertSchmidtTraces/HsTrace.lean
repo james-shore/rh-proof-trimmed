@@ -93,7 +93,7 @@ theorem stab : ∀ {n r : ℕ} {ε : Fin n → Bool} {ε' : Fin r → Bool} (ι 
   have ZJZ : Zᴴ * Jm ε * Z = 1 := by
     ext i j
     rw [Matrix.mul_assoc, col, Subsingleton.elim i j, one_apply_eq, ← hF.one]
-    simp [hZ, mul_apply, dotProduct]
+    simp [hZ, dotProduct]
   have JZ : Jm ε * Z = Z := by
     rw [← Matrix.one_mul (Jm ε * Z), ← S, Matrix.add_mul, Matrix.mul_assoc F, Matrix.mul_assoc Z, ← Matrix.mul_assoc Fᴴ,
       ← Matrix.mul_assoc Zᴴ, FJZ, ZJZ]; simp

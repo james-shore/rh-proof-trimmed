@@ -59,4 +59,4 @@ open GlobalTheory.LatVal (OneOver)
 open GlobalTheory.IndefiniteRowSideFullHecke.ClassZetaValuationBounds (a0)
 
 theorem _root_.GlobalTheory.T.cmLattice_exists_multiple_integral_prime_to_l : ∀ (E : Type) [Field E] [NumberField E] (l : ℕ) (c : Ideal (OF E)) (y : (Af E)ˣ), l.Prime → OneOver l y → ∃ M : ℕ, ¬ l ∣ M ∧ ∀ x ∈ lattice c y, IsIntegral ℤ ((M : E) * x) := by
-  first | exact @GlobalTheory.HilbFam.LatticeUp.exists_mul_integral | exact GlobalTheory.HilbFam.LatticeUp.exists_mul_integral | (intros; apply GlobalTheory.HilbFam.LatticeUp.exists_mul_integral <;> assumption)
+  first | exact @GlobalTheory.HilbFam.LatticeUp.exists_mul_integral

@@ -57,4 +57,4 @@ open scoped GlobalTheory.VacAny
 theorem _root_.GlobalTheory.T.exists_schwartzBruhat_schroedingerFixed_localField : ∀ {F : Type} [Field F] [NumberField F] (v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)) (ψ : AddChar (Fv F v) ℂ),
     Continuous ψ → ∀ {κ : Type} [Fintype κ], ∃ φ₁ ∈ GlobalTheory.WeilM.SB (κ → Fv F v), φ₁ ≠ 0 ∧
       ∃ U ∈ nhds (0 : (κ → Fv F v) × (κ → Fv F v)), ∀ w ∈ U, GlobalTheory.WeilM.schr ψ w φ₁ = φ₁ := by
-  first | exact @GlobalTheory.SchrTestVec.exists_fixed | exact GlobalTheory.SchrTestVec.exists_fixed | (intros; apply GlobalTheory.SchrTestVec.exists_fixed <;> assumption)
+  first | exact @GlobalTheory.SchrTestVec.exists_fixed

@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_admitted_diagonal_integral_linearForm : ∀
         @MeasureTheory.Measure.IsAddHaarMeasure _ _ _ (borel _) μ ∧
         (∀ φ ∈ SB ((Fin a' × Fin (a + a')) ⊕ (Fin a' × Fin (a + a')) → Fv F v), l (tens (evFin F v) φ r₀) = c₀ * ∫ x, φ (Sum.elim x x) ∂μ) ∧
         ∃ φ₀ ∈ SB ((Fin a' × Fin (a + a')) → Fv F v), ∫ x, φ₀ x * φ₀ x ∂μ ≠ 0 := by
-  first | exact @GlobalTheory.DiagLocal.exists_diag_form | exact GlobalTheory.DiagLocal.exists_diag_form | (intros; apply GlobalTheory.DiagLocal.exists_diag_form <;> assumption)
+  first | exact @GlobalTheory.DiagLocal.exists_diag_form

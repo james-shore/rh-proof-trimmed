@@ -83,11 +83,7 @@ theorem heckeVec_dosetInd (hx : x ∈ fixed ρ K) {a : G} {R : Finset G}
     (hR' : ∀ g ∈ DoubleCoset.doubleCoset a (K : Set G) K, ∃! γ, γ ∈ R ∧ γ⁻¹ * g ∈ K) :
     heckeVec ρ K (dosetInd ℂ K a) x = ∑ γ ∈ R, ρ γ x := by
   first
-  | exact @_root_.GlobalTheory.DoubleCosetIndicatorSum.main
-  | exact _root_.GlobalTheory.DoubleCosetIndicatorSum.main
   | (apply _root_.GlobalTheory.DoubleCosetIndicatorSum.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DoubleCosetIndicatorSum.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DoubleCosetIndicatorSum.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.DoubleCosetIndicatorSum.main ..)
 
 theorem heckeVec_rightReg (hK : IsCommensurated K) (hh : h ∈ Hecke ℂ K) (φ : G → W) :

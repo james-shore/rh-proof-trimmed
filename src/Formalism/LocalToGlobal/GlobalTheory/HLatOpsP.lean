@@ -189,7 +189,7 @@ theorem gramOf_maj (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι ℂ)
     by_cases hj : j = i
     · subst hj
       simp
-    · simp [Finsupp.single_apply, Pi.single_apply, hj, Ne.symm hj]
+    · simp [hj]
   have hf : ∀ i k, fcoord b X v (b i) k = (X v)⁻¹ k i := by
     intro i k
     simp [fcoord, hv, Matrix.mulVec, dotProduct, Pi.single_apply]
@@ -591,7 +591,7 @@ theorem vecAt_basis {V ι : Type} [AddCommGroup V] [Module K V] [Fintype ι] [De
   by_cases hj : j = i
   · subst hj
     simp
-  · simp [Finsupp.single_apply, Pi.single_apply, hj, Ne.symm hj]
+  · simp [hj]
 
 theorem fcoord_basis {V ι : Type} [AddCommGroup V] [Module K V] [Fintype ι] [DecidableEq ι]
     (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι ℂ) (v : InfinitePlace K) (i : ι) :

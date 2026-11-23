@@ -297,7 +297,7 @@ theorem dg_bvec {m : ℕ} (d : Fin m → ℝ) (i : Fin m) : dg d *ᵥ bvec i = (
   by_cases h : m = i
   · subst h
     simp [Matrix.mulVec_diagonal]
-  · simp [Matrix.mulVec_diagonal, Pi.single_apply, h]
+  · simp [Matrix.mulVec_diagonal, h]
 
 theorem dg_mul (k r : ℕ) (u : ℝ) (hu : u ≠ 0) : dg (tor k r u⁻¹) * dg (tor k r u) = 1 := by
   have hdg : ∀ {m : ℕ} (d : Fin m → ℝ), dg d = Matrix.diagonal (fun i => ((d i : ℝ) : ℂ)) := fun _ => rfl
@@ -360,7 +360,7 @@ theorem bvec_dot {m : ℕ} (i j : Fin m) : star (bvec i) ⬝ᵥ bvec j = if i = 
   by_cases h : i = j
   · subst h
     simp [hbv, dotProduct_single]
-  · simp [hbv, h, dotProduct_single, Pi.single_apply, Ne.symm h]
+  · simp [hbv, h, dotProduct_single, Ne.symm h]
 
 theorem cartanQ : CartanQ := by
   intro k r hk μ hμ

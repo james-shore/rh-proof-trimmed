@@ -45,4 +45,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open DividedPowers GlobalTheory.Cris GlobalTheory.PDA
 
 theorem _root_.GlobalTheory.T.exists_dividedPowers_dividedPowerPolyAlgebra_augIdeal : ∀ (B : Type) [CommRing B] (Q : PDPoly B), ∃ η : DividedPowers Q.aug, ∀ n : ℕ, η.dpow n (Q.e 1) = Q.e n := by
-  first | exact @GlobalTheory.PDA.exists_dividedPowers_aug | exact GlobalTheory.PDA.exists_dividedPowers_aug | (intros; apply GlobalTheory.PDA.exists_dividedPowers_aug <;> assumption)
+  first | exact @GlobalTheory.PDA.exists_dividedPowers_aug

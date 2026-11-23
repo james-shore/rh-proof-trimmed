@@ -103,9 +103,6 @@ theorem coef_acyclic_of_two_sections (C : Type 1) [Category.{0} C] (M : Coef C) 
         simp only [A, map_sub]
         first
           | linear_combination (norm := abel1) h2 - h3 - h1
-          | linear_combination (norm := abel1) h2 - h3 + h1
-          | linear_combination (norm := abel1) h1 + h2 - h3
-          | linear_combination (norm := abel1) -h1 - h2 + h3
       rw [← hr, inner]
       simp only [map_sub, map_add (f := _)]
     have ku := key u

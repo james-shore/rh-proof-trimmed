@@ -47,4 +47,4 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.FormalCoboundarySmu
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
 
 theorem _root_.GlobalTheory.T.cartierDual_primePow_conv_pairing : ∀ (p : ℕ) [Fact p.Prime] (R : Type) [CommRing R] (h : (p : R) = 0) (G : PDivGroup p R) (n r : ℕ) (χ : CartierDual R (G.A n)) (a : G.A n), (χ ^ p ^ r) (a ^ p ^ r) = χ (mulBy R (G.A n) (p ^ r) a) ^ p ^ r := by
-  first | exact @GlobalTheory.Katz.cartier_primePow_pairing | exact GlobalTheory.Katz.cartier_primePow_pairing | (intros; apply GlobalTheory.Katz.cartier_primePow_pairing <;> assumption)
+  first | exact @GlobalTheory.Katz.cartier_primePow_pairing

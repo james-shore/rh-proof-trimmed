@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.selfDual_lattice_orthogonal_unit_norm_extension : 
     ∀ (k : ℕ) (f : Fin k → V), (∀ i, f i ∈ L) → (∀ i j, i ≠ j → h (f i) (f j) = 0) →
     (∀ i, ∃ t : K.O, IsUnit t ∧ h (f i) (f i) = algebraMap K.O K.E t) → k < Module.finrank K.E V →
     ∃ y ∈ L, (∀ i, h y (f i) = 0) ∧ ∃ t : K.O, IsUnit t ∧ h y y = algebraMap K.O K.E t := by
-  first | exact @GlobalTheory.selfDual_orthogonal_unit_step | exact GlobalTheory.selfDual_orthogonal_unit_step | (intros; apply GlobalTheory.selfDual_orthogonal_unit_step <;> assumption)
+  first | exact @GlobalTheory.selfDual_orthogonal_unit_step

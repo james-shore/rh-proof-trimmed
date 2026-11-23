@@ -55,4 +55,4 @@ open scoped TensorProduct
 open Formalism.IndefR.principalLevelFrame Formalism.IndefR.Mult
 
 theorem _root_.GlobalTheory.T.integralGL_pullback_continuousRingEquiv : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] {v : HeightOneSpectrum (𝓞 F)} {w : HeightOneSpectrum (𝓞 E)} (c : v.adicCompletion F ≃+* w.adicCompletion E), Continuous c → ∀ {n : ℕ} (A : GL (Fin n) (v.adicCompletion F)), Matrix.GeneralLinearGroup.map c.toRingHom A ∈ GlobalTheory.SplitWeil.KO (w.adicCompletion E) (Fin n) → A ∈ GlobalTheory.SplitWeil.KO (v.adicCompletion F) (Fin n) := by
-  first | exact @GlobalTheory.IntegralPullback.mem_KO_of_map | exact GlobalTheory.IntegralPullback.mem_KO_of_map | (intros; apply GlobalTheory.IntegralPullback.mem_KO_of_map <;> assumption)
+  first | exact @GlobalTheory.IntegralPullback.mem_KO_of_map

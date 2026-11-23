@@ -75,7 +75,7 @@ theorem exists_fixed_mem_span_orbit (hG : IsPGroup p G) (ρ : Representation k G
 
     rw [hf, hf, map_sum]
     refine Fintype.sum_equiv (Equiv.mulLeft h) _ _ fun g => ?_
-    simp [map_mul, Module.End.mul_apply]
+    simp [map_mul]
   have hmem : ∀ (h : G) (x : V), x ∈ f.range → ρ h x ∈ f.range := by
     rintro h x ⟨c, rfl⟩
     exact ⟨fun g => c (h⁻¹ * g), (hstab h c).symm⟩

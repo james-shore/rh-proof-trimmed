@@ -53,4 +53,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.genericPoints_finite_unitaryModuli_coefficientField : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l), (genericPoints (Xo.XF c)).Finite := by
-  first | exact @GlobalTheory.XScov.genericPoints_XF_finite | exact GlobalTheory.XScov.genericPoints_XF_finite | (intros; apply GlobalTheory.XScov.genericPoints_XF_finite <;> assumption)
+  first | exact @GlobalTheory.XScov.genericPoints_XF_finite

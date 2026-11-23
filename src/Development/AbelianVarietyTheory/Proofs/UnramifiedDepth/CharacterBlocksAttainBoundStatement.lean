@@ -45,4 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.L2.FormalSeriesBounds
 
 theorem _root_.GlobalTheory.T.characterBlocks_attain_bound : CHSupply ∧ RF.CHSupply := by
-  first | exact @GlobalTheory.CharBlock.chSupply | exact GlobalTheory.CharBlock.chSupply | (intros; apply GlobalTheory.CharBlock.chSupply <;> assumption)
+  first | exact @GlobalTheory.CharBlock.chSupply

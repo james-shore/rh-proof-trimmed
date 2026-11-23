@@ -130,7 +130,6 @@ theorem orthogonality_of_lattice_character : L0 → L1 := by
         exact add_mem (hsO j) (h j)
     have hsd : (Pi.single i t : Fin m → F) ⬝ᵥ y = t * y i := by
       first
-        | exact single_dotProduct t i
         | simp [dotProduct, Pi.single_apply]
     have hmp := measurePreserving_add_left (Measure.pi fun _ : Fin m => μ) (Pi.single i t : Fin m → F)
     have hemb := measurableEmbedding_addLeft (Pi.single i t : Fin m → F)

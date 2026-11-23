@@ -70,14 +70,14 @@ theorem UpperTheory.Gal.Join.twExp :
   have r_mul : ∀ a b, r (a * b) = r a * r b := by
     intro a b
     ext y
-    simp [r_apply, Module.End.mul_apply, map_mul]
+    simp [r_apply, map_mul]
   have hcomm : ∀ a b, r a * r b = r b * r a := by
     intro a b
     rw [← r_mul, ← r_mul, mul_comm]
   have hsemi : ∀ t, A' * r t = r (s t) * A' := by
     intro t
     ext y
-    simp [r_apply, A_apply, Module.End.mul_apply, hAρ]
+    simp [r_apply, A_apply, hAρ]
   let N : (T → ℂ) → Submodule ℂ P := fun χ => ⨅ t, (r t).maxGenEigenspace (χ t)
   have hmaps : ∀ a b c, Set.MapsTo (r a) ((r b).maxGenEigenspace c) ((r b).maxGenEigenspace c) :=
     fun a b c => Module.End.mapsTo_maxGenEigenspace_of_comm (hcomm b a) c

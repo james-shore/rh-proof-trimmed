@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_extendedColumnData_all_clauses_but_places :
     (z : Dat (w.st Z) w.I hX T Wt), GrpTrue Z.N f → GrpAt (w.st Z) w.I → Fine z → HoldsL z.R z.F →
     ∀ (Z' : w'.Lt) (hX' : B'.fields.Ok), GrpTrue Z'.N f' → GrpAt (w'.st Z') w'.I → VolTieG (w'.D Z') →
       ∃ z' : Dat (w'.st Z') w'.I hX' T' {v | B'.places.resChar v ∈ T'.pl}, Fine z' ∧ ExtN z z') := by
-  first | exact @GlobalTheory.Mem.R3.Rw.ExtBuild.exists_ext_build | exact GlobalTheory.Mem.R3.Rw.ExtBuild.exists_ext_build | (intros; apply GlobalTheory.Mem.R3.Rw.ExtBuild.exists_ext_build <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.Rw.ExtBuild.exists_ext_build

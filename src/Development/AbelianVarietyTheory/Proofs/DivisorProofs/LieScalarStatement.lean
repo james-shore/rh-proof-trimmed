@@ -41,4 +41,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
 theorem _root_.GlobalTheory.T.lieScalar_of_prints_derEx_vacLine : GlobalTheory.FunPr.Hypotheses₂ → GlobalTheory.RealLift.DerEx → GlobalTheory.RealLift.VacLine → GlobalTheory.RealLift.LieScalar := by
-  first | exact @GlobalTheory.LieScal.lieScalar | exact GlobalTheory.LieScal.lieScalar | (intros; apply GlobalTheory.LieScal.lieScalar <;> assumption)
+  first | exact @GlobalTheory.LieScal.lieScalar

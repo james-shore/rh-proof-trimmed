@@ -91,7 +91,7 @@ theorem tang_iff (v : epsPt t ⟶ G) :
     rw [spMap_comp']
     congr 2
     refine RingHom.ext fun x => ?_
-    simp [epsMul, s]
+    simp [epsMul]
 
 end GlobalTheory.UPel.HT.LieLin.LieAlgebraMultiplication
 
@@ -170,7 +170,7 @@ theorem lieMult_iff_finrank : ∀ (O : Type) [CommRing O] (S : Scheme.{0}) (G : 
         apply Subtype.ext
         apply tanM_ext
         rw [hw]
-        simp [Submodule.coe_sum]
+        simp
     rw [← (LinearEquiv.ofBijective _ hb).finrank_eq, Module.finrank_fin_fun]
   · intro h
     let B := Module.finBasisOfFinrankEq k (eigSub (actR (x0 := t) (S := k) act) τ) h
@@ -196,7 +196,7 @@ theorem lieMult_iff_finrank : ∀ (O : Type) [CommRing O] (S : Scheme.{0}) (G : 
         apply tanM_ext
         show w = _
         rw [hwu]
-        simp [Submodule.coe_sum]
+        simp
       rw [hy, ← B.equivFun_symm_apply, LinearEquiv.apply_symm_apply]
 
 end GlobalTheory.UPel.HT.LieLin

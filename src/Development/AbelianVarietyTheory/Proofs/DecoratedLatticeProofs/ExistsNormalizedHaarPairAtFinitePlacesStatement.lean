@@ -46,4 +46,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_normalizedHaarPair_at_finitePlaces : ∀ (D : D7) (V : HSp D) (R : Subgroup (GA D V)), IsClosed (R : Set (GA D V)) → ∀ (L : Lat V), IsSelfDualC V L → ∀ Q : Finset (Pl D), ∃ ρ μ, IsNormAt V R L (· ∈ Q) ρ μ := by
-  first | exact @GlobalTheory.SeeSaw.normAt_exists | exact GlobalTheory.SeeSaw.normAt_exists | (intros; apply GlobalTheory.SeeSaw.normAt_exists <;> assumption)
+  first | exact @GlobalTheory.SeeSaw.normAt_exists

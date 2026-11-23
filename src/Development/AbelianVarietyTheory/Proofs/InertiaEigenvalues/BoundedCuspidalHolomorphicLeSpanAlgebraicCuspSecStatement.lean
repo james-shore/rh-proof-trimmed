@@ -46,4 +46,4 @@ open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor R
 open scoped TensorProduct Matrix
 
 theorem _root_.GlobalTheory.T.boundedCuspidalHolomorphic_le_span_algebraicCuspSections : ∀ (D : D7) (T : CoreJ D), LawsJ T → ∀ j, Formalism.L2.Pj.InR D j → ∀ σ : T.Q.c.F →+* ℂ, GoodEmb T.Q.c σ → ∀ w : WeightFamilies.Wt D j, w.LastPos → 0 < w.n → holSub0 (T.U j σ).X (laU (T.U j σ) (wtA w) w.n) ≤ Submodule.span ℂ (rdU (T.U j σ) '' {f | f ∈ sec (T.Q.Xo j) T.Q.c (wtA w) w.n ∧ rdU (T.U j σ) f ∈ holSub0 (T.U j σ).X (laU (T.U j σ) (wtA w) w.n)}) := by
-  first | exact @GlobalTheory.SmallWtSpan.holSub0_le_span_cuspSec | exact GlobalTheory.SmallWtSpan.holSub0_le_span_cuspSec | (intros; apply GlobalTheory.SmallWtSpan.holSub0_le_span_cuspSec <;> assumption)
+  first | exact @GlobalTheory.SmallWtSpan.holSub0_le_span_cuspSec

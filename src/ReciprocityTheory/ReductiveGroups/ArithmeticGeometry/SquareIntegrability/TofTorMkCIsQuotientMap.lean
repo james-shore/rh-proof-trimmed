@@ -136,12 +136,11 @@ theorem tof_box_measurable (d : ℕ) : MeasurableSet {x : Fin d → ℝ | ∀ i,
   first
   | (simp only [Set.setOf_forall]
      exact MeasurableSet.iInter fun i => measurable_pi_apply i measurableSet_Ioc)
-  | measurability
 
 theorem tof_mFourier_torMk {d : ℕ} (n : Fin d → ℤ) (y : Fin d → ℝ) :
     mFourier n (tof_torMk d y) = cexp (2 * Real.pi * I * ∑ i, (n i : ℂ) * y i) := by
   have e : mFourier n (tof_torMk d y) = ∏ i, fourier (n i) ((y i : ℝ) : UnitAddCircle) := by
-    first | rfl | simp [mFourier, tof_torMk]
+    first | rfl
   rw [e]
   simp only [fourier_coe_apply, Complex.ofReal_one, div_one]
   rw [Finset.mul_sum, Complex.exp_sum]

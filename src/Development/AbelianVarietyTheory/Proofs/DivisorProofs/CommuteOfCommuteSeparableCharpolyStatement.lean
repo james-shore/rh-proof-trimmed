@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open Matrix Polynomial
 
 theorem _root_.GlobalTheory.T.commute_of_commute_of_charpoly_separable' : ∀ (K : Type) [Field K] (n : ℕ) (y a b : Matrix (Fin n) (Fin n) K), y.charpoly.Separable → a * y = y * a → b * y = y * b → a * b = b * a := by
-  first | exact @GlobalTheory.commute_of_commute_separable_charpoly | exact GlobalTheory.commute_of_commute_separable_charpoly | (intros; apply GlobalTheory.commute_of_commute_separable_charpoly <;> assumption)
+  first | exact @GlobalTheory.commute_of_commute_separable_charpoly

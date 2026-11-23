@@ -51,4 +51,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_lineBundle_of_thinBasis_cocycle : ∀ (X : Scheme.{0}) (C : Type) [Category.{0} C] (V : C → X.Opens) (hV : ∀ ⦃T T' : C⦄, (T ⟶ T') → V T' ≤ V T) [Quiver.IsThin C] (u : ∀ (T T' : C) (_ : T ⟶ T'), Γ(X, V T')ˣ), IsBas V → IsCoc V hV u → ∃ L : LB X, L.IsLB ∧ IsFrame L V hV u := by
-  first | exact @GlobalTheory.ThinGlue.exists_lb_frame | exact GlobalTheory.ThinGlue.exists_lb_frame | (intros; apply GlobalTheory.ThinGlue.exists_lb_frame <;> assumption)
+  first | exact @GlobalTheory.ThinGlue.exists_lb_frame

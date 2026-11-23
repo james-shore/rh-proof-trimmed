@@ -1,115 +1,61 @@
-# riemann-hypothesis
+# rh-proof-trimmed (S2 on Lean 4.37)
 
-[![checks](https://github.com/leanprover-community/riemann-hypothesis/actions/workflows/checks.yml/badge.svg)](https://github.com/leanprover-community/riemann-hypothesis/actions/workflows/checks.yml)
+The Lean 4 proof of RH and GRH for Dirichlet L-functions ([remark.pdf](https://alpo.ge/remark.pdf)), made smaller by
+mechanical steps only. This branch has one stage on
+[leanprover-community/riemann-hypothesis #185](https://github.com/leanprover-community/riemann-hypothesis/pull/185)
+(#134 on Lean v4.37.0-rc1). The Lean 4.33.1 stages are on [main](https://github.com/james-shore/rh-proof-trimmed).
 
-A community-led effort to clean up and maintain a Lean formalization of the 2026 proof of the Riemann Hypothesis and of GRH for Dirichlet L-functions.
+- The five theorems in `src/Main.lean` and their statements are unchanged
+- No proof is written by hand or by a model
+- S2 is one commit on top of leanprover-community main at `98cc3736`, just after #221 merged, with no other stage
+  underneath
+- Its receipt is in `cleaning/S2/RECEIPT.md`
 
-The purpose of this repo is to create an artifact that is:
+## Stage
 
-- **accessible**: we want to improve build performance and modularity to enable researchers to feasibly engage with the proof even without access to massive amounts of compute.
-- **readable**: we want to improve code quality while preserving the "logic" of the proof, aspirationally to Mathlib levels. This includes lemma organization, formatting and idiomatic style, eliminating linter warnings, slop-free documentation, and more.
-- **integrated with the community**: we would like to add bibliographic references to prior work where appropriate, and rely on existing formalization projects when possible.
+| Stage | What | Files | Lines | Compiles | Kernel-accepted | Same statements | Term diff |
+|---|---|---|---|---|---|---|---|
+| Base | main at `98cc3736` | 148,229 | 20,567,714 | | | | |
+| S2 | remove syntax Lean's own linters flag as unused | 148,229 | 20,555,576 | [ ] | [ ] | [ ] | [ ] |
 
-Please note: we are **not** looking for:
+- Compiles means Lean v4.37.0-rc1 builds every module
+- Kernel-accepted means an independent kernel (nanoda) accepts the exported proof
+- Same statements means con-leche `--compare` accepts the export against the published challenge
+- Term diff compares each statement in the exported proof with the base's
+- Files and lines exclude `Challenge.lean`
 
-- complete overhauls that follow a substantially different proof path
-- claims about your own machine's builds / comparator run
-- adding files which are not necessary for the Riemann Hypothesis proof
+## Base
 
-This work is taking place on the `main` branch. The `original` branch preserves the first publicly-released version of the proof retrieved on 2026-11-20 from <https://alpo.ge/remark.pdf>.
-If you want to open the original proof without compiling it, use
-[riemann-hypothesis-original](https://github.com/homeowmorphism/riemann-hypothesis-original).
-It keeps the published Lean source unchanged and provides a prebuilt cache for it.
+- #185 is #134 moved to Lean v4.37.0-rc1. #134 speeds up the build. It removes heartbeat overrides, narrows imports
+  and speeds up slow proofs
+- `98cc3736` is main when this stage was made, just after #221 merged
 
-## Theorem Statements
+## Regenerate
 
-`src/Main.lean` proves the following theorems:
-
-| Theorem | Statement |
-|---|---|
-| `riemannHypothesis` | Mathlib's `RiemannHypothesis` |
-| `riemannZeta_eq_zero_re` | An equivalent restatement of the Riemann Hypothesis not reliant on Mathlib directly: every zero of the Riemann Zeta function with 0 < Re s < 1 has Re s = 1/2 |
-| `LFunction_ne_zero_of_half_lt_re` | L(χ, s) ≠ 0 for Re s > 1/2, for every modulus and every Dirichlet character, except the trivial character at s = 1 |
-| `LFunction_eq_zero_re` | every zero of L(χ, s) with 0 < Re s < 1 has Re s = 1/2 |
-| `LFunction_eq_zero_re_of_isPrimitive` | every zero of L(χ, s) for a Primitive Dirichlet character χ with 0 < Re s < 1 has Re s = 1/2 |
-
-[`src/Challenge.lean`](src/Challenge.lean) states the same five with `sorry` in place of the
-proofs, in a file that imports only Mathlib. Comparator checks that `Main.lean` proves exactly
-those statements, that it uses no axioms other than `propext`, `Quot.sound` and
-`Classical.choice`, and that Lean's kernel and nanoda both accept the proof.
-
-## Cache
-
-A full build takes hours, so you should use the cache:
-
-```bash
-lake exe cache get
-lake build --no-build
+```
+for f in keep statement-cone simp-args unreachable unused-tactics; do gunzip -c cleaning/S2/$f.tsv.gz > $f.tsv; done
+python3 cleaning/transform/transform.py BASE/src DEST --keep keep.tsv --level L0 \
+  --lib-namespaces cleaning/transform/mathlib-namespaces.txt.gz --statement-cone statement-cone.tsv \
+  --edits simp-args.tsv --edits unreachable.tsv --edits unused-tactics.tsv
 ```
 
-A full build makes Lean check every proof on your machine. The cache downloads files that were
-compiled elsewhere, so you can read and edit the project within minutes, but Lean does not
-re-check them.
+- BASE is leanprover-community/riemann-hypothesis main at `98cc3736`
+- The last line printed is the tree fingerprint, which must match the receipt
+- The edit format is in `cleaning/transform/EDIT-LISTS.md`
 
-## Checking the proof yourself
+## Layout
 
-Take a fresh clone on a Linux machine with
-[bubblewrap](https://github.com/containers/bubblewrap) installed and run:
+- `src/` is the source after S2
+- `cleaning/` has the transform, the keep list, the edit lists and the receipt
+- Everything else is the base, unchanged. Its README is `README-base.md`
 
-```bash
-MATHLIB_CACHE_GET_URL=https://cache.mathlib.org/mathlib4 lake exe mathlib/cache get
-lake comparator
-```
+## Inputs
 
-The first command fetches Mathlib's compiled files and nothing of ours. Don't use
-`lake exe cache get` here, because that also downloads our prebuilt copy of the submission. The
-second reads `comparator.json`, builds `Challenge` and `Main` in a sandbox with no network, and
-makes the checks described under [Theorem Statements](#theorem-statements).
+- Base `98cc3736f046abae883d8cda839c84f3004257a7`
+- Lean v4.37.0-rc1 and Mathlib `31ce06eaadf4a200c0e1407c5f10953cf606b8f8`
+- `cleaning/transform/` follows [keithadler/rh-trim](https://github.com/keithadler/rh-trim) `tools/prune.py`
+  (Apache-2.0)
 
-Compiling the submission runs its code, so you may want to do it in a VM or your own sandbox. To do that, fetch Mathlib's cache as above, then run the check in three steps:
+## Licence
 
-```bash
-export LEAN_ABORT_ON_PANIC=1        # as Comparator does
-export LAKE_ARTIFACT_CACHE=false    # in case cache-env.sh was sourced
-
-# in a clone where the submission has not been compiled
-lake build Challenge
-lake env leanexport Challenge -- $(cat export-targets.txt) > challenge.export
-
-# wherever you build the submission
-lake build Main
-lake env leanexport Main -- $(cat export-targets.txt) > solution.export
-
-# from an empty directory, with the same Lean release and comparator.json from the first clone
-lake comparator --config comparator.json \
-  --challenge-from-export challenge.export --solution-from-export solution.export
-```
-
-The published source uses Lean 4.33.1, which has neither `lake comparator` nor `leanexport`.
-[An older version of this README](https://github.com/leanprover-community/riemann-hypothesis/blob/7cce738ba719a32964ca3822d0994f4c6952c7ae/README.md#checking-it)
-has the two-toolchain steps for checking it.
-
-## The formal-conjectures statement
-
-[`comparator/`](comparator/) holds a second Comparator setup. Its challenge states the Riemann
-Hypothesis and the Generalized Riemann Hypothesis the way
-[formal-conjectures](https://github.com/google-deepmind/formal-conjectures/blob/d8d031d4998c78575159ccab9a7a9e95ce043883/FormalConjectures/Millennium/RiemannHypothesis.lean)
-does, in statements that neither the author nor we wrote, and the files next to it prove them
-from `src/Main.lean`. [NOTES.md](verification/NOTES.md#formal-conjectures) says how to check it
-and what has been checked so far.
-
-## CI
-
-To lend a Linux machine with plenty of memory and disk, see
-[CI-RUNNERS.md](verification/CI-RUNNERS.md). The CI scripts are in [`scripts/`](scripts/) and
-[`tools/ci_native/`](tools/ci_native/README.md).
-
-## License
-
-The submission belongs to its author and was published without a license. It is mirrored here
-so that it can be checked. Commit `40e56bab` is the unmodified copy.
-
-The declarations in `comparator/` that are copied from
-[formal-conjectures](https://github.com/google-deepmind/formal-conjectures) are copyright The Formal
-Conjectures Authors, under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
-The files that hold them carry the notice.
+[LICENSE.md](LICENSE.md)

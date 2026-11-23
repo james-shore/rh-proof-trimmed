@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.hermitian_integral_vectors_pairing : ∀ (L : Type
       (∀ i j, GlobalTheory.Hk3.IntWitt.DvdPow ϖ 1
         ((Formalism.UG.cT σ g * (JT : Matrix (Fin n') (Fin n') L) * g - (JT : Matrix (Fin n') (Fin n') L)) i j)) ∧
       ∀ i r, GlobalTheory.Hk3.IntWitt.DvdPow ϖ 1 ((g *ᵥ z i) r - z' i r) := by
-  first | exact @GlobalTheory.Hk3.ResWitt.exists_int_unitary_mod_of_gram_mod | exact GlobalTheory.Hk3.ResWitt.exists_int_unitary_mod_of_gram_mod | (intros; apply GlobalTheory.Hk3.ResWitt.exists_int_unitary_mod_of_gram_mod <;> assumption)
+  first | exact @GlobalTheory.Hk3.ResWitt.exists_int_unitary_mod_of_gram_mod

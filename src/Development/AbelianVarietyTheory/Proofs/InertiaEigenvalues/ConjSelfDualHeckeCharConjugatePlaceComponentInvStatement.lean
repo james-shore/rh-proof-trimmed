@@ -48,4 +48,4 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 open GlobalTheory.WeilDeligne GlobalTheory.LocLanglands GlobalTheory.CuspRep GlobalTheory.SmGL
 
 theorem _root_.GlobalTheory.T.conjSelfDual_heckeChar_conjugatePlace_component_inv : ∀ {R : Ranks} (Hs : Host R) (μ : HChar Hs.E), IsCSD Hs μ → ∀ (w w' : HeightOneSpectrum (𝓞 Hs.E)), IsConjPl Hs w w' → ∃ i : w.adicCompletion Hs.E ≃+* w'.adicCompletion Hs.E, Continuous i ∧ (∀ x, i (algebraMap Hs.E _ x) = algebraMap Hs.E _ (Hs.conj x)) ∧ ∀ x, μ.loc w' (Units.map i.toRingHom.toMonoidHom x) = (μ.loc w x)⁻¹ := by
-  first | exact @GlobalTheory.ConjLocCsd.main | exact GlobalTheory.ConjLocCsd.main | (intros; apply GlobalTheory.ConjLocCsd.main <;> assumption)
+  first | exact @GlobalTheory.ConjLocCsd.main

@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.trivialTwist_baseLevel_eq_tuple_parahoric : ∀ (D
         ((levFn (Y.Z.ρ.B i j b).F.βS ((Y.Z.ρ.B i j b).levS (Y.Z.ρ.tw i b 0 ∅ 1)) x : ℂˣ) : ℂ) =
           ((levFn (X.R.βV j) (Lev.flagL (X.R.datVt j t)) x : ℂˣ) : ℂ) *
             Y.Z.ρ.e i b ((D.nexp.psiU i b ⟨_, hu⟩ : (FractionRing (D.ntw.O i))ˣ) : FractionRing (D.ntw.O i)) := by
-  first | exact @GlobalTheory.TrivTwistLevel.levS_triv_iff_and_levFn | exact GlobalTheory.TrivTwistLevel.levS_triv_iff_and_levFn | (intros; apply GlobalTheory.TrivTwistLevel.levS_triv_iff_and_levFn <;> assumption)
+  first | exact @GlobalTheory.TrivTwistLevel.levS_triv_iff_and_levFn

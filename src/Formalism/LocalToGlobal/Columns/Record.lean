@@ -183,7 +183,7 @@ theorem opOn_id (hf : S.Free) : E.opOn (fun d => d) = LinearMap.id := by
   funext c
   show E.atPt (S.outSec.rep c) F = F c
   rw [E.atPt_eq hf F (S.outSec.rep c) c 1 (one_smul _ _), map_one]
-  all_goals first | rfl | simp
+  all_goals first | rfl
 
 theorem opOn_comp (hf : S.Free) (δ δ' : S.D → S.D) (hδ' : ∀ (g : S.G) (d : S.D), δ' (g • d) = g • δ' d) :
     E.opOn δ ∘ₗ E.opOn δ' = E.opOn fun d => δ' (δ d) := by
@@ -192,7 +192,7 @@ theorem opOn_comp (hf : S.Free) (δ δ' : S.D → S.D) (hδ' : ∀ (g : S.G) (d 
     have h1 : (g * S.outSec.mv x) • S.outSec.rep (S.cls x) = g • x := by
       rw [mul_smul, S.outSec.mv_smul]
     rw [E.atPt_eq hf F (g • x) (S.cls x) _ h1, map_mul]
-    all_goals first | rfl | simp [GSD.Ev.atPt, GSD.Ev.trPt]
+    all_goals first | rfl
   apply LinearMap.ext
   intro F
   funext c
@@ -205,9 +205,7 @@ def lin : (S.ιV → ℂ) →ₗ[ℂ] (E.Y → ℂ) := Fintype.linearCombination
 
 theorem lin_ker : LinearMap.ker E.lin = ⊥ := by
   first
-  | exact Fintype.linearIndependent_iff_ker.mp E.li
   | exact LinearMap.ker_eq_bot.mpr E.li.fintypeLinearCombination_injective
-  | exact LinearMap.ker_eq_bot.mpr (Fintype.linearIndependent_iff_injective.mp E.li)
 
 def gram : Matrix S.ιV S.ιV ℂ := Matrix.of fun i j => E.ip (E.ev (S.bV i)) (E.ev (S.bV j))
 
@@ -232,7 +230,6 @@ theorem ipCl_apply (h : S.Ok) (F G : S.Cl → E.Y → ℂ) :
       ∑ c : S.Cl, ((Nat.card (MulAction.stabilizer S.G (S.outSec.rep c)) : ℕ) : ℂ)⁻¹ * E.ip (F c) (G c)) := by
   first
   | simp [ipCl, LinearMap.sum_apply, LinearMap.smul_apply, LinearMap.compl₂_apply, smul_eq_mul]
-  | rfl
 
 def Fi : Submodule ℂ (S.Cl → E.Y → ℂ) := Submodule.span ℂ (Set.range E.emb)
 
@@ -700,7 +697,6 @@ theorem diagonalTwist_mul (P : ST) (a b : (𝓞 X.E ⧸ P.1.asIdeal)ˣ) (d : Dec
   unfold DecoSet.dia1
   first
   | rw [← DecoSet.dia_smul_def, ← DecoSet.dia_smul_def, ← DecoSet.dia_smul_def, Pi.mulSingle_mul, mul_smul]
-  | simp only [← DecoSet.dia_smul_def, Pi.mulSingle_mul, mul_smul]
 
 theorem diagonalTwist_injective (P : ST) (a : (𝓞 X.E ⧸ P.1.asIdeal)ˣ) {d d' : DecoSet (E := X.E) (n := n) (ST := ST) (SG := SG)} (h : d.dia1 P a = d'.dia1 P a) :
     d = d' := by
@@ -772,7 +768,6 @@ theorem dilD_fv (P : ST) (a : (𝓞 X.E ⧸ P.1.asIdeal)ˣ) (c : (formGSD C Λ).
   rw [he, functional_diagonalTwist]
   first
   | rfl
-  | (ext x; rfl)
 
 theorem stabilizer_diagonalTwist (P : ST) (a : (𝓞 X.E ⧸ P.1.asIdeal)ˣ) (d : DecoSet (E := X.E) (n := n) (ST := ST) (SG := SG)) :
     MulAction.stabilizer (formGSD C Λ).G (d.dia1 P a) = MulAction.stabilizer (formGSD C Λ).G d := by
@@ -865,8 +860,6 @@ theorem muAt_unit {σ₀ : X.K →+* ℂ} (h : Dc.Unit σ₀) (i : ℕ) (x : (Fo
   · exact h.1 _ x
   · first
     | simp
-    | rfl
-    | (show ‖σ₀ ((1 : X.Kˣ) : X.K)‖ = 1; simp)
 
 end DetChr
 
@@ -936,8 +929,6 @@ variable {W Λ}
 theorem recDGamAll_eq {σ₀ : X.K →+* ℂ} (hX : X.Ok) (G : ChainGlob W σ₀) : recDGamAll W Λ hX G = dGamAut X R := by
   first
   | (unfold recDGamAll; rfl)
-  | (delta recDGamAll; rfl)
-  | rfl
 
 theorem recDGamAll_pos {σ₀ : X.K →+* ℂ} (hX : X.Ok) (G : ChainGlob W σ₀) : 0 < recDGamAll W Λ hX G := by
   rw [recDGamAll_eq hX G]
@@ -947,8 +938,7 @@ theorem recDGamAll_dvd {σ₀ : X.K →+* ℂ} (hX : X.Ok) (G : ChainGlob W σ�
     (c : StCl W Λ u j) : Nat.card (StStab W Λ u j c) ∣ recDGamAll W Λ hX G := by
   rw [recDGamAll_eq hX G]
   exact formGSD_stab_dvd_dGamAut hX (by first
-      | (show R.k + j * (R.t + 1) ≤ R.k + R.m * (R.t + 1); exact Nat.add_le_add_left (Nat.mul_le_mul_right _ hj) _)
-      | (unfold Ranks.N; nlinarith)) _ _ _
+      | (show R.k + j * (R.t + 1) ≤ R.k + R.m * (R.t + 1); exact Nat.add_le_add_left (Nat.mul_le_mul_right _ hj) _)) _ _ _
 
 
 variable (W Λ) in
@@ -1399,7 +1389,6 @@ theorem tilR_smulF (hPr : Pr.Ok) (u : Pr.Word) (hpi : ∀ w : SG', Pr.piT u ∉ 
     tilR hSG u (a • d) = extF hSG hL u a • tilR hSG u d := by
   first
   | exact tilR_smul hSG hPr u hpi (a.1, a.2.1) d
-  | exact tilR_smul hSG hPr u hpi _ d
 
 
 variable (W Λ ΛM) in

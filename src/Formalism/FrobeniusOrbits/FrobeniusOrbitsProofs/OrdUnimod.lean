@@ -72,8 +72,6 @@ theorem integ_iff (σ : hostE ζ a b ≃ₐ[ℚ] hostE ζ a b) (t : hostE ζ a b
     IsIntegral ℤ (σ t) ↔ IsIntegral ℤ t := by
   first
   | exact isIntegral_algEquiv (σ.restrictScalars ℤ)
-  | exact ⟨fun h => by simpa using h.map (σ.symm.toAlgHom.restrictScalars ℤ),
-      fun h => h.map (σ.toAlgHom.restrictScalars ℤ)⟩
 
 theorem smul_ne_bot (σ : hostE ζ a b ≃ₐ[ℚ] hostE ζ a b) (B : Ideal (𝓞 (hostE ζ a b)))
     (hB : B ≠ ⊥) : σ • B ≠ ⊥ := by

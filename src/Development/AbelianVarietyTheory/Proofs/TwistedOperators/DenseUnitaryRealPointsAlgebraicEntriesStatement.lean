@@ -54,4 +54,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RowEx MeasureTheory
 
 theorem _root_.GlobalTheory.T.dense_unitaryRealPoints_algebraicEntries : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → ∀ V : HSp D, Dense {g : GinfC V | ∀ τ a b, IsAlgebraic ℚ (compAt θ τ (Formalism.L2.Theta.mt V g.1) a b)} := by
-  first | exact @GlobalTheory.RealAlgDense.dense_alg | exact GlobalTheory.RealAlgDense.dense_alg | (intros; apply GlobalTheory.RealAlgDense.dense_alg <;> assumption)
+  first | exact @GlobalTheory.RealAlgDense.dense_alg

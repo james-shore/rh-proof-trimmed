@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_adelicCore_transport_enlargedCoefficientBas
       HEq core'.mu z.core.mu ∧ HEq core'.Kf z.core.Kf ∧ HEq core'.cE z.core.cE ∧ HEq core'.chiW z.core.chiW ∧
       HEq core'.x₀ z.core.x₀ ∧ HEq core'.iota z.core.iota ∧
       Formalism.L2.Pj.LawsCore core'.toCore ∧ core'.Q.Canon ∧ (∀ j, 1 ≤ (core'.Q.Dw j).p + (core'.Q.Dw j).q) ∧ core'.pb = f'.P.pb := by
-  first | exact @GlobalTheory.Mem.R3.Rw.exists_adelicCore_transport_enlargedCoefficientBase | exact GlobalTheory.Mem.R3.Rw.exists_adelicCore_transport_enlargedCoefficientBase | (intros; apply GlobalTheory.Mem.R3.Rw.exists_adelicCore_transport_enlargedCoefficientBase <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.Rw.exists_adelicCore_transport_enlargedCoefficientBase

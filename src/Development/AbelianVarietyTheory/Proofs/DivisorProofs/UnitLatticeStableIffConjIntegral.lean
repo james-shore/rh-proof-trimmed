@@ -92,7 +92,7 @@ theorem mem_KGL_of_int {E : Type} [Field E] [NumberField E] {n : ℕ} (w : Pl E)
   · rw [map_mul, hN, hN', map_one]; exact M.mul_inv
   · rw [map_mul, hN, hN', map_one]; exact M.inv_mul
   · apply Units.ext
-    simp only [Formalism.UG.bc, Units.coe_map, MonoidHom.coe_coe]
+    simp only [Formalism.UG.bc, Units.coe_map]
     exact hN
 
 end GlobalTheory.InertUnitOrb.LatStable

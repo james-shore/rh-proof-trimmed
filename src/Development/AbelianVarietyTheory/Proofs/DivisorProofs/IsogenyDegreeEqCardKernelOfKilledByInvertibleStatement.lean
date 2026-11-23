@@ -50,4 +50,4 @@ open GlobalTheory GlobalTheory.HTLat GlobalTheory.Published.AbVarRed GlobalTheor
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.isogenyDegree_eq_card_kernel_of_killed_by_invertible : ∀ (K : Type) [Field K] (A B : AbVar K) (f : A ⟶ B) (n : ℕ), (n : K) ≠ 0 → IsIsogeny f → (∀ (T : Over (Sp K)) (x : T ⟶ A.X), x ≫ f.hom = 1 → x ^ n = 1) → deg f = Nat.card (ptMap f).ker := by
-  first | exact @GlobalTheory.AV.DegSep.deg_eq_card_ker_of_killed | exact GlobalTheory.AV.DegSep.deg_eq_card_ker_of_killed | (intros; apply GlobalTheory.AV.DegSep.deg_eq_card_ker_of_killed <;> assumption)
+  first | exact @GlobalTheory.AV.DegSep.deg_eq_card_ker_of_killed

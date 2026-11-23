@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.isThetaAt_enlarge_placeIdempotent_latticeIndicator
         (GlobalTheory.HalfProd.prodHalf e' (e - e') (halfInd (e - e') (latO S T (ΛS : Set _) (ΛT : Set _) fun _ => True)) Φ) ∧
       IsThetaAt ψ (symplO S T) (heisO ψ S T) e (latO S T (ΛS : Set _) (ΛT : Set _) fun _ => True) 1 f₀
         (GlobalTheory.HalfProd.prodHalf e' (e - e') (halfInd (e - e') (latO S T (ΛS : Set _) (ΛT : Set _) fun _ => True)) Φ) g := by
-  first | exact @GlobalTheory.ThetaEnlarge.isThetaAt_enlarge | exact GlobalTheory.ThetaEnlarge.isThetaAt_enlarge | (intros; apply GlobalTheory.ThetaEnlarge.isThetaAt_enlarge <;> assumption)
+  first | exact @GlobalTheory.ThetaEnlarge.isThetaAt_enlarge

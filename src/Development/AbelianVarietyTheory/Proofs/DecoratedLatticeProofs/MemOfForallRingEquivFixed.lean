@@ -55,11 +55,7 @@ theorem exists_ringEquiv_add_one {Ω : Type} [Field Ω] [IsAlgClosed Ω] (k : Su
     (hc : Transcendental k c) :
     ∃ σ : Ω ≃+* Ω, (∀ a ∈ k, σ a = a) ∧ σ c = c + 1 := by
   first
-  | exact @_root_.GlobalTheory.ShiftVariables.exists_ringEquiv_add_one
-  | exact _root_.GlobalTheory.ShiftVariables.exists_ringEquiv_add_one
   | (apply _root_.GlobalTheory.ShiftVariables.exists_ringEquiv_add_one <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ShiftVariables.exists_ringEquiv_add_one <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ShiftVariables.exists_ringEquiv_add_one <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ShiftVariables.exists_ringEquiv_add_one ..)
 
 theorem mem_of_forall_ringEquiv_fixed {Ω : Type} [Field Ω] [IsAlgClosed Ω] [CharZero Ω]

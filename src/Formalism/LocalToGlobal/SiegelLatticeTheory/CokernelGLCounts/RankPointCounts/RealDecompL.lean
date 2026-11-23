@@ -334,7 +334,7 @@ theorem gv_ne (t : TermOp.GTerm X u u' (X.Fu u) (X.Fu u') what₂ rows') (hG : t
     unfold RealObj.Gv
     rw [key _ le_rfl, key _ (Nat.le_succ _)]
     simp only [Gval, Gflag, Formalism.MainNotions.S.Dl, ZhatL, map_sub, map_mul, map_natCast, Formalism.BasicNotions.Examples₂.emb_star,
-      Complex.mul_conj, Complex.normSq_eq_norm_sq, RealObj.Tw, Tu]
+      Complex.mul_conj, Complex.normSq_eq_norm_sq, RealObj.Tw]
     push_cast
     ring
   intro h0
@@ -433,9 +433,7 @@ theorem gx_pos_of (γ : X.B.I.Ginf) (v : InfinitePlace X.B.I.F) (sc : ℝ) (hsc 
       inv_one, one_smul]
     simp only [Matrix.mulVec_smul, star_smul, hs]
     first
-    | (simp only [Matrix.smul_dotProduct, Matrix.dotProduct_smul, smul_eq_mul]; ring)
     | (simp only [smul_dotProduct, dotProduct_smul, smul_eq_mul]; ring)
-    | (simp; ring)
   have hsub : ∀ l (hl : l ≤ D.R.rS + 1),
       (RealObj.ZX X u u' sc γ v).submatrix (Fin.castLE hl) (Fin.castLE hl) =
         Matrix.diagonal (fun b : Fin l => ((sc : ℂ) ^ (D.R.rS - b.1))⁻¹) *
@@ -463,7 +461,6 @@ theorem gx_pos_of (γ : X.B.I.Ginf) (v : InfinitePlace X.B.I.F) (sc : ℝ) (hsc 
   have hq := mul_pos (pow_pos hn 4) h
   first
   | linarith
-  | nlinarith [hq]
 
 theorem liftGPosC_of (κ : TermDef.Term D u u' (X.Fu u) (Y.what₂ u) → ℕ)
     (hAt : ∀ t : TermDef.Term D u u' (X.Fu u) (Y.what₂ u), t.G ≠ 0 → t.relevant → ∃ w, t.atPt w)

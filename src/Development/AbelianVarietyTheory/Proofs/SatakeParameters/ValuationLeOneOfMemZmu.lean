@@ -382,7 +382,7 @@ theorem kerOf_thDistC (Sa SB : Finset (HeightOneSpectrum (𝓞 X.E))) {cA cB : �
         intro P hP y hy
         simp [hxloc P y hy]
       · ext y
-        simp only [LinearMap.smul_apply, Nat.cast_smul_eq_nsmul, ← Nat.cast_smul_eq_nsmul E,
+        simp only [Nat.cast_smul_eq_nsmul, ← Nat.cast_smul_eq_nsmul E,
           smul_smul, mul_inv_cancel₀ hB', one_smul]
     have : Module.Finite (𝓞 E) T := Module.Finite.iff_fg.2 hT
     have : Module.Finite (𝓞 E) (LinearMap.range f) := Module.Finite.of_injective

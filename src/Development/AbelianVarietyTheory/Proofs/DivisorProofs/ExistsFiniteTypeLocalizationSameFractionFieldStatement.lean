@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.exists_finiteType_localization_same_fractionField 
     ∃ (S : Subring L) (hS : ∀ a, c a ∈ S) (q : Ideal S), q.IsPrime ∧ (c.codRestrict S hS).FiniteType ∧
       (∀ f : L, ∃ a ∈ S, ∃ b ∈ S, b ≠ 0 ∧ f * b = a) ∧
       ∀ f : L, f ∈ R ↔ ∃ a b : S, b ∉ q ∧ f * b = a := by
-  first | exact @GlobalTheory.FieldPair.IsLocModel.exists_finiteType_localization | exact GlobalTheory.FieldPair.IsLocModel.exists_finiteType_localization | (intros; apply GlobalTheory.FieldPair.IsLocModel.exists_finiteType_localization <;> assumption)
+  first | exact @GlobalTheory.FieldPair.IsLocModel.exists_finiteType_localization

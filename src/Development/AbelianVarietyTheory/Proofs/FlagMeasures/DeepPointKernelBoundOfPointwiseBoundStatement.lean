@@ -46,4 +46,4 @@ open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.R
 open scoped InnerProductSpace ContDiff
 
 theorem _root_.GlobalTheory.T.deepPointKernelBound_of_pointwiseBound : PtBound → (∀ (B : RowsAut) (Cg : ℝ) (n₀ : ℕ) (d : InfinitePlace B.I.F → ℝ) (p q : ℕ) (b : ℝ), 8 ≤ n₀ → CountHyp B Cg n₀ d p q b → FiniteDimensional ℂ (B.I.eHom B.σs B.μf B.fund B.R B.Re)) → GlobalTheory.IndefiniteRowSideFullHecke.DeepKernelRadiusBound.DeepKernelBound := by
-  first | exact @GlobalTheory.DeepKernel.deep_kernel_bound_of_ptBound | exact GlobalTheory.DeepKernel.deep_kernel_bound_of_ptBound | (intros; apply GlobalTheory.DeepKernel.deep_kernel_bound_of_ptBound <;> assumption)
+  first | exact @GlobalTheory.DeepKernel.deep_kernel_bound_of_ptBound

@@ -61,11 +61,7 @@ theorem exists_ne_zero_smul_mem_of_mem_span {E : Type} [Field E] [NumberField E]
     (hx : x ∈ Submodule.span E (L : Set (Fin n → E))) :
     ∃ d : 𝓞 E, d ≠ 0 ∧ d • x ∈ L := by
   first
-  | exact @_root_.GlobalTheory.HermitianEigenvalueInequality.main
-  | exact _root_.GlobalTheory.HermitianEigenvalueInequality.main
   | (apply _root_.GlobalTheory.HermitianEigenvalueInequality.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.HermitianEigenvalueInequality.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.HermitianEigenvalueInequality.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.HermitianEigenvalueInequality.main ..)
 
 theorem isLattice_lowLat : ∀ (E : Type) [Field E] [NumberField E] (n n₁ : ℕ) (L : Submodule (𝓞 E) (Fin n → E))

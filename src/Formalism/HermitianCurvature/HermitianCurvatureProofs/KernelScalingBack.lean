@@ -389,7 +389,7 @@ theorem Kp_scale (ψ : AddChar K ℂ) (hψ : ∀ r ∈ R, ψ r = 1)
   · obtain ⟨φ, hφ⟩ := A5x8.inv_iso R ((S, T * c) : Point K) a ha b hb
       (fm S T c p).1 (fm S T c p).2
     have hrefl := A5x4.isoZZ_refl R (orbZ w' p')
-    simp only [hInt.mpr hZ, hZ, if_true, A5x8.inv_phase R ψ hψ _ a ha b hb,
+    simp only [hInt.mpr hZ, hZ, A5x8.inv_phase R ψ hψ _ a ha b hb,
       ← A5x4.card_isoZZ_congr R hφ hrefl]
     rw [phase_fm R S T c ψ hψ p (hB p hZ.1), orbZ_fm,
       ← A5x4.card_isoZZ_congr R (iso_mul_DG R (dg S c) hd _ (hA p hZ.1)) hrefl]

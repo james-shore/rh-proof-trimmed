@@ -135,7 +135,7 @@ theorem gauss_cancel : ∀ (F : Type) [Field F] [CharZero F] [ValuativeRel F] [T
       simp only [m]
       congr 1
       funext z
-      simp [map_mul, mul_comm, mul_left_comm, mul_assoc]
+      simp [map_mul, mul_comm, mul_left_comm]
     simp only [n]
     rw [h2, h1, Measure.map_smul _ (hm a).aemeasurable, smul_smul, map_mul, mul_right_comm,
       mul_inv_cancel₀ (distribHaarChar_pos).ne', one_mul]

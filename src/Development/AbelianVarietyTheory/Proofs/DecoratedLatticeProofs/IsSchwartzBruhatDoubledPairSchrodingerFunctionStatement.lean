@@ -53,4 +53,4 @@ open GlobalTheory.Core.Rk.SW
 
 
 theorem _root_.GlobalTheory.T.isSchwartzBruhat_doubledPairSchrodingerFunction : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ (A B : HSp D) (ν : Measure (WO A B)) (𝓨 : Set (WO A B)), IsCovolOne (ratL B A) ν 𝓨 → ∀ f, IsThetaFunO ψ (dblSp A) B f → GlobalTheory.IndefiniteRowSideFullHecke.SchwartzBruhatMixedFamilies.IsSchwartzBruhat (sch ψ A B ν 𝓨 f) := by
-  first | exact @GlobalTheory.SchwartzSch.isSchwartzBruhat_sch | exact GlobalTheory.SchwartzSch.isSchwartzBruhat_sch | (intros; apply GlobalTheory.SchwartzSch.isSchwartzBruhat_sch <;> assumption)
+  first | exact @GlobalTheory.SchwartzSch.isSchwartzBruhat_sch

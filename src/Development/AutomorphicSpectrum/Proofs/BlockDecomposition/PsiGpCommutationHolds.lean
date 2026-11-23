@@ -189,7 +189,7 @@ theorem scalar_id (m j : ℕ) (a b : kˣ) :
     push_cast
     ring
   rw [e1, e2, e3]
-  simp only [MonoidHom.mul_apply, MonoidHom.inv_apply, map_mul, mul_inv]
+  simp only [MonoidHom.mul_apply, MonoidHom.inv_apply, map_mul]
   generalize absPow k (1 / 2) a = A
   generalize absPow k (1 / 2) b = B
   generalize absPow k ((j : ℂ) / 2) a = P
@@ -398,8 +398,8 @@ theorem exE (hρ : IsSmooth ρ.ρ) (hτ : IsSmooth τ.ρ) :
       rcases Fin.eq_castSucc_or_eq_last a with ⟨a, rfl⟩ | rfl <;>
         rcases Fin.eq_castSucc_or_eq_last b with ⟨b, rfl⟩ | rfl
       · simp [Matrix.one_apply, hblock]
-      · simp [Matrix.one_apply, Fin.castSucc_ne_last]
-      · simp [Matrix.one_apply, Fin.castSucc_ne_last, (Fin.castSucc_ne_last _).symm, hrow, eLast]
+      · simp [Fin.castSucc_ne_last]
+      · simp [Fin.castSucc_ne_last, (Fin.castSucc_ne_last _).symm, hrow, eLast]
       · simp [hrow, eLast]
     · intro hg
       obtain ⟨v, hv⟩ := (hg : (g : GL (Fin (m + j + 1)) k) ∈ MirU k (m + j))

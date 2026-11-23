@@ -119,10 +119,10 @@ theorem unit_a (X : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ)
     intro l
     unfold Hpk eI esI
     simp only [Fin.ext_iff]
-    split_ifs <;> first | rfl | (exfalso; omega) | omega | norm_num | simp_all | (simp_all; omega)
+    split_ifs <;> first | rfl | (exfalso; omega)
   have h := unit_entry X hU (eI k r ⟨a.val + 1, ha⟩) (esI k r a)
   simp only [hcol, hrow, mul_ite, mul_one, mul_zero, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq',
-    Finset.sum_ite_eq, Finset.mem_univ, if_true] at h
+    Finset.mem_univ, if_true] at h
   linear_combination h
 
 theorem unit_w (X : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ)

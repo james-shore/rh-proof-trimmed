@@ -50,4 +50,4 @@ open Formalism.MainNotions.ModuliIntegralCharts.H1.BoxTuple Formalism.MainNotion
 open ReciprocityTheory.ChartRestriction.G.TB (colM dAct)
 
 theorem _root_.GlobalTheory.T.integral_chart_directions_are_eigenvectors : EigDirSt := by
-  first | exact @GlobalTheory.PowGerm.eigDirSt | exact GlobalTheory.PowGerm.eigDirSt | (intros; apply GlobalTheory.PowGerm.eigDirSt <;> assumption)
+  first | exact @GlobalTheory.PowGerm.eigDirSt

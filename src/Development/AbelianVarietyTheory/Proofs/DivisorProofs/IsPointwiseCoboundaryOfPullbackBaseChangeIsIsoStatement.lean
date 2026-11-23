@@ -48,4 +48,4 @@ open GlobalTheory GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.DeRham Glob
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.isPointwiseCoboundary_of_pullbackBaseChange_isIso : ∀ (R R' : Type) [CommRing R] [CommRing R'] (σ : R →+* R') (X : Over (Sp R)) (X' : Over (Sp R')) (q : X'.left ⟶ X.left) (w : q ≫ X.hom = X'.hom ≫ spMap σ), IsIso q → ∀ u : Fn1 X, IsCoc (whole X) u → (∃ k, IsCob (whole X') (bcPull w u) k) → ∃ k, IsCob (whole X) u k := by
-  first | exact @GlobalTheory.PtExt.isCob_of_bcPull_isIso | exact GlobalTheory.PtExt.isCob_of_bcPull_isIso | (intros; apply GlobalTheory.PtExt.isCob_of_bcPull_isIso <;> assumption)
+  first | exact @GlobalTheory.PtExt.isCob_of_bcPull_isIso

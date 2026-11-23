@@ -197,7 +197,7 @@ theorem UpperTheory.V.Z.J.typeII_of_blochKato_localPoint :
     rw [this]
     split_ifs
     · rfl
-    · apply Matrix.ext <;> refine allFin2 ?_ ?_ <;> refine allFin2 ?_ ?_ <;> simp [Matrix.mul_apply, Fin.sum_univ_two, Matrix.diagonal]
+    · apply Matrix.ext <;> refine allFin2 ?_ ?_ <;> refine allFin2 ?_ ?_ <;> simp [Matrix.mul_apply, Matrix.diagonal]
 
   have pB_ad {R : Type} [CommRing R] {x : GG (m := 3) (R := R)} (hx : IsBlockSL2Embedding x) (t : R) (ht : t * t = 1) (X : Matrix (Fin 3) (Fin 3) R) :
       pB t (x.adFun X) = ((if x.right = 1 then 1 else t) • wOf x) *ᵥ pB t X := by
@@ -212,7 +212,7 @@ theorem UpperTheory.V.Z.J.typeII_of_blochKato_localPoint :
     obtain ⟨a, b, c, d, h, hx⟩ := hx
     rw [ad_eq h hx, theta_eq, conj_eq, wOf_eq hx]
     split_ifs <;> apply Matrix.ext <;> refine allFin3 ?_ ?_ ?_ <;> refine allFin3 ?_ ?_ ?_ <;>
-      simp [sB_apply, Matrix.mulVec, dotProduct, Fin.sum_univ_two] <;>
+      simp [sB_apply, dotProduct, Fin.sum_univ_two] <;>
       first | ring1 | linear_combination (c * v 0 - d * v 1) * ht | linear_combination (-a * v 0 + b * v 1) * ht
 
   have pC_ad {R : Type} [CommRing R] {x : GG (m := 3) (R := R)} (hx : IsBlockSL2Embedding x) (X : Matrix (Fin 3) (Fin 3) R) :
@@ -248,7 +248,7 @@ theorem UpperTheory.V.Z.J.typeII_of_blochKato_localPoint :
       apply Matrix.ext <;> refine allFin3 ?_ ?_ ?_ <;> refine allFin3 ?_ ?_ ?_ <;> simp
     rw [ad_eq (by ring) hx', if_neg (by rw [h1]; decide), theta_eq]
     apply Matrix.ext <;> refine allFin2 ?_ ?_ <;> refine allFin2 ?_ ?_ <;>
-      simp [sA_apply, pA_apply, Jmat, Fin.rev, Matrix.mul_apply, Fin.sum_univ_three, Fin.sum_univ_two]
+      simp [sA_apply, pA_apply, Jmat, Fin.rev, Matrix.mul_apply, Fin.sum_univ_two]
 
   let repA {R : Type} [CommRing R] {Γ : Type} [Group Γ] (r : Γ →* GG (m := 3) (R := R)) (hr : ∀ g, IsBlockSL2Embedding (r g)) :
       Representation R Γ (Matrix (Fin 2) (Fin 2) R) := {

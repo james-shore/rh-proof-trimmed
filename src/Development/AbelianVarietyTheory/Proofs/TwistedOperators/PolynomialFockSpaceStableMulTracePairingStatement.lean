@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.polynomial_fock_space_stable_mul_trace_pairing : �
         (∀ w, IsCartan (Complex.I • W.J.map (τ w).1) (W.θ w)) →
         ∀ (q : (Fin n × Fin d → mixedEmbedding.mixedSpace F)), ∀ f ∈ M.Pol ψ τ, ∃ f₁ ∈ M.Pol ψ τ,
           ∀ x, f₁ x = (GlobalTheory.GaussLine.pairInf F (Fin n × Fin d) x q : ℂ) * f x := by
-  first | exact @GlobalTheory.PolMul.pol_mul_pairInf_pair | exact GlobalTheory.PolMul.pol_mul_pairInf_pair | (intros; apply GlobalTheory.PolMul.pol_mul_pairInf_pair <;> assumption)
+  first | exact @GlobalTheory.PolMul.pol_mul_pairInf_pair

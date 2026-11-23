@@ -100,7 +100,7 @@ theorem ksDim_of_eigen_reduce : ∀ (k : Type) (H : Type 1) (O : Type) [Field k]
     intro s t hst' hsum u v hu hv
     have h := hφw u v
     rw [hu, hv] at h
-    simp only [map_smul, LinearMap.smul_apply, map_sub, LinearMap.sub_apply, smul_eq_mul] at h
+    simp only [map_smul, LinearMap.smul_apply, map_sub, smul_eq_mul] at h
     have h2 : (s - t) * φ u v = 0 := by linear_combination h - (φ u v) * hsum
     exact (mul_eq_zero.1 h2).resolve_left (sub_ne_zero.2 hst')
   have hφPP : ∀ x y, φ (P x) (P y) = 0 := fun x y => hφeig r r' hr rfl _ _ (hPA x) (hPA y)
@@ -124,7 +124,6 @@ theorem ksDim_of_eigen_reduce : ∀ (k : Type) (H : Type 1) (O : Type) [Field k]
     intro v hv
     rw [heq, LinearMap.BilinForm.mem_orthogonal_iff]
     intro y hy
-    change φ y v = 0
     rw [hskew, hv y hy, neg_zero]
 
   have hAP : ∀ v, A v - r' • v = (r - r') • P v := fun v => by

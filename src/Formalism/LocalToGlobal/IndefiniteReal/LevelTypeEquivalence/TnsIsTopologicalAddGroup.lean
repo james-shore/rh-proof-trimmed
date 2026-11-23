@@ -61,7 +61,6 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 theorem tns_isModuleTopology : IsModuleTopology (AF F) (AF F ⊗[F] E) := by
   first
     | exact ⟨rfl⟩
-    | infer_instance
 
 attribute [local instance] tns_isModuleTopology
 
@@ -85,9 +84,6 @@ theorem tnsCoord_inclR (e : E) (k : Fin d) :
     tnsCoord b (inclR (AF F) e) k = algebraMap F (AF F) (b.repr e k) := by
   first
     | simp [tnsCoord, inclR, Algebra.TensorProduct.basis_repr_tmul]
-    | (simp only [tnsCoord, Module.Basis.equivFun_apply]
-       erw [Algebra.TensorProduct.basis_repr_tmul]
-       simp)
 
 end Basis
 

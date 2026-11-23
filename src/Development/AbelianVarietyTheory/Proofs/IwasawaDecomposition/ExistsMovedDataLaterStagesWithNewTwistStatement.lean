@@ -41,4 +41,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_movedData_laterStagesWithNewTwist : ∀ {K : Ctx} {B : Base} {f : Fr B.toPre} {T : TwDat B} {w : ColW B f T} {P : Pre2 K w} (x : St P) (N : TwNew (Dof x)), ∃ m : Moved (oTw x N), m.z = datTw x N ∧ m.Copy ∧ m.Coh := by
-  first | exact @GlobalTheory.HeightCounting.Up.MvTw.moved_tw | exact GlobalTheory.HeightCounting.Up.MvTw.moved_tw | (intros; apply GlobalTheory.HeightCounting.Up.MvTw.moved_tw <;> assumption)
+  first | exact @GlobalTheory.HeightCounting.Up.MvTw.moved_tw

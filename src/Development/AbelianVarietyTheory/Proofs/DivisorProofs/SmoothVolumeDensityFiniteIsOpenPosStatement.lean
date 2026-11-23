@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSAmp
 
 theorem _root_.GlobalTheory.T.smoothVolumeDensity_finite_isOpenPos : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ), IsArithVar p D → GenSmooth p D → ∀ (σ : k →+* ℂ) (ω : VolDens p σ D), IsFiniteMeasure ω.meas ∧ ω.meas.IsOpenPosMeasure := by
-  first | exact @GlobalTheory.HSAmp.volDens_meas_finite_openPos | exact GlobalTheory.HSAmp.volDens_meas_finite_openPos | (intros; apply GlobalTheory.HSAmp.volDens_meas_finite_openPos <;> assumption)
+  first | exact @GlobalTheory.HSAmp.volDens_meas_finite_openPos

@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.selfDual_lattice_eq_unitary_mul_integralGL : ∀ (
     ∀ a : GL (Fin n) L, GlobalTheory.Hk3.HoweG.SelfDual σ JS a →
       ∃ g : Formalism.UG.UJ σ (JS : Matrix (Fin n) (Fin n) L), ∃ k : GL (Fin n) L, k ∈ Formalism.UG.GLint (Fin n) (Formalism.UG.intL L) ∧
         a = (g : GL (Fin n) L) * k := by
-  first | exact @GlobalTheory.Hk3.HoweG.selfDual_eq_unitary_mul_int | exact GlobalTheory.Hk3.HoweG.selfDual_eq_unitary_mul_int | (intros; apply GlobalTheory.Hk3.HoweG.selfDual_eq_unitary_mul_int <;> assumption)
+  first | exact @GlobalTheory.Hk3.HoweG.selfDual_eq_unitary_mul_int

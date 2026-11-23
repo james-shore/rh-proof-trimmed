@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.exists_finite_separable_point_of_separableClosure_point' : ∀ (k B : Type) [Field k] [CommRing B] [Algebra k B], Algebra.FiniteType k B → Nonempty (B →ₐ[k] SeparableClosure k) → ∃ (k' : Type) (_ : Field k') (_ : Algebra k k'), FiniteDimensional k k' ∧ Algebra.IsSeparable k k' ∧ Nonempty (B →ₐ[k] k') := by
-  first | exact @GlobalTheory.exists_finite_separable_point_of_separableClosure_point | exact GlobalTheory.exists_finite_separable_point_of_separableClosure_point | (intros; apply GlobalTheory.exists_finite_separable_point_of_separableClosure_point <;> assumption)
+  first | exact @GlobalTheory.exists_finite_separable_point_of_separableClosure_point

@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.vacuumTranslateSum_selfDualLattice_fixed : ∀ (L 
       ∃ z ∈ Z, u * ((a⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) - z ∈ GlobalTheory.Hk3.HoweDuality.intMat L n' n) →
     ∀ u : Matrix (Fin n') (Fin n) L, (∀ i j, u i j ∈ Formalism.UG.intL L) →
       ρ (u * ((a⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L)) (∑ z ∈ Z, ρ z s) = ∑ z ∈ Z, ρ z s := by
-  first | exact @GlobalTheory.Hk3.HoweG.vacuum_sum_selfDual_fixed | exact GlobalTheory.Hk3.HoweG.vacuum_sum_selfDual_fixed | (intros; apply GlobalTheory.Hk3.HoweG.vacuum_sum_selfDual_fixed <;> assumption)
+  first | exact @GlobalTheory.Hk3.HoweG.vacuum_sum_selfDual_fixed

@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.unitaryScalar_eq_one_mod_of_fixes_simple_module : 
     (_ : sigR σ (v.adicCompletion F) (d : E ⊗[F] v.adicCompletion F) * (d : E ⊗[F] v.adicCompletion F) =
         1 + (T : E ⊗[F] v.adicCompletion F) * (c : E ⊗[F] v.adicCompletion F)),
     ∃ e : intV E v, (d : E ⊗[F] v.adicCompletion F) = 1 + (T : E ⊗[F] v.adicCompletion F) * (e : E ⊗[F] v.adicCompletion F) := by
-  first | exact @GlobalTheory.UnitaryScalarModT.eq_one_add_of_fixes | exact GlobalTheory.UnitaryScalarModT.eq_one_add_of_fixes | (intros; apply GlobalTheory.UnitaryScalarModT.eq_one_add_of_fixes <;> assumption)
+  first | exact @GlobalTheory.UnitaryScalarModT.eq_one_add_of_fixes

@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestric
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.nonempty_squareZeroSmoothLiftSystem_of_isFun : ∀ (R R₀ : Type) [CommRing R] [CommRing R₀] (I : Ideal R) (hI : I ^ 2 = 0) (π : R →+* R₀) (hπ : Function.Surjective π) (hk : RingHom.ker π = I) (X₀ : Scheme.{0}) (s₀ : X₀ ⟶ Sp R₀) (L : Pre I π (OAff s₀)), L.IsFun → Nonempty (Sys I π s₀) := by
-  first | exact @GlobalTheory.Obs.nonempty_sys_of_isFun | exact GlobalTheory.Obs.nonempty_sys_of_isFun | (intros; apply GlobalTheory.Obs.nonempty_sys_of_isFun <;> assumption)
+  first | exact @GlobalTheory.Obs.nonempty_sys_of_isFun

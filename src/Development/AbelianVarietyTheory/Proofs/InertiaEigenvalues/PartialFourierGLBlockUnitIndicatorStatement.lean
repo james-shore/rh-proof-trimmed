@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.JR Matrix MeasureTheory Filter Topology
 
 theorem _root_.GlobalTheory.T.partialFourierGLBlock_unitIndicator : ∀ (F E : Type) [NontriviallyNormedField F] [NontriviallyNormedField E] [NormedAlgebra F E] [StarRing E] [Unram F E] (r : ℕ) (M : Meas r F E) (ψ : AddChar F ℂ), IsStdChar ψ → fourG M ψ (unitG r F) = unitG r F := by
-  first | exact @GlobalTheory.JR.fourG_unitG | exact GlobalTheory.JR.fourG_unitG | (intros; apply GlobalTheory.JR.fourG_unitG <;> assumption)
+  first | exact @GlobalTheory.JR.fourG_unitG

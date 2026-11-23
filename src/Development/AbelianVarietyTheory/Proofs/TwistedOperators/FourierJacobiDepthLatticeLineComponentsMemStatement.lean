@@ -48,4 +48,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.fourierJacobi_depth_lattice_line_components_mem : OnStd fun {D} _ _ {sc} {G} W F => ∀ σ (h : 2 * (σ + 1) + 2 ≤ D.R.m) (h' : 2 * σ + 2 ≤ D.R.m), ∀ u ∈ (pcFB W F σ h h').Γ₀, ((F.oB σ h').resT _ u).2 ∈ lineLat F (σ + 1) := by
-  first | exact @GlobalTheory.LineFB.line_mem | exact GlobalTheory.LineFB.line_mem | (intros; apply GlobalTheory.LineFB.line_mem <;> assumption)
+  first | exact @GlobalTheory.LineFB.line_mem

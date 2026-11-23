@@ -65,4 +65,4 @@ theorem _root_.GlobalTheory.T.isLattice_of_lastCoordinate_extension : ∀ {E : T
     (M : Submodule (𝓞 E) (Fin n → E)) (L : Submodule (𝓞 E) (Fin N → E)), Submodule.IsLattice E M →
     (∀ v, v ∈ L ↔ (fun k => v (Formalism.L2.Col.Br.iC hN k)) ∈ M ∧ ∃ c : 𝓞 E, (c : E) = v (Formalism.L2.Col.Br.iL hN)) →
     Submodule.IsLattice E L := by
-  first | exact @GlobalTheory.latLast_isLattice | exact GlobalTheory.latLast_isLattice | (intros; apply GlobalTheory.latLast_isLattice <;> assumption)
+  first | exact @GlobalTheory.latLast_isLattice

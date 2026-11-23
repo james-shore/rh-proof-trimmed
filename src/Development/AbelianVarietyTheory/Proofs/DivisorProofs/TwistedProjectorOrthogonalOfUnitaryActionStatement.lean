@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.twistedProjector_orthogonal_of_unitary_action : �
     (∀ g x y, inner ℂ (A.j σ (A.ρ g x)) (A.j σ (A.ρ g y)) = inner ℂ (A.j σ x) (A.j σ y)) →
     (∀ g, σ (eC g⁻¹) = starRingEnd ℂ (σ (eC g))) →
     ∀ x y, ‖A.j σ (A.eOp eC x + (y - A.eOp eC y))‖ ^ 2 = ‖A.j σ (A.eOp eC x)‖ ^ 2 + ‖A.j σ (y - A.eOp eC y)‖ ^ 2 := by
-  first | exact @GlobalTheory.twistedProjector_orthogonal_of_unitary | exact GlobalTheory.twistedProjector_orthogonal_of_unitary | (intros; apply GlobalTheory.twistedProjector_orthogonal_of_unitary <;> assumption)
+  first | exact @GlobalTheory.twistedProjector_orthogonal_of_unitary

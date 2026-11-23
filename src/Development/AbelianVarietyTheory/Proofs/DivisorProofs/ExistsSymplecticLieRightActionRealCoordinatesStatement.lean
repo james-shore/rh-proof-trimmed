@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.exists_symplecticLie_right_action_realCoordinates 
     ∀ Y : ∀ w : ι, Mat (R w) (S w), (∀ w, Y w ∈ upq (R w) (S w)) →
     ∃ Z ∈ LieAlgebra.Symplectic.sp l ℝ, (∀ c, Z *ᵥ φ c = φ fun w => c w * (Y w)ᵀ) ∧
       ∀ (t : ℝ) c, NormedSpace.exp (t • Z) *ᵥ φ c = φ fun w => c w * (NormedSpace.exp (t • Y w))ᵀ := by
-  first | exact @GlobalTheory.HoweD.SpLieD.exists_sp_rightActD | exact GlobalTheory.HoweD.SpLieD.exists_sp_rightActD | (intros; apply GlobalTheory.HoweD.SpLieD.exists_sp_rightActD <;> assumption)
+  first | exact @GlobalTheory.HoweD.SpLieD.exists_sp_rightActD

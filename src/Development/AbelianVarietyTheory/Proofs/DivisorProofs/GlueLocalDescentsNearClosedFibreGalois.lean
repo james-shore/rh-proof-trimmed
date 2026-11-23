@@ -56,7 +56,7 @@ theorem isSeparated_of_surjective {X Y S : Scheme.{0}} (j : X ⟶ Y) (f : Y ⟶ 
   have hm : UniversallyClosed m :=
     MorphismProperty.pullbackMap (P := @UniversallyClosed) ‹_› ‹_› rfl rfl
   have e : j ≫ pullback.diagonal f = pullback.diagonal (j ≫ f) ≫ m := by
-    apply pullback.hom_ext <;> simp [m, pullback.map, pullback.lift_fst, pullback.lift_snd]
+    apply pullback.hom_ext <;> simp [m, pullback.map]
   have : UniversallyClosed (j ≫ pullback.diagonal f) := by rw [e]; infer_instance
   have : UniversallyClosed (pullback.diagonal f) := UniversallyClosed.of_comp_surjective j _
   exact ⟨IsClosedImmersion.of_isPreimmersion _ (pullback.diagonal f).isClosedMap.isClosed_range⟩

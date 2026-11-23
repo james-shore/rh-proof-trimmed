@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.PMonE
 
 theorem _root_.GlobalTheory.T.additiveSystem_surjectivity_and_count_order_zero : GLOnto 0 ∧ GLCount 0 := by
-  first | exact @GlobalTheory.PMonE.glOnto_zero_and_glCount_zero | exact GlobalTheory.PMonE.glOnto_zero_and_glCount_zero | (intros; apply GlobalTheory.PMonE.glOnto_zero_and_glCount_zero <;> assumption)
+  first | exact @GlobalTheory.PMonE.glOnto_zero_and_glCount_zero

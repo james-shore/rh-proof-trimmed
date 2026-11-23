@@ -197,13 +197,13 @@ theorem cong_mul_le {H : AddSubgroup (Fin n → R)} {M a : ℕ} : cong σ G H (M
 theorem exists_det_one_conj_eq (hG : IsUnit G.det) {g : GL (Fin n) R} (hg : IsU σ G g.1) :
     ∃ s : GL (Fin n) R, IsU σ G s.1 ∧ s.1.det = 1 ∧ ∀ k, (g ^ n)⁻¹ * k * g ^ n = s⁻¹ * k * s := by
   have hd := det_mul_det hG hg
-  let z : GL (Fin n) R := ⟨σ g.1.det • 1, g.1.det • 1, by simp [smul_smul, mul_comm, hd],
+  let z : GL (Fin n) R := ⟨σ g.1.det • 1, g.1.det • 1, by simp [smul_smul, hd],
     by simp [smul_smul, mul_comm, hd]⟩
   have hz : ∀ k, z * k = k * z := fun k => Units.ext (by simp [z])
   have hd' : σ g.1.det * σ (σ g.1.det) = 1 := by rw [← map_mul, hd, map_one]
   refine ⟨z * g ^ n, isU_mul (isU_iff.2 ?_) (isU_pow hg n), ?_, fun k => ?_⟩
   · have : (σ g.1.det • (1 : Matrix (Fin n) (Fin n) R)).map σ = σ (σ g.1.det) • 1 := by
-      ext i j; by_cases h : i = j <;> simp [Matrix.one_apply, h]
+      ext i j; by_cases h : i = j <;> simp [h]
     simp [z, this, smul_smul, mul_comm, hd']
   · rw [Units.val_mul, det_mul, Units.val_pow_eq_pow_val, det_pow]
     simp [z, ← mul_pow, mul_comm, hd]

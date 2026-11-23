@@ -49,4 +49,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
 
 theorem _root_.GlobalTheory.T.level_subgroup_restricted_product_of_laws : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) (A : FamIn D.what₂.LL G Pl0 T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), Laws R F → R.FullP → ∀ i, LevProd R i := by
-  first | exact @GlobalTheory.LevelProduct.levProd_of_laws | exact GlobalTheory.LevelProduct.levProd_of_laws | (intros; apply GlobalTheory.LevelProduct.levProd_of_laws <;> assumption)
+  first | exact @GlobalTheory.LevelProduct.levProd_of_laws

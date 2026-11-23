@@ -102,8 +102,8 @@ theorem col (ob : Bool) (hg : ((X.B.g : ℕ) : 𝓞 X.B.I.E) ∈ w.asIdeal)
     cases ob
     ·
       rcases kind_cases (hrD D) i with ⟨a, rfl⟩ | ⟨l', rfl⟩ | rfl | ⟨a, rfl⟩
-      · exfalso; simp [xI, wI, yI, zI] at hpos; omega
-      · simp [xI, wI, yI, zI] at hpos
+      · exfalso; simp [xI] at hpos; omega
+      · simp [wI] at hpos
         refine cong_dual hg (fr_L X false) hgr (wI (hrD D) l') (wI (hrD D) l)
           (S := Set.range X.e0 ∪ X.bw '' {c | c.1 < (rv l').1}) ?_ ?_
         · rintro s (⟨c, rfl⟩ | ⟨c, hc', rfl⟩)
@@ -128,8 +128,8 @@ theorem col (ob : Bool) (hg : ((X.B.g : ℕ) : 𝓞 X.B.I.E) ∈ w.asIdeal)
   ·
     have hpos : D.R.rS ≤ i.1 := by
       rcases hij with h | ⟨⟨l, rfl⟩, -⟩
-      · simp [xI, wI, yI, zI] at h; omega
-      · simp [xI, wI, yI, zI]
+      · simp [zI] at h; omega
+      · simp [wI]
     refine cong_dir hg (frd_L X ob) hgr i (zI (hrD D)) (S := Set.range X.e0) ?_ ?_
     · rintro s ⟨c, rfl⟩
       exact ⟨xI (hrD D) c, (frame_isotropic X ob c).symm, ne_val (by simp [xI, wI, yI, zI]; omega)⟩
@@ -140,10 +140,10 @@ theorem col (ob : Bool) (hg : ((X.B.g : ℕ) : 𝓞 X.B.I.E) ∈ w.asIdeal)
       · simpa [xI, wI, yI, zI] using h
       · exact absurd h (ne_val (by simp [xI, wI, yI, zI] <;> omega))
     rcases kind_cases (hrD D) i with ⟨a, rfl⟩ | ⟨l', rfl⟩ | rfl | ⟨a, rfl⟩
-    · exfalso; simp [xI, wI, yI, zI] at hpos; omega
-    · exfalso; simp [xI, wI, yI, zI] at hpos; omega
-    · exfalso; simp [xI, wI, yI, zI] at hpos; omega
-    · simp [xI, wI, yI, zI] at hpos
+    · exfalso; simp [xI] at hpos; omega
+    · exfalso; simp [wI] at hpos; omega
+    · exfalso; simp [zI] at hpos; omega
+    · simp [yI] at hpos
       refine cong_dual hg (fr_L X ob) hgr (yI (hrD D) a) (yI (hrD D) b)
         (S := X.e0 '' {c | c.1 < (rv a).1}) ?_ ?_
       · rintro s ⟨c, hc', rfl⟩

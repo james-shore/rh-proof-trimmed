@@ -44,4 +44,4 @@ open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestrictio
 open scoped Matrix CategoryTheory.Obj Topology
 
 theorem _root_.GlobalTheory.T.exists_hermitianPeriodLatticeBasis_same_signature : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw Di : Datum H) (τ : E →+* ℂ), Di.p = Dw.p ∧ Di.q = Dw.q → ∃ (x : Idx Dw τ → Di.La) (hm : Matrix (Idx Dw τ) (Idx Dw τ) E), IsPerBasis Di x hm := by
-  first | exact @GlobalTheory.ShFam.Hor.PerBasis.exists_isPerBasis | exact GlobalTheory.ShFam.Hor.PerBasis.exists_isPerBasis | (intros; apply GlobalTheory.ShFam.Hor.PerBasis.exists_isPerBasis <;> assumption)
+  first | exact @GlobalTheory.ShFam.Hor.PerBasis.exists_isPerBasis

@@ -47,4 +47,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 open scoped ComplexOrder
 
 theorem _root_.GlobalTheory.T.jet_finset_linear_combination : ∀ (ι : Type) [Fintype ι] (a b : ℕ) (cD : ι → ℂ) (α : Type) (R : Finset α) (c : α → ℂ) (F : α → VCx ι a b → ℂ), (∀ x ∈ R, Differentiable ℂ (F x)) → ∀ m, jetC cD (fun z => ∑ x ∈ R, c x * F x z) m = ∑ x ∈ R, c x * jetC cD (F x) m := by
-  first | exact @GlobalTheory.ColNorms.jetC_sum_mul | exact GlobalTheory.ColNorms.jetC_sum_mul | (intros; apply GlobalTheory.ColNorms.jetC_sum_mul <;> assumption)
+  first | exact @GlobalTheory.ColNorms.jetC_sum_mul

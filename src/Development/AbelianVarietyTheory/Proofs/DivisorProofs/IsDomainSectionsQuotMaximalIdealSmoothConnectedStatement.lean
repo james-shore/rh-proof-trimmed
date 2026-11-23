@@ -59,4 +59,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.isDomain_sections_quot_maximalIdeal_smooth_connected : ∀ (R : Type) [CommRing R] [IsLocalRing R] (G : Over (Sp R)), Smooth G.hom → GeometricallyConnected G.hom → ∀ (U : G.left.Opens), IsAffineOpen U → ∀ y ∈ U, G.hom y = closedPoint R → IsDomain (Γ(G.left, U) ⧸ (maximalIdeal R).map (GlobalTheory.AbLaw.cst G.hom U)) := by
-  first | exact @GlobalTheory.isDomain_quot_maximalIdeal_of_smooth | exact GlobalTheory.isDomain_quot_maximalIdeal_of_smooth | (intros; apply GlobalTheory.isDomain_quot_maximalIdeal_of_smooth <;> assumption)
+  first | exact @GlobalTheory.isDomain_quot_maximalIdeal_of_smooth

@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.weilTheta_level_polynomial_in_height : ∀ {D : D7
     ∃ K₀ : Set (WO M X), K₀ ∈ nhds (0 : WO M X) ∧ IsCompact K₀ ∧ ∃ (m : ℝ) (e : ℕ), ∀ y ∈ C₁, ∀ h : GA D X,
       ∃ n : ℕ, 0 < n ∧ (n : ℝ) ≤ m * (GlobalTheory.IndefiniteRowSideFullHecke.LieAlgebraExponentialFamilies.height θ X h : ℝ) ^ e ∧
         ∀ u ∈ K₀, u.map (infPart D) = 0 → heisO ψ (sgn ε M) X (n • u) (ω (y, h) Φ) = ω (y, h) Φ := by
-  first | exact @GlobalTheory.LevelGrowth.level_poly | exact GlobalTheory.LevelGrowth.level_poly | (intros; apply GlobalTheory.LevelGrowth.level_poly <;> assumption)
+  first | exact @GlobalTheory.LevelGrowth.level_poly

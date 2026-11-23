@@ -151,7 +151,6 @@ theorem glueFil_isotropic : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.
   have e0 : LBIso (o₀.P.pull (𝟙 _)) o₀.P := by
     first
       | exact LBIso.chartPull (chartPullPull o₀.P (𝟙 _)) (chartPullId o₀.P) (PolBaseChange.lbIso_refl hP)
-      | exact LBIso.chartPull (chartPullPull o₀.P (𝟙 _)) (chartPullId o₀.P) (ChernExists.lbIso_refl hP)
   obtain ⟨Ψ, hΨ, hΨc⟩ := hφ.pull hP m m (h := 𝟙 _) (by simp) (by simp) hP e0
   obtain rfl := hΦ.unique CS hP hΨ
 

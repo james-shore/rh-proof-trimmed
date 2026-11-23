@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.etaleSheafSections_glue_of_locally_unique : ∀ {R
     (∀ (U : Scheme.{0}) (x : U ⟶ X), Loc U fun V g => ∃ s, A V (g ≫ x) s) →
     ∃ e : ∀ U : Scheme.{0}, (U ⟶ X) → Sec F U, (∀ (V U : Scheme.{0}) (g : V ⟶ U) (x : U ⟶ X), Sec.res g (e U x) = e V (g ≫ x)) ∧
       ∀ (U : Scheme.{0}) (x : U ⟶ X) (s : Sec F U), A U x s → e U x = s := by
-  first | exact @GlobalTheory.EtC.secGlue_of_loc | exact GlobalTheory.EtC.secGlue_of_loc | (intros; apply GlobalTheory.EtC.secGlue_of_loc <;> assumption)
+  first | exact @GlobalTheory.EtC.secGlue_of_loc

@@ -59,4 +59,4 @@ open scoped TensorProduct
 
 
 theorem _root_.GlobalTheory.T.seesawTriple_firstFiniteDatum_riggedFrames : ∀ {D : D7} {T : Type} {A A' WW : HSp D} (X : Tri T A A' WW) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D) (α β : T → ((AE D)ˣ →* Circle)) (νH : T → Formalism.L2.Host.HChar D.host.E) (S : T → Finset (HeightOneSpectrum (𝓞 D.host.E))) (FA : GlobalTheory.ChainFr.Fr A) (FW : GlobalTheory.ChainFr.Fr WW), (∀ τ, (GlobalTheory.SquareComm.frSgn true FA).cart τ = -X.rA.s τ) → (∀ τ, FW.cart τ = X.rW.s τ) → X.Is ψ θ α β νH S → ∀ t, GlobalTheory.SquareComm.IsFinF ψ θ true FA FW (X.f t) := by
-  first | exact @GlobalTheory.FrDict.fst_isFinF | exact GlobalTheory.FrDict.fst_isFinF | (intros; apply GlobalTheory.FrDict.fst_isFinF <;> assumption)
+  first | exact @GlobalTheory.FrDict.fst_isFinF

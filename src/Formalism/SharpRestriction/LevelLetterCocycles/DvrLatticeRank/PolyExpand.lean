@@ -283,7 +283,6 @@ theorem van_of_dvd {y u G : PowerSeries LL} (hy : y = X * u) (N : ℕ) :
     exact Dvd.intro _ rfl
   first
   | exact PowerSeries.X_pow_dvd_iff.mp hd
-  | (intro i hi; rw [hy, mul_pow, mul_assoc, PowerSeries.coeff_X_pow_mul', if_neg (by omega)])
 
 end Good
 
@@ -371,7 +370,6 @@ theorem integ {yU yD : Z → PowerSeries LL} (HU : Dv ev O yU) (HD : Dv ev O yD)
     rw [hP, hUD]
     first
     | (simp only [map_mul, map_pow, map_add (f := _), Polynomial.aeval_X, Polynomial.aeval_C, algebraMap_powerSeries_eq_C]; done)
-    | (simp only [map_mul, map_pow, map_add (f := _), Polynomial.aeval_X, Polynomial.aeval_C, algebraMap_powerSeries_eq_C]; ring)
   have hsU : IsUnit (yU zD) := by rw [hUD]; exact unit_add_C hyD hδ
   have key : yU zD ^ (h - b) * Polynomial.aeval (yD zD) P = C x * (C a₂ * yU zD * yD zD) ^ h := by
     rw [hPt]

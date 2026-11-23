@@ -52,4 +52,4 @@ open GlobalTheory.BadPlace
 open Classical
 
 theorem _root_.GlobalTheory.T.frameReduction_eq_one_of_frameMatrix_congruent_one : ∀ (D : D7) (W : HSp D) (β : GL (Fin W.rank) (Formalism.IndefR.Lev.EAf D)) (k : GA D W) (PP : Pl D.host.E), finE W k ∈ St β → (∀ a b, Valued.v (GlobalTheory.StdFrames.cpt PP (((HMul.hMul (HMul.hMul ((β)⁻¹).val ((Formalism.L2.Theta.mt W k).map (toEAf D))) (β).val : Matrix (Fin (W).rank) (Fin (W).rank) (Formalism.IndefR.Datum.EAf D)) - 1) a b)) < 1) → redFn β PP (finE W k) = 1 := by
-  first | exact @GlobalTheory.RedAt.redFn_finE_eq_one | exact GlobalTheory.RedAt.redFn_finE_eq_one | (intros; apply GlobalTheory.RedAt.redFn_finE_eq_one <;> assumption)
+  first | exact @GlobalTheory.RedAt.redFn_finE_eq_one

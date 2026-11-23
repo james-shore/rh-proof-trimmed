@@ -122,7 +122,7 @@ lemma Hpk_fix_of_phi (y : Fin (2 * r + k + 1) → ℂ) (hy : phiL k r y = 0) : H
     · rw [hw, mul_zero]
     · intro b _ hb
       have hb' : b.val ≠ r + k := fun h => hb (Fin.ext h)
-      simp only [Hpk, Fin.ext_iff, Fin.val_mk]
+      simp only [Hpk, Fin.ext_iff]
       split_ifs with h1 h2 h3 <;> first | omega | simp
     · intro h; exact absurd (Finset.mem_univ _) h
   · have hlt : 2 * r + k - i.val < r := by omega

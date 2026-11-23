@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.cocycle_class_admissible : ∀ {l : ℕ} [Fact l.P
     ∀ z : ↥(Z1 (twCoef W S.Γ.χ₁ X) ⊤),
       ((∃ a₀ : ℕ, ∀ a ≥ a₀, ∀ ha : (∀ x : X, S.Γ.lam ^ a • x = 0), S.admitted (Ea W S.Γ.χ₁ ha z)) ↔
         Submodule.Quotient.mk z ∈ S.cls W X) := by
-  first | exact @GlobalTheory.admissible_eventually_iff_mem_cls | exact GlobalTheory.admissible_eventually_iff_mem_cls | (intros; apply GlobalTheory.admissible_eventually_iff_mem_cls <;> assumption)
+  first | exact @GlobalTheory.admissible_eventually_iff_mem_cls

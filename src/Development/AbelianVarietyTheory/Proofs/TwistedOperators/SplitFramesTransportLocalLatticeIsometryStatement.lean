@@ -54,4 +54,4 @@ open Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.
 open GlobalTheory.LiftRows
 
 theorem _root_.GlobalTheory.T.splitFrames_transport_localLatticeIsometry : ∀ (D : D7) (V V' : HSp D) (hr : V'.rank = V.rank) (v : HeightOneSpectrum (𝓞 D.host.F)) (j : GLoc D.sp.cm.sig V.gram v ≃ₜ* GLoc D.sp.cm.sig V'.gram v), IsLatticeConj (frameLat V) (frameLat V') j → (∀ g, j g ∈ Kv V' v ↔ g ∈ Kv V v) ∧ ∀ s : SplitAt D.sp.cm.sig V.gram (frameLat V) v, ∃ s' : SplitAt D.sp.cm.sig V'.gram (frameLat V') v, (∀ g a b, (s'.equiv (j g)).1 a b = (s.equiv g).1 (a.cast hr) (b.cast hr)) ∧ ∀ (k : Kv V v) (k' : Kv V' v), (k' : GLoc D.sp.cm.sig V'.gram v) = j k → ∀ a b, (s'.red k').1 a b = (s.red k).1 (a.cast hr) (b.cast hr) := by
-  first | exact @GlobalTheory.LatConjSplit.splitAt_of_isLatticeConj | exact GlobalTheory.LatConjSplit.splitAt_of_isLatticeConj | (intros; apply GlobalTheory.LatConjSplit.splitAt_of_isLatticeConj <;> assumption)
+  first | exact @GlobalTheory.LatConjSplit.splitAt_of_isLatticeConj

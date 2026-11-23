@@ -102,7 +102,7 @@ private lemma sgl_f {M F : Shv ℤ} (f : M ⟶ F) :
     sglι M ≫ ((CochainComplex.singleFunctor (Shv ℤ) 0).map f ≫ resAug F).f 0 = f ≫ resι ℤ F := by
   rw [HomologicalComplex.comp_f, ← Category.assoc]
   have h : sglι M ≫ ((CochainComplex.singleFunctor (Shv ℤ) 0).map f).f 0 = f ≫ sglι F := by
-    simp [sglι, CochainComplex.singleFunctor, CochainComplex.singleFunctors, HomologicalComplex.single_map_f_self]
+    simp [sglι, CochainComplex.singleFunctor, HomologicalComplex.single_map_f_self]
   rw [h, Category.assoc, (GlobalTheory.T.chosenInjectiveResolution_etaleSheaf_properties ℤ F).2.2.2.2.1]
 
 set_option backward.isDefEq.respectTransparency false in

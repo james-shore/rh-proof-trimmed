@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.continuous_oneParameter_archimedean_weilOperator :
       Acts (evI F) (om (1, h)) ⇑f ⇑f₁) → ∀ γ ∈ Lines σ W,
     ∀ (f : SInf F (Fin n × Fin d)) (x : Fin n × Fin d → mixedEmbedding.mixedSpace F),
       Continuous fun t : ℝ => archOp om (γ (Multiplicative.ofAdd t)) f x := by
-  first | exact @GlobalTheory.ArchLine.archOp_apply_continuous | exact GlobalTheory.ArchLine.archOp_apply_continuous | (intros; apply GlobalTheory.ArchLine.archOp_apply_continuous <;> assumption)
+  first | exact @GlobalTheory.ArchLine.archOp_apply_continuous

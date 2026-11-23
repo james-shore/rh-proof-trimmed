@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.UnitLemma GlobalTheory.UnitLemma.Desc Polynomial Filter Topology
 
 theorem _root_.GlobalTheory.T.rho_pow_lower_bound_swappedPairs : ∀ (K : UQ) (B : InvAlg K) (ι : Type) [Fintype ι] (e π : ι → B.A) (S : Finset ι) (a : K.O), B.P.Separable → K.Small a → IsFrame B e π S → ∀ k : ℕ, (k + 1) ^ (Fintype.card ι - S.card) ≤ B.rho (algebraMap K.O B.A a ^ k) := by
-  first | exact @GlobalTheory.UnitLemma.Desc.rho_lower | exact GlobalTheory.UnitLemma.Desc.rho_lower | (intros; apply GlobalTheory.UnitLemma.Desc.rho_lower <;> assumption)
+  first | exact @GlobalTheory.UnitLemma.Desc.rho_lower

@@ -290,22 +290,15 @@ variable {D : D7} {u : D.what₂.Word}
 
 theorem forms_involution_eq_host_conj (x : D.host.E) : sigD D x = D.host.conj x := by
   first
-    | rfl
     | (unfold sigD; rfl)
     | (unfold sigD Formalism.BasicNotions.CMData.sig; rfl)
     | (simp only [sigD, Formalism.BasicNotions.CMData.sig]; rfl)
     | (unfold sigD Formalism.BasicNotions.CMData.sig; exact Formalism.L2.Herm.star_conj x)
-    | (unfold sigD Formalism.BasicNotions.CMData.sig; simp only [starRingEnd_apply]; exact Formalism.L2.Herm.star_conj x)
-    | (unfold sigD Formalism.BasicNotions.CMData.sig; simp; rfl)
-    | (unfold sigD Formalism.BasicNotions.CMData.sig; simp [Formalism.BasicNotions.Host.cmStar])
-    | (unfold sigD Formalism.BasicNotions.CMData.sig; simp only [starRingEnd_apply]; unfold Formalism.BasicNotions.Host.cmStar; simp)
 
 theorem host_conj_involutive (x : D.host.E) : D.host.conj (D.host.conj x) = x := by
   first
-    | simp
     | (rw [← forms_involution_eq_host_conj, ← forms_involution_eq_host_conj]; simp)
     | (letI := D.host.cmStar; rw [← Formalism.L2.Herm.star_conj, ← Formalism.L2.Herm.star_conj, star_star])
-    | (letI := D.host.cmStar; rw [← Formalism.L2.Herm.star_conj, ← Formalism.L2.Herm.star_conj]; exact star_star x)
 
 
 

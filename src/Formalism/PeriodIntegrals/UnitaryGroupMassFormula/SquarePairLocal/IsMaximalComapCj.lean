@@ -113,8 +113,6 @@ theorem stdHG_conj (e : Matrix (Fin N) (Fin N) E) (x y : Fin N → E) :
   first
     | simp only [stdHG, Matrix.mulVec, dotProduct, Matrix.conjTranspose_apply, Finset.mul_sum,
         Finset.sum_mul, star_sum, star_mul']
-    | simp only [stdHG, Matrix.mulVec, Matrix.dotProduct, Matrix.conjTranspose_apply,
-        Finset.mul_sum, Finset.sum_mul, star_sum, star_mul']
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   ring
@@ -124,7 +122,6 @@ theorem pres_conj (hL : IsSDG E N L) {e : Matrix (Fin N) (Fin N) E} (he : Pres L
   have hmem : ∀ y, y ∈ L ↔ ∀ x ∈ L, stdHG E N x y ∈ (algebraMap (𝓞 E) E).range := by
     first
       | exact hL.2.2
-      | (unfold IsSDG at hL; exact hL.2.2)
   intro y hy
   refine (hmem _).2 fun x hx => ?_
   rw [stdHG_conj]
@@ -233,7 +230,6 @@ theorem good_pert {L' L'' : Submodule (𝓞 E) (Fin N → E)} (h' : IsSDG E N L'
   obtain ⟨y1, y2⟩ := small_pert h'' h₀'' hD'' hρ hρc b d
   first
     | exact ⟨x1, y1, x2, y2⟩
-    | (unfold Good; exact ⟨x1, y1, x2, y2⟩)
 
 end Small
 
@@ -357,10 +353,6 @@ theorem glue_of (hP : PowLoc) : Glue := by
   have hp0 : (p : 𝓞 E) ≠ 0 := by
     first
       | exact_mod_cast hp.ne_zero
-      | (intro h0
-         have h1 := congrArg (fun t : 𝓞 E => (t : E)) h0
-         simp only [map_natCast, Nat.cast_eq_zero] at h1
-         exact hp.ne_zero (by exact_mod_cast h1))
   have hc : ((p : 𝓞 E) ^ a) ≠ 0 := pow_ne_zero a hp0
   have hI : Ideal.span {(p : 𝓞 E)} ≠ 0 := by
     rw [Ne, Ideal.zero_eq_bot, Ideal.span_singleton_eq_bot]

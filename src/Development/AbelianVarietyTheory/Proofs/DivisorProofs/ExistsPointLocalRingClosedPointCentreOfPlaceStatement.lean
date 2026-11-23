@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_pointLocalRing_closedPoint_centre_of_place 
     ∃ (B : Subring κ') (hB : IsLocModel (algebraMap ℂ κ') B), RatRes (algebraMap ℂ κ') B ∧
       A.toSubring ≤ B ∧ B ≤ F.ring.toSubring ∧
       ((algebraMap ℂ κ').codRestrict B hB.const_mem).FormallySmooth := by
-  first | exact @GlobalTheory.FieldPair.exists_locRing_closedPoint_centre | exact GlobalTheory.FieldPair.exists_locRing_closedPoint_centre | (intros; apply GlobalTheory.FieldPair.exists_locRing_closedPoint_centre <;> assumption)
+  first | exact @GlobalTheory.FieldPair.exists_locRing_closedPoint_centre

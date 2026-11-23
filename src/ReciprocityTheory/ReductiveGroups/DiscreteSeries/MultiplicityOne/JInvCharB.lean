@@ -145,7 +145,7 @@ private theorem embWb_one' : embWb k r (1 : Matrix (Fin (k + 1)) (Fin (k + 1)) �
   by_cases hi : r ≤ i.val ∧ i.val ≤ r + k
   · by_cases hj : r ≤ j.val ∧ j.val ≤ r + k
     · rw [embWb_apply_of_mem_block _ hi hj, Matrix.one_apply]
-      simp only [Fin.ext_iff, Fin.val_mk]
+      simp only [Fin.ext_iff]
       split_ifs <;> first | rfl | omega
     · rw [embWb_apply_of_right_not_mem_block _ hj]
   · rw [embWb_apply_of_left_not_mem_block _ hi]
@@ -167,7 +167,6 @@ theorem cStd_conj_re (w : ℂ) : (cStd * conj w).re = -(cStd * w).re := by
   first
   | (simp [cStd, Complex.mul_re, Complex.mul_im]; ring)
   | simp [cStd, Complex.mul_re, Complex.mul_im]
-  | (simp [cStd, Complex.mul_re, Complex.mul_im]; linarith)
 
 section
 variable {γ : Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ} (hE : IsUnit (embWb k r γ).det)
@@ -266,7 +265,7 @@ theorem frame_conjugation_fixes_vector (z : Fin (2 * r + k + 1) → ℂ) (hT : 0
   let e : Fin (2 * r + k + 1) → ℂ := Pi.single (wI k r (Fin.last k)) 1
   have hsingle : ∀ i, conj (e i) = e i := by
     intro i
-    by_cases hi : i = wI k r (Fin.last k) <;> simp [e, Pi.single_apply, hi]
+    by_cases hi : i = wI k r (Fin.last k) <;> simp [e, hi]
   change conj ((((Real.sqrt (Tz k r z) : ℝ) : ℂ) * e i)) =
     ((Real.sqrt (Tz k r z) : ℝ) : ℂ) * e i
   rw [map_mul, Complex.conj_ofReal, hsingle i]

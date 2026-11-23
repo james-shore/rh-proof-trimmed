@@ -45,4 +45,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.thetaSeries_site_eq_changedFrame_classSeries : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fact (D.what₂.places.resChar w).Prime] {std t J} S => J.Dict std → S.Pair → S.Pos → ∀ (d : Dec J std), ∀ ι : ℂ →+* ℂ_[D.what₂.places.resChar w], (∀ z : TaylorLogMetric.Qbar, ι z = S.lam z) → ∀ j < D.R.m, d.SerAt S ι j) := by
-  first | exact @GlobalTheory.TwV.DelB.serAt_all | exact GlobalTheory.TwV.DelB.serAt_all | (intros; apply GlobalTheory.TwV.DelB.serAt_all <;> assumption)
+  first | exact @GlobalTheory.TwV.DelB.serAt_all

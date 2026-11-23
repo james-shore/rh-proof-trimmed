@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.eq_smul_of_commute_heisenberg_linearModel_schwartz
     (∀ C, ∀ x ∈ V, Tr C x ∈ V ∧ ι₁ (Tr C x) = (fun Y => ι₁ x (Y + C)) ∧ ι₂ (Tr C x) = fun Y => ι₂ x (Y + C)) →
     (∀ l, ∀ x ∈ V, Mu l x ∈ V ∧ ι₁ (Mu l x) = (fun Y => ψ0 (l Y) * ι₁ x Y) ∧ ι₂ (Mu l x) = fun Y => ψ0 (l Y) * ι₂ x Y) →
     ∃ c : ℂ, ∀ x ∈ V, ι₂ x = c • ι₁ x := by
-  first | exact @GlobalTheory.LinSchur.eq_smul_of_commute | exact GlobalTheory.LinSchur.eq_smul_of_commute | (intros; apply GlobalTheory.LinSchur.eq_smul_of_commute <;> assumption)
+  first | exact @GlobalTheory.LinSchur.eq_smul_of_commute

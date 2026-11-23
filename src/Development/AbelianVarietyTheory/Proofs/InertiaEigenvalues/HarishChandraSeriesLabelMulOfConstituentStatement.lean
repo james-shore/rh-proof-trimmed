@@ -46,4 +46,4 @@ open GlobalTheory.GLq GlobalTheory.GLp Formalism.MainNotions.ArithmeticCylinders
 open scoped Classical
 
 theorem _root_.GlobalTheory.T.harishChandraSeriesLabel_mul_of_constituent : ∀ (g : ℕ) [Fact g.Prime] (L : LabelDatum g) (a b n : ℕ) (χ : Gn g n → ℂ) (α : Gn g a → ℂ) (β : Gn g b → ℂ) (f₁ f₂ : (ZMod g)[X]), n = a + b → IsIrr χ → IsIrr α → IsIrr β → HasLabel L α f₁ → HasLabel L β f₂ → ip χ (hc a b α β n) ≠ 0 → HasLabel L χ (f₁ * f₂) := by
-  first | exact @GlobalTheory.GLq.LabelMul.hasLabel_mul | exact GlobalTheory.GLq.LabelMul.hasLabel_mul | (intros; apply GlobalTheory.GLq.LabelMul.hasLabel_mul <;> assumption)
+  first | exact @GlobalTheory.GLq.LabelMul.hasLabel_mul

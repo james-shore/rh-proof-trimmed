@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_ne_zero_linear_combination_mem_common_kerne
   LinearIndependent k f → ∀ (S : Finset ι) (N : ι → ℕ) (ψ : ∀ v, (Fin n → F) →ₗ[k] (Fin (N v) → k)),
     ∑ v ∈ S, N v < n * m → ∃ c : Fin n → Fin m → k, (fun i => ∑ j, c i j • f j) ≠ 0 ∧
       ∀ v ∈ S, ψ v (fun i => ∑ j, c i j • f j) = 0 := by
-  first | exact @GlobalTheory.exists_ne_zero_comb_mem_ker | exact GlobalTheory.exists_ne_zero_comb_mem_ker | (intros; apply GlobalTheory.exists_ne_zero_comb_mem_ker <;> assumption)
+  first | exact @GlobalTheory.exists_ne_zero_comb_mem_ker

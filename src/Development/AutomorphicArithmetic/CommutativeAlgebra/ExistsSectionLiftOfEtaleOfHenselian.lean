@@ -95,7 +95,7 @@ theorem UpperTheory.exists_section_lift_of_etale_of_henselian :
     simp [ρ, hra, ResidueField.algebraMap_eq]
   refine ⟨(P.lift a hA).comp (P.equivRing.toAlgHom.comp ι), fun x => ?_⟩
   have := congrArg (fun φ => φ (P.equivRing (ι x))) hρ
-  simp only [AlgHom.comp_apply, ρ, IsScalarTower.coe_toAlgHom', ResidueField.algebraMap_eq, τ, AlgEquiv.coe_toAlgHom, AlgHom.coe_coe, AlgEquiv.symm_apply_apply] at this
+  simp only [AlgHom.comp_apply, ρ, IsScalarTower.coe_toAlgHom', ResidueField.algebraMap_eq, τ, AlgEquiv.coe_toAlgHom, AlgEquiv.symm_apply_apply] at this
   simpa [hπ] using this
 
 end

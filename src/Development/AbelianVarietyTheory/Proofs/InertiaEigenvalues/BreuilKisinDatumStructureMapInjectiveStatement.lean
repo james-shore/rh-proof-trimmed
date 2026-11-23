@@ -47,4 +47,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.breuilKisinDatum_structureMap_injective : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K), Function.Injective bk.ev := by
-  first | exact @GlobalTheory.BSP.bk_ev_injective | exact GlobalTheory.BSP.bk_ev_injective | (intros; apply GlobalTheory.BSP.bk_ev_injective <;> assumption)
+  first | exact @GlobalTheory.BSP.bk_ev_injective

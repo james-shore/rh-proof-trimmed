@@ -54,4 +54,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheo
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.smooth_commGroupSchemeHom_tangentAtOrigin_surjective : ∀ (R : Type) [CommRing R] [IsLocalRing R] (G B : Over (Sp R)) [GrpObj G] [GrpObj B] [IsCommMonObj G] [IsCommMonObj B] (q : G ⟶ B) [IsMonHom q], Smooth q.left → ∀ u : TanM (𝟙 (Sp R)) B, ∃ v : TanM (𝟙 (Sp R)) G, tv v ≫ q = tv u := by
-  first | exact @GlobalTheory.LieSurjLocal.map_surjective | exact GlobalTheory.LieSurjLocal.map_surjective | (intros; apply GlobalTheory.LieSurjLocal.map_surjective <;> assumption)
+  first | exact @GlobalTheory.LieSurjLocal.map_surjective

@@ -180,7 +180,7 @@ theorem first_power_succ_at (k : ℕ) {x z : Pt R n d} (hx : Z x) (hz : Z z) :
     rw [pow1, Finset.prod_range_succ, pow1]
   simp (discharger := (repeat first | assumption | exact ZZ_nil | apply ZZ_cons | exact Z_pt _ | exact Z_zero | exact Z_comp1 (Z_act _ _) (Z_pt _) | exact Z_add _ (Z_pt _) (Z_pt _))) only
     [ev_mul', ev_ev, evV_cons, evV_nil, evalPoints_coordinatePoint,
-     evalPoints_zero, evalPoints_comp, evalPoints_add, ev_one] at h
+     evalPoints_comp] at h
   exact h
 
 theorem second_power_succ_at (k : ℕ) {x z : Pt R n d} (hx : Z x) (hz : Z z) :
@@ -190,7 +190,7 @@ theorem second_power_succ_at (k : ℕ) {x z : Pt R n d} (hx : Z x) (hz : Z z) :
     rw [pow2, Finset.prod_range_succ, pow2]
   simp (discharger := (repeat first | assumption | exact ZZ_nil | apply ZZ_cons | exact Z_pt _ | exact Z_zero | exact Z_comp1 (Z_act _ _) (Z_pt _) | exact Z_add _ (Z_pt _) (Z_pt _))) only
     [ev_mul', ev_ev, evV_cons, evV_nil, evalPoints_coordinatePoint,
-     evalPoints_zero, evalPoints_comp, evalPoints_add, ev_one] at h
+     evalPoints_comp] at h
   exact h
 
 theorem first_power_zero : pow1 B 0 = 1 := by simp [pow1]
@@ -203,28 +203,28 @@ theorem sy_law_at {x z w : Pt R n d} (hx : Z x) (hz : Z z) (hw : Z w) :
   have h := congrArg (ev ![x, z, w]) B.sy_law
   simp (discharger := (repeat first | assumption | exact ZZ_nil | apply ZZ_cons | exact Z_pt _ | exact Z_zero | exact Z_comp1 (Z_act _ _) (Z_pt _) | exact Z_add _ (Z_pt _) (Z_pt _))) only
     [ev_mul', ev_ev, evV_cons, evV_nil, evalPoints_coordinatePoint,
-     evalPoints_zero, evalPoints_comp, evalPoints_add, ev_one] at h
+     evalPoints_add] at h
   exact h
 
 theorem symmetric_zero_right_at {x : Pt R n d} (hx : Z x) : ev ![x, 0] B.sy = 1 := by
   have h := congrArg (ev ![x]) B.symmetry_zero_snd
   simp (discharger := (repeat first | assumption | exact ZZ_nil | apply ZZ_cons | exact Z_pt _ | exact Z_zero | exact Z_comp1 (Z_act _ _) (Z_pt _) | exact Z_add _ (Z_pt _) (Z_pt _))) only
-    [ev_mul', ev_ev, evV_cons, evV_nil, evalPoints_coordinatePoint,
-     evalPoints_zero, evalPoints_comp, evalPoints_add, ev_one] at h
+    [ev_ev, evV_cons, evV_nil, evalPoints_coordinatePoint,
+     evalPoints_zero, ev_one] at h
   exact h
 
 theorem second_form_zero_left_at {x z : Pt R n d} (hx : Z x) (hz : Z z) : ev ![0, x, z] B.ph2 = 1 := by
   have h := congrArg (ev ![x, z]) B.cocycleRight_zero_fst
   simp (discharger := (repeat first | assumption | exact ZZ_nil | apply ZZ_cons | exact Z_pt _ | exact Z_zero | exact Z_comp1 (Z_act _ _) (Z_pt _) | exact Z_add _ (Z_pt _) (Z_pt _))) only
-    [ev_mul', ev_ev, evV_cons, evV_nil, evalPoints_coordinatePoint,
-     evalPoints_zero, evalPoints_comp, evalPoints_add, ev_one] at h
+    [ev_ev, evV_cons, evV_nil, evalPoints_coordinatePoint,
+     evalPoints_zero, ev_one] at h
   exact h
 
 theorem first_form_zero_right_at {x z : Pt R n d} (hx : Z x) (hz : Z z) : ev ![x, z, 0] B.ph1 = 1 := by
   have h := congrArg (ev ![x, z]) B.cocycleLeft_zero_thd
   simp (discharger := (repeat first | assumption | exact ZZ_nil | apply ZZ_cons | exact Z_pt _ | exact Z_zero | exact Z_comp1 (Z_act _ _) (Z_pt _) | exact Z_add _ (Z_pt _) (Z_pt _))) only
-    [ev_mul', ev_ev, evV_cons, evV_nil, evalPoints_coordinatePoint,
-     evalPoints_zero, evalPoints_comp, evalPoints_add, ev_one] at h
+    [ev_ev, evV_cons, evV_nil, evalPoints_coordinatePoint,
+     evalPoints_zero, ev_one] at h
   exact h
 
 theorem interchange_at {x y z w : Pt R n d} (hx : Z x) (hy : Z y) (hz : Z z) (hw : Z w) :
@@ -233,7 +233,7 @@ theorem interchange_at {x y z w : Pt R n d} (hx : Z x) (hy : Z y) (hz : Z z) (hw
   have h := congrArg (ev ![x, y, z, w]) B.interchange
   simp (discharger := (repeat first | assumption | exact ZZ_nil | apply ZZ_cons | exact Z_pt _ | exact Z_zero | exact Z_comp1 (Z_act _ _) (Z_pt _) | exact Z_add _ (Z_pt _) (Z_pt _))) only
     [ev_mul', ev_ev, evV_cons, evV_nil, evalPoints_coordinatePoint,
-     evalPoints_zero, evalPoints_comp, evalPoints_add, ev_one] at h
+     evalPoints_add] at h
   exact h
 
 end Laws

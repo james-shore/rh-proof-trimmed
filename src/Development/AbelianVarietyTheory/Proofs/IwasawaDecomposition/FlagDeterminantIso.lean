@@ -126,7 +126,7 @@ theorem eigBasis_toMatrix (g g' : EigFrame Z φ x) :
   · subst h
     simp [Matrix.blockDiagonal'_apply_eq, Finsupp.single_apply]
   · rw [Matrix.blockDiagonal'_apply_ne _ _ _ h]
-    simp [Finsupp.single_apply, show ∀ a, (⟨τ, a⟩ : Σ τ : E →+* ℂ, Fin (Dw.mult τ)) ≠ ⟨σ, b⟩ from
+    simp [show ∀ a, (⟨τ, a⟩ : Σ τ : E →+* ℂ, Fin (Dw.mult τ)) ≠ ⟨σ, b⟩ from
       fun a e => h (congrArg Sigma.fst e).symm]
 
 open Classical in

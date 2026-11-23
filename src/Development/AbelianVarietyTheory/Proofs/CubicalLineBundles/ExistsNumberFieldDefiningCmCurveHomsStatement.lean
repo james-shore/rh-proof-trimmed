@@ -105,4 +105,4 @@ theorem _root_.GlobalTheory.T.exists_numberField_defining_cm_curve_homs : ThetaU
     M) P Q₁ ψ₁ → IsVecOver (algebraMap (𝓞 M) M) φ₁ (t C) v₁ → IsVecOver (algebraMap (𝓞 M)
     M) ψ₁ v t₁ → ∃ f₁ : P₁.A ⟶ Q₁.A, IsMonHom f₁ ∧ IsLieComb ![(β C)⁻¹ * κ (y : K)] ![t₁] (v₁ ≫
     f₁)) := by
-  first | exact @GlobalTheory.CommonField.exists_common_field | exact GlobalTheory.CommonField.exists_common_field | (intros; apply GlobalTheory.CommonField.exists_common_field <;> assumption)
+  first | exact @GlobalTheory.CommonField.exists_common_field

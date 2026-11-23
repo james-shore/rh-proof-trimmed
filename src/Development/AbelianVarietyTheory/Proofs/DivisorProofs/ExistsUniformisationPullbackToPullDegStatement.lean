@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_uniformisation_pullback_to_pullDeg : ∀ (R
       IsSemiAbelian G → ∀ (U : Unif I D A G),
       ∃ (A' : PolAV (Spec (CommRingCat.of (FractionRing R')))) (U' : Unif I' D' A' ((Over.pullback (specOf φ)).obj G)),
         IsPullUnif φ hD (Iso.refl _) U U' := by
-  first | exact @GlobalTheory.Mum.UnifPull.exists_pull_of_deg | exact GlobalTheory.Mum.UnifPull.exists_pull_of_deg | (intros; apply GlobalTheory.Mum.UnifPull.exists_pull_of_deg <;> assumption)
+  first | exact @GlobalTheory.Mum.UnifPull.exists_pull_of_deg

@@ -46,4 +46,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.latticeTranslate_halfPeriod_sigmaStar_pow_eight_mul_eq_one : ∀ Λ : AddSubgroup ℂ, IsLat Λ → ∀ t : ℂ, t ∉ Λ → 2 * t ∈ Λ → U1 Λ t (sgStar Λ) 0 ^ 8 * ((wpF Λ t ^ 2 + g2 Λ / 4) ^ 2 + 2 * g3 Λ * wpF Λ t) = 1 := by
-  first | exact @GlobalTheory.HalfPeriodValue.U1_sgStar_pow_eight | exact GlobalTheory.HalfPeriodValue.U1_sgStar_pow_eight | (intros; apply GlobalTheory.HalfPeriodValue.U1_sgStar_pow_eight <;> assumption)
+  first | exact @GlobalTheory.HalfPeriodValue.U1_sgStar_pow_eight

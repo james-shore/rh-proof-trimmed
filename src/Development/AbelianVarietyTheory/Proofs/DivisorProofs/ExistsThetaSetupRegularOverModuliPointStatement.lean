@@ -49,4 +49,4 @@ open Classical
 
 
 theorem _root_.GlobalTheory.T.exists_thetaSetup_regular_over_moduliPoint : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H), 1 ≤ Dw.p + Dw.q → ∀ (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l) (C : UCompact Xo c) (x : Xo.XF c), ∃ (X' : USetup C) (w : X'.M.Z), X'.π w = C.i x ∧ X'.S.R ≤ X'.M.O w := by
-  first | exact @GlobalTheory.UPoinc.SetupAt.exists_uSetup_regular_at | exact GlobalTheory.UPoinc.SetupAt.exists_uSetup_regular_at | (intros; apply GlobalTheory.UPoinc.SetupAt.exists_uSetup_regular_at <;> assumption)
+  first | exact @GlobalTheory.UPoinc.SetupAt.exists_uSetup_regular_at

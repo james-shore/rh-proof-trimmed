@@ -96,8 +96,6 @@ theorem logOf_props (G : FGLaw S d) :
       rw [hX]
       first
       | exact congrFun MvPowerSeries.subst_self _
-      | (rw [MvPowerSeries.subst_self]; rfl)
-      | (rw [← MvPowerSeries.map_algebraMap_eq_subst_X]; simp)
     rw [hF]
     exact ReciprocityTheory.ChartRestriction.G.TB.LogPf.logOf_add G i
 
@@ -169,8 +167,6 @@ theorem germCompOne_identityPoint_left (φ : Pt S 1 d) : comp1 φ (pt S (n := 1)
   rw [hX]
   first
   | exact congrFun MvPowerSeries.subst_self _
-  | (rw [MvPowerSeries.subst_self]; rfl)
-  | (rw [← MvPowerSeries.map_algebraMap_eq_subst_X]; simp)
 
 theorem subst_lg (G : FGLaw S d) {τ : Type} (Bφ : Fin 2 × Fin d → MvPowerSeries τ S)
     (hB : ∀ p, MvPowerSeries.constantCoeff (Bφ p) = 0) (j : Fin 2) (i : Fin d) :

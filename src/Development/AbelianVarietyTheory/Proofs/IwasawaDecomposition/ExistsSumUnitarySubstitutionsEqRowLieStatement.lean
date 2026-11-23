@@ -46,4 +46,4 @@ open scoped ComplexOrder
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_sum_unitarySubstitutions_eq_rowLie : ∀ (ι : Type) [Fintype ι] (m n d : ℕ) (τ : ι) (k l : Fin m), ∃ (s : Finset (Matrix.unitaryGroup (Fin m) ℂ)) (c : Matrix.unitaryGroup (Fin m) ℂ → ℂ), ∀ P : Pol ι m n, P.totalDegree ≤ d → ∑ u ∈ s, c u • rowSub n τ u P = rowLie n τ k l P := by
-  first | exact @GlobalTheory.DefLift.exists_sum_rowSub_eq_rowLie | exact GlobalTheory.DefLift.exists_sum_rowSub_eq_rowLie | (intros; apply GlobalTheory.DefLift.exists_sum_rowSub_eq_rowLie <;> assumption)
+  first | exact @GlobalTheory.DefLift.exists_sum_rowSub_eq_rowLie

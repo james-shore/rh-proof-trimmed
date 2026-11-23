@@ -96,7 +96,6 @@ theorem pt_Gs {p : ℕ} (g : Fin p → ℂ) (w : ℂ) (c : ℝ) (hN : 0 < vsq g)
   simp_rw [hterm]
   rw [← Finset.sum_mul, ← Finset.sum_div, ← Finset.mul_sum, hv]
   field_simp
-  try ring
 
 variable {n : ℕ} {M : Type*} [TopologicalSpace M] [T2Space M] [SecondCountableTopology M]
   [MeasurableSpace M] [BorelSpace M]
@@ -231,7 +230,6 @@ theorem wint_Gs_eq (z : M → V n) (hz : IsLocalHomeomorph z) (p : ℕ) (g : Fin
       (‖w (a, i).1 * (starRingEnd ℂ) (g (a, i).2 (a, i).1) / ((vsq (gv g (a, i).1) : ℝ) : ℂ)‖ ^ 2 *
         Real.exp (-φ (a, i).1))) _ fun i _ => hFm.comp measurable_prodMk_right]
   refine lintegral_congr fun x => ?_
-  beta_reduce
   rw [← ENNReal.ofReal_sum_of_nonneg fun i _ => by positivity]
   congr 1
   exact pt_Gs (gv g x) (w x) (φ x) (hN x)

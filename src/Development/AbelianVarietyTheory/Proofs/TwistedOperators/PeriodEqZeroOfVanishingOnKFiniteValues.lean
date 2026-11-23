@@ -156,7 +156,6 @@ theorem per_eq_zero_of_kF : GlobalTheory.Published.CuspRapidDecay → GlobalTheo
     have hm : AEStronglyMeasurable (fun x => y b (e x)) ν :=
       (hc.measurable.comp he).aestronglyMeasurable
     first
-      | exact hu.bdd_mul hm ⟨B, fun x => hB (e x)⟩
       | exact hu.bdd_mul hm (Filter.Eventually.of_forall fun x => hB (e x))
   let Λ : SmT M →ₗ[ℂ] ℂ :=
     { toFun := fun b => ∫ x, y b (e x) * u x ∂ν

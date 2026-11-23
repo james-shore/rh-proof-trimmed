@@ -143,9 +143,8 @@ theorem chi_embU_mul_valV : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok
           unfold GlobalTheory.TwU.InFrame at hin'
           rw [hfb1 P hP] at hin'
           first
-            | (simp only [GlobalTheory.TwU.ratA, map_one, inv_one, one_mul, mul_one] at hin'; exact hin')
+            | (simp only [GlobalTheory.TwU.ratA] at hin'; exact hin')
             | (erw [map_one, inv_one, one_mul, mul_one] at hin'; exact hin')
-            | (convert hin' using 2; simp)
       have hh : IsOver v (GlobalTheory.TwU.seamP (sm I l Z) P.1) ∧ ∃ g z, NearPair I l Z a v P x.1 g z := ⟨hP, g, z, hnp⟩
       refine ⟨g, z, ⟨hrel, hin⟩, ?_⟩
       rw [dite_eq_left hh]

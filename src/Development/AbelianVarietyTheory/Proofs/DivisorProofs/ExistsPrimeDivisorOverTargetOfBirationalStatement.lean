@@ -51,4 +51,4 @@ open GlobalTheory.Discrepancy GlobalTheory.EtaleKlt
 
 theorem _root_.GlobalTheory.T.exists_primeDivisor_over_target_of_birational : ∀ {X Y : Scheme.{0}} [IsIntegral X] [IsIntegral Y] (p : X ⟶ Sp ℂ) (s : Y ⟶ X) [IsDominant s],
     Function.Bijective (functionFieldMap s) → ∀ E' : DivOver (s ≫ p), ∃ E : DivOver p, DivOver.Over s E' E := by
-  first | exact @GlobalTheory.Discrepancy.DivOver.exists_over_of_bijective_complex | exact GlobalTheory.Discrepancy.DivOver.exists_over_of_bijective_complex | (intros; apply GlobalTheory.Discrepancy.DivOver.exists_over_of_bijective_complex <;> assumption)
+  first | exact @GlobalTheory.Discrepancy.DivOver.exists_over_of_bijective_complex

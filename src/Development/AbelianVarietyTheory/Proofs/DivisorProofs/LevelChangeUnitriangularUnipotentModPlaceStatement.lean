@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.levelChange_unitriangular_unipotent_modPlace : ∀
     ∀ x : LaMod (p.T.Q.Dw ((i : ℕ) + 1)) p.T.Q.l,
       (((r.lev i u).toLinearMap - LinearMap.id : Module.End (𝓞 D.host.E) (LaMod (p.T.Q.Dw ((i : ℕ) + 1)) p.T.Q.l)) ^ D.R.r) x ∈
         ((D.naut.plGw k v).asIdeal • ⊤ : Submodule (𝓞 D.host.E) (LaMod (p.T.Q.Dw ((i : ℕ) + 1)) p.T.Q.l)) := by
-  first | exact @GlobalTheory.ShareOn.UnipLevel.levUnip_mod_place | exact GlobalTheory.ShareOn.UnipLevel.levUnip_mod_place | (intros; apply GlobalTheory.ShareOn.UnipLevel.levUnip_mod_place <;> assumption)
+  first | exact @GlobalTheory.ShareOn.UnipLevel.levUnip_mod_place

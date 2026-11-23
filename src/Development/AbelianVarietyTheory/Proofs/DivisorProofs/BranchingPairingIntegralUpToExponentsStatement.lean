@@ -64,4 +64,3 @@ theorem _root_.GlobalTheory.T.branchingPairing_integral_upToExponents : ∀ {E K
   intro E K ι _ _ _ _ _ _ emb n N hN Λ σ hI hS M L hM hL w u v hu hv
   first
   | exact GlobalTheory.BrPairLocal.finLocal emb hN Λ σ hI hS M L hM hL w u v hu hv
-  | exact GlobalTheory.BrPairLocal.finLocal emb hN Λ σ hI hS M L hM.toIsLattice hL w u v hu hv

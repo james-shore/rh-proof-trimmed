@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.exists_uniformisation_finiteExtension_siegelFamily
           (α₂' : (G2 A'.A).left ⟶ (G2 F.univ.A).left),
           IsSemiAbelian G' ∧ IsGrpPullback A'.A F.univ.A (spMap fK ≫ y₁) α' ∧ IsSquare α' α₂' ∧
           LBIso (abelian₂ A'.A A'.L) (F.univ.P.pull α₂') := by
-  first | exact @GlobalTheory.PoincUnif.exists_unif_finExt | exact GlobalTheory.PoincUnif.exists_unif_finExt | (intros; apply GlobalTheory.PoincUnif.exists_unif_finExt <;> assumption)
+  first | exact @GlobalTheory.PoincUnif.exists_unif_finExt

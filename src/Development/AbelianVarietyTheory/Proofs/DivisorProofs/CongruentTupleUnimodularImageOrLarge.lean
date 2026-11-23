@@ -56,7 +56,7 @@ theorem dichQuadBound {X : Type} [AddCommGroup X] (β : LinearMap.BilinForm ℤ 
   have hexp : β (∑ i, u i) (∑ i, u i) = ∑ i, ∑ j, β (u i) (u j) := by
 
     simp only [map_sum, LinearMap.sum_apply]
-    first | rfl | exact Finset.sum_comm
+    first | exact Finset.sum_comm
   have h2 : 2 * ∑ i, ∑ j, β (u i) (u j) ≤ 2 * ((Fintype.card ι : ℤ) * ∑ i, β (u i) (u i)) := by
     calc 2 * ∑ i, ∑ j, β (u i) (u j) = ∑ i, ∑ j, 2 * β (u i) (u j) := by simp [Finset.mul_sum]
       _ ≤ ∑ i, ∑ j, (β (u i) (u i) + β (u j) (u j)) :=
@@ -88,7 +88,7 @@ theorem dichDetCongr {X₀ X : Type} [AddCommGroup X₀] [Module.Free ℤ X₀] 
   choose w hw using fun j => h (b j)
   let hh : X₀ →ₗ[ℤ] X := b.constr ℤ w
   have hg : g = k + (N : ℤ) • hh := b.ext fun j => by
-    simp [hh, hw j, Module.Basis.constr_basis, natCast_zsmul]
+    simp [hh, hw j, natCast_zsmul]
   have e : ε.toLinearMap ∘ₗ g = ε.toLinearMap ∘ₗ k + (N : ℤ) • (ε.toLinearMap ∘ₗ hh) := by
     rw [hg, LinearMap.comp_add, LinearMap.comp_smul]
   rw [e, ← LinearMap.det_toMatrix b, ← LinearMap.det_toMatrix b, map_add (f := _), map_smul]
@@ -172,7 +172,7 @@ private theorem quad_sub_le (β : LinearMap.BilinForm ℤ X) (hs : ∀ x y, β x
 
 private theorem quad_nsmul (β : LinearMap.BilinForm ℤ X) (w : X) :
     β (N • w) (N • w) = (N : ℤ) * ((N : ℤ) * β w w) := by
-  simp [map_nsmul, LinearMap.smul_apply, nsmul_eq_mul]
+  simp [map_nsmul, LinearMap.smul_apply]
 
 end Help
 

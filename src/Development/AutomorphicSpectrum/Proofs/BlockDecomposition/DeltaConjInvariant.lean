@@ -119,8 +119,6 @@ theorem delta_map (F E : Type) [Field F] [NumberField F] [Field E] [NumberField 
   show (Kc (c.map σ)).index = (Kc c).index
   rw [key]
   first
-    | exact (AddSubgroup.index_comap_of_surjective hsurj).symm
     | exact (AddSubgroup.index_comap_of_surjective _ hsurj).symm
-    | exact (AddSubgroup.index_comap_of_surjective (H := Kc (c.map σ)) hsurj).symm
 
 end GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.DeltaMap

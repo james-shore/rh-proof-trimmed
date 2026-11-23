@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.moduliScheme_levelMaps_heckePoints' : N1 := by
-  first | exact @GlobalTheory.moduliScheme_levelMaps_heckePoints | exact GlobalTheory.moduliScheme_levelMaps_heckePoints | (intros; apply GlobalTheory.moduliScheme_levelMaps_heckePoints <;> assumption)
+  first | exact @GlobalTheory.moduliScheme_levelMaps_heckePoints

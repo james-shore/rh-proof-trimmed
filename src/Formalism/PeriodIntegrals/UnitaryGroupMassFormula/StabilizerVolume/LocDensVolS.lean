@@ -82,18 +82,12 @@ theorem singleV_self (v : HeightOneSpectrum (𝓞 F)) (t : Fv F v) : singleV F v
   unfold singleV
   first
   | exact RestrictedProduct.single_eq_same _ _ _
-  | simp [RestrictedProduct.single]
-  | simp [RestrictedProduct.single, Pi.single_apply]
-  | rfl
 
 open Classical in
 theorem singleV_ne (v w : HeightOneSpectrum (𝓞 F)) (h : w ≠ v) (t : Fv F v) : singleV F v t w = 0 := by
   unfold singleV RestrictedProduct.single
   first
   | exact Pi.single_eq_of_ne h t
-  | exact Pi.single_eq_of_ne h _
-  | exact Pi.single_eq_of_ne' h t
-  | simp [Pi.single_apply, h]
 
 theorem ev_pow_mul_sub (v : HeightOneSpectrum (𝓞 F)) {W : Set (Fv F v)} (hW : W ∈ 𝓝 (0 : Fv F v)) :
     ∃ n : ℕ, ∀ s ∈ v.adicCompletionIntegers F, unifV v ^ n * s ∈ W := by
@@ -105,15 +99,11 @@ theorem ev_pow_mul_sub (v : HeightOneSpectrum (𝓞 F)) {W : Set (Fv F v)} (hW :
   have hs'' : Valued.v.restrict s ≤ 1 := by
     first
       | simpa using hs'
-      | exact_mod_cast hs'
-      | (rw [← map_one Valued.v.restrict]; simpa [Valuation.restrict_le_iff] using hs')
   show Valued.v.restrict (unifV v ^ n * s) < _
   rw [map_mul]
   have h1 : Valued.v.restrict (unifV v ^ n) * Valued.v.restrict s ≤ Valued.v.restrict (unifV v ^ n) := by
     first
       | exact mul_le_of_le_one_right' hs''
-      | exact (mul_le_mul' le_rfl hs'').trans (mul_one _).le
-      | exact mul_le_of_le_one_right (zero_le _) hs''
   exact lt_of_le_of_lt h1 hn
 
 def U0 (I : Finset (HeightOneSpectrum (𝓞 F))) (n : HeightOneSpectrum (𝓞 F) → ℕ) :

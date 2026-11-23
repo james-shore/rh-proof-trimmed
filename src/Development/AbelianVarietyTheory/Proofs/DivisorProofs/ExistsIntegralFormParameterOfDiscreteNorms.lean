@@ -96,7 +96,6 @@ theorem exists_form_of_discrete_norms : ∀ (C : Type) [NormedField C] [IsAlgClo
     rw [hB, QuadraticMap.polar_self, hq, nsmul_eq_mul]
     push_cast
     field_simp
-    try ring
   have hsymm : ∀ x y, Bf x y = Bf y x := by
     intro x y; simp only [hBf, add_comm x y]; ring
   have hpos : ∀ y, y ≠ 0 → 0 < q y := by
@@ -142,7 +141,7 @@ theorem exists_form_of_discrete_norms : ∀ (C : Type) [NormedField C] [IsAlgClo
         simp only [LinearMap.smul_apply, hBm, hdiag, smul_eq_mul]
         have := hQpos y hy
         positivity
-      dvd := fun y z => ⟨Bf y z, by simp [LinearMap.smul_apply, hBm, smul_eq_mul]⟩ }
+      dvd := fun y z => ⟨Bf y z, by simp [LinearMap.smul_apply, hBm]⟩ }
   have hβ : ∀ α, β.be α α / (2 * m ^ 2) = 2 * Q α := by
     intro α
     show ((2 * (m : ℤ) ^ 2) • Bm) α α / (2 * m ^ 2) = 2 * Q α

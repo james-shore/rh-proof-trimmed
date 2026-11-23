@@ -172,7 +172,7 @@ theorem smul_eq_zero_of_ne [IsDomain O] [IsFractionRing O LL] {s : O} (hs : s �
 
 theorem exists_smul_mem [IsDomain O] [IsFractionRing O LL] (v : A.V) :
     ∃ a : O, a ≠ 0 ∧ a • v ∈ LA.T :=
-  by apply _root_.UpperTheory.Reformulated.B.ExistsSmulMemBis.exists_smul_mem <;> assumption
+  by apply _root_.UpperTheory.Reformulated.B.ExistsSmulMemBis.exists_smul_mem
 
 def fixT : Submodule O ↥LA.T := ((H0V A.ρ).restrictScalars O).comap LA.T.subtype
 

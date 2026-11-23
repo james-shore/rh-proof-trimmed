@@ -56,4 +56,4 @@ open GlobalTheory.LiftLevel
 
 
 theorem _root_.GlobalTheory.T.exists_integral_inverse_on_conjugate_half : ∀ (D : D7) (P : Finset (Formalism.L2.DIV.Pl D.host.E)) (e : AE D), IsIdemSum e P → ∀ s : 𝓞 D.host.E, (∀ PP ∈ P, s ∉ conjI PP.asIdeal) → ∃ t : AE D, finPart D t ∈ intAE D ∧ t * incA D (s : D.host.E) * cA D e = cA D e := by
-  first | exact @GlobalTheory.HalfUnit.exists_int_inv_half | exact GlobalTheory.HalfUnit.exists_int_inv_half | (intros; apply GlobalTheory.HalfUnit.exists_int_inv_half <;> assumption)
+  first | exact @GlobalTheory.HalfUnit.exists_int_inv_half

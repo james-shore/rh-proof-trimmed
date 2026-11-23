@@ -48,4 +48,4 @@ open GlobalTheory.UT GlobalTheory.Mum GlobalTheory.Mum.Two GlobalTheory.PolDeg G
 open GlobalTheory.Mum.PowData
 
 theorem _root_.GlobalTheory.T.isBiextensionExpansionGenerator_of_tauBimult : ∀ (R : Type) [CommRing R] [IsDomain R] (D : DegPre R), D.TauBimult → ∀ (K : Type) [Fintype K] (n : K → ℤ) (T : Over (Sp R)) (x : T ⟶ D.P.A) (y : K → (T ⟶ D.P.A)), Expand D n x y := by
-  first | exact @GlobalTheory.Mum.PowData.expand_of_tauBimult | exact GlobalTheory.Mum.PowData.expand_of_tauBimult | (intros; apply GlobalTheory.Mum.PowData.expand_of_tauBimult <;> assumption)
+  first | exact @GlobalTheory.Mum.PowData.expand_of_tauBimult

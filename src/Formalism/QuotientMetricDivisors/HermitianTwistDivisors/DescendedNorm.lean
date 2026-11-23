@@ -428,7 +428,7 @@ theorem opNormAt_mulVecLin {K : Type} [Field K] [NumberField K] [StarRing K] {a 
       nrm ((X' v)⁻¹ * N.map v.embedding * X v) := by
   have hN : LinearMap.toMatrix (Pi.basisFun K (Fin a)) (Pi.basisFun K (Fin b)) (Matrix.mulVecLin N) = N := by
     ext i j
-    simp [LinearMap.toMatrix_apply]
+    simp
   simp only [Formalism.HN.opNormAt, nrm, hN]
 
 theorem mulVecLin_ne_zero {K : Type} [Field K] {a b : ℕ} (N : Matrix (Fin b) (Fin a) K) (h : N ≠ 0) :

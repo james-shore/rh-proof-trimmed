@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.idempotent_part_completed_lattice_local_chart : �
       finPart D e • y ∈ latGHat V x ↔
         ∀ i, ((t • ((GlobalTheory.SplitPlace.comp V π B x⁻¹).1 * (B⁻¹ : GL (Fin V.rank) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Fv D.host.F v)).1)) *ᵥ
           fun j => π (y j)) i ∈ Formalism.UG.Ov D.host.F v := by
-  first | exact @GlobalTheory.EPartChart.latGHat_chart | exact GlobalTheory.EPartChart.latGHat_chart | (intros; apply GlobalTheory.EPartChart.latGHat_chart <;> assumption)
+  first | exact @GlobalTheory.EPartChart.latGHat_chart

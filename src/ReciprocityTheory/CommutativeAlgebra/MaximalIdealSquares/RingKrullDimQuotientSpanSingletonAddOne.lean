@@ -107,8 +107,6 @@ theorem isLocalRing_quotient_span_singleton {R : Type*} [CommRing R] [IsLocalRin
   have : Nontrivial (R ⧸ Ideal.span ({x} : Set R)) := by
     first
     | exact Ideal.Quotient.nontrivial_iff.mpr hI
-    | exact ⟨⟨0, 1, fun h => hI ((Ideal.eq_top_iff_one _).mpr
-        (Ideal.Quotient.eq_zero_iff_mem.mp (by rw [map_one]; exact h.symm)))⟩⟩
   exact IsLocalRing.of_surjective' (Ideal.Quotient.mk _) Ideal.Quotient.mk_surjective
 
 theorem spanFinrank_maximalIdeal_quotient_succ_le (R : Type*) [CommRing R] [IsLocalRing R]

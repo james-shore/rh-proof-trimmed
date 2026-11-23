@@ -76,13 +76,13 @@ theorem iota_of_dc {F : LFlag S r T} {F₁ F₂ : LFlag S r T'} {n m : S.V ≃�
   have hnmX := xsp_map_of_frame (n * m) hfr
   have hnX : (Xsp F₁).map (n : S.V →ₗ[E] S.V) = Xsp F₂ := by
     refine map_of_mem_iff fun x => ?_
-    have e : n x = (n * m) (m.symm x) := by simp [LinearEquiv.mul_apply]
+    have e : n x = (n * m) (m.symm x) := by simp
     rw [e, mem_iff_of_map hnmX, mem_iff_of_map (map_symm hmX)]
   have hi : n⁻¹ ∈ NLam Λ F := Formalism.L2.SG.Pf.nlamPf_inv hn
   intro x' hx' l hl
   have e : l - (n * m) x' = n (n⁻¹ l - m x') := by
     rw [map_sub]
-    simp [LinearEquiv.mul_apply]
+    simp
   rw [e, ngx_iff hn.1 (nlam_map hn) hnX g]
   have e2 : n⁻¹ l - m x' = (l - x') + ((n⁻¹ l - l) - (m x' - x')) := by abel
   rw [e2]

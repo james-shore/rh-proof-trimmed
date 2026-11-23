@@ -179,14 +179,10 @@ variable {j}
 theorem Tp_eq (h1 : 1 ≤ j) (h2 : j ≤ D.R.m) : Tp D j X.T = X.Tq := by
   first
   | (rw [RunN.Tq_eq, Tp, dimY_eq_top h1 h2])
-  | (simp only [RunN.Tq, Tp, dimY_eq_top h1 h2])
 
 private lemma int_fdiv_mul_self_left (a b : ℤ) (ha : 0 < a) : Int.fdiv (a * b) a = b := by
   first
   | exact Int.mul_fdiv_cancel_left b (ne_of_gt ha)
-  | (rw [Int.fdiv_eq_ediv_of_nonneg _ ha.le]; exact Int.mul_ediv_cancel_left b (ne_of_gt ha))
-  | (rw [Int.fdiv_eq_ediv_of_dvd (dvd_mul_right a b)]; exact Int.mul_ediv_cancel_left b (ne_of_gt ha))
-  | simp [Int.fdiv_eq_ediv_of_nonneg, ha.le, ne_of_gt ha]
 
 theorem isL (h1 : 1 ≤ j) (h2 : j ≤ D.R.m) : IsL D (ka j X) (wL j X) X.T X.nW := by
   have hT : Tp D j X.T = X.Tq := Tp_eq X h1 h2

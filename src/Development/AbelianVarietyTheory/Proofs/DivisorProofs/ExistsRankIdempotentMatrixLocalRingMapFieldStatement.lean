@@ -64,4 +64,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.UPel.HT
 
 theorem _root_.GlobalTheory.T.exists_rank_idempotent_matrix_local_ring_map_field : ∀ (W : Type) [CommRing W] [IsLocalRing W] (n : ℕ) (Q : Matrix (Fin n) (Fin n) W), Q * Q = Q → ∃ r : ℕ, ∀ (k : Type) [Field k] (β : W →+* k), (Q.map β).rank = r := by
-  first | exact @GlobalTheory.IdemRankLocal.rank_map_const | exact GlobalTheory.IdemRankLocal.rank_map_const | (intros; apply GlobalTheory.IdemRankLocal.rank_map_const <;> assumption)
+  first | exact @GlobalTheory.IdemRankLocal.rank_map_const

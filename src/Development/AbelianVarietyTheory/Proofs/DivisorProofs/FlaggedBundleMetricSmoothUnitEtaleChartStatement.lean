@@ -48,4 +48,4 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts G
 open scoped Matrix ContDiff ComplexOrder
 
 theorem _root_.GlobalTheory.T.flaggedBundleMetric_smoothUnit_etaleChart : ∀ (F : Type) [Field F] (σ : F →+* ℂ) (X : Var F) (ι : Type) [Finite ι] (m k : ι → ℕ) (E : Fr (ratOf X) m k) (H : Mat m X.Fn → CxPts X.str σ → Mat m ℂ), IsMetricFr E H → ∀ (y : CxPts X.str σ), ∀ A ∈ E.S (under y), ∀ τ, SmoothUnitAt (atlas X σ) (fun z => H A z τ) y ∧ ∀ c : AlgChart X.str σ X.dim, y ∈ c.e.source → ∀ᶠ v in 𝓝 (c.e y), MContDiffAt ∞ (fun u => H A (c.e.symm u) τ) v ∧ (H A (c.e.symm v) τ).PosDef := by
-  first | exact @GlobalTheory.ChernCalc.isMetricFr_smoothUnitAt | exact GlobalTheory.ChernCalc.isMetricFr_smoothUnitAt | (intros; apply GlobalTheory.ChernCalc.isMetricFr_smoothUnitAt <;> assumption)
+  first | exact @GlobalTheory.ChernCalc.isMetricFr_smoothUnitAt

@@ -44,4 +44,4 @@ open Formalism.L2.Pj Formalism.L2.PjFree Formalism.L2.Pj.QAt Formalism.L2.LamCM 
 open scoped LaurentSeries
 
 theorem _root_.GlobalTheory.T.isNumberFieldFunctionalBounded_comp_extension : ∀ (K V : Type) [Field K] [NumberField K] [AddCommGroup V] [Module K V] (M : Set V) (S : (K →+* ℂ) → V → ℝ) (be : HeightOneSpectrum (𝓞 K) → ℝ) (Carch Bdeg : ℝ) (K' K₁ : Type) [Field K'] [NumberField K'] [Algebra K K'] [Field K₁] [NumberField K₁] [Algebra K K₁] (f : K' →ₐ[K] K₁) (φ : V →ₗ[K] K'), NumGood M S be Carch Bdeg K' φ → NumGood M S be Carch Bdeg K₁ (f.toLinearMap.comp φ) := by
-  first | exact @GlobalTheory.ArcCM.numGood_comp | exact GlobalTheory.ArcCM.numGood_comp | (intros; apply GlobalTheory.ArcCM.numGood_comp <;> assumption)
+  first | exact @GlobalTheory.ArcCM.numGood_comp

@@ -105,8 +105,6 @@ theorem csCovol_int_mult {K : Type} [Field K] [NumberField K] (e : 𝓞 K) (he :
   refine ⟨Algebra.intNorm ℤ (𝓞 K) e, ?_, c, by rw [hc, mul_comm]⟩
   first
   | exact Algebra.intNorm_ne_zero.mpr he
-  | exact (Algebra.intNorm_eq_zero.not).mpr he
-  | simpa using he
 
 theorem csCovol_discr_mul {K : Type} [Field K] [NumberField K] (z : K)
     (hz : ∀ a : 𝓞 K, Algebra.trace ℚ K ((a : K) * z) ∈ Set.range (algebraMap ℤ ℚ)) :
@@ -138,8 +136,6 @@ theorem csCovol_mem_zmap (M : Submodule (𝓞 K) V) (v : EuclideanSpace ℝ (Fin
     v ∈ Formalism.HermitianLatticesTheory.zmap ι M ↔ ∃ y ∈ M, ι y = v := by
   first
   | exact Iff.rfl
-  | simp [Formalism.HermitianLatticesTheory.zmap, AddSubgroup.mem_map]
-  | (unfold Formalism.HermitianLatticesTheory.zmap; rw [AddSubgroup.mem_toIntSubmodule, AddSubgroup.mem_map]; rfl)
 
 theorem csCovol_expand
     (hι : ∀ x y : V, inner ℝ (ι x) (ι y) = ((Algebra.trace ℚ K (h x y) : ℚ) : ℝ))
@@ -159,7 +155,7 @@ theorem csCovol_expand
     have e2 : ((Algebra.trace ℚ K (h w z) : ℚ) : ℝ) =
         ((∑ j, ((b.repr ⟨ι z, hz'⟩ j : ℤ) : ℚ) * Algebra.trace ℚ K (h w (m j)) : ℚ) : ℝ) := by
       push_cast
-      first | exact e1 | exact e1.symm
+      first | exact e1.symm
     exact_mod_cast e2
   · have e1 := hι z w
     rw [h2, sum_inner] at e1
@@ -167,7 +163,7 @@ theorem csCovol_expand
     have e2 : ((Algebra.trace ℚ K (h z w) : ℚ) : ℝ) =
         ((∑ j, ((b.repr ⟨ι z, hz'⟩ j : ℤ) : ℚ) * Algebra.trace ℚ K (h (m j) w) : ℚ) : ℝ) := by
       push_cast
-      first | exact e1 | exact e1.symm
+      first | exact e1.symm
     exact_mod_cast e2
 
 theorem csCovol_column
@@ -233,8 +229,6 @@ theorem csCovol_column
     congr 1
     push_cast
     rw [hcK]
-    try simp only [algebraMap_smul, RingOfIntegers.coe_eq_algebraMap]
-    try ring
   obtain ⟨aa, haa, -⟩ := csCovol_expand h ι hι M b m hm _ hy
   refine ⟨aa, ?_⟩
   funext i
@@ -286,7 +280,7 @@ theorem covolume_of_dual_holds : Formalism.UG.CS.CovolOfDual := by
     simp only [Matrix.mul_apply, Matrix.map_apply, P, Matrix.of_apply, Matrix.smul_apply,
       Matrix.one_apply, smul_eq_mul]
     rw [this, hD]
-    simp [Pi.single_apply, eq_comm]
+    simp [Pi.single_apply]
   have hle := csCovol_det_le G hGpos D hD0 P hP
   have hleR : ZLattice.covolume (Formalism.HermitianLatticesTheory.zmap ι M) ^ 2 ≤ |(D : ℝ)| ^ N := by
     rw [hsq]

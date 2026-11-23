@@ -98,11 +98,7 @@ theorem exists_adicCompletion_ringHom_extend (I : Ideal A) (f : A →+* B)
     [IsAdicComplete (I.map f) B] :
     ∃ g : AdicCompletion I A →+* B, g.comp (algebraMap A _) = f := by
   first
-  | exact @_root_.GlobalTheory.PowerExtensionEvaluation.exists_extension
-  | exact _root_.GlobalTheory.PowerExtensionEvaluation.exists_extension
   | (apply _root_.GlobalTheory.PowerExtensionEvaluation.exists_extension <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowerExtensionEvaluation.exists_extension <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowerExtensionEvaluation.exists_extension <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.PowerExtensionEvaluation.exists_extension ..)
 
 end Extend

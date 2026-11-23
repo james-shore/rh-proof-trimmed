@@ -53,4 +53,4 @@ open GlobalTheory.Core.Rk.SW
 
 
 theorem _root_.GlobalTheory.T.exists_thetaFunction_schrodingerFunction_eq : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ (A B : HSp D) (ν : Measure (WO A B)) (𝓨 : Set (WO A B)), IsCovolOne (ratL B A) ν 𝓨 → ∀ φ : Mx D B.rank A.rank → ℂ, GlobalTheory.IndefiniteRowSideFullHecke.SchwartzBruhatMixedFamilies.IsSchwartzBruhat φ → ∃ f, IsThetaFunO ψ (dblSp A) B f ∧ sch ψ A B ν 𝓨 f = φ := by
-  first | exact @GlobalTheory.SchwOnto.schw_onto | exact GlobalTheory.SchwOnto.schw_onto | (intros; apply GlobalTheory.SchwOnto.schw_onto <;> assumption)
+  first | exact @GlobalTheory.SchwOnto.schw_onto

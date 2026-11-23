@@ -298,7 +298,7 @@ theorem frame_const {z z' : Fin (2 * r + k + 1) → ℂ} {μsec : ℂ → Matrix
     rw [h0] at h1
     rw [herm_conj x (Bs a), ← h1, star_zero]
   refine ⟨hBw, hon, fun a v hv => ?_⟩
-  simp only [List.mem_cons, List.mem_singleton, List.not_mem_nil, or_false] at hv
+  simp only [List.mem_cons, List.not_mem_nil, or_false] at hv
   rcases hv with rfl | rfl
   · exact hxB a
   · exact hz'0 a

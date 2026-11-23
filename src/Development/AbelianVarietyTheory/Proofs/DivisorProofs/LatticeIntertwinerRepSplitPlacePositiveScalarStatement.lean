@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.latticeIntertwinerRep_splitPlace_positive_scalar :
             (∀ u : WOF F E nS nT, (∀ i j, cAF σ e * u i j = u i j) → ∀ f, IsThetaFunOF σ JS JT ξ₀ B.ψ f →
               ℓ (heisOF σ JS JT ξ₀ B.ψ u f) = ℓ f) →
             ∀ f : GlobalTheory.WeilPartsF.thetaSubF σ JS JT ξ₀ B.ψ, ℓ (Om (g, h) f) = (r : ℂ) * ℓ f := by
-  first | exact @GlobalTheory.FinLatF.isLatRepF_split | exact GlobalTheory.FinLatF.isLatRepF_split | (intros; apply GlobalTheory.FinLatF.isLatRepF_split <;> assumption)
+  first | exact @GlobalTheory.FinLatF.isLatRepF_split

@@ -106,11 +106,7 @@ theorem gm_exp_ck (n : ℕ) (z : M → V n) (ph : M → ℝ) (hph : SmoothR n z 
 theorem gm_form_continuous {n : ℕ} (f : M → V n) (hf : ∀ k, Continuous fun x => f x k) :
     Continuous f := by
   first
-    | exact continuous_pi hf
     | exact (PiLp.continuous_toLp 2 _).comp (continuous_pi hf)
-    | (have h1 : Continuous (fun x => WithLp.ofLp (f x)) := continuous_pi hf
-       simpa using (PiLp.continuous_toLp 2 _).comp h1)
-    | fun_prop
 
 theorem gm_form_hcs {n : ℕ} (f : M → V n) (hf : ∀ k, HasCompactSupport (fun x => f x k)) :
     HasCompactSupport f := by
@@ -298,7 +294,6 @@ theorem gm_tstar_smul (n : ℕ) (z : M → V n) (ph : M → ℝ) (hph : SmoothR 
     funext y
     first
       | simp [mul_left_comm]
-      | (simp <;> ring)
   simp only [tstar, key, ← Finset.mul_sum]
   ring
 
@@ -359,9 +354,7 @@ theorem gm_inner_toLp (n : ℕ) (z : M → V n) (ph : M → ℝ) (hph : Measurab
   have hpt : ∀ x, ⟪u x, g x⟫_ℂ = conj (u x) * g x := by
     intro x
     first
-      | exact RCLike.inner_apply _ _
       | (simp [RCLike.inner_apply]; ring)
-      | (simp; ring)
   have hint : Integrable (fun x => conj (u x) * g x) (wvol n z ph) := by
     refine (L2.integrable_inner (𝕜 := ℂ) u (hg.toLp g)).congr ?_
     filter_upwards [hg.coeFn_toLp] with x hx
@@ -508,7 +501,7 @@ theorem gm_tstar_single (n : ℕ) (z : M → V n) (ph : M → ℝ) (φ : M → �
     · subst hk
       have hE : (Real.exp (-ph y) : ℂ) * (Real.exp (ph y) : ℂ) = 1 := by
         rw [← Complex.ofReal_mul, ← Real.exp_add, neg_add_cancel, Real.exp_zero, Complex.ofReal_one]
-      simp only [gmSingle, PiLp.single_apply, eq_self_iff_true, if_true, ← mul_assoc, hE,
+      simp only [gmSingle, PiLp.single_apply, if_true, ← mul_assoc, hE,
         one_mul]
     · simp [gmSingle, hk]
   have hd : ∀ k, d n z k (fun y => (Real.exp (-ph y) : ℂ) * gmSingle ph φ j y k) x =
@@ -517,14 +510,13 @@ theorem gm_tstar_single (n : ℕ) (z : M → V n) (ph : M → ℝ) (φ : M → �
     rw [hfun k]
     by_cases hk : k = j
     · subst hk
-      simp only [eq_self_iff_true, if_true]
+      simp only [if_true]
       exact d_conj_eq_conj_db φ k x
     · simp only [hk, if_false]
       apply d_eq_zero_of_not_mem_tsupport
       first
         | simp
-        | (rw [show (fun _ : M => (0 : ℂ)) = 0 from rfl, tsupport_zero]; simp)
-  simp only [tstar, hd, Finset.sum_ite_eq, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [tstar, hd, Finset.sum_ite_eq', Finset.mem_univ, if_true]
 
 theorem gm_ipV_single (n : ℕ) (z : M → V n) (ph : M → ℝ) (F0 φ : M → ℂ) (j : Fin n) :
     ipV n z (dbarF n z F0) (gmSingle ph φ j) ph = conj (∫ x, db n z j F0 x * φ x ∂vol n z) := by
@@ -535,8 +527,6 @@ theorem gm_ipV_single (n : ℕ) (z : M → V n) (ph : M → ℝ) (F0 φ : M → 
   have hE : (Real.exp (ph x) : ℂ) * (Real.exp (-ph x) : ℂ) = 1 := by
     rw [← Complex.ofReal_mul, ← Real.exp_add, add_neg_cancel, Real.exp_zero, Complex.ofReal_one]
   first
-    | (simp only [PiLp.toLp_apply, map_mul]
-       linear_combination (conj (db n z j F0 x) * conj (φ x)) * hE)
     | (simp only [map_mul]
        linear_combination (conj (db n z j F0 x) * conj (φ x)) * hE)
 

@@ -48,4 +48,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.isSelfDual_standardFrame_lineLattice : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} (F : Frames G), Std F → IsSelfDualC (negSp F.Lz) (Submodule.span (𝓞 D.host.E) {F.ζ 0}) := by
-  first | exact @GlobalTheory.AscFin.isSelfDualC_line | exact GlobalTheory.AscFin.isSelfDualC_line | (intros; apply GlobalTheory.AscFin.isSelfDualC_line <;> assumption)
+  first | exact @GlobalTheory.AscFin.isSelfDualC_line

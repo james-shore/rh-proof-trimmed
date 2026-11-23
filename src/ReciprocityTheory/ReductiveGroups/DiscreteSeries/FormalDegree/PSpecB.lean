@@ -247,7 +247,6 @@ theorem card_pos_le {ε : Fin n → Bool} (z : PCoord ε → ℂ) (b : Bool) :
   have hle := LinearMap.finrank_le_finrank_of_injective hinj
   first
   | simpa [Fintype.card_subtype] using hle
-  | (simp only [Module.finrank_fintype_fun_eq_card, Fintype.card_subtype] at hle; convert hle using 2)
 
 theorem pev_card_pos {ε : Fin n → Bool} (z : PCoord ε → ℂ) :
     (univ.filter (fun a => 0 < pev z a)).card ≤ q0 ε := by
@@ -273,13 +272,9 @@ theorem pev_pos_sum_sq {ε : Fin n → Bool} (z : PCoord ε → ℂ) :
     have hh : pmat z j i = star (pmat z i j) := by
       first
       | exact ((pmat_isHermitian z).apply j i).symm
-      | (have e := congrFun (congrFun (pmat_isHermitian z).eq j) i
-         rw [Matrix.conjTranspose_apply] at e
-         exact e.symm)
     rw [hh]
     first
     | exact Complex.mul_conj' _
-    | (rw [mul_comm]; exact Complex.conj_mul' _)
   have hsum : ∑ a, pev z a ^ 2 = ∑ i, ∑ j, ‖pmat z i j‖ ^ 2 := by
     have e := h1.symm.trans h2
     exact_mod_cast e
@@ -317,8 +312,6 @@ theorem sum_pos_pev_le {ε : Fin n → Bool} (z : PCoord ε → ℂ) :
       ∑ a ∈ univ.filter (fun a => 0 < pev z a), pev z a ^ 2 := by
     first
     | exact sq_sum_le_card_mul_sum_sq
-    | (have e := Finset.sum_mul_sq_le_sq_mul_sq (univ.filter (fun a => 0 < pev z a)) (fun _ => (1 : ℝ)) (pev z)
-       simpa using e)
   rw [pev_pos_sum_sq] at hcs
   have hq : ((univ.filter (fun a => 0 < pev z a)).card : ℝ) ≤ q0 ε := by exact_mod_cast pev_card_pos z
   have hhs : 0 ≤ hs (pmat z) := by unfold hs; positivity

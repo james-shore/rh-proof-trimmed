@@ -114,7 +114,7 @@ theorem brFockF_map (f g : MvPolynomial σ ℚ) :
 theorem map_ratSmul (q : ℚ) (p : MvPolynomial σ ℚ) :
     map (algebraMap ℚ ℂ) (q • p) = ((q : ℚ) : ℂ) • map (algebraMap ℚ ℂ) p := by
   ext m
-  simp [MvPolynomial.coeff_map, MvPolynomial.coeff_smul]
+  simp [MvPolynomial.coeff_map]
 
 theorem rat_of_pairings {ι : Type*} [Fintype ι] (β : ι → MvPolynomial σ ℚ) (G : MvPolynomial σ ℂ)
     (hG : G ∈ Submodule.span ℂ (Set.range fun i => map (algebraMap ℚ ℂ) (β i)))

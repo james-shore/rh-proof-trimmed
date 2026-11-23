@@ -57,4 +57,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.flat_preimage_contains_codim_le_one_points : ∀ (X Y : Scheme.{0}) (q : Y ⟶ X) [Flat q] (W : X.Opens), (∀ z : X, ringKrullDim ((X).presheaf.stalk z) ≤ 1 → z ∈ W) → (∀ z : Y, ringKrullDim ((Y).presheaf.stalk z) ≤ 1 → z ∈ q ⁻¹ᵁ W) := by
-  first | exact @GlobalTheory.FlatCodimOne.preimage_contains_codim_le_one | exact GlobalTheory.FlatCodimOne.preimage_contains_codim_le_one | (intros; apply GlobalTheory.FlatCodimOne.preimage_contains_codim_le_one <;> assumption)
+  first | exact @GlobalTheory.FlatCodimOne.preimage_contains_codim_le_one

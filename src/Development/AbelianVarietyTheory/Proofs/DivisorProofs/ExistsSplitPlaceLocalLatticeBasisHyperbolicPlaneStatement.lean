@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_splitPlace_localLatticeBasis_hyperbolicPlan
     ∃ β : GL (Fin (n₁ + 2)) (Fv F v), GlobalTheory.AdelicU.IsSplitBasis τ L β ∧ ∀ i : Fin (n₁ + 2),
       (i.1 = i₀ → ∀ r, β.1 r i = τ (x r)) ∧ (i.1 = i₁ → ∀ r, β.1 r i = τ (y r)) ∧
       ∀ j : Fin n₁, i.1 = skip i₀ i₁ j → ∀ r, β.1 r i = (ι.map τ * β₁.1) r j := by
-  first | exact @GlobalTheory.PlaneSkewBasis.exists_isSplitBasis_plane_of_indep | exact GlobalTheory.PlaneSkewBasis.exists_isSplitBasis_plane_of_indep | (intros; apply GlobalTheory.PlaneSkewBasis.exists_isSplitBasis_plane_of_indep <;> assumption)
+  first | exact @GlobalTheory.PlaneSkewBasis.exists_isSplitBasis_plane_of_indep

@@ -103,7 +103,6 @@ def rt (h : G) : Lp ℂ 2 μ →ₗᵢ[ℂ] Lp ℂ 2 μ := Lp.compMeasurePreserv
 theorem rt_ae (h : G) (f : Lp ℂ 2 μ) : (rt hR h f : G → ℂ) =ᵐ[μ] fun g => f (g * h) := by
   first
   | exact Lp.coeFn_compMeasurePreserving f (hR h)
-  | (unfold rt; exact Lp.coeFn_compMeasurePreserving f (hR h))
 
 theorem rt_rt_inv (h : G) (f : Lp ℂ 2 μ) : rt hR h (rt hR h⁻¹ f) = f := by
   apply Lp.ext

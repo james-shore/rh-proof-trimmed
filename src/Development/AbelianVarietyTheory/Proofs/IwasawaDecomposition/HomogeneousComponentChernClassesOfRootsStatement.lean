@@ -48,4 +48,4 @@ open Classical
 
 
 theorem _root_.GlobalTheory.T.homogeneousComponent_chernClassesOfRoots : ∀ {ι : Type} (m : ι → ℕ) (Q : MvPolynomial (ι × ℕ) ℝ) (d : ℕ), homogeneousComponent d (chernRoots m Q) = chernRoots m (weightedHomogeneousComponent Prod.snd d Q) := by
-  first | exact @GlobalTheory.GrassComp.homogeneousComponent_chernRoots | exact GlobalTheory.GrassComp.homogeneousComponent_chernRoots | (intros; apply GlobalTheory.GrassComp.homogeneousComponent_chernRoots <;> assumption)
+  first | exact @GlobalTheory.GrassComp.homogeneousComponent_chernRoots

@@ -47,4 +47,4 @@ open NumberField IsDedekindDomain MeasureTheory Matrix GlobalTheory.AdLat Global
 open scoped ENNReal
 
 theorem _root_.GlobalTheory.T.real_unitary_covolume_sum : GlobalTheory.Published.TamagawaSpecialUnitary → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (X : Data E r) (Λ : Submodule (𝓞 E) (Fin r → E)) (x : Frame X.Ψ r) [MeasurableSpace (realSU X.Ψ X.Gm)] [BorelSpace (realSU X.Ψ X.Gm)] (J : Type) (s : J → Matrix (Fin r) (Fin r) (RA (maximalRealSubfield E) E)), 2 ≤ r → Unr E → SelfDualLat X.Gm Λ → IsOrth X x → IsSReps X.Gm (Λ : Set (Fin r → E)) 1 s → ∑' j, covolume (inReal X.Ψ X.Gm (ratStab X.Gm (Λ : Set (Fin r → E)) (s j))) (realSU X.Ψ X.Gm) (riemHaar X.Ψ X.Gm x) ≤ ENNReal.ofReal (rdE E ^ ((fdeg E : ℝ) * ((r : ℝ) ^ 2 - 1) / 2) * (Real.sqrt r * ∏ i ∈ Finset.Icc 2 r, ∑' n : ℕ, 1 / ((n : ℝ) + 1) ^ i) ^ fdeg E) := by
-  first | exact @GlobalTheory.SUVolBound.sum_covolume_le | exact GlobalTheory.SUVolBound.sum_covolume_le | (intros; apply GlobalTheory.SUVolBound.sum_covolume_le <;> assumption)
+  first | exact @GlobalTheory.SUVolBound.sum_covolume_le

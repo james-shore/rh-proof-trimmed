@@ -76,4 +76,4 @@ theorem _root_.GlobalTheory.T.matrix_coefficient_lipschitz_at_real_place : ∀ (
     ∫ u, ‖GlobalTheory.PackLoc.mco MP τ g₀ v₀ (GlobalTheory.PackLoc.embAt θ d τ (cmp θ τ (oneP θ Y τ X s) * GlobalTheory.PackLoc.ptY M₀ τ u)) -
       GlobalTheory.PackLoc.mco MP τ g₀ v₀ (GlobalTheory.PackLoc.embAt θ d τ (GlobalTheory.PackLoc.ptY M₀ τ u))‖ ∂(Formalism.REAL.muG (M₀.ε τ)) ≤
       Real.exp q * ‖c‖ * |s| * hsn (A * X * A⁻¹) := by
-  first | exact @GlobalTheory.PackLoc.lipAt | exact GlobalTheory.PackLoc.lipAt | (intros; apply GlobalTheory.PackLoc.lipAt <;> assumption)
+  first | exact @GlobalTheory.PackLoc.lipAt

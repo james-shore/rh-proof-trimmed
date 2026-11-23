@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.tameInertia_fixed_dvd_valuation_order : ∀ (W : T
       IsPrimitiveRoot (σ π / π) k →
       ∀ (d : F) (z : (FractionRing W)ˣ), σ d = d → O.valuation d ^ k = O.valuation (algebraMap (FractionRing W) F z) →
         (k : ℤ) ∣ (GlobalTheory.IndefiniteRowSideFullHecke.GeneratorValues.ord_vw W).toFun z := by
-  first | exact @GlobalTheory.Member.TameDivOrd.tame_fixed_dvd_ord | exact GlobalTheory.Member.TameDivOrd.tame_fixed_dvd_ord | (intros; apply GlobalTheory.Member.TameDivOrd.tame_fixed_dvd_ord <;> assumption)
+  first | exact @GlobalTheory.Member.TameDivOrd.tame_fixed_dvd_ord

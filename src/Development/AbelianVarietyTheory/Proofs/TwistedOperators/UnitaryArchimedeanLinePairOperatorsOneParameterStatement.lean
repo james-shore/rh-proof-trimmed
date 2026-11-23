@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.unitaryArchimedeanLine_pair_operators_oneParameter
       ∀ γ ∈ Lines σ W, ∀ T : ℝ → SInf F (Fin n × Fin d) →ₗ[ℂ] SInf F (Fin n × Fin d),
         (∀ (t : ℝ) (f : SInf F (Fin n × Fin d)), Acts (evI F) (om (1, γ (Multiplicative.ofAdd t))) f (T t f)) →
         (∀ (s t : ℝ) (f : SInf F (Fin n × Fin d)), T (s + t) f = T s (T t f)) ∧ ∀ f : SInf F (Fin n × Fin d), T 0 f = f := by
-  first | exact @GlobalTheory.LineGroupPair.archOp_oneParam_pair | exact GlobalTheory.LineGroupPair.archOp_oneParam_pair | (intros; apply GlobalTheory.LineGroupPair.archOp_oneParam_pair <;> assumption)
+  first | exact @GlobalTheory.LineGroupPair.archOp_oneParam_pair

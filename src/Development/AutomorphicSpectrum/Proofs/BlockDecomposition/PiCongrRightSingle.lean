@@ -102,8 +102,8 @@ theorem omKun_pushout (K A B R : Type) [CommRing K] [CommRing A] [CommRing B] [C
   simp only [Function.comp_apply, KaehlerDifferential.mapBaseChange_tmul, one_smul]
   generalize Fin.cast _ k = j
   induction j using Fin.addCases with
-  | left j => simp [KaehlerDifferential.mapBaseChange_tmul]
-  | right j => simp [KaehlerDifferential.mapBaseChange_tmul]
+  | left j => simp
+  | right j => simp
 
 theorem omKun : CrystallineSemistableComparison.Onto.OmKun := by
   intro K A B _ _ _ _ _ c

@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped Matrix
 
 theorem _root_.GlobalTheory.T.exists_complexBaseChange_polarizedAbelianFamily : ∀ (O : Type) [Ring O] (g : ℕ) (R : Type) [CommRing R] (σ : R →+* ℂ) (Λ : Type) (F : Fam R O Λ g), ∃ F' : Fam ℂ O Λ g, IsBC F' F σ := by
-  first | exact @GlobalTheory.PELU.exists_isBC | exact GlobalTheory.PELU.exists_isBC | (intros; apply GlobalTheory.PELU.exists_isBC <;> assumption)
+  first | exact @GlobalTheory.PELU.exists_isBC

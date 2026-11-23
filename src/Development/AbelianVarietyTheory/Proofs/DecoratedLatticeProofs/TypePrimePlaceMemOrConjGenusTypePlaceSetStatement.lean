@@ -47,4 +47,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.typePrimePlace_mem_or_conj_genusTypePlaceSet : ∀ (D : D7) (Pg : Finset (Pl D.host.E)), GlobalTheory.Core.Mi.IsTypePlaces Pg → ∀ Q : Pl D.host.E, ((D.host.g 0 * D.host.g 1 : ℕ) : 𝓞 D.host.E) ∈ Q.asIdeal → ∃ PP ∈ Pg, Q = PP ∨ ∀ s : Formalism.L2.Herm.intAf D.host.F D.host.E, (resS D.host.F Q s = 0 ↔ resS D.host.F PP (sigInt (instOf D) s) = 0) := by
-  first | exact @GlobalTheory.CoverConj.cover | exact GlobalTheory.CoverConj.cover | (intros; apply GlobalTheory.CoverConj.cover <;> assumption)
+  first | exact @GlobalTheory.CoverConj.cover

@@ -48,4 +48,4 @@ open scoped Pointwise TensorProduct InnerProductSpace
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.testGridRowZero_vertices_agree_weilData : ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : Type} {A : FamIn D.what₂.LL Γ Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] {R : RealDat D A Ks} {sc : GlobalTheory.ChiGrid.Consts}, ∀ {G' : GlobalTheory.ChiGrid.GridData R.toLevCh sc} (W : G'.Weil), W.Over R → ∀ j, j ≤ D.R.m → NodeAgree (GlobalTheory.Grid.row0 R j) W (.grid 0 j) := by
-  first | exact @GlobalTheory.GridJoin.nodeAgree_grid0_of_weil_over | exact GlobalTheory.GridJoin.nodeAgree_grid0_of_weil_over | (intros; apply GlobalTheory.GridJoin.nodeAgree_grid0_of_weil_over <;> assumption)
+  first | exact @GlobalTheory.GridJoin.nodeAgree_grid0_of_weil_over

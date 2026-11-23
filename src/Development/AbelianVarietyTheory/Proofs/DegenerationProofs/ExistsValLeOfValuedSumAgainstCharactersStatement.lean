@@ -52,4 +52,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.TestFibre
 
 theorem _root_.GlobalTheory.T.exists_val_le_of_valuedSum_against_characters : ∀ (F : Type) [Field F] (v : AddValuation F (WithTop ℚ)) (X T : Type) [Fintype T] (χ : T → X → F) (cf : X → F) (ζ w : T → F) (α : X) (q : ℚ), (∀ t, SumV v (fun β => χ t β * cf β) (ζ t * w t)) → (∀ t, v (ζ t) = 0) → (∀ t β, v (χ t β) = 0) → v ((Fintype.card T : ℕ) : F) = 0 → v (cf α) = (q : WithTop ℚ) → (∀ β, β ≠ α → ∑ t, (χ t α)⁻¹ * χ t β = 0 ∨ (q : WithTop ℚ) < v (cf β)) → ∃ t, v (w t) ≤ (q : WithTop ℚ) := by
-  first | exact @GlobalTheory.TestFibre.exists_val_le_of_sumV_characters | exact GlobalTheory.TestFibre.exists_val_le_of_sumV_characters | (intros; apply GlobalTheory.TestFibre.exists_val_le_of_sumV_characters <;> assumption)
+  first | exact @GlobalTheory.TestFibre.exists_val_le_of_sumV_characters

@@ -46,4 +46,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.LeviCut
 
 theorem _root_.GlobalTheory.T.dualWeylLeviProjectionDenominators_of_hypotheses : GlobalTheory.LeviCut.ResLat → GlobalTheory.LeviCut.ResHw → GlobalTheory.LeviCut.ResDer → GlobalTheory.LeviCut.LeviProj := by
-  first | exact @GlobalTheory.LeviCut.leviProj_of | exact GlobalTheory.LeviCut.leviProj_of | (intros; apply GlobalTheory.LeviCut.leviProj_of <;> assumption)
+  first | exact @GlobalTheory.LeviCut.leviProj_of

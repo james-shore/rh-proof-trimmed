@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_weightZeroCocycle_eq_logDerivative_comb_add
       ∃ (c : Fin n → R) (y : ∀ i, Γ(Y.H.left, Y.q.left ⁻¹ᵁ V i)), (∀ i, IsWt Y 0 _ (y i)) ∧ ∀ i i',
         z i i' = ∑ b, constFn Y.H.hom _ (c b) * dlg Y.H Y.q.left Dd.toPre.P.L (dd b) (j i) (j i') _ +
           (rsT (y i') (Y.q.left ⁻¹ᵁ V i ⊓ Y.q.left ⁻¹ᵁ V i') - rsT (y i) (Y.q.left ⁻¹ᵁ V i ⊓ Y.q.left ⁻¹ᵁ V i'))) := by
-  first | exact @GlobalTheory.PullbackWeightZero.exists_comb_dlg_add_cob | exact GlobalTheory.PullbackWeightZero.exists_comb_dlg_add_cob | (intros; apply GlobalTheory.PullbackWeightZero.exists_comb_dlg_add_cob <;> assumption)
+  first | exact @GlobalTheory.PullbackWeightZero.exists_comb_dlg_add_cob

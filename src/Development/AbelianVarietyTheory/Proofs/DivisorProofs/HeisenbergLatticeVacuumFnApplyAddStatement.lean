@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.heisenbergLatticeVacuumFn_apply_add : ∀ {K κ : 
     (∀ u ∈ Λ, ∀ u' ∈ Λ, χ (u + u') = χ u * χ u' * ψ₀ (⅟(2 : K) * (u.1 ⬝ᵥ u'.2 - u'.1 ⬝ᵥ u.2))) →
     (∀ y : κ → K, ((0 : κ → K), y) ∈ Λ → χ (0, y) = ψ₀ (x₀ ⬝ᵥ y)) →
     ∀ u ∈ Λ, GlobalTheory.HeisLatVac.vacFn ψ₀ Λ χ x₀ (x₀ + u.1) = χ u * ψ₀ (-(x₀ ⬝ᵥ u.2) - ⅟(2 : K) * (u.1 ⬝ᵥ u.2)) := by
-  first | exact @GlobalTheory.HeisLatVac.vacFn_apply_add | exact GlobalTheory.HeisLatVac.vacFn_apply_add | (intros; apply GlobalTheory.HeisLatVac.vacFn_apply_add <;> assumption)
+  first | exact @GlobalTheory.HeisLatVac.vacFn_apply_add

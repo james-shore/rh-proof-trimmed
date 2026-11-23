@@ -216,7 +216,7 @@ lemma finitePlace_eq_zpow {a : K} (ha : a ≠ 0) :
     FinitePlace.mk la a = (Ideal.absNorm la.asIdeal : ℝ) ^ (-(vLa la a)) := by
   rw [FinitePlace.mk_apply, FinitePlace.norm_embedding',
     WithZeroMulInt.toNNReal_neg_apply _ ((la.valuation K).ne_zero_iff.2 ha)]
-  simp [vLa, WithZero.toAdd_unzero_eq_log]
+  simp [vLa]
 
 def nrmOf (v : EReal) : ℝ :=
   open Classical in if v = ⊤ then 0 else (Ideal.absNorm la.asIdeal : ℝ) ^ (-v.toReal)

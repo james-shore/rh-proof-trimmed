@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.iteratedDeriv_heckePhiTransform_hasDerivAt_holo : 
   (∀ (n : ℝ) (k : ℕ) (y : ℝ), y ≠ 0 →
     (∀ σ ∈ halfPlane, HasDerivAt (iteratedDeriv k (hTrans σ n)) (iteratedDeriv (k + 1) (hTrans σ n) y) y) ∧
     DifferentiableOn ℂ (fun σ => iteratedDeriv k (hTrans σ n) y) halfPlane) := by
-  first | exact @GlobalTheory.HeckeTwo.iteratedDeriv_hTrans_jet | exact GlobalTheory.HeckeTwo.iteratedDeriv_hTrans_jet | (intros; apply GlobalTheory.HeckeTwo.iteratedDeriv_hTrans_jet <;> assumption)
+  first | exact @GlobalTheory.HeckeTwo.iteratedDeriv_hTrans_jet

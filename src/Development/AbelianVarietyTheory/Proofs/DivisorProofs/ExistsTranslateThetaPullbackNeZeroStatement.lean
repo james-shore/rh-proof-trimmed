@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.exists_translate_thetaPullback_ne_zero : ∀ (K : 
       (t : I → LB.Sec (LPow x.P.A x.P.L ((m ^ 2 : ℕ) : ℤ) (baseOver (Sp K)))),
     (∀ i, SymLift x.P.A x.P.L ((m ^ 2 : ℕ) : ℤ) (m ^ 2) (pt i) (U i) ∧ Tr x.P x.rig m th (U i) (t i)) →
     ∃ i, (SecMod.mk (fst (baseOver (Sp K)) x.P.A).left (t i) : EA x.P (𝟙 (Sp K)) (m ^ 2)) ≠ 0 := by
-  first | exact @GlobalTheory.TransNZ.exists_ne | exact GlobalTheory.TransNZ.exists_ne | (intros; apply GlobalTheory.TransNZ.exists_ne <;> assumption)
+  first | exact @GlobalTheory.TransNZ.exists_ne

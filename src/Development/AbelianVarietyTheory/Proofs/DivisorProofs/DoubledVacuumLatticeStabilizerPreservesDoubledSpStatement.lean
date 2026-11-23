@@ -47,4 +47,4 @@ open scoped TensorProduct Matrix
 theorem _root_.GlobalTheory.T.doubledVacuumLatticeStabilizer_preserves_doubledSpaceLattice : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) {n d : ℕ}
     (X : Spc F E n) (W : Spc F E d) (v : Pl (F := F)), ∀ g ∈ GlobalTheory.DblVac.KD σ W v, ∀ γ ∈ latDbl X W v,
       γ * (GlobalTheory.DblVac.matD g)ᵀ ∈ latDbl X W v ∧ γ * (GlobalTheory.DblVac.matD g⁻¹)ᵀ ∈ latDbl X W v := by
-  first | exact @GlobalTheory.DblVac.kD_stab_latDbl | exact GlobalTheory.DblVac.kD_stab_latDbl | (intros; apply GlobalTheory.DblVac.kD_stab_latDbl <;> assumption)
+  first | exact @GlobalTheory.DblVac.kD_stab_latDbl

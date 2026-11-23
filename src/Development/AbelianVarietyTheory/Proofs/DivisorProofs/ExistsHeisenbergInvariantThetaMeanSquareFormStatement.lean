@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.exists_heisenbergInvariant_thetaMeanSquare_form : 
           (f' : WOF F E nS nT → ℂ) = heisOF σ JS JT ξ₀ B.ψ u f → (g' : WOF F E nS nT → ℂ) = heisOF σ JS JT ξ₀ B.ψ u g →
             Bf f' g' = Bf f g) ∧
           ∀ f : M, ∫⁻ w in 𝓕, ‖(f : WOF F E nS nT → ℂ) w‖ₑ ^ 2 ∂μ = ENNReal.ofReal (Bf f f).re := by
-  first | exact @GlobalTheory.ThetaMeanSquareF.exists_invariant_form | exact GlobalTheory.ThetaMeanSquareF.exists_invariant_form | (intros; apply GlobalTheory.ThetaMeanSquareF.exists_invariant_form <;> assumption)
+  first | exact @GlobalTheory.ThetaMeanSquareF.exists_invariant_form

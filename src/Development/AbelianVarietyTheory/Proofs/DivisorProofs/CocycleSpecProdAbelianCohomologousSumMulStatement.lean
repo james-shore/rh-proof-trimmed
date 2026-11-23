@@ -49,4 +49,4 @@ open GlobalTheory GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.DeRham Glob
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.cocycle_spec_prod_abelian_cohomologous_sum_mul : GlobalTheory.Published.AbelianHodgeDeRham → ∀ (R : Type) [CommRing R] (B : Over (Sp R)) [GrpObj B] (g : ℕ), IsAbelianScheme B → SmoothOfRelativeDimension g B.hom → ∀ (D : Type) [CommRing D] [Algebra R D] (u : Fn1 (SpAlg R D ⊗ B)), IsCoc (whole _) u → ∃ (n : ℕ) (d : Fin n → D) (β : Fin n → Z1 (O (dp0 R) (B.hom ≫ 𝟙 _))), Cohom (whole _) u (sumMul d fun i ↦ fv (β i)) := by
-  first | exact @GlobalTheory.PtExt.cohom_sumMul_fv_of_abelian | exact GlobalTheory.PtExt.cohom_sumMul_fv_of_abelian | (intros; apply GlobalTheory.PtExt.cohom_sumMul_fv_of_abelian <;> assumption)
+  first | exact @GlobalTheory.PtExt.cohom_sumMul_fv_of_abelian

@@ -48,4 +48,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.besselToFourierJacobi_depthLattice_splits : OnStd fun {D} _ _ {sc} {G} W F => ∀ ρ (h : 2 * ρ + 2 ≤ D.R.m), Splits (F.dB ρ h) (F.dJ ρ h) (pcBF W F ρ h) (xZero (F.dJ ρ h)) (yBF F ρ h) W.ψ (latRow G (2 * ρ + 1)) := by
-  first | exact @GlobalTheory.AscFin.pcBF_splits | exact GlobalTheory.AscFin.pcBF_splits | (intros; apply GlobalTheory.AscFin.pcBF_splits <;> assumption)
+  first | exact @GlobalTheory.AscFin.pcBF_splits

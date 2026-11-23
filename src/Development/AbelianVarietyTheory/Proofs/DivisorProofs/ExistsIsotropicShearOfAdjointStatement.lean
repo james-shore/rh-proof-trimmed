@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.exists_isotropic_shear_of_adjoint : ∀ {E : Type}
     (∀ b ∈ Z', (∃ e, y b = n • e) → ∃ e ∈ Z', b = n • e) →
     ∃ t : Z →ₗ[𝓞 E] D.La, (∀ z : Z, ∃ e ∈ perp D Z', t z = (z : D.La) + N • e) ∧ (∀ z z' : Z, D.EF (t z) (t z') = 0) ∧
       ∀ (z : Z) (a : D.La), (∃ e, y a = n • e) → (n : ℤ) ∣ D.EF (t z) a := by
-  first | exact @GlobalTheory.LowFilt.exists_shear_of_adjoint | exact GlobalTheory.LowFilt.exists_shear_of_adjoint | (intros; apply GlobalTheory.LowFilt.exists_shear_of_adjoint <;> assumption)
+  first | exact @GlobalTheory.LowFilt.exists_shear_of_adjoint

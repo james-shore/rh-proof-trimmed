@@ -51,4 +51,4 @@ open GlobalTheory.Core.Rk.IP
 
 
 theorem _root_.GlobalTheory.T.siegelHeightFinitePlace_doublingEmbedding_le_one : ∀ (D : D7) (A : HSp D) (L : Lat A), IsSelfDualC A L → ∀ (v : FinPl D) (y : Gv A v), hgtFin D.sp.cm.sig (dblSp A).gram L v (ioAt A v y) ≤ 1 := by
-  first | exact @GlobalTheory.Core.Rk.IP.hgtFin_ioAt_le_one | exact GlobalTheory.Core.Rk.IP.hgtFin_ioAt_le_one | (intros; apply GlobalTheory.Core.Rk.IP.hgtFin_ioAt_le_one <;> assumption)
+  first | exact @GlobalTheory.Core.Rk.IP.hgtFin_ioAt_le_one

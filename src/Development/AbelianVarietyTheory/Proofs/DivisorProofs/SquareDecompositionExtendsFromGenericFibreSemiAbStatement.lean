@@ -52,4 +52,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.squareDecomposition_extends_from_genericFibre_semiAbelian : ∀ (R' : Type) [CommRing R'] [IsDomain R'] [IsNoetherianRing R'] [IsIntegrallyClosed R'] [IsLocalRing R'] (G : Over (Sp R')) [GrpObj G], IsSemiAbelian G → ∀ (L M : LB G.left), L.IsLB → M.IsLB → SqDec ((Over.pullback (jK R')).obj G) (L.pull (pullback.fst G.hom (jK R'))) (M.pull (pullback.fst G.hom (jK R'))) → SqDec G L M := by
-  first | exact @GlobalTheory.GenericDec.sqDec_of_generic | exact GlobalTheory.GenericDec.sqDec_of_generic | (intros; apply GlobalTheory.GenericDec.sqDec_of_generic <;> assumption)
+  first | exact @GlobalTheory.GenericDec.sqDec_of_generic

@@ -48,4 +48,4 @@ open GlobalTheory.ChainOnto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.heckeChar_tameAt_of_factors_through_residue : ∀ (D : D7) (H : Formalism.L2.Host.HChar D.host.E) (PP : Pl D.host.E) (a : (kP PP)ˣ →* ℂˣ), IsRes H PP a → H.TameAt PP := by
-  first | exact @GlobalTheory.ChainOnto.TameRes.tameAt_of_isRes | exact GlobalTheory.ChainOnto.TameRes.tameAt_of_isRes | (intros; apply GlobalTheory.ChainOnto.TameRes.tameAt_of_isRes <;> assumption)
+  first | exact @GlobalTheory.ChainOnto.TameRes.tameAt_of_isRes

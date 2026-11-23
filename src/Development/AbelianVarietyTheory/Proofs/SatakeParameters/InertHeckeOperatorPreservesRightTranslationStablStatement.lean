@@ -58,4 +58,4 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 open Formalism.UG
 
 theorem _root_.GlobalTheory.T.inertHeckeOperator_preserves_rightTranslationStable : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) (v : HeightOneSpectrum (𝓞 (maximalRealSubfield L))) (w : HeightOneSpectrum (𝓞 L)) (Dv : InertDatum L n v w) (U : Subgroup (GAf L n)), (∀ κ, TrivOutside {v} κ → (κ ∈ U ↔ κ ∈ Umax L n)) → ∀ (W : Type) [AddCommGroup W] [Module ℂ W] (S : Submodule ℂ (GAf L n → W)), (∀ g, ∀ f ∈ S, NG.rt L n g f ∈ S) → ∀ h ∈ Hecke ℂ (KU Dv.σw n), ∀ f ∈ S, heckeFunI L n U Dv h f ∈ S := by
-  first | exact @GlobalTheory.HeckeStab.heckeFunI_mem | exact GlobalTheory.HeckeStab.heckeFunI_mem | (intros; apply GlobalTheory.HeckeStab.heckeFunI_mem <;> assumption)
+  first | exact @GlobalTheory.HeckeStab.heckeFunI_mem

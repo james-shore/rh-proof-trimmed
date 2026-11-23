@@ -80,12 +80,6 @@ theorem pi_surj {V : Type*} [AddCommGroup V] [Module K V] {a : ℕ} (ψ : Fin a 
     first
     | (obtain ⟨μ, hμ0, hμ⟩ := Submodule.exists_le_ker_of_lt_top _ (lt_top_iff_ne_top.mpr hne)
        exact ⟨μ, hμ0, fun v => LinearMap.mem_ker.mp (hμ (LinearMap.mem_range_self _ v))⟩)
-    | (obtain ⟨μ, hμ0, hμ⟩ := Submodule.exists_dual_map_eq_bot_of_lt_top (lt_top_iff_ne_top.mpr hne)
-       refine ⟨μ, hμ0, fun v => ?_⟩
-       have hm : μ (LinearMap.pi ψ v) ∈ (LinearMap.range (LinearMap.pi ψ)).map μ :=
-         Submodule.mem_map_of_mem (LinearMap.mem_range_self _ v)
-       rw [hμ] at hm
-       simpa using hm)
   have hsum : ∑ i, μ (Pi.single i 1) • ψ i = 0 := by
     refine LinearMap.ext fun v => ?_
     have hv := hμ v

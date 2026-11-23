@@ -75,7 +75,7 @@ private theorem hasSubst_finite_of_constantCoeff_eq_zero {σ τ : Type} [Finite 
 
 private theorem hasSubst_vec_pair_of_constantCoeff_eq_zero {τ : Type} {a b : MvPowerSeries τ K} (ha : constantCoeff a = 0)
     (hb : constantCoeff b = 0) : HasSubst ![a, b] :=
-  hasSubst_finite_of_constantCoeff_eq_zero fun i => by fin_cases i <;> first | exact ha | exact hb | simp [ha, hb]
+  hasSubst_finite_of_constantCoeff_eq_zero fun i => by fin_cases i <;> first | exact ha | exact hb
 
 private theorem mvSubst_add_of_hasSubst {ι κ : Type} {φ : ι → MvPowerSeries κ K} (hφ : HasSubst φ)
     (f g : MvPowerSeries ι K) : subst φ (f + g) = subst φ f + subst φ g := by
@@ -228,9 +228,6 @@ theorem coboundary_commutes_homomorphism {F FE : MvPowerSeries (Fin 2) K} {θ : 
     mvSubst_at1_eq_powerSeries_subst (hasSubst_vec_pair_of_constantCoeff_eq_zero (hX3 1) (hX3 2)), subst_X hφ3]
   first
   | (rw [key']; rfl)
-  | (rw [key]; rfl)
-  | (rw [key']; simp)
-  | (rw [key]; simp)
 
 theorem swap_commutes_subst_log {θ : PowerSeries K} (hθ : PowerSeries.constantCoeff θ = 0)
     (H : MvPowerSeries (Fin 2) K) :

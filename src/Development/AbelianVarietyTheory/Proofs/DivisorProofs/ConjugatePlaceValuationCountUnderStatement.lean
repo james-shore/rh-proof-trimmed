@@ -71,4 +71,4 @@ theorem _root_.GlobalTheory.T.conjugatePlace_valuation_count_under : ∀ (D : D7
     (∀ 𝔞 : Ideal (𝓞 D.host.E), 𝔞 ≠ ⊥ → FractionalIdeal.count D.host.E w' ((D.host.conj • 𝔞 : Ideal (𝓞 D.host.E)) : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E) =
       FractionalIdeal.count D.host.E w (𝔞 : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E)) ∧
     ∀ w'' : HeightOneSpectrum (𝓞 D.host.E), w''.under (𝓞 D.host.F) = w.under (𝓞 D.host.F) ↔ w'' = w ∨ w'' = w' := by
-  first | exact @GlobalTheory.ConjPlace.conj_place | exact GlobalTheory.ConjPlace.conj_place | (intros; apply GlobalTheory.ConjPlace.conj_place <;> assumption)
+  first | exact @GlobalTheory.ConjPlace.conj_place

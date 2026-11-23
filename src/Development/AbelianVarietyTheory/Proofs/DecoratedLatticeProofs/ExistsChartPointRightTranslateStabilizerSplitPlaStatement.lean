@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_chartPoint_rightTranslate_stabilizer_splitP
         ∃ z : TC.GA B (B.R.N j),
           z.1 = finM _ (rankN (I.rec7 l Z) j hj) (A.h j b c * (β j i).gl (g s)) ∧
           TC.PtOf (z * A.kb j b) (extTo I.SQ (((I.atIn u a).A j).diaPt v (e s) c.1).1.1) := by
-  first | exact @GlobalTheory.AdForm.DiaChart.ptOf_gl_dia | exact GlobalTheory.AdForm.DiaChart.ptOf_gl_dia | (intros; apply GlobalTheory.AdForm.DiaChart.ptOf_gl_dia <;> assumption)
+  first | exact @GlobalTheory.AdForm.DiaChart.ptOf_gl_dia

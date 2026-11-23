@@ -200,11 +200,7 @@ end SeamT
 theorem exists_smul_mem_of_span {E : Type} [Field E] [NumberField E] {n : ℕ} (L : Submodule (𝓞 E) (Fin n → E))
     (hL : Submodule.span E (L : Set (Fin n → E)) = ⊤) (y : Fin n → E) : ∃ ν : 𝓞 E, ν ≠ 0 ∧ ν • y ∈ L := by
   first
-  | exact @_root_.GlobalTheory.FiniteIndexSubgroup.target
-  | exact _root_.GlobalTheory.FiniteIndexSubgroup.target
   | (apply _root_.GlobalTheory.FiniteIndexSubgroup.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FiniteIndexSubgroup.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FiniteIndexSubgroup.target <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.FiniteIndexSubgroup.target ..)
 
 section Loc

@@ -110,7 +110,7 @@ theorem thetaOpen_levQ : ∀ {X : Fields} {Pr : Primes X} {R : Ranks} {Ch : Char
         by_cases h : t = k
         · subst h
           simp
-        · simp [Pi.single_apply, h]
+        · simp [h]
       have hmem : ((g⁻¹ : GLint E n P) : Sp E n ≃ₗ[E] Sp E n) ∈ stabL E n (stdAt E n P) :=
         (g⁻¹ : GLint E n P).2
       have h2 := (hmem _).2 hs

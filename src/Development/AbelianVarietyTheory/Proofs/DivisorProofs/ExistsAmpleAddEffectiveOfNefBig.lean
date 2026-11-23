@@ -189,4 +189,3 @@ theorem GlobalTheory.exists_ample_add_eff_of_isNef_isBig : GlobalTheory.Publishe
       cls_lbPow hA.isLB, cls_lbPow hM, hclsM]
     first
       | module
-      | (simp only [← natCast_zsmul, smul_sub, smul_smul, Nat.cast_mul]; rw [mul_comm (r : ℤ)]; abel)

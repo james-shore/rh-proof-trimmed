@@ -129,7 +129,6 @@ private theorem valuation_two_eq_one_of_unramInv_odd {ϖ : L} {σ : L →+* L} {
   have hmem : (2 : VA L) ∈ IsLocalRing.maximalIdeal (VA L) := by
     rw [mem_max_VA_iff]
     first
-      | simpa using hlt
       | exact_mod_cast hlt
   haveI : Finite ((Valued.v : Valuation L (WithZero (Multiplicative ℤ))).integer ⧸
       IsLocalRing.maximalIdeal (Valued.v : Valuation L (WithZero (Multiplicative ℤ))).valuationSubring) :=
@@ -161,7 +160,6 @@ theorem two_unit_VA {ϖ : L} {σ : L →+* L} {q : ℕ} (hU : Formalism.UG.IsUnr
     IsUnit (2 : VA L) := by
   rw [isUnit_VA_iff]
   first
-    | simpa using valuation_two_eq_one_of_unramInv_odd hU hq
     | exact_mod_cast valuation_two_eq_one_of_unramInv_odd hU hq
 
 theorem two_val {ϖ : L} {σ : L →+* L} {q : ℕ} (hU : Formalism.UG.IsUnramInv ϖ σ q) (hq : Odd q) :

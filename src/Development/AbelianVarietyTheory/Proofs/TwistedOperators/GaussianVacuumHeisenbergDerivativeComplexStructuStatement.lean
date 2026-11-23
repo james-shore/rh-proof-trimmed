@@ -68,4 +68,4 @@ theorem _root_.GlobalTheory.T.gaussianVacuum_heisenbergDerivative_complexStructu
           GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ActsD (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.evI D.host.F)
             (M.heisLine Bs.ψ (cS.symm (lineAt θ τ (cplxO ((frSgn ε A).cart τ) (B.cart τ) z) 1))) g g₁' →
           g₁ + Complex.I • g₁' = 0 := by
-  first | exact @GlobalTheory.GaussCancel.heis_cancel | exact GlobalTheory.GaussCancel.heis_cancel | (intros; apply GlobalTheory.GaussCancel.heis_cancel <;> assumption)
+  first | exact @GlobalTheory.GaussCancel.heis_cancel

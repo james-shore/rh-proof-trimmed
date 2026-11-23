@@ -51,4 +51,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 open GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum (IsCO rescale)
 
 theorem _root_.GlobalTheory.T.exists_weilSourceAction_and_smooth : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] [MeasurableSpace k] [BorelSpace k] (a b : Type) [Fintype a] [DecidableEq a] [Fintype b] [DecidableEq b] (μ : kˣ →* ℂˣ) (_ : IsOpen (μ.ker : Set kˣ)), (∃ ρ' : Representation ℂ (GL a k) (SB (Matrix b a k)), IsSrc μ ρ') ∧ ∀ ρ' : Representation ℂ (GL a k) (SB (Matrix b a k)), IsSrc μ ρ' → IsSmoothRep ρ' := by
-  first | exact @GlobalTheory.PosOne.isSrc_exists_isSmoothRep | exact GlobalTheory.PosOne.isSrc_exists_isSmoothRep | (intros; apply GlobalTheory.PosOne.isSrc_exists_isSmoothRep <;> assumption)
+  first | exact @GlobalTheory.PosOne.isSrc_exists_isSmoothRep

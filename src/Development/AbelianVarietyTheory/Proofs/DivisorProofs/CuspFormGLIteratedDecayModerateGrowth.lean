@@ -81,7 +81,7 @@ theorem iterated_decay : GlobalTheory.Published.AutomorphicFormsFiniteGL → ∀
       obtain ⟨C1, hC1⟩ := htame (l ++ [Y])
       refine ⟨C1, fun y => ?_⟩
       have e : (l.map (lie E a)).prod (lie E a Y ψ) = ((l ++ [Y]).map (lie E a)).prod ψ := by
-        simp [List.map_append, List.prod_append, Module.End.mul_apply]
+        simp [List.map_append, List.prod_append]
       rw [e]
       exact hC1 y
     choose! CY hCY0 hCY using hY

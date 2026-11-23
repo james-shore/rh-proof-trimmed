@@ -125,19 +125,11 @@ private lemma sections_eq_of_locally_rs_eq {Z : Scheme.{0}} {W : Z.Opens} (a b :
      have hb := congrArg (fun f => f.hom b) (Z.presheaf.germ_res (homOfLE hV) z hzV)
      have hc := congrArg (Z.presheaf.germ V z hzV).hom he
      exact ha.symm.trans (hc.trans hb))
-  | (choose V hV hzV he using h
-     exact TopCat.Sheaf.eq_of_locally_eq' Z.sheaf (fun z : W => V z.1 z.2) W
-       (fun z => homOfLE (hV z.1 z.2))
-       (by intro z hz; exact TopologicalSpace.Opens.mem_iSup.mpr ⟨⟨z, hz⟩, hzV z hz⟩) a b
-       (fun z => he z.1 z.2))
 
 lemma rs_resTop {Z : Scheme.{0}} {U V : Z.Opens} (h : V ≤ U) (c : Γ(Z, ⊤)) :
     rs h (resTop U c) = resTop V c := by
   first
-  | rfl
   | (simp only [rs, resTop]; rw [← RingHom.comp_apply, ← CommRingCat.hom_comp, ← Functor.map_comp]; rfl)
-  | (unfold rs; rw [← RingHom.comp_apply, ← CommRingCat.hom_comp, ← Functor.map_comp]; rfl)
-  | (simp [rs, resTop, ← Functor.map_comp])
 
 private lemma map_mul_rs {Z : Scheme.{0}} {U V : Z.Opens} (h : V ≤ U) (a b : Γ(Z, U)) :
     rs h (a * b) = rs h a * rs h b := by
@@ -231,7 +223,6 @@ lemma famφB0_two : D.toPre.famφB 0 2 = D.toPre.famφB 0 3 := by
   rw [c_zero D, Hom.one_def]
   first
   | simp
-  | (congr 1; rw [← Category.assoc]; congr 1)
 
 lemma sameSum_famφB0 : LB.SameSum (D.toPre.famφB 0) (DegPre.famε 1)
     (fun _ : Fin 1 => 𝟙 D.toPre.P.A.left) (fun _ => ((1 : ℕ) : ℤ)) := by

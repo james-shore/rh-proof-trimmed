@@ -76,7 +76,7 @@ theorem sl2_square_kills : ∀ {n : ℕ} {Z : Type} [NormedAddCommGroup Z] [Inne
     have h := LinearMap.congr_fun (hG j j i j) v
     simpa [Module.End.mul_apply, hji] using h
   have hsq : ((E i j) ^ 2) a = E i j (E i j a) := by
-    simp [pow_two, Module.End.mul_apply]
+    simp [pow_two]
   rw [hsq]
   rcases hor with h | h
   · simp [h]

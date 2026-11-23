@@ -50,4 +50,4 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.skewAdjointSimilitude_exchanges_halves : ∀ (D : D7) (L S L'' : HSp D) (τ : Matrix (Fin L.rank) (Fin L''.rank) D.host.E) (e : AE D) (y : WO S L''), (IsHalf (cA D e) y → IsHalf e (GlobalTheory.IndefiniteRowSideFullHecke.SkewGramHalfModule.ofAdj L S ((rat τ : Mx D L.rank L''.rank) * y))) ∧ (IsHalf e y → IsHalf (cA D e) (GlobalTheory.IndefiniteRowSideFullHecke.SkewGramHalfModule.ofAdj L S ((rat τ : Mx D L.rank L''.rank) * y))) := by
-  first | exact @GlobalTheory.KappaHalf.ofAdj_rat_mul_half | exact GlobalTheory.KappaHalf.ofAdj_rat_mul_half | (intros; apply GlobalTheory.KappaHalf.ofAdj_rat_mul_half <;> assumption)
+  first | exact @GlobalTheory.KappaHalf.ofAdj_rat_mul_half

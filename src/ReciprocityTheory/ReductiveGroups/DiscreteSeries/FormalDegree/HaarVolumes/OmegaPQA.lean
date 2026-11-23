@@ -204,7 +204,7 @@ theorem mp_Fmap (ε : Fin n → Bool) : MeasurePreserving (Fmap ε) volume volum
   refine Prod.ext ?_ ?_
   · funext a
     clear U1 U2 U3 hC hR hF2 hK hPp hQ h s1 s2 s3 s4 s5 s6
-    apply Complex.ext <;> simp [Complex.measurableEquivRealProd, Complex.equivRealProd, Fmap] <;> rfl
+    apply Complex.ext <;> simp [Complex.measurableEquivRealProd, Fmap] <;> rfl
   · funext q
     rcases q with k | p <;> funext i <;> fin_cases i <;> rfl
 
@@ -281,7 +281,7 @@ theorem pairMap_eq (ε : Fin n → Bool) : pairMap ε = Amap ε ∘ Gl ε ∘ Fm
   all_goals
     try simp [h.1, h.2, ne_of_gt h.1, (ne_of_gt h.1).symm, not_lt.mpr h.1.le, H0, Matrix.mulVec,
       dotProduct, Fin.sum_univ_two, Complex.ext_iff]
-  all_goals try simp [H0, Matrix.mulVec, dotProduct, Fin.sum_univ_two, Complex.ext_iff]
+  all_goals try simp [Complex.ext_iff]
   all_goals try ring_nf
   all_goals try simp
 

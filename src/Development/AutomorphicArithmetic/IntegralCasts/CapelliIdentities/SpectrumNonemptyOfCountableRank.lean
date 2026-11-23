@@ -96,7 +96,7 @@ private lemma spectrum_nonempty_of_countable_rank {V : Type} [AddCommGroup V] [_
     simp only [p, map_sum, LinearMap.sum_apply]
     refine Finset.sum_congr rfl fun a ha => ?_
     rw [map_mul, aeval_C, ← key a ha, map_smul]
-    simp [Module.End.mul_apply, Module.algebraMap_end_apply]
+    simp [Module.algebraMap_end_apply]
   have hp0 : p ≠ 0 := by
     intro h0
     have h1 : eval i p = m i * ∏ j ∈ s.erase i, (i - j) := by

@@ -51,4 +51,4 @@ open ReciprocityTheory.AnForm.M
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ProjVar
 
 theorem _root_.GlobalTheory.T.chernIntegral_one_eq_mongeAmpereIntegral : ∀ (Y : Var ℂ) (L : LB Y.X) (φ : Weight Y.str (RingHom.id ℂ) L), φ.IsCInf → φ.ChernIntegrableOn Y.dim Set.univ (fun _ => 1) ∧ ∀ A : FinHolAtlas Y.dim (CxPts Y.str (RingHom.id ℂ)), IsAlgAtlas A → Weight.chernInt φ Y.dim Set.univ (fun _ => 1) = mInt A (fun _ => φ.locPot) (fun _ => 1) := by
-  first | exact @GlobalTheory.chernInt_one_eq_mInt | exact GlobalTheory.chernInt_one_eq_mInt | (intros; apply GlobalTheory.chernInt_one_eq_mInt <;> assumption)
+  first | exact @GlobalTheory.chernInt_one_eq_mInt

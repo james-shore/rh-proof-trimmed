@@ -46,4 +46,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Asc
 
 theorem _root_.GlobalTheory.T.fourierJacobi_to_bessel_nonvanishing_tower : FockTot → PartFixed → RungB := by
-  first | exact @GlobalTheory.AscRungB.rungB | exact GlobalTheory.AscRungB.rungB | (intros; apply GlobalTheory.AscRungB.rungB <;> assumption)
+  first | exact @GlobalTheory.AscRungB.rungB

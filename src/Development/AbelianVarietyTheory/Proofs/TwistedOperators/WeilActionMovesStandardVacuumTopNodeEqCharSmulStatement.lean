@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.weilAction_moves_standardVacuum_topNode_eq_char_sm
       W.om (.top t (j + 1)) ((((S.N.u (.top (j + 1)))⁻¹ * k * S.N.u (.top (j + 1)) : FinPt G (.top (j + 1))) : GA D (G.V (.top (j + 1)))), 1) (S.Z.vac (.top t (j + 1))) =
         (∏ w : locPl G t, ((((locGrid G t w).mu (j + 1 + 1) (gdet (kapAt S t j hj k w)))⁻¹ : ℂˣ) : ℂ)) •
           Tm fun x => halfInd e (stdLatO S (.top t (j + 1))) (actO _ _ (((S.N.u (.top (j + 1)))⁻¹ * k * S.N.u (.top (j + 1)) : FinPt G (.top (j + 1))) : GA D (G.V (.top (j + 1))))⁻¹ 1⁻¹ x) := by
-  first | exact @GlobalTheory.TopLevelInv.vac_move_high_eq | exact GlobalTheory.TopLevelInv.vac_move_high_eq | (intros; apply GlobalTheory.TopLevelInv.vac_move_high_eq <;> assumption)
+  first | exact @GlobalTheory.TopLevelInv.vac_move_high_eq

@@ -49,4 +49,4 @@ open GlobalTheory.Mem.Col2.SplitChar (finIdl)
 
 
 theorem _root_.GlobalTheory.T.exists_global_matrix_approx_two_adelic_moduli : ∀ (D : D7) (𝔫 : Ideal (𝓞 D.host.E)), 𝔫 ≠ ⊥ → ∀ (a d : ℕ) (M : Matrix (Fin d) (Fin a) (AE D)) (m : ℕ), 0 < m → ∃ z : Matrix (Fin d) (Fin a) D.host.E, (∀ i l, ∃ y ∈ IhE D ⊤, (z.map (inc D) - M) i l = (m : AE D) * y) ∧ ∀ i l, (M - z.map (inc D)) i l ∈ hatId D 𝔫 := by
-  first | exact @GlobalTheory.BotPairSmall.CongApprox.approx_two_moduli | exact GlobalTheory.BotPairSmall.CongApprox.approx_two_moduli | (intros; apply GlobalTheory.BotPairSmall.CongApprox.approx_two_moduli <;> assumption)
+  first | exact @GlobalTheory.BotPairSmall.CongApprox.approx_two_moduli

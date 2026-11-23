@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.ZJ
 
 theorem _root_.GlobalTheory.T.fibre_eq_specialFibre_of_reduction_indep : ∀ C : Core, C.Indep → C.Fib := by
-  first | exact @GlobalTheory.ZJ.Core.fib_of_indep | exact GlobalTheory.ZJ.Core.fib_of_indep | (intros; apply GlobalTheory.ZJ.Core.fib_of_indep <;> assumption)
+  first | exact @GlobalTheory.ZJ.Core.fib_of_indep

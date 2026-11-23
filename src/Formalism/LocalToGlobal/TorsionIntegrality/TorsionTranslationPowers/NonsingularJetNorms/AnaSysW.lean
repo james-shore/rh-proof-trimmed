@@ -86,12 +86,10 @@ variable (l : ℕ) [Fact l.Prime] (L : PeriodPair) (ι : ℂ ≃+* ℂ_[l]) (W :
 theorem lg0 : constantCoeff (A.logSer W) = 0 := by
   first
   | (rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply]; simp [A.logSer, A.integ, PowerSeries.coeff_mk])
-  | (simp only [A.logSer, A.integ]; rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, PowerSeries.coeff_mk]; simp)
 
 theorem lg1 : coeff 1 (A.logSer W) = 1 := by
   first
   | (simp only [A.logSer, A.integ, PowerSeries.coeff_mk]; simp [A.om, PowerSeries.coeff_zero_eq_constantCoeff_apply, PowerSeries.constantCoeff_invOfUnit])
-  | (simp [A.logSer, A.integ, A.om, PowerSeries.coeff_mk, PowerSeries.coeff_zero_eq_constantCoeff_apply])
 
 theorem lg_ne : A.logSer W ≠ 0 := by
   intro h
@@ -180,7 +178,7 @@ theorem Rd.const (c : ℂ) : Rd l ι W (fun _ => c) (C (ι c)) := by
 
 theorem Rd.id : Rd l ι W (fun z => z) (A.logSer W) := by
   refine ⟨?_, inW_id (l := l) (ι := ι) (W := W)⟩
-  first | exact analyticAt_id | fun_prop
+  first | exact analyticAt_id
 
 theorem Rd.opU (x : ℂ) :
     Rd l ι W (F.opU L x (F.sgStar L)) (inW l ι W (F.opU L x (F.sgStar L))) := by
@@ -312,32 +310,31 @@ theorem ptW_zero_iff (hU : Unif l L ι W) (t : ℂ) : ptW l L ι W t = 0 ↔ t �
   · intro h
     by_contra ht
     rw [ptW_notMem hU t ht] at h
-    first | exact WeierstrassCurve.Affine.Point.some_ne_zero _ h | simp at h | cases h | exact nomatch h
+    first | exact WeierstrassCurve.Affine.Point.some_ne_zero _ h
   · intro ht
     exact ptW_mem (l := l) (L := L) (ι := ι) (W := W) t ht
 
 theorem px_ptW (hU : Unif l L ι W) (t : ℂ) (ht : t ∉ L.lattice) :
     px W (ptW l L ι W t) = xc l L ι W t := by
   rw [ptW_notMem hU t ht]
-  first | rfl | simp [px]
+  first | rfl
 
 theorem scaled_x_model_point (hU : Unif l L ι W) (t : ℂ) (ht : t ∉ L.lattice) :
     x2 W (ptW l L ι W t) = X ^ 2 * xT W (ptW l L ι W t) := by
   rw [ptW_notMem hU t ht]
-  first | rfl | simp [x2, xT, px, py]
+  first | rfl
 
 variable (l L ι W)
 
 theorem scaled_x_model_point_lattice (t : ℂ) (ht : t ∈ L.lattice) : x2 W (ptW l L ι W t) = A.xS W := by
   rw [ptW_mem (l := l) (L := L) (ι := ι) (W := W) t ht]
-  first | rfl | simp [x2]
+  first | rfl
 
 def W0 : WeierstrassCurve ℂ := W.map (ι.symm : ℂ_[l] →+* ℂ)
 
 theorem lattice_model_map : (W0 l ι W).map (ι : ℂ →+* ℂ_[l]) = W := by
   first
   | (ext <;> simp [W0])
-  | (simp only [W0, WeierstrassCurve.map_map]; simp)
 
 variable {l L ι W}
 
@@ -346,14 +343,12 @@ theorem lattice_model_g2 (hU : Unif l L ι W) : A.g₂ (W0 l ι W) = L.g₂ := b
   have h := hU.1
   first
   | (simp only [A.g₂] at h ⊢; simp only [W0, WeierstrassCurve.map_c₄, map_div₀, RingEquiv.coe_toRingHom, RingEquiv.apply_symm_apply, map_ofNat]; exact h)
-  | (simp [A.g₂, W0, map_div₀] at h ⊢; exact h)
 
 theorem lattice_model_g3 (hU : Unif l L ι W) : A.g₃ (W0 l ι W) = L.g₃ := by
   apply ι.injective
   have h := hU.2
   first
-  | (simp only [A.g₃] at h ⊢; simp only [W0, WeierstrassCurve.map_c₆, map_div₀, map_neg, RingEquiv.coe_toRingHom, RingEquiv.apply_symm_apply, map_ofNat]; exact h)
-  | (simp [A.g₃, W0, map_div₀] at h ⊢; exact h)
+  | (simp only [A.g₃] at h ⊢; simp only [W0, WeierstrassCurve.map_c₆, map_div₀, RingEquiv.coe_toRingHom, RingEquiv.apply_symm_apply, map_ofNat]; exact h)
 
 theorem wpBridge (hU : Unif l L ι W) :
     A.wpReg W = PowerSeries.map (ι : ℂ →+* ℂ_[l]) (F.pSeries L) := by
@@ -478,12 +473,10 @@ end Trans
 theorem map_analytic_x_at_zero (t : ℂ) : ι (xf L (W0 l ι W) t 0) = xc l L ι W t := by
   first
   | (simp only [xf, xc, W0, WeierstrassCurve.map_b₂, zero_add, map_add (f := _), map_neg, map_div₀, RingEquiv.coe_toRingHom, RingEquiv.apply_symm_apply, map_ofNat]; ring)
-  | (simp [xf, xc, W0, map_div₀, sub_eq_add_neg])
 
 theorem map_analytic_y_at_zero (t : ℂ) : ι (yf L (W0 l ι W) t 0) = yc l L ι W t := by
   first
   | (simp only [yf, yc, xf, W0, WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₃, WeierstrassCurve.map_b₂, zero_add, map_add (f := _), map_neg, map_mul, map_div₀, map_one, RingEquiv.coe_toRingHom, RingEquiv.apply_symm_apply, map_ofNat]; ring)
-  | (simp [yf, yc, xf, W0, map_div₀]; ring)
 
 theorem transW (hU : Unif l L ι W) (t : ℂ) (ht : t ∉ L.lattice) :
     inW l ι W (xf L (W0 l ι W) t) = xT W (ptW l L ι W t) := by
@@ -579,13 +572,12 @@ theorem ptW_neg (hU : Unif l L ι W) (t : ℂ) : ptW l L ι W (-t) = -ptW l L ι
   by_cases ht : t ∈ L.lattice
   · have ht' : -t ∈ L.lattice := neg_mem ht
     rw [ptW_mem (l := l) (L := L) (ι := ι) (W := W) _ ht', ptW_mem (l := l) (L := L) (ι := ι) (W := W) _ ht]
-    first | simp | rfl | exact neg_zero.symm
+    first | simp
   · have ht' : -t ∉ L.lattice := fun h => ht (by simpa using neg_mem h)
     rw [ptW_notMem hU _ ht', ptW_notMem hU _ ht, WeierstrassCurve.Affine.Point.neg_some,
       WeierstrassCurve.Affine.Point.some.injEq]
     first
     | (refine ⟨?_, ?_⟩ <;> simp [xc, yc, WeierstrassCurve.Affine.negY, PeriodPair.weierstrassP_neg, PeriodPair.derivWeierstrassP_neg] <;> ring)
-    | (refine ⟨?_, ?_⟩ <;> simp [xc, yc, WeierstrassCurve.Affine.negY, L.weierstrassP_neg, L.derivWeierstrassP_neg] <;> ring)
 
 section Law
 

@@ -54,4 +54,4 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.PairStep
 
 theorem _root_.GlobalTheory.T.exists_ampleSection_nonvanishing_at_not_specializing : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoetherian X] (N : LB X) (x z : X), IsAmpleLB N → ¬ z ⤳ x → ∃ (l : ℕ) (s : (lbPow N l).Sec), 0 < l ∧ x ∈ nonzeroLocus s ∧ z ∉ nonzeroLocus s := by
-  first | exact @GlobalTheory.PairStep.exists_sec_mem_not_mem_of_not_specializes | exact GlobalTheory.PairStep.exists_sec_mem_not_mem_of_not_specializes | (intros; apply GlobalTheory.PairStep.exists_sec_mem_not_mem_of_not_specializes <;> assumption)
+  first | exact @GlobalTheory.PairStep.exists_sec_mem_not_mem_of_not_specializes

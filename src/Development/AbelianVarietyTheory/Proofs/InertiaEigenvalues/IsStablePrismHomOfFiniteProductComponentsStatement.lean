@@ -47,4 +47,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.isStablePrismHom_of_finite_product_components : ∀ (l : ℕ) [Fact l.Prime] (R : Type) [CommRing R] (n : ℕ) (C : Fin n → Obj l R), (∀ i, ∃ t, (C i).I = Ideal.span {t}) → ∀ (Q : Obj l R) (π : ∀ i, Hom Q (C i)), Function.Bijective (fun (x : Q.A) (i : Fin n) => (π i).f x) → ∀ (B : Obj l R) (h : Hom B Q), (∀ i, Stable ((π i).comp h)) → Stable h := by
-  first | exact @GlobalTheory.ProdStable.prodStable | exact GlobalTheory.ProdStable.prodStable | (intros; apply GlobalTheory.ProdStable.prodStable <;> assumption)
+  first | exact @GlobalTheory.ProdStable.prodStable

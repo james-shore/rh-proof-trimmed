@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.ratDarbouxCoords_rationalMatrix_iff_ratPair : ∀ 
       e (incM D.host.F x) = (fun i => algebraMap D.host.F (AF D.host.F) (y i), fun i => algebraMap D.host.F (AF D.host.F) (z i))) →
     ∀ w : Matrix (Fin T.rank) (Fin S.rank) (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := D.host.F) (E := D.host.E)),
       w ∈ ratL T S ↔ e w ∈ GlobalTheory.WeilUnitaryTransport.ratPair D.host.F κ := by
-  first | exact @GlobalTheory.RatDarbouxPointsD.ratL_iff_ratPair | exact GlobalTheory.RatDarbouxPointsD.ratL_iff_ratPair | (intros; apply GlobalTheory.RatDarbouxPointsD.ratL_iff_ratPair <;> assumption)
+  first | exact @GlobalTheory.RatDarbouxPointsD.ratL_iff_ratPair

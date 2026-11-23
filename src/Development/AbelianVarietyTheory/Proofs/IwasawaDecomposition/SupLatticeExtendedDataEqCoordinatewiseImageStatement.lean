@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.supLattice_extendedData_eq_coordinatewiseImage : G
         ∀ (j : Fin (w.st Z).toD7.R.m) (j' : Fin (w'.st Z').toD7.R.m), (j : ℕ) = j' →
         ∀ φ : (w.st Z).toD7.what₂.LL →+* (w'.st Z').toD7.what₂.LL, (∀ x, (w'.st Z').toD7.what₂.embLL (φ x) = (w.st Z).toD7.what₂.embLL x) →
         ((z'.R.FW j').MK : Set (Fin (z'.R.nW j') → (w'.st Z').toD7.what₂.LL)) = {x' | ∃ x ∈ (z.R.FW j).MK, ∀ (k : Fin (z.R.nW j)) (k' : Fin (z'.R.nW j')), (k : ℕ) = k' → x' k' = φ (x k)}) := by
-  first | exact @GlobalTheory.Mem.R3.MKExt.mk_ext | exact GlobalTheory.Mem.R3.MKExt.mk_ext | (intros; apply GlobalTheory.Mem.R3.MKExt.mk_ext <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.MKExt.mk_ext

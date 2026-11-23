@@ -54,4 +54,4 @@ open GlobalTheory.MBLow.Cl Matrix
 theorem _root_.GlobalTheory.T.torusExtension_characterValue_constantTerm_one : ∀ {R : Type} [CommRing R] [IsDomain R] {D : DegPre R} [Algebra (FractionRing R) ℂ] {N : NumD ℂ}
     (ν : NumOf D ℂ N) (gm : GtPt D (TE R ℂ)), (∃ o : GtPtF D ℂ, o.IsZero ∧ GtPt.IsPullF ℂ (redE ℂ) gm o) → ∀ (χ : D.X),
     (vE (gm.s χ) (𝟙 _) ν.J).fst = 1 := by
-  first | exact @GlobalTheory.MBLow.Cl.fst_vE_eq_one | exact GlobalTheory.MBLow.Cl.fst_vE_eq_one | (intros; apply GlobalTheory.MBLow.Cl.fst_vE_eq_one <;> assumption)
+  first | exact @GlobalTheory.MBLow.Cl.fst_vE_eq_one

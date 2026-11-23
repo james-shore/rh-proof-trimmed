@@ -51,4 +51,4 @@ open ReciprocityTheory.AnForm.M
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ProjVar
 
 theorem _root_.GlobalTheory.T.chernPart_complement_dense_open_null_field : ∀ (k : Type) [Field k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (σ : k →+* ℂ) (D : ℕ), IsProjOver p → ∀ U : X.Opens, genericPoint X ∈ U → ∀ (B : LB X) (φ : Weight p σ B) (ε : ℤˣ), φ.chernPart D ε (ptsIn p σ U)ᶜ = 0 := by
-  first | exact @GlobalTheory.ChernNullField.chernPart_compl_null | exact GlobalTheory.ChernNullField.chernPart_compl_null | (intros; apply GlobalTheory.ChernNullField.chernPart_compl_null <;> assumption)
+  first | exact @GlobalTheory.ChernNullField.chernPart_compl_null

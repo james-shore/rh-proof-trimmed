@@ -55,4 +55,4 @@ open scoped Pointwise
 
 theorem _root_.GlobalTheory.T.gridLocalTensorPlaces_coprime_two_q_d : ∀ {D : D7} (large₂ : SizeData₂ D), GlobalTheory.SqTop.Rec large₂ → ∀ {T : Type} {L : LevCh D T} {sc : GlobalTheory.ChiGrid.Consts} (G : GridData L sc) {μ₀ : T},
     L.Is μ₀ → ∀ (t : T), ∀ w ∈ locPl G t, ((D.host.QS * D.host.q * D.host.d : ℕ) : 𝓞 D.host.E) ∉ w.asIdeal := by
-  first | exact @GlobalTheory.StdPairPlaces.natCast_two_q_d_notMem | exact GlobalTheory.StdPairPlaces.natCast_two_q_d_notMem | (intros; apply GlobalTheory.StdPairPlaces.natCast_two_q_d_notMem <;> assumption)
+  first | exact @GlobalTheory.StdPairPlaces.natCast_two_q_d_notMem

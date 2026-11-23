@@ -69,7 +69,7 @@ theorem crd_tens {R R' : Type} [CommRing R] [Algebra F R] [CommRing R'] [Algebra
   induction z using TensorProduct.induction_on with
   | zero => simp [crd]
   | tmul r e =>
-    simp [crd, tensMap, Algebra.TensorProduct.basis_repr_tmul, Algebra.smul_def]
+    simp [crd, tensMap, Algebra.TensorProduct.basis_repr_tmul]
   | add x y hx hy =>
     simp only [map_add (f := _)] at *
     simp only [crd, map_add (f := _), Pi.add_apply] at *

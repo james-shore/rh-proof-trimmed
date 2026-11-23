@@ -86,7 +86,7 @@ private theorem full_of_unimodular {K V : Type} [Field K] [NumberField K] [StarR
         (LinearMap.mem_ker.mp hx)
     have hz' : h y (e x) = 0 := by
       exact hs.eq_iff.mp hz
-    simp [LinearMap.map_smul, hz']
+    simp [hz']
   let i : K →ₗ[𝓞 K] L :=
     ((LinearMap.toSpanSingleton K _ (e x)).restrictScalars (𝓞 K)).codRestrict L hm
   letI : Module.Finite (𝓞 K) L := Module.Finite.iff_fg.mpr hL.fg

@@ -59,8 +59,6 @@ theorem basics_lin_comm {σ τ : FDRep ℂ Γ} (f : σ ⟶ τ) (g : Γ) :
     basicsLin f ∘ₗ σ.ρ g = τ.ρ g ∘ₗ basicsLin f := by
   first
   | exact congrArg (fun x => x.hom.hom) (f.comm g)
-  | exact congrArg (fun x => x.hom) (f.comm g)
-  | (have h := f.comm g; exact (FGModuleCat.hom_ext_iff.1 h))
 
 theorem basics_lin_comp {σ τ υ : FDRep ℂ Γ} (f : σ ⟶ τ) (h : τ ⟶ υ) :
     basicsLin (f ≫ h) = basicsLin h ∘ₗ basicsLin f := rfl
@@ -72,8 +70,6 @@ theorem basics_lin_zero (σ τ : FDRep ℂ Γ) : basicsLin (0 : σ ⟶ τ) = 0 :
 theorem basics_hom_ext {σ τ : FDRep ℂ Γ} {f h : σ ⟶ τ} (e : basicsLin f = basicsLin h) : f = h := by
   first
   | exact Action.Hom.ext (FGModuleCat.hom_ext e)
-  | (apply Action.Hom.ext; apply FGModuleCat.hom_ext; exact e)
-  | (ext1; ext1; exact e)
 
 def basicsMk {σ τ : FDRep ℂ Γ} (φ : σ →ₗ[ℂ] τ) (hφ : ∀ g, φ ∘ₗ σ.ρ g = τ.ρ g ∘ₗ φ) : σ ⟶ τ where
   hom := InducedCategory.homMk (ModuleCat.ofHom φ)
@@ -89,7 +85,7 @@ def basicsRes {V : Type} [AddCommGroup V] [Module ℂ V] (ρ : Representation �
     simp [LinearMap.restrict_apply]
   map_mul' _ _ := by
     refine LinearMap.ext fun v => Subtype.ext ?_
-    simp [LinearMap.restrict_apply, Module.End.mul_apply]
+    simp [LinearMap.restrict_apply]
 
 def basicsIncl (τ : FDRep ℂ Γ) (W : Submodule ℂ τ) (hW : ∀ g, ∀ v ∈ W, τ.ρ g v ∈ W) :
     FDRep.of (basicsRes τ.ρ W hW) ⟶ τ :=

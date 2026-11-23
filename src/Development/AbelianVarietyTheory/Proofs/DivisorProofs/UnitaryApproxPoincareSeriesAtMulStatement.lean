@@ -48,4 +48,4 @@ open GlobalTheory
 open Classical
 
 theorem _root_.GlobalTheory.T.unitaryApproxPoincareSeriesAt_mul : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l) (C : UCompact Xo c) (X₁ : USetup C) (φ : InvFun (𝓞 E)) (d m : ℕ), 1 ≤ m → UApproxAt X₁ φ d → UApproxAt X₁ φ (d * m) := by
-  first | exact @GlobalTheory.UPoinc.uApproxAt_mul | exact GlobalTheory.UPoinc.uApproxAt_mul | (intros; apply GlobalTheory.UPoinc.uApproxAt_mul <;> assumption)
+  first | exact @GlobalTheory.UPoinc.uApproxAt_mul

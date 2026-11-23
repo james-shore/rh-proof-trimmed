@@ -46,4 +46,4 @@ open scoped ComplexOrder
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.finiteDimensional_smooth_irreducible_of_allPlus : ∀ (D : D7) (V : HSp D) (S : D.what₂.Tau → SPar) (M : DSModel V S), AllPlus M → ∀ τ, FiniteDimensional ℂ (M.H τ) ∧ M.sm τ = ⊤ ∧ ∀ U : Submodule ℂ (M.H τ), (∀ u : Matrix.unitaryGroup (Fin V.rank) ℂ, ∀ x ∈ U, M.σ τ u x ∈ U) → U = ⊥ ∨ U = ⊤ := by
-  first | exact @GlobalTheory.DefLift.AllPlus.finite_smooth_irreducible | exact GlobalTheory.DefLift.AllPlus.finite_smooth_irreducible | (intros; apply GlobalTheory.DefLift.AllPlus.finite_smooth_irreducible <;> assumption)
+  first | exact @GlobalTheory.DefLift.AllPlus.finite_smooth_irreducible

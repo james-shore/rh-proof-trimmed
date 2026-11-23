@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.integral_fderiv_realLieChart_eq_sum_kernelOperator
     (∀ i, ∃ C : ℝ, ∀ g, ‖(lie E a (lieBasis E a i) φ).1 g‖ ≤ C) → ∀ g,
       ∫ x, k x • (fderiv ℝ (chart φ.1 g) (toL (γ x).val)).comp (rmul (toL (γ x).val)) ∂ν =
         ∑ p, kerOp ν (fun x => k x * adCoef (γ x) p) γ (lie E a (lieBasis E a p.1) φ).1 g • lieCoord E a p.2 := by
-  first | exact @GlobalTheory.JSW.integral_fderiv_chart_eq | exact GlobalTheory.JSW.integral_fderiv_chart_eq | (intros; apply GlobalTheory.JSW.integral_fderiv_chart_eq <;> assumption)
+  first | exact @GlobalTheory.JSW.integral_fderiv_chart_eq

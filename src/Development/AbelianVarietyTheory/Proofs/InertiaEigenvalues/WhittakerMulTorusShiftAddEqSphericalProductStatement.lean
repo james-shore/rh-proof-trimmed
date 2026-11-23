@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.whittaker_mul_torusShift_add_eq_sphericalProduct :
         GlobalTheory.JSW.whit φ.1 (x * GlobalTheory.CellDec.tl (m + 1) ϖ (GlobalTheory.RamShift.shift m T ϖ).1) *
           ∏ w ∈ l.1.support, (if h : w ∈ T then 1 else
             GlobalTheory.RSCell.sphZ (Ideal.absNorm w.asIdeal) (fun i => ((α ⟨w, h⟩ i : ℂˣ) : ℂ)) (l.1 w)) := by
-  first | exact @GlobalTheory.RamShift.whit_mul_tl_shift_add | exact GlobalTheory.RamShift.whit_mul_tl_shift_add | (intros; apply GlobalTheory.RamShift.whit_mul_tl_shift_add <;> assumption)
+  first | exact @GlobalTheory.RamShift.whit_mul_tl_shift_add

@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.doubledVacuumLatticeStabilizer_blocks_keep_lattice
   (∀ z ∈ GlobalTheory.InertSph.latAt W v, (GlobalTheory.DblVac.matD g⁻¹).toBlocks₁₂ *ᵥ z ∈ GlobalTheory.InertSph.latAt W v) ∧
   (∀ z ∈ GlobalTheory.InertSph.latAt W v, (GlobalTheory.DblVac.matD g⁻¹).toBlocks₂₁ *ᵥ z ∈ GlobalTheory.InertSph.latAt W v) ∧
   (∀ z ∈ GlobalTheory.InertSph.latAt W v, (GlobalTheory.DblVac.matD g⁻¹).toBlocks₂₂ *ᵥ z ∈ GlobalTheory.InertSph.latAt W v) := by
-  first | exact @GlobalTheory.DblVac.KD_blocks_keep | exact GlobalTheory.DblVac.KD_blocks_keep | (intros; apply GlobalTheory.DblVac.KD_blocks_keep <;> assumption)
+  first | exact @GlobalTheory.DblVac.KD_blocks_keep

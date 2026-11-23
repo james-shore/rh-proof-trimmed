@@ -48,4 +48,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.jacobiFlagChar_primitive_movedLattice_largeDepth : Big fun {D} {Γ} _ _ {Pl0 T} {A} {Ks} _ _ _ {R} ch => ∀ n (hn : n < D.R.m) σ (h : D.R.m - 1 - n = 2 * σ) v, GlobalTheory.FinPl.PrimAt ch.W.ψ (rowJac ch.G n hn σ h) (GlobalTheory.RowShape.rowN ch.G n) v := by
-  first | exact @GlobalTheory.RowShape.big_primAt_rowJac | exact GlobalTheory.RowShape.big_primAt_rowJac | (intros; apply GlobalTheory.RowShape.big_primAt_rowJac <;> assumption)
+  first | exact @GlobalTheory.RowShape.big_primAt_rowJac

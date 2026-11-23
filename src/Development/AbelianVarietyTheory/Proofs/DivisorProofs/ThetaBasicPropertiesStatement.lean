@@ -40,4 +40,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 
 theorem _root_.GlobalTheory.T.theta_basic_properties : GlobalTheory.FunPr.Hypotheses₂ → GlobalTheory.ThK.ThetaBasic := by
-  first | exact @GlobalTheory.ThKBasic.thetaBasic | exact GlobalTheory.ThKBasic.thetaBasic | (intros; apply GlobalTheory.ThKBasic.thetaBasic <;> assumption)
+  first | exact @GlobalTheory.ThKBasic.thetaBasic

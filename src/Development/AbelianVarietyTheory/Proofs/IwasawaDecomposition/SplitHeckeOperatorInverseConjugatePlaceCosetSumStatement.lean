@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.splitHeckeOperator_inverse_conjugatePlace_cosetSum
       GlobalTheory.LFun.heckeVec ρ (GlobalTheory.LFun.KGL (GlobalTheory.HeckeFrob.conjSplit s).w n)
                    (fun g => Formalism.UG.Tj ℂ n (Formalism.UG.Ov L (GlobalTheory.HeckeFrob.conjSplit s).w) (i ϖ) k g⁻¹) e =
         ∑ γ ∈ R, ρ (Matrix.GeneralLinearGroup.map i.toRingHom ((GlobalTheory.HeckeFrob.conjSplit s).loc n γ)) e := by
-  first | exact @GlobalTheory.HeckeEigCoset.heckeVec_Tj_inv_conj_eq_sum | exact GlobalTheory.HeckeEigCoset.heckeVec_Tj_inv_conj_eq_sum | (intros; apply GlobalTheory.HeckeEigCoset.heckeVec_Tj_inv_conj_eq_sum <;> assumption)
+  first | exact @GlobalTheory.HeckeEigCoset.heckeVec_Tj_inv_conj_eq_sum

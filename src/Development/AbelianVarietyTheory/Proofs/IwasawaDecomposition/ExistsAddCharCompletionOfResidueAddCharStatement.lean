@@ -74,4 +74,4 @@ theorem _root_.GlobalTheory.T.exists_addChar_completion_of_residue_addChar : ∀
     (red : v.adicCompletionIntegers K →+* ZMod p) (ψ' : AddChar (ZMod p) ℂ), ψ' ≠ 1 →
     ∃ ψ₀ : AddChar (v.adicCompletion K) ℂ, (∀ x, Valued.v x < 1 → ψ₀ x = 1) ∧ (∃ x, Valued.v x ≤ 1 ∧ ψ₀ x ≠ 1) ∧
       ∀ y : v.adicCompletionIntegers K, ψ₀ (y : v.adicCompletion K) = ψ' (red y) := by
-  first | exact @GlobalTheory.ResidueChar.exists_addChar_completion_lift_residue | exact GlobalTheory.ResidueChar.exists_addChar_completion_lift_residue | (intros; apply GlobalTheory.ResidueChar.exists_addChar_completion_lift_residue <;> assumption)
+  first | exact @GlobalTheory.ResidueChar.exists_addChar_completion_lift_residue

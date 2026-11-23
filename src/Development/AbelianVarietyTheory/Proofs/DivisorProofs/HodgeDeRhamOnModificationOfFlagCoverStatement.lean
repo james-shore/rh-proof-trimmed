@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.hodge_de_rham_on_modification_of_flag_cover : ∀ 
         X.F.ChartFr k _ hk Q → ∀ b, ∃ w : FrPt Xo c (DualNumber K), IsDef Q w ∧
           GlobalTheory.FlagTan.IsKS (psiSet H) Q w.x (Pi.single b 1) ∧
           spMap ((dualMap ψ).comp (e b)) ≫ tau hW' ≫ toFlag M = X.ptY w := by
-  first | exact @GlobalTheory.HorFrame.exists_horizontal_lift | exact GlobalTheory.HorFrame.exists_horizontal_lift | (intros; apply GlobalTheory.HorFrame.exists_horizontal_lift <;> assumption)
+  first | exact @GlobalTheory.HorFrame.exists_horizontal_lift

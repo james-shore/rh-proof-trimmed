@@ -45,4 +45,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_vacuumBasePointFamily_every_tuple : Big fun ch => ∀ t, ∃ b, IsBase t ch.S.B b := by
-  first | exact @GlobalTheory.RowBase.exists_isBase | exact GlobalTheory.RowBase.exists_isBase | (intros; apply GlobalTheory.RowBase.exists_isBase <;> assumption)
+  first | exact @GlobalTheory.RowBase.exists_isBase

@@ -127,8 +127,6 @@ private theorem log_le_log_of_pos_of_le {a b : ℝ} (ha : 0 < a) (h : a ≤ b) :
 private theorem div_le_div_of_mul_le_mul_of_pos' {a b c d : ℝ} (hb : 0 < b) (hd : 0 < d)
     (h : a * d ≤ c * b) : a / b ≤ c / d := by
   first
-  | exact (div_le_div_iff_of_pos hb hd).mpr h
-  | exact (div_le_div_iff hb hd).mpr h
   | exact (div_le_div_iff₀ hb hd).mpr h
 
 lemma pm_key_Y (m x y Y : ℝ) (hx : 1 ≤ x) (hy : 1 ≤ y) (h1 : x * y / 2 ≤ m) (hmY : m ≤ Y)

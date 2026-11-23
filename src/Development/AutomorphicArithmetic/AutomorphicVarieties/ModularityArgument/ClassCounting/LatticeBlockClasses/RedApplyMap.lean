@@ -120,7 +120,7 @@ theorem UpperTheory.V.ZK.Cl.cFree :
     { toFun := fun h => i ∘ₗ (α h).toLinearMap ∘ₗ s + (LinearMap.id - i ∘ₗ s)
       map_one' := LinearMap.ext fun x => by simp
       map_mul' := fun g h => LinearMap.ext fun x => by
-        simp [hsi, map_mul, Module.End.mul_apply] }
+        simp [hsi, map_mul] }
   let lam : H →* GL (Fin N) R :=
     (Units.map (LinearMap.toMatrixAlgEquiv' :
       Module.End R (Fin N → R) ≃ₐ[R] Matrix (Fin N) (Fin N) R).toMonoidHom).comp E.toHomUnits

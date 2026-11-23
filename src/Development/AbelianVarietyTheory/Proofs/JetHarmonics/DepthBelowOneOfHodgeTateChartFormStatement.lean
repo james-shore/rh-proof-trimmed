@@ -52,4 +52,4 @@ open ReciprocityTheory.ChartRestriction.G.TB (colM dAct)
 open IsDedekindDomain
 
 theorem _root_.GlobalTheory.T.depthBelowOne_of_hodgeTate_chart_form : (∀ (p : ℕ) [Fact p.Prime], ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF.HTFSt p) → LemmaBT := by
-  first | exact @GlobalTheory.PowGerm.lemmaBT_of_hodgeTate_chart | exact GlobalTheory.PowGerm.lemmaBT_of_hodgeTate_chart | (intros; apply GlobalTheory.PowGerm.lemmaBT_of_hodgeTate_chart <;> assumption)
+  first | exact @GlobalTheory.PowGerm.lemmaBT_of_hodgeTate_chart

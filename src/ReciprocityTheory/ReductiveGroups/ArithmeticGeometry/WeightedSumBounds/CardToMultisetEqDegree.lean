@@ -94,8 +94,6 @@ theorem multiset_prod_sub_dvd {S ι : Type*} [CommRing S] (t : S) (k : ℕ) (x y
 theorem finsupp_prod_eq_multiset {S ι : Type*} [CommMonoid S] (x : ι → S) (e : ι →₀ ℕ) :
     e.prod (fun i m => x i ^ m) = (e.toMultiset.map x).prod := by
   first
-  | (rw [← Finsupp.toMultiset_map, Finsupp.prod_toMultiset,
-      Finsupp.prod_mapDomain_index (fun _ => pow_zero _) (fun _ _ _ => pow_add _ _ _)])
   | (induction e using Finsupp.induction with
       | zero => simp
       | single_add i m f hi hm ih =>

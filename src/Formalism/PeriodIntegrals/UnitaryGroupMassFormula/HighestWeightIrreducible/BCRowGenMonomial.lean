@@ -193,8 +193,8 @@ theorem bC_multi {r n : ℕ} (M : Submodule ℂ (MvPolynomial (Fin r × Fin n) �
         (fun m hm => Finset.mem_image_of_mem _ hm) (μ a0), fun m => ?_⟩
     rw [MvPolynomial.coeff_weightedHomogeneousComponent, hh]
     by_cases h1 : Finsupp.weight (lgraded_wa a0) m = μ a0
-    · simp [h1, Finset.forall_mem_insert]
-    · simp [h1, Finset.forall_mem_insert]
+    · simp [h1]
+    · simp [h1]
 
 theorem bC_graded {r n : ℕ} (M : Submodule ℂ (MvPolynomial (Fin r × Fin n) ℂ)) (hM : RowDivClosed M)
     (f : MvPolynomial (Fin r × Fin n) ℂ) (hf : f ∈ M) (μ : Fin r → ℕ) :

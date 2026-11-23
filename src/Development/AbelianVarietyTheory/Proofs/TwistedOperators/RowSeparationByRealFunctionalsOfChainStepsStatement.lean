@@ -46,4 +46,4 @@ open GlobalTheory.SepRows
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.rowSeparation_by_realFunctionals_of_chain_steps : SizeGap → CoreModels → RowRapid → PeriodNe → CoreOnto → Ascent → WeakSep := by
-  first | exact @GlobalTheory.SepRows.weakSep_of_steps | exact GlobalTheory.SepRows.weakSep_of_steps | (intros; apply GlobalTheory.SepRows.weakSep_of_steps <;> assumption)
+  first | exact @GlobalTheory.SepRows.weakSep_of_steps

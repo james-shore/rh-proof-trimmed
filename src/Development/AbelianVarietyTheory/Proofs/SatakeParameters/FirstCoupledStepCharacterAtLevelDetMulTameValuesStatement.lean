@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.firstCoupledStepCharacter_at_levelDet_mul_tameValu
     (∀ P, A.midRel t.m2 hi β P (g P) (z P) ∧ InFrame t.seam (A.fb t.m2 hi.le β) (t.cst μ).D P κ.1 (g P)) →
     muOf t u μ dtU (t.m2 + 1) (Matrix.GeneralLinearGroup.det κ.1) *
       t.seam.σ₀ (∏ P : SB t μ, rhoS t.Ch t.sel (t.tup μ) t.m2 P ((LinearEquiv.det (g P) : t.X.Eˣ) : t.X.E)) = 1) := by
-  first | exact @GlobalTheory.SrcMuDet.muOf_levelDet_mul_sigma_prod_rhoS_eq_one | exact GlobalTheory.SrcMuDet.muOf_levelDet_mul_sigma_prod_rhoS_eq_one | (intros; apply GlobalTheory.SrcMuDet.muOf_levelDet_mul_sigma_prod_rhoS_eq_one <;> assumption)
+  first | exact @GlobalTheory.SrcMuDet.muOf_levelDet_mul_sigma_prod_rhoS_eq_one

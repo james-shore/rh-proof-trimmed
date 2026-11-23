@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.transportedClassSetPresentation_reads_equivariant 
     (f : (S.toCSD h).Forms) (g : G'),
     ((Bridge.classPresOf A h σ ρ χ coef hli hspan hpair hK1 hgl).transport eG eΓ hι hρ hJ hχ).ext (f : S.Cl → S.V) g =
       coef ((((S.res h).symm f : S.EqFun) : S.D → S.V) (A.q (eG.symm g))) := by
-  first | exact @GlobalTheory.Mem.TransportRead.transport_ext_eq | exact GlobalTheory.Mem.TransportRead.transport_ext_eq | (intros; apply GlobalTheory.Mem.TransportRead.transport_ext_eq <;> assumption)
+  first | exact @GlobalTheory.Mem.TransportRead.transport_ext_eq

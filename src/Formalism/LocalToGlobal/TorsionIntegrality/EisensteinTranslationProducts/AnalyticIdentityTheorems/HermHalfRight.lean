@@ -147,7 +147,7 @@ theorem th0Basic_of (hb : SgStarBasic) (hq : SgStarQuasi) (hi : AltEInt) : Theta
         = Complex.exp ((Real.pi : ℂ) * herm L (z - t) (t + t) + (Real.pi : ℂ) * herm L (t + t) (t + t) / 2)
           * Complex.exp (-(Real.pi : ℂ) * herm L z t) := by
       rw [← Complex.exp_add]; congr 1
-      simp only [herm, map_add (f := _), map_neg, map_sub]; ring
+      simp only [herm, map_add (f := _)]; ring
     rw [h1, h3]
     linear_combination (-sgStar L (z - t) / sgStar L t) * key
   · intro z

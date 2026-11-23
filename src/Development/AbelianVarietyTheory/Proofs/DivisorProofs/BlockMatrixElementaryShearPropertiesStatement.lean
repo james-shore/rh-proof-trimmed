@@ -48,4 +48,4 @@ open GlobalTheory GlobalTheory.ZH GlobalTheory.CechPic GlobalTheory.Cartier Glob
 open Classical
 
 theorem _root_.GlobalTheory.T.blockMatrixElementaryShear_properties : ∀ (ι : Type) (m : ι → ℕ) (τ : ι) (a b : Fin (m τ)), a < b → ∀ (R : Type) [CommRing R] (t : R), (∀ σ, (shear τ a b t σ).det = 1) ∧ shear τ a b t * shear τ a b (-t) = 1 ∧ shear τ a b (0 : R) = 1 ∧ ∀ (S : Type) [CommRing S] (g : R →+* S), (shear τ a b t).map g = shear τ a b (g t) := by
-  first | exact @GlobalTheory.FlagPush.shear_props | exact GlobalTheory.FlagPush.shear_props | (intros; apply GlobalTheory.FlagPush.shear_props <;> assumption)
+  first | exact @GlobalTheory.FlagPush.shear_props

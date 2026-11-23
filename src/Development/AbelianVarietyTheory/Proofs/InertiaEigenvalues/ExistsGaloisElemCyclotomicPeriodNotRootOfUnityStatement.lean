@@ -50,4 +50,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.exists_galois_elem_cyclotomic_period_not_root_of_unity : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K), ∃ (g : ↥(GK K)) (z : ℂ_[l]), IsZ bk g z ∧ ∀ i : ℕ, 1 ≤ i → z ^ i ≠ 1 := by
-  first | exact @GlobalTheory.BKLim.exists_isZ_not_root | exact GlobalTheory.BKLim.exists_isZ_not_root | (intros; apply GlobalTheory.BKLim.exists_isZ_not_root <;> assumption)
+  first | exact @GlobalTheory.BKLim.exists_isZ_not_root

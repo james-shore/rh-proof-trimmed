@@ -48,4 +48,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open AlgebraicGeometry CategoryTheory
 
 theorem _root_.GlobalTheory.T.bijective_sections_preimage_affine_proper_birational : ∀ (Y Z : Scheme.{0}) (π : Y ⟶ Z) [IsProper π] [IsIntegral Y] [IsIntegral Z] [IsLocallyNoetherian Z], ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsNormalScheme Z → ∀ U : Z.Opens, (U : Set Z).Nonempty → IsIso (π ∣_ U) → ∀ V : Z.Opens, IsAffineOpen V → Function.Bijective (π ∣_ V).appTop := by
-  first | exact @GlobalTheory.ZariskiSections.bijective_appTop_restrict | exact GlobalTheory.ZariskiSections.bijective_appTop_restrict | (intros; apply GlobalTheory.ZariskiSections.bijective_appTop_restrict <;> assumption)
+  first | exact @GlobalTheory.ZariskiSections.bijective_appTop_restrict

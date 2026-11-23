@@ -52,4 +52,4 @@ open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ChartGlue GlobalTheory.Mix
 
 theorem _root_.GlobalTheory.T.polarisation_topChernDensity_eq_factorial_mixed : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) (p : X ⟶ Sp k) (σ : k →+* ℂ) (D : ℕ) (L : Fin D → HermLB p) (c : AlgChart p σ D), ∀ y ∈ c.e.source, FibreProj.pol (fun n => c.chernDens ((ArInt.comb L n).φ σ) y) = D.factorial * dens (fun i => MLine.ofHerm (L i) σ) c y := by
-  first | exact @GlobalTheory.Mix.pol_chernDens_comb | exact GlobalTheory.Mix.pol_chernDens_comb | (intros; apply GlobalTheory.Mix.pol_chernDens_comb <;> assumption)
+  first | exact @GlobalTheory.Mix.pol_chernDens_comb

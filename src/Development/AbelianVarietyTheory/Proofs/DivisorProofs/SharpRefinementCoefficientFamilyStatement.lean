@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.sharp_refinement_coefficient_family : ∀ (W : Mat
     IsGrpPullback ((Over.pullback (spMap ev)).obj D.P.A) t.A (𝟙 _) ψ →
     LBIso (D.P.L.pull (pullback.fst D.P.A.hom (spMap ev))) (t.L.pull ψ) →
     ∃ v : Ix (8 * gQ) ((l ^ j) ^ 2) → k₀, t.HasTh (𝟙 _) (fun a => k₀.subtype (v a)) := by
-  first | exact @GlobalTheory.Poinc.Sep.fibre_theta_consts_in_subfield | exact GlobalTheory.Poinc.Sep.fibre_theta_consts_in_subfield | (intros; apply GlobalTheory.Poinc.Sep.fibre_theta_consts_in_subfield <;> assumption)
+  first | exact @GlobalTheory.Poinc.Sep.fibre_theta_consts_in_subfield

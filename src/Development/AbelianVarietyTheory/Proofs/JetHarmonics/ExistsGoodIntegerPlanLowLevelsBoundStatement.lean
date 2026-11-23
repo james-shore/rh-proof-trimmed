@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.exists_goodIntegerPlan_low_levels_bound : ∀ (l d
   ∃ p : Plan l d W, (∀ a i, i0 k l ≤ i → p.y a i = 0) ∧ (∀ a i, p.y a i ≠ 0 → p.y a i ∈ Good a i) ∧
     p.bound n m ≤ Fnum l d (fun a => (n : ℝ) * Ws a) + thl k l * n * (∑ a, Ws a) + n * gam l * (∑ a, ((W a : ℝ) - Ws a)) +
       m * (∑ a, (W a : ℝ)) / ((l : ℝ) - 1) + 2 * (i0 k l : ℝ) * m * (∑ a, Ws a) / ((l : ℝ) - 1) + d * (i0 k l : ℝ) * (n * ((S : ℝ) + Real.logb l n + 1)) := by
-  first | exact @GlobalTheory.GoodPlan.exists_plan | exact GlobalTheory.GoodPlan.exists_plan | (intros; apply GlobalTheory.GoodPlan.exists_plan <;> assumption)
+  first | exact @GlobalTheory.GoodPlan.exists_plan

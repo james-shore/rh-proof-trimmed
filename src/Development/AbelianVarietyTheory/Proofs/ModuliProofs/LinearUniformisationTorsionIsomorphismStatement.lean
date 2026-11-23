@@ -51,4 +51,4 @@ open GlobalTheory.FlatTors GlobalTheory.IndefiniteRowSideFullHecke.FlatIsoUnitGe
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.linearUniformisation_torsionIsomorphism : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (R : Type) [CommRing R] [IsDomain R] [CharZero R] (I : Ideal R), AdmBase R I → ∀ (t : SAB H (Sp R)) (P : PELUnif I t), P.TorsionIso := by
-  first | exact @GlobalTheory.FlatTors.torsionIso_holds | exact GlobalTheory.FlatTors.torsionIso_holds | (intros; apply GlobalTheory.FlatTors.torsionIso_holds <;> assumption)
+  first | exact @GlobalTheory.FlatTors.torsionIso_holds

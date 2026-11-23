@@ -64,4 +64,4 @@ theorem _root_.GlobalTheory.T.compactPair_realAverage_fock_eq_jetOperator : ∀ 
             Λ' (realAct W.θ S.N.fr (.grid (i + 1) D.R.m) k'⁻¹
               (Formalism.L2.Ker.jetOp (wt G (.grid i D.R.m)) (wt G (.grid (i + 1) D.R.m))
                 (fun m => ℓ (MvPolynomial.monomial (m.mapDomain (fvar G (.chi i D.R.m : Pair T))) 1)) (nuEnd G (.chi i D.R.m : Pair T)) v)) := by
-  first | exact @GlobalTheory.RowHoweAvg.real_average_jet | exact GlobalTheory.RowHoweAvg.real_average_jet | (intros; apply GlobalTheory.RowHoweAvg.real_average_jet <;> assumption)
+  first | exact @GlobalTheory.RowHoweAvg.real_average_jet

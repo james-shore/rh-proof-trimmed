@@ -104,8 +104,6 @@ theorem dmin_ne_of_dom (X : Data E r) {x : Frame X.Ψ r} (hx : x ∈ X.dom) (τ 
   have h1 : 0 < psgn X.p0 i * (dmin X.Gm x τ i).re := by
     first
       | exact (hx τ).2 i
-      | (simp only [Data.dom, GG, Set.mem_setOf_eq] at hx
-         exact (hx τ).2 i)
   rw [h0] at h1
   simp at h1
 

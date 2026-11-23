@@ -284,7 +284,6 @@ theorem dict_frames {D : D7} {T : Type} {A A' WW : HSp D} (X : Tri T A A' WW) (�
   refine ⟨f1, f2, fun P g h => ?_, fun P g h => ?_⟩
   · unfold fockF GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle.Tri.ker
     rw [e1, ← hW, hσ _ f1.1]
-    try rfl
   · unfold fockF GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle.Tri.ker'
     rw [e2, ← hW, hσ' _ f2.1]
     try rfl

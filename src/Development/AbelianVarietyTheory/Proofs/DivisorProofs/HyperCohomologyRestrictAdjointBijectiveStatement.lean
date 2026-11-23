@@ -56,4 +56,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.hyper_cohomology_restrict_adjoint_bijective : ∀ (R : Type) [CommRing R] (C C' : Type) [Category.{0} C] [Category.{0} C'] (F : C ⥤ CommAlgCat.{0} R) (G : C' ⥤ C) (H : C ⥤ C'), (G ⊣ H) → Function.Bijective (pullHyp1 (CoefMap.restrict F G)) := by
-  first | exact @GlobalTheory.AdjHyp.main | exact GlobalTheory.AdjHyp.main | (intros; apply GlobalTheory.AdjHyp.main <;> assumption)
+  first | exact @GlobalTheory.AdjHyp.main

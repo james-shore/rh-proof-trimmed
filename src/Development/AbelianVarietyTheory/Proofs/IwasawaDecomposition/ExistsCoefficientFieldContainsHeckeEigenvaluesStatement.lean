@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_coefficientField_contains_heckeEigenvalues 
     (∀ z ∈ So B.toPre I.C B.KsC B.fixedCoefficientFieldInComplex (Set.range I.xi), z ∈ B.LLC) → ∀ a : I.ι,
       Formalism.L2.Col.HeckeFieldsInAll (rowPts B.wts I.Ch I.sel (I.tup a)) ∅ ∧
         ∀ j : Fin B.R.m, Formalism.L2.Col.HeckeFieldsInAll (liftPts B.wts I.Ch I.sel (I.tup a) (j.1 + 1)) ∅ := by
-  first | exact @GlobalTheory.Mem.HFld.heckeFields | exact GlobalTheory.Mem.HFld.heckeFields | (intros; apply GlobalTheory.Mem.HFld.heckeFields <;> assumption)
+  first | exact @GlobalTheory.Mem.HFld.heckeFields

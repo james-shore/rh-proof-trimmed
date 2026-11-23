@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.baseLevelComplexPoints_injective_extendedData_alt 
         ∀ (j : Fin (w.st Z).toD7.R.m) (j' : Fin (w'.st Z').toD7.R.m), (j : ℕ) = j' →
         ∀ φ : (w.st Z).toD7.what₂.LL →+* (w'.st Z').toD7.what₂.LL, (∀ x, (w'.st Z').toD7.what₂.embLL (φ x) = (w.st Z).toD7.what₂.embLL x) →
         Function.Injective ((z'.R.toCx3 z'.F).w0C false j')) := by
-  first | exact @GlobalTheory.Mem.R3.LiftInj.baseLevelComplexPoints_injective_extendedData | exact GlobalTheory.Mem.R3.LiftInj.baseLevelComplexPoints_injective_extendedData | (intros; apply GlobalTheory.Mem.R3.LiftInj.baseLevelComplexPoints_injective_extendedData <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.LiftInj.baseLevelComplexPoints_injective_extendedData

@@ -48,4 +48,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Unf
 
 theorem _root_.GlobalTheory.T.weilDatumDescendsToWittCore_of_exists : ∀ D : D7, GlobalTheory.IndefiniteRowSideFullHecke.WeilDatumExistenceCriterion.WeilDatumExists D → Descent D := by
-  first | exact @GlobalTheory.Unf.descent_of_weilDatumExists | exact GlobalTheory.Unf.descent_of_weilDatumExists | (intros; apply GlobalTheory.Unf.descent_of_weilDatumExists <;> assumption)
+  first | exact @GlobalTheory.Unf.descent_of_weilDatumExists

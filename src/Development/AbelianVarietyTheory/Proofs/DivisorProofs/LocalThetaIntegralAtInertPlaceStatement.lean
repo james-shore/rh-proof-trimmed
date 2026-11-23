@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.local_theta_integral_at_inert_place : ∀ (F E : T
       ∀ z ∈ GlobalTheory.InertSph.latAt G.W v, (t : Matrix (Fin (a + a')) (Fin (a + a')) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))) *ᵥ z ∈ GlobalTheory.InertSph.latAt G.W v ∧
         ((t⁻¹ : GL (Fin (a + a')) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))) : Matrix (Fin (a + a')) (Fin (a + a')) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))) *ᵥ z ∈ GlobalTheory.InertSph.latAt G.W v) →
       (adeleClass F).modu (Units.map (Algebra.norm (AF F) : _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E) →* AF F) (Matrix.GeneralLinearGroup.det t)) = 1 := by
-  first | exact @GlobalTheory.IntegralDetModule.modu_norm_det_triple | exact GlobalTheory.IntegralDetModule.modu_norm_det_triple | (intros; apply GlobalTheory.IntegralDetModule.modu_norm_det_triple <;> assumption)
+  first | exact @GlobalTheory.IntegralDetModule.modu_norm_det_triple

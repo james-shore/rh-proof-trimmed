@@ -121,7 +121,6 @@ theorem cb_rho_eq' (Q : M.Par) (π : M.Ty Q) (j : Fin (Q.k - 1)) :
   rw [dite_eq_left ⟨by omega, by have := j.isLt; omega⟩]
   first
     | rfl
-    | simp
 
 theorem cb_ofIcc {n i : ℕ} (h1 : 1 ≤ i) (h2 : i ≤ n) : ∃ j : Fin n, i = j.1 + 1 := by
   exact ⟨⟨i - 1, by omega⟩, by show i = i - 1 + 1; omega⟩

@@ -76,4 +76,4 @@ theorem _root_.GlobalTheory.T.pulledBack_coordinate_combination_ratio_and_vanish
           ψ (∑ k, algebraMap K Ω (lam k : K) * y k) * fnOf _ h ((GlobalTheory.Cartier.secPull (ProjSpace.coord (𝓞 K) m l) g).f i)) ∧
     (y ≠ 0 → ∀ lam : Fin (m + 1) → 𝓞 K, ∑ k, algebraMap K Ω (lam k : K) * y k = 0 →
         ∑ k, algX p ⊤ (lam k) • GlobalTheory.Cartier.secPull (ProjSpace.coord (𝓞 K) m k) g = 0) := by
-  first | exact @GlobalTheory.PullCoordComb.linComb_ratio_and_vanish | exact GlobalTheory.PullCoordComb.linComb_ratio_and_vanish | (intros; apply GlobalTheory.PullCoordComb.linComb_ratio_and_vanish <;> assumption)
+  first | exact @GlobalTheory.PullCoordComb.linComb_ratio_and_vanish

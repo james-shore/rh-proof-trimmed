@@ -83,11 +83,7 @@ theorem exists_smul_mem {E W : Type} [Field E] [NumberField E] [AddCommGroup W] 
     [Module (𝓞 E) W] [IsScalarTower (𝓞 E) E W] (L : Submodule (𝓞 E) W) (v : W)
     (hv : v ∈ Submodule.span E (L : Set W)) : ∃ c : 𝓞 E, c ≠ 0 ∧ c • v ∈ L := by
   first
-  | exact @_root_.GlobalTheory.ClearingDenominatorsInOrder.main
-  | exact _root_.GlobalTheory.ClearingDenominatorsInOrder.main
   | (apply _root_.GlobalTheory.ClearingDenominatorsInOrder.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ClearingDenominatorsInOrder.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ClearingDenominatorsInOrder.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ClearingDenominatorsInOrder.main ..)
 
 variable {E : Type} [Field E] [NumberField E] [StarRing E]

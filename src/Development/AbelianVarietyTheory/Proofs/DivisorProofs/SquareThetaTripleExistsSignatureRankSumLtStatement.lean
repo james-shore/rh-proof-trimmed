@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.squareThetaTriple_exists_signature_rank_sum_lt : �
     (hT : SquareTriple W t i j) (M : Vol G) (hM : M.Is t),
     ∃ p : ℕ, (∃ τ, Formalism.UG.HasSignature (gramAt D (G.V (.grid (i + 1) (j + 1))) τ) ((G.V (.grid (i + 1) (j + 1))).rank - p) p) ∧
       (GlobalTheory.Doubling.hsum (G.V (.grid i (j + 1))) (G.V (.grid (i + 1) j))).rank < 2 * ((G.V (.grid (i + 1) (j + 1))).rank - p) := by
-  first | exact @GlobalTheory.FunObj.squareTriple_sig_rank | exact GlobalTheory.FunObj.squareTriple_sig_rank | (intros; apply GlobalTheory.FunObj.squareTriple_sig_rank <;> assumption)
+  first | exact @GlobalTheory.FunObj.squareTriple_sig_rank

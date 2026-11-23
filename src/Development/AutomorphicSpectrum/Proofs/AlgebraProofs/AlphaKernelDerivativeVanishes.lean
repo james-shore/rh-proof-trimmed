@@ -258,8 +258,7 @@ theorem dz {p : ℕ} [CharP R p] (G : FGLaw R d) (f : PS R 1 d) (c : PS R 2 d) (
   have hF : addOf G.F (pt R (n := 2) d 0) (pt R d 1) = G.F := add_pt G
   have h := congrArg (fun g => ev (n := 1) ![pt R d 0, 0] (pderiv ((1 : Fin 2), j) g)) hadd
   rw [hF] at h
-  simp only [map_add (f := _), GlobalTheory.DerivEndo.ev_add germPointsNoConstantTerm_first_zero, pderiv_second_of_ev_first_point_local, dy_y_local, hc, germ_ev_restrict_axis_second_point, GlobalTheory.DerivEndo.ev_zero germPointsNoConstantTerm_first_zero,
-    zero_add, pderiv_ev_local (noConst_one G.const), Fin.sum_univ_one, Matrix.cons_val_zero,
+  simp only [map_add (f := _), pderiv_second_of_ev_first_point_local, dy_y_local, hc, germ_ev_restrict_axis_second_point, zero_add, pderiv_ev_local (noConst_one G.const), Fin.sum_univ_one, Matrix.cons_val_zero,
     GlobalTheory.DerivEndo.ev_sum germPointsNoConstantTerm_first_zero, GlobalTheory.DerivEndo.ev_mul germPointsNoConstantTerm_first_zero, germ_ev_restrict_axis_groupLaw, cc_pd] at h
   exact h.symm
 

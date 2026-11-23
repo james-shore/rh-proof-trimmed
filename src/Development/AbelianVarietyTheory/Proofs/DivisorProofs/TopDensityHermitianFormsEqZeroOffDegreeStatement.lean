@@ -50,4 +50,4 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts G
 open scoped Matrix ContDiff ComplexOrder
 
 theorem _root_.GlobalTheory.T.topDensity_hermitianForms_eq_zero_offDegree : ∀ (n : ℕ) (κ : Type) (α : κ → V n → V n → ℂ) (d : ℕ) (P : MvPolynomial κ ℝ), P.IsHomogeneous d → d ≠ n → dens ((aeval (fun i => ofValues (α i)) (P.map (algebraMap ℝ ℂ)) : Ev n) : Alt n) = 0 := by
-  first | exact @GlobalTheory.ChernCalc.dens_aeval_ofValues_offDeg | exact GlobalTheory.ChernCalc.dens_aeval_ofValues_offDeg | (intros; apply GlobalTheory.ChernCalc.dens_aeval_ofValues_offDeg <;> assumption)
+  first | exact @GlobalTheory.ChernCalc.dens_aeval_ofValues_offDeg

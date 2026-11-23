@@ -46,4 +46,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.baseLevelCharacter_mem_coefficientRing : ∀ (D : D7) (X : RealSide D) (E : IntegralHeckeForms.XD D) (Y : SerSide X E) (i : D.ntw.Tw) (j : Fin D.R.m) (b : Bool) (k : (Y.Z.ρ.B i j b).levJ (Y.Z.ρ.tw i b 0 ∅ 1)), (((Y.Z.ρ.B i j b).levLam (Y.Z.ρ.tw i b 0 ∅ 1) k : ℂˣ) : ℂ) ∈ (Y.Z.ρ.eOk i b 0).range := by
-  first | exact @GlobalTheory.LamVal.levLam_mem_coef | exact GlobalTheory.LamVal.levLam_mem_coef | (intros; apply GlobalTheory.LamVal.levLam_mem_coef <;> assumption)
+  first | exact @GlobalTheory.LamVal.levLam_mem_coef

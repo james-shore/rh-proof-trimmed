@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.root_trick_finset_curves_block_inverse : RootState
           (∀ a b, x a b ≠ 0 → a ∈ S ∧ b ∈ S) ∧ (∀ a b, y a b ≠ 0 → a ∈ S ∧ b ∈ S) ∧
           (∀ a c, a ∈ S → c ∈ S → ∑ b, x a b * y b c = if a = c then 1 else 0) ∧
           ∀ a ∈ S, a ∉ D → La (∑ b, x a b ^ (p ^ n) • G.lc p (γ b) n) = 0 := by
-  first | exact @GlobalTheory.RootFin.root_fin | exact GlobalTheory.RootFin.root_fin | (intros; apply GlobalTheory.RootFin.root_fin <;> assumption)
+  first | exact @GlobalTheory.RootFin.root_fin

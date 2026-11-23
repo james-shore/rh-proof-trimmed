@@ -69,11 +69,7 @@ variable {K : Type} [Field K] {ι : Type} [Fintype ι] {a b n : ℕ}
 theorem prod_castLE {M : Type} [CommMonoid M] (h : a ≤ b) (f : Fin b → M) (h0 : ∀ r : Fin b, a ≤ r.1 → f r = 1) :
     ∏ r, f r = ∏ r : Fin a, f (Fin.castLE h r) := by
   first
-  | exact @_root_.GlobalTheory.ProdFinCastLE.prod_fin_eq_prod_castLE
-  | exact _root_.GlobalTheory.ProdFinCastLE.prod_fin_eq_prod_castLE
   | (apply _root_.GlobalTheory.ProdFinCastLE.prod_fin_eq_prod_castLE <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ProdFinCastLE.prod_fin_eq_prod_castLE <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ProdFinCastLE.prod_fin_eq_prod_castLE <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ProdFinCastLE.prod_fin_eq_prod_castLE ..)
 
 theorem sum_castLE {M : Type} [AddCommMonoid M] (h : a ≤ b) (f : Fin b → M) (h0 : ∀ r : Fin b, a ≤ r.1 → f r = 0) :

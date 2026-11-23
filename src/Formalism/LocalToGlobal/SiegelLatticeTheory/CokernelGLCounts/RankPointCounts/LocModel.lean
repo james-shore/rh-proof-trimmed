@@ -220,7 +220,6 @@ theorem mem_of_isIntegral_fp (L : LocAt F E sig p) {s : L.Fp} (hs : IsIntegral �
   have hv := Valuation.integer.integers (ValuativeRel.valuation L.Fp)
   first
   | exact hv.mem_of_integral hs
-  | (obtain ⟨t, rfl⟩ := hv.mem_of_integral hs; exact t.2)
 
 theorem isIntegral_zl (L : LocAt F E sig p) {s : L.Fp} (hs : s ∈ 𝒪[L.Fp]) :
     haveI := L.ellPrime
@@ -768,13 +767,6 @@ theorem inv_intCast_mem (p : PlF D) (n : ℤ) (hn : ((n : 𝓞 D.host.F)) ∉ p.
     rw [e, IsDedekindDomain.HeightOneSpectrum.valuation_of_algebraMap]
     first
     | exact (IsDedekindDomain.HeightOneSpectrum.intValuation_eq_one_iff (v := p)).2 hn
-    | (apply le_antisymm (p.intValuation_le_one _)
-       rw [← not_lt, IsDedekindDomain.HeightOneSpectrum.intValuation_lt_one_iff_mem]
-       exact hn)
-    | (apply le_antisymm (p.intValuation_le_one _)
-       rw [← not_lt, IsDedekindDomain.HeightOneSpectrum.intValuation_lt_one_iff_dvd,
-         Ideal.dvd_span_singleton]
-       exact hn)
   rw [memO_iff, ← map_inv₀, ← map_one (D.s.atP p).ιF, (D.s.atP p).val, map_one, map_inv₀, hv]
   all_goals simp
 
@@ -793,8 +785,6 @@ theorem iotaIntegral_almost_all : IotaIntCof := by
     | (obtain ⟨⟨m, hm⟩, hmx⟩ := IsIntegral.exists_multiple_integral_of_isLocalization
           (nonZeroDivisors ℤ) x (Algebra.IsIntegral.isIntegral (R := ℚ) x)
        exact ⟨m, nonZeroDivisors.ne_zero hm, by simpa [Submonoid.smul_def, Submonoid.mk_smul, zsmul_eq_mul] using hmx⟩)
-    | (obtain ⟨m, hm, hmx⟩ := (Algebra.IsAlgebraic.isAlgebraic (R := ℤ) x).exists_integral_multiple
-       exact ⟨m, hm, by simpa [zsmul_eq_mul] using hmx⟩)
   filter_upwards [(intMem_finite (D := D) m hm0).compl_mem_cofinite] with p hp
   have hmp : ((m : 𝓞 D.host.F)) ∉ p.asIdeal := hp
   have hmE : ((m : D.host.E)) ≠ 0 := by exact_mod_cast hm0
@@ -1825,12 +1815,10 @@ theorem placesOver_holds (D : Formalism.BasicNotions.D7) : PlacesOver D := place
 theorem topUnram_holds (D : Formalism.BasicNotions.D7) : TopUnram D := by
   first
   | exact LocModel.topUnram_body D
-  | (intro δ M hA T T'; exact LocModel.topUnram_body D δ M hA T T')
 
 theorem alpBound_holds (D : Formalism.BasicNotions.D7) : AlpBound D := by
   first
   | exact LocModel.alpBound_body D
-  | (intro hk u u' p; exact LocModel.alpBound_body D hk u u' p)
 
 end Formalism.L2.SG.Pf
 

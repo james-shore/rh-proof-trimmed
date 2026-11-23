@@ -49,4 +49,4 @@ open GlobalTheory.SeeSaw GlobalTheory.Unf
 
 
 theorem _root_.GlobalTheory.T.movedVacuum_at_identity_nonzero_constant : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins B X → ∀ (l : I.Laws) (Z : TC.Later B (I.cols l)) ψ θ, IsStdChar (I.rec7 l Z) ψ (-1) → IsInfFam θ → ∀ (i : ℕ) (hi : i + 1 ≤ B.R.m) vac, IsVacO ψ θ ((I.rec7 l Z).sp.X i) ((I.rec7 l Z).sp.X (i + 1)) (fun _ => 1) (fun _ => 1) (intVec _ _) (intVec _ _) vac → ∀ (a : I.ι) μ om, ChrEq μ (I.C.mu0 ⟨i, hi⟩ * I.xi a) → IsWeilDatumO ψ _ _ μ μ om → ∃ c₀ : ℂ, c₀ ≠ 0 ∧ GlobalTheory.AdForm.VacAll.MoveT I l Z θ i hi c₀ μ om vac 1 1 := by
-  first | exact @GlobalTheory.AdForm.VacAllBase.moveT_one | exact GlobalTheory.AdForm.VacAllBase.moveT_one | (intros; apply GlobalTheory.AdForm.VacAllBase.moveT_one <;> assumption)
+  first | exact @GlobalTheory.AdForm.VacAllBase.moveT_one

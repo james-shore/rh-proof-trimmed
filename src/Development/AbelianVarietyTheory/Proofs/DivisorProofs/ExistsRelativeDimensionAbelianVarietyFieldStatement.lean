@@ -54,4 +54,4 @@ open GlobalTheory.HTLat GlobalTheory.Published GlobalTheory.Published.AbVarRed I
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_relativeDimension_abelianVariety_field : ∀ (K : Type) [Field K] (A : Over (Sp K)) [GrpObj A], IsAbelianScheme A → ∃ g : ℕ, SmoothOfRelativeDimension g A.hom := by
-  first | exact @GlobalTheory.AbVarRelDim.exists_relDim | exact GlobalTheory.AbVarRelDim.exists_relDim | (intros; apply GlobalTheory.AbVarRelDim.exists_relDim <;> assumption)
+  first | exact @GlobalTheory.AbVarRelDim.exists_relDim

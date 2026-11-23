@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.twist_residue_character_complex_eq_level_character
       w ∈ Formalism.L2.Col.QE I.sel (t.1 : Formalism.L2.DIV.Chr X.B.fields.F X.B.fields.E X.B.fields.K) → ∀ (u : (kP w)ˣ),
       X.toD7.what₂.embLL ((Formalism.L2.DIV.resChar (t.1 : Formalism.L2.DIV.Chr X.B.fields.F X.B.fields.E X.B.fields.K) w u :
         X.B.fields.Kˣ) : X.B.fields.K) = ((L.xiR t w u : ℂˣ) : ℂ) := by
-  first | exact @GlobalTheory.Mem.LevResXi.embLL_resChar_eq_xiR | exact GlobalTheory.Mem.LevResXi.embLL_resChar_eq_xiR | (intros; apply GlobalTheory.Mem.LevResXi.embLL_resChar_eq_xiR <;> assumption)
+  first | exact @GlobalTheory.Mem.LevResXi.embLL_resChar_eq_xiR

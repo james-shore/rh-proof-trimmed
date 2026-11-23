@@ -45,4 +45,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.periodReductionToFockVectors_large_depth : Big fun ch => FockAt ch := by
-  first | exact @GlobalTheory.FockRed.fockAt_big | exact GlobalTheory.FockRed.fockAt_big | (intros; apply GlobalTheory.FockRed.fockAt_big <;> assumption)
+  first | exact @GlobalTheory.FockRed.fockAt_big

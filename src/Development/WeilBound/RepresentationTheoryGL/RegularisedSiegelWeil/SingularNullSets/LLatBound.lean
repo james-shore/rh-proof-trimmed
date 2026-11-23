@@ -111,7 +111,7 @@ theorem latBound : LatBound := by
     obtain ⟨C₁, h₁, hf⟩ := hf
     refine ⟨‖c‖ₑ * C₁, ENNReal.mul_lt_top enorm_lt_top h₁, fun h => ?_⟩
     calc _ = ∑' x : {x : Matrix (Fin V.rank) (Fin n) D.host.E // x.rank = V.rank}, ‖c‖ₑ * ‖f (mm (mt V h⁻¹) (rat x.1))‖ₑ :=
-          tsum_congr fun x => by simp [enorm_mul]
+          tsum_congr fun x => by simp
       _ = _ := ENNReal.tsum_mul_left
       _ ≤ _ := by gcongr; exact hf h
 

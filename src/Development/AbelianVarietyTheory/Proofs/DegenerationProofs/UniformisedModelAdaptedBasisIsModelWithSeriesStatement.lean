@@ -51,4 +51,4 @@ open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.ZH Classical
 attribute [local instance] SplitExt.free SplitExt.finite MvPolynomial.gradedAlgebra
 
 theorem _root_.GlobalTheory.T.uniformisedModel_adaptedBasis_is_modelWithSeries : GlobalTheory.UT.LL → UTorsSt → ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] [ArithBase o Ω] (S : ThetaSys o Ω) (ρ : S.Real) (p : ℕ) [Fact p.Prime] (y₀ : S.R →+* PadicAlgCl p) (u : ρ.UTest p y₀) (l : u.Lab) (σ : S.J → (u.H S.N).Sec) (cls : S.J → u.D.toPre.X) (f : S.J → ∀ α, u.D.toPre.SecB S.N α), u.Basis l S.N σ cls f → Nonempty (Mod p u.j u.G S.g S.N l.q (u.H S.N) σ cls) := by
-  first | exact @GlobalTheory.ZH.utest_nonempty_mod | exact GlobalTheory.ZH.utest_nonempty_mod | (intros; apply GlobalTheory.ZH.utest_nonempty_mod <;> assumption)
+  first | exact @GlobalTheory.ZH.utest_nonempty_mod

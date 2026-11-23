@@ -48,4 +48,4 @@ open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 
 theorem _root_.GlobalTheory.T.exists_tensor_torsion_point_of_component_tuple : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R → ∀ (D D' : DegData R (maximalIdeal R)) {r : ℕ} (W : Matrix (Fin r) (Fin r) ℤ) (T : Tens D.toPre D'.toPre W) (F : Type) [Field F] [IsAlgClosed F] [Algebra (FractionRing R) F] (N N' : NumD F) (ν : NumOf D.toPre F N) (ν' : NumOf D'.toPre F N') (k : ℕ) (ps : Fin r → QkPt D.toPre F k), ∃ p' : QkPt D'.toPre F k, PtRel T ν ν' p' ps := by
-  first | exact @GlobalTheory.Mum.TensTor.exists_ptRel | exact GlobalTheory.Mum.TensTor.exists_ptRel | (intros; apply GlobalTheory.Mum.TensTor.exists_ptRel <;> assumption)
+  first | exact @GlobalTheory.Mum.TensTor.exists_ptRel

@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.exists_subgroup_symplecticAnnihilator_localField :
     ∃ Y : AddSubgroup ((κ → Fv F v) × (κ → Fv F v)),
       (∀ w' : (κ → Fv F v) × (κ → Fv F v), (∀ w ∈ Y, ψ (w'.1 ⬝ᵥ w.2 - w.1 ⬝ᵥ w'.2) = 1) → w' ∈ N) ∧
       ∃ N' ∈ nhds (0 : (κ → Fv F v) × (κ → Fv F v)), ∀ w' ∈ N', ∀ w ∈ Y, ψ (w'.1 ⬝ᵥ w.2 - w.1 ⬝ᵥ w'.2) = 1 := by
-  first | exact @GlobalTheory.SympDualNbhd.exists_dual_nbhd | exact GlobalTheory.SympDualNbhd.exists_dual_nbhd | (intros; apply GlobalTheory.SympDualNbhd.exists_dual_nbhd <;> assumption)
+  first | exact @GlobalTheory.SympDualNbhd.exists_dual_nbhd

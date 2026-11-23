@@ -53,4 +53,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.weilOperator_keeps_latticeVacuum_of_trivialAt : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (χS χT : (AE D)ˣ →* Circle) (om : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)), IsWeilDatumO ψ S T χS χT om → ∀ (v : HeightOneSpectrum (𝓞 D.host.F)) (g : GA D T), projV T v g = 1 → ∀ f, VacFin ψ S T v f → VacFin ψ S T v (om (1, g) f) := by
-  first | exact @GlobalTheory.FinZeta.MoveVac.vacFin_om_one | exact GlobalTheory.FinZeta.MoveVac.vacFin_om_one | (intros; apply GlobalTheory.FinZeta.MoveVac.vacFin_om_one <;> assumption)
+  first | exact @GlobalTheory.FinZeta.MoveVac.vacFin_om_one

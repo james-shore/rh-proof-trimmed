@@ -111,11 +111,7 @@ theorem inv_le_inv_of_posDef_of_le {A B : Matrix n n 𝕜} (hA : A.PosDef) (h : 
 theorem one_le_det_one_add_of_posSemidef {D : Matrix n n 𝕜} (hD : D.PosSemidef) :
     1 ≤ (1 + D).det := by
   first
-  | exact @_root_.GlobalTheory.OneLeDetOneAdd.one_le_det_one_add
-  | exact _root_.GlobalTheory.OneLeDetOneAdd.one_le_det_one_add
   | (apply _root_.GlobalTheory.OneLeDetOneAdd.one_le_det_one_add <;> assumption)
-  | (intros; apply _root_.GlobalTheory.OneLeDetOneAdd.one_le_det_one_add <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.OneLeDetOneAdd.one_le_det_one_add <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.OneLeDetOneAdd.one_le_det_one_add ..)
 
 theorem det_le_det_of_posSemidef_of_le {A B : Matrix n n 𝕜} (hA : A.PosSemidef) (h : A ≤ B) :

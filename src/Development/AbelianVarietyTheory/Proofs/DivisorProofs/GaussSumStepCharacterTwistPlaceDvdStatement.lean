@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.gaussSum_stepCharacter_twistPlace_dvd : ∀ {D : D
       GlobalTheory.AdelicU.splitPrime τ ∈ locPl G t → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.condExp (chrW (GlobalTheory.SqStep.chs G i j t).ν τ) = 1 →
       ∃ g : 𝓞 D.what₂.LL, D.what₂.embLL (g : D.what₂.LL) = gauss ψ (chrW (GlobalTheory.SqStep.chs G i j t).ν τ) ∧
         g ∣ ((Ideal.absNorm v.asIdeal : ℕ) : 𝓞 D.what₂.LL) := by
-  first | exact @GlobalTheory.TwistGaussInt.gauss_dvd | exact GlobalTheory.TwistGaussInt.gauss_dvd | (intros; apply GlobalTheory.TwistGaussInt.gauss_dvd <;> assumption)
+  first | exact @GlobalTheory.TwistGaussInt.gauss_dvd

@@ -118,7 +118,7 @@ theorem real_nonneg {d : ℕ} (G : Matrix (Fin d) (Fin d) ℤ)
     have ha' : ∀ i, (a i : ℝ) = ((m : ℤ) : ℝ) * (c i : ℝ) := by
       intro i
       have := ha i
-      simp only [eq_intCast, zsmul_eq_mul, Submonoid.smul_def] at this
+      simp only [eq_intCast, zsmul_eq_mul] at this
       exact_mod_cast this
     have h1 : (0 : ℝ) ≤ ∑ i, ∑ j, (a i : ℝ) * (a j : ℝ) * (G i j : ℝ) := by
       exact_mod_cast hZ a
@@ -175,7 +175,7 @@ theorem gram_pos {Λ : Type} [AddCommGroup Λ] (b : Λ →ₗ[ℤ] Λ →ₗ[ℤ
     0 < c ⬝ᵥ (Matrix.of fun i j : Fin d => b ((φ ^ (i : ℕ)) e) ((φ ^ (j : ℕ)) e)) *ᵥ c := by
   have h1 : aeval φ (∑ i : Fin d, C (c i) * X ^ (i : ℕ)) e = ∑ i : Fin d, c i • (φ ^ (i : ℕ)) e := by
 
-    simp [map_sum, LinearMap.sum_apply, Module.End.intCast_apply]
+    simp [map_sum, LinearMap.sum_apply]
   have h2 : (∑ i : Fin d, C (c i) * X ^ (i : ℕ) : ℤ[X]) ≠ 0 := by
     intro h
     apply hc

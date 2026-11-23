@@ -85,7 +85,7 @@ def boundedIn {n : ℕ} (b : Module.Basis (Fin n) k[X] A) (D : Ideal A) (d : ℕ
 def coeffMap {n : ℕ} (b : Module.Basis (Fin n) k[X] A) (D : Ideal A) (d : ℕ) :
     boundedIn b D d →ₗ[k] (Fin n → Fin (d + 1) → k) where
   toFun f i j := (b.repr (f : A) i).coeff j
-  map_add' f g := by ext i j; simp [coeff_add]
+  map_add' f g := by ext i j; simp
   map_smul' c f := by ext i j; simp [repr_smul_const, coeff_C_mul]
 
 theorem coeffMap_injective {n : ℕ} (b : Module.Basis (Fin n) k[X] A) (D : Ideal A) (d : ℕ) :

@@ -48,4 +48,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.standard_lattice_off_S0 : OnStd fun {D} _ _ {sc} {G} W F => ∀ ρ (h : 2 * ρ + 2 ≤ D.R.m), ∀ v ∉ G.pl.S0, StdAt (F.dB ρ h) (F.dJ ρ h) (pcBF W F ρ h) (G.Λ (.grid (2 * ρ + 2) 0)) (G.Λ (.grid (2 * ρ + 1) 0)) v := by
-  first | exact @GlobalTheory.AscFin.stdAt_pcBF | exact GlobalTheory.AscFin.stdAt_pcBF | (intros; apply GlobalTheory.AscFin.stdAt_pcBF <;> assumption)
+  first | exact @GlobalTheory.AscFin.stdAt_pcBF

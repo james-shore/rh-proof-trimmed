@@ -160,8 +160,6 @@ theorem isFibreOf_descend {R R₂ K : Type} [CommRing R] [CommRing R₂] [CommRi
       refine Eq.trans ?_ (hθ j i)
       dsimp only [thfPull]
       first
-        | (erw [Scheme.Hom.appLE_map])
-        | (simp only [Scheme.Hom.appLE_map])
         | (rw [← Scheme.Hom.appLE_map ψ _ (homOfLE inf_le_left).op]; rfl)
     refine GlobalTheory.KeyPow.appLE_eq_of_stalk e₂ θ₂ k.th fun z j k₀ hj hk => ?_
     obtain ⟨jL, hjL⟩ := exists_chart hL (ψ (ψ₂ z))

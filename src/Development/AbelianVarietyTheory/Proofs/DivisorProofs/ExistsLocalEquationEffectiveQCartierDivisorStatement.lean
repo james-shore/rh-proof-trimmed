@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.PairStep
 
 theorem _root_.GlobalTheory.T.exists_localEquation_effectiveQCartierDivisor : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoetherian X] (p : X ⟶ Sp ℂ), ∀ (D : X → ℚ), IsQCart D → ∀ x : X, ∃ (m : ℕ) (f : X.functionFieldˣ), 0 < m ∧ RegAt x (f : X.functionField) ∧ ∀ z, z ⤳ x → ∀ E : DivOver p, E.IsAt z → D z = (E.ord f : ℚ) / m := by
-  first | exact @GlobalTheory.PairStep.exists_localEqn_of_isQCart | exact GlobalTheory.PairStep.exists_localEqn_of_isQCart | (intros; apply GlobalTheory.PairStep.exists_localEqn_of_isQCart <;> assumption)
+  first | exact @GlobalTheory.PairStep.exists_localEqn_of_isQCart

@@ -52,4 +52,4 @@ open GlobalTheory.KeyPow GlobalTheory.KeyKa
 
 
 theorem _root_.GlobalTheory.T.exists_normalised_key_invariant_rule_char_zero : Out.Laws → ThetaUnifAV → Key.Chi.InversionStatement → Key.PhHoloStatement → GlobalTheory.TorusAlgebraic → ∀ (g c M : ℕ), 1 ≤ g → KaRule (2 * g) c M → ∃ κ, KaRuleK g (2 * c) M κ ∧ ∀ (x : KeyIn ℂ) (τ Mx : Matrix (Fin x.P.g) (Fin x.P.g) ℂ) (a b : Fin x.P.g → ℂ) (c₀ : ℂ), x.P.g = g → charHalf x.P.g a b → c₀ ≠ 0 → Mx.det ≠ 0 → NormalAt x τ Mx a b c₀ → (κ ℂ x : ℂ) = (Mx.det ^ 4 / c₀ ^ 8) ^ (2 * c) := by
-  first | exact @GlobalTheory.KeyNormRule.exists_normalised_rule | exact GlobalTheory.KeyNormRule.exists_normalised_rule | (intros; apply GlobalTheory.KeyNormRule.exists_normalised_rule <;> assumption)
+  first | exact @GlobalTheory.KeyNormRule.exists_normalised_rule

@@ -46,4 +46,3 @@ theorem _root_.GlobalTheory.T.lattices_agree_almost_everywhere : ∀ (D : D7) (S
   intro D S L M hL hM
   first
   | exact GlobalTheory.FinPl.latV_eq_off_finite D S L M hL hM
-  | exact GlobalTheory.FinPl.latV_eq_off_finite D S L M hL hM.toIsLattice

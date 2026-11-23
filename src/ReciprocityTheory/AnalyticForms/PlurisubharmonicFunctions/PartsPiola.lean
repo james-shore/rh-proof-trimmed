@@ -63,14 +63,14 @@ noncomputable section
 theorem third_fderiv_symm_one_two {D : ℕ} (φ : (Fin D → ℂ) → ℝ) (z : Fin D → ℂ) (h : ContDiffAt ℝ 3 φ z)
     (u x : Fin D → ℂ) :
     fderiv ℝ (fderiv ℝ (fderiv ℝ φ)) z u x = fderiv ℝ (fderiv ℝ (fderiv ℝ φ)) z x u := by
-  have h2 : ContDiffAt ℝ 2 (fderiv ℝ φ) z := h.fderiv_right (by first | norm_num | simp | rfl)
-  exact h2.isSymmSndFDerivAt (by first | simp | norm_num | (simp only [minSmoothness_of_isRCLikeNormedField]; norm_num)) u x
+  have h2 : ContDiffAt ℝ 2 (fderiv ℝ φ) z := h.fderiv_right (by first | norm_num)
+  exact h2.isSymmSndFDerivAt (by first | simp) u x
 
 theorem differentiableAt_snd_fderiv {D : ℕ} (φ : (Fin D → ℂ) → ℝ) (z : Fin D → ℂ)
     (h : ContDiffAt ℝ 3 φ z) : DifferentiableAt ℝ (fderiv ℝ (fderiv ℝ φ)) z := by
-  have h2 : ContDiffAt ℝ 2 (fderiv ℝ φ) z := h.fderiv_right (by first | norm_num | simp | rfl)
-  have h1 : ContDiffAt ℝ 1 (fderiv ℝ (fderiv ℝ φ)) z := h2.fderiv_right (by first | norm_num | simp | rfl)
-  exact h1.differentiableAt (by first | norm_num | simp | exact one_ne_zero)
+  have h2 : ContDiffAt ℝ 2 (fderiv ℝ φ) z := h.fderiv_right (by first | norm_num)
+  have h1 : ContDiffAt ℝ 1 (fderiv ℝ (fderiv ℝ φ)) z := h2.fderiv_right (by first | norm_num)
+  exact h1.differentiableAt (by first | norm_num)
 
 theorem third_fderiv_symm_two_three {D : ℕ} (φ : (Fin D → ℂ) → ℝ) (z : Fin D → ℂ) (h : ContDiffAt ℝ 3 φ z)
     (u x y : Fin D → ℂ) :
@@ -80,14 +80,14 @@ theorem third_fderiv_symm_two_three {D : ℕ} (φ : (Fin D → ℂ) → ℝ) (z 
       fderiv ℝ (⇑(evalL x y) ∘ fderiv ℝ (fderiv ℝ φ)) z =
         (evalL x y).comp (fderiv ℝ (fderiv ℝ (fderiv ℝ φ)) z) :=
     fun x y => ((evalL x y).hasFDerivAt.comp z hd.hasFDerivAt).fderiv
-  have h2 : ContDiffAt ℝ 2 φ z := h.of_le (by first | norm_num | simp | rfl)
-  have hev : ∀ᶠ w in 𝓝 z, ContDiffAt ℝ 2 φ w := h2.eventually (by first | simp | norm_num | decide | exact ENat.coe_ne_top _)
+  have h2 : ContDiffAt ℝ 2 φ z := h.of_le (by first | norm_num)
+  have hev : ∀ᶠ w in 𝓝 z, ContDiffAt ℝ 2 φ w := h2.eventually (by first | simp)
   have ev : (⇑(evalL x y) ∘ fderiv ℝ (fderiv ℝ φ)) =ᶠ[𝓝 z]
       (⇑(evalL y x) ∘ fderiv ℝ (fderiv ℝ φ)) := by
     filter_upwards [hev] with w hw
     simp only [Function.comp_apply, evalL, ContinuousLinearMap.coe_comp',
       ContinuousLinearMap.apply_apply]
-    exact hw.isSymmSndFDerivAt (by first | simp | norm_num | (simp only [minSmoothness_of_isRCLikeNormedField]; norm_num)) x y
+    exact hw.isSymmSndFDerivAt (by first | simp) x y
   have e := Filter.EventuallyEq.fderiv_eq (𝕜 := ℝ) ev
   rw [key x y, key y x] at e
   have e2 := congrArg (fun L => L u) e
@@ -273,7 +273,7 @@ private lemma sum_superset_neg_one_pow_fin_eq_ite_univ (N : ℕ) (T : Finset (Fi
   rw [h1, h0]
   by_cases hT : T = Finset.univ
   · have h2 : Tᶜ = ∅ := by rw [hT]; simp
-    simp [h2, hT]
+    simp [hT]
   · have h2 : Tᶜ ≠ ∅ := by
       intro h
       apply hT

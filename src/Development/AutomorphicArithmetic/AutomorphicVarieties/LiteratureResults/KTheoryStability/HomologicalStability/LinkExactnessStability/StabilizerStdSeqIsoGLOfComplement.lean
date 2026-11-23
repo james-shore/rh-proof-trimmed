@@ -57,7 +57,7 @@ variable (R : Type) [CommRing R]
 
 theorem padMat_castLE {m n : ℕ} (h : m ≤ n) (A : Matrix (Fin m) (Fin m) R) (i j : Fin m) :
     (padMat R A : Matrix (Fin n) (Fin n) R) (Fin.castLE h i) (Fin.castLE h j) = A i j := by
-  simp [padMat, Fin.coe_castLE, i.2, j.2]
+  simp [padMat, i.2, j.2]
 
 theorem stab_injective {m n : ℕ} (h : m ≤ n) : Function.Injective (stab R m n h) := by
   intro g g' e

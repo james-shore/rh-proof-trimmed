@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.hasSum_hilbertEisenstein_constantTerm_partialZeta 
     HasSum (fun c : {c : Quotient (GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.latRel 𝔞 𝔟) // c.out.1.2 = 0} => GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.eisClass 𝔞 𝔟 (2 * s) 0 z c)
       (((2 * (Real.pi : ℂ) * Complex.I) ^ (2 * s * Module.finrank ℚ F))⁻¹ *
         ((GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.dF F * GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.nrm 𝔞 : ℝ) : ℂ) ^ (2 * s) * Z ((2 * s : ℕ) : ℂ)) := by
-  first | exact @GlobalTheory.EisConstTerm.hasSum_constTerm | exact GlobalTheory.EisConstTerm.hasSum_constTerm | (intros; apply GlobalTheory.EisConstTerm.hasSum_constTerm <;> assumption)
+  first | exact @GlobalTheory.EisConstTerm.hasSum_constTerm

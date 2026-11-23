@@ -95,7 +95,7 @@ theorem bnx_single_add_single_eq {σ : Type*} {x y : σ} (hxy : x ≠ y) (r s i 
   · intro h
     have h1 := DFunLike.congr_fun h x
     have h2 := DFunLike.congr_fun h y
-    simp [Finsupp.single_apply, hxy, hxy.symm] at h1 h2
+    simp [hxy, hxy.symm] at h1 h2
     exact ⟨h1, h2⟩
   · rintro ⟨rfl, rfl⟩
     rfl
@@ -134,7 +134,7 @@ theorem bnx_lin_pow_supp {K : Type u} [Field K] {σ : Type*} [DecidableEq σ] (x
     by_contra hne
     push_neg at hne
     apply hz
-    simp [Finsupp.single_apply, Ne.symm hne.1, Ne.symm hne.2]
+    simp [Ne.symm hne.1, Ne.symm hne.2]
   · exact absurd rfl hr
 
 section Blocks
@@ -152,8 +152,8 @@ theorem bnxRes_apply (m : V2 d →₀ ℕ) (s : ZMod d) (z : V2 d) :
   obtain ⟨b, t⟩ := z
   by_cases h : t = s
   · subst h
-    cases b <;> simp [bnxRes, Finsupp.single_apply]
-  · cases b <;> simp [bnxRes, Finsupp.single_apply, h, Ne.symm h]
+    cases b <;> simp [bnxRes]
+  · cases b <;> simp [bnxRes, h]
 
 private theorem coeff_prod_bnxA_pow_eq_ite {K : Type u} [Field K] {d : ℕ} [NeZero d]
     (a b : ZMod d → K) (k : ZMod d → ℕ) (S : Finset (ZMod d)) (m : V2 d →₀ ℕ) :
@@ -645,7 +645,7 @@ private theorem finsupp_prod_torus_pow_eq_C_mul_monomial {K : Type u} [Field K] 
   rw [hmono]
   rw [show ∑ t, Finsupp.single t (dd t) = dd from by
     ext u
-    simp [Finsupp.finsetSum_apply, Finsupp.single_apply]]
+    simp]
 
 theorem bnx_torus_cong {K : Type u} [Field K] (l d : ℕ) [NeZero d] (hl : l.Prime) (hl3 : 3 ≤ l)
     (hd2 : 2 ≤ d) (hde : Even d) (ζ : K) (hζ : IsPrimitiveRoot ζ (l ^ d - 1))
@@ -840,7 +840,7 @@ private theorem monoWtGe_or_biPower_of_wtGe_de1_de2 {K : Type u} [NormedField K]
     by_cases ht : t.val % 2 = 0
     · by_cases hts : t = s
       · subst hts
-        simp [hss, Ne.symm hss, hα]
+        simp [Ne.symm hss, hα]
       · have h0 := hu t ht hts
         have hts' : t ≠ s' := by
           rintro rfl
@@ -848,7 +848,7 @@ private theorem monoWtGe_or_biPower_of_wtGe_de1_de2 {K : Type u} [NormedField K]
         simp [Ne.symm hts, Ne.symm hts', h0]
     · by_cases hts : t = s'
       · subst hts
-        simp [hss, Ne.symm hss, hβ]
+        simp [hss, hβ]
       · have h0 := hu' t ht hts
         have hts2 : t ≠ s := by
           rintro rfl

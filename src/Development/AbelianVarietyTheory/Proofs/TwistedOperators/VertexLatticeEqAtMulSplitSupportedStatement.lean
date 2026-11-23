@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.vertexLattice_eqAt_mul_splitSupported : ∀ {D : D
     (S : GridChoice W Set.univ) (X : Node), DefNode D.R.m X → ∀ (q : ℕ), q.Prime → ∀ e : Formalism.L2.Theta.AE D, IsSplitIdem D e →
     GlobalTheory.MovedKappaEx.OffPrime e q → ∀ g y : FinPt G X, SuppAt e (G.V X) g.1 →
     EqAt D q (GlobalTheory.SumSize.latAt S X (g * y)) (GlobalTheory.SumSize.latAt S X y) := by
-  first | exact @GlobalTheory.MovedSplitEq.eqAt_latAt_mul | exact GlobalTheory.MovedSplitEq.eqAt_latAt_mul | (intros; apply GlobalTheory.MovedSplitEq.eqAt_latAt_mul <;> assumption)
+  first | exact @GlobalTheory.MovedSplitEq.eqAt_latAt_mul

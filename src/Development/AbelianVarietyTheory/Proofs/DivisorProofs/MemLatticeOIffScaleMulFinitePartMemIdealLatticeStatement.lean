@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.mem_latticeO_iff_scale_mul_finitePart_mem_idealLat
   ∀ u : WO S T, u.map (infPart D) = 0 →
   (u ∈ latO S T (GlobalTheory.VacRead.lsB D cc r S.rank : Set (Fin S.rank → D.host.E)) (stdL D T.rank : Set (Fin T.rank → D.host.E)) (fun _ => True) ↔
     ∀ i j, Formalism.MainNotions.StandardLatticesGL3.inc D r * finQ D (u i j) ∈ Formalism.MainNotions.StandardLatticesGL3.IhE D cc) := by
-  first | exact @GlobalTheory.SplitLatDict.mem_latO_iff_ihE | exact GlobalTheory.SplitLatDict.mem_latO_iff_ihE | (intros; apply GlobalTheory.SplitLatDict.mem_latO_iff_ihE <;> assumption)
+  first | exact @GlobalTheory.SplitLatDict.mem_latO_iff_ihE

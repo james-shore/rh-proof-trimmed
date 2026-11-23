@@ -45,4 +45,4 @@ import Mathlib.Topology.Sheaves.Init
 open NumberField IsDedekindDomain
 
 theorem _root_.GlobalTheory.T.not_sq_dvd_of_rationalPrimeSplitsCompletely : ∀ (E : Type) [Field E] [NumberField E] (T : ℕ), T.Prime → GlobalTheory.St.G.SplitsIn E T → ∀ w : HeightOneSpectrum (𝓞 E), (T : 𝓞 E) ∈ w.asIdeal → ¬ w.asIdeal ^ 2 ∣ Ideal.span {(T : 𝓞 E)} := by
-  first | exact @GlobalTheory.St.G.SplitUnram.not_sq_dvd_of_splitsIn | exact GlobalTheory.St.G.SplitUnram.not_sq_dvd_of_splitsIn | (intros; apply GlobalTheory.St.G.SplitUnram.not_sq_dvd_of_splitsIn <;> assumption)
+  first | exact @GlobalTheory.St.G.SplitUnram.not_sq_dvd_of_splitsIn

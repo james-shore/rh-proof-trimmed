@@ -52,4 +52,4 @@ open CompanionTheory.D.LK (IsKMod IsMin)
 open scoped InnerProductSpace
 
 theorem _root_.GlobalTheory.T.kStab_iff_isKStableOn_finite_vectors : ∀ (n : ℕ) (ε : Fin n → Bool) (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] (σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)) (D : Submodule ℂ H) (E : Fin n → Fin n → Module.End ℂ D), CompleteSpace H → IsURepOn (UJset ε) σ → IsIrredOn (UJset ε) σ → IsKMod ε σ D E → ∀ U : Submodule ℂ D, FiniteDimensional ℂ U → (KStab ε E U ↔ IsKStableOn ε σ (U.map D.subtype)) := by
-  first | exact @GlobalTheory.KFinStab.kStab_iff_kStableOn | exact GlobalTheory.KFinStab.kStab_iff_kStableOn | (intros; apply GlobalTheory.KFinStab.kStab_iff_kStableOn <;> assumption)
+  first | exact @GlobalTheory.KFinStab.kStab_iff_kStableOn

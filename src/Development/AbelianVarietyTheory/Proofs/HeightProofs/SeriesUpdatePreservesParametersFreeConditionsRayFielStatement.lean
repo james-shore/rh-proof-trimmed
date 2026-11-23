@@ -41,4 +41,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.seriesUpdate_preserves_parameterFreeConditions_rayFields : ∀ (D : D7) (nch : NChoice D) (s : Side D nch) (EX : ErrX D) (xd : ThData D) kap lam err, (s.Ties EX xd → (s.upd kap lam err).Ties EX xd) ∧ (s.Rays → (s.upd kap lam err).Rays) := by
-  first | exact @GlobalTheory.PlugPt.side_upd_ties_rays | exact GlobalTheory.PlugPt.side_upd_ties_rays | (intros; apply GlobalTheory.PlugPt.side_upd_ties_rays <;> assumption)
+  first | exact @GlobalTheory.PlugPt.side_upd_ties_rays

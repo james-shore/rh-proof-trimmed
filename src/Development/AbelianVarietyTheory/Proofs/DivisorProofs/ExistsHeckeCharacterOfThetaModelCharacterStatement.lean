@@ -54,4 +54,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_heckeCharacter_of_thetaModelCharacter : ∀ {D : D7} {N : ℕ} (c : HeckeU D N) (e : ℤ), (e = 1 ∨ e = -1) →
   ∃ χ : (AE D)ˣ →* Circle, IsHeckeChar D χ ∧ ResEta D χ N ∧ HasFinPart χ c e := by
-  first | exact @GlobalTheory.HeckeUChar.exists_hecke_of_heckeU | exact GlobalTheory.HeckeUChar.exists_hecke_of_heckeU | (intros; apply GlobalTheory.HeckeUChar.exists_hecke_of_heckeU <;> assumption)
+  first | exact @GlobalTheory.HeckeUChar.exists_hecke_of_heckeU

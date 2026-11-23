@@ -103,11 +103,7 @@ theorem map_norm_det {n : ℕ} {K : Type} [CommRing K] (φ : AF F →+* K) (t : 
 theorem exists_bound {n : ℕ} (W : Spc F E n) (hL : W.L.FG) (v : Pl (F := F)) :
     ∃ C : ℝ, ∀ z ∈ GlobalTheory.InertSph.latAt W v, ∀ x, ‖evFin F v ((bas F E n).repr z x)‖ ≤ C := by
   first
-  | exact @_root_.GlobalTheory.CoordinateEmbeddingMaps.main
-  | exact _root_.GlobalTheory.CoordinateEmbeddingMaps.main
   | (apply _root_.GlobalTheory.CoordinateEmbeddingMaps.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CoordinateEmbeddingMaps.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CoordinateEmbeddingMaps.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CoordinateEmbeddingMaps.main ..)
 
 theorem exists_mul_mem {n : ℕ} (L : Submodule (𝓞 E) (Fin n → E)) (hL : L.IsFullLattice E) (y : Fin n → E) :

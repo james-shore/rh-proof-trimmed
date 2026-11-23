@@ -105,7 +105,7 @@ theorem last_lin (II : IntersectionSystem) (hII : IsFullIntersectionSystem II) (
       refine Fin.lastCases ?_ (fun i => ?_) k
       · simp [n, ℓ, Fintype.sum_sum_type, Pi.single_apply, hdeg]
         abel
-      · simp [n, ℓ, Fintype.sum_sum_type, Pi.single_apply])
+      · simp [n, ℓ, Pi.single_apply])
   let w0 : Fin (e + 1) → Fin e ⊕ Bool := Fin.snoc (fun i => Sum.inl i) (Sum.inr false)
   let w1 : Fin (e + 1) → Fin e ⊕ Bool := Fin.snoc (fun i => Sum.inl i) (Sum.inr true)
   have hne : w0 ≠ w1 := by
@@ -127,7 +127,7 @@ theorem last_lin (II : IntersectionSystem) (hII : IsFullIntersectionSystem II) (
     have hl := hf (Fin.last e)
     rcases hw : w (Fin.last e) with i | (_ | _)
     · rw [hw] at hl
-      simp [n, Pi.single_apply] at hl
+      simp [n] at hl
     · exact hw0 (funext fun k => by
         refine Fin.lastCases ?_ (fun i => ?_) k
         · simp [w0, hw]

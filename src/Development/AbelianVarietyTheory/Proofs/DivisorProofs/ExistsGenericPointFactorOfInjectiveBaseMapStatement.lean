@@ -46,4 +46,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 theorem _root_.GlobalTheory.T.exists_genericPoint_factor_of_injective_base_map : ∀ (R : Type) [CommRing R] [IsDomain R] (M : Modif R) (W : Type) [CommRing W] [IsDomain W] (φ : R →+* W), Function.Injective φ → ∀ ξ : Sp W ⟶ M.S, ξ ≫ M.π = spMap φ → ∃ ψ : FractionRing R →+* FractionRing W, ψ.comp (algebraMap R (FractionRing R)) = (algebraMap W (FractionRing W)).comp φ ∧ spMap ψ ≫ M.gp = jK W ≫ ξ := by
-  first | exact @GlobalTheory.Mum.Modif.exists_generic_factor | exact GlobalTheory.Mum.Modif.exists_generic_factor | (intros; apply GlobalTheory.Mum.Modif.exists_generic_factor <;> assumption)
+  first | exact @GlobalTheory.Mum.Modif.exists_generic_factor

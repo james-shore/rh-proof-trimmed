@@ -117,7 +117,6 @@ theorem diag_mem_AΔ {a : PowerSeries O} (h : Inv1 W a) : (fun _ => a : LetA O n
   funext i
   first
     | exact h δ hδ
-    | simp [Formalism.BasicNotions.LocWach.γA, Formalism.BasicNotions.letγ, h δ hδ]
 
 theorem p_sub_one_ne (PD : PeriodData G Qp K₀ K B BdR) : PD.p - 1 ≠ 0 := by
   have := PD.hp.two_le
@@ -129,7 +128,6 @@ theorem π₀₁_eq (hR : Ring9 W) : ∃ w : PowerSeries O, IsUnit w ∧
   refine ⟨(w : LetA O n) 0, w.isUnit.map (Pi.evalRingHom (fun _ : ZMod n => PowerSeries O) 0), ?_⟩
   first
     | exact congrFun hw 0
-    | simpa [Formalism.BasicNotions.LocWach.π₀, Formalism.BasicNotions.letπ] using congrFun hw 0
 
 theorem π₀₁_const (hR : Ring9 W) : PowerSeries.constantCoeff W.π₀₁ = 0 := by
   obtain ⟨w, -, hw⟩ := π₀₁_eq hR
@@ -146,7 +144,6 @@ def ιOf (hR : Ring9 W) : PowerSeries O →ₐ[O] PowerSeries O :=
 
 theorem ιOf_apply (hR : Ring9 W) (a : PowerSeries O) : ιOf hR a = PowerSeries.subst W.π₀₁ a := by
   first
-    | rfl
     | simp [ιOf, PowerSeries.coe_substAlgHom]
 
 theorem ιOf_X (hR : Ring9 W) : ιOf hR PowerSeries.X = W.π₀₁ := by
@@ -225,7 +222,6 @@ theorem liftOf_X (hR : Ring9 W) {ψ : PowerSeries O →ₐ[O] PowerSeries O} (h�
     liftOf hR hψ PowerSeries.X = pre hR (ψ W.π₀₁) (hψ.inv (π₀₁_inv hR)) := by
   have hs := PowerSeries.HasSubst.of_constantCoeff_zero' (pre_const hR hψ)
   first
-    | exact PowerSeries.subst_X hs
     | (simp only [liftOf, PowerSeries.coe_substAlgHom]; exact PowerSeries.subst_X hs)
 
 theorem ι_liftOf (hR : Ring9 W) {ψ : PowerSeries O →ₐ[O] PowerSeries O} (hψ : ComΔ W ψ)
@@ -286,7 +282,6 @@ theorem qP₁_ne (hR : Ring9 W) : qP₁ W ≠ 0 := by
   rw [h3, AddValuation.map_zero] at h2
   first
     | exact absurd h2 (by simp)
-    | exact WithTop.top_ne_coe h2
 
 theorem unit_desc (hR : Ring9 W) {w b c : PowerSeries O} (hw : IsUnit w) (hb : Inv1 W b)
     (hc : Inv1 W c) (hc0 : c ≠ 0) (h : b = w * c) :
@@ -324,8 +319,6 @@ theorem frobenius_uniformizer_identity (hR : Ring9 W) : (baseIdOf hR).Bs.E3 := b
         Polynomial.aeval W.π₀₁ (Polynomial.X + Polynomial.C ((PD.p : ℕ) : O)) ^ (PD.p - 1) := by
       first
         | exact congrFun hw 0
-        | simpa [Formalism.BasicNotions.LocWach.φA, Formalism.BasicNotions.letφ, Formalism.BasicNotions.LocWach.π₀, Formalism.MainNotions.DeltaInvariantLattices.Eat] using
-            congrFun hw 0
     rw [h0, e, mul_assoc]
   have hφX : ιOf hR ((baseIdOf hR).Bs.φ PowerSeries.X) = W.φ₀ W.π₀₁ := by
     show ιOf hR (liftOf hR comΔ_φ PowerSeries.X) = _
@@ -357,8 +350,6 @@ theorem fourth_lefschetz_of_first (hR : Ring9 W) (hγ : W.gamK = W.gam) : (baseI
         Polynomial.aeval W.π₀₁ (Polynomial.X + Polynomial.C ((PD.p : ℕ) : O)) := by
       first
         | exact congrFun hw 0
-        | simpa [Formalism.BasicNotions.LocWach.γA, Formalism.BasicNotions.letγ, Formalism.BasicNotions.LocWach.π₀, Formalism.MainNotions.DeltaInvariantLattices.Eat] using
-            congrFun hw 0
     rw [hγ, h0, e, mul_assoc]
   have hγX : ιOf hR ((baseIdOf hR).Bs.γ PowerSeries.X) = W.γ₀ W.gamK W.π₀₁ := by
     show ιOf hR (liftOf hR (comΔ_γ W.gamK) PowerSeries.X) = _
@@ -402,7 +393,6 @@ theorem p_ne_zero_O (W : LocWach PD LL O v n) : (((PD.p : ℕ) : O)) ≠ 0 := by
   rw [h2, AddValuation.map_zero] at h1
   first
     | exact absurd h1 (by simp)
-    | exact WithTop.top_ne_coe h1
 
 theorem exists_eO [IsDomain O] [IsDiscreteValuationRing O] (W : LocWach PD LL O v n) {ϖ : O}
     (hϖ : Irreducible ϖ) (hu : ¬ IsUnit (((PD.p : ℕ) : O))) :

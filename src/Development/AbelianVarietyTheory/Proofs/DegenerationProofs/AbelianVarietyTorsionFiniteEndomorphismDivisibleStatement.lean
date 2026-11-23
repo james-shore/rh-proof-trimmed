@@ -51,4 +51,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.SS
 
 theorem _root_.GlobalTheory.T.abelianVariety_torsion_finite_endomorphism_divisible : ∀ (k : Type) [Field k] [IsAlgClosed k] (B : Over (Sp k)) [GrpObj B], IsAbelianScheme B → ∀ n : ℕ, (n : k) ≠ 0 → Finite {x : (𝟙_ (Over (Sp k)) ⟶ B) // x ^ n = 1} ∧ ∀ f : B ⟶ B, IsMonHom f → (∀ x : (𝟙_ (Over (Sp k)) ⟶ B), x ^ n = 1 → x ≫ f = 1) → ∃ g : B ⟶ B, IsMonHom g ∧ f = g ^ n := by
-  first | exact @GlobalTheory.TorsionDivisible.finite_torsion_and_divisible | exact GlobalTheory.TorsionDivisible.finite_torsion_and_divisible | (intros; apply GlobalTheory.TorsionDivisible.finite_torsion_and_divisible <;> assumption)
+  first | exact @GlobalTheory.TorsionDivisible.finite_torsion_and_divisible

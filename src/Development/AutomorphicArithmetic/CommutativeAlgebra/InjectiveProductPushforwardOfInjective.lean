@@ -238,7 +238,7 @@ private noncomputable def lamAdj (W : C) :
             refine (congrArg (Q.map (prod.lift (prod.fst : W ⨯ T.unop ⟶ W) (𝟙 (W ⨯ T.unop))).op).hom e).trans ?_
             exact pmap_id Q ((prod.functor.obj W).map (prod.snd : W ⨯ T.unop ⟶ T.unop))
               (prod.lift (prod.fst : W ⨯ T.unop ⟶ W) (𝟙 (W ⨯ T.unop)))
-              (by apply Limits.prod.hom_ext <;> simp <;> exact Category.id_comp _) _ }
+              (by apply Limits.prod.hom_ext <;> simp) _ }
       homEquiv_naturality_left_symm := fun {P P' Q} f g => by
         ext T : 2
         apply ModuleCat.hom_ext

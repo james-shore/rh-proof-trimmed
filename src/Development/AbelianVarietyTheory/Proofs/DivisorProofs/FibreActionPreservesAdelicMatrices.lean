@@ -71,11 +71,7 @@ theorem kron_mul {T : Type} [Fintype T] [DecidableEq T] {J : T → Type} [∀ t,
 theorem kron_one {T : Type} [Fintype T] [DecidableEq T] {J : T → Type} [∀ t, Fintype (J t)] [∀ t, DecidableEq (J t)]
     {R : Type} [CommRing R] : (kron fun t => (1 : Matrix (J t) (J t) R)) = 1 := by
   first
-  | exact @_root_.GlobalTheory.KroneckerIdentity.kron_identity
   | exact _root_.GlobalTheory.KroneckerIdentity.kron_identity
-  | (apply _root_.GlobalTheory.KroneckerIdentity.kron_identity <;> assumption)
-  | (intros; apply _root_.GlobalTheory.KroneckerIdentity.kron_identity <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.KroneckerIdentity.kron_identity <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.KroneckerIdentity.kron_identity ..)
 
 theorem rhoMat_mul {n : ℕ} (la : Fin n → ℕ) (g h : Matrix (Fin n) (Fin n) K) :

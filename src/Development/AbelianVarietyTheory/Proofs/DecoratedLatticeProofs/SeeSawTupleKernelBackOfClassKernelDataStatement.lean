@@ -47,4 +47,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.seeSawTuple_kernelBack_of_classKernelData : ∀ (D : D7) (c : Comm D) (t : Tup c) (ρ : RealD c) (A : ClsK ρ t), c.Is → t.Is → ρ.Is → A.Is → (∀ j, j < D.R.m → t.cK j ≠ 0) → t.KBack := by
-  first | exact @GlobalTheory.SeeSaw.kBack_of_classData | exact GlobalTheory.SeeSaw.kBack_of_classData | (intros; apply GlobalTheory.SeeSaw.kBack_of_classData <;> assumption)
+  first | exact @GlobalTheory.SeeSaw.kBack_of_classData

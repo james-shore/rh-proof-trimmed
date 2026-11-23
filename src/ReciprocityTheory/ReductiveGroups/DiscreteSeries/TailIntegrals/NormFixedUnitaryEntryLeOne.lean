@@ -86,7 +86,6 @@ lemma measurable_PsiF {ι : Type*} [Fintype ι] [DecidableEq ι] (p q : ι) (s :
     first
     | exact measurable_const.sub (((continuous_star.comp (continuous_apply p)).measurable).div
         (Complex.continuous_ofReal.comp (continuous_tW q)).measurable)
-    | fun_prop
   show Measurable fun x : ι → ℂ => (‖(1 : ℂ) - star (x p) / ((tW q x : ℝ) : ℂ)‖₊ : ℝ≥0∞) ^ (-s)
   exact (measurable_coe_nnreal_ennreal.comp (measurable_nnnorm.comp h1)).pow_const _
 
@@ -129,7 +128,6 @@ lemma Tz_iK (k : ℕ) : 0 < Tz k 0 (bvec (iK k)) := by
 lemma ae_mem_fixedUnitary {ν : Measure (Mt k 0)} (hν : IsHaarOn (U0 k) ν) : ∀ᵐ x ∂ν, (Matrix.of x : Mat k 0) ∈ U0 k := by
   first
   | exact ae_iff.2 hν.conc
-  | (rw [ae_iff]; convert hν.conc using 1)
 
 lemma haar_univ_lt_top (hCW : CompactW) {ν : Measure (Mt k 0)} (hν : IsHaarOn (U0 k) ν) : ν Set.univ < ∞ := by
   obtain ⟨U, hU⟩ : ∃ U : Set (Mt k 0), U = U0 k := ⟨_, rfl⟩

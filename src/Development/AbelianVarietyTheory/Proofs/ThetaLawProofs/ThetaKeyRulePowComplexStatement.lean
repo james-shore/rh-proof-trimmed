@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.KeyCl
 
 theorem _root_.GlobalTheory.T.thetaKeyRule_pow_complex : ∀ κ : Rule, Homog (fun _ => 1) κ → ThetaOne κ → ∀ (x y : KeyIn ℂ) (j : ℕ), GlobalTheory.KeyPow.IsKeyPow y x j → κ ℂ y = κ ℂ x ^ j := by
-  first | exact @GlobalTheory.KeyCl.value_pow_complex | exact GlobalTheory.KeyCl.value_pow_complex | (intros; apply GlobalTheory.KeyCl.value_pow_complex <;> assumption)
+  first | exact @GlobalTheory.KeyCl.value_pow_complex

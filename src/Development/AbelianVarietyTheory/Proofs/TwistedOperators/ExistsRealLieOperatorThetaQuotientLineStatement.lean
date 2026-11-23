@@ -68,4 +68,4 @@ theorem _root_.GlobalTheory.T.exists_real_lie_operator_theta_quotient_line : ∀
         GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ActsD (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.evI F) (fun t => om (1, γ (Multiplicative.ofAdd t))) f f₁ → R.p f₁ = T (R.p f)) ∧
       ∀ f' ∈ Γ.M'.Pol Bs.ψ Bs.emb, ∀ f₁' : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.SInf F (Fin a' × Fin (a + a')),
         GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ActsD (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.evI F) (fun t => om' (1, γ (Multiplicative.ofAdd t))) f' f₁' → R.p' f₁' = T (R.p' f') := by
-  first | exact @GlobalTheory.RealLieOp.exists_realOp | exact GlobalTheory.RealLieOp.exists_realOp | (intros; apply GlobalTheory.RealLieOp.exists_realOp <;> assumption)
+  first | exact @GlobalTheory.RealLieOp.exists_realOp

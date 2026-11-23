@@ -48,4 +48,4 @@ open GlobalTheory.NeedB Polynomial
 
 theorem _root_.GlobalTheory.T.exists_algebra_norm_eq_of_isFirstChernClass : ∀ (K L : Type) [Field K] [Field L] [Algebra K L] [FiniteDimensional K L], IsFirstChernClassOfLineBundle K →
   ∀ b : K, b ≠ 0 → ∃ x : L, Algebra.norm K x = b := by
-  first | exact @GlobalTheory.norm_surjective_of_is_c1 | exact GlobalTheory.norm_surjective_of_is_c1 | (intros; apply GlobalTheory.norm_surjective_of_is_c1 <;> assumption)
+  first | exact @GlobalTheory.norm_surjective_of_is_c1

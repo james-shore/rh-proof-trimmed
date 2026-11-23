@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.BasicNotions
 
 theorem _root_.GlobalTheory.T.linearModel_splitPlace_characterEquivariance : ∀ D : D7, GlobalTheory.FinPl.LinExact D := by
-  first | exact @GlobalTheory.LinExactAt.linExact | exact GlobalTheory.LinExactAt.linExact | (intros; apply GlobalTheory.LinExactAt.linExact <;> assumption)
+  first | exact @GlobalTheory.LinExactAt.linExact

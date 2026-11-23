@@ -48,4 +48,4 @@ open GlobalTheory.ChainOnto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_inner_product_smooth_vectors_tensor : ∀ (D : D7) (V : HSp D) (S : D.what₂.Tau → SPar) (M : DSModel V S), ∃ ipD : SmT M →ₗ[ℂ] SmT M →ₗ⋆[ℂ] ℂ, (∀ v v' : M.Vec, ipD (PiTensorProduct.tprod ℂ v) (PiTensorProduct.tprod ℂ v') = ∏ τ, ⟪(v' τ : M.H τ), (v τ : M.H τ)⟫_ℂ) ∧ (∀ w w', ipD w w' = conj (ipD w' w)) ∧ ∀ w, w ≠ 0 → 0 < (ipD w w).re := by
-  first | exact @GlobalTheory.ChainOnto.exists_ipD_smT | exact GlobalTheory.ChainOnto.exists_ipD_smT | (intros; apply GlobalTheory.ChainOnto.exists_ipD_smT <;> assumption)
+  first | exact @GlobalTheory.ChainOnto.exists_ipD_smT

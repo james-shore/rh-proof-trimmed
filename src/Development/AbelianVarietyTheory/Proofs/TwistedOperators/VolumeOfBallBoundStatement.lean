@@ -46,4 +46,4 @@ open scoped InnerProductSpace
 open GlobalTheory.SepReal
 
 theorem _root_.GlobalTheory.T.volume_of_ball_bound : VolBall := by
-  first | exact @GlobalTheory.SepReal.volBall | exact GlobalTheory.SepReal.volBall | (intros; apply GlobalTheory.SepReal.volBall <;> assumption)
+  first | exact @GlobalTheory.SepReal.volBall

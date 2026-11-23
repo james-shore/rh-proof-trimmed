@@ -92,7 +92,6 @@ theorem decomp_lastRow : ∀ (E : Type) [Field E] [NumberField E] [_root_.Number
       GlobalTheory.RSTheta.rowMat (Fin.last m) (fun i => pInf E (GlobalTheory.ZEul.lastRow g i)) := by
     ext i j
     simp only [GlobalTheory.RSJ.secRow, GlobalTheory.RSTheta.rowMat, Matrix.of_apply, Matrix.updateRow_apply]
-    congr 1
     simp [Fin.ext_iff]
   have hd : IsUnit (GlobalTheory.RSJ.secRow (fun i => pInf E (GlobalTheory.ZEul.lastRow g i))).det := by
     rw [hm, GlobalTheory.RSTheta.det_rowMat]; exact hu'

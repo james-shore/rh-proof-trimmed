@@ -50,4 +50,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.isCartanInv_standardInvolution_doubledGram : ∀ (D : D7) (A : HSp D) (μ : D.host.E), IsSkew μ → ∀ s : RealMat (dblSp A), IsStdInv A μ s → ∀ τ, IsCartanInv (gramAt D (dblSp A) τ) (s τ) := by
-  first | exact @GlobalTheory.CartStd.isCartanInv_stdInv | exact GlobalTheory.CartStd.isCartanInv_stdInv | (intros; apply GlobalTheory.CartStd.isCartanInv_stdInv <;> assumption)
+  first | exact @GlobalTheory.CartStd.isCartanInv_stdInv

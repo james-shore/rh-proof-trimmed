@@ -168,8 +168,7 @@ theorem coefTr_apply (A : Module.End ℂ (Fin n → D)) (u : WithLp 2 (Fin n →
 theorem coefTr_casimirK (ε : Fin n → Bool) (A : Fin n → Fin n → Module.End ℂ (Fin n → D)) :
     casimirK ε (fun a b => coefTr (A a b)) = coefTr (casimirK ε A) := by
   refine LinearMap.ext fun u => ?_
-  simp only [casimirK, LinearMap.sum_apply, Module.End.mul_apply, coefTr_apply, WithLp.ofLp_toLp,
-    WithLp.toLp_sum]
+  simp only [casimirK, LinearMap.sum_apply, Module.End.mul_apply, coefTr_apply, WithLp.toLp_sum]
 
 theorem coefB_sum_ite_left (a : Fin n) (x : D) (v : Fin n → D) :
     ∑ c, inner ℂ (if c = a then x else 0) (v c) = inner ℂ x (v a) := by

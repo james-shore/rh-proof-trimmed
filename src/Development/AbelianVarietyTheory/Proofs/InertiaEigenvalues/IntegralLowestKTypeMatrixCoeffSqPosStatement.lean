@@ -48,4 +48,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
 
 theorem _root_.GlobalTheory.T.integral_lowestKTypeMatrixCoeff_sq_pos : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) (A : FamIn D.what₂.LL G Pl0 T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), Laws R F → ∀ i, LevProd R i → ∀ v, IsUnitVec R i v → IntegrableOn (lowCoefSq R i v) (realLev R i) (R.νW i) → 0 < ∫ h in realLev R i, lowCoefSq R i v h ∂(R.νW i) := by
-  first | exact @GlobalTheory.LowCoefPos.integral_lowCoefSq_pos | exact GlobalTheory.LowCoefPos.integral_lowCoefSq_pos | (intros; apply GlobalTheory.LowCoefPos.integral_lowCoefSq_pos <;> assumption)
+  first | exact @GlobalTheory.LowCoefPos.integral_lowCoefSq_pos

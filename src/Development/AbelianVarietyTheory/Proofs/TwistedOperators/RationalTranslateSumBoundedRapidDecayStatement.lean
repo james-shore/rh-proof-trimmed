@@ -47,4 +47,4 @@ open GlobalTheory.Asc
 
 
 theorem _root_.GlobalTheory.T.rationalTranslateSum_bounded_rapidDecay : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ θ : InfFam D, IsInfFam θ → ∀ (S T : HSp D) (c : WO S T → ℂ), (∃ U : AddSubgroup (WO S T), IsOpen (U : Set (WO S T)) ∧ ∀ w : WO S T, c w ≠ 0 → ∀ u ∈ U, u.map (infPart D) = 0 → ψ (symplO S T w u) = 1) → (∀ (τ : D.what₂.Tau) (z : Matrix (Fin T.rank) (Fin S.rank) ℂ) (k : ℕ), ∃ C : ℝ, ∀ w : WO S T, ‖deriv (fun t : ℝ => ψ (symplO S T (lineAt θ τ z t) w)) 0‖ ^ k * ‖c w‖ ≤ C) → ∃ C : ℝ, ∀ w : WO S T, Summable (fun γ : ratL T S => ‖c ((γ : WO S T) + w)‖) ∧ ∑' γ : ratL T S, ‖c ((γ : WO S T) + w)‖ ≤ C := by
-  first | exact @GlobalTheory.LatticeTranslateSum.sum_translates_bounded | exact GlobalTheory.LatticeTranslateSum.sum_translates_bounded | (intros; apply GlobalTheory.LatticeTranslateSum.sum_translates_bounded <;> assumption)
+  first | exact @GlobalTheory.LatticeTranslateSum.sum_translates_bounded

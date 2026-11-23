@@ -54,4 +54,4 @@ open GlobalTheory.LatJet (EisExp IsEis FR)
 open GlobalTheory.WpFam
 
 theorem _root_.GlobalTheory.T.weierstrass_modular_transformation_level : ∀ (N : ℕ) [NeZero N] (x : Fin 2 → ZMod N) (γ : SL(2, ℤ)) (τ : ℍ), wB N x (γ • τ) = (((γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 * (τ : ℂ) + (γ : Matrix (Fin 2) (Fin 2) ℤ) 1 1) : ℂ) ^ 2 * wB N (vact N x γ) τ - ((γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) * ((γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 * (τ : ℂ) + (γ : Matrix (Fin 2) (Fin 2) ℤ) 1 1) / (2 * Real.pi * Complex.I) := by
-  first | exact @GlobalTheory.WpFam.wB_smul_transform | exact GlobalTheory.WpFam.wB_smul_transform | (intros; apply GlobalTheory.WpFam.wB_smul_transform <;> assumption)
+  first | exact @GlobalTheory.WpFam.wB_smul_transform

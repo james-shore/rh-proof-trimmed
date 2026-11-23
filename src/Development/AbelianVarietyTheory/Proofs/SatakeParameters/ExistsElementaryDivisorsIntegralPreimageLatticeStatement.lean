@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_elementaryDivisors_integral_preimage_lattic
       ∀ c : Fin n → L, (∀ j, c j ∈ Formalism.UG.intL L) →
         ((∀ i, (x *ᵥ ((V : Matrix (Fin n) (Fin n) L) *ᵥ c)) i ∈ Formalism.UG.intL L) ↔
           ∀ j, GlobalTheory.Hk3.IntWitt.DvdPow ϖ (a j) (c j)) := by
-  first | exact @GlobalTheory.Hk3.IntWitt.exists_glInt_mulVec_mem_iff_forall_dvdPow | exact GlobalTheory.Hk3.IntWitt.exists_glInt_mulVec_mem_iff_forall_dvdPow | (intros; apply GlobalTheory.Hk3.IntWitt.exists_glInt_mulVec_mem_iff_forall_dvdPow <;> assumption)
+  first | exact @GlobalTheory.Hk3.IntWitt.exists_glInt_mulVec_mem_iff_forall_dvdPow

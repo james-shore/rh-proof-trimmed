@@ -59,4 +59,4 @@ open ReciprocityTheory.AnForm.M
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ProjVar
 
 theorem _root_.GlobalTheory.T.lintegral_inv_pow_add_normSq_complexSpace : ∀ (n m : ℕ) (a : ℝ), 0 < a → ∫⁻ v : Fin n → ℂ, ENNReal.ofReal (((a + ∑ i, ‖v i‖ ^ 2) ^ (n + m + 1))⁻¹) = ENNReal.ofReal (Real.pi ^ n * m.factorial / ((n + m).factorial * a ^ (m + 1))) := by
-  first | exact @GlobalTheory.ComplexSpaceIntegral.lintegral_inv_pow_add_sum_norm_sq | exact GlobalTheory.ComplexSpaceIntegral.lintegral_inv_pow_add_sum_norm_sq | (intros; apply GlobalTheory.ComplexSpaceIntegral.lintegral_inv_pow_add_sum_norm_sq <;> assumption)
+  first | exact @GlobalTheory.ComplexSpaceIntegral.lintegral_inv_pow_add_sum_norm_sq

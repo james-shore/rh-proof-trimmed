@@ -55,4 +55,4 @@ open ValuativeRel
 open GlobalTheory.Core.Mi.LatMatch
 
 theorem _root_.GlobalTheory.T.wittCoreEmbedding_stabilises_iff_core_stabilises : ∀ (D : D7) (S S₀ : HSp D) (ρ : ℕ) (d : HypDec S S₀ ρ) (L : Lat S) (M : Lat S₀) (v : GlobalTheory.FinPl.Pl D) (γ : GA D S₀), MonoAt d L M v → (Moves S (d.emb0 γ) L L (· = v) ↔ Moves S₀ γ M M (· = v)) := by
-  first | exact @GlobalTheory.Core.Mi.LatMatch.moves_emb0_iff_moves_of_monoAt | exact GlobalTheory.Core.Mi.LatMatch.moves_emb0_iff_moves_of_monoAt | (intros; apply GlobalTheory.Core.Mi.LatMatch.moves_emb0_iff_moves_of_monoAt <;> assumption)
+  first | exact @GlobalTheory.Core.Mi.LatMatch.moves_emb0_iff_moves_of_monoAt

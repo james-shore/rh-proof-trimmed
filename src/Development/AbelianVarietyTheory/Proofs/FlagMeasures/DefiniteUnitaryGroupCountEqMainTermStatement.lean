@@ -45,4 +45,4 @@ open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.R
 open scoped InnerProductSpace ContDiff
 
 theorem _root_.GlobalTheory.T.definiteUnitaryGroup_count_eq_mainTerm : ∀ (B : RowsAut) (d : InfinitePlace B.I.F → ℝ) (p : ℕ), GlobalTheory.IndefiniteRowSideFullHecke.DefiniteFiniteCount.DefiniteHyp B d p → FiniteDimensional ℂ (B.I.eHom B.σs B.μf B.fund B.R B.Re) → (B.D : ℝ) = mainTerm B d := by
-  first | exact @GlobalTheory.Dec.definite_count_of_finite | exact GlobalTheory.Dec.definite_count_of_finite | (intros; apply GlobalTheory.Dec.definite_count_of_finite <;> assumption)
+  first | exact @GlobalTheory.Dec.definite_count_of_finite

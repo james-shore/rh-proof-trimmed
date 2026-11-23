@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.archimedean_branching_constant_bound : ∃ CF0 : �
       ∀ ch : Choice R, ch.Is → ch.AtScale CF large₂.sc.b →
         1 ≤ large₂.sc.b ∧ Real.log (∏ τ, Formalism.MainNotions.PrimeDegreeVariant.brBd ch.G.sp.topDec.rank (wt ch.G (.top D.R.m) τ)
           (listedWt ch.G (.grid D.R.m D.R.m) τ) ^ 2) ≤ K0 * D.R.f * (bigN D : ℝ) * large₂.sc.b * Real.log large₂.sc.b := by
-  first | exact @GlobalTheory.InfSize.main | exact GlobalTheory.InfSize.main | (intros; apply GlobalTheory.InfSize.main <;> assumption)
+  first | exact @GlobalTheory.InfSize.main

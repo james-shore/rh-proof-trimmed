@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.realPoints_topNode_onto_unitary_haar_unique : ∀ 
         Matrix (Fin (G.V (.top j)).rank) (Fin (G.V (.top j)).rank) ℂ)) ∧
     ∀ κ κ' : Measure (GinfC (G.V (.top j))), κ.IsHaarMeasure → IsProbabilityMeasure κ → κ'.IsHaarMeasure →
       IsProbabilityMeasure κ' → κ = κ' := by
-  first | exact @GlobalTheory.RowTest.realPts_ontoUni_haar_unique | exact GlobalTheory.RowTest.realPts_ontoUni_haar_unique | (intros; apply GlobalTheory.RowTest.realPts_ontoUni_haar_unique <;> assumption)
+  first | exact @GlobalTheory.RowTest.realPts_ontoUni_haar_unique

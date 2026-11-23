@@ -47,4 +47,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.norm_site_coordinate_scale_eq_one : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fact (D.what₂.places.resChar w).Prime] {std t J} S => ‖ltC S.g S.hLT‖ = 1) := by
-  first | exact @GlobalTheory.TwU.ScaleUnit.norm_ltC_eq_one | exact GlobalTheory.TwU.ScaleUnit.norm_ltC_eq_one | (intros; apply GlobalTheory.TwU.ScaleUnit.norm_ltC_eq_one <;> assumption)
+  first | exact @GlobalTheory.TwU.ScaleUnit.norm_ltC_eq_one

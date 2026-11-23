@@ -50,4 +50,4 @@ open MvPolynomial Formalism.GradedWeylDivisibility GlobalTheory.HighWtEmb
 
 
 theorem _root_.GlobalTheory.T.dualWeylTensorReduction_intertwines_group_action : ∀ (O : Type) [CommRing O] (N : ℕ) (ι : Type) [Fintype ι] [DecidableEq ι] (mu : ι → ℕ → ℕ) (ϖ : O) (g : ι → GL (Fin N) O) (y : NablaT O N mu), redT O N mu ϖ (grp O N mu g y) = blockSub (O ⧸ Ideal.span {ϖ}) N (fun τ => (((g τ)⁻¹ : GL (Fin N) O) : Matrix (Fin N) (Fin N) O).map (Ideal.Quotient.mk (Ideal.span {ϖ}))) (redT O N mu ϖ y) := by
-  first | exact @GlobalTheory.HighWtEmb.redT_grp | exact GlobalTheory.HighWtEmb.redT_grp | (intros; apply GlobalTheory.HighWtEmb.redT_grp <;> assumption)
+  first | exact @GlobalTheory.HighWtEmb.redT_grp

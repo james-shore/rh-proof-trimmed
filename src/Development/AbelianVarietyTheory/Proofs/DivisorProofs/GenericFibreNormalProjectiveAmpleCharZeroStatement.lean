@@ -60,4 +60,4 @@ open GlobalTheory
 open Classical
 
 theorem _root_.GlobalTheory.T.generic_fibre_normal_projective_ample_charZero : ∀ (o K : Type) [CommRing o] [IsDomain o] [Field K] [CharZero K] (b : o →+* K), Function.Injective b → ∀ (Z : Scheme.{0}) (z : Z ⟶ Sp o) (L : LB Z), IsProjOver z → GlobalTheory.IsNormalScheme Z → L.IsLB → IsAmpleLB L → IsProjOver (pullback.snd z (spMap b)) ∧ GlobalTheory.IsNormalScheme (pullback z (spMap b)) ∧ (L.pull (pullback.fst z (spMap b))).IsLB ∧ IsAmpleLB (L.pull (pullback.fst z (spMap b))) := by
-  first | exact @GlobalTheory.GenFibNormal.genericFibre_normal_projective_ample | exact GlobalTheory.GenFibNormal.genericFibre_normal_projective_ample | (intros; apply GlobalTheory.GenFibNormal.genericFibre_normal_projective_ample <;> assumption)
+  first | exact @GlobalTheory.GenFibNormal.genericFibre_normal_projective_ample

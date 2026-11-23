@@ -51,4 +51,4 @@ open scoped MatrixGroups
 open GlobalTheory.KZ GlobalTheory.Glue GlobalTheory.K5 GlobalTheory.KummerEisensteinGalois
 
 theorem _root_.GlobalTheory.T.mem_translationInvariantSubfield_iff_exponents : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (ε : Ω →+* ℂ) (X : GlobalTheory.KZ.Tower Ω ε), ∀ (L : ℕ), 0 < L → ∀ f : X.K, (f ∈ KT X L ↔ ∀ r : ℚ, (X.exp f).coeff r ≠ 0 → (r * L).den = 1) := by
-  first | exact @GlobalTheory.Glue.KTExp.mem_KT_iff | exact GlobalTheory.Glue.KTExp.mem_KT_iff | (intros; apply GlobalTheory.Glue.KTExp.mem_KT_iff <;> assumption)
+  first | exact @GlobalTheory.Glue.KTExp.mem_KT_iff

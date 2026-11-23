@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.thetaFunction_orientedModel_eq_of_realAdelicPoints
     IsThetaFunO ψ S T f₁ → IsThetaFunO ψ S T f₂ →
     (∀ X : Matrix (Fin T.rank) (Fin S.rank) D.host.E, f₁ (GlobalTheory.IndefiniteRowSideFullHecke.OrthonormalLatticeThetaValues.realPt S T X) = f₂ (GlobalTheory.IndefiniteRowSideFullHecke.OrthonormalLatticeThetaValues.realPt S T X)) →
     f₁ = f₂ := by
-  first | exact @GlobalTheory.ThetaUniqReal.eq_of_eq_realPt | exact GlobalTheory.ThetaUniqReal.eq_of_eq_realPt | (intros; apply GlobalTheory.ThetaUniqReal.eq_of_eq_realPt <;> assumption)
+  first | exact @GlobalTheory.ThetaUniqReal.eq_of_eq_realPt

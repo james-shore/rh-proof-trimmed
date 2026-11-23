@@ -46,4 +46,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.TypeRec.factG
 
 theorem _root_.GlobalTheory.T.eventually_coeffField_contains_rootOfUnity_groupOrder : EvLgG fun K B f _ => KPx B f → ∀ (T : TwDat B) (w : ColW B f T) (Z : w.Lt), RootsLL (w.D Z) := by
-  first | exact @GlobalTheory.HeightCounting.Up.rootsLL_evLgG | exact GlobalTheory.HeightCounting.Up.rootsLL_evLgG | (intros; apply GlobalTheory.HeightCounting.Up.rootsLL_evLgG <;> assumption)
+  first | exact @GlobalTheory.HeightCounting.Up.rootsLL_evLgG

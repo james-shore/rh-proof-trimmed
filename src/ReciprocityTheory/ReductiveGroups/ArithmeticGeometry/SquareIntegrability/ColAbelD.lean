@@ -79,7 +79,7 @@ private theorem im_Hf_sum_real_smul {ι κ : Type} [Fintype ι] [Fintype κ] (x 
   rw [Hf_eq_inner_swap', sum_inner, Complex.im_sum]
   refine Finset.sum_congr rfl fun k _ => ?_
   rw [RCLike.real_smul_eq_coe_smul (K := ℂ), inner_smul_left, RCLike.conj_ofReal, ← Hf_eq_inner_swap']
-  first | simp | simp [Complex.mul_im] | rfl
+  first | simp
 
 private theorem sum_inner_ob_smul_e {ι : Type} [Fintype ι] (K : Submodule ℝ (EuclideanSpace ℂ ι)) (a : EuclideanSpace ℂ ι)
     (ha : a ∈ K) : ∑ i, (inner ℝ ((Col.ob K) i) (⟨a, ha⟩ : K)) • (Col.e K i) = a := by
@@ -305,7 +305,7 @@ private theorem Hf_e_e_eq_ite {ι : Type} [Fintype ι] {K : Submodule ℝ (Eucli
     Hf (Col.e K j) (Col.e K k) = if k = j then 1 else 0 := by
   have hre : (Hf (Col.e K j) (Col.e K k)).re = inner ℝ ((Col.ob K) k) ((Col.ob K) j) := by
     simp only [Submodule.coe_inner]
-    simp [Col.e, Hf, real_inner_eq_re_inner, PiLp.inner_apply, mul_comm]
+    simp [Col.e, Hf, real_inner_eq_re_inner, PiLp.inner_apply]
   have him : (Hf (Col.e K j) (Col.e K k)).im = 0 := hK _ (Col.ob K j).2 _ (Col.ob K k).2
   rw [orthonormal_iff_ite.mp (Col.ob K).orthonormal k j] at hre
   apply Complex.ext
@@ -383,11 +383,11 @@ theorem translate_zero_zeroModeLift (hI : IsSplit P I) (hP : Ext.PackingCount) (
   have h1 : Hf v ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) = ∑ k, Col.z (IR I) k v * Col.z (IR I) k ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) + Hf (Col.wmap (IR I) v) (Col.wmap (IR I) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim)) := by
     rw [Hf_eq_sum_z_add_Hf_p2 hK v]
     simp only [hzr]
-    first | rw [Col.Hf_wmap hK] | rw [Col.Hf_wmap]
+    first | rw [Col.Hf_wmap hK]
   have h2 : Hf ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) = Col.S (IR I) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) + Hf (Col.wmap (IR I) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim)) (Col.wmap (IR I) ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim)) := by
     rw [Hf_eq_sum_z_add_Hf_p2 hK]
     simp only [hzr, Col.S, sq]
-    first | rw [Col.Hf_wmap hK] | rw [Col.Hf_wmap]
+    first | rw [Col.Hf_wmap hK]
   have hzs : ∀ k, Col.z (IR I) k (v - ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim)) = Col.z (IR I) k v - Col.z (IR I) k ((Quotient.out (0 : Col.Qc X I) : X.L) : Vsp X.dim) := fun k => by
     simp only [Col.z]
     rw [Hf_eq_inner_swap', inner_sub_right, ← Hf_eq_inner_swap', ← Hf_eq_inner_swap']
@@ -440,8 +440,6 @@ theorem cab_R (hI : IsSplit P I) (hP : Ext.PackingCount) (hA : Ext.GaussianTailB
       calc (Hf v (Col.uc (IR I) v)).im ≤ ‖Hf v (Col.uc (IR I) v)‖ := by
             first
               | exact Complex.im_le_norm _
-              | exact Complex.im_le_abs _
-              | exact (le_abs_self _).trans (Complex.abs_im_le_norm _)
         _ ≤ ‖Col.uc (IR I) v‖ * ‖v‖ := by rw [Hf_eq_inner_swap']; exact norm_inner_le_norm _ _
         _ = ‖v‖ * ‖Col.uc (IR I) v‖ := mul_comm _ _
     nlinarith [norm_nonneg (Col.uc (IR I) v), norm_nonneg v]
@@ -482,17 +480,16 @@ theorem cab_R (hI : IsSplit P I) (hP : Ext.PackingCount) (hA : Ext.GaussianTailB
     have h1 : ∑ x ∈ ({0} : Finset (Col.Qc X I)), Col.Tc X I P.q β x v +
         ∑' x : ↥((({0} : Finset (Col.Qc X I)) : Set (Col.Qc X I))ᶜ), Col.Tc X I P.q β x v =
         ∑' x, Col.Tc X I P.q β x v := by
-      first | exact sum_add_tsum_compl (hT1 v) | exact (hT1 v).sum_add_tsum_compl
+      first | exact (hT1 v).sum_add_tsum_compl
     rw [Finset.sum_singleton] at h1
     rw [h0, Col.sP, ← h1]
-    first | exact add_sub_cancel_left _ _ | abel | simp
+    first | exact add_sub_cancel_left _ _
   rw [hsplit]
   calc ‖∑' a : cabNZ X I, Col.Tc X I P.q β a v‖ ≤ ∑' a : cabNZ X I, ‖Col.Tc X I P.q β a v‖ :=
         norm_tsum_le_tsum_norm hnsum
     _ ≤ ∑' a : cabNZ X I, B * Real.exp (P.q * Real.pi * ‖v‖ ^ 2 / 2 -
           P.q * Real.pi * ‖Col.uc (IR I) (cabOut (a : Col.Qc X I) : Vsp X.dim)‖ ^ 2 + 2 * P.q * Real.pi * ‖v‖ * ‖Col.uc (IR I) (cabOut (a : Col.Qc X I) : Vsp X.dim)‖) := by
         first
-          | exact tsum_le_tsum (fun a => hterm a) hnsum (hsum.mul_left B)
           | exact Summable.tsum_le_tsum (fun a => hterm a) hnsum (hsum.mul_left B)
     _ = _ := tsum_mul_left
 
@@ -544,7 +541,7 @@ theorem cab_YB_abs (hI : IsSplit P I) (hP : Ext.PackingCount) (q : ℕ) :
     rw [hsum]
     exact Submodule.sum_mem _ fun k _ => Submodule.smul_mem _ _ (Col.ob (IR I) k).2
   have hnorm : ‖Col.wmap (IR I) x‖ = ‖x - Col.p1 (IR I) x‖ := by
-    first | rw [Col.norm_wmap (Col.hK_of hI)] | rw [Col.norm_wmap]
+    first | rw [Col.norm_wmap (Col.hK_of hI)]
     rw [Col.p2]
   have hxI : x ∉ I := by
     intro hxI
@@ -557,7 +554,7 @@ theorem cab_YB_abs (hI : IsSplit P I) (hP : Ext.PackingCount) (q : ℕ) :
       have hzk : Col.z (IR I) k x = ((inner ℝ ((Col.ob (IR I)) k) (⟨x, hxK⟩ : IR I) : ℝ) : ℂ) := by
         apply Complex.ext
         · simp only [Complex.ofReal_re, Submodule.coe_inner]
-          simp [Col.z, Col.e, Hf, real_inner_eq_re_inner, PiLp.inner_apply, mul_comm]
+          simp [Col.z, Col.e, Hf, real_inner_eq_re_inner, PiLp.inner_apply]
         · simpa using hz k
       rw [hzk, RCLike.real_smul_eq_coe_smul (K := ℂ)]
       all_goals rfl
@@ -599,7 +596,7 @@ theorem cab_gB_le [IsCMField E] (K : Submodule ℝ (Vsp X.dim)) : Col.gB K ≤ X
   have h2 : Module.finrank ℂ (Vsp X.dim) = ∑ τ, X.dim τ := by
     simp [Vsp, Idx, finrank_euclideanSpace, Fintype.card_sigma]
   have hinv : Function.Involutive (NumberField.ComplexEmbedding.conjugate : (E →+* ℂ) → (E →+* ℂ)) :=
-    fun τ => RingHom.ext fun x => by simp [NumberField.ComplexEmbedding.conjugate_coe_eq]
+    fun τ => RingHom.ext fun x => by simp
   have hs : ∑ τ, X.dim (NumberField.ComplexEmbedding.conjugate τ) = ∑ τ, X.dim τ :=
     Fintype.sum_bijective _ hinv.bijective _ _ fun τ => rfl
   have h3 : 2 * ∑ τ, X.dim τ = Module.finrank ℚ E * X.r := by
@@ -613,9 +610,6 @@ theorem cab_gB_le [IsCMField E] (K : Submodule ℝ (Vsp X.dim)) : Col.gB K ≤ X
     have hz := NumberField.IsTotallyComplex.nrRealPlaces_eq_zero (K := E)
     first
       | (rw [← hn, hz]; simp)
-      | (rw [← hn]; unfold NumberField.InfinitePlace.nrRealPlaces at hz; rw [hz]; simp)
-      | (rw [← hn]; simp only [NumberField.InfinitePlace.nrRealPlaces] at hz; simp [hz])
-      | omega
   obtain ⟨k, hk⟩ := hev
   have h4 : ∑ τ, X.dim τ = k * X.r := by
     apply Nat.eq_of_mul_eq_mul_left (show 0 < 2 by norm_num)
@@ -671,7 +665,6 @@ theorem threshold_ge_log_bound (P : Par X DF) {c : ℕ} (hc : c ≤ DF) :
 
 theorem threshold_ge_rank_log_two (P : Par X DF) : (X.gA : ℝ) * Real.log 2 ≤ t0 (E := E) P.q P.R0 := by
   have h := P.C6
-  push_cast at h
   have hr : 0 ≤ (X.r : ℝ) * Real.log X.r := by
     rcases Nat.eq_zero_or_pos X.r with h0 | h0
     · rw [h0]; simp

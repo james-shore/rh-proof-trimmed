@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.exists_decompositionGroup_equiv_padicGalois : ∀ 
     ∃ i : ↥(A.decompositionSubgroup F) ≃ₜ*
       (PadicAlgCl p ≃ₐ[↥(IntermediateField.adjoin ℚ_[p] (Set.range fun x : F => j (algebraMap F Ω x)))] PadicAlgCl p),
       ∀ (g : ↥(A.decompositionSubgroup F)) (x : Ω), i g (j x) = j ((g : Ω ≃ₐ[F] Ω) x) := by
-  first | exact @GlobalTheory.DecGalois.exists_continuousMulEquiv | exact GlobalTheory.DecGalois.exists_continuousMulEquiv | (intros; apply GlobalTheory.DecGalois.exists_continuousMulEquiv <;> assumption)
+  first | exact @GlobalTheory.DecGalois.exists_continuousMulEquiv

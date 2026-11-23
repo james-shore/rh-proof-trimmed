@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.exists_algEquiv_fractionField_of_localRingOfVariet
   (∀ a (h : algebraMap ℂ K a ∈ R), π ⟨algebraMap ℂ K a, h⟩ = algebraMap ℂ κ a) →
   (∀ f : κ, ∃ a b : R, π b ≠ 0 ∧ f * π b = π a) → Function.Injective π →
   ∃ e : K ≃ₐ[ℂ] κ, ∀ r : R, e r = π r := by
-  first | exact @GlobalTheory.locModel_fracField_algEquiv | exact GlobalTheory.locModel_fracField_algEquiv | (intros; apply GlobalTheory.locModel_fracField_algEquiv <;> assumption)
+  first | exact @GlobalTheory.locModel_fracField_algEquiv

@@ -51,4 +51,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 theorem _root_.GlobalTheory.T.thetaSection_support_eq_univ : Laws → Laws2 → (AllPre fun {V} _ _ _ {D} {A} {G} _ _ U => ∀ θ f, U.Theta θ f → (∀ α, ∃ j, (f α).f j ≠ 0) ∧ ∀ α, U.Supp (Kbar V) 2 α) := by
-  first | exact @GlobalTheory.UU.theta_support_eq_univ | exact GlobalTheory.UU.theta_support_eq_univ | (intros; apply GlobalTheory.UU.theta_support_eq_univ <;> assumption)
+  first | exact @GlobalTheory.UU.theta_support_eq_univ

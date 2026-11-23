@@ -112,7 +112,6 @@ theorem local_dual {A M : Type} [CommRing A] [AddCommGroup M] [Module A M] (O : 
         σ e * h y' y - T * h y' f * h (σ (b * e) • y0) y := by
       rw [← hc y (σ e • y' - σ (T * h f y') • σ (b * e) • y0)]
       simp only [hsub, hsr, hsl, hσσ, map_sub, map_mul, hσT, hc]
-      try ring
     rw [e1, show σ e * h y' y - T * h (σ (b * e) • y0) y * h y' f =
         σ e * h y' y - T * h y' f * h (σ (b * e) • y0) y by ring, ← e2]
     exact hy _ (hsix y' hy')

@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.cA_smul_mem_latV_ideal_smul_of_conj_place : ∀ (D
   (p : GlobalTheory.FinPl.SplitPt D k) (w : HeightOneSpectrum (𝓞 D.host.E)), Formalism.L2.NTheta.IsIdemAt p.e w →
   ∀ (S : HSp D) (L : GlobalTheory.FinPl.Lat S) (𝔪 : Ideal (𝓞 D.host.E)), (∃ m ∈ 𝔪, m ∉ (Formalism.DivisionValues.conjPl w).asIdeal) →
   ∀ z : Fin S.rank → AE D, z ∈ latV S L (· = p.v) → (fun i => cA D p.e * z i) ∈ latV S (𝔪 • L) (· = p.v) := by
-  first | exact @GlobalTheory.ConjPlaceLat.cA_mul_mem_latV_smul | exact GlobalTheory.ConjPlaceLat.cA_mul_mem_latV_smul | (intros; apply GlobalTheory.ConjPlaceLat.cA_mul_mem_latV_smul <;> assumption)
+  first | exact @GlobalTheory.ConjPlaceLat.cA_mul_mem_latV_smul

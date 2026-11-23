@@ -48,4 +48,4 @@ open Classical
 
 
 theorem _root_.GlobalTheory.T.realComponent_central_definiteUnitary_eq_unit_scalar : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → ∀ (S : HSp D) (x : DefSp S), x.Is → ∀ z ∈ GinfC S, z ∈ Subgroup.center (GA D S) → ∀ τ : D.what₂.Tau, ∃ ζ : ℂ, ‖ζ‖ = 1 ∧ compAt θ τ (Formalism.L2.Theta.mt S z) = ζ • (1 : Matrix (Fin S.rank) (Fin S.rank) ℂ) := by
-  first | exact @GlobalTheory.CenterScalar.center_scalar | exact GlobalTheory.CenterScalar.center_scalar | (intros; apply GlobalTheory.CenterScalar.center_scalar <;> assumption)
+  first | exact @GlobalTheory.CenterScalar.center_scalar

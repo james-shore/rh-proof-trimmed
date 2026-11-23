@@ -47,4 +47,4 @@ theorem _root_.GlobalTheory.T.index_ideal_mul_conj_eq_gram_det_selfDual : ∀ (E
     GlobalTheory.FlatCM.idx E p Λ (Submodule.span (𝓞 E) (Set.range fun a => (Pi.single a (1 : E) : Fin p → E))) *
       (GlobalTheory.FlatCM.idx E p Λ (Submodule.span (𝓞 E) (Set.range fun a => (Pi.single a (1 : E) : Fin p → E)))).map bar =
       Ideal.span {G.det} := by
-  first | exact @GlobalTheory.SelfDualIndex.idx_mul_map_bar_eq | exact GlobalTheory.SelfDualIndex.idx_mul_map_bar_eq | (intros; apply GlobalTheory.SelfDualIndex.idx_mul_map_bar_eq <;> assumption)
+  first | exact @GlobalTheory.SelfDualIndex.idx_mul_map_bar_eq

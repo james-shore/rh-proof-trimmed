@@ -48,4 +48,4 @@ open Matrix GlobalTheory.ClassFin
 open scoped Kronecker ComplexOrder TensorProduct
 
 theorem _root_.GlobalTheory.T.mem_span_rational_kroneckerInvariants : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (Γ : Set (Matrix ι ι ℂ)), (∀ σ : ℂ ≃+* ℂ, ∀ g ∈ Γ, g.map σ ∈ Γ) → ∀ (n : ℕ) (l : (Fin n → ι) → ℂ), (∀ g ∈ Γ, l ᵥ* tpow n g = l) → l ∈ Submodule.span ℂ {μ : (Fin n → ι) → ℂ | (∀ g ∈ Γ, μ ᵥ* tpow n g = μ) ∧ ∀ a, ∃ q : ℚ, μ a = q} := by
-  first | exact @GlobalTheory.ClassFin.RationalInvariants.mem_span_rational | exact GlobalTheory.ClassFin.RationalInvariants.mem_span_rational | (intros; apply GlobalTheory.ClassFin.RationalInvariants.mem_span_rational <;> assumption)
+  first | exact @GlobalTheory.ClassFin.RationalInvariants.mem_span_rational

@@ -61,7 +61,6 @@ private theorem choose_add_succ_succ_eq_choose_mul_div (A m : ℕ) :
   have h : (A + m + 1) * (A + m).choose m = (A + m + 1).choose (m + 1) * (m + 1) := by
     first
     | exact Nat.add_one_mul_choose_eq (A + m) m
-    | exact Nat.succ_mul_choose_eq (A + m) m
   rw [eq_div_iff (by positivity), show A + (m + 1) = A + m + 1 by omega]
   have h' : (((A + m + 1) * (A + m).choose m : ℕ) : ℚ) = (((A + m + 1).choose (m + 1) * (m + 1) : ℕ) : ℚ) := by
     rw [h]
@@ -149,7 +148,7 @@ theorem weylDim_hwt_eq (m A B : ℕ) : weylDim (m + 2) (hwt m A B) = (dimHar (m 
   rw [weylDim_cons_eq_prod_mul, weylDim_snoc_eq_mul_prod, weylDim_const, one_mul, Fin.prod_univ_castSucc]
   simp only [Fin.snoc_castSucc, Fin.snoc_last, Fin.coe_castSucc, Fin.val_last]
   push_cast
-  try simp only [sub_zero, zero_sub, neg_neg, sub_neg_eq_add, zero_add]
+  try simp only [sub_zero, sub_neg_eq_add, zero_add]
   rw [prodA m A, prodB m B]
   unfold dimHar dimPol
   have hle : (if A = 0 ∨ B = 0 then 0 else (A - 1 + (m + 1)).choose (m + 1) * (B - 1 + (m + 1)).choose (m + 1)) ≤

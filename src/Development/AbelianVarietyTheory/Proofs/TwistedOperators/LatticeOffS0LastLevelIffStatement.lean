@@ -52,4 +52,4 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 
 
 theorem _root_.GlobalTheory.T.lattice_off_S0_last_level_iff : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} (G : GridData L sc) (v : GlobalTheory.FinPl.Pl D), v ∉ G.pl.S0 → ∀ y : Fin (G.V (.grid D.R.m 0)).rank → AE D, (∀ i, y i ∈ idAt D (· = v)) → (y ∈ GlobalTheory.FinPl.latV _ (G.Λ (.grid D.R.m 0)) (· = v) ↔ y ∈ GlobalTheory.FinPl.latV _ (GlobalTheory.RowShape.rowN G 0) (· = v)) := by
-  first | exact @GlobalTheory.RowShape.latV_grid_iff_rowN_zero | exact GlobalTheory.RowShape.latV_grid_iff_rowN_zero | (intros; apply GlobalTheory.RowShape.latV_grid_iff_rowN_zero <;> assumption)
+  first | exact @GlobalTheory.RowShape.latV_grid_iff_rowN_zero

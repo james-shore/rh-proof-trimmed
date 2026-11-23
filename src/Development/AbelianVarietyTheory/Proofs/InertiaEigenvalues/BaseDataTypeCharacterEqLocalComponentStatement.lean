@@ -53,4 +53,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.base_data_type_character_eq_local_component : ∀ (D : D7) (S T : HSp D) (B : GlobalTheory.ExportSeries.Base S T), B.Good → ∀ χ : HChar D.host.E, ChrEq B.mu0 χ → ∀ PP ∈ B.G.Pg, ∀ (u : 𝓞 D.host.E) (hu : (u : D.host.E) ≠ 0) (z : (kP PP)ˣ), (z : kP PP) = Ideal.Quotient.mk PP.asIdeal u → ((B.G.muC PP z : ℂˣ) : ℂ) = ((χ.locK PP (Units.mk0 (u : D.host.E) hu) : ℂˣ) : ℂ) := by
-  first | exact @GlobalTheory.TypeCharUnits.muC_eq_locK | exact GlobalTheory.TypeCharUnits.muC_eq_locK | (intros; apply GlobalTheory.TypeCharUnits.muC_eq_locK <;> assumption)
+  first | exact @GlobalTheory.TypeCharUnits.muC_eq_locK

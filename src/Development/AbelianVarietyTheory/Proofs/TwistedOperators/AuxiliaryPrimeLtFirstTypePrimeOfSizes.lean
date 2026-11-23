@@ -183,7 +183,6 @@ theorem exists_gridPre_agree (hDS : GlobalTheory.Published.DiscreteSeriesUpqExis
         ArrAgree (withArr G X ωT vacT ItT ωC vacC ItC dn ItU vC) W := by
     first
       | exact GlobalTheory.T.exists_testGrid_arrows_vacua_intertwiners hDC hHC hH hS hR hsc W hW G hsp hch hag hcos
-      | exact GlobalTheory.T.exists_testGrid_arrows_vacua_intertwiners hDC hHC hH hR hsc W hW G hsp hch hag hcos
   obtain ⟨m00, mV, mP, mX, hm⟩ := exists_isMeas (withArr G X ωT vacT ItT ωC vacC ItC dn ItU vC) (isSpaces_withArr hsp)
   exact ⟨withMeas (withArr G X ωT vacT ItT ωC vacC ItC dn ItU vC) m00 mV mP mX,
     ⟨isSpaces_withMeas (isSpaces_withArr hsp), isChars_withMeas (isChars_withArr hch), isArrows_withMeas harr, hm,

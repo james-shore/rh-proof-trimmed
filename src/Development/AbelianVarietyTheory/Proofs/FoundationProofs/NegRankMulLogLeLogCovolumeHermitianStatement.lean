@@ -50,4 +50,4 @@ open NumberField IsDedekindDomain MvPolynomial Formalism.BasicNotions Formalism.
 open scoped Matrix ComplexOrder
 
 theorem _root_.GlobalTheory.T.neg_rank_mul_log_le_log_covolume_hermitian : ∀ (K : Type) [Field K] [NumberField K] [StarRing K] [_root_.NumberField.IsTotallyComplex K] (v₀ : InfinitePlace K), IsConjAt v₀ → ∀ (d : ℕ) (H : Matrix (Fin d) (Fin d) K) (X : InfinitePlace K → Matrix (Fin d) (Fin d) ℂ), IsRatHerm (cmMax K) H X → ∀ (s : ℕ), 0 < s → ∀ L : Submodule (𝓞 K) (Fin d → K), L.FG → (∀ x ∈ L, ∀ y ∈ L, (s : K) * (star x ⬝ᵥ H *ᵥ y) ∈ (algebraMap (𝓞 K) K).range) → -((Formalism.HN.rkK L : ℝ) * Real.log s) ≤ lcv X L := by
-  first | exact @GlobalTheory.neg_rank_mul_log_le_lcv | exact GlobalTheory.neg_rank_mul_log_le_lcv | (intros; apply GlobalTheory.neg_rank_mul_log_le_lcv <;> assumption)
+  first | exact @GlobalTheory.neg_rank_mul_log_le_lcv

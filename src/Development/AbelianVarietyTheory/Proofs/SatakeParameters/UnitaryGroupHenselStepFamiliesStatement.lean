@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.unitaryGroup_hensel_step_families : ∀ (L : Type)
     ∃ g : Formalism.UG.UJ σ (JT : Matrix (Fin n') (Fin n') L), (g : GL (Fin n') L) ∈ Formalism.UG.GLint (Fin n') (Formalism.UG.intL L) ∧
       (∀ r s, GlobalTheory.Hk3.IntWitt.DvdPow ϖ k ((((g : GL (Fin n') L) : Matrix (Fin n') (Fin n') L)) r s - (1 : Matrix (Fin n') (Fin n') L) r s)) ∧
       ∀ i r, GlobalTheory.Hk3.IntWitt.DvdPow ϖ (k + 1) ((((g : GL (Fin n') L) : Matrix (Fin n') (Fin n') L) *ᵥ z i) r - z' i r) := by
-  first | exact @GlobalTheory.Hk3.IntWitt.hensel_step | exact GlobalTheory.Hk3.IntWitt.hensel_step | (intros; apply GlobalTheory.Hk3.IntWitt.hensel_step <;> assumption)
+  first | exact @GlobalTheory.Hk3.IntWitt.hensel_step

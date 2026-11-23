@@ -71,7 +71,7 @@ theorem GlobalTheory.HolDS.compactRaise_word_higher : ∀ (n : ℕ) (ε : Fin n 
     have hcd' : (c : ℕ) < (d : ℕ) := hcd
     set y := (l.map fun p : Fin n × Fin n => E p.1 p.2).prod w with hy
     have hword : ((( (a, b) :: l).map fun p : Fin n × Fin n => E p.1 p.2).prod w) = E a b y := by
-      simp [hy, Module.End.mul_apply]
+      simp [hy]
     rw [hword]
     have key : E c d (E a b y) = E a b (E c d y) +
         ((if d = a then E c b else 0) - (if b = c then E a d else 0)) y := by
@@ -84,7 +84,7 @@ theorem GlobalTheory.HolDS.compactRaise_word_higher : ∀ (n : ℕ) (ε : Fin n 
       rw [Submodule.map_span] at hm
       refine Submodule.span_mono ?_ hm
       rintro _ ⟨z, ⟨l', hlen, hty, hh, rfl⟩, rfl⟩
-      refine ⟨(a, b) :: l', by simp [hlen], ?_, ?_, by simp [Module.End.mul_apply]⟩
+      refine ⟨(a, b) :: l', by simp [hlen], ?_, ?_, by simp⟩
       · intro p hp
         rcases List.mem_cons.1 hp with rfl | hp
         exacts [hab, hty p hp]
@@ -93,7 +93,7 @@ theorem GlobalTheory.HolDS.compactRaise_word_higher : ∀ (n : ℕ) (ε : Fin n 
       refine Submodule.sub_mem _ ?_ ?_
       · split_ifs with h1
         · subst h1
-          refine Submodule.subset_span ⟨(c, b) :: l, by simp, ?_, ?_, by simp [hy, Module.End.mul_apply]⟩
+          refine Submodule.subset_span ⟨(c, b) :: l, by simp, ?_, ?_, by simp [hy]⟩
           · intro p hp
             rcases List.mem_cons.1 hp with rfl | hp
             exacts [⟨hεcd.trans hab.1, hab.2⟩, hl' p hp]
@@ -101,7 +101,7 @@ theorem GlobalTheory.HolDS.compactRaise_word_higher : ∀ (n : ℕ) (ε : Fin n 
         · simp only [LinearMap.zero_apply]; exact Submodule.zero_mem _
       · split_ifs with h2
         · subst h2
-          refine Submodule.subset_span ⟨(a, d) :: l, by simp, ?_, ?_, by simp [hy, Module.End.mul_apply]⟩
+          refine Submodule.subset_span ⟨(a, d) :: l, by simp, ?_, ?_, by simp [hy]⟩
           · intro p hp
             rcases List.mem_cons.1 hp with rfl | hp
             exacts [⟨hab.1, hεcd.symm.trans hab.2⟩, hl' p hp]

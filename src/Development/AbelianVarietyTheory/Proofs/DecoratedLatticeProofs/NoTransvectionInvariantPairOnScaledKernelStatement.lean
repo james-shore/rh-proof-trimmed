@@ -61,4 +61,4 @@ open GlobalTheory.Core.Mi.LatMatch
 open IsLocalRing
 
 theorem _root_.GlobalTheory.T.no_transvectionInvariant_pair_on_scaledKernel : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : Type) [Fintype n] [DecidableEq n] (i : n) (P : GlobalTheory.LatPair.Pair k n) (c : k), 3 ≤ Fintype.card n → c ≠ 0 → (∀ x : n → k, x ∈ P.lat ↔ (∀ j, c⁻¹ * x j ∈ 𝒪[k]) ∧ ∃ s : 𝒪[k], s ∈ IsLocalRing.maximalIdeal 𝒪[k] ∧ (s : k) = c⁻¹ * x i) → (∀ (x : n → k) (a : 𝓀[k]), P.HasVal x a → ∀ (b d : n) (t : 𝒪[k]), b ≠ d → (b ≠ i ∨ t ∈ IsLocalRing.maximalIdeal 𝒪[k]) → P.HasVal (x + Pi.single b ((t : k) * x d)) a) → False := by
-  first | exact @GlobalTheory.LatPair.no_pair_on_scaled_kernel | exact GlobalTheory.LatPair.no_pair_on_scaled_kernel | (intros; apply GlobalTheory.LatPair.no_pair_on_scaled_kernel <;> assumption)
+  first | exact @GlobalTheory.LatPair.no_pair_on_scaled_kernel

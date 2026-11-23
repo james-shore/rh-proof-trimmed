@@ -55,4 +55,4 @@ open CompanionTheory.D.LK (IsKMod IsMin)
 open scoped InnerProductSpace
 
 theorem _root_.GlobalTheory.T.isWeight_word_apply_weightVector : ∀ (n : ℕ) (V : Type) [AddCommGroup V] [Module ℂ V] (E : Fin n → Fin n → Module.End ℂ V), GlRel E → ∀ (μ : Fin n → ℝ) (w : V), IsWeight E μ w → ∀ l : List (Fin n × Fin n), IsWeight E (μ + (l.map fun p : Fin n × Fin n => root p.1 p.2).sum) ((l.map fun p : Fin n × Fin n => E p.1 p.2).prod w) := by
-  first | exact @GlobalTheory.wordWeight | exact GlobalTheory.wordWeight | (intros; apply GlobalTheory.wordWeight <;> assumption)
+  first | exact @GlobalTheory.wordWeight

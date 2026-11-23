@@ -58,4 +58,4 @@ open scoped GlobalTheory.VacAny
 
 theorem _root_.GlobalTheory.T.eq_adeleSupportedAtFinitePlace_of_supportedAt : ∀ {F : Type} [Field F] [NumberField F] (v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)) (a : AF F),
     GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.At (GlobalTheory.AdelicU.evFin F v) a → a = GlobalTheory.EmbChart.atPlace v (GlobalTheory.AdelicU.evFin F v a) := by
-  first | exact @GlobalTheory.VacAny.eq_atPlace_of_at | exact GlobalTheory.VacAny.eq_atPlace_of_at | (intros; apply GlobalTheory.VacAny.eq_atPlace_of_at <;> assumption)
+  first | exact @GlobalTheory.VacAny.eq_atPlace_of_at

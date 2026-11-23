@@ -66,11 +66,7 @@ theorem exists_nat_smul_mem (Λ : Submodule O (Fin n → R))
     (hd : ∀ y : R, ∃ m : ℕ, m ≠ 0 ∧ (m : R) * y ∈ O) {x : Fin n → R}
     (hx : x ∈ Submodule.span R (Λ : Set (Fin n → R))) : ∃ m : ℕ, m ≠ 0 ∧ (m : R) • x ∈ Λ := by
   first
-  | exact @_root_.GlobalTheory.NatSmulMem.exists_nat_smul_mem
-  | exact _root_.GlobalTheory.NatSmulMem.exists_nat_smul_mem
   | (apply _root_.GlobalTheory.NatSmulMem.exists_nat_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NatSmulMem.exists_nat_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NatSmulMem.exists_nat_smul_mem <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.NatSmulMem.exists_nat_smul_mem ..)
 
 theorem exists_nat_between (Λ : Submodule O (Fin n → R)) (hfg : Λ.FG)

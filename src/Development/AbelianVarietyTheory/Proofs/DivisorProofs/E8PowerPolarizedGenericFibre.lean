@@ -68,12 +68,10 @@ theorem sum_lamPts {S : Scheme.{0}} {G T : Over S} [GrpObj G] (x y : T ⟶ G) (c
     ∑ k : Fin 4, (-(w * GlobalTheory.PolDeg.negε k)) • pull (GlobalTheory.PolDeg.lamPts x y k) c = w • lam c x y := by
   simp only [Fin.sum_univ_four, GlobalTheory.PolDeg.lamPts, GlobalTheory.PolDeg.negε, lam, Matrix.cons_val_zero, Matrix.cons_val_one,
     Matrix.cons_val_two, Matrix.cons_val_three, Matrix.head_cons, Matrix.tail_cons]
-  simp only [smul_add, smul_sub, mul_neg, mul_one, neg_neg, neg_smul]
+  simp only [smul_add, smul_sub, mul_neg, neg_neg, neg_smul]
   all_goals first
   | (norm_num; done)
   | (norm_num; abel)
-  | (push_cast; abel)
-  | (rw [sub_eq_add_neg, sub_eq_add_neg]; congr 1 <;> [congr 1; skip] <;> norm_num)
 
 theorem lam_pull_hom {S : Scheme.{0}} {G G' T : Over S} [GrpObj G] [GrpObj G'] (φ : G' ⟶ G) [IsMonHom φ]
     (c : Pic G.left) (x y : T ⟶ G') : lam (pull φ.left c) x y = lam c (x ≫ φ) (y ≫ φ) := by
@@ -83,7 +81,7 @@ theorem pull_fst_lam {S S' : Scheme.{0}} (f : S' ⟶ S) {X G : Over S} [GrpObj G
     GlobalTheory.CechPic.pull (pullback.fst X.hom f) (lam c x x') =
       lam (GlobalTheory.CechPic.pull (pullback.fst G.hom f) c) ((Over.pullback f).map x) ((Over.pullback f).map x') := by
   have hfst : ∀ z : X ⟶ G, pullback.fst X.hom f ≫ z.left = ((Over.pullback f).map z).left ≫ pullback.fst G.hom f :=
-    fun z => by simp [pullback.lift_fst]
+    fun z => by simp
   simp only [lam, map_add (f := _), map_sub, ← pull_comp, hfst, Functor.map_mul, Functor.map_one]
 
 

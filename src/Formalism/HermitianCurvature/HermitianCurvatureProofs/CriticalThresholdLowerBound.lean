@@ -61,9 +61,6 @@ lemma prod_Ioc_shift (f : ℕ → ℝ) (p a b : ℕ) :
     ∏ j ∈ Ioc (a + p) (b + p), f j = ∏ j ∈ Ioc a b, f (j + p) := by
   first
   | (rw [← Finset.map_add_right_Ioc, Finset.prod_map]; rfl)
-  | (rw [← Finset.map_add_right_Ioc, Finset.prod_map]; simp [addRightEmbedding])
-  | (apply Finset.prod_nbij' (fun j => j - p) (fun j => j + p) <;> intro j hj <;>
-      simp only [Finset.mem_Ioc] at hj ⊢ <;> first | omega | (congr 1; omega))
 
 lemma Icc_one_eq (p : ℕ) : Icc 1 p = Ioc 0 p := by
   ext i
@@ -202,7 +199,6 @@ theorem vandLamLower : VandLamLower := by
           first
           | (rw [Finset.prod_const, Nat.card_Icc, Nat.add_sub_cancel]; done)
           | (rw [Finset.prod_const, Nat.card_Icc, Nat.add_sub_cancel]; rfl)
-          | (unfold Cfg.prodb; rw [Finset.prod_const, Nat.card_Icc, Nat.add_sub_cancel])
       _ ≤ ∏ i ∈ Icc 1 (c.k - 1), ∏ j ∈ Icc 1 c.m, (c.v i + c.b j) := by
           apply Finset.prod_le_prod₀
           · intro i _
@@ -295,8 +291,6 @@ lemma E_le : Real.exp (1/4) ≤ 1.3 := by
   have h1 : Real.exp (1/4) ^ 4 = Real.exp 1 := by
     first
     | (rw [← Real.exp_nat_mul]; norm_num)
-    | (rw [← Real.exp_nat_mul]; congr 1; norm_num)
-    | (rw [← Real.exp_nat_mul]; congr 1; push_cast; ring)
   have h2 := Real.exp_one_lt_d9
   have h3 : 0 < Real.exp (1/4) := Real.exp_pos _
   by_contra hc
@@ -516,7 +510,7 @@ lemma u_mid (c : Cfg) (de : ℕ → ℝ) (j : ℕ) (h1 : 1 ≤ j) (h2 : j + 2 �
   have h0 : j ≠ 0 := by omega
   have h1' : j + 1 ≠ 1 := by omega
   have h2' : j + 1 ≠ c.k := by omega
-  simp [Cfg.u, h0, h1', h2']
+  simp [Cfg.u, h0, h2']
 
 lemma u_last (c : Cfg) (de : ℕ → ℝ) (hk : 4 ≤ c.k) : c.u de c.k = c.ulast := by
   have h1' : c.k ≠ 1 := by omega
@@ -544,7 +538,6 @@ lemma mu_bound (c : Cfg) (h : c.Ok) (bb : ℝ) (hs : c.Small bb) :
     have hk' : (c.k:ℝ) ≠ 0 := hk.ne'
     first
     | (field_simp; done)
-    | (field_simp; ring)
   have e2 : Real.exp (2 * c.m * Real.log bb) = bb ^ (2 * c.m) := by
     rw [show (2 * (c.m:ℝ) * Real.log bb) = ((2 * c.m : ℕ) : ℝ) * Real.log bb by push_cast; ring]
     rw [← Real.log_pow, Real.exp_log (by positivity)]
@@ -561,9 +554,6 @@ lemma mu_bound (c : Cfg) (h : c.Ok) (bb : ℝ) (hs : c.Small bb) :
       _ = bb ^ (2 * c.m) := by
           first
           | (rw [Finset.prod_const, Nat.card_Icc, Nat.add_sub_cancel, pow_mul])
-          | (rw [Finset.prod_const, Nat.card_Icc, pow_mul])
-          | (rw [Finset.prod_const, Nat.card_Icc, pow_mul]; congr 1; omega)
-          | (simp [Finset.prod_const, pow_mul])
   have hpos : 0 < bb ^ (2 * c.m) := by positivity
   rw [e1, Real.exp_neg, e2]
   calc (bb ^ (2 * c.m))⁻¹ * c.prodb ≤ (bb ^ (2 * c.m))⁻¹ * bb ^ (2 * c.m) :=

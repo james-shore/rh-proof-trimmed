@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.liftForms_frames_majorantNorm_eq_petersson : ∀ {
       ∀ v (c : Fin (Module.finrank D.what₂.LL (R.toRealDat.WL F.lv2 b i)) → D.what₂.LL),
         Formalism.HermitianLatticesTheory.normAt (Pi.basisFun D.what₂.LL _) ((R.toCx3 F).XW b i) v c =
           (Real.sqrt (RealDat.nP F.lv2 b))⁻¹ * nrmR R.toRealDat i v.embedding (∑ k, c k • R.toRealDat.bL F.lv2 b i k) := by
-  first | exact @GlobalTheory.FrameRead.frames_read | exact GlobalTheory.FrameRead.frames_read | (intros; apply GlobalTheory.FrameRead.frames_read <;> assumption)
+  first | exact @GlobalTheory.FrameRead.frames_read

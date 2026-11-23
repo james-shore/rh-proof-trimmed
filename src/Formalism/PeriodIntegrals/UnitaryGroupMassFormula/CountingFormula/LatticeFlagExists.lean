@@ -112,7 +112,6 @@ theorem rs_smul_e_mem (hf : PartnerOK D F0 f) {a : Fin D.R.rS} {x : D.host.E} (h
     exact zero_mem _
   · have hs : starRingEnd D.host.E ((VS D).hT (F0.e a) (f b)) = (VS D).hT (f b) (F0.e a) := by
       first
-        | exact (VS D).herm (F0.e a) (f b)
         | exact (VS D).herm.eq (F0.e a) (f b)
     rw [map_smul, ← hs, hf.1 a b, smul_eq_mul]
     split_ifs with hab
@@ -191,7 +190,6 @@ theorem rs_hT_f_lift (hf : PartnerOK D F0 f) (w : perpS (VS D) F0.X) (b : Fin D.
     intro a
     have hs : starRingEnd D.host.E ((VS D).hT (F0.e a) (f b)) = (VS D).hT (f b) (F0.e a) := by
       first
-        | exact (VS D).herm (F0.e a) (f b)
         | exact (VS D).herm.eq (F0.e a) (f b)
     rw [← hs, hf.1 a b]
     split_ifs <;> simp

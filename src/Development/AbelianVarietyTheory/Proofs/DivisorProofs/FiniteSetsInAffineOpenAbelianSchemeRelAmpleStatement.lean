@@ -48,4 +48,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.finiteSetsInAffineOpen_abelianScheme_relAmple : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (A : Over (Sp R)) [GrpObj A], IsAbelianScheme A → ∀ (L : LB A.left), L.IsLB → Out.RelAmple A L → FinAff A.left := by
-  first | exact @GlobalTheory.DualCon.FinAffNoeth.finAff_of_relAmple_noetherian | exact GlobalTheory.DualCon.FinAffNoeth.finAff_of_relAmple_noetherian | (intros; apply GlobalTheory.DualCon.FinAffNoeth.finAff_of_relAmple_noetherian <;> assumption)
+  first | exact @GlobalTheory.DualCon.FinAffNoeth.finAff_of_relAmple_noetherian

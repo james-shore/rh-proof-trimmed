@@ -48,4 +48,4 @@ open NumberField IsDedekindDomain MeasureTheory Filter Formalism.MainNotions.Glo
 theorem _root_.GlobalTheory.T.adelicAddChar_eq_archimedean_mul_finprod_local : ∀ (F : Type) [Field F] [NumberField F] (ψ : AddChar (AF F) ℂ), Continuous ψ → ∀ x : AF F,
     (Function.mulSupport fun v : Pl F => GlobalTheory.LatVac.psiAt ψ v (evFin F v x)).Finite ∧
     ψ x = ψ (pairA F (fstA F x) 0) * ∏ᶠ v : Pl (F := F), GlobalTheory.LatVac.psiAt ψ v (evFin F v x) := by
-  first | exact @GlobalTheory.PsiProd.psi_prod | exact GlobalTheory.PsiProd.psi_prod | (intros; apply GlobalTheory.PsiProd.psi_prod <;> assumption)
+  first | exact @GlobalTheory.PsiProd.psi_prod

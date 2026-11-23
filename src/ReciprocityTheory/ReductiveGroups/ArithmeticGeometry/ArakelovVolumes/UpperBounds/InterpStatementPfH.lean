@@ -220,7 +220,6 @@ theorem dmin_cpt_cd (x0 : Frame X.Ψ r) (τ : X.Ψ) (i : Fin (r + 1)) :
   refine ContDiff.sum (fun σ _ => contDiff_const.mul ?_)
   first
   | exact contDiff_prod (fun j _ => gram_cpt_cd X x0 τ _ _)
-  | fun_prop
 
 theorem log_norm_eq (w : ℂ) : Real.log ‖w‖ = Real.log (Complex.normSq w) / 2 := by
   rw [Complex.normSq_eq_norm_sq, Real.log_pow]
@@ -245,7 +244,6 @@ private theorem contDiff_det_mat_cpt (x0 : Frame X.Ψ r) (τ : X.Ψ) :
   refine ContDiff.sum (fun σ _ => contDiff_const.mul ?_)
   first
   | exact contDiff_prod (fun j _ => cpt_entry_cd X x0 τ _ _)
-  | fun_prop
 
 private theorem eventually_mem_omF (x0 : Frame X.Ψ r) {z : V (nd X)} (hz : z ∈ OmF X x0) :
     ∀ᶠ w in 𝓝 z, w ∈ OmF X x0 := by

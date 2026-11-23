@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSNef
 
 theorem _root_.GlobalTheory.T.hermPairSections_good_shiftSecondBundleNormPair : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ), IsArithVar p D → ∀ (P : Pair p) (b : ℕ) (s t : X.functionField) (u : ℝ), 0 ≤ u → P.Good D b s t → (shiftA P u).Good D b s t := by
-  first | exact @GlobalTheory.HSNef.good_shiftA | exact GlobalTheory.HSNef.good_shiftA | (intros; apply GlobalTheory.HSNef.good_shiftA <;> assumption)
+  first | exact @GlobalTheory.HSNef.good_shiftA

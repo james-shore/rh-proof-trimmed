@@ -83,8 +83,6 @@ private theorem exists_eq_prime_pow_mul_not_dvd {n p : ℕ} (hn : n ≠ 0) (hp :
     ∃ v M : ℕ, ¬ p ∣ M ∧ n = p ^ v * M := by
   first
   | exact Nat.exists_eq_pow_mul_and_not_dvd hn p hp.one_lt.ne'
-  | exact ⟨n.factorization p, n / p ^ n.factorization p, Nat.not_dvd_ordCompl hp hn,
-      (Nat.ordProj_mul_ordCompl_eq_self n p).symm⟩
 
 private theorem prime_pow_dvd_prime_pow_iff_le {p a b : ℕ} (hp : p.Prime) : p ^ a ∣ p ^ b ↔ a ≤ b := by
   first
@@ -172,7 +170,6 @@ theorem weight_sum {N m : ℕ} (hN : N ≠ 0) (hm : m ∣ N) (hm1 : m ≠ 1) :
   have e : ((p ^ j).totient : ℝ) * (Real.log p / ((p ^ j).totient : ℝ)) = Real.log p := by
     first
     | rw [mul_div_assoc', mul_comm, mul_div_assoc, div_self hpj, mul_one]
-    | field_simp
   push_cast
   linear_combination (-((p : ℝ) ^ (v - j) * (M.totient : ℝ))) * e
 
@@ -299,8 +296,6 @@ theorem rho_eq (U : Subgroup (ZMod N)ˣ) {f : ℕ} (hf : f ∣ N) :
         ((KK N f).filter fun u => u ∈ U).card = (KK N f).card := by
     rw [add_comm]
     first
-    | exact Finset.filter_card_add_filter_neg_card_eq_card _
-    | convert Finset.filter_card_add_filter_neg_card_eq_card (s := KK N f) (fun u => u ∈ U)
     | convert Finset.card_filter_add_card_filter_not (s := KK N f) (fun u => u ∈ U)
   have kernelOutsideFraction_eq_div_lemma_13 {N : ℕ} [NeZero N] (U : Subgroup (ZMod N)ˣ) {f : ℕ} (hf : f ∣ N) :
       rho U f =

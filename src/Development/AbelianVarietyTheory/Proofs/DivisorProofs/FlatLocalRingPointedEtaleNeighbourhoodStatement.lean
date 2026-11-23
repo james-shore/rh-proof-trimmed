@@ -48,4 +48,4 @@ import Mathlib.Topology.Sheaves.Init
 open IsLocalRing GlobalTheory.Henselisation
 
 theorem _root_.GlobalTheory.T.flat_localRing_pointedEtaleNeighbourhood : ∀ (R : Type) [CommRing R] [IsLocalRing R] (i : EtNbhd R), Module.Flat R i.B := by
-  first | exact @GlobalTheory.Henselisation.EtNbhd.flat_B | exact GlobalTheory.Henselisation.EtNbhd.flat_B | (intros; apply GlobalTheory.Henselisation.EtNbhd.flat_B <;> assumption)
+  first | exact @GlobalTheory.Henselisation.EtNbhd.flat_B

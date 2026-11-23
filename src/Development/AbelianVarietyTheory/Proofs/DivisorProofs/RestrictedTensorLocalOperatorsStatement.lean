@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.restricted_tensor_local_operators : ∀ {F : Type}
       (∀ᶠ v in cofinite, φ v = stdInd F κ v) → e (pure f φ) = pure (ei f) fun v => ev v (φ v)) →
     Set.InjOn e (schA F κ : Set ((κ → AF F) → ℂ)) →
     ∀ v, ∀ ψ ∈ SB (κ → Fv F v), ev v ψ = 0 → ψ = 0 := by
-  first | exact @GlobalTheory.EvKer.ker_trivial | exact GlobalTheory.EvKer.ker_trivial | (intros; apply GlobalTheory.EvKer.ker_trivial <;> assumption)
+  first | exact @GlobalTheory.EvKer.ker_trivial

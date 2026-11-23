@@ -77,4 +77,4 @@ theorem _root_.GlobalTheory.T.tensor_irreducible_of_countable_dimension_irreduci
     (∀ N : Submodule ℂ U, (∀ b ∈ SU, ∀ x ∈ N, b x ∈ N) → N = ⊥ ∨ N = ⊤) →
     ∀ N : Submodule ℂ (V ⊗[ℂ] U), (∀ a ∈ SV, ∀ x ∈ N, LinearMap.rTensor U a x ∈ N) →
       (∀ b ∈ SU, ∀ x ∈ N, LinearMap.lTensor V b x ∈ N) → N = ⊥ ∨ N = ⊤ := by
-  first | exact @GlobalTheory.TensIrr.tensor_irreducible | exact GlobalTheory.TensIrr.tensor_irreducible | (intros; apply GlobalTheory.TensIrr.tensor_irreducible <;> assumption)
+  first | exact @GlobalTheory.TensIrr.tensor_irreducible

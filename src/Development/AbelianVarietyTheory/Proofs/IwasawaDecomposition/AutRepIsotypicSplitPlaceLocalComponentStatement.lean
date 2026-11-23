@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.autRep_isotypic_splitPlace_localComponent : ∀ (L
     Function.Injective T → (∀ a, T a ∈ π.S) → GlobalTheory.HeckeFrob.IsLocMap s σ i T →
     ∀ g ∈ π.S, g ∈ ⨆ (T' : {T' : σ.V →ₗ[ℂ] (GAf L n → π.W) // (∀ a, T' a ∈ π.S) ∧ GlobalTheory.HeckeFrob.IsLocMap s σ i T'}),
       LinearMap.range T'.1 := by
-  first | exact @GlobalTheory.HeckeFrob.mem_iSup_range_locMap | exact GlobalTheory.HeckeFrob.mem_iSup_range_locMap | (intros; apply GlobalTheory.HeckeFrob.mem_iSup_range_locMap <;> assumption)
+  first | exact @GlobalTheory.HeckeFrob.mem_iSup_range_locMap

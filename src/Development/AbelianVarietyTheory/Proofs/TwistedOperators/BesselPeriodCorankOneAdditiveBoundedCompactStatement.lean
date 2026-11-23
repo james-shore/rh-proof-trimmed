@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.besselPeriodCorankOne_additive_bounded_compact : �
       (∀ F ∈ contLeft (G.V (.grid D.R.m 0)), ∀ F' ∈ contLeft (G.V (.grid D.R.m 0)), Bplus W M φ (F + F') = Bplus W M φ F + Bplus W M φ F') ∧
       (∀ φ' ∈ contLeft (G.V (.top 0)), ∀ F ∈ contLeft (G.V (.grid D.R.m 0)), Bplus W M (φ + φ') F = Bplus W M φ F + Bplus W M φ' F) ∧
       ∀ F ∈ contLeft (G.V (.grid D.R.m 0)), ∀ K : ℝ, (∀ x ∈ Ω, ‖F x‖ ≤ K) → ‖Bplus W M φ F‖ ≤ C * K := by
-  first | exact @GlobalTheory.BplusLaws.bplus_add_bound | exact GlobalTheory.BplusLaws.bplus_add_bound | (intros; apply GlobalTheory.BplusLaws.bplus_add_bound <;> assumption)
+  first | exact @GlobalTheory.BplusLaws.bplus_add_bound

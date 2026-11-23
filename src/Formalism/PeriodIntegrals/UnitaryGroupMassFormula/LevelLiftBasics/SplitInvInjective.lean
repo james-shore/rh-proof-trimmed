@@ -102,7 +102,7 @@ theorem ιLev_eq (g : Matrix (Fin (2 * r' + k + 1)) (Fin (2 * r' + k + 1)) ℂ) 
     have h1 : i ≤ ((split k i r').symm (Sum.inl a)).val ∧ ((split k i r').symm (Sum.inl a)).val < 2 * r' + k + 1 + i := by rw [split_symm_inl]; omega
     have h2 : i ≤ ((split k i r').symm (Sum.inl a')).val ∧ ((split k i r').symm (Sum.inl a')).val < 2 * r' + k + 1 + i := by rw [split_symm_inl]; omega
     rw [dite_eq_left h1, dite_eq_left h2, fromBlocks_apply₁₁]
-    congr 1 <;> apply Fin.ext <;> simp only [Fin.val_mk, split_symm_inl] <;> omega
+    congr 1 <;> apply Fin.ext <;> simp only [split_symm_inl] <;> omega
   · have ha := a.isLt
     have hb := b'.isLt
     have h1 : i ≤ ((split k i r').symm (Sum.inl a)).val ∧ ((split k i r').symm (Sum.inl a)).val < 2 * r' + k + 1 + i := by rw [split_symm_inl]; omega
@@ -136,7 +136,7 @@ theorem liftVec_eq (v : Fin (2 * r' + k + 1) → ℂ) :
     rw [dite_eq_left h1, Sum.elim_inl]
     congr 1
     apply Fin.ext
-    simp only [Fin.val_mk, split_symm_inl]
+    simp only [split_symm_inl]
     omega
   · have hb := b.isLt
     have h1 : ¬(i ≤ ((split k i r').symm (Sum.inr b)).val ∧ ((split k i r').symm (Sum.inr b)).val < 2 * r' + k + 1 + i) := by rw [split_symm_inr]; split_ifs <;> omega

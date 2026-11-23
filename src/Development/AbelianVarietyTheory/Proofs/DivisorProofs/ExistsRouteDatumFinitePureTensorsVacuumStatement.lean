@@ -72,4 +72,4 @@ theorem _root_.GlobalTheory.T.exists_routeDatum_finite_pureTensors_vacuum : ∀ 
           (Λ : Submodule 𝒪[Fv D.host.F Bs.v₁] (Fin ((G.V (.grid (i + 1) (j + 1))).rank + (G.V (.grid i j)).rank) → Fv D.host.F Bs.v₁)) (c : ℂ),
           Γ.M'.IsLinBar Bs.ψ Bs.τ₁ 1 1 ι ∧
           ∀ Y, ι φ₀ Y = c * (matLat (Fin (G.V (.grid i j)).rank) Λ : Set _).indicator 1 (P.val * Y) := by
-  first | exact @GlobalTheory.SmallDatum.exists_datum_pure_linBar | exact GlobalTheory.SmallDatum.exists_datum_pure_linBar | (intros; apply GlobalTheory.SmallDatum.exists_datum_pure_linBar <;> assumption)
+  first | exact @GlobalTheory.SmallDatum.exists_datum_pure_linBar

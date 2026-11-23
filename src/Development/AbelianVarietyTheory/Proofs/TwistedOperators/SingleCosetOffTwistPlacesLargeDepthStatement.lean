@@ -45,4 +45,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.singleCosetOffTwistPlaces_largeDepth : Big fun ch => OffAt ch := by
-  first | exact @GlobalTheory.RowOneCos.offAt_big | exact GlobalTheory.RowOneCos.offAt_big | (intros; apply GlobalTheory.RowOneCos.offAt_big <;> assumption)
+  first | exact @GlobalTheory.RowOneCos.offAt_big

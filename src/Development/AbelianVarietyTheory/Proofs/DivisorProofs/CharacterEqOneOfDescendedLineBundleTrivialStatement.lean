@@ -56,4 +56,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
 theorem _root_.GlobalTheory.T.character_eq_one_of_descended_lineBundle_trivial : ∀ (K : Type) [Field K] (A A' N T : Over (Sp K)) [GrpObj A] [GrpObj A'] [GrpObj N] (i : N ⟶ A) (q : A ⟶ A') (χ : Γ((N ⊗ T).left, ⊤)ˣ) (M : LB (A' ⊗ T).left) (e : ∀ k, Γ((A ⊗ T).left, (pmap q T).left ⁻¹ᵁ M.U k)ˣ), IsAbelianScheme A → IsMonHom q → IsPullback i (toUnit N) q η[A'] → M.IsLB → IsEquivGen i q χ M e → Triv M → χ = 1 := by
-  first | exact @GlobalTheory.CharKer.character_eq_one_of_triv | exact GlobalTheory.CharKer.character_eq_one_of_triv | (intros; apply GlobalTheory.CharKer.character_eq_one_of_triv <;> assumption)
+  first | exact @GlobalTheory.CharKer.character_eq_one_of_triv

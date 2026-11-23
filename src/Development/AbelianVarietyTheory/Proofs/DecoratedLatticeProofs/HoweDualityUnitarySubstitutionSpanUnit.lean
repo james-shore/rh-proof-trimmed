@@ -127,7 +127,7 @@ def vnRep {a : ℕ} (lam : Unit → DomWeight a) (n : Unit → ℕ) :
     rw [Module.End.mul_apply, vnMap_apply, vnMap_apply, vnMap_apply, (GlobalTheory.T.fockSubstitution_identities Unit a a le_rfl).2.2.2.1]
     congr 2
     refine funext fun _ => ?_
-    first | exact (Matrix.transpose_mul _ _).symm | exact Matrix.transpose_mul _ _
+    first | exact Matrix.transpose_mul _ _
 
 theorem vnRep_apply {a : ℕ} (lam : Unit → DomWeight a) (n : Unit → ℕ) (k : Matrix.unitaryGroup (Fin a) ℂ)
     (F : Vn lam n) : (vnRep lam n k F : PY Unit a) = lft (fun _ => (k : Matrix (Fin a) (Fin a) ℂ)ᵀ) F := rfl

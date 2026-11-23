@@ -44,4 +44,4 @@ open NumberField MeasureTheory Formalism.BasicNotions Formalism.MainNotions.Stan
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.vol_eq_mass_selfDual_rank_ge_two : ∀ D : D7, VolTie D → Conclusion2 D → DefiniteVolumeEqMass D → ∀ (W : HSpace D.host.E) (P Q : ℕ), W.SigOK → (∀ τ, W.sig τ = (P, Q)) → 2 ≤ P + Q → D.vol W = massI D (P + Q) := by
-  first | exact @GlobalTheory.Glob.vol_eq_massI_of_two_le_rank | exact GlobalTheory.Glob.vol_eq_massI_of_two_le_rank | (intros; apply GlobalTheory.Glob.vol_eq_massI_of_two_le_rank <;> assumption)
+  first | exact @GlobalTheory.Glob.vol_eq_massI_of_two_le_rank

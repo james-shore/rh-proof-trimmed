@@ -219,7 +219,7 @@ theorem withBot_eq_one {d : WithBot ℕ∞} (h1 : d ≤ 1) (h0 : ¬ d ≤ 0) : d
       have a0 : ¬ n ≤ 0 := fun h => h0' (by exact_mod_cast h)
       have hn : n = 1 := by omega
       subst hn
-      first | rfl | norm_cast | simp
+      first | rfl
 
 theorem dim_quot_eq_one_iff (hdim : ringKrullDim A = 1) (q : Ideal A) [q.IsPrime] :
     ringKrullDim (A ⧸ q) = 1 ↔ ¬ q.IsMaximal := by
@@ -304,7 +304,7 @@ theorem finite_dimOne (hdim : ringKrullDim A = 1) :
   intro p hp
   have hp' : ¬ p.asIdeal.IsMaximal := (dim_quot_eq_one_iff hdim p.asIdeal).1 hp
   show p.asIdeal ∈ minimalPrimes A
-  simp only [minimalPrimes, Ideal.minimalPrimes, Set.mem_setOf_eq]
+  simp only [minimalPrimes, Set.mem_setOf_eq]
   refine ⟨⟨p.isPrime, bot_le⟩, fun q hq hqp => ?_⟩
   haveI := hq.1
   exact (eq_of_not_max_of_le hdim hp' hqp).le

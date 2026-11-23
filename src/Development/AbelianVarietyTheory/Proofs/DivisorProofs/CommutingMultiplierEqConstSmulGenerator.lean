@@ -123,7 +123,7 @@ theorem commuting_multiplier_eq_const_smul_generator
     rw [e1, map_sum]
     simp only [map_smul, Tc, Module.Basis.constr_basis]
     apply Subtype.ext; apply Subtype.ext
-    simp only [Submodule.coe_sum, Submodule.coe_smul, AddSubmonoidClass.coe_finsetSum,
+    simp only [AddSubmonoidClass.coe_finsetSum,
       SetLike.val_smul, img]
     conv_rhs => rw [← bV.sum_repr f]
 

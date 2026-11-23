@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.uniformisationTorus_mono_and_factor : ∀ (E : Typ
     Mono (GlobalTheory.TorusPart.gtTorus (P.U.gt e) ha h) ∧
     ∀ (X : Type) [AddCommGroup X] [Module.Free ℤ X] [Module.Finite ℤ X] (i : splitTorus (Sp A) X ⟶ G₀), IsMonHom i →
       ∃ ρ : P.D.toPre.X →+ X, i = GlobalTheory.SplitTorus.torusMap _ ρ ≫ GlobalTheory.TorusPart.gtTorus (P.U.gt e) ha h := by
-  first | exact @GlobalTheory.TorusPart.mono_gtTorus_unif_and_factor | exact GlobalTheory.TorusPart.mono_gtTorus_unif_and_factor | (intros; apply GlobalTheory.TorusPart.mono_gtTorus_unif_and_factor <;> assumption)
+  first | exact @GlobalTheory.TorusPart.mono_gtTorus_unif_and_factor

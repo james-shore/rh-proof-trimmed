@@ -95,7 +95,7 @@ theorem lift_exists (c : C) : ∃ τ : E, (c, τ) ∈ NF α := by
   refine ⟨τ, (mem_NF α).2 ?_⟩
   show α c + (Rs R).mkQ τ = 0
   rw [hτ]
-  first | exact add_neg_cancel _ | simp
+  first | exact add_neg_cancel _
 
 def liftN (c : C) : NF α := ⟨(c, (lift_exists α c).choose), (lift_exists α c).choose_spec⟩
 
@@ -128,7 +128,7 @@ def lamG (hu : IsUnit u) : CG α β u hb →ₗ[R] Qt R :=
     (by
       rw [Submodule.span_le, Set.singleton_subset_iff, SetLike.mem_coe, LinearMap.mem_ker]
       simp only [LinearMap.coe_comp, Function.comp_apply, Submodule.coe_subtype, bN, LinearMap.snd_apply,
-        LinearMap.mulLeft_apply, Units.inv_mul, IsUnit.unit_spec]
+        LinearMap.mulLeft_apply]
       exact (mkQ_eq_zero_iff _).2 ⟨1, by simp⟩)
 
 theorem lamG_mk (hu : IsUnit u) (x : NF α) :
@@ -177,7 +177,7 @@ theorem exists_rep (x : NF α₁) : ∃ z : NF α₂, (Submodule.Quotient.mk z :
     rw [mul_sub, map_sub, hl, sub_self]
   obtain ⟨s, hs⟩ := (mkQ_eq_zero_iff _).1 h0
   have hinv : ((hu.unit⁻¹ : Eˣ) : E) * u = 1 := by
-    first | exact hu.val_inv_mul | exact hu.unit.inv_mul | simp
+    first | exact hu.val_inv_mul
   refine ⟨w + s • bN α₂ β₂ u hb₂, ?_, ?_⟩
   · have hp : (Submodule.Quotient.mk (bN α₂ β₂ u hb₂) : CG α₂ β₂ u hb₂) = 0 :=
       (Submodule.Quotient.mk_eq_zero _).2 (Submodule.mem_span_singleton_self _)

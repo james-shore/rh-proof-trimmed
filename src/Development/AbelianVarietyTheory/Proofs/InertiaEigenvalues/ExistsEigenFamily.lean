@@ -124,7 +124,7 @@ theorem exists_eigen_family : ∀ {G V W ι : Type} [inst : Group G] [inst_1 : T
       rw [← Finset.smul_sum, hy _ q.out.2, smul_smul, ← hm _ (q.out⁻¹).2 _ q.out.2, ← Subgroup.coe_mul,
         inv_mul_cancel, Subgroup.coe_one, h1, one_smul]
 
-    simp only [map_smul, map_sum, Finset.sum_apply]
+    simp only [map_smul, map_sum]
     rw [← Finset.smul_sum, Finset.sum_comm, Finset.sum_congr rfl fun q _ => hq q, Finset.sum_const,
       Finset.card_univ, ← Nat.cast_smul_eq_nsmul ℂ, smul_smul, inv_mul_cancel₀ hN, one_smul]
 

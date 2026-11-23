@@ -314,7 +314,7 @@ theorem exists_basis_ker {d : Deco E n ST SG} (hd : d.Ok) (P : ST) (hs : d.at P.
     intro j
     funext a
     by_cases ha : a = i <;> by_cases hj : j = i <;>
-      simp [B₀, t, ha, hj, Matrix.updateRow_apply, Matrix.one_apply, Pi.single_apply, Function.update_apply, eq_comm]
+      simp [B₀, t, ha, hj, Matrix.updateRow_apply, Matrix.one_apply, Pi.single_apply, eq_comm]
   refine ⟨Matrix.GeneralLinearGroup.mkOfDetNeZero _ (hdet' ▸ hT0), hdet', le_antisymm ?_ ?_⟩
   · intro x hx
     obtain ⟨hx1, hx2⟩ := (hd.mem_locP_L P x).1 hx
@@ -499,7 +499,7 @@ theorem pTerm_std : GlobalTheory.IndefiniteRowSideFullHecke.JetSumTable.JetMomen
     zpow_sub₀ hT0, zpow_natCast]
   refine GlobalTheory.ColPeriod.smul_mem_localizationAt_of_le w _ (le_of_eq hscal) ?_
   rw [div_mul_eq_mul_div, mul_inv_cancel_left₀ (pow_ne_zero _ hT0), div_self (zpow_ne_zero _ hT0), one_smul]
-  rw [GlobalTheory.KerT.localization_delAtr_eq_localization_nabAtr hKnown Z.X _ (Z.Pr.T u) _ hTp halc w hTw _ (by first | exact hfullL d' | exact (hfullL d').toIsLattice)]
+  rw [GlobalTheory.KerT.localization_delAtr_eq_localization_nabAtr hKnown Z.X _ (Z.Pr.T u) _ hTp halc w hTw _ (by first | exact hfullL d')]
   exact hG
 
 end GlobalTheory.KerT.PStd

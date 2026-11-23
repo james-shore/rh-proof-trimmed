@@ -48,4 +48,4 @@ open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 
 theorem _root_.GlobalTheory.T.tensor_torsion_add_componentwise : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R → ∀ (D D' : DegData R (maximalIdeal R)) {r : ℕ} (W : Matrix (Fin r) (Fin r) ℤ) (T : Tens D.toPre D'.toPre W) (F : Type) [Field F] [IsAlgClosed F] [Algebra (FractionRing R) F] (N N' : NumD F) (ν : NumOf D.toPre F N) (ν' : NumOf D'.toPre F N') (k : ℕ) (p' q' s' : QkPt D'.toPre F k) (ps qs ss : Fin r → QkPt D.toPre F k), PtRel T ν ν' p' ps → PtRel T ν ν' q' qs → PtRel T ν ν' s' ss → (∀ i, QkAdd (ps i) (qs i) (ss i)) → QkAdd p' q' s' := by
-  first | exact @GlobalTheory.Mum.TensTor.qkAdd_of_components | exact GlobalTheory.Mum.TensTor.qkAdd_of_components | (intros; apply GlobalTheory.Mum.TensTor.qkAdd_of_components <;> assumption)
+  first | exact @GlobalTheory.Mum.TensTor.qkAdd_of_components

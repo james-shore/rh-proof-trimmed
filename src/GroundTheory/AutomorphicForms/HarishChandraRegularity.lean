@@ -175,7 +175,7 @@ theorem laplacian_apply_coe {ι : Type*} [Fintype ι] (bL : Module.Basis ι ℝ 
     (w : h.smoothFuns (F := ℂ)) :
     ((h.laplacian bL w : h.smoothFuns (F := ℂ)) : G → ℂ) =
       ∑ i, h.rightDeriv (h.ofLie (bL i)) (h.rightDeriv (h.ofLie (bL i)) (w : G → ℂ)) := by
-  simp [laplacian, LinearMap.sum_apply, Module.End.mul_apply]
+  simp [laplacian, LinearMap.sum_apply]
 
 theorem exists_tupleOp_laplacian_pow {ι : Type*} [Fintype ι] (bL : Module.Basis ι ℝ h.lieSubalgebra)
     {d : ℕ} (b : Module.Basis (Fin d) ℝ 𝔤) {Ω : Set (EuclideanSpace ℝ (Fin d))} (hΩ : IsOpen Ω)

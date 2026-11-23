@@ -68,9 +68,6 @@ theorem hasSubst_eval_second_zero : MvPowerSeries.HasSubst ![(PowerSeries.X : Po
     fin_cases s
     · first
         | exact PowerSeries.constantCoeff_X
-        | exact MvPowerSeries.constantCoeff_X ()
-        | (simp [PowerSeries.X]; done)
-        | rfl
     · simp
 
 theorem eval_second_zero_eq_algHom (h : MvPowerSeries (Fin 2) K) :
@@ -135,7 +132,7 @@ private theorem coeff_ev0_eq_coeff_single_zero (h : MvPowerSeries (Fin 2) K) (k 
     simp only [Matrix.cons_val_zero, hc, if_true, smul_eq_mul, mul_one]
   · intro d hd
     rw [Finsupp.prod_fintype _ _ (by simp), Fin.prod_univ_two]
-    simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
+    simp only [Matrix.cons_val_zero, Matrix.cons_val_one]
     by_cases h1 : d 1 = 0
     · have hd0 : k ≠ d 0 := by
         intro hk
@@ -169,7 +166,7 @@ theorem coeff_evalYZero (h : MvPowerSeries (Fin 2) K) (k : ℕ) :
     simp only [Matrix.cons_val_zero, hc, if_true, smul_eq_mul, mul_one]
   · intro d hd
     rw [Finsupp.prod_fintype _ _ (by simp), Fin.prod_univ_two]
-    simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
+    simp only [Matrix.cons_val_zero, Matrix.cons_val_one]
     by_cases h1 : d 1 = 0
     · have hd0 : k ≠ d 0 := by
         intro hk
@@ -287,8 +284,7 @@ end
 theorem wave_operator_kills : WaveKills := by
   intro K _ _ f
   rw [pderiv_zero_parallelogram_defect, pderiv_one_parallelogram_defect]
-  simp only [two_mul, map_add (f := _), map_sub, map_neg, pd_atS, pderiv_zero_series_at_difference, pderiv_one_series_at_difference, partialDeriv_inVar_self,
-    pderiv_at_variable_of_ne (show (1 : Fin 2) ≠ 0 by decide), pderiv_at_variable_of_ne (show (0 : Fin 2) ≠ 1 by decide)]
+  simp only [two_mul, map_add (f := _), map_sub, pd_atS, pderiv_zero_series_at_difference, pderiv_one_series_at_difference, partialDeriv_inVar_self]
   ring
 
 theorem parallelogram_cauchy_equation : ParCauchy := by

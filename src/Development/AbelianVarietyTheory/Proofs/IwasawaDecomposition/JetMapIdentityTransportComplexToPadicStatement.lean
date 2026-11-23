@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.jetMap_identity_transport_complex_to_padic : ∀ (
     (hJ : ∀ m : DVar D.what₂.Tau a b →₀ ℕ, (∀ τ, ∑ β, ∑ α, m (τ, β, α) = n τ) → ∃ x : Qbar, (x : ℂ) = J m ∧ lam x = J' m)
     (hP : ∀ e ∈ P.support, ∀ τ, ∑ α, ∑ s, e (τ, α, s) = n τ)
     (h : MvPolynomial.map (algebraMap Qbar ℂ) A = MvPolynomial.C (r : ℂ) * jetMap J (fun _ => 0) (MvPolynomial.map (algebraMap Qbar ℂ) P)), MvPolynomial.map lam A = MvPolynomial.C (lam r) * jetMap J' (fun _ => 0) (MvPolynomial.map lam P) := by
-  first | exact @GlobalTheory.jetMapTransport | exact GlobalTheory.jetMapTransport | (intros; apply GlobalTheory.jetMapTransport <;> assumption)
+  first | exact @GlobalTheory.jetMapTransport

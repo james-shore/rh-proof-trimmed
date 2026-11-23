@@ -56,4 +56,4 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 theorem _root_.GlobalTheory.T.continuous_adicCompletion_equiv_uniformiser : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] (v : HeightOneSpectrum (𝓞 F))
     (w : HeightOneSpectrum (𝓞 E)) (i : v.adicCompletion F ≃+* w.adicCompletion E), Continuous i →
     ∀ ϖ : v.adicCompletion F, Valued.v ϖ = WithZero.exp (-1 : ℤ) → Valued.v (i ϖ) = WithZero.exp (-1 : ℤ) := by
-  first | exact @GlobalTheory.UnifMap.unif_to_unif | exact GlobalTheory.UnifMap.unif_to_unif | (intros; apply GlobalTheory.UnifMap.unif_to_unif <;> assumption)
+  first | exact @GlobalTheory.UnifMap.unif_to_unif

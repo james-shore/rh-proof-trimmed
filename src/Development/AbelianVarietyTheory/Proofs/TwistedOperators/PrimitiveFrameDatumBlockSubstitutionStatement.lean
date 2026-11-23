@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.primitiveFrameDatum_blockSubstitution : ∀ {k : T
           (fun Y => Ψ (Y * fromBlocks (invT M₁).val 0 0 M₂.val)) X =
         (ν (gdet M₁) : ℂ) * (((ν (gdet M₂))⁻¹ : ℂˣ) : ℂ) *
           phiA μ σ ν ϖ e (blockLat ϖ e (Assignment.one.block D₁ D₂)) Ψ (X * fromBlocks M₁.val 0 0 (invT M₂).val) := by
-  first | exact @GlobalTheory.FrameSubst.phiA_blockSubst | exact GlobalTheory.FrameSubst.phiA_blockSubst | (intros; apply GlobalTheory.FrameSubst.phiA_blockSubst <;> assumption)
+  first | exact @GlobalTheory.FrameSubst.phiA_blockSubst

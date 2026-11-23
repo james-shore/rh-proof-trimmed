@@ -92,4 +92,4 @@ theorem _root_.GlobalTheory.T.heckeIsogeny_appellHumbertFrame_pull_eq_transition
       fr' j z = χl' a * Complex.exp (Real.pi * hermForm Hm' z a + Real.pi / 2 * hermForm Hm' a a) * fr' j (z + a))) →
   ∀ w i j, ⊤ ≤ (e' (h w)).left ⁻¹ᵁ Xo.univ.t.PP.L.U i → ⊤ ≤ (e ((p : ℂ) • w)).left ⁻¹ᵁ Xo.univ.t.PP.L.U j →
     fr' i (h w) = b i j (e w) * fr j ((p : ℂ) • w) := by
-  first | exact @GlobalTheory.HeckeEx.frame_pull_eq_transition_mul | exact GlobalTheory.HeckeEx.frame_pull_eq_transition_mul | (intros; apply GlobalTheory.HeckeEx.frame_pull_eq_transition_mul <;> assumption)
+  first | exact @GlobalTheory.HeckeEx.frame_pull_eq_transition_mul

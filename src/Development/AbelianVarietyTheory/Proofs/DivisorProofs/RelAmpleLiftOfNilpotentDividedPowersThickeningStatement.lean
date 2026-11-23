@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.relAmple_lift_of_nilpotentDividedPowers_thickening
     ∀ (X : Over (Sp R)) (X₀ : Over (Sp R₀)) (β : X₀.left ⟶ X.left), IsPullback β X₀.hom X.hom (spMap π) →
       LocallyOfFiniteType X.hom → ∀ (L : LB X.left) (L₀ : LB X₀.left), L.IsLB → L₀.IsLB → LBIso L₀ (L.pull β) →
       Out.RelAmple X₀ L₀ → Out.RelAmple X L := by
-  first | exact @GlobalTheory.AmpleNilThickening.relAmple_of_isNilDP | exact GlobalTheory.AmpleNilThickening.relAmple_of_isNilDP | (intros; apply GlobalTheory.AmpleNilThickening.relAmple_of_isNilDP <;> assumption)
+  first | exact @GlobalTheory.AmpleNilThickening.relAmple_of_isNilDP

@@ -79,7 +79,7 @@ theorem recAt_of_gramAt_alt (p : PtAt ex Csz) (i : Fin D.R.m) (hp : p.PointCondi
       exact h2
     rw [e]; exact hxW
   have key := GlobalTheory.T.covolumePerRank_le_neg_slope_scaled D.what₂.LL _ (nrmR p.R.toRealDat i) hg.1 (latGood p.R.toRealDat p.F.lv2 i) _ (show 0 < (p.S false).dW i from hD.symm ▸ hpos)
-    (p.R.toRealDat.bL p.F.lv2 false i) hli hsp ((p.S false).XW i) _ hs0 hs1 hU hN (by first | exact hp.prim.mLat i | exact (hp.prim.mLat i).toIsLattice)
+    (p.R.toRealDat.bL p.F.lv2 false i) hli hsp ((p.S false).XW i) _ hs0 hs1 hU hN (by first | exact hp.prim.mLat i)
   unfold RecAt
   rw [← hD]
   exact key

@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.isClosed_of_local_ideal_point_property : ∀ (S : 
      ∀ (R' : Type) [CommRing R'] (f : Γ(S, U) →+* R'), P R' (spMap f ≫ hU.fromSpec) ↔ K ≤ RingHom.ker f) →
   ∃ (Z : Scheme.{0}) (i : Z ⟶ S), IsClosedImmersion i ∧
     ∀ (R' : Type) [CommRing R'] (x : Sp R' ⟶ S), (∃ y : Sp R' ⟶ Z, y ≫ i = x) ↔ P R' x := by
-  first | exact @GlobalTheory.PtClosed.closed_of_points | exact GlobalTheory.PtClosed.closed_of_points | (intros; apply GlobalTheory.PtClosed.closed_of_points <;> assumption)
+  first | exact @GlobalTheory.PtClosed.closed_of_points

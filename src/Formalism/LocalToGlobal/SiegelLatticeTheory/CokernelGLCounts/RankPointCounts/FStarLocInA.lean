@@ -61,7 +61,6 @@ variable (e : V ≃ₗ[E] V) (hiso : ∀ v w, H.h (e v) (e w) = H.h v w)
 
 theorem locInA_osmul (o : M.L.O) (x : V) : e (o • x) = o • e x := by
   first
-    | exact map_smul_of_tower e o x
     | exact e.map_smul (o : E) x
 
 def eO : V →ₗ[M.L.O] V where
@@ -100,7 +99,7 @@ theorem locInA_map_eq : Lam' = abelian₂.map (eO e) := by
   rw [hL, Submodule.mem_map]
   constructor
   · intro hx
-    exact ⟨e.symm x, hx, (by first | exact e.apply_symm_apply x | simp [eO])⟩
+    exact ⟨e.symm x, hx, (by first | exact e.apply_symm_apply x)⟩
   · rintro ⟨y, hy, rfl⟩
     show e.symm (e y) ∈ abelian₂
     rwa [LinearEquiv.symm_apply_apply]

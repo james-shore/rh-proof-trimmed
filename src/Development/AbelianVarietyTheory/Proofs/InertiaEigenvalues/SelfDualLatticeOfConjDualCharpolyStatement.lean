@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.TripleGal Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions Formalism.MainNotions.N Formalism.MainNotions.BlochKatoReduction Formalism.MainNotions.BlochKatoReduction.Gen Formalism.ConjugateSelfDual ReciprocityTheory.Gal NumberField IsDedekindDomain Polynomial
 
 theorem _root_.GlobalTheory.T.selfDual_lattice_of_conjDualCharpoly : ∀ (D : D7) (i : D.ntw.Tw) (s : D.ntw.Sig i), ValuationStabilityAtRing D.ntw i s → CharDual i s → SelfDual i s := by
-  first | exact @GlobalTheory.LatticeSelfDual.selfDual_of_charDual | exact GlobalTheory.LatticeSelfDual.selfDual_of_charDual | (intros; apply GlobalTheory.LatticeSelfDual.selfDual_of_charDual <;> assumption)
+  first | exact @GlobalTheory.LatticeSelfDual.selfDual_of_charDual

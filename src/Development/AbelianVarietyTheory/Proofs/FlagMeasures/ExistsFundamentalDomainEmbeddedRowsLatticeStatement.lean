@@ -48,4 +48,3 @@ theorem _root_.GlobalTheory.T.exists_fundamentalDomain_embeddedRowsLattice : ∀
   intro E _ _ hE k Λ₀ Λ' h₀ h'
   first
   | exact GlobalTheory.RowDomain.rowDomain E hE k Λ₀ Λ' h₀ h'
-  | exact GlobalTheory.RowDomain.rowDomain E hE k Λ₀ Λ' h₀.toIsLattice h'.toIsLattice

@@ -42,4 +42,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.L2.D
 open GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.OntoChain GlobalTheory.RealIndexBound GlobalTheory.OnTies
 
 theorem _root_.GlobalTheory.T.char_R2_of_exAt_of_singleIndexPlacesTwisted : ∀ (D : D7) (L : SizeData₂ D) (hT : GatTies D) (Gi : Formalism.MainNotions.G.Inst D L) (Gl : Formalism.MainNotions.G.LatInst D) (Kc : Formalism.MainNotions.G.Consts) (Y : DivX D) (cX : ExtraC) (ex : Extra D L hT Gi Gl Kc Y cX) (Csz : ℝ) (p : PtAt ex Csz), p.R.toRealDat.ExAt → SingleIndexPlacesAreTwisted p → (R2 p).Char (F2 p) := by
-  first | exact @GlobalTheory.BigOn.splitPartRealisationWithScalars_char_of_weak | exact GlobalTheory.BigOn.splitPartRealisationWithScalars_char_of_weak | (intros; apply GlobalTheory.BigOn.splitPartRealisationWithScalars_char_of_weak <;> assumption)
+  first | exact @GlobalTheory.BigOn.splitPartRealisationWithScalars_char_of_weak

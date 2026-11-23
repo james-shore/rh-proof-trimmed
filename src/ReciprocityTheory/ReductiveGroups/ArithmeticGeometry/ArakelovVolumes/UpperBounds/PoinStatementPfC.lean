@@ -122,14 +122,10 @@ theorem isOpen_Bset (X : Data E r) (x : Frame X.Ψ r) (ρ : ℝ) : IsOpen (Bset 
     · have hmat : Continuous fun y : Frame X.Ψ r => mat y τ := by
         first
           | exact continuous_apply τ
-          | (unfold mat; exact continuous_apply τ)
-          | fun_prop
       exact isOpen_ne_fun hmat.matrix_det continuous_const
     · have hmat : Continuous fun y : Frame X.Ψ r => mat y τ := by
         first
           | exact continuous_apply τ
-          | (unfold mat; exact continuous_apply τ)
-          | fun_prop
       have hdm : Continuous fun y : Frame X.Ψ r => dmin X.Gm y τ i := by
         unfold dmin lminor
         exact ((gram_continuous_comp τ.1 X.Gm hmat).matrix_submatrix _ _).matrix_det
@@ -202,7 +198,7 @@ private theorem transpose_mul_mul_map_cc_eq_of_isUStab' {γ : GL (Fin r) E} {G :
     by_cases hb : b = q
     · subst hb
       simp [cc]
-    · simp [cc, hb, Pi.single_apply]
+    · simp [cc, hb]
   have hv : ∀ (j a : Fin r), ((γ : Matrix (Fin r) (Fin r) E) *ᵥ (Pi.single j (1 : E) : Fin r → E)) a =
       (γ : Matrix (Fin r) (Fin r) E) a j := by
     intro j a
@@ -263,8 +259,6 @@ private theorem differentiable_lact_upper_bounds (X : Data E r) (γ : GL (Fin r)
   simp only [lact, mat, Matrix.mul_apply, Matrix.of_apply]
   first
     | fun_prop
-    | exact Differentiable.sum fun k _ => ((differentiable_apply b).comp
-        ((differentiable_apply k).comp (differentiable_apply τ))).const_mul _
 
 theorem key_int (X : Data E r) (la : Wt X.Ψ r) (W : Frame X.Ψ r → ℝ≥0∞) (hW : IsMetricW X la W)
     {c : ℝ} (hc : 0 < c) (hcW : ∀ x ∈ X.dom, ENNReal.ofReal (c * Real.exp (-phla X la x)) ≤ W x)

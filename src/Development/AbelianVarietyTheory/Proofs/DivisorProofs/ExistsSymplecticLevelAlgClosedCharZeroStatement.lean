@@ -58,4 +58,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_symplecticLevel_algClosed_charZero : ∀ (C : Type) [Field C] [IsAlgClosed C] [CharZero C] (P : PolAV (Sp C)) (k : ℕ), 1 ≤ k → ∃ ζ : Cˣ, Nonempty (Out.Level P k (unitOn ζ)) := by
-  first | exact @GlobalTheory.MBLow.exists_level_algClosed_charZero | exact GlobalTheory.MBLow.exists_level_algClosed_charZero | (intros; apply GlobalTheory.MBLow.exists_level_algClosed_charZero <;> assumption)
+  first | exact @GlobalTheory.MBLow.exists_level_algClosed_charZero

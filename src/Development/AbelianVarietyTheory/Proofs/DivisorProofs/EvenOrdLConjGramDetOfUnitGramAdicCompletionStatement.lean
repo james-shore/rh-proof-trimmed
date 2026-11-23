@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.even_ordL_conjGramDet_of_unit_gram_adicCompletion 
     (c : Module.Basis κ (w.adicCompletion E) V),
     Valued.v (Matrix.of fun i j => ∑ k, σ ((c i : Fin n → w.adicCompletion E) k) * (c j : Fin n → w.adicCompletion E) k).det = 1 →
     (-1 : ℂ) ^ ordL (Matrix.of fun i j => ∑ k, σ ((b i : Fin n → w.adicCompletion E) k) * (b j : Fin n → w.adicCompletion E) k).det = 1 := by
-  first | exact @GlobalTheory.GramParity.gram_det_parity | exact GlobalTheory.GramParity.gram_det_parity | (intros; apply GlobalTheory.GramParity.gram_det_parity <;> assumption)
+  first | exact @GlobalTheory.GramParity.gram_det_parity

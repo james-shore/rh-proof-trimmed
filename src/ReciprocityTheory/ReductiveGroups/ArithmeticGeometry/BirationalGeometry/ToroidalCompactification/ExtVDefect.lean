@@ -121,8 +121,8 @@ theorem exists_defect (hL : L.IsLB) (hL' : L'.IsLB) (w : LB.Iso L' (L.pull F)) (
         rw [e, Category.assoc, Category.assoc, hc k]
       simp only [hW]
       apply Additive.ofMul.injective
-      simp only [ofMul_mul, ofMul_inv, ofMul_prod, ofMul_zpow, inv_zpow', Finset.sum_add_distrib,
-        smul_add, smul_neg, Finset.sum_neg_distrib, smul_eq_mul, neg_one_mul, neg_smul]
+      simp only [ofMul_mul, ofMul_inv, ofMul_prod, ofMul_zpow, Finset.sum_add_distrib,
+        smul_add, smul_neg, Finset.sum_neg_distrib]
       abel)
   refine ⟨s, fun Z r z p q hp hq => ?_⟩
   have hz : r z ∈ O (p, q) := (memO (p, q) (r z)).2 ⟨fun k => by rw [← pt]; exact hp k, hq⟩

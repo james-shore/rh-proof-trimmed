@@ -66,7 +66,7 @@ theorem cxHessian_zero {D : ℕ} (z : Fin D → ℂ) : cxHessian (fun _ => (0 : 
     rw [h1]
     exact fderiv_const_apply 0
   ext a b
-  simp [cxHessian, h]
+  simp [cxHessian]
 
 theorem sheetDensity_update_zero {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
     (P : Ideal (MRing ι)) {e : ℕ} (φ : Fin e → ((Σ k, ι k) → ℂ) → ℝ) (j : Fin e)

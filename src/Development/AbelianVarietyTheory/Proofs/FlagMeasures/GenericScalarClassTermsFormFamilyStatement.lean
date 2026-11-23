@@ -45,4 +45,4 @@ open scoped Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.genericScalarClassTerms_formFamily : GlobalTheory.SnFam.FamGen := by
-  first | exact @GlobalTheory.SnFamGenAll.famGen | exact GlobalTheory.SnFamGenAll.famGen | (intros; apply GlobalTheory.SnFamGenAll.famGen <;> assumption)
+  first | exact @GlobalTheory.SnFamGenAll.famGen

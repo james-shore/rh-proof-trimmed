@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.classSum_inner_eq_sum_vectorThetaLifts : ∀ {D : 
     (∀ h w, inner ℂ (c.ext (H.e z₂) h) w = GlobalTheory.AdelicScalar.upLift R i ω (GlobalTheory.IndefiniteRowSideFullHecke.TwistedLevelValues.ptAt R i σ B f (io (PiTensorProduct.tprod ℂ v) w)) (U₂ fun ρ => v ρ) h) →
     ∀ {ι : Type} [Fintype ι] (b : OrthonormalBasis ι ℂ c.W),
       inner ℂ z₁ z₂ = ∑ k, GlobalTheory.AdelicScalar.l2 (R.νV i A.μ0) (R.fdV i A.μ0) (GlobalTheory.AdelicScalar.upLift R i ω (GlobalTheory.IndefiniteRowSideFullHecke.TwistedLevelValues.ptAt R i σ B f (io (PiTensorProduct.tprod ℂ v) (b k))) (U₁ fun ρ => v ρ)) (GlobalTheory.AdelicScalar.upLift R i ω (GlobalTheory.IndefiniteRowSideFullHecke.TwistedLevelValues.ptAt R i σ B f (io (PiTensorProduct.tprod ℂ v) (b k))) (U₂ fun ρ => v ρ)) := by
-  first | exact @GlobalTheory.LiftGram.inner_eq_sum_upLift | exact GlobalTheory.LiftGram.inner_eq_sum_upLift | (intros; apply GlobalTheory.LiftGram.inner_eq_sum_upLift <;> assumption)
+  first | exact @GlobalTheory.LiftGram.inner_eq_sum_upLift

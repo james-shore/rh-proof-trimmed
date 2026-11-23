@@ -49,4 +49,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization GlobalTheory.HeckeTwo
 
 theorem _root_.GlobalTheory.T.isSmoothHolomorphicInSigmaFamily_of_sigma_only : ∀ (F : Type) [Field F] [NumberField F] (a : ℂ → ℂ), DifferentiableOn ℂ a GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.halfPlane → GlobalTheory.HeckeTwo.IsGood (fun σ (_ : GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.Emb F → ℂ) => a σ) := by
-  first | exact @GlobalTheory.HeckeTwo.goodConst | exact GlobalTheory.HeckeTwo.goodConst | (intros; apply GlobalTheory.HeckeTwo.goodConst <;> assumption)
+  first | exact @GlobalTheory.HeckeTwo.goodConst

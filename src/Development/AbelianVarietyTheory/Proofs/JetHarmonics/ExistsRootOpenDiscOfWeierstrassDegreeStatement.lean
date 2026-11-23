@@ -48,4 +48,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.ConvSer
 
 theorem _root_.GlobalTheory.T.exists_root_openDisc_of_weierstrassDegree : ∀ (K : Type) [NormedField K] [IsUltrametricDist K] [CompleteSpace K] [IsAlgClosed K] (h : PowerSeries K) (d : ℕ), 0 < d → Intg h → ‖PowerSeries.coeff d h‖ = 1 → (∀ k < d, ‖PowerSeries.coeff k h‖ < 1) → ∃ x : K, ‖x‖ < 1 ∧ ev1 h x = 0 := by
-  first | exact @GlobalTheory.ConvSer.exists_root_of_weierstrassDegree | exact GlobalTheory.ConvSer.exists_root_of_weierstrassDegree | (intros; apply GlobalTheory.ConvSer.exists_root_of_weierstrassDegree <;> assumption)
+  first | exact @GlobalTheory.ConvSer.exists_root_of_weierstrassDegree

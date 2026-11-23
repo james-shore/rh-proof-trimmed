@@ -350,7 +350,6 @@ private theorem commute_kap_diagonal {P : M.Par} (f : M.Ty P → ℂ) (v : M.Ty 
   have hk : MA.kap P (MA.DQ P) f = Matrix.diagonal fun π => algebraMap ℂ (MA.DQ P).Pr (f π) := by
     first
     | rfl
-    | (ext i j; simp [MA.kap, Matrix.diagonal_apply])
   rw [hk]
   show Matrix.diagonal _ * Matrix.diagonal v = Matrix.diagonal v * Matrix.diagonal _
   rw [Matrix.diagonal_mul_diagonal, Matrix.diagonal_mul_diagonal]
@@ -365,7 +364,6 @@ private theorem rai_kap_SS_DQ {P : M.Par} : Rai (MA.kap P (MA.DQ P)) (MA.SS P (M
     intro h
     first
     | rfl
-    | (ext i j; simp [MA.kap, Matrix.diagonal_apply])
   rw [hk, hk]
   ext π' π
   rw [Matrix.diagonal_mul, Matrix.mul_diagonal]
@@ -425,11 +423,6 @@ theorem quadratic_shift_identity : GQSS := by
   have hRm : Rai (MA.kap P (MA.DQ P)) (MA.SS P (MA.DQ P)) := rai_kap_SS_DQ
   have hRSm : RaiS (MA.kap P (MA.DQ P)) (fun l => star (MA.SS P (MA.DQ P) l)) := by
     first
-    | exact fun l f g h => Formalism.FourierDecayAlt.P.MAx1.ModelAlgebraRelations.Ss_shift (P := P) (D := MA.DQ P) l f g h
-    | exact fun l f g h => Formalism.FourierDecayAlt.P.MAx1.ModelAlgebraRelations.Ss_shift P (MA.DQ P) l f g h
-    | exact fun l f g h => Formalism.FourierDecayAlt.P.MAx1.ModelAlgebraRelations.Ss_shift P l f g h
-    | exact raiS_star_of_rai_of_star_comm _ _ hRm (fun f => Formalism.FourierDecayAlt.P.MAx1.D5.star_kap (P := P) (D := MA.DQ P) f)
-    | exact raiS_star_of_rai_of_star_comm _ _ hRm (fun f => Formalism.FourierDecayAlt.P.MAx1.D5.star_kap P (MA.DQ P) f)
     | exact raiS_star_of_rai_of_star_comm _ _ hRm (fun f => by
         have hk : ∀ h : M.Ty P → ℂ,
             MA.kap P (MA.DQ P) h = Matrix.diagonal fun π => algebraMap ℂ (MA.DQ P).Pr (h π) := fun h => rfl
@@ -437,10 +430,7 @@ theorem quadratic_shift_identity : GQSS := by
         congr 1
         funext π
         first
-        | (rw [starRingEnd_apply, algebraMap_star_comm])
-        | exact (algebraMap_star_comm (f π)).symm
-        | simp [Algebra.algebraMap_eq_smul_one, star_smul]
-        | (simp only [Algebra.algebraMap_eq_smul_one, star_smul, star_one]; rfl))
+        | exact (algebraMap_star_comm (f π)).symm)
   refine ⟨?_, ?_⟩
   · have e1 := ss_expand d.κ d.SS hRel.2.2.2.1 hP (fun Y => d.QQ Y 1 0)
       (fun Y => d.L.GG * d.x Y * d.L.l0 Y) hdB (fun Y => rfl) hl

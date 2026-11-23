@@ -65,7 +65,7 @@ def rightTranslation : Representation ℂ G (G → W) where
     simp [LinearMap.funLeft_apply]
   map_mul' g h := by
     ext f x
-    simp [LinearMap.funLeft_apply, Module.End.mul_apply, mul_assoc]
+    simp [LinearMap.funLeft_apply, mul_assoc]
 
 @[simp]
 theorem rightTranslation_apply (g : G) (f : G → W) (x : G) :
@@ -170,7 +170,7 @@ def frobeniusInv (hπ : IsSmooth π) (φ : Representation.IntertwiningMap (π.co
       simp only [map_mul, Module.End.mul_apply]
       exact Representation.IntertwiningMap.isIntertwining _ _ φ h (π g v),
     stabilizerOf π v, hπ v, fun k hk g => by
-      simp [map_mul, Module.End.mul_apply, mem_stabilizerOf.1 hk]⟩
+      simp [map_mul, mem_stabilizerOf.1 hk]⟩
   map_add' v w := Subtype.ext (funext fun g => by simp)
   map_smul' c v := Subtype.ext (funext fun g => by simp)
   isIntertwining' g := LinearMap.ext fun v => Subtype.ext (funext fun x => by

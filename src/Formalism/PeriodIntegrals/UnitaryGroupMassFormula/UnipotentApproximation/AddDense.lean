@@ -97,9 +97,6 @@ theorem exists_den_local (v : HeightOneSpectrum R) (y : v.adicCompletion K) :
   refine ⟨b, nonZeroDivisors.ne_zero hb, ?_⟩
   first
   | (rw [← IsScalarTower.algebraMap_apply, mul_comm]; exact h)
-  | (rw [mul_comm, ← IsScalarTower.algebraMap_apply]; exact h)
-  | (simpa [mul_comm, ← IsScalarTower.algebraMap_apply] using h)
-  | (convert h using 1; rw [mul_comm, IsScalarTower.algebraMap_apply R K]; rfl)
 
 theorem exists_den (b : FiniteAdeleRing R K) :
     ∃ r : R, r ≠ 0 ∧ IsInt (algebraMap R (FiniteAdeleRing R K) r * b) := by

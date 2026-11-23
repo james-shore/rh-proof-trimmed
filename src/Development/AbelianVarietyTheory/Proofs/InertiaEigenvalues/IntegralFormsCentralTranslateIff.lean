@@ -101,7 +101,7 @@ theorem coefLatFn_le {K : Type} [Field K] [NumberField K] (σ : K →+* ℂ) (em
   refine Submodule.span_le.2 ?_
   rintro _ ⟨F, hF, rfl⟩
   have h3 : coefFn σ lam (((N : K) ^ GlobalTheory.NabScale.scaleExp lam • F : VV K lam) : Pol K D.what₂.Tau n) ∈ coefLatFn σ emb O lam M' :=
-    Submodule.subset_span ⟨_, nabAtr_scale emb lam N (by first | exact hM.toIsLattice | exact hM) h1 h2 F hF, rfl⟩
+    Submodule.subset_span ⟨_, nabAtr_scale emb lam N (by first | exact hM) h1 h2 F hF, rfl⟩
   have h4 := Submodule.smul_mem _ ((⟨_, hO⟩ : O) ^ GlobalTheory.NabScale.scaleExp lam) h3
   have h0 : (N : ℂ) ≠ 0 := Nat.cast_ne_zero.2 hN
   rw [SetLike.mem_coe]
@@ -132,9 +132,9 @@ theorem coefLat_mul {B : Base S T} (hF : B.F.Good) {K : Type} [Field K] [NumberF
       let g : (Fin S.rank → D.host.E) →ₗ[D.host.E] Module.Dual D.host.E W :=
         { toFun := fun x => { toFun := fun y => ∑ i, ∑ j, x i * S.gram i j * y.1 j
                               map_add' := by intros; simp [mul_add, Finset.sum_add_distrib]
-                              map_smul' := by intros; simp [mul_comm, mul_left_comm, mul_assoc, Finset.mul_sum] }
+                              map_smul' := by intros; simp [mul_left_comm, mul_assoc, Finset.mul_sum] }
           map_add' := by intros; ext y; simp [add_mul, Finset.sum_add_distrib]
-          map_smul' := by intros; ext y; simp [mul_comm, mul_left_comm, mul_assoc, Finset.mul_sum] }
+          map_smul' := by intros; ext y; simp [mul_assoc, Finset.mul_sum] }
       have hdim : Module.finrank D.host.E (Module.Dual D.host.E W) < Module.finrank D.host.E (Fin S.rank → D.host.E) := by
         rw [Subspace.dual_finrank_eq]
         exact Submodule.finrank_lt hW
@@ -164,7 +164,7 @@ theorem coefLat_mul {B : Base S T} (hF : B.F.Good) {K : Type} [Field K] [NumberF
         simp only [map_zero, Pi.smul_apply, smul_eq_mul]
         calc
           0 = r * (∑ i, ∑ j, star (y i) * S.gram i j * v j) := by rw [hzy, mul_zero]
-          _ = ∑ i, ∑ j, star (y i) * S.gram i j * (r * v j) := by simp [Finset.mul_sum, mul_comm, mul_left_comm, mul_assoc]
+          _ = ∑ i, ∑ j, star (y i) * S.gram i j * (r * v j) := by simp [Finset.mul_sum, mul_comm, mul_assoc]
       obtain ⟨i, hi⟩ : ∃ i, v i ≠ 0 := by
         by_contra hn
         apply hv0

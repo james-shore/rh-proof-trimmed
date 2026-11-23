@@ -67,4 +67,4 @@ theorem _root_.GlobalTheory.T.stoneVonNeumann_schwartzBruhat_transverseLagrangia
       Set.BijOn ι (GlobalTheory.WeilM.SB (κ → k) : Set _) (GlobalTheory.WeilM.SB (Matrix (Fin n) (Fin d) k) : Set _) ∧
       (∀ Y, ∀ φ ∈ GlobalTheory.WeilM.SB (κ → k), ι (GlobalTheory.WeilM.schr ψ0 (wT Y) φ) = fun Y' => ι φ (Y' + Y)) ∧
       (∀ z, ∀ φ ∈ GlobalTheory.WeilM.SB (κ → k), ι (GlobalTheory.WeilM.schr ψ0 (wM z) φ) = fun Y' => ψ0 (∑ i, ∑ j, Y' i j * z i j) * ι φ Y') := by
-  first | exact @GlobalTheory.StoneVN.intertwiner_matrix | exact GlobalTheory.StoneVN.intertwiner_matrix | (intros; apply GlobalTheory.StoneVN.intertwiner_matrix <;> assumption)
+  first | exact @GlobalTheory.StoneVN.intertwiner_matrix

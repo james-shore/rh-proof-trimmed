@@ -57,7 +57,7 @@ open GlobalTheory.Mum.Two.HomConst
 
 theorem map_fstG {R : Type} [CommRing R] (I : Ideal R) (e : ℕ) (G : Over (Sp R)) (ψ : G ⟶ G) :
     ((Over.pullback (thick R I e)).map ψ).left ≫ (fstG I e G).left = (fstG I e G).left ≫ ψ.left := by
-  simp [fstG, pullback.lift_fst]
+  simp [fstG]
 
 end GlobalTheory.Mum.Two.PullLin
 

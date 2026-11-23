@@ -52,4 +52,4 @@ open Formalism.L2.DIV (kP Pl LevelP)
 
 
 theorem _root_.GlobalTheory.T.level_le_stabilizer_selfDual_lattice_frame : ∀ (D : D7) (V : HSp D) (β : GL (Fin V.rank) (Lev.EAf D)) (Λ : Submodule (𝓞 D.host.E) (Fin V.rank → D.host.E)) (L : Formalism.L2.DIV.LevDat D.host.E ℂ V.rank), Formalism.IndefR.Lev.IsBaseFrame V β Λ 1 → Formalism.L2.DIV.lev D.sp.cm V.gram β L ≤ GlobalTheory.Mass.Levels.latLev V := by
-  first | exact @GlobalTheory.LevelInLatStab.lev_le_latLev | exact GlobalTheory.LevelInLatStab.lev_le_latLev | (intros; apply GlobalTheory.LevelInLatStab.lev_le_latLev <;> assumption)
+  first | exact @GlobalTheory.LevelInLatStab.lev_le_latLev

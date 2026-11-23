@@ -127,7 +127,7 @@ lemma _root_.GlobalTheory.WpFam.hasSum_rows_G2_add_weierstrassP (τ : ℍ) (z : 
   rw [← (Equiv.neg ℤ).tsum_eq]
   congr 1
   funext m
-  simp only [Equiv.neg_apply, Int.cast_neg, Function.comp_apply]
+  simp only [Equiv.neg_apply, Int.cast_neg]
   ring
 
 end GlobalTheory.WpFam

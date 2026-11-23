@@ -186,7 +186,7 @@ theorem sc_mul (s t : S) : sc s ≫ sc t = sc (s * t) := by
   show spMap (epsScaleR s) ≫ spMap (epsScaleR t) = spMap (epsScaleR (s * t))
   rw [← spMap_comp]
   congr 1
-  ext r <;> simp [epsScaleR, _root_.mul_assoc]
+  ext r <;> simp [epsScaleR]
 
 theorem isLieComb_iff {n : ℕ} (cf : Fin n → S) (v : Fin n → (epsR S ⟶ G)) (w : epsR S ⟶ G) :
     IsLieComb cf v w ↔ w = (List.ofFn fun i => sc (cf i) ≫ v i).prod := by

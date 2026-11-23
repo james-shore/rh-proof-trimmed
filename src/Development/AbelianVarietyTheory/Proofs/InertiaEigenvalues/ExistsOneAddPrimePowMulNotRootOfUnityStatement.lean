@@ -58,4 +58,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.exists_one_add_primePow_mul_not_rootOfUnity : ∀ (l : ℕ) [Fact l.Prime] (a : ℂ_[l]), a ≠ 0 → ∃ k : ℕ, 1 + (l : ℂ_[l]) ^ k * a ≠ 0 ∧ ∀ i : ℕ, 1 ≤ i → (1 + (l : ℂ_[l]) ^ k * a) ^ i ≠ 1 := by
-  first | exact @GlobalTheory.SmallRootCl.exists_one_add_pow_mul_not_root | exact GlobalTheory.SmallRootCl.exists_one_add_pow_mul_not_root | (intros; apply GlobalTheory.SmallRootCl.exists_one_add_pow_mul_not_root; all_goals assumption)
+  first | exact @GlobalTheory.SmallRootCl.exists_one_add_pow_mul_not_root

@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.evenCubicalTrivialisation_of_trait_uniformisation 
     (G : Over (Sp R)) [GrpObj G] [IsCommMonObj G] (P : GlobalTheory.UU.CP G), IsSemiAbelian G → UnifTrait D G P.L.L →
     ∀ (X : Type) [AddCommGroup X] [Module.Free ℤ X] [Module.Finite ℤ X],
     Nonempty (GlobalTheory.UU.TQ (thickObj R (maximalIdeal R) 0 G) X) → EvenOn P := by
-  first | exact @GlobalTheory.Mum.evenOn_of_unifTrait | exact GlobalTheory.Mum.evenOn_of_unifTrait | (intros; apply GlobalTheory.Mum.evenOn_of_unifTrait <;> assumption)
+  first | exact @GlobalTheory.Mum.evenOn_of_unifTrait

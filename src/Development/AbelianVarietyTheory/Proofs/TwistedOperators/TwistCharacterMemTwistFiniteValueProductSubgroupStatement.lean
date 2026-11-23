@@ -46,4 +46,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.twistCharacter_mem_twistFiniteValueProductSubgroup : Big fun {D} _ _ _ _ {T} _ _ _ _ _ {R} ch => ∀ (t : T) (x : (AE D)ˣ), Circle.toUnits (R.toLevCh.xi t x) ∈ xiVals R.toLevCh t := by
-  first | exact @GlobalTheory.XiVals.xi_mem | exact GlobalTheory.XiVals.xi_mem | (intros; apply GlobalTheory.XiVals.xi_mem <;> assumption)
+  first | exact @GlobalTheory.XiVals.xi_mem

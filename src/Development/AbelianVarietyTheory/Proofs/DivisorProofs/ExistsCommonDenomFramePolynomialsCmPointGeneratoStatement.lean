@@ -70,4 +70,4 @@ theorem _root_.GlobalTheory.T.exists_commonDenom_framePolynomials_cmPoint_genera
           (∀ b, (Y b).det ≠ 0) → GlobalTheory.Frames.FrChg (fun b => (Y b).transpose) 1 z.y y' →
           (∏ b, (Y b).det ^ k b) * evR Xo c F y' = Formalism.L2.LamCM.evalFr G Y) →
         ∀ μ, IsIntegral ℤ ((t : z.K) * AddMonoidAlgebra.coeff G μ) := by
-  first | exact @GlobalTheory.LatFull.CMIntZ.exists_coeff_denom_intWt_any | exact GlobalTheory.LatFull.CMIntZ.exists_coeff_denom_intWt_any | (intros; apply GlobalTheory.LatFull.CMIntZ.exists_coeff_denom_intWt_any <;> assumption)
+  first | exact @GlobalTheory.LatFull.CMIntZ.exists_coeff_denom_intWt_any

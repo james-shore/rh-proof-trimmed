@@ -60,10 +60,6 @@ theorem hG_of (τ : X.Ψ) : ∀ a b, τ.1 (X.Gm b a) = conj (τ.1 (X.Gm a b)) :=
   intro a b
   rw [← X.Gm_herm a b]
   first
-    | simp [NumberField.IsCMField.complexEmbedding_complexConj]
-    | rw [NumberField.IsCMField.complexEmbedding_complexConj]
-    | simp [NumberField.IsCMField.complexConj_apply]
-    | simp [NumberField.IsCMField.conj_complexEmbedding]
     | (simp only [cc]
        exact NumberField.IsCMField.complexEmbedding_complexConj ..)
 
@@ -81,8 +77,6 @@ theorem hsg_of {x : Frame X.Ψ r} (hx : x ∈ X.dom) (τ : X.Ψ) :
   have h1 := (hx τ).2 ⟨i, Nat.lt_succ_of_le h⟩
   first
     | exact h1
-    | (unfold dmin lminor gram gramF famN at h1
-       exact h1)
 
 theorem dmin_eq (x : Frame X.Ψ r) (τ : X.Ψ) (i : Fin (r + 1)) :
     dmin X.Gm x τ i = (gramF τ.1 X.Gm (famN (mat x τ) i (Nat.le_of_lt_succ i.isLt))).det := rfl

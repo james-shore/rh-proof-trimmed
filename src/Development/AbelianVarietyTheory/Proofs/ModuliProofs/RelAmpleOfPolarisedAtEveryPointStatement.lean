@@ -50,4 +50,4 @@ open scoped CategoryTheory.Obj TensorProduct Pointwise
 open GlobalTheory.Models GlobalTheory.ZM
 
 theorem _root_.GlobalTheory.T.relAmple_of_polarised_at_every_point : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (S : Scheme.{0}) [IsLocallyNoetherian S] (t : SAB H S), IsProper t.G.hom → (∀ (A : Type) [CommRing A] (y : Sp A ⟶ S) (B : Over (Sp A)) (φ : B.left ⟶ t.G.left), IsPullback φ B.hom t.G.hom y → IsProjOver B.hom) → (∀ p : S, ∃ (S' : Scheme.{0}) (f : S' ⟶ S) (t' : SAB H S') (_ : SABMap t' t f), p ∈ Set.range f ∧ Out.RelAmple t'.G t'.PP.L ∧ Out.KTriv t'.G t'.PP.L) → Out.RelAmple t.G t.PP.L := by
-  first | exact @GlobalTheory.AmpleGlobal.relAmple_of_polarised_at_points | exact GlobalTheory.AmpleGlobal.relAmple_of_polarised_at_points | (intros; apply GlobalTheory.AmpleGlobal.relAmple_of_polarised_at_points <;> assumption)
+  first | exact @GlobalTheory.AmpleGlobal.relAmple_of_polarised_at_points

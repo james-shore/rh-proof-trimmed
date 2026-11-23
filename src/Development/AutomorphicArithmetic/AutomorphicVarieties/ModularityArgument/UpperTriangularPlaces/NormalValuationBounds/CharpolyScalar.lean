@@ -109,7 +109,7 @@ private theorem chars_of_comm {Γ : Type} [Group Γ] :
         map_mul' := fun a b => by
           refine LinearMap.ext fun x => ?_
           obtain ⟨y, rfl⟩ := Submodule.mkQ_surjective W x
-          simp [Module.End.mul_apply] }
+          simp }
     have hW1 : finrank k W = 1 := finrank_span_singleton hv0
     have hq : finrank k (V ⧸ W) = d := by
       have := Submodule.finrank_quotient_add_finrank W

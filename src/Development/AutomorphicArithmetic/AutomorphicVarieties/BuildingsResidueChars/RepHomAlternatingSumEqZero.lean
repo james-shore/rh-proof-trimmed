@@ -68,7 +68,7 @@ theorem UpperTheory.rep_hom_alternating_sum_eq_zero :
     intro x
     rw [key 0 x]
     have hre : K.re (id : Fin 1 → Fin 1) x = x := Subtype.ext rfl
-    simp [Fintype.sum_unique, hre]
+    simp [hre]
   · intro p hp
     apply PC_ext
     intro t

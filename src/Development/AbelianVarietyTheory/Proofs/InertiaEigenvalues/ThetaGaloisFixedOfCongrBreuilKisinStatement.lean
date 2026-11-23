@@ -51,4 +51,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.theta_galois_fixed_of_congr_breuilKisin : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (x : Per.BdRp l) (M k : ℕ) (s : bk.S), (l : Per.BdRp l) ^ k * aDp l (bk.ev bk.E) ^ M * x - aDp l (bk.ev s) ∈ Per.FilP l (M + 1) → ∀ g : ↥(GK K), Per.σC (g : GQ l) (Per.θD l x) = Per.θD l x := by
-  first | exact @GlobalTheory.BKLim.theta_gal_fixed_of_congr | exact GlobalTheory.BKLim.theta_gal_fixed_of_congr | (intros; apply GlobalTheory.BKLim.theta_gal_fixed_of_congr <;> assumption)
+  first | exact @GlobalTheory.BKLim.theta_gal_fixed_of_congr

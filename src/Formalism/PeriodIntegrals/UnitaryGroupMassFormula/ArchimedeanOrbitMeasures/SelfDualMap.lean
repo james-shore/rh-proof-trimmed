@@ -73,8 +73,6 @@ private theorem hform_mulVec_eq_of_cT_mul_mul_eq {A : Type} [CommRing A] {n : Ty
     intro u v
     first
     | simp only [Formalism.UG.hform, dotProduct, mulVec, Function.comp, Finset.mul_sum, mul_assoc]
-    | simp only [Formalism.UG.hform, Matrix.dotProduct, mulVec, Function.comp, Finset.mul_sum, mul_assoc]
-    | simp [Formalism.UG.hform, mulVec, Finset.mul_sum, mul_assoc]
   have hσ : σ ∘ (g *ᵥ x) = (g.map σ) *ᵥ (σ ∘ x) := by
     funext i
     exact RingHom.map_mulVec σ g x i
@@ -141,10 +139,7 @@ theorem selfDual_map {D : D7} (X : HidaSetting D) (ψ : AddChar (AF X.B.I.F) ℂ
   have hc : ∀ h : HA (Ainf X.B.I.F) X.B.I.cm.sig X.B.I.J, Continuous (fun y : TupI X => h • y) := by
     intro h
     first
-    | fun_prop
     | (simp only [HSMul.hSMul, SMul.smul]; unfold actTup; fun_prop)
-    | (simp only [HSMul.hSMul, SMul.smul]; unfold actTup;
-        exact continuous_pi fun a => Continuous.matrix_mulVec continuous_const (continuous_apply a))
   let e : TupI X ≃ₜ TupI X :=
     { toEquiv := (smulAE X g).toEquiv
       continuous_toFun := hc g
@@ -153,7 +148,6 @@ theorem selfDual_map {D : D7} (X : HidaSetting D) (ψ : AddChar (AF X.B.I.F) ℂ
     haveI := hμ.1
     first
     | exact (smulAE X g).isAddHaarMeasure_map μ (hc g) (hc g⁻¹)
-    | exact (smulAE X g).isAddHaarMeasure_map (hc g) (hc g⁻¹)
   exact selfDual_map_of_isAddHaarMeasure μ
     (fun X' Y' : TupI X => psiInf X.B.I.F ψ (BR (Ainf X.B.I.F) X.B.I.cm.sig X.B.I.J X' Y'))
     e.toMeasurableEquiv hH
@@ -196,7 +190,6 @@ private theorem eq_one_of_selfDual_smul {V : Type} [AddCommGroup V] [Topological
     · linarith [ENNReal.toReal_nonneg (a := c)]
   first
   | exact (ENNReal.toReal_eq_one_iff c).mp h5
-  | rw [← ENNReal.ofReal_toReal hctop, h5, ENNReal.ofReal_one]
 
 theorem sdInvG_of (hT : SdTestI) : SdInvG := by
   unfold SdInvG
@@ -212,7 +205,7 @@ theorem sdInvG_of (hT : SdTestI) : SdInvG := by
     refine ⟨(Measure.addHaarScalarFactor (μinf.map fun y => g • y) μinf : ENNReal), ENNReal.coe_ne_top,
       (Measure.isAddLeftInvariant_eq_smul (μinf.map fun y => g • y) μinf).trans ?_⟩
     ext s _
-    simp [Measure.smul_apply]
+    simp
   rw [hc] at hν
   rw [hc]
   have hc1 : c = 1 :=

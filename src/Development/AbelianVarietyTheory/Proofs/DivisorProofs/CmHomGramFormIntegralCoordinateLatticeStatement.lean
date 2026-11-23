@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.cmHomGramForm_integral_coordinateLattice : ∀ (E 
     ∀ barE : E →+* E, (∀ x : 𝓞 E, barE x = ((H.bar x : 𝓞 E) : E)) →
       ∀ c ∈ GlobalTheory.FlatCM.HomLat.lat X, ∀ d ∈ GlobalTheory.FlatCM.HomLat.lat X,
         ∃ y : 𝓞 E, (y : E) = ∑ a, ∑ b, c a * (gP a b : E) * barE (d b) := by
-  first | exact @GlobalTheory.FlatCM.GramInt.gram_integral | exact GlobalTheory.FlatCM.GramInt.gram_integral | (intros; apply GlobalTheory.FlatCM.GramInt.gram_integral <;> assumption)
+  first | exact @GlobalTheory.FlatCM.GramInt.gram_integral

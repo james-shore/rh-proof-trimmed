@@ -52,4 +52,4 @@ open ReciprocityTheory.ChartRestriction.G.Out
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_good_torsion_translate_of_section : PolBaseChangeSt → GoodPtSt → ∀ (S : Scheme.{0}) (P : PolAV S) (θ : LB.Sec P.L) (κ : Type) [Field κ] [IsAlgClosed κ] (r : Sp κ ⟶ S) (n : ℕ), 2 ≤ n → (n : κ) ≠ 0 → (∃ z ∈ nonzeroLocus θ, P.A.hom z ∈ Set.range r) → ∀ b : Over.mk r ⟶ P.A, ∃ x : Over.mk r ⟶ P.A, x ^ n = 1 ∧ ⊤ ≤ (b * x).left ⁻¹ᵁ nonzeroLocus θ := by
-  first | exact @GlobalTheory.UnitTheta.exists_good_point_of_sec | exact GlobalTheory.UnitTheta.exists_good_point_of_sec | (intros; apply GlobalTheory.UnitTheta.exists_good_point_of_sec <;> assumption)
+  first | exact @GlobalTheory.UnitTheta.exists_good_point_of_sec

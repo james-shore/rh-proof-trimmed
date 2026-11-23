@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.chartBasePoints_levelDatum_eq_local_prod : ∀ {B 
       B.embLL (Formalism.L2.Col.phiT _ (A.p0 j α).1.1.deco.1 (A.p0 (j + 1) γ).1.1.deco.1
           (toHom _ _ (rankN (I.rec7 l Z) j (Nat.le_of_succ_le hj)) (rankN (I.rec7 l Z) (j + 1) hj) z)) =
         (J.map fun i => phiOne (Q j i) (Q (j + 1) i) (rd (β j i) (β (j + 1) i) (z.map (incA (I.rec7 l Z))))).prod := by
-  first | exact @GlobalTheory.PhiOneVal.phiT_base_eq_prod | exact GlobalTheory.PhiOneVal.phiT_base_eq_prod | (intros; apply GlobalTheory.PhiOneVal.phiT_base_eq_prod <;> assumption)
+  first | exact @GlobalTheory.PhiOneVal.phiT_base_eq_prod

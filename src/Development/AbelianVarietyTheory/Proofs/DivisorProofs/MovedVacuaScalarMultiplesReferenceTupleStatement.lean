@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.moved_vacua_scalar_multiples_reference_tuple : ∀
     ∃ r r' : T → ℂ, (∀ t, r t ≠ 0 ∧ r' t ≠ 0) ∧ (∀ t, Y.ω t (g, h) Y.vac = r t • Y.ω μ₀ (g, h) Y.vac) ∧
       (∀ t, Y.ω' t (g', h) Y.vac' = r' t • Y.ω' μ₀ (g', h) Y.vac') ∧
       ∀ t, ∃ ζ : D.what₂.LL, GlobalTheory.Square.IsAwayUnit (Qn G t) ζ ∧ r' t / r t = D.what₂.embLL ζ * (r' μ₀ / r μ₀) := by
-  first | exact @GlobalTheory.BotScal.moved_vacua_scal | exact GlobalTheory.BotScal.moved_vacua_scal | (intros; apply GlobalTheory.BotScal.moved_vacua_scal <;> assumption)
+  first | exact @GlobalTheory.BotScal.moved_vacua_scal

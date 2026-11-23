@@ -123,7 +123,6 @@ theorem symm_contraction (F F₀ : V →ₗ[ℂ] V →ₗ⋆[ℂ] ℂ) (N : V �
         rw [hA, hB]
         simp only [map_sub, LinearMap.sub_apply]
         rw [hC, hC']
-        try ring
       rw [hD, Complex.sub_re] at hpos
       linarith
 

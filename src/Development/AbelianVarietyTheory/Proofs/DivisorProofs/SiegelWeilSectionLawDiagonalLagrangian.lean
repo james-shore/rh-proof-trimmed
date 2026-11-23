@@ -181,8 +181,6 @@ theorem main_law : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberF
   have hg : mtF σ JS 1 = ((1 : UG (cA σ) (incM F JB))⁻¹).1.1ᵀ := by
     first
       | (simp only [mtF, map_one, inv_one]; simp; done)
-      | (simp [mtF, matHomF]; exact map_one _)
-      | (simp [mtF, matHomF]; rfl)
   obtain ⟨hmem, heq⟩ := htr p 1 1 h hh hg Φ hΦ
   refine ⟨hmem, ?_⟩
   have hth := GlobalTheory.TransportHeisF.isThetaFunOF_thetaTr F E σ B hB nS (nT + nT) JS

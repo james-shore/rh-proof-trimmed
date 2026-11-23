@@ -60,11 +60,7 @@ theorem norm_finset_sum_lt_of_forall_lt {K : Type*} [NormedField K] [IsUltrametr
     (s : Finset ℕ) (f : ℕ → K) {r : ℝ} (hr : 0 < r) (h : ∀ i ∈ s, ‖f i‖ < r) :
     ‖∑ i ∈ s, f i‖ < r := by
   first
-  | exact @_root_.GlobalTheory.NormSumLt.main
-  | exact _root_.GlobalTheory.NormSumLt.main
   | (apply _root_.GlobalTheory.NormSumLt.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NormSumLt.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NormSumLt.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.NormSumLt.main ..)
 
 theorem norm_le_one_of_isIntegral_int {K : Type*} [NormedField K] [IsUltrametricDist K]

@@ -46,4 +46,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.isPointRigidBoundaryFamily_of_rigidCoordinates : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Geo.Tor.Level H} (Xo : Moduli Dw l) (c : Coeff l) (φ : InvFun (𝓞 E)), ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (C : MonoFam Xo c φ R), HasRigidCoords C → PointRigid C := by
-  first | exact @GlobalTheory.PtRigid.pointRigid_of_hasRigidCoords | exact GlobalTheory.PtRigid.pointRigid_of_hasRigidCoords | (intros; apply GlobalTheory.PtRigid.pointRigid_of_hasRigidCoords <;> assumption)
+  first | exact @GlobalTheory.PtRigid.pointRigid_of_hasRigidCoords

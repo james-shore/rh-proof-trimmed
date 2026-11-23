@@ -81,7 +81,7 @@ theorem mfact_add_single [Fintype σ] (α : σ →₀ ℕ) (l : σ) :
         push_cast
         ring
       · rw [if_neg hs, mul_one]
-        simp [Finsupp.single_apply, Ne.symm hs]
+        simp [Ne.symm hs]
      rw [mfact_eq_prod, mfact_eq_prod, Finset.prod_congr rfl (fun s _ => h s), Finset.prod_mul_distrib]
      simp
      done)
@@ -127,12 +127,12 @@ private lemma pderiv_inr_subst_twoVars {d : ℕ} (f : MvPowerSeries (Fin 2 × Fi
       subst (GlobalTheory.LawLog.twoVars C d) (pderiv ((1 : Fin 2), k) f) := by
   classical
   rw [pderiv_subst GlobalTheory.LawLog.cc_twoVars, Finset.sum_eq_single ((1 : Fin 2), k)]
-  · simp [GlobalTheory.LawLog.twoVars, MvPowerSeries.pderiv_X, Pi.single_apply]
+  · simp [GlobalTheory.LawLog.twoVars]
   · rintro ⟨a, i⟩ _ hs
     fin_cases a
-    · simp [GlobalTheory.LawLog.twoVars, MvPowerSeries.pderiv_X, Pi.single_apply]
+    · simp [GlobalTheory.LawLog.twoVars]
     · have hik : i ≠ k := fun h => hs (by subst h; rfl)
-      simp [GlobalTheory.LawLog.twoVars, MvPowerSeries.pderiv_X, Pi.single_apply, hik]
+      simp [GlobalTheory.LawLog.twoVars, hik]
   · simp
 
 variable [CharZero C] (v : AddValuation C (WithTop ℝ))
@@ -180,7 +180,7 @@ theorem subst_jacEntry (G : FGLaw C d) (L : LogFGL v d)
   fin_cases a
   · simp [GlobalTheory.LawLog.twoVars, MvPowerSeries.subst_X hA, MvPowerSeries.subst_X hΨ]
     all_goals simp [GlobalTheory.LogJacobian.substSecondBlockZero, MvPowerSeries.subst_X hB]
-  · simp [GlobalTheory.LawLog.twoVars, MvPowerSeries.subst_X hA, MvPowerSeries.subst_X hΨ, subst_zero_lemma_3 hΨ]
+  · simp [GlobalTheory.LawLog.twoVars, MvPowerSeries.subst_X hA, subst_zero_lemma_3 hΨ]
     all_goals simp [GlobalTheory.LogJacobian.substSecondBlockZero, subst_zero_lemma_3 hB]
 
 variable (L : LogFGL v d) {n : ℕ} {Λ : Type} [Fintype Λ] (β : Λ → Fin n → C) (w : Λ → Fin d → C)

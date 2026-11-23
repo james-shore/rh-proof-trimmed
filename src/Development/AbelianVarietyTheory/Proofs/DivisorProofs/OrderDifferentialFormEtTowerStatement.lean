@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.order_differential_form_et_tower : ∀ {K L : Type
   IsEtTower cK R cL T ι ψ τ → TrBasis cK (fun i => (x i : K)) → P.IsPrimeOf T →
   (∀ g : R, g ≠ 0 → P.ord (ι g : L) = 0) →
   (fun ω => @dite ℤ (∃ a, P.IsFormOrd ω a) (Classical.propDecidable _) (fun h => h.choose) (fun _ => 0)) (dForm cL (Fin.append (fun i => (τ i : L)) (fun i => (ι (x i) : L)))) = 0 := by
-  first | exact @GlobalTheory.FieldPair.formOrd_dForm_append_eq_zero | exact GlobalTheory.FieldPair.formOrd_dForm_append_eq_zero | (intros; apply GlobalTheory.FieldPair.formOrd_dForm_append_eq_zero <;> assumption)
+  first | exact @GlobalTheory.FieldPair.formOrd_dForm_append_eq_zero

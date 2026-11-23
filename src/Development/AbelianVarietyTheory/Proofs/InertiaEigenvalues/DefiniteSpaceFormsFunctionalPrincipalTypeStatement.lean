@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.definiteSpace_forms_functional_principalType : ∀
     [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.Hk3.Core R F →
     ∀ (i : Fin D.R.m) (t : T) (y : (R.HV i t).H) (l : (R.cV i).W →ₗ[ℂ] ℂ),
       HasType (Vc D i) (R.βV i) (flag1L (R.datVt i t)) (fun h => l (R.extV i t y h)) := by
-  first | exact @GlobalTheory.DefiniteType.hasType_extV | exact GlobalTheory.DefiniteType.hasType_extV | (intros; apply GlobalTheory.DefiniteType.hasType_extV <;> assumption)
+  first | exact @GlobalTheory.DefiniteType.hasType_extV

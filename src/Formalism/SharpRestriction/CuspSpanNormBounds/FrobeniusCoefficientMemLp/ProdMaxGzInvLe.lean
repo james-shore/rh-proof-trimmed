@@ -60,9 +60,6 @@ def Gbd (b C β : ℝ) (Z : GramM D) : ℝ := (2 * β ^ 2 * (b ^ (C * (D.R.m : �
 theorem embS_star (τ : D.what₂.Tau) (x : D.host.E) : embS D τ (star x) = starRingEnd ℂ (embS D τ x) := by
   unfold embS
   first
-  | exact NumberField.IsCMField.complexEmbedding_complexConj _ _
-  | exact NumberField.IsCMField.embedding_complexConj _ _
-  | exact NumberField.IsCMField.map_complexConj _ _
   | exact (NumberField.IsCMField.complexEmbedding_complexConj (K := D.host.E) (D.host.emb _) x : _)
 
 theorem frameExp_succ : frameExp D.R.rS (D.R.rS + 1) = frameExp D.R.rS D.R.rS := by

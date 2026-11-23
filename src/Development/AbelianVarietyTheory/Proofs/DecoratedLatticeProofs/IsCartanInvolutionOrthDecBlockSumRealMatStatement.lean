@@ -56,4 +56,4 @@ open GlobalTheory.Core.Rk.Exh GlobalTheory.RegSW
 open GlobalTheory.Core.Rk.SumBox
 
 theorem _root_.GlobalTheory.T.isCartanInvolution_orthDecBlockSumRealMat : ∀ (D : D7) (B W H : HSp D) (o : OrthDec B W H) (sW : RealMat W) (sH : RealMat H), (∀ τ, IsCartanInv (gramAt D W τ) (sW τ)) → (∀ τ, IsCartanInv (gramAt D H τ) (sH τ)) → ∀ τ, IsCartanInv (gramAt D B τ) (sumMat o sW sH τ) := by
-  first | exact @GlobalTheory.Core.Rk.SumBox.isCartanInv_sumMat | exact GlobalTheory.Core.Rk.SumBox.isCartanInv_sumMat | (intros; apply GlobalTheory.Core.Rk.SumBox.isCartanInv_sumMat <;> assumption)
+  first | exact @GlobalTheory.Core.Rk.SumBox.isCartanInv_sumMat

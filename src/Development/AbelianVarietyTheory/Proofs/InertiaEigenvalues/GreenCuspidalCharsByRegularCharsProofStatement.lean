@@ -45,4 +45,4 @@ open GlobalTheory.GLq GlobalTheory.Published Formalism.MainNotions.ArithmeticCyl
 open scoped Classical
 
 theorem _root_.GlobalTheory.T.greenCuspidalCharsByRegularChars_proof : GlobalTheory.Published.GreenRegularCharacters := by
-  first | exact @GlobalTheory.greenRegularCharacters_holds | exact GlobalTheory.greenRegularCharacters_holds | (intros; apply GlobalTheory.greenRegularCharacters_holds <;> assumption)
+  first | exact @GlobalTheory.greenRegularCharacters_holds

@@ -170,16 +170,14 @@ theorem compat0 (c : ι) (P : KTp K d.D d.N) :
       rcases Fin.eq_self_or_eq_succAbove (d.jc c) j with rfl | ⟨k, rfl⟩
       · by_cases hi : i = 0
         · subst hi
-          simp [e2, sImg, sac1, d.eEX4_algebraMap, hEX, hLX, hXlE, hXlL, hXrE, hXrL, hCE,
-            FractionFieldVariableLift.eS, FractionFieldVariableLift.eT, FractionFieldVariableLift.toFracY]
+          simp [e2, sImg, d.eEX4_algebraMap, hEX, hLX, hXlE, hXlL, FractionFieldVariableLift.eS, FractionFieldVariableLift.eT, FractionFieldVariableLift.toFracY]
         · set_option synthInstance.maxHeartbeats 100000 in
-          simp [e2, sImg, sac1, hi, d.eEX4_algebraMap, hEX, hLX, hXlE, hXlL, hXrE, hXrL, hCE,
-            FractionFieldVariableLift.eS, FractionFieldVariableLift.eT, FractionFieldVariableLift.toFracY, hpsi, hpsiX, hpsiC]
+          simp [e2, sImg, hi, d.eEX4_algebraMap, hEX, hLX, hXrE, hXrL, hCE,
+            FractionFieldVariableLift.eS, FractionFieldVariableLift.eT, FractionFieldVariableLift.toFracY, hpsi, hpsiX]
       · by_cases hi : i = 0
         · subst hi
-          simp [e2, sImg, sac2, d.eEX4_algebraMap, hEX, hLX, hXlE, hXlL, hXrE, hXrL,
-            FractionFieldVariableLift.eS, FractionFieldVariableLift.eT, FractionFieldVariableLift.toFracY]
-        · simp [e2, sImg, sac2, hi, d.eEX4_algebraMap, hEX, hLX, hXlE, hXlL, hXrE, hXrL,
+          simp [e2, sImg, d.eEX4_algebraMap, hEX, hLX, hXlE, hXlL, FractionFieldVariableLift.eS, FractionFieldVariableLift.eT, FractionFieldVariableLift.toFracY]
+        · simp [e2, sImg, hi, d.eEX4_algebraMap, hEX, hLX, hXrE, hXrL,
             FractionFieldVariableLift.eS, FractionFieldVariableLift.eT, FractionFieldVariableLift.toFracY, hpsi, hpsiX]
   exact RingHom.congr_fun key P
 

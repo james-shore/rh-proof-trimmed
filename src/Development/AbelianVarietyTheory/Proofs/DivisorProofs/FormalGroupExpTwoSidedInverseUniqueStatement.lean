@@ -48,4 +48,4 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.WeightedSumBounds.Pt
 open MvPowerSeries ReciprocityTheory.PGsh ReciprocityTheory.ChartRestriction.G.Sh GlobalTheory.FGDepth
 
 theorem _root_.GlobalTheory.T.formalGroupExp_twoSided_inverse_unique : ∀ (C : Type) [Field C] [CharZero C] (v : AddValuation C (WithTop ℝ)) (d : ℕ) (G : LogFGL v d), IsExp G (expOf G) ∧ (∀ a, subst G.lg (expOf G a) = X a) ∧ ∀ ex, IsExp G ex → ex = expOf G := by
-  first | exact @GlobalTheory.FGDepth.expOf_twoSided_unique | exact GlobalTheory.FGDepth.expOf_twoSided_unique | (intros; apply GlobalTheory.FGDepth.expOf_twoSided_unique <;> assumption)
+  first | exact @GlobalTheory.FGDepth.expOf_twoSided_unique

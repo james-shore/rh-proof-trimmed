@@ -46,4 +46,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC
 
 theorem _root_.GlobalTheory.T.etC_a2 : GlobalTheory.EtC.A2 := by
-  first | exact @GlobalTheory.EtC.smooth_surjective_cech_descent_cohomology | exact GlobalTheory.EtC.smooth_surjective_cech_descent_cohomology | (intros; apply GlobalTheory.EtC.smooth_surjective_cech_descent_cohomology <;> assumption)
+  first | exact @GlobalTheory.EtC.smooth_surjective_cech_descent_cohomology

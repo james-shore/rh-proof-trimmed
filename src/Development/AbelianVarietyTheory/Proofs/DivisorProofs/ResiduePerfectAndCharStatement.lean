@@ -50,4 +50,4 @@ open GlobalTheory.HTLat GlobalTheory.Published GlobalTheory.Published.AbVarRed I
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.residue_perfect_and_char_alt : ∀ (R K : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K] [IsFractionRing R K] [PerfectField (ResidueField R)] (L W : Type) [Field L] [Algebra K L] [FiniteDimensional K L] [CommRing W] [IsDomain W] [IsDiscreteValuationRing W] [Algebra W L] [IsFractionRing W L], IsAbove R K (algebraMap W L).range → PerfectField (ResidueField W) ∧ ∀ m : ℕ, (m : ResidueField R) ≠ 0 → (m : ResidueField W) ≠ 0 := by
-  first | exact @GlobalTheory.AbVarRedRes.residue_perfect_and_char | exact GlobalTheory.AbVarRedRes.residue_perfect_and_char | (intros; apply GlobalTheory.AbVarRedRes.residue_perfect_and_char <;> assumption)
+  first | exact @GlobalTheory.AbVarRedRes.residue_perfect_and_char

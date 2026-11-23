@@ -53,4 +53,4 @@ open scoped Pointwise ENNReal Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.integralRowFrame_map_isometry : ∀ (D : D7) (γ : (VS D).V ≃ₗ[D.host.E] (VS D).V), γ ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT → ∀ (Λ₁ Λ₂ : Submodule (𝓞 D.host.E) (VS D).V), Formalism.HermitianLatticesTheory.gmap γ Λ₁ = Λ₂ → ∀ (T : D.host.E) (F : LFlag (D.sp.Y 0) D.R.rS T), FrameOK D Λ₁ F → FrameOK D Λ₂ (mapLF γ F) := by
-  first | exact @GlobalTheory.FrameIsom.frameOK_mapLF | exact GlobalTheory.FrameIsom.frameOK_mapLF | (intros; apply GlobalTheory.FrameIsom.frameOK_mapLF <;> assumption)
+  first | exact @GlobalTheory.FrameIsom.frameOK_mapLF

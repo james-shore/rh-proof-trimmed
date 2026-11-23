@@ -63,9 +63,7 @@ private theorem conn_top {R : Type} [CommRing R] (F : Shv R) (c : ℤ) {X : Sche
   subst e
   haveI : IsIso (⊤ : X.Opens).ι := by
     first
-      | infer_instance
       | (rw [← Scheme.topIso_hom]; infer_instance)
-      | exact isIso_of_isOpenImmersion_of_opensRange_eq_top _ (by simp)
   exact conn_iso F c _
 
 private theorem exists_good {R : Type} [CommRing R] {F : Shv R} {c : ℤ} {X : Scheme.{0}} {U : X.Opens}

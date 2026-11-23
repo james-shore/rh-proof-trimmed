@@ -63,11 +63,7 @@ theorem exists_basis_primeTo {K V : Type} [Field K] [NumberField K] [AddCommGrou
     ∃ (r : ℕ) (b : Fin r → V), LinearIndependent K b ∧ (∀ i, b i ∈ L) ∧
       ∀ w ∈ L, ∃ k : ℕ, Nat.Coprime k m ∧ k • w ∈ Submodule.span (𝓞 K) (Set.range b) := by
   first
-  | exact @_root_.GlobalTheory.CoprimeBasisExistence.exists_basis_coprime
-  | exact _root_.GlobalTheory.CoprimeBasisExistence.exists_basis_coprime
   | (apply _root_.GlobalTheory.CoprimeBasisExistence.exists_basis_coprime <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CoprimeBasisExistence.exists_basis_coprime <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CoprimeBasisExistence.exists_basis_coprime <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CoprimeBasisExistence.exists_basis_coprime ..)
 
 

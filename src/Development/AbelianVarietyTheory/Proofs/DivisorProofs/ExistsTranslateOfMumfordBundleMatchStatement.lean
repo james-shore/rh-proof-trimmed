@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_translate_of_mumfordBundle_match : ∀ (R :
     wΛ.IsGen) →
   ∃ b : 𝟙_ (Over (Sp R)) ⟶ D.P.A, padd D.P.A b b = η[D.P.A] ∧
     ∃ w : LB.Iso D₀.P.L (LB.LinComb D.P.L (GlobalTheory.MumCmp.twφ D₀ D β.hom b) GlobalTheory.MumCmp.twε), w.IsGen := by
-  first | exact @GlobalTheory.MumCmp.exists_translate_of_lam | exact GlobalTheory.MumCmp.exists_translate_of_lam | (intros; apply GlobalTheory.MumCmp.exists_translate_of_lam <;> assumption)
+  first | exact @GlobalTheory.MumCmp.exists_translate_of_lam

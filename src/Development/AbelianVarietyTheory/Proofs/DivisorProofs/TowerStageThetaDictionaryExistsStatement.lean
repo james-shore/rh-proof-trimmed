@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.towerStage_thetaDictionary_exists : GBig fun {D} {
         GlobalTheory.SquareComm.IsFinF W.ψ W.θ true FA FW (X.f t) ∧ GlobalTheory.SquareComm.IsFinF W.ψ W.θ false FA' FW (X.f' t) ∧
         (∀ P g h, thetaKO (X.ω t) g h (GlobalTheory.SquareComm.fockF W.ψ W.θ true FA FW (X.f t) P) = X.ker W.ψ W.θ t P h g) ∧
         ∀ P g h, thetaKO (X.ω' t) g h (GlobalTheory.SquareComm.fockF W.ψ W.θ false FA' FW (X.f' t) P) = X.ker' W.ψ W.θ t P h g := by
-  first | exact @GlobalTheory.StageDict.stage_dictionary | exact GlobalTheory.StageDict.stage_dictionary | (intros; apply GlobalTheory.StageDict.stage_dictionary <;> assumption)
+  first | exact @GlobalTheory.StageDict.stage_dictionary

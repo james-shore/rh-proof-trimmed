@@ -180,7 +180,7 @@ theorem exists_norm (h5 : 5 ≤ l) (dK : ℕ) (hld : ¬ l ∣ dK) (a : ℤ_[l]) 
       Polynomial.degree_C_mul_X_pow 2 hd
     have hg : (Polynomial.C (dK : ZMod l) * Polynomial.X ^ 2
         - Polynomial.C (PadicInt.toZMod a)).degree = 2 := by
-      rw [Polynomial.degree_sub_C (by rw [h2]; first | decide | norm_num | exact WithBot.coe_lt_coe.2 (by norm_num)), h2]
+      rw [Polynomial.degree_sub_C (by rw [h2]; first | decide), h2]
     obtain ⟨x0, y0, h⟩ := FiniteField.exists_root_sum_quadratic (f := Polynomial.X ^ 2)
       (g := Polynomial.C (dK : ZMod l) * Polynomial.X ^ 2 - Polynomial.C (PadicInt.toZMod a))
       (Polynomial.degree_X_pow 2) hg hR

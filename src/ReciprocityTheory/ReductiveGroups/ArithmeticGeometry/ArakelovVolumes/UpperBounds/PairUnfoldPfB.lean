@@ -85,7 +85,7 @@ private theorem transpose_mul_mul_map_cc_eq_of_herm_mulVec (G : Matrix (Fin r) (
     by_cases hq : q = b
     · subst hq
       simp [ReciprocityTheory.ChartRestriction.G.FD.cc]
-    · simp [Pi.single_apply, hq, ReciprocityTheory.ChartRestriction.G.FD.cc]
+    · simp [hq, ReciprocityTheory.ChartRestriction.G.FD.cc]
   have h := hγ (Pi.single a 1) (Pi.single b 1)
   rw [hv, hv] at h
   unfold ReciprocityTheory.ChartRestriction.G.FD.herm at h

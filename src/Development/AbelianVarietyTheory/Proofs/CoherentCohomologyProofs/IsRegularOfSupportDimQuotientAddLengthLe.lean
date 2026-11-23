@@ -458,11 +458,7 @@ theorem exists_isRegular_quotSMulTop [Small.{v} R] {M : Type v} [AddCommGroup M]
     (hn : n + 1 ≤ xs.length) {y : R} (hy : y ∈ maximalIdeal R) (hreg : IsSMulRegular M y) :
     ∃ zs : List R, zs.length = n ∧ RingTheory.Sequence.IsRegular (QuotSMulTop y M) zs := by
   first
-  | exact @_root_.GlobalTheory.RegularElementQuotient.exists_isRegular_quotSMulTop
-  | exact _root_.GlobalTheory.RegularElementQuotient.exists_isRegular_quotSMulTop
   | (apply _root_.GlobalTheory.RegularElementQuotient.exists_isRegular_quotSMulTop <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RegularElementQuotient.exists_isRegular_quotSMulTop <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RegularElementQuotient.exists_isRegular_quotSMulTop <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.RegularElementQuotient.exists_isRegular_quotSMulTop ..)
 
 theorem supportDim_le_supportDim_quotient_add_length {M : Type*} [AddCommGroup M] [Module R M]

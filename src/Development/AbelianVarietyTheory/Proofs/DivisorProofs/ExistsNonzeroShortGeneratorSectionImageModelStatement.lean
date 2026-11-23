@@ -50,4 +50,4 @@ open CategoryTheory AlgebraicGeometry
 
 
 theorem _root_.GlobalTheory.T.exists_nonzero_shortGenerator_section_imageModel : ∀ (K V Ω : Type) [Field K] [NumberField K] [AddCommGroup V] [Module K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] [Field Ω] [Algebra K Ω] (Nm : (K →+* ℂ) → V → ℝ) (W : Submodule (𝓞 K) V) (ev : V →ₗ[K] Ω) (D : ℕ) (X : AlgebraicGeometry.Scheme.{0}) [AlgebraicGeometry.IsIntegral X] (p : X ⟶ Sp (𝓞 K)) (L : GlobalTheory.HermLB p) (ψ : Ω →+* X.functionField) (s : W → L.B.Sec), GlobalTheory.ImageModel.IsModelOf Nm W ev D p L ψ s → ev ≠ 0 → ∀ (n : ℕ) (w : Fin n → V) (abelian₂ : ℝ), GlobalTheory.CompHt.IsShortGen Nm W w abelian₂ → ∀ x : X, ∃ (j : Fin n) (hj : w j ∈ W), x ∈ ReciprocityTheory.ChartRestriction.G.Out.nonzeroLocus (s ⟨w j, hj⟩) := by
-  first | exact @GlobalTheory.ImageModelGen.exists_mem_nonzeroLocus_of_isShortGen | exact GlobalTheory.ImageModelGen.exists_mem_nonzeroLocus_of_isShortGen | (intros; apply GlobalTheory.ImageModelGen.exists_mem_nonzeroLocus_of_isShortGen <;> assumption)
+  first | exact @GlobalTheory.ImageModelGen.exists_mem_nonzeroLocus_of_isShortGen

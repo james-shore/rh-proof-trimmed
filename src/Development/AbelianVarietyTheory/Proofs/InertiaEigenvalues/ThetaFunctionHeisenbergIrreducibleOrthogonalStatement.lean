@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.thetaFunction_heisenberg_irreducible_orthogonal : 
     ∀ (μ : Measure (WO S T)) (𝓕 : Set (WO S T)), IsCovolOne (ratL T S) μ 𝓕 →
     ∀ h e : WO S T → ℂ, IsThetaFunO ψ S T h → IsThetaFunO ψ S T e →
     (∀ w : WO S T, thetaIP μ 𝓕 h (heisO ψ S T w e) = 0) → h = 0 ∨ e = 0 := by
-  first | exact @GlobalTheory.ThetaIrred.orth_heis_translates | exact GlobalTheory.ThetaIrred.orth_heis_translates | (intros; apply GlobalTheory.ThetaIrred.orth_heis_translates <;> assumption)
+  first | exact @GlobalTheory.ThetaIrred.orth_heis_translates

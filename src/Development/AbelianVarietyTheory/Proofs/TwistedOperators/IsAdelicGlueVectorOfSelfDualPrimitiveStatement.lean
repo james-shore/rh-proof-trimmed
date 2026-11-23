@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.isAdelicGlueVector_of_selfDual_primitive : ∀ (D 
   intro D u Y X ι z h L₀ x₀ hlat hSD hP
   letI := hlat
   exact GlobalTheory.AdIsom.SelfDualGlue.isGlueVec_of_isSDIn D u Y X ι z h L₀ x₀
-    (by first | exact hlat | infer_instance) hSD hP
+    (by first | exact hlat) hSD hP

@@ -50,4 +50,4 @@ open GlobalTheory.Unf
 open scoped ComplexOrder ENNReal NNReal ContDiff
 
 theorem _root_.GlobalTheory.T.tsum_adelicMatrixSchwartzMajorant_rational_ne_top : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → ∀ m n : ℕ, ∃ N : ℕ, ∀ K : Set (Mx D m n), IsCompact K → (∑' y : ratMx D m n, ENNReal.ofReal (maj θ K N y)) ≠ ⊤ := by
-  first | exact @GlobalTheory.MajSum.tsum_maj_ne_top | exact GlobalTheory.MajSum.tsum_maj_ne_top | (intros; apply GlobalTheory.MajSum.tsum_maj_ne_top <;> assumption)
+  first | exact @GlobalTheory.MajSum.tsum_maj_ne_top

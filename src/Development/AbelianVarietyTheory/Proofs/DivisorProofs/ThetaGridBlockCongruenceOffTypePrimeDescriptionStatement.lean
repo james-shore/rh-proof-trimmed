@@ -51,4 +51,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.Local
 
 
 theorem _root_.GlobalTheory.T.thetaGridBlockCongruence_offTypePrime_description : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} (G : GridData L sc) (t : T) (w : Pl D.host.E), w ∉ L.Pg → ∀ (j : ℕ) (g : GL (Fin ((locGrid G t w).rank (0, j))) (Kw w)), g ∈ (stepGroup L t w j).map (reGL (ixFin G t w j)).toMonoidHom ↔ g ∈ KO (Kw w) (Fin ((locGrid G t w).rank (0, j))) ∧ (w ∈ L.Q t → ∀ a b, Formalism.L2.DIV.blk2 D.R.r b < Formalism.L2.DIV.blk2 D.R.r a → valuation (Kw w) (g.1 a b) < 1) := by
-  first | exact @GlobalTheory.Adopt.thetaGridBlockCongruence_offTypePrime_description | exact GlobalTheory.Adopt.thetaGridBlockCongruence_offTypePrime_description | (intros; apply GlobalTheory.Adopt.thetaGridBlockCongruence_offTypePrime_description <;> assumption)
+  first | exact @GlobalTheory.Adopt.thetaGridBlockCongruence_offTypePrime_description

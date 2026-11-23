@@ -53,11 +53,7 @@ theorem exists_pow_smul_mem {l : ℕ} [hl : Fact l.Prime] {O K : Type} [CommRing
     [IsUnitBall O K] [NormedAlgebra ℚ_[l] K] {G : Type} [Group G] [TopologicalSpace G]
     (T : LocLat G ℚ_[l] K O) (v : T.V) : ∃ n : ℕ, (l : K) ^ n • v ∈ T.L.T := by
   first
-  | exact @_root_.GlobalTheory.NatCastNormLtOne.main
-  | exact _root_.GlobalTheory.NatCastNormLtOne.main
   | (apply _root_.GlobalTheory.NatCastNormLtOne.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NatCastNormLtOne.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NatCastNormLtOne.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.NatCastNormLtOne.main ..)
 
 end GlobalTheory.CocycleNat

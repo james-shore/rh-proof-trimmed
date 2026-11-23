@@ -45,4 +45,4 @@ open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.R
 open scoped InnerProductSpace ContDiff
 
 theorem _root_.GlobalTheory.T.exists_continuousRowRepresentatives_lowestKType : ∀ (B : RowsAut) (d : InfinitePlace B.I.F → ℝ), IsDSData B d → (∀ v, Formalism.MainNotions.S.IsKTypeOf (B.I.ε v) (B.σ v) (Formalism.QuantumDeterminants.lowK (B.I.ε v) (B.lam v)) (Formalism.MainNotions.S.lowKSub (B.I.ε v) (B.lam v) (B.σ v))) → 1 ≤ B.g → ∀ T ∈ B.I.HomS B.σs B.μf B.fund B.R, (∀ u, ∀ k ∈ B.I.Kg B.g, B.R (1, k) (T u) = T u) → ∃ Fr, IsReps B T Fr := by
-  first | exact @GlobalTheory.SmoothRepsType.repsExist | exact GlobalTheory.SmoothRepsType.repsExist | (intros; apply GlobalTheory.SmoothRepsType.repsExist <;> assumption)
+  first | exact @GlobalTheory.SmoothRepsType.repsExist

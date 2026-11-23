@@ -42,4 +42,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.isotypic_row_local_split_exists : ∀ (D : D7) (rep : D.what₂.FT → NG.FinTyp D.host.E D.R.r) (j : ℕ) (_ : RowMod D rep j) (σ : D.what₂.FT), D.what₂.isot j σ ≠ ⊥ → ∀ s : SplitPlace D.host.E, ∃ τ, IsLocS (rep σ).S s τ := by
-  first | exact @GlobalTheory.RowLocal.finTyp_exists_isLocS | exact GlobalTheory.RowLocal.finTyp_exists_isLocS | (intros; apply GlobalTheory.RowLocal.finTyp_exists_isLocS <;> assumption)
+  first | exact @GlobalTheory.RowLocal.finTyp_exists_isLocS

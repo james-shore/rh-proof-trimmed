@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open CategoryTheory GlobalTheory.CxCoh
 
 theorem _root_.GlobalTheory.T.joinedMapsAgreeCohomologyTwo_instances : JoinedTwo.{1,1} ∧ JoinedTwo.{1,0} ∧ JoinedTwo.{0,0} := by
-  first | exact @GlobalTheory.CxCoh.JoinedTwoProof.joinedTwo_inst | exact GlobalTheory.CxCoh.JoinedTwoProof.joinedTwo_inst | (intros; apply GlobalTheory.CxCoh.JoinedTwoProof.joinedTwo_inst <;> assumption)
+  first | exact @GlobalTheory.CxCoh.JoinedTwoProof.joinedTwo_inst

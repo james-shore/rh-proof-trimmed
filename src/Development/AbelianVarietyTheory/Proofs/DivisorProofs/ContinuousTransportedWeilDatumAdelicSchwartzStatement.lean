@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.continuous_transported_weilDatum_adelicSchwartz : 
  ∀ om : GlobalTheory.WeilM.UG (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig) (incM D.host.F JA) ×
       GlobalTheory.WeilM.UG (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig) (incM D.host.F JB) →* Module.End ℂ ((κ → AF D.host.F) → ℂ),
                        GlobalTheory.WeilSchrodinger.IsTransport ψ co ω om → GlobalTheory.WeilM.IsContOn (GlobalTheory.WeilM.adeleClass D.host.F) om := by
-  first | exact @GlobalTheory.WeilCont.continuous_transport | exact GlobalTheory.WeilCont.continuous_transport | (intros; apply GlobalTheory.WeilCont.continuous_transport <;> assumption)
+  first | exact @GlobalTheory.WeilCont.continuous_transport

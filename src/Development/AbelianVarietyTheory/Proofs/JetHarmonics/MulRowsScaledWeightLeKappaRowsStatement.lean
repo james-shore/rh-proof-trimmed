@@ -53,4 +53,4 @@ open ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF (AvFSt HTFSt UpFSt)
 open GlobalTheory.RunDepth GlobalTheory.CharDepth
 
 theorem _root_.GlobalTheory.T.mul_rows_scaledWeight_le_kappaRows : ∀ (D : D7) (L : SizeData₂ D) (Pm : ParameterChoice' D L) (Tp : ParamsT D L Pm) (hK : DV.KapDef D) (j : ℕ) (τ : D.what₂.Tau), (∀ i, Tp.TO * (lR Tp hK j).aP τ i ≤ (kaR Tp hK j).aP τ i) ∧ (∀ i, Tp.TO * (lR Tp hK j).aM τ i ≤ (kaR Tp hK j).aM τ i) ∧ Tp.TO * WeightAlgebra.DF (lR Tp hK j) ≤ WeightAlgebra.DF (kaR Tp hK j) := by
-  first | exact @GlobalTheory.RunDepth.mul_rows_lR_le_kaR | exact GlobalTheory.RunDepth.mul_rows_lR_le_kaR | (intros; apply GlobalTheory.RunDepth.mul_rows_lR_le_kaR <;> assumption)
+  first | exact @GlobalTheory.RunDepth.mul_rows_lR_le_kaR

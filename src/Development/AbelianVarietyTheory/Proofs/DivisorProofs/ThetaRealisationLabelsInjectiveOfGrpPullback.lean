@@ -88,7 +88,7 @@ theorem realPt_inj_of_grpPullback : ∀ {o₂ Ω₂ : Type} [CommRing o₂] [Fie
     rw [← hsmul]
     have : (S₂.r * S₂.N) • a = 0 := by
       funext i
-      simp [Pi.smul_apply, nsmul_eq_mul, ZMod.natCast_self]
+      simp [Pi.smul_apply, nsmul_eq_mul]
     rw [this, hzero]
   let K := AlgebraicClosure Ω₂
   let x₀ : Sp K ⟶ Sp S₂.R := spMap ((algebraMap Ω₂ K).comp (S₂.R.val : S₂.R →+* Ω₂))

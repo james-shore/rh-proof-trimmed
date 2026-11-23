@@ -188,11 +188,7 @@ theorem eq_top_of_separates {Q : Type} [AddCommGroup Q] [Finite Q] (H : AddSubgr
 
 theorem eq_one_of_pow_near {z : ℂ} (h : ∀ n : ℕ, ‖z ^ n - 1‖ < 1 / 2) : z = 1 := by
   first
-  | exact @_root_.GlobalTheory.KeyLemmaTwo.main
-  | exact _root_.GlobalTheory.KeyLemmaTwo.main
   | (apply _root_.GlobalTheory.KeyLemmaTwo.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.KeyLemmaTwo.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.KeyLemmaTwo.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.KeyLemmaTwo.main ..)
 
 theorem exists_nsmul_mem_open {G : Type} [NormedAddCommGroup G] [IsUltrametricDist G] [ProperSpace G]

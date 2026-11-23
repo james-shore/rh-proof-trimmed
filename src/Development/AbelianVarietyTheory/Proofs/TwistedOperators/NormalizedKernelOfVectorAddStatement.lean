@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.normalizedKernelOfVector_add : ∀ {D : D7} {T : T
     (S : GridChoice W U) (p : Pair T) {f f' : WO (G.pS p) (G.pT p) → ℂ},
     IsThetaFunO W.ψ _ _ f → IsThetaFunO W.ψ _ _ f' → ∀ (x : FinPt G p.small) (y : FinPt G p.big),
     kkVec S p (f + f') x y = kkVec S p f x y + kkVec S p f' x y := by
-  first | exact @GlobalTheory.TopZeroInv.kkVec_add | exact GlobalTheory.TopZeroInv.kkVec_add | (intros; apply GlobalTheory.TopZeroInv.kkVec_add <;> assumption)
+  first | exact @GlobalTheory.TopZeroInv.kkVec_add

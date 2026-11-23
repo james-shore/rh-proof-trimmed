@@ -41,4 +41,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Formalism.L2.Ker Formalism.L2.Forms GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.Bl GlobalTheory.Fc GlobalTheory.Svd NumberField IsDedekindDomain
 
 theorem _root_.GlobalTheory.T.concreteChainAgreesAtTuple_of_normalisedRows : ∀ (K : Ctx) (β : BPt K), β.Is (positionOf (HasPartAnd fun _ _ _ _ w Z => ∀ a, GlobalTheory.AtG.RowPin w.I w.ok w.l Z a)) → ∀ μ, GlobalTheory.AtG.TiesAt β.D β.O.ex.errX β.O.X μ := by
-  first | exact @GlobalTheory.Svd.tiesAt_of_rowPin | exact GlobalTheory.Svd.tiesAt_of_rowPin | (intros; apply GlobalTheory.Svd.tiesAt_of_rowPin <;> assumption)
+  first | exact @GlobalTheory.Svd.tiesAt_of_rowPin

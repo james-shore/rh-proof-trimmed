@@ -123,7 +123,6 @@ theorem exists_coord_inv (π : W ⟶ X) (hπ : π ≫ sX = sW) [LocallyOfFiniteT
     let x' : (π ⁻¹ᵁ U : W.Opens) := ⟨x, hxU⟩
     have h1 : IsIso ((π ∣_ U).stalkMap x') := by
       first
-      | exact inferInstance
       | exact (IsOpenImmersion.iff_isIso_stalkMap.mp (inferInstance : IsOpenImmersion (π ∣_ U))).2 x'
     have h2 : (MorphismProperty.isomorphisms CommRingCat) ((π ∣_ U).stalkMap x') := h1
     exact (MorphismProperty.isomorphisms CommRingCat).arrow_mk_iso_iff

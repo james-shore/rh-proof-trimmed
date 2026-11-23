@@ -61,11 +61,7 @@ theorem double_count {G E : Type} [Group G] [TopologicalSpace G] [IsTopologicalG
     (hR : 0 ≤ R) (hr : 0 < r) (hW : ∀ g h, ‖φ h‖ ≤ R → ‖φ g - φ h‖ ≤ 2 * r → h⁻¹ * g ∈ W) :
     μ {g | ‖φ g‖ ≤ R} ≤ ENNReal.ofReal (((R + r) / r) ^ Module.finrank ℝ E) * μ W := by
   first
-  | exact @_root_.GlobalTheory.SeparatedSetCardBound.main
-  | exact _root_.GlobalTheory.SeparatedSetCardBound.main
   | (apply _root_.GlobalTheory.SeparatedSetCardBound.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SeparatedSetCardBound.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SeparatedSetCardBound.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SeparatedSetCardBound.main ..)
 
 def toEuc {m : ℕ} (A : Mat m) : EuclideanSpace ℂ (Fin m × Fin m) := WithLp.toLp 2 fun p => A p.1 p.2

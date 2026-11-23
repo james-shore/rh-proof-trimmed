@@ -163,7 +163,7 @@ lemma LB_lattice (hli : LinearIndependent E (Fin.cons ξ β : Fin (n + 1) → Fi
           change (a : E) * (v : E) * c = (u : E) * (a : E)
           calc
             (a : E) * (v : E) * c = (a : E) * (v : E) * ((u : E) / (v : E)) := by rw [hcv]
-            _ = (u : E) * (a : E) := by field_simp [hvE] <;> ring
+            _ = (u : E) * (a : E) := by field_simp [hvE]
         rw [smul_smul]
         change (((a * v : 𝓞 E) : E) * c) • x ∈ X.L'
         rw [hmul]
@@ -174,7 +174,7 @@ lemma LB_lattice (hli : LinearIndependent E (Fin.cons ξ β : Fin (n + 1) → Fi
     have hcoef : a • c ∈ LBsub X β ξ := by
       refine ⟨0, ?_⟩
       have hsmul : (∑ k, (a • c) k • β k) + (0 : E) • ξ = a • (∑ k, c k • β k) := by
-        simp only [Pi.smul_apply, smul_eq_mul, Finset.smul_sum, mul_smul]
+        simp only [Pi.smul_apply, Finset.smul_sum]
         simp
       rw [hsmul]
       exact hmem
@@ -233,8 +233,7 @@ lemma Sform_h (c c' : Fin n → E) :
   simp only [Sform, Matrix.of_apply]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun l _ => ?_
-  try simp only [cc, RingEquiv.toRingHom_eq_coe, RingEquiv.coe_toRingHom, AlgEquiv.coe_toRingEquiv,
-    AlgEquiv.coe_ringEquiv]
+  try simp only [cc, RingEquiv.toRingHom_eq_coe, RingEquiv.coe_toRingHom, AlgEquiv.coe_toRingEquiv]
   ring
 
 lemma herm_perp (hβξ : ∀ k, herm X.Gm (β k) ξ = 0) (c : Fin n → E) :
@@ -274,7 +273,6 @@ lemma herm_cross (hβξ : ∀ k, herm X.Gm (β k) ξ = 0) (hξξ : herm X.Gm ξ 
     have h := HermitianTraceFormVanishing.herm_conj X.Gm X.Gm_herm (β k) ξ
     rw [hβξ k] at h
     first
-    | simpa [cc] using h
     | simpa [cc] using h.symm
   have hB : herm X.Gm ξ (∑ k, c k • β k) = 0 := by
     rw [herm_sum_smul_right']

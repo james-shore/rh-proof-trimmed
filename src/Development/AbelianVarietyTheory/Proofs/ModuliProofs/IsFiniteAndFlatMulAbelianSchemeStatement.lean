@@ -52,4 +52,4 @@ open GlobalTheory.FlatTors GlobalTheory.IndefiniteRowSideFullHecke.FlatIsoUnitGe
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.isFinite_and_flat_mul_abelianScheme : ∀ (S : Scheme.{0}) [IsLocallyNoetherian S] (A : Over S) [GrpObj A] [IsCommMonObj A], IsAbelianScheme A → ∀ k : ℕ, 1 ≤ k → IsFinite ((𝟙 A) ^ k : A ⟶ A).left ∧ Flat ((𝟙 A) ^ k : A ⟶ A).left := by
-  first | exact @GlobalTheory.MulFiniteFlat.isFinite_and_flat_mul | exact GlobalTheory.MulFiniteFlat.isFinite_and_flat_mul | (intros; apply GlobalTheory.MulFiniteFlat.isFinite_and_flat_mul <;> assumption)
+  first | exact @GlobalTheory.MulFiniteFlat.isFinite_and_flat_mul

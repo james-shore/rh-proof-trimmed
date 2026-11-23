@@ -65,16 +65,13 @@ theorem perFr_add {r : ℕ} (X : ReciprocityTheory.ChartRestriction.G.FD.Data E 
     intro σ
     first
       | (funext k; simp [Data.emb]; done)
-      | (simp [Data.emb]; done)
-      | exact map_add _ _ _
   unfold perFr
   simp only [he]
   split_ifs <;> first
     | (simp; done)
     | (simp [Matrix.mulVec_add]; done)
-    | (simp [hermC, Matrix.dotProduct_add, Matrix.mulVec_add, mul_add, add_mul, Finset.sum_add_distrib]; done)
     | (unfold hermC; simp [Matrix.dotProduct_add, Matrix.mulVec_add, mul_add, add_mul, Finset.sum_add_distrib]; done)
-    | (unfold hermC; simp [mul_add, add_mul, Finset.sum_add_distrib, map_add (f := _)])
+    | (unfold hermC; simp [mul_add, Finset.sum_add_distrib, map_add (f := _)])
 
 theorem perFr_zero {r : ℕ} (X : ReciprocityTheory.ChartRestriction.G.FD.Data E r) (x : Frame X.Ψ r) (τ : E →+* ℂ) (i : ℕ) :
     perFr X x 0 τ i = 0 := by
@@ -82,14 +79,11 @@ theorem perFr_zero {r : ℕ} (X : ReciprocityTheory.ChartRestriction.G.FD.Data E
     intro σ
     first
       | (funext k; simp [Data.emb]; done)
-      | (simp [Data.emb]; done)
-      | exact map_zero _
   unfold perFr
   simp only [he]
   split_ifs <;> first
     | (simp; done)
     | (simp [hermC]; done)
-    | (unfold hermC; simp)
 
 end PerFr
 
@@ -107,7 +101,7 @@ theorem eb_apply {g : ℕ} (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ))
   by_cases hq : q = ⟨τ, i⟩
   · subst hq
     simp [eb]
-  · simp [eb, hq, Pi.single_apply, e.symm.injective.eq_iff]
+  · simp [eb, hq, e.symm.injective.eq_iff]
 
 theorem sum_eb_apply {g : ℕ} (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ)) (τ : E →+* ℂ)
     (c : Fin (Dw.mult τ) → ℂ) (l : Fin (Dw.mult τ)) : (∑ j, c j • eb e τ j) (e.symm ⟨τ, l⟩) = c l := by

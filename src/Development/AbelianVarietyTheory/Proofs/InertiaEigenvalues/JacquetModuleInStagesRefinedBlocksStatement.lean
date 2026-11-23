@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.jacquetModule_in_stages_refined_blocks : ∀ (k : 
     (π : Representation ℂ (GL (Fin n) k) V),
     Nonempty (Representation.Equiv ((jac (refinePlace e e') π).comp (flatHom fun a b => GL (Fin (d' a b)) k))
       (relJacD e' (jac e π))) := by
-  first | exact @GlobalTheory.JacStagesProof.jac_refinePlace_equiv | exact GlobalTheory.JacStagesProof.jac_refinePlace_equiv | (intros; apply GlobalTheory.JacStagesProof.jac_refinePlace_equiv <;> assumption)
+  first | exact @GlobalTheory.JacStagesProof.jac_refinePlace_equiv

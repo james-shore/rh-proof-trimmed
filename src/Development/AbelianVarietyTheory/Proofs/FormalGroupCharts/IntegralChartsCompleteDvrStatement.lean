@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ (PS Pt ev pt comp1 FGLaw)
 open MvPolynomial (X)
 
 theorem _root_.GlobalTheory.T.integral_charts_complete_dvr : IntChartStatement := by
-  first | exact @GlobalTheory.intChart | exact GlobalTheory.intChart | (intros; apply GlobalTheory.intChart <;> assumption)
+  first | exact @GlobalTheory.intChart

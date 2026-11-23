@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.exists_trait_period_form_valuation_sum_refined_cha
       ∃ (T : Trait F) (σ : W →+* T.V) (c : Fin m → ℕ) (e' : T.D.toPre.X ≃+ Q.X), Function.Bijective σ ∧
         jK T.V ≫ spMap σ ≫ spMap κ ≫ spMap ρ ≫ ξ = T.y ≫ j ∧ (∀ k, Associated (σ (κ (ρ (t k)))) (T.ϖ ^ c k)) ∧
         ∀ a b, T.β a b = ∑ k, (c k : ℤ) * δ k (e' a) (e' b) := by
-  first | exact @GlobalTheory.Poinc.ChartTraitForm.exists_trait | exact GlobalTheory.Poinc.ChartTraitForm.exists_trait | (intros; apply GlobalTheory.Poinc.ChartTraitForm.exists_trait <;> assumption)
+  first | exact @GlobalTheory.Poinc.ChartTraitForm.exists_trait

@@ -46,4 +46,4 @@ open scoped InnerProductSpace
 open GlobalTheory.SepReal
 
 theorem _root_.GlobalTheory.T.negativeNormPowerIntegrable_of_ballVolume : VolBall → PowInt := by
-  first | exact @GlobalTheory.SepReal.powInt_of_volBall | exact GlobalTheory.SepReal.powInt_of_volBall | (intros; apply GlobalTheory.SepReal.powInt_of_volBall <;> assumption)
+  first | exact @GlobalTheory.SepReal.powInt_of_volBall

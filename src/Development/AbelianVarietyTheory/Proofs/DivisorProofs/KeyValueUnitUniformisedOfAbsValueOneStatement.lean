@@ -46,4 +46,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 theorem _root_.GlobalTheory.T.keyValue_unit_uniformised_of_absValueOne : ∀ κ : Rule, MBLow.KapF κ → KeyTraitU κ := by
-  first | exact @GlobalTheory.KeyEven.keyTraitU_of_kapF | exact GlobalTheory.KeyEven.keyTraitU_of_kapF | (intros; apply GlobalTheory.KeyEven.keyTraitU_of_kapF <;> assumption)
+  first | exact @GlobalTheory.KeyEven.keyTraitU_of_kapF

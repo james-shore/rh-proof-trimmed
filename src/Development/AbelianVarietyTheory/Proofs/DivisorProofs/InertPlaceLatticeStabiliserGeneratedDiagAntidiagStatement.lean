@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.inertPlace_lattice_stabiliser_generated_diag_antid
     ∀ (v : Pl (F := F)) (w : HeightOneSpectrum (𝓞 E)), Formalism.UG.IsInertAt F E v w → ∀ H : Subgroup (GlobalTheory.DblVac.UD σ G.W),
       (∀ p ∈ GlobalTheory.DblVac.KD σ G.W v, p ∈ GlobalTheory.DblVac.PDiag σ G.W → p ∈ H) →
       (∀ p ∈ GlobalTheory.DblVac.KD σ G.W v, p ∈ GlobalTheory.DblVac.PAnti σ G.W → p ∈ H) → ∀ g ∈ GlobalTheory.DblVac.KD σ G.W v, g ∈ H := by
-  first | exact @GlobalTheory.DblVac.gen_diag_anti | exact GlobalTheory.DblVac.gen_diag_anti | (intros; apply GlobalTheory.DblVac.gen_diag_anti <;> assumption)
+  first | exact @GlobalTheory.DblVac.gen_diag_anti

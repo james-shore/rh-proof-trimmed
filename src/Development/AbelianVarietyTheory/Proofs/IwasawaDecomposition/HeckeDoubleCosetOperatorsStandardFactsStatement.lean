@@ -49,4 +49,4 @@ import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host Formalism.L2.NT Formalism.IndefR.NX GlobalTheory.HeightCounting NumberField IsDedekindDomain Polynomial
 
 theorem _root_.GlobalTheory.T.heckeDoubleCosetOperators_standardFacts : HeckeStdPlain := by
-  first | exact @GlobalTheory.HeckeStdFacts.heckeStdPlain | exact GlobalTheory.HeckeStdFacts.heckeStdPlain | (intros; apply GlobalTheory.HeckeStdFacts.heckeStdPlain <;> assumption)
+  first | exact @GlobalTheory.HeckeStdFacts.heckeStdPlain

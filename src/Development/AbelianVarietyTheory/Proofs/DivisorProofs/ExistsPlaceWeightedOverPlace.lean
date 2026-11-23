@@ -222,7 +222,6 @@ theorem exists_place_weighted_over_place : ∀ {K κ κ' L : Type} [Field K] [Fi
     change V.formOrd _ + 1 ≤ M * (E.formOrd _ + 1) + (k + 1)
     rw [hform, V.formOrd_smul hw hd (mul_ne_zero (hne q hq) (zpow_ne_zero _ hz0')), hmul q _ hq]
     rw [hs] at h1
-    push_cast
     linarith
 
 end GlobalTheory.FieldPair

@@ -152,7 +152,6 @@ theorem exists_reading_lat {E K : Type} [Field E] [NumberField E] [Field K] [Num
     have hb := fun τ => by
       first
       | exact GlobalTheory.T.localBasis_dualBasis_embeddedLattice _ _ _ _ lab τ w l Fact.out hlw _ (hlat c)
-      | exact GlobalTheory.T.localBasis_dualBasis_embeddedLattice _ _ _ _ lab τ w l Fact.out hlw _ (hlat c).toIsLattice
     rcases isEmpty_or_nonempty T with hE | ⟨⟨τ0⟩⟩
     · refine ⟨1, 1, fun τ => hE.elim τ, fun τ => hE.elim τ, fun τ => hE.elim τ, fun v => ?_⟩
       have : m (P.y c)⁻¹ = 1 := Subsingleton.elim _ _

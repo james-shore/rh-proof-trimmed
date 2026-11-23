@@ -162,7 +162,7 @@ theorem step (hlJ : (l : C) ∈ J) (n : ℕ) (w : _root_.WittVector l k) :
       rw [ghost_eq]
       refine Finset.sum_congr rfl fun i hi => ?_
       have hi' := Finset.mem_range.mp hi
-      simp only [z, _root_.WittVector.coeff_mk]
+      simp only [z]
       rw [← pow_mul, ← pow_succ']
       congr 3
       omega

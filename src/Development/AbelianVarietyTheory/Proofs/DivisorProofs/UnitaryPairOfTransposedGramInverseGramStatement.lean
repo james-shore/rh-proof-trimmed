@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.unitaryPair_of_transposedGram_inverseGram : ∀ (D
     ∀ (a : GlobalTheory.WeilM.UG (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig) (incM D.host.F JA))
       (b : GlobalTheory.WeilM.UG (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig) (incM D.host.F JB)),
       ∃ (g : GA D S) (h : GA D T), mt T h = a.1.1 ∧ mt S g = (b⁻¹).1.1ᵀ := by
-  first | exact @GlobalTheory.WeilSchrodinger.match_pair | exact GlobalTheory.WeilSchrodinger.match_pair | (intros; apply GlobalTheory.WeilSchrodinger.match_pair <;> assumption)
+  first | exact @GlobalTheory.WeilSchrodinger.match_pair

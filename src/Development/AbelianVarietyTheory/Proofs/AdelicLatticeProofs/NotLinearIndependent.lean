@@ -81,11 +81,7 @@ theorem exists_ratForm {U : Type} [AddCommGroup U] [Module ℝ U] (om : U →ₗ
     (hint : ∀ x ∈ L, ∀ y ∈ L, ∃ k : ℤ, om (p x) (p y) = k) :
     ∃ B : LinearMap.BilinForm ℚ V, ∀ u v, (B u v : ℝ) = -om (p u) (p v) := by
   first
-  | exact @_root_.GlobalTheory.RationalValueRealScalar.exists_rat_bilinForm
-  | exact _root_.GlobalTheory.RationalValueRealScalar.exists_rat_bilinForm
   | (apply _root_.GlobalTheory.RationalValueRealScalar.exists_rat_bilinForm <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RationalValueRealScalar.exists_rat_bilinForm <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RationalValueRealScalar.exists_rat_bilinForm <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.RationalValueRealScalar.exists_rat_bilinForm ..)
 
 theorem span_image {U : Type} [AddCommGroup U] [Module ℝ U]

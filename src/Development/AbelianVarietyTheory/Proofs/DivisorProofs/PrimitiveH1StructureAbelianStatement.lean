@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.primitive_h1_structure_abelian : ∀ (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj A] (g : ℕ), IsAbelianScheme A → SmoothOfRelativeDimension g A.hom → StructureSheafH1Primitive A := by
-  first | exact @GlobalTheory.AbCoh.primO1_of_isAbelianScheme | exact GlobalTheory.AbCoh.primO1_of_isAbelianScheme | (intros; apply GlobalTheory.AbCoh.primO1_of_isAbelianScheme <;> assumption)
+  first | exact @GlobalTheory.AbCoh.primO1_of_isAbelianScheme

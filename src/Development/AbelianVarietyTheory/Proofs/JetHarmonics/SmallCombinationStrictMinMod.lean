@@ -64,7 +64,7 @@ namespace GlobalTheory
 variable {X : Type} [AddCommGroup X] {Bf : X →+ X →+ ℤ} {Q : X → ℤ} in
 private lemma quad_zero' (hQ : ∀ x, 2 * Q x = Bf x x) : Q 0 = 0 := by
   have h := hQ 0
-  simp only [map_zero, AddMonoidHom.zero_apply] at h
+  simp only [map_zero] at h
   omega
 
 variable {X : Type} [AddCommGroup X] {Bf : X →+ X →+ ℤ} {Q : X → ℤ} in
@@ -86,7 +86,7 @@ variable {X : Type} [AddCommGroup X] {Bf : X →+ X →+ ℤ} {Q : X → ℤ} in
 private lemma quad_zsmul' (hQ : ∀ x, 2 * Q x = Bf x x) (k : ℤ) (x : X) :
     Q (k • x) = k ^ 2 * Q x := by
   have h := hQ (k • x)
-  simp only [map_zsmul, AddMonoidHom.zsmul_apply, smul_eq_mul, zsmul_eq_mul] at h
+  simp only [map_zsmul, AddMonoidHom.zsmul_apply, smul_eq_mul] at h
   have h2 : 2 * Q (k • x) = 2 * (k ^ 2 * Q x) := by rw [h, ← hQ x]; ring
   exact mul_left_cancel₀ two_ne_zero h2
 
@@ -100,7 +100,7 @@ private lemma bilin_sq_le_four_mul_quad (hsym : ∀ x y, Bf x y = Bf y x) (hQ : 
   · have hx1 := hpos x hx
     have hw := quad_nonneg_of_pos hQ hpos (Bf x y • x + (-(2 * Q x)) • y)
     rw [quad_add_eq_add_add_bilin hsym hQ, quad_zsmul' hQ, quad_zsmul' hQ] at hw
-    simp only [map_zsmul, AddMonoidHom.zsmul_apply, smul_eq_mul, zsmul_eq_mul] at hw
+    simp only [map_zsmul, AddMonoidHom.zsmul_apply, smul_eq_mul] at hw
     nlinarith
 
 variable {X : Type} [AddCommGroup X] {Bf : X →+ X →+ ℤ} {Q : X → ℤ} in
@@ -161,7 +161,7 @@ theorem _root_.GlobalTheory.small_combination_strict_min_mod :
     have hz1 : (1 : ℝ) ≤ Q z := by exact_mod_cast hpos z hz
     have hBv : Bf (∑ j, e j • b j) z = ∑ j, (e j : ℤ) * Bf (b j) z := by
       set_option synthInstance.maxHeartbeats 100000 in
-        simp [map_sum, map_nsmul, nsmul_eq_mul]
+        simp [map_sum, map_nsmul]
     have hBvR : (Bf (∑ j, e j • b j) z : ℝ) = ∑ j, (e j : ℝ) * Bf (b j) z := by
       rw [hBv]; push_cast; rfl
     have hMz : (0 : ℝ) ≤ M₀ * Q z := mul_nonneg hM₀ (by linarith)

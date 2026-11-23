@@ -197,7 +197,7 @@ private theorem glob_lemma_2 {F E : Type} [Field F] [NumberField F] [Field E] [N
       rw [Finset.sum_apply, Finset.sum_eq_single j]
       · simp [Subring.smul_def]
       · intro b _ hb
-        simp [Subring.smul_def, Pi.single_apply, Ne.symm hb]
+        simp [Pi.single_apply, Ne.symm hb]
       · intro h
         exact absurd (Finset.mem_univ j) h
     rw [hsum]
@@ -206,7 +206,7 @@ private theorem glob_lemma_2 {F E : Type} [Field F] [NumberField F] [Field E] [N
     refine (asm_mem_std _).2 (fun k => ⟨(Pi.single i (1 : 𝓞 E) : Fin n → 𝓞 E) k, ?_⟩)
     rcases eq_or_ne k i with rfl | h
     · simp
-    · simp [Pi.single_apply, h]
+    · simp [h]
 
 private theorem unit_lemma_5 {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [StarRing E] [Algebra F E]
     (hc : Formalism.BasicNotions.CMData F E) {n : ℕ} (g : Sp E n ≃ₗ[E] Sp E n)
@@ -227,7 +227,7 @@ private theorem unit_lemma_5 {F E : Type} [Field F] [NumberField F] [Field E] [N
   simp only [Matrix.conjTranspose_apply]
   convert h using 1
   · simp [Matrix.mulVec, dotProduct, Pi.single_apply]
-  · simp [Pi.single_apply, apply_ite star, ite_mul, Finset.sum_ite_eq', Finset.sum_ite_eq]
+  · simp [Pi.single_apply, apply_ite star, Finset.sum_ite_eq']
     exact if_congr eq_comm rfl rfl
 
 private theorem over_lemma_6 {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [StarRing E] [Algebra F E] (v : HeightOneSpectrum (𝓞 F)) :

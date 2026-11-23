@@ -121,7 +121,7 @@ theorem main {E I C : Type} [AddCommGroup E] [Module ℂ E] [FiniteDimensional �
     · exact mem_iInf_of_apply (fun i => h i * e) x w fun i => hc ▸ hA c w hw i
     · refine mem_iInf_of_apply (fun i => h i * e) x w fun i => ?_
       rw [LinearMap.mem_ker] at hw
-      simp [hx, Module.End.mul_apply, hw]
+      simp [hx, hw]
   have hU : ⨆ x, U x = ⊤ := by
     rw [eq_top_iff]
     intro v _

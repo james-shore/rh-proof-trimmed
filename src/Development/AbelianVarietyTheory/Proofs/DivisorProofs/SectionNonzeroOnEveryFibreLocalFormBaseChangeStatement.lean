@@ -47,4 +47,4 @@ open Classical
 theorem _root_.GlobalTheory.T.sectionNonzeroOnEveryFibre_localFormBaseChange : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMonObj G] (L : RigLB G) (δ : LB S)
     (σ : (CechPic.tens L.L (δ.pull G.hom)).Sec) (i : δ.ι) (R : Type) [CommRing R] (ξ : Sp R ⟶ S) (t : (KeyVals.bL L ξ).L.Sec),
     ⊤ ≤ ξ ⁻¹ᵁ δ.U i → KeyVals.IsLocSec σ i ξ t → NzFib σ → NzFib t := by
-  first | exact @GlobalTheory.KeyVals.nzFib_of_isLocSec | exact GlobalTheory.KeyVals.nzFib_of_isLocSec | (intros; apply GlobalTheory.KeyVals.nzFib_of_isLocSec <;> assumption)
+  first | exact @GlobalTheory.KeyVals.nzFib_of_isLocSec

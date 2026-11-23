@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.rebased_typical_curves_isBasis : ∀ (C : Type) [F
       IsBasis G p ty (rebase G X γ) ∧
         (∀ a, tangent (rebase G X γ a) = ∑ b, X a b • tangent (γ b)) ∧
         ∀ a n, G.lc p (rebase G X γ a) n = ∑ b, X a b ^ (p ^ n) • G.lc p (γ b) n := by
-  first | exact @GlobalTheory.DepthStages.RebaseBasis.rebase_isBasis | exact GlobalTheory.DepthStages.RebaseBasis.rebase_isBasis | (intros; apply GlobalTheory.DepthStages.RebaseBasis.rebase_isBasis <;> assumption)
+  first | exact @GlobalTheory.DepthStages.RebaseBasis.rebase_isBasis

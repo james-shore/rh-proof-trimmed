@@ -338,7 +338,7 @@ private theorem selGen {l : ℕ} [Fact l.Prime] {L : Loc} {G G0 : Glob l L} (h :
       have := (x.cont r s N).comp_continuous hcont
       rw [PowerSeries.maximalIdeal_eq_span_X] at this
       exact this
-    simp only [mul_apply]
+    simp only
     exact b3 (Fin n) Finset.univ (fun k g => d (u g i k) * ρ g⁻¹ k j) fun k _ =>
       (b2 (fun g => d (u g i k)) (fun g => ρ g⁻¹ k j) (hb i k)
         (b2 (fun g => ρ g k j) (fun g => ρ g k j) (hρb k j) (hρb k j)).2.2.2).2.1

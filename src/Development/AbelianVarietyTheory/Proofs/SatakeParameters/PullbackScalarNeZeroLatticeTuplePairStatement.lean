@@ -45,4 +45,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.pullback_scalar_ne_zero_latticeTuple_pair : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fact (D.what₂.places.resChar w).Prime] {std t J} S => ∀ (d : Dec J std), ∀ j < D.R.m, ∀ (La : (sysS H X std).Lt j) (La' : (sysS H X std).Lt (j + 1)), ((sysS H X std).Pj j).IsLatTup La.2 → ((sysS H X std).Pj (j + 1)).IsLatTup La'.2 → d.sP S j La La' ≠ 0) := by
-  first | exact @GlobalTheory.TwV.DelB.pullbackScalar_ne_zero | exact GlobalTheory.TwV.DelB.pullbackScalar_ne_zero | (intros; apply GlobalTheory.TwV.DelB.pullbackScalar_ne_zero <;> assumption)
+  first | exact @GlobalTheory.TwV.DelB.pullbackScalar_ne_zero

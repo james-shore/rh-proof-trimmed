@@ -116,7 +116,7 @@ private lemma one_left_lemma_5 (G : Over (Spec (CommRingCat.of R))) [GrpObj G]
     (X : Over (Spec (CommRingCat.of R))) :
     (1 : X ⟶ G).left = X.hom ≫ (MonObj.one : 𝟙_ (Over (Spec (CommRingCat.of R))) ⟶ G).left := by
   have h1 : (1 : X ⟶ G) = toUnit X ≫ MonObj.one := by
-    first | rfl | exact Hom.one_def | simp [Hom.one_def]
+    first | rfl
   have h2 : (toUnit X).left ≫ 𝟙 (Spec (CommRingCat.of R)) = X.hom := Over.w (toUnit X)
   have h2' : (toUnit X).left = X.hom := by
     refine Eq.trans ?_ h2

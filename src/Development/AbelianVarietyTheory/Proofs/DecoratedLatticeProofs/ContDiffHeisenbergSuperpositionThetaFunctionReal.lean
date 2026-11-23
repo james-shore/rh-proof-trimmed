@@ -76,7 +76,7 @@ theorem clm_expand (φ : RW T S →L[ℝ] ℂ) : φ = ∑ i, φ (bas S T i) • 
     rw [map_sum]
     simp only [map_smul]
   rw [e]
-  simp [coordC, ContinuousLinearMap.sum_apply, Complex.real_smul, mul_comm]
+  simp [coordC, Complex.real_smul, mul_comm]
 
 theorem norm_heisO_le (hψ : IsStdChar D ψ (-1)) (x : WO S T) {G : WO S T → ℂ} {C : ℝ} (hC : ∀ y, ‖G y‖ ≤ C)
     (w : WO S T) : ‖heisO ψ S T x G w‖ ≤ C := by
@@ -171,7 +171,7 @@ theorem hasFDerivAt_superpos (h : Chart θ σ) (hψ : IsStdChar D ψ (-1)) {F : 
     unfold sco
     refine (norm_add_le _ _).trans (add_le_add ?_ (norm_heisO_le hψ _ (hCd i) w))
     rw [norm_mul, norm_mul]
-    have h1 : ‖(Real.pi : ℂ) * Complex.I‖ = Real.pi := by simp [Real.pi_pos.le]
+    have h1 : ‖(Real.pi : ℂ) * Complex.I‖ = Real.pi := by simp
     have h2 : ‖((omO S T z (bas S T i) : ℝ) : ℂ)‖ ≤ M i := by
       rw [Complex.norm_real]; exact hM i z (Metric.ball_subset_closedBall hz)
     have h3 := norm_heisO_le hψ (iotaW σ T S z) hC w

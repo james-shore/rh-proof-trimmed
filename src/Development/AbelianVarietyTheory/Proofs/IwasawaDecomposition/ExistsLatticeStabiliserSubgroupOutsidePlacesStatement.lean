@@ -46,4 +46,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_lattice_stabiliser_subgroup_outside_places : ∀ (D : D7) (V : HSp D) (S : Finset (HeightOneSpectrum (𝓞 D.host.F))), ∃ K : Subgroup (GA D V), (K : Set (GA D V)) = KsphC V S ∧ ∀ S', S ⊆ S' → KsphC V S' ⊆ KsphC V S := by
-  first | exact @GlobalTheory.Mem.Ksph.exists_subgroup_ksph | exact GlobalTheory.Mem.Ksph.exists_subgroup_ksph | (intros; apply GlobalTheory.Mem.Ksph.exists_subgroup_ksph <;> assumption)
+  first | exact @GlobalTheory.Mem.Ksph.exists_subgroup_ksph

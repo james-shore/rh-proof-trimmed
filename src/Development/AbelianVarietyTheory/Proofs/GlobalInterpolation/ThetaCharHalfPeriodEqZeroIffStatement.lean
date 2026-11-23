@@ -47,4 +47,4 @@ theorem _root_.GlobalTheory.T.thetaChar_half_period_eq_zero_iff_odd_add_odd_add 
     JacobiThetaHalfCharacteristic.IsEvenChar a b →
     (JacobiThetaHalfCharacteristic.thetaChar a b (((m : ℂ) + (n : ℂ) * (τ : ℂ)) / 2) (τ : ℂ) = 0 ↔
       Odd (m + ((b : ℕ) : ℤ)) ∧ Odd (n + ((a : ℕ) : ℤ))) := by
-  first | exact @GlobalTheory.Glob.ThetaParity.thetaChar_half_period_eq_zero_iff | exact GlobalTheory.Glob.ThetaParity.thetaChar_half_period_eq_zero_iff | (intros; apply GlobalTheory.Glob.ThetaParity.thetaChar_half_period_eq_zero_iff <;> assumption)
+  first | exact @GlobalTheory.Glob.ThetaParity.thetaChar_half_period_eq_zero_iff

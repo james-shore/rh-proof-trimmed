@@ -48,4 +48,4 @@ open NumberField IsDedekindDomain Polynomial GlobalTheory.QNorm GlobalTheory.CNo
 open scoped WithZero TensorProduct
 
 theorem _root_.GlobalTheory.T.hasseNormPrinciple_of_isCyclic : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E], IsGalois F E → IsCyclic (E ≃ₐ[F] E) → NP F E := by
-  first | exact @GlobalTheory.CNorm.np_cyclic | exact GlobalTheory.CNorm.np_cyclic | (intros; apply GlobalTheory.CNorm.np_cyclic <;> assumption)
+  first | exact @GlobalTheory.CNorm.np_cyclic

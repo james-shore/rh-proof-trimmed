@@ -103,7 +103,7 @@ theorem pad_getD (a b : List ℤ) (n : ℕ) (hn : a.length + b.length ≤ n) (ha
         dite_eq_right h1, dite_eq_right (by omega)]
       simp
     · rw [List.getElem_append_right (by simp; omega), dite_eq_right h1, dite_eq_left (by omega)]
-      simp only [neg_neg, sub_neg_eq_add, zero_add]
+      simp only [sub_neg_eq_add, zero_add]
       congr 2
       simp
       omega

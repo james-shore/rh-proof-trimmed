@@ -53,4 +53,4 @@ open Classical
 
 theorem _root_.GlobalTheory.T.halfLattice_iff_frameAdjoint_isIntegralMatrix : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.IndefiniteRowSideFullHecke.RestrictedTensorSplitting.PlaceModels D → ∀ i t σ s P cμ cη m ω BW f₀ f c io, GlobalTheory.LiftRows.IsLiftDataC R F i t σ s P cμ cη m ω BW f₀ f c io → ∀ e : AE D, IsIdemSum e (R.Pg ∪ R.Q t) → ∀ x : WO (Vc D i) (Wc D i), IsHalf (cA D e) x →
   (x ∈ latO (Vc D i) (Wc D i) (R.ΛV i) (R.ΛW i) (fun _ => True) ↔ IsIntM (frMapAdj (Vc D i) (Wc D i) (R.βV i) (R.βW i) x)) := by
-  first | exact @GlobalTheory.HalfLatFrames.halfLat_iff_isIntM | exact GlobalTheory.HalfLatFrames.halfLat_iff_isIntM | (intros; apply GlobalTheory.HalfLatFrames.halfLat_iff_isIntM <;> assumption)
+  first | exact @GlobalTheory.HalfLatFrames.halfLat_iff_isIntM

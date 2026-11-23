@@ -226,7 +226,7 @@ theorem cong_of_col {n : ℕ} {J R S : Matrix (Fin (n + 1)) (Fin (n + 1)) E} {a 
   have hU' : U = blk 1 (U.submatrix Fin.succ Fin.succ) := by
     ext i j
     cases i using Fin.cases <;> cases j using Fin.cases <;>
-      simp [blk, hc, hr, Matrix.one_apply, Fin.succ_ne_zero]
+      simp [blk, hc, hr, Fin.succ_ne_zero]
   rw [hU', cT_blk, blk_mul, blk_mul] at hU
   rw [hU', det_blk, one_mul] at hd
   exact ⟨_, hd, (blk_inj hU).2⟩

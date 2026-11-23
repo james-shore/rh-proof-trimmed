@@ -45,4 +45,4 @@ open MvPolynomial GlobalTheory.IndefiniteRowSideFullHecke.MinorOrderedEntries Gl
 open scoped TensorProduct DirectSum
 
 theorem _root_.GlobalTheory.T.iso_unitaryIrrep_conj_dual : ∀ (n : ℕ) (lam : DomWeight n), Iso ((irr n lam).comp (conjU n) : Representation ℂ (U n) (nablaSq ℂ n lam)) (irr n lam).dual := by
-  first | exact @GlobalTheory.ConjDual.iso_conj_dual | exact GlobalTheory.ConjDual.iso_conj_dual | (intros; apply GlobalTheory.ConjDual.iso_conj_dual <;> assumption)
+  first | exact @GlobalTheory.ConjDual.iso_conj_dual

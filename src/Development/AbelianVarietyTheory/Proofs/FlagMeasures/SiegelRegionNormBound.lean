@@ -143,11 +143,7 @@ theorem det_loUni {n : ℕ} {A : Matrix (Fin n) (Fin n) ℂ} (hA : IsLoUni A) : 
 theorem norm_mul_apply_le {n : ℕ} (A B : Matrix (Fin n) (Fin n) ℂ) (a b : ℝ)
     (hA : ∀ i j, ‖A i j‖ ≤ a) (hB : ∀ i j, ‖B i j‖ ≤ b) (i j : Fin n) : ‖(A * B) i j‖ ≤ n * (a * b) := by
   first
-  | exact @_root_.GlobalTheory.LatticeFactsFlagMeasures.main
-  | exact _root_.GlobalTheory.LatticeFactsFlagMeasures.main
   | (apply _root_.GlobalTheory.LatticeFactsFlagMeasures.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LatticeFactsFlagMeasures.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LatticeFactsFlagMeasures.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.LatticeFactsFlagMeasures.main ..)
 
 theorem uni_bound (m : ℕ) (B0 δ : ℝ) (hB0 : 1 ≤ B0) (hδ : 0 < δ) (hδ1 : δ ≤ 1) :

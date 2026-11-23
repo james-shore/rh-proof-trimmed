@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations Formalism.MainNotions.N TensorProduct Module
 
 theorem _root_.GlobalTheory.T.breuilKisin_partC_of_partA_partB_finite_level : Formalism.GaloisCohomology.LocalTateDualityK → Formalism.GaloisCohomology.LocalEulerCharK → ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P), LocTied l P AI → ∀ K : FinExt l, bkACore (P.PD K) → bkBCore (P.PD K) → Formalism.MainNotions.LocalSituation.bkC (P.PD K) := by
-  first | exact @GlobalTheory.BKFinLevel.bkC_of_bkA_bkB | exact GlobalTheory.BKFinLevel.bkC_of_bkA_bkB | (intros; apply GlobalTheory.BKFinLevel.bkC_of_bkA_bkB <;> assumption)
+  first | exact @GlobalTheory.BKFinLevel.bkC_of_bkA_bkB

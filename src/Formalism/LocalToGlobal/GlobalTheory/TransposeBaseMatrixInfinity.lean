@@ -80,7 +80,6 @@ theorem gramN_sig (i j : Fin (D.R.N 0)) :
   letI := D.host.cmStar
   simp only [Formalism.L2.Forms.gramN, Matrix.reindex_apply, Matrix.submatrix_apply, Formalism.BasicNotions.HSpace.gram]
   first
-  | exact ((D.sp.X 0).herm _ _).symm
   | exact ((D.sp.X 0).herm.eq _ _).symm
 
 def BaseBlockInverse (Y : GL (Fin (D.R.N 0)) D.host.E) : GL (Fin (D.R.N 0)) D.host.E :=

@@ -119,7 +119,7 @@ private theorem std_ne (β ν : kˣ →* ℂˣ) (ϖ : kˣ) (c a a' : ℕ) (hϖ :
       intro e; have := congrArg Fin.val e; simp at this; omega
     simp [hne] at hij
   · ext i j
-    simp [blk₁, X0, invT_val, Matrix.one_apply]
+    simp [blk₁, X0, Matrix.one_apply]
 
 private theorem bigF_change (ν : kˣ →* ℂˣ) (ϖ : kˣ) (c a a' : ℕ) (hϖ : IsUnif ϖ) (g : GL (Fin a) k)
     (M : Matrix (Fin (a + a')) (Fin (a + a')) k) (X : Matrix (Fin a) (Fin (a + a')) k) :
@@ -178,10 +178,10 @@ private theorem smallF_change (ν : kˣ →* ℂˣ) (a' d : ℕ) (Ψ : Matrix (F
     Ψ (y.val * (Y * M)) * (ν (gdet y) : ℂ) * apow (gdet y) ((Fintype.card (Fin d) : ℂ) / 2)) g, ← integral_const_mul]
   congr 1
   funext a
-  simp only [Pi.smul_apply, smul_eq_mul, gdet_mul, map_mul, Units.val_mul, apow_mul,
+  simp only [Pi.smul_apply, smul_eq_mul, map_mul, Units.val_mul, apow_mul,
     Matrix.mul_assoc]
   field_simp [apow_ne_zero]
-  <;> ring
+
 
 private theorem main (ϖ : kˣ) (hϖ : IsUnif ϖ) (α β ν : kˣ →* ℂˣ) (hν : ν = α / β) (c a a' : ℕ) (g : GL (Fin a) k)
     (g' : GL (Fin a') k) (κ : GL (Fin (a + a')) k) :

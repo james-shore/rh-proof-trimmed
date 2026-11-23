@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.ArInt GlobalTheory.MixHt
 
 theorem _root_.GlobalTheory.T.arithIntersectionCalculus_cycleHeights_of_analytic : ArchInteg → ArchRecip → GlobalTheory.Published.ArCalc ∧ GlobalTheory.Published.CycleHeights := by
-  first | exact @GlobalTheory.MixHt.arCalc_cycleHeights_of_analytic | exact GlobalTheory.MixHt.arCalc_cycleHeights_of_analytic | (intros; apply GlobalTheory.MixHt.arCalc_cycleHeights_of_analytic <;> assumption)
+  first | exact @GlobalTheory.MixHt.arCalc_cycleHeights_of_analytic

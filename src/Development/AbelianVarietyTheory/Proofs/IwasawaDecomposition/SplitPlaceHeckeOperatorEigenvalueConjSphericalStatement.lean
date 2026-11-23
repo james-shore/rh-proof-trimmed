@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.split_place_hecke_operator_eigenvalue_conj_spheric
     ∀ k, 1 ≤ k → k ≤ n →
       ((normV (GlobalTheory.HeckeFrob.conjSplit s).w : ℕ) : ℂ) ^ (k * (k - 1) / 2) • NG.tN J s ϖ k (T e) =
         (GlobalTheory.HeckeFrob.twEig (GlobalTheory.HeckeFrob.conjSplit s).w α).esymm k • T e := by
-  first | exact @GlobalTheory.HeckeEigConj.tN_eig | exact GlobalTheory.HeckeEigConj.tN_eig | (intros; apply GlobalTheory.HeckeEigConj.tN_eig <;> assumption)
+  first | exact @GlobalTheory.HeckeEigConj.tN_eig

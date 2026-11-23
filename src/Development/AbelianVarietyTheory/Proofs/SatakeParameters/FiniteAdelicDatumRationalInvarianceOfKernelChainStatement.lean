@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Col Formalism.L2.Ker Formalism.L2.DIV GlobalTheory.TwU GlobalTheory.TwV
 
 theorem _root_.GlobalTheory.T.finiteAdelicDatum_rationalInvariance_of_kernelChain : UnderTie (fun {D L hT Gi Gl Kc Y cX ex t u μ St} A dtU a => PtEx A a → (∀ i hi, PtAway A a i hi) → RatLaw A a) := by
-  first | exact @GlobalTheory.RatPt.ratLaw_of_tie | exact GlobalTheory.RatPt.ratLaw_of_tie | (intros; apply GlobalTheory.RatPt.ratLaw_of_tie <;> assumption)
+  first | exact @GlobalTheory.RatPt.ratLaw_of_tie

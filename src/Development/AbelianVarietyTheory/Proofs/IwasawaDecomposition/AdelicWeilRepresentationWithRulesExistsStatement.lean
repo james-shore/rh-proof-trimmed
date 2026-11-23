@@ -46,4 +46,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.adelicWeilRepresentation_with_rules_exists : GlobalTheory.Published.WeilRepresentationUnitaryPair → ∀ D : D7, WeilEx D := by
-  first | exact @GlobalTheory.Mem.WeilExists.weilEx_of_weilRepresentation | exact GlobalTheory.Mem.WeilExists.weilEx_of_weilRepresentation | (intros; apply GlobalTheory.Mem.WeilExists.weilEx_of_weilRepresentation <;> assumption)
+  first | exact @GlobalTheory.Mem.WeilExists.weilEx_of_weilRepresentation

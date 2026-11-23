@@ -101,9 +101,6 @@ theorem level_product_zero (L : R.LevelData (Pr (RadSp k r z z' π π')) r) (w :
     levelProduct L w 0 = bTall L w := by
   have hfr : (List.finRange r).map Fin.val = List.range r := by
     first
-    | exact List.map_val_finRange r
-    | exact List.map_coe_finRange r
-    | exact List.map_coe_finRange
     | simp
   rw [level_product_eq_list_prod L w r 0 (Nat.sub_zero r) (Nat.zero_le r), bTall, ← List.range_eq_range',
     ← hfr, List.map_reverse, List.map_map, List.map_reverse]

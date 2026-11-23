@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.exists_openCompactLevel_thetaKernel_source : ∀ {
     ∃ K : Subgroup (GL (Fin A.rank) (Lev.EAf D)), GlobalTheory.IndefiniteRowSideFullHecke.ClassFunctionSumIntegral.IsOpenCompactLevel A K ∧
       ∀ (P : PolF D WW.rank A.rank) (h : GA D WW), ∀ k ∈ Lev.levA A K, ∀ g,
         X.ker W.ψ W.θ t P h (g * k) = X.ker W.ψ W.θ t P h g := by
-  first | exact @GlobalTheory.SrcLevel.exists_level_ker | exact GlobalTheory.SrcLevel.exists_level_ker | (intros; apply GlobalTheory.SrcLevel.exists_level_ker <;> assumption)
+  first | exact @GlobalTheory.SrcLevel.exists_level_ker

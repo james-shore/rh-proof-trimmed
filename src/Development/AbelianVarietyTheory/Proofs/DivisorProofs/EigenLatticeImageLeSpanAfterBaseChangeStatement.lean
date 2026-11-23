@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.eigenLattice_image_le_span_after_baseChange : ∀ 
     (∀ i, FA.IsDiffOf FB (f i) (M i)) → ∀ (τ : 𝓞 E →+* 𝓞 K), ∀ w ∈ FB.eigLat B.t.act τ,
     (fun k => j (w k)) ∈ Submodule.span (𝓞 K') ((fun (c : Fin FB.P₀.g → K) k => j (c k)) ''
       {v | ∃ i, ∃ e ∈ FA.eigLat A.t.act τ, v = M i e}) := by
-  first | exact @GlobalTheory.CM.LieSpanBaseChange.eigLat_image_le_span_diff | exact GlobalTheory.CM.LieSpanBaseChange.eigLat_image_le_span_diff | (intros; apply GlobalTheory.CM.LieSpanBaseChange.eigLat_image_le_span_diff <;> assumption)
+  first | exact @GlobalTheory.CM.LieSpanBaseChange.eigLat_image_le_span_diff

@@ -68,7 +68,7 @@ theorem sum_smul_toReal_comb {r : ℕ} (v : Fin r → Fin m → ℕ) (u : Fin m 
   ext y z
   rw [sum_smul_toReal_apply', sum_smul_toReal_apply']
   simp only [LinearMap.sum_apply, LinearMap.smul_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul,
-    toReal_apply, Int.cast_sum, Int.cast_mul, Int.cast_natCast, nsmul_eq_mul]
+    Int.cast_sum, Int.cast_mul, Int.cast_natCast, nsmul_eq_mul]
   simp only [Finset.sum_mul, Finset.mul_sum]
   rw [Finset.sum_comm]
   exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun k _ => by ring
@@ -196,7 +196,7 @@ theorem exists_isCell_of_contact (O : Type) [CommRing O] [IsDedekindDomain O] [C
         _ = ∑ j, (c j : ℤ) * ∑ i, (v j i : ℤ) * u i y w := by
           rw [Finset.sum_comm]; simp only [Finset.mul_sum]
         _ = (∑ j, c j • ∑ i, v j i • u i) y w := by
-          simp [LinearMap.sum_apply, nsmul_eq_mul]
+          simp [LinearMap.sum_apply]
   · intro B hB hBe
     obtain ⟨t, ht0, htA, rfl⟩ := hcon B hB hBe
     obtain ⟨c, hc, rfl⟩ := (hiff _).1 ⟨ht0, htA, (hbal _).1 (mem_realForms_of_mem_psdCone hB)⟩

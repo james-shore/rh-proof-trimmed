@@ -51,4 +51,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 theorem _root_.GlobalTheory.T.exists_affineOpen_finset_closedFibre_semiAbelian : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], AdmBase R (maximalIdeal R) → ∀ (G : Over (Sp R)) [GrpObj G] [IsCommMonObj G], IsSemiAbelian G → ∀ s : Finset G.left, (∀ x ∈ s, G.hom x = closedPoint R) → ∃ O : G.left.Opens, IsAffineOpen O ∧ ∀ x ∈ s, x ∈ O := by
-  first | exact @GlobalTheory.Mum.exists_affine_open_of_finset_closedFibre | exact GlobalTheory.Mum.exists_affine_open_of_finset_closedFibre | (intros; apply GlobalTheory.Mum.exists_affine_open_of_finset_closedFibre <;> assumption)
+  first | exact @GlobalTheory.Mum.exists_affine_open_of_finset_closedFibre

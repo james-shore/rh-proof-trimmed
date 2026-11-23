@@ -50,4 +50,4 @@ open GlobalTheory.CechPoset
 
 
 theorem _root_.GlobalTheory.T.exists_cocycle_sub_e2_eq_d1 : ∀ {κ : Type} [LinearOrder κ] {R : Type} [CommRing R] (F : (NE κ)ᵒᵖ ⥤ CommAlgCat.{0} R) (w : Z2 F), ∃ y : CC F 2, δ F 2 y = 0 ∧ ∃ f : C1 F, w.1 - e2 F y = d1 F f := by
-  first | exact @GlobalTheory.CechPoset.posetTwoCocycle_eq_cechImage_add_coboundary | exact GlobalTheory.CechPoset.posetTwoCocycle_eq_cechImage_add_coboundary | (intros; apply GlobalTheory.CechPoset.posetTwoCocycle_eq_cechImage_add_coboundary <;> assumption)
+  first | exact @GlobalTheory.CechPoset.posetTwoCocycle_eq_cechImage_add_coboundary

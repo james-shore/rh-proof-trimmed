@@ -53,4 +53,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.rationalFunction_app_of_preservesGenericPoint : ∀ (X Y : Scheme.{0}) [IsIntegral X] [IsIntegral Y] (m : Y ⟶ X) (φ : X.functionField →+* Y.functionField), PFF (𝟙 _) m φ → ∀ (V : X.Opens) (hV : genericPoint X ∈ V) (hV' : genericPoint Y ∈ m ⁻¹ᵁ V) (a : Γ(X, V)), fnOf (m ⁻¹ᵁ V) hV' ((m.app V).hom a) = φ (fnOf V hV a) := by
-  first | exact @GlobalTheory.Desc.fnOf_app_of_pff | exact GlobalTheory.Desc.fnOf_app_of_pff | (intros; apply GlobalTheory.Desc.fnOf_app_of_pff <;> assumption)
+  first | exact @GlobalTheory.Desc.fnOf_app_of_pff

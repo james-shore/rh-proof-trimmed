@@ -52,4 +52,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.eq_xi_red_of_conn_eq_zero' : ∀ (O K : Type) [CommRing O] [NormedField K] [IsUltrametricDist K] [Algebra O K] [IsUnitBall O K] (l e a : ℕ) (ι : Type) [Fintype ι] [DecidableEq ι] [Fact l.Prime] [NormedAlgebra ℚ_[l] K] (P : PhiMod O K l e a ι) (v : Vec K a ι), P.conn v = 0 → v = P.xi (red v) := by
-  first | exact @GlobalTheory.horiz_eq_xi_red | exact GlobalTheory.horiz_eq_xi_red | (intros; apply GlobalTheory.horiz_eq_xi_red <;> assumption)
+  first | exact @GlobalTheory.horiz_eq_xi_red

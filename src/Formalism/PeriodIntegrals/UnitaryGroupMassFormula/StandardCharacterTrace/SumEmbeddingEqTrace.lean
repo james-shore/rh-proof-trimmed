@@ -101,7 +101,6 @@ theorem Lre_algebraMap (b : F) :
   refine Finset.sum_congr rfl fun w _ => ?_
   congr 1
   first
-    | exact extensionEmbedding_coe w b
     | simp [InfiniteAdeleRing.algebraMap_apply, extensionEmbedding_coe]
 
 theorem Lre_int [IsTotallyReal F] (b : 𝓞 F) : ∃ n : ℤ, Lre F (algebraMap F (Ainf F) (b : F)) = n := by
@@ -170,8 +169,6 @@ theorem stdCharTR_main : PI.StdCharTR.Target := by
     rw [hψ]
     first
       | exact Circle.norm_coe _
-      | exact Circle.abs_coe _
-      | simp [Circle.norm_coe]
   · intro a
     have e : h (algebraMap F (AF F) a) = 0 := hK _ ⟨a, rfl⟩
     rw [hψ, e, AddCircle.toCircle_zero]

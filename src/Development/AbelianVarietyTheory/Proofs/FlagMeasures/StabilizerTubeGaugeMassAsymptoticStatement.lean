@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 
 
 theorem _root_.GlobalTheory.T.stabilizerTube_gaugeMass_asymptotic : PI.RhsWLim.W.TubeLimK := by
-  first | exact @GlobalTheory.StabTube.tubeLimK | exact GlobalTheory.StabTube.tubeLimK | (intros; apply GlobalTheory.StabTube.tubeLimK <;> assumption)
+  first | exact @GlobalTheory.StabTube.tubeLimK

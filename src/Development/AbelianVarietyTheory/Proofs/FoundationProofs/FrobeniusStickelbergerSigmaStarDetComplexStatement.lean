@@ -47,4 +47,4 @@ open scoped BigOperators
 open PowerSeries
 
 theorem _root_.GlobalTheory.T.frobenius_stickelberger_sigmaStar_det_complex : ∀ (Λ : AddSubgroup ℂ), IsLat Λ → ∀ v : ℂ, v ∉ Λ → ∀ z : Fin 3 → ℂ, Matrix.det (Matrix.of fun i j => ![GlobalTheory.FrobStick.colA Λ, GlobalTheory.FrobStick.colB Λ v, GlobalTheory.FrobStick.colC Λ v] j (z i)) = 2 * sgStar Λ (z 0 + z 1 + z 2) * sgStar Λ (z 0 - z 1) * sgStar Λ (z 1 - z 2) * sgStar Λ (z 2 - z 0) := by
-  first | exact @GlobalTheory.FrobStick.sgStar_cube_det_cplx | exact GlobalTheory.FrobStick.sgStar_cube_det_cplx | (intros; apply GlobalTheory.FrobStick.sgStar_cube_det_cplx <;> assumption)
+  first | exact @GlobalTheory.FrobStick.sgStar_cube_det_cplx

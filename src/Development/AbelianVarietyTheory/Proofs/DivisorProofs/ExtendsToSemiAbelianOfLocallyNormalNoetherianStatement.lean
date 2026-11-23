@@ -52,4 +52,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.extendsToSemiAbelian_of_locally_normal_noetherian : ∀ (X S : Scheme.{0}) [AlgebraicGeometry.IsNoetherian S], ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsNormalScheme S → ∀ (j : X ⟶ S) [IsOpenImmersion j], IsDominant j → ∀ (A : Over X) [GrpObj A], IsAbelianScheme A → (∀ s : S, ∃ U : S.Opens, s ∈ U ∧ HasExt (j ∣_ U) ((Over.pullback (j ⁻¹ᵁ U).ι).obj A)) → HasExt j A := by
-  first | exact @GlobalTheory.ExtGlue.hasExt_of_locally | exact GlobalTheory.ExtGlue.hasExt_of_locally | (intros; apply GlobalTheory.ExtGlue.hasExt_of_locally <;> assumption)
+  first | exact @GlobalTheory.ExtGlue.hasExt_of_locally

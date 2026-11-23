@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.exists_linearMap_limit_of_compatible_approximation
     R n (a • b + a' • b') (((a.appr n : ℕ) : PadicAlgCl l) * x + ((a'.appr n : ℕ) : PadicAlgCl l) * x')) →
   ∃ L : TensorProduct ℤ_[l] (PadicAlgCl l) M →ₗ[PadicAlgCl l] ℂ_[l], ∀ n, ∀ b ∈ B, ∀ x, R n b x →
     ‖(x : ℂ_[l]) - L (1 ⊗ₜ[ℤ_[l]] b)‖ ≤ C * ‖((l : ℕ) : PadicAlgCl l) ^ n‖ := by
-  first | exact @GlobalTheory.exists_linear_limit_of_compatible_family | exact GlobalTheory.exists_linear_limit_of_compatible_family | (intros; apply GlobalTheory.exists_linear_limit_of_compatible_family <;> assumption)
+  first | exact @GlobalTheory.exists_linear_limit_of_compatible_family

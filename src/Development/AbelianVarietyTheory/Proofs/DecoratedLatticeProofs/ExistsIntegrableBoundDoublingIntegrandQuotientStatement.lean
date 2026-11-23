@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.exists_integrable_bound_doubling_integrand_quotien
     ∀ (C : ℝ) (N : ℕ), ∃ bound : AutQ V × AutQ V → ℝ, Integrable bound ((autMeasure V m).prod (autMeasure V m)) ∧
       ∀ E : GA D (dblSp V) → ℂ, LeftInv (GQ (dblSp V)) E → (∀ g, ‖E g‖ ≤ C * GlobalTheory.Grow.height (dblSp V) g ^ N) →
         ∀ q, ‖GlobalTheory.Eis.dblIntegrandQ V μ E f₁ f₂ q‖ ≤ bound q := by
-  first | exact @GlobalTheory.Core.Rk.Dom.exists_integrable_bound_dblIntegrandQ | exact GlobalTheory.Core.Rk.Dom.exists_integrable_bound_dblIntegrandQ | (intros; apply GlobalTheory.Core.Rk.Dom.exists_integrable_bound_dblIntegrandQ <;> assumption)
+  first | exact @GlobalTheory.Core.Rk.Dom.exists_integrable_bound_dblIntegrandQ

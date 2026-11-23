@@ -46,4 +46,4 @@ open ReciprocityTheory.L2DbarEstimates (V)
 open scoped ContDiff Matrix
 
 theorem _root_.GlobalTheory.T.polarisedTopChernCoeff_update_add : ∀ {n : ℕ} {r : Type} [Fintype r] [DecidableEq r] (K : Fin n → EndValuedForm11Coeffs n r) (j : Fin n) (L L' : EndValuedForm11Coeffs n r), mixTop (Function.update K j (L + L')) = mixTop (Function.update K j L) + mixTop (Function.update K j L') := by
-  first | exact @GlobalTheory.GoodTop.mixTop_update_add | exact GlobalTheory.GoodTop.mixTop_update_add | (intros; apply GlobalTheory.GoodTop.mixTop_update_add <;> assumption)
+  first | exact @GlobalTheory.GoodTop.mixTop_update_add

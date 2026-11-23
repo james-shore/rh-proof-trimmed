@@ -255,7 +255,6 @@ theorem lies_of_local {O : Type} [CommRing O] {β : O →+* c.F} {Y : Model Xo c
     have hmap : ∀ s : S, Localization.awayMapₐ ψ (f q) (algebraMap S (Localization.Away (f q)) s) =
         algebraMap S' (Localization.Away (ψ (f q))) (ψ s) := fun s => by
       first
-        | exact IsLocalization.map_eq _ _
         | simp [IsLocalization.Away.mapₐ, IsLocalization.Away.map, IsLocalization.map_eq]
     have e3 : (Localization.awayMapₐ ψ (f q)).comp (IsScalarTower.toAlgHom c.F S (Localization.Away (f q))) =
         (IsScalarTower.toAlgHom c.F S' (Localization.Away (ψ (f q)))).comp ψ := AlgHom.ext fun s => hmap s

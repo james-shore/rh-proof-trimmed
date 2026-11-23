@@ -51,4 +51,4 @@ open GlobalTheory.SeeConjRead
 
 
 theorem _root_.GlobalTheory.T.flagPairingTable_diagonal_modSmall : ∀ {M A : Type} [Zero M] [Ring A] (p : M → M → A) (sm : A → Prop) (ρ k n : ℕ), n = 2 * ρ + k + 1 → ∀ (e f : Fin ρ → M) (b b' : Fin k → M) (z : M), PairTable p sm e f b b' z → ∀ a c : Fin n, sm (p (flagV ρ k n f e b' z a) (flagV ρ k n e f b z c) - if a = c then sgnD ρ k a else 0) := by
-  first | exact @GlobalTheory.SeeConjRead.flagV_pair_table | exact GlobalTheory.SeeConjRead.flagV_pair_table | (intros; apply GlobalTheory.SeeConjRead.flagV_pair_table <;> assumption)
+  first | exact @GlobalTheory.SeeConjRead.flagV_pair_table

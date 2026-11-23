@@ -121,7 +121,7 @@ theorem UpperTheory.V.AlgebraTools.units_one_block :
       simp only [mul_assoc]
 
     simp only [f, g, Matrix.of_apply, Finset.mul_sum, Finset.sum_mul, map_sum, mul_smul_comm, smul_mul_assoc, map_smul, hq, hxs]
-    simp [ite_mul, mul_ite, hidem, hte, apply_ite]
+    simp [ite_mul, hidem, hte, apply_ite]
   have hfst : ∀ y, f (T.st y) = (f y)ᵀ := by
     intro y
     ext i j

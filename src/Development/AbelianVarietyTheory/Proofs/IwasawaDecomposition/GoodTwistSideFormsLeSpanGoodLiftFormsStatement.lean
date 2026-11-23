@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.V0T_le_span_image_goodL : ∀ (D : D7) (S : RatDat
     (∀ w : ↥(WKr D S j), Φ (w : S.WL j) = (1 : KT D T i b) ⊗ₜ[S.Ks] w) →
     V0T D T S In.rho In.chi In.θ i j b ≤
       Submodule.span (FractionRing (T.O i)) (Φ '' (goodL D S In.θ j : Set (S.WL j))) := by
-  first | exact @GlobalTheory.HeightCounting.FormsStep.goodTwistSideForms_le_span_goodLiftForms | exact GlobalTheory.HeightCounting.FormsStep.goodTwistSideForms_le_span_goodLiftForms | (intros; apply GlobalTheory.HeightCounting.FormsStep.goodTwistSideForms_le_span_goodLiftForms <;> assumption)
+  first | exact @GlobalTheory.HeightCounting.FormsStep.goodTwistSideForms_le_span_goodLiftForms

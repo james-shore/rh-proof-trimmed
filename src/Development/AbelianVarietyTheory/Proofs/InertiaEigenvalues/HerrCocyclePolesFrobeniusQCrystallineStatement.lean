@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc TensorProduct GlobalTheory.NL Formalism.MainNotions.DeltaInvariantLattices
 
 theorem _root_.GlobalTheory.T.herrCocycle_poles_frobeniusQ_crystalline : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW), P7 D HW F := by
-  first | exact @GlobalTheory.NL.PoleCrys.main | exact GlobalTheory.NL.PoleCrys.main | (intros; apply GlobalTheory.NL.PoleCrys.main <;> assumption)
+  first | exact @GlobalTheory.NL.PoleCrys.main

@@ -45,4 +45,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.columnRealDatum_fockCombination_largeDepth : Big fun ch => ColFock ch := by
-  first | exact @GlobalTheory.ColFockPf.colFock_big | exact GlobalTheory.ColFockPf.colFock_big | (intros; apply GlobalTheory.ColFockPf.colFock_big <;> assumption)
+  first | exact @GlobalTheory.ColFockPf.colFock_big

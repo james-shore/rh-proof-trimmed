@@ -48,4 +48,4 @@ open scoped TensorProduct ComplexConjugate Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.isSmoothThetaFunction_reframeFunctionOnHoms : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (b : Module.Basis (Fin S.rank) D.host.E S.V), (∀ x y : WO (reS S b) T, symplO (reS S b) T x y = symplO S T (reW S T b x) (reW S T b y)) → ∀ f : WO S T → ℂ, IsThetaFunO ψ S T f → IsThetaFunO ψ (reS S b) T (reF S T b f) := by
-  first | exact @GlobalTheory.AdSpan.ReVec.ThetaCarry.isThetaFunO_reF | exact GlobalTheory.AdSpan.ReVec.ThetaCarry.isThetaFunO_reF | (intros; apply GlobalTheory.AdSpan.ReVec.ThetaCarry.isThetaFunO_reF <;> assumption)
+  first | exact @GlobalTheory.AdSpan.ReVec.ThetaCarry.isThetaFunO_reF

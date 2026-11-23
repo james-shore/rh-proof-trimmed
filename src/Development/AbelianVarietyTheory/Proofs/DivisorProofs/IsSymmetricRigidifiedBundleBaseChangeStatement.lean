@@ -46,4 +46,4 @@ open Classical
 
 theorem _root_.GlobalTheory.T.isSymmetric_rigidifiedBundleBaseChange : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMonObj G] (L : RigLB G) (R : Type) [CommRing R] (ξ : Sp R ⟶ S),
     L.IsSymmetric → (KeyVals.bL L ξ).IsSymmetric := by
-  first | exact @GlobalTheory.KeyVals.isSymmetric_bL | exact GlobalTheory.KeyVals.isSymmetric_bL | (intros; apply GlobalTheory.KeyVals.isSymmetric_bL <;> assumption)
+  first | exact @GlobalTheory.KeyVals.isSymmetric_bL

@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_thetaTransform_eq_orientedThetaFunction_CM 
           e (Formalism.IndefR.DatumF.ratWF x) = (GlobalTheory.SWQ.rat y, GlobalTheory.SWQ.rat z)) →
         ∀ f : Formalism.IndefR.DatumF.WOF F E nS nT → ℂ, Formalism.IndefR.DatumF.IsThetaFunOF σ JS JT ξ₀ B.ψ f →
           ∃ Φ ∈ GlobalTheory.WeilM.schA F (Fin N), GlobalTheory.ThetaTransform.thV B.ψ Φ ∘ e = f := by
-  first | exact @GlobalTheory.ThetaOntoF.exists_thV_eqF | exact GlobalTheory.ThetaOntoF.exists_thV_eqF | (intros; apply GlobalTheory.ThetaOntoF.exists_thV_eqF <;> assumption)
+  first | exact @GlobalTheory.ThetaOntoF.exists_thV_eqF

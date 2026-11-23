@@ -45,4 +45,4 @@ open GlobalTheory GlobalTheory.CM
 
 
 theorem _root_.GlobalTheory.T.cmEigenLine_degreeFormula : CMCurve → ThetaUnifAV → Out.Laws → HomExtDvr → DegSt := by
-  first | exact @GlobalTheory.CM.PureDeg.degSt | exact GlobalTheory.CM.PureDeg.degSt | (intros; apply GlobalTheory.CM.PureDeg.degSt <;> assumption)
+  first | exact @GlobalTheory.CM.PureDeg.degSt

@@ -65,4 +65,4 @@ theorem _root_.GlobalTheory.T.heisenbergDerivative_realPlace_pureDatum : ∀ (D 
         ∀ (τ : D.what₂.Tau) (z : Matrix (Fin X.rank) (Fin S.rank) ℂ) (g₁ : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.SInf D.host.F (Fin S.rank × Fin d)),
           GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ActsD (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.evI D.host.F) (M.heisLine Bs.ψ (cS.symm (lineAt θ τ z 1))) g g₁ →
           IsDatum M ψ cS (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure g₁ φ) (dRho (heisO ψ (sgn ε S) X) θ τ z f) := by
-  first | exact @GlobalTheory.HeisLineTransfer.isDatum_dRho_heisO | exact GlobalTheory.HeisLineTransfer.isDatum_dRho_heisO | (intros; apply GlobalTheory.HeisLineTransfer.isDatum_dRho_heisO <;> assumption)
+  first | exact @GlobalTheory.HeisLineTransfer.isDatum_dRho_heisO

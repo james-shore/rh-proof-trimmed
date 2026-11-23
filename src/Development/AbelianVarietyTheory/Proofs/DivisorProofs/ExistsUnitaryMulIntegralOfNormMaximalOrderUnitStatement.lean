@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_unitary_mul_integral_of_norm_maximalOrder_u
     ∀ x : Aˣ, IsIntegral O (τ (x : A) * x) → IsIntegral O (τ ((x⁻¹ : Aˣ) : A) * ((x⁻¹ : Aˣ) : A)) →
     ∃ t : Aˣ, τ (t : A) * t = 1 ∧ IsIntegral O ((t : A) * ((x⁻¹ : Aˣ) : A)) ∧
       IsIntegral O (((t⁻¹ : Aˣ) : A) * (x : A)) := by
-  first | exact @GlobalTheory.UnitAdj.exists_unitary_mul_integral | exact GlobalTheory.UnitAdj.exists_unitary_mul_integral | (intros; apply GlobalTheory.UnitAdj.exists_unitary_mul_integral <;> assumption)
+  first | exact @GlobalTheory.UnitAdj.exists_unitary_mul_integral

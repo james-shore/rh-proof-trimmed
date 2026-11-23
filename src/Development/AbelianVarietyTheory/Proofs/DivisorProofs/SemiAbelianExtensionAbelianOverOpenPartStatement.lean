@@ -58,4 +58,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 theorem _root_.GlobalTheory.T.semiAbelianExtension_abelian_over_open_part : ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] (S : ThetaSys o Ω) (ρ : S.Real) (M : RatModel o Ω) (U₀ : M.Z.Opens) (EE : M.Lat S.J) (FinalForm : ZHOut ρ M U₀ EE), S.Over₀ M U₀ → (U₀ : Set M.Z) ⊆ abLocus FinalForm.G := by
-  first | exact @GlobalTheory.ZH.abLocus_of_over₀ | exact GlobalTheory.ZH.abLocus_of_over₀ | (intros; apply GlobalTheory.ZH.abLocus_of_over₀ <;> assumption)
+  first | exact @GlobalTheory.ZH.abLocus_of_over₀

@@ -68,4 +68,4 @@ theorem _root_.GlobalTheory.T.abs_weilCharacter_det_eq_abs_det_pow : ∀ {k : Ty
     ∀ χ : kˣ →* ℂˣ, (∀ g, ∀ φ ∈ GlobalTheory.WeilM.SB _, ι (S g φ) = fun Y => (χ (Matrix.GeneralLinearGroup.det g) : ℂ) * ι φ (g.valᵀ * Y)) →
     ∃ ν : kˣ →* ℂˣ, (∀ x, ‖(ν x : ℂ)‖ = 1) ∧ ∀ g : GL (Fin n) k,
       (χ (Matrix.GeneralLinearGroup.det g) : ℂ) = ν (Matrix.GeneralLinearGroup.det g) * GlobalTheory.SplitFlip.apow (Matrix.GeneralLinearGroup.det g) ((d : ℂ) / 2) := by
-  first | exact @GlobalTheory.HeisUnit.exists_unitary_factor | exact GlobalTheory.HeisUnit.exists_unitary_factor | (intros; apply GlobalTheory.HeisUnit.exists_unitary_factor <;> assumption)
+  first | exact @GlobalTheory.HeisUnit.exists_unitary_factor

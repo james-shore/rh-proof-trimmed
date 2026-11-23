@@ -45,4 +45,4 @@ theorem _root_.GlobalTheory.T.cmLinearHomCoordinateLattice_fg : ∀ (E : Type) [
     GlobalTheory.IndefiniteRowSideFullHecke.EigenvectorLieDegree.IsHostField H → ∀ (K : Type) [Field K] [NumberField K] (ρ : 𝓞 K) (σ₁ : K →+* ℂ) (p : ℕ)
     (X : GlobalTheory.CM.CMObj H K ρ σ₁ p 0),
     (GlobalTheory.FlatCM.HomLat.lat X).FG := by
-  first | exact @GlobalTheory.FlatCM.HomLat.lat_fg | exact GlobalTheory.FlatCM.HomLat.lat_fg | (intros; apply GlobalTheory.FlatCM.HomLat.lat_fg <;> assumption)
+  first | exact @GlobalTheory.FlatCM.HomLat.lat_fg

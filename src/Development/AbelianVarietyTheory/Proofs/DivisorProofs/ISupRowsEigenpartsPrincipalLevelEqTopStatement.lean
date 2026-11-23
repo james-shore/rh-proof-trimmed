@@ -49,4 +49,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Hk3 (Core Good IsSF SchurAll TwoSided FixAll EEc Wcc eH IsLab HoweUnram)
 
 theorem _root_.GlobalTheory.T.iSup_eEp3_eq_whole_space_of_weakCharacterisation : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : Type} {A3 : FamIn3 D.what₂.LL G Pl0 I0 (List ℕ) T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat3 D A3 Ks) (F : Face3 D A3), R.WeakCharacterisation F → R.toRealDat.ExAt → SchurAll R.toRealDat → (∀ c, R.EEc c ≠ ⊥ → ∃ p, R.Carries p c) → (⨆ p, R.EEp3 p) = ⊤ := by
-  first | exact @GlobalTheory.SpanParts.iSup_rows_eigenparts_principal_level_eq_top | exact GlobalTheory.SpanParts.iSup_rows_eigenparts_principal_level_eq_top | (intros; apply GlobalTheory.SpanParts.iSup_rows_eigenparts_principal_level_eq_top <;> assumption)
+  first | exact @GlobalTheory.SpanParts.iSup_rows_eigenparts_principal_level_eq_top

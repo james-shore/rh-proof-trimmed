@@ -45,4 +45,4 @@ open scoped TensorProduct ContDiff InnerProductSpace Topology
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_finiteDimensional_kStable_smoothVectors : ∀ (n : ℕ) (ε : Fin n → Bool) (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H] (σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)) (P G : Matrix (Fin n) (Fin n) ℂ), IsUnit P → Pᴴ * Formalism.REAL.Jm ε * P = G → IsURepOn (UJset ε) σ → (∃ Λ S, IsKTypeOf ε σ Λ S) → ∃ W : Submodule ℂ H, FiniteDimensional ℂ W ∧ W ≠ ⊥ ∧ W ≤ smSub G (trRep σ P) ∧ ∀ k ∈ Formalism.REAL.Kset ε, ∀ w ∈ W, σ k w ∈ W := by
-  first | exact @GlobalTheory.SmVec.exists_finiteDimensional_kStable_smooth | exact GlobalTheory.SmVec.exists_finiteDimensional_kStable_smooth | (intros; apply GlobalTheory.SmVec.exists_finiteDimensional_kStable_smooth <;> assumption)
+  first | exact @GlobalTheory.SmVec.exists_finiteDimensional_kStable_smooth

@@ -51,4 +51,4 @@ open GlobalTheory.KeyPow GlobalTheory.KeyKa
 
 
 theorem _root_.GlobalTheory.T.exists_integralKeyInvariantRule_charZero : Out.Laws → ThetaUnifAV → GlobalTheory.TorusAlgebraic → KeyDesc → KaSt := by
-  first | exact @GlobalTheory.KaExists.kaSt | exact GlobalTheory.KaExists.kaSt | (intros; apply GlobalTheory.KaExists.kaSt <;> assumption)
+  first | exact @GlobalTheory.KaExists.kaSt

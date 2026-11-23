@@ -47,4 +47,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.breuilKisin_prism_homs_agree_on_witt : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (B : Obj l ↥(OL K)) (f g : Hom bk.prism B) (w : Wq l bk.a), BK.hf f (C w) = BK.hf g (C w) := by
-  first | exact @GlobalTheory.BSP.hf_C_eq_of_pair | exact GlobalTheory.BSP.hf_C_eq_of_pair | (intros; apply GlobalTheory.BSP.hf_C_eq_of_pair <;> assumption)
+  first | exact @GlobalTheory.BSP.hf_C_eq_of_pair

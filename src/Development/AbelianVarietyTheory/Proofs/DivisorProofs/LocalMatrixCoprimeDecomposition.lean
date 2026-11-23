@@ -69,7 +69,6 @@ theorem bilin_ext {M La Q I J : Type} [AddCommGroup M] [AddCommGroup La] [CommGr
   rw [GlobalTheory.LatticeTorsion.eq_prod_zpow bM (fun c => F c a) (fun c c' => hF1 c c' a) c,
     GlobalTheory.LatticeTorsion.eq_prod_zpow bM (fun c => G c a) (fun c c' => hG1 c c' a) c]
   refine Finset.prod_congr rfl fun i _ => ?_
-  beta_reduce
   rw [GlobalTheory.LatticeTorsion.eq_prod_zpow bL (F (bM i)) (hF2 _) a, GlobalTheory.LatticeTorsion.eq_prod_zpow bL (G (bM i)) (hG2 _) a]
   simp only [h]
 
@@ -167,7 +166,6 @@ theorem exists_finiteEtale_linTorsHom : ∀ (p : ℕ) [Fact p.Prime] (D : Datum 
       (fun c a a' => by beta_reduce; rw [smul_add, hadd, MonObj.comp_mul])
       (fun c c' a => by beta_reduce; rw [o.act.add, MonObj.comp_mul, MonObj.comp_mul])
       (fun c a a' => by
-        beta_reduce
         haveI := o.act.hom c
         rw [hadd, MonObj.mul_comp, MonObj.comp_mul])
       (fun j i => H (j, i))
@@ -190,7 +188,6 @@ theorem exists_finiteEtale_linTorsHom : ∀ (p : ℕ) [Fact p.Prime] (D : Datum 
     rw [GlobalTheory.LatticeTorsion.eq_prod_zpow bb (fun a => h ≫ et₀ a) (fun a c => by rw [hadd, MonObj.comp_mul]) a,
       GlobalTheory.LatticeTorsion.eq_prod_zpow bb l hladd a]
     refine Finset.prod_congr rfl fun j _ => ?_
-    beta_reduce
     rw [hb, ← hy j, ← hh j, Category.assoc]
   have hext : ∀ u u' : T ⟶ Z₀, (∀ a, u ≫ et₀ a = u' ≫ et₀ a) → u = u' := fun u u' e =>
     (Out.powIsLimit K n).hom_ext fun ⟨j⟩ => by

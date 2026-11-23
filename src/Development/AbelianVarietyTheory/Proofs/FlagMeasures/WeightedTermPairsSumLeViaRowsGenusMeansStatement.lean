@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.weightedTermPairs_sum_le_via_rows_genusMeans : ∀
         ENNReal.ofReal (GlobalTheory.DegAsm.datBd D.host.E D.R.k D.R.rS (k2Del D j' δ') (DbL D j' δ') (NT D u) x *
           GlobalTheory.DegAsm.datBd D.host.E D.R.k D.R.rS (k2Del D j'' δ'') (DbL D j'' δ'') (NT D u) x') *
         ENNReal.ofReal (massC Y u * B x x') := by
-  first | exact @GlobalTheory.TypeAsm.PairsSum.pairs_sum_le | exact GlobalTheory.TypeAsm.PairsSum.pairs_sum_le | (intros; apply GlobalTheory.TypeAsm.PairsSum.pairs_sum_le <;> assumption)
+  first | exact @GlobalTheory.TypeAsm.PairsSum.pairs_sum_le

@@ -51,4 +51,4 @@ open NumberField MeasureTheory Matrix Filter Topology GlobalTheory.SUVol GlobalT
 open scoped ENNReal
 
 theorem _root_.GlobalTheory.T.totallyRealDegree_and_chartDimension_eq : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (X : Data E r), fdeg E = X.Ψ.card ∧ nd X = X.Ψ.card * (r * (r - 1) / 2) := by
-  first | exact @GlobalTheory.ChartCount.fdeg_and_nd | exact GlobalTheory.ChartCount.fdeg_and_nd | (intros; apply GlobalTheory.ChartCount.fdeg_and_nd <;> assumption)
+  first | exact @GlobalTheory.ChartCount.fdeg_and_nd

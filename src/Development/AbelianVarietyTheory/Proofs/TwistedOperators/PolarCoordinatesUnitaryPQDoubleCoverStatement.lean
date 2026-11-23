@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.BasicNotions.TH Formalism.MainNotions.SchurIrreducible
 
 theorem _root_.GlobalTheory.T.polarCoordinates_unitaryPQ_doubleCover : ∀ X : ProvA, CoverHaarIntegration X := by
-  first | exact @GlobalTheory.PolarU.polar_coordinates | exact GlobalTheory.PolarU.polar_coordinates | (intros; apply GlobalTheory.PolarU.polar_coordinates <;> assumption)
+  first | exact @GlobalTheory.PolarU.polar_coordinates

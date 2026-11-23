@@ -48,4 +48,4 @@ open scoped TensorProduct ComplexConjugate Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.mem_completedLattice_reframeHomMatrix_iff : ∀ (D : D7) (S T : HSp D) (b : Module.Basis (Fin S.rank) D.host.E S.V) (LT : Set (Fin T.rank → D.host.E)) (u : WO (reS S b) T), u ∈ latO (reS S b) T (L0c D (reS S b)) LT (fun _ => True) ↔ reW S T b u ∈ latO S T (L0c D S) LT (fun _ => True) := by
-  first | exact @GlobalTheory.AdSpan.ReVec.latO_reW_iff | exact GlobalTheory.AdSpan.ReVec.latO_reW_iff | (intros; apply GlobalTheory.AdSpan.ReVec.latO_reW_iff <;> assumption)
+  first | exact @GlobalTheory.AdSpan.ReVec.latO_reW_iff

@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.frameImage_trivial_off_levelPrime : ∀ {B : Base}
     StdT I l Z u p β Q L → ∀ j (hj : j ≤ B.R.m) (i : ι) (v : (I.atT l u a).vT), Formalism.L2.NTheta.IsIdemAt (p i).e v.1 → ∀ (g : GL (Fin ((I.rec7 l Z).sp.X j).rank) k) (δ : TC.GA B (B.R.N j)), δ.1 = finM _ (rankN (I.rec7 l Z) j hj) ((β j i).gl g) →
     ∀ w : HeightOneSpectrum (𝓞 B.fields.E), (w ∈ (B.primes X).vGs ∨ w ∈ I.SQ ∨ (w ∈ (B.primes X).vT u ∧ w ≠ v.1)) →
       ∀ r r', adAt B.host.F w ((δ⁻¹).1 r r') = if r = r' then 1 else 0 := by
-  first | exact @GlobalTheory.AdForm.FrameTriv.frame_trivial_off | exact GlobalTheory.AdForm.FrameTriv.frame_trivial_off | (intros; apply GlobalTheory.AdForm.FrameTriv.frame_trivial_off <;> assumption)
+  first | exact @GlobalTheory.AdForm.FrameTriv.frame_trivial_off

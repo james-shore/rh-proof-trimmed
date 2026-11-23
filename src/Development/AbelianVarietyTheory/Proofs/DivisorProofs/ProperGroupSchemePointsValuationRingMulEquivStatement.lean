@@ -57,4 +57,4 @@ open GlobalTheory GlobalTheory.AbLaw GlobalTheory.UU GlobalTheory.LN GlobalTheor
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.proper_group_scheme_points_valuationRing_mulEquiv : ∀ (U Ω : Type) [CommRing U] [IsDomain U] [ValuationRing U] [Field Ω] [Algebra U Ω] [IsFractionRing U Ω] (S : Scheme.{0}) (G : Over S) [GrpObj G], IsProper G.hom → ∀ u : Sp U ⟶ S, ∃ e : (Over.mk u ⟶ G) ≃* (Over.mk (spMap (algebraMap U Ω) ≫ u) ⟶ G), ∀ P, (e P).left = spMap (algebraMap U Ω) ≫ P.left := by
-  first | exact @GlobalTheory.ValPts.points_generic_mulEquiv | exact GlobalTheory.ValPts.points_generic_mulEquiv | (intros; apply GlobalTheory.ValPts.points_generic_mulEquiv <;> assumption)
+  first | exact @GlobalTheory.ValPts.points_generic_mulEquiv

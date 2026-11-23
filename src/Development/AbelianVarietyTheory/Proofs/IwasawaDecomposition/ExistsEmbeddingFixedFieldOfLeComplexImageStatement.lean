@@ -55,4 +55,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_ringHom_LL0_of_le_fixedCoefficientField : ∀ (s : Stages) (M : IntermediateField ℚ ℂ), M ≤ s.B.fixedCoefficientFieldInComplex → ∃ j : M →+* s.toD7.LL0, (embLL0 s.toD7).comp j = M.val.toRingHom := by
-  first | exact @GlobalTheory.exists_embedding_fixedField_of_le_complexImage | exact GlobalTheory.exists_embedding_fixedField_of_le_complexImage | (intros; apply GlobalTheory.exists_embedding_fixedField_of_le_complexImage <;> assumption)
+  first | exact @GlobalTheory.exists_embedding_fixedField_of_le_complexImage

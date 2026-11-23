@@ -47,4 +47,4 @@ open UpperHalfPlane Complex MeasureTheory CongruenceSubgroup GlobalTheory.EisM U
 open scoped MatrixGroups Real ComplexConjugate Manifold ModularForm
 
 theorem _root_.GlobalTheory.T.summable_regularizedEisensteinLatticeTerm : ∀ (j L : ℕ) (v : ℤ × ℤ) (τ : ℍ), 1 ≤ j → 0 < L → Summable fun x => ‖dif L v (dif L v (fun y : ℤ × ℤ => trm j 0 ((y.1 : ℂ) * τ + y.2))) x‖ := by
-  first | exact @GlobalTheory.LatSumZ.latsum_summable | exact GlobalTheory.LatSumZ.latsum_summable | (intros; apply GlobalTheory.LatSumZ.latsum_summable <;> assumption)
+  first | exact @GlobalTheory.LatSumZ.latsum_summable

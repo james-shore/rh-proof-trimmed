@@ -86,10 +86,10 @@ theorem exists_isAlgebraic_ratFunc_of_ringHom (k B : Type) [Field k] [CommRing B
     refine ⟨fun x hx => hs ?_, fun x hx => hs ?_⟩
     · show b • x = b • (0 : R)
       rw [smul_zero, Algebra.smul_def]
-      first | exact hx | (rw [mul_comm]; exact hx)
+      first | exact hx
     · show b • x = b • (0 : R)
       rw [smul_zero, Algebra.smul_def]
-      first | exact hx | (rw [mul_comm]; exact hx)
+      first | (rw [mul_comm]; exact hx)
   have hunitR : ∀ s ∈ nonZeroDivisors R, IsUnit (π (ι s)) := fun s hs =>
     (IsLocalization.map_units Q (⟨s, hs⟩ : nonZeroDivisors R)).map π
   have hBK : ∀ b : B, algebraMap B K b = π (ι (algebraMap B R b)) := fun b => rfl

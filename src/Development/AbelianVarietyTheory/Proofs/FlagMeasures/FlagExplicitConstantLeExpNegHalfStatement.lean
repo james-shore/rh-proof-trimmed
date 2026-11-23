@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas
 
 theorem _root_.GlobalTheory.T.flag_explicit_constant_le_exp_neg_half : ConstantBound := by
-  first | exact @GlobalTheory.FlagMeas.constantBound | exact GlobalTheory.FlagMeas.constantBound | (intros; apply GlobalTheory.FlagMeas.constantBound <;> assumption)
+  first | exact @GlobalTheory.FlagMeas.constantBound

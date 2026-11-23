@@ -529,7 +529,7 @@ theorem gamma_structure_of [NeZero n] [IsDomain O] (h9 : Formalism.MainNotions.D
           dop (aeval dop (∏ j ∈ (Finset.range k).image (fun t : ℕ => (bb : ℤ) - t), (X - C (cc j))) x) -
           cc ((bb : ℤ) - k) • aeval dop (∏ j ∈ (Finset.range k).image (fun t : ℕ => (bb : ℤ) - t),
             (X - C (cc j))) x := by
-        simp [Module.End.mul_apply, Module.algebraMap_end_apply]
+        simp [Module.algebraMap_end_apply]
       rw [e]
       exact hstep k _ ih
   have hIcc : Finset.Icc ((bb : ℤ) - a + 1) (bb : ℤ) = (Finset.range a).image (fun t : ℕ => (bb : ℤ) - t) := by

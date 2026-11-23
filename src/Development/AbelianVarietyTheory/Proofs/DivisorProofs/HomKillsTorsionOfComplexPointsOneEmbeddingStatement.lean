@@ -47,4 +47,4 @@ theorem _root_.GlobalTheory.T.hom_kills_torsion_of_complexPoints_oneEmbedding : 
     IsMonHom G → ∀ m : ℕ, 0 < m →
     (∀ x : Over.mk (spMap (σ.comp (algebraMap (𝓞 K) K))) ⟶ A.t.G, x ^ m = 1 → x ≫ G = 1) →
     ∀ (T : Over (Sp (𝓞 K))) (x : T ⟶ A.t.G), x ^ m = 1 → x ≫ G = 1 := by
-  first | exact @GlobalTheory.TorsionKill.kill_torsion | exact GlobalTheory.TorsionKill.kill_torsion | (intros; apply GlobalTheory.TorsionKill.kill_torsion <;> assumption)
+  first | exact @GlobalTheory.TorsionKill.kill_torsion

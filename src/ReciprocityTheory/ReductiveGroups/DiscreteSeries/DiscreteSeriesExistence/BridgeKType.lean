@@ -119,8 +119,6 @@ private lemma exp_smul_diagonal_I (φ : Fin n → ℝ) (t : ℝ) :
   congr 1
   funext b
   first
-  | (rw [Pi.exp_apply, ← Complex.exp_eq_exp_ℂ])
-  | (simp only [Pi.exp_apply]; exact (congrFun Complex.exp_eq_exp_ℂ _).symm)
   | simp [Complex.exp_eq_exp_ℂ]
 
 private lemma diagonal_I_conjTranspose_eq_neg (φ : Fin n → ℝ) :
@@ -217,7 +215,7 @@ private lemma actM_diagonal_I_single {M : Type*} [AddCommGroup M] [Module ℂ M]
   rw [actM_diagonal, Finset.sum_eq_single a]
   · simp
   · intro b _ hb
-    simp [Pi.single_apply, hb]
+    simp [hb]
   · intro h
     exact absurd (Finset.mem_univ a) h
 

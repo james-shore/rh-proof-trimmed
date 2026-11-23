@@ -53,4 +53,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheo
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.invariantVectorField_preserves_raynaudTorusWeight : ∀ {R : Type} [CommRing R] [IsDomain R] {Q : DegPre R} {O : Type} [CommRing O] [StarRing O] [Module O Q.X] {oa : Q.OAct O} (Y : Ray oa) (v : TanM (𝟙 (Sp R)) Y.H) (dd : Fld Y.H.left), IsInv Y.H v dd → ∀ (α : Q.X) (W : Y.H.left.Opens) (f : Γ(Y.H.left, W)), IsWt Y α W f → IsWt Y α W (dd W f) := by
-  first | exact @GlobalTheory.Heat.GlueWt.isWt_of_isInv | exact GlobalTheory.Heat.GlueWt.isWt_of_isInv | (intros; apply GlobalTheory.Heat.GlueWt.isWt_of_isInv <;> assumption)
+  first | exact @GlobalTheory.Heat.GlueWt.isWt_of_isInv

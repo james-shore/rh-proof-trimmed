@@ -53,4 +53,4 @@ open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil
 
 
 theorem _root_.GlobalTheory.T.parabolicInductionTensorProduct_hasFiniteLength : GlobalTheory.Published.BernsteinZelevinskyFiniteness → ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (s n : ℕ) (d : Fin s → ℕ) (σ : ∀ a, Irr k (d a)) (e : (Σ a, Fin (d a)) ≃ Fin n), HasFiniteLength (multiProd e fun a => (σ a).π) := by
-  first | exact @GlobalTheory.ProdFiniteLength.multiProd_hasFiniteLength | exact GlobalTheory.ProdFiniteLength.multiProd_hasFiniteLength | (intros; apply GlobalTheory.ProdFiniteLength.multiProd_hasFiniteLength <;> assumption)
+  first | exact @GlobalTheory.ProdFiniteLength.multiProd_hasFiniteLength

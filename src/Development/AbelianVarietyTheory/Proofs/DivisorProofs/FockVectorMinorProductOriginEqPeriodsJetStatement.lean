@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.fockVector_minorProduct_origin_eq_periods_jet : �
         (MvPolynomial.rename (fun k : Formalism.MainNotions.GL3Theta.Idx D a d => ((k.1, Fin.cast hT.symm k.2.1, Fin.cast hS.symm k.2.2) : FVar D T.rank S.rank))
           (minorPol D t)) 0 =
       (∏ τ, period D δ r τ ^ (a * n τ)) * Formalism.MainNotions.GL3Theta.applyAt0 D (minorPol D t) G := by
-  first | exact @GlobalTheory.NormExact.fock_minorPol_zero | exact GlobalTheory.NormExact.fock_minorPol_zero | (intros; apply GlobalTheory.NormExact.fock_minorPol_zero <;> assumption)
+  first | exact @GlobalTheory.NormExact.fock_minorPol_zero

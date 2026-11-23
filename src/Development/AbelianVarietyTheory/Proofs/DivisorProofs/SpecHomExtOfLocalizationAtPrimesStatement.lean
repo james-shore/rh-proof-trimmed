@@ -59,4 +59,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheo
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.spec_hom_ext_of_localization_at_primes : ∀ (A : Type) [CommRing A] (X : Scheme.{0}) (a b : Sp A ⟶ X), (∀ (P : Ideal A) [P.IsPrime], spMap (algebraMap A (Localization.AtPrime P)) ≫ a = spMap (algebraMap A (Localization.AtPrime P)) ≫ b) → a = b := by
-  first | exact @GlobalTheory.SpecLocalExt.hom_ext_of_localizationAtPrime | exact GlobalTheory.SpecLocalExt.hom_ext_of_localizationAtPrime | (intros; apply GlobalTheory.SpecLocalExt.hom_ext_of_localizationAtPrime <;> assumption)
+  first | exact @GlobalTheory.SpecLocalExt.hom_ext_of_localizationAtPrime

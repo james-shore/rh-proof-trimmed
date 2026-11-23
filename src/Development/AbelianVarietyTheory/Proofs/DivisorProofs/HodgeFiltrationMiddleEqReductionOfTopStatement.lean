@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.hodgeFiltration_middle_eq_reduction_of_top : Abeli
       (∀ y : HdR A₁, y ∈ F₁ ↔ ∃ x ∈ F, (redMor h₂).Corr x y) →
       (∀ d₁, crysToDR κ₁ h₁ d₁ ∈ F₁ ↔ ∃ d, crysToDR κ h d ∈ F ∧ M.Corr d d₁) ∧
       ((∀ y : HdR A₁, y ∈ Fil A₁ ↔ ∃ x ∈ Fil A, (redMor h₂).Corr x y)) := by
-  first | exact @GlobalTheory.FilRed.filtration_reduction | exact GlobalTheory.FilRed.filtration_reduction | (intros; apply GlobalTheory.FilRed.filtration_reduction <;> assumption)
+  first | exact @GlobalTheory.FilRed.filtration_reduction

@@ -48,4 +48,4 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj TensorProduct Pointwise
 theorem _root_.GlobalTheory.T.isProjOver_comp_finite : ∀ (R : Type) [CommRing R] (X Y : Scheme.{0}) (f : Y ⟶ X) (s : X ⟶ Sp R), IsFinite f → IsProjOver s → IsProjOver (f ≫ s) := by
-  first | exact @GlobalTheory.isProjOver_comp_of_finite | exact GlobalTheory.isProjOver_comp_of_finite | (intros; apply GlobalTheory.isProjOver_comp_of_finite <;> assumption)
+  first | exact @GlobalTheory.isProjOver_comp_of_finite

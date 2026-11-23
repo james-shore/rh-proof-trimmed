@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.exists_oneParameterSubgroup_unitary_of_realPlace_l
     [DecidableEq β] (R S : InfinitePlace F → ℕ) (τ : ∀ w : InfinitePlace F, EmbOver E w) (J : Matrix β β (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))) (b : ℂ)
     (C : ∀ w : InfinitePlace F, Matrix β (Ix (R w) (S w)) ℂ), IsCMExt F E σ → (∀ w, IsFrame (b • J.map (piInf (τ w))) (C w)) →
     ∀ Y : ∀ w : InfinitePlace F, Mat (R w) (S w), (∀ w, Y w ∈ upq (R w) (S w)) → ∃ γ ∈ RLines (σ := σ) J, IsGenD τ C γ Y := by
-  first | exact @GlobalTheory.HoweD.exists_line_of_upqD | exact GlobalTheory.HoweD.exists_line_of_upqD | (intros; apply GlobalTheory.HoweD.exists_line_of_upqD <;> assumption)
+  first | exact @GlobalTheory.HoweD.exists_line_of_upqD

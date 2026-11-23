@@ -49,4 +49,4 @@ open GlobalTheory.Mem.Col2.SplitChar (finIdl)
 
 
 theorem _root_.GlobalTheory.T.mem_blockCongruenceLevelSubgroup_iff_stabilizer_entries : ∀ (D : D7) (𝔪 : Ideal (𝓞 D.host.E)) (d a : ℕ) (h : GA D d), h ∈ blockLev D 𝔪 d a ↔ h ∈ intG D d ∧ ∀ i j : Fin d, j.1 < a → a ≤ i.1 → ((h : GL (Fin d) (AE D)) : Matrix (Fin d) (Fin d) (AE D)) i j ∈ hatId D 𝔪 := by
-  first | exact @GlobalTheory.FunObj.StdDatum.BlockMem.mem_iff | exact GlobalTheory.FunObj.StdDatum.BlockMem.mem_iff | (intros; apply GlobalTheory.FunObj.StdDatum.BlockMem.mem_iff <;> assumption)
+  first | exact @GlobalTheory.FunObj.StdDatum.BlockMem.mem_iff

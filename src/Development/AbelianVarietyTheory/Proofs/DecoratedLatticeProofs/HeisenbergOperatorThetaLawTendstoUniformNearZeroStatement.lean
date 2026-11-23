@@ -50,4 +50,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Unf
 
 theorem _root_.GlobalTheory.T.heisenbergOperator_thetaLaw_tendsto_uniform_near_zero : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ (A T : HSp D) (q : WO A T → ℂ), Continuous q → (∀ (γ : Matrix (Fin T.rank) (Fin A.rank) D.host.E) (u : WO A T), q (ratW T A γ + u) = ψ (-(symplOH A T (ratW T A γ) u)) * q u) → ∀ ε : ℝ, 0 < ε → ∃ N ∈ 𝓝 (0 : WO A T), ∀ a ∈ N, ∀ w, ‖heisO ψ A T a q w - q w‖ ≤ ε := by
-  first | exact @GlobalTheory.HeisNearZero.heisO_near_zero_unif | exact GlobalTheory.HeisNearZero.heisO_near_zero_unif | (intros; apply GlobalTheory.HeisNearZero.heisO_near_zero_unif <;> assumption)
+  first | exact @GlobalTheory.HeisNearZero.heisO_near_zero_unif

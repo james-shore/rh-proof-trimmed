@@ -67,4 +67,4 @@ theorem _root_.GlobalTheory.T.isUnitarySplitting_transportedDoubledWeilDatum : �
             GlobalTheory.WeilSchrodinger.IsTransport ψ (GlobalTheory.DblSchr.ddr co) ωd omd₀ →
           GlobalTheory.WeilM.IsUSplitting (GlobalTheory.WeilM.adeleClass D.host.F) ψ (GlobalTheory.DblSchr.dblD (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig) co)
             (GlobalTheory.WeilM.actB (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig)) (GlobalTheory.DblSchr.omdOf omd₀) := by
-  first | exact @GlobalTheory.DblSchr.isUSplitting_omdOf | exact GlobalTheory.DblSchr.isUSplitting_omdOf | (intros; apply GlobalTheory.DblSchr.isUSplitting_omdOf <;> assumption)
+  first | exact @GlobalTheory.DblSchr.isUSplitting_omdOf

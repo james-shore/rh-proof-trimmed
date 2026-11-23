@@ -142,7 +142,7 @@ theorem isCuspidal_of_inflates (i : ℚ_[g] ≃+* k) (hi : Continuous i) {n : �
     refine Submodule.span_le.2 ?_
     rintro _ ⟨⟨x, hx⟩, y, rfl⟩
     refine Submodule.subset_span ⟨⟨Q * x * Q⁻¹, hQ x hx⟩, σ.ρ Q y, ?_⟩
-    simp [map_mul, Module.End.mul_apply, hinvQ]
+    simp [map_mul, hinvQ]
   refine Submodule.Quotient.subsingleton_iff.2 (eq_top_iff.2 fun v _ => ?_)
   have hv : σ.ρ Q⁻¹ v ∈ twKer σ.ρ (GlobalTheory.FiniteGL.unipRadical k (GlobalTheory.FiniteGL.twoBlocks n a)) 1 := by
     rw [htop]

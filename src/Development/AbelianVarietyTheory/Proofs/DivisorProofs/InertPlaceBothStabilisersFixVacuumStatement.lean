@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.inert_place_both_stabilisers_fix_vacuum : ∀ (F E
     ∀ (v : Pl (F := F)) (w : HeightOneSpectrum (𝓞 E)), Formalism.UG.IsInertAt F E v w → v ∉ X.T →
     ∀ k ∈ GlobalTheory.InertSph.KAt σ G.V v, ∀ k' ∈ GlobalTheory.InertSph.KAt σ G.W v,
       Acts (evFin F v) (om (k, k')) (G.M.vac v) (G.M.vac v) := by
-  first | exact @GlobalTheory.InertSph.vac_fixed_pair | exact GlobalTheory.InertSph.vac_fixed_pair | (intros; apply GlobalTheory.InertSph.vac_fixed_pair <;> assumption)
+  first | exact @GlobalTheory.InertSph.vac_fixed_pair

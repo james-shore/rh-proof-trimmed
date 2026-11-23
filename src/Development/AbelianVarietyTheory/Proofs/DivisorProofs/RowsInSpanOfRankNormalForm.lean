@@ -80,6 +80,6 @@ theorem rows_mem_span_of_isUnit_mul (K : Type) [Field K] (A D : Type) [Fintype A
   refine ⟨c, ?_⟩
   rw [← hc]
   ext d
-  simp [Matrix.vecMul, dotProduct, Finset.sum_apply, mul_comm]
+  simp [Matrix.vecMul, dotProduct, Finset.sum_apply]
 
 end GlobalTheory

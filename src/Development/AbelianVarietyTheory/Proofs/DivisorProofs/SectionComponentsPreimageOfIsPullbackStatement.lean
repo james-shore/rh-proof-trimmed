@@ -48,4 +48,4 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.preimage_section_connectedComponentIn_of_isPullback : ∀ (X S X' S' : Scheme.{0}) (f : X ⟶ S) (f' : X' ⟶ S') (p : S' ⟶ S) (q : X' ⟶ X) (e : S ⟶ X) (e' : S' ⟶ X'), Smooth f → IsPullback q f' f p → e ≫ f = 𝟙 _ → e' ≫ f' = 𝟙 _ → e' ≫ q = p ≫ e → q ⁻¹' {x : X | x ∈ connectedComponentIn (f ⁻¹' {f x}) (e (f x))} = {x : X' | x ∈ connectedComponentIn (f' ⁻¹' {f' x}) (e' (f' x))} := by
-  first | exact @GlobalTheory.sectionComponents_preimage_of_isPullback | exact GlobalTheory.sectionComponents_preimage_of_isPullback | (intros; apply GlobalTheory.sectionComponents_preimage_of_isPullback <;> assumption)
+  first | exact @GlobalTheory.sectionComponents_preimage_of_isPullback

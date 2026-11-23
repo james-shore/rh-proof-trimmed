@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.darbouxCoords_transfer_haar_fundamentalDomain_cm :
               @IsAddFundamentalDomain (GlobalTheory.WeilUnitaryTransport.ratPair F κ) _ _ _ (borel _) 𝓕' ν' ∧
               ∀ f : (κ → AF F) × (κ → AF F) → ℂ,
                 ∫⁻ w in 𝓕, ‖f (co.e w)‖ₑ ^ 2 ∂ν = ∫⁻ w in 𝓕', ‖f w‖ₑ ^ 2 ∂ν' := by
-  first | exact @GlobalTheory.RatDarbouxTransferF.haar_fundDomain_transfer | exact GlobalTheory.RatDarbouxTransferF.haar_fundDomain_transfer | (intros; apply GlobalTheory.RatDarbouxTransferF.haar_fundDomain_transfer <;> assumption)
+  first | exact @GlobalTheory.RatDarbouxTransferF.haar_fundDomain_transfer

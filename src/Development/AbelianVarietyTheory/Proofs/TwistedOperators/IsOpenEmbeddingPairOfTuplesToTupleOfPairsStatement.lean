@@ -49,4 +49,4 @@ open MeasureTheory Topology Matrix NumberField IsDedekindDomain Formalism.MainNo
 open scoped NNReal ENNReal TensorProduct
 
 theorem _root_.GlobalTheory.T.isOpenEmbedding_pairOfTuplesToTupleOfPairs : ∀ (κ X Y : Type) [Fintype κ] [AddCommGroup X] [TopologicalSpace X] [AddCommGroup Y] [TopologicalSpace Y], IsOpenEmbedding (zipHom κ X Y) := by
-  first | exact @GlobalTheory.ModuLR.zipHom_isOpenEmbedding | exact GlobalTheory.ModuLR.zipHom_isOpenEmbedding | (intros; apply GlobalTheory.ModuLR.zipHom_isOpenEmbedding <;> assumption)
+  first | exact @GlobalTheory.ModuLR.zipHom_isOpenEmbedding

@@ -50,4 +50,4 @@ open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.PairStep
 
 theorem _root_.GlobalTheory.T.regular_at_normal_point_of_divisors : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoetherian X] (p : X ⟶ Sp ℂ), IsProjOver p → ∀ y : X, IsIntegrallyClosed (X.presheaf.stalk y) → ∀ f : X.functionField, (∀ z, z ⤳ y → ∀ E : DivOver p, E.IsAt z → f ∈ E.ring) → RegAt y f := by
-  first | exact @GlobalTheory.Discrepancy.regAt_of_isIntegrallyClosed_stalk | exact GlobalTheory.Discrepancy.regAt_of_isIntegrallyClosed_stalk | (intros; apply GlobalTheory.Discrepancy.regAt_of_isIntegrallyClosed_stalk <;> assumption)
+  first | exact @GlobalTheory.Discrepancy.regAt_of_isIntegrallyClosed_stalk

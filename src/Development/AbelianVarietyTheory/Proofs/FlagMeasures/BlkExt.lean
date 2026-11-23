@@ -80,18 +80,14 @@ theorem blk_ext {k : ℕ} {M N : Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ}
     (h3 : ∀ j : Fin k, M (Fin.last k) j.castSucc = N (Fin.last k) j.castSucc)
     (h4 : M (Fin.last k) (Fin.last k) = N (Fin.last k) (Fin.last k)) : M = N := by
   first
-  | exact @_root_.GlobalTheory.MatrixExtLast.matrix_ext_last
-  | exact _root_.GlobalTheory.MatrixExtLast.matrix_ext_last
   | (apply _root_.GlobalTheory.MatrixExtLast.matrix_ext_last <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MatrixExtLast.matrix_ext_last <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MatrixExtLast.matrix_ext_last <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.MatrixExtLast.matrix_ext_last ..)
 
 theorem Hd_eq (k : ℕ) (η : ℝ) : Hd k η = blk 1 0 0 (η : ℂ) := by
   refine blk_ext (fun i j => ?_) (fun i => ?_) (fun j => ?_) ?_
   · simp [Hd, Matrix.diagonal_apply, Matrix.one_apply, Fin.castSucc_ne_last]
-  · simp [Hd, Matrix.diagonal_apply, Fin.castSucc_ne_last]
-  · simp [Hd, Matrix.diagonal_apply, (Fin.castSucc_ne_last _).symm]
+  · simp [Hd, Fin.castSucc_ne_last]
+  · simp [Hd, (Fin.castSucc_ne_last _).symm]
   · simp [Hd]
 
 theorem Hd_sq (k : ℕ) {η : ℝ} (hη : η = 1 ∨ η = -1) : Hd k η * Hd k η = 1 := by

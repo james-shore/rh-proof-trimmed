@@ -57,4 +57,4 @@ open GlobalTheory.WeilM GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHeck
 
 theorem _root_.GlobalTheory.T.exists_fractionalIdeal_lattice_line_coefficients : ∀ (E : Type) [Field E] [NumberField E] (n : ℕ) (L : Submodule (𝓞 E) (Fin n → E)), L.IsLattice E →
     ∀ x : Fin n → E, x ≠ 0 → ∃ 𝔟 : FractionalIdeal (nonZeroDivisors (𝓞 E)) E, ∀ s : E, s ∈ 𝔟 ↔ s • x ∈ L := by
-  first | exact @GlobalTheory.latticeLine_fractionalIdeal | exact GlobalTheory.latticeLine_fractionalIdeal | (intros; apply GlobalTheory.latticeLine_fractionalIdeal <;> assumption)
+  first | exact @GlobalTheory.latticeLine_fractionalIdeal

@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.schwartzSubmodule_eq_top_of_gaussian_mem_derivStab
     (∀ (v : V) (f f₁ : SchwartzMap V ℂ), f ∈ N → (∀ x, f₁ x = fderiv ℝ (⇑f) x v) → f₁ ∈ N) →
     (∀ (ℓ : V →L[ℝ] ℝ) (f f₁ : SchwartzMap V ℂ), f ∈ N → (∀ x, f₁ x = (ℓ x : ℂ) * f x) → f₁ ∈ N) →
     Dense (N : Set (SchwartzMap V ℂ)) := by
-  first | exact @GlobalTheory.SchwartzGaussDense.dense_of_gaussian_mem | exact GlobalTheory.SchwartzGaussDense.dense_of_gaussian_mem | (intros; apply GlobalTheory.SchwartzGaussDense.dense_of_gaussian_mem <;> assumption)
+  first | exact @GlobalTheory.SchwartzGaussDense.dense_of_gaussian_mem

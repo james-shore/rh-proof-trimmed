@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.localChar_det_eq_one_of_congr_one_mod_pow : ∀ {X
     X.AbelianUnramifiedExtensionConditions → Pr.Ok → IsSel X sel → L.Ok Ch sel mu cst G m2 → ∀ (i : ℕ) (P : rowSG Pr sel mu) (n : ℕ) (k : Sp X.E n ≃ₗ[X.E] Sp X.E n),
     (∀ s l, IntAt P.1 (((qOf P.1 : X.E) ^ cst.D P)⁻¹ * (k (Pi.single s (1 : X.E)) l - (Pi.single s (1 : X.E) : Sp X.E n) l))) →
     muAt Ch sel mu cst i P ((LinearEquiv.det k : X.Eˣ) : X.E) = 1 := by
-  first | exact @GlobalTheory.AwayMat.muAt_det_congr_one | exact GlobalTheory.AwayMat.muAt_det_congr_one | (intros; apply GlobalTheory.AwayMat.muAt_det_congr_one <;> assumption)
+  first | exact @GlobalTheory.AwayMat.muAt_det_congr_one

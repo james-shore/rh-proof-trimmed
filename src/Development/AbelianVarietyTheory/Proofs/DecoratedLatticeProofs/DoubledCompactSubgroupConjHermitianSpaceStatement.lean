@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.doubledCompactSubgroup_conj_hermitianSpace : ∀ (
         (GlobalTheory.AdelicU.matHom _ D.sp.cm.sig A.gram (proj D.sp.cm.sig A.gram v k)).val *ᵥ z ∈ latLoc D.host.F L' v) →
     ∀ (a : GL (Fin A.rank) (AE D)) (x : GA D (dblSp A)), x ∈ KAd D.sp.cm.sig (dblSp A).gram L' a ↔
       (io A (k, k))⁻¹ * x * io A (k, k) ∈ KAd D.sp.cm.sig (dblSp A).gram L a := by
-  first | exact @GlobalTheory.LatMove.mem_KAd_io_conj | exact GlobalTheory.LatMove.mem_KAd_io_conj | (intros; apply GlobalTheory.LatMove.mem_KAd_io_conj <;> assumption)
+  first | exact @GlobalTheory.LatMove.mem_KAd_io_conj

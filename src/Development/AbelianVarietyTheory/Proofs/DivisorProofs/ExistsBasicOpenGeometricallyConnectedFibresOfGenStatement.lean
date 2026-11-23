@@ -54,4 +54,4 @@ open GlobalTheory.HTLat GlobalTheory.Published GlobalTheory.Published.AbVarRed I
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_basicOpen_geometricallyConnected_fibres_of_generic : ∀ (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] (G : Over (Sp R)) [GrpObj G], Smooth G.hom → QuasiCompact G.hom → ∀ (K : Type) [Field K] (e : R →+* K), Function.Injective e → GeometricallyConnected (pullback.snd G.hom (spMap e)) → ∃ f : R, e f ≠ 0 ∧ ∀ (F : Type) [Field F] (ψ : R →+* F), IsUnit (ψ f) → GeometricallyConnected (pullback.snd G.hom (spMap ψ)) := by
-  first | exact @GlobalTheory.SpreadConn.geometricallyConnected_of_generic | exact GlobalTheory.SpreadConn.geometricallyConnected_of_generic | (intros; apply GlobalTheory.SpreadConn.geometricallyConnected_of_generic <;> assumption)
+  first | exact @GlobalTheory.SpreadConn.geometricallyConnected_of_generic

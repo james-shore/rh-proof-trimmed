@@ -218,11 +218,7 @@ theorem abstract {S R A F : Type} [CommRing S] [CommRing A] [IsDomain A] [CommRi
 theorem lim_of_complete {W : Type} [CommRing W] (x : W) [h : IsPrecomplete (Ideal.span {x}) W] (f : ℕ → W)
     (hf : ∀ k, x ^ k ∣ f (k + 1) - f k) : ∃ z, ∀ k, x ^ k ∣ z - f k := by
   first
-  | exact @_root_.GlobalTheory.ModularLimit.exists_limit
-  | exact _root_.GlobalTheory.ModularLimit.exists_limit
   | (apply _root_.GlobalTheory.ModularLimit.exists_limit <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ModularLimit.exists_limit <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ModularLimit.exists_limit <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ModularLimit.exists_limit ..)
 
 variable {l : ℕ} [hl : Fact l.Prime] {K : FinExt l} (bk : BK K)

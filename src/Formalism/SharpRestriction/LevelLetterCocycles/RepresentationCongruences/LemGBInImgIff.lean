@@ -247,8 +247,6 @@ theorem qA_mem_AΔ (hcase : Formalism.MainNotions.LiftingTheory.CaseA W) (hP9 : 
     funext j
     first
       | exact h1 δ hδ
-      | (show W.γ₀ δ W.π₀₁ = W.π₀₁; exact h1 δ hδ)
-      | (simp [LocWach.γA, letγ, LocWach.π₀]; exact h1 δ hδ)
   refine ⟨hπ, ?_⟩
   show W.π₀ + ((PD.p : ℕ) : LetA O n) ∈ W.AΔ
   exact W.AΔ.add_mem hπ (Subalgebra.natCast_mem _ _)
@@ -258,8 +256,8 @@ theorem lemGB_letγ_letE (g₀ : PowerSeries O →ₐ[O] PowerSeries O) (i : ZMo
   funext j
   by_cases h : j = i
   · subst h
-    first | simp [letγ, letE] | (show g₀ _ = _; simp [letE])
-  · first | simp [letγ, letE, h] | (show g₀ _ = _; simp [letE, h])
+    first | simp [letγ, letE]
+  · first | simp [letγ, letE, h]
 
 theorem lemGB_γD_letE (T : LocLat G Qp LL O) (δ : W.Gam) (i : ZMod n) (w : W.DD T) :
     W.γD T δ ((letE i : LetA O n) • w) = (letE i : LetA O n) • W.γD T δ w := by
@@ -355,7 +353,6 @@ theorem q_pow_inImg (hcase : Formalism.MainNotions.LiftingTheory.CaseA W) (hP9 :
     have h := congrArg Subtype.val hab
     first
       | simpa [qA, lA, Formalism.MainNotions.LiftingTheory.lp] using h.symm
-      | (push_cast at h; rw [← h]; rfl)
   rw [hq, add_smul, mul_smul, mul_smul]
   exact inImg_add W F i (inImg_smulA W F i a.2 (key _ (pow_mem hπ _) hA))
     (inImg_smulA W F i b.2 (key _ (pow_mem hpA _) hr))

@@ -51,4 +51,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 theorem _root_.GlobalTheory.T.idempotentPart_finitePoint_mem_shiftedTensorLattice : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (Pg Q : Finset (Formalism.L2.DIV.Pl D.host.E)) (e : AE D), IsIdemSum e (Pg ∪ Q) → ∀ Lv : GlobalTheory.SW.Level C.X, Lv.𝔪 = GlobalTheory.LiftLevel.liftI Pg Q → ∀ y ∈ tens (stdL D.host.E S.rank) (conjI Lv.𝔪 • C.X.Λ), GlobalTheory.LiftLevel.partAt e (finW S T y) ∈ hatA S T (tens (stdL D.host.E S.rank) (Lv.sh C.X.Λ)) := by
-  first | exact @GlobalTheory.LiftLevel.partAt_finW_mem_hatA_sh | exact GlobalTheory.LiftLevel.partAt_finW_mem_hatA_sh | (intros; apply GlobalTheory.LiftLevel.partAt_finW_mem_hatA_sh <;> assumption)
+  first | exact @GlobalTheory.LiftLevel.partAt_finW_mem_hatA_sh

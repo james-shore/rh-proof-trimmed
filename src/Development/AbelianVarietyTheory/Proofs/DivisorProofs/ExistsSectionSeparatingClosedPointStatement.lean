@@ -68,4 +68,4 @@ open GlobalTheory.OrbitSep
 open GlobalTheory.Discrepancy GlobalTheory.QCoh
 
 theorem _root_.GlobalTheory.T.exists_section_separating_closed_point : ∀ (k : Type) [Field k] (X : Scheme.{0}) [IsIntegral X] (q : X ⟶ Sp k), IsProjOver q → ∀ (L : LB X), L.IsLB → ∀ (J : X.IdealSheafData) (x : X) (U : X.Opens), IsClosed ({x} : Set X) → x ∈ U → (∀ y ∈ U, y ∈ J.support ↔ y = x) → Subsingleton (coh (twist (idealModule J) L) 1) → ∃ s : L.Sec, x ∈ nonzeroLocus s ∧ ∀ y ∈ J.support, y ≠ x → y ∉ nonzeroLocus s := by
-  first | exact @GlobalTheory.exists_sec_mem_nonzeroLocus_of_isolated_zero_else | exact GlobalTheory.exists_sec_mem_nonzeroLocus_of_isolated_zero_else | (intros; apply GlobalTheory.exists_sec_mem_nonzeroLocus_of_isolated_zero_else <;> assumption)
+  first | exact @GlobalTheory.exists_sec_mem_nonzeroLocus_of_isolated_zero_else

@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.latticeIntertwinerRep_normalizes_heisenberg_finite
           (f f' : GlobalTheory.WeilPartsF.thetaSubF σ JS JT ξ₀ B.ψ),
           (f' : WOF F E nS nT → ℂ) = heisOF σ JS JT ξ₀ B.ψ w₀ f →
           (Om (g, h) f' : WOF F E nS nT → ℂ) = heisOF σ JS JT ξ₀ B.ψ (actOF σ JS JT g h w₀) (Om (g, h) f) := by
-  first | exact @GlobalTheory.FinLatHeis.isLatRepF_heis | exact GlobalTheory.FinLatHeis.isLatRepF_heis | (intros; apply GlobalTheory.FinLatHeis.isLatRepF_heis <;> assumption)
+  first | exact @GlobalTheory.FinLatHeis.isLatRepF_heis

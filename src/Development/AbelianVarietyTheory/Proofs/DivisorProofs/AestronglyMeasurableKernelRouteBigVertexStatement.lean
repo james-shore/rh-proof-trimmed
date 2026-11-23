@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.aestronglyMeasurable_kernel_route_big_vertex : ∀
     (M : Vol G) (hM : M.Is t) (Θ : TotT G (routeBig t i j)) (Θ' : TotT G (routeSmall t i j)) (hΘ : IsMatched B t ρ i j Θ Θ') (g₁ : GA D (G.V (.grid (i + 1) j))),
     AEStronglyMeasurable (fun p : GA D (G.V (.grid i (j + 1))) × GA D (G.V (.grid (i + 1) (j + 1))) => kerBig W Θ p.1 g₁ p.2)
       (((M.ν (.grid i (j + 1))).restrict (M.fd (.grid i (j + 1)))).prod ((M.ν (.grid (i + 1) (j + 1))).restrict (M.fd (.grid (i + 1) (j + 1))))) := by
-  first | exact @GlobalTheory.BigRoute.aestronglyMeasurable_kerBig | exact GlobalTheory.BigRoute.aestronglyMeasurable_kerBig | (intros; apply GlobalTheory.BigRoute.aestronglyMeasurable_kerBig <;> assumption)
+  first | exact @GlobalTheory.BigRoute.aestronglyMeasurable_kerBig

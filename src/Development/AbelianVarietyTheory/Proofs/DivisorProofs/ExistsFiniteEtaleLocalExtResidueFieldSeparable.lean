@@ -94,7 +94,7 @@ theorem exists_finExt_etale_of_isSeparable : ∀ (R : Type) [CommRing R] [IsDoma
     exact (smul_eq_zero.mp h0).resolve_right one_ne_zero
   · ext r
     simp only [RingHom.comp_apply, σ, AlgEquiv.coe_toRingEquiv, RingEquiv.toRingHom_eq_coe,
-      RingHom.coe_coe, AlgEquiv.coe_ringEquiv, AlgEquiv.commutes, AlgHom.toRingHom_eq_coe]
+      RingHom.coe_coe, AlgEquiv.commutes, AlgHom.toRingHom_eq_coe]
     change g2 (algebraMap (ResidueField R) (ResidueField R ⊗[R] A) (residue R r)) = _
     rw [Algebra.TensorProduct.algebraMap_apply]
     simp [g2]

@@ -56,11 +56,7 @@ theorem order_prod_sub_prod {R τ ι : Type} [CommRing R] (s : Finset ι)
     (hab : ∀ i ∈ s, (k i : ℕ∞) + 1 ≤ (a i - b i).order) :
     (∑ i ∈ s, (k i : ℕ∞)) + 1 ≤ (∏ i ∈ s, a i - ∏ i ∈ s, b i).order := by
   first
-  | exact @_root_.GlobalTheory.OrderProductDifference.target
-  | exact _root_.GlobalTheory.OrderProductDifference.target
   | (apply _root_.GlobalTheory.OrderProductDifference.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.OrderProductDifference.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.OrderProductDifference.target <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.OrderProductDifference.target ..)
 
 theorem order_pow_sub_pow {R τ : Type} [CommRing R] (u l : MvPowerSeries τ R)

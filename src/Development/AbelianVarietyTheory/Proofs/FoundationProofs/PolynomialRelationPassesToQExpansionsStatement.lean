@@ -55,4 +55,4 @@ open ReciprocityTheory.ChartRestriction.L1 (DD jT IsMF)
 open ModularForm (E₄ E₆)
 
 theorem _root_.GlobalTheory.T.polynomial_relation_passes_to_qExpansions : ∀ (N n : ℕ) (f : ℍ → ℂ) (b : ℕ → ℂ) (p : ℕ → ℍ → ℂ) (c : ℕ → ℕ → ℂ), 0 < N → HasQ N f b → (∀ i, HasQ N (p i) (c i)) → (∀ τ, ∑ i ∈ Finset.range (n + 1), p i τ * f τ ^ i = 0) → (∑ i ∈ Finset.range (n + 1), Polynomial.monomial i (PowerSeries.mk (c i))).eval (PowerSeries.mk b) = 0 := by
-  first | exact @GlobalTheory.QFam.polyRel_qSeries | exact GlobalTheory.QFam.polyRel_qSeries | (intros; apply GlobalTheory.QFam.polyRel_qSeries <;> assumption)
+  first | exact @GlobalTheory.QFam.polyRel_qSeries

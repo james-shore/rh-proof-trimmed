@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.thetaLift_eq_multiple_principalLevel_classSum : �
       X.R.thF j t y (fun ρ => (u ρ : ↥((X.R.MW j (sg0 D X.A3.A)).sm ρ))) =
         c • (GlobalTheory.FlatVecSum.princ (Y.Z.ρ.B i j b)).classSum (X.R.ωP j t) (Y.Z.ρ.tw i b 0 ∅ 1) h₀
           (fun h => X.R.ioP j (PiTensorProduct.tprod ℂ u) ((X.R.HV j t).e y (h * z))) := by
-  first | exact @GlobalTheory.LiftClassSumPrinc.thF_eq_classSum_princ | exact GlobalTheory.LiftClassSumPrinc.thF_eq_classSum_princ | (intros; apply GlobalTheory.LiftClassSumPrinc.thF_eq_classSum_princ <;> assumption)
+  first | exact @GlobalTheory.LiftClassSumPrinc.thF_eq_classSum_princ

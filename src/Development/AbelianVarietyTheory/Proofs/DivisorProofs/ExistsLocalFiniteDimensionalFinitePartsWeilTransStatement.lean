@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.exists_local_finiteDimensional_finite_parts_weil_t
       (∀ i, g i ∈ SB (κ → FiniteAdeleRing (𝓞 F) F)) ∧ (∀ i j, g i (y j) = if i = j then 1 else 0) ∧
       ∀ p ∈ N, ∃ f : Fin m → SchwartzMap (κ → mixedEmbedding.mixedSpace F) ℂ,
         om p Φ = ∑ i, pureA F (f i) (g i) := by
-  first | exact @GlobalTheory.WeilContF.exists_local_finite_parts_F | exact GlobalTheory.WeilContF.exists_local_finite_parts_F | (intros; apply GlobalTheory.WeilContF.exists_local_finite_parts_F <;> assumption)
+  first | exact @GlobalTheory.WeilContF.exists_local_finite_parts_F

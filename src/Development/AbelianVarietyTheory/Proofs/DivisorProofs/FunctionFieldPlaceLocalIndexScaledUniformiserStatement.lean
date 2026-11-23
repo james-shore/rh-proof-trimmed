@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.functionFieldPlace_localIndex_scaled_uniformiser :
     ∃ (N : ℕ) (φ : (Fin n → F) →ₗ[k] (Fin N → k)), (N : ℤ) = n * d - ord v M.det ∧
       ∀ p : Fin n → F, (∀ i, v.1 (p i) ≤ WithZero.exp (d : ℤ)) → φ p = 0 →
         ∀ i, v.1 (M.mulVec p i) ≤ 1 := by
-  first | exact @GlobalTheory.Nef.local_index_scaled | exact GlobalTheory.Nef.local_index_scaled | (intros; apply GlobalTheory.Nef.local_index_scaled <;> assumption)
+  first | exact @GlobalTheory.Nef.local_index_scaled

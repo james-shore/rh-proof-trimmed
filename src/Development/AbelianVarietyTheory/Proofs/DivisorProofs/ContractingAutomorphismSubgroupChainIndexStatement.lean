@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.UG GlobalTheory.SatakeWeyl
 
 theorem _root_.GlobalTheory.T.contracting_automorphism_subgroup_chain_index : GlobalTheory.SatakeWeyl.ChainIndex := by
-  first | exact @GlobalTheory.SatakeWeyl.chainIndex | exact GlobalTheory.SatakeWeyl.chainIndex | (intros; apply GlobalTheory.SatakeWeyl.chainIndex <;> assumption)
+  first | exact @GlobalTheory.SatakeWeyl.chainIndex

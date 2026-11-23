@@ -138,12 +138,9 @@ theorem y_eq_om {r : ℕ} (f f' : Fin (r + 1) → V) (α : Fin (r + 1) → E)
   have hcr : W.det • α = W.adjugateᵀ *ᵥ β := by
     rw [hβ, Matrix.mulVec_mulVec, Matrix.adjugate_transpose, Matrix.adjugate_mul, Matrix.det_transpose]
     first
-      | rw [Matrix.smul_mulVec_assoc, Matrix.one_mulVec]
       | rw [Matrix.smul_mulVec, Matrix.one_mulVec]
-      | (ext a; simp [Matrix.mulVec, dotProduct, Matrix.one_apply])
   have hdet : W.det = M.L.cj Z.det := by
     first
-      | exact (RingHom.map_det M.L.cj Z).symm
       | exact (RingHom.map_det (M.L.cj : E →+* E) Z).symm
   have hadj : W.adjugate = Z.adjugate.map M.L.cj := by
     first

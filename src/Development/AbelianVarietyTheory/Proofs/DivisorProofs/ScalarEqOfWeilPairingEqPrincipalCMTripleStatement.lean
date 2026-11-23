@@ -46,4 +46,4 @@ theorem _root_.GlobalTheory.T.scalar_eq_of_weilPairing_eq_principalCMTriple : �
     HasType H A.t.act ρ 1 0 → ∀ s s' : 𝓞 E,
     WeilEq A.t.PP.L (A.t.act.act s) (𝟙 _) A.t.PP.L (A.t.act.act s') (𝟙 _) (spMap (σ₁.comp (algebraMap (𝓞 K) K))) →
     s = s' := by
-  first | exact @GlobalTheory.TwistScalarUnique.eq_of_weilEq | exact GlobalTheory.TwistScalarUnique.eq_of_weilEq | (intros; apply GlobalTheory.TwistScalarUnique.eq_of_weilEq <;> assumption)
+  first | exact @GlobalTheory.TwistScalarUnique.eq_of_weilEq

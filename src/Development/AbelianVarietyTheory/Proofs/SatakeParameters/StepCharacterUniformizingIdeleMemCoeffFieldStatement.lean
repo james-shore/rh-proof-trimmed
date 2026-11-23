@@ -44,4 +44,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions F
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.stepCharacter_uniformizingIdele_mem_coeffField : Sites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fact (D.what₂.places.resChar w).Prime] {std t J} S => KIn t → ∀ v π, IsUnifAt J v π → ∀ j < D.R.m, ∃ r : D.what₂.LL, D.what₂.embLL r = S.muT (j + 1) π) := by
-  first | exact @GlobalTheory.TwV.Xc.MuLL.mu_mem_LL | exact GlobalTheory.TwV.Xc.MuLL.mu_mem_LL | (intros; apply GlobalTheory.TwV.Xc.MuLL.mu_mem_LL <;> assumption)
+  first | exact @GlobalTheory.TwV.Xc.MuLL.mu_mem_LL

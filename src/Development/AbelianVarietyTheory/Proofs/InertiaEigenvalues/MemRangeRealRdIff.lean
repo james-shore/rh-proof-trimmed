@@ -64,11 +64,7 @@ theorem evK_eq_sum (t : NX.KB S i b ⊗[S.Ks] NX.FmK S ((j : ℕ) + 1)) :
     ∃ (n : ℕ) (a : Fin n → NX.KB S i b) (x : Fin n → NX.FmK S ((j : ℕ) + 1)),
       evK YS v₀ hρ i j b t = ∑ k, ρ.e i b (a k) • evW YS v₀ j (Subtype.val (x k)) := by
   first
-  | exact @_root_.GlobalTheory.EvaluationSum.evK_eq_sum
-  | exact _root_.GlobalTheory.EvaluationSum.evK_eq_sum
   | (apply _root_.GlobalTheory.EvaluationSum.evK_eq_sum <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EvaluationSum.evK_eq_sum <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EvaluationSum.evK_eq_sum <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.EvaluationSum.evK_eq_sum ..)
 
 theorem mem_range_realRd_iff {ν : ℂ} (hν : ν ≠ 0) (g : GA D (Wc D j) → ℂ) :

@@ -49,4 +49,4 @@ open GlobalTheory.FlatPlace GlobalTheory.LocMod GlobalTheory.SplitWeil
 
 
 theorem _root_.GlobalTheory.T.exists_completionPlaceData : ∀ (D : D7) (w : Pl D.host.E) (e : AE D), IsIdemSum e {w} → ∃ p : Place D (Kw w), IsPlc w p ∧ p.e = e := by
-  first | exact @GlobalTheory.PlcAtW.exists_plc | exact GlobalTheory.PlcAtW.exists_plc | (intros; apply GlobalTheory.PlcAtW.exists_plc <;> assumption)
+  first | exact @GlobalTheory.PlcAtW.exists_plc

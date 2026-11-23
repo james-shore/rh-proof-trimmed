@@ -51,4 +51,4 @@ open MeasureTheory GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.SatakeB
 theorem _root_.GlobalTheory.T.hasSum_cSU_power_differences : ∀ (q : ℕ), 2 ≤ q → ∀ z : ℂ, ‖z‖ < 1 →
     HasSum (fun j : ℕ => (z / (q : ℂ) ^ 2) ^ j *
       ((q : ℂ) ^ (j + 2 * (j / 2)) - (if j = 0 then 0 else (q : ℂ) ^ (j - 1 + 2 * ((j - 1) / 2))))) (cSU q z) := by
-  first | exact @GlobalTheory.SURankOneSeries.hasSum_series | exact GlobalTheory.SURankOneSeries.hasSum_series | (intros; apply GlobalTheory.SURankOneSeries.hasSum_series <;> assumption)
+  first | exact @GlobalTheory.SURankOneSeries.hasSum_series

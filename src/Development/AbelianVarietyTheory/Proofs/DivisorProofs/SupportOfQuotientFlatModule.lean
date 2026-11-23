@@ -212,7 +212,7 @@ theorem exists_local_det {R M : Type} [CommRing R] [AddCommGroup M] [Module R M]
       rw [Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul, hk]
       by_cases hkj : k = j
       · subst hkj; simp
-      · simp [Pi.single_apply, hkj]
+      · simp [hkj]
     choose τ hτ w hw using hcol
     let B : Matrix (Fin r) (Fin r) R := Matrix.of fun k j => w j k
     have hAB : A * B = Matrix.diagonal τ := by
@@ -224,7 +224,7 @@ theorem exists_local_det {R M : Type} [CommRing R] [AddCommGroup M] [Module R M]
       rw [h, Matrix.diagonal_apply]
       by_cases hkj : k = j
       · subst hkj; simp
-      · simp [Pi.single_apply, hkj]
+      · simp [hkj]
     have hprod : A.det * B.det ∉ q.asIdeal := by
       rw [← Matrix.det_mul, hAB, Matrix.det_diagonal]
       exact q.asIdeal.primeCompl.prod_mem (fun j _ => hτ j)

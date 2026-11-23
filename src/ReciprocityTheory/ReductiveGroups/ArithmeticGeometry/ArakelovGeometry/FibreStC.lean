@@ -187,7 +187,6 @@ private theorem deh_dd_mul_deh_zOf_X_eq_eval₂_Q {w : Fin (D + 1) → ℂ} (hw 
     rw [Polynomial.eval₂_sub, Polynomial.eval₂_C, sub_eq_zero] at h1
     rw [h1]
     field_simp
-    first | done | ring
 
 private theorem exists_pow_mul_eq_eval₂_theta {w : Fin (D + 1) → ℂ} (hw : G.Good w) (f : MvPolynomial ι ℤ) :
     ∃ (N : ℕ) (H : Polynomial (MvPolynomial (Fin (D + 1)) ℤ)),
@@ -365,6 +364,6 @@ theorem exists_clear {A K : Type*} [CommRing A] [IsDomain A] [Field K] [Algebra 
   · exact Finset.prod_ne_zero_iff.mpr fun i _ => nonZeroDivisors.ne_zero (hb i).1
   · rw [Polynomial.map_mul, (hb i).2, Polynomial.map_C, ← algebraMap_smul K (b i : A) (q i),
       Polynomial.smul_eq_C_mul, ← Finset.prod_erase_mul _ _ (Finset.mem_univ i)]
-    simp only [map_mul, Polynomial.C_mul, mul_assoc]
+    simp only [map_mul, mul_assoc]
 
 end ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.Fib

@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.mem_all_gaussianWidths_of_fourierStable_schwartz :
     (∀ f ∈ M, 𝓕 f ∈ M) →
     ∀ G : SchwartzMap E ℂ, (∀ y, G y = Complex.exp (-((Real.pi * ‖y‖ ^ 2 : ℝ) : ℂ))) → G ∈ M →
     ∀ (c : ℝ), 0 < c → ∀ g : SchwartzMap E ℂ, (∀ y, g y = Complex.exp (-((c * ‖y‖ ^ 2 : ℝ) : ℂ))) → g ∈ M := by
-  first | exact @GlobalTheory.GaussWidths.all_widths | exact GlobalTheory.GaussWidths.all_widths | (intros; apply GlobalTheory.GaussWidths.all_widths <;> assumption)
+  first | exact @GlobalTheory.GaussWidths.all_widths

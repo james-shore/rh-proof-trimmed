@@ -55,4 +55,4 @@ open scoped TensorProduct ComplexConjugate Matrix
 
 
 theorem _root_.GlobalTheory.T.unitaryRationalDiagonalHom_bijective : ∀ (F E : Type) [Field F] [Field E] [Algebra F E] (σ : E →ₐ[F] E) (n : ℕ) (J : Matrix (Fin n) (Fin n) E), Function.Bijective (diagH σ J F) := by
-  first | exact @GlobalTheory.TwistRatBij.diagH_bijective | exact GlobalTheory.TwistRatBij.diagH_bijective | (intros; apply GlobalTheory.TwistRatBij.diagH_bijective <;> assumption)
+  first | exact @GlobalTheory.TwistRatBij.diagH_bijective

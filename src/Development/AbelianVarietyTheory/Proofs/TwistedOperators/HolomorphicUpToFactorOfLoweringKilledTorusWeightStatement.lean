@@ -47,4 +47,4 @@ open scoped TensorProduct ComplexConjugate Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.holomorphicUpToFactor_of_loweringKilled_torusWeight : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (B : C.Bas), C.IsB B → ∀ (la : Wt C.X.Ψ T.rank) (m : D.what₂.Tau → ℤ) (φ : GA D T → ℂ), LowKilled C.θ T B φ → (∀ (ρ : D.what₂.Tau) (t : Fin T.rank → ℝ) (g : GA D T), φ (g * torAt C.θ T B ρ t) = cexp (((∑ a, ((m ρ - la (C.m.e ρ) a : ℤ) : ℝ) * t a : ℝ) : ℂ) * I) * φ g) → HolUpTo C B la (detPow C.θ T m) φ := by
-  first | exact @GlobalTheory.AdSpan.ConjHol.holUpTo_of_lowKilled | exact GlobalTheory.AdSpan.ConjHol.holUpTo_of_lowKilled | (intros; apply GlobalTheory.AdSpan.ConjHol.holUpTo_of_lowKilled <;> assumption)
+  first | exact @GlobalTheory.AdSpan.ConjHol.holUpTo_of_lowKilled

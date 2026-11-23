@@ -134,7 +134,7 @@ theorem ncard_eq_finrank_of_generated (K L M M' : Type) [Field K] [NumberField K
       Module.finrank K g.fieldRange := by
     rw [ncard_over_congr g.equivFieldRange 𝔭, hsplit]
     exact g.equivFieldRange.toLinearEquiv.finrank_eq
-  have hfix1 := GlobalTheory.T.frobenius_fixes_of_splitsCompletely_intermediate K N g.fieldRange 𝔭 h1
+  have hfix1 := _root_.GlobalTheory.SplitCriterion.frob_fix_of_ncard_primes_eq_finrank K N g.fieldRange 𝔭 h1
   have hfix2 : ∀ σ : N ≃ₐ[L] N, GlobalTheory.NT.IsFrob N 𝔓 σ → ∀ x ∈ ι.fieldRange, σ x = x := by
     intro σ hσ
     have hK : GlobalTheory.NT.IsFrob N 𝔭 (σ.restrictScalars K) := by

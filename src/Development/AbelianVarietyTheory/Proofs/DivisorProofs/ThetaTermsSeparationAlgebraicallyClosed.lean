@@ -108,11 +108,11 @@ theorem prod_famB {T : Over (Spec (CommRingCat.of V))} (p : T ⟶ D.P.A) {U : Ty
   have e₀ : p.left ≫ D.famφB 0 0 = p.left := Category.comp_id _
   have e₁ : p.left ≫ D.famφB 0 1 = p.left := by
     refine (Over.comp_left _ _ _ p (padd D.P.A (𝟙 D.P.A) (toUnit _ ≫ D.c 0))).symm.trans (congrArg (fun q : T ⟶ D.P.A => q.left) ?_)
-    rw [ThetaOne.c_zero, MonObj.comp_one]
+    rw [_root_.GlobalTheory.IndivisibleSection.c_zero_eq_one, MonObj.comp_one]
     exact (congrArg (p ≫ ·) (_root_.mul_one (𝟙 D.P.A))).trans (Category.comp_id p)
   have e₂ : D.famφB 0 2 = D.famφB 0 3 := by
     show (toUnit D.P.A ≫ D.c 0).left = (toUnit D.P.A ≫ η[D.P.A]).left
-    rw [ThetaOne.c_zero, eta_eq]
+    rw [_root_.GlobalTheory.IndivisibleSection.c_zero_eq_one, eta_eq]
   rw [e₀, e₁, e₂]
   simp [DegPre.famε]
 

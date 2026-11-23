@@ -266,7 +266,7 @@ theorem bij_iff : Function.Bijective ((sumHom fun u => shHom (ς u) (g u) (hg u)
       rw [sumHom_lof]
       exact psi_eq (ς v.1.1) (g v.1.1) v.2 _
     rw [hP v x hx hw, CrystallineSemistableComparison.P.mapH_cls _ _ _ _ (by rw [hf]; exact hz)]
-    exact GlobalTheory.CompanionTheory.ConeKillC.cls_congr _ hf _ _
+    exact _root_.CrystallineSemistableComparison.Auxff.cls_congr _ hf _ _
   constructor
   · intro hb
     refine ⟨P.trans (LinearEquiv.ofBijective _ hb), fun v x hx hz => ?_⟩

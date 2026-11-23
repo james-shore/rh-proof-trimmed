@@ -207,7 +207,7 @@ theorem lineOfLargeDegree_of_use :
       (DualStackedExcGeoSecond.proof hLinear LinPrimeCut.proof LinPrimeBase.proof)
       DualStackedExcGeoFirst.proof
   have hStep : DualTopSimpleStacked.Statement :=
-    DualTopSimpleStacked.proof hAI3 hGr (DualStackedGraphImage.proof hGr GlobalTheory.CompanionTheory.Ar.Giv.fibreDim)
+    DualTopSimpleStacked.proof hAI3 hGr (DualStackedGraphImage.proof hGr _root_.GroundTheory.Heights₂.Heights.ForSecondHalf.FibreDim.proof)
       DualStackedGraphHorizontal.proof hFib GrassFibreDegree.proof
   have hStacked : DualTopStacked.Statement :=
     DualTopStacked.proof (DualTopSimpleSub.proof hBasis hStep hSDeg) hBasis hSDeg

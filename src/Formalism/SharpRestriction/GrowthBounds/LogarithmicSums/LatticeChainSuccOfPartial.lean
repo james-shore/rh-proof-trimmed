@@ -117,7 +117,7 @@ theorem sum_low (X : Inst D L) (K : Consts) (hK : K.Nonneg) (P : ParameterChoice
     le_trans (sum_ite_mem_le (fun p : ℕ => Real.log p / p * badf p)
       (fun p _ => mul_nonneg (lp_nonneg p) (T.hbad0 p)))
       (le_trans T.s2 (mul_le_mul_of_nonneg_left N.n7 hN))
-  have b8 : ∑ p ∈ S, (if p ∈ candF D L K then Real.log p / p * (2 * dropI X K a b p + 4 * Sig X K a b p) else 0) ≤
+  have b8 : ∑ p ∈ S, (if p ∈ _root_.Formalism.MainNotions.AuxBlock8.cands D L K then Real.log p / p * (2 * dropI X K a b p + 4 * Sig X K a b p) else 0) ≤
       1 / L.sc.x / 120 := by
     refine le_trans (sum_ite_mem_le (fun p : ℕ => Real.log p / p * (2 * dropI X K a b p + 4 * Sig X K a b p))
       (fun p hp => mul_nonneg (lp_nonneg p)
@@ -289,7 +289,7 @@ theorem latticeChain_succ_of_partial (X : Inst D L) (K : Consts) (hK : K.Nonneg)
       positivity
     refine le_trans (Finset.sum_le_sum (fun p _ => io_le X K hK P hW hSig p)) ?_
     rw [← Finset.sum_mul]
-    have b8 : ∑ p ∈ S, (if p ∈ candF D L K then Real.log p / p * (2 * dropI X K a b p + 4 * Sig X K a b p) else 0) ≤
+    have b8 : ∑ p ∈ S, (if p ∈ _root_.Formalism.MainNotions.AuxBlock8.cands D L K then Real.log p / p * (2 * dropI X K a b p + 4 * Sig X K a b p) else 0) ≤
         L.sc.x ^ (-9 : ℝ) := by
       refine le_trans (sum_ite_mem_le (fun p : ℕ => Real.log p / p * (2 * dropI X K a b p + 4 * Sig X K a b p))
         (fun p hp => mul_nonneg (lp_nonneg p)

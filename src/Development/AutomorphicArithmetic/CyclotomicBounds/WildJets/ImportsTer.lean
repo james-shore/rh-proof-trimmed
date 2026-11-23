@@ -68,7 +68,7 @@ theorem UpperTheory.WildA.toStd :
       rwa [smul_smul, ← Nat.cast_mul] at this
     · have := h2 _ (h2' x hx)
       rwa [smul_smul, ← Nat.cast_mul, mul_comm] at this
-  obtain ⟨r, s, k, hr, hs, hk, e⟩ := GlobalTheory.T.exists_rational_split_stabilizer_decomposition (G.V X) (S.N.fr X) (∏ q ∈ ({l} : Finset ℕ), q)
+  obtain ⟨r, s, k, hr, hs, hk, e⟩ := _root_.GlobalTheory.RatSplitLat.exists_rat_split_lat (G.V X) (S.N.fr X) (∏ q ∈ ({l} : Finset ℕ), q)
     (by simpa using hl.pos) (x * S.N.u X)
   have hs' := GlobalTheory.T.mem_splitPlaceFinitePointsOffPrimes_of_supported _ {l} s hs
   have hB := GlobalTheory.T.latticeOf_stabiliser_mul_inv_eq_standardLattice S X hX k hk

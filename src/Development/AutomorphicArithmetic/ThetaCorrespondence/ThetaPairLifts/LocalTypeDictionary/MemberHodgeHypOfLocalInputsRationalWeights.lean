@@ -50,8 +50,3 @@ theorem member_hodgeHyp_of_localInputs_rationalWeights : _root_.GlobalTheory.Mem
 end GlobalTheory.Mem
 end
 
-section
-open GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.LiteralAutomorphy
-theorem _root_.GlobalTheory.T.compatibleSystem_member_rationalWeights : _root_.GlobalTheory.Mem.LiteralAutomorphy.MemberHypotheses → GlobalTheory.Published.HarishChandraModules → GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Published.CasselmanWallach → GlobalTheory.Published.WeilSiegelFormulaUnitary → GlobalTheory.Published.SiegelWeilUnitarySchrodinger → GlobalTheory.Published.SiegelEisensteinContinuation → _root_.GlobalTheory.Published.UnusedSlot72 → GlobalTheory.Published.UnramifiedDoublingGL → GlobalTheory.Published.BernsteinZelevinskyFiniteness → GlobalTheory.Published.SchurOrthogonalitySquareIntegrable → RowRatW → _root_.GlobalTheory.Mem.Top.Bl.MultiplicityCoverHypotheses :=
-  _root_.GlobalTheory.Mem.member_hodgeHyp_of_localInputs_rationalWeights
-end

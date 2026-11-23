@@ -109,7 +109,7 @@ theorem GlobalTheory.HorFrame.exists_horizontal_lift : ∀ {E : Type} [Field E] 
           spMap ((dualMap ψ).comp (e b)) ≫ tau hW' ≫ toFlag M = X.ptY w := by
   intro E _ _ _ H Dw l Xo c Y X Z M hP hKS k W hW p hp
   haveI := c.fin
-  obtain ⟨W₁, hW₁, d, hpW₁, hW₁W, hd, hspan⟩ := GlobalTheory.T.exists_affine_cover_with_dual_number_derivations M W p hp
+  obtain ⟨W₁, hW₁, d, hpW₁, hW₁W, hd, hspan⟩ := _root_.GlobalTheory.CompHS.exists_derivFrame M W p hp
   have hoff : W₁ ≤ M.off := fun x hx => (hW (hW₁W hx)).1
   have hτ : ⊤ ≤ tau hW₁ ⁻¹ᵁ W₁ := tau_le hW₁ le_rfl
   have hk₁ : ⊤ ≤ (tau hW₁ ≫ toFlag M) ⁻¹ᵁ X.F.U k := fun s _ => (hW (hW₁W (hτ (Set.mem_univ s)))).2

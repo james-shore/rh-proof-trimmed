@@ -75,19 +75,6 @@ theorem exists_coord {U : Type} [AddCommGroup U] [Module ℝ U] [FiniteDimension
   let e := (Module.finBasis ℂ U).equivFun
   exact ⟨_, e.restrictScalars ℝ, fun v => by rw [← hI]; exact e.map_smul _ _⟩
 
-theorem exists_ratForm {U : Type} [AddCommGroup U] [Module ℝ U] (om : U →ₗ[ℝ] U →ₗ[ℝ] ℝ)
-    {V : Type} [AddCommGroup V] [Module ℚ V] (p : V →+ U) (L : AddSubgroup V)
-    (hN : ∀ x : V, ∃ N : ℕ, 0 < N ∧ N • x ∈ L)
-    (hint : ∀ x ∈ L, ∀ y ∈ L, ∃ k : ℤ, om (p x) (p y) = k) :
-    ∃ B : LinearMap.BilinForm ℚ V, ∀ u v, (B u v : ℝ) = -om (p u) (p v) := by
-  first
-  | exact @_root_.GlobalTheory.RationalValueRealScalar.exists_rat_bilinForm
-  | exact _root_.GlobalTheory.RationalValueRealScalar.exists_rat_bilinForm
-  | (apply _root_.GlobalTheory.RationalValueRealScalar.exists_rat_bilinForm <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RationalValueRealScalar.exists_rat_bilinForm <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RationalValueRealScalar.exists_rat_bilinForm <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.RationalValueRealScalar.exists_rat_bilinForm ..)
-
 theorem span_image {U : Type} [AddCommGroup U] [Module ℝ U]
     {V : Type} [AddCommGroup V] (p : V →+ U) (hsp : Submodule.span ℝ (Set.range p) = ⊤)
     (L : AddSubgroup V) (hN : ∀ x : V, ∃ N : ℕ, 0 < N ∧ N • x ∈ L) :
@@ -142,7 +129,7 @@ theorem not_linearIndependent : ∀ (U : Type) [NormedAddCommGroup U] [NormedSpa
   have him : ∀ x y, (x ⬝ᵥ Hm.mulVec (star y)).im = -om (e.symm x) (e.symm y) := hHim
   have hpos' : ∀ z : Fin g → ℂ, z ≠ 0 → 0 < (z ⬝ᵥ Hm.mulVec (star z)).re := hHpos
   have hint : ∀ x ∈ L, ∀ y ∈ L, ∃ k : ℤ, om (p x) (p y) = k := fun x hx => (hL x).1 hx
-  obtain ⟨B, hB⟩ := exists_ratForm om p L hN hint
+  obtain ⟨B, hB⟩ := _root_.GlobalTheory.RationalValueRealScalar.exists_rat_bilinForm om p L hN hint
   have hspL := span_image p hsp L hN
   have hom : ∀ x, om x = 0 → x = 0 := fun x hx => by
     by_contra h

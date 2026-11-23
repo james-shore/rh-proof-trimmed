@@ -63,11 +63,7 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E] {n : ℕ
 open NumberField IsDedekindDomain in
 open scoped TensorProduct Matrix nonZeroDivisors in
 variable {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E] {n : ℕ} in
-theorem _root_.GlobalTheory.AdLat.Half.herm_add_left (c : E ≃ₐ[F] E) (G : Matrix (Fin n) (Fin n) E)
-    (x x' y : Fin n → _root_.GlobalTheory.AdLat.RA F E) :
-    _root_.GlobalTheory.AdLat.hermA c G (x + x') y =
-      _root_.GlobalTheory.AdLat.hermA c G x y + _root_.GlobalTheory.AdLat.hermA c G x' y :=
-  _root_.GlobalTheory.AdLat.hermA_add_left c G x x' y
+alias _root_.GlobalTheory.AdLat.Half.herm_add_left := _root_.GlobalTheory.AdLat.hermA_add_left
 
 open NumberField IsDedekindDomain in
 open scoped TensorProduct Matrix nonZeroDivisors in

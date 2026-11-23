@@ -100,17 +100,6 @@ theorem exists_embedding_inducing_place (K : Type) [Field K] [NumberField K] [Is
   subst hvv
   exact ⟨a, hv'⟩
 
-theorem algebraMap_toZMod_eq {l : ℕ} [Fact l.Prime] {R : Type} [Field R] [Algebra (ZMod l) R]
-    (f : ℤ_[l] →+* R) (hf : f (l : ℤ_[l]) = 0) (x : ℤ_[l]) :
-    algebraMap (ZMod l) R (PadicInt.toZMod x) = f x := by
-  first
-  | exact @_root_.GlobalTheory.AlgebraMapToZMod.algebraMap_toZMod_eq
-  | exact _root_.GlobalTheory.AlgebraMapToZMod.algebraMap_toZMod_eq
-  | (apply _root_.GlobalTheory.AlgebraMapToZMod.algebraMap_toZMod_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AlgebraMapToZMod.algebraMap_toZMod_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AlgebraMapToZMod.algebraMap_toZMod_eq <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.AlgebraMapToZMod.algebraMap_toZMod_eq ..)
-
 theorem isAlgebraic_residueField {l : ℕ} [Fact l.Prime] {B : Type} [CommRing B] [IsLocalRing B]
     [Algebra (ZMod l) (ResidueField B)] (c : ℤ_[l] →+* B)
     (hcl : c (l : ℤ_[l]) ∈ maximalIdeal B)
@@ -118,7 +107,7 @@ theorem isAlgebraic_residueField {l : ℕ} [Fact l.Prime] {B : Type} [CommRing B
     Algebra.IsAlgebraic (ZMod l) (ResidueField B) := by
   have hl : (residue B).comp c (l : ℤ_[l]) = 0 := (residue_eq_zero_iff _).mpr hcl
   have hcomp : (algebraMap (ZMod l) (ResidueField B)).comp PadicInt.toZMod = (residue B).comp c :=
-    RingHom.ext fun x => algebraMap_toZMod_eq _ hl x
+    RingHom.ext fun x => _root_.GlobalTheory.AlgebraMapToZMod.algebraMap_toZMod_eq _ hl x
   refine ⟨fun y => ?_⟩
   obtain ⟨b, rfl⟩ := residue_surjective y
   obtain ⟨p, hp, hb⟩ := halg b

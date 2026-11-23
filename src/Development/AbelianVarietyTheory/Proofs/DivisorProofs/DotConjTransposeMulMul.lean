@@ -67,8 +67,8 @@ theorem mark_unique : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (P : Pair G) 
     exact congrArg Subtype.val ((hw ⟨v, hv⟩).trans (hw ⟨v', hv'⟩).symm)
   subst hvv
   by_contra hne
-  have hn := GlobalTheory.T.mark_norm_sq_eq_similitudeFactor p G P μ ⟨v, hv, x, hx, hxp⟩
-  obtain ⟨-, -, hlaw⟩ := GlobalTheory.T.similitudePair_hermitianForm_invertible_similitude p G P v
+  have hn := _root_.GlobalTheory.LKMid.Pair.mark_norm_sq p G P μ ⟨v, hv, x, hx, hxp⟩
+  obtain ⟨-, -, hlaw⟩ := _root_.GlobalTheory.LKMid.pair_form_laws p G P v
 
   have e := dot_conjTranspose_mul_mul (G.psi v P.γ) (G.gram v * G.psi v ((P.β⁻¹ : G.Cˣ) : G.C)) x x'
   rw [hlaw, hx, hx', Matrix.mulVec_smul, Matrix.smul_mulVec, star_smul, smul_dotProduct,

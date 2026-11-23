@@ -73,11 +73,7 @@ theorem swSection_eq_swSec {D : D7} (A B : HSp D) (ν : Measure (WO A B)) (𝓕 
   funext g
   simp only [GlobalTheory.SiegelFormula.swSection, GlobalTheory.SiegelFormula.valZero, swSec, GlobalTheory.IndefiniteRowSideFullHecke.SphericalZero.evZero, lagr_eq_lagr]
 
-theorem isHeckeCharacter_inv_of_isHeckeCharacter {D : D7} {χ : (AE D)ˣ →* Circle} (h : IsHeckeChar D χ) : IsHeckeChar D χ⁻¹ := by
-  refine ⟨?_, fun x => ?_⟩
-  · have : (χ⁻¹ : (AE D)ˣ →* Circle) = fun x => (χ x)⁻¹ := rfl
-    rw [this]; exact h.1.inv
-  · rw [MonoidHom.inv_apply, h.2 x, inv_one]
+alias isHeckeCharacter_inv_of_isHeckeCharacter := _root_.GlobalTheory.WeilChange.hecke_inv
 
 end GlobalTheory.Core.Rk.IP
 

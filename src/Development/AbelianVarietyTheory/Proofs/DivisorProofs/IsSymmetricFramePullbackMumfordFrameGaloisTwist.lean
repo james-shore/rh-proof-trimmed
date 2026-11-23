@@ -49,20 +49,11 @@ open GlobalTheory.Mum GlobalTheory.Mum.Conj
 
 namespace GlobalTheory.Mum.Conj
 
-theorem gm_comp_stalkMap {X Y Z : Scheme.{0}} (f : Z ⟶ Y) (g : Y ⟶ X) (z : Z) (U : X.Opens) (h : g (f z) ∈ U)
-    (a : Γ(X, U)ˣ) : gm (f ≫ g) z U a = Units.map (f.stalkMap z).hom.toMonoidHom (gm g (f z) U a) := by
-  apply Units.ext
-  rw [gm_val (f ≫ g) z U h, Units.coe_map, gm_val g (f z) U h]
-  exact (Scheme.Hom.germ_stalkMap_apply f (g ⁻¹ᵁ U) z h ((g.app U).hom a.val)).symm
-
 theorem val_comp_stalkMap {X Y Z W : Scheme.{0}} {L : LB X} {K : Type} [Fintype K] {φ : K → (Y ⟶ X)} {ε : K → ℤ}
     (t : LB.Gen (LB.LinComb L φ ε)) (f : Z ⟶ W) (r : W ⟶ Y) (z : Z) (J : (Z ⟶ X) → L.ι) (hJ : Good L z J) :
     val t (f ≫ r) z J = Units.map (f.stalkMap z).hom.toMonoidHom (val t r (f z) (fun ψ => J (f ≫ ψ))) := by
   rw [val_of t (f ≫ r) z J (fun k => J (f ≫ r ≫ φ k)) (fun k => by rw [Category.assoc])]
-  exact gm_comp_stalkMap f r z _ (Set.mem_iInter.2 fun k => hJ (f ≫ r ≫ φ k)) _
-
-theorem good_comp {X Z W : Scheme.{0}} {L : LB X} (f : Z ⟶ W) {z : Z} {J : (Z ⟶ X) → L.ι} (hJ : Good L z J) :
-    Good L (f z) (fun ψ => J (f ≫ ψ)) := fun ψ => hJ (f ≫ ψ)
+  exact _root_.GlobalTheory.ConstFam.gm_comp_stalkMap f r z _ (Set.mem_iInter.2 fun k => hJ (f ≫ r ≫ φ k)) _
 
 end GlobalTheory.Mum.Conj
 
@@ -86,7 +77,7 @@ theorem txFrame_frTw (R : Type) [CommRing R] [IsDomain R] (D : DegPre R) (N : �
   refine ⟨genCast_isGen _ (ReciprocityTheory.ChartRestriction.G.DVR.pullGen_isGen D.P.L _ _ w hg _), ?_, ?_⟩
   · intro ν hν z J hJ
     rw [hfr z J hJ, hsy z J hJ, h.2.1, val_comp_stalkMap ν f _ z J hJ, ← map_pow, ← map_mul,
-      h2 ν hν (f z) _ (good_comp f hJ)]
+      h2 ν hν (f z) _ (_root_.GlobalTheory.LevelExpansion.good_comp f hJ)]
   · intro κ hκ z J hJ
     have hpsi : val (D.psi p₀.y) (jFK (R := R) (Kb R)) z J =
         Units.map (f.stalkMap z).hom.toMonoidHom (val (D.psi p.y) (jFK (R := R) (Kb R)) (f z) (fun ψ => J (f ≫ ψ))) := by
@@ -101,7 +92,7 @@ theorem txFrame_frTw (R : Type) [CommRing R] [IsDomain R] (D : DegPre R) (N : �
       exact congrArg (fun r => val D.rig r z J) (spMap_jFKR τ).symm
     rw [id_eq, hfr z J hJ, hpsi, hrig, h.2.1, val_comp_stalkMap κ f _ z J hJ, ← map_pow,
       ← map_mul, ← map_mul]
-    exact congrArg _ (hN κ hκ (f z) _ (good_comp f hJ))
+    exact congrArg _ (hN κ hκ (f z) _ (_root_.GlobalTheory.LevelExpansion.good_comp f hJ))
 
 end GlobalTheory.Mum.Conj
 

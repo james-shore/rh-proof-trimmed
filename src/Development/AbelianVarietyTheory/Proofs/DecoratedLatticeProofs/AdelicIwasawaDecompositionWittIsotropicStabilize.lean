@@ -82,7 +82,7 @@ theorem exists_stab_proj_eq {D : D7} {T T₀ : HSp D} {r : ℕ} (d : HypDec T T�
 
 theorem hasIw_Kmax : ∀ (D : D7) (T T₀ : HSp D) (r : ℕ) (d : HypDec T T₀ r) (b : GL (Fin T.rank) (AE D)), (∀ v : FinPl D, (2 : 𝓞 D.host.F) ∈ v.asIdeal → Formalism.MainNotions.SchurIrreducible.IsSplit (E := D.host.E) v) → IsMaj T b → HasIw d (Kmax T b) := by
   intro D T T₀ r d b h2 hb h
-  choose x k hx hk hxk using fun v => GlobalTheory.T.iwasawa_isotropic_stabiliser_finite_place D T T₀ r d h2 v (proj D.sp.cm.sig T.gram v h)
+  choose x k hx hk hxk using fun v => _root_.GlobalTheory.Core.Rk.IwFin.iwasawa_fin D T T₀ r d h2 v (proj D.sp.cm.sig T.gram v h)
   have hS := Filter.eventually_cofinite.1 (eventually_proj_mem_stabLoc D.sp.cm.sig T.gram (frameLat T) h)
   obtain ⟨p, hp, e1, e2, e3⟩ := exists_stab_proj_eq d x hx hS.toFinset
   set h' := p⁻¹ * h with hh'

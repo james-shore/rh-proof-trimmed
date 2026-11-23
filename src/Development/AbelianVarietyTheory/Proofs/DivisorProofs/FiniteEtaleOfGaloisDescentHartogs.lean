@@ -134,10 +134,10 @@ theorem descent_finiteEtale : ∀ (A R C O : Type) [CommRing A] [IsDomain A] [Is
     Module.Finite R C ∧ Algebra.Etale R C := by
   intro A R C O _ _ _ _ _ _ _ _ _ _ _ G _ _ _ act T hT a ha n x y hxy hTF hH hE hσ
   obtain ⟨σ⟩ := hσ
-  refine ⟨GlobalTheory.T.finite_of_galois_trace_relation A R C G act T hT a ha n x y hxy hTF, ?_⟩
+  refine ⟨_root_.GlobalTheory.GoodEtaleFinite.finite_of_trace_relation A R C G act T hT a ha n x y hxy hTF, ?_⟩
   letI : Algebra A O := ((algebraMap R O).comp (algebraMap A R)).toAlgebra
   haveI : IsScalarTower A R O := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
-  have hHO : Hart A O (O ⊗[R] C) := GlobalTheory.T.hart_baseChange_of_flat A R C O hH
+  have hHO : Hart A O (O ⊗[R] C) := _root_.GlobalTheory.GoodEtale.hart_tensor_of_flat A R C O hH
   set b := algebraMap A R a with hb
   have hdiv : ∀ h : G, ∃ m' : O ⊗[R] C, galElt act σ x y h = algebraMap R O b • m' := by
     intro h
@@ -145,15 +145,15 @@ theorem descent_finiteEtale : ∀ (A R C O : Type) [CommRing A] [IsDomain A] [Is
     intro Q hQ hht
     haveI := hQ
     haveI : Algebra.Etale (Localization.AtPrime Q) (Localization.AtPrime Q ⊗[R] C) :=
-      GlobalTheory.T.etale_localizationAtPrime_tensor_of_low_height A R C O Q hE (by first | exact hht | (rw [Ideal.comap_comap]; exact hht))
+      _root_.GlobalTheory.GoodEtale.etale_localization_of_etaleLow A R C O Q hE (by first | exact hht | (rw [Ideal.comap_comap]; exact hht))
     let σQ : C →ₐ[R] Localization.AtPrime Q := (IsScalarTower.toAlgHom R O _).comp σ
-    have hinj := GlobalTheory.T.galoisComparisonMap_injective_of_flat A R C (Localization.AtPrime Q) G act T hT a ha n x y hxy hTF σQ
-    obtain ⟨m'', hm''⟩ := GlobalTheory.T.galoisElement_dvd_of_formallyUnramified R C (Localization.AtPrime Q) G act b n x y hxy σQ hinj h
+    have hinj := _root_.GlobalTheory.GoodEtale.galMap_injective_of_flat A R C (Localization.AtPrime Q) G act T hT a ha n x y hxy hTF σQ
+    obtain ⟨m'', hm''⟩ := _root_.GlobalTheory.GoodEtale.galElt_dvd_of_unramified R C (Localization.AtPrime Q) G act b n x y hxy σQ hinj h
     have hcomp : (IsScalarTower.toAlgHom R O (Localization.AtPrime Q)).toLinearMap.rTensor C
         (galElt act σ x y h) = galElt act σQ x y h := by
 
       simp [galElt, map_sum, σQ]
-    obtain ⟨s, hs, m', hm'⟩ := GlobalTheory.T.exists_smul_dvd_of_localization_atPrime_tensor' R C O Q b _ ⟨m'', hcomp.trans hm''⟩
+    obtain ⟨s, hs, m', hm'⟩ := _root_.GlobalTheory.exists_smul_dvd_of_localization_atPrime_tensor R C O Q b _ ⟨m'', hcomp.trans hm''⟩
     exact ⟨s, hs, m', hm'⟩
   have key : ∀ h, ∃ m, galMap act σ m = Pi.single h 1 := by
     intro h
@@ -178,7 +178,7 @@ theorem descent_finiteEtale : ∀ (A R C O : Type) [CommRing A] [IsDomain A] [Is
     funext g
     simp [Finset.sum_apply, Pi.single_apply]
   let e := AlgEquiv.ofBijective (galMap act σ)
-    ⟨GlobalTheory.T.galoisComparisonMap_injective_of_flat A R C O G act T hT a ha n x y hxy hTF σ, hsurj⟩
+    ⟨_root_.GlobalTheory.GoodEtale.galMap_injective_of_flat A R C O G act T hT a ha n x y hxy hTF σ, hsurj⟩
   haveI : Algebra.Etale O (O ⊗[R] C) := Algebra.Etale.of_equiv e.symm
   exact Algebra.Etale.of_etale_tensorProduct_of_faithfullyFlat O
 

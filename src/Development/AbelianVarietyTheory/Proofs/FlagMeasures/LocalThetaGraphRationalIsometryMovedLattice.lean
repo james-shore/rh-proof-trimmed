@@ -106,23 +106,6 @@ namespace GlobalTheory.GraphTr
 
 variable {D : D7}
 
-theorem frFac_isUnit (Z : LocDat D) (p : PlF D) (a : Fin (D.R.rS + 1)) : IsUnit (frFac Z.δ p a) := by
-  unfold frFac
-  have hδ : IsUnit (algebraMap (D.s.atP p).Fp (D.s.atP p).Ep (Z.δ p)) :=
-    (Ne.isUnit (Z.agree p).2.1).map _
-  have hg : ∀ i, D.host.g i ≠ 0 := fun i => (D.host.g_prime i).ne_zero
-  have hgp : gpart p ≠ 0 := by
-    unfold gpart; split_ifs <;> simp [hg]
-  have hgS : (Formalism.MainNotions.S.Lat.gS D : ℚ) ≠ 0 := by
-    unfold Formalism.MainNotions.S.Lat.gS; push_cast
-    exact mul_ne_zero (by exact_mod_cast hg 0) (by exact_mod_cast hg 1)
-  have hu : ((uP p : ℚ) : D.host.E) ≠ 0 := by
-    rw [Rat.cast_ne_zero]; unfold uP; exact div_ne_zero (by exact_mod_cast hgp) hgS
-  have hι : IsUnit ((D.s.atP p).ιE ((uP p : ℚ) : D.host.E)) := (Ne.isUnit hu).map _
-  obtain ⟨w, hw⟩ := (hδ.mul hι).pow (D.R.rS - a.val)
-  rw [← hw, Ring.inverse_unit]
-  exact Units.isUnit _
-
 theorem span_bc (p : PlF D) (s : Set (VS D).V) :
     Submodule.span (D.s.atP p).Ep (baseChange₂ D p '' (Submodule.span D.host.E s : Set (VS D).V)) =
       Submodule.span (D.s.atP p).Ep (baseChange₂ D p '' s) := by
@@ -136,7 +119,7 @@ theorem X_eq (Z : LocDat D) (p : PlF D) (f : Fin (D.R.rS + 1) → (VS D).V) :
   rw [span_bc, Set.image_image]
   unfold Formalism.MainNotions.S.Loc.HermSp.X
   rw [range_castSucc]
-  exact span_units (fun a => frFac Z.δ p a) (frFac_isUnit Z p) (fun a => baseChange₂ D p (f a)) _
+  exact span_units (fun a => frFac Z.δ p a) (_root_.Formalism.L2.SG.Pf.BBTie.bt_frFac_unit Z p) (fun a => baseChange₂ D p (f a)) _
 
 theorem rat_span_eq (σ : (VS D).V ≃ₗ[D.host.E] (VS D).V) (f f0 : Fin (D.R.rS + 1) → (VS D).V)
     (U : Matrix (Fin (D.R.rS + 1)) (Fin (D.R.rS + 1)) D.host.E) (hU : IsUpUni U)

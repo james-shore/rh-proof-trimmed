@@ -102,33 +102,15 @@ private lemma pmap_tr2_heq {R S : LAlg R₀} (f : LHom R S) {x y y' : B.G R} (h 
   subst h
   exact HEq.rfl
 
-private lemma tr2_heq {R : LAlg R₀} {x y y' : B.G R} (h : y = y') (v : B.P R x y) :
-    HEq (B.tr2 h v) v := by
-  subst h
-  exact HEq.rfl
-
 private lemma add2_heq_of_heq {R : LAlg R₀} {x y₁ y₂ z : B.G R} (h : y₁ = y₂) {a : B.P R x y₁}
     {a' : B.P R x y₂} (b : B.P R x z) (e : HEq a a') : HEq (B.add2 a b) (B.add2 a' b) := by
   subst h
   cases e
   exact HEq.rfl
 
-private lemma pmap_nsmul2_heq {R S : LAlg R₀} (f : LHom R S) {x y : B.G R} (u : B.P R x y)
-    (n : ℕ) : HEq (B.pmap f (B.nsmul2 u n)) (B.nsmul2 (B.pmap f u) n) := by
-  induction n with
-  | zero =>
-    change HEq (B.pmap f (B.tr2 _ (B.zero2 x))) (B.tr2 _ (B.zero2 (B.map f x)))
-    exact ((pmap_tr2_heq B f _ _).trans (B.zeroSnd_nat f x)).trans (tr2_heq B _ _).symm
-  | succ n ih =>
-    change HEq (B.pmap f (B.tr2 _ (B.add2 (B.nsmul2 u n) u)))
-      (B.tr2 _ (B.add2 (B.nsmul2 (B.pmap f u) n) (B.pmap f u)))
-    refine (pmap_tr2_heq B f _ _).trans ((B.addSnd_nat f _ _).trans ?_)
-    exact (add2_heq_of_heq B (map_nsmul (B.map f) n y) (B.pmap f u) ih).trans
-      (tr2_heq B _ _).symm
-
 lemma totalFibreMap_totalFibreNsmulSnd {R S : LAlg R₀} (f : LHom R S) (N : ℕ) (t : B.Tot R) :
     B.Tmap f (B.totalFibreNsmulSnd N t) = B.totalFibreNsmulSnd N (B.Tmap f t) :=
-  B.tot_ext rfl (map_nsmul (B.map f) N t.2.1) (pmap_nsmul2_heq B f t.2.2 N)
+  B.tot_ext rfl (map_nsmul (B.map f) N t.2.1) (_root_.ReciprocityTheory.PGsh.BX.pmap_nsmul2 B f t.2.2 N)
 
 def Tsmul {R : LAlg R₀} (l : (R : Type u)ˣ) (t : B.Tot R) : B.Tot R :=
   ⟨t.1, t.2.1, B.smul l t.2.2⟩

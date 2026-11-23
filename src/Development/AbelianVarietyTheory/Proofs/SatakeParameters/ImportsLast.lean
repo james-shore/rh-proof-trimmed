@@ -70,7 +70,6 @@ theorem transport {V : Type} [AddCommGroup V] [Module ℂ V] [DecidableEq V] (T 
     rw [map_sub] at h
     simpa using h
 
-theorem main : ∀ {V : Type} [inst : AddCommGroup V] [Module ℂ V] [inst_2 : DecidableEq V] (T : V ≃+ V) {Λ₁ Λ₂ M₁ M₂ : AddSubgroup V} {S : Finset V}, Formalism.L2.Th1.H.IsReps Λ₁ Λ₂ S → (∀ (x : V), (T : V → V) x ∈ M₁ ↔ x ∈ Λ₁) → (∀ (x : V), (T : V → V) x ∈ M₂ ↔ x ∈ Λ₂) → Formalism.L2.Th1.H.IsReps M₁ M₂ (Finset.image (⇑T : V → V) S) :=
-  @transport
+alias main := _root_.GlobalTheory.TransportLemma.transport
 
 end GlobalTheory.TransportLemma

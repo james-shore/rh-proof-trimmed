@@ -176,7 +176,7 @@ theorem stepSub_tw (X : GMod n) (z : ℂ) : stepSub (tw X) (-z) = backSub X z :=
 
 theorem dual_cayley (X : GMod n) (χ : Fin n → ℂ) (h : HasChar X χ) :
     ∃ K : ℕ, ((List.ofFn fun t : Fin n => omD X - (-χ t - cn n) • (1 : Module.End ℂ (Fin n → X.V))).prod) ^ K = 0 := by
-  obtain ⟨K, hK⟩ := GlobalTheory.T.CayleyHamiltonHk n (tw X) (-χ) (hasChar_tw h)
+  obtain ⟨K, hK⟩ := _root_.GlobalTheory.CompanionTheory.RgExhHecke.CayleyOm.cayleyHam n (tw X) (-χ) (hasChar_tw h)
   refine ⟨K, ?_⟩
   have e : (fun t : Fin n => om (tw X) - ((-χ) t - cn n) • (1 : Module.End ℂ (Fin n → (tw X).V))) =
       fun t : Fin n => omD X - (-χ t - cn n) • (1 : Module.End ℂ (Fin n → X.V)) := by

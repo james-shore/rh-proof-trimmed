@@ -77,14 +77,6 @@ theorem cupB_sub_cob {Γ A M M' : Type} [Group Γ] [TopologicalSpace Γ] [CommRi
   simp only [hy, map_add (f := _), map_sub, AddMonoidHom.add_apply, Pi.add_apply, hx', map_mul, Module.End.mul_apply] at h1 ⊢
   linear_combination h1 + h2
 
-theorem tors_all (A : Type) [CommRing A] [IsLocalRing A] [Finite A] (B : Type) [AddCommGroup B] [Module A B] :
-    Tors A B := by
-  obtain ⟨n, hn⟩ := IsArtinianRing.isNilpotent_jacobson_bot (R := A)
-  rw [IsLocalRing.jacobson_eq_maximalIdeal ⊥ bot_ne_top] at hn
-  refine fun b => ⟨n, fun x hx => ?_⟩
-  rw [hn, Ideal.zero_eq_bot, Ideal.mem_bot] at hx
-  rw [hx, zero_smul]
-
 section General
 
 open Formalism.GaloisCohomology
@@ -121,7 +113,7 @@ theorem order_formula (hPT : PoitouTateTotallyComplex) (hLF : LocalFiniteness) (
   have hsub : ∀ {M : Type} [AddCommGroup M] [Module Λ M] [TopologicalSpace M] [DiscreteTopology M]
       (π : Representation Λ (G F Ω) M), ContAction π → ∀ U : Subgroup (G F Ω), ContAction (π.comp U.subtype) :=
     fun π h U => h.comp ((continuous_subtype_val.comp continuous_fst).prodMk continuous_snd)
-  have hloc := fun v => GlobalTheory.T.localDuality_perfect_pair_finite_modules hLF hLD hLE F Ω l n (A.1 v) v (A.2 v) Λ W W'
+  have hloc := fun v => _root_.GlobalTheory.LocalPair.local_pair hLF hLD hLE F Ω l n (A.1 v) v (A.2 v) Λ W W'
     (ρ.comp (Dec (F := F) (A.1 v)).subtype) (ρ'.comp (Dec (F := F) (A.1 v)).subtype) P hn (hsub ρ hc _) (hsub ρ' hc' _)
     hl hr (fun g x y => hP g.1 x y)
   have hS : ∀ v, v ∈ hfin.toFinset ∪ (hT.toFinset ∪ Q) ↔ v ∈ placesOver F l ∨ v ∈ T ∨ v ∈ Q := by simp
@@ -130,7 +122,7 @@ theorem order_formula (hPT : PoitouTateTotallyComplex) (hLF : LocalFiniteness) (
   have hnl : ∀ v, v ∈ T ∨ v ∈ Q → v ∉ placesOver F l := fun v h => h.elim (hTl v) (hQl v)
   have b1 : ∀ v ∈ placesOver F l, bkCond ρ A l (T ∪ ↑Q) L v = L v := fun v hv => if_pos hv
   have b2 : ∀ v, v ∈ T ∨ v ∈ Q → bkCond ρ A l (T ∪ ↑Q) L v = ⊤ := fun v hv => (if_neg (hnl v hv)).trans (if_pos hv)
-  obtain ⟨fC, e⟩ := GlobalTheory.T.greenbergWiles_pair_alt hPT hLF hGF hGE F Ω l n Λ W W' ρ ρ' P hn hc hc' hl hr hP
+  obtain ⟨fC, e⟩ := _root_.GlobalTheory.PairFormula.greenbergWiles_pair hPT hLF hGF hGE F Ω l n Λ W W' ρ ρ' P hn hc hc' hl hr hP
     (hfin.toFinset ∪ (hT.toFinset ∪ Q)) A (fun v hv => (hS v).2 (.inl hv))
     (fun v hv => hur v ((hS' v).1 hv).1 ((hS' v).1 hv).2.1 ((hS' v).1 hv).2.2) (bkCond ρ A l (T ∪ ↑Q) L)
     (fun v hv => (if_neg ((hS' v).1 hv).1).trans (if_neg (not_or.2 ((hS' v).1 hv).2))) C (fun y => by
@@ -217,9 +209,9 @@ theorem orderFormula : PoitouTateTotallyComplex → LocalFiniteness → LocalTat
     (show 0 < nu X i + 1 by omega) hc hc' (fun x hx => funext fun c => hβ.2.1 _ fun y' => ?_) (fun y hy => funext fun c => hβ.2.2 _ fun x => ?_) hP
     N.plOm (Spl i) (GlobalTheory.SelObstruction.finite_Spl i) Q (fun v hv => hv.2) hS.2.2.2.2.2.2.1 hU
     (bkOn bkP i (Tgl i s) κ Y) (DualCl bkP i s κ ρ β Q) (fun c => Iff.rfl)
-    (GlobalTheory.NoGlobalInv.noInv D N X bkP i s A κ Q hS Y (tors_all A Y)) (eq_bot_iff.2 fun m hm => hNI Y' m hm)
+    (GlobalTheory.NoGlobalInv.noInv D N X bkP i s A κ Q hS Y (_root_.GlobalTheory.NewPrime.tors_of_finite_local A Y)) (eq_bot_iff.2 fun m hm => hNI Y' m hm)
     (fun v hv => (GlobalTheory.PrimeToInertia.local_cohomology_vanishes D N X bkP i s hS.1 v hv A κ⁻¹ hko (fun g => ?_) Y'
-      (tors_all A Y') ρ (.inr hD)).1) ?_
+      (_root_.GlobalTheory.NewPrime.tors_of_finite_local A Y') ρ (.inr hD)).1) ?_
   · have := hx (Pi.single c y')
     rw [vecPair_apply, Finset.sum_eq_single c (fun b _ hb => by simp [hb]) (by simp)] at this
     simpa using this

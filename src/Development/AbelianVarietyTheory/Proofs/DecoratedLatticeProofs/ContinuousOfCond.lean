@@ -104,13 +104,6 @@ theorem adapted_of_normal (hϖ : valuation k (ϖ : k) = uniformizer k) (hb : ∀
       exact pow_mono hϖ (by have := he 0; omega) (pow_mul_pow ((hbox w).1 hw r) ((mem_normal.1 hv).2 0))
     · exact r.elim0
 
-theorem val_unif (h : GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum.IsUnif ϖ) : valuation k (ϖ : k) = uniformizer k := by
-  apply le_antisymm
-  · rw [le_uniformizer_iff]; exact (h _).2 le_rfl
-  · obtain ⟨x, hx⟩ := ValuativeRel.valuation_surjective (uniformizer k)
-    rw [← hx]
-    exact (h x).1 (by rw [hx]; exact uniformizer_lt_one)
-
 theorem continuous_of_cond {ψ : AddChar k Circle} (h : HasConductor ψ 1) : Continuous ψ := by
   have h0 : ∀ x ∈ (𝒪[k] : Set k), ψ x = 1 := fun x hx =>
     (h x).2 (by simpa [Valuation.mem_integer_iff] using hx) x le_rfl
@@ -145,12 +138,12 @@ theorem exists_system {σ₀ : X.K →+* ℂ} {P : rowSG Pr sel mu} {k : Type} [
   classical
   have hc := hL.cst_ok
   have hm : R.m = s + 2 := hA.steps
-  have hLev := GlobalTheory.T.parahoricLevels_characters_doubleCosets_agree_rational X Pr R Ch sel S₀ mu cst σ₀ P k ι s W ν hν hc hA
+  have hLev := _root_.GlobalTheory.TwBridge.Lev.levelAgree X Pr R Ch sel S₀ mu cst σ₀ P k ι s W ν hν hc hA
   have hmaps := GlobalTheory.T.completion_representative_mem_previous_index_set X Pr R Ch sel S₀ mu cst σ₀ P k ι s W ν hν hc hA L G hL hI
   have hnorm := GlobalTheory.T.completion_representatives_normal_form_mod_unipotent X Pr R Ch sel S₀ mu cst σ₀ P k ι s W ν hν hc hA L G hL hI hmaps
   have honto := GlobalTheory.T.exists_rational_double_coset_representative_bounds X Pr R Ch sel S₀ mu cst σ₀ P k ι s W ν hν hc hA L G hL hI
   haveI := hν.1
-  have hϖ := val_unif W.unif
+  have hϖ := _root_.GlobalTheory.TwBridge.PsiRat.val_unif' W.unif
   have hb : ∀ j c h, latOf ((W.T s R).bas j c h) = latOf 1 := fun _ _ _ => rfl
   obtain ⟨hs, hp, hJ⟩ := GlobalTheory.Proof.TwistSupportPeriodicLevels.ofTwist_support_periodic_levels k s (Fin R.k ⊕ Fin (s + 1)) (Fin R.t)
     (Ix (Fin R.k ⊕ Fin (s + 1)) (Fin R.t) (s + 2)) (XIx (Fin R.k) (Fin R.t)) W.δ W.tame W.η
@@ -171,7 +164,7 @@ theorem exists_system {σ₀ : X.K →+* ℂ} {P : rowSG Pr sel mu} {k : Type} [
         else σ (j + 1) c h '' ⋃ g ∈ B (c + 1) (by omega), (W.T s R).idx W.ψ ν j c h g) j
   have hrat : ∀ j c h, Nonempty (L.β j) → A j c h = {g | ∃ b : L.β j, IsGL ι (L.h j b P) g} := by
     rintro (_ | j) c h hne
-    · exact (GlobalTheory.T.firstStep_completionRepresentatives_eq_one X Pr R Ch sel S₀ mu cst σ₀ P k ι s W ν hν hc hA L G hL hI c h).symm
+    · exact (_root_.GlobalTheory.TwBridge.ZeroReps.reps_zero X Pr R Ch sel S₀ mu cst σ₀ P k ι s W ν hν hc hA L G hL hI c h).symm
     · exact if_pos hne
   have hneg : ∀ j c (h : j + 1 + c = s), ¬ Nonempty (L.β (j + 1)) →
       A (j + 1) c h = σ (j + 1) c h '' ⋃ g ∈ A j (c + 1) (by omega), (W.T s R).idx W.ψ ν j c h g := fun j c h hne => if_neg hne
@@ -203,7 +196,7 @@ theorem exists_system {σ₀ : X.K →+* ℂ} {P : rowSG Pr sel mu} {k : Type} [
   · by_cases hne : Nonempty (L.β s)
     · rw [hrat _ _ _ hne] at hg
       obtain ⟨al, hg⟩ := hg
-      exact ((GlobalTheory.T.twistParahoricChain_lastSteps_agree_columns X Pr R Ch sel S₀ mu cst σ₀ P k ι s W ν hν hc hA L G hL).1 al g hg).1
+      exact ((_root_.GlobalTheory.TwLast.lastAgree X Pr R Ch sel S₀ mu cst σ₀ P k ι s W ν hν hc hA L G hL).1 al g hg).1
     · refine adapted_of_normal hϖ hb hs hp hM ?_
       obtain ⟨r, hr, hn⟩ := GlobalTheory.LatClass.exists_normal hϖ W.cond hb hs hp hJ hsys s 0 rfl g hg
       have key : ∀ j c h, ¬ Nonempty (L.β j) → ∀ g ∈ A j c h, ∃ β, g = σ j c h β := by
@@ -233,7 +226,7 @@ theorem idx_succ (hX : X.Ok) (hPr : Pr.Ok) (hCh : Ch.Ok) (hsel : IsSel X sel) (h
     (fun P hP => by rw [dite_eq_left hP]; exact one_mem _) (fun P hP => by rw [dite_eq_right hP]; exact h1 P hP) (fun P => by
       by_cases hP : P.1 ∈ Pr.vGs
       · rw [dite_eq_left hP]
-        exact ⟨al, (GlobalTheory.T.unfoldedDatum_ne_zero_iff_doubleCoset Ch sel mu cst L G s hX hPr hCh hsel hs hL j hj P hP _ _ (hL.stabG j al P hP) (one_mem _)
+        exact ⟨al, (_root_.GlobalTheory.SrcDoubleCoset.unfoldedDatum_ne_zero_iff_doubleCoset' Ch sel mu cst L G s hX hPr hCh hsel hs hL j hj P hP _ _ (hL.stabG j al P hP) (one_mem _)
           (by rw [hs]; exact GlobalTheory.Mem.Col2.TC.ChTw.Match.IdxMatch.cosetOne hX hPr hCh hsel hs hL j (by omega) al P hP)).2
           (twNonVanG G.σ₀ hB hj P hP)⟩
       · rw [dite_eq_right hP]

@@ -60,19 +60,6 @@ namespace GlobalTheory.KapSignMul
 
 variable {K : Type} [Field K]
 
-theorem ordL_mul [Valued K (WithZero (Multiplicative ℤ))] {x y : K} (hx : x ≠ 0) (hy : y ≠ 0) :
-    ordL (x * y) = ordL x + ordL y := by
-  have hx' : Valued.v x ≠ 0 := (Valuation.ne_zero_iff _).2 hx
-  have hy' : Valued.v y ≠ 0 := (Valuation.ne_zero_iff _).2 hy
-  have hxy' : Valued.v (x * y) ≠ 0 := (Valuation.ne_zero_iff _).2 (mul_ne_zero hx hy)
-  unfold ordL
-  rw [dite_eq_right hx', dite_eq_right hy', dite_eq_right hxy']
-  have : WithZero.unzero hxy' = WithZero.unzero hx' * WithZero.unzero hy' := by
-    apply WithZero.coe_injective
-    rw [WithZero.coe_unzero, WithZero.coe_mul, WithZero.coe_unzero, WithZero.coe_unzero, Valuation.map_mul]
-  rw [this, toAdd_mul]
-  ring
-
 theorem sign_norm [Valued K (WithZero (Multiplicative ℤ))] (σ : K →+* K) (hσ : ∀ x, Valued.v (σ x) = Valued.v x)
     {d : K} (hd : d ≠ 0) (x : K) : (-1 : ℂ) ^ ordL (σ d * d * x) = (-1 : ℂ) ^ ordL x := by
   by_cases hx : x = 0
@@ -81,7 +68,7 @@ theorem sign_norm [Valued K (WithZero (Multiplicative ℤ))] (σ : K →+* K) (h
   have hσo : ordL (σ d) = ordL d := by
     unfold ordL
     simp only [hσ]
-  rw [ordL_mul (mul_ne_zero hσd hd) hx, ordL_mul hσd hd, hσo, zpow_add₀ (by norm_num), ← two_mul,
+  rw [_root_.Formalism.UG.P.fSatake_ord_mul (mul_ne_zero hσd hd) hx, _root_.Formalism.UG.P.fSatake_ord_mul hσd hd, hσo, zpow_add₀ (by norm_num), ← two_mul,
     (even_two_mul (ordL d)).neg_one_zpow, one_mul]
 
 theorem li_coe {n : ℕ} {W : Submodule K (Fin n → K)} {ι : Type} (b : Module.Basis ι K W) :
@@ -101,29 +88,6 @@ theorem gram_change (σ : K →+* K) {n : ℕ} (W : Submodule K (Fin n → K)) {
     ∃ d : K, d ≠ 0 ∧ (Matrix.of fun i j => ∑ k, σ (u' i k) * u' j k).det =
       σ d * d * (Matrix.of fun i j => ∑ k, σ (u i k) * u j k).det :=
   GlobalTheory.T.gram_det_change_of_basis' σ W u u' hu hsu hu' hsu'
-
-theorem csr_orth (σ : K →+* K) {n : ℕ} (γ : Matrix (Fin n) (Fin n) K) (hγ : (γ.map σ)ᵀ * γ = 1) (Q : K[X])
-    (hQ : C (σ (Q.coeff 0)) * Q = (Q.map σ).reverse) (x z : Fin n → K) (hx : aeval γ Q *ᵥ x = 0) :
-    ∑ k, σ ((aeval γ Q *ᵥ z) k) * x k = 0 :=
-  GlobalTheory.T.ker_aeval_orthogonal_range_unitary_selfReciprocal σ γ hγ Q hQ x z hx
-
-theorem gram_ne_zero (σ : K →+* K) {n : ℕ} (A : Matrix (Fin n) (Fin n) K) {ι : Type} [Fintype ι] [DecidableEq ι]
-    (u : ι → Fin n → K) (hu : LinearIndependent K u)
-    (hsu : Submodule.span K (Set.range u) = LinearMap.ker (Matrix.toLin' A))
-    (horth : ∀ x z, A *ᵥ x = 0 → ∑ k, σ ((A *ᵥ z) k) * x k = 0)
-    (hdec : ∀ v, ∃ z y, A *ᵥ y = 0 ∧ v = A *ᵥ z + y) :
-    (Matrix.of fun i j => ∑ k, σ (u i k) * u j k).det ≠ 0 :=
-  GlobalTheory.T.gram_det_ne_zero_of_ker_orth' σ A u hu hsu horth hdec
-
-theorem conj_ker (σ : K →+* K) {n : ℕ} (γ g : GL (Fin n) K) (hg : ((g : Matrix (Fin n) (Fin n) K).map σ)ᵀ * g = 1)
-    (Q : K[X]) {ι : Type} (u : ι → Fin n → K) (hu : LinearIndependent K u)
-    (hsu : Submodule.span K (Set.range u) = LinearMap.ker (Matrix.toLin' (aeval ((g⁻¹ * γ * g : GL (Fin n) K) : Matrix (Fin n) (Fin n) K) Q))) :
-    LinearIndependent K (fun i => (g : Matrix (Fin n) (Fin n) K) *ᵥ u i) ∧
-      Submodule.span K (Set.range fun i => (g : Matrix (Fin n) (Fin n) K) *ᵥ u i) =
-        LinearMap.ker (Matrix.toLin' (aeval (γ : Matrix (Fin n) (Fin n) K) Q)) ∧
-      (Matrix.of fun i j => ∑ k, σ (((g : Matrix (Fin n) (Fin n) K) *ᵥ u i) k) * ((g : Matrix (Fin n) (Fin n) K) *ᵥ u j) k) =
-        Matrix.of fun i j => ∑ k, σ (u i k) * u j k :=
-  GlobalTheory.T.unitary_conj_maps_ker_aeval_basis_and_gram σ γ g hg Q u hu hsu
 
 end GlobalTheory.KapSignMul
 
@@ -186,7 +150,7 @@ theorem mul_sign [Valued K (WithZero (Multiplicative ℤ))] (σ : K →+* K) (h�
   have hsp : Submodule.span K (Set.range (Sum.elim (fun i => (b₁ i : Fin n → K)) (fun i => (b₂ i : Fin n → K)))) =
       LinearMap.ker (Matrix.toLin' (aeval M (Q₁ * Q₂))) := by
     rw [Set.Sum.elim_range, Submodule.span_union, span_coe, span_coe, hsup]
-  obtain ⟨d, hd, hdet⟩ := gram_change σ _ _ (fun i => (b i : Fin n → K)) hli hsp (li_coe b) (span_coe b)
+  obtain ⟨d, hd, hdet⟩ := _root_.GlobalTheory.gram_det_change_of_bases σ _ _ (fun i => (b i : Fin n → K)) hli hsp (li_coe b) (span_coe b)
   have hblk : (Matrix.of fun i j => ∑ k, σ ((Sum.elim (fun i => (b₁ i : Fin n → K)) (fun i => (b₂ i : Fin n → K)) i) k) *
       (Sum.elim (fun i => (b₁ i : Fin n → K)) (fun i => (b₂ i : Fin n → K)) j) k) =
       fromBlocks (Matrix.of fun i j => ∑ k, σ ((b₁ i : Fin n → K) k) * (b₁ j : Fin n → K) k)
@@ -203,14 +167,14 @@ theorem mul_sign [Valued K (WithZero (Multiplicative ℤ))] (σ : K →+* K) (h�
         have := (b₁ j).2; rwa [LinearMap.mem_ker, Matrix.toLin'_apply] at this
       obtain ⟨z, hz⟩ := mem_im_of_coprime M hcop hy
       rw [hz]
-      exact csr_orth σ M hM Q₁ hQ₁ _ z hx
+      exact _root_.GlobalTheory.csr_ker_orth_range σ M hM Q₁ hQ₁ _ z hx
     · rfl
   rw [hblk, det_fromBlocks_zero₂₁] at hdet
-  have h1 := gram_ne_zero σ (aeval M Q₁) _ (li_coe b₁) (span_coe b₁)
-    (fun x z hx => csr_orth σ M hM Q₁ hQ₁ x z hx) (dec_of_dvd M Q₁ hsep (dvd_trans (dvd_mul_right _ _) hdvd))
-  have h2 := gram_ne_zero σ (aeval M Q₂) _ (li_coe b₂) (span_coe b₂)
-    (fun x z hx => csr_orth σ M hM Q₂ hQ₂ x z hx) (dec_of_dvd M Q₂ hsep (dvd_trans (dvd_mul_left _ _) hdvd))
-  rw [hdet, sign_norm σ hσ hd, ordL_mul h1 h2, zpow_add₀ (by norm_num)]
+  have h1 := _root_.GlobalTheory.gram_det_ne_zero_of_ker_orth σ (aeval M Q₁) _ (li_coe b₁) (span_coe b₁)
+    (fun x z hx => _root_.GlobalTheory.csr_ker_orth_range σ M hM Q₁ hQ₁ x z hx) (dec_of_dvd M Q₁ hsep (dvd_trans (dvd_mul_right _ _) hdvd))
+  have h2 := _root_.GlobalTheory.gram_det_ne_zero_of_ker_orth σ (aeval M Q₂) _ (li_coe b₂) (span_coe b₂)
+    (fun x z hx => _root_.GlobalTheory.csr_ker_orth_range σ M hM Q₂ hQ₂ x z hx) (dec_of_dvd M Q₂ hsep (dvd_trans (dvd_mul_left _ _) hdvd))
+  rw [hdet, sign_norm σ hσ hd, _root_.Formalism.UG.P.fSatake_ord_mul h1 h2, zpow_add₀ (by norm_num)]
 
 theorem conj_sign [Valued K (WithZero (Multiplicative ℤ))] (σ : K →+* K) (hσ : ∀ x, Valued.v (σ x) = Valued.v x)
     {n : ℕ} (γ g : GL (Fin n) K) (hg : ((g : Matrix (Fin n) (Fin n) K).map σ)ᵀ * g = 1) (Q : K[X])
@@ -219,8 +183,8 @@ theorem conj_sign [Valued K (WithZero (Multiplicative ℤ))] (σ : K →+* K) (h
     (b : Module.Basis ι K (LinearMap.ker (Matrix.toLin' (aeval (γ : Matrix (Fin n) (Fin n) K) Q)))) :
     (-1 : ℂ) ^ ordL (Matrix.of fun i j => ∑ k, σ ((b' i : Fin n → K) k) * (b' j : Fin n → K) k).det =
       (-1 : ℂ) ^ ordL (Matrix.of fun i j => ∑ k, σ ((b i : Fin n → K) k) * (b j : Fin n → K) k).det := by
-  obtain ⟨hli, hsp, hgr⟩ := conj_ker σ γ g hg Q _ (li_coe b') (span_coe b')
-  obtain ⟨d, hd, hdet⟩ := gram_change σ _ _ _ (li_coe b) (span_coe b) hli hsp
+  obtain ⟨hli, hsp, hgr⟩ := _root_.GlobalTheory.ConjugateAlgebraLemmas.main σ γ g hg Q _ (li_coe b') (span_coe b')
+  obtain ⟨d, hd, hdet⟩ := _root_.GlobalTheory.gram_det_change_of_bases σ _ _ _ (li_coe b) (span_coe b) hli hsp
   rw [hgr] at hdet
   rw [hdet, sign_norm σ hσ hd]
 

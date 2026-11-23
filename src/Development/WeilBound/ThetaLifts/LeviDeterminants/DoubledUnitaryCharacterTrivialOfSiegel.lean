@@ -94,20 +94,12 @@ section Piece
 
 variable {R S : Type} [CommRing R] [CommRing S] [Algebra R S] {c : S →ₐ[R] S} {ι : Type} [Fintype ι] [DecidableEq ι]
 
-theorem mix_mul {f : S} (hf : f * f = f) (A B C D : Matrix ι ι S) :
-    (f • A + (1 - f) • B) * (f • C + (1 - f) • D) = f • (A * C) + (1 - f) • (B * D) := by
-  have h1 : f * (1 - f) = 0 := by linear_combination -hf
-  have h2 : (1 - f) * f = 0 := by linear_combination -hf
-  have h3 : (1 - f) * (1 - f) = 1 - f := by linear_combination hf
-  simp only [Matrix.add_mul, Matrix.mul_add, Matrix.smul_mul, Matrix.mul_smul, smul_add, smul_smul, hf, h1, h2, h3,
-    zero_smul, add_zero, zero_add]
-
 theorem mix_self (f : S) (A : Matrix ι ι S) : f • A + (1 - f) • A = A := by
   rw [← add_smul, add_sub_cancel, one_smul]
 
 def piece {J : Matrix ι ι S} {f : S} (hf : f * f = f) (hc : c f = f) (g : UG c J) : UG c J :=
-  ⟨⟨f • g.1.1 + (1 - f) • 1, f • (g.1⁻¹).1 + (1 - f) • 1, by rw [mix_mul hf, Units.mul_inv, mul_one, mix_self],
-    by rw [mix_mul hf, Units.inv_mul, mul_one, mix_self]⟩, by
+  ⟨⟨f • g.1.1 + (1 - f) • 1, f • (g.1⁻¹).1 + (1 - f) • 1, by rw [_root_.GlobalTheory.IdemSupport.mix_mul hf, Units.mul_inv, mul_one, mix_self],
+    by rw [_root_.GlobalTheory.IdemSupport.mix_mul hf, Units.inv_mul, mul_one, mix_self]⟩, by
     have hg : (g.1.1)ᵀ * J * (g.1.1).map c = J := g.2
     change (f • g.1.1 + (1 - f) • 1)ᵀ * J * (f • g.1.1 + (1 - f) • (1 : Matrix ι ι S)).map c = J
     have e : (f • g.1.1 + (1 - f) • (1 : Matrix ι ι S)).map c = f • (g.1.1).map c + (1 - f) • 1 := by
@@ -117,7 +109,7 @@ def piece {J : Matrix ι ι S} {f : S} (hf : f * f = f) (hc : c f = f) (g : UG c
     have k : ∀ A B : Matrix ι ι S, (f • A + (1 - f) • 1) * J * (f • B + (1 - f) • 1) = f • (A * J * B) + (1 - f) • J :=
       fun A B => by
         conv_lhs => rw [← mix_self f J]
-        rw [mix_mul hf, mix_mul hf, one_mul, mul_one]
+        rw [_root_.GlobalTheory.IdemSupport.mix_mul hf, _root_.GlobalTheory.IdemSupport.mix_mul hf, one_mul, mul_one]
     rw [k, hg, mix_self]⟩
 
 end Piece
@@ -195,8 +187,8 @@ theorem triv_piece (hσ : IsCMExt F E σ) {β : Type} [Fintype β] [DecidableEq 
     (h : ∀ (p : UG (cA σ) (dbl J)) (t : GL β (AE F E)), (p.1.1 : Matrix _ _ (AE F E)) * diagCols β = diagCols β * t.1 → lam p = 1)
     (S : Finset (HeightOneSpectrum (𝓞 F))) (g : UG (cA σ) (dbl J))
     (hg : ∀ i j, ∃ y, (g.1.1 - 1 : Matrix _ _ (AE F E)) i j = algebraMap (AF F) (AE F E) (eps S) * y) : lam g = 1 := by
-  obtain ⟨x, hx⟩ := GlobalTheory.CompanionTheory.Ar.RT.ArchRing.exists_moved hσ
-  have hi := GlobalTheory.CompanionTheory.Ar.RT.ArchRing.sigma_invol hσ
+  obtain ⟨x, hx⟩ := _root_.GlobalTheory.AdelicU.exists_cm_conj_ne hσ
+  have hi := _root_.GlobalTheory.AdelicU.cm_conj_conj hσ
   have hξ : x - σ x ≠ 0 := sub_ne_zero.mpr (Ne.symm hx)
   have : Module.Finite F E := Module.finite_of_finrank_pos (by rw [hσ.2.2.1]; omega)
   have : IsArtinianRing (Ainf F) := GlobalTheory.CompanionTheory.Ar.RT.ArchRing.isArtinian_inf

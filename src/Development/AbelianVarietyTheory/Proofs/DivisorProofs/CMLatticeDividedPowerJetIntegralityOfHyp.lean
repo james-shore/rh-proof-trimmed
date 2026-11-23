@@ -82,15 +82,6 @@ theorem sz_l (l : ℕ) [hl : Fact l.Prime] (lam : algebraicClosure ℚ ℂ →+*
   · have : (⟨(l : ℂ)⁻¹, inv_mem (natCast_mem _ l)⟩ : algebraicClosure ℚ ℂ) = (l : algebraicClosure ℚ ℂ)⁻¹ := rfl
     rw [this, map_inv₀, map_natCast, norm_inv, h, inv_inv, Real.rpow_one]
 
-theorem sz_val (l : ℕ) [hl : Fact l.Prime] (lam : algebraicClosure ℚ ℂ →+* ℂ_[l]) (D : ℕ) :
-    Sz l lam (-(padicValNat l D : ℝ)) (D : ℂ) := by
-  obtain ⟨m, hm⟩ : l ^ padicValNat l D ∣ D := (_root_.Dvd.intro_left _ (_root_.Nat.divMaxPow_mul_pow_padicValNat _ _))
-  have h := sz_mul (sz_pow (sz_l l lam).1 (padicValNat l D)) (sz_nat (l := l) (lam := lam) m)
-  have h2 : (D : ℂ) = (l : ℂ) ^ padicValNat l D * m := by exact_mod_cast hm
-  rw [← h2] at h
-  convert h using 1
-  ring
-
 theorem c_facts {E : Type} [Field E] [NumberField E] [IsCMField E] (𝔣 : Ideal (OF E)) (h𝔣 : IsBaseCond 𝔣) (l : ℕ) (hl : l.Prime) :
     delta_vp E l ≤ c_vp 𝔣 l ∧ 0 ≤ c_vp 𝔣 l ∧ ∃ q : ℚ, (q : ℝ) = c_vp 𝔣 l := by
   have h0 : 0 ≤ delta_vp E l := by unfold delta_vp; positivity
@@ -271,7 +262,7 @@ theorem core (hjsz : EisExp → ∀ (F : Type) [Field F] [NumberField F] [IsTota
         · obtain ⟨rfl, -⟩ := h5; exact (sz_l 2 lam).1
         · simpa using sz_nat (l := l) (lam := lam) 2
     have hn : Sz l lam (0 + -(padicValNat l D : ℝ)) ((M * D : ℕ) : ℂ) := by
-      rw [Nat.cast_mul]; exact sz_mul (sz_nat M) (sz_val l lam D)
+      rw [Nat.cast_mul]; exact sz_mul (sz_nat M) (_root_.GlobalTheory.SizeSqIntegral.sz_nat_val l lam D)
     have hlps := sz_pow (sz_l l lam).1 (a0 𝔣 l)
     have hall := sz_mul (sz_mul hJ (sz_pow (sz_mul hn hlps) (2 * s * Module.finrank ℚ (FR E))))
       (sz_pow (sz_mul (sz_mul hr hγ) (sz_pow hlps 2)) (∑ i, κ i))

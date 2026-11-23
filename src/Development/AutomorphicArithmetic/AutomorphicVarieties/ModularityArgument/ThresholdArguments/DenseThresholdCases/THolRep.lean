@@ -138,7 +138,7 @@ private theorem cap_act (v : InfinitePlace F) (u : ℂ) (o : TR.Op F a) : TR.act
     have h := GlobalTheory.CapAdInv.qdet_semiconj _ _ _ (rt_Eop y v) (u + ((a : ℂ) - 1) / 2)
     have hQP : ((y⁻¹).val.map f) * (y.val.map f) = 1 := by
       rw [← Matrix.map_mul, Units.inv_mul]; simp
-    exact h.trans (congrArg (· * _) (GlobalTheory.CapAdInv.qdet_ad _ (TR.glRel_Eop v) _ _ hQP (u + ((a : ℂ) - 1) / 2)))
+    exact h.trans (congrArg (· * _) (_root_.GlobalTheory.QuantumMinorAdjacentSwap.qdet_conj _ (TR.glRel_Eop v) _ _ hQP (u + ((a : ℂ) - 1) / 2)))
   | lie X =>
     have h : ∀ v' i j, Commute (TR.Eop (a := a) v' i j) (TR.cap v u) := fun v' i j => by
       by_cases e : v' = v

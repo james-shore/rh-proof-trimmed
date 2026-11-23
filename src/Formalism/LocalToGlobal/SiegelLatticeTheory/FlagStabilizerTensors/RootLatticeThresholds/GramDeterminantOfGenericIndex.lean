@@ -48,6 +48,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.CellGeo
 
 @[expose] public section
 
@@ -72,12 +73,6 @@ def gramCat (F : FlagG S r T) (F' : FlagG S r T') : Matrix (Fin (r + 1) ⊕ Fin 
 def lastDiag (c : E) : Matrix (Fin (r + 1)) (Fin (r + 1)) E :=
   Matrix.of fun a b => if a = Fin.last r ∧ b = Fin.last r then c else 0
 
-theorem fvec_last (F : FlagG S r T) : F.fvec (Fin.last r) = F.z := by
-  simp [FlagG.fvec]
-
-theorem fvec_castSucc (F : FlagG S r T) (a : Fin r) : F.fvec (Fin.castSucc a) = F.e a := by
-  simp [FlagG.fvec]
-
 theorem gram_self (F : FlagG S r T) :
     (Matrix.of fun a b => S.hT (F.fvec a) (F.fvec b)) = lastDiag (-T) := by
   ext a b
@@ -85,17 +80,17 @@ theorem gram_self (F : FlagG S r T) :
   induction a using Fin.lastCases with
   | last =>
     induction b using Fin.lastCases with
-    | last => rw [fvec_last, F.z_norm]; simp
+    | last => rw [_root_.PI.ScalarPairDr.W.fvec_last, F.z_norm]; simp
     | cast b =>
-      rw [fvec_last, fvec_castSucc]
+      rw [_root_.PI.ScalarPairDr.W.fvec_last, _root_.Formalism.MainNotions.BridgeLemma.geo_fvec_cast]
       have h1 := S.herm.eq (F.e b) F.z
       rw [F.z_orth b, map_zero] at h1
       rw [← h1]
       simp [Fin.castSucc_ne_last]
   | cast a =>
     induction b using Fin.lastCases with
-    | last => rw [fvec_castSucc, fvec_last, F.z_orth]; simp [Fin.castSucc_ne_last]
-    | cast b => rw [fvec_castSucc, fvec_castSucc, F.e_iso]; simp [Fin.castSucc_ne_last]
+    | last => rw [_root_.Formalism.MainNotions.BridgeLemma.geo_fvec_cast, _root_.PI.ScalarPairDr.W.fvec_last, F.z_orth]; simp [Fin.castSucc_ne_last]
+    | cast b => rw [_root_.Formalism.MainNotions.BridgeLemma.geo_fvec_cast, _root_.Formalism.MainNotions.BridgeLemma.geo_fvec_cast, F.e_iso]; simp [Fin.castSucc_ne_last]
 
 theorem gramCat_eq (F : FlagG S r T) (F' : FlagG S r T') :
     gramCat F F' = Matrix.fromBlocks (lastDiag (-T)) (Zhat F F') (Zhat F F')ᴴ (lastDiag (-T')) := by
@@ -265,43 +260,43 @@ theorem uu_eq (Λ : Submodule (𝓞 D.host.E) (hS D).V) {T T' : D.host.E} (F : L
       rintro _ ⟨a, x, hx, rfl⟩
       refine Submodule.subset_span ⟨Sum.inl (Fin.castSucc a), x, ?_, ?_⟩
       · simpa [aaF_castSucc] using hx
-      · simp [DetUU.uCat, DetUU.fvec_castSucc]
+      · simp [DetUU.uCat, _root_.Formalism.MainNotions.BridgeLemma.geo_fvec_cast]
     · refine Submodule.span_le.2 ?_
       rintro _ rfl
       refine Submodule.subset_span ⟨Sum.inl (Fin.last _), 1, ?_, ?_⟩
       · simp only [Sum.elim_inl, aaF_last]; exact FractionalIdeal.one_mem_one _
-      · simp [DetUU.uCat, DetUU.fvec_last]
+      · simp [DetUU.uCat, _root_.PI.ScalarPairDr.W.fvec_last]
     · refine Submodule.span_le.2 ?_
       rintro _ ⟨a, x, hx, rfl⟩
       refine Submodule.subset_span ⟨Sum.inr (Fin.castSucc a), x, ?_, ?_⟩
       · simpa [aaF_castSucc] using hx
-      · simp [DetUU.uCat, DetUU.fvec_castSucc]
+      · simp [DetUU.uCat, _root_.Formalism.MainNotions.BridgeLemma.geo_fvec_cast]
     · refine Submodule.span_le.2 ?_
       rintro _ rfl
       refine Submodule.subset_span ⟨Sum.inr (Fin.last _), 1, ?_, ?_⟩
       · simp only [Sum.elim_inr, aaF_last]; exact FractionalIdeal.one_mem_one _
-      · simp [DetUU.uCat, DetUU.fvec_last]
+      · simp [DetUU.uCat, _root_.PI.ScalarPairDr.W.fvec_last]
   · refine Submodule.span_le.2 ?_
     rintro _ ⟨j, x, hx, rfl⟩
     rcases j with a | a
     · obtain ⟨a', rfl⟩ | rfl := Fin.eq_castSucc_or_eq_last a
       · simp only [Sum.elim_inl, aaF_castSucc] at hx
-        simp only [DetUU.uCat, Sum.elim_inl, DetUU.fvec_castSucc]
+        simp only [DetUU.uCat, Sum.elim_inl, _root_.Formalism.MainNotions.BridgeLemma.geo_fvec_cast]
         exact Submodule.mem_sup_left (Submodule.mem_sup_left (Submodule.mem_sup_left
           (Submodule.subset_span ⟨a', x, hx, rfl⟩)))
       · simp only [Sum.elim_inl, aaF_last] at hx
         obtain ⟨o, rfl⟩ := (FractionalIdeal.mem_one_iff _).1 hx
-        simp only [DetUU.uCat, Sum.elim_inl, DetUU.fvec_last]
+        simp only [DetUU.uCat, Sum.elim_inl, _root_.PI.ScalarPairDr.W.fvec_last]
         rw [algebraMap_smul]
         exact Submodule.mem_sup_left (Submodule.mem_sup_left (Submodule.mem_sup_right
           (Submodule.smul_mem _ o (Submodule.mem_span_singleton_self _))))
     · obtain ⟨a', rfl⟩ | rfl := Fin.eq_castSucc_or_eq_last a
       · simp only [Sum.elim_inr, aaF_castSucc] at hx
-        simp only [DetUU.uCat, Sum.elim_inr, DetUU.fvec_castSucc]
+        simp only [DetUU.uCat, Sum.elim_inr, _root_.Formalism.MainNotions.BridgeLemma.geo_fvec_cast]
         exact Submodule.mem_sup_left (Submodule.mem_sup_right (Submodule.subset_span ⟨a', x, hx, rfl⟩))
       · simp only [Sum.elim_inr, aaF_last] at hx
         obtain ⟨o, rfl⟩ := (FractionalIdeal.mem_one_iff _).1 hx
-        simp only [DetUU.uCat, Sum.elim_inr, DetUU.fvec_last]
+        simp only [DetUU.uCat, Sum.elim_inr, _root_.PI.ScalarPairDr.W.fvec_last]
         rw [algebraMap_smul]
         exact Submodule.mem_sup_right (Submodule.smul_mem _ o (Submodule.mem_span_singleton_self _))
 

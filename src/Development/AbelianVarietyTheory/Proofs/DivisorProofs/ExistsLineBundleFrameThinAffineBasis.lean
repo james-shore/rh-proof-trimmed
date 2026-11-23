@@ -57,19 +57,12 @@ namespace GlobalTheory.LBFrameEx
 
 variable {X : Scheme.{0}}
 
-private theorem res_res' {U V W : X.Opens} (h : V ≤ U) (h' : W ≤ V) (x : Γ(X, U)ˣ) :
-    res h' (res h x) = res (h'.trans h) x := by
-  ext
-  simp only [res, Units.coe_map, MonoidHom.coe_coe]
-  rw [← CommRingCat.comp_apply, ← Functor.map_comp]
-  rfl
-
 private theorem coc {L : LB X} (hL : L.IsLB) (i j k : L.ι) {W : X.Opens} (h₁ : W ≤ L.U i ⊓ L.U j)
     (h₂ : W ≤ L.U j ⊓ L.U k) (h₃ : W ≤ L.U i ⊓ L.U k) :
     res h₁ (L.g i j) * res h₂ (L.g j k) = res h₃ (L.g i k) := by
   have hW : W ≤ L.U i ⊓ L.U j ⊓ L.U k := le_inf h₁ (h₂.trans inf_le_right)
   have := congrArg (res hW) (hL.cocycle i j k)
-  rwa [map_mul, res_res', res_res', res_res'] at this
+  rwa [map_mul, _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res', _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res', _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res'] at this
 
 structure Ch (L : LB X) where
   U : X.affineOpens
@@ -111,10 +104,10 @@ theorem isBas (L : LB X) (hL : L.IsLB) : IsBas (opOf (opF L)) := by
 theorem isFrame (L : LB X) (hL : L.IsLB) : IsFrame L (opOf (opF L)) (opOf_le (opF L)) (unit L) := by
   refine ⟨gen L, fun T m m' => ?_, fun T T' a m => ?_⟩
   · simp only [gen]
-    rw [res_res', res_res']
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res', _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res']
     exact (coc hL m m' T.m _ _ _).symm
   · simp only [gen, unit]
-    rw [res_res', res_res']
+    rw [_root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res', _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res']
     rw [mul_comm]
     exact (coc hL m T'.m T.m _ _ _).symm
 

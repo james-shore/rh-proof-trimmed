@@ -84,15 +84,15 @@ theorem UpperTheory.Gal.productCup_of_system.trTop_of :
   haveI : FiniteDimensional F K := hY.covZ.fin
   haveI : FiniteDimensional F K' := hY.covY.fin
   haveI : FiniteDimensional K K' := FiniteDimensional.right F K K'
-  have hTr := (GlobalTheory.T.deRhamFormTrace_exists_unique ℂ K K').1
+  have hTr := (_root_.GlobalTheory.W1.trDR_isTrDR_unique ℂ K K').1
   have second : ∀ h : K', trF ℂ τ ρ (trDR ℂ K K' (h • vol0 ℂ K' (xv x))) = ρ (Algebra.trace F K' h) := by
     intro h
     rw [← kahlerMap_volumeForm (K := K) (K' := K') (xv x), hTr h (vol0 ℂ K (xv x))]
     simp only [trF, LinearMap.comp_apply, LinearMap.restrictScalars_apply, map_smul, hτ.1, smul_eq_mul, mul_one]
     rw [Algebra.trace_trace]
-  refine ⟨fun w y => ((GlobalTheory.T.deRhamFormTrace_projection_formula ℂ K K') w y).1, second, ?_⟩
+  refine ⟨fun w y => ((_root_.GlobalTheory.W1.trDR_projection ℂ K K') w y).1, second, ?_⟩
   rintro _ ⟨y', hy', rfl⟩
-  obtain ⟨⟨τ', hτ'⟩, hvol⟩ := GlobalTheory.T.exists_topDegreeCoefficientForm_and_eq_on_top_forms ℂ F K' d (xv x) hY.covY
+  obtain ⟨⟨τ', hτ'⟩, hvol⟩ := _root_.GlobalTheory.PD.isTop_exists_and_eq ℂ F K' d (xv x) hY.covY
   have key : ∀ i : Fin (d + 1), trF ℂ τ ρ (trDR ℂ K K' (y' (Finset.univ.erase i))) = 0 := by
     intro i
     have hm : y' (Finset.univ.erase i) ∈ (if (Finset.univ.erase i : Finset (Fin (d + 1))).Nonempty ∧
@@ -110,10 +110,10 @@ theorem UpperTheory.Gal.productCup_of_system.trTop_of :
         rw [← ExteriorAlgebra.ιMulti_span_fixedDegree]
         exact Submodule.subset_span ⟨_, rfl⟩
       rw [hvol τ' hτ' _ (hle hm), second]
-      have h1 := (GlobalTheory.T.complementaryModule_standardOpens_iff ℂ F K' d (xv x) hY.covY τ' hτ' _ hne (τ' (y' (Finset.univ.erase i)))).2 ⟨_, hm, rfl⟩ 1
+      have h1 := (_root_.GlobalTheory.ComplStd.complementary_iff ℂ F K' d (xv x) hY.covY τ' hτ' _ hne (τ' (y' (Finset.univ.erase i)))).2 ⟨_, hm, rfl⟩ 1
         (one_mem _)
       rw [mul_one] at h1
-      exact GlobalTheory.T.residue_functional_vanishes_on_omega_forms ℂ F d (xv x) hY.covY.pd ρ hρ i _ hne (by simp) _ h1
+      exact _root_.GlobalTheory.PD.ResVan.resvan ℂ F d (xv x) hY.covY.pd ρ hρ i _ hne (by simp) _ h1
     · rw [if_neg (fun h => hne h.1)] at hm
       rw [(Submodule.mem_bot ℂ).1 hm]
       simp

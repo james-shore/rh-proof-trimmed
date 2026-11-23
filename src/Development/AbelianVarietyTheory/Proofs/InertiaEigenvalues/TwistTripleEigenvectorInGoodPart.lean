@@ -61,7 +61,7 @@ theorem goodE_of_eigOcc : ∀ (D : D7) (cf : CharFrame D) (Rw : RowSide D) (low 
   obtain ⟨h1, h2⟩ := D.ntw.jS_range i s
   obtain ⟨hiso, hgood, -⟩ := Bs.rhoS i s
   obtain ⟨x, hxg, hx0, hxe⟩ := hOcc _ h1 h2 _ hiso hgood
-  obtain ⟨Φ, hΦ0, hΦs, hΦT⟩ := GlobalTheory.T.exists_descent_map_nonzero_of_small_field_form D S _ (hKs _ h1 h2) i (D.ntw.side i s) x hx0
+  obtain ⟨Φ, hΦ0, hΦs, hΦT⟩ := _root_.GlobalTheory.exists_desc_of_isKsForm D S _ (hKs _ h1 h2) i (D.ntw.side i s) x hx0
   set e := Bs.eF i (D.ntw.jS i s) (D.ntw.side i s) h1 h2 with he
   refine ⟨e.symm (Φ x), by simpa using hΦ0, ?_, ?_⟩
   · letI : Fintype (G0g D.nd) := Formalism.MainNotions.PrimeDegreeVariant.finiteLevelGroupFintype D

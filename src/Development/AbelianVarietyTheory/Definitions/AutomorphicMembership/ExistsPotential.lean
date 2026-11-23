@@ -70,11 +70,6 @@ theorem exists_potential {G A X : Type} [Group G] [CommGroup A] (χ : G →* A) 
   show (χ (c x))⁻¹ * χ (c y) = χ g
   rw [h3, mul_comm (χ g), inv_mul_cancel_left]
 
-theorem isIntegral_det {E : Type} [Field E] [NumberField E] {N : ℕ} (L : Submodule (𝓞 E) (Fin N → E))
-    (hfg : L.FG) (hsp : Submodule.span E (L : Set (Fin N → E)) = ⊤) (γ : Matrix (Fin N) (Fin N) E)
-    (hγ : ∀ v ∈ L, γ.mulVec v ∈ L) : IsIntegral ℤ γ.det :=
-  _root_.GlobalTheory.IsIntegralDetLattice.isIntegral_det_of_preserves_lattice L hfg hsp γ hγ
-
 section Host
 
 variable {R : Ranks} (H : Host R)
@@ -155,7 +150,7 @@ theorem exists_pot (N : ℕ) : letI := H.cmStar; ∃ φ : SDLat H.E N → ℂˣ,
   · rw [h, ← hmul, ← Submonoid.coe_mul, inv_mul_cancel]
     exact (hone _).symm
   · rw [h', h, ← hmul]; rfl
-  · refine chi_of_integral H _ (isIntegral_det L.1 L.2.1 L.2.2.1 _ fun v hv => ?_)
+  · refine chi_of_integral H _ (_root_.GlobalTheory.IsIntegralDetLattice.isIntegral_det_of_preserves_lattice L.1 L.2.1 L.2.2.1 _ fun v hv => ?_)
     rw [h]
     exact ⟨v, hv, rfl⟩
 

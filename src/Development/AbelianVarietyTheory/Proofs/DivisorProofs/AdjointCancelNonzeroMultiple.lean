@@ -58,7 +58,7 @@ theorem evc_zpow {A A' : AbVar K} {P : LB (A.X ⊗ A'.X).left} (hP : AbDual.IsDu
     AbDual.evc hP.isLB a (b ^ k) = k • AbDual.evc hP.isLB a b ∧ AbDual.evc hP.isLB a 1 = 0 := by
   let F : (Y ⟶ A'.X) →* Multiplicative (Pic Y.left) :=
     MonoidHom.mk' (fun b => Multiplicative.ofAdd (AbDual.evc hP.isLB a b)) (fun b b' => by
-      rw [GlobalTheory.T.poincareClass_additive_in_dual_variable K A A' P hP Y a b b']; rfl)
+      rw [_root_.GlobalTheory.AbDual.poincare_evc_mul_right K A A' P hP Y a b b']; rfl)
   refine ⟨?_, ?_⟩
   · have := map_zpow F b k
     exact this

@@ -153,7 +153,7 @@ theorem lt_length_nil_append_boundary_drop_zero (S : MarkedIdealWithBoundary.{u}
     (hj : j < S.boundary.length) :
     j < (([] : List (s.obj s.length).IdealSheafData) ++ (s.boundary s.length).drop 0).length := by
   have h1 : s.boundaryFrom S.boundary s.length = s.boundary s.length :=
-    MarkedBlowupSequenceData.toBlowupSequenceData_boundary_eq s s.length le_rfl
+    _root_.FunctorialResolution.EmbeddedResolution.MarkedBlowupSequenceData.toBlowupSequenceData_boundary_eq_boundary_of_le s s.length le_rfl
   have h2 : s.boundaryFrom S.boundary s.length
       = S.boundary.map (s.toBlowupSequenceData.iteratedStrictTransform s.length) ++
         s.boundaryFrom ([] : List S.scheme.IdealSheafData) s.length :=
@@ -227,18 +227,6 @@ theorem separateBoundaryInvariant_separateBoundaryOfFamily (hstar : MaxContactCo
         MaxContactCoverData.separateBoundary_succ hinv T (fun S' _ i => A i S') S n
       rw [hstep]
       exact key
-
-private theorem isStrictPullback_of_length_eq_zero {X' X : Scheme.{u}} (g : X' ⟶ X)
-    (t : SequenceOfBlowups X') (s : SequenceOfBlowups X) (ht : t.length = 0) (hs : s.length = 0) :
-    IsStrictPullbackBlowupSeq g t s :=
-  StrictPullbackBlowupSeq.isStrictPullback
-    { comp := fun i hi =>
-        eqToHom (congrArg t.schemeAt (by omega : i = 0)) ≫ t.isoZero.hom ≫ g ≫ s.isoZero.inv ≫
-          eqToHom (congrArg s.schemeAt (by omega : (0 : ℕ) = i))
-      comp_zero := by simp
-      pullback := fun i hi => absurd hi (by omega)
-      length_eq := by rw [ht, hs]
-      center_eq := fun i hi => absurd hi (by omega) }
 
 private theorem length_separateBoundaryOfFamily_zero (hinv : ComapIsoInvariance.{u}) (T : MarkedIdealWithBoundary.{u})
     (A : ℕ → PrincipalizationAssignment.{u}) (S : MarkedIdealWithBoundary.{u}) :
@@ -562,7 +550,7 @@ theorem isStrictPullbackBlowupSeq_reduceAlongHypersurface (hstar : MaxContactCov
     induction n with
     | zero =>
         intro _
-        exact isStrictPullback_of_length_eq_zero q _ _
+        exact _root_.FunctorialResolution.EmbeddedResolution.IsStrictPullbackBlowupSeq.of_length_zero q _ _
           (length_separateBoundaryOfFamily_zero hinv T A (LowerDimReductionPullback.pullbackTriple S q))
           (length_separateBoundaryOfFamily_zero hinv T A S)
     | succ m ih =>

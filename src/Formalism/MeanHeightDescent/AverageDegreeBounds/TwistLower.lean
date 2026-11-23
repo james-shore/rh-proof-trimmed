@@ -220,8 +220,8 @@ theorem idealScale_mu (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι �
   rw [heq, c2, hrk] at c1
   obtain ⟨hMlat, -, -⟩ := place_lattice_structure K V ι b X hX M hM
   obtain ⟨hNlat, -, -⟩ := place_lattice_structure K V ι b X hX N hNfg
-  have hcM := Formalism.F.covolPos _ _ hMlat.2
-  have hcN := Formalism.F.covolPos _ _ hNlat.2
+  have hcM := _root_.Formalism.F.covol_pos' _ _ hMlat.2
+  have hcN := _root_.Formalism.F.covol_pos' _ _ hNlat.2
   have hr : (0 : ℝ) < rkK M := by exact_mod_cast rkK_pos' M hM0
   have hn : (0 : ℝ) < (Module.finrank ℚ K : ℝ) := by
     exact_mod_cast (Module.finrank_pos : 0 < Module.finrank ℚ K)
@@ -271,8 +271,8 @@ theorem twist_lower_bound : TwistLower := by
   have hcov := covol_of_le b' X' hX' N B hNfg hBfg hle hrkNB
   obtain ⟨hBlat, -, -⟩ := place_lattice_structure K W κ b' X' hX' B hBfg
   obtain ⟨hNlat, -, -⟩ := place_lattice_structure K W κ b' X' hX' N hNfg
-  have hcB := Formalism.F.covolPos _ _ hBlat.2
-  have hcN := Formalism.F.covolPos _ _ hNlat.2
+  have hcB := _root_.Formalism.F.covol_pos' _ _ hBlat.2
+  have hcN := _root_.Formalism.F.covol_pos' _ _ hNlat.2
   have hidx : (1 : ℝ) ≤ (N.toAddSubgroup.relIndex B.toAddSubgroup : ℝ) := by
     rcases Nat.eq_zero_or_pos (N.toAddSubgroup.relIndex B.toAddSubgroup) with h | h
     · rw [h, Nat.cast_zero, zero_mul] at hcov

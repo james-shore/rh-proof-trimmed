@@ -61,32 +61,9 @@ namespace GlobalTheory.ProjSelf
 
 variable {C : Type} [Field C] {V : VF C}
 
-theorem eq_zero_of_ge {x : C} (h : ∀ N : ℕ, V.Ge N x) : x = 0 := by
-  by_contra hx
-  have hne : V.v x ≠ ⊤ := fun e => hx ((AddValuation.top_iff _).1 e)
-  obtain ⟨t, ht⟩ := WithTop.ne_top_iff_exists.1 hne
-  obtain ⟨N, hN⟩ := exists_nat_gt t
-  have := h N
-  unfold VF.Ge at this
-  rw [← ht] at this
-  have h2 : (N : ℝ) ≤ t := by exact_mod_cast this
-  linarith
-
-theorem exists_lower {κ : Type} [Fintype κ] (v : κ → C) : ∃ m : ℕ, ∀ i, V.Ge (-(m : ℝ)) (v i) := by
-  apply GlobalTheory.IdemRange.exists_lower_vec <;> assumption
-
 theorem ge_mulVec {κ : Type} [Fintype κ] {A : Matrix κ κ C} (hA : ∀ i j, V.Ge 0 (A i j)) {m : ℝ} {v : κ → C}
     (hv : ∀ i, V.Ge m (v i)) (i : κ) : V.Ge m (A.mulVec v i) :=
   VF.Ge.sum fun j _ => (hA i j).mul_int (hv j)
-
-theorem ge_l_pow (n : ℕ) : V.Ge n ((V.l : C) ^ n) := by
-  induction n with
-  | zero => simpa using VF.Ge.one (V := V)
-  | succ n ih =>
-    rw [pow_succ]
-    have := ih.mul (VF.ge_l (V := V))
-    push_cast
-    exact this
 
 theorem ge_of_unit_mul {u x : C} {m : ℝ} (hu : V.v u = 0) (h : V.Ge m (u * x)) : V.Ge m x := by
   unfold VF.Ge at h ⊢
@@ -108,7 +85,7 @@ theorem IsLim.eig {M : Matrix κ κ C} {a : ℕ → O} (h : IsLim V L M a) (ψ :
     (hw : ∀ x, (L x).mulVec w = ψ x • w) : M.mulVec w = c • w := by
   funext i
   rw [← sub_eq_zero]
-  apply eq_zero_of_ge (V := V)
+  apply _root_.GlobalTheory.CongruentCharacters.eq_zero_of_ge_all (V := V)
   intro N
   obtain ⟨n0, h0⟩ := h N w i
   obtain ⟨n1, h1⟩ := hc N
@@ -125,9 +102,9 @@ theorem IsLim.absorb (hL : ∀ x i j, V.Ge 0 (L x i j)) {M E : Matrix κ κ C} {
     M.mulVec v = M.mulVec (E.mulVec v) := by
   funext i
   rw [← sub_eq_zero]
-  apply eq_zero_of_ge (V := V)
+  apply _root_.GlobalTheory.CongruentCharacters.eq_zero_of_ge_all (V := V)
   intro N
-  obtain ⟨m, hm⟩ := exists_lower (V := V) v
+  obtain ⟨m, hm⟩ := _root_.GlobalTheory.IdemRange.exists_lower_vec (V := V) v
   obtain ⟨n0, h0⟩ := h N v i
   obtain ⟨n1, h1⟩ := h N (E.mulVec v) i
   choose n2 h2 using hE N v
@@ -140,7 +117,7 @@ theorem IsLim.absorb (hL : ∀ x i j, V.Ge 0 (L x i j)) {M E : Matrix κ κ C} {
   have a3 := ge_mulVec (hL (a n)) a2 i
   obtain ⟨y, hy⟩ := hae n
   have a4 : V.Ge N ((V.l : C) ^ n * (L y).mulVec v i) := by
-    refine ((ge_l_pow n).mul (ge_mulVec (hL y) hm i)).mono ?_
+    refine ((_root_.GlobalTheory.IdemRange.ge_l_pow n).mul (ge_mulVec (hL y) hm i)).mono ?_
     have : N + m ≤ n := by omega
     have : (N : ℝ) + m ≤ n := by exact_mod_cast this
     linarith
@@ -226,7 +203,7 @@ theorem em_idem (ψ : O →+* C) (hint : ∀ x, V.Ge 0 (ψ x)) {ε : O} (h : ∃
   apply ge_of_unit_mul hu
   rw [map_sub, map_mul, map_mul, map_pow ψ (V.l : O), map_natCast] at h2
   rw [mul_sub, mul_one, h2]
-  simpa using (ge_l_pow n).mul (hint y)
+  simpa using (_root_.GlobalTheory.IdemRange.ge_l_pow n).mul (hint y)
 
 theorem exists_seq (hint : ∀ a x, V.Ge 0 (em a x)) {ε : O} (h : ∃ y, ε * ε - ε = (V.l : O) * y)
     (h1 : ∀ a, V.MM (em a ε - 1)) (hP : ∀ x : O, (∀ a, V.MM (em a x)) → ∃ y, ε * x = (V.l : O) * y)
@@ -324,7 +301,7 @@ noncomputable def rawOne : RawChart C 0 (fun _ => Empty) (Fin dd) where
 
 theorem isEnd_blks (M M' : Fin 2 → Fin 2 → Matrix (Fin dd) (Fin dd) C)
     (h : ∀ r s, IsEnd (rawOne Y) V (M r s) (M' s r)) : IsEnd (Y.rawSelf p) V (blks M) (blks M') := by
-  have hR := GlobalTheory.T.isIntegralGaugedFormalGroupLaw_selfConjugateSquare C V O dd Y d I0 p
+  have hR := _root_.GlobalTheory.RowLawSquare.rlaw_rawSelf C V O dd Y d I0 p
   have hb : ∀ r s, IsEnd (Y.rawSelf p) V (blk r s (M r s)) (blk s r (M' s r)) := fun r s =>
     GlobalTheory.T.gaugeAdjointEndPair_elementaryBlock C V O dd Y d I0 p 0 _ (rawOne Y) rfl rfl rfl r s _ _ (h r s)
   have ha := GlobalTheory.T.isGaugeAdjointIntegralEndPair_add C V d _ _ (Y.rawSelf p) hR

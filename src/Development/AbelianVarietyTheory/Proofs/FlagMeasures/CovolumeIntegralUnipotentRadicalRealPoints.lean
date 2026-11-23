@@ -254,8 +254,8 @@ theorem covolume_N : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numbe
     haveI := countable_units E (2 * r + k + 1)
     infer_instance
   refine ⟨⟨Dset, hDm, (conv Dset).1 hstrict⟩, fun 𝓓 h𝓓 => ?_⟩
-  have hEq := GlobalTheory.T.strictFundamentalDomain_measure_eq (G := G) _ ρ NN 𝓓 Dset hNm hN0 h𝓓.1 hDm hρ1 hρm hρN
-    (fun g => GlobalTheory.T.unipotentModelProductAction_measurePreserving E k r A _ (hgm g)) ((conv 𝓓).2 h𝓓.2) hstrict
+  have hEq := _root_.GlobalTheory.SnMass.VolN.strictFD_measure_eq (G := G) _ ρ NN 𝓓 Dset hNm hN0 h𝓓.1 hDm hρ1 hρm hρN
+    (fun g => _root_.GlobalTheory.SnMass.VolN.actM_measurePreserving E k r A _ (hgm g)) ((conv 𝓓).2 h𝓓.2) hstrict
   beta_reduce
   rw [hEq, hDv]
   simp only [hDUv, hDHv, hDCv, hDGv]

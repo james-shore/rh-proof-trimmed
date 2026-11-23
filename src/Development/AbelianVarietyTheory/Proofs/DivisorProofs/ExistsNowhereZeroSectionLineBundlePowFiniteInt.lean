@@ -89,7 +89,7 @@ theorem mk_tp [IsAffine T] {L : LB T} (hL : L.IsLB) : ∀ k,
     have : Module.Invertible Γ(T, ⊤) (LB.Sec (CechPic.tens L (tp L k))) :=
       LB.invertible_sec_top (CechPic.isLB_tens hL (isLB_tp hL k))
     rw [pow_succ', ← mk_tp hL k, ← CommRing.Pic.mk_tensor]
-    exact (CommRing.Pic.mk_eq_mk_iff.2 (tensSec T L (tp L k) hL (isLB_tp hL k))).symm
+    exact (CommRing.Pic.mk_eq_mk_iff.2 (_root_.GlobalTheory.SecTensor.tensorSecEquiv T L (tp L k) hL (isLB_tp hL k))).symm
 
 theorem main : ∀ (T : Scheme.{0}) [IsAffine T] [AlgebraicGeometry.IsReduced T], Module.Finite ℤ Γ(T, ⊤) →
     ∀ L : LB T, L.IsLB → ∃ (n : ℕ) (s : (lbPow L n).Sec), 1 ≤ n ∧ ReciprocityTheory.ChartRestriction.G.Out.nonzeroLocus s = ⊤ := by

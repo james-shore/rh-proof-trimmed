@@ -133,18 +133,9 @@ theorem iso_or_one_class {n : ℕ} (H : Matrix (Fin n) (Fin n) ℂ) (hH : H.IsHe
     (fun x => ⟨x.re, x.im, by simp [Complex.re_add_im]⟩) ⟨RingEquiv.refl ℝ⟩ n _
     (isHerm H hH hd).herm
 
-theorem mul_mem {n : ℕ} {H a b : Matrix (Fin n) (Fin n) ℂ} (ha : a ∈ Formalism.QuantumDeterminants.UH H) (hb : b ∈ Formalism.QuantumDeterminants.UH H) :
-    a * b ∈ Formalism.QuantumDeterminants.UH H := by
-  have ha' : aᴴ * H * a = H := ha
-  have hb' : bᴴ * H * b = H := hb
-  show (a * b)ᴴ * H * (a * b) = H
-  rw [Matrix.conjTranspose_mul]
-  calc bᴴ * aᴴ * H * (a * b) = bᴴ * (aᴴ * H * a) * b := by simp only [Matrix.mul_assoc]
-    _ = H := by rw [ha', hb']
+alias mul_mem := _root_.GlobalTheory.PointAtPlaceHom.mul_mem_UH
 
-theorem one_mem {n : ℕ} (H : Matrix (Fin n) (Fin n) ℂ) : (1 : Matrix (Fin n) (Fin n) ℂ) ∈ Formalism.QuantumDeterminants.UH H := by
-  show (1 : Matrix (Fin n) (Fin n) ℂ)ᴴ * H * 1 = H
-  simp
+alias one_mem := _root_.GlobalTheory.PointAtPlaceHom.one_mem_UH
 
 theorem kill {n : ℕ} (H : Matrix (Fin n) (Fin n) ℂ) (hH : H.IsHermitian) (hd : H.det ≠ 0) (c : Matrix (Fin n) (Fin n) ℂ → ℂ)
     (hm : ∀ g ∈ Formalism.QuantumDeterminants.UH H, ∀ g' ∈ Formalism.QuantumDeterminants.UH H, c (g * g') = c g * c g')

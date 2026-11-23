@@ -112,8 +112,8 @@ theorem bessel_orth_of_param_ne : HypsG → ∀ (k r : ℕ) (ε : Fin (2 * r + k
   have hq := GlobalTheory.T.quotientMeasure_integral_rmul_besselGroup k r Wp z π u μW μN μG νq
   obtain ⟨⟨ha, hs, he, hc⟩, -⟩ := hB
   obtain ⟨⟨ha', hs', he', hc'⟩, -⟩ := hB'
-  have hco := GlobalTheory.T.frechetContinuous_continuousOn_orbit_hasDerivAt hK k r ε mu R hR Wp Bm ha hs hc
-  have hco' := GlobalTheory.T.frechetContinuous_continuousOn_orbit_hasDerivAt hK k r ε mu' R' hR' Wp Bm' ha' hs' hc'
+  have hco := _root_.Gp91.GlobalTheory.cwCont_continuousOn_hasDerivAt hK k r ε mu R hR Wp Bm ha hs hc
+  have hco' := _root_.Gp91.GlobalTheory.cwCont_continuousOn_hasDerivAt hK k r ε mu' R' hR' Wp Bm' ha' hs' hc'
   have hae : ∀ᵐ x ∂νq, Matrix.of x ∈ GG k r := by
     obtain ⟨-, -, -, -, hW, hN, hG, hQ⟩ := hS
     exact DDSmoothness.ae_UH_of_quot hG.2.2.1 (DDSmoothness.muSof_facts hW hN).1 (DDSmoothness.muSof_facts hW hN).2 hQ

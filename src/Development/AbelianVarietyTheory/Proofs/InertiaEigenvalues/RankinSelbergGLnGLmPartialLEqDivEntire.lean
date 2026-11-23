@@ -65,9 +65,9 @@ theorem rs_nm_partialL_eq_div : ∀ (E : Type) [Field E] [NumberField E] [_root_
   obtain ⟨m₀, rfl⟩ : ∃ m₀, m = m₀ + 1 := ⟨m - 1, by omega⟩
   obtain ⟨r, rfl⟩ : ∃ r, n = m₀ + r + 1 + 1 := ⟨n - m₀ - 2, by omega⟩
   obtain ⟨α, _ℓ, _Φ, _J, _η, π, _ω, _φ, hα, hπ, hω, hωc, _h1, _h2, _h3, _h4, _h5, _h6, _h7, hZ⟩ :=
-    GlobalTheory.T.unfolded_theta_integral_eq_mul_schur_euler_product E (m₀ + r + 1 + 1) σ (by omega) hσ T hT
+    _root_.GlobalTheory.RSEulerId.thetaZ_eq_mul_eulD E (m₀ + r + 1 + 1) σ (by omega) hσ T hT
   obtain ⟨β, _ℓ', _Φ', _J', _η', π', _ω', _φ', hβ, hπ', hω', hωc', _h1', _h2', _h3', _h4', _h5', _h6', _h7', hZ'⟩ :=
-    GlobalTheory.T.unfolded_theta_integral_eq_mul_schur_euler_product E (m₀ + 1) σ' (by omega) hσ' T hT'
+    _root_.GlobalTheory.RSEulerId.thetaZ_eq_mul_eulD E (m₀ + 1) σ' (by omega) hσ' T hT'
   subst hπ hπ'
   have hu : π.IsUnitary := (CG.isUnitary_mk π).1 hσ
   have hu' : π'.IsUnitary := (CG.isUnitary_mk π').1 hσ'
@@ -144,7 +144,7 @@ theorem rs_nm_partialL_eq_div : ∀ (E : Type) [Field E] [NumberField E] [_root_
     obtain ⟨-, eU⟩ := hU π π' hu hu' φ φ' hφ hφ' F hF 𝓕 𝓕₀ h𝓕 h𝓕₀ x dd1 dd2
     rw [e1] at hf1
     rw [e1'] at hf1'
-    obtain ⟨P, hP, hS⟩ := GlobalTheory.T.eulerProduct_rankinSelbergGLnGLm_dirichletSeries (fun w : {w : HeightOneSpectrum (𝓞 E) // w ∉ T} => Ideal.absNorm w.1.asIdeal)
+    obtain ⟨P, hP, hS⟩ := _root_.GlobalTheory.RSnmEul.euler_rsTermNM (fun w : {w : HeightOneSpectrum (𝓞 E) // w ∉ T} => Ideal.absNorm w.1.asIdeal)
       (by omega : m₀ + 1 ≤ m₀ + r + 1 + 1) α β x hx hq hf1 hf1'
     have hsum : (∑' l : {w : HeightOneSpectrum (𝓞 E) // w ∉ T} →₀ (Fin (m₀ + 1) → ℤ),
         l.prod fun w v => GlobalTheory.RSnmUnf.rsTermNM (Ideal.absNorm w.1.asIdeal) (fun i => (αe w.1 i : ℂ))

@@ -53,41 +53,17 @@ open MvPowerSeries IsLocalRing Formalism.BasicNotions.V1
 
 namespace GlobalTheory.PsCNL
 
-section Division
-
-variable {σ : Type} {O : Type} [CommRing O]
-
-end Division
-
-section
-
-variable {O : Type} [CommRing O] [IsLocalRing O] {a : ℕ}
-
-theorem mem_max_iff (f : MvPowerSeries (Fin a) O) :
-    f ∈ maximalIdeal (MvPowerSeries (Fin a) O) ↔ constantCoeff f ∈ maximalIdeal O :=
-  _root_.GlobalTheory.MaximalIdealMembership.mem_maximalIdeal_iff f
-
-theorem ps_isPrecomplete [IsPrecomplete (maximalIdeal O) O] (a : ℕ) :
-    IsPrecomplete (maximalIdeal (MvPowerSeries (Fin a) O)) (MvPowerSeries (Fin a) O) :=
-  _root_.GlobalTheory.PowerSeriesIdealPowers.main a
-
-end
-
-theorem haus_of_noeth (B : Type) [CommRing B] [IsLocalRing B] [IsNoetherianRing B] :
-    IsHausdorff (maximalIdeal B) B :=
-  _root_.GlobalTheory.NoetherianLocalHausdorff.noeth_local_hausdorff B
-
 theorem psCNL : ∀ (O : Type) [CommRing O] [IsLocalRing O] (C : TR O) (n : ℕ),
     ∃ (_ : IsLocalRing (MvPowerSeries (Fin n) C.C)), IsCNL O (MvPowerSeries (Fin n) C.C) ∧
       ∀ x : MvPowerSeries (Fin n) C.C, x ∈ maximalIdeal (MvPowerSeries (Fin n) C.C) ↔
         MvPowerSeries.constantCoeff x ∈ maximalIdeal C.C := by
   intro O _ _ A n
-  refine ⟨inferInstance, ?_, fun x => mem_max_iff x⟩
+  refine ⟨inferInstance, ?_, fun x => _root_.GlobalTheory.MaximalIdealMembership.mem_maximalIdeal_iff x⟩
   exact
     { noeth := inferInstance
       complete :=
-        { toIsHausdorff := haus_of_noeth _
-          toIsPrecomplete := ps_isPrecomplete n }
+        { toIsHausdorff := _root_.GlobalTheory.NoetherianLocalHausdorff.noeth_local_hausdorff _
+          toIsPrecomplete := _root_.GlobalTheory.PowerSeriesIdealPowers.main n }
       localHom := ⟨fun a ha => by
         rw [MvPowerSeries.algebraMap_apply, isUnit_iff_constantCoeff, constantCoeff_C] at ha
         exact isUnit_of_map_unit _ _ ha⟩

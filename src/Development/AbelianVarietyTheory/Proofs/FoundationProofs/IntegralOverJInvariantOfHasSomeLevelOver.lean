@@ -87,7 +87,7 @@ theorem integral_over_jT : ∀ (E : Subring ℂ) (f : ℍ → ℂ), InR E f → 
   have hΓ : ∀ γ ∈ CongruenceSubgroup.Gamma N, (fun τ => DD τ ^ w * f τ) ∣[((12 * w : ℕ) : ℤ)] γ = (fun τ => DD τ ^ w * f τ) := by
     intro γ hγ
     rw [hslash]; funext τ; rw [hinv γ hγ τ]
-  obtain ⟨F, hFam, hFγ, hF0⟩ := GlobalTheory.T.exists_slTwoPermutedModularFamily_of_level N ((12 * w : ℕ) : ℤ) _ hΓ
+  obtain ⟨F, hFam, hFγ, hF0⟩ := _root_.GlobalTheory.FamOfLevel.exists_family N ((12 * w : ℕ) : ℤ) _ hΓ
   have hQ : ∀ α, QAll (· ∈ E) N (F α) := by
     intro α
     rcases hF0 α with ⟨γ, rfl⟩ | h0

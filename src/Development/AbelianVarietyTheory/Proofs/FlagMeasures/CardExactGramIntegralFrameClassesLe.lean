@@ -57,13 +57,7 @@ section Gen
 
 variable {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpace E} {r : ℕ} {T T' : E}
 
-theorem hT_swap {x y : S.V} (h : S.hT x y = 0) : S.hT y x = 0 := by
-  have := S.herm.eq x y
-  rw [h, map_zero] at this
-  exact this.symm
-
-theorem mem_orth {U : Submodule E S.V} {y : S.V} : y ∈ orth S U ↔ ∀ x ∈ U, S.hT x y = 0 := by
-  simp only [orth, Submodule.mem_iInf, LinearMap.mem_ker]
+alias mem_orth := _root_.GlobalTheory.LoopC.FixedLift.mem_orth
 
 def moveFl (n : S.V ≃ₗ[E] S.V) (hn : n ∈ Formalism.HermitianLatticesTheory.isom S.hT) (F : LFlag S r T) : LFlag S r T :=
   ⟨⟨fun a => n (F.fl.e a), n F.fl.z,
@@ -93,7 +87,7 @@ theorem eq_zero_of_orth_frame (F : LFlag S r T) (F' : LFlag S r T') (b₀ : Fin 
 theorem orth_frame_of_mem_Thp {Λ : Submodule (𝓞 E) S.V} {F : LFlag S r T} {F' : LFlag S r T'}
     (hl : IsLift Λ F') (he : ∀ a, F'.fl.e a ∈ Λ) {θ : S.V} (hθ : θ ∈ Thp Λ F F') (b : Fin (r + 1)) :
     S.hT θ (frame F' b) = 0 := by
-  refine hT_swap (mem_orth.1 hθ.2 _ (Submodule.subset_span ?_))
+  refine _root_.Formalism.MainNotions.hT_swap_zero (mem_orth.1 hθ.2 _ (Submodule.subset_span ?_))
   refine Fin.lastCases ?_ (fun a => ?_) b
   · have : frame F' (Fin.last r) = F'.zt := by simp [frame, FlagG.fvec, hl.2]
     rw [this]
@@ -160,7 +154,7 @@ theorem iXY_mem_of_split {T : D.host.E} (F0 : FlagG (VS D) D.R.rS T) (he : F0.e 
   have hy0 : y = 0 := by
     refine eq_zero_of_span_F D (YS_le D hy) fun i => ?_
     have h1 := hX _ hx i
-    have h2 : (hS D).hT (D.sp.hypE i) (D.sp.iXY 0 p) = 0 := hT_swap (D.sp.hyp_orthX i p).1
+    have h2 : (hS D).hT (D.sp.hypE i) (D.sp.iXY 0 p) = 0 := _root_.Formalism.MainNotions.hT_swap_zero (D.sp.hyp_orthX i p).1
     rw [map_sub, map_add (f := _), map_add (f := _), h2, hX a haX i, hwE i] at h1
     simpa using h1
   subst hy0
@@ -170,7 +164,7 @@ theorem iXY_mem_of_split {T : D.host.E} (F0 : FlagG (VS D) D.R.rS T) (he : F0.e 
     abel
   have h4 : w - D.sp.iXY 0 p = 0 := by
     refine eq_zero_of_span_E D (by rw [← he]; exact h3) fun i => ?_
-    rw [map_sub, LinearMap.sub_apply, hT_swap (hwF i)]
+    rw [map_sub, LinearMap.sub_apply, _root_.Formalism.MainNotions.hT_swap_zero (hwF i)]
     have := (D.sp.hyp_orthX i p).2
     simpa using this
   rw [← sub_eq_zero.1 h4]
@@ -221,7 +215,7 @@ theorem exists_lift {T T' : D.host.E} (F0 : FlagG (VS D) D.R.rS T) (he : F0.e = 
 
 theorem cntCl_ExSet_le : ∀ (D : D7) (u u' : D.what₂.Word) (F0 : Fb D u) (Λ : LatV D), Stand D u u' → IsBase D u F0 → IsRowLat D F0 Λ → IsSplit D F0 Λ → ∀ (P : LatW D) (Z : GramM D) (s : ℕ) (De Q : ℝ), 1 ≤ s → s ≤ D.R.k → SubOK D (L0X D Λ (lf D F0)) P s De → QOK D u u' Z Q → (cntCl (ExSet D Λ (lf D F0) ((Tu D u' : ℕ) : D.host.E) Z P) (TEqv D Λ (lf D F0)) : ℝ≥0∞) ≤ ENNReal.ofReal (frB D s (NT D u) De Q) := by
   intro D u u' F0 Λ hst hb hrow hsp P Z s De Q hs1 hsk hsub hQ
-  obtain ⟨reps, hcard, hreps, hall⟩ := GlobalTheory.T.exists_sublattice_lifts_modulo_fixing_unipotent D u u' F0 Λ hst hb hrow hsp P s De hsub
+  obtain ⟨reps, hcard, hreps, hall⟩ := _root_.GlobalTheory.LoopC.Lifts.main D u u' F0 Λ hst hb hrow hsp P s De hsub
   obtain ⟨b₀, hb₀, -⟩ := hQ.2.2.1
   have h1 := cntCl_le_sum (TEqv_equivalence D Λ (lf D F0) (T' := ((Tu D u' : ℕ) : D.host.E))) reps
     (ExSet D Λ (lf D F0) ((Tu D u' : ℕ) : D.host.E) Z P)

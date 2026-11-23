@@ -58,19 +58,6 @@ namespace GlobalTheory.HomLocBasis
 
 open GlobalTheory.PlaceInt.LocBasis Module
 
-theorem exists_basis_primeTo {K V : Type} [Field K] [NumberField K] [AddCommGroup V] [Module K V] [Module (𝓞 K) V]
-    [IsScalarTower (𝓞 K) K V] (m : ℕ) (hm : 0 < m) (L : Submodule (𝓞 K) V) (hfg : L.FG) :
-    ∃ (r : ℕ) (b : Fin r → V), LinearIndependent K b ∧ (∀ i, b i ∈ L) ∧
-      ∀ w ∈ L, ∃ k : ℕ, Nat.Coprime k m ∧ k • w ∈ Submodule.span (𝓞 K) (Set.range b) := by
-  first
-  | exact @_root_.GlobalTheory.CoprimeBasisExistence.exists_basis_coprime
-  | exact _root_.GlobalTheory.CoprimeBasisExistence.exists_basis_coprime
-  | (apply _root_.GlobalTheory.CoprimeBasisExistence.exists_basis_coprime <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CoprimeBasisExistence.exists_basis_coprime <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CoprimeBasisExistence.exists_basis_coprime <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CoprimeBasisExistence.exists_basis_coprime ..)
-
-
 open Formalism.MainNotions.TaylorLogMetric in
 theorem exists_nnBasis : ∀ (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) (p N N' : ℕ) (L : Submodule (𝓞 D.host.E) (Fin N → D.host.E)) (L' : Submodule (𝓞 D.host.E) (Fin N' → D.host.E)), p.Prime → Nat.Coprime (Ideal.absNorm cc) p → TaylorLogMetric.admitted D N N' L L' → ∃ (r : ℕ) (b : Fin r → Matrix (Fin N') (Fin N) D.host.E), TaylorLogMetric.NNBasis D (TaylorLogMetric.tor0 D cc δ) δ p L L' b := by
   intro D cc δ p N N' L L' hp hcc hA
@@ -93,7 +80,7 @@ theorem exists_nnBasis : ∀ (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) (p
     conv_rhs => rw [hexp x]
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [← ht]; rfl
-  obtain ⟨r, b, hli, hb, hw⟩ := exists_basis_primeTo p hp.pos Y (Submodule.fg_span (Set.finite_range y))
+  obtain ⟨r, b, hli, hb, hw⟩ := _root_.GlobalTheory.CoprimeBasisExistence.exists_basis_coprime p hp.pos Y (Submodule.fg_span (Set.finite_range y))
   set n : ℕ := Ideal.absNorm cc with hn
   have hn0 : n ≠ 0 := by
     intro h

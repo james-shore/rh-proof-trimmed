@@ -245,13 +245,8 @@ theorem sum_bound {K : Type} [Field K] [NumberField K] (p : HeightOneSpectrum (�
     rw [tsum_mul_left]
     exact mul_le_mul_of_nonneg_left hb1 (Nat.cast_nonneg _)
 
-theorem finrank_E (D : D7) : Module.finrank ℚ D.host.E = 2 * D.R.f := by
-  rw [D.host.finrank_cmField]
-  unfold Ranks.f Ranks.n
-  ring
-
 theorem finrank_F_le (D : D7) : Module.finrank ℚ D.host.F ≤ 2 * D.R.f := by
-  rw [← finrank_E]
+  rw [← _root_.Formalism.MainNotions.StandardLattice.finrank_host]
   exact LinearMap.finrank_le_finrank_of_injective (f := (IsScalarTower.toAlgHom ℚ D.host.F D.host.E).toLinearMap)
     (algebraMap D.host.F D.host.E).injective
 
@@ -264,7 +259,7 @@ theorem eulerOff_lower (S : Finset (HeightOneSpectrum (𝓞 D.host.F))) (x : Hei
     have := two_le_absNorm a.1.1
     rw [← Real.rpow_natCast, ← Real.rpow_neg (by linarith)]
     exact Real.rpow_le_rpow_of_exponent_le (by linarith) (by push_cast; linarith)
-  rw [finrank_E, Fintype.card_fin] at h3
+  rw [_root_.Formalism.MainNotions.StandardLattice.finrank_host, Fintype.card_fin] at h3
   exact GlobalTheory.exp_neg_le_norm_tprod_one_sub_inv _ _ h1 h2 (by exact_mod_cast h3)
 
 theorem abs_quadTerm_le (v : HeightOneSpectrum (𝓞 D.host.F)) {i : ℕ} (hi : 2 ≤ i) :

@@ -62,17 +62,17 @@ theorem smoothAffineCurve_degreeTwo_class_dies_on_principalOpen : ∀ (q : ℕ) 
   intro q _ k B _ _ _ _ _ _ hq i x
   have hqB : IsUnit (q : B) := by simpa using hq.map (algebraMap k B)
   by_cases hB : IsField B
-  · have hSH : SH B := GlobalTheory.T.sH_of_isField_finiteType_of_isAlgClosed k B hB
-    haveI : Subsingleton (Ht q (sp B) 2 i) := GlobalTheory.T.strictlyHenselianLocalRing_acyclic_every_sheaf (ZMod q) B hSH (tw q i) 2 (by norm_num)
+  · have hSH : SH B := _root_.GlobalTheory.field_finiteType_algClosed_SH k B hB
+    haveI : Subsingleton (Ht q (sp B) 2 i) := _root_.GlobalTheory.EtC.b2 (ZMod q) B hSH (tw q i) 2 (by norm_num)
     refine ⟨1, one_ne_zero, ?_⟩
     rw [Subsingleton.elim x 0, map_zero]
-  · obtain ⟨inst, halg⟩ := GlobalTheory.T.exists_isAlgebraic_ratFunc_fractionRing_dedekind k B hB
+  · obtain ⟨inst, halg⟩ := _root_.GlobalTheory.FracAlgDedekind.exists_isAlgebraic_ratFunc k B hB
     letI := inst
     haveI := halg
     have hqK : IsUnit (q : FractionRing B) := by simpa using hqB.map (algebraMap B (FractionRing B))
     haveI : Subsingleton (Ht q (sp (FractionRing B)) 2 i) :=
-      GlobalTheory.T.etale_cohomology_vanishing_algebraic_over_ratFunc q k (FractionRing B) hqK 2 i le_rfl
-    obtain ⟨f, hf, -, hx⟩ := GlobalTheory.T.class_vanishes_away_nonzero_nonunit_domain q B hB hqB 2 i x (Subsingleton.elim _ _)
+      _root_.GlobalTheory.EtC.gaugeSplitting_holds q k (FractionRing B) hqK 2 i le_rfl
+    obtain ⟨f, hf, -, hx⟩ := _root_.GlobalTheory.EtC.classVanishesAway q B hB hqB 2 i x (Subsingleton.elim _ _)
     exact ⟨f, hf, hx⟩
 
 end GlobalTheory.EtC

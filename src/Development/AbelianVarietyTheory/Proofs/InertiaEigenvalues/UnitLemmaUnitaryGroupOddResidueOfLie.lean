@@ -153,8 +153,8 @@ theorem identity_integral (hL : UnitLemmaLie) (hK : K.Odd) (n : ℕ) : ∀ B₁ 
     (cut_integral _ _ _ i₂) ?_ ?_ ?_
   · rw [← prod_P, ← prod_P] at hs ⊢
     refine val_resultant _ _ hs.of_mul_left hs.of_mul_right
-      (prod_integral _ _ (cut_integral _ _ _ i₁) (cut_integral _ _ _ i₂))
-      (prod_integral _ _ (cut_integral _ _ _ i₁) (cut_integral _ _ _ i₂)) f ?_ ?_
+      (_root_.GlobalTheory.UnitLemma.Unr.prod_integral _ _ (cut_integral _ _ _ i₁) (cut_integral _ _ _ i₂))
+      (_root_.GlobalTheory.UnitLemma.Unr.prod_integral _ _ (cut_integral _ _ _ i₁) (cut_integral _ _ _ i₂)) f ?_ ?_
     · rw [prod_aeval, cut_aeval, cut_aeval, f₁, f₂]
       exact Prod.ext (Ideal.Quotient.eq_zero_iff_mem.2 (Ideal.mem_span_singleton_self _))
         (Ideal.Quotient.eq_zero_iff_mem.2 (Ideal.mem_span_singleton_self _))

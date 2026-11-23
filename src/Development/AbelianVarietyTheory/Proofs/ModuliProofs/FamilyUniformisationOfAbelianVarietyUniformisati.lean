@@ -62,7 +62,7 @@ open scoped CategoryTheory.Obj TensorProduct
 namespace GlobalTheory
 
 theorem familyUnif_of_thetaUnif : ThetaUnifAV → Out.Laws → N1c := fun hU hL =>
-  GlobalTheory.familyUnif_of_parts GlobalTheory.datum_exists_period
+  GlobalTheory.familyUnif_of_parts _root_.GlobalTheory.PeriodNonempty.exists_isPeriod
     (GlobalTheory.PointUnif.exists_uniformisation_at_point_closed hU hL) (GlobalTheory.Moduli.exists_point_of_isPeriod hU hL) (GlobalTheory.UnifPoint.point_eq_iff_isometry_closed hU hL)
     (GlobalTheory.exists_local_period_lift hU hL) (GlobalTheory.T.isHolTo_modulipoint_exp_of_holomorphic_periods hU hL)
     (GlobalTheory.FiniteClasses.finite_image_of_locally_constant_on_holomorphic_families GlobalTheory.SubfieldChart.exists_holomorphic_chart)

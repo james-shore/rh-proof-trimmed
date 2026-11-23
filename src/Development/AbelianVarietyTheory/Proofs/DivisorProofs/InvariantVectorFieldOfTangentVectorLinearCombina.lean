@@ -45,6 +45,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.LieBridgeG
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasRigidChart
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsProperToroidalModelStructureMap
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBasisRaynaudTangentInvariantFields
 
 @[expose] public section
 
@@ -68,13 +69,6 @@ open TrivSqZeroExt (inl inr)
 
 variable {R : Type} [CommRing R] {G : Over (Sp R)} [GrpObj G] [IsCommMonObj G]
 
-theorem tv_finsum {κ : Type} (s : Finset κ) (f : κ → TanM (𝟙 (Sp R)) G) :
-    tv (∑ i ∈ s, f i) = ∏ i ∈ s, tv (f i) := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simp only [Finset.sum_empty, Finset.prod_empty]; rfl
-  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.prod_insert ha, PullbackSections.tv_add, ih]
-
 theorem isField_comb (g : ℕ) (e : Fin g → Fld G.left) (he : ∀ c, IsField ⊤ (e c)) (a : Fin g → R) :
     IsField ⊤ (fun O f => ∑ c, constFn G.hom O (a c) * e c O f) := by
   refine ⟨fun W hW f f' => ?_, fun W hW f f' => ?_, fun W W' h hW f => ?_⟩
@@ -96,7 +90,7 @@ theorem isInv_comb : ∀ (R : Type) [CommRing R] (G : Over (Sp R)) [GrpObj G] [I
   refine ⟨isField_comb g e (fun c => (hw c).1) a, ?_⟩
   intro S _ φ x w' O f hx hO htr
   letI : Algebra R S := φ.toAlgebra
-  have hG := GlobalTheory.Heat.CoeffWt.isGrpPullback_self G
+  have hG := _root_.GlobalTheory.ObjComp.isGrpPullback_id G
   choose u hu using fun c => PullbackSections.push_surj hG (tv (w c))
   have hul : ∀ c, (u c).left = (tv (w c)).left := fun c =>
     (Category.comp_id _).symm.trans (congrArg (fun q => q.left) (hu c))
@@ -111,7 +105,7 @@ theorem isInv_comb : ∀ (R : Type) [CommRing R] (G : Over (Sp R)) [GrpObj G] [I
   choose U hU using PullbackSections.push_surj hG (tv (∑ c, a c • w c))
   have hU' : U = ∏ c, PullbackSections.scK (a c) (u c) := by
     refine PullbackSections.push_inj hG ?_
-    rw [hU, map_prod, tv_finsum]
+    rw [hU, map_prod, _root_.GlobalTheory.RayBasis.tv_sum]
     refine Finset.prod_congr rfl fun c _ => ?_
     rw [PullbackSections.push_scK, hu c, PullbackSections.tv_smul]
   have hUl : U.left = (tv (∑ c, a c • w c)).left :=

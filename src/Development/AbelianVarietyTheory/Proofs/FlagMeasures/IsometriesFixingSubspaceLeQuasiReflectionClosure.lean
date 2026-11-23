@@ -66,14 +66,6 @@ namespace GlobalTheory.HL.QReflGen
 variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
 variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E]
 
-theorem hf_add_l (L : LocE F E) {n : ℕ} (Hm : Matrix (Fin n) (Fin n) E) (a b y : Fin n → E) :
-    hf L Hm (a + b) y = hf L Hm a y + hf L Hm b y := by
-  simp [hf, add_mul, Finset.sum_add_distrib]
-
-theorem hf_smul_l (L : LocE F E) {n : ℕ} (Hm : Matrix (Fin n) (Fin n) E) (c : E) (a y : Fin n → E) :
-    hf L Hm (c • a) y = c * hf L Hm a y := by
-  simp [hf, Finset.mul_sum, mul_assoc]
-
 theorem hf_add_r (L : LocE F E) {n : ℕ} (Hm : Matrix (Fin n) (Fin n) E) (a b y : Fin n → E) :
     hf L Hm y (a + b) = hf L Hm y a + hf L Hm y b := by
   simp [hf, mul_add, Finset.sum_add_distrib]
@@ -100,20 +92,20 @@ theorem exists_qrefl (L : LocE F E) {n : ℕ} {Hm : Matrix (Fin n) (Fin n) E} (h
       invFun := fun v => v + (L.cj c * hf L Hm v a) • a
       map_add' := by
         intro v w
-        rw [hf_add_l]; module
+        rw [_root_.GlobalTheory.HermOrthBasis.hf_add_left]; module
       map_smul' := by
         intro r v
-        rw [hf_smul_l]; simp only [RingHom.id_apply]; module
+        rw [_root_.GlobalTheory.HermOrthBasis.hf_smul_left]; simp only [RingHom.id_apply]; module
       left_inv := by
         intro v
-        simp only [hf_add_l, hf_smul_l]
+        simp only [_root_.GlobalTheory.HermOrthBasis.hf_add_left, _root_.GlobalTheory.HermOrthBasis.hf_smul_left]
         rw [add_assoc, ← add_smul]
         have : c * hf L Hm v a + L.cj c * (hf L Hm v a + c * hf L Hm v a * hf L Hm a a) = 0 := by
           linear_combination hf L Hm v a * hc
         rw [this]; simp
       right_inv := by
         intro v
-        simp only [hf_add_l, hf_smul_l]
+        simp only [_root_.GlobalTheory.HermOrthBasis.hf_add_left, _root_.GlobalTheory.HermOrthBasis.hf_smul_left]
         rw [add_assoc, ← add_smul]
         have : L.cj c * hf L Hm v a + c * (hf L Hm v a + L.cj c * hf L Hm v a * hf L Hm a a) = 0 := by
           linear_combination hf L Hm v a * hc
@@ -121,15 +113,8 @@ theorem exists_qrefl (L : LocE F E) {n : ℕ} {Hm : Matrix (Fin n) (Fin n) E} (h
   refine ⟨g, ⟨ha, ?_, c, fun v => rfl⟩, fun v => rfl⟩
   intro v w
   change hf L Hm (v + (c * hf L Hm v a) • a) (w + (c * hf L Hm w a) • a) = _
-  simp only [hf_add_l, hf_add_r, hf_smul_l, hf_smul_r, map_mul, hf_cj L h]
+  simp only [_root_.GlobalTheory.HermOrthBasis.hf_add_left, hf_add_r, _root_.GlobalTheory.HermOrthBasis.hf_smul_left, hf_smul_r, map_mul, hf_cj L h]
   linear_combination hf L Hm v a * hf L Hm a w * hc
-
-theorem nontriv (L : LocE F E) : Nontrivial E := by
-  by_contra h
-  rw [not_nontrivial_iff_subsingleton] at h
-  have := L.rank
-  rw [Module.finrank_zero_of_subsingleton] at this
-  omega
 
 theorem exists_skew (L : LocE F E) :
     ∃ (δ : E) (D : F), D ≠ 0 ∧ L.cj δ = -δ ∧ δ * δ = algebraMap F E D := by
@@ -164,7 +149,7 @@ theorem quad_finite {K : Type} [Field K] (a b c : K) (h : ¬ (a = 0 ∧ b = 0 �
 theorem exists_norm_one [CharZero F] (L : LocE F E) (t s : E) (ht : IsUnit t) (htc : L.cj t = t) :
     ∃ u : E, u * L.cj u = 1 ∧ IsUnit (t - L.cj u * s) ∧
       IsUnit ((t - L.cj u * s) + L.cj (t - L.cj u * s)) := by
-  haveI := nontriv L
+  haveI := _root_.GlobalTheory.HermOrthBasis.nontrivial_alg L
   obtain ⟨δ, D, hD, hδ, hδ2⟩ := exists_skew L
   obtain ⟨τ, rfl⟩ := (L.cj_fix t).1 htc
   have hτ : τ ≠ 0 := by rintro rfl; simp at ht
@@ -242,7 +227,7 @@ theorem step [CharZero F] (L : LocE F E) {n : ℕ} {Hm : Matrix (Fin n) (Fin n) 
   obtain ⟨u, huu, hb, hbb⟩ := exists_norm_one L (hf L Hm x x) (hf L Hm x y) hx (hf_cj L h x x)
   have haa : hf L Hm (x + (-u) • y) (x + (-u) • y) =
       (hf L Hm x x - L.cj u * hf L Hm x y) + L.cj (hf L Hm x x - L.cj u * hf L Hm x y) := by
-    simp only [hf_add_l, hf_add_r, hf_smul_l, hf_smul_r, map_mul, map_sub, map_neg, hf_cj L h,
+    simp only [_root_.GlobalTheory.HermOrthBasis.hf_add_left, hf_add_r, _root_.GlobalTheory.HermOrthBasis.hf_smul_left, hf_smul_r, map_mul, map_sub, map_neg, hf_cj L h,
       L.cj_cj, hxy]
     linear_combination hf L Hm x x * huu
   have hxa : hf L Hm x (x + (-u) • y) = hf L Hm x x - L.cj u * hf L Hm x y := by

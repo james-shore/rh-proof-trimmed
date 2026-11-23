@@ -198,7 +198,7 @@ theorem Model.mem_normGroup_iff_model (h : m.Corr L L') (hL : FiniteDimensional 
     have hy' : (Additive.ofMul y' : KbarMult p) ∈ multOf p L' := (h _).2 y.1.2
     refine ⟨Additive.ofMul y', hy', ?_⟩
     refine Additive.toMul.injective (Units.ext ?_)
-    refine (normHom_eq_algebraNorm hL' h.le _ hy').trans ?_
+    refine (_root_.ReciprocityTheory.DiscreteGroups.LocalClassField.normHom_eq_algebra_norm hL' h.le _ hy').trans ?_
     exact congrArg Subtype.val (h.norm_eq (y : L)).symm
   · rintro ⟨y, hy, hyx⟩
     let w : IntermediateField.extendScalars h.le := ⟨((Additive.toMul y : (PadicAlgCl p)ˣ) : PadicAlgCl p), hy⟩
@@ -206,7 +206,7 @@ theorem Model.mem_normGroup_iff_model (h : m.Corr L L') (hL : FiniteDimensional 
     have hz : h.equiv.symm w ≠ 0 := by simpa using hw
     refine ⟨Units.mk0 _ hz, Units.ext (m.e.injective (Subtype.ext ?_))⟩
     show ((m.e (Algebra.norm K (h.equiv.symm w)) : m.K') : PadicAlgCl p) = _
-    rw [h.norm_eq, RingEquiv.apply_symm_apply, ← normHom_eq_algebraNorm hL' h.le y hy, hyx]
+    rw [h.norm_eq, RingEquiv.apply_symm_apply, ← _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.normHom_eq_algebra_norm hL' h.le y hy, hyx]
     rfl
 
 end ReciprocityTheory.DiscreteGroups.LocalClassField

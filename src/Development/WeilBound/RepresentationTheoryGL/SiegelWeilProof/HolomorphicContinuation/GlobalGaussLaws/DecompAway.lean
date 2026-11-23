@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.EqZeroOfAeFundamentalDomain
 
 @[expose] public section
 
@@ -67,7 +68,7 @@ theorem decompAway : DecompAway := by
     have := congrArg (compAt θ τ) hg
     rwa [DA.compAt_mul, DA.compAt_mul, DA.compAt_conjT θ hθ, DA.compAt_Jst θ hθ] at this
   have hinv : compAt θ τ (mat g⁻¹) * Y = 1 := by
-    rw [hYdef, ← DA.compAt_mul, ← DA.mat_mul, inv_mul_cancel, DA.mat_one, DA.compAt_one]
+    rw [hYdef, ← DA.compAt_mul, ← DA.mat_mul, inv_mul_cancel, DA.mat_one, _root_.GlobalTheory.WeilVacMove.compAt_one]
   have hYu : IsUnit Y.det := Matrix.isUnit_det_of_left_inverse hinv
   set M : M2 n := Y.submatrix finSumFinEquiv finSumFinEquiv with hMdef
   have hMY : reidx M = Y := by ext i j; simp [reidx, hMdef]

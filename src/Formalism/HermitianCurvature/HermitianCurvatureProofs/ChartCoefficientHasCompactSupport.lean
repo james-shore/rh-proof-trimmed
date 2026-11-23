@@ -88,7 +88,7 @@ theorem chart_psiC {q : (RC k j ρ × RC k j ρ) × ((Fin j → Fin j → ℂ) �
   have hg := psiC_mem hZ hμ
   have hD : DjU k j ρ (psiC q) ≠ 0 := by rw [djU_psiC]; exact hZ
   obtain ⟨hZ', hμ', heq⟩ := chart_spec (psiC q) hg hD
-  obtain ⟨q0, -, huniq⟩ := big_cell_bijection k j ρ (psiC q) hg hD
+  obtain ⟨q0, -, huniq⟩ := _root_.Formalism.FourierDecayAlt.P.Ux3.bigCellBij k j ρ (psiC q) hg hD
   have e1 := huniq ((q.1.1, q.1.2), (Matrix.of q.2.1, Matrix.of q.2.2)) ⟨hZ, hμ, rfl⟩
   have e2 := huniq ((chX (psiC q), chX' (psiC q)), (chZ (psiC q), chMu (psiC q))) ⟨hZ', hμ', heq⟩
   have e := e2.trans e1.symm
@@ -289,7 +289,7 @@ theorem chartCoefficient_hasCompactSupport (Bs : B.RealPlaceData k (j + ρ) Wp W
         exact mul_pos (Complex.normSq_pos.2 h1) h2
       refine ⟨hf q₀, hpos, fun g hg hne => ?_⟩
       obtain ⟨q, hq, rfl⟩ := hsub g hg hne
-      have e := level_function_slice k j ρ Bs.z Bs.z' Bs.z_mem Bs.z'_mem q.1.1 q.1.2 (Matrix.of q.2.1) (Matrix.of q.2.2)
+      have e := _root_.Formalism.FourierDecayAlt.P.Ux3.gfSlice k j ρ Bs.z Bs.z' Bs.z_mem Bs.z'_mem q.1.1 q.1.2 (Matrix.of q.2.1) (Matrix.of q.2.2)
       unfold psiC
       rw [e]
       exact hmin hq.2

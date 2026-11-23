@@ -61,9 +61,9 @@ set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.StrongApprox
 
-theorem AETopologicalRing.full : AETopologicalRing.Statement := AETopologicalRing.proof
+alias AETopologicalRing.full := _root_.GroundTheory.Heights₂.Heights.StrongApprox.AETopologicalRing.proof
 
-theorem HypPairExists.full : HypPairExists.Statement := HypPairExists.proof
+alias HypPairExists.full := _root_.GroundTheory.Heights₂.Heights.StrongApprox.HypPairExists.proof
 
 theorem EDenseInAE.full : EDenseInAE.Statement := EDenseInAE.proof AETopologicalRing.full
 
@@ -75,9 +75,9 @@ theorem EichlerDense.full : EichlerDense.Statement :=
 theorem ClosureIsSubmonoid.full : ClosureIsSubmonoid.Statement :=
   ClosureIsSubmonoid.proof AETopologicalRing.full EichlerDense.full
 
-theorem LocalRingHypotheses.full : LocalRingHypotheses.Statement := LocalRingHypotheses.proof
+alias LocalRingHypotheses.full := _root_.GroundTheory.Heights₂.Heights.StrongApprox.LocalRingHypotheses.proof
 
-theorem PlaceMaps.full : PlaceMaps.Statement := PlaceMaps.proof LocalRingHypotheses.full
+alias PlaceMaps.full := _root_.GroundTheory.Heights₂.Heights.StrongApprox.PlaceMaps.intersectionNumber_baseChange
 
 theorem EichlerAtPlace.full : EichlerAtPlace.Statement := EichlerAtPlace.proof PlaceMaps.full
 

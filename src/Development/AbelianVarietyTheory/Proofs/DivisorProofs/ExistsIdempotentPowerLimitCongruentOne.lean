@@ -88,29 +88,6 @@ theorem pow_add_mul_factorial {M : Type*} [Monoid M] [Finite M] (y : M) (n : ℕ
   rw [hc, show j * (p * c) = (j * c) * p by ring]
   exact iter _ _ (by omega)
 
-theorem finite_quot (D : D7) (N : ℕ) (hN : 0 < N) :
-    Finite (OhE D ⧸ Ideal.span {(N : OhE D)}) := by
-  let ι : 𝓞 D.host.E →+* OhE D :=
-    ((inc D).comp (algebraMap (𝓞 D.host.E) D.host.E)).codRestrict _
-      fun x => GlobalTheory.CongApprox.inc_mem_OhE D x
-  haveI : Finite (𝓞 D.host.E ⧸ Ideal.span {(N : 𝓞 D.host.E)}) :=
-    Ideal.finiteQuotientOfFreeOfNeBot _ (by simpa using hN.ne')
-  refine Finite.of_surjective (Ideal.quotientMap (I := Ideal.span {(N : 𝓞 D.host.E)})
-    (Ideal.span {(N : OhE D)}) ι ?_) ?_
-  · rw [Ideal.span_le, Set.singleton_subset_iff]
-    change ι N ∈ Ideal.span {(N : OhE D)}
-    rw [map_natCast]
-    exact Ideal.mem_span_singleton_self _
-  · intro z
-    obtain ⟨z, rfl⟩ := Ideal.Quotient.mk_surjective z
-    obtain ⟨x, w, hw, h⟩ := GlobalTheory.CongApprox.exists_int_approx D N hN z z.2
-    refine ⟨Ideal.Quotient.mk _ x, ?_⟩
-    rw [Ideal.quotientMap_mk, eq_comm, Ideal.Quotient.eq, Ideal.mem_span_singleton]
-    refine ⟨⟨w, hw⟩, Subtype.ext ?_⟩
-    change (z : AE D) - inc D (x : D.host.E) = ((N : OhE D) : AE D) * w
-    rw [h, add_sub_cancel_left]
-    simp
-
 theorem exists_of_mk_eq (D : D7) (N : ℕ) (a b : OhE D)
     (h : Ideal.Quotient.mk (Ideal.span {(N : OhE D)}) a = Ideal.Quotient.mk _ b) :
     ∃ w ∈ OhE D, (a : AE D) = b + (N : AE D) * w := by
@@ -156,7 +133,7 @@ theorem exists_idem : ∀ (D : D7) (𝔪 : Ideal (𝓞 D.host.E)), 𝔪 ≠ ⊥ 
       (Ideal.Quotient.mk (Ideal.span {(N : OhE D)}) ys) ^ (k + j * (R N).factorial) =
         (Ideal.Quotient.mk (Ideal.span {(N : OhE D)}) ys) ^ k := by
     intro N hN k j hk
-    haveI := finite_quot D N hN
+    haveI := _root_.GlobalTheory.HeckeVal.finite_quot D N hN
     exact pow_add_mul_factorial _ _ (hR N) k j hk
   have he : ∀ N : ℕ, R N ≤ e N := by
     intro N

@@ -49,6 +49,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.TriangleInequalityAtPlace
 
 @[expose] public section
 
@@ -190,7 +191,7 @@ theorem slice_adj_clm (hz : inWb k r z) (hz' : inWb k r z') (X : ActualOps k r z
       show (χ y : ℂ) * φ ((Φ : Fn k r (Wq →L[ℂ] Wp)) c y) = 0
       rw [χ0 y hy, Complex.ofReal_zero, zero_mul]
   have hcΦ : CptOn k r (Fin.last r) fΦ := ⟨L, hLc, fun g _ hg => by rw [hfΦ]; simp [χ0 g hg]⟩
-  have hh := Formalism.FourierDecayAlt.P.hermitian_haar_invariance k r z z' (Fin.last r) μ hμ hz hz' fΨ fΦ hsΨ hsΦ hcΨ hcΦ (star Y) b a
+  have hh := _root_.qnHermHaar k r z z' (Fin.last r) μ hμ hz hz' fΨ fΦ hsΨ hsΦ hcΨ hcΦ (star Y) b a
   rw [star_star] at hh
   have eA : ∀ x : Mx k r, φ ((Ψ : Fn k r (Wq →L[ℂ] Wp)) c x) * star (φ ((X.t Y a b Φ : Fn k r (Wq →L[ℂ] Wp)) c x)) =
       fΨ x * star (tL k r z z' (Fin.last r) Y a b fΦ x) := by
@@ -282,10 +283,6 @@ theorem rAdj_XQQ (hz : inWb k r z) (hz' : inWb k r z')
   rw [star_star] at h
   exact h
 
-theorem hsVec_smul_q (w : ℂ) (A : Wq →L[ℂ] Wp) : B.hsVec (w • A) = w • B.hsVec A := by
-  unfold B.hsVec
-  rfl
-
 theorem radIp_smul_left (μ : Measure (Mt k r)) (w : ℂ) (Φ Ψ : RadSp k r z z' π π') :
     radIp μ (w • Φ) Ψ = starRingEnd ℂ w * radIp μ Φ Ψ := by
   unfold radIp
@@ -296,7 +293,7 @@ theorem radIp_smul_left (μ : Measure (Mt k r)) (w : ℂ) (Φ Ψ : RadSp k r z z
   congr 1
   funext x
   change ⟪B.hsVec (w • (Φ : Fn k r (Wq →L[ℂ] Wp)) c (Matrix.of x)), B.hsVec ((Ψ : Fn k r (Wq →L[ℂ] Wp)) c (Matrix.of x))⟫_ℂ = _
-  rw [hsVec_smul_q, inner_smul_left]
+  rw [_root_.Formalism.FourierDecayAlt.P.TBBx2.Tri.hsVec_smul, inner_smul_left]
 
 theorem radIp_smul_right (μ : Measure (Mt k r)) (w : ℂ) (Φ Ψ : RadSp k r z z' π π') :
     radIp μ Φ (w • Ψ) = w * radIp μ Φ Ψ := by
@@ -308,14 +305,14 @@ theorem radIp_smul_right (μ : Measure (Mt k r)) (w : ℂ) (Φ Ψ : RadSp k r z 
   congr 1
   funext x
   change ⟪B.hsVec ((Φ : Fn k r (Wq →L[ℂ] Wp)) c (Matrix.of x)), B.hsVec (w • (Ψ : Fn k r (Wq →L[ℂ] Wp)) c (Matrix.of x))⟫_ℂ = _
-  rw [hsVec_smul_q, inner_smul_right]
+  rw [_root_.Formalism.FourierDecayAlt.P.TBBx2.Tri.hsVec_smul, inner_smul_right]
 
 theorem rAdj_smul_real {μ : Measure (Mt k r)} {a : Pr (RadSp k r z z' π π')}
     (ha : RAdj μ a) (s : ℂ) (hs : starRingEnd ℂ s = s) : RAdj μ (s • a) := by
   obtain ⟨h1, h2, h3, h4⟩ := ha
   have es : s • a = algebraMap ℂ (Pr (RadSp k r z z' π π')) s * a := Algebra.smul_def s a
   have e1 : ∀ Φ, (s • a).1 Φ = s • a.1 Φ := fun Φ => by
-    rw [es, rds_fst_mul, Module.End.mul_apply, rds_fst_alg, Module.algebraMap_end_apply]
+    rw [es, _root_.Formalism.FourierDecayAlt.P5.HerD.pr_fst_mul, Module.End.mul_apply, _root_.Formalism.FourierDecayAlt.P5.HerD.pr_fst_algebraMap, Module.algebraMap_end_apply]
   have e2 : ∀ Φ, (s • a).2.unop Φ = s • a.2.unop Φ := fun Φ => by
     rw [es, rds_snd_mul, Module.End.mul_apply, rds_snd_alg, Module.algebraMap_end_apply, map_smul, hs]
   refine ⟨fun Ψ hΨ => ?_, fun Ψ hΨ => ?_, fun Φ Ψ hΨ => ?_, fun Φ Ψ hΨ => ?_⟩

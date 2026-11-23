@@ -204,11 +204,6 @@ theorem Lsharp {z : (VS D).V} (hz : z ∈ Wb X) (hd : ∀ y ∈ X.Lb, ∃ o : �
   simp only [hα, hβ, zero_smul, Finset.sum_const_zero, zero_add, add_zero]
   exact hl
 
-theorem herm_swap (x y : (VS D).V) : (VS D).hT y x = star ((VS D).hT x y) := by
-  first
-    | exact ((VS D).herm x y).symm
-    | exact ((VS D).herm.eq x y).symm
-
 theorem F4 {x y : (VS D).V} (hx : x ∈ Ldual X) (hy : y ∈ X.Lb) : (VS D).hT x y ∈ Dv D := by
   rw [memDv]
   intro o
@@ -240,7 +235,7 @@ theorem F5 : (differentIdeal ℤ (𝓞 D.host.E)) • Ldual X ≤ X.Lb := by
     rw [inv_mul_cancel₀ (Dv_ne (D := D))] at h3
     obtain ⟨o, ho⟩ := (FractionalIdeal.mem_one_iff _).1 h3
     refine ⟨o, ?_⟩
-    rw [← algebraMap_smul D.host.E δ x, LinearMap.map_smul, herm_swap]
+    rw [← algebraMap_smul D.host.E δ x, LinearMap.map_smul, _root_.Formalism.L2.SG.Pf.NcReal.JX.NOf.Ex.h_symm]
     exact ho
 
 theorem F6 : X.Lb ≤ (differentIdeal ℤ (𝓞 D.host.E)) • Ldual X := by
@@ -315,7 +310,7 @@ theorem free_sub : ∃ (ι : (Fin (D.R.k + 1) → 𝓞 D.host.E) →ₗ[𝓞 D.h
   let w : Module.Basis (Fin (D.R.k + 1)) D.host.E (Wb X) := Module.finBasisOfFinrankEq D.host.E (Wb X) (finrank_Wb X)
   have hwL : ∀ i, ((w i : Wb X) : (VS D).V) ∈ Submodule.span D.host.E (X.Lb : Set (VS D).V) := by
     intro i; rw [span_Lb]; exact (w i).2
-  choose n hn hnL using fun i => Formalism.MainNotions.LatticeGluingRadicals.j_exists_nat_smul_mem X.Lb (hwL i)
+  choose n hn hnL using fun i => _root_.Formalism.MainNotions.LatticeGluingRadicals.j_exists_nat_smul_memL X.Lb (hwL i)
   let l : Fin (D.R.k + 1) → (VS D).V := fun i => n i • ((w i : Wb X) : (VS D).V)
   let ι : (Fin (D.R.k + 1) → 𝓞 D.host.E) →ₗ[𝓞 D.host.E] (VS D).V := Fintype.linearCombination (𝓞 D.host.E) l
   have hιap : ∀ a, ι a = ∑ i, a i • l i := fun a => by simp [ι, Fintype.linearCombination_apply]
@@ -363,7 +358,7 @@ theorem free_sub : ∃ (ι : (Fin (D.R.k + 1) → 𝓞 D.host.E) →ₗ[𝓞 D.h
       | smul c a _ ha => simpa using Submodule.smul_mem _ c ha
     exact this _ hx'
   obtain ⟨s, hs⟩ := fg_Lb X
-  choose! m hm hmι using fun g (hg : g ∈ X.Lb) => Formalism.MainNotions.LatticeGluingRadicals.j_exists_nat_smul_mem (LinearMap.range ι) (hspan g hg)
+  choose! m hm hmι using fun g (hg : g ∈ X.Lb) => _root_.Formalism.MainNotions.LatticeGluingRadicals.j_exists_nat_smul_memL (LinearMap.range ι) (hspan g hg)
   set dN : ℕ := ∏ g ∈ s, m g with hdN
   have hgs : ∀ g ∈ s, g ∈ X.Lb := fun g hg => hs ▸ Submodule.subset_span hg
   have hdN0 : dN ≠ 0 := Finset.prod_ne_zero_iff.2 fun g hg => (hm g (hgs g hg)).ne'

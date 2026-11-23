@@ -133,11 +133,6 @@ theorem fixingSubgroup_powerField :
     (powerField K L m s hs).1.fixingSubgroup = powerGroup K L m s hs :=
   fixingSubgroup_ofOpenSubgroup _
 
-theorem ofOpenSubgroup_le {U U' : OpenSubgroup Gal(ℚ̄/ℚ)} (h : U' ≤ U) :
-    ofOpenSubgroup U ≤ ofOpenSubgroup U' := fun _ hx ↦
-  (IntermediateField.mem_fixedField_iff _ _).2 fun τ hτ ↦
-    (IntermediateField.mem_fixedField_iff _ _).1 hx τ (h hτ)
-
 theorem le_ofOpenSubgroup {F : FiniteSubfield} {U : OpenSubgroup Gal(ℚ̄/ℚ)}
     (h : (U : Subgroup Gal(ℚ̄/ℚ)) ≤ F.1.fixingSubgroup) : F ≤ ofOpenSubgroup U := fun x hx ↦
   (IntermediateField.mem_fixedField_iff _ _).2 fun _ hτ ↦
@@ -147,7 +142,7 @@ theorem le_layerField : L ≤ layerField L m :=
   le_ofOpenSubgroup fun _ hτ ↦ hτ.1
 
 theorem powerField_le_layerField : powerField K L m s hs ≤ layerField L m :=
-  ofOpenSubgroup_le fun x hx ↦ ⟨0, by simpa using hx⟩
+  _root_.GroundTheory.Global.FiniteSubfield.ofOpenSubgroup_le fun x hx ↦ ⟨0, by simpa using hx⟩
 
 theorem le_powerField : K ≤ powerField K L m s hs := by
   refine le_ofOpenSubgroup fun τ ⟨k, u, hu, hτu⟩ ↦ ?_

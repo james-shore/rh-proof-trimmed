@@ -74,12 +74,12 @@ theorem levAt_mat : UnderTie (fun {D L hT Gi Gl Kc Y cX ex t u μ St} A dtU a =>
   generalize H1.2.choose = q' at hq' ⊢
   unfold xiPt
   rw [dite_eq_left him, dite_eq_left him]
-  obtain ⟨k, c, hk, hc, hχ, hd⟩ := GlobalTheory.T.levelMoved_point_frames_matrixSteps A dtU a hPin hTie i hi0 him.le β x x₁ κ e1 p q hp hq
+  obtain ⟨k, c, hk, hc, hχ, hd⟩ := _root_.GlobalTheory.MatFrames.frames_mat A dtU a hPin hTie i hi0 him.le β x x₁ κ e1 p q hp hq
   obtain ⟨k', c', hk', hc', hχ', hd'⟩ := GlobalTheory.T.levelMoved_point_frames_matrixSteps A dtU a hPin hTie (i + 1) hi1 him β' x' x₁' κ' e1' p' q' hp' hq'
   obtain ⟨hN, hf⟩ := GlobalTheory.T.chartPoint_mul_level_same_decoration A dtU a hPin hTie i (Nat.le_of_succ_le hi) β x x₁ κ e1 p q hp hq
   obtain ⟨hN', hf'⟩ := GlobalTheory.T.chartPoint_mul_level_same_decoration A dtU a hPin hTie (i + 1) hi β' x' x₁' κ' e1' p' q' hp' hq'
   obtain ⟨hmu, -⟩ := GlobalTheory.T.muCharacter_det_level_eq_local_tame_product A dtU a hPin hTie hMu i hi0 i (Nat.le_of_succ_le hi) β κ _ hd
-  obtain ⟨-, hmu'⟩ := GlobalTheory.T.muCharacter_det_level_eq_local_tame_product A dtU a hPin hTie hMu i hi0 (i + 1) hi β' κ' _ hd'
+  obtain ⟨-, hmu'⟩ := _root_.GlobalTheory.LevMuDet.muOf_det_lev A dtU a hPin hTie hMu i hi0 (i + 1) hi β' κ' _ hd'
   have core : ∀ W, muOf t u μ dtU (i + 1) (Matrix.GeneralLinearGroup.det κ'.1) * ((((St i (Nat.le_of_succ_le hi)).K β).lev.chi κ : ℂˣ) : ℂ) *
       t.seam.σ₀ (XiEntry t.Ch t.sel (t.tup μ) (t.cst μ) (t.idx μ) i (A.ib i hi β) (A.ib (i + 1) hi1 β') q q' W) =
       muOf t u μ dtU (i + 1) (Matrix.GeneralLinearGroup.det κ.1) * ((((St (i + 1) hi).K β').lev.chi κ' : ℂˣ) : ℂ) *

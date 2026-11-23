@@ -65,14 +65,14 @@ namespace GlobalTheory.IntPointFn
 
 theorem comp_padd_c_zero (V : Type) [CommRing V] [IsDomain V] (D : DegPre V) (b : 𝟙_ (Over (Sp V)) ⟶ D.P.A) :
     b.left ≫ (padd D.P.A (𝟙 D.P.A) (toUnit D.P.A ≫ D.c 0)).left = b.left := by
-  rw [← Over.comp_left, GlobalTheory.Poinc.ThetaOne.c_zero]
+  rw [← Over.comp_left, _root_.GlobalTheory.IndivisibleSection.c_zero_eq_one]
   simp only [padd, comp_one]
   show (b ≫ (𝟙 D.P.A * 1)).left = b.left
   rw [_root_.mul_one, Category.comp_id]
 
 theorem comp_toUnit_c_zero (V : Type) [CommRing V] [IsDomain V] (D : DegPre V) (b : 𝟙_ (Over (Sp V)) ⟶ D.P.A) :
     b.left ≫ (toUnit D.P.A ≫ D.c 0).left = (η[D.P.A]).left := by
-  rw [← Over.comp_left, GlobalTheory.Poinc.ThetaOne.c_zero, ← SymFrame.eta_eq, ← Category.assoc,
+  rw [← Over.comp_left, _root_.GlobalTheory.IndivisibleSection.c_zero_eq_one, ← SymFrame.eta_eq, ← Category.assoc,
     toUnit_unique (b ≫ toUnit D.P.A) (𝟙 _), Category.id_comp]
 
 theorem comp_toUnit_eta (V : Type) [CommRing V] [IsDomain V] (D : DegPre V) (b : 𝟙_ (Over (Sp V)) ⟶ D.P.A) :

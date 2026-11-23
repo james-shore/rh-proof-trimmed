@@ -78,7 +78,7 @@ theorem IsKerSys.lift (hP : GlobalTheory.Published.CuspRapidDecay) (hθ : IsInfF
   have hd : ∀ f τ, ∀ X ∈ lieAt W τ, ∃ f', ∀ h,
       HasDerivAt (fun t : ℝ => L f (h * oneP θ W τ X t)) (L f' h) 0 := fun f τ X hX =>
     (hκ.derW τ X hX f).imp fun f' e => h4 τ X hX f f' e
-  refine ⟨h1 f, ⟨fun γ hγ h => ?_, ?_, h2 f⟩, ?_, GlobalTheory.T.kernelLift_gelfandInvariantFinite_of_finite D θ hθ V W M κ hκ μ 𝓕 hq F hD hF.1.zfin f, ?_⟩
+  refine ⟨h1 f, ⟨fun γ hγ h => ?_, ?_, h2 f⟩, ?_, _root_.GlobalTheory.Mem.LiftFin.lift_zfin D θ hθ V W M κ hκ μ 𝓕 hq F hD hF.1.zfin f, ?_⟩
   · have := fun g => hκ.left f 1 (one_mem _) γ hγ g h
     simp only [one_mul] at this
     simp only [this]

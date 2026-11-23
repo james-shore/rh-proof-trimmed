@@ -56,7 +56,7 @@ theorem graphStatement : GraphStatement := by
   intro G J hJ
   have hP' : IsArithVar (imageZ inlV (graphIdeal P g)) d := by rw [h2]; exact hP
   have hF : IsProjVarF (fibreIdeal Sum.inl G) 0 :=
-    GlobalTheory.CompanionTheory.Ar.Giv.fibreDim K ι (K ⊕ K₂) (Sum.elim ι ι₂) Sum.inl inlV (graphIdeal P g) d 0 G
+    _root_.GroundTheory.Heights₂.Heights.ForSecondHalf.FibreDim.proof K ι (K ⊕ K₂) (Sum.elim ι ι₂) Sum.inl inlV (graphIdeal P g) d 0 G
       isBlockMap_inl h1 hP'
   have hrel := hF.1.2.2
   let i : ∀ k, fibreIdx (Sum.elim ι ι₂) (Sum.inl : K → K ⊕ K₂) k := fun k => (hrel k).choose

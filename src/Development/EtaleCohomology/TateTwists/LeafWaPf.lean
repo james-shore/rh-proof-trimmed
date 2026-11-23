@@ -134,5 +134,3 @@ theorem LateralTheory.EtaleFoundations.SteenPf.leaf_wa_of_aw (hAW : leaf_aw) : l
   rw [wa_eq, wa_eq, d_tau, hAW, tau_bd]
 
 
-open LateralTheory.EtaleFoundations.SteenPf in
-theorem LateralTheory.EtaleFoundations.SteenPf.leaf_wa_of (hAW : leaf_aw) : leaf_wa := leaf_wa_of_aw hAW

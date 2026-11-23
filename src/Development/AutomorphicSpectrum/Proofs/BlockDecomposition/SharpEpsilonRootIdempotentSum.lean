@@ -159,7 +159,7 @@ theorem sharp_powSum (A : PAlg l) {u : ℕ → (A.cont ℤ_[l]).A} (hu : ∀ n, 
     rw [← map_mul, h1, map_mul, map_pow, hT, Finset.mul_sum, Finset.sum_eq_single (ZMod.cast c')]
     · rw [← mul_assoc, ← map_mul, h3, h4]
     · intro c _ hc
-      rw [← mul_assoc, ← map_mul, h2 c' c (Ne.symm hc), sharp_zero, zero_mul]
+      rw [← mul_assoc, ← map_mul, h2 c' c (Ne.symm hc), _root_.GlobalTheory.CompanionTheory.RootsLC.sharp_zero, zero_mul]
     · simp
   have hsum := sum_sharp_eq_one (A.cont ℤ_[l]) (coi_ind A (m + k))
   calc (A.cont ℤ_[l]).sharp B = (∑ c', (A.cont ℤ_[l]).sharp (ind A (m + k) c')) * (A.cont ℤ_[l]).sharp B := by

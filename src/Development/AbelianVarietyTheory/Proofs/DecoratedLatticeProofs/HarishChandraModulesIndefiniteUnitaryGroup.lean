@@ -68,7 +68,7 @@ noncomputable section
 
 theorem GlobalTheory.HcPort.kfinDense_UJC {n : ℕ} {ε : Fin n → Bool} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
   {σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)} (hσ : Formalism.MainNotions.S.IsURepOn (Formalism.MainNotions.S.UJset ε) σ) : Dense {v : H | Formalism.MainNotions.S.IsKFin ε σ v} :=
-  GlobalTheory.T.dense_kFinite_vectors_unitaryGroupRep n ε H σ hσ
+  _root_.GlobalTheory.CompactRep.dense_isKFin n ε H σ hσ
 
 section
 

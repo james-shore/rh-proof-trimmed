@@ -59,10 +59,7 @@ theorem hasFiniteLength_prodIrr {k : Type} [Field k] [ValuativeRel k] [Topologic
   GlobalTheory.T.parabolic_induction_finite_length k _ _ _ _ _ _ (isSmooth_piTensor fun a => (x a).2.rep.smooth)
     (hasFiniteLength_of_isIrreducible (GlobalTheory.CompanionTheory.FrobJm.piTensor_rep_isIrreducible hA x))
 
-theorem main : ∀ {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k],
-    GlobalTheory.Published.IrreducibleAdmissibleGL → ∀ {h N : ℕ} (x : Fin h → IrrGL (k := k)) (hd : ∑ a, (x a).1 = N),
-      HasFiniteLength (prodIrr x hd) :=
-  fun hA _ _ x hd => hasFiniteLength_prodIrr hA x hd
+alias main := _root_.GlobalTheory.CompanionTheory.ProdFL.hasFiniteLength_prodIrr
 
 end GlobalTheory.CompanionTheory.ProdFL
 

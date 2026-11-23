@@ -70,17 +70,6 @@ theorem fg_of_le_fg {R M : Type*} [CommRing R] [IsNoetherianRing R] [AddCommGrou
   have h2 := h1.map Q.subtype
   rwa [Submodule.map_comap_subtype, inf_eq_right.mpr hPQ] at h2
 
-theorem exists_smul_mem {E : Type} [Field E] [NumberField E] {N : ℕ} (Lb : Submodule (𝓞 E) (Fin N → E))
-    (hsp : Submodule.span E (Lb : Set (Fin N → E)) = ⊤) (v : Fin N → E) :
-    ∃ c : 𝓞 E, c ≠ 0 ∧ c • v ∈ Lb := by
-  first
-  | exact @_root_.GlobalTheory.ExistsSmulMem.exists_smul_mem
-  | exact _root_.GlobalTheory.ExistsSmulMem.exists_smul_mem
-  | (apply _root_.GlobalTheory.ExistsSmulMem.exists_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ExistsSmulMem.exists_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ExistsSmulMem.exists_smul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ExistsSmulMem.exists_smul_mem ..)
-
 theorem hform_single {E : Type} [Field E] {N : ℕ} (σ : E →+* E) (J : Matrix (Fin N) (Fin N) E)
     (c : E) (i : Fin N) (y : Fin N → E) :
     hform σ J (c • Pi.single i 1) y = σ c * (J *ᵥ y) i := by
@@ -90,7 +79,7 @@ theorem dualSet_le_fg {E : Type} [Field E] [NumberField E] {N : ℕ} (σ : E →
     (J : Matrix (Fin N) (Fin N) E) (hJ : IsUnit J.det) (Lb : Submodule (𝓞 E) (Fin N → E))
     (hsp : Submodule.span E (Lb : Set (Fin N → E)) = ⊤) :
     ∃ M : Submodule (𝓞 E) (Fin N → E), M.FG ∧ dualSet σ J Lb ⊆ M := by
-  choose c hc0 hcm using fun i : Fin N => exists_smul_mem Lb hsp (Pi.single i 1)
+  choose c hc0 hcm using fun i : Fin N => _root_.GlobalTheory.ExistsSmulMem.exists_smul_mem Lb hsp (Pi.single i 1)
   refine ⟨Submodule.span (𝓞 E) (Set.range fun i => (σ (c i : E))⁻¹ • (J⁻¹ *ᵥ Pi.single i 1)),
     Submodule.fg_span (Set.finite_range _), ?_⟩
   intro y hy

@@ -63,10 +63,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.GridJoin
 
-theorem jm_mul_jm {n : ℕ} (ε : Fin n → Bool) : Formalism.REAL.Jm ε * Formalism.REAL.Jm ε = 1 := by
-  rw [Formalism.REAL.Jm, Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-  congr 1; funext a; cases ε a <;> simp
-
 theorem jm_submatrix {n : ℕ} (ε : Fin n → Bool) (σ : Equiv.Perm (Fin n)) :
     (Formalism.REAL.Jm ε).submatrix σ σ = Formalism.REAL.Jm (ε ∘ σ) := by
   ext a b
@@ -89,7 +85,7 @@ theorem submatrix_mul_jm {n : ℕ} (O : Matrix (Fin n) (Fin n) ℂ) (ε : Fin n 
 theorem isUnit_of_gram {n : ℕ} {O G : Matrix (Fin n) (Fin n) ℂ} {ε : Fin n → Bool} (h : Oᴴ * G * O = Formalism.REAL.Jm ε) :
     IsUnit O := by
   refine IsUnit.of_mul_eq_one_right (Formalism.REAL.Jm ε * (Oᴴ * G)) ?_
-  rw [Matrix.mul_assoc, h, jm_mul_jm]
+  rw [Matrix.mul_assoc, h, _root_.Formalism.REAL.Jm_mul_self]
 
 theorem card_false_of_gram {D : D7} {V : HSp D} (hV : V.SigOK) (τ : D.what₂.Tau) {O : Matrix (Fin V.rank) (Fin V.rank) ℂ}
     {ε : Fin V.rank → Bool} (h : Oᴴ * gramAt D V τ * O = Formalism.REAL.Jm ε) :

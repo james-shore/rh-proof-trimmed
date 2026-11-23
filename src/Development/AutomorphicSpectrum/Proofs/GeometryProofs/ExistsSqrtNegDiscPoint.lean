@@ -48,6 +48,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsProjectiveCoordinateRepresentationClosedSubsch
 
 @[expose] public section
 
@@ -67,10 +68,6 @@ theorem connectedSpace_of_specializes {X : Scheme.{0}} (x : X) (h : ∀ q : X, x
     Set.eq_univ_of_forall fun q => specializes_iff_mem_closure.1 (h q)
   have hp : PreconnectedSpace X := ⟨by rw [← hcl]; exact isPreconnected_singleton.closure⟩
   exact { toPreconnectedSpace := hp, toNonempty := ⟨x⟩ }
-
-theorem spMap_comp_spMap {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  rw [← Spec.map_comp]; rfl
 
 noncomputable def rtF {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {l : Level H} (c : Coeff l) : c.F :=
   ⟨H.rt0, c.le (IntermediateField.subset_adjoin _ _ (by simp))⟩
@@ -123,7 +120,7 @@ theorem detCond_at_point : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
       exact congrArg 𝔐.ξ (Subsingleton.elim _ _)
     · have h := 𝔐.cst_over
       change (spMap i ≫ 𝔐.ξ) ≫ 𝔐.f ≫ Y.s = _
-      rw [Category.assoc, h, spMap_comp_spMap]
+      rw [Category.assoc, h, _root_.GlobalTheory.ZM.ClosedCoord.spMap_comp_eq]
     · intro τ
       have hβ : (i.comp (𝔐.cst.comp (algebraMap (𝓞 c.F) c.F))) (rtO c) = (i.comp 𝔐.cst) (rtF c) := by
         simp only [RingHom.comp_apply, algebraMap_rtO]
@@ -148,6 +145,6 @@ theorem detCond_at_point : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
     refine GlobalTheory.DetSpread.detCond_of_dense E H D 𝔐.X 𝔐.t.G n 𝔐.t.act (𝓞 c.F) s (rtO c) hn (rtO_sq c) hd k
       (spMap g ≫ z) (g.comp b.hom) ?_
     rw [Category.assoc, ← hb]
-    exact spMap_comp_spMap b.hom g
+    exact _root_.GlobalTheory.ZM.ClosedCoord.spMap_comp_eq b.hom g
 
 end GlobalTheory.CompanionTheory.Ar.PointDet

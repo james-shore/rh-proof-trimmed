@@ -56,4 +56,3 @@ theorem decayUnifOfHeads : DecayUnifOfHeads := fun hRH hHT =>
 
 end Formalism.FourierDecayAlt.P.PBO
 
-theorem Formalism.FourierDecayAlt.P.uniform_decay_of_heads : Formalism.FourierDecayAlt.P.PBO.DecayUnifOfHeads := Formalism.FourierDecayAlt.P.PBO.decayUnifOfHeads

@@ -58,14 +58,6 @@ open MeasureTheory
 
 namespace GlobalTheory.CompanionTheory.FourierMatrix
 
-theorem exists_schwartz_bilinear_transform {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
-    [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V] (μ : Measure V)
-    [μ.IsAddHaarMeasure] (B : V →ₗ[ℝ] V →ₗ[ℝ] ℝ) (hB : ∀ u, (∀ v, B u v = 0) → u = 0)
-    (φ : 𝓢(V, ℂ)) :
-    ∃ ψ : 𝓢(V, ℂ), ⇑ψ = fun u =>
-      ∫ v, Complex.exp (2 * Real.pi * Complex.I * ((B u v : ℝ) : ℂ)) * φ v ∂μ :=
-  _root_.UpperTheory.Reformulated.B.P6.r12b.GlobalTheory.CompanionTheory.FourierMatrix.exists_schwartz_bilinear_transform μ B hB φ
-
 theorem trace_conjTranspose_mul (m n : ℕ) (u v : Fin m → Fin n → ℂ) :
     Matrix.trace ((Matrix.of u)ᴴ * Matrix.of v) = ∑ j, ∑ i, star (u i j) * v i j := by
   simp [Matrix.trace, Matrix.mul_apply, Matrix.conjTranspose_apply]
@@ -140,7 +132,7 @@ theorem exists_schwartz_trace_transform :
     Measure.pi.isAddHaarMeasure _
   haveI : Measure.IsAddHaarMeasure (volume : Measure (Fin m → Fin n → ℂ)) :=
     Measure.pi.isAddHaarMeasure _
-  obtain ⟨ψ, hψ⟩ := exists_schwartz_bilinear_transform (volume : Measure (Fin m → Fin n → ℂ))
+  obtain ⟨ψ, hψ⟩ := _root_.UpperTheory.Reformulated.B.P6.r12b.GlobalTheory.CompanionTheory.FourierMatrix.exists_schwartz_bilinear_transform (volume : Measure (Fin m → Fin n → ℂ))
     (traceForm m n s) (traceForm_nondegenerate m n s hs) φ
   refine ⟨C • ψ, ?_⟩
   funext u

@@ -118,4 +118,3 @@ theorem mpd : MeanPosDef := by
 
 end Formalism.FourierDecayAlt.P.E2
 
-theorem Formalism.FourierDecayAlt.P.mean_matrix_posDef : Formalism.FourierDecayAlt.E.MeanPosDef := Formalism.FourierDecayAlt.P.E2.mpd

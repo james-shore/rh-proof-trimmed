@@ -88,10 +88,6 @@ private theorem map_chElt {k : ℕ} (x : Fin k → E') (α : Fin k →₀ ℕ) :
   unfold Det.chElt
   rw [map_coeff, pull_chiS, ← Polynomial.aeval_algHom_apply, map_gen]
 
-private theorem map_surj (hf : Function.Surjective f) (S : Type) [CommRing S] [Algebra A S] :
-    Function.Surjective (Algebra.TensorProduct.map (AlgHom.id S S) f) :=
-  by apply _root_.UpperTheory.Reformulated.B.Qk2.map_surj <;> assumption
-
 end
 
 theorem UpperTheory.V.CA.d_pull :
@@ -117,9 +113,9 @@ theorem UpperTheory.V.CA.d_pull :
     | right_absorb b x _ hx => rw [map_mul]; exact D.CH.mul_mem_right _ _ hx
   · rw [Det.mem_ker] at hx ⊢
     intro S _ _ y u v
-    obtain ⟨y, rfl⟩ := map_surj f hf S y
-    obtain ⟨u, rfl⟩ := map_surj f hf S u
-    obtain ⟨v, rfl⟩ := map_surj f hf S v
+    obtain ⟨y, rfl⟩ := _root_.UpperTheory.Reformulated.B.Qk2.map_surj f hf S y
+    obtain ⟨u, rfl⟩ := _root_.UpperTheory.Reformulated.B.Qk2.map_surj f hf S u
+    obtain ⟨v, rfl⟩ := _root_.UpperTheory.Reformulated.B.Qk2.map_surj f hf S v
     have := hx S y u v
     rwa [pull_D, pull_D, map_add, map_mul, map_mul, Algebra.TensorProduct.map_tmul, map_one] at this
   · unfold Det.CH at hy

@@ -54,12 +54,6 @@ theorem main {E : Type} [Field E] [NumberField E] {V : Type} [AddCommGroup V] [M
     ∃ c : RingOfIntegers E, c ≠ 0 ∧ c • y ∈ L := by
   apply Formalism.IndefR.LatticeTransfer.Lat.exists_smul_mem <;> assumption
 
-theorem target : ∀ {E : Type} [inst : Field E] [NumberField E] {V : Type} [inst_2 : AddCommGroup V]
-    [inst_3 : Module E V] [inst_4 : Module (NumberField.RingOfIntegers E) V]
-    [IsScalarTower (NumberField.RingOfIntegers E) E V]
-    (L : Submodule (NumberField.RingOfIntegers E) V) {y : V},
-    y ∈ Submodule.span E (↑L : Set V) →
-      ∃ (c : NumberField.RingOfIntegers E), c ≠ (0 : NumberField.RingOfIntegers E) ∧ c • y ∈ L :=
-  fun L _ hy => main L hy
+alias target := _root_.GlobalTheory.TargetStatementSixOneSixtyEight.main
 
 end GlobalTheory.TargetStatementSixOneSixtyEight

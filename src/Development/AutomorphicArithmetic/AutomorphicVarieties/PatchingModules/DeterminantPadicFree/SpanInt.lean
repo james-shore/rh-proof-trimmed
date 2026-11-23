@@ -49,13 +49,6 @@ public import Mathlib.RingTheory.PowerSeries.NoZeroDivisors
 
 open Matrix IsLocalRing UpperTheory.V.Alg UpperTheory.V.W UpperTheory.V.Pa
 
-private theorem UpperTheory.V.Pa.Det.exists_ne_zero_smul_mem_span_image {A F M N : Type} [CommRing A] [IsDomain A] [Field F] [Algebra A F]
-    [IsFractionRing A F] [AddCommGroup M] [Module A M] [AddCommGroup N] [Module A N] [Module F N]
-    [IsScalarTower A F N] (φ : M →ₗ[A] N) (T : Set M) (y : N)
-    (hy : y ∈ Submodule.span F (φ '' T)) :
-    ∃ d : A, d ≠ 0 ∧ ∃ w ∈ Submodule.span A T, d • y = φ w :=
-  _root_.UpperTheory.Reformulated.B.SpanImageDenominators.exists_ne_zero_smul_mem_span_image φ T y hy
-
 theorem UpperTheory.V.Pa.Det.spanInt :
     ∀ {K ι : Type} [Field K] {n a : ℕ} (r : ι → Matrix (Fin n) (Fin n) (PowerSeries K)) (S : Set ι), Submodule.span (FractionRing (PowerSeries K)) ((fun i => (r i).map (algebraMap (PowerSeries K) (FractionRing (PowerSeries K)))) '' S) = Ev (FractionRing (PowerSeries K)) (FractionRing (PowerSeries K)) n a → ∀ Z ∈ Ev (PowerSeries K) (PowerSeries K) n a, ∃ s : ℕ, (PowerSeries.X : PowerSeries K) ^ s • Z ∈ Submodule.span (PowerSeries K) (r '' S) := by
   intro K ι _ n a r S h Z hZ
@@ -73,7 +66,7 @@ theorem UpperTheory.V.Pa.Det.spanInt :
     refine ⟨fun _ => Submodule.mem_top, fun hij => ?_⟩
     have : Z i j = 0 := (Submodule.mem_bot _).1 ((hZ i j).2 hij)
     simp [this]
-  obtain ⟨d, hd, w, hw, e⟩ := UpperTheory.V.Pa.Det.exists_ne_zero_smul_mem_span_image φ _ _ hmem
+  obtain ⟨d, hd, w, hw, e⟩ := _root_.UpperTheory.Reformulated.B.SpanImageDenominators.exists_ne_zero_smul_mem_span_image φ _ _ hmem
   rw [← map_smul] at e
   have e' := hinj e
   obtain ⟨s, u, rfl⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible hd

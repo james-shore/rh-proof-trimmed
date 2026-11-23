@@ -73,12 +73,12 @@ theorem geom_levZ : ∀ (h M d : ℕ) (S : Scheme.{0}) (t : S ⟶ Sp (cycAway M)
   have hpt : ∀ a, X ≫ levZ c.lev (incZ c.A B) (actZ c.A B d la mu) (oMat d) κ a =
       mkZ c.A B (fun i => X ≫ c.lev (κ (Fin.castAdd 4 i) a)) (fun j => X ≫ c.lev (κ (Fin.natAdd 4 j) a) ≫ la) := by
     intro a
-    rw [GlobalTheory.T.zarhinProductLevelStructure_eq_mkPoint c.A B d h (8 * h) la mu c.lev κ a]
-    exact (GlobalTheory.T.zarhinProductMkPoint_basic_facts c.A B X _ _ 1 1).1
+    rw [_root_.GlobalTheory.ZarhinFam.levZ_eq_mkZ c.A B d h (8 * h) la mu c.lev κ a]
+    exact (_root_.GlobalTheory.ZarhinFam.PtFacts.mkZ_facts c.A B X _ _ 1 1).1
   have geo := c.geom k x β z hx hz
   have geo1 : ∀ q, X ≫ c.lev q = 1 ↔ ∃ b, q = M • b := geo.1
-  have htA := GlobalTheory.T.isogeny_bijective_on_torsion_coprime_degree c.A B la mu d M (Over.mk x) hla hmu hlm hml hcop
-  have hK := GlobalTheory.T.zarhinSymplecticTransfer_bijective_mod h M d κ (by omega) hκ
+  have htA := _root_.GlobalTheory.isogeny_torsion_bij c.A B la mu d M (Over.mk x) hla hmu hlm hml hcop
+  have hK := _root_.GlobalTheory.ZarhinFam.kappaOK_mod h M d κ (by omega) hκ
   have htor : ∀ q, (X ≫ c.lev q) ^ M = 1 := fun q => by rw [← comp_pow, c.lev_tors, comp_one]
   have hlev1 : ∀ q, (X ≫ c.lev q ≫ la = 1 ↔ X ≫ c.lev q = 1) := fun q => by
     constructor
@@ -90,15 +90,15 @@ theorem geom_levZ : ∀ (h M d : ℕ) (S : Scheme.{0}) (t : S ⟶ Sp (cycAway M)
     rw [c.lev_add, siegPre_lev_nsmul, c.lev_tors, _root_.mul_one]
   refine ⟨fun a => ?_, fun g hg => ?_, fun a b => ?_⟩
   ·
-    rw [hpt a, (GlobalTheory.T.zarhinProductMkPoint_basic_facts c.A B (𝟙 _) (fun i => X ≫ c.lev (κ (Fin.castAdd 4 i) a))
+    rw [hpt a, (_root_.GlobalTheory.ZarhinFam.PtFacts.mkZ_facts c.A B (𝟙 _) (fun i => X ≫ c.lev (κ (Fin.castAdd 4 i) a))
       (fun j => X ≫ c.lev (κ (Fin.natAdd 4 j) a) ≫ la) 1 1).2.2.1, ← (hK.1 a)]
     simp only [hlev1, geo1]
     exact (Fin.forall_fin_add (m := 4) (n := 4) (fun k : Fin 8 => ∃ b, κ k a = M • b)).symm
   ·
-    obtain ⟨-, hpow, hone, hg'⟩ := GlobalTheory.T.zarhinProductMkPoint_basic_facts c.A B (𝟙 _) (fun i => g ≫ pa c.A B i) (fun j => g ≫ pb c.A B j) g M
+    obtain ⟨-, hpow, hone, hg'⟩ := _root_.GlobalTheory.ZarhinFam.PtFacts.mkZ_facts c.A B (𝟙 _) (fun i => g ≫ pa c.A B i) (fun j => g ≫ pb c.A B j) g M
     have hgM : mkZ c.A B (fun i => (g ≫ pa c.A B i) ^ M) (fun j => (g ≫ pb c.A B j) ^ M) = 1 := by
       rw [← hpow, ← hg', hg]
-    obtain ⟨hu, hv⟩ := (GlobalTheory.T.zarhinProductMkPoint_basic_facts c.A B (𝟙 _) (fun i => (g ≫ pa c.A B i) ^ M) (fun j => (g ≫ pb c.A B j) ^ M) g M).2.2.1.1 hgM
+    obtain ⟨hu, hv⟩ := (_root_.GlobalTheory.ZarhinFam.PtFacts.mkZ_facts c.A B (𝟙 _) (fun i => (g ≫ pa c.A B i) ^ M) (fun j => (g ≫ pb c.A B j) ^ M) g M).2.2.1.1 hgM
     have eu : ∀ i, ∃ q, X ≫ c.lev q = g ≫ pa c.A B i := fun i => geo.2.1 _ (hu i)
     have ev : ∀ j, ∃ q, X ≫ c.lev q ≫ la = g ≫ pb c.A B j := fun j => by
       obtain ⟨y, hyM, hy⟩ := htA.2 _ (hv j)
@@ -122,7 +122,7 @@ theorem geom_levZ : ∀ (h M d : ℕ) (S : Scheme.{0}) (t : S ⟶ Sp (cycAway M)
       exact (congrArg (fun q => X ≫ c.lev q ≫ la) (Fin.addCases_right (motive := fun _ => Fin h ⊕ Fin h → ℤ) (left := qa) (right := qb) j)).trans (hqb j)
   ·
     rw [hpt a, hpt b]
-    have W := GlobalTheory.T.weilPairing_diagonal_zarhinBundle_eq_zeta_pow h M d S t c B Q la mu hZ hh hM hMo hd hcop hdu hker k x β z hx hz
+    have W := _root_.GlobalTheory.ZarhinWeil.weilIs_formZ h M d S t c B Q la mu hZ hh hM hMo hd hcop hdu hker k x β z hx hz
       (fun k => κ k a) (fun k => κ k b)
     have hzM : z ^ M = 1 := by
       ext

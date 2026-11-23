@@ -95,14 +95,6 @@ theorem psi_neg_trPair_gen (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) (ψ : Add
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [tmul_one_eq, map_neg, map_neg, th_trPair σ hCM (θ i) (hP.conj i)]
 
-theorem map_isHerm (σ : E →ₐ[F] E) (θ : Ainf F ⊗[F] E →+* ℂ)
-    (hc : ∀ z, θ (sigR (Ainf F) σ z) = star (θ z)) {n : ℕ} (b : HermR (Ainf F) σ n) :
-    ((b : Matrix (Fin n) (Fin n) (Ainf F ⊗[F] E)).map θ).IsHermitian := by
-  ext a c
-  simp only [Matrix.conjTranspose_apply, Matrix.map_apply]
-  rw [← hc]
-  exact congrArg θ (b.2 a c)
-
 theorem gramX_eq {m n : ℕ} (ε : Fin m → Bool) (x : Matrix (Fin m) (Fin n) ℂ) :
     gramX ε x = xᴴ * Matrix.diagonal (sgn ε) * x := by
   ext i j

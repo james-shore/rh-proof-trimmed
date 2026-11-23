@@ -94,7 +94,7 @@ theorem eq_one_of_lev_cong {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : F
   have hhalf := ((p.pins i).2.tuple ()).half.1
   have hred : ∀ PP ∈ p.R.Pg, Formalism.L2.DIV.redFn (p.R.βW i) PP (Formalism.IndefR.Lev.finE (Wc D i) κ) = 1 := by
     intro PP hP
-    refine GlobalTheory.T.frameReduction_eq_one_of_congruent_mod_ideal _ _ _ hfr hSt _ h2 PP ?_
+    refine _root_.GlobalTheory.FrameCong.redFn_eq_one_of_congr _ _ _ hfr hSt _ h2 PP ?_
     rw [hhalf]
     exact Ideal.prod_le_inf.trans (Finset.inf_le hP)
   have hT1 : Formalism.L2.DIV.rTup (p.R.βW i) (p.R.datWp i p.R.triv) (Formalism.IndefR.Lev.finE (Wc D i) κ) = 1 := by

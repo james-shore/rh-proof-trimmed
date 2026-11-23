@@ -152,8 +152,8 @@ theorem limVec : LimVec := by
     have := (mult_tendsto s₁.strip γ₁ hγ₁ x.1).mul (mult_tendsto s₂.strip γ₂ hγ₂ x.2)
     rwa [one_mul] at this
 
-  let K₁' : Subgroup (GL (Fin a) (Af E)) := K₁ ⊓ Cint E a
-  let K₂' : Subgroup (GL (Fin b) (Af E)) := K₂ ⊓ Cint E b
+  let K₁' : Subgroup (GL (Fin a) (Af E)) := K₁ ⊓ _root_.GlobalTheory.CompanionTheory.LimV.KO E a
+  let K₂' : Subgroup (GL (Fin b) (Af E)) := K₂ ⊓ _root_.GlobalTheory.CompanionTheory.LimV.KO E b
   have hK₁' : IsOpen (K₁' : Set (GL (Fin a) (Af E))) :=
     hK₁.inter (GroundTheory.Automorphic.AdelicGLn.isOpen_integralFiniteGL E a)
   have hK₂' : IsOpen (K₂' : Set (GL (Fin b) (Af E))) :=

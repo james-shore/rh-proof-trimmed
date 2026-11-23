@@ -202,15 +202,4 @@ theorem tri {Ω V : Type} [Field Ω] [AddCommGroup V] [Module Ω V] {n : ℕ} (w
     refine Eq.trans ?_ (this.symm.trans (Finset.sum_congr rfl fun _ _ => mul_comm _ _))
     rfl
 
-section
-variable {A K : Type} [CommRing A] [Field K] [Algebra A K] {E : Type} [Field E] [NumberField E]
-  {c : E ≃+* E} {p R N : ℕ}
-  {Ω : Type} [AddCommGroup Ω] [Module K Ω] [Module A Ω] [IsScalarTower A K Ω]
-  (D : HTChart A K c p R N Ω)
-
-theorem omHT_fg (σ : E →+* K) : (D.omHT σ).FG :=
-  by apply _root_.UpperTheory.Reformulated.B.FinitelyGeneratedHomology.omHT_fg <;> assumption
-
-end
-
 end PositivityTheory.HtPt.Ge

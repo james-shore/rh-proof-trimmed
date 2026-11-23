@@ -46,6 +46,7 @@ import Mathlib.Topology.Sheaves.Init
 import GroundTheory.AutomorphicForms.GL2.FiniteIdeleDecomp
 public import GroundTheory.AutomorphicForms.GL2.GodementSectionFactor
 import GroundTheory.LocalFields.FilteredSurj
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelaf
 
 @[expose] public section
 
@@ -73,17 +74,13 @@ theorem dvd_conductor (χ : HChar E) (hu : IsUnitary χ) (v : HeightOneSpectrum 
   rw [h1] at h2
   exact Units.ext (by simpa using h2.symm)
 
-theorem hval (v : HeightOneSpectrum (𝓞 E)) (x : E) :
-    Valued.v (algebraMap E (v.adicCompletion E) x) = v.valuation E x :=
-  HeightOneSpectrum.valuedAdicCompletion_eq_valuation' v x
-
 theorem valued_eq_one {v : HeightOneSpectrum (𝓞 E)} {y : 𝓞 E} (hy : y ∉ v.asIdeal) :
     Valued.v (algebraMap E (v.adicCompletion E) (y : E)) = 1 := by
-  exact (hval v _).trans ((v.valuation_eq_one_iff_notMem (K := E)).2 hy)
+  exact (_root_.Formalism.UG.P.levelaf_valued_algebraMap v _).trans ((v.valuation_eq_one_iff_notMem (K := E)).2 hy)
 
 theorem valued_ne_one {v : HeightOneSpectrum (𝓞 E)} {y : 𝓞 E} (hy : y ∈ v.asIdeal) :
     Valued.v (algebraMap E (v.adicCompletion E) (y : E)) ≠ 1 := by
-  exact fun h => (v.valuation_eq_one_iff_notMem (K := E)).1 ((hval v _).symm.trans h) hy
+  exact fun h => (v.valuation_eq_one_iff_notMem (K := E)).1 ((_root_.Formalism.UG.P.levelaf_valued_algebraMap v _).symm.trans h) hy
 
 theorem term_of_notMem (χ : HChar E) (hu : IsUnitary χ) (v : HeightOneSpectrum (𝓞 E))
     (hv : v.asIdeal ∣ (toHecke χ hu).conductor) (c : Eˣ) {y : 𝓞 E} (hy : y ∉ v.asIdeal) :

@@ -53,6 +53,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.LocalToGlobal.CharacterGerms.RowTiePGerm
 
 @[expose] public section
 
@@ -259,15 +260,6 @@ theorem ge_pow_mul {δ : ℝ} {e : C} (h : V.Ge δ e) (n : ℕ) : V.Ge (n * δ) 
     push_cast
     linarith
 
-theorem ge_natCast' (n : ℕ) : V.Ge 0 (n : C) := by
-  induction n with
-  | zero =>
-    rw [Nat.cast_zero]
-    exact ge_zero_lemma_6 0
-  | succ n ih =>
-    rw [Nat.cast_succ]
-    exact ge_add_lemma ih ge_one_lemma_5
-
 theorem cg_one_pow_l {δ : ℝ} (hδ : 0 < δ) {e : C} (h : Cg V δ e 1) :
     Cg V (δ + min δ 1) (e ^ V.l) 1 := by
   obtain ⟨t, rfl⟩ : ∃ t, e = t + 1 := ⟨e - 1, by ring⟩
@@ -283,7 +275,7 @@ theorem cg_one_pow_l {δ : ℝ} (hδ : 0 < δ) {e : C} (h : Cg V δ e 1) :
     rw [hq, Nat.cast_mul]
     have h1 : V.Ge ((m + 1 : ℕ) * δ) (t ^ (m + 1)) := ge_pow_mul h _
     have h2 : V.Ge 1 ((V.l : C) * (q : C)) := by
-      have h3 := ge_mul_lemma_2 ge_l_lemma_9 (ge_natCast' (V := V) q)
+      have h3 := ge_mul_lemma_2 ge_l_lemma_9 (_root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.ge_natCast (V := V) q)
       rwa [add_zero] at h3
     apply ge_mono_lemma_3 (ge_mul_lemma_2 h1 h2)
     have h4 : (1 : ℝ) ≤ ((m + 1 : ℕ) : ℝ) := by exact_mod_cast Nat.succ_pos m

@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.IsQuasicoherentOfForallExistsAffine
+import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.IsRegularFnIffOfIsAffineOpen
 
 @[expose] public section
 
@@ -57,12 +58,6 @@ set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.LogPair
-
-theorem resG_resG' {X : Scheme.{0}} {U V W : X.Opens} (h1 : V ≤ U) (h2 : W ≤ V) (z : Γ(X, U)) :
-    resG X h2 (resG X h1 z) = resG X (h2.trans h1) z := by
-  simp only [resG]
-  rw [← CommRingCat.comp_apply, ← Functor.map_comp]
-  rfl
 
 theorem resG_elim {X : Scheme.{0}} {U W : X.Opens} (h : W ≤ U) {d : ℕ} (t : Fin d → Γ(X, U))
     (o : Option (Fin d)) : resG X h (o.elim 1 t) = o.elim 1 (fun a => resG X h (t a)) := by
@@ -96,13 +91,13 @@ theorem relSnc_of_sameDiv : ∀ (R : Type) [CommRing R] (X : Scheme.{0}) (f : X 
     eq := fun i => ?_ }, hxW⟩
 
   have h1 := congrArg (resG X hWC) (C.eq i)
-  rw [resG_resG', map_mul, resG_elim] at h1
+  rw [_root_.GlobalTheory.Cartier.resG_resG, map_mul, resG_elim] at h1
 
   have h2 := congrArg (resG X (hWca i)) ((σ i).compat (C.c i) (a i))
-  simp only [resG_resG', map_mul] at h2
+  simp only [_root_.GlobalTheory.Cartier.resG_resG, map_mul] at h2
 
   have h3 := congrArg (resG X (hWU i)) (hv i)
-  simp only [resG_resG', map_mul] at h3
+  simp only [_root_.GlobalTheory.Cartier.resG_resG, map_mul] at h3
   have hG : (((G i)⁻¹ : Γ(X, W)ˣ) : Γ(X, W)) * (G i : Γ(X, W)) = 1 := Units.inv_mul _
   have hG' : (G i : Γ(X, W)) = resG X (hWca i) ((L i).g (C.c i) (a i) : Γ(X, (L i).U (C.c i) ⊓ (L i).U (a i))) *
       resG X (hWU i) (v i : Γ(X, U i)) := by

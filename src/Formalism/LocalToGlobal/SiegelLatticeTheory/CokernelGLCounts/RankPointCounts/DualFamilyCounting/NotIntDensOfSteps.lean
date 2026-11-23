@@ -60,9 +60,7 @@ variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
 variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] [MeasurableSpace E]
 variable {M : Loc.Model F E} {V : Type} [AddCommGroup V] [Module E V] (H : Loc.HermSp M V)
 
-theorem h_zero_left (y : V) : H.h 0 y = 0 := by
-  have := H.h_smul_left 0 0 y
-  simpa using this
+alias h_zero_left := _root_.Formalism.MainNotions.S.Loc.HermSp.h_zero_left
 
 theorem h_smul_right (c : E) (x y : V) : H.h x (c • y) = M.L.cj c * H.h x y := by
   rw [H.h_herm (c • y) x, H.h_smul_left, map_mul, ← H.h_herm y x]

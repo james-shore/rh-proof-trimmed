@@ -412,9 +412,9 @@ theorem class_bound : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F :
     (fun g g' => hc1 (Subgroup.inclusion hle g) (Subgroup.inclusion hle g'))
     (fun n g => (continuous_inclusion hle).continuousAt.eventually
       (hc2 n (Subgroup.inclusion hle g))) one hone
-  have htor := GlobalTheory.T.ses_lattice_trivial_quotient D HW F h5 h7 l K s LL h e Yt Y Z ι π hle hses hZ hcr yt hyt f hf
+  have htor := _root_.GlobalTheory.CompanionTheory.TBOne.connecting_torsion D HW F h5 h7 l K s LL h e Yt Y Z ι π hle hses hZ hcr yt hyt f hf
     one hone
-  have hcob := GlobalTheory.T.torsion_bound_of_weight_hyp D HW F h5 h7 l K s LL h Y M0 h0 0 ((e : ℤ) + 1) hle (by omega) hW _
+  have hcob := _root_.GlobalTheory.TorsLL.torsion_bound_at_level D HW F h5 h7 l K s LL h Y M0 h0 0 ((e : ℤ) + 1) hle (by omega) hW _
     hcoc htor
   have key := mem_HfD_of_lattice D h2 h4 K LL s ⟨h.1, h.2.1⟩ hK hle e _ Y Ve hVe φ hφ f hc1 hc2
     one hone hcob

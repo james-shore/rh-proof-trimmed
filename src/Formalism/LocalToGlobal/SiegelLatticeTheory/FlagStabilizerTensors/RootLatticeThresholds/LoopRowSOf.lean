@@ -132,7 +132,7 @@ theorem loopRowS_of_raised (hyF : YFOK sel yF) (C1f : List ℝ → ℝ) (C₀f :
     LoopRowS C0 𝒞 sel := by
   intro aF
   choose f g hfg using fun p : ℝ × ℝ × ℝ × ℝ =>
-    loop_evaluation_threshold_zero Formalism.FourierDecayAlt.P.loop_kernels Formalism.FourierDecayAlt.P.subfamilyAlt Formalism.HermitianLattices.Ext.L3.siegelMassRatio
+    loop_evaluation_threshold_zero _root_.Formalism.FourierDecayAlt.P.NormChainLemmas.loopCores _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_SubFamily Formalism.HermitianLattices.Ext.L3.siegelMassRatio
       (p.1 + 1) (1 / 4) 3 (1 / 2) p.2.1 C0 p.2.2.1 p.2.2.2
   let par : List ℝ → ℝ × ℝ × ℝ × ℝ := fun l => (l.getD 6 0, l.getD 13 0, aF (l.take 16), C₀f aF l)
   obtain ⟨e1, he1, H1⟩ := hRowsF aF

@@ -131,7 +131,7 @@ theorem ratio_moment : Hyps → ∀ (k r : ℕ) (Wp : Type) [NormedAddCommGroup 
     simp only [Finset.mul_sum] at h1
     calc _ = _ := by ring
       _ ≤ _ := h1
-  · have h1 := GlobalTheory.T.unitaryGlModule_level_sum_norm_sq_le _ _ _ _ _ k i bv b v hMod hShape hbv hi hv
+  · have h1 := _root_.GlobalTheory.lev_gl_size _ _ _ _ _ k i bv b v hMod hShape hbv hi hv
     calc _ ≤ _ := h1
       _ = _ := by ring
 

@@ -45,6 +45,6 @@ noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.DS.Lap.Base
 
-theorem b5 : CayleyMajorantBound := LieExponentialMajorant.lieExponentialMajorant_holds
+alias b5 := _root_.ReciprocityTheory.ChartRestriction.DS.Lap.Base.LieExponentialMajorant.lieExponentialMajorant_holds
 
 end ReciprocityTheory.ChartRestriction.DS.Lap.Base

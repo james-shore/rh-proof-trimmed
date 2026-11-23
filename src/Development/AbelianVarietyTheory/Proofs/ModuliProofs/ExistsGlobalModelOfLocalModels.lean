@@ -211,7 +211,7 @@ theorem exists_global_model : (∀ (T K : Type) [CommRing T] [IsDomain T] [IsDis
   let a : Bool × P → ℕ := fun i => S.n i.1 * i.2.1.M
   have ha : ∀ i, 0 < a i := fun i => Nat.mul_pos (S.aux _).1.pos (lt_of_lt_of_le (by norm_num) i.2.1.three_le)
   let B : ∀ i : Bool × P, BaseModel (S.T i.1) i.2.1 := fun i => S.B i.1 i.2.1 (hP i.2).1
-  choose k r ν hr hk hlev hfin _ using fun x : P => GlobalTheory.T.exists_finite_etale_surjective_levelMap E H D Xo hN x.1 l (hP x).2
+  choose k r ν hr hk hlev hfin _ using fun x : P => _root_.GlobalTheory.LevelMap.exists_levelMap E H D Xo hN x.1 l (hP x).2
   have hnorm : Geo.Tor.IsNormalScheme (Xo l).X := by
     have := (Xo l).smooth
     exact (isReduced_isNormalScheme_isLocallyNoetherian_of_smooth_over_field _ _ (Xo l).s

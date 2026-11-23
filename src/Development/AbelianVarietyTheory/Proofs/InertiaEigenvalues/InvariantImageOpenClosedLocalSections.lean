@@ -79,7 +79,7 @@ theorem hasInv_mkX {a : Inv r F} {h : Matrix (Fin r) (Fin r) E} (hh : hᴴ * h =
     have e : h * (companion a.1).map (algebraMap F E) * h⁻¹ =
         (u : Matrix (Fin r) (Fin r) E) * (companion a.1).map (algebraMap F E) *
           (u : Matrix (Fin r) (Fin r) E)⁻¹ := rfl
-    rw [e, Matrix.charpoly_units_conj, Matrix.charpoly_map, Polynomial.coeff_map, charpoly_companion_coeff]
+    rw [e, Matrix.charpoly_units_conj, Matrix.charpoly_map, Polynomial.coeff_map, _root_.GlobalTheory.JR.CompanionCharpoly.charpoly_companion_coeff_ring]
   · funext i; exact mom_mkX hh hd i
   · rfl
 

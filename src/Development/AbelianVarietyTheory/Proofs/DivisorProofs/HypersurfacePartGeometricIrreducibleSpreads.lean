@@ -63,7 +63,7 @@ theorem hypersurface_part_preirreducible_spreads : ∀ (A : Type) [CommRing A] (
     (hd Ω φ) hirr
   obtain ⟨a, I, ha, hI, h⟩ := GlobalTheory.T.splitting_absence_spreads_alt A σ f g f.totalDegree Ω φ h3
   refine ⟨a, I, ha, hI, fun k _ _ ψ hψa hψI => ?_⟩
-  refine GlobalTheory.T.hypersurface_diff_isPreirreducible_of_no_splitting k σ (MvPolynomial.map ψ f) (MvPolynomial.map ψ g) f.totalDegree
+  refine _root_.GlobalTheory.hypersurface_diff_isPreirreducible k σ (MvPolynomial.map ψ f) (MvPolynomial.map ψ g) f.totalDegree
     (h0 k ψ) ?_ (h k ψ hψa hψI)
   exact Finset.sup_mono (MvPolynomial.support_map_subset ψ f)
 

@@ -52,11 +52,6 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 
 namespace GlobalTheory.KerTie
 
-theorem intOff_pow' {S : Finset ℕ} {z : ℂ} (h : IntOff S z) (n : ℕ) : IntOff S (z ^ n) := by
-  induction n with
-  | zero => simpa using IntOff.one
-  | succ n ih => rw [pow_succ]; exact ih.mul h
-
 theorem intOff_prod' {S : Finset ℕ} {κ : Type} (s : Finset κ) (f : κ → ℂ) (h : ∀ k ∈ s, IntOff S (f k)) :
     IntOff S (∏ k ∈ s, f k) :=
   Finset.prod_induction _ (IntOff S) (fun _ _ ha hb => ha.mul hb) IntOff.one h
@@ -113,7 +108,7 @@ theorem intOff_xiEntry : ∀ (D : D7) (L : SizeData₂ D) (hT : GatTies D) (Gi :
     rw [map_mul, map_mul, map_sum]
     refine IntOff.mul (GlobalTheory.UnipVol.intOff_volN_Cbe D L hT Gi Gl K Y cX ex t u μ i P _) (IntOff.mul ?_ (IntOff.sum _ _ fun s _ => ?_))
     · rw [map_pow, map_inv₀, map_pow, map_natCast, ← inv_pow]
-      exact intOff_pow' (intOff_pow' (IntOff.inv_nat hq) _) _
+      exact _root_.GlobalTheory.OmPhiInt.intOff_pow' (_root_.GlobalTheory.OmPhiInt.intOff_pow' (IntOff.inv_nat hq) _) _
     · generalize Loc.xx1 _ s = y
       by_cases h0 : omPhi t.Ch t.sel (t.tup μ) (t.cst μ) i P ((t.idx μ).h i al P) ((t.idx μ).h (i + 1) be P) y = 0
       · rw [h0, zero_mul, map_zero]

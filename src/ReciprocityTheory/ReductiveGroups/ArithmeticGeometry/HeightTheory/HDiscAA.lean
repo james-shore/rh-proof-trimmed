@@ -133,7 +133,7 @@ theorem length_quot {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRi
     rw [← Ring.ord_eq_addVal]
     rfl
   have hdet : Associated (α.det (b' ∘ σ)) (∏ i, s i) := by
-    have key := ReciprocityTheory.MultiplicativeHeights.det_subtype_comp_associated_prod α N hrank (α.equiv (Basis.span hli) σ)
+    have key := _root_.Bl.general_b_fact_tail.goal1 α N hrank (α.equiv (Basis.span hli) σ)
     convert key using 1
     rw [← LinearMap.det_toMatrix α, Basis.det_apply]
     congr 1

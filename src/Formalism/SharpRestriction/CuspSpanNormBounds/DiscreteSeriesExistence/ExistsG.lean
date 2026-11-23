@@ -42,6 +42,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.MainNotions.BesselDiscreteSeries
 
-theorem discrete_series_exists_of_fact [Fact Formalism.MainNotions.DiscreteSeriesWeylDimension.DiscreteSeriesExistsG] : Formalism.MainNotions.DiscreteSeriesWeylDimension.DiscreteSeriesExistsG := Fact.out
-
 end Formalism.MainNotions.BesselDiscreteSeries

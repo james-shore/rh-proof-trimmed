@@ -56,6 +56,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MulVSubRight
 
 @[expose] public section
 
@@ -69,10 +70,6 @@ open Formalism.MainNotions.G (HH)
 namespace GlobalTheory.Proof.dualLocalBases_eigenframe_at_ramifiedPrime
 
 open GlobalTheory.DFrame
-
-theorem embT_conj (D : D7) (τ : D.what₂.Tau) (x : D.host.E) :
-    TaylorLogMetric.embT D τ (D.host.conj x) = (starRingEnd ℂ) (TaylorLogMetric.embT D τ x) :=
-  D.host.conjE_apply (TaylorLogMetric.embT D τ) x
 
 theorem tauEmb_eq_iota : ∀ (D : D7) (p : ℕ) [Fact p.Prime] (lm : TaylorLogMetric.Qbar →+* ℂ_[p]) (ι : ℂ ≃+* ℂ_[p]), Formalism.L2.KerInert.IotaExt lm ι → ∀ (τ : D.what₂.Tau) (y : D.host.E), TaylorLogMetric.tauEmb D lm τ y = ι (TaylorLogMetric.embT D τ y) := by
   intro D p _ lm ι hι τ y
@@ -114,7 +111,7 @@ theorem matH_act_adjoint : ∀ (D : D7) (X : Fields) (s : Seam D X) (N N' : ℕ)
   simp only [Formalism.L2.AlgTh.hSc, Matrix.diagonal_apply]
   split_ifs with h
   · subst h
-    simp only [act, LinearMap.coe_mk, AddHom.coe_mk, he, map_mul, embT_conj, Complex.conj_conj]
+    simp only [act, LinearMap.coe_mk, AddHom.coe_mk, he, map_mul, _root_.GlobalTheory.RatEqui.embT_conj, Complex.conj_conj]
     ring
   · simp
 
@@ -159,11 +156,6 @@ end GlobalTheory.Proof.dualLocalBases_eigenframe_at_ramifiedPrime
 namespace GlobalTheory.Proof.dualLocalBases_eigenframe_at_ramifiedPrime
 
 open GlobalTheory.DFrame
-
-theorem conj_conj' (D : D7) (y : D.host.E) : D.host.conj (D.host.conj y) = y := by
-  apply D.host.φ₀.injective
-  show D.host.φ₀ ((D.host.conj) ((D.host.conj) y)) = _
-  rw [Formalism.HC.HostAx.conjE_apply, Formalism.HC.HostAx.conjE_apply, Complex.conj_conj]
 
 theorem sum_le_one {p : ℕ} [Fact p.Prime] {ι' : Type} (S : Finset ι') (f : ι' → ℂ_[p]) (h : ∀ i, ‖f i‖ ≤ 1) :
     ‖∑ i ∈ S, f i‖ ≤ 1 :=
@@ -263,7 +255,7 @@ theorem eigenframe_at_d : ∀ (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ), 
     have hd1 := (GlobalTheory.T.dual_local_bases_pair_dual_mod_root_minus_d D p ι _ hth0 hcong P σ hσ hdualP).1
     have hd2 := (GlobalTheory.T.dual_local_bases_pair_dual_mod_root_minus_d D p ι _ hth0 hcong P' σ' hσ' hdualP').2
     refine ⟨JJ D n N N', inferInstance, fun j => vecF D s (mat D a P P' σ σ' j), coef D ι cκ r σ σ', cE, sE, δE,
-      rho D ι, act D s N N', ⟨hδ2, hcδ, hsδ, fun y => by rw [hcE (cE y), hcE y, conj_conj'], hss, hsc, ?_,
+      rho D ι, act D s N N', ⟨hδ2, hcδ, hsδ, fun y => by rw [hcE (cE y), hcE y, _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.CU.conj_conj], hss, hsc, ?_,
       fun τ ρ => by simp only [rho, RingHom.coe_comp, Function.comp_apply, hδc (tauPl D τ) (tauPl D ρ)],
       fun t y => by simp only [rho, RingHom.coe_comp, Function.comp_apply, hpair], fun τ y hy => hkur _ y hy,
       fun e e' he x y => matH_act_adjoint D X s N N' _ e e' (by rw [he, hcE]) x y,

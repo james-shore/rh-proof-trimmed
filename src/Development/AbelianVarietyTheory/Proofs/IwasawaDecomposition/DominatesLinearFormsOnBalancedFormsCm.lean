@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HomExtNormalSt
+import Development.AbelianVarietyTheory.Definitions.ArchimedeanThetaValues.TrFormBaseChangeNondegenerate
 
 @[expose] public section
 
@@ -443,14 +444,7 @@ theorem trace_mul_bar_pos {E : Type} [Field E] [NumberField E] [IsCMField E] (H 
     exact hpos
   exact_mod_cast this
 
-theorem trace_bar {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Host E) (z : 𝓞 E) :
-    Algebra.trace ℤ (𝓞 E) (H.bar z) = Algebra.trace ℤ (𝓞 E) z := by
-  let e : 𝓞 E ≃ₐ[ℤ] 𝓞 E := AlgEquiv.ofRingEquiv (f := H.bar) (fun x => by simp)
-  exact Algebra.trace_eq_of_algEquiv e z
-
-theorem bar_bar {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Host E) (z : 𝓞 E) : H.bar (H.bar z) = z := by
-  apply RingOfIntegers.ext
-  rw [coe_bar_eq_complexConj, coe_bar_eq_complexConj, IsCMField.complexConj_apply_apply]
+alias bar_bar := _root_.GlobalTheory.HostModel.bar_bar
 
 theorem exists_pos_form {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Host E) (X : Type) [AddCommGroup X]
     [Module (𝓞 E) X] [Module.Finite (𝓞 E) X] [Module.Projective (𝓞 E) X] :
@@ -473,7 +467,7 @@ theorem exists_pos_form {E : Type} [Field E] [NumberField E] [IsCMField E] (H : 
   have hg : ∀ x y, g x y = f x y := fun x y => rfl
   have hterm : ∀ a b : 𝓞 E, Algebra.trace ℤ (𝓞 E) (a * H.bar b) = Algebra.trace ℤ (𝓞 E) (b * H.bar a) := by
     intro a b
-    rw [← trace_bar H (a * H.bar b), map_mul, bar_bar, mul_comm]
+    rw [← _root_.GlobalTheory.HostModel.trace_bar H (a * H.bar b), map_mul, bar_bar, mul_comm]
   refine ⟨g, ⟨fun x y => ?_, fun a x y => ?_⟩, fun x hx => ?_⟩
   · rw [hg, hg]
     exact Finset.sum_congr rfl fun i _ => hterm _ _

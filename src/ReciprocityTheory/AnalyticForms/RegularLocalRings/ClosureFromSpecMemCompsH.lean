@@ -112,12 +112,6 @@ private lemma fromSpec_specializes_iff_le {V : W.Opens} (hV : IsAffineOpen V) (P
   exact hV.fromSpec.isOpenEmbedding.toIsInducing.specializes_iff.trans
     (PrimeSpectrum.le_iff_specializes P Q).symm
 
-private lemma fromSpec_mem_of_isAffineOpen' {V : W.Opens} (hV : IsAffineOpen V) (P : PrimeSpectrum Γ(W, V)) :
-    hV.fromSpec P ∈ V := by
-  show _ ∈ (V : Set W)
-  rw [← hV.range_fromSpec]
-  exact Set.mem_range_self P
-
 private lemma exists_fromSpec_eq_of_mem {V : W.Opens} (hV : IsAffineOpen V) {z : W} (hz : z ∈ V) :
     ∃ P : PrimeSpectrum Γ(W, V), hV.fromSpec P = z := by
   rw [← SetLike.mem_coe, ← hV.range_fromSpec] at hz
@@ -126,7 +120,7 @@ private lemma exists_fromSpec_eq_of_mem {V : W.Opens} (hV : IsAffineOpen V) {z :
 private lemma supp_lemma_5 (hZU : Z.ideal ⟨U, hU⟩ = Ideal.span {∏ i ∈ J, f i})
     (P : PrimeSpectrum Γ(W, U)) :
     hU.fromSpec P ∈ (Z.support : Set W) ↔ ∃ i ∈ J, f i ∈ P.asIdeal := by
-  rw [SetLike.mem_coe, Scheme.IdealSheafData.mem_support_iff_of_mem (U := ⟨U, hU⟩) (fromSpec_mem_of_isAffineOpen' hU P),
+  rw [SetLike.mem_coe, Scheme.IdealSheafData.mem_support_iff_of_mem (U := ⟨U, hU⟩) (_root_.ReciprocityTheory.AnForm.R.IrreducibleComponentPreimages.fromSpec_mem hU P),
     hZU, fromSpec_mem_zeroLocus_iff_subset, SetLike.coe_subset_coe, Ideal.span_singleton_le_iff_mem]
   haveI := P.isPrime
   exact Ideal.IsPrime.prod_mem_iff
@@ -151,7 +145,7 @@ theorem closure_fromSpec_mem_compsH (hq : ParPrimes hU hy f q)
   generalize hCirr.closure.genericPoint = η at hK
   have hxK : hU.fromSpec (q i) ∈ closure C := subset_closure (hle (subset_closure (Set.mem_singleton _)))
   have hηx : η ⤳ hU.fromSpec (q i) := hK.specializes hxK
-  obtain ⟨P, hP⟩ := exists_fromSpec_eq_of_mem hU (hηx.mem_open U.isOpen (fromSpec_mem_of_isAffineOpen' hU (q i)))
+  obtain ⟨P, hP⟩ := exists_fromSpec_eq_of_mem hU (hηx.mem_open U.isOpen (_root_.ReciprocityTheory.AnForm.R.IrreducibleComponentPreimages.fromSpec_mem hU (q i)))
   have hPq : P ≤ q i := by
     rw [← fromSpec_specializes_iff_le hU, hP]
     exact hηx
@@ -209,7 +203,7 @@ theorem isBranch_iff (hq : ParPrimes hU hy f q)
     refine ⟨closure_fromSpec_mem_compsH hq hZU hi,
       specializes_iff_mem_closure.1 (fromSpec_specializes hq i), isIrreducible_singleton.closure, ?_, ?_⟩
     · rw [gp_closure_singleton]
-      exact fromSpec_mem_of_isAffineOpen' hU _
+      exact _root_.ReciprocityTheory.AnForm.R.IrreducibleComponentPreimages.fromSpec_mem hU _
     · rw [gp_closure_singleton]
       exact fromSpec_mem_zeroLocus hq i
 

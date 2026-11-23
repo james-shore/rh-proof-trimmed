@@ -513,13 +513,6 @@ theorem exists_chart_coords_of_rsp {X : Scheme.{0}} {k : Type} [Field k] [CharZe
   rw [← CommRingCat.comp_apply, ← Functor.map_comp]
   rfl
 
-theorem isIrreducible_inter_open' {Y : Type*} [TopologicalSpace Y] {S U : Set Y} (hS : IsIrreducible S)
-    (hU : IsOpen U) (h : (S ∩ U).Nonempty) : IsIrreducible (S ∩ U) := by
-  have hcl : closure (S ∩ U) = closure S := by
-    apply le_antisymm (closure_mono Set.inter_subset_left)
-    exact closure_minimal (subset_closure_inter_of_isPreirreducible_of_isOpen hS.2 hU h) isClosed_closure
-  exact isIrreducible_iff_closure.mp (hcl ▸ hS.closure)
-
 theorem closure_inter_open_eq' {Y : Type*} [TopologicalSpace Y] {S U : Set Y} (hS : IsIrreducible S)
     (hSc : IsClosed S) (hU : IsOpen U) (h : (S ∩ U).Nonempty) : closure (S ∩ U) = S :=
   le_antisymm (closure_minimal Set.inter_subset_left hSc)
@@ -594,7 +587,7 @@ theorem exists_open_isIrreducible_zero {X : Scheme.{0}} {k : Type} [Field k] {p 
       · rintro ⟨z, ⟨hzK, hzV'⟩, rfl⟩
         exact ⟨⟨z, hzV', rfl⟩, (mem_support_coordIdeal_singleton c t z).mp (hK.subset_support hzK)⟩
     rw [hS]
-    exact (isIrreducible_inter_open' hK.isIrreducible V'.isOpen ⟨xt, hxK, hxV'⟩).image _
+    exact (_root_.FunctorialResolution.EmbeddedResolution.isIrreducible_inter_open hK.isIrreducible V'.isOpen ⟨xt, hxK, hxV'⟩).image _
       continuous_subtype_val.continuousOn
 
 theorem exists_labels {X : Scheme.{0}} {k : Type} [Field k] [CharZero k] {p : X ⟶ Spec (CommRingCat.of k)}
@@ -654,7 +647,7 @@ theorem exists_labels {X : Scheme.{0}} {k : Type} [Field k] [CharZero k] {p : X 
       exact ⟨t, ht, hyt.2⟩
   have hZirr : ∀ t, x ∈ Z t → IsIrreducible (Z t ∩ W) := by
     intro t hxt
-    have h := isIrreducible_inter_open' (hNirr t hxt) W.isOpen ⟨x, ⟨hxt, hxN t⟩, hxW⟩
+    have h := _root_.FunctorialResolution.EmbeddedResolution.isIrreducible_inter_open (hNirr t hxt) W.isOpen ⟨x, ⟨hxt, hxN t⟩, hxW⟩
     have e : Z t ∩ N t ∩ W = Z t ∩ W := by
       ext y
       simp only [Set.mem_inter_iff, SetLike.mem_coe]
@@ -665,7 +658,7 @@ theorem exists_labels {X : Scheme.{0}} {k : Type} [Field k] [CharZero k] {p : X 
   have hcomp : ∀ C : Closeds X, C ∈ 𝒞 → x ∈ C → ∃ t, x ∈ Z t ∧ (C : Set X) ∩ W = Z t ∩ W := by
     intro C hC hxC
     have hCc := (h𝒞 C).1 hC
-    have hCW : IsIrreducible ((C : Set X) ∩ W) := isIrreducible_inter_open' hCc.1 W.isOpen ⟨x, hxC, hxW⟩
+    have hCW : IsIrreducible ((C : Set X) ∩ W) := _root_.FunctorialResolution.EmbeddedResolution.isIrreducible_inter_open hCc.1 W.isOpen ⟨x, hxC, hxW⟩
     have hcov : (C : Set X) ∩ W ⊆ ⋃₀ ↑((T.filter (fun t => x ∈ Z t)).image
         (fun t => ((X.basicOpen (c.coord t) : X.Opens) : Set X)ᶜ)) := by
       rintro y ⟨hyC, hyW⟩

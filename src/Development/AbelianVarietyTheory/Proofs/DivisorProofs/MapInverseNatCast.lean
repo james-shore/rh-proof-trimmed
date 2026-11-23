@@ -84,10 +84,6 @@ theorem weil_move {B B' : Scheme.{0}} {P : PolAV B} {P₀ : PolAV B'} {f : B' �
   have := P₀.isAb.comm
   exact weilIs_grpPullback_of_comm' _ _ P.A P₀.A f a P.L P₀.L P.isLB P₀.isLB h l (Over.mk (𝟙 B')) k w w' x x' c hx hx'
 
-theorem map_unitOn {R K : Type} [CommRing R] [CommRing K] (y : R →+* K) (c : Rˣ) :
-    Units.map (spMap y).appTop.hom.toMonoidHom (unitOn c) = unitOn (Units.map y.toMonoidHom c) :=
-  Units.ext (congrArg (fun q => q.hom c.val) (Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom y))).symm
-
 variable {P₀ : PolAV (Sp Ω')} {a : P₀.A.left ⟶ ρ.P.A.left} {a' : P₀.A.left ⟶ ρ'.P.A.left}
   {x : S'.Gam → (genPt (φ.comp S.R.val.toRingHom) ⟶ ρ.P.A)}
 
@@ -103,12 +99,9 @@ theorem IsGenLab.weil (h : IsGenLab ρ ρ' lab φ P₀ a a' x) (b b' : S'.Gam) :
   obtain ⟨w, e₀, e₁, e₂⟩ := hw b
   obtain ⟨w', e₀', e₁', e₂'⟩ := hw b'
   refine ⟨Units.map S'.R.val.toRingHom.toMonoidHom c₀, congrArg Subtype.val hc₀, ?_⟩
-  rw [← map_unitOn]
+  rw [← _root_.GlobalTheory.Ex.Specialise.map_unitOn]
   exact (weil_move h₁ l₁ _ (Over.homMk w e₀) (Over.homMk w' e₀') (Category.id_comp _) _ _ e₁.symm e₁'.symm _).1
     ((weil_move h₂ l₂ _ (Over.homMk w e₀) (Over.homMk w' e₀') (Category.id_comp _) _ _ e₂.symm e₂'.symm _).2 H)
-
-theorem unitOn_injective {R : Type} [CommRing R] : Function.Injective (unitOn (R := R)) := fun _ _ h =>
-  Units.ext ((ConcreteCategory.bijective_of_isIso (Scheme.ΓSpecIso (CommRingCat.of R)).inv).1 (congrArg Units.val h))
 
 theorem IsGenLab.weil_conj (h : IsGenLab ρ ρ' lab φ P₀ a a' x) (σ : Ω' →+* Ω')
     (s : genPt (φ.comp S.R.val.toRingHom) ⟶ genPt (φ.comp S.R.val.toRingHom)) (hs : s.left = spMap σ)
@@ -123,7 +116,7 @@ theorem IsGenLab.weil_conj (h : IsGenLab ρ ρ' lab φ P₀ a a' x) (σ : Ω' �
   have e := CommutatorPairing.weilIs_unique hG ρ.P.isAb ρ.P.isLB H₂ H'
   rw [hs] at e
   rw [← hc, ← hc']
-  exact congrArg Units.val (unitOn_injective ((map_unitOn σ c).symm.trans e))
+  exact congrArg Units.val (_root_.GlobalTheory.unitOn_injective_of_commRing ((_root_.GlobalTheory.Ex.Specialise.map_unitOn σ c).symm.trans e))
 
 section Add
 
@@ -174,12 +167,12 @@ theorem odd_level (ρ' : S'.Real) : Odd S'.N := by rw [ρ'.N_eq]; exact ρ'.n_od
 theorem TV.unique (ρ' : S'.Real) {m : ℕ} {t h : S'.Gam} {κ : S.Gam} {v v' : Ω'} (H : TV ρ x m t h κ v)
     (H' : TV ρ x m t h κ v') : v = v' :=
   (ConcreteCategory.bijective_of_isIso (Scheme.ΓSpecIso (CommRingCat.of Ω')).inv).1
-    (GlobalTheory.T.isTwistedThetaValue_unique _ _ _ _ _ _ _ _ _ _ (odd_level ρ') H H')
+    (_root_.GlobalTheory.UPoinc.USum.isTwVal_unique _ _ _ _ _ _ _ _ _ _ (odd_level ρ') H H')
 
 theorem TV.ex (hx : IsGenLab ρ ρ' lab φ P₀ a a' x) (hadd : ∀ b b', x (b + b') = x b * x b') {m : ℕ} (hm : S'.N = m ^ 2)
     (t : S'.Gam) {h : S'.Gam} {κ : S.Gam} (hh : m • h = lab κ) : ∃ v, TV ρ x m t h κ v := by
   have hodd : Odd m := (Nat.odd_pow_iff two_ne_zero).1 (hm ▸ odd_level ρ')
-  obtain ⟨v, hv⟩ := GlobalTheory.T.exists_twistedThetaValue_subsingleton_base ρ.P S'.N m ρ.th₁ (ρ.fr κ) (genTo _) (x (S'.r • t)) (x h)
+  obtain ⟨v, hv⟩ := _root_.GlobalTheory.UPoinc.USum.exists_isTwVal_of_subsingleton ρ.P S'.N m ρ.th₁ (ρ.fr κ) (genTo _) (x (S'.r • t)) (x h)
     (inferInstanceAs (Subsingleton (PrimeSpectrum Ω'))) hodd hm (ρ.fr_tors κ).2.1
     (by rw [pt_nsmul hadd, ← pow_mul, mul_comm, pt_pow_level hadd]) (by rw [← pt_nsmul hadd, hh, hx.2.2.2.2.2])
   obtain ⟨v, rfl⟩ := (ConcreteCategory.bijective_of_isIso (Scheme.ΓSpecIso (CommRingCat.of Ω')).inv).2 v
@@ -189,14 +182,14 @@ theorem TV.transl [ArithBase o Ω] [ArithBase o' Ω'] (hx : IsGenLab ρ ρ' lab 
     (hadd : ∀ b b', x (b + b') = x b * x b') {m : ℕ} (hm : S'.N = m ^ 2) {t h k : S'.Gam} {κ : S.Gam} {v : Ω'}
     (hk : m • k = 0) (he : eStd S'.g _ t k = 0) (H : TV ρ x m t h κ v) : TV ρ x m t (h + k) κ v := by
   rw [TV, hadd]
-  exact GlobalTheory.T.isTwistedThetaValue_translate_orthogonal_torsion _ _ _ _ _ _ _ _ _ _ (by rw [← pt_nsmul hadd, hk, pt_zero hadd])
+  exact _root_.GlobalTheory.UPoinc.USum.isTwVal_transl _ _ _ _ _ _ _ _ _ _ (by rw [← pt_nsmul hadd, hk, pt_zero hadd])
     (hx.weil_one hadd ((congrArg (· • k) hm).trans (by rw [sq, mul_smul, hk, smul_zero])) he) H
 
 theorem TV.conj (σ : Ω' →+* Ω')
     (s : genPt (φ.comp S.R.val.toRingHom) ⟶ genPt (φ.comp S.R.val.toRingHom)) (hs : s.left = spMap σ)
     (g : S'.Gam →+ S'.Gam) (hg : ∀ b, x (g b) = s ≫ x b) {m : ℕ} {t h : S'.Gam} {κ : S.Gam} {v : Ω'}
     (H : TV ρ x m t h κ v) : TV ρ x m (g t) (g h) κ (σ v) := by
-  have H' := GlobalTheory.T.isTwistedThetaValue_pullback_base_change _ _ _ _ _ _ _ _ _ s H
+  have H' := _root_.GlobalTheory.UPoinc.USum.isTwVal_pull _ _ _ _ _ _ _ _ _ s H
   have e : s ≫ genTo (φ.comp S.R.val.toRingHom) = genTo _ := Over.OverMorphism.ext (Over.w s)
   rw [e, ← hg, ← hg, map_nsmul, hs] at H'
   have e' := congrArg (fun q => q.hom v) (Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom σ))

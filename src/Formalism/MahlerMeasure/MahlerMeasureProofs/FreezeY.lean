@@ -196,10 +196,6 @@ theorem coeff_coeffη (m : Fin (N + 1) × Fin r →₀ ℕ) (F : MvPolynomial (F
     AddMonoidAlgebra.coeff (coeffη (etaPart m) F) (llPart m) = AddMonoidAlgebra.coeff F m := by
   rw [coeff_coeffη_eq_coeff_comb, comb_parts]
 
-theorem coeff_coeffη' (b : Fin r →₀ ℕ) (m : Fin N × Fin r →₀ ℕ) (F : MvPolynomial (Fin (N + 1) × Fin r) K) :
-    AddMonoidAlgebra.coeff (coeffη b F) m = AddMonoidAlgebra.coeff F (comb b m) :=
-  coeff_coeffη_eq_coeff_comb b m F
-
 end Coeff
 
 end Formalism.GM.FrozenVariableComponents
@@ -396,7 +392,7 @@ theorem ycond_snoc_fwd (LL : Letters N) (n j : ℕ) (hj : j ≤ N) (M : WithTop 
   refine ycond_map p (LL.snoc n) LL j j M (coeffη b)
     (fun c d G => coeffη_glAct p LL n j hj c d b G) (fun G m hm => ?_) F hF
   refine ⟨comb b m, ?_, ?_⟩
-  · rw [mem_support_iff, ← coeff_coeffη']
+  · rw [mem_support_iff, ← _root_.Formalism.GM.FrozenVariableComponents.coeff_coeffη_eq_coeff_comb]
     exact mem_support_iff.1 hm
   · rw [wt_snoc LL n j hj, llPart_comb]
 

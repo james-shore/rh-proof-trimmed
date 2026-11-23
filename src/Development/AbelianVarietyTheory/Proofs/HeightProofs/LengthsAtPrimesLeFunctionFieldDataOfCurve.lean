@@ -499,11 +499,6 @@ variable {D : D7} {B : WeightFamilies.Prov D} {P : ModuliIntegralCharts.Prov D} 
   {ka wL wF : WeightFamilies.Wt D j} {G : GlobalFamilyData (xplus X E hM) ka wL wF} {la : HeightOneSpectrum (𝓞 B.KO)}
   {ζ : PtsG G la} {y : E.Pt' la}
 
-theorem eq_top_of_toE {a : WithTop ℤ} (h : toE a = ⊤) : a = ⊤ := by
-  cases a with
-  | top => rfl
-  | coe m => exact absurd h (EReal.coe_ne_top _)
-
 theorem eq_coe_of_toE {a : WithTop ℤ} {n : ℤ} (h : toE a = ((n : ℝ) : EReal)) : a = n := by
   cases a with
   | top => exact absurd h.symm (EReal.coe_ne_top _)
@@ -515,7 +510,7 @@ theorem eq_coe_of_toE {a : WithTop ℤ} {n : ℤ} (h : toE a = ((n : ℝ) : ERea
 theorem order_eq_top_of_form_vanishes_at_realisation (h : SecPt ζ y) (k : ℕ) (g : ↥(Vw (xplus X E hM) la G.N (addL (wt0 D j) wL k)))
     (hg : h.ev g = 0) : Formalism.MainNotions.Gaps.EtaleWeightGaps.ord (unifO (xplus X E hM) la G.N) ζ
       (toOsK (xplus X E hM) la G.w (fr0 (xplus X E hM) la G.w k g)) = ⊤ := by
-  apply eq_top_of_toE
+  apply _root_.Formalism.L2.Pj.toE_eq_top
   rw [h.ord, coe_weightZeroFraction, h.lift_frac, hg, zero_mul, nval_zero]
 
 theorem order_eq_coe_of_form_ne_zero_at_realisation (h : SecPt ζ y) (k : ℕ) (g : ↥(Vw (xplus X E hM) la G.N (addL (wt0 D j) wL k)))
@@ -558,7 +553,7 @@ theorem ilaTie_of_curveHyp : ∀ (D : D7) (T : Top D) (h : LawsP T) (j : ℕ) (h
   intro D T h j hj hG _ ka wL wF G S g0 hH hInj hSplit hBIR y hw hCurve hTie δ hOrd d hd hs eN hD hdo hwL hwF hdw
     eD hth Gc PH Prw Pet la
   have hT : GenFromTest (T.Q.Xo j) T.Q.c hG := fun Z => h.allTest j hj (Om Z) (genFr hG Z)
-  have hpt := GlobalTheory.T.realisation_values_eq_valuedPoint_orders D T h j hj hG ka wL wF G S g0 hH hInj hSplit hBIR y hw hCurve hTie δ hOrd la
+  have hpt := _root_.GlobalTheory.RealisationValues.values_eq_orders D T h j hj hG ka wL wF G S g0 hH hInj hSplit hBIR y hw hCurve hTie δ hOrd la
   have hct := countQAtSt_holds h j hj hG hT ka wL wF G S g0 la hH
   have hev := formsEvR_inc h j hj hG hT
   have he := hd.a4.choose_spec.1

@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.TateUnramifiedOfTorsionUnramified
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BijectivePairTOfLev
 
 @[expose] public section
 
@@ -99,10 +100,10 @@ theorem _root_.GlobalTheory.AV.AbVar.tl_lev_surj_ker : ∀ (K : Type) [Field K]
     apply Subtype.ext
     funext m
     change t.lev m = ((l ^ n : ℕ) • _root_.GlobalTheory.HTLat.Tate.mk u hu).lev m
-    rw [tate_nsmul_lev,
+    rw [_root_.GlobalTheory.HTLat.TatePerfect.lev_nsmul,
       _root_.GlobalTheory.HTLat.Tate.lev_mk]
     simp only [u, _root_.GlobalTheory.HTLat.Tate.lev_add_pow]
   · rintro ⟨s, rfl⟩
-    rw [hcast, tate_nsmul_lev, _root_.GlobalTheory.HTLat.Tate.lev_pow]
+    rw [hcast, _root_.GlobalTheory.HTLat.TatePerfect.lev_nsmul, _root_.GlobalTheory.HTLat.Tate.lev_pow]
 
 end GlobalTheory.AV.AbVar

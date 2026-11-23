@@ -74,17 +74,6 @@ section General
 
 variable {X X' Y Y' : Scheme.{0}} {L : LB X} {L' : LB X'} {F : X' ⟶ X} {K : Type} [Fintype K]
 
-theorem isUnit_gs_iff {Z : Scheme.{0}} (r : Z ⟶ X) (z : Z) (U : X.Opens) (h : r z ∈ U) (a : Γ(X, U)) :
-    IsUnit (gs r z U a) ↔ r z ∈ X.basicOpen a := by
-  rw [gs_stalkMap r z U h, isUnit_map_iff (r.stalkMap z).hom, gs_eq (𝟙 X) (r z) U h]
-  exact (X.mem_basicOpen a _ h).symm
-
-theorem gs_zero {Z : Scheme.{0}} (r : Z ⟶ X) (z : Z) (U : X.Opens) : gs r z U 0 = 0 := by
-  unfold gs
-  split_ifs
-  · rw [map_zero, map_zero]
-  · rfl
-
 theorem mem_basicOpen_app {Z : Scheme.{0}} (r : Z ⟶ X) (z : Z) (U : X.Opens) (a : Γ(X, U)) :
     z ∈ Z.basicOpen ((r.app U).hom a) ↔ r z ∈ X.basicOpen a :=
   (congrArg (z ∈ ·) (Scheme.preimage_basicOpen r a)).symm.to_iff
@@ -155,11 +144,11 @@ theorem app_eq_zero_of_isSecPull (hL : L.IsLB) {w : LB.Iso L' (L.pull F)}
   have h₃ : gs (r ≫ b) z (LB.wchart L φ j) (s.f j) = 0 := by
     rw [hr]
     refine (gs_pull t u z _ hm _).symm.trans ((congrArg (gs t z _) (h0 j)).trans ?_)
-    exact gs_zero t z _
+    exact _root_.GlobalTheory.UU.SchurComp.gs_zero t z _
   have h₂ := (Units.mul_right_eq_zero _).1 (h₁.symm.trans h₃)
   refine (gs_pull (𝟙 Z) r z _ hz' _).trans ?_
   rw [Category.id_comp]
-  exact h₂.trans (gs_zero _ _ _).symm
+  exact h₂.trans (_root_.GlobalTheory.UU.SchurComp.gs_zero _ _ _).symm
 
 theorem mem_basicOpen_of_isSecPull (hL' : L'.IsLB) {w : LB.Iso L' (L.pull F)}
     {φ' : K → (Y' ⟶ X')} {φ : K → (Y ⟶ X)} {ε : K → ℤ} {b : Y' ⟶ Y} (hφ : ∀ κ, φ' κ ≫ F = b ≫ φ κ)
@@ -171,9 +160,9 @@ theorem mem_basicOpen_of_isSecPull (hL' : L'.IsLB) {w : LB.Iso L' (L.pull F)}
     have e : F (φ' κ y) = φ κ (b y) := congrArg (fun g => g y) (hφ κ)
     exact e ▸ Set.mem_iInter.1 hp κ) hq
   have hu : IsUnit (gs (𝟙 Y' ≫ b) y (LB.wchart L φ p) (s.f p)) :=
-    (isUnit_gs_iff (𝟙 Y' ≫ b) y _ hp _).2 hy
+    (_root_.GlobalTheory.LBGerm.isUnit_gs_iff (𝟙 Y' ≫ b) y _ hp _).2 hy
   rw [h₁] at hu
-  exact ⟨q, (isUnit_gs_iff (𝟙 Y') y _ (Set.mem_iInter.2 hq) _).1 (isUnit_of_mul_isUnit_right hu)⟩
+  exact ⟨q, (_root_.GlobalTheory.LBGerm.isUnit_gs_iff (𝟙 Y') y _ (Set.mem_iInter.2 hq) _).1 (isUnit_of_mul_isUnit_right hu)⟩
 
 end General
 

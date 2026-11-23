@@ -76,7 +76,7 @@ theorem logCanonicalCut_of_step : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocally
   · by_cases hwz : w = z
     · subst hwz
       exact absurd ((off_add_smul X p n (Δ + (1 - δ) • D) B c w hoff).1.2 hkw) hw
-    · exact topologicalKrullDim_closure_le_of_specializes X z w j hzw hwz hdim
+    · exact _root_.GlobalTheory.ClosureDimensionSpecialization.dim_closure_le_of_specializes X z w j hzw hwz hdim
   · exfalso
     have h1 : KltAt p n (Δ + (1 - δ) • D + (1 : ℚ) • B) w := by
       rw [one_smul]; exact hsep w hzw (1 - δ) (by linarith) hkw

@@ -83,7 +83,7 @@ theorem subsingleton_coh_canon_tens : GlobalTheory.Published.NefNumerics → Glo
     rw [lineBundleGlobalSectionsDim_congr_picardClass (isLB_lbPow hL m) (LB.isLB_pull (isLB_lbPow hbig.1 m) π)
       (by rw [cls_lbPow hL, cls_pull hbig.1, cls_pull (isLB_lbPow hbig.1 m), cls_lbPow hbig.1, map_nsmul])]
     exact (FieldChangeInter.hdim_pull H (isLB_lbPow hbig.1 m) 0).symm
-  have hKV := GlobalTheory.T.kawamataViehweg_vanishing_of_nadel_pairs hNad X' p' D hp' hI (K.baseChange H) (N.pull π) hnef' hbig' q hq
+  have hKV := _root_.GlobalTheory.NadelApp.kawamataViehweg_complex hNad X' p' D hp' hI (K.baseChange H) (N.pull π) hnef' hbig' q hq
   have hM : (tens K.bundle N).IsLB := isLB_tens K.isLB hnef.isLB
   have hK' := LB.isLB_pull K.isLB π
   obtain ⟨i⟩ := nonempty_twist_iso_of_cls_eq (structureModule X') (LB.isLB_pull hM π) (isLB_tens hK' hL)

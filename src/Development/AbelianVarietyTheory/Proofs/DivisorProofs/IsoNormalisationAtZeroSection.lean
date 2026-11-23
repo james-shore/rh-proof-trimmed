@@ -64,10 +64,6 @@ theorem gs_finsum {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) (h : f 
   set_option synthInstance.maxHeartbeats 100000 in
     simp only [gs_eq f y U h, map_sum]
 
-theorem gs_npow {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) (h : f y ∈ U) (a : Γ(X, U)) (n : ℕ) :
-    gs f y U (a ^ n) = gs f y U a ^ n := by
-  simp only [gs_eq f y U h, map_pow]
-
 theorem one_comp_of_isGrpPullback {S S' : Scheme.{0}} {f : S' ⟶ S} {G : Over S} {G' : Over S'} [GrpObj G]
     [GrpObj G'] {φ : G'.left ⟶ G.left} (hφ : IsGrpPullback G' G f φ) : (η[G']).left ≫ φ = f ≫ (η[G]).left := by
   have e := congrArg (fun z => z.left) (map_one (pushHom hφ (𝟙_ (Over S'))))
@@ -190,7 +186,7 @@ theorem norm_at_zero : ∀ (Rg : Type) [CommRing Rg] (A B : Over (Sp Rg)) [GrpOb
     rw [Finset.sum_mul]
     exact Finset.sum_congr rfl fun i _ => (mul_assoc _ _ _).symm
   rw [hs, nN j] at E
-  rw [gs_mul _ z _ hz0, gs_npow _ z _ hz0, gs_npow _ z _ hz0]
+  rw [gs_mul _ z _ hz0, _root_.GlobalTheory.LBGerm.gs_pow _ z _ hz0, _root_.GlobalTheory.LBGerm.gs_pow _ z _ hz0]
   erw [gs_appLE _ _ _ _ _ _ hz0, gs_appLE _ _ _ _ _ _ hz0, gs_appLE _ _ _ _ _ _ hz0]
   simp only [Category.id_comp]
   exact hβ.mul_left_cancel (by rw [E]; ring)

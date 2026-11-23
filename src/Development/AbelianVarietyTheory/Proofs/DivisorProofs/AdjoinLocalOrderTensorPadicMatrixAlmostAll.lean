@@ -76,11 +76,11 @@ theorem locOrder_matrix : ∀ (F B : Type) [Field F] [NumberField F] [Ring B] [A
     ∃ N : ℕ, 0 < N ∧ ∀ (ℓ : ℕ) [Fact ℓ.Prime], ¬ ℓ ∣ N →
       ∃ ψ : locOrder ℓ OB ≃ₐ[ℤ_[ℓ]] Matrix (Fin n) (Fin n) (cenOrder ℓ F), CentreCompat ℓ OB ψ := by
   intro F B _ _ _ _ _ _ _ _ _ n hn OB hfin hspan
-  obtain ⟨Λ, hle, hΛ, hΛfin, N₁, hN₁, hN₁Λ⟩ := GlobalTheory.T.exists_order_containing_integers F B OB hfin hspan
+  obtain ⟨Λ, hle, hΛ, hΛfin, N₁, hN₁, hN₁Λ⟩ := _root_.GlobalTheory.exists_order_integers_mul_finite_index F B OB hfin hspan
   have hspanΛ : ∀ b : B, ∃ m : ℕ, 0 < m ∧ (m : B) * b ∈ Λ := fun b => by
     obtain ⟨m, hm, hmb⟩ := hspan b; exact ⟨m, hm, hle hmb⟩
-  obtain ⟨N₂, hN₂, hfree⟩ := GlobalTheory.T.localOrderTensorPadic_free_almost_all F B Λ hΛ hΛfin hspanΛ
-  obtain ⟨N₃, hN₃, hazu⟩ := GlobalTheory.T.localOrderTensorPadic_isAzumaya_almost_all F B Λ hΛ hΛfin hspanΛ
+  obtain ⟨N₂, hN₂, hfree⟩ := _root_.GlobalTheory.LocMatrix.locOrder_free F B Λ hΛ hΛfin hspanΛ
+  obtain ⟨N₃, hN₃, hazu⟩ := _root_.GlobalTheory.LocAzumaya.locOrder_isAzumaya F B Λ hΛ hΛfin hspanΛ
   refine ⟨N₁ * N₂ * N₃, by positivity, fun ℓ _ hℓ => ?_⟩
   have h₁ : ¬ ℓ ∣ N₁ := fun h => hℓ (Dvd.dvd.mul_right (Dvd.dvd.mul_right h _) _)
   have h₂ : ¬ ℓ ∣ N₂ := fun h => hℓ (Dvd.dvd.mul_right (Dvd.dvd.mul_left h _) _)
@@ -92,7 +92,7 @@ theorem locOrder_matrix : ∀ (F B : Type) [Field F] [NumberField F] [Ring B] [A
   obtain ⟨hF, hrank⟩ := hfree ℓ h₂
   haveI := hF
   haveI := hazu ℓ h₃
-  obtain ⟨φ⟩ := GlobalTheory.T.azumaya_matrix_of_finite_padic_algebra_of_local GlobalTheory.T.azumaya_free_rank_sq_equiv_matrix_over_local ℓ (cenOrder ℓ F) (locOrder ℓ Λ) n (hrank.trans hn)
+  obtain ⟨φ⟩ := _root_.GlobalTheory.AzumayaMatrixReduction.of_local _root_.GlobalTheory.AzumayaLocal.azumaya_local_matrix ℓ (cenOrder ℓ F) (locOrder ℓ Λ) n (hrank.trans hn)
   refine ⟨(Subalgebra.equivOfEq _ _ heq).trans (φ.restrictScalars ℤ_[ℓ]), fun a => ?_⟩
   refine ⟨heq ▸ cenMap_mem ℓ F B Λ hΛ a.2, ?_⟩
   have h2 : (Subalgebra.equivOfEq _ _ heq) ⟨cenMap ℓ F B a, heq ▸ cenMap_mem ℓ F B Λ hΛ a.2⟩ =

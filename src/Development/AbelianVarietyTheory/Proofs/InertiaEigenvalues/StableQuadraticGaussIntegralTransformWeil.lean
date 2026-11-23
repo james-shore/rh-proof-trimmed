@@ -92,7 +92,7 @@ theorem gauss_transform : ∀ (F E : Type) [NontriviallyNormedField F] [Nontrivi
       norm_num at hm
     have h2 := GlobalTheory.T.stableQuadraticGaussIntegral_mul_norm F E A ψ x μ ω hH ϖ (ϖ⁻¹ * u) hs _ hGϖ
     rw [hps] at h2
-    rw [isStableGauss_unique A ψ x μ _ hG h2, (hω u).2 hu]
+    rw [_root_.GlobalTheory.JR.WeilQuad.NonNorm.stable_unique A ψ x μ _ hG h2, (hω u).2 hu]
     have e1 := absK_units_ne A ϖ
     have e2 := absK_units_ne A (ϖ⁻¹ * u)
     conv_rhs => rw [← hps, absK_units_mul]

@@ -57,7 +57,7 @@ namespace GlobalTheory.TateFiniteH1
 theorem tate_finH1 (hT : Formalism.GaloisCohomology.LocalTateDualityK) :
     ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (K : FinExt l), TateFiniteness (P.PD K) := by
   intro l _ P K LL _ _ _ O _ _ hO A LA
-  obtain ⟨hR, hRs⟩ := GlobalTheory.T.goodCoefficients_explicit_sums l LL O hO
+  obtain ⟨hR, hRs⟩ := _root_.GlobalTheory.goodO_coeff_explicit_sums l LL O hO
   haveI : Module.Free O ↥LA.T := LA.free
   haveI : Module.Finite O ↥LA.T := Module.Finite.iff_fg.2 LA.fg
   obtain ⟨hTc, hTs⟩ := GlobalTheory.T.free_finite_module_adicComplete_and_separated ((l : ℕ) : O) hR hRs ↥LA.T

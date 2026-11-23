@@ -103,12 +103,6 @@ theorem schur_countable {B V : Type} [Ring B] [Algebra ℂ B] [AddCommGroup V] [
   have : Algebra.IsIntegral ℂ (Module.End B V) := Algebra.IsAlgebraic.isIntegral
   exact (IsAlgClosed.algebraMap_bijective_of_isIntegral (k := ℂ)).2
 
-theorem dense_countable {V : Type} [AddCommGroup V] [Module ℂ V] [Nontrivial V]
-    (h : Module.rank ℂ V ≤ Cardinal.aleph0) (B : Subalgebra ℂ (Module.End ℂ V))
-    (hB : ∀ N : Submodule ℂ V, (∀ b ∈ B, ∀ x ∈ N, b x ∈ N) → N = ⊥ ∨ N = ⊤)
-    (f : Module.End ℂ V) (s : Finset V) : ∃ b ∈ B, ∀ m ∈ s, f m = b m :=
-  _root_.UpperTheory.Reformulated.B.DYhd6.main h B hB f s
-
 section
 
 variable {ι : Type} [DecidableEq ι] {M : ι → Type} [∀ i, AddCommGroup (M i)] [∀ i, Module ℂ (M i)]
@@ -189,7 +183,7 @@ theorem tensorIrr : TensorIrr := by
           rw [one_op_alg]; exact N.smul_mem c hy }
     obtain ⟨s, hs⟩ := one_op_fin i x
     have := hnt i
-    obtain ⟨b, hb, hfb⟩ := dense_countable (hr i) B
+    obtain ⟨b, hb, hfb⟩ := _root_.UpperTheory.Reformulated.B.DYhd6.main (hr i) B
       (fun P hP => hirr i P fun a y hy => hP (act i a) (hN i a) y hy) f s
     rw [hs f b hfb]
     exact hb x hx

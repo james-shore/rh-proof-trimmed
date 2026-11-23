@@ -78,7 +78,7 @@ theorem sc_kerfam {K : Type} [Field K] [NumberField K] {r : ℕ} (L : Submodule 
       (∀ i, b i ∈ L) ∧ (∀ i, N *ᵥ b i = 0) ∧ LinearIndependent K b ∧
       ∀ y, N *ᵥ y = 0 → y ∈ Submodule.span K (Set.range b) := by
   set b0 := Module.finBasis K (LinearMap.ker N.mulVecLin)
-  choose d hd0 hdL using fun i => sc_scale L hL (b0 i : Fin r → K)
+  choose d hd0 hdL using fun i => _root_.Bl.general_b_fact_second.goal1 L hL (b0 i : Fin r → K)
   have hinj := FaithfulSMul.algebraMap_injective (𝓞 K) K
   have ha : ∀ i, algebraMap (𝓞 K) K (d i) ≠ 0 := fun i h =>
     hd0 i (hinj (by rw [h, map_zero]))
@@ -116,7 +116,7 @@ theorem sc_imfam {K : Type} [Field K] [NumberField K] {r : ℕ} (L : Submodule (
     obtain ⟨y, hy⟩ := LinearMap.mem_range.mp (e j).2
     exact ⟨y, by rw [← Matrix.mulVecLin_apply]; exact hy⟩
   choose y hy using hex
-  choose d hd0 hdL using fun j => sc_scale L hL (y j)
+  choose d hd0 hdL using fun j => _root_.Bl.general_b_fact_second.goal1 L hL (y j)
   have hinj := FaithfulSMul.algebraMap_injective (𝓞 K) K
   have ha : ∀ j, algebraMap (𝓞 K) K (d j) ≠ 0 := fun j h =>
     hd0 j (hinj (by rw [h, map_zero]))

@@ -60,11 +60,11 @@ theorem UpperTheory.Gal.productCup_of_system.prB_of :
       ∀ v ∈ omB ℂ K (rB ℂ K (xv x) (Finset.univ.erase i)) a,
       (LinearMap.mul ℂ (DR ℂ K)).compr₂ (trF ℂ τ ρ) u v = 0 := by
     intro i hi u hu v hv
-    have hvq : v ∈ ⋀[K]^a Ω[K⁄ℂ] := ((GlobalTheory.T.kahlerFormsOverSubalgebra_closure_properties ℂ K _ a 0).2.1 v hv).2.2.1
-    have hmem := (GlobalTheory.T.twistedDual_regularForms_finiteCover ℂ F K d (xv x) h τ hτ (Finset.univ.erase i) hi (d - a) a
+    have hvq : v ∈ ⋀[K]^a Ω[K⁄ℂ] := ((_root_.GlobalTheory.PD.omB_alg ℂ K _ a 0).2.1 v hv).2.2.1
+    have hmem := (_root_.GlobalTheory.PD.twistedDual_omB ℂ F K d (xv x) h τ hτ (Finset.univ.erase i) hi (d - a) a
       (by omega) v hvq).2 hv u hu
-    exact GlobalTheory.T.residue_functional_vanishes_on_omega_forms ℂ F d (xv x) h.pd ρ hρ i _ hi (Finset.notMem_erase i _) _ hmem
-  obtain ⟨ε, hε⟩ := GlobalTheory.T.cechDifferential_adjoint_cupProductPairing ℂ d _ _ (fun I => omB ℂ K (rB ℂ K (xv x) I) (d - a))
+    exact _root_.GlobalTheory.PD.ResVan.resvan ℂ F d (xv x) h.pd ρ hρ i _ hi (Finset.notMem_erase i _) _ hmem
+  obtain ⟨ε, hε⟩ := _root_.GlobalTheory.PD.CupAdj.cech_adj ℂ d _ _ (fun I => omB ℂ K (rB ℂ K (xv x) I) (d - a))
     (fun I => omB ℂ K (rB ℂ K (xv x) I) a) ((LinearMap.mul ℂ (DR ℂ K)).compr₂ (trF ℂ τ ρ))
     (mono _) (mono _) hvan ((d : ℤ) - (q : ℕ))
   obtain ⟨y', hy', rfl⟩ := hy

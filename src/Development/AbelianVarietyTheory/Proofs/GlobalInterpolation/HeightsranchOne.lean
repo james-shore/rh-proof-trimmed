@@ -43,20 +43,13 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PredMemGamRanks
+import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.InterlaceDifferenceShiftInvariant
 
 @[expose] public section
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.Col Formalism.L2.DIV Formalism.L2.Forms GlobalTheory.Mem.Col2 Matrix
 
 namespace GlobalTheory.Proof.FockBlockMonotone
-
-private theorem mfact_eq_prod_factorial {σ : Type} [Fintype σ] (m : σ →₀ ℕ) :
-    Formalism.L2.DIV.mfact m = ∏ k, (m k).factorial := by
-  unfold Formalism.L2.DIV.mfact
-  refine Finset.prod_subset (Finset.subset_univ _) ?_
-  intro k _ hk
-  have : m k = 0 := by simpa using hk
-  rw [this, Nat.factorial_zero]
 
 private theorem fockB_monomial_monomial {σ : Type} [DecidableEq σ] (a b : σ →₀ ℕ) :
     Formalism.L2.DIV.fockB (MvPolynomial.monomial a (1 : ℂ)) (MvPolynomial.monomial b 1) =
@@ -84,8 +77,8 @@ private theorem fockB_ten_monomial_eq_prod {ι : Type} [Fintype ι] {n : ℕ} (v
   by_cases h : v = w
   · subst h
     simp only [if_true]
-    rw [mfact_eq_prod_factorial, Fintype.prod_prod_type]
-    simp_rw [mfact_eq_prod_factorial, sum_mapDomain_prodMk_apply]
+    rw [_root_.Formalism.L2.Ker.mfact_eq_prod, Fintype.prod_prod_type]
+    simp_rw [_root_.Formalism.L2.Ker.mfact_eq_prod, sum_mapDomain_prodMk_apply]
     push_cast
     rfl
   · have hA : (∑ σ, (v σ).mapDomain (Prod.mk σ)) ≠ ∑ σ, (w σ).mapDomain (Prod.mk σ) := by
@@ -139,12 +132,6 @@ private theorem toUnit_eq_ten_const {N : ℕ} (f : MvPolynomial (Fin N × Fin N)
 private theorem fockB_toUnit_toUnit {N : ℕ} (f g : MvPolynomial (Fin N × Fin N) ℂ) :
     Formalism.L2.DIV.fockB (Formalism.L2.Ker.toUnit ℂ N f) (Formalism.L2.Ker.toUnit ℂ N g) = Formalism.L2.DIV.fockB f g := by
   rw [toUnit_eq_ten_const, toUnit_eq_ten_const, fockB_ten_eq_prod, Fintype.prod_unique]
-
-private theorem ten_smul_eq_prod_smul {ι : Type} [Fintype ι] {n : ℕ} (c : ι → ℂ)
-    (f : ι → MvPolynomial (Fin n × Fin n) ℂ) :
-    Formalism.MainNotions.product_first_zeroth_parts.ten (fun τ => c τ • f τ) = (∏ τ, c τ) • Formalism.MainNotions.product_first_zeroth_parts.ten f := by
-  unfold Formalism.MainNotions.product_first_zeroth_parts.ten
-  simp only [MvPolynomial.smul_eq_C_mul, map_mul, MvPolynomial.rename_C, Finset.prod_mul_distrib, map_prod]
 
 private theorem fockB_proj_of_isUnit_gramB {κ : Type} [Fintype κ] {m : ℕ} (lam : κ → DomWeight m)
     (hG : IsUnit (Formalism.L2.Col.Br.gramB (K := ℂ) lam).det) (x : Formalism.L2.DIV.Pol ℂ κ m)
@@ -410,7 +397,7 @@ private theorem ten_brOne_monomial_eq_brStdP {ι : Type} [Fintype ι] {N n : ℕ
       Submodule.coe_subtype]
     rw [Formalism.L2.Col.Br.brStdP, LinearMap.smul_apply, LinearMap.comp_apply, Submodule.coe_smul, map_smul]
   simp_rw [hL]
-  rw [ten_smul_eq_prod_smul, Formalism.L2.Col.Br.brStdP, LinearMap.smul_apply, LinearMap.comp_apply,
+  rw [_root_.Formalism.L2.Ker.tensor_smul_univ, Formalism.L2.Col.Br.brStdP, LinearMap.smul_apply, LinearMap.comp_apply,
     Submodule.coe_smul, coefLast_monomial']
   have hc : (∏ τ, Formalism.L2.Col.Br.brConst hN ℂ (fun _ : Unit => lam τ) (fun _ : Unit => sg τ)) =
       Formalism.L2.Col.Br.brConst hN ℂ lam sg := by
@@ -430,17 +417,5 @@ private theorem ten_brOne_monomial_eq_brStdP {ι : Type} [Fintype ι] {N n : ℕ
     rw [← fockB_toUnit_toUnit, ← fockB_toUnit_toUnit (Formalism.L2.DIV.ssB ℂ (sg τ).natW (j τ)),
       AlgEquiv.apply_symm_apply, AlgEquiv.apply_symm_apply, toUnit_ssB_eq_bVVfun]
     exact fockB_proj_of_isUnit_gramB (fun _ : Unit => sg τ) (isUnit_gramB _) _ (fun _ => j τ)
-
-theorem blk_brOne_eq : ∀ {ι : Type} [Fintype ι] {N n : ℕ} (hN : N = n + 1) (lam : ι → DomWeight N) (sg : ι → DomWeight n) (p : Pol ℂ ι N), Formalism.MainNotions.product_first_zeroth_parts.blk (fun τ => Formalism.L2.Ker.brOne ℂ hN (lam τ) (sg τ)) p = (Br.brStdP hN lam sg p : Pol ℂ ι n) := by
-  intro ι _ N n hN lam sg p
-  have hlin : Formalism.MainNotions.product_first_zeroth_parts.blk (fun τ => ⇑(Formalism.L2.Ker.brOne ℂ hN (lam τ) (sg τ))) =
-      (Formalism.L2.DIV.VV ℂ sg).subtype ∘ₗ Br.brStdP hN lam sg := by
-    refine (MvPolynomial.basisMonomials (ι × Fin N × Fin N) ℂ).ext fun M => ?_
-    rw [LinearMap.comp_apply, Submodule.subtype_apply]
-    unfold Formalism.MainNotions.product_first_zeroth_parts.blk
-    rw [Module.Basis.constr_basis]
-    simp only [MvPolynomial.coe_basisMonomials]
-    exact ten_brOne_monomial_eq_brStdP hN lam sg M
-  exact LinearMap.congr_fun hlin p
 
 end GlobalTheory.Proof.FockBlockMonotone

@@ -174,13 +174,13 @@ theorem exists_lift_lam : ∀ (R R₀ : Type) [CommRing R] [IsLocalRing R] [IsNo
   have hI0 : RingHom.ker π ^ 2 = 0 := hI2
   let κ := divided₂ hI0
   have hκ : IsNilDP κ := isDPNilpotent_squareZero hI0
-  have ADD : GlobalTheory.Published.DualAbelianScheme := GlobalTheory.T.dualAbelianScheme_exists_biduality
-  have ADR : GlobalTheory.Published.AbelianDeRham := GlobalTheory.T.abelianScheme_firstDeRham_structure
+  have ADD : GlobalTheory.Published.DualAbelianScheme := _root_.GlobalTheory.dualAbelianScheme
+  have ADR : GlobalTheory.Published.AbelianDeRham := _root_.GlobalTheory.abelianDeRham
   have ADC : GlobalTheory.Published.AbelianDualCrystal := GlobalTheory.abelianDualCrystal_of_dualAbelianScheme ADD
   have GD : GlobalTheory.Published.GrothendieckDeformation :=
-    GlobalTheory.Published.grothendieckDeformation_of_lifting ADR GlobalTheory.T.print_abelianLifting
+    GlobalTheory.Published.grothendieckDeformation_of_lifting ADR _root_.GlobalTheory.abelianScheme_hom_lifting_nilpotent_dividedPowers
   haveI := P₀.isAb.comm
-  obtain ⟨A', _, i', h', hA'⟩ := GlobalTheory.T.abelianScheme_unobstructed_squareZero_affine R (RingHom.ker π) hI0 R₀ π hπ rfl P₀.A P₀.isAb
+  obtain ⟨A', _, i', h', hA'⟩ := _root_.GlobalTheory.UnobTop.abelianUnobstructed R (RingHom.ker π) hI0 R₀ π hπ rfl P₀.A P₀.isAb
   obtain ⟨g, hg⟩ := GlobalTheory.AbelianDim.exists_relDim R A' hA'
   have C := GlobalTheory.Published.AbelianDualCrystal.cupSquare_crys_prod ADR.1 ADC.2 hκ hπ rfl hA' hg hA' hg h' h'
   have hΛ := isPerfect_lam P₀.isLB P₀.ktriv

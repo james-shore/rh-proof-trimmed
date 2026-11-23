@@ -65,9 +65,7 @@ theorem ip_add_left (u v w : G → ℂ) : ip (fun x => u x + v x) w = ip u w + i
   unfold ip; rw [← mul_add, ← Finset.sum_add_distrib]; congr 1
   apply Finset.sum_congr rfl; intro x _; ring
 
-theorem ip_add_right (u v w : G → ℂ) : ip u (v + w) = ip u v + ip u w := by
-  unfold ip; rw [← mul_add, ← Finset.sum_add_distrib]; congr 1
-  apply Finset.sum_congr rfl; intro x _; simp only [Pi.add_apply]; ring
+alias ip_add_right := _root_.GlobalTheory.CharDec.ip_add_right
 
 theorem irr_char {χ : G → ℂ} (h : IsIrr χ) : IsChar χ := by
   obtain ⟨V, -, hV⟩ := h; exact ⟨V, hV⟩
@@ -211,8 +209,8 @@ theorem exists_cusp_list (g : ℕ) [Fact g.Prime] (n : ℕ) (χ : Gn g n → ℂ
         exacts [hL₁c p h, hL₂c p h]
       · rw [degL_append]; omega
       · subst hL₁d; subst hL₂d
-        have hc1 : IsChar (hcL L₁ (degL L₁)) := char_hcL L₁ fun p hp => hch p (by simp [hp])
-        have hc2 : IsChar (hcL L₂ (degL L₂)) := char_hcL L₂ fun p hp => hch p (by simp [hp])
+        have hc1 : IsChar (hcL L₁ (degL L₁)) := _root_.GlobalTheory.GLqPerm.isChar_hcL L₁ fun p hp => hch p (by simp [hp])
+        have hc2 : IsChar (hcL L₂ (degL L₂)) := _root_.GlobalTheory.GLqPerm.isChar_hcL L₂ fun p hp => hch p (by simp [hp])
         rw [hcL_append L₁ L₂ hch n hnab]
         have e : ip χ (hc (degL L₁) (degL L₂) (hcL L₁ (degL L₁)) (hcL L₂ (degL L₂)) n) =
             ip (fun p : Gn g (degL L₁) × Gn g (degL L₂) => (R.map fun k => k.1 p.1 * k.2 p.2).sum)

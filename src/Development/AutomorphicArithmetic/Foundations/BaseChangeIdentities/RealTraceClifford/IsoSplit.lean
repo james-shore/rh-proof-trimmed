@@ -151,7 +151,7 @@ theorem UpperTheory.RealTr.isoSplit :
   have hK := Formalism.REAL.glRel_kRel (fun _ : Fin n => true) F hF.gl
   have hU : Formalism.REAL.KUnit (fun _ : Fin n => true) F := fun a b _ x y => hF.unit a b x y
   have hSt : Formalism.REAL.KStable (fun _ : Fin n => true) F S := fun a b _ x hx => hst a b x hx
-  obtain ⟨x, hxS, hx0, ν, hxk⟩ := Formalism.REAL.kHiExist V n _ F S hS hK hU hSt hne
+  obtain ⟨x, hxS, hx0, ν, hxk⟩ := _root_.Formalism.REAL.highestWeightExists_holds V n _ F S hS hK hU hSt hne
   obtain ⟨horth, hsup⟩ := Formalism.REAL.kIsoSplit V n _ F S {ν} hS hK hU hSt
   set S₁ := Formalism.REAL.isoPart (fun _ : Fin n => true) F {ν} S with hS₁
   set S₂ := Formalism.REAL.isoPart (fun _ : Fin n => true) F {ν}ᶜ S with hS₂

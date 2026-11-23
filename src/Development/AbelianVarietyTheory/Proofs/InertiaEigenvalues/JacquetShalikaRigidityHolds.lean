@@ -103,7 +103,7 @@ theorem norm_logRS_add_le : ∀ (E : Type) [Field E] [NumberField E] [_root_.Num
 
 theorem abs_re_logRS_bdd : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a b : ℕ) (σ : CG E a) (σ' : CG E b), 1 ≤ a → 1 ≤ b → σ.IsUnitary → σ'.IsUnitary → (⟨a, σ⟩ : Σ a, CG E a) ≠ ⟨b, σ'⟩ → ∀ T : Finset (HeightOneSpectrum (𝓞 E)), UnrOutside T σ → UnrOutside T σ' → ∃ C : ℝ, ∀ᶠ x in 𝓝[>] (1 : ℝ), |(logRS T σ σ' x).re| ≤ C := by
   intro E _ _ _ a b σ σ' ha hb hσ hσ' hne T hT hT'
-  obtain ⟨z, hz, hlim⟩ := GlobalTheory.T.rankinSelberg_partialL_tendsto_ne_zero_at_one E a b σ σ' ha hb hσ hσ' hne T hT hT'
+  obtain ⟨z, hz, hlim⟩ := _root_.GlobalTheory.RSNonvan.tendsto_partialL_ne_zero E a b σ σ' ha hb hσ hσ' hne T hT hT'
   have hx1 : ∀ᶠ x in 𝓝[>] (1 : ℝ), 1 < x := self_mem_nhdsWithin
   have h1 : Tendsto (fun x : ℝ => Complex.exp (logRS T σ σ' x)) (𝓝[>] 1) (𝓝 z) :=
     hlim.congr' (hx1.mono fun x hx => (hasProd_exp_logRS hσ hσ' hT hT' hx).tprod_eq)
@@ -119,7 +119,7 @@ theorem abs_re_logRS_bdd : ∀ (E : Type) [Field E] [NumberField E] [_root_.Numb
 
 theorem tendsto_re_logRS_self : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ) (π : CG E a), 1 ≤ a → π.IsUnitary → ∀ T : Finset (HeightOneSpectrum (𝓞 E)), UnrOutside T π → Tendsto (fun x : ℝ => (logRS T π π x).re) (𝓝[>] 1) atTop := by
   intro E _ _ _ a π ha hπ T hT
-  obtain ⟨L, hL, -, c, hc, hlim⟩ := GlobalTheory.T.rankinSelberg_partialL_pole_at_one_conj E a π ha hπ T hT
+  obtain ⟨L, hL, -, c, hc, hlim⟩ := _root_.GlobalTheory.RSPole.rs_pole_conj E a π ha hπ T hT
   have hx1 : ∀ᶠ x in 𝓝[>] (1 : ℝ), 1 < x := self_mem_nhdsWithin
   have he : ∀ x : ℝ, 1 < x → (logRS T π π x).re = Real.log (L x) := fun x hx => by
     have e := (hL x hx).1.unique (hasProd_exp_logRS hπ hπ hT hT hx)

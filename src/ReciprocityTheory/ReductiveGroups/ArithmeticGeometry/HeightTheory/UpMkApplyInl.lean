@@ -47,10 +47,10 @@ import Mathlib.Topology.Sheaves.Init
 namespace ReciprocityTheory.ChartRestriction.G.T0
 
 noncomputable def upMk {D N : ℕ} (ab : (Fin (D + 2) →₀ ℕ) × (Option (Fin (D + 2) × Fin (N + 1)) →₀ ℕ)) :
-    UXVar D N →₀ ℕ :=
+    _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ :=
   Finsupp.equivFunOnFinite.symm (Sum.elim (fun p => ab.2 (some p)) (fun i => ab.1 i))
 
-noncomputable def upMono (D N n n' : ℕ) : Finset (UXVar D N →₀ ℕ) :=
+noncomputable def upMono (D N n n' : ℕ) : Finset (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) :=
   ((Finset.univ : Finset (Fin (D + 2))).finsuppAntidiag n ×ˢ
     (Finset.univ : Finset (Option (Fin (D + 2) × Fin (N + 1)))).finsuppAntidiag n').image upMk
 
@@ -60,7 +60,7 @@ theorem upMk_apply_inl {D N : ℕ} (ab : (Fin (D + 2) →₀ ℕ) × (Option (Fi
 theorem upMk_apply_inr {D N : ℕ} (ab : (Fin (D + 2) →₀ ℕ) × (Option (Fin (D + 2) × Fin (N + 1)) →₀ ℕ))
     (i : Fin (D + 2)) : upMk ab (Sum.inr i) = ab.1 i := rfl
 
-theorem mem_upMono {D N n n' : ℕ} {s : UXVar D N →₀ ℕ} :
+theorem mem_upMono {D N n n' : ℕ} {s : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ} :
     s ∈ upMono D N n n' ↔ xDeg s = n ∧ uDeg s ≤ n' := by
   classical
   unfold upMono

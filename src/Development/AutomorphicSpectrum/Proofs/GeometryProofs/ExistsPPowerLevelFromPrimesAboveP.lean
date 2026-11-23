@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbProj
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.OneArc
 
 @[expose] public section
 
@@ -55,10 +56,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Datum H} {l : Level H}
   {Xo : Moduli D l} {c : Coeff l}
-
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  rw [← Spec.map_comp]; rfl
 
 theorem isPreimmersion_fst (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) :
     IsPreimmersion (pullback.fst Y.s (spMap (algebraMap (𝓞 c.F) c.F))) := by
@@ -105,7 +102,7 @@ theorem mem_range_j (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) {Ω : Type} [Fi
     (ξ : Spec (CommRingCat.of Ω) ⟶ Y.X) (cst : c.F →+* Ω) (hmax : ∀ y, y ⤳ genPt ξ → y = genPt ξ)
     (hs : ξ ≫ Y.s = spMap (cst.comp (algebraMap (𝓞 c.F) c.F))) : genPt ξ ∈ Set.range Y.j := by
   have hpr := projProper _ _ _ Y.proj
-  have sq : ξ ≫ Y.s = spMap cst ≫ spMap (algebraMap (𝓞 c.F) c.F) := by rw [hs, spMap_comp']
+  have sq : ξ ≫ Y.s = spMap cst ≫ spMap (algebraMap (𝓞 c.F) c.F) := by rw [hs, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
   let P := pullback Y.s (spMap (algebraMap (𝓞 c.F) c.F))
   let ξ₁ : Spec (CommRingCat.of Ω) ⟶ P := pullback.lift ξ (spMap cst) sq
   have hf : ξ₁ ≫ pullback.fst _ _ = ξ := pullback.lift_fst _ _ _
@@ -166,8 +163,8 @@ theorem splitComps_of_fnAlgClosed (Y : Model Xo c (algebraMap (𝓞 c.F) c.F))
       apply TowerOfTest.spec_inj
       have : spMap ((i.comp cst).comp (algebraMap (𝓞 c.F) c.F)) =
           spMap i ≫ spMap (cst.comp (algebraMap (𝓞 c.F) c.F)) := by
-        rw [RingHom.comp_assoc, spMap_comp']
-      exact this.trans (h2.symm.trans (spMap_comp' _ _).symm)
+        rw [RingHom.comp_assoc, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
+      exact this.trans (h2.symm.trans (_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp _ _).symm)
     exact IsLocalization.ringHom_ext (nonZeroDivisors (𝓞 c.F)) e0
   have hb : IsAlgebraic c.F (algebraMap (Formalism.L2.Pj.kap Z) (Formalism.L2.Pj.Om Z) (i a)) := by
     obtain ⟨p, hp0, hp⟩ := ha

@@ -86,10 +86,6 @@ namespace GlobalTheory.OpenSubgrp
 
 attribute [local instance] Over.cartesianMonoidalCategory
 
-theorem comp_inv' {S : Scheme.{0}} {G : Over S} [GrpObj G] {T T' : Over S} (ρ : T' ⟶ T) (x : T ⟶ G) :
-    ρ ≫ x⁻¹ = (ρ ≫ x)⁻¹ :=
-  (Category.assoc _ _ _).symm
-
 theorem range_subset : ∀ (S P : Scheme.{0}) (H₁ H₂ : Over S) [GrpObj H₁] [GrpObj H₂] (h₁ : H₁.left ⟶ P)
     (h₂ : H₂.left ⟶ P), ∀ pS : P ⟶ S, h₁ ≫ pS = H₁.hom → h₂ ≫ pS = H₂.hom → IsOpenImmersion h₁ →
     IsOpenImmersion h₂ → Smooth H₁.hom → GeometricallyConnected H₁.hom → MulAgree H₁ H₂ h₁ h₂ →
@@ -112,7 +108,7 @@ theorem range_subset : ∀ (S P : Scheme.{0}) (H₁ H₂ : Over S) [GrpObj H₁]
   let Y : Over S := Over.mk (O.ι ≫ (H₁ ⊗ H₁).hom)
   let j : Y ⟶ H₁ ⊗ H₁ := Over.homMk O.ι rfl
   have e1 : (j ≫ g) * (j ≫ a) = j ≫ f := by
-    rw [MonObj.comp_mul, comp_inv', mul_inv_cancel_left]
+    rw [MonObj.comp_mul, _root_.GlobalTheory.SymLiftOdd.comp_inv', mul_inv_cancel_left]
   have inW : ∀ y, h₁ ((j ≫ f).left y) ∈ Set.range h₂ := by
     rw [← e1]
     exact OpenSubgrp.mul_mem_range e₁ e₂ hm (j ≫ g) (j ≫ a) (fun y => y.2.2) (fun y => y.2.1)
@@ -128,7 +124,7 @@ theorem range_subset : ∀ (S P : Scheme.{0}) (H₁ H₂ : Over S) [GrpObj H₁]
     obtain ⟨w, hw1, hw2⟩ := m2 z
     let b : H₁ ⊗ H₁ ⟶ H₁ ⊗ H₁ := lift f (f * g⁻¹)
     have b1 : b ≫ a = g := by
-      rw [MonObj.comp_mul, comp_inv', lift_fst, lift_snd, mul_inv_rev, inv_inv, inv_mul_cancel_right]
+      rw [MonObj.comp_mul, _root_.GlobalTheory.SymLiftOdd.comp_inv', lift_fst, lift_snd, mul_inv_rev, inv_inv, inv_mul_cancel_right]
     have b2 : b ≫ f = f := lift_fst _ _
     refine ⟨b.left w, ?_, ?_⟩
     · rw [← Scheme.Hom.comp_apply, ← Over.comp_left, b1]; exact hw1

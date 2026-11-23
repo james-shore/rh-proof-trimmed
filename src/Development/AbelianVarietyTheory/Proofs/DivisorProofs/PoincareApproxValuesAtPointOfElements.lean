@@ -194,7 +194,7 @@ theorem GlobalTheory.Poinc.Sep.values_of_elements : ∀ (O : Type) [CommRing O] 
               RingHom.ker ev) := by
     intro lam hlam mv
     obtain ⟨D, D', l, a, i₀, hD, hD', hmv, hdom, hlin⟩ :=
-      GlobalTheory.T.exists_dominant_tuple_prescribed_member_linearForm O bar φ (d₀ * d) (Φ.X y) hφX (Φ.m y) m₁ ga a₁ hcone hne hpos hs₁ s W hW N₁ hN₁ lam hlam mv
+      _root_.GlobalTheory.Poinc.DomTuple.exists_dominant O bar φ (d₀ * d) (Φ.X y) hφX (Φ.m y) m₁ ga a₁ hcone hne hpos hs₁ s W hW N₁ hN₁ lam hlam mv
     refine ⟨D, D', l, a, i₀, hD, hD', hmv, hlin, fun c => ?_⟩
     set T := (w : Φ.V y) ^ (D * d₀) * ∏ k, Φ.t y k ^ (M * D' * (lam (ga k)).toNat) with hT
     have hmono : Φ.monoT y a = T * g₀ ^ (D * d₀) := by

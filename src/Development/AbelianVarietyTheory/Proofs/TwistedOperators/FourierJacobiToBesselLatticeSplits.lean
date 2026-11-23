@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaHeisenbergConjugationNegHermitianSpace
 
 @[expose] public section
 
@@ -57,26 +58,13 @@ open GlobalTheory.AscFin
 noncomputable section
 namespace GlobalTheory.AscFin.SplitsFB
 
-theorem inv_neg_mat {D : D7} {n : ℕ} (A : Matrix (Fin n) (Fin n) D.host.E) : (-A)⁻¹ = -A⁻¹ := by
-  by_cases h : IsUnit A.det
-  · exact Matrix.inv_eq_left_inv (by rw [neg_mul_neg, Matrix.nonsing_inv_mul A h])
-  · have h' : ¬ IsUnit (-A).det := by
-      rw [Matrix.det_neg]
-      intro hu
-      exact h (isUnit_of_mul_isUnit_right hu)
-    rw [Matrix.nonsing_inv_apply_not_isUnit _ h, Matrix.nonsing_inv_apply_not_isUnit _ h', neg_zero]
-
 theorem symplO_negSp {D : D7} (S T : HSp D) (x y : WO S T) : symplO (negSp S) T x y = -symplO S T x y := by
   have e : hO (negSp S) T x y = -hO S T x y := by
     unfold hO
-    rw [negSp_gram, inv_neg_mat]
+    rw [negSp_gram, _root_.GlobalTheory.CjNeg.inv_neg_mat]
     simp only [Matrix.neg_apply, map_neg, neg_mul, Finset.sum_neg_distrib]
   unfold symplO
   rw [e, mul_neg, map_neg]
-
-theorem symplO_zero_left' {D : D7} (S T : HSp D) (y : WO S T) : symplO S T 0 y = 0 := by
-  unfold symplO hO
-  simp
 
 section
 variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} (G : GridData L sc)
@@ -94,11 +82,7 @@ theorem latRow_pair (W : G.Weil) (i : ℕ) (h1 : 1 ≤ i) (h : i + 1 ≤ D.R.m) 
     (fun _ => True) u (latRow_mxAt G i h1 h hu)).1 hu.1 u' hu'.1
   rwa [symplO_negSp, AddChar.map_neg_eq_inv, inv_eq_one] at this
 
-theorem mxAt_mul {P : GlobalTheory.FinPl.Pl D → Prop} {m n k : ℕ} {x : Mx D m n} (hx : MxAt P x) (y : Mx D n k) : MxAt P (x ⬝ y) :=
-  fun i j => by
-    show (x * y) i j ∈ _
-    rw [Matrix.mul_apply]
-    exact Ideal.sum_mem _ fun l _ => Ideal.mul_mem_right _ _ (hx i l)
+alias mxAt_mul := _root_.GlobalTheory.AscFinWit.mxAt_mul'
 
 end
 
@@ -167,6 +151,6 @@ theorem splits_FB : OnStd fun {D} _ _ {sc} {G} W F => ∀ σ (h : 2 * (σ + 1) +
     rw [hB2]; exact hB gY
   · show dV.ext0 _ (dW.inc0 _ (dW.p0 ⬝ (u ⬝ dV.j0))) ∈ latRow G (2 * σ + 2)
     rw [hG0]; exact g0
-  · rw [map_zero, symplO_zero_left', AddChar.map_zero_eq_one]
+  · rw [map_zero, _root_.GlobalTheory.SplitScalar.symplO_zero_left, AddChar.map_zero_eq_one]
 
 end GlobalTheory.AscFin.SplitsFB

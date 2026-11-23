@@ -65,7 +65,7 @@ theorem logCartier_rounding_family : ∀ (K : Type) [Field K] (p : ℕ) [Fact p.
   obtain ⟨y0⟩ := ‹Nonempty Y›
   have hc : IsCoord x := (hA y0).coord
   have hp : 0 < p := (Fact.out : p.Prime).pos
-  obtain ⟨h, Q, π, hhom, hQw, hπ, -, -, hstab⟩ := GlobalTheory.T.cartier_projection_properties K p n x hc
+  obtain ⟨h, Q, π, hhom, hQw, hπ, -, -, hstab⟩ := _root_.GlobalTheory.CartierHomotopy.cartier_projector_homotopic K p n x hc
   have hT : ∀ y, (∀ q, ∀ η ∈ chartForms (A y) x J (t y ^ p * ∏ j ∈ J, x j ^ r y j) (q + 1),
         h η ∈ chartForms (A y) x J (t y ^ p * ∏ j ∈ J, x j ^ r y j) q) ∧
       (∀ η ∈ chartForms (A y) x J (t y ^ p * ∏ j ∈ J, x j ^ r y j) 0, h η = 0) ∧
@@ -73,7 +73,7 @@ theorem logCartier_rounding_family : ∀ (K : Type) [Field K] (p : ℕ) [Fact p.
         Q η ∈ chartForms (A y) x J (t y ^ p * ∏ j ∈ J, x j ^ r y j) q := by
     intro y
     exact hstab (fun q => chartForms (A y) x J (t y ^ p * ∏ j ∈ J, x j ^ r y j) q)
-      (GlobalTheory.T.chart_forms_differential_closed K p (A y) n x J (t y) (r y) (hA y))
+      (_root_.GlobalTheory.LogDR.extD_mem_chartForms_twist K p (A y) n x J (t y) (r y) (hA y))
       (fun i θ hθ => GlobalTheory.T.euler_contraction_chart_forms K (A y) n x J _ i θ (hA y).mem hθ)
   obtain ⟨hli, hsp⟩ := GlobalTheory.T.logCoordinateWedge_linearIndependent_span_eq_top K n x hc
   obtain ⟨c, hcη⟩ : ∃ c : Finset (Fin n) → K, ∑ I, c I • logWedge x I = η :=
@@ -87,7 +87,7 @@ theorem logCartier_rounding_family : ∀ (K : Type) [Field K] (p : ℕ) [Fact p.
   refine ⟨∑ I, g I • logWedge x I, h η, ?_, ?_, ?_, ?_⟩
   · intro y
     have hm := (hT y).2.2 a η (hη y)
-    rw [GlobalTheory.T.mem_chart_forms_iff] at hm
+    rw [_root_.GlobalTheory.LogDR.mem_chartForms_iff] at hm
     obtain ⟨c', hc'0, hc'A, hc'eq⟩ := hm
     have heq : ∀ I, c' I = g I ^ p := by
       have h0 : ∑ I, (c' I - g I ^ p) • logWedge x I = 0 := by
@@ -95,7 +95,7 @@ theorem logCartier_rounding_family : ∀ (K : Type) [Field K] (p : ℕ) [Fact p.
         rw [← hc'eq, ← hQη, sub_self]
       intro I
       exact sub_eq_zero.mp (Fintype.linearIndependent_iff.mp hli _ h0 I)
-    rw [GlobalTheory.T.mem_chart_forms_iff]
+    rw [_root_.GlobalTheory.LogDR.mem_chartForms_iff]
     refine ⟨g, ?_, ?_, rfl⟩
     · intro I hI
       have h1 := hc'0 I hI

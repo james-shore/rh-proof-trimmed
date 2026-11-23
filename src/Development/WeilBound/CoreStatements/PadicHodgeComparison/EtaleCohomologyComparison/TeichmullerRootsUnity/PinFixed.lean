@@ -73,7 +73,7 @@ theorem PinP.pin_lev (r : Res l K) {N : ℕ} (hT : Pb.Mid.TeichmullerCongruence 
 theorem PinP.pin_fixed (r : Res l K) [FiniteDimensional ℚ_[l] K] (f : ℕ) (hf : 0 < f) :
     ∃ N : ℕ, f ∣ N ∧ Pb.Mid.TeichmullerCongruence r N ∧ ∃ F : Pb.Fac r N, ∀ M : Model l K, M.Sm → ∀ j, Pin F M j := by
   obtain ⟨N, hfN, hT⟩ := PinP.teich_dvd r f hf
-  obtain ⟨F, hF⟩ := Pb.fac_ex r hT (fun M n j x => Pb.Mid.mu_nu r N hT M n j x) (Pb.G3.w_phi r) (fun g w => Pb.G3.w_fix r g w)
+  obtain ⟨F, hF⟩ := Pb.fac_ex r hT (fun M n j x => _root_.CrystallineSemistableComparison.Pb.Mid.frobenius_mu_nu_iterate r N hT M n j x) (Pb.G3.w_phi r) (fun g w => Pb.G3.w_fix r g w)
   exact ⟨N, hfN, hT, F, fun M hM j => PinP.pin_of r hT F M j fun y n => PinP.pin_lev r hT F hF M hM j y n⟩
 
 theorem pinEx : PinEx := fun _ _ _ _ r f hf => PinP.pin_fixed r f hf

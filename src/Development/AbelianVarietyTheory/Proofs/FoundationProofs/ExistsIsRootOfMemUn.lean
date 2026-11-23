@@ -62,7 +62,7 @@ noncomputable section
 
 namespace GlobalTheory.KZ.H3.UnRoot
 
-lemma isOpen_Hs : IsOpen Hs := isOpen_lt continuous_const Complex.continuous_im
+alias isOpen_Hs := _root_.GlobalTheory.KZ.H3.isOpen_Hs_place
 
 lemma isPreconnected_Hs : IsPreconnected Hs :=
   (convex_halfSpace_gt Complex.imLm.isLinear (0:ℝ)).isPreconnected

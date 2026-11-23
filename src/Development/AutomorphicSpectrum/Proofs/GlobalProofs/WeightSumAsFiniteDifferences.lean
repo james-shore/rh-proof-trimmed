@@ -66,7 +66,7 @@ theorem differentiableOn_tsum_weighted_DL_halfplane : ∀ (ι : Type) [Fintype �
   have key : ∀ R : ℕ, DifferentiableOn ℂ (fun s => ∑' m, (u m : ℂ) * DL cs (coneTerm a b s) m)
       {s : ℂ | ‖s‖ < (R : ℝ) ∧ -(B : ℝ) < s.re} := by
     intro R
-    obtain ⟨C, hC0, hC⟩ := GlobalTheory.T.real_difference_cone_bound ι r a b ha hb B R cs 0
+    obtain ⟨C, hC0, hC⟩ := _root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.DiffDecay.diff_bound ι r a b ha hb B R cs 0
     refine Complex.differentiableOn_tsum_of_summable_norm
       (u := fun m : Fin r → ℕ => Cu * C * ∏ i, ((1 + (m i : ℝ)) ^ 2)⁻¹)
       ((GlobalTheory.T.summable_inverse_square_product r).mul_left _) ?_ (hopen R) ?_
@@ -85,7 +85,7 @@ theorem differentiableOn_tsum_weighted_DL_halfplane : ∀ (ι : Type) [Fintype �
           · exact Or.inr (by_contra fun hne => hum (h m hne))
         have hbound := hC s hs.1.le hs.2.le (fun i => (m i : ℝ)) (fun i => Nat.cast_nonneg _)
         simp only [Pi.zero_apply, Nat.cast_zero, Finset.sum_const_zero, sub_zero] at hbound
-        have hsize := GlobalTheory.T.size_power_le_inverse_square_product r (Fintype.card ι) B N cs m hN hcount
+        have hsize := _root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.sizeE_zpow_le_prod_inv_sq r (Fintype.card ι) B N cs m hN hcount
         have hDL : ‖DL cs (coneTerm a b s) m‖ ≤ C * ∏ i, ((1 + (m i : ℝ)) ^ 2)⁻¹ := by
           rw [GlobalTheory.T.finite_difference_cone_term_eq ι r a b s cs m]
           exact hbound.trans (mul_le_mul_of_nonneg_left hsize hC0)

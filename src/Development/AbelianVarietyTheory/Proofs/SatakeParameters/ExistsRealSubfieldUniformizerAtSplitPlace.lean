@@ -53,6 +53,7 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.PtEquivApply
 import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
 import Formalism.SharpRestriction.LevelLetterCocycles.LocCoh
 import ReciprocityTheory.GaloisValuations.GlobalA
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.IntegralPowerExpansion
 
 @[expose] public section
 
@@ -61,11 +62,6 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 open scoped TensorProduct
 
 namespace GlobalTheory.RealUnifSplit
-
-theorem le_exp_neg_one_of_lt {x : WithZero (Multiplicative ℤ)} (h : x < 1) : x ≤ WithZero.exp (-1) := by
-  rw [← WithZero.lt_mul_exp_iff_le WithZero.exp_ne_zero, ← WithZero.exp_add, neg_add_cancel,
-    WithZero.exp_zero]
-  exact h
 
 theorem val_sq_le {L : Type} [Field L] [NumberField L] [IsCMField L] (s : SplitPlace L)
     (z : 𝓞 L) (hz : z ∈ s.w.asIdeal ^ 2) :
@@ -79,7 +75,7 @@ theorem val_sq_le {L : Type} [Field L] [NumberField L] [IsCMField L] (s : SplitP
     rw [map_mul, map_mul]
     calc Valued.v (s.i (a : L)) * Valued.v (s.i (b : L))
         ≤ WithZero.exp (-1) * WithZero.exp (-1) :=
-          mul_le_mul' (le_exp_neg_one_of_lt ha') (le_exp_neg_one_of_lt hb')
+          mul_le_mul' (_root_.GlobalTheory.Proof.IntegralPowerExpansion.le_exp_neg_one_of_lt_one ha') (_root_.GlobalTheory.Proof.IntegralPowerExpansion.le_exp_neg_one_of_lt_one hb')
       _ = WithZero.exp (-2) := by rw [← WithZero.exp_add]; norm_num
   · intro a b ha hb
     show Valued.v (s.i ((a : L) + (b : L))) ≤ _

@@ -122,7 +122,7 @@ theorem norm_div_close_to_one : ∀ (E E' : Type) [Field E] [NumberField E] [Fie
     · subst h2
       exact hw'y.trans (WithZero.exp_le_exp.2 (by omega))
     rw [hy1, map_mul]
-    have hi := GlobalTheory.T.valuation_le_one_of_sq_sub_self_integral_basis E E' b hb' w w'' h1 ε hε1
+    have hi := _root_.GlobalTheory.integral_of_sq_sub_integral E E' b hb' w w'' h1 ε hε1
     have h1e : w''.valuation E' (1 - ε) ≤ 1 :=
       (Valuation.map_sub _ _ _).trans (max_le (by simp) hi)
     calc w''.valuation E' (1 - ε) * w''.valuation E' (z - 1) ≤ 1 * WithZero.exp (-(M₁ : ℤ)) :=

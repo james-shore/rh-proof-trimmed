@@ -240,9 +240,6 @@ theorem e_mem_Xa (F : FlagD H r) {a : ℕ} (b : Fin r) (h : b.val < a) : F.e b.c
   unfold FlagD.Xa
   exact Submodule.subset_span ⟨b, h, rfl⟩
 
-theorem Xa_mono (F : FlagD H r) {a b : ℕ} (h : a ≤ b) : F.Xa a ≤ F.Xa b := by
-  exact GlobalTheory.DegCnt.LiftS.Xa_le (fun c hc => GlobalTheory.DegCnt.LiftS.e_mem_Xa F c (lt_of_lt_of_le hc h))
-
 theorem Xa_le_X (F : FlagD H r) (a : ℕ) : F.Xa a ≤ F.X := by
   exact GlobalTheory.DegCnt.LiftS.Xa_le (fun b _ => GlobalTheory.DegCnt.LiftS.e_mem_Xa F b b.2)
 
@@ -639,7 +636,7 @@ theorem s_Xa (G : FlagD H r) {s : V →ₗ[K] V} (hs : G.InN s) (a : ℕ) {y : V
   obtain ⟨-, -, he, -⟩ := hs
   have key : ∀ b : Fin r, b.val < a → s (G.e b.castSucc) ∈ G.Xa a := by
     intro b hb
-    have h1 : s (G.e b.castSucc) - G.e b.castSucc ∈ G.Xa a := Xa_mono G hb.le (he b)
+    have h1 : s (G.e b.castSucc) - G.e b.castSucc ∈ G.Xa a := _root_.GlobalTheory.UnipStab.Xa_mono G hb.le (he b)
     have h2 : G.e b.castSucc ∈ G.Xa a := Submodule.subset_span ⟨b, hb, rfl⟩
     simpa using add_mem h1 h2
   have hle : G.Xa a ≤ (G.Xa a).comap s := Submodule.span_le.2 (by

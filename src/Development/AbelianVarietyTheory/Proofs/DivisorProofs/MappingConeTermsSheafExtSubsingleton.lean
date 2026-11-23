@@ -100,7 +100,7 @@ theorem ext_injective_subsingleton {R : Type} [CommRing R] (G I : Shv R) [Inject
   haveI := hq
   haveI := sgl_isKInjective I
   obtain ⟨e, he⟩ := (CochainComplex.IsKInjective.quasiIso_iff (resAug I)).1 hq
-  have h63 := GlobalTheory.T.hypercohomologyPullbackPushforward_functorial R
+  have h63 := _root_.GlobalTheory.EtC.ZcFun.main R
   have hsurj : Function.Surjective (cpush (sgl G) (resAug I) i) := by
     intro y
     refine ⟨cpush (sgl G) e.inv i y, ?_⟩
@@ -117,7 +117,7 @@ theorem cone_terms_ext_subsingleton : ∀ (R : Type) [CommRing R] (G : Shv R) {C
     (∀ t, Injective (J.X t)) → (∀ t i : ℤ, 0 < i → Subsingleton (CohomologyClass (sgl G) (res R (C.X t)) i)) →
     ∀ t i : ℤ, 0 < i → Subsingleton (CohomologyClass (sgl G) (res R ((mappingCone u).X t)) i) := by
   intro R _ G C J u hJ hC t i hi
-  obtain ⟨z, hz⟩ := GlobalTheory.T.etaleCohomology_coefficient_longExactSequence R (coneSES u t) (coneSES_shortExact u t)
+  obtain ⟨z, hz⟩ := _root_.GlobalTheory.EtC.coefSeq_exact R (coneSES u t) (coneSES_shortExact u t)
   have hex := (hz (sgl G) i).1
   haveI := hJ t
   haveI hsJ : Subsingleton (CohomologyClass (sgl G) (res R (J.X t)) i) := ext_injective_subsingleton G (J.X t) i hi.ne'

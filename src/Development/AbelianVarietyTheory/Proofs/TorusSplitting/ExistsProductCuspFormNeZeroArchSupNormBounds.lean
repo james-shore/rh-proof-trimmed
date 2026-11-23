@@ -86,7 +86,7 @@ theorem exists_etaRule_cusp_ne_zero_bounds : ∀ (E : Type) [Field E] [NumberFie
           p16 E r q m R (max 1 (Fintype.card (U σ₀).Comp) * R ^ (8 * I2.PT.f E * r ^ 2)))) := by
     intro σ hσ
     rw [← hn]
-    exact (GlobalTheory.T.productForm_isSection_pointwiseNorm_le E H Dw l Xo c σ r (U σ) hσ (hU σ hσ) hT R i _ hR hR1 hG hN _ cf _ f hJ hcf hsp hf
+    exact (_root_.GlobalTheory.EtaAn.etaRule_isSec_pnorm_le E H Dw l Xo c σ r (U σ) hσ (hU σ hσ) hT R i _ hR hR1 hG hN _ cf _ f hJ hcf hsp hf
       DF q m R0 hrun hm).2
   have hcusp := GlobalTheory.cusp_and_supC_le_of_bounded E H Dw l Xo c r U (2 * R ^ 4 * r * i) f
     (Real.exp (i * p16 E r q m R (max 1 (Fintype.card (U σ₀).Comp) * R ^ (8 * I2.PT.f E * r ^ 2)))) h2 hev hU hsec

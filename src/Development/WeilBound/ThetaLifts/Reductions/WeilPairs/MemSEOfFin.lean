@@ -149,7 +149,7 @@ theorem small (T : Set (AF F ⊗[F] E)) (hT : T ∈ 𝓝 0) : ∃ N : ℕ, 0 < N
   have h1 : Φ ⁻¹' T ∈ 𝓝 0 := hc.continuousAt.preimage_mem_nhds (by rw [map_zero]; exact hT)
   rw [nhds_pi, Filter.mem_pi] at h1
   obtain ⟨I, -, W, hW, hsub⟩ := h1
-  obtain ⟨N, hN, hNW⟩ := GlobalTheory.AdLat.OpenLat.exists_nsmul_adele F (⋂ i, W i) (Filter.iInter_mem.2 hW)
+  obtain ⟨N, hN, hNW⟩ := _root_.GlobalTheory.LocalNormBound.main F (⋂ i, W i) (Filter.iInter_mem.2 hW)
   refine ⟨N, hN, fun s hs => ?_⟩
   obtain ⟨c, h2, e⟩ := hrep s hs
   rw [e, ← map_nsmul]
@@ -389,7 +389,7 @@ theorem exists_sep (v : HeightOneSpectrum (𝓞 F)) : ∃ N : ℕ, 0 < N ∧ ∀
     rintro ⟨y, hy, e⟩
     have e' : algebraMap F (Fv F v) y = 0 := e.trans (map_zero (evalV F v))
     exact hy.2 ((map_eq_zero _).1 e')
-  obtain ⟨N, hN, hW⟩ := GlobalTheory.AdLat.OpenLat.exists_nsmul_adele F _ h0
+  obtain ⟨N, hN, hW⟩ := _root_.GlobalTheory.LocalNormBound.main F _ h0
   refine ⟨N, hN, fun y h1 h2 c hc' e => ?_⟩
   by_contra hy
   refine hW (sing v c) (fun w => ?_) ⟨y, ⟨⟨h1, h2⟩, hy⟩, ?_⟩

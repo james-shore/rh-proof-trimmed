@@ -186,7 +186,7 @@ theorem exists_polAV_hypS_retract : ∀ (k : Type) [Field k] [IsAlgClosed k] (B 
   obtain ⟨W, hW, hbas⟩ := GlobalTheory.ZM.exists_isE8_isSharpBasis
   obtain ⟨bas, hb⟩ := hbas g
   obtain ⟨a, w, w', hw, hw', hs⟩ := exists_matrices hW.2
-  obtain ⟨t, hsh, hp⟩ := GlobalTheory.exists_isSharp_and_prim hL1 hL2 GlobalTheory.Moduli.cube_of_isLB g (8 * g) W _ a w w' bas
+  obtain ⟨t, hsh, hp⟩ := GlobalTheory.exists_isSharp_and_prim hL1 hL2 _root_.GlobalTheory.AbLaw.CubeAssembly.cube_gen g (8 * g) W _ a w w' bas
     hW hb hw hw' hs 1 k b (Sp k) (𝟙 _) c (show (1 : kˣ) ^ 1 = 1 from one_pow 1) odd_one hc hd
   obtain ⟨pr, hpr, hu, -, -, -⟩ := hsh
   obtain ⟨i, hi, -⟩ := hu B (fun _ => 𝟙 B)

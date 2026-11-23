@@ -84,24 +84,13 @@ theorem eq_one_of_smul_eq (E : Type) [Field E] [NumberField E] [IsGalois ℚ E] 
   have hm : σ ∈ MulAction.stabilizer Gal(E/ℚ) P := hσ
   rwa [hb, Subgroup.mem_bot] at hm
 
-theorem conj_ne_one {R : Ranks} (H : Host R) : H.conj ≠ 1 := by
-  have : IsCMField H.E := H.isCMField_hostE
-  intro h
-  apply IsCMField.complexConj_ne_one H.E
-  ext z
-  have : IsCMField.complexConj H.E z = H.conj z := by
-    apply H.φ₀.injective
-    rw [NumberField.IsCMField.complexEmbedding_complexConj, Formalism.HC.HostAx.conjE_apply]
-  rw [this, h]
-  rfl
-
 theorem isSplitPl_of_split {R : Ranks} (H : Host R) {p : ℕ} (hp : p.Prime)
     (h : ((Ideal.span {(p : ℤ)}).primesOver (𝓞 H.E)).ncard = Module.finrank ℚ H.E)
     (v : HeightOneSpectrum (𝓞 H.E)) (hv : v ∈ placesOver H.E p) : IsSplitPl H v := by
   have : IsGalois ℚ H.E := H.hostE_isGalois
   have := v.isPrime
   by_contra hs
-  apply conj_ne_one H
+  apply _root_.GlobalTheory.Mem.GaloisStage.conj_ne_one H
   rw [← inv_eq_one]
   refine eq_one_of_smul_eq H.E hp h v.asIdeal hv _ (Eq.symm ?_)
   refine v.isMaximal.eq_of_le (Ideal.IsPrime.ne_top inferInstance) ?_

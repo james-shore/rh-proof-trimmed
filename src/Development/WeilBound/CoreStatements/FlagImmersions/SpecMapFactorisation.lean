@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.MemIdealOfOfDense
 
 @[expose] public section
 
@@ -50,14 +51,6 @@ open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain MvPoly
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 
 namespace RootFieldNumerics.RF
-
-theorem spMap_comp' {R S T : Type} [CommRing R] [CommRing S] [CommRing T] (f : R →+* S) (g : S →+* T) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  show Spec.map (CommRingCat.ofHom (g.comp f)) = _
-  rw [CommRingCat.ofHom_comp, Spec.map_comp]
-
-theorem spMap_inj {R S : Type} [CommRing R] [CommRing S] {f g : R →+* S} (h : spMap f = spMap g) : f = g :=
-  congrArg CommRingCat.Hom.hom (Spec.map_injective h)
 
 theorem spec_map_factorisation {X : Scheme.{0}} {A A' B B' : CommRingCat.{0}} (u : A ⟶ B) [IsIso u] (r : A ⟶ A') (v : A' ⟶ B')
     (a : Spec A ⟶ X) (a' : Spec A' ⟶ X) (x : Spec B ⟶ X) (x' : Spec B' ⟶ X) (e : Spec.map u ≫ a = x)
@@ -96,8 +89,8 @@ theorem isGeom_of {l : Level H} {Xo : Moduli D l} {c : Coeff l} [NumberField c.F
     exact congrArg genPt o.𝔐.fn_over
   obtain ⟨i, hi⟩ := exists_factor Fx.ξf Z.gen (e1 ▸ specializes_rfl)
   have hb : (o.g.comp i).comp Z.inc = o.𝔐.cst := by
-    refine IsLocalization.ringHom_ext (nonZeroDivisors (𝓞 c.F)) (spMap_inj ?_)
-    rw [← o.𝔐.cst_over, ← Category.assoc, o.g_over, ← hi, spMap_comp', spMap_comp', spMap_comp', ← Z.over_inc,
+    refine IsLocalization.ringHom_ext (nonZeroDivisors (𝓞 c.F)) (_root_.GlobalTheory.ZM.DenseFib.spMap_inj ?_)
+    rw [← o.𝔐.cst_over, ← Category.assoc, o.g_over, ← hi, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, ← Z.over_inc,
       ← Y.jQ_over]
     simp only [Model.j, Category.assoc, pullback.condition]
   rintro x ⟨f, hf, hx⟩

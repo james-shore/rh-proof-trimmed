@@ -70,9 +70,9 @@ theorem T_vline (hH : THeis) (R : RD d) {g : Yf d → ℂ} {Ω : d.Fn} (hΩ : Ω
     {W : Mx F E d.m d.n} (hW : finOne F • W = 0) (z : ℂ) (X : Mx F E d.m d.n) :
     d.T (d.dd.rho d.B.ψ (vline R W z) Ω) X = bv (arc R W) z (arc R X) * g (fin d X) := by
   unfold vline
-  rw [T_rho_sum' hH hΩ, psi_sp R hW, psi_tw R hW, hTΩ]
+  rw [T_rho_sum' hH hΩ, _root_.PositivityTheory.SiegelWeilFormula.KFP.psi_sp' R hW, _root_.PositivityTheory.SiegelWeilFormula.KFP.psi_tw' R hW, hTΩ]
   simp only [vac]
-  rw [gau_eq, arc_add, arc_realAd, fin_add_of R (fin_realAd_smul hW z.re)]
+  rw [_root_.PositivityTheory.SiegelWeilFormula.KFP.gau_eq', _root_.PositivityTheory.SiegelWeilFormula.KFP.arc_add', _root_.PositivityTheory.SiegelWeilFormula.KFP.arc_realAd', _root_.PositivityTheory.SiegelWeilFormula.KFP.fin_add_of' R (_root_.PositivityTheory.SiegelWeilFormula.KFP.fin_realAd_smul' hW z.re)]
   simp only [bv, ev]
   rw [show star (Complex.exp _) = Complex.exp (conj _) from (Complex.exp_conj _).symm, Complex.ofReal_exp,
     ← mul_assoc, ← mul_assoc, ← Complex.exp_add, ← Complex.exp_add]

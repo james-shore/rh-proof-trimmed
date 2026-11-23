@@ -43,6 +43,8 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PerCApply
+import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.AppellHumbertTrivialOfNowhereVanishing
+import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.EqZeroOfSumEmbeddingMul
 
 @[expose] public section
 
@@ -67,16 +69,8 @@ private theorem hf_add_r (H : Matrix (Fin g) (Fin g) ℂ) (a b c : Fin g → ℂ
     hermForm H a (b + c) = hermForm H a b + hermForm H a c := by
   simp [hermForm, star_add, Matrix.mulVec_add, dotProduct_add]
 
-private theorem hf_smul_l (H : Matrix (Fin g) (Fin g) ℂ) (t : ℂ) (a b : Fin g → ℂ) :
-    hermForm H (t • a) b = t * hermForm H a b := by
-  simp [hermForm, smul_dotProduct]
-
 private theorem star_smulC {m : ℕ} (t : ℂ) (b : Fin m → ℂ) : star (t • b) = (starRingEnd ℂ) t • star b := by
   ext i; simp
-
-private theorem hf_smul_r (H : Matrix (Fin g) (Fin g) ℂ) (t : ℂ) (a b : Fin g → ℂ) :
-    hermForm H a (t • b) = (starRingEnd ℂ) t * hermForm H a b := by
-  simp only [hermForm, star_smulC, Matrix.mulVec_smul, dotProduct_smul, smul_eq_mul]
 
 private theorem hv_add_l (M : Matrix (Fin n) (Fin n) ℂ) (a b c : Fin n → ℂ) :
     hv M (a + b) c = hv M a c + hv M b c := by
@@ -99,10 +93,10 @@ private noncomputable def hBil {X : Type} [AddCommGroup X] [Module ℝ X] (R : X
   LinearMap.mk₂ ℝ (fun x y => (hermForm Hm (R x) (R y)).im)
     (fun a b c => by simp only [map_add (f := _), hf_add_l, Complex.add_im])
     (fun c a b => by
-      simp only [map_smul, smulR, hf_smul_l, Complex.im_ofReal_mul, smul_eq_mul])
+      simp only [map_smul, smulR, _root_.GlobalTheory.AppellHumbertTrivial.hermForm_smul_left, Complex.im_ofReal_mul, smul_eq_mul])
     (fun a b c => by simp only [map_add (f := _), hf_add_r, Complex.add_im])
     (fun c a b => by
-      simp only [map_smul, smulR, hf_smul_r, Complex.conj_ofReal, Complex.im_ofReal_mul, smul_eq_mul])
+      simp only [map_smul, smulR, _root_.GlobalTheory.EigenNorm.hermForm_smul_right, Complex.conj_ofReal, Complex.im_ofReal_mul, smul_eq_mul])
 
 private theorem bil_eq (R : (P → Fin n → ℂ) ≃ₗ[ℝ] (Fin g → ℂ)) (Hm : Matrix (Fin g) (Fin g) ℂ)
     (M : P → Matrix (Fin n) (Fin n) ℂ) (s : P → ℂ) (r : P → ℝ) (S : Set (P → Fin n → ℂ))
@@ -206,7 +200,7 @@ private theorem core (R : (P → Fin n → ℂ) ≃ₗ[ℝ] (Fin g → ℂ)) (Hm
       (-(s v) * Complex.I * hv (M v) a b).re := by
     intro a b
     have h1 := hEv (J v *ᵥ a) (J v *ᵥ b)
-    rw [hsv, hsv, hf_smul_l, hf_smul_r,
+    rw [hsv, hsv, _root_.GlobalTheory.AppellHumbertTrivial.hermForm_smul_left, _root_.GlobalTheory.EigenNorm.hermForm_smul_right,
       show Complex.I * ((starRingEnd ℂ) Complex.I * hermForm Hm (R (Pi.single v a)) (R (Pi.single v b))) =
         hermForm Hm (R (Pi.single v a)) (R (Pi.single v b)) by
         rw [Complex.conj_I, ← _root_.mul_assoc, mul_neg, Complex.I_mul_I]; simp, hEv] at h1
@@ -237,7 +231,7 @@ private theorem core (R : (P → Fin n → ℂ) ≃ₗ[ℝ] (Fin g → ℂ)) (Hm
       have h1 : (Pi.single v x : P → Fin n → ℂ) = 0 := by simpa using h0
       exact hx (by simpa using h1)
     have h1 := hEv (J v *ᵥ x) x
-    rw [hsv, hf_smul_l] at h1
+    rw [hsv, _root_.GlobalTheory.AppellHumbertTrivial.hermForm_smul_left] at h1
     have h2 := hpos _ hz
     have h3 : 0 < r v * (-(s v) * Complex.I * hv (M v) (J v *ᵥ x) x).re := by
       rw [← h1]; simpa [Complex.mul_im] using h2

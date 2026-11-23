@@ -58,15 +58,6 @@ open scoped LaurentSeries PowerSeries
 section lin
 variable {k U : Type} [Field k] [AddCommGroup U] [Module k U]
 
-theorem mem_iSup_comap_pow (S : Module.End k U) (Q : Submodule k U) (hQ : ∀ q ∈ Q, S q ∈ Q) (p : U) :
-    p ∈ ⨆ m : ℕ, Q.comap (S ^ m) ↔ ∃ m : ℕ, (S ^ m) p ∈ Q := by
-  have hmono : Monotone fun m : ℕ => Q.comap (S ^ m) := by
-    refine monotone_nat_of_le_succ fun m y hy => ?_
-    rw [Submodule.mem_comap, pow_succ', Module.End.mul_apply]
-    exact hQ _ hy
-  rw [Submodule.mem_iSup_of_directed _ hmono.directed_le]
-  rfl
-
 theorem gmult_transport (T T' : Module.End k U) (e : U ≃ₗ[k] U) (P Q P' Q' : Submodule k U)
     (hP' : ∀ p, e p ∈ P' ↔ p ∈ P) (hQ' : ∀ p, e p ∈ Q' ↔ p ∈ Q)
     (hTP : ∀ p ∈ P, T p ∈ P) (hTQ : ∀ p ∈ Q, T p ∈ Q) (hTQ' : ∀ p ∈ Q', T' p ∈ Q') (x y : k)
@@ -94,7 +85,7 @@ theorem gmult_transport (T T' : Module.End k U) (e : U ≃ₗ[k] U) (P Q P' Q' :
       rwa [map_sub, sub_add_sub_cancel] at h3
   have hmem : ∀ p, e p ∈ (P' ⊓ ⨆ m : ℕ, Q'.comap (S' ^ m)) ↔ p ∈ (P ⊓ ⨆ m : ℕ, Q.comap (S ^ m)) := by
     intro p
-    rw [Submodule.mem_inf, Submodule.mem_inf, mem_iSup_comap_pow S Q hSQ, mem_iSup_comap_pow S' Q' hSQ', hP']
+    rw [Submodule.mem_inf, Submodule.mem_inf, _root_.GlobalTheory.PhiGam.GmultAdd.mem_gen S Q hSQ, _root_.GlobalTheory.PhiGam.GmultAdd.mem_gen S' Q' hSQ', hP']
     refine and_congr_right fun hp => exists_congr fun m => ?_
     rw [← hQ']
     have := (key p hp m).2

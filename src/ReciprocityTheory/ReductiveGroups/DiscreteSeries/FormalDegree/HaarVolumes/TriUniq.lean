@@ -62,19 +62,10 @@ variable {N : ℕ}
 
 namespace PositiveTriangularSet
 
-theorem triCoOf_upMat (t : TriCo N) : triCoOf (upMat t) = t := by
-  rcases t with ⟨d, u⟩
-  refine Prod.ext ?_ ?_
-  · funext j; simp [triCoOf, upMat]
-  · funext ab; simp [triCoOf, upMat, ab.2.ne, ab.2]
-
 theorem upMat_up (t : TriCo N) : (upMat t).BlockTriangular id := by
   intro i j h
   have h' : j < i := h
   simp [upMat, h'.ne', not_lt.mpr h'.le]
-
-theorem upMat_diag (t : TriCo N) (j : Fin N) : upMat t j j = ((t.1 j : ℝ) : ℂ) := by
-  simp [upMat]
 
 theorem upMat_triCoOf_of_up (A : Matrix (Fin N) (Fin N) ℂ) (hA : A.BlockTriangular id)
     (hd : ∀ j, (A j j).im = 0) : upMat (triCoOf A) = A := by
@@ -117,7 +108,7 @@ theorem continuous_triCoOf : Continuous (triCoOf : Matrix (Fin N) (Fin N) ℂ �
 
 theorem det_upMat (t : TriCo N) : (upMat t).det = ∏ j, ((t.1 j : ℝ) : ℂ) := by
   rw [det_of_isUpperTriangular (upMat_up t)]
-  simp [upMat_diag]
+  simp [_root_.ReciprocityTheory.ChartRestriction.DS.UpperTriangularMatrices.upMat_diag]
 
 theorem det_upMat_ne (t : TriCo N) (ht : t ∈ triPos N) : IsUnit (upMat t).det := by
   rw [det_upMat, isUnit_iff_ne_zero, Finset.prod_ne_zero_iff]
@@ -131,7 +122,7 @@ theorem inv_up (t : TriCo N) (ht : t ∈ triPos N) : (upMat t)⁻¹.BlockTriangu
 theorem inv_diag (t : TriCo N) (ht : t ∈ triPos N) (j : Fin N) :
     (upMat t)⁻¹ j j = (((t.1 j)⁻¹ : ℝ) : ℂ) := by
   have h1 := congrFun (congrFun (nonsing_inv_mul _ (det_upMat_ne t ht)) j) j
-  rw [diag_mul_of_up (inv_up t ht) (upMat_up t), upMat_diag, Matrix.one_apply_eq] at h1
+  rw [diag_mul_of_up (inv_up t ht) (upMat_up t), _root_.ReciprocityTheory.ChartRestriction.DS.UpperTriangularMatrices.upMat_diag, Matrix.one_apply_eq] at h1
   have h2 : ((t.1 j : ℝ) : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr (ht j).ne'
   rw [Complex.ofReal_inv]
   exact eq_inv_of_mul_eq_one_left h1
@@ -141,7 +132,7 @@ theorem upMat_mul_mem (a b : TriCo N) (ha : a ∈ triPos N) (hb : b ∈ triPos N
       triCoOf (upMat a * upMat b) ∈ triPos N := by
   have hu := (upMat_up a).mul (upMat_up b)
   have hd : ∀ j, (upMat a * upMat b) j j = (((a.1 j * b.1 j : ℝ)) : ℂ) := fun j => by
-    rw [diag_mul_of_up (upMat_up a) (upMat_up b), upMat_diag, upMat_diag, Complex.ofReal_mul]
+    rw [diag_mul_of_up (upMat_up a) (upMat_up b), _root_.ReciprocityTheory.ChartRestriction.DS.UpperTriangularMatrices.upMat_diag, _root_.ReciprocityTheory.ChartRestriction.DS.UpperTriangularMatrices.upMat_diag, Complex.ofReal_mul]
   refine ⟨upMat_triCoOf_of_up _ hu (fun j => by rw [hd]; simp), fun j => ?_⟩
   show 0 < ((upMat a * upMat b) j j).re
   rw [hd, Complex.ofReal_re]
@@ -175,7 +166,7 @@ theorem upMat_tg_inv (a : TG N) : upMat a⁻¹.1 = (upMat a.1)⁻¹ := (upMat_in
 
 theorem tg_ext {a b : TG N} (h : upMat a.1 = upMat b.1) : a = b := by
   apply Subtype.ext
-  rw [← triCoOf_upMat a.1, ← triCoOf_upMat b.1, h]
+  rw [← _root_.ReciprocityTheory.ChartRestriction.DS.UpperTriangularMatrices.triCoOf_upMat a.1, ← _root_.ReciprocityTheory.ChartRestriction.DS.UpperTriangularMatrices.triCoOf_upMat b.1, h]
 
 scoped instance : Group (TG N) where
   mul_assoc a b c := tg_ext (by simp only [upMat_tg_mul, Matrix.mul_assoc])

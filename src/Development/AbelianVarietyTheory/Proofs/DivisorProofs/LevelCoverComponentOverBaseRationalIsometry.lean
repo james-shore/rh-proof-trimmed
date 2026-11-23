@@ -90,7 +90,7 @@ theorem mark_of_exp {D : Datum H} {l l₂ : ReciprocityTheory.ChartRestriction.G
   intro a ha
   have j₂ := F.ex_eta k P hP a (Submodule.smul_mono_left hmap ha)
   have j₁ : toUnit _ ≫ Xo₂.univ.eta a ^ pd = F₂.ex k₂ P₂ ((l.M : ℂ)⁻¹ • P₂ (F₂.t k₂ a)) := by
-    rw [MonObj.comp_pow, F₂.ex_eta k₂ P₂ hP₂ a ha, ← GlobalTheory.CoverExp.pow_of_add (F₂.ex_add k₂ P₂ hP₂), hM,
+    rw [MonObj.comp_pow, F₂.ex_eta k₂ P₂ hP₂ a ha, ← _root_.GlobalTheory.LevCover.add_map_nsmul (F₂.ex_add k₂ P₂ hP₂), hM,
       ← Nat.cast_smul_eq_nsmul ℂ, smul_smul, Nat.cast_mul, mul_inv, mul_left_comm,
       mul_inv_cancel₀ (Nat.cast_ne_zero.2 hp0), _root_.mul_one]
   have e : F.ex k P ((l.M : ℂ)⁻¹ • P (gam (F₂.t k₂ a))) = F.ex k P ((l.M : ℂ)⁻¹ • P (F.t k a)) := by

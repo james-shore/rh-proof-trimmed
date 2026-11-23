@@ -124,37 +124,6 @@ theorem vanishFrom_adj_of_nef_big : Quoted → ∀ (K : Type) [Field K] [NumberF
   exact (cohOn.mapIso Γ(G.Y, ⊤) ⊤ q
     ((twistFunctor (lbZPow G.L j)).mapIso (Twist.unitTwistIso (tens G.K.bundle B₀)).symm ≪≫ i)).toEquiv.subsingleton_congr.2 hY
 
-section Comb
-
-variable {K : Type} [Field K] [NumberField K] (G : Geo K)
-
-theorem ger_comb_sum {ι : Type} [Fintype ι] (a : ι → K) (u : ι → Fin G.N → K) (j : G.L.ι) (y : G.Y) (hj : y ∈ G.L.U j) :
-    ger y hj ((G.comb (∑ i, a i • u i)).f j) = ∑ i, H0.const G.str y (a i) * ger y hj ((G.comb (u i)).f j) := by
-  have key (v : Fin G.N → K) : H0.ofSec G.str ⊤ (G.comb v) =
-      Fintype.linearCombination K (fun c => H0.ofSec G.str ⊤ (G.b c)) v := G.ofSec_comb ⊤ v
-
-  rw [← H0.germ_ofSec (p := G.str) j y (TopologicalSpace.Opens.mem_top y) hj, key, map_sum, map_sum]
-  refine Finset.sum_congr rfl fun i _ => ?_
-  rw [map_smul, H0.germ_smul, ← key, H0.germ_ofSec]
-
-theorem vanishesTo_of_isUnit (s : Fin G.D → Fin G.N → K) (g : Matrix (Fin G.D) (Fin G.D) K) (hg : IsUnit g.det)
-    {B : LB G.Y} {O : G.Y.Opens} {f : Vanishing.H0 G.str B O} (hf : VanishesTo (G.ideal s) 1 f) :
-    VanishesTo (G.ideal fun i => ∑ j, g i j • s j) 1 f := fun y _ hy c hc => by
-  have h := vanishesTo_iff_forall.1 hf y hy c hc
-  obtain ⟨j, hj⟩ := exists_chart G.isLB y
-  rw [pow_one, stalkId_cutIdeal G.isLB _ j y hj] at h ⊢
-  refine Ideal.span_le.2 (Set.range_subset_iff.2 fun a => ?_) h
-  have e : s a = ∑ i, g⁻¹ a i • ∑ j, g i j • s j := by
-    simp only [Finset.smul_sum, smul_smul]
-    rw [Finset.sum_comm]
-    simp only [← Finset.sum_smul, ← Matrix.mul_apply, Matrix.nonsing_inv_mul g hg, Matrix.one_apply, ite_smul, one_smul,
-      zero_smul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
-  change ger y hj ((G.comb (s a)).f j) ∈ Ideal.span _
-  rw [e, ger_comb_sum]
-  exact sum_mem fun i _ => Ideal.mul_mem_left _ _ (Ideal.subset_span ⟨i, rfl⟩)
-
-end Comb
-
 section Germs
 variable {k : Type} [CommRing k] {Y : Scheme.{0}} {p : Y ⟶ Sp k} {B : LB Y} {O : Y.Opens} {I : Y.IdealSheafData}
 
@@ -194,7 +163,7 @@ theorem res_onto : Quoted → ∀ (K : Type) [Field K] [NumberField K] (G : Geo 
       rw [Finset.sum_comm]
       simp only [← Finset.sum_smul, ← Matrix.mul_apply, Matrix.nonsing_inv_mul g hg, Matrix.one_apply, ite_smul,
         one_smul, zero_smul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
-    have h := vanishesTo_of_isUnit G (fun i => ∑ j, g i j • s j) g⁻¹ (Matrix.isUnit_nonsing_inv_det g hg) hf
+    have h := _root_.GlobalTheory.HSKerRes.vanishesTo_of_isUnit G (fun i => ∑ j, g i j • s j) g⁻¹ (Matrix.isUnit_nonsing_inv_det g hg) hf
     rwa [e] at h
   have key : ∀ y₀ : sectionsOnClosedSubscheme G.str (G.adj₂ 0) (G.ideal s), ∃ f, resTo suppIn_top f = y₀ := by
     intro y₀
@@ -207,7 +176,7 @@ theorem res_onto : Quoted → ∀ (K : Type) [Field K] [NumberField K] (G : Geo 
         ← hb z z' hz'.2 j hj, sub_self]
     obtain ⟨σ, hσ⟩ := GlobalTheory.T.exists_lift_sections_zeroScheme_regularSequence_lineBundle K G.Y hproj G.str _ G.L hB G.isLB G.D _ _ hreg
       (vanishFrom_adj_of_nef_big Q K G G.L₂ G.isLB₂ hnef hbig) (by simp) W b hW
-      fun y z => vanishesTo_of_isUnit G s g hg (hcomp y z)
+      fun y z => _root_.GlobalTheory.HSKerRes.vanishesTo_of_isUnit G s g hg (hcomp y z)
     refine ⟨σ, Vanishing.H0.ext_germ fun z _ => ?_⟩
     obtain ⟨c, hc⟩ := exists_chart hB' ((G.ideal s).subschemeι z)
     refine ⟨fun _ => c, mem_pull.2 hc, ?_⟩

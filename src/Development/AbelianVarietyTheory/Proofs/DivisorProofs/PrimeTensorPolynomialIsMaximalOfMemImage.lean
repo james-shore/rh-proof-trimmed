@@ -92,7 +92,7 @@ theorem isMaximal_of_mem : ∀ (T : Type) [CommRing T] [IsDomain T], AIC T → �
   intro T _ _ hT O _ _ _ _ hO P hP g hg hgP
   let L := Localization (Algebra.algebraMapSubmonoid O (nonZeroDivisors T))
   let K := FractionRing T
-  haveI : IsAlgClosed K := GlobalTheory.isAlgClosed_fractionRing_of_AIC T hT
+  haveI : IsAlgClosed K := _root_.GlobalTheory.FractionRingRootRange.isAlgClosed_fractionRing T hT
   haveI := hP
   let mk : L →+* L ⧸ P := Ideal.Quotient.mk P
   have hunitL : ∀ t : T, t ≠ 0 → IsUnit (algebraMap T L t) := by

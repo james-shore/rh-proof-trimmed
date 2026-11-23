@@ -47,6 +47,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockDegreeOne.ExistsMonomialWeight
 
 @[expose] public section
 
@@ -123,8 +124,8 @@ theorem pc_Eab {a b : Ix r s} (h : ¬ sameBlock a b) : IsPC (Eab a b : Mat r s) 
 theorem pc_ad {a b : Ix r s} (h : sameBlock a b) {Z : Mat r s} (hZ : IsPC Z) :
     IsPC (Eab a b * Z - Z * Eab a b) := by
   intro e f hef
-  have hb : ∀ x y, x.isLeft = y.isLeft → Z x y = 0 := fun x y hxy => hZ x y ((sb_iff x y).mpr hxy)
-  rw [sb_iff] at h hef
+  have hb : ∀ x y, x.isLeft = y.isLeft → Z x y = 0 := fun x y hxy => hZ x y ((_root_.PI.FockOneDegW.Core.side_sb x y).mpr hxy)
+  rw [_root_.PI.FockOneDegW.Core.side_sb] at h hef
   rw [Matrix.sub_apply, Eab_mul_apply, mul_Eab_apply]
   by_cases h1 : e = a <;> by_cases h2 : f = b
   · rw [if_pos h1, if_pos h2, hb b f (by rw [← h2]), hb e a (by rw [h1]), sub_zero]
@@ -139,7 +140,7 @@ theorem kc_mul {Z W : Mat r s} (hZ : IsPC Z) (hW : IsPC W) : IsKC (Z * W) := by
   by_cases hx : sameBlock a x
   · rw [hZ a x hx, zero_mul]
   · rw [hW x b ?_, mul_zero]
-    rw [sb_iff] at hx hab ⊢
+    rw [_root_.PI.FockOneDegW.Core.side_sb] at hx hab ⊢
     cases a <;> cases x <;> cases b <;> simp_all
 
 def adC (k : KI r s) : Matrix (PIx r s) (PIx r s) ℂ := fun j i =>
@@ -176,7 +177,7 @@ theorem adC_mul (k k' : KI r s) (j i : PIx r s) :
 theorem adad_apply (a b e f : Ix r s) {Z : Mat r s} (hZ : IsPC Z) :
     ((Eab a b * (Eab b a * Z - Z * Eab b a) - (Eab b a * Z - Z * Eab b a) * Eab a b : Mat r s)) e f =
       ((if e = a then 1 else 0) + (if f = b then 1 else 0)) * Z e f := by
-  have hd : ∀ x, Z x x = 0 := fun x => hZ x x ((sb_iff x x).mpr rfl)
+  have hd : ∀ x, Z x x = 0 := fun x => hZ x x ((_root_.PI.FockOneDegW.Core.side_sb x x).mpr rfl)
   simp only [Matrix.sub_apply, Eab_mul_apply, mul_Eab_apply]
   split_ifs <;> subst_vars <;> simp [hd] <;> ring
 

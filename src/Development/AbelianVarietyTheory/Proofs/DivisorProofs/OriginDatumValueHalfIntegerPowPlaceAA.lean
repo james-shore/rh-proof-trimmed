@@ -76,9 +76,9 @@ theorem flatTensor_moved_box (G : Grid k) (hs : 1 ≤ G.s) (ψ : AddChar k Circl
       {z : G.Args | ∀ b ∈ oppositePath G.m, ∀ i j, (((ϖ ^ a)⁻¹ : kˣ) : k) * z b i j ∈ 𝒪[k]} 1)) 0 0 =
       (box G ϖ a a').indicator fun _ => P := by
     funext e
-    rw [flatIntegrand, moved_false, GlobalTheory.T.indicator_moveArgs_origin_eq_box_indicator G hs ϖ a a' g hg e]
+    rw [flatIntegrand, moved_false, _root_.GlobalTheory.OriginBox.indicator_moveArgs_origin G hs ϖ a a' g hg e]
     by_cases he : e ∈ box G ϖ a a'
-    · have h1 := GlobalTheory.T.unfoldingCharacterPhase_origin_valuation_le_box G ϖ a a' e he
+    · have h1 := _root_.GlobalTheory.OriginBox.phase_origin_le G ϖ a a' e he
       rw [Set.indicator_of_mem he, Set.indicator_of_mem he, hψ _ (by rwa [Valuation.map_neg])]
       simp only [Pi.one_apply, mul_one, Circle.coe_one, P]
     · rw [Set.indicator_of_notMem he, Set.indicator_of_notMem he]

@@ -60,7 +60,7 @@ theorem real_inputs_by_parts : C.RealInputsConcreteOfParts := by
     hCut E Wp Wq S H Vt hPG Kr hK0 Th e⟩
 
 theorem real_inputs_concrete_holds : C.RealInputsConcrete :=
-  real_inputs_by_parts embedding_facts euclidean_frame trace_dual_alt
+  real_inputs_by_parts _root_.Formalism.FourierDecayAlt.P.Jx2.t_EmbFacts _root_.Formalism.FourierDecayAlt.P.Jx2.t_EuclidFrame _root_.Formalism.FourierDecayAlt.P.Jx3.t_TraceDual
     lattice_facts_general gram_positive_semidefinite words_pos_of_parts wave_estimate_of_integral
     poisson_input_of_parts lift_estimate_of_base block_estimate_of_base level_zero_estimate_product
     cutoff_of_parts

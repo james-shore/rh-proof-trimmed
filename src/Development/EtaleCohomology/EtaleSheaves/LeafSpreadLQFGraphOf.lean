@@ -53,10 +53,6 @@ theorem toR_sk {k Ω : Type} [Field k] [Field Ω] [Algebra k Ω] (R : Subalgebra
     toR R ≫ Spec.map (CommRingCat.ofHom (algebraMap k R)) = Spec.map (CommRingCat.ofHom (algebraMap k Ω)) := by
   rw [← Spec.map_comp]; rfl
 
-theorem incl_sk {k Ω : Type} [Field k] [Field Ω] [Algebra k Ω] {R R' : Subalgebra k Ω} (hR : R ≤ R') :
-    incl hR ≫ Spec.map (CommRingCat.ofHom (algebraMap k R)) = Spec.map (CommRingCat.ofHom (algebraMap k R')) := by
-  rw [← Spec.map_comp]; rfl
-
 abbrev cmp {A B K X : Scheme.{0}} (p : X ⟶ K) (a : A ⟶ B) (b : B ⟶ K) (c : A ⟶ K) (h : a ≫ b = c) :
     pullback c p ⟶ pullback b p :=
   pullback.lift (pullback.fst c p ≫ a) (pullback.snd _ _)
@@ -85,7 +81,7 @@ theorem LeafSpreadLQFGraph_of (hM : LateralTheory.E.SpreadingOutQuasiFiniteness.
       · simp only [Category.assoc, pullback.lift_snd]; exact hve.symm) hlqf
   refine ⟨S, hRS, hSfg, fun R' hSR' hR E0 q' r hr hf' => ?_⟩
   refine hS R' hSR' hR E0 _ (pullback.fst (Spec.map (CommRingCat.ofHom (algebraMap k R'))) p)
-    (pullback.lift q' (r ≫ f) hf'.symm) r (cmp p (incl hR) _ _ (incl_sk hR)) (paste p _ _ _ (incl_sk hR))
+    (pullback.lift q' (r ≫ f) hf'.symm) r (cmp p (incl hR) _ _ (_root_.LateralTheory.E.SpreadingOutQuasiFiniteness.incl_toK hR)) (paste p _ _ _ (_root_.LateralTheory.E.SpreadingOutQuasiFiniteness.incl_toK hR))
     (by rw [pullback.lift_fst, pullback.lift_fst]; exact hr) ?_
   apply pullback.hom_ext
   · simp only [Category.assoc, pullback.lift_fst, pullback.lift_fst_assoc]; exact hr.w.symm

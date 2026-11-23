@@ -194,7 +194,7 @@ theorem normSq_lead_top {r : ℕ} (p : Point ℂ (r + 1)) :
     Complex.normSq (leadMinor (ptMat p) (r + 1) le_rfl) = pW p.1 := by
   have e1 : leadMinor (ptMat p) (r + 1) le_rfl = Formalism.HermitianLatticeCounting.ExpansionTerms.leadingPrincipalMinor (Formalism.HermitianLatticeCounting.ExpansionTerms.blockAntidiagonalMatrix (toComp p) (toT p)) (r + 1) := by
     rw [← ptMat_eq]; exact leadMinorK_eq _ _ _
-  have v := Formalism.HermitianLatticeCounting.Final.ExpansionTerms.e4aValue ℂ (r + 1) (toComp p) (toT p) (toComp p).length
+  have v := _root_.Formalism.HermitianLatticeCounting.P.leading_minor_at_block_end ℂ (r + 1) (toComp p) (toT p) (toComp p).length
   rw [(toComp p).sizeUpTo_length] at v
   rw [e1, v, map_prod, Finset.filter_true_of_mem (fun a _ => a.2)]
   have h : ∀ a : Fin (toComp p).length, Complex.normSq ((-1) ^ ((toComp p).blocksFun a).choose 2 * toT p a ^ (toComp p).blocksFun a) =
@@ -221,7 +221,7 @@ theorem lead_r_zero {r : ℕ} (p : Point ℂ (r + 1)) (L0 : List (ℂ × ℕ)) (
     have e3 : (L0.map Prod.snd).sum + s = r + 1 := by
       have e := p.2.2; rw [hp] at e; simpa using e
     omega
-  exact Formalism.HermitianLatticeCounting.Final.ExpansionTerms.e4aVanish ℂ (r + 1) (toComp p) (toT p) r (Nat.le_succ r)
+  exact _root_.Formalism.HermitianLatticeCounting.P.leading_minor_vanishes_off_block_ends ℂ (r + 1) (toComp p) (toT p) r (Nat.le_succ r)
     (comp_not_end (toComp p) (comp_len_pos _) (by rw [hb]; exact hs))
 
 theorem GPoint_eq_gW {r : ℕ} (T T' : ℝ) (p : Point ℂ (r + 1)) : Gpt T T' p = gW T T' p.1 := by
@@ -291,10 +291,10 @@ theorem dr_eq (w : Point D.host.E (D.R.rS + 1)) : DrPt (toPts w) = leadMinorK (p
       omega
     · rw [dite_eq_right h2]
       have h1 : (toPts w).1.length - 1 = 0 := by omega
-      rw [congrArg (Formalism.HermitianLatticeCounting.ExpansionTerms.leadingPrincipalMinor _) hr, Formalism.HermitianLatticeCounting.Final.ExpansionTerms.e4aValue, h1]
+      rw [congrArg (Formalism.HermitianLatticeCounting.ExpansionTerms.leadingPrincipalMinor _) hr, _root_.Formalism.HermitianLatticeCounting.P.leading_minor_at_block_end, h1]
       simp
   · rw [if_neg hb]
-    exact (Formalism.HermitianLatticeCounting.Final.ExpansionTerms.e4aVanish D.host.E (D.R.rS + 1) (toPts w).1 (toPts w).2 D.R.rS (Nat.le_succ _)
+    exact (_root_.Formalism.HermitianLatticeCounting.P.leading_minor_vanishes_off_block_ends D.host.E (D.R.rS + 1) (toPts w).1 (toPts w).2 D.R.rS (Nat.le_succ _)
       (comp_not_end (toPts w).1 hpos hb)).symm
 
 theorem GPt_eq (T T' : ℕ) (w : Point D.host.E (D.R.rS + 1)) : GPt (T * T') (toPts w) = Gglob D T T' w := by

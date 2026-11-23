@@ -56,10 +56,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.SkewGramHalfModule (ofAdj)
 
 variable {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
-theorem adelicConj_adelicConj_eq_self (x : AE D) : cA D (cA D x) = x := by
-  have := congrFun (congrFun (adj_adj (D := D) (m := 1) (n := 1) (Matrix.of fun _ _ => x)) 0) 0
-  simpa [adj] using this
-
 theorem e_mul_sec (p : SplitPt D k) (x : k) : p.e * p.sec x = p.sec x := by
   rw [← p.sec_pr, p.pr_sec]
 
@@ -77,7 +73,7 @@ theorem adj_wCol (p : SplitPt D k) {W₀ L' : HSp D} (ζ' : Fin L'.rank → D.ho
     adj (wCol p ζ' β t) = Matrix.of fun i j => p.sec (dualPick ((L'.gram.map (iota p)) *ᵥ fun i => iota p (ζ' i)) j *
       ((iota p D.host.xi0)⁻¹ * ((W₀.gram.map (iota p)) *ᵥ (β.b *ᵥ t)) i)) := by
   ext i j
-  simp only [adj, wCol, Matrix.transpose_apply, Matrix.map_apply, Matrix.of_apply, adelicConj_adelicConj_eq_self]
+  simp only [adj, wCol, Matrix.transpose_apply, Matrix.map_apply, Matrix.of_apply, _root_.Formalism.L2.Theta.cA_cA]
 
 end GlobalTheory.FinPl.LineAct.ColTrans
 

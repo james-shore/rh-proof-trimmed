@@ -116,8 +116,8 @@ theorem partC : ∀ (D : D7) (HW : HWOf D.loc) (i : D.nd.Loc)
   have hT := hTop h5' D.R.t h w' η typ U (Fin D.R.r → ↥C.LL.1) (repV C (twistM (locOC C (WpO D.nd i ρ π)) θ))
     (latC C (twistM (locOC C (WpO D.nd i ρ π)) θ)) (chiT C θ) hSet.1
   obtain ⟨a, hZ, hk⟩ := GlobalTheory.T.cutCocycles_locallyConstant_killed_by_uniformiserPow D i r w hw C lam hlam hGood hCont (chiRatO D.nd i c) z hz
-  haveI := GlobalTheory.T.finite_lambdaPowerTorsionFieldModInt C.LL lam hlam a
-  obtain ⟨z', hcoc, hz'⟩ := GlobalTheory.T.exists_twistedCharacter_cocycle_of_torsion_localCocycle D i w hw C lam hlam θ c a (fun g => liftQ C.le 1 (z g)) hZ hk
+  haveI := _root_.GlobalTheory.UseLoc.Cases.finite_Xq C.LL lam hlam a
+  obtain ⟨z', hcoc, hz'⟩ := _root_.GlobalTheory.UseLoc.Cases.liftC_main D i w hw C lam hlam θ c a (fun g => liftQ C.le 1 (z g)) hZ hk
   have hz'' : ∀ g, iotaC ↥C.LL.1 lam a (z' g) = liftQ C.le 1 (z g) := hz'
   have hc1 : c ∈ Finset.Icc 1 D.R.t :=
     Finset.mem_Icc.2 ⟨by have := (Finset.mem_Icc.1 hc).1; omega, (Finset.mem_Icc.1 hc).2⟩
@@ -125,7 +125,7 @@ theorem partC : ∀ (D : D7) (HW : HWOf D.loc) (i : D.nd.Loc)
     hcoc hz''
   have hin := ((hT ↥(Xq ↥C.LL.1 lam a)).2.1 c hc (latOne (LL := ↥C.LL.1) Subtype.val_injective (chiT C θ c)) z'
     hcoc).1 hadm
-  have hr := GlobalTheory.T.isCoboundary_read_of_twistedCharacter_coboundary D i w hw C lam θ c a z' hin
+  have hr := _root_.GlobalTheory.UseLoc.Cases.readC_cob D i w hw C lam θ c a z' hin
   have e : (fun g => liftQ C.le 1 (z g)) = fun g => iotaC ↥C.LL.1 lam a (z' g) :=
     funext fun g => (hz'' g).symm
   rw [e]
@@ -151,15 +151,15 @@ theorem partU : ∀ (D : D7) (HW : HWOf D.loc) (i : D.nd.Loc)
   have hT := hTop h5' D.R.t h w' η typ U (Fin D.R.r → ↥C.LL.1) (repV C (twistM (locOC C (WpO D.nd i ρ π)) θ))
     (latC C (twistM (locOC C (WpO D.nd i ρ π)) θ)) (chiT C θ) hSet.1
   obtain ⟨a, hZ, hk⟩ := GlobalTheory.T.cutCocycles_locallyConstant_killed_by_uniformiserPow D i r w hw C lam hlam hGood hCont (chiRatO D.nd i 1) z hz
-  haveI := GlobalTheory.T.finite_lambdaPowerTorsionFieldModInt C.LL lam hlam a
-  obtain ⟨z', hcoc, hz'⟩ := GlobalTheory.T.exists_twistedCharacter_cocycle_of_torsion_localCocycle D i w hw C lam hlam θ 1 a (fun g => liftQ C.le 1 (z g)) hZ hk
+  haveI := _root_.GlobalTheory.UseLoc.Cases.finite_Xq C.LL lam hlam a
+  obtain ⟨z', hcoc, hz'⟩ := _root_.GlobalTheory.UseLoc.Cases.liftC_main D i w hw C lam hlam θ 1 a (fun g => liftQ C.le 1 (z g)) hZ hk
   have hz'' : ∀ g, iotaC ↥C.LL.1 lam a (z' g) = liftQ C.le 1 (z g) := hz'
   have hc1 : 1 ∈ Finset.Icc 1 D.R.t := Finset.mem_Icc.2 ⟨le_rfl, hSet.1.1⟩
   have hadm := GlobalTheory.T.cocycleExtension_conductorTwistedCharacter_admissible D HW i r ρ π w hw C hA lam hlam θ h w' η typ U hSet hGood hπ hDec hCont 1 hc1 z hz a z'
     hcoc hz''
   have hin := ((hT ↥(Xq ↥C.LL.1 lam a)).2.2 (latOne (LL := ↥C.LL.1) Subtype.val_injective (chiT C θ 1)) z'
     hcoc).1 hadm
-  have hr := GlobalTheory.T.isUnramified_read_of_trivialTwist_coboundary_on_subgroup D i w hw C lam θ a _ z' hin
+  have hr := _root_.GlobalTheory.UseLoc.Cases.readU_unr D i w hw C lam θ a _ z' hin
   have e : (fun g => liftQ C.le 1 (z g)) = fun g => iotaC ↥C.LL.1 lam a (z' g) :=
     funext fun g => (hz'' g).symm
   rw [e]

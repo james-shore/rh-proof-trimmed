@@ -47,6 +47,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsSumFrame
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsGlOfEquiv
+import Formalism.LocalToGlobal.GlobalTheory.GL3.PLinkThIndep
 
 @[expose] public section
 
@@ -60,13 +61,6 @@ noncomputable section
 open scoped ComplexOrder
 
 namespace GlobalTheory.SeeSaw.YRat
-
-theorem star_eq_conj (D : D7) (x : D.host.E) : star x = D.host.conj x := by
-  apply D.host.φ₀.injective
-  have h1 : D.host.φ₀ (D.host.conj x) = starRingEnd ℂ (D.host.φ₀ x) := Formalism.HC.HostAx.conjE_apply _ _ _
-  rw [h1]
-  haveI := D.host.isCMField_hostE
-  exact IsCMField.complexEmbedding_complexConj _ _ _
 
 theorem posDef_of_sig {n : ℕ} (G : Matrix (Fin n) (Fin n) ℂ) (h : Formalism.UG.HasSignature G n 0) : G.PosDef := by
   obtain ⟨e, P, hP⟩ := h
@@ -103,7 +97,7 @@ theorem spaces_of_index : ∀ (D : D7) (u : D.what₂.Word), (∀ j, j ≤ D.R.m
   have hxi : D.host.xi0 ≠ 0 := GlobalTheory.ChiGrid.cmHost_imaginaryGenerator_ne_zero
   obtain ⟨π, -, hπ, -⟩ := D.T_norm u
   have hππ : (π : D.host.E) * star (π : D.host.E) = (((D.mem u).A.T : ℕ) : D.host.E) := by
-    rw [star_eq_conj]; exact hπ
+    rw [_root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.CU.star_conj]; exact hπ
   have hT0 : (((D.mem u).A.T : ℕ) : D.host.E) ≠ 0 := by
     have := (D.mem u).A.T_prime.ne_zero
     exact_mod_cast this
@@ -115,7 +109,7 @@ theorem spaces_of_index : ∀ (D : D7) (u : D.what₂.Word), (∀ j, j ≤ D.R.m
     have hXr : (D.sp.X j).rank = D.R.N j := D.sp.X_rank j (by omega)
     set c : D.host.E := (π : D.host.E) / D.host.xi0 ^ (j / 2) with hc
     have hc0 : c ≠ 0 := div_ne_zero hπ0 (pow_ne_zero _ hxi)
-    obtain ⟨L, ζ, hline, hLs, hLn, hLsig⟩ := GlobalTheory.T.exists_hermitianLine_vector_prescribed_norm D c (-1) hc0
+    obtain ⟨L, ζ, hline, hLs, hLn, hLsig⟩ := _root_.GlobalTheory.HermLine.exists_line_vec D c (-1) hc0
     obtain ⟨V₀, o, hV₀s, hV₀sig⟩ := hsum.1 (D.sp.X j) L hXs hLs
     obtain ⟨V, d, hVs, hVsig⟩ := hsum.2 V₀ ρ hV₀s
     refine ⟨V, ⟨V₀, L, d, o, ζ, hline, hXc, (hvol.2.1 _ _ _ d).some⟩, ?_, hVs, ?_, ?_⟩

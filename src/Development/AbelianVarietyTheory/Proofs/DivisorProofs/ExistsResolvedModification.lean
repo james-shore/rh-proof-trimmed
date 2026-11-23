@@ -75,15 +75,6 @@ noncomputable section
 
 namespace GlobalTheory.QuotSetup
 
-theorem geometricallyConnected_of_surjective {X Y Z : Scheme.{0}} (p : X ⟶ Y) (f : Y ⟶ Z)
-    [Surjective p] [GeometricallyConnected (p ≫ f)] : GeometricallyConnected f := by
-  refine ⟨geometrically_iff_of_isClosedUnderIsomorphisms.mpr fun K _ x => ?_⟩
-  have : ConnectedSpace ↥(pullback (p ≫ f) x) :=
-    GeometricallyConnected.geometrically_connectedSpace _ _ _ (.of_hasPullback _ _)
-  let q := (pullbackRightPullbackFstIso f x p).inv ≫ pullback.snd p (pullback.fst f x)
-  have : Surjective q := inferInstance
-  exact q.surjective.connectedSpace q.continuous
-
 theorem genericPoint_mem {X : Scheme.{0}} [IsIntegral X] (U : X.Opens) (hU : (U : Set X).Nonempty) :
     genericPoint X ∈ U :=
   ((genericPoint_spec X).mem_open_set_iff U.isOpen).2 (by simpa using hU)
@@ -226,7 +217,7 @@ theorem exists_resolved_modification : GlobalTheory.Published.Principalisation �
   have hgcM : GeometricallyConnected M.str := GlobalTheory.T.geometricallyConnected_smoothProjModification_offOpen F X sX n U M hUne
   have hgcW : GeometricallyConnected (s ≫ sW) := by
     rw [← hfp] at hgcM
-    exact geometricallyConnected_of_surjective f (s ≫ sW)
+    exact _root_.GlobalTheory.AbelianQuotient.geometricallyConnected_of_comp f (s ≫ sW)
   refine ⟨W', hW', s ≫ sW, U, M, f, N.pull s, LB.isLB_pull hN s, hMi, hsm, hpj, hgcW, hfp, hfsurj, hUne, ?_,
     z, hzU, hz, fun j j' => ?_, hgen'⟩
   · rw [cls_pull hN s, ← pull_comp, hfs, pull_comp, hNδ, ← pull_comp, Category.assoc, hσ]

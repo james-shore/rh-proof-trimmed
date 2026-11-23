@@ -47,6 +47,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Mathlib.Algebra.Order.Chebyshev
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.CayleyChartDomainIsOpen
 
 @[expose] public section
 
@@ -60,14 +61,6 @@ namespace GlobalTheory.CompanionTheory.RgStepFam
 open CompanionTheory.RgExh CompanionTheory.RgExh.Dec CompanionTheory.RgExh.Dec.J ReciprocityTheory.ChartRestriction.DS
 
 variable {n : ℕ} {ε : Fin n → Bool}
-
-theorem mul_inUJ {a b : Matrix (Fin n) (Fin n) ℂ} (ha : Formalism.REAL.inUJ ε a) (hb : Formalism.REAL.inUJ ε b) :
-    Formalism.REAL.inUJ ε (a * b) := by
-  unfold Formalism.REAL.inUJ at *
-  rw [Matrix.conjTranspose_mul]
-  calc bᴴ * aᴴ * Formalism.REAL.Jm ε * (a * b) = bᴴ * (aᴴ * Formalism.REAL.Jm ε * a) * b := by
-        simp only [Matrix.mul_assoc]
-    _ = Formalism.REAL.Jm ε := by rw [ha, hb]
 
 theorem inv_mul_of_inUJ {g : Matrix (Fin n) (Fin n) ℂ} (hg : Formalism.REAL.inUJ ε g) : g⁻¹ * g = 1 := by
   have h : (Formalism.REAL.Jm ε * gᴴ * Formalism.REAL.Jm ε) * g = 1 := by
@@ -243,7 +236,7 @@ theorem line_hasDeriv (hc : IsCoefFam ε X c) (i : ι) (u : X.V) {Y g : Matrix (
     HasDerivAt (fun t : ℝ => c i u (g * NormedSpace.exp ((t : ℂ) • Y)))
       (c i (actM X.E Y u) (g * NormedSpace.exp ((s : ℂ) • Y))) s := by
   have hgs : Formalism.REAL.inUJ ε (g * NormedSpace.exp ((s : ℂ) • Y)) :=
-    mul_inUJ hg (Formalism.REAL.exp_indefinite_unitary_holds n ε Y hY s)
+    _root_.ReciprocityTheory.ChartRestriction.DS.slm_inUJ_mul hg (Formalism.REAL.exp_indefinite_unitary_holds n ε Y hY s)
   have h0 := hc.1 i u Y hY _ hgs
   have h0' : HasDerivAt (fun t : ℝ => c i u (g * NormedSpace.exp ((s : ℂ) • Y) * NormedSpace.exp ((t : ℂ) • Y)))
       (c i (actM X.E Y u) (g * NormedSpace.exp ((s : ℂ) • Y))) (s - s) := by

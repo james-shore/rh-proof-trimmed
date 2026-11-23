@@ -75,7 +75,7 @@ theorem shape_szT (hS : XShape) (j : ℕ) (b : BX X) : shapeDeg (szT X j b) = nu
   · have h1 : szT X j b = fun k => NJ X (j + 1) - colH (muX X j (NJ X (j + 1)) b) k.val := by
       funext k; exact if_pos ho
     rw [h1, show nuT X j b = _ from if_pos ho]
-    exact shape_odd_holds _ _ (hanti _) _ (hle _)
+    exact _root_.Formalism.L2.PairingIndexBounds.Ent.BidetPairing.shape_odd_holds _ _ (hanti _) _ (hle _)
   · have h1 : szT X j b = fun k => colH (muX X j (NJ X (j + 1)) b) k.val := by
       funext k; exact if_neg ho
     rw [h1, show nuT X j b = _ from if_neg ho]

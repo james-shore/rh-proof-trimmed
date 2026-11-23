@@ -85,6 +85,6 @@ theorem isConstAlong_of_ks_zero : ∀ (E : Type) [Field E] [NumberField E] [IsCM
       (fun i => by
         show f (bdParam k m d i) ∈ _
         rw [hq i]; exact Ideal.mul_mem_left _ _ (Ideal.mem_span_singleton_self _))
-  exact GlobalTheory.T.degenerationData_constant_of_flat_heatOperators E H k m d t P gam hmon hli hab Y n' v' dd hdd D q hq h hB hD
-    (GlobalTheory.T.heat_symbol_mem_maximalIdeal_of_kodairaSpencer_zero E H k m d t P gam hmon hli hab n v hv hb Y n' v' dd hdd D q hq h hB hD Θ hKS hΘ) ρ hρ
+  exact _root_.GlobalTheory.KSFlatPer.isConstAlong_of_heat_flat E H k m d t P gam hmon hli hab Y n' v' dd hdd D q hq h hB hD
+    (_root_.GlobalTheory.KSZeroMod.symbol_mem_maximalIdeal E H k m d t P gam hmon hli hab n v hv hb Y n' v' dd hdd D q hq h hB hD Θ hKS hΘ) ρ hρ
 end GlobalTheory.KSConst

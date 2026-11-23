@@ -49,18 +49,6 @@ noncomputable section
 
 namespace GlobalTheory
 
-theorem subIner_component_mem {L Y I α : Type} [Field L] [AddCommGroup Y] [Module L Y]
-    (T : I → Y →ₗ[L] Y) (χ : α → I → L) (hχ : Function.Injective χ) (U : Submodule L Y)
-    (hU : ∀ g, ∀ y ∈ U, T g y ∈ U) (S : Finset α) :
-    ∀ y : α → Y, (∀ a ∈ S, ∀ g, T g (y a) = χ a g • y a) → ∑ a ∈ S, y a ∈ U → ∀ a ∈ S, y a ∈ U := by
-  first
-  | exact @_root_.GlobalTheory.EigenvectorOfSum.eigenvector_mem_of_sum_mem
-  | exact _root_.GlobalTheory.EigenvectorOfSum.eigenvector_mem_of_sum_mem
-  | (apply _root_.GlobalTheory.EigenvectorOfSum.eigenvector_mem_of_sum_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EigenvectorOfSum.eigenvector_mem_of_sum_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EigenvectorOfSum.eigenvector_mem_of_sum_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.EigenvectorOfSum.eigenvector_mem_of_sum_mem ..)
-
 theorem subIner_pullback {L X Y I α J : Type} [Field L] [AddCommGroup X] [Module L X]
     [AddCommGroup Y] [Module L Y] (T : I → X →ₗ[L] X) (T' : J → I → Y →ₗ[L] Y)
     (m : J → X →ₗ[L] Y) (hm : ∀ j g x, m j (T g x) = T' j g (m j x))
@@ -71,7 +59,7 @@ theorem subIner_pullback {L X Y I α J : Type} [Field L] [AddCommGroup X] [Modul
     (hs : ∀ j, ∑ a ∈ S, y j a = m j d) :
     ∃ x : α → X, (∀ a ∈ S, x a ∈ D ∧ ∀ g, T g (x a) = χ a g • x a) ∧ ∑ a ∈ S, x a = d := by
   classical
-  have key := subIner_component_mem (Y := J → Y)
+  have key := _root_.GlobalTheory.EigenvectorOfSum.eigenvector_mem_of_sum_mem (Y := J → Y)
     (fun g => LinearMap.pi fun j => (T' j g).comp (LinearMap.proj j)) χ hχ (D.map (LinearMap.pi m))
     (by
       rintro g _ ⟨x, hx, rfl⟩

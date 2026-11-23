@@ -329,12 +329,12 @@ theorem isUnit_mk_chartIdeal_form {V : Ideal (MRingOver F ι)} (hV : IsProjVarF 
     intro S
     induction S using Finset.induction_on with
     | empty =>
-      have := cyc_dim_add_one_le (hVQ ∅) hbase hp
+      have := _root_.Bl.FirstBlockLemmaB.goal1 (hVQ ∅) hbase hp
       rw [Finset.card_empty, Nat.cast_zero, zero_add, add_comm]
       exact this
     | @insert k S hk ih =>
       have : (Q S).IsPrime := hQp S
-      have h1 := cyc_dim_add_one_le (hmono S k) (hin S k) (hout S k hk)
+      have h1 := _root_.Bl.FirstBlockLemmaB.goal1 (hmono S k) (hin S k) (hout S k hk)
       rw [Finset.card_insert_of_notMem hk]
       calc (((S.card + 1 : ℕ)) : WithBot ℕ∞) + 1 + ringKrullDim (MRingOver F ι ⧸ Q (insert k S))
           = (S.card : WithBot ℕ∞) + 1 + (ringKrullDim (MRingOver F ι ⧸ Q (insert k S)) + 1) := by

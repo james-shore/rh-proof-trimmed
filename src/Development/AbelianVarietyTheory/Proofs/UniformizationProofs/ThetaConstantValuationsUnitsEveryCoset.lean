@@ -196,7 +196,7 @@ theorem main : LL → TwistBCSpanStatement → TWM.VRatioGtStatement → TWState
     have fp : f p' = x * f r := ((f₁ p x).1 hx).symm ▸ f₄ _ _ _ (qkAdd_qkAdd hB p r)
     have hx' : QkToAkU U.toUnifPre F ((n * d) ^ 2) p' (f p') := (f₁ _ _).2 rfl
     have t' : f p' ^ ((n * d) ^ 2) = 1 := pow_eq_one_of_nsmul hB f f₄ p' y' _ (by rw [qk_nsmul hB, y', map_zero])
-    obtain ⟨⟨t, c⟩, hT, -⟩ := GlobalTheory.T.existsUnique_theta_const_of_odd hL V A F ρ hN.2.1 (n * d) hm th (f p') t'
+    obtain ⟨⟨t, c⟩, hT, -⟩ := _root_.GlobalTheory.existsUnique_thetaConst hL V A F ρ hN.2.1 (n * d) hm th (f p') t'
     refine ⟨p', f p', t, c, y', hx', ?_, hT, ?_⟩
     · rw [fp, mul_pow x, mul_inv_cancel_comm, ← pow_mul]
       exact pow_eq_one_of_nsmul hB f f₄ r rfl _ z₁

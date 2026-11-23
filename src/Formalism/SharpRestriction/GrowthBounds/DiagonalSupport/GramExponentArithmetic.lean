@@ -238,7 +238,7 @@ theorem pickAt_of (p : ℕ) [hpF : Fact p.Prime] {n' r K m : ℕ} [NeZero n'] [N
     hGint hMem mo0 hmo0 hmo0d bp0 bn0 hcoef hdp hdn hfact hvle
 
 theorem pickStep_all (D : Formalism.BasicNotions.D7) : ∃ CDn C₁ : ℝ, 0 < CDn ∧ 0 < C₁ ∧ ∀ C : ℝ, C₁ ≤ C → ∀ CLa : ℝ, PickStep C CDn CLa := by
-  obtain ⟨CDn, C₁, h1, h2, hS⟩ := sizeStep
+  obtain ⟨CDn, C₁, h1, h2, hS⟩ := _root_.Formalism.MainNotions.Proposition5Numerics.sizeStep'
   refine ⟨CDn, C₁, h1, h2, fun C hC CLa => ?_⟩
   intro p W Qq O Kf _ _ _ _ _ _ _ _ _ _ ι σ j w n' m r hpF _ TT L₁ L₂ de h x lam0 aT bT a Y cpp c0 Dp cStar K
     _ _ hk F nb B hD G hdeg hG0 hG1 hMem

@@ -92,9 +92,7 @@ theorem moves_unique {D : D7} {n : ℕ} {g : GL (Fin n) (AE D)} {L L' : Lat D n}
     L = L' := by
   ext x; rw [h x, h' x]
 
-theorem sd_of_moves {D : D7} {n : ℕ} {g : GA D n} {L : Lat D n} (h : Moves D (g : GL (Fin n) (AE D)) L) : SD D L := by
-  obtain ⟨Lt, h1, -⟩ := exists_lattice_of_adelic_point D n
-  rw [moves_unique h (h1 g).1]; exact (h1 g).2
+alias sd_of_moves := _root_.GlobalTheory.WeilInter.sd_of_moves
 
 theorem moves_one (D : D7) (n : ℕ) : Moves D ((1 : GA D n) : GL (Fin n) (AE D)) (stdL D n) := by
   obtain ⟨Lt, h1, h2, -⟩ := exists_lattice_of_adelic_point D n

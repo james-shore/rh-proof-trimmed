@@ -77,9 +77,9 @@ theorem exists_cDvr_two_embeddings : ∀ (R R₁ R' : Type) [CommRing R] [IsLoca
     exact (mem_maximalIdeal _).1 this hx
   have hcd₀ : GlobalTheory.LN.CDvr V₀ := ⟨inferInstance, hV₀, hcz₀⟩
   obtain ⟨V₁, _, _, _, g₁, ψ₁, hcd₁, hg₁, hlg₁, hlψ₁, hc₁⟩ :=
-    GlobalTheory.LocExt.exists_cDvr_ext_of_finite R R₁ ρ hρ hfin V₀ hcd₀ (φ₀.comp θ₁) inferInstance
+    _root_.GlobalTheory.FieldExtensionExists.exists_extension R R₁ ρ hρ hfin V₀ hcd₀ (φ₀.comp θ₁) inferInstance
   obtain ⟨V, _, _, _, g₂, ψ₂, hcd, hg₂, hlg₂, hlψ₂, hc₂⟩ :=
-    GlobalTheory.LocExt.exists_cDvr_ext_of_finite R R₁ ρ hρ hfin V₁ hcd₁ (g₁.comp (φ₀.comp θ₂)) inferInstance
+    _root_.GlobalTheory.FieldExtensionExists.exists_extension R R₁ ρ hρ hfin V₁ hcd₁ (g₁.comp (φ₀.comp θ₂)) inferInstance
   obtain ⟨hdvr, hcomp, hcz⟩ := hcd
   letI : Algebra R R₁ := ρ.toAlgebra
   haveI : Module.Finite R R₁ := hfin

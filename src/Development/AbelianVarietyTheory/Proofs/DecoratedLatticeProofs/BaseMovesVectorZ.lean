@@ -50,6 +50,8 @@ import Development.AbelianVarietyTheory.Definitions.LatticeFrames.MiStarOfMid
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.PairForm
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.UnitRatio
 import Formalism.LocalToGlobal.HilbertRowConditions.IsHilbertCF
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SelfDualSplitComponentIsLatticeStabilizerEq
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SplitPlaceCharacterConductorIntegers
 
 @[expose] public section
 
@@ -96,11 +98,11 @@ def chg (q : SplitPt D k) (q' : SplitPt D k') (h : q.e = q'.e) : k' →+* k wher
 
 theorem sec_chg (q : SplitPt D k) (q' : SplitPt D k') (h : q.e = q'.e) (x : k') : q.sec (chg q q' h x) = q'.sec x := by
   change q.sec (q.pr (q'.sec x)) = _
-  rw [q.sec_pr, h, e_mul_sec]
+  rw [q.sec_pr, h, _root_.GlobalTheory.FinPl.FrameLat.e_mul_sec]
 
 theorem chg_pr (q : SplitPt D k) (q' : SplitPt D k') (h : q.e = q'.e) (a : AE D) : chg q q' h (q'.pr a) = q.pr a := by
   change q.pr (q'.sec (q'.pr a)) = _
-  rw [q'.sec_pr, ← h, map_mul, pr_e, one_mul]
+  rw [q'.sec_pr, ← h, map_mul, _root_.GlobalTheory.SplitCharCond.pr_e, one_mul]
 
 theorem chg_le (q : SplitPt D k) (q' : SplitPt D k') (h : q.e = q'.e) (x : k') :
     valuation k (chg q q' h x) ≤ 1 ↔ valuation k' x ≤ 1 := by
@@ -181,7 +183,7 @@ theorem exists_theta (q : SplitPt D k) {PP : Formalism.L2.DIV.Pl D.host.E} (he :
       Formalism.L2.DIV.resS D.host.F PP ⟨θ, hθ⟩ = 1 ∧ toEAf D q.e * θ = toEAf D (q.sec t) := by
   have h1 : toEAf D (q.sec (t - 1)) ∈ Formalism.L2.Herm.intAf D.host.F D.host.E := by
     have := (q.pr_mem_iff (q.sec (t - 1))).1 (by rw [q.pr_sec]; exact ht.le)
-    rwa [← map_mul, e_mul_sec] at this
+    rwa [← map_mul, _root_.GlobalTheory.FinPl.FrameLat.e_mul_sec] at this
   obtain ⟨s, hs⟩ : ∃ s : Formalism.L2.Herm.intAf D.host.F D.host.E, s.1 = toEAf D (q.sec (t - 1)) := ⟨⟨_, h1⟩, rfl⟩
   refine ⟨(1 + s).1, (1 + s).2, ?_, ?_⟩
   · have h2 : Formalism.L2.DIV.resS D.host.F PP s = 0 :=
@@ -190,7 +192,7 @@ theorem exists_theta (q : SplitPt D k) {PP : Formalism.L2.DIV.Pl D.host.E} (he :
   · have h1 := q.sec_pr 1
     rw [map_one, mul_one] at h1
     have h2 : q.e * (1 + q.sec (t - 1)) = q.sec t := by
-      rw [mul_add, mul_one, e_mul_sec, ← h1, ← map_add (f := _), add_sub_cancel]
+      rw [mul_add, mul_one, _root_.GlobalTheory.FinPl.FrameLat.e_mul_sec, ← h1, ← map_add (f := _), add_sub_cancel]
     have h3 : (1 + s).1 = toEAf D (1 + q.sec (t - 1)) := by
       rw [Subring.coe_add, OneMemClass.coe_one, hs]
       exact ((congrArg₂ (· + ·) (toEAf D).map_one rfl).symm).trans ((toEAf D).map_add _ _).symm
@@ -213,7 +215,7 @@ theorem e_mul_of_prF (q : SplitPt D k) {PP : Formalism.L2.DIV.Pl D.host.E} (he :
   obtain ⟨a, rfl⟩ := GlobalTheory.ResLoc.toEAf_surj x
   obtain ⟨b, rfl⟩ := GlobalTheory.ResLoc.toEAf_surj y
   rw [q.prF_toEAf, q.prF_toEAf] at h
-  rw [← map_mul, ← map_mul, ← q.sec_pr, h, sec_mul_sec, q.sec_pr, ← mul_assoc, mul_comm (q.sec s), e_mul_sec]
+  rw [← map_mul, ← map_mul, ← q.sec_pr, h, sec_mul_sec, q.sec_pr, ← mul_assoc, mul_comm (q.sec s), _root_.GlobalTheory.FinPl.FrameLat.e_mul_sec]
 
 end Two
 

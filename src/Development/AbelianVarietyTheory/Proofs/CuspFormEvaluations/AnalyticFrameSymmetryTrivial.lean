@@ -64,20 +64,11 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped ContDiff
 attribute [local instance] Over.cartesianMonoidalCategory
 
-theorem tay_coord {g : ℕ} (k : Fin g) :
-    tay (fun v : Fin g → ℂ => v k) 0 = MvPowerSeries.X ((0 : Fin 1), k) := by
-  apply GlobalTheory.JetLinSub.tay_coord <;> assumption
-
-
-theorem psJet_X {κ : Type} [Fintype κ] [DecidableEq κ] (m : ℕ) (s : κ) :
-    psJet m (MvPowerSeries.X s : MvPowerSeries κ ℂ) = Ideal.Quotient.mk _ (MvPolynomial.X s) := by
-  rw [← MvPolynomial.coe_X, psJet, FBIdJet.psTrunc_eq, FBIdJet.mk_trunc_coe]
-
 theorem jetN_coord {n g : ℕ} (m : ℕ) (i : Fin n) (j : Fin g) :
     jetN m (fun w : Fin n → Fin g → ℂ => w i j) = Ideal.Quotient.mk _ (MvPolynomial.X (i, j)) := by
   unfold jetN jetOf
   show renN n g m (psJet m (tay (fun v : Fin (n * g) → ℂ => v (finProdFinEquiv (i, j))) 0)) = _
-  rw [tay_coord, psJet_X]
+  rw [_root_.GlobalTheory.JetLinSub.tay_coord, _root_.GlobalTheory.JetLinSub.psJet_X]
   show Ideal.Quotient.mk _ (MvPolynomial.aeval _ _) = _
   rw [MvPolynomial.aeval_X, Equiv.symm_apply_apply]
 
@@ -112,7 +103,7 @@ theorem sy_trivial : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H :
     (fun p : Fin 2 × Fin g => (![fun j => MvPolynomial.X ((1 : Fin 2), j), fun j => MvPolynomial.X ((0 : Fin 2), j)] :
       Fin 2 → Fin g → MvPolynomial (Fin 2 × Fin g) ℂ) p.1 p.2) (by
       rintro ⟨i, j⟩
-      rw [psJet_X]
+      rw [_root_.GlobalTheory.JetLinSub.psJet_X]
       refine Eq.trans ?_ (jetN_coord m (Equiv.swap (0 : Fin 2) 1 i) j).symm
       show Ideal.Quotient.mk _ (MvPolynomial.aeval _ _) = _
       fin_cases i <;> simp) _ _ _ _ _ hR

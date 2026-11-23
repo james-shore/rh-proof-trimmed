@@ -79,9 +79,6 @@ theorem ks_le_kinf (K : FinExt l) (s : ℕ) : Ks K s ≤ Kinf K :=
 theorem hinf_le_gj (K : FinExt l) (s : ℕ) : Hinf K ≤ Gj K s :=
   IntermediateField.fixingSubgroup_antitone (ks_le_kinf K s)
 
-theorem gj_le (K : FinExt l) (s : ℕ) : Gj K s ≤ (K0 K).fixingSubgroup :=
-  IntermediateField.fixingSubgroup_antitone (show K0 K ≤ Ks K s from le_sup_left)
-
 theorem act_inC {act : GQ l →* (PadicComplex l ≃+* PadicComplex l)} (ha : IsActC act)
     {F : IntermediateField ℚ_[l] (Om l)} {g : GQ l} (hg : g ∈ F.fixingSubgroup)
     {y : PadicComplex l} (hy : y ∈ inC F) : act g y = y := by
@@ -107,9 +104,7 @@ theorem chiC_mul (χ : GQ l →* ℚ_[l]ˣ) (j : ℤ) (g h : GQ l) :
     chiC χ j (g * h) = chiC χ j g * chiC χ j h := by
   simp only [chiC, map_mul, mul_zpow, Units.val_mul]
 
-theorem norm_l_lt : ‖(l : PadicComplex l)‖ < 1 := by
-  rw [← map_natCast (algebraMap ℚ_[l] (PadicComplex l)), norm_algebraMap]
-  exact Padic.norm_p_lt_one
+alias norm_l_lt := _root_.GlobalTheory.TateDecomp.norm_l_lt
 
 theorem norm_l_pow (n : ℕ) : ‖(l : PadicComplex l) ^ n‖ = (l : ℝ) ^ (-(n : ℤ)) := by
   rw [← map_natCast (algebraMap ℚ_[l] (PadicComplex l)), ← map_pow, norm_algebraMap]
@@ -145,7 +140,7 @@ theorem continuous_chiC {χ : GQ l →* ℚ_[l]ˣ} (hχ : IsCyc χ) (j : ℤ) : 
 
 theorem chi_hinf {χ : GQ l →* ℚ_[l]ˣ} (hχ : IsCyc χ) (K : FinExt l) {h : GQ l} (hh : h ∈ Hinf K) :
     χ h = 1 :=
-  ((GlobalTheory.Cyc.cyc_basic l χ hχ).2.2 K h (gj_le K 0 (hinf_le_gj K 0 hh))).2.1 hh
+  ((GlobalTheory.Cyc.cyc_basic l χ hχ).2.2 K h (_root_.GlobalTheory.Cyc.cyclotomicTowerLevelGaloisSubgroup_le_fixingSubgroup_base K 0 (_root_.GlobalTheory.Cyc.AlmostTrace.Hinf_le_Gj K 0 hh))).2.1 hh
 
 theorem chiC_hinf {χ : GQ l →* ℚ_[l]ˣ} (hχ : IsCyc χ) (K : FinExt l) (j : ℤ) {h : GQ l}
     (hh : h ∈ Hinf K) : chiC χ j h = 1 := by
@@ -154,8 +149,8 @@ theorem chiC_hinf {χ : GQ l →* ℚ_[l]ˣ} (hχ : IsCyc χ) (K : FinExt l) (j 
 theorem conj_hinf {χ : GQ l →* ℚ_[l]ˣ} (hχ : IsCyc χ) (K : FinExt l) (s : ℕ) {g h : GQ l}
     (hg : g ∈ Gj K s) (hh : h ∈ Hinf K) : g⁻¹ * h * g ∈ Hinf K := by
   have h1 : g⁻¹ * h * g ∈ Gj K s :=
-    (Gj K s).mul_mem ((Gj K s).mul_mem ((Gj K s).inv_mem hg) (hinf_le_gj K s hh)) hg
-  refine ((GlobalTheory.Cyc.cyc_basic l χ hχ).2.2 K _ (gj_le K s h1)).2.2 ?_
+    (Gj K s).mul_mem ((Gj K s).mul_mem ((Gj K s).inv_mem hg) (_root_.GlobalTheory.Cyc.AlmostTrace.Hinf_le_Gj K s hh)) hg
+  refine ((GlobalTheory.Cyc.cyc_basic l χ hχ).2.2 K _ (_root_.GlobalTheory.Cyc.cyclotomicTowerLevelGaloisSubgroup_le_fixingSubgroup_base K s h1)).2.2 ?_
   simp [chi_hinf hχ K hh]
 
 theorem modify {act : GQ l →* (PadicComplex l ≃+* PadicComplex l)} {χ : GQ l →* ℚ_[l]ˣ}

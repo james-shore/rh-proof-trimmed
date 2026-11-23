@@ -198,12 +198,12 @@ theorem exists_sncBase : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKState
   have hsm : SmoothOfRelativeDimension D.dim (pullback.snd Xo.s (spMap (IntermediateField.inclusion c.le).toRingHom)) := by
     exact (smoothOfRelativeDimension_isStableUnderBaseChange D.dim).of_isPullback (IsPullback.of_hasPullback _ _) Xo.smooth
   have hU : SmoothOfRelativeDimension D.dim (Y.jQ.opensRange.ι ≫ pullback.snd Y.s (spMap (algebraMap (𝓞 c.F) c.F))) := by
-    apply GlobalTheory.T.smooth_open_immersion_range _ _ _ Y.jQ
+    apply _root_.GlobalTheory.CompanionTheory.Ar.SncBase.smoothOfRelativeDimension_opensRange_ι_comp _ _ _ Y.jQ
     rw [Y.jQ_over]
     exact hsm
   obtain ⟨N, x, X, ξ, f, bd, hirr, hx, hf, hm, hc⟩ := exists_model_of_res hRes c.F Y.X Y.s Y.proj Y.normal Y.jQ.opensRange
     (by simpa using Y.jQ_dense) D.dim hU (abLocus Y.t.G) (by simpa using Y.ab_gen) Ω ξ₀ hξ₀
   exact ⟨Unit, inferInstance, fun _ => Fin (N + 1), fun _ => inferInstance, fun p => x p.2, X, ξ, f, bd, inferInstance,
-    hirr, GlobalTheory.T.coords_single_block_segre X Ω ξ N x hx, hf, hm, hc⟩
+    hirr, _root_.GlobalTheory.CompanionTheory.Ar.SncBase.Reindex.coordTie_one_block X Ω ξ N x hx, hf, hm, hc⟩
 
 end GlobalTheory.CompanionTheory.Ar.SncBase

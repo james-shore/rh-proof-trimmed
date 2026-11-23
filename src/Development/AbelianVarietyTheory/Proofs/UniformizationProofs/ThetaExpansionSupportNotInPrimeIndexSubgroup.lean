@@ -136,7 +136,7 @@ theorem hom_zmod_eq_zero_of_support : Laws → Laws2 → (AllPre fun {V} _ _ _ {
     exact congrArg Multiplicative.toAdd (hφ e)
   obtain ⟨p, pb, pv, pt, pz⟩ := exists_gtPt_of_character V D (Kbar V) χ₀
   obtain ⟨o, -, -, ot, oz⟩ := exists_gtPt_of_character V D (Kbar V) 1
-  obtain ⟨m, minj, macts, madd⟩ := GlobalTheory.T.torusTorsion_to_abelianTorsion_theta_action L₁ L₂ V hV D A G U l hl1
+  obtain ⟨m, minj, macts, madd⟩ := _root_.GlobalTheory.UU.Eqv.main L₁ L₂ V hV D A G U l hl1
   let P : {g : GtPtF D (Kbar V) // GtTors D l g} := ⟨p, pt l hχl⟩
   let O : {g : GtPtF D (Kbar V) // GtTors D l g} := ⟨o, ot l (one_pow l)⟩
   have ho : o = 0 := (TorusExt.isZero_iff_eq o).1 (oz.2 rfl)
@@ -153,7 +153,7 @@ theorem hom_zmod_eq_zero_of_support : Laws → Laws2 → (AllPre fun {V} _ _ _ {
   obtain ⟨s₀, hs₀, -⟩ := PullSec.existsUnique_pullB D (Kbar V) (toUnit _) 1 f
   obtain ⟨t, ht, -⟩ := PullSec.existsUnique_pullG U (Kbar V) (toUnit _) l σ
   obtain ⟨s, hs, -⟩ := PullSec.existsUnique_pullB D (Kbar V) (toUnit _) l fl
-  obtain ⟨⟨j₀, hj₀⟩, -, -⟩ := GlobalTheory.T.expF_of_theta_degree_one L₁ L₂ V hV D A G U θ f hθ th s₀ hth hs₀
+  obtain ⟨⟨j₀, hj₀⟩, -, -⟩ := _root_.GlobalTheory.UU.OneDim.expF_one_dim L₁ L₂ V hV D A G U θ f hθ th s₀ hth hs₀
   have hts := GlobalTheory.expF_of_pull V D _ A G U (Kbar V) l σ fl t s hσ ht hs
   obtain ⟨ex, ex₁, ex₂, ex₃, -⟩ := GlobalTheory.UU.ExpLinMap.exists_expansion_linear L₁ L₂ V hV D A G U (Kbar V) l hl1
   obtain ⟨hpl, hacts⟩ := macts P
@@ -177,7 +177,7 @@ theorem hom_zmod_eq_zero_of_support : Laws → Laws2 → (AllPre fun {V} _ _ _ {
     refine DVR.SecOps.sec_ext fun j => (hs' α j).trans ?_
     rw [ex₂ t s hts α]
     rfl
-  refine hϑ.symm.trans (GlobalTheory.T.thetaOperator_point_zero_of_power_eigen _ A (Kbar V) (jFK (R := V) (Kbar V)) l hl1 (SecMod.mk _ th) (SecMod.mk _ t) ϑ c
+  refine hϑ.symm.trans (_root_.GlobalTheory.ThetaEigen.main _ A (Kbar V) (jFK (R := V) (Kbar V)) l hl1 (SecMod.mk _ th) (SecMod.mk _ t) ϑ c
     (fun h0 => hj₀ ((SecMod.eq_zero_iff_coord _).1 h0 j₀))
     (fun z J hJ => sval_pow_of_pullG U (Kbar V) (toUnit _) l θ σ th t hth ht hpow z J hJ) ?_)
   rw [← e]

@@ -44,6 +44,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.SymmetricScalarBlockMatrixMul
 
 @[expose] public section
 
@@ -70,10 +71,6 @@ theorem block_two_apply {p s : ℕ} (A : Matrix (Fin p) (Fin p) ℂ) (B' : Matri
   simp only [U.blk2, Matrix.reindex_apply, Matrix.submatrix_apply]
   rw [fsym, fsym]
   split_ifs <;> rfl
-
-theorem w_mul_apply {d : ℕ} {ι : Type*} (M : Matrix (Fin d) ι ℂ) (a : Fin d) (b : ι) :
-    (G.wMat d * M) a b = M a.rev b := by
-  simp [G.wMat, Matrix.mul_apply]
 
 theorem mul_w_apply {d : ℕ} {ι : Type*} [Fintype ι] (M : Matrix ι (Fin d) ℂ) (a : ι) (b : Fin d) :
     (M * G.wMat d) a b = M a b.rev := by
@@ -106,7 +103,7 @@ theorem levi_eq {k r j : ℕ} (hj : j + 1 ≤ r) (x : MJ j) :
     simp only [Ux4.block_index_first_val_eq, Ux4.block_index_middle_val_eq, Ux4.block_index_last_val_eq] at hp hq <;>
     simp only [Matrix.fromBlocks_apply₁₁, Matrix.fromBlocks_apply₁₂, Matrix.fromBlocks_apply₂₁,
       Matrix.fromBlocks_apply₂₂, Matrix.fromRows_apply_inl, Matrix.fromRows_apply_inr, Matrix.fromCols_apply_inl,
-      Matrix.fromCols_apply_inr, Matrix.zero_apply, levi, Matrix.of_apply, block_two_apply, w_mul_apply, mul_w_apply,
+      Matrix.fromCols_apply_inr, Matrix.zero_apply, levi, Matrix.of_apply, block_two_apply, _root_.Formalism.FourierDecayAlt.P.Ux3.wMat_mul_apply, mul_w_apply,
       Matrix.mul_assoc, Fin.val_rev, Matrix.neg_apply, Matrix.conjTranspose_apply] <;>
     split_ifs <;> first | rfl | (exfalso; omega) | skip
   all_goals first

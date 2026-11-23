@@ -59,7 +59,7 @@ theorem howeDualityReal_holds : GlobalTheory.Published.HoweDualityReal := by
   obtain ⟨-, hA, hC⟩ := hfr
   have hstab : ∀ N, GlobalTheory.Published.ThetaSubInf M ψ τ om N → ∀ w, Stab (actAt (V := fun w =>
       Formalism.BasicNotions.TH.Pol (P w) (Q w) (R w) (S w)) w (fockAct2 (P w) (Q w) (R w) (S w))) (N.comap Φ) :=
-    fun N hN => GlobalTheory.T.thetaLift_submodule_comap_stable_secondMember F E σ n d X W M ψ om τ P Q R S Φ c' N hCM hN C hC hact2
+    fun N hN => _root_.GlobalTheory.HoweD.stab_comap_of_thetaSubInf F E σ n d X W M ψ om τ P Q R S Φ c' N hCM hN C hC hact2
   have hcoinv : ∀ N, GlobalTheory.Published.ThetaSubInf M ψ τ om N →
       tensAny (fun w => coinv (P w) (Q w) (R w) (S w) (-c w)) ≤ N.comap Φ :=
     fun N hN => GlobalTheory.T.thetaLift_submodule_contains_firstMember_coinvariants F E σ n d X W M ψ om τ P Q R S Φ c N hCM hN hrange A hA hact1

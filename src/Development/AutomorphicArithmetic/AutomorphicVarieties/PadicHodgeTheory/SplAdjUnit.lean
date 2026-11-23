@@ -214,14 +214,6 @@ private theorem spl_int {B : Type} [CommRing B] [Algebra B K] (X : M4 B) (u : (M
 end Fld
 
 
-private theorem spl_near {l : ℕ} [Fact l.Prime] {O B : Type} [CommRing O] [Algebra ℤ_[l] O]
-    [Algebra O (PadicAlgCl l)] [IsScalarTower ℤ_[l] O (PadicAlgCl l)] [CommRing B] [IsDomain B] [HenselianLocalRing B]
-    [Algebra O B] (x y : B →ₐ[O] PadicAlgCl l) (d : O) (hd : algebraMap O (PadicAlgCl l) d ≠ 0) (t : B) (ht : x t = 0)
-    (v : FractionRing B) (hv : IsIntegral B v)
-    (hvt : algebraMap B _ (algebraMap O B d) * v = algebraMap B _ t) (κ : PadicAlgCl l)
-    (hκ : algebraMap O _ d * κ = y t) : ‖κ‖ < 1 :=
-  _root_.UpperTheory.Reformulated.B.MajorantSquareBound.spl_near x y d hd t ht v hv hvt κ hκ
-
 private theorem spl_red {l : ℕ} [Fact l.Prime] {O B H : Type} [CommRing O] [IsDomain O] [Algebra ℤ_[l] O]
     [Algebra O (PadicAlgCl l)] [IsScalarTower ℤ_[l] O (PadicAlgCl l)] [CommRing B] [IsDomain B] [HenselianLocalRing B]
     [Algebra O B] [Group H] (hO : Function.Injective (algebraMap O (PadicAlgCl l))) {I : Subgroup H}
@@ -255,7 +247,7 @@ private theorem spl_red {l : ℕ} [Fact l.Prime] {O B H : Type} [CommRing O] [Is
     rw [← spl_tr (algebraMap B (FractionRing B)), map_prod, map_prod]
     simp only [map_sub]
     exact h4 i g
-  refine spl_near ((Algebra.ofId O _).comp x) y d ((map_ne_zero_iff _ hO).2 hd) (t - algebraMap O B (d * ps i g)) ?_
+  refine _root_.UpperTheory.Reformulated.B.MajorantSquareBound.spl_near ((Algebra.ofId O _).comp x) y d ((map_ne_zero_iff _ hO).2 hd) (t - algebraMap O B (d * ps i g)) ?_
     (k i g - algebraMap B _ (algebraMap O B (ps i g))) (hint.sub isIntegral_algebraMap) ?_ _ ?_
   · rw [AlgHom.comp_apply, map_sub, hxt, AlgHom.commutes, Algebra.algebraMap_self, RingHom.id_apply, sub_self, map_zero]
   · rw [mul_sub, hk, map_sub, map_mul, map_mul]

@@ -176,7 +176,7 @@ theorem GlobalTheory.FormalAlg.towerCech_h1_uniform : ∀ (R : Type) [CommRing R
         rs (Y e).left hTi (C.ρ e i j) ^ (k + 2 * N) * (rs (Y e).left hTj (C.ρ e j l) ^ N *
           rs (Y e).left hTjl (c j l)) := by
       have t1 := congrArg (rs (Y e).left hTij)
-        (GlobalTheory.T.homogeneousForm_chart_change_coeff_ideal_pow R I Y β hβ n C e (k + 2 * N) (F j l) (hFh j l) (hFc j l) i j).2.2
+        (_root_.GlobalTheory.FormalAlg.Charts.ev_change R I Y β hβ n C e (k + 2 * N) (F j l) (hFh j l) (hFc j l) i j).2.2
       have t2 := congrArg (rs (Y e).left hTjl) (hFe j l)
       simp only [rs_rs, map_mul, map_pow] at t1 t2
       rw [t1, t2]
@@ -202,7 +202,7 @@ theorem GlobalTheory.FormalAlg.towerCech_h1_uniform : ∀ (R : Type) [CommRing R
     exact ⟨L, (hJ _ _).2 hL⟩
 
   obtain ⟨N', G, hGh, hGc, hrel⟩ := hd₀ k hk e N F hFh hFc htri
-  have tr := fun i j => GlobalTheory.T.homogeneousForm_chart_change_coeff_ideal_pow R I Y β hβ n C e (k + N') (G j) (hGh j) (hGc j) i j
+  have tr := fun i j => _root_.GlobalTheory.FormalAlg.Charts.ev_change R I Y β hβ n C e (k + N') (G j) (hGh j) (hGc j) i j
   refine ⟨fun i => C.ev e i (G i), fun i => (tr i i).1, fun i j => ?_⟩
   obtain ⟨L, hL⟩ := hrel i j
   have hl : C.D e i ⊓ C.D e j ≤ C.D e i := inf_le_left

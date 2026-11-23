@@ -51,7 +51,7 @@ theorem tauTame : GlobalTheory.Published.GlobalArtinReciprocity → ∀ (D : D7)
   intro _ D cf b0 b1 Sx T Sp i j b kv _ _ hl
   have hg := D.host.g_prime kv.1
   have hover := D.naut.plGw_over kv.1 kv.2
-  obtain ⟨τ, hτ⟩ := GlobalTheory.T.exists_residue_char_of_tame_char_prime_residue_field (E := D.host.E) (Ω := D.nd.Om) (NX.pG D kv) (D.host.g kv.1) hg
+  obtain ⟨τ, hτ⟩ := _root_.GlobalTheory.TameTau.tameChar_of_prime_residue (E := D.host.E) (Ω := D.nd.Om) (NX.pG D kv) (D.host.g kv.1) hg
     (GlobalTheory.Proof.EigenvalueCoprimeConjugation.normV_plGw D kv.1 kv.2) (by simpa [placesOver] using hover) (T.twistBaseCoefficientRing_isAdic i) (T.chi1 i j b)
     (T.twistCharacterFamily_continuous i j b) (fun A hA σ hσ => T.twistCharacterFamily_tame i j b kv.1 _ hover hl A hA σ hσ)
   refine ⟨(Units.map (baseCoeffToFractionRing D T i).toMonoidHom).comp τ, fun x u hu => ?_⟩

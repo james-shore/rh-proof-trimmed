@@ -99,17 +99,7 @@ theorem span_D_algebraMap_eq_top (F A R : Type) [Field F] [CommRing A] [CommRing
   rw [this]
   exact Submodule.smul_mem _ _ hmem
 
-theorem span_tmul_eq_top {R M : Type} [CommRing R] [IsLocalRing R] [AddCommGroup M] [Module R M]
-    {ι : Type} (f : ι → M) (hf : Submodule.span R (Set.range f) = ⊤) :
-    Submodule.span (IsLocalRing.ResidueField R)
-      (Set.range fun i => (1 : IsLocalRing.ResidueField R) ⊗ₜ[R] f i) = ⊤ := by
-  first
-  | exact @_root_.GlobalTheory.TensorUnitSpanTop.main
-  | exact _root_.GlobalTheory.TensorUnitSpanTop.main
-  | (apply _root_.GlobalTheory.TensorUnitSpanTop.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TensorUnitSpanTop.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TensorUnitSpanTop.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TensorUnitSpanTop.main ..)
+alias span_tmul_eq_top := _root_.GlobalTheory.TensorUnitSpanTop.span_one_tmul_eq_top
 
 end GlobalTheory.CoordExt
 

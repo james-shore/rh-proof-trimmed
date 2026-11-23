@@ -55,19 +55,7 @@ noncomputable section
 
 namespace GlobalTheory.BSP
 
-theorem BK.exists_Ep_eq_X_pow_add {l : ℕ} [Fact l.Prime] {K : FinExt l} (bk : BK K) :
-    ∃ q : Polynomial (Wq l bk.a),
-      bk.Ep = Polynomial.X ^ bk.Ep.natDegree + Polynomial.C (l : Wq l bk.a) * q := by
-  have h : Polynomial.C (l : Wq l bk.a) ∣ bk.Ep - Polynomial.X ^ bk.Ep.natDegree := by
-    rw [Polynomial.C_dvd_iff_dvd_coeff]
-    intro i
-    rw [Polynomial.coeff_sub, Polynomial.coeff_X_pow]
-    rcases lt_trichotomy i bk.Ep.natDegree with hi | hi | hi
-    · rw [if_neg hi.ne, sub_zero]; exact bk.dvd_coeff i hi
-    · rw [if_pos hi, hi, bk.monic.coeff_natDegree, sub_self]; exact dvd_zero _
-    · rw [if_neg hi.ne', Polynomial.coeff_eq_zero_of_natDegree_lt hi, sub_zero]; exact dvd_zero _
-  obtain ⟨q, hq⟩ := h
-  exact ⟨q, by rw [← hq]; ring⟩
+alias BK.exists_Ep_eq_X_pow_add := _root_.GlobalTheory.BSP.FlatDisc.exists_eq_add
 
 theorem BK.norm_toDisc_E_mul : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (ρ : ℝ≥0), bk.ρ₀ ≤ ρ → ρ < 1 →
     ∀ y : bk.DS ρ, ‖toDisc l (X : bk.S) ρ bk.E * y‖ = (ρ : ℝ) ^ bk.Ep.natDegree * ‖y‖ := by

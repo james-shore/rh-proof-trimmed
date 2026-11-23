@@ -108,18 +108,12 @@ theorem trace_swap_pr (b₀ : HermE D ρ) {b : Mx D p p} (hb : adj b = b) (u v :
     Matrix.trace (b ⬝ pr b₀ v u) = cA D (Matrix.trace (b ⬝ pr b₀ u v)) := by
   rw [← trace_adj, adj_mul, hb, adj_pr, Matrix.trace_mul_comm]
 
-theorem halfTr_add'' (a c : AE D) : halfTr (a + c) = halfTr a + halfTr c := by
-  simp only [halfTr, trA, map_add (f := _), mul_add]
-
-theorem halfTr_neg'' (a : AE D) : halfTr (-a) = -halfTr a := by
-  simp only [halfTr, trA, map_neg, mul_neg]
-
 theorem quad_shift_pr (b₀ : HermE D ρ) {b : Mx D p p} (hb : adj b = b) (u v : Mx D ρ p) :
     halfTr (Matrix.trace (b ⬝ pr b₀ (u + v) (u + v))) =
       halfTr (Matrix.trace (b ⬝ pr b₀ u u)) + trA (Matrix.trace (pr b₀ u (v ⬝ b))) +
         halfTr (Matrix.trace (pr b₀ v (v ⬝ b))) := by
   rw [pr_add_left, pr_add_right, pr_add_right, Matrix.mul_add, Matrix.mul_add, Matrix.mul_add, Matrix.trace_add,
-    Matrix.trace_add, Matrix.trace_add, halfTr_add'', halfTr_add'', halfTr_add'', trace_swap_pr b₀ hb u v,
+    Matrix.trace_add, Matrix.trace_add, _root_.GlobalTheory.CompanionTheory.HermPoisson.halfTr_add', _root_.GlobalTheory.CompanionTheory.HermPoisson.halfTr_add', _root_.GlobalTheory.CompanionTheory.HermPoisson.halfTr_add', trace_swap_pr b₀ hb u v,
     trace_mul_pr, trace_mul_pr, ← Unip.halfTr_add_cA (Matrix.trace (b ⬝ pr b₀ u v))]
   abel
 
@@ -131,7 +125,7 @@ theorem psi_halfTr_rat {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsCharAF D.host.F
 theorem chz_add (ψ : AddChar (AF D.host.F) ℂ) (b₀ : HermE D ρ) (z : hermA D ρ) (w : Mx D ρ ρ) (h : z.1 + w ∈ hermA D ρ) :
     chz ψ b₀ ⟨z.1 + w, h⟩ = chz ψ b₀ z * ψ (halfTr (Matrix.trace (b₀.1.map (incA D) ⬝ w))) := by
   simp only [chz]
-  rw [Matrix.mul_add, Matrix.trace_add, halfTr_add'', AddChar.map_add_eq_mul]
+  rw [Matrix.mul_add, Matrix.trace_add, _root_.GlobalTheory.CompanionTheory.HermPoisson.halfTr_add', AddChar.map_add_eq_mul]
 
 theorem trace_rat {k : ℕ} (N : Matrix (Fin k) (Fin k) D.host.E) :
     Matrix.trace (rat N : Mx D k k) = incA D (Matrix.trace N) := by
@@ -176,7 +170,7 @@ theorem th_unip {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsCharAF D.host.F ψ) {b
       simpa [zU, sub_eq_add_neg] using this⟩ := Subtype.ext (sub_eq_add_neg _ _)
     have e2 : Matrix.trace (b₀.1.map (incA D) ⬝ (y ⬝ (rat b ⬝ adj y))) = Matrix.trace (pr b₀ y (y ⬝ rat b)) := by
       rw [pr_def, ← Matrix.mul_assoc y, ← Matrix.mul_assoc (b₀.1.map (incA D)) (y ⬝ rat b) (adj y), Matrix.trace_mul_comm]
-    rw [e, chz_add, Matrix.mul_neg, Matrix.trace_neg, halfTr_neg'', e2]
+    rw [e, chz_add, Matrix.mul_neg, Matrix.trace_neg, _root_.GlobalTheory.CompanionTheory.HermPoisson.halfTr_neg', e2]
   have ht : ∀ ξ : Matrix (Fin ρ) (Fin p) D.host.E,
       ψ (trA (Matrix.trace (pr b₀ (x - y ⬝ rat b) (ξ.map (incA D))))) * Ω (g * h) (ξ.map (incA D) + y) =
         ψ u * (ψ (trA (Matrix.trace (pr b₀ x (ξ.map (incA D))))) * Ω h (ξ.map (incA D) + y)) := by
@@ -298,7 +292,7 @@ theorem chz_zW (ψ : AddChar (AF D.host.F) ℂ) (b₀ : HermE D ρ) (z : hermA D
     rw [pr_def, ← Matrix.mul_assoc (b₀.1.map (incA D)) y (adj x), Matrix.trace_mul_comm]
   have e2 : Matrix.trace (b₀.1.map (incA D) ⬝ (x ⬝ adj y)) = cA D (Matrix.trace (pr b₀ x y)) := by
     rw [← trace_pr_swap, pr_def, ← Matrix.mul_assoc (b₀.1.map (incA D)) x (adj y), Matrix.trace_mul_comm]
-  rw [e, chz_add, Matrix.mul_neg, Matrix.mul_add, Matrix.trace_neg, Matrix.trace_add, e1, e2, halfTr_neg'', halfTr_add'',
+  rw [e, chz_add, Matrix.mul_neg, Matrix.mul_add, Matrix.trace_neg, Matrix.trace_add, e1, e2, _root_.GlobalTheory.CompanionTheory.HermPoisson.halfTr_neg', _root_.GlobalTheory.CompanionTheory.HermPoisson.halfTr_add',
     add_comm (halfTr (cA D _)), Unip.halfTr_add_cA]
   rfl
 

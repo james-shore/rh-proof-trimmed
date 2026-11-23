@@ -66,10 +66,6 @@ private theorem mulVec_smul_scalar {O LL : Type} [CommRing O] [Field LL] [Algebr
     (M : Matrix (Fin n) (Fin n) LL) (s : O) (v : Fin n → LL) : M.mulVec (s • v) = s • M.mulVec v := by
   rw [Matrix.mulVec_smul]
 
-private theorem tmul_surjective_rank_one {O T X : Type} [CommRing O] [AddCommGroup T] [Module O T] [AddCommGroup X] [Module O X]
-    (x₀ : X) (h : ∀ x : X, ∃ c : O, x = c • x₀) (m : T ⊗[O] X) : ∃ t : T, t ⊗ₜ[O] x₀ = m :=
-  _root_.UpperTheory.Reformulated.B.Qj4.tmul_surjective_rank_one x₀ h m
-
 theorem _root_.UpperTheory.KN.exists_admissible_extension_latticeTensor :
     ∀ {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp] [Field K₀] [Field K]
       [Algebra Qp K₀] [Algebra Qp K] [Algebra K₀ K] [IsScalarTower Qp K₀ K]
@@ -162,7 +158,7 @@ theorem _root_.UpperTheory.KN.exists_admissible_extension_latticeTensor :
     · exact hρ g (t : V)
   · refine (Submodule.mkQ_surjective _).comp ?_
     rintro ⟨m, s⟩
-    obtain ⟨t, rfl⟩ := tmul_surjective_rank_one x₀ hx₀ m
+    obtain ⟨t, rfl⟩ := _root_.UpperTheory.Reformulated.B.Qj4.tmul_surjective_rank_one x₀ hx₀ m
     exact ⟨(0, t, s), by rw [hq0]; simp⟩
   · intro g u w hw
     have hw' : q0 u - w ∈ tableLineDegreeTwo.kerExt L X lam b := (Submodule.Quotient.eq _).mp hw

@@ -60,7 +60,7 @@ namespace GlobalTheory.CompanionTheory.LeviIwa
 theorem block_qr {D : ℕ} (τ : Fin D → ℕ) (hτ : Monotone τ) (h : Matrix (Fin D) (Fin D) ℂ) (hu : IsUnit h)
     (ht : h.BlockTriangular τ) : ∃ k ∈ Matrix.unitaryGroup (Fin D) ℂ, ∃ b : Matrix (Fin D) (Fin D) ℂ,
       h = k * b ∧ b.BlockTriangular id ∧ k.BlockTriangular τ ∧ kᴴ.BlockTriangular τ := by
-  obtain ⟨k, hk, b, rfl, hb⟩ := GlobalTheory.T.iwasawa_unitary_upper_triangular h hu
+  obtain ⟨k, hk, b, rfl, hb⟩ := _root_.GlobalTheory.CompanionTheory.QR.exists_unitary_mul_blockTriangular h hu
   have hk1 : k * kᴴ = 1 := Matrix.mem_unitaryGroup_iff.1 hk
   have hk2 : kᴴ * k = 1 := Matrix.mem_unitaryGroup_iff'.1 hk
   have hbu : IsUnit b := by
@@ -93,7 +93,7 @@ theorem detOn_unitary {n : ℕ} {k : Matrix (Fin n) (Fin n) ℂ} (hk : k ∈ Mat
     GlobalTheory.FlagMeas.detOn k V = 1 := by
   have e := GlobalTheory.RealInd.detOn_mul h' h
   rw [Matrix.mem_unitaryGroup_iff'.1 hk |> fun x => (show kᴴ * k = 1 from x), GlobalTheory.RealInd.detOn_one,
-    GlobalTheory.LeviPolar.detOn_conjTranspose n k V h h'] at e
+    _root_.GlobalTheory.FlagMeas.DetAdj.detOn_conjTranspose n k V h h'] at e
   have h0 := GlobalTheory.LeviPolar.detOn_nonneg k V
   nlinarith
 

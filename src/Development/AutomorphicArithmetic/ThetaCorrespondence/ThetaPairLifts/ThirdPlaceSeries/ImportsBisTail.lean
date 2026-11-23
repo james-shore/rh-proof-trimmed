@@ -55,14 +55,14 @@ theorem main_alt_alt : GlobalTheory.Published.HarishChandraFinite → GlobalTheo
     intro i
     have hr := D.nd.j_range i
     have hlt : D.nd.j i - 1 < D.R.m := by omega
-    obtain ⟨Y, hY⟩ := _root_.GlobalTheory.T.exists_canonical_module_at_successor h1 h2 hL D P X hA ⟨D.nd.j i - 1, hlt⟩ (D.nd.j i) (by simp only; omega)
+    obtain ⟨Y, hY⟩ := _root_.GlobalTheory.RowModCanon.main_alt_alt h1 h2 hL D P X hA ⟨D.nd.j i - 1, hlt⟩ (D.nd.j i) (by simp only; omega)
     refine ⟨Y, fun j hj => ?_⟩
     have hj' : j = ⟨D.nd.j i - 1, hlt⟩ := Fin.ext (by simp only; omega)
     subst hj'
     exact hY
   choose Y hY using key
-  exact ⟨{ form := _root_.GlobalTheory.T.mtForm_of_realAt_agree hL D P X hA
+  exact ⟨{ form := _root_.GlobalTheory.FormAllLevels.main_alt_alt hL D P X hA
            rowM := Y
-           th := fun i j hj => (_root_.GlobalTheory.T.nonempty_theta_mod_of_is_canon h1 h2 hL D P X hA i j hj (Y i) (hY i j hj)).some }⟩
+           th := fun i j hj => (_root_.GlobalTheory.ThetaTri.nonempty_thetaMod_of_isCanon h1 h2 hL D P X hA i j hj (Y i) (hY i j hj)).some }⟩
 end GlobalTheory.JoinExists
 end

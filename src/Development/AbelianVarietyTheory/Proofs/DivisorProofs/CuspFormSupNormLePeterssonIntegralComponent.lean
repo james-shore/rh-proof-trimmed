@@ -73,17 +73,7 @@ theorem pnorm_nonneg' {r : ℕ} (X : Data E r) (la : Wt X.Ψ r) (P : Frame X.Ψ 
     0 ≤ X.pnorm la P y := by
   unfold Data.pnorm; positivity
 
-theorem pnorm_lact' {r : ℕ} (X : Data E r) {la : Wt X.Ψ r} {P : Frame X.Ψ r → ℂ} (hP : X.IsSec la P)
-    {γ : GL (Fin r) E} (hγ : γ ∈ X.Γ) {y : Frame X.Ψ r} (hy : y ∈ X.dom) :
-    X.pnorm la P (lact γ y) = X.pnorm la P y := by
-  have hχ : ‖X.χ la γ‖ = 1 := by
-    obtain ⟨n, hn, h⟩ := X.χ_fin la
-    have := congrArg norm (h γ hγ)
-    rw [norm_pow, norm_one] at this
-    exact (pow_eq_one_iff_of_nonneg (norm_nonneg _) hn.ne').1 this
-  unfold Data.pnorm dmin
-  simp only [GlobalTheory.MajInv.gram_lact X (X.Γ_stab γ hγ)]
-  rw [hP.2.2 γ hγ _ hy, norm_mul, hχ, one_mul]
+alias pnorm_lact' := _root_.GlobalTheory.PeterssonCompare.pnorm_lact
 
 theorem pnorm_piecewise {r : ℕ} (X : Data E r) (la : Wt X.Ψ r) (P : Frame X.Ψ r → ℂ) {y : Frame X.Ψ r}
     (hy : y ∈ X.dom) : X.pnorm la (X.dom.piecewise P 0) y = X.pnorm la P y := by

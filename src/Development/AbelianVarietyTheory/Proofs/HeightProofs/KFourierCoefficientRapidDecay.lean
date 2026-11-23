@@ -56,10 +56,6 @@ noncomputable section
 namespace GlobalTheory.KFourier
 open MeasureTheory
 
-theorem hs_nonneg' {n : ℕ} (y : Mx n) : 0 ≤ hs y := by
-  show 0 ≤ ∑ i, ∑ j, ‖y i j‖ ^ 2
-  exact Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => by positivity
-
 theorem kFourier_coeff_decay : ∀ {n : ℕ} (ε : Fin n → Bool) (N : ℕ) (F : List (Mx n) → Mx n → ℂ), IsDerFam ε F → FamGrowth ε N F → ContinuousOn (F []) (UJset ε) → ∀ e : ℕ → KG ε → ℂ, (∀ i, GlobalTheory.KFourier.IsKer ε i (e i)) → ∀ u : List (Mx n), (∀ X ∈ u, inK ε X) → ∃ b : ℕ → ℝ, Summable b ∧ ∀ i, ∀ y ∈ UJset ε, ‖∫ k, e i k * F u (y * toMK k) ∂(muK ε)‖ ≤ b i * (1 + hs y) ^ N := by
   intro n ε N F hD hG hC e he u hu
   obtain ⟨r, X, hX, hsp⟩ := GlobalTheory.T.exists_finite_real_spanning_compactLieAlgebra ε
@@ -101,7 +97,7 @@ theorem kFourier_coeff_decay : ∀ {n : ℕ} (ε : Fin n → Bool) (N : ℕ) (F 
             mul_le_mul_of_nonneg_left e2 h0
         _ = _ := by ring
   · intro i y hy
-    have hy0 : 0 ≤ (1 + hs y) ^ N := pow_nonneg (by linarith [hs_nonneg' y]) _
+    have hy0 : 0 ≤ (1 + hs y) ^ N := pow_nonneg (by linarith [_root_.GlobalTheory.TypeSum.hs_nonneg y]) _
     rcases Nat.eq_zero_or_pos i with rfl | hi
     · simp only [if_true]
       have h := hC0 0 (e 0) (he 0).1 y hy

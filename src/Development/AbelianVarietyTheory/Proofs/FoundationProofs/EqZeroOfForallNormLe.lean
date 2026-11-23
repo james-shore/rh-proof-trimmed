@@ -47,9 +47,6 @@ namespace GlobalTheory.Ord2
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem norm_le_one_of_mem_coef (c : Coef l) {x : Qbar l} (hx : x ∈ c.O) : ‖x‖ ≤ 1 :=
-  _root_.UpperTheory.Reformulated.B.Rf3.norm_le_one_of_mem_coef c hx
-
 theorem norm_natCast_l : ‖((l : ℕ) : Qbar l)‖ = (l : ℝ)⁻¹ := by
   have : ((l : ℕ) : Qbar l) = algebraMap ℚ_[l] (PadicAlgCl l) (l : ℚ_[l]) := by simp
   rw [this, norm_algebraMap', Padic.norm_p]

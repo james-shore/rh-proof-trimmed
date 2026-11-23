@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.MiStarOfMid
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.UnitRatio
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.TraceLowerBoundAllMembers
 
 @[expose] public section
 
@@ -48,23 +49,6 @@ open Formalism.BasicNotions Formalism.MainNotions GlobalTheory.EX GlobalTheory.E
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.Core.HypAt
-
-theorem del_lo {x eps k f CD cD : ℝ} (hx : 1 ≤ x) (he : eps ≤ 1) (hk0 : 0 ≤ f) (hfk : f ≤ k)
-    (hk : k ≤ x ^ (5 : ℝ)) (hCD : 0 ≤ CD) (hc : 11 * CD ≤ cD) :
-    (k * f * x ^ eps) ^ CD ≤ ((⌈x ^ cD⌉₊ : ℕ) : ℝ) := by
-  have hx0 : 0 ≤ x := by linarith
-  have hk0' : 0 ≤ k := le_trans hk0 hfk
-  have h1 : x ^ eps ≤ x ^ (1 : ℝ) := Real.rpow_le_rpow_of_exponent_le hx he
-  have h2 : k * f ≤ x ^ (5 : ℝ) * x ^ (5 : ℝ) := mul_le_mul hk (le_trans hfk hk) hk0 (by positivity)
-  have h3 : k * f * x ^ eps ≤ x ^ (11 : ℝ) := by
-    have : x ^ (11 : ℝ) = x ^ (5 : ℝ) * x ^ (5 : ℝ) * x ^ (1 : ℝ) := by
-      rw [← Real.rpow_add' hx0 (by norm_num), ← Real.rpow_add' hx0 (by norm_num)]; norm_num
-    rw [this]
-    exact mul_le_mul h2 h1 (by positivity) (by positivity)
-  calc (k * f * x ^ eps) ^ CD ≤ (x ^ (11 : ℝ)) ^ CD := Real.rpow_le_rpow (by positivity) h3 hCD
-    _ = x ^ (11 * CD) := by rw [← Real.rpow_mul hx0]
-    _ ≤ x ^ cD := Real.rpow_le_rpow_of_exponent_le hx hc
-    _ ≤ _ := Nat.le_ceil _
 
 theorem evP_hypL (A B : Formalism.MainNotions.Inhab.FC → ℝ) : EvP fun κ K => ∀ β : BPt K,
     (∀ u : β.D.what₂.Word, β.O.L.sc.b ^ ((1 / 2 : ℝ) * (β.D.R.m : ℝ)) ≤ Formalism.MainNotions.S.Tr β.D u ∧
@@ -110,7 +94,7 @@ theorem evP_hypL (A B : Formalism.MainNotions.Inhab.FC → ℝ) : EvP fun κ K =
     rw [hv.Del_eq]; unfold Delv; push_cast; rfl
   have hDl : ((β.D.R.k : ℝ) * (β.D.R.f : ℝ) * β.O.L.sc.x ^ eps) ^ max (B C) 40 ≤ ((β.D.s.Del : ℚ) : ℝ) := by
     rw [hDel]
-    exact del_lo hx1.le (by linarith) (by positivity) G0.nums.fk G0.nums.k_hi hCD0.le
+    exact _root_.GlobalTheory.Core.LevLow.cloudUnit_lower hx1.le (by linarith) (by positivity) G0.nums.fk G0.nums.k_hi hCD0.le
       (le_trans (le_max_right _ _) hcD)
   have G : GlobalTheory.Diag.PG.Glob0 β.D β.O.L.sc.x eps (max (B C) 40) (C.P.CYL + 1) :=
     ⟨⟨G0.nums.m_lo, G0.nums.mf, G0.nums.fk, G0.nums.k_lo, G0.nums.k_hi, G0.nums.lrd_lo, G0.nums.lrd_hi, hDl,

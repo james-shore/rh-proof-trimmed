@@ -68,20 +68,15 @@ private theorem fock_add_right {σ : Type} (f g g' : MvPolynomial σ ℂ) :
     fockF f (g + g') = fockF f g + fockF f g' := by
   simp only [fockF, MvPolynomial.coeff_add, star_add, mul_add, add_mul, Finset.sum_add_distrib]
 
-private theorem fock_smul_right {σ : Type} (c : ℂ) (f g : MvPolynomial σ ℂ) :
-    fockF f (c • g) = star c * fockF f g := by
-  simp only [fockF, MvPolynomial.coeff_smul, smul_eq_mul, star_mul', Finset.mul_sum]
-  exact Finset.sum_congr rfl fun m _ => by ring
-
 private noncomputable def fischer (σ : Type) : MvPolynomial σ ℂ →ₗ[ℂ] MvPolynomial σ ℂ →ₗ[ℂ] ℂ :=
   LinearMap.mk₂ ℂ (fun f h => fockF f (map (starRingEnd ℂ) h))
     (fun f f' h => by
       rw [Formalism.GradedWeylDivisibility.fockHerm σ _ (f + f'), fock_add_right, star_add, ← Formalism.GradedWeylDivisibility.fockHerm, ← Formalism.GradedWeylDivisibility.fockHerm])
     (fun c f h => by
-      rw [Formalism.GradedWeylDivisibility.fockHerm σ _ (c • f), fock_smul_right, star_mul', star_star, ← Formalism.GradedWeylDivisibility.fockHerm, smul_eq_mul])
+      rw [Formalism.GradedWeylDivisibility.fockHerm σ _ (c • f), _root_.PI.WHw.bC_smul_right, star_mul', star_star, ← Formalism.GradedWeylDivisibility.fockHerm, smul_eq_mul])
     (fun f h h' => by rw [map_add (f := _), fock_add_right])
     (fun c f h => by
-      rw [smul_eq_C_mul, map_mul, map_C, ← smul_eq_C_mul, fock_smul_right, smul_eq_mul]
+      rw [smul_eq_C_mul, map_mul, map_C, ← smul_eq_C_mul, _root_.PI.WHw.bC_smul_right, smul_eq_mul]
       simp)
 
 private theorem fischer_apply {σ : Type} (f h : MvPolynomial σ ℂ) :

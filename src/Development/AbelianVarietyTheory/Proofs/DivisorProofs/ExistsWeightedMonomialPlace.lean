@@ -91,7 +91,7 @@ theorem exists_weightedMonomialPlace : ∀ {L : Type} [Field L] (c : ℂ →+* L
   have key0 : ∀ P : MvPolynomial (Fin r) Q, eval₂ Q.subtype u P = 0 →
       ∀ α, P.coeff α ∈ IsLocalRing.maximalIdeal Q := by
     intro P hP α
-    obtain ⟨N, F, hF, hFe, hc⟩ := GlobalTheory.T.exists_weightedHomogeneous_homogenisation Q r z wt hw0 hz0 P
+    obtain ⟨N, F, hF, hFe, hc⟩ := _root_.GlobalTheory.exists_weightedHomogenisation Q r z wt hw0 hz0 P
     obtain ⟨β, hβ⟩ := hc α
     rw [← hβ, ← hm]
     refine GlobalTheory.T.coeff_mem_span_of_weightedHomogeneous_relation_quasiRegular z wt hw hz N F hF ?_ β

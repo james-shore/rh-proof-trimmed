@@ -49,7 +49,7 @@ open NumberField
 namespace PI.Bridge
 
 theorem bridge_stdAddChar : HeckeCharacterZeroLocus.StdAdditiveCharExists := by
-  have h := stdCharTR
+  have h := _root_.PI.StdCharTRWork.stdCharTR_main
   unfold PI.StdCharTR.Target at h
   unfold HeckeCharacterZeroLocus.StdAdditiveCharExists
   intro F _ _ hF

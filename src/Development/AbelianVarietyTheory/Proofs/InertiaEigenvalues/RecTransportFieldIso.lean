@@ -237,7 +237,7 @@ theorem eps_ind (hG : GlobalArtinReciprocity) (hC : ChevalleyUnits) (hLL : Local
     (s₂ : Submodule.span ℂ (Set.range fun σ => b₂.ρ σ v₂) = ⊤) :
     ε E w h ψ (WD.mk b₁) * ε' E' w' h' ψ' (WD.mk b₂') = ε E w h ψ (WD.mk b₂) * ε' E' w' h' ψ' (WD.mk b₁') := by
   obtain ⟨hc', h1'⟩ := addChar_transport hP hc h1 hψ
-  obtain ⟨L, hfin, hL, hHL⟩ := GlobalTheory.T.exists_localExtension_of_finiteIndex_weilSubgroup E Ω A w h H hH hHo
+  obtain ⟨L, hfin, hL, hHL⟩ := _root_.GlobalTheory.LocalExtField.exists_localExt_of_finiteIndex E Ω A w h H hH hHo
   obtain ⟨L', jL, hfin', hL', hdeg, hφ, hadj⟩ :=
     GlobalTheory.T.weil_group_transport E Ω A w h E' Ω' A' w' h' φ j c hP.ext (fun σ => (hcr σ _).2 rfl) L hfin hL
   haveI : NumberField L := NumberField.of_module_finite E L

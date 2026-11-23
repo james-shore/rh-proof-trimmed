@@ -63,14 +63,10 @@ def wm (ε : Fin n → Bool) (wb : Fin k → Fin n → ℂ) (M : Matrix (Fin n) 
 
 variable {ε : Fin n → Bool}
 
-theorem uMat_mul_ (a b : Formalism.REAL.UJ ε) : uMat (a * b) = uMat a * uMat b := rfl
-
-theorem uMat_mul_inv_ (a : Formalism.REAL.UJ ε) : uMat a * uMat a⁻¹ = 1 := by simp [uMat]
-
-theorem uMat_inv_mul_ (a : Formalism.REAL.UJ ε) : uMat a⁻¹ * uMat a = 1 := by simp [uMat]
+alias uMat_mul_ := _root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_mul
 
 theorem cancel_ (g : Formalism.REAL.UJ ε) (w : Fin n → ℂ) : uMat g *ᵥ (uMat g⁻¹ *ᵥ w) = w := by
-  rw [mulVec_mulVec, uMat_mul_inv_, one_mulVec]
+  rw [mulVec_mulVec, _root_.Formalism.L2.SG.RealObj.InfCut.PtRepPf.uMat_mul_inv, one_mulVec]
 
 theorem hJ_adj (g : Formalism.REAL.UJ ε) (x y : Fin n → ℂ) :
     hJ ε x (uMat g *ᵥ y) = hJ ε (uMat g⁻¹ *ᵥ x) y := by
@@ -78,7 +74,7 @@ theorem hJ_adj (g : Formalism.REAL.UJ ε) (x y : Fin n → ℂ) :
 
 theorem fix_inv (g : Formalism.REAL.UJ ε) {x : Fin n → ℂ} (h : uMat g *ᵥ x = x) : uMat g⁻¹ *ᵥ x = x := by
   calc uMat g⁻¹ *ᵥ x = uMat g⁻¹ *ᵥ (uMat g *ᵥ x) := by rw [h]
-    _ = x := by rw [mulVec_mulVec, uMat_inv_mul_, one_mulVec]
+    _ = x := by rw [mulVec_mulVec, _root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_inv_mul, one_mulVec]
 
 theorem hJ_span_zero (w : Fin n → ℂ) {S : Set (Fin n → ℂ)} (hS : ∀ y ∈ S, hJ ε w y = 0) {x : Fin n → ℂ}
     (hx : x ∈ Submodule.span ℂ S) : hJ ε w x = 0 := by
@@ -172,11 +168,6 @@ theorem tri_adj (Z Q Q' : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ) (hQt : Q.IsUpp
     rw [adjugate_mul_distrib, adjugate_mul_distrib, Matrix.mul_assoc, Matrix.mul_assoc, hA1, Matrix.mul_one,
       ← vecMul_vecMul, hs]
   · rw [det_mul, det_mul, det_conjTranspose, hQdet, hQdet', star_one, one_mul, mul_one]
-
-theorem Dl_full (Z : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ) : Formalism.L2.SG.RealObj.Dl Z (r + 1) = Z.det := by
-  unfold Formalism.L2.SG.RealObj.Dl
-  rw [dite_eq_left le_rfl]
-  rfl
 
 theorem xPr_move (Z₂ Z Q' : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ) (G₂ G Nm Am : Matrix (Fin n) (Fin n) ℂ)
     (f' : Fin (r + 1) → Fin n → ℂ) (hG : ∀ b, G₂ *ᵥ f' b = Nm *ᵥ (Am *ᵥ ∑ c, Q' c b • (G *ᵥ f' c)))
@@ -334,9 +325,9 @@ theorem move_loc (A B : PtRepPf.Fr ε r k) (i0 i0' : Fin k) (γ nn a nn' a' : Fo
   have haiF : ∀ b, uMat a⁻¹ *ᵥ fam A.e A.z b = fam A.e A.z b := fun b => fix_inv a (haF b)
   have haiF' : ∀ b, uMat a'⁻¹ *ᵥ fam B.e B.z b = fam B.e B.z b := fun b => fix_inv a' (haF' b)
   obtain ⟨Q, hQt, hQd, hQ⟩ := tri A.e A.z (uMat nn⁻¹)
-    (Formalism.L2.SG.RealObj.SpanPreservation.inN_inv ε A.e A.z (uMat nn) (uMat nn⁻¹) (uMat_inv_mul_ nn) hn).1
+    (Formalism.L2.SG.RealObj.SpanPreservation.inN_inv ε A.e A.z (uMat nn) (uMat nn⁻¹) (_root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_inv_mul nn) hn).1
   obtain ⟨Q', hQt', hQd', hQ'⟩ := tri B.e B.z (uMat nn'⁻¹)
-    (Formalism.L2.SG.RealObj.SpanPreservation.inN_inv ε B.e B.z (uMat nn') (uMat nn'⁻¹) (uMat_inv_mul_ nn') hn').1
+    (Formalism.L2.SG.RealObj.SpanPreservation.inN_inv ε B.e B.z (uMat nn') (uMat nn'⁻¹) (_root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_inv_mul nn') hn').1
   obtain ⟨Qn, -, -, hQn⟩ := tri A.e A.z (uMat nn) hn.1
   obtain ⟨Qn', -, -, hQn'⟩ := tri B.e B.z (uMat nn') hn'.1
   have hWa := wm_unitary A a hae haz
@@ -358,7 +349,7 @@ theorem move_loc (A B : PtRepPf.Fr ε r k) (i0 i0' : Fin k) (γ nn a nn' a' : Fo
   obtain ⟨hcol, hrow, hdetZ⟩ := tri_adj (Zhat ε (fam A.e A.z) (fam B.e B.z) (uMat γ)) Q Q' hQt hQd hQt' hQd'
   have hdet : Formalism.L2.SG.RealObj.Dl (Zhat ε (fam A.e A.z) (fam B.e B.z) (uMat (nn * a * γ * a'⁻¹ * nn'⁻¹))) (r + 1) =
       Formalism.L2.SG.RealObj.Dl (Zhat ε (fam A.e A.z) (fam B.e B.z) (uMat γ)) (r + 1) := by
-    rw [Dl_full, Dl_full, hZ2, hdetZ]
+    rw [_root_.Formalism.L2.SG.RealObj.InfCut.PtRepPf.dl_top, _root_.Formalism.L2.SG.RealObj.InfCut.PtRepPf.dl_top, hZ2, hdetZ]
 
   have hxPr : xPr (Zhat ε (fam A.e A.z) (fam B.e B.z) (uMat (nn * a * γ * a'⁻¹ * nn'⁻¹)))
       (uMat (nn * a * γ * a'⁻¹ * nn'⁻¹)) (fam B.e B.z) =

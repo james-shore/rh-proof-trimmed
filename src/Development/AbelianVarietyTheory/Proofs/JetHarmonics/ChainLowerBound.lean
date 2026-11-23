@@ -95,7 +95,7 @@ theorem chain_lower_bound : ∀ (n : ℕ) (L : Fin (n+1) → ℤ) (M : Fin n →
           rw [Function.update_self]; omega
         · rw [Function.update_of_ne hk]
           exact (hbox k).2
-    refine GlobalTheory.T.inv_sq_le_wignerCoeffSqRaising n _ M i.succ (3 * b) (strictAnti_of_box hbox') hbox' ?_ hD ?_ ?_
+    refine _root_.GlobalTheory.WigSh.inv_sq_le_wP n _ M i.succ (3 * b) (strictAnti_of_box hbox') hbox' ?_ hD ?_ ?_
     · intro k
       rw [Function.update_self]
       rcases lt_trichotomy k i with hk | hk | hk
@@ -137,7 +137,7 @@ theorem chain_lower_bound : ∀ (n : ℕ) (L : Fin (n+1) → ℤ) (M : Fin n →
           rw [Function.update_self]; omega
         · rw [Function.update_of_ne (fun h => hk (Fin.castSucc_injective _ h))]
           exact (hbox k).2
-    refine GlobalTheory.T.inv_sq_le_wignerCoeffSqLowering n _ M i.castSucc (3 * b) (strictAnti_of_box hbox') hbox' ?_ hD ?_ ?_
+    refine _root_.GlobalTheory.WigSh.inv_sq_le_wM n _ M i.castSucc (3 * b) (strictAnti_of_box hbox') hbox' ?_ hD ?_ ?_
     · intro k
       rw [Function.update_self]
       rcases lt_trichotomy k i with hk | hk | hk

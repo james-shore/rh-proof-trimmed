@@ -57,14 +57,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin.KeyOne
 
-theorem isNormalScheme_of_isOpenImmersion {X Y : Scheme.{0}} (f : Y ⟶ X) [IsOpenImmersion f]
-    (h : Geo.Tor.IsNormalScheme X) : Geo.Tor.IsNormalScheme Y := by
-  intro y
-  obtain ⟨h1, h2⟩ := h (f y)
-  let e : X.presheaf.stalk (f y) ≃+* Y.presheaf.stalk y :=
-    (asIso (f.stalkMap y)).commRingCatIsoToRingEquiv
-  exact ⟨MulEquiv.isDomain _ e.symm.toMulEquiv, IsIntegrallyClosed.of_equiv e⟩
-
 theorem exists_lift_of_dense {P U : Scheme.{0}} (i : U ⟶ P) [IsOpenImmersion i] (hi : Dense (Set.range i))
     {k Ω : Type} [CommRing k] [Field Ω] [Algebra k Ω] (M : RatModel k Ω) (a : M.Z ⟶ P) [IsOpenImmersion a] :
     ∃ y : Sp Ω ⟶ U, y ≫ i = M.pt ≫ a := by
@@ -121,7 +113,7 @@ theorem GlobalTheory.UMin.KeyOne.lbIso_pull_O1_hodge : ∀ (E : Type) [Field E] 
   intro E _ _ _ H Dw l Xo c o _ m n f hm hm3 hmu hn hf Y g hg Ω _ _ M io hio hs
   haveI := hio
   haveI : CharZero Ω := charZero_of_injective_algebraMap (algebraMap c.F Ω).injective
-  have hMn : Geo.Tor.IsNormalScheme M.Z := GlobalTheory.UMin.KeyOne.isNormalScheme_of_isOpenImmersion io Y.normal
+  have hMn : Geo.Tor.IsNormalScheme M.Z := _root_.GlobalTheory.AbelianLocusNormalisation.isNormalScheme_of_open io Y.normal
   obtain ⟨y, hy⟩ := GlobalTheory.UMin.KeyOne.exists_pt_eq Y M io
   have hpol := GlobalTheory.T.universalTriple_fibre_principallyPolarised_dimension E H Dw l Xo c Ω (y ≫ pullback.fst _ _)
   obtain ⟨⟨θ, hθ⟩, hθup⟩ := GlobalTheory.T.principallyPolarisedFibre_exists_generator_stable Xo.X Xo.univ.t.G Xo.univ.t.PP.L Xo.univ.t.PP.isLB _ Ω _ hpol

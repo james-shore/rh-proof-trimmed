@@ -76,9 +76,6 @@ theorem pow_mul_exp_le_half_exp (N : ℕ) (a : ℝ) (ha : 0 < a) :
     _ = (2 / a) ^ N * (N.factorial : ℝ) * Real.exp (a / 2) * Real.exp (-(a / 2 * x)) := by
         rw [h4]; ring
 
-theorem PositivityTheory.Rg.Sw.Glob.DCalcDH.poly_exp :
-    ∀ (N : ℕ) (a : ℝ), OfNat.ofNat (nat_lit 0) < a → ∃ (C : ℝ), OfNat.ofNat (nat_lit 0) ≤ C ∧ ∀ (x : ℝ), OfNat.ofNat (nat_lit 0) ≤ x → (OfNat.ofNat (nat_lit 1) + x) ^ N * Real.exp (-(a * x)) ≤ C * Real.exp (-(a / OfNat.ofNat (nat_lit 2) * x)) := by
-  intro N a ha
-  exact pow_mul_exp_le_half_exp N a ha
+alias PositivityTheory.Rg.Sw.Glob.DCalcDH.poly_exp := _root_.UpperTheory.Reformulated.B.P6.r23b.pow_mul_exp_le_half_exp
 
 end UpperTheory.Reformulated.B.P6.r23b

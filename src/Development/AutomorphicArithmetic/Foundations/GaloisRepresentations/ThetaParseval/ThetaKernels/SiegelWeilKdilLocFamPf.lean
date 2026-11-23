@@ -103,7 +103,6 @@ theorem fam_eq_L_pf_k {d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ} (R
     congr 2
     push_cast
     ring
-theorem fam_eq_L_closed_k : type_of% @_root_.PositivityTheory.SiegelWeilFormula.Kdil.fam_eq_L_pf_k := @_root_.PositivityTheory.SiegelWeilFormula.Kdil.fam_eq_L_pf_k
 end PositivityTheory.SiegelWeilFormula.Kdil
 end
 end

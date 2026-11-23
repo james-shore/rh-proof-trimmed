@@ -73,6 +73,6 @@ theorem UpperTheory.rational_splitting_exists :
       uniq := fun i => Fin.ext (by have := i.2; simp; omega) }
   let e0 : D.O ≃ₐ[NumberField.RingOfIntegers D.F] NumberField.RingOfIntegers D.F :=
     (AlgEquiv.ofBijective (Algebra.ofId _ _)
-      ⟨D.algebraMap_injective hm, GlobalTheory.T.integers_surjective_of_rank_one p D hm⟩).symm
+      ⟨D.algebraMap_injective hm, _root_.GlobalTheory.UPel.HT.Datum.algebraMap_surjective_of_m_eq_one p D hm⟩).symm
   exact ⟨(Algebra.TensorProduct.congr e0 AlgEquiv.refl).trans
     (matrix_unique_algEquiv _ _ _).some.symm⟩

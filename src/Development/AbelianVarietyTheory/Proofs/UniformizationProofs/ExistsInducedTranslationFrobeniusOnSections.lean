@@ -257,14 +257,14 @@ theorem exists_translT_indAt :
     ⟨4 * _, Nat.le_mul_of_pos_right _ Nat.card_pos, Dvd.intro_left _ rfl⟩
   have hN : 4 ≤ k * m := hm4.trans (Nat.le_mul_of_pos_left _ hk)
   obtain ⟨g', hg'⟩ := (gt_onto_divisible_kernel hL R I hR D F).2.1 m (by omega) p.g
-  obtain ⟨ψ, hψ⟩ := GlobalTheory.T.exists_automorphism_inducing_frobenius_all_degrees hL R I hR D A G hG U F k hk p
+  obtain ⟨ψ, hψ⟩ := _root_.GlobalTheory.InducingAut.exists_aut hL R I hR D A G hG U F k hk p
   obtain ⟨τ, q, h1, hord, e⟩ := eq_pow_of_rel D.tau_bimult p g' hg'
     (E := CategoryTheory.End (TFK (R := R) F ⊗ A.A)) (fun q s => IndAt U.toUnifPre F (k * m) q s.asHom)
     (fun a b c s t hs => by
-      obtain ⟨c₁, c₂, c₃, c₄⟩ := GlobalTheory.T.indAt_comp_equiv_unique_id hL R I hR D A G hG U F (k * m) (by omega) a b c s.asHom t.asHom hs
+      obtain ⟨c₁, c₂, c₃, c₄⟩ := _root_.GlobalTheory.UT.IndComp.indAt_comp_unique hL R I hR D A G hG U F (k * m) (by omega) a b c s.asHom t.asHom hs
       exact ⟨c₁, c₂, fun ht => End.ext (c₃ hN ht), c₄⟩)
     (fun q => by
-      obtain ⟨χ, hχ⟩ := GlobalTheory.T.exists_automorphism_inducing_frobenius_all_degrees hL R I hR D A G hG U F (k * m) (by omega) q
+      obtain ⟨χ, hχ⟩ := _root_.GlobalTheory.InducingAut.exists_aut hL R I hR D A G hG U F (k * m) (by omega) q
       exact ⟨End.of χ.hom, hχ 1 (k * m) le_rfl (_root_.mul_one _).symm q (one_nsmul _).symm rfl⟩)
     (End.of ψ.hom) (hψ m _ (by omega) rfl)
   obtain ⟨x, hx⟩ := exists_pow_eq_translT hL A (jFK (R := R) F) τ h1.1 (by omega : 1 ≤ k * m) hord hm

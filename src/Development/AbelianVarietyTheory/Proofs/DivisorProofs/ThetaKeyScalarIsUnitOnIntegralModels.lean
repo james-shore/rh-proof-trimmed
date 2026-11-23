@@ -154,7 +154,7 @@ theorem exists_chart_unit {W : ValuationSubring c.F} (Y : Model Xo c W.subtype) 
     refine hext u fun R K _ _ _ _ _ _ z hR hz h => ?_
     let y := IsOpenImmersion.lift Y.j (spMap (algebraMap R K) ≫ z) (hWj h)
     have : CharZero K := charZero_of_injective_ringHom (Spec.preimage (y ≫ pullback.snd _ _)).hom.injective
-    refine GlobalTheory.T.integral_of_arcs_and_goodReduction_points E H D l Xo c W Y h3 h4 hs hj M.U W₀ u (fun x hx hx' => (hW x).2 ⟨hx, hx'⟩)
+    refine _root_.GlobalTheory.ArcIntegralMixed.integral_of_arcs_of_good E H D l Xo c W Y h3 h4 hs hj M.U W₀ u (fun x hx hx' => (hW x).2 ⟨hx, hx'⟩)
       (fun a χ hA hover hgen hχ => ?_) (fun R K _ _ _ _ _ _ _ z y hz hy hab h => ?_) R K z y hR hz
       (IsOpenImmersion.lift_fac _ _ _) h
     · obtain ⟨y, hy, T, C', hC', hT⟩ := GlobalTheory.ArcNormal.arc_normal_form _ _ _ _ _ _ _ Y hpq hP a χ hA hover hgen M hχ
@@ -203,7 +203,7 @@ theorem unitAt_local {W : ValuationSubring c.F} (Y : Model Xo c W.subtype) (hpq 
     exact ⟨θ₀, g, h₁, TopologicalSpace.Opens.mem_iSup.2 ⟨i, h₂⟩⟩
   have hC : ∀ (θ : t.PP.L.Sec) (x : KeyIn K), IsFibreOf x t.G t.PP.L t.PP.rig θ w (algebraMap V K) →
       Generates (X := t.G) θ → ∃ u : Vˣ, (κ K x : K) = algebraMap V K u := fun θ x hx hθ => by
-    obtain ⟨x', a, d, hk, e⟩ := GlobalTheory.T.exists_generatingFrame_unit_change_to_chart E H D l Xo c _ _ Y M V K yt hz t m n w hw θ x hx hθ
+    obtain ⟨x', a, d, hk, e⟩ := _root_.GlobalTheory.KeyFramePoint.exists_keyAt_units E H D l Xo c _ _ Y M V K yt hz t m n w hw θ x hx hθ
     have e₁ := e κ hκ
     rw [hval K _ _ x' (by
       rw [hyt]; rintro _ ⟨q, rfl⟩; exact ⟨y q, (Scheme.Hom.comp_apply _ _ _).symm⟩) hk,
@@ -222,7 +222,7 @@ theorem unitAt_local {W : ValuationSubring c.F} (Y : Model Xo c W.subtype) (hpq 
   intro N hN σ a hσ hmul
   have hg₀ := generates_of_isFibreOf t.PP.isLB hx h₀
   obtain ⟨b, hθb, -⟩ := hg₀ θ
-  obtain ⟨th₀, hth₀, hth, hx₀⟩ := GlobalTheory.T.exists_baseChange_rigidifiedSection_of_scalarMultiple V K _ t.G t.PP.L t.PP.rig θ n w x t.PP.isLB hx θ₀ b hθb
+  obtain ⟨th₀, hth₀, hth, hx₀⟩ := _root_.GlobalTheory.KeySwapSec.exists_isFibreOf_of_isMul V K _ t.G t.PP.L t.PP.rig θ n w x t.PP.isLB hx θ₀ b hθb
   obtain ⟨u₀, hu₀⟩ := hC θ₀ _ hx₀ hg₀
   have hbox₀ := hB θ₀ hg₀ N
   have hom := hκ.1 K x.P x.g_pos x.rig x.rig_gen th₀ hth₀ x.v x.basis x.th x.th_ne x.v x.basis (algebraMap V K b) 1

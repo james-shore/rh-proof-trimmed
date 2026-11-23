@@ -149,7 +149,7 @@ theorem _root_.UpperTheory.Lit.Tam.tamagawa_number_formula : _root_.GlobalTheory
   intro hP
   refine ⟨4000, by norm_num, ?_⟩
   intro D T hT j hp hq hE hj Y e o hY Lb hLb hM hsz hfr ho la hla hS Z
-  have hL := (GlobalTheory.T.deepLevelCover_principalLevel_laws_galois D T j Y e o hT hj hY hY.unit hY.modelW).1
+  have hL := (_root_.GlobalTheory.DeepLaws.laws_galois_pull D T j Y e o hT hj hY hY.unit hY.modelW).1
   set S : ℝ := ∑ τ, ∑ k, |(la τ k : ℝ)| with hSdef
   have hS0 : 0 ≤ S := Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => abs_nonneg _
   set n : ℝ := (Module.finrank ℚ D.host.E : ℝ) with hn

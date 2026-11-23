@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsTorusAbelianQuotientPDivisibleSmoothGroup
 
 @[expose] public section
 
@@ -251,7 +252,7 @@ theorem isGIsogWit_mul {S : Scheme.{0}} {s : S ⟶ Sp R} {N M : ℕ} (e : N = M)
     IsGIsogWit L h (relevelObj e o) o (𝟙 o.A ^ c) (𝟙 o.A ^ c) m (c * c) := by
   subst e
   show IsGIsogWit L h o o (𝟙 o.A ^ c) (𝟙 o.A ^ c) m (c * c)
-  haveI := GlobalTheory.DrinLev.HT.MulModel.isMonHom_id_pow o.A c
+  haveI := _root_.GlobalTheory.SS.DivSemi.isMonHom_id_pow o.A c
   refine ⟨inferInstance, inferInstance, fun a => ?_, fun a => ?_, ?_, ?_, hm, Nat.Coprime.mul_left hc hc,
     fun k _ _ t β ht => ?_⟩
   · haveI := o.act.hom a

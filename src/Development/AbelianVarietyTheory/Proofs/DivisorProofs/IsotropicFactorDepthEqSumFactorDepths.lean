@@ -94,7 +94,7 @@ theorem nuH_vp_eq_nuP : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   classical
   letI := H.starRing
   intro p _ T io y Ch X cx
-  have hfac := (GlobalTheory.T.detFactorDepth_eq_chart_value_and_sum E H Dw l Xo c p T io y Ch X).1
+  have hfac := (_root_.GlobalTheory.FactorDepth.nuFac_eq_nuFacC_and_nuProd_eq_nuP E H Dw l Xo c p T io y Ch X).1
   have hsum : nuP p y cx = ∑ f, nuFacC Ch X f (cx f) :=
     Finset.sum_congr rfl fun f _ => hfac f (cx f)
   have hbd : ∀ f, 0 ≤ nuFacC Ch X f (cx f) ∧

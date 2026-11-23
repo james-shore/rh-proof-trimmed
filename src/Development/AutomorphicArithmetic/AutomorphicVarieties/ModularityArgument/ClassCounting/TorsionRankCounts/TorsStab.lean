@@ -61,7 +61,7 @@ theorem UpperTheory.V.ZK.Up.torsStab :
   intro L _ _ hL m n n' hn hnn'
   haveI := hL
   have hiso : ∀ k, 2 * m + 4 ≤ k → IsIso (grpHMap (stab (𝓞 L) k (k + 1) (Nat.le_succ k)) m) :=
-    fun k hk => PositivityTheory.v8.KStability.kStability (𝓞 L) 2 (dedekindSR (𝓞 L)) m k (by omega)
+    fun k hk => _root_.GlobalTheory.HomStab.kStability_main (𝓞 L) 2 (dedekindSR (𝓞 L)) m k (by omega)
   have he : Nonempty ((grpH (GL (Fin n) (𝓞 L)) m : Type) ≃+ (grpH (GL (Fin n') (𝓞 L)) m : Type)) := by
     induction n', hnn' using Nat.le_induction with
     | base => exact ⟨AddEquiv.refl _⟩

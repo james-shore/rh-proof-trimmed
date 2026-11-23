@@ -74,7 +74,7 @@ theorem UpperTheory.V.Fr.sc_strip :
     haveI : NeZero ((l ^ i : ℕ) : Ω) := ⟨Nat.cast_ne_zero.mpr (pow_ne_zero _ hl.out.ne_zero)⟩
     infer_instance
   have hcop : Nat.Coprime l N := (Nat.Prime.coprime_iff_not_dvd hl.out).2 hlN
-  obtain ⟨σ, hσ, hc⟩ := GlobalTheory.T.cyclotomicChar_inertia_surjective Ω l B hB (cycZ ℚ Ω l s)
+  obtain ⟨σ, hσ, hc⟩ := _root_.GlobalTheory.CycInertia.cycZ_Ine_surjective Ω l B hB (cycZ ℚ Ω l s)
   have hker := (UpperTheory.V.Chr.clsFacts ℚ Ω N).2.2.2.2 B (valuation_not_lt_one_of_coprime B hcop hB) hσ
   have hone := (UpperTheory.V.Chr.clsFacts ℚ Ω N).2.2.2.2 B (valuation_not_lt_one_of_coprime B hcop hB) (Ine (F := ℚ) B).one_mem
   have hσN : ∀ ζ : Ω, ζ ^ N = 1 → σ ζ = ζ := by

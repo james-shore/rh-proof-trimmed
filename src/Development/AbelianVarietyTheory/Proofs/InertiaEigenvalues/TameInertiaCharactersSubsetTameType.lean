@@ -200,7 +200,7 @@ theorem GlobalTheory.CharsDesc.chars_subset_sig : ∀ (l : ℕ) [Fact l.Prime] (
   let b := jB (f σ)
   have hA := GlobalTheory.T.kisinInfGalois_acts_through_descentDatum l a e ↥(OL LL) ↥LL.1 (thetaW a LL) ϖ ι P T I jB Δ hCmp hDesc k'
     (TameGal.inertia ζu) hk'c σ σ' hσ'
-  obtain ⟨β, -, hβ2, -, -⟩ := GlobalTheory.T.exists_bcrisTensorLattice_equiv_periodRing l LL T Pl AI hStd
+  obtain ⟨β, -, hβ2, -, -⟩ := _root_.GlobalTheory.BKGal.CrisTensor.exists_equiv l LL T Pl AI hStd
   let x := β b
   have hx0 : x ≠ 0 := by
     intro h

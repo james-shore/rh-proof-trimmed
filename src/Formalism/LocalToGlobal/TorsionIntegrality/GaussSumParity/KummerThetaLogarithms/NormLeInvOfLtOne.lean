@@ -270,7 +270,7 @@ theorem simeq_fixed : SimeqFixed := by
   obtain ⟨h0, hI⟩ := hs
   rw [sub_zero] at h0 hI
   have hp0 : l ≠ 0 := hp.ne_zero
-  have hD := Formalism.InvariantFactorPaths.G7.Top.dworkMv
+  have hD := _root_.Formalism.InvariantFactorPaths.G7.dwork_multivariable
   have h0' : MvPowerSeries.constantCoeff (MvPowerSeries.C c * f) = 0 := by simp [h0]
   refine ⟨by rwa [sub_zero], ?_⟩
   rw [sub_zero, hD K τ l σ hp hpn hσ _ h0']
@@ -290,7 +290,7 @@ theorem simeq_closed : SimeqClosed := by
   have hiso := sigma_isometry K l σ hU
   obtain ⟨hp, hp2, hpn, hval, hσ⟩ := hU
   have hp0 : l ≠ 0 := hp.ne_zero
-  have hD := Formalism.InvariantFactorPaths.G7.Top.dworkMv
+  have hD := _root_.Formalism.InvariantFactorPaths.G7.dwork_multivariable
   have hcont : Continuous σ := (AddMonoidHomClass.isometry_of_norm σ hiso).continuous
   have hf0 : ∀ k, MvPowerSeries.constantCoeff (f k) = 0 := fun k => by
     have := (hf k).1

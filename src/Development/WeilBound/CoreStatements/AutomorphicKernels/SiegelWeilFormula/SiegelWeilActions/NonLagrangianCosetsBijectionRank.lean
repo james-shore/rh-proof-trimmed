@@ -80,7 +80,7 @@ theorem non_lagrangian_cosets_bijection_rank (h : Hyp L nb uM nb' w₁ cM δ) :
     have e : (g₂ * g₁⁻¹) * (w₁ * (cM c₁.1 * L.j (rep q₁))) = w₁ * (cM c₂.1 * L.j (rep q₂)) := by
       simp only [g₁, g₂]; group
     have hpr : g₂ * g₁⁻¹ ∈ rat2 σ d.Y := (rat2 σ d.Y).mul_mem (hg ⟨q₂, c₂⟩) ((rat2 σ d.Y).inv_mem (hg ⟨q₁, c₁⟩))
-    obtain ⟨hP, hc⟩ := inj_core h hE' hpr (rep_mem L.sd q₁) (rep_mem L.sd q₂) e
+    obtain ⟨hP, hc⟩ := _root_.PositivityTheory.SiegelWeilFormula.Act.C6.I.inj_core h hE' hpr (rep_mem L.sd q₁) (rep_mem L.sd q₂) e
     have hq : q₁ = q₂ := by
       rw [← mk_rep L.sd q₁, ← mk_rep L.sd q₂, mk_eq_mk]
       exact hP
@@ -88,12 +88,12 @@ theorem non_lagrangian_cosets_bijection_rank (h : Hyp L nb uM nb' w₁ cM δ) :
     rw [hc rfl]
   have hsurj : Function.Surjective Fm := by
     rintro ⟨q, hq⟩
-    obtain ⟨p, hp, hpr, hfx⟩ := normalize h (rep_mem d q) hq
+    obtain ⟨p, hp, hpr, hfx⟩ := _root_.PositivityTheory.SiegelWeilFormula.Act.C6.N.normalize h (rep_mem d q) hq
     have hr : w₁⁻¹ * (p * rep q) ∈ rat2 σ d.Y :=
       (rat2 σ d.Y).mul_mem ((rat2 σ d.Y).inv_mem h.wr) ((rat2 σ d.Y).mul_mem hpr (rep_mem d q))
     obtain ⟨s, c, γ', hsr, hW, hγ', -, hx⟩ := stab_dec h hr hfx
     obtain ⟨p', hp', hp'r, he'⟩ := out_mk L.sd ⟨γ', hγ'⟩
-    obtain ⟨p₂, hp₂, hp₂r, c₂, hc₂⟩ := conj_par h ((par2 σ L.Y).inv_mem hp') ((rat2 σ L.Y).inv_mem hp'r) c
+    obtain ⟨p₂, hp₂, hp₂r, c₂, hc₂⟩ := _root_.PositivityTheory.SiegelWeilFormula.Act.C6.parabolic_conj_weyl_crossing h ((par2 σ L.Y).inv_mem hp') ((rat2 σ L.Y).inv_mem hp'r) c
     refine ⟨⟨Quotient.mk _ ⟨γ', hγ'⟩, c₂⟩, Subtype.ext ?_⟩
     show (Quotient.mk _ ⟨_, hg ⟨Quotient.mk _ ⟨γ', hγ'⟩, c₂⟩⟩ : Cs d) = q
     conv_rhs => rw [← mk_rep d q]

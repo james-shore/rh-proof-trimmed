@@ -61,7 +61,7 @@ theorem ordL_pow_div_pow {L : Type} [Field L] [Valued L (WithZero (Multiplicativ
   have h : x ^ b / y ^ a =
       (((Units.mk0 x hx) ^ (b : ℤ) * (Units.mk0 y hy) ^ (-(a : ℤ)) : Lˣ) : L) := by
     simp [div_eq_mul_inv]
-  rw [h, Units.val_mul, GlobalTheory.CompanionTheory.SwapInt.ordL_mul_of_ne (Units.ne_zero _) (Units.ne_zero _),
+  rw [h, Units.val_mul, _root_.Formalism.UG.P.fSatake_ord_mul (Units.ne_zero _) (Units.ne_zero _),
     GlobalTheory.CompanionTheory.UnitaryContraction.ordL_zpow, GlobalTheory.CompanionTheory.UnitaryContraction.ordL_zpow]
   simp only [Units.val_mk0]
   ring

@@ -64,19 +64,11 @@ namespace GlobalTheory.AnnPiece
 
 variable {D : D7}
 
-theorem symplO_add_right (S T : HSp D) (x y y' : WO S T) :
-    symplO S T x (y + y') = symplO S T x y + symplO S T x y' := by
-  simp only [symplO, hO, Matrix.add_apply, RingHom.map_add (f := _), mul_add, add_mul, Finset.sum_add_distrib, LinearMap.map_add (f := _)]
-
-theorem symplO_add_left (S T : HSp D) (x x' y : WO S T) :
-    symplO S T (x + x') y = symplO S T x y + symplO S T x' y := by
-  simp only [symplO, hO, Matrix.add_apply, mul_add, Finset.sum_add_distrib, LinearMap.map_add (f := _)]
-
 def symplR (S T : HSp D) (x : WO S T) : WO S T →+ AF D.host.F :=
-  AddMonoidHom.mk' (symplO S T x) (symplO_add_right S T x)
+  AddMonoidHom.mk' (symplO S T x) (_root_.GlobalTheory.LatVac.symplO_add_right S T x)
 
 def symplL (S T : HSp D) (y : WO S T) : WO S T →+ AF D.host.F :=
-  AddMonoidHom.mk' (fun x => symplO S T x y) fun x x' => symplO_add_left S T x x' y
+  AddMonoidHom.mk' (fun x => symplO S T x y) fun x x' => _root_.GlobalTheory.LatVac.symplO_add_left S T x x' y
 
 theorem mem_idAt_true (x : AE D) : x ∈ idAt D (fun _ => True) ↔ infPart D x = 0 := by
   simp only [GlobalTheory.FinPl.idAt, Ideal.mem_inf, RingHom.mem_ker, Ideal.mem_iInf]
@@ -139,7 +131,7 @@ def ann : AddSubgroup (Mx D W.rank ρ) where
   zero_mem' := ⟨fun i j => zero_mem _, fun a _ => by
     rw [map_zero, show symplO V W (dV.extX W a) 0 = 0 from map_zero (symplR V W (dV.extX W a)), AddChar.map_zero_eq_one]⟩
   add_mem' := fun {x y} hx hy => ⟨fun i j => add_mem (hx.1 i j) (hy.1 i j), fun a ha => by
-    rw [map_add (f := _), symplO_add_right, AddChar.map_add_eq_mul, hx.2 a ha, hy.2 a ha, one_mul]⟩
+    rw [map_add (f := _), _root_.GlobalTheory.LatVac.symplO_add_right, AddChar.map_add_eq_mul, hx.2 a ha, hy.2 a ha, one_mul]⟩
   neg_mem' := fun {x} hx => ⟨fun i j => neg_mem (hx.1 i j), fun a ha => by
     have e : symplO V W (dV.extX W a) (dV.extY W (-x)) = -symplO V W (dV.extX W a) (dV.extY W x) := by
       rw [map_neg]; exact map_neg (symplR V W (dV.extX W a)) _

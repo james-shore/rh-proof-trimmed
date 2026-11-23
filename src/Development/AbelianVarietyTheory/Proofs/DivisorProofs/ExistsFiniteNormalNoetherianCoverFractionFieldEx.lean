@@ -76,7 +76,7 @@ theorem exists_finite_normal_cover_of_finiteDimensional : ∀ (R : Type) [CommRi
     exact (algebraMap K K').injective.comp (IsFractionRing.injective R K)
   have hRC : Function.Injective (algebraMap R C) := fun x y h => hRK' (congrArg Subtype.val h)
   obtain ⟨R', _, _, _, ρ, σ, hCN', hρ, hρf, -, hσρ⟩ :=
-    GlobalTheory.LocExt.exists_isCN_cover_of_finite R C (algebraMap R C) hCN hRC
+    _root_.GlobalTheory.FiniteLocalCompleteness.main R C (algebraMap R C) hCN hRC
       (RingHom.finite_algebraMap.2 hCf)
   obtain ⟨hnoeth', hnorm', -, -⟩ := hCN'
   letI : Algebra C R' := σ.toAlgebra

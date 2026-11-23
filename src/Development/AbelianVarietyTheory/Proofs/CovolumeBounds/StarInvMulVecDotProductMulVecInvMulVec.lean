@@ -108,16 +108,6 @@ theorem inv_le_inv_of_posDef_of_le {A B : Matrix n n 𝕜} (hA : A.PosDef) (h : 
   simp only [conjTranspose_one, Matrix.mul_one, Matrix.one_mul, inv_inv_of_invertible] at h1 h2
   exact h2.mp (h1.mpr h)
 
-theorem one_le_det_one_add_of_posSemidef {D : Matrix n n 𝕜} (hD : D.PosSemidef) :
-    1 ≤ (1 + D).det := by
-  first
-  | exact @_root_.GlobalTheory.OneLeDetOneAdd.one_le_det_one_add
-  | exact _root_.GlobalTheory.OneLeDetOneAdd.one_le_det_one_add
-  | (apply _root_.GlobalTheory.OneLeDetOneAdd.one_le_det_one_add <;> assumption)
-  | (intros; apply _root_.GlobalTheory.OneLeDetOneAdd.one_le_det_one_add <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.OneLeDetOneAdd.one_le_det_one_add <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.OneLeDetOneAdd.one_le_det_one_add ..)
-
 theorem det_le_det_of_posSemidef_of_le {A B : Matrix n n 𝕜} (hA : A.PosSemidef) (h : A ≤ B) :
     A.det ≤ B.det := by
   by_cases h0 : A.det = 0
@@ -132,7 +122,7 @@ theorem det_le_det_of_posSemidef_of_le {A B : Matrix n n 𝕜} (hA : A.PosSemide
       rw [star_eq_conjTranspose, ← conjTranspose_mul, inv_mul_of_invertible, conjTranspose_one]
     rw [Matrix.mul_add, Matrix.add_mul, Matrix.mul_one, ← Matrix.mul_assoc, ← Matrix.mul_assoc, e1,
       Matrix.one_mul, Matrix.mul_assoc, inv_mul_of_invertible, Matrix.mul_one, add_sub_cancel]
-  have h1 := one_le_det_one_add_of_posSemidef hD
+  have h1 := _root_.GlobalTheory.OneLeDetOneAdd.one_le_det_one_add hD
   rw [hB, det_mul_right_comm, det_mul (star C * C)]
   exact le_mul_of_one_le_right hA.det_nonneg h1
 
@@ -190,27 +180,11 @@ theorem le_re_trace_smul_one_of_posSemidef {A : Matrix n n 𝕜} (hA : A.PosSemi
   exact le_trace_smul_one_of_posSemidef hA
 
 
-section Gram
-
-variable {E : Type*} [SeminormedAddCommGroup E] [InnerProductSpace 𝕜 E]
-
-end Gram
-
 theorem inv_smul_one_le_inv_of_le_smul_one {A : Matrix n n 𝕜} (hA : A.PosDef) {c : ℝ}
     (hc : 0 < c) (h : A ≤ c • (1 : Matrix n n 𝕜)) : c⁻¹ • (1 : Matrix n n 𝕜) ≤ A⁻¹ := by
   have := inv_le_inv_of_posDef_of_le hA h
   rwa [inv_real_smul_of_posDef PosDef.one hc.ne', inv_one] at this
 
 end RCLike
-
-section Rational
-
-variable {K n : Type*} [Field K] [Fintype n] [DecidableEq n]
-
-open NumberField IsCMField
-
-variable [NumberField K] [IsCMField K]
-
-end Rational
 
 end GlobalTheory

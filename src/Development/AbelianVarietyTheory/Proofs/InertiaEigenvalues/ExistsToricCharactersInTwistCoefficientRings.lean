@@ -138,7 +138,7 @@ theorem exists_twL_installed : GlobalTheory.Published.ChebotarevDegreeOne → Gl
   have hχ : ∀ i a, (Z.chi a).ValuesIn 0 ((ι i).toRingHom.comp (κ i)) := fun i a v hv' => by
     obtain ⟨y, hy⟩ := hχv a v hv'
     exact ⟨T.emb0 i y, by rw [← hy]; exact hι i y⟩
-  have hδ := fun i => delta_isGal hC Sp ha i (κ i) (ι i) (hι i)
+  have hδ := fun i => _root_.GlobalTheory.DeltaGal.delta_isGal hC Sp ha i (κ i) (ι i) (hι i)
   obtain ⟨L, e, hcl, hfull⟩ := exists_twL_full_teich hA hR D D.nd hE T Z hZ art ha κ ι hκ hι hμ hχ hδ hS hT
   refine ⟨L, fun F => ⟨hfull F, fun ex h0 th hB th' => ?_⟩⟩
   obtain ⟨B⟩ := hB
@@ -169,7 +169,7 @@ theorem exists_twL_installed : GlobalTheory.Published.ChebotarevDegreeOne → Gl
       split_ifs
       exacts [hV.del', hV.del]
     rw [hG, h2]
-    refine read_of_isGal ha (κ s) (ι s) (hι s) _ _ (fun x y h => B.chi.ringSpec_sidedEmbedding_fixedField s _ x y h)
+    refine _root_.GlobalTheory.HeckeRead.read_of_isGal_side ha (κ s) (ι s) (hι s) _ _ (fun x y h => B.chi.ringSpec_sidedEmbedding_fixedField s _ x y h)
       (Z.lam0 (T.l s) (e s lam).1 (e s lam).2.1) ?_ (T.S0 s) ?_ _ ?_ hr
     · intro x
       have e1 := (Z.C.isMu0 (e s lam).1).unitary x

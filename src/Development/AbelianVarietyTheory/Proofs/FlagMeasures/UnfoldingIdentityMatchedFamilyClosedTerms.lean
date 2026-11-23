@@ -69,38 +69,6 @@ theorem infinite_finPl (K : Type) [Field K] [NumberField K] : Infinite (IsDedeki
   have := Int.associated_iff_natAbs.1 (Ideal.span_singleton_eq_span_singleton.1 e)
   exact Subtype.ext (by simpa using this)
 
-section Scale
-
-open Formalism.MainNotions.S.Loc
-
-variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
-  {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] [MeasurableSpace E]
-  {M : Model F E} {V : Type} [AddCommGroup V] [Module E V]
-
-theorem h_scale₂ (H : HermSp M V) (c d : E) (x y : V) :
-    H.h (c • x) (d • y) = M.L.cj d * c * H.h x y := by
-  rw [H.h_smul_left, H.h_herm (d • y) x, H.h_smul_left, map_mul, ← H.h_herm y x]
-  ring
-
-theorem dl_scale₂ (H : HermSp M V) {r : ℕ} (s s' : Fin (r + 1) → E) (f f' : Fin (r + 1) → V) (l : ℕ)
-    (hl : l ≤ r + 1) :
-    H.Dl (fun a => s a • f a) (fun b => s' b • f' b) l =
-      (∏ i : Fin l, M.L.cj (s (Fin.castLE hl i)) * s' (Fin.castLE hl i)) * H.Dl f f' l := by
-  unfold HermSp.Dl
-  rw [dite_eq_left hl, dite_eq_left hl]
-  have hsub : (H.Zhat (fun a => s a • f a) (fun b => s' b • f' b)).submatrix (Fin.castLE hl) (Fin.castLE hl) =
-      Matrix.diagonal (fun i => M.L.cj (s (Fin.castLE hl i))) *
-        (H.Zhat f f').submatrix (Fin.castLE hl) (Fin.castLE hl) *
-        Matrix.diagonal (fun i => s' (Fin.castLE hl i)) := by
-    ext i j
-    rw [Matrix.mul_diagonal, Matrix.diagonal_mul]
-    simp only [Matrix.submatrix_apply, HermSp.Zhat, Matrix.of_apply, h_scale₂]
-    ring
-  rw [hsub, Matrix.det_mul, Matrix.det_mul, Matrix.det_diagonal, Matrix.det_diagonal, Finset.prod_mul_distrib]
-  ring
-
-end Scale
-
 theorem dl_bcP (D : D7) (Z : LocDat D) (p : PlF D) {T T' : D.host.E} (F : LFlag (D.sp.Y 0) D.R.rS T)
     (F' : LFlag (D.sp.Y 0) D.R.rS T') (l : ℕ) :
     (locH Z p).Dl (fun a => baseChange₂ D p (frame F a)) (fun b => baseChange₂ D p (frame F' b)) l =
@@ -129,7 +97,7 @@ theorem gval_ne_of_locGv (D : D7) (Z : LocDat D) (p : PlF D) (u u' : D.what₂.W
         (∏ i : Fin l, (Z.M p).L.cj (frFac Z.δ p (Fin.castLE hl i)) * frFac Z.δ p (Fin.castLE hl i)) *
           (D.s.atP p).ιE (Formalism.MainNotions.S.Dl F.fl F'.fl l) := by
     intro l hl
-    rw [hs (frame F), hs (frame F'), dl_scale₂ _ _ _ _ _ l hl, dl_bcP]
+    rw [hs (frame F), hs (frame F'), _root_.GlobalTheory.LocOver.Dl_scale _ _ _ _ _ l hl, dl_bcP]
   have hlast : frFac Z.δ p (Fin.last D.R.rS) = 1 := by
     simp [frFac]
   have hc : (∏ i : Fin (D.R.rS + 1), (Z.M p).L.cj (frFac Z.δ p (Fin.castLE le_rfl i)) *

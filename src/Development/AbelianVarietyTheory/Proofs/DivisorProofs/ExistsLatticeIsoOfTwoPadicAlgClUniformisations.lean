@@ -112,7 +112,7 @@ theorem main : ∀ {o Ω o' Ω' : Type} [CommRing o] [Field Ω] [Algebra o Ω] [
   obtain ⟨B₂, b₂, -, hb₂, hLb₂⟩ := bc (spMap φK₀') u'.A
   have hpa : IsGrpPullback P₀.A u.A.A
       (spMap (algebraMap (FractionRing W₀) (PadicAlgCl p)) ≫ spMap φK₀) a :=
-    ha.congr (by rw [spComp, hcp₀]) rfl
+    ha.congr (by rw [_root_.Formalism.L2.Pj.spMap_comp_ring, hcp₀]) rfl
   have hpa' : IsGrpPullback P₀.A u'.A.A
       (spMap (algebraMap (FractionRing W₀) (PadicAlgCl p)) ≫ spMap φK₀') a' :=
     ha'.congr (by rw [spComp, hcp₀']) rfl
@@ -162,15 +162,15 @@ theorem main : ∀ {o Ω o' Ω' : Type} [CommRing o] [Field Ω] [Algebra o Ω] [
   obtain ⟨χ₂, hχ₂, hLχ₂, hd⟩ :=
     hs (FractionRing W) αK (algebraMap (FractionRing W) (PadicAlgCl p)) hαcp hsW C χ hχ hLχ
   have hψ₂ : IsGrpPullback C.A u'.A.A (spMap (αK.comp φK₀')) (χ₂ ≫ b₂) :=
-    (hχ₂.comp hb₂).congr (spComp _ _) rfl
+    (hχ₂.comp hb₂).congr (_root_.Formalism.L2.Pj.spMap_comp_ring _ _) rfl
   have hLψ₂ : LBIso C.L (u'.A.L.pull (χ₂ ≫ b₂)) := lbcomp u'.A.isLB B₂.isLB C.isLB hLb₂ hLχ₂
   have hgC' : C.g = u'.A.g := GlobalTheory.T.polarisedAbelian_relDim_eq_of_grpPullback_field (FractionRing W) _ (spMap (αK.comp φK₀')) u'.A C (χ₂ ≫ b₂) hψ₂
 
   obtain ⟨D₁, hD₁, G₁, _, _, U₁, hG₁, htor₁⟩ :=
-    GlobalTheory.T.uniformisation_moves_along_dvr_injection_given_fibre u.V W u.complete hWc (α₀.comp φ₀) (αK.comp φK₀) hcomm hmax u.D u.A u.G u.U C ψ₁ hψ₁ hLψ₁
+    _root_.GlobalTheory.UnifMoveGiven.move_given u.V W u.complete hWc (α₀.comp φ₀) (αK.comp φK₀) hcomm hmax u.D u.A u.G u.U C ψ₁ hψ₁ hLψ₁
       hgC (PadicAlgCl p) hF
   obtain ⟨D₂, hD₂, G₂, _, _, U₂, hG₂, htor₂⟩ :=
-    GlobalTheory.T.uniformisation_moves_along_dvr_injection_given_fibre u'.V W u'.complete hWc (α₀.comp φ₀') (αK.comp φK₀') hcomm' hmax' u'.D u'.A u'.G u'.U C
+    _root_.GlobalTheory.UnifMoveGiven.move_given u'.V W u'.complete hWc (α₀.comp φ₀') (αK.comp φK₀') hcomm' hmax' u'.D u'.A u'.G u'.U C
       (χ₂ ≫ b₂) hψ₂ hLψ₂ hgC' (PadicAlgCl p) hF'
   haveI : CharZero (PadicAlgCl p) :=
     charZero_of_injective_algebraMap (algebraMap ℚ_[p] (PadicAlgCl p)).injective
@@ -212,7 +212,7 @@ theorem main : ∀ {o Ω o' Ω' : Type} [CommRing o] [Field Ω] [Algebra o Ω] [
 
     have hsq : c₁ ≫ B₁.A.hom =
         (P₀.A.hom ≫ spMap (algebraMap (FractionRing W) (PadicAlgCl p))) ≫ spMap αK := by
-      rw [hc₁h, Category.assoc, spComp, hαcp]
+      rw [hc₁h, Category.assoc, _root_.Formalism.L2.Pj.spMap_comp_ring, hαcp]
     obtain ⟨d, hdχ, hdh⟩ : ∃ d : P₀.A.left ⟶ C.A.left, d ≫ χ = c₁ ∧
         d ≫ C.A.hom = P₀.A.hom ≫ spMap (algebraMap (FractionRing W) (PadicAlgCl p)) :=
       ⟨hχ.1.lift _ _ hsq, hχ.1.lift_fst _ _ _, hχ.1.lift_snd _ _ _⟩

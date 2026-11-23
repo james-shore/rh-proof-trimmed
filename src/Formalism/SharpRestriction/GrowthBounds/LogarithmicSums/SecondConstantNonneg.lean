@@ -133,7 +133,7 @@ def E1 (X : Inst D L) (K : Consts) (C bo : ℝ) (a b : HH D → ℤ) (A3 A4 PS :
   (if p ∈ A3 then Real.log p / p else 0) * (3 * ((D.R.m : ℝ) * (D.host.TT.card : ℝ)) * L.sc.a) +
   (if p ∈ A4 then Real.log p / p else 0) * (3 * ((D.R.m : ℝ) * (D.host.TT.card : ℝ)) * L.sc.a) +
   (if p ∈ PS then Real.log p / p * badf p else 0) * (3 * (D.R.m : ℝ) * L.sc.a) +
-  (if p ∈ candF D L K then Real.log p / p * (2 * dropI X K a b p + 4 * Sig X K a b p) else 0) *
+  (if p ∈ _root_.Formalism.MainNotions.AuxBlock8.cands D L K then Real.log p / p * (2 * dropI X K a b p + 4 * Sig X K a b p) else 0) *
       (4 * ((D.R.m : ℝ) * (D.host.TT.card : ℝ)) * L.sc.a)
 
 theorem low_le (X : Inst D L) (K : Consts) (hK : K.Nonneg) (P : ParameterChoice' D L) (C bo : ℝ) (hC : 0 ≤ C) (hbo : 0 ≤ bo)
@@ -154,7 +154,7 @@ theorem low_le (X : Inst D L) (K : Consts) (hK : K.Nonneg) (P : ParameterChoice'
   have m1 : p ∈ prB (L.sc.X'' D.R.n + 1) := mem_prB.2 ⟨hp, by linarith⟩
   have hsd0 : 0 ≤ Real.log p / p * ((D.host.TT \ TTP X K a b p).card : ℝ) :=
     mul_nonneg (lp_nonneg p) (Nat.cast_nonneg _)
-  have hiob : 0 ≤ (if p ∈ candF D L K then Real.log p / p * (2 * dropI X K a b p + 4 * Sig X K a b p) else 0) *
+  have hiob : 0 ≤ (if p ∈ _root_.Formalism.MainNotions.AuxBlock8.cands D L K then Real.log p / p * (2 * dropI X K a b p + 4 * Sig X K a b p) else 0) *
         (((D.R.m : ℝ) * (D.host.TT.card : ℝ)) * L.sc.a) := by
     split_ifs with hc
     · have := hSig p (cand_of_mem hc)

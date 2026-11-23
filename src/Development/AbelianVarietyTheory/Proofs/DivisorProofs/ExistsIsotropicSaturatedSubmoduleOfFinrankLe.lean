@@ -161,7 +161,7 @@ theorem exists_succ (D : Datum H) (Z : Submodule (𝓞 E) D.La) (hZ : IsIsoSat D
       exact h
     rw [hg, hg]
     simp only [map_add (f := _), LinearMap.add_apply]
-    rw [e1, e2, e3, ef_swap, e2]
+    rw [e1, e2, e3, _root_.GlobalTheory.SimLift.form_skew, e2]
     simp)
   refine ⟨Z', h1, ?_⟩
   rw [h2, ← (LinearEquiv.ofInjective g hinj).finrank_eq]

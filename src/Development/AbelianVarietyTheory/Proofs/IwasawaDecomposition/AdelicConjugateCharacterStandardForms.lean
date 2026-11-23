@@ -55,16 +55,6 @@ open scoped TensorProduct
 
 namespace GlobalTheory.Mem.Col2.SameOff
 
-theorem exists_smul_mem_of_span {E : Type} [Field E] [NumberField E] {n : ℕ} (L : Submodule (𝓞 E) (Fin n → E))
-    (hL : Submodule.span E (L : Set (Fin n → E)) = ⊤) (y : Fin n → E) : ∃ ν : 𝓞 E, ν ≠ 0 ∧ ν • y ∈ L := by
-  first
-  | exact @_root_.GlobalTheory.MulEqIntegerExists.exists_smul_mem
-  | exact _root_.GlobalTheory.MulEqIntegerExists.exists_smul_mem
-  | (apply _root_.GlobalTheory.MulEqIntegerExists.exists_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MulEqIntegerExists.exists_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MulEqIntegerExists.exists_smul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.MulEqIntegerExists.exists_smul_mem ..)
-
 section Loc
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {n : ℕ}
 
@@ -78,7 +68,7 @@ theorem incl_smul (v : HeightOneSpectrum (𝓞 F)) (s : 𝓞 E) (x : Fin n → E
 theorem mem_localization_of_mem_localLattice : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (n : ℕ) (v : HeightOneSpectrum (𝓞 F)) (B : Submodule (𝓞 E) (Fin n → E)), Module.Finite (𝓞 E) B → Submodule.span E (B : Set (Fin n → E)) = ⊤ → ∀ (x : Fin n → E), (fun i => Formalism.UG.inclE (F := F) (v.adicCompletion F) (x i)) ∈ GlobalTheory.IndefiniteRowSideFullHecke.SplittingProjection.locLat v B → ∀ q : HeightOneSpectrum (𝓞 E), q.under (𝓞 F) = v → x ∈ Formalism.HermitianLatticesTheory.localization₂ q.asIdeal B := by
   intro F E _ _ _ _ _ n v B hB hs x hx q hq
   classical
-  obtain ⟨ν, hν, hνx⟩ := exists_smul_mem_of_span B hs x
+  obtain ⟨ν, hν, hνx⟩ := _root_.GlobalTheory.MulEqIntegerExists.exists_smul_mem B hs x
   let J : Ideal (𝓞 E) := B.comap (LinearMap.toSpanSingleton (𝓞 E) _ x)
   have hJ : ∀ s, s ∈ J ↔ s • x ∈ B := fun s => Iff.rfl
   have hJ0 : J.comap (algebraMap (𝓞 F) (𝓞 E)) ≠ ⊥ := by

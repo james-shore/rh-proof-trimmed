@@ -71,7 +71,7 @@ theorem targetO : TargetO := by
     rw [hcard]; exact Module.finrank_pos.ne')
   letI : Fintype (E →+* C) := Fintype.ofFinite _
   have hcard' : Fintype.card (E →+* C) = Module.finrank ℚ E := by rw [← Nat.card_eq_fintype_card, hcard]
-  have hsumAll := GlobalTheory.T.sum_eigen_projections_eq_self E C hcard'
+  have hsumAll := _root_.GlobalTheory.CompanionTheory.Ar.Flat.ExG.SumEig.sum_eigProj E C hcard'
   let emb : (E →+* C) → (𝓞 E →+* ν.valuationSubring) := fun s =>
     (s.comp (algebraMap (𝓞 E) E)).codRestrict ν.valuationSubring (fun a => hint s a)
   have hemb : ∀ s (a : 𝓞 E), ((emb s a : ν.valuationSubring) : C) = s (a : E) := fun s a => rfl
@@ -337,7 +337,7 @@ theorem targetO : TargetO := by
         rfl
       · rintro ⟨f, hf, rfl⟩
         exact ⟨_, (hb1 f).2 hf, projSum f τ⟩
-  obtain ⟨ε, hε⟩ := GlobalTheory.T.valuation_lattice_matrix_reduction C ν ℓ h0 h1 S a p q τ r W g v U A ha hind hr hrτ hv hvs' hU1 hU2 hLB2 hLBA
+  obtain ⟨ε, hε⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Flat.ExG.Core.det_adapted_core C ν ℓ h0 h1 S a p q τ r W g v U A ha hind hr hrτ hv hvs' hU1 hU2 hLB2 hLBA
   refine ⟨ε, ?_⟩
   change A.det * P ^ (p + q) = _ * Q at hε
   change A.det = ((ε : ν.valuationSubring) : C) * (Q / P ^ (p + q))

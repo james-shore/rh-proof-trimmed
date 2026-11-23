@@ -57,8 +57,8 @@ theorem inputs_at_third_place_alt : ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExi
     AllSt fun _ _ _ _ _ _ x => ∀ l : _root_.GlobalTheory.HeightCounting.Up.StrictHenselianAcyclicLevel hL x,
     _root_.GlobalTheory.CoefDuty.ForcedByAutomorphicSemisimpleData l.a.A l.mt.M l.c.ch l.c.tp.tup fun D' => SumRepresentations.hypO D' → Nonempty (_root_.GlobalTheory.NRows.LinkedInputs hL D') := by
   intro hL hP hX
-  have h := (((_root_.GlobalTheory.T.compatible_system_third_place_linked_data hL hP hX).and (_root_.GlobalTheory.HeightCounting.Up.JointConditionThird.upper_ramification_joint_condition_third_jump_alt hL hP)).and
-    (_root_.GlobalTheory.T.third_member_upper_ramification' hL hP)).and ((_root_.GlobalTheory.T.adm8_and_lamUsed_of_geometric_galois_compat hP hX).and (_root_.GlobalTheory.T.ser_loc_eventually_of_built hL hP))
+  have h := (((_root_.GlobalTheory.HeightCounting.Up.IntegralCoefficientPinning.third_place_linked_data_exists hL hP hX).and (_root_.GlobalTheory.HeightCounting.Up.JointConditionThird.upper_ramification_joint_condition_third_jump_alt hL hP)).and
+    (_root_.GlobalTheory.HeightCounting.Up.upper_ramification_third_jump_holds_alt hL hP)).and ((_root_.GlobalTheory.HeightCounting.Up.RowsAtStates.adm8_and_lamUsed_all_states_of_published_inputs hP hX).and (_root_.GlobalTheory.SerThird.locComp_of_isRc_classMapD_cenLoc hL hP))
   refine h.trans (StepW.of_all fun K B f T w _ _ hh P x l => ?_)
   obtain ⟨⟨⟨h1, h2⟩, h3⟩, h45, h6⟩ := hh
   have h4 : _root_.GlobalTheory.CoefDuty.ForcedByAutomorphicSemisimpleData l.a.A l.mt.M l.c.ch l.c.tp.tup fun D' => SumRepresentations.hypO D' → GlobalTheory.NRows.LamUsed D' :=
@@ -72,22 +72,7 @@ theorem inputs_at_third_place_alt : ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExi
   obtain ⟨t1, t2, t3, t4, t5, t6⟩ := hD'
   obtain ⟨T⟩ := t1 hO
   exact ⟨⟨T, ⟨hO, t2 hO, t3 hO, t4 hO, t5 hO, t6 hO,
-    _root_.GlobalTheory.T.galoisRep_descends_at_real_places hP.decay hP.howe hX D' T.P.cf T.P.C T.P.tp T.X⟩⟩⟩
+    _root_.GlobalTheory.DownLift.AtReal.lift_splits_locally hP.decay hP.howe hX D' T.P.cf T.P.C T.P.tp T.X⟩⟩⟩
 end GlobalTheory.PtInputsX
-end
-section
-open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.L2 Formalism.L2.Host Formalism.IndefR.NX ReciprocityTheory.Aut Formalism.AUTREP NumberField IsDedekindDomain GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.R3 GlobalTheory.Mem.R3.Rw GlobalTheory.HeightCounting GlobalTheory.HeightCounting.Up
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-theorem _root_.GlobalTheory.T.eventually_nonempty_inputs_of_level_c :
-    ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists,
-      _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt →
-      _root_.GlobalTheory.NRows.GeometricGaloisRepCompatibility →
-      AllSt fun _ _ _ _ _ _ x =>
-        ∀ l : _root_.GlobalTheory.HeightCounting.Up.StrictHenselianAcyclicLevel hL x,
-          _root_.GlobalTheory.CoefDuty.ForcedByAutomorphicSemisimpleData
-            l.a.A l.mt.M l.c.ch l.c.tp.tup fun D' =>
-              SumRepresentations.hypO D' → Nonempty (_root_.GlobalTheory.NRows.LinkedInputs hL D') :=
-  _root_.GlobalTheory.PtInputsX.inputs_at_third_place_alt
 end
 end

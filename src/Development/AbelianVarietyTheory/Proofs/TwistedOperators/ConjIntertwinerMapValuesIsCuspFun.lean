@@ -78,7 +78,7 @@ theorem conjMap_isCuspFun : GlobalTheory.Published.DiscreteSeriesClassification 
   intro hDS D G _ _ Pl0 T A Ks _ _ _ R F X h hLev hGrp hMod hHost hιE t c ht hConj hInt Φ hΦ hRep u
   change IsCuspFun (D.sp.Y 0) _
   obtain ⟨-, -, -, -, -, -, hSL⟩ := GlobalTheory.ClassificationConsequences.consequences_of_dsClass hDS
-  obtain ⟨hd, hl, hb, hh, hph, -⟩ := GlobalTheory.T.discreteSeries_testData_large_gaps_integrable X hHost
+  obtain ⟨hd, hl, hb, hh, hph, -⟩ := _root_.GlobalTheory.DSGapData.dsData_gap_integrable X hHost
   have hg : 1 ≤ X.B.g := by
     rw [X.g_eq]; exact Nat.mul_pos (D.host.g_prime 0).pos (D.host.g_prime 1).pos
   obtain ⟨-, -, ⟨T0, hT0⟩, -⟩ := GlobalTheory.GlobProj.globalProj_holds X.B X.dv hd hph

@@ -91,8 +91,8 @@ theorem cutAt_of_deep {D : Formalism.BasicNotions.D7} {M : ∀ p : PlF D, Loc.Mo
     fun Λ hΛ Z => ZsVolFin.finR D u u' F0 what₂ hrows Z Λ hΛ
   have hN : PairVal.NormRepExists D u u' F0 what₂ := PCount.normRepExists_ctx ⟨hc, hrows, hP⟩
   have hM : Formalism.L2.SG.Pf.NormRepMove D u u' :=
-    norm_representative_move D u u' (Formalism.L2.SG.Closed.TermStable_holds D u u') (Formalism.L2.SG.Closed.TermEqIff_holds D u u')
-      (Formalism.L2.SG.Closed.TermFun_holds D u u') hP hsig
+    norm_representative_move D u u' (_root_.PI.TCS.termStable_holds D u u') (_root_.term_eq_iff_relation D u u')
+      (_root_.term_function_const D u u') hP hsig
   exact cutAt_of_leaves hA hc hP hrows hN hM (local_phase_typed_places hA) (ZsVolAsm.volIdxProd_of_prodE M δ u u' F0 what₂ hP
       (ProdE.prodE_CZ_of_approxC M δ u u' F0 what₂ (ProdEApprox.approxC M δ u u' F0 what₂) hst))
     (fun _ => PCountEx.exist_holds hA u u')
@@ -118,6 +118,6 @@ theorem rowsDatumP_of_deep {D : Formalism.BasicNotions.D7} (h : CutLeavesDeep D)
   intro hsig δ M hA L u u' hc hP F0 what₂ hrows ϖ hϖ nc hnc
   obtain ⟨hst, hSA, hFS⟩ := h hsig δ M hA L u u' hc hP F0 what₂ hrows
   exact rowsDatum_at (cutAt_of_deep (L := L) hsig hA hc hP hrows hst hSA hFS)
-    (eligFinite_of (Formalism.L2.SG.Closed.TermsAtFinite_holds D u u') hsig hrows) hrows ϖ hϖ nc hnc
+    (eligFinite_of (_root_.terms_at_point_finite D u u') hsig hrows) hrows ϖ hϖ nc hnc
 
 end Formalism.L2.SG.Pf.Coef

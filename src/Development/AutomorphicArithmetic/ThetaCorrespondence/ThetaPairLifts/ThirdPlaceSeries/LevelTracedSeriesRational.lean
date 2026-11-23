@@ -63,9 +63,9 @@ namespace GlobalTheory.BigOn.Exp
 theorem adForm_eq_levelTrace_singleSeries' : GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Published.GlobalArtinReciprocity → GlobalTheory.Published.RayClassFieldSt → GlobalTheory.IndefiniteRowSideFullHecke.RationalRayLevels.SeriesRat → _root_.GlobalTheory.BigOn.Exp.TwistConditions fun Fm x hx i p w j => ∀ h ∈ GfC (Vc (Fm.D x i) j), ∀ w' : ((R2 p).cV j).W, InCoefLat (R2 p) j h w' →
   ∃ y ∈ Submodule.span (Fm.D x i).what₂.LL ((p.nexp.fi j).e '' ((p.Sx.A ((j : ℕ) + 1)).WK : Set _)), ∀ v : ∀ τ, lowT ((R2 p).MW j (sg0 (Fm.D x i) p.P.A3.A)) τ, adForm (R2 p) j y (fun τ => v τ) = levelTrace (R2 p) j (F2 p).P0 (F2 p).ψ0⁻¹ (singleSeries (R2 p) j ((R2 p).ωP j ((R2 p).mu ((Fm.D x i).plEq w))) ((R2 p).vP j ((R2 p).mu ((Fm.D x i).plEq w))) h w' v) := by
   intro _ _ _ _
-  have hR := _root_.GlobalTheory.T.rational_estimate_statement'
-  have hC := _root_.GlobalTheory.T.twisted_character_rational_values'
-  have hN := _root_.GlobalTheory.T.exists_isLevelLift_at_twisted_points
+  have hR := _root_.GlobalTheory.BigOn.bigOn_ratSt
+  have hC := _root_.GlobalTheory.BigOn.LevVal.chi_val_alt
+  have hN := _root_.GlobalTheory.TieLift.lift_principal_alt
   unfold _root_.GlobalTheory.BigOn.RationalityStatement' _root_.GlobalTheory.BigOn.AtPtsAlt at hR
   unfold _root_.GlobalTheory.BigOn.Exp.TwistConditions _root_.GlobalTheory.BigOn.AtPtsAlt at hC hN ⊢
   refine ((hR.and hC).and hN).imp fun Fm CH _ H => ?_
@@ -74,7 +74,7 @@ theorem adForm_eq_levelTrace_singleSeries' : GlobalTheory.Published.CuspRapidDec
   refine ⟨x0, fun x hx hle i p hp hM w hw j h hh w' hw' => ?_⟩
   obtain ⟨⟨a1, a2⟩, a3⟩ := hE x hx hle i p hp
   obtain ⟨θ, hθ⟩ := a1 hM _ hw j
-  obtain ⟨hCh, hOk, hU, -⟩ := _root_.GlobalTheory.T.links2_of_single_index_twisted _ _ _ _ _ _ _ _ _ _ p hp hM.1
+  obtain ⟨hCh, hOk, hU, -⟩ := _root_.GlobalTheory.BigOn.links2_of_rows_alt _ _ _ _ _ _ _ _ _ _ p hp hM.1
   have hS : GlobalTheory.TraceIncl.HidaSetting (R2 p) j ((R2 p).mu ((Fm.D x i).plEq w)) :=
     ⟨hCh.lev, hCh.grp.red_L, hCh.fam.tie, hCh.models, hCh.thP, hU, ⟨_, ((fw2 p).hv₀ j _).1⟩, (hOk.lifts _ _).act,
       fun g0 κ κ' k1 k2 => GlobalTheory.VecInv.omega_lifts_vP (R2 p) hCh.lev hCh.models.inf hCh.thP.ωP hCh.thP.vP j _ g0 κ κ' k1 k2⟩

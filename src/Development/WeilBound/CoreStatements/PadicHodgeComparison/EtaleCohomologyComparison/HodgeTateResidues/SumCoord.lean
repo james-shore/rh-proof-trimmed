@@ -144,7 +144,7 @@ theorem top_ne (P : HTPre l K) (E : EtSide (Model.Sm (l := l) (K := K))) (hT : K
   have := hc.1
   have := hc.2
   obtain ⟨D, hD⟩ := Pb.isO1_exists M.p hM.1.1
-  have hK : Pb.IsTautologicalLine M.q (genD D) := Pb.isTwistingSheaf_pullback (OK l K).subtype M.p D hD
+  have hK : Pb.IsTautologicalLine M.q (genD D) := _root_.GlobalTheory.CompanionTheory.ConeTwistingSheaf.isTwistingSheaf_pullback (OK l K).subtype M.p D hD
   have he := Pb.isO1_etale hD
   obtain ⟨N, i, -, -, hi⟩ := hD
   have hs := Pb.sSup_𝒱D D N i hi

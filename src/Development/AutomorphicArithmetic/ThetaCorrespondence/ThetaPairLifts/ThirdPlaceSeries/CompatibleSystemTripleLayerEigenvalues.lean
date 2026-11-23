@@ -58,7 +58,7 @@ namespace GlobalTheory.RowTriple.Lay.EigCopy
 
 theorem eigenvalues_at_member_tripleLayer_alt : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → SerN → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, _root_.GlobalTheory.HeightCounting.Up.MemberAtLayerPoint hL fun _ _ _ _ w Z _ _ _ _ _ c => ∀ (S : RatDat (w.D Z).ntw) (hL' : ∀ j, ℕ → PlE (w.D Z).host → Module.End (w.D Z).what₂.LL (S.WL j)) (eig : ℕ → (w.D Z).what₂.FT → ℕ → PlE (w.D Z).host → ↥(w.D Z).LL0) (θ : ∀ kk : Fin 2, Multiplicative (ZMod ((w.D Z).host.g kk)) →* (↥(w.D Z).LL0)ˣ), HEq S (ratL c.a.nt.L c.a.nt.S) → HEq hL' c.a.nt.hL → HEq eig c.a.nt.eig → HEq θ c.a.nt.θ → ∃ Sb : Finset (PlE (w.D Z).host), (∀ i, Sb ⊆ (w.D Z).ntw.S0 i) ∧ ∀ Rw : RowSide (w.D Z), HEq Rw.locR c.a.nt.A.row.locR → GlobalTheory.TwInputs.EigTrue (w.D Z) (TC.cf w.I w.l Z) Rw Sb eig ∧ GlobalTheory.TwInputs.EigOcc (w.D Z) S θ hL' Sb eig := by
   intro hN hS hL
-  refine _root_.GlobalTheory.GalLoc.atMem_mono (_root_.GlobalTheory.GalLoc.atMem_and' (_root_.GlobalTheory.T.exists_superset_low_heckeRd_of_subset_S0 hN hS hL) (_root_.GlobalTheory.T.exists_theta_heq_lvlPsi_at_members hN hS hL)) ?_
+  refine _root_.GlobalTheory.GalLoc.atMem_mono (_root_.GlobalTheory.GalLoc.atMem_and' (_root_.GlobalTheory.HeckeSbLayer.exists_hecke_stable_sublayer_alt hN hS hL) (_root_.GlobalTheory.GalLoc.PsiLvl.localGalois_psi_level_at_place_alt hN hS hL)) ?_
   intro K B f T w Z Wt p0 t nch n xd c hE H S hL' eig θ hS' hhL heig hθ
   obtain ⟨H2, H3⟩ := H
   obtain ⟨e⟩ := hE

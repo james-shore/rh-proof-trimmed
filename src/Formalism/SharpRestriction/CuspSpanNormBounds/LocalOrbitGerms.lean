@@ -775,17 +775,9 @@ theorem tri_PU : Tri (PU n) := by
     have h2' : (c : ℕ) < b := h2
     simp only [rk]; omega
 
-theorem mk_self (P : Fin n × Fin n → Prop) [DecidablePred P] (x : {p // P p} → K) (a : Fin n) :
-    mk P x a a = 1 := by
-  simp [mk]
+alias mk_self := _root_.Formalism.MainNotions.LocalOrbitGerms.Grp.mk_diag
 
-theorem mk_of (P : Fin n × Fin n → Prop) [DecidablePred P] (x : {p // P p} → K) {a b : Fin n}
-    (hab : a ≠ b) (h : P (a, b)) : mk P x a b = x ⟨(a, b), h⟩ := by
-  simp [mk, hab, h]
-
-theorem mk_zero (P : Fin n × Fin n → Prop) [DecidablePred P] (x : {p // P p} → K) {a b : Fin n}
-    (hab : a ≠ b) (h : ¬ P (a, b)) : mk P x a b = 0 := by
-  simp [mk, hab, h]
+alias mk_zero := _root_.Formalism.MainNotions.LocalOrbitGerms.Grp.mk_neg
 
 variable {P Q₁ Q₂ : Fin n × Fin n → Prop} [DecidablePred P] [DecidablePred Q₁] [DecidablePred Q₂]
 
@@ -846,7 +838,7 @@ theorem mk_coords (X : Matrix (Fin n) (Fin n) K) (h1 : ∀ a, X a a = 1)
   · subst hab
     rw [mk_self, h1]
   · by_cases h : P (a, b)
-    · rw [mk_of P _ hab h]
+    · rw [_root_.Formalism.MainNotions.LocalOrbitGerms.Grp.mk_pos P _ hab h]
     · rw [mk_zero P _ hab h, h0 a b hab h]
 
 theorem isLowUni_mk (h : ∀ p, P p → PL n p) (x : {p // P p} → K) : IsLowUni (mk P x) := by
@@ -915,9 +907,9 @@ theorem prodEquiv [TopologicalSpace K] [IsTopologicalRing K] [SecondCountableTop
     intro z a b hp
     have hab : a ≠ b := hP.ne hp
     rcases hor _ hp with hq | hq
-    · rw [mk_of Q₁ _ hab hq, mk_zero Q₂ _ hab (hd _ hq), add_zero]
+    · rw [_root_.Formalism.MainNotions.LocalOrbitGerms.Grp.mk_pos Q₁ _ hab hq, mk_zero Q₂ _ hab (hd _ hq), add_zero]
       try rfl
-    · rw [mk_zero Q₁ _ hab (fun h => hd _ h hq), mk_of Q₂ _ hab hq, zero_add]
+    · rw [mk_zero Q₁ _ hab (fun h => hd _ h hq), _root_.Formalism.MainNotions.LocalOrbitGerms.Grp.mk_pos Q₂ _ hab hq, zero_add]
       try rfl
   have hrest : ∀ (z : {p // P p} → K) (a b : Fin n) (hp : P (a, b)),
       T z ⟨(a, b), hp⟩ - z ⟨(a, b), hp⟩ = rest (res h₁ z) (res h₂ z) a b := by
@@ -936,7 +928,7 @@ theorem prodEquiv [TopologicalSpace K] [IsTopologicalRing K] [SecondCountableTop
     have hca : c ≠ a := (Finset.mem_erase.1 (Finset.mem_erase.1 hc).2).1
     by_cases h1 : Q₁ (a, c)
     · by_cases h2 : Q₂ (c, b)
-      · rw [mk_of Q₁ _ (Ne.symm hca) h1, mk_of Q₁ _ (Ne.symm hca) h1, mk_of Q₂ _ hcb h2, mk_of Q₂ _ hcb h2]
+      · rw [_root_.Formalism.MainNotions.LocalOrbitGerms.Grp.mk_pos Q₁ _ (Ne.symm hca) h1, _root_.Formalism.MainNotions.LocalOrbitGerms.Grp.mk_pos Q₁ _ (Ne.symm hca) h1, _root_.Formalism.MainNotions.LocalOrbitGerms.Grp.mk_pos Q₂ _ hcb h2, _root_.Formalism.MainNotions.LocalOrbitGerms.Grp.mk_pos Q₂ _ hcb h2]
         have r1 := hP.rk1 a c b (h₁ _ h1) (h₂ _ h2)
         have r2 := hP.rk2 a c b (h₁ _ h1) (h₂ _ h2)
         show z ⟨(a, c), h₁ _ h1⟩ * z ⟨(c, b), h₂ _ h2⟩ = z' ⟨(a, c), h₁ _ h1⟩ * z' ⟨(c, b), h₂ _ h2⟩
@@ -1022,7 +1014,7 @@ theorem conj_mk [MeasurableSpace K] (hsb : ∀ a b, sb a b = true ↔ blk s a = 
     · have hb : blk s a = blk s c := (hsb a c).1 h.2
       have h' : PV sb (revF s a, revF s c) :=
         ⟨revF_lt_of_blk_eq s hb h.1, (hsb _ _).2 (by rw [blk_revF, blk_revF]; exact hb)⟩
-      rw [mk_of _ _ hrac h', mk_of _ _ hac h]
+      rw [_root_.Formalism.MainNotions.LocalOrbitGerms.Grp.mk_pos _ _ hrac h', _root_.Formalism.MainNotions.LocalOrbitGerms.Grp.mk_pos _ _ hac h]
       have hq : (⟨(a, c), h⟩ : {p // PUV sb p}) = revEquiv hsb ⟨(revF s a, revF s c), h'⟩ := by
         apply Subtype.ext
         simp [revEquiv]
@@ -1177,8 +1169,7 @@ theorem main (hS : TriangularShearMeasurePreserving) (hM : CoordinateMergeMeasur
 
 end Dec
 
-theorem dec (hS : TriangularShearMeasurePreserving) (hM : CoordinateMergeMeasurable) : OrbitParametrisationsAgree := by
-  exact Dec.main hS hM
+alias dec := _root_.Formalism.MainNotions.LocalOrbitGerms.Dec.main
 
 end Formalism.MainNotions.LocalOrbitGerms
 
@@ -1591,240 +1582,77 @@ end
 
 
 
-noncomputable section
-
-open MeasureTheory Matrix Formalism.DoubleCosetMeasures
-open scoped Topology
-
 namespace Formalism.MainNotions.LocalOrbitGerms
 
 namespace Germ
-
-section Mk
-
-variable {K : Type} [CommRing K] {n : ℕ}
-
-end Mk
-
-section Trans
-
-variable {K : Type} [CommRing K] [TopologicalSpace K] [IsTopologicalRing K] [SecondCountableTopology K]
-  [MeasurableSpace K] [BorelSpace K] (μ : Measure K) [SigmaFinite μ] [μ.IsAddLeftInvariant] {n : ℕ}
-
-end Trans
 
 end Germ
 
 end Formalism.MainNotions.LocalOrbitGerms
 
-end
-
-
-
-noncomputable section
-
-open MeasureTheory Matrix Formalism.DoubleCosetMeasures
-open scoped Topology
-
 namespace Formalism.MainNotions.LocalOrbitGerms
 
 namespace Germ
-
-section Shapes
-
-variable {K : Type} [CommRing K] {n : ℕ}
-
-end Shapes
-
-section Avg
-
-variable {K : Type} [CommRing K] [TopologicalSpace K] [IsTopologicalRing K] [SecondCountableTopology K]
-  [MeasurableSpace K] [BorelSpace K] (μ : Measure K) [SigmaFinite μ] [μ.IsAddLeftInvariant] (R : Subring K) {n : ℕ}
-
-end Avg
 
 end Germ
 
 end Formalism.MainNotions.LocalOrbitGerms
 
-end
-
-
-
-noncomputable section
-
-open MeasureTheory Matrix Formalism.DoubleCosetMeasures
-open scoped Topology
-
 namespace Formalism.MainNotions.LocalOrbitGerms
 
 namespace Germ
-
-section Orb
-
-variable {K : Type} [CommRing K] [TopologicalSpace K] [IsTopologicalRing K] [SecondCountableTopology K]
-  [MeasurableSpace K] [BorelSpace K] (μ : Measure K) [SigmaFinite μ] [μ.IsAddLeftInvariant] (R : Subring K)
-  (ψ : AddChar K ℂ) (s : List ℕ) (t : ℕ → Kˣ) (sb : Fin s.sum → Fin s.sum → Bool)
-
-variable {sb}
-
-end Orb
 
 end Germ
 
 end Formalism.MainNotions.LocalOrbitGerms
 
-end
-
-
-
-noncomputable section
-
-open MeasureTheory Matrix Formalism.DoubleCosetMeasures
-open scoped Topology
-
 namespace Formalism.MainNotions.LocalOrbitGerms
 
 namespace Germ
-
-section Fub
-
-variable {K : Type} [CommRing K] [TopologicalSpace K] [IsTopologicalRing K] [SecondCountableTopology K]
-  [MeasurableSpace K] [BorelSpace K] (μ : Measure K) [SigmaFinite μ] [μ.IsAddLeftInvariant] (R : Subring K)
-  (ψ : AddChar K ℂ) (s : List ℕ) (t : ℕ → Kˣ) {sb : Fin s.sum → Fin s.sum → Bool}
-
-end Fub
 
 end Germ
 
 end Formalism.MainNotions.LocalOrbitGerms
 
-end
-
-
-
-noncomputable section
-
-open MeasureTheory Matrix Formalism.DoubleCosetMeasures Formalism.MainNotions.S.Loc Formalism.MainNotions.LocalModelPeriodLattices Formalism.FourierDecayAlt
-open scoped Topology
-
 namespace Formalism.MainNotions.LocalOrbitGerms
 
 namespace Germ
-
-section Core
-
-variable {K : Type} [CommRing K] [TopologicalSpace K] [IsTopologicalRing K]
-
-end Core
 
 end Germ
 
 end Formalism.MainNotions.LocalOrbitGerms
 
-end
-
-
-
-noncomputable section
-
-open MeasureTheory Matrix Formalism.DoubleCosetMeasures Formalism.MainNotions.S.Loc Formalism.MainNotions.LocalModelPeriodLattices Formalism.FourierDecayAlt
-open scoped Topology
-
 namespace Formalism.MainNotions.LocalOrbitGerms
 
 namespace Germ
-
-section Loc
-
-variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
-variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] [MeasurableSpace E]
-
-end Loc
 
 end Germ
 
 end Formalism.MainNotions.LocalOrbitGerms
 
-end
-
-
-
-noncomputable section
-
-open MeasureTheory Matrix Formalism.DoubleCosetMeasures Formalism.MainNotions.S.Loc Formalism.MainNotions.LocalModelPeriodLattices Formalism.FourierDecayAlt
-open scoped Topology
-
 namespace Formalism.MainNotions.LocalOrbitGerms
 
 namespace Germ
-
-section Loc
-
-variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
-variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] [MeasurableSpace E]
-
-end Loc
 
 end Germ
 
 end Formalism.MainNotions.LocalOrbitGerms
 
-end
-
-
-
-noncomputable section
-
-open MeasureTheory Matrix Formalism.DoubleCosetMeasures Formalism.MainNotions.S.Loc Formalism.MainNotions.LocalModelPeriodLattices Formalism.FourierDecayAlt
-open scoped Topology
-
 namespace Formalism.MainNotions.LocalOrbitGerms
 
 namespace Germ
-
-section Loc
-
-variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
-variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] [MeasurableSpace E]
-
-end Loc
 
 end Germ
 
 end Formalism.MainNotions.LocalOrbitGerms
 
-end
-
-
-
-noncomputable section
-
-open MeasureTheory Matrix Formalism.DoubleCosetMeasures Formalism.MainNotions.S.Loc Formalism.MainNotions.LocalModelPeriodLattices Formalism.FourierDecayAlt
-open scoped Topology
-
 namespace Formalism.MainNotions.LocalOrbitGerms
 
 namespace Germ
 
-section Comb
-
-variable {E : Type} [CommRing E]
-
-end Comb
-
-section Loc
-
-variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
-variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] [MeasurableSpace E]
-
-end Loc
-
 end Germ
 
 end Formalism.MainNotions.LocalOrbitGerms
-
-end
 
 noncomputable section
 

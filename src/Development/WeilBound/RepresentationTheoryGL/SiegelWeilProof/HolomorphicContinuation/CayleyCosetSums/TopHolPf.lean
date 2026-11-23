@@ -179,16 +179,9 @@ theorem topHol : TopHol := by
     exact H.1
   · rw [hfun Ê, H.2 s₀ hD.hs r, tOp_resG ι μ ρ ψ ha hb _ g y]
 
-theorem JJ_mul_self : JJ n * JJ n = -1 := by
-  unfold JJ
-  rw [fromBlocks_multiply]
-  simp only [Matrix.mul_zero, zero_add, add_zero, Matrix.mul_neg, Matrix.mul_one]
-  rw [← Matrix.fromBlocks_one, Matrix.fromBlocks_neg]
-  simp
-
 theorem JJ_inv : (JJ n)⁻¹ = -JJ n := by
   refine Matrix.inv_eq_right_inv ?_
-  rw [Matrix.mul_neg, JJ_mul_self, neg_neg]
+  rw [Matrix.mul_neg, _root_.PositivityTheory.Rg.Sw.AbsSt.LocOpA.JJ_mul_JJ, neg_neg]
 
 theorem JJ_conjTranspose : (JJ n)ᴴ = -JJ n := by
   unfold JJ
@@ -207,7 +200,7 @@ theorem sig_conjTranspose (X : M2 n) : (sig X)ᴴ = JJ n * X * JJ n := by
 
 theorem lie_half1 (Z : M2 n) (t : ℝ) :
     ((t : ℂ) • ((1 / 2 : ℂ) • (Z + sig Z)))ᴴ * JJ n + JJ n * ((t : ℂ) • ((1 / 2 : ℂ) • (Z + sig Z))) = 0 := by
-  have h := JJ_mul_self (n := n)
+  have h := _root_.PositivityTheory.Rg.Sw.AbsSt.LocOpA.JJ_mul_JJ (n := n)
   simp only [Matrix.conjTranspose_smul, Matrix.conjTranspose_add, sig_conjTranspose, Complex.star_def,
     Complex.conj_ofReal, map_div₀, map_one, map_ofNat]
   rw [sig_eq]
@@ -219,7 +212,7 @@ theorem lie_half1 (Z : M2 n) (t : ℝ) :
 theorem lie_half2 (Z : M2 n) (t : ℝ) :
     ((t : ℂ) • ((1 / (2 * Complex.I)) • (Z - sig Z)))ᴴ * JJ n +
       JJ n * ((t : ℂ) • ((1 / (2 * Complex.I)) • (Z - sig Z))) = 0 := by
-  have h := JJ_mul_self (n := n)
+  have h := _root_.PositivityTheory.Rg.Sw.AbsSt.LocOpA.JJ_mul_JJ (n := n)
   have hI : star (1 / (2 * Complex.I)) = -(1 / (2 * Complex.I)) := by
     rw [star_div₀, star_one, star_mul', Complex.star_def, Complex.conj_I]
     simp [Complex.conj_ofNat]
@@ -235,7 +228,7 @@ theorem inG_exp_of_lie {X : M2 n} (hX : Xᴴ * JJ n + JJ n * X = 0) : InG (Norme
   unfold InG
   have hJu : IsUnit (JJ n) := by
     refine (Matrix.isUnit_iff_isUnit_det _).2 ?_
-    have := congrArg Matrix.det (JJ_mul_self (n := n))
+    have := congrArg Matrix.det (_root_.PositivityTheory.Rg.Sw.AbsSt.LocOpA.JJ_mul_JJ (n := n))
     rw [Matrix.det_mul, Matrix.det_neg] at this
     refine isUnit_iff_ne_zero.2 fun h0 => ?_
     rw [h0, mul_zero] at this

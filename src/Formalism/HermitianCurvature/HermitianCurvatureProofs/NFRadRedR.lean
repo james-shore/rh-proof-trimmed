@@ -215,6 +215,4 @@ end Formalism.FourierDecayAlt.P.NFRadRedR
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem representation_smooth_of_log : NFRadRedR.LocLog → NFRadRedS.RepSmooth := fun h => NFRadRedR.repSmooth_of h
-
 end Formalism.FourierDecayAlt.P

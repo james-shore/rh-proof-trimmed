@@ -51,6 +51,4 @@ namespace UpperTheory.Gal.Cnt
 theorem weighted_count_definite_unitary : GlobalTheory.RootSumWeights.MarkWeightedFixedPointEqDefinitePairOdd :=
   GlobalTheory.RootSumWeights.markWeightedFixedPoint_definitePair_odd_of_counts GlobalTheory.LKDef.marked_field_pairs_sum_eq_definite_pairs_sum UpperTheory.Cb.complex_count_regular_marked_points GlobalTheory.RootSumWeights.finitely_many_marked_classes_term_degree_one
 
-theorem trace_definite_forms_identity : GlobalTheory.LKDef.TraceDefinitePairsEqAutomorphicTrace := GlobalTheory.LKDef.trace_definite_forms_identity
-
 end UpperTheory.Gal.Cnt

@@ -80,20 +80,20 @@ theorem topCovolG_alt_alt : _root_.SelfIntersectionVolumeEstimates.VolumeEstimat
   have hS := hH.sieg
   have hK := hX.ks
   have hN := hX.lie
-  have gram := _root_.GlobalTheory.T.covering_gram_of_prints hP
-  have size := _root_.GlobalTheory.T.cov_size_bound
-  have meas := _root_.GlobalTheory.T.covering_meas_of_prints hP
-  have anc := _root_.GlobalTheory.T.anchor_bound
-  have dex := _root_.GlobalTheory.T.covering_deepEx_of_prints hP
-  have dg := _root_.GlobalTheory.T.deepGood_of_toroidal_and_semiabelian hP hGD hQ hS hK hN
-  have fd := _root_.GlobalTheory.T.flatDeg_of_scholzeWeinstein_of_prints hP
-  have deg := _root_.GlobalTheory.T.coverDegree_of_grothendieck_deformation hX hP hS hK hGD hQ hN dg size fd
-  have sh := _root_.GlobalTheory.T.share_of_deep_good_size_flat_deg_cover_degree hX hP hS hK hGD hQ hN dg size fd deg
+  have gram := _root_.GlobalTheory.CovTop.covering_gram_matrix_of_local_traces_alt hP
+  have size := _root_.GlobalTheory.CovTop.SizeRows.size_alt_bis
+  have meas := _root_.GlobalTheory.CovTop.MeasRd.covering_measure_reduction_alt hP
+  have anc := _root_.GlobalTheory.CovTop.anchor_holds_alt
+  have dex := _root_.GlobalTheory.CovTop.DeepExist.exists_deep_covering_level_alt hP
+  have dg := _root_.GlobalTheory.CovTop.DeepGoodAll.deepGood_alt_alt hP hGD hQ hS hK hN
+  have fd := _root_.GlobalTheory.CovTop.FlatDegProof.flatDeg_alt_alt hP
+  have deg := _root_.GlobalTheory.CovTop.DegProof.covering_degree_eq_alt hX hP hS hK hGD hQ hN dg size fd
+  have sh := _root_.GlobalTheory.CovTop.ShareRowsNef.share_alt_alt hX hP hS hK hGD hQ hN dg size fd deg
   have ht := _root_.SelfIntersectionVolumeEstimates.height_lower_bound_general_alt hSB hX hGD hQ hP hH hD dg size deg fd
-  have hs := _root_.GlobalTheory.T.coverHeightSum_of_flatDeg_coverDegree_share hX hP hGD hQ hS hK hN dg size fd deg sh
-  have ul := _root_.GlobalTheory.T.uniform_lower_bound_of_sums' dg size deg sh ht hs (_root_.GlobalTheory.T.sum_c_of_deep_good dg)
-  have low := _root_.GlobalTheory.T.liftLowBound_of_cover_estimates size (_root_.GlobalTheory.T.lowDef_of_gram_of_anchor hP gram anc) dex dg (_root_.GlobalTheory.T.covering_ring_of_prints_gram_deepGood hP gram dg) (_root_.GlobalTheory.T.covering_maps_of_gram_deep_size_flatDeg hP hGD hQ hS hK hN gram dg size fd) (_root_.GlobalTheory.T.coverRank_of_coverDegree_and_share hX hP hGD hQ hS hK hN dg size fd deg sh) (_root_.GlobalTheory.T.covering_gmin_of_prints_gram_deep_size hP gram dg size) (_root_.GlobalTheory.T.flat_of_prints_deepGood_flatDeg_anchor hP dg fd anc) ul
-  exact _root_.GlobalTheory.T.covolX_of_truncation_badSet_lambda_lowBound gram (_root_.GlobalTheory.T.lift_recursion_of_gram_bound gram) (_root_.GlobalTheory.T.liftTruncation_of_prints hP) (_root_.GlobalTheory.T.liftBadSet_of_deep_size_flatDeg_share hX hP hGD hQ hS hK hN hX.green gram dex dg size fd deg sh) (_root_.GlobalTheory.T.liftLambdaBound_of_gram_meas hP gram meas) size (_root_.GlobalTheory.T.coreLe_of_gram_meas_liftRational gram meas (_root_.GlobalTheory.T.liftRational_of_prints hP)) low
+  have hs := _root_.GlobalTheory.CovTop.ShortRoad.hilbertSamuel_of_component_estimates_alt hX hP hGD hQ hS hK hN dg size fd deg sh
+  have ul := _root_.GlobalTheory.CovTop.FromComp.u_low_of_cover_hyps dg size deg sh ht hs (_root_.GlobalTheory.CovTop.sumC_of_deepGood_alt dg)
+  have low := _root_.GlobalTheory.CovTop.LowCover.low_of_cover_hypotheses size (_root_.GlobalTheory.CovTop.DefLow.covering_low_defect_alt hP gram anc) dex dg (_root_.GlobalTheory.CovTop.RingStep.ring_of_covering_descent_alt hP gram dg) (_root_.GlobalTheory.CovTop.DescentMaps.covering_descent_maps_compatible_alt hP hGD hQ hS hK hN gram dg size fd) (_root_.GlobalTheory.CovTop.covering_rank_of_descent_steps_alt hX hP hGD hQ hS hK hN dg size fd deg sh) (_root_.GlobalTheory.CovGminTop.covering_gmin_of_gram_deep_size hP gram dg size) (_root_.GlobalTheory.FlatSplit.flat_alt_alt hP dg fd anc) ul
+  exact _root_.GlobalTheory.CovTop.Assembly.covolX_of_lift_bounds_and_coreLe gram (_root_.GlobalTheory.CovTop.liftRecursive_of_gram gram) (_root_.GlobalTheory.CovTop.covering_cut_of_local_traces_alt hP) (_root_.GlobalTheory.CovTop.covering_bad_locus_of_descent_steps_alt hX hP hGD hQ hS hK hN hX.green gram dex dg size fd deg sh) (_root_.GlobalTheory.CovTop.LamAll.covering_lambda_all_places_alt hP gram meas) size (_root_.GlobalTheory.CoreSlope.coreLe_of_gram_meas_rat_alt gram meas (_root_.GlobalTheory.CovTop.covering_rational_of_local_traces_alt hP)) low
 end SelfIntersectionVolumeEstimates
 end
 end

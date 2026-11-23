@@ -71,9 +71,7 @@ theorem t2 : T2Space k := by
     (IsValuativeTopology.hasBasis_nhds_zero' k).mem_of_mem ((valuation k).ne_zero_iff.2 hx), ?_⟩
   exact fun h => lt_irrefl (valuation k x) h
 
-theorem conj_pow (g : GL (Fin n) k) (x : Matrix (Fin n) (Fin n) k) (m : ℕ) :
-    (g.val * x * g⁻¹.val) ^ m = g.val * x ^ m * g⁻¹.val :=
-  _root_.UpperTheory.Reformulated.B.Yhc6.main g x m
+alias conj_pow := _root_.UpperTheory.Reformulated.B.Yhc6.main
 
 theorem aeval_conj (g : GL (Fin n) k) (x : Matrix (Fin n) (Fin n) k) (P : k[X]) :
     aeval (g.val * x * g⁻¹.val) P = g.val * aeval x P * g⁻¹.val := by

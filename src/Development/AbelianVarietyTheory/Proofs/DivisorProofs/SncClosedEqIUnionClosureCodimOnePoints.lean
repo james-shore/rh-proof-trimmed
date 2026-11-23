@@ -131,7 +131,7 @@ theorem exists_genericPoints : ∀ (F : Type) [Field F] (X : Scheme.{0}) [IsInte
   haveI : CompactSpace X := QuasiCompact.compactSpace_of_compactSpace p
   haveI : IsNoetherian X := {}
   obtain ⟨m, C, hC, -⟩ := GlobalTheory.SncComponents.exists_compList_effCartier F X p D T hT
-  have hL := GlobalTheory.SncLocal.lSncAt_of_snc' X T m C hT hC
+  have hL := _root_.GlobalTheory.SncLocal.lSncAt_of_snc X T m C hT hC
   have hz : ∀ a, ∃ z : X, closure {z} = (C a : Set X) := fun a =>
     QuasiSober.sober (hC.1 a) (C a).isClosed
   choose z hz using hz

@@ -52,6 +52,7 @@ import Mathlib.Topology.Sheaves.Presheaf
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.SharpRestriction.GrowthBounds.CovariantDegrees
 public import Mathlib.LinearAlgebra.Eigenspace.Basic
+import Formalism.SharpRestriction.GrowthBounds.RootWeights.MemWeightSpaceIffDiagonalEigen
 
 @[expose] public section
 
@@ -67,14 +68,9 @@ attribute [local instance 100] LieRing.ofAssociativeRing
 
 variable {n : ℕ} {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
 
-private theorem mem_weightSp_iff (E : GLOps n K V) (μ : Fin n → ℤ) (x : V) :
-    x ∈ weightSp E μ ↔ ∀ c, E c c x = (μ c : K) • x := by
-  simp only [weightSp, Submodule.mem_iInf, LinearMap.mem_ker, LinearMap.sub_apply,
-    LinearMap.smul_apply, Module.End.one_apply, sub_eq_zero]
-
 private theorem E_apply_mem_weightSp_add_rootW_of_ne {E : GLOps n K V} (hE : IsGLRep E) {a b : Fin n} (hab : a ≠ b)
     {μ : Fin n → ℤ} {x : V} (hx : x ∈ weightSp E μ) : E a b x ∈ weightSp E (μ + rootW a b) := by
-  rw [mem_weightSp_iff] at hx ⊢
+  rw [_root_.Formalism.MainNotions.G.GLWeightTheory.mem_weightSpace_iff_diagonal_eigen] at hx ⊢
   intro c
   have hc := LinearMap.congr_fun (hE.1 c c a b) x
   simp only [LinearMap.sub_apply, Module.End.mul_apply, hx c, map_smul] at hc
@@ -128,7 +124,7 @@ private theorem E_pow_apply_mem_weightSp_ne_zero_of_highest [CharZero K] {E : GL
   have hdiag : ∀ k : ℕ, E a a ((E b a ^ k) v) - E b b ((E b a ^ k) v) =
       ((N : K) - 2 * k) • (E b a ^ k) v := by
     intro k
-    have h := (mem_weightSp_iff E _ _).1 (hlow k)
+    have h := (_root_.Formalism.MainNotions.G.GLWeightTheory.mem_weightSpace_iff_diagonal_eigen E _ _).1 (hlow k)
     rw [h a, h b, ← sub_smul]
     congr 1
     simp only [rootW, Pi.add_apply, Pi.smul_apply, Pi.sub_apply, Pi.single_eq_same, Pi.single_apply,
@@ -175,7 +171,7 @@ private theorem finite_set_of_nonzero_weightSp [CharZero K] [FiniteDimensional K
   refine (Set.Finite.pi (t := fun c => {z : ℤ | (E c c).HasEigenvalue (z : K)}) hfin).subset ?_
   intro μ hμ
   obtain ⟨x, hx, hx0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hμ
-  rw [mem_weightSp_iff] at hx
+  rw [_root_.Formalism.MainNotions.G.GLWeightTheory.mem_weightSpace_iff_diagonal_eigen] at hx
   simp only [Set.mem_pi, Set.mem_univ, Set.mem_ofPred_eq, true_implies]
   intro c
   exact Module.End.hasEigenvalue_of_hasEigenvector

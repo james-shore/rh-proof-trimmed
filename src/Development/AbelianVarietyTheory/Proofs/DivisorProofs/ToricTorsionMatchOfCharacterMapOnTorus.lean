@@ -134,7 +134,7 @@ theorem torMatch_of_onTorus : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalR
   have hxy : s O φ τR hτR = s' O φ τO hτOk ≫ p := by
     refine GlobalTheory.LocalRigid.eq_of_pow_eq_of_closedPoint (Sp R) G hG.smooth O (spMap φ) k hkO _ _ ?_
       (ResidueField O) (residue O) inferInstance ?_
-    · rw [s1, ← GlobalTheory.Poinc.HomTor.pow_comp_monHom, s1', MonObj.one_comp]
+    · rw [s1, ← _root_.GlobalTheory.TorSecLocal.pow_comp_of_isMonHom, s1', MonObj.one_comp]
     · let τ₀ : Multiplicative D'.toPre.X →* (ResidueField O)ˣ := (Units.map (residue O).toMonoidHom).comp τO
       have h₀ : τ₀ ^ k = 1 := by
         rw [show τ₀ ^ k = (Units.map (residue O).toMonoidHom).comp (τO ^ k) by ext x; simp [τ₀]]

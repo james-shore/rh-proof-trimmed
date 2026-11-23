@@ -63,12 +63,6 @@ open scoped Classical
 
 private theorem gl_mul {K : Type} [Field K] [NumberField K] (x y : G1 K) : gl (x * y) = gl x * gl y := map_mul _ x y
 
-private theorem md_mul {K : Type} [Field K] [NumberField K] (x y : (A K)ˣ) : mD (x * y) = mD x * mD y := by
-  refine Subtype.ext ?_
-  rw [Matrix.SpecialLinearGroup.coe_mul]
-  ext i j : 1
-  fin_cases i <;> fin_cases j <;> simp [mD, Matrix.mul_apply, Fin.sum_univ_two, mul_comm]
-
 private theorem dm_md {K : Type} [Field K] [NumberField K] (a p : (A K)ˣ) :
     dM (p ^ 2) * gl (mD (a * p)) = Matrix.GeneralLinearGroup.scalar (Fin 2) p * gl (mD a) := by
   refine Units.ext ?_
@@ -232,7 +226,7 @@ theorem UpperTheory.ConvolutionTheory.R2.H.corePt :
       have e2 : mD p * (mD (a * p⁻¹) * k) = mD a * k := by
         rw [← mul_assoc]
         congr 1
-        rw [← md_mul, mul_comm a, mul_inv_cancel_left]
+        rw [← _root_.UpperTheory.ConvolutionTheory.R2.mD_mul, mul_comm a, mul_inv_cancel_left]
       rw [one_mul, one_mul, map_one, one_mul, l2, ← gl_mul, e2] at t
       rw [h1', z _ _ _ _ v1 hn (by omega), mul_zero, zero_add, t]
     · rw [z _ _ _ _ v2 hn (by omega), z _ _ _ _ v1 hn (by omega), z _ _ _ _ v2 v3 (by omega)]

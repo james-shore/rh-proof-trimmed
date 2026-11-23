@@ -59,20 +59,17 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     [CommRing O] [Algebra O LL] [TopologicalSpace LL] {v : AddValuation LL (WithTop ℚ)} {n₀ : ℕ}
     (W : LocWach PD LL O v n₀) {k : Type} [Field k] [Algebra O k]
 
-theorem mem_del (g : W.Gam) : g ∈ W.DelF ↔ IsOfFinOrder g := by
-  rw [W.DelF_def, isOfFinOrder_iff_pow_eq_one]
-
-theorem one_mem_del : (1 : W.Gam) ∈ W.DelF := (mem_del W 1).2 IsOfFinOrder.one
+theorem one_mem_del : (1 : W.Gam) ∈ W.DelF := (_root_.GlobalTheory.WachTie.mem_DelF_iff W 1).2 IsOfFinOrder.one
 
 theorem prod_del {M : Type} [CommMonoid M] (f : W.Gam → M) {d : W.Gam} (hd : d ∈ W.DelF) :
     ∏ δ ∈ W.DelF, f (d * δ) = ∏ δ ∈ W.DelF, f δ := by
-  rw [mem_del] at hd
+  rw [_root_.GlobalTheory.WachTie.mem_DelF_iff] at hd
   refine Finset.prod_nbij' (fun δ => d * δ) (fun δ => d⁻¹ * δ) ?_ ?_ ?_ ?_ ?_
   · intro a ha
-    rw [mem_del] at ha ⊢
+    rw [_root_.GlobalTheory.WachTie.mem_DelF_iff] at ha ⊢
     exact hd.mul ha
   · intro a ha
-    rw [mem_del] at ha ⊢
+    rw [_root_.GlobalTheory.WachTie.mem_DelF_iff] at ha ⊢
     exact hd.inv.mul ha
   · intro a _
     simp
@@ -85,11 +82,7 @@ theorem sum_del {M : Type} [AddCommMonoid M] (f : W.Gam → M) {d : W.Gam} (hd :
     ∑ δ ∈ W.DelF, f (d * δ) = ∑ δ ∈ W.DelF, f δ :=
   prod_del W (M := Multiplicative M) f hd
 
-theorem γD_smulA (T : LocLat G Qp LL O) (g : W.Gam) (a : LetA O n₀) (x : W.DD T) :
-    W.γD T g (a • x) = W.γA g a • W.γD T g x := by
-  have := W.γD_smul T g (algebraMap (LetA O n₀) W.EE a) x
-  rw [algebraMap_smul, W.γE_ext, algebraMap_smul] at this
-  exact this
+alias γD_smulA := _root_.GlobalTheory.WachTie.MatF.γD_smulA
 
 theorem trace_mem (T : LocLat G Qp LL O) (x : W.DD T) : ∑ δ ∈ W.DelF, W.γD T δ x ∈ DΔ W T := by
   intro d hd

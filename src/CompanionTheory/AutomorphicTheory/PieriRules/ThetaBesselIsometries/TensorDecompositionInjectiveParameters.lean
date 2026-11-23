@@ -206,7 +206,7 @@ theorem tensH_of_raw : HypsG → ∀ (k r : ℕ) (ι κ : Type) [Fintype ι] [De
   have hsc : ∀ (m m' : Fin (2 * r + k + 1) → ℝ) (S S' : Rep k r), S.IsDG ε m → S'.IsDG ε m' →
       ∀ (T : S.H → S'.H) (a : ℂ), SmMap S S' T → SmMap S S' (fun v => a • T v) := by
     intro m m' S S' hS hS' T a h
-    have := (GlobalTheory.T.smooth_maps_closure hK k r ε _ _ _ S S' S' hS hS' hS').2.2.1 T T (a - 1) h h
+    have := (_root_.Gp91.GlobalTheory.SmMapAct.smMap_act hK k r ε _ _ _ S S' S' hS hS' hS').2.2.1 T T (a - 1) h h
     simpa only [sub_smul, one_smul, sub_add_cancel] using this
   set a : κ → ℂ := fun I => (((Real.sqrt |(cI I).re|)⁻¹ : ℝ) : ℂ) with ha
   have hane : ∀ I, a I ≠ 0 := fun I => by

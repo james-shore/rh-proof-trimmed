@@ -105,7 +105,7 @@ theorem pageWord_thick_iff : ∀ {D : D7} (L : SizeData₂ D) (C : ℝ) (j : Fin
     have hlt3 : wMax D + (c + 1) < bHat L := by exact_mod_cast hlt2
     omega
   · intro hT
-    obtain ⟨hA, hB⟩ := GlobalTheory.T.floor_size_bounds_at_thick_embedding L _ j hT
+    obtain ⟨hA, hB⟩ := _root_.GlobalTheory.HTW.SizeThick.size_thick L _ j hT
     rw [hE] at hA hB
     have hBE : ((⌈L.sc.b⌉₊ : ℤ)) ≤ E := by
       have : ((⌈L.sc.b⌉₊ : ℤ) : ℝ) < ((E + 1 : ℤ) : ℝ) := by push_cast; linarith

@@ -482,6 +482,6 @@ theorem meanExists : MeanExists := by
 
 end Lattice
 
-theorem _root_.Formalism.FourierDecayAlt.P.invariantMeanExists : Formalism.FourierDecayAlt.crystallineComparison.MeanExists := meanExists
+alias _root_.Formalism.FourierDecayAlt.P.invariantMeanExists := _root_.Formalism.FourierDecayAlt.P.BoxAverageLimits.meanExists
 
 end Formalism.FourierDecayAlt.P.BoxAverageLimits

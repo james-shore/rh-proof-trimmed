@@ -196,7 +196,7 @@ theorem bcRigidAt_of_intModel : Out.Laws → Out.Laws2 → Out.UnifBaseChangeSt 
     fun f => by
       rw [← spMap_comp, ← spMap_comp]
       exact congrArg spMap (RingHom.ext fun x => PowerSeries.map_C _ _)
-  obtain rfl : y₂ = x₁ := GlobalTheory.T.arc_framed_point_eq_of_models_over_base h1 h2 h5 E H Dw l Xo c _ _ M.aK _ _ Yw d.Y _ _ W₁ W₂
+  obtain rfl : y₂ = x₁ := _root_.GlobalTheory.ArcQ.isArcFr_eq_of_overBase h1 h2 h5 E H Dw l Xo c _ _ M.aK _ _ Yw d.Y _ _ W₁ W₂
     (by rw [Category.assoc, hχ, ← Category.assoc, hC, Category.assoc, ← spMap_comp, ← M.bcw.1])
     (by rw [Category.assoc, hd, ← Category.assoc, hC, Category.assoc, ← spMap_comp, RingHom.comp_assoc])
     e₂ th₂ (n₂ _ _ t₂ nz) _ _ y₂ x₁ (isUnit_arcι_X Dw _) a₃ b₂

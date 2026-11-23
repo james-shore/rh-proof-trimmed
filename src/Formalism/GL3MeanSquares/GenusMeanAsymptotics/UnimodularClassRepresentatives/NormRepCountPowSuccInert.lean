@@ -56,11 +56,7 @@ namespace Formalism.HermitianLattices.Ext.L3.NormLifting
 
 variable {K : Type} [Field K] [NumberField K] [StarRing K]
 
-theorem conjO_conjO (x : 𝓞 K) : conjO K (conjO K x) = x := by
-  first
-  | exact RingOfIntegers.ext (star_star (x : K))
-  | (apply RingOfIntegers.ext; simp [conjO])
-  | (apply RingOfIntegers.ext; unfold conjO; simp)
+alias conjO_conjO := _root_.Formalism.HermitianLattices.Ext.L3.conjO_conjO
 
 theorem eq_conjO_of {θ t : 𝓞 K} (h : algebraMap (𝓞 K) K t = star (algebraMap (𝓞 K) K θ)) :
     t = conjO K θ := by

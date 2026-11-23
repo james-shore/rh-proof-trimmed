@@ -53,12 +53,6 @@ import Mathlib.Topology.Sheaves.Init
 open IsLocalRing Matrix Filter UpperTheory.V.Alg UpperTheory.V.W UpperTheory.V.AlgebraTools UpperTheory.V.Pa UpperTheory.V.Pa.Core
 open scoped TensorProduct
 
-private theorem UpperTheory.V.Pa.Core.freeN_quot {R S M : Type} [CommRing R] [CommRing S] [AddCommGroup M] [Module R M]
-    (s : S →+* R) (I K : Ideal S) (hIK : I ≤ K) (c : ℕ) (e : M ≃+ (Fin c → S ⧸ I))
-    (he : ∀ z x, e (s z • x) = z • e x) :
-    ∃ e' : (M ⧸ (K.map s • ⊤ : Submodule R M)) ≃+ (Fin c → S ⧸ K), ∀ a x, e' (s a • x) = a • e' x :=
-  _root_.UpperTheory.Reformulated.B.FreeModuleQuotient.freeN_quot s I K hIK c e he
-
 private theorem UpperTheory.V.Pa.Core.freeN_le (l : ℕ) (hl : l.Prime) (R : Type) [CommRing R] [IsLocalRing R]
     (hR : (l : R) ∈ maximalIdeal R) (q n : ℕ) (a : Fin q → ℕ) (k j : ℕ) (ha : ∀ i, j + k ≤ a i) :
     delIdeal l R n a ≤ kjIdeal R (Fin q × Fin n) k j := by
@@ -85,7 +79,7 @@ theorem UpperTheory.V.Pa.Core.freeN :
     rw [map_natCast, CharP.cast_eq_zero] at h1
     exact not_isUnit_zero h1
   refine Λ.U_le ((eventually_ge_atTop (j + k)).mono fun N hN => ⟨(A.A N).rk, ?_⟩)
-  refine freeN_quot (M := MN m N) m.s.toRingHom _ _
+  refine _root_.UpperTheory.Reformulated.B.FreeModuleQuotient.freeN_quot (M := MN m N) m.s.toRingHom _ _
     (freeN_le l hl.out _ hlm T.q n (A.A N).a k j fun i => hN.trans ((A.A N).le_a i)) _ (A.A N).e ?_
   intro z x
   have := (A.A N).e_smul z x

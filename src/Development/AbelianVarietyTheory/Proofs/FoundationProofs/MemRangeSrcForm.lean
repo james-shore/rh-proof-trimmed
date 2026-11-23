@@ -332,12 +332,6 @@ theorem exists_latSys (hL : R.toLevCh.Is A.μ0) {gramR c0R c0L}
     rw [← h3]
     exact ⟨fun ⟨y, hy, e'⟩ => e.injective e' ▸ hy, fun hx => ⟨x, hx, rfl⟩⟩
 
-theorem exists_fin (V : HSp D) (h : Bridge.Gf V) : ∃ k ∈ GfC V, fin V k = h := by
-  obtain ⟨_, g, rfl⟩ := h
-  obtain ⟨h1, h2⟩ := GlobalTheory.Mass.parts_spec D.sp.cm.sig V.gram
-  obtain ⟨k, k1, k2⟩ := h2 1 (finHom V g)
-  exact ⟨⟨k, (h1 k).2 ⟨k1 ▸ one_mem _, k2 ▸ ((h1 _).1 g.2).2⟩⟩, k1, Subtype.ext k2⟩
-
 theorem eq_of_low (hW : R.models_HW) (hv : ∃ v, IsExtVec (R.MW i (sg0 D A)) v) {x y : (R.HW i (sg0 D A)).H}
     (h : ∀ v : ∀ ρ, lowT (R.MW i (sg0 D A)) ρ,
       (R.HW i (sg0 D A)).e x (fun ρ => v ρ) = (R.HW i (sg0 D A)).e y fun ρ => v ρ) : x = y := by
@@ -460,7 +454,7 @@ theorem theta_mem_span {θ} (hθ : OnTies.IsClassSum R i t U ψ ph θ) {y : Fin 
   have hf := (mem_lvlNab i t U ψ y).1 hy
   choose z hz ez using fun c => exists_src_trU i t U ψ h.act (hL.avg_mem (GlobalTheory.LevelCharOrder.levEnv_chi_isOfFinOrder _ _ _) (hf c))
   have hmem : ∀ c, θ (z c) ∈ thetaTuple R i U ψ ph t := fun c => by
-    obtain ⟨g, hg, eg⟩ := exists_fin (Vc D i) ((presV R i t).y c)
+    obtain ⟨g, hg, eg⟩ := _root_.GlobalTheory.TraceIncl.KernLaws.exists_finite_lift (Vc D i) ((presV R i t).y c)
     refine Submodule.subset_span ⟨g, hg, _, ⟨gramR, c0R, c0L, hT, e _, ?_, (h1 ((srcForm A i t U ψ y : _ → _) c))⟩, fun v => ?_⟩
     · rw [eg]
       exact (hL.nab c).ge (hf c)

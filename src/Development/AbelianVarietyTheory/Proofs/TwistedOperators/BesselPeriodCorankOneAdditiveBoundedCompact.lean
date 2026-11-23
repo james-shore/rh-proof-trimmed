@@ -72,7 +72,7 @@ private theorem norm_besChar_eq_one {D : D7} {A B : HSp D} {ι : A.V →ₗ[D.ho
 private theorem coCpt_gridData_V_zero {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} (G : GridData L sc) :
     GlobalTheory.Unf.CoCpt (G.V (.top 0)) := by
   have hV := GlobalTheory.FunObj.isV_Xp G
-  obtain ⟨C, hC, hcov⟩ := GlobalTheory.definite_unitary_cocompact (G.V (.top 0)) fun τ =>
+  obtain ⟨C, hC, hcov⟩ := _root_.GlobalTheory.DefiniteQuotient.exists_compact (G.V (.top 0)) fun τ =>
     GlobalTheory.DefiniteQuotient.posDef_of_signature (by
       have h1 := hV.sigOK (tauE D τ)
       rw [hV.sig (tauE D τ)] at h1
@@ -89,7 +89,7 @@ private theorem integrableOn_besInt_of_bounded {D : D7} {T : Type} {L : LevCh D 
     (∀ h, IntegrableOn (besInt W φ F h) M.fdN M.νN) ∧
       IntegrableOn (fun h => ∫ n in M.fdN, besInt W φ F h n ∂M.νN) (M.fd (.top 0)) (M.ν (.top 0)) := by
   have hψ : ∀ x, ‖W.ψ x‖ = 1 := W.ψ_std.1.2.1
-  obtain ⟨-, -, hBor, -⟩ := GlobalTheory.Per.Inhab.flag_topology _ G.besTop.e_iso
+  obtain ⟨-, -, hBor, -⟩ := _root_.GlobalTheory.Mem.TrueRecord.top_NFlag _ G.besTop.e_iso
   haveI := GlobalTheory.Unf.EvalCont.firstCountable_GA (G.V (.top 0))
   have hemb : Continuous (embTop G) :=
     GlobalTheory.Per.Inhab.emb_continuous (G.rowDec 0 (by have := D.R.two_le_m; omega)).isom

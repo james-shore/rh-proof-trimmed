@@ -949,7 +949,6 @@ end
 end DeltaFormSums
 section
 open GlobalTheory.SumSize GlobalTheory.RowClaim
-theorem _root_.GlobalTheory.Adopt.archimedeanSumSizeBound_largeData_from_factors : SumOKK → DepthK → InfScalK → InfTensK → InfCountK → InfClassK → InfTopK → InfRowK → InfPairK → InfPsiK → InfFormK → InfK := by
-  first | exact @DeltaFormSums.GlobalTheory.CompanionTheory.InfAssembly.infK_of_factors | exact DeltaFormSums.GlobalTheory.CompanionTheory.InfAssembly.infK_of_factors | (intros; apply DeltaFormSums.GlobalTheory.CompanionTheory.InfAssembly.infK_of_factors <;> assumption)
+alias _root_.GlobalTheory.Adopt.archimedeanSumSizeBound_largeData_from_factors := _root_.DeltaFormSums.GlobalTheory.CompanionTheory.InfAssembly.infK_of_factors
 
 end

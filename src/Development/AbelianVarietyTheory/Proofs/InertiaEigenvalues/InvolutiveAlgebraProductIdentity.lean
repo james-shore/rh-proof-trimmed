@@ -80,98 +80,10 @@ section Gen
 
 variable {E : Type} [Field E] {C : Type} [CommRing C] [Algebra E C] [Module.Finite E C]
 
-theorem chi_dvd (g : C) (hs : (LinearMap.mulLeft E g).charpoly.Separable) (f : E[X]) (hf : aeval g f = 0) :
-    (LinearMap.mulLeft E g).charpoly ∣ f := by
-  classical
-  by_cases hf0 : f = 0
-  · rw [hf0]
-    exact dvd_zero _
-  set T := LinearMap.mulLeft E g with hT
-  have hlm : Algebra.lmul E C g = T := by
-    ext x
-    simp [hT]
-  have hfT : aeval T f = 0 := by
-    rw [← hlm, Polynomial.aeval_algHom_apply, hf, map_zero]
-
-  let b := Module.finBasis E C
-  let M := LinearMap.toMatrixAlgEquiv b T
-  have hMχ : M.charpoly = T.charpoly := LinearMap.charpoly_toMatrix T b
-  have hfM : aeval M f = 0 := by
-    have hM : M = (LinearMap.toMatrixAlgEquiv b).toAlgHom T := rfl
-    rw [hM, Polynomial.aeval_algHom_apply, hfT, map_zero]
-  let L := AlgebraicClosure E
-  let ML : Matrix (Fin (Module.finrank E C)) (Fin (Module.finrank E C)) L :=
-    (AlgHom.mapMatrix (Algebra.ofId E L)) M
-  have hmon : T.charpoly.Monic := LinearMap.charpoly_monic T
-  have hcL : ML.charpoly = T.charpoly.map (algebraMap E L) := by
-    rw [← hMχ]
-    exact Matrix.charpoly_map M (algebraMap E L)
-  have hfL : aeval ML (f.map (algebraMap E L)) = 0 := by
-    rw [Polynomial.aeval_map_algebraMap, Polynomial.aeval_algHom_apply, hfM, map_zero]
-  have hroot : ∀ x ∈ (T.charpoly.map (algebraMap E L)).roots, (f.map (algebraMap E L)).IsRoot x := by
-    intro x hx
-    have hx' : IsRoot ML.charpoly x := by
-      rw [hcL]
-      exact (Polynomial.mem_roots (hmon.map _).ne_zero).mp hx
-    have : Nonempty (Fin (Module.finrank E C)) := by
-      by_contra hne
-      rw [not_nonempty_iff] at hne
-      rw [Matrix.charpoly_isEmpty] at hx'
-      simp at hx'
-    have hsp : x ∈ spectrum L ML := Matrix.mem_spectrum_of_isRoot_charpoly hx'
-    have h2 := spectrum.subset_polynomial_aeval ML (f.map (algebraMap E L)) ⟨x, hsp, rfl⟩
-    rw [hfL, spectrum.zero_eq] at h2
-    exact h2
-  have hsplit : (T.charpoly.map (algebraMap E L)).Splits := IsAlgClosed.splits _
-  have hnd : (T.charpoly.map (algebraMap E L)).roots.Nodup := Polynomial.nodup_roots (hs.map)
-  have hfL0 : f.map (algebraMap E L) ≠ 0 :=
-    (Polynomial.map_ne_zero_iff (algebraMap E L).injective).mpr hf0
-  have hdvd : T.charpoly.map (algebraMap E L) ∣ f.map (algebraMap E L) := by
-    rw [hsplit.eq_prod_roots_of_monic (hmon.map _),
-      Multiset.prod_X_sub_C_dvd_iff_le_roots hfL0, Multiset.le_iff_subset hnd]
-    intro x hx
-    exact (Polynomial.mem_roots hfL0).mpr (hroot x hx)
-  exact (Polynomial.map_dvd_map (algebraMap E L) (algebraMap E L).injective hmon).mp hdvd
-
-theorem isReduced (g : C) (hs : (LinearMap.mulLeft E g).charpoly.Separable) : IsReduced C := by
-  classical
-  have hint : IsIntegral E g := IsIntegral.of_finite E g
-
-  have hμ : (LinearMap.mulLeft E g).charpoly ∣ minpoly E g := chi_dvd g hs _ (minpoly.aeval E g)
-  have hdeg : Module.finrank E C ≤ (minpoly E g).natDegree := by
-    rw [← LinearMap.charpoly_natDegree (LinearMap.mulLeft E g)]
-    exact Polynomial.natDegree_le_of_dvd hμ (minpoly.ne_zero hint)
-  have htop : Algebra.adjoin E ({g} : Set C) = ⊤ := by
-    have h1 : Module.finrank E (Algebra.adjoin E ({g} : Set C)) = (minpoly E g).natDegree :=
-      (Algebra.adjoin.powerBasis hint).finrank
-    have h2 : Module.finrank E (Subalgebra.toSubmodule (Algebra.adjoin E ({g} : Set C))) =
-        (minpoly E g).natDegree := (Subalgebra.finrank_toSubmodule _).trans h1
-    apply Algebra.toSubmodule_eq_top.mp
-    apply Submodule.eq_top_of_finrank_eq
-    exact le_antisymm (Submodule.finrank_le _) (hdeg.trans h2.ge)
-
-  have hss : Module.End.IsSemisimple (LinearMap.mulLeft E g) :=
-    Module.End.isSemisimple_of_squarefree_aeval_eq_zero hs.squarefree (LinearMap.aeval_self_charpoly _)
-  have hlm : Algebra.lmul E C g = LinearMap.mulLeft E g := by
-    ext x
-    simp
-  refine ⟨fun x hx => ?_⟩
-  have hxmem : x ∈ Algebra.adjoin E ({g} : Set C) := by
-    rw [htop]
-    exact Algebra.mem_top
-  rw [Algebra.adjoin_singleton_eq_range_aeval] at hxmem
-  obtain ⟨p, rfl⟩ := (AlgHom.mem_range _).mp hxmem
-  have hsp : Module.End.IsSemisimple (Algebra.lmul E C (aeval g p)) := by
-    rw [← Polynomial.aeval_algHom_apply, hlm]
-    exact Module.End.IsSemisimple.aeval hss p
-  have hnil : IsNilpotent (Algebra.lmul E C (aeval g p)) := hx.map (Algebra.lmul E C)
-  have h0 := Module.End.eq_zero_of_isNilpotent_isSemisimple hnil hsp
-  exact Algebra.lmul_injective (h0.trans (map_zero _).symm)
-
 theorem eq_zero_of_trace [CharZero E] (g : C) (hs : (LinearMap.mulLeft E g).charpoly.Separable) (x : C)
     (hx : ∀ y, Algebra.trace E C (x * y) = 0) : x = 0 := by
   classical
-  have : IsReduced C := isReduced g hs
+  have : IsReduced C := _root_.GlobalTheory.SepGen.isReduced g hs
   have : IsArtinianRing C := IsArtinianRing.of_finite E C
   have : IsSemisimpleRing C := IsArtinianRing.isSemisimpleRing_of_isReduced C
 
@@ -990,7 +902,7 @@ theorem chi_dvd_quot (B : InvAlg K) (I : Ideal B.A)
     (hs : (LinearMap.mulLeft K.E (Ideal.Quotient.mk I B.g)).charpoly.Separable) (f : K.O[X])
     (hf : aeval B.g f ∈ I) :
     (LinearMap.mulLeft K.E (Ideal.Quotient.mk I B.g)).charpoly ∣ f.map (algebraMap K.O K.E) := by
-  refine chi_dvd (Ideal.Quotient.mk I B.g) hs (f.map (algebraMap K.O K.E)) ?_
+  refine _root_.GlobalTheory.SepGen.charpoly_dvd (Ideal.Quotient.mk I B.g) hs (f.map (algebraMap K.O K.E)) ?_
   rw [Polynomial.aeval_map_algebraMap]
   have : Ideal.Quotient.mk I B.g = Ideal.Quotient.mkₐ K.O I B.g := rfl
   rw [this, Polynomial.aeval_algHom_apply, Ideal.Quotient.mkₐ_eq_mk, Ideal.Quotient.eq_zero_iff_mem]
@@ -1012,13 +924,6 @@ private theorem kapSum_eq_eta_gramDet_mul_N_one (B₁ B₂ : InvAlg K) {e : (B�
     have h1 : x.1 = 1 * ((u₁ : B₁.A) * B₁.σ (u₁ : B₁.A)) := congrArg Prod.fst hu
     show K.eta (B₁.gramDet x.1) * (B₁.prod B₂).N x = _
     rw [h1, (GlobalTheory.T.latticeCount_and_gramDetSign_norm_class K B₁ 1 u₁).2, hu, (GlobalTheory.T.latticeCount_and_gramDetSign_norm_class K (B₁.prod B₂) 1 u).1]
-
-private theorem prod_P' (B₁ B₂ : InvAlg K) : (B₁.prod B₂).P = B₁.P * B₂.P := by
-  show (LinearMap.mulLeft K.E ((B₁.g, B₂.g) : B₁.A × B₂.A)).charpoly = B₁.P * B₂.P
-  have h : LinearMap.mulLeft K.E ((B₁.g, B₂.g) : B₁.A × B₂.A) =
-      (LinearMap.mulLeft K.E B₁.g).prodMap (LinearMap.mulLeft K.E B₂.g) := LinearMap.ext fun _ => rfl
-  rw [h, LinearMap.charpoly_prodMap]
-  rfl
 
 private theorem X_one_nonempty_of_N_one_ne_zero (B : InvAlg K) (h : B.N 1 ≠ 0) : (B.X 1).Nonempty := by
   by_contra hne
@@ -1076,7 +981,7 @@ theorem identity_of_swap : ∀ (K : UQ) (B₁ B₂ : InvAlg K), B₁.g * B₁.σ
   have N₁q := h₁'.N_one hσe₁ hP₁ hu₁ hi₁
   have N₂q := h₂'.N_one hσe₂ hP₂ hu₂ hi₂
 
-  have hP : (B₁.prod B₂).P.Separable := by rw [prod_P']; exact hs
+  have hP : (B₁.prod B₂).P.Separable := by rw [_root_.GlobalTheory.UnitLemma.Orbit.prod_P]; exact hs
   have hu : (B₁.prod B₂).g * (B₁.prod B₂).σ (B₁.prod B₂).g = 1 := Prod.ext hu₁ hu₂
   have hi : IsIntegral K.O (B₁.prod B₂).g := IsIntegral.pair hi₁ hi₂
   have hσe : (B₁.prod B₂).σ e ∈ Algebra.adjoin K.O ({(B₁.prod B₂).g} : Set (B₁.prod B₂).A) := by
@@ -1101,9 +1006,9 @@ theorem identity_of_swap : ∀ (K : UQ) (B₁ B₂ : InvAlg K), B₁.g * B₁.σ
   obtain ⟨m₁, hm₁, hm₁'⟩ := hi₁
   obtain ⟨m₂, hm₂, hm₂'⟩ := hi₂
   have dP₁ : B₁.P ∣ m₁.map (algebraMap K.O K.E) :=
-    chi_dvd B₁.g hP₁ _ (by rw [aeval_map_algebraMap, aeval_def]; exact hm₁')
+    _root_.GlobalTheory.SepGen.charpoly_dvd B₁.g hP₁ _ (by rw [aeval_map_algebraMap, aeval_def]; exact hm₁')
   have dP₂ : B₂.P ∣ m₂.map (algebraMap K.O K.E) :=
-    chi_dvd B₂.g hP₂ _ (by rw [aeval_map_algebraMap, aeval_def]; exact hm₂')
+    _root_.GlobalTheory.SepGen.charpoly_dvd B₂.g hP₂ _ (by rw [aeval_map_algebraMap, aeval_def]; exact hm₂')
   have dm₁ : B₁.P ∣ (m₁ * m₂).map (algebraMap K.O K.E) := by
     rw [Polynomial.map_mul]; exact dP₁.mul_right _
   have dm₂ : B₂.P ∣ (m₁ * m₂).map (algebraMap K.O K.E) := by

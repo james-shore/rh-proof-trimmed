@@ -115,13 +115,13 @@ theorem hw_le_span_sup_coinv : ∀ (P Q R S : ℕ) (x : ℚ) (μ' : Ix R S → �
     exact (hker _).2 (coinv_stable2 _ Y ((hker _).1 h))
   have hPC : ∀ Z : Mat P Q, IsPC Z → ∀ f, pr (fockAct1 P Q R S Z f) = 0 := by
     intro Z hZ f; rw [hpr1, GlobalTheory.HarmLift.trace_PC hZ, mul_zero, zero_smul]
-  obtain ⟨h, hh, hprh⟩ := GlobalTheory.HarmLift.lemA P Q R S _ pr hPC g
-  obtain ⟨H0, hfin, hH0, hharm, hs1, hs2⟩ := GlobalTheory.HarmLift.lemB P Q R S h hh
+  obtain ⟨h, hh, hprh⟩ := _root_.GlobalTheory.FockAlg.HarmLift.exists_harm2_rep P Q R S _ pr hPC g
+  obtain ⟨H0, hfin, hH0, hharm, hs1, hs2⟩ := _root_.GlobalTheory.FockAlg.fin_harm P Q R S h hh
   obtain ⟨ι, hιIP, hιinj⟩ := GlobalTheory.FischerParts.exists_fockIP (Ln P Q R S)
   let A : Set (Module.End ℂ (Pol P Q R S)) :=
     {a | (∃ X, IsKC X ∧ a = fockAct1 P Q R S X) ∨ ∃ Y, IsKC Y ∧ a = fockAct2 P Q R S Y}
   have hadj := GlobalTheory.FockAdj.fock_adjoints P Q R S _ ι hιIP
-  obtain ⟨c, hc, hcpr, hceig⟩ := GlobalTheory.HarmLift.lemC (Pol P Q R S) (Pol P Q R S ⧸ C) _ ι hιinj pr H0 hfin A
+  obtain ⟨c, hc, hcpr, hceig⟩ := _root_.GlobalTheory.stable_complement_of_kernel_exists (Pol P Q R S) (Pol P Q R S ⧸ C) _ ι hιinj pr H0 hfin A
     (by
       rintro a (⟨X, hX, rfl⟩ | ⟨Y, hY, rfl⟩) w hw
       exacts [hs1 X hX w hw, hs2 Y hY w hw])

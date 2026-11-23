@@ -56,10 +56,7 @@ namespace GlobalTheory.MomOne.SmallTors
 
 variable {q : ℕ} [hq : Fact q.Prime]
 
-lemma norm_zc' (a : ℤ_[q]) : ‖zc a‖ = ‖a‖ := by
-  unfold zc
-  rw [norm_algebraMap']
-  rfl
+alias norm_zc' := _root_.GlobalTheory.MomOne.ShiftComp.norm_zc
 
 lemma norm_nat_coprime {m : ℕ} (hm : Nat.Coprime m q) : ‖(m : ℂ_[q])‖ = 1 := by
   have h0 : (m : ℂ_[q]) = zc (m : ℤ_[q]) := by simp [zc]
@@ -80,14 +77,7 @@ lemma norm_eq_one {ξ : ℂ_[q]} (h : ‖ξ - 1‖ < 1) : ‖ξ‖ = 1 := by
   rw [this, IsUltrametricDist.norm_add_eq_max_of_norm_ne_norm (by rw [norm_one]; exact h.ne), norm_one]
   exact max_eq_right h.le
 
-lemma norm_pow_sub_one {ξ : ℂ_[q]} (h : ‖ξ - 1‖ < 1) (n : ℕ) : ‖ξ ^ n - 1‖ < 1 := by
-  induction n with
-  | zero => simp
-  | succ n ih =>
-    have : ξ ^ (n + 1) - 1 = ξ * (ξ ^ n - 1) + (ξ - 1) := by ring
-    rw [this]
-    refine (IsUltrametricDist.norm_add_le_max _ _).trans_lt (max_lt ?_ h)
-    rw [norm_mul, norm_eq_one h, one_mul]; exact ih
+alias norm_pow_sub_one := _root_.GlobalTheory.MomOne.ShiftComp.norm_pow_sub_one
 
 lemma norm_geom_sub {ξ : ℂ_[q]} (h : ‖ξ - 1‖ < 1) (n : ℕ) :
     ‖∑ i ∈ Finset.range n, ξ ^ i - n‖ < 1 := by

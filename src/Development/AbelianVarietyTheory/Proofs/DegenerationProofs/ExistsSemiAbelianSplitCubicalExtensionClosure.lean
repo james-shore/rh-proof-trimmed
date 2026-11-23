@@ -72,18 +72,13 @@ theorem exists_sec_of_lbIso_pull {X X' : Scheme.{0}} {L : LB X} {L' : LB X'} {F 
   refine (mem_nonzeroLocus _ _).2 ⟨k, hk, ?_⟩
   exact isUnit_of_mul_isUnit_right ((congrArg IsUnit e).mp (u.map (F.stalkMap y).hom))
 
-theorem mulN_eq_pow' {S : Scheme.{0}} (G : Over S) [GrpObj G] (n : ℕ) : mulN G n = (𝟙 G) ^ n := by
-  induction n with
-  | zero => rfl
-  | succ n ih => rw [pow_succ, ← ih]; rfl
-
 theorem mulN_comm_of_isGrpPullback {S S' : Scheme.{0}} {G : Over S} {G' : Over S'} [GrpObj G] [IsCommMonObj G]
     [GrpObj G'] [IsCommMonObj G'] {f : S' ⟶ S} {φ : G'.left ⟶ G.left} (h : IsGrpPullback G' G f φ) (n : ℕ) :
     (mulN G' n).left ≫ φ = φ ≫ (mulN G n).left := by
   have e := congrArg (fun q => q.left) (map_pow (pushHom h G') (𝟙 G') n)
   have e₂ : pushHom h G' (𝟙 G') ≫ mulN G n = pushHom h G' (𝟙 G') ^ n := by
-    rw [mulN_eq_pow', MonObj.comp_pow, Category.comp_id]
-  rw [← e₂, ← mulN_eq_pow'] at e
+    rw [_root_.GlobalTheory.GrpTangent.mulN_eq_pow, MonObj.comp_pow, Category.comp_id]
+  rw [← e₂, ← _root_.GlobalTheory.GrpTangent.mulN_eq_pow] at e
   refine Eq.trans e ?_
   change (𝟙 _ ≫ φ) ≫ _ = _
   rw [Category.id_comp]
@@ -119,7 +114,7 @@ theorem exists_law_splitAll_cubical : Out.Laws → ∀ (C : Core) (T : C.Theta) 
   letI := L.grp
   letI := L.comm
   obtain ⟨h₁, h₂⟩ := GlobalTheory.ZJ.FibreSplit.splitAll_and_isSemiAbelian C L hT hC
-  obtain ⟨M, hM, hMa, hσ⟩ := GlobalTheory.T.exists_lineBundle_extension_thetaSection_semiAbelian hL.extend hL.mulN
+  obtain ⟨M, hM, hMa, hσ⟩ := _root_.GlobalTheory.ZJ.exists_extension_with_section hL.extend hL.mulN
     GlobalTheory.abelian_torsion_finite_and_mulN_surjective.2 C L T n h₂ hT hS hF
   obtain ⟨-, -, -, -, -, -, -, hcart, -, hN, -⟩ := GlobalTheory.ZJ.core_basic C
   have : Nonempty C.U.toScheme := C.ne.to_subtype

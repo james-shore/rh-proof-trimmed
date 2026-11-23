@@ -83,12 +83,12 @@ theorem char_eq_of_tameRep_congr : ∀ {E Ω : Type} [Field E] [NumberField E] [
     have := (hlt (u - u')).2 huu
     simpa using this
   have heq : s π / π = s' π / π := by
-    refine root_eq_of_close A m (hroot s) (hroot s') hmv ?_
+    refine _root_.GlobalTheory.PowEqOneValuation.eq_of_pow_eq_one_of_valuation_sub_lt_one A m (hroot s) (hroot s') hmv ?_
     have e : s π / π - s' π / π = (s π / π - algebraMap E Ω (u : E))
         + (algebraMap E Ω (u : E) - algebraMap E Ω (u' : E)) - (s' π / π - algebraMap E Ω (u' : E)) := by ring
     rw [e]
     exact Valuation.map_sub_lt _ (Valuation.map_add_lt _ hv hu) hv'
-  exact GlobalTheory.T.continuous_char_eq_of_inertia_condition A P hA hO χ hχ m hm hmP (hk A hA) ϖ hϖ hϖ2 π hπ s hs s' hs'
+  exact _root_.GlobalTheory.TameTau.char_eq_of_apply_root_eq A P hA hO χ hχ m hm hmP (hk A hA) ϖ hϖ hϖ2 π hπ s hs s' hs'
     ((div_left_inj' hπ0).1 heq)
 
 end GlobalTheory.TameTau

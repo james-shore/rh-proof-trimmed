@@ -59,12 +59,7 @@ open scoped TensorProduct ENNReal
 
 namespace GlobalTheory.LocalStabiliserHaar
 
-theorem gramR_ratTup {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R]
-    [Algebra F R] (σ : E →ₐ[F] E) {n a : ℕ} (J : Matrix (Fin n) (Fin n) E)
-    (X : Fin a → Fin n → E) :
-    gramR R σ J (ratTup (F := F) R X) = (gramE σ J X).map (inclR R) := by
-  ext i j
-  simp [gramR, gramE, hE, hR, Formalism.UG.hform, ratTup, JR, sigR, inclR, Matrix.map_apply, mul_assoc]
+alias gramR_ratTup := _root_.GlobalTheory.LocalWittND.gramR_ratTup
 
 theorem linearIndependent_smul {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type)
     [CommRing R] [Algebra F R] (σ : E →ₐ[F] E) {n a : ℕ} (J : Matrix (Fin n) (Fin n) E)
@@ -88,7 +83,7 @@ theorem exists_haar_stabiliser : ∀ (F E : Type) [Field F] [NumberField F] [Fie
   haveI := h8
   haveI : BorelSpace (Fv F v ⊗[F] E) := ⟨rfl⟩
   haveI : BorelSpace (HA (Fv F v) σ J) := ⟨rfl⟩
-  obtain ⟨-, -, -, -, hfree⟩ := GlobalTheory.T.standardFrame_gram_det_ne_zero F E σ hCM n J hJ r P T hP
+  obtain ⟨-, -, -, -, hfree⟩ := _root_.GlobalTheory.FrameGram.std_frame_gram F E σ hCM n J hJ r P T hP
   have hx0 := hfree v
   set x0 := ratTup (F := F) (Fv F v) (F0 P) with hx0def
   set S := hermOf (Fv F v) σ (gramE σ J (F0 P)) hT with hS

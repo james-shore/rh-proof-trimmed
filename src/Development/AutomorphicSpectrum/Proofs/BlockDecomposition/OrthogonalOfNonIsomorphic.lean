@@ -98,10 +98,10 @@ def stabS (x : Sm E N) : Subgroup (GL (Fin N) (Af E)) where
 theorem exists_repr (μ : Measure (GA E N)) [μ.IsHaarMeasure] [μ.IsMulRightInvariant] {V V' : Submodule ℂ (Sm E N)}
     (hV : IsDiscrete V) (hV' : IsDiscrete V') {x : Sm E N} (hx : x ∈ V) :
     ∃ y ∈ V', ∀ z ∈ V', ⟪l2Map μ z, l2Map μ x⟫_ℂ = ⟪l2Map μ z, l2Map μ y⟫_ℂ := by
-  obtain ⟨L, hLS, hLo, hLc⟩ := GlobalTheory.T.exists_open_compact_subgroup_le E N (stabS x) (hV.aut x hx).level
+  obtain ⟨L, hLS, hLo, hLc⟩ := _root_.GlobalTheory.CompanionTheory.FinDiscOrth.exists_compact_open_level_le E N (stabS x) (hV.aut x hx).level
   have hunit : ∀ (k : Kinf E N) {W W' : Submodule ℂ (Sm E N)}, IsDiscrete W → IsDiscrete W' → ∀ a ∈ W, ∀ b ∈ W',
       ⟪l2Map μ (cptRep E N k a), l2Map μ (cptRep E N k b)⟫_ℂ = ⟪l2Map μ a, l2Map μ b⟫_ℂ :=
-    fun k _ _ h h' a ha b hb => (GlobalTheory.T.right_translate_isometry E N μ _ a b (mem_l2_of_discrete μ h ha) (mem_l2_of_discrete μ h' hb)).2
+    fun k _ _ h h' a ha b hb => (_root_.GlobalTheory.CompanionTheory.FinDiscOrth.rt_mem_l2Sub_and_inner_eq E N μ _ a b (mem_l2_of_discrete μ h ha) (mem_l2_of_discrete μ h' hb)).2
   letI : MeasurableSpace (Kinf E N) := borel _
   haveI : BorelSpace (Kinf E N) := ⟨rfl⟩
   haveI : CompactSpace (Kinf E N) := GlobalTheory.KinfCompactness.compactSpace_Kinf E N
@@ -133,14 +133,14 @@ theorem exists_adj (μ : Measure (GA E N)) [μ.IsHaarMeasure] [μ.IsMulRightInva
   cases o with
   | fin k =>
     refine ⟨.fin k⁻¹, fun {V W} hV hW x hx y hy => ?_⟩
-    have h := (GlobalTheory.T.right_translate_isometry E N μ (finGL E N k) (act (.fin k⁻¹) x) y (mem_l2_of_discrete μ hV (hV.stable _ x hx)) (mem_l2_of_discrete μ hW hy)).2
+    have h := (_root_.GlobalTheory.CompanionTheory.FinDiscOrth.rt_mem_l2Sub_and_inner_eq E N μ (finGL E N k) (act (.fin k⁻¹) x) y (mem_l2_of_discrete μ hV (hV.stable _ x hx)) (mem_l2_of_discrete μ hW hy)).2
     rw [← h]
     congr 2
     change x = finRep E N k (finRep E N k⁻¹ x)
     rw [← Module.End.mul_apply, ← map_mul, mul_inv_cancel, map_one, Module.End.one_apply]
   | cpt k =>
     refine ⟨.cpt k⁻¹, fun {V W} hV hW x hx y hy => ?_⟩
-    have h := (GlobalTheory.T.right_translate_isometry E N μ (infGL E N (Unitary.toUnits k)) (act (.cpt k⁻¹) x) y (mem_l2_of_discrete μ hV (hV.stable _ x hx)) (mem_l2_of_discrete μ hW hy)).2
+    have h := (_root_.GlobalTheory.CompanionTheory.FinDiscOrth.rt_mem_l2Sub_and_inner_eq E N μ (infGL E N (Unitary.toUnits k)) (act (.cpt k⁻¹) x) y (mem_l2_of_discrete μ hV (hV.stable _ x hx)) (mem_l2_of_discrete μ hW hy)).2
     rw [← h]
     congr 2
     change x = cptRep E N k (cptRep E N k⁻¹ x)

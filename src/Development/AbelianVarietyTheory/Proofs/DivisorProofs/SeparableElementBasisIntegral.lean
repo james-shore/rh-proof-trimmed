@@ -68,17 +68,6 @@ theorem isReduced_of_adjoin {F A : Type} [Field F] [CommRing A] [Algebra F A] [M
   change aeval u (minpoly F u * g) = 0
   rw [map_mul, minpoly.aeval, zero_mul]
 
-theorem eq_zero_of_trace_mul {F A : Type} [Field F] [CharZero F] [CommRing A] [Algebra F A] [Module.Finite F A]
-    [IsReduced A] (x : A) (h : ∀ z, Algebra.trace F A (x * z) = 0) : x = 0 := by
-  first
-  | (rename_i h_2 h_3 h_4 h_5 h_6 h_7; revert F A h_2 h_3 h_4 h_5 h_6 h_7 x h; exact @_root_.GlobalTheory.TraceMulVanishing.trace_mul_eq_zero_imp)
-  | exact @_root_.GlobalTheory.TraceMulVanishing.trace_mul_eq_zero_imp
-  | exact _root_.GlobalTheory.TraceMulVanishing.trace_mul_eq_zero_imp
-  | (apply _root_.GlobalTheory.TraceMulVanishing.trace_mul_eq_zero_imp <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TraceMulVanishing.trace_mul_eq_zero_imp <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TraceMulVanishing.trace_mul_eq_zero_imp <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TraceMulVanishing.trace_mul_eq_zero_imp ..)
-
 theorem det_gram_ne_zero {K : GlobalTheory.UnitLemma.UQ} (B : GlobalTheory.UnitLemma.InvAlg K) [IsReduced B.A] {m : ℕ}
     (b : Module.Basis (Fin m) K.E B.A) (β : B.A) (hβ : IsUnit β) :
     (Matrix.of fun i j => B.herm β (b i) (b j)).det ≠ 0 := by
@@ -113,7 +102,7 @@ theorem det_gram_ne_zero {K : GlobalTheory.UnitLemma.UQ} (B : GlobalTheory.UnitL
     have := hj j
     simp only [GlobalTheory.UnitLemma.InvAlg.herm] at this
     rw [this, mul_zero]
-  have hβy : β * y = 0 := eq_zero_of_trace_mul (β * y) hall
+  have hβy : β * y = 0 := _root_.GlobalTheory.TraceMulVanishing.trace_mul_eq_zero_imp (β * y) hall
   have hy0 : y = 0 := by
     obtain ⟨u, rfl⟩ := hβ
     have := congrArg (fun t => ((u⁻¹ : B.Aˣ) : B.A) * t) hβy

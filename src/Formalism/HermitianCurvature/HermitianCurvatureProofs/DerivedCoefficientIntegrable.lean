@@ -519,8 +519,8 @@ theorem Formalism.FourierDecayAlt.P.ratio_middle_range : Formalism.FourierDecayA
           linarith
   calc |∏ t, (Y + lam t)| ≤ (1 + L / D) ^ n * |∏ t, (Y + s + lam t)| := hprod
     _ ≤ Real.exp 3 * |∏ t, (Y + s + lam t)| := mul_le_mul_of_nonneg_right hexp (abs_nonneg _)
-theorem Formalism.FourierDecayAlt.P.constants_choice : Formalism.FourierDecayAlt.LE.Constants := Formalism.FourierDecayAlt.P.LEx2.le_constants_proof
-theorem Formalism.FourierDecayAlt.P.boxes_fit : Formalism.FourierDecayAlt.LE.BoxesFit := Formalism.FourierDecayAlt.P.LEx2.le_boxesFit_proof
+alias Formalism.FourierDecayAlt.P.constants_choice := _root_.Formalism.FourierDecayAlt.P.LEx2.le_constants_proof
+alias Formalism.FourierDecayAlt.P.boxes_fit := _root_.Formalism.FourierDecayAlt.P.LEx2.le_boxesFit_proof
 theorem Formalism.FourierDecayAlt.P.imported_results_hold : Formalism.FourierDecayAlt.LE.PImportsHold := by
   intro hPR hFit S hL hfit hnL hRO w hlen
   have hL0 : 0 < S.L := by linarith
@@ -561,4 +561,3 @@ theorem Formalism.FourierDecayAlt.P.imported_results_hold : Formalism.FourierDec
     simp only [add_neg_cancel_right] at key
     rw [S.step_P, S.step_P]
     exact key
-theorem Formalism.FourierDecayAlt.P.le_E_proof : Formalism.FourierDecayAlt.LE.LemmaE := Formalism.FourierDecayAlt.P.LEx2.lemmaE_closed

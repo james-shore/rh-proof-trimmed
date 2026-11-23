@@ -54,13 +54,6 @@ noncomputable section
 
 namespace GlobalTheory.AscFin.UniBF
 
-private theorem psiE_add_mul {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (a b : AE D) :
-    psiE ψ (a + b) = psiE ψ a * psiE ψ b := by
-  simp only [psiE, map_add (f := _), AddChar.map_add_eq_mul]
-
-private theorem psiE_zero_one {D : D7} (ψ : AddChar (AF D.host.F) ℂ) : psiE ψ (0 : AE D) = 1 := by
-  simp only [psiE, map_zero, AddChar.map_zero_eq_one]
-
 theorem psiUni_pcBF : OnStd fun {D} _ _ {sc} {G} W F => ∀ ρ (h : 2 * ρ + 2 ≤ D.R.m), ∀ u : UX D ρ,
     MxAt (fun _ => True) (u.1.1 - 1) → xZero (F.dJ ρ h) ⬝ u.1.1 - xZero (F.dJ ρ h) ∈ (pcBF W F ρ h).A₁ →
     psiUni W.ψ u.1 = 1 := by
@@ -87,13 +80,13 @@ theorem psiUni_pcBF : OnStd fun {D} _ _ {sc} {G} W F => ∀ ρ (h : 2 * ρ + 2 �
     · have := hA _ hx' i j hij v hv _ ho
       rwa [hN] at this
   unfold psiUni upSum
-  refine Finset.sum_induction _ (fun x => psiE W.ψ x = 1) (fun a b ha hb => by rw [psiE_add_mul, ha, hb, one_mul])
-    (psiE_zero_one W.ψ) fun i _ => ?_
-  refine Finset.sum_induction _ (fun x => psiE W.ψ x = 1) (fun a b ha hb => by rw [psiE_add_mul, ha, hb, one_mul])
-    (psiE_zero_one W.ψ) fun j _ => ?_
+  refine Finset.sum_induction _ (fun x => psiE W.ψ x = 1) (fun a b ha hb => by rw [_root_.GlobalTheory.MixPer.psiE_add, ha, hb, one_mul])
+    (_root_.GlobalTheory.MixPer.psiE_zero W.ψ) fun i _ => ?_
+  refine Finset.sum_induction _ (fun x => psiE W.ψ x = 1) (fun a b ha hb => by rw [_root_.GlobalTheory.MixPer.psiE_add, ha, hb, one_mul])
+    (_root_.GlobalTheory.MixPer.psiE_zero W.ψ) fun j _ => ?_
   split_ifs with hij
   · exact key i j hij
-  · exact psiE_zero_one W.ψ
+  · exact _root_.GlobalTheory.MixPer.psiE_zero W.ψ
 
 end GlobalTheory.AscFin.UniBF
 

@@ -100,14 +100,14 @@ theorem linEnd_of_adjoint : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRin
   obtain ⟨E', rfl⟩ := ex g' hg'
   obtain ⟨⟨-, hRB, -, -⟩, hFp⟩ := hF.2 E E' hL
   obtain ⟨haB, hh⟩ := aB_h_eq R hadm D A G U.toUnifPre E a h' hD.1 hg.2
-  have ha' : E'.aB = a' := rosati_unique R ⟨hadm, hc⟩ D a E'.aB a' hD.1 E'.homB hD.2.1 (haB ▸ hRB) hD.2.2.1
+  have ha' : E'.aB = a' := _root_.GlobalTheory.Mum.rosatiAdj_unique R ⟨hadm, hc⟩ D a E'.aB a' hD.1 E'.homB hD.2.1 (haB ▸ hRB) hD.2.2.1
   have hh2 : E'.h = h := by
     ext y
     let F := AlgebraicClosure (FractionRing R)
     obtain ⟨g₀, hg₀⟩ := GlobalTheory.TorusExt.exists_iota (F := F) D.tau_bimult y
     obtain ⟨g₁, hg₁, -⟩ := ((hFp F).1 g₀)
     exact GlobalTheory.IotaInj.main GlobalTheory.firstFiveLaws R (maximalIdeal R) hadm D F _ _ g₁ ((hFp F).2.1 y g₀ g₁ hg₀ hg₁)
-      (keepsIota R ⟨hadm, hc⟩ D A G hG U a a' h h' hD E haB hh F y g₀ g₁ hg₀ hg₁)
+      (_root_.GlobalTheory.Mum.KeepsIota.main R ⟨hadm, hc⟩ D A G hG U a a' h h' hD E haB hh F y g₀ g₁ hg₀ hg₁)
   have := E'.homG
   exact ⟨inferInstance, fun e => inferInstance, fun e => GlobalTheory.Mum.EndModel.thickMap_map _ e,
     fun e => ha' ▸ E'.q_lin e, fun e => hh2 ▸ E'.i_lin e⟩

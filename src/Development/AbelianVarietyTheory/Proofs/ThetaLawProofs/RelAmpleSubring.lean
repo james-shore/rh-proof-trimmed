@@ -75,7 +75,7 @@ theorem relAmple_subring : ∀ (S : Type) [CommRing S] [IsLocalRing S] (R₀ : S
   have hu : spMap (IsLocalRing.residue S) ≫ spMap R₀.subtype = spMap i ≫ spMap g := by
     rw [← Spec.map_comp, ← Spec.map_comp, ← CommRingCat.ofHom_comp, ← CommRingCat.ofHom_comp, hi]
   have h₂ := IsPullback.of_hasPullback A₀.hom (spMap i ≫ spMap g)
-  obtain ⟨r, hr, hA⟩ := GlobalTheory.T.relAmple_near_fibre_flat_projective R₀ A₀ L₀ inferInstance
+  obtain ⟨r, hr, hA⟩ := _root_.GlobalTheory.AmpleNear.relAmple_near_fibre R₀ A₀ L₀ inferInstance
     ((ProjSpace.isProjBy_iff_isProjOver _).2 hproj) hL₀ _ g (FibreAmple.residueField_fraction p)
     (FibreAmple.relAmple_of_fieldExtension hL₀ i (IsPullback.of_hasPullback A₀.hom (spMap g)) h₂
       (LB.isLB_pull hL₀ _) (GlobalTheory.lbIso_refl (LB.isLB_pull hL₀ _))

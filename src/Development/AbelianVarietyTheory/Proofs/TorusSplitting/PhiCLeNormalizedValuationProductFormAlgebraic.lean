@@ -80,7 +80,7 @@ theorem phiC_le_normalized_valuation_local_model_base_change (E : Type) [Field E
         ((((Nat.card (LevGrp Dw (R ^ 4)) : ℝ) / (R : ℝ) ^ 4 *
           (Formalism.BasicNotions.eWL c.F la * Formalism.MainNotions.ModuliIntegralCharts.phiC cj bA) : ℝ)) : EReal) ≤ nval T.V e (evI y f) := by
   letI := io.toAlgebra
-  obtain ⟨G, ⟨I⟩⟩ := (GlobalTheory.T.integralThetaSection_exists_and_baseChange E H Dw l Xo c).1 T io y
+  obtain ⟨G, ⟨I⟩⟩ := (_root_.GlobalTheory.EtaVal.intSec_exists_and_baseChange E H Dw l Xo c).1 T io y
   obtain ⟨T', φ, G', m, hφi, hφf, -, -, U, hU, hUt⟩ :=
     GlobalTheory.UnifAfterExt.exists_finite_ext_uniformised E H Dw l Xo T G I.t' I.m2 y.1.x I.m1 hAlg
   obtain ⟨i, ρ, hρ, hi, hiv, hf⟩ := GlobalTheory.T.exists_injective_intO_embedding_of_norm_lt_one T T' φ hφi hφf
@@ -108,7 +108,7 @@ theorem phiC_le_normalized_valuation_local_model_base_change (E : Type) [Field E
   letI : Algebra c.F T'.Fr := (i.comp io).toAlgebra
   let ψ : T.Fr →ₐ[c.F] T'.Fr := { i with commutes' := fun _ => rfl }
   obtain ⟨y', hy'⟩ := GlobalTheory.FramedBaseChange.exists_frMap GlobalTheory.firstFiveLaws.1 E H Dw l Xo c T.Fr T'.Fr ψ y.1
-  obtain ⟨I'⟩ := (GlobalTheory.T.integralThetaSection_exists_and_baseChange E H Dw l Xo c).2 T.V T'.V φ ψ y.1 y' G G' m I hi hy'
+  obtain ⟨I'⟩ := (_root_.GlobalTheory.EtaVal.intSec_exists_and_baseChange E H Dw l Xo c).2 T.V T'.V φ ψ y.1 y' G G' m I hi hy'
   have hval := (GlobalTheory.EtaForm.etaValAt_evR_of_fromTest E H Dw l Xo c R hR J n cf xs g hg T.Fr y.1 y.2.1).2
     T'.Fr ψ y' hy'
   by_cases h0 : evI y g = 0

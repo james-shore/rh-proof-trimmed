@@ -42,6 +42,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EqZeroOfInnerSmooth
 
 @[expose] public section
 
@@ -61,10 +62,6 @@ theorem conj_cancel (hP : IsUnit P) (g : Matrix (Fin n) (Fin n) ℂ) : P * (P⁻
   calc P * (P⁻¹ * g * P) * P⁻¹ = (P * P⁻¹) * g * (P * P⁻¹) := by simp only [Matrix.mul_assoc]
     _ = g := by rw [h1]; simp
 
-theorem exp_smul_conj_inv (hP : IsUnit P) (X : Matrix (Fin n) (Fin n) ℂ) (t : ℝ) :
-    NormedSpace.exp (t • (P⁻¹ * X * P)) = P⁻¹ * NormedSpace.exp (t • X) * P := by
-  rw [← Matrix.exp_conj' _ _ hP, Matrix.mul_smul, Matrix.smul_mul]
-
 theorem prod_conj_inv (hP : IsUnit P) (l : List (Matrix (Fin n) (Fin n) ℂ)) :
     (l.map fun g => P⁻¹ * g * P).prod = P⁻¹ * l.prod * P := by
   have h1 : P * P⁻¹ = 1 := Matrix.mul_nonsing_inv _ ((Matrix.isUnit_iff_isUnit_det _).1 hP)
@@ -81,7 +78,7 @@ variable {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] {σ : Matri
 theorem dRep_conj_inv (hP : IsUnit P) (X : Matrix (Fin n) (Fin n) ℂ) (w : H) :
     dRep (fun g => σ (P * g * P⁻¹)) (P⁻¹ * X * P) w = dRep σ X w := by
   unfold dRep
-  simp only [exp_smul_conj_inv hP, conj_cancel hP]
+  simp only [_root_.GlobalTheory.SmVec.exp_conj_inv hP, conj_cancel hP]
 
 theorem foldr_dRep_conj_inv (hP : IsUnit P) (l : List (Matrix (Fin n) (Fin n) ℂ)) (w : H) :
     (l.map fun X => P⁻¹ * X * P).foldr (dRep fun g => σ (P * g * P⁻¹)) w = l.foldr (dRep σ) w := by
@@ -102,7 +99,7 @@ theorem smoothVec_conj_inv (hP : IsUnit P) {A B : Set (Matrix (Fin n) (Fin n) �
       rw [List.map_ofFn]
       congr 1
       funext i
-      exact exp_smul_conj_inv hP _ _
+      exact _root_.GlobalTheory.SmVec.exp_conj_inv hP _ _
     rw [this, prod_conj_inv hP, conj_cancel hP]
   simpa only [e] using h
 

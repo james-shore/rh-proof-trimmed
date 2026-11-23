@@ -38,6 +38,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ScaledMatrixMemRationalLattice
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.AdelicUnitaryLatticeSelfDualTraceForm
 
 @[expose] public section
 
@@ -148,39 +150,6 @@ theorem coord_mul_mem {A B B₀ A' B' B₀' : HSp D} {c c' ρ : ℕ} (a : Hermit
   convert hv using 1
   ring
 
-private theorem host_ccE_ne_bot (D : D7) : D.host.ccE ≠ ⊥ := by
-  unfold Formalism.BasicNotions.Host.ccE
-  rw [Ne, Ideal.map_eq_bot_iff_of_injective (FaithfulSMul.algebraMap_injective (𝓞 D.host.K) (𝓞 D.host.E))]
-  exact D.host.ccK_ne_bot
-
-private theorem host_b_ne_bot (D : D7) : D.host.𝔟 ≠ ⊥ := by
-  intro h
-  have h2 := D.host.𝔟_spec.2
-  have h3 : D.host.conj • (⊥ : Ideal (𝓞 D.host.E)) = ⊥ := by
-    ext x
-    simp
-  rw [h, h3, sup_bot_eq] at h2
-  exact bot_ne_top h2
-
-theorem AA_ne (D : D7) : D.host.AA ≠ 0 := by
-  unfold Formalism.BasicNotions.Host.AA Formalism.BasicNotions.Host.AA0
-  exact mul_ne_zero ((FractionalIdeal.coeIdeal_ne_zero).2 (host_ccE_ne_bot D))
-    (inv_ne_zero ((FractionalIdeal.coeIdeal_ne_zero).2 (host_b_ne_bot D)))
-
-private theorem conj_smul_ne_bot' {I : Ideal (𝓞 D.host.E)} (hI : I ≠ ⊥) : D.host.conj • I ≠ ⊥ := by
-  intro h
-  apply hI
-  have h2 : D.host.conj⁻¹ • (D.host.conj • I) = D.host.conj⁻¹ • (⊥ : Ideal (𝓞 D.host.E)) := by rw [h]
-  rw [inv_smul_smul] at h2
-  rw [h2]
-  ext x
-  simp
-
-theorem AAbar_ne (D : D7) : D.host.AAbar ≠ 0 := by
-  unfold Formalism.BasicNotions.Host.AAbar
-  exact mul_ne_zero ((FractionalIdeal.coeIdeal_ne_zero).2 (conj_smul_ne_bot' (host_ccE_ne_bot D)))
-    (inv_ne_zero ((FractionalIdeal.coeIdeal_ne_zero).2 (conj_smul_ne_bot' (host_b_ne_bot D))))
-
 variable {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {F : Frames G}
 
 theorem modulBar_ne_bot' (P : Places L) (sc : Consts) : P.modulBar sc ≠ ⊥ := by
@@ -233,11 +202,11 @@ private theorem stairId_rev_castLE_mul (𝔞 𝔞' : FractionalIdeal (𝓞 D.hos
 
 private theorem stA_ne_zero (P : Places L) (sc : Consts) : P.stA sc ≠ 0 := by
   unfold Places.stA
-  exact mul_ne_zero (AA_ne D) (inv_ne_zero ((FractionalIdeal.coeIdeal_ne_zero).2 (modulBar_ne_bot' P sc)))
+  exact mul_ne_zero (_root_.GlobalTheory.LatVacFull.AA_ne_zero D) (inv_ne_zero ((FractionalIdeal.coeIdeal_ne_zero).2 (modulBar_ne_bot' P sc)))
 
 private theorem stAbar_ne_zero (P : Places L) (sc : Consts) : P.stAbar sc ≠ 0 := by
   unfold Places.stAbar
-  exact mul_ne_zero (AAbar_ne D) (inv_ne_zero ((FractionalIdeal.coeIdeal_ne_zero).2 (P.modul_ne_bot sc)))
+  exact mul_ne_zero (_root_.GlobalTheory.Member.LatSelfDual.AAbar_ne_zero D) (inv_ne_zero ((FractionalIdeal.coeIdeal_ne_zero).2 (P.modul_ne_bot sc)))
 
 theorem coord_mem_stAbar (hF : Std F) (ρ : ℕ) (h : 2 * ρ + 2 ≤ D.R.m)
     {x : Matrix (Fin (G.V (.grid (2 * ρ + 1) 0)).rank) (Fin (G.V (.grid (2 * ρ + 2) 0)).rank) D.host.E}

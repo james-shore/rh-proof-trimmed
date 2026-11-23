@@ -67,13 +67,6 @@ theorem colUp_eq (i : ℕ) (φ : Fn X 0) : colUp X i φ = Formalism.ThetaLiftInd
 
 theorem colT_eq (φ : Fn X 0) : colT X φ = colUp X D.R.m φ := (colUp_eq X _ φ).symm
 
-theorem emb_mem (i : ℕ) (x : Vl X i) : X.fm.emb i x ∈ X.fm.Fi i := by
-
-  rw [← (X.fm.emb_basis i).2, ← (X.fm.lat i).b.sum_repr x, map_sum]
-  refine Submodule.sum_mem _ fun a _ => ?_
-  rw [LinearMap.map_smulₛₗ]
-  exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨a, rfl⟩)
-
 variable {X}
 
 theorem fold_mem (hF : FormsStable X) {i : ℕ} (hi : i ≤ D.R.m) (l : List X.A.vT) {φ : Fn X i}
@@ -146,7 +139,7 @@ theorem chain_into (hF : FormsStable X) (h4 : LevelChainUOperatorCommutation X) 
     obtain ⟨y, hy, hy'⟩ := ih hi'.le x hx
     obtain ⟨z, hz, hz'⟩ := hU i hi' y hy
     refine ⟨z, hz, ?_⟩
-    have hm := Upow_mem hF w i (emb_mem X 0 x)
+    have hm := Upow_mem hF w i (_root_.GlobalTheory.LvT.emb_mem_Fi X 0 x)
     have key := Uprod_colUp hF h4 hs hi w hm
     have e1 : colUp X (i + 1) ((Uprod X 0 w ^ i) (X.fm.emb 0 x)) =
       KT X i (colUp X i ((Uprod X 0 w ^ i) (X.fm.emb 0 x))) := rfl

@@ -180,7 +180,7 @@ theorem continuous_transportF_apply : ∀ (F E : Type) [Field F] [NumberField F]
       intro p
       simp only [hform, ← mul_assoc, hψinv, one_mul]
     exact ((continuous_const.mul (hth _)).continuousAt).congr (Filter.Eventually.of_forall h2)
-  have hL := GlobalTheory.continuousAt_charSeries_coef_zero e (fun a y => hψ.2.1 _) h0 hne _ p0 M hM hMb hc
+  have hL := _root_.GlobalTheory.CharSeriesCoef.continuousAt_coef_zero e (fun a y => hψ.2.1 _) h0 hne _ p0 M hM hMb hc
   simpa using hL
 
 end GlobalTheory.WeilContF

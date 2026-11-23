@@ -130,6 +130,6 @@ theorem assemble : Assemble := by
   ring
 
 theorem idealLattice_of (h1 : OKArea) (h2 : IdealBasis) : PI.IdealLattice :=
-  assemble h1 h2 okBasis area_lattice_formula
+  assemble h1 h2 okBasis _root_.PI.AreaLatWork.areaLat
 
 end PI.IdealLatticeWork

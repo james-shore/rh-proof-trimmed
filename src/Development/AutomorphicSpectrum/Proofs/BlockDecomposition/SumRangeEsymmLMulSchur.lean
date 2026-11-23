@@ -122,9 +122,6 @@ theorem schur_single_eq_zero (hn : 0 < n) {m : ℤ} (h1 : 1 - (n : ℤ) ≤ m) (
     simp only [this]
     ring
 
-theorem schur_zero_eq_one : schur (0 : Fin n → ℤ) = 1 :=
-  altQuot_eq_of_mul (by rw [mul_one, zero_add]; rfl)
-
 theorem sum_range_esymmL_mul_schur (hn : 0 < n) {j : ℕ} (hj : 1 ≤ j) :
     ∑ r ∈ Finset.range (j + 1), (-1) ^ r * esymmL n r *
       schur (Pi.single (⟨0, hn⟩ : Fin n) ((j - r : ℕ) : ℤ)) = 0 := by
@@ -171,7 +168,7 @@ theorem schur_row_recursion : L8 := by
   refine ⟨?_, fun j hj => ?_⟩
   · have h0 : (Pi.single (⟨0, hn⟩ : Fin n) ((0 : ℕ) : ℤ) : Fin n → ℤ) = 0 := by
       simp
-    rw [h0, schur_zero_eq_one, map_one]
+    rw [h0, _root_.GroundTheory.Automorphic.Spherical.schur_zero, map_one]
   · have h := congrArg (evalAt z) (sum_range_esymmL_mul_schur hn hj)
 
     simp only [map_sum, map_mul, map_pow, map_neg, map_one, map_zero, evalAt_esymmL,

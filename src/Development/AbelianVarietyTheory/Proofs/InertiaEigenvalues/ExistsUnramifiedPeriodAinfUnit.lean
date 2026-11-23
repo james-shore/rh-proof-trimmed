@@ -57,10 +57,6 @@ open scoped Formalism.Per
 
 namespace GlobalTheory.MemLoc
 
-theorem exists_pow_eq_one_algClosure_coprime (l : ℕ) [Fact l.Prime] (a : AlgebraicClosure (ZMod l))
-    (ha : a ≠ 0) : ∃ m : ℕ, 0 < m ∧ ¬ l ∣ m ∧ a ^ m = 1 := by
-  apply GlobalTheory.Per.exists_pow_eq_one_of_algClosure_zmod <;> assumption
-
 theorem exists_unit_frobenius_eq_mul (l : ℕ) [Fact l.Prime] (k : Type) [Field k] [CharP k l] [IsAlgClosed k]
     (u : WittVector l k) (hu : IsUnit u) :
     ∃ w : WittVector l k, IsUnit w ∧ WittVector.frobenius w = u * w := by
@@ -103,8 +99,8 @@ theorem exists_unramified_period : ∀ (l : ℕ) [Fact l.Prime] (F : GQ l), (∀
     intro g n hn hg a
     by_cases ha : a = 0
     · rw [ha, map_zero, map_zero, zero_pow hn]
-    · obtain ⟨m, hm, hl, ham⟩ := exists_pow_eq_one_algClosure_coprime l a ha
-      exact GlobalTheory.T.tilt_galois_action_root_of_unity_coprime l (f a) m n g hm hl (by rw [← map_pow, ham, map_one])
+    · obtain ⟨m, hm, hl, ham⟩ := _root_.GlobalTheory.ProofStatement.main l a ha
+      exact _root_.GlobalTheory.MemLoc.σF_root_of_unity l (f a) m n g hm hl (by rw [← map_pow, ham, map_one])
         fun x hx => hg x m hm hl hx
   have hφA : Per.φA l (WittVector.map f w₀) = Per.zA l u * WittVector.map f w₀ := by
     rw [← hfu, ← map_mul, ← hφ]

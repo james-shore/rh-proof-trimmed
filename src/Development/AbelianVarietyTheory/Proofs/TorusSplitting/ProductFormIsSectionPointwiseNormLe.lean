@@ -64,7 +64,7 @@ theorem etaRule_isSec_pnorm_le : ∀ (E : Type) [Field E] [NumberField E] [IsCMF
   refine ⟨hS, fun k x hx => ?_⟩
   obtain ⟨b, -, hb, hun, -, hphi, hp⟩ := GlobalTheory.T.exists_borel_orthonormal_flag_frame E r (U.X k) x hx
   rw [hp _ _ (hS k), ← hphi]
-  exact GlobalTheory.T.norm_etaProductForm_le_at_unit_frame E H Dw l Xo c σ r U hσ hU hT R i N hR hR1 hG hN J cf xs f hJ hcf hsp hf DF q m R0 hrun hm k
+  exact _root_.GlobalTheory.EtaAn.norm_productForm_le_at_unit_frame E H Dw l Xo c σ r U hσ hU hT R i N hR hR1 hG hN J cf xs f hJ hcf hsp hf DF q m R0 hrun hm k
     ⟨_, hb⟩ hun
 
 end GlobalTheory.EtaAn

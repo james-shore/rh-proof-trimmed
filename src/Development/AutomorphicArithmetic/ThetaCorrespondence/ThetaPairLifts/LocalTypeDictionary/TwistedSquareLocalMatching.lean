@@ -55,14 +55,14 @@ namespace GlobalTheory.SquareLM
 theorem twisted_square_local_matching : GlobalTheory.Published.HoweDualityReal → _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree →
     GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.LocalMatching → GlobalTheory.SquareSt.LocalMatching := by
   intro hH hP hT hL D ψ θ hψ hθ W W₁ X A A₁ B a b
-  obtain ⟨Pr, ρ, q, q', hq, hq', hrk, hirr, hfac⟩ := _root_.GlobalTheory.T.twisted_quotient_real hH hP hT hL D ψ θ hψ hθ W W₁ X A A₁ B a b
+  obtain ⟨Pr, ρ, q, q', hq, hq', hrk, hirr, hfac⟩ := _root_.GlobalTheory.RealQuot.twist_quotient_isReal hH hP hT hL D ψ θ hψ hθ W W₁ X A A₁ B a b
   let ι := {x : D.what₂.Tau × Matrix (Fin X.rank) (Fin X.rank) ℂ // x.2 ∈ lieAt X x.1}
   have hirr' : ∀ N : Submodule ℂ Pr, (∀ i : ι, ∀ x ∈ N, ρ i.1.1 i.1.2 x ∈ N) → N = ⊥ ∨ N = ⊤ :=
     fun N hN => hirr N fun τ Y hY x hx => hN ⟨(τ, Y), hY⟩ x hx
   have hS := GlobalTheory.dixmier_commutant_scalar ι Pr (fun i => ρ i.1.1 i.1.2) hrk hirr'
   obtain ⟨h0, hadd, hsmul, hfadd, hfsmul⟩ := GlobalTheory.FinFockLin.finF_lin D ψ θ hψ hθ true W X A B
   obtain ⟨h0', hadd', hsmul', hfadd', hfsmul'⟩ := GlobalTheory.FinFockLin.finF_lin D ψ θ hψ hθ false W₁ X A₁ B
-  refine ⟨Pr, q, q', hq, hq', fun α β htr hexp => ⟨_root_.GlobalTheory.T.twist_triple_matches hH hP hT hL D ψ θ hψ hθ W W₁ X A A₁ B α β htr, ?_⟩⟩
+  refine ⟨Pr, q, q', hq, hq', fun α β htr hexp => ⟨_root_.GlobalTheory.TripleRead.triple_exists_matching hH hP hT hL D ψ θ hψ hθ W W₁ X A A₁ B α β htr, ?_⟩⟩
   intro ωA ωB Pi rf rl p p' hm
   obtain ⟨hfa, hfb⟩ := hfac α β htr hexp ωA ωB Pi rf rl p p' hm
   let S : Submodule ℂ (WO W X → ℂ) :=
@@ -120,8 +120,3 @@ end GlobalTheory.SquareLM
 end
 end
 
-section
-
-theorem _root_.GlobalTheory.T.twisted_local_factors_match : GlobalTheory.Published.HoweDualityReal → _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree → GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.LocalMatching → GlobalTheory.SquareSt.LocalMatching := by
-  first | exact @_root_.GlobalTheory.SquareLM.twisted_square_local_matching | exact _root_.GlobalTheory.SquareLM.twisted_square_local_matching | (intros; apply _root_.GlobalTheory.SquareLM.twisted_square_local_matching <;> assumption)
-end

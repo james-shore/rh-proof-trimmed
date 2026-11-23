@@ -163,7 +163,7 @@ theorem sum_covol_le {G₁ G₂ : Type} [Group G₁] [Group G₂] [TopologicalSp
       refine Set.Countable.to_subtype (s := (Δ : Set G₁)) ((hc.image Prod.fst).mono ?_)
       rintro _ ⟨γ, h1, rfl, -⟩
       exact ⟨γ, h1, rfl⟩
-    refine GlobalTheory.FundExists.exists_strict_domain Δ fun C hC => ?_
+    refine _root_.GlobalTheory.MeasurableFundamentalDomain.exists_measurable_fundamental_domain Δ fun C hC => ?_
     refine ((hfin _ (hC.prod (hKc.image (f := fun k => x * k * x⁻¹) (by fun_prop)))).image Prod.fst).subset ?_
     rintro _ ⟨hC', γ, h1, rfl, h2⟩
     exact ⟨γ, ⟨h1, hC', _, h2, by group⟩, rfl⟩

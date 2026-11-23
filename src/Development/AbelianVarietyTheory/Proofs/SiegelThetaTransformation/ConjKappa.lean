@@ -97,10 +97,6 @@ theorem of_row {m n : Type} (f : m → n → ℂ) (k : m) : Matrix.of f k = f k 
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ} (X : Data E r)
 
-theorem emb_cc (τ : E →+* ℂ) (x : E) : τ (cc x) = conj (τ x) := by
-  simp only [cc]
-  rw [IsCMField.complexEmbedding_complexConj]
-
 theorem cc_kappa : cc X.κ0 = -X.κ0 := by
   have h := X.ξ0_im
   simp only [cc] at h ⊢
@@ -109,9 +105,9 @@ theorem cc_kappa : cc X.κ0 = -X.κ0 := by
 theorem kappa_ne : X.κ0 ≠ 0 := by
   rcases X.κ0_xi with h | h <;> rw [h] <;> simp [X.ξ0_ne]
 
-theorem conj_kappa (τ : E →+* ℂ) : conj (τ X.κ0) = -τ X.κ0 := by rw [← emb_cc, cc_kappa X, map_neg]
+theorem conj_kappa (τ : E →+* ℂ) : conj (τ X.κ0) = -τ X.κ0 := by rw [← _root_.ReciprocityTheory.ChartRestriction.G.FD.emb_cc, cc_kappa X, map_neg]
 
-theorem conj_Gm (τ : E →+* ℂ) (a b : Fin r) : conj (τ (X.Gm a b)) = τ (X.Gm b a) := by rw [← emb_cc, X.Gm_herm]
+theorem conj_Gm (τ : E →+* ℂ) (a b : Fin r) : conj (τ (X.Gm a b)) = τ (X.Gm b a) := by rw [← _root_.ReciprocityTheory.ChartRestriction.G.FD.emb_cc, X.Gm_herm]
 
 theorem det_Gm (τ : E →+* ℂ) : (X.Gm.map τ).det ≠ 0 := by
   rw [← RingHom.mapMatrix_apply, ← RingHom.map_det]

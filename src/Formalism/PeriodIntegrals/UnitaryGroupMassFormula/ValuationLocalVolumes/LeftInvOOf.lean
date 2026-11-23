@@ -118,7 +118,7 @@ theorem leftInvO_of (a : ℕ) (hR : LeftInvRes σ J ψ v (n := n) a) : LeftInvO 
         simp [Matrix.mulVec, dotProduct, Matrix.mul_apply]
       rw [e, Matrix.mul_nonsing_inv C hCd, Matrix.one_apply]
       split_ifs
-      · exact one_mem_O v
+      · exact _root_.PI.OmLocU.oEv_one v
       · exact oEv_zero v
     exact near_int v ϖ hϖ B hB _ hcol i
   refine ⟨C⁻¹ * N0, fun i k => ?_, ?_⟩

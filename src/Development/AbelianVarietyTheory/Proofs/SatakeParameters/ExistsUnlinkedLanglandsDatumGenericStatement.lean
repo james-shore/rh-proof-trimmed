@@ -49,8 +49,3 @@ open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.Loc
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 
-theorem _root_.GlobalTheory.T.exists_unlinked_langlandsDatum_generic : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] [CharZero k]
-    (x : IrrGL (k := k)), IsGeneric x.rep →
-    ∃ (c : ℕ) (Δ : Fin c → Segment k), (∀ i j, i ≠ j → ¬ (Δ i).Linked (Δ j)) ∧
-      IsL ((List.ofFn Δ : List (Segment k)) : Multiset (Segment k)) x.rep := by
-  first | (exact @GlobalTheory.GenericLDatum.exists_unlinked_isL) | (exact GlobalTheory.GenericLDatum.exists_unlinked_isL) | (intros; apply GlobalTheory.GenericLDatum.exists_unlinked_isL  <;> assumption)

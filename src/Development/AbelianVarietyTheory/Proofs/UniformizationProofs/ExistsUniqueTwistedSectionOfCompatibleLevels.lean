@@ -161,11 +161,6 @@ private theorem exists_isBas_famVals_of_isPullback [IsLocalRing V] (hT : SecTwis
 
 variable [IsLocalRing V]
 
-theorem exists_isBas (hT : SecTwistSt) (hk : 1 ≤ k) {R : Type} [CommRing R] [IsLocalRing R]
-    {t : Spec (CommRingCat.of R) ⟶ Spec (CommRingCat.of V)} {Y : Scheme.{0}} {π : Y ⟶ D.P.A.left}
-    {f : Y ⟶ Spec (CommRingCat.of R)} (H : IsPullback π f D.P.A.hom t) :
-    ∃ b : Fin (k ^ D.P.g) → Vals D.P.L Y, IsBas (cst D.P.L f) (famVals D k α π) b := exists_isBas_famVals_of_isPullback hT hk H
-
 abbrev resPt (V : Type) [CommRing V] [IsLocalRing V] : Over (Spec (CommRingCat.of V)) :=
   Over.mk (Spec.map (CommRingCat.ofHom (IsLocalRing.residue V)) ≫ 𝟙 _)
 
@@ -248,8 +243,8 @@ theorem isBas_thick (hT : SecTwistSt) (hk : 1 ≤ k) {b : Fin (k ^ D.P.g) → Va
       (Category.assoc _ _ _).symm)
   let m := pullback.lift (snd (resPt V) D.P.A).left
     ((fst (resPt V) D.P.A).left ≫ Spec.map (CommRingCat.ofHom g')) hm
-  obtain ⟨b', hb'⟩ := exists_isBas (α := α) hT hk H
-  obtain ⟨b'', hb''⟩ := exists_isBas (α := α) hT hk H'
+  obtain ⟨b', hb'⟩ := _root_.GlobalTheory.SecLimit.exists_isBas_famVals_of_isPullback (α := α) hT hk H
+  obtain ⟨b'', hb''⟩ := _root_.GlobalTheory.SecLimit.exists_isBas_famVals_of_isPullback (α := α) hT hk H'
   refine IsBas.reduce (ρ' := pull D.P.L m) (g' := g') (fun a => pull_cst _ H.w a)
     (fun a => pull_cst g' (pullback.lift_snd _ _ _) a) ?_ ?_ ?_ hb hb' hb''
   · intro s hs
@@ -314,24 +309,13 @@ private theorem existsUnique_sec_of_isBas_lemma {X B : Scheme.{0}} {L : LB X} (h
 
 end Twist
 
-theorem existsUnique_sec_of_isBas {X B : Scheme.{0}} {L : LB X} (hL : L.IsLB) {K : Type} [Fintype K]
-    {φ : K → (B ⟶ X)} {ε : K → ℤ} {R : Type} [CommRing R] (I : Ideal R) [IsAdicComplete I R]
-    {p : B ⟶ Spec (CommRingCat.of R)} {Y : ℕ → Scheme.{0}} {π : ∀ e, Y e ⟶ B}
-    {q : ∀ e, Y e ⟶ Spec (CommRingCat.of (R ⧸ I ^ (e + 1)))} {θ : ∀ e, Y e ⟶ Y (e + 1)}
-    (hθ : ∀ e, θ e ≫ π (e + 1) = π e) (hq : ∀ e, π e ≫ p = q e ≫ thick R I e) {m : ℕ} {b : Fin m → Vals L B}
-    (hb : IsBas (cst L p) (secVals L (fun i => 𝟙 B ≫ φ i) ε) b)
-    (hb' : ∀ e, IsBas (cst L (q e)) (secVals L (fun i => π e ≫ φ i) ε) (fun i => pull L (π e) (b i)))
-    (f : ∀ e, LB.Sec (LB.LinComb L (fun i => π e ≫ φ i) ε))
-    (hf : ∀ e z J, Good L z J → sval (f (e + 1)) (θ e) z J = sval (f e) (𝟙 _) z J) :
-    ∃! s : LB.Sec (LB.LinComb L φ ε), ∀ e z J, Good L z J → sval s (π e) z J = sval (f e) (𝟙 _) z J := existsUnique_sec_of_isBas_lemma hL I hθ hq hb hb' f hf
-
 theorem existsUnique_sec_of_compatible : Laws → Laws2 → (∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V], CDVR V → ∀ (D : DegPre V) (k : ℕ), 1 ≤ k → ∀ (α : D.X) (f : ∀ e, LB.Sec (LB.LinComb D.P.L (fun i => (D.prBe (IsLocalRing.maximalIdeal V) e).left ≫ D.famφB α i) (DegPre.famε k))), (∀ e z J, Good D.P.L z J → sval (f (e + 1)) (thickMap V _ e D.P.A) z J = sval (f e) (𝟙 _) z J) → ∃! s : D.SecB k α, ∀ e z J, Good D.P.L z J → sval s (D.prBe (IsLocalRing.maximalIdeal V) e).left z J = sval (f e) (𝟙 _) z J) := by
   intro _ hL2 V _ _ _ hV D k hk α f hf
   have hT : SecTwistSt := hL2.secTwist
   have : IsAdicComplete (IsLocalRing.maximalIdeal V) V := hV.2.1
-  obtain ⟨b, hb⟩ := exists_isBas (α := α) (R := V) (t := 𝟙 _) hT hk
+  obtain ⟨b, hb⟩ := _root_.GlobalTheory.SecLimit.exists_isBas_famVals_of_isPullback (α := α) (R := V) (t := 𝟙 _) hT hk
     (IsPullback.of_id_fst (f := D.P.A.hom))
-  exact existsUnique_sec_of_isBas D.P.isLB (IsLocalRing.maximalIdeal V) (p := D.P.A.hom)
+  exact _root_.GlobalTheory.SecLimit.existsUnique_sec_of_isBas_lemma D.P.isLB (IsLocalRing.maximalIdeal V) (p := D.P.A.hom)
     (π := fun e => (D.prBe (IsLocalRing.maximalIdeal V) e).left)
     (q := fun e => (thickObj V (IsLocalRing.maximalIdeal V) e D.P.A).hom)
     (θ := fun e => thickMap V (IsLocalRing.maximalIdeal V) e D.P.A)

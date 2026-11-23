@@ -61,22 +61,6 @@ namespace Formalism.FourierDecayAlt.P.CutSE.JSW
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.P5
 
-theorem fderiv_apply_sm {g : ℂ → ℂ} {U : Set ℂ} (hU : IsOpen U) (hg : ContDiffOn ℝ ∞ g U) (v : ℂ) :
-    ContDiffOn ℝ ∞ (fun ζ => fderiv ℝ g ζ v) U :=
-  (hg.fderiv_of_isOpen hU (by simp)).clm_apply contDiffOn_const
-
-theorem dZ_sm {g : ℂ → ℂ} {U : Set ℂ} (hU : IsOpen U) (hg : ContDiffOn ℝ ∞ g U) :
-    ContDiffOn ℝ ∞ (NF.dZ g) U := by
-  unfold NF.dZ
-  exact contDiffOn_const.mul ((fderiv_apply_sm hU hg 1).sub
-    (contDiffOn_const.mul (fderiv_apply_sm hU hg Complex.I)))
-
-theorem dZb_sm {g : ℂ → ℂ} {U : Set ℂ} (hU : IsOpen U) (hg : ContDiffOn ℝ ∞ g U) :
-    ContDiffOn ℝ ∞ (NF.dZb g) U := by
-  unfold NF.dZb
-  exact contDiffOn_const.mul ((fderiv_apply_sm hU hg 1).add
-    (contDiffOn_const.mul (fderiv_apply_sm hU hg Complex.I)))
-
 theorem hasFDerivAt_exponential_character (s t : ℂ) :
     ∃ D : ℂ →L[ℝ] ℂ, HasFDerivAt (fsv s) D t ∧ D 1 = (s - conj s) * fsv s t ∧
       D Complex.I = Complex.I * (s + conj s) * fsv s t := by
@@ -230,8 +214,8 @@ theorem nfp_der (b : Bool) (js : List (Fin 6)) (h : NFP X l s Wv js) :
     intro i
     cases b
     · exact (Complex.conjCLE.contDiff.contDiffOn).mul
-        ((dZb_sm isOpen_compl_singleton (hm i)).add (contDiffOn_const.mul (hm i)))
-    · exact contDiffOn_id.mul ((dZ_sm isOpen_compl_singleton (hm i)).add (contDiffOn_const.mul (hm i)))
+        ((_root_.Formalism.FourierDecayAlt.P.NFx4.NO.dZb_smooth isOpen_compl_singleton (hm i)).add (contDiffOn_const.mul (hm i)))
+    · exact contDiffOn_id.mul ((_root_.Formalism.FourierDecayAlt.P.NFx4.NO.dZ_smooth isOpen_compl_singleton (hm i)).add (contDiffOn_const.mul (hm i)))
   refine ⟨K + K, Fin.append mL m, Fin.append ab (fun i => (if b then (0 : Fin 6) else 3) :: ab i),
     ?_, ?_, ?_⟩
   · refine Fin.addCases (fun i => ?_) (fun i => ?_)

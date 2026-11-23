@@ -64,10 +64,6 @@ private theorem om_L {E : Type} [Field E] [NumberField E] [_root_.NumberField.Is
   rw [h1, W.L_apply, hn, M.ab_one]
   simp
 
-private theorem rat_gl {E : Type} [Field E] [NumberField E] (γ : Matrix.SpecialLinearGroup (Fin 2) E) :
-    gl (ratS E γ) = ratGL E 2 (Matrix.SpecialLinearGroup.toGL γ) := by
-  apply Units.ext; rfl
-
 end UpperTheory.ConvolutionTheory.RankTwoDescent
 
 theorem UpperTheory.ConvolutionTheory.RankTwoDescent.rank1 :
@@ -121,7 +117,7 @@ theorem UpperTheory.ConvolutionTheory.RankTwoDescent.rank1 :
   have hcl : ∀ γ x, c (ratS E γ * x) = c x := by
     intro γ x
     change φ.1 (gl (ratS E γ * x) * y) = φ.1 (gl x * y)
-    rw [glm, rat_gl, mul_assoc]
+    rw [glm, _root_.UpperTheory.ConvolutionTheory.R2.gl_ratS, mul_assoc]
     exact hLf.2 _ _
   have h0 : ∀ x, ∫ b in fundamentalSet E, c (nU b * x) ∂(adeleMeasure E) = 0 := by
     intro x

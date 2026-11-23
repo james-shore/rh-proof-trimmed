@@ -58,14 +58,14 @@ theorem GlobalTheory.vacuum_coef_sq : ∀ (l : Type) [Fintype l] [DecidableEq l]
   intro l _ _ s P Q hP hQ hdet hS c hc
   set K := (∫ x : l → ℝ, c * cexp (π * I * ((fun i => (x i : ℂ)) ⬝ᵥ (-(Q * P⁻¹)) *ᵥ fun i => (x i : ℂ))) * conj (cexp (-π * ((x ⬝ᵥ x : ℝ) : ℂ))))
   set J := (∫ x : l → ℝ, cexp (-π * ((x ⬝ᵥ x : ℝ) : ℂ)) * conj (cexp (-π * ((x ⬝ᵥ x : ℝ) : ℂ))))
-  have h1 := GlobalTheory.T.siegelGaussian_pair_standardGaussian l (-(Q * P⁻¹)) c hS
+  have h1 := _root_.GlobalTheory.siegelGauss_pair_standard l (-(Q * P⁻¹)) c hS
   have hSI : GlobalTheory.IsSiegel ((I • (1 : Matrix l l ℂ))) := by
     refine ⟨?_, ?_⟩
     · simp [Matrix.IsSymm]
     · have : ((I • (1 : Matrix l l ℂ)).map Complex.im) = 1 := by
         ext i j; by_cases h : i = j <;> simp [h, Matrix.one_apply]
       rw [this]; exact Matrix.PosDef.one
-  have h2 := GlobalTheory.T.siegelGaussian_pair_standardGaussian l (I • (1 : Matrix l l ℂ)) 1 hSI
+  have h2 := _root_.GlobalTheory.siegelGauss_pair_standard l (I • (1 : Matrix l l ℂ)) 1 hSI
   have hJ : (∫ x : l → ℝ, (1:ℂ) * cexp (π * I * ((fun i => (x i : ℂ)) ⬝ᵥ (I • (1 : Matrix l l ℂ)) *ᵥ fun i => (x i : ℂ))) * conj (cexp (-π * ((x ⬝ᵥ x : ℝ) : ℂ)))) = J := by
     congr 1; ext x
     congr 2

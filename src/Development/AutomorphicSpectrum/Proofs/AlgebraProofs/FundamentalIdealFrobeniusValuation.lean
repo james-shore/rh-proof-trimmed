@@ -169,7 +169,7 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.fundamental_ideal_frobenius_va
   intro p _ C _ _ _ v R _ _ hv hpv F _ _ _ _ f hcard AA hst σ hσ c hc
   classical
   have hp : 0 < p := (Fact.out : p.Prime).pos
-  have hT := GlobalTheory.T.fundamental_ideal_frobenius_powers p C v R hv hpv F f hcard AA hst σ hσ c hc
+  have hT := _root_.PositivityTheory.HtPt.Pmono.r_mono p C v R hv hpv F f hcard AA hst σ hσ c hc
   obtain ⟨c', hc', hc'd⟩ : ∃ c' : ℕ → R, (∀ m, xIdeal AA.carrier (σ ^ m) = Ideal.span {c' m}) ∧
       ∀ d : Fin f → Fin p, num d ≠ 0 → c' (num d) = ∏ n : Fin f, c n ^ (d n : ℕ) := by
     refine ⟨fun m => if h : m ≠ 0 ∧ m < p ^ f then

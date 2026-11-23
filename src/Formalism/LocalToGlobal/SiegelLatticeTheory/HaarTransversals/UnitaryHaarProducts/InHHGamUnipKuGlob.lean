@@ -220,17 +220,6 @@ private theorem dotProduct_mulVec_eq_transpose (A : Matrix (Fin X.B.I.n) (Fin X.
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   ring
 
-private theorem hA_fmat_mulVec (κ : X.B.I.Gf) (x y : VA X.B.I) :
-    hA X.B.I (X.B.I.fmat κ *ᵥ x) (X.B.I.fmat κ *ᵥ y) = hA X.B.I x y := by
-  have hκ : Formalism.UG.cT (Formalism.UG.sigR X.B.I.cm.sig (Af X.B.I.F)) (X.B.I.fmat κ) * (X.B.I.J.map ⇑(Formalism.UG.inclE (F := X.B.I.F) (Af X.B.I.F))) * X.B.I.fmat κ = X.B.I.J.map ⇑(Formalism.UG.inclE (F := X.B.I.F) (Af X.B.I.F)) := κ.2
-  rw [hA_eq_dotProduct_sigR, hA_eq_dotProduct_sigR]
-  have e1 : (fun i => Formalism.UG.sigR X.B.I.cm.sig (Af X.B.I.F) ((X.B.I.fmat κ *ᵥ x) i)) =
-      ((X.B.I.fmat κ).map (Formalism.UG.sigR X.B.I.cm.sig (Af X.B.I.F))) *ᵥ (fun i => Formalism.UG.sigR X.B.I.cm.sig (Af X.B.I.F) (x i)) := by
-    funext i
-    exact RingHom.map_mulVec _ _ _ i
-  have e2 : ((X.B.I.fmat κ).map (Formalism.UG.sigR X.B.I.cm.sig (Af X.B.I.F)))ᵀ = Formalism.UG.cT (Formalism.UG.sigR X.B.I.cm.sig (Af X.B.I.F)) (X.B.I.fmat κ) := rfl
-  rw [e1, dotProduct_mulVec_eq_transpose, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, e2, hκ]
-
 theorem yu_stable (η : X.B.I.Gf) (hη : η ∈ Hfin X u) (hK : (X.xu u)⁻¹ * η * X.xu u ∈ X.B.I.Kset)
     (v : VA X.B.I) (hv : v ∈ Yu X u) : X.B.I.fmat ((X.xu u)⁻¹ * η * X.xu u) *ᵥ v ∈ Yu X u := by
   set κ := (X.xu u)⁻¹ * η * X.xu u with hκdef
@@ -253,7 +242,7 @@ theorem yu_stable (η : X.B.I.Gf) (hη : η ∈ Hfin X u) (hK : (X.xu u)⁻¹ * 
       rw [Matrix.mulVec_mulVec]
       simp only [Formalism.MainNotions.S.AutInst.fmat, Subgroup.coe_inv, Units.mul_inv, Matrix.one_mulVec]
     conv_lhs => rw [e]
-    exact hA_fmat_mulVec X κ _ _
+    exact _root_.Formalism.L2.SG.PoincareInHH.Cut.hA_fmat X κ _ _
   refine ⟨(hKs v).1 hv1, fun a => ?_, fun a => ?_, ?_⟩
   · rw [hmove]
     have hw : X.eR a ∈ fixSet X u := by

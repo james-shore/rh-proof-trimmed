@@ -114,7 +114,7 @@ theorem regGlobalStatement_holds : RegGlobalStatement := by
     (ph ∘ (B'.chart j).symm) C₅' M (hm1 j) (hq j) (hphj j) (hlevi j) (hbnd j) (hgrad j)
   choose Cj tj g hCj1 htj0 htje hgt hgC2 using hch
 
-  obtain ⟨C', t', ht'0, hcmp⟩ := GlobalTheory.T.glued_local_regularizations_on_atlas A B' L th s ph C₅ M x S mm hAB h2 hsrc hs hcl hbd hrl
+  obtain ⟨C', t', ht'0, hcmp⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Giv.polyMaxOff_charts_compare A B' L th s ph C₅ M x S mm hAB h2 hsrc hs hcl hbd hrl
     ⟨hth, hphs, hpsh, hb⟩
   set Cm : ℝ := 1 + ∑ j, |Cj j| with hCmdef
   have hCm : ∀ j, Cj j ≤ Cm := fun j => by

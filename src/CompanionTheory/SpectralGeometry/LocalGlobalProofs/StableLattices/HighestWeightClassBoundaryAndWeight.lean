@@ -62,12 +62,6 @@ namespace GlobalTheory.CompanionTheory.RgCOBlock.TopU
 
 variable {n : ℕ} {V : Type} [AddCommGroup V] [Module ℂ V]
 
-theorem ann_app (i : Pos n) (x : Cn n V) (B : Finset (Pos n)) :
-    ann i x B = if i ∈ B then 0 else CompanionTheory.D.LK.sg i B • x (insert i B) := rfl
-
-theorem cre_app (i : Pos n) (x : Cn n V) (B : Finset (Pos n)) :
-    cre i x B = if i ∈ B then CompanionTheory.D.LK.sg i B • x (B.erase i) else 0 := rfl
-
 theorem sg_erase (i : Pos n) (B : Finset (Pos n)) : CompanionTheory.D.LK.sg i (B.erase i) = CompanionTheory.D.LK.sg i B := by
   unfold CompanionTheory.D.LK.sg
   congr 2
@@ -77,14 +71,11 @@ theorem sg_erase (i : Pos n) (B : Finset (Pos n)) : CompanionTheory.D.LK.sg i (B
   · exact fun h => ⟨h.1.2, h.2⟩
   · exact fun h => ⟨⟨fun e => by subst e; exact lt_irrefl _ h.2, h.1⟩, h.2⟩
 
-theorem sg_sq (i : Pos n) (B : Finset (Pos n)) : CompanionTheory.D.LK.sg i B * CompanionTheory.D.LK.sg i B = 1 := by
-  unfold CompanionTheory.D.LK.sg; rw [← pow_add, ← two_mul, pow_mul]; simp
-
 theorem cre_ann (i : Pos n) (x : Cn n V) (B : Finset (Pos n)) :
     cre i (ann i x) B = if i ∈ B then x B else 0 := by
-  rw [cre_app]
+  rw [_root_.CompanionTheory.D.LK.Car.cre_apply]
   split_ifs with h
-  · rw [ann_app, if_neg (notMem_erase i B), insert_erase h, sg_erase, smul_smul, sg_sq, one_smul]
+  · rw [_root_.CompanionTheory.D.LK.Car.ann_apply, if_neg (notMem_erase i B), insert_erase h, sg_erase, smul_smul, _root_.CompanionTheory.D.LK.Car.sg_mul_self, one_smul]
   · rfl
 
 theorem adC_self (a : Fin n) (i k : Pos n) :
@@ -143,7 +134,7 @@ theorem top_cycle_weight : ∀ (n : ℕ) (ε : Fin n → Bool) (lev : Fin n → 
           · exact notMem_erase _ _ h
       · rfl
     · intro i _
-      rw [if_pos rfl, ann_app]
+      rw [if_pos rfl, _root_.CompanionTheory.D.LK.Car.ann_apply]
       split_ifs with hi
       · exact map_zero _
       · by_cases e : insert i B = omU ε lev

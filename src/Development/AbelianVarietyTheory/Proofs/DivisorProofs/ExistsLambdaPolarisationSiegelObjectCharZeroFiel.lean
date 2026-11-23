@@ -93,7 +93,7 @@ theorem exists_sqOf_of_dim (hL : Out.Laws) (h k : ℕ) (o : Type) [CommRing o] (
   obtain ⟨i₀, hi₀⟩ := H₁ c'.A φ' g'
   letI : Algebra ℚ R' := ((algebraMap R R').comp (algebraMap ℚ R)).toAlgebra
   haveI : IsNoetherianRing R' := Algebra.FiniteType.isNoetherianRing R R'
-  obtain ⟨R₁, _, _, ⟨f₂, e₂, l₂⟩, H₂⟩ := GlobalTheory.T.exists_symmetric_linearisation_square_diagonalBundle hL h k o ζ R' _ c' h i₀ hc'
+  obtain ⟨R₁, _, _, ⟨f₂, e₂, l₂⟩, H₂⟩ := _root_.GlobalTheory.SymLin.main hL h k o ζ R' _ c' h i₀ hc'
   obtain ⟨c₁, m₁, hc₁⟩ := pull_sieg (spMap ((algebraMap R' R₁).comp ((algebraMap R R').comp β)))
     (spMap (algebraMap R' R₁)) (SiegelRingChange.spMap_comp' _ _).symm c' hc'
   have m₁' := m₁
@@ -112,7 +112,7 @@ theorem exists_sqOf_of_dim (hL : Out.Laws) (h k : ℕ) (o : Type) [CommRing o] (
     generalize (Multiplicative.toAdd a x) = y
     revert y; decide
   have hD : (c'.diag.pull φ₁).IsLB := pull_isLB (diag_isLB c') _
-  obtain ⟨M, hM, iM, sM⟩ := GlobalTheory.T.exists_descent_symmetric_linearised_bundle _ c₁.A c₁.A ((𝟙 c₁.A) ^ 2) _ i (lbPow (c'.diag.pull φ₁) 2)
+  obtain ⟨M, hM, iM, sM⟩ := _root_.GlobalTheory.LinDescent.exists_descent_symmetric _ c₁.A c₁.A ((𝟙 c₁.A) ^ 2) _ i (lbPow (c'.diag.pull φ₁) 2)
     (GlobalTheory.isLB_lbPow hD 2) p₁ p₂ p₃ p₄ (fun a => by rw [hψ, ← map_pow, two, map_one])
     (fun K _ _ t => ⟨fun x => by rw [hψ]; exact (li K t).1 x, (li K t).2⟩) u j huj
   have iM' := (GlobalTheory.lbIso_lbPow (diag_iso sq₁ w₁) 2).trans (GlobalTheory.isLB_lbPow (diag_isLB c₁) 2) (GlobalTheory.isLB_lbPow hD 2)

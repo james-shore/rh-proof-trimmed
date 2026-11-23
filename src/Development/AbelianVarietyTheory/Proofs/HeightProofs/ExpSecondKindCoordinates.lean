@@ -64,16 +64,6 @@ open scoped Matrix.Norms.Operator ContDiff
 
 variable {n : ℕ}
 
-theorem ofFn_prod_single {M : Type*} [Monoid M] : ∀ {d : ℕ} (g : Fin d → M) (j : Fin d),
-    (∀ i, i ≠ j → g i = 1) → (List.ofFn g).prod = g j := by
-  first
-  | exact @_root_.GlobalTheory.ProductOfFnSingle.prod_ofFn_eq_single
-  | exact _root_.GlobalTheory.ProductOfFnSingle.prod_ofFn_eq_single
-  | (apply _root_.GlobalTheory.ProductOfFnSingle.prod_ofFn_eq_single <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ProductOfFnSingle.prod_ofFn_eq_single <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ProductOfFnSingle.prod_ofFn_eq_single <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ProductOfFnSingle.prod_ofFn_eq_single ..)
-
 def lc {d : ℕ} (b : Fin d → Matrix (Fin n) (Fin n) ℂ) : (Fin d → ℝ) →L[ℝ] Matrix (Fin n) (Fin n) ℂ :=
   ∑ i, (ContinuousLinearMap.proj i : (Fin d → ℝ) →L[ℝ] ℝ).smulRight (b i)
 
@@ -83,7 +73,7 @@ theorem lc_apply {d : ℕ} (b : Fin d → Matrix (Fin n) (Fin n) ℂ) (v : Fin d
 theorem expProd_line {d : ℕ} (b : Fin d → Matrix (Fin n) (Fin n) ℂ) (j : Fin d) (r : ℝ) :
     (List.ofFn fun i => NormedSpace.exp ((r • Pi.single j (1 : ℝ) : Fin d → ℝ) i • b i)).prod =
       NormedSpace.exp (r • b j) := by
-  rw [ofFn_prod_single _ j]
+  rw [_root_.GlobalTheory.ProductOfFnSingle.prod_ofFn_eq_single _ j]
   · simp
   · intro i hi
     simp [Pi.single_apply, hi]

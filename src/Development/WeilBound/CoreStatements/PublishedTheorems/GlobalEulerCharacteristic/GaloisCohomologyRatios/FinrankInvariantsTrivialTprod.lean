@@ -59,20 +59,9 @@ section Helpers
 
 variable {k Γ Δ V : Type*} [CommRing k] [Group Γ] [Group Δ] [AddCommGroup V] [Module k V]
 
-theorem invariants_comp_surjective (σ : Representation k Γ V) (f : Δ →* Γ)
-    (hf : Function.Surjective f) : Representation.invariants (σ.comp f) = σ.invariants := by
-  ext n
-  simp only [Representation.mem_invariants, MonoidHom.coe_comp, Function.comp_apply]
-  constructor
-  · intro h g
-    obtain ⟨d, rfl⟩ := hf g
-    exact h d
-  · intro h d
-    exact h (f d)
-
 theorem invariants_comp_subtype_top (σ : Representation k Γ V) (R : Subgroup Γ)
     (hR : ∀ γ, γ ∈ R) : Representation.invariants (σ.comp R.subtype) = σ.invariants :=
-  invariants_comp_surjective σ R.subtype fun γ => ⟨⟨γ, hR γ⟩, rfl⟩
+  _root_.GroundTheory.ProfCoh.invariants_comp_of_surjective σ R.subtype fun γ => ⟨⟨γ, hR γ⟩, rfl⟩
 
 theorem invariants_comp_equiv_map (σ : Representation k Γ V) (e : Γ ≃* Δ) (R : Subgroup Γ)
     (D : Subgroup Δ) (hD : R.map e.toMonoidHom = D) :
@@ -144,7 +133,7 @@ theorem global_dual_invariants_finrank (hℓS : ∀ v ∉ S, ((ℓ : ℕ) : 𝓞
     exact ⟨x, rfl⟩
   have e1 : Representation.invariants ((dualRep (gsRootsZMod S ℓ) M).ρ.comp
       (MonoidHom.id (galUnramifiedOutside K.1 ℚ̄ S))) = (dualRep (gsRootsZMod S ℓ) M).ρ.invariants :=
-    invariants_comp_surjective (dualRep (gsRootsZMod S ℓ) M).ρ
+    _root_.GroundTheory.ProfCoh.invariants_comp_of_surjective (dualRep (gsRootsZMod S ℓ) M).ρ
       (MonoidHom.id (galUnramifiedOutside K.1 ℚ̄ S)) Function.surjective_id
   have e2 : Representation.invariants ((quotientRep (PP hL) (homRep (gsRootsZMod S ℓ) M) hN).comp
       ((QuotientGroup.mk' (PP hL)).comp (MonoidHom.id (galUnramifiedOutside K.1 ℚ̄ S))).range.subtype) =
@@ -158,7 +147,7 @@ theorem global_dual_invariants_finrank (hℓS : ∀ v ∉ S, ((ℓ : ℕ) : 𝓞
   have e3 : Representation.invariants (nRep hL hζ M hM) =
       (quotientRep (PP hL) (homRep (gsRootsZMod S ℓ) M) hN).invariants := by
     unfold nRep
-    exact invariants_comp_surjective _ _ (gsQuotientGalEquiv hL).symm.surjective
+    exact _root_.GroundTheory.ProfCoh.invariants_comp_of_surjective _ _ (gsQuotientGalEquiv hL).symm.surjective
   have e4 := finrank_invariants_trivial_tprod (nRep hL hζ M hM)
   have e4' := e4.trans (congrArg (fun p : Submodule (ZMod ℓ) _ => Module.finrank (ZMod ℓ) p) e3)
   have e5 : (dN hL hζ M hM hΓ).one = (Module.finrank (ZMod ℓ)

@@ -217,13 +217,7 @@ theorem dualCoord_eq {S T : HSp D} (hS : S.gram = 1) (hT : T.gram = 1) (β : GL 
     Matrix.mul_one, Units.val_one, Matrix.mul_one, Matrix.mul_apply, Finset.mul_sum]
   exact Finset.sum_congr rfl fun l _ => mul_left_comm _ _ _
 
-theorem cA_cA (z : Formalism.L2.Theta.AE D) : cA D (cA D z) = z := by
-  induction z using TensorProduct.induction_on with
-  | zero => simp only [map_zero]
-  | tmul a x =>
-    change a ⊗ₜ[D.host.F] star (star x) = _
-    rw [star_star]
-  | add a b ha hb => simp only [RingHom.map_add (f := _), ha, hb]
+alias cA_cA := _root_.Formalism.L2.Theta.cA_cA
 
 theorem inId_of {I : Ideal (𝓞 D.host.E)} {z : Lev.EAf D} (h : GlobalTheory.FrameIdeal.InId (F := D.host.F) I z) : InId I z := by
   obtain ⟨s, hs, rfl⟩ := h

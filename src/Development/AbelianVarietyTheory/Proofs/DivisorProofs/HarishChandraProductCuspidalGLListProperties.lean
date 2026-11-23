@@ -80,7 +80,7 @@ variable [Finite F]
 
 theorem isCl_cusp (θ : AlgebraicClosure F →* ℂ) (m k : ℕ) : IsCl (cusp θ m k) := by
 
-  have h := ((GlobalTheory.T.twistedHarishChandraInductionGL_isTwistedClassFunction F (RingHom.id F) 0 0 m (fun _ => 0) (fun _ => 0)).2.2 (rootSum θ k)).1
+  have h := ((_root_.GlobalTheory.Shin.twisted_class_main F (RingHom.id F) 0 0 m (fun _ => 0) (fun _ => 0)).2.2 (rootSum θ k)).1
   intro x y
   simp only [cusp]
   rw [h x y]
@@ -93,7 +93,7 @@ theorem isCl_J (θ : AlgebraicClosure F →* ℂ) (L : List (ℕ × ℕ)) (n : �
     rfl
   | cons p L =>
     rw [J_cons]
-    exact (GlobalTheory.T.twistedHarishChandraInductionGL_isTwistedClassFunction F (RingHom.id F) _ _ n _ _).2.1
+    exact (_root_.GlobalTheory.Shin.twisted_class_main F (RingHom.id F) _ _ n _ _).2.1
 
 theorem J_append (θ : AlgebraicClosure F →* ℂ) (L L' : List (ℕ × ℕ)) (n : ℕ) (hn : n = deg L + deg L') :
     J θ (L ++ L') n = hc (deg L) (deg L') (J θ L (deg L)) (J θ L' (deg L')) n := by
@@ -105,7 +105,7 @@ theorem J_append (θ : AlgebraicClosure F →* ℂ) (L L' : List (ℕ × ℕ)) (
     subst hn'
     change J θ L' (deg L') = hc 0 (deg L') (J θ [] 0) (J θ L' (deg L')) (deg L')
     rw [J_nil]
-    exact ((GlobalTheory.T.harishChandraInductionGL_one_left_right_unit F (deg L') (J θ L' (deg L')) (isCl_J θ L' _)).1).symm
+    exact ((_root_.GlobalTheory.Shin.HcUnit.main F (deg L') (J θ L' (deg L')) (isCl_J θ L' _)).1).symm
   | cons p L ih =>
 
     rw [List.cons_append, J_cons, ih (deg (L ++ L')) (deg_append' L L'), J_cons]
@@ -114,7 +114,7 @@ theorem J_append (θ : AlgebraicClosure F →* ℂ) (L L' : List (ℕ × ℕ)) (
     refine Eq.trans ?_ (hc_congr_left _ _ (deg L') (deg_cons' p L).symm
       (fun m => hc p.1 (deg L) (cusp θ p.1 p.2) (J θ L (deg L)) m) (J θ L' (deg L')) n)
     have hn' : n = p.1 + deg L + deg L' := by rw [hn, deg_cons']
-    exact (GlobalTheory.T.harishChandraInductionGL_assoc F p.1 (deg L) (deg L') n (cusp θ p.1 p.2) (J θ L (deg L)) (J θ L' (deg L'))
+    exact (_root_.GlobalTheory.Shin.HcAssoc.hc_assoc F p.1 (deg L) (deg L') n (cusp θ p.1 p.2) (J θ L (deg L)) (J θ L' (deg L'))
       (isCl_cusp θ _ _) (isCl_J θ L _) (isCl_J θ L' _) hn').symm
 
 theorem J_perm (θ : AlgebraicClosure F →* ℂ) (L L' : List (ℕ × ℕ)) (n : ℕ) (hn : n = deg L) (h : L.Perm L') :
@@ -140,8 +140,8 @@ theorem J_perm (θ : AlgebraicClosure F →* ℂ) (L L' : List (ℕ × ℕ)) (n 
       (fun m => hc q.1 (deg l) (cusp θ q.1 q.2) (J θ l (deg l)) m) n).trans ?_
     refine Eq.trans ?_ (hc_congr_right q.1 _ _ (deg_cons' p l).symm (cusp θ q.1 q.2)
       (fun m => hc p.1 (deg l) (cusp θ p.1 p.2) (J θ l (deg l)) m) n)
-    rw [← GlobalTheory.T.harishChandraInductionGL_assoc F p.1 q.1 (deg l) n _ _ _ hcp hcq hl e1,
-      ← GlobalTheory.T.harishChandraInductionGL_assoc F q.1 p.1 (deg l) n _ _ _ hcq hcp hl e2,
+    rw [← _root_.GlobalTheory.Shin.HcAssoc.hc_assoc F p.1 q.1 (deg l) n _ _ _ hcp hcq hl e1,
+      ← _root_.GlobalTheory.Shin.HcAssoc.hc_assoc F q.1 p.1 (deg l) n _ _ _ hcq hcp hl e2,
       GlobalTheory.T.harishChandraInductionGL_comm F p.1 q.1 (p.1 + q.1) _ _ hcp hcq rfl]
     exact hc_congr_left _ _ (deg l) (Nat.add_comm p.1 q.1)
       (fun m => hc q.1 p.1 (cusp θ q.1 q.2) (cusp θ p.1 p.2) m) (J θ l (deg l)) n

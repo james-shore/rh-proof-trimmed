@@ -94,15 +94,6 @@ theorem exists_point {W : Ideal (Pol n)} (hW : IsMultiProjPrime W)
 
 end Points
 
-section Krull
-
-theorem eq_or_eq_of_mem_minimalPrimes {A : Type} [CommRing A] [IsNoetherianRing A] {P Q W : Ideal A} [hP : P.IsPrime]
-    [hQ : Q.IsPrime] {s : A} (hW : W ∈ (P ⊔ Ideal.span {s}).minimalPrimes) (hPQ : P ≤ Q) (hQW : Q ≤ W) :
-    Q = P ∨ Q = W :=
-  _root_.UpperTheory.Reformulated.B.MinimalPrimesMap.eq_or_eq_of_mem_minimalPrimes hW hPQ hQW
-
-end Krull
-
 section Codim
 
 variable [IsClosedImmersion i]
@@ -117,7 +108,7 @@ theorem coheight_eq_one_of_mem_minimalPrimes {s : Pol n} (hs : s ∉ ptIdeal (i 
   · have : (ptIdeal (i y)).IsPrime := (isMultiProjPrime_ptIdeal m n _).1
     have h1 : y = genericPoint X := by
       have hle : y ⤳ z := hy.le
-      rcases eq_or_eq_of_mem_minimalPrimes hz
+      rcases _root_.UpperTheory.Reformulated.B.MinimalPrimesMap.eq_or_eq_of_mem_minimalPrimes hz
         ((specializes_iff (i := i) _ _).1 (genericPoint_specializes y))
         ((specializes_iff (i := i) _ _).1 hle) with e | e
       · exact ptIdeal_injective (i := i) e

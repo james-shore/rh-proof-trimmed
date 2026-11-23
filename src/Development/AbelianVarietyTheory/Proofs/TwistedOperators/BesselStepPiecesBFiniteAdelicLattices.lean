@@ -53,16 +53,6 @@ namespace GlobalTheory.BesselPieceB
 
 variable {D : D7}
 
-theorem mxAt_mul_left {P : GlobalTheory.FinPl.Pl D → Prop} {k m n : ℕ} (M : Mx D k m) {x : Mx D m n} (hx : MxAt P x) :
-    MxAt P (M ⬝ x) := fun i j => by
-  simp only [Matrix.mul_apply]
-  exact Ideal.sum_mem _ fun l _ => Ideal.mul_mem_left _ _ (hx l j)
-
-theorem mxAt_mul_right {P : GlobalTheory.FinPl.Pl D → Prop} {k m n : ℕ} {x : Mx D k m} (hx : MxAt P x) (M : Mx D m n) :
-    MxAt P (x ⬝ M) := fun i j => by
-  simp only [Matrix.mul_apply]
-  exact Ideal.sum_mem _ fun l _ => Ideal.mul_mem_right _ _ (hx i l)
-
 theorem finLat_comap_mul {k n k' m' : ℕ} {A : AddSubgroup (Mx D k' m')} (hA : FinLat A) (f : Mx D k n →+ Mx D k' m')
     (M : Mx D k' k) (N : Mx D n m') (M' : Mx D k k') (N' : Mx D m' n) (hf : ∀ x : Mx D k n, f x = M ⬝ x ⬝ N)
     (hM : M' ⬝ M = 1) (hN : N ⬝ N' = 1) : FinLat (A.comap f) := by
@@ -76,11 +66,11 @@ theorem finLat_comap_mul {k n k' m' : ℕ} {A : AddSubgroup (Mx D k' m')} (hA : 
     have e : M' ⬝ f x ⬝ N' = (M' ⬝ M) ⬝ x ⬝ (N ⬝ N') := by rw [hf]; simp only [Matrix.mul_assoc]
     rw [e, hM, hN, Matrix.one_mul, Matrix.mul_one]
   refine ⟨fun a ha => ?_, ?_, ?_⟩
-  · rw [← hgf a]; exact mxAt_mul_right (mxAt_mul_left _ (hA.fin _ ha)) _
+  · rw [← hgf a]; exact _root_.GlobalTheory.AscFinWit.mxAt_mul' (_root_.GlobalTheory.AscFinWit.mxAt_mul _ (hA.fin _ ha)) _
   · refine (hA.cpt.image hgc).of_isClosed_subset (hA.cpt.isClosed.preimage hfc) fun a ha => ⟨f a, ha, hgf a⟩
   · obtain ⟨U, hU, h0, hUA⟩ := hA.opn
     refine ⟨f ⁻¹' U, hU.preimage hfc, by simpa using h0, fun a ha hfin => hUA _ ha ?_⟩
-    rw [hf]; exact mxAt_mul_right (mxAt_mul_left _ hfin) _
+    rw [hf]; exact _root_.GlobalTheory.AscFinWit.mxAt_mul' (_root_.GlobalTheory.AscFinWit.mxAt_mul _ hfin) _
 
 end GlobalTheory.BesselPieceB
 

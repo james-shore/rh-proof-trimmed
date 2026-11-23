@@ -59,21 +59,11 @@ theorem star_mem_range (a : 𝓞 E) : star (a : E) ∈ (algebraMap (𝓞 E) E).r
     exact (RingOfIntegers.isIntegral_coe a).map (starRingEnd E).toIntAlgHom
   exact ⟨⟨star (a : E), h⟩, rfl⟩
 
-theorem exists_den {N : ℕ} (L : Submodule (𝓞 E) (Fin N → E)) (hfg : L.FG) :
-    ∃ b : 𝓞 E, b ≠ 0 ∧ ∀ x ∈ L, ∀ i, ∃ u : 𝓞 E, (u : E) = (b : E) * x i := by
-  first
-  | exact @_root_.GlobalTheory.CommonDenominatorLemma.exists_common_denominator
-  | exact _root_.GlobalTheory.CommonDenominatorLemma.exists_common_denominator
-  | (apply _root_.GlobalTheory.CommonDenominatorLemma.exists_common_denominator <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CommonDenominatorLemma.exists_common_denominator <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CommonDenominatorLemma.exists_common_denominator <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CommonDenominatorLemma.exists_common_denominator ..)
-
 theorem exists_extension {N : ℕ} (L : Submodule (𝓞 E) (Fin N → E)) (hL : IsSDLat E N L)
     (φ : L →ₗ[𝓞 E] 𝓞 E) : ∃ u ∈ L, ∀ x (hx : x ∈ L), stdH E N u x = (φ ⟨x, hx⟩ : E) := by
   classical
   obtain ⟨hfg, -, hdual⟩ := hL
-  obtain ⟨b, hb0, hb⟩ := exists_den L hfg
+  obtain ⟨b, hb0, hb⟩ := _root_.GlobalTheory.CommonDenominatorLemma.exists_common_denominator L hfg
   obtain ⟨c', hc'⟩ := star_mem_range b
   have hbE : (b : E) ≠ 0 := by
     intro h; apply hb0; exact RingOfIntegers.coe_injective (by simpa using h)

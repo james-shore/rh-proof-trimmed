@@ -109,7 +109,7 @@ theorem fibre_xi_potential : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k
     · exact ⟨fun _ => 0, analyticAt_const, Eventually.of_forall fun z' => by simp [hp]⟩
     · obtain ⟨A, hA, hAe⟩ := GlobalTheory.T.log_norm_nonvanishing_analytic_harmonic (d + 1) (fun u => facOf N j a (H τ (Fin.tail u)) i) z
         (analyticAt_facOf j a i (fun u => H τ (Fin.tail u)) z (hHa τ))
-        (GlobalTheory.T.step_factor_ne_zero N j a i _ ((hpt _ hz).2 τ).1 ((hpt _ hz).2 τ).2)
+        (_root_.GlobalTheory.CompanionTheory.Ar.PB.WSq.Fib.facOf_ne_zero N j a i _ ((hpt _ hz).2 τ).1 ((hpt _ hz).2 τ).2)
       exact ⟨A, hA, hAe.mono fun z' h => by simpa [hp] using h⟩
   have hups : ∀ i : Fin N, ∃ A : (Fin (d + 1) → ℂ) → ℂ, AnalyticAt ℂ A z ∧ ∀ᶠ z' in 𝓝 z,
       upsLogAt BM l (τ, i) (bp (Fin.tail z')) = (A z').re := by

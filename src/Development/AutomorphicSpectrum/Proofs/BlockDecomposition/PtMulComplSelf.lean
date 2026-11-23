@@ -59,8 +59,8 @@ theorem matHom_proj_weyl (σ : E →ₐ[F] E) (J : Matrix (Fin (n + n)) (Fin (n 
     (v : IsDedekindDomain.HeightOneSpectrum (NumberField.RingOfIntegers F)) (g : GAd σ J)
     (hg : (matHom _ σ J g).1 = blk4 0 1 (-1) 0) :
     (matHom _ σ J (proj σ J v g)).1 = blk4 (0 : Matrix (Fin n) (Fin n) (Fv F v ⊗[F] E)) 1 (-1) 0 := by
-  rw [matHom_proj, bc_val, hg]
-  exact weyl_map _
+  rw [matHom_proj, _root_.Formalism.UG.P.bc_coe, hg]
+  exact _root_.GlobalTheory.StdUnn.Frame.blockMatrixTwoByTwoFin_standardSkew_map _
 
 theorem stab_of_weyl (σ : E →ₐ[F] E) (J : Matrix (Fin (n + n)) (Fin (n + n)) E)
     (v : IsDedekindDomain.HeightOneSpectrum (NumberField.RingOfIntegers F)) (k : GLoc σ J v)
@@ -147,19 +147,19 @@ theorem proj_weyl {w : G D n} (hw : IsW w) (v : Pl D) :
 theorem proj_pt_zero {f : AE D} (hf : f * f = f) (hc : cA D f = f) (x : G D n) {v : Pl D} (h : cv D v f = 0) :
     proj D.sp.cm.sig (Jst D n) v (pt f hf hc x) = 1 := by
   refine matHom_injective _ _ _ (Units.ext ?_)
-  rw [matHom_proj, map_one, bc_val]
+  rw [matHom_proj, map_one, _root_.Formalism.UG.P.bc_coe]
   exact ptM_map_of_zero (cv D v) hf h (mat x)
 
 theorem proj_pt_one {f : AE D} (hf : f * f = f) (hc : cA D f = f) (x : G D n) {v : Pl D} (h : cv D v f = 1) :
     proj D.sp.cm.sig (Jst D n) v (pt f hf hc x) = proj D.sp.cm.sig (Jst D n) v x := by
   refine matHom_injective _ _ _ (Units.ext ?_)
-  rw [matHom_proj, matHom_proj, bc_val, bc_val]
+  rw [matHom_proj, matHom_proj, _root_.Formalism.UG.P.bc_coe, _root_.Formalism.UG.P.bc_coe]
   exact ptM_map_of_one (cv D v) hf h (mat x)
 
 theorem projArch_pt_zero {f : AE D} (hf : f * f = f) (hc : cA D f = f) (x : G D n) {w : NumberField.InfinitePlace D.host.F}
     (h : compInf D.host.F D.host.E w f = 0) : projArch D.sp.cm.sig (Jst D n) w (pt f hf hc x) = 1 := by
   refine matHom_injective _ _ _ (Units.ext ?_)
-  rw [matHom_projArch, map_one, bc_val]
+  rw [matHom_projArch, map_one, _root_.Formalism.UG.P.bc_coe]
   exact ptM_map_of_zero (compInf D.host.F D.host.E w) hf h (mat x)
 
 theorem cv_of_mem {S : Finset (Pl D)} {e : AE D} (hS : IsIdem S e) {v : Pl D} (hv : v ∈ S) : cv D v e = 1 := by

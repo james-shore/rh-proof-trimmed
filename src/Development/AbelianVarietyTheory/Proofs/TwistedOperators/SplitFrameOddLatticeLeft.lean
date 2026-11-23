@@ -203,7 +203,7 @@ theorem exists_stair (hO : OffQ D) (G : GridData L sc) {v : GlobalTheory.FinPl.P
       change algebraMap (𝓞 D.host.F) (𝓞 D.host.E) _ ∈ (G.pl.w v).asIdeal
       rwa [map_natCast])
   have h1 : (Ideal.absNorm D.host.ccK : D.host.E) ∈ G.pl.stA sc := by
-    have := FractionalIdeal.mul_mem_mul (GlobalTheory.HostClear.absNorm_mem_AA D)
+    have := FractionalIdeal.mul_mem_mul (_root_.Formalism.L2.Pj.normK_mem_AA D)
       (FractionalIdeal.one_mem_inv_coe_ideal (K := D.host.E) hb)
     rwa [mul_one] at this
   have h2 : (n : D.host.E) * (m : D.host.E) ∈ (G.pl.stAbar sc)⁻¹ := by

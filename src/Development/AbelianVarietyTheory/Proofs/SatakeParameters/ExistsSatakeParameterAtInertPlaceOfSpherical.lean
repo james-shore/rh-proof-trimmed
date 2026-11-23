@@ -128,7 +128,7 @@ theorem exists_satAt : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n
     induction hu using Subgroup.closure_induction with
     | mem x hx =>
       rcases hx with hx | hx
-      · obtain ⟨a, b, e, ha, hat, hb, hc⟩ := GlobalTheory.T.congruence_element_decompose L n v N x hx
+      · obtain ⟨a, b, e, ha, hat, hb, hc⟩ := _root_.GlobalTheory.CongSplit.decomp L n v N x hx
         exact ⟨a, b, e, (hUv a hat).2 ha, hat, hCU b hb, hc⟩
       · exact ⟨x, 1, (mul_one x).symm, Subgroup.subset_closure (Or.inr hx), hx.2, one_mem _,
           fun y _ => by rw [mul_one, one_mul]⟩
@@ -171,7 +171,7 @@ theorem exists_satAt : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n
     rw [← GlobalTheory.T.inertHeckeOperator_comp_spherical_convolution L n v w Dv U hUv π.W a.1 a.2 b.1 b.2 f.1 f.2.2,
       ← GlobalTheory.T.inertHeckeOperator_comp_spherical_convolution L n v w Dv U hUv π.W b.1 b.2 a.1 a.2 f.1 f.2.2,
       GlobalTheory.UnitarySwap.heckeCommU _ Dv.ϖ Dv.σw _ n ℂ Dv.unram a.1 a.2 b.1 b.2])
-  obtain ⟨f, hf0, hμ⟩ := GlobalTheory.exists_common_eigenvector_of_commute T hcomm
+  obtain ⟨f, hf0, hμ⟩ := _root_.GlobalTheory.UnimodularLatticeLemma.main T hcomm
   choose μ hμ using hμ
   have ev : ∀ h : Hecke ℂ (KU Dv.σw n), heckeFunI L n U Dv h.1 f.1 = μ h • f.1 := fun h =>
     congrArg Subtype.val (hμ h)

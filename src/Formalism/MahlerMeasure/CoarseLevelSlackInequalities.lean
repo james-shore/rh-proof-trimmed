@@ -48,8 +48,6 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.GM.Top
 open Formalism.GM
-theorem windowCountAP : WindowCountAP := window_count_progression
-theorem discsDisjointAP : DiscsDisjointAP := root_discs_disjoint_progression
-theorem windowMeanAP : WindowMeanAP := windowMeanAP_of windowCountAP discsDisjointAP
+theorem windowMeanAP : WindowMeanAP := windowMeanAP_of _root_.Formalism.GM.window_count_progression _root_.Formalism.GM.root_discs_disjoint_progression
 theorem windowFullAP : WindowFullAP := windowFullAP_of valuation_window_lower_bound windowMeanAP
 end Formalism.GM.Top

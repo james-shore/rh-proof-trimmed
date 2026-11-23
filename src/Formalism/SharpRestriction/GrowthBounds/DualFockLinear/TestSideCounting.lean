@@ -270,11 +270,6 @@ theorem nuOf_cast {m : ℕ} (lam : Fin (m + 1) → ℤ) (h : Antitone lam) (t : 
   rw [Int.toNat_of_nonneg (by linarith)]
   ring
 
-private lemma weylDim_add_const' (n : ℕ) (μ : Fin n → ℤ) (c : ℤ) :
-    Formalism.CountingSumsFrames.weylDim n (fun t => μ t + c) = Formalism.CountingSumsFrames.weylDim n μ := by
-  unfold Formalism.CountingSumsFrames.weylDim
-  simp only [add_sub_add_right_eq_sub]
-
 theorem cntSpec : CntSpec := by
   intro m lam hlam vec
   have e1 : TX m false vec (nuOf lam) ≃ TN (m + 1) (nuOf lam) :=
@@ -286,7 +281,7 @@ theorem cntSpec : CntSpec := by
     linarith [hlam hab]
   rw [dGT_weylDim _ _ hanti]
   simp only [nuOf_cast lam hlam]
-  exact weylDim_add_const' (m + 1) lam _
+  exact _root_.Formalism.MainNotions.Pf14.weylDim_shift (m + 1) lam _
 
 private lemma weylDim_const_sub_rev (m : ℕ) (μ : Fin m → ℤ) (c : ℤ) :
     Formalism.CountingSumsFrames.weylDim m (fun t => c - μ t.rev) = Formalism.CountingSumsFrames.weylDim m μ := by
@@ -327,7 +322,7 @@ theorem cntTop : CntTop := by
       linarith [hlo (Fin.succ_le_succ_iff.mpr hab)]
     rw [dGT_weylDim _ _ hanti]
     simp only [nuOf_cast lo hlo]
-    exact weylDim_add_const' m (fun i => lo i.succ) _
+    exact _root_.Formalism.MainNotions.Pf14.weylDim_shift m (fun i => lo i.succ) _
   | false =>
     rw [if_neg Bool.false_ne_true]
     have hL : Antitone (fun i : Fin (m + 1) => -lo i.rev) := by

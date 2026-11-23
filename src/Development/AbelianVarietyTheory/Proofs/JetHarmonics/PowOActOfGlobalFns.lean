@@ -63,7 +63,7 @@ theorem powOAct_of_globalFns : GlobalFnsSt → PowOActSt := by
   have h : ∀ (a : 𝓞 E) (x : D'.toPre.X), pD.xe (a • x) = a • pD.xe x := by
     intro a x
     exact pD.xe.apply_symm_apply _
-  obtain ⟨oa', hoa'⟩ := powDeg_diagonal_action hG V n P.D.toPre D'.toPre pD (𝓞 E) h P.oD
+  obtain ⟨oa', hoa'⟩ := _root_.GlobalTheory.TauBalBox.exists_pow_oAct hG V n P.D.toPre D'.toPre pD (𝓞 E) h P.oD
   exact ⟨M, oa', fun a x i => by rw [h]; rfl, hoa'⟩
 
 end GlobalTheory

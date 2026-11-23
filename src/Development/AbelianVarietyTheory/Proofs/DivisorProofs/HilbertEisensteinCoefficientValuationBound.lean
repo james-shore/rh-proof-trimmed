@@ -70,14 +70,6 @@ open GlobalTheory.LatJet (EisExp IsEis FR)
 
 open NumberField UpperHalfPlane FractionalIdeal in
 open scoped nonZeroDivisors in
-variable {l : ℕ} [Fact l.Prime] {lam : algebraicClosure ℚ ℂ →+* ℂ_[l]} in
-private theorem sz_mono_divisor {r s : ℝ} {x : ℂ} (hrs : r ≤ s)
-    (hx : _root_.GlobalTheory.LatVal.Sz l lam r x) :
-    _root_.GlobalTheory.LatVal.Sz l lam s x :=
-  (_root_.GlobalTheory.QFam.SzSum.sz_ring l lam).2.2.2.1 r s x hrs hx
-
-open NumberField UpperHalfPlane FractionalIdeal in
-open scoped nonZeroDivisors in
 private theorem valBound_embedding_mem_mul_lemma_2 {l : ℕ} [Fact l.Prime] {lam : algebraicClosure ℚ ℂ →+* ℂ_[l]}
     {F : Type} [Field F] [NumberField F] [IsTotallyReal F] [IsGalois ℚ F]
     {𝔞 𝔟 : _root_.GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.Frac F} {ρ₀ : ℝ} {M b : ℕ} (hM : ¬ l ∣ M)
@@ -135,13 +127,7 @@ open scoped nonZeroDivisors in
 variable {l : ℕ} [Fact l.Prime] {lam : algebraicClosure ℚ ℂ →+* ℂ_[l]} in
 private theorem sz_intCast_of_nonneg {r : ℝ} (hr : 0 ≤ r) (m : ℤ) :
     _root_.GlobalTheory.LatVal.Sz l lam r (m : ℂ) :=
-  sz_mono_divisor hr ((_root_.GlobalTheory.QFam.SzSum.sz_ring l lam).2.2.2.2.1 m)
-
-open NumberField UpperHalfPlane FractionalIdeal in
-open scoped nonZeroDivisors in
-variable {l : ℕ} [Fact l.Prime] {lam : algebraicClosure ℚ ℂ →+* ℂ_[l]} in
-private theorem sz_zero' (r : ℝ) : _root_.GlobalTheory.LatVal.Sz l lam r 0 :=
-  (_root_.GlobalTheory.QFam.SzSum.sz_ring l lam).1 r
+  _root_.GlobalTheory.QFam.SzSum.sz_mono hr ((_root_.GlobalTheory.QFam.SzSum.sz_ring l lam).2.2.2.2.1 m)
 
 open NumberField UpperHalfPlane FractionalIdeal in
 open scoped nonZeroDivisors in
@@ -153,7 +139,7 @@ private theorem sz_finsum {α : Type*} {r : ℝ} {f : α → ℂ}
   · rw [finsum_eq_sum f h]
     exact _root_.GlobalTheory.QFam.SzSum.sz_sum _ fun a _ => hf a
   · rw [finsum_of_infinite_support h]
-    exact sz_zero' r
+    exact _root_.GlobalTheory.QFam.SzSum.sz_zero r
 
 open NumberField UpperHalfPlane FractionalIdeal in
 open scoped nonZeroDivisors in
@@ -262,7 +248,7 @@ private theorem sz_coeff_pow {r : ℝ} {φ : PowerSeries ℂ}
     rw [pow_zero, PowerSeries.coeff_one]
     split_ifs
     · simpa using sz_intCast_of_nonneg (lam := lam) (le_refl (0 : ℝ)) 1
-    · simpa using sz_zero' (lam := lam) 0
+    · simpa using _root_.GlobalTheory.QFam.SzSum.sz_zero (lam := lam) 0
   | succ m ih =>
     rw [pow_succ]
     have := sz_coeff_mul ih hφ n
@@ -326,7 +312,7 @@ theorem _root_.GlobalTheory.HilbFam.sz_hfun_coef : _root_.GlobalTheory.LatJet.Ei
       by_cases h0 : ξ = 0
       · rw [h0]; exact zero_mem _
       · exact (ha.2.2.1 ξ h0 hξ).1
-    exact sz_mono_divisor hρ (valBound_embedding_mem_mul_lemma_2 hM ht h𝔟 hmem i)
+    exact _root_.GlobalTheory.QFam.SzSum.sz_mono hρ (valBound_embedding_mem_mul_lemma_2 hM ht h𝔟 hmem i)
 
   have haξ : ∀ ξ, _root_.GlobalTheory.LatVal.Sz l lam e (a ξ) := by
     intro ξ
@@ -346,7 +332,7 @@ theorem _root_.GlobalTheory.HilbFam.sz_hfun_coef : _root_.GlobalTheory.LatJet.Ei
     rw [finsum_eq_if]
     split_ifs
     · by_cases h0 : a ξ = 0
-      · rw [h0, zero_mul, zero_mul]; exact sz_zero' _
+      · rw [h0, zero_mul, zero_mul]; exact _root_.GlobalTheory.QFam.SzSum.sz_zero _
       · have hexp : _root_.GlobalTheory.LatVal.Sz l lam 0 (_root_.GlobalTheory.HilbFam.eTr (ξ * x)) := by
           unfold _root_.GlobalTheory.HilbFam.eTr
           exact (_root_.GlobalTheory.SizeRat.sz_rat_exp l lam).2 _
@@ -355,7 +341,7 @@ theorem _root_.GlobalTheory.HilbFam.sz_hfun_coef : _root_.GlobalTheory.LatJet.Ei
         have := _root_.GlobalTheory.QFam.SzSum.sz_mul
           (_root_.GlobalTheory.QFam.SzSum.sz_mul (haξ ξ) hexp) hprod
         simpa using this
-    · exact sz_zero' _
+    · exact _root_.GlobalTheory.QFam.SzSum.sz_zero _
 
   have hω : _root_.GlobalTheory.LatVal.Sz l lam
       (s * (padicValInt l (discr F) : ℝ) + 2 * s * b * d)

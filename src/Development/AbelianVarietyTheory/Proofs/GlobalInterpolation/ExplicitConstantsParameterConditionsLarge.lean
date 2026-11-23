@@ -100,7 +100,7 @@ theorem explicitConstants_parameterConditions_large :
     SzRow.and GlobalTheory.T.sizes_t_add_cube_le_h0_and_f_mul_N_pow_le_h0 <|
     SzRow.and GlobalTheory.EX.szRow_sig_gaps <|
     SzRow.and GlobalTheory.EX.szRow_rbS <|
-    SzRow.and GlobalTheory.T.sizes_b_add_Sc_add_etaSz_add_div_lt_lStar <|
+    SzRow.and _root_.GlobalTheory.EX.szRow_lStar <|
     SzRow.and GlobalTheory.EX.szRow_card_words_le <|
     GlobalTheory.T.sizes_exists_Y_bounds_host_g_mem_Icc_Y_two_mul_Y) ?_
   intro C cD ch D L hC _ h hA

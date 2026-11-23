@@ -56,9 +56,6 @@ namespace GlobalTheory.CongIdx
 
 variable {D : D7}
 
-theorem inc_int_mem (a : 𝓞 D.host.E) : inc D (a : D.host.E) ∈ OhE D :=
-  Subring.subset_closure (Or.inl ⟨⟨(a : D.host.E), ⟨a, rfl⟩⟩, rfl⟩)
-
 theorem mul_mem_hatId {𝔪 : Ideal (𝓞 D.host.E)} {t y : AE D} (ht : t ∈ OhE D) (hy : y ∈ hatId D 𝔪) :
     t * y ∈ hatId D 𝔪 := by
   induction hy using AddSubgroup.closure_induction with
@@ -69,20 +66,10 @@ theorem mul_mem_hatId {𝔪 : Ideal (𝓞 D.host.E)} {t y : AE D} (ht : t ∈ Oh
   | add x y _ _ hx hy => rw [mul_add]; exact add_mem hx hy
   | neg x _ hx => rw [mul_neg]; exact neg_mem hx
 
-theorem ohE_approx (N : ℕ) (hN : 1 ≤ N) (x : AE D) (hx : x ∈ OhE D) :
-    ∃ a ∈ Formalism.UG.intOE D.host.E, ∃ z ∈ OhE D, x = inc D a + (N : AE D) * z := by
-  first
-  | exact @_root_.GlobalTheory.AdeleTensorModule.main
-  | exact _root_.GlobalTheory.AdeleTensorModule.main
-  | (apply _root_.GlobalTheory.AdeleTensorModule.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AdeleTensorModule.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AdeleTensorModule.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.AdeleTensorModule.main ..)
-
 theorem exists_rep {𝔪 : Ideal (𝓞 D.host.E)} (h𝔪 : 𝔪 ≠ ⊥) {x : AE D} (hx : x ∈ OhE D) :
     ∃ a : 𝓞 D.host.E, x - inc D (a : D.host.E) ∈ hatId D 𝔪 := by
   have hN : 1 ≤ Ideal.absNorm 𝔪 := Nat.one_le_iff_ne_zero.2 (Ideal.absNorm_eq_zero_iff.not.2 h𝔪)
-  obtain ⟨a0, ⟨a, rfl⟩, z, hz, e⟩ := ohE_approx _ hN x hx
+  obtain ⟨a0, ⟨a, rfl⟩, z, hz, e⟩ := _root_.GlobalTheory.AdeleTensorModule.main _ hN x hx
   refine ⟨a, ?_⟩
   have e2 : x - inc D (algebraMap (𝓞 D.host.E) D.host.E a) = (Ideal.absNorm 𝔪 : AE D) * z := by
     rw [e]; ring

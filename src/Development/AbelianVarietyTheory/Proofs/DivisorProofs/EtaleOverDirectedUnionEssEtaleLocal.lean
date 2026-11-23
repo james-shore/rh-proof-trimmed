@@ -124,7 +124,7 @@ theorem construct : ∀ (R S B : Type) [CommRing R] [CommRing S] [CommRing B] [A
       rw [Algebra.smul_def]
       exact mul_mem (Algebra.subset_adjoin (Or.inl ⟨s, hmono hjk hj, rfl⟩)) (hCmono hak ha)
   · intro j P hP
-    obtain ⟨_, _, _⟩ := GlobalTheory.T.etale_adjoin_baseChange_image' R S B A₀ B₀ e (Si j.1) (hi₀.trans (hmono j.2))
+    obtain ⟨_, _, _⟩ := _root_.GlobalTheory.etale_adjoin_baseChange_image R S B A₀ B₀ e (Si j.1) (hi₀.trans (hmono j.2))
     exact localRing_of_etale_over_essEtale R (Si j.1) (C j) (hloc j.1) P hP
 
 end GlobalTheory.EtaleOverDirectedUnion

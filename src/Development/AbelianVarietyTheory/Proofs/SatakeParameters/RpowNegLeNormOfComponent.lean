@@ -90,14 +90,14 @@ theorem qRes_eq_normV [Finite (IsLocalRing.ResidueField (w.adicCompletionInteger
   rw [Formalism.UG.P.tjcosets_card_residue, Formalism.UG.qV, Ideal.absNorm_apply, Submodule.cardQuot_apply]
 
 def IsUnitarySatakeAt (r : ℕ) (β : Multiset ℂ) : Prop :=
-  haveI := finite_residue w
+  haveI := _root_.Formalism.UG.P.glint_finite_residueField w
   IsUnitarySatake (w.adicCompletionIntegers E) (w.adicCompletion E) r β
 
 variable {w}
 
 theorem IsUnitarySatakeAt.norm_le {r : ℕ} {β : Multiset ℂ} (h : IsUnitarySatakeAt w r β) :
     ∀ b ∈ β, ‖b‖ ≤ ((normV w : ℕ) : ℝ) ^ (((r : ℝ) - 1) / 2) := by
-  have := finite_residue w
+  have := _root_.Formalism.UG.P.glint_finite_residueField w
   rw [← qRes_eq_normV w]
   exact IsUnitarySatake.norm_le h
 

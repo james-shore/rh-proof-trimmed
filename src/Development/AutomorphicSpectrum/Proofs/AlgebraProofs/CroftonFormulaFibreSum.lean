@@ -63,7 +63,7 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.crofton_formula_fibre_sum : �
   have hcnt : ∀ s : ℝ≥0∞, Measurable fun π : Fin (e + 1) → Fin n → ℂ =>
       cntOver (coneSet h W ∩ {y | s < φ y}) π (firstCoordVec (e + 1)) := fun s =>
     ModelDimension.FnCrofton.measurable_cntOver_first (isSigmaCompact_cone_inter h W (hlev s).1)
-  obtain ⟨hm, hi⟩ := GlobalTheory.T.random_set_sum_expectation (planeMass n e • gaussM (e + 1) n)
+  obtain ⟨hm, hi⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Short.Crofton.LayerCake.measurable_lintegral_tsum_of_level_counts (planeMass n e • gaussM (e + 1) n)
     ((Measure.hausdorffMeasure ((2 * (e + 1) : ℕ) : ℝ)).restrict (coneBall h W))
     (fun π => fibrePts (coneSet h W) π) φ (gaussM (e + 1) n Set.univ) hφ
     (fun s => by

@@ -98,7 +98,7 @@ theorem vac_law {d : SD σ} (R : RD d) {w : InfinitePlace F}
       gZf (fun _ : Fin d.m => true) (2 * Real.pi * ((R.sg w : ℤ) : ℝ)) (2 * Real.pi) (actZ y (Complex.I • 1)) u := by
   obtain ⟨pp, k, hpp, hk, rfl⟩ := PositivityTheory.Rg.Sw.AbsSt.iwa d.n y
   have hk' : InK (mR k) := hk
-  obtain ⟨nb, ma, b, a, hb, ha, hnb, hma, hpe, hZ⟩ := up_decomp_closed pp hpp
+  obtain ⟨nb, ma, b, a, hb, ha, hnb, hma, hpe, hZ⟩ := _root_.PositivityTheory.SiegelWeilFormula.Kdil.up_decomp_pf pp hpp
   obtain ⟨c, -, hcf⟩ := R.locOp_mM hT hG hL
   have hsw1 : IsSw (fP (1 : PX d.m d.n)) := hFP d.m d.n 1
   have hk1 : L k (fP 1) = fun u => F0 p q e k * fP 1 u := by
@@ -156,13 +156,9 @@ theorem kerFT_norm {m n : ℕ} (s : ℂ) (ξ v : Fin m → Fin n → ℂ) : ‖k
 
 theorem isAddHaarMeasure_vector_volume (n : ℕ) : (volume : Measure (Fin n → ℂ)).IsAddHaarMeasure := Measure.pi.isAddHaarMeasure _
 
-theorem isAddHaarMeasure_matrix_volume (m n : ℕ) : (volume : Measure (Fin m → Fin n → ℂ)).IsAddHaarMeasure := by
-  haveI := isAddHaarMeasure_vector_volume n
-  exact Measure.pi.isAddHaarMeasure _
-
 theorem sw_cont_int {m n : ℕ} {f : (Fin m → Fin n → ℂ) → ℂ} (hf : IsSw f) : Continuous f ∧ Integrable f := by
   obtain ⟨φ, rfl⟩ := hf
-  haveI := isAddHaarMeasure_matrix_volume m n
+  haveI := _root_.PositivityTheory.SiegelWeilFormula.KFock.volume_isAddHaar m n
   exact ⟨φ.continuous, φ.integrable⟩
 
 theorem gf_L {d : SD σ} (R : RD d) {w : InfinitePlace F}
@@ -180,7 +176,7 @@ theorem fam_sw {d : SD σ} (R : RD d) {w : InfinitePlace F}
     (hT : TAll) (hG : GoodAwayEx) (hFP : FPSw) (hL : R.IsLocOp w L)
     (X : Fin d.n → ℝ) (a : ℝ → GR d.n) (ha : ∀ s, IsDil X s (a s)) (s : ℝ) :
     IsSw (fun v => fam d.m X s v) := by
-  rw [← fam_eq_L_closed R hT hG hFP hL X a ha s]
+  rw [← _root_.PositivityTheory.SiegelWeilFormula.Kdil.fam_eq_L_pf R hT hG hFP hL X a ha s]
   exact (hL (a s) (fP 1) (hFP _ _ 1)).1
 
 theorem gf_L_fam {d : SD σ} (R : RD d) {w : InfinitePlace F}
@@ -192,7 +188,7 @@ theorem gf_L_fam {d : SD σ} (R : RD d) {w : InfinitePlace F}
     (X : Fin d.n → ℝ) (a : ℝ → GR d.n) (ha : ∀ s, IsDil X s (a s)) (y : GR d.n) (s : ℝ) :
     Gf e p q (2 * Real.pi * ((R.sg w : ℤ) : ℝ)) (m := d.m) X y s = L y (fun v => fam d.m X s v) := by
   rw [gf_L R hT hG hFP hL hLD hsL hρ X a ha y s, R.locOp_mul hT hG hL y (a s) (fP 1) (hFP _ _ 1),
-    fam_eq_L_closed R hT hG hFP hL X a ha s]
+    _root_.PositivityTheory.SiegelWeilFormula.Kdil.fam_eq_L_pf R hT hG hFP hL X a ha s]
 
 theorem der_nbar {d : SD σ} (R : RD d) {w : InfinitePlace F}
     {L : GR d.n → ((Fin d.m → Fin d.n → ℂ) → ℂ) → (Fin d.m → Fin d.n → ℂ) → ℂ}
@@ -233,16 +229,16 @@ theorem der_nbar {d : SD σ} (R : RD d) {w : InfinitePlace F}
   set P : PX d.m d.n := (dil (2 * Real.pi) X ^ r) 1 with hP
   have hGsw : IsSw (L nbb (fP P)) := (hL nbb _ (hFP _ _ P)).1
   obtain ⟨hGc, hGi⟩ := sw_cont_int hGsw
-  obtain ⟨ρ9, hρ9, -, hr9⟩ := hol_int_closed Φ rr Cb δ hrr hδ hΦd hΦc hΦb (kerFT s' 0) (kerFT_cont s' 0) (kerFT_norm s' 0)
+  obtain ⟨ρ9, hρ9, -, hr9⟩ := _root_.PositivityTheory.SiegelWeilFormula.Kdil.hol_int_pf Φ rr Cb δ hrr hδ hΦd hΦc hΦb (kerFT s' 0) (kerFT_cont s' 0) (kerFT_norm s' 0)
   obtain ⟨-, hDc, C', hDb⟩ := hr9 r
   have hDi : Integrable (fun v => iteratedDeriv r (fun z => Φ z v) 0) := by
-    refine Integrable.mono' ((gauss_int_closed δ hδ).const_mul C') hDc.aestronglyMeasurable (Filter.Eventually.of_forall fun v => ?_)
+    refine Integrable.mono' ((_root_.PositivityTheory.SiegelWeilFormula.Kdil.gauss_int_pf δ hδ).const_mul C') hDc.aestronglyMeasurable (Filter.Eventually.of_forall fun v => ?_)
     exact hDb v
   have key : ∀ ξ : Fin d.m → Fin d.n → ℂ, ∫ v, kerFT s' ξ v * iteratedDeriv r (fun z => Φ z v) 0 =
       ∫ v, kerFT s' ξ v * L nbb (fP P) v := by
     intro ξ
-    obtain ⟨ρ1, hρ1, hd1, hr1⟩ := hol_int_closed Φ rr Cb δ hrr hδ hΦd hΦc hΦb (kerFT s' ξ) (kerFT_cont s' ξ) (kerFT_norm s' ξ)
-    obtain ⟨ρ2, hρ2, hd2, hr2⟩ := fam_int_hol_closed d.m X (kerFT s' ξ) (kerFT_cont s' ξ) (kerFT_norm s' ξ)
+    obtain ⟨ρ1, hρ1, hd1, hr1⟩ := _root_.PositivityTheory.SiegelWeilFormula.Kdil.hol_int_pf Φ rr Cb δ hrr hδ hΦd hΦc hΦb (kerFT s' ξ) (kerFT_cont s' ξ) (kerFT_norm s' ξ)
+    obtain ⟨ρ2, hρ2, hd2, hr2⟩ := _root_.PositivityTheory.SiegelWeilFormula.Kdil.fam_int_hol_pf d.m X (kerFT s' ξ) (kerFT_cont s' ξ) (kerFT_norm s' ξ)
     set ch : ℂ := Complex.exp (2 * Real.pi * Complex.I * ((R.sg w : ℤ) : ℂ) *
       Matrix.trace (((((ε : ℤ) : ℂ) * R.ζ⁻¹ * R.ζ⁻¹) • c) * ((Matrix.of ξ)ᴴ * Matrix.of ξ))) with hch
     have hreal : ∀ s : ℝ, |s| < min ρ1 ρ2 → C * (∫ v, kerFT s' ξ v * Φ s v) = ch * (C * ∫ v, kerFT s' ξ v * fam d.m X s v) := by
@@ -251,14 +247,14 @@ theorem der_nbar {d : SD σ} (R : RD d) {w : InfinitePlace F}
         congrFun (gf_L_fam R hT hG hFP hL hLD hsL hρ X a ha nbb s) v
       simp only [e1]
       exact congrFun (hconj nbb c hc hnbb _ (fam_sw R hT hG hFP hL X a ha s)) ξ
-    have hid := iteratedDeriv_eq_of_real_closed (f := fun z => C * ∫ v, kerFT s' ξ v * Φ z v)
+    have hid := _root_.PositivityTheory.SiegelWeilFormula.Kdil.iteratedDeriv_eq_of_real_pf (f := fun z => C * ∫ v, kerFT s' ξ v * Φ z v)
       (g := fun z => ch * (C * ∫ v, kerFT s' ξ v * fam d.m X z v)) (ρ := min ρ1 ρ2) (lt_min hρ1 hρ2)
       ((hd1.mono (Metric.ball_subset_ball (min_le_left _ _))).const_mul C)
       (((hd2.mono (Metric.ball_subset_ball (min_le_right _ _))).const_mul C).const_mul ch) hreal r
     rw [iteratedDeriv_const_mul', iteratedDeriv_const_mul', iteratedDeriv_const_mul'] at hid
     beta_reduce at hid
     rw [(hr1 r).1, hr2 r] at hid
-    simp only [fam_deriv_closed] at hid
+    simp only [_root_.PositivityTheory.SiegelWeilFormula.Kdil.fam_deriv_pf] at hid
     have h2 : C * ∫ v, kerFT s' ξ v * L nbb (fP P) v = ch * (C * ∫ v, kerFT s' ξ v * fP P v) :=
       congrFun (hconj nbb c hc hnbb _ (hFP _ _ P)) ξ
     exact mul_left_cancel₀ hC (hid.trans h2.symm)
@@ -266,7 +262,7 @@ theorem der_nbar {d : SD σ} (R : RD d) {w : InfinitePlace F}
       Integrable (fun v => kerFT s' ξ v * g v) := fun ξ g hg =>
     MeasureTheory.Integrable.bdd_mul hg (kerFT_cont s' ξ).aestronglyMeasurable
       (Filter.Eventually.of_forall fun v => kerFT_norm s' ξ v)
-  have hfin := ft_uniq_closed s' hs' (fun v => iteratedDeriv r (fun z => Φ z v) 0 - L nbb (fP P) v) (hDc.sub hGc)
+  have hfin := _root_.PositivityTheory.SiegelWeilFormula.Kdil.ft_uniq_pf s' hs' (fun v => iteratedDeriv r (fun z => Φ z v) 0 - L nbb (fP P) v) (hDc.sub hGc)
     (hDi.sub hGi) (fun ξ => by
       have h := key ξ
       rw [← sub_eq_zero, ← integral_sub (hint ξ _ hDi) (hint ξ _ hGi)] at h
@@ -284,8 +280,8 @@ theorem gf_der_big {d : SD σ} (R : RD d) {w : InfinitePlace F}
     (r : ℕ) (u : Fin d.m → Fin d.n → ℂ) :
     iteratedDeriv r (fun z => Gf e p q (2 * Real.pi * ((R.sg w : ℤ) : ℝ)) X y z u) 0 =
       L y (fP ((dil (2 * Real.pi) X ^ r) 1)) u := by
-  obtain ⟨pp, nbb, c, hpp, hc, hnbb, rfl⟩ := dcell_closed y hy
-  obtain ⟨nb', ma', b', a', hb', ha', hnb', hma', hpe', -⟩ := up_decomp_closed pp hpp
+  obtain ⟨pp, nbb, c, hpp, hc, hnbb, rfl⟩ := _root_.PositivityTheory.SiegelWeilFormula.Kdil.dcell_pf y hy
+  obtain ⟨nb', ma', b', a', hb', ha', hnb', hma', hpe', -⟩ := _root_.PositivityTheory.SiegelWeilFormula.Kdil.up_decomp_pf pp hpp
   obtain ⟨cm, -, hcf⟩ := R.locOp_mM hT hG hL
   obtain ⟨hhol, -, -⟩ := hB d.m d.n e p q (2 * Real.pi * ((R.sg w : ℤ) : ℝ)) X (abs_tw R w)
   obtain ⟨ρs, hρs, hss⟩ := strip_ball X
@@ -304,7 +300,7 @@ theorem gf_der_big {d : SD σ} (R : RD d) {w : InfinitePlace F}
     intro s _
     rw [gf_L_fam R hT hG hFP hL hLD hsL hρ X a ha (pp * nbb) s, gf_L_fam R hT hG hFP hL hLD hsL hρ X a ha nbb s]
     exact hform _ (fam_sw R hT hG hFP hL X a ha s)
-  have hid := iteratedDeriv_eq_of_real_closed
+  have hid := _root_.PositivityTheory.SiegelWeilFormula.Kdil.iteratedDeriv_eq_of_real_pf
     (f := fun z => Gf e p q (2 * Real.pi * ((R.sg w : ℤ) : ℝ)) X (pp * nbb) z u)
     (g := fun z => eb * (cm a' * Gf e p q (2 * Real.pi * ((R.sg w : ℤ) : ℝ)) X nbb z w')) (ρ := ρs) hρs
     ((hhol _ u).mono hss) ((((hhol nbb w').mono hss).const_mul _).const_mul _) hreal r

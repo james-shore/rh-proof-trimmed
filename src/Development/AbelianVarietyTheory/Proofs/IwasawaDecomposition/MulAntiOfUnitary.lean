@@ -77,11 +77,6 @@ theorem mul_anti_of_unitary {a : 𝔸} (h : σ a * a = 1) : a * σ a = 1 := by
   have : IsArtinianRing 𝔸 := IsArtinianRing.of_finite ℝ 𝔸
   exact mul_eq_one_comm.1 h
 
-omit [FiniteDimensional ℝ 𝔸] in
-theorem unitary_mul (H : IsLieData σ j s) {a b : 𝔸} (ha : σ a * a = 1) (hb : σ b * b = 1) :
-    σ (a * b) * (a * b) = 1 := by
-  rw [H.anti, mul_assoc, ← mul_assoc (σ a), ha, one_mul, hb]
-
 theorem unitary_anti (H : IsLieData σ j s) {a : 𝔸} (ha : σ a * a = 1) : σ (σ a) * σ a = 1 := by
   rw [H.invol, mul_anti_of_unitary ha]
 
@@ -100,14 +95,14 @@ theorem continuousOn_of_sm (H : IsLieData σ j s) (hl : HasLog σ j) {φ : G →
     (hφ (g * s u₀)).continuous.continuousAt.comp h4
   have key : ∀ u, (σ (σ u₀ * u) * (σ u₀ * u) = 1 → NormedSpace.exp (j (Λ (σ u₀ * u))) = σ u₀ * u) → σ u * u = 1 →
       φ (g * s u) = φ (g * s u₀ * expMap j s (Λ (σ u₀ * u))) := fun u hp hu => by
-    have hu' := unitary_mul H (unitary_anti H hu₀') hu
+    have hu' := _root_.GlobalTheory.SmoothForms.Bracket.unitary_mul H (unitary_anti H hu₀') hu
     rw [expMap, hp hu', mul_assoc, ← H.mul _ _ hu₀' hu', ← mul_assoc, mul_anti_of_unitary hu₀', one_mul]
   refine h5.continuousWithinAt.congr_of_eventuallyEq ?_ (key u₀ (ht.eventually h2).self_of_nhds hu₀')
   filter_upwards [mem_nhdsWithin_of_mem_nhds (ht.eventually h2), self_mem_nhdsWithin] with u a b using key u a b
 
 def uGrp (H : IsLieData σ j s) : Subgroup 𝔸ˣ where
   carrier := {u | σ u * u = 1}
-  mul_mem' := fun ha hb => unitary_mul H ha hb
+  mul_mem' := fun ha hb => _root_.GlobalTheory.SmoothForms.Bracket.unitary_mul H ha hb
   one_mem' := by simp [H.one]
   inv_mem' := fun {u} hu => by
     have h : ((u⁻¹ : 𝔸ˣ) : 𝔸) = σ u := Units.inv_eq_of_mul_eq_one_left hu
@@ -129,7 +124,7 @@ theorem toU_coe (H : IsLieData σ j s) (k : uGrp H) : toU H (k.1 : 𝔸) = k :=
 theorem isLieData_toU (H : IsLieData σ j s) : IsLieData σ j (toU H) :=
   ⟨H.anti, H.one, H.invol, H.inj, H.skew, fun a b ha hb => Subtype.ext (Units.ext (by
     change ((toU H (a * b)).1 : 𝔸) = (toU H a).1 * (toU H b).1
-    rw [toU_val H (unitary_mul H ha hb), toU_val H ha, toU_val H hb]))⟩
+    rw [toU_val H (_root_.GlobalTheory.SmoothForms.Bracket.unitary_mul H ha hb), toU_val H ha, toU_val H hb]))⟩
 
 theorem continuous_val (H : IsLieData σ j s) : Continuous fun k : uGrp H => (k.1 : 𝔸) :=
   Units.continuous_val.comp continuous_subtype_val
@@ -191,17 +186,6 @@ theorem finite_ker (H : IsLieData σ j s) (hl : HasLog σ j) (hc : IsCompact {a 
     filter_upwards [ht.eventually h2, ht.eventually h4] with k a b
     exact ⟨_, b, by rw [expMap, a k.2, toU_coe]⟩
 
-theorem map_aeval {M N : Type} [AddCommGroup M] [Module ℂ M] [AddCommGroup N] [Module ℂ N] (r : M →ₗ[ℂ] N)
-    {T : Module.End ℂ M} {T' : Module.End ℂ N} (h : ∀ v, r (T v) = T' (r v)) (p : Polynomial ℂ) (v : M) :
-    r (Polynomial.aeval T p v) = Polynomial.aeval T' p (r v) := by
-  first
-  | exact @_root_.GlobalTheory.IntertwineAeval.intertwine_aeval
-  | exact _root_.GlobalTheory.IntertwineAeval.intertwine_aeval
-  | (apply _root_.GlobalTheory.IntertwineAeval.intertwine_aeval <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntertwineAeval.intertwine_aeval <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntertwineAeval.intertwine_aeval <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntertwineAeval.intertwine_aeval ..)
-
 theorem s_mul_exp (H : IsLieData σ j s) (k : uGrp H) (Y : L) :
     s ((k * expMap j (toU H) Y).1 : 𝔸) = s (k.1 : 𝔸) * expMap j s Y := by
   change s ((k.1 : 𝔸) * (toU H _).1) = _
@@ -230,7 +214,7 @@ theorem finite_translates (H : IsLieData σ j s) (hl : HasLog σ j) (hc : IsComp
   have := finite_ker H hl hc X hX T.charpoly T.charpoly_monic.ne_zero
   have hm : ∀ x, res H x φ ∈ LinearMap.ker (Polynomial.aeval
       (∑ i, derOp (isLieData_toU H) hl (X i) * derOp (isLieData_toU H) hl (X i)) T.charpoly) := fun x => by
-    have := map_aeval (res H x ∘ₗ W.subtype) (T := T)
+    have := _root_.GlobalTheory.IntertwineAeval.intertwine_aeval (res H x ∘ₗ W.subtype) (T := T)
       (T' := ∑ i, derOp (isLieData_toU H) hl (X i) * derOp (isLieData_toU H) hl (X i)) (fun v => by
         change res H x ((∑ i, derOp H hl (X i) * derOp H hl (X i)) v.1) = _
 
@@ -268,7 +252,7 @@ variable {D : D7} {θ : InfF D} {V : HSp D}
 theorem frame_at (hs : V.SigOK) (hd : V.IsDefinite) (τ : D.what₂.Tau) :
     (∃ B : Matrix (Fin V.rank) (Fin V.rank) ℂ, IsUnit B.det ∧ (gramAt D V τ = Bᴴ * B ∨ gramAt D V τ = -(Bᴴ * B))) ∧
       IsCompact (Formalism.QuantumDeterminants.UH (gramAt D V τ)) :=
-  GlobalTheory.T.definite_hermitian_eq_pm_gram_unitary_compact _ _ _ _ (hs (tauE D τ)) (by rcases hd (tauE D τ) with h | h <;> simp [h])
+  _root_.GlobalTheory.DefiniteFrame.definite_frame _ _ _ _ (hs (tauE D τ)) (by rcases hd (tauE D τ) with h | h <;> simp [h])
 
 theorem isCompact_unitary (R : RealPoints θ V) (hs : V.SigOK) (hd : V.IsDefinite) :
     IsCompact {u : AlgInf V | sigInf V u * u = 1} := by

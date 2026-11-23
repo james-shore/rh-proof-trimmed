@@ -143,7 +143,7 @@ theorem point_bound (D : PPData H L) (n : ℕ) (s : Out.H0 D.t.PP.L n) (d : 𝓞
   obtain ⟨⟨T, hT, -⟩, hmap⟩ := GlobalTheory.T.torsion_value_unique_base_change E H L D n s K (spMap c) yK N hN hyKN
   have hC := hmap C e yC T rfl hT
   have hI := Hy K c yK N T hT
-  obtain ⟨ε, hε⟩ := GlobalTheory.T.torsion_point_line_bundle_unit E H L D n s O C ρ y N hN hyN i hi _ hb yC hyC (e T) hC
+  obtain ⟨ε, hε⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Sl.Reg.torsVal_eq_unit_mul E H L D n s O C ρ y N hN hyN i hi _ hb yC hyC (e T) hC
   have hρi : Function.Injective ρ := fun a b hab => by
     have h1 := congrArg (Subtype.val) hab
     have h2 : algebraMap L C (a : L) = algebraMap L C (b : L) := by

@@ -97,7 +97,7 @@ theorem placedP_of_allTrue : ∀ {B : GlobalTheory.Mem.Base} {X : GlobalTheory.M
   · exact fun i => (ha.stdG i).2.2
   · exact _root_.GlobalTheory.Fam.lattice_eq_base_off_twist_alt W hA u a ha hT' row col hc
   · intro κ hκ y e
-    exact ⟨_root_.GlobalTheory.T.true_geometry_local_data_alt W hA u a ha hT' row col hc κ hκ y e, _root_.GlobalTheory.T.true_geometry_reduction_level_alt W hA u a ha hT' row col hc κ hκ y e⟩
+    exact ⟨_root_.GlobalTheory.FamTrace.levTrace_mem_alt W hA u a ha hT' row col hc κ hκ y e, _root_.GlobalTheory.FamTraceChi.trace_chi_alt W hA u a ha hT' row col hc κ hκ y e⟩
 end GlobalTheory.FamPlaced
 end
 end

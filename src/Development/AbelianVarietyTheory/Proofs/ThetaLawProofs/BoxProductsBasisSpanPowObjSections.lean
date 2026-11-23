@@ -145,7 +145,7 @@ theorem span_ev (K : Type) [Field K] (x : KeyIn K) (m N : ℕ) (b : Fin N → RR
       exact congrArg₂ (· * ·) (Fintype.prod_unique
         (fun _ : PUnit => h ((fst x.P.A (Out.powObj x.P.A n)).left ≫ 𝟙 x.P.A.left) ^ (m : ℤ))).symm rfl
     obtain ⟨v, hv⟩ := exists_sec x.P.isLB hF s
-    obtain ⟨k, a₁, a₂, ha⟩ := (GlobalTheory.T.section_lin_comb_fiber_product_separated K x.P.A.left x.P.L x.P.isLB x.P.A (Out.powObj x.P.A n) PUnit (Fin n)
+    obtain ⟨k, a₁, a₂, ha⟩ := (_root_.GlobalTheory.SectionsProduct.main K x.P.A.left x.P.L x.P.isLB x.P.A (Out.powObj x.P.A n) PUnit (Fin n)
       (fun _ => 𝟙 x.P.A.left) (fun _ => (m : ℤ)) (fun c => (Out.powPr x.P.A c).left) (fun _ => (m : ℤ))).1 v
     choose c hc using fun i => exists_coords x b hb (a₁ i)
     choose q hq using fun i => ih (a₂ i)

@@ -239,16 +239,6 @@ theorem Sm.sub {m n : Type} {c : Γ} {M N : Matrix m n R} (h : Sm v φ c M) (h' 
     rw [Matrix.sub_apply, map_sub]
     exact v.map_sub_le (h i j) (h' i j)
 
-theorem prod_sub_le {ι : Type} (s : Finset ι) {c : Γ} {a b : ι → K} (ha : ∀ i, v (a i) ≤ 1) (hb : ∀ i, v (b i) ≤ 1)
-    (h : ∀ i, v (a i - b i) ≤ c) : v (∏ i ∈ s, a i - ∏ i ∈ s, b i) ≤ c := by
-  first
-  | exact @_root_.GlobalTheory.ProdSubProdBound.main
-  | exact _root_.GlobalTheory.ProdSubProdBound.main
-  | (apply _root_.GlobalTheory.ProdSubProdBound.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ProdSubProdBound.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ProdSubProdBound.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ProdSubProdBound.main ..)
-
 theorem Sm.det {n : Type} [Fintype n] [DecidableEq n] {c : Γ} (hc : c ≤ 1) {M : Matrix n n R} (h : Sm v φ c (M - 1)) :
     v (φ M.det - 1) ≤ c := by
   have h1 : ∀ i j, v (φ ((1 : Matrix n n R) i j)) ≤ 1 := fun i j => by
@@ -264,7 +254,7 @@ theorem Sm.det {n : Type} [Fintype n] [DecidableEq n] {c : Γ} (hc : c ≤ 1) {M
   ← Finset.sum_sub_distrib]
   refine v.map_sum_le fun σ _ => ?_
   rw [map_mul, map_mul, ← mul_sub, map_prod, map_prod, map_mul]
-  refine mul_le_of_le_one_of_le ?_ (prod_sub_le _ (fun i => h3 _ _) (fun i => h1 _ _) fun i => h2 _ _)
+  refine mul_le_of_le_one_of_le ?_ (_root_.GlobalTheory.ProdSubProdBound.prod_sub_prod_le _ (fun i => h3 _ _) (fun i => h1 _ _) fun i => h2 _ _)
   rcases Int.units_eq_one_or (Equiv.Perm.sign σ) with e | e <;> rw [e] <;> simp
 
 end Small
@@ -407,10 +397,6 @@ theorem mem_hatMx_of_sm (G : GridData L sc) {m n : ℕ} {Λ : Submodule (𝓞 D.
       rw [hz Q hQ, map_zero]
       exact zero_le
 
-theorem ext_cpt {a b : AE D} (h1 : infPart D a = infPart D b)
-    (h2 : ∀ Q : Pl D.host.E, cpt (D := D) Q (toEAf D a) = cpt (D := D) Q (toEAf D b)) : a = b :=
-  (comp_toAd D).ext' h1 h2
-
 def DepthLe (G : GridData L sc) (c : (AE D)ˣ →* Circle) : Prop :=
   (∀ v ∉ G.pl.S0, GlobalTheory.IndefiniteRowSideFullHecke.UnramifiedCharacter.CharUnramAt D c v) ∧ ∀ v ∈ G.pl.S0, ∀ e, Formalism.L2.NTheta.IsIdemAt e (G.pl.w v) →
     ∀ (x : (AE D)ˣ) (a : AE D), (x : AE D) = e * a + (1 - e) →
@@ -499,7 +485,7 @@ theorem fix_pair {μ₀ : T₀} (hL : L.Is μ₀) (hq : OffQ D) (G : GridData L 
       obtain ⟨q0, q1, -⟩ := Comparison₂.cpt_idemSum he₀
       obtain ⟨d1, d2⟩ := cpt_of_isIdemAt he
       have k : e₀ * e = e := by
-        refine ext_cpt ?_ fun Q => ?_
+        refine _root_.GlobalTheory.FunObj.ae_ext ?_ fun Q => ?_
         · rw [RingHom.map_mul, q0, zero_mul, GlobalTheory.SplitScalar.infPart_splitIdem he.1]
         · rw [RingHom.map_mul, RingHom.map_mul]
           by_cases hQ : Q = G.pl.w v
@@ -537,7 +523,7 @@ theorem fix_pair {μ₀ : T₀} (hL : L.Is μ₀) (hq : OffQ D) (G : GridData L 
       refine hΓ u u1 fun e₀ he₀ => ?_
       obtain ⟨q0, -, q2⟩ := Comparison₂.cpt_idemSum he₀
       have k : e₀ * algebraMap (AF D.host.F) (AE D) ε = 0 := by
-        refine ext_cpt ?_ fun Q => ?_
+        refine _root_.GlobalTheory.FunObj.ae_ext ?_ fun Q => ?_
         · rw [RingHom.map_mul, q0, zero_mul, RingHom.map_zero]
         · rw [RingHom.map_mul, RingHom.map_mul, RingHom.map_zero, RingHom.map_zero]
           by_cases hQ : Q ∈ G.pl.W0

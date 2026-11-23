@@ -119,7 +119,7 @@ theorem GlobalTheory.CuspEmb.cusp_embReg : ∀ (E : Type) [Field E] [NumberField
   have hVHA : ∀ f ∈ M.cusp ka, f ∈ HA M := fun f hf => by
     refine (Submodule.span_le (p := Subalgebra.toSubmodule (HA M))).2 ?_ hf
     rintro _ ⟨F, hF, rfl⟩
-    exact GlobalTheory.T.twoLevelCuspForms_restrict_holInvariant E r U C M ka F hF
+    exact _root_.GlobalTheory.CuspEmb.res_mem_HA E r U C M ka F hF
   have h2HA : ∀ f ∈ M.cusp (ka + 2 • deMul M.Ψ r M.p0 (sOf M)), f ∈ HA M := fun f hf => by
     refine (Submodule.span_le (p := Subalgebra.toSubmodule (HA M))).2 ?_ hf
     rintro _ ⟨F, hF, rfl⟩
@@ -136,7 +136,7 @@ theorem GlobalTheory.CuspEmb.cusp_embReg : ∀ (E : Type) [Field E] [NumberField
         simp only [mul_inv_rev]
         rw [← hlaw]
         rfl }
-  let ut : HA M := ⟨M.res u0, GlobalTheory.T.twoLevelCuspForms_restrict_holInvariant E r U C M _ u0 hu0'⟩
+  let ut : HA M := ⟨M.res u0, _root_.GlobalTheory.CuspEmb.res_mem_HA E r U C M _ u0 hu0'⟩
   have hact : ∀ k, act k (Polynomial.C ut) = Polynomial.C (pbA M k⁻¹ ut) := fun k => tw_C M _ _ _
   have hactm : ∀ k (f : HA M), act k (Polynomial.monomial 1 f) =
       Polynomial.monomial 1 (cst M (fun c => (a k⁻¹ c : ℂ)) * pbA M k⁻¹ f) := fun k f => tw_monomial_one M _ _ _
@@ -214,7 +214,7 @@ theorem GlobalTheory.CuspEmb.cusp_embReg : ∀ (E : Type) [Field E] [NumberField
     | zero => simp
     | add x y _ _ hx hy => rw [add_mul]; exact add_mem hx hy
     | smul z x _ hx => rw [smul_mul_assoc]; exact Submodule.smul_mem _ z hx
-  obtain ⟨n, ⟨j, hj, hjeq⟩, hn⟩ := GlobalTheory.T.embedsInRegularRepresentationCopies_of_groupDeterminant ℂ U (Polynomial (HA M)) act H (Polynomial.C ut) hnz V V1 V2 ρ' hρ' hV1
+  obtain ⟨n, ⟨j, hj, hjeq⟩, hn⟩ := _root_.GlobalTheory.BadCount.embReg_of_groupDet ℂ U (Polynomial (HA M)) act H (Polynomial.C ut) hnz V V1 V2 ρ' hρ' hV1
     hV1s hV2
   refine ⟨n, ⟨j ∘ₗ e.toLinearMap, hj.comp e.injective, fun h v i => ?_⟩, ?_⟩
   · have := hjeq h (e v) i

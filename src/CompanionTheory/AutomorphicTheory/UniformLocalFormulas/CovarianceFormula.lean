@@ -165,13 +165,8 @@ def iF {D : D7} (X : HidaSetting D) : X.B.I.F ≃+* D.host.F :=
       obtain ⟨a, ha⟩ := (X.ιE_F y.1).1 y.2
       exact ⟨a, Subtype.ext ha⟩⟩
 
-theorem finrank_E (D : D7) : Module.finrank ℚ D.host.E = 2 * D.R.f := by
-  rw [D.host.finrank_cmField]
-  unfold Ranks.f Ranks.n
-  ring_nf
-
 theorem disc_rd (D : D7) (X : HidaSetting D) : |((NumberField.discr X.B.I.F : ℤ) : ℝ)| = D.host.rdE ^ D.R.f := by
-  refine Formalism.L2.SG.Pf.Carrier.EnergyMS.discRd_of (fun D X => ?_) finrank_E D X
+  refine Formalism.L2.SG.Pf.Carrier.EnergyMS.discRd_of (fun D X => ?_) _root_.Formalism.MainNotions.StandardLattice.finrank_host D X
   have hE : NumberField.discr X.B.I.E = NumberField.discr D.host.E :=
     NumberField.discr_eq_discr_of_ringEquiv X.B.I.E X.ιE
   have hF : NumberField.discr X.B.I.F = NumberField.discr D.host.F :=

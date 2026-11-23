@@ -48,6 +48,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.SatakeParameters.AntitoneZeroOneEqOfSumEq
 
 @[expose] public section
 
@@ -80,19 +81,12 @@ theorem b_val_det_of_Tj {m : ℕ} {w : Pl E} {ϖ : w.adicCompletion E} {g : GLw 
     (h : Tj ℂ m (Ov E w) ϖ i g ≠ 0) :
     Valued.v (g : Matrix (Fin m) (Fin m) (w.adicCompletion E)).det = Valued.v ϖ ^ i := by
   obtain ⟨x, hx, y, hy, e⟩ := Set.mem_of_indicator_ne_zero h
-  rw [e, Matrix.det_mul, Matrix.det_mul, map_mul, map_mul, GlobalTheory.GLintCover.det_v hx, GlobalTheory.GLintCover.det_v hy,
+  rw [e, Matrix.det_mul, Matrix.det_mul, map_mul, map_mul, _root_.GlobalTheory.valued_det_eq_one_of_glint hx, _root_.GlobalTheory.valued_det_eq_one_of_glint hy,
     GlobalTheory.SphGal.det_diagJ ϖ hi, map_pow, one_mul, mul_one]
 
 theorem b_Tj_conj {m : ℕ} {w : Pl E} {ϖ : w.adicCompletion E} (hϖ : IsUnifV E w ϖ) (j : ℕ) {κ : GLw m w}
     (hκ : κ ∈ KGL w (n := m)) (g : GLw m w) : Tj ℂ m (Ov E w) ϖ j (κ⁻¹ * g * κ) = Tj ℂ m (Ov E w) ϖ j g :=
   (Tj_mem_hecke hϖ j).1 ⟨_, inv_mem hκ⟩ ⟨_, hκ⟩ g
-
-theorem b_exists_of_avg_ne_zero {H : Type} [Group H] (u : H → ℂ) (h : avg u ≠ 0) : ∃ x, u x ≠ 0 := by
-  by_contra hc
-  push_neg at hc
-  apply h
-  unfold avg
-  simp [hc]
 
 theorem b_blk_inv_val {n a b : ℕ} (h : a + b = n) (w : Pl E) (m : GLw a w × GLw b w)
     (X : Matrix (Fin a) (Fin b) (w.adicCompletion E)) :
@@ -148,7 +142,7 @@ theorem ctT_supp {n a b : ℕ} (h : a + b = n) (w : Pl E) (hw : IsSplitAt w) (ν
   have hc := right_ne_zero_of_mul hm
   unfold ct at hc
   obtain ⟨X, hX⟩ := CtLevel.exists_ne_zero_of_hint_ne_zero _ _ (right_ne_zero_of_mul hc)
-  obtain ⟨κ, hκ⟩ := b_exists_of_avg_ne_zero _ hX
+  obtain ⟨κ, hκ⟩ := _root_.GlobalTheory.BCT.CtLevel.exists_ne_zero_of_avg_ne_zero _ hX
   beta_reduce at hκ
   rw [SplitLevels.toSub_of_mem _ _ (SplitLevels.mem_UL_split hw _)] at hκ
   have hT : Tj ℂ n (Ov E w) ϖ k (blk h w m (Multiplicative.toAdd X)) ≠ 0 := by

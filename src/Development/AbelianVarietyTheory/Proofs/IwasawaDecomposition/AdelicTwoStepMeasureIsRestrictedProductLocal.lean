@@ -74,7 +74,7 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 
 theorem measurableSet_latV (σ : E →ₐ[F] E) (v : HeightOneSpectrum (𝓞 F)) (n M : ℕ) :
     MeasurableSet (latV (n := n) (M := M) b v) := by
-  have h := ((GlobalTheory.T.integralPointsFinitePlaceTensor_properties F E σ d b).1 v).2
+  have h := ((_root_.GlobalTheory.GaugeEx.IntBasis.main F E σ d b).1 v).2
   have : latV (n := n) (M := M) b v = ⋂ a, ⋂ i, (fun Y => Y a i) ⁻¹' intV b v := by
     ext Y; simp [mem_latV_iff]
   rw [this]
@@ -140,7 +140,7 @@ theorem measurableSet_cyl {n M : ℕ} (S : Finset (HeightOneSpectrum (𝓞 F)))
     ext X; simp
   rw [this]
   exact MeasurableSet.iInter fun v => MeasurableSet.iInter fun _ =>
-    ((GlobalTheory.T.measurableEmbedding_adelicTuple_localComponents F E d b n M).2.2.2 v).measurable (hA v)
+    ((_root_.GlobalTheory.GaugeGlue.adelicTuple_measurableEmbedding F E d b n M).2.2.2 v).measurable (hA v)
 
 end
 
@@ -190,9 +190,9 @@ theorem good_ae (hCM : IsCMExt F E σ) (hS : StepData σ J x a B J') :
         m' {y' | pairOf (Fv F v) σ J B y g y' ∈ latV b v} = m' (latV b v) := by
   filter_upwards [GlobalTheory.T.eventually_integral_orthogonalComplement_pair F E σ d b M J x a B J' hS,
     GlobalTheory.T.integral_witt_theorem_almost_all_places F E σ hCM d b (M + 1) J x a hS.1 hS.2.1 hS.2.2.1] with v h1 h2 m' hm' y g hg hy
-  obtain ⟨k, hk, hk'⟩ := h2 y hy (hg ▸ GlobalTheory.T.hermitian_quadratic_form_orbit_rational_vector_eq F E σ hCM _ _ J x a hS.2.2.1 g)
+  obtain ⟨k, hk, hk'⟩ := h2 y hy (hg ▸ _root_.GlobalTheory.GaugeEx.OrbitQuadric.qR_orbit F E σ hCM _ _ J x a hS.2.2.1 g)
   have hL := measurableSet_latV b σ v 2 (M + 1)
-  have h3 := GlobalTheory.T.lintegral_orthogonalComplement_pair_indep_groupElement F E σ hCM (Fv F v) M J x a B J' m' hS hm' y g k (hg.trans hk.symm)
+  have h3 := _root_.GlobalTheory.TwoStepIndep.lintegral_pairOf_eq F E σ hCM (Fv F v) M J x a B J' m' hS hm' y g k (hg.trans hk.symm)
     ((latV b v).indicator 1) (measurable_one.indicator hL)
   have h4 : ∀ g : HA (Fv F v) σ J, ∫⁻ y', (latV b v).indicator (1 : (Fin 2 → Fin (M + 1) → Fv F v ⊗[F] E) → ℝ≥0∞) (pairOf (Fv F v) σ J B y g y') ∂m' =
       m' {y' | pairOf (Fv F v) σ J B y g y' ∈ latV b v} := by
@@ -244,13 +244,13 @@ theorem adelic_orbit (hCM : IsCMExt F E σ) (hS : StepData σ J x a B J')
   have h2 : ∀ᵐ y ∂ν, projInf y ∈ {y | ∃ g : HA (Ainf F) σ J, g • ratTup (F := F) (Ainf F) x = y} ∧
       ∀ v, projV v (projFin y) ∈ {y | ∃ g : HA (Fv F v) σ J, g • ratTup (F := F) (Fv F v) x = y} := h1
   filter_upwards [h2] with y ⟨⟨gi, hgi⟩, hy⟩
-  refine GlobalTheory.T.witt_theorem_adelic_one_vector F E σ hCM (M + 1) J x a hS.1 hS.2.1 hS.2.2.1 y ?_
+  refine _root_.GlobalTheory.AdelicWitt.witt_adelic F E σ hCM (M + 1) J x a hS.1 hS.2.1 hS.2.2.1 y ?_
   refine ((q_and_unitary_local_components F E σ (M + 1) J).1 (y 0) a).2 ⟨?_, fun v => ?_⟩
-  · have := GlobalTheory.T.hermitian_quadratic_form_orbit_rational_vector_eq F E σ hCM _ _ J x a hS.2.2.1 gi
+  · have := _root_.GlobalTheory.GaugeEx.OrbitQuadric.qR_orbit F E σ hCM _ _ J x a hS.2.2.1 gi
     rw [hgi] at this
     exact this
   · obtain ⟨g, hg⟩ := hy v
-    have := GlobalTheory.T.hermitian_quadratic_form_orbit_rational_vector_eq F E σ hCM _ _ J x a hS.2.2.1 g
+    have := _root_.GlobalTheory.GaugeEx.OrbitQuadric.qR_orbit F E σ hCM _ _ J x a hS.2.2.1 g
     rw [hg] at this
     exact this
 
@@ -285,7 +285,7 @@ theorem inner_eq (hCM : IsCMExt F E σ) (hS : StepData σ J x a B J')
         (fun X => (∫⁻ y', fi (pairOf (Ainf F) σ J B (projInf X) (si (projInf X)) y') ∂mi') *
           ∏ v ∈ S, ∫⁻ y', fv v (pairOf (Fv F v) σ J B (projV v (projFin X)) (sv v (projV v (projFin X))) y')
             ∂(mv' v)) y * tailProd b mv' S := by
-  obtain ⟨gi, gv, h1, h2, h3, h4, h5⟩ := GlobalTheory.T.exists_local_components_adelic_unitary_element F E σ d b M J x B g
+  obtain ⟨gi, gv, h1, h2, h3, h4, h5⟩ := _root_.GlobalTheory.GaugeEx.LocComp.exists_local_components F E σ d b M J x B g
   rw [hy] at h1 h2
   by_cases hyL : y ∈ {X : Fin 1 → Fin (M + 1) → AF F ⊗[F] E | ∀ v ∉ S, projV v (projFin X) ∈ latV b v}
   · rw [Set.indicator_of_mem hyL]
@@ -302,9 +302,9 @@ theorem inner_eq (hCM : IsCMExt F E σ) (hS : StepData σ J x a B J')
       (fun y' => fi (pairOf (Ainf F) σ J B (projInf y) gi y'))
       (fun v y' => fv v (pairOf (Fv F v) σ J B (projV v (projFin y)) (gv v) y'))
       (hfi.comp (measurable_pair (Ainf F) _ _)) (fun v => (hfv v).comp (measurable_pair (Fv F v) _ _))
-    rw [← GlobalTheory.T.lintegral_orthogonalComplement_pair_indep_groupElement F E σ hCM (Ainf F) M J x a B J' mi' hS hi (projInf y) gi _
+    rw [← _root_.GlobalTheory.TwoStepIndep.lintegral_pairOf_eq F E σ hCM (Ainf F) M J x a B J' mi' hS hi (projInf y) gi _
       (h1.symm.trans (hsi _ ⟨gi, h1.symm⟩).symm) fi hfi,
-      Finset.prod_congr rfl fun v _ => (GlobalTheory.T.lintegral_orthogonalComplement_pair_indep_groupElement F E σ hCM (Fv F v) M J x a B J' (mv' v) hS (hv v)
+      Finset.prod_congr rfl fun v _ => (_root_.GlobalTheory.TwoStepIndep.lintegral_pairOf_eq F E σ hCM (Fv F v) M J x a B J' (mv' v) hS (hv v)
         (projV v (projFin y)) (gv v) _ ((h2 v).symm.trans (hsv v _ ⟨gv v, (h2 v).symm⟩).symm)
         (fv v) (hfv v)).symm, ← key, ← lintegral_indicator (measurableSet_cyl b S _ hA)]
     refine lintegral_congr fun y' => ?_
@@ -344,8 +344,8 @@ theorem twoStep_isProd : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
   obtain ⟨-, si, hsi, hsi'⟩ := exists_sec (σ := σ) (J := J) (B := B) (Ainf F) x
   choose sv hsv hsv' using fun v : HeightOneSpectrum (𝓞 F) =>
     (exists_sec (σ := σ) (J := J) (B := B) (Fv F v) x).2
-  have hG := GlobalTheory.T.measurableEmbedding_adelicTuple_localComponents F E d b 2 (M + 1)
-  have hG1 := GlobalTheory.T.measurableEmbedding_adelicTuple_localComponents F E d b 1 (M + 1)
+  have hG := _root_.GlobalTheory.GaugeGlue.adelicTuple_measurableEmbedding F E d b 2 (M + 1)
+  have hG1 := _root_.GlobalTheory.GaugeGlue.adelicTuple_measurableEmbedding F E d b 1 (M + 1)
   have hc2 := measurableSet_cyl b S _ fun v => measurableSet_latV b σ v 2 (M + 1)
   have hc1 := measurableSet_cyl b S _ fun v => measurableSet_latV b σ v 1 (M + 1)
   have hFi := hsi' mi' hν'.1.1 fi hfi

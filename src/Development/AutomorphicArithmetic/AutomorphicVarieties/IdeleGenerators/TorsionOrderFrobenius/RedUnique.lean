@@ -44,6 +44,9 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsUniqueHcharOfFiniteOrder
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IntegralFiniteAdeleCompleteSeparated
+import Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.PsiTrCoreApprox
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelaf
 
 @[expose] public section
 
@@ -52,22 +55,6 @@ open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.Conjuga
 namespace UpperTheory.V.Sd.Tw
 
 variable {K : Type} [Field K] [NumberField K]
-
-private theorem red_field (v : HeightOneSpectrum (𝓞 K)) (a : K) :
-    Valued.v (algebraMap K (v.adicCompletion K) a) = v.valuation K a :=
-  HeightOneSpectrum.valuedAdicCompletion_eq_valuation' v a
-
-private theorem red_int (v : HeightOneSpectrum (𝓞 K)) (a : 𝓞 K) :
-    Valued.v (algebraMap K (v.adicCompletion K) (a : K)) = v.intValuation a := by
-  rw [red_field]
-  exact v.valuation_of_algebraMap a
-
-private theorem red_nat (v : HeightOneSpectrum (𝓞 K)) (N : ℕ) :
-    Valued.v (N : v.adicCompletion K) = v.intValuation (N : 𝓞 K) := by
-  rw [← red_int]
-  congr 1
-  have : (((N : 𝓞 K)) : K) = (N : K) := map_natCast (algebraMap (𝓞 K) K) N
-  rw [this, map_natCast]
 
 private theorem red_approx (v : HeightOneSpectrum (𝓞 K)) {n : 𝓞 K} (hn : n ≠ 0)
     {y : v.adicCompletion K} (hy : Valued.v y ≤ 1) :
@@ -83,9 +70,9 @@ private theorem red_approx (v : HeightOneSpectrum (𝓞 K)) {n : 𝓞 K} (hn : n
     ⟨y, by simp⟩
   have ht : Valued.v ((y - algebraMap K (v.adicCompletion K) t) *
     (algebraMap K (v.adicCompletion K) (n : K))⁻¹) < 1 := ht
-  rw [map_mul, map_inv₀, red_int, mul_inv_lt_iff₀ (zero_lt_iff.2 h0), one_mul] at ht
+  rw [map_mul, map_inv₀, _root_.Formalism.L2.S.Pv.PsiTrCore.valued_algebraMap_int, mul_inv_lt_iff₀ (zero_lt_iff.2 h0), one_mul] at ht
   have ht1 : v.valuation K t ≤ 1 := by
-    rw [← red_field, ← sub_sub_cancel y (algebraMap K (v.adicCompletion K) t)]
+    rw [← _root_.Formalism.UG.P.levelaf_valued_algebraMap, ← sub_sub_cancel y (algebraMap K (v.adicCompletion K) t)]
     exact Valuation.map_sub_le _ hy (ht.le.trans (v.intValuation_le_one n))
   obtain ⟨a, ha⟩ := v.exists_valuation_sub_lt_of_integer ht1 (Units.mk0 _ h0)
   refine ⟨a, ?_⟩
@@ -95,7 +82,7 @@ private theorem red_approx (v : HeightOneSpectrum (𝓞 K)) {n : 𝓞 K} (hn : n
     rw [map_sub]; ring
   rw [e]
   refine Valuation.map_sub_le _ ht.le ?_
-  rw [red_field]
+  rw [_root_.Formalism.UG.P.levelaf_valued_algebraMap]
   exact ha.le
 
 private theorem red_exists {n : 𝓞 K} (hn : n ≠ 0)
@@ -115,7 +102,7 @@ private theorem red_exists {n : 𝓞 K} (hn : n ≠ 0)
     (fun i _ j _ hij h => hij (HeightOneSpectrum.ext h)) (fun v => f v.1)
   refine ⟨a, fun v hv => ?_⟩
   have h1 := ha v (hS.mem_toFinset.2 hv)
-  rw [← v.intValuation_le_pow_iff_mem, ← he, ← red_int] at h1
+  rw [← v.intValuation_le_pow_iff_mem, ← he, ← _root_.Formalism.L2.S.Pv.PsiTrCore.valued_algebraMap_int] at h1
   have e1 : y v - algebraMap K (v.adicCompletion K) (a : K) =
       (y v - algebraMap K (v.adicCompletion K) (f v : K)) -
         algebraMap K (v.adicCompletion K) ((a - f v : 𝓞 K) : K) := by
@@ -138,7 +125,7 @@ private theorem red_unique {n : 𝓞 K} (hn : n ≠ 0)
     · have := Valuation.map_sub_le _ (hb v hv) (ha v hv)
       rw [sub_sub_sub_cancel_left, ← map_sub] at this
       have e : ((a - b : 𝓞 K) : K) = (a : K) - (b : K) := map_sub (algebraMap (𝓞 K) K) _ _
-      rwa [← e, red_int] at this
+      rwa [← e, _root_.Formalism.L2.S.Pv.PsiTrCore.valued_algebraMap_int] at this
     · rw [v.intValuation_eq_one_iff.2 hv]
       exact v.intValuation_le_one _
   have hn' : algebraMap (𝓞 K) K n ≠ 0 := by simpa using hn
@@ -182,8 +169,8 @@ theorem UpperTheory.V.Sd.Tw.red :
         refine Valuation.map_add_le _ ?_ ?_
         · rw [map_mul, a.2 v, one_mul]
           exact hf b v hv
-        · rw [map_mul, red_int]
+        · rw [map_mul, _root_.Formalism.L2.S.Pv.PsiTrCore.valued_algebraMap_int]
           exact (mul_le_of_le_one_left' (v.intValuation_le_one _)).trans (hf a v hv) }
   refine ⟨φ.toHomUnits, fun a r h => ?_⟩
   show Ideal.Quotient.mk _ (f a) = _
-  exact red_unique hn _ (hf a) fun v hv => by rw [← red_nat]; exact h v hv
+  exact red_unique hn _ (hf a) fun v hv => by rw [← _root_.GlobalTheory.AdLat.valued_natCast_eq]; exact h v hv

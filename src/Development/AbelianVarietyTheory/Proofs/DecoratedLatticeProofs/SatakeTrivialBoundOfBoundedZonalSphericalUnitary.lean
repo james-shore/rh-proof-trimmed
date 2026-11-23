@@ -234,7 +234,7 @@ theorem trivialBound_of_bounded : GlobalTheory.IndefiniteRowSideFullHecke.Spheri
       rw [hny r hr, mul_right_comm, ← pow_add, ← two_mul]
       exact (mul_lt_mul_of_pos_left hρ (by positivity)).trans_eq (mul_inv_cancel₀ (by positivity))
     have hint := ((H L ϖ σ q n hU μ hμK χ hχ s Φ hΦ α0 _ hw0).1 hdom).1
-    have hs := GlobalTheory.T.summable_norm_coset_out' _ μ (KU σ n) hKo hμK _ (fun g k hk => by simp only [hinv g k hk]) hint
+    have hs := _root_.GlobalTheory.summable_norm_coset_out _ μ (KU σ n) hKo hμK _ (fun g k hk => by simp only [hinv g k hk]) hint
     refine hs.congr fun a => ?_
     simp only [hval, mul_one, norm_pow, Complex.norm_real, Real.norm_of_nonneg hr.le]
 

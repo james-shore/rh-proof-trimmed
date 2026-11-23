@@ -45,6 +45,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
-theorem UpperTheory.Cb.etale_cohomology_locally_acyclic :
-    GlobalTheory.EtC.C5 :=
-  GlobalTheory.T.etale_cohomology_locally_acyclic
+alias UpperTheory.Cb.etale_cohomology_locally_acyclic := _root_.GlobalTheory.EtC.laurentPolynomial_cohomology_strictlyHenselian_vanishing

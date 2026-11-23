@@ -112,9 +112,9 @@ theorem lev_prism [Fact l.Prime] {B C D : Obj l R} (h : Hom B C) (p q : Hom C D)
   refine Exists.elim (hc.stable.po D (p.comp h)) fun T hT => Exists.elim hT fun q₃ hT => Exists.elim hT
     fun q₁₂ hT => ?_
   have c2 : q₃.comp h = q₁₂.comp (p.comp h) := hT.comm
-  refine Exists.elim (GlobalTheory.T.prismPushoutModAdicPow_universal l R B C C D h h p q hpo T (q₁₂.comp q) q₃ (by
+  refine Exists.elim (_root_.GlobalTheory.BSP.PoUniv.isPO_univ l R B C C D h h p q hpo T (q₁₂.comp q) q₃ (by
       rw [hom_comp_assoc, ← c1, c2])) fun q₂₃ h23 => ?_
-  refine Exists.elim (GlobalTheory.T.prismPushoutModAdicPow_universal l R B C C D h h p q hpo T (q₁₂.comp p) q₃ (by
+  refine Exists.elim (_root_.GlobalTheory.BSP.PoUniv.isPO_univ l R B C C D h h p q hpo T (q₁₂.comp p) q₃ (by
       rw [hom_comp_assoc, c2])) fun q₁₃ h13 => ?_
   have hpo2 := hT.po m
   have hq : qmap (p.comp h) m = (qmap p m).comp (qmap h m) :=

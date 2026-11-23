@@ -169,7 +169,7 @@ theorem exists_pre : Laws → Laws2 → ThmUSt → ∀ (o Ω : Type) [CommRing o
     exact h
   have hfew : T.Few (S.r * S.N) := GlobalTheory.ZJ.theta_few hU hL hL2 ex.core T (hamp ρ.P.ample) (hK ρ.P.ktriv) hsym hS S.N _
     hN hunit (hbig.2.2.trans_le (Nat.le_self_pow two_ne_zero _))
-  obtain ⟨law, hmain⟩ := GlobalTheory.T.exists_semiAbelian_split_cubical_extension_closure hL ex.core T _ htest hind hch htors hfew
+  obtain ⟨law, hmain⟩ := _root_.GlobalTheory.ZJ.Assembly.exists_law_splitAll_cubical hL ex.core T _ htest hind hch htors hfew
   let _ := law.grp
   let _ := law.comm
   obtain ⟨hsplit, hsemi, PP, cub, m, hF, he, hpull, hsym', hloc, -⟩ := hmain

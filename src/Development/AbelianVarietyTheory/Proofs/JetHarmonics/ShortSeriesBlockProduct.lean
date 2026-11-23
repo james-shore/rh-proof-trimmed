@@ -599,11 +599,6 @@ theorem finsum_block {K S Q J J₁ J₂ : Type} [Field K] [CommRing S] [Algebra 
   rw [hJ, map_mul]
   ring
 
-private theorem dualMap_comp_jet_harmonics {S T U : Type} [CommRing S] [CommRing T] [CommRing U] (φ : S →+* T) (ψ : T →+* U) :
-    dualMap (ψ.comp φ) = (dualMap ψ).comp (dualMap φ) := by
-  unfold dualMap
-  ext x <;> simp
-
 private theorem PPx_le_preimage {S T : Type} [CommRing S] [CommRing T] (x : Sp S ⟶ Xo.X) (x' : Sp T ⟶ Xo.X)
     (pm : (Over.mk x' ⊗ Xo.univ.t.G).left ⟶ (Over.mk x ⊗ Xo.univ.t.G).left)
     (h : pm ≫ Over.Hom.left (snd (Over.mk x) Xo.univ.t.G) = Over.Hom.left (snd (Over.mk x') Xo.univ.t.G))
@@ -625,7 +620,7 @@ private theorem frMap_comp' {S T U : Type} [CommRing S] [Algebra c.F S] [CommRin
   · rw [hx₂, hx₁, ← Category.assoc, FramedBaseChange.spMap_spMap]
     rfl
   · intro τ i
-    rw [hu₂, hu₁, ← Category.assoc, FramedBaseChange.spMap_spMap, ← dualMap_comp_jet_harmonics]
+    rw [hu₂, hu₁, ← Category.assoc, FramedBaseChange.spMap_spMap, ← _root_.GlobalTheory.FramedBaseChange.dual_comp]
     rfl
   · rw [Category.assoc, hs₁, hs₂]
   · rw [Category.assoc, hf₁, ← Category.assoc, hf₂, Category.assoc, FramedBaseChange.spMap_spMap]
@@ -646,7 +641,7 @@ private theorem frMap_cancel' {S T U : Type} [CommRing S] [Algebra c.F S] [CommR
     rfl
   refine ⟨hx, ?_, ?_⟩
   · intro τ i
-    rw [hu₂, hu₁, ← Category.assoc, FramedBaseChange.spMap_spMap, ← dualMap_comp_jet_harmonics]
+    rw [hu₂, hu₁, ← Category.assoc, FramedBaseChange.spMap_spMap, ← _root_.GlobalTheory.FramedBaseChange.dual_comp]
     rfl
   · have tf : ∀ {R : Type} [CommRing R] (x : Sp R ⟶ Xo.X),
         Over.Hom.left (fst (Over.mk x) Xo.univ.t.G) = Limits.pullback.fst x Xo.univ.t.G.hom := fun _ => rfl
@@ -782,7 +777,7 @@ theorem shortValAt_mul (hC : ChartIndepSt2) [StarRing (𝓞 E)] (nab : NabV Xo c
   · have hψφ : ∀ s, (ψ₁.comp φ₁) s = ψ₁ (φ₁ s) := fun s => rfl
     have hψφ₂ : ∀ s, ψ₁ (φ₁ s) = ψ₂ (φ₂ s) := fun s => by rw [← hψφ, heq]; rfl
     rw [map_mul, hψφ, hψφ, hψφ₂ v₂, hv₁, hv₂]
-    have fin₁ := GlobalTheory.ShortValue.finite_levelQuotient Dw l
+    have fin₁ := _root_.GlobalTheory.finite_levQ Dw l
     simp only [map_mul ψ₁, map_mul ψ₂, AlgHom.commutes]
     rw [map_finsum ψ₁ (Set.toFinite _), map_finsum ψ₂ (Set.toFinite _)]
     simp only [map_mul ψ₁, map_mul ψ₂, AlgHom.commutes, hs₁', hs₂']

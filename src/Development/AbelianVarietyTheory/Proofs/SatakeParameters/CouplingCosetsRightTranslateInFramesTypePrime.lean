@@ -220,7 +220,7 @@ theorem cosetOf_frames_vG : UnderTie (fun {D L hT Gi Gl Kc Y cX ex t u μ St} A 
     simpa only [hP, if_true, hyy] using h
   have hy₀ : ∀ l, IntAt P.1 ((qOf P.1 : t.X.E) ^ 1 * A.y0 β P l) := by
     intro l
-    have h := GlobalTheory.T.intAt_scaled_baseCosetRep_of_adTie D L hT Gi Gl Kc Y cX ex t u μ St A dtU a hPin H β P l
+    have h := _root_.GlobalTheory.TwU.BaseCosetInt.baseCosetRep_integral_after_scaling_at_bad_prime D L hT Gi Gl Kc Y cX ex t u μ St A dtU a hPin H β P l
     simpa only [hP, if_true] using h
   have hqI : IntAt P.1 (qOf P.1 : t.X.E) := by
     simpa using IntAt.coe P.1 ((qOf P.1 : ℕ) : 𝓞 t.X.E)

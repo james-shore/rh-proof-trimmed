@@ -121,12 +121,12 @@ theorem two_point_induction : GlobalTheory.Published.Principalisation → Global
     intro hjk D d hd0 hd hQ hcut
     have hd1 := hd.trans (sum_Icc_le_sum_Icc_one h ε hpos (k + 1) j)
     rcases hcut with ⟨hc, hnk⟩ | ⟨hc, hnk⟩
-    · rcases GlobalTheory.T.twoPoint_induction_step_logCanonical hP hNV hNef X p (k + 1) hproj hdim Δ m G N D d ε h x₁ x₂ j hΔ hklt hm
+    · rcases _root_.GlobalTheory.PairStep.twoPoint_step hP hNV hNef X p (k + 1) hproj hdim Δ m G N D d ε h x₁ x₂ j hΔ hklt hm
           hG hNa hc₁ hc₂ hne hh hint hε hQ hd0 hc hnk with h0 | ⟨i, D', d', hij, hd'0, hd', hQ', hc'⟩
       · exact ⟨D, d, hd1, hQ, Or.inl ⟨h0, hnk⟩⟩
       · exact ih i hij (by omega) D' d' hd'0
           (hd'.trans (add_le_sum_Icc_of_lt h ε hpos hij (by omega) hd)) hQ' hc'
-    · rcases GlobalTheory.T.twoPoint_induction_step_logCanonical hP hNV hNef X p (k + 1) hproj hdim Δ m G N D d ε h x₂ x₁ j hΔ hklt hm
+    · rcases _root_.GlobalTheory.PairStep.twoPoint_step hP hNV hNef X p (k + 1) hproj hdim Δ m G N D d ε h x₂ x₁ j hΔ hklt hm
           hG hNa hc₂ hc₁ hne.symm hh (fun z e hz => hint z e hz.symm) hε hQ hd0 hc hnk with
         h0 | ⟨i, D', d', hij, hd'0, hd', hQ', hc'⟩
       · exact ⟨D, d, hd1, hQ, Or.inr ⟨h0, hnk⟩⟩
@@ -136,7 +136,7 @@ theorem two_point_induction : GlobalTheory.Published.Principalisation → Global
   have hlc : ∀ x, LcAt p (k + 1) (Δ + 0) x := fun x => by rw [add_zero]; exact (hklt x).lcAt
   have hdimξ' : topologicalKrullDim (closure ({genericPoint X} : Set X)) = ((k + 1 : ℕ) : WithBot ℕ∞) :=
     hdimξ
-  obtain ⟨D', d', hd'0, hd', hQ', hc'⟩ := GlobalTheory.T.lc_cut_two_closed_points_one_centre hP hNV hNef X p (k + 1) hproj hdim Δ m G N 0
+  obtain ⟨D', d', hd'0, hd', hQ', hc'⟩ := _root_.GlobalTheory.PairStep.logCanonicalCut_two_points hP hNV hNef X p (k + 1) hproj hdim Δ m G N 0
     0 (h (k + 1)) x₁ x₂ (genericPoint X) k hΔ hklt hm hG hNa (qNum_zero_zero X p hproj N) le_rfl
     hc₁ hc₂ (hlc x₁) (hlc x₂) (hξ x₁) (hξ x₂) (Or.inl rfl) hdimξ' (hh _)
     (hint (genericPoint X) (k + 1) (Or.inl (hξ x₁)) (by omega) hdimξ')

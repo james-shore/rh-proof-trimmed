@@ -130,7 +130,7 @@ theorem exists_frame_locFrames : ∀ (k K : Type) [Field k] [IsAlgClosed k] [Cha
       exact ⟨_, h1, h2, fun h => absurd h hv⟩
   choose g hg1 hg2 hg3 using key
   refine ⟨V₀, s, g, hV₀, hs, ⟨hg2, ?_⟩, hg1⟩
-  refine (GlobalTheory.T.finite_places_centre_outside_open k K K C x hx V₀ hV₀).subset fun v hv => ⟨b v, (hb v).trans hxx.symm, fun h => hv ?_⟩
+  refine (_root_.GlobalTheory.Nef.finite_centre_not_mem k K K C x hx V₀ hV₀).subset fun v hv => ⟨b v, (hb v).trans hxx.symm, fun h => hv ?_⟩
   rw [hg3 v h]
   exact unimod_one' v
 

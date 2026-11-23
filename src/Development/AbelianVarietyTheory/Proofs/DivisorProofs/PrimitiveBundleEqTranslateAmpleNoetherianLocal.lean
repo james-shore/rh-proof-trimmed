@@ -110,7 +110,7 @@ theorem exists_geometric_point {A : Type} [CommRing A] {B : Over (Sp A)} [GrpObj
     rw [pull_lam, lift_fst, lift_snd, map_zero, lam, ← hm, ← one] at e
     rw [cls_pull hO, lam, ← pull_comp, ← pull_comp, ← pull_comp, ← pull_comp]
     exact e
-  obtain ⟨x', hx'⟩ := GlobalTheory.T.exists_point_translate_primitive_of_ample_K_trivial K B' d (L.pull g) (O.pull g) hB' hd' hL' ha' hk' hΘ' hO'
+  obtain ⟨x', hx'⟩ := _root_.GlobalTheory.PrimitiveNonSym.exists_point_translate_of_ample K B' d (L.pull g) (O.pull g) hB' hd' hL' ha' hk' hΘ' hO'
     ((cls_eq_zero_iff (LB.isLB_linComb hO' _ _)).1 ((cls_cube_two hO' _ _ (LB.isLB_linComb hO' _ _)).trans lamO'))
   have e := ((cls_eq_iff hO' (LB.isLB_linComb hL' _ _)).2 hx').trans (cls_pair hL' _ _ _)
   let T : Over (Sp A) := Over.mk f

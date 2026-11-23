@@ -60,7 +60,7 @@ theorem not_unrAt_of_ramified : ∀ (K M : Type) [Field K] [NumberField K] [Fiel
     Module.finrank K M = 2 → ∀ η : HChar K, IsNormChar M η → ∀ w : HeightOneSpectrum (𝓞 M),
     ¬ Algebra.IsUnramifiedAt (𝓞 K) w.asIdeal → ¬ η.UnrAt (w.under (𝓞 K)) := by
   intro F E _ _ _ _ _ h2 η hη w hram hu
-  have hGAR : GlobalTheory.Published.GlobalArtinReciprocity := GlobalTheory.globalArtinReciprocity_holds
+  have hGAR : GlobalTheory.Published.GlobalArtinReciprocity := _root_.CompanionTheory.FamInh.globalArtin
   obtain ⟨hne, hpow, hsplit⟩ := hη
   rw [h2] at hpow
   let Ω := AlgebraicClosure E

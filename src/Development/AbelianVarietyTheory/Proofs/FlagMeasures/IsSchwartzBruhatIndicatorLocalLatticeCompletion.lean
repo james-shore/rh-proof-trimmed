@@ -89,7 +89,7 @@ theorem latLoc_compact_open (L : Submodule (𝓞 E) (Fin n → E)) (hL : Submodu
   have hf : Function.Surjective f := by
     have h1 : ∀ (a : Fv F v) (w : Fin n → E), (fun i => a ⊗ₜ[F] w i) ∈ LinearMap.range f := by
       intro a w
-      obtain ⟨N, hN, h⟩ := exists_int_smul_mem L hL w
+      obtain ⟨N, hN, h⟩ := _root_.GlobalTheory.IntSmulIntegerEq.exists_int_smul_mem L hL w
       obtain ⟨m, e⟩ := hx _ h
       refine ⟨fun j => m j • ((N : Fv F v)⁻¹ * a), ?_⟩
       rw [hm, ← e]

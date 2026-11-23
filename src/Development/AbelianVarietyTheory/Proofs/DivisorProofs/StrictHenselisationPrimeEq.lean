@@ -147,7 +147,7 @@ theorem exists_stage_torsor : ∀ (T O : Type) [CommRing T] [IsDomain T] [IsLoca
           Nonempty (D →ₐ[GlobalTheory.LocAcyc.GenFib T O] GlobalTheory.LocAcyc.GenFib T O) := by
   intro T O _ _ _ _ _ _ _ _ hAIC P _ φ hφ hSH hPeq q hq hqu D _ _ act hD
   obtain ⟨E, _, _, _, _, _, ψ, DE, _, _, actE, hDE, hred⟩ :=
-    GlobalTheory.T.spread_torsor_to_etale_algebra T O P φ hφ hSH.2.2.2 q hq D act hD
+    _root_.GlobalTheory.LocAcyc.spread_torsor_to_etale T O P φ hφ hSH.2.2.2 q hq D act hD
   set Q : Ideal E := (maximalIdeal O).comap ψ.toRingHom with hQdef
   haveI : Q.IsPrime := Ideal.comap_isPrime _ _
   have hloc : (maximalIdeal O).comap φ = maximalIdeal (Localization.AtPrime P) := by

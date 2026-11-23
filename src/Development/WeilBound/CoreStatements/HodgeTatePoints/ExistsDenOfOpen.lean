@@ -129,11 +129,11 @@ theorem exists_den_of_open {A : Type} [CommRing A] {X : Scheme.{0}} (j : X ⟶ S
       simpa using hu.map (Scheme.ΓSpecIso (CommRingCat.of K)).inv.hom
     have e := congrArg (SubOrder.valHom (x ≫ j) D hx) ha
     have hres : ∀ b, SubOrder.valHom (x ≫ j) D hx (algebraMap Γ(Spec (CommRingCat.of A), ⊤) _ b) = val (x ≫ j) b :=
-      fun b => (Twhopf.valAt_restrict (x ≫ j) (homOfLE (le_top : D ≤ ⊤)) hx le_top b).trans (htop _ _ _)
+      fun b => (_root_.PositivityTheory.HtPt.Unc.valAt_restrict (x ≫ j) (homOfLE (le_top : D ≤ ⊤)) hx le_top b).trans (htop _ _ _)
     rw [map_mul, hres, hres, SubOrder.valHom_apply, valAt_comp] at e
     have e2 : valAt x (j ⁻¹ᵁ D) hx ((j.app D).hom s') = val x s :=
       (congrArg (valAt x (j ⁻¹ᵁ D) hx) hs').trans
-        ((Twhopf.valAt_restrict x (homOfLE (le_top : j ⁻¹ᵁ D ≤ ⊤)) hx le_top s).trans (htop _ _ _))
+        ((_root_.PositivityTheory.HtPt.Unc.valAt_restrict x (homOfLE (le_top : j ⁻¹ᵁ D ≤ ⊤)) hx le_top s).trans (htop _ _ _))
     rw [e2, map_pow] at e
     rw [← e]
     ring

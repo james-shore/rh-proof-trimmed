@@ -53,12 +53,6 @@ namespace Formalism.L2.Th1.E
 
 namespace Shape
 
-section Alg
-
-variable {R : Type} [CommRing R] (W : WeierstrassCurve R) (xP yP : R)
-
-end Alg
-
 section Pts
 
 variable {K : Type} [Field K] [DecidableEq K] (W : WeierstrassCurve K)
@@ -68,17 +62,9 @@ theorem px_neg (Q : W.toAffine.Point) : px W (-Q) = px W Q := by
 
 end Pts
 
-section Nrm
-
-variable {K : Type} [NormedField K] [IsUltrametricDist K]
-
-end Nrm
-
 end Shape
 
 open Shape
-
-theorem XTShape_holds : XTShape := UpperTheory.Reformulated.B.SeriesSubgroup.XTShape_holds
 
 theorem FacShape_of (hR : IntRules) (hA : UnitAtRules) (hK : UnitKap) (hP : UnitPsi2)
     (hD : UnitDiff) (hX : XTShape) : FacShape := by

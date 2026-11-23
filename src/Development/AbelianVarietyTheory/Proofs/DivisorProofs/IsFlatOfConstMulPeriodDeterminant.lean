@@ -68,12 +68,6 @@ theorem eq_zero_of_real_smul_mem {g : ℕ} (S : Submodule ℤ (Fin g → ℂ)) [
     fun s t e => smul_left_injective ℝ h0 (congrArg Subtype.val e)
   exact not_countable this
 
-theorem sub_mem_of_ex_eq {A : Over (Sp ℂ)} [GrpObj A] {L : LB A.left} {g : ℕ} (u : HolUnif A L g) {z w : Fin g → ℂ}
-    (h : u.ex z = u.ex w) : z - w ∈ u.Λ := by
-  have := u.ex_add (z - w) w
-  rw [sub_add_cancel, h] at this
-  exact (u.ker _).1 (right_eq_mul.1 this)
-
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Geo.Tor.Host E} {D : Datum H} {l : Level H}
 
 def Marked {s : Sp ℂ ⟶ Sp (KA l)} (o : Obj D l (baseKA l) s) {g : ℕ} (u : HolUnif o.t.G o.t.PP.L g) (Di : Datum H)
@@ -101,7 +95,7 @@ theorem exists_lev {s s' : Sp ℂ ⟶ Sp (KA l)} {o : Obj D l (baseKA l) s} {o' 
     rw [hf, hTP, hTP', hf, ← sub_eq_zero]
     refine eq_zero_of_real_smul_mem u'.Λ fun r => ?_
     rw [smul_sub, ← map_smul φ, ← map_smul T, ← map_smul T', ← map_smul φ]
-    exact sub_mem_of_ex_eq u' ((hact a _ _ (hT _)).trans (hT' _).symm)
+    exact _root_.GlobalTheory.PELPeriod.sub_mem_of_ex_eq u' ((hact a _ _ (hT _)).trans (hT' _).symm)
   let F : Di.La →ₗ[𝓞 E] Di.La := ⟨⟨f, fun a b => i2 (by rw [map_add (f := _), hf, hf, hf, map_add (f := _), map_add (f := _)])⟩, hsm⟩
   have hb : Function.Bijective F := by
     refine ⟨fun a b h => i1 (φ.injective ?_), fun b => ?_⟩
@@ -114,7 +108,7 @@ theorem exists_lev {s s' : Sp ℂ ⟶ Sp (KA l)} {o : Obj D l (baseKA l) s} {o' 
   refine Submodule.smul_induction_on ha (fun r hr b _ => ?_) ?_
   · obtain ⟨a₀, e₀, rfl⟩ := ht b
     have hm := Submodule.smul_mem_smul hr (Submodule.mem_top (R := 𝓞 E) (x := a₀))
-    obtain ⟨e, he⟩ := (r2 _).1 (sub_mem_of_ex_eq u' ((heta _ _ (e1 _ hm)).trans (e2 _ hm).symm))
+    obtain ⟨e, he⟩ := (r2 _).1 (_root_.GlobalTheory.PELPeriod.sub_mem_of_ex_eq u' ((heta _ _ (e1 _ hm)).trans (e2 _ hm).symm))
     have h1 : F (t (r • a₀)) = t (r • a₀) + l.M • e := i2 (by
       rw [map_add (f := _), map_nsmul, he, map_smul φ, ← hf, ← smul_sub, ← Nat.cast_smul_eq_nsmul ℝ, smul_inv_smul₀ hM,
         add_sub_cancel]

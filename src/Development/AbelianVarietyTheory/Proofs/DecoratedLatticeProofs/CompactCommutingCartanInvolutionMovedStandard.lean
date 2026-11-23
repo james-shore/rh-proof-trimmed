@@ -61,20 +61,11 @@ namespace GlobalTheory.StdUnn.CartanMove
 
 variable {D : D7}
 
-theorem mt_mul' (V : HSp D) (g h : GA D V) :
-    Formalism.L2.Theta.mt V (g * h) = Formalism.L2.Theta.mt V g * Formalism.L2.Theta.mt V h := by
-  simp [Formalism.L2.Theta.mt, map_mul, Units.val_mul]
-
 theorem compAt_mt_one (θ : InfFam D) (τ : D.what₂.Tau) (V : HSp D) :
     compAt θ τ (Formalism.L2.Theta.mt V 1) = 1 := by
   have : Formalism.L2.Theta.mt V 1 = 1 := by simp [Formalism.L2.Theta.mt]
   rw [this]
   exact Matrix.map_one (f := (θ τ).comp (infPart D)) (map_zero _) (map_one _)
-
-theorem compAt_mt_mul (θ : InfFam D) (τ : D.what₂.Tau) (V : HSp D) (g h : GA D V) :
-    compAt θ τ (Formalism.L2.Theta.mt V (g * h)) = compAt θ τ (Formalism.L2.Theta.mt V g) * compAt θ τ (Formalism.L2.Theta.mt V h) := by
-  rw [mt_mul']
-  exact GlobalTheory.AdForm.RatMove.compAt_mul θ τ _ _
 
 theorem compAt_isom {θ : InfFam D} (hθ : IsInfFam θ) (V : HSp D) (g : GA D V) (τ : D.what₂.Tau) :
     (compAt θ τ (Formalism.L2.Theta.mt V g))ᴴ * gramAt D V τ * compAt θ τ (Formalism.L2.Theta.mt V g) = gramAt D V τ :=
@@ -131,8 +122,8 @@ theorem cartan_move_std : ∀ (D : D7) (A : HSp D) (μ : D.host.E), IsSkew μ �
   set P := compAt θ τ (Formalism.L2.Theta.mt (dblSp A) (p : GA D (dblSp A))) with hPdef
   set Pi := compAt θ τ (Formalism.L2.Theta.mt (dblSp A) (p : GA D (dblSp A))⁻¹) with hPidef
   set S1 := compAt θ τ (Formalism.L2.Theta.mt (dblSp A) k₁) with hS1
-  have hPi : Pi * P = 1 := by rw [hPidef, hPdef, ← compAt_mt_mul, inv_mul_cancel, compAt_mt_one]
-  have hPPi : P * Pi = 1 := by rw [hPidef, hPdef, ← compAt_mt_mul, mul_inv_cancel, compAt_mt_one]
+  have hPi : Pi * P = 1 := by rw [hPidef, hPdef, ← _root_.GlobalTheory.RatAut.compAt_mul, inv_mul_cancel, compAt_mt_one]
+  have hPPi : P * Pi = 1 := by rw [hPidef, hPdef, ← _root_.GlobalTheory.RatAut.compAt_mul, mul_inv_cancel, compAt_mt_one]
   have hmem : (p : GA D (dblSp A)) * k₁ * (p : GA D (dblSp A))⁻¹ ∈ Khat A a := by
     rw [hp]
     have e : (p : GA D (dblSp A))⁻¹ * ((p : GA D (dblSp A)) * k₁ * (p : GA D (dblSp A))⁻¹) * (p : GA D (dblSp A)) = k₁ := by
@@ -140,7 +131,7 @@ theorem cartan_move_std : ∀ (D : D7) (A : HSp D) (μ : D.host.E), IsSkew μ �
     rw [e, hk₁, κ.apply_symm_apply]
     exact hk₀K
   have hc := hcomm _ hmem τ
-  rw [compAt_mt_mul, compAt_mt_mul] at hc
+  rw [_root_.GlobalTheory.RatAut.compAt_mul, _root_.GlobalTheory.RatAut.compAt_mul] at hc
   have hcar' : IsCartanInv (gramAt D (dblSp A) τ) (Pi * sS τ * P) :=
     isCartanInv_conj (hsS τ) hPi hPPi (compAt_isom hθ _ _ τ)
   have hcar : IsCartanInv (gramAt D (dblSp A) τ) S1 := GlobalTheory.T.isCartanInv_standardInvolution_doubledGram D A μ hμ _ hstd τ

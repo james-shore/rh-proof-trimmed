@@ -64,14 +64,9 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Plug.RdEx
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  show Spec.map _ ≫ Spec.map _ = Spec.map _
-  rw [← Spec.map_comp, ← CommRingCat.ofHom_comp]
-
 theorem spMap_dual_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
     spMap (Formalism.L2.Pj.dualMap g) ≫ spMap (Formalism.L2.Pj.dualMap f) = spMap (Formalism.L2.Pj.dualMap (g.comp f)) := by
-  rw [spMap_comp']
+  rw [_root_.GlobalTheory.spMap_comp_ring]
   congr 1
   refine RingHom.ext fun t => ?_
   ext <;> simp [Formalism.L2.Pj.dualMap]
@@ -85,12 +80,12 @@ theorem core : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Recip
   obtain ⟨hyx, y₀, hy₀, hcomb⟩ := isGenFr_genFr h Z
   let χ : kap Z →ₐ[c.F] RM.Ω := { Or.𝔐.fn.comp ψ.toRingHom with commutes' := hψ2 }
   obtain ⟨y₂, hy₂⟩ := GlobalTheory.FrameNorm.exists_frMap_along χ y₀
-  obtain ⟨hpt₂, hlie⟩ := GlobalTheory.T.root_origin_component_iso_relay E H Dw l Xo c Y SS RM Sys Fx Or Z ψ hψ1 y₀ hy₀ χ y₂ rfl hy₂
+  obtain ⟨hpt₂, hlie⟩ := _root_.ModelDimension.component_kappa_equivalence E H Dw l Xo c Y SS RM Sys Fx Or Z ψ hψ1 y₀ hy₀ χ y₂ rfl hy₂
   choose e he hi hev using hlie
   letI fa := Or.𝔐.fn.toAlgebra
-  obtain ⟨v, Tm, hv1, hv0, hvi, hvd, hb, hT0, hTd⟩ := GlobalTheory.T.generic_flag_triangular_relay Or.𝔐.Ω₀ RM.Ω Or.Fl.Li₀ Or.𝔐.Li Or.Fl.j
+  obtain ⟨v, Tm, hv1, hv0, hvi, hvd, hb, hT0, hTd⟩ := _root_.ModelDimension.generic_flag_transition_matrices Or.𝔐.Ω₀ RM.Ω Or.Fl.Li₀ Or.𝔐.Li Or.Fl.j
     (CMType H ⊕ CMType H) (labelRk Dw) Or.Fl.V₀ Or.Fl.b Or.Fl.deg Or.Fl.generic e he hi
-  obtain ⟨T, hTi, hTr, hTv⟩ := GlobalTheory.T.flag_variables_alg_indep E H Dw Or.𝔐.Ω₀ RM.Ω v hvi
+  obtain ⟨T, hTi, hTr, hTv⟩ := _root_.PositivityTheory.HtPt.Qak.reindex E H Dw Or.𝔐.Ω₀ RM.Ω v hvi
   obtain ⟨φ, hφC, hφX, hφd⟩ := GlobalTheory.T.polynomial_field_extension_degree (kap Z) Or.𝔐.Ω₀ RM.Ω (FlagVar Dw) ψ T hTi
   have hφk : ∀ a : kap Z, φ (algebraMap (kap Z) (Om Z) a) = Or.𝔐.fn (ψ a) := fun a => hφC a
   have hφcst : ∀ a : c.F, φ (algebraMap c.F (Om Z) a) = Or.𝔐.cst a := fun a => by
@@ -102,7 +97,7 @@ theorem core : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Recip
   have hxx : y'.x = y₂.x := by
     rw [hy'.1, hy₂.1, hyx, hy₀]
     show spMap φ ≫ spMap _ ≫ _ = spMap χ.toRingHom ≫ _
-    rw [← Category.assoc, spMap_comp', hφχ]
+    rw [← Category.assoc, _root_.GlobalTheory.spMap_comp_ring, hφχ]
   have hptF : Small.ptF y' = Small.ptF y₂ := pullback.hom_ext (by rw [Small.ptF_fst, Small.ptF_fst, hxx])
     (by rw [Small.ptF_snd, Small.ptF_snd])
   have hpt' : Small.ptY Y y' = Or.𝔐.ξ ≫ Or.𝔐.f := by
@@ -139,9 +134,9 @@ theorem core : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Recip
   let Wv : ∀ s, Fin (labelRk Dw s) → Or.𝔐.Li := fun s m => ∑ k, v s k m • Or.Fl.j (e s k)
   have hW : ∀ s k, (Or.𝔐.M.pt (Wv s k)).left ≫ Or.𝔐.m.φ = Small.tanY Y y' (Small.labelC s) (Small.labelFin Dw s k) := by
     intro s k
-    have := GlobalTheory.T.root_origin_constant_algebra_points E H Dw l Xo c Y SS RM Sys Fx Or y₂ y' hpt₂ hxx s (fun m => Or.Fl.j (e s m)) (hev s) _ k (hc s k)
+    have := _root_.GlobalTheory.CompanionTheory.Relay.root_origin_constant_algebra_points E H Dw l Xo c Y SS RM Sys Fx Or y₂ y' hpt₂ hxx s (fun m => Or.Fl.j (e s m)) (hev s) _ k (hc s k)
     simpa only [hcoef] using this
-  obtain ⟨t, hbor⟩ := GlobalTheory.T.root_origin_generic_frame_constants E H Dw l Xo c Y SS RM Sys Fx Or Fr y' hpt' Wv Tm hW hb hT0 hTd
+  obtain ⟨t, hbor⟩ := _root_.ModelDimension.generic_frame_constant_algebra E H Dw l Xo c Y SS RM Sys Fx Or Fr y' hpt' Wv Tm hW hb hT0 hTd
   refine ⟨⟨φ, hφcst, t, fun a f hf => ?_, ?_⟩, y', hy', hbor⟩
   · have h1 := GlobalTheory.CompanionTheory.Ar.Rec.FieldPt.evR_frBor_secZ_field E H Dw l Xo c a f RM.Ω t y' Fr.y₀ hf hbor
     obtain ⟨p, ψ₁, z, hz⟩ := hgt

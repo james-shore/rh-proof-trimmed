@@ -79,7 +79,7 @@ theorem local_weil_operator_second_space : GlobalTheory.FunPr.Hypotheses₂ → 
   obtain ⟨hex, -, -⟩ := GlobalTheory.T.theta_action_exists hP F E σ B a' (a + a') G.V' G.W G.M' X.α (X.α / X.β) om' G.q (a' - G.q)
     (a + a' - (G.p + G.q)) (G.p + G.q) (GlobalTheory.ThK.Inhab.pairV' hT) v
   choose! S hS using fun φ (hφ : φ ∈ SB (Fin a' × Fin (a + a') → Fv F v)) => (hex 1 hone h hh φ hφ).exists
-  obtain ⟨R, hR0, hR⟩ := GlobalTheory.T.exists_complementary_adelicSchwartz_restFunction (Fin a' × Fin (a + a')) v
+  obtain ⟨R, hR0, hR⟩ := _root_.GlobalTheory.RestWitness.exists_rest (Fin a' × Fin (a + a')) v
   have eqR : ∀ φ₁ φ₂ : (Fin a' × Fin (a + a') → Fv F v) → ℂ, tens (evFin F v) φ₁ R = tens (evFin F v) φ₂ R → φ₁ = φ₂ := by
     intro φ₁ φ₂ e0
     have hRc := (hR 0 (Submodule.zero_mem _)).1
@@ -109,12 +109,12 @@ theorem local_weil_operator_second_space : GlobalTheory.FunPr.Hypotheses₂ → 
     rw [← hSR _ hm, tensLin, map_add (f := _), map_smul, hSR φ hφ, hSR φ' hφ', tensLin]
   · intro γ hγ φ hφ
     have hw := GlobalTheory.SchrSB.schr_mem_SB B.ψ hT.base.std.1 v (GlobalTheory.LatVac.locCo G.M'.co v γ) φ hφ
-    refine GlobalTheory.T.eq_of_componentTensorAdelicFunction_eq v φ _ _ hφ fun r hr => ?_
-    have hb1 := GlobalTheory.T.adelicHeisenberg_acts_by_local_schrodinger G.M'.co B.ψ v γ hγ φ r hr
+    refine _root_.GlobalTheory.TensUniq.eq_of_tens_eq v φ _ _ hφ fun r hr => ?_
+    have hb1 := _root_.GlobalTheory.VacBridge.rho_acts_locCo G.M'.co B.ψ v γ hγ φ r hr
     have hRw : Rest (evFin F v) (GlobalTheory.WeilM.schr (GlobalTheory.LatVac.psiAt B.ψ v) (GlobalTheory.LatVac.locCo G.M'.co v γ) φ) r :=
       ⟨hr.1, by rw [← hb1]; exact GlobalTheory.T.weil_representation_preserves_schwartz G.M' B.ψ hT.base.std γ _ hr.2⟩
     rw [← (hS _ hw).2 r hRw, ← hb1, hSplit.impl _ _ _ hr.2, (hS φ hφ).2 r hr]
-    exact GlobalTheory.T.adelicHeisenberg_acts_by_local_schrodinger G.M'.co B.ψ v _ (atAct γ hγ) (S φ) r (restS φ r hφ hr)
+    exact _root_.GlobalTheory.VacBridge.rho_acts_locCo G.M'.co B.ψ v _ (atAct γ hγ) (S φ) r (restS φ r hφ hr)
   · intro φ hφ h0
     apply eqR φ 0
     have e1 : om' (1, h⁻¹) (om' (1, h) (tens (evFin F v) φ R)) = tens (evFin F v) φ R := by
@@ -182,7 +182,7 @@ theorem linBar_right_mul : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
     (G.W.θ w) (hT.geo.hW.cartan w)
   have hB : IsUnit Bmᵀ.det := by rw [Matrix.det_transpose]; exact hBm
   choose U hUat hU0 hU1 using fun (P₀ P₁ : Matrix (Fin a') (Fin (a + a')) (Fv F v)) =>
-    GlobalTheory.T.exists_splitPlace_adelicMatrix_given_components hcm v t P₀ P₁
+    _root_.GlobalTheory.SplitComps.exists_mat_comps hcm v t P₀ P₁
   let Pm : Matrix (Fin a') (Fin (a + a')) (Fv F v) → Matrix (Fin a') (Fin (a + a')) (Fv F v) :=
     fun C => -(A⁻¹ * C * (Bmᵀ)⁻¹)
   let Lm : (Matrix (Fin a') (Fin (a + a')) (Fv F v) →ₗ[Fv F v] Fv F v) →
@@ -199,8 +199,8 @@ theorem linBar_right_mul : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
           (-(∑ k, ∑ j, (-(A * x.map (piW (t.comp σ)) * Bmᵀ)) k j * u.map (piW t) k j)) := by
     intro x u hx hx0 hu1
     unfold symp
-    rw [GlobalTheory.T.adelicTrace_supportedAtSplitPlace hcm v t _ (atHTens _ _ x u hx)]
-    have hp := GlobalTheory.T.hermitianTensor_skewHermitian_split_symplectic_pair hcm t G.V'.J G.W.J hT.geo.hV'.herm hT.geo.hW.skew x u hx0 hu1
+    rw [_root_.GlobalTheory.SplitAdeleTrace.trace_at_split hcm v t _ (atHTens _ _ x u hx)]
+    have hp := _root_.GlobalTheory.FourSumComposition.main hcm t G.V'.J G.W.J hT.geo.hV'.herm hT.geo.hW.skew x u hx0 hu1
     dsimp only [cA, incM] at hp
     rw [map_mul, map_mul, map_neg, map_neg, map_one, map_one, neg_one_mul, neg_one_mul, ← neg_add, hp]
     rfl
@@ -219,7 +219,7 @@ theorem linBar_right_mul : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
       (u * (mat h)ᵀ).map (piW s) = u.map (piW s) * ((mat h).map (piW s))ᵀ := by
     intro u s; rw [Matrix.map_mul, Matrix.transpose_map]
   have hbr := fun (γ : Matrix (Fin a') (Fin (a + a')) (AE F E)) hγ (φ : (Fin a' × Fin (a + a') → Fv F v) → ℂ) =>
-    GlobalTheory.T.adelicHeisenberg_acts_by_local_schrodinger G.M'.co B.ψ v γ hγ φ
+    _root_.GlobalTheory.VacBridge.rho_acts_locCo G.M'.co B.ψ v γ hγ φ
   have hsb := fun (w : (Fin a' × Fin (a + a') → Fv F v) × (Fin a' × Fin (a + a') → Fv F v))
     (φ : (Fin a' × Fin (a + a') → Fv F v) → ℂ) (hφ : φ ∈ SB _) => GlobalTheory.SchrSB.schr_mem_SB B.ψ hstd.1 v w φ hφ
   have c1 : ∀ C, ∀ φ ∈ SB (Fin a' × Fin (a + a') → Fv F v),
@@ -272,7 +272,7 @@ theorem linBar_right_mul : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
     rw [show (∑ k, ∑ j, (Y * g.val) k j * l (Matrix.single k j 1)) =
       ∑ k, ∑ j, (Y * g.val) k j * Lm l k j from rfl, sumMulRight]
     simp [Matrix.neg_mul, Finset.sum_neg_distrib]
-  obtain ⟨c, hc⟩ := GlobalTheory.T.eq_smul_of_commute_heisenberg_linearModel_schwartzBruhat (SB (Fin a' × Fin (a + a') → Fv F v)) (GlobalTheory.LatVac.psiAt B.ψ v)
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.LinSchur.eq_smul_of_commute (SB (Fin a' × Fin (a + a') → Fv F v)) (GlobalTheory.LatVac.psiAt B.ψ v)
     (GlobalTheory.SchrSB.continuous_psiAt B.ψ hstd.1 v) (GlobalTheory.PsiNontriv.psiAt_ne_one B.ψ hstd v) ι
     (fun φ Y => ι (S φ) (Y * ((g⁻¹ : GL (Fin (a + a')) (Fv F v)).val))) hι.bij
     (fun x hx y hy c => by

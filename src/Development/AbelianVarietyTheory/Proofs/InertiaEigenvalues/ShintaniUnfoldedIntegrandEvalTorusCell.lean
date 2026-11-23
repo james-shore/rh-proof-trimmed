@@ -134,7 +134,7 @@ theorem uInt_cell_eval : ∀ (E : Type) [Field E] [NumberField E] [_root_.Number
         GlobalTheory.ZEul.uInt φ' φ' Φ N 0 g = b p * conj (b p) * Φ (fun i => pInf E (GlobalTheory.ZEul.lastRow g i)) *
           GlobalTheory.RSJ.indN N (fun i => GlobalTheory.RSJ.pFin E (GlobalTheory.ZEul.lastRow g i)) := by
     intro h1 h2
-    obtain ⟨u, hu, p, hp, κ, hκ, he⟩ := GlobalTheory.T.mirabolicCell_decomposition_lastRow E m S J hJ N hS Φ hΦ g hg h1 h2
+    obtain ⟨u, hu, p, hp, κ, hκ, he⟩ := _root_.GlobalTheory.ZEul.decomp_lastRow E m S J hJ N hS Φ hΦ g hg h1 h2
     have k1 : GlobalTheory.JSW.whit φ (g * infGL E (m + 1) (GlobalTheory.RSJ.secInv fun i => pInf E (GlobalTheory.ZEul.lastRow g i))) =
         GlobalTheory.JSW.psiN u * b p := by rw [he, hKφ κ hκ, hNφ u hu, (hWp p hp).1]
     have k2 : GlobalTheory.JSW.whit φ' (g * infGL E (m + 1) (GlobalTheory.RSJ.secInv fun i => pInf E (GlobalTheory.ZEul.lastRow g i))) =
@@ -228,7 +228,7 @@ theorem uInt_cell_eval : ∀ (E : Type) [Field E] [NumberField E] [_root_.Number
     constructor
     · intro h h0; apply h; rw [hl'app, h0]; rfl
     · intro h h0; apply h; funext i; have := hl' w i; rw [h0] at this; simpa using this.symm
-  have htl : t = GlobalTheory.JSW.tl ϖ l' := GlobalTheory.T.adelicDiagonalUniformizer_eq_prod_localDiagonal E (m + 1) ϖ l.1 l' hl'
+  have htl : t = GlobalTheory.JSW.tl ϖ l' := _root_.GlobalTheory.CellDecNat.tl_eq_jsw_tl E (m + 1) ϖ l.1 l' hl'
   have hsS : ∀ w ∈ l'.support, w ∉ S := fun w hw hS' => by
     rw [hsupp, Finsupp.mem_support_iff] at hw; exact hw (l.2 w hS')
   rw [hdt, htl, hWφ l' hsS p hp, hWφ' l' hsS p hp, hsupp]
@@ -243,7 +243,7 @@ theorem uInt_cell_eval : ∀ (E : Type) [Field E] [NumberField E] [_root_.Number
     refine Finset.prod_congr rfl fun w _ => ?_
     have hq : 0 < qV E w := Nat.pos_of_ne_zero fun h => w.ne_bot (Ideal.absNorm_eq_zero_iff.1 h)
     rw [hl'app]
-    exact GlobalTheory.T.rankinSelbergLocalTerm_eq_sphericalWhittaker_product (qV E w) hq (m + 1) _ _ x (l.1 w) (hnn w) (hanti w)
+    exact _root_.GlobalTheory.ZEulLocal.localTerm_eq (qV E w) hq (m + 1) _ _ x (l.1 w) (hnn w) (hanti w)
   rw [← key]
   simp only [map_mul, Complex.ofReal_mul]
   ring

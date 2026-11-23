@@ -69,10 +69,6 @@ namespace GlobalTheory.PolIsoDescent
 
 open GlobalTheory.Spread GlobalTheory.HomPairDescent
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  rw [← Spec.map_comp]; rfl
-
 theorem model_descends : ∀ (k K : Type) [Field k] [Field K] (σ : k →+* K), (∀ z : K, ∃ f : Polynomial k, f ≠ 0 ∧ Polynomial.eval₂ σ z f = 0) → ∀ (B₁ B₂ : PolAV (Sp k)) (P₀ : PolAV (Sp K)) (c₁ : P₀.A.left ⟶ B₁.A.left) (c₂ : P₀.A.left ⟶ B₂.A.left), IsGrpPullback P₀.A B₁.A (spMap σ) c₁ → IsGrpPullback P₀.A B₂.A (spMap σ) c₂ → LBIso P₀.L (B₁.L.pull c₁) → LBIso P₀.L (B₂.L.pull c₂) → ∃ s : Finset K, ∀ (k₁ : Type) [Field k₁] (α : k →+* k₁) (β : k₁ →+* K), β.comp α = σ → (s : Set K) ⊆ Set.range β → ∀ (C : PolAV (Sp k₁)) (χ : C.A.left ⟶ B₁.A.left), IsGrpPullback C.A B₁.A (spMap α) χ → LBIso C.L (B₁.L.pull χ) → ∃ χ₂ : C.A.left ⟶ B₂.A.left, IsGrpPullback C.A B₂.A (spMap α) χ₂ ∧ LBIso C.L (B₂.L.pull χ₂) ∧ ∀ d : P₀.A.left ⟶ C.A.left, d ≫ χ = c₁ → d ≫ C.A.hom = P₀.A.hom ≫ spMap β → d ≫ χ₂ = c₂ := by
   classical
   intro k K _ _ σ hσ B₁ B₂ P₀ c₁ c₂ h₁ h₂ hL₁ hL₂
@@ -154,7 +150,7 @@ theorem model_descends : ∀ (k K : Type) [Field k] [Field K] (σ : k →+* K), 
   have hα₁β : β.comp α₁ = L₁.val.toRingHom := RingHom.ext fun x => hρ₀ x
   have hα₁ : α₁.comp (algebraMap k L₁) = α := RingHom.ext fun r => β.injective
     ((hρ₀ _).trans (RingHom.congr_fun hαβ r).symm)
-  have hsp : spMap α₁ ≫ spMap (algebraMap k L₁) = spMap α := by rw [spMap_comp', hα₁]
+  have hsp : spMap α₁ ≫ spMap (algebraMap k L₁) = spMap α := by rw [_root_.GlobalTheory.spMap_comp_ring, hα₁]
   have hw : χ ≫ B₁.A.hom = (C.A.hom ≫ spMap α₁) ≫ spMap (algebraMap k L₁) := by
     rw [hχ.1.w, Category.assoc, hsp]
   let j : C.A.left ⟶ ((Over.pullback (spMap (algebraMap k L₁))).obj B₁.A).left := pullback.lift χ (C.A.hom ≫ spMap α₁) hw
@@ -179,7 +175,7 @@ theorem model_descends : ∀ (k K : Type) [Field k] [Field K] (σ : k →+* K), 
     have hdj : d ≫ j = φP := by
       apply pullback.hom_ext
       · rw [Category.assoc, hj₁, hd₁, hfst]
-      · rw [Category.assoc, hj₂, ← Category.assoc, hd₂, Category.assoc, spMap_comp', hα₁β]
+      · rw [Category.assoc, hj₂, ← Category.assoc, hd₂, Category.assoc, _root_.GlobalTheory.spMap_comp_ring, hα₁β]
         exact hφP.1.w.symm
     rw [reassoc_of% hdj]
     exact hc₂

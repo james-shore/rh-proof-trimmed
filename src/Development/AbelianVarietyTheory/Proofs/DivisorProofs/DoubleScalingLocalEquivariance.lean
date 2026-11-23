@@ -173,7 +173,7 @@ theorem GlobalTheory.DblScal.scalar_factors_through_det : GlobalTheory.FunPr.Hyp
   let rr : GL (Fin (d + d)) (Fv F v) →* GL (Fin d ⊕ Fin d) (Fv F v) :=
     Units.map (Matrix.reindexAlgEquiv (Fv F v) (Fv F v) e.symm).toMonoidHom
   have h2 : (2 : Fv F v) ≠ 0 := fun h => two_ne_zero (α := F) ((algebraMap F (Fv F v)).injective (by rw [map_ofNat, h, map_zero]))
-  obtain ⟨χ, hχ⟩ := GlobalTheory.ghom_factors_through_det (k := Fv F v) h2 (f.comp rr)
+  obtain ⟨χ, hχ⟩ := _root_.GlobalTheory.DetFactor.factors_through_det (k := Fv F v) h2 (f.comp rr)
   refine ⟨fun x => (χ x : ℂ), fun p hp => ?_⟩
   have hp' : sec (GlobalTheory.DblScal.locMatD t c p) = p := hinj (hsU _) hp (hs _)
   set A := GlobalTheory.DblScal.locMatD t c p

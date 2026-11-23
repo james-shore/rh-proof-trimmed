@@ -79,7 +79,7 @@ theorem twisted_local_multiplicity_eq : GlobalTheory.Published.HarishChandraAnal
     have hT : TypesTrue (w.st Z').toD7.ntypes y.R.C.P y.R.C.W := by
       rw [y.lev.C, w.C_eq]
       exact g1'
-    exact _root_.GlobalTheory.T.twisted_multiplicity_one h1 h2 h3 h4 h5 h6 h7 h12 h13 hG y.R y.F
+    exact _root_.GlobalTheory.MultEqFinal.twisted_multiplicity_eq h1 h2 h3 h4 h5 h6 h7 h12 h13 hG y.R y.F
       ((hOk w.px w.I hX w.ok w.C_eq w.xi_range).2 _ y.Xg y.tr y.good.irr) hch hEx' hhost ⟨L, hpar⟩ B.ccK_top
       y.pins.keep.guard (GlobalTheory.LiftRows.Inh.goodTypes_of_typesTrue hch.base.lev hT)
   exact (GlobalTheory.T.equalMultiplicities_rowTest_of_sameGroupTransfer

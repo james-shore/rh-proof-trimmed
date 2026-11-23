@@ -95,7 +95,7 @@ theorem exists_step_divisor : GlobalTheory.Published.Principalisation → Global
   obtain ⟨l₁, hl₁⟩ :=
     GlobalTheory.GeneralLift.exists_lift_klt hPr X p n hproj hdim Δ D m G A z hm hG hD hAamp
   obtain ⟨l, hll, hl, f₀, hf₀, hgen, δ₀, hδ0, hδ1, hmain⟩ :=
-    GlobalTheory.T.exists_global_section_angehrnSiu_inductive_step hPr X p n hproj hdim Δ m G A D P z k h hΔ hklt hm hG hAamp hD hP hk hZ hz hh
+    _root_.GlobalTheory.PairStep.exists_global_step hPr X p n hproj hdim Δ m G A D P z k h hΔ hklt hm hG hAamp hD hP hk hZ hz hh
       hnumA l₁
   obtain ⟨u, hu, hvan, hoff⟩ := hl₁ l hll f₀ hf₀
   have hgen' : (l • A).GeneratesAt z (f₀ + u) :=

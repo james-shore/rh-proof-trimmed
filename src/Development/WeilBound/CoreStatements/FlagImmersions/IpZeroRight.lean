@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Development.WeilBound.CoreStatements.PlurisubharmonicCones.EmbEquivSymmApply
 
 @[expose] public section
 
@@ -68,9 +69,6 @@ theorem ip_sum (R : RiemLat E g Λ) {ι κ : Type} [Fintype ι] [Fintype κ] (a 
     dotProduct_smul, smul_eq_mul, Finset.mul_sum]
   exact Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ => by ring
 
-theorem ip_conj (R : RiemLat E g Λ) (x y : Fin g → ℂ) : (starRingEnd ℂ) (R.ip x y) = R.ip y x :=
-  conj_hermForm R.herm y x
-
 theorem ip_zero_left (R : RiemLat E g Λ) (y : Fin g → ℂ) : R.ip 0 y = 0 := by simp [RiemLat.ip]
 
 theorem ip_zero_right (R : RiemLat E g Λ) (y : Fin g → ℂ) : R.ip y 0 = 0 := by simp [RiemLat.ip]
@@ -79,7 +77,7 @@ theorem exists_onb (R : RiemLat E g Λ) (W : Submodule ℂ (Fin g → ℂ)) {m :
     ∃ e : Fin m → Fin g → ℂ, (∀ i, e i ∈ W) ∧ (∀ i j, R.ip (e i) (e j) = if i = j then 1 else 0) ∧
       ∀ z ∈ W, ∃ α : Fin m → ℂ, z = ∑ i, α i • e i := by
   classical
-  obtain ⟨c, hc⟩ := GlobalTheory.T.hermitian_restriction_orthonormal_coords g m R.Hm R.herm R.pos W hm
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HermCoords.exists_coords g m R.Hm R.herm R.pos W hm
   have hinj : Function.Injective (c.comp W.subtype) := by
     refine (injective_iff_map_eq_zero _).2 fun z hz => ?_
     by_contra h0
@@ -136,7 +134,7 @@ theorem star_act (a : 𝓞 E) (ξ : Fin (2 * g) → ℂ) : star (act b a ξ) = a
   simp only [act, star_sum, star_smul, star_io, Pi.star_apply]
 
 theorem exists_real (R : RiemLat E g Λ) (e : Fin g → ℂ) : ∃ ξ, star ξ = ξ ∧ Pc b R ξ = e := by
-  have he : e ∈ Submodule.span ℝ (Set.range R.P) := by rw [SheetDecomposition.Riem.span_top]; trivial
+  have he : e ∈ Submodule.span ℝ (Set.range R.P) := by rw [_root_.LevelTowerAlt.span_top]; trivial
   induction he using Submodule.span_induction with
   | mem x hx =>
     obtain ⟨a, rfl⟩ := hx
@@ -187,7 +185,7 @@ theorem psi_eq (R : RiemLat E g Λ) (ξ ξ' : Fin (2 * g) → ℂ) :
   refine Finset.sum_congr rfl fun l _ => ?_
   have h := Complex.sub_conj (R.ip (R.P (b k)) (R.P (b l)))
   have h2 : (R.ip (R.P (b k)) (R.P (b l))).im = R.form (b l) (b k) := R.im _ _
-  rw [ip_conj, h2] at h
+  rw [_root_.LevelTowerAlt.ip_conj, h2] at h
   push_cast at h
   rw [← h, Pi.star_apply, Pi.star_apply, star_star]
   ring

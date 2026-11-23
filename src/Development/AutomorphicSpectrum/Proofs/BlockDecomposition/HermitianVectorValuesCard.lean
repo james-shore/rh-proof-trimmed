@@ -129,7 +129,7 @@ theorem count : ∀ (E : Type) [CommRing E] (τ : E →+* E) (q : ℕ) (ε : ℤ
     have hfinE : Finite E := Nat.finite_of_card_ne_zero (by
       rw [hR.card]; exact pow_ne_zero _ (by omega))
     have hnt : Nontrivial V := Finite.one_lt_card_iff_nontrivial.1 (by omega)
-    obtain ⟨w, hw⟩ := GlobalTheory.T.hermitian_space_anisotropic_unit E τ q ε hR V B hnt
+    obtain ⟨w, hw⟩ := _root_.GlobalTheory.CompanionTheory.UnrDens.exists_unit_norm E τ q ε hR V B hnt
     have hP : Nat.card (B.perp w) = q ^ (2 * m) := by
       have h1 : Nat.card E * Nat.card (B.perp w) = Nat.card V := by
         rw [← Nat.card_prod]; exact Nat.card_congr (B.perpEquiv hw)

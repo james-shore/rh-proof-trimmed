@@ -154,7 +154,7 @@ theorem invVol_diag_one (ϖ : kˣ) (hϖ : IsUnif ϖ) (t : n ⊕ Fin c) :
     rw [← Subgroup.relIndex_map_map_of_injective _ _ hφ, Subgroup.map_inf_eq _ _ _ hφ, hNφ, hCφ]
     refine GlobalTheory.T.relIndex_conj_integralGL_column_congruence ϖ hϖ t Sin (by simp [Sin]) _ inf_le_right (fun x hx r hr => ?_) (fun y hy h0 => ?_)
     · exact hU x hx r t (by simpa [Sin] using hr)
-    · exact GlobalTheory.T.flagColumnUnipotent_mem_periodUnipotent_integralGL t y hy fun r hr => h0 r (by simpa [Sin] using hr)
+    · exact _root_.GlobalTheory.DiagVol.colE_mem_symN_KO t y hy fun r hr => h0 r (by simpa [Sin] using hr)
   have hq : (0 : ℚ) < resCard k := by
     have : 1 < resCard k := Finite.one_lt_card
     exact_mod_cast this.trans' one_pos

@@ -535,9 +535,6 @@ theorem hK_sum_smul_right {ι : Type*} (s : Finset ι) (k : ι → D.host.K) (f 
 
   simp only [G0.hK, map_sum, Finset.mul_sum]
 
-theorem hK_smul_right (k : D.host.K) (x y : D.host.E) : G0.hK D x (k • y) = G0.cK D k * G0.hK D x y :=
-  hK_smul_right' D k x y
-
 theorem cK_nat (s : ℕ) : G0.cK D (s : D.host.K) = s := map_natCast _ s
 
 theorem cK_int {x : D.host.K} (h : IsIntegral ℤ x) : IsIntegral ℤ (G0.cK D x) :=
@@ -602,7 +599,7 @@ theorem local_orthonormal_basis : LocBasisMM := by
     have := hK_of_mem D h1 h2
     rw [show (s : D.host.E) * b m = (s : D.host.K) • b m from by rw [Algebra.smul_def, map_natCast],
       show (t : D.host.E) * b k = (t : D.host.K) • b k from by rw [Algebra.smul_def, map_natCast],
-      hK_smul_left, hK_smul_right, cK_nat] at this
+      hK_smul_left, _root_.Formalism.L2.KerInert.FrLocB.hK_smul_right', cK_nat] at this
     have e : ((s * t : ℕ) : D.host.K) * G m k = (s : D.host.K) * ((t : D.host.K) * G0.hK D (b m) (b k)) := by
       simp only [G, Matrix.of_apply]; rw [Nat.cast_mul]; ring
     rw [e]; exact isInt_cast this
@@ -625,7 +622,7 @@ theorem local_orthonormal_basis : LocBasisMM := by
     have e1 : G0.hK D ((S : D.host.K) • w n) y = G0.cK D (c n) := by
       rw [hK_smul_left, ← cK_nat D S]
       have e2 : G0.cK D (S : D.host.K) * G0.hK D (w n) y = G0.hK D (w n) ((S : D.host.K) • y) := by
-        rw [hK_smul_right]
+        rw [_root_.Formalism.L2.KerInert.FrLocB.hK_smul_right']
       rw [e2, hc, hK_sum_smul_right]
       rw [Finset.sum_eq_single n]
       · rw [hK_symm, hw, if_pos rfl, map_one, mul_one]
@@ -728,6 +725,6 @@ end Formalism.L2.KerInert.FrLocB
 
 namespace Formalism.L2.KerInert
 
-theorem local_orthonormal_basis : LocBasisMM := FrLocB.local_orthonormal_basis
+alias local_orthonormal_basis := _root_.Formalism.L2.KerInert.FrLocB.local_orthonormal_basis
 
 end Formalism.L2.KerInert

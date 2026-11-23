@@ -102,15 +102,6 @@ private theorem prod_mem_of {H : Type*} [NormedAddCommGroup H] [InnerProductSpac
 section Loc
 variable {K : Type} [Field K] [NumberField K] {n : ℕ} (μ : Measure (normOneGL (K := K) (n := n))) [μ.IsHaarMeasure]
 
-private theorem rhoL_comm' {w w' : Pl K} (h : w ≠ w') (g : Gw n w) (g' : Gw n w') :
-    Commute (rhoL μ w g) (rhoL μ w' g') := by
-  have hm := (UpperTheory.ConvolutionTheory.Tf.commPrj K n μ ⊥).2.2.2.2.2.1
-  have hc := (UpperTheory.ConvolutionTheory.Tf.locEmb K n w).2.2.2.1 w' h.symm g g'
-  change rhoF μ _ ∘L rhoF μ _ = rhoF μ _ ∘L rhoF μ _
-  rw [← hm, ← hm]
-  unfold rhoL at *
-  rw [hc]
-
 private theorem oloc_fix {w w' : Pl K} (h : w ≠ w') [MeasurableSpace (Gw n w)] (m : Measure (Gw n w)) (ψ : Gw n w → ℂ)
     (B : LL μ →L[ℂ] LL μ) (hB : IsOloc μ w m ψ B) (J : Subgroup (Gw n w')) {v : LL μ} (hv : v ∈ fixL μ w' J) :
     B v ∈ fixL μ w' J := by
@@ -119,7 +110,7 @@ private theorem oloc_fix {w w' : Pl K} (h : w ≠ w') [MeasurableSpace (Gw n w)]
     refine ext_inner_left ℂ fun a => ?_
     rw [hB, ← ContinuousLinearMap.adjoint_inner_left, hB]
     refine integral_congr_ae (Filter.Eventually.of_forall fun g => ?_)
-    have h1 := congrArg (· b) (rhoL_comm' μ h g x)
+    have h1 := congrArg (· b) (_root_.UpperTheory.ConvolutionTheory.L1.TY.rhoL_comm μ h g x)
     simp only [ContinuousLinearMap.mul_apply] at h1
     simp only
     rw [ContinuousLinearMap.adjoint_inner_left, h1]
@@ -149,10 +140,6 @@ private theorem trOn_bot {H : Type*} [NormedAddCommGroup H] [InnerProductSpace �
   simp [trOn, this, GroundTheory.Automorphic.trace]
 
 end Loc
-
-private theorem under_over' {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {v : Pl F}
-    (w : PlacesOver E v) : w.1.under (𝓞 F) = v :=
-  HeightOneSpectrum.ext w.2.over.symm
 
 theorem UpperTheory.ConvolutionTheory.C.termE :
     UpperTheory.ConvolutionTheory.C.TermE := by
@@ -196,16 +183,16 @@ theorem UpperTheory.ConvolutionTheory.C.termE :
   have hne : ∀ i, (T.mk' (p i)).1 ≠ w₀.1 := by
     intro i h
     have h1 : p i = q := calc
-      p i = (T.mk' (p i)).1.under (𝓞 F) := (under_over' _).symm
+      p i = (T.mk' (p i)).1.under (𝓞 F) := (_root_.UpperTheory.ConvolutionTheory.L1.TY.under_of_over _).symm
       _ = w₀.1.under (𝓞 F) := by rw [h]
-      _ = q := under_over' _
+      _ = q := _root_.UpperTheory.ConvolutionTheory.L1.TY.under_of_over _
     exact T.q_not (h1 ▸ (Finset.mem_filter.1 (hpm i)).1)
   have hover : ∀ i j, (T.mk' (p i)).1 = (T.mk' (p j)).1 → p i = p j := by
     intro i j h
     calc
-      p i = (T.mk' (p i)).1.under (𝓞 F) := (under_over' _).symm
+      p i = (T.mk' (p i)).1.under (𝓞 F) := (_root_.UpperTheory.ConvolutionTheory.L1.TY.under_of_over _).symm
       _ = (T.mk' (p j)).1.under (𝓞 F) := by rw [h]
-      _ = p j := under_over' _
+      _ = p j := _root_.UpperTheory.ConvolutionTheory.L1.TY.under_of_over _
   set O : Fin (k + 1) → LL μ →L[ℂ] LL μ := fun i => OComponent μ (s i) (hs i) νF a with hO
   have hYfix : T.Y μ V O y ≤ fixL μ w₀.1 (GLnLocal.iwahori (w₀.1.adicCompletion E) n) := by
     rw [hY, ← hJq]

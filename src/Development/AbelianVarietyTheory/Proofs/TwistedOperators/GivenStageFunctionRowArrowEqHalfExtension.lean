@@ -114,7 +114,7 @@ theorem givenFn_right_eq_extFn {D : D7} {T : Type} {L : LevCh D T} {sc : Consts}
       then 1 else 0 := by
     unfold halfInd
     refine if_congr ?_ rfl rfl
-    rw [and_iff_left hx1, GlobalTheory.T.mem_completedGridArrowLattice_iff_integral_frameMatrix hL B t he₁ hAA' i _ hx1]
+    rw [and_iff_left hx1, _root_.GlobalTheory.RowLatChi.mem_latO_iff_intM hL B t he₁ hAA' i _ hx1]
     refine forall₂_congr fun w hw => ?_
     rw [hmap _ w (c1 w hw), GlobalTheory.FunObj.Comparison₂.cosetSet_of_notMem B t w hL (Finset.mem_sdiff.1 hw).2 i.2 (Φ i)]
     rfl

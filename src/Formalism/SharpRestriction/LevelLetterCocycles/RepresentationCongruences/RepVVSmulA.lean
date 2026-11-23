@@ -166,12 +166,6 @@ theorem γA_letE (g : W.Gam) (i : ZMod n) : W.γA g (letE i : LetA O n) = letE i
   · subst h; simp [LocWach.γA, letγ, letE]
   · simp [LocWach.γA, letγ, letE, Pi.single_apply, h]
 
-theorem letE_mul_self (i : ZMod n) : (letE i : LetA O n) * letE i = letE i := by
-  funext k
-  by_cases h : k = i
-  · subst h; simp [letE]
-  · simp [letE, Pi.single_apply, h]
-
 theorem avg_props {T : LocLat G Qp LL O} (a : ZMod n) {z : W.DD T} (hz : z ∈ W.N T)
     (hza : (letE a : LetA O n) • z = z) :
     (∑ δ ∈ W.DelF, W.γD T δ z) ∈ W.NΔ T ∧

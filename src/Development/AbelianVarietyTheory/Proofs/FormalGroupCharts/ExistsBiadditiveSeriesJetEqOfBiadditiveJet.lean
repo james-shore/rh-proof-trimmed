@@ -282,7 +282,7 @@ theorem exists_biadd_jEq : ∀ (R : Type) [CommRing R] (d : ℕ) (O : Type) [Com
     rfl
   have hb3 := nc3 (nc_comp1 he (hp (n := 3) 0)) (nc_comp1 he (hp (n := 3) 1)) (nc_comp1 he (hp (n := 3) 2))
   obtain ⟨β, hβ⟩ : ∃ β : Matrix (Fin d) (Fin d) k, JEq m g₀ (bilSer β (pt k (n := 2) d 0) (pt k d 1)) := by
-    refine ⟨_, GlobalTheory.T.jetEq_bilinearSeries_of_biadditive k d m g₀ ?_ ?_⟩
+    refine ⟨_, _root_.GlobalTheory.ChartCmp.BilAdd.jeq_bilSer_of_biadditive k d m g₀ ?_ ?_⟩
     · have h1 := jEq_ev hb3 hg.add1
       rw [ev_add' hb3, germEv_germEv_two_points hb3 (nc_addOf hF (hp 0) (hp 1)) (hp 2), germEv_germEv_two_points hb3 (hp 0) (hp 2),
         germEv_germEv_two_points hb3 (hp 1) (hp 2), evalPoints_formalGroupAdd hb3 _ (hp 0) (hp 1), evalPoints_coordinatePoint hb3, evalPoints_coordinatePoint hb3, evalPoints_coordinatePoint hb3] at h1

@@ -54,7 +54,7 @@ theorem uChar_of (hS : SqCharStatement) : UCharStatement := by
   intro N Λ _ T k t hk
   obtain ⟨σ, hσk, hU, hK⟩ := ReciprocityTheory.ChartRestriction.DS.HW.KType.exists_rep T
   obtain ⟨lam, hlam, e, he⟩ :=
-    ReciprocityTheory.ChartRestriction.DS.HW.model_equiv N (fun a => (Λ a : ℝ)) T.V σ ⊤ hU hK
+    _root_.ReciprocityTheory.ChartRestriction.DS.HW.highest_weight_model_equiv N (fun a => (Λ a : ℝ)) T.V σ ⊤ hU hK
   have hw : lam.w = Λ := by
     funext a
     exact_mod_cast (hlam a).symm

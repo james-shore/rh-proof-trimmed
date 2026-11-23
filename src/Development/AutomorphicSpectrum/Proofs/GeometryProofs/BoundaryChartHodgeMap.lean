@@ -57,6 +57,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.BCTools
+import Development.AbelianVarietyTheory.Proofs.ToricGeometry.AppellHumbertDataOfIsoCube
 
 @[expose] public section
 
@@ -71,18 +72,6 @@ namespace GlobalTheory.CompanionTheory.Ar.Cusp.ChartUnif
 section Lin
 
 variable {g : ℕ}
-
-theorem hf_add_left (Hm : Matrix (Fin g) (Fin g) ℂ) (x x' y : Fin g → ℂ) :
-    hermForm Hm (x + x') y = hermForm Hm x y + hermForm Hm x' y := by
-  simp [hermForm, add_dotProduct]
-
-theorem hf_smul_left (Hm : Matrix (Fin g) (Fin g) ℂ) (c : ℂ) (x y : Fin g → ℂ) :
-    hermForm Hm (c • x) y = c * hermForm Hm x y := by
-  simp [hermForm, smul_dotProduct]
-
-theorem hf_add_right (Hm : Matrix (Fin g) (Fin g) ℂ) (x y y' : Fin g → ℂ) :
-    hermForm Hm x (y + y') = hermForm Hm x y + hermForm Hm x y' := by
-  simp [hermForm, star_add, Matrix.mulVec_add, dotProduct_add]
 
 theorem hf_real_right (Hm : Matrix (Fin g) (Fin g) ℂ) (r : ℝ) (x y : Fin g → ℂ) :
     hermForm Hm x (r • y) = r * hermForm Hm x y := by
@@ -101,13 +90,13 @@ theorem hermForm_adj {E : Type} [Field E] [NumberField E] [IsCMField E] {Λ : Ty
     hermForm R.Hm (R.B a x) y = hermForm R.Hm x (R.B a' y) := by
   let D : (Fin g → ℂ) → (Fin g → ℂ) → ℂ := fun x y => hermForm R.Hm (R.B a x) y - hermForm R.Hm x (R.B a' y)
   have hl : ∀ x x' y, D (x + x') y = D x y + D x' y := fun x x' y => by
-    simp only [D, map_add (f := _), hf_add_left]
+    simp only [D, map_add (f := _), _root_.GlobalTheory.AppellHumbertTrivial.hermForm_add_left]
     ring
   have hr : ∀ x y y', D x (y + y') = D x y + D x y' := fun x y y' => by
-    simp only [D, map_add (f := _), hf_add_right]
+    simp only [D, map_add (f := _), _root_.GlobalTheory.SelfCube.herm_add_right]
     ring
   have hc : ∀ (c : ℂ) x y, D (c • x) y = c * D x y := fun c x y => by
-    simp only [D, map_smul, hf_smul_left]
+    simp only [D, map_smul, _root_.GlobalTheory.AppellHumbertTrivial.hermForm_smul_left]
     ring
   have hrr : ∀ (r : ℝ) x y, D x (r • y) = r * D x y := fun r x y => by
     have e : R.B a' (r • y) = r • R.B a' y := by

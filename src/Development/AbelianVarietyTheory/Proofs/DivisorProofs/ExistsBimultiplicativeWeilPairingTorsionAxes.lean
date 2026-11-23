@@ -46,6 +46,8 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbelianSchemeGerms
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsTjCorrDiagModel
+import Development.AbelianVarietyTheory.Definitions.ArchimedeanThetaValues.PsiWeightZeroLinearCombination
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.UnitOnInjectiveOfCommRing
 
 @[expose] public section
 
@@ -60,19 +62,10 @@ namespace GlobalTheory.TorsionCommPairing
 
 open GlobalTheory.CechPic
 
-theorem unitOn_inj {R : Type} [CommRing R] : Function.Injective (unitOn (R := R)) := by
-  intro a b h
-  ext
-  have := congrArg (fun u : (Γ(Sp R, ⊤))ˣ => (Scheme.ΓSpecIso (CommRingCat.of R)).hom.hom u.val) h
-  simpa [unitOn] using this
-
 theorem unitOn_surj {R : Type} [CommRing R] (c : (Γ(Sp R, ⊤))ˣ) : ∃ z : Rˣ, unitOn z = c := by
   refine ⟨Units.map (Scheme.ΓSpecIso (CommRingCat.of R)).hom.hom.toMonoidHom c, ?_⟩
   ext
   simp [unitOn]
-
-theorem unitOn_mul {R : Type} [CommRing R] (a b : Rˣ) : unitOn (a * b) = unitOn a * unitOn b :=
-  map_mul _ a b
 
 theorem theta_lbPow {S : Scheme.{0}} {B : Over S} [GrpObj B] {L : LB B.left} (hL : L.IsLB) (k : ℕ)
     {T : Over S} (θ : Out.ThetaGrp B L (k : ℤ) T) :
@@ -145,15 +138,15 @@ theorem exists_pairing : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A] [IsCommMon
   · intro g₁ g₂ g' h₁ h₂ h'
     have hm := DiagPairing.weilIs_mul_left hG hAA hQ (he g₁ g' h₁ h') (he g₂ g' h₂ h')
     rw [lift_mul_lift, _root_.mul_one] at hm
-    apply unitOn_inj
-    rw [unitOn_mul]
+    apply _root_.GlobalTheory.unitOn_injective_of_commRing
+    rw [_root_.GlobalTheory.ToricData.unitOn_mul]
     exact CommutatorPairing.weilIs_unique hG hAA hQ (he _ _ (hmulc g₁ g₂ h₁ h₂) h') hm
   · intro g g₁ g₂ hg h₁ h₂
     have hm := CommPairing.weilIs_symm hQ (DiagPairing.weilIs_mul_left hG hAA hQ
       (CommPairing.weilIs_symm hQ (he g g₁ hg h₁)) (CommPairing.weilIs_symm hQ (he g g₂ hg h₂)))
     rw [lift_mul_lift, _root_.mul_one, mul_inv, inv_inv, inv_inv] at hm
-    apply unitOn_inj
-    rw [unitOn_mul]
+    apply _root_.GlobalTheory.unitOn_injective_of_commRing
+    rw [_root_.GlobalTheory.ToricData.unitOn_mul]
     exact CommutatorPairing.weilIs_unique hG hAA hQ (he _ _ hg (hmulc g₁ g₂ h₁ h₂)) hm
 
 end GlobalTheory.TorsionCommPairing

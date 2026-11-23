@@ -104,8 +104,8 @@ theorem GlobalTheory.LowFilt.exists_filt : ∀ {E : Type} [Field E] [NumberField
   let F₀ := AlgebraicClosure (FractionRing R)
   haveI : CharZero (FractionRing R) := charZero_of_injective_algebraMap (IsFractionRing.injective R _)
   haveI : CharZero F₀ := charZero_of_injective_algebraMap (algebraMap (FractionRing R) F₀).injective
-  obtain ⟨I₀, hI₀⟩ := GlobalTheory.T.exists_levelIsometry_genericFibre_boundaryChart Xo c R hR C tK m1 m2 F₀
-  obtain ⟨y, hy, hcois⟩ := GlobalTheory.T.tateIso_latticePart_surjective_coisotropicKernel Dw R C.P.D.toPre C.P.oD C.P.D.psi_even hB F₀ I₀
+  obtain ⟨I₀, hI₀⟩ := _root_.GlobalTheory.LowDat.exists_xfLevel Xo c R hR C tK m1 m2 F₀
+  obtain ⟨y, hy, hcois⟩ := _root_.GlobalTheory.LowFilt.tateIsoQ_y_cois Dw R C.P.D.toPre C.P.oD C.P.D.psi_even hB F₀ I₀
   have htow : ∀ n m, 0 < n → 0 < m → ∀ a, ∃ e, y (n * m) a = y n a + n • e := by
     intro n m hn hm a
     obtain ⟨q, h₁, -, z, h₃, -⟩ := I₀.tower n m hn hm a
@@ -134,7 +134,7 @@ theorem GlobalTheory.LowFilt.exists_filt : ∀ {E : Type} [Field E] [NumberField
     obtain ⟨e, he⟩ := hgN k a
     obtain ⟨j, hj⟩ := hk1.2
     exact ⟨j • e, by rw [smul_smul, ← hj]; exact he⟩
-  obtain ⟨I, hIl, hIy⟩ := GlobalTheory.T.exists_levelIsometry_extension_algClosed Xo c R hR C tK m1 m2 I₁ hI₁ F
+  obtain ⟨I, hIl, hIy⟩ := _root_.GlobalTheory.LowDat.exists_xfLevel_ext Xo c R hR C tK m1 m2 I₁ hI₁ F
   refine ⟨I, hIl, fun n hn a => ?_⟩
   rw [GlobalTheory.T.exists_equiv_latticePart_zero_iff_mem_nsmul R _ hB F n hn, hIy, ← hker n hn a]
   obtain ⟨e, he⟩ := hy n hn (g n a)

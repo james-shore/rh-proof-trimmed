@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Definitions.Foundations.LiftSLMapMulInvMem
 
 @[expose] public section
 
@@ -76,24 +77,20 @@ private theorem mem_gam_iff (M : ℕ) (a b : SL(2, ℤ)) : a * b⁻¹ ∈ Congru
     Matrix.SpecialLinearGroup.map (Int.castRingHom (ZMod M)) a = Matrix.SpecialLinearGroup.map (Int.castRingHom (ZMod M)) b := by
   rw [CongruenceSubgroup.Gamma_mem', map_mul, map_inv, mul_inv_eq_one]
 
-private theorem map_liftSL (M : ℕ) (γ : SL(2, ZMod M)) :
-    Matrix.SpecialLinearGroup.map (Int.castRingHom (ZMod M)) (liftSL M γ) = γ :=
-  Classical.epsilon_spec (GlobalTheory.specialLinearGroup_map_zmod_surjective (Fin 2) M γ)
-
 private theorem isTr_img {M N l : ℕ} [NeZero M] (hN : N ∣ M) (hl : l ∣ M) :
     IsTr (CongruenceSubgroup.Gamma M) (Gam N l) (fun γ : {γ // γ ∈ img (Gam N l) M} => liftSL M γ.1) := by
   refine ⟨fun γ => ?_, fun δ hδ => ?_⟩
   · obtain ⟨δ, hδ, e⟩ := (Finset.mem_filter.1 γ.2).2
     have h1 : liftSL M γ.1 * δ⁻¹ ∈ CongruenceSubgroup.Gamma M := by
-      rw [mem_gam_iff, map_liftSL, e]
+      rw [mem_gam_iff, _root_.GlobalTheory.K4.map_liftSL, e]
     have h2 := mul_mem (gam_le hN hl h1) hδ
     simpa using h2
   · refine ⟨⟨Matrix.SpecialLinearGroup.map (Int.castRingHom (ZMod M)) δ,
       Finset.mem_filter.2 ⟨Finset.mem_univ _, δ, hδ, rfl⟩⟩, ?_, fun γ hγ => ?_⟩
     · show _ ∈ _
-      rw [mem_gam_iff, map_liftSL]
+      rw [mem_gam_iff, _root_.GlobalTheory.K4.map_liftSL]
     · have h1 : δ * (liftSL M γ.1)⁻¹ ∈ CongruenceSubgroup.Gamma M := hγ
-      rw [mem_gam_iff, map_liftSL] at h1
+      rw [mem_gam_iff, _root_.GlobalTheory.K4.map_liftSL] at h1
       exact Subtype.ext h1.symm
 
 variable {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ}

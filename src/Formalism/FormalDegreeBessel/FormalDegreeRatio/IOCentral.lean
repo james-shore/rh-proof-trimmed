@@ -112,20 +112,7 @@ lemma io_smooth_smul {f : Matrix (Fin n) (Fin n) ℂ → E} (c : ℂ) (hf : Smoo
   refine ⟨U, fun g => c • F g, hU, hgU, hF.const_smul c, fun g hg hgJ => ?_⟩
   simp only [hfF g hg hgJ]
 
-private lemma Jm_mul_self_eq_oneFormalDegreeRatio {n : ℕ} (ε : Fin n → Bool) : Jm ε * Jm ε = 1 := by
-  unfold Jm
-  rw [Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-  congr 1
-  funext i
-  split_ifs <;> norm_num
-
-private lemma Jm_conjTranspose_eq_selfFormalDegreeRatio {n : ℕ} (ε : Fin n → Bool) : (Jm ε)ᴴ = Jm ε := by
-  unfold Jm
-  rw [Matrix.diagonal_conjTranspose]
-  congr 1
-  funext i
-  simp only [Pi.star_apply]
-  split_ifs <;> simp
+private alias Jm_mul_self_eq_oneFormalDegreeRatio := _root_.Formalism.REAL.Jm_mul_self
 
 private lemma inUJ_exp_of_inG_formal_degree_ratio {n : ℕ} {ε : Fin n → Bool} {Y : Matrix (Fin n) (Fin n) ℂ} (hY : inG ε Y) :
     inUJ ε (NormedSpace.exp Y) := by
@@ -163,7 +150,7 @@ private lemma inG_cpart1_formal_degree_ratio {n : ℕ} (ε : Fin n → Bool) (Z 
     rw [← Matrix.mul_assoc, Jm_mul_self_eq_oneFormalDegreeRatio, Matrix.one_mul]
   unfold inG cpart1
   simp only [Matrix.conjTranspose_smul, Matrix.conjTranspose_sub, Matrix.conjTranspose_mul,
-    Matrix.conjTranspose_conjTranspose, Jm_conjTranspose_eq_selfFormalDegreeRatio, hs, Matrix.smul_mul, Matrix.mul_smul, Matrix.sub_mul,
+    Matrix.conjTranspose_conjTranspose, _root_.Formalism.REAL.Jm_conjTranspose, hs, Matrix.smul_mul, Matrix.mul_smul, Matrix.sub_mul,
     Matrix.mul_sub, Matrix.mul_assoc, Jm_mul_self_eq_oneFormalDegreeRatio, Matrix.mul_one, hJJ, smul_sub]
   abel
 
@@ -177,7 +164,7 @@ private lemma inG_cpart2_formal_degree_ratio {n : ℕ} (ε : Fin n → Bool) (Z 
     rw [← Matrix.mul_assoc, Jm_mul_self_eq_oneFormalDegreeRatio, Matrix.one_mul]
   unfold inG cpart2
   simp only [Matrix.conjTranspose_smul, Matrix.conjTranspose_add, Matrix.conjTranspose_mul,
-    Matrix.conjTranspose_conjTranspose, Jm_conjTranspose_eq_selfFormalDegreeRatio, hs, Matrix.smul_mul, Matrix.mul_smul, Matrix.add_mul,
+    Matrix.conjTranspose_conjTranspose, _root_.Formalism.REAL.Jm_conjTranspose, hs, Matrix.smul_mul, Matrix.mul_smul, Matrix.add_mul,
     Matrix.mul_add, Matrix.mul_assoc, Jm_mul_self_eq_oneFormalDegreeRatio, Matrix.mul_one, hJJ, smul_add, neg_smul]
   simp only [neg_smul, one_smul, Matrix.neg_mul, Matrix.smul_mul, Matrix.mul_assoc, Jm_mul_self_eq_oneFormalDegreeRatio,
     Matrix.mul_one]

@@ -118,16 +118,6 @@ theorem sig_ne : D.sp.cm.sig ≠ AlgHom.id D.host.F D.host.E := by
   rw [D.sp.cm.deg2] at h2
   exact absurd h2 (by norm_num)
 
-private theorem cv_cA_lemma (v : Pl D) (x : AE D) :
-    cv D v (cA D x) = sigR (Fv D.host.F v) D.sp.cm.sig (cv D v x) := by
-  have key : ((Algebra.TensorProduct.map (GlobalTheory.AdelicU.evFin D.host.F v) (AlgHom.id D.host.F D.host.E)).comp
-      (Algebra.TensorProduct.map (AlgHom.id D.host.F (AF D.host.F)) D.sp.cm.sig)) =
-      (Algebra.TensorProduct.map (AlgHom.id D.host.F (Fv D.host.F v)) D.sp.cm.sig).comp
-        (Algebra.TensorProduct.map (GlobalTheory.AdelicU.evFin D.host.F v) (AlgHom.id D.host.F D.host.E)) := by
-    rw [← Algebra.TensorProduct.map_comp, ← Algebra.TensorProduct.map_comp]
-    simp only [AlgHom.id_comp, AlgHom.comp_id]
-  exact DFunLike.congr_fun key x
-
 theorem unit_loc (v : Pl D) (g : G D n) :
     cj (sigR (Fv D.host.F v) D.sp.cm.sig) (fromBlocks (bA ((mat g).map (cv D v))) (bB ((mat g).map (cv D v)))
         (bC ((mat g).map (cv D v))) (bD ((mat g).map (cv D v)))) * fromBlocks 0 1 (-1) 0 *
@@ -136,7 +126,7 @@ theorem unit_loc (v : Pl D) (g : G D n) :
   have hcj : (cj (cA D) (mat g)).map (cv D v) =
       cj (sigR (Fv D.host.F v) D.sp.cm.sig) ((mat g).map (cv D v)) := by
     ext i j
-    exact cv_cA_lemma v (mat g j i)
+    exact _root_.PositivityTheory.Rg.Rsw.L.LGenK.cv_cA v (mat g j i)
   have hJ : (Jm D n).map (cv D v) = blk4 0 1 (-1) 0 := weyl_block_matrix_map (cv D v)
   have h2 := congrArg (fun N => N.map (cv D v)) (mat_unit g)
   simp only [Matrix.map_mul] at h2

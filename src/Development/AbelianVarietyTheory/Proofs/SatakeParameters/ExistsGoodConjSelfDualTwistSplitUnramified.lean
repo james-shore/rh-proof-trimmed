@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIrreducibleFixed
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InertialOrderFifteenCharAuxiliaryPrimeSpec
 
 @[expose] public section
 
@@ -72,13 +73,7 @@ theorem unrAt_inv {K : Type} [Field K] [NumberField K] {χ : HChar K} {v : Heigh
 theorem unrAt_pow {K : Type} [Field K] [NumberField K] {χ : HChar K} {v : HeightOneSpectrum (𝓞 K)}
     (h : χ.UnrAt v) : ∀ k : ℕ, (χ ^ k).UnrAt v
   | 0 => fun _ _ => rfl
-  | k + 1 => by rw [pow_succ]; exact unrAt_mul (unrAt_pow h k) h
-
-theorem isAlgPos_mul {F : Type} [Field F] [NumberField F] {χ χ' : HChar F} {n n' : (F →+* ℂ) → ℤ}
-    (h : IsAlgPos χ n) (h' : IsAlgPos χ' n') : IsAlgPos (χ * χ') (n + n') := fun k hk => by
-  have e : (χ * χ').inf k = χ.inf k * χ'.inf k := rfl
-  rw [e, Units.val_mul, h k hk, h' k hk, ← Finset.prod_mul_distrib]
-  exact Finset.prod_congr rfl fun φ _ => (zpow_add₀ ((map_ne_zero φ).2 k.ne_zero) _ _).symm
+  | k + 1 => by rw [pow_succ]; exact _root_.Formalism.L2.Host.HChar.UnrAt.mul (unrAt_pow h k) h
 
 theorem regAlg_twist {K : Type} [Field K] [NumberField K] [_root_.NumberField.IsTotallyComplex K] {n : ℕ} {P : CuspSub K n}
     (h : (CG.mk P).IsRegAlg) {κ : HChar K} {m : (K →+* ℂ) → ℤ} (hκ : κ.IsAlg m) : (CG.mk (P.twist κ)).IsRegAlg := (GlobalTheory.CuspRep.CG.isRegAlg_iff _).2 fun τ => by
@@ -116,7 +111,7 @@ theorem exists_goodCsd_twist : AutomorphicFormsFiniteGL → ∀ (E : Type) [Fiel
       change (Units.map (Int.castRingHom ℂ).toMonoidHom (GlobalTheory.IdeleNormChar.normSign E x)) ^ 2 = 1
       rw [← map_pow, Int.units_sq, map_one]
     rw [this, one_pow]
-  have hpos := isAlgPos_mul hinv (isAlgPos_zero_of_orderDvd two_pos ho)
+  have hpos := _root_.GlobalTheory.GalChar.isAlgPos_mul hinv (isAlgPos_zero_of_orderDvd two_pos ho)
   rw [add_zero] at hpos
   have hsign : ∀ v, (χ⁻¹ * quadChar E ^ (a + (n φ₀).natAbs)).locInf v (-1) = (-1) ^ (-n φ₀) := fun v => by
     change (χ.locInf v (-1))⁻¹ * ((quadChar E ^ (a + (n φ₀).natAbs)).locInf v (-1)) = _

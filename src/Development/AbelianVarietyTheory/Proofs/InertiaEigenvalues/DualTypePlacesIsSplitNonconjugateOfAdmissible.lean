@@ -128,7 +128,7 @@ theorem om_vac_base {B : Base S T} (hB : B.Good) (hS : S.SigOK) {ν : Twist D Ci
     {ω : PairRep S T} (hω : B.IsWeil ν.chi ω) {g : GA D S} {h : GA D T} (hg : g ∈ GfC S) (hh : h ∈ GfC T)
     (sg : Lev.finE S g ∈ St B.F.βS) (sh : Lev.finE T h ∈ St B.F.βT) :
     ω (g, h) B.F.f₀ = ((vacC B ν g h : ℂˣ) : ℂ) • B.F.f₀ := by
-  obtain ⟨h1, h2, h3⟩ := char_laws B hB ν hν hQ
+  obtain ⟨h1, h2, h3⟩ := _root_.GlobalTheory.ExportSeries.TupleChars.tuple_chars B hB ν hν hQ
   have hF := hB.frame
   exact GlobalTheory.StepVecLaw.om_vac hω hS hB.sigOK (fun τ => GlobalTheory.GalLift.Vec.isCartanInv_one (hF.onbS τ)) hF.cartT hF.sdS hF.sdT hF.frS hF.frT
     hF.vac (dualTypePlaces_isSplitNonconjugate_of_admissible hQ).isIdemSum (fun PP hP => (h1 PP hP).1) (fun PP hP => (h1 PP hP).2) h2 h3 hg hh sg sh
@@ -157,7 +157,7 @@ theorem frMapO_act (F : Frame S T) {g : GA D S} {h : GA D T} (sg : Lev.finE S g 
         (redFn F.βT PP (Lev.finE T h)).val * redM PP (frMapO S T F.βS F.βT x) * ((redFn F.βS PP (Lev.finE S g))⁻¹).val) := by
   have sg' : Lev.finE S g⁻¹ ∈ St F.βS := by rw [map_inv]; exact inv_mem sg
   have sh' : Lev.finE T h⁻¹ ∈ St F.βT := by rw [map_inv]; exact inv_mem sh
-  have := GlobalTheory.FrameRed.frMapO_actO_int_red D S T F.βS F.βT g⁻¹ h⁻¹ sg' sh' x
+  have := _root_.GlobalTheory.FrameRed.frMapO_actO_red D S T F.βS F.βT g⁻¹ h⁻¹ sg' sh' x
   rw [inv_inv, inv_inv] at this
   refine ⟨this.1, fun hx PP => ?_⟩
   rw [this.2 hx PP, map_inv, map_inv, redFn_inv sh PP, redFn_inv sg PP, inv_inv]

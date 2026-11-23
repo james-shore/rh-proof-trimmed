@@ -184,7 +184,7 @@ theorem stage2 [CharZero O] (hmod : GroundTheory.Heights₂.Heights.IndefiniteRo
   exact descend hmod hfn hp hfam z hmod' (stage3 hmod' hfn' hp hfam' h1' haf' h2')
 
 theorem stage1b [CharZero O] (hmod : GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.NumbersDVR.Bundles.IsModelOver O (mcIdeal O x) d) (hfn : fnField O x = ⊤) (hp : p.Prime) (hfam : IsLatticeFamily O x p w χ φ D) (h1 : (∀ c, mseg x c ≠ 0 → (D c).Good₁ (chartRing O (mseg x) c) p (fun τ a => algebraMap O Ω (χ τ a)))) (hN : NormalCharts O x) : ∀ (Lie W : ∀ τ, ChartBundle O (mseg x) (r τ) (Fin (r τ) → Ω)) (Om OmHT : ∀ τ, ChartBundle O (mseg x) (s τ) (Fin (s τ) → Ω)), HasBundles O x D Lie W Om OmHT → CkRelations O x d p φ Lie W Om OmHT :=
-  stage2 hmod hfn hp hfam h1 (fun c hc τ => GlobalTheory.T.hodge_annihilator_lattice_holds (D c) (chartRing O (mseg x) c) p _ _
+  stage2 hmod hfn hp hfam h1 (fun c hc τ => _root_.GlobalTheory.CompanionTheory.Ar.Num.hodge_annihilator_lattice (D c) (chartRing O (mseg x) c) p _ _
       (charData_of (inj_of_model hmod) hp hfam c) (hfam.base c hc) hp
       ((GlobalTheory.T.chart_rings_noetherian_fraction O Ω K ι x).1 c) ((GlobalTheory.T.chart_rings_noetherian_fraction O Ω K ι x).2.1 hfn c hc) (hN c hc) φ
       (hfam.test c hc) (h1 c hc) τ)

@@ -76,8 +76,8 @@ theorem famIdeal_map_basicOpen : ∀ (Y Z : Scheme.{0}) (π : Y ⟶ Z) [IsFinite
       fun x hx => hU (Z.basicOpen_le f hx)
     letI := fieldK π hK
     letI := algKL π
-    obtain ⟨hdomA, hfrA⟩ := GlobalTheory.T.sections_isFractionRing_stalk_imageOfGenericPoint Y Z π U.1 U.2 hU hζU
-    obtain ⟨_, hfrA'⟩ := GlobalTheory.T.sections_isFractionRing_stalk_imageOfGenericPoint Y Z π (Z.basicOpen f) (Z.affineBasicOpen f).2 hUD hD
+    obtain ⟨hdomA, hfrA⟩ := _root_.GlobalTheory.NormSheafDescent.sections_isDomain_isFractionRing_stalk Y Z π U.1 U.2 hU hζU
+    obtain ⟨_, hfrA'⟩ := _root_.GlobalTheory.NormSheafDescent.sections_isDomain_isFractionRing_stalk Y Z π (Z.basicOpen f) (Z.affineBasicOpen f).2 hUD hD
     letI iA := algAK π U.1 hζU
     letI iB := algBL π U.1 hζU
     letI iA' := algAK π (Z.basicOpen f) hD

@@ -51,6 +51,7 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.L
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.MajPos
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.OrthogonalComplementLines
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.PerpComponentCombination
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.FlowMatMulVec
 
 @[expose] public section
 
@@ -107,11 +108,6 @@ private lemma hermC_sum_smul_right (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r
   refine Finset.sum_congr rfl fun l _ => ?_
   ring
 
-private lemma herm_eq_hermC_emb_emb (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E) (x y : Fin r → E) :
-    τ (herm G x y) = hermC τ G (Data.emb τ x) (Data.emb τ y) := by
-
-  simp only [herm, hermC, map_sum, map_mul, Data.emb, cc, IsCMField.complexEmbedding_complexConj]
-
 private lemma emb_sum_smul' (τ : E →+* ℂ) {n : ℕ} (c : Fin n → E) (β : Fin n → Fin r → E) :
     Data.emb τ (∑ k, c k • β k) = ∑ k, τ (c k) • Data.emb τ (β k) := by
   funext a
@@ -147,7 +143,7 @@ theorem Q_exists (X : DataX E r) (ξ : Fin r → E) (z0 : Frame X.Ψ r)
   have hperp : ∀ (τ : X.Ψ) (y : Fin r → E), herm X.Gm y ξ = 0 →
       hermC τ.1 X.Gm (Data.emb τ.1 y) (Data.emb τ.1 ξ) = 0 := by
     intro τ y hy
-    rw [← herm_eq_hermC_emb_emb, hy, map_zero]
+    rw [← _root_.ReciprocityTheory.ChartRestriction.G.FD.emb_herm, hy, map_zero]
   have hee : ∀ τ : X.Ψ, hermC τ.1 X.Gm (Data.emb τ.1 ξ) (Data.emb τ.1 ξ) = 0 :=
     fun τ => hperp τ ξ hξξ
   have huc : ∀ (τ : X.Ψ) (v : Fin r → E),
@@ -164,7 +160,7 @@ theorem Q_exists (X : DataX E r) (ξ : Fin r → E) (z0 : Frame X.Ψ r)
     have h2 : X.Hf z0 τ (uc X.toData z0 ξ τ v) e = 0 := by
       have hl : (2 : ℂ) • X.ppos z0 τ (v - t • e) - (v - t • e) =
           ((2 : ℂ) • X.ppos z0 τ v - v) - t • ((2 : ℂ) • X.ppos z0 τ e - e) := by
-        rw [ReciprocityTheory.ChartRestriction.G.FD.OrthogonalComplementLines.ppos_sub X.toData, Data.ppos_smul_eq]
+        rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.Data.ppos_sub X.toData, Data.ppos_smul_eq]
         module
       have hd : X.Hf z0 τ (uc X.toData z0 ξ τ v) e =
           X.Hf z0 τ v e - t * X.Hf z0 τ e e := by
@@ -216,7 +212,7 @@ theorem Q_exists (X : DataX E r) (ξ : Fin r → E) (z0 : Frame X.Ψ r)
       ReciprocityTheory.MultiplicativeHeights.jForm (X.p0 - 1) (Q τ *ᵥ ReciprocityTheory.MultiplicativeHeights.embVec τ.1 c)
         (Q τ *ᵥ ReciprocityTheory.MultiplicativeHeights.embVec τ.1 c') := by
     intro τ c c'
-    rw [Sform_h, herm_eq_hermC_emb_emb, ← uc_perp (X := X.toData) (z0 := z0) (ξ := ξ) (τ := τ) (hee τ)
+    rw [Sform_h, _root_.ReciprocityTheory.ChartRestriction.G.FD.emb_herm, ← uc_perp (X := X.toData) (z0 := z0) (ξ := ξ) (τ := τ) (hee τ)
       (Data.emb τ.1 (∑ k, c k • β k)) (Data.emb τ.1 (∑ k, c' k • β k)) (hp τ c) (hp τ c'),
       ← huc, ← huc, hQf, hQf, hermC_sum_smul_left]
     simp_rw [hermC_sum_smul_right, (hf τ).2.2.1]

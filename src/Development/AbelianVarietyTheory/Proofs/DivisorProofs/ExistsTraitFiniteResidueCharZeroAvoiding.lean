@@ -70,26 +70,12 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 namespace GlobalTheory
 
-theorem isJacobsonRing_int_of_dim_one : IsJacobsonRing ℤ := by
-  rw [isJacobsonRing_iff_prime_eq]
-  intro P hP
-  by_cases h : P = ⊥
-  · subst h
-    refine le_antisymm (fun x hx => ?_) Ideal.le_jacobson
-    rw [Ideal.mem_bot]
-    by_contra h0
-    have h1 := Ideal.mem_jacobson_bot.1 hx x
-    have h2 : 0 < x * x := mul_self_pos.2 h0
-    rcases Int.isUnit_iff.1 h1 with h3 | h3 <;> omega
-  · have := Ring.DimensionLEOne.maximalOfPrime h hP
-    exact Ideal.jacobson_eq_self_of_isMaximal
-
 theorem exists_trait_finite_residueField_charZero_avoiding : ∀ (B : Type) [CommRing B] [IsDomain B] [CharZero B] [Algebra.FiniteType ℤ B] (m : Ideal B) (h : B), m.IsMaximal → h ≠ 0 → ∃ (V : Type) (_ : CommRing V) (_ : IsDomain V) (_ : IsDiscreteValuationRing V) (_ : CharZero V) (t : B →+* V), IsAdicComplete (IsLocalRing.maximalIdeal V) V ∧ Finite (IsLocalRing.ResidueField V) ∧ t h ≠ 0 ∧ (IsLocalRing.maximalIdeal V).comap t = m := by
   intro B _ _ _ _ m h hm hh
   classical
 
   letI : Field (B ⧸ m) := Ideal.Quotient.field m
-  haveI : IsJacobsonRing ℤ := isJacobsonRing_int_of_dim_one
+  haveI : IsJacobsonRing ℤ := _root_.ReciprocityTheory.AnForm.R.IntegerToRational.isJacobsonRing_int
   haveI : Algebra.FiniteType ℤ (B ⧸ m) :=
     .of_surjective (Ideal.Quotient.mkₐ ℤ _) (Ideal.Quotient.mkₐ_surjective ℤ _)
   haveI : Module.Finite ℤ (B ⧸ m) := finite_of_finite_type_of_isJacobsonRing ℤ (B ⧸ m)

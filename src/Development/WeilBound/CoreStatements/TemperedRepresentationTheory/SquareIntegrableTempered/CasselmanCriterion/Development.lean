@@ -165,7 +165,7 @@ theorem lpBound {N : ℕ} {V : Type} [AddCommGroup V] [Module ℂ V] (π : Repre
   obtain ⟨m, hm, w, l, hw, hl, hcoef⟩ := claim π hs hi x hd hjm t hv c hc j
   borelize (AdGL k N)
   have hopen : IsOpen {g : GL (Fin N) k | l ∘ₗ π g = l} :=
-    GlobalTheory.T.invariant_functional_open_stabilizer π (GroundTheory.Automorphic.GLnLocal.congruenceSubgroup k N m)
+    _root_.GlobalTheory.CompanionTheory.Smooth.isOpen_linearForm_stabiliser π (GroundTheory.Automorphic.GLnLocal.congruenceSubgroup k N m)
       (GroundTheory.Automorphic.GLnLocal.isOpen_congruenceSubgroup k N m) l hl
   obtain ⟨F, hF, hFmem⟩ := hL (Measure.haar (G := AdGL k N)) inferInstance w l hopen
   obtain ⟨hmeas, hdisj⟩ := GlobalTheory.T.contracting_double_coset_measurable k h N (fun a => (x a).1) hd hpos t hv j hj m hm
@@ -176,7 +176,7 @@ theorem lpBound {N : ℕ} {V : Type} [AddCommGroup V] [Module ℂ V] (π : Repre
   have hnorm : ‖δ * Λ‖ = Real.sqrt (modulus k (fun a => Fin ((x a).1)) (zj (fun a => (x a).1) t j)) * ‖Λ‖ := by
     rw [norm_mul, hδdef, val_deltaHalf, Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg (Real.sqrt_nonneg _)]
   rw [← hnorm]
-  refine GlobalTheory.T.not_mem_Lp_of_growth (Measure.haar (G := AdGL k N)) F p hp hFmem _ hmeas hdisj c0 _ 1 ‖δ * Λ‖ hc0 one_pos
+  refine _root_.GlobalTheory.CompanionTheory.Casselman.mul_rpow_lt_one_of_memLp_geometric (Measure.haar (G := AdGL k N)) F p hp hFmem _ hmeas hdisj c0 _ 1 ‖δ * Λ‖ hc0 one_pos
     (norm_nonneg _) hvol ?_
   rintro r _ ⟨g, ⟨x1, hx1, y1, hy1, rfl⟩, rfl⟩
   rw [hF, one_mul, map_mul, map_mul, Module.End.mul_apply, Module.End.mul_apply, hw y1 hy1]
@@ -194,9 +194,9 @@ theorem totalNorm {N : ℕ} {V : Type} [AddCommGroup V] [Module ℂ V] (π : Rep
   classical
   set jl : Fin h := ⟨h - 1, by omega⟩
   obtain ⟨m, hm, w, l, hw, hl, hcoef⟩ := claim π hs hi x hd hjm t hv c hc jl
-  obtain ⟨hsc, hmod1⟩ := GlobalTheory.T.last_block_central_scalar_modulus_one k h N (fun a => (x a).1) hd t jl (by simp [jl]; omega)
+  obtain ⟨hsc, hmod1⟩ := _root_.GlobalTheory.CompanionTheory.ZjScalar.zj_last_scalar_modulus k h N (fun a => (x a).1) hd t jl (by simp [jl]; omega)
   have hopen : IsOpen {g : GL (Fin N) k | l ∘ₗ π g = l} :=
-    GlobalTheory.T.invariant_functional_open_stabilizer π (GroundTheory.Automorphic.GLnLocal.congruenceSubgroup k N m)
+    _root_.GlobalTheory.CompanionTheory.Smooth.isOpen_linearForm_stabiliser π (GroundTheory.Automorphic.GLnLocal.congruenceSubgroup k N m)
       (GroundTheory.Automorphic.GLnLocal.isOpen_congruenceSubgroup k N m) l hl
   have hcent : leviEmb k (stdBlocks (fun a => (x a).1) hd) (zj (fun a => (x a).1) t jl) ∈
       Subgroup.center (GL (Fin N) k) := by

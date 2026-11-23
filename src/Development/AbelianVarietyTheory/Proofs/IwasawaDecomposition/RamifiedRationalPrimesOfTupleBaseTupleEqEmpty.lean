@@ -69,12 +69,6 @@ theorem absNorm_eq_of_mem {v : HeightOneSpectrum (𝓞 D.host.F)} {P : HeightOne
   exact ((Nat.dvd_prime h).1 hd).resolve_left fun h1 =>
     (P.under (𝓞 D.host.F)).isPrime.ne_top (Ideal.absNorm_eq_one_iff.1 h1)
 
-theorem eq_exp_of_le {x : WithZero (Multiplicative ℤ)} {m : ℤ} (h : x ≤ WithZero.exp m)
-    (h' : ¬ x ≤ WithZero.exp (m - 1)) : x = WithZero.exp m := by
-  refine le_antisymm h (not_lt.1 fun h1 => h' ?_)
-  rw [← WithZero.lt_mul_exp_iff_le WithZero.exp_ne_zero, ← WithZero.exp_add, sub_add_cancel]
-  exact h1
-
 theorem degreeOne_of_prime_absNorm_not_mem_sq {L : Type} [Field L] [NumberField L] (P : HeightOneSpectrum (𝓞 L))
     (h1 : (Ideal.absNorm P.asIdeal).Prime) (h2 : ((Ideal.absNorm P.asIdeal : ℕ) : 𝓞 L) ∉ P.asIdeal ^ 2) : Deg1 P := by
   refine ⟨h1, ?_⟩
@@ -88,11 +82,9 @@ theorem degreeOne_of_prime_absNorm_not_mem_sq {L : Type} [Field L] [NumberField 
   have a1 := (P.intValuation_le_pow_iff_mem _ 1).2 (by simpa using hmem)
   have a2 : ¬ P.intValuation ((Ideal.absNorm P.asIdeal : ℕ) : 𝓞 L) ≤ WithZero.exp (-((2 : ℕ) : ℤ)) :=
     fun h => h2 ((P.intValuation_le_pow_iff_mem _ 2).1 h)
-  refine eq_exp_of_le (by simpa using a1) fun h => a2 ?_
+  refine _root_.GlobalTheory.CMVal.Euler.SplitPair.eq_exp_of_le (by simpa using a1) fun h => a2 ?_
   convert h using 2
   norm_num
-
-theorem ramTransfer : ∀ (D : D7) (C : CharFrame D) (nch : NChoice D) (Tp : TupTied D C nch), TupPins Tp → ∀ (μ : D.what₂.Tup) (v : HeightOneSpectrum (𝓞 D.host.F)) (w P : HeightOneSpectrum (𝓞 D.host.E)), w ∈ aboveF (L := D.host.E) D.host.F v → P ∈ aboveF (L := D.host.E) D.host.F v → ¬ (Tp.xi μ).UnrAt w → ¬ (Tp.xi μ).UnrAt P := GlobalTheory.T.tupleChar_ramified_at_all_primes_over_place
 
 theorem finite_inQ (Tp : TupTied D C nch) (μ : D.what₂.Tup) :
     {v : HeightOneSpectrum (𝓞 D.host.F) | Tp.InQ' μ v}.Finite := by
@@ -154,7 +146,7 @@ include hp hPv in
 theorem ram_Pv (μ : D.what₂.Tup) (v : {v : HeightOneSpectrum (𝓞 D.host.F) // Tp.InQ' μ v}) :
     ¬ (Tp.xi μ).UnrAt (Pv v.1) := by
   obtain ⟨w, hw, hr⟩ := v.2
-  exact ramTransfer D C nch Tp hp μ v.1 w (Pv v.1) hw (hPv v.1) hr
+  exact _root_.GlobalTheory.Mem.HD.RamBoth.ram_both D C nch Tp hp μ v.1 w (Pv v.1) hw (hPv v.1) hr
 
 include hp hPv in
 theorem chosenPrimeAbove_ramifiedPlace_degreeOne (μ : D.what₂.Tup) (v : {v : HeightOneSpectrum (𝓞 D.host.F) // Tp.InQ' μ v}) : Deg1 (Pv v.1) :=
@@ -242,7 +234,5 @@ theorem reLoc (Z₀ : DivX D) : QLocTiedC (reducedDivisorCharacter Tp hp Pv hPv 
 end GlobalTheory.Mem.HD.ReQ
 
 namespace GlobalTheory.Mem.HD.ReQ
-
-variable {D : D7} {C : CharFrame D} {nch : NChoice D}
 
 end GlobalTheory.Mem.HD.ReQ

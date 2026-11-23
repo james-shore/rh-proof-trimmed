@@ -51,21 +51,9 @@ noncomputable section
 
 namespace GlobalTheory.SiegAct
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  simp only [spMap, CommRingCat.ofHom_comp, Spec.map_comp]
+alias spMap_comp' := _root_.GlobalTheory.spMap_comp_ring
 
-theorem spMap_inj {A B : Type} [CommRing A] [CommRing B] {f g : A →+* B} (h : spMap f = spMap g) : f = g :=
-  congrArg CommRingCat.Hom.hom (Spec.map_injective h)
-
-theorem spMap_id' (A : Type) [CommRing A] : spMap (RingHom.id A) = 𝟙 (Sp A) := Spec.map_id _
-
-theorem exists_spMap {k B : Type} [CommRing k] [CommRing B] (x : Sp k ⟶ Sp B) : ∃ β : B →+* k, x = spMap β :=
-  ⟨(Spec.preimage x).hom, by rw [spMap, CommRingCat.ofHom_hom, Spec.map_preimage]⟩
-
-theorem unit_left' {S T : Scheme.{0}} {G : Over S} (x : T ⟶ S) (σ : 𝟙_ (Over S) ⟶ G) :
-    (toUnit (Over.mk x) ≫ σ).left = x ≫ σ.left := by
-  simp
+alias spMap_id' := _root_.GlobalTheory.LevelFibre.spMap_id'
 
 variable {h N m : ℕ} {B B' : Type} [CommRing B] [CommRing B'] {ζ : B} {ζ' : B'} {S : Scheme.{0}} {s : S ⟶ Sp B}
 
@@ -98,8 +86,8 @@ def relabel (C : SiegPre h N ζ s) (T : (Fin h ⊕ Fin h → ℤ) →ₗ[ℤ] (F
   lev_add a b := by rw [map_add (f := _), C.lev_add]
   lev_tors a := C.lev_tors _
   geom k _ _ x β z hx hz := by
-    obtain ⟨β₀, hβ₀⟩ := exists_spMap (x ≫ s)
-    have hb : β = β₀.comp σ := spMap_inj (by rw [← hx, ← Category.assoc, hβ₀, spMap_comp'])
+    obtain ⟨β₀, hβ₀⟩ := _root_.GlobalTheory.LevCover.exists_spMap (x ≫ s)
+    have hb : β = β₀.comp σ := _root_.GlobalTheory.ZM.DenseFib.spMap_inj (by rw [← hx, ← Category.assoc, hβ₀, spMap_comp'])
     have h1 : β₀ ζ ^ N = 1 := by rw [← map_pow, hζ, map_one]
     let z₀ : kˣ := Units.ofPowEqOne (β₀ ζ) N h1 hN
     obtain ⟨g1, g2, g3⟩ := C.geom k x β₀ z₀ hβ₀ rfl

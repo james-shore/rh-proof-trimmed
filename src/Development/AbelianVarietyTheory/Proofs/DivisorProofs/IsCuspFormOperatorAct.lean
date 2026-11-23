@@ -82,12 +82,6 @@ theorem level_of_le {φ ψ : Sm E a} (h : IsOpen {k | finRep E a k φ = φ})
     (hle : ∀ k, finRep E a k φ = φ → finRep E a k ψ = ψ) : IsOpen {k | finRep E a k ψ = ψ} :=
   isOpen_stab_of_mem_nhds _ _ (Filter.mem_of_superset (h.mem_nhds (by simp)) fun k hk => hle k hk)
 
-theorem fin_cpt_comm (k : GL (Fin a) (Af E)) (c : Kinf E a) :
-    finRep E a k * cptRep E a c = cptRep E a c * finRep E a k := by
-  change rt E a (finGL E a k) * rt E a (infGL E a (Unitary.toUnits c)) =
-    rt E a (infGL E a (Unitary.toUnits c)) * rt E a (finGL E a k)
-  rw [← map_mul, ← map_mul, infGL_comm]
-
 theorem height_mul_le_const (c : GL (Fin a) (Cinf E)) : ∃ B : ℝ, 1 ≤ B ∧ ∀ y, height (y * c) ≤ B * height y := by
   refine ⟨1 + ‖rmul (toL c.val)‖ + ‖lmul (toL (c⁻¹).val)‖, by linarith [norm_nonneg (rmul (toL c.val)), norm_nonneg (lmul (toL (c⁻¹).val))], fun y => ?_⟩
   have h1 : toL (y * c).val = rmul (toL c.val) (toL y.val) := rfl
@@ -107,7 +101,7 @@ theorem growth_mul_const {f : GL (Fin a) (Cinf E) → ℂ} (c : GL (Fin a) (Cinf
     (h : ∃ (C : ℝ) (N : ℕ), ∀ y, ‖f y‖ ≤ C * height y ^ N) :
     ∃ (C : ℝ) (N : ℕ), ∀ y, ‖f (y * c)‖ ≤ C * height y ^ N := by
   obtain ⟨C, N, hC⟩ := h
-  obtain ⟨B, hB, hB'⟩ := height_mul_le_const c
+  obtain ⟨B, hB, hB'⟩ := _root_.GlobalTheory.AutGrowth.SmoothFinite.height_mul_le c
   have C0 : 0 ≤ C := by
     have := (norm_nonneg _).trans (hC 1)
     have hp : 0 < height (1 : GL (Fin a) (Cinf E)) ^ N := pow_pos (by linarith [one_le_height (1 : GL (Fin a) (Cinf E))]) N
@@ -142,7 +136,7 @@ theorem isCuspForm_act' (hP : GlobalTheory.Published.AutomorphicFormsFiniteGL) (
       refine Submodule.finiteDimensional_of_le (S₂ := (Submodule.span ℂ (Set.range fun c => cptRep E a c φ)).map
         (finRep E a k)) (Submodule.span_le.2 ?_)
       rintro _ ⟨c, rfl⟩
-      exact ⟨_, Submodule.subset_span ⟨c, rfl⟩, (LinearMap.congr_fun (fin_cpt_comm k c) φ)⟩
+      exact ⟨_, Submodule.subset_span ⟨c, rfl⟩, (LinearMap.congr_fun (_root_.GlobalTheory.AutGrowth.SmoothFinite.fin_cpt_comm k c) φ)⟩
     · exact zfin_of_comm _ (fun z hz => zalg_comm_fin k hz) hA.zfin
     · obtain ⟨C, N, h1⟩ := hA.growth (g * finGL E a k)
       refine ⟨C, N, fun y => ?_⟩
@@ -159,7 +153,7 @@ theorem isCuspForm_act' (hP : GlobalTheory.Published.AutomorphicFormsFiniteGL) (
       rw [mul_assoc, hA.left]
     · exact level_of_le hA.level fun k hk => by
         change finRep E a k (cptRep E a c φ) = cptRep E a c φ
-        rw [← Module.End.mul_apply, fin_cpt_comm, Module.End.mul_apply, hk]
+        rw [← Module.End.mul_apply, _root_.GlobalTheory.AutGrowth.SmoothFinite.fin_cpt_comm, Module.End.mul_apply, hk]
     · have := hA.kfin
       refine Submodule.finiteDimensional_of_le (S₂ := Submodule.span ℂ (Set.range fun c => cptRep E a c φ))
         (Submodule.span_le.2 ?_)

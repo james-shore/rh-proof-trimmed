@@ -82,10 +82,6 @@ theorem int_mult (D : Formalism.BasicNotions.D7) (s : Finset D.host.E) :
   obtain ⟨n, hn, h⟩ := Algebra.IsAlgebraic.exists_integral_multiples ℤ s
   exact ⟨n, hn, fun k hk => ⟨⟨n • k, h k hk⟩, zsmul_eq_mul k n⟩⟩
 
-theorem lat_mult (D : Formalism.BasicNotions.D7) {Λ : Submodule (𝓞 D.host.E) (VS D).V} (hΛ : Submodule.IsFullLattice D.host.E Λ)
-    (v : (VS D).V) : ∃ n : ℤ, n ≠ 0 ∧ (n : D.host.E) • v ∈ Λ := by
-  exact UpperTheory.Reformulated.B.LocalTheoryWindows.lat_mult D hΛ v
-
 theorem common_mult (D : Formalism.BasicNotions.D7) {Λ : Submodule (𝓞 D.host.E) (VS D).V} (hΛ : Submodule.IsFullLattice D.host.E Λ)
     (vs : Finset (VS D).V) (ks : Finset D.host.E) :
     ∃ n : ℤ, n ≠ 0 ∧ (∀ v ∈ vs, (n : D.host.E) • v ∈ Λ) ∧
@@ -95,7 +91,7 @@ theorem common_mult (D : Formalism.BasicNotions.D7) {Λ : Submodule (𝓞 D.host
     | empty => exact ⟨1, one_ne_zero, by simp⟩
     | insert v vs hv ih =>
       obtain ⟨n, hn, h⟩ := ih
-      obtain ⟨m, hm, hmv⟩ := lat_mult D hΛ v
+      obtain ⟨m, hm, hmv⟩ := _root_.UpperTheory.Reformulated.B.LocalTheoryWindows.lat_mult D hΛ v
       refine ⟨m * n, mul_ne_zero hm hn, fun w hw => ?_⟩
       rcases Finset.mem_insert.1 hw with rfl | hw
       · have : ((m * n : ℤ) : D.host.E) • w = (n : D.host.E) • ((m : D.host.E) • w) := by

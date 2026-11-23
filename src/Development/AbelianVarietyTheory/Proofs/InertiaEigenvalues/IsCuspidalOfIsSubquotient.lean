@@ -162,7 +162,7 @@ theorem exists_map_jac₂ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpac
   obtain ⟨hb, a, h, hnt⟩ := Nat.find_spec hex
   have hmin := fun t (ht : t < Nat.find hex) => Nat.find_min hex ht
   generalize Nat.find hex = b at hb h hnt hmin
-  have hJc := GlobalTheory.T.isCuspidal_jacquetModule_second_block_of_vanishing k a b n h V π hs fun r t h' h0 ht =>
+  have hJc := _root_.GlobalTheory.JacMinCuspGL.isCuspidal_jac₂_inr k a b n h V π hs fun r t h' h0 ht =>
     not_nontrivial_iff_subsingleton.1 fun h1 => hmin t ht ⟨h0, r, h', h1⟩
   obtain ⟨s, hspan⟩ := GlobalTheory.T.normalizedJacquetTwoBlocks_finitelyGenerated k a b n h V π hs hi
   obtain ⟨X, _, _, τ, hτi, f, hf⟩ := GlobalTheory.T.exists_irreducible_quotient_finitelyGenerated_rep _ _ _ s hnt hspan

@@ -223,7 +223,7 @@ private theorem cont_step (hA : A9) (hB : B1) (q : ℕ) (i : ℤ) {S X : Scheme.
     ∃ (Z : Over S) (j : Spec (CommRingCat.of O) ⟶ Z.left) (d : H (ZMod q) (sch.obj Z.left) (tw q i) 0),
       j ≫ Z.hom = s ∧ Etale Z.hom ∧
       pull _ (sch.map (pullback.fst Z.hom r)) _ 0 d = pull _ (sch.map (pullback.snd Z.hom r)) _ 0 w := by
-  obtain ⟨I, _, _, G, π, ⟨hl⟩, hG⟩ := GlobalTheory.T.exists_cofiltered_limit_affine_etale_of_isStalk' S O s hs
+  obtain ⟨I, _, _, G, π, ⟨hl⟩, hG⟩ := _root_.GlobalTheory.EtC.exists_cofiltered_limit_affine_etale_of_isStalk S O s hs
   have hl1 : IsLimit ((Over.forget S).mapCone ⟨Over.mk s, π⟩) := isLimitOfPreserves (Over.forget S) hl
   have hl2 : IsLimit ((TF r).mapCone ⟨Over.mk s, π⟩) := isLimitOfPreserves (TF r) hl
   obtain ⟨j0, y, hy⟩ := (cont_aff hB q i 0 (G ⋙ Over.forget S) _ hl1 (fun j => (hG j).1)
@@ -268,7 +268,7 @@ private theorem locAbs (hA : A9) (hB : B1) (q : ℕ) (i : ℤ) {k : Type} [Field
     (x : U.left) :
     ∃ (U' : B.Etale) (a : U' ⟶ U) (c : H (ZMod q) (sch.obj U'.left) (tw q i) 0), x ∈ Set.range a.left ∧
       pull _ (sch.map (toBY P U')) _ 0 c = pull _ (sch.map (resY P a)) _ 0 w := by
-  obtain ⟨O, hO, s, g, hs, v, hv⟩ := GlobalTheory.T.exists_strictlyHenselianEtaleStalk_over_point U.left (Over.mk (𝟙 U.left)) (by dsimp; infer_instance) x
+  obtain ⟨O, hO, s, g, hs, v, hv⟩ := _root_.GlobalTheory.EtC.exists_isStalk_over_point U.left (Over.mk (𝟙 U.left)) (by dsimp; infer_instance) x
   have hsg : g.left = s := by simpa using Over.w g
   haveI hr : QuasiCompact (toBY P U) := by dsimp [toBY]; infer_instance
   have hu : ∀ (Z : Scheme.{0}), (Z ⟶ U.left) → IsUnit (q : Γ(Z, ⊤)) := fun Z g' => unit_of hq (g' ≫ U.hom ≫ toK)

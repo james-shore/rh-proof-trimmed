@@ -60,7 +60,7 @@ open GlobalTheory.BigTop.Fun.OneSqTie in
 theorem GlobalTheory.BigTop.Fun.oneSq_of_log_derivative_bound_thA (hS : _root_.GlobalTheory.BigTop.Fun.SettingAtPoint)
     (hdl : Closed FamHyp fun Fm _ => _root_.GlobalTheory.BigTop.EventuallyAtPoints Fm fun x _ i _ => |(Fm.L x i).logDerivativeAtOne| ≤ (Fm.L x i).sc.x ^ (Fm.L x i).sc.eps)
     (hA : _root_.GlobalTheory.BigTop.Fun.LeafConditions (Fitted @Comparison₂) fun p _ d _ _ => ThA d.G p.P.A3.A.μ0 p.R.mu) (hO : OneSqSt) : _root_.GlobalTheory.BigTop.Fun.LeafUniqueSquareRoot @Comparison₂ := by
-  have hQ := _root_.GlobalTheory.T.forallLeaves_fitted_of_gBig _ hS hdl hO
+  have hQ := _root_.GlobalTheory.BigTop.Fun.gBig_atTied_alt _ hS hdl hO
   refine _root_.GlobalTheory.BigTop.Fun.LeafConditions.mono (_root_.GlobalTheory.BigTop.Fun.LeafConditions.and hQ (_root_.GlobalTheory.BigTop.Fun.LeafConditions.and hA (_root_.GlobalTheory.BigTop.Fun.OneSqTie.lf_std_alt hS))) ?_
   intro D L hT Gi Gl Kc Y cX ex Csz p CF d C CH _ hd
   refine ⟨hd, fun ⟨hq, hth, hstd⟩ => ?_⟩

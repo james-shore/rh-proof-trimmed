@@ -869,10 +869,7 @@ lemma Kf_eq {a : ℝ} {mm : ℕ} {x : Idx k r mm → E} {F : Mat k r → E} (hx 
   have h : Vd mm [] [] g := ⟨by simp, by simp, by simp, hg⟩
   rw [Kf, dite_eq_left h, ← Tf_inv hx h]; rfl
 
-lemma dLR_zero (u v : List (Mat k r)) : dLR u v (0 : Mat k r → E) = 0 := by
-  rw [dLR_eq]
-  have := W_smul (lr u v) (0 : ℂ) (0 : Mat k r → E)
-  simpa using this
+alias dLR_zero := _root_.Formalism.FourierDecayAlt.P.BetaSesquilinearity.dLR_zero
 
 lemma cc_zero (A : ℝ) (m : ℕ) : CCle A m (0 : Mat k r → E) 0 :=
   ⟨fun _ _ => ⟨Set.univ, 0, isOpen_univ, trivial, contDiffOn_const, fun _ _ _ => rfl⟩,

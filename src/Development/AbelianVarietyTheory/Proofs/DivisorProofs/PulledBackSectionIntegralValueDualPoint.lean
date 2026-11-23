@@ -47,6 +47,7 @@ import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.IsRegularFnIffO
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoeffTopMonEqZero
 import Development.AbelianVarietyTheory.Proofs.ToricGeometry.MemSpanOfCardLe
 import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.EllipsoidStA
+import Formalism.LocalToGlobal.ProjectiveLattices.FrameCharts
 
 @[expose] public section
 
@@ -111,19 +112,15 @@ end GlobalTheory.IntGaugePull
 
 namespace GlobalTheory.IntGaugePull
 
-theorem spMap_comp_spMap {A B E : Type} [CommRing A] [CommRing B] [CommRing E] (f : B →+* E) (g : A →+* B) :
-    spMap f ≫ spMap g = spMap (f.comp g) := by
-  simp only [spMap, ← Spec.map_comp]; rfl
-
 theorem redE_dual {A B : Type} [CommRing A] [CommRing B] (f : A →+* B) :
     redE B ≫ spMap (dualMap f) = spMap f ≫ redE A := by
-  simp only [redE, spMap_comp_spMap]
+  simp only [redE, _root_.Formalism.L2.Pj.spMap_comp_ring]
   congr 1
   ext z <;> simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl]
 
 theorem dualMap_comp {A B E : Type} [CommRing A] [CommRing B] [CommRing E] (f : B →+* E) (g : A →+* B) :
     spMap (dualMap f) ≫ spMap (dualMap g) = spMap (dualMap (f.comp g)) := by
-  rw [spMap_comp_spMap]
+  rw [_root_.Formalism.L2.Pj.spMap_comp_ring]
   congr 1
   ext z <;> simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl]
 
@@ -152,7 +149,7 @@ theorem sE_norm_le_one_of_pull : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDis
     let xi : TF (R := V) C ⟶ D.toPre.P.A :=
       Over.homMk (redE C ≫ spMap (dualMap (toF V C)) ≫ Q ≫ D.toPre.famφB β i) (by
         simp only [Category.assoc]
-        rw [famφB_hom, hQ, spMap_comp_spMap, redE, spMap_comp_spMap]
+        rw [famφB_hom, hQ, _root_.Formalism.L2.Pj.spMap_comp_ring, redE, _root_.Formalism.L2.Pj.spMap_comp_ring]
         simp only [TF, Over.mk_hom, jFK, jK]
         rw [← Spec.map_comp]
         congr 1
@@ -162,7 +159,7 @@ theorem sE_norm_le_one_of_pull : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDis
     have hxy : spMap S.subtype ≫ x₀ = spMap S.subtype ≫ (spMap toS ≫ redE V ≫ Q ≫ D.toPre.famφB β i) := by
       rw [hx₀]
       simp only [xi, Over.homMk_left]
-      rw [← Category.assoc (spMap S.subtype), spMap_comp_spMap, htoS, ← Category.assoc, redE_dual, Category.assoc]
+      rw [← Category.assoc (spMap S.subtype), _root_.Formalism.L2.Pj.spMap_comp_ring, htoS, ← Category.assoc, redE_dual, Category.assoc]
     have heq : x₀ = spMap toS ≫ redE V ≫ Q ≫ D.toPre.famφB β i :=
       sep_unique S D.toPre.P.A.hom _ _ (spMap_subtype_cancel S _ _ (by simp only [← Category.assoc] at hxy ⊢; rw [hxy])) hxy
     apply top_le_of_redE

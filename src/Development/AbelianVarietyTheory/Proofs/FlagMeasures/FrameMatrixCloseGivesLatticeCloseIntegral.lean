@@ -152,7 +152,7 @@ theorem int_inv (L : LocE F E) {n : ℕ} (s : Matrix (Fin n) (Fin n) E) (hlow : 
     split_ifs
     · exact L.O.one_mem
     · exact L.O.zero_mem
-  obtain ⟨si, -, h2, h3⟩ := GlobalTheory.T.unitriangular_close_to_one_inverse_close L n s 1 L.O.one_mem hlow hdiag
+  obtain ⟨si, -, h2, h3⟩ := _root_.GlobalTheory.unitriangular_inv_close L n s 1 L.O.one_mem hlow hdiag
     (fun i j => ⟨(s - 1) i j, L.O.sub_mem (hO i j) (h1O i j), (one_mul _).symm⟩)
   refine ⟨si, h2, fun i j => ?_⟩
   obtain ⟨o, ho, he⟩ := h3 i j

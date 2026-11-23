@@ -115,7 +115,7 @@ private theorem fullLattice_of_glueVec {X : HSp D} {u : D.what₂.Word} {L₀ : 
 
 theorem gluedSt (D : D7) : GluedSt D := by
   intro u π hπ Y X ι z hz L₀ f₀ hb
-  obtain ⟨f, hf, hff⟩ := GlobalTheory.T.exists_isAdelicGlueVector_of_glueBaseData D u π hπ X L₀ f₀ hb
+  obtain ⟨f, hf, hff⟩ := _root_.GlobalTheory.AdIsom.BaseVec.exists_isGlueVec D u π hπ X L₀ f₀ hb
   have hL₀ := fullLattice_of_glueVec hb.1.fg hf
   obtain ⟨x, hx⟩ := exists_sub_inc_mem_hat (D := D) (Λ := L₀) hL₀.span_eq_top f
   obtain ⟨x₀, hx₀⟩ := vA_surj X x
@@ -127,14 +127,14 @@ theorem gluedSt (D : D7) : GluedSt D := by
     · rw [← hff w hw, ← smul_sub]
       exact smul_mem_hat (idem_mem w) hx
   have huniq : ∀ L, IsGlued Y X ι z u π L₀ f₀ L → L = glueLat Y X ι z u L₀ x₀ :=
-    fun L hL => GlobalTheory.T.gluedHermitianLattice_unique D u π hπ Y X ι z L₀ f₀ L _ hL hgl
+    fun L hL => _root_.GlobalTheory.GlueUnique.glued_unique D u π hπ Y X ι z L₀ f₀ L _ hL hgl
   refine ⟨⟨_, hgl, huniq⟩, fun L hL => ?_⟩
   rw [huniq L hL]
   exact GlobalTheory.T.gluedLattice_selfDual_primitive_meet D u Y X ι z hz L₀ x₀ hL₀ hg
 
 theorem ungluedSt (D : D7) : UngluedSt D := by
   intro u π hπ Y X ι z hz L hSD hP
-  obtain ⟨hlat, x₀, hL⟩ := GlobalTheory.T.primitive_lattice_glued_from_intersection D u Y X ι z hz L hSD hP
+  obtain ⟨hlat, x₀, hL⟩ := _root_.GlobalTheory.AdIsom.Unglue.isLattice_capX_and_exists_glue D u Y X ι z hz L hSD hP
 
   have hg : IsGlueVec X u (capX Y X ι L) (vA X x₀) := by
     have key := GlobalTheory.T.isAdelicGlueVector_of_selfDual_primitive D u Y X ι z hz (capX Y X ι L) x₀ hlat

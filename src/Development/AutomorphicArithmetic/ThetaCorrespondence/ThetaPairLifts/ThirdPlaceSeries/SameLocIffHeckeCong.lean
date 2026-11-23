@@ -97,7 +97,7 @@ theorem sameLoc_iff_heckeCong_alt : ∀ (D : D7) (cf : CharFrame D) (jE : D.host
   · intro H
     apply Sp.mx_inj j w hi hi'
     rw [← (Sp.ptX j w i hi x).2.1, ← (Sp.ptX j w i' hi' x').2.1]
-    refine GlobalTheory.PtLocalEig.cls_eq_of_residue _ _ _ ?_
+    refine _root_.GlobalTheory.ClassResidueGenerators.cls_eq_of_generators _ _ _ ?_
     rintro _ ⟨v, k, hvk, rfl⟩
     rw [← Sp.ptX_hT j w i hi x v k hvk, ← Sp.ptX_hT j w i' hi' x' v k hvk]
     have h1 := H v k ((gen v k).2 hvk)

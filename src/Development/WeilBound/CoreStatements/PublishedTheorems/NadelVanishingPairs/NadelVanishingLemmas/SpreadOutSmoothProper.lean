@@ -71,7 +71,7 @@ theorem exists_model_with_sections : ∀ (k : Type) [Field k] (X : Scheme.{0}) (
   intro k _ X f hsm hpr s L σ h M hM
   obtain ⟨R₀, X₀, f₀, π₀, hft, hsm₀, hpr₀, hpb⟩ := GlobalTheory.T.exists_smooth_proper_model_finitelyGenerated_subring k X f hsm hpr
   choose F hF using fun i => GlobalTheory.T.spread_out_line_bundle_section k R₀ X X₀ f f₀ π₀ (L i) (h i) (σ i) hpb
-  obtain ⟨G, hG⟩ := GlobalTheory.T.spread_out_line_bundle_section k R₀ X X₀ f f₀ π₀ M hM 0 hpb
+  obtain ⟨G, hG⟩ := _root_.GlobalTheory.SecDescent.lbSec_descends_to_subring k R₀ X X₀ f f₀ π₀ M hM 0 hpb
   obtain ⟨R, hR, hFR, hRft⟩ :=
     exists_finiteType_subring_ge_finset R₀ hft (G ∪ Finset.univ.biUnion F)
   have hsp : spMap R.subtype ≫ spMap (Subring.inclusion hR) = spMap R₀.subtype := by

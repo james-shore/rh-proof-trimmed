@@ -114,7 +114,7 @@ theorem avg_char {ψ : AddChar (Ad E) ℂ} (hψ : StdPsi ψ) (ζ : ι → E) :
     set y : ι → Ad E := Pi.single t (algebraMap E (Ad E) (ζ t)⁻¹ * a)
     have hy : dot ζ y = a := by
       rw [dot_single', ← mul_assoc, ← map_mul, mul_inv_cancel₀ ht, map_one, one_mul]
-    have h1 := GlobalTheory.T.quotientAverage_translate_invariant (ι → Ad E) (ratV E ι) (isCoLat_ratV E ι) _ (per_char hψ ζ) y
+    have h1 := _root_.GlobalTheory.CuspGeneric.avg_add_right (ι → Ad E) (ratV E ι) (isCoLat_ratV E ι) _ (per_char hψ ζ) y
     have h2 : (fun x => ψ (dot ζ (x + y))) = fun x => ψ a * ψ (dot ζ x) := by
       funext x
       rw [dot_add_right, hy, AddChar.map_add_eq_mul, mul_comm]

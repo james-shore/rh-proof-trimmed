@@ -166,7 +166,7 @@ theorem nuFac_le_odd_unram : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   subst hl0
   obtain ⟨xs, hxs, hle⟩ := GlobalTheory.CharMinor.colength_bound p (GlobalTheory.ChF.unramified_companion_chart_characters p) hp2 E H Dw l Xo c
     T io y Ch X hy hdisc h lab hinj (fun s x => hfr s x) 0
-  have hnu := (GlobalTheory.T.flagStep_characters_of_colength E H Dw l Xo c p T io y Ch X ⟨lab 0, i⟩ xs _ hxs hle).2 k
+  have hnu := (_root_.GlobalTheory.RefSum.hasChars_frame_of_hasAF E H Dw l Xo c p T io y Ch X ⟨lab 0, i⟩ xs _ hxs hle).2 k
   have hstep : ∀ n : ℕ, lab ((n + 1 : ℕ) : ZMod h) = lab ((n : ZMod h) + 1) := fun n => by push_cast; rfl
   refine ⟨fun hs => ?_, fun hi => ?_⟩
   · have hall : ∀ n : ℕ, InPsi H (lab (n : ZMod h)) := by

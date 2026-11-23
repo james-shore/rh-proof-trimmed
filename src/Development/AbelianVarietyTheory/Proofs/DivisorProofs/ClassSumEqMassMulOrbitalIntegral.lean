@@ -74,7 +74,7 @@ theorem clsSum_eq_mass_mul_twOrb : ∀ (E : Type) [Field E] [NumberField E] [IsC
       rw [mul_assoc, ← ht', ← mul_assoc, inv_mul_cancel, one_mul]
     have e2 : (t * x * k)⁻¹ * finPt γ * (t * x * k) = k⁻¹ * (x⁻¹ * (t⁻¹ * finPt γ * t) * x) * k := by group
     rw [e2, e1, mul_assoc, (hH.2 k⁻¹ (inv_mem hk) _).1, (hH.2 k hk _).2]
-  have hreg := GlobalTheory.T.finsum_doubleCoset_regroup_commutative (finU (E := E) (n := n)) T (ratFinU E n) (cptPart T) (globLev S K')
+  have hreg := _root_.GlobalTheory.finsum_doubleCoset_regroup (finU (E := E) (n := n)) T (ratFinU E n) (cptPart T) (globLev S K')
     (fun x => globFn S f (x⁻¹ * finPt γ * x)) hcomm hCT hU' hinv
   simp only [MonoidHom.id_apply] at horb
   rw [clsSum, horb.1, horb.2, hreg, mass]

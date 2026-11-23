@@ -94,8 +94,8 @@ theorem GlobalTheory.DblTrace.trace_pairing_dbl : ∀ {F E : Type} [Field F] [Nu
     exact Matrix.ext fun i j => congrFun (congrFun hu i) (Sum.inr j)
   have hd : (dbl JB).map τ = Matrix.fromBlocks (JB.map τ) 0 0 (-(JB.map τ)) := by
     ext i j; rcases i with i | i <;> rcases j with j | j <;> simp [dbl]
-  rw [hTens_dbl, ← hneg, map_add (f := _), map_add (f := _), add_add_add_comm, GlobalTheory.T.hermitianTensor_skewHermitian_split_symplectic_pair hcm τ JA JB hA hB _ _ h1 h2,
-    GlobalTheory.T.hermitianTensor_skewHermitian_split_symplectic_pair hcm τ JA (-JB) hA hB' _ _ h3 h4, hd, rhs_dbl]
+  rw [hTens_dbl, ← hneg, map_add (f := _), map_add (f := _), add_add_add_comm, _root_.GlobalTheory.FourSumComposition.main hcm τ JA JB hA hB _ _ h1 h2,
+    _root_.GlobalTheory.FourSumComposition.main hcm τ JA (-JB) hA hB' _ _ h3 h4, hd, rhs_dbl]
   have hm : (-JB).map τ = -(JB.map τ) := by ext i j; simp
   rw [hm]
   rfl

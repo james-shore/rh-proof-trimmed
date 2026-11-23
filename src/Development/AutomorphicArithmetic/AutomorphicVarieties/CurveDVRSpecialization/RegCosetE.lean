@@ -62,11 +62,6 @@ open Matrix Polynomial
 
 namespace UpperTheory.V.Pr
 
-private lemma diagE {κ : Type} [Field κ] (M : Matrix (Fin 2) (Fin 2) κ) (α : Fin 2 → κ)
-    (hα : Function.Injective α) (h : M.charpoly = ∏ i, (X - C (α i))) :
-    ∃ P : GL (Fin 2) κ, M * (P : Matrix (Fin 2) (Fin 2) κ) = (P : Matrix (Fin 2) (Fin 2) κ) * diagonal α :=
-  _root_.UpperTheory.Reformulated.B.DiagonalizeTwoByTwo.diagE M α hα h
-
 private lemma strongIrr_conjE {G κ : Type} [Group G] [Field κ] {n : ℕ} (r : G →* GL (Fin n) κ) (h : StrongIrr r)
     (P : GL (Fin n) κ) : StrongIrr ((MulAut.conj P⁻¹).toMonoidHom.comp r) := by
   intro W S hS hW
@@ -234,7 +229,7 @@ theorem UpperTheory.V.Pr.regCosetE :
     have := hα i.castSucc j.castSucc (by simpa using hne) 1 one_pos
     have h2 : α i = α j := Units.ext hij
     fin_cases i <;> fin_cases j <;> simp_all
-  obtain ⟨P, hP⟩ := diagE (gm σ u) _ hinj hu
+  obtain ⟨P, hP⟩ := _root_.UpperTheory.Reformulated.B.DiagonalizeTwoByTwo.diagE (gm σ u) _ hinj hu
   obtain ⟨h, hh⟩ := diagCaseE G κ _ ψ₀ (strongIrr_conjE σ hσ P) u α hα (by
     simp only [gm] at hP
     simp [gm, Matrix.mul_assoc, hP]) (P⁻¹ * y * P) z

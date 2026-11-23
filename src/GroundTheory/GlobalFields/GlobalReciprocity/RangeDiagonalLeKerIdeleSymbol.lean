@@ -92,9 +92,7 @@ theorem range_ideleNorm_mem_nhds_one :
 
 end IdeleNorm
 
-theorem Abelianization.of_injective_of_isMulCommutative {G : Type*} [Group G] [IsMulCommutative G] :
-    Function.Injective (Group.Abelianization.of : G →* Group.Abelianization G) := by
-  rw [← MonoidHom.ker_eq_bot_iff, Group.Abelianization.ker_of, commutator_eq_bot]
+alias Abelianization.of_injective_of_isMulCommutative := _root_.GroundTheory.Global.abelianization_of_injective
 
 namespace IdeleClassLimit
 

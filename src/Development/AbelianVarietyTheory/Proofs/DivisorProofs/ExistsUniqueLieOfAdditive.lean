@@ -57,7 +57,7 @@ theorem existsUnique_lie_of_additive : ∀ (p : ℕ) (O : Type) [CommRing O] [Is
   have hu : ∀ n, ∃ u : Cot O (CartierDual O (G.A n)) →ₗ[O] O ⧸ Ideal.span {((p : O)) ^ n},
       ∀ φ : CartierDual O (G.A n), u (dUnit (R := O) φ) = Ideal.Quotient.mk _ (φ (b n)) := fun n => by
     obtain ⟨z, hz⟩ := hb n
-    exact GlobalTheory.T.exists_cartierDual_tangent_of_coboundaryOne_eq_smul O (G.A n) ((p : O) ^ n) (b n) z hz
+    exact _root_.GlobalTheory.PDiv.exists_tangent_of_cobOne_eq_smul O (G.A n) ((p : O) ^ n) (b n) z hz
   choose u hu using hu
   let U : ∀ n : ℕ, G.dual.omega →ₗ[O] O ⧸ Ideal.span {((p : O)) ^ n} := fun n =>
     (u n).comp ((LinearMap.proj n).comp G.dual.omegaSub.subtype)

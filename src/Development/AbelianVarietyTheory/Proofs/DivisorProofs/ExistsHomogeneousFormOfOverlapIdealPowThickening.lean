@@ -59,14 +59,6 @@ namespace GlobalTheory.FormalAlg.JFrac
 
 open MvPolynomial
 
-theorem exists_rs_eq_pow_mul {X : Scheme} {U V : X.Opens} (hU : IsAffineOpen U) (f : Γ(X, U))
-    (hV : X.basicOpen f = V) (h : V ≤ U) (b : Γ(X, V)) :
-    ∃ (M : ℕ) (a : Γ(X, U)), rs X h a = rs X h f ^ M * b := by
-  subst hV
-  obtain ⟨M, a, ha⟩ :=
-    exists_eq_pow_mul_of_isCompact_of_isQuasiSeparated X U hU.isCompact hU.isQuasiSeparated f b
-  exact ⟨M, a, ha⟩
-
 theorem exists_form : ∀ (R : Type) [CommRing R] (I : Ideal R), ∀ (Y : ∀ e : ℕ, Over (Spec (CommRingCat.of (R ⧸ I ^ (e + 1))))) (β : ∀ e, (Y e).left ⟶ (Y (e + 1)).left), (∀ e, IsPullback (β e) (Y e).hom (Y (e + 1)).hom (thickTrans R I e)) → ∀ (n : ℕ) (C : Charts I Y β n), ∀ (e : ℕ) (i j : Fin (n + 1)) (c : Γ((Y e).left, C.D e i ⊓ C.D e j)), c ∈ towerIdeal Y e (I ^ e) _ → ∃ N₀ : ℕ, ∀ N, N₀ ≤ N → ∀ k : ℕ, ∃ F : MvPolynomial (Fin (n + 1)) R, F.IsHomogeneous (k + 2 * N) ∧ (∀ m, AddMonoidAlgebra.coeff F m ∈ I ^ e) ∧ rs (Y e).left (inf_le_left : C.D e i ⊓ C.D e j ≤ C.D e i) (C.ev e i F) = rs (Y e).left (inf_le_left : C.D e i ⊓ C.D e j ≤ C.D e i) (C.ρ e i j) ^ N * c := by
   intro R _ I Y β hP n C e i j c hc
   obtain ⟨hbasic, -, -⟩ := GlobalTheory.T.thickeningTower_liftedRatios_projective_relations R I Y β hP n C
@@ -86,7 +78,7 @@ theorem exists_form : ∀ (R : Type) [CommRing R] (I : Ideal R), ∀ (Y : ∀ e 
       zero_mem' := ⟨0, 0, J.zero_mem, by simp⟩
       smul_mem' := by
         rintro b a ⟨N₁, G, hG, h1⟩
-        obtain ⟨M, a', ha'⟩ := exists_rs_eq_pow_mul (C.aff e i) (C.ρ e i j) (hbasic e i j) hVU b
+        obtain ⟨M, a', ha'⟩ := _root_.GlobalTheory.AbLaw.TwExtend.fun_extend (C.aff e i) (C.ρ e i j) (hbasic e i j) hVU b
         obtain ⟨H, rfl⟩ := hsurj e i a'
         refine ⟨M + N₁, H * G, J.mul_mem_left _ hG, ?_⟩
         simp only [map_mul, ha', h1, smul_eq_mul]
@@ -104,7 +96,7 @@ theorem exists_form : ∀ (R : Type) [CommRing R] (I : Ideal R), ∀ (Y : ∀ e 
     · exact (I ^ e).zero_mem
   have hfix : ∀ d t, C.ρ e i i ^ t * C.ev e i (homogeneousComponent d G) =
       C.ev e i (homogeneousComponent d G) := fun d t => by
-    have h1 := (GlobalTheory.T.homogeneousForm_chart_change_coeff_ideal_pow R I Y β hP n C e d (homogeneousComponent d G)
+    have h1 := (_root_.GlobalTheory.FormalAlg.Charts.ev_change R I Y β hP n C e d (homogeneousComponent d G)
       (homogeneousComponent_isHomogeneous d G) (MvPolynomial.mem_map_C_iff.1 (hGc d)) i i).2.1
     induction t with
     | zero => simp

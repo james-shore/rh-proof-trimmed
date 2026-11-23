@@ -85,7 +85,7 @@ theorem step_pinned (h2b : StandardLattice.SiegelMassRatioCM) :
   refine (h41.inter hv).imp fun B f T hO G hk _ _ => ?_
   obtain ⟨H, V, Lc⟩ := G
   obtain ⟨⟨δ, hδ⟩, hp⟩ := hk
-  obtain ⟨Pv, d, hsel, habove, hhalf, hd1, hd2⟩ := GlobalTheory.T.exists_half_selection_split_places_base B
+  obtain ⟨Pv, d, hsel, habove, hhalf, hd1, hd2⟩ := _root_.GlobalTheory.Mem.Top.Bl.exists_half_selection_split_places B
   obtain ⟨X, I, hok, hpins, htw, hjets, hsel', hC, hS, hxi, hval⟩ := H hp (hfr _ hO).1 Pv hsel
   obtain ⟨hv1, hv2⟩ := V X I hok hS hxi
   subst hsel'

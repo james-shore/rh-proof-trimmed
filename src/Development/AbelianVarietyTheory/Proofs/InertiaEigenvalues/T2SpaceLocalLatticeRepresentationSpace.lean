@@ -646,9 +646,6 @@ theorem v_pow (P : LocPrime l) (LL : FinExt l) (s : ℕ) :
   rw [map_pow, map_natCast, AddValuation.map_pow, P.v_l]
   simp
 
-theorem norm_l_pow (s : ℕ) : ‖(l : ℚ_[l]) ^ s‖ = (l : ℝ) ^ (-(s : ℤ)) := by
-  rw [norm_pow, Padic.norm_p]; simp
-
 theorem algebraMap_RW_injective (LL : FinExt l) :
     Function.Injective (algebraMap ↥(OL LL) (RW LL)) := by
   haveI : Module.Flat ℤ_[l] ↥(OL LL) := by
@@ -732,14 +729,14 @@ theorem res_pow_eq_one_iff (g : ↥(GK K)) (k : ℕ) : W.resΓ g ^ k = 1 ↔ P.�
 
 theorem mem_GKs_iff (g : ↥(GK K)) :
     g ∈ W.GKs ↔ ‖(P.χQ g : ℚ_[l]) - 1‖ ≤ (l : ℝ) ^ (-(W.s : ℤ)) := by
-  rw [W.GKs_def, P.PD_χ, ← norm_l_pow, ← v_le_iff P LL, v_pow,
+  rw [W.GKs_def, P.PD_χ, ← _root_.Padic.norm_p_pow, ← v_le_iff P LL, v_pow,
     (algebraMap ℚ_[l] ↥LL.1).map_sub, (algebraMap ℚ_[l] ↥LL.1).map_one]
 
 theorem norm_of_res_gam (g : ↥(GK K)) (hg : W.resΓ g = W.gam) :
     ‖(P.χQ g : ℚ_[l]) - 1‖ = (l : ℝ) ^ (-(W.s : ℤ)) := by
   have h := W.gam_gen
   rw [← hg, chi_res, ← v_pow P LL, ← map_one (algebraMap ℚ_[l] ↥LL.1), ← map_sub] at h
-  rw [← norm_l_pow]
+  rw [← _root_.Padic.norm_p_pow]
   exact le_antisymm ((v_le_iff P LL _ _).1 h.ge) ((v_le_iff P LL _ _).1 h.le)
 
 theorem norm_of_res_gamK (γ g : ↥(GK K)) (hγ : W.resΓ γ = W.gamK) :

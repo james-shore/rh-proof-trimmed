@@ -89,14 +89,7 @@ theorem fcoord_std {d : ℕ} (X : InfinitePlace K → Matrix (Fin d) (Fin d) ℂ
   unfold Formalism.HermitianLatticesTheory.fcoord
   congr 1
 
-theorem gram_eq {d j : ℕ} (X : InfinitePlace K → Matrix (Fin d) (Fin d) ℂ) (v : InfinitePlace K)
-    (e : Fin j → Fin d → K) :
-    gram X v e = ((X v)⁻¹ * ((Matrix.of e)ᵀ.map v.embedding))ᴴ *
-      ((X v)⁻¹ * ((Matrix.of e)ᵀ.map v.embedding)) := by
-  ext a b
-  simp only [gram, Formalism.HN.gramPl, Formalism.HermitianLatticesTheory.majAt, fcoord_std, Matrix.of_apply, Matrix.mul_apply,
-    Matrix.conjTranspose_apply, Matrix.mulVec, dotProduct, Matrix.map_apply,
-    Matrix.transpose_apply]
+alias gram_eq := _root_.GlobalTheory.TestLat.gram_eq_conjTranspose_mul
 
 theorem gram_single {d : ℕ} (X : InfinitePlace K → Matrix (Fin d) (Fin d) ℂ)
     (v : InfinitePlace K) :

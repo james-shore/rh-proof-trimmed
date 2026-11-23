@@ -204,7 +204,7 @@ theorem weight_structure (hL : Laws) (hL₂ : Laws2) : AllPre fun {V} _ _ _ {D} 
     have : CharZero (FractionRing V) := inferInstance
     exact Nat.cast_ne_zero.2 (by omega)
   obtain ⟨S, hS, hS₀⟩ := exists_expansion hL hL₂ V hV D A G U (Kbar V) N hN1
-  obtain ⟨m, minj, mact, madd⟩ := GlobalTheory.T.torusTorsion_to_abelianTorsion_theta_action hL hL₂ V hV D A G U N hN1
+  obtain ⟨m, minj, mact, madd⟩ := _root_.GlobalTheory.UU.Eqv.main hL hL₂ V hV D A G U N hN1
   obtain ⟨Ψ, fd, h⟩ := structure_of_acts hL hL₂ U (PreU.dim_eq V hV D A G U) (Kbar V) hN S hS hS₀ m minj mact madd
   exact ⟨S, Ψ, fd, hS, hS₀, h⟩
 

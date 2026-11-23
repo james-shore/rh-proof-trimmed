@@ -60,8 +60,7 @@ theorem laurentMap_coeff {A B : Type} [CommRing A] [CommRing B] (f : A →+* B) 
     (laurentMap f p).coeff n = f (p.coeff n) := by
   simp [laurentMap]
 
-theorem spMap_id (L : Type) [CommRing L] : spMap (RingHom.id L) = 𝟙 _ := by
-  simp [spMap]
+alias spMap_id := _root_.GlobalTheory.EtAlgCD.spMap_id
 
 theorem laurentProd_bijective (B C : Type) [CommRing B] [CommRing C] : Function.Bijective
     ((laurentMap (RingHom.fst B C)).prod (laurentMap (RingHom.snd B C))) := by
@@ -107,8 +106,8 @@ theorem surj_prod (q : ℕ) [NeZero q] (B C : Type) [CommRing B] [CommRing C] (h
   simp only [Prod.mk.injEq] at ha
   refine ⟨a, (sub_eq_zero.mp ?_).symm⟩
   apply eq_zero_of_pull_laurent_fst_snd q B C 1 i
-  · rw [map_sub, gmPhi_nat GlobalTheory.T.cup_chern_kummer_pullback_naturality q _ hq, ha.1, hb, sub_self]
-  · rw [map_sub, gmPhi_nat GlobalTheory.T.cup_chern_kummer_pullback_naturality q _ hq, ha.2, hc, sub_self]
+  · rw [map_sub, gmPhi_nat _root_.GlobalTheory.EtC.a6nat_holds q _ hq, ha.1, hb, sub_self]
+  · rw [map_sub, gmPhi_nat _root_.GlobalTheory.EtC.a6nat_holds q _ hq, ha.2, hc, sub_self]
 
 theorem exists_factor (q : ℕ) [NeZero q] (A : Type) [CommRing A] [HenselianLocalRing A] (hq : IsUnit (q : A)) (i : ℤ)
     (p : Ideal A) [p.IsPrime] :
@@ -125,7 +124,7 @@ theorem exists_factor (q : ℕ) [NeZero q] (A : Type) [CommRing A] [HenselianLoc
   have hloc : IsLocalRing T := GlobalTheory.IntClLocal.isLocalRing_of_isIntegral_of_henselian A T
   have hqT : IsUnit (q : T) := by simpa using hq.map (algebraMap A T)
   refine ⟨T, inferInstance, inferInstance, hint, fun a ha => ?_,
-    (GlobalTheory.T.units_cohomology_bijective q T (GlobalTheory.aic_integralClosure_algebraicClosure D) hqT i).2⟩
+    (_root_.GlobalTheory.EtC.GmAicDeg1.main q T (GlobalTheory.aic_integralClosure_algebraicClosure D) hqT i).2⟩
   have hinjΩ : Function.Injective (algebraMap D Ω) := by
     rw [IsScalarTower.algebraMap_eq D (FractionRing D) Ω]
     exact (algebraMap (FractionRing D) Ω).injective.comp (IsFractionRing.injective D (FractionRing D))

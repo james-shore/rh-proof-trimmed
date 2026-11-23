@@ -59,17 +59,6 @@ theorem eq_zero_of_isHalf_zero {m n : ℕ} {x : Mx D m n} (hx : IsHalf (0 : AE D
   simp at this
   simpa using this.symm
 
-theorem isHalf_zero_zero {m n : ℕ} (e : AE D) : IsHalf e (0 : Mx D m n) := by
-  intro i j
-  simp
-
-theorem heisenbergSymplecticForm_zero_right_eq_zero (S T : HSp D) (x : WO S T) : symplO S T x 0 = 0 := by
-  simp [symplO, hO]
-
-theorem heisO_zero_eq_self (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (f : WO S T → ℂ) : heisO ψ S T 0 f = f := by
-  funext w
-  simp [heisO, symplOH, heisenbergSymplecticForm_zero_right_eq_zero]
-
 theorem heisenbergTranslationCombination_single_one_eq_translate (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (w : WO S T) (f : WO S T → ℂ) :
     GlobalTheory.SeeSaw.comb ψ S T (Finsupp.single w 1) f = heisO ψ S T w f := by
   unfold GlobalTheory.SeeSaw.comb
@@ -88,21 +77,21 @@ theorem vacuum_isCombOf {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L
   · intro u hu
     rw [Finsupp.support_single_ne_zero _ one_ne_zero, Finset.mem_singleton] at hu
     subst hu
-    exact isHalf_zero_zero _
+    exact _root_.GlobalTheory.SplitScalar.isHalf_zero _
   · have he : (FinDatum.vacuum G t p).e = 0 := rfl
     intro f₀ _ _
     show AllSome _ _
-    rw [heisenbergTranslationCombination_single_one_eq_translate, heisO_zero_eq_self]
+    rw [heisenbergTranslationCombination_single_one_eq_translate, _root_.GlobalTheory.SplitScalar.heisO_zero]
     refine ⟨⟨(LinearMap.proj (R := ℂ) (φ := fun _ : WO (G.pS p) (G.pT p) => ℂ) 0).smulRight f₀, ?_, ?_, ?_⟩, ?_⟩
     · intro Φ _ x hx
       obtain rfl := eq_zero_of_isHalf_zero hx
-      simp [heisO_zero_eq_self]
+      simp [_root_.GlobalTheory.SplitScalar.heisO_zero]
     · intro Φ _ y hy
       have hy0 : IsHalf (0 : AE D) y := by rw [he, map_zero] at hy; exact hy
       obtain rfl := eq_zero_of_isHalf_zero hy0
-      simp [heisO_zero_eq_self, heisenbergSymplecticForm_zero_right_eq_zero]
+      simp [_root_.GlobalTheory.SplitScalar.heisO_zero, _root_.GlobalTheory.PlaceModel.symplO_zero_right]
     · have h0 : halfInd (0 : AE D) (latO (G.pS p) (G.pT p) ↑(G.latS p) ↑(G.latT p) fun _ => True) 0 = 1 := by
-        rw [halfInd, if_pos ⟨zero_mem _, isHalf_zero_zero _⟩]
+        rw [halfInd, if_pos ⟨zero_mem _, _root_.GlobalTheory.SplitScalar.isHalf_zero _⟩]
       rw [he]
       simp [h0]
     · intro Tm hT

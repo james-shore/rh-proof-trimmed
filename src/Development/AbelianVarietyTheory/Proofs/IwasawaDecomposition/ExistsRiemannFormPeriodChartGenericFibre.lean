@@ -72,14 +72,6 @@ noncomputable section
 
 namespace GlobalTheory.ShFam.Hor.LogCh.PerChart
 
-theorem hermForm_pull' {g g' : ℕ} (M : Matrix (Fin g') (Fin g) ℂ) (Hm : Matrix (Fin g') (Fin g') ℂ) (z w : Fin g → ℂ) :
-    hermForm (Mᵀ * Hm * Mᵀᴴ) z w = hermForm Hm (M *ᵥ z) (M *ᵥ w) := by
-  have : Mᵀᴴ *ᵥ (star w) = star (M *ᵥ w) := by
-    rw [Matrix.star_mulVec, ← Matrix.mulVec_transpose]
-    rfl
-  rw [hermForm, hermForm, ← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec, this, Matrix.dotProduct_mulVec,
-    Matrix.vecMul_transpose]
-
 theorem exists_logExp_eq (n a : ℕ) (z : Fin n → ℂ) (hz : z ∈ Metric.ball (0 : Fin n → ℂ) 1)
     (hnz : ∀ k : Fin n, (k : ℕ) < a → z k ≠ 0) : ∃ s ∈ logDom n a, logExp a s = z := by
   refine ⟨fun k => if (k : ℕ) < a then Complex.log (z k) else z k, fun k => ?_, funext fun k => ?_⟩
@@ -265,11 +257,11 @@ theorem exists_riemann_period_chart : ∀ (E : Type) [Field E] [NumberField E] [
       Matrix.mulVec_injective_iff_isUnit.2 ((Matrix.isUnit_iff_isUnit_det _).2 (hPu _ hzb))
     refine ⟨Matrix.isHermitian_mul_mul_conjTranspose _ hH, fun u hu => ?_, fun v w hv hw => ?_,
       fun k v w ζ' hk hv hw hζ' => ?_⟩
-    · rw [hermForm_pull']
+    · rw [_root_.GlobalTheory.PureType.hermForm_mulVec]
       exact hpos _ (fun h0' => hu (hPinj (by rw [h0', Matrix.mulVec_zero])))
-    · rw [hermForm_pull']
+    · rw [_root_.GlobalTheory.PureType.hermForm_mulVec]
       exact hint _ _ hv hw
-    · rw [hermForm_pull'] at hζ'
+    · rw [_root_.GlobalTheory.PureType.hermForm_mulVec] at hζ'
       have e1 : ∀ u : Fin g → ℂ, P (e x) *ᵥ ((k : ℂ)⁻¹ • u) = (k : ℂ)⁻¹ • (P (e x) *ᵥ u) := fun u =>
         Matrix.mulVec_smul _ _ _
       show GlobalTheory.UU.CubWeil T.Z.t.cub k (ex x (P (e x) *ᵥ ((k : ℂ)⁻¹ • v))) (ex x (P (e x) *ᵥ ((k : ℂ)⁻¹ • w))) (unitOn ζ')

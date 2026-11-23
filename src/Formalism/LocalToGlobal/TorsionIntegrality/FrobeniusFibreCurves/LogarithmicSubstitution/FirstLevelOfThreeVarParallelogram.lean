@@ -104,7 +104,7 @@ theorem log_sigma_pullback_cocycle_jets_of_parallelogram_and_cube (hP : ParThree
   have hp3 := hP K g2 g3 s2 c0 a1 a3 P l i ep F hW hF hi hc hc3
   have hd := hC K F l i (phO s2 P l) hF hi hpar hp3
   have hf0 := constantCoeff_eq_zero_of_parallelogram hF hi hpar
-  obtain ⟨hdiv, hsw⟩ := cobRules K F l (phO s2 P l) hF hf0
+  obtain ⟨hdiv, hsw⟩ := _root_.Formalism.L2.Th1.B.coboundary_rules_hold K F l (phO s2 P l) hF hf0
   refine ⟨hdiv, hsw, hd, ?_, fun n hn => jetsThree K F l _ hF hd n hn⟩
   rw [hsw]
   exact hd

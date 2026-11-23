@@ -109,17 +109,6 @@ lemma sum_piMatUnit_diag {I : Type} [Fintype I] [DecidableEq I] (m : ℕ) (τ : 
     · simp [hab]
   · simp [piMatUnit, Finset.sum_apply, Matrix.sum_apply, Pi.single_apply, h]
 
-lemma exists_mul_idem_mul_eq_of_trace_eq {g : ℕ} (P P' : Matrix (Fin g) (Fin g) ℂ)
-    (hP : IsIdempotentElem P) (hP' : IsIdempotentElem P') (ht : P.trace = P'.trace) :
-    ∃ X Y : Matrix (Fin g) (Fin g) ℂ, Y * P' * X = P := by
-  first
-  | exact @_root_.GlobalTheory.TraceEqualFinrank.exists_mul_mul_eq_of_trace_eq
-  | exact _root_.GlobalTheory.TraceEqualFinrank.exists_mul_mul_eq_of_trace_eq
-  | (apply _root_.GlobalTheory.TraceEqualFinrank.exists_mul_mul_eq_of_trace_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TraceEqualFinrank.exists_mul_mul_eq_of_trace_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TraceEqualFinrank.exists_mul_mul_eq_of_trace_eq <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TraceEqualFinrank.exists_mul_mul_eq_of_trace_eq ..)
-
 theorem conj_of_trace_central_idem_eq :
     ∀ (I : Type) [Fintype I] [DecidableEq I] (m g : ℕ), 0 < m →
       ∀ (σ σ' : (I → Matrix (Fin m) (Fin m) ℂ) →ₐ[ℂ] Matrix (Fin g) (Fin g) ℂ),
@@ -152,7 +141,7 @@ theorem conj_of_trace_central_idem_eq :
     have := htr τ
     rw [hdiag σ, hdiag σ'] at this
     exact mul_left_cancel₀ hm' this
-  choose X Y hYX using fun τ => exists_mul_idem_mul_eq_of_trace_eq _ _ (hidem σ τ) (hidem σ' τ) (htr' τ)
+  choose X Y hYX using fun τ => _root_.GlobalTheory.TraceEqualFinrank.exists_mul_mul_eq_of_trace_eq _ _ (hidem σ τ) (hidem σ' τ) (htr' τ)
   set h : Matrix (Fin g) (Fin g) ℂ :=
     ∑ τ, ∑ i, σ' (piMatUnit m τ i z) * X τ * σ (piMatUnit m τ z i) with hh
   set h' : Matrix (Fin g) (Fin g) ℂ :=

@@ -60,9 +60,6 @@ theorem continuous_opn {n : ℕ} : Continuous (opn : Matrix (Fin n) (Fin n) ℂ 
       ((Matrix.toEuclideanCLM (𝕜 := ℂ) (n := Fin n)).toAlgEquiv.toLinearEquiv.toLinearMap)
   exact continuous_norm.comp h
 
-theorem opn_pos {k r : ℕ} {g : Mat k r} (hg : g ∈ GG k r) : 0 < opn g := by
-  apply GlobalTheory.Amp.LocalInputs.opn_pos <;> assumption
-
 theorem integrable_of_normInt {k r : ℕ} {μ : Measure (Mt k r)} {A : ℝ} (h : normInt μ A < ⊤) :
     Integrable (fun x : Mt k r => opn (Matrix.of x) ^ (-A)) μ := by
   have hm : Measurable (fun x : Mt k r => opn (Matrix.of x) ^ (-A)) :=
@@ -122,8 +119,8 @@ theorem orbNormInt_lt_top : ∀ (k r : ℕ) (z z' : Fin (2 * r + k + 1) → ℂ)
   have hbound : ∀ γ ∈ C, ∀ p : Mt k r × Mt k r, Matrix.of p.1 ∈ Sset k r z → Matrix.of p.2 ∈ Sset k r z' →
       opn (Matrix.of (act2 γ p)) ^ (-b) ≤ F p := by
     intro γ hγ p h1 h2
-    have hg1 := opn_pos (hSS.1 h1)
-    have hg2 := opn_pos (hSS'.1 h2)
+    have hg1 := _root_.GlobalTheory.SgInf.OpNormU.opn_pos (hSS.1 h1)
+    have hg2 := _root_.GlobalTheory.SgInf.OpNormU.opn_pos (hSS'.1 h2)
     have hmax := hbd γ hγ _ h1 _ h2
     rw [hbA]
     exact rpow_le hg1 hg2 (opn_nonneg _) (by linarith) hA0 hmax

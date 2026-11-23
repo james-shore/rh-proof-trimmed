@@ -50,14 +50,12 @@ theorem dsExists : GlobalTheory.Dec.DSExists := dsExists_of CompanionTheory.RgFd
 
 theorem kTypesAbove : GlobalTheory.Dec.KTypesAbove := kTypesAbove_of CompanionTheory.RgFd.explicit_function_square_integrable K.key_identity_holds Hilb.hilbert_space_realisation_holds
 
-theorem dsInfChar : GlobalTheory.Dec.DSInfChar := CompanionTheory.RgDsInf.dsInfChar'
-
 theorem discreteSeriesUpqExists : GlobalTheory.Published.DiscreteSeriesUpqExists := upqExists_of dsExists
 
 theorem discreteSeriesExists : GlobalTheory.Published.DiscreteSeriesExists := exists_of dsExists
 
 theorem discreteSeriesCoverExists : GlobalTheory.Published.DiscreteSeriesCoverExists := coverExists_of dsExists
 
-theorem classUsed : ClassUsed := classUsed_of dsExists kTypesAbove dsInfChar
+theorem classUsed : ClassUsed := classUsed_of dsExists kTypesAbove _root_.CompanionTheory.RgDsInf.dsInfChar'
 
 end CompanionTheory.RgDs.B

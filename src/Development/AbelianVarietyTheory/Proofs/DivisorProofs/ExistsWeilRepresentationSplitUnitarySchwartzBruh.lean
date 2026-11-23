@@ -85,9 +85,9 @@ theorem exists_isKW : ∀ (F : Type) [Field F] [CharZero F] [ValuativeRel F] [To
   have hfm : ∀ φ ∈ SB (Matrix α ν E), fou c ψ Q μ φ ∈ SB (Matrix α ν E) := fun φ hφ =>
     GlobalTheory.T.bicharacterFourierTransform_mem_schwartzBruhat (Matrix α ν E) hGood μ _ hpair φ hφ
   have hpm := GlobalTheory.T.siegelParabolic_preserves_schwartzBruhat F E c δ hE α ν Q hQ ψ hψ hψn hψ1 χ hχ hη
-  obtain ⟨hp1, hpmul⟩ := GlobalTheory.T.parFun_sieg_mul' F E c δ hE α ν Q hQ ψ hψ hψn hψ1 χ hχ hη
-  obtain ⟨κ, hκ, hrel⟩ := GlobalTheory.T.exists_weilRepresentation_bigCell_relation_fourier F E c δ hE α ν Q hQ ψ hψ hψn hψ1 χ hχ hη μ
-  obtain ⟨C, hC, hff⟩ := GlobalTheory.T.bicharacterFourierTransform_twice_eq_pos_smul_reflect (Matrix α ν E) hGood μ _ hpair
+  obtain ⟨hp1, hpmul⟩ := _root_.GlobalTheory.KSp.parFun_sieg_mul F E c δ hE α ν Q hQ ψ hψ hψn hψ1 χ hχ hη
+  obtain ⟨κ, hκ, hrel⟩ := _root_.GlobalTheory.KSp.weyl_cell_relation F E c δ hE α ν Q hQ ψ hψ hψn hψ1 χ hχ hη μ
+  obtain ⟨C, hC, hff⟩ := _root_.GlobalTheory.KSp.four_four (Matrix α ν E) hGood μ _ hpair
 
   let parL : sieg c ν → Module.End ℂ (SB (Matrix α ν E)) := fun p =>
     { toFun := fun φ => ⟨parFun c ψ χ Q (mat c p) φ, hpm p p.2 φ φ.2⟩
@@ -157,7 +157,7 @@ theorem exists_isKW : ∀ (F : Type) [Field F] [CharZero F] [ValuativeRel F] [To
       intro φ
       apply Subtype.ext
       funext x
-      have h := GlobalTheory.T.fourier_intertwines_siegelLeviOperator F E c δ hE α ν Q hQ ψ hψ hψn hψ1 χ hχ hη μ p p.2 q q.2 hpq φ
+      have h := _root_.GlobalTheory.KSp.fou_parFun_levi F E c δ hE α ν Q hQ ψ hψ hψn hψ1 χ hχ hη μ p p.2 q q.2 hpq φ
       show κ * fou c ψ Q μ (parFun c ψ χ Q (mat c p) φ) x =
         parFun c ψ χ Q (mat c q) (κ • fou c ψ Q μ φ) x
       rw [h]

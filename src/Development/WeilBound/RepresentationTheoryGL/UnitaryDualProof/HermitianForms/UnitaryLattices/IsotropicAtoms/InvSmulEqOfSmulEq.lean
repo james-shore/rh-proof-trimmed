@@ -148,11 +148,11 @@ theorem isOpen_stabSub (hπ : IsSmooth π) (v : V) : IsOpen (stabSub h π v : Se
 
 theorem isOpen_charSub (hψ : Continuous ψ) {n : ℕ} (ξ : Fin n → k) : IsOpen (charSub k ψ ξ : Set (Fin n → k)) := by
   have hc : Continuous fun x : Fin n → k => ξ ⬝ᵥ x := continuous_const.dotProduct continuous_id
-  exact (isOpen_ker_char ψ hψ).preimage hc
+  exact (_root_.GlobalTheory.CompanionTheory.LocalFieldChar.isOpen_addChar_ker ψ hψ).preimage hc
 
 theorem isLat_comap {n : ℕ} (g : GL (Fin (n + 1)) k) {A : AddSubgroup (Fin (n + 1) → k)} (hA : IsLat A) :
     IsLat (A.comap (Matrix.mulVecLin (g : Matrix (Fin (n + 1)) (Fin (n + 1)) k)).toAddMonoidHom) := by
-  exact comap_lat (n + 1) _ (Units.isUnit g) A hA.1 hA.2
+  exact _root_.GlobalTheory.CompanionTheory.Dblock.ComapLat.comap_mulVec_compact_open (n + 1) _ (Units.isUnit g) A hA.1 hA.2
 
 theorem avg_eq {ξ : Fin (m + 1) → k} {A : AddSubgroup (Fin (m + 1) → k)} {v : V}
     {p : AddSubgroup (Fin (m + 1) → k) × Finset (Fin (m + 1) → k)} (hp : AvgData ψ h π ξ A v p) :
@@ -231,7 +231,7 @@ theorem avg_colEl (hψ : Continuous ψ) (hπ : IsSmooth π) (ξ : Fin (m + 1) �
     (hA : IsLat A) {a : Fin (m + 1) → k} (ha : a ∈ A) (v : V) :
     avg ψ h π ξ A (π (colEl k m N h a) v) = ((ψ (ξ ⬝ᵥ a) : Circle) : ℂ) • avg ψ h π ξ A v := by
   obtain ⟨p, hp, hpw⟩ := exists_avgData₂ h π ψ hψ hπ ξ hA v (π (colEl k m N h a) v)
-  have hs := sum_transversal_add hp.1 hp.2.2.2.2.1 hp.2.2.2.2.2
+  have hs := _root_.GlobalTheory.CompanionTheory.Transversal.sum_add_eq_sum_of_transversal hp.1 hp.2.2.2.2.1 hp.2.2.2.2.2
     (fun t => (starRingEnd ℂ ((ψ (ξ ⬝ᵥ t) : Circle) : ℂ)) • π (colEl k m N h t) v)
     (fun x y hy => avgF_add h π ψ x y (hp.2.2.1 y hy) (hp.2.2.2.1 y hy)) ha
   have e : ∀ t, (starRingEnd ℂ ((ψ (ξ ⬝ᵥ t) : Circle) : ℂ)) • π (colEl k m N h t) (π (colEl k m N h a) v) =
@@ -444,11 +444,6 @@ theorem avg_congr_char (hψ : Continuous ψ) (hπ : IsSmooth π) {ξ ξ' : Fin (
   congr 1
   refine Finset.sum_congr rfl fun t ht => ?_
   rw [hξ t (hp.2.2.2.2.1 t ht)]
-
-theorem colEl_comm_avg (hψ : Continuous ψ) (hπ : IsSmooth π) (ξ : Fin (m + 1) → k) {A : AddSubgroup (Fin (m + 1) → k)}
-    (hA : IsLat A) (a : Fin (m + 1) → k) (v : V) :
-    π (colEl k m N h a) (avg ψ h π ξ A v) = avg ψ h π ξ A (π (colEl k m N h a) v) :=
-  colEl_comm_avg' h π ψ hψ hπ ξ hA a v
 
 end Api
 

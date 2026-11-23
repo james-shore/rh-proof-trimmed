@@ -104,9 +104,9 @@ theorem exists_glue_rigidified (X Y : Scheme.{0}) (p : X ⟶ Y) (e : Y ⟶ X) (h
     obtain ⟨b, hb⟩ := lifts k _ (p ⁻¹ᵁ (V i ⊓ V k)).ι fun z ↦ z.2.2
     obtain ⟨h1, e1⟩ := hpl i _ a _ ha
     obtain ⟨h2, e2⟩ := hpl k _ b _ hb
-    obtain ⟨w, hw⟩ := GlobalTheory.T.exists_isLineBundleIsoOnOpen_of_restriction_iso X (p ⁻¹ᵁ (V i ⊓ V k)) (L i) (L k)
+    obtain ⟨w, hw⟩ := _root_.GlobalTheory.PicGlue.isoOn_of_lbIso X (p ⁻¹ᵁ (V i ⊓ V k)) (L i) (L k)
       ((cls_eq_iff h1 h2).1 (e1.trans ((hov i k _ a b (ha.trans hb.symm)).trans e2.symm)))
-    exact GlobalTheory.T.exists_lineBundleIso_normalisedAlongSection_retraction X Y p e hep (V i ⊓ V k) _ _ (L i) (L k) w (r i) (r k) (hL' i) (hL' k)
+    exact _root_.GlobalTheory.PicGlue.exists_norm X Y p e hep (V i ⊓ V k) _ _ (L i) (L k) w (r i) (r k) (hL' i) (hL' k)
       (fun _ h ↦ h.1) (fun _ h ↦ h.2) hw (hr' i) (hr' k)
   choose w hwi hwn using hw
   obtain ⟨N, hN, hv⟩ := GlobalTheory.T.lineBundle_glue_of_openCover_cocycle X Ix (fun i ↦ p ⁻¹ᵁ V i) L w (fun x ↦ hV (p x)) hL' hwi
@@ -117,7 +117,7 @@ theorem exists_glue_rigidified (X Y : Scheme.{0}) (p : X ⟶ Y) (e : Y ⟶ X) (h
   have hNc : ∀ i, GlobalTheory.CechPic.pull (f i) (cls N hN) = c i := fun i ↦ by
     obtain ⟨v, hv⟩ := hv i
     rw [← hcl i, ← cls_pull hN (f i) (pull_isLB hN _)]
-    exact (cls_eq_iff _ _).2 (GlobalTheory.T.lineBundleIso_pull_of_isLineBundleIsoOnOpen X _ _ N (L i) v (f i) hv (hfm i))
+    exact (cls_eq_iff _ _).2 (_root_.GlobalTheory.PicGlue.lbIso_pull_of_isoOn X _ _ N (L i) v (f i) hv (hfm i))
   refine ⟨cls N hN - GlobalTheory.CechPic.pull p (GlobalTheory.CechPic.pull e (cls N hN)), ?_, fun i ↦ ?_⟩
   · rw [map_sub, ← pull_comp e p, hep, pull_id, sub_self]
   · obtain ⟨t, ht⟩ := lifts i _ ((f i ≫ p) ≫ e) fun z ↦ by

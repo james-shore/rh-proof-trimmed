@@ -60,17 +60,6 @@ namespace GlobalTheory.BigTop.Fun
 open Formalism.L2.DIV Formalism.IndefR.Cx Formalism.IndefR.Cx.CxData
 open scoped InnerProductSpace Matrix
 
-theorem iC_cpt_eq_theta_toR {K : Type} [Field K] [NumberField K] [StarRing K] {Bs : DefBase K} {A : DefAmb Bs} (X : CxData A)
-    {fc : DefSub A → DefFace Bs} (cr : Crd A fc) (b : Bool) (t : Bs.Tup) (z : Fin ((lv (fc X.zs) b).dQ t) → K) :
-    X.iC cr b t (cpt Bs.v0.embedding z) = X.Θ t (X.jR t (cr.toR X.zs b t z)) := by
-  conv_rhs => rw [pi_eq_sum_univ z]
-
-  simp only [map_sum, map_smul, LinearMap.map_smulₛₗ, iC, lin, Fintype.linearCombination_apply, cpt]
-  refine Finset.sum_congr rfl fun i _ => ?_
-  congr 4
-  ext j
-  simp [Pi.single_apply, eq_comm]
-
 theorem theta_jR_eq_zero_of_perp {K : Type} [Field K] [NumberField K] [StarRing K] {Bs : DefBase K} {A : DefAmb Bs} (X : CxData A)
     (cv : CrdV A) (hJ : X.JIsoR cv) (hZ : X.RatZ) (t : Bs.Tup) (x : A.FR t) (hx : ∀ w ∈ X.Z t, cv.hR t w x = 0) :
     X.Θ t (X.jR t x) = 0 := by

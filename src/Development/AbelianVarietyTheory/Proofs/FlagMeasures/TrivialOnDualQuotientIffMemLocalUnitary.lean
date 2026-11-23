@@ -229,7 +229,7 @@ theorem trivial_iff_mem_Uloc : ∀ (F E : Type) [Field F] [NumberField F] [Field
   obtain ⟨-, hmax, sp, hsig, hdiag⟩ := (GlobalTheory.T.cmField_splitCompletely_place_structure F E cm T hT hsp).2 v hv
   have hint : ∀ x, x ∈ intV E v ↔
       (sp x).1 ∈ v.adicCompletionIntegers F ∧ (sp x).2 ∈ v.adicCompletionIntegers F :=
-    split_integral_local F E v sp hdiag
+    _root_.PI.SplitIntLoc.Proof.main F E v sp hdiag
   obtain ⟨B, C, hBC, hB, hC⟩ := GlobalTheory.DualFrame.exists_dual_frames F E cm.sig n J (isUnit_iff_ne_zero.2 hdet) S.Lb
     S.Lb_fin S.Lb_span v
   obtain ⟨hD, hL, -⟩ := GlobalTheory.DualFrames.dual_of_dual_frames _ (intV E v) (sigR cm.sig (v.adicCompletion F))

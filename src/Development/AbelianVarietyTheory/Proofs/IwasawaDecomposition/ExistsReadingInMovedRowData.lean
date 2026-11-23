@@ -194,19 +194,19 @@ theorem GlobalTheory.Mem.R3.Rw.read_of_moved : ∀ (B : Base) (f : Fr B.toPre) (
   have hU : ∀ μ, Used0 (w.st o.Z).toD7 μ ↔ m.y.Us μ := by
     intro μ; unfold Used0 Hd.Us; simp only [hmu]
   have hN : NumOK D := q.num o.η o.hη o.V o.S o.N o.G
-  have k1 := @GlobalTheory.T.rowIdentifications_realRowSide_of_chainComparison
+  have k1 := @_root_.GlobalTheory.Mem.R3.Rw.rowSide_of_chainTie
     D (Gc B w.px) _ _ _ _ _ _ _ _ m.z.alg m.z.R.toRealDat m.z.F.lv2 m.y hin hB hU true m.t.rep
     (q.p.ch true).EE.T (q.p.ch true).EE.nacg (q.p.ch true).EE.ips (q.p.ch true).EE.fd
     (RowSide.sharp D) (q.p.ch true).n (q.p.ch true).bs (q.p.ch true).ty
     (fun t x => (tieA true t).j x) (m.t.ch true)
   obtain ⟨Ish, h1R, h1P, h1E, h1X⟩ := k1
-  have k0 := @GlobalTheory.T.rowIdentifications_realRowSide_of_chainComparison
+  have k0 := @_root_.GlobalTheory.Mem.R3.Rw.rowSide_of_chainTie
     D (Gc B w.px) _ _ _ _ _ _ _ _ m.z.alg m.z.R.toRealDat m.z.F.lv2 m.y hin hB hU false m.t.rep
     (q.p.ch false).EE.T (q.p.ch false).EE.nacg (q.p.ch false).EE.ips (q.p.ch false).EE.fd
     s.p0.s (q.p.ch false).n (q.p.ch false).bs (q.p.ch false).ty
     (fun t x => (tieA false t).j x) (m.t.ch false)
   obtain ⟨Iz, h0R, h0P, h0E, h0X⟩ := k0
-  have kL := GlobalTheory.T.liftIdentifications_of_liftsComparison D (Gc B w.px) _ _ _ _
+  have kL := _root_.GlobalTheory.Mem.R3.Rw.LiftRd.liftTie_of_lfT D (Gc B w.px) _ _ _ _
     m.z.R.toRealDat m.z.F.lv2 m.y hin hB hU hN.lam m.t.rep _ m.t.lf
   obtain ⟨IL, mj, hLT, hPW, hMj, hMt, hEW⟩ := kL
   have kF := GlobalTheory.T.exists_identification_typeRepresentatives_classes

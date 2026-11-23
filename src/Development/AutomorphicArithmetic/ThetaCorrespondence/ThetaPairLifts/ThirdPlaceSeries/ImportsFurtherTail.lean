@@ -70,7 +70,7 @@ namespace GlobalTheory.NLinkClose
 theorem main_alt_alt : Hypotheses₂ → ∀ {eps : ℝ} (Fm : FamP eps), ∀ (C : ℝ) (CT : ℕ), 0 ≤ C → TwGood Fm → _root_.GlobalTheory.NLink.FactsFAlt Fm C CT →
     _root_.GlobalTheory.NLink.BoundAtTwoThreeFamilyFonAlt Fm → ConclF Fm := by
   intro hP eps Fm C CT hC0 hTw hF h23
-  obtain ⟨C₀, h03⟩ := GlobalTheory.T.theoremE_corollaryA_closing_all_data hP.bk hP.tate hP.euler
+  obtain ⟨C₀, h03⟩ := _root_.GlobalTheory.ThmECorA.closing hP.bk hP.tate hP.euler
   obtain ⟨constantFirstHub, Q, h67⟩ := _root_.GlobalTheory.T.embedding_jumps_aux2_of_setup
   obtain ⟨C1, xpar, hC1, hpar⟩ := GlobalTheory.T.admissible_parameters_family_const Fm
   obtain ⟨Ca, xa, ha⟩ := h23
@@ -99,7 +99,7 @@ theorem main_alt_alt : Hypotheses₂ → ∀ {eps : ℝ} (Fm : FamP eps), ∀ (C
   obtain ⟨xsm, hsm⟩ := GlobalTheory.T.specialPrimes_small_along_family Fm Cs hCs1
   obtain ⟨xE, hE⟩ := _root_.GlobalTheory.T.eventually_congBound_of_facts hP Fm
   obtain ⟨xbcd, hbcd⟩ := _root_.GlobalTheory.HTW.RecS.fam_jointBCD_closed_alt hP.font GlobalTheory.Per.FontaineAll.fontaine_bounds
-    GlobalTheory.FontaineAdm.fontaineProperties_all_places _root_.GlobalTheory.JumpStatement.holds_all_alt Fm (rowC C₂)
+    GlobalTheory.FontaineAdm.fontaineProperties_all_places _root_.GlobalTheory.JumpSets.stmtJ_holds_alt Fm (rowC C₂)
   refine ⟨Cs, max xset (max xexc (max xsm (max xE (max xbcd (max xpar x23))))), ?_⟩
   intro x hx0 hx i hSha
   simp only [ge_iff_le, max_le_iff] at hx0
@@ -109,13 +109,13 @@ theorem main_alt_alt : Hypotheses₂ → ∀ {eps : ℝ} (Fm : FamP eps), ∀ (C
   obtain ⟨hFa, hEx⟩ := hF x hx i
   obtain ⟨hSm, -, -, hb⟩ := hsm x h3 hx i
   have hBCD := hbcd x h5 hx i HW X hAdmJ hS.canon.fam
-  have hmid := _root_.GlobalTheory.T.star_ad_and_bb_le_of_joint_cond hP (Fm.D x i) (Fm.L x i) (Fm.params x hx i) (Fm.ex x hx i).nch HW F Cm X C₂ hS hC₂1
+  have hmid := _root_.GlobalTheory.NLink.rowsAD_in_setting_alt hP (Fm.D x i) (Fm.L x i) (Fm.params x hx i) (Fm.ex x hx i).nch HW F Cm X C₂ hS hC₂1
     ((h03 (Fm.D x i) HW F Cm).2 C₂ hC₂0) hBCD
   have hparC1 := hpar x h6 hx i
   have hmult := GlobalTheory.T.goodPointMultiplicityLeRank_proof (Fm.D x i) (Fm.L x i) hFa.Conclusion1.2.2 hFa.Conclusion2.2.2 hFa.toCore.isot hFa.c2
   have hSizeG : SizeG (Fm.L x i) := (Fm.sizes x hx i).2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.1
   have hCTb : (CT : ℝ) ≤ (Fm.L x i).sc.b := le_trans hCT hb
-  have htyp := _root_.GlobalTheory.T.star_bound_of_paired_character_condition hP (Fm.D x i) (Fm.L x i) (Fm.params x hx i) (Fm.ex x hx i).nch HW F Cm X C₂ hS C C1 CT
+  have htyp := _root_.GlobalTheory.NLinkTyp.main_alt_alt hP (Fm.D x i) (Fm.L x i) (Fm.params x hx i) (Fm.ex x hx i).nch HW F Cm X C₂ hS C C1 CT
     hC0 hC1 hCTb hEx.2 hmult hparC1 hSizeG
   have hmono := GlobalTheory.T.sizeConditions_mono (Fm.D x i) (Fm.L x i) (Fm.params x hx i) X
   have hCong := hE x h4 hx i hFa

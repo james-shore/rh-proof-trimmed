@@ -87,8 +87,7 @@ theorem isMapOf_cancel {R R₂ R₃ O : Type} [CommRing R] [CommRing R₂] [Comm
       sy := by simp only [h'.sy, h.sy, MvPowerSeries.map_comp, RingHom.comp_apply]
       ad := fun a => by simp only [h'.ad a, h.ad a, MvPowerSeries.map_comp, RingHom.comp_apply] }
 
-theorem spMap_comp' {R R₂ R₃ : Type} [CommRing R] [CommRing R₂] [CommRing R₃] (f : R →+* R₂) (g : R₂ →+* R₃) :
-    spMap g ≫ spMap f = spMap (g.comp f) := (Spec.map_comp _ _).symm
+alias spMap_comp' := _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp'
 
 theorem dualMap_comp' {R R₂ R₃ : Type} [CommRing R] [CommRing R₂] [CommRing R₃] (f : R →+* R₂) (g : R₂ →+* R₃) :
     (GlobalTheory.CompanionTheory.Ar.dualMap g).comp (GlobalTheory.CompanionTheory.Ar.dualMap f) = GlobalTheory.CompanionTheory.Ar.dualMap (g.comp f) := by
@@ -139,7 +138,7 @@ theorem family_ex_of' (hfib : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
       refine ⟨gi, g.B, φ₀, ψ₀, lam₀, isMapOf_cancel hgi hg, h₀, fun _ => ⟨rfl, rfl, rfl⟩, fun l => ?_⟩
       rw [hgit, ← Category.assoc, spMap_comp', dualMap_comp', ← hgt]
       exact h₀t l
-    · obtain ⟨d', ⟨gi⟩⟩ := PositivityTheory.HtPt.Cd.germ_local E H hs X0 t hP _ (Y.x i)
+    · obtain ⟨d', ⟨gi⟩⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Conj.GermInh.germ_local E H hs X0 t hP _ (Y.x i)
       obtain ⟨g₂, hg₂, hg₂t⟩ := bc (C.v i).valuationSubring.subtype (Y.gen i).symm gi
       obtain rfl := (huniv E H hs X0 t K z d g).1 d' g₂
       obtain ⟨φ, ψ, lam, h, ht⟩ := hiso E H hs X0 t hP K z d g g₂

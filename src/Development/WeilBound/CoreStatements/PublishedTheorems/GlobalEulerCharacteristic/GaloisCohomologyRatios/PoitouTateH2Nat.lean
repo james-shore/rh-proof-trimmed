@@ -65,16 +65,6 @@ variable {K L : FiniteSubfield} [Fact (K ≤ L)] {S : Set (HeightOneSpectrum (�
   (hM : ∀ (g : (gsOpenSubgroup S hL : Subgroup (galUnramifiedOutside K.1 ℚ̄ S))) (m : M), M.ρ g m = m)
   (hΓ : Nat.Coprime (Nat.card (L.1 ≃ₐ[K.1] L.1)) ℓ)
 
-theorem dMod_one_eq [Finite (ModN (AA hL 1) ℓ)] :
-    dMod hL (dN hL hζ M hM hΓ) 1 =
-      Module.finrank (ZMod ℓ) ((gsH1SUnitsModRep ℓ hL).tprod
-        (quotientRep (gsOpenSubgroup S hL : Subgroup (galUnramifiedOutside K.1 ℚ̄ S))
-          (homRep (gsRootsZMod S ℓ) M)
-          (homRep_ρ_of_mem (gsOpenSubgroup S hL) (gsRootsZMod S ℓ) M (roots_trivial hL hζ) hM))).invariants := by
-  exact dMod_one_eq_pf hL hζ M hM hΓ
-
-
-
 theorem poitou_tate_H2_nat [Fintype S] (hℓS : ∀ v ∉ S, ((ℓ : ℕ) : 𝓞 K.1) ∉ v.asIdeal)
     (hKK : Odd ℓ ∨ IsTotallyComplex K.1)
     (ιs : ∀ v : S, ℚ̄ →ₐ[K.1] AlgebraicClosure ((v : HeightOneSpectrum (𝓞 K.1)).adicCompletion K.1)) :
@@ -122,7 +112,7 @@ theorem poitou_tate_H2_int [Fintype S] (hℓS : ∀ v ∉ S, ((ℓ : ℕ) : 𝓞
   have hKL : Odd ℓ ∨ IsTotallyComplex L.1 := hK.imp_left fun h => hℓ.odd_of_ne_two h
   have hn := poitou_tate_H2_nat M hℓS hKK ιs
   have hsha := finrank_shaSubmodule_two_eq_finrank_invariants ℓ hL ιs hℓS hKL hcop (roots_trivial hL hζ) M hM
-  have e1 := dMod_one_eq hL hζ M hM hΓ
+  have e1 := _root_.PositivityTheory.Lit1.GEN.X.dMod_one_eq_pf hL hζ M hM hΓ
   have hz := congrArg (Nat.cast : ℕ → ℤ) hn
   have hz2 := congrArg (Nat.cast : ℕ → ℤ) hsha
   simp only [Nat.cast_add, Nat.cast_sum] at hz

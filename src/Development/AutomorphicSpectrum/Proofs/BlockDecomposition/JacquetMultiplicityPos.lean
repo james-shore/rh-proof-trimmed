@@ -133,7 +133,7 @@ theorem piTensor_rep_isIrreducible (hA : GlobalTheory.Published.IrreducibleAdmis
   refine GlobalTheory.ProdFiniteLength.piTensor_isIrreducible_of_schur _ (fun a => (x a).2.rep.irr) ?_
   intro a φ hφ
   obtain ⟨K, hKo, hKc⟩ := hKex (x a).1
-  exact GlobalTheory.SchurAdm.schur_admissible _ K hKo hKc _ _ (x a).2.rep.irr
+  exact _root_.GlobalTheory.SchurAdmissibility.schur_admissible _ K hKo hKc _ _ (x a).2.rep.irr
     (hA k _ _ _ (x a).2.rep.smooth (x a).2.rep.irr) φ hφ
 
 variable {α n : Type} {m : α → Type} [Fintype α] [LinearOrder α] [∀ a, Fintype (m a)] [∀ a, DecidableEq (m a)]

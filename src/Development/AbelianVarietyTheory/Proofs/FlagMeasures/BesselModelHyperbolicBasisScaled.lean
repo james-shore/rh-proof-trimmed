@@ -47,13 +47,13 @@ namespace GlobalTheory.TypeAsm.FramePf
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem ka_div (D : D7) : D.host.ka / (2 * Real.pi) = (2 * D.host.v)⁻¹ := by
-  have h0 : 0 < D.host.rdE := GlobalTheory.TypeAsm.GramPf.rdE_pos' D
+  have h0 : 0 < D.host.rdE := _root_.Formalism.MainNotions.S.rdE_pos D
   have hπ : Real.pi ≠ 0 := Real.pi_ne_zero
   simp only [Formalism.BasicNotions.Host.ka, Formalism.BasicNotions.Host.v]
   field_simp
 
 theorem two_v_pos (D : D7) : 0 < 2 * D.host.v := by
-  have h0 : 0 < D.host.rdE := GlobalTheory.TypeAsm.GramPf.rdE_pos' D
+  have h0 : 0 < D.host.rdE := _root_.Formalism.MainNotions.S.rdE_pos D
   simp only [Formalism.BasicNotions.Host.v]
   linarith
 

@@ -49,7 +49,7 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.IncomingBounds
 
-theorem lemmaFa : LemmaFa := strongDuality
+alias lemmaFa := _root_.Formalism.IncomingBounds.strongDuality
 theorem lemmaFc : LemmaFc := lemmaFc_of maxFlowValueAttained strongDuality
 theorem incomingBound : IncomingBound := incomingBound_of maxFlowValueAttained strongDuality
 theorem cayleyId : CayleyId := cayleyIdentity

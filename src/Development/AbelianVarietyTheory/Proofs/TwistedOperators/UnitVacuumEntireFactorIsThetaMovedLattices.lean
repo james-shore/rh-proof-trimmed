@@ -232,7 +232,7 @@ theorem sign_eq_alpha_sd : ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : 
   have hs : symplOH S T (u.map fun z => incA D (b : D.host.E) * z) u = pairA D.host.F 0
       (algebraMap D.host.F (Af D.host.F) (1 / 2 * Algebra.trace D.host.F D.host.E (D.host.xi0 * ((b : D.host.E) * n)))) := by
     rw [hmap, hu', symplOH, GlobalTheory.LatVac.symplO_finTens, hRat_smul_left, hRat_neg_neg,
-      GlobalTheory.ThetaSignLat.hRat_frame S T frS frT hS hT v]
+      _root_.GlobalTheory.HRatFrame.hRat_frame S T frS frT hS hT v]
     refine Prod.ext (mul_zero _) ?_
     show algebraMap D.host.F (Af D.host.F) (1 / 2) * (1 * 1 * _) = _
     rw [one_mul, one_mul, ← RingHom.map_mul]
@@ -241,7 +241,7 @@ theorem sign_eq_alpha_sd : ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : 
   have hq := trace_val n (b : D.host.E) hns hbv
   have hχu : χ u = Complex.exp (2 * Real.pi * Complex.I * ∑ τ, tauE D τ
       ((1 / 2 * Algebra.trace D.host.F D.host.E (D.host.xi0 * ((b : D.host.E) * n)) : D.host.F) : D.host.E)) := by
-    rw [hval u huL, hs, GlobalTheory.ThetaSignLat.psi_fin_rat ψ hψ]
+    rw [hval u huL, hs, _root_.GlobalTheory.PsiFinRat.psi_pairA_zero_algebraMap ψ hψ]
   obtain ⟨c, hc⟩ : ∃ c : ℂ, c = ∑ τ, tauE D τ n := ⟨_, rfl⟩
   have hsumq : ∑ τ, tauE D τ
       ((1 / 2 * Algebra.trace D.host.F D.host.E (D.host.xi0 * ((b : D.host.E) * n)) : D.host.F) : D.host.E) =

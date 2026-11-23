@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.NFRadRedLocSec
 
 @[expose] public section
 
@@ -59,7 +60,7 @@ theorem herm_zero_of_lieW {ζ : B.Mat k r} (hζ : B.inLie k r ζ) (z : Fin (2 * 
     (huz : herm (Hpk k r) u z = 0) (hvz : herm (Hpk k r) v z = 0) :
     herm (Hpk k r) (ζ *ᵥ u) v = 0 := by
   refine herm_zero_of_trace hζ u v (hW _ (xuv_lieW z u v hu hv huz hvz)) (hW _ ?_)
-  refine xuv_lieW z u _ hu (inWb_smul _ hv) huz ?_
+  refine xuv_lieW z u _ hu (_root_.Formalism.FourierDecayAlt.P.NFRadRedLocSec.inWb_smul _ hv) huz ?_
   rw [herm_smul_left, hvz, mul_zero]
 
 end

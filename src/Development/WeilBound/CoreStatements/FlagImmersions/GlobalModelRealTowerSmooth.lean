@@ -58,6 +58,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.AnalyticForms.PotentialTheory.ContDiffAtOfIsPotential
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IntegralClosureHeightEqOneOfLiesOver
+import Development.WeilBound.CoreStatements.HomogeneousNonvanishing.YReadArchA
 
 @[expose] public section
 
@@ -70,12 +71,6 @@ open ReciprocityTheory.ChartRestriction.G.AI.I1 (IsBlockMap pullDeg)
 open ReciprocityTheory.ChartRestriction.G.AI.I4 (imageZ IsPullHerm blockFnField)
 open GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.Inter (pullHerm)
 open AlgebraicGeometry CategoryTheory NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar.Top
-
-theorem mem_ptsOver {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {P : Ideal (MRing ι)}
-    {z : (Σ k, ι k) → ℂ} (hz : z ∈ mcPts P) : z ∈ Small.ptsOver ℂ P :=
-  ⟨hz.1, fun f hf => by
-    have := hz.2 f hf
-    rwa [MvPolynomial.eval_map, ← algebraMap_int_eq, ← aeval_def] at this⟩
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Datum H} {l : Level H}
   {Xo : Moduli D l} {c : Coeff l} {Y : Model Xo c (algebraMap (𝓞 c.F) c.F)} [DecidableEq (CMType H)]
@@ -124,15 +119,15 @@ theorem level (hRes : ResExistsStatement) (II : IntersectionSystem) (hII : IsFul
   have hB : Birational y := birational_of_block hv hy M.birational
   have hne : ∀ k, ∃ a, y ⟨k, a⟩ ≠ 0 := by
     rintro ((k | k) | k)
-    · exact ne_zero_of_arith M.arith k
-    · obtain ⟨a, ha⟩ := ne_zero_of_arith R.arith k
+    · exact _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.UpperNormalisation.exists_coord_ne_zero M.arith k
+    · obtain ⟨a, ha⟩ := _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.UpperNormalisation.exists_coord_ne_zero R.arith k
       exact ⟨a, (map_ne_zero i).2 ha⟩
     · obtain ⟨z, hz, -⟩ := GroundTheory.Heights₂.Heights.HilbertSamuel.exists_mcPts_not_mem_mcPts o₀.Re.arith o₀.Re.R.nondeg
-      obtain ⟨j, val, hval0, dg, dh, g, h, hg, -, -, e1, e2, e3⟩ := hs' z (mem_ptsOver hz)
+      obtain ⟨j, val, hval0, dg, dh, g, h, hg, -, -, e1, e2, e3⟩ := hs' z (_root_.PositivityTheory.UnitarySelfGeneration.RA.ptsOver_of_mcPts hz)
       refine ⟨j, (map_ne_zero i).2 fun h0 => ?_⟩
       have h0' : s j = 0 := h0
       rw [h0', zero_mul] at e1
-      have := (mem_ptsOver hz).2 g (GroundTheory.Heights₂.Heights.LowerBoundFree.mem_mCoordIdeal_of_aeval_eq_zero R.y hg e1)
+      have := (_root_.PositivityTheory.UnitarySelfGeneration.RA.ptsOver_of_mcPts hz).2 g (GroundTheory.Heights₂.Heights.LowerBoundFree.mem_mCoordIdeal_of_aeval_eq_zero R.y hg e1)
       rw [this] at e3
       exact mul_ne_zero hval0 e2 e3.symm
   have top : ∀ {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {Ω : Type} [Field Ω] [CharZero Ω]
@@ -140,8 +135,8 @@ theorem level (hRes : ResExistsStatement) (II : IntersectionSystem) (hII : IsFul
     intro K _ ι _ Ω _ _ y h hB
     choose c hc using h
     exact GenFib.blockFnField_eq_top y c hc hB
-  have tM := top M.y (ne_zero_of_arith M.arith) M.birational
-  have tR := top R.y (ne_zero_of_arith R.arith) R.birational
+  have tM := top M.y (_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.UpperNormalisation.exists_coord_ne_zero M.arith) M.birational
+  have tR := top R.y (_root_.GroundTheory.Heights₂.Heights.HilbertSamuel.UpperNormalisation.exists_coord_ne_zero R.arith) R.birational
   have ty := top y hne hB
   have hA : IsArithVar (mCoordIdeal y) (dimFl (CMType H) (D.p + D.q) + 1) :=
     GroundTheory.Heights₂.Heights.HilbertSamuel.CoordArithOfFnField.proof M.K M.ι K ι M.Ω M.y y _ ⟨Sum.inr ()⟩ hne

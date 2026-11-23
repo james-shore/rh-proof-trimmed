@@ -116,10 +116,6 @@ private theorem norm_frobenius_eq_lemma_4 (l : ℕ) [Fact l.Prime] (σ : Formali
   rw [hk]
   exact mul_right_cancel₀ (inv_ne_zero hkpos.ne') (h.trans (mul_inv_cancel₀ hkpos.ne').symm)
 
-theorem frob_isom (l : ℕ) [Fact l.Prime] (σ : MaximalUnramifiedExtension l →+* MaximalUnramifiedExtension l) (hU : UnrOK (MaximalUnramifiedExtension l) l σ) (x : MaximalUnramifiedExtension l) :
-    ‖σ x‖ = ‖x‖ :=
-  norm_frobenius_eq_lemma_4 l σ hU x
-
 theorem frob_conj (l : ℕ) [Fact l.Prime] (dK : ℕ) (hl5 : 5 ≤ l) (hld : ¬ l ∣ dK)
     (hin : ¬ ∃ a : ZMod l, a ^ 2 = -(dK : ZMod l)) (σ : MaximalUnramifiedExtension l →+* MaximalUnramifiedExtension l) (hU : UnrOK (MaximalUnramifiedExtension l) l σ)
     (δ : MaximalUnramifiedExtension l) (hδ2 : δ ^ 2 = -(dK : MaximalUnramifiedExtension l)) : σ δ = -δ := by
@@ -175,7 +171,7 @@ theorem frob_conj (l : ℕ) [Fact l.Prime] (dK : ℕ) (hl5 : 5 ≤ l) (hld : ¬ 
 
 theorem frobStep : FrobStep := by
   intro l hl dK hl5 hld hd hd8 hin ι σ hU
-  refine ⟨frob_isom l σ hU, ?_⟩
+  refine ⟨_root_.Formalism.L2.Th1.Top.FrP.UnitaryGroupMassFormula.HermFrame.norm_frobenius_eq_lemma_4 l σ hU, ?_⟩
   have hmem := delta_mem l dK hd (by omega) hld ι
   refine ⟨⟨ι (sq dK), hmem⟩, rfl, ?_⟩
   apply frob_conj l dK hl5 hld hin σ hU

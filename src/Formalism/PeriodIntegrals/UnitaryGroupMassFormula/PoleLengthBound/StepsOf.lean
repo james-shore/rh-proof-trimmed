@@ -66,6 +66,6 @@ theorem steps_of (hBQ : BallQuot) : Steps := by
       (column_derivative G la) (restricted_derivative_linear G la) (liftMul_of Q T hOk.2.1 h3),
     ball_product_length piLen_holds hBQ G la Q S CRm T e c hOk⟩
 
-theorem pole_length_bound_of_balls (hBQ : BallQuot) : PI.LengthPoleInLift := target filtration_length_bound sum_antidiagonalTuple (steps_of hBQ)
+theorem pole_length_bound_of_balls (hBQ : BallQuot) : PI.LengthPoleInLift := target _root_.PI.FiltrationLength.filtLenF_main sum_antidiagonalTuple (steps_of hBQ)
 
 end PI.PoleLengthCount

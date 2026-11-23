@@ -143,6 +143,6 @@ theorem fold_parseval : ∀ {D : D7} {ρ p : ℕ} (m : Meas D ρ p) (ψ : AddCha
           exact ENNReal.ofReal_lt_top
   rw [← Measure.prod_restrict, integral_prod _ hint, integral_fold m _ hPint]
   refine integral_congr_ae (ae_of_all _ (fun y => ?_))
-  exact GlobalTheory.T.heisenberg_character_orthogonality m ψ hψ b₀ hb (fun η => Φ (rt η + y)) (fun η => φ (rt η + y)) (h1 y).1 (h2 y).1
+  exact _root_.GlobalTheory.CompanionTheory.FJE.parseval m ψ hψ b₀ hb (fun η => Φ (rt η + y)) (fun η => φ (rt η + y)) (h1 y).1 (h2 y).1
 
 end GlobalTheory.CompanionTheory.FJE

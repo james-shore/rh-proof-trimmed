@@ -59,12 +59,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FactorOverOpen
 
-theorem isNormalScheme_opens {S : Scheme.{0}} (h : ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsNormalScheme S) (V : S.Opens) :
-    ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsNormalScheme V.toScheme := fun x => by
-  obtain ⟨h₁, h₂⟩ := h x.1
-  have e := (V.stalkIso x).commRingCatIsoToRingEquiv
-  exact ⟨e.toMulEquiv.isDomain _, IsIntegrallyClosed.of_equiv e.symm⟩
-
 theorem isNoetherian_opens {S : Scheme.{0}} [AlgebraicGeometry.IsNoetherian S] (V : S.Opens) :
     AlgebraicGeometry.IsNoetherian V.toScheme := by
   have : CompactSpace V.toScheme :=
@@ -128,5 +122,5 @@ theorem GlobalTheory.FactorOverOpen.factor_over_open : ∀ {S X : Scheme.{0}} [I
   have hG : IsSemiAbelian G := IsSemiAbelian.pullback U.ι H hH
   have hG' : IsSemiAbelian G' := IsSemiAbelian.pullback c A (GlobalTheory.isSemiAbelian_of_isAbelianScheme A hA)
   obtain ⟨E, ⟨hE, -⟩, -⟩ := GlobalTheory.Published.SemiAbelianHomExtension.existsUnique_iso_of_extensions
-    GlobalTheory.semiAbelianHomExtension_holds (isNormalScheme_opens hS U) hG' hG hψ hφ
+    GlobalTheory.semiAbelianHomExtension_holds (_root_.GlobalTheory.ZH.AbPol.isNormalScheme_opens hS U) hG' hG hψ hφ
   exact ⟨_, ((isGrpPullback_of_iso E).comp (isGrpPullback_pullback H U.ι)).congr (Category.id_comp _) rfl⟩

@@ -289,7 +289,7 @@ theorem UpperTheory.mayerVietorisConnecting_exists_unique_additive_exact :
   refine ⟨?_, ?_⟩
   · intro U V E f g h
     have X := mvx R F f g h
-    obtain ⟨d, hd, -⟩ := GlobalTheory.T.exists_mayerVietoris_connecting_exact R F
+    obtain ⟨d, hd, -⟩ := _root_.GlobalTheory.EtC.mayerVietoris R F
     exact ⟨fun c => Rel.exists X c, fun c x x' => Rel.unique X, fun c c' x x' => Rel.add,
       fun c x hx => Rel.iff_zero X hx, fun x => Rel.iff_pull X x, fun a b => (hd f g h n).1 a b⟩
   · intro U V E U' V' E' f g f' g' p u v hu hv _ _ c x hx

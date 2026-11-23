@@ -153,18 +153,6 @@ theorem act_num_mem (K : Submodule ℂ (RadSp k r z z' π π')) {N : SlopeTestRe
   rw [Module.algebraMap_end_apply]
   exact K.smul_mem q (hv c)
 
-theorem act_one' (v : Ix S → RadSp k r z z' π π') : act (1 : SlopeTestRemainingChoices S (Pr (RadSp k r z z' π π'))) v = v := by
-  funext b
-  unfold act
-  rw [Finset.sum_eq_single b]
-  · simp only [Matrix.one_apply_eq]
-    rfl
-  · intro c _ hc
-    rw [Matrix.one_apply_ne (Ne.symm hc)]
-    rfl
-  · intro h
-    exact absurd (Finset.mem_univ b) h
-
 end Num
 
 theorem sum_fin_list {α : Type*} (L : List α) (g : α → ℂ) : ∑ i : Fin L.length, g (L.get i) = (L.map g).sum := by
@@ -260,7 +248,7 @@ theorem expansion_site_zero_induction : ExpansionByLetterInduction := by
       ∀ b, act (bT σ w') u b ∈ Cl := by
     intro w'
     induction w' with
-    | nil => intro u hu b; rw [show bT σ ([] : List (Letter ℂ S)) = 1 from rfl, act_one']; exact hu b
+    | nil => intro u hu b; rw [show bT σ ([] : List (Letter ℂ S)) = 1 from rfl, _root_.Formalism.FourierDecayAlt.P5.act_one_hermitian_curvature]; exact hu b
     | cons le w' ih =>
       intro u hu b
       rw [show bT σ (le :: w') = vlet σ le * bT σ w' from rfl, act_mul]
@@ -269,7 +257,7 @@ theorem expansion_site_zero_induction : ExpansionByLetterInduction := by
       ∀ b, act (ibT σ w') u b ∈ Cl := by
     intro w'
     induction w' with
-    | nil => intro u hu b; rw [show ibT σ ([] : List (Letter ℂ S)) = 1 from rfl, act_one']; exact hu b
+    | nil => intro u hu b; rw [show ibT σ ([] : List (Letter ℂ S)) = 1 from rfl, _root_.Formalism.FourierDecayAlt.P5.act_one_hermitian_curvature]; exact hu b
     | cons le w' ih =>
       intro u hu b
       rw [show ibT σ (le :: w') = ivlet σ le * ibT σ w' from rfl, act_mul]
@@ -287,7 +275,7 @@ theorem expansion_site_zero_induction : ExpansionByLetterInduction := by
       refine ⟨[], by simp, fun t _ => ?_⟩
       simp only [List.map_nil, List.sum_nil, add_zero]
       rw [show ibT σ ([] : List (Letter ℂ S)) = 1 from rfl, show bT σ ([] : List (Letter ℂ S)) = 1 from rfl,
-        act_one', act_one']
+        _root_.Formalism.FourierDecayAlt.P5.act_one_hermitian_curvature, _root_.Formalism.FourierDecayAlt.P5.act_one_hermitian_curvature]
     | cons le w' ih =>
       intro hnd hre u v hu hv
       have hnd' : le.intersection_update_fsHerm_neg_one ∉ w'.map Letter.intersection_update_fsHerm_neg_one ∧ (w'.map Letter.intersection_update_fsHerm_neg_one).Nodup := by
@@ -376,12 +364,12 @@ theorem expansion_site_zero_induction : ExpansionByLetterInduction := by
     fun i => (hmem i).1, fun i b => act_num_mem _ (hmem i).2 hy b, fun t ht => ?_, ?_⟩
   · rw [sum_fin_list terms (fun τ => τ.1 * WD τ.2.1 (Dens μ l (act (RRi L st l.castSucc w) x) (act τ.2.2 y) c) t)]
     show Dens μ l (act (ibT σ w) (act (RRi L st l.castSucc w) x)) (act (bT σ w) y) c t = _
-    rw [hE t ht, ← hterms, List.map_cons, List.sum_cons, act_one']
+    rw [hE t ht, ← hterms, List.map_cons, List.sum_cons, _root_.Formalism.FourierDecayAlt.P5.act_one_hermitian_curvature]
     simp only [one_mul]
     rfl
   · rw [sum_fin_list terms (fun τ => τ.1 * (if τ.2.1 = [] then form μ l.castSucc (act (RRi L st l.castSucc w) x)
       (act τ.2.2 y) c else 0))]
-    rw [← hterms, List.map_cons, List.sum_cons, act_one']
+    rw [← hterms, List.map_cons, List.sum_cons, _root_.Formalism.FourierDecayAlt.P5.act_one_hermitian_curvature]
     have h0 : (rest.map fun τ => τ.1 * (if τ.2.1 = [] then form μ l.castSucc (act (RRi L st l.castSucc w) x)
         (act τ.2.2 y) c else 0)).sum = 0 := by
       apply List.sum_eq_zero

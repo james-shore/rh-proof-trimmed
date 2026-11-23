@@ -89,46 +89,6 @@ theorem kernel_props' (hp : IsPullback j (toUnit A) ((𝟙 B) ^ N) η[B])
     MorphismProperty.of_isPullback (P := @QuasiCompact) h1 inferInstance,
     MorphismProperty.of_isPullback (P := @LocallyOfFinitePresentation) h1 inferInstance⟩
 
-theorem kernel_base_etale' {W : Scheme.{0}} (c : W ⟶ Z) (hp : IsPullback j (toUnit A) ((𝟙 B) ^ N) η[B])
-    (hN : IsUnit (N : Γ(W, ⊤))) [Flat A.hom] [LocallyOfFinitePresentation A.hom] :
-    Etale (pullback.snd A.hom c) := by
-  have h1 := kernel_isPullback hp
-  set m := ((𝟙 B) ^ N).left with hm
-  set mW := ((Over.pullback c).map ((𝟙 B) ^ N)).left with hmW
-  have hfu : FormallyUnramified mW := by
-    rw [hmW, ← GlobalTheory.MulEtaleDvr.mulN_eq_pow, GlobalTheory.MulEtaleDvr.pullback_map_mulN]
-    exact GlobalTheory.formallyUnramified_mulN _ _ _ hN
-  have hr := GlobalTheory.AbLaw.MulN.isPullback_baseChange c ((𝟙 B) ^ N)
-  have hpb := IsPullback.of_hasPullback A.hom c
-  have hbig : IsPullback (pullback.fst A.hom c ≫ j.left) (pullback.snd A.hom c) m (c ≫ (η[B]).left) :=
-    IsPullback.paste_horiz hpb h1
-  let s : W ⟶ pullback B.hom c := pullback.lift (c ≫ (η[B]).left) (𝟙 W) (by
-    rw [Category.assoc, Over.w (η[B])]
-    simp)
-  let t : pullback A.hom c ⟶ pullback B.hom c := pullback.lift (pullback.fst A.hom c ≫ j.left) (pullback.snd A.hom c) (by
-    rw [Category.assoc, Over.w j, pullback.condition])
-  have ht1 : t ≫ pullback.fst B.hom c = pullback.fst A.hom c ≫ j.left := pullback.lift_fst _ _ _
-  have hs1 : s ≫ pullback.fst B.hom c = c ≫ (η[B]).left := pullback.lift_fst _ _ _
-  have ht2 : t ≫ pullback.snd B.hom c = pullback.snd A.hom c := pullback.lift_snd _ _ _
-  have hs2 : s ≫ pullback.snd B.hom c = 𝟙 W := pullback.lift_snd _ _ _
-  have hw : mW ≫ pullback.snd B.hom c = pullback.snd B.hom c :=
-    Over.w ((Over.pullback c).map ((𝟙 B) ^ N))
-  have hsq : t ≫ mW = pullback.snd A.hom c ≫ s := by
-    apply pullback.hom_ext
-    · rw [Category.assoc, Category.assoc, hs1, ← hr.w, ← Category.assoc, ht1, Category.assoc, h1.w,
-        ← Category.assoc, pullback.condition, Category.assoc]
-    · rw [Category.assoc, Category.assoc, hw, ht2, hs2, Category.comp_id]
-  have hleft : IsPullback t (pullback.snd A.hom c) mW s := by
-    apply IsPullback.of_right _ hsq hr
-    rw [ht1, hs1]
-    exact hbig
-  have hU : FormallyUnramified (pullback.snd A.hom c) :=
-    MorphismProperty.of_isPullback (P := @FormallyUnramified) hleft hfu
-  have hF : Flat (pullback.snd A.hom c) := MorphismProperty.of_isPullback (P := @Flat) hpb inferInstance
-  have hL : LocallyOfFinitePresentation (pullback.snd A.hom c) :=
-    MorphismProperty.of_isPullback (P := @LocallyOfFinitePresentation) hpb inferInstance
-  exact Etale.iff_flat_and_formallyUnramified.2 ⟨hF, hU, hL⟩
-
 end Props
 
 theorem lofp_pullback_map {S' S : Scheme.{0}} [IsLocallyNoetherian S] (x : S' ⟶ S) {G : Over S}
@@ -312,7 +272,7 @@ theorem exists_qfGroup [CharZero R] [IsAlgClosed (FractionRing R)] [IsLocallyNoe
   haveI := hqf
   haveI := hfp
   have hpt := fun g hg => exists_genPt (pullback ((𝟙 ((Over.pullback x).obj G)) ^ N) (η[(Over.pullback x).obj G])) g hg
-  haveI := kernel_base_etale' (genPt R).hom hp (isUnit_natCast_frac hN)
+  haveI := _root_.GlobalTheory.CompanionTheory.Ar.BT.Tors.kernel_base_etale (genPt R).hom hp (isUnit_natCast_frac hN)
   haveI : IsReduced (genPt R).left := by
     show IsReduced (Spec (CommRingCat.of (FractionRing R)))
     infer_instance

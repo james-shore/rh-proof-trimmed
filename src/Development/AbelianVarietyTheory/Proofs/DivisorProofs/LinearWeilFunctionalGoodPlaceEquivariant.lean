@@ -162,12 +162,12 @@ theorem shapeV : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type) [Field F]
   have hlin : ∀ φ ∈ SB (Fin a × Fin (a + a') → Fv F v), ∀ φ' ∈ SB (Fin a × Fin (a + a') → Fv F v), ∀ c : ℂ,
       A (c • φ + φ') = c • A φ + A φ' := by
     intro φ hφ φ' hφ' c
-    refine GlobalTheory.T.eq_of_componentTensorAdelicFunction_eq v (G.M.vac v) _ _ hvac.1 fun r hr => ?_
+    refine _root_.GlobalTheory.TensUniq.eq_of_tens_eq v (G.M.vac v) _ _ hvac.1 fun r hr => ?_
     have hsum : c • φ + φ' ∈ SB (Fin a × Fin (a + a') → Fv F v) :=
       Submodule.add_mem _ (Submodule.smul_mem _ c hφ) hφ'
-    have r0 := GlobalTheory.T.complementaryAdelicSchwartz_of_nonzero_local v _ _ r hvac.2.1 hsum hr
-    have r1 := GlobalTheory.T.complementaryAdelicSchwartz_of_nonzero_local v _ _ r hvac.2.1 hφ hr
-    have r2 := GlobalTheory.T.complementaryAdelicSchwartz_of_nonzero_local v _ _ r hvac.2.1 hφ' hr
+    have r0 := _root_.GlobalTheory.RestCofactor.rest_of_rest v _ _ r hvac.2.1 hsum hr
+    have r1 := _root_.GlobalTheory.RestCofactor.rest_of_rest v _ _ r hvac.2.1 hφ hr
+    have r2 := _root_.GlobalTheory.RestCofactor.rest_of_rest v _ _ r hvac.2.1 hφ' hr
     have et : ∀ (ψ₁ ψ₂ : (Fin a × Fin (a + a') → Fv F v) → ℂ), tens (evFin F v) (c • ψ₁ + ψ₂) r =
         c • tens (evFin F v) ψ₁ r + tens (evFin F v) ψ₂ r := fun ψ₁ ψ₂ => by
       funext x; simp only [tens, Pi.add_apply, Pi.smul_apply, smul_eq_mul]; ring
@@ -187,7 +187,7 @@ theorem shapeV : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type) [Field F]
           schr (GlobalTheory.LatVac.psiAt B.ψ v) (GlobalTheory.LatVac.locCo G.M.co v (mat g * γ)) (A φ) := by
     intro γ hγ φ hφ
     have hw := GlobalTheory.SchrSB.schr_mem_SB B.ψ hstd.1 v (GlobalTheory.LatVac.locCo G.M.co v γ) φ hφ
-    refine GlobalTheory.T.eq_of_componentTensorAdelicFunction_eq v φ _ _ hφ fun r hr => ?_
+    refine _root_.GlobalTheory.TensUniq.eq_of_tens_eq v φ _ _ hφ fun r hr => ?_
     have hb1 := GlobalTheory.VacBridge.rho_acts_locCo G.M.co B.ψ v γ hγ φ r hr
     have hRw : Rest (evFin F v) (schr (GlobalTheory.LatVac.psiAt B.ψ v) (GlobalTheory.LatVac.locCo G.M.co v γ) φ) r :=
       ⟨hr.1, by rw [← hb1]; exact GlobalTheory.T.weil_representation_preserves_schwartz G.M B.ψ hstd γ _ hr.2⟩
@@ -212,7 +212,7 @@ theorem shapeV : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type) [Field F]
     fun γ hγ h0 φ hφ x hx hx0 =>
       hL.mult γ hγ h0 φ hφ _ (hsb _ φ hφ) (GlobalTheory.VacBridge.rho_acts_locCo G.M.co B.ψ v γ hγ φ) x hx hx0
 
-  choose U hUat hU0 hU1 using fun (P₀ P₁ : Matrix (Fin a) (Fin (a + a')) (Fv F v)) => GlobalTheory.T.exists_splitPlace_adelicMatrix_given_components hcm v t P₀ P₁
+  choose U hUat hU0 hU1 using fun (P₀ P₁ : Matrix (Fin a) (Fin (a + a')) (Fv F v)) => _root_.GlobalTheory.SplitComps.exists_mat_comps hcm v t P₀ P₁
 
   set A' := G.V.J.map (t.comp σ) with hA'def
   set B' := G.W.J.map (t.comp σ) with hB'def
@@ -222,10 +222,10 @@ theorem shapeV : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type) [Field F]
         GlobalTheory.LatVac.psiAt B.ψ v (-(∑ k, ∑ l, (-(A' * x.map (piW t) * B'ᵀ)) k l * u.map (piW (t.comp σ)) k l)) := by
     intro x u hx hx0 hu1
     have hu1' : u.map (piW ((t.comp σ).comp σ)) = 0 := by rw [comp_conj_conj hcm]; exact hu1
-    have e := GlobalTheory.T.hermitianTensor_skewHermitian_split_symplectic_pair hcm (t.comp σ) G.V.J G.W.J hTr.geo.hV.herm hTr.geo.hW.skew x u hx0 hu1'
+    have e := _root_.GlobalTheory.FourSumComposition.main hcm (t.comp σ) G.V.J G.W.J hTr.geo.hV.herm hTr.geo.hW.skew x u hx0 hu1'
     rw [comp_conj_conj hcm] at e
     unfold symp
-    rw [GlobalTheory.T.adelicTrace_supportedAtSplitPlace hcm v (t.comp σ) _ (at_neg_hTens _ _ x u hx), comp_conj_conj hcm]
+    rw [_root_.GlobalTheory.SplitAdeleTrace.trace_at_split hcm v (t.comp σ) _ (at_neg_hTens _ _ x u hx), comp_conj_conj hcm]
     rw [map_mul, map_mul, map_neg, map_neg, map_one, map_one, neg_one_mul, neg_one_mul, ← neg_add, e]
     rfl
 
@@ -322,7 +322,7 @@ theorem shapeV : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type) [Field F]
       have h2 : (mat g⁻¹ * U (gt * Y) 0).map (piW t) = Y := by
         rw [Matrix.map_mul, hU0, ← hgti, ← Matrix.mul_assoc, hgg, Matrix.one_mul]
       rw [hcov _ (hUat 0 P) x hx, hm, hx', hsymp _ _ (atMul _ _ (hUat (gt * Y) 0)) h1 (hU0 0 P), h2, hU1, hchar]
-  obtain ⟨c, hc⟩ := GlobalTheory.T.eq_smul_of_commute_heisenberg_linearModel_schwartzBruhat (SB (Fin a × Fin (a + a') → Fv F v)) (GlobalTheory.LatVac.psiAt B.ψ v) hψc hψ1 ι
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.LinSchur.eq_smul_of_commute (SB (Fin a × Fin (a + a') → Fv F v)) (GlobalTheory.LatVac.psiAt B.ψ v) hψc hψ1 ι
     (fun φ (Y : Matrix (Fin a) (Fin (a + a')) (Fv F v)) => ι (A φ) (gt * Y)) hL.bij h2lin _ _ h2tr h2mu
   refine ⟨c, fun φ hφ φ₁ hφ₁ hact1 Y => ?_⟩
   rw [huniq φ hφ φ₁ hφ₁ hact1, hinv]

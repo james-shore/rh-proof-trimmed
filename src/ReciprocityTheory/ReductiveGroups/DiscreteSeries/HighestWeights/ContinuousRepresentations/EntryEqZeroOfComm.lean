@@ -201,7 +201,7 @@ def pieceKType {n : ℕ} {ε : Fin n → Bool} (R : KRep ε)
     (hS : KRepStableStatement) (hR : KRepRelStatement) (μ : Fin n → ℝ) (x : R.V) (hx : x ≠ 0)
     (hhi : Formalism.REAL.KHighest ε R.units μ x) : KType ε μ :=
   let W := Formalism.REAL.kSpan ε R.units x
-  have hK : Formalism.REAL.KStable ε R.units W := Formalism.REAL.isCompactInvariant_compactSpan x
+  have hK : Formalism.REAL.KStable ε R.units W := _root_.Formalism.REAL.compact_span_stable x
   have hτ : ∀ k : KG ε, ∀ v ∈ W, R.op k v ∈ W := (hS n ε R W).mpr hK
   have hxW : x ∈ W := Formalism.REAL.mem_compactSpan x
   { V := W
@@ -269,7 +269,7 @@ open PieceCon in
 theorem kRepPiece_of (hR : KRepRelStatement) (hS : KRepStableStatement) : KRepPieceStatement := by
   intro n ε R μ x hx hhi
   set W := Formalism.REAL.kSpan ε R.units x with hWdef
-  have hK : Formalism.REAL.KStable ε R.units W := Formalism.REAL.isCompactInvariant_compactSpan x
+  have hK : Formalism.REAL.KStable ε R.units W := _root_.Formalism.REAL.compact_span_stable x
   have hτ : ∀ k : KG ε, ∀ v ∈ W, R.op k v ∈ W := (hS n ε R W).mpr hK
   refine ⟨pieceKType R hS hR μ x hx hhi, LinearIsometryEquiv.refl ℂ W, ?_, ?_, ?_⟩
   · intro k v

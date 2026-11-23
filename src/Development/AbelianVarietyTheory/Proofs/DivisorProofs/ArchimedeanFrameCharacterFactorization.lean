@@ -159,7 +159,7 @@ theorem charUpq : ∀ (R S : ℕ) (χ : Mat R S → ℂ),
     subst hxy'
     exact ⟨x, fun a d => (mul_zpow _ _ _).symm⟩
   refine ⟨n, fun g hg => ?_⟩
-  obtain ⟨k, q, hk1, hk2, hq1, hq2, rfl⟩ := GlobalTheory.T.exists_polar_decomposition_indefiniteUnitary R S g hg
+  obtain ⟨k, q, hk1, hk2, hq1, hq2, rfl⟩ := _root_.GlobalTheory.UnitaryPolar.polar R S g hg
   have hq : χ q * χ q = 1 := by
     have hJq : (Jm R S * q)ᴴ * Jm R S * (Jm R S * q) = Jm R S := memm hJU hq1
     have hJqJ := memm hJq hJU

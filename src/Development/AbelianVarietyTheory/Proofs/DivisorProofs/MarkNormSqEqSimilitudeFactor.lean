@@ -50,7 +50,7 @@ theorem Pair.mark_norm_sq : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (P : Pa
     ‖μ‖ ^ 2 = ((P.c : ℚ) : ℝ) := by
   intro p _ G P μ hμ
   obtain ⟨v, _, x, hx, hpos⟩ := hμ
-  obtain ⟨_, _, hlaw⟩ := GlobalTheory.T.similitudePair_hermitianForm_invertible_similitude p G P v
+  obtain ⟨_, _, hlaw⟩ := _root_.GlobalTheory.LKMid.pair_form_laws p G P v
   set H := G.gram v * G.psi v ((P.β⁻¹ : G.Cˣ) : G.C) with hH
   set A := G.psi v (P.γ : G.C) with hA
   set q : ℂ := star x ⬝ᵥ (H *ᵥ x) with hq

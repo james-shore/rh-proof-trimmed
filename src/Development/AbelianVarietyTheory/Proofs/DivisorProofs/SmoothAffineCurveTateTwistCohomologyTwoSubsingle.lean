@@ -65,13 +65,13 @@ theorem smoothAffineCurve_tateTwistCohomology_two_subsingleton : ∀ (q : ℕ) [
     refine ⟨algebraMap k B z, ?_⟩
     rw [Polynomial.aeval_algebraMap_apply, Polynomial.aeval_def, ← Polynomial.eval_map, Polynomial.map_cyclotomic,
       hz.eq_zero, map_zero]
-  obtain ⟨e⟩ := GlobalTheory.T.tateTwistCohomology_spec_twist_independent q B hqB hζ 2 i 1
+  obtain ⟨e⟩ := _root_.GlobalTheory.EtC.untwist q B hqB hζ 2 i 1
   have h0 : ∀ x : Ht q (sp B) 2 1, x = 0 := by
     intro x
-    obtain ⟨f, hf, hxf⟩ := GlobalTheory.T.exists_localization_away_pull_eq_zero_Ht_two q k B hq 1 x
-    obtain ⟨A', _, _, hA', hxA'⟩ := GlobalTheory.T.exists_etaleNbhd_killing_curveCohomologyClass q k B hq f hf 2 1 (by norm_num) x
-    obtain ⟨w, hw⟩ := GlobalTheory.T.etaleExcision_vanishing_under_refinement q B A' f hA' 1 1 x hxf hxA'
-    obtain ⟨g, hfg, A₂, C, _, _, _, _, _, _, h2, hg, hC, a, haC, hwa⟩ := GlobalTheory.T.exists_kummerClass_agreeing_near_zeros q k B hq f hf A' hA' w
+    obtain ⟨f, hf, hxf⟩ := _root_.GlobalTheory.EtC.smoothAffineCurve_degreeTwo_class_dies_on_principalOpen q k B hq 1 x
+    obtain ⟨A', _, _, hA', hxA'⟩ := _root_.GlobalTheory.EtC.CurveNbhdExcision.main q k B hq f hf 2 1 (by norm_num) x
+    obtain ⟨w, hw⟩ := _root_.GlobalTheory.EtC.mvRefine_main q B A' f hA' 1 1 x hxf hxA'
+    obtain ⟨g, hfg, A₂, C, _, _, _, _, _, _, h2, hg, hC, a, haC, hwa⟩ := _root_.GlobalTheory.EtC.KummerStep.exists_class_agreeing_near_zeros q k B hq f hf A' hA' w
     exact hw g hfg A₂ C h2 hg hC a haC hwa
   exact ⟨fun a b => e.injective (by rw [h0 (e a), h0 (e b)])⟩
 

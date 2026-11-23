@@ -95,9 +95,7 @@ variable {k' : Type u} [Field k'] [CharZero k'] {Y' : Scheme.{u}} [AlgebraicGeom
   {pY' : Y' ⟶ Spec (CommRingCat.of k')} [AlgebraicGeometry.LocallyOfFiniteType pY']
   {S : EmbeddedBlowupSequence k Y pY} {S' : EmbeddedBlowupSequence k' Y' pY'}
 
-theorem reindex_lt_reindex (F : ChartFlatBaseChange S S') {s j : ℕ} (hsj : s < j)
-    (hj : j ≤ S'.length) : F.reindex s < F.reindex j :=
-  F.reindex_lt_reindex_of_lt hsj hj
+alias reindex_lt_reindex := _root_.FunctorialResolution.EmbeddedResolution.ChartFlatBaseChange.reindex_lt_reindex_of_lt
 
 theorem reindex_le_reindex_succ (F : ChartFlatBaseChange S S') (j : ℕ) (hj : j + 1 ≤ S'.length) :
     F.reindex j ≤ F.reindex (j + 1) :=
@@ -221,12 +219,7 @@ private theorem forall_isEmpty_of_comm_inactiveTotalToBase (F : ChartFlatBaseCha
       exact isEmpty_of_hom_to_initial
         (h3.lift q p hcomm' ≫ coprod.desc (𝟙 (⊥_ Scheme.{u})) (𝟙 (⊥_ Scheme.{u})))
 
-theorem isEmpty_of_comm_inactiveTotalToBase_of_not_mem_range (F : ChartFlatBaseChange S S') (h : S.TransitionsAreBlowups)
-    (i : ℕ) (hlt : ∀ s, s < i → s < S.length)
-    (hskip : ∀ s, s < i → ∀ j, j < S'.length → F.reindex j ≠ s) (P : Scheme.{u})
-    (q : P ⟶ S.detachedCoprod i) (p : P ⟶ Y')
-    (hcomm : q ≫ S.inactiveTotalToBase h i = p ≫ F.baseMap) : IsEmpty ↥P :=
-  forall_isEmpty_of_comm_inactiveTotalToBase F h i hlt hskip P q p hcomm
+alias isEmpty_of_comm_inactiveTotalToBase_of_not_mem_range := _root_.FunctorialResolution.EmbeddedResolution.ChartFlatBaseChange.forall_isEmpty_of_comm_inactiveTotalToBase
 
 theorem isPullback_detachedCoprodMapOfLE_inactiveTotalToBase (F : ChartFlatBaseChange S S') (h : S.TransitionsAreBlowups)
     {a b : ℕ} (hab : a ≤ b) (hlt : ∀ s, a ≤ s → s < b → s < S.length)
@@ -361,13 +354,7 @@ private theorem forall_detachedToCoprod_inactiveTotalMap (F : ChartFlatBaseChang
       · subst heq
         rw [S'.detachedToCoprod_self s, detachedCoprodInr_inactiveTotalMap F s hj]
 
-theorem detachedToCoprod_inactiveTotalMap (F : ChartFlatBaseChange S S')
-    [AlgebraicGeometry.IsReduced Y] [AlgebraicGeometry.IsReduced Y'] (j : ℕ) (hj : j ≤ S'.length)
-    (s : ℕ) (hs : s < j) :
-    S'.detachedToCoprod s j hs ≫ F.inactiveTotalMap j hj =
-      F.detachedSchemeComparison s (lt_of_lt_of_le hs hj) ≫
-        S.detachedToCoprod (F.reindex s) (F.reindex j) (F.reindex_lt_reindex hs hj) :=
-  forall_detachedToCoprod_inactiveTotalMap F j hj s hs
+alias detachedToCoprod_inactiveTotalMap := _root_.FunctorialResolution.EmbeddedResolution.ChartFlatBaseChange.forall_detachedToCoprod_inactiveTotalMap
 
 private theorem inl_detachedCoprodMapOfLE (T : EmbeddedBlowupSequence k Y pY) {c b : ℕ}
     (hcb : c + 1 ≤ b) :

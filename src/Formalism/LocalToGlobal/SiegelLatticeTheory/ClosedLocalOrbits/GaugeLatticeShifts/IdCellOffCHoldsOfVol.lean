@@ -56,22 +56,14 @@ namespace Formalism.L2.SG.Pf.IdBlocks2.Conj
 
 variable {n r : ℕ} (ε : Fin n → Bool)
 
-theorem hJ_add (x y z : Fin n → ℂ) : hJ ε x (y + z) = hJ ε x y + hJ ε x z := by
-  simp [hJ, Matrix.mulVec_add, dotProduct_add]
-
-theorem hJ_smul (x y : Fin n → ℂ) (c : ℂ) : hJ ε x (c • y) = c * hJ ε x y := by
-  simp [hJ, Matrix.mulVec_smul, dotProduct_smul]
-
-theorem hJ_zero (x : Fin n → ℂ) : hJ ε x 0 = 0 := by simp [hJ]
-
 theorem hJ_span_zero (x : Fin n → ℂ) (S : Set (Fin n → ℂ)) (h : ∀ y ∈ S, hJ ε x y = 0) :
     ∀ w ∈ Submodule.span ℂ S, hJ ε x w = 0 := by
   intro w hw
   induction hw using Submodule.span_induction with
   | mem y hy => exact h y hy
-  | zero => exact hJ_zero ε x
-  | add y z _ _ hy hz => rw [hJ_add, hy, hz, add_zero]
-  | smul c y _ hy => rw [hJ_smul, hy, mul_zero]
+  | zero => exact _root_.PI.SchurPlaces.LeviLA.hJ_zero_right ε x
+  | add y z _ _ hy hz => rw [_root_.PI.SchurPlaces.Geo.hJ_add_right, hy, hz, add_zero]
+  | smul c y _ hy => rw [_root_.PI.SchurPlaces.Geo.hJ_smul_right, hy, mul_zero]
 
 theorem spanLt_mono (e : Fin r → Fin n → ℂ) {a b : ℕ} (h : a ≤ b) : spanLt e a ≤ spanLt e b :=
   Submodule.span_mono (Set.image_mono fun c (hc : c.1 < a) => lt_of_lt_of_le hc h)
@@ -134,7 +126,7 @@ theorem conj_core (hgi : gi * g = 1) (hgi' : g * gi = 1)
 
   have hgF : ∀ (a : Fin r) (w : Fin n → ℂ), w ∈ spanLt E (a.1 + 1) → hJ ε (g *ᵥ F a) w = hJ ε (F a) w := by
     intro a w hw
-    rw [hiso', show gi *ᵥ w = w + (gi *ᵥ w - w) by abel, hJ_add, hFlow a _ (sub_mem_of E gi hEgi a.1 w hw),
+    rw [hiso', show gi *ᵥ w = w + (gi *ᵥ w - w) by abel, _root_.PI.SchurPlaces.Geo.hJ_add_right, hFlow a _ (sub_mem_of E gi hEgi a.1 w hw),
       add_zero]
   constructor
   · intro hs
@@ -201,8 +193,8 @@ theorem conj_core (hgi : gi * g = 1) (hgi' : g * gi = 1)
         have hdec : s *ᵥ N + s *ᵥ x = (N + x) + ((s *ᵥ N - N) + (s *ᵥ x - x)) := by abel
         have hbase : hJ ε (g *ᵥ F a) (N + x) = hJ ε (F a) N := by
           rw [← hgN, hiso, hFN]
-        rw [hdec, hJ_add ε _ (N + x), hJ_add ε _ (s *ᵥ N - N), hbase, hgF a _ hsN,
-          hgF a _ (spanLt_mono E (Nat.le_succ _) (hsX a.1 x hxa)), hFlow a _ (hsX a.1 x hxa), add_zero, ← hJ_add]
+        rw [hdec, _root_.PI.SchurPlaces.Geo.hJ_add_right ε _ (N + x), _root_.PI.SchurPlaces.Geo.hJ_add_right ε _ (s *ᵥ N - N), hbase, hgF a _ hsN,
+          hgF a _ (spanLt_mono E (Nat.le_succ _) (hsX a.1 x hxa)), hFlow a _ (hsX a.1 x hxa), add_zero, ← _root_.PI.SchurPlaces.Geo.hJ_add_right]
         congr 1
         abel
       unfold psiR
@@ -374,11 +366,6 @@ theorem rv_crd_sub (a b : (VS D).V) :
   rw [Formalism.L2.SG.Pf.Vanish2.crd_sub' X]
   exact map_sub (Formalism.L2.SG.Pf.Level.rvHom X v) _ _
 
-theorem hJ_iso' {n : ℕ} (ε : Fin n → Bool) {g : Matrix (Fin n) (Fin n) ℂ}
-    (hg : gᴴ * Formalism.REAL.Jm ε * g = Formalism.REAL.Jm ε) (x y : Fin n → ℂ) : hJ ε (g *ᵥ x) (g *ᵥ y) = hJ ε x y := by
-  unfold hJ
-  rw [Matrix.star_mulVec, ← Matrix.dotProduct_mulVec, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, hg]
-
 end Real
 
 theorem idOffConj_all {D : D7} (X : HidaSetting D) (u u' : D.what₂.Word)
@@ -403,7 +390,7 @@ theorem idOffConj_all {D : D7} (X : HidaSetting D) (u u' : D.what₂.Word)
     intro v s
     have hgi : uMat (t.pt.1⁻¹ v) * uMat (t.pt.1 v) = 1 := by simp [uMat]
     have hgi' : uMat (t.pt.1 v) * uMat (t.pt.1⁻¹ v) = 1 := by simp [uMat]
-    refine conj_core (X.B.I.ε v) X.B.g _ _ _ _ _ _ hgi hgi' (hJ_iso' (X.B.I.ε v) (t.pt.1 v).2) ?_ ?_ ?_ ?_ ?_ ?_ s
+    refine conj_core (X.B.I.ε v) X.B.g _ _ _ _ _ _ hgi hgi' (_root_.PI.SchurPlaces.Geo.hJ_unitary (X.B.I.ε v) (t.pt.1 v).2) ?_ ?_ ?_ ?_ ?_ ?_ s
     · intro b
       show uMat (t.pt.1 v) *ᵥ rv X.B.I v (X.crd (X.eX b)) - rv X.B.I v (X.crd (X.eX b)) ∈ _
       rw [real_of_ratLink X v hx, ← rv_crd_sub]

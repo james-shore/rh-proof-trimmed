@@ -282,7 +282,7 @@ theorem convP : ConvP := by
   intro F E _ _ _ _ _ σ M J n ψ v μv νv lam L₁ L₂ Φv g T h
   haveI : lam.IsAddHaarMeasure := h.haar
   haveI : νv.IsAddHaarMeasure := h.sdH.1
-  obtain ⟨ϖ, hϖ0, hϖ1⟩ := exists_norm_lt_one (F := F) v
+  obtain ⟨ϖ, hϖ0, hϖ1⟩ := _root_.PositivityTheory.SiegelWeilFormula.SwLocFin.exists_norm_lt_one' (F := F) v
   have hϖne : ϖ ≠ 0 := norm_pos_iff.1 hϖ0
   obtain ⟨R₀, hR₀, hKL⟩ := exists_lattice_norm_ge_pow hϖ0 hϖ1 lam h.co₁ h.co₂
   obtain ⟨k, hk⟩ := exists_scale σ n νv hϖne

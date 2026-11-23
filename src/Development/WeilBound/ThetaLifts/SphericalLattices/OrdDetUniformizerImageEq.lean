@@ -50,6 +50,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import Development.AbelianVarietyTheory.Definitions.Foundations.IsHermND
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.FSatakeA
 
 @[expose] public section
 
@@ -64,22 +65,8 @@ section Asm
 
 variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))]
 
-theorem asm_ordL_eq (x : L) : ordL x = -WithZero.log (Valued.v x : WithZero (Multiplicative ℤ)) := by
-  unfold ordL
-  split_ifs with h
-  · rw [h]; simp
-  · congr 1
-    conv_rhs => rw [← WithZero.coe_unzero h]
-    rfl
-
-theorem asm_ordL_mul {x y : L} (hx : x ≠ 0) (hy : y ≠ 0) : ordL (x * y) = ordL x + ordL y := by
-  have hx' : (Valued.v x : WithZero (Multiplicative ℤ)) ≠ 0 := by simpa using hx
-  have hy' : (Valued.v y : WithZero (Multiplicative ℤ)) ≠ 0 := by simpa using hy
-  rw [asm_ordL_eq, asm_ordL_eq, asm_ordL_eq, map_mul, WithZero.log_mul hx' hy']
-  ring
-
 theorem asm_ordL_pow (x : L) (n : ℕ) : ordL (x ^ n) = n * ordL x := by
-  rw [asm_ordL_eq, asm_ordL_eq, map_pow, WithZero.log_pow]
+  rw [_root_.GlobalTheory.LGrp.ordL_eq, _root_.GlobalTheory.LGrp.ordL_eq, map_pow, WithZero.log_pow]
   simp
 
 theorem asm_ordL_unit {x y : L} (hx : x ∈ intL L) (hy : y ∈ intL L) (h : x * y = 1) : ordL x = 0 := by
@@ -91,7 +78,7 @@ theorem asm_ordL_unit {x y : L} (hx : x ∈ intL L) (hy : y ∈ intL L) (h : x *
     calc (1 : WithZero (Multiplicative ℤ)) = Valued.v x * Valued.v y := h1.symm
       _ ≤ Valued.v x * 1 := mul_le_mul_right hy' _
       _ = _ := mul_one _
-  rw [asm_ordL_eq, h2]; simp
+  rw [_root_.GlobalTheory.LGrp.ordL_eq, h2]; simp
 
 variable {c : L →+* L} {m : ℕ}
 
@@ -134,13 +121,13 @@ theorem asm_ord_K {k : GL (Fin m ⊕ Fin m) L} (hk : k ∈ KPW L c m) : ordL (as
 
 theorem asm_ord_mul {a b : GL (Fin m ⊕ Fin m) L} (ha : a ∈ PW L c m) (hb : b ∈ PW L c m) :
     ordL (asmT (a * b)).det = ordL (asmT a).det + ordL (asmT b).det := by
-  rw [asmT_mul a hb, det_mul, asm_ordL_mul (asmT_det_ne ha) (asmT_det_ne hb)]
+  rw [asmT_mul a hb, det_mul, _root_.Formalism.UG.P.fSatake_ord_mul (asmT_det_ne ha) (asmT_det_ne hb)]
 
 theorem ord_det_uniformizer_image_eq {ϖ : L} {q : ℕ} (h : IsUnramInv ϖ c q) (x : Lˣ) (hx : (x : L) = ϖ) :
     ordL (asmT (zW L m x)).det = m := by
   have e : asmT (zW L m x) = (x : L) • (1 : Matrix (Fin m) (Fin m) L) := toBlocks_fromBlocks₁₁ _ _ _ _
   have o : ordL ϖ = 1 := by
-    rw [asm_ordL_eq, h.2.2.2.1]
+    rw [_root_.GlobalTheory.LGrp.ordL_eq, h.2.2.2.1]
     rfl
   rw [e, det_smul, det_one, mul_one, Fintype.card_fin, asm_ordL_pow, hx, o, mul_one]
 

@@ -52,9 +52,6 @@ namespace GlobalTheory.UPel.HT.GenKer
 
 variable {p : ℕ} [Fact p.Prime] {D : Datum p} {R' : Type} [CommRing R'] [Algebra ℚ R'] {S : Scheme.{0}}
 
-theorem exists_spMap {A B : Type} [CommRing A] [CommRing B] (u : Sp B ⟶ Sp A) : ∃ β : A →+* B, u = spMap β :=
-  ⟨(Spec.preimage u).hom, by simp [spMap]⟩
-
 theorem charZero_of_hom {k : Type} [Field k] (β : R' →+* k) : CharZero k :=
   charZero_of_injective_ringHom (β.comp (algebraMap ℚ R')).injective
 
@@ -63,7 +60,7 @@ theorem pow_eq_one_geom {gb : GBase D.toG R'} {N : ℕ} {t : S ⟶ Sp R'} (o : G
     (g : Over.mk x₀ ⟶ o.A) (M : ℕ) (hM : 0 < M) (hn : g ^ M = 1)
     (hg : ∃ u : (o.P.pull (lift (snd o.A (Over.mk x₀) ≫ g) (fst o.A (Over.mk x₀))).left).Gen, u.IsGen) :
     g ^ e = 1 := by
-  obtain ⟨β, hβ⟩ := exists_spMap (x₀ ≫ t)
+  obtain ⟨β, hβ⟩ := _root_.GlobalTheory.ZM.RepMap.exists_spMap (x₀ ≫ t)
   haveI := charZero_of_hom β
   obtain ⟨I, -⟩ := o.geom k x₀ β hβ
   obtain ⟨y, hy⟩ : ∃ y : D.La, I.ev M y = g := (I.onto M hM g).1 hn
@@ -112,7 +109,7 @@ theorem exists_coprime_pow_eq_one (p : ℕ) [Fact p.Prime] (D : Datum p) (R' : T
   let a : Sp B ⟶ T.left := u.inv ≫ T.left.affineCover.f i
   let a' : Over.mk (a ≫ T.hom) ⟶ T := Over.homMk a rfl
   have hx' := KerBy.gen_comp S o.A o.P T _ a' x hx
-  obtain ⟨M, hM, hxM⟩ := GlobalTheory.T.isTorsion_of_birigidified_bundle_trivial_on_slice S o.A o.P o.ab o.isLB o.rig₁ o.rig₂ o.symm o.ample B (a ≫ T.hom) _ hx'
+  obtain ⟨M, hM, hxM⟩ := _root_.GlobalTheory.KerTorsion.exists_pow_eq_one S o.A o.P o.ab o.isLB o.rig₁ o.rig₂ o.symm o.ample B (a ≫ T.hom) _ hx'
   have hu : IsUnit ((M : ℕ) : Γ(S, ⊤)) := by
     have h0 : IsUnit ((M : ℕ) : R') := by
       simpa using (IsUnit.mk0 (M : ℚ) (Nat.cast_ne_zero.2 hM.ne')).map (algebraMap ℚ R')

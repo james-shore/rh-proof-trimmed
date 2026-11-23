@@ -91,7 +91,7 @@ theorem continuous_integrand (z : ℂ) (X : Matrix (Fin n) (Fin n) ℂ) :
   have hG : ∀ k, InG (ι k) := fun k => LoweringDerivative.inG_of_inK ((hK (ι k)).2 ⟨k, rfl⟩)
   have h1 : Continuous (rhoP (⇑ι) m e X) := LoweringDerivative.continuous_rhoP (⇑ι) hι hG m e X
   have h2 := continuous_Hf m e hψ hψc ha hb
-  have h3 : Continuous fun k : Kg => ((⟨ι k, hG k⟩ : Gs n), z) :=
+  have h3 : Continuous fun k : Kg => ((⟨ι k, hG k⟩ : _root_.PositivityTheory.Rg.Sw.LVs.GSet n), z) :=
     (Continuous.subtype_mk hι (fun k => hG k)).prodMk continuous_const
   have h4 : Continuous fun k : Kg => Hf m e ψ a b z (ι k) := by
     have h5 := h2.comp h3

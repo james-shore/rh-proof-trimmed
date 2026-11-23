@@ -63,6 +63,6 @@ theorem contDiff_thetaTr_real_CM_k : ∀ (F E : Type) [Field F] [NumberField F] 
             (∀ t, (L t).map (Formalism.IndefR.DatumF.finPartF F E) = 0) →
             ∀ w, ContDiff ℝ ∞ fun t => GlobalTheory.WeilSchrodinger.thetaTr F co B.ψ φ (w + L t) := by
   intro F E _ _ _ _ _ σ B hgood nS nT JS JT hJS hJT ξ₀ hξ₀ hσξ hψ JA JB ξ hJA hJB κ _ co hrat φ hφ k L hLc hLf w
-  exact _root_.GlobalTheory.T.doubled_lagrangian_invariant_functional F E σ B hgood hψ nS nT JS JT hJS hJT ξ₀ hξ₀ hσξ JA JB ξ hJA hJB κ co hrat φ hφ k L hLc hLf w
+  exact _root_.GlobalTheory.ThetaSmoothF.contDiff_thetaTr_realF_k F E σ B hgood hψ nS nT JS JT hJS hJT ξ₀ hξ₀ hσξ JA JB ξ hJA hJB κ co hrat φ hφ k L hLc hLf w
 end GlobalTheory.ThetaSmoothCM
 end

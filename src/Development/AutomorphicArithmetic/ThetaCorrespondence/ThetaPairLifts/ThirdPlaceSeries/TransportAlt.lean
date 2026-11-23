@@ -114,13 +114,13 @@ theorem transport_alt : GlobalTheory.Published.AutomorphicFormsFiniteGL → ∀ 
     obtain ⟨γ, hγ, hm⟩ := (tSet_iff A.hF (A.PV j) (A.stdV j) hn sp ϖ hϖ k hk x).1 hx
     refine ⟨γ, hγ, ?_⟩
     rw [← hxi γ hγ, ← map_inv, ← map_mul] at hm
-    obtain ⟨hU, hT'⟩ := (frame_hyp A.hF (A.PV j) (A.stdV j) sp _).1 hm
+    obtain ⟨hU, hT'⟩ := (_root_.GlobalTheory.FrameHyp.mem_hyp_iff A.hF (A.PV j) (A.stdV j) sp _).1 hm
     exact (hJ _ hT').1.2 hU
   case h3 =>
     intro γ hγ γ' hγ' hm
     have ht := triv_mul (triv_inv (hT _ (hmemT γ hγ))) (hT _ (hmemT γ' hγ'))
     have hU := (hJ _ ht).1.1 hm
-    have hh := (frame_hyp A.hF (A.PV j) (A.stdV j) sp _).2 ⟨hU, ht⟩
+    have hh := (_root_.GlobalTheory.FrameHyp.mem_hyp_iff A.hF (A.PV j) (A.stdV j) sp _).2 ⟨hU, ht⟩
     rw [map_mul, map_inv, hxi γ hγ, hxi γ' hγ'] at hh
     exact rep_inj _ _ _ hLab γ hγ γ' hγ' hh
   case h4 =>

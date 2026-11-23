@@ -66,8 +66,7 @@ open Formalism.QuantumDeterminants Formalism.FourierDecayAlt.B Formalism.Fourier
 
 variable {k r : ℕ}
 
-theorem meas_invM : Measurable (invM : Mt k r → Mt k r) := by
-  apply ReciprocityTheory.ChartRestriction.DS.Mult1.BesselPositivity.bp_meas_inv <;> assumption
+alias meas_invM := _root_.Formalism.FourierDecayAlt.P.B2x1.invM_meas
 
 theorem meas_mulM : Measurable (mulM : Mt k r × Mt k r → Mt k r) := by
   unfold mulM

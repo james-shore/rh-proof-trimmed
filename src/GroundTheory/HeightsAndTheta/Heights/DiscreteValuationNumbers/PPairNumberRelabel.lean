@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PIntNumSymm
 
 @[expose] public section
 
@@ -153,20 +154,12 @@ variable {K : Type*} [DecidableEq K] {ι : K → Type*}
 
 
 omit [DecidableEq K] in
-theorem diffStep_comm (a b : K → ℤ) (h : (K → ℤ) → ℤ) :
-    diffStep a (diffStep b h) = diffStep b (diffStep a h) := by
-  funext m
-  simp only [diffStep, sub_right_comm m a b]
-  ring
-
-
-omit [DecidableEq K] in
 theorem foldr_diffStep_perm {l₁ l₂ : List (K → ℤ)} (p : l₁.Perm l₂) (h : (K → ℤ) → ℤ) :
     l₁.foldr diffStep h = l₂.foldr diffStep h := by
   induction p with
   | nil => rfl
   | cons x _ ih => simp only [List.foldr_cons, ih]
-  | swap x y l => simp only [List.foldr_cons]; exact diffStep_comm y x _
+  | swap x y l => simp only [List.foldr_cons]; exact _root_.GroundTheory.Heights₂.Heights.FieldNumbers.diffStep_comm y x _
   | trans _ _ ih₁ ih₂ => exact ih₁.trans ih₂
 
 theorem intNum_get_eq {F : Type*} [Field F] (I : Ideal (MRing ι F)) (l : List (K → ℤ)) :

@@ -218,7 +218,7 @@ theorem alphaForm_at_point_dvd : ∀ (E : Type) [Field E] [NumberField E] [IsCMF
     haveI := Xo.univ.t.act.hom (α * y)
     rw [Category.assoc, ← Xo.univ.t.act.mul, show α * (y * star α) = star α * (α * y) by ring,
       Xo.univ.t.act.mul, ← Category.assoc, hb i, MonObj.one_comp]
-  choose xx hxx using fun i => GlobalTheory.T.exists_levelPoint_eq_of_killedByHalfLevel E H Dw l Xo c F yF _ (hk i)
+  choose xx hxx using fun i => _root_.GlobalTheory.exists_levPt_eq_of_killedBy E H Dw l Xo c F yF _ (hk i)
   refine ⟨xx, Fs, fun i => (hxx i) ▸ hV i, fun a Pp hP => ?_⟩
   by_cases h0 : Pp = 0
   · subst h0

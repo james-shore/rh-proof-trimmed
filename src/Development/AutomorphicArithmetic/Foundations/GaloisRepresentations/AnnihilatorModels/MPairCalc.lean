@@ -69,7 +69,7 @@ theorem UpperTheory.Gal.crystallineComparison.Mod.pairCalc_of :
   obtain ⟨e, he, k⟩ := o.kerP
   obtain ⟨t₁, h₁⟩ := o.rig₁
   obtain ⟨t₂, h₂⟩ := o.rig₂
-  have hadd := additive_of_cube GlobalTheory.CubeTop.cubeTheorem o.ab o.ab o.isLB ⟨t₁, h₁⟩ ⟨t₂, h₂⟩
+  have hadd := additive_of_cube _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds o.ab o.ab o.isLB ⟨t₁, h₁⟩ ⟨t₂, h₂⟩
   refine ⟨hadd.1, hadd.2, ?_, ⟨e, he, fun T x hx => k T x ((triv_ev_iff o.isLB _ _).2 hx)⟩, ?_⟩
   · intro T x y a
     have h := move (lift x y) _ _ (o.rosati ((algebraMap (𝓞 D.F) D.O) a))

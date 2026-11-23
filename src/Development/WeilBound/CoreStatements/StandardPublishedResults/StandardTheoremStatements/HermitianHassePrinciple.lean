@@ -44,13 +44,10 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PositivityTheory.Stage1.PM
 
-theorem hermitianHassePrinciple : GlobalTheory.Published.HermitianHassePrinciple :=
-  GlobalTheory.Published.hermitianHassePrinciple_holds
+alias hermitianHassePrinciple := _root_.GlobalTheory.Published.hermitianHassePrinciple_holds
 
-theorem thetaRationalInvariance : GlobalTheory.Published.ThetaRationalInvariance :=
-  GlobalTheory.Published.thetaRationalInvariance_holds
+alias thetaRationalInvariance := _root_.GlobalTheory.Published.thetaRationalInvariance_holds
 
-theorem stoneVonNeumann : GlobalTheory.Published.StoneVonNeumann :=
-  GlobalTheory.Published.StoneVonNeumann_holds
+alias stoneVonNeumann := _root_.GlobalTheory.Published.StoneVonNeumann_holds
 
 end PositivityTheory.Stage1.PM

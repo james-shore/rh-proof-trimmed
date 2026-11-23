@@ -132,14 +132,14 @@ theorem exists_isCh_of_tors : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] 
     rw [map_sub, ← hsame (le_max_right N k) φ hk] at h2
     rw [← neg_sub]
     exact neg_mem h2
-  obtain ⟨inst, hinst⟩ := GlobalTheory.T.exists_addCommMonoid_algHom_powerSeries_fgLaw p C v O hv d F
+  obtain ⟨inst, hinst⟩ := _root_.GlobalTheory.FormalPts.points_addCommMonoid p C v O hv d F
   letI := inst
   obtain ⟨hsum, hzero, hkill⟩ := hinst
   refine ⟨u, ⟨?_, ?_⟩, hval⟩
   · apply hinj
     rw [← hzero u, hval _ ⟨0, (hkill _ _).1 (smul_zero _)⟩, hone _ hzero, map_one]
   · rw [addOf_pt, ← sub_eq_zero]
-    apply GlobalTheory.T.eq_zero_of_forall_pair_points_valuationIntegers p C v O hv d (Tors p F.F) hsepT
+    apply _root_.GlobalTheory.ChF.eq_zero_of_forall_pair_points_integers p C v O hv d (Tors p F.F) hsepT
     intro Φ φ φ' h0 h1 hφ hφ'
     let ψ : PS O 1 d →ₐ[O] O := Φ.comp (MvPowerSeries.substAlgHom (hasSubst_law F))
     have hψ : ∀ f, Φ (ev (n := 2) ![F.F] f) = ψ f := by

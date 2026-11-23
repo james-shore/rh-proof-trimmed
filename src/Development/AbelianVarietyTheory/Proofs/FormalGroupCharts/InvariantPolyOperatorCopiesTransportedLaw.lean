@@ -88,13 +88,6 @@ theorem dofN_eq_sum (F : Fin d → PS k 2 d) (b : Fin n) (u : Fin d → k) (g : 
     rw [pderiv_X_of_ne (fun h => hj (congrArg Prod.snd h).symm), mul_zero]
   · simp
 
-theorem unit_right (G : FGLaw k d) (i : Fin d) :
-    ev (n := 1) ![pt k (n := 1) d 0, 0] (G.F i) = (X ((0 : Fin 1), i) : PS k 1 d) := by
-  conv_lhs => rw [← G.comm i]
-  rw [gt_ev_ev' _ _ axis_GP (pair_points_zero_constant (gp_pt 1) (gp_pt 0)), eval_pair_points, evP_pt _ axis_GP,
-    evP_pt _ axis_GP]
-  exact G.unit i
-
 theorem dofN_transF (G : FGLaw k d) (φ φi : Pt k 1 d) (hinv : IsInvPair φ φi) (b : Fin n) (u : Fin d → k)
     (g : PS k n d) :
     DofN (transF G.F φ φi) b u (ev (n := n) (fun c => comp1 φ (pt k (n := n) d c)) g) =
@@ -110,7 +103,7 @@ theorem dofN_transF (G : FGLaw k d) (φ φi : Pt k 1 d) (hinv : IsInvPair φ φi
     rfl
   rw [dofN_ev _ _ _ _ hΦ, dofN_eq_sum G.F, ev_sum _ hΦ, Finset.sum_eq_single b]
   · refine Finset.sum_congr rfl fun l _ => ?_
-    rw [gt_ev_mul _ hΦ, hcol, ← dof_transF G.F G.const (unit_right G) φ φi hinv, gt_ev_X _ (single_point_zero_constant hφ), hc,
+    rw [gt_ev_mul _ hΦ, hcol, ← dof_transF G.F G.const (_root_.GlobalTheory.FormalLog.formalGroupLaw_ev_x_zero G) φ φi hinv, gt_ev_X _ (single_point_zero_constant hφ), hc,
       dofN_inCol, mul_comm]
     rfl
   · intro c _ hcb

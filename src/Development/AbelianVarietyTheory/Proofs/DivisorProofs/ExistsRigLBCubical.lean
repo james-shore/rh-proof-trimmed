@@ -90,7 +90,7 @@ theorem exists_rigLB_cubical (R : Type) [CommRing R] [IsLocalRing R] (B : Over (
     (hB : IsAbelianScheme B) (L : LB B.left) (hL : L.IsLB) : ∃ M : RigLB B, M.L = L ∧ Nonempty (CubicalStr B M) := by
   have hR : Out.Rigidified B L := GlobalTheory.LB.exists_isGen_of_isLocalRing (R := R) (pull_isLB hL _)
   exact GlobalTheory.Moduli.cubicalStr_of_triv_theta GlobalTheory.abelianSchemeLaws_all.1 _ B hB L hL hR
-    (GlobalTheory.HodgeWeil.triv_theta GlobalTheory.CubeTop.cubeTheorem hB hL)
+    (GlobalTheory.HodgeWeil.triv_theta _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds hB hL)
 
 theorem exists_descent_two {K : Type} [Field K] [IsAlgClosed K] (A : Over (Sp K)) [GrpObj A] [IsCommMonObj A]
     (hA : IsAbelianScheme A) {M : LB A.left} (hM : M.IsLB)

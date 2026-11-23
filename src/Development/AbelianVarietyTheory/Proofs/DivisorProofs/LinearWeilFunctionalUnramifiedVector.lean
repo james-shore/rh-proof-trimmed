@@ -131,10 +131,10 @@ theorem exists_localOp : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type) [
       rw [← Matrix.smul_mul, hγ u hu, Matrix.zero_mul]
     have hψ₁ := GlobalTheory.SchrSB.schr_mem_SB B.ψ hTr.base.std.1 v (GlobalTheory.LatVac.locCo G.M.co v γ) φ hφ
     apply eq_of_tens_eq v R hR0 hinv
-    have e1 := GlobalTheory.T.adelicHeisenberg_acts_by_local_schrodinger G.M.co B.ψ v γ hγ φ R (hR φ hφ)
+    have e1 := _root_.GlobalTheory.VacBridge.rho_acts_locCo G.M.co B.ψ v γ hγ φ R (hR φ hφ)
     have e2 := hW.impl (1, h) γ _ (hR φ hφ).2
     rw [← (hS _ hψ₁).2 R (hR _ hψ₁), ← e1, e2, (hS φ hφ).2 R (hR φ hφ)]
-    exact GlobalTheory.T.adelicHeisenberg_acts_by_local_schrodinger G.M.co B.ψ v _ hγ' (S φ) R (hR _ (hS φ hφ).1)
+    exact _root_.GlobalTheory.VacBridge.rho_acts_locCo G.M.co B.ψ v _ hγ' (S φ) R (hR _ (hS φ hφ).1)
 
 theorem linForm_eq {K : Type} [Field K] {m n : Type} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
     (l : Matrix m n K →ₗ[K] K) (Y : Matrix m n K) :
@@ -235,16 +235,16 @@ theorem heisW {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [
     exact isUnit_iff_ne_zero.2 fun h0 =>
       hdW (((t.comp σ : E →ₐ[F] Fv F v) : E →+* Fv F v).injective (by rw [map_zero]; exact h0))
   choose U hUat hU0 hU1 using fun (P₀ P₁ : Matrix (Fin a) (Fin (a + a')) (Fv F v)) =>
-    GlobalTheory.T.exists_splitPlace_adelicMatrix_given_components hcm v t P₀ P₁
+    _root_.GlobalTheory.SplitComps.exists_mat_comps hcm v t P₀ P₁
   have hsymp : ∀ x u : Matrix (Fin a) (Fin (a + a')) (AE F E), At (evFin F v) x → x.map (piW (t.comp σ)) = 0 →
       u.map (piW t) = 0 →
       B.ψ (symp (R := AF F) (cA σ) (-1) (incM F G.V.J) (incM F G.W.J) x u) =
         GlobalTheory.LatVac.psiAt B.ψ v (∑ k, ∑ j, (A * x.map (piW t) * Bm) k j * u.map (piW (t.comp σ)) k j) := by
     intro x u hx hx0 hu1
     unfold symp
-    rw [GlobalTheory.T.adelicTrace_supportedAtSplitPlace hcm v (t.comp σ) _ (at_hTens _ _ x u hx)]
+    rw [_root_.GlobalTheory.SplitAdeleTrace.trace_at_split hcm v (t.comp σ) _ (at_hTens _ _ x u hx)]
     rw [map_mul, map_mul, map_neg, map_neg, map_one, map_one, neg_one_mul, neg_one_mul, ← neg_add,
-      GlobalTheory.T.hermitianTensor_skewHermitian_split_symplectic_pair hcm (t.comp σ) G.V.J G.W.J hTr.geo.hV.herm hTr.geo.hW.skew x u hx0 (by rw [hss]; exact hu1), hss]
+      _root_.GlobalTheory.FourSumComposition.main hcm (t.comp σ) G.V.J G.W.J hTr.geo.hV.herm hTr.geo.hW.skew x u hx0 (by rw [hss]; exact hu1), hss]
     show GlobalTheory.LatVac.psiAt B.ψ v _ = _
     congr 1
     simp only [hAdef, hBdef, Matrix.neg_apply, neg_mul, Finset.sum_neg_distrib, neg_neg]
@@ -285,7 +285,7 @@ theorem heisW {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [
   have htr := hL.trans
   have hmu := hL.mult
   have hbr := fun (γ : Matrix (Fin a) (Fin (a + a')) (AE F E)) hγ (φ : (Fin a × Fin (a + a') → Fv F v) → ℂ) =>
-    GlobalTheory.T.adelicHeisenberg_acts_by_local_schrodinger G.M.co B.ψ v γ hγ φ
+    _root_.GlobalTheory.VacBridge.rho_acts_locCo G.M.co B.ψ v γ hγ φ
   have hsb := fun (w : (Fin a × Fin (a + a') → Fv F v) × (Fin a × Fin (a + a') → Fv F v))
     (φ : (Fin a × Fin (a + a') → Fv F v) → ℂ) (hφ : φ ∈ SB _) => GlobalTheory.SchrSB.schr_mem_SB B.ψ hstd.1 v w φ hφ
   have hact : ∀ u : Matrix (Fin a) (Fin (a + a')) (AE F E),
@@ -381,7 +381,7 @@ theorem shape : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type) [Field F] 
     funext Y
     simp only [hSM l x hx, Matrix.mul_assoc, ← Matrix.transpose_mul, Matrix.nonsing_inv_mul _ hdet, Matrix.transpose_one,
       Matrix.mul_one]
-  obtain ⟨c, hc⟩ := GlobalTheory.T.eq_smul_of_commute_heisenberg_linearModel_schwartzBruhat (SB (Fin a × Fin (a + a') → Fv F v)) (GlobalTheory.LatVac.psiAt B.ψ v) hψc hψ1 ι
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.LinSchur.eq_smul_of_commute (SB (Fin a × Fin (a + a') → Fv F v)) (GlobalTheory.LatVac.psiAt B.ψ v) hψc hψ1 ι
     (fun x Y => ι (S x) (Y * htᵀ)) hbij hL2
     (fun C => schr (GlobalTheory.LatVac.psiAt B.ψ v) (wT C)) (fun l => schr (GlobalTheory.LatVac.psiAt B.ψ v) (wM l)) hT2 hM2
   refine ⟨c, fun φ hφ φ₁ _ hAct Y => ?_⟩

@@ -73,6 +73,6 @@ theorem exists_ample_symmetric : ∀ (R : Type) [CommRing R] [IsRegularLocalRing
     obtain ⟨R', _, ρ, hρ, x', hx', hs⟩ := hpt y
     have h := GlobalTheory.T.exists_affine_nonzeroLocus_descend_flat_baseChange R R' ρ hρ G.left G.hom inferInstance inferInstance M₀ hM x' hs
     rwa [hx'] at h⟩
-  exact GlobalTheory.T.exists_ample_symmetric_lineBundle_grpScheme (Sp R) G M₀ hamp
+  exact _root_.GlobalTheory.SymAmple.exists_isAmpleLB_symm (Sp R) G M₀ hamp
 
 end GlobalTheory.SymAmple

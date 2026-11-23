@@ -49,5 +49,5 @@ theorem zerosWindow_closed : PI.ZerosWindow :=
   zerosWindow_of chk_lBoundRight chk_zetaBoundRight chk_lInvRight
 
 theorem explicitFormula_closed : PI.ExplicitFormula :=
-  explicitFormula_of zerosWindow_closed chk_discFactor chk_discLog chk_lBoundRight chk_zetaBoundRight
+  _root_.PI.EF.explicitFormula_main zerosWindow_closed chk_discFactor chk_discLog chk_lBoundRight chk_zetaBoundRight
     chk_lInvRight

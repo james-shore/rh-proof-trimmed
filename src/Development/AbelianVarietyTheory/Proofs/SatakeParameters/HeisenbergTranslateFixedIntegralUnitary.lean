@@ -56,16 +56,12 @@ section Glue
 
 variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))]
 
-theorem int_entry' {m : ℕ} {h : GL (Fin m) L} (hh : h ∈ GLint (Fin m) (intL L)) (i j : Fin m) :
-    (h : Matrix (Fin m) (Fin m) L) i j ∈ intL L := by
-  obtain ⟨k, rfl⟩ := hh; simp [Formalism.UG.bc]
-
 theorem mul_mem_intMat' {a b : ℕ} {h : GL (Fin a) L} (hh : h ∈ GLint (Fin a) (intL L)) {u : Matrix (Fin a) (Fin b) L}
     (hu : u ∈ intMat L a b) : (h : Matrix (Fin a) (Fin a) L) * u ∈ intMat L a b := by
   rw [mem_intMat] at hu ⊢
   intro i j
   rw [Matrix.mul_apply]
-  exact Subring.sum_mem _ fun k _ => Subring.mul_mem _ (int_entry' hh i k) (hu k j)
+  exact Subring.sum_mem _ fun k _ => Subring.mul_mem _ (_root_.GlobalTheory.Hk3.glint_entry hh i k) (hu k j)
 
 def lmulCl {a b : ℕ} (h : GL (Fin a) L) (hh : h ∈ GLint (Fin a) (intL L)) :
     Matrix (Fin a) (Fin b) L ⧸ intMat L a b →+ Matrix (Fin a) (Fin b) L ⧸ intMat L a b :=

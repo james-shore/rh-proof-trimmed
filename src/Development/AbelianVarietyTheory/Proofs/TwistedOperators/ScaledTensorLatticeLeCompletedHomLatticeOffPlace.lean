@@ -111,37 +111,9 @@ theorem partAt_gm (σ α : Af D.host.F) (y : Matrix (Fin S.rank) (Fin T.rank) D.
 
 end Help
 
-theorem mem_stdL_int {E : Type} [Field E] [NumberField E] {n : ℕ} (v : Fin n → E) :
-    v ∈ stdL E n ↔ ∀ a, IsIntegral ℤ (v a) := by
-  constructor
-  · intro hv
-    induction hv using Submodule.span_induction with
-    | mem x hx =>
-      obtain ⟨b, rfl⟩ := hx
-      intro a
-      show IsIntegral ℤ ((Pi.single b 1 : Fin n → E) a)
-      by_cases h : a = b
-      · subst h; rw [Pi.single_eq_same]; exact isIntegral_one
-      · rw [Pi.single_eq_of_ne h]; exact isIntegral_zero
-    | zero => intro a; exact isIntegral_zero
-    | add x y _ _ hx hy => intro a; exact (hx a).add (hy a)
-    | smul c x _ hx => intro a; exact (c.2).mul (hx a)
-  · intro h
-    have e : v = ∑ a, (⟨v a, h a⟩ : 𝓞 E) • (Pi.single a 1 : Fin n → E) := by
-      funext i
-      rw [Finset.sum_apply, Finset.sum_eq_single i]
-      · rw [Pi.smul_apply, Pi.single_eq_same]
-        change v i = v i * 1
-        rw [mul_one]
-      · intro b _ hb
-        rw [Pi.smul_apply, Pi.single_eq_of_ne (Ne.symm hb), smul_zero]
-      · intro hi; exact absurd (Finset.mem_univ i) hi
-    rw [e]
-    exact Submodule.sum_mem _ fun a _ => Submodule.smul_mem _ _ (Submodule.subset_span ⟨a, rfl⟩)
-
 theorem star_stdL : ∀ (D : D7) (n : ℕ) (v : Fin n → D.host.E), v ∈ stdL D.host.E n ↔ star v ∈ stdL D.host.E n := by
   intro D n v
-  rw [mem_stdL_int, mem_stdL_int]
+  rw [_root_.GlobalTheory.SW.Base.mem_stdL, _root_.GlobalTheory.SW.Base.mem_stdL]
   refine forall_congr' fun a => ?_
   change _ ↔ IsIntegral ℤ (star (v a))
   exact ⟨fun h => h.map (starRingEnd D.host.E).toIntAlgHom, fun h => by

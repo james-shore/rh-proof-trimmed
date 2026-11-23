@@ -92,18 +92,13 @@ open LateralTheory.EtaleFoundations
 theorem cup_spec0 : t_cup_spec0 := LateralTheory.Fin.EtaleCupProductNaturalInCoefficients.etale_cup_product_compatibility_specification_of_components
 theorem cup_assoc0 : EtaleCochainCupAssociativeOfPairing :=
   etale_cochain_cup_assoc_of_cup_spec_and_alexander_whitney_assoc cup_spec0 (t_aw_assoc0_of etale_chain_cochain_eval_basic_properties_hold simplicial_subinterval_of_subinterval_along_etale)
-theorem secSep : EtaleTensorTripleProductLeibnizSeparated.SecSep := etale_sheaf_sections_separated_holds
 theorem tens_tri : EtaleTensorPairProductAssociative :=
   etale_tensor_triple_product_of_family_and_leibniz (etale_tensor_triple_product_family_of_gluing LateralTheory.Fin.EtaleSheafSectionsSeparatedAndGlue.intersectionNumber_baseChange)
-    (etale_tensor_triple_product_leibniz_of_separated secSep)
+    (etale_tensor_triple_product_leibniz_of_separated _root_.LateralTheory.EtaleFoundations.etale_sheaf_sections_separated_holds)
 theorem tens_ex : tt_tens_ex := tt_tens_ex_of tt_tens_pre_of etale_presheaf_tensor_data_sheafification_is_tensor_complex
-theorem univ_exdeg : twpair_tens_univ_exdeg := twpair_tens_univ_exdeg_of
-theorem tens_univ : twpair_tens_univ := twpair_tens_univ_of univ_exdeg
+theorem tens_univ : twpair_tens_univ := twpair_tens_univ_of _root_.LateralTheory.EtaleFoundations.twpair_tens_univ_exdeg_of
 theorem tens_ge : tt_tens_ge := tt_tens_ge_of (by intro R _ I J K τ hτ; exact (tens_univ R τ hτ).2.1)
 theorem res_side : tt_res_side := tt_res_side_of tens_univ LateralTheory.Fin.EtaleTensorPairQuasiIsoOfFlatQuasiIso.intersectionNumber_baseChange
-theorem twres_ext : EtaleTwistResolutionUniversalExtension := LateralTheory.Fin.EtaleTwistResolutionUniversalExtension.intersectionNumber_baseChange
-theorem cup_compat : EtaleCupProductNaturalInCoefficients := LateralTheory.Fin.EtaleCupProductNaturalInCoefficients.intersectionNumber_baseChange
-
 theorem holds_of (hts : EtaleTateTwistSectionsLocallyGenerated) :
     EtaleTwistedCupProductAssociative ∧ EtaleTwistResolutionPairingCupUnique := by
   have hsec : TwMulGenMap.twSec := hts
@@ -116,9 +111,9 @@ theorem holds_of (hts : EtaleTateTwistSectionsLocallyGenerated) :
   have twist : tt_twist_side := tt_twist_side_of tw_mul LateralTheory.Fin.EtaleTateTwistSheafFlat.intersectionNumber_baseChange LateralTheory.Fin.EtaleComplexPairingFlipExists.intersectionNumber_baseChange
     LateralTheory.Fin.EtaleTensorPairQuasiIsoOfFlatQuasiIso.intersectionNumber_baseChange
   have twres : EtaleTensorPairTwistResolutionMul := etale_tensor_twisted_resolution_of_existence_bound_and_sides tens_ex tens_ge twist res_side
-  have pa : t_pair_assoc := t_pair_assoc_of twres tens_tri twres_ext cup_compat cup_assoc0 t_pa_tens_ex_of
+  have pa : t_pair_assoc := t_pair_assoc_of twres tens_tri _root_.LateralTheory.Fin.EtaleTwistResolutionUniversalExtension.etale_twisted_resolution_exists_of_flat_sections _root_.LateralTheory.Fin.EtaleCupProductNaturalInCoefficients.etale_cup_product_compatible_with_cochains_of_components cup_assoc0 t_pa_tens_ex_of
     t_pa_tens_univ_of t_pa_precomp_of t_pa_cpush_id_of t_pa_cpush_htpy_of
-  have tp : EtaleTwistResolutionPairingCupUnique := etale_tate_twist_cup_pairing_of_tensor_and_resolution_properties tens_ex tens_univ twres twres_ext cup_compat twpair_zc_fun_of
+  have tp : EtaleTwistResolutionPairingCupUnique := etale_tate_twist_cup_pairing_of_tensor_and_resolution_properties tens_ex tens_univ twres _root_.LateralTheory.Fin.EtaleTwistResolutionUniversalExtension.etale_twisted_resolution_exists_of_flat_sections _root_.LateralTheory.Fin.EtaleCupProductNaturalInCoefficients.etale_cup_product_compatible_with_cochains_of_components twpair_zc_fun_of
   exact ⟨etale_twisted_cup_assoc_of_twisted_pairing_exists_assoc (t_twpair_ex_of tp) pa, tp⟩
 
 theorem ringAssoc : LateralTheory.E.CupProductRingLaws.LeafRingAssoc := (holds_of LateralTheory.CohomologicalPurity.LeafAWCutTw.twSec).1

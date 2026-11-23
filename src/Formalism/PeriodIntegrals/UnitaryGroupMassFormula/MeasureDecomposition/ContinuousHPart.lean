@@ -43,6 +43,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MeasureDecomposition.ContinuousUMatApply
 
 @[expose] public section
 
@@ -187,27 +188,21 @@ theorem hPart_mulVec (g : Matrix (Fin n) (Fin n) ℂ) (x : Fin n → ℂ) :
     rw [PwM, ← Matrix.toLin'_apply, Matrix.toLin'_toMatrix']
   simp only [hPart, Matrix.add_mulVec, Matrix.sub_mulVec, Matrix.one_mulVec, ← Matrix.mulVec_mulVec, hP]
 
-private theorem hJ_mulVec_of_inUJ' {h : Matrix (Fin n) (Fin n) ℂ} (hU : Formalism.REAL.inUJ ε h) (u v : Fin n → ℂ) :
-    hJ ε (h *ᵥ u) (h *ᵥ v) = hJ ε u v := by
-  unfold Formalism.REAL.inUJ at hU
-  unfold hJ
-  rw [Matrix.star_mulVec, ← Matrix.dotProduct_mulVec, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, hU]
-
 theorem hPart_mul (hF : RFrame ε e f z) {nm h : Matrix (Fin n) (Fin n) ℂ} (hn : InN ε e z nm)
     (hU : Formalism.REAL.inUJ ε h) (he : ∀ a, h *ᵥ e a = e a) (hf : ∀ a, h *ᵥ f a = f a) (hz : h *ᵥ z = z) :
     hPart ε e f z (nm * h) = h := by
   refine Matrix.toLin'.injective (LinearMap.ext fun x => ?_)
   rw [Matrix.toLin'_apply, Matrix.toLin'_apply, hPart_mulVec]
   have hey : ∀ a, hJ ε (e a) (h *ᵥ piW ε e f z x) = 0 := fun a => by
-    have := hJ_mulVec_of_inUJ' hU (e a) (piW ε e f z x)
+    have := _root_.PI.ScMuExists.UnitaryGroupMassFormula.hJ_mulVec hU (e a) (piW ε e f z x)
     rw [he a] at this
     rw [this]; exact hJ_e_piW hF a x
   have hfy : ∀ a, hJ ε (f a) (h *ᵥ piW ε e f z x) = 0 := fun a => by
-    have := hJ_mulVec_of_inUJ' hU (f a) (piW ε e f z x)
+    have := _root_.PI.ScMuExists.UnitaryGroupMassFormula.hJ_mulVec hU (f a) (piW ε e f z x)
     rw [hf a] at this
     rw [this]; exact hJ_f_piW hF a x
   have hzy : hJ ε z (h *ᵥ piW ε e f z x) = 0 := by
-    have := hJ_mulVec_of_inUJ' hU z (piW ε e f z x)
+    have := _root_.PI.ScMuExists.UnitaryGroupMassFormula.hJ_mulVec hU z (piW ε e f z x)
     rw [hz] at this
     rw [this]; exact hJ_z_piW hF x
   have h0 : piW ε e f z ((nm - 1) *ᵥ (h *ᵥ piW ε e f z x)) = 0 :=

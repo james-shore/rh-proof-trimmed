@@ -69,7 +69,7 @@ theorem exists_q_k : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numbe
   obtain ⟨ε, hε⟩ := ha w
   have hXiso := form_map_inclR (F := F) w.Completion σ x J x
   rw [hx, Matrix.map_zero _ (map_zero _)] at hXiso
-  obtain ⟨K, hK, hK1, β, hβ⟩ := GlobalTheory.Core.Rk.IwArch.iw_iso_cols (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR w.Completion σ)
+  obtain ⟨K, hK, hK1, β, hβ⟩ := _root_.GlobalTheory.Core.Rk.IwArch.exists_compact_keep_cols (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR w.Completion σ)
     (GlobalTheory.AdelicU.infEmb τ) (GlobalTheory.AdelicU.infEmb_bijective hcm τ) (fun z => (GlobalTheory.AdelicU.infEmb_sigR hcm τ z).symm)
     (bc (compInf F E w) a) ε hε _ hXiso (GlobalTheory.AdelicU.matHom w.Completion σ J g) g.2
   let kk : GArch σ J w := ⟨K, hK⟩

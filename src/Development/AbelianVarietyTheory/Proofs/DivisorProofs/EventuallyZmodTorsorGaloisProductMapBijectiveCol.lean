@@ -125,7 +125,7 @@ theorem eventually_prodMapOf_bijective : ∀ (J : Type) [SmallCategory J] [IsFil
       Function.Bijective (Algebra.TensorProduct.map (AlgHom.id c.pt c.pt) (prodMapOf (F.obj j) A q actA)) := by
     letI : Algebra (F.obj j) c.pt := (c.ι.app j).hom.toAlgebra
     exact (bc_prodMapOf_bijective_iff (F.obj j) c.pt A q hq actA).1 hT.2.2.2
-  obtain ⟨k₀, f₀, hk⟩ := GlobalTheory.T.bijective_baseChange_descends_filteredColimit J F c hc j _ _ (prodMapOf (F.obj j) A q actA)
+  obtain ⟨k₀, f₀, hk⟩ := _root_.GlobalTheory.BijDescent.bijective_of_isColimit J F c hc j _ _ (prodMapOf (F.obj j) A q actA)
     (prodMapOf_finite _ _ q hq actA) hb
   refine ⟨k₀, f₀, fun k f => ?_⟩
   letI : Algebra (F.obj j) (F.obj k) := (F.map (f₀ ≫ f)).hom.toAlgebra

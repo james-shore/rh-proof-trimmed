@@ -139,15 +139,6 @@ theorem finrank_int_eq_fraction_mul (O : Type) [CommRing O] [IsDomain O] [CharZe
     Module.finrank ℤ X = Module.finrank ℚ K * Module.finrank O X := by
   rw [finrank_int_eq_mul_finrank O X, IsFractionRing.finrank_eq ℤ ℚ O K]
 
-theorem finrank_int_eq_finrank_mul (O : Type) [CommRing O] [IsDomain O] [CharZero O] [Module.Finite ℤ O]
-    (X : Type) [AddCommGroup X] [Module O X] :
-    Module.finrank ℤ X = Module.finrank ℤ O * Module.finrank O X := by
-  have : CharZero (FractionRing O) :=
-    charZero_of_injective_algebraMap (IsFractionRing.injective O (FractionRing O))
-  have h := finrank_int_eq_fraction_mul O (FractionRing O) O
-  rw [Module.finrank_self, mul_one] at h
-  rw [finrank_int_eq_fraction_mul O (FractionRing O) X, h]
-
 private theorem isTorsionFree_int_of_isTorsionFree (O : Type) [CommRing O] [IsDomain O] [CharZero O]
     (Y : Type) [AddCommGroup Y] [Module O Y] [Module.IsTorsionFree O Y] :
     Module.IsTorsionFree ℤ Y :=
@@ -178,7 +169,7 @@ theorem genRank_le_sq (O : Type) [CommRing O] [IsDomain O] [CharZero O] [Module.
   haveI : Module.Finite ℤ X := Module.Finite.trans O X
   haveI : Module.Free ℤ X := free_int_of_projective O
   have hX' : Module.finrank ℤ X ≤ q * Module.finrank ℤ O := by
-    rw [finrank_int_eq_finrank_mul O X, mul_comm]
+    rw [_root_.GlobalTheory.CompanionTheory.Ar.Fan.IntegerFinrankMultiplicativity.finrank_int_eq_mul_finrank O X, mul_comm]
     exact Nat.mul_le_mul_right _ hX
   show Module.finrank ℤ (Submodule.span ℤ (Set.range γ)) ≤ _
   calc Module.finrank ℤ (Submodule.span ℤ (Set.range γ))

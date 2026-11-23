@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LocalSelfDualLatticeSplitPlaceDecomposition
 
 @[expose] public section
 
@@ -60,18 +61,6 @@ namespace GlobalTheory.PcBF
 
 variable {D : D7}
 
-theorem symplO_add_right' (S T : HSp D) (x y y' : WO S T) :
-    symplO S T x (y + y') = symplO S T x y + symplO S T x y' := by
-  simp only [symplO, hO, Matrix.add_apply, map_add (f := _), mul_add, add_mul, Finset.sum_add_distrib]
-
-theorem symplO_zero_right' (S T : HSp D) (x : WO S T) : symplO S T x 0 = 0 := by
-  simp [symplO, hO]
-
-theorem symplO_neg_right' (S T : HSp D) (x y : WO S T) : symplO S T x (-y) = - symplO S T x y := by
-  have := symplO_add_right' S T x y (-y)
-  rw [add_neg_cancel, symplO_zero_right'] at this
-  exact eq_neg_of_add_eq_zero_right this.symm
-
 theorem ann_of_mem {V V₀ W W₀ : HSp D} {ρ σ : ℕ} (dV : HypDec V V₀ ρ) (dW : HypDec W W₀ σ)
     (ψ : AddChar (AF D.host.F) ℂ) (Γ Γ' : AddSubgroup (WO V W)) {a' : Mx D W.rank ρ}
     (ha' : a' ∈ (piecesOf (W₀ := W₀) dV dW ψ Γ Γ').A₂) :
@@ -79,9 +68,9 @@ theorem ann_of_mem {V V₀ W W₀ : HSp D} {ρ σ : ℕ} (dV : HypDec V V₀ ρ)
   intro a ha
   induction ha' using AddSubgroup.closure_induction with
   | mem b hb => exact hb.2 a ha
-  | zero => rw [map_zero, symplO_zero_right', AddChar.map_zero_eq_one]
-  | add b c _ _ hb hc => rw [map_add (f := _), symplO_add_right', AddChar.map_add_eq_mul, hb, hc, one_mul]
-  | neg b _ hb => rw [map_neg, symplO_neg_right', AddChar.map_neg_eq_inv, hb, inv_one]
+  | zero => rw [map_zero, _root_.GlobalTheory.PlaceModel.symplO_zero_right, AddChar.map_zero_eq_one]
+  | add b c _ _ hb hc => rw [map_add (f := _), _root_.GlobalTheory.LatVac.symplO_add_right, AddChar.map_add_eq_mul, hb, hc, one_mul]
+  | neg b _ hb => rw [map_neg, _root_.GlobalTheory.SplitSelfDual.symplO_neg_right, AddChar.map_neg_eq_inv, hb, inv_one]
 
 end GlobalTheory.PcBF
 

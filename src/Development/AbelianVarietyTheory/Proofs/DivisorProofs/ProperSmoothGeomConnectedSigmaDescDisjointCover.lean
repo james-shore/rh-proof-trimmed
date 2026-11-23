@@ -38,6 +38,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsAbelianSchemeAndRelDimOfOpenCover
 
 @[expose] public section
 
@@ -50,15 +51,6 @@ set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.DualCon
-
-theorem of_isPullback_opens_cover (Q : MorphismProperty Scheme.{0}) [IsZariskiLocalAtTarget Q]
-    {S X : Scheme.{0}} {I : Type} {U : I → S.Opens} (hU : iSup U = ⊤) {Z : I → Scheme.{0}} {p : X ⟶ S}
-    {q : ∀ i, Z i ⟶ (U i).toScheme} {ψ : ∀ i, Z i ⟶ X} (h : ∀ i, IsPullback (ψ i) (q i) p (U i).ι)
-    (hq : ∀ i, Q (q i)) : Q p := by
-  refine IsZariskiLocalAtTarget.of_iSup_eq_top U hU fun i => ?_
-  have e := (isPullback_morphismRestrict p (U i)).flip
-  rw [← IsPullback.isoIsPullback_hom_snd _ _ e (h i), MorphismProperty.cancel_left_of_respectsIso Q]
-  exact hq i
 
 theorem isPullback_sigmaι_desc {X : Scheme.{0}} {κ : Type} (V : κ → X.Opens)
     (hd : Pairwise fun i i' => Disjoint (V i) (V i')) {B : κ → Scheme.{0}} (f : ∀ i, B i ⟶ (V i).toScheme)
@@ -98,8 +90,8 @@ theorem good_sigmaDesc_of_disjoint_cover : ∀ {X : Scheme.{0}} {κ : Type} [Fin
   have hs : IsZariskiLocalAtTarget (@SmoothOfRelativeDimension.{0} g) :=
     HasRingHomProperty.instIsZariskiLocalAtTarget _
   exact
-    { proper := of_isPullback_opens_cover @IsProper hU sq fun i => (hf i).proper
-      smooth := of_isPullback_opens_cover (@SmoothOfRelativeDimension.{0} g) hU sq fun i => (hf i).smooth
-      conn := of_isPullback_opens_cover @GeometricallyConnected hU sq fun i => (hf i).conn }
+    { proper := _root_.GlobalTheory.CoverGlue.of_isPullback_cover @IsProper hU sq fun i => (hf i).proper
+      smooth := _root_.GlobalTheory.CoverGlue.of_isPullback_cover (@SmoothOfRelativeDimension.{0} g) hU sq fun i => (hf i).smooth
+      conn := _root_.GlobalTheory.CoverGlue.of_isPullback_cover @GeometricallyConnected hU sq fun i => (hf i).conn }
 
 end GlobalTheory.DualCon

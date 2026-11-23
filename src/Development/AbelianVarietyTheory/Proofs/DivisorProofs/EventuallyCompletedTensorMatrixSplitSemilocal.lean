@@ -78,12 +78,12 @@ theorem coeff_isIntV_eventually (p : ℕ) [Fact p.Prime] (G : HTGroup p) (f : Po
 theorem split_eventually : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (γ : G.C), (minpoly G.F γ).natDegree = G.n → (minpoly G.F γ).Separable → ∀ᶠ v in (Filter.cofinite : Filter (AwayP p)), ∃ (K : Type) (_ : CommRing K) (R : Subring K) (Φ : Matrix (Fin G.n) (Fin G.n) K ≃+* Qv v ⊗[ℚ] G.C), Set.Finite {I : Ideal R | I.IsMaximal} ∧ (∀ a : Qv v ⊗[ℚ] G.C, IsIntV G v a ↔ ∀ i j, Φ.symm a i j ∈ R) ∧ ∃ Q : Polynomial R, Q.Separable ∧ Q.map R.subtype = (Φ.symm ((1 : Qv v) ⊗ₜ[ℚ] γ)).charpoly := by
   intro p _ G γ hdeg hsep
   obtain ⟨a, b, hab⟩ := hsep
-  filter_upwards [intV_order_eventually p G, GlobalTheory.T.eventually_integral_matrix_units_at_places p G, coeff_isIntV_eventually p G (minpoly G.F γ),
+  filter_upwards [intV_order_eventually p G, _root_.GlobalTheory.OrbFinAf.MatrixUnits₂.matrixUnits_eventually p G, coeff_isIntV_eventually p G (minpoly G.F γ),
     coeff_isIntV_eventually p G a, coeff_isIntV_eventually p G b] with v hO hEE hP ha hb
   obtain ⟨h1, hm, -⟩ := hO
   obtain ⟨E, hE, hE1, hEi⟩ := hEE
-  obtain ⟨hinj, hcen, hdim⟩ := GlobalTheory.T.localTensorCenterInclusion_injective_central_finrank p G v
-  obtain ⟨Φ, hΦ, hΦs⟩ := GlobalTheory.T.matrix_units_give_matrix_algebra_iso (Qv v) (Qv v ⊗[ℚ] G.F) (Qv v ⊗[ℚ] G.C) G.n (iotaF G v) hinj hcen hdim E hE hE1
+  obtain ⟨hinj, hcen, hdim⟩ := _root_.GlobalTheory.OrbFinAf.iotaF_props p G v
+  obtain ⟨Φ, hΦ, hΦs⟩ := _root_.GlobalTheory.MatUnitIso.matrixRingEquiv_of_matrixUnits (Qv v) (Qv v ⊗[ℚ] G.F) (Qv v ⊗[ℚ] G.C) G.n (iotaF G v) hinj hcen hdim E hE hE1
   let φ0 : G.F →+* Qv v ⊗[ℚ] G.F :=
     (Algebra.TensorProduct.includeRight : G.F →ₐ[ℚ] Qv v ⊗[ℚ] G.F).toRingHom
   have hφ : ∀ x, iotaF G v (φ0 x) = (1 : Qv v) ⊗ₜ[ℚ] algebraMap G.F G.C x := fun x => rfl
@@ -103,7 +103,7 @@ theorem split_eventually : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (γ : G.
     · simp [Matrix.algebraMap_matrix_apply]
     · intro j _ hj; simp [Matrix.algebraMap_matrix_apply, Ne.symm hj]
     · simp
-  refine ⟨Qv v ⊗[ℚ] G.F, inferInstance, intF G v h1 hm, Φ, GlobalTheory.T.integralLocalCenter_finite_maximal_ideals p G v h1 hm,
+  refine ⟨Qv v ⊗[ℚ] G.F, inferInstance, intF G v h1 hm, Φ, _root_.GlobalTheory.OrbFinAf.intF_finite_maximal p G v h1 hm,
     fun x => ⟨fun hx i j => ?_, fun hx => ?_⟩, ?_⟩
   · show IsIntV G v (iotaF G v (Φ.symm x i j))
     rw [hΦs]
@@ -121,7 +121,7 @@ theorem split_eventually : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (γ : G.
       have hmon : (minpoly G.F γ).Monic := minpoly.monic (Algebra.IsIntegral.isIntegral γ)
       have hX : Φ (Φ.symm ((1 : Qv v) ⊗ₜ[ℚ] γ)) = (1 : Qv v) ⊗ₜ[ℚ] γ := Φ.apply_symm_apply _
       symm
-      apply GlobalTheory.T.charpoly_eq_of_monic_aeval_powers_linearIndependent
+      apply _root_.GlobalTheory.charpoly_eq_of_monic_aeval_linearIndependent
       · exact hmon.map φ0
       · rw [hmon.natDegree_map, hdeg]
       · apply Φ.injective
@@ -145,7 +145,7 @@ theorem split_eventually : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (γ : G.
         exact h4.symm
       · rw [Fintype.linearIndependent_iff]
         intro g hg
-        have := GlobalTheory.T.powers_linearIndependent_over_localTensorCenter p G γ hdeg v g (by
+        have := _root_.GlobalTheory.OrbFinAf.pow_indep_tensor p G γ hdeg v g (by
           have h2 := congrArg Φ hg
 
           rw [map_sum, map_zero] at h2

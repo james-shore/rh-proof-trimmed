@@ -78,7 +78,7 @@ variable {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.MainNotio
 theorem bad_rec_alt (hR : p.PointConditions') (hm : More p) {Pm : ParameterChoice' D L} {Tp : ParamsT D L Pm} {r : TwoRuns p.T p.P.Gp}
     {c : OnConst} {O : Obj p c} (hrec : RecAt p Tp r O) {del : ℝ} (j : Fin D.R.m) (hbad : BadW p j del) :
     (1 - del) * O.d0 j ≤ ((S2 p).D : ℝ) := by
-  obtain ⟨hC, hOk, -, -, hRk, -⟩ := _root_.GlobalTheory.T.links2_of_single_index_twisted _ _ _ _ _ _ _ _ _ _ p hR hm.1
+  obtain ⟨hC, hOk, -, -, hRk, -⟩ := _root_.GlobalTheory.BigOn.links2_of_rows_alt _ _ _ _ _ _ _ _ _ _ p hR hm.1
   obtain ⟨hc, hinj, z, act, y, ht⟩ := hrec.1.tied
   have hU : (F2 p).P0 ≤ (mirIncl (R2 p)).range := fun g hg => by
     obtain ⟨u, -, e⟩ := (mem_base_iff hC.grp.levels g).1 hg

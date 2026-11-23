@@ -45,6 +45,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousHalfTr
+import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.NumFieldHosCountable
 
 @[expose] public section
 
@@ -139,7 +140,7 @@ theorem gLsing_core (hFZ : FourierZeroN) (hTS : TwoSided) (hD : DenseTau) (hCD :
   haveI : SecondCountableTopology (hermA D n) := Topology.IsInducing.subtypeVal.secondCountableTopology
   haveI : T2Space (hermA D n) := Topology.IsEmbedding.subtypeVal.t2Space
   haveI : BorelSpace (Mx D n n) := ⟨rfl⟩
-  haveI : Countable D.host.E := GlobalTheory.CompanionTheory.FourierComplete.countable_numberField D.host.E
+  haveI : Countable D.host.E := _root_.Formalism.IndefR.Eqv.G5.numField_countable D.host.E
   haveI : Countable (Matrix (Fin n) (Fin n) D.host.E) :=
     inferInstanceAs (Countable (Fin n → Fin n → D.host.E))
   have hmem : ∀ q : ratHerm D n, q.1.1 ∈ ratMx D n n := fun q => AddSubgroup.mem_comap.1 q.2

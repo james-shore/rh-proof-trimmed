@@ -93,8 +93,8 @@ theorem kummer_step : ∀ (B : Type) [CommRing B] (q : ℕ), 0 < q → IsUnit (q
   intro B _ q hq hqu ⟨ζ, hζ, hζk⟩ hT c hc
   haveI : NeZero q := ⟨hq.ne'⟩
   obtain ⟨φ, hφ⟩ := p4 B q c hc
-  obtain ⟨hfin, hproj, hff⟩ := p1 B (CommRing.Pic.AsModule c) q φ hq hφ
-  obtain ⟨s⟩ := hT (Alg φ) hfin hproj hff (act φ ζ hζ) (p2 B (CommRing.Pic.AsModule c) q φ hqu hφ ζ hζ hζk)
+  obtain ⟨hfin, hproj, hff⟩ := _root_.GlobalTheory.KummerAlg.finite_projective_faithfullyFlat B (CommRing.Pic.AsModule c) q φ hq hφ
+  obtain ⟨s⟩ := hT (Alg φ) hfin hproj hff (act φ ζ hζ) (_root_.GlobalTheory.KummerTorsor.bijective B (CommRing.Pic.AsModule c) q φ hqu hφ ζ hζ hζk)
   have := free_of_section B (CommRing.Pic.AsModule c) q φ hq hφ s
   rw [← CommRing.Pic.mk_eq_self (M := c), CommRing.Pic.mk_eq_one_iff_free]
   exact this

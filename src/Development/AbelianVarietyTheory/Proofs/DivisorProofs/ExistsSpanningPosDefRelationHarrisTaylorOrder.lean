@@ -327,7 +327,7 @@ theorem exists_W_datum (D : Datum p) : ∃ (r : ℕ) (x : Module.Basis (Fin r) �
     have h'' : 0 < htTrace D (a * htStar D a) := trace_pos a ha
     omega
   exact ⟨_, Module.finBasis ℤ D.O, exists_W_of_casimir (Module.finBasis ℤ D.O) (htStar D) (htForm D) hs hss hφs hp
-    (GlobalTheory.T.integralCasimirElement_central _ _ _ hs hss hφc hφs hp) (GlobalTheory.T.integralCasimirElement_mul_pos _ _ _ hs hss hφc hφs hp)⟩
+    (_root_.GlobalTheory.CasimirOrder.casimir_central _ _ _ hs hss hφc hφs hp) (_root_.GlobalTheory.CasimirOrder.casimir_mul_pos _ _ _ hs hss hφc hφs hp)⟩
 
 end GlobalTheory.CasimirOrder
 

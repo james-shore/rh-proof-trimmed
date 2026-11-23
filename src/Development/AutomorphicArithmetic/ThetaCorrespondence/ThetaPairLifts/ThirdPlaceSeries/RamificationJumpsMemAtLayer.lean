@@ -73,7 +73,7 @@ theorem exists_inputs_pinAt_jumpsCard_at_mem : _root_.GlobalTheory.HeightCountin
                lam := hr.2
                isot := hr.1
                ser := ser
-               typeNZ := _root_.GlobalTheory.T.galoisRep_descends_at_real_places prn.decay prn.howe prx _ _ _ _ X.X }⟩, hpin, jumps⟩
+               typeNZ := _root_.GlobalTheory.DownLift.AtReal.lift_splits_locally prn.decay prn.howe prx _ _ _ _ X.X }⟩, hpin, jumps⟩
 end GlobalTheory.NRows.AtLayer
 end
 end

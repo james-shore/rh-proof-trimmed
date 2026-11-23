@@ -104,7 +104,7 @@ theorem span_schr (F : Type) [Field F] [NumberField F] (v : Pl (F := F)) (ψ : A
     ∀ φ ∈ SB (κ → Fv F v),
       φ ∈ Submodule.span ℂ (Set.range fun w : (κ → Fv F v) × (κ → Fv F v) => schr ψ w s) := by
   intro φ hφ
-  obtain ⟨x₀, N₀, hN₀⟩ := box_mem F v ψ hu κ s hs hs0
+  obtain ⟨x₀, N₀, hN₀⟩ := _root_.GlobalTheory.SchrBox.indicator_box_mem_span F v ψ hu κ s hs hs0
   obtain ⟨N₁, hN₁⟩ := decomp F v κ φ hφ
   refine Submodule.span_le.mpr ?_ (hN₁ (max N₀ N₁) (le_max_right _ _))
   rintro _ ⟨c, rfl⟩

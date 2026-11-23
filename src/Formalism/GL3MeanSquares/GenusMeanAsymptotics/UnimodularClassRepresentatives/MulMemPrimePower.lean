@@ -53,6 +53,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 public import Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.CardQuotExtPPow
+import Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.NeZeroOfNotMem
 
 @[expose] public section
 
@@ -140,14 +141,6 @@ theorem exists_gram_det (hF : IsFixF K F) {h : V →ₗ⋆[K] V →ₗ[K] K} (hs
 
 theorem coe_ι (x : 𝓞 F) : algebraMap F K (x : F) = algebraMap (𝓞 K) K (ι x) := rfl
 
-theorem cι_ne_zero {x : 𝓞 F} (hx : x ≠ 0) : algebraMap (𝓞 K) K (ι x) ≠ 0 := by
-  intro e
-  apply hx
-  apply idealPowerSpanBounds.ι_inj (K := K)
-  apply RingOfIntegers.coe_injective
-  rw [map_zero]
-  exact e
-
 theorem mem_pK_zero_of_mul {𝔭 : Ideal (𝓞 F)} (h𝔭 : 𝔭.IsMaximal) {t : 𝓞 F} (ht : t ∉ 𝔭) {x : K}
     {z : 𝓞 K} (e : algebraMap (𝓞 K) K z = algebraMap (𝓞 K) K (ι t) * x) : x ∈ pK K 𝔭 0 :=
   (mem_pK h𝔭).2 ⟨t, ht, z, by rw [pow_zero, Ideal.one_eq_top]; trivial, e⟩
@@ -156,7 +149,7 @@ theorem unit_of_notMem {𝔭 : Ideal (𝓞 F)} (h𝔭 : 𝔭.IsMaximal) {s : �
     algebraMap (𝓞 K) K (ι s) ∈ pK K 𝔭 0 ∧ (algebraMap (𝓞 K) K (ι s))⁻¹ ∈ pK K 𝔭 0 ∧
       algebraMap (𝓞 K) K (ι s) ≠ 0 := by
   have hs0 : s ≠ 0 := fun h0 => hs𝔭 (h0 ▸ zero_mem _)
-  have h0 := cι_ne_zero (K := K) hs0
+  have h0 := _root_.Formalism.HermitianLattices.Ext.L3.HU.jι_ne_zero (K := K) hs0
   refine ⟨algebraMap_mem_pK 𝔭 (ι s), ?_, h0⟩
   refine mem_pK_zero_of_mul h𝔭 hs𝔭 (z := 1) ?_
   rw [map_one, mul_inv_cancel₀ h0]
@@ -176,8 +169,8 @@ theorem exists_unit_factor {𝔭 : Ideal (𝓞 F)} (h𝔭 : 𝔭.IsMaximal) {π 
   rw [coe_ι] at ew
   obtain ⟨t1, ht1, r1, er1⟩ := exists_dvd_mul hpr hp0 (Ideal.pow_mem_pow hπ (vF 𝔭 D))
     (localValuationFiltration.notMem_pow_vF h𝔭 hD0)
-  have hP0 : algebraMap (𝓞 K) K (ι π) ^ vF 𝔭 D ≠ 0 := pow_ne_zero _ (cι_ne_zero hπ0)
-  have hDK0 := cι_ne_zero (K := K) hD0
+  have hP0 : algebraMap (𝓞 K) K (ι π) ^ vF 𝔭 D ≠ 0 := pow_ne_zero _ (_root_.Formalism.HermitianLattices.Ext.L3.HU.jι_ne_zero hπ0)
+  have hDK0 := _root_.Formalism.HermitianLattices.Ext.L3.HU.jι_ne_zero (K := K) hD0
   have hw0 : w ≠ 0 := by
     rintro rfl
     rw [mul_zero] at ew
@@ -205,7 +198,7 @@ theorem nO_of_rel (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF : IsF
   have hπ0 : π ≠ 0 := fun h0 => hπ' (h0 ▸ zero_mem _)
   obtain ⟨w, hw, hwi, hw0, ew⟩ := exists_unit_factor (K := K) h𝔭 hπ hπ' hD0
   obtain ⟨hsm, hsi, hsK0⟩ := unit_of_notMem (K := K) h𝔭 hs𝔭
-  have hP0 : algebraMap (𝓞 K) K (ι π) ^ vF 𝔭 D ≠ 0 := pow_ne_zero _ (cι_ne_zero hπ0)
+  have hP0 : algebraMap (𝓞 K) K (ι π) ^ vF 𝔭 D ≠ 0 := pow_ne_zero _ (_root_.Formalism.HermitianLattices.Ext.L3.HU.jι_ne_zero hπ0)
   have hPm : algebraMap (𝓞 K) K (ι π) ^ vF 𝔭 D ∈ pK K 𝔭 0 := by
     rw [← map_pow]
     exact algebraMap_mem_pK 𝔭 _
@@ -245,7 +238,7 @@ theorem nO_gram (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF : IsFix
     ha ▸ LocF.le_locF 𝔭 _ (Submodule.subset_span ⟨i, rfl⟩)
   obtain ⟨t, ht, htL⟩ := localizedQuotients.exists_common h𝔭 A₀ a haL
   have ht0 : t ≠ 0 := fun h0 => ht (h0 ▸ zero_mem _)
-  have hτ0 : algebraMap (𝓞 K) K (ι t) ≠ 0 := cι_ne_zero ht0
+  have hτ0 : algebraMap (𝓞 K) K (ι t) ≠ 0 := _root_.Formalism.HermitianLattices.Ext.L3.HU.jι_ne_zero ht0
   obtain ⟨b, hbi⟩ : ∃ b : Basis (Fin (finrank K V)) K V, ∀ i, b i = ι t • a i :=
     ⟨a.isUnitSMul (w := fun _ => algebraMap (𝓞 K) K (ι t)) (fun _ => hτ0.isUnit), fun i => by
       rw [Basis.isUnitSMul_apply, algebraMap_smul]⟩

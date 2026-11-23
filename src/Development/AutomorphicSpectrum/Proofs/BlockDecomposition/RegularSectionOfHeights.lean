@@ -57,6 +57,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Compactness.Paracompact
 import Mathlib.Topology.Sheaves.Init
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PolarPartIdentity
 
 @[expose] public section
 
@@ -147,9 +148,6 @@ section Main
 
 variable {hn : ρ + p = n} (M : Maps D hn) (m : Meas D ρ p) {ψ : AddChar (AF D.host.F) ℂ} (b₀ : HermE D ρ)
 
-theorem continuous_jacobi_map_origin : Continuous fun ζ : hermA D ρ => M.nzx ζ 0 :=
-  M.nzx_cont.comp (continuous_id.prodMk continuous_const)
-
 theorem wz_family (hψ : IsCharAF D.host.F ψ) {H : G D n → ℝ≥0} (hH : IsHt H)
     (hcpt : ∃ C : Set (G D n), IsCompact C ∧ ∀ g, ∃ q ∈ P D n, ∃ c ∈ C, g = q * c)
     {χ : (AE D)ˣ →* Circle} {s₁ : ℂ} {φ : G D n → ℂ} (hφ : Continuous φ) (hlaw : IsLaw χ s₁ φ) :
@@ -165,7 +163,7 @@ theorem wz_family (hψ : IsCharAF D.host.F ψ) {H : G D n → ℝ≥0} (hH : IsH
     (fun z c ζ => fam H φ s₁ z (M.w * M.nzx ζ 0 * c) * conj (chz ψ b₀ ζ)) ?_ ?_ ?_
   · refine Continuous.continuousOn (Continuous.mul ?_ ?_)
     · refine (continuous_fam hH hφ s₁).comp (continuous_fst.prodMk ?_)
-      exact (continuous_const.mul ((continuous_jacobi_map_origin M).comp (continuous_snd.comp continuous_snd))).mul
+      exact (continuous_const.mul ((_root_.GlobalTheory.CompanionTheory.PcB.continuous_nz M).comp (continuous_snd.comp continuous_snd))).mul
         (continuous_fst.comp continuous_snd)
     · exact Complex.continuous_conj.comp (hcz.comp (continuous_snd.comp continuous_snd))
   · exact fun c ζ => ((differentiable_fam hH φ s₁ _).mul_const _).differentiableOn
@@ -186,25 +184,6 @@ theorem wz_family (hψ : IsCharAF D.host.F ψ) {H : G D n → ℝ≥0} (hH : IsH
     exact mul_nonneg hB (Real.rpow_nonneg (by linarith) _)
 
 end Main
-
-theorem isLaw_fam {H : G D n → ℝ≥0} (hH : IsHt H) {χ : (AE D)ˣ →* Circle} {s₁ : ℂ} {φ : G D n → ℂ} (hl : IsLaw χ s₁ φ) (z : ℂ) :
-    IsLaw χ z (fam H φ s₁ z) := by
-  intro q hq a ha g
-  have h1 : absA D (Matrix.GeneralLinearGroup.det a) * absA D (Matrix.GeneralLinearGroup.det a)⁻¹ = 1 := by
-    rw [← map_mul]; simp
-  have hne : (absA D (Matrix.GeneralLinearGroup.det a) : ℝ) ≠ 0 := by
-    exact_mod_cast left_ne_zero_of_mul_eq_one h1
-  have hc : ((absA D (Matrix.GeneralLinearGroup.det a) : ℝ) : ℂ) ≠ 0 := by exact_mod_cast hne
-  simp only [fam]
-  rw [hH.2.2 q hq a ha g, hl q hq a ha g]
-  unfold npow
-  push_cast
-  rw [Complex.mul_cpow_ofReal_nonneg (NNReal.coe_nonneg _) (NNReal.coe_nonneg _)]
-  have e : ((absA D (Matrix.GeneralLinearGroup.det a) : ℝ) : ℂ) ^ (z + (n : ℂ) / 2) =
-      ((absA D (Matrix.GeneralLinearGroup.det a) : ℝ) : ℂ) ^ (z - s₁) *
-        ((absA D (Matrix.GeneralLinearGroup.det a) : ℝ) : ℂ) ^ (s₁ + (n : ℂ) / 2) := by
-    rw [← Complex.cpow_add _ _ hc]; congr 1; ring
-  rw [e]; ring
 
 section Main2
 
@@ -301,7 +280,7 @@ theorem rsec_levi {χ χ' : (AE D)ˣ →* Circle} {θ : InfFam D} {Ω : G D p �
       (fun y' : Mx D ρ p => Wz M m ψ b₀ f (M.sh y' * M.emb h * g) * conj (Ω h y')) (HMul.hMul y a.1 : Mx D ρ p) := by
     intro y
     have e1 : M.sh y * M.emb (g₀ * h) * g = M.emb g₀ * (M.sh (HMul.hMul y a.1 : Mx D ρ p) * M.emb h * g) := by
-      rw [map_mul, ← mul_assoc, GlobalTheory.T.shift_commutes_levi_embedding D n ρ p hn M g₀ a ha y]
+      rw [map_mul, ← mul_assoc, _root_.GlobalTheory.CompanionTheory.PcB.sh_emb_levi D n ρ p hn M g₀ a ha y]
       simp only [mul_assoc]
     rw [e1, GlobalTheory.T.coefficient_levi_equivariance D n ρ p hn M m ψ b₀ χ z f hf g₀ a ha, hΩ.levi g₀ a ha h y]
     simp only [map_mul]
@@ -356,7 +335,7 @@ end Law
 theorem rSec_of_htExist : HtExist → RSec := by
   intro hHt D n ρ p hn M m ψ hψ b₀ _ χ χ' _ _ θ hθ Ω hΩ H hH s₁ φ hφ hlaw g
   obtain ⟨h1, h2⟩ := rsec_family M m b₀ hψ hθ hΩ hH (hHt D n).2 hφ hlaw g
-  exact ⟨h1, h2, fun z _ => rsec_law M m b₀ hψ hΩ (isLaw_fam hH hlaw z) g⟩
+  exact ⟨h1, h2, fun z _ => rsec_law M m b₀ hψ hΩ (_root_.GlobalTheory.CompanionTheory.RswPolar.isLaw_fam hH hlaw z) g⟩
 
 end GlobalTheory.CompanionTheory.RSecPf
 

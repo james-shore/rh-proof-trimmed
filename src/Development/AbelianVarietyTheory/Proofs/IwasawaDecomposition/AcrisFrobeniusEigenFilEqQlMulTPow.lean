@@ -126,22 +126,16 @@ theorem step_abs {R A K : Type} [CommRing R] [CommRing A] [IsDomain A] [Field K]
 
 variable {l : ℕ} [Fact l.Prime]
 
-theorem alg_eq (a : Per.Ainf l) : algebraMap (Per.Ainf l) (Per.Acris l) a =
-    algebraMap (Per.Acris0 l) (Per.Acris l) (algebraMap (Per.Ainf l) (Per.Acris0 l) a) :=
-  GlobalTheory.RingIface.tower l a
+alias alg_eq := _root_.GlobalTheory.MemLoc.TFil.alg_factor
 
 theorem phi_nat (n : ℕ) : phiA l (n : Per.Acris l) = n := map_natCast _ _
 
-theorem phi_alg (a : Per.Ainf l) : phiA l (algebraMap (Per.Ainf l) (Per.Acris l) a) =
-    algebraMap (Per.Ainf l) (Per.Acris l) (Per.φA l a) := (GlobalTheory.CrisMaps.phiA_extends l).alg a
+alias phi_alg := _root_.GlobalTheory.MemLoc.PhiImage.phiA_alg
 
 set_option allowUnsafeReducibility true in
 attribute [local irreducible] Per.Acris Per.Bcris
 
-theorem j_alg {j : Per.Acris l →+* Per.BdRp l} (hj : IsCrisP j) (a : Per.Ainf l) :
-    j (algebraMap (Per.Ainf l) (Per.Acris l) a) = aDp l a := by
-  rw [alg_eq, hj.on0]
-  rfl
+alias j_alg := _root_.GlobalTheory.MemLoc.TFil.j_alg
 
 theorem theta_phi_mu (e : Per.Fl l) (he : e.untilt = 1) (n : ℕ) :
     Per.θ l ((Per.φA l)^[n] (mu e)) = 0 := by

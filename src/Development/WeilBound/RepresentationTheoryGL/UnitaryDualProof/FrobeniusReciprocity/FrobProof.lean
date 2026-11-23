@@ -356,7 +356,7 @@ theorem frobeniusReciprocity : FrobeniusReciprocity := by
     have hc : IsClosed {x : X | p x = ((1 : G) : G ⧸ H)} :=
       (isClosed_singleton (x := ((1 : G) : G ⧸ H))).preimage hpc
     exact hc.locallyCompactSpace
-  obtain ⟨s, hs, hsec⟩ := GlobalTheory.T.exists_continuous_section_quotient G H hH
+  obtain ⟨s, hs, hsec⟩ := _root_.GlobalTheory.CompanionTheory.LGroupSection.exists_continuous_section G H hH
   let σ : Sec H := ⟨s, hs, hsec⟩
   obtain ⟨α0, hα0⟩ := GlobalTheory.T.exists_schwartzBruhat_character_integral_one G μG χ hχ
   let Fr := LinearEquiv.ofBijective (FrMap hp σ hpc μH μG χ uG uH hχ α0 hα0)

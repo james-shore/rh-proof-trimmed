@@ -111,7 +111,7 @@ theorem exists_vol (H1 : Out.Laws) (H2 : Out.Laws2) (g : ℕ) (J : Type) (Mat : 
     subst hf
     exact vol_inv H1 H2 K t.pol N hN
   | some i =>
-    obtain ⟨δ, hδ, H⟩ := GlobalTheory.T.hilbertFunction_endomorphismGraph_of_torsionAction H1 H2 g N κ l m ((Mat i).map (Int.cast : ℤ → ZMod (l ^ m))) hN hl hlt
+    obtain ⟨δ, hδ, H⟩ := _root_.GlobalTheory.hilbert_graph_of_torsion H1 H2 g N κ l m ((Mat i).map (Int.cast : ℤ → ZMod (l ^ m))) hN hl hlt
     refine ⟨δ, hδ.trans (Nat.pow_le_pow_left (Nat.mul_le_mul_left _ (by omega)) _), ?_⟩
     intro K _ _ β t f hS hf hT
     subst hf
@@ -145,7 +145,7 @@ theorem cutBy_graphIdeal : Out.Laws → Out.Laws2 → ∀ (g : ℕ) (J : Type) [
   intro H1 H2 g J _ Mat κ n hn hodd
   have hn2 : 2 ≤ n := hn.two_le
   haveI : NeZero ((n ^ 2) ^ 2) := ⟨by positivity⟩
-  obtain ⟨d, k₀, Hc⟩ := GlobalTheory.T.abelianVariety_cut_out_bounded_degree_torsion H1 H2 g ((n ^ 2) ^ 2 * (2 + κ)) (Ix g ((n ^ 2) ^ 2) × Ix g ((n ^ 2) ^ 2))
+  obtain ⟨d, k₀, Hc⟩ := _root_.GlobalTheory.cutBy_idealOf_torsion H1 H2 g ((n ^ 2) ^ 2 * (2 + κ)) (Ix g ((n ^ 2) ^ 2) × Ix g ((n ^ 2) ^ 2))
   refine ⟨2 + k₀ + ((n ^ 2) ^ 2 * (1 + κ)) ^ (2 * g), fun j hj o _ b i => ?_⟩
   have hjn : j < n ^ j := Nat.lt_pow_self hn2
   have hdvd : n ^ 2 ∣ n ^ j := pow_dvd_pow n (by omega)

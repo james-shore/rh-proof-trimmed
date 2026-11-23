@@ -161,7 +161,7 @@ theorem exists_idem [StarRing E] (cm : CMData F E) (v : HeightOneSpectrum (𝓞 
     | smul c x _ hx => exact mul_mem c.2 hx
   have hone : (fun _ => 1 : Fin 1 → E ⊗[F] v.adicCompletion F) ∈ loc v L :=
     Submodule.subset_span ⟨fun _ => 1, Submodule.subset_span rfl, by funext i; simp⟩
-  have hmem := ((GlobalTheory.T.split_place_lattice_components F E cm 1 1 hH (by simp) v sp h1 h2).1 L (fun _ => sp.symm (1, 0))).mpr
+  have hmem := ((_root_.GlobalTheory.St.G.split_components F E cm 1 1 hH (by simp) v sp h1 h2).1 L (fun _ => sp.symm (1, 0))).mpr
     ⟨⟨_, hone, fun b => by simp⟩, ⟨0, zero_mem _, fun b => by simp⟩⟩
   exact ⟨sp.symm (1, 0), hloc _ hmem 0, by simp⟩
 
@@ -192,7 +192,7 @@ theorem local_dual_cyclic : ∀ (F E : Type) [Field F] [NumberField F] [Field E]
   intro F E _ _ _ _ _ _ cm n J hJ hdet T f L hT _ _ hL v hv sp h1 h2 hiff hidx
   obtain ⟨e, he, hsp⟩ := exists_idem cm v sp h1 h2
   obtain ⟨x, hx, hxn⟩ := hL.2.2.2.2 v hv
-  have crit := (GlobalTheory.T.split_place_lattice_components F E cm n J hJ hdet v sp h1 h2).1 L x
+  have crit := (_root_.GlobalTheory.St.G.split_components F E cm n J hJ hdet v sp h1 h2).1 L x
   have n1 : ¬ ∀ y ∈ loc v (dualL cm.sig J L), ∃ z ∈ loc v L, ∀ b, (sp (z b)).1 = (sp (y b)).1 :=
     fun h => hxn (crit.mpr ⟨h x hx, hiff.mp h x hx⟩)
   have n2 : ¬ ∀ y ∈ loc v (dualL cm.sig J L), ∃ z ∈ loc v L, ∀ b, (sp (z b)).2 = (sp (y b)).2 :=

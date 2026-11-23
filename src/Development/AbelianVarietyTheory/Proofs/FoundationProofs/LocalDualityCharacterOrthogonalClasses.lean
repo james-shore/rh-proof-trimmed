@@ -56,9 +56,9 @@ theorem GlobalTheory.Ord2.localDuality_char : GlobalTheory.Mem.LiteralAutomorphy
   by_cases hac : ∃ x : Qbar l, ∀ s ∈ Dec (F := ℚ) A, a s = k' s * x - x
   · exact Or.inr hac
   left
-  obtain ⟨θ, hθc, hθ⟩ := GlobalTheory.T.exists_unitCharacter_of_integral_cyclotomic_product l Ω c A k k' hk
+  obtain ⟨θ, hθc, hθ⟩ := _root_.GlobalTheory.LocChar.unit_of_integral l Ω c A k k' hk
     (fun s hs => ⟨(hint s hs).1, (hint s hs).2.1, (hint s hs).2.2.2.2⟩) (fun s hs t ht => (hmul s hs t ht).1)
-  obtain ⟨θ', hθ'c, hθ'⟩ := GlobalTheory.T.exists_unitCharacter_of_integral_cyclotomic_product l Ω c A k' k hk'
+  obtain ⟨θ', hθ'c, hθ'⟩ := _root_.GlobalTheory.LocChar.unit_of_integral l Ω c A k' k hk'
     (fun s hs => ⟨(hint s hs).2.1, (hint s hs).1, by rw [mul_comm]; exact (hint s hs).2.2.2.2⟩)
     (fun s hs t ht => (hmul s hs t ht).2.1)
   have hN := GlobalTheory.T.norm_le_pow_iff_dvd l c
@@ -103,10 +103,10 @@ theorem GlobalTheory.Ord2.localDuality_char : GlobalTheory.Mem.LiteralAutomorphy
     refine (hN (n - r) x).1 (hr n x y (hnorm1 x) fun s _ => ?_)
     have := (hN n _).2 (h s)
     simpa [aO, hθ'] using this
-  obtain ⟨m, hm0, hAF⟩ := GlobalTheory.T.exists_mul_scalarClass_eq_smul_add_coboundary_modPrimePow hL.lf hL.lt hL.le l Ω c A hA θ' hθ'c hθ'1 hθ'ne r
+  obtain ⟨m, hm0, hAF⟩ := _root_.GlobalTheory.LocCharSpan.span hL.lf hL.lt hL.le l Ω c A hA θ' hθ'c hθ'1 hθ'ne r
   have key : ∀ n : ℕ, 1 ≤ n → ∃ x : c.O, ∀ s, p ^ n ∣ (m : c.O) * bO s - (((θ s : c.Oˣ) : c.O) * x - x) := by
     intro n hn
-    refine GlobalTheory.T.coboundary_of_orthogonal_dualCharacter_modPrimePow hL.lf hL.lt l Ω c A hA θ θ' hθc hθ'c hcyc n hn (fun s => (m : c.O) * bO s)
+    refine _root_.GlobalTheory.Ord2.LocCharPerfect.perfect hL.lf hL.lt l Ω c A hA θ θ' hθc hθ'c hcyc n hn (fun s => (m : c.O) * bO s)
       (continuous_const.mul hbO) (fun s t => ?_) (fun a' ha' hca' => ?_)
     · rw [hbOc s t]; ring_nf; exact dvd_zero _
     obtain ⟨x, y, hxy⟩ := hAF n hn aO haO (fun s t => by rw [haOc s t, sub_self]; exact dvd_zero _)
@@ -136,7 +136,7 @@ theorem GlobalTheory.Ord2.localDuality_char : GlobalTheory.Mem.LiteralAutomorphy
     rw [hbOc s t, map_mul θ' s t, Units.val_mul]
     linear_combination (bO s * ((θ' s : c.Oˣ) : c.O)) * hq1 + x * hq2
   obtain ⟨s0, hs0, hne0⟩ := hk1
-  refine GlobalTheory.T.coboundary_of_uniform_limit_coboundaries (Dec (F := ℚ) A : Set (G ℚ Ω)) k b ⟨s0, hs0, hne0⟩ fun ε hε => ?_
+  refine _root_.GlobalTheory.coboundary_closed_of_uniform_approx (Dec (F := ℚ) A : Set (G ℚ Ω)) k b ⟨s0, hs0, hne0⟩ fun ε hε => ?_
   have hl1 : ‖((l : ℕ) : Qbar l)‖ < 1 := by
     have e : ((l : ℕ) : Qbar l) = algebraMap ℚ_[l] (Qbar l) (l : ℚ_[l]) := by simp
     rw [e, norm_algebraMap', Padic.norm_p]

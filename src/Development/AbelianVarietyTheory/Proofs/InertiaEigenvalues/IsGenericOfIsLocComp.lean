@@ -72,7 +72,7 @@ theorem good_colT (hψ : StdPsi ψ) {m : ℕ} {f : GA E a → ℂ} (h : m + 1 < 
     ?_, GlobalTheory.T.quotientAverage_unipotentBlock_columnTransform_eq_zero E a ψ hψ m f h hf⟩
   intro k hk y g
   rcases Nat.lt_or_ge (m + 1) k with h1 | h1
-  · exact GlobalTheory.T.columnWhittakerTransform_keeps_later_law E a ψ m f hf k h1 y g
+  · exact _root_.GlobalTheory.CuspGeneric.colT_law_of_good E a ψ m f hf k h1 y g
   · obtain rfl : k = m + 1 := by omega
     exact GlobalTheory.T.unipotentColumnWhittakerTransform_column_law E a ψ hψ m f hf y g
 

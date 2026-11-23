@@ -87,10 +87,7 @@ theorem map_idem {T : Type} [CommRing T] (ψ : R →+* T) (f : R) (M : Matrix (F
     map_mul, map_sub, map_one]
   split_ifs <;> simp
 
-theorem idem_unitary (σ : R →+* R) (ε : R) (hε : σ ε = ε) (hεε : ε * ε = ε) (J M : Matrix (Fin n) (Fin n) R)
-    (h : Formalism.UG.cT σ M * J * M = J) :
-    Formalism.UG.cT σ (ε • M + (1 - ε) • (1 : Matrix (Fin n) (Fin n) R)) * J * (ε • M + (1 - ε) • 1) = J :=
-  _root_.GlobalTheory.TruncationIsometry.cut_isometry σ ε hε hεε J M h
+alias idem_unitary := _root_.GlobalTheory.TruncationIsometry.cut_isometry
 
 end GlobalTheory.GfCut
 

@@ -186,11 +186,11 @@ theorem psiC_phiC (hy1 : IsUnit y1.det) (hy1' : IsUnit y1'.det) :
   intro p
   obtain ⟨x0, ⟨⟨a, b⟩, ⟨e, ⟨v, u⟩⟩⟩⟩ := p
   have hM : (A x0)⁻¹ * G.upper u ∈ C2.UTset r :=
-    StabilizerDisintegration.HC.UT_mul (ut_inv_mem (hA x0)) (StabilizerDisintegration.HC.upper_mem u)
+    _root_.Formalism.FourierDecayAlt.P.C2x2.ut_mul (_root_.Formalism.FourierDecayAlt.P.C2x2.ut_inv (hA x0)) (StabilizerDisintegration.HC.upper_mem u)
   have hE : (StabilizerDisintegration.UC.eSp σ.symm).symm (StabilizerDisintegration.UC.fSp σ.symm (x0, fun q => v (StabilizerDisintegration.UC.iota σ q))) =
       (x0, fun q => v (StabilizerDisintegration.UC.iota σ q)) := (StabilizerDisintegration.UC.eSp σ.symm).symm_apply_apply _
   have hU : A x0 * G.upper (StabilizerDisintegration.utc ((A x0)⁻¹ * G.upper u)) = G.upper u := by
-    rw [ut_of_mem hM, ← Matrix.mul_assoc, Matrix.mul_nonsing_inv _ (ut_det (hA x0)), Matrix.one_mul]
+    rw [_root_.Formalism.FourierDecayAlt.P.StabilizerDisintegration.HC.upper_utc hM, ← Matrix.mul_assoc, Matrix.mul_nonsing_inv _ (_root_.Formalism.FourierDecayAlt.P.C2x2.ut_unit (hA x0)), Matrix.one_mul]
   simp only [psiC, phiC, hE, rnAct_inv_rnAct hy1, rnAct_inv_rnAct hy1', Equiv.apply_symm_apply, hU,
     StabilizerDisintegration.HC.utc_upper, Prod.mk.injEq, and_true, true_and]
   exact Subsingleton.elim _ _
@@ -202,10 +202,10 @@ theorem phiC_psiC (hy1 : IsUnit y1.det) (hy1' : IsUnit y1'.det) :
   obtain ⟨⟨x1, w1⟩, ⟨x2, w2⟩⟩ := q
   have hE : StabilizerDisintegration.UC.fSp σ.symm ((StabilizerDisintegration.UC.eSp σ.symm).symm w1) = w1 := (StabilizerDisintegration.UC.eSp σ.symm).apply_symm_apply w1
   have hM : A ((StabilizerDisintegration.UC.eSp σ.symm).symm w1).1 * G.upper w2 ∈ C2.UTset r :=
-    StabilizerDisintegration.HC.UT_mul (hA _) (StabilizerDisintegration.HC.upper_mem w2)
+    _root_.Formalism.FourierDecayAlt.P.C2x2.ut_mul (hA _) (StabilizerDisintegration.HC.upper_mem w2)
   have hU : (A ((StabilizerDisintegration.UC.eSp σ.symm).symm w1).1)⁻¹ *
       G.upper (StabilizerDisintegration.utc (A ((StabilizerDisintegration.UC.eSp σ.symm).symm w1).1 * G.upper w2)) = G.upper w2 := by
-    rw [ut_of_mem hM, ← Matrix.mul_assoc, Matrix.nonsing_inv_mul _ (ut_det (hA _)), Matrix.one_mul]
+    rw [_root_.Formalism.FourierDecayAlt.P.StabilizerDisintegration.HC.upper_utc hM, ← Matrix.mul_assoc, Matrix.nonsing_inv_mul _ (_root_.Formalism.FourierDecayAlt.P.C2x2.ut_unit (hA _)), Matrix.one_mul]
   simp only [psiC, phiC, rnAct_rnAct_inv hy1, rnAct_rnAct_inv hy1', Equiv.symm_apply_apply, Prod.mk.eta, hE, hU,
     StabilizerDisintegration.HC.utc_upper]
 

@@ -70,11 +70,6 @@ namespace GlobalTheory.CompanionTheory.Ar.Giv.Conv
 
 open GroundTheory.Heights₂.Heights.AnalyticLimit (TailLogBound tail)
 
-theorem tailLogBound_congr_φ {e : ℕ} {X : Type} [TopologicalSpace X] (A : FinHolAtlas e X)
-    (Yo : Set X) (r : X → ℝ) {Φ Ψ : Fin e → LocPot X} (h : ∀ i, (Φ i).φ = (Ψ i).φ) (CE : ℝ)
-    (H : TailLogBound A Yo r Φ CE) : TailLogBound A Yo r Ψ CE := by
-  apply _root_.GlobalTheory.CompanionTheory.Ar.Giv.tailLogBound_of_phi_eq <;> assumption
-
 theorem isPsh_reassoc {e : ℕ} {X : Type} [TopologicalSpace X] (A : FinHolAtlas e X)
     (a Θ : LocPot X) (v : X → ℝ) (h : IsPsh A (a + LocPot.ofFun v + Θ)) :
     IsPsh A (a + Θ + LocPot.ofFun v) := by
@@ -126,7 +121,7 @@ theorem position_tail (e : ℕ) (X : Type) [TopologicalSpace X] [CompactSpace X]
   refine ⟨h1, ?_⟩
   have hlog : ∀ x ∈ R.Yo, 0 ≤ Real.log (R.r x) := fun x hx => Real.log_nonneg (R.one_le_r x hx)
   have h4 := hCE (fun i => if i ∈ T then u i else 0) ?_ (fun i => isPsh_reassoc A _ _ _ (h1 i)) ?_ ?_
-  · refine tailLogBound_congr_φ A _ _ (fun i => ?_) CE h4
+  · refine _root_.GlobalTheory.CompanionTheory.Ar.Giv.tailLogBound_of_φ_eq A _ _ (fun i => ?_) CE h4
     funext x z
     change _ + Θ.φ x z + _ = _ + _ + Θ.φ x z
     ring

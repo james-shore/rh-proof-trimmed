@@ -78,7 +78,7 @@ theorem UpperTheory.Gal.G3.pTransDeep :
   have ht : ∀ i, gb.t i = (RingHom.id R).comp ((GenCmp.baseOf gb).t i) := fun i => rfl
   let o1 := GenCmp.toObj hρ ht o' (GenCmp.genericObject_kernelCondition o')
   obtain ⟨o2, ψ, hψm, hψa, hψe, hgal, ⟨hlb⟩, -⟩ :=
-    GlobalTheory.T.exists_hecke_translate_locallyNoetherian_base p D R (GenCmp.baseOf gb) f u c k N N.2.1 N.2.2 hc hkp hck hlin hcomp hEF hsurj S _ o1
+    _root_.GlobalTheory.UPel.HT.HeckeAd.exists_isTranslA p D R (GenCmp.baseOf gb) f u c k N N.2.1 N.2.2 hc hkp hck hlin hcomp hEF hsurj S _ o1
   let o3 := GenCmp.rebase (t := s) hρ ht rfl o2
   let o : GObj gb N s := GenCmp.toGObj o3 (GenCmp.geomFull N.2.2 o3)
   refine ⟨o, ψ, ?_⟩

@@ -72,7 +72,7 @@ theorem cancel_pow : ∀ (R : Type) [Ring R] (M N : Type) [AddCommGroup M] [Modu
     [AddCommGroup N] [Module R N] [Finite N] (l : ℕ), 0 < l →
     Nonempty ((Fin l → M) ≃ₗ[R] (Fin l → N)) → Nonempty (M ≃ₗ[R] N) := by
   intro R _ M N _ _ _ _ _ _ l hl ⟨e⟩
-  refine GlobalTheory.T.nonempty_linearEquiv_of_card_hom_eq R M N ?_
+  refine _root_.GlobalTheory.HomCount.nonempty_equiv_of_card_hom R M N ?_
   intro X _ _ _
   have h1 : Nat.card (X →ₗ[R] (Fin l → M)) = Nat.card (X →ₗ[R] (Fin l → N)) :=
     Nat.card_congr

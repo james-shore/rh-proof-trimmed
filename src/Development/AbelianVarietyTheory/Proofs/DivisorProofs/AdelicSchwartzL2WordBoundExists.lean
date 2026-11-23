@@ -109,7 +109,7 @@ theorem adelic_schwartz_slice_l2_word_bound : ∀ (F : Type) [Field F] [NumberFi
     exact ((continuous_const.mul (Complex.continuous_ofReal.comp (hℓc.comp h1))).pow _).mul
       ((ContinuousMultilinearMap.apply ℝ _ ℂ (fun r => b (p.2 r))).continuous.comp h2)
   rw [List.map_map, Finset.sum_map_toList]
-  refine GlobalTheory.T.integral_sq_le_sum_lintegral_enorm_sq_of_pointwise _ MeasureTheory.volume _ _ _ _ hcont fun x => ?_
+  refine _root_.GlobalTheory.sq_le_sum_enorm_sq_lintegral_bound _ MeasureTheory.volume _ _ _ _ hcont fun x => ?_
   have hterm : ∀ p : Option (Fin n) × (Fin j → Fin n),
       p.1.elim 1 (fun c => |b.coord c x| ^ i) *
           ‖iteratedFDeriv ℝ j (fun x => Φ (GlobalTheory.WeilCont.adeleJoin F x y)) x (fun r => b (p.2 r))‖ ≤

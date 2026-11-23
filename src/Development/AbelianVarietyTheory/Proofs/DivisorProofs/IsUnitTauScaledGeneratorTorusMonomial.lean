@@ -49,10 +49,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UCanon.ScaleTorus
 
-theorem unitOn_mul' {R : Type} [CommRing R] (x y : Rˣ) : unitOn (x * y) = unitOn x * unitOn y := by
-  apply Units.ext
-  exact map_mul (Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom (x : R) (y : R)
-
 theorem isUnitTau_scaleGen : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Geo.Tor.Level H}
     (Xo : Moduli Dw l) (c : Coeff l) (φ : InvFun (𝓞 E)) (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R]
     (C : MonoFam Xo c φ R) (N : ℕ) (s : Fin C.m ⊕ Fin N → R)
@@ -89,7 +85,7 @@ theorem isUnitTau_scaleGen : ∀ {E : Type} [Field E] [NumberField E] [IsCMField
     have e₃ : gm (𝟙 (TK R).left) zz ⊤ (unitOn k) =
         gm (𝟙 (TK R).left) zz ⊤ (unitOn (k * w'⁻¹)) * gm (𝟙 (TK R).left) zz ⊤ (unitOn w') := by
       refine Eq.trans ?_ (map_mul _ _ _)
-      refine congrArg _ (Eq.trans ?_ (unitOn_mul' _ _))
+      refine congrArg _ (Eq.trans ?_ (_root_.GlobalTheory.ToricData.unitOn_mul _ _))
       rw [inv_mul_cancel_right]
     refine (hval zz J hJ).trans (Eq.trans ?_ (congrArg _ e₁.symm))
     rw [e₂, ← _root_.mul_assoc, ← e₃]

@@ -243,15 +243,11 @@ theorem isOfFinOrder_fbar (g : ℕ) [Fact g.Prime] {x : Formalism.CyclotomicNorm
   have h1 : IsOfFinOrder (Units.mk0 y hy) := isOfFinOrder_of_finite _
   exact ((IntermediateField.adjoin (ZMod g) {x}).val.toMonoidHom.comp (Units.coeHom _)).isOfFinOrder h1
 
-theorem nonempty_reduction (l : ℕ) [hl : Fact l.Prime] :
-    Nonempty (integralClosure ℤ ℂ →+* Formalism.CyclotomicNorms.Fbar l) :=
-  _root_.GlobalTheory.RingHomOfIsIntegral.nonempty_ringHom l
-
 theorem exists_iota (g l : ℕ) [Fact g.Prime] [hl : Fact l.Prime] : ∃ ι : Formalism.CyclotomicNorms.Fbar g →* Formalism.CyclotomicNorms.Fbar l,
     ∀ x y : Formalism.CyclotomicNorms.Fbar g, x ≠ 0 → y ≠ 0 → (orderOf x).Coprime l → (orderOf y).Coprime l →
       ι x = ι y → x = y := by
   obtain ⟨t, ht⟩ := exists_teichC g
-  obtain ⟨ρ⟩ := nonempty_reduction l
+  obtain ⟨ρ⟩ := _root_.GlobalTheory.RingHomOfIsIntegral.nonempty_ringHom l
   have hint : ∀ x, t x ∈ integralClosure ℤ ℂ := by
     intro x
     rcases eq_or_ne x 0 with rfl | hx

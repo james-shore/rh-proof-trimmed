@@ -159,14 +159,14 @@ theorem split (hrc : IsRecT h rc) {x : IrrGL (k := w.adicCompletion E)} (hx : Is
     ∃ l : List (IrrGL (k := w.adicCompletion E)), HasSupport x.rep (l : Multiset _) ∧ GlobalTheory.RoadU.Unlinked (l : Multiset (IrrGL (k := w.adicCompletion E))) ∧
       rc x = sumList (l.map rc) := by
   have : CharZero (w.adicCompletion E) := charZero_of_injective_algebraMap (algebraMap E _).injective
-  obtain ⟨c, Δ, hun, hL⟩ := GlobalTheory.T.exists_unlinked_langlandsDatum_generic _ x hx
+  obtain ⟨c, Δ, hun, hL⟩ := _root_.GlobalTheory.GenericLDatum.exists_unlinked_isL _ x hx
   obtain ⟨a, ha, L⟩ := id hrc
   have e : rc x = segSum rc (List.ofFn Δ) := L.langlands _ x hL
-  obtain ⟨hlen, hsum⟩ := GlobalTheory.T.segmentSum_no_monodromy_length_one rc hrc (List.ofFn Δ) (e ▸ hm)
+  obtain ⟨hlen, hsum⟩ := _root_.GlobalTheory.SegSumOne.segSum_of_mono0 rc hrc (List.ofFn Δ) (e ▸ hm)
   have h1 : ∀ i, (Δ i).len = 1 := fun i => hlen _ (List.mem_ofFn.2 ⟨i, rfl⟩)
   refine ⟨List.ofFn fun i => (Δ i).first, ?_, ?_, ?_⟩
-  · rw [← Fin.univ_val_map]; exact GlobalTheory.T.supercuspidalSupport_of_lengthOne_langlandsDatum _ c Δ x h1 hL
-  · rw [← Fin.univ_val_map]; exact GlobalTheory.T.unlinkedLengthOneSegments_firstTerms_not_nuTwist rc hrc c Δ h1 hun
+  · rw [← Fin.univ_val_map]; exact _root_.GlobalTheory.LocGL.LenOneSupport.hasSupport_first_of_isL_len_one _ c Δ x h1 hL
+  · rw [← Fin.univ_val_map]; exact _root_.GlobalTheory.UnlinkedFirst.unlinked_first_of_len_one rc hrc c Δ h1 hun
   · rw [e, hsum, List.map_ofFn, List.map_ofFn]; rfl
 
 theorem plainTor_of_tor (hrc : IsRecT h rc) {x : IrrGL (k := w.adicCompletion E)} (hx : IsGeneric x.rep) (ht : Tor (rc x))
@@ -229,7 +229,7 @@ theorem mixed_of_tame (hq : IsQp w) (hrc : IsRecT h rc) {x : IrrGL (k := w.adicC
   have : CharZero (w.adicCompletion E) := charZero_of_injective_algebraMap (algebraMap E _).injective
   obtain ⟨l, hl, hu, e⟩ := split hrc hx hm
   have tame : ∀ y ∈ l, IsTameWD (rc y) := fun y hy =>
-    GlobalTheory.T.isTame_of_mem_weilDeligneListSum _ (e ▸ isTameWD_of_tmW ht) _ (List.mem_map_of_mem hy)
+    _root_.GlobalTheory.TameSum.isTameWD_of_mem_sumList _ (e ▸ isTameWD_of_tmW ht) _ (List.mem_map_of_mem hy)
   have dz : ∀ y ∈ l, DZ y := fun y hy => dz_of_cusp hq hrc (hl.isCusp hy) (tame y hy)
   obtain ⟨hGL, hZ⟩ := GlobalTheory.geometricLemma_and_zelevinskyPolynomialRing
   refine ⟨GlobalTheory.DepthZeroPass.depthZeroInduction hGL GlobalTheory.bernsteinZelevinskyFiniteness_holds hZ _ x _ hl dz, fun s hs' => ?_⟩

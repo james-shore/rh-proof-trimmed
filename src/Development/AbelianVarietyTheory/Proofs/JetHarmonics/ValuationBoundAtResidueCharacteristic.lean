@@ -95,7 +95,7 @@ theorem nuW_le_two : ∀ (p : ℕ) [Fact p.Prime], AvFSt p → HTFSt p → ∀ (
     have := ramOverZ_pos_place la
     have : (0 : ℤ) < (e : ℤ) * (ramOverZ la : ℤ) := by positivity
     omega
-  refine (iInf_le _ C).trans ((GlobalTheory.T.integralChartDepth_le_residueChar_two p hA hH E H Dw l Xo c T io y C hy hnu hsp f vd hvd hT e k n a he ha hn Ap hAp hle).trans (le_of_eq ?_))
+  refine (iInf_le _ C).trans ((_root_.GlobalTheory.CharDepth.nuLocC_le_over_two p hA hH E H Dw l Xo c T io y C hy hnu hsp f vd hvd hT e k n a he ha hn Ap hAp hle).trans (le_of_eq ?_))
   have he' : (e : ℝ) ≠ 0 := by exact_mod_cast he.ne'
   rw [hv, Int.cast_mul, Int.cast_natCast, Int.cast_natCast, mul_div_cancel_left₀ _ he']
 

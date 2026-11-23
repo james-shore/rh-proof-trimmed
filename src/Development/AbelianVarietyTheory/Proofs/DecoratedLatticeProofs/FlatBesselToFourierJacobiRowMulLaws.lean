@@ -63,17 +63,15 @@ def prH : D.host.E →+* k := p.π.comp (incA D)
 
 theorem pr_eq : p.pr = prH p := rfl
 
-theorem e_mul_ι (x : k) : p.e * p.ι x = p.ι x := by rw [← p.ι_π, p.π_ι]
-
 theorem e_smul_map {m n : Type} (K : Matrix m n k) : p.e • K.map p.ι = K.map p.ι := by
-  funext i j; exact e_mul_ι p (K i j)
+  funext i j; exact _root_.GlobalTheory.LocMod.Witness.e_ι p (K i j)
 
 theorem map_ι_π {m n : Type} (K : Matrix m n k) : (K.map p.ι).map p.π = K := by
   funext i j; exact p.π_ι (K i j)
 
-theorem xi_ne : p.xi ≠ 0 := (map_ne_zero (prH p)).2 (GlobalTheory.DualPairCompare.embedding_xi_zero_ne_zero D)
+alias xi_ne := _root_.GlobalTheory.LocMod.Witness.xi_ne
 
-theorem hz_ne {ρ : ℕ} (B : BesLev D ρ) : p.hz B ≠ 0 := (map_ne_zero (prH p)).2 B.line.2
+alias hz_ne := _root_.GlobalTheory.LocMod.Witness.hz_ne
 
 theorem char_half {ψ : AddChar (AF D.host.F) ℂ} {ψk : AddChar k Circle} (h : p.IsChar ψ ψk) {a : AE D} (ha : p.e * a = a) :
     ψ (Algebra.trace (AF D.host.F) (AE D) (incA D D.host.xi0 * a)) = ψk (p.π a) := by

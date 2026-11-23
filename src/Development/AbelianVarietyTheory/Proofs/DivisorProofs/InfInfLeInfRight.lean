@@ -60,13 +60,6 @@ open TopologicalSpace Opposite
 
 variable {X Y Z : Scheme.{0}}
 
-theorem resU_resU {U V W : X.Opens} (h : V ≤ U) (k : W ≤ V) (x : Γ(X, U)ˣ) :
-    res k (res h x) = res (k.trans h) x := by
-  ext
-  change (X.presheaf.map (homOfLE h).op ≫ X.presheaf.map (homOfLE k).op).hom x.val = _
-  rw [← X.presheaf.map_comp]
-  rfl
-
 theorem resU_pullU_resU (f : Y ⟶ X) {U V : X.Opens} (k : V ≤ U) {W : Y.Opens}
     (h : W ≤ f ⁻¹ᵁ V) (x : Γ(X, U)ˣ) :
     res h (pullU f V (res k x)) = res (h.trans (f.preimage_mono k)) (pullU f U x) := by
@@ -85,13 +78,6 @@ theorem resU_pullU_square {P : Scheme.{0}} {g : Z ⟶ Y} {f : Y ⟶ X} {g' : Z �
     (h' : W ≤ g' ⁻¹ᵁ f' ⁻¹ᵁ U) (x : Γ(X, U)ˣ) :
     res h (pullU g _ (pullU f U x)) = res h' (pullU g' _ (pullU f' U x)) := by
   exact resU_pullU_congr e U h h' x
-
-theorem rs_rs {U V W : X.Opens} (h : V ≤ U) (k : W ≤ V) (x : Γ(X, U)) :
-    (X.presheaf.map (homOfLE k).op).hom ((X.presheaf.map (homOfLE h).op).hom x) =
-      (X.presheaf.map (homOfLE (k.trans h)).op).hom x := by
-  change (X.presheaf.map (homOfLE h).op ≫ X.presheaf.map (homOfLE k).op).hom x = _
-  rw [← X.presheaf.map_comp]
-  rfl
 
 theorem rs_app (f : Y ⟶ X) (U : X.Opens) {W : Y.Opens} (h : W ≤ f ⁻¹ᵁ U) (x : Γ(X, U)) :
     (Y.presheaf.map (homOfLE h).op).hom ((f.app U).hom x) = (f.appLE U W h).hom x := rfl
@@ -115,9 +101,6 @@ theorem inf_inf_le_inf_left (A B C D : X.Opens) : (A ⊓ B) ⊓ (C ⊓ D) ≤ A 
 
 theorem inf_inf_le_inf_right (A B C D : X.Opens) : (A ⊓ B) ⊓ (C ⊓ D) ≤ B ⊓ D :=
   fun _ hx => ⟨hx.1.2, hx.2.2⟩
-
-theorem inf_preimage_le (f : Y ⟶ X) (A B : X.Opens) : f ⁻¹ᵁ A ⊓ f ⁻¹ᵁ B ≤ f ⁻¹ᵁ (A ⊓ B) :=
-  fun _ hx => hx
 
 theorem pull_g_eq (L : LB X) (f : Y ⟶ X) (i i' : (L.pull f).ι) :
     (L.pull f).g i i' = res (le_inf ((inf_le_left.trans (LB.wchart_le L (fun _ => f) i PUnit.unit)))
@@ -155,7 +138,7 @@ theorem exists_lb_of_localEq : ∀ (X Y : Scheme.{0}) (j : Y ⟶ X) (L : LB Y) (
           V k ⊓ V l ⊓ V m ≤ V l ⊓ V m)).op).hom (hc l m)
     have e3 := congrArg (X.presheaf.map (homOfLE (le_inf (inf_le_left.trans inf_le_left) inf_le_right :
           V k ⊓ V l ⊓ V m ≤ V k ⊓ V m)).op).hom (hc k m)
-    simp only [map_mul, rs_rs] at e1 e2 e3
+    simp only [map_mul, _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres] at e1 e2 e3
     apply cancel_nzd (ha m (V k ⊓ V l ⊓ V m) inf_le_right)
     simp only [res, Units.coe_map, MonoidHom.coe_coe, Units.val_mul]
     rw [_root_.mul_assoc, ← e2, ← e1, e3]
@@ -164,7 +147,7 @@ theorem exists_lb_of_localEq : ∀ (X Y : Scheme.{0}) (j : Y ⟶ X) (L : LB Y) (
         res (inf_le_right : (j ⁻¹ᵁ V k ⊓ j ⁻¹ᵁ V l) ⊓ (L.U i ⊓ L.U i') ≤ L.U i ⊓ L.U i')
           (L.g i i') *
         (res ((inf_le_left : (j ⁻¹ᵁ V k ⊓ j ⁻¹ᵁ V l) ⊓ (L.U i ⊓ L.U i') ≤ _).trans
-          (inf_preimage_le j (V k) (V l))) (pullU j _ (c k l)))⁻¹ *
+          (_root_.GlobalTheory.AbLaw.PowVanish.pre_inf j (V k) (V l))) (pullU j _ (c k l)))⁻¹ *
         res (inf_inf_le_inf_right (j ⁻¹ᵁ V k) (j ⁻¹ᵁ V l) (L.U i) (L.U i')) (w l i') := by
     intro k l i i'
     have hWl : (j ⁻¹ᵁ V k ⊓ j ⁻¹ᵁ V l) ⊓ (L.U i ⊓ L.U i') ≤ j ⁻¹ᵁ V l := fun _ hx => hx.1.2
@@ -178,7 +161,7 @@ theorem exists_lb_of_localEq : ∀ (X Y : Scheme.{0}) (j : Y ⟶ X) (L : LB Y) (
     have f2 := congrArg (Y.presheaf.map (homOfLE hW2).op).hom (hw l i')
     have f3 := congrArg (Y.presheaf.map (homOfLE hW3).op).hom (θ.compat i i')
     have f4 := congrArg (j.appLE (V k ⊓ V l) _ hWkl).hom (hc k l)
-    simp only [map_mul, rs_rs, rs_app, appLE_rs, rs_appLE] at f1 f2 f3 f4
+    simp only [map_mul, _root_.ReciprocityTheory.ChartRestriction.G.Semi.LBVal.rres, rs_app, appLE_rs, rs_appLE] at f1 f2 f3 f4
     have Y1e : (Y.presheaf.map (homOfLE hW1).op).hom (w k i : Γ(Y, j ⁻¹ᵁ V k ⊓ L.U i)) *
         (j.appLE (V k ⊓ V l) _ hWkl).hom (c k l : Γ(X, V k ⊓ V l)) =
         (Y.presheaf.map (homOfLE hW3).op).hom (L.g i i' : Γ(Y, L.U i ⊓ L.U i')) *
@@ -193,7 +176,7 @@ theorem exists_lb_of_localEq : ∀ (X Y : Scheme.{0}) (j : Y ⟶ X) (L : LB Y) (
   have hinf3 : ∀ A B C : X.Opens,
       O.ι ⁻¹ᵁ A ⊓ O.ι ⁻¹ᵁ B ⊓ O.ι ⁻¹ᵁ C ≤ O.ι ⁻¹ᵁ (A ⊓ B ⊓ C) := fun _ _ _ _ hx => hx
   let N : LB O.toScheme := LB.mk Ix (fun k => O.ι ⁻¹ᵁ V k)
-    (fun k l => res (inf_preimage_le O.ι (V k) (V l))
+    (fun k l => res (_root_.GlobalTheory.AbLaw.PowVanish.pre_inf O.ι (V k) (V l))
       (pullU O.ι _ (c k l)))
   have hN : N.IsLB := by
     refine ⟨?_, ?_, ?_⟩
@@ -214,7 +197,7 @@ theorem exists_lb_of_localEq : ∀ (X Y : Scheme.{0}) (j : Y ⟶ X) (L : LB Y) (
       have := congrArg (fun u => res (hinf3 (V k) (V l) (V m)) (pullU O.ι _ u))
         (c_cocycle k l m)
       simp only [map_mul, resU_pullU_resU] at this
-      simp only [resU_resU]
+      simp only [_root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res']
       exact this
   refine ⟨O, N, hVO, hN, ?_⟩
   have hsq : pullback.fst O.ι j ≫ O.ι = pullback.snd O.ι j ≫ j := pullback.condition
@@ -270,7 +253,7 @@ theorem exists_lb_of_localEq : ∀ (X Y : Scheme.{0}) (j : Y ⟶ X) (L : LB Y) (
         res (hQ.trans ((pullback.snd O.ι j).preimage_mono inf_le_right))
           (pullU (pullback.snd O.ι j) _ (L.g (p.1 PUnit.unit) (q.1 PUnit.unit))) := by
       rw [pull_g_eq]
-      exact resU_resU _ _ _
+      exact _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res' _ _ _
     have eN : res (le_inf (inf_le_left.trans inf_le_right) (inf_le_right.trans inf_le_right) :
           ((L.pull (pullback.snd O.ι j)).U p.1 ⊓ (N.pull (pullback.fst O.ι j)).U p.2) ⊓
           ((L.pull (pullback.snd O.ι j)).U q.1 ⊓ (N.pull (pullback.fst O.ι j)).U q.2) ≤ _)
@@ -278,11 +261,11 @@ theorem exists_lb_of_localEq : ∀ (X Y : Scheme.{0}) (j : Y ⟶ X) (L : LB Y) (
         res hQc (pullU (pullback.fst O.ι j) _
           (pullU O.ι _ (c (p.2 PUnit.unit) (q.2 PUnit.unit)))) := by
       rw [pull_g_eq, show N.g (p.2 PUnit.unit) (q.2 PUnit.unit) =
-        res (inf_preimage_le O.ι (V (p.2 PUnit.unit)) (V (q.2 PUnit.unit)))
+        res (_root_.GlobalTheory.AbLaw.PowVanish.pre_inf O.ι (V (p.2 PUnit.unit)) (V (q.2 PUnit.unit)))
           (pullU O.ι _ (c (p.2 PUnit.unit) (q.2 PUnit.unit))) from rfl]
-      refine (resU_resU _ _ _).trans ?_
-      exact resU_pullU_resU (pullback.fst O.ι j) (inf_preimage_le O.ι _ _) _ _
-    rw [eL, eN, resU_resU, resU_resU]
+      refine (_root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res' _ _ _).trans ?_
+      exact resU_pullU_resU (pullback.fst O.ι j) (_root_.GlobalTheory.AbLaw.PowVanish.pre_inf O.ι _ _) _ _
+    rw [eL, eN, _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res', _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res']
     exact key
   exact goal'
 

@@ -54,10 +54,7 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 open IsLocalRing MvPowerSeries UpperTheory.V.Alg
 
-private theorem pi_span_X {O σ : Type} [CommRing O] (s : Finset σ) :
-    ∀ f : MvPowerSeries σ O, (∀ n : σ →₀ ℕ, (∀ i ∈ s, n i = 0) → coeff n f = 0) →
-      f ∈ Ideal.span (Set.range (MvPowerSeries.X : σ → MvPowerSeries σ O)) :=
-  _root_.UpperTheory.Reformulated.B.PowerSeriesMemSpanAllVariables.pi_span_X s
+private alias pi_span_X := _root_.UpperTheory.Reformulated.B.PowerSeriesMemSpanAllVariables.pi_span_X
 
 private theorem pi_wcomp_mul {O σ X : Type} [CommRing O] [AddCommGroup X] (wt : σ → X) {c : X} (j : X)
     (a : MvPowerSeries σ O) {h : MvPowerSeries σ O} (hh : h ∈ wtPart O wt c) :
@@ -125,10 +122,6 @@ private theorem pi_pow_le (hz : ∀ s, W.z s ∈ maximalIdeal R) (N : ℕ) :
     rw [pow_succ]
     exact Ideal.mul_mem_mul ha hb
 
-private theorem pi_dense (hz : ∀ s, W.z s ∈ maximalIdeal R) (N : ℕ) (x : R) :
-    ∃ a ∈ W.A, x - a ∈ maximalIdeal R ^ N :=
-  by apply _root_.UpperTheory.Reformulated.B.AdicDensityOfPresentationSubalgebra.pi_dense <;> assumption
-
 private theorem pi_homog (hz : ∀ s, W.z s ∈ maximalIdeal R) (N : ℕ) (f : MvPowerSeries W.σ O)
     (hf : W.π f ∈ maximalIdeal R ^ N) (j : X) : W.π (wcomp O W.wt j f) ∈ maximalIdeal R ^ N := by
   have key : ∀ y ∈ Ideal.span {y | y ∈ maximalIdeal R ^ N ∧ ∃ i, y ∈ W.part i},
@@ -169,7 +162,7 @@ theorem UpperTheory.V.Alg.pres_indep :
     UpperTheory.V.Alg.map_part O X R W' hz' R W hz (AlgHom.id O R) hw
   refine le_antisymm (hle j) fun x hx => ?_
   refine UpperTheory.V.Alg.part_closed O X R W' hz' j x fun N => ?_
-  obtain ⟨a, ha, hxa⟩ := pi_dense W' hz' N x
+  obtain ⟨a, ha, hxa⟩ := _root_.UpperTheory.Reformulated.B.AdicDensityOfPresentationSubalgebra.pi_dense W' hz' N x
   have ha' : a ∈ ⨆ i, W'.part i := ha
   have hself : ∀ g ∈ wtPart O W.wt j, wcomp O W.wt j g = g := by
     intro g hg

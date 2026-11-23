@@ -49,7 +49,7 @@ namespace PositivityTheory.Rg.Rs.JKillPoly
 end JKillPoly
 
 open JKillPoly in
-theorem killPoly_holds : KillPoly := KillingPolynomialDegreeFour.killPoly4
+alias killPoly_holds := _root_.PositivityTheory.Rg.Rs.KillingPolynomialDegreeFour.killPoly4
 
 end PositivityTheory.Rg.Rs
 

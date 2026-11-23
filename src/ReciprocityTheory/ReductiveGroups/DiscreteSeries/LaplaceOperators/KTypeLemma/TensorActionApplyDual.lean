@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.VkGenSubStable
 
 @[expose] public section
 
@@ -101,10 +102,6 @@ theorem sθ_single (V : Submodule ℂ M) (EM : Fin n → Fin n → Module.End �
     sθ V EM φ ℓ (Finsupp.single (w, c) v) = Pi.single c (ℓ v • wordE EM w φ) := by
   simp [sθ]
 
-theorem tensorAction_apply (E : Fin n → Fin n → Module.End ℂ M) (f : Fin n → M) (d : Fin n) :
-    eeV E f d = ∑ c, E c d (f c) := by
-  simp [eeV, prj, LinearMap.sum_apply]
-
 theorem tensorAction_apply_dual (E : Fin n → Fin n → Module.End ℂ MM) (f : Fin n → MM) (d : Fin n) :
     eeV E f d = ∑ c, E c d (f c) := by
   simp [eeV, prj, LinearMap.sum_apply]
@@ -125,7 +122,7 @@ theorem sT_sES (E : Fin n → Fin n → Module.End ℂ M) (V : Submodule ℂ M) 
   | single p v =>
     obtain ⟨w, c⟩ := p
     funext d'
-    rw [sT_single, tensorAction_apply]
+    rw [sT_single, _root_.ReciprocityTheory.ChartRestriction.DS.Lap.LemK.vk_eeV_apply]
 
     simp only [sES, Finsupp.lsum_single, LinearMap.sum_apply, Finset.sum_apply, Finsupp.lsingle_apply,
     map_sum, sT_single, wordAction_cons]

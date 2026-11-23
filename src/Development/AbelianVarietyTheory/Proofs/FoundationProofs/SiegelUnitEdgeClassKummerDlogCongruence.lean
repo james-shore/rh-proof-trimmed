@@ -156,7 +156,7 @@ theorem algZp_int (u : ℤ) : IsAlgZp p (u : Ωl) :=
 theorem cong_le {k k' : ℕ} (h : k' ≤ k) {x y : Ωl} (hc : Cong (p := p) k x y) : Cong (p := p) k' x y := by
   obtain ⟨z, hz, e⟩ := hc
   obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le h
-  exact ⟨(p : Ωl) ^ d * z, IsIntegral.mul (GlobalTheory.EdgeLoc.pint d) hz, by rw [e]; ring⟩
+  exact ⟨(p : Ωl) ^ d * z, IsIntegral.mul (_root_.GlobalTheory.K5.Orth.isInt_natPow_p d) hz, by rw [e]; ring⟩
 
 theorem ev_coeff {ψ : O0 p →+* Ωl} {c : ℤ → Ωl} {x x' : Ωl} (h : Ev ψ c x x') (m : ℤ) : IsInt (p := p) (c m) ∧ IsAlgZp p (c m) := by
   obtain ⟨d, e, a, he, hc, -, -⟩ := h
@@ -332,7 +332,7 @@ theorem coef_bridge {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω
         rw [Int.cast_pow, Int.cast_natCast] at ew
         linear_combination (p : Ωl) ^ K0 * ez' + ew + ey
       rw [e5]
-      exact ((IsIntegral.mul (GlobalTheory.EdgeLoc.pint K0) ((hint z).1 hz)).add hw).add hy
+      exact ((IsIntegral.mul (_root_.GlobalTheory.K5.Orth.isInt_natPow_p K0) ((hint z).1 hz)).add hw).add hy
     · have : (((p : Ω) ^ K0 • φ - Dh) * (PA * PB)).coeff q = 0 := by
         by_contra h0
         exact hq (GlobalTheory.DlEx.sp_mul sE sP q h0)
@@ -696,7 +696,7 @@ theorem GlobalTheory.pair_edge_dlog : ∀ (p : ℕ) [Fact p.Prime], p ≠ 2 → 
   obtain ⟨ηl, hcoc, hlc, hedge⟩ := galois_side (K := K) T L n E ζ α β hEζ hfix hα0 hβ0 xl yl hxl hyl x y hx hy η hη hηlc
   obtain ⟨o, hoi, hof, hlaw⟩ := hc0 Ωl hclo T L n hnL hn1 ψ hψ ι hι u v αa βa αb βb hdla hdlb _ _ hrα hrβ xl yl lz ηl
     hxl hyl hlz hcoc hlc
-  have ip : IsInt (p := p) (p : Ωl) := by simpa using GlobalTheory.EdgeLoc.pint (p := p) (Ω := Ωl) 1
+  have ip : IsInt (p := p) (p : Ωl) := by simpa using _root_.GlobalTheory.K5.Orth.isInt_natPow_p (p := p) (Ω := Ωl) 1
   obtain ⟨cξ, xo, xo', hEo, hco⟩ := GlobalTheory.GeoFix.geofix p Ωl hclo T L ψ hψ n ((p : Ωl) * o) (IsIntegral.mul ip hoi)
     (fun g' hg' => by rw [map_mul, map_natCast, hof g' hg'])
   have R := EvRing.ev_ring p Ωl hclo T L ψ hψ

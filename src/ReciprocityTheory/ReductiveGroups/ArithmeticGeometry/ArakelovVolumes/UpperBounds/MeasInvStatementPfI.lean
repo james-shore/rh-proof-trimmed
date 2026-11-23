@@ -54,6 +54,8 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolum
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.DetSubUpper
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.OrthonormalFlagTranslateHolds
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.ArakelovInstances.IsStrictDom
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.FourierCoefficientDomain
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.OrthogonalFrameDomain
 
 @[expose] public section
 
@@ -184,39 +186,10 @@ lemma UF_mem {y : UpI X.Ψ r → ℂ} (hy : ∀ τ b, y (dI τ b) ≠ 0) : UF X 
   rw [e]
   exact hy τ a
 
-private lemma mem_dom_rmul {y b : Frame X.Ψ r} (hy : y ∈ X.dom) (hb : b ∈ Bor X.Ψ r) :
-    rmul y b ∈ X.dom := by
-  simp only [Data.dom, GG, Set.mem_setOf_eq] at hy ⊢
-  simp only [Bor, Set.mem_setOf_eq] at hb
-  intro τ
-  obtain ⟨hdet, hpos⟩ := hy τ
-  obtain ⟨hbdet, hbup⟩ := hb τ
-  have hup : (mat b τ).BlockTriangular id := fun a c h => hbup a c h
-  have hdiag : ∀ a, mat b τ a a ≠ 0 := by
-    have h := hbdet
-    rw [Matrix.det_of_upperTriangular hup] at h
-    exact fun a => Finset.prod_ne_zero_iff.1 h a (Finset.mem_univ a)
-  refine ⟨?_, fun i => ?_⟩
-  · show (mat y τ * mat b τ).det ≠ 0
-    rw [Matrix.det_mul]
-    exact mul_ne_zero hdet hbdet
-  · have hb2 : b ∈ Bor X.Ψ r := fun τ' => hb τ'
-    rw [dmin_rmul (X := X) y hb2 τ i]
-    set p := ∏ j : Fin i, mat b τ (Fin.castLE (Nat.le_of_lt_succ i.isLt) j)
-      (Fin.castLE (Nat.le_of_lt_succ i.isLt) j) with hp
-    have hp0 : p ≠ 0 := Finset.prod_ne_zero_iff.2 fun j _ => hdiag _
-    have e : p * dmin X.Gm y τ i * conj p = (Complex.normSq p : ℂ) * dmin X.Gm y τ i := by
-      rw [← Complex.mul_conj]
-      ring
-    rw [e, Complex.re_ofReal_mul]
-    have hn : 0 < Complex.normSq p := Complex.normSq_pos.2 hp0
-    have h3 := hpos i
-    nlinarith
-
 theorem Wf_rmul_UF {y : Frame X.Ψ r} (hy : y ∈ X.dom) {y' : UpI X.Ψ r → ℂ} (hy' : ∀ τ b, y' (dI τ b) ≠ 0) :
     Wf X (rmul y (UF X y')) = (Cy X.Ψ r).indicator 1 (Lβ (β0 X y) y') := by
   have hb := UF_mem X hy'
-  have hdom : rmul y (UF X y') ∈ X.dom := mem_dom_rmul X hy hb
+  have hdom : rmul y (UF X y') ∈ X.dom := _root_.ReciprocityTheory.ChartRestriction.G.FD.OrthogonalFrameDomain.rmul_mem_dom X hy hb
   have hb' := hb
   simp only [Bor, Set.mem_setOf_eq] at hb'
   have hβu : ∀ τ, (β0 X y τ).BlockTriangular id := fun τ => β0_upper X hy τ
@@ -285,7 +258,7 @@ theorem Wf_rmul_not_dom {y b : Frame X.Ψ r} (hy : y ∉ X.dom) (hb : b ∈ Bor 
   have h : rmul y b ∉ SW X := by
     rintro ⟨h1, -⟩
     apply hy
-    have h2 := mem_dom_rmul X h1 (invF_mem' X hb)
+    have h2 := _root_.ReciprocityTheory.ChartRestriction.G.FD.OrthogonalFrameDomain.rmul_mem_dom X h1 (invF_mem' X hb)
     rwa [rmul_invF X hb] at h2
   simp [Set.indicator_apply, h]
 
@@ -343,22 +316,6 @@ lemma continuous_gramTF : Continuous (gramTF X) := by
     (continuous_finsetSum _ fun k _ => (continuous_coord X τ k a).mul continuous_const).mul
       (Complex.continuous_conj.comp (continuous_coord X τ l b))
 
-private lemma isOpen_X_dom : IsOpen X.dom := by
-  have e : X.dom = ⋂ τ : X.Ψ, ({x : Frame X.Ψ r | (mat x τ).det ≠ 0} ∩
-      ⋂ i : Fin (r + 1), {x : Frame X.Ψ r | 0 < psgn X.p0 i * (dmin X.Gm x τ i).re}) := by
-    ext x
-    simp [Data.dom, GG]
-  rw [e]
-  refine isOpen_iInter_of_finite fun τ => IsOpen.inter ?_ (isOpen_iInter_of_finite fun i => ?_)
-  · have hm : Continuous fun x : Frame X.Ψ r => mat x τ := continuous_apply τ
-    exact isOpen_ne_fun hm.matrix_det continuous_const
-  · have hg : Continuous fun x : Frame X.Ψ r => gram τ.1 X.Gm (mat x τ) :=
-      (continuous_apply τ).comp (continuous_gramF X)
-    have hc : Continuous fun x : Frame X.Ψ r => (dmin X.Gm x τ i).re := by
-      unfold dmin lminor
-      exact Complex.continuous_re.comp (hg.matrix_submatrix _ _).matrix_det
-    exact isOpen_lt continuous_const (continuous_const.mul hc)
-
 lemma measurableSet_SW : MeasurableSet (SW X) := by
   have e : SW X = X.dom ∩ gramF X ⁻¹' (gramTF X '' CmatSet X) := by
     ext y
@@ -369,7 +326,7 @@ lemma measurableSet_SW : MeasurableSet (SW X) := by
     · rintro ⟨h1, β, hβ, hg⟩
       exact ⟨h1, β, hβ, fun τ => (congrFun hg τ).symm⟩
   rw [e]
-  have h1 : MeasurableSet X.dom := (isOpen_X_dom X).measurableSet
+  have h1 : MeasurableSet X.dom := (_root_.ReciprocityTheory.ChartRestriction.G.FD.FourierCoefficientDomain.isOpen_dom X).measurableSet
   have h2 : IsClosed (gramF X ⁻¹' (gramTF X '' CmatSet X)) :=
     ((isCompact_CmatSet X).image (continuous_gramTF X)).isClosed.preimage (continuous_gramF X)
   exact h1.inter h2.measurableSet

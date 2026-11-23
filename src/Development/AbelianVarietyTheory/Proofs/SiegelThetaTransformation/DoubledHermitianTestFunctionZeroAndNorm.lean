@@ -282,20 +282,7 @@ theorem toCols₁_dblT (y₁ y₂ : Matrix (Fin n) (Fin r) E) :
   rw [dblT, Matrix.fromCols_mul_fromBlocks, Matrix.toCols₁_fromCols]
   simp [sub_eq_add_neg]
 
-theorem dom_nonempty (X : Data E r) : X.dom.Nonempty := by
-  choose P hP hg using X.signature
-  have hs : ∀ a : ℕ, sgn X.p0 a ≠ 0 := fun a => by unfold sgn; split_ifs <;> norm_num
-  refine ⟨fun τ => P τ, fun τ => ⟨hP τ, fun i => ?_⟩⟩
-  have e : dmin X.Gm (fun τ => P τ) τ i = ((psgn X.p0 i : ℝ) : ℂ) := by
-    unfold dmin lminor
-    rw [show gram τ.1 X.Gm (mat (fun τ => P τ) τ) = gram τ.1 X.Gm (P τ) from rfl, hg τ,
-      Matrix.submatrix_diagonal _ _ (Fin.castLE_injective _), Matrix.det_diagonal]
-    unfold psgn
-    push_cast
-    exact Fin.prod_univ_eq_prod_range (fun a => ((sgn X.p0 a : ℝ) : ℂ)) (i : ℕ)
-  rw [e, Complex.ofReal_re]
-  have h0 : psgn X.p0 i ≠ 0 := Finset.prod_ne_zero_iff.2 fun a _ => hs a
-  exact mul_self_pos.2 h0
+alias dom_nonempty := _root_.GlobalTheory.FiniteNet.dom_nonempty
 
 theorem dbl_self_ne_zero (hs : IsSympl X bas) (hn : Even n) {φ : TF n g} (h : IsSB φ)
     (h0 : φ ≠ 0) : dbl X bas idx φ φ ≠ 0 := by

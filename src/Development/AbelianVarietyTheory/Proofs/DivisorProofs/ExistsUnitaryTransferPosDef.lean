@@ -138,7 +138,7 @@ theorem exists_isTransfer : ∀ (D : D7) [IsCMField D.host.E] (V : HSp D) (θ : 
       exact ⟨h1, e, f, hef, h2⟩
     · rintro ⟨h1, e', f', hef', h2⟩
       exact (hloc P e' f' hef' x).2 ⟨h1, h2⟩
-  · exact sphOp_of_local D V (cj j h₀) hloc hhyp hdiv (fun P d x y => GlobalTheory.T.mem_sameDoubleCoset_of_hasElementaryDivisors_definiteUnitary D V.rank P d x y)
+  · exact sphOp_of_local D V (cj j h₀) hloc hhyp hdiv (fun P d x y => _root_.GlobalTheory.LocalCartan.doubleCoset_of_hasDiv D V.rank P d x y)
 
 end GlobalTheory.DefTransfer
 

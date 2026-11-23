@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.LogSupSumLeOfNonvanishingDetLimit
 
 @[expose] public section
 
@@ -53,13 +54,6 @@ open CategoryTheory NumberField IsDedekindDomain Module Formalism.BasicNotions F
 open scoped Matrix Classical
 
 namespace GlobalTheory.DefFibre
-
-theorem vAdd_pow' {K : Type} [Field K] [NumberField K] (w : HeightOneSpectrum (𝓞 K)) (x : K) (n : ℕ) :
-    vAdd w (x ^ n) = n * vAdd w x := by
-  simp [vAdd, map_pow, WithZero.log_pow]
-
-theorem vAdd_one' {K : Type} [Field K] [NumberField K] (w : HeightOneSpectrum (𝓞 K)) : vAdd w (1 : K) = 0 := by
-  simp [vAdd]
 
 theorem subsingleton_idx : ∀ (N : ℕ) (la : Fin N → ℕ), N = 0 → Subsingleton (Idx la) := by
   rintro N la rfl
@@ -99,9 +93,9 @@ theorem fibreAt_defCase : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
     exact ⟨hIntOne w _, hIntOne w _⟩
   have ha0 : ∀ w, P.a w ^ n ≠ 0 := fun w => pow_ne_zero _ (P.loc w).1
   have hsupp1 : (Function.support fun w => vAdd w (P.a w)).Finite :=
-    P.fin.subset fun w hw h => hw (by simp only; rw [h.1, vAdd_one'])
+    P.fin.subset fun w hw h => hw (by simp only; rw [h.1, _root_.Formalism.BasicNotions.Examples₂.PlacesToy.vAdd_one])
   have hsupp : (Function.support fun w => vAdd w (P.a w ^ n)).Finite :=
-    hsupp1.subset fun w hw h => hw (by simp only at h ⊢; rw [vAdd_pow', h, mul_zero])
+    hsupp1.subset fun w hw h => hw (by simp only at h ⊢; rw [_root_.Formalism.MainNotions.Gaps.SizeBoundsAlt.vAdd_pow', h, mul_zero])
   have hspos : ∀ σ, 0 < (Real.sqrt (P.N σ))⁻¹ ^ n := fun σ =>
     pow_pos (inv_pos.2 (Real.sqrt_pos.2 (P.arch σ).1)) n
   have hsconj : ∀ σ, (Real.sqrt (P.N ((starRingEnd ℂ).comp σ)))⁻¹ ^ n = (Real.sqrt (P.N σ))⁻¹ ^ n := fun σ => by
@@ -120,7 +114,7 @@ theorem fibreAt_defCase : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
     Fintype.card_pos_iff.1 ((dim_eq_card _) ▸ dim_pos (hanti τ))
 
   have hline : lineDeg (fun σ => (Real.sqrt (P.N σ))⁻¹ ^ n) (fun w => (vAdd w (P.a w ^ n) : ℝ)) = n * P.degTh := by
-    simp only [PtData.degTh, lineDeg, vAdd_pow', Int.cast_mul, Int.cast_natCast, Real.log_pow]
+    simp only [PtData.degTh, lineDeg, _root_.Formalism.MainNotions.Gaps.SizeBoundsAlt.vAdd_pow', Int.cast_mul, Int.cast_natCast, Real.log_pow]
     have hf := fin_mul (ρ := fun w => (vAdd w (P.a w) : ℝ)) (hsupp1.subset fun w hw => by simpa [Function.mem_support] using hw) (lw c.F)
     simp only [mul_assoc]
     rw [← mul_finsum, ← Finset.mul_sum]

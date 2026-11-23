@@ -142,10 +142,7 @@ theorem union_detachedOpens_detachedClosureCompl (i : ℕ) (h : IsOpen (S.detach
   rw [S.coe_detachedOpens i h, S.detachedClosureCompl_coe i, S.detachedClosure_coe i]
   exact Set.union_compl_self _
 
-theorem coe_detachedClosureCompl (i : ℕ) :
-    ((S.detachedClosureCompl i : (S.strictTransform i).Opens) : Set ↥(S.strictTransform i)) =
-      ((S.detachedClosure i : TopologicalSpace.Closeds ↥(S.strictTransform i)) :
-        Set ↥(S.strictTransform i))ᶜ := rfl
+alias coe_detachedClosureCompl := _root_.FunctorialResolution.EmbeddedResolution.EmbeddedBlowupSequence.detachedClosureCompl_coe
 
 theorem isClosed_detachedClosureCompl (i : ℕ)
     (hn : TopologicalSpace.NoetherianSpace ↥(S.strictTransform i))

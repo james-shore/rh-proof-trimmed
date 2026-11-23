@@ -92,13 +92,13 @@ theorem exists_fock_data : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
       exact hA w
     · rw [incM_map_piInf]
       exact hC w
-  obtain ⟨Φ, hΦ⟩ := GlobalTheory.T.exists_fockMap_signatures_depend_on_place F E σ (Fin n) (Fin d) (Fin n × Fin d) P Q R S ψ τ _ _ M.co 1 Complex.I A C
+  obtain ⟨Φ, hΦ⟩ := _root_.GlobalTheory.HoweD.exists_isFockMapD F E σ (Fin n) (Fin d) (Fin n × Fin d) P Q R S ψ τ _ _ M.co 1 Complex.I A C
     hCM hψ hF
 
   obtain ⟨hB, ⟨d', hd', hA'⟩, -⟩ := hW
-  obtain ⟨c, hc⟩ := GlobalTheory.T.firstMember_lieAction_fock_plus_trace F E σ (Fin n) (Fin d) (Fin n × Fin d) P Q R S ψ τ _ _ M.co d' 1 Complex.I A C Φ
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.HoweD.LieFirstD.lieFirstD F E σ (Fin n) (Fin d) (Fin n × Fin d) P Q R S ψ τ _ _ M.co d' 1 Complex.I A C Φ
     (om.comp (MonoidHom.inl _ _)) hCM hψ hF hΦ hd' hA'.1
-  obtain ⟨c', hc'⟩ := GlobalTheory.T.howeSplitting_acts_fockAction_plus_traceMultiples F E σ (Fin n) (Fin d) (Fin n × Fin d) P Q R S ψ τ _ _ M.co 1 Complex.I A C Φ
+  obtain ⟨c', hc'⟩ := _root_.GlobalTheory.HoweD.lieScalarD F E σ (Fin n) (Fin d) (Fin n × Fin d) P Q R S ψ τ _ _ M.co 1 Complex.I A C Φ
     (om.comp (MonoidHom.inr _ _)) hCM hψ hF hΦ hB.1
   exact ⟨P, Q, R, S, A, C, Φ, c, c', hF, hΦ.1,
     GlobalTheory.T.polynomialFockSpace_eq_range_fockMap_variable_signature F E σ n d P Q R S X W M ψ τ A C Φ hCM hψ hF hθA hθC hΦ, hc, hc'⟩

@@ -78,8 +78,8 @@ theorem dvr_of_maximalIdeal_eq_span {S : Type} [CommRing S] [IsLocalRing S] [IsN
     refine ⟨fun {x y} hxy => ?_⟩
     by_contra h
     push_neg at h
-    obtain ⟨a, u, hu, rfl⟩ := unit_mul_pow_of_maximalIdeal_eq_span hm h.1
-    obtain ⟨b, v, hv, rfl⟩ := unit_mul_pow_of_maximalIdeal_eq_span hm h.2
+    obtain ⟨a, u, hu, rfl⟩ := _root_.GlobalTheory.PowMulUnit.exists_eq_pow_mul_unit hm h.1
+    obtain ⟨b, v, hv, rfl⟩ := _root_.GlobalTheory.PowMulUnit.exists_eq_pow_mul_unit hm h.2
     have : π ^ (a + b) * (u * v) = 0 := by rw [← hxy, pow_add]; ring
     exact (hu.mul hv).ne_zero (hpow _ _ this)
   haveI : IsDomain S := NoZeroDivisors.to_isDomain S

@@ -50,19 +50,15 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.ThetaLogCoordinates.TraceIsometryWeights.FinalP
 
 @[expose] public section
 
 namespace Formalism.InvariantFactorPaths.PW.Top
 
-theorem weylInt : WeylInt := weyl_integral_holds
-theorem weylP : WeylP := weylP_of weylInt lattice_basis_polynomial
+theorem weylP : WeylP := weylP_of _root_.Formalism.InvariantFactorPaths.PW.weyl_integral_holds lattice_basis_polynomial
 
-private theorem intP_statement : IntP := by
-  have hInv : InvInv := invariant_inverse_holds
-  exact intP_of (typeInt_of invariant_natural_holds (homInv_of hInv) (schurTrace_of hInv)) lattice_basis_polynomial
-
-theorem extP : ExtP := extP_of intP_statement
+theorem extP : ExtP := extP_of _root_.Formalism.InvariantFactorPaths.PW.Top.intP
 theorem dischargeW : DischargeW := dischargeW_of weylP
 theorem dischargeE : DischargeE := dischargeE_of extP
 

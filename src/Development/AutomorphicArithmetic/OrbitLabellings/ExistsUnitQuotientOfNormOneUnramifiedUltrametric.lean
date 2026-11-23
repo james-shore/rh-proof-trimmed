@@ -126,10 +126,6 @@ private lemma linv_lt (hU : UnrOK K l σ) : (l : ℝ)⁻¹ < 1 :=
 private lemma sig_close (hU : UnrOK K l σ) {a : K} (ha : ‖a‖ ≤ 1) : ‖σ a - a ^ l‖ < 1 :=
   (hU.2.2.2.2 a ha).trans_lt (linv_lt hU)
 
-private lemma sig_le (hU : UnrOK K l σ) {a : K} (ha : ‖a‖ ≤ 1) : ‖σ a‖ ≤ 1 := by
-  have := nadd (sig_close hU ha).le (show ‖a ^ l‖ ≤ 1 by rw [norm_pow]; exact pow_le_one₀ (norm_nonneg _) ha)
-  rwa [sub_add_cancel] at this
-
 private lemma sig_lt (hU : UnrOK K l σ) {a : K} (ha : ‖a‖ < 1) : ‖σ a‖ < 1 := by
   have := naddlt (sig_close hU ha.le)
     (show ‖a ^ l‖ < 1 by rw [norm_pow]; exact pow_lt_one₀ (norm_nonneg _) ha hU.1.ne_zero)
@@ -138,7 +134,7 @@ private lemma sig_lt (hU : UnrOK K l σ) {a : K} (ha : ‖a‖ < 1) : ‖σ a‖
 private lemma sig_iter_le (hU : UnrOK K l σ) (n : ℕ) {a : K} (ha : ‖a‖ ≤ 1) : ‖σ^[n] a‖ ≤ 1 := by
   induction n with
   | zero => exact ha
-  | succ n ih => rw [Function.iterate_succ_apply']; exact sig_le hU ih
+  | succ n ih => rw [Function.iterate_succ_apply']; exact _root_.Formalism.InvariantFactorPaths.G7.norm_lift_le_one hU ih
 
 private lemma norm_two (hU : UnrOK K l σ) : ‖(2 : K)‖ = 1 := by
   have := Formalism.DworkPowerSeriesWeights.norm_natCast_eq_one_of_not_dvd (K := K) hU.1
@@ -150,7 +146,7 @@ private lemma norm_onto [CompleteSpace K] [CharZero K] (hU : UnrOK K l σ) (ζ :
     (hζ : IsPrimitiveRoot ζ (l ^ 2 - 1)) (u : K) (hu : ‖u‖ = 1) (hs : σ u = u) :
     ∃ a : K, ‖a‖ ≤ 1 ∧ σ (σ a) = a ∧ a * σ a = u := by
   have hl := hU.2.1
-  have hσζ : σ ζ = ζ ^ l := Formalism.L2.Th1.D.teichSigma K l 2 σ hU (by omega) ζ hζ.pow_eq_one
+  have hσζ : σ ζ = ζ ^ l := _root_.Formalism.L2.Th1.D.teichmuller_sigma K l 2 σ hU (by omega) ζ hζ.pow_eq_one
   have hfac : l ^ 2 - 1 = (l + 1) * (l - 1) := by
     have := Nat.sq_sub_sq l 1
     simpa using this
@@ -239,7 +235,7 @@ private lemma congr_one [CompleteSpace K] [CharZero K] (hU : UnrOK K l σ) (ζ :
     ∃ P : Matrix n n K, (∀ i j, ‖P i j‖ ≤ 1 ∧ σ (σ (P i j)) = P i j) ∧
       ∀ r r', ∑ k, (∑ j, P r j * H j k) * σ (P r' k) = if r = r' then 1 else 0 := by
   letI : StarRing (intFix hU) :=
-    { star := fun a => ⟨σ a, sig_le hU a.2.1, by rw [a.2.2]⟩
+    { star := fun a => ⟨σ a, _root_.Formalism.InvariantFactorPaths.G7.norm_lift_le_one hU a.2.1, by rw [a.2.2]⟩
       star_involutive := fun a => Subtype.ext a.2.2
       star_mul := fun a b => Subtype.ext (by
         show σ ((a : K) * b) = σ b * σ a
@@ -427,7 +423,7 @@ theorem UpperTheory.exists_unit_quotient_of_normOne_unramified_ultrametric :
   have a2 := UpperTheory.NormSurjectiveFixedIntegers.not_dvd (d := 2 * i) hU.1 (NeZero.ne _)
   obtain ⟨ζ, hζ⟩ := Formalism.L2.Th1.D.kurRoots l _ a1.1 a1.2
   obtain ⟨ξ, hξ⟩ := Formalism.L2.Th1.D.kurRoots l _ a2.1 a2.2
-  have h := Formalism.L2.Th1.D.trDualExists (MaximalUnramifiedExtension l) l (2 * i) σ hU (even_two_mul i) ξ hξ
+  have h := _root_.Formalism.L2.Th1.D.trace_dual_exists (MaximalUnramifiedExtension l) l (2 * i) σ hU (even_two_mul i) ξ hξ
   rw [show 2 * i / 2 = i by omega] at h
   obtain ⟨om, oms, h1, h2⟩ := h
   exact UpperTheory.NormSurjectiveFixedIntegers.main hU ζ hζ i hi om oms h1 h2

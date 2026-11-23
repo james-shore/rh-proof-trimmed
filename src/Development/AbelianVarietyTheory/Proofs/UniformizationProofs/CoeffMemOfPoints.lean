@@ -236,7 +236,7 @@ theorem exists_coboundary : ∀ (A : Type) [CommRing A] (J : Ideal A), IsNilpote
   have hI : IsNilpotent (J.map (strMap Y)) := by
     obtain ⟨n, hn⟩ := hJ
     exact ⟨n, by rw [← Ideal.map_pow, hn]; exact Ideal.map_bot⟩
-  obtain ⟨u, hu, Hu⟩ := GlobalTheory.T.exists_unit_coboundary_of_cocycle_addMonoidAlgebra _ _ hI X φ
+  obtain ⟨u, hu, Hu⟩ := _root_.GlobalTheory.exists_unit_coboundary_of_mul_cocycle _ _ hI X φ
     (coeff_mem_of_points J φ fun Z hZ t t' y => (hφ Z t t' y).symm.trans ((gm_one_iff _ _).1 (h1 Z hZ t t' y)))
     (cocycle_of_points φ fun Z t t' t'' y => by
       rw [← hφ, ← hφ, ← hφ, ← hφ]

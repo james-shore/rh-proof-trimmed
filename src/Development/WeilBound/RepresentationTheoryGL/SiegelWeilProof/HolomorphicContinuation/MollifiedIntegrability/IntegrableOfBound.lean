@@ -294,6 +294,6 @@ end PositivityTheory.Rg.Sw.WR.Ib
 
 namespace PositivityTheory.Rg.Sw.WR
 
-theorem ibp : IBP := Ib.ibp
+alias ibp := _root_.PositivityTheory.Rg.Sw.WR.Ib.ibp
 
 end PositivityTheory.Rg.Sw.WR

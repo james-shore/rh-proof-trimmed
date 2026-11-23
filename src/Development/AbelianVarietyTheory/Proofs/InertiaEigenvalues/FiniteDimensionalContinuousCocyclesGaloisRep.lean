@@ -69,7 +69,7 @@ theorem finite_continuous_cocycles_localGaloisRep : ∀ (l : ℕ) [Fact l.Prime]
   let A : GRep ↥(GK K) ℚ_[l] ℚ_[l] ℤ_[l] := { V := V, ρ := ρ, cont := hc }
   let A' : GRep ↥(GK K) ℚ_[l] ℚ_[l] ℤ_[l] :=
     { V := Fin (finrank ℚ_[l] V) → ℚ_[l], ρ := ρ', cont := hc' }
-  have hH := (GlobalTheory.T.finrank_H1_dual_pair CompanionTheory.LocalTateOrthogonality.Gcoh.top_tate CompanionTheory.LocalTateOrthogonality.Gcoh.top_euler l P K ℚ_[l] ℤ_[l]
+  have hH := (_root_.GlobalTheory.EulerCharH1.finite_and_finrank_H1V CompanionTheory.LocalTateOrthogonality.Gcoh.top_tate CompanionTheory.LocalTateOrthogonality.Gcoh.top_euler l P K ℚ_[l] ℤ_[l]
     GlobalTheory.Published.BlochKato.goodO_padicInt A A' m hD).1
   exact GlobalTheory.BlochKatoAnn.finite_continuous_cocycles_localGaloisRep A hH
 

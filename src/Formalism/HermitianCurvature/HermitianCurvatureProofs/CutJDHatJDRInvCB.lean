@@ -48,6 +48,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.CompactlySupportedBanachModel
 
 @[expose] public section
 
@@ -261,13 +262,11 @@ theorem bvec_vecMul (i : Fin (2 * r + k + 1)) (S : Matrix (Fin (2 * r + k + 1)) 
   funext x
   simp [Matrix.vecMul, dotProduct, bvec, Pi.single_apply, Finset.sum_apply]
 
-theorem hpk_sq : Hpk k r * Hpk k r = 1 := Formalism.FourierDecayAlt.P.Qx2.hpk_sq'
-
 theorem uh_left_inv {S : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ} (hS : S ∈ UH (Hpk k r)) :
     (Hpk k r * Sᴴ * Hpk k r) * S = 1 := by
   have h : Sᴴ * Hpk k r * S = Hpk k r := hS
   calc (Hpk k r * Sᴴ * Hpk k r) * S = Hpk k r * (Sᴴ * Hpk k r * S) := by simp only [Matrix.mul_assoc]
-    _ = 1 := by rw [h, hpk_sq]
+    _ = 1 := by rw [h, _root_.Formalism.FourierDecayAlt.P.Ux1.hpk_sq']
 
 theorem uh_inv_eq' {S : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ} (hS : S ∈ UH (Hpk k r)) :
     S⁻¹ = Hpk k r * Sᴴ * Hpk k r := Matrix.inv_eq_left_inv (uh_left_inv hS)
@@ -347,7 +346,7 @@ theorem ginvH_mul (g S : Q.Mx k r) : ginvH k r (g * S) = ginvH k r S * ginvH k r
   unfold ginvH
   rw [Matrix.conjTranspose_mul]
   calc Hpk k r * (Sᴴ * gᴴ) * Hpk k r = Hpk k r * Sᴴ * (Hpk k r * Hpk k r) * gᴴ * Hpk k r := by
-        rw [hpk_sq]; simp only [Matrix.mul_one, Matrix.mul_assoc]
+        rw [_root_.Formalism.FourierDecayAlt.P.Ux1.hpk_sq']; simp only [Matrix.mul_one, Matrix.mul_assoc]
     _ = Hpk k r * Sᴴ * Hpk k r * (Hpk k r * gᴴ * Hpk k r) := by simp only [Matrix.mul_assoc]
 
 theorem coordinate_matrix_mul_unitary (z : Fin (2 * r + k + 1) → ℂ) (g S : Q.Mx k r) (hS : S ∈ UH (Hpk k r)) :

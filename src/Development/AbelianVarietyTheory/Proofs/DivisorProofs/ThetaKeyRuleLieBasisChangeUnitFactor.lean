@@ -47,6 +47,7 @@ import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.IsRegularFnIffO
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoeffTopMonEqZero
 import Development.AbelianVarietyTheory.Proofs.ToricGeometry.MemSpanOfCardLe
 import ReciprocityTheory.GeometryOfNumbers.LatticeCovolumes.EllipsoidStA
+import Development.AbelianVarietyTheory.Proofs.GenericRegularity.IsEigenvectorIffLieBasisCoordinates
 
 @[expose] public section
 
@@ -86,19 +87,12 @@ theorem cb_tan {n : ℕ} (c : Fin n → R) {v : Fin n → (epsR R ⟶ G)} (hv : 
   rw [GrpTangent.isTangent_iff, cb, comp_prod']
   exact Finset.prod_eq_one fun i _ => (GrpTangent.isTangent_iff _).1 (GrpTangent.isTangent_epsScale _ (hv i))
 
-theorem scale_sum {w : epsR R ⟶ G} (hw : IsTangent w) {J : Type} (S : Finset J) (a : J → R) :
-    GrpTangent.epsScale (∑ i ∈ S, a i) ≫ w = ∏ i ∈ S, GrpTangent.epsScale (a i) ≫ w := by
-  classical
-  induction S using Finset.induction_on with
-  | empty => simpa using GrpTangent.epsScale_zero_comp hw
-  | insert j S hj ih => rw [Finset.prod_insert hj, Finset.sum_insert hj, GrpTangent.epsScale_add_comp _ _ hw, ih]
-
 theorem cb_cb {m n : ℕ} (a : Fin m → R) (M : Matrix (Fin m) (Fin n) R) {v : Fin n → (epsR R ⟶ G)}
     (hv : ∀ i, IsTangent (v i)) : cb a (fun i => cb (M i) v) = cb (Matrix.vecMul a M) v := by
   simp only [cb, comp_prod', GrpTangent.epsScale_mul_assoc]
   rw [Finset.prod_comm]
   refine Finset.prod_congr rfl fun j _ => ?_
-  rw [← scale_sum (hv j)]
+  rw [← _root_.GlobalTheory.Reg.VecEig.epsScale_sum_comp (hv j)]
   rfl
 
 theorem cb_single {n : ℕ} {v : Fin n → (epsR R ⟶ G)} (hv : ∀ i, IsTangent (v i)) (j : Fin n) :

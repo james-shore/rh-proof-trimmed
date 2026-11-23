@@ -850,15 +850,6 @@ theorem vecw_u_step {Q : M.Par} (h : Q.OK) {l : ℕ} (hl : l ∈ Icc 1 (Q.k - 1)
   have a2 := min_le_left (Q.u l) (Q.u' l)
   linarith
 
-theorem vecw_u_mono {Q : M.Par} (h : Q.OK) {i : ℕ} (hi1 : 1 ≤ i) :
-    ∀ d : ℕ, i + d ≤ Q.k - 1 → Q.u (i + d) ≤ Q.u i
-  | 0, _ => by simp
-  | d + 1, hd => by
-    have s := vecw_u_step h (l := i + d) (by rw [Finset.mem_Icc]; omega)
-    have ih := vecw_u_mono h hi1 d (by omega)
-    rw [show i + (d + 1) = i + d + 1 by omega]
-    linarith
-
 theorem vecw_rho_int {Q : M.Par} (h : Q.OK) (π : M.Ty Q) {i : ℕ} (hi : i ∈ Icc 1 (Q.k - 1)) :
     ∃ n : ℤ, M.rho Q π i - Q.u 1 - 1 / 2 = n := by
   obtain ⟨N, -, he⟩ := vecw_rho_eq π hi
@@ -884,7 +875,7 @@ theorem vecw_rho_gap {Q : M.Par} (h : Q.OK) (π : M.Ty Q) {i j : ℕ} (hi : i �
   have hhi : Q.hi j = min (Q.u j) (Q.u' j) - 1 / 2 := rfl
   have m1 := le_max_left (Q.u (i + 1)) (Q.u' (i + 1))
   have m2 := min_le_left (Q.u j) (Q.u' j)
-  have hmono : Q.u (i + 1 + (j - (i + 1))) ≤ Q.u (i + 1) := vecw_u_mono h (by omega) (j - (i + 1)) (by omega)
+  have hmono : Q.u (i + 1 + (j - (i + 1))) ≤ Q.u (i + 1) := _root_.Formalism.FourierDecayAlt.P.Topx1.u_add_le_u_of_ok h (by omega) (j - (i + 1)) (by omega)
   have hj2 : i + 1 + (j - (i + 1)) = j := by omega
   rw [hj2] at hmono
   have hd : (1 : ℝ) ≤ (a : ℝ) - b := by linarith
@@ -1013,10 +1004,7 @@ end par
 section final
 open Finset
 
-theorem vecw_frame_exists (k r : ℕ) (hk : 1 ≤ k) (z e : Fin (2 * r + k + 1) → ℂ) (hz : inWb k r z)
-    (hT : 0 < Tz k r z) (he : inWb k r e) (hez : herm (Hpk k r) e z = 0) (hee : herm (Hpk k r) e e = 1) :
-    ∃ Bs : Fin (k - 1) → Fin (2 * r + k + 1) → ℂ, Q.IsFrameOf k r [z, e] Bs := by
-  exact typ_frame_exists k r hk z e hz hT he hez hee
+alias vecw_frame_exists := _root_.Formalism.FourierDecayAlt.P.Topx1.typ_frame_exists
 
 variable {Wp : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [FiniteDimensional ℂ Wp]
 
@@ -1124,7 +1112,6 @@ theorem vecw_main : Formalism.FourierDecayAlt.Top.VecVTypes := by
 
 end Formalism.FourierDecayAlt.P.Topx1
 
-theorem Formalism.FourierDecayAlt.P.vector_valued_types : Formalism.FourierDecayAlt.Top.VecVTypes := by
-  exact Formalism.FourierDecayAlt.P.Topx1.vecw_main
+alias Formalism.FourierDecayAlt.P.vector_valued_types := _root_.Formalism.FourierDecayAlt.P.Topx1.vecw_main
 
 end PartVec

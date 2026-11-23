@@ -83,18 +83,10 @@ namespace GlobalTheory.DoublingPos
 
 variable {p q r s : ℕ}
 
-theorem secondCountable (T : GrpData p q) : SecondCountableTopology T.G := by
-  haveI : SecondCountableTopology (Mat p q) := inferInstanceAs (SecondCountableTopology (Ix p q → Ix p q → ℂ))
-  haveI : SecondCountableTopology (Mat p q)ᵐᵒᵖ := MulOpposite.opHomeomorph.symm.secondCountableTopology
-  haveI : SecondCountableTopology ℂᵐᵒᵖ := MulOpposite.opHomeomorph.symm.secondCountableTopology
-  haveI : SecondCountableTopology (GL (Ix p q) ℂ) := Units.isEmbedding_embedProduct.secondCountableTopology
-  haveI : SecondCountableTopology ℂˣ := Units.isEmbedding_embedProduct.secondCountableTopology
-  exact T.emb.secondCountableTopology
-
 theorem inner_opE (T : GrpData p q) (πU : URep T) {e : T.G → ℂ} (hi : Integrable e T.haar)
     (hc : Continuous e) (z x : πU.H) :
     inner ℂ z (opE T πU.π e x) = ∫ g, e g * inner ℂ z (πU.π g x) ∂T.haar := by
-  haveI := secondCountable T
+  haveI := _root_.GlobalTheory.DSProj.secondCountable_grp T
   have h : Integrable (fun g => e g • πU.π g x) T.haar := by
     refine Integrable.mono' (hi.norm.mul_const ‖x‖) (hc.smul (πU.cont x)).aestronglyMeasurable
       (Filter.Eventually.of_forall fun g => ?_)
@@ -105,9 +97,6 @@ theorem inner_opE (T : GrpData p q) (πU : URep T) {e : T.G → ℂ} (hi : Integ
 
 theorem continuous_mcoef {T : GrpData p q} (D : DSRep T) (v : D.HK.V) : Continuous (mcoef D v) :=
   continuous_const.inner (D.U.cont _)
-
-theorem continuous_eFun {T : GrpData p q} (D : DSRep T) (v : D.HK.V) : Continuous (eFun D v) :=
-  continuous_const.mul (continuous_mcoef D v).star
 
 theorem integrable_mcoef {T : GrpData p q} (D : DSRep T) (v : D.HK.V) (h : Integrable (eFun D v) T.haar) :
     Integrable (mcoef D v) T.haar := by
@@ -438,7 +427,7 @@ theorem main_gen (X : ProvA) (H2 : admH2 X) (DS1 : DiscreteSeriesBlattner X) (Du
   have hop : ∀ z, inner ℂ z (opE (X.grp p q) (fockRep F).π (eFun D v) (F.ι Φ)) =
       (D.fdeg : ℂ) * ∫ g, inner ℂ z ((fockRep F).π g (F.ι Φ)) * star (mcoef D v g) ∂(X.grp p q).haar := by
     intro z
-    rw [inner_opE _ (fockRep F) hint (continuous_eFun D v), ← integral_const_mul]
+    rw [inner_opE _ (fockRep F) hint (_root_.GlobalTheory.CoefProjector.continuous_eFun D v), ← integral_const_mul]
     congr 1
     funext g
     unfold eFun

@@ -101,11 +101,7 @@ theorem inv_frame (σ : R →+* R) {J J' : Matrix (Fin n) (Fin n) R} {h : GL (Fi
         rw [← hh, Formalism.UG.cT_mul]; simp only [Matrix.mul_assoc]
     _ = J := by rw [Units.mul_inv, Formalism.UG.cT_one, Matrix.one_mul, Matrix.mul_one]
 
-theorem exists_reps {G : Type} [Group G] {K : Subgroup G} {g : G}
-    (hK : (K.map (MulAut.conj g).toMonoidHom).relIndex K ≠ 0) :
-    ∃ R : Finset G, (∀ γ ∈ R, ∃ k₁ ∈ K, ∃ k₂ ∈ K, γ = k₁ * g * k₂) ∧
-      ∀ x : G, (∃ k₁ ∈ K, ∃ k₂ ∈ K, x = k₁ * g * k₂) → ∃! γ, γ ∈ R ∧ γ⁻¹ * x ∈ K :=
-  _root_.UpperTheory.Reformulated.B.Yt3.exists_reps hK
+alias exists_reps := _root_.UpperTheory.Reformulated.B.Yt3.exists_reps
 
 theorem relIndex_conj_ne_zero {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] {J U L : Subgroup G}
     (hJ : IsCompact (J : Set G)) (hU : IsOpen (U : Set G)) (hL : ∀ k ∈ L, k ∈ U → k ∈ J) {g : G} (hg : g ∈ L) :

@@ -57,9 +57,9 @@ namespace GlobalTheory.ZH
 theorem labels_exist : Laws → Laws2 → UTorsSt → ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] [ArithBase o Ω] (S : ThetaSys o Ω) (ρ : S.Real) (p : ℕ) [Fact p.Prime] (y₀ : S.R →+* PadicAlgCl p) (u : ρ.UTest p y₀), (∀ a : o, ‖y₀ (algebraMap o S.R a)‖ ≤ 1) → Nonempty u.Lab := by
   intro h₁ h₂ h₃ o Ω _ _ _ _ S ρ p _ y₀ u hy
   obtain ⟨q, hq, hq'⟩ := GlobalTheory.ZH.PsiForm.main o Ω S ρ p y₀ u
-  obtain ⟨yy, hs, he⟩ := GlobalTheory.T.exists_labelMap_torsion_characters h₁ h₂ h₃ o Ω S ρ p y₀ u
-  have hk := GlobalTheory.T.label_map_kernel_eq_integral_torsion h₁ h₂ h₃ o Ω S ρ p y₀ u yy hs he hy
-  obtain ⟨hi, wt, hw⟩ := GlobalTheory.T.isoFree_perp_labelKernel_weights h₁ h₂ h₃ o Ω S ρ p y₀ u yy hs he
+  obtain ⟨yy, hs, he⟩ := _root_.GlobalTheory.ZH.LabelMap.exists_labelMap h₁ h₂ h₃ o Ω S ρ p y₀ u
+  have hk := _root_.GlobalTheory.ZH.LabelKernel.main h₁ h₂ h₃ o Ω S ρ p y₀ u yy hs he hy
+  obtain ⟨hi, wt, hw⟩ := _root_.GlobalTheory.ZH.TorusPerp.isoFree_perp_and_weights h₁ h₂ h₃ o Ω S ρ p y₀ u yy hs he
   exact ⟨⟨q, hq, hq', yy, hs, he, hk, hi, wt, hw⟩⟩
 
 end GlobalTheory.ZH

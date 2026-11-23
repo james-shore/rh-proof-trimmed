@@ -75,7 +75,7 @@ theorem exists_eqv_ext : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R
     intro x
     constructor
     · intro hx
-      obtain ⟨y, hy, hxy⟩ := GlobalTheory.T.exists_torsion_point_from_fractionAlgClosure R A F em N hN1 x hx
+      obtain ⟨y, hy, hxy⟩ := _root_.GlobalTheory.Mum.UpExt.torsion_from_closure R A F em N hN1 x hx
       obtain ⟨p₀, hp₀⟩ := (hE.onto y).1 hy
       obtain ⟨p', hp', -⟩ := hq.1 p₀
       refine ⟨p', Over.OverMorphism.ext ?_⟩
@@ -88,7 +88,7 @@ theorem exists_eqv_ext : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R
   refine ⟨fun s => e' s, ⟨he', fun s s' s'' h j => ?_, fun c s s' h j => ?_, onto,
     fun p => ((GlobalTheory.UT.SymFrame.main GlobalTheory.firstFiveLaws R (maximalIdeal R) hR.1 D F N hN p).1),
     fun p => GlobalTheory.SymFrameClause.exists_symLift R A F N hN (lab' p) ((onto _).2 ⟨p, rfl⟩),
-    fun p w θ s s' hw hθ hs => GlobalTheory.T.equivariant_linearExtension_to_algClosedField R hR D A N hN lab E₀ hE F lab' (hem ▸ hlab) e' hc p w θ s s' hw hθ hs⟩, ?_⟩
+    fun p w θ s s' hw hθ hs => _root_.GlobalTheory.Mum.UpAct.act_extension R hR D A N hN lab E₀ hE F lab' (hem ▸ hlab) e' hc p w θ s s' hw hθ hs⟩, ?_⟩
   · obtain rfl : s'' = s + s' := fam_ext h
     rw [map_add (f := _)]
     rfl

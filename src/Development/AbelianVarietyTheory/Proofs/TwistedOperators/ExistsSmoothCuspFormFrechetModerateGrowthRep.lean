@@ -230,7 +230,7 @@ theorem completeSpace (hθ : IsInfFam θ) : CompleteSpace (Sp θ N hU) := by
   refine UniformSpace.complete_of_cauchySeq_tendsto fun u hu => ?_
   have h1 := hu.tendsto_uniformity
   rw [uniformity_eq_comap_nhds_zero_swapped, tendsto_comap_iff] at h1
-  obtain ⟨f, f1, f2, f3⟩ := GlobalTheory.T.growthSobolev_cauchy_tendsto_smooth_limit D θ hθ V N (fun n => incl θ N hU (u n))
+  obtain ⟨f, f1, f2, f3⟩ := _root_.GlobalTheory.GrowthComplete.complete D θ hθ V N (fun n => incl θ N hU (u n))
     (fun n => ⟨(incl_mem _).1, incl_sm _, incl_fin _⟩) fun d => by
       simpa only [Function.comp, map_sub, Prod.map] using tendsto_zero_iff.1 h1 d
   have f0 := f3 0
@@ -443,16 +443,7 @@ theorem tendsto_quot (hθ : IsInfFam θ) {τ : D.what₂.Tau} {X : Matrix (Fin V
 theorem fr_mul_inv (A : GlobalTheory.ChainFr.Fr V) (τ : D.what₂.Tau) : A.fr τ * (A.fr τ)⁻¹ = 1 :=
   Matrix.mul_nonsing_inv _ ((Matrix.isUnit_iff_isUnit_det _).1 (A.fr_unit τ))
 
-theorem conj_mem_UH (A : GlobalTheory.ChainFr.Fr V) (τ : D.what₂.Tau) {k : Matrix (Fin V.rank) (Fin V.rank) ℂ}
-    (hk : k ∈ Formalism.MainNotions.S.UJset (A.ε τ)) : (A.fr τ)⁻¹ * k * A.fr τ ∈ Formalism.QuantumDeterminants.UH (gramAt D V τ) := by
-  have h1 := fr_mul_inv A τ
-  have hk' : kᴴ * Formalism.REAL.Jm (A.ε τ) * k = Formalism.REAL.Jm (A.ε τ) := hk
-  have h3 : ((A.fr τ)⁻¹)ᴴ * (A.fr τ)ᴴ = 1 := by rw [← conjTranspose_mul, h1, conjTranspose_one]
-  show _ᴴ * _ * _ = _
-  rw [← A.fr_gram τ]
-  calc _ = (A.fr τ)ᴴ * (kᴴ * (((A.fr τ)⁻¹)ᴴ * (A.fr τ)ᴴ) * Formalism.REAL.Jm (A.ε τ) * (A.fr τ * (A.fr τ)⁻¹) * k) *
-        A.fr τ := by simp only [conjTranspose_mul, Matrix.mul_assoc]
-    _ = _ := by rw [h1, h3, Matrix.mul_one, Matrix.mul_one, hk']
+alias conj_mem_UH := _root_.GlobalTheory.FrameHeight.frame_mem
 
 theorem conj_mem_lieAt (A : GlobalTheory.ChainFr.Fr V) (τ : D.what₂.Tau) {X : Matrix (Fin V.rank) (Fin V.rank) ℂ}
     (hX : X ∈ GlobalTheory.SmoothGlob.lieSet (A.ε τ)) : (A.fr τ)⁻¹ * X * A.fr τ ∈ lieAt V τ := by

@@ -68,19 +68,13 @@ section Alg
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
 
-theorem sigma_sigma (hcm : IsCMExt F E σ) (x : E) : σ (σ x) = x := by
-  obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
-  apply τ.injective
-  rw [hcm.2.2.2, hcm.2.2.2]
-  simp
-
 theorem hE_self_fixed (hcm : IsCMExt F E σ) {M : ℕ} {J : Matrix (Fin M) (Fin M) E} (hJ : IsHermND σ J) (x : Fin M → E) :
     σ (hE σ J x x) = hE σ J x x := by
 
   simp only [hE, hform, map_sum, map_mul]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  have h1 : σ ((σ : E →+* E) (x j)) = x j := sigma_sigma hcm _
+  have h1 : σ ((σ : E →+* E) (x j)) = x j := _root_.GlobalTheory.CompanionTheory.SW.HermTop.sigma_sigma hcm _
   have h2 : (σ : E →+* E) (x i) = σ (x i) := rfl
   rw [h1, hJ.1 i j, h2]
   ring

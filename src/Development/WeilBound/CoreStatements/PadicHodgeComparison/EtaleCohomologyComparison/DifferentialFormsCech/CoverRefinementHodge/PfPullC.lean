@@ -64,7 +64,7 @@ theorem cechOm_pull_pf : ∀ {K : Type} [Field K] {X Y : Scheme.{0}} (q : X ⟶ 
     (a j : ℕ) (x : CO p V a j),
     cechOmAdd q U hU hUaff a j (cechPull hu V U τ hτ a j x) = pullC u hu a j (cechOmAdd p V hV hVaff a j x) := by
   intro K _ X Y q p u hu κ ι V hV hVaff U hU hUaff τ hτ a j x
-  have h1 := CrystallineSemistableComparison.Om.Nt2.cechHEquiv_pullC u.base isCoverSystem_isBasicCover isCoverSystem_isBasicCover V hV
+  have h1 := _root_.CrystallineSemistableComparison.Om.Nt2.cechHEquiv_pull_compat u.base isCoverSystem_isBasicCover isCoverSystem_isBasicCover V hV
     (fun i => by rw [inter_eq_iInf]; exact hVaff _ i) U hU (fun i => by rw [inter_eq_iInf]; exact hUaff _ i) τ hτ j
     (goodAcyclic_modulesAb (GlobalTheory.HodgeCoh.Omega p a)) (goodAcyclic_modulesAb (GlobalTheory.HodgeCoh.Omega q a))
     (GlobalTheory.toAbSheafPush (GlobalTheory.HodgeCoh.omegaPull hu a)) x

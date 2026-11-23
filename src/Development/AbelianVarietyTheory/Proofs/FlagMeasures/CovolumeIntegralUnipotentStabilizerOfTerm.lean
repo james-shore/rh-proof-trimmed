@@ -190,7 +190,7 @@ theorem minor_pt_le {N : ℕ} (p : Point K N) (t : ℕ) (I J : Fin t → Fin N) 
     simp only [Matrix.map_apply, hw, Matrix.of_apply]
     split_ifs <;> simp
   rw [e]
-  refine (Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.monomialMinor N σ (fun i => τ (d i)) t I J).trans ?_
+  refine (_root_.Formalism.HermitianLatticeCounting.P.normMinorMonomialLe N σ (fun i => τ (d i)) t I J).trans ?_
   have h := prodMaxOneNorm_le τ p.1 p.2.1 1 one_pos
   rw [p.2.2] at h
   simp only [inv_one, max_self, one_mul] at h
@@ -262,7 +262,7 @@ theorem leadMinor_cell {L U w : Matrix (Fin N) (Fin N) K} (hL : IsLoUni L) (hU :
     leadMinorE (L * w * U) l = leadMinorE w l := by
   unfold leadMinorE
   split_ifs with h
-  · convert Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.leadingMinorInvariant K N l h L w U (fun i => (hL i i).2 rfl)
+  · convert _root_.Formalism.HermitianLatticeCounting.P.leadingMinorTriangularInvariant K N l h L w U (fun i => (hL i i).2 rfl)
       (fun i j hij => (hL i j).1 hij) (fun i => (hU i i).2 rfl) (fun i j hij => (hU i j).1 hij)
   · rfl
 
@@ -285,7 +285,7 @@ omit [Fintype ι] in
 theorem reduce_up {ρ : ℝ} (h1 : 1 ≤ ρ) (hρ : ∀ x : K, ∃ o : 𝓞 K, ∀ v, ‖τ v (x + o)‖ ≤ ρ)
     {U : Matrix (Fin N) (Fin N) K} (hU : IsUpUni U) :
     ∃ B : Matrix (Fin N) (Fin N) K, IsUpUni B ∧ EntIn ⊤ B ∧ ∀ v i j, ‖τ v ((U * B) i j)‖ ≤ ρ := by
-  obtain ⟨B, b1, b2, b3, b4⟩ := Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.unipotentReduce K (algebraMap (𝓞 K) K).range
+  obtain ⟨B, b1, b2, b3, b4⟩ := _root_.Formalism.HermitianLatticeCounting.P.unitriangularReduction K (algebraMap (𝓞 K) K).range
     {x | ∀ v, ‖τ v x‖ ≤ ρ} N U
     (fun x => by obtain ⟨o, ho⟩ := hρ x; exact ⟨o, ⟨o, rfl⟩, ho⟩)
     (fun i => (hU i i).2 rfl) (fun i j hij => (hU i j).1 hij)
@@ -363,7 +363,7 @@ theorem cov_lead [StarRing K] (L U : Matrix (Fin N) (Fin N) K) (p : Point K N) (
     (fun v => κ * ∏ l ∈ Finset.range N, gg2 ‖τ v (leadMinorE (ptMat p) (l + 1))‖) hs hw hr hL' hU' hZ' hI
     (one_le_mul_of_one_le_of_one_le (one_le_pow₀ hκ1) (one_le_pow₀ (one_le_PiZ τ _)))
     (fun t J J' v => by
-      have := Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.minorBound N ((Aᵀ * L).map (τ v)) ((ptMat p).map (τ v))
+      have := _root_.Formalism.HermitianLatticeCounting.P.normMinorMulLe N ((Aᵀ * L).map (τ v)) ((ptMat p).map (τ v))
         ((U * B).map (τ v)) ρ _ h1 (hLb v) (hBb v) (minor_pt_le (τ v) p) t J J'
       rw [← Matrix.map_mul, ← Matrix.map_mul] at this
       rw [RingHom.map_det]

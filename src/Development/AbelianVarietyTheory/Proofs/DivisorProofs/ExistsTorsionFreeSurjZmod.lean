@@ -256,7 +256,7 @@ theorem exists_type_surj : ∀ (E : Type) [Field E] [NumberField E] (w : HeightO
     simp only [map_natCast] at h2 h3 ⊢
     push_cast at h2 h3 ⊢
     rw [h2]; exact h3.ne
-  obtain ⟨hOC, hsmall⟩ := GlobalTheory.T.adicCompletion_congruenceSubgroups_open_compact_small E w a l hl hlw
+  obtain ⟨hOC, hsmall⟩ := _root_.GlobalTheory.CongOpenSmall.congruence_open_compact_small E w a l hl hlw
   obtain ⟨m, hmN, hm⟩ := ((hsmall N hN).and (Filter.eventually_ge_atTop (max m₀ 2))).exists
   refine ⟨m, le_trans (le_max_left _ _) hm, ?_⟩
   have hm2 : 2 ≤ m := le_trans (le_max_right _ _) hm

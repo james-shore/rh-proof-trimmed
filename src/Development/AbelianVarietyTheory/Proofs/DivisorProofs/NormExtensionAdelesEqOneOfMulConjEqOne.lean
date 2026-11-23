@@ -54,35 +54,13 @@ open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Forma
 
 namespace GlobalTheory.NormOne
 
-theorem algebraMap_norm_eq_mul {R A : Type*} [CommRing R] [CommRing A] [Algebra R A]
-    (β : Module.Basis (Fin 2) R A) (h0 : β 0 = 1) (C : R) (hC : β 1 * β 1 = algebraMap R A C)
-    (s : A →ₐ[R] A) (hs : s (β 1) = -β 1) (z : A) :
-    algebraMap R A (Algebra.norm R z) = z * s z := by
-  apply GlobalTheory.Published.algebraMap_norm_of_basis_one_sqrt <;> assumption
-
 end GlobalTheory.NormOne
 
 namespace GlobalTheory.NormOne
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
-theorem exists_moved {σ : E →ₐ[F] E} (h : IsCMExt F E σ) : ∃ x : E, σ x ≠ x := by
-  by_contra hc
-  push_neg at hc
-  let τ : E →+* ℂ := (IsAlgClosed.lift (M := ℂ) (R := ℚ) (S := E)).toRingHom
-  have hr : NumberField.ComplexEmbedding.IsReal τ := by
-    rw [NumberField.ComplexEmbedding.isReal_iff]
-    ext x
-    have h1 := h.2.2.2 τ x
-    rw [hc x] at h1
-    simp only [NumberField.ComplexEmbedding.conjugate_coe_eq, Function.comp_apply]
-    exact h1.symm
-  exact (NumberField.InfinitePlace.isComplex_mk_iff.mp (h.2.1.isComplex _)) hr
-
-theorem invol {σ : E →ₐ[F] E} (h : IsCMExt F E σ) (x : E) : σ (σ x) = x := by
-  let τ : E →+* ℂ := (IsAlgClosed.lift (M := ℂ) (R := ℚ) (S := E)).toRingHom
-  apply τ.injective
-  rw [h.2.2.2 τ, h.2.2.2 τ, star_star]
+alias exists_moved := _root_.GlobalTheory.AdelicU.exists_cm_conj_ne
 
 end GlobalTheory.NormOne
 
@@ -94,7 +72,7 @@ theorem exists_basis {σ : E →ₐ[F] E} (h : IsCMExt F E σ) :
     ∃ (bE : Module.Basis (Fin 2) F E) (c : F), bE 0 = 1 ∧ σ (bE 1) = -bE 1 ∧ bE 1 * bE 1 = algebraMap F E c := by
   obtain ⟨x, hx⟩ := exists_moved h
   set θ := x - σ x with hθ
-  have hσθ : σ θ = -θ := by rw [hθ, map_sub, invol h]; ring
+  have hσθ : σ θ = -θ := by rw [hθ, map_sub, _root_.GlobalTheory.AdelicU.cm_conj_conj h]; ring
   have hθ0 : θ ≠ 0 := fun h0 => hx (sub_eq_zero.mp h0).symm
   have hli : LinearIndependent F ![(1 : E), θ] := by
     rw [LinearIndependent.pair_iff]
@@ -156,7 +134,7 @@ theorem norm_eq_one : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
   have hs : cA σ (β 1) = -β 1 := by
     rw [hβ, cA, Algebra.TensorProduct.map_tmul, h1, TensorProduct.tmul_neg]
     rfl
-  have key := algebraMap_norm_eq_mul β hβ0 _ hβC (cA σ) hs z
+  have key := _root_.GlobalTheory.Published.algebraMap_norm_of_basis_one_sqrt β hβ0 _ hβC (cA σ) hs z
   rw [hz] at key
   have e : ∀ r : AF F, β.repr (algebraMap (AF F) (AE F E) r) 0 = r := by
     intro r

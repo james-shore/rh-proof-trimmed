@@ -72,7 +72,7 @@ open GlobalTheory.Fam.IoTop in
 theorem GlobalTheory.Fam.liftS_ptT_eq_cI_smul_ioT : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.MainNotions.G.Inst D L} {Gl : Formalism.MainNotions.G.LatInst D} {Kc : Formalism.MainNotions.G.Consts} {Yd : DivX D} {cX : ExtraC} {ex : Extra D L hT Gi Gl Kc Yd cX} (W : _root_.GlobalTheory.MiS.RealPackAlt ex) (u : D.what₂.Word), _root_.GlobalTheory.Fam.PackageHypotheses W → ∀ f : _root_.GlobalTheory.Fam.FamilyCharacter W u, f.RowOK → ∀ t j (h : j + 2 * 0 + 2 = D.R.m) (F : (f.t t).CT) P v, liftS ((f.t t).omT j h) f.c.volT.μ f.c.volT.𝓕 (F.1 v) ((f.t t).ptT j h P) = (f.t t).cI (j + 1) • ((f.t t).ioT j h F).1 (f.c.ItT j h P v) := by
   intro D L hT Gi Gl Kc Yd cX ex W u hP f hR t j h F P v
   have hc := hP.bot.hyp.2.2.2.1
-  obtain ⟨h', -, hL⟩ := _root_.GlobalTheory.T.extra_column_range_membership_alt W u hP f.g t j h F
+  obtain ⟨h', -, hL⟩ := _root_.GlobalTheory.TopStep.ioXT_levelP_alt W u hP f.g t j h F
   have key := hL ((f.row t).vT j h) ((hR.row t).vT j h) P v
   obtain ⟨h'', hio⟩ := (hR.row t).ioT j h F
   have hm := hR.meas.volT t

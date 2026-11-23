@@ -131,30 +131,6 @@ theorem pairing_sum {R G : Type} [Ring R] [AddCommGroup G] (N : AddSubgroup G) (
 
 variable {C : Type} [Field C]
 
-theorem subst_oneVariableUncurry_eq_subst {dd : ℕ} {τ : Type} (a : Fin dd → MvPowerSeries τ C)
-    (ha : ∀ i, constantCoeff (a i) = 0) (f : PS C 1 dd) :
-    subst a (un1 f) = subst (fun p : Fin 1 × Fin dd => a p.2) f := by
-  let ι : Fin dd ≃ Fin 1 × Fin dd :=
-    { toFun := fun x => (0, x)
-      invFun := fun p => p.2
-      left_inv := fun _ => rfl
-      right_inv := fun p => Prod.ext (Subsingleton.elim _ _) rfl }
-  ext μ
-  rw [coeff_subst (hasSubst_of_constantCoeff_zero ha),
-    coeff_subst (hasSubst_of_constantCoeff_zero fun p : Fin 1 × Fin dd => ha p.2),
-    ← finsum_comp_equiv (Finsupp.equivCongrLeft ι)]
-  refine finsum_congr fun e => ?_
-  rw [Finsupp.equivCongrLeft_apply, Finsupp.prod_equivMapDomain, Finsupp.equivMapDomain_eq_mapDomain]
-  rfl
-
-theorem subst_sum_smul {σ τ α : Type} [Finite σ] [Fintype α] {a : σ → MvPowerSeries τ C}
-    (ha : ∀ s, constantCoeff (a s) = 0) (c : α → C) (F : α → MvPowerSeries σ C) :
-    subst a (∑ i, c i • F i) = ∑ i, c i • subst a (F i) := by
-  have hs := hasSubst_of_constantCoeff_zero ha
-
-  rw [← coe_substAlgHom hs, map_sum]
-  exact Finset.sum_congr rfl fun i _ => by rw [coe_substAlgHom hs, subst_smul hs]
-
 theorem subst_prod' {σ τ α : Type} [Finite σ] [Fintype α] {a : σ → MvPowerSeries τ C}
     (ha : ∀ s, constantCoeff (a s) = 0) (F : α → MvPowerSeries σ C) :
     subst a (∏ i, F i) = ∏ i, subst a (F i) := by
@@ -168,18 +144,9 @@ theorem subst_sum'' {σ τ α : Type} [Finite σ] [Fintype α] {a : σ → MvPow
 
   rw [← coe_substAlgHom hs, map_sum]
 
-theorem subst_subst {σ τ υ : Type} [Finite σ] [Finite τ] {a : σ → MvPowerSeries τ C} {b : τ → MvPowerSeries υ C}
-    (ha : ∀ s, constantCoeff (a s) = 0) (hb : ∀ s, constantCoeff (b s) = 0) (F : MvPowerSeries σ C) :
-    subst b (subst a F) = subst (fun s => subst b (a s)) F :=
-  subst_comp_subst_apply (hasSubst_of_constantCoeff_zero ha) (hasSubst_of_constantCoeff_zero hb) F
-
 section Law
 
 variable {V : VF C} {d : ℕ} {I : Fin 2 → Type} [∀ g, Fintype (I g)] {κ : Type} [Fintype κ] {X : RawChart C d I κ}
-
-theorem cc_lg (hX : RLaw X V) (i : κ) : constantCoeff (X.lg i) = 0 := by
-  have := hX.lin i 0 (by simp)
-  simpa using this
 
 theorem cc_lin (A : Matrix κ κ C) {τ : Type} {Z : κ → MvPowerSeries τ C} (hZ : ∀ i, constantCoeff (Z i) = 0) (x : κ) :
     constantCoeff (∑ y, A x y • Z y) = 0 := by
@@ -193,7 +160,7 @@ theorem endP_X (A : Matrix κ κ C) (i : κ) :
 
 theorem cc_endP (hX : RLaw X V) (A : Matrix κ κ C) (i : κ) :
     constantCoeff (endP X A (MvPowerSeries.X : κ → MvPowerSeries κ C) i) = 0 := by
-  rw [endP_X, cc_subst (cc_lin A (cc_lg hX)), hX.exc]
+  rw [endP_X, cc_subst (cc_lin A (_root_.GlobalTheory.RowVal.EndCalc.lg_cc hX)), hX.exc]
 
 theorem intEnd_one [DecidableEq κ] (hX : RLaw X V) : IntEnd X V 1 := by
   intro i
@@ -208,12 +175,12 @@ theorem subst_endP (hX : RLaw X V) (A : Matrix κ κ C) {τ : Type} {Z : κ → 
     subst (fun j => subst Z (X.ex j)) (endP X A (MvPowerSeries.X : κ → MvPowerSeries κ C) i) =
       subst (fun x => ∑ y, A x y • Z y) (X.ex i) := by
   have hE : ∀ j, constantCoeff (subst Z (X.ex j)) = 0 := fun j => by rw [cc_subst hZ, hX.exc]
-  rw [endP_X, subst_subst (cc_lin A (cc_lg hX)) hE]
+  rw [endP_X, _root_.GlobalTheory.RowVal.EndCalc.comp_cc (cc_lin A (_root_.GlobalTheory.RowVal.EndCalc.lg_cc hX)) hE]
   congr 1
   funext x
-  rw [subst_sum_smul hE]
+  rw [_root_.GlobalTheory.RowVal.EndCalc.subst_lin hE]
   refine Finset.sum_congr rfl fun y _ => ?_
-  rw [← subst_subst hX.exc hZ, hX.lgex, subst_X (hasSubst_of_constantCoeff_zero hZ)]
+  rw [← _root_.GlobalTheory.RowVal.EndCalc.comp_cc hX.exc hZ, hX.lgex, subst_X (hasSubst_of_constantCoeff_zero hZ)]
 
 theorem subst_two (hX : RLaw X V) (A : Fin 2 → Matrix κ κ C) {τ : Type} {Z : κ → MvPowerSeries τ C}
     (hZ : ∀ i, constantCoeff (Z i) = 0) (f : MvPowerSeries (Fin 2 × κ) C) :
@@ -221,7 +188,7 @@ theorem subst_two (hX : RLaw X V) (A : Fin 2 → Matrix κ κ C) {τ : Type} {Z 
         (subst (fun s : Fin 2 × κ => endP X (A s.1) (MvPowerSeries.X : κ → MvPowerSeries κ C) s.2) f) =
       subst (fun s : Fin 2 × κ => subst (fun x => ∑ y, A s.1 x y • Z y) (X.ex s.2)) f := by
   have hE : ∀ j, constantCoeff (subst Z (X.ex j)) = 0 := fun j => by rw [cc_subst hZ, hX.exc]
-  rw [subst_subst (fun s => cc_endP hX _ _) hE]
+  rw [_root_.GlobalTheory.RowVal.EndCalc.comp_cc (fun s => cc_endP hX _ _) hE]
   congr 1
   funext s
   exact subst_endP hX _ hZ _
@@ -265,7 +232,7 @@ theorem cc_hL (a : O) : constantCoeff (Y.B.hL C Y.h a) = 0 := by
     unfold comp1 ev
     rw [cc_subst]
     · show constantCoeff (MvPowerSeries.map (algebraMap C C) (Y.B.A.act a x)) = 0
-      rw [GlobalTheory.GaugeCocycle.map_self, Y.B.A.const]
+      rw [_root_.GlobalTheory.RowLawSquare.map_self, Y.B.A.const]
     · rintro ⟨g, x⟩
       fin_cases g
       simp [pt]
@@ -377,14 +344,14 @@ theorem one_row (hs : PairsSep Y p) (gr : ∀ o, MvPowerSeries (WV (I o)) C)
       subst (fun x : WV (I o) => (X (v ⟨o, x⟩) : MvPowerSeries τ C))
         (subst (fun s : Fin 2 × Fin dd => (Y.raw (p o)).expPt s.1 s.2) f) := by
     intro o f
-    rw [two (M o), subst_subst (fun s : Fin 2 × Fin dd => ((Y.raw (p o)).van_expPt (cc_ex Y) s.1 s.2).const) (cU o)]
+    rw [two (M o), _root_.GlobalTheory.RowVal.EndCalc.comp_cc (fun s : Fin 2 × Fin dd => ((Y.raw (p o)).van_expPt (cc_ex Y) s.1 s.2).const) (cU o)]
     congr 1
     funext ⟨g, i⟩
     unfold RawChart.expPt
-    rw [subst_subst (fun i => (RawChart.van_lin g _).const) (cU o)]
+    rw [_root_.GlobalTheory.RowVal.EndCalc.comp_cc (fun i => (RawChart.van_lin g _).const) (cU o)]
     congr 1
     funext x
-    rw [subst_sum_smul (cU o), Fintype.sum_sigma, Finset.sum_eq_single o, Fintype.sum_sigma, Finset.sum_eq_single g]
+    rw [_root_.GlobalTheory.RowVal.EndCalc.subst_lin (cU o), Fintype.sum_sigma, Finset.sum_eq_single o, Fintype.sum_sigma, Finset.sum_eq_single g]
     · refine Finset.sum_congr rfl fun c _ => ?_
       rw [subst_X (hasSubst_of_constantCoeff_zero (cU o))]
       dsimp only
@@ -492,7 +459,7 @@ theorem all_rows (n : ℕ) (gr : ∀ o, Fin n → MvPowerSeries (WV (I o)) C) (f
       ∑ b : Fin n, subst (fun i : Fin dd => (X (b, i) : PS C n dd)) ((Y.k : C) • un1 (Y.B.hL C Y.h Y.w0)) := by
     rw [Finset.smul_sum]
     refine Finset.sum_congr rfl fun b _ => ?_
-    rw [subst_smul (hasSubst_of_constantCoeff_zero (cX b)), subst_oneVariableUncurry_eq_subst _ (cX b)]
+    rw [subst_smul (hasSubst_of_constantCoeff_zero (cX b)), _root_.GlobalTheory.ActionLimit.subst_singlePointUncurry _ (cX b)]
     unfold ev
     congr 2
     funext ⟨g, x⟩
@@ -516,14 +483,14 @@ theorem all_rows (n : ℕ) (gr : ∀ o, Fin n → MvPowerSeries (WV (I o)) C) (f
     have cR : ∀ w : WV (I o), constantCoeff (X (ρ, w) : MvPowerSeries (Fin n × WV (I o)) C) = 0 :=
       fun _ => constantCoeff_X _
     unfold rowCopy
-    rw [← subst_mvExp cR (cc_hRow Y p o), ← subst_mul (hasSubst_of_constantCoeff_zero cR), subst_subst cR (cU o)]
+    rw [← subst_mvExp cR (cc_hRow Y p o), ← subst_mul (hasSubst_of_constantCoeff_zero cR), _root_.GlobalTheory.RowVal.EndCalc.comp_cc cR (cU o)]
     congr 1
     funext w
     rw [subst_X (hasSubst_of_constantCoeff_zero (cU o))]
   simp only [e2]
   rw [Finset.prod_comm]
   refine Finset.prod_congr rfl fun ρ _ => ?_
-  rw [← subst_mvExp (cX ρ) cL, ← subst_mul (hasSubst_of_constantCoeff_zero (cX ρ)), subst_subst (cX ρ) hE,
+  rw [← subst_mvExp (cX ρ) cL, ← subst_mul (hasSubst_of_constantCoeff_zero (cX ρ)), _root_.GlobalTheory.RowVal.EndCalc.comp_cc (cX ρ) hE,
     ← hf ρ fun w => (ρ, w)]
   congr 1
   funext i

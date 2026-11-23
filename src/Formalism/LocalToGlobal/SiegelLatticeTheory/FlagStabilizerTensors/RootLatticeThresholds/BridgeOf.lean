@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeCountingBound.ArchPlace
 
 @[expose] public section
 
@@ -57,9 +58,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar instCM
 section UMat
 
 variable {n : ℕ} {ε : Fin n → Bool}
-
-theorem uMat_inv_mul (a : Formalism.REAL.UJ ε) : Formalism.MainNotions.S.uMat a⁻¹ * Formalism.MainNotions.S.uMat a = 1 := by
-  simp [Formalism.MainNotions.S.uMat]
 
 theorem uMat_mul_inv (a : Formalism.REAL.UJ ε) : Formalism.MainNotions.S.uMat a * Formalism.MainNotions.S.uMat a⁻¹ = 1 := by
   simp [Formalism.MainNotions.S.uMat]
@@ -109,8 +107,8 @@ theorem dFrameBridge_carrierOf (e : InfinitePlace D.host.E ≃ D.what₂.Tau) (h
   obtain ⟨hH'e, hH'f, hH'z⟩ := hfix u' h' hH'u
   have hD := hDv v
   rw [hi] at hD
-  have key := Bridge.bridge_place hTr hTr' hsc (uMat_mul_inv (γ v)) (uMat_unitary (h v)) (uMat_mul_inv (h v))
-    (uMat_inv_mul (h v)) hHe hHf hHz (uMat_unitary (h' v)) (uMat_mul_inv (h' v)) (uMat_inv_mul (h' v))
+  have key := Bridge.bridge_place hTr hTr' hsc (uMat_mul_inv (γ v)) (_root_.PI.UnitaryGroupMassFormula.LCG.ap_inUJ (h v)) (uMat_mul_inv (h v))
+    (_root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_inv_mul (h v)) hHe hHf hHz (_root_.PI.UnitaryGroupMassFormula.LCG.ap_inUJ (h' v)) (uMat_mul_inv (h' v)) (_root_.Formalism.L2.SG.PoincareInHH.Cut.uMat_inv_mul (h' v))
     hH'e hH'f hH'z hD (T ((tauE X e).symm v)).base hz hz' (m₀ ((tauE X e).symm v)) hm
   show Formalism.FourierDecayAlt.D.IsDFrame (T ((tauE X e).symm v)).base (ν' ((tauE X e).symm v)) (m₀ ((tauE X e).symm v))
     (Formalism.L2.SG.LocWSOf.Qics C (X.pl v) * Formalism.MainNotions.S.uMat ((h⁻¹ * γ * h') v) * Formalism.L2.SG.LocWSOf.Qcs C (X.pl v))

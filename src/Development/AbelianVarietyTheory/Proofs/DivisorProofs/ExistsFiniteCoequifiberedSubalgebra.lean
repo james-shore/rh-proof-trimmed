@@ -77,7 +77,7 @@ theorem exists_finite_coequifibered_subalgebra : ∀ (X : Scheme.{0}), IsNoether
   refine ⟨subFunctor F α V T, subNat F α V T, subIncl F α V T,
     GlobalTheory.T.coequifibered_generated_subalgebra_quasiCoherent X F α hα V T (GlobalTheory.T.pow_mul_mem_subalgebra_of_res_basicOpen X hX F α hα V hV T), subNat_comp_subIncl F α V T,
     subIncl_injective F α V T,
-    fun W => GlobalTheory.T.finite_cut_out_subalgebra_quasiCoherent X hX F α hα hint V hV hcov T hTfin W.unop.1 W.unop.2,
+    fun W => _root_.GlobalTheory.QcSub.subMap_finite X hX F α hα hint V hV hcov T hTfin W.unop.1 W.unop.2,
     fun k x hx => ⟨⟨x, hST (.inl k) (Finset.mem_coe.mpr hx)⟩, rfl⟩⟩
 
 end GlobalTheory.QcSub

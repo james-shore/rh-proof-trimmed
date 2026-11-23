@@ -153,13 +153,10 @@ theorem inFr_ea (a : ZMod n) {N D : PowerSeries O} {f : W.EE} (h : InFr W a (Br.
 
 theorem p_zero : Br.P.p 0 = X := rfl
 
-theorem ps_cst (s : ℕ) : ps W s = Br.cst (Br.P.p s) := by
-  apply Formalism.MainNotions.N.FrobeniusPowerSeries.PhiBridge.ps_eq <;> assumption
-
 theorem prod_two_levels_eq_const (F : ℕ → ℕ) :
     (∏ s ∈ Finset.range 2, ps W s ^ F s) = Br.cst (X ^ F 0 * Br.P.p 1 ^ F 1) := by
   simp only [Finset.prod_range_succ, Finset.prod_range_zero, one_mul]
-  rw [ps_cst Br, ps_cst Br]
+  rw [_root_.Formalism.MainNotions.N.FrobeniusPowerSeries.PhiBridge.ps_eq Br, _root_.Formalism.MainNotions.N.FrobeniusPowerSeries.PhiBridge.ps_eq Br]
   funext i
   simp only [Pi.mul_apply, Pi.pow_apply]
   show Br.ι X ^ F 0 * Br.ι (Br.P.p 1) ^ F 1 = Br.ι (X ^ F 0 * Br.P.p 1 ^ F 1)

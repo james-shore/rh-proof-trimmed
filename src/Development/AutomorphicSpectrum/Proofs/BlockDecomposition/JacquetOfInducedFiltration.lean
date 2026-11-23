@@ -115,7 +115,7 @@ theorem jacquetOfInducedFiltration : ∀ (k : Type) [Field k] [ValuativeRel k] [
   refine ⟨K, Equiv.ofBijective toSM ⟨inj, surj⟩, ?_⟩
   intro W _ _ ρ hρ
   let σ := ρ.comp φ.symm.toMonoidHom
-  have hσ : GroundTheory.Automorphic.IsSmooth σ := GlobalTheory.T.isSmooth_comp_continuous φ.symm.toMonoidHom hφsc ρ hρ
+  have hσ : GroundTheory.Automorphic.IsSmooth σ := _root_.GlobalTheory.CompanionTheory.SmoothBridge.isSmooth_comp φ.symm.toMonoidHom hφsc ρ hρ
   have hF := hfilt W σ hσ
   obtain ⟨V, hF⟩ := hF
   obtain ⟨hV0, hF⟩ := hF
@@ -123,7 +123,7 @@ theorem jacquetOfInducedFiltration : ∀ (k : Type) [Field k] [ValuativeRel k] [
   obtain ⟨hVmono, hV, hΨ⟩ := hF
   have e1' := GlobalTheory.T.induction_reindex_equiv k e e' ι ρ
   obtain ⟨e1⟩ := e1'
-  have e2' := GlobalTheory.T.jac_equiv_jacquetRep_comp_levi_equiv k E' γF hγ φ' hφ' (V := IndSp E ρ) (parInd E ρ)
+  have e2' := _root_.GlobalTheory.CompanionTheory.JacBridge.jac_equiv_jacquetRep k E' γF hγ φ' hφ' (V := IndSp E ρ) (parInd E ρ)
   obtain ⟨e2⟩ := e2'
   have e3' := GlobalTheory.T.parabolicInd_equiv_levi_transport k E βF hβ φ hφ ρ
   obtain ⟨e3⟩ := e3'

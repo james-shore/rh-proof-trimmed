@@ -64,7 +64,7 @@ theorem hkB_charpoly_splits_alt : ∀ (D : D7) (cf : CharFrame D) (jE : D.host.E
   intro D cf jE A S In b0 b1 Sx T Sp hSb hstar hst i j b k P hfr hfi hP
   by_cases hc : HkCond D T i j k P
   · have hB : ∀ x ∈ BI D T S In i j b, x ∈ V0T D T S In.rho In.chi In.θ i j b := fun x hx => hx.2
-    have hL1 := _root_.GlobalTheory.T.fixed_space_le_iSup_eigenspace_of_goodness D cf jE A S In b0 b1 Sx T Sp hSb hstar i j b k P hc
+    have hL1 := _root_.GlobalTheory.HeightCounting.FormsStep.v0t_le_supr_eigenspace D cf jE A S In b0 b1 Sx T Sp hSb hstar i j b k P hc
     let ev : D.what₂.FT → FractionRing (T.O i) := fun σ =>
       algebraMap (T.O i) (FractionRing (T.O i)) (cHkT D T i b P : T.O i) ^ k * readT D T i b (In.eig j σ k P)
     let sG : Finset D.what₂.FT := Finset.univ.filter fun σ : D.what₂.FT => D.what₂.isot j σ ≠ ⊥ ∧ D.nd.goodRow σ

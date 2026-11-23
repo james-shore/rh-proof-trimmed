@@ -56,18 +56,6 @@ namespace GlobalTheory.MtIn.UniMem
 
 open ReciprocityTheory.Aut
 
-theorem mem_GLint_of_entries {K : Type} [Field K] {n : ℕ} (O : Subring K) (g : GL (Fin n) K)
-    (h1 : ∀ i j, (g : Matrix (Fin n) (Fin n) K) i j ∈ O)
-    (h2 : ∀ i j, ((g⁻¹ : GL (Fin n) K) : Matrix (Fin n) (Fin n) K) i j ∈ O) :
-    g ∈ Formalism.UG.GLint (Fin n) O := by
-  first
-  | exact @_root_.GlobalTheory.MemGlintOfEntries.mem_glint_of_entries
-  | exact _root_.GlobalTheory.MemGlintOfEntries.mem_glint_of_entries
-  | (apply _root_.GlobalTheory.MemGlintOfEntries.mem_glint_of_entries <;> assumption)
-  | (intros; apply _root_.GlobalTheory.MemGlintOfEntries.mem_glint_of_entries <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.MemGlintOfEntries.mem_glint_of_entries <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.MemGlintOfEntries.mem_glint_of_entries ..)
-
 theorem blkOf_lt_iff {n r t : ℕ} (hn : n = r + t) (i j : Fin n) :
     blkOf r t j < blkOf r t i ↔ j.val < r ∧ r ≤ i.val := by
   have hi := i.2
@@ -126,7 +114,7 @@ theorem mem_iff : ∀ (D : D7) (hr : D.R.r ≤ D.R.nV) (Pg Q : Finset (Pl D.host
     have hb2 : redFn (1 : GL (Fin D.R.nV) (EAf D)) s.w (km D D.R.nV κ) ∈ blockTri (blk2 D.R.r) :=
       blockTri_blkOf_le _ _ hgw
     refine ⟨⟨?_, ?_⟩, ?_⟩
-    · refine mem_GLint_of_entries _ _ (fun a b => hint κ hU a b) (fun a b => ?_)
+    · refine _root_.GlobalTheory.MemGlintOfEntries.mem_glint_of_entries _ _ (fun a b => hint κ hU a b) (fun a b => ?_)
       rw [← map_inv]
       exact hint κ⁻¹ (inv_mem hU) a b
     · intro a b ha hb

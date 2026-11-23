@@ -67,25 +67,6 @@ variable {D : D7}
 
 theorem adj_eq {m n : ℕ} (A : Matrix (Fin m) (Fin n) D.host.E) : adj D A = (A.map star)ᵀ := rfl
 
-theorem adj_ct {m n : ℕ} (A : Matrix (Fin m) (Fin n) D.host.E) : adj D A = Aᴴ := by
-  ext i j; rfl
-
-theorem adj_mul {m n p : ℕ} (A : Matrix (Fin m) (Fin n) D.host.E) (B : Matrix (Fin n) (Fin p) D.host.E) :
-    adj D (A * B) = adj D B * adj D A := by
-  simp only [adj_ct, Matrix.conjTranspose_mul]
-
-theorem adj_adjS {m n : ℕ} (A : Matrix (Fin m) (Fin n) D.host.E) : adj D (adj D A) = A := by
-  simp only [adj_ct, Matrix.conjTranspose_conjTranspose]
-
-theorem adj_gram (V : HSp D) : adj D V.gram = V.gram := by
-  ext i j; simp [adj_eq, GlobalTheory.DualPairCheck.gram_star]
-
-theorem adj_one {m : ℕ} : adj D (1 : Matrix (Fin m) (Fin m) D.host.E) = 1 := by
-  simp only [adj_ct, Matrix.conjTranspose_one]
-
-theorem adj_zero {m n : ℕ} : adj D (0 : Matrix (Fin m) (Fin n) D.host.E) = 0 := by
-  simp only [adj_ct, Matrix.conjTranspose_zero]
-
 theorem frame_decomp (V V' : HSp D) {r : ℕ} (C C' : Matrix (Fin V.rank) (Fin r) D.host.E)
     (B : Matrix (Fin V.rank) (Fin V'.rank) D.host.E)
     (hCC : adj D C * V.gram * C = 0) (hBB : adj D B * V.gram * B = V'.gram) (hCB : adj D C * V.gram * B = 0)
@@ -96,13 +77,13 @@ theorem frame_decomp (V V' : HSp D) {r : ℕ} (C C' : Matrix (Fin V.rank) (Fin r
 
   have h1' : adj D C' * V.gram * C = 1 := by
     have := congrArg (adj D) h1
-    rwa [adj_mul, adj_mul, adj_adjS, adj_gram, adj_one, ← Matrix.mul_assoc] at this
+    rwa [_root_.GlobalTheory.TowerForm.adj_mul, _root_.GlobalTheory.TowerForm.adj_mul, _root_.GlobalTheory.TowerForm.adj_adj, _root_.GlobalTheory.TowerForm.adj_gram, _root_.GlobalTheory.HalfDecomp.adj_one, ← Matrix.mul_assoc] at this
   have hBC : adj D B * V.gram * C = 0 := by
     have := congrArg (adj D) hCB
-    rwa [adj_mul, adj_mul, adj_adjS, adj_gram, adj_zero, ← Matrix.mul_assoc] at this
+    rwa [_root_.GlobalTheory.TowerForm.adj_mul, _root_.GlobalTheory.TowerForm.adj_mul, _root_.GlobalTheory.TowerForm.adj_adj, _root_.GlobalTheory.TowerForm.adj_gram, _root_.GlobalTheory.HalfDecomp.adj_zero, ← Matrix.mul_assoc] at this
   have hBC' : adj D B * V.gram * C' = 0 := by
     have := congrArg (adj D) h3
-    rwa [adj_mul, adj_mul, adj_adjS, adj_gram, adj_zero, ← Matrix.mul_assoc] at this
+    rwa [_root_.GlobalTheory.TowerForm.adj_mul, _root_.GlobalTheory.TowerForm.adj_mul, _root_.GlobalTheory.TowerForm.adj_adj, _root_.GlobalTheory.TowerForm.adj_gram, _root_.GlobalTheory.HalfDecomp.adj_zero, ← Matrix.mul_assoc] at this
   let P : Matrix (Fin V.rank) (Fin r ⊕ (Fin V'.rank ⊕ Fin r)) D.host.E := Matrix.fromCols C (Matrix.fromCols B C')
   let Q : Matrix (Fin r ⊕ (Fin V'.rank ⊕ Fin r)) (Fin V.rank) D.host.E :=
     Matrix.fromRows (adj D C' * V.gram) (Matrix.fromRows (V'.gram⁻¹ * adj D B * V.gram) (adj D C * V.gram))
@@ -187,14 +168,6 @@ theorem symplO_iso (S T : HSp D) {s : ℕ} (L : Matrix (Fin T.rank) (Fin s) D.ho
 end GlobalTheory.IsoTermMean
 
 namespace GlobalTheory.IsoTermMean
-open GlobalTheory.IndefiniteRowSideFullHecke.AdjointIsotropicDecomposition
-variable {D : D7}
-
-theorem mt_one (V : HSp D) : mt V 1 = 1 := by simp [Formalism.L2.Theta.mt]
-
-theorem mt_mul_inv (V : HSp D) (g : GA D V) : mt V g * mt V g⁻¹ = 1 := by
-  simp only [Formalism.L2.Theta.mt, ← Units.val_mul, ← map_mul, mul_inv_cancel, map_one, Units.val_one]
-
 end GlobalTheory.IsoTermMean
 
 namespace GlobalTheory.IsoTermMean
@@ -268,7 +241,7 @@ theorem term_eq_aux (V V' W : HSp D) (r : ℕ) (C C' : Matrix (Fin V.rank) (Fin 
   have hLiso : adj D L * W.gram * L = 0 := hL.2.2
   have hres := (GlobalTheory.T.thetaRestrictIsotropicQuotient_wittTower_properties D V V' W r C B hs ψ hstd μ 𝓨 hY).1
   have hact : actO V W (n : GA D V) 1 (Lm * K * mt V (n : GA D V)) = Lm * K := by
-    simp only [actO, mt_one, Matrix.one_mul, Matrix.mul_assoc, mt_mul_inv, Matrix.mul_one]
+    simp only [actO, _root_.GlobalTheory.BesselCompare.mt_one, Matrix.one_mul, Matrix.mul_assoc, _root_.GlobalTheory.MixModel.mt_mul_inv, Matrix.mul_one]
   have hFu := GlobalTheory.ThetaClosed.isThetaFunO_heisO_all hstd hF (Lm * K * mt V (n : GA D V))
   have step1 : heisO ψ V W (Lm * K) (ω ((n : GA D V), 1) F) =
       ω ((n : GA D V), 1) (heisO ψ V W (Lm * K * mt V (n : GA D V)) F) := by
@@ -326,7 +299,7 @@ theorem heis_comm_radical (V W : HSp D) (ψ : AddChar (AF D.host.F) ℂ) (χS χ
       ω (1, (n' : GA D W)) (heisO ψ V W ((L.map (incA D) : Matrix (Fin W.rank) (Fin s) (AE D)) * K) f) := by
   rw [hω.om_heis 1 (n' : GA D W) _ f hf]
   congr 1
-  simp only [actO, inv_one, mt_one, Matrix.mul_one, ← Matrix.mul_assoc, mt_mul_frame W L n'.2]
+  simp only [actO, inv_one, _root_.GlobalTheory.BesselCompare.mt_one, Matrix.mul_one, ← Matrix.mul_assoc, mt_mul_frame W L n'.2]
 
 theorem mean_isoTerm_invariant : ∀ (D : D7) (V V' W : HSp D) (r : ℕ) (C C' : Matrix (Fin V.rank) (Fin r) D.host.E) (B : Matrix (Fin V.rank) (Fin V'.rank) D.host.E), IsIsoSplit V V' C B → adj D C * V.gram * C' = 1 → adj D C' * V.gram * C' = 0 → adj D C' * V.gram * B = 0 → ∀ (ψ : AddChar (AF D.host.F) ℂ) (χS χT : (AE D)ˣ →* Circle) (ω : GA D V × GA D W →* Module.End ℂ (WO V W → ℂ)), IsWeilDatumO ψ V W χS χT ω → ∀ (μ : Measure (Mx D W.rank r)) (𝓨 : Set (Mx D W.rank r)), IsCovolOne (ratMx D W.rank r) μ 𝓨 → ∀ (κ : Measure (NI V C)) (𝓝 : Set (NI V C)), κ.IsHaarMeasure → IsFundamentalDomain (NIQ V C) 𝓝 κ → ∀ (s : ℕ) (L : Matrix (Fin W.rank) (Fin s) D.host.E) (m : Matrix (Fin s) (Fin r) D.host.E), IsIsoFrame W L → m.rank = s → ∀ (n' : NI W L) f, IsThetaFunO ψ V W f → ∫ n in 𝓝, res V V' W C B μ 𝓨 (heisO ψ V W (isoPart V W C' (Matrix.map (L * m) (incA D))) (ω ((n : GA D V), (n' : GA D W)) f)) 0 ∂κ = ∫ n in 𝓝, res V V' W C B μ 𝓨 (heisO ψ V W (isoPart V W C' (Matrix.map (L * m) (incA D))) (ω ((n : GA D V), 1) f)) 0 ∂κ := by
   intro D V V' W r C C' B hs h1 h2 h3 ψ χS χT ω hω μ 𝓨 hY κ 𝓝 hκ h𝓝 s L m hL hm n' f hf

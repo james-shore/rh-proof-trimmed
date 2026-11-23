@@ -62,32 +62,13 @@ section
 variable {R V E : Type*} [Ring R] [AddCommGroup V] [Module R V] [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] (ρ : V →+ E)
 
-theorem hnSum_mem_zl (N : Submodule R V) (y : E) :
-    y ∈ zl ρ N ↔ ∃ x ∈ N, ρ x = y :=
-  Iff.rfl
-
-theorem hnSum_zl_mono {A B : Submodule R V} (h : A ≤ B) : zl ρ A ≤ zl ρ B := by
-  intro y hy
-  obtain ⟨x, hx, rfl⟩ := (hnSum_mem_zl ρ A y).1 hy
-  exact (hnSum_mem_zl ρ B _).2 ⟨x, h hx, rfl⟩
-
-theorem hnSum_zl_sup (A B : Submodule R V) : zl ρ (A ⊔ B) = zl ρ A ⊔ zl ρ B := by
-  apply le_antisymm
-  · intro y hy
-    obtain ⟨x, hx, rfl⟩ := (hnSum_mem_zl ρ _ y).1 hy
-    obtain ⟨a, ha, b, hb, rfl⟩ := Submodule.mem_sup.1 hx
-    rw [map_add (f := _)]
-    exact Submodule.add_mem_sup ((hnSum_mem_zl ρ A _).2 ⟨a, ha, rfl⟩)
-      ((hnSum_mem_zl ρ B _).2 ⟨b, hb, rfl⟩)
-  · exact sup_le (hnSum_zl_mono ρ le_sup_left) (hnSum_zl_mono ρ le_sup_right)
-
 variable [FiniteDimensional ℝ E]
 
 theorem hnSum_isLat_mono {L N : Submodule R V} (hL : IsLat ρ L) (h : N ≤ L) : IsLat ρ N := by
   refine ⟨hL.1.mono h, ?_⟩
   haveI := hL.2
   exact DiscreteTopology.of_continuous_injective
-    (f := fun y : zl ρ N => (⟨y.1, hnSum_zl_mono ρ h y.2⟩ : zl ρ L))
+    (f := fun y : zl ρ N => (⟨y.1, _root_.Formalism.HN.satBasic_zl_mono ρ h y.2⟩ : zl ρ L))
     (continuous_subtype_val.subtype_mk _)
     (by
       intro a b hab
@@ -104,8 +85,8 @@ theorem hnSum_orth {A B : Submodule R V} (hA : IsLat ρ A) (hB : IsLat ρ B)
     IsLat ρ (A ⊔ B) ∧ A ⊓ B = ⊥ ∧ deg ρ (A ⊔ B) = deg ρ A + deg ρ B := by
   have horth : ∀ x ∈ zl ρ A, ∀ y ∈ zl ρ B, inner ℝ x y = 0 := by
     intro x hx y hy
-    obtain ⟨a, ha, rfl⟩ := (hnSum_mem_zl ρ A x).1 hx
-    obtain ⟨b, hb, rfl⟩ := (hnSum_mem_zl ρ B y).1 hy
+    obtain ⟨a, ha, rfl⟩ := (_root_.Formalism.HN.satR_mem_zl ρ A x).1 hx
+    obtain ⟨b, hb, rfl⟩ := (_root_.Formalism.HN.satR_mem_zl ρ B y).1 hy
     exact h a ha b hb
   obtain ⟨hd, hdeg, -⟩ := Formalism.F.orthSum E (zl ρ A) (zl ρ B) hA.2 hB.2 horth
   refine ⟨⟨?_, ?_⟩, ?_, ?_⟩
@@ -125,13 +106,13 @@ theorem hnSum_orth {A B : Submodule R V} (hA : IsLat ρ A) (hB : IsLat ρ B)
       nth_rewrite 2 [e]
       exact h _ (A.sub_mem ha ha') _ (B.sub_mem hb' hb)
     rw [sub_eq_zero.1 hu, sub_eq_zero.1 hv]
-  · rw [hnSum_zl_sup]
+  · rw [_root_.Formalism.HN.degSupermod_zl_sup]
     exact hd
   · rw [eq_bot_iff]
     intro x hx
     exact (Submodule.mem_bot R).2 (hnSum_orth_zero ρ hA hx.1 (h x hx.1 x hx.2))
   · unfold deg
-    rw [hnSum_zl_sup]
+    rw [_root_.Formalism.HN.degSupermod_zl_sup]
     exact hdeg
 
 end
@@ -146,7 +127,7 @@ variable {R : Type u} {V : Type v} {E : Type w} [Ring R] [AddCommGroup V] [Modul
 theorem hnSum_rk_bot : rk ρ (⊥ : Submodule R V) = 0 := by
   have e : zl ρ (⊥ : Submodule R V) = ⊥ := by
     ext y
-    simp [hnSum_mem_zl, eq_comm]
+    simp [_root_.Formalism.HN.satR_mem_zl, eq_comm]
   unfold rk Formalism.F.rk
   rw [e]
   simp

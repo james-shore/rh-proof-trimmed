@@ -95,10 +95,6 @@ theorem eq_zero_of_sum_re (hE : IsTotallyComplex E) (c : InfinitePlace E → ℂ
     (h : ∀ e : E, ∑ w : InfinitePlace E, (w.embedding e * c w).re = 0) : c = 0 := by
   apply GlobalTheory.TraceCover.eq_zero_of_sum_re <;> assumption
 
-theorem exists_int_smul_mem {j : ℕ} (Λ : Submodule (𝓞 E) (Fin j → E))
-    (hΛ : Submodule.IsFullLattice E Λ) (x : Fin j → E) : ∃ n : ℤ, n ≠ 0 ∧ (n : E) • x ∈ Λ := by
-  exact _root_.GlobalTheory.IntegralMultiple.main Λ hΛ x
-
 theorem pairing_rational (hE : IsTotallyComplex E) {j : ℕ} (x y : Fin j → E) :
     ∑ w : InfinitePlace E,
       ((fun a => w.embedding (x a)) ⬝ᵥ (fun a => w.embedding (y a))).re =
@@ -121,7 +117,7 @@ theorem exists_trDual (hE : IsTotallyComplex E) {j : ℕ} (Λ : Submodule (𝓞 
         simp [dotProduct, add_mul, Finset.sum_add_distrib] }
   have hq : ∀ x, ∃ q : ℚ, φ x = q := by
     intro x
-    obtain ⟨n, hn, hx⟩ := exists_int_smul_mem Λ hΛ x
+    obtain ⟨n, hn, hx⟩ := _root_.GlobalTheory.IntegralMultiple.main Λ hΛ x
     obtain ⟨z, hz⟩ := hu _ hx
     have h1 : φ (n • x) = z := by
       rw [← Int.cast_smul_eq_zsmul E]; exact hz

@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeCountingBound.ArchPlace
 
 @[expose] public section
 
@@ -70,9 +71,6 @@ section Generic
 
 variable (I : Formalism.MainNotions.S.AutInst)
 
-theorem phi_star (v : InfinitePlace I.F) (x : I.E) : I.φ v (star x) = star (I.φ v x) :=
-  I.cm.cmUnram.2.1 (I.φ v) x
-
 theorem hJ_frame (v : InfinitePlace I.F) (x y : Fin I.n → ℂ) (N : Matrix (Fin I.n) (Fin I.n) ℂ) :
     hJ (I.ε v) ((I.P v)⁻¹ *ᵥ x) (((I.P v)⁻¹ * N * I.P v) *ᵥ ((I.P v)⁻¹ *ᵥ y)) =
       star x ⬝ᵥ (I.J.map (I.φ v) *ᵥ (N *ᵥ y)) := by
@@ -91,7 +89,7 @@ theorem theta_form (v : InfinitePlace I.F) (M : Matrix (Fin I.n) (Fin I.n) (AF I
       hJ (I.ε v) (rv I v p) (((I.P v)⁻¹ * M.map (thetaV I v) * I.P v) *ᵥ rv I v q) := by
   rw [rv, rv, hJ_frame]
 
-  simp only [map_sum, map_mul, thetaV_inclR, phi_star, Matrix.mulVec, dotProduct, Matrix.map_apply, Pi.star_apply,
+  simp only [map_sum, map_mul, thetaV_inclR, _root_.PI.UnitaryGroupMassFormula.LCG.ap_star, Matrix.mulVec, dotProduct, Matrix.map_apply, Pi.star_apply,
   Finset.mul_sum, mul_assoc]
 
 theorem sig_inclE (x : I.E) : Formalism.UG.sigR I.cm.sig (Formalism.MainNotions.S.Af I.F) (Formalism.UG.inclE (F := I.F) (Formalism.MainNotions.S.Af I.F) x) =

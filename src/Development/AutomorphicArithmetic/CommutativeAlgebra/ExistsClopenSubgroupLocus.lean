@@ -294,7 +294,7 @@ private theorem two_locus (Y : Scheme.{0}) (A B₁ B₂ B' : Over Y) [GrpObj A] 
   let ff : ∀ i, A ⟶ Bf i := fun i => match i with
     | false => f₁
     | true => f₂
-  obtain ⟨W, o, c, H, G⟩ := GlobalTheory.T.isClopen_torsion_kernel_locus Y A n Bool Bf ff B' f' hA
+  obtain ⟨W, o, c, H, G⟩ := _root_.GlobalTheory.LevCover.kerlocus_open_closed Y A n Bool Bf ff B' f' hA
     (fun i => match i with
       | false => h₁
       | true => h₂) h'
@@ -378,7 +378,7 @@ theorem UpperTheory.exists_clopen_subgroup_locus :
   have hεm := Rd.o₀.act.hom (algebraMap (𝓞 D.F) D.O ε)
   obtain ⟨W₁, o₁, c₁, H₁, G₁⟩ := two_locus Rd.Y.left Rd.o₀.A Rd.o'.A Rd.o₀.A B₀ c Rd.ψ
     (Rd.o₀.act.act (algebraMap (𝓞 D.F) D.O ε)) q₀ Rd.o₀.ab Rd.o'.ab Rd.o₀.ab hB₀ hcu
-  obtain ⟨W₂, o₂, c₂, H₂, G₂⟩ := GlobalTheory.T.isClopen_torsion_kernel_locus Rd.Y.left Rd.o₀.A c Unit (fun _ => B₀)
+  obtain ⟨W₂, o₂, c₂, H₂, G₂⟩ := _root_.GlobalTheory.LevCover.kerlocus_open_closed Rd.Y.left Rd.o₀.A c Unit (fun _ => B₀)
     (fun _ => q₀) Rd.o'.A Rd.ψ Rd.o₀.ab (fun _ => hB₀) Rd.o'.ab (fun _ => hq₀m) hψm hcu
   refine ⟨W₁ ∩ W₂, o₁.inter o₂, c₁.inter c₂, fun Tb t hW => ?_, fun k _ _ y => ?_⟩
   · have hW₁ := H₁ Tb t (hW.trans Set.inter_subset_left)

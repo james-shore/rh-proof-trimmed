@@ -277,7 +277,7 @@ theorem exists_nat_vec {L : Submodule (𝓞 E) (Fin n → E)}
       lamAf (F := F) L := by
     intro i
     obtain ⟨A, hA0, hA⟩ := exists_nat_R (F := F) (E := E) (w i)
-    obtain ⟨B, hB0, hB⟩ := exists_nat_L (L := L) (z := Pi.single i 1)
+    obtain ⟨B, hB0, hB⟩ := _root_.Bl.NatMulIsIntegral.goal1 (L := L) (z := Pi.single i 1)
       (by rw [hspan]; exact Submodule.mem_top)
     refine ⟨A * B, Nat.mul_pos hA0 hB0, ?_⟩
     have e1 : ivec (F := F) (B • (Pi.single i 1 : Fin n → E)) =

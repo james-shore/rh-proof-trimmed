@@ -332,8 +332,8 @@ private theorem ine_of_unit : GlobalTheory.Published.GlobalArtinReciprocity → 
     rfl
   obtain ⟨τ, hτF, hτπ, hτc⟩ := frob_fix hGAR E Ω art ha v A hA ϖ hϖ hϖ2 π hπ
   obtain ⟨τ', hτ'F, hτ'π, hτ'c⟩ := frob_fix hGAR E Ω art ha v A hA (ϖ * u) hϖ' hϖ2' (π * t) hπt
-  have hI1 := GlobalTheory.T.frobenius_inv_mul_mem_inertia E Ω v A hA τ τ' hτF hτ'F
-  have hV1 := GlobalTheory.T.frobenius_ratio_pi_congr_tame_unit E Ω v A hA u hun π t hπ0 ht τ τ' hτF hτ'F hτπ hτ'π
+  have hI1 := _root_.GlobalTheory.frob_inv_mul_mem_inertia E Ω v A hA τ τ' hτF hτ'F
+  have hV1 := _root_.GlobalTheory.TameRatio.ratio_cong E Ω v A hA u hun π t hπ0 ht τ τ' hτF hτ'F hτπ hτ'π
   set cϖ : (v.adicCompletion E)ˣ := (-1) ^ normV v * atFin v (Units.mk0 _ hϖ0) with hcϖ
   set cu : (v.adicCompletion E)ˣ := atFin v (Units.mk0 _ hu0) with hcu
   have hcu' : (cu : v.adicCompletion E) = algebraMap E (v.adicCompletion E) (u : E) := by
@@ -354,11 +354,11 @@ private theorem ine_of_unit : GlobalTheory.Published.GlobalArtinReciprocity → 
       rw [Units.val_inv_eq_inv_val, map_inv₀, hcu', hvu, inv_one]
     rw [hsplit, map_mul, hcuinv, mul_one, hcu']
     exact hxu
-  obtain ⟨z, hz1, hzy⟩ := GlobalTheory.T.exists_unit_pow_normV_sub_one' E v (cu⁻¹ * x) hy
+  obtain ⟨z, hz1, hzy⟩ := _root_.GlobalTheory.OneUnitRoot.exists_unit_pow_normV_sub_one E v (cu⁻¹ * x) hy
   obtain ⟨ρ, hρI, hρ⟩ := (ha.ine v A hA (art (localIdele E v z))).1 ⟨z, hz1, rfl⟩
   refine ⟨(τ'⁻¹ * τ) * ρ ^ (normV v - 1), mul_mem hI1 (pow_mem hρI _), ?_, ?_⟩
   · rw [map_mul, e3, map_pow, hρ, ← map_pow, ← map_pow, hzy, ← map_mul, ← map_mul, mul_inv_cancel_left]
-  · rw [AlgEquiv.mul_apply, GlobalTheory.T.inertia_pow_residueCard_sub_one_apply_of_pow_mem E Ω v A hA (ϖ : E) π hπ ρ hρI]
+  · rw [AlgEquiv.mul_apply, _root_.GlobalTheory.ine_pow_normV_sub_one_apply_of_pow_mem E Ω v A hA (ϖ : E) π hπ ρ hρI]
     exact hV1
 
 end Frob
@@ -441,7 +441,7 @@ private theorem weil_smul_eq_of_local_artin_eq {M Ω : Type} [Field M] [NumberFi
 
 private theorem tame_all : ∀ (M Ω : Type) [Field M] [NumberField M] [Field Ω] [Algebra M Ω] [IsAlgClosure M Ω] (g : ℕ) [Fact g.Prime] (A : ValuationSubring Ω) (v : HeightOneSpectrum (𝓞 M)) (h : IsPlaceOver A v), ((g : ℕ) : 𝓞 M) ∈ v.asIdeal → ((g : ℕ) : 𝓞 M) ∉ v.asIdeal ^ 2 → ∀ a : Weil h →* (v.adicCompletion M)ˣ, IsLocalArtin h a → ∀ π : Ω, π ^ (normV v - 1) = (g : Ω) → ∀ (t : Ine (F := M) A) (x : 𝓞 M), Valued.v ((a (ineIncl h t) : v.adicCompletion M) - algebraMap M (v.adicCompletion M) (x : M)) < 1 → A.valuation ((t : G M Ω) π / π - algebraMap M Ω (x : M)) < 1 := by
   intro M Ω _ _ _ _ _ g _ A v h hg hg2 a ha π hπ t x hx
-  obtain ⟨art, hart⟩ := GlobalTheory.globalArtinReciprocity_holds M Ω
+  obtain ⟨art, hart⟩ := _root_.CompanionTheory.FamInh.globalArtin M Ω
   have hu := GlobalTheory.ArtinInertia.isUnitAt_artin_ine h a ha t
   have hπ' : π ^ (normV v - 1) = algebraMap M Ω (((g : ℕ) : 𝓞 M) : M) := by
     rw [hπ]
@@ -453,7 +453,7 @@ private theorem tame_all : ∀ (M Ω : Type) [Field M] [NumberField M] [Field Ω
     have hq := one_lt_normV v
     rw [zero_pow (by omega)] at hπ
     exact hg0 hπ.symm
-  obtain ⟨σ, hσI, hσ, hσv⟩ := ine_of_unit GlobalTheory.globalArtinReciprocity_holds M Ω art hart v A h
+  obtain ⟨σ, hσI, hσ, hσv⟩ := ine_of_unit _root_.CompanionTheory.FamInh.globalArtin M Ω art hart v A h
     ((g : ℕ) : 𝓞 M) hg hg2 π hπ' (a (ineIncl h t)) x hu hx
   have heq : a (ineIncl h ⟨σ, hσI⟩) = a (ineIncl h t) := by
     apply GlobalTheory.ArtinLocalInj.artin_localIdele_injective GlobalTheory.Published.chevalleyUnits' M Ω art hart v

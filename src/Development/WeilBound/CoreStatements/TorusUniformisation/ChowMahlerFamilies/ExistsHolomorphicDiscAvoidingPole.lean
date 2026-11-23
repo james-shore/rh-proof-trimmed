@@ -78,11 +78,6 @@ theorem exists_dvd {P B : Type} [CommRing P] [IsDomain P] [CommRing B] [IsDomain
     (le_antisymm (Ideal.comap_mono bot_le) (h3 ▸ bot_le))
   exact hc (by simpa [← h4] using h1)
 
-theorem exists_point {K A : Type} [Field K] [CommRing A] [Algebra K A] [Algebra.FiniteType K A] (σ : K →+* ℂ)
-    (p : Ideal A) [hp : p.IsPrime] {b : A} (hb : b ∉ p) :
-    ∃ ψ : A →+* ℂ, ψ.comp (algebraMap K A) = σ ∧ (∀ a ∈ p, ψ a = 0) ∧ ψ b ≠ 0 :=
-  _root_.UpperTheory.Reformulated.B.DYhc4.main σ p hb
-
 theorem der_zero_etale {K B : Type} [Field K] [CommRing B] [Algebra K B] {d : ℕ} [Algebra (MvPolynomial (Fin d) K) B]
     [IsScalarTower K (MvPolynomial (Fin d) K) B] [Algebra.FormallyUnramified (MvPolynomial (Fin d) K) B]
     (ψ : B →+* ℂ) (δ : B →+ ℂ) (hmul : ∀ a b, δ (a * b) = ψ a * δ b + ψ b * δ a)
@@ -195,7 +190,7 @@ theorem disc_domain {K A S : Type} [Field K] [CommRing A] [IsDomain A] [Algebra 
   have g0 : g ≠ 0 := fun h => hg (h ▸ p.zero_mem)
   have hle : Submonoid.powers g ≤ nonZeroDivisors A := powers_le_nonZeroDivisors_of_noZeroDivisors g0
   have : IsDomain (Localization.Away g) := IsLocalization.isDomain_localization hle
-  obtain ⟨χ, h1, h2, h3⟩ := exists_point σ p (Ideal.IsPrime.mul_notMem ‹_› hb hg)
+  obtain ⟨χ, h1, h2, h3⟩ := _root_.UpperTheory.Reformulated.B.DYhc4.main σ p (Ideal.IsPrime.mul_notMem ‹_› hb hg)
   rw [map_mul] at h3
   let ψ₀ : Localization.Away g →+* ℂ := IsLocalization.Away.lift g (g := χ) (right_ne_zero_of_mul h3).isUnit
   have hψ : ∀ x, ψ₀ (algebraMap A _ x) = χ x := IsLocalization.Away.lift_eq g _

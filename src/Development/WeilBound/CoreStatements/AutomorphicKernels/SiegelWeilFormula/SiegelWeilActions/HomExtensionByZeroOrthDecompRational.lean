@@ -134,11 +134,8 @@ def W (R : RD d) : Mt d := kunf.jw d.n (((R.ε : ℤ) : AE F E))
 
 def cv (σ : E →ₐ[F] E) {ι : Type} (x : ι → AE F E) : ι → AE F E := fun r => cA σ (x r)
 
-theorem e_mul_e (R : RD d) : (((R.ε : ℤ) : AE F E)) * ((R.ε : ℤ) : AE F E) = 1 := by
-  rw [← Int.cast_mul, ← Units.val_mul, Int.units_mul_self, Units.val_one, Int.cast_one]
-
 theorem W_transpose (R : RD d) : (W R)ᵀ = (((R.ε : ℤ) : AE F E)) • W R := by
-  have he := e_mul_e R
+  have he := _root_.PositivityTheory.SiegelWeilFormula.Act.C5.eps_mul R
   ext (i | i) (j | j) <;> simp [W, kunf.jw, Matrix.one_apply] <;> split_ifs <;> simp_all [eq_comm]
 
 theorem W_mul_alt (R : RD d) : W R * W R = (((R.ε : ℤ) : AE F E)) • (1 : Mt d) := by
@@ -156,7 +153,7 @@ theorem W_mulVec_inr (R : RD d) (y : Fin d.n ⊕ Fin d.n → AE F E) (i : Fin d.
 
 theorem JW {R : RD d} {J K : Mt d} (hKJ : K * J = 1) (hK : Kᵀ * W R * K.map (cA σ) = W R) :
     J * W R = W R * (K.map (cA σ))ᵀ := by
-  have he : ((R.ε : ℤ) : AE F E) * ((R.ε : ℤ) : AE F E) = 1 := e_mul_e R
+  have he : ((R.ε : ℤ) : AE F E) * ((R.ε : ℤ) : AE F E) = 1 := _root_.PositivityTheory.SiegelWeilFormula.Act.C5.eps_mul R
   have hJt : Jᵀ * Kᵀ = 1 := by rw [← Matrix.transpose_mul, hKJ, Matrix.transpose_one]
   have h1 : W R * K.map (cA σ) = Jᵀ * W R := by
     calc W R * K.map (cA σ) = (Jᵀ * Kᵀ) * W R * K.map (cA σ) := by rw [hJt, Matrix.one_mul]
@@ -192,9 +189,6 @@ def hh (L : LD d) (u b : Fin L.n → AE F E) : AE F E := ∑ j, b j * cA σ (u j
 def wf (R : RD d) (L : LD d) (u b : Fin L.n → AE F E) : Fin d.n ⊕ Fin d.n → AE F E :=
   -(((R.ε : ℤ) : AE F E)) • (W R *ᵥ cv σ (vV L u b))
 
-theorem jeA_eq (R : RD d) : eA R = ((R.ε : ℤ) : AE F E) := by
-  simp [eA]
-
 theorem uA_apply (u : Fin L.n → AE F E) (i k : Fin d.n) :
     uA L u i k = (1 : Matrix (Fin d.n) (Fin d.n) (AE F E)) i k + if i = L.i₀ then ext0 L u k else 0 := by
   by_cases hi : i = L.i₀
@@ -216,7 +210,7 @@ theorem sB_apply (R : RD d) (b : Fin L.n → AE F E) (i l : Fin d.n) :
     sB R L b i l = (if i = L.i₀ then ext0 L b l else 0) +
       if l = L.i₀ then -(((R.ε : ℤ) : AE F E) * cA σ (ext0 L b i)) else 0 := by
   unfold sB
-  simp only [Matrix.sum_apply, Matrix.add_apply, Matrix.single_apply, Finset.sum_add_distrib, jeA_eq]
+  simp only [Matrix.sum_apply, Matrix.add_apply, Matrix.single_apply, Finset.sum_add_distrib, _root_.PositivityTheory.SiegelWeilFormula.Act.C5.eA_eq]
   rcases idx L i with rfl | ⟨p, rfl⟩ <;> rcases idx L l with rfl | ⟨q, rfl⟩ <;>
 
     simp [ext0, ComplexParameterFamilyContinuity.em_ne, (ComplexParameterFamilyContinuity.em_ne L _).symm, L.inj.eq_iff, map_sum, apply_ite, eq_comm]
@@ -247,7 +241,7 @@ theorem frameN (h : Hyp L nb uM nb' w₁ cM δ) (u b : Fin L.n → AE F E) (a : 
         L.inj.eq_iff, hh, Finset.sum_neg_distrib, sub_eq_add_neg]
   · simp [Pi.single_apply]
   · rw [D_apply]
-    have he := e_mul_e R
+    have he := _root_.PositivityTheory.SiegelWeilFormula.Act.C5.eps_mul R
     by_cases hk : k = L.i₀ <;> simp [hk, Pi.single_apply, Matrix.one_apply, ← mul_assoc, he]
 
 def cmp (L : LD d) (M : Mt d) (p : (Fin L.n → AE F E) × (Fin L.n → AE F E)) :

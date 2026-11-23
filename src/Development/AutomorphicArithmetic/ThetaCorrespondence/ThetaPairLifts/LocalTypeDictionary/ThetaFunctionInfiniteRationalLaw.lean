@@ -567,7 +567,7 @@ private theorem lattice_orbit_negated_space {D : D7} (S T : HSp D) (LS : Set (Fi
 private theorem actO_mul_mul {D : D7} (S T : HSp D) (g a : GA D S) (h b : GA D T) (w : WO S T) :
     actO S T (g * a) (h * b) w = actO S T g h (actO S T a b w) := by
   simp only [actO]
-  rw [_root_.mul_inv_rev, GlobalTheory.LatMoveStd.mt_mul'', GlobalTheory.LatMoveStd.mt_mul'']
+  rw [_root_.mul_inv_rev, _root_.GlobalTheory.BesselCompare.mt_mul, _root_.GlobalTheory.BesselCompare.mt_mul]
   simp only [Matrix.mul_assoc]
 private theorem orbit_membership_of_onto_moves {D : D7} {S T : HSp D} {g a : GA D S} {h b : GA D T} {Λ₀ Λ Λ' : AddSubgroup (WO S T)}
     (h1 : (∀ w ∈ Λ₀, actO S T a b w ∈ Λ) ∧ ∀ w' ∈ Λ, ∃ w ∈ Λ₀, actO S T a b w = w')
@@ -581,13 +581,7 @@ private theorem orbit_membership_of_onto_moves {D : D7} {S T : HSp D} {g a : GA 
     obtain ⟨w, hw, rfl⟩ := h1.2 u₀ hu₀
     rw [← actO_mul_mul]
     exact h2.1 w hw
-private theorem exists_unit_det_of_idempotent {D : D7} {e : Formalism.L2.Theta.AE D} (he : e * e = e) (V : HSp D) (g : GA D V) :
-    ∃ x : (Formalism.L2.Theta.AE D)ˣ, IsDetAt e V g x := by
-  have hu : IsUnit (mt V g).det := (Matrix.isUnit_iff_isUnit_det _).1 (matHom V g).isUnit
-  obtain ⟨d', hd⟩ := hu.exists_right_inv
-  have h1 : (e * (mt V g).det + (1 - e)) * (e * d' + (1 - e)) = 1 := by
-    linear_combination (e * e) * hd + (2 - (mt V g).det - d') * he
-  exact ⟨⟨_, _, h1, by rw [mul_comm]; exact h1⟩, rfl⟩
+private alias exists_unit_det_of_idempotent := _root_.GlobalTheory.WeilUniq.exists_isDetAt
 private theorem idempotent_unit_inverse_shape {R : Type} [CommRing R] {e a : R} (he : e * e = e) {x : Rˣ} (hx : (x : R) = e * a + (1 - e)) :
     ((x⁻¹ : Rˣ) : R) = e * ((x⁻¹ : Rˣ) : R) + (1 - e) := by
   have h1 : (x : R) * ((x⁻¹ : Rˣ) : R) = 1 := x.mul_inv
@@ -653,11 +647,11 @@ theorem _root_.GlobalTheory.T.twist_splitMoveFrames_jets : _root_.GlobalTheory.F
   intro hP hI D Γ _ _ Pl0 T A Ks _ _ _ R ch hch p hp x y e he s s' hs hs'
   have hC := ch.S.Z.crv
   have hδ : ch.S.Z.δ ≠ 0 := GlobalTheory.InertSign.delta_ne_zero hC
-  have hsd := _root_.GlobalTheory.T.twisted_moved_series_decomposition hP hI ch hch p hp x y
-  have hsd' := _root_.GlobalTheory.T.twisted_moved_series_decomposition hP hI ch hch p hp (s * x) (s' * y)
-  have hvac := _root_.GlobalTheory.T.twisted_moved_vacuum_integral hP hI ch hch p hp x y
-  have hact := _root_.GlobalTheory.T.twisted_moved_lattice_action hP hI ch hch p hp x y
-  have hact' := _root_.GlobalTheory.T.twisted_moved_lattice_action hP hI ch hch p hp (s * x) (s' * y)
+  have hsd := _root_.GlobalTheory.MovedSD.moved_series_decomposition hP hI ch hch p hp x y
+  have hsd' := _root_.GlobalTheory.MovedSD.moved_series_decomposition hP hI ch hch p hp (s * x) (s' * y)
+  have hvac := _root_.GlobalTheory.MovedDict.moved_vacuum_isVacuumIntegral hP hI ch hch p hp x y
+  have hact := _root_.GlobalTheory.MovedDict.moved_lattice_action_compat hP hI ch hch p hp x y
+  have hact' := _root_.GlobalTheory.MovedDict.moved_lattice_action_compat hP hI ch hch p hp (s * x) (s' * y)
   have hc0 : (ch.S.Z.c0 p : ℂ) ≠ 0 := Units.ne_zero _
   have hn := DefPair.nodes hp
   obtain ⟨x₀, hx₀⟩ := exists_unit_det_of_idempotent he.1 _ (s : Formalism.L2.Theta.GA D (ch.G.V p.small))

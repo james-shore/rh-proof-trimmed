@@ -43,4 +43,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem witt_substitution : PI.WfSubst := PI.WfSubstProof.wfSubst

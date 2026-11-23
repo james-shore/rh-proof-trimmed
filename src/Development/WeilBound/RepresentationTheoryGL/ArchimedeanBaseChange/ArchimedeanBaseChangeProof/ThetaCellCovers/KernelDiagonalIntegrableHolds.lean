@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CellSumOfCntBasic
 
 @[expose] public section
 
@@ -64,7 +65,7 @@ theorem cutBox : CutBox := cutBox_of' degBasis degAdelic degBdd
 theorem redCell : RedCell := redCell_of sizeBasic degBdd degRat degRight torNorm_holds cutBox redBasic
 theorem cutRed : CutRed := cutRed_of degRat cellCover_holds cutBox redBasic redCell
 theorem cntPair : CntPair := cntPair_of ratProper_holds thetaBasic_holds
-theorem wtCount : WtCount := wtCount_of ratProper_holds cellSum cellCover_holds redBasic redCell GlobalTheory.CompanionTheory.LatticeSum.latSum
+theorem wtCount : WtCount := wtCount_of ratProper_holds _root_.GlobalTheory.CompanionTheory.CellSumProof.cellSum_holds cellCover_holds redBasic redCell GlobalTheory.CompanionTheory.LatticeSum.latSum
 theorem cutCount : CutCount := cutCount_of redBasic cutRed wtCount
 theorem vecsEx : VecsEx := GlobalTheory.CompanionTheory.DualVectorFamily.vecsEx_of ratProper_holds kerBasic kerLin cntBasic cntPair vecEx vecNorm vecInner ptEq
 theorem lBound : LBound := GlobalTheory.CompanionTheory.LBoundProof.lBound_of mahler_holds cutCount

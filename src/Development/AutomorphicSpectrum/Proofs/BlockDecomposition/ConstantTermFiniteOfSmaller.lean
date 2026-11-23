@@ -114,9 +114,9 @@ theorem centre (J : Set (Module.End ℂ (Sm E (r + s)))) (hJ : Cofin J) :
       (-(s : ℂ) / 2) ((r : ℂ) / 2) r s a b (fun u v => (GlobalTheory.T.capelli_operators_commute E r s τ u v).1)
       (fun u v => (GlobalTheory.T.capelli_operators_commute E r s τ u v).2.1) (fun u v => (GlobalTheory.T.capelli_operators_commute E r s τ u v).2.2)
       (fun u F hF => (GlobalTheory.T.capelli_constant_term_vanishing E r s τ u F).2 hF) (fun u F hF => ((GlobalTheory.T.capelli_constant_term_vanishing E r s τ u F).1 hF).1)
-      (fun u F hF => ((GlobalTheory.T.capelli_constant_term_vanishing E r s τ u F).1 hF).2) ?_ a1 a2 a3 b1 b2 b3 (fun F hF => hF.1) ?_
+      (fun u F hF => ((_root_.GlobalTheory.CompanionTheory.CTFin.CapStable.capStable E r s τ u F).1 hF).2) ?_ a1 a2 a3 b1 b2 b3 (fun F hF => hF.1) ?_
     · intro u F hF m
-      have := GlobalTheory.T.capelli_levi_factorization_sum E r s τ u F hF m
+      have := _root_.GlobalTheory.CompanionTheory.CTFin.CapFactor.cap_levi E r s τ u F hF m
       change (cap (a := r + s) τ u F).1 _ - (capS r s τ (u + (r : ℂ) / 2) (capR r s τ (u + -(s : ℂ) / 2) F)).1 _ = 0
       rw [this, sub_eq_zero]
       have e : u + -(s : ℂ) / 2 = u - (s : ℂ) / 2 := by ring
@@ -128,19 +128,19 @@ theorem centre (J : Set (Module.End ℂ (Sm E (r + s)))) (hJ : Cofin J) :
   choose q₂ m₂ h₂ using fun τ => (key τ).2
   refine ⟨{z | ∃ (τ : E →+* ℂ) (u : ℂ), z = Polynomial.aeval (cap (a := r) τ u) (q₁ τ u)},
     {z | ∃ (τ : E →+* ℂ) (u : ℂ), z = Polynomial.aeval (cap (a := s) τ u) (q₂ τ u)}, ?_, ?_, ?_, ?_⟩
-  · refine GlobalTheory.T.cofinite_of_capelli_monic E r _ ?_ fun τ u => ⟨q₁ τ u, m₁ τ u, τ, u, rfl⟩
+  · refine _root_.GlobalTheory.CompanionTheory.CTFin.MonicCofin.cofin_of_monic E r _ ?_ fun τ u => ⟨q₁ τ u, m₁ τ u, τ, u, rfl⟩
     rintro _ ⟨τ, u, rfl⟩
     exact aeval_mem_Zalg (cap_mem_Zalg τ u) _
-  · refine GlobalTheory.T.cofinite_of_capelli_monic E s _ ?_ fun τ u => ⟨q₂ τ u, m₂ τ u, τ, u, rfl⟩
+  · refine _root_.GlobalTheory.CompanionTheory.CTFin.MonicCofin.cofin_of_monic E s _ ?_ fun τ u => ⟨q₂ τ u, m₂ τ u, τ, u, rfl⟩
     rintro _ ⟨τ, u, rfl⟩
     exact aeval_mem_Zalg (cap_mem_Zalg τ u) _
   · rintro F hF hz G hG _ ⟨τ, u, rfl⟩
     refine Subtype.ext (funext fun m => ?_)
-    rw [(GlobalTheory.T.capelli_restrict_levi E r s τ u (q₁ τ u) F).1 G hG m]
+    rw [(_root_.GlobalTheory.CompanionTheory.CTFin.capelli_restrict E r s τ u (q₁ τ u) F).1 G hG m]
     exact h₁ τ u F ⟨hF, hz⟩ (m, 1)
   · rintro F hF hz G hG _ ⟨τ, u, rfl⟩
     refine Subtype.ext (funext fun m => ?_)
-    rw [(GlobalTheory.T.capelli_restrict_levi E r s τ u (q₂ τ u) F).2 G hG m]
+    rw [(_root_.GlobalTheory.CompanionTheory.CTFin.capelli_restrict E r s τ u (q₂ τ u) F).2 G hG m]
     exact h₂ τ u F ⟨hF, hz⟩ (1, m)
 
 theorem exists_mem_goodCT (L : Subgroup (GL (Fin (r + s)) (Af E))) {W : Type} [AddCommGroup W] [Module ℂ W]

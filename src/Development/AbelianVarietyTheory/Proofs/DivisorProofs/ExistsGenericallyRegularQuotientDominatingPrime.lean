@@ -68,7 +68,7 @@ theorem prime_generically_regular_quotient :
     apply hp a
     have : φ (MvPolynomial.C a) ∈ p := ha
     rwa [MvPolynomial.algHom_C] at this
-  obtain ⟨h, f, s, g₀, hg₀, hfQ, hgQ, hdet⟩ := GlobalTheory.T.exists_local_generators_jacobian_det_not_mem Λ (Fin n) Q hQ
+  obtain ⟨h, f, s, g₀, hg₀, hfQ, hgQ, hdet⟩ := _root_.GlobalTheory.exists_generic_jacobian_data_of_prime Λ (Fin n) Q hQ
   set δ := (Matrix.of fun i j => MvPolynomial.pderiv (s i) (f j)).det with hδ
   refine ⟨φ (g₀ * δ), ?_, ?_⟩
   · intro hmem

@@ -195,8 +195,8 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.IwahoriBlocks.x12 :
   intro K _ _ _ μ _ τ₁ τ₂ κ p₁ p₂ c₁ c₂ r₁ r₂ r w ι hw hι
   obtain ⟨s₁, sc₁⟩ := xSimple μ τ₁ κ p₁ c₁ r₁ w ι hw hι
   obtain ⟨s₂, -⟩ := xSimple μ τ₂ κ p₂ c₂ r₂ w ι hw hι
-  have m₁ := (xMem μ τ₁ κ p₁ r₁.1).2 c₁ w ι hw hι
-  have m₂ := (xMem μ τ₂ κ p₂ r₂.1).2 c₂ w ι hw hι
+  have m₁ := (_root_.UpperTheory.Reformulated.B.Gul4.xMem μ τ₁ κ p₁ r₁.1).2 c₁ w ι hw hι
+  have m₂ := (_root_.UpperTheory.Reformulated.B.Gul4.xMem μ τ₂ κ p₂ r₂.1).2 c₂ w ι hw hι
   set X₁ := Xs μ τ₁ κ p₁ (im w) with hX₁
   set X₂ := Xs μ τ₂ κ p₂ (im w) with hX₂
   have hstab : ∀ p, ∀ F ∈ tensFn X₁ X₂, tr (fin1 (ι (L₁ w p))) (fin1 (ι (L₂ w p))) F ∈ tensFn X₁ X₂ := fun p =>

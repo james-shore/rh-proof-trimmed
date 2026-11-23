@@ -107,7 +107,7 @@ theorem exists_weil_of_vacuum (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) (
     have h2 := hrat z ⟨F, hF⟩
     rw [← h2, hO, hO g g' ⟨F, hF⟩, ← hrat, map_smul, hOm1, h1, h (Matrix.of a) ha1]
   · intro k k' hk hk' hs hs'
-    have h3 := (GlobalTheory.T.sumOp_transversal_fixes_linear_and_of_le hH _ _ (hOm2 (k, k')).1).2.2 ((hidx k k').2.2 hk hk')
+    have h3 := (_root_.GlobalTheory.FinWeil.sumOp_transversal hH _ _ (hOm2 (k, k')).1).2.2 ((hidx k k').2.2 hk hk')
     rw [hO k k' ⟨e0, hT⟩, hc1 k hs, hc1' k' hs', mul_one, Units.val_one, one_smul, (hOm2 (k, k')).2, normOp, h3.1,
       h3.2 _ hfix, map_one, inv_one, one_smul]
   · intro g g' x x' L₁ L₁' hs hs' hx h1 h1' hL hL'

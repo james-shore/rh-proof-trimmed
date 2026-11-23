@@ -61,14 +61,7 @@ theorem norm_algebraMap_padicInt (a : ℤ_[l]) : ‖algebraMap ℤ_[l] (Qbar l) 
   rw [IsScalarTower.algebraMap_apply ℤ_[l] ℚ_[l] (PadicAlgCl l), norm_algebraMap']
   rfl
 
-theorem norm_le_one (c : Coef l) (x : c.O) : ‖(x : Qbar l)‖ ≤ 1 := by
-  first
-  | exact @_root_.GlobalTheory.ScalarNormBound.norm_le_one
-  | exact _root_.GlobalTheory.ScalarNormBound.norm_le_one
-  | (apply _root_.GlobalTheory.ScalarNormBound.norm_le_one <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ScalarNormBound.norm_le_one <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ScalarNormBound.norm_le_one <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ScalarNormBound.norm_le_one ..)
+alias norm_le_one := _root_.GlobalTheory.ScalarNormBound.norm_le_one
 
 def nbhd (c : Coef l) (n : ℕ) : AddSubgroup c.O where
   carrier := {x | ‖(x : Qbar l)‖ ≤ ‖((l : ℕ) : Qbar l) ^ n‖}

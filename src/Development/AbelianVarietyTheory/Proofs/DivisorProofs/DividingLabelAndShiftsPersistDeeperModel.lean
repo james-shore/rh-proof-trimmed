@@ -55,7 +55,7 @@ open GlobalTheory.UT ReciprocityTheory.ChartRestriction.G.DVR
 
 theorem _root_.GlobalTheory.Poinc.Sep.div_lam_and_lam_mem_HH : ∀ g : ℕ, 1 ≤ g → ∀ n : ℕ, 3 ≤ n → Odd n → ∀ (F : SFam g n (zetaAway n)) (Z : Scheme.{0}) (z : Z ⟶ Sp (cycAway n)) (i : F.X ⟶ Z) [IsOpenImmersion i], IsProjOver z → IsNormalScheme Z → i ≫ z = F.s → Dense (Set.range i) → ∀ W : Matrix (Fin 8) (Fin 8) ℤ, IsE8 W → ThetaInt F W i → ∀ (X₁ : Setup F W i) (z₁ : X₁.M.Z) (act : Matrix (Fin 8) (Fin 8) ℤ → (X₁.ρ.P.A ⟶ X₁.ρ.P.A)), IsAct X₁ act → ∀ (𝔗 : Tower X₁ act) (z₂ : 𝔗.X₂.M.Z), 𝔗.p z₂ = z₁ → ∀ x₀ : X₁.S.Gam, X₁.M.Div X₁.S.th x₀ z₁ → ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V] (ev : X₁.M.Z.presheaf.stalk z₁ →+* V) (X : Type) [AddCommGroup X] (m : ℕ) (t : Fin m → V) (δ : Fin m → LinearMap.BilinForm ℤ X) (𝔪 : UMem X₁ z₁ act V ev X t δ), 𝔗.X₂.M.Div 𝔗.X₂.S.th (𝔗.lam x₀) z₂ ∧ ∀ a ∈ X₁.S.HH X₁.M z₁, 𝔗.lam a ∈ 𝔗.X₂.S.HH 𝔗.X₂.M z₂ := by
   intro g hg n hn hodd F Z z i _ hproj hnorm hiz hdense W hW hTI X₁ z₁ act hact 𝔗 z₂ hz₂ x₀ hx₀ V _ _ _ ev X _ m t δ 𝔪
-  refine ⟨GlobalTheory.T.dividingLabel_stays_dividing_deeper_model g hg n hn hodd F Z z i hproj hnorm hiz hdense W hW hTI X₁ z₁ act hact 𝔗 z₂ hz₂ x₀ hx₀ V ev X m t δ 𝔪, ?_⟩
+  refine ⟨_root_.GlobalTheory.Poinc.Sep.Tower.div_lam g hg n hn hodd F Z z i hproj hnorm hiz hdense W hW hTI X₁ z₁ act hact 𝔗 z₂ hz₂ x₀ hx₀ V ev X m t δ 𝔪, ?_⟩
   intro a ha
   obtain ⟨V', _, _, _, io, ev₂, hcn', hinj, hfin, -, -, hext⟩ := GlobalTheory.T.exists_centred_pure_finite_extension_deeper_model g hg n hn hodd F Z z i hproj hnorm hiz hdense W hW hTI
     X₁ z₁ act hact 𝔗 z₂ hz₂ V ev 𝔪.cn 𝔪.loc 𝔪.reg

@@ -117,8 +117,8 @@ theorem exists_baseChange_fits : ∀ (T O : Type) [CommRing T] [IsDomain T] [IsL
     exact ha
   obtain ⟨hi, hil, hqu, hQA, hjA, hψA, htors⟩ := hFits
   obtain ⟨EA₁, _, _, _, _, _, QA₁, _, jA₁, γ₀, γ, ρ', hQA₁, hjA₁, hjγ, hγ₀, hγA, hρ'γ, hρ'id, hρ'X, hρ'c, hρ'k⟩ :=
-    GlobalTheory.T.exists_baseChange_retract_alt T O hTO hX A i EA QA jA ρ hQA hjA hRet A₁ j i₁ hi₁ hi₁l hij
-  obtain ⟨ρ₁, hRet₁, hρ₁⟩ := GlobalTheory.T.keyOrigin_retraction_localises T O A₁ EA₁ i₁ hi₁l hTO QA₁ jA₁ ρ' hX hρ'id hρ'X hρ'c hρ'k
+    _root_.GlobalTheory.KeyOriginBaseChangeCons.exists_baseChange_retract T O hTO hX A i EA QA jA ρ hQA hjA hRet A₁ j i₁ hi₁ hi₁l hij
+  obtain ⟨ρ₁, hRet₁, hρ₁⟩ := _root_.GlobalTheory.KeyOriginEnlargeLoc.retract_localises T O A₁ EA₁ i₁ hi₁l hTO QA₁ jA₁ ρ' hX hρ'id hρ'X hρ'c hρ'k
   have hjA₁c : jA₁.comp (algebraMap A₁ (Localization.AtPrime QA₁)) = (algebraMap T O).comp i₁ := by
     ext a
     have e1 : algebraMap A₁ (Localization.AtPrime QA₁) a =
@@ -130,12 +130,12 @@ theorem exists_baseChange_fits : ∀ (T O : Type) [CommRing T] [IsDomain T] [IsL
     rw [RingHom.comp_apply, e1, ← RingHom.comp_apply, hjA₁, RingHom.comp_apply, Polynomial.coe_mapRingHom,
       Polynomial.map_C, RingHom.comp_apply, IsScalarTower.algebraMap_apply T (Polynomial T) O]
     rfl
-  obtain ⟨ψA₁, β, hψA₁, hψβ, hβ⟩ := GlobalTheory.T.generic_fibre_compatibility T O A A₁ _ _ j i₁ hj hi₁ jA jA₁ γ ψA hjA₁c hγA hjγ hψA
+  obtain ⟨ψA₁, β, hψA₁, hψβ, hβ⟩ := _root_.GlobalTheory.GenFibBaseChange.exists_genFib_maps T O A A₁ _ _ j i₁ hj hi₁ jA jA₁ γ ψA hjA₁c hγA hjγ hψA
   have hργ : ρ₁.comp γ = j.comp ρ := by
     apply IsLocalization.ringHom_ext QA.primeCompl
     rw [RingHom.comp_assoc, hγ₀, ← RingHom.comp_assoc, hρ₁, hρ'γ, RingHom.comp_assoc]
   obtain ⟨DA₁, _, _, actA₁, h, htors₁, hh, hpt⟩ :=
-    GlobalTheory.T.zmodTorsor_baseChange_transport_point A A₁ _ _ j γ ρ ρ₁ β hβ hRet₁.1 hργ q hq DA actA htors
+    _root_.GlobalTheory.KeyOriginCut.torsor_baseChange_point A A₁ _ _ j γ ρ ρ₁ β hβ hRet₁.1 hργ q hq DA actA htors
   refine ⟨EA₁, inferInstance, inferInstance, inferInstance, inferInstance, inferInstance, QA₁, inferInstance,
     jA₁, ψA₁, DA₁, inferInstance, inferInstance, actA₁, ρ₁, ⟨hi₁, hi₁l, ?_, hQA₁, hjA₁, hψA₁, htors₁⟩, hRet₁,
     β, h, hψβ, hh, hpt⟩

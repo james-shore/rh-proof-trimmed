@@ -126,12 +126,6 @@ private theorem sum_sq_pk (T : Finset (Pl F)) :
     (∑ v ∈ T, (Euler.idem v : AF F)) * ∑ v ∈ T, (Euler.idem v : AF F) = ∑ v ∈ T, (Euler.idem v : AF F) := by
   rw [Finset.sum_mul]
   exact Finset.sum_congr rfl fun v hv => idem_mul_sum_pk hv
-private theorem eps_sq_pk : realAd F 1 * realAd F 1 = realAd F 1 :=
-  Prod.ext (by
-    change (realAd F 1).1 * (realAd F 1).1 = (realAd F 1).1
-    rw [PositivityTheory.ThKG.Loc.Bump.eps_fst, one_mul]) (by
-    change (realAd F 1).2 * (realAd F 1).2 = (realAd F 1).2
-    rw [PositivityTheory.ThKG.Loc.Bump.eps_snd, zero_mul])
 private theorem eps_mul_sum_pk (T : Finset (Pl F)) : realAd F 1 * ∑ v ∈ T, (Euler.idem v : AF F) = 0 :=
   Prod.ext (by
     change (realAd F 1).1 * (∑ v ∈ T, (Euler.idem v : AF F)).1 = 0
@@ -156,7 +150,7 @@ private theorem pr_sum_mem_pk (H : Subgroup (UA σ X.J)) (g : UA σ X.J) (T : Fi
     exact mul_mem (h v (Finset.mem_insert_self _ _)) (ih fun u hu => h u (Finset.mem_insert_of_mem hu))
 private theorem mem_gInf_pk {g : UA σ X.J} : g ∈ gInf σ X ↔ realAd F 1 • (mat g - 1) = mat g - 1 := by
   refine ⟨fun h => ?_, fun h => Subgroup.subset_closure (PositivityTheory.ThKG.Loc.Bump.at_iff.2 h)⟩
-  have : gInf σ X ≤ (pr_pk (σ := σ) (X := X) (realAd F 1) eps_sq_pk).eqLocus (MonoidHom.id _) :=
+  have : gInf σ X ≤ (pr_pk (σ := σ) (X := X) (realAd F 1) _root_.PositivityTheory.ThKG.Loc.Cone.real_mul_self).eqLocus (MonoidHom.id _) :=
     (Subgroup.closure_le _).2 fun g hg => pr_eq_pk.2 (PositivityTheory.ThKG.Loc.Bump.at_iff.1 hg)
   exact pr_eq_pk.1 (this h)
 private theorem mem_gAt_pk {S : Finset (Pl F)} {g : UA σ X.J} :
@@ -196,7 +190,7 @@ private theorem mem_gOff_pk {S : Finset (Pl F)} {g : UA σ X.J} :
     g ∈ gOff σ X S ↔ (1 - realAd F 1 - ∑ v ∈ S, (Euler.idem v : AF F)) • (mat g - 1) = mat g - 1 := by
   set b := ∑ v ∈ S, (Euler.idem v : AF F) with hb
   have key : (1 - realAd F 1 - b) * (1 - realAd F 1 - b) = 1 - realAd F 1 - b := by
-    have h1 := eps_sq_pk (F := F)
+    have h1 := _root_.PositivityTheory.ThKG.Loc.Cone.real_mul_self (F := F)
     have h2 := sum_sq_pk S
     have h3 := eps_mul_sum_pk S
     rw [← hb] at h2 h3
@@ -214,7 +208,7 @@ private theorem mem_gOff_pk {S : Finset (Pl F)} {g : UA σ X.J} :
   · intro h
     refine Subgroup.subset_closure ⟨inf_of_eps_pk ?_, fun v hv => ?_⟩
     · have h3 := eps_mul_sum_pk (F := F) S
-      have h4 := eps_sq_pk (F := F)
+      have h4 := _root_.PositivityTheory.ThKG.Loc.Cone.real_mul_self (F := F)
       rw [← hb] at h3
       rw [← h, smul_smul, show realAd F 1 * (1 - realAd F 1 - b) = 0 by linear_combination -h3 - h4, zero_smul]
     · refine Euler.off_of (pr_one_pk (he := Euler.idem_sq v) ?_)
@@ -279,7 +273,7 @@ theorem UpperTheory.TP.decomp_k :
   have h00 : min n 0 = 0 := by simp
   obtain ⟨K, -, -, hK, hKc, -, -⟩ := _root_.PositivityTheory.ThKG.Tow.stabEx_k F E σ B n X n 0 hB hX
   have eK : (K : Set (UA σ X.J)) = {g | IntAll g} := Set.ext fun g => _root_.GlobalTheory.ThK.Dbl.Bad.stab_iff_k hB hX h00 hK
-  have h1 := eps_sq_pk (F := F)
+  have h1 := _root_.PositivityTheory.ThKG.Loc.Cone.real_mul_self (F := F)
   have h2 := sum_sq_pk (F := F) S
   have h3 := eps_mul_sum_pk (F := F) S
   have cI : IsClosed (gInf σ X : Set (UA σ X.J)) := by

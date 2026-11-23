@@ -134,7 +134,7 @@ theorem tl_mul_comm [_root_.NumberField.IsTotallyComplex E] {n : ℕ} (ϖ : ∀ 
     GlobalTheory.CellDec.tl n ϖ l * p = p * GlobalTheory.CellDec.tl n ϖ l := by
   apply ga_ext
   · simp [GlobalTheory.CellDec.tl, map_mul]
-  · apply GlobalTheory.CellDec.GL_ext_pLoc
+  · apply _root_.GlobalTheory.CuspRep.LocUniq.gl_ext
     intro w
     change GlobalTheory.CellDec.compV E n w (GlobalTheory.CellDec.tl n ϖ l * p) = GlobalTheory.CellDec.compV E n w (p * GlobalTheory.CellDec.tl n ϖ l)
     rw [map_mul, map_mul]

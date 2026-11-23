@@ -204,7 +204,7 @@ theorem div_unique : ∀ {D : D7} (V : HSp D) (P : HeightOneSpectrum (𝓞 D.hos
       have hj : j.1 < a.length := by rw [la]; exact j.2
       simp only [List.getD_eq_getElem _ _ hi, List.getD_eq_getElem _ _ hj]
       exact List.pairwise_iff_getElem.1 ha _ _ hi hj hlt
-  have key := Formalism.UG.Final.CartanUnique D.host.E P V.rank _ (Formalism.UG.P.cartan_unif_lt_one D.host.E P _ hv).le hv
+  have key := _root_.Formalism.UG.P.cartan_decomposition_unique_holds D.host.E P V.rank _ (Formalism.UG.P.cartan_unif_lt_one D.host.E P _ hv).le hv
     _ _ (anti d l hd) (anti d' l' hd') k₁ hk₁ k₂ hk₂ hk
   refine List.ext_getElem (l.trans l'.symm) fun i hi hi' => ?_
   have := congrFun key ⟨i, by rw [← l]; exact hi⟩

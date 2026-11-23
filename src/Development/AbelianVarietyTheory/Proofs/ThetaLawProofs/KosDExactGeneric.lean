@@ -148,7 +148,7 @@ theorem kosD_exact_generic : Out.Laws → ∀ (O : Type) [CommRing O] [IsDomain 
   obtain ⟨x', φ, w, hg, s', b', m', hkv, hsv, hbv, hb', hmul', hm', -⟩ :=
     GlobalTheory.T.exists_keyData_baseChange_sections_matrices hL O K f x n l s b m hl hb hmul
   obtain ⟨z', ch', u, het, hval⟩ :=
-    GlobalTheory.T.transversal_zeros_of_jacobian_ne_zero_domain O K x x' f φ w n d hg s s' z ch hf hkv hsv hz0 hs0 hjac hzi hcov
+    _root_.GlobalTheory.KeyKa.etZ_of_jac_ne_zero O K x x' f φ w n d hg s s' z ch hf hkv hsv hz0 hs0 hjac hzi hcov
   have hl' : x'.P.g * n < l := by rw [hg]; exact hl
   obtain ⟨-, t, m'', hmul'', ht⟩ := GlobalTheory.T.exists_koszulTorsion_transversal_split_zeros hL K x' n l d s' b' z' ch' hn hl' hb' het
   refine exact_kosD_map f hg (fun j => l - j * n) m

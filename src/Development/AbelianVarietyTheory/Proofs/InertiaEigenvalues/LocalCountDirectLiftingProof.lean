@@ -87,7 +87,7 @@ theorem main : StepLocDirect := by
   · rintro _ ⟨a, x, hx, E, Y, hY, hst, hE, rfl⟩
     let U := LocDirect.ModuleGaloisRepresentation i w hw M hM
     let X := LocDirect.Xgrep i w hw r x (fun j => hc (x j)) Y hst
-    obtain ⟨K', hK', hcrys⟩ := GlobalTheory.T.tensorLocalField_isCrystalline_over_familyField D hFont i r hr Xs w hw n hPot M hSub hM
+    obtain ⟨K', hK', hcrys⟩ := _root_.GlobalTheory.Pass.LocCrysU.main D hFont i r hr Xs w hw n hPot M hSub hM
     have hUdR : IsDR (Br.PD D.loc D.nbr i w hw) U.ρ :=
       hPDR (D.nd.l i) (D.nbr i w hw).Kw K' (D.nbr i w hw).LL hK' U hcrys
     obtain ⟨U', LT', PU, hdual, hrank⟩ := GlobalTheory.T.crystalline_over_extension D hFont hBK hPDR i w hw hdeg M hM K' hK' hcrys

@@ -97,7 +97,7 @@ theorem gl1 : GLOnto 1 ∧ GLCount 1 := by
       rw [hM0, Matrix.det_neg, Matrix.det_mul, h, mul_zero, mul_zero]
     obtain ⟨hInt, hcard⟩ := GlobalTheory.T.lang_count_frobenius_eq_mulVec_solutions F p m e he A hA hAdet
     have hq : 0 < p ^ e := pow_pos (Fact.out : p.Prime).pos e
-    obtain ⟨z, -, hz⟩ := GlobalTheory.T.existsUnique_integral_additiveSystemFrobeniusPowerSum_eq F p m e D he U hU0 hUn 0 (fun i => by simp)
+    obtain ⟨z, -, hz⟩ := _root_.GlobalTheory.PMonE.existsUnique_integral_gsum_eq F p m e D he U hU0 hUn 0 (fun i => by simp)
     have key : ∀ x : m → F, Integral x →
         (gsum (p ^ e) D M x = 0 ↔ ∀ i, x i ^ p ^ e = A.mulVec x i) := by
       intro x hx

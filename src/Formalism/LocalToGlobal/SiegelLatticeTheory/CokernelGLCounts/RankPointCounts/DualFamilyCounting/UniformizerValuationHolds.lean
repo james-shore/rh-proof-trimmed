@@ -49,6 +49,7 @@ import Mathlib.Topology.Sheaves.Init
 import Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.CongrPIffInI
 import Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.InLZeroIff
 public import Mathlib.RingTheory.Filtration
+import Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.NeZeroOfNotMem
 
 @[expose] public section
 
@@ -83,11 +84,6 @@ private theorem vF_spec_of_ne_zero {𝔭 : Ideal (𝓞 F)} (h𝔭 : 𝔭.IsMaxim
   have hle : vF 𝔭 a + 1 ≤ vF 𝔭 a := le_csSup hbdd h
   omega
 
-private theorem jK_iota_ne_zero {a : 𝓞 F} (ha : a ≠ 0) : κ (ι a) ≠ 0 := by
-  rw [← IsScalarTower.algebraMap_apply (𝓞 F) (𝓞 K) K, IsScalarTower.algebraMap_apply (𝓞 F) F K]
-  refine (map_ne_zero (algebraMap F K)).mpr ?_
-  exact (map_ne_zero_iff _ (IsFractionRing.injective (𝓞 F) F)).mpr ha
-
 theorem exists_mul_eq_of_mem_pow {𝔭 : Ideal (𝓞 F)} (h𝔭 : 𝔭.IsMaximal) {a a' : 𝓞 F}
     (ha : a ≠ 0) (ha' : a' ∈ 𝔭 ^ vF 𝔭 a) :
     ∃ t : 𝓞 F, t ∉ 𝔭 ∧ ∃ c : 𝓞 F, t * a' = c * a := by
@@ -114,7 +110,7 @@ theorem div_mem_locRing_of_mem_pow {P : Ideal (𝓞 K)} (hP : P.IsMaximal) {a a'
     κ (ι a') / κ (ι a) ∈ locRing P := by
   have hPm : (P.comap ι).IsMaximal := Ideal.isMaximal_under_of_isIntegral_of_isMaximal (R := 𝓞 F) P
   obtain ⟨t, ht, c, hc⟩ := exists_mul_eq_of_mem_pow hPm ha ha'
-  have hκa : κ (ι a) ≠ 0 := jK_iota_ne_zero ha
+  have hκa : κ (ι a) ≠ 0 := _root_.Formalism.HermitianLattices.Ext.L3.HU.jι_ne_zero ha
   have e : κ (ι t) * (κ (ι a') / κ (ι a)) = κ (ι c) := by
     rw [← mul_div_assoc, ← map_mul, ← map_mul, hc, map_mul, map_mul, mul_div_cancel_right₀ _ hκa]
   show κ (ι a') / κ (ι a) ∈ Formalism.HermitianLatticesTheory.locR (K := K) P
@@ -207,7 +203,7 @@ theorem unifVal_at {P : Ideal (𝓞 K)} (hP : P.IsMaximal) :
   have hy : κ (ι p0) ≠ 0 := fun h0 => hu'.1 (by rw [h0, zero_mul])
   refine ⟨π, hπ, fun a ha => ?_⟩
   obtain ⟨hav, -⟩ := vF_spec_of_ne_zero hPm ha
-  have hκa : κ (ι a) ≠ 0 := jK_iota_ne_zero ha
+  have hκa : κ (ι a) ≠ 0 := _root_.Formalism.HermitianLattices.Ext.L3.HU.jι_ne_zero ha
   rw [hcoe a]
   have hιa : ι a ∈ extP K (P.comap ι) ^ vF (P.comap ι) a := by
     show ι a ∈ (Ideal.map ι (P.comap ι)) ^ _

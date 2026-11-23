@@ -81,14 +81,14 @@ theorem idealX_le_idealD : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [Is
     | zero => simp
     | succ m ih => rw [Nat.mul_succ, pow_add, pow_mul, ih, hper1]
   have hprin : ∀ χ : MulChar F R, ∃ c : R, c ≠ 0 ∧ xIdeal S.carrier χ = Ideal.span {c} :=
-    fun χ => (GlobalTheory.T.character_ideal_principal_eigen p C v R hv hp F f hq S hSst χ).1
+    fun χ => (_root_.GlobalTheory.CompanionTheory.Ar.GR.eig_rank_one p C v R hv hp F f hq S hSst χ).1
   choose c0 hc0 hc0' using hprin
   let c : ℕ → R := fun n => c0 (τ ^ p ^ n)
   have hcX : ∀ n, idealX AA.carrier K t (τ ^ p ^ n) = Ideal.span {c n} := by
     intro n
     rw [idealX, ← hS]
     exact hc0' _
-  have hom := GlobalTheory.T.fundamental_ideal_frobenius_product p C v R hv hp F f hq S hSst τ hτ c (fun n => hc0' _)
+  have hom := _root_.GlobalTheory.CompanionTheory.Relay.fundamental_ideal_frobenius_product p C v R hv hp F f hq S hSst τ hτ c (fun n => hc0' _)
   have hcper : ∀ m, c (f * m) = c 0 := by
     intro m
     simp only [c, hper m, pow_zero, pow_one]
@@ -111,13 +111,13 @@ theorem idealX_le_idealD : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [Is
     rw [← pow_mul, ← pow_succ]
   have hlt : ∀ n, y n ^ p < y (n + 1) → c (n + 1) ∈ idealD p AA.carrier K t (τ ^ p ^ (n + 1)) := by
     intro n h
-    have := GlobalTheory.T.stable_hopf_order_subgroup_quotient p C v R hv hp F f hq N AA hst K t ht hgen (τ ^ p ^ n) (hfund n)
+    have := _root_.PositivityTheory.HtPt.Rfin.a_nonunit p C v R hv hp F f hq N AA hst K t ht hgen (τ ^ p ^ n) (hfund n)
       (c n) (c (n + 1)) (hcX n) (by rw [hpowp]; exact hcX (n + 1)) h
     rwa [hpowp] at this
   have heq : ∀ n, y n ^ p = y (n + 1) → c n ∈ idealD p AA.carrier K t (τ ^ p ^ n) →
       c (n + 1) ∈ idealD p AA.carrier K t (τ ^ p ^ (n + 1)) := by
     intro n h hg
-    have h1 := GlobalTheory.T.stable_hopf_order_subgroup_length p C v R hv hp F f hq N AA hst K t (τ ^ p ^ n) (c n) hg
+    have h1 := _root_.PositivityTheory.HtPt.Rd.a_pow p C v R hv hp F f hq N AA hst K t (τ ^ p ^ n) (c n) hg
     rw [hpowp] at h1
     obtain ⟨δ, hδ⟩ := (hom n).2.1
     have hv1 : v (algebraMap R C δ) = 1 := by
@@ -163,7 +163,7 @@ theorem idealX_le_idealD : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [Is
         rw [pow_zero, pow_one] at this
         rw [this]
         exact Ideal.span_singleton_eq_top.2 hu
-      obtain ⟨τ', hτ', hD⟩ := GlobalTheory.T.hopf_order_ideals_eq_top p C v R hv hp F f hq N AA hst K t ht hgen τ hX
+      obtain ⟨τ', hτ', hD⟩ := _root_.GlobalTheory.CompanionTheory.Relay.hopf_order_ideals_eq_top p C v R hv hp F f hq N AA hst K t ht hgen τ hX
       obtain ⟨n, -, rfl⟩ := hfunds τ' hτ'
       exact ⟨n, by rw [hD]; trivial⟩
   obtain ⟨n, hn⟩ := hex

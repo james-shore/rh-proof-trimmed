@@ -43,11 +43,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 open UpperTheory.Gal.LocalSmoothExtension
 
-private theorem exists_perm_of_map_eq {n : ℕ} (a b : Fin n → ℂ)
-    (h : Finset.univ.val.map a = Finset.univ.val.map b) :
-    ∃ e : Equiv.Perm (Fin n), ∀ i, b (e i) = a i :=
-  _root_.UpperTheory.Reformulated.B.Qh57.exists_perm_of_map_eq a b h
-
 theorem UpperTheory.Gal.LocalSmoothExtension.schWEq_of :
     SchWEq := by
   intro F _ _ n lam χ g hg
@@ -55,7 +50,7 @@ theorem UpperTheory.Gal.LocalSmoothExtension.schWEq_of :
   unfold schW
   rw [dite_eq_left h]
   refine Finset.prod_congr rfl fun τ _ => ?_
-  obtain ⟨e, he⟩ := exists_perm_of_map_eq (h.choose τ) (g τ)
+  obtain ⟨e, he⟩ := _root_.UpperTheory.Reformulated.B.Qh57.exists_perm_of_map_eq (h.choose τ) (g τ)
     ((h.choose_spec τ).symm.trans (hg τ))
   have hge : h.choose τ = g τ ∘ e := funext fun i => (he i).symm
   rw [hge]

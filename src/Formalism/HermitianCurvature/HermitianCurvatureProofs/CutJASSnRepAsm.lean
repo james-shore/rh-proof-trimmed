@@ -46,6 +46,8 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.LiftMemMatrixAlgebra
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.SumPairAtStarMul
 
 @[expose] public section
 
@@ -81,14 +83,8 @@ theorem cd_comp {X : Type} [NormedAddCommGroup X] [NormedSpace ℝ X] {U V W : T
     ContDiff ℝ n (fun x => (g x).comp (f x)) :=
   ((ContinuousLinearMap.compL ℂ U V W).bilinearRestrictScalars ℝ).isBoundedBilinearMap.contDiff.comp (hg.prodMk hf)
 
-theorem hsVec_zero' : B.hsVec (0 : Wq →L[ℂ] Wp) = 0 := by
-  unfold B.hsVec; ext i; simp
-
-theorem hsInner_zero_l (B' : Wq →L[ℂ] Wp) : B.hsInner (0 : Wq →L[ℂ] Wp) B' = 0 := by
-  unfold B.hsInner; rw [hsVec_zero', inner_zero_right]
-
 theorem hsInner_zero_r (A : Wq →L[ℂ] Wp) : B.hsInner A (0 : Wq →L[ℂ] Wp) = 0 := by
-  unfold B.hsInner; rw [hsVec_zero', inner_zero_left]
+  unfold B.hsInner; rw [_root_.Formalism.FourierDecayAlt.P.JCx1.needs.hsVec_zero, inner_zero_left]
 
 theorem inner_hs_smul (c : ℂ) (A B' : Wq →L[ℂ] Wp) :
     inner ℂ (B.hsVec A) (B.hsVec (c • B')) = c * inner ℂ (B.hsVec A) (B.hsVec B') := by
@@ -101,14 +97,14 @@ theorem mat_gen {Ty : Type} [Fintype Ty] [DecidableEq Ty] (Qd : Ty → (Wq →L[
     B.hsInner (∑ π', ∑ ρ', c π' ρ' • Qd ρ' (T0 (Qd π' (e π)))) (e ρ) = c π ρ * B.hsInner (T0 (e π)) (e ρ) := by
   rw [kap_hsInner_sum_left, Finset.sum_eq_single π]
   · rw [kap_hsInner_sum_left, Finset.sum_eq_single ρ]
-    · rw [kap_hsInner_smul_left, hQadj, hline π π, hline ρ ρ, if_pos rfl, if_pos rfl]
+    · rw [_root_.Formalism.FourierDecayAlt.P5.hsInner_smul_left, hQadj, hline π π, hline ρ ρ, if_pos rfl, if_pos rfl]
     · intro ρ' _ hne
-      rw [kap_hsInner_smul_left, hQadj, hline ρ' ρ, if_neg hne, hsInner_zero_r, mul_zero]
+      rw [_root_.Formalism.FourierDecayAlt.P5.hsInner_smul_left, hQadj, hline ρ' ρ, if_neg hne, hsInner_zero_r, mul_zero]
     · intro h; exact absurd (Finset.mem_univ ρ) h
   · intro π' _ hne
     rw [hline π' π, if_neg hne, map_zero]
     simp only [map_zero, smul_zero, Finset.sum_const_zero]
-    exact hsInner_zero_l _
+    exact _root_.Formalism.FourierDecayAlt.P5.HerA.hsInner_zero_left _
   · intro h; exact absurd (Finset.mem_univ π) h
 
 theorem mat_gen' {Ty : Type} [Fintype Ty] [DecidableEq Ty] (Qd : Ty → (Wq →L[ℂ] Wp) →L[ℂ] (Wq →L[ℂ] Wp))
@@ -162,7 +158,7 @@ theorem ssnRep_of (hTP : TypeProj) (hTF : ThtFacts) (hTG : ThtGaugeConst) : SSnR
     refine Finset.sum_congr rfl fun π _ => ?_
     rw [kap_hsInner_sum_left, kap_hsInner_sum_right]
     refine Finset.sum_congr rfl fun ρ _ => ?_
-    rw [kap_hsInner_smul_left, kap_hsInner_smul_right, hQadj, hadj, hQadj]
+    rw [_root_.Formalism.FourierDecayAlt.P5.hsInner_smul_left, _root_.Formalism.FourierDecayAlt.P5.HerB.hs_smul_right, hQadj, hadj, hQadj]
     congr 1
     split_ifs <;> simp
   ·

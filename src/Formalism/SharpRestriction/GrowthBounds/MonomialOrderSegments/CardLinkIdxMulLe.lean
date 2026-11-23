@@ -48,6 +48,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.DigitPartMonomial
 
 @[expose] public section
 
@@ -222,7 +223,7 @@ theorem stepB_of (h1 : 1 ≤ C0) (hV2 : V2 K) (hP : PROJ K v p C0) : StepB K v p
 
   have hsplit : D.gaAct (dg g (Pr (monomial α0 1))) =
       Pr (monomial α0 1) + dg (fun α => D.ga α * g α - 1) (Pr (monomial α0 1)) := by
-    rw [gaAct_eq_dg]
+    rw [_root_.Formalism.MainNotions.PlaneGram.TwistData.gaAct_eq]
     ext α
     rw [MvPolynomial.coeff_add, coeff_dg, coeff_dg, coeff_dg]
     ring
@@ -273,7 +274,7 @@ theorem stepB_of (h1 : 1 ≤ C0) (hV2 : V2 K) (hP : PROJ K v p C0) : StepB K v p
         dg g (Pr (monomial α0 1)))) =
         (p : K) ^ ⌈D.n0 v + D.Dl p C0 - vN v (fact α0) / 2⌉₊ *
           fock F (D.gaAct (dg g (Pr (monomial α0 1)))) := by
-      simp only [gaAct_eq_dg, map_smul, fock_smul_right]
+      simp only [_root_.Formalism.MainNotions.PlaneGram.TwistData.gaAct_eq, map_smul, fock_smul_right]
     rw [e1]
     refine vle_mono v ?_ (vle_pow_p hD _ hpair)
     have h8 := Nat.ceil_lt_add_one hx0

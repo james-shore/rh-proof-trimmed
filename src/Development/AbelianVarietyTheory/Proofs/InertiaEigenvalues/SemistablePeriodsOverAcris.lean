@@ -62,27 +62,13 @@ namespace GlobalTheory.CrisPeriods
 
 variable {l : ℕ} [Fact l.Prime]
 
-private theorem padicInt_hom_ext {R : Type} [CommRing R] [IsHausdorff (Ideal.span {(l : R)}) R]
-    (f g : ℤ_[l] →+* R) (z : ℤ_[l]) : f z = g z := by
-  rw [← sub_eq_zero]
-  refine IsHausdorff.haus (I := Ideal.span {(l : R)}) inferInstance _ fun n => ?_
-  obtain ⟨y, hy⟩ := Ideal.mem_span_singleton.1 (PadicInt.appr_spec n z)
-  have hz : z = (z.appr n : ℤ_[l]) + (l : ℤ_[l]) ^ n * y := by rw [← hy]; ring
-  rw [SModEq.zero, smul_eq_mul, Ideal.mul_top, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
-  refine ⟨f y - g y, ?_⟩
-  have hf := congrArg f hz
-  have hg := congrArg g hz
-  rw [map_add (f := _), map_mul, map_pow, map_natCast, map_natCast] at hf hg
-  rw [hf, hg]
-  ring
-
 private theorem zA_eq_alg (z : ℤ_[l]) : Per.zA l z = algebraMap ℤ_[l] (Ainf l) z :=
   haveI : IsHausdorff (Ideal.span {(l : Ainf l)}) (Ainf l) :=
     (WittVector.isAdicCompleteIdealSpanP (p := l) (k := Per.Fl l)).toIsHausdorff
-  padicInt_hom_ext (R := Ainf l) (Per.zA l) (algebraMap ℤ_[l] (Ainf l)) z
+  _root_.GlobalTheory.MemLoc.SecUniq.padicInt_hom_ext_pt (R := Ainf l) (Per.zA l) (algebraMap ℤ_[l] (Ainf l)) z
 
 private theorem j_alg (C : Core l) (a : Ainf l) : C.j (algebraMap (Ainf l) (Per.Acris l) a) = aDp l a := by
-  rw [GlobalTheory.MemLoc.ULaws.alg_acris, C.j_cris.on0]
+  rw [_root_.GlobalTheory.MemLoc.algebraMap_ainf_acris_eq, C.j_cris.on0]
   rfl
 
 private theorem alg_alg_eq_aB (C : Core l) (a : Ainf l) :

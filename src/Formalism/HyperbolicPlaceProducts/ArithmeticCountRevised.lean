@@ -46,6 +46,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.SLP.GlobalBoundRefinements.Final
 
-theorem autCount : Formalism.SLP.GlobalBoundRefinements.AutCount := Formalism.SLP.GlobalBoundRefinements.P.card_linearEquiv_le
-
 end Formalism.SLP.GlobalBoundRefinements.Final

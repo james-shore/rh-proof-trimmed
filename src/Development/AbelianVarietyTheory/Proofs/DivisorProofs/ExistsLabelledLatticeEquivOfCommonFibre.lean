@@ -161,7 +161,7 @@ theorem latAt_of_uTest {o Ω : Type} [CommRing o] [Field Ω] [Algebra o Ω] [hA 
   have tor := PerpCharacter.exists_torus_point_eStd ⟨h1, h2, h3, h4, h5⟩ uTors_closed o Ω S ρ p y₀ u l
     (fun b => xx (Multiplicative.ofAdd b)) hx (fun b b' => by rw [ofAdd_add, map_mul])
     (fun z hz => (hsurj' z hz).imp fun _ h => h.symm)
-  refine GlobalTheory.T.lattice_of_uniformisation_eq_model_lattice o Ω Y G hG I _ f _ ζ _ hL hζ1 u.V hB u.G u.semi u.D u.A u.U F m hm V' fV hfV ξ a ha G' β β' hβ hβ'
+  refine _root_.GlobalTheory.Poinc.FibLat.latAt_of_unif o Ω Y G hG I _ f _ ζ _ hL hζ1 u.V hB u.G u.semi u.D u.A u.U F m hm V' fV hfV ξ a ha G' β β' hβ hβ'
     (fun i => ?_) (PadicAlgCl p) (κ'.comp jV) (κ'.injective.comp (IsFractionRing.injective V' _))
     (by rw [← hκ]; ext x; simp [jV, hfK]) c fun t => ⟨hext t.1 t.2, ?_⟩
   · obtain ⟨eK, -, heK⟩ := exists_endo_left hα (eA i) (heA i)
@@ -267,7 +267,7 @@ theorem latAt_of_isLab (X₁ : Setup F W i) (ε₁ : Matrix (Fin 8) (Fin 8) ℤ 
   refine ⟨fun t => (c₁ t).comp j.symm.toAddMonoidHom, fun t b mu h => hc₁ t b _ ((key b mu).1 h),
     hlat.equiv j (fun E' χ => ?_) fun t χ => by simp⟩
   obtain ⟨F', eA, h1, h2, h3, h4⟩ := hm E'
-  exact GlobalTheory.T.endomorphism_matrix_torsion_adjoint_on_characters _ _ _ ρ' p y₀ u l W X₁.posW _ c.T.β c.T.symm (Trait.beta_pos _ _ _ _ F c.T) c.sc c.scale_pos j hjq
+  exact _root_.GlobalTheory.Poinc.FibMatrix.main _ _ _ ρ' p y₀ u l W X₁.posW _ c.T.β c.T.symm (Trait.beta_pos _ _ _ _ F c.T) c.sc c.scale_pos j hjq
     (ε' (adj E')) (adj E') E' (hadj E') (fun m pk pk' x x' => hmat m pk pk' x x' _) F' eA h1 h2 h3 _ h4 χ
 
 theorem exists_adj (hW : IsE8 W) (E : Matrix (Fin 8) (Fin 8) ℤ) :

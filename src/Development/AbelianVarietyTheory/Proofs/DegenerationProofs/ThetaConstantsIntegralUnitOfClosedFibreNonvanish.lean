@@ -132,10 +132,10 @@ theorem theta_on_model : HV → AllUV fun {V} _ _ _ {ϖ} hϖ {D} Q {F} _ _ {v} h
   have hL := U.LG.isLB
   have := A.isAb.comm
   obtain ⟨g, hg, hg'⟩ := hσ
-  obtain ⟨hgen, hexp⟩ := GlobalTheory.T.section_nonzero_closedFibre_generates_expansion_zero hHV.1 V hc ϖ hϖ D Q hQ F v hv A G hG U (down G σ)
+  obtain ⟨hgen, hexp⟩ := _root_.GlobalTheory.Ex.PrimitiveExpansion.main hHV.1 V hc ϖ hϖ D Q hQ F v hv A G hG U (down G σ)
     ⟨_, by rw [← Scheme.Hom.comp_apply, snd_hom]; exact hg, mem_nonzeroLocus_down G σ hg'⟩
   refine ⟨isGenSec_of_down G hL σ hgen, fun m h₁ h₂ h₃ ξ => ?_⟩
-  obtain ⟨w₀, ρ, w, hp, hN, hw, hr, H⟩ := GlobalTheory.T.uniformisation_generic_fibre_cartesian_to_model_bundleIso V _ D A G U.toUnifPre
+  obtain ⟨w₀, ρ, w, hp, hN, hw, hr, H⟩ := _root_.GlobalTheory.Ex.GenericFibre.exists_isoData V _ D A G U.toUnifPre
   have hτ : 𝟙 (Sp F) ≫ (Over.mk (jFK (R := V) F ≫ jK V)).hom = (TFK (R := V) F).hom ≫ jK V := Category.id_comp _
   obtain ⟨th, hth⟩ := exists_secRel hp (T := TFK (R := V) F) (T₀ := Over.mk (jFK (R := V) F ≫ jK V)) (𝟙 (Sp F)) hτ hw hL
     A.isLB (VVRank.pullS G _ ξ σ)

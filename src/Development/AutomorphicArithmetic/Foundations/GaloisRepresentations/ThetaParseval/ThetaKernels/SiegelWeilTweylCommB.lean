@@ -129,7 +129,7 @@ theorem comm_k (hT : _root_.PositivityTheory.SiegelWeilFormula.TBij_k) (g : UA �
     rw [one_mul]
     simpa only [mul_assoc] using e2.symm
   obtain ⟨ε, hε⟩ := _root_.PositivityTheory.SiegelWeilFormula.tweyl.signY_k d
-  have hc1 := GlobalTheory.T.doubledUnitary_character_trivial_of_siegel F E σ (_root_.PositivityTheory.SiegelWeilFormula.tweyl.cm_k d) d.n d.Y.J ε hε (_root_.PositivityTheory.SiegelWeilFormula.tweyl.detY_k d) c hcont hP
+  have hc1 := _root_.GlobalTheory.SiegelChar.eq_one_of_siegel F E σ (_root_.PositivityTheory.SiegelWeilFormula.tweyl.cm_k d) d.n d.Y.J ε hε (_root_.PositivityTheory.SiegelWeilFormula.tweyl.detY_k d) c hcont hP
   intro Φ hΦ x
   have e := hcf x _ ((_root_.PositivityTheory.SiegelWeilFormula.tweyl.hS_k d).pres g Φ hΦ)
   have hcf1 : cf x = 1 := by rw [← hcv, hc1]; rfl

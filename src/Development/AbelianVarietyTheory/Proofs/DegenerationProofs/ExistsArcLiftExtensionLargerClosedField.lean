@@ -91,7 +91,7 @@ theorem exists_lift_ext : Laws → BrGtSt → BrWpSt → AllA fun {_} _ _ _ {_} 
   obtain ⟨N', ν', rfl, hth⟩ := GlobalTheory.GaugeValues.exists_numOf hL R a.D₀ a.even a.bimult F' J' hg A.ν.th A.ν.th_gen
   have G := (hGt R a.D₀ a.even a.bimult F A.N A.ν).2.2.2.2
   have G' := (hGt R a.D₀ a.even a.bimult F' N' ν').2.2.2.2
-  obtain ⟨I, hlam, heX, hI⟩ := GlobalTheory.T.exists_numDHom_degenerationValues_fieldExtension R a.D₀ F F' f hf A.N N' A.ν ν' hth
+  obtain ⟨I, hlam, heX, hI⟩ := _root_.GlobalTheory.GaugeHom.exists_hom R a.D₀ F F' f hf A.N N' A.ν ν' hth
   have hw : ∀ k, 1 ≤ k → ∀ (p p' : QkPt a.D₀ F k) (z : F), WeilQkIs a.D₀ F k p p' z →
       WeilQkIs a.D₀ F' k (qkExt a.bimult f hf p) (qkExt a.bimult f hf p') (f z) := fun k hk p p' z h => by
     obtain ⟨q, hq, -⟩ := (G k).1 p

@@ -53,7 +53,7 @@ namespace GlobalTheory.EtC
 theorem wExact_term_HC (R : Type) [CommRing R] (F : Shv R) (T : Type 1) [Category.{0} T]
     (Φ : T ⥤ Spcᵒᵖ) (U : T) (X : CosimplicialObject T) (a : (CosimplicialObject.const T).obj U ⟶ X)
     (h : Hyp R Φ a) (n : ℤ) : WExact (term (Φ ⋙ HC R F) n) a := by
-  obtain ⟨π, hπ⟩ := GlobalTheory.T.bijective_HC_component_eval_of_maps R F n
+  obtain ⟨π, hπ⟩ := _root_.GlobalTheory.EtC.HCTerms.HC_X_bijective R F n
   exact GlobalTheory.EtC.WExactProd.wexact_of_prod T U X a ℕ
     (fun k => Φ ⋙ ((evaluation _ PSh).obj (op (SimplexCategory.mk k))).op ⋙ (free R).op ⋙
       preadditiveYoneda.obj ((res R F).X (n - k)))

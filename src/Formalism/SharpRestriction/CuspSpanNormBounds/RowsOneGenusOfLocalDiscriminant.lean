@@ -52,6 +52,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Formalism.SharpRestriction.CuspSpanNormBounds.CayleyDegreeNondegeneracy.ForPrimeFlagLattice
 import Formalism.HermitianLattices.HermitianLatticesProofs.UnimodularSpan
+import Formalism.HermitianLattices.HermitianLatticesProofs.GenusCovol
 
 @[expose] public section
 
@@ -70,7 +71,7 @@ theorem unimodAt_of_unimod {V : Type} [AddCommGroup V] [Module E V] [Module (�
     (p : Ideal (𝓞 E)) : IsUnimodularAt h p L := by
   have hinj : Function.Injective (algebraMap (𝓞 E) E) := FaithfulSMul.algebraMap_injective _ _
   have hst : ∀ r : 𝓞 E, star (algebraMap (𝓞 E) E r) ∈ Set.range (algebraMap (𝓞 E) E) :=
-    fun r => cyc_star_int r
+    fun r => _root_.Formalism.HermitianLatticesTheory.star_algebraMap_ringOfIntegers_mem_range r
   have hfg : L.FG := Submodule.IsLattice.fg (A := E) (self := hlat)
   unfold IsUnimodularAt
   rw [locDual_dualAt_loc h hinj hst]

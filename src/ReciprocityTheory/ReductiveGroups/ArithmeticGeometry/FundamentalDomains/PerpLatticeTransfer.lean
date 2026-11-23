@@ -242,30 +242,6 @@ lemma herm_perp (hβξ : ∀ k, herm X.Gm (β k) ξ = 0) (c : Fin n → E) :
   rw [herm_sum_smul_left']
   simp [hβξ]
 
-private lemma herm_add_left_of_matrix (G : Matrix (Fin r) (Fin r) E) (x y z : Fin r → E) :
-    herm G (x + y) z = herm G x z + herm G y z := by
-  unfold herm
-  simp only [Pi.add_apply, add_mul, Finset.sum_add_distrib]
-
-private lemma herm_add_right_of_matrix (G : Matrix (Fin r) (Fin r) E) (x y z : Fin r → E) :
-    herm G x (y + z) = herm G x y + herm G x z := by
-  unfold herm cc
-  simp only [Pi.add_apply, map_add (f := _), mul_add, Finset.sum_add_distrib]
-
-private lemma herm_smul_left_of_matrix (G : Matrix (Fin r) (Fin r) E) (e : E) (x y : Fin r → E) :
-    herm G (e • x) y = e * herm G x y := by
-  unfold herm
-  simp only [Pi.smul_apply, smul_eq_mul, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => ?_
-  ring
-
-private lemma herm_smul_right_lemma_6 (G : Matrix (Fin r) (Fin r) E) (e : E) (x y : Fin r → E) :
-    herm G x (e • y) = cc e * herm G x y := by
-  unfold herm cc
-  simp only [Pi.smul_apply, smul_eq_mul, map_mul, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => ?_
-  ring
-
 lemma herm_cross (hβξ : ∀ k, herm X.Gm (β k) ξ = 0) (hξξ : herm X.Gm ξ ξ = 0)
     (c c' : Fin n → E) (e e' : E) :
     herm X.Gm (∑ k, c' k • β k + e' • ξ) (∑ k, c k • β k + e • ξ) =
@@ -279,8 +255,8 @@ lemma herm_cross (hβξ : ∀ k, herm X.Gm (β k) ξ = 0) (hξξ : herm X.Gm ξ 
   have hB : herm X.Gm ξ (∑ k, c k • β k) = 0 := by
     rw [herm_sum_smul_right']
     simp [hξβ]
-  rw [herm_add_left_of_matrix, herm_add_right_of_matrix, herm_add_right_of_matrix, herm_smul_left_of_matrix,
-    herm_smul_left_of_matrix, herm_smul_right_lemma_6, herm_smul_right_lemma_6, hB, herm_perp X β ξ hβξ c', hξξ]
+  rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.herm_add_left, _root_.ReciprocityTheory.ChartRestriction.G.FD.PerpBasisExistence.herm_add_right', _root_.ReciprocityTheory.ChartRestriction.G.FD.PerpBasisExistence.herm_add_right', _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.herm_smul_left,
+    _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.herm_smul_left, _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.herm_smul_right, _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.herm_smul_right, hB, herm_perp X β ξ hβξ c', hξξ]
   ring
 
 lemma LB_selfDual (hξ : X.IsIso ξ) (hβξ : ∀ k, herm X.Gm (β k) ξ = 0)

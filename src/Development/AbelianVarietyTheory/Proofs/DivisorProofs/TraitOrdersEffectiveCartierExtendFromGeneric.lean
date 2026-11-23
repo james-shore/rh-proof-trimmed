@@ -61,10 +61,6 @@ open Classical
 
 namespace GlobalTheory.Poinc.Extend
 
-theorem pow_exp_eq {V : Type} [CommRing V] [IsDomain V] {ϖ : V} (h : Irreducible ϖ) {a b : ℕ}
-    (e : Associated (ϖ ^ a) (ϖ ^ b)) : a = b :=
-  le_antisymm ((pow_dvd_pow_iff h.ne_zero h.not_isUnit).1 e.dvd) ((pow_dvd_pow_iff h.ne_zero h.not_isUnit).1 e.symm.dvd)
-
 theorem form_eq_zero {X I : Type} [AddCommGroup X] (B : LinearMap.BilinForm ℤ X) (hB : ∀ a b, B a b = B b a) (b : I → X)
     (hb : Submodule.span ℤ (Set.range b) = ⊤) (h : ∀ i j, B (b i + b j) (b i + b j) = 0) : B = 0 := by
   have h1 : ∀ i j, B (b i) (b i) + 2 * B (b i) (b j) + B (b j) (b j) = 0 := by
@@ -207,7 +203,7 @@ theorem orders_extend : ∀ (g n : ℕ), 3 ≤ n → ∀ (F : SFam g n (zetaAway
   rw [GlobalTheory.TraitStalk.idlAlong_spMap_fromSpecStalk _ _ _ _ _ inferInstance, hd, Ideal.map_span,
     Set.image_singleton, Ideal.span_singleton_eq_span_singleton] at hid'
   have h0 := hk'' none
-  have ea : a' = r * k' none := pow_exp_eq T'.irr (hid'.symm.trans (hpow h0.1))
+  have ea : a' = r * k' none := _root_.GlobalTheory.SiegLoc.TraitOrd.eq_of_associated_pow T'.irr (hid'.symm.trans (hpow h0.1))
   have h02 : m * k' none = m' * a := h0.2
   let E := e.symm.trans e'
   have hz := form_eq_zero ((m : ℤ) • pull E.toIntLinearEquiv.toLinearMap T'.β - ((m' * r : ℕ) : ℤ) • T.β)
@@ -216,7 +212,7 @@ theorem orders_extend : ∀ (g n : ℕ), 3 ≤ n → ∀ (F : SFam g n (zetaAway
       rw [T.symm x y, T'.symm]) b hb (fun i i' => by
       obtain ⟨l, hl, hl'⟩ := he' (e.symm (b i + b i'))
       obtain ⟨h1, h2⟩ := hk'' (some (i, i'))
-      have h3 : l = r * k' (some (i, i')) := pow_exp_eq T'.irr (hl'.symm.trans (hpow h1))
+      have h3 : l = r * k' (some (i, i')) := _root_.GlobalTheory.SiegLoc.TraitOrd.eq_of_associated_pow T'.irr (hl'.symm.trans (hpow h1))
       have h4 := hk (e.symm (b i + b i'))
       rw [e.apply_symm_apply] at h4
       have h5 : (m : ℤ) * k' (some (i, i')) = m' * k (e.symm (b i + b i')) := by exact_mod_cast h2

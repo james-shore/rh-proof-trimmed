@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.BiTrivLiftOfIsNilpotent
 
 @[expose] public section
 
@@ -72,9 +73,6 @@ theorem ideal_le_on_basicOpen {X : Scheme.{0}} (a a' : X.IdealSheafData) (U : X.
   rw [← a.map_ideal_basicOpen, ← a'.map_ideal_basicOpen]
   exact key
 
-theorem exists_affineOpen_mem {X : Scheme.{0}} (x : X) : ∃ U : X.affineOpens, x ∈ U.1 :=
-  TopologicalSpace.Opens.mem_iSup.1 ((iSup_affineOpens_eq_top X).ge (Set.mem_univ x))
-
 theorem le_of_le_reductions : ∀ (R : Type) [CommRing R] (I : Ideal R), I ≤ Ideal.jacobson ⊥ →
     ∀ (V : Scheme.{0}) [IsLocallyNoetherian V] (p : V ⟶ Spec (CommRingCat.of R))
     (a a' : V.IdealSheafData), UniversallyClosed (a'.subschemeι ≫ p) →
@@ -83,16 +81,16 @@ theorem le_of_le_reductions : ∀ (R : Type) [CommRing R] (I : Ideal R), I ≤ I
   let S := {U : V.affineOpens // a.ideal U ≤ a'.ideal U}
   have h1 : ∀ x : V, x ∉ a'.support → ∃ U : S, x ∈ U.1.1 := by
     intro x hx
-    obtain ⟨U, hU⟩ := exists_affineOpen_mem x
+    obtain ⟨U, hU⟩ := _root_.GlobalTheory.UU.BiLift.exists_affine_mem x
     rw [Scheme.IdealSheafData.mem_support_iff_of_mem hU, Scheme.mem_zeroLocus_iff] at hx
     push_neg at hx
     obtain ⟨f, hf, hxf⟩ := hx
     exact ⟨⟨V.affineBasicOpen f, ideal_le_on_basicOpen a a' U f fun s _ => Ideal.mul_mem_right _ _ hf⟩, hxf⟩
   have h2 : ∀ x : V, I ≤ (p x).asIdeal → ∃ U : S, x ∈ U.1.1 := by
     intro x hx
-    obtain ⟨U, hU⟩ := exists_affineOpen_mem x
+    obtain ⟨U, hU⟩ := _root_.GlobalTheory.UU.BiLift.exists_affine_mem x
     haveI : IsNoetherianRing Γ(V, U) := IsLocallyNoetherian.component_noetherian U
-    obtain ⟨r, hr, hr'⟩ := GlobalTheory.T.krull_intersection_ideal_local_form Γ(V, U) (I.map (cst p U.1)) (a.ideal U) (a'.ideal U)
+    obtain ⟨r, hr, hr'⟩ := _root_.GlobalTheory.krull_inter_ideal_local Γ(V, U) (I.map (cst p U.1)) (a.ideal U) (a'.ideal U)
       (fun e => by
         have := hle e U
         rwa [Scheme.IdealSheafData.ideal_sup, Pi.sup_apply, baseIdeal_ideal, Ideal.map_pow] at this)

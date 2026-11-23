@@ -86,7 +86,7 @@ theorem pi_measure_eq_prod_absNorm_mul_sqrt_discr (K : Type) [Field K] [NumberFi
   let usw : (P → ι → ℂ) → (ι → P → ℂ) := fun y v p => y p v
   have h1 : ∀ x, usw (sw x) = x := fun x => rfl
   have h2 : ∀ y, sw (usw y) = y := fun y => rfl
-  have hsw : MeasurePreserving sw _ _ := swap_mp (ι := ι) (P := P) (ENNReal.ofReal c • (volume : Measure ℂ))
+  have hsw : MeasurePreserving sw _ _ := _root_.Bl.general_b_fact_third_bis_form.goal1 (ι := ι) (P := P) (ENNReal.ofReal c • (volume : Measure ℂ))
   have husw : Measurable usw :=
     Measurable.of_eval fun v => Measurable.of_eval fun p =>
       (measurable_pi_apply v).comp (measurable_pi_apply p)

@@ -128,5 +128,4 @@ end LateralTheory.KummerTheory.DE
 
 namespace LateralTheory.KummerTheory
 
-theorem DictExist_of : DictExist := DE.dictExist
 end LateralTheory.KummerTheory

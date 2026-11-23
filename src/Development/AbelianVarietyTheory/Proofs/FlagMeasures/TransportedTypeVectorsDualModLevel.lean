@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Bridge
 
 @[expose] public section
 
@@ -56,23 +57,11 @@ section Gen
 
 variable (I : AutInst)
 
-theorem hform_mulVec_conj {A : Type} [CommRing A] {n : Type} [Fintype n] (σ : A →+* A)
-    (J M : Matrix n n A) (x y : n → A) :
-    Formalism.UG.hform σ J (M *ᵥ x) (M *ᵥ y) = Formalism.UG.hform σ (Formalism.UG.cT σ M * J * M) x y := by
-  have hd : ∀ (J : Matrix n n A) (x y : n → A), Formalism.UG.hform σ J x y = (σ ∘ x) ⬝ᵥ (J *ᵥ y) := by
-    intro J x y
-    simp only [Formalism.UG.hform, dotProduct, mulVec, Function.comp_apply, Finset.mul_sum, mul_assoc]
-  have hσ : σ ∘ (M *ᵥ x) = M.map σ *ᵥ (σ ∘ x) := by
-    funext i
-    exact RingHom.map_mulVec σ M x i
-  rw [hd, hd, hσ, ← vecMul_transpose, ← dotProduct_mulVec, mulVec_mulVec,
-    mulVec_mulVec, Formalism.UG.cT, Matrix.mul_assoc]
-
 theorem hA_unitary (x : I.Gf) (u v : VA I) : hA I (I.fmat x *ᵥ u) (I.fmat x *ᵥ v) = hA I u v := by
   have h : Formalism.UG.cT (sigA I) (I.fmat x) * I.J.map (Formalism.UG.inclE (F := I.F) (Af I.F)) * I.fmat x =
       I.J.map (Formalism.UG.inclE (F := I.F) (Af I.F)) := x.2
   unfold hA
-  rw [hform_mulVec_conj, h]
+  rw [_root_.Formalism.UG.P.hform_mulVec, h]
 
 theorem zmod_add {g : ℕ} {a b : I.E ⊗[I.F] Af I.F} (ha : ZMod' I g a) (hb : ZMod' I g b) :
     ZMod' I g (a + b) := by
@@ -85,8 +74,6 @@ theorem zmod_mul {g : ℕ} {a c : I.E ⊗[I.F] Af I.F} (hc : c ∈ IntAf I.F I.E
   obtain ⟨s, hs, rfl⟩ := ha
   exact ⟨c * s, mul_mem hc hs, by ring⟩
 
-theorem zmod_zero (g : ℕ) : ZMod' I g 0 := ⟨0, zero_mem _, by simp⟩
-
 theorem hA_zero_left (y : VA I) : hA I 0 y = 0 := by simp [hA, Formalism.UG.hform]
 theorem hA_zero_right (y : VA I) : hA I y 0 = 0 := by simp [hA, Formalism.UG.hform]
 
@@ -96,7 +83,7 @@ theorem hA_mL_left {g : ℕ} {m y : VA I} (hm : m ∈ mL I g) (hy : y ∈ I.Lf) 
     obtain ⟨x, hx, rfl⟩ := hm
     rw [hA_smul_left, map_natCast]
     exact ⟨hA I x y, hA_int I hx hy, rfl⟩
-  | zero => rw [hA_zero_left]; exact zmod_zero I g
+  | zero => rw [hA_zero_left]; exact _root_.Formalism.L2.SG.Pf.unitaryCongruence.Z_zero I g
   | add a b _ _ ha hb => rw [hA_add_left]; exact zmod_add I ha hb
   | smul c a _ ha =>
     show ZMod' I g (hA I ((c : I.E ⊗[I.F] Af I.F) • a) y)
@@ -108,7 +95,7 @@ theorem hA_mL_right {g : ℕ} {m y : VA I} (hm : m ∈ mL I g) (hy : y ∈ I.Lf)
     obtain ⟨x, hx, rfl⟩ := hm
     rw [hA_smul_right]
     exact ⟨hA I y x, hA_int I hy hx, rfl⟩
-  | zero => rw [hA_zero_right]; exact zmod_zero I g
+  | zero => rw [hA_zero_right]; exact _root_.Formalism.L2.SG.Pf.unitaryCongruence.Z_zero I g
   | add a b _ _ ha hb => rw [hA_add_right]; exact zmod_add I ha hb
   | smul c a _ ha =>
     show ZMod' I g (hA I y ((c : I.E ⊗[I.F] Af I.F) • a))

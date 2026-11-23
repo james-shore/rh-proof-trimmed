@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.KummerThetaLogarithms.HomotheticLatticeIntegralOf
 
 @[expose] public section
 
@@ -50,6 +51,6 @@ namespace Formalism.L2.Th1.D
 
 theorem nrDense : NRDense := NRDense_of sqrtKur
 
-theorem nrcmOfCM4 : Formalism.L2.Th1.CM.CM4 → NRCM := NRCM_of sqrtKur denseOK homothetic_lattice_integral_s2 nrDense
+theorem nrcmOfCM4 : Formalism.L2.Th1.CM.CM4 → NRCM := NRCM_of sqrtKur denseOK _root_.Formalism.L2.Th1.D.homothetic_lattice_integral_of nrDense
 
 end Formalism.L2.Th1.D

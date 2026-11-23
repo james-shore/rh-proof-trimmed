@@ -68,10 +68,6 @@ namespace GlobalTheory.Mum.AffDesc
 
 open TensorProduct
 
-theorem appLE_eq_of_eq {X Y : Scheme.{0}} {f g : X ⟶ Y} (h : f = g) (U : Y.Opens) (V : X.Opens)
-    (e : V ≤ f ⁻¹ᵁ U) (e' : V ≤ g ⁻¹ᵁ U) : f.appLE U V e = g.appLE U V e' := by
-  subst h; rfl
-
 theorem isoPushout_desc_tmul {R0 A B : Type} [CommRing R0] [CommRing A] [CommRing B] [Algebra R0 A]
     [Algebra R0 B] {D : CommRingCat.{0}} (u : CommRingCat.of A ⟶ D) (v : CommRingCat.of B ⟶ D)
     (w : CommRingCat.ofHom (algebraMap R0 A) ≫ u = CommRingCat.ofHom (algebraMap R0 B) ≫ v) (a : A) (b : B) :
@@ -96,7 +92,7 @@ theorem appLE_apply_appLE {X Y Y' Z : Scheme.{0}} (f : X ⟶ Y) (g : Y ⟶ Z) (f
     (f.appLE V W e₂).hom ((g.appLE U V e₁).hom x) = (f'.appLE V' W e₂').hom ((g'.appLE U V' e₁').hom x) := by
   have a := Scheme.Hom.appLE_comp_appLE f g U V W e₁ e₂
   have b := Scheme.Hom.appLE_comp_appLE f' g' U V' W e₁' e₂'
-  have c := appLE_eq_of_eq h U W (by rw [Scheme.Hom.comp_preimage]; exact le_trans e₂ (Scheme.Hom.preimage_mono f e₁))
+  have c := _root_.GlobalTheory.PowSec.appLE_congr h U W (by rw [Scheme.Hom.comp_preimage]; exact le_trans e₂ (Scheme.Hom.preimage_mono f e₁))
     (by rw [Scheme.Hom.comp_preimage]; exact le_trans e₂' (Scheme.Hom.preimage_mono f' e₁'))
   exact congrArg (fun φ => CommRingCat.Hom.hom φ x) (a.trans (c.trans b.symm))
 
@@ -149,7 +145,7 @@ theorem mem_range_app_of_flat : ∀ (R : Type) [CommRing R] (S Y Z : Scheme.{0})
   have k2 : ∀ x, (pullback.snd π π).appLE ⊤ ⊤ le_top ((π.appLE ⊤ ⊤ le_top) x) =
       ((pullback.fst π π ≫ π).appLE ⊤ ⊤ le_top) x := fun x =>
     (congrArg (fun φ => CommRingCat.Hom.hom φ x) (Scheme.Hom.appLE_comp_appLE (pullback.snd π π) π ⊤ ⊤ ⊤ le_top le_top)).trans
-      (congrArg (fun φ => CommRingCat.Hom.hom φ x) (appLE_eq_of_eq (pullback.condition (f := π) (g := π)).symm _ _ _ _))
+      (congrArg (fun φ => CommRingCat.Hom.hom φ x) (_root_.GlobalTheory.PowSec.appLE_congr (pullback.condition (f := π) (g := π)).symm _ _ _ _))
   let d : Γ(S, ⊤) →ₗ[Γ(Sp R, ⊤)] Γ(pullback π π, ⊤) :=
     { toFun := fun x => (pullback.fst π π).appLE ⊤ ⊤ le_top x - (pullback.snd π π).appLE ⊤ ⊤ le_top x
       map_add' := fun x x' => by simp only [map_add (f := _)]; abel
@@ -193,7 +189,7 @@ theorem mem_range_app_of_flat : ∀ (R : Type) [CommRing R] (S Y Z : Scheme.{0})
       ((pullback.fst p p ≫ p).appLE V (pullback.fst p p ⁻¹ᵁ (p ⁻¹ᵁ V)) (by simp [Scheme.Hom.comp_preimage])).hom a :=
     fun a => (congrArg (fun φ => CommRingCat.Hom.hom φ a)
       (Scheme.Hom.appLE_comp_appLE (pullback.snd p p) p V (p ⁻¹ᵁ V) (pullback.fst p p ⁻¹ᵁ (p ⁻¹ᵁ V)) le_rfl hEq.ge)).trans
-      (congrArg (fun φ => CommRingCat.Hom.hom φ a) (appLE_eq_of_eq (pullback.condition (f := p) (g := p)).symm V
+      (congrArg (fun φ => CommRingCat.Hom.hom φ a) (_root_.GlobalTheory.PowSec.appLE_congr (pullback.condition (f := p) (g := p)).symm V
         (pullback.fst p p ⁻¹ᵁ (p ⁻¹ᵁ V)) _ _))
   have key : ∀ t, ΦC.hom (d.rTensor Γ(Y, V) t) = ((pullback.fst p p).app (p ⁻¹ᵁ V)).hom (ΦB.hom t) -
       ((pullback.snd p p).appLE _ _ hEq.ge).hom (ΦB.hom t) := by

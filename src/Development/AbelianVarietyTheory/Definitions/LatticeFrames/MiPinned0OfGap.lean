@@ -54,7 +54,7 @@ namespace GlobalTheory.Core.Rk
 
 theorem finX_of_gap : Formalism.L2.SG.PoincareAmplitudeLowerBounds.FinXC :=
   haveI : Fact Formalism.L2.SG.SplitPrimeNormLemmas.CoefWeightedLoc := ⟨ReciprocityTheory.ChartRestriction.DS.coefWeightedLoc⟩
-  Formalism.L2.SG.Pf.finXC_of GlobalTheory.wuDecayOfGap CompanionTheory.D.gk.RF.automorphic_forms_finite_dimensional
+  Formalism.L2.SG.Pf.finXC_of _root_.CompanionTheory.Lime.BM.wuDecayOfGap_holds' CompanionTheory.D.gk.RF.automorphic_forms_finite_dimensional
 
 section Worlds
 

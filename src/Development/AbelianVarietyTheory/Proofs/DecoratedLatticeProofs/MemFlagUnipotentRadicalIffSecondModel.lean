@@ -77,18 +77,6 @@ theorem unip_real (I : Formalism.MainNotions.S.AutInst) (v : InfinitePlace I.F) 
     InN (I.ε v) (fun a => rv I v (x a)) (rv I v z) ((I.P v)⁻¹ * N * I.P v) :=
   GlobalTheory.T.isFlagUnipotent_realPlace_iff_frame_unipotentRadical I v x c z hc hz N
 
-theorem unip_fin (I : Formalism.MainNotions.S.AutInst) {ρ : ℕ} (x : Fin ρ → Fin I.n → I.E) (c : Fin ρ → I.E)
-    (z : Fin I.n → I.E) (hc : ∀ a, c a ≠ 0) (hz : ∀ a, Formalism.UG.hform (starRingEnd I.E) I.J (x a) z = 0)
-    (N : Matrix (Fin I.n) (Fin I.n) (I.E ⊗[I.F] Formalism.MainNotions.S.Af I.F)) :
-    Unip ((Matrix.of fun k a => c a * x a k).map (Formalism.UG.inclE (F := I.F) (Formalism.MainNotions.S.Af I.F)))
-      ((Formalism.UG.cT (starRingEnd I.E) (Matrix.of fun k a => c a * x a k) * I.J).map (Formalism.UG.inclE (F := I.F) (Formalism.MainNotions.S.Af I.F))) N ↔
-    ((∀ a : Fin ρ, (N - 1) *ᵥ incl I (x a) ∈
-        Submodule.span (I.E ⊗[I.F] Formalism.MainNotions.S.Af I.F) ((fun b => incl I (x b)) '' {b | b.1 < a.1})) ∧
-    (N - 1) *ᵥ incl I z ∈ Submodule.span (I.E ⊗[I.F] Formalism.MainNotions.S.Af I.F) (Set.range fun b => incl I (x b)) ∧
-    ∀ y : VA I, (∀ a, hA I (incl I (x a)) y = 0) →
-      (N - 1) *ᵥ y ∈ Submodule.span (I.E ⊗[I.F] Formalism.MainNotions.S.Af I.F) (Set.range fun b => incl I (x b))) :=
-  GlobalTheory.T.isFlagUnipotent_finiteAdeles_iff_frame_unipotentRadical I x c z hc hz N
-
 theorem eM_linIndep (X : HidaSetting D) (h : X.B.I = Formalism.L2.SG.InstExistsPf.instOf D) (t lam : D.host.E) (ht : t ≠ 0)
     (hl : lam ≠ 0) : LinearIndependent D.host.E (GlobalTheory.Core.SBesEx.eM X h t lam).transpose :=
   GlobalTheory.T.linearIndependent_scaledBasisColumnsMatrix_transpose X h t lam ht hl
@@ -125,22 +113,22 @@ theorem core (D : D7) {ρ : ℕ} (x : Fin ρ → Fin (D.sp.Y 0).rank → D.host.
   have hb2 : (Formalism.IndefR.RationalEmbedding.inst D).fmat (Formalism.IndefR.RationalEmbedding.iota D g).2 = ofHAFin (Formalism.IndefR.RationalEmbedding.inst D) g :=
     hb.2.trans (congrArg (fun q => ofHAFin (Formalism.IndefR.RationalEmbedding.inst D) q) key)
   refine (GlobalTheory.BesselChar.mem_NFlag_iff _ _ hLI g).trans ?_
-  refine (unip_joint (A := AF D.host.F ⊗[D.host.F] D.host.E) (Pi.ringHom fun v => thetaV (Formalism.L2.SG.InstExistsPf.instOf D) v)
+  refine (_root_.GlobalTheory.BesselChar.JointSplit.unip_iff_of_joint (A := AF D.host.F ⊗[D.host.F] D.host.E) (Pi.ringHom fun v => thetaV (Formalism.L2.SG.InstExistsPf.instOf D) v)
       (tauF (Formalism.L2.SG.InstExistsPf.instOf D))
       (fun y h1 h2 => Formalism.L2.SG.Pf.TT_ext _ y (fun v => congr_fun h1 v) h2)
       (fun a b => by
         obtain ⟨y, h1, h2⟩ := Formalism.L2.SG.Pf.TT_surj (Formalism.L2.SG.InstExistsPf.instOf D) a b
         exact ⟨y, funext h1, h2⟩) _ _ _).trans ?_
-  refine (and_congr_left' (unip_pi _ _ _)).trans ?_
+  refine (and_congr_left' (_root_.GlobalTheory.BesselChar.unip_pi_iff _ _ _)).trans ?_
   refine and_congr (forall_congr' fun v => ?_) ?_
-  · have hR := unip_real (Formalism.L2.SG.InstExistsPf.instOf D) v x c z hc hz
+  · have hR := _root_.GlobalTheory.RealUnipFrame.unip_iff_inN (Formalism.L2.SG.InstExistsPf.instOf D) v x c z hc hz
       ((hmat (Formalism.IndefR.RationalEmbedding.inst D) g).map (thetaV (Formalism.IndefR.RationalEmbedding.inst D) v))
     refine (unip_congr (Matrix.ext fun k a => thetaV_incA v _) (Matrix.ext fun k a => thetaV_incA v _)
       (Matrix.ext fun k a => rfl)).trans (hR.trans ?_)
     show _ ↔ InN _ _ _ (uMat ((Formalism.IndefR.RationalEmbedding.iota D g).1 v))
     rw [hb1 v]
     rfl
-  · have hF := unip_fin (Formalism.L2.SG.InstExistsPf.instOf D) x c z hc hz
+  · have hF := _root_.GlobalTheory.UnipFin.unip_flag_iff_Nfin (Formalism.L2.SG.InstExistsPf.instOf D) x c z hc hz
       ((hmat (Formalism.IndefR.RationalEmbedding.inst D) g).map (tauF (Formalism.IndefR.RationalEmbedding.inst D)))
     refine (unip_congr (Matrix.ext fun k a => tauF_incA _) (Matrix.ext fun k a => tauF_incA _)
       (Matrix.ext fun k a => rfl)).trans (hF.trans ?_)
@@ -174,7 +162,7 @@ theorem transport (D : D7) (I : Formalism.MainNotions.S.AutInst) (ιE : I.E ≃+
 
 theorem mem_flagN_iff : ∀ (D : D7) (X : HidaSetting D) (h : X.B.I = Formalism.L2.SG.InstExistsPf.instOf D) (u : D.what₂.Word) (t lam : D.host.E), t ≠ 0 → lam ≠ 0 → IdE X → ∀ (V₀ : HSp D) (d : HypDec (D.sp.Y 0) V₀ D.R.rS), d.e = GlobalTheory.Core.SBesEx.eM X h t lam → ∀ n, n ∈ flagN d ↔ (iotaX X h n).1 ∈ X.NinfU u ∧ (iotaX X h n).2 ∈ X.NfinU u := by
   intro D X h u t lam ht hl hId V₀ d hd n
-  have hLI := eM_linIndep X h t lam ht hl
+  have hLI := _root_.GlobalTheory.Core.SBesEx.eM_transpose_linearIndependent X h t lam ht hl
   have hsc : ∀ a, GlobalTheory.Core.SBesEx.scl t lam a ≠ 0 := fun a => mul_ne_zero ht (pow_ne_zero _ hl)
   have horth : ∀ a, Formalism.UG.hform (starRingEnd X.B.I.E) X.B.I.J (X.eR a) (X.zR u) = 0 := by
     intro a

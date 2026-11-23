@@ -72,7 +72,7 @@ theorem summand_of_liftedCoords : ∀ {C : Type} [CommRing C] (I : Ideal C), I ^
   intro C _ I hI A _ H _ _ σ hproj a χ π hπ hσπ F hIF n κ ℓ y hℓ hF hy hδ
   have hl : ∀ k, ∃ l : H →ₗ[C] C, (∀ c x, l (σ c x) = χ (κ k) c * l x) ∧
       ∀ x, Ideal.Quotient.mk I (l x) = ℓ k x :=
-    fun k => GlobalTheory.T.exists_equivariantLift_functional_quotient_projective I σ hproj (χ (κ k)) (ℓ k) (hℓ k)
+    fun k => _root_.GlobalTheory.eqLift_tensorModOf I σ hproj (χ (κ k)) (ℓ k) (hℓ k)
   choose l hlσ hlℓ using hl
   have hII : ∀ u v : C, u ∈ I → v ∈ I → u * v = 0 := by
     intro u v hu hv

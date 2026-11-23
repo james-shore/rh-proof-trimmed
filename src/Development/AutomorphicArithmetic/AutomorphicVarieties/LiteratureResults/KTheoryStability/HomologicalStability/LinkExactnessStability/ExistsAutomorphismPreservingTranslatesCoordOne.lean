@@ -100,7 +100,7 @@ theorem unimodular_to_coord_one : ∀ (R : Type) [CommRing R] (s : ℕ), StableR
       refine Finset.sum_congr rfl fun j _ => ?_
       rw [htapp, dite_eq_left j.2, mul_comm]
     rw [h1, h2, sub_self]
-  obtain ⟨ψ1, hψ1, hψ1l, hψ1a⟩ := GlobalTheory.T.exists_transvection_preserving_low_and_aff R (n + 1) h t htlow' hht
+  obtain ⟨ψ1, hψ1, hψ1l, hψ1a⟩ := _root_.GlobalTheory.ShearLow.main R (n + 1) h t htlow' hht
   have hv' : ∀ i : Fin n, ψ1 v i = v i + t' i * h v := by
     intro i
     rw [hψ1, Finsupp.add_apply, Finsupp.smul_apply, htapp, dite_eq_left i.2, smul_eq_mul, mul_comm]
@@ -119,7 +119,7 @@ theorem unimodular_to_coord_one : ∀ (R : Type) [CommRing R] (s : ℕ), StableR
     refine Finset.sum_eq_zero fun i _ => ?_
     have := i.2
     rw [Finsupp.single_apply, if_neg (by omega), mul_zero]
-  obtain ⟨ψ2, hψ2, hψ2l, hψ2a⟩ := GlobalTheory.T.exists_transvection_preserving_low_and_aff R (n + 1) h2 _ ht2low hht2
+  obtain ⟨ψ2, hψ2, hψ2l, hψ2a⟩ := _root_.GlobalTheory.ShearLow.main R (n + 1) h2 _ ht2low hht2
   refine ⟨ψ1.trans ψ2, fun x => ?_, fun j x => ?_, ?_⟩
   · rw [LinearEquiv.trans_apply, hψ2l, hψ1l]
   · rw [LinearEquiv.trans_apply, hψ2a, hψ1a]
@@ -131,9 +131,3 @@ theorem unimodular_to_coord_one : ∀ (R : Type) [CommRing R] (s : ℕ), StableR
 
 end GlobalTheory
 
-section
-open GlobalTheory.SeqCx Matrix UpperTheory.V.KL
-theorem _root_.GlobalTheory.T.exists_automorphism_preserving_translates_coord_one : ∀ (R : Type) [CommRing R] (s : ℕ), StableRangeLe R s → ∀ (n : ℕ), s ≤ n → ∀ v : ℕ →₀ R, [v] ∈ uniM R (ℕ →₀ R) → ∃ ψ : (ℕ →₀ R) ≃ₗ[R] (ℕ →₀ R), (∀ x, ψ x ∈ low R (n + 1) ↔ x ∈ low R (n + 1)) ∧ (∀ j x, ψ x ∈ aff R (n + 1) j ↔ x ∈ aff R (n + 1) j) ∧ ψ v n = 1 := by
-  first
-  | exact @GlobalTheory.unimodular_to_coord_one
-end

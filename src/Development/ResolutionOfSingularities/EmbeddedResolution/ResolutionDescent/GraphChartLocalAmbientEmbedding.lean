@@ -98,42 +98,11 @@ private theorem smooth_of_smooth_comp_isOpenImmersion {X Y Z : Scheme.{u}} (f : 
     · simpa using h₂
   exact MorphismProperty.IsStableUnderBaseChange.of_isPullback hp.flip h
 
-private theorem ker_subschemeι_app {Z : Scheme.{u}} (I : Z.IdealSheafData)
-    (V : Z.affineOpens) :
-    RingHom.ker (Scheme.Hom.app I.subschemeι (V : Z.Opens)).hom = I.ideal V := by
-  have hinj : Function.Injective ⇑((I.subschemeObjIso V).inv.hom) := by
-    intro a b hab
-    have h1 : ((I.subschemeObjIso V).inv ≫ (I.subschemeObjIso V).hom).hom a
-        = ((I.subschemeObjIso V).inv ≫ (I.subschemeObjIso V).hom).hom b := by
-      simp only [CommRingCat.hom_comp, RingHom.coe_comp, Function.comp_apply, hab]
-    simpa using h1
-  rw [Scheme.IdealSheafData.subschemeι_app]
-  ext x
-  simp only [CommRingCat.hom_comp, RingHom.mem_ker, RingHom.coe_comp, Function.comp_apply,
-    CommRingCat.hom_ofHom]
-  rw [← map_zero ((I.subschemeObjIso V).inv.hom), hinj.eq_iff, Ideal.Quotient.eq_zero_iff_mem]
-
-private theorem ideal_top_ofIdealTop_eq {Z : Scheme.{u}} [IsAffine Z]
-    (J : Ideal Γ(Z, ⊤)) :
-    (Scheme.IdealSheafData.ofIdealTop J).ideal ⟨⊤, isAffineOpen_top Z⟩ = J := by
-  have h := (Scheme.IdealSheafData.equivOfIsAffine (X := Z)).apply_symm_apply J
-  rw [Scheme.IdealSheafData.equivOfIsAffine_symm_apply,
-    Scheme.IdealSheafData.equivOfIsAffine_apply] at h
-  exact h
-
-private theorem eq_of_ideal_top_eq {Z : Scheme.{u}} [IsAffine Z] {I J : Z.IdealSheafData}
-    (h : I.ideal ⟨⊤, isAffineOpen_top Z⟩ = J.ideal ⟨⊤, isAffineOpen_top Z⟩) : I = J := by
-  have hI := (Scheme.IdealSheafData.equivOfIsAffine (X := Z)).symm_apply_apply I
-  have hJ := (Scheme.IdealSheafData.equivOfIsAffine (X := Z)).symm_apply_apply J
-  rw [Scheme.IdealSheafData.equivOfIsAffine_apply,
-    Scheme.IdealSheafData.equivOfIsAffine_symm_apply] at hI hJ
-  rw [← hI, ← hJ, h]
-
 private theorem ofIdealTop_sup {Z : Scheme.{u}} [IsAffine Z] (I J : Ideal Γ(Z, ⊤)) :
     Scheme.IdealSheafData.ofIdealTop (I ⊔ J) =
       Scheme.IdealSheafData.ofIdealTop I ⊔ Scheme.IdealSheafData.ofIdealTop J := by
-  refine eq_of_ideal_top_eq ?_
-  simp only [Scheme.IdealSheafData.ideal_sup, Pi.sup_apply, ideal_top_ofIdealTop_eq]
+  refine _root_.AlgebraicGeometry.Scheme.IdealSheafData.ext_of_isAffine ?_
+  simp only [Scheme.IdealSheafData.ideal_sup, Pi.sup_apply, _root_.AlgebraicGeometry.Scheme.IdealSheafData.ofIdealTop_ideal_top]
 
 private theorem comap_ofIdealTop_span {X Y : Scheme.{u}} [IsAffine X] [IsAffine Y]
     (f : X ⟶ Y) (s : Set Γ(Y, ⊤)) :
@@ -188,9 +157,9 @@ private theorem ker_eq_ofIdealTop_ker_appTop {X Y : Scheme.{u}} [IsAffine X] [Is
       rw [hz, map_zero]
     · intro hz
       rw [hz, map_zero]
-  refine eq_of_ideal_top_eq ?_
-  rw [ideal_top_ofIdealTop_eq,
-    ← ker_subschemeι_app (Scheme.Hom.ker f) ⟨⊤, isAffineOpen_top Y⟩]
+  refine _root_.AlgebraicGeometry.Scheme.IdealSheafData.ext_of_isAffine ?_
+  rw [_root_.AlgebraicGeometry.Scheme.IdealSheafData.ofIdealTop_ideal_top,
+    ← _root_.AlgebraicGeometry.Scheme.IdealSheafData.ker_subschemeι_app (Scheme.Hom.ker f) ⟨⊤, isAffineOpen_top Y⟩]
   exact hkers.symm
 
 private theorem coordSubspaceIdeal_univ_comap_affineSpaceIsoOfEquiv (k : Type u) [Field k] (c q : ℕ) :

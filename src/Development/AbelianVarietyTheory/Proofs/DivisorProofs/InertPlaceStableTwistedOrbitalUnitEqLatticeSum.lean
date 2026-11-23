@@ -56,16 +56,6 @@ noncomputable section
 
 namespace GlobalTheory.InertTwUnit
 
-theorem cast_finsum_rat {ι : Type} (f : ι → ℚ) : ((∑ᶠ i, f i : ℚ) : ℂ) = ∑ᶠ i, (f i : ℂ) := by
-  by_cases h : (Function.support f).Finite
-  · exact map_finsum (Rat.castHom ℂ) h
-  · have h1 : (Function.support f).Infinite := h
-    have h2 : (Function.support fun i => (f i : ℂ)).Infinite := by
-      have e : (Function.support fun i => (f i : ℂ)) = Function.support f := by
-        ext i; simp
-      rw [e]; exact h1
-    rw [finsum_of_infinite_support h1, finsum_of_infinite_support h2, Rat.cast_zero]
-
 theorem twisted_unit_eq_stSum : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ (w : Pl E), ¬ IsSplitAt w → ∀ (K : GlobalTheory.UnitLemma.UQ) (e : K.E ≃+* w.adicCompletion E), (∀ x, e (K.c x) = cj w (e x)) → (∀ x, x ∈ (algebraMap K.O K.E).range ↔ Valued.v (e x) ≤ 1) → (∀ x, GlobalTheory.UnitLemma.val K.O x = ordL (e x)) → qV E w = K.q ^ 2 → ∀ (a : ℕ) (Q : (w.adicCompletion E)[X]), Q.Monic → Q.natDegree = a → Q.Separable → IsCsr w Q → ∃ B : GlobalTheory.UnitLemma.InvAlg K, B.g * B.σ B.g = 1 ∧ B.P = Q.map e.symm.toRingHom ∧ stTw a w Q ((GlobalTheory.LFun.KGL w (n := a) : Set (GLw a w)).indicator 1) = (B.stSum : ℂ) := by
   intro E _ _ _ hU w hw K e hc hr hv hq a Q hm hd hs hQ
   unfold stTw IsCsr at *
@@ -114,6 +104,6 @@ theorem twisted_unit_eq_stSum : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
   simp only [← finsum_eq_if]
   rw [← finsum_subtype_eq_finsum_cond, ← finsum_comp_equiv F]
   simp only [hterm]
-  exact (cast_finsum_rat _).symm
+  exact (_root_.GlobalTheory.TwOrbLat.cast_finsum _).symm
 
 end GlobalTheory.InertTwUnit

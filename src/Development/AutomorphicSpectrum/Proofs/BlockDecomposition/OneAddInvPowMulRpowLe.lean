@@ -286,14 +286,6 @@ theorem exists_majorant {Ψ : (ι → 𝔸[K]) → ℂ} (hΨ : Ψ ∈ GJMatrix.s
     rw [Pi.smul_apply, smul_eq_mul, norm_mul, mul_assoc]
     exact mul_le_mul_of_nonneg_left (hb m hm y) (norm_nonneg r)
 
-theorem packing {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
-    [MeasurableSpace E] [BorelSpace E] (μ : Measure E) [μ.IsAddHaarMeasure] {A : ℕ}
-    (hA : Module.finrank ℝ E < A) (hd : 0 < Module.finrank ℝ E) :
-    ∃ c : ℝ, 0 ≤ c ∧ ∀ η : ℝ, 0 < η → ∀ F : Finset E,
-      (∀ y ∈ F, ∀ y' ∈ F, y ≠ y' → η ≤ ‖y - y'‖ ^ Module.finrank ℝ E) →
-      ∑ y ∈ F, ((1 + ‖y‖) ^ A)⁻¹ ≤ c * (1 + η⁻¹) :=
-  _root_.UpperTheory.Reformulated.B.DYga2.main μ hA hd
-
 theorem exists_finiteModule_le (L : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     ∃ c : ℝ, 0 < c ∧ ∀ τ : IdeleGroup K, (τ : 𝔸[K]).2 ∈ idealFiniteAdeles L → finiteModule τ ≤ c := by
   obtain ⟨d, hd0, hd⟩ := exists_mul_mem_integralFiniteAdeles_of_isCompact (isCompact_idealFiniteAdeles L)
@@ -353,7 +345,7 @@ theorem theta_bound (L : (FractionalIdeal (𝓞 K)⁰ K)ˣ) {A : ℕ} (hA : Modu
         c * (1 + ((ideleModule K t : ℝ))⁻¹) := by
   have hfr : Module.finrank ℝ (mixedSpace K) = Module.finrank ℚ K := mixedEmbedding.finrank K
   have hd : 0 < Module.finrank ℚ K := Module.finrank_pos
-  obtain ⟨P, hP, hpack⟩ := packing (E := mixedSpace K) (volume : Measure (mixedSpace K)) (A := A)
+  obtain ⟨P, hP, hpack⟩ := _root_.UpperTheory.Reformulated.B.DYga2.main (E := mixedSpace K) (volume : Measure (mixedSpace K)) (A := A)
     (by rw [hfr]; exact hA) (by rw [hfr]; exact hd)
   obtain ⟨c₁, hc₁, hfin⟩ := exists_finiteModule_le L
   refine ⟨P * max 1 c₁, by positivity, fun t ↦ ?_⟩

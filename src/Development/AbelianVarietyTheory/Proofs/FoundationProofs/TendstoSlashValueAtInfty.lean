@@ -248,17 +248,6 @@ theorem tendsto_slash_valueAtInfty (N l : ℕ) (k : ℤ) (hN : 0 < N) (hl : 0 < 
   have h2 := this.add_const (valueAtInfty (⇑f ∣[k] (γ : GL (Fin 2) ℝ)))
   simpa [ModularForm.SL_slash] using h2
 
-theorem toGL_mul (A B : Matrix (Fin 2) (Fin 2) ℤ) (hA : A.det ≠ 0) (hB : B.det ≠ 0) :
-    toGL (A * B) = toGL A * toGL B := by
-  have hAB : (A * B).det ≠ 0 := by rw [Matrix.det_mul]; exact mul_ne_zero hA hB
-  ext i j
-  simp [toGL, hA, hB, hAB, Matrix.mul_apply, Fin.sum_univ_two]
-
-theorem toGL_mat (γ : SL(2, ℤ)) : toGL (mat γ) = (γ : GL (Fin 2) ℝ) := by
-  have h : (mat γ).det ≠ 0 := by simp [mat]
-  ext i j
-  simp [toGL, h]
-
 theorem gamma_le_lev (N l : ℕ) : Gamma (N * l) ≤ Lev N l := by
   intro g hg
   rw [Gamma_mem] at hg
@@ -303,7 +292,7 @@ theorem slash_decomp (N l : ℕ) (k : ℤ) (q : ℕ) (hq : q.Prime) (hM : 0 < N 
   have hδdet : δ.det ≠ 0 := by rw [hdet]; exact hq0
   have hSL : ∀ g : SL(2, ℤ), (mat g).det ≠ 0 := fun g => by simp [mat]
   have key : toGL δ * (γ : GL (Fin 2) ℝ) = ((u * γ * e : SL(2, ℤ)) : GL (Fin 2) ℝ) * toGL β := by
-    rw [← toGL_mat γ, ← toGL_mul _ _ hδdet (hSL γ), hA, ← toGL_mat, ← toGL_mul _ _ (hSL _) hβdet]
+    rw [← _root_.GlobalTheory.SlashUpperTriangularMatrices.toGL_SL γ, ← _root_.GlobalTheory.SlashUpperTriangularMatrices.toGL_mul _ _ hδdet (hSL γ), hA, ← _root_.GlobalTheory.SlashUpperTriangularMatrices.toGL_SL, ← _root_.GlobalTheory.SlashUpperTriangularMatrices.toGL_mul _ _ (hSL _) hβdet]
     congr 2
   have hc : γ * e * γ⁻¹ ∈ Lev N l := gamma_le_lev N l ((Gamma_normal (N * l)).conj_mem e he γ)
   have h2 : (⇑f) ∣[k] (u * γ * e) = (⇑f) ∣[k] γ := by

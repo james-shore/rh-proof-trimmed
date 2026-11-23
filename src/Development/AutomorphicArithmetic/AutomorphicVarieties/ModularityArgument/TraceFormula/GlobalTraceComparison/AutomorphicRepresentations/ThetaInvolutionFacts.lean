@@ -58,10 +58,6 @@ section Abstract
 
 variable {M ι : Type} [AddCommGroup M] [Module ℂ M]
 
-private theorem list_eig (L : ι → Module.End ℂ M) (c : ι → ℂ) (x : M) (l : List ι)
-    (h : ∀ i ∈ l, L i x = c i • x) : (l.map L).prod x = (l.map c).prod • x :=
-  _root_.UpperTheory.Reformulated.B.Qk12.list_eig L c x l h
-
 private theorem prod_split [DecidableEq ι] (L : ι → Module.End ℂ M) (I₀ I₁ : Finset ι) (hd : Disjoint I₀ I₁)
     (hc : ∀ i ∈ I₀ ∪ I₁, ∀ k ∈ I₀ ∪ I₁, i ≠ k → Commute (L i) (L k)) :
     ((I₀ ∪ I₁).toList.map L).prod = (I₀.toList.map L).prod * (I₁.toList.map L).prod := by
@@ -216,7 +212,7 @@ theorem tTr_pf :
       simp only [hL, hFdef, (slot_pair_functions_eq hwZ hwT φ₁ φ₂ e₁ e₂).2, cv, Lw, hN]
       simpa using this
   have hI : slots S Z T = (Z ×ˢ Finset.univ : Finset (Pl E × Bool)) ∪ (T ×ˢ Finset.univ).filter (Sl S) := rfl
-  rw [hsame, hI, prod_split L _ _ hd hcomm, Module.End.mul_apply, list_eig L (cv B e₁ e₂) x.1 _ heig,
+  rw [hsame, hI, prod_split L _ _ hd hcomm, Module.End.mul_apply, _root_.UpperTheory.Reformulated.B.Qk12.list_eig L (cv B e₁ e₂) x.1 _ heig,
     Finset.prod_map_toList, prod_cv T B e₁ e₂ hT, map_smul]
 
 end UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi

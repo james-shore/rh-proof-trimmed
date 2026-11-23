@@ -79,9 +79,6 @@ theorem gm_sq_g' (f : Y ⟶ X) (y : Y) (j j' : Fin 1 → L.ι) (hj : f y ∈ (Sq
   obtain ⟨b, rfl⟩ : ∃ b, j' = fun _ => b := ⟨j' 0, funext fun i => by rw [Subsingleton.elim i 0]⟩
   exact SqLB.gm_sq_g f y (Set.mem_iInter.1 hj 0) (Set.mem_iInter.1 hj' 0)
 
-theorem gs_sub (f : Y ⟶ X) (y : Y) (U : X.Opens) (h : f y ∈ U) (a b : Γ(X, U)) :
-    gs f y U (a - b) = gs f y U a - gs f y U b := by simp only [gs_eq f y U h, map_sub]
-
 theorem gs_zero (f : Y ⟶ X) (y : Y) (U : X.Opens) : gs f y U 0 = 0 := by
   unfold gs; split_ifs <;> simp
 
@@ -136,7 +133,7 @@ def secSub {M : LB Y} (a b : LB.Sec M) : LB.Sec M where
 theorem sval_secSub {M : LB X} {φ : K → (Y ⟶ X)} {ε : K → ℤ} (a b : LB.Sec (LB.LinComb M φ ε)) (r : Z ⟶ Y)
     (z : Z) {J : (Z ⟶ X) → M.ι} (hJ : Good M z J) :
     sval (secSub a b) r z J = sval a r z J - sval b r z J :=
-  gs_sub r z _ (hJ.mem φ r) _ _
+  _root_.GlobalTheory.LBGerm.gs_sub r z _ (hJ.mem φ r) _ _
 
 end GlobalTheory.SqDescend
 

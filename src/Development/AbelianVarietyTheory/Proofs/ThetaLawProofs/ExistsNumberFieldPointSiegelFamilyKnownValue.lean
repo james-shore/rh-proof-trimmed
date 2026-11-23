@@ -193,7 +193,7 @@ theorem exists_known_point : Out.Laws → ThetaUnifAV → ∀ (h k : ℕ) (K : T
     IsPrimitiveRoot.of_map_of_injective (f := algebraMap k₁ ℂ) hprim (algebraMap k₁ ℂ).injective
   let ze : k₁ˣ := Units.mk0 (j ζ) (hprim₁.ne_zero hk0.ne')
   have ttors : ∀ a, t a ^ k = 1 := fun a => ρinj (by rw [map_pow, ht, ltors, map_one])
-  obtain ⟨c, e, he, pr, iP, hc⟩ := exists_siegPre_of_polAV hL Moduli.cube_of_isLB K k₁ j h k ζ ze y.P t hg
+  obtain ⟨c, e, he, pr, iP, hc⟩ := exists_siegPre_of_polAV hL _root_.GlobalTheory.AbLaw.CubeAssembly.cube_gen K k₁ j h k ζ ze y.P t hg
     (Nat.cast_ne_zero.2 hk0.ne') rfl (IsPrimitiveRoot.coe_units_iff.1 hprim₁)
     (fun a a' => ρinj (by rw [map_mul, ht, ht, ht, ladd])) ttors fun a a' =>
       ρw k _ _ _ (ttors a) (ttors a') (by

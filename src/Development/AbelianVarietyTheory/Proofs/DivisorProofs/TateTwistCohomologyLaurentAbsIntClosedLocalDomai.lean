@@ -90,11 +90,11 @@ theorem main : ∀ (q : ℕ) [NeZero q] (T : Type) [CommRing T] [IsDomain T] [Is
     ∀ n i : ℤ, (2 ≤ n → Subsingleton (Ht q (sp (LaurentPolynomial T)) n i)) ∧
       Nonempty (Ht q (sp (LaurentPolynomial T)) 1 i ≃+ ZMod q) := by
   intro q _ T _ _ _ hA hq n i
-  haveI : IsAlgClosed (FractionRing T) := GlobalTheory.isAlgClosed_fractionRing_of_AIC T hA
+  haveI : IsAlgClosed (FractionRing T) := _root_.GlobalTheory.FractionRingRootRange.isAlgClosed_fractionRing T hA
   have hqK : IsUnit (q : FractionRing T) := by
     simpa using hq.map (algebraMap T (FractionRing T))
-  obtain ⟨h2, _⟩ := GlobalTheory.T.tateTwistCohomology_laurentPolynomial_of_isAlgClosed q (FractionRing T) hqK n i
-  obtain ⟨_, ⟨e1⟩⟩ := GlobalTheory.T.tateTwistCohomology_laurentPolynomial_of_isAlgClosed q (FractionRing T) hqK 1 i
+  obtain ⟨h2, _⟩ := _root_.GlobalTheory.EtC.gm_algClosed_cohomology q (FractionRing T) hqK n i
+  obtain ⟨_, ⟨e1⟩⟩ := _root_.GlobalTheory.EtC.gm_algClosed_cohomology q (FractionRing T) hqK 1 i
   refine ⟨fun hn => ?_, ⟨(laurentEquiv GlobalTheory.T.etale_cohomology_ind_etale_base_change q T hA hq 1 i).trans e1⟩⟩
   haveI := h2 hn
   exact (laurentEquiv GlobalTheory.T.etale_cohomology_ind_etale_base_change q T hA hq n i).injective.subsingleton

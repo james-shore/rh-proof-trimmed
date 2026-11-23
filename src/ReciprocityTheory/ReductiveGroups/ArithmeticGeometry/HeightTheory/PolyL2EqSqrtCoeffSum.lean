@@ -57,29 +57,29 @@ namespace ReciprocityTheory.ChartRestriction.G.T0
 
 open NumberField
 
-def hupsWx (D N : ℕ) : UXVar D N → ℕ := Sum.elim (fun _ => 0) (fun _ => 1)
+def hupsWx (D N : ℕ) : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N → ℕ := Sum.elim (fun _ => 0) (fun _ => 1)
 
-def hupsWu (D N : ℕ) : UXVar D N → ℕ := Sum.elim (fun _ => 1) (fun _ => 0)
+def hupsWu (D N : ℕ) : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N → ℕ := Sum.elim (fun _ => 1) (fun _ => 0)
 
-theorem hups_xDeg_eq {D N : ℕ} (s : UXVar D N →₀ ℕ) : xDeg s = hupsWt (hupsWx D N) s := by
+theorem hups_xDeg_eq {D N : ℕ} (s : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) : xDeg s = hupsWt (hupsWx D N) s := by
   unfold hupsWt xDeg
   rw [Finsupp.sum_fintype _ _ (by simp), Fintype.sum_sum_type]
   simp [hupsWx]
 
-theorem hups_uDeg_eq {D N : ℕ} (s : UXVar D N →₀ ℕ) : uDeg s = hupsWt (hupsWu D N) s := by
+theorem hups_uDeg_eq {D N : ℕ} (s : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) : uDeg s = hupsWt (hupsWu D N) s := by
   unfold hupsWt uDeg
   rw [Finsupp.sum_fintype _ _ (by simp), Fintype.sum_sum_type]
   simp [hupsWu]
 
-theorem hups_xDeg_add {D N : ℕ} (s t : UXVar D N →₀ ℕ) : xDeg (s + t) = xDeg s + xDeg t := by
+theorem hups_xDeg_add {D N : ℕ} (s t : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) : xDeg (s + t) = xDeg s + xDeg t := by
   unfold xDeg; simp [Finset.sum_add_distrib]
 
-theorem hups_uDeg_add {D N : ℕ} (s t : UXVar D N →₀ ℕ) : uDeg (s + t) = uDeg s + uDeg t := by
+theorem hups_uDeg_add {D N : ℕ} (s t : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) : uDeg (s + t) = uDeg s + uDeg t := by
   unfold uDeg; simp [Finset.sum_add_distrib]
 
 theorem hups_cofactor {R : Type*} [CommRing R] [IsDomain R] {D N : ℕ}
-    {F P : MvPolynomial (UXVar D N) R} (hF : F ≠ 0) {deF u n n' : ℕ} (hFx : XHom deF F)
-    {sF : UXVar D N →₀ ℕ} (hsF : sF ∈ F.support) (hsFu : uDeg sF = u)
+    {F P : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) R} (hF : F ≠ 0) {deF u n n' : ℕ} (hFx : XHom deF F)
+    {sF : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ} (hsF : sF ∈ F.support) (hsFu : uDeg sF = u)
     (hx : XHom n (F * P)) (hu : UDegLE n' (F * P)) :
     ∀ s ∈ P.support, s ∈ upMono D N (n - deF) (n' - u) := by
   intro s hs
@@ -164,52 +164,52 @@ theorem polyL2_nonneg {σ : Type*} (f : MvPolynomial σ ℂ) : 0 ≤ Reciprocity
   unfold ReciprocityTheory.MultiplicativeHeights.polyL2; exact Real.sqrt_nonneg _
 
 theorem hups_qnorm_eq {K : Type} [Field K] [NumberField K] {D N : ℕ} (σ : K →+* ℂ)
-    (F1 : MvPolynomial (UXVar D N) K) {n n' : ℕ} (V S : Finset (UXVar D N →₀ ℕ))
+    (F1 : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) K) {n n' : ℕ} (V S : Finset (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ))
     (hVd : ∀ s ∈ V, xDeg s = n ∧ uDeg s ≤ n')
     (hadd : ∀ a ∈ F1.support, ∀ m ∈ S, a + m ∈ V)
-    (hcof : ∀ P : MvPolynomial (UXVar D N) ℂ, XHom n (MvPolynomial.map σ F1 * P) →
+    (hcof : ∀ P : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) ℂ, XHom n (MvPolynomial.map σ F1 * P) →
       UDegLE n' (MvPolynomial.map σ F1 * P) → P.support ⊆ S)
     {r k : ℕ} (e : V ≃ Fin r) (b : Fin k → Fin r → K)
     (hspan : Submodule.span K (Set.range b) =
       Submodule.span K (Set.range fun m : S =>
-        fun i => (F1 * MvPolynomial.monomial (m : UXVar D N →₀ ℕ) 1).coeff
-          (e.symm i : UXVar D N →₀ ℕ)))
-    (Q : MvPolynomial (UXVar D N) (𝓞 K)) (hQsupp : Q.support ⊆ V) :
-    qnorm σ F1 n n' Q = qdist σ b (fun i => ((Q.coeff (e.symm i : UXVar D N →₀ ℕ) : 𝓞 K) : K)) := by
+        fun i => (F1 * MvPolynomial.monomial (m : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) 1).coeff
+          (e.symm i : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ)))
+    (Q : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) (𝓞 K)) (hQsupp : Q.support ⊆ V) :
+    qnorm σ F1 n n' Q = qdist σ b (fun i => ((Q.coeff (e.symm i : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) : 𝓞 K) : K)) := by
   classical
   unfold qnorm qdist
   beta_reduce
-  have hc : ∀ m : S, (fun i => (F1 * MvPolynomial.monomial (m : UXVar D N →₀ ℕ) 1).coeff
-      (e.symm i : UXVar D N →₀ ℕ)) ∈ Submodule.span K (Set.range b) := fun m => by
+  have hc : ∀ m : S, (fun i => (F1 * MvPolynomial.monomial (m : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) 1).coeff
+      (e.symm i : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ)) ∈ Submodule.span K (Set.range b) := fun m => by
     rw [hspan]; exact Submodule.subset_span ⟨m, rfl⟩
   have hbc : ∀ j, b j ∈ Submodule.span K (Set.range fun m : S =>
-      fun i => (F1 * MvPolynomial.monomial (m : UXVar D N →₀ ℕ) 1).coeff
-        (e.symm i : UXVar D N →₀ ℕ)) := fun j => by
+      fun i => (F1 * MvPolynomial.monomial (m : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) 1).coeff
+        (e.symm i : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ)) := fun j => by
     rw [← hspan]; exact Submodule.subset_span ⟨j, rfl⟩
-  generalize hcdef : (fun m : S => fun i => (F1 * MvPolynomial.monomial (m : UXVar D N →₀ ℕ) 1).coeff
-      (e.symm i : UXVar D N →₀ ℕ)) = c at hc hbc
-  have hcv : ∀ (m : S) i, c m i = (F1 * MvPolynomial.monomial (m : UXVar D N →₀ ℕ) 1).coeff
-      (e.symm i : UXVar D N →₀ ℕ) := fun m i => by rw [← hcdef]
+  generalize hcdef : (fun m : S => fun i => (F1 * MvPolynomial.monomial (m : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) 1).coeff
+      (e.symm i : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ)) = c at hc hbc
+  have hcv : ∀ (m : S) i, c m i = (F1 * MvPolynomial.monomial (m : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) 1).coeff
+      (e.symm i : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) := fun m i => by rw [← hcdef]
   have hFσs : (MvPolynomial.map σ F1).support = F1.support :=
     MvPolynomial.support_map_of_injective _ σ.injective
   generalize hFσ : MvPolynomial.map σ F1 = Fσ at hcof hFσs ⊢
   generalize hQσ : MvPolynomial.map (σ.comp (algebraMap (𝓞 K) K)) Q = Qσ
   have hQσs : Qσ.support ⊆ V := hQσ ▸ (MvPolynomial.support_map_subset _ _).trans hQsupp
-  have hQσc : ∀ i, Qσ.coeff (e.symm i : UXVar D N →₀ ℕ) =
-      σ ((Q.coeff (e.symm i : UXVar D N →₀ ℕ) : 𝓞 K) : K) := fun i => by
+  have hQσc : ∀ i, Qσ.coeff (e.symm i : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) =
+      σ ((Q.coeff (e.symm i : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) : 𝓞 K) : K) := fun i => by
     rw [← hQσ, MvPolynomial.coeff_map]; rfl
-  have hcσ : ∀ (m : S) i, (Fσ * MvPolynomial.monomial (m : UXVar D N →₀ ℕ) 1).coeff
-      (e.symm i : UXVar D N →₀ ℕ) = σ (c m i) := by
+  have hcσ : ∀ (m : S) i, (Fσ * MvPolynomial.monomial (m : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) 1).coeff
+      (e.symm i : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) = σ (c m i) := by
     intro m i
     rw [hcv, ← hFσ, show (1 : ℂ) = σ 1 from σ.map_one.symm, ← MvPolynomial.map_monomial, ← map_mul,
       MvPolynomial.coeff_map]
-  have hmulV : ∀ P : MvPolynomial (UXVar D N) ℂ, P.support ⊆ S → (Fσ * P).support ⊆ V := by
+  have hmulV : ∀ P : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) ℂ, P.support ⊆ S → (Fσ * P).support ⊆ V := by
     intro P hP s hs
     obtain ⟨a, ha, m, hm, rfl⟩ := Finset.mem_add.1 (MvPolynomial.support_mul Fσ P hs)
     exact hadd a (hFσs ▸ ha) m (hP hm)
-  have hval : ∀ P : MvPolynomial (UXVar D N) ℂ, P.support ⊆ S →
+  have hval : ∀ P : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) ℂ, P.support ⊆ S →
       ReciprocityTheory.MultiplicativeHeights.polyL2 (Qσ + Fσ * P) =
-        Real.sqrt (∑ i, ‖σ ((Q.coeff (e.symm i : UXVar D N →₀ ℕ) : 𝓞 K) : K) +
+        Real.sqrt (∑ i, ‖σ ((Q.coeff (e.symm i : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) : 𝓞 K) : K) +
           ∑ m : S, P.coeff m * σ (c m i)‖ ^ 2) := by
     intro P hP
     rw [polyL2_eq_sqrt_coeff_sum _ V e (MvPolynomial.support_add.trans (Finset.union_subset hQσs (hmulV P hP)))]
@@ -217,19 +217,19 @@ theorem hups_qnorm_eq {K : Type} [Field K] [NumberField K] {D N : ℕ} (σ : K �
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [MvPolynomial.coeff_add, hQσc, hups_coeff_mul_of_supp Fσ P S hP]
     simp only [hcσ]
-  have hbdd1 : BddBelow (Set.range fun P : {P : MvPolynomial (UXVar D N) ℂ //
+  have hbdd1 : BddBelow (Set.range fun P : {P : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) ℂ //
       XHom n (Fσ * P) ∧ UDegLE n' (Fσ * P)} => ReciprocityTheory.MultiplicativeHeights.polyL2 (Qσ + Fσ * P.1)) :=
     ⟨0, by rintro _ ⟨P, rfl⟩; exact polyL2_nonneg _⟩
   have hbdd2 : BddBelow (Set.range fun z : Fin k → ℂ =>
-      Real.sqrt (∑ i, ‖σ ((Q.coeff (e.symm i : UXVar D N →₀ ℕ) : 𝓞 K) : K) +
+      Real.sqrt (∑ i, ‖σ ((Q.coeff (e.symm i : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) : 𝓞 K) : K) +
         ∑ j, z j * σ (b j i)‖ ^ 2)) :=
     ⟨0, by rintro _ ⟨z, rfl⟩; exact Real.sqrt_nonneg _⟩
   apply le_antisymm
   · apply le_ciInf
     intro z
     obtain ⟨y, hy⟩ := hups_span_transfer σ b c hbc z
-    obtain ⟨P, hP⟩ : ∃ P : MvPolynomial (UXVar D N) ℂ,
-        P = ∑ m : S, MvPolynomial.monomial (m : UXVar D N →₀ ℕ) (y m) := ⟨_, rfl⟩
+    obtain ⟨P, hP⟩ : ∃ P : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) ℂ,
+        P = ∑ m : S, MvPolynomial.monomial (m : _root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N →₀ ℕ) (y m) := ⟨_, rfl⟩
     have hPc : ∀ m : S, P.coeff m = y m := fun m => by
       rw [hP, MvPolynomial.coeff_sum, Fintype.sum_eq_single m]
       · simp
@@ -254,7 +254,7 @@ theorem hups_qnorm_eq {K : Type} [Field K] [NumberField K] {D N : ℕ} (σ : K �
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [hy i]
     simp only [hPc]
-  · have : Nonempty {P : MvPolynomial (UXVar D N) ℂ // XHom n (Fσ * P) ∧ UDegLE n' (Fσ * P)} :=
+  · have : Nonempty {P : MvPolynomial (_root_.ReciprocityTheory.ChartRestriction.G.T0.LinearSubstitution.V D N) ℂ // XHom n (Fσ * P) ∧ UDegLE n' (Fσ * P)} :=
       ⟨⟨0, by simp [XHom], by simp [UDegLE]⟩⟩
     apply le_ciInf
     rintro ⟨P, hPx, hPu⟩

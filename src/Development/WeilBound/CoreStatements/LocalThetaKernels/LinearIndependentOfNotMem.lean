@@ -57,10 +57,6 @@ namespace PositivityTheory.ThKH.Locrep
 
 open Filter Topology
 
-theorem eq_one_of_pow_near {R : Type} [NormedRing R] [NormedAlgebra ℂ R] {a : R} (h : ∀ p : ℕ, ‖a ^ p - 1‖ < 1 / 2) :
-    a = 1 :=
-  _root_.UpperTheory.Reformulated.B.Yhd7.main h
-
 theorem linearIndependent_of_notMem {V : Type} [AddCommGroup V] [Module ℂ V] (u : ℕ → V) (T : ℕ → Set V)
     (h1 : ∀ m n, m < n → u m ∈ T n) (h2 : ∀ n, u n ∉ Submodule.span ℂ (T n)) : LinearIndependent ℂ u := by
   classical
@@ -172,7 +168,7 @@ theorem smooth_of_weak {G V : Type} [Group G] [TopologicalSpace G] [AddCommGroup
   refine ⟨max n m, fun k hk => ?_⟩
   have hkn : k ∈ K n := hanti (le_max_left n m) hk
   have hkm : k ∈ K m := hanti (le_max_right n m) hk
-  have hk1 : A k = 1 := eq_one_of_pow_near fun p => by
+  have hk1 : A k = 1 := _root_.UpperTheory.Reformulated.B.Yhd7.main fun p => by
     rw [← hAp k hkn]
     exact hm ((K m).pow_mem hkm p)
   have := hA k (π φ)

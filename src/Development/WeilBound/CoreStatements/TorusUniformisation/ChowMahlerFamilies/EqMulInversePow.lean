@@ -181,21 +181,21 @@ theorem IsBC.cancel {f : S →+* S₂} {k : S₂ →+* S₃} {g : GermAt t x d} 
     (h : IsBC f g g₂) (h' : IsBC (k.comp f) g g₃) : IsBC k g₂ g₃ := by
   refine ⟨isMapOf_cancel h.map h'.map, ?_, ?_, ?_⟩
   · intro l
-    rw [h'.tg, h.tg, ← Category.assoc, Bc.spMap_cp, dualMap_comp]
+    rw [h'.tg, h.tg, ← Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', dualMap_comp]
   · intro m
-    rw [h'.jet, h.jet, ← jetCoef_comp, ← Bc.spMap_cp, Category.assoc]
+    rw [h'.jet, h.jet, ← jetCoef_comp, ← _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', Category.assoc]
   · intro m Z r z J hJ
-    rw [h'.fr m Z r z J hJ, h.fr m Z _ z J hJ, Category.assoc, Bc.spMap_cp, jetCoef_comp]
+    rw [h'.fr m Z r z J hJ, h.fr m Z _ z J hJ, Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', jetCoef_comp]
 
 theorem IsBC.trans {f : S →+* S₂} {k : S₂ →+* S₃} {g : GermAt t x d} {g₂ : GermAt t x₂ d} {g₃ : GermAt t x₃ d}
     (h : IsBC f g g₂) (h' : IsBC k g₂ g₃) : IsBC (k.comp f) g g₃ := by
   refine ⟨h.map.trans h'.map, ?_, ?_, ?_⟩
   · intro l
-    rw [h'.tg, h.tg, ← Category.assoc, Bc.spMap_cp, dualMap_comp]
+    rw [h'.tg, h.tg, ← Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', dualMap_comp]
   · intro m
-    rw [h'.jet, h.jet, ← jetCoef_comp, ← Bc.spMap_cp, Category.assoc]
+    rw [h'.jet, h.jet, ← jetCoef_comp, ← _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', Category.assoc]
   · intro m Z r z J hJ
-    rw [h'.fr m Z r z J hJ, h.fr m Z _ z J hJ, Category.assoc, Bc.spMap_cp, jetCoef_comp]
+    rw [h'.fr m Z r z J hJ, h.fr m Z _ z J hJ, Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', jetCoef_comp]
 
 structure Cmp (g g₂ : GermAt t x d) (φ ψ : Q S d 1) (lam : PS S 2 d) : Prop where
   hφ : ∀ m, g₂.x m = PP m g.x φ
@@ -238,7 +238,7 @@ theorem coef_jQ (f : S →+* S₂) {k n : ℕ} (m : ℕ) (b : Fin k → Q S d n)
     (homAt x₂ (jQ m b')).left ≫ spMap (jetCoef f (Fin k × Fin d) m) =
       spMap (jetCoef f (Fin n × Fin d) m) ≫ (homAt x (jQ m b)).left := by
   obtain rfl : b' = fun j => mQ f (b j) := funext h
-  exact (Bc.spMap_cp _ _).trans ((congrArg spMap (coef_jQ' f m b)).trans (Bc.spMap_cp _ _).symm)
+  exact (_root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp' _ _).trans ((congrArg spMap (coef_jQ' f m b)).trans (_root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp' _ _).symm)
 
 theorem PP_bc {f : S →+* S₂} {g g₂ : GermAt t x d} {g' g₂' : GermAt t x₂ d} (h : IsBC f g g') (h₂ : IsBC f g₂ g₂')
     {φ : Q S d 1} (hφ : ∀ m, g₂.x m = PP m g.x φ) (m : ℕ) : g₂'.x m = PP m g'.x (mQ f φ) := by
@@ -328,7 +328,7 @@ theorem genMap_comp (p q : Cpt ξ) (h : q.1 ⤳ p.1) :
     (genMap ξ q).comp (X0.presheaf.stalkSpecializes h).hom = genMap ξ p := by
   have e : spMap ((genMap ξ q).comp (X0.presheaf.stalkSpecializes h).hom) = spMap (genMap ξ p) := by
     haveI : Mono (stPt X0 p.1) := inferInstanceAs (Mono (X0.fromSpecStalk p.1))
-    rw [← cancel_mono (stPt X0 p.1), ← Bc.spMap_cp, Category.assoc, ← st_spec h, ← genMap_from p, ← genMap_from q]
+    rw [← cancel_mono (stPt X0 p.1), ← _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', Category.assoc, ← st_spec h, ← genMap_from p, ← genMap_from q]
   exact congrArg CommRingCat.Hom.hom (Spec.map_injective e)
 
 theorem eq_mul_inverse_pow {A : Type} [CommRing A] {j : Sp A ⟶ X0} [Mono j] {gA : GermAt t j d} {k : S →+* S₃} {k' : S₂ →+* S₃}
@@ -337,7 +337,7 @@ theorem eq_mul_inverse_pow {A : Type} [CommRing A] {j : Sp A ⟶ X0} [Mono j] {g
     ∃ g' : GermAt t x₂ d, IsBC k' g' gK := by
   obtain ⟨g', hb'⟩ := exists_bc a' ha' gA
   have e : spMap (k'.comp a') = spMap (k.comp a) := by
-    rw [← cancel_mono j, ← Bc.spMap_cp, ← Bc.spMap_cp, Category.assoc, Category.assoc, ← ha, ← ha', ← hk, ← hk']
+    rw [← cancel_mono j, ← _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', ← _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', Category.assoc, Category.assoc, ← ha, ← ha', ← hk, ← hk']
   have e' : k'.comp a' = k.comp a := congrArg CommRingCat.Hom.hom (Spec.map_injective e)
   rw [← e'] at hK
   exact ⟨g', hb'.cancel hK⟩
@@ -345,7 +345,7 @@ theorem eq_mul_inverse_pow {A : Type} [CommRing A] {j : Sp A ⟶ X0} [Mono j] {g
 theorem loc_aux₀ (hs : ∀ a : 𝓞 E, star a = H.bar a) [IsLocalRing S₃] {A : Type} [CommRing A] {j : Sp A ⟶ X0} {d' : ℕ}
     (gA : GermAt t j d') {k : S →+* S₃} {a : A →+* S} (ha : x = spMap a ≫ j) (hk : x₃ = spMap k ≫ x)
     (g₀ : GermAt t x₃ d) : d = d' ∧ ∃ gK : GermAt t x₃ d', IsBC (k.comp a) gA gK := by
-  obtain ⟨gK, hK⟩ := exists_bc (x₂ := x₃) (k.comp a) (by rw [← Bc.spMap_cp, Category.assoc, ← ha, ← hk]) gA
+  obtain ⟨gK, hK⟩ := exists_bc (x₂ := x₃) (k.comp a) (by rw [← _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', Category.assoc, ← ha, ← hk]) gA
   exact ⟨(germ_univ E H hs X0 t S₃ x₃ d g₀).1 d' gK, gK, hK⟩
 
 theorem st_factor {A : Type} [CommRing A] (j : Sp A ⟶ X0) [IsOpenImmersion j] (q : X0) (hq : q ∈ Set.range j) :

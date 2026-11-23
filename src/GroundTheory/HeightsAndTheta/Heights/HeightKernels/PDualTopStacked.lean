@@ -108,11 +108,6 @@ theorem degForm_of_cover (hSimple : DualTopSimpleSub.Statement) {F G : HermLatti
     DegForm F G :=
   fun T T' _ _ _ _ b hb b' hb' II hi hII => hSimple K i F G T T' b hb b' hb' II hi hII hlt hcov
 
-theorem exists_cover {F X : HermLattice K i} (hlt : X.lattice < F.lattice) :
-    ∃ w ∈ F.lattice, w ∉ X.lattice ∧ ∀ N : Submodule (𝓞 K) (Fin i → K), X.lattice ≤ N →
-      N ≤ X.lattice ⊔ Submodule.span (𝓞 K) {w} → N = X.lattice ∨ N = X.lattice ⊔ Submodule.span (𝓞 K) {w} :=
-  _root_.GroundTheory.Variant₂.N1.exists_cover hlt
-
 def addVector (X : HermLattice K i) (w : Fin i → K) : HermLattice K i where
   lattice := X.lattice ⊔ Submodule.span (𝓞 K) {w}
   fg := X.fg.sup (Submodule.fg_span_singleton w)
@@ -137,7 +132,7 @@ theorem degForm_of_le (hSimple : DualTopSimpleSub.Statement) (hBasis : DualTopBa
   · exact degForm_of_eq hBasis hGF
   have hlt : G.lattice < F.lattice :=
     lt_of_le_of_ne (hG ▸ Submodule.map_subtype_le _ _) hGF
-  obtain ⟨w, hwF, hwG, hcov⟩ := exists_cover hlt
+  obtain ⟨w, hwF, hwG, hcov⟩ := _root_.GroundTheory.Variant₂.N1.exists_cover hlt
   have hG'F : (addVector G w).lattice ≤ F.lattice :=
     sup_le hlt.le ((Submodule.span_singleton_le_iff_mem _ _).mpr hwF)
   have hGG' : G.lattice < (addVector G w).lattice :=

@@ -66,28 +66,14 @@ theorem continuous_of_valued_eq {A B Γ : Type*} [Ring A] [Ring B] [LinearOrdere
   exact hx
 
 
-open scoped WithZeroTopology in
-theorem exists_extension {K L : Type} [Field K] [NumberField K] [Field L] [NumberField L]
-    (w : HeightOneSpectrum (𝓞 K)) (u : HeightOneSpectrum (𝓞 L)) (f : K →+* u.adicCompletion L)
-    (hf : ∀ x, Valued.v (f x) = w.valuation K x) :
-    ∃ φ : w.adicCompletion K →+* u.adicCompletion L, Continuous φ ∧
-      (∀ x : K, φ (algebraMap K _ x) = f x) ∧ ∀ y, Valued.v (φ y) = Valued.v y := by
-  first
-  | exact @_root_.GlobalTheory.ContinuousValuationExtension.exists_continuous_extension
-  | exact _root_.GlobalTheory.ContinuousValuationExtension.exists_continuous_extension
-  | (apply _root_.GlobalTheory.ContinuousValuationExtension.exists_continuous_extension <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ContinuousValuationExtension.exists_continuous_extension <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ContinuousValuationExtension.exists_continuous_extension <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ContinuousValuationExtension.exists_continuous_extension ..)
-
 theorem exists_ringEquiv_splitPrime : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
     {v : HeightOneSpectrum (𝓞 F)} (τ : E →ₐ[F] Fv F v),
     ∃ φ : (GlobalTheory.AdelicU.splitPrime τ).adicCompletion E ≃+* Fv F v, (∀ x : E, φ (algebraMap E _ x) = τ x) ∧
       (∀ y, Valued.v (φ y) = Valued.v y) ∧ Continuous φ ∧ Continuous φ.symm := by
   intro F E _ _ _ _ _ v τ
-  obtain ⟨φ, hφc, hφ, hφv⟩ := exists_extension (GlobalTheory.AdelicU.splitPrime τ) v (τ : E →+* Fv F v)
+  obtain ⟨φ, hφc, hφ, hφv⟩ := _root_.GlobalTheory.ContinuousValuationExtension.exists_continuous_extension (GlobalTheory.AdelicU.splitPrime τ) v (τ : E →+* Fv F v)
     (GlobalTheory.AdelicU.valued_apply_eq_valuation τ)
-  obtain ⟨ψ, hψc, hψ, -⟩ := exists_extension v (GlobalTheory.AdelicU.splitPrime τ)
+  obtain ⟨ψ, hψc, hψ, -⟩ := _root_.GlobalTheory.ContinuousValuationExtension.exists_continuous_extension v (GlobalTheory.AdelicU.splitPrime τ)
     ((algebraMap E _).comp (algebraMap F E)) fun a =>
       (ReciprocityTheory.Aut.adic_valued_algebraMap _ _).trans ((GlobalTheory.AdelicU.valued_apply_eq_valuation τ _).symm.trans
         (GlobalTheory.AdelicU.valued_apply_algebraMap τ a))

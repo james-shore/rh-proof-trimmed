@@ -67,39 +67,13 @@ section
 variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
 variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E]
 
-open scoped Pointwise ENNReal Classical in
-open ValuativeRel MeasureTheory in
-variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] in
-variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] in
-theorem _root_.GlobalTheory.HL.KernelWeight.hf_add_left (L : _root_.Formalism.MainNotions.S.Loc.LocE F E) {n : ℕ} (Hm : Matrix (Fin n) (Fin n) E)
-    (a b y : Fin n → E) :
-    _root_.GlobalTheory.HL.hf L Hm (a + b) y =
-      _root_.GlobalTheory.HL.hf L Hm a y + _root_.GlobalTheory.HL.hf L Hm b y := by
-  have h := _root_.GlobalTheory.HL.DualInter.sub_l L Hm (a + b) b y
-  rw [add_sub_cancel_right] at h
-  linear_combination -h
-
-open scoped Pointwise ENNReal Classical in
-open ValuativeRel MeasureTheory in
-variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] in
-variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] in
-theorem _root_.GlobalTheory.HL.KernelWeight.hf_smul_left (L : _root_.Formalism.MainNotions.S.Loc.LocE F E) {n : ℕ} (Hm : Matrix (Fin n) (Fin n) E)
-    (c : E) (a y : Fin n → E) :
-    _root_.GlobalTheory.HL.hf L Hm (c • a) y = c * _root_.GlobalTheory.HL.hf L Hm a y :=
-  _root_.GlobalTheory.HL.DualInter.smul_l L Hm c a y
-
 def hfLin (L : LocE F E) {n : ℕ} (Hm : Matrix (Fin n) (Fin n) E) (y : Fin n → E) :
     (Fin n → E) →ₗ[E] E where
   toFun x := hf L Hm x y
-  map_add' a b := hf_add_left L Hm a b y
-  map_smul' c a := hf_smul_left L Hm c a y
+  map_add' a b := _root_.GlobalTheory.HL.Eichler.hf_add_l L Hm a b y
+  map_smul' c a := _root_.GlobalTheory.HL.Eichler.hf_smul_l L Hm c a y
 
-theorem exists_coord {L : LocE F E} {r k : ℕ} (S : Frames L r k) (g : Fin (r + 1) → S.V)
-    (gs : Fin r → S.V)
-    (hd : ∀ a j, hf L S.Hm (g a) (gs j) = if a = j.castSucc then 1 else 0)
-    (n : S.GLV) (hn : n ∈ S.Nof g) (j : Fin r) (x : S.V) (hx : x ∈ S.spanTo g (j + 1)) :
-    ∃ al : Fin (r + 1) → E, x = ∑ i, al i • n (g i) ∧ al j.castSucc = S.h x (gs j) := by
-  apply GlobalTheory.HL.MoveTotal.exists_coords <;> assumption
+alias exists_coord := _root_.GlobalTheory.HL.MoveTotal.exists_coords
 
 end
 

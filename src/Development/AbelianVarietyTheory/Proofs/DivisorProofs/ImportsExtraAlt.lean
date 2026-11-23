@@ -56,5 +56,4 @@ theorem main {K : Type} [Field K] [NumberField K] {Z : Type} [AddCommGroup Z] [M
 
 end GlobalTheory.TargetLemmaCollection
 
-theorem GlobalTheory.TargetLemmaCollection.target : ∀ {K : Type} [inst : Field K] [NumberField K] {Z : Type} [inst_2 : AddCommGroup Z] [inst_3 : Module K Z] [inst_4 : Module (NumberField.RingOfIntegers K) Z] [IsScalarTower (NumberField.RingOfIntegers K) K Z] {A : Submodule (NumberField.RingOfIntegers K) Z} {x : Z}, x ∈ Submodule.span K (↑A : Set Z) → ∃ (d : NumberField.RingOfIntegers K), d ≠ (0 : NumberField.RingOfIntegers K) ∧ d • x ∈ A :=
-  fun hx => GlobalTheory.TargetLemmaCollection.main hx
+alias GlobalTheory.TargetLemmaCollection.target := _root_.GlobalTheory.TargetLemmaCollection.main

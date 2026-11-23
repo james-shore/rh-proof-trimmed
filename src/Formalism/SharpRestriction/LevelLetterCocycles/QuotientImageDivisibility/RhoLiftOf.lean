@@ -169,7 +169,7 @@ theorem rhoLift_of [NeZero n] (W : LocWach PD LL O v n) (hT2 : Formalism.MainNot
       ((((PD.p : O) ^ k) • x - yu : ↥(W.wachCocyclesDelta T₂)) : W.DD T₂ × W.DD T₂).1 := by
     rw [hdd1]
     refine ⟨?_, hD1Δ⟩
-    rw [smul_sub, smul_comm, RL.trunc_letter W T₂ c hwI.1.1 htr, ← RL.map_smulA, hzuL]
+    rw [smul_sub, smul_comm, RL.trunc_letter W T₂ c hwI.1.1 htr, ← _root_.Formalism.MainNotions.LiftingTheory.wmap_map_smul, hzuL]
   have hPN2 : Formalism.MainNotions.CrystallineLiftingInputs.InPN W T₂ (Formalism.MainNotions.CrystallineLiftingInputs.Mpar PD.p (Formalism.MainNotions.RamifiedCoefficientChains.hpar n b S))
       ((((PD.p : O) ^ k) • x - yu : ↥(W.wachCocyclesDelta T₂)) : W.DD T₂ × W.DD T₂).2 := by
     rw [hdd2]

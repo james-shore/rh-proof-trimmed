@@ -89,7 +89,7 @@ theorem thetaVectorUpToUnits_thZero_of_even : ∀ (D : D7) (cc : Ideal (𝓞 D.h
   · rfl
   · intro x hx
     have hx' : x ∈ TaylorLogMetric.La D (TaylorLogMetric.tor0 D cc δ) (StandardLatticesGL3.stdL D (n * 2)) (StandardLatticesGL3.stdL D (n' * 2)) := by
-      rw [GlobalTheory.T.la_tor0_stdL_eq_blkLat D cc δ B n n']; exact hx
+      rw [_root_.GlobalTheory.BaseVacuum.baseLattice_eq_comap_blockwise_lattice D cc δ B n n']; exact hx
     obtain ⟨m, hm⟩ := B.qInt0 hS (n * 2) (n' * 2) x hx'
     rw [al_eq D _ x m hm]
     unfold alphaQ qOf

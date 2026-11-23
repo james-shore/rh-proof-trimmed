@@ -206,10 +206,6 @@ variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H] {ε : Fin 
   {σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)} {D : Submodule ℂ H}
   {E : Fin n → Fin n → Module.End ℂ D} {V : Submodule ℂ D}
 
-theorem rorth_inner_map (hσ : IsURepOn (UJset ε) σ) {g : Matrix (Fin n) (Fin n) ℂ}
-    (hg : g ∈ UJset ε) (x y : H) : inner ℂ (σ g x) (σ g y) = inner ℂ x y :=
-  (LinearIsometry.mk (σ g : H →ₗ[ℂ] H) (hσ.2.1 g hg)).inner_map_map x y
-
 theorem rorth_exists_ext (hVf : FiniteDimensional ℂ V) (j : V →ₗ[ℂ] H) :
     ∃ φ : H →L[ℂ] H, ∀ v : V, φ ((v : D) : H) = j v := by
   let ι : V →ₗ[ℂ] H := D.subtype.comp V.subtype
@@ -242,7 +238,7 @@ theorem rorth_inner_actM (hσ : IsURepOn (UJset ε) σ) (hD : IsDerivedOn ε σ 
     obtain ⟨w, hw, hwe⟩ := hVK _ hk v v.2
     have h4 := hj _ hk v ⟨w, hw⟩ hwe
     simp only [Function.comp_apply, ContinuousLinearMap.coe_restrictScalars']
-    rw [← hwe, hφ ⟨w, hw⟩, h4, rorth_inner_map hσ (rorth_mem_UJset hk)]
+    rw [← hwe, hφ ⟨w, hw⟩, h4, _root_.ReciprocityTheory.ChartRestriction.DS.inner_map_map_of_isURep hσ (rorth_mem_UJset hk)]
   rw [hconst] at h3
   have h5 := h3.unique (hasDerivAt_const (0 : ℝ) _)
   simp only [Function.comp_apply, ContinuousLinearMap.coe_restrictScalars', exp_zero_smul, hσ.1.1,

@@ -93,10 +93,6 @@ open MvPolynomial HermLB
 
 variable {k : Type} [CommRing k] {X : Scheme.{0}} {p : X ⟶ Sp k}
 
-theorem lin_single' {ι : Type} [Fintype ι] [DecidableEq ι] (i : ι) :
-    (lin fun j => (((Pi.single i 1 : ι → ℤ) j : ℤ) : ℝ)) = MvPolynomial.X i := by
-  simp [lin, Pi.single_apply, apply_ite, ite_mul]
-
 theorem isConj_const_mul {u : ∀ σ : k →+* ℂ, CxPts p σ → ℝ}
     (hc : ∀ σ σ', (Weight.ofFun (u σ)).IsConj (Weight.ofFun (u σ'))) (c : ℝ) (σ σ' : k →+* ℂ) :
     (Weight.ofFun fun y => c * u σ y).IsConj (Weight.ofFun fun y => c * u σ' y) :=
@@ -157,7 +153,7 @@ theorem gdeg_up : GlobalTheory.Published.ArCalc → ∀ (k : Type) [CommRing k] 
         rcases o with _ | j
         · exact isometric_comb_single G 2
         · exact isometric_comb_single G j
-    simpa only [lin_single'] using this
+    simpa only [_root_.GlobalTheory.ArInt.lin_single] using this
   let eB : Option (Fin 2) → Fin 3 := fun o => o.elim 0 Fin.succ
   have hB : IsArFun (fun o : Option (Fin 2) => o.elim T ![L, U]) D
       (Φ ∘ₗ (MvPolynomial.aeval fun o => (MvPolynomial.X (eB o) : MvPolynomial (Fin 3) ℝ)).toLinearMap) := by
@@ -168,7 +164,7 @@ theorem gdeg_up : GlobalTheory.Published.ArCalc → ∀ (k : Type) [CommRing k] 
         · fin_cases j
           · exact isometric_comb_single G 1
           · exact isometric_comb_single G 2
-    simpa only [lin_single'] using this
+    simpa only [_root_.GlobalTheory.ArInt.lin_single] using this
   have chA : ∀ c b : ℤ, Φ (X 2 * (C (c : ℝ) * X 0 + (X 1 + C (b : ℝ) * X 2)) ^ D) =
       1 / 2 * chInt (comb G ![c, 1, b]) D u.u := by
     intro c b

@@ -67,7 +67,7 @@ theorem majorant_w (d : SD σ) {s₁ : ℂ} {f : d.G → ℂ} (hf : IsSec d.K d.
         ∀ g ∈ C, ∀ q, ‖GlobalTheory.Eis.term (par2 σ d.Y) (rat2 σ d.Y) (fun x => ((d.Ht x : ℝ) : ℂ) ^ (z - s₁) * f x) g q‖ ≤ u q := by
   have hKc : IsCompact (d.K : Set d.G) := isCompact_K_w d.ok.good d.ok.stdK
   obtain ⟨hac, hpos⟩ := height_pos_w d.ok.good d.ok.stdK d.ok.hgt
-  obtain ⟨C0, hC0⟩ := GlobalTheory.T.flat_section_growth_bound d.K d.a hKc d.ok.hgt hpos d.χ s₁ f hf
+  obtain ⟨C0, hC0⟩ := _root_.GlobalTheory.CompanionTheory.EisTerm.flat_norm_le_height_rpow d.K d.a hKc d.ok.hgt hpos d.χ s₁ f hf
   obtain ⟨σ₀, hσ⟩ := godement_sum_w d.ok.good d.ok.frame d.ok.stdK d.ok.hgt
   refine ⟨σ₀ - (d.n : ℝ) / 2, fun z hz C hC => ?_⟩
   set σ' : ℝ := z.re + (d.n : ℝ) / 2 with hσ'

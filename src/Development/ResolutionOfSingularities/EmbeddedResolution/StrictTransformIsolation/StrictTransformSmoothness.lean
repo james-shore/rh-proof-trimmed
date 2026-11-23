@@ -168,7 +168,7 @@ theorem nonzeroOnComponents_ideal {k : Type u} [Field k] {X : Scheme.{u}}
     have h0 : s.ideal 0 = I.comap s.toSequenceOfBlowups.isoZero.hom := by
       rw [s.ideal_zero, FunctorialResolution.EmbeddedResolution.SequenceOfBlowups.projectionToBase_zero]
     rw [h0]
-    exact FunctorialResolution.EmbeddedResolution.nonzeroOnComponents_comap_iso_hom s.toSequenceOfBlowups.isoZero I hI
+    exact _root_.FunctorialResolution.EmbeddedResolution.PrincipalizationIsoTransport.nonzeroOnComponents_comap_iso s.toSequenceOfBlowups.isoZero I hI
   | succ i ih =>
     intro hi
     have hi' : i < s.toSequenceOfBlowups.length := hi
@@ -338,7 +338,7 @@ private theorem smooth_strictTransformι_comp_schemeAtToSpec_succ {k : Type u} [
   have hrange2 : Set.range ⇑(Scheme.IdealSheafData.vanishingIdeal
       (⟨pre, hsuppcl⟩ : TopologicalSpace.Closeds ↥(U.toScheme))).subschemeι.base
         = pre := by
-    rw [FunctorialResolution.EmbeddedResolution.range_base_subschemeι,
+    rw [_root_.AlgebraicGeometry.Scheme.IdealSheafData.range_subschemeι,
       AlgebraicGeometry.Scheme.IdealSheafData.coe_support_vanishingIdeal]
     rfl
   have : AlgebraicGeometry.IsReduced
@@ -600,8 +600,8 @@ private theorem smooth_vanishingIdeal_image_of_smooth_strictTransformι
         = Set.range ⇑(Scheme.IdealSheafData.vanishingIdeal
             (⟨⇑((D.toEmbeddedBlowupSequence A).strictTransformι t).base '' C, hCcl⟩ :
               TopologicalSpace.Closeds ↥((D.toEmbeddedBlowupSequence A).schemeAt t))).subschemeι.base := by
-    rw [Scheme.Hom.range_comp_base, FunctorialResolution.EmbeddedResolution.range_base_subschemeι,
-      FunctorialResolution.EmbeddedResolution.range_base_subschemeι,
+    rw [Scheme.Hom.range_comp_base, _root_.AlgebraicGeometry.Scheme.IdealSheafData.range_subschemeι,
+      _root_.AlgebraicGeometry.Scheme.IdealSheafData.range_subschemeι,
       AlgebraicGeometry.Scheme.IdealSheafData.coe_support_vanishingIdeal,
       AlgebraicGeometry.Scheme.IdealSheafData.coe_support_vanishingIdeal]
     rfl

@@ -66,9 +66,7 @@ theorem residue_nat_ne_zero_level_zero (Tt : Forms0 D u) (v : (D.mem u).A.vT) (s
     rw [← map_natCast e s, h, map_zero]
   exact (CharP.cast_eq_zero_iff (ZMod (D.mem u).A.T) (D.mem u).A.T s).mp h2
 
-theorem not_T_dvd_finset_prod {ι : Type} (s : Finset ι) (f : ι → ℕ) (h : ∀ i ∈ s, ¬ (D.mem u).A.T ∣ f i) :
-    ¬ (D.mem u).A.T ∣ ∏ i ∈ s, f i := by
-  exact not_dvd_prod_of_not_dvd (D := D) (u := u) s f h
+alias not_T_dvd_finset_prod := _root_.Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.not_dvd_prod_of_not_dvd
 
 theorem det_basis_change_mem_prime_zero (Tt : Forms0 D u) (w : D.what₂.places.Pl) (hw : OverT D u w) (v : (D.mem u).A.vT)
     (i : ℕ) (hi : i ≤ D.R.m) (h0 : i = 0) (c : (D.mem u).C.cls i) (B B' : GL (Fin (D.R.N i)) D.host.E)

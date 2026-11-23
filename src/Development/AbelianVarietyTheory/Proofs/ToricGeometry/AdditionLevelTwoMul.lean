@@ -52,19 +52,6 @@ open scoped BigOperators Real
 
 namespace GlobalTheory.ThetaAddition
 
-theorem exists_sum_mul {X Y : Type} (V : Submodule ℂ (X → ℂ)) [FiniteDimensional ℂ V]
-    (L : Submodule ℂ (Y → ℂ)) (F : X → Y → ℂ) (h1 : ∀ y, (fun x => F x y) ∈ V)
-    (h2 : ∀ x, F x ∈ L) :
-    ∃ (n : ℕ) (h : Fin n → X → ℂ) (k : Fin n → Y → ℂ), (∀ i, h i ∈ V ∧ k i ∈ L) ∧
-      ∀ x y, F x y = ∑ i, h i x * k i y := by
-  first
-  | exact @_root_.GlobalTheory.EvaluationSpanTopToricGeometry.exists_sum_mul
-  | exact _root_.GlobalTheory.EvaluationSpanTopToricGeometry.exists_sum_mul
-  | (apply _root_.GlobalTheory.EvaluationSpanTopToricGeometry.exists_sum_mul <;> assumption)
-  | (intros; apply _root_.GlobalTheory.EvaluationSpanTopToricGeometry.exists_sum_mul <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.EvaluationSpanTopToricGeometry.exists_sum_mul <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.EvaluationSpanTopToricGeometry.exists_sum_mul ..)
-
 theorem left_mem {g : ℕ} (τ : Matrix (Fin g) (Fin g) ℂ) (N : ℕ) {f f' : (Fin g → ℂ) → ℂ}
     (hf : f ∈ thetaLevel N τ) (hf' : f' ∈ thetaLevel N τ) (w : Fin g → ℂ) :
     (fun z => f (z + w) * f' (z - w)) ∈ thetaLevel (2 * N) τ := by
@@ -102,7 +89,7 @@ theorem addition_level_two_mul :
     haveI := FiniteDimensional.span_of_finite ℂ (Set.finite_range
       (fun (c : Fin g → Fin (2 * N)) (z : Fin g → ℂ) => theta (fun i => ((c i : ℕ) : ℝ) / (2 * N : ℕ)) 0 (((2 * N : ℕ) : ℂ) • z) (((2 * N : ℕ) : ℂ) • τ)))
     exact Submodule.finiteDimensional_of_le hle
-  exact exists_sum_mul (thetaLevel (2 * N) τ) (thetaLevel (2 * N) τ)
+  exact _root_.GlobalTheory.EvaluationSpanTopToricGeometry.exists_sum_mul (thetaLevel (2 * N) τ) (thetaLevel (2 * N) τ)
     (fun z w => f (z + w) * f' (z - w)) (left_mem τ N hf hf') (right_mem τ N hf hf')
 
 end GlobalTheory.ThetaAddition

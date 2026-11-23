@@ -124,8 +124,8 @@ theorem unfolded_bump_eq :
     fun u hu g => GlobalTheory.JSW.WhitModel.whit_mul hc.cont (fun γ g => hc.left γ g) hu g
   have hW' : ∀ u ∈ GlobalTheory.JSW.NA (E := E) (a := (m + 1)), ∀ g, GlobalTheory.JSW.whit φ' (u * g) = GlobalTheory.JSW.psiN u * GlobalTheory.JSW.whit φ' g :=
     fun u hu g => GlobalTheory.JSW.WhitModel.whit_mul hc'.cont (fun γ g => hc'.left γ g) hu g
-  have hWc := GlobalTheory.T.continuous_globalWhittakerCoefficientGLAdeles E (m + 1) φ hc.cont hc.bdd
-  have hWc' := GlobalTheory.T.continuous_globalWhittakerCoefficientGLAdeles E (m + 1) φ' hc'.cont hc'.bdd
+  have hWc := _root_.GlobalTheory.JSW.WhitCont.continuous_whit E (m + 1) φ hc.cont hc.bdd
+  have hWc' := _root_.GlobalTheory.JSW.WhitCont.continuous_whit E (m + 1) φ' hc'.cont hc'.bdd
   obtain ⟨U, hUo, hUi⟩ := hU
   obtain ⟨U', hUo', hUi'⟩ := hU'
   let stab : (GA E (m + 1) → ℂ) → Subgroup (GL (Fin (m + 1)) (Af E)) := fun F =>
@@ -266,9 +266,9 @@ theorem unfolded_bump_eq :
   obtain ⟨f, t, hfm, htm, hf0, hfi, hfpos, hR, hfC, hfu, hdet⟩ := hcell
   refine ⟨f, t, hfm, htm, hf0, hfi, hfpos, hR, ?_⟩
   intro x hx hd hd'
-  have ev := GlobalTheory.T.shintani_unfoldedIntegrand_eval_torusCell E m S hψ ϖ hϖ b α α' φ φ' N J Φ hJ hn1 hn2 hn3 hΦt hW hW' hWJ hWJ' (hsh ϖ hϖ) (hsh' ϖ hϖ) x
-  have ev1 := GlobalTheory.T.shintani_unfoldedIntegrand_eval_torusCell E m S hψ ϖ hϖ b α α φ φ N J Φ hJ hn1 hn2 hn3 hΦt hW hW hWJ hWJ (hsh ϖ hϖ) (hsh ϖ hϖ) x
-  have ev2 := GlobalTheory.T.shintani_unfoldedIntegrand_eval_torusCell E m S hψ ϖ hϖ b α' α' φ' φ' N J Φ hJ hn1 hn2 hn3 hΦt hW' hW' hWJ' hWJ' (hsh' ϖ hϖ)
+  have ev := _root_.GlobalTheory.ZEul.uInt_cell_eval E m S hψ ϖ hϖ b α α' φ φ' N J Φ hJ hn1 hn2 hn3 hΦt hW hW' hWJ hWJ' (hsh ϖ hϖ) (hsh' ϖ hϖ) x
+  have ev1 := _root_.GlobalTheory.ZEul.uInt_cell_eval E m S hψ ϖ hϖ b α α φ φ N J Φ hJ hn1 hn2 hn3 hΦt hW hW hWJ hWJ (hsh ϖ hϖ) (hsh ϖ hϖ) x
+  have ev2 := _root_.GlobalTheory.ZEul.uInt_cell_eval E m S hψ ϖ hϖ b α' α' φ' φ' N J Φ hJ hn1 hn2 hn3 hΦt hW' hW' hWJ' hWJ' (hsh' ϖ hϖ)
     (hsh' ϖ hϖ) x
   set I : ℂ := ∫ g in 𝓕₀, (f g : ℂ) * Complex.exp (x * t g) ∂μ with hI
   have hIC : ∫ g in 𝓕₀ ∩ GlobalTheory.CellDec.C0 E (m + 1) S, (f g : ℂ) * Complex.exp (x * t g) ∂μ = I := by

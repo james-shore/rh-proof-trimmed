@@ -62,8 +62,7 @@ namespace GlobalTheory.ZM.UnivProp
 
 set_option backward.isDefEq.respectTransparency false
 
-theorem exists_spMap {A B : Type} [CommRing A] [CommRing B] (f : Sp B ⟶ Sp A) : ∃ β : A →+* B, f = spMap β :=
-  ⟨(Spec.preimage f).hom, by simp [spMap]⟩
+alias exists_spMap := _root_.GlobalTheory.ZM.RepMap.exists_spMap
 
 theorem exists_geomPt (X : Scheme.{0}) (p : X) :
     ∃ (K : Type) (_ : Field K) (_ : IsAlgClosed K) (y : Sp K ⟶ X), p ∈ Set.range y := by
@@ -180,15 +179,6 @@ theorem exists_common (hL : Out.Laws) (hL2 : Out.Laws2) (hm : 2 ≤ m) (hd : m ^
   obtain ⟨φ, hφ⟩ := h₂
   exact ⟨u, a, φ, ha, hφ⟩
 
-theorem mem_range_of_isPullback {P X Y Z : Scheme.{0}} {a : P ⟶ X} {q : P ⟶ Y} {f : X ⟶ Z} {x : Y ⟶ Z}
-    (h : IsPullback a q f x) (p : X) : p ∈ Set.range a ↔ f p ∈ Set.range x := by
-  constructor
-  · rintro ⟨z, rfl⟩
-    exact ⟨q z, by rw [← Scheme.Hom.comp_apply, ← h.w, Scheme.Hom.comp_apply]⟩
-  · rintro ⟨y, hy⟩
-    obtain ⟨z, hz, -⟩ := Scheme.exists_preimage_of_isPullback h p y hy.symm
-    exact ⟨z, hz⟩
-
 theorem tMap_id_of_geomPt (hL : Out.Laws) (hL2 : Out.Laws2) (hm : 2 ≤ m) (hd : m ^ 2 ∣ N') (ho : Odd N')
     {S : Scheme.{0}} [IsReduced S] {s : S ⟶ Sp o} {t t' : TObj g (N' ^ 2) J b s}
     (h : ∀ (K : Type) [Field K] [IsAlgClosed K] (y : Sp K ⟶ S) (u : TObj g (N' ^ 2) J b (y ≫ s)), TMap u t y → TMap u t' y) :
@@ -224,18 +214,18 @@ theorem tMap_id_of_geomPt (hL : Out.Laws) (hL2 : Out.Laws2) (hm : 2 ≤ m) (hd :
   have oφ : ∀ V, IsOpenImmersion (φ V) := fun V => MorphismProperty.of_isPullback (hφ V).1.1.flip (hx V)
   have ca : ∀ p : t.A.left, ∃ V, p ∈ Set.range (a V) := fun p => by
     obtain ⟨V, hV⟩ := cov (t.A.hom p)
-    exact ⟨V, (mem_range_of_isPullback (ha V).1.1 p).2 hV⟩
+    exact ⟨V, (_root_.GlobalTheory.GrpLoc.range_of_isPullback (ha V).1.1 p).2 hV⟩
   have cφ : ∀ p : t'.A.left, ∃ V, p ∈ Set.range (φ V) := fun p => by
     obtain ⟨V, hV⟩ := cov (t'.A.hom p)
-    exact ⟨V, (mem_range_of_isPullback (hφ V).1.1 p).2 hV⟩
+    exact ⟨V, (_root_.GlobalTheory.GrpLoc.range_of_isPullback (hφ V).1.1 p).2 hV⟩
   obtain ⟨Φ, hΦ⟩ := exists_glue' _ a oa ca φ fun V V' p hp hp' => by
-    obtain ⟨W, c, c', hW, e₁, e₂, e₃, e₄⟩ := ref V V' _ ((mem_range_of_isPullback (ha V).1.1 p).1 hp)
-      ((mem_range_of_isPullback (ha V').1.1 p).1 hp')
-    exact ⟨W, c, c', (mem_range_of_isPullback (ha W).1.1 p).2 hW, e₁, e₃, e₂.trans e₄.symm⟩
+    obtain ⟨W, c, c', hW, e₁, e₂, e₃, e₄⟩ := ref V V' _ ((_root_.GlobalTheory.GrpLoc.range_of_isPullback (ha V).1.1 p).1 hp)
+      ((_root_.GlobalTheory.GrpLoc.range_of_isPullback (ha V').1.1 p).1 hp')
+    exact ⟨W, c, c', (_root_.GlobalTheory.GrpLoc.range_of_isPullback (ha W).1.1 p).2 hW, e₁, e₃, e₂.trans e₄.symm⟩
   obtain ⟨Ψ, hΨ⟩ := exists_glue' _ φ oφ cφ a fun V V' p hp hp' => by
-    obtain ⟨W, c, c', hW, e₁, e₂, e₃, e₄⟩ := ref V V' _ ((mem_range_of_isPullback (hφ V).1.1 p).1 hp)
-      ((mem_range_of_isPullback (hφ V').1.1 p).1 hp')
-    exact ⟨W, c, c', (mem_range_of_isPullback (hφ W).1.1 p).2 hW, e₂, e₄, e₁.trans e₃.symm⟩
+    obtain ⟨W, c, c', hW, e₁, e₂, e₃, e₄⟩ := ref V V' _ ((_root_.GlobalTheory.GrpLoc.range_of_isPullback (hφ V).1.1 p).1 hp)
+      ((_root_.GlobalTheory.GrpLoc.range_of_isPullback (hφ V').1.1 p).1 hp')
+    exact ⟨W, c, c', (_root_.GlobalTheory.GrpLoc.range_of_isPullback (hφ W).1.1 p).2 hW, e₂, e₄, e₁.trans e₃.symm⟩
   have exta : ∀ {Y : Scheme.{0}} (f f' : t.A.left ⟶ Y), (∀ V, a V ≫ f = a V ≫ f') → f = f' := fun f f' e =>
     hom_ext_affine f f' fun p => by
       obtain ⟨V, hV⟩ := ca p

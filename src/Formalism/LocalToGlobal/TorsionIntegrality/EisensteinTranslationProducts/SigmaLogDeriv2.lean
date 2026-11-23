@@ -50,19 +50,14 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.F
 
-theorem zetaSummable : ZetaSummable := zeta_summable
-theorem zetaHasDeriv : ZetaHasDeriv := zeta_has_deriv
-theorem zetaOdd : ZetaOdd := zeta_odd
-theorem zetaQuasi : ZetaQuasi := zetaQuasi_of zetaHasDeriv zetaOdd
-theorem sigmaSummable : SigmaSummable := sigma_summable
-theorem sigmaProdLU : SigmaProdLU := sigma_product_locally_uniform
-theorem sigmaEntire : SigmaEntire := sigmaEntire_of sigmaProdLU
-theorem sigmaOdd : SigmaOdd := sigma_odd
-theorem sigmaZero : SigmaZero := sigmaZero_of sigmaSummable
-theorem sigmaLogDeriv : SigmaLogDeriv := sigmaLogDeriv_of sigmaProdLU sigmaSummable zetaSummable
-theorem sigmaQuasi : SigmaQuasi := sigmaQuasi_of zetaQuasi sigmaLogDeriv sigmaEntire sigmaOdd sigmaZero
-theorem sigmaSimple : SigmaSimple := sigmaSimple_of sigmaQuasi sigmaEntire (sigmaDerivZero_of sigmaProdLU)
-theorem etaEisenstein : EtaEisenstein := etaEisenstein_of zetaSummable zetaOdd
+alias zetaHasDeriv := _root_.Formalism.L2.Th1.F.zeta_has_deriv
+theorem zetaQuasi : ZetaQuasi := zetaQuasi_of zetaHasDeriv _root_.Formalism.L2.Th1.F.zeta_odd
+theorem sigmaEntire : SigmaEntire := sigmaEntire_of _root_.Formalism.L2.Th1.F.sigma_product_locally_uniform
+theorem sigmaZero : SigmaZero := sigmaZero_of _root_.Formalism.L2.Th1.F.sigma_summable
+theorem sigmaLogDeriv : SigmaLogDeriv := sigmaLogDeriv_of _root_.Formalism.L2.Th1.F.sigma_product_locally_uniform _root_.Formalism.L2.Th1.F.sigma_summable _root_.Formalism.L2.Th1.F.zeta_summable
+theorem sigmaQuasi : SigmaQuasi := sigmaQuasi_of zetaQuasi sigmaLogDeriv sigmaEntire _root_.Formalism.L2.Th1.F.sigma_odd sigmaZero
+theorem sigmaSimple : SigmaSimple := sigmaSimple_of sigmaQuasi sigmaEntire (sigmaDerivZero_of _root_.Formalism.L2.Th1.F.sigma_product_locally_uniform)
+theorem etaEisenstein : EtaEisenstein := etaEisenstein_of _root_.Formalism.L2.Th1.F.zeta_summable _root_.Formalism.L2.Th1.F.zeta_odd
 theorem legendre : Legendre := legendre_of etaEisenstein
 
 end Formalism.L2.Th1.F

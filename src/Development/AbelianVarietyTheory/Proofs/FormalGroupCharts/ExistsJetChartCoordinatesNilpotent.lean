@@ -139,7 +139,7 @@ theorem exists_jet_coordinates : ∀ (R : Type) [CommRing R] (G : Over (Spec (Co
       have hb' : ∀ j, b j + δ j ∈ N := fun j =>
         add_mem (hb j) (Ideal.pow_le_self (by omega) (hδ j))
       refine ⟨fun j => b j + δ j, hb', ?_⟩
-      have h3 := GlobalTheory.T.jetPoint_add_sqZero_eq_prod_mul_tangent R G hG d v hv x ht h0 h1 B augB J hJN hJle m
+      have h3 := _root_.GlobalTheory.jet_add_sqZero_eq_prod_mul R G hG d v hv x ht h0 h1 B augB J hJN hJle m
         (π.comp (jetLift R _ hN b hb)) (π.comp (jetLift R _ hN (fun j => b j + δ j) hb'))
         (by rw [← AlgHom.comp_assoc, haug, aug_comp_jetLift])
         (by rw [← AlgHom.comp_assoc, haug, aug_comp_jetLift])

@@ -221,7 +221,7 @@ theorem subDeg_frob : ∀ (K : Type) [Field K] (C : ACurve K) (p : ℕ) [Fact p.
       ∀ j, (c' j : Fin d → K) = mapVec σ d (c j) := by
     intro i
     obtain ⟨b, hb⟩ := hL.1 i
-    obtain ⟨c, -, b₁, hb₁, hc, -, hbc, -⟩ := GlobalTheory.T.lattice_basis_adapted_to_subspace K C _ i _ b (L i) W hb
+    obtain ⟨c, -, b₁, hb₁, hc, -, hbc, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Crv.LatAdapted.exists_adapted K C _ i _ b (L i) W hb
     obtain ⟨b', hb'⟩ := exists_basis_top σ b₁
     obtain ⟨c', hc'⟩ := exists_basis_sub σ W c
     refine ⟨c, c', hc, ?_, hc'⟩

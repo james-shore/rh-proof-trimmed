@@ -112,7 +112,7 @@ theorem lastAgree_of_reads (hW : _root_.GlobalTheory.Fam.AllFamilyConditions W) 
   have hs : (J.G i).s = B.R.m - 2 := by have := (hJ.tw i).steps; omega
   have hL : (I.idx (W.P.I.tup t)).Ok I.Ch I.sel (I.tup (W.P.I.tup t)) (I.cst (W.P.I.tup t)) I.glob (J.G i).s := by
     rw [hs]; exact hI.idx_ok _
-  exact GlobalTheory.T.twistParahoricChain_lastSteps_agree_columns B.fields (B.primes X) B.R I.Ch I.sel _ _ _ B.embLL (J.P i) (J.G i).k _ (J.G i).s _ (J.G i).ν (J.G i).unitVol
+  exact _root_.GlobalTheory.TwLast.lastAgree B.fields (B.primes X) B.R I.Ch I.sel _ _ _ B.embLL (J.P i) (J.G i).k _ (J.G i).s _ (J.G i).ν (J.G i).unitVol
     (hI.idx_ok _).cst_ok (hJ.tw i) _ I.glob hL
 variable (J i) in
 def TranslationCondition (e : XIx (Fin B.R.k) (Fin B.R.t) ((J.G i).s + 1) ≃ Fin (B.R.N ((J.G i).s + 1))) (hm : (J.G i).s + 1 ≤ B.R.m)
@@ -226,7 +226,7 @@ theorem exists_roots_of_unity_signs_facAt (hW : _root_.GlobalTheory.Fam.AllFamil
     ∃ (σ : ∀ j, J.Ch₀ j → ℂ) (τ : ∀ j, J.Ch₀ (j + 1) → ℂ), (∀ j β, ∃ n : ℕ, 0 < n ∧ σ j β ^ n = 1) ∧
       (∀ j β, ∃ n : ℕ, 0 < n ∧ τ j β ^ n = 1) ∧ (∀ j, j + 1 < B.R.m → ∀ β, τ j β * σ (j + 1) β = 1) ∧
       ∀ j (hj : j + 1 ≤ B.R.m) (α : J.Ch j) (γ : J.Ch (j + 1)), _root_.GlobalTheory.TwPlaces.FactorisationCondition J i j hj α γ (σ j (J.ι j α) * τ j (J.ι (j + 1) γ)) := by
-  have hm := _root_.GlobalTheory.T.moved_at_of_reads W hW u a ha haT t J hJ i
+  have hm := _root_.GlobalTheory.QTw.JoinFrames.movedAt_alt W hW u a ha haT t J hJ i
   have hs : (J.G i).s + 1 + 1 = B.R.m := (J.G i).hs
   obtain ⟨e, he⟩ := exists_xOrd B.R ((J.G i).s + 1)
   choose c hc hc' using _root_.GlobalTheory.TwPlaces.exists_root_of_unity_moveAt hm e he (by omega)
@@ -293,7 +293,7 @@ theorem exists_disjoint_places_isIdemSum (hW : _root_.GlobalTheory.Fam.AllFamily
         Formalism.L2.Col.QE I.sel (I.tup (W.P.I.tup t) : Formalism.L2.DIV.Chr B.fields.F B.fields.E B.fields.K) := by
     simp only [Formalism.L2.Col.Sall, Formalism.L2.Col.rowSG, Formalism.L2.Col.uSG, Finset.union_assoc]
   rw [hS] at hid
-  obtain ⟨e₁, h1, h2⟩ := _root_.GlobalTheory.T.true_geometry_twist_quadratic_level_alt W hW u a ha haT t J hJ
+  obtain ⟨e₁, h1, h2⟩ := _root_.GlobalTheory.Fam.IdemSplitTw.idem_eq_add_twist_alt W hW u a ha haT t J hJ
   obtain rfl : e₀ = e₁ := (GlobalTheory.ExportSeries.idem_eq he₀).symm.trans (GlobalTheory.ExportSeries.idem_eq h1)
   refine ⟨_, fun PP => ⟨fun h => hJ.surj PP ((hW.tq.Q t PP).2 h), ?_⟩,
     Finset.disjoint_union_left.2 ⟨hd.mono_right Finset.subset_union_right, hgq⟩, h2 ▸ hid⟩
@@ -303,7 +303,7 @@ end Steps
 theorem ratDatum_add_twist_places_alt : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.toPre} {I : TC B X} {l : I.Laws} {Z : TC.Later B (I.cols l)} {L : SizeData₂ (I.rec7 l Z)} {hT : GatTies (I.rec7 l Z)} {Gi : Formalism.MainNotions.G.Inst (I.rec7 l Z) L} {Gl : Formalism.MainNotions.G.LatInst (I.rec7 l Z)} {Kc : Formalism.MainNotions.G.Consts} {Yd : DivX (I.rec7 l Z)} {cX : ExtraC} {ex : Extra (I.rec7 l Z) L hT Gi Gl Kc Yd cX} (W : _root_.GlobalTheory.MiS.RealPackAlt ex), _root_.GlobalTheory.Fam.AllFamilyConditions W → ∀ (u : B.Word) (a : _root_.GlobalTheory.Fam.GeometricFamily W u), a.Is → a.True → (∀ r s, (a.g.oT B.R.m rfl).iA r s = if r.val = s.val then 1 else 0) → ∀ t (J : _root_.GlobalTheory.Fam.QuadraticExtensionData a t), J.Reads → ∃ (p : ∀ j, J.Ch j → ℂ) (q : ∀ j, J.Ch (j + 1) → ℂ), (∀ j, j < B.R.m → ∀ α, ∃ n : ℕ, 0 < n ∧ (p j α * (J.A.chr (j + 1) (J.A.xr j (J.ι j α)) : ℂ)) ^ n = 1) ∧ (∀ j, j < B.R.m → ∀ γ, ∃ n : ℕ, 0 < n ∧ (q j γ * ((J.A.chr (j + 1) (J.A.xr (j + 1) (J.ι (j + 1) γ)) : ℂ))⁻¹) ^ n = 1) ∧ (∃ c : ℂ, (∃ n : ℕ, 0 < n ∧ c ^ n = 1) ∧ ∀ α, p 0 α * (J.A.chr 1 (J.A.xr 0 (J.ι 0 α)) : ℂ) = c) ∧ (∀ j, j + 1 < B.R.m → ∃ c : ℂ, (∃ n : ℕ, 0 < n ∧ c ^ n = 1) ∧ ∀ γ, q j γ * ((J.A.chr (j + 1) (J.A.xr (j + 1) (J.ι (j + 1) γ)) : ℂ))⁻¹ * (p (j + 1) γ * (J.A.chr (j + 1 + 1) (J.A.xr (j + 1) (J.ι (j + 1) γ)) : ℂ)) = c) ∧ ∀ e₀ : AE (I.rec7 l Z), IsIdemSum e₀ ((B.primes X).vT u ∪ (B.primes X).vGs) → ∀ j (hj : j + 1 ≤ B.R.m) α γ (Ξ : Matrix (Fin ((I.rec7 l Z).sp.X (j + 1)).rank) (Fin ((I.rec7 l Z).sp.X j).rank) (I.rec7 l Z).host.E → ℂ) (f : WO ((I.rec7 l Z).sp.X j) ((I.rec7 l Z).sp.X (j + 1)) → ℂ), IsRatDatum (_root_.GlobalTheory.Fam.pk_z W).ψ _ _ e₀ Ξ (a.g.vac j) f → IsRatDatum (_root_.GlobalTheory.Fam.pk_z W).ψ _ _ (e₀ + ∑ i, (J.G i).q.e) (fun z => Ξ z * (p j α * q j γ * ∏ i, B.embLL (locXi J.A j (J.ι j α) (J.ι (j + 1) γ) (J.P i) (homOf I l Z j hj z)))) (a.g.vac j) (comb (_root_.GlobalTheory.Fam.pk_z W).ψ _ _ (aconv (List.ofFn fun i => (J.E i).dL j (α i) (γ i))) f) := by
   intro B X I l Z L hT Gi Gl Kc Yd cX ex W hW u a ha haT hiA t J hJ
   choose σ τ hσ hτ hστ hloc using fun i => _root_.GlobalTheory.TwPlaces.exists_roots_of_unity_signs_facAt (J := J) i hW ha haT hiA hJ
-  have hcob := _root_.GlobalTheory.T.true_geometry_twist_local_identity_alt W hW u a ha haT t J hJ
+  have hcob := _root_.GlobalTheory.ChartQuot.chr_quot_chart_free_alt W hW u a ha haT t J hJ
   have hm := B.R.two_le_m
   obtain ⟨hP⟩ := hW.tr.pins
   have hc : ∀ j, j < B.R.m → ∀ i, i ≤ B.R.m → ∀ β, ∃ n : ℕ, 0 < n ∧ ((J.A.chr (j + 1) (J.A.xr i β) : ℂ)) ^ n = 1 :=

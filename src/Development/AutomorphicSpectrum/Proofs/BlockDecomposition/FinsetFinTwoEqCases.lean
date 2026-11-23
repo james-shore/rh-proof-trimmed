@@ -71,10 +71,6 @@ def dg (u : Matrix (Fin M) (Fin M) A) : Matrix (Fin (M + 2)) (Fin (M + 2)) A :=
   Matrix.of (Fin.cons (Fin.cons 1 (Fin.cons 0 fun _ => 0))
     (Fin.cons (Fin.cons 0 (Fin.cons 1 fun _ => 0)) fun i => Fin.cons 0 (Fin.cons 0 (u i))))
 
-section DgEntries
-variable (u : Matrix (Fin M) (Fin M) A)
-end DgEntries
-
 theorem finset_fin_two_eq_cases {p : Fin (M + 2) → Prop} (h0 : p 0) (h1 : p 1) (h2 : ∀ i : Fin M, p i.succ.succ)
     (i : Fin (M + 2)) : p i := by
   refine Fin.cases h0 (fun i => ?_) i
@@ -475,9 +471,6 @@ variable (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E)
 
 def mkH (g : GL (Fin M) (R ⊗[F] E)) (hg : g ∈ HR R σ J) : HA R σ J := (⟨g, hg⟩ : HR R σ J)
 
-theorem mat_mem (h : HA R σ J) : HA.mat R σ J h ∈ HR R σ J :=
-  Subtype.property (show HR R σ J from h)
-
 theorem HA_ext {g h : HA R σ J} (e : HA.mat R σ J g = HA.mat R σ J h) : g = h :=
   Subtype.ext (p := fun x => x ∈ HR R σ J) e
 
@@ -514,7 +507,7 @@ theorem stab_mem_stabG (p : stabilizer₂ R σ J) :
     HA.mat R σ (hypOne J) p.1 ∈ stabG (sigR R σ) (JR R J) := by
   refine ⟨?_, (colE_iff R σ J p.1).1 p.2⟩
   rw [← JR_hypOne]
-  exact mat_mem R σ (hypOne J) p.1
+  exact _root_.GlobalTheory.CompanionTheory.SW.StabFirst.mat_mem R σ (hypOne J) p.1
 
 def toG : stabilizer₂ R σ J →* stabG (sigR R σ) (JR R J) :=
   MonoidHom.mk' (fun p => ⟨HA.mat R σ (hypOne J) p.1, stab_mem_stabG R σ J p⟩)
@@ -527,10 +520,10 @@ def piR : stabilizer₂ R σ J →* HA R σ J :=
 
 def iotaR : HA R σ J →* stabilizer₂ R σ J :=
   MonoidHom.mk' (fun u => ⟨mkH R σ (hypOne J) (dgGL (HA.mat R σ J u)) (by
-      have h : dgGL (HA.mat R σ J u) ∈ stabG (sigR R σ) (JR R J) := dgGL_mem (mat_mem R σ J u)
+      have h : dgGL (HA.mat R σ J u) ∈ stabG (sigR R σ) (JR R J) := dgGL_mem (_root_.GlobalTheory.CompanionTheory.SW.StabFirst.mat_mem R σ J u)
       have h1 := h.1
       rw [← JR_hypOne] at h1
-      exact h1), (colE_iff R σ J _).2 (dgGL_mem (s := sigR R σ) (J := JR R J) (mat_mem R σ J u)).2⟩)
+      exact h1), (colE_iff R σ J _).2 (dgGL_mem (s := sigR R σ) (J := JR R J) (_root_.GlobalTheory.CompanionTheory.SW.StabFirst.mat_mem R σ J u)).2⟩)
     (fun u v => Subtype.ext (HA_ext R σ (hypOne J) (by
       change dgGL (HA.mat R σ J u * HA.mat R σ J v) = dgGL _ * dgGL _
       rw [map_mul])))

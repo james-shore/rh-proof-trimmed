@@ -1293,7 +1293,7 @@ theorem amplitude_bound_far : Formalism.FourierDecayAlt.G.AmpBoundFar := by
         ⟨((hΦ Z hZ).1).of_le (by exact_mod_cast hqk), fun j hj => (hΦ Z hZ).2 j (hj.trans hqk)⟩
       have h1 := (hCc V Φ (detSet (m + 1) Kc) _ τ hτ1 hΦq).1
       have hdet : detM (MXY m D t (x, y)) ∈ detSet (m + 1) Kc :=
-        ⟨D, hD, (det_matrix_xy m D t (x, y) hcof).symm⟩
+        ⟨D, hD, (_root_.Formalism.FourierDecayAlt.P.CuspidalIrreducibleSubrep.detMXY m D t (x, y) hcof).symm⟩
       have hΦ' : DB q (cutPhi τ Φ) (MXY m D t (x, y)) (max Cc 0 * K) 1 := by
         refine (DB_of_DerivBound h1 le_rfl hdet).mono ?_ zero_le_one le_rfl
         have hb0 : 0 ≤ K * min 1 (‖MXY m D t (x, y)‖ ^ (-A)) :=
@@ -1402,7 +1402,7 @@ theorem K_nonneg {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] {m k : �
     rw [h, norm_zero] at h2
     exact (pow_pos (norm_pos_iff.2 hz) (m + 1)).ne h2
   have hdet : detM (MXY m D 0 (fun _ => z, (0 : UT (m + 2) → ℂ))) ∈ detSet (m + 1) Kc :=
-    ⟨D, hD, (det_matrix_xy m D 0 _ hc).symm⟩
+    ⟨D, hD, (_root_.Formalism.FourierDecayAlt.P.CuspidalIrreducibleSubrep.detMXY m D 0 _ hc).symm⟩
   have hM : 0 < ‖MXY m D 0 (fun _ => z, (0 : UT (m + 2) → ℂ))‖ :=
     lt_of_lt_of_le (norm_pos_iff.2 hz) (x_le_MXY m D 0 (fun _ => z, (0 : UT (m + 2) → ℂ)) 0)
   have h := (hΦ _ hdet).2 0 (Nat.zero_le _)
@@ -1571,7 +1571,7 @@ theorem main : AmpBoundCrit := by
         exact norm_pos_iff.mp ((div_pos hδp two_pos).trans_le hcof)
       have hprodne : ∏ k, x k ≠ 0 := by
         exact norm_pos_iff.mp (hδp.trans_le hprod)
-      have hdet : detM (MXY m D t (x, y)) ∈ detSet (m + 1) Kc := ⟨D, hD, (det_matrix_xy m D t (x, y) hcofne).symm⟩
+      have hdet : detM (MXY m D t (x, y)) ∈ detSet (m + 1) Kc := ⟨D, hD, (_root_.Formalism.FourierDecayAlt.P.CuspidalIrreducibleSubrep.detMXY m D t (x, y) hcofne).symm⟩
       have hΦ' := (hCcut V Φ _ _ τ hτ (derivBound_mono hΦ hk)).1
       have hDBΦ : DB q (cutPhi τ Φ) (MXY m D t (x, y)) K' 1 := by
         refine (DB_of_DerivBound hΦ' le_rfl hdet).mono ?_ zero_le_one le_rfl
@@ -1639,8 +1639,6 @@ theorem main : AmpBoundCrit := by
     _ = _ := by rw [hYdef, hmxdef]; ring
 
 end Formalism.FourierDecayAlt.P.EtaleIntegralityFacts.Crit
-
-theorem Formalism.FourierDecayAlt.P.amplitude_bound_critical : Formalism.FourierDecayAlt.G.AmpBoundCrit := Formalism.FourierDecayAlt.P.EtaleIntegralityFacts.Crit.main
 
 namespace Formalism.FourierDecayAlt.P.EtaleIntegralityFacts.Lim
 
@@ -1825,7 +1823,7 @@ theorem norm_psi (β w : ℂ) : ‖psi β w‖ = 1 := (additive_character_psi β
 
 theorem det_mem (m : ℕ) (Kc : Set ℂ) {D : ℂ} (hD : D ∈ Kc) (t : ℂ) (p : XY m) (hc : cofXY m t p ≠ 0) :
     detM (MXY m D t p) ∈ detSet (m + 1) Kc := by
-  rw [det_matrix_xy m D t p hc]
+  rw [_root_.Formalism.FourierDecayAlt.P.CuspidalIrreducibleSubrep.detMXY m D t p hc]
   exact ⟨D, hD, rfl⟩
 
 theorem K_nonneg (m : ℕ) (Kc : Set ℂ) (Φ : Mat (m + 1 + 1) → V) (A K : ℝ) (k : ℕ)
@@ -2206,4 +2204,3 @@ end
 
 end Formalism.FourierDecayAlt.P.EtaleIntegralityFacts.Lim
 
-theorem Formalism.FourierDecayAlt.P.amplitude_limit : Formalism.FourierDecayAlt.G.AmpLimit := Formalism.FourierDecayAlt.P.EtaleIntegralityFacts.Lim.ampLimit

@@ -58,6 +58,7 @@ import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Separation.CompletelyRegular
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsotropicLeviEmbeddingHomomorphismProperties
 
 @[expose] public section
 
@@ -307,32 +308,6 @@ theorem u_ss : uEmb k r u (esI k r a) (esI k r b) = (u⁻¹)ᴴ a b := by
   · exfalso; apply h2; simp only [esI]; omega
   · exfalso; apply h2; simp only [esI]; omega
 
-private lemma uEmb_eI_eI (u : Matrix (Fin r) (Fin r) ℂ) (a b : Fin r) :
-    uEmb k r u (eI k r a) (eI k r b) = u a b := by
-  have ha := a.isLt
-  have hb := b.isLt
-  unfold uEmb
-  split_ifs <;> first
-    | rfl
-    | (exfalso; simp_all [eI, wI, esI, Fin.ext_iff] <;> omega)
-
-private lemma uEmb_eI_esI (u : Matrix (Fin r) (Fin r) ℂ) (a b : Fin r) :
-    uEmb k r u (eI k r a) (esI k r b) = 0 := by
-  have ha := a.isLt
-  have hb := b.isLt
-  unfold uEmb
-  split_ifs <;> first
-    | rfl
-    | (exfalso; simp_all [eI, wI, esI, Fin.ext_iff] <;> omega)
-
-private lemma uEmb_esI_eI (u : Matrix (Fin r) (Fin r) ℂ) (a b : Fin r) :
-    uEmb k r u (esI k r a) (eI k r b) = 0 := by
-  have ha := a.isLt
-  have hb := b.isLt
-  unfold uEmb
-  split_ifs <;> first
-    | rfl
-    | (exfalso; simp_all [eI, wI, esI, Fin.ext_iff] <;> omega)
 end
 
 theorem conj_u {g : Mat k r} {D Y Z : Matrix (Fin r) (Fin r) ℂ} {M : Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ}
@@ -341,8 +316,8 @@ theorem conj_u {g : Mat k r} {D Y Z : Matrix (Fin r) (Fin r) ℂ} {M : Matrix (F
   obtain ⟨hee, hew, hes, hwe, hww, hws, hse, hsw, hss⟩ := hg
   ext i j
   induction i using cases3 <;> induction j using cases3 <;>
-    simp only [Matrix.mul_apply, sum3, hee, hew, hes, hwe, hww, hws, hse, hsw, hss, uEmb_eI_eI, uEmb_eI_esI,
-      uEmb_esI_eI, u_ew, u_we, u_ww, u_ws, u_sw, u_ss, mul_zero, zero_mul, Finset.sum_const_zero, add_zero,
+    simp only [Matrix.mul_apply, sum3, hee, hew, hes, hwe, hww, hws, hse, hsw, hss, _root_.GlobalTheory.Amp.UEmb.u_ee, _root_.GlobalTheory.Amp.UEmb.u_es,
+      _root_.GlobalTheory.Amp.UEmb.u_se, u_ew, u_we, u_ww, u_ws, u_sw, u_ss, mul_zero, zero_mul, Finset.sum_const_zero, add_zero,
       zero_add, mul_ite, ite_mul, mul_one, one_mul, Finset.sum_ite_eq, Finset.sum_ite_eq', Finset.mem_univ,
       if_true]
   all_goals first

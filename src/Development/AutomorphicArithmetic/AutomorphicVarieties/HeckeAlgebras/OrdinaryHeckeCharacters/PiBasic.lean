@@ -194,15 +194,12 @@ section Grp
 variable {B C : Type} [Group B] [Group C] (J : B →* C) (UQ : Subgroup C) (hc : ∀ u ∈ UQ, ∀ g, Commute u (J g))
 include hc
 
-private theorem pb_mem (K : Subgroup B) (x : C) : x ∈ UQ ⊔ K.map J ↔ ∃ u ∈ UQ, ∃ k ∈ K, x = u * J k :=
-  by apply _root_.UpperTheory.Reformulated.B.Qi43.pb_mem <;> assumption
-
 private theorem pb_normal (K K' : Subgroup B) [hN : (K'.subgroupOf K).Normal] (hle : K' ≤ K) :
     ((UQ ⊔ K'.map J).subgroupOf (UQ ⊔ K.map J)).Normal := by
   refine ⟨fun x hx y => ?_⟩
-  rw [Subgroup.mem_subgroupOf, pb_mem J UQ hc] at hx ⊢
+  rw [Subgroup.mem_subgroupOf, _root_.UpperTheory.Reformulated.B.Qi43.pb_mem J UQ hc] at hx ⊢
   obtain ⟨u', hu', k', hk', e'⟩ := hx
-  obtain ⟨u, hu, k, hk, e⟩ := (pb_mem J UQ hc K _).1 y.2
+  obtain ⟨u, hu, k, hk, e⟩ := (_root_.UpperTheory.Reformulated.B.Qi43.pb_mem J UQ hc K _).1 y.2
   refine ⟨u * u' * u⁻¹, mul_mem (mul_mem hu hu') (inv_mem hu), k * k' * k⁻¹,
     hN.conj_mem ⟨k', hle hk'⟩ hk' ⟨k, hk⟩, ?_⟩
   rw [Subgroup.coe_mul, Subgroup.coe_mul, Subgroup.coe_inv, e, e', mul_assoc (u * u'), (hc _ (inv_mem hu) _).eq,
@@ -224,7 +221,7 @@ private theorem pb_equiv (K K' : Subgroup B) [(K'.subgroupOf K).Normal]
     exact (QuotientGroup.eq_one_iff _).2 (hinj k k.2 ((QuotientGroup.eq_one_iff (j k)).1 hx))
   · intro x
     obtain ⟨y, rfl⟩ := QuotientGroup.mk_surjective x
-    obtain ⟨u, hu, k, hk, e⟩ := (pb_mem J UQ hc K _).1 y.2
+    obtain ⟨u, hu, k, hk, e⟩ := (_root_.UpperTheory.Reformulated.B.Qi43.pb_mem J UQ hc K _).1 y.2
     refine ⟨((⟨k, hk⟩ : K) : K ⧸ K'.subgroupOf K), QuotientGroup.eq.2 ?_⟩
     change (J k)⁻¹ * y ∈ UQ ⊔ K'.map J
     rw [e, (hc u hu k).eq, inv_mul_cancel_left]
@@ -270,7 +267,7 @@ private theorem pb_main (hθ : X.I.ContChar θ) {B Lev ι : Type} [Group B] [Non
   have hJ : ∀ K, ∀ k ∈ κ K, J k ∈ lev K := fun K k hk => by rw [hlev]; exact Subgroup.mem_sup_right ⟨k, hk, rfl⟩
   have hfix : ∀ K f, (∀ u ∈ UQ, X.ra τ u f = f) → (∀ k ∈ κ K, X.ra τ (J k) f = f) → f ∈ fixd (X.ra τ) (lev K) := by
     intro K f h1 h2 x hx
-    rw [hlev, pb_mem J UQ hc] at hx
+    rw [hlev, _root_.UpperTheory.Reformulated.B.Qi43.pb_mem J UQ hc] at hx
     obtain ⟨u, hu, k, hk, rfl⟩ := hx
     rw [map_mul, Module.End.mul_apply, h2 k hk, h1 u hu]
   have hact : ∀ K K' g, (∀ k ∈ κ K', g⁻¹ * k * g ∈ κ K) → ∀ f ∈ X.Ord τ θ (lev K), X.ra τ (J g) f ∈ X.Ord τ θ (lev K') := by

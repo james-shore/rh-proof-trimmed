@@ -58,10 +58,6 @@ private theorem pow_comm (φ : M →ₗ[L] N) (A : End L M) (A' : End L N) (h : 
   | zero => simp
   | succ n ih => rw [pow_succ, pow_succ, Module.End.mul_apply, Module.End.mul_apply, ih, h]
 
-private theorem aeval_comm (φ : M →ₗ[L] N) (A : End L M) (A' : End L N) (h : ∀ y, φ (A y) = A' (φ y)) (Q : Polynomial L) (y : M) :
-    φ (Polynomial.aeval A Q y) = Polynomial.aeval A' Q (φ y) :=
-  _root_.UpperTheory.Reformulated.B.Qk66.aeval_comm φ A A' h Q y
-
 end Comm
 
 section
@@ -114,7 +110,7 @@ theorem nilEmb_of : NilEmb := by
     intro i
     have hle : N i ≤ ∑ i, N i := Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ i)
     rw [pow_comm (ext1 B (f i)) A (Polynomial.aeval (onPer ψ L (W i)) Q)
-      (aeval_comm _ _ _ (scalar_extension_period_action ψ (f i)) Q), ← Nat.sub_add_cancel hle, pow_add, Module.End.mul_apply,
+      (_root_.UpperTheory.Reformulated.B.Qk66.aeval_comm _ _ _ (scalar_extension_period_action ψ (f i)) Q), ← Nat.sub_add_cancel hle, pow_add, Module.End.mul_apply,
       hN i _ (typeCharacterExtension_mem_range_coefficientRing σ (hI i) hx), map_zero]
   apply (TensorProduct.equivFinsuppOfBasisRight (Basis.ofVectorSpace F B)).injective
   ext k

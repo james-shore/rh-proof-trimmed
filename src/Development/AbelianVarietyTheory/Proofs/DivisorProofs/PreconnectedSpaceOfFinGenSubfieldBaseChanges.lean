@@ -73,24 +73,6 @@ theorem spMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (i : A 
     spMap (j.comp i) = spMap j ≫ spMap i := by
   simp only [spMap, CommRingCat.ofHom_comp, Spec.map_comp]
 
-theorem appTop_spMap_injective {A B : Type} [CommRing A] [CommRing B] (j : A →+* B)
-    (hj : Function.Injective j) : Function.Injective (spMap j).appTop.hom := by
-  intro a b h
-  have e := Scheme.ΓSpecIso_naturality (CommRingCat.ofHom j)
-  have h3 : ∀ x, (Scheme.ΓSpecIso (CommRingCat.of B)).hom.hom ((spMap j).appTop.hom x) =
-      j ((Scheme.ΓSpecIso (CommRingCat.of A)).hom.hom x) := fun x => congrArg (fun f => f.hom x) e
-  have h2 := congrArg (Scheme.ΓSpecIso (CommRingCat.of B)).hom.hom h
-  rw [h3, h3] at h2
-  have h4 := hj h2
-  have := congrArg (Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom h4
-  simpa using this
-
-theorem appTop_spMap_inv {A B : Type} [CommRing A] [CommRing B] (j : A →+* B) (y : A) :
-    (spMap j).appTop.hom ((Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom y) =
-      (Scheme.ΓSpecIso (CommRingCat.of B)).inv.hom (j y) := by
-  have e := Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom j)
-  exact (congrArg (fun f => f.hom y) e).symm
-
 variable {F : Type} [CommRing F] {X : Scheme.{0}} (f : X ⟶ Sp F)
 
 def bc {K A : Type} [CommRing K] [CommRing A] (i₀ : F →+* K) (i : F →+* A) (j : A →+* K) (hji : j.comp i = i₀) :
@@ -141,22 +123,6 @@ theorem mem_of_isPushout {R A B P : CommRingCat.{0}} {φ : R ⟶ A} {ψ : R ⟶ 
   rw [← this]
   exact ((H.desc inl' inr' w).hom x).2
 
-theorem isClosed_basicOpen_idem {Y : Scheme.{0}} {e : Γ(Y, ⊤)} (he : IsIdempotentElem e) :
-    IsClosed (Y.basicOpen e : Set Y) := by
-  have : (Y.basicOpen e : Set Y) = (Y.basicOpen (1 - e) : Set Y)ᶜ := by
-    ext x
-    constructor
-    · intro h h'
-      have hx : x ∈ Y.basicOpen (e * (1 - e)) := by rw [Scheme.basicOpen_mul]; exact ⟨h, h'⟩
-      rw [he.mul_one_sub_self, Scheme.basicOpen_zero] at hx
-      exact hx
-    · intro h
-      rcases IsLocalRing.isUnit_or_isUnit_one_sub_self (Y.presheaf.germ ⊤ x trivial e) with h' | h'
-      · exact (Y.mem_basicOpen e x trivial).2 h'
-      · exact absurd ((Y.mem_basicOpen (U := ⊤) (1 - e) x trivial).2 (by rwa [map_sub, map_one])) h
-  rw [this]
-  exact (Y.basicOpen (1 - e)).isOpen.isClosed_compl
-
 end GlobalTheory.GeomConnDesc
 
 end
@@ -164,10 +130,6 @@ end
 noncomputable section
 
 namespace GlobalTheory.GeomConnDesc
-
-theorem appTop_comp_apply {X Y Z : Scheme.{0}} (g : X ⟶ Y) (h : Y ⟶ Z) (x : Γ(Z, ⊤)) :
-    (g ≫ h).appTop.hom x = g.appTop.hom (h.appTop.hom x) := by
-  rw [Scheme.Hom.comp_appTop]; rfl
 
 variable {F : Type} [Field F] {X : Scheme.{0}} (f : X ⟶ Sp F) {K : Type} [Field K] (i₀ : F →+* K)
 
@@ -194,7 +156,7 @@ theorem hcL_factor {L₁ L₂ : Subfield K} (hL₁ : ∀ x, i₀ x ∈ L₁) (hL
     bc_trans f i₀ (i₀.codRestrict L₁ hL₁) L₁.subtype (hji_L i₀ L₁ hL₁)
       (i₀.codRestrict L₂ hL₂) L₂.subtype (hji_L i₀ L₂ hL₂) (Subfield.inclusion hle)
       (RingHom.ext fun _ => rfl) (RingHom.ext fun _ => rfl)
-  exact ⟨_, by rw [e, appTop_comp_apply]⟩
+  exact ⟨_, by rw [e, _root_.GlobalTheory.FunDescent.comp_appTop_apply]⟩
 
 def hc {n : ℕ} (c : Fin n → K) :
     pullback f (spMap i₀) ⟶ pullback f (spMap (i₀.codRestrict (Lc i₀ c) (mem_Lc i₀ c))) :=
@@ -238,14 +200,14 @@ theorem gen [QuasiCompact f] [QuasiSeparated f] (x : Γ(pullback f (spMap i₀),
   have H := ProperFunctions.isPushout_appTop (IsPullback.of_hasPullback f (spMap i₀))
   refine mem_of_isPushout H S (fun a => ?_) (fun b => ?_) x
   · refine ⟨0, Fin.elim0, (pullback.fst f _).appTop.hom a, ?_⟩
-    rw [← appTop_comp_apply]
+    rw [← _root_.GlobalTheory.FunDescent.comp_appTop_apply]
     exact congrArg (fun g => g.appTop.hom a) (bc_fst f i₀ (i₀.codRestrict (Lc i₀ Fin.elim0) (mem_Lc i₀ Fin.elim0)) (Lc i₀ Fin.elim0).subtype (hji_L i₀ _ (mem_Lc i₀ Fin.elim0)))
   · let c : Fin 1 → K := ![(Scheme.ΓSpecIso (CommRingCat.of K)).hom.hom b]
     refine ⟨1, c, (pullback.snd f _).appTop.hom
       ((Scheme.ΓSpecIso (CommRingCat.of (Lc i₀ c))).inv.hom ⟨c 0, mem_Lc' i₀ c 0⟩), ?_⟩
-    rw [← appTop_comp_apply]
+    rw [← _root_.GlobalTheory.FunDescent.comp_appTop_apply]
     rw [show hc f i₀ c ≫ pullback.snd f _ = pullback.snd f (spMap i₀) ≫ spMap (Lc i₀ c).subtype from
-      bc_snd f i₀ (i₀.codRestrict (Lc i₀ c) (mem_Lc i₀ c)) (Lc i₀ c).subtype (hji_L i₀ _ (mem_Lc i₀ c)), appTop_comp_apply, appTop_spMap_inv]
+      bc_snd f i₀ (i₀.codRestrict (Lc i₀ c) (mem_Lc i₀ c)) (Lc i₀ c).subtype (hji_L i₀ _ (mem_Lc i₀ c)), _root_.GlobalTheory.FunDescent.comp_appTop_apply, _root_.GlobalTheory.SecSpread.spMap_appTop]
     change (pullback.snd f (spMap i₀)).appTop.hom
       ((Scheme.ΓSpecIso (CommRingCat.of K)).inv.hom ((Scheme.ΓSpecIso (CommRingCat.of K)).hom.hom b)) = _
     simp
@@ -264,10 +226,10 @@ theorem preconnectedSpace_of_finGen : ∀ (F : Type) [Field F] (X : Scheme.{0}) 
   obtain ⟨n, c, y, rfl⟩ := gen f i₀ e
   have hinj : Function.Injective (hc f i₀ c).appTop.hom :=
     ProperFunctions.injective_appTop_of_isPullback (isPullback_bc f i₀ (i₀.codRestrict (Lc i₀ c) (mem_Lc i₀ c)) (Lc i₀ c).subtype (hji_L i₀ _ (mem_Lc i₀ c)))
-      (appTop_spMap_injective _ (Lc i₀ c).subtype.injective)
+      (_root_.GlobalTheory.FrameGen.appTop_injective _ (Lc i₀ c).subtype.injective)
   have hy : IsIdempotentElem y := hinj (by rw [map_mul]; exact he)
   have hcl : IsClopen (SetLike.coe (Scheme.basicOpen _ y)) :=
-    ⟨isClosed_basicOpen_idem hy, (Scheme.basicOpen _ y).isOpen⟩
+    ⟨_root_.GlobalTheory.PairingLocus.isClosed_basicOpen hy, (Scheme.basicOpen _ y).isOpen⟩
   haveI := hyp (Lc i₀ c) (mem_Lc i₀ c) n c rfl
   have hU' : U = (hc f i₀ c) ⁻¹' (SetLike.coe (Scheme.basicOpen _ y)) := by
     rw [← hUe, ← Scheme.preimage_basicOpen_top]; rfl

@@ -67,7 +67,7 @@ theorem langRecCore_of_artinReciprocity (hA : GlobalTheory.Published.GlobalArtin
     int := GlobalTheory.T.integral_localDuality_of_localTateDuality hT,
     jspan := GlobalTheory.T.span_of_local_cohomology_shape,
     nat := GlobalTheory.T.natInvIso_of_localTateDuality_cyclotomicTwist hT,
-    shape := GlobalTheory.T.cohomology_shape_of_tate_duality_euler hT hE,
+    shape := _root_.GlobalTheory.ShapeNeg.shapeG_of_localDuality hT hE,
     shapeUnr := GlobalTheory.T.galoisHom_modulo_unramified_shape_of_localDuality hT hE,
     unr := GlobalTheory.T.unramified_padic_decomposition_hom_exists,
     vhE := GlobalTheory.T.unramifiedGaloisHoms_bounded_classNumber_of_artinReciprocity hA,

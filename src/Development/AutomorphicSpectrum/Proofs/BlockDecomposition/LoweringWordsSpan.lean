@@ -78,7 +78,7 @@ theorem exists_exp {μ : Fin n → ℤ} {x : U n} (h : x ∈ lowSpanW μ ⊔ ver
   exact hx h
 
 theorem lowExp_wt_zero {m : Fin n × Fin n →₀ ℕ} (hm : LowExp m) (h : wt m = 0) : m = 0 := by
-  refine GlobalTheory.T.eq_zero_of_low_exponent_casimir m hm (fun i j hij => ⟨1, by simp [h]⟩) ?_
+  refine _root_.GlobalTheory.CompanionTheory.PresRho.NormIneq.eq_zero_of_casC_eq m hm (fun i j hij => ⟨1, by simp [h]⟩) ?_
   simp [h]
 
 theorem mem_of_adW_zero {x : U n} (h : x ∈ lowSpanW (0 : Fin n → ℤ) ⊔ vermaIdeal (rhoVec n)) :
@@ -111,14 +111,14 @@ theorem mem_Jp_of_adW {A : Type} [AddCommGroup A] [Module ℂ A]
   | zero =>
     intro μ x hN hx h0
     by_contra hJ
-    obtain ⟨m, hm, rfl⟩ := exists_exp (GlobalTheory.T.weight_vector_mem_low_span_sup_verma μ x hx) fun h => hJ (vermaIdeal_le_Jp h)
+    obtain ⟨m, hm, rfl⟩ := exists_exp (_root_.GlobalTheory.CompanionTheory.PresRho.mem_lowSpanW_sup_vermaIdeal_of_isAdW μ x hx) fun h => hJ (vermaIdeal_le_Jp h)
     have := ht_wt_nonpos hm
     push_cast at hN
     omega
   | succ N ih =>
     intro μ x hN hx h0
     by_contra hJ
-    obtain ⟨m, hm, rfl⟩ := exists_exp (GlobalTheory.T.weight_vector_mem_low_span_sup_verma μ x hx) fun h => hJ (vermaIdeal_le_Jp h)
+    obtain ⟨m, hm, rfl⟩ := exists_exp (_root_.GlobalTheory.CompanionTheory.PresRho.mem_lowSpanW_sup_vermaIdeal_of_isAdW μ x hx) fun h => hJ (vermaIdeal_le_Jp h)
     have hup : ∀ a : Fin n × Fin n, IsUpper a → e a * x ∈ Jp n := by
       intro a ha
       refine ih _ _ ?_ (hx.e_mul a) (by simp [h0])
@@ -126,13 +126,13 @@ theorem mem_Jp_of_adW {A : Type} [AddCommGroup A] [Module ℂ A]
       have h1 : (a.1 : ℕ) < a.2 := ha
       push_cast at hN
       omega
-    have hm0 : m = 0 := GlobalTheory.T.eq_zero_of_low_exponent_casimir m hm
-      (fun i j hij => GlobalTheory.T.nat_of_simple_lowering_nilpotent (wt m) x i j hx hup hJ hij (GlobalTheory.T.simple_lowering_pow_mem_ideal i j x hij))
-      (GlobalTheory.T.casimir_eq_of_singular_weight_vector (wt m) x hx hup hJ)
+    have hm0 : m = 0 := _root_.GlobalTheory.CompanionTheory.PresRho.NormIneq.eq_zero_of_casC_eq m hm
+      (fun i j hij => _root_.GlobalTheory.CompanionTheory.PresRho.natural_of_primitive (wt m) x i j hx hup hJ hij (_root_.GlobalTheory.CompanionTheory.PresRho.lower_locally_nilpotent i j x hij))
+      (_root_.GlobalTheory.CompanionTheory.PresRho.casC_rho_add_eq (wt m) x hx hup hJ)
     subst hm0
     have hw0 : wt (0 : Fin n × Fin n →₀ ℕ) = 0 := by ext k; simp [wt]
     rw [hw0] at hx
-    obtain ⟨c, hc⟩ := mem_of_adW_zero (GlobalTheory.T.weight_vector_mem_low_span_sup_verma 0 x hx)
+    obtain ⟨c, hc⟩ := mem_of_adW_zero (_root_.GlobalTheory.CompanionTheory.PresRho.mem_lowSpanW_sup_vermaIdeal_of_isAdW 0 x hx)
     have h1 := act_eq_zero_of_mem φ t hd hu hc
     rw [map_sub, LinearMap.sub_apply, h0, zero_sub, map_smul, map_one] at h1
     have hc0 : c = 0 := by
@@ -188,7 +188,7 @@ theorem pres_rho : ∀ {n : ℕ} {A Z : Type} [AddCommGroup A] [Module ℂ A] [A
     refine Finset.sum_congr rfl fun l _ => ?_
     rw [map_smul, LinearMap.smul_apply, act_word φ hφ]
   have hYJ : Y ∈ Jp n := by
-    refine (Submodule.span_le.2 ?_) (GlobalTheory.T.annihilator_spanned_by_weight_vectors φ t hd' Y hYt)
+    refine (Submodule.span_le.2 ?_) (_root_.GlobalTheory.CompanionTheory.PresRho.mem_span_isAdW_of_kills φ t hd' Y hYt)
     rintro y ⟨μ, hy, h0⟩
     exact mem_Jp_of_adW φ t ht0 hd' hu' (-ht μ + 1).toNat μ y (by omega) hy h0
   have hYs := GlobalTheory.T.low_span_inf_ideal_le_square_span Y hYlow hYJ

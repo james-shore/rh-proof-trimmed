@@ -62,7 +62,7 @@ theorem exists_uIsLabW : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
     GlobalTheory.T.exists_recharting_thetaSystem_affineOpen E H Dw hpq l Xo cf C X wi _ hw
   obtain ⟨hle, y₁, hy₁, hpt₁, hint⟩ := GlobalTheory.T.rechart_at_unitaryClassicalTrait E H Dw hpq l Xo cf C X p z ct U u' hU hwU hpt
   obtain ⟨u, lb, j, hq, hcong⟩ :=
-    GlobalTheory.T.exists_uniformisedModel_labels_unitaryTrait E H Dw hpq l Xo cf X.o₁ X.Ω₁ _ ρ' u' G hG α β hα hβ hL p y₁ ct.T ct.ι ct.int hpt₁ hint
+    _root_.GlobalTheory.UPoinc.uTraitLabels E H Dw hpq l Xo cf X.o₁ X.Ω₁ _ ρ' u' G hG α β hα hβ hL p y₁ ct.T ct.ι ct.int hpt₁ hint
   let jm : ModN (X.S.r * X.S.N) u.D.toPre.X →+ ModN (X.S.r * X.S.N) ct.T.P.D.toPre.X :=
     QuotientAddGroup.map _ _ j.toAddMonoidHom (by
       rintro _ ⟨x, rfl⟩

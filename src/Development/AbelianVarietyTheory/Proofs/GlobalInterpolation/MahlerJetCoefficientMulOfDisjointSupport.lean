@@ -62,7 +62,7 @@ theorem mahler_mul_of_disjoint_support :
   intro V _ _ ι' _ _ u F H hF hH S T hST hFS hHT
   constructor
   · intro N ⟨p, hp, hNp⟩
-    rw [GlobalTheory.T.mahlerJetCoefficient_mul V ι' u F H hF hH N]
+    rw [_root_.GlobalTheory.MomN.mahler_mul V ι' u F H hF hH N]
     apply Finset.sum_eq_zero
     intro k _
     have hpS : p ∉ S := fun h => hp (Finset.mem_union_left _ h)
@@ -71,7 +71,7 @@ theorem mahler_mul_of_disjoint_support :
     · rw [hHT _ ⟨p, hpT, by simp [hk, hNp]⟩, mul_zero]
     · rw [hFS _ ⟨p, hpS, hk⟩, zero_mul]
   · intro N hN
-    rw [GlobalTheory.T.mahlerJetCoefficient_mul V ι' u F H hF hH N]
+    rw [_root_.GlobalTheory.MomN.mahler_mul V ι' u F H hF hH N]
     rw [Finset.sum_eq_single (fun p => if p ∈ S then N p else 0)]
     · have hfun : (fun i => N i - (fun p => if p ∈ S then N p else 0) i) =
           (fun p => if p ∈ T then N p else 0) := by

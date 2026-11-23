@@ -58,8 +58,8 @@ theorem GlobalTheory.MiTop.line_ideal_atT_alt : ∀ {D : D7} {L : SizeData₂ D}
       (Matrix.mulVec (Formalism.L2.Theta.mt (D.sp.Y 0) (show GA D (D.sp.Y 0) from f₁.g.b 0)⁻¹) ((fun i => c * Formalism.L2.Theta.incA D (W.S.X.ιE (W.S.X.eR ⟨0, hr⟩ (Fin.cast (GlobalTheory.Core.Mi.rank_eq W.S.X W.Q.instEq) i))))) ∈ GlobalTheory.FinPl.latV (D.sp.Y 0) ((_root_.GlobalTheory.Fam.pk_z W).ΛY 0) (· = v) ↔ c ∈ GlobalTheory.FinPl.intAt D (· = v)) := by
     intro u₁ f₁ B₁ h₁ u₂ h₂
     by_cases h : (((D.mem u₁).A.T : ℕ) : 𝓞 D.host.F) ∈ v.asIdeal
-    · exact _root_.GlobalTheory.T.placed_bessel_away_places_alt_bis W hW hr u₁ f₁ B₁ h₁ v hv h c hc
-    · exact _root_.GlobalTheory.T.mul_incA_eR_zero_mem_latV_iff_mem_intAt W hW hr u₁ f₁ B₁ h₁ v hv h u₂ h₂ c hc
+    · exact _root_.GlobalTheory.MiTop.line_ideal_at_own_prime_alt W hW hr u₁ f₁ B₁ h₁ v hv h c hc
+    · exact _root_.GlobalTheory.baseLat_line_offT_alt W hW hr u₁ f₁ B₁ h₁ v hv h u₂ h₂ c hc
   rcases hT with h | h
   · rw [key u f B hP u h, key u' f' B' hP' u h]
   · rw [key u f B hP u' h, key u' f' B' hP' u' h]

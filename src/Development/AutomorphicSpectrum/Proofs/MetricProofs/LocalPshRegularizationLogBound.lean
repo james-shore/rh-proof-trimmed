@@ -64,13 +64,6 @@ namespace GlobalTheory.CompanionTheory.Ar.Giv
 
 noncomputable section
 
-lemma mollifier_bdd {D : ℕ} (ρ : ReciprocityTheory.AnForm.A.Mollifier D) : ∃ b : ℝ, ∀ w, ρ.toFun w ≤ b := by
-  have hcs : HasCompactSupport ρ.toFun := by
-    refine HasCompactSupport.of_support_subset_isCompact (isCompact_closedBall (0 : Fin D → ℂ) 1) ?_
-    exact ρ.support_subset.trans ball_subset_closedBall
-  obtain ⟨b, hb⟩ := ρ.contDiff.continuous.bounded_above_of_compact_support hcs
-  exact ⟨b, fun w => (le_abs_self _).trans (hb w)⟩
-
 lemma polyMax_le_pmoff_same {D : ℕ} {S : Finset (Fin D)} {u w : (Fin D → ℂ) → ℝ} {R B κ : ℝ}
     (hub : ∀ x ∈ ball (0 : Fin D → ℂ) R \ ReciprocityTheory.AnForm.A.coordDiv S, u x ≤ B)
     (hW1 : ReciprocityTheory.AnForm.A.IsPsh (ball 0 R) w)
@@ -107,7 +100,7 @@ theorem molli_trunc_near_polyMax :
     fun x hx => (hb x hx).2
   obtain ⟨C₀, ℓ₀, hC₀, hosc⟩ := RegularChartScaling.oscGen m (R := 3 / 2) (by norm_num) (by norm_num)
     hc hp hb (C₁ := 2) (by norm_num)
-  obtain ⟨b, hbρ⟩ := mollifier_bdd ρ
+  obtain ⟨b, hbρ⟩ := _root_.GroundTheory.Heights₂.Heights.Regular.mollifier_exists_bound ρ
   have hb0 : 0 ≤ b := (ρ.nonneg 0).trans (hbρ 0)
   set K : ℝ := Real.pi ^ D * (3 / 2 : ℝ) ^ (2 * D) * b with hK
   have hK0 : 0 ≤ K := by positivity

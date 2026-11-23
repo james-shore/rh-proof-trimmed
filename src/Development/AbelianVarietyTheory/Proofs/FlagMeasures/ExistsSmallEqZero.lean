@@ -54,24 +54,13 @@ namespace GlobalTheory.StrictDom
 
 open Topology Filter
 
-theorem exists_small_eq_zero (E : Type) [Field E] [NumberField E] (j : ℕ)
-    (Λ : Submodule (𝓞 E) (Fin j → E)) (hΛ : Λ.FG) :
-    ∃ δ : ℝ, 0 < δ ∧ ∀ y ∈ Λ, (∀ (w : InfinitePlace E) a, w (y a) < δ) → y = 0 := by
-  first
-  | exact @_root_.GlobalTheory.SmallIntegerVanishing.main
-  | exact _root_.GlobalTheory.SmallIntegerVanishing.main
-  | (apply _root_.GlobalTheory.SmallIntegerVanishing.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SmallIntegerVanishing.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SmallIntegerVanishing.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SmallIntegerVanishing.main ..)
-
 theorem eventually_eq_one (E : Type) [Field E] [NumberField E] (j : ℕ)
     (Λ : Submodule (𝓞 E) (Fin j → E)) (hΛ : Submodule.IsFullLattice E Λ)
     (x : InfinitePlace E → Fin j → Fin j → ℂ) (hx : ∀ w, (Matrix.of (x w)).det ≠ 0) :
     ∀ᶠ h in 𝓝 x, ∀ γ : Matrix (Fin j) (Fin j) E, (∀ y ∈ Λ, γ *ᵥ y ∈ Λ) →
       (∀ w : InfinitePlace E, Matrix.of (h w) = γ.map w.embedding * Matrix.of (x w)) → γ = 1 := by
   classical
-  obtain ⟨δ, hδ, hsmall⟩ := exists_small_eq_zero E j Λ hΛ.fg
+  obtain ⟨δ, hδ, hsmall⟩ := _root_.GlobalTheory.SmallIntegerVanishing.main E j Λ hΛ.fg
   obtain ⟨s, hs⟩ := hΛ.fg
   have hev : ∀ᶠ h in 𝓝 x, ∀ y ∈ s, ∀ (w : InfinitePlace E) (a : Fin j),
       ‖((Matrix.of (h w) * (Matrix.of (x w))⁻¹) *ᵥ (fun b => w.embedding (y b))) a

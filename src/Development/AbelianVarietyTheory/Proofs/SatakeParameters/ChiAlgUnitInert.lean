@@ -99,7 +99,7 @@ theorem chi_alg_unit_inert : ∀ (D : D7) (p : ℕ) [Fact p.Prime] (lam : Taylor
     simp [hpow]
   have e1 : ‖lam ⟨χ 𝔞, halg⟩‖ ^ k = 1 := by
     rw [← norm_pow, ← map_pow, hsub, map_inv₀, norm_inv, hnu, inv_one]
-  rw [lamC_eq_of_mem lam halg]
+  rw [_root_.GlobalTheory.NormUnitInert.lamC_of_mem lam halg]
   exact (pow_eq_one_iff_of_nonneg (norm_nonneg _) hk0).mp e1
 
 end GlobalTheory.TwV.Xc

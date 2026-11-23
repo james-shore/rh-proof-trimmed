@@ -60,12 +60,9 @@ namespace Formalism.FourierDecayAlt.P.FourierUniquenessMirabolic
 
 open Formalism.FourierDecayAlt.G
 
-private lemma wMat_mul_apply_eq_rev {m : ℕ} (M : Matrix (Fin m) (Fin m) ℂ) (r c : Fin m) :
-    (wMat m * M) r c = M r.rev c := by
-  simp [wMat, Matrix.mul_apply]
+private alias wMat_mul_apply_eq_rev := _root_.Formalism.FourierDecayAlt.P.G2.wMat_mul_apply
 
-private lemma wMat_mulVec_apply_eq_rev {m : ℕ} (v : Fin m → ℂ) (r : Fin m) : (wMat m *ᵥ v) r = v r.rev := by
-  simp [wMat, Matrix.mulVec, dotProduct]
+private alias wMat_mulVec_apply_eq_rev := _root_.Formalism.FourierDecayAlt.P.G2.wMat_mulVec_apply
 
 private lemma finSumFinEquiv_symm_castSucc_eq_inl {n : ℕ} (i : Fin n) :
     finSumFinEquiv.symm (Fin.castSucc i : Fin (n + 1)) = (Sum.inl i : Fin n ⊕ Fin 1) := by

@@ -55,20 +55,7 @@ open scoped Formalism.Per
 
 namespace GlobalTheory.Per.FontaineBound
 
-theorem linearIndepOn_of_invariant {K B W G ι : Type} [Field K] [CommRing B] [IsDomain B] [Algebra K B]
-    [AddCommGroup W] [Module B W] [Module K W] [IsScalarTower K B W] [Module.IsTorsionFree B W]
-    (a : G → B → B) (σ : G → W →+ W) (hσ : ∀ g b w, σ g (b • w) = a g b • σ g w)
-    (hreg : ∀ b b' : B, b ≠ 0 → (∀ g, b * a g b' = a g b * b') → ∃ c : K, b' = algebraMap K B c * b)
-    (v : ι → W) (hv : ∀ g i, σ g (v i) = v i)
-    (s : Finset ι) (h : LinearIndepOn K v s) : LinearIndepOn B v s := by
-  first
-  | (rename_i h_5 h_6 h_7 h_8 h_9 h_10 h_11 h_12 h_13; revert K B W G ι h_5 h_6 h_7 h_8 h_9 h_10 h_11 h_12 h_13 a σ hσ hreg v hv s h; exact @_root_.GlobalTheory.SimpStatement.main)
-  | exact @_root_.GlobalTheory.SimpStatement.main
-  | exact _root_.GlobalTheory.SimpStatement.main
-  | (apply _root_.GlobalTheory.SimpStatement.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SimpStatement.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SimpStatement.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SimpStatement.main ..)
+alias linearIndepOn_of_invariant := _root_.GlobalTheory.SimpStatement.main
 
 section General
 

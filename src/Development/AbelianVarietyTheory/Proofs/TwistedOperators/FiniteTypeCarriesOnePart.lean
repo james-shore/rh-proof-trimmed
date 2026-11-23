@@ -114,7 +114,7 @@ theorem parts_eq_of_rowLabels : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {P
     have keyW : ∀ P, Good R A.μ0 P → ∀ d, IsLab (Wc D i) P d → c P d = c' P d := by
       intro P hP d hd
       have h := key P (dualLab d) hP ((GlobalTheory.LabEq.isLab_W_iff R F (s := 0) hC i P d hP).1.1 hd)
-      rwa [GlobalTheory.CarriedHecke.dualLab_dualLab] at h
+      rwa [_root_.GlobalTheory.SphLabelOps.dualLab_dualLab] at h
     have hpf : partFull R.θ (R.MW i (sg0 D A)) (levS _ (R.βW i) (R.datWp i R.triv)) (levChi _ (R.βW i) (R.datWp i R.triv)) SF c =
         partFull R.θ (R.MW i (sg0 D A)) (levS _ (R.βW i) (R.datWp i R.triv)) (levChi _ (R.βW i) (R.datWp i R.triv)) SF c' := by
       ext U
@@ -158,7 +158,7 @@ theorem parts_eq_of_carries : GlobalTheory.Hk3.HoweUnram → GlobalTheory.Publis
     intro P d hP hd
     by_cases hcP : Formalism.DivisionValues.conjPl P = P
     · apply kin P _ hP hcP
-      rw [(GlobalTheory.LabEq.isLab_W_iff R.toRealDat F.lv2 (s := 0) hC i0 P _ hP).1, GlobalTheory.CarriedHecke.dualLab_dualLab]
+      rw [(GlobalTheory.LabEq.isLab_W_iff R.toRealDat F.lv2 (s := 0) hC i0 P _ hP).1, _root_.GlobalTheory.SphLabelOps.dualLab_dualLab]
       exact hd
     · exact ksplit P hP hcP d hd
   obtain ⟨h1, h2⟩ := parts_eq_of_rowLabels R.toRealDat F.lv2 hC R.SF hSF c c' key

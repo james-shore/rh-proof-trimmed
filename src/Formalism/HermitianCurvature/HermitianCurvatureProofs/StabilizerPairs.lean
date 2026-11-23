@@ -43,5 +43,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem Formalism.FourierDecayAlt.P.stabilizer_pairs : Formalism.FourierDecayAlt.C2.CurvatureConditionOneClauseThree :=
-  stabPairs

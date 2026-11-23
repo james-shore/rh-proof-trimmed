@@ -53,8 +53,8 @@ theorem recExP_of_recAtG : StandardLattice.SiegelMassRatioCM → ∀ (Q' : V4.Sl
   obtain ⟨K0, h⟩ := h eps C8 C5 c6 Cb he (he0.trans (min_le_left _ _)) he52 hC8
   obtain ⟨K1, hq⟩ := hq eps C8 C5 c6 Cb he (he0.trans (min_le_right _ _)) he52 hC8
   refine ⟨K0.sup K1, fun C hstd hC hL => ?_⟩
-  obtain ⟨c1, h⟩ := h C hstd hC (large_of_sup hL).1
-  obtain ⟨c1', hq⟩ := hq C hstd hC (large_of_sup hL).2
+  obtain ⟨c1, h⟩ := h C hstd hC (_root_.GlobalTheory.EX.fc_large_of_sup hL).1
+  obtain ⟨c1', hq⟩ := hq C hstd hC (_root_.GlobalTheory.EX.fc_large_of_sup hL).2
   refine ⟨max (max c1 c1') 0, fun cD hcD => ?_⟩
   obtain ⟨c2, h⟩ := h cD (le_trans (le_trans (le_max_left _ _) (le_max_left _ _)) hcD)
   obtain ⟨c2q, hq⟩ := hq cD (le_trans (le_trans (le_max_right _ _) (le_max_left _ _)) hcD)

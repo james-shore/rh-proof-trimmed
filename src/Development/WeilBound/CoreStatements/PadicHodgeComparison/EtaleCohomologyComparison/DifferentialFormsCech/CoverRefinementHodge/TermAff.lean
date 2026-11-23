@@ -191,7 +191,7 @@ theorem term_aff : ∀ (K : Type) [Field K] [CharZero K],
         formRes q h a (formPull hu W a (t p W hW a x)) := by
   intro K _ _
   obtain ⟨e, ε, -, he, -, -⟩ := CrystallineSemistableComparison.Om.L2.hodge_affine_iso_sign K
-  obtain ⟨m, hm, hn⟩ := GlobalTheory.T.restrict_graded_pull_natural K
+  obtain ⟨m, hm, hn⟩ := _root_.GlobalTheory.CompanionTheory.OpenThick.open_thick K
   refine ⟨fun q _ V hV a => tq (@e) (@m) (@hm) q V hV a, ?_⟩
   intro X Y q p _ _ u hu V W hV hW h a hG x
   haveI : IsAffine V.toScheme := hV

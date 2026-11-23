@@ -81,7 +81,7 @@ theorem GlobalTheory.XGeoPlace.exists_index_place_eq_of_readsStd_of_mem : ∀ {B
       refine ⟨B.host.g i, B.host.g_prime i, hi, (hc.coprime_dvd_right ⟨B.host.d, rfl⟩).symm,
         (hc.coprime_dvd_right (Dvd.intro_left _ rfl)).symm⟩
     · have hoff := (hC.lev.Q_off t PP ht).1
-      obtain ⟨ℓ, hℓ, hℓP⟩ := GlobalTheory.XGeoPlace.exists_prime_mem_pl PP
+      obtain ⟨ℓ, hℓ, hℓP⟩ := _root_.Formalism.BasicNotions.Examples₂.PlacesToy.exists_prime_mem PP
       have key : ∀ m : ℕ, m ∣ B.host.QS * B.host.q * B.host.d * (I.rec7 l Z).sp.T → m.Coprime ℓ := fun m hm =>
         Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd hℓ).2 fun hdv =>
           hoff (Ideal.mem_of_dvd _ (Nat.cast_dvd_cast (hdv.trans hm)) hℓP))

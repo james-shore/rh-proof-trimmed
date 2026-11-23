@@ -70,14 +70,6 @@ theorem card_quot_pow {R : Type} [CommRing R] [IsDomain R] [IsDiscreteValuationR
   exact hq
 
 
-open Module Submodule in
-theorem card_coker {R M ι : Type} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
-    [AddCommGroup M] [Module R M] [Fintype ι] (b : Basis ι R M) {p : R} (hp : Irreducible p)
-    (φ : M →ₗ[R] M) (hφ : Function.Injective φ) :
-    ∃ m : ℕ, Associated (LinearMap.det φ) (p ^ m) ∧
-      Nat.card (M ⧸ LinearMap.range φ) = Nat.card (R ⧸ Ideal.span {p}) ^ m :=
-  _root_.GlobalTheory.CardQuotientPow.main b hp φ hφ
-
 variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [IsNonarchimedeanLocalField F]
 
 theorem resQ_ne_zero {ϖ : 𝒪[F]} (hϖ : Irreducible ϖ) : resQ ϖ ≠ 0 := by

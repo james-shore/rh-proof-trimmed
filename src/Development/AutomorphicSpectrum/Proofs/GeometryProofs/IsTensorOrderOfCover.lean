@@ -71,14 +71,6 @@ theorem valAt_top {B : Type} [CommRing B] {X : Scheme.{0}} (x : Spec (CommRingCa
   simp only [valAt]
   rw [hle]
 
-theorem chart_sep [Finite T] (Γ : QFGroup R T) (B : Type) [CommRing B] [Algebra R B]
-    (c : Spec (CommRingCat.of B) ⟶ Γ.G.left) [IsOpenImmersion c]
-    (hc : c ≫ Γ.G.hom = Spec.map (CommRingCat.ofHom (algebraMap R B))) :
-    ∃ (I : Type) (_ : Finite I) (τ : I → T) (e : I → B →ₐ[R] FractionRing R),
-      (∀ i, Spec.map (CommRingCat.ofHom (e i).toRingHom) ≫ c = (Γ.pt (τ i)).left) ∧
-      ∀ b, (∀ i, e i b = 0) → b = 0 := by
-  apply GlobalTheory.CompanionTheory.Ar.BT.CharMul.chart_sep <;> assumption
-
 theorem sec_zero [Finite T] (Γ : QFGroup R T) (s : Γ(Γ.G.left, ⊤))
     (hs : ∀ t, valAt (Γ.pt t).left ⊤ le_top s = 0) : s = 0 := by
   let 𝒰 := Γ.G.left.affineOpenCover
@@ -87,7 +79,7 @@ theorem sec_zero [Finite T] (Γ : QFGroup R T) (s : Γ(Γ.G.left, ⊤))
   let c : Spec (CommRingCat.of (𝒰.X k)) ⟶ Γ.G.left := 𝒰.f k
   haveI : IsOpenImmersion c := 𝒰.openCover.map_prop k
   letI : Algebra R (𝒰.X k) := (Spec.preimage (c ≫ Γ.G.hom)).hom.toAlgebra
-  obtain ⟨I, _, τ, e, he, hi⟩ := chart_sep Γ (𝒰.X k) c (Spec.map_preimage (c ≫ Γ.G.hom)).symm
+  obtain ⟨I, _, τ, e, he, hi⟩ := _root_.GlobalTheory.CompanionTheory.Ar.BT.CharMul.chart_sep Γ (𝒰.X k) c (Spec.map_preimage (c ≫ Γ.G.hom)).symm
   have h0 := hi ((Scheme.ΓSpecIso (CommRingCat.of (𝒰.X k))).hom (c.appTop s)) fun i => by
     have h1 := hs (τ i)
     rw [← he i, valAt_top, Scheme.Hom.comp_appTop] at h1
@@ -106,14 +98,5 @@ theorem valAt_sub' {B : Type} [CommRing B] {X : Scheme.{0}} (x : Spec (CommRingC
 theorem valAt_mul {B : Type} [CommRing B] {X : Scheme.{0}} (x : Spec (CommRingCat.of B) ⟶ X) (U : X.Opens)
     (h : ⊤ ≤ x ⁻¹ᵁ U) (a b : Γ(X, U)) : valAt x U h (a * b) = valAt x U h a * valAt x U h b := by
   simp [valAt]
-
-section Omega
-
-variable (Γ : QFGroup R T) {S : Scheme.{0}} {G : Over S} [GrpObj G] {x : Spec (CommRingCat.of R) ⟶ S}
-  (i : Γ.G.left ⟶ G.left) {L : Type} [AddCommGroup L] [Module R L] (M : LieModel G x L) (N : ℕ)
-
-
-end Omega
-
 
 end GlobalTheory.CompanionTheory.Ar.BT.TranslateEq

@@ -61,6 +61,8 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FullTorsionIntegrallyClosedStatement
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsThetaObjOfDescendedData
+import Development.AbelianVarietyTheory.Statements.HyperbolicHypotheses.HypothesesInhabitedHyperbolic
 
 @[expose] public section
 
@@ -112,14 +114,6 @@ theorem exists_EF_one {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Ho
   obtain ⟨a, ha⟩ := D.unimod.2 (bs.coord j)
   exact ⟨a, bs j, by rw [ha]; simp⟩
 
-theorem subsingleton_La {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} (D : Datum H)
-    (hpq : D.p + D.q = 0) : Subsingleton D.La := by
-  haveI := D.fin
-  haveI := D.proj
-  have h := D.rank
-  rw [hpq] at h
-  exact Module.finrank_zero_iff.1 h
-
 theorem fullTorsion_of_equiv {X : Scheme.{0}} {Ω Ω' : Type} [Field Ω] [Field Ω'] {G : Over X} [GrpObj G]
     (κ : Ω' ≃+* Ω) {ξ' : Sp Ω' ⟶ X} {ξ : Sp Ω ⟶ X} (h : spMap κ.toRingHom ≫ ξ' = ξ) {n : ℕ}
     (hf : FullTorsion G ξ n) : FullTorsion G ξ' n := by
@@ -155,14 +149,6 @@ theorem fullTorsion_of_equiv {X : Scheme.{0}} {Ω Ω' : Type} [Field Ω] [Field 
   · simp only [Over.homMk_left]
     rw [← hl, hx, h2, Category.assoc]
 
-theorem epi_sp {K k : Type} [Field K] [Field k] (f : K →+* k) : Epi (spMap f) := by
-  have h1 : Flat (spMap f) := by
-    let _ := f.toAlgebra
-    exact HasRingHomProperty.Spec_iff.2 (show (algebraMap K k).Flat from
-      RingHom.flat_algebraMap_iff.2 inferInstance)
-  have h2 : Surjective (spMap f) := ⟨fun x => ⟨IsLocalRing.closedPoint k, Subsingleton.elim (α := PrimeSpectrum K) _ _⟩⟩
-  exact Flat.epi_of_flat_of_surjective _
-
 section desc
 variable {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Sp Ω ⟶ X} {G' : Over (Sp Ω)} {G : Over X} [GrpObj G'] [GrpObj G]
   {φ : G'.left ⟶ G.left}
@@ -172,7 +158,7 @@ def ex {k : Type} [Field k] (i : Ω →+* k) : Over.mk (spMap i) ⟶ Over.mk (�
 
 theorem eq_of_ex {k : Type} [Field k] (i : Ω →+* k) {y y' : Over.mk (𝟙 (Sp Ω)) ⟶ G'} (h : ex i ≫ y = ex i ≫ y') :
     y = y' := by
-  haveI := epi_sp i
+  haveI := _root_.GlobalTheory.ThetaDescent.epi_spMap i
   apply Over.OverMorphism.ext
   rw [← cancel_epi (spMap i)]
   exact congrArg (fun z => z.left) h
@@ -289,7 +275,7 @@ theorem push_one {S S' : Scheme.{0}} {G' : Over S'} {G : Over S} [GrpObj G'] [Gr
 
 theorem tors_trivial (o : Obj D l b s) (t : SAB H X) (m : SABMap o.t t ξ) {n : ℕ} (hn : 0 < n)
     (hpq : D.p + D.q = 0) (g : Over.mk ξ ⟶ t.G) (hg : g ^ n = 1) : g = 1 := by
-  haveI := subsingleton_La D hpq
+  haveI := _root_.GlobalTheory.AllClasses.subsingleton_of_rank_zero D hpq
   let i := algebraMap Ω (AlgebraicClosure Ω)
   obtain ⟨I⟩ := exists_tate o i
   have hp := m.cart
@@ -300,7 +286,7 @@ theorem tors_trivial (o : Obj D l b s) (t : SAB H X) (m : SABMap o.t t ξ) {n : 
     rw [add_zero] at this
     exact left_eq_mul.1 this
   have ha1 : a = 1 := by rw [← hc, Subsingleton.elim c 0, h0]
-  haveI := epi_sp i
+  haveI := _root_.GlobalTheory.ThetaDescent.epi_spMap i
   apply Over.OverMorphism.ext
   rw [← cancel_epi (spMap i)]
   have h2 : GenWeilModel.ext i ≫ g = GenWeilModel.ext i ≫ 1 := by
@@ -358,7 +344,7 @@ theorem fullTorsion_frac {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Sp Ω ⟶
   let κ₀ : FractionRing (X.presheaf.stalk q.1) →+* Ω := IsFractionRing.lift (hξ.inj q)
   have hκ : ∀ r, κ₀ (algebraMap _ _ r) = genMap ξ q r := fun r => IsFractionRing.lift_algebraMap (hξ.inj q) r
   have hb : Function.Bijective κ₀ := ⟨κ₀.injective, fun a => by
-    obtain ⟨b, c, hc, h⟩ := GlobalTheory.T.exists_stalk_fraction_of_generic ξ hξ q a
+    obtain ⟨b, c, hc, h⟩ := _root_.GlobalTheory.CompanionTheory.Ar.exists_frac_genMap ξ hξ q a
     refine ⟨algebraMap _ _ b / algebraMap _ _ c, ?_⟩
     rw [map_div₀, hκ, hκ, ← h]
     field_simp⟩

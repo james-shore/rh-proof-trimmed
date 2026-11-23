@@ -55,14 +55,9 @@ open scoped ComplexConjugate Real
 
 namespace GlobalTheory.SW.TransComp
 
-theorem qm_mul {α β γ : Type} [Fintype β] (A : Matrix α β ℚ) (B : Matrix β γ ℚ) :
-    qm (A * B) = qm A * qm B := by
-  ext i j
-  simp [qm, Matrix.mul_apply]
+alias qm_mul := _root_.GlobalTheory.SiegelAction.qm_mul
 
-theorem qm_add {α β : Type} (A B : Matrix α β ℚ) : qm (A + B) = qm A + qm B := by
-  ext i j
-  simp [qm]
+alias qm_add := _root_.GlobalTheory.SiegelAction.qm_add
 
 theorem qm_sub {α β : Type} (A B : Matrix α β ℚ) : qm (A - B) = qm A - qm B := by
   ext i j

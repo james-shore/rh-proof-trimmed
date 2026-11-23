@@ -76,14 +76,6 @@ private lemma bdd_int {Ω : Type} [MeasurableSpace Ω] (ν : Measure Ω) (u g : 
   rw [norm_mul]
   exact mul_le_of_le_one_left (norm_nonneg _) (hb ω)
 
-private lemma real_diff {Ω ι : Type} [MeasurableSpace Ω] [Fintype ι] (ν : Measure Ω)
-    (X : Ω → ι → ℝ) (f : Ω → ℝ) (hX : Measurable X) (hf : Integrable f ν)
-    (G : (ι → ℝ) → ℂ) (hG : Measurable G) (hGb : ∀ x, ‖G x‖ ≤ 1) :
-    ∫ x, G x ∂((ν.withDensity fun ω => ENNReal.ofReal (f ω)).map X)
-      - ∫ x, G x ∂((ν.withDensity fun ω => ENNReal.ofReal (-f ω)).map X)
-      = ∫ ω, G (X ω) * (f ω : ℂ) ∂ν :=
-  _root_.UpperTheory.Reformulated.B.Qh3.real_diff ν X f hX hf G hG hGb
-
 private lemma real_case {Ω ι : Type} [MeasurableSpace Ω] [Fintype ι] (ν : Measure Ω)
     (X : Ω → ι → ℝ) (f : Ω → ℝ) (hX : Measurable X) (hf : Integrable f ν)
     (h : ∀ t : ι → ℝ, ∫ ω, Complex.exp (((∑ i, t i * X ω i : ℝ) : ℂ) * Complex.I) * (f ω : ℂ) ∂ν = 0)
@@ -97,7 +89,7 @@ private lemma real_case {Ω ι : Type} [MeasurableSpace Ω] [Fintype ι] (ν : M
       = (ν.withDensity fun ω => ENNReal.ofReal (-f ω)).map X := by
     refine Measure.ext_of_charFunDual (funext fun L => ?_)
     rw [charFunDual_apply, charFunDual_apply]
-    have key := real_diff ν X f hX hf (fun x => Complex.exp ((L x : ℂ) * Complex.I))
+    have key := _root_.UpperTheory.Reformulated.B.Qh3.real_diff ν X f hX hf (fun x => Complex.exp ((L x : ℂ) * Complex.I))
       (by fun_prop) (fun x => by rw [Complex.norm_exp_ofReal_mul_I])
     have h0 := h (fun i => L (fun j => if i = j then 1 else 0))
     have hL : ∀ x : ι → ℝ, L x = ∑ i, L (fun j => if i = j then 1 else 0) * x i := by
@@ -107,7 +99,7 @@ private lemma real_case {Ω ι : Type} [MeasurableSpace Ω] [Fintype ι] (ν : M
     simp only [← hL] at h0
     rw [h0] at key
     exact sub_eq_zero.mp key
-  have key := real_diff ν X f hX hf (S.indicator 1)
+  have key := _root_.UpperTheory.Reformulated.B.Qh3.real_diff ν X f hX hf (S.indicator 1)
     (measurable_one.indicator hS) (fun x => by
       by_cases hx : x ∈ S <;> simp [hx])
   rw [hEq, sub_self] at key

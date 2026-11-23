@@ -156,7 +156,7 @@ theorem shape_dbl : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type) [Field
     refine IsUnit.mul (Matrix.isUnits_det_units D) ?_
     rw [e]
     exact isUnit_iff_ne_zero.2 fun h => hdD (RingHom.injective ((t.comp σ : E →ₐ[F] Fv F v) : E →+* Fv F v) (by rw [map_zero]; exact h))
-  choose U hUat hU0 hU1 using fun (P₀ P₁ : Matrix (Fin n) (Fin d ⊕ Fin d) (Fv F v)) => GlobalTheory.T.exists_splitPlace_adelicMatrix_given_components hcm v t P₀ P₁
+  choose U hUat hU0 hU1 using fun (P₀ P₁ : Matrix (Fin n) (Fin d ⊕ Fin d) (Fv F v)) => _root_.GlobalTheory.SplitComps.exists_mat_comps hcm v t P₀ P₁
   let coF : Matrix (Fin n) (Fin d ⊕ Fin d) (AE F E) → Matrix (Fin n) (Fin d ⊕ Fin d) (Fv F v) :=
     fun u => (b⁻¹).1 * u.map (piW t) * (D⁻¹).1ᵀ
   have hcc : D.1ᵀ * (D⁻¹).1ᵀ = 1 := by rw [← Matrix.transpose_mul, Units.inv_mul, Matrix.transpose_one]
@@ -204,7 +204,7 @@ theorem shape_dbl : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type) [Field
     rw [hts] at key
     dsimp [cA, incM] at key
     unfold symp
-    rw [GlobalTheory.T.adelicTrace_supportedAtSplitPlace hcm v t _ (at_hTens _ _ x u hx)]
+    rw [_root_.GlobalTheory.SplitAdeleTrace.trace_at_split hcm v t _ (at_hTens _ _ x u hx)]
     rw [map_mul, map_mul, map_neg, map_neg, map_one, map_one, neg_one_mul, neg_one_mul, ← neg_add, add_comm, key]
     show GlobalTheory.LatVac.psiAt B.ψ v _ = GlobalTheory.LatVac.psiAt B.ψ v _
     congr 1

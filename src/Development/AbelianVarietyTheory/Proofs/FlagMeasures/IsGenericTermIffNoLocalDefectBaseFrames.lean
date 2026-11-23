@@ -68,57 +68,13 @@ variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
   {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] [MeasurableSpace E]
   {M : Model F E} {V : Type} [AddCommGroup V] [Module E V]
 
-lemma mem_img (g : V ≃ₗ[E] V) (Λ : Submodule M.L.O V) (x : V) :
-    x ∈ img g Λ ↔ ∃ y ∈ Λ, g y = x := Submodule.mem_map
-
-lemma img_selfDual (H : HermSp M V) {g : V ≃ₗ[E] V} (hg : IsUnitary H g)
-    {Λ : Submodule M.L.O V} (hΛ : H.IsSelfDual Λ) : H.IsSelfDual (img g Λ) := by
-  obtain ⟨hfg, hsp, hmem⟩ := hΛ
-  refine ⟨hfg.map _, ?_, ?_⟩
-  · have hc : ((img g Λ : Submodule M.L.O V) : Set V) = (g : V → V) '' (Λ : Set V) := Submodule.map_coe _ _
-    have hsi := Submodule.span_image (R := E) (s := (Λ : Set V)) (g : V →ₗ[E] V)
-    simp only [LinearEquiv.coe_coe] at hsi
-    rw [hc, hsi, hsp, Submodule.map_top]
-    exact LinearMap.range_eq_top.2 g.surjective
-  · intro x
-    have key : ∀ z, z ∈ img g Λ ↔ g.symm z ∈ Λ := fun z => by
-      rw [mem_img]
-      constructor
-      · rintro ⟨y, hy, rfl⟩; simpa using hy
-      · intro h; exact ⟨_, h, by simp⟩
-    rw [key, hmem]
-    constructor
-    · intro h y hy
-      obtain ⟨y0, hy0, rfl⟩ := (mem_img g Λ y).1 hy
-      have := h y0 hy0
-      rwa [← hg (g.symm x) y0, LinearEquiv.apply_symm_apply] at this
-    · intro h y hy
-      have := h (g y) ((mem_img g Λ _).2 ⟨y, hy, rfl⟩)
-      rwa [← hg (g.symm x) y, LinearEquiv.apply_symm_apply]
-
-lemma img_frame (H : HermSp M V) {g : V ≃ₗ[E] V} (hg : IsUnitary H g)
-    {Λ : Submodule M.L.O V} {r : ℕ} {f : Fin (r + 1) → V} {T : F} (hf : H.IsFrame Λ r f T) :
-    H.IsFrame (img g Λ) r (fun b => g (f b)) T := by
-  obtain ⟨⟨hin, hli, hsp⟩, hiso, hzz, hT, hT0⟩ := hf
-  refine ⟨⟨fun a => (mem_img g Λ _).2 ⟨f a, hin a, rfl⟩, hli.map' (g : V →ₗ[E] V) g.ker, ?_⟩,
-    fun a b hab => by rw [hg]; exact hiso a b hab, by rw [hg]; exact hzz, hT, hT0⟩
-  intro x hx hxs
-  obtain ⟨y, hy, rfl⟩ := (mem_img g Λ x).1 hx
-  have hr : Set.range (fun b => g (f b)) = (g : V → V) '' Set.range f := (Set.range_comp _ _).symm ▸ rfl
-  rw [hr] at hxs ⊢
-  have hys : y ∈ Submodule.span E (Set.range f) := by
-    have := Submodule.apply_mem_span_image_of_mem_span (g.symm : V →ₗ[E] V) hxs
-    simpa [Set.image_image] using this
-  have := Submodule.apply_mem_span_image_of_mem_span ((g : V →ₗ[E] V).restrictScalars M.L.O) (hsp y hy hys)
-  simpa using this
-
 lemma isTerm_move (H : HermSp M V) {g : V ≃ₗ[E] V} (hg : IsUnitary H g) {r : ℕ} {t : Term V M r}
     (ht : H.IsTerm t) : H.IsTerm (move g t) := by
   have hg' : ∀ x y, H.h (g x) (g y) = H.h x y := hg
   have hZ : H.Zhat (move g t).f (move g t).f' = H.Zhat t.f t.f' := by
     ext a b; simp [HermSp.Zhat, move, hg']
   obtain ⟨h1, h2, h3, h4, h5, h6⟩ := ht
-  refine ⟨img_selfDual H hg h1, img_frame H hg h2, img_frame H hg h3, ?_, ?_, ?_⟩
+  refine ⟨_root_.GlobalTheory.LocOver.TermOver.img_selfDual H hg h1, _root_.GlobalTheory.LocOver.TermOver.img_frame H hg h2, _root_.GlobalTheory.LocOver.TermOver.img_frame H hg h3, ?_, ?_, ?_⟩
   · simpa [HermSp.Dl, hZ] using h4
   · show H.Gdet (move g t).f (move g t).f' t.T t.T' ≠ 0
     simpa [HermSp.Gdet, HermSp.Dl, hZ] using h5
@@ -131,7 +87,7 @@ lemma isTerm_move (H : HermSp M V) {g : V ≃ₗ[E] V} (hg : IsUnitary H g) {r :
     have := Submodule.apply_mem_span_image_of_mem_span ((g : V →ₗ[E] V).restrictScalars M.L.O) hb
     refine Submodule.span_mono ?_ this
     rintro _ ⟨_, ⟨y, hy, rfl⟩, rfl⟩
-    exact ⟨g y, (mem_img g t.abelian₂ _).2 ⟨y, hy, rfl⟩, by simp⟩
+    exact ⟨g y, (_root_.GlobalTheory.LocOver.TermOver.mem_img g t.abelian₂ _).2 ⟨y, hy, rfl⟩, by simp⟩
 
 lemma mmfam_move (H : HermSp M V) (g : V ≃ₗ[E] V) {r : ℕ} (t : Term V M r) (i : Fin (r + 1) ⊕ Fin (r + 1)) :
     H.MMfam (move g t) i = g (H.MMfam t i) := by
@@ -161,10 +117,10 @@ lemma bbne_move (H : HermSp M V) (g : V ≃ₗ[E] V) {r : ℕ} (t : Term V M r) 
   rw [hr]
   constructor
   · rintro ⟨v, hv, h1, h2⟩
-    obtain ⟨y, hy, rfl⟩ := (mem_img g t.abelian₂ v).1 hv
+    obtain ⟨y, hy, rfl⟩ := (_root_.GlobalTheory.LocOver.TermOver.mem_img g t.abelian₂ v).1 hv
     exact ⟨y, hy, (kE y).1 h1, fun h => h2 ((kO y).2 h)⟩
   · rintro ⟨y, hy, h1, h2⟩
-    exact ⟨g y, (mem_img g t.abelian₂ _).2 ⟨y, hy, rfl⟩, (kE y).2 h1, fun h => h2 ((kO y).1 h)⟩
+    exact ⟨g y, (_root_.GlobalTheory.LocOver.TermOver.mem_img g t.abelian₂ _).2 ⟨y, hy, rfl⟩, (kE y).2 h1, fun h => h2 ((kO y).1 h)⟩
 
 lemma span_sign {R W ι : Type} [CommRing R] [AddCommGroup W] [Module R W] (s : ι → R) (hs : ∀ i, s i * s i = 1)
     (v w : ι → W) (h : ∀ i, w i = s i • v i) :
@@ -257,56 +213,12 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 
-theorem frame_castSucc {T : D.host.E} (F : LFlag (D.sp.Y 0) D.R.rS T) (i : Fin D.R.rS) :
-    frame F i.castSucc = F.fl.e i := by
-  show F.fl.fvec i.castSucc = F.fl.e i
-  simp only [FlagG.fvec, Fin.snoc_castSucc]
-
-theorem tri_of_adapt {T : D.host.E} (g : GV D) (F G : LFlag (D.sp.Y 0) D.R.rS T) (hg : g ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT)
-    (h : ∀ a : Fin (D.R.rS + 1), g (frame F a) - frame G a ∈ Xflag G a.val) :
-    GlobalTheory.LocOver.Tri D.host.E (frame G) (frame (Formalism.L2.SG.Saturated.mapL g hg F)) := by
-  have hcs : ∀ i : Fin D.R.rS, frame G i.castSucc = G.fl.e i := fun i => frame_castSucc G i
-  have h0 : ∀ a : Fin (D.R.rS + 1), ∃ l ∈ Finsupp.supported D.host.E D.host.E {i : Fin D.R.rS | i.val < a.val},
-      ∑ i, l i • G.fl.e i = g (frame F a) - frame G a := by
-    intro a
-    have ha := h a
-    simp only [Xflag, FlagG.Xa] at ha
-    obtain ⟨l, hl, hsum⟩ := (Finsupp.mem_span_image_iff_linearCombination (R := D.host.E)).1 ha
-    refine ⟨l, hl, ?_⟩
-    rw [← hsum, Finsupp.linearCombination_apply, Finsupp.sum_fintype]
-    intro i; simp
-  choose l hl hsum using h0
-  refine ⟨fun a b => (if a = b then 1 else 0) + Fin.lastCases 0 (fun i => l b i) a, ⟨?_, ?_⟩, ?_⟩
-  · intro a b hba
-    have hne : a ≠ b := fun e => lt_irrefl _ (e ▸ hba)
-    beta_reduce
-    rw [if_neg hne, zero_add]
-    rcases Fin.eq_castSucc_or_eq_last a with ⟨i, rfl⟩ | rfl
-    · rw [Fin.lastCases_castSucc]
-      exact (Finsupp.mem_supported' _ _).1 (hl b) i
-        (by simp only [Set.mem_ofPred_eq, not_lt]; exact le_of_lt (by simpa [Fin.lt_def] using hba))
-    · rw [Fin.lastCases_last]
-  · intro a
-    beta_reduce
-    rw [if_pos rfl]
-    rcases Fin.eq_castSucc_or_eq_last a with ⟨i, rfl⟩ | rfl
-    · rw [Fin.lastCases_castSucc, (Finsupp.mem_supported' _ _).1 (hl i.castSucc) i (by simp), add_zero]
-    · rw [Fin.lastCases_last, add_zero]
-  · intro b
-    rw [Formalism.L2.SG.Saturated.frame_mapL]
-    simp only [add_smul, Finset.sum_add_distrib, ite_smul, one_smul, zero_smul, Finset.sum_ite_eq',
-      Finset.mem_univ, if_true]
-    rw [Fin.sum_univ_castSucc]
-    simp only [Fin.lastCases_castSucc, Fin.lastCases_last, zero_smul, add_zero, hcs]
-    rw [hsum b]
-    abel
-
 theorem tri_loc (Z : LocDat D) (p : PlF D) {T : D.host.E} (g : GV D) (F G : LFlag (D.sp.Y 0) D.R.rS T)
     (h : Adapt g F G) (g' : Vp D p ≃ₗ[(D.s.atP p).Ep] Vp D p) (hg' : GlobalTheory.LocOver.Ext p g g') :
     GlobalTheory.LocOver.Tri (D.s.atP p).Ep (GlobalTheory.LocOver.scaled Z p (frame G))
       (fun a => g' (GlobalTheory.LocOver.scaled Z p (frame F) a)) := by
   obtain ⟨hg, hadp⟩ := h
-  obtain ⟨A, hA, hC⟩ := tri_of_adapt g F G hg hadp
+  obtain ⟨A, hA, hC⟩ := _root_.GlobalTheory.Unfold.BasePt.tri_of_adapt g F G hg hadp
   obtain ⟨Ap, hAp, -⟩ := GlobalTheory.LocOver.tri_scaled D Z (frame G) (frame (Formalism.L2.SG.Saturated.mapL g hg F)) A hA hC
   obtain ⟨hU, hC'⟩ := hAp p
   have hx : ∀ x, g' (baseChange₂ D p x) = baseChange₂ D p (g x) := hg'
@@ -380,7 +292,7 @@ theorem generic_iff_local : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' 
   have hC := GlobalTheory.T.term_at_base_point_of_frames D X Y u u' F F' w hZw hGv t Λ hTG
   have hPD : Formalism.L2.SG.TermDef.PD D t.lam (lf D (X.Fu u)) u' (GTerm.frame t) := (Quot.out t.cls).2.2.2.2
   have hR : IsRowLat D (X.Fu u) t.lam := (Y.rowsOK u).1 _ t.mem
-  have hgf := (Formalism.L2.SG.Closed.TermFun_holds D u u' (X.Fu u) t.lam hR).1
+  have hgf := (_root_.term_function_const D u u' (X.Fu u) t.lam hR).1
   have hG0 : Gval (lf D (X.Fu u)) (GTerm.frame t) ≠ 0 := by
     have e := Formalism.L2.SG.TermDef.Gt_mk hgf ⟨GTerm.frame t, hPD⟩
     intro h0
@@ -388,7 +300,7 @@ theorem generic_iff_local : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' 
   obtain ⟨g, hA1, hA2, hΛ⟩ := hTG
   rw [generic_iff_frame Z t]
   refine forall_congr' fun p => ?_
-  obtain ⟨gp, hext, hunit, -, himg, -⟩ := GlobalTheory.T.rational_isometry_extends_local_isometry D Z p g hA1.1
+  obtain ⟨gp, hext, hunit, -, himg, -⟩ := _root_.GlobalTheory.LocExt.ext_isometry D Z p g hA1.1
   obtain ⟨hU, htriU⟩ := GlobalTheory.LocOver.locU_isTerm D Z u u' (X.Fu u) t.lam hR (GTerm.frame t) hPD hG0 p
   have hOK : (Z.M p).OK := (Z.agree p).1
   obtain ⟨hfA, hfB, hTA, hTB⟩ := hB p
@@ -409,7 +321,7 @@ theorem generic_iff_local : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' 
     (GlobalTheory.LocOver.locU Z p t.lam (lf D (X.Fu u)) (GTerm.frame t) (Tu D u) (Tu D u'))]
   constructor
   · intro hn d τ hτ hτL h
-    exact hn ((GlobalTheory.T.localTerm_defect_eq_of_lattice_eq (Z.M p) hOK (locH Z p) D.R.rS D.R.k (FP p) (rank_loc p) (hRel p) d d0 τ τ0 hτ hd0
+    exact hn ((_root_.GlobalTheory.HL.LocDefect.bbne_of_lam_eq (Z.M p) hOK (locH Z p) D.R.rS D.R.k (FP p) (rank_loc p) (hRel p) d d0 τ τ0 hτ hd0
       (hτL.trans hLam.symm)).1 h)
   · intro h
     exact h d0 τ0 hd0 hLam

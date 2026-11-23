@@ -72,8 +72,8 @@ theorem fock_jets_of_moved_vacuum : _root_.GlobalTheory.FunPr.ThetaLocalInputs �
   have hC := ch.S.Z.crv
   have hδ : ch.S.Z.δ ≠ 0 := GlobalTheory.InertSign.delta_ne_zero hC
   have he0 := ch.S.Z.e0_is p hp
-  have hsd := _root_.GlobalTheory.T.twisted_moved_series_decomposition hP hI ch hch p hp x y
-  have hvac := _root_.GlobalTheory.T.twisted_moved_vacuum_integral hP hI ch hch p hp x y
+  have hsd := _root_.GlobalTheory.MovedSD.moved_series_decomposition hP hI ch hch p hp x y
+  have hvac := _root_.GlobalTheory.MovedDict.moved_vacuum_isVacuumIntegral hP hI ch hch p hp x y
   have hc0 : (ch.S.Z.c0 p : ℂ) ≠ 0 := Units.ne_zero _
   cases p with
   | chi i j =>

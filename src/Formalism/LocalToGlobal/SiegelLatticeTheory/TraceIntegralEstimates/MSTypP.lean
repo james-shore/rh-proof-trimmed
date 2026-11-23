@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.GlobalSchurBounds.ThickPlacesCorollaryOfAnyTranslate
 
 @[expose] public section
 
@@ -82,12 +83,7 @@ theorem msTyp_holds : MSTyp := by
 
 theorem stepGSplit_holds : StepGSplit := fun D X => Formalism.L2.SG.Pf.gSplitX_holds X
 
-theorem finrank_hostE' (D : D7) : Module.finrank ℚ D.host.E = 2 * D.R.f := by
-  rw [D.host.finrank_cmField]
-  unfold Ranks.f Ranks.n
-  ring_nf
-
-theorem degE_holds : DegE := fun D => finrank_hostE' D
+theorem degE_holds : DegE := fun D => _root_.Formalism.MainNotions.StandardLattice.finrank_host D
 
 theorem discEF_holds : DiscEF := by
   intro D X

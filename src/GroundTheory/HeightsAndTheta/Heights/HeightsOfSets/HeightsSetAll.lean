@@ -49,10 +49,10 @@ set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights
 
-theorem HeightComparison.main : HeightComparison.Statement := heightComparison
+alias HeightComparison.main := _root_.GroundTheory.Heights₂.Heights.heightComparison
 
-theorem DenseBoundedHeight.main : DenseBoundedHeight.Statement := denseBoundedHeight
+alias DenseBoundedHeight.main := _root_.GroundTheory.Heights₂.Heights.denseBoundedHeight
 
-theorem SlopeMaxExtension.main : SlopeMaxExtension.Statement := slopeMaxExtension
+alias SlopeMaxExtension.main := _root_.GroundTheory.Heights₂.Heights.slopeMaxExtension
 
 end GroundTheory.Heights₂.Heights

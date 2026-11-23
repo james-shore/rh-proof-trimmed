@@ -448,7 +448,7 @@ theorem free_and_tensIso [ContinuousMul G] [IsDomain O] [IsDiscreteValuationRing
   · refine (finite_induction hi (fun X _ _ => (twCoef (latRep L) χ X).invariants = ⊥ ∧ TensIso L χ X)
       (fun X _ _ _ => ⟨Subsingleton.elim _ _, fun _ _ _ => Subsingleton.elim _ _, ?_⟩)
       (fun X Y _ _ _ _ _ i p hi' he hp hY => ⟨inv_ext _ i p hi' he hp h0 hY.1,
-        GlobalTheory.T.lattice_twist_exact_sequence_cohomology G LL O V ρ L χ _ X Y i p hi' he hp
+        _root_.GlobalTheory.TensIsoExt.tensIso_of_exact G LL O V ρ L χ _ X Y i p hi' he hp
           (tensCoc_mem χ hB (exists_pow_smul_eq_zero hi.not_isUnit))
           (lc_act χ hB hc (exists_pow_smul_eq_zero hi.not_isUnit)) hY.1 hk hY.2⟩) X).2
     have : Subsingleton (Amb (twCoef (latRep L) χ X)) := (Submodule.mkQ_surjective _).subsingleton

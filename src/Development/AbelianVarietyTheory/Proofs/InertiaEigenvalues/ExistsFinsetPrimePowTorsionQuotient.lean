@@ -61,7 +61,7 @@ theorem exists_finset_pow_torsion : ∀ (l : ℕ) [Fact l.Prime] (LL : Type) [Fi
   intro l _ LL _ _ _ O _ _ hG k
   classical
   haveI hfin : Finite (O ⧸ Ideal.span {((l : ℕ) : O) ^ k}) :=
-    (good_coeff_integers l LL O hG).2.2.1 k
+    (_root_.GlobalTheory.PowerImageOpen.main l LL O hG).2.2.1 k
   have hl : (l : LL) ≠ 0 := by
     have := (algebraMap ℚ_[l] LL).injective.ne
       (show (l : ℚ_[l]) ≠ 0 from Nat.cast_ne_zero.2 (Fact.out : l.Prime).ne_zero)

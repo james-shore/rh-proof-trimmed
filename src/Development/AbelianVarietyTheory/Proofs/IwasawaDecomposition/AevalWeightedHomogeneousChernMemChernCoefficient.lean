@@ -86,7 +86,7 @@ theorem trSpan_le_reach {ι : Type} [Fintype ι] (m : ι → ℕ) (n : ℕ) (S :
   unfold TrSpan
   rw [Submodule.span_le]
   rintro f ⟨l, hl, hs, rfl⟩
-  exact GlobalTheory.T.tracePowerListProduct_mem_chernCoefficientRealSpan m n S l hl hs
+  exact _root_.GlobalTheory.GoodMetric.ChernSpan.trProd_mem_reach m n S l hl hs
 
 theorem aeval_chern_mem_reach {ι : Type} [Fintype ι] (m : ι → ℕ) (n : ℕ) (S : Type) [CommRing S] [Algebra ℝ S]
     (R : MvPolynomial (ι × ℕ) ℝ) (hR : R.IsWeightedHomogeneous (Prod.snd : ι × ℕ → ℕ) n) :

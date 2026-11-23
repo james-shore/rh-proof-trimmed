@@ -65,11 +65,6 @@ open Matrix TensorProduct NumberField IsDedekindDomain
 
 namespace PI.UnitaryApproxFinWork
 
-theorem exists_common {F : Type} [Field F] [NumberField F] {ι : Type} (s : Finset ι)
-    (Q : ι → 𝓞 F → Prop) (hQ : ∀ i c r, Q i c → Q i (c * r)) (h : ∀ i ∈ s, ∃ c, c ≠ 0 ∧ Q i c) :
-    ∃ c : 𝓞 F, c ≠ 0 ∧ ∀ i ∈ s, Q i c := by
-  first | exact Bl.general_b_fact_right_ter.goal1 .. | (apply Bl.general_b_fact_right_ter.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_right_ter.goal1 <;> assumption) | (apply @Bl.general_b_fact_right_ter.goal1 <;> assumption) | (intros; apply @Bl.general_b_fact_right_ter.goal1 <;> assumption) | (apply @Bl.general_b_fact_right_ter.goal1 <;> first | assumption | infer_instance)
-
 theorem local_err {R : Type} [CommRing R] {n : Type} [Fintype n] [DecidableEq n]
     (h2 : IsUnit (2 : R)) (g X XR W N γR : Matrix n n R)
     (hXP : (1 + X) * (1 + g) = 2) (hΔ' : (XR - X) * (1 + g) = (2 : R) • W) (hN : (1 + W) * N = 1)
@@ -123,7 +118,7 @@ theorem cayleyStep : CayleyStep := by
         _ = PI.UnitaryApproxDefs.cT (σ : E →+* E) (J * J⁻¹) := (PI.UnitaryApproxDefs.cT_mul _ _ _).symm
         _ = 1 := by rw [hJJi, PI.UnitaryApproxDefs.cT_one]
     exact (Matrix.inv_eq_left_inv this).symm
-  obtain ⟨cJ, hcJ0, hcJ⟩ := exists_common (F := F) (Finset.univ : Finset (n × n))
+  obtain ⟨cJ, hcJ0, hcJ⟩ := _root_.Bl.general_b_fact_right_ter.goal1 (F := F) (Finset.univ : Finset (n × n))
     (fun p c => algebraMap F E (c : F) * J⁻¹ p.1 p.2 ∈ PI.UnitaryApproxDefs.intOE E)
     (fun p c r h => by
       rw [show ((c * r : 𝓞 F) : F) = (c : F) * (r : F) from map_mul (algebraMap (𝓞 F) F) c r,
@@ -131,7 +126,7 @@ theorem cayleyStep : CayleyStep := by
       exact Subring.mul_mem _ (algebraMap_mem_intOE r) h)
     (fun p _ => exists_int_mul (J⁻¹ p.1 p.2))
 
-  obtain ⟨cP, hcP0, hcP⟩ := exists_common (F := F) (T ×ˢ (Finset.univ : Finset (n × n)))
+  obtain ⟨cP, hcP0, hcP⟩ := _root_.Bl.general_b_fact_right_ter.goal1 (F := F) (T ×ˢ (Finset.univ : Finset (n × n)))
     (fun q c => dv E q.1 c * (1 + (g q.1 : Matrix n n (E ⊗[F] q.1.adicCompletion F))) q.2.1 q.2.2 ∈
       Sv E q.1)
     (fun q c r h => by
@@ -139,7 +134,7 @@ theorem cayleyStep : CayleyStep := by
       exact Subring.mul_mem _ (dv_mem_Sv _ r) h)
     (fun q _ => hB F E q.1 _)
 
-  obtain ⟨π, hπ0, hπ⟩ := exists_common (F := F) T (fun v c => c ∈ v.asIdeal)
+  obtain ⟨π, hπ0, hπ⟩ := _root_.Bl.general_b_fact_right_ter.goal1 (F := F) T (fun v c => c ∈ v.asIdeal)
     (fun v c r h => Ideal.mul_mem_right r _ h)
     (fun v _ => Submodule.exists_mem_ne_zero_of_ne_bot v.ne_bot |>.imp fun c hc => ⟨hc.2, hc.1⟩)
   set e : 𝓞 F := 2 * (cP * D * π) with he

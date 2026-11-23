@@ -108,10 +108,7 @@ theorem form_sub {ℓ : (WO S T → ℂ) → ℂ} (hℓ : IsSobForm ψ θ S T �
   rw [e, hℓ.add f _ hf (theta_smul (-1) hg), hℓ.smul (-1) g hg]
   ring
 
-theorem symplOH_zero_left (u : WO S T) : symplOH S T 0 u = 0 := by
-  have := symplOH_add_left (S := S) (T := T) 0 0 u
-  rw [add_zero] at this
-  linear_combination -this
+alias symplOH_zero_left := _root_.GlobalTheory.ThetaSquare.symplOH_zero_left
 
 theorem decomp (h : Chart θ σ) (a : WO S T) : (iotaW σ T S (piW θ T S a)).map (finPart D) = 0 ∧
     (a - iotaW σ T S (piW θ T S a)).map (infPart D) = 0 := by

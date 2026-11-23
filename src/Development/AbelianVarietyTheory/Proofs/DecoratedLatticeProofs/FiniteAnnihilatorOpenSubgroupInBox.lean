@@ -59,19 +59,12 @@ namespace GlobalTheory.AnnihBox
 
 variable {D : D7}
 
-theorem cA_smul (r : AF D.host.F) (z : AE D) : cA D (r • z) = r • cA D z := by
-  induction z using TensorProduct.induction_on with
-  | zero => simp
-  | tmul a e => simp [cA, sigR, TensorProduct.smul_tmul']
-  | add a b ha hb => rw [smul_add, map_add (f := _), map_add (f := _), ha, hb, smul_add]
-
 def cALin (D : D7) : AE D →ₗ[AF D.host.F] AE D where
   toFun := cA D
   map_add' := map_add _
-  map_smul' := cA_smul
+  map_smul' := _root_.GlobalTheory.FinTranslate.cA_smul
 
-theorem continuous_cA' : Continuous (cA D) :=
-  IsModuleTopology.continuous_of_linearMap (cALin D)
+alias continuous_cA' := _root_.GlobalTheory.FockCompare.ThetaCont.continuous_conj
 
 theorem infPart_cA_eq (a : AE D) : infPart D (cA D a) = sigR (Ainf D.host.F) D.sp.cm.sig (infPart D a) := by
     induction a using TensorProduct.induction_on with

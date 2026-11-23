@@ -70,18 +70,6 @@ open scoped Classical
 
 namespace GlobalTheory.TraceSep
 
-theorem exists_smul_eq_ite {R : Type*} [Ring R] {ι : Type*} [Fintype ι] [DecidableEq ι]
-    (M : ι → Type*) [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)] [∀ i, IsSimpleModule R (M i)]
-    (h : ∀ i j, i ≠ j → ∀ f : M i →ₗ[R] M j, f = 0) (i₀ : ι) (s : ∀ i, Finset (M i)) :
-    ∃ r : R, ∀ i, ∀ m ∈ s i, r • m = if i = i₀ then m else 0 := by
-  first
-  | exact @_root_.GlobalTheory.OrthogonalProjectionOnto.main
-  | exact _root_.GlobalTheory.OrthogonalProjectionOnto.main
-  | (apply _root_.GlobalTheory.OrthogonalProjectionOnto.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.OrthogonalProjectionOnto.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.OrthogonalProjectionOnto.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.OrthogonalProjectionOnto.main ..)
-
 end GlobalTheory.TraceSep
 
 namespace GlobalTheory.TraceSep
@@ -135,7 +123,7 @@ theorem coeff_eq_zero_of_sum_trace_eq_zero : ∀ (G : Type) [Group G] (n : ℕ) 
     exact Subsingleton.elim _ _
   let b : ∀ i, Module.Basis (Fin (Module.finrank ℂ (LinearMap.range (P i)))) ℂ (LinearMap.range (P i)) :=
     fun i => Module.finBasis ℂ _
-  obtain ⟨x, hx⟩ := exists_smul_eq_ite (R := MonoidAlgebra ℂ G) (fun i => (σ i).asModule) hzero i₀
+  obtain ⟨x, hx⟩ := _root_.GlobalTheory.OrthogonalProjectionOnto.main (R := MonoidAlgebra ℂ G) (fun i => (σ i).asModule) hzero i₀
     (fun i => Finset.univ.image fun k => (((b i k : LinearMap.range (P i)) : W i) : (σ i).asModule))
   have hQx : ∀ i, Q i x = if i = i₀ then LinearMap.id else 0 := by
     intro i

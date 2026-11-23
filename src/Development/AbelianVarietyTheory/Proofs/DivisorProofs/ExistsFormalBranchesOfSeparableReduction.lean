@@ -104,7 +104,7 @@ theorem branches_of_unramified_point : ∀ (D : ℕ) (P : Polynomial (MvPolynomi
   have hQm : Q.Monic := hP.map _
   have hred : Q.map (MvPowerSeries.constantCoeff (σ := Fin D) (R := ℂ)) = P.map (MvPolynomial.eval c) := by
     rw [hQ, Polynomial.map_map, constantCoeff_comp_shiftHom]
-  obtain ⟨θ, hθi, hθr⟩ := GlobalTheory.T.exists_lifts_of_separable_reduction D Q hQm (by rw [hred]; exact hsep)
+  obtain ⟨θ, hθi, hθr⟩ := _root_.GlobalTheory.HenselSplitPS.exists_lifts_of_separable D Q hQm (by rw [hred]; exact hsep)
   have hroot : ∀ j, P.eval₂ ψ.toRingHom (θ j) = 0 := by
     intro j
     have := hθr j

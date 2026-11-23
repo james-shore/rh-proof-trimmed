@@ -52,11 +52,6 @@ theorem exists_int_smul_mem {E : Type} [Field E] [NumberField E] {r : ℕ}
     ∃ k : ℤ, k ≠ 0 ∧ k • v ∈ Λ := by
   apply Formalism.L2.SG.Pf.NcVal.OmVSt.OmX.exists_int_smul_mem <;> assumption
 
-theorem main : ∀ {E : Type} [inst : Field E] [NumberField E] {r : ℕ}
-    (Λ : Submodule (NumberField.RingOfIntegers E) (Fin r → E)),
-    Submodule.span E (↑Λ : Set (Fin r → E)) = ⊤ →
-      ∀ (v : Fin r → E), ∃ (k : ℤ), k ≠ (0 : ℤ) ∧ k • v ∈ Λ := by
-  intro E _ _ r Λ hΛ v
-  exact exists_int_smul_mem Λ hΛ v
+alias main := _root_.GlobalTheory.IntegralMultiples.exists_int_smul_mem
 
 end GlobalTheory.IntegralMultiples

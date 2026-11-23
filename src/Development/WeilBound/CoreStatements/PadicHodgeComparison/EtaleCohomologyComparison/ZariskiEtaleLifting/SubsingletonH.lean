@@ -76,15 +76,15 @@ theorem local_of (hD : D.Out l) : Local l := by
   intro d j
   obtain ⟨N, hN⟩ := P.glue.{0, 0, 1, 0, 1, 0, 1} d j
   refine ⟨N, fun {O} _ F κ ε k n ρ hρ hn hk s => ?_⟩
-  obtain ⟨𝓛⟩ := P.elift s.a (fun k => (s.T k : s.R)) (bs l k n).I (κb κ k n) s.et
-  obtain ⟨δ, hδ⟩ := exists_dp 𝓛.i (P.lift_flat 𝓛.i 𝓛.t 𝓛.et).1 (bs l k n).I (bs l k n).γ
+  obtain ⟨𝓛⟩ := _root_.GlobalTheory.CompanionTheory.EtaleLift.nonempty_lift s.a (fun k => (s.T k : s.R)) (bs l k n).I (κb κ k n) s.et
+  obtain ⟨δ, hδ⟩ := exists_dp 𝓛.i (_root_.GlobalTheory.CompanionTheory.LiftFlat.lift_flat 𝓛.i 𝓛.t 𝓛.et).1 (bs l k n).I (bs l k n).γ
   have hp : (bs l k n).p ≠ 0 := (Fact.out : l.Prime).ne_zero
   have hnil : IsNilpotent ((bs l k n).p : (bs l k n).R) := ⟨n, (base l).pow_l_acr n⟩
-  obtain ⟨𝒯⟩ := P.tower_ex κ s
-  obtain ⟨A, hA⟩ := P.thick_act s (b := bs l k n) rfl 𝓛 δ hδ hp hnil (ε.qU n) (ε.qU_mem k n)
-  obtain ⟨A', hA'⟩ := P.tower_act 𝒯 ε
-  obtain ⟨θ, hθ, hθγ⟩ := P.theta_ex 𝒯 k n 𝓛 δ hδ hp hnil ε A A' hA hA'
-  have hε := P.eps_facts ε
+  obtain ⟨𝒯⟩ := _root_.GlobalTheory.CompanionTheory.TowerEx.tower_ex κ s
+  obtain ⟨A, hA⟩ := _root_.GlobalTheory.CompanionTheory.ThickAct.thick_act s (b := bs l k n) rfl 𝓛 δ hδ hp hnil (ε.qU n) (ε.qU_mem k n)
+  obtain ⟨A', hA'⟩ := _root_.GlobalTheory.CompanionTheory.TowerAct.tower_act 𝒯 ε
+  obtain ⟨θ, hθ, hθγ⟩ := _root_.GlobalTheory.CompanionTheory.ThetaEx.main 𝒯 k n 𝓛 δ hδ hp hnil ε A A' hA hA'
+  have hε := _root_.GlobalTheory.CompanionTheory.EpsFacts.eps_facts ε
   have hq : (ε.qU n : (bs l k n).R) = (base l).cris n (ε.qk 1) ^ (bs l k n).p :=
     (ε.qU_val n).trans ((congrArg ((base l).cris n) (hε.2.1 0).symm).trans (map_pow _ _ _))
   have hμ : (base l).cris n ε.μ = (ε.qU n : (bs l k n).R) - 1 := by
@@ -96,16 +96,16 @@ theorem local_of (hD : D.Out l) : Local l := by
     have := fil_le k (base l) n (hε.2.2.1 (base l) n)
     set_option synthInstance.maxHeartbeats 100000 in
       simpa only [map_sum, map_pow] using this
-  obtain ⟨L, hL⟩ := P.line_univ (thU (Lc F κ k n) (ε.qU n) (ε.qU_mem k n)) (fun _ _ i g => (flt F κ ε k n ρ hρ).FAcyc i g)
-    (P.thick_line F (bs l k n) rfl (κb κ k n) ((base l).cris n) ρ hρ ε.μ (ε.μ_mem k (base l) n) (ε.qU n) (ε.qU_mem k n)
+  obtain ⟨L, hL⟩ := _root_.GlobalTheory.CompanionTheory.LineUniv.exists_line (thU (Lc F κ k n) (ε.qU n) (ε.qU_mem k n)) (fun _ _ i g => (flt F κ ε k n ρ hρ).FAcyc i g)
+    (_root_.GlobalTheory.CompanionTheory.ThickLine.main F (bs l k n) rfl (κb κ k n) ((base l).cris n) ρ hρ ε.μ (ε.μ_mem k (base l) n) (ε.qU n) (ε.qU_mem k n)
       ((base l).cris n (ε.qk 1)) Fact.out hq hμ hξ)
-  obtain ⟨L', hL'⟩ := P.cont_line F κ ε k n ρ hρ
-  obtain ⟨ni⟩ := P.local_ni 𝒯 k n 𝓛 δ hδ hp hnil ε ρ hρ A.γ A'.γ ⟨fun _ => θ, fun _ _ a => hθγ a⟩ hn hθ
+  obtain ⟨L', hL'⟩ := _root_.GlobalTheory.CompanionTheory.ContLine.exists_line F κ ε k n ρ hρ
+  obtain ⟨ni⟩ := _root_.GlobalTheory.CompanionTheory.TowerNI.main 𝒯 k n 𝓛 δ hδ hp hnil ε ρ hρ A.γ A'.γ ⟨fun _ => θ, fun _ _ a => hθγ a⟩ hn hθ
     (fun a j => (hA _ _ (𝟙 _) j).trans (congrArg (· * 𝓛.t j) (Units.val_pow_eq_pow_val _ _)))
     (fun a j => (hA' _ _ (𝟙 _) j).trans (congrArg (· * (𝒯.c j 0).val) (Units.val_pow_eq_pow_val _ _)))
   exact hN (flt F κ ε k n ρ hρ).rees (gE F κ k n) (jE _) _ _ A L _ _ A' L' θ hθγ _
-    (fun T => (P.rees_up (flt F κ ε k n ρ hρ) (𝟭 _) 0).2.2 _ _ (hL T)) (P.desc hD F κ ε k n ρ hρ hk)
-    (fun T => (P.rees_up ((flt F κ ε k n ρ hρ).comap (gE F κ k n)) (𝟭 _) 0).2.2 _ _ (hL' T)) ni
+    (fun T => (_root_.GlobalTheory.CompanionTheory.ReesUp.main (flt F κ ε k n ρ hρ) (𝟭 _) 0).2.2 _ _ (hL T)) (_root_.GlobalTheory.CompanionTheory.DescTest.main hD F κ ε k n ρ hρ hk)
+    (fun T => (_root_.GlobalTheory.CompanionTheory.ReesUp.main ((flt F κ ε k n ρ hρ).comap (gE F κ k n)) (𝟭 _) 0).2.2 _ _ (hL' T)) ni
 
 theorem ri_pow {R : Type} [CommRing R] {C C' : Type 1} [Category.{0} C] [Category.{0} C'] {F : C ⥤ ModuleCat.{0} R} {G : C' ⥤ C}
     {s : R} {a b n : ℕ} (h : a ≤ b) (H : RI (s ^ a) n F G) : RI (s ^ b) n F G := by
@@ -120,8 +120,8 @@ theorem global_of (h : Local l) (d j : ℕ) : ∃ N : ℕ, ∀ {O : Type} [CommR
   refine ⟨((Finset.range (d + 1)).sup N) * (2 * j + 3), fun {O} _ F κ ε k n ρ hρ hn hk 𝒜 => ?_⟩
   rw [pow_mul]
   have hp : (bs l k n).p ≠ 0 := (Fact.out : l.Prime).ne_zero
-  have z₁ := fun r => P.thick_zar F (bs l k n) rfl (κb κ k n) ((base l).cris n) 𝒜 hp r
-  have z₂ := fun r => P.el_zar F κ 𝒜 k n r
+  have z₁ := fun r => _root_.GlobalTheory.CompanionTheory.ThickZar.zarCov_pdS F (bs l k n) rfl (κb κ k n) ((base l).cris n) 𝒜 hp r
+  have z₂ := fun r => _root_.GlobalTheory.CompanionTheory.TestZar.zarCov_test F κ 𝒜 k n r
   have onto : ∀ {C : Type 1} [Category.{0} C] (Q : C → Prop), Onto (ObjectProperty.ι Q) Q := fun Q =>
     ⟨inferInstance, inferInstance, fun T => T.property, fun T hT => ⟨⟨T, hT⟩, ⟨Iso.refl _⟩⟩⟩
   refine P.glob _ (gT F κ k n) (fun α T => (𝒜.V α).In T.y.1.2) _ j ?_ ?_ ?_ fun S hS => ?_
@@ -129,11 +129,11 @@ theorem global_of (h : Local l) (d j : ℕ) : ∃ N : ℕ, ∀ {O : Type} [CommR
     have e : F.Pt.map (CommRingCat.ofHom (Ideal.quotientMap T'.J φ.φ φ.hle)) T.y.1.2 = T'.y.1.2 :=
       congrArg (fun z => z.1.2) φ.pt
     exact e ▸ (𝒜.V α).in_map _ hT
-  · exact (P.rees_up (flt F κ ε k n ρ hρ) _ j).1 fun r => P.zar _ _ _ (onto _) (z₁ (ρ r)) j
-  · exact (P.rees_up ((flt F κ ε k n ρ hρ).comap (gT F κ k n)) _ j).1 fun r => P.zar _ _ _ (onto _) (z₂ (ρ r)) j
+  · exact (_root_.GlobalTheory.CompanionTheory.ReesUp.main (flt F κ ε k n ρ hρ) _ j).1 fun r => P.zar _ _ _ (onto _) (z₁ (ρ r)) j
+  · exact (_root_.GlobalTheory.CompanionTheory.ReesUp.main ((flt F κ ε k n ρ hρ).comap (gT F κ k n)) _ j).1 fun r => P.zar _ _ _ (onto _) (z₂ (ρ r)) j
   · obtain ⟨d', hd', ⟨s⟩⟩ := 𝒜.small S hS
     refine ⟨_, _, _, _, subThick (Fn.Sub.inter 𝒜.V S) (bs l k n) rfl (κb κ k n), subEl κ (Fn.Sub.inter 𝒜.V S),
-      gT (Fn.Sub.inter 𝒜.V S).fn κ k n, P.thick_onto _ _ _ _, P.el_onto F κ 𝒜 S k n hn, ⟨eqToIso (subEl_gT κ _ k n)⟩, ?_⟩
+      gT (Fn.Sub.inter 𝒜.V S).fn κ k n, _root_.GlobalTheory.CompanionTheory.ThickSub.subThick_onto _ _ _ _, _root_.GlobalTheory.CompanionTheory.ElOnto.onto_subEl F κ 𝒜 S k n hn, ⟨eqToIso (subEl_gT κ _ k n)⟩, ?_⟩
     rw [subThick_rees]
     exact ri_pow (Finset.le_sup (f := N) (Finset.mem_range.2 (Nat.lt_succ_of_le hd'))) (hN d' _ κ ε k n ρ hρ hn hk s)
 
@@ -185,7 +185,7 @@ theorem level_zero {O : Type} [CommRing O] (F : Fn O) (κ : O →+* OC l) (k : B
 theorem level_pos {O : Type} [CommRing O] (F : Fn O) (κ : O →+* OC l) (ε : Eps l) (k : Bool) (n j N : ℕ) (ρ : ℕ → ℕ) (hρ : Slow ρ)
     (h : RI ((Polynomial.X : Polynomial ℤ) ^ N) j (flt F κ ε k n ρ hρ).rees (gT F κ k n)) :
     UpTo (ε.μ ^ N) (β F κ k n j) ∧ ∀ y, ∃ x ∈ HcFil F κ k n (ρ N) j, β F κ k n j x = ε.μ ^ N • y :=
-  have H := P.rees_down (flt F κ ε k n ρ hρ) (gT F κ k n) j N (pdFlt_zero _ _ ρ hρ _ _) h j le_rfl
+  have H := _root_.GlobalTheory.CompanionTheory.ReesDown.main (flt F κ ε k n ρ hρ) (gT F κ k n) j N (pdFlt_zero _ _ ρ hρ _ _) h j le_rfl
   transfer (βMor F κ k n) (fun _ => Function.bijective_id) j (ε.μ ^ N) (HcFil F κ k n (ρ N) j) H.1 H.2
 
 theorem slow_zero : Slow 0 := ⟨rfl, fun _ => Nat.zero_le _⟩

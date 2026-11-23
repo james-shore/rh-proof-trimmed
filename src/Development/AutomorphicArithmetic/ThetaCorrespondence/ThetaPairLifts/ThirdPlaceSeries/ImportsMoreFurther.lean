@@ -56,16 +56,16 @@ theorem main_alt_alt : GlobalTheory.Published.AutomorphicFormsFiniteGL → ∀ (
   have hjj : j.1 + 1 = D.nd.j i := Nat.sub_add_cancel hj.1
   have hlp : (D.nd.l i).Prime := (D.nd.lPrime i).out
   rw [P.chr.unr_iff, P.chr.tw, P.chr.muC i j hjj, P.chr.etaTinv]
-  refine GlobalTheory.MuTameQS.unrAt_mul ?_ (unrAt_inv (P.cf.isEta.unr w))
+  refine _root_.Formalism.L2.Host.HChar.UnrAt.mul ?_ (_root_.Formalism.L2.Host.HChar.UnrAt.inv (P.cf.isEta.unr w))
   unfold TupTied.tup
-  refine GlobalTheory.MuTameQS.unrAt_mul ?_ ?_
+  refine _root_.Formalism.L2.Host.HChar.UnrAt.mul ?_ ?_
   · refine (P.cf.isMu0 j).unr w fun k hk => ?_
     have e := eq_of_over_two hlp (D.host.g_prime k) w hw hk
     apply hl
     rw [e]
     fin_cases k <;> simp [TwistedPlaces.gset]
   · rw [D.nd.mu_w i, P.tp.xi_tw, D.nd.w_l i]
-    refine GlobalTheory.MuTameQS.unrAt_mul ?_ ?_
+    refine _root_.Formalism.L2.Host.HChar.UnrAt.mul ?_ ?_
     · unfold CharFrame.delAt
       split_ifs with h
       · refine P.cf.isDel'.unr w fun ho => D.host.pde_ne ?_

@@ -66,8 +66,7 @@ namespace GlobalTheory.Amp.AbsSide
 
 variable {k r : ℕ}
 
-theorem continuous_conj (a : Mat k r) : Continuous (conjM a : Mt k r → Mt k r) :=
-  (continuous_const.matrix_mul (continuous_id (X := Mat k r))).matrix_mul continuous_const
+alias continuous_conj := _root_.GlobalTheory.Amp.OnePiece.continuous_conj
 
 theorem continuous_mulPair :
     Continuous fun p : Mt k r × Mt k r => lmulM (Matrix.of p.1) p.2 :=
@@ -85,17 +84,6 @@ theorem measurable_indicator_grp {B : Type} [TopologicalSpace B] [MeasurableSpac
   have := ContinuousOn.measurable_piecewise (g := fun _ => (0 : B)) h1 continuousOn_const measurableSet_grp
   convert this using 1
   exact (Set.piecewise_eq_indicator).symm
-
-theorem mul_mem {a b : Mat k r} (ha : a ∈ GG k r) (hb : b ∈ GG k r) : a * b ∈ GG k r :=
-  isClosedSub_GG.2.2.2.1 _ ha _ hb
-
-theorem mem_GG_of_mul {s x : Mat k r} (hs : s ∈ GG k r) (h : s * x ∈ GG k r) : x ∈ GG k r := by
-  have := mul_mem (isClosedSub_GG.2.2.2.2 _ hs) h
-  rwa [Matrix.nonsing_inv_mul_cancel_left _ _ (isUnit_det_of_mem_GG hs)] at this
-
-theorem continuousOn_sq {X E : Type} [TopologicalSpace X] [NormedAddCommGroup E] {g : X → E} {s : Set X}
-    (hg : ContinuousOn g s) : ContinuousOn (fun x => (‖g x‖₊ : ℝ≥0∞) ^ 2) s :=
-  (ENNReal.continuous_pow 2).comp_continuousOn (ENNReal.continuous_coe.comp_continuousOn hg.nnnorm)
 
 theorem lintegral_muProd {μW μN : Measure (Mt k r)} [SFinite μN] {F : Mt k r → ℝ≥0∞} (hF : Measurable F)
     (x : Mt k r) : ∫⁻ s, F (fun i j => (Matrix.of s * Matrix.of x) i j) ∂(muProd μW μN) =
@@ -126,7 +114,7 @@ theorem quot_conc {z : Fin (2 * r + k + 1) → ℂ} {μG μW μN νS : Measure (
             rw [← lintegral_one]
             refine lintegral_congr_ae (aeN.mono fun n hn => ?_)
             have : rmulM (Matrix.of x) (lmulM (Matrix.of h) n) ∈ A := fun h' =>
-              hx (mem_GG_of_mul (mul_mem hh.1 hn.1) h')
+              hx (_root_.GlobalTheory.Amp.OnePiece.mem_GG_of_mul (_root_.GlobalTheory.Amp.NfComp.G_mul hh.1 hn.1) h')
             exact Set.indicator_of_mem this _
         _ = _ := by rw [lintegral_const, hW1, mul_one]
     · rw [Set.indicator_of_notMem hx]; exact zero_le
@@ -147,7 +135,7 @@ theorem null_of_fibres {z : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (hT :
   refine (lintegral_muProd hf x).trans ?_
   rw [← lintegral_zero (μ := μW)]
   refine lintegral_congr_ae (aeW.mono fun h hh => ?_)
-  have hg : Matrix.of h * Matrix.of x ∈ GG k r := mul_mem hh.1 hx
+  have hg : Matrix.of h * Matrix.of x ∈ GG k r := _root_.GlobalTheory.Amp.NfComp.G_mul hh.1 hx
   have hm2 : Measurable fun n : Mt k r => A.indicator (1 : Mt k r → ℝ≥0∞) (rmulM (Matrix.of h * Matrix.of x) n) :=
     hf.comp (continuous_rmulM _).measurable
   have hc := ((GlobalTheory.T.unimodular_besselSubgroups_UW_N k r z hz hT μN).2.1 hN).2 _ hh
@@ -167,9 +155,6 @@ theorem null_of_fibres {z : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (hT :
         exact lintegral_indicator_one (s := {n | rmulM (Matrix.of h * Matrix.of x) n ∈ A})
           ((continuous_rmulM _).measurable hAm)
 
-theorem N_sub_S (z : Fin (2 * r + k + 1) → ℂ) {n : Mat k r} (hn : n ∈ Nset k r) : n ∈ Sset k r z :=
-  ⟨1, (isClosedSub_UWset z).2.2.1, n, hn, (Matrix.one_mul n).symm⟩
-
 theorem Sg_inv {z : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) {s x : Mat k r} (hs : s ∈ Sset k r z)
     (hx : x ∈ GG k r) : Sg k r z (s * x) = Sg k r z x := by
   have := ((GlobalTheory.Amp.LInv.lengths_basic k r z hz).1 x hx s hs 1 ⟨isClosedSub_GG.2.2.1, one_mem _⟩).2
@@ -178,12 +163,12 @@ theorem Sg_inv {z : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) {s x : Mat k 
 theorem Eset_inv {z z' : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (hz' : inWb k r z') {γ ρ : Mat k r}
     (hγ : γ ∈ GG k r) (hρ : ρ ∈ Rset k r γ) {x : Mt k r} (hx : Matrix.of x ∈ GG k r) (R₀ y : ℝ) :
     lmulM ρ x ∈ Eset k r z z' γ R₀ y ↔ x ∈ Eset k r z z' γ R₀ y := by
-  have h1 : Sg k r z' (ρ * Matrix.of x) = Sg k r z' (Matrix.of x) := Sg_inv hz' (N_sub_S z' hρ.1) hx
+  have h1 : Sg k r z' (ρ * Matrix.of x) = Sg k r z' (Matrix.of x) := Sg_inv hz' (_root_.GlobalTheory.Amp.YInv.N_sub_S z' hρ.1) hx
   have h2 : Sg k r z (γ * (ρ * Matrix.of x)) = Sg k r z (γ * Matrix.of x) := by
-    rw [← Sg_inv hz (N_sub_S z hρ.2) (mul_mem hγ hx), Matrix.mul_assoc _ γ⁻¹,
+    rw [← Sg_inv hz (_root_.GlobalTheory.Amp.YInv.N_sub_S z hρ.2) (_root_.GlobalTheory.Amp.NfComp.G_mul hγ hx), Matrix.mul_assoc _ γ⁻¹,
       Matrix.nonsing_inv_mul_cancel_left _ _ (isUnit_det_of_mem_GG hγ), Matrix.mul_assoc]
   have h3 := (GlobalTheory.Amp.YInv.yv_invariant k r z z' γ hz hz' hγ _ hx).2.2 ρ hρ
-  have h4 : ρ * Matrix.of x ∈ GG k r := mul_mem hρ.1.1 hx
+  have h4 : ρ * Matrix.of x ∈ GG k r := _root_.GlobalTheory.Amp.NfComp.G_mul hρ.1.1 hx
   show (ρ * Matrix.of x ∈ GG k r ∧ Sg k r z' (ρ * Matrix.of x) ≤ R₀ ∧ Sg k r z (γ * (ρ * Matrix.of x)) ≤ R₀ ∧
     y < Yv k r z z' γ (ρ * Matrix.of x) ∧ Yv k r z z' γ (ρ * Matrix.of x) ≤ 2 * y) ↔
     (Matrix.of x ∈ GG k r ∧ Sg k r z' (Matrix.of x) ≤ R₀ ∧ Sg k r z (γ * (Matrix.of x)) ≤ R₀ ∧
@@ -209,7 +194,7 @@ theorem abs_side : ∀ (k r : ℕ) {Wq : Type} [NormedAddCommGroup Wq] [InnerPro
       tauto
     refine hnull _ hAm (fun ρ hρ x hx => ?_) (null_of_fibres hz' hT' hG hW hW1 hN hq hAm fun g hg => ?_)
     · have h3 := (GlobalTheory.Amp.YInv.yv_invariant k r z z' γ hz hz' hγ _ hx).2.2 ρ hρ
-      have h4 : ρ * Matrix.of x ∈ GG k r := mul_mem hρ.1.1 hx
+      have h4 : ρ * Matrix.of x ∈ GG k r := _root_.GlobalTheory.Amp.NfComp.G_mul hρ.1.1 hx
       show (ρ * Matrix.of x ∉ GG k r ∨ Yv k r z z' γ (ρ * Matrix.of x) = 0) ↔
         (Matrix.of x ∉ GG k r ∨ Yv k r z z' γ (Matrix.of x) = 0)
       rw [h3]
@@ -218,7 +203,7 @@ theorem abs_side : ∀ (k r : ℕ) {Wq : Type} [NormedAddCommGroup Wq] [InnerPro
         rw [Measure.smul_apply, (hP g hg).1, smul_zero]
       refine measure_mono_null (fun n hn => ?_) (measure_union_null hN.2.2.1 h2)
       rcases hn with hn | hn
-      · exact Or.inl fun h => hn (mul_mem h.1 hg)
+      · exact Or.inl fun h => hn (_root_.GlobalTheory.Amp.NfComp.G_mul h.1 hg)
       · exact Or.inr hn
   intro w hw i R₀ y hR₀ hy
   set E := Eset k r z z' γ R₀ y with hEdef
@@ -237,7 +222,7 @@ theorem abs_side : ∀ (k r : ℕ) {Wq : Type} [NormedAddCommGroup Wq] [InnerPro
     · simp only [hQdef, Set.mem_setOf_eq, Set.mem_inter_iff, hx, false_and]
   have hQS : ∀ s ∈ Sset k r z', ∀ x, Matrix.of x ∈ GG k r → (lmulM s x ∈ Q ↔ x ∈ Q) := by
     intro s hs x hx
-    have h4 : s * Matrix.of x ∈ GG k r := mul_mem ((isClosedSub_Sset hz' hT').1 hs) hx
+    have h4 : s * Matrix.of x ∈ GG k r := _root_.GlobalTheory.Amp.NfComp.G_mul ((isClosedSub_Sset hz' hT').1 hs) hx
     show (s * Matrix.of x ∈ GG k r ∧ (i = 0 ∨ 2 ^ i * H₁ / 2 < Sg k r z' (s * Matrix.of x))) ↔
       (Matrix.of x ∈ GG k r ∧ (i = 0 ∨ 2 ^ i * H₁ / 2 < Sg k r z' (Matrix.of x)))
     rw [Sg_inv hz' hs hx]
@@ -249,16 +234,16 @@ theorem abs_side : ∀ (k r : ℕ) {Wq : Type} [NormedAddCommGroup Wq] [InnerPro
     fun x => (‖⟪w, Φ' (Matrix.of x)⟫_ℂ‖₊ : ℝ≥0∞) ^ 2 with ha
   have ham : Measurable a :=
     measurable_indicator_grp (f := fun x => (‖⟪w, Φ' x⟫_ℂ‖₊ : ℝ≥0∞) ^ 2)
-      (continuousOn_sq (ContinuousOn.inner continuousOn_const hΦ))
+      (_root_.GlobalTheory.Amp.OnePiece.continuousOn_sq (ContinuousOn.inner continuousOn_const hΦ))
   have haG : ∀ x : Mt k r, Matrix.of x ∈ GG k r → a x = (‖⟪w, Φ' (Matrix.of x)⟫_ℂ‖₊ : ℝ≥0∞) ^ 2 :=
     fun x hx => Set.indicator_of_mem (s := {x : Mt k r | Matrix.of x ∈ GG k r}) hx _
   have hinv : ∀ ρ ∈ Rset k r γ, ∀ x, Matrix.of x ∈ GG k r →
       (E ∩ Q).indicator a (lmulM ρ x) = (E ∩ Q).indicator a x := by
     intro ρ hρ x hx
     have h1 : lmulM ρ x ∈ E ∩ Q ↔ x ∈ E ∩ Q :=
-      and_congr (Eset_inv hz hz' hγ hρ hx R₀ y) (hQS ρ (N_sub_S z' hρ.1) x hx)
+      and_congr (Eset_inv hz hz' hγ hρ hx R₀ y) (hQS ρ (_root_.GlobalTheory.Amp.YInv.N_sub_S z' hρ.1) x hx)
     by_cases h : x ∈ E ∩ Q
-    · rw [Set.indicator_of_mem h, Set.indicator_of_mem (h1.2 h), haG x hx, haG (lmulM ρ x) (mul_mem hρ.1.1 hx)]
+    · rw [Set.indicator_of_mem h, Set.indicator_of_mem (h1.2 h), haG x hx, haG (lmulM ρ x) (_root_.GlobalTheory.Amp.NfComp.G_mul hρ.1.1 hx)]
       have h2 := hE 1 (isClosedSub_UWset z').2.2.1 ρ hρ.1 _ hx
       rw [Matrix.one_mul, hU.1.1] at h2
       have hψ' : ‖ψ' ρ‖₊ = 1 := NNReal.eq (hψ ρ hρ.1)

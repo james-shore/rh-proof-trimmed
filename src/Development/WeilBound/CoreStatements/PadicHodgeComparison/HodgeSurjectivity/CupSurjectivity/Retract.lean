@@ -94,7 +94,7 @@ theorem retract_pf : Retract := by
   · rw [Category.assoc, retractPt_str, Category.comp_id, Category.id_comp]
   · exact GlobalTheory.ProjSpace.isProjOver_pullback hproj (GlobalTheory.ProjSpace.isProjOver_pspace_str _ 2)
   · intro x
-    exact GlobalTheory.T.hasStrictlySemistableChartAt_of_smooth _ ϖ N.X N.p ⊤ x trivial inferInstance
+    exact _root_.GlobalTheory.SSG.chartAt_of_smooth _ ϖ N.X N.p ⊤ x trivial inferInstance
 
 end CrystallineSemistableComparison.Onto
 

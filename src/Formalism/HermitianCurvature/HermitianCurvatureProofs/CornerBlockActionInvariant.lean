@@ -209,10 +209,6 @@ theorem ell_muP (z : Fin (2 * ρ + k + 1) → ℂ) (hz : inWb k ρ z) (q : Matri
     · rw [muP_mulVec_liftVec_eB_apply]
       exact hz _ (Or.inl (by simp [eI]))
 
-theorem psi_of_ell {r r' : ℕ} (z : Fin (2 * r + k + 1) → ℂ) (z' : Fin (2 * r' + k + 1) → ℂ) (g : B.Mat k r)
-    (g' : B.Mat k r') (h : ell k r z g = ell k r' z' g') : psi k r z cStd g = psi k r' z' cStd g' := by
-  simp only [Formalism.QuantumDeterminants.psi, h]
-
 theorem psi_measure_preserving : PsiMuP := by
   intro k p ρ z' u hz
   simp only [Formalism.QuantumDeterminants.psi, G.psi, U.betaU, ell_muP z' hz]
@@ -229,17 +225,14 @@ theorem upper_isUpUni (u : G.UT p → ℂ) : Formalism.DoubleCosetMeasures.IsUpU
     simp [G.upper, G.strictUpper, Matrix.one_apply, h1, h2]
   · simp [G.upper, G.strictUpper]
 
-theorem rn_nset (x : U.RC k p ρ) : U.Rn k p ρ x ∈ QuantumDeterminants.Nset k (p + ρ) :=
-  (Formalism.FourierDecayAlt.P.radical_parametrisation k p ρ).2.2 (by rw [← (Formalism.FourierDecayAlt.P.radical_parametrisation k p ρ).2.1]; exact ⟨x, rfl⟩)
-
 theorem psi_right_equivariant : PsiRight := by
   intro k p ρ z' ν' u x hz hν
   have hz0 := inWb_liftVec (p := p) hz
   have hcl := Formalism.FourierDecayAlt.P.unipotent_radical_closed k (p + ρ)
   have h1 := embG_nset (p := p) hν
   have h2 := Formalism.FourierDecayAlt.P.BigCellDiagonalMap.leviElement_nset (k := k) (ρ := ρ) _ (upper_isUpUni u)
-  rw [Formalism.FourierDecayAlt.P.PBG.psi_mul_nset _ hz0 _ (hcl.mul_mem _ h1 _ h2) (rn_nset x),
-    Formalism.FourierDecayAlt.P.PBG.psi_mul_nset _ hz0 _ h1 h2, psi_of_ell _ z' _ ν' (ell_embG z' ν')]
+  rw [Formalism.FourierDecayAlt.P.PBG.psi_mul_nset _ hz0 _ (hcl.mul_mem _ h1 _ h2) (_root_.Formalism.FourierDecayAlt.P.Ux3.rn_nset x),
+    Formalism.FourierDecayAlt.P.PBG.psi_mul_nset _ hz0 _ h1 h2, _root_.Formalism.FourierDecayAlt.P.PBH.psi_eq_of_ell _ z' _ ν' (ell_embG z' ν')]
 
 theorem corner_block_action_invariant (y : B.Mat k ρ) (x : U.RC k p ρ) (v : Fin (2 * ρ + k + 1) → ℂ) (hy : yᴴ * Hpk k ρ * y = Hpk k ρ)
     (hv : y *ᵥ v = v) :
@@ -256,7 +249,7 @@ theorem corner_block_action_invariant (y : B.Mat k ρ) (x : U.RC k p ρ) (v : Fi
 theorem psi_right_action_comm : PsiRnAct := by
   intro k p ρ z' h' x hz hh
   have hz0 := inWb_liftVec (p := p) hz
-  apply psi_of_ell
+  apply _root_.Formalism.FourierDecayAlt.P.PBH.psi_eq_of_ell
   rw [Ux3.rn_eq, Ux3.rn_eq, Formalism.FourierDecayAlt.P.PBH.ell_uni _ hz0, Formalism.FourierDecayAlt.P.PBH.ell_uni _ hz0]
   by_cases hp : 0 < p
   · rw [dite_eq_left hp, dite_eq_left hp]

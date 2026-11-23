@@ -63,9 +63,6 @@ theorem omegaMod_reduceMod {h M : ℕ} (a c : Fin h ⊕ Fin h → ℤ) :
     omegaMod M (reduceMod M a) (reduceMod M c) = ((omegaStd a c : ℤ) : ZMod M) := by
   simp [omegaMod, omegaStd, reduceMod]
 
-theorem sp_exists_spMap {A B : Type} [CommRing A] [CommRing B] (g : Sp B ⟶ Sp A) : ∃ f : A →+* B, g = spMap f :=
-  ⟨(Spec.preimage g).hom, by simp [spMap]⟩
-
 theorem sympCond_fibre_existsUnique : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type) [CommRing R] (b : Base D R) (N h M : ℕ), 0 < M →
   Odd M → 1 ≤ h → ∀ (σ : sympSimGrp h M → (cycAway M →+* cycAway M)),
   (∀ a, ∃ n : ℕ, IsMultOf a n ∧ σ a (zetaAway M) = zetaAway M ^ n) →
@@ -77,8 +74,8 @@ theorem sympCond_fibre_existsUnique : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p)
   haveI : NeZero M := ⟨hM.ne'⟩
   obtain ⟨hadd, -, hgeo⟩ := H
   obtain ⟨hadd', -, hgeo'⟩ := H'
-  obtain ⟨β, hβ⟩ := sp_exists_spMap t₁
-  obtain ⟨β', hβ'⟩ := sp_exists_spMap t₁'
+  obtain ⟨β, hβ⟩ := _root_.GlobalTheory.ZM.RepMap.exists_spMap t₁
+  obtain ⟨β', hβ'⟩ := _root_.GlobalTheory.ZM.RepMap.exists_spMap t₁'
   have hζ : ∀ g₀ : cycAway M →+* K, g₀ (zetaAway M) ^ M = 1 := fun g₀ => by
     rw [← map_pow, zetaAway_pow_self M hM.ne', map_one]
   let z : Kˣ := Units.ofPowEqOne _ M (hζ β) hM.ne'

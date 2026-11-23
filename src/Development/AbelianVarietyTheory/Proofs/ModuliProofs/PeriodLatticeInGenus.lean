@@ -168,7 +168,7 @@ section
 
 variable {A : Over (Sp ℂ)} [GrpObj A] {L : LB A.left} {g : ℕ} (u : HolUnif A L g)
 
-theorem ex_zero : u.ex 0 = 1 := (u.ker 0).2 u.Λ.zero_mem
+alias ex_zero := _root_.GlobalTheory.TangentOrigin.ex_zero
 
 theorem ex_nsmul (n : ℕ) (z : Fin g → ℂ) : u.ex ((n : ℂ) • z) = u.ex z ^ n := by
   induction n with

@@ -74,7 +74,7 @@ theorem frame_eq_word_module : Formalism.FourierDecayAlt.Fr.FrameWord :=
     frame_free_of_new_position frame_module_of_word).2
 
 theorem frame_of_recursive_word : Formalism.FourierDecayAlt.Fr.FrameAllRec :=
-  frame_rec_of_steps start_is_frame initial_module_structure plus_letter_maps_frames minus_letter_maps_frames
+  _root_.Formalism.FourierDecayAlt.P.Fr2.frameRecAssemble start_is_frame initial_module_structure plus_letter_maps_frames minus_letter_maps_frames
     frame_free_of_new_position
 
 end Formalism.FourierDecayAlt.P

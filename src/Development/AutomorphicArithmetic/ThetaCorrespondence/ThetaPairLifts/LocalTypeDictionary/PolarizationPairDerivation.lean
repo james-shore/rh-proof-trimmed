@@ -78,7 +78,7 @@ theorem polarization_pair_derivation (hP : _root_.GlobalTheory.FunPr.ThetaLocalI
     refine Submodule.add_mem _ (Submodule.sum_mem _ fun i _ => Submodule.smul_mem _ _ ?_) (Submodule.smul_mem _ _ hf)
     exact closed _ (hat i).1 _ (hDu i) _ (closed _ (hat i).2 _ (hDv i) _ hf)
   · intro r hr x
-    choose F₁ hF₁ using fun t : ℝ => _root_.GlobalTheory.T.theta_action_archimedean_locality hP M ψ χX χW om hcm hψ hW (γ (Multiplicative.ofAdd t)) (hγ.2 _) f
+    choose F₁ hF₁ using fun t : ℝ => _root_.GlobalTheory.ArchLocality.theta_action_local_at_archimedean_place hP M ψ χX χW om hcm hψ hW (γ (Multiplicative.ofAdd t)) (hγ.2 _) f
     have hd := hQ f (fun i => Dv i f) (fun i => Du i (Dv i f)) (fun i => hDv i f) (fun i => hDu i _) F₁ hF₁
       (fun i => evI F (x i))
     have e : (fun t => om (1, γ (Multiplicative.ofAdd t)) (tens (evI F) f r) x) =

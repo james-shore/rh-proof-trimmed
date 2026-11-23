@@ -66,6 +66,6 @@ theorem stmt_of_real : ∀ {l : ℕ} [Fact l.Prime] (P : LocPrime l) (AI : LocAi
   intro l _ P AI hT hR K LL n r emb D Γ hyp c h2 ht X _ _ _
   have : NeZero n := ⟨GlobalTheory.IndefiniteRowSideFullHecke.InvariantsVanishing.letters_ne_zero hyp.1⟩
   let S : TopSit P := ⟨K, LL, n, r, emb, D, Γ, hyp⟩
-  exact cls_eq_zero S (GlobalTheory.T.crystalline_sums_twists_characters_expected_jumps AI hT S) (hR S) c h2 ht X
+  exact cls_eq_zero S (_root_.GlobalTheory.TopSteps.CrysRules.crysCalc AI hT S) (hR S) c h2 ht X
 
 end GlobalTheory.TopSteps.CharVanish

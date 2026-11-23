@@ -215,7 +215,7 @@ theorem potentialSemistable_rational_lTorsion_any_closure (V K : Type) [CommRing
     ((IsFractionRing.injective R K').comp hVR)
   letI : Algebra K K' := jK.toAlgebra
   have hcomp : (algebraMap R K').comp (algebraMap V R) = (algebraMap K K').comp (algebraMap V K) := hjK'.symm
-  obtain ⟨s, c, hc, hgeo⟩ := GlobalTheory.T.exists_neronNeutralComponent_finite_level V K R K' hSH hcomp P
+  obtain ⟨s, c, hc, hgeo⟩ := _root_.GlobalTheory.NeutralLevel.exists_level_model V K R K' hSH hcomp P
   obtain ⟨W, hWd, hs, hWc, hWf, hWl, f, hf, hfix⟩ := hW s
   obtain ⟨G, _, L, _, _, _, _, hG, hcW, hmod, hdim, ⟨N, hN⟩, hext⟩ := hgeo W hWd hs hWl
   have hlR : IsUnit (l : R) := by simpa using hlu.map (algebraMap V R)

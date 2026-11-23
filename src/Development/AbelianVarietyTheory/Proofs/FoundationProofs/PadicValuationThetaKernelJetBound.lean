@@ -62,11 +62,8 @@ def Bd {p : ℕ} [Fact p.Prime] (lam : Qbar →+* ℂ_[p]) (B : ℝ) (x : ℂ) :
 section
 variable {p : ℕ} [Fact p.Prime] {lam : Qbar →+* ℂ_[p]}
 
-theorem lamC_coe (x : Qbar) : lamC lam (x : ℂ) = lam x := by
-  simp [lamC, x.2]
-
 theorem Bd.coe {B : ℝ} {x : Qbar} (h : ‖lam x‖ ≤ B) : Bd lam B (x : ℂ) :=
-  ⟨x.2, by rwa [lamC_coe]⟩
+  ⟨x.2, by rwa [_root_.GlobalTheory.ProductJets.lamC_coe]⟩
 
 theorem Bd.mono {B B' : ℝ} {x : ℂ} (h : Bd lam B x) (hB : B ≤ B') : Bd lam B' x :=
   ⟨h.1, h.2.trans hB⟩
@@ -80,7 +77,7 @@ theorem Bd.add {B : ℝ} {x y : ℂ} (hx : Bd lam B x) (hy : Bd lam B y) : Bd la
   obtain ⟨hy, h2⟩ := hy
   lift x to Qbar using hx
   lift y to Qbar using hy
-  rw [lamC_coe] at h1 h2
+  rw [_root_.GlobalTheory.ProductJets.lamC_coe] at h1 h2
   have := Bd.coe (lam := lam) (B := B) (x := x + y) (by
     rw [map_add (f := _)]
     exact (IsUltrametricDist.norm_add_le_max _ _).trans (max_le h1 h2))
@@ -91,7 +88,7 @@ theorem Bd.mul {A B : ℝ} {x y : ℂ} (hx : Bd lam A x) (hy : Bd lam B y) : Bd 
   obtain ⟨hy, h2⟩ := hy
   lift x to Qbar using hx
   lift y to Qbar using hy
-  rw [lamC_coe] at h1 h2
+  rw [_root_.GlobalTheory.ProductJets.lamC_coe] at h1 h2
   have := Bd.coe (lam := lam) (B := A * B) (x := x * y) (by
     rw [map_mul, norm_mul]
     exact mul_le_mul h1 h2 (norm_nonneg _) ((norm_nonneg _).trans h1))

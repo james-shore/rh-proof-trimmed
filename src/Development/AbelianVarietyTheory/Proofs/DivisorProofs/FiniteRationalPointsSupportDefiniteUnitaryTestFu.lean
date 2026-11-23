@@ -209,9 +209,9 @@ theorem finite_of_bounds (S : Set (Pl E)) (hS : IsSection S) (Γs : Set (UE E n)
       exacts [(h2 (hsec w hw) γ hγ i j).1, (h2 (hsec w hw) γ hγ i j).2]
   have hinf : ∀ a ∈ X, ∀ τ : E →+* ℂ, ‖τ a‖ ≤ 1 := by
     rintro a ⟨γ, hγ, i, j, rfl | rfl⟩ τ
-    · exact unitary_norm_le_one E n γ τ i j
-    · exact unitary_norm_le_one E n γ⁻¹ τ i j
-  have hX := finite_of_local_bounds E X hall hcof hinf
+    · exact _root_.GlobalTheory.BCT.SuppFin.norm_emb_entry_le_one E n γ τ i j
+    · exact _root_.GlobalTheory.BCT.SuppFin.norm_emb_entry_le_one E n γ⁻¹ τ i j
+  have hX := _root_.GlobalTheory.BCT.SuppFin.finite_of_valuation_bounded_of_norm_le_one E X hall hcof hinf
   have hM : (Set.pi Set.univ fun _ : Fin n => Set.pi Set.univ fun _ : Fin n => X).Finite :=
     Set.Finite.pi fun _ => Set.Finite.pi fun _ => hX
   refine (hM.preimage (f := fun γ : UE E n => (γ.1.val : Fin n → Fin n → E)) ?_).subset ?_
@@ -230,7 +230,7 @@ theorem GlobalTheory.BCT.SuppFin.suppFin : ∀ (E : Type) [Field E] [NumberField
   set Γs : Set (UE E n) := {γ | globFn S f (x⁻¹ * finPt γ * x) ≠ 0} with hΓs
   have hUL : ∀ (w : Pl E) (z : UA E n), cLoc w z ∈ UL n w := fun w z => cLoc_mem_UL E hU n w z
   have hnz : ∀ γ ∈ Γs, ∀ w ∈ S, f w (toSub _ (cLoc w (x⁻¹ * finPt γ * x).1)) ≠ 0 :=
-    fun γ hγ w hw => factor_ne_zero E n S K' f hf (x⁻¹ * finPt γ * x) (cLoc_eventually_KGL E n _) hγ w hw
+    fun γ hγ w hw => _root_.GlobalTheory.BCT.SuppFin.factor_ne_zero_of_globFn_ne_zero E n S K' f hf (x⁻¹ * finPt γ * x) (_root_.GlobalTheory.BCT.SuppFin.cLoc_mem_KGL_cofinite E n _) hγ w hw
   have hpt : ∀ (w : Pl E) (γ : UE E n), GeneralLinearGroup.map (algebraMap E (w.adicCompletion E)) γ.1 =
       cLoc w x.1 * cLoc w (x⁻¹ * finPt γ * x).1 * (cLoc w x.1)⁻¹ := by
     intro w γ
@@ -252,7 +252,7 @@ theorem GlobalTheory.BCT.SuppFin.suppFin : ∀ (E : Type) [Field E] [NumberField
       (fun h => c * h * c⁻¹) '' ((UL n w).subtype '' tsupport (f w)) with hDdef
     have hD : IsCompact D :=
       (((hf.1 w).1.image continuous_subtype_val).image ((continuous_const.mul continuous_id).mul continuous_const))
-    obtain ⟨N, hN⟩ := compact_val_bounded E w n D hD
+    obtain ⟨N, hN⟩ := _root_.GlobalTheory.BCT.SuppFin.gl_entries_bounded_of_isCompact E w n D hD
     refine ⟨N, fun γ hγ i j => ?_⟩
     have hmem : GeneralLinearGroup.map (algebraMap E (w.adicCompletion E)) γ.1 ∈ D := by
       rw [hpt]
@@ -263,7 +263,7 @@ theorem GlobalTheory.BCT.SuppFin.suppFin : ∀ (E : Type) [Field E] [NumberField
     rw [(hent w γ i j).1, hv] at h1
     rw [(hent w γ i j).2, hv] at h2
     exact ⟨h1, h2⟩
-  · filter_upwards [hf.2, cLoc_eventually_KGL E n x.1] with w hfw hxw hw γ hγ i j
+  · filter_upwards [hf.2, _root_.GlobalTheory.BCT.SuppFin.cLoc_mem_KGL_cofinite E n x.1] with w hfw hxw hw γ hγ i j
     have h0 := hnz γ hγ w hw
     rw [hfw, toSub, dif_pos (hUL w _)] at h0
     have hy : cLoc w (x⁻¹ * finPt γ * x).1 ∈ GlobalTheory.LFun.KGL w (n := n) :=

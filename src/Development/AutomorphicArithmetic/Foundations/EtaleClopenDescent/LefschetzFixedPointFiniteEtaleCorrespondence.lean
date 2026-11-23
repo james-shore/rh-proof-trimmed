@@ -307,7 +307,7 @@ theorem UpperTheory.Cb.lefschetz_fixedPoint_finite_etale_correspondence :
   intro Z s d _ hproj Y s' c1 c2 h1 h2 _ _ f2 t2 F hF A hA a
   classical
   haveI : CompactSpace Z := UpperTheory.Cb.compactSpace_of_projective_and_of_finite.1 Z s hproj
-  obtain ⟨J, _, V, hVd, hVc, hVi⟩ := UpperTheory.Cb.exists_integral_clopen_decomposition_of_smooth Z s d
+  obtain ⟨J, _, V, hVd, hVc, hVi⟩ := _root_.GlobalTheory.SmoothComponents.main Z s d
   have hVd' : ∀ i j (z : Z), z ∈ V i → z ∈ V j → i = j := by
     intro i j z hi hj
     by_contra hne

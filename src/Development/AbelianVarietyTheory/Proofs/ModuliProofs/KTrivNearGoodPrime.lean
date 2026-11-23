@@ -54,19 +54,7 @@ open GlobalTheory.ZM.NearBuild
 
 namespace GlobalTheory.ZM.NearBuild
 
-private theorem isGrpPullback_pullback_fst {S S' : Scheme.{0}} (G : Over S) [GrpObj G] (f : S' ⟶ S) :
-    IsGrpPullback ((Over.pullback f).obj G) G f (pullback.fst G.hom f) := by
-  refine ⟨IsPullback.of_hasPullback G.hom f, ?_⟩
-  intro T x y x₀ y₀ hx hy
-  have h := GlobalTheory.UU.toBase_mul_pullback G f T x y
-  have ex : x₀ = Out.toBase (A := G) (A' := (Over.pullback f).obj G) (g := pullback.fst G.hom f) pullback.condition x := by
-    ext
-    simp [hx, Out.toBase]
-  have ey : y₀ = Out.toBase (A := G) (A' := (Over.pullback f).obj G) (g := pullback.fst G.hom f) pullback.condition y := by
-    ext
-    simp [hy, Out.toBase]
-  rw [ex, ey, ← h]
-  simp [Out.toBase]
+private alias isGrpPullback_pullback_fst := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.isGrpPullback_pullback
 
 theorem kTriv_near_good_prime : ∀ (o : Type) [CommRing o] (g N' : ℕ) (J : Type) (b : TBase o (N' ^ 2)) (Mat : J → Matrix (Fin (2 * g)) (Fin (2 * g)) ℤ) (κ : ℕ) (R : Type) [CommRing R] [IsNoetherianRing R] (β : o →+* R) (v : Ix g (N' ^ 2) → R) (A : Over (Sp R)) [GrpObj A] (L : LB A.left) (act : J → (A ⟶ A)) (Q : Fin (2 * g) → (Out.baseOver (Sp R) ⟶ A)) (q₀ : Ideal R), q₀ ∈ objPrimes b Mat κ β v → PolFam b Mat κ β v A L act Q → ∃ f : R, f ∉ q₀ ∧ Out.KTriv ((Over.pullback (spMap (loc f))).obj A) (L.pull (pullback.fst A.hom (spMap (loc f)))) := by
   intro o _ g N' J b Mat κ R _ _ β v A _ L act Q q₀ hq hP

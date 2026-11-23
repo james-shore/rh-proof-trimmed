@@ -63,19 +63,7 @@ theorem trace_Jm {n p q : ℕ} (h : p + q = n) (ε : Fin n → Bool) (hε : ∀ 
   rw [Matrix.trace_diagonal, Fin.sum_univ_add]
   simp [hε, sub_eq_add_neg]
 
-theorem isCartanInv_one {n : ℕ} {G B : Matrix (Fin n) (Fin n) ℂ} (h : Bᴴ * G * B = 1) : IsCartanInv G 1 := by
-  have hB : B * (Bᴴ * G) = 1 := mul_eq_one_comm.1 h
-  have hi : B⁻¹ = Bᴴ * G := Matrix.inv_eq_right_inv hB
-  have hu : IsUnit B := IsUnit.of_mul_eq_one _ hB
-  have hG : G = (B⁻¹)ᴴ * B⁻¹ := by
-    have h1 : (B⁻¹)ᴴ * Bᴴ = 1 := by
-      rw [← Matrix.conjTranspose_mul, hi, hB, Matrix.conjTranspose_one]
-    calc G = ((B⁻¹)ᴴ * Bᴴ) * G := by rw [h1, Matrix.one_mul]
-      _ = _ := by rw [Matrix.mul_assoc, ← hi]
-  refine ⟨by simp, by simp, ?_⟩
-  rw [Matrix.mul_one, hG]
-  refine Matrix.PosDef.conjTranspose_mul_self _ (Matrix.mulVec_injective_of_isUnit ?_)
-  exact (Matrix.isUnit_nonsing_inv_iff).2 hu
+alias isCartanInv_one := _root_.GlobalTheory.FockBasis.isCartanInv_one
 
 theorem conj_unitary {n : ℕ} {G B g : Matrix (Fin n) (Fin n) ℂ} (h : Bᴴ * G * B = 1) (hg : gᴴ * G * g = G) :
     B⁻¹ * g * B ∈ Matrix.unitaryGroup (Fin n) ℂ := by

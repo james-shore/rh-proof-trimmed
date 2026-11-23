@@ -120,26 +120,7 @@ theorem L_block : ∀ {K : Type} [Field K] {j r : ℕ} (hj : j ≤ r) (w : Forma
         (Matrix.of fun a b : Fin j => (((ρ ^ (r - b.val))⁻¹ * (ρ ^ (r - a.val))⁻¹ : ℝ) : ℂ) *
           σ (w.mat b a * ((sgn a : ℤ) : K))) := GlobalTheory.T.exists_blockAntidiagonal_scaled_pairing_matrix
 
-theorem herm_eI {k r : ℕ} (v : Fin (2 * r + k + 1) → ℂ) (a : Fin r) :
-    Formalism.QuantumDeterminants.herm (Formalism.QuantumDeterminants.Hpk k r) v (Formalism.QuantumDeterminants.bvec (Formalism.QuantumDeterminants.eI k r a)) = v (Formalism.QuantumDeterminants.esI k r a) := by
-  unfold Formalism.QuantumDeterminants.herm Formalism.QuantumDeterminants.bvec
-  have hs : star (Pi.single (Formalism.QuantumDeterminants.eI k r a) (1 : ℂ) : Fin (2 * r + k + 1) → ℂ) =
-      (Pi.single (Formalism.QuantumDeterminants.eI k r a) (1 : ℂ) : Fin (2 * r + k + 1) → ℂ) := by
-    ext j; by_cases h : j = Formalism.QuantumDeterminants.eI k r a <;> simp [Pi.single_apply, h]
-  rw [hs, single_one_dotProduct, Matrix.mulVec, dotProduct]
-  rw [Finset.sum_eq_single (Formalism.QuantumDeterminants.esI k r a)]
-  · simp [Formalism.QuantumDeterminants.Hpk, Formalism.QuantumDeterminants.eI, Formalism.QuantumDeterminants.esI]
-    omega
-  · intro b _ hb
-    have : Formalism.QuantumDeterminants.Hpk k r (Formalism.QuantumDeterminants.eI k r a) b = 0 := by
-      unfold Formalism.QuantumDeterminants.Hpk
-      have hb' : b.val ≠ 2 * r + k - a.val := fun h => hb (Fin.ext (by simp [Formalism.QuantumDeterminants.esI, h]))
-      have ha := a.isLt
-      have hbl := b.isLt
-      have hv : (Formalism.QuantumDeterminants.eI k r a).val = a.val := rfl
-      split_ifs with h1 h2 h3 <;> first | rfl | (exfalso; simp only [hv] at *; omega)
-    rw [this, zero_mul]
-  · simp
+alias herm_eI := _root_.GlobalTheory.DegVol.RealMat.herm_eI
 
 theorem uh_mul {n : ℕ} {H A B : Matrix (Fin n) (Fin n) ℂ} (hA : A ∈ Formalism.QuantumDeterminants.UH H) (hB : B ∈ Formalism.QuantumDeterminants.UH H) :
     A * B ∈ Formalism.QuantumDeterminants.UH H := by
@@ -194,9 +175,7 @@ theorem herm_uh {n : ℕ} {H g : Matrix (Fin n) (Fin n) ℂ} (hg : g ∈ Formali
   rw [Matrix.star_mulVec, ← Matrix.dotProduct_mulVec, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec,
     hg']
 
-theorem entry_eq {n : ℕ} (g : Matrix (Fin n) (Fin n) ℂ) (i j : Fin n) :
-    g i j = (g *ᵥ Formalism.QuantumDeterminants.bvec j) i := by
-  simp [Formalism.QuantumDeterminants.bvec, Matrix.mulVec_single]
+alias entry_eq := _root_.Formalism.L2.SG.Pf.WFL.mat_apply_bvec
 
 end GlobalTheory.TypeAsm.FramePf
 namespace GlobalTheory.TypeAsm
@@ -377,7 +356,7 @@ theorem frameC_holds : FrameC := by
   have hmat := L_mat D X C
   choose nOf hnOf using hmat
   have hρ : 0 < 2 * D.host.v := by
-    have := GramPf.rdE_pos' D
+    have := _root_.Formalism.MainNotions.S.rdE_pos D
     simp only [Formalism.BasicNotions.Host.v]; linarith
   refine ⟨β, fun τ => nOf τ mA.symm.toLinearMap,
     fun τ => nOf τ mA.toLinearMap * nOf τ t.lin.symm.toLinearMap * nOf τ m2.symm.toLinearMap,

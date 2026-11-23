@@ -102,8 +102,8 @@ theorem schur (tr nm : ℤ) (M : ℕ) (hM : 0 < M) :
 theorem exists_datum (G : GDatum) (N : ℕ) (hN : 0 < N) :
     ∃ (p : ℕ) (_ : Fact p.Prime) (D : Datum p), N.Coprime p ∧ D.toG = G := by
   haveI := G.freeLa; haveI := G.finLa
-  obtain ⟨e, he, hperf⟩ := GlobalTheory.T.bilinForm_injective_exists_nsmul_mem_range G.La G.EF G.nondeg
-  obtain ⟨M, hM, hsplit⟩ := GlobalTheory.T.harrisTaylorOrder_split_almost_all_primes G
+  obtain ⟨e, he, hperf⟩ := _root_.GlobalTheory.bilinForm_injective_exists_mul_mem_range G.La G.EF G.nondeg
+  obtain ⟨M, hM, hsplit⟩ := _root_.GlobalTheory.UPel.HT.Gen.SplitAE.splitAE G
   have hd : 0 < (G.tr ^ 2 - 4 * G.nm).natAbs := Int.natAbs_pos.2 (ne_of_lt G.disc_neg)
   obtain ⟨p, hp, hpM, r, hr⟩ := schur G.tr G.nm (N * e * M * (G.tr ^ 2 - 4 * G.nm).natAbs) (by positivity)
   haveI : Fact p.Prime := ⟨hp⟩

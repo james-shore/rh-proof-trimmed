@@ -519,9 +519,6 @@ theorem continuous_rootElt (i j : Fin n) : Continuous (rootElt i j : F → GL (F
 
 end Topology
 
-theorem eq_one_of_forall_norm_zpow_sub_one_lt {z : ℂ} (h : ∀ m : ℤ, ‖z ^ m - 1‖ < 1) : z = 1 :=
-  _root_.GroundTheory.Variant₂.N1.eq_one_of_forall_norm_zpow_sub_one_lt h
-
 section LocalField
 
 open ValuativeRel Topology
@@ -540,7 +537,7 @@ theorem exists_ball_addChar_eq_one {ψ₀ : AddChar F ℂ} (hψ : Continuous ψ�
     exact Metric.ball_mem_nhds 1 one_pos
   obtain ⟨γ, -, hγ⟩ := (IsValuativeTopology.hasBasis_nhds_zero F).mem_iff.1
     (hψ.continuousAt.preimage_mem_nhds hball)
-  refine ⟨γ, fun x hx => eq_one_of_forall_norm_zpow_sub_one_lt fun m => ?_⟩
+  refine ⟨γ, fun x hx => _root_.GroundTheory.Variant₂.N1.eq_one_of_forall_norm_zpow_sub_one_lt fun m => ?_⟩
   have hmx : m • x ∈ (valuation F).ltAddSubgroup γ :=
     AddSubgroup.zsmul_mem _ (Valuation.mem_ltAddSubgroup_iff.2 hx) m
   have := hγ (Valuation.mem_ltAddSubgroup_iff.1 hmx)

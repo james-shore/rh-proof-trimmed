@@ -203,10 +203,10 @@ theorem basePt_facts : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Num
       bc (prV (E := E) v) k ∈ stabGL (baseDualV hc n ST v) ∧
       bc (prV (E := E) v) k ∈ stabGL (latS (F := F) (v.adicCompletion F) (intV E v) (baseKer E n ST)) := by
     intro v
-    refine GlobalTheory.T.unitary_lastRowDivisible_stabilizes_lattices hc n hB v _ (bc_prV_mem_UPts hc v hU)
-      ⟨fun i j => Formalism.UG.P.afsplit_prV_int v _ (hK i j), fun j hj => GlobalTheory.T.placeProjection_eq_basePi_mul_integral hB v _ (hK _ j) (fun P hP => hsm P hP j hj)⟩ ?_
+    refine _root_.GlobalTheory.unitary_offRow_stab_three hc n hB v _ (bc_prV_mem_UPts hc v hU)
+      ⟨fun i j => Formalism.UG.P.afsplit_prV_int v _ (hK i j), fun j hj => _root_.GlobalTheory.Mem.Col2.prV_eq_pi_mul hB v _ (hK _ j) (fun P hP => hsm P hP j hj)⟩ ?_
     rw [← map_inv]
-    refine ⟨fun i j => Formalism.UG.P.afsplit_prV_int v _ (hInv i j), fun j hj => GlobalTheory.T.placeProjection_eq_basePi_mul_integral hB v _ (hInv _ j) (fun P hP => ?_)⟩
+    refine ⟨fun i j => Formalism.UG.P.afsplit_prV_int v _ (hInv i j), fun j hj => _root_.GlobalTheory.Mem.Col2.prV_eq_pi_mul hB v _ (hInv _ j) (fun P hP => ?_)⟩
     have := hrow ⟨P, hP⟩ (lastIdx n) j hl
     rw [if_neg hj] at this
     exact DilPt.hasRes_lt_one this

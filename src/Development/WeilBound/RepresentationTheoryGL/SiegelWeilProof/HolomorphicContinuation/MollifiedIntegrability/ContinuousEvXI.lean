@@ -116,13 +116,10 @@ theorem evX_bound (P : PX m n) : ∃ (C : ℝ) (d : ℕ), ∀ x : Fin m → Fin 
       _ ≤ (|C| * (1 + ‖x‖) ^ d) * (1 + ‖x‖) := mul_le_mul hC hv (norm_nonneg _) (by positivity)
       _ = |C| * (1 + ‖x‖) ^ (d + 1) := by ring
 
-theorem sq_norm_le_sum (x : Fin m → Fin n → ℂ) : ‖x‖ ^ 2 ≤ ∑ a, ∑ i, ‖x a i‖ ^ 2 :=
-  _root_.UpperTheory.Reformulated.B.DYka1.main x
-
 theorem norm_gs_le (c : ℝ) (hc : 0 < c) (x : Fin m → Fin n → ℂ) : ‖gs c x‖ ≤ Real.exp (-(c * ‖x‖ ^ 2)) := by
   unfold gs
   rw [← Complex.ofReal_neg, Complex.norm_exp_ofReal]
-  exact Real.exp_le_exp.2 (by nlinarith [sq_norm_le_sum x])
+  exact Real.exp_le_exp.2 (by nlinarith [_root_.UpperTheory.Reformulated.B.DYka1.main x])
 
 theorem decay (c : ℝ) (hc : 0 < c) (k : ℕ) : ∃ K : ℝ, ∀ s : ℝ, 0 ≤ s → (1 + s) ^ (2 * k) * Real.exp (-(c * s ^ 2)) ≤ K := by
   refine ⟨4 ^ k * (1 + (k.factorial : ℝ) / c ^ k), fun s hs => ?_⟩

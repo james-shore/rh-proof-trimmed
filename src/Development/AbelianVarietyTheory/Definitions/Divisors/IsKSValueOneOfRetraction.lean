@@ -564,10 +564,6 @@ theorem isLieImage_one_iff {h : HdR A} : IsLieImage h 1 ↔ h ∈ Fil A := by
   exact ⟨fun H f hf ↦ (H.2 f hf).trans (tanVal_one f),
     fun H ↦ ⟨ht, fun f hf ↦ (H f hf).trans (tanVal_one f).symm⟩⟩
 
-private theorem mul_left_eq_lift_comp_mu' {X : Scheme.{0}} {G : Over X} [GrpObj G] {T : Over X} (x y : T ⟶ G) :
-    (x * y).left = pullback.lift x.left y.left ((Over.w x).trans (Over.w y).symm) ≫ μ[G].left := by
-  rw [Hom.mul_def, Over.comp_left, Over.lift_left]
-
 theorem IsLieImage.add {h h' : HdR A} {v v' : epsR R ⟶ A} (e : IsLieImage h v)
     (e' : IsLieImage h' v') : IsLieImage (h + h') (v * v') := by
   have t1 : spMap (TrivSqZeroExt.fstHom R R R).toRingHom ≫ v.left = η[A].left := e.1
@@ -575,7 +571,7 @@ theorem IsLieImage.add {h h' : HdR A} {v v' : epsR R ⟶ A} (e : IsLieImage h v)
   have ht : IsTangent (v * v') := by
     show spMap _ ≫ (v * v').left = η[A].left
     have e1 : (η[A] * η[A]).left = η[A].left := by rw [MonObj.one_eq_one, _root_.mul_one]
-    rw [mul_left_eq_lift_comp_mu', ← Category.assoc, ← e1, mul_left_eq_lift_comp_mu']
+    rw [_root_.GlobalTheory.DeRham.GrpMor.mul_left_eq_lift_comp_mu, ← Category.assoc, ← e1, _root_.GlobalTheory.DeRham.GrpMor.mul_left_eq_lift_comp_mu]
     congr 1
     apply pullback.hom_ext
     · rw [Category.assoc, pullback.lift_fst, pullback.lift_fst, t1]
@@ -904,9 +900,5 @@ def IsAdjointFor {O : Type} [CommRing O] (a : OAct O A) (c : O → O)
   ∀ (z : O) x y, ψ (act κ t a z x) y = ψ x (act κ t a (c z) y)
 
 end Pairing
-
-section Zero
-
-end Zero
 
 end GlobalTheory.DeRham

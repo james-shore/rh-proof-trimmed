@@ -48,6 +48,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import Mathlib.Analysis.Calculus.ParametricIntegral
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactHaarRightInvariantInst
 
 @[expose] public section
 
@@ -125,7 +126,7 @@ theorem skew_reduction_analytic : StepAnalytic := by
     (fun p : Matrix (Fin n) (Fin n) ℂ × ℝ => p.1 * NormedSpace.exp ((p.2 : ℂ) • X)) ''
       (K₁ ×ˢ Icc (-1 : ℝ) 1) with hLdef
   have hL : IsCompact L :=
-    (hK₁c.prod isCompact_Icc).image (continuous_fst.matrix_mul ((exp_flow_cont X).comp continuous_snd))
+    (hK₁c.prod isCompact_Icc).image (continuous_fst.matrix_mul ((_root_.Formalism.REAL.continuous_exp_real_smul X).comp continuous_snd))
   have hS : IsCompact (Matrix.of ⁻¹' L : Set (Fin n → Fin n → ℂ)) := hL
   have hbound_int : Integrable ((Matrix.of ⁻¹' L).indicator fun _ => max C 0) μ :=
     (integrable_indicator_iff hS.measurableSet).2 (integrableOn_const (hfin _ hS).ne)

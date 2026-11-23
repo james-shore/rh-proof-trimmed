@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.InertKernelTheory.StatementInt
+import Formalism.LocalToGlobal.GlobalTheory.GL3.IsometryLinkageTrivialLevel
 
 @[expose] public section
 
@@ -89,15 +90,7 @@ theorem xiL_map (hH : ∀ x y, H (T x) (T y) = H x y) (hα : ∀ x, α (T x) = �
   refine Finset.sum_congr rfl fun y _ => ?_
   rw [hatS_map H T hH, hα, hα, hH, hH, ← map_add (f := _), opU_map H T hH]
 
-theorem isReps_image {Λ₁ Λ₂ M₁ M₂ : AddSubgroup V} {S : Finset V} (hS : IsReps Λ₁ Λ₂ S) (h1 : ∀ x, T x ∈ M₁ ↔ x ∈ Λ₁)
-    (h2 : ∀ x, T x ∈ M₂ ↔ x ∈ Λ₂) : IsReps M₁ M₂ (S.image T) := by
-  first
-  | exact @_root_.GlobalTheory.TransportLemma.main
-  | exact _root_.GlobalTheory.TransportLemma.main
-  | (apply _root_.GlobalTheory.TransportLemma.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TransportLemma.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TransportLemma.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TransportLemma.main ..)
+alias isReps_image := _root_.GlobalTheory.TransportLemma.transport
 
 
 omit [DecidableEq V] in
@@ -284,11 +277,9 @@ theorem TT_mem_iff (e : Matrix (Fin a) (Fin a) D.host.E) (e' : Matrix (Fin b) (F
     rwa [h2] at h1
   · exact laV_RR e e' M₁ M hM v
 
-theorem tau_nonempty (D : D7) : Nonempty D.what₂.Tau := ⟨D.eTau.symm (Classical.arbitrary _)⟩
-
 theorem onV_embH (hδ0 : δ ≠ 0) (Ξ : Formalism.L2.Col.HomE D.host.E a b → ℂ) (x : Formalism.L2.Col.HomE D.host.E a b) :
     onV (ι := D.what₂.Tau) (fun τ => TaylorLogMetric.embT D τ) δ Ξ (embH (ι := D.what₂.Tau) (fun τ => TaylorLogMetric.embT D τ) δ x) = Ξ x := by
-  have := tau_nonempty D
+  have := _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.G0.tau_nonempty D
   have h : ∃ y, embH (ι := D.what₂.Tau) (fun τ => TaylorLogMetric.embT D τ) δ y = embH (ι := D.what₂.Tau) (fun τ => TaylorLogMetric.embT D τ) δ x := ⟨x, rfl⟩
   unfold onV
   rw [dite_eq_left h]
@@ -355,7 +346,7 @@ theorem admissible_pair_twist (hA : TaylorLogMetric.admitted D a b N N') (hcl : 
 theorem split_of_adm (B : Base D cc δ) (hcc : TaylorLogMetric.IsCurveIdeal D cc) (hδ : TaylorLogMetric.IsDiscriminantTwelfthRootOfIdealLattice D cc δ) (hδ0 : δ ≠ 0)
     (hA : TaylorLogMetric.admitted D a b N N') (hcl : 0 < cl) (hSS : ∀ P ∈ SS, Formalism.L2.Col.conjPrime₂ P ∉ SS) :
     SplitHyp (hK D cc δ a b) (alK D cc δ a b) (halfA cc δ SS cl N N') (halfB cc δ SS cl N N') (lamK cc δ N N') := by
-  have := tau_nonempty D
+  have := _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.G0.tau_nonempty D
   have he1 : ∀ Q, expS SS Q = 1 ∨ expS SS Q = 0 ∨ expS SS Q = -1 := expS_cases SS
   have he2 : ∀ Q, (fun Q => -expS SS Q) Q = 1 ∨ (fun Q => -expS SS Q) Q = 0 ∨ (fun Q => -expS SS Q) Q = -1 := by
     intro Q
@@ -397,7 +388,7 @@ theorem kernel_theta_move_local (B : Base D cc δ) (χ : TaylorLogMetric.IdE D �
     kerTh B χ SS cl (SDLat.smulLat e N) (SDLat.smulLat e' N') (fun x => Ξ (Matrix.toLin' (star e') ∘ₗ x ∘ₗ Matrix.toLin' e)) =
       TaylorLogMetric.pull D B.tor e e' (kerTh B χ SS cl N N' Ξ) := by
   classical
-  have := tau_nonempty D
+  have := _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.G0.tau_nonempty D
   have p1 : ∀ x ∈ perO (aaOf D cc) (SDLat.smulLat e N) (SDLat.smulLat e' N'), RR e e' x ∈ perO (aaOf D cc) N N' :=
     perO_map _ _ _ _ _ (RR e e') (homO_RR e e' he' N N')
   have p2 : ∀ x ∈ perO (aaOf D cc) N N', RR (star e) (star e') x ∈ perO (aaOf D cc) (SDLat.smulLat e N) (SDLat.smulLat e' N') :=

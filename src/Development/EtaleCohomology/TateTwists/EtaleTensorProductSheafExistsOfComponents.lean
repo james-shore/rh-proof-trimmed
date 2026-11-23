@@ -44,9 +44,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 namespace LateralTheory.Fin.EtaleComplexTensorPairingExists
-theorem etale_tensor_product_sheaf_exists_of_components : LateralTheory.EtaleFoundations.EtaleSheafTensorComplexExists := by
-  apply LateralTheory.EtaleFoundations.etale_sheaf_tensor_complex_exists
 theorem etale_tensor_product_exists_of_components : LateralTheory.EtaleFoundations.EtaleComplexTensorPairingExists := by
-  apply LateralTheory.EtaleFoundations.etale_tensor_complex_exists_of_sheaf_tensor_complex <;> first | exact etale_tensor_product_sheaf_exists_of_components
-theorem intersectionNumber_baseChange : LateralTheory.EtaleFoundations.EtaleComplexTensorPairingExists := etale_tensor_product_exists_of_components
+  apply LateralTheory.EtaleFoundations.etale_tensor_complex_exists_of_sheaf_tensor_complex <;> first | exact _root_.LateralTheory.EtaleFoundations.etale_sheaf_tensor_complex_exists
+alias intersectionNumber_baseChange := _root_.LateralTheory.Fin.EtaleComplexTensorPairingExists.etale_tensor_product_exists_of_components
 end LateralTheory.Fin.EtaleComplexTensorPairingExists

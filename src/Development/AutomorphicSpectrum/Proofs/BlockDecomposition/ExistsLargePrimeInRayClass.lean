@@ -46,6 +46,7 @@ public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.SiegelKlingenDeligneRibet
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.AbelContinuation
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.PartialSum
+import Development.AutomorphicSpectrum.Proofs.GlobalProofs.RayClassGroupFiniteRepresentatives
 
 @[expose] public section
 
@@ -55,11 +56,6 @@ open scoped nonZeroDivisors
 namespace GlobalTheory.CompanionTheory.DegOneRay
 
 variable {F : Type} [Field F] [NumberField F]
-
-theorem finite_realEmb : Finite (F →+* ℝ) :=
-  Finite.of_injective (fun σ : F →+* ℝ => (Complex.ofRealHom.comp σ : F →+* ℂ)) fun σ τ h => by
-    ext x
-    exact Complex.ofReal_injective (congrArg (fun f : F →+* ℂ => f x) h)
 
 theorem exists_totPos_inv {𝔣 : Ideal (𝓞 F)} (hf : 𝔣 ≠ ⊥) {u : 𝓞 F} (hu : IsCoprime (Ideal.span {u}) 𝔣) :
     ∃ d : 𝓞 F, d ≠ 0 ∧ d * u - 1 ∈ 𝔣 ∧ ∀ σ : F →+* ℝ, 0 < σ (d : F) := by
@@ -71,7 +67,7 @@ theorem exists_totPos_inv {𝔣 : Ideal (𝓞 F)} (hf : 𝔣 ≠ ⊥) {u : 𝓞 
   set N : ℕ := Ideal.absNorm 𝔣 with hN
   have hN0 : 0 < N := Nat.pos_of_ne_zero (by simpa [hN, Ideal.absNorm_eq_zero_iff] using hf)
   have hNm : ((N : ℕ) : 𝓞 F) ∈ 𝔣 := Ideal.absNorm_mem 𝔣
-  have : Finite (F →+* ℝ) := finite_realEmb
+  have : Finite (F →+* ℝ) := _root_.GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.finite_realEmbeddings
   obtain ⟨b, hb⟩ := (Set.finite_range fun σ : F →+* ℝ => -σ (c : F)).bddAbove
   obtain ⟨M, hM⟩ := exists_nat_gt b
   have key : ∀ m : ℕ, M ≤ m → ((c + (m : 𝓞 F) * (N : 𝓞 F)) * u - 1 ∈ 𝔣 ∧

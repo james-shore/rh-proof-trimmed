@@ -135,8 +135,8 @@ theorem eq_of_isAlgClosed {K : Type} [Field K] [IsAlgClosed K] [CharZero K] (P :
   have e₁ : (fun a => y₁ (q a)) = GlobalTheory.levelPoint lev rfl := funext hq
   have e₂ : (fun a => y₂ (q a)) = GlobalTheory.levelPoint lev' rfl := funext fun a =>
     (comb _ _ (hq a)).trans (by rw [← hl']; rfl)
-  have w₁ := ThetaDescentLevel.isThetaPt_reindex v₁ q
-  have w₂ := ThetaDescentLevel.isThetaPt_reindex v₂ q
+  have w₁ := _root_.GlobalTheory.Ex.AllLevels.isThetaPt_comp v₁ q
+  have w₂ := _root_.GlobalTheory.Ex.AllLevels.isThetaPt_comp v₂ q
   rw [e₁] at w₁
   rw [e₂] at w₂
   obtain ⟨φ, ⟨hφ, t, ht⟩, hl⟩ := GlobalTheory.thetaPtDetermines_and_endDeterminedOnTorsion.1 P.g n 2 j _ m hn ho le_rfl rfl hm hb K

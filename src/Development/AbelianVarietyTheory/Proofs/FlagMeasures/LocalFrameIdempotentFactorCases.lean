@@ -61,7 +61,7 @@ theorem not_forall_loc_eq_natCast_smul (v : HeightOneSpectrum (𝓞 F))
     ¬ ∀ y ∈ loc v L, ∃ z ∈ loc v L, y = (g : E ⊗[F] v.adicCompletion F) • z := by
   classical
   intro h
-  have hs := split_integral_local F E v sp hdiag
+  have hs := _root_.PI.SplitIntLoc.Proof.main F E v sp hdiag
   have hint : ∀ r ∈ intV E v, (sp r).1 ∈ v.adicCompletionIntegers F := fun r hr => ((hs r).1 hr).1
   have hOE : ∀ c : 𝓞 E, inclE (F := F) (v.adicCompletion F) (c : E) ∈ intV E v := by
     intro c

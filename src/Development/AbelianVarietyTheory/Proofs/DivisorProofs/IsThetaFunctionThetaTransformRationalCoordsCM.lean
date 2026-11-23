@@ -62,13 +62,6 @@ namespace GlobalTheory.ThetaTransformF
 open Formalism.IndefR.DatumF GlobalTheory.ThetaTransform GlobalTheory.SWQ
 open scoped ContDiff
 
-theorem charR_hasDerivAt : ∀ (χ : ℝ → ℂ), Continuous χ → (∀ s t, χ (s + t) = χ s * χ t) → χ 0 = 1 →
-    ∀ s, HasDerivAt χ (deriv χ 0 * χ s) s := GlobalTheory.T.hasDerivAt_of_continuous_real_to_complex_exponential
-
-theorem biChar_contDiff : ∀ (k : ℕ) (Q : (Fin k → ℝ) → ℝ → ℂ), Continuous (Function.uncurry Q) →
-    (∀ t s s', Q t (s + s') = Q t s * Q t s') → (∀ t t' s, Q (t + t') s = Q t s * Q t' s) → (∀ t, Q t 0 = 1) →
-    ContDiff ℝ ∞ (fun t => deriv (Q t) 0) := GlobalTheory.T.contDiff_deriv_zero_of_continuous_bicharacter
-
 section Phase
 
 variable {F : Type} [Field F] [NumberField F] {N : ℕ} [Invertible (2 : AF F)] {ψ : AddChar (AF F) ℂ}
@@ -131,7 +124,7 @@ theorem continuous_phase_right (hψ : Continuous ψ) {M : ℝ →+ VA F N} (hM :
 
 theorem phase_hasDerivAt (hψ : Continuous ψ) {M : ℝ →+ VA F N} (hM : Continuous M) (w : VA F N) (s : ℝ) :
     HasDerivAt (phase ψ M w) (deriv (phase ψ M w) 0 * phase ψ M w s) s :=
-  charR_hasDerivAt _ (continuous_phase_right hψ hM w) (phase_add M w) (phase_zero M w) s
+  _root_.GlobalTheory.DerivativeOfAdditiveContinuous.hasDerivAt_of_continuous_of_map_add _ (continuous_phase_right hψ hM w) (phase_add M w) (phase_zero M w) s
 
 theorem contDiff_phase_deriv (hψ : Continuous ψ) {M : ℝ →+ VA F N} (hM : Continuous M) {k : ℕ}
     {L : (Fin k → ℝ) →+ VA F N} (hL : Continuous L) (u : VA F N) :
@@ -149,7 +142,7 @@ theorem contDiff_phase_deriv (hψ : Continuous ψ) {M : ℝ →+ VA F N} (hM : C
     have h : Continuous fun p : (Fin k → ℝ) × ℝ => ((L p.1, p.2) : VA F N × ℝ) := by fun_prop
     exact Continuous.comp (g := fun p : VA F N × ℝ => phase ψ M p.1 p.2)
       (f := fun p : (Fin k → ℝ) × ℝ => ((L p.1, p.2) : VA F N × ℝ)) (continuous_phase hψ hM) h
-  exact contDiff_const.add (biChar_contDiff k (fun t s => phase ψ M (L t) s) hQ
+  exact contDiff_const.add (_root_.GlobalTheory.bichar_deriv_contDiff k (fun t s => phase ψ M (L t) s) hQ
     (fun t s s' => phase_add M (L t) s s') (fun t t' s => by simp only [map_add (f := _)]; exact phase_add_left M _ _ s)
     (fun t => phase_zero M (L t)))
 

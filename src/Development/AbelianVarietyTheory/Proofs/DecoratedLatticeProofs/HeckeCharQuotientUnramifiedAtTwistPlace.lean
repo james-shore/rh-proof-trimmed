@@ -72,7 +72,7 @@ theorem loc_eq_of_isRes {D : D7} {H H' : Formalism.L2.Host.HChar D.host.E} {PP :
     intro hm
     have h1 : PP.valuation D.host.E (algebraMap (𝓞 D.host.E) D.host.E b) < 1 := (PP.valuation_lt_one_iff_mem b).2 hm
     have h2 : PP.valuation D.host.E (algebraMap (𝓞 D.host.E) D.host.E b) = 1 := by
-      rw [← GlobalTheory.GaussModulus.valued_algebraMap]; exact hbv
+      rw [← _root_.Formalism.UG.P.levelaf_valued_algebraMap]; exact hbv
     exact (ne_of_lt h1) h2
   have hb0 : (b : D.host.E) ≠ 0 := fun h0 => hbP (by rw [RingOfIntegers.coe_eq_zero_iff.1 h0]; exact zero_mem _)
   let kb : D.host.Eˣ := Units.mk0 _ hb0

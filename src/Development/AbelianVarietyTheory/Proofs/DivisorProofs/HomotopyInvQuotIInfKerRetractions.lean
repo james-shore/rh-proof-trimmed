@@ -89,7 +89,7 @@ theorem homotopyInv_quot_iInf_ker_retractions : ∀ (q : ℕ) [NeZero q] (D T E 
       set J : Ideal E := P ⊓ I with hJ
       have hJP : J ≤ P := inf_le_left
       have hJI : J ≤ I := inf_le_right
-      apply GlobalTheory.T.etaleHomotopyInvariantTwists_of_closedCover q (E ⧸ J) (P.map (Ideal.Quotient.mk J)) (I.map (Ideal.Quotient.mk J))
+      apply _root_.GlobalTheory.EtC.ClosedCover.closedCover q (E ⧸ J) (P.map (Ideal.Quotient.mk J)) (I.map (Ideal.Quotient.mk J))
       · intro x hx
         obtain ⟨e, rfl⟩ := Ideal.Quotient.mk_surjective x
         have h1 := (Ideal.mem_quotient_iff_mem hJP).mp hx.1

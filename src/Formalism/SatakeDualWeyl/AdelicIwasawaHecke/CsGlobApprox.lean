@@ -128,13 +128,6 @@ private theorem intValuation_lt_of_mem_pow_of_not_mem_pow {F : Type} [Field F] [
   lt_of_le_of_lt ((w.intValuation_le_pow_iff_mem z n).2 hz)
     (not_le.1 fun h => hDn ((w.intValuation_le_pow_iff_mem D n).1 h))
 
-private theorem valued_v_algebraMap_adicCompletion {F : Type} [Field F] [NumberField F] (w : HeightOneSpectrum (𝓞 F)) (k : F) :
-    Valued.v (algebraMap F (w.adicCompletion F) k) = w.valuation F k := by
-  first
-  | exact w.valuedAdicCompletion_eq_valuation' k
-  | rfl
-  | simp [HeightOneSpectrum.valuedAdicCompletion_eq_valuation']
-
 theorem csGlob_intAdApprox : Formalism.UG.CS.IntAdApprox := by
   apply Formalism.UG.P.integral_adele_approximation_holds <;> assumption
 

@@ -114,7 +114,7 @@ theorem trel_zero : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Ad
         val (D.toPre.psi 0) (jFK (R := R) (FractionRing R)) y I :=
       congrArg (fun w => val (D.toPre.psi w) (jFK (R := R) (FractionRing R)) y I) (map_zero h)
     rw [hv' _ _ y I hI, val_one, hh, t0, _root_.mul_one, ← zpow_add, ← mul_zpow, p0, one_zpow]
-  have key := (GlobalTheory.T.twistedFactor_exists_unique_const_mul_integralGenerator R hR D a h hE.1 hE.2.2.2.1 N (-1) 0 0 0 u₀ hu₀).2.1 u u' hu hf Z x z J hJ
+  have key := (_root_.GlobalTheory.TwFac.fac_exists_unique_const R hR D a h hE.1 hE.2.2.2.1 N (-1) 0 0 0 u₀ hu₀).2.1 u u' hu hf Z x z J hJ
   rw [key, hv' _ _ z J hJ, val_one, htr, Category.id_comp, Units.val_one, _root_.mul_one]
   exact hv Z _ z J hJ
 

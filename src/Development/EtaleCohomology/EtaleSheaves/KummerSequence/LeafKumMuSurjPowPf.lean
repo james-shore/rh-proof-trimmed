@@ -143,6 +143,4 @@ theorem pow_pf : LeafKumMuSurjPow := by
   apply key
   exact hunit
 
-theorem LeafKumMuSurjPow_of : LeafKumMuSurjPow := pow_pf
-
 end LateralTheory.E.H2CurveOrder.LeafKumMuSurjPowPf

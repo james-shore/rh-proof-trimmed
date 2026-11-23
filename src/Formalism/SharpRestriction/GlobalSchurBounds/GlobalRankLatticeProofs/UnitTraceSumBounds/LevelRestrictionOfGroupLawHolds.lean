@@ -64,7 +64,7 @@ theorem fglData {p : ℕ} [Fact p.Prime] (g : G1 p) (h : g.Ok) : PI.FglGram.Data
 
 theorem cube_of_two_identities_holds : CubeOfTwoIdentities := by
   intro p _ g h
-  exact cube_relation_of_parallelogram p g.l g.ex g.ph (fglData g h)
+  exact _root_.PI.UnitaryGroupMassFormula.CubeRelationOfParallelogram.cubeRelationOfParallelogram p g.l g.ex g.ph (fglData g h)
 
 theorem phGramG_holds : PhGramG := by
   first
@@ -74,8 +74,8 @@ theorem phGramG_holds : PhGramG := by
 
 theorem gramUnitEq_holds : GramUnitEq := by
   first
-  | exact gramExpansion_orthonormal
-  | (intro p _ g; intros; apply gramExpansion_orthonormal <;> first | exact fglData g ‹_› | assumption)
+  | exact _root_.PI.UnitaryGroupMassFormula.GramUnit.gramUnit
+  | (intro p _ g; intros; apply _root_.PI.UnitaryGroupMassFormula.GramUnit.gramUnit <;> first | exact fglData g ‹_› | assumption)
   | (unfold GramUnitEq; done)
 
 theorem jetsHigh_holds : JetsHigh :=

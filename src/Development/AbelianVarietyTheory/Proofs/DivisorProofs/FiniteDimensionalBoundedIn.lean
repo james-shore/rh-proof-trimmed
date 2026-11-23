@@ -114,7 +114,7 @@ theorem GlobalTheory.PicDiv.linear_system_setup : ∀ (k A : Type) [Field k] [Is
   simp only [Nat.add_sub_cancel]
   set n := Module.finrank k[X] A
   let b : Module.Basis (Fin n) k[X] A := Module.finBasis k[X] A
-  obtain ⟨c, lam, hdeg1, hdeg2⟩ := GlobalTheory.NormDegree.natDegree_norm_of_coord_degree k A n b
+  obtain ⟨c, lam, hdeg1, hdeg2⟩ := _root_.GlobalTheory.NormFormBound.norm_degree k A n b
   obtain ⟨p, hp2, hpP, hpP2⟩ := GlobalTheory.PicDiv.exists_deg_lt_two_correction_simple k A n b P₀ (∑ i, (C (lam i) * X ^ 2) • b i) hP
   set f₁ : A := ∑ i, (C (lam i) * X ^ 2 + p i) • b i with hf₁def
   have hf₁eq : (∑ i, (C (lam i) * X ^ 2) • b i) + ∑ i, p i • b i = f₁ := by

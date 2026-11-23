@@ -53,11 +53,6 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.WSq.Sec.SncProd
 
-theorem compat_restr {e : ℕ} {X : Type} [TopologicalSpace X] (A : FinHolAtlas e X)
-    (ψ : OpenPartialHomeomorph X (Fin e → ℂ)) (h : IsCompatChart A ψ) (V : Set X) (hV : IsOpen V) :
-    IsCompatChart A (ψ.restrOpen V hV) := by
-  apply ReciprocityTheory.AnForm.M.pa_compat_restr <;> assumption
-
 theorem holoOn_comp {e n : ℕ} {X Z : Type} [TopologicalSpace X] [TopologicalSpace Z] (A : FinHolAtlas e X)
     (B : FinHolAtlas n Z) (pr : X → Z) (hp : HoloMap A B pr) (S : Set Z) (g : Z → ℂ) (hg : B.HoloOn S g) :
     A.HoloOn (pr ⁻¹' S) (fun y => g (pr y)) := by
@@ -125,7 +120,7 @@ theorem main : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι 
     have := hy.1
     rw [hsrc] at this
     exact this.2
-  refine ⟨ψ'.restrOpen (V x) hVo, compat_restr _ _ hψ'c _ hVo, ?_, ?_,
+  refine ⟨ψ'.restrOpen (V x) hVo, _root_.ReciprocityTheory.AnForm.M.pa_compat_restr _ _ hψ'c _ hVo, ?_, ?_,
     Fin.snoc (α := fun _ => Option (Fin e)) (fun k => (σb k).map (σ x)) (some (i₀ x)),
     snoc_inj σb (σ x) (i₀ x) hne hσi, ?_, fun y => ub (pr y) * u x y, ?_, ?_, ?_⟩
   · rw [hsrc'', hsrc]

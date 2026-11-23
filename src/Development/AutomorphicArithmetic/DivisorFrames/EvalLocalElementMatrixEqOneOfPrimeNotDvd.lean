@@ -40,6 +40,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSystemOf
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary
+import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SplitOffBadOfSuppSplitOff
 
 @[expose] public section
 
@@ -122,14 +123,6 @@ private theorem placeIdem {D : D7} {v : HeightOneSpectrum (𝓞 D.host.F)} {ε :
     · rw [h0 w hw, mul_zero]
   exact Prod.ext (mul_zero _) this
 
-private theorem finPart_sub_one {D : D7} (V : HSp D) (h : GA D V) (i j : Fin V.rank) :
-    finPart D ((Formalism.L2.Theta.mt V h - 1) i j) = ((finHom V h).1 - 1) i j := by
-  rw [Matrix.sub_apply, Matrix.sub_apply, RingHom.map_sub]
-  congr 1
-  by_cases e : i = j
-  · subst e; rw [Matrix.one_apply_eq, Matrix.one_apply_eq, RingHom.map_one]
-  · rw [Matrix.one_apply_ne e, Matrix.one_apply_ne e, RingHom.map_zero]
-
 theorem UpperTheory.eval_localElement_matrix_eq_one_of_prime_not_dvd :
     ∀ (D : D7) (V : HSp D) (l : ℕ) [Fact l.Prime]
         (ev : (FiniteAdeleRing (𝓞 D.host.F) D.host.F) ⊗[D.host.F] D.host.E →+* PadicAlgCl l),
@@ -151,7 +144,7 @@ theorem UpperTheory.eval_localElement_matrix_eq_one_of_prime_not_dvd :
   ext i j
   have h1 := congrArg (fun z => ev (finPart D z)) (hs i j)
   simp only [RingHom.map_mul, hf, zero_mul] at h1
-  rw [finPart_sub_one, ← hx, Matrix.sub_apply, RingHom.map_sub, eq_comm, sub_eq_zero] at h1
+  rw [_root_.GlobalTheory.RepsCompare.finPart_sub_one, ← hx, Matrix.sub_apply, RingHom.map_sub, eq_comm, sub_eq_zero] at h1
   rw [Matrix.map_apply, h1]
   by_cases e : i = j
   · subst e; rw [Matrix.one_apply_eq, Matrix.one_apply_eq, RingHom.map_one]

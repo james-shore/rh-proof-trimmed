@@ -53,7 +53,7 @@ theorem coord_bijective_of_le_affine : ∀ (A B : Type) [CommRing A] [CommRing B
   intro A B _ _ _ N r e σ Z y W W' hle hW
   have hbas : ∀ f : Γ(Z, W), Function.Bijective (coord A B e σ y (Z.basicOpen f)) := by
     intro f
-    rw [GlobalTheory.T.affineHilbertCoordinateMap_basicOpen_bijective A B N r e σ Z y W f]
+    rw [_root_.GlobalTheory.HilbAff.coord_basicOpen_bijective_iff A B N r e σ Z y W f]
     exact ⟨LocalizedModule.map_injective _ _ hW.1, LocalizedModule.map_surjective _ _ hW.2⟩
   let s : Set Γ(Z, W') := {g | Function.Bijective (coord A B e σ y (Z.basicOpen g))}
   have hspan : Ideal.span s = ⊤ := by
@@ -65,6 +65,6 @@ theorem coord_bijective_of_le_affine : ∀ (A B : Type) [CommRing A] [CommRing B
       rw [← hfg]; exact hbas f
     · show x ∈ Z.basicOpen g
       rw [← hfg]; exact hxf
-  exact bijective_of_localized_span s hspan _ fun g => (GlobalTheory.T.affineHilbertCoordinateMap_basicOpen_bijective A B N r e σ Z y W' g.1).1 g.2
+  exact bijective_of_localized_span s hspan _ fun g => (_root_.GlobalTheory.HilbAff.coord_basicOpen_bijective_iff A B N r e σ Z y W' g.1).1 g.2
 
 end GlobalTheory.HilbAff

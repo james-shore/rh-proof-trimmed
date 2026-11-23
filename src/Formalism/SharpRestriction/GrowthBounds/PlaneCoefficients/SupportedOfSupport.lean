@@ -88,11 +88,6 @@ theorem supported_of_support {τ R : Type*} [CommSemiring R] {s : Set τ} {P Q :
   obtain ⟨d, hd, hvd⟩ := (mem_vars_iff_mem_support v).1 (Finset.mem_coe.1 hv)
   exact hQ (Finset.mem_coe.2 ((mem_vars_iff_mem_support v).2 ⟨d, h hd, hvd⟩))
 
-theorem multideg_add {ι : Type} {s : ℕ} (a b : ι × Fin s →₀ ℕ) (x : ι) :
-    multideg (a + b) x = multideg a x + multideg b x := by
-  unfold multideg
-  simp only [Finsupp.add_apply, Finset.sum_add_distrib]
-
 theorem geZ_sum {Kf : Type} [Field Kf] {ι κ : Type} {n : ℕ} [NeZero n] (LL : Letters ι) (S : Set ι) (T : Finset κ)
     (f : κ → MvPolynomial (ι × Fin n) Kf) (t : ℝ) (h : ∀ i ∈ T, geZ (valS LL S (f i)) t) :
     geZ (valS LL S (∑ i ∈ T, f i)) t := by
@@ -200,7 +195,7 @@ theorem restLink_of (hNN : ValNN) (hHD : HomDec) (hLL : LinkL) (hDg : LkDeg) (hV
       have h0 := support_monomial_subset ha0
       rw [Finset.mem_singleton] at h0
       subst h0
-      rw [Lk.multideg_add, Lk.multideg_add, hdeg b hb m']
+      rw [_root_.Formalism.MainNotions.G.Joints.StandardMonomialSpace.hom_multideg_add, _root_.Formalism.MainNotions.G.Joints.StandardMonomialSpace.hom_multideg_add, hdeg b hb m']
       omega
   · push Not at hbig
     set dw : ℕ := ∑ m' : Fin r, δ (Fr.fr (segZ j - 1) (r - 1 - m'.val)) with hdw

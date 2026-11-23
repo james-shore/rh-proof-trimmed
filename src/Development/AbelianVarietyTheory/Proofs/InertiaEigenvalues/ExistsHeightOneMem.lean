@@ -51,11 +51,4 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace GlobalTheory.HeightOnePrimeMembership
 
-open NumberField
-
-theorem exists_heightOne_mem (E : Type) [Field E] [NumberField E] {p : ℕ} (hp : Nat.Prime p) :
-    ∃ w : IsDedekindDomain.HeightOneSpectrum (RingOfIntegers E),
-      (p : RingOfIntegers E) ∈ w.asIdeal := by
-  apply UpperTheory.Ram.exists_place_over <;> assumption
-
 end GlobalTheory.HeightOnePrimeMembership

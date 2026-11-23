@@ -51,6 +51,7 @@ import Development.AbelianVarietyTheory.Definitions.Foundations.IsProbabilityMea
 import Formalism.LocalRingCardinality.DataTheta
 import Formalism.LocalToGlobal.BesselHermitianTheta.NoncompactGapAtLeastRange
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.LevelMapFibreSimplyTransitive
 
 @[expose] public section
 
@@ -93,10 +94,6 @@ theorem alg {R : Type} [CommRing R] {La : Type} [AddCommGroup La] [Module R La] 
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E}
 
-theorem exists_cast {S S' : Scheme.{0}} {t : SAB H S} {t' : SAB H S'} {f f' : S' ⟶ S} (h : f = f')
-    (n : SABMap t' t f) : ∃ n' : SABMap t' t f', n'.φ = n.φ := by
-  subst h; exact ⟨n, rfl⟩
-
 theorem iterate_eq {C : Type*} [Category C] {X : C} (θ : Aut X) (N : ℕ) :
     (fun f : X ⟶ X => f ≫ θ.asIso.hom)^[N] (𝟙 X) = (θ ^ N).asIso.hom := by
   induction N with
@@ -133,7 +130,7 @@ theorem GlobalTheory.LevMoveFibre.exists_fibreAut : ∀ (E : Type) [Field E] [Nu
   obtain ⟨T, hT, -⟩ := GlobalTheory.CM.exists_pat_of_obj E H Dw l _ _ _ _ (GlobalTheory.ModelCompare.objOfSABMap Xo.univ m)
   obtain rfl : T.t = t' := hT
   obtain ⟨n₀, hn₀⟩ := sabComp pullCubComp E H _ _ _ Xo.univ.t Xo.univ.t T.t ρ x ν m
-  obtain ⟨n, hn⟩ := exists_cast hx n₀
+  obtain ⟨n, hn⟩ := _root_.GlobalTheory.LevelFibre.sab_cast hx n₀
   obtain ⟨ψ, hψ, hφ, hact, -⟩ := sabMap_iso n m rfl rfl
   let θ : Aut T.t.G := Aut.of ψ
   have hL := GlobalTheory.lawsFieldsSeparately

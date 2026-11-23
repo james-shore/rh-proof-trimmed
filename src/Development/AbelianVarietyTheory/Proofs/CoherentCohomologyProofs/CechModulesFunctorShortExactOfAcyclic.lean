@@ -56,18 +56,6 @@ noncomputable section
 
 namespace GlobalTheory
 
-theorem exists_addEquiv_of_surjective_of_ker {A B C : Type*} [AddCommGroup A] [AddCommGroup B]
-    [AddCommGroup C] (f : A →+ B) (g : A →+ C) (hf : Function.Surjective f)
-    (hg : Function.Surjective g) (h : ∀ a, f a = 0 ↔ g a = 0) :
-    ∃ e : B ≃+ C, ∀ a, e (f a) = g a := by
-  first
-  | exact @_root_.GlobalTheory.AddEquivOfSurjectiveKernel.exists_addEquiv_of_surjective_of_ker_iff
-  | exact _root_.GlobalTheory.AddEquivOfSurjectiveKernel.exists_addEquiv_of_surjective_of_ker_iff
-  | (apply _root_.GlobalTheory.AddEquivOfSurjectiveKernel.exists_addEquiv_of_surjective_of_ker_iff <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AddEquivOfSurjectiveKernel.exists_addEquiv_of_surjective_of_ker_iff <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AddEquivOfSurjectiveKernel.exists_addEquiv_of_surjective_of_ker_iff <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.AddEquivOfSurjectiveKernel.exists_addEquiv_of_surjective_of_ker_iff ..)
-
 section Cube
 
 variable {ι : Type} [LinearOrder ι] {R : Type v} [Ring R]
@@ -256,7 +244,7 @@ theorem CechComparison.exists_succ [Finite ι] {n : ℕ} (e : CechComparison V U
     CechAcyclic.of_shortExact₃ (hI F) hF (a₂ F)
   have ex F (hF : CechAcyclic V U F) : ∃ e' : cechAbH F.obj V U (n + 1) ≃+ Sheaf.H'.{u} F (n + 1) V,
       ∀ x, e' (cechAbδ (hI F) hF n x) = SheafLES.δ (hI F) n V (e _ (a₃ F hF) x) := by
-    refine exists_addEquiv_of_surjective_of_ker (cechAbδ (hI F) hF n).toAddMonoidHom
+    refine _root_.GlobalTheory.AddEquivOfSurjectiveKernel.exists_addEquiv_of_surjective_of_ker_iff (cechAbδ (hI F) hF n).toAddMonoidHom
       ((SheafLES.δ (hI F) n V).comp (e _ (a₃ F hF)).toAddMonoidHom)
       (cechAbδ_surjective (hI F) hF n)
       ((SheafLES.δ_surjective_of_subsingleton (hI F) n V

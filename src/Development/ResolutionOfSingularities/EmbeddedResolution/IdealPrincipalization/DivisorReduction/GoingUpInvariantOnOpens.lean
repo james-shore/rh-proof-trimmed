@@ -131,7 +131,7 @@ theorem ker_restrictedEmbedding_le_center (hres : FunctorialResolution.Blowup.St
       (ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).center t := by
   have hlt : t < s.toSequenceOfBlowups.length := ht
   have hc := center_ambientBlowupSeq_eq_imageIdealSheaf T j hj I₀ E₀ s hres hno hpr U₀ hU hm hsupp t hlt
-  rw [hc, imageIdealSheaf_eq_ker_subschemeι_comp]
+  rw [hc, _root_.FunctorialResolution.EmbeddedResolution.imageIdealSheaf_eq_ker]
   exact Scheme.Hom.le_ker_comp _ _
 
 structure GoingUpInvariantOnOpen (hres : FunctorialResolution.Blowup.StrictTransformIsBlowupOfClosedSubscheme.{u})
@@ -219,65 +219,6 @@ private theorem comap_eq_of_pow_mul_comap_eq {A A' B B' : Scheme.{u}} (m : ℕ)
       hpow, ← Scheme.IdealSheafData.comap_comp, hsq, Scheme.IdealSheafData.comap_comp, hprev]
   exact (hcart.pow m).eq_of_mul_eq_mul hkey
 
-private theorem comap_controlledTransform_embeddingIntoAmbient
-    (hres : FunctorialResolution.Blowup.StrictTransformIsBlowupOfClosedSubscheme.{u})
-    (hno : BlowupPreservesNoetherian.{u}) (T : MarkedIdealWithBoundary.{u})
-    [AlgebraicGeometry.IsNoetherian T.scheme]
-    (j : ℕ) (hj : j < T.boundary.length)
-    (I₀ : T.scheme.IdealSheafData) (E₀ : List T.scheme.IdealSheafData)
-    (s : (restrictToBoundaryDivisor T j hj I₀ E₀).SequenceOfBlowups)
-    (hpr : (MarkedBlowupSequenceData.ofMarkedSequence s).toBlowupSequenceData.CentersContainNoComponent) (t : ℕ) :
-    t ≤ s.length →
-    (∀ i < t, ∃ B : ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).obj (i + 1)).IdealSheafData,
-      Blowup.exceptionalIdeal ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).map i)
-          ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).center i) ^ T.mult * B =
-        ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).controlledTransform I₀ T.mult i).comap
-          ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).map i)) →
-    ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).controlledTransform I₀ T.mult t).comap
-        (embeddingIntoAmbient hres hno T j hj I₀ E₀ s hpr t) = s.ideal t := by
-  induction t with
-  | zero =>
-      intro _ _
-      have hs0 : s.projectionToBase 0 = s.isoZero.hom := by
-        rw [← BlowupSequenceData.ofSequenceOfBlowups_projectionToBase s.toSequenceOfBlowups 0, BlowupSequenceData.projectionToBase_zero,
-          BlowupSequenceData.ofSequenceOfBlowups_isoObjZero]
-      have hsq := (embeddingIntoAmbient_comp_projectionToBase hres hno T j hj I₀ E₀ s hpr 0).trans
-        (congrArg (fun f => f ≫ divisorEmbedding T j hj I₀ E₀) hs0)
-      have hb := comap_comap_of_commSq (embeddingIntoAmbient hres hno T j hj I₀ E₀ s hpr 0)
-        ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).projectionToBase 0) s.isoZero.hom
-        (divisorEmbedding T j hj I₀ E₀) I₀ hsq
-      rw [BlowupSequenceData.projectionToBase_zero] at hb
-      rw [BlowupSequenceData.controlledTransform_zero]
-      exact hb.trans s.ideal_zero.symm
-  | succ t ih =>
-      intro ht hdiv
-      have htlt : t < s.length := Nat.lt_of_succ_le ht
-      have hprev := ih (Nat.le_of_lt htlt) (fun i hi => hdiv i (Nat.lt_succ_of_lt hi))
-      have := isClosedImmersion_embeddingIntoAmbient hres hno T j hj I₀ E₀ s hpr t
-      have hcen : ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).center t).comap
-            (embeddingIntoAmbient hres hno T j hj I₀ E₀ s hpr t) = s.center t := by
-        rw [ambientBlowupSeq_center_eq_imageIdealSheaf]
-        exact Blowup.comap_map_of_isClosedImmersion _ _
-      have hpow : Blowup.exceptionalIdeal ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).map t)
-              ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).center t) ^ T.mult *
-            (ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).controlledTransform I₀ T.mult (t + 1) =
-          ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).controlledTransform I₀ T.mult t).comap
-            ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).map t) :=
-        BlowupSequenceData.pow_exceptionalIdeal_mul_controlledTransform_succ (ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr) I₀ T.mult t
-          (hdiv t (Nat.lt_succ_self t))
-      have hblow : Blowup.IsBlowupAlongIdealSheaf (s.transitionMapSucc t) (s.center t) :=
-        (MarkedBlowupSequenceData.ofMarkedSequence s).toBlowupSequenceData.isBlowup t
-          (by rw [MarkedBlowupSequenceData.ofMarkedSequence_length]; exact htlt)
-      exact comap_eq_of_pow_mul_comap_eq T.mult ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).map t)
-        (embeddingIntoAmbient hres hno T j hj I₀ E₀ s hpr t)
-        (embeddingIntoAmbient hres hno T j hj I₀ E₀ s hpr (t + 1)) (s.transitionMapSucc t)
-        ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).center t)
-        ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).controlledTransform I₀ T.mult t)
-        ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).controlledTransform I₀ T.mult (t + 1))
-        (s.center t) (s.ideal t) (s.ideal (t + 1))
-        (embeddingIntoAmbient_comp_blowupMorphism hres hno T j hj I₀ E₀ s hpr t) hcen hprev hpow
-        (s.ideal_succ t htlt) (isLocallyGeneratedByNonZeroDivisor_exceptionalIdeal hblow)
-
 theorem comap_controlledTransform {hres : FunctorialResolution.Blowup.StrictTransformIsBlowupOfClosedSubscheme.{u}}
     {hno : BlowupPreservesNoetherian.{u}} {T : MarkedIdealWithBoundary.{u}}
     [AlgebraicGeometry.IsNoetherian T.scheme] [AlgebraicGeometry.Smooth T.structMap]
@@ -290,7 +231,7 @@ theorem comap_controlledTransform {hres : FunctorialResolution.Blowup.StrictTran
     (hinv : GoingUpInvariantOnOpen hres hno T j hj I₀ E₀ s hpr U₀ t) (ht : t ≤ s.length) :
     ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).controlledTransform I₀ T.mult t).comap
         (embeddingIntoAmbient hres hno T j hj I₀ E₀ s hpr t) = s.ideal t :=
-  comap_controlledTransform_embeddingIntoAmbient hres hno T j hj I₀ E₀ s hpr t ht hinv.exists_pow_mul_eq_comap_controlledTransform
+  _root_.FunctorialResolution.EmbeddedResolution.DivisorReduction.comap_controlledTransform_embeddingIntoAmbient hres hno T j hj I₀ E₀ s hpr t ht hinv.exists_pow_mul_eq_comap_controlledTransform
 
 theorem comap_controlledTransform_restrictedEmbedding {hres : FunctorialResolution.Blowup.StrictTransformIsBlowupOfClosedSubscheme.{u}}
     {hno : BlowupPreservesNoetherian.{u}} {T : MarkedIdealWithBoundary.{u}}
@@ -351,7 +292,7 @@ theorem support_center_subset_orderAtLeastLocus {hres : FunctorialResolution.Blo
     exact pow_ambientDerivIdeal_le_pow_controlledTransform hres hno T j hj I₀ E₀ s hpr hbal l hl t htle
       (hinv.exists_pow_mul_eq_comap_controlledTransform) (hinv.divDeriv l (le_of_lt hl))
   have hc : (ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).center t =
-      imageIdealSheaf (restrictedEmbedding T j hj I₀ E₀ s hres hno hpr U₀ t)
+      _root_.FunctorialResolution.Blowup.schemeImageIdeal (restrictedEmbedding T j hj I₀ E₀ s hres hno hpr U₀ t)
         ((s.toSequenceOfBlowups.center t).comap (iteratedPreimage T j hj I₀ E₀ s U₀ t).ι) :=
     center_ambientBlowupSeq_eq_imageIdealSheaf T j hj I₀ E₀ s hres hno hpr U₀ hU hm hsupp t ht'
   have hkey : ((ambientBlowupSeq hres hno T j hj I₀ E₀ s hpr).controlledTransform I₀ T.mult t).comap
@@ -382,12 +323,12 @@ private theorem ker_comp_eq_ker_subschemeι_comp {A S P : Scheme.{u}} (g : A ⟶
 
 private theorem imageIdealSheaf_iso_hom_comp_eq {A S P : Scheme.{u}} (e : A ≅ S) (f : S ⟶ P)
     (C : A.IdealSheafData) :
-    imageIdealSheaf (e.hom ≫ f) C = imageIdealSheaf f (C.comap e.inv) := by
+    _root_.FunctorialResolution.Blowup.schemeImageIdeal (e.hom ≫ f) C = _root_.FunctorialResolution.Blowup.schemeImageIdeal f (C.comap e.inv) := by
   have : AlgebraicGeometry.IsClosedImmersion (C.subschemeι ≫ e.hom) := inferInstance
   have hker : Scheme.Hom.ker (C.subschemeι ≫ e.hom) = C.comap e.inv := by
-    rw [← imageIdealSheaf_eq_ker_subschemeι_comp]
+    rw [← _root_.FunctorialResolution.EmbeddedResolution.imageIdealSheaf_eq_ker]
     exact imageIdealSheaf_hom_eq_comap_inv e C
-  rw [imageIdealSheaf_eq_ker_subschemeι_comp, imageIdealSheaf_eq_ker_subschemeι_comp, ← Category.assoc,
+  rw [_root_.FunctorialResolution.EmbeddedResolution.imageIdealSheaf_eq_ker, _root_.FunctorialResolution.EmbeddedResolution.imageIdealSheaf_eq_ker, ← Category.assoc,
     ker_comp_eq_ker_subschemeι_comp (C.subschemeι ≫ e.hom) f, hker]
 
 theorem hasStrictNormalCrossingsWith_center_cons {hres : FunctorialResolution.Blowup.StrictTransformIsBlowupOfClosedSubscheme.{u}}

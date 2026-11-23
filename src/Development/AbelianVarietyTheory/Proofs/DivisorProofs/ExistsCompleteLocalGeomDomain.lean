@@ -49,7 +49,7 @@ theorem isDomain_tensor_of_reg (k K S : Type) [Field k] [Field K] [Algebra k K]
     have hid : IsIdempotentElem (f.symm (0, 1)) := by
       show f.symm (0,1) * f.symm (0,1) = f.symm (0,1)
       rw [← map_mul]; simp
-    rcases GlobalTheory.T.idempotent_tensor_eq_zero_or_one_of_isPurelyInseparable' k K (AdicCompletion (maximalIdeal S) S) (f.symm (0, 1)) hid with h | h
+    rcases _root_.GlobalTheory.idempotent_tensor_eq_zero_or_one_of_isPurelyInseparable k K (AdicCompletion (maximalIdeal S) S) (f.symm (0, 1)) hid with h | h
     · have h2 := congrArg (fun z => (f z).2) h
       simp at h2
       exact subsingleton_of_zero_eq_one h2.symm

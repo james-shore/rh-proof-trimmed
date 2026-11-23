@@ -53,13 +53,9 @@ open MeasureTheory Filter Topology PositivityTheory.RgEis GlobalTheory.Companion
 
 namespace GlobalTheory.CompanionTheory.TubeFourier
 
-theorem integrable_exp_neg_mul_abs_alt {c : ℝ} (hc : 0 < c) :
-    Integrable (fun x : ℝ => Real.exp (-c * |x|)) :=
-  _root_.UpperTheory.Reformulated.B.Yha4.main hc
-
 theorem integrable_exp_neg_mul_abs_add {c : ℝ} (hc : 0 < c) (M : ℝ) :
     Integrable (fun t : ℝ × ℝ => M * Real.exp (-c * (|t.1| + |t.2|))) := by
-  have h := (integrable_exp_neg_mul_abs_alt hc).mul_prod (integrable_exp_neg_mul_abs_alt hc)
+  have h := (_root_.UpperTheory.Reformulated.B.Yha4.main hc).mul_prod (_root_.UpperTheory.Reformulated.B.Yha4.main hc)
   refine (h.const_mul M).congr (Eventually.of_forall fun t => ?_)
   simp only [mul_add, Real.exp_add]
 

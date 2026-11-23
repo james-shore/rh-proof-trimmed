@@ -51,6 +51,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.HermitianTraceFormVanishing
 import Formalism.LocalRingCardinality.DataTheta
+import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.FirstCoordinateAdmissible
 
 @[expose] public section
 
@@ -87,9 +88,6 @@ theorem dSgn_det (k : ℕ) : (dSgn (E := E) r k).det ≠ 0 := by
 theorem mem_one_iff_isIntegral (z : E) : z ∈ (1 : FractionalIdeal (𝓞 E)⁰ E) ↔ IsIntegral ℤ z := by
   rw [FractionalIdeal.mem_one_iff, IsIntegralClosure.isIntegral_iff (A := 𝓞 E)]
 
-theorem cc_isIntegral {z : E} (h : IsIntegral ℤ z) : IsIntegral ℤ (cc z) :=
-  h.map (IsCMField.complexConj E : E →+* E).toIntAlgHom
-
 theorem herm_diag (d : Fin r → E) (x y : Fin r → E) :
     hermF (Matrix.diagonal d) x y = ∑ a, x a * d a * ccF (y a) := by
   simp only [ReciprocityTheory.ChartRestriction.G.FD.herm, Matrix.diagonal_apply, mul_ite, ite_mul, mul_zero, zero_mul,
@@ -116,7 +114,7 @@ theorem mod_std (k : ℕ) (x : Fin r → E) : x ∈ GlobalTheory.InertWitt.stdLa
   · intro hx y hy
     rw [mem_stdLat_iff_forall_isIntegral] at hy
     rw [mem_one_iff_isIntegral, dSgn, herm_diag]
-    exact IsIntegral.sum _ fun a _ => ((hx a).mul (isIntegral_ite_one_neg_one k a)).mul (cc_isIntegral (hy a))
+    exact IsIntegral.sum _ fun a _ => ((hx a).mul (isIntegral_ite_one_neg_one k a)).mul (_root_.GlobalTheory.SW.Base.isIntegral_cc (hy a))
   · intro h i
     have hy : (Pi.single i 1 : Fin r → E) ∈ GlobalTheory.InertWitt.stdLat E r := by
       rw [mem_stdLat_iff_forall_isIntegral]

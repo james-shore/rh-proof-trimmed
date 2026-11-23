@@ -73,7 +73,7 @@ theorem top (hA : AbsThm) (hLF : LocFact) (hAA : AwayAct)
   have hTL := thLin_of hW
   exact main hA sFrame sEmb sigOK splitFock hTM (locOpEx_of_locFact hLF) hLi (linSec_of hTL)
     (gSplit_of gIwasawa hAA hLF awayIn schFP hTM lNZ) (gIauto_of hTA hTM) gIk
-    (gIinv_of hTM hTL hLC hDO) hId hE gLamBd (gLsing PositivityTheory.Rg.Sw.twoSided' denseTau) hC
+    (gIinv_of hTM hTL hLC hDO) hId hE gLamBd (gLsing _root_.PositivityTheory.Rg.Sw.LVs.twoSided denseTau) hC
     (convRight_of hE) hTL lNZ
 
 end PositivityTheory.Rg.Sw.Glob

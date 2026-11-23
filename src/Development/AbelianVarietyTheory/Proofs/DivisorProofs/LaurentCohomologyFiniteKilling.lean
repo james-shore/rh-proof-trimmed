@@ -60,44 +60,6 @@ open CategoryTheory Limits AlgebraicGeometry Opposite Simplicial GlobalTheory.Et
 noncomputable section
 namespace GlobalTheory.EtC.GmKill
 
-theorem spMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  rw [← Functor.map_comp, ← Spec.map_comp]; rfl
-
-theorem spMap_id (A : Type) [CommRing A] : spMap (RingHom.id A) = 𝟙 (sp A) := by
-  change sch.map (Spec.map (𝟙 _)) = _
-  rw [Spec.map_id, CategoryTheory.Functor.map_id]
-
-theorem subsingleton_of_ringEquiv (q : ℕ) (d i : ℤ) {A B : Type} [CommRing A] [CommRing B] (e : A ≃+* B)
-    [Subsingleton (Ht q (sp A) d i)] : Subsingleton (Ht q (sp B) d i) := by
-  constructor
-  intro x y
-  have h : ∀ z : Ht q (sp B) d i,
-      pull _ (spMap (e : A →+* B)) _ _ (pull _ (spMap (e.symm : B →+* A)) _ _ z) = z := by
-    intro z
-    rw [← pull_comp, spMap_comp]
-    have : (e : A →+* B).comp (e.symm : B →+* A) = RingHom.id B := by ext; simp
-    rw [this, spMap_id, pull_id]
-  rw [← h x, ← h y, Subsingleton.elim (pull _ (spMap (e.symm : B →+* A)) _ _ x) (pull _ _ _ _ y)]
-
-theorem subsingleton_prod (q : ℕ) (d i : ℤ) (A B : Type) [CommRing A] [CommRing B]
-    [Subsingleton (Ht q (sp A) d i)] [Subsingleton (Ht q (sp B) d i)] :
-    Subsingleton (Ht q (sp (A × B)) d i) := by
-  constructor
-  intro x y
-  exact (GlobalTheory.T.etaleCohomology_prod_ring_projections_bijective q A B d i).1 (Prod.ext (Subsingleton.elim _ _) (Subsingleton.elim _ _))
-
-theorem subsingleton_of_subsingleton_ring (q : ℕ) (d i : ℤ) (A : Type) [CommRing A] [Subsingleton A] :
-    Subsingleton (Ht q (sp A) d i) := by
-  constructor
-  intro a b
-  obtain ⟨x, hx⟩ := (GlobalTheory.T.etaleCohomology_prod_ring_projections_bijective q A A d i).2 (a, b)
-  have hfs : RingHom.fst A A = RingHom.snd A A := RingHom.ext fun _ => Subsingleton.elim _ _
-  have h1 := congrArg Prod.fst hx
-  have h2 := congrArg Prod.snd hx
-  simp only at h1 h2
-  rw [← h1, ← h2, hfs]
-
 def piFinSuccRingEquiv (n : ℕ) (B : Fin (n + 1) → Type) [∀ j, CommRing (B j)] :
     (∀ j, B j) ≃+* B 0 × ∀ j : Fin n, B j.succ where
   toFun f := (f 0, fun j => f j.succ)
@@ -106,25 +68,6 @@ def piFinSuccRingEquiv (n : ℕ) (B : Fin (n + 1) → Type) [∀ j, CommRing (B 
   right_inv p := by simp
   map_mul' f g := rfl
   map_add' f g := rfl
-
-theorem subsingleton_pi (q : ℕ) (d i : ℤ) : ∀ (n : ℕ) (B : Fin n → Type) [∀ j, CommRing (B j)],
-    (∀ j, Subsingleton (Ht q (sp (B j)) d i)) → Subsingleton (Ht q (sp (∀ j, B j)) d i) := by
-  intro n
-  induction n with
-  | zero =>
-    intro B _ _
-    exact subsingleton_of_subsingleton_ring q d i _
-  | succ n ih =>
-    intro B _ hB
-    have := ih (fun j => B j.succ) (fun j => hB j.succ)
-    have := hB 0
-    have := subsingleton_prod q d i (B 0) (∀ j : Fin n, B j.succ)
-    exact subsingleton_of_ringEquiv q d i (piFinSuccRingEquiv n B).symm
-
-theorem isIntegral_pi {O : Type} [CommRing O] {ι : Type} [Finite ι] {R : ι → Type}
-    [∀ i, CommRing (R i)] [∀ i, Algebra O (R i)] (x : ∀ i, R i) (hx : ∀ i, IsIntegral O (x i)) :
-    IsIntegral O x :=
-  _root_.GlobalTheory.IntegralPi.main x hx
 
 theorem isLocalRing_closure (A : Type) [CommRing A] [HenselianLocalRing A] (P : Ideal A) [P.IsPrime] :
     IsLocalRing (integralClosure (A ⧸ P) (AlgebraicClosure (FractionRing (A ⧸ P)))) := by
@@ -154,17 +97,17 @@ theorem main : ∀ (q : ℕ) [NeZero q] (A : Type) [CommRing A] [IsNoetherianRin
       RingHom.IsIntegral.trans _ _ (RingHom.isIntegral_of_surjective _ Ideal.Quotient.mk_surjective)
         (fun s => Algebra.IsIntegral.isIntegral s)
     exact h s
-  haveI : Algebra.IsIntegral A (∀ k, T k) := ⟨fun s => isIntegral_pi s (fun k => hint k (s k))⟩
+  haveI : Algebra.IsIntegral A (∀ k, T k) := ⟨fun s => _root_.GlobalTheory.IntegralPi.isIntegral_pi s (fun k => hint k (s k))⟩
   have hS : Subsingleton (Ht q (sp (LaurentPolynomial (∀ k, T k))) n i) := by
     have hT : ∀ k, Subsingleton (Ht q (sp (LaurentPolynomial (T k))) n i) := by
       intro k
       haveI := isLocalRing_closure A (P k)
       have hqk : IsUnit (q : T k) := by simpa using hq.map (algebraMap A (T k))
-      exact (GlobalTheory.T.tateTwistCohomology_laurent_absIntClosedLocalDomain q (T k) (GlobalTheory.aic_integralClosure_algebraicClosure (A ⧸ P k)) hqk n i).1 hn
-    haveI := subsingleton_pi q n i _ (fun k => LaurentPolynomial (T k)) hT
-    exact subsingleton_of_ringEquiv q n i (RingEquiv.ofBijective _ (GlobalTheory.T.laurent_pi_bijective _ T)).symm
+      exact (_root_.GlobalTheory.EtC.GmAic.main q (T k) (GlobalTheory.aic_integralClosure_algebraicClosure (A ⧸ P k)) hqk n i).1 hn
+    haveI := _root_.GlobalTheory.EtAlgCD.subsingleton_pi q n i _ (fun k => LaurentPolynomial (T k)) hT
+    exact _root_.GlobalTheory.EtAlgCD.subsingleton_of_ringEquiv q n i (RingEquiv.ofBijective _ (_root_.GlobalTheory.EtC.GmStep.laurentPi_bijective _ T)).symm
   have hx0 : pull _ (spMap (laurentMap (algebraMap A (∀ k, T k)))) _ _ x = 0 := Subsingleton.elim _ _
-  obtain ⟨t, ht⟩ := GlobalTheory.T.laurent_class_vanishes_finitely_generated_subalgebra q A (∀ k, T k) hq n i x hx0
+  obtain ⟨t, ht⟩ := _root_.GlobalTheory.EtC.GmStep.KillColim.kill_colim q A (∀ k, T k) hq n i x hx0
   refine ⟨Algebra.adjoin A (t : Set (∀ k, T k)), inferInstance, inferInstance,
     GlobalTheory.EtC.IntAcyc.finite_finDiag A (∀ k, T k) t, ?_, ht⟩
   intro a ha

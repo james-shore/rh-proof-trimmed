@@ -128,14 +128,6 @@ variable {K : Type} [Field K] [NumberField K] {ι : Type} [Fintype ι]
 
 variable (d : Data K ι Ω WT A)
 
-private lemma ratio_eq_of_eq_smul' {Ω' V : Type*} [Field Ω'] [AddCommGroup V] [Module Ω' V] {f g : V} {a : Ω'}
-    (hg : g ≠ 0) (h : f = a • g) : ratio f g = a := by
-  have hex : ∃ b : Ω', f = b • g := ⟨a, h⟩
-  unfold ratio
-  rw [dite_eq_left hex]
-  have hc := hex.choose_spec
-  exact smul_left_injective Ω' hg (hc.symm.trans h)
-
 theorem ratio_linearCombination_expand (hd : d.AxH 𝒜) (x : Fin (d.N + 1) → K) (c : ι) :
     ratio (Ω := Ω c) (d.wx x c) (d.w (d.jc c) c) =
       ∑ j, algebraMap K (Ω c) (x j) * ratio (Ω := Ω c) (d.w j c) (d.w (d.jc c) c) := by
@@ -149,9 +141,9 @@ theorem ratio_linearCombination_expand (hd : d.AxH 𝒜) (x : Fin (d.N + 1) → 
     obtain ⟨a, ha⟩ := (finrank_eq_one_iff_of_nonzero' _ hne).mp (hd.finrank_one c d.wL) ⟨f, hf⟩
     exact ⟨a, (congrArg Subtype.val ha).symm⟩
   choose r hr using fun j => hspan (d.w j c) (hd.w_mem j c)
-  have hrat : ∀ j, ratio (Ω := Ω c) (d.w j c) (d.w (d.jc c) c) = r j := fun j => ratio_eq_of_eq_smul' hg (hr j)
+  have hrat : ∀ j, ratio (Ω := Ω c) (d.w j c) (d.w (d.jc c) c) = r j := fun j => _root_.ReciprocityTheory.ChartRestriction.G.T0.ValuationResidueLemmas.ratio_eq hg (hr j)
   simp only [hrat]
-  apply ratio_eq_of_eq_smul' hg
+  apply _root_.ReciprocityTheory.ChartRestriction.G.T0.ValuationResidueLemmas.ratio_eq hg
   rw [Finset.sum_smul]
   unfold Data.wx
   rw [Finset.sum_apply]

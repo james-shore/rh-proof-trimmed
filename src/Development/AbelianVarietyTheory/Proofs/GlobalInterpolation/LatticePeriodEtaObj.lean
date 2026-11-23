@@ -43,7 +43,4 @@ noncomputable section
 
 namespace GlobalTheory.LatticePeriodEtaObj
 
-theorem latticePeriodEta_obj : GlobalTheory.IndefiniteRowSideFullHecke.PeriodLatticeAgreement.LatticePeriodEta :=
-  GlobalTheory.LatticePeriodEtaProof.latticePeriodEta
-
 end GlobalTheory.LatticePeriodEtaObj

@@ -115,7 +115,7 @@ theorem hyperX : CuspAny → ArchZero → GlobalTheory.IndefiniteRowSideFullHeck
   haveI : ∀ w, (μa w).IsHaarMeasure := hRP.haar_arch
   haveI : ∀ v, (μf v).IsHaarMeasure := hRP.haar_loc
   obtain ⟨w⟩ : Nonempty (InfinitePlace D.host.F) := inferInstance
-  have hnc := (GlobalTheory.T.centralizer_regular_levi_commutative_noncompact D V Φ P hpar γ0 hreg0 hmem).2.2 (Finset.nonempty_iff_ne_empty.1 hne) w
+  have hnc := (_root_.GlobalTheory.LeviCent.cent_levi D V Φ P hpar γ0 hreg0 hmem).2.2 (Finset.nonempty_iff_ne_empty.1 hne) w
   have hcm := isCMExt_host D
   have horb : ∀ (ds : Measure (cent (projArch D.sp.cm.sig V.gram w (rat V γ0)))) [ds.IsHaarMeasure]
       [ds.IsMulRightInvariant], HasOrbInt (μa w) (projArch D.sp.cm.sig V.gram w (rat V γ0)) ds (fa w) 0 := by
@@ -175,7 +175,7 @@ theorem ellTrace_of_middleX : MainStatements.RegularCuspidalTrace.RegClassInt �
   set f := tensor D.sp.cm.sig V.gram fa ff with hfdef
   have hcc : f ∈ CcGA V := tensor_mem_ccAd harch.mem hfin.isFinFamily
   have hcs := continuous_of_mem_ccAd hcc
-  obtain ⟨hH, -⟩ := GlobalTheory.T.typeHypothesis_forms_agree D V T hnf
+  obtain ⟨hH, -⟩ := _root_.GlobalTheory.TypeHypForms.hypH_and_noRadicalFixed D V T hnf
   haveI := hμa
   haveI := hμf
   have hconst := hPC.2 D V hodd S M T hH U μa μf f ⟨fa, ff, harch, hfin, rfl⟩

@@ -197,7 +197,7 @@ namespace GlobalTheory.AnPer
 open PerExist in
 theorem periods_exist : PExist := by
   intro I _ g Λ _ F B _ X s _ σ u hu c
-  obtain ⟨per, hper⟩ := GlobalTheory.T.exists_period_cohomologyClass_of_rich_based (Kmax u) (rich u) (based u hu) ((rmax u).coef.pull1 c)
+  obtain ⟨per, hper⟩ := _root_.GlobalTheory.AnPer.Charts.exists_perCl (Kmax u) (rich u) (based u hu) ((rmax u).coef.pull1 c)
   refine ⟨per, fun K r hr ↦ ?_⟩
   refine (CoefMap.pullCohomologyOne_eq_of_natTrans r.coef _ (toMaxTrans hr) (fun _ _ ↦ rfl) c).trans ?_
   rw [CoefMap.pullCohomologyOne_comp, hper]

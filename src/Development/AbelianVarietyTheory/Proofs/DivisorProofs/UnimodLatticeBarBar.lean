@@ -86,26 +86,15 @@ theorem unimodLattice_bar_rt {E : Type} [Field E] [NumberField E] [IsCMField E] 
   rw [hz] at key
   simpa using key
 
-theorem unimodLattice_w0_add {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Host E) :
-    H.w0 + H.bar H.w0 = 1 := by
-  have h1 := H.two_weight_eq_one_add_root
-  have h2 : 2 * H.bar H.w0 = 1 - H.rt := by
-    have := congrArg H.bar h1
-    rw [map_mul, map_add (f := _), map_one, unimodLattice_bar_rt, map_ofNat] at this
-    rw [this]; ring
-  have h3 : (2 : 𝓞 E) * (H.w0 + H.bar H.w0) = 2 * 1 := by
-    rw [mul_add, h1, h2]; ring
-  exact mul_left_cancel₀ two_ne_zero h3
-
 theorem unimodLattice :
     ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E), ∃ (r : ℕ) (W : Matrix (Fin r) (Fin r) ℤ) (ρ : 𝓞 E →+* Matrix (Fin r) (Fin r) ℤ), 1 ≤ r ∧ ((W + W.transpose).map (Int.cast : ℤ → ℝ)).PosDef ∧ IsUnit (W + W.transpose).det ∧ (∀ a, (ρ a).transpose * (W + W.transpose) = (W + W.transpose) * ρ (H.bar a)) ∧ W = (W + W.transpose) * ρ H.w0 := by
   intro E _ _ _ H
   obtain ⟨m, B0, ρ0, hm, hsym, hpd, hadj⟩ := GlobalTheory.T.exists_cmField_traceForm_gram_matrix_posDef E H
   obtain ⟨r, b, ρ, hr, hbs, hbpd, hbu, hbadj⟩ :=
-    GlobalTheory.T.exists_unimodular_posDef_form_adjoint_rep_of_posDef (𝓞 E) (H.bar : 𝓞 E →+* 𝓞 E) (unimodLattice_bar_bar H) m B0 ρ0 hm hsym hpd hadj
+    _root_.GlobalTheory.exists_unimodular_posDef_adjoint_action (𝓞 E) (H.bar : 𝓞 E →+* 𝓞 E) (unimodLattice_bar_bar H) m B0 ρ0 hm hsym hpd hadj
   have hW : b * ρ H.w0 + (b * ρ H.w0).transpose = b := by
     rw [Matrix.transpose_mul, hbs, hbadj, ← Matrix.mul_add, ← map_add (f := _)]
-    erw [unimodLattice_w0_add H]
+    erw [_root_.GlobalTheory.PelPrim.cmHostUnit_add_conj_eq_one H]
     rw [map_one, Matrix.mul_one]
   refine ⟨r, b * ρ H.w0, ρ, hr, ?_, ?_, ?_, ?_⟩
   · rw [hW]; exact hbpd

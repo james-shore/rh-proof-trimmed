@@ -71,23 +71,11 @@ section Basic
 variable {K : Type} [Field K] [NumberField K] [StarRing K]
   {V ι : Type} [AddCommGroup V] [Module K V] [Fintype ι] [DecidableEq ι]
 
-theorem realize_apply0 (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι ℂ) (x : V)
-    (v : InfinitePlace K) (i : ι) :
-    (Formalism.HermitianLatticesTheory.realize b X x) (v, i, 0) = (Formalism.HermitianLatticesTheory.fcoord b X v x i).re := by
-  first
-  | rfl
-  | simp [Formalism.HermitianLatticesTheory.realize, Formalism.HermitianLatticesTheory.realizeRaw]
+alias realize_apply0 := _root_.Formalism.HN.PlaceLattice.realize_apply0
 
-theorem realize_apply1 (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι ℂ) (x : V)
-    (v : InfinitePlace K) (i : ι) :
-    (Formalism.HermitianLatticesTheory.realize b X x) (v, i, 1) = (Formalism.HermitianLatticesTheory.fcoord b X v x i).im := by
-  first
-  | rfl
-  | simp [Formalism.HermitianLatticesTheory.realize, Formalism.HermitianLatticesTheory.realizeRaw]
+alias realize_apply1 := _root_.Formalism.HN.PlaceLattice.realize_apply1
 
-theorem realize_injective (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι ℂ)
-    (hX : ∀ v, IsUnit (X v).det) : Function.Injective (Formalism.HermitianLatticesTheory.realize b X) := by
-  apply Formalism.HN.PlaceLattice.realize_injective <;> assumption
+alias realize_injective := _root_.Formalism.HN.PlaceLattice.realize_injective
 
 theorem fcoord_smul (b : Basis ι K V) (X : InfinitePlace K → Matrix ι ι ℂ) (v : InfinitePlace K)
     (a : K) (x : V) : Formalism.HermitianLatticesTheory.fcoord b X v (a • x) = v.embedding a • Formalism.HermitianLatticesTheory.fcoord b X v x := by
@@ -286,26 +274,9 @@ section Main
 variable {K : Type} [Field K] [NumberField K]
   {V : Type} [AddCommGroup V] [Module K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V]
 
-theorem zl_span_eq {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
-    [FiniteDimensional ℝ E] (ρ : V →+ E) {ι' : Type} [Fintype ι'] (e : ι' → V) :
-    zl ρ (Submodule.span (𝓞 K) (Set.range e)) =
-      Submodule.span ℤ (Set.range fun p : Free.ChooseBasisIndex ℤ (𝓞 K) × ι' =>
-        ρ (integralBasis K p.1 • e p.2)) := by
-  apply Formalism.HN.PlaceLattice.zl_span_eq <;> assumption
+alias zl_span_eq := _root_.Formalism.HN.PlaceLattice.zl_span_eq
 
-theorem linIndep_int {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
-    [FiniteDimensional ℝ E] (ρ : V →+ E) (hρ : Function.Injective ρ) {ι' : Type} [Fintype ι']
-    (e : ι' → V) (he : LinearIndependent K e) :
-    LinearIndependent ℤ (fun p : Free.ChooseBasisIndex ℤ (𝓞 K) × ι' =>
-        ρ (integralBasis K p.1 • e p.2)) := by
-  have hω : LinearIndependent ℤ (integralBasis K) := by
-    first
-    | exact (integralBasis K).linearIndependent.restrict_scalars (by intro a b h; simpa using h)
-    | exact (integralBasis K).linearIndependent.restrict_scalars'
-  have he' : LinearIndependent ℤ (fun p : Free.ChooseBasisIndex ℤ (𝓞 K) × ι' =>
-      integralBasis K p.1 • e p.2) :=
-    linearIndependent_smul hω he
-  exact he'.map' ρ.toIntLinearMap (LinearMap.ker_eq_bot.2 hρ)
+alias linIndep_int := _root_.Formalism.HN.PlaceLattice.linIndep_int
 
 theorem zl_mono {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] (ρ : V →+ E) {N L : Submodule (𝓞 K) V} (h : N ≤ L) :

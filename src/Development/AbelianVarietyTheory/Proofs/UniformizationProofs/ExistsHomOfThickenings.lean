@@ -72,10 +72,7 @@ def Carries (φ : X' ⟶ X) {H : LB X} {H' : LB X'} (w : LB.Iso H' (H.pull φ)) 
   ∀ j z (k : H.ι) (k' : H'.ι), φ z ∈ H.U k → z ∈ H'.U k' →
     gs φ z _ ((s j).f k) = (Geo.Tor.gw w (𝟙 _) z k k').val * gs (𝟙 _) z _ ((s' j).f k')
 
-theorem gs_stalk (r : X'' ⟶ X') (q : X' ⟶ X) (z : X'') (W : X.Opens) (h : q (r z) ∈ W)
-    (a : Γ(X, W)) : (r.stalkMap z).hom (gs q (r z) W a) = gs (r ≫ q) z W a := by
-  rw [gs_eq q (r z) W h, gs_eq (r ≫ q) z W h]
-  exact Scheme.Hom.germ_stalkMap_apply r (q ⁻¹ᵁ W) z h _
+alias gs_stalk := _root_.GlobalTheory.Unif.PolyStep.gs_stalkMap
 
 theorem Carries.at {φ : X' ⟶ X} {H : LB X} {H' : LB X'} {w : LB.Iso H' (H.pull φ)} {s : κ → LB.Sec H}
     {s' : κ → LB.Sec H'} (h : Carries φ w s s') (r : X'' ⟶ X') (j : κ) (z : X'') (k : H.ι) (k' : H'.ι)

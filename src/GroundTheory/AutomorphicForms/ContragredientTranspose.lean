@@ -75,11 +75,6 @@ theorem isIrreducible_comp {G : Type*} [Group G] {V : Type*} [AddCommGroup V] [M
     Representation.IsIrreducible (ρ.comp α.toMonoidHom) :=
   (OrderIso.isSimpleOrder_iff (subrepCompOrderIso ρ α)).2 inferInstance
 
-theorem map_thetaT_eq [MeasurableSpace (GL (Fin n) F)] [BorelSpace (GL (Fin n) F)]
-    (μ : Measure (GL (Fin n) F)) [μ.IsHaarMeasure] :
-    μ.map (thetaT : GL (Fin n) F ≃* GL (Fin n) F) = μ :=
-  _root_.GroundTheory.Variant₂.N1.map_thetaT_eq_self μ
-
 theorem nonempty_equiv_contragredient {V : Type*} [AddCommGroup V] [Module ℂ V]
     (π : Representation ℂ (GL (Fin n) F) V) (hπ : IsAdmissible π) [π.IsIrreducible] :
     Nonempty ((contragredient π).Equiv
@@ -96,7 +91,7 @@ theorem nonempty_equiv_contragredient {V : Type*} [AddCommGroup V] [Module ℂ V
   apply nonempty_equiv_of_distChar_eq (μ := μ) (isAdmissible_contragredient hπ)
     (isAdmissible_comp _ hc hc' hπ)
   refine LinearMap.ext fun f => ?_
-  rw [distChar_contragredient, distChar_comp μ _ hc hc' (map_thetaT_eq μ) hπ]
+  rw [distChar_contragredient, distChar_comp μ _ hc hc' (_root_.GroundTheory.Variant₂.N1.map_thetaT_eq_self μ) hπ]
   have e : compHomeoL (mulEquivHomeo (thetaT : GL (Fin n) F ≃* GL (Fin n) F) hc hc').symm f =
       compHomeoL transposeHomeo (compHomeoL (Homeomorph.inv (GL (Fin n) F)) f) :=
     Subtype.ext (funext fun x => rfl)

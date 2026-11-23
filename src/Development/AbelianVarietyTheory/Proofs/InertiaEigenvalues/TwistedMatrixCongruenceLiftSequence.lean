@@ -57,16 +57,7 @@ open scoped Formalism.Per NNReal
 
 namespace GlobalTheory.BKLim.LimLink
 
-theorem dvd_iff_map_eq {R : Type*} [CommRing R] {p q : Type*} (a : R) (A B : Matrix p q R) :
-    (∀ i j, a ∣ (A - B) i j) ↔
-      A.map (Ideal.Quotient.mk (Ideal.span {a})) = B.map (Ideal.Quotient.mk (Ideal.span {a})) := by
-  first
-  | exact @_root_.GlobalTheory.DvdSubMapMk.dvd_sub_iff_map_mk_eq
-  | exact _root_.GlobalTheory.DvdSubMapMk.dvd_sub_iff_map_mk_eq
-  | (apply _root_.GlobalTheory.DvdSubMapMk.dvd_sub_iff_map_mk_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DvdSubMapMk.dvd_sub_iff_map_mk_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DvdSubMapMk.dvd_sub_iff_map_mk_eq <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.DvdSubMapMk.dvd_sub_iff_map_mk_eq ..)
+alias dvd_iff_map_eq := _root_.GlobalTheory.DvdSubMapMk.dvd_sub_iff_map_mk_eq
 
 theorem map_smul_ringHom {R S : Type*} [CommRing R] [CommRing S] {p q : Type*} (f : R →+* S) (r : R)
     (A : Matrix p q R) : (r • A).map f = f r • A.map f := by

@@ -87,11 +87,6 @@ private theorem infinite_places (E : Type) [Field E] [NumberField E] :
   exact ⟨⟨Q, hQ.isPrime, Ideal.ne_bot_of_liesOver_of_ne_bot v.ne_bot Q⟩,
     HeightOneSpectrum.ext hl.over.symm⟩
 
-theorem exists_smul_mem_lattice {E : Type} [Field E] [NumberField E] {n : ℕ}
-    (B : Submodule (𝓞 E) (Sp E n)) (hB : Submodule.IsFullLattice E B) (x : Sp E n) :
-    ∃ r ∈ nonZeroDivisors (𝓞 E), r • x ∈ B :=
-  _root_.GlobalTheory.SmulMemOfIsLattice.exists_smul_mem_of_isLattice B hB x
-
 theorem exists_pow_smul_le_of_localization_eq {E : Type} [Field E] [NumberField E] {n : ℕ}
     (P : HeightOneSpectrum (𝓞 E)) (A B : Submodule (𝓞 E) (Sp E n)) (hA : A.FG)
     (hB : Submodule.IsLattice E B)

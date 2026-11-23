@@ -161,7 +161,7 @@ open GlobalTheory.EtFFApprox in
 theorem GlobalTheory.EtC.etFF_filtered_colimit_finiteType : ∀ (A B : CommRingCat.{0}) (g : A ⟶ B), EtFF g → ∃ (J : Type) (_ : SmallCategory J) (_ : IsFiltered J) (D : J ⥤ Arrow CommRingCat.{0}) (ι : D ⟶ (Functor.const J).obj (Arrow.mk g)), Nonempty (IsColimit (Cocone.mk (Arrow.mk g) ι)) ∧ ∀ j, EtFF (D.obj j).hom ∧ Algebra.FiniteType ℤ (D.obj j).left ∧ Algebra.FiniteType ℤ (D.obj j).right := by
   intro A B g hg
   obtain ⟨J, _, _, D0, ι0, ⟨hc⟩, hft⟩ := GlobalTheory.FiniteTypeColimit.exists_filtered_colimit_finiteType A
-  obtain ⟨j, B', g', h, hg', hP⟩ := GlobalTheory.T.etaleFaithfullyFlat_descends_of_isColimit J D0 (Cocone.mk A ι0) hc B g hg
+  obtain ⟨j, B', g', h, hg', hP⟩ := _root_.GlobalTheory.EtC.etFF_descends_of_isColimit J D0 (Cocone.mk A ι0) hc B g hg
   have hb := GlobalTheory.EtC.etFF_basic
   haveI := hb.1.2.1
   have hP' : IsPushout g' (ι0.app j) h g := hP

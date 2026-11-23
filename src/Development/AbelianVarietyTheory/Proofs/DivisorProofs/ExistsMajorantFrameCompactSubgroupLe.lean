@@ -78,7 +78,7 @@ theorem exists_frame_le_majCpt : ∀ (F E : Type) [Field F] [NumberField F] [Fie
         (continuous_projArch σ J w))).matrix_map (GlobalTheory.Orb.continuous_infEmb τ)
     have hφ : Continuous φ := Units.continuous_iff.2 ⟨hcv, by
       simp only [← map_inv]; exact hcv.comp continuous_inv⟩
-    obtain ⟨P, hPh, hPpos, hPinv⟩ := GlobalTheory.T.exists_posDef_hermitian_invariant_of_isCompact (K.map φ) (by rw [Subgroup.coe_map]; exact hK.image hφ)
+    obtain ⟨P, hPh, hPpos, hPinv⟩ := _root_.GlobalTheory.CompactAvg.exists_invariant_posDef_hermitian (K.map φ) (by rw [Subgroup.coe_map]; exact hK.image hφ)
     have hG : (J.map τ.1).IsHermitian := by
       ext i j
       exact (h.2.2.2 τ.1 _).symm.trans (congrArg _ (hJ.1 i j))

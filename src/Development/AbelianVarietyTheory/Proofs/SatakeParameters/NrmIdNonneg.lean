@@ -127,9 +127,6 @@ theorem rhoVal_holds (D : D7) {u : D.what₂.Word} (C : ColumnChain D.R D.what�
   exact ⟨val_of D _ _ lam t h z hp a1 (fun k hk => by obtain ⟨n, hn, x, -⟩ := b k hk; exact ⟨n, hn, x⟩) (c z).1,
     val_of D _ _ lam t h z hp a2 (fun k hk => by obtain ⟨n, hn, -, x⟩ := b k hk; exact ⟨n, hn, x⟩) (c z).2⟩
 
-theorem isUltra (p : ℕ) [Fact p.Prime] : IsUltrametricDist ℂ_[p] :=
-  IsUltrametricDist.isUltrametricDist_of_isNonarchimedean_norm (PadicComplex.isNonarchimedean p)
-
 theorem norm_le_one_of_int {K : Type} [NormedField K] [IsUltrametricDist K] (x : K)
     (hx : IsIntegral ℤ x) : ‖x‖ ≤ 1 := by
   have h1 : IsIntegral (NormedField.valuation (K := K)).integer x := hx.tower_top
@@ -201,7 +198,7 @@ theorem nrmId_pow (D : D7) {p : ℕ} [Fact p.Prime] (lam : Qbar →+* ℂ_[p]) (
     nrmId D lam τ 𝔞 ^ h = ‖lamC lam (embT D τ z)‖ := by
   unfold nrmId
   simp only [lamC_embT]
-  haveI := isUltra p
+  haveI := _root_.PadicComplex.isUltrametricDist p
   exact nu_pow (psiT D lam τ) 𝔞 h h0 z e
 
 theorem nrmId_nonneg (D : D7) {p : ℕ} [Fact p.Prime] (lam : Qbar →+* ℂ_[p]) (τ : D.what₂.Tau) (𝔞 : IdE D) :

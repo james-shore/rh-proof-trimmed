@@ -81,7 +81,7 @@ theorem psi_zero_rig_const : ∀ (V : Type) [CommRing V] [IsDomain V] (D : DegPr
         (TF (R := V) (FractionRing V)).hom hJ hJ').trans ?_
       rw [Fintype.prod_unique, zpow_one]; rfl
     have e : jFK (R := V) (FractionRing V) ≫ ptK (D.c 0) = (TF (R := V) (FractionRing V)).hom ≫ eSec D.P.A := by
-      rw [GlobalTheory.Poinc.ThetaOne.c_zero]
+      rw [_root_.GlobalTheory.IndivisibleSection.c_zero_eq_one]
       rfl
     simp only [e] at a₁
     rw [GlobalTheory.UT.CoefBasic.cst_eq, hc]

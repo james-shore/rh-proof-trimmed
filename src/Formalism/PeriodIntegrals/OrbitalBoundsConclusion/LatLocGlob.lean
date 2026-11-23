@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem latLocGlob : PI.LatLocGlob.LatLocGlob := PI.LatLocGlob.Proof.latLocGlob_core
+alias latLocGlob := _root_.PI.LatLocGlob.Proof.latLocGlob_core

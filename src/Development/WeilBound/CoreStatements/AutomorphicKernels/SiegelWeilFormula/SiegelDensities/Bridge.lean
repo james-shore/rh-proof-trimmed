@@ -75,14 +75,10 @@ theorem eSp_eq (v : HeightOneSpectrum (𝓞 F)) :
   unfold eR PositivityTheory.SiegelWeilFormula.Gen.eSp
   split_ifs <;> simp
 
-theorem one_le_absNorm (v : HeightOneSpectrum (𝓞 F)) : (1 : ℝ) ≤ (Ideal.absNorm v.asIdeal : ℝ) := by
-  have h : Ideal.absNorm v.asIdeal ≠ 0 := fun h0 => v.ne_bot (Ideal.absNorm_eq_zero_iff.1 h0)
-  exact_mod_cast Nat.one_le_iff_ne_zero.2 h
-
 theorem cfac_eq (v : HeightOneSpectrum (𝓞 F)) :
     (((cfac E v : ℝ≥0) : ℝ) : ℂ) = (1 - PositivityTheory.SiegelWeilFormula.Gen.eSp E v / (Ideal.absNorm v.asIdeal : ℂ))⁻¹ := by
   obtain ⟨h1, h2⟩ := eSp_eq (E := E) v
-  have hq := one_le_absNorm v
+  have hq := _root_.GlobalTheory.CompanionTheory.SW.GoodMass.absNorm_one_le v
   have hq0 : (0 : ℝ) < (Ideal.absNorm v.asIdeal : ℝ) := by linarith
   have hr : 0 ≤ 1 - eR E v / (Ideal.absNorm v.asIdeal : ℝ) := by
     rcases h2 with h | h <;> rw [h]

@@ -161,7 +161,7 @@ theorem bd_of_opOf {M H : Type} [AddCommGroup M] [Module ℂ M] [NormedAddCommGr
       rw [e2, smul_mul_smul_comm, mul_comm]
   have hκ0 : 0 ≤ ∑ r ∈ m.roots.toFinset, ‖r‖ := Finset.sum_nonneg fun _ _ => norm_nonneg _
   refine ⟨_, hκ0, fun x hx => ?_⟩
-  have h := GlobalTheory.T.skew_operator_bounded_by_polynomial_roots M H ι hι S hS m hm _ hκ0
+  have h := _root_.GlobalTheory.CompanionTheory.SkewSpec.norm_le_of_aeval_eq_zero M H ι hι S hS m hm _ hκ0
     (fun r hr => Finset.single_le_sum (f := fun r : ℂ => ‖r‖) (fun _ _ => norm_nonneg _)
       (Multiset.mem_toFinset.2 hr)) x (by
       rw [hmS L, LinearMap.smul_apply, hx, smul_zero])

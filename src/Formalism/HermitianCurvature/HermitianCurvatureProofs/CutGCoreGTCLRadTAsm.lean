@@ -83,7 +83,7 @@ theorem radial_torus_of_jets_taylor : GTCLRadTOfCut := by
   rintro Φ ⟨c, ζ0⟩ hq
   have hc : c ∈ OmX P.r := hq.1
   have hζ0 : ζ0 ∈ RadTA.Ann Bs.z Bs.z' := hq.2
-  have hmem := Formalism.FourierDecayAlt.P.radical_reduction_mem Wp Wq P.k P.r Bs.z Bs.z' Bs.μsec Bs.π Bs.π' hB
+  have hmem := _root_.Formalism.FourierDecayAlt.P.NFRadRedA.radRedMem Wp Wq P.k P.r Bs.z Bs.z' Bs.μsec Bs.π Bs.π' hB
     (Φ : Q.Fn P.k P.r (Wq →L[ℂ] Wp)) Φ.2
   set ψ : ℂ → (Wq →L[ℂ] Wp) := fun ζ => NF.radR P.k P.r Bs.z Bs.z' Bs.μsec (Φ : Q.Fn P.k P.r (Wq →L[ℂ] Wp)) (c, ζ)
     with hψdef

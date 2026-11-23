@@ -93,7 +93,7 @@ theorem actual_operators_exist : Formalism.FourierDecayAlt.Q.ActualOpsExist :=
   actual_operators_from_parts operator_preserves_fusion_forms transfer_linear_local transfer_joint_smooth radial_operators
 
 theorem actual_adjointness : Formalism.FourierDecayAlt.Q.ActualAdjoint :=
-  actual_adjointness_from_hermitian hermitian_haar_invariance
+  actual_adjointness_from_hermitian _root_.qnHermHaar
 
 theorem actual_start : Formalism.FourierDecayAlt.Q.ActualStart :=
   actual_start_from_level_starts right_transfer_all_levels JacquetIntegral.detCore transfer_linear_local

@@ -83,6 +83,6 @@ theorem squareFlip_blockDiag_cols : ∀ {k : Type} [Field k] [ValuativeRel k] [T
     rw [← latA_blockLat]; exact hd
   unfold squareFlip
   rw [h1, h2, map_smul, Pi.smul_apply, smul_eq_mul,
-    GlobalTheory.T.inversePartialFourierSum_comp_fromBlocks ψ⁻¹ ϖ e hϖ (hasConductor_inv hψ) _ h3 M₁ hM₁ M₂ hM₂ X]
+    _root_.GlobalTheory.BlockSubstFourier.invFourierSum_comp_fromBlocks ψ⁻¹ ϖ e hϖ (hasConductor_inv hψ) _ h3 M₁ hM₁ M₂ hM₂ X]
 
 end GlobalTheory.SquareFlipCols

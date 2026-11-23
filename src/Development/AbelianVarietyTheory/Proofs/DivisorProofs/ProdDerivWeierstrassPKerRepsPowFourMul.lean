@@ -93,7 +93,7 @@ theorem prod_derivWeierstrassP_kerReps_pow_four_mul :
   have h2 := GlobalTheory.T.derivWeierstrassP_mul_prod_translate_of_kernel_reps L α S hα hst hS hev (z + b) (hshift b hb2)
   have h3 := GlobalTheory.T.derivWeierstrassP_mul_prod_translate_of_kernel_reps L α S hα hst hS hev (z + (a + b)) (hshift _ hab2)
   have hzz : 2 * z ∉ L.lattice := fun h => hz2 (hαc z h)
-  have hL0 := GlobalTheory.T.product_derivWeierstrassP_half_periods_discriminant L a b z haL hbL habL ha2 hb2 hzz
+  have hL0 := _root_.GlobalTheory.CMModel.prod_derivWeierstrassP_translates_eq_Δ L a b z haL hbL habL ha2 hb2 hzz
   have hLt : ∀ t ∈ S, L.derivWeierstrassP (z + t) * L.derivWeierstrassP (z + a + t)
       * L.derivWeierstrassP (z + b + t) * L.derivWeierstrassP (z + (a + b) + t)
         = (latticeCurve L).Δ := by
@@ -103,7 +103,7 @@ theorem prod_derivWeierstrassP_kerReps_pow_four_mul :
       apply hz2
       have := sub_mem (hαc _ h) (two _ (hS.1 t ht).1)
       convert this using 1; ring
-    have := GlobalTheory.T.product_derivWeierstrassP_half_periods_discriminant L a b (z + t) haL hbL habL ha2 hb2 h2t
+    have := _root_.GlobalTheory.CMModel.prod_derivWeierstrassP_translates_eq_Δ L a b (z + t) haL hbL habL ha2 hb2 h2t
     rw [← this, add_right_comm z a t, add_right_comm z b t, add_right_comm z (a + b) t]
   have hR := GlobalTheory.T.product_derivWeierstrassP_half_periods_discriminant L (α * a) (α * b) (α * z)
     (fun h => haL (GlobalTheory.T.not_mem_half_lattice_of_odd_multiplier L α a S hα hst hS hev h ha2))

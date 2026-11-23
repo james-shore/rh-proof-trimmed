@@ -308,7 +308,7 @@ theorem err_bound (hC : CountBd) (F : Type) [Field F] [NumberField F] (hF : IsTo
       intro x hx
       have hU' := Finset.prod_sdiff (f := fun v => g v (algebraMap F (Fv F v) x)) (hST.trans hU)
       have hT' := Finset.prod_sdiff (f := fun v => g v (algebraMap F (Fv F v) x)) hST
-      have hexp := GlobalTheory.T.finite_product_difference_bound _ (fun v => g v (algebraMap F (Fv F v) x)) (T \ S) (U \ S) hsub
+      have hexp := _root_.GlobalTheory.CompanionTheory.Mass.MeanV.abs_prod_sub_prod_le_sum_powerset _ (fun v => g v (algebraMap F (Fv F v) x)) (T \ S) (U \ S) hsub
       have hfac : G (θ δ * algebraMap F (Ainf F) x) *
           (∏ v ∈ U, g v (algebraMap F (Fv F v) x) - ∏ v ∈ T, g v (algebraMap F (Fv F v) x)) =
           (G (θ δ * algebraMap F (Ainf F) x) * ∏ v ∈ S, g v (algebraMap F (Fv F v) x)) *

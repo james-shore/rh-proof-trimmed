@@ -58,19 +58,6 @@ namespace GlobalTheory.TwV.Xc
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
-theorem exists_nat_mul_isIntegral (e : E) : ∃ n : ℕ, 0 < n ∧ IsIntegral ℤ ((n : E) * e) := by
-  obtain ⟨y, hy0, hy⟩ := exists_integral_multiples ℤ ℚ (L := E) {e}
-  have h := hy e (Finset.mem_singleton_self e)
-  have hpos : 0 < y.natAbs := Int.natAbs_pos.2 hy0
-  refine ⟨y.natAbs * y.natAbs, Nat.mul_pos hpos hpos, ?_⟩
-  have e1 : ((y.natAbs * y.natAbs : ℕ) : E) * e = (y : E) * ((y : E) * e) := by
-    have h2 := Int.natAbs_mul_self' y
-    rw [← mul_assoc, ← Int.cast_natCast, Nat.cast_mul, h2, Int.cast_mul]
-  rw [e1]
-  rw [zsmul_eq_mul] at h
-  refine IsIntegral.mul ?_ h
-  simpa using (isIntegral_algebraMap (R := ℤ) (A := E) (x := y))
-
 theorem exists_common_nat {M : Type} [AddCommMonoid M] {ι : Type} [Fintype ι] (S : AddSubmonoid M) (x : ι → M)
     (h : ∀ i, ∃ n : ℕ, 0 < n ∧ n • x i ∈ S) : ∃ n : ℕ, 0 < n ∧ ∀ i, n • x i ∈ S := by
   classical
@@ -84,7 +71,7 @@ theorem exists_nat_mul_mem_intAf (z : E ⊗[F] 𝔸ᶠ[F]) :
   induction z using TensorProduct.induction_on with
   | zero => exact ⟨1, one_pos, by rw [mul_zero]; exact zero_mem _⟩
   | tmul e a =>
-    obtain ⟨n, hn, he⟩ := exists_nat_mul_isIntegral e
+    obtain ⟨n, hn, he⟩ := _root_.GlobalTheory.NatMulIsIntegralSatakeParameters.exists_nat_mul_isIntegral e
     obtain ⟨d, hd, ha⟩ := GlobalTheory.HolDict.ShortVec.exists_denom_adele (F := F) a
     refine ⟨n * d, Nat.mul_pos hn hd, ?_⟩
     have e1 : ((n * d : ℕ) : E ⊗[F] 𝔸ᶠ[F]) * (e ⊗ₜ[F] a) =
@@ -105,18 +92,6 @@ theorem exists_nat_mul_mem_intAf (z : E ⊗[F] 𝔸ᶠ[F]) :
     rw [e1]
     exact add_mem (mul_mem (natCast_mem _ _) hx) (mul_mem (natCast_mem _ _) hy)
 
-theorem exists_nsmul_mem_of_mem_span {N : ℕ} (Lb : Submodule (𝓞 E) (Fin N → E)) {v : Fin N → E}
-    (hv : v ∈ Submodule.span E (Lb : Set (Fin N → E))) : ∃ n : ℕ, 0 < n ∧ n • v ∈ Lb := by
-  first
-  | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact @_root_.GlobalTheory.NatMulIsIntegralSatakeParameters.exists_nsmul_mem
-  | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact _root_.GlobalTheory.NatMulIsIntegralSatakeParameters.exists_nsmul_mem
-  | exact @_root_.GlobalTheory.NatMulIsIntegralSatakeParameters.exists_nsmul_mem
-  | exact _root_.GlobalTheory.NatMulIsIntegralSatakeParameters.exists_nsmul_mem
-  | (apply _root_.GlobalTheory.NatMulIsIntegralSatakeParameters.exists_nsmul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NatMulIsIntegralSatakeParameters.exists_nsmul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NatMulIsIntegralSatakeParameters.exists_nsmul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NatMulIsIntegralSatakeParameters.exists_nsmul_mem ..)
-
 end GlobalTheory.TwV.Xc
 
 namespace GlobalTheory.TwV.Xc
@@ -130,7 +105,7 @@ theorem exists_nsmul_mem_hatL {N : ℕ} (Lb : Submodule (𝓞 E) (Fin N → E))
     ∃ n : ℕ, 0 < n ∧ n • z ∈ Formalism.L2.Herm.hatL (F := F) Lb := by
   classical
   obtain ⟨d₁, hd₁, h₁⟩ := exists_common_nat Lb.toAddSubmonoid (fun i : Fin N => (Pi.single i (1 : E) : Fin N → E))
-    fun i => exists_nsmul_mem_of_mem_span Lb (by rw [hspan]; exact Submodule.mem_top)
+    fun i => _root_.GlobalTheory.NatMulIsIntegralSatakeParameters.exists_nsmul_mem Lb (by rw [hspan]; exact Submodule.mem_top)
   obtain ⟨d₂, hd₂, h₂⟩ := exists_common_nat (Formalism.L2.Herm.intAf F E).toAddSubgroup.toAddSubmonoid z
     fun i => by
       obtain ⟨n, hn, h⟩ := exists_nat_mul_mem_intAf (F := F) (E := E) (z i)

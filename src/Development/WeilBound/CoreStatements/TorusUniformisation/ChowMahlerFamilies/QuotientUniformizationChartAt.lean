@@ -124,13 +124,13 @@ theorem PositivityTheory.Xgn.quotient_uniformization_chart_at : ∀ (E : Type) [
   have hhol : IsHolTo (Metric.ball 0 1) p := GlobalTheory.T.holomorphic_coords_of_generic_point 𝔐.X Ω 𝔐.ξ K J y htie hall n _ w p Metric.isOpen_ball hw hp
   haveI : FiniteDimensional ℚ c.F := c.fin
   haveI : NumberField c.F := ⟨⟩
-  obtain ⟨τ, hτ⟩ := GlobalTheory.T.holomorphic_disc_over_number_field_ring c.F 𝔐.X (𝔐.f ≫ Y.s) n p hhol
+  obtain ⟨τ, hτ⟩ := _root_.GlobalTheory.CompanionTheory.Ar.ConstEmbedding.exists_embedding c.F 𝔐.X (𝔐.f ≫ Y.s) n p hhol
   have hint : ∀ u ∈ Flat.punct n a 1, 𝔐.Interior (p u) := fun u hu => hI u hu _ (hp u hu.1)
   have hlat : ∀ k : Fin N, s k ∈ 𝔐.M.lat ⟨centre z₀, hall _⟩ := fun k => by
     obtain ⟨_, _, v', hext, _⟩ := hval k
     exact Submodule.subset_span ⟨v', hext⟩
   have hsm : Smooth 𝔐.t.G.hom := 𝔐.t.semi.smooth
-  obtain ⟨W, hW, v, hq, htan, hv⟩ := GlobalTheory.T.lattice_tangent_vectors_affine_open 𝔐.X 𝔐.t.G Ω 𝔐.ξ 𝔐.Li 𝔐.M ⟨centre z₀, hall _⟩ N
+  obtain ⟨W, hW, v, hq, htan, hv⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HodgeMetric.FrameExt.exists_affine_frame 𝔐.X 𝔐.t.G Ω 𝔐.ξ 𝔐.Li 𝔐.M ⟨centre z₀, hall _⟩ N
     s 𝔐.tie.gen hlat
   have hW0 : ⊤ ≤ p 0 ⁻¹ᵁ W := fun x _ => by
     have : x = IsLocalRing.closedPoint ℂ := Subsingleton.elim _ _

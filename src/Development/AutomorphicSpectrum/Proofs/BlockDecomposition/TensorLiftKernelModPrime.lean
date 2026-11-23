@@ -221,10 +221,6 @@ theorem hK (A : PAlg l) (s : Finset ℕ) (w : ℕ → A.W)
   obtain ⟨t, ht⟩ := Ideal.mem_span_singleton'.1 ((A.mem_span_l_iff _).2 hz)
   exact Ideal.mem_span_pair.2 ⟨WittVector.teichmuller l b, t, by rw [ht]; ring⟩
 
-theorem natCast_acr (A : PAlg l) : (l : A.Acr 1) = 0 := by
-  have := A.pow_l_acr 1
-  rwa [pow_one] at this
-
 theorem main : ∀ {l : ℕ} [Fact l.Prime] (A : PAlg l) (z : TensorProduct (Ainf l) (Acris l) A.W),
     Algebra.TensorProduct.lift (IsScalarTower.toAlgHom (Ainf l) (Acris l) (A.Acr 1))
       (IsScalarTower.toAlgHom (Ainf l) A.W (A.Acr 1)) (fun _ _ => Commute.all _ _) z = 0 →
@@ -232,7 +228,7 @@ theorem main : ∀ {l : ℕ} [Fact l.Prime] (A : PAlg l) (z : TensorProduct (Ain
   intro l _ A z hz
   exact generic (R := Ainf l) (S := Acris l) (W := A.W) (C := A.Acr 1) l (fun k => d (l * k)) r0
     (IsScalarTower.toAlgHom (Ainf l) (Acris l) (A.Acr 1)) (IsScalarTower.toAlgHom (Ainf l) A.W (A.Acr 1))
-    hsurj (fun k => hv _) (fun s w h k hk => hK A s w h k hk) (natCast_acr A) z hz
+    hsurj (fun k => hv _) (fun s w h k hk => hK A s w h k hk) (_root_.GlobalTheory.CompanionTheory.PerfFil.Expand.natCast_l_acr A) z hz
 
 end Specific
 

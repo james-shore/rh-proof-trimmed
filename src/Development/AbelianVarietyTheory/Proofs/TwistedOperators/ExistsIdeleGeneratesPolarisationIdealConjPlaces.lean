@@ -79,7 +79,7 @@ theorem exists_isGen : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (hn : T.rank ≤
       ∀ x : WO S T, IsHalf (cA D e) x → x ∈ hatA S T (tens (stdL D.host.E S.rank) L1) →
         incA D c • x ∈ hatA S T (tens (stdL D.host.E S.rank) L2) := by
     intro L1 L2 c hc x hx hxm
-    have h3 := GlobalTheory.T.incA_smul_mem_adelicCompletionMatrixGroup D S T _ L1 L2 _ hc x hxm
+    have h3 := _root_.GlobalTheory.HatScalar.incA_smul_mem_hatA D S T _ L1 L2 _ hc x hxm
     have h4 := smul_mem_hatA_of_int (fun o y hy => HatLat.smul_mem_tens _ _ o hy) ht h3
     convert h4 using 1
     ext i j
@@ -104,7 +104,7 @@ theorem exists_isGen : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (hn : T.rank ≤
       _ = e := by rw [hu, mul_one, hee]
   intro x hx
   have hadj : adjA S T βS βT (e * incA D (star γ⁻¹)) x = adjA S T βS βT 1 (incA D γ⁻¹ • x) :=
-    GlobalTheory.T.ideleFrameAdjointMatrix_half_idempotent_smul D S T βS βT e γ⁻¹ x hx
+    _root_.GlobalTheory.AdjScalar.adjA_half_smul D S T βS βT e γ⁻¹ x hx
   have hy : IsHalf (cA D e) (incA D γ⁻¹ • x) := by
     intro i j
     simp only [Matrix.smul_apply, smul_eq_mul]

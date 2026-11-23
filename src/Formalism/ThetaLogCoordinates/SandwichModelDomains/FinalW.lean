@@ -51,16 +51,7 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.InvariantFactorPaths.INST.Top
 
-theorem spreadTop : SpreadTop := spread_top_holds
-theorem spreadSquare : SpreadSquare := spread_square_holds
-theorem rowGlOne : RowGlOne := gl_one_first_line_action
-theorem rowGlDiv : RowGlDiv := gl_first_line_divided_powers
-theorem swpWt : SwpWt := swap_weight_compat
-theorem swpPol : SwpPol := swap_polynomial_compat
-theorem swpInt : SwpInt := swpInt_statement
-theorem coreQp : CoreQp := coreQp_of rowGlOne rowGlDiv swpWt swpPol swpInt
-theorem descentZ : DescentZ := descent_over_integers
-theorem ascentDomain : AscentDomain := ascent_domain_holds
+theorem coreQp : CoreQp := coreQp_of _root_.Formalism.InvariantFactorPaths.INST.gl_one_first_line_action _root_.Formalism.InvariantFactorPaths.INST.gl_first_line_divided_powers _root_.Formalism.InvariantFactorPaths.INST.swap_weight_compat _root_.Formalism.InvariantFactorPaths.INST.swap_polynomial_compat _root_.Formalism.InvariantFactorPaths.INST.swpInt_statement
 theorem unitsOfLocal : UnitsOfLocal := by
   intro p hp O _ _ hpu c hc
   by_contra hcu
@@ -84,13 +75,13 @@ theorem sandwichZp : SandwichZp := by
   intro p hp r n hn ν hν l hL x hx
   have hS : Spread (Padic p) r n ν l := by
     rcases hL with h | ⟨rfl, h⟩
-    · exact spreadTop _ r n ν l h
-    · exact spreadSquare _ _ ν l h
+    · exact _root_.Formalism.InvariantFactorPaths.INST.spread_top_holds _ r n ν l h
+    · exact _root_.Formalism.InvariantFactorPaths.INST.spread_square_holds _ _ ν l h
   exact coreQp p r n hn ν hν l hS x hx
 theorem sandwichZ : SandwichZ := by
   intro p hp r n hn ν hν l hL f hf
-  exact descentZ p r n hn ν hν (sExp p r l) (sandwichZp p r n hn ν hν l hL) f hf
-theorem sandwichDomain : SandwichDomain := sandwichDomain_of sandwichZ ascentDomain
+  exact _root_.Formalism.InvariantFactorPaths.INST.descent_over_integers p r n hn ν hν (sExp p r l) (sandwichZp p r n hn ν hν l hL) f hf
+theorem sandwichDomain : SandwichDomain := sandwichDomain_of sandwichZ _root_.Formalism.InvariantFactorPaths.INST.ascent_domain_holds
 theorem sandwichLocal : SandwichLocal := by
   intro p hp r n hn ν hν l hL O _ _ _ hpu
   exact sandwichDomain p r n hn ν hν l hL O (unitsOfLocal p O hpu)

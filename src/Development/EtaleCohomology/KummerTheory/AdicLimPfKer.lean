@@ -50,10 +50,6 @@ universe u
 
 namespace LateralTheory.KummerTheory.KerPf
 
-theorem seqSec (S : ℕ → Type u) [∀ a, Finite (S a)] [∀ a, Nonempty (S a)] (t : ∀ a, S (a + 1) → S a) :
-    ∃ s : ∀ a, S a, ∀ a, t a (s (a + 1)) = s a :=
-  _root_.UpperTheory.Reformulated.B.DYra4.main S t
-
 variable (l : ℕ) [Fact l.Prime]
 
 theorem redk (hA : A11) (E : Spc) (n i : ℤ) (x : Hl l E n i) (m : ℕ) :
@@ -83,7 +79,7 @@ theorem ker (hA : A11) (E : Spc) (i : ℤ) (hB : ∀ b, BockData l b E i)
     exact ⟨⟨w, hw⟩⟩
   let t : ∀ a, S (a + 1) → S a := fun a w => ⟨red (l ^ (a + 1)) (l ^ a) E n i w.1, by
     rw [← (h a n).2.2.2.2.2 w.1, w.2]; exact x.2 (b + a)⟩
-  obtain ⟨s, hs⟩ := seqSec S t
+  obtain ⟨s, hs⟩ := _root_.UpperTheory.Reformulated.B.DYra4.main S t
   let y : Hl l E n i := ⟨fun a => (s a).1, fun a => congrArg Subtype.val (hs a)⟩
   refine ⟨y, ?_⟩
   have e : ((l : ℤ_[l]) ^ b) • y = (l ^ b : ℕ) • y := by

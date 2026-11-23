@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsArcIsometryTorsionIntegralGauge
 
 @[expose] public section
 
@@ -150,7 +151,7 @@ theorem kummer_eq_dlog_one : ∀ (l : ℕ) [Fact l.Prime], l ≠ 2 → ∃ c : �
   have hV0 : V ≠ 0 := by
     rintro rfl
     exact hu0 (by rw [← hV, zero_pow (hpos m).ne'])
-  have hVA : V ∈ A := mem_of_pow_mem A (hpos m).ne' (hV ▸ hu)
+  have hVA : V ∈ A := _root_.GlobalTheory.Ex.ArcLift.mem_of_pow_mem A (hpos m).ne' (hV ▸ hu)
   have hVA' : V⁻¹ ∈ A := mem_of_pow_mem A (hpos m).ne' (by rw [inv_pow, hV]; exact hu')
   obtain ⟨α, hα⟩ := GlobalTheory.T.sq_prime_smul_kaehlerDerivation_eq_smul_rootOfUnity l hl2 Ω A hA ⟨V, hVA⟩
   obtain ⟨Z, hZ⟩ := IsAlgClosed.exists_pow_nat_eq ζ' (hpos α)
@@ -165,9 +166,9 @@ theorem kummer_eq_dlog_one : ∀ (l : ℕ) [Fact l.Prime], l ≠ 2 → ∃ c : �
     have h3 := orderOf_eq_prime_pow h1 h2
     have h4 := IsPrimitiveRoot.orderOf Z
     rwa [h3] at h4
-  have hZA : Z ∈ A := mem_of_pow_mem A (hpos (α + m + m)).ne' (by rw [hZp.pow_eq_one]; exact A.one_mem)
+  have hZA : Z ∈ A := _root_.GlobalTheory.Ex.ArcLift.mem_of_pow_mem A (hpos (α + m + m)).ne' (by rw [hZp.pow_eq_one]; exact A.one_mem)
   have hζA : ζ ∈ A := hZζ ▸ pow_mem hZA _
-  have hζA' : ζ⁻¹ ∈ A := mem_of_pow_mem A (hpos m).ne' (by rw [inv_pow, hζ.pow_eq_one, inv_one]; exact A.one_mem)
+  have hζA' : ζ⁻¹ ∈ A := _root_.GlobalTheory.Ex.ArcLift.mem_of_pow_mem A (hpos m).ne' (by rw [inv_pow, hζ.pow_eq_one, inv_one]; exact A.one_mem)
   have hζ0 : ζ ≠ 0 := hζ.ne_zero (hpos m).ne'
   set VA : A := ⟨V, hVA⟩
   set ZA : A := ⟨Z, hZA⟩
@@ -201,7 +202,7 @@ theorem kummer_eq_dlog_one : ∀ (l : ℕ) [Fact l.Prime], l ≠ 2 → ∃ c : �
     rw [h2, map_mul, map_pow, hsζ] at hsv
     exact mul_left_cancel₀ (pow_ne_zero j hζ0) (by rw [hsv]; ring)
   obtain ⟨c, -, hc⟩ := hZp.eq_pow_of_pow_eq_one (ξ := s Z) (by rw [← map_pow, hZp.pow_eq_one, map_one])
-  have htr := GlobalTheory.T.inertia_transports_kaehler_relations_over_invariants Ω A s hs ((l : A) ^ 2) VA y ZA ((l : A) ^ 2) ((ZA ^ l ^ (α + m)) ^ k.val * VA)
+  have htr := _root_.GlobalTheory.RecOne.transp_rel Ω A s hs ((l : A) ^ 2) VA y ZA ((l : A) ^ 2) ((ZA ^ l ^ (α + m)) ^ k.val * VA)
     ⟨s y, hsA _ y.2⟩ (ZA ^ c) (by simp) (by push_cast; rw [hZζ]; exact hsV.symm) rfl (by simpa using hc) hy
   obtain ⟨w₂, hw₂A, hw₂⟩ := GlobalTheory.T.annihilator_kaehlerDerivation_primitiveRoot l hl2 Ω A hA _ ZA hZp _ (rel_two (dA A) _ VA ZA y _ _ _ _ hy htr)
   have hw2 : (l : Ω) ^ 4 * (s y * (c : Ω) * s Z - Z * ζ ^ k.val * y -

@@ -67,18 +67,9 @@ theorem zero_member {e : ℕ} {X : Type} [TopologicalSpace X] (A : FinHolAtlas e
       IsRegFamily A Θ L s (LocPot.ofFun 0) 0 (fun _ => 0) C t₁ ∧ IsRegFamilyC2 A s 0 (fun _ => 0) :=
   GlobalTheory.T.zero_weight_regular_family A Θ L s C₅ C t₁ hΘ hΘp hs hC₅ hC ht₁ hte
 
-theorem eventually_isPsh {e : ℕ} {X : Type} [TopologicalSpace X] (A : FinHolAtlas e X)
-    (Θ L : LocPot X) (s : X → X → ℂ) (th : LocPot X) (ph : X → ℝ) (phT : ℝ → X → ℝ) (C t₀ : ℝ)
-    (hΘ : IsPotential A Θ) (hΘp : IsPosPot A Θ) (hth : IsPotential A th)
-    (hF : IsRegFamily A Θ L s th ph phT C t₀) :
-    ∀ᶠ t in nhdsWithin (0 : ℝ) (Set.Ioi 0), A.Smooth (phT t) ∧ IsPsh A (th + LocPot.ofFun (phT t) + Θ) :=
-  GlobalTheory.T.regular_family_eventually_smooth_psh A Θ L s th ph phT C t₀ hΘ hΘp hth hF
+alias eventually_isPsh := _root_.GlobalTheory.CompanionTheory.Ar.Giv.EvPsh.eventually_isPsh_add_pot
 
-theorem isPshOn_add_psh {e : ℕ} {X : Type} [TopologicalSpace X] (A : FinHolAtlas e X) (U : Set X)
-    (P : LocPot X) (f : X → ℝ) (Θ : LocPot X) (hU : IsOpen U) (hP : IsPotential A P)
-    (hΘ : IsPotential A Θ) (hf : A.SmoothOn U f) (hPf : IsPshOn A U (P + LocPot.ofFun f))
-    (hΘp : IsPsh A Θ) : IsPshOn A U (P + LocPot.ofFun f + Θ) :=
-  GlobalTheory.T.psh_add_psh_potential_on_open A U P f Θ hU hP hΘ hf hPf hΘp
+alias isPshOn_add_psh := _root_.GlobalTheory.CompanionTheory.Ar.PshAdd.isPshOn_add_psh
 
 theorem expand_mInt {e : ℕ} {X : Type} [TopologicalSpace X] [CompactSpace X] [T2Space X]
     (A : FinHolAtlas e X) (U : Set X) (P : Fin e → LocPot X) (f : Fin e → X → ℝ) (Θ : LocPot X)
@@ -92,12 +83,7 @@ theorem expand_mInt {e : ℕ} {X : Type} [TopologicalSpace X] [CompactSpace X] [
           LocPot.ofFun (if i ∈ T then f i else 0) + Θ) g :=
   GlobalTheory.T.mixed_integral_inclusion_exclusion_alt A U P f Θ g hU hnull hP hΘ hf hT
 
-theorem isPsh_of_isPosPot {e : ℕ} {X : Type} [TopologicalSpace X] (A : FinHolAtlas e X)
-    (Θ : LocPot X) (h : IsPosPot A Θ) : IsPsh A Θ := by
-  intro x j y hy w
-  by_cases hw : w = 0
-  · subst hw; rw [levi_zero]
-  · exact (h x j y hy w hw).le
+alias isPsh_of_isPosPot := _root_.ReciprocityTheory.AnForm.P.TailBoundAlt.isPsh_of_isPosPot
 
 theorem isPshOn_of_isPsh {e : ℕ} {X : Type} [TopologicalSpace X] (A : FinHolAtlas e X)
     (U : Set X) (P : LocPot X) (h : IsPsh A P) : IsPshOn A U P :=

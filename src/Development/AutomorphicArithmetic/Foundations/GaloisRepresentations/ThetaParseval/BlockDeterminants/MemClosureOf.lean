@@ -49,6 +49,7 @@ import Mathlib.Tactic.ReduceModChar
 public import Development.AbelianVarietyTheory.BlockTheory.AdelicCMFields.UnitaryHeckeCharacterIdele
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ContinuousInfiniteAdeleMap
 import Development.WeilBound.ThetaLifts.LatticeBasics.FarRight
+import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsNormalisedThetaSub
 
 @[expose] public section
 
@@ -80,7 +81,7 @@ private theorem conjAd_adeleMap (a : AF (maximalRealSubfield E)) :
     rw [GlobalTheory.IndefiniteRowSideFullHecke.UnitaryHeckeCharacterIdele.adeleMap_algebraMap, GlobalTheory.UnitaryBC.conjAd_algebraMap]
     congr 1
     exact (IsCMField.complexConj E).commutes k
-  have cc := GlobalTheory.BCT.GlobLev.continuous_conj_ad (E := E)
+  have cc := _root_.GlobalTheory.ThetaPull.continuous_conjAd (E := E)
   refine Prod.ext ?_ ?_
   · exact congrFun ((InfiniteAdeleRing.denseRange_algebraMap (maximalRealSubfield E)).equalizer
       (g := fun b => (GlobalTheory.UnitaryBC.conjAd E (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryHeckeCharacterIdele.infiniteAdeleMap (maximalRealSubfield E) E b, 0)).1)

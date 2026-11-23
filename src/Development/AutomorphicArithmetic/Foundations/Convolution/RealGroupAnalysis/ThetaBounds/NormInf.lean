@@ -94,12 +94,9 @@ private theorem rt_δ_neg (D : Dat F E) (v : InfinitePlace F) : TR.pInf F (rt D.
   rw [h]
   exact D.neg (InfinitePlace.embedding_of_isReal (IsTotallyReal.isReal v))
 
-private theorem conj_of_sq_neg {t : ℂ} {r : ℝ} (hr : r < 0) (h : t ^ 2 = (r : ℂ)) : (starRingEnd ℂ) t = -t :=
-  _root_.UpperTheory.Reformulated.B.Qh17.conj_of_sq_neg hr h
-
 private theorem pInf_rt_conj (D : Dat F E) (w : InfinitePlace E) :
     (starRingEnd ℂ) (GlobalTheory.CuspRep.pInf E (rt D.θ) w) = -GlobalTheory.CuspRep.pInf E (rt D.θ) w := by
-  refine conj_of_sq_neg (rt_δ_neg D (w.comap (algebraMap F E))) ?_
+  refine _root_.UpperTheory.Reformulated.B.Qh17.conj_of_sq_neg (rt_δ_neg D (w.comap (algebraMap F E))) ?_
   rw [← pInf_am, ← D.rt_θ_sq, map_pow]
   rfl
 
@@ -166,7 +163,7 @@ private theorem place_unique (D : Dat F E) {w w' : InfinitePlace E}
     rw [hsq, hsq]
     exact (congrArg (fun f : F →+* ℂ => f D.δ) he).symm
   have hneg : (starRingEnd ℂ) (w.embedding D.θ) = -w.embedding D.θ := by
-    refine conj_of_sq_neg (D.neg hreal.embedding) ?_
+    refine _root_.UpperTheory.Reformulated.B.Qh17.conj_of_sq_neg (D.neg hreal.embedding) ?_
     rw [hsq, ComplexEmbedding.IsReal.coe_embedding_apply]
     rfl
   have hreal_val : ∀ a : F, (starRingEnd ℂ) (w.embedding (algebraMap F E a)) = w.embedding (algebraMap F E a) := fun a =>

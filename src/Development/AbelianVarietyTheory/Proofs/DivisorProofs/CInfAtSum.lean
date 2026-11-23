@@ -89,7 +89,7 @@ theorem glue : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) (p : X ⟶ Sp k), Is
   intro k _ X p hp σ T m u h
   haveI : CompactSpace (CxPts p σ) := GlobalTheory.CxPts.compactSpace σ hp
   choose O v hO hx hv hu using h
-  choose χ hχ hχ0 hχx hχs using fun x => GlobalTheory.T.exists_smooth_bump_complexPoints_projective k X p hp σ x (O x) (hO x) (hx x)
+  choose χ hχ hχ0 hχx hχs using fun x => _root_.GlobalTheory.BumpPts.exists_cInf_bump k X p hp σ x (O x) (hO x) (hx x)
   have hc : ∀ x, Continuous (χ x) := fun x =>
     continuous_iff_continuousAt.2 fun z => (hχ x z).continuousAt
   obtain ⟨s, hs⟩ := isCompact_univ.elim_finite_subcover (fun x => {z | 0 < χ x z})

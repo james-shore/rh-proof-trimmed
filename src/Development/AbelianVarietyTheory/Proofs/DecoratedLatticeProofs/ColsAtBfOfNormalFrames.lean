@@ -71,10 +71,10 @@ theorem xi_unit {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace
     rwa [map_mul, hpe, one_mul] at h
   have heI := GlobalTheory.FinPl.LatIndHalf.e_mem_idAt q
   have heInt : q.e ∈ GlobalTheory.FinPl.intAt D (· = q.v) :=
-    (GlobalTheory.T.splitPlace_integralAdele_iff_both_components D k q q.e heI).2 ⟨by rw [hpe]; exact one_mem _, by rw [hpce]; exact zero_mem _⟩
+    (_root_.GlobalTheory.SplitInt.intAt_iff_pr D k q q.e heI).2 ⟨by rw [hpe]; exact one_mem _, by rw [hpce]; exact zero_mem _⟩
   obtain ⟨h1, h2⟩ := hU.1 q.e heInt
-  have a1 := ((GlobalTheory.T.splitPlace_integralAdele_iff_both_components D k q _ h1.1).1 h1).1
-  have a2 := ((GlobalTheory.T.splitPlace_integralAdele_iff_both_components D k q _ h2.1).1 h2).1
+  have a1 := ((_root_.GlobalTheory.SplitInt.intAt_iff_pr D k q _ h1.1).1 h1).1
+  have a2 := ((_root_.GlobalTheory.SplitInt.intAt_iff_pr D k q _ h2.1).1 h2).1
   rw [map_mul, hpe, mul_one] at a1 a2
   have hne : q.pr (incA D D.host.xi0) ≠ 0 := by
     intro h0

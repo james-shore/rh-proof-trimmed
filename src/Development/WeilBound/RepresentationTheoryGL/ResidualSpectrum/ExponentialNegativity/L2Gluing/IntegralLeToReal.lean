@@ -64,26 +64,9 @@ open GroundTheory.Global GroundTheory.Automorphic GroundTheory.Automorphic.Reduc
 
 namespace PositivityTheory.Rg.Rs.l2glue
 
-theorem cs_mean {α : Type} [MeasurableSpace α] (ν : Measure α) (s : Set α) (f : α → ℂ) :
-    ‖((ν.real s : ℝ) : ℂ)⁻¹ * ∫ x in s, f x ∂ν‖ₑ ^ 2 * ν s ≤ ∫⁻ x in s, ‖f x‖ₑ ^ 2 ∂ν :=
-  GlobalTheory.CompanionTheory.Dblock.enorm_mean_sq_mul_le ν s f
+alias integral_le_toReal := _root_.GlobalTheory.CompanionTheory.Dblock.integral_norm_sq_le_toReal_lintegral_enorm_sq
 
-theorem tail {α : Type} [TopologicalSpace α] [MeasurableSpace α] [BorelSpace α] [T2Space α]
-    [SigmaCompactSpace α] (μ : Measure α) (F : Set α) (h : α → ℝ≥0∞) (hF : ∫⁻ x in F, h x ∂μ < ⊤) :
-    Tendsto (fun k : ℕ => ∫⁻ x in F \ compactCovering α k, h x ∂μ) atTop (𝓝 0) :=
-  GlobalTheory.CompanionTheory.MeasureTails.tendsto_setLIntegral_diff_compactCovering μ F h hF
-
-theorem integral_le_toReal {α : Type} [MeasurableSpace α] (μ : Measure α) (f : α → ℂ) :
-    ∫ x, ‖f x‖ ^ 2 ∂μ ≤ (∫⁻ x, ‖f x‖ₑ ^ 2 ∂μ).toReal :=
-  GlobalTheory.CompanionTheory.Dblock.integral_norm_sq_le_toReal_lintegral_enorm_sq μ f
-
-theorem unfold {G : Type} [Group G] [MeasurableSpace G] [MeasurableMul G] (Γ : Subgroup G)
-    [Countable Γ] (μ : Measure G) [μ.IsMulLeftInvariant] (F S T : Set G)
-    (hF : IsFundamentalDomain Γ F μ) (hS : MeasurableSet S) (hT : MeasurableSet T)
-    (h : G → ℝ≥0∞) (hh : Measurable h) (hinv : ∀ γ ∈ Γ, ∀ x, h (γ * x) = h x) (N : ℕ)
-    (hN : ∀ x, {γ : Γ | (γ : G) * x ∈ S}.encard ≤ N) (hST : ∀ γ ∈ Γ, ∀ x, γ * x ∈ S → x ∉ T) :
-    ∫⁻ x in S, h x ∂μ ≤ N * ∫⁻ x in F \ T, h x ∂μ :=
-  GlobalTheory.CompanionTheory.Unfolding.setLIntegral_le_mul_fundamentalDomain_diff Γ μ F S T hF hS hT h hh hinv N hN hST
+alias unfold := _root_.GlobalTheory.CompanionTheory.Unfolding.setLIntegral_le_mul_fundamentalDomain_diff
 
 variable {K : Type} [Field K] [NumberField K] {n : ℕ}
 
@@ -109,7 +92,7 @@ theorem swap (μ : Measure (AdelicGLn.AdelicGL K n)) [μ.IsHaarMeasure] (φ : Ad
   have hνt : unipMeasure K n r (unipFundamentalDomain K n r) ≠ ⊤ := fun h => hc (by simp [Measure.real, h])
   have hpt : ∀ g, ‖An.ctn r φ g‖ₑ ^ 2 * unipMeasure K n r (unipFundamentalDomain K n r) ≤
       ∫⁻ X in unipFundamentalDomain K n r, ‖φ (unipGL X * g)‖ₑ ^ 2 ∂unipMeasure K n r := fun g =>
-    cs_mean (unipMeasure K n r) (unipFundamentalDomain K n r) (fun X => φ (unipGL X * g))
+    _root_.GlobalTheory.CompanionTheory.Dblock.enorm_mean_sq_mul_le (unipMeasure K n r) (unipFundamentalDomain K n r) (fun X => φ (unipGL X * g))
   have hcont : Measurable fun p : AdelicGLn.AdelicGL K n × (UPos n r → AdeleRing (𝓞 K) K) =>
       ‖φ (unipGL p.2 * (An.aR K n r t * p.1))‖ₑ ^ 2 :=
     (hφ.comp ((continuous_unipGL.comp continuous_snd).mul
@@ -222,7 +205,7 @@ theorem l2glue_holds : An.L2DecayOfCountEscape := by
       _ = (Real.exp (-(2 * An.rho K n r * t)) * (⌈C * Real.exp (2 * An.rho K n r * t)⌉₊ : ℝ)) *
             (∫⁻ x in F \ T, ‖φ x‖ₑ ^ 2 ∂μ).toReal := by ring
       _ ≤ _ := mul_le_mul_of_nonneg_right h5 ENNReal.toReal_nonneg
-  have htail := l2glue.tail μ F (fun x => ‖φ x‖ₑ ^ 2) hfin
+  have htail := _root_.GlobalTheory.CompanionTheory.MeasureTails.tendsto_setLIntegral_diff_compactCovering μ F (fun x => ‖φ x‖ₑ ^ 2) hfin
   rw [tendsto_order]
   refine ⟨fun a ha => Eventually.of_forall fun t => lt_of_lt_of_le ha
     (mul_nonneg (Real.exp_pos _).le (integral_nonneg fun _ => by positivity)), fun ε hε => ?_⟩

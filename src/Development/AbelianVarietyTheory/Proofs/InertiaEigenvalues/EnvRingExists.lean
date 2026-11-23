@@ -128,7 +128,7 @@ theorem GlobalTheory.BSP.envRing_exists : ∀ (l : ℕ) [Fact l.Prime] (A : Type
     rw [hs, ← Ideal.map_map] at hy
     have h := Ideal.mem_comap.2 hy
     rwa [Ideal.comap_map_of_surjective' _ Ideal.Quotient.mk_surjective, Ideal.mk_ker, sup_comm] at h
-  obtain ⟨tb, htb⟩ := GlobalTheory.T.exists_adicTopologicalBasis_of_level_bases A (MvPolynomial ℕ A ⧸ Ideal.span (Set.range (envRel D d p))) Q s iQ J (Digits l)
+  obtain ⟨tb, htb⟩ := _root_.GlobalTheory.BSP.exists_topBasis_of_levels A (MvPolynomial ℕ A ⧸ Ideal.span (Set.range (envRel D d p))) Q s iQ J (Digits l)
     (fun α => mk (MvPolynomial.monomial α.1 1)) ⟨0, fun _ => by simpa using (Fact.out : l.Prime).pos⟩
     (by simp) hc hQ
     (fun n x => by
@@ -180,7 +180,7 @@ theorem GlobalTheory.BSP.envRing_exists : ∀ (l : ℕ) [Fact l.Prime] (A : Type
       rw [← map_natCast iQ]; exact Ideal.mem_map_of_mem iQ hlL
     have hJQ : ((J.map s).map iQ).map h ≤ JC := by
       rw [Ideal.map_map, hh, Ideal.map_map, hg₁C]; exact hJ
-    have hhδ : IsδMap DQ DC h := GlobalTheory.T.isDeltaRingHom_of_dense_deltaCommuteLocus l Q C DQ DC ((J.map s).map iQ) JC h hlQ hJQ inferInstance
+    have hhδ : IsδMap DQ DC h := _root_.GlobalTheory.isδMap_of_dense_δLocus l Q C DQ DC ((J.map s).map iQ) JC h hlQ hJQ inferInstance
       (fun x n => by
         obtain ⟨b, hb⟩ := hQ.surj x n
         obtain ⟨y, rfl⟩ := Ideal.Quotient.mk_surjective b

@@ -81,7 +81,7 @@ theorem vanishing_of_ladder (d : ℕ) : ∀ {R : Type} [CommRing R] {C : Type 1}
   | succ d ih =>
     intro R _ C _ Φ Q a b E r hQ h
     let σ : ∀ T : C, E.D ⟶ T := fun T => Classical.choice (E.ne T)
-    obtain ⟨β, hi, hx, hs, -⟩ := GlobalTheory.T.filtration_critical_comparison_map Q E a b r (fun r' T => hQ.le r' T) (hQ.ca r le_rfl)
+    obtain ⟨β, hi, hx, hs, -⟩ := _root_.GlobalTheory.CompanionTheory.PolySes.ses Q E a b r (fun r' T => hQ.le r' T) (hQ.ca r le_rfl)
       (hQ.ca (r - 1) (by omega)) (hQ.cb r le_rfl) (hQ.cb (r - 1) (by omega))
     have hcut : ∀ r'' : ℤ, r'' ≤ r → r - (d + 1 : ℕ) ≤ r'' - d → ∀ j,
         Subsingleton (CH.H (Cut.Pσ Q σ ⋙ Cut.U E ⋙ sq (a r'') (b r'')) j) := by
@@ -89,7 +89,7 @@ theorem vanishing_of_ladder (d : ℕ) : ∀ {R : Type} [CommRing R] {C : Type 1}
       have h1 : Subsingleton (CH.H (Cut.U E ⋙ sq (a r'') (b r'')) j) :=
         ih (Cut.Q1 Q) (Cut.E1 E) r'' (Cut.ladder_truncation Q (hQ.mono hr)) (fun r' h1 h2 => h r' (by omega) (by omega)) j
       exact (CrystallineSemistableComparison.P.adj (Cut.U E ⋙ sq (a r'') (b r'')) (Cut.Pσ Q σ) (Cut.U E) (Cut.adjPσ Q σ) j).2.subsingleton
-    exact GlobalTheory.T.cohomology_vanishing_short_exact (Functor.whiskerLeft (Pt.Sσ σ) (Functor.whiskerRight (Cut.jNat (E := E) Q) (sq (a r) (b r))))
+    exact _root_.GlobalTheory.CompanionTheory.Cohomology.subsingleton_H_of_ses (Functor.whiskerLeft (Pt.Sσ σ) (Functor.whiskerRight (Cut.jNat (E := E) Q) (sq (a r) (b r))))
       (Functor.whiskerLeft (Pt.Sσ σ) β) (fun T => hi _) (fun T => hx _) (fun T => hs _)
       (hcut r le_rfl (by omega)) (hcut (r - 1) (by omega) (by omega))
 

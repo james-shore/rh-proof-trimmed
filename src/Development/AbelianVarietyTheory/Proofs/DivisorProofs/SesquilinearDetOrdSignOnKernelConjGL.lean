@@ -53,19 +53,6 @@ namespace GlobalTheory.UnitaryClasses.SgnConj
 
 variable {K : Type} [Field K]
 
-theorem ordL_mul_of_ne [Valued K (WithZero (Multiplicative ℤ))] {x y : K} (hx : x ≠ 0) (hy : y ≠ 0) :
-    ordL (x * y) = ordL x + ordL y := by
-  have hx' : Valued.v x ≠ 0 := (Valuation.ne_zero_iff _).2 hx
-  have hy' : Valued.v y ≠ 0 := (Valuation.ne_zero_iff _).2 hy
-  have hxy' : Valued.v (x * y) ≠ 0 := (Valuation.ne_zero_iff _).2 (mul_ne_zero hx hy)
-  unfold ordL
-  rw [dite_eq_right hx', dite_eq_right hy', dite_eq_right hxy']
-  have : WithZero.unzero hxy' = WithZero.unzero hx' * WithZero.unzero hy' := by
-    apply WithZero.coe_injective
-    rw [WithZero.coe_unzero, WithZero.coe_mul, WithZero.coe_unzero, WithZero.coe_unzero, Valuation.map_mul]
-  rw [this, toAdd_mul]
-  ring
-
 theorem sign_mul_norm [Valued K (WithZero (Multiplicative ℤ))] (σ : K →+* K)
     (hσ : ∀ x, Valued.v (σ x) = Valued.v x) {d : K} (hd : d ≠ 0) (x : K) :
     (-1 : ℂ) ^ ordL (σ d * d * x) = (-1 : ℂ) ^ ordL x := by
@@ -75,7 +62,7 @@ theorem sign_mul_norm [Valued K (WithZero (Multiplicative ℤ))] (σ : K →+* K
   have hσo : ordL (σ d) = ordL d := by
     unfold ordL
     simp only [hσ]
-  rw [ordL_mul_of_ne (mul_ne_zero hσd hd) hx, ordL_mul_of_ne hσd hd, hσo, zpow_add₀ (by norm_num), ← two_mul,
+  rw [_root_.Formalism.UG.P.fSatake_ord_mul (mul_ne_zero hσd hd) hx, _root_.Formalism.UG.P.fSatake_ord_mul hσd hd, hσo, zpow_add₀ (by norm_num), ← two_mul,
     (even_two_mul (ordL d)).neg_one_zpow, one_mul]
 
 theorem gram_eq_mul (σ : K →+* K) {n : ℕ} (H : Matrix (Fin n) (Fin n) K) {ι : Type} [Fintype ι]

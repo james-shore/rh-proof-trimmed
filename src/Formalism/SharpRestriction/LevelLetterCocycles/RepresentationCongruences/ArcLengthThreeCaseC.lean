@@ -129,7 +129,7 @@ theorem arc_length_three_case_c [NeZero n] [Fintype (K →ₐ[Qp] LL)] [IsDomain
       rw [W.φE_ext]; show _ = algebraMap (LetA O n) W.EE (W.φA (qA W)); unfold ps; rw [pow_one]
     rw [e]; exact hqu.map W.φE
   have hXu : IsUnit (algebraMap (LetA O n) W.EE (Br.cst PowerSeries.X)) := Br.qA_eq ▸ hqu
-  have hPu : IsUnit (algebraMap (LetA O n) W.EE (Br.cst (Br.P.p 1))) := (ArcLengthThreeFiltration.ps_cst Br 1) ▸ hpu
+  have hPu : IsUnit (algebraMap (LetA O n) W.EE (Br.cst (Br.P.p 1))) := (_root_.Formalism.MainNotions.N.FrobeniusPowerSeries.PhiBridge.ps_eq Br 1) ▸ hpu
   have hπ₀mem : W.π₀ ∈ W.AΔ := (qA_mem_AΔ W hcase hP9 hT₁).1
 
   obtain ⟨-, hACT⟩ := hArc hcase hl5 _ hOK c hc 2 hj2 h2l
@@ -145,7 +145,7 @@ theorem arc_length_three_case_c [NeZero n] [Fintype (K →ₐ[Qp] LL)] [IsDomain
     rw [hlen]; push_cast; ring
   have hΛ : abelian₂ W (arcOf b w S η up size) (c - (((arcOf b w S η up size).len c : ℕ) : ZMod n) + ((2 : ℕ) : ZMod n)) 2 =
       Br.cst (PowerSeries.X ^ (b + η + S) * Br.P.p 1 ^ (w + S)) := by
-    rw [ArcLengthThreeFiltration.lam_inner W hlen, ArcLengthThreeFiltration.ps_cst Br, ArcLengthThreeFiltration.ps_cst Br, ArcLengthThreeFiltration.p_zero, hAh, Br.cst_mul, Br.cst_pow, Br.cst_pow]
+    rw [ArcLengthThreeFiltration.lam_inner W hlen, _root_.Formalism.MainNotions.N.FrobeniusPowerSeries.PhiBridge.ps_eq Br, _root_.Formalism.MainNotions.N.FrobeniusPowerSeries.PhiBridge.ps_eq Br, ArcLengthThreeFiltration.p_zero, hAh, Br.cst_mul, Br.cst_pow, Br.cst_pow]
     rfl
   set a := c - (((arcOf b w S η up size).len c : ℕ) : ZMod n) + ((2 : ℕ) : ZMod n) with ha
   have ha0 : a - ((0 : ℕ) : ZMod n) = c - 1 := by rw [ha1]; simp

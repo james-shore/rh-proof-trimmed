@@ -294,10 +294,6 @@ theorem unrealify_sub {m : ℕ} (x y : EuclideanSpace ℝ (Fin m × Fin m × Boo
     unrealify (x - y) = unrealify x - unrealify y := by
   ext i j; apply Complex.ext <;> simp [unrealify]
 
-theorem unrealify_add {m : ℕ} (x y : EuclideanSpace ℝ (Fin m × Fin m × Bool)) :
-    unrealify (x + y) = unrealify x + unrealify y := by
-  ext i j; apply Complex.ext <;> simp [unrealify]
-
 theorem tang_surjective : Function.Surjective (tang k r) := by
   intro Y
   obtain ⟨h1, h2⟩ := (mem_lieOf_UWb _).1 ((mem_lieE_iff isMatGroup_UWb _).1 Y.2)
@@ -388,7 +384,7 @@ theorem chart_strict (i j : Fin (2 * r + k + 1)) : ∃ D : (TrE k × lieE (Kw k 
   let T : Mat k r →L[ℝ] ℂ := LinearMap.toContinuousLinearMap (Matrix.entryLinearMap ℝ ℂ i j)
   refine ⟨T.comp (J.coprod J'), T.hasStrictFDerivAt.comp 0 (strict_prod J J'), fun v => ?_⟩
   change _ = unrealify (tang k r v : EuclideanSpace ℝ _) i j
-  rw [coe_tang, unrealify_add]
+  rw [coe_tang, _root_.PI.RhsWLim.W.unr_add]
   rfl
 
 theorem chart_zero : chart k r 0 = 1 := by

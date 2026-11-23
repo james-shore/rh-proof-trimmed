@@ -173,7 +173,7 @@ theorem val_mul_sqrt_unit : ∀ (D : D7) (V W : HSp D) (B : Base V W), B.Good �
   have hroot : ∀ (v : HeightOneSpectrum (𝓞 D.host.E)) (x : D.host.Eˣ), IsUnitAt v (atFin v x) →
       A.valuation ((χ.locK v x : ℂˣ) : ℂ) = 1 := by
     intro v x hx
-    obtain ⟨m, hm, hxm⟩ := GlobalTheory.T.heckeChar_loc_pow_eq_one_on_localUnits _ χ v _ hx
+    obtain ⟨m, hm, hxm⟩ := _root_.GlobalTheory.LocUnitPow.loc_pow_eq_one _ χ v _ hx
     apply val_eq_one_of_pow A hm.ne'
     rw [← Units.val_pow_eq_pow_val, show χ.locK v x = χ.loc v (atFin v x) from rfl, hxm, Units.val_one, map_one]
   have hw : ∀ τ, A.valuation (tauE D τ (k : D.host.E) / ((‖tauE D τ (k : D.host.E)‖ : ℝ) : ℂ)) = 1 := by
@@ -186,9 +186,9 @@ theorem val_mul_sqrt_unit : ∀ (D : D7) (V W : HSp D) (B : Base V W), B.Good �
     have e : (tauE D τ (k : D.host.E) / ((‖tauE D τ (k : D.host.E)‖ : ℝ) : ℂ)) ^ 2 =
         tauE D τ (k : D.host.E) / starRingEnd ℂ (tauE D τ (k : D.host.E)) := by
       rw [div_pow, hn]; field_simp
-    have h1 : A.valuation (tauE D τ (k : D.host.E)) = 1 := GlobalTheory.T.valuation_embedding_generator_eq_one' _ A p hp hpA P hpP α h hα (tauE D τ)
+    have h1 : A.valuation (tauE D τ (k : D.host.E)) = 1 := _root_.GlobalTheory.valuation_embedding_generator_eq_one _ A p hp hpA P hpP α h hα (tauE D τ)
     have h2 : A.valuation (starRingEnd ℂ (tauE D τ (k : D.host.E))) = 1 :=
-      GlobalTheory.T.valuation_embedding_generator_eq_one' _ A p hp hpA P hpP α h hα ((starRingEnd ℂ).comp (tauE D τ))
+      _root_.GlobalTheory.valuation_embedding_generator_eq_one _ A p hp hpA P hpP α h hα ((starRingEnd ℂ).comp (tauE D τ))
     rw [e, map_div₀, h1, h2, div_one]
   have hinfv : A.valuation ((χ.inf k : ℂˣ) : ℂ) = 1 := by
     rw [hχinf k, map_prod]
@@ -208,7 +208,7 @@ theorem val_mul_sqrt_unit : ∀ (D : D7) (V W : HSp D) (B : Base V W), B.Good �
     refine val_eq_one_of_pow A (m := M) (by have h3 := hN; rw [hM] at h3; omega) ?_
     rw [map_pow]; exact key
   have hfinal : A.valuation (((χ.val P : ℂˣ) : ℂ) * ((Real.sqrt (Ideal.absNorm P.asIdeal) : ℝ) : ℂ)) = 1 := by
-    rw [map_mul, hvalP, GlobalTheory.T.valuation_sqrt_absNorm_eq_one' _ A p hp hpA P hpP, one_mul]
+    rw [map_mul, hvalP, _root_.GlobalTheory.valuation_sqrt_absNorm_eq_one _ A p hp hpA P hpP, one_mul]
   exact ⟨(A.valuation_le_one_iff _).1 hfinal.le, (A.valuation_le_one_iff _).1 (by rw [map_inv₀, hfinal, inv_one])⟩
 
 end GlobalTheory.UnitOverP

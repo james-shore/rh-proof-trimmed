@@ -125,13 +125,6 @@ theorem norm_le_one_of_int {q : ℕ} [Fact q.Prime] {x : ℂ_[q]} (hx : IsIntegr
   have h3 : ‖x‖₊ ≤ 1 := h2
   exact_mod_cast h3
 
-theorem norm_nat_eq_one {q : ℕ} [Fact q.Prime] {n : ℕ} (hn : n.Coprime q) : ‖(n : ℂ_[q])‖ = 1 := by
-  have e : ((n : ℕ) : ℂ_[q]) = algebraMap ℚ_[q] ℂ_[q] ((n : ℕ) : ℚ_[q]) := (map_natCast _ n).symm
-  rw [e]
-  have h : ‖algebraMap ℚ_[q] ℂ_[q] ((n : ℕ) : ℚ_[q])‖ = ‖((n : ℕ) : ℚ_[q])‖ := PadicComplex.norm_extends' (p := q) _
-  rw [h]
-  exact Padic.norm_natCast_eq_one_iff.mpr hn.symm
-
 end Arith
 
 variable {D : D7} {N N' : ℕ}
@@ -174,7 +167,7 @@ theorem norm_det_le {q : ℕ} [Fact q.Prime] (ρ : D.host.E →+* ℂ_[q]) (A : 
     simpa using (mem_stdL _).1 (h _ hj) i
   have h2 : ‖ρ ((s : D.host.E) • A).det‖ ≤ 1 :=
     norm_le_one_of_int (by convert map_isIntegral_int ρ h1; exact Subsingleton.elim _ _)
-  rwa [Matrix.det_smul, map_mul, map_pow, map_natCast, norm_mul, norm_pow, norm_nat_eq_one hs, one_pow, one_mul] at h2
+  rwa [Matrix.det_smul, map_mul, map_pow, map_natCast, norm_mul, norm_pow, _root_.GlobalTheory.HeckeVal.norm_natCast_eq_one hs, one_pow, one_mul] at h2
 
 theorem norm_det_padic {q : ℕ} [Fact q.Prime] (ρ : D.host.E →+* ℂ_[q]) (A : Matrix.unitaryGroup (Fin N) D.host.E)
     {M : Submodule (𝓞 D.host.E) (Fin N → D.host.E)} (h1 : EqAt D q M (stdL D N))

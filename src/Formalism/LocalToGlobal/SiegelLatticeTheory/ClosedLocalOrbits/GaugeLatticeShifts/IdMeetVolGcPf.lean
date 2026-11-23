@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.DoubleCosetSingleUnfolding
 
 @[expose] public section
 
@@ -65,8 +66,6 @@ theorem gam_mem_GF (γ : Gam X u) : (γ : X.B.I.GA) ∈ X.B.I.GFset := (Subgroup
 theorem gam_fst_mem (γ : Gam X u) : (γ : X.B.I.GA).1 ∈ Hinf X u :=
   (Subgroup.mem_prod.1 (Subgroup.mem_inf.1 γ.2).2).1
 
-theorem iotaF_coe (γ : Gam X u) : ((iotaF X u γ : Hfin X u) : X.B.I.Gf) = (γ : X.B.I.GA).2 := rfl
-
 theorem gc_conj_sub (γ : Gam X u) (h : Hfin X u) (κ : Ku X u hK) (s : X.B.I.Ginf)
     (hs : s ∈ GcS X u hK ((h : X.B.I.Gf) * X.xu u)) :
     (γ : X.B.I.GA).1 * s * (γ : X.B.I.GA).1⁻¹ ∈
@@ -87,7 +86,7 @@ theorem gc_conj_sub (γ : Gam X u) (h : Hfin X u) (κ : Ku X u hK) (s : X.B.I.Gi
       simp only [Prod.fst_mul, Prod.fst_inv]; group
     rw [this]; exact hN
   · have := (nfinConj_holds X u (iotaF X u γ) ν.2 hF).1
-    rw [iotaF_coe] at this
+    rw [_root_.Formalism.L2.SG.Pf.SlabCoverPf.iotaF_coe] at this
     simpa only [Prod.snd_mul, Prod.snd_inv] using this
   · have hκ : (X.xu u)⁻¹ * ((κ : Hfin X u) : X.B.I.Gf) * X.xu u ∈ X.K2 := κ.2
     have e : (((iotaF X u γ * h * (κ : Hfin X u) : Hfin X u) : X.B.I.Gf) * X.xu u)⁻¹ * ((γ : X.B.I.GA) * ν * (γ : X.B.I.GA)⁻¹).2 *
@@ -95,7 +94,7 @@ theorem gc_conj_sub (γ : Gam X u) (h : Hfin X u) (κ : Ku X u hK) (s : X.B.I.Gi
         ((X.xu u)⁻¹ * ((κ : Hfin X u) : X.B.I.Gf) * X.xu u)⁻¹ *
           (((h : X.B.I.Gf) * X.xu u)⁻¹ * ν.2 * ((h : X.B.I.Gf) * X.xu u)) *
           ((X.xu u)⁻¹ * ((κ : Hfin X u) : X.B.I.Gf) * X.xu u) := by
-      simp only [Subgroup.coe_mul, iotaF_coe, Prod.snd_mul, Prod.snd_inv]
+      simp only [Subgroup.coe_mul, _root_.Formalism.L2.SG.Pf.SlabCoverPf.iotaF_coe, Prod.snd_mul, Prod.snd_inv]
       group
     rw [e]
     exact hK.2.1 _ (hK.2.1 _ (hK.2.2.1 _ hκ) _ hk) _ hκ
@@ -138,28 +137,10 @@ theorem isSFund_conj {D : D7} (X : HidaSetting D) (S : Set X.B.I.Ginf) (Ω : Set
     have := hΩ.2.2 _ hx s hs h2
     rw [this]; group
 
-theorem nocol_fund_exists {D : D7} {X : HidaSetting D} (Y : Full X) (u : D.what₂.Word)
-    (ρ : (Y.cs u).Cl) : ∃ Ω, IsSFund X.B.I (Formalism.L2.SG.TermOp.KExpCut.NOcol (X.Fu u) (Y.cs u) ρ) Ω := by
-  have hL := ((Y.rowsOK u).1 _ ((Y.cs u).lam_mem ρ)).1.1
-  have := Formalism.L2.SG.Pf.ROsub_discrete X (X.Fu u) (X.Fu u) ((Y.cs u).lamOf ρ) ((Y.cs u).lamOf ρ) hL 1
-  obtain ⟨Ω, hΩ⟩ := Formalism.L2.SG.Pf.isSFund_of_discrete X.B.I
-    (Formalism.L2.SG.Pf.ROsub X (X.Fu u) (X.Fu u) ((Y.cs u).lamOf ρ) ((Y.cs u).lamOf ρ) 1)
-  refine ⟨Ω, ?_⟩
-  have e : ((Formalism.L2.SG.Pf.ROsub X (X.Fu u) (X.Fu u) ((Y.cs u).lamOf ρ) ((Y.cs u).lamOf ρ) 1 :
-      Subgroup X.B.I.Ginf) : Set X.B.I.Ginf) = Formalism.L2.SG.TermOp.KExpCut.NOcol (X.Fu u) (Y.cs u) ρ := by
-    ext y
-    show y ∈ ROset X (X.Fu u) (X.Fu u) ((Y.cs u).lamOf ρ) ((Y.cs u).lamOf ρ) 1 ↔ _
-    constructor
-    · rintro ⟨x, n, h1, h2, h3, -⟩
-      exact ⟨x, n, h1, h2, h3⟩
-    · rintro ⟨x, n, h1, h2, h3⟩
-      exact ⟨x, n, h1, h2, h3, by simpa using h3⟩
-  rwa [e] at hΩ
-
 theorem gcFundC_holds : GcFundC := by
   intro D X Y u h
   obtain ⟨ρ, ⟨γ, κ, rfl⟩, -⟩ := Y.colReps u h
-  obtain ⟨Ω, hΩ⟩ := nocol_fund_exists Y u ρ
+  obtain ⟨Ω, hΩ⟩ := _root_.Formalism.L2.SG.Pf.Slab.exists_NOcol_fund Y u ρ
   rw [nocolEqC_holds D X Y u ρ] at hΩ
   rw [gcConjC_holds D X u Y.hK γ ((Y.cs u).h ρ) κ]
   exact ⟨_, isSFund_conj X _ Ω hΩ _⟩

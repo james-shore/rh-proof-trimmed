@@ -64,8 +64,8 @@ theorem GlobalTheory.EigStr.eigString_all_of_aux41_adm7_tieLab : GlobalTheory.Pu
     intro Pp d hG hLab
     have hc : ∃ c : ℂ, hh Pp (Finsupp.single d 1) y = c • y :=
       (GlobalTheory.LPositivity.split_or_inert D Pp).elim
-        (fun h1 => _root_.GlobalTheory.T.theta_eigen_compatibility_first_alt hAF hL D P X hA h41 h7 htl i hμ j hj x hx f hf y hy hy0 hh hops Pp hG h1 d hLab)
-        (fun h1 => _root_.GlobalTheory.T.theta_eigen_compatibility_second_alt hAF hL D P X hA h41 h7 htl i hμ j hj x hx f hf y hy hy0 hh hops Pp hG h1 d hLab)
+        (fun h1 => _root_.GlobalTheory.EigSplit.main_alt_alt hAF hL D P X hA h41 h7 htl i hμ j hj x hx f hf y hy hy0 hh hops Pp hG h1 d hLab)
+        (fun h1 => _root_.GlobalTheory.EigInert.eigen_at_inert_alt hAF hL D P X hA h41 h7 htl i hμ j hj x hx f hf y hy hy0 hh hops Pp hG h1 d hLab)
     simp only [s, dif_pos hc]
     exact hc.choose_spec
   let B : GlobalTheory.LFun.Fam D.host.E := fun w =>
@@ -78,13 +78,13 @@ theorem GlobalTheory.EigStr.eigString_all_of_aux41_adm7_tieLab : GlobalTheory.Pu
     have hex : ∃ Bw, GlobalTheory.LFun.IsSysParam D.sp.cm.sig (Formalism.IndefR.Links.Vc D j).rank
         (rfl : w.under (𝓞 D.host.F) = _) (s w) Bw := by
       rcases GlobalTheory.LPositivity.split_or_inert D w with h1 | h1
-      · exact _root_.GlobalTheory.T.theta_eigen_compatibility_third_alt hAF hL D P X hA h41 h7 htl i hμ j hj x hx f hf y hy hy0 hh hops s hs w hv h1
+      · exact _root_.GlobalTheory.EigStr.sysParam_split_alt hAF hL D P X hA h41 h7 htl i hμ j hj x hx f hf y hy hy0 hh hops s hs w hv h1
       · exact _root_.GlobalTheory.T.theta_eigen_compatibility_fourth_alt hAF hL D P X hA h41 h7 htl i hμ j hj x hx f hf y hy hy0 hh hops s hs w hv h1
     show GlobalTheory.LFun.IsSysParam D.sp.cm.sig _ _ (s w) (B w)
     simp only [B, dif_pos hex]
     exact hex.choose_spec
   refine ⟨s, ⟨B, hB, fun w hw => ?_⟩, hs⟩
   rcases GlobalTheory.LPositivity.split_or_inert D w with h1 | h1
-  · exact _root_.GlobalTheory.T.theta_eigen_compatibility_fifth_alt hAF hL D P X hA h41 h7 htl i hμ j hj x hx f hf y hy hy0 hh hops s B hs hB w hw h1
+  · exact _root_.GlobalTheory.EigStrSplit.str_split_alt hAF hL D P X hA h41 h7 htl i hμ j hj x hx f hf y hy hy0 hh hops s B hs hB w hw h1
   · exact _root_.GlobalTheory.T.theta_eigen_compatibility_sixth_alt hAF hL D P X hA h41 h7 htl i hμ j hj x hx f hf y hy hy0 hh hops s B hs hB w hw h1
 end

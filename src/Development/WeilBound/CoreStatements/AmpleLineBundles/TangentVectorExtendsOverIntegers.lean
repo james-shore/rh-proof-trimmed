@@ -63,14 +63,6 @@ theorem dualMap_comp_dualMap' {R R' R'' : Type} [CommRing R] [CommRing R'] [Comm
     (g : R' →+* R'') : (dualMap g).comp (dualMap f) = dualMap (g.comp f) := by
   ext a <;> simp [dualMap]
 
-theorem dualMap_comp_epsMul_ample_line_bundles {R R' : Type} [CommRing R] [CommRing R'] (f : R →+* R') (s : R) :
-    (dualMap f).comp (GlobalTheory.CompanionTheory.Ar.epsMul s) = (GlobalTheory.CompanionTheory.Ar.epsMul (f s)).comp (dualMap f) := by
-  ext a <;> simp [dualMap, GlobalTheory.CompanionTheory.Ar.epsMul, TrivSqZeroExt.algebraMap_eq_inl]
-
-theorem spMap_comp_spMap_ample_line_bundles {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (f : R →+* R')
-    (g : R' →+* R'') : spMap g ≫ spMap f = spMap (g.comp f) := by
-  simp only [spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
-
 theorem tangent_vector_extends_over_integers : ∀ (O K : Type) [CommRing O] [IsDedekindDomain O] [Field K] [Algebra O K] [IsFractionRing O K] (S : Scheme.{0}) (x : Sp O ⟶ S) (G : Over S) [GrpObj G] [IsCommMonObj G] [Smooth G.hom] (E : Type) [AddCommGroup E] [Module O E] (M : LieModel G x E) (v : epsAt (spMap (algebraMap O K) ≫ x) ⟶ G), IsTanAt G _ v → (∀ (P : Ideal O) [P.IsMaximal] (c : Localization.AtPrime P →+* K), c.comp (algebraMap O _) = algebraMap O K → ∃ w : epsAt (spMap (algebraMap O (Localization.AtPrime P)) ≫ x) ⟶ G, IsTanAt G _ w ∧ v.left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap c) ≫ w.left) → ∃ e, (v.left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap O K)) ≫ (M.pt e).left) := by
   intro O K _ _ _ _ _ S x G _ _ _ E _ _ M v hv hloc
   obtain ⟨EK, _, _, ⟨MK⟩⟩ := lieModel_exists S G K (spMap (algebraMap O K) ≫ x)
@@ -136,14 +128,14 @@ theorem tangent_vector_extends_over_integers : ∀ (O K : Type) [CommRing O] [Is
     have h2 := hjP e
     simp only [LieModel.Lifts, Category.comp_id] at h1 h2
     have h3 : (MK.pt (jK e)).left = spMap (dualMap c) ≫ (MP.pt (jP e)).left := by
-      rw [h1, h2, ← Category.assoc, spMap_comp_spMap_ample_line_bundles, dualMap_comp_dualMap', hc]
+      rw [h1, h2, ← Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', dualMap_comp_dualMap', hc]
     rw [h3, hes', MP.smul, MK.smul, hvw, ← Category.assoc, ← Category.assoc]
     congr 1
-    have h4 := spMap_comp_spMap_ample_line_bundles (GlobalTheory.CompanionTheory.Ar.epsMul (algebraMap O (Localization.AtPrime P) (s : O))) (dualMap c)
-    have h5 := spMap_comp_spMap_ample_line_bundles (dualMap c) (GlobalTheory.CompanionTheory.Ar.epsMul (c (algebraMap O (Localization.AtPrime P) (s : O))))
+    have h4 := _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp' (GlobalTheory.CompanionTheory.Ar.epsMul (algebraMap O (Localization.AtPrime P) (s : O))) (dualMap c)
+    have h5 := _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp' (dualMap c) (GlobalTheory.CompanionTheory.Ar.epsMul (c (algebraMap O (Localization.AtPrime P) (s : O))))
     rw [← RingHom.comp_apply c, hc] at h5
     simp only [spMap] at h4 h5 ⊢
-    rw [h4, dualMap_comp_epsMul_ample_line_bundles, h5]
+    rw [h4, _root_.GlobalTheory.CompanionTheory.Ar.LieCarrier.dualMap_epsMul, h5]
     rw [← RingHom.comp_apply c, hc]
   exact s.2 (hIP hmem)
 

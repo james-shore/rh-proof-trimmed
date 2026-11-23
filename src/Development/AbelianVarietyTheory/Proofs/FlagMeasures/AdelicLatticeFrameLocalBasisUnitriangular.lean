@@ -83,7 +83,7 @@ theorem GlobalTheory.St.G.frame_local_basis_unitriangular : ∀ (F E : Type) [Fi
       intro h0
       rw [h0, map_zero] at hcase
       rcases hcase with h | h <;> simp [Prod.ext_iff] at h
-    obtain ⟨a, ha, hpa⟩ := GlobalTheory.T.standardAdditiveCharacter_local_ne_one_splitPrime F E cm Fr.psi Fr.psi_add Fr.psi_int Fr.psi_rat (gp i) (hpr i) (hspl i)
+    obtain ⟨a, ha, hpa⟩ := _root_.GlobalTheory.St.G.psi_local_ne_one F E cm Fr.psi Fr.psi_add Fr.psi_int Fr.psi_rat (gp i) (hpr i) (hspl i)
       v hv _ he3 he1 hne0
     have hnt : ∃ a ∈ intV E v, Fr.psi (Formalism.UG.P.afsplitIE v (algebraMap F (E ⊗[F] v.adicCompletion F)
         (((gp 0 * gp 1 : ℕ) : F)⁻¹) * (prV (E := E) v Fr.eps * a))) ≠ 1 := by

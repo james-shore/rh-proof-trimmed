@@ -119,10 +119,6 @@ lemma sizeTup_ratTup_pos {d M n : ℕ} (b : Module.Basis (Fin d) F E) (X : Fin n
 
 end SlopeTestRemainingChoices
 
-lemma exists_pos_lt {α : Type} {S : Set α} (hS : S.Finite) (f : α → ℝ) (hf : ∀ x ∈ S, 0 < f x) :
-    ∃ r : ℝ, 0 < r ∧ r ≤ 1 ∧ ∀ x ∈ S, r < f x :=
-  _root_.Bl.FirstLemmaK.goal1 hS f hf
-
 theorem count_le : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → ∀ τ : Multiplicative ℝ →* (AF F ⊗[F] E)ˣ, IsFlow τ → ∀ (M : ℕ) (Ω : Set (Fin 1 → Fin M → AF F ⊗[F] E)), IsCompact Ω → ∃ x₀ C : ℝ, ∀ x : ℝ, ∑' X : {X : Fin 1 → Fin M → E // X ≠ 0}, (Set.indicator Ω (fun _ => (1 : ℝ≥0∞))) (((τ (Multiplicative.ofAdd (-x)) : (AF F ⊗[F] E)ˣ) : AF F ⊗[F] E) • ratTup (AF F) X.1) ≤ if x < x₀ then 0 else ENNReal.ofReal (C * Real.exp (2 * Module.finrank ℚ F * M * x)) := by
   intro F E _ _ _ _ _ σ hCM τ hτ M Ω hΩ
   have : Module.Finite F E := Module.finite_of_finrank_pos (by rw [hCM.2.2.1]; norm_num)
@@ -131,7 +127,7 @@ theorem count_le : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberF
   obtain ⟨-, hfin, -⟩ := GlobalTheory.T.rational_tuples_discrete_cocompact_adelic F E σ hCM 1 M
   obtain ⟨N, r, hN, hr, hsub⟩ := hexh Ω hΩ
 
-  obtain ⟨r₀, h0, h1, hsmall⟩ := exists_pos_lt
+  obtain ⟨r₀, h0, h1, hsmall⟩ := _root_.Bl.FirstLemmaK.goal1
     (((hfin _ (hcpt N 1 hN)).subset (Set.inter_subset_left
       (t := {X : Fin 1 → Fin M → E | X ≠ 0}))))
     (fun X => sizeTup b (projInf (ratTup (AF F) X)))

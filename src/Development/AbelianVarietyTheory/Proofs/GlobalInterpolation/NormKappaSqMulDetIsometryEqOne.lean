@@ -232,7 +232,7 @@ theorem norm_kappa_sq_mul_det : ∀ (D : D7) (γ₀ γ : IsoK D) (k : KapChoice 
     intro j v hv hv𝔭
     exact le_antisymm (norm_le_one_of_int j π) (not_lt.1 fun hlt => hnot v hv𝔭 ((hv π).2 hlt))
   have key : ‖jK x‖ ^ h = (‖jK (π : D.host.K)‖ / ‖jK' (π : D.host.K)‖) ^ y := by
-    rcases GlobalTheory.T.quadratic_field_at_most_two_primes_over_prime D.host.K (kQuad D) q hqp 𝔭 w w' hq𝔭 hqw hqw' with e | e | e
+    rcases _root_.GlobalTheory.quadratic_at_most_two_primes_over D.host.K (kQuad D) q hqp 𝔭 w w' hq𝔭 hqw hqw' with e | e | e
     · have h1 := norm_pow_eq jK w hw h π (by rw [← e]; exact hπv) x hx0
       have h2 : -WithZero.log (w.valuation D.host.K x) = y := by rw [← e]; exact hy
       rw [h2] at h1

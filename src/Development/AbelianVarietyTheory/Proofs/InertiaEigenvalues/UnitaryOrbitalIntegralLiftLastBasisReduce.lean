@@ -205,8 +205,8 @@ theorem compact_support {F E : Type} [NontriviallyNormedField F] [NontriviallyNo
     (hΔ : Delta (inv (liftH X ν l).toGl) ≠ 0) :
     HasCompactSupport (fun s => unitU (r + 1) F E (actU (uEmb r E s) (liftH X ν l))) := by
   haveI : NormedStarGroup E := ⟨fun x => (Unram.norm_star (F := F) x).le⟩
-  obtain ⟨K, hK, hsub⟩ := support_bounded (liftH X ν l) hΔ
-  refine HasCompactSupport.intro ((uEmb_isClosedEmbedding r E).isCompact_preimage hK) ?_
+  obtain ⟨K, hK, hsub⟩ := _root_.GlobalTheory.JR.SuppBdd.exists_compact_of_integral (liftH X ν l) hΔ
+  refine HasCompactSupport.intro ((_root_.GlobalTheory.JR.Step.isClosedEmbedding_uEmb r E).isCompact_preimage hK) ?_
   intro s hs
   by_contra h
   exact hs (hsub _ h)
@@ -228,13 +228,13 @@ theorem orbU_liftH (F E : Type) [NontriviallyNormedField F] [NontriviallyNormedF
   unfold orbU
   letI := M.mU; haveI := M.bU; letI := M'.mU; haveI := M'.bU
   haveI := M.haarU; haveI := M'.haarU
-  haveI := (GlobalTheory.T.unitaryGroup_positiveCharacter_trivial_and_unimodular F E (r+1)).2 M
-  haveI := (GlobalTheory.T.unitaryGroup_positiveCharacter_trivial_and_unimodular F E r).2 M'
-  rw [GlobalTheory.CosetIntegral.integral_eq_of_coset_support _ _ (uEmb r E) (uEmb_isClosedEmbedding r E) M.μU M'.μU R₀
+  haveI := (_root_.GlobalTheory.JR.UnitChar.posChar_trivial_and_unimodular F E (r+1)).2 M
+  haveI := (_root_.GlobalTheory.JR.UnitChar.posChar_trivial_and_unimodular F E r).2 M'
+  rw [GlobalTheory.CosetIntegral.integral_eq_of_coset_support _ _ (uEmb r E) (_root_.GlobalTheory.JR.Step.isClosedEmbedding_uEmb r E) M.μU M'.μU R₀
     uO_isOpen uO_isCompact M.volU (by
       show M'.μU (uEmb r E ⁻¹' uO (r + 1) E) = 1
       rw [preimage_uO]; exact M'.volU)
-    _ (fun k hk g => unitU_actU_mul k g hk _) (support_sub X ν l hν) (compact_support X ν l hΔ)]
-  simp_rw [actU_uEmb_liftH, unitU_liftH _ ν l hν.le]
+    _ (fun k hk g => unitU_actU_mul k g hk _) (_root_.GlobalTheory.JR.Step.actU_liftH_support X ν l hν) (compact_support X ν l hΔ)]
+  simp_rw [_root_.GlobalTheory.JR.Step.actU_uEmb_liftH, _root_.GlobalTheory.JR.Step.unitU_liftH_of_norm_le_one _ ν l hν.le]
   rw [integral_const_mul]
 end GlobalTheory.JR.Step.OrbULift

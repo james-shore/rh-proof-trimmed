@@ -51,25 +51,9 @@ open MvPowerSeries ReciprocityTheory.PGsh ReciprocityTheory.ChartRestriction.G.S
 
 namespace GlobalTheory.FGDepth
 
-theorem val_natCast_nonneg {C : Type} [Field C] (v : AddValuation C (WithTop ℝ)) (n : ℕ) :
-    0 ≤ v (n : C) := by
-  induction n with
-  | zero => simp
-  | succ n ih =>
-    push_cast
-    exact (le_min ih (le_of_eq (AddValuation.map_one v).symm)).trans (AddValuation.map_add v _ _)
-
-theorem val_intCast_nonneg {C : Type} [Field C] (v : AddValuation C (WithTop ℝ)) (n : ℤ) :
-    0 ≤ v (n : C) := by
-  obtain ⟨m, rfl | rfl⟩ := Int.eq_nat_or_neg n
-  · rw [Int.cast_natCast]
-    exact val_natCast_nonneg v m
-  · rw [Int.cast_neg, AddValuation.map_neg, Int.cast_natCast]
-    exact val_natCast_nonneg v m
-
 theorem val_natCast_eq_zero {C : Type} [Field C] (v : AddValuation C (WithTop ℝ)) (p : ℕ)
     (hp : p.Prime) (hv : v (p : C) = 1) (n : ℕ) (hn : ¬ p ∣ n) : v (n : C) = 0 := by
-  have h0 := val_natCast_nonneg v n
+  have h0 := _root_.GlobalTheory.FGDepth.natCast_isInt v n
   refine le_antisymm ?_ h0
   by_contra hlt
   rw [not_le] at hlt
@@ -82,10 +66,10 @@ theorem val_natCast_eq_zero {C : Type} [Field C] (v : AddValuation C (WithTop �
   have one_pos' : (0 : WithTop ℝ) < 1 := by exact_mod_cast (zero_lt_one : (0 : ℝ) < 1)
   have h1 : 0 < v ((p : C) * (Nat.gcdA p n : C)) := by
     rw [AddValuation.map_mul, hv]
-    exact add_pos_of_pos_of_nonneg one_pos' (val_intCast_nonneg v _)
+    exact add_pos_of_pos_of_nonneg one_pos' (_root_.GlobalTheory.FGDepth.intCast_isInt v _)
   have h2 : 0 < v ((n : C) * (Nat.gcdB p n : C)) := by
     rw [AddValuation.map_mul]
-    exact add_pos_of_pos_of_nonneg hlt (val_intCast_nonneg v _)
+    exact add_pos_of_pos_of_nonneg hlt (_root_.GlobalTheory.FGDepth.intCast_isInt v _)
   have hsum := AddValuation.map_add v ((p : C) * (Nat.gcdA p n : C)) ((n : C) * (Nat.gcdB p n : C))
   rw [← key, AddValuation.map_one] at hsum
   exact absurd hsum (not_le.2 (lt_min h1 h2))

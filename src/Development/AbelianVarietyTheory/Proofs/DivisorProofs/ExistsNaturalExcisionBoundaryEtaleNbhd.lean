@@ -149,7 +149,7 @@ theorem excision_boundary_natural_refine : ∀ (q : ℕ) (A A' : Type) [CommRing
   have hbij : ∀ (B : Type) [CommRing B] [Algebra A B], IsExcisionNbhd A B f →
       Function.Bijective (cpull (excisionConeMap (ZMod q) A B f) (res (ZMod q) (tw q i)) (n + 1)) := by
     intro B _ _ hB
-    haveI := GlobalTheory.T.excisionConeMap_quasiIso' (ZMod q) A B f hB
+    haveI := _root_.GlobalTheory.EtC.excisionConeMap_quasiIso (ZMod q) A B f hB
     exact quasiIso_hypercohomology_bijective' (ZMod q) (excisionConeMap (ZMod q) A B f) (tw q i) (n + 1)
   obtain ⟨δ, hex, hnat⟩ := abstract_nat _ _ _ _ (excision_square_comm (ZMod q) A A' f) (res (ZMod q) (tw q i)) n
     (hbij A' hN)

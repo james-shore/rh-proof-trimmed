@@ -47,6 +47,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.InfFam
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.EqZeroOfLintegralEqZero
 
 @[expose] public section
 
@@ -64,16 +65,6 @@ namespace PositivityTheory.Rg.Sw.Glob
 
 variable {D : D7} {n : ℕ}
 
-theorem mat_mul' (a b : G D n) : mat (a * b) = mat a * mat b := by
-  show ((GlobalTheory.AdelicU.matHom _ D.sp.cm.sig (Jst D n)) (a * b)).1 = _
-  rw [map_mul, Units.val_mul]; rfl
-
-theorem mat_one' : mat (1 : G D n) = 1 := by
-  show ((GlobalTheory.AdelicU.matHom _ D.sp.cm.sig (Jst D n)) 1).1 = 1
-  rw [map_one]; rfl
-
-theorem G_ext' {a b : G D n} (h : mat a = mat b) : a = b := Subtype.ext (Units.ext h)
-
 theorem reidx_mul (A B : M2 n) : reidx (A * B) = reidx A * reidx B := by
   simp [reidx, Matrix.submatrix_mul_equiv]
 
@@ -87,12 +78,12 @@ theorem reidx_inj {A B : M2 n} (h : reidx A = reidx B) : A = B := by
 
 theorem comm_of_trivial {θ : InfFam D} (hθ : IsInfFam θ) {τ : D.what₂.Tau} {ι : GR n →* G D n} (hι : IsPlaceEmb θ τ ι)
     {k : G D n} (hk : compAt θ τ (mat k) = 1) (y : GR n) : k * ι y = ι y * k := by
-  apply G_ext'
-  rw [mat_mul', mat_mul']
+  apply _root_.GlobalTheory.StdUnn.LeftInvSect.mat_inj
+  rw [_root_.GlobalTheory.StdUnn.LeftInvSect.mat_mul, _root_.GlobalTheory.StdUnn.LeftInvSect.mat_mul]
   obtain ⟨h1, h2, h3⟩ := hι.2 y
   refine GlobalTheory.StabAtPlace.mx_ext hθ ?_ fun τ' => ?_
   · rw [Matrix.map_mul, Matrix.map_mul, h3, Matrix.mul_one, Matrix.one_mul]
-  · rw [GlobalTheory.StabAtPlace.comp_mul, GlobalTheory.StabAtPlace.comp_mul]
+  · rw [_root_.GlobalTheory.OrientedHeis.compAt_mul, _root_.GlobalTheory.OrientedHeis.compAt_mul]
     by_cases hτ : τ' = τ
     · subst hτ; rw [hk, Matrix.one_mul, Matrix.mul_one]
     · rw [h2 τ' hτ, Matrix.one_mul, Matrix.mul_one]
@@ -146,7 +137,7 @@ theorem K_split {θ : InfFam D} (hθ : IsInfFam θ) {τ : D.what₂.Tau} {ι : G
   let y : GR n := ⟨u, hG⟩
   have hyK : InK (mR y) := ⟨hG, hu⟩
   refine ⟨y, hyK, (K D n).mul_mem ((K D n).inv_mem (iota_mem_K hθ hι hyK)) hk, ?_⟩
-  rw [mat_mul', GlobalTheory.StabAtPlace.comp_mul, ← map_inv, (hι.2 y⁻¹).1]
+  rw [_root_.GlobalTheory.StdUnn.LeftInvSect.mat_mul, _root_.GlobalTheory.OrientedHeis.compAt_mul, ← map_inv, (hι.2 y⁻¹).1]
   show reidx Yᴴ * M = 1
   rw [← hYM, ← reidx_mul, hu, reidx_one]
 
@@ -227,7 +218,7 @@ theorem iotaP_mem {θ : InfFam D} (hθ : IsInfFam θ) {τ : D.what₂.Tau} {ι :
   change x ∈ upperHalf D n ↔ mat (ι q) *ᵥ x ∈ upperHalf D n
   refine ⟨fun hx => mulVec_upper (ll_zero hθ hι hq) hx, fun hx => ?_⟩
   have hinv : mat (ι q⁻¹) * mat (ι q) = 1 := by
-    rw [← mat_mul', ← map_mul, inv_mul_cancel, map_one, mat_one']
+    rw [← _root_.GlobalTheory.StdUnn.LeftInvSect.mat_mul, ← map_mul, inv_mul_cancel, map_one, _root_.GlobalTheory.StdUnn.LeftInvSect.mat_one]
   have := mulVec_upper (ll_zero hθ hι (up_inv hq)) hx
   rwa [Matrix.mulVec_mulVec, hinv, Matrix.one_mulVec] at this
 

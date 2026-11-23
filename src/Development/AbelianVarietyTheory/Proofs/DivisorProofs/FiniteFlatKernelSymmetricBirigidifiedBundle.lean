@@ -205,6 +205,6 @@ theorem kernel_finiteFlat : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (G 
       rw [hr, ← Category.assoc, hs, Category.assoc]; simp [e]
     apply Over.OverMorphism.ext
     exact (cancel_mono i.left).1 (by simpa [Over.comp_left] using congrArg CommaMorphism.left h3)
-  exact ⟨H, i, hi, hfinH, GlobalTheory.T.flat_of_finite_retract_of_finite_flat R H K s r hsr hfinH hfinK hflatK, hmemH⟩
+  exact ⟨H, i, hi, hfinH, _root_.GlobalTheory.retract_flat_of_finite R H K s r hsr hfinH hfinK hflatK, hmemH⟩
 
 end GlobalTheory

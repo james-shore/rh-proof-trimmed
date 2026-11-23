@@ -81,12 +81,6 @@ theorem flagStep_map (J : V →ₗ[Ω] V') {r : ℕ} (b : Fin r → V) (i : ℕ)
   unfold flagStep
   rw [Submodule.map_span, Set.image_image]
 
-theorem flagStep_last {r : ℕ} (b : Fin r → V) : flagStep Ω b r = Submodule.span Ω (Set.range b) := by
-  unfold flagStep
-  congr 1
-  ext x
-  simp
-
 theorem pull_span {f : X' ⟶ X} (hd : GlobalTheory.CompanionTheory.Ar.Dominates ξ' ξ f (RingHom.id Ω)) (J : V →ₗ[Ω] V') {L : Lat ξ V}
     (q : Cpt ξ') {I : Type} {b : I → V}
     (hb : L ⟨f q.1, LatModel.dominates_spec hd q⟩ = Submodule.span _ (Set.range b)) :
@@ -284,7 +278,7 @@ theorem quot_free (𝔐 : HodgeCpt Y S y) (b : ∀ s, Fin (labelRk D s) → 𝔐
   choose U hU b' hb' hfr using fun s => hf s q rfl
   replace hfr := fun s => hfr s q rfl (hU s)
   have hsp : ∀ t, Submodule.span Ω (Set.range (b' t)) = 𝔐.Vgen t := fun t => by
-    rw [← flagStep_last, hb', flagStep_last, hb]
+    rw [← _root_.GlobalTheory.CompanionTheory.Ar.FlagGr.step_top, hb', _root_.GlobalTheory.CompanionTheory.Ar.FlagGr.step_top, hb]
   refine ⟨frame_quot (hfr s).1 (hfr s).2 {k | (k : ℕ) < n} (hb' s n).symm, ?_⟩
   obtain ⟨-, -, -, -, -, -, hind, -⟩ := GlobalTheory.T.hodge_cpt_interior_generic E H D l Xo c _ _ Y S Ω K J y 𝔐 hβ
   obtain ⟨h1, -, h2⟩ := GlobalTheory.T.hodge_cpt_away_from_primes E H D l Xo c _ _ Y S Ω K J y 𝔐 hβ q fun r hr h => h (hq r hr.pos)
@@ -316,8 +310,8 @@ theorem omP_pull [CharZero Ω] (hW : Out.WeilSt) {K' : Type} [Fintype K'] {J' : 
   obtain ⟨-, e, -, -, -, -, he, -⟩ := GlobalTheory.T.primitive_root_hodge_cpt hW E H D l Xo c Y S Ω K J y 𝔐 y₀ p ζ hp hy hζ'
   obtain ⟨-, e', -, -, -, -, he', -⟩ := GlobalTheory.T.primitive_root_hodge_cpt hW E H D l Xo c Y S Ω K' J' y' A y₀ p ζ hp
     (by rw [hf, ← Category.assoc, dom_iff.1 hd, hy]) (by rw [hR]; exact hζ')
-  have := ((GlobalTheory.T.regAt_noetherian_model_noetherian _ Ω 𝔐.ξ ℤ _ _ 𝔐.tie).2 𝔐.all).1
-  have := ((GlobalTheory.T.regAt_noetherian_model_noetherian _ Ω A.ξ ℤ _ _ A.tie).2 A.all).1
+  have := ((_root_.GlobalTheory.CompanionTheory.Ar.CoordNoeth.noetherian_of_coordTie _ Ω 𝔐.ξ ℤ _ _ 𝔐.tie).2 𝔐.all).1
+  have := ((_root_.GlobalTheory.CompanionTheory.Ar.CoordNoeth.noetherian_of_coordTie _ Ω A.ξ ℤ _ _ A.tie).2 A.all).1
   rw [hR] at he'
   have key := (GlobalTheory.T.hodge_tate_weil_pullback 𝔐.X Ω 𝔐.ξ 𝔐.tie.gen ((GlobalTheory.T.normal_cpt_iff_normal_scheme _ Ω 𝔐.ξ 𝔐.tie.gen 𝔐.all).2.2 𝔐.normal) 𝔐.t.G 𝔐.t.semi
     𝔐.t.PP.L _ (Nat.one_le_iff_ne_zero.2 hn) (𝔐.tors p hp) e he 𝔐.Li 𝔐.M A.X Ω A.ξ A.tie.gen

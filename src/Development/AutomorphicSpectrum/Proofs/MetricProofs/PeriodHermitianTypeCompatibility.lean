@@ -149,7 +149,7 @@ theorem trace_mul_sesq (D : Datum H) (a : 𝓞 E) (x y : D.La) :
 theorem sesq_smul_left (D : Datum H) (a : 𝓞 E) (x y : D.La) :
     sesq D (a • x) y = (a : E) * sesq D x y := by
   classical
-  conv_rhs => rw [HT.LatTest.expand_dual ((a : E) * sesq D x y)]
+  conv_rhs => rw [_root_.GlobalTheory.CompanionTheory.Ar.HT.LatBasic.expand_dual ((a : E) * sesq D x y)]
   rw [sesq]
   refine Finset.sum_congr rfl fun k _ => ?_
   have e1 : (a : E) * sesq D x y * integralBasis E k =

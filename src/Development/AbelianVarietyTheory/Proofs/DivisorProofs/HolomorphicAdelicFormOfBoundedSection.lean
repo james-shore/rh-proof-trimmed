@@ -87,10 +87,7 @@ theorem continuous_archM (V : HSp D) {τ : D.host.E →+* ℂ} {θ : Ainf D.host
   refine continuous_pi fun a => continuous_pi fun c => ?_
   exact (continuous_place hθ).comp (hm.matrix_elem a c)
 
-theorem archM_mul (V : HSp D) (θ : Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ) (a b : GA D V) :
-    archM V θ (a * b) = archM V θ a * archM V θ b := by
-  unfold archM
-  rw [map_mul, Units.val_mul, Matrix.map_mul]
+alias archM_mul := _root_.GlobalTheory.PointAtPlace.archM_mul
 
 theorem archM_of_fin (V : HSp D) (θ : Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ) {k : GA D V}
     (hk : k ∈ GfC V) : archM V θ k = 1 := by

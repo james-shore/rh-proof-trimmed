@@ -129,7 +129,7 @@ theorem nsmul_dual_mem_loc {σ : E →ₐ[F] E} {n : ℕ} {J : Matrix (Fin n) (F
     convert h3 using 1
     funext a
     simp only [zV, Pi.smul_apply, map_nsmul]
-  exact GlobalTheory.T.exists_smul_mem_lattice_of_mem_completion F E v n L hL (T • z) h4
+  exact _root_.GlobalTheory.LatticeDescent.exists_smul_mem_of_mem_latS F E v n L hL (T • z) h4
 
 
 

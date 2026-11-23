@@ -61,7 +61,7 @@ theorem exists_sum (X : LSp D) {ν q : ℕ} (hX : X.IsV ν q) (hq : q ≤ ν) (c
     (hd : ∀ p x, x ∈ 𝔟 p.rev ↔ star x ∈ (𝔟 p)⁻¹) {ν' q' : ℕ} (h1 : ν + c = ν')
     (h2 : q + (if neg then (c + 1) / 2 else c / 2) = q') :
     ∃ Y : LSp D, Y.IsV ν' q' ∧ IsSum X Y c (if neg then -1 else 1) 𝔟 := by
-  obtain ⟨B, ⟨d⟩, hB, hs⟩ := GlobalTheory.T.hermitian_space_add_signature_exists D X.sp (ν - q) q c neg hX.sigOK hX.sig
+  obtain ⟨B, ⟨d⟩, hB, hs⟩ := _root_.GlobalTheory.SignatureAddition.exists_hermitian_space_add_signature D X.sp (ν - q) q c neg hX.sigOK hX.sig
   refine ⟨⟨B, d.lat X.lat 𝔟⟩, ⟨?_, hB, fun τ => ?_, ?_⟩, d, rfl⟩
   · have := d.rank
     rw [hX.rank] at this

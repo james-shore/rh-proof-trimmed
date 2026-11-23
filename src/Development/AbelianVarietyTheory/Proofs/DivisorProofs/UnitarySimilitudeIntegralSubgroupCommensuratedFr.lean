@@ -166,10 +166,10 @@ theorem Kres_commensurable (K : IntermediateField ℚ_[p] (PadicAlgCl p)) [Finit
   let c : intKQ p K r := (p : intKQ p K r) ^ k
   have hc : (c : KQ p K r) = (p : KQ p K r) ^ k := by simp [c]
   have hfin : Finite (intKQ p K r ⧸ Ideal.span {c * c}) := by
-    have h := GlobalTheory.T.finite_padicTensorUnramifiedIntegers_quot_primePow p K r (2 * k) (GlobalTheory.T.finite_padicIntegers_quot_primePow_of_finiteDim p K (2 * k)) (GlobalTheory.T.finite_padicIntegers_quot_primePow_of_finiteDim p (Qr p r) (2 * k))
+    have h := _root_.GlobalTheory.TenFin.finite_intKQ_quot p K r (2 * k) (_root_.GlobalTheory.LKLoc.IntFin.finite_intK_quot_pow p K (2 * k)) (_root_.GlobalTheory.LKLoc.IntFin.finite_intK_quot_pow p (Qr p r) (2 * k))
     have e : c * c = (p : intKQ p K r) ^ (2 * k) := by simp only [c]; ring
     rw [e]; exact h
-  exact GlobalTheory.T.commensurable_conj_range_gl_map_subtype (intKQ p K r) n c hfin g (fun i j => by rw [hc]; exact hk1 i j)
+  exact _root_.GlobalTheory.commensurable_conj_range_GL_subring (intKQ p K r) n c hfin g (fun i j => by rw [hc]; exact hk1 i j)
     (fun i j => by rw [hc]; exact hk2 i j)
 
 end GlobalTheory.HeckeP
@@ -185,7 +185,7 @@ theorem GlobalTheory.heckeOperator_integral :
   intro p _ G r hr
   refine ⟨fun g => ?_, ?_, ?_⟩
   · unfold KHT
-    exact GlobalTheory.T.commensurable_map_conj_prod_pi' _ _ g (by rw [gl_one_map_conj])
+    exact _root_.GlobalTheory.commensurable_map_conj_prod_pi _ _ g (by rw [gl_one_map_conj])
       (fun i => Kres_commensurable p (G.Fw i) G.n r hr (g.2 i))
   · ext x
     rw [Subgroup.mem_comap, Kp0, Subgroup.mem_comap, inclG_mem_KHT_iff, inclG_mem_KHT_iff]

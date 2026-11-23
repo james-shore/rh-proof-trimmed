@@ -54,10 +54,6 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.CFin
 
-theorem exists_nat_mul_isIntegral {E : Type} [Field E] [NumberField E] (x : E) :
-    ∃ n : ℕ, 0 < n ∧ IsIntegral ℤ ((n : E) * x) :=
-  _root_.UpperTheory.Reformulated.B.DYha3.main x
-
 theorem exists_nat_mul_isIntegral_of_isCompact (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E]
     [Algebra F E] {𝒦 : Set (Af F ⊗[F] E)} (h𝒦 : IsCompact 𝒦) :
     ∃ d : ℕ, 0 < d ∧ ∀ e : E, inclR (F := F) (Af F) e ∈ 𝒦 → IsIntegral ℤ ((d : E) * e) := by
@@ -74,7 +70,7 @@ theorem exists_nat_mul_isIntegral_of_isCompact (F E : Type) [Field F] [NumberFie
     simp [Algebra.algebraMap_eq_smul_one]
   choose m hm hmi using fun i =>
     GroundTheory.Automorphic.CuspidalSpectrum.exists_natCast_mul_integral_of_isCompact F (h𝒦.image (hc i))
-  choose D hD hDi using fun i => exists_nat_mul_isIntegral (b i)
+  choose D hD hDi using fun i => _root_.UpperTheory.Reformulated.B.DYha3.main (b i)
   refine ⟨(∏ i, m i) * ∏ i, D i, Nat.mul_pos (Finset.prod_pos fun i _ => hm i)
     (Finset.prod_pos fun i _ => hD i), fun e he => ?_⟩
   have hsum : ((((∏ i, m i) * ∏ i, D i : ℕ)) : E) * e =

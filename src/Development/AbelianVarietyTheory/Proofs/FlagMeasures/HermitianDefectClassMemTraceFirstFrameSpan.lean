@@ -84,17 +84,9 @@ theorem hf_neg_right {n : ℕ} (Hm : Matrix (Fin n) (Fin n) E) (a y : Fin n → 
     hf L Hm a (-y) = - hf L Hm a y := by
   simp [hf, Finset.sum_neg_distrib]
 
-theorem hf_swap {n : ℕ} {Hm : Matrix (Fin n) (Fin n) E} (h : IsHerm L Hm) (v w : Fin n → E) :
-    hf L Hm w v = L.cj (hf L Hm v w) := by
-  have h' : ∀ i j, L.cj (Hm j i) = Hm i j := fun i j => congrFun (congrFun h i) j
-
-  simp only [hf, map_sum, map_mul, L.cj_cj, h']
-  rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
-
 theorem hf_swap_zero {n : ℕ} {Hm : Matrix (Fin n) (Fin n) E} (h : IsHerm L Hm) {v w : Fin n → E}
     (h0 : hf L Hm v w = 0) : hf L Hm w v = 0 := by
-  rw [hf_swap h, h0, map_zero]
+  rw [_root_.GlobalTheory.HL.MoveFacts.conj_form h, h0, map_zero]
 
 variable {r k : ℕ} (S : Frames L r k)
 
@@ -115,8 +107,7 @@ theorem frame_perp (g : Fin (r + 1) → S.V) (T : E)
   | add a c _ _ ha hc => rw [hf_add, ha, hc, add_zero]
   | smul c a _ ha => rw [hf_smul, ha, mul_zero]
 
-theorem spanTo_mono (g : Fin (r + 1) → S.V) {i j : ℕ} (h : i ≤ j) : S.spanTo g i ≤ S.spanTo g j :=
-  Submodule.span_mono (Set.image_mono fun _ ha => lt_of_lt_of_le ha h)
+alias spanTo_mono := _root_.GlobalTheory.HL.FrameOnto.spanTo_mono
 
 theorem mof_transport (Λ : Submodule L.O S.V) (Y : Submodule E S.V) (g g' g₁ g₁' : Fin (r + 1) → S.V)
     (x x' u : S.V) (h1 : ∀ b, g₁ b = g b - S.h (g b) u • x) (h1' : ∀ b, g₁' b = g' b + S.h (g' b) u • x')
@@ -160,13 +151,6 @@ theorem mof_transport (Λ : Submodule L.O S.V) (Y : Submodule E S.V) (g g' g₁ 
       module
     rw [this]
     exact Submodule.smul_mem _ c ha
-
-theorem th_ne : S.th ≠ 0 := by
-  unfold Frames.th
-  split_ifs
-  · intro h
-    exact S.ϖ_irr.ne_zero (Subtype.ext h)
-  · exact one_ne_zero
 
 end GlobalTheory.HL.TraceRep
 
@@ -218,7 +202,7 @@ theorem GlobalTheory.HL.TraceRep.class_from_trace : ∀ {F : Type} [Field F] [Va
   have hfrΛ : ∀ b, S.fr' d Λ b ∈ Λ := fun b =>
     (hf' (r + 1) le_rfl _).2 (Submodule.subset_span ⟨b, b.2, rfl⟩) |>.1
   have hth : algebraMap F E S.th⁻¹ • (x + x') ∈ Λ := by
-    rw [hte, smul_smul, ← map_mul, inv_mul_cancel₀ (th_ne S), map_one, one_smul]
+    rw [hte, smul_smul, ← map_mul, inv_mul_cancel₀ (_root_.GlobalTheory.FrameLevel.th_ne_zero S), map_one, one_smul]
     exact ht
   obtain ⟨y₁, hy₁Λ, hy₁Y, hm₁⟩ := mof_transport S Λ (S.spanTo S.f (j + 1) ⊔ S.spanTo S.f' (j + 1))
     (S.fr d Λ) (S.fr' d Λ) (fun b => (n₀⁻¹ * (S.wit d Λ).1) (S.f b))

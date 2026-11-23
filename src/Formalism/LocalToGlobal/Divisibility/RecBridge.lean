@@ -71,10 +71,6 @@ section PartA
 
 variable {K : Type} [Field K] [NumberField K] [StarRing K]
 
-theorem mem_dualLat_iff' {V : Type} [AddCommGroup V] [Module K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V]
-    (A : Submodule (𝓞 K) V) (f : Module.Dual K V) :
-    f ∈ Formalism.HN.dualLat A ↔ ∀ x ∈ A, f x ∈ Set.range (algebraMap (𝓞 K) K) := Iff.rfl
-
 theorem oneMap_of_coord (A Rr : Formalism.BasicNotions.HLat K) {d n : ℕ}
     (Nc : Submodule (𝓞 K) (Fin d → K)) (Rc : Submodule (𝓞 K) (Fin n → K))
     (eN : (Fin d → K) ≃ₗ[K] A.V) (eR : (Fin n → K) ≃ₗ[K] Rr.V)
@@ -87,11 +83,11 @@ theorem oneMap_of_coord (A Rr : Formalism.BasicNotions.HLat K) {d n : ℕ}
   rintro f ⟨a, ha, rfl⟩
   rw [hN] at ha
   obtain ⟨φ, hφ, rfl⟩ := ha
-  rw [mem_dualLat_iff']
+  rw [_root_.Formalism.MainNotions.DIV.HookProducts.RBTie.mem_dualLat_iff]
   intro r hr
   rw [hR] at hr
   obtain ⟨y, hy, rfl⟩ := hr
-  have h := (mem_dualLat_iff' Rc (B φ)).1 (h1 φ hφ) y hy
+  have h := (_root_.Formalism.MainNotions.DIV.HookProducts.RBTie.mem_dualLat_iff Rc (B φ)).1 (h1 φ hφ) y hy
   simpa [hB] using h
 
 theorem ne_zero_of_coord {V W V' W' : Type} [AddCommGroup V] [Module K V] [AddCommGroup W] [Module K W]

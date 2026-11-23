@@ -291,7 +291,7 @@ theorem cell_move {L U L' U' P P' : Matrix (Fin N) (Fin N) K} (hL : IsLoUni L) (
       L' * (L'⁻¹ * L) = L ∧ (U' * U⁻¹) * U = U' := by
   obtain ⟨hLi, hL1, hL2⟩ := loUni_inv hL'
   obtain ⟨hUi, hU1, hU2⟩ := upUni_inv hU
-  refine ⟨Formalism.MainNotions.BridgeLemma.bru_lo_mul hLi hL, Formalism.MainNotions.BridgeLemma.bru_up_mul hU' hUi, ?_, ?_, ?_⟩
+  refine ⟨Formalism.MainNotions.BridgeLemma.bru_lo_mul hLi hL, _root_.GlobalTheory.UpperUnipotentMul.isUpUni_mul hU' hUi, ?_, ?_, ?_⟩
   · have : L'⁻¹ * (L * P * U) * U⁻¹ = L'⁻¹ * (L' * P' * U') * U⁻¹ := by rw [e]
     calc (L'⁻¹ * L) * P = L'⁻¹ * (L * P * U) * U⁻¹ := by
             simp only [Matrix.mul_assoc, hU2, Matrix.mul_one]
@@ -615,12 +615,6 @@ theorem ptMat_sq (p : Point K N) :
   · subst h; simp
   · rw [if_neg h, if_neg (Ne.symm h), mul_zero]
 
-theorem det_ptMat_ne (p : Point K N) : (ptMat p).det ≠ 0 := by
-  intro h0
-  have := congrArg Matrix.det (ptMat_sq p)
-  rw [Matrix.det_mul, h0, zero_mul, Matrix.det_diagonal] at this
-  exact (Finset.prod_ne_zero_iff.mpr fun i _ => mul_ne_zero (pv_ne' p i) (pv_ne' p _)) this.symm
-
 theorem zhatOM_eq_pv {r : ℕ} (Z : Matrix (Fin (r + 1)) (Fin (r + 1)) K) :
     ZhatOM Z = Z * Matrix.diagonal (fun b : Fin (r + 1) => (-1 : K) ^ (r - b.val)) := by
   ext a b
@@ -697,7 +691,7 @@ theorem phaseWellDef_of (hDS : DecompSimple) (hM : NormRepMove D u u') (hrows : 
   obtain ⟨A, B, hA, hB, eZ, hψ⟩ :=
     hM F0 t.lam (hrows.1 _ t.mem) t.cls hrel F₁ F₂ hR₁ hA₁ hR₂ hA₂ w ⟨L₁, U₁, hL₁, hU₁, e₁⟩
   have hAL := Formalism.MainNotions.BridgeLemma.bru_lo_mul hA hL₁
-  have hUB := Formalism.MainNotions.BridgeLemma.bru_up_mul hU₁ hB
+  have hUB := _root_.GlobalTheory.UpperUnipotentMul.isUpUni_mul hU₁ hB
   have key : (A * L₁) * ptMat w * (U₁ * B) = L₂ * ptMat w * U₂ := by
     rw [← e₂, eZ, e₁]; simp only [Matrix.mul_assoc]
   have hs := hDS D.host.E _ w (A * L₁) (U₁ * B) L₂ U₂ hAL hUB hL₂ hU₂ key
@@ -711,15 +705,6 @@ theorem autFin_of (hAF : AutLzFin D) (hsig : (VS D).SigOK) (hT : 0 < Tu D u) (hr
   fun Λ hΛ => hAF hsig _ hT F0 Λ (hrows.1 Λ hΛ)
 
 end Proofs
-
-section VolProofs
-
-variable {D : D7} {u u' : D.what₂.Word} {F0 : FlagG (VS D) D.R.rS ((Tu D u : ℕ) : D.host.E)}
-  {what₂ : Finset (Submodule (𝓞 D.host.E) (VS D).V)}
-  {δ : ∀ p : Formalism.MainNotions.S.LocalSplitGroups.PlF D, (D.s.atP p).Fp}
-  {M : ∀ p : Formalism.MainNotions.S.LocalSplitGroups.PlF D, Formalism.MainNotions.S.Loc.Model (D.s.atP p).Fp (D.s.atP p).Ep}
-
-end VolProofs
 
 section Final
 

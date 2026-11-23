@@ -119,10 +119,6 @@ end Field
 section Explicit
 variable (l : ℕ) [Fact l.Prime]
 
-theorem exists_pow_div_factorial (n : ℕ) :
-    ∃ c : ℤ_[l], ((n.factorial : ℕ) : ℤ_[l]) * c = ((l : ℕ) : ℤ_[l]) ^ n := by
-  first | exact @PowDivFactorialAlt.Bridge.RingBasics.exists_pow_div_factorial | exact PowDivFactorialAlt.Bridge.RingBasics.exists_pow_div_factorial .. | (intros; apply PowDivFactorialAlt.Bridge.RingBasics.exists_pow_div_factorial <;> assumption)
-
 theorem φA_apply (x : Per.Ainf l) : Per.φA l x = WittVector.frobenius x := by
   first | exact @FrobeniusApplyA.Bridge.RingBasics.φA_apply | exact FrobeniusApplyA.Bridge.RingBasics.φA_apply .. | (intros; apply FrobeniusApplyA.Bridge.RingBasics.φA_apply <;> assumption)
 

@@ -191,8 +191,4 @@ theorem exists_tr [TopologicalSpace G] [IsTopologicalAddGroup G] (A H : AddSubgr
 
 end Grp
 
-theorem isOpen_ker {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-    (φ : AddChar k Circle) (hφ : Continuous φ) : IsOpen {x : k | φ x = 1} :=
-  PositivityTheory.RgUd.Form.U.Lift2.KerOpen.isOpen_ker φ hφ
-
 end PositivityTheory.RgUd.Form.U.Lift2.AvA

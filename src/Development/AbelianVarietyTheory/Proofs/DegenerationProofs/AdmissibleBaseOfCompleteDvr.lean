@@ -142,9 +142,9 @@ theorem hasArcData_of_model (hV : HV) (h6 : Laws6) (hU : GlobalTheory.LN.UDvrSt)
   have tors := GlobalTheory.T.torsionIso_of_linear_uniformisation_triple hV.1 hV.2.1 hV.2.2.1 hV.2.2.2.1 hV.2.2.2.2 E H M.W _ (admissible_base_of_complete_dvr M.cdv) M.t M.P
   obtain ⟨n, hn, hno, hn3, hn1⟩ := exists_odd_prime C
   obtain ⟨N', ν', J, hlin, hlab, DW, _, oW, φ, he, w₀, e₀, νW, hm, -, hpt, Φ, wΦ, -, hΦ, hwΦ, hΦpt, -⟩ :=
-    GlobalTheory.T.lift_valuation_integral_norm hV h6 hU hH hT hE hTU E H D l Xo c W₀ Y O' b ϖ a hB C A u r o M f u₀ hI hR.1 hu₁ hu hf n hn hno hn1
+    _root_.GlobalTheory.ModelData.data_of_model hV h6 hU hH hT hE hTU E H D l Xo c W₀ Y O' b ϖ a hB C A u r o M f u₀ hI hR.1 hu₁ hu hf n hn hno hn1
       fun j => ⟨hR.2.2.1 _ (pow_pos hn.pos j), fun p hp => (hR.2.2.2 _ hno.pow p hp).2.1⟩
-  obtain ⟨Ψ, hΨ, lΨ, pΨ⟩ := GlobalTheory.T.polarisedAVIso_descends_of_rational_threeTorsion hL hL2 hH M.W M.cdv C DW.P M.P.D.toPre.P (t₂ _ _ hm.1) t₁ Φ
+  obtain ⟨Ψ, hΨ, lΨ, pΨ⟩ := _root_.GlobalTheory.polAV_iso_descends_of_ratTors hL hL2 hH M.W M.cdv C DW.P M.P.D.toPre.P (t₂ _ _ hm.1) t₁ Φ
     (νW.eA.symm.trans (J.φ.trans ν'.eA))  hΦ
     (fun x => by obtain ⟨x, rfl⟩ := νW.eA.surjective x; simpa using hΦpt x) ⟨wΦ, hwΦ⟩
   set ψ := Ψ.hom.left ≫ φ with hψ
@@ -172,10 +172,10 @@ theorem hasArcData_of_model (hV : HV) (h6 : Laws6) (hU : GlobalTheory.LN.UDvrSt)
     ⟨gψ, hw, pψ, fun y => congrArg (fun z => ν'.eX (J.e z)) (A.ν.eX.symm_apply_apply y),
       GlobalTheory.T.isomorphismValues_cocycle_eq_bundleIso_value hL hL2 M.W O' f _ _ C hf N' A.N ν' A.ν ψ w J.toIso gψ hw pψ⟩
   have act : ∀ x, (M.P.oD.onB.act x).left ≫ ψ = ψ ≫ (a.oa.onB.act x).left := fun x => by
-    refine GlobalTheory.T.polarized_abelian_pullback_line_bundle hL hE E H M.W _ _ _ _ M.P.oD.onB a.oa.onB ψ gψ lψ C n hn.two_le x fun j z hz => ?_
+    refine _root_.GlobalTheory.Ex.Trait.act_comm_of_torsion hL hE E H M.W _ _ _ _ M.P.oD.onB a.oa.onB ψ gψ lψ C n hn.two_le x fun j z hz => ?_
     obtain ⟨z, rfl⟩ := (J.φ.trans ν'.eA).surjective z
     have hz' : (z : A.N.A) ^ n ^ j = 1 := (J.φ.trans ν'.eA).injective (by rw [map_pow, map_one]; exact hz)
-    have e₁ := GlobalTheory.T.valuesIso_comm_action_abelianPart_torsion hLL hGt E H D l c _ _ O' b a C A u r o M f N' ν' J hR.1 hf tors _ (pow_pos hn.pos j) (hlab j) hlin x z
+    have e₁ := _root_.GlobalTheory.Ex.ActPt.main hLL hGt E H D l c _ _ O' b a C A u r o M f N' ν' J hR.1 hf tors _ (pow_pos hn.pos j) (hlab j) hlin x z
       (A.ν.eA.symm (A.ν.eA z ≫ a.oa.onB.act x)) hz' (A.ν.eA.apply_symm_apply _)
     refine (congrArg (fun z => CommaMorphism.left z ≫ ψ) e₁.symm).trans ((pψ _).trans ?_)
     rw [MulEquiv.apply_symm_apply, Over.comp_left]
@@ -213,9 +213,9 @@ theorem hasArcData_of_model (hV : HV) (h6 : Laws6) (hU : GlobalTheory.LN.UDvrSt)
   have hzw : ((o.I.ev k v).left ≫ M.φ) ≫ M.P.A.A.hom = jFK (R := M.W) C := by
     have e₁ : (o.I.ev k v).left ≫ o.P.A.hom = 𝟙 _ := Over.w _
     rw [Category.assoc, M.cart.1.w, reassoc_of% e₁]
-  obtain ⟨q₁, q₂, a₁, a₂, a₃, a₄⟩ := GlobalTheory.T.levelCondition_valuedField_twistedUniformisation hLL hGt E H D l c _ _ O' b a C A u r o M f N' ν' J hR.1 hf tors ψ w e fit k hk hkM
+  obtain ⟨q₁, q₂, a₁, a₂, a₃, a₄⟩ := _root_.GlobalTheory.Ex.Trait.LevelClause.level_clause hLL hGt E H D l c _ _ O' b a C A u r o M f N' ν' J hR.1 hf tors ψ w e fit k hk hkM
     (lab k hk) p₀ v hv (Over.homMk ((o.I.ev k v).left ≫ M.φ) hzw) rfl
-  refine GlobalTheory.T.levelCondition_of_one_algClosed_field hLL E H M.W O' _ (admissible_base_of_complete_dvr M.cdv) M.t M.P a.D₀ a.bimult f ψ w e.toAddEquiv s₁ s₂ k hk p₀
+  refine _root_.GlobalTheory.LevelField.toA_of_toA hLL E H M.W O' _ (admissible_base_of_complete_dvr M.cdv) M.t M.P a.D₀ a.bimult f ψ w e.toAddEquiv s₁ s₂ k hk p₀
     (fun z => algebraMap M.W _ u₀ ^ (a.be p₀.y z / k)) x₀ C hf q₁ q₂ _ a₁ a₂ (fun z => ?_) ?_ a₄ F (fun x => (hF x).symm) q₀ q x
     h₀ hq (fun z => ?_) (hx₀ F _ (Over.w x) hx)
   · rw [map_zpow₀, ← hu, ← a₁.1]; exact a₃ z
@@ -261,7 +261,7 @@ theorem hasArcData_at_trait : HV → Laws6 → GlobalTheory.LN.UDvrSt → Global
   rw [spMap_comp, Category.assoc] at hF
   have sq : spMap gam ≫ jK R₁ = jK W ≫ spMap φ :=
     (spMap_comp _ gam).symm.trans ((congrArg spMap (RingHom.ext hgam)).trans (spMap_comp φ _))
-  obtain ⟨M, f₁, χ₁, m₁, fin₁, al₁, hχ₁, -⟩ := GlobalTheory.T.moduli_model_ultrametric_points hV h6 hU hH hT hE hTU E H D l Xo c W₀ Y C W hW hext
+  obtain ⟨M, f₁, χ₁, m₁, fin₁, al₁, hχ₁, -⟩ := _root_.GlobalTheory.Ex.UnifModel.exists_mdl hV h6 hU hH hT hE hTU E H D l Xo c W₀ Y C W hW hext
     (FractionRing W) (algebraMap _ C) (fun _ => rfl) (spMap gam ≫ y₁) (f₀.comp b) (by
       have e : spMap (algebraMap (FractionRing W) (FractionRing W)) = 𝟙 _ := Spec.map_id _
       rw [e, Category.id_comp, Category.assoc, hs, reassoc_of% sq, hf₀, spMap_comp, spMap_comp, spMap_comp]
@@ -297,7 +297,7 @@ theorem hasArcData_at_trait : HV → Laws6 → GlobalTheory.LN.UDvrSt → Global
     rw [reassoc_of% jδ]
   rw [ey] at g₀ hA hM
   rw [← eχ] at hy
-  obtain ⟨φ₂, g₂, l₂, a₂, e₂⟩ := GlobalTheory.T.family_fibre_eq_uniformised_pullback_generic_fibre E H D l Xo c _ _ Y W₂ _ t _ m P C _ (by rw [Category.assoc, hy]) o φ₀ g₀ l₀ a₀
+  obtain ⟨φ₂, g₂, l₂, a₂, e₂⟩ := _root_.GlobalTheory.Ex.GenericFibre.fibre_eq_generic_fibre E H D l Xo c _ _ Y W₂ _ t _ m P C _ (by rw [Category.assoc, hy]) o φ₀ g₀ l₀ a₀
   let M₂ : Mdl o := ⟨W₂, hW₂, ext₂, t, P, φ₂, g₂, l₂, a₂⟩
   refine ⟨W₂, _, _, _, io.comp f₁, hW₂, inj₂.comp inj₁, fin₂.comp fin₁, ?_⟩
   rw [← eχ]

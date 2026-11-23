@@ -293,5 +293,4 @@ theorem row_weight_formula : RowWeight := by
 
 end PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowWeightPf
 
-theorem PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.row_weight_formula : PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowWeight :=
-  PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowWeightPf.row_weight_formula
+alias PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.row_weight_formula := _root_.PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowWeightPf.row_weight_formula

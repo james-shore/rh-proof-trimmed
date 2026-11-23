@@ -92,11 +92,6 @@ theorem mcast_mcast {a b c : ℕ} (h₁ : a = b) (h₂ : b = c) (h₃ : a = c) (
 theorem evX_cInd {τ : MRep k (i + 1)} {σ : GRep k (t + 1)} (f : XS τ σ) (g p : Mir k ((i + 1) + t + 1)) :
     evX (cInd (HPG k (i + 1) (t + 1)) (sigX τ σ) g f) p = evX f (p * g) := rfl
 
-theorem intC_translate (ψ : AddChar k Circle) {τ : MRep k (i + 1)} {σ : GRep k (t + 1)} (f : XS τ σ)
-    (g y : Mir k ((i + 1) + t + 1)) :
-    intC ψ (cInd (HPG k (i + 1) (t + 1)) (sigX τ σ) g f) y = intC ψ f (y * g) := by
-  simp only [intC, evX_cInd, mul_assoc]
-
 theorem intO_translate {τ : MRep k (i + 1)} {σ : GRep k (t + 1)} (f : XS τ σ)
     (g y : Mir k ((i + 1) + t + 1)) :
     intO (cInd (HPG k (i + 1) (t + 1)) (sigX τ σ) g f) y = intO f (y * g) := by
@@ -108,7 +103,7 @@ theorem eC_translate (ψ : AddChar k Circle) {τ : MRep k (i + 1)} {σ : GRep k 
     (x m : Mir k ((i + 1) + t)) :
     eC ψ f (x * m) = ((dpowM ((i + 1) + t) (-1 / 2) m : ℂˣ) : ℂ) •
       eC ψ (cInd (HPG k (i + 1) (t + 1)) (sigX τ σ) (sEmb k ((i + 1) + t) m) f) x := by
-  simp only [eC, map_mul, Units.val_mul, intC_translate, smul_smul, mul_comm]
+  simp only [eC, map_mul, Units.val_mul, _root_.GlobalTheory.CompanionTheory.BZPhiPG.Onto.intC_translate, smul_smul, mul_comm]
 
 theorem eO_translate (ψ : AddChar k Circle) {τ : MRep k (i + 1)} {σ : GRep k (t + 1)} (f : XS τ σ)
     (x m : Mir k (i + (t + 1))) :
@@ -243,7 +238,7 @@ theorem phiPG_core (ψ : AddChar k Circle) (hψ : Continuous ψ) (i t : ℕ) (τ
     (fun u f => GlobalTheory.T.closed_evaluation_equivariant k i t ψ hψ τ σ hτ hσ u f)
     (fun u f => by
       funext m
-      exact congrFun (GlobalTheory.T.open_evaluation_equivariant k i t ψ hψ τ σ hτ hσ u f) _)
+      exact congrFun (_root_.GlobalTheory.CompanionTheory.BZPhiPG.TwO.eO_cInd k i t ψ hψ τ σ hτ hσ u f) _)
     (fun m f => aC_eCl ψ hψ τ σ hτ hσ m f)
     (fun m f => aO_eOl ψ hψ τ σ hτ hσ hh m f)
     (fun f => by
@@ -257,7 +252,7 @@ theorem phiPG_core (ψ : AddChar k Circle) (hψ : Continuous ψ) (i t : ℕ) (τ
       exact (congrArg (fun z => mirabolicRestriction ψ τ σ hh z m) e1).trans (congrFun hy _))
     (fun v => GlobalTheory.T.closed_evaluation_surjective k i t ψ hψ τ σ hτ hσ v)
     (fun v => by
-      obtain ⟨f, hf, hy⟩ := GlobalTheory.T.open_evaluation_surjective k i t ψ hψ τ σ hτ hσ (e.symm v)
+      obtain ⟨f, hf, hy⟩ := _root_.GlobalTheory.CompanionTheory.BZPhiPG.OntoO.onto k i t ψ hψ τ σ hτ hσ (e.symm v)
       refine ⟨f, hf, ?_⟩
       funext m
       exact congrFun hy _)

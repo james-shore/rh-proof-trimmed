@@ -92,7 +92,7 @@ theorem cuspElliptic_statement : CuspElliptic.Statement := by
   · have : Subsingleton (GL (Fin 0) F) := ⟨fun a b => Units.ext (Subsingleton.elim _ _)⟩
     funext x
     rw [irrChar_eq_one_of_subsingleton χ h.1, irrChar_eq_one_of_subsingleton χ' h'.1]
-  · exact GlobalTheory.T.eq_of_isPrimitive_of_eq_on_elliptic_finiteGL F d χ χ' hd (isIrrChar_of_norm_one χ h.1) (isIrrChar_of_norm_one χ' h'.1)
+  · exact _root_.GlobalTheory.CuspGL.eq_of_isPrimitive_of_eq_on_elliptic F d χ χ' hd (isIrrChar_of_norm_one χ h.1) (isIrrChar_of_norm_one χ' h'.1)
       (isPrimitive_of_isCuspChar χ h) (isPrimitive_of_isCuspChar χ' h') he
 
 end GlobalTheory.CuspGL

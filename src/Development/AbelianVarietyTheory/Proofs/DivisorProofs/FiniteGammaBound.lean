@@ -48,6 +48,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
+import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.CovolOneIntegralAdd
 
 @[expose] public section
 
@@ -95,12 +96,9 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formali
 
 variable {D : D7}
 
-theorem incA_inj' : Function.Injective (incA D) :=
-  Algebra.TensorProduct.includeRight_injective (AdeleRing.algebraMap_injective (𝓞 D.host.F) D.host.F)
-
 theorem bc_incA_injective (n : ℕ) : Function.Injective (Formalism.UG.bc (n := Fin n) (incA D)) := by
   intro a b e
-  exact Units.ext (Matrix.ext fun i j => incA_inj' (by simpa [Formalism.UG.bc] using congrArg (fun g => (Units.val g) i j) e))
+  exact Units.ext (Matrix.ext fun i j => _root_.GlobalTheory.MixModel.incA_injective (by simpa [Formalism.UG.bc] using congrArg (fun g => (Units.val g) i j) e))
 
 theorem exists_rat (V : HSp D) (q : GQ V) : ∃ u : GL (Fin V.rank) D.host.E, Formalism.UG.bc (incA D) u = matHom V q.1 := by
   obtain ⟨u, -, hu⟩ := Subgroup.mem_map.1 (Subgroup.mem_subgroupOf.1 q.2)
@@ -324,6 +322,4 @@ theorem finGamAt_of {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : Type} {A : Form
 end GlobalTheory.GamLoss
 
 namespace GlobalTheory.GamLoss
-open GlobalTheory.SumSize GlobalTheory.RowClaim
-
 end GlobalTheory.GamLoss

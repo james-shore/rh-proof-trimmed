@@ -78,10 +78,10 @@ theorem contCone_of_represented : ∀ (R : Type) [CommRing R] (F : Shv R), Finit
     refine h1.ofIsoLimit (Cone.ext e0.symm (fun i => ?_))
     simp [s]
     rfl
-  have h0 : ContCone R F (sch.mapCone s) := GlobalTheory.T.cohomologyContinuous_cofiltered_affine_limit R F hF I G s hs hZ
+  have h0 : ContCone R F (sch.mapCone s) := _root_.GlobalTheory.EtC.contCone_of_affine_limit R F hF I G s hs hZ
   let αI : G ⋙ sch ≅ D ⋙ disc := (Functor.associator G yoneda disc).symm ≪≫ Functor.isoWhiskerRight isoYD disc
   let βI : sch.obj Z0 ≅ disc.obj c.pt := disc.mapIso e0
-  refine (GlobalTheory.T.of_etaleCohomologyEquivalence_diagram R F I (G ⋙ sch) (D ⋙ disc) (sch.mapCone s) (disc.mapCone c) αI.hom βI.hom
+  refine (_root_.GlobalTheory.EtC.ContCone.iff_of_eqv R F I (G ⋙ sch) (D ⋙ disc) (sch.mapCone s) (disc.mapCone c) αI.hom βI.hom
     (fun i => ?_) (fun i => eqv_of_iso R F (αI.app i)) (eqv_of_iso R F βI)).mp h0
   simp only [Functor.mapCone_π_app, αI, βI, s, sch, Functor.comp_map]
   simp [isoYD, ← Functor.map_comp]

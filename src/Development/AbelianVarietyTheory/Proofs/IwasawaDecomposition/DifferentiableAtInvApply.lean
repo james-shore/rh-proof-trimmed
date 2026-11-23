@@ -60,16 +60,11 @@ namespace GlobalTheory.Mem.GaussPhase
 
 variable {σ : Type} [Fintype σ] [DecidableEq σ]
 
-theorem differentiableAt_det (M : ℝ → Matrix σ σ ℂ) (t : ℝ)
-    (hM : ∀ i j, DifferentiableAt ℝ (fun s => M s i j) t) :
-    DifferentiableAt ℝ (fun s => (M s).det) t :=
-  _root_.GlobalTheory.DifferentiableDet.differentiableAt_det M t hM
-
 theorem differentiableAt_inv_apply (M : ℝ → Matrix σ σ ℂ) (t : ℝ)
     (hM : ∀ i j, DifferentiableAt ℝ (fun s => M s i j) t) (hne : (M t).det ≠ 0) (i j : σ) :
     DifferentiableAt ℝ (fun s => (M s)⁻¹ i j) t := by
   have hadj : DifferentiableAt ℝ (fun s => (M s).adjugate i j) t := by
-    have := differentiableAt_det (fun s => (M s).updateRow j (Pi.single i 1)) t (by
+    have := _root_.GlobalTheory.DifferentiableDet.differentiableAt_det (fun s => (M s).updateRow j (Pi.single i 1)) t (by
       intro a b
       by_cases h : a = j
       · simp only [updateRow_apply, h, ite_true]
@@ -77,7 +72,7 @@ theorem differentiableAt_inv_apply (M : ℝ → Matrix σ σ ℂ) (t : ℝ)
       · simp only [updateRow_apply, h, ite_false]
         exact hM a b)
     simpa only [adjugate_apply] using this
-  have := ((differentiableAt_det M t hM).fun_inv hne).mul hadj
+  have := ((_root_.GlobalTheory.DifferentiableDet.differentiableAt_det M t hM).fun_inv hne).mul hadj
   refine this.congr_of_eventuallyEq (Filter.Eventually.of_forall fun t => ?_)
   simp [Matrix.inv_def, Ring.inverse_eq_inv']
 
@@ -112,7 +107,7 @@ theorem hasDerivAt_phase (σ : Type) [Fintype σ] [DecidableEq σ] (S T : Matrix
     exact (differentiableAt_const _).fun_sub ((hof.differentiableAt.fun_pow 2).mul_const _)
   have hne : (M t).det ≠ 0 := hu.ne_zero
   have hev : ∀ᶠ s in nhds t, (M s).det ≠ 0 :=
-    (differentiableAt_det M t hM).continuousAt.eventually_ne hne
+    (_root_.GlobalTheory.DifferentiableDet.differentiableAt_det M t hM).continuousAt.eventually_ne hne
   have hwd : DifferentiableAt ℝ w t := by
     refine differentiableAt_pi.mpr fun i => ?_
     change DifferentiableAt ℝ (fun s => ∑ k, (M s)⁻¹ i k * (y k + (s : ℂ) * (T *ᵥ x) k)) t

@@ -131,7 +131,7 @@ theorem finsum_doubleCoset_regroup (G : Type) [Group G] (T Γ C K' : Subgroup G)
         intro e; apply hne; simp [e]
       exact Set.finite_coe_iff.mp (Nat.finite_of_card_ne_zero hn)
   calc _ = ∑ᶠ q, h (π q) := finsum_congr hLHS
-    _ = ∑ᶠ p, (Nat.card (π ⁻¹' {p}) : ℂ) * h p := GlobalTheory.T.finsum_comp_eq_finsum_card_fiber_mul π h hdich
+    _ = ∑ᶠ p, (Nat.card (π ⁻¹' {p}) : ℂ) * h p := _root_.GlobalTheory.finsum_comp_eq_finsum_natCard_fiber_mul π h hdich
     _ = ∑ᶠ p, a * ((((T ⊓ K'.map (MulAut.conj (Quotient.out p)).toMonoidHom).relIndex C : ℕ) : ℂ) * φ (Quotient.out p)) := finsum_congr hfinal
     _ = _ := (hmul a _).symm
 

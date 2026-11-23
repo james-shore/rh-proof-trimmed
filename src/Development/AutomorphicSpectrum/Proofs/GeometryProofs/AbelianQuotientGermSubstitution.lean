@@ -67,13 +67,6 @@ theorem actComm_aug_X {R : Type} [CommRing R] {κ : Type} (m : ℕ) (q : κ) :
   show MvPolynomial.aeval (fun _ : κ => (0 : R)) (MvPolynomial.X q) = 0
   simp
 
-theorem actComm_homAt_comp {X : Scheme.{0}} {S : Type} [CommRing S] (x0 : Sp S ⟶ X) {A B C : Type} [CommRing A]
-    [Algebra S A] [CommRing B] [Algebra S B] [CommRing C] [Algebra S C] (f : A →ₐ[S] B) (g : B →ₐ[S] C) :
-    homAt x0 g ≫ homAt x0 f = homAt x0 (g.comp f) := by
-  apply Over.OverMorphism.ext
-  simp only [homAt, Over.comp_left, Over.homMk_left, spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
-  rfl
-
 section Fib
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {X : Scheme.{0}} (t : SAB H X)
@@ -116,11 +109,11 @@ theorem substitution_action_commutes : ∀ (E : Type) [Field E] [NumberField E] 
   set B := jetSubstP (S := k) m fun p : Fin 1 × Fin d' => psTrunc m (gB.B.A.act a p.2) with hB
   have h1 : homAt (𝟙 (Sp k)) (A.comp (sub1 Qs m)) ≫ gB.x m =
       fibPt t x (g.x m) ≫ (Over.pullback x).map (t.act.act a) ≫ Q.q := by
-    rw [← actComm_homAt_comp, Category.assoc, ← hQ m, ← Category.assoc, homAt_fibPt, ← g.chart.act m a,
+    rw [← _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.GermD.homAt_comp, Category.assoc, ← hQ m, ← Category.assoc, homAt_fibPt, ← g.chart.act m a,
       ← fibPt_map, Category.assoc]
   have h2 : homAt (𝟙 (Sp k)) ((sub1 Qs m).comp B) ≫ gB.x m =
       fibPt t x (g.x m) ≫ (Over.pullback x).map (t.act.act a) ≫ Q.q := by
-    rw [← actComm_homAt_comp, Category.assoc, ← gB.chart.act m a, Q.act_q, ← Category.assoc, ← Category.assoc, ← hQ m]
+    rw [← _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.GermD.homAt_comp, Category.assoc, ← gB.chart.act m a, Q.act_q, ← Category.assoc, ← Category.assoc, ← hQ m]
   have haug : ∀ χ : Jet k (Fin 1 × Fin d') m →ₐ[k] Jet k (Fin 1 × Fin d) m,
       (jetAug : Jet k (Fin 1 × Fin d) m →ₐ[k] k).comp χ = jetAug →
       ∀ q, (jetAug : Jet k (Fin 1 × Fin d) m →ₐ[k] k) (χ (Ideal.Quotient.mk _ (MvPolynomial.X q))) = 0 := by
@@ -132,7 +125,7 @@ theorem substitution_action_commutes : ∀ (E : Type) [Field E] [NumberField E] 
     rw [← AlgHom.comp_assoc, sub1, actComm_aug_subst, hB, actComm_aug_subst]
   have hz : homAt (𝟙 (Sp k)) (jetAug : Jet k (Fin 1 × Fin d) m →ₐ[k] k) ≫
       (homAt (𝟙 (Sp k)) (A.comp (sub1 Qs m)) ≫ gB.x m) = 1 := by
-    rw [← Category.assoc, actComm_homAt_comp, a1]
+    rw [← Category.assoc, _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.GermD.homAt_comp, a1]
     exact gB.chart.zero m
   exact ((GlobalTheory.T.formal_germ_dimension_unique E H hst (Sp k) Q.tB k (𝟙 (Sp k)) d' gB).2 (Fin 1 × Fin d) m _ hz).unique
     ⟨haug _ a1, rfl⟩ ⟨haug _ a2, h1.trans h2.symm⟩

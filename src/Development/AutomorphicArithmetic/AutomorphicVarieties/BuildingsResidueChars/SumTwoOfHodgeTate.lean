@@ -69,5 +69,5 @@ theorem UpperTheory.sum_two_of_hodge_tate :
     ext g i j
     rfl
   rw [e] at p3 ⊢
-  rw [GlobalTheory.T.weilDeligneParamAboveL_directSum_potSemistable l _ _ ⟨T⟩ ι E Ω A w O Bw h hj a b _ _ p1 p2 p3]
+  rw [_root_.GlobalTheory.Pst.SumParam.wdAt_sumRep l _ _ ⟨T⟩ ι E Ω A w O Bw h hj a b _ _ p1 p2 p3]
   exact (Lev.ssCalc E Ω A w h).2.1 _ _ _ _ e1 e2

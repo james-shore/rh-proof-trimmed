@@ -86,7 +86,7 @@ theorem weil_heis_intertwine : ∀ (F : Type) [Field F] [CharZero F] [ValuativeR
     intro p hp w
     refine LinearMap.ext fun φ => Subtype.ext ?_
     simp only [Module.End.mul_apply, heis_apply, hK.par p hp]
-    exact GlobalTheory.T.siegelParabolic_operators_heisenberg_compat F E c δ hE α ν Q hQ ψ hψ hψ1 hψne χ hχ hη p hp w φ
+    exact _root_.GlobalTheory.KSp.heisFun_parFun F E c δ hE α ν Q hQ ψ hψ hψ1 hψne χ hχ hη p hp w φ
   have hweyl : weyl c ν ∈ U := by
     intro w
     refine LinearMap.ext fun φ => Subtype.ext ?_

@@ -53,16 +53,12 @@ open ReciprocityTheory.ChartRestriction.L3 ReciprocityTheory.ChartRestriction.L3
 
 variable {E : Type} [Field E] [NumberField E] [StarRing E] {n : ℕ}
 
-theorem vec_denom (M : Submodule (𝓞 E) (Fin n → E)) (hsp : Submodule.span E (M : Set (Fin n → E)) = ⊤)
-    (v : Fin n → E) : ∃ m : ℕ, 0 < m ∧ (m : 𝓞 E) • v ∈ M := by
-  first | exact Bl.DenominatorsAlt.goal1 .. | (apply Bl.DenominatorsAlt.goal1 <;> assumption) | (intros; apply Bl.DenominatorsAlt.goal1 <;> assumption)
-
 theorem lat_denom (L M : Submodule (𝓞 E) (Fin n → E)) (hL : L.FG)
     (hsp : Submodule.span E (M : Set (Fin n → E)) = ⊤) :
     ∃ N : ℕ, 0 < N ∧ ∀ x ∈ L, (N : 𝓞 E) • x ∈ M := by
   classical
   obtain ⟨S, hS⟩ := hL
-  choose f hf0 hfM using fun v : Fin n → E => vec_denom M hsp v
+  choose f hf0 hfM using fun v : Fin n → E => _root_.Bl.DenominatorsAlt.goal1 M hsp v
   refine ⟨∏ s ∈ S, f s, Finset.prod_pos (fun i _ => hf0 i), ?_⟩
   intro x hx
   rw [← hS] at hx

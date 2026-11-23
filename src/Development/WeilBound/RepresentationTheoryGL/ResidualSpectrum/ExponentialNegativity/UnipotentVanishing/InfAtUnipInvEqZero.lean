@@ -73,11 +73,6 @@ theorem exists_ncard_box_le (K : Type) [Field K] [NumberField K] (n : ℕ)
       (box K n 𝒦 T).Finite ∧ ((box K n 𝒦 T).ncard : ℝ) ≤ ∏ i, ∏ j, C * (1 + T i j) ^ Module.finrank ℚ K :=
   GlobalTheory.CompanionTheory.Counting.exists_ncard_entrywiseBox_le K n 𝒦 h𝒦
 
-theorem prod_bound (n r d : ℕ) (hr : r ≤ n) (C β t : ℝ) (hC : 0 ≤ C) (hβ : 0 ≤ β) (ht : 0 ≤ t) :
-    ∏ i : Fin n, ∏ j : Fin n, C * (1 + β * (if (i : ℕ) < r ∧ r ≤ (j : ℕ) then Real.exp t else 1)) ^ d ≤
-      C ^ (n * n) * (1 + β) ^ (d * (n * n)) * Real.exp ((d : ℝ) * ((r : ℝ) * ((n : ℝ) - r)) * t) :=
-  GlobalTheory.CompanionTheory.EntrywiseCount.prod_entrywise_le n r d hr C β t hC hβ ht
-
 variable {K : Type} [Field K] [NumberField K] {n : ℕ}
 
 abbrev cen (K : Type) [Field K] [NumberField K] (n : ℕ) : AdelicGLn.AdelicGL K n := An.tor K fun _ : Fin n => (1 : ℝ)
@@ -296,7 +291,7 @@ theorem count_holds : An.Count := by
     exact ⟨(m, γ₀), Finset.mem_coe.2 (Finset.mem_product.2 ⟨hm, hB⟩), hγm.symm⟩
   have hB : (B.card : ℝ) ≤ C ^ (n * n) * (1 + β) ^ (d * (n * n)) * Real.exp (2 * An.rho K n r * t) := by
     rw [← Set.ncard_eq_toFinset_card _ hfin]
-    refine hcard.trans ((count.prod_bound n r d hrn.le C β t hC hβ ht).trans (le_of_eq ?_))
+    refine hcard.trans ((_root_.GlobalTheory.CompanionTheory.EntrywiseCount.prod_entrywise_le n r d hrn.le C β t hC hβ ht).trans (le_of_eq ?_))
     congr 2
     simp only [An.rho, d]
     ring

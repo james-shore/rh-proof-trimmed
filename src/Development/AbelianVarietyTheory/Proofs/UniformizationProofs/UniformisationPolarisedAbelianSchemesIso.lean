@@ -131,7 +131,7 @@ theorem unifPre_polarised_iso :
   intro hGF hS hA R _ _ _ I hR D D' A A' G _ _ hG U U' wL he hgen hrig
   choose β hβm hβ using unifPre_abelianPart_iso R I hR D D' A A' G hG U U'
   choose v hvg hv using fun e =>
-    T.uniformisation_polarisations_agree_at_level hGF R I hR D D' A A' G hG U U' wL he hgen hrig e (β e) (hβm e) (hβ e)
+    _root_.GlobalTheory.polarisations_agree_at_level hGF R I hR D D' A A' G hG U U' wL he hgen hrig e (β e) (hβm e) (hβ e)
   have hβl : ∀ e, (U'.gt e).q.left ≫ (β e).hom.left = (U.gt e).q.left := fun e =>
     congrArg (·.left) (hβ e)
   have hp : ∀ e, (U'.gt e).q.left ≫ (β e).hom.left ≫ (fstG I e D.toPre.P.A).left =

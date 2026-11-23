@@ -66,7 +66,7 @@ theorem psiG_rootSum_pair_prod_rootSum : ∀ (F : Type) [Field F] [Finite F] (θ
   have hcast : ((q : ℂ) ^ m - 1) = ((N : ℕ) : ℂ) := by
     rw [hN, Nat.cast_sub hqm.le]; push_cast; ring
   have hNne : ((N : ℕ) : ℂ) ≠ 0 := by exact_mod_cast hN0.ne'
-  have htor := GlobalTheory.T.green_function_character_sum F θ m k (fun P => ∏ j, rootSum θ (e j) P) hm
+  have htor := _root_.GlobalTheory.Shin.psiG_rootSum_pair_chG_eq_sum_torus F θ m k (fun P => ∏ j, rootSum θ (e j) P) hm
   have horth := (GlobalTheory.CuspGL.torus_orthogonality F θ hθ m hm).2
   set T := {α : AlgebraicClosure F | α ^ N = 1} with hT
   have hTfin : T.Finite := by
@@ -78,7 +78,7 @@ theorem psiG_rootSum_pair_prod_rootSum : ∀ (F : Type) [Field F] [Finite F] (θ
       = ∑ a : Fin l → Fin m, θ α ^ k * star (θ α ^ (∑ j, e j * q ^ (a j : ℕ))) := by
     intro α hα
     have hr : ∀ j, rootSum θ (e j) (minpoly F α ^ (m / (minpoly F α).natDegree)) = ∑ a : Fin m, θ α ^ (e j * q ^ (a : ℕ)) :=
-      fun j => (GlobalTheory.T.rootSum_minpoly_pow_eq_sum_range F θ m (e j) α hm hα).trans (Finset.sum_range (fun a => θ α ^ (e j * q ^ a)))
+      fun j => (_root_.GlobalTheory.Shin.rootSum_minpoly_pow_eq_sum F θ m (e j) α hm hα).trans (Finset.sum_range (fun a => θ α ^ (e j * q ^ a)))
     simp_rw [hr]
     rw [← Finset.mul_sum, ← star_sum, Finset.prod_univ_sum]
     simp only [Fintype.piFinset_univ, Finset.prod_pow_eq_pow_sum]

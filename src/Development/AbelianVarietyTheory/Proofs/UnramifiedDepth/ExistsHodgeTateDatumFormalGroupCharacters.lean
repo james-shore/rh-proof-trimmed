@@ -67,15 +67,6 @@ set_option autoImplicit false
 
 namespace GlobalTheory.ChF
 
-private theorem thetaBar_surj (p : ℕ) [Fact p.Prime] {C : Type} [Field C] [IsAlgClosed C] [CharZero C]
-    {v : Valuation C NNReal} (O : Type) [CommRing O] [Algebra O C] [Fact ¬IsUnit (p : O)]
-    [IsAdicComplete (Ideal.span {(p : O)}) O] (hv : v.Integers O) (ε : PreTilt O p)
-    (hε : IsPrimitiveRoot (((frobeniusEquiv (PreTilt O p) p).symm ε).untilt) p) :
-    Function.Surjective (Ainf.thetaBar p O hv ε hε) := by
-  intro y
-  obtain ⟨a, rfl⟩ := Ainf.theta_surj p O hv y
-  exact ⟨Ideal.Quotient.mk _ a, rfl⟩
-
 private theorem thetaBar_mul (p : ℕ) [Fact p.Prime] {C : Type} [Field C] [IsAlgClosed C] [CharZero C]
     {v : Valuation C NNReal} (O : Type) [CommRing O] [Algebra O C] [Fact ¬IsUnit (p : O)]
     [IsAdicComplete (Ideal.span {(p : O)}) O] (hv : v.Integers O) (ε : PreTilt O p)
@@ -150,7 +141,7 @@ private theorem htd_of_tower (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAl
   subst hTw
   have hπs : Function.Surjective
       (algebraMap (Ainf.R0 p O ε) ((Ainf.ainfTowerL p O hv ε hε).O : Type)) :=
-    thetaBar_surj p O hv ε hε
+    _root_.GlobalTheory.WdAinf.thetaBar_surj p O hv ε hε
   have hπk : RingHom.ker
       (algebraMap (Ainf.R0 p O ε) ((Ainf.ainfTowerL p O hv ε hε).O : Type)) ^ 2 = ⊥ := by
     rw [pow_two (RingHom.ker
@@ -174,18 +165,18 @@ private theorem htd_of_tower (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAl
   haveI : IsScalarTower (Ainf.R0 p O ε) ((Ainf.ainfTowerL p O hv ε hε).O : Type) C :=
     IsScalarTower.of_algebraMap_eq fun _ => rfl
   have hpC : ((p : ℕ) : C) ≠ 0 := Nat.cast_ne_zero.2 (Fact.out : p.Prime).ne_zero
-  have hcard := GlobalTheory.T.card_torsion_of_polarisedAbelianScheme_lift (Ainf.R0 p O ε) ((Ainf.ainfTowerL p O hv ε hε).O : Type) C G P ψ hψ p hpC
+  have hcard := _root_.GlobalTheory.ChF.card_torsion_of_isGrpPullback (Ainf.R0 p O ε) ((Ainf.ainfTowerL p O hv ε hε).O : Type) C G P ψ hψ p hpC
   have hinv : ∀ a, cjZ OE (cjZ OE a) = a := fun a => by simp [cjZ]
   have hros : ∀ a, ∃ t : LB.Gen (LB.LinComb Q (K := Fin 2)
       ![(lift (fst P.A P.A ≫ o.toRingAct.act a) (snd P.A P.A)).left ≫ ψ₂,
         (lift (fst P.A P.A) (snd P.A P.A ≫ o.toRingAct.act (cjZ OE a))).left ≫ ψ₂] ![1, -1]),
       t.IsGen := fun a =>
-    GlobalTheory.T.exists_generator_of_rosatiAdjoint_lambdaBundle _ P _ Q ψ₂ hQ hlam _ _ (o.toRingAct.hom a) (o.toRingAct.hom _) (o.rosati a)
+    _root_.GlobalTheory.RosGen.exists_gen_of_rosatiAdj _ P _ Q ψ₂ hQ hlam _ _ (o.toRingAct.hom a) (o.toRingAct.hom _) (o.rosati a)
   obtain ⟨B, e, Ad, he1, he2, he3, hAd, Dt, D, hD1, hD2, hD3, -⟩ :=
-    GlobalTheory.T.exists_periodTowerDatum_of_abelianScheme_symmetricBundle p O hv ε hε P.g G Q hGab hsm hQ hθ hQ1 hQ2 hQs hfin.1 hfin.2.1 hfin.2.2 hv'
+    _root_.GlobalTheory.AbelianPeriodDatum.main p O hv ε hε P.g G Q hGab hsm hQ hθ hQ1 hQ2 hQs hfin.1 hfin.2.1 hfin.2.2 hv'
       (fun x hx => hQp _ x hx) (hcard.trans (by rw [h₃])) P.A ψ ψ₂ P.isAb hψ hsq OE (cjZ OE)
       o.toRingAct hinv hros
-  obtain ⟨Y, hY, hYact⟩ := GlobalTheory.T.abelianFunctorNilChart_of_nilpotent_chart (Ainf.R0 p O ε) G B e he1 he2 he3
+  obtain ⟨Y, hY, hYact⟩ := _root_.GlobalTheory.ChF.bxChart_of_nilChart (Ainf.R0 p O ε) G B e he1 he2 he3
     (Ainf.ainfTowerL p O hv ε hε).O P.A ψ hψ P.g F.F X hX
   have hα0 : ∀ a j, MvPowerSeries.constantCoeff (α a j) = 0 := by
     intro a j

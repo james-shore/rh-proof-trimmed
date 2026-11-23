@@ -55,14 +55,9 @@ open CategoryTheory AlgebraicGeometry
 
 namespace CrystallineSemistableComparison.Om.Nt2
 
-theorem cov_of_local' {O : Type} [CommRing O] {X : Scheme.{0}} (Q : X.Opens → Prop) (q : X ⟶ Spec (CommRingCat.of O))
-    [IsSeparated q] [QuasiCompact q] (h : ∀ x : X, ∃ (V : X.Opens) (d : ℕ), x ∈ V ∧ Q V ∧ Nonempty (Pb.Coord q V d)) :
-    ∃ U : Pb.Cov q, ∀ α, Q (U.U α) :=
-  _root_.UpperTheory.Reformulated.B.Qm13.cov_of_local Q q h
-
 theorem cov_refine : CovRefine := by
   intro K _ X q _ _ _ κ V hV
-  refine cov_of_local' (fun W => ∃ k, W ≤ V k) q fun x => ?_
+  refine _root_.UpperTheory.Reformulated.B.Qm13.cov_of_local (fun W => ∃ k, W ≤ V k) q fun x => ?_
   have hx : x ∈ iSup V := by rw [hV]; trivial
   obtain ⟨k, hk⟩ := TopologicalSpace.Opens.mem_iSup.1 hx
   obtain ⟨W, hW, hxW, hWk⟩ := exists_isAffineOpen_mem_and_subset (X := X) (U := V k) (x := x) hk

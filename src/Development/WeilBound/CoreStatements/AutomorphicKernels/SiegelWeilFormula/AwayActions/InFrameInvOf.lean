@@ -44,6 +44,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.AwayActions.DecAlg
+import Development.WeilBound.ThetaLifts.LatticeBasics.ConstIdele
 
 @[expose] public section
 
@@ -129,7 +130,7 @@ theorem adDecomp : PositivityTheory.SiegelWeilFormula.AdDecomp := by
     rw [inFrame_mul, hLi, hY, fromBlocks_multiply]
     simp [hcA, sub_eq_add_neg, add_comm]
   obtain ⟨hz1, hz2⟩ := blkUpper (cA σ).toRingHom (ε₀ : ℤ) A' B' (D - c₀ * B') (by rw [← hZ]; exact inU_inFrame hε₀ _)
-  have hbb := cond_b (cA σ).toRingHom (ε₀ : ℤ) (cA_cA hcm) A' B' (D - c₀ * B') hA'u hz1 hz2
+  have hbb := cond_b (cA σ).toRingHom (ε₀ : ℤ) (_root_.GlobalTheory.ThK.Dbl.cA_cA hcm) A' B' (D - c₀ * B') hA'u hz1 hz2
   obtain ⟨x₄, hx₄⟩ := exists_of_inU hε₀ (nM (A'⁻¹ * B')) ((nM_cond_iff (cA σ).toRingHom (ε₀ : ℤ) _).2 hbb)
   have hx₄i : inFrame d.b x₄⁻¹ = nM (-(A'⁻¹ * B')) := inFrame_inv_of d x₄ _ (by
     rw [hx₄, nM, nM, fromBlocks_multiply]; simp [fromBlocks_one])

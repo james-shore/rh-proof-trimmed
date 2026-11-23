@@ -125,9 +125,9 @@ theorem unif_pow_ne_real : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type)
     rw [hpm]
     exact fromBlocks_diag_mul_diagCols _
 
-  obtain ⟨l, hl, hinv, r₀, hr₀, c₀, hc₀, μ, hμ, hlφ, φ₀, hφ₀, hI⟩ := GlobalTheory.T.exists_admitted_diagonal_integral_linearForm F E σ a a' G B.ψ d' dd hdd v
+  obtain ⟨l, hl, hinv, r₀, hr₀, c₀, hc₀, μ, hμ, hlφ, φ₀, hφ₀, hI⟩ := _root_.GlobalTheory.DiagLocal.exists_diag_form F E σ a a' G B.ψ d' dd hdd v
   have hbox := boxFun_mem_SB hφ₀ hφ₀
-  obtain ⟨φ'', hφ'', hact⟩ := GlobalTheory.T.doubledUnitaryElement_acts_localOperatorAtPlace F E σ B a a' G hT.base dd omd hspl v p hAt _ hbox
+  obtain ⟨φ'', hφ'', hact⟩ := _root_.GlobalTheory.DblActs.dbl_acts F E σ B a a' G hT.base dd omd hspl v p hAt _ hbox
   have h4 := GlobalTheory.T.triple_local_gl_embedding_integral hP F E σ B a a' G X om om' hT v hv t K hK S hS ν α ι hι hint d' hd' dd hdd omd hspl
     (fun g gd hgd φ₁ h₁ φ₂ h₂ => hres g gd hgd φ₁ h₁ φ₂ h₂) g₀ p hpm φ₀ hφ₀ φ₀ hφ₀ φ'' hφ'' hact μ hμ
   have hs := hsieg l hl hinv p _ hpt _ (hr₀ _ hbox).2

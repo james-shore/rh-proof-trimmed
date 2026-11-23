@@ -103,6 +103,6 @@ theorem GlobalTheory.SeeConjRead.mem_deeperLevel_iff_reductions_symmetricUnipote
   constructor
   · rintro ⟨-, hc⟩ PP hP
     obtain ⟨w, hw⟩ := hloc PP hP
-    exact GlobalTheory.T.congruences_reduction_mem_symmetricUnipotent _ e0 f0 z0 bw bwd ew hFH β PP w hβ' hw _ (finE (Yc D 0) κ) hK hxM hS hc
+    exact _root_.GlobalTheory.SeeConjGroup.congr_red_mem_unipSym _ e0 f0 z0 bw bwd ew hFH β PP w hβ' hw _ (finE (Yc D 0) κ) hK hxM hS hc
   · intro hu
-    exact ⟨hK, GlobalTheory.T.local_frame_hermitian_ideal _ e0 f0 z0 bw bwd ew hFH β R.Pg hβ' hloc hZ _ (finE (Yc D 0) κ) hK hxM hS hu⟩
+    exact ⟨hK, _root_.GlobalTheory.SeeConjGroup.Bwd.k2cong_of_unipSym _ e0 f0 z0 bw bwd ew hFH β R.Pg hβ' hloc hZ _ (finE (Yc D 0) κ) hK hxM hS hu⟩

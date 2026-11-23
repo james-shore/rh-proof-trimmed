@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.LatticeSpanMembership
+import Development.AbelianVarietyTheory.Proofs.HeightProofs.AtPlaceIffEqAtTau
 
 @[expose] public section
 
@@ -136,10 +137,6 @@ theorem archM_rat {V : HSp D} {δ : GA D V} {M : Matrix (Fin V.rank) (Fin V.rank
   rw [show (matHom V δ).1 i j = (1 : AF D.host.F) ⊗ₜ[D.host.F] M i j from congrFun (congrFun hM i) j,
     Algebra.TensorProduct.map_tmul, map_one]
   exact ht.1 _
-
-theorem archM_mul (V : HSp D) (t : Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ) (a b : GA D V) :
-    archM V t (a * b) = archM V t a * archM V t b := by
-  simp only [archM, map_mul, Units.val_mul, Matrix.map_mul]
 
 theorem archM_fin (V : HSp D) (t : Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ) {a : GA D V} (ha : a ∈ GfC V) :
     archM V t a = 1 := by
@@ -241,7 +238,7 @@ theorem shift_core (hMod : R.IsModels) (hTie : TieIn T R κ v₀) (i : Fin D.R.m
     obtain ⟨ρ, hρ⟩ := hB _ t ht
     rw [hfr ρ ⟨t, ht⟩ hρ, hfr' ρ _ hρ, hρ]
     have e1 : γ * h = (γ * γ'⁻¹) * (γ' * (h * a)) * a⁻¹ := by group
-    rw [e1, archM_mul, archM_mul, archM_fin _ _ (inv_mem hin), Matrix.mul_one,
+    rw [e1, _root_.GlobalTheory.PointAtPlace.archM_mul, _root_.GlobalTheory.PointAtPlace.archM_mul, archM_fin _ _ (inv_mem hin), Matrix.mul_one,
       archM_rat hM (hMod.inf ρ), Matrix.mul_assoc]
     simp only [hN, Matrix.reindex_apply]
     rw [← Matrix.submatrix_mul_equiv _ _ _ (finCongr hr0).symm _]

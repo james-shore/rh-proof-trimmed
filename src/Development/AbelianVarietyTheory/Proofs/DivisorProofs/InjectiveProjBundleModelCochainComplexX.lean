@@ -202,7 +202,7 @@ theorem injective_cotSheaf (q N : ℕ) (I : Cx R) (hI : ∀ m, Injective (I.X m)
     refine Eq.trans ?_ e2.symm
     rw [sxPair_res, sxPair_map]
     congr 2
-  have hχ := fun p s h => GlobalTheory.T.natural_sections_linear_extension R ((fibQ q N).obj (op (SimplexCategory.mk p))) (I.X s) (hI s) f hf (ψ p s h) (hψ p s h)
+  have hχ := fun p s h => _root_.GlobalTheory.natFam_extend_of_injective R ((fibQ q N).obj (op (SimplexCategory.mk p))) (I.X s) (hI s) f hf (ψ p s h) (hψ p s h)
   choose χ hχn hχf using hχ
   refine ⟨⟨buildMor q N I n χ hχn⟩, ?_⟩
   ext U : 4

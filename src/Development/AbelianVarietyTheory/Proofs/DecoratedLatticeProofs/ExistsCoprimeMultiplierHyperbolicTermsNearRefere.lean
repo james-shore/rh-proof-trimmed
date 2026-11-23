@@ -53,16 +53,7 @@ namespace GlobalTheory.ScalW.EfNear
 
 variable {D : D7} (X : HidaSetting D)
 
-theorem nat_smul_mL (k : ℕ) {x : VA X.B.I} (hx : x ∈ mL X.B.I X.B.g) :
-    (k : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) • x ∈ mL X.B.I X.B.g := by
-  rw [Nat.cast_smul_eq_nsmul]; exact nsmul_mem hx k
-
-theorem dvd_smul_mL {d M : ℕ} (hd : d ∣ M) {x : VA X.B.I}
-    (hx : (d : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) • x ∈ mL X.B.I X.B.g) :
-    (M : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) • x ∈ mL X.B.I X.B.g := by
-  obtain ⟨k, rfl⟩ := hd
-  rw [Nat.cast_mul, mul_comm (d : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) (k : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F), mul_smul]
-  exact nat_smul_mL X k hx
+alias dvd_smul_mL := _root_.Formalism.L2.SG.Pf.Level.dvd_smul_mL
 
 theorem term_near {v0 w0 v w y : VA X.B.I} (hw0 : w0 ∈ X.B.I.Lf) (hy : y ∈ X.B.I.Lf) {c1 c2 c3 : ℕ}
     (h1 : (c1 : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F) • (v0 - v) ∈ mL X.B.I X.B.g)

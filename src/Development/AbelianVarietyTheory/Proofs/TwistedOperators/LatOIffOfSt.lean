@@ -95,7 +95,7 @@ theorem keep_stdLatO : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G 
   set b : Lev.EAf D := toEAf D (1 - a) with hbdef
   have hcb : ∀ w, GlobalTheory.StdFrames.cpt (D := D) w b = 1 - GlobalTheory.StdFrames.cpt (D := D) w (toEAf D a) := fun w => by
     rw [hbdef, RingHom.map_sub, RingHom.map_one, RingHom.map_sub, RingHom.map_one]
-  have hca := GlobalTheory.T.idempotentSum_add_conj_component_indicator he
+  have hca := _root_.GlobalTheory.IdemPairCpt.cpt_add_cA_idemSum he
   have hb : b * b = b := GlobalTheory.StdFrames.cpt_ext fun w => by
     rw [RingHom.map_mul, hcb]
     by_cases h1 : w ∈ locPl G t ∨ GlobalTheory.IdemSupport.cP w ∈ locPl G t
@@ -126,7 +126,7 @@ theorem keep_stdLatO : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G 
     · exact h2 t ht w h3 hw.symm
   have hub : b * toEAf D (eu + cA D eu) = toEAf D (eu + cA D eu) := GlobalTheory.StdFrames.cpt_ext fun w => by
     rw [RingHom.map_mul, hcb]
-    have hu := GlobalTheory.T.idempotentSum_add_conj_component_indicator heu w
+    have hu := _root_.GlobalTheory.IdemPairCpt.cpt_add_cA_idemSum heu w
     by_cases h1 : w ∈ Pu ∨ GlobalTheory.IdemSupport.cP w ∈ Pu
     · rw [hu.1 h1]
       have hw1 : w ∉ locPl G t := by

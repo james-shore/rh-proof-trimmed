@@ -78,7 +78,7 @@ theorem step_exists_int [CompleteSpace L] (hU : IsUnramInv ϖ σ q) (w : ℂ) (h
       (∀ (F : L → ℂ) (c : L), IsAdm w F → c ≠ 0 →
         IsAdm w (fun x => F (c * x)) ∧ I (fun x => F (c * x)) = (q : ℂ) ^ (2 * ordL c) * I F) ∧
       IsAdm w (sphFn (L := L) w) ∧ I (sphFn w) = (1 - w) / (1 - w * (q : ℂ) ^ 2) :=
-  GlobalTheory.T.exists_admissible_linear_functional L ϖ σ q hU w hw0 hw
+  _root_.GlobalTheory.CompanionTheory.SwapInt.exists_invariant_integral L ϖ σ q hU w hw0 hw
 
 theorem step_uR_continuous (hU : IsUnramInv ϖ σ q) (a : ℕ) (h : 2 * (a + 2) ≤ n) :
     Continuous (uR σ hU.1 a h : L → GU σ n) :=

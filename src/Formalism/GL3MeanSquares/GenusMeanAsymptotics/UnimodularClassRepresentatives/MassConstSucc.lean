@@ -161,7 +161,7 @@ theorem massConst_succ (hH : HermRepUnram) (hLI : LIStat) (hK : Formalism.Hermit
       fun j : ℕ => (Formalism.HermitianLatticesTheory.mass h L + ∑ᶠ n ∈ boxSet K F ((j : ℝ) ^ 2),
         repMass h L (algebraMap F K (n : F))) / (j : ℝ) ^ (2 * Formalism.HermitianLatticesTheory.fDeg K * finrank K V) := by
     funext j
-    rw [sum_ballCount_eq hK hF hs hd hL.toIsLattice hLi hsr (by positivity)]
+    rw [_root_.Formalism.HermitianLattices.Ext.L3.BallSum.sum_ballCount hK hF hs hd hL.toIsLattice hLi hsr (by positivity)]
   rw [hfun] at hlim
   have hAB := tendsto_nhds_unique hlim hlim2
   have hn0 : 0 < finrank K V := by omega

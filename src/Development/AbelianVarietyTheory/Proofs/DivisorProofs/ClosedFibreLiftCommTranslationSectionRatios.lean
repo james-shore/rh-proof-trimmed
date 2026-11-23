@@ -94,9 +94,9 @@ theorem GlobalTheory.HeatRatioW.dl_comm_transl_ratio : ∀ (E : Type) [Field E] 
   obtain ⟨g₂, hg₂⟩ := GlobalTheory.HeatRatio.exists_isRem _ P.D.toPre (2 * N) 0 ρ₁ ρ₁' ρp ρp' U f hr2
   have e1 := GlobalTheory.HeatRatio.Closed.closed_fibre_rem_indep E H k m d t P gam hmon hli hab Y n' v' dd hdd D q hq h hb hΘ ρ hρ A₀ grp m₀ hpb dl hdl
     hdesc N (2 * N) hN hN2 0 0 σ σ' σp σp' ρ₁ ρ₁' ρp ρp' U f g₁ g₂ hr hr2 a1 a2 a3 a4 hg₁ hg₂
-  obtain ⟨β₁, s, s', sp, sp', b1, b2, b3, b4⟩ := GlobalTheory.T.translation_carries_ratioDatum_remainder E H k m d t P gam hmon hli hab Y n' v' dd hdd D q hq
+  obtain ⟨β₁, s, s', sp, sp', b1, b2, b3, b4⟩ := _root_.GlobalTheory.HeatShiftW.shift_ratio_rem E H k m d t P gam hmon hli hab Y n' v' dd hdd D q hq
     h hb hdef y N hN σ σ' σp σp' U f g₁ hr a1 a2 hg₁
-  obtain ⟨β₂, r, r', rp, rp', c1, c2, c3, c4⟩ := GlobalTheory.T.translation_carries_ratioDatum_remainder E H k m d t P gam hmon hli hab Y n' v' dd hdd D q hq
+  obtain ⟨β₂, r, r', rp, rp', c1, c2, c3, c4⟩ := _root_.GlobalTheory.HeatShiftW.shift_ratio_rem E H k m d t P gam hmon hli hab Y n' v' dd hdd D q hq
     h hb hdef y (2 * N) hN2 ρ₁ ρ₁' ρp ρp' U f g₂ hr2 a3 a4 hg₂
   have e2 := GlobalTheory.HeatRatio.Closed.closed_fibre_rem_indep E H k m d t P gam hmon hli hab Y n' v' dd hdd D q hq h hb hΘ ρ hρ A₀ grp m₀ hpb dl hdl
     hdesc N (2 * N) hN hN2 β₁ β₂ s s' sp sp' r r' rp rp' _ _ _ _ b1 c1 b2 b3 c2 c3 b4 c4

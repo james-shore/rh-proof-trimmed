@@ -56,7 +56,7 @@ namespace UpperTheory.Gal.NearKilling
 theorem stepLift_holds : StepLift :=
   stepLift UpperTheory.ConvolutionTheory.cbcc noSelfTwist_holds
     (polBC PositivityTheory.AdelicQuotientData.jacquetShalikaRigidity
-      (PositivityTheory.JMult1.gelfandKazhdanDual_of_rigidity PositivityTheory.AdelicQuotientData.jacquetShalikaRigidity PositivityTheory.S2.CuspBdd.cuspFormsBoundedGL)) weakRes
+      (PositivityTheory.JMult1.gelfandKazhdanDual_of_rigidity PositivityTheory.AdelicQuotientData.jacquetShalikaRigidity _root_.GlobalTheory.CompanionTheory.CuspFinGL.cuspFormsBoundedGL)) weakRes
 
 theorem allLift_holds : AllLift := allLift stepLift_holds satSplit_holds
 

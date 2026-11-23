@@ -104,11 +104,10 @@ theorem sumList_ofFn_diag : ∀ (n : ℕ) (c : Fin n → ℂˣ),
       exact WD.sound (diag_sum_iso c)
 
 theorem zelevinskyPolynomialRing : GlobalTheory.Published.ZelevinskyPolynomialRing :=
-  GlobalTheory.zelevinskyPolynomialRing_of_parts GlobalTheory.bernsteinZelevinskyFiniteness_holds GlobalTheory.segmentRepresentation'
+  GlobalTheory.zelevinskyPolynomialRing_of_parts GlobalTheory.bernsteinZelevinskyFiniteness_holds _root_.CompanionTheory.RgGu.segmentRepresentation
     GlobalTheory.grothendieckRingPolynomial_outright
 
-theorem geometricLemma : GlobalTheory.Published.GeometricLemma :=
-  GlobalTheory.geometricLemma_of_filtration GlobalTheory.bernsteinZelevinskyFiniteness_holds GlobalTheory.geometricLemmaFiltration_holds
+alias geometricLemma := _root_.GlobalTheory.CompanionTheory.GeoLink.geometricLemma
 
 variable {a : Weil h →* (w.adicCompletion E)ˣ} {ha : IsLocalArtin h a} {rc : IrrGL (k := w.adicCompletion E) → WD h}
 

@@ -343,7 +343,7 @@ theorem exists_scalar (π : NG.FinTyp L n) (s : SplitPlace L) : ∃ R : GAf L n 
     ⟨fun ⟨k₁, h₁, k₂, h₂, t₁, t₂, e⟩ => ⟨k₁, ⟨h₁, t₁⟩, k₂, ⟨h₂, t₂⟩, e⟩,
       fun ⟨k₁, h₁, k₂, h₂, e⟩ => ⟨k₁, h₁.1, k₂, h₂.1, h₁.2, h₂.2, e⟩⟩
   obtain ⟨c, hc⟩ : ∃ c : ℂ, ∀ x ∈ GlobalTheory.SphScalar.fixS (rtHom L n ℂ) π.S (locK n s.v), T x = c • x := by
-    refine GlobalTheory.SphScalar.abs_scalar (rtHom L n ℂ) π.S (fun g x hx => π.stable g x hx) π.irr (GlobalTheory.SphScalar.countRank π)
+    refine GlobalTheory.SphScalar.abs_scalar (rtHom L n ℂ) π.S (fun g x hx => π.stable g x hx) π.irr (_root_.GlobalTheory.FinTyp.rank_le_aleph0 π)
       (locK n s.v) {x | TrivOutside {s.v} x} {y | TrivOutside {s.v}ᶜ y}
       (fun g => by obtain ⟨x, y, hx, hy, e⟩ := hdec g; exact ⟨x, hx, y, hy, e⟩)
       (fun κ hκ b hb => (hcomm κ b hκ.2 hb).eq) R (fun b hb => reps_of_repsU hb (hR b)) T ?_ ?_ ?_
@@ -372,7 +372,7 @@ theorem exists_isLocS (π : NG.FinTyp L n) (s : SplitPlace L) {x : GAf L n → �
   obtain ⟨hdec, hcomm, -⟩ := GlobalTheory.T.unitaryFiniteAdeles_splitPlace_decomposition L n s
   obtain ⟨R, hR, hc⟩ := exists_scalar π s
   let Loc : Subgroup (GAf L n) := ⟨⟨⟨{a | TrivOutside {s.v} a}, triv_mul⟩, triv_one⟩, triv_inv⟩
-  refine GlobalTheory.RowLocal.isLocS_of_irr π s (Submodule.span ℂ {y | ∃ a ∈ Loc, y = rtHom L n ℂ a x})
+  refine _root_.GlobalTheory.blockFieldPairProjections.exists_local_component π s (Submodule.span ℂ {y | ∃ a ∈ Loc, y = rtHom L n ℂ a x})
     (Submodule.span_le.2 (by rintro _ ⟨a, -, rfl⟩; exact π.stable a x hx)) (fun h => h0 ?_) (fun g hg f hf => ?_)
     fun W' hle hst => irr_of_scalar (rtHom L n ℂ) π.S (fun g x hx => π.stable g x hx) π.irr (locK n s.v) Loc
       (fun κ hκ => hκ.2) {y | TrivOutside {s.v}ᶜ y}

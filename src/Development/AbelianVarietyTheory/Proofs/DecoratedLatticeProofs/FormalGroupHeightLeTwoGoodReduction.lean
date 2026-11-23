@@ -61,6 +61,8 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.AnalyticIdentityTheorems.IntegerEndomorphismInstance
+import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.NonsingularJetNorms.CmIntegralityOfTorsionPoints
 
 @[expose] public section
 
@@ -231,13 +233,6 @@ theorem coeff_prod_le {K : Type} [NormedField K] [IsUltrametricDist K] {σ : Typ
     refine sub_mem ?_ ?_ <;> split_ifs
     exacts [one_mem _, zero_mem _, h, zero_mem _]
 
-theorem norm_two (l : ℕ) [Fact l.Prime] (hl : 5 ≤ l) : ‖(2 : ℂ_[l])‖ = 1 := by
-  have h1 : ‖((2 : ℕ) : ℚ_[l])‖ = 1 := by
-    rw [Padic.norm_natCast_eq_one_iff, Nat.coprime_primes Fact.out Nat.prime_two]
-    omega
-  have h2 : (2 : ℂ_[l]) = algebraMap ℚ_[l] ℂ_[l] ((2 : ℕ) : ℚ_[l]) := by simp [map_ofNat]
-  rw [h2, norm_algebraMap', h1]
-
 theorem mulBy_eq_zSer {K : Type} [Field K] [CharZero K] (W : WeierstrassCurve K) (n : ℕ) :
     mulBy (Formalism.L2.Th1.A.logSer W) (Formalism.L2.Th1.A.expSer W) (n : K) = Formalism.L2.Th1.A.zSer W (n : ℤ) := by
   have hL := logPair W
@@ -271,7 +266,7 @@ theorem height_le_two (L : PeriodPair) (l : ℕ) [Fact l.Prime] (hl : 5 ≤ l) (
   have hodd : Odd l := (Fact.out : l.Prime).odd_of_ne_two (by omega)
   have hl0 : (l : ℂ) ≠ 0 := Nat.cast_ne_zero.2 (by omega)
   have h4 : ‖(4 : ℂ_[l])‖ = 1 := by
-    rw [show (4 : ℂ_[l]) = 2 * 2 by norm_num, norm_mul, norm_two l hl, mul_one]
+    rw [show (4 : ℂ_[l]) = 2 * 2 by norm_num, norm_mul, _root_.Formalism.L2.Th1.E.ScaledModelNorms.norm_two l hl, mul_one]
   have ha4 : ‖W.a₄‖ ≤ 1 := by
     change ‖-ι L.g₂ / 4‖ ≤ 1
     rwa [norm_div, norm_neg, h4, div_one]
@@ -317,7 +312,7 @@ theorem height_le_two (L : PeriodPair) (l : ℕ) [Fact l.Prime] (hl : 5 ≤ l) (
     rw [add_assoc] at k3
     rw [show t' - t + -P = t' - (t + P) by ring] at k4
     exact GlobalTheory.Honda.norm_weierstrassP_sub_eq_one_of_good L l hl ι h2 h3 hΔ _ _ k1.1 k2.1 k3.1 k4.1 k1.2 k2.2 k3.2 k4.2
-  have hst : MulStable L l := fun ω h => nat_mul_mem L l h
+  have hst : MulStable L l := fun ω h => _root_.Formalism.L2.Th1.E.Tor.nat_mul_mem L l h
   obtain ⟨S, hS⟩ := kerRepsExist L l hl0 hst
   have hcard : S.card + 1 = l ^ 2 := by
     have := kerRepsCard L l S hl0 hst hS
@@ -354,7 +349,7 @@ theorem height_le_two (L : PeriodPair) (l : ℕ) [Fact l.Prime] (hl : 5 ≤ l) (
   · have hm := odd_mul_sub_mem L hodd ht2' hk0
     rw [add_zero] at hm
     have h := congrArg ι (hprod t' fun h => ht0' (by simpa using sub_mem h hm))
-    rw [wp_congr L hm] at h
+    rw [_root_.Formalism.L2.Th1.F.EndoZ.wp_congr L hm] at h
     simp only [map_mul, map_sub, map_prod, map_pow, map_natCast] at h
     have hu0 := unit 0 hk0
     rw [add_zero] at hu0

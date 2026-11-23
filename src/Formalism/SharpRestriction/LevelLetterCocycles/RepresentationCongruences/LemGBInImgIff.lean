@@ -279,16 +279,6 @@ theorem lemGB_Nl_le_N (T : LocLat G Qp LL O) (i : ZMod n) {x : W.DD T} (hx : x �
   obtain ⟨y, hy, rfl⟩ := hx
   exact (W.N T).smul_mem _ hy
 
-theorem lemGB_DelF_mul {δ δ' : W.Gam} (h : δ ∈ W.DelF) (h' : δ' ∈ W.DelF) : δ * δ' ∈ W.DelF := by
-  obtain ⟨k, hk, hk1⟩ := (W.DelF_def δ).mp h
-  obtain ⟨m, hm, hm1⟩ := (W.DelF_def δ').mp h'
-  refine (W.DelF_def _).mpr ⟨k * m, Nat.mul_pos hk hm, ?_⟩
-  rw [mul_pow, pow_mul, hk1, one_pow, one_mul, mul_comm k m, pow_mul, hm1, one_pow]
-
-theorem lemGB_DelF_inv {δ : W.Gam} (h : δ ∈ W.DelF) : δ⁻¹ ∈ W.DelF := by
-  obtain ⟨k, hk, hk1⟩ := (W.DelF_def δ).mp h
-  exact (W.DelF_def _).mpr ⟨k, hk, by rw [inv_pow, hk1, inv_one]⟩
-
 theorem lemGB_sum_inv (T : LocLat G Qp LL O) (x : W.DD T) (δ' : W.Gam) (h' : δ' ∈ W.DelF) :
     W.γD T δ' (∑ δ ∈ W.DelF, W.γD T δ x) = ∑ δ ∈ W.DelF, W.γD T δ x := by
 
@@ -297,9 +287,9 @@ theorem lemGB_sum_inv (T : LocLat G Qp LL O) (x : W.DD T) (δ' : W.Gam) (h' : δ
     intro δ
     exact (W.γD_mul T δ' δ x).symm
   simp_rw [hm]
-  refine Finset.sum_equiv (Equiv.mulLeft δ') (fun δ => ⟨fun h => lemGB_DelF_mul W h' h, fun h => ?_⟩)
+  refine Finset.sum_equiv (Equiv.mulLeft δ') (fun δ => ⟨fun h => _root_.Formalism.MainNotions.N.FrobeniusPowerSeries.mul_mem_delF W h' h, fun h => ?_⟩)
     (fun δ _ => rfl)
-  have h2 := lemGB_DelF_mul W (lemGB_DelF_inv W h') h
+  have h2 := _root_.Formalism.MainNotions.N.FrobeniusPowerSeries.mul_mem_delF W (_root_.Formalism.MainNotions.N.FrobeniusPowerSeries.inv_mem_delF W h') h
   rwa [Equiv.coe_mulLeft, inv_mul_cancel_left] at h2
 
 theorem inImg_of_Nimg (hΔ : IsUnit ((W.DelF.card : ℕ) : O)) {T₁ T₂ : LocLat G Qp LL O}

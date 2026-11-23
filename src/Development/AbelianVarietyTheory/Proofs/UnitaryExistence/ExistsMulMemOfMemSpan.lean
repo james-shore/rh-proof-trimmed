@@ -116,17 +116,6 @@ theorem eq_zero_of_sum_conj (v : Fin n → E) (h : ∑ j, IsCMField.complexConj 
   simpa using h2 j (Finset.mem_univ j)
 
 
-omit [IsCMField E] in
-private theorem exists_mul_mem_of_mem_span (A : Submodule (𝓞 E) (Fin n → E)) {x : Fin n → E}
-    (hx : x ∈ Submodule.span E (A : Set (Fin n → E))) : ∃ o : 𝓞 E, o ≠ 0 ∧ o • x ∈ A := by
-  first
-  | exact @_root_.GlobalTheory.NonzeroSmulMemSpan.exists_ne_zero_smul_mem_of_mem_span
-  | exact _root_.GlobalTheory.NonzeroSmulMemSpan.exists_ne_zero_smul_mem_of_mem_span
-  | (apply _root_.GlobalTheory.NonzeroSmulMemSpan.exists_ne_zero_smul_mem_of_mem_span <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NonzeroSmulMemSpan.exists_ne_zero_smul_mem_of_mem_span <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NonzeroSmulMemSpan.exists_ne_zero_smul_mem_of_mem_span <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NonzeroSmulMemSpan.exists_ne_zero_smul_mem_of_mem_span ..)
-
 private theorem span_eq_top_of_unimod (Λ : GenLat E n) (h : Λ.Unimod) :
     Submodule.span E (Λ.La : Set (Fin n → E)) = ⊤ := by
   classical
@@ -154,7 +143,7 @@ theorem isLat_of_unimod (Λ : GenLat E n) (h : Λ.Unimod) : IsLat Λ := by
   have hspan := span_eq_top_of_unimod Λ h
   refine ⟨?_, hspan⟩
   choose o ho0 ho using fun j : Fin n =>
-    exists_mul_mem_of_mem_span Λ.La (x := Pi.single j 1) (hspan ▸ Submodule.mem_top)
+    _root_.GlobalTheory.NonzeroSmulMemSpan.exists_ne_zero_smul_mem_of_mem_span Λ.La (x := Pi.single j 1) (hspan ▸ Submodule.mem_top)
   have hd : ∀ j, (∏ i, o i) • (Pi.single j 1 : Fin n → E) ∈ Λ.La := fun j => by
     rw [← Finset.prod_erase_mul _ o (Finset.mem_univ j), mul_smul]
     exact Λ.La.smul_mem _ (ho j)
@@ -167,11 +156,5 @@ theorem isLat_of_unimod (Λ : GenLat E n) (h : Λ.Unimod) : IsLat Λ := by
   rw [Finset.sum_eq_single j (fun i _ hi => by simp [Pi.single_eq_of_ne hi]) (by simp)]
   rw [Pi.smul_apply, Pi.smul_apply, Pi.single_eq_same, Algebra.smul_def, Algebra.smul_def, mul_one]
   congr 1
-
-section Poly
-
-variable {H : Host E} (Dw : Datum H) {l : Level H} (c : Coeff l)
-
-end Poly
 
 end GlobalTheory.GenusLatCompare

@@ -37,6 +37,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EmbeddingClosedIntegral
 
 @[expose] public section
 
@@ -70,7 +71,7 @@ private theorem clear_one {l : ℕ} [Fact l.Prime] (c : Coef l) {D : Type} [Topo
     ∃ M : ℕ, ∀ s, (l : PadicAlgCl l) ^ M * u s ∈ c.O := by
   obtain ⟨C, hC⟩ := isCompact_univ.exists_bound_of_continuousOn hu.continuousOn
   have hC1 : (0 : ℝ) < max C 1 := lt_max_of_lt_right one_pos
-  obtain ⟨M, hM⟩ := exists_pow_lt_of_lt_one (inv_pos.2 hC1) (GlobalTheory.CoefCoord.norm_natCast_lt_one (l := l))
+  obtain ⟨M, hM⟩ := exists_pow_lt_of_lt_one (inv_pos.2 hC1) (_root_.GlobalTheory.CoefEmbed.norm_prime_lt_one (l := l))
   refine ⟨M, fun s => ?_⟩
   have h1 : ‖(l : PadicAlgCl l) ^ M * u s‖ ≤ 1 := by
     rw [norm_mul, norm_pow]

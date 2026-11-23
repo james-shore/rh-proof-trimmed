@@ -192,7 +192,7 @@ theorem range_embA_iff {S V₀ A L : HSp D} {ρ : ℕ} (d : HypDec S V₀ ρ) (o
     rw [Matrix.mulVec_mulVec, d.wittDecomp_anisotropicEmbedding_inclAnisotropic, ← Matrix.mulVec_mulVec, hw, Matrix.mulVec_mulVec (M := mt V₀ _), o.emb_jB,
       MixModel.mt_one, Matrix.mul_one]
   · rintro ⟨h1, h2, h3⟩
-    obtain ⟨b, rfl⟩ := GlobalTheory.T.exists_levi_preimage_of_fix_isotropic_frames d g h1 h2
+    obtain ⟨b, rfl⟩ := _root_.GlobalTheory.MixModel.HypDec.exists_emb0_eq_of_fix_jX_jY d g h1 h2
     have hb : (mt V₀ b *ᵥ fun k => incA D (vecB o ζ k)) = fun k => incA D (vecB o ζ k) := by
       rw [Matrix.mulVec_mulVec, d.wittDecomp_anisotropicEmbedding_inclAnisotropic, ← Matrix.mulVec_mulVec] at h3
       have := congrArg (fun w => d.p0 *ᵥ w) h3

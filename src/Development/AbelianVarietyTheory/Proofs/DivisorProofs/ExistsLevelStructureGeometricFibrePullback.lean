@@ -57,12 +57,6 @@ open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum.FibLevel
 
-theorem comp_pow_pt {S : Scheme.{0}} {A T T' : Over S} [GrpObj A] (ρ : T' ⟶ T) (x : T ⟶ A) (n : ℕ) :
-    ρ ≫ x ^ n = (ρ ≫ x) ^ n := by
-  induction n with
-  | zero => rw [pow_zero, pow_zero, MonObj.comp_one]
-  | succ n ih => rw [pow_succ, pow_succ, MonObj.comp_mul, ih]
-
 theorem exists_level_of_pullback : ∀ (T K : Type) [CommRing T] [IsNoetherianRing T] [Field K] [IsAlgClosed K] (χ : T →+* K) (P : PolAV (Sp T)) (Q : PolAV (Sp K)) (ψ : Q.A.left ⟶ P.A.left), IsGrpPullback Q.A P.A (spMap χ) ψ → LBIso Q.L (P.L.pull ψ) → ∀ (g M : ℕ) (hg : Q.g = g) (c : Tˣ) (ζK : Kˣ), (M : K) ≠ 0 → Units.map χ.toMonoidHom c = ζK → IsPrimitiveRoot ζK M → ∀ (y : Fin (2 * g) → (baseOver (Sp T) ⟶ P.A)), (∀ i, y i ^ M = 1) → (∀ i j, WeilIs P.A P.L M (y i) (y j) (unitOn c ^ stdSymp g i j)) → ∃ lev : Level Q M (unitOn ζK), ∀ i, (GlobalTheory.levelBasis lev hg i).left ≫ ψ = spMap χ ≫ (y i).left := by
   intro T K _ _ _ _ χ P Q ψ hpb hLB g M hg c ζK hM hcζ hζ y hy hw
   have hL : Out.Laws := GlobalTheory.lawsAndExpansions.1.1
@@ -73,7 +67,7 @@ theorem exists_level_of_pullback : ∀ (T K : Type) [CommRing T] [IsNoetherianRi
   have hxl : ∀ i, (h0 ≫ y i).left = (x i).left ≫ ψ := fun i => by rw [← hex, he]
   have hxM : ∀ i, x i ^ M = 1 := fun i => by
     show e.symm (h0 ≫ y i) ^ M = 1
-    rw [← map_pow, ← comp_pow_pt, hy, MonObj.comp_one, map_one]
+    rw [← map_pow, ← _root_.GlobalTheory.SemiAbTorsion.comp_pow_points, hy, MonObj.comp_one, map_one]
   have hv : ∀ n : ℤ, Units.map h0.left.appTop.hom.toMonoidHom (unitOn c ^ n) = unitOn ζK ^ n := by
     intro n
     rw [map_zpow]

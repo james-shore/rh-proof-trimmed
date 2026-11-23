@@ -76,21 +76,17 @@ theorem liftW_transport : ∀ (D : D7) (X : RealSide D) (E : IntegralHeckeForms.
     Lev.IsLevelLift (Wc D j) (X.R.βW j) (X.R.datWp j X.R.triv) (X.R.eG g) κ →
     Lev.IsLevelLift (Wc D j) (Y.Z.ρ.B i j b).F.βT (Y.Z.ρ.B i j b).G.levT (Y.Z.ρ.eG i j b (X.cG (X.R.eG g))) κ := GlobalTheory.T.isLevelLift_of_isLevelLift_realisation
 
-theorem subgroupCharExtension_one_apply {G N : Type} [Group G] [MulOneClass N] (P : Subgroup G) (x : G) :
-    ext1 P ((1 : P →* N) : P → N) x = 1 := by
-  unfold ext1; split <;> rfl
-
 theorem levChi_W_one {D : D7} (X : RealSide D) (j : Fin D.R.m) (κ : GA D (Wc D j)) :
     levChi (Wc D j) (X.R.βW j) (flagL (X.R.datWp j X.R.triv)) κ = 1 := by
   unfold levChi levFn
   simp [flagL, withP, Formalism.IndefR.Links.LevCh.datWp, datY, LevelP.full]
-  exact subgroupCharExtension_one_apply _ _
+  exact _root_.Formalism.IndefR.Lev.subgroupCharExtension_one_apply _ _
 
 theorem levFn_flag {D : D7} {n : ℕ} (β : GL (Fin n) (Lev.EAf D)) (L : LevDat D.host.E ℂ n) (x : GL (Fin n) (Lev.EAf D)) :
     levFn β (flagL L) x = levFn β (flag1L L) x := by
   unfold levFn
   simp [flagL, flag1L, withP, LevelP.full, LevelP.triv]
-  exact (subgroupCharExtension_one_apply _ _).trans (subgroupCharExtension_one_apply _ _).symm
+  exact (_root_.Formalism.IndefR.Lev.subgroupCharExtension_one_apply _ _).trans (_root_.Formalism.IndefR.Lev.subgroupCharExtension_one_apply _ _).symm
 
 theorem hmod_sum {G W ι : Type} [Fintype ι] [NormedAddCommGroup W] [InnerProductSpace ℂ W] (M : Formalism.IndefR.Links.HMod (G → W))
     (a : ι → ℂ) (y : ι → M.H) (h : G) : M.e (∑ g, a g • y g) h = ∑ g, a g • M.e (y g) h := by
@@ -172,7 +168,7 @@ theorem key_step (D : D7) (X : RealSide D) (E : IntegralHeckeForms.XD D) (Y : Se
           (Formalism.UG.bc (swapAE D) ((k : Bridge.Gf (Vc D j)) : GL _ _)) : ℂˣ) : ℂ) *
         ((levFn (Y.Z.ρ.B i j b).F.βS ((Y.Z.ρ.B i j b).levS (Y.Z.ρ.tw i b 0 ∅ 1)) (finE (Vc D j) (κ g)) : ℂˣ) : ℂ)) •
       (X.R.HV j t).e y0 (h * (finHom (Vc D j)).rangeRestrict (κ (gk * g))) := by
-  have hL := levels_V D X E Y i j b t hxi hQ
+  have hL := _root_.GlobalTheory.TrivTwistLevel.levS_triv_iff_and_levFn D X E Y i j b t hxi hQ
   have hxk : Formalism.UG.bc (swapAE D) ((k : Bridge.Gf (Vc D j)) : GL _ _) ∈
       lev D.sp.cm (Vc D j).gram (Y.Z.ρ.B i j b).F.βS ((Y.Z.ρ.B i j b).levS (Y.Z.ρ.tw i b 0 ∅ 1)) := k.2
   have hxkP := ((hL _).1.1 hxk).1
@@ -256,7 +252,7 @@ theorem act_type (D : D7) (X : RealSide D) (E : IntegralHeckeForms.XD D) (Y : Se
   show actG0 (Wc D j) (X.R.βW j) (X.R.datWp j X.R.triv) (X.R.eG g) ((X.R.HW j (sg0 D X.A3.A)).e w (X.geo.v₀ j _)) g' = _
   unfold actG0
   rw [dite_eq_left hk, levChi_W_one, inv_one, one_mul]
-  exact hty _ hg _ (liftW_transport D X E Y i j b g _ hk.choose_spec) g'
+  exact hty _ hg _ (_root_.GlobalTheory.TwistLiftW.isLevelLift_base_of_realisation_lift D X E Y i j b g _ hk.choose_spec) g'
 
 
 theorem avg_level : ∀ (D : D7) (X : RealSide D) (E : IntegralHeckeForms.XD D) (Y : SerSide X E) (i : D.ntw.Tw) (j : Fin D.R.m) (b : Bool) (t : X.T),
@@ -273,7 +269,7 @@ theorem avg_level : ∀ (D : D7) (X : RealSide D) (E : IntegralHeckeForms.XD D) 
   classical
   have hC : GlobalTheory.Hk3.Core X.R.toRealDat X.F.lv2 :=
     ⟨X.char.lev, X.char.grp, X.char.fam, X.char.models, X.char.chain, X.char.thP⟩
-  have hL := levels_V D X E Y i j b t hxi hQ
+  have hL := _root_.GlobalTheory.TrivTwistLevel.levS_triv_iff_and_levFn D X E Y i j b t hxi hQ
   have hl := GlobalTheory.StepLifts.lifts_exist X.R.toRealDat X.char.lev j
   choose κ hκ using fun g : X.Γ => hl.1 t (X.R.eG g)
   choose y' hy' using fun g : X.Γ => GlobalTheory.translate_unitary_lifts X.R.toRealDat X.char.lev X.char.models.HV

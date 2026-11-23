@@ -58,18 +58,6 @@ noncomputable section
 
 namespace GlobalTheory.KeyOriginBaseChangeCons
 
-theorem tensor_ringHom_ext {R S B C : Type} [CommRing R] [CommRing S] [CommRing B] [CommRing C]
-    [Algebra R S] [Algebra R B] (φ ψ : S ⊗[R] B →+* C)
-    (h₁ : ∀ s : S, φ (s ⊗ₜ[R] (1 : B)) = ψ (s ⊗ₜ[R] (1 : B)))
-    (h₂ : ∀ b : B, φ ((1 : S) ⊗ₜ[R] b) = ψ ((1 : S) ⊗ₜ[R] b)) : φ = ψ := by
-  first
-  | exact @_root_.GlobalTheory.TensorRingHomExtensionality.ringHom_ext_tensor
-  | exact _root_.GlobalTheory.TensorRingHomExtensionality.ringHom_ext_tensor
-  | (apply _root_.GlobalTheory.TensorRingHomExtensionality.ringHom_ext_tensor <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TensorRingHomExtensionality.ringHom_ext_tensor <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TensorRingHomExtensionality.ringHom_ext_tensor <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TensorRingHomExtensionality.ringHom_ext_tensor ..)
-
 theorem one_tmul_algebraMap {R S B : Type} [CommRing R] [CommRing S] [CommRing B]
     [Algebra R S] [Algebra R B] (r : R) :
     (1 : S) ⊗ₜ[R] algebraMap R B r = algebraMap R S r ⊗ₜ[R] (1 : B) := by
@@ -308,7 +296,7 @@ theorem exists_baseChange_retract : ∀ (T O : Type) [CommRing T] [IsDomain T] [
     set I := Ideal.span {algebraMap (Polynomial T) O X}
     have hext : (Ideal.Quotient.mk I).comp ((algebraMap T O).comp (i₁.comp ρ')) =
         (Ideal.Quotient.mk I).comp g := by
-      apply tensor_ringHom_ext
+      apply _root_.GlobalTheory.TensorRingHomExtensionality.ringHom_ext_tensor
       · intro p
         simp only [RingHom.comp_apply]
         rw [Ideal.Quotient.eq]
@@ -332,7 +320,7 @@ theorem exists_baseChange_retract : ∀ (T O : Type) [CommRing T] [IsDomain T] [
     set Ik := RingHom.ker (ρ.comp (algebraMap EA L))
     set J := N₁ ⊔ Ik.map γ₀
     have hext : (Ideal.Quotient.mk J).comp ((algebraMap A₁ EA₁).comp ρ') = Ideal.Quotient.mk J := by
-      apply tensor_ringHom_ext
+      apply _root_.GlobalTheory.TensorRingHomExtensionality.ringHom_ext_tensor
       · intro p
         simp only [RingHom.comp_apply]
         rw [Ideal.Quotient.eq]

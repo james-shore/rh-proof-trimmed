@@ -99,9 +99,9 @@ theorem lemmaBT_of_characters : Laws → Laws2 → Laws4 → TwistBaseChangeStat
   classical
   haveI : Fact g.Prime := ⟨hg⟩
   obtain ⟨σ, e, hσ, he1, -, heig, hval, hconj, ⟨lam, hlam⟩, hε, hgu⟩ :=
-    GlobalTheory.T.exists_integral_types_and_directions' E H Dw l Xo c T io y C ϖ hϖ g hg hnu hcard hnd F v hv
+    _root_.GlobalTheory.PowGerm.exists_integral_types_and_directions E H Dw l Xo c T io y C ϖ hϖ g hg hnu hcard hnd F v hv
   obtain ⟨x, hx, j, hj, u, hu, B, hB, ρ, hρ, -, hact, htr⟩ :=
-    GlobalTheory.T.integralChart_columns_to_tuple_harmonicValues L1 L2 L4 TB E H Dw l Xo c T io y C hfr P tors ϖ hϖ Q hQ F v hv
+    _root_.GlobalTheory.transfer_columns L1 L2 L4 TB E H Dw l Xo c T io y C hfr P tors ϖ hϖ Q hQ F v hv
   obtain ⟨BT, -, hBT, -, -, -, -, hBF⟩ := integralChart_formalBiext E H Dw l Xo c T io y C
   have hdA : ∀ a, dAct F B a = dAct F C.ch.B a := by
     intro a
@@ -127,7 +127,7 @@ theorem lemmaBT_of_characters : Laws → Laws2 → Laws4 → TwistBaseChangeStat
       · have h3 := Q_pos hϖ P.D hQ hz
         exact_mod_cast (by omega : 0 ≤ Q z)
     exact h1.trans (mul_le_mul_of_nonneg_right (le_max_left _ _) h2)
-  obtain ⟨s, s', t, f, gm, hs, hgm, hle⟩ := GlobalTheory.T.depth_bound_from_characters_pointDatum L1 L2 L4 TB hch g E H T.V F
+  obtain ⟨s, s', t, f, gm, hs, hgm, hle⟩ := _root_.GlobalTheory.DepthFromChars.depth_bound_of_chars L1 L2 L4 TB hch g E H T.V F
     (FamGerm.Pt1.mk ϖ hϖ T.cpl C.I.G P tors Q hQ v hv (chD C.ch) x hx j hj u hu B hB ρ hρ)
     (isAdicComplete_ov_of_range v O hinj hO g hOc) hgu Dw I r b Φ (max M0 0) hred (star π) g' hππ
     ⟨u₂, u₁, by rw [star_star, add_comm, hu12]⟩ ((Nat.coprime_primes hg hg').2 hne) (E →+* ℂ) rk σ

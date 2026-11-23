@@ -64,29 +64,10 @@ theorem fockF_one (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D) (ε : Bool) {
   rw [h1, Module.Basis.constr_basis]
   simp [opPow]
 
-theorem det_gram_ne_zero (V : HSp D) : V.gram.det ≠ 0 := by
-  intro hdet
-  obtain ⟨v, hv0, hv⟩ := Matrix.exists_mulVec_eq_zero_iff.mpr hdet
-
-  have hb : ∀ i, V.hT (V.frame i) (∑ j, v j • V.frame j) = 0 := by
-    intro i
-    have hi : V.hT (V.frame i) (∑ j, v j • V.frame j) = (V.gram *ᵥ v) i := by
-
-      simp only [map_sum, map_smul, smul_eq_mul, Matrix.mulVec, dotProduct, Formalism.BasicNotions.HSpace.gram]
-      exact Finset.sum_congr rfl fun j _ => mul_comm _ _
-    rw [hi, hv]
-    rfl
-  have hy : (∑ j, v j • V.frame j) = 0 := by
-    refine V.nondeg.2 _ fun x => ?_
-
-    rw [← V.frame.sum_repr x, map_sum V.hT, LinearMap.sum_apply]
-    exact Finset.sum_eq_zero fun i _ => by rw [map_smulₛₗ, LinearMap.smul_apply, hb, smul_zero]
-  exact hv0 (funext (Fintype.linearIndependent_iff.mp V.frame.linearIndependent v hy))
-
 theorem incM_gram_inv (S : HSp D) :
     GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.incM S.gram * GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.incM S.gram⁻¹ = 1 ∧
       GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.incM S.gram⁻¹ * GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.incM S.gram = 1 := by
-  have hu : IsUnit S.gram.det := isUnit_iff_ne_zero.mpr (det_gram_ne_zero S)
+  have hu : IsUnit S.gram.det := isUnit_iff_ne_zero.mpr (_root_.Formalism.L2.Theta.gram_det_ne S)
   simp only [GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.incM, GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM]
   constructor
   · rw [← Matrix.map_mul, Matrix.mul_nonsing_inv _ hu, Matrix.map_one _ (map_zero _) (map_one _)]

@@ -295,7 +295,7 @@ theorem disc_of_mul (L M : PeriodPair) (π : ℂ) (hπ : π ≠ 0) (hM : ∀ z, 
   have hlat : M.lattice = (scalePair L π⁻¹ hinv).lattice := by
     ext z
     rw [hM z, hH.1 z, inv_inv]
-  have hO := Formalism.L2.Th1.F.latticeOnly M (scalePair L π⁻¹ hinv) hlat
+  have hO := _root_.Formalism.L2.Th1.F.lattice_only M (scalePair L π⁻¹ hinv) hlat
   obtain ⟨-, -, -, -, -, -, -, hg2, hg3⟩ := hO
   obtain ⟨-, -, -, -, -, -, -, -, -, h2, h3⟩ := hH
   unfold disc
@@ -448,13 +448,6 @@ lemma G_split (L L' : PeriodPair) (t : ℂ) (h2t : 2 * t ∈ L.lattice)
   rw [hasSum_subtype_iff_indicator, ← hset, ← hasSum_subtype_iff_indicator] at hU
   exact hU.tsum_eq
 
-lemma hasDerivAt_P (L : PeriodPair) {z : ℂ} (hz : z ∉ L.lattice) :
-    HasDerivAt L.weierstrassP (L.derivWeierstrassP z) z := by
-  have hd : DifferentiableAt ℂ L.weierstrassP z :=
-    (L.analyticOnNhd_weierstrassP z hz).differentiableAt
-  have := hd.hasDerivAt
-  rwa [L.deriv_weierstrassP] at this
-
 lemma deriv_two (L : PeriodPair) {z : ℂ} (hz : z ∉ L.lattice) :
     deriv L.derivWeierstrassP z = 6 * L.weierstrassP z ^ 2 - L.g₂ / 2 :=
   (Formalism.L2.Th1.F.pSecond L z hz).deriv
@@ -464,7 +457,7 @@ lemma deriv_three (L : PeriodPair) {z : ℂ} (hz : z ∉ L.lattice) :
   have hev : deriv L.derivWeierstrassP =ᶠ[𝓝 z] fun w => 6 * L.weierstrassP w ^ 2 - L.g₂ / 2 := by
     filter_upwards [L.isClosed_lattice.isOpen_compl.mem_nhds hz] with w hw using deriv_two L hw
   rw [hev.deriv_eq]
-  have hP := hasDerivAt_P L hz
+  have hP := _root_.Formalism.L2.Th1.F.PDeriv.hasDerivAt_P L hz
   have h2 : HasDerivAt (fun w => 6 * L.weierstrassP w ^ 2 - L.g₂ / 2)
       (12 * L.weierstrassP z * L.derivWeierstrassP z) z := by
     have := ((hP.mul hP).const_mul 6).sub_const (L.g₂ / 2)
@@ -482,7 +475,7 @@ lemma deriv_four (L : PeriodPair) {z : ℂ} (hz : z ∉ L.lattice) :
       fun w => 12 * L.weierstrassP w * L.derivWeierstrassP w := by
     filter_upwards [L.isClosed_lattice.isOpen_compl.mem_nhds hz] with w hw using deriv_three L hw
   rw [hev.deriv_eq]
-  have hP := hasDerivAt_P L hz
+  have hP := _root_.Formalism.L2.Th1.F.PDeriv.hasDerivAt_P L hz
   have hQ := Formalism.L2.Th1.F.pSecond L z hz
   have h2 := (hP.const_mul 12).mul hQ
   have hfun : (fun w => 12 * L.weierstrassP w * L.derivWeierstrassP w) =

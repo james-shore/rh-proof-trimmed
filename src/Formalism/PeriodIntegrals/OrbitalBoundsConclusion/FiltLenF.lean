@@ -44,4 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem filtration_length_bound : PI.FiltLenF := PI.FiltrationLength.filtLenF_main

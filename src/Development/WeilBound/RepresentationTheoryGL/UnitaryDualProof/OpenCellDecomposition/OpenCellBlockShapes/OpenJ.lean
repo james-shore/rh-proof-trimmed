@@ -148,7 +148,7 @@ theorem openJ : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [
     let θL : L →* ℂˣ := (whitChar ψ N).comp (Subgroup.inclusion hLB')
     have hopen : IsOpen (θL.ker : Set L) :=
       (GlobalTheory.Whittaker.isSmoothChar_whitChar (N := N) hψ).preimage (f := Subgroup.inclusion hLB') (continuous_subtype_val.subtype_mk fun x => hLB' x.2)
-    obtain ⟨f', hd1, hd2, hd3⟩ := GlobalTheory.T.projection_to_twisted_eigenfunction_support _ _ L hLc θL hopen f.1
+    obtain ⟨f', hd1, hd2, hd3⟩ := _root_.GlobalTheory.CompanionTheory.TwAvgInd.exists_twisted_average_smInd _ _ L hLc θL hopen f.1
     have hsupp' : ∀ g, f'.1.1 g ≠ 0 → ∃ p ∈ parab k (stdBlocks d hd), ∃ u ∈ L, g = p * pm k (wOpen d hd) * u := by
       intro g hg
       obtain ⟨l, hl, hne⟩ := hd2 g hg

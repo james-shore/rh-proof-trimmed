@@ -70,24 +70,14 @@ namespace GlobalTheory.CompanionTheory.SW.Core.Dens
 
 variable {F : Type} [Field F] [NumberField F]
 
-lemma oh_add {x y : A F} (hx : x ∈ Oh F) (hy : y ∈ Oh F) : x + y ∈ Oh F :=
-  fun v => add_mem (hx v) (hy v)
-
-lemma oh_neg {x : A F} (hx : x ∈ Oh F) : -x ∈ Oh F :=
-  fun v => neg_mem (hx v)
-
-lemma oh_mul {x y : A F} (hx : x ∈ Oh F) (hy : y ∈ Oh F) : x * y ∈ Oh F :=
-  fun v => mul_mem (hx v) (hy v)
+alias oh_mul := _root_.GlobalTheory.CompanionTheory.SW.Core.Scale.mul_mem_Oh
 
 lemma oh_alg (r : 𝓞 F) : algebraMap F (A F) (r : F) ∈ Oh F :=
   (((GlobalTheory.T.mem_Oh_iff_and_nat_mul_properties F).2.2.2.2.2.2.1) (r : F)).2 ⟨r, rfl⟩
 
 lemma nat_cast_eq (n : ℕ) : (n : A F) = algebraMap F (A F) (n : F) := (map_natCast _ n).symm
 
-lemma oh_nat (n : ℕ) : (n : A F) ∈ Oh F := by
-  have h : (((n : 𝓞 F)) : F) = (n : F) := by simp
-  rw [nat_cast_eq, ← h]
-  exact oh_alg _
+alias oh_nat := _root_.CompanionTheory.PlacePermOperatorBicommutantSpan.oh_nat
 
 lemma nat_inv_mul {N : ℕ} (hN : 0 < N) : algebraMap F (A F) (1 / (N : F)) * (N : A F) = 1 := by
   have hN' : (N : F) ≠ 0 := by exact_mod_cast hN.ne'
@@ -148,11 +138,11 @@ def Hs (F : Type) [Field F] [NumberField F] (N : ℕ) : Set (A F) := {x | ∃ y 
 lemma hs_add {N : ℕ} {x y : A F} (hx : x ∈ Hs F N) (hy : y ∈ Hs F N) : x + y ∈ Hs F N := by
   obtain ⟨u, hu, rfl⟩ := hx
   obtain ⟨w, hw, rfl⟩ := hy
-  exact ⟨u + w, oh_add hu hw, by ring⟩
+  exact ⟨u + w, _root_.GlobalTheory.CompanionTheory.SW.Core.Scale.add_mem_Oh hu hw, by ring⟩
 
 lemma hs_neg {N : ℕ} {x : A F} (hx : x ∈ Hs F N) : -x ∈ Hs F N := by
   obtain ⟨u, hu, rfl⟩ := hx
-  exact ⟨-u, oh_neg hu, by ring⟩
+  exact ⟨-u, _root_.GlobalTheory.CompanionTheory.SW.Core.Scale.neg_mem_Oh hu, by ring⟩
 
 lemma hs_zero (N : ℕ) : (0 : A F) ∈ Hs F N :=
   ⟨0, fun v => zero_mem _, by ring⟩

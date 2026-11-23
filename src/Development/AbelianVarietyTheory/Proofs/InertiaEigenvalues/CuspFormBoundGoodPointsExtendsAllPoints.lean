@@ -187,7 +187,7 @@ theorem inV_of_extIn (la : HeightOneSpectrum (𝓞 c.F)) (Y : Model Xo c (la.val
     ⟨fun h => IsDiscreteValuationRing.exists_lift_of_le_one (A := T.V) (K := T.Fr) h,
       by rintro ⟨a, rfl⟩; exact IsDedekindDomain.HeightOneSpectrum.valuation_le_one _ a⟩
   obtain ⟨j, e₀, he₀, ψ, z, t, hg, hz, ht⟩ := hC T.Fr W (fun a => (hW _).2 (inV_of_overLa ho a)) y.1
-  obtain ⟨P', e', he', ψ', hg', hz', hall⟩ := GlobalTheory.T.exists_refined_flagChart_integral_points_in_open E H Dw l Xo c (la.valuation c.F).valuationSubring Y
+  obtain ⟨P', e', he', ψ', hg', hz', hall⟩ := _root_.GlobalTheory.GoodRefine.exists_refine_extIn E H Dw l Xo c (la.valuation c.F).valuationSubring Y
     (abLocus Y.t.G) (P j) T io hop e₀ he₀ ψ z (fun g hgg => (hW _).1 (hg g hgg)) hz (ht.1 ▸ h)
   have hzI : Integral T io z := P'.int e' he' T io ψ' (inV_of_overLa ho) hg' z hz'
   rw [inV_of_frBor hf y ⟨z, hE.test _ z, hzI⟩ t ht]
@@ -233,24 +233,7 @@ theorem exists_model (hr : 1 ≤ Dw.p + Dw.q) (Xo : Moduli Dw l) (c : Coeff l) (
   rw [he, hX] at h'
   exact h'
 
-theorem sp_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : B →+* C) (g : A →+* B) :
-    spMap f ≫ spMap g = spMap (f.comp g) := (Spec.map_comp _ _).symm
-
-theorem mem_of_pow_mem {F : Type} [Field F] (V : ValuationSubring F) {x : F} {n : ℕ} (hn : n ≠ 0) (h : x ^ n ∈ V) :
-    x ∈ V := by
-  rw [← ValuationSubring.valuation_le_one_iff] at h ⊢
-  rw [map_pow] at h
-  exact (pow_le_one_iff hn).1 h
-
-theorem exists_values (c : Coeff l) (V : ValuationSubring c.F) :
-    ∃ r z : V, ((V.subtype r : c.F) : ℂ) = H.rt0 ∧ ((V.subtype z : c.F) : ℂ) = zeta l.A := by
-  let inc := (IntermediateField.inclusion c.le).toRingHom
-  refine ⟨⟨inc (baseKA l).ρ, mem_of_pow_mem V two_ne_zero ?_⟩,
-    ⟨inc (baseKA l).ζ, mem_of_pow_mem V l.A_pos.ne' ?_⟩, rfl, rfl⟩
-  · rw [← map_pow, (baseKA l).ρ_sq, map_neg, map_natCast]
-    exact neg_mem (natCast_mem V _)
-  · rw [← map_pow, (baseKA l).ζ_prim.pow_eq_one, map_one]
-    exact one_mem V
+alias sp_comp := _root_.Formalism.L2.Pj.spMap_comp_ring
 
 theorem coeff_neg_eq_zero {r : ℕ} (U : ∀ σ : c.F →+* ℂ, Formalism.L2.PjFree.Unf Xo c σ r)
     (hU : ∀ σ', Formalism.L2.PjFree.GoodEmb c σ' → Formalism.L2.PjFree.IsUnf (U σ')) (σ : c.F →+* ℂ)
@@ -276,7 +259,7 @@ theorem coeff_neg_eq_zero {r : ℕ} (U : ∀ σ : c.F →+* ℂ, Formalism.L2.Pj
   have hY : Mono Y.j := GlobalTheory.ThetaShiftProofs.mono_j Y (mono_spMap_subtype _)
   obtain ⟨Uw⟩ := nonempty_unfWit_of_isUnf E H Dw l Xo c σ r (U σ) (hU σ hσ)
   have hty := (GlobalTheory.Relab.relab_good E H l c _ hσ).2.2.2 Dw Uw.g Uw.e
-  obtain ⟨Ha⟩ := GlobalTheory.arcClause_closed E H Dw l Xo c _ _ Y σ a χ W Uw.g _ Uw.F hσ hty (exists_values c V) hover hgen
+  obtain ⟨Ha⟩ := GlobalTheory.arcClause_closed E H Dw l Xo c _ _ Y σ a χ W Uw.g _ Uw.F hσ hty (_root_.GlobalTheory.ArcFrame.exists_values c V) hover hgen
   obtain ⟨Θ⟩ := GlobalTheory.ArcTheta.nonempty_thetaDat h1 h2 E H Dw l Xo c σ _ _ Y a χ W _ _ Uw.F Ha hty th hth
   obtain ⟨v₁, -⟩ := GlobalTheory.ExpTan.anVec_bijective h1.globalFns E H Dw l Xo c σ _ _ Y a χ W _ _ Uw.F Ha
   choose z hz using fun τ i => (v₁ (e τ i) (htan τ i)).exists
@@ -307,7 +290,7 @@ theorem exists_lift {O : Type} [CommRing O] {β : O →+* c.F} (Y : Model Xo c �
 theorem snd_eq {V : ValuationSubring c.F} (Y : Model Xo c V.subtype) {S : Type} [CommRing S] (z : Sp S ⟶ Xo.XF c)
     (k : c.F →+* S) (h : z ≫ Y.j ≫ Y.s = spMap (k.comp V.subtype)) : z ≫ pullback.snd _ _ = spMap k := by
   have := mono_spMap_subtype V
-  rw [← cancel_mono (spMap V.subtype), Category.assoc, ← GlobalTheory.TraitDataIntrinsic.j_s Y, h, sp_comp]
+  rw [← cancel_mono (spMap V.subtype), Category.assoc, ← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.Model.j_s Y, h, sp_comp]
 
 theorem flat_of_injective (T : CDVR) {S : Type} [CommRing S] [IsDomain S] (g : T.V →+* S) (hg : Function.Injective g) :
     g.Flat := by
@@ -439,7 +422,7 @@ theorem inV_of_arc {r : ℕ} (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (hU : �
   have hχy : spMap ev ≫ χ = y' := hsp hϖ y' ev hy' (by
     rintro _ ⟨x, rfl⟩
     exact ⟨z x, by rw [← Scheme.Hom.comp_apply, hz₃]⟩) hA hevC hevX
-  obtain ⟨ρ, e, th, y₀, t, he, hth, htan, hρ, hy₀, ht⟩ := GlobalTheory.T.exists_constant_integral_arc_frames E H Dw l Xo c _ Y T io b a χ W ev z hP hb hover
+  obtain ⟨ρ, e, th, y₀, t, he, hth, htan, hρ, hy₀, ht⟩ := _root_.GlobalTheory.ArcFrame.exists_arcFrame E H Dw l Xo c _ Y T io b a χ W ev z hP hb hover
     hevC hz₂ (by rw [hz₃, ← hχy, ← Category.assoc, sp_comp]) y.1 hz₁
   obtain ⟨h, N, hval⟩ := exists_value Y T io b a χ W ϖ hϖ hP hb hover hab ρ e th he hth hρ hf.1
 
@@ -478,7 +461,7 @@ theorem inV_of_arc {r : ℕ} (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (hU : �
   obtain ⟨h₁, rfl⟩ := hX
 
   have hG : PowerSeries.C ϖ ^ N ∣ h₁ := by
-    obtain ⟨T', ω, i, hω, hωX, hωd, hi, hv'⟩ := GlobalTheory.T.exists_gaussPoint' T ϖ hϖ
+    obtain ⟨T', ω, i, hω, hωX, hωd, hi, hv'⟩ := _root_.GlobalTheory.GaussPoint.exists_gaussPoint T ϖ hϖ
     have hinj := IsFractionRing.injective T'.V T'.Fr
     have hω0 : ω (PowerSeries.C ϖ) ≠ 0 := fun h0 =>
       hϖ.ne_zero (PowerSeries.C_injective ((hω (h0.trans (map_zero _).symm)).trans (map_zero _).symm))

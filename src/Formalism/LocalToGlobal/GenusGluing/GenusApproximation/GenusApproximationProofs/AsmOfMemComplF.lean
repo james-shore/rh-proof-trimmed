@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.LocalToGlobal.Columns.AdelicLemmas
 
 @[expose] public section
 
@@ -110,14 +111,9 @@ theorem asm_iota_OF (r : 𝓞 F) :
   first
     | rfl
 
-theorem asm_iota_OE_mem (b : 𝓞 E) : iA F E (algebraMap (𝓞 E) E b) ∈ Formalism.L2.Herm.intAf F E := by
-  apply Subring.subset_closure
-  refine Or.inl ⟨⟨algebraMap (𝓞 E) E b, b, rfl⟩, ?_⟩
-  rfl
-
 theorem asm_iota_OF_mem (r : 𝓞 F) : iA F E (algebraMap (𝓞 F) E r) ∈ Formalism.L2.Herm.intAf F E := by
   rw [asm_iota_OF]
-  exact asm_iota_OE_mem _
+  exact _root_.Formalism.L2.Col.iA_mem _
 
 theorem asm_smul_apply {n : ℕ} (c : 𝓞 E) (y : Sp E n) (i : Fin n) : (c • y) i = algebraMap (𝓞 E) E c * y i := by
   show c • y i = _
@@ -130,7 +126,7 @@ theorem asm_mem_std {n : ℕ} (y : Sp E n) :
 theorem asm_iota_std {n : ℕ} {y : Sp E n} (hy : y ∈ stdLat E n) (i : Fin n) : iA F E (y i) ∈ Formalism.L2.Herm.intAf F E := by
   obtain ⟨b, hb⟩ := (asm_mem_std y).1 hy i
   rw [← hb]
-  exact asm_iota_OE_mem b
+  exact _root_.Formalism.L2.Col.iA_mem b
 
 theorem asm_bc_mulVec {n : ℕ} (γ : GL (Fin n) E) (y : Sp E n) :
     ((Formalism.UG.bc (iA F E) γ : GL (Fin n) (E ⊗[F] Formalism.L2.Herm.Af F)) : Matrix (Fin n) (Fin n) (E ⊗[F] Formalism.L2.Herm.Af F)) *ᵥ

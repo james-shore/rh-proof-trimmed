@@ -696,8 +696,4 @@ end Formalism.FourierDecayAlt.P.G7
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem orbital_integral_reduced : Formalism.FourierDecayAlt.G.OmReduced := G7.omReduced
-
-theorem orbital_integral_converges_abs : Formalism.FourierDecayAlt.G.OmConverges := G7.omConverges
-
 end Formalism.FourierDecayAlt.P

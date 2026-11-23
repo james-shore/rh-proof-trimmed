@@ -179,7 +179,7 @@ theorem eq_zero_of_upSum_of_norm : ∀ (R V k W M : Type) [CommRing R] [AddCommG
     have h0 : ∃ w, Rel res t Λ π q w := rel_ex hs ho hk
     simp only [j, dif_pos h0]
     exact h0.choose_spec
-  have key := GlobalTheory.T.eq_zero_of_affineHyperplane_line_sums k W M ψ (ψ0 _ fun ⟨q, h⟩ => rel_ne ht htf hsat hr q h) (fun g hg => ?_) (fun w => ?_)
+  have key := _root_.GlobalTheory.FiniteRadon.eq_zero_of_hyperplane_sums k W M ψ (ψ0 _ fun ⟨q, h⟩ => rel_ne ht htf hsat hr q h) (fun g hg => ?_) (fun w => ?_)
   · intro q ho hk
     rw [← ψ1 q _ (j1 q ho hk)]
     exact key _

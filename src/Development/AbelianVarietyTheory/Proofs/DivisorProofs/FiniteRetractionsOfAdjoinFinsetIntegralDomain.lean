@@ -82,11 +82,4 @@ theorem finite_retractions_of_adjoin_finset_integral
       rw [e₁, e₂]
     · exact congrFun he ⟨x, hx⟩
 
-theorem finite_retractions_of_adjoin_finset_integral' :
-    ∀ (D T E : Type) [CommRing D] [IsDomain D] [CommRing T] [IsDomain T] [Algebra D T]
-      [CommRing E] [Algebra D E] [Algebra.IsIntegral D E] (ι : T →ₐ[D] E) (F : Finset E),
-      Algebra.adjoin D (Set.range ι ∪ (F : Set E)) = ⊤ →
-        {χ : E →ₐ[D] T | χ.comp ι = AlgHom.id D T}.Finite :=
-  fun D T E _ _ _ _ _ _ _ _ ι F hF => finite_retractions_of_adjoin_finset_integral D T E ι F hF
-
 end GlobalTheory

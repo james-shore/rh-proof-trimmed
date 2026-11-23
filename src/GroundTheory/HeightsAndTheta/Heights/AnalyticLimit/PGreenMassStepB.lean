@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.AnalyticForms.PotentialTheory.ContDiffAtOfIsPotential
 public import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
+import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftB
 
 @[expose] public section
 
@@ -60,8 +61,6 @@ open GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.Regular (ell)
 
 noncomputable section
 
-theorem two_le_top_gms : (2 : WithTop ℕ∞) ≤ ∞ := WithTop.coe_le_coe.mpr le_top
-
 variable {e : ℕ} {W : Type} [TopologicalSpace W] {A : FinHolAtlas e W}
 
 def formDiff (Om th : LocPot W) : LocPot W := Om + th.rsmul (-1)
@@ -74,9 +73,9 @@ theorem isPsh_formDiff {Om th : LocPot W} (hO : IsPotential A Om) (hth : IsPoten
     (hle : LeviLe A Set.univ 1 th 1 Om) : IsPsh A (formDiff Om th) := by
   intro x j y hy w
   have h1 := (ReciprocityTheory.AnForm.M.contDiffAt_of_isPotential A Om hO x j
-    ⟨hy.1, hy.2.1⟩).of_le two_le_top_gms
+    ⟨hy.1, hy.2.1⟩).of_le _root_.ReciprocityTheory.AnForm.M.two_le_infty
   have h2 := (ReciprocityTheory.AnForm.M.contDiffAt_of_isPotential A th hth x j
-    ⟨hy.1, hy.2.2⟩).of_le two_le_top_gms
+    ⟨hy.1, hy.2.2⟩).of_le _root_.ReciprocityTheory.AnForm.M.two_le_infty
   have hl := levi_add_smul (-1) h1 h2 w
   have hle' := hle x j y ⟨hy.1, ⟨Set.mem_univ _, hy.2.2⟩, hy.2.1⟩ w
   have heq : (formDiff Om th).φ x ∘ (A.chart j).symm =
@@ -96,7 +95,7 @@ theorem isPsh_of_formNonneg_dense {P : LocPot W} {Yo : Set W} (hP : IsPotential 
   obtain ⟨F, hF⟩ : ∃ F, F = P.φ x ∘ (A.chart j).symm := ⟨_, rfl⟩
   have hFs : ContDiffOn ℝ 2 F ((A.chart j).target ∩ (A.chart j).symm ⁻¹' P.U x) := by
     rw [hF]
-    exact (hP.1 x j).of_le two_le_top_gms
+    exact (hP.1 x j).of_le _root_.ReciprocityTheory.AnForm.M.two_le_infty
   rw [← hF]
   have hpair : ContinuousAt (fun p : (Fin e → ℂ) × (Fin e → ℂ) => levi F p.1 p.2) (y, w) :=
     (continuousOn_levi hOo hFs).continuousAt (prod_mem_nhds (hOo.mem_nhds hy) Filter.univ_mem)

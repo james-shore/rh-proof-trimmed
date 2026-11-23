@@ -84,7 +84,7 @@ theorem core_pos (hT : Formalism.GaloisCohomology.LocalTateDualityK) (hE : Forma
     Nat.card (QuotientCohomology LA _ hI) = Nat.card {x : (↥LA.T ⧸ (Ideal.span {((l : ℕ) : O) ^ r} • ⊤ : Submodule O ↥LA.T)) // ∀ g, actQ LA _ hI g x = x} * Nat.card {x : (↥LA'.T ⧸ (Ideal.span {((l : ℕ) : O) ^ r} • ⊤ : Submodule O ↥LA'.T)) // ∀ g, actQ LA' _ hI' g x = x} * Nat.card (O ⧸ Ideal.span {((l : ℕ) : O)}) ^ (r * (finrank ℚ_[l] ↥K.1 * finrank LL A.V)) := by
   have hK : FiniteDimensional ℚ_[l] ↥K.1 := K.2
   have hp : l.Prime := Fact.out
-  obtain ⟨-, -, hfinO, -⟩ := GlobalTheory.GoodCoeff.good_coeff_integers l LL O hG
+  obtain ⟨-, -, hfinO, -⟩ := _root_.GlobalTheory.PowerImageOpen.main l LL O hG
   have hcO : Nat.card (O ⧸ Ideal.span {((l : ℕ) : O)}) ≠ 0 := by
     have := hfinO 1
     rw [pow_one] at this
@@ -92,10 +92,10 @@ theorem core_pos (hT : Formalism.GaloisCohomology.LocalTateDualityK) (hE : Forma
   haveI : NeZero (l ^ r) := ⟨pow_ne_zero _ hp.ne_zero⟩
   have hcM : Nat.card M = Nat.card (O ⧸ Ideal.span {((l : ℕ) : O)}) ^ (r * finrank LL A.V) := by
     rw [← Nat.card_congr e.toEquiv]
-    exact GlobalTheory.T.card_lattice_quot_prime_pow l _ LL O hG A LA r
+    exact _root_.GlobalTheory.LatticeCard.card_lattice_quot_pow l _ LL O hG A LA r
   have hcM' : Nat.card (↥LA'.T ⧸ (Ideal.span {((l : ℕ) : O) ^ r} • ⊤ : Submodule O ↥LA'.T)) =
       Nat.card (O ⧸ Ideal.span {((l : ℕ) : O)}) ^ (r * finrank LL A.V) := by
-    rw [GlobalTheory.T.card_lattice_quot_prime_pow l _ LL O hG A' LA' r, ← hm.1.2.2.2]
+    rw [_root_.GlobalTheory.LatticeCard.card_lattice_quot_pow l _ LL O hG A' LA' r, ← hm.1.2.2.2]
   haveI : Finite M := Nat.finite_of_card_ne_zero (by rw [hcM]; exact pow_ne_zero _ hcO)
   have htor : ∀ x : M, l ^ r • x = 0 := by
     intro x
@@ -147,16 +147,16 @@ theorem core_pos (hT : Formalism.GaloisCohomology.LocalTateDualityK) (hE : Forma
       funext g
       rw [← hcomp, e.apply_symm_apply]
     rw [hx]
-    exact ((GlobalTheory.T.lattice_modPow_action_isLocallyConstant l ↥(GK K) LL O hG A LA r hI (e.symm x)).comp e).continuous.comp hφ.2
+    exact ((_root_.GlobalTheory.InertiaEigenvalues.actQ_pow_isLocallyConstant l ↥(GK K) LL O hG A LA r hI (e.symm x)).comp e).continuous.comp hφ.2
   have hT1 := hT l K.1 hK r M rho hr hrho
   obtain ⟨⟨eH⟩, -, -, -, hb⟩ := hT1
   have hEu := hE l K.1 hK r M rho hr hrho
-  have hTr := GlobalTheory.T.card_H1_H0_transport_lattice l K LL O A LA _ hI (l ^ r) M e rho hcomp
+  have hTr := _root_.GlobalTheory.GaloisTransport.card_H1_H0_transport l K LL O A LA _ hI (l ^ r) M e rho hcomp
   obtain ⟨h1Q, h0Q⟩ := hTr
   have hTDfin : Finite (ReciprocityTheory.Gal.TDual (ZMod (l ^ r)) M) :=
     (GlobalTheory.CocycleCount.card_linear_le (l ^ r) M).1
   have hH2 := card_H2_eq (l ^ r) _ M _ rho eH hb
-  have hD := GlobalTheory.T.exists_trace_form_integral_iff_goodCoeff l LL O hG
+  have hD := _root_.GlobalTheory.GoodCoeff.exists_trace_form_integral_iff l LL O hG
   obtain ⟨lam, hlam⟩ := hD
   have hMp := GlobalTheory.T.tracePairing_injective_equivariant_levelMap l P K LL O A A' LA LA' m hm lam hlam r hI hI' (GlobalTheory.T.periodCyclotomicChar_reduces_mod_prime_pow l P K r) M e rho hcomp
   obtain ⟨Ψ, hΨi, hΨe⟩ := hMp
@@ -183,7 +183,7 @@ theorem card_H1Q_eq : Formalism.GaloisCohomology.LocalTateDualityK → Formalism
   intro hT hE l _ P K LL _ _ _ O _ _ hG A A' LA LA' m hm r hI hI'
   have hK : FiniteDimensional ℚ_[l] ↥K.1 := K.2
   have hp : l.Prime := Fact.out
-  obtain ⟨-, -, hfinO, -⟩ := GlobalTheory.GoodCoeff.good_coeff_integers l LL O hG
+  obtain ⟨-, -, hfinO, -⟩ := _root_.GlobalTheory.PowerImageOpen.main l LL O hG
   have hcO : Nat.card (O ⧸ Ideal.span {((l : ℕ) : O)}) ≠ 0 := by
     have := hfinO 1
     rw [pow_one] at this

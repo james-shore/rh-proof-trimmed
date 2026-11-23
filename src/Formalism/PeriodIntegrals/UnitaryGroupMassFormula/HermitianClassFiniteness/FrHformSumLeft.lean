@@ -48,6 +48,8 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsDual
+import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsScale
 
 @[expose] public section
 
@@ -83,8 +85,8 @@ theorem fr_disj (hS : DefiniteCompl I S) : Disjoint (Submodule.span I.E S) (frW 
     induction hz using Submodule.span_induction with
     | mem z hz => exact hxW z hz
     | zero => simp [hform]
-    | add u v _ _ hu hv => rw [hform_add_left, hu, hv, add_zero]
-    | smul c u _ hu => rw [hform_smul_left, hu, mul_zero]
+    | add u v _ _ hu hv => rw [_root_.Formalism.UG.P.csDual_hform_add_left, hu, hv, add_zero]
+    | smul c u _ hu => rw [_root_.Formalism.UG.P.csDual_hform_smul_left, hu, mul_zero]
   obtain ⟨ι⟩ := fr_real_emb I
   rcases hS ι with h | h
   · obtain ⟨a, ha, hpos⟩ := h x hx0 (fun s hs => hxW s hs)
@@ -103,7 +105,7 @@ theorem fr_hform_sum_left {ι : Type} (s : Finset ι) (x : ι → Fin I.n → I.
   classical
   refine Finset.induction_on s (by simp [hform]) ?_
   intro a s ha ih
-  rw [Finset.sum_insert ha, Finset.sum_insert ha, hform_add_left, ih]
+  rw [Finset.sum_insert ha, Finset.sum_insert ha, _root_.Formalism.UG.P.csDual_hform_add_left, ih]
 
 theorem fr_sup (hS : DefiniteCompl I S) : Submodule.span I.E S ⊔ frW I S = ⊤ := by
   classical
@@ -111,8 +113,8 @@ theorem fr_sup (hS : DefiniteCompl I S) : Submodule.span I.E S ⊔ frW I S = ⊤
   let b := Module.finBasis I.E V
   let T : (Fin I.n → I.E) →ₗ[I.E] (Fin (Module.finrank I.E V) → I.E) :=
     { toFun := fun y k => hform (starRingEnd I.E) I.J (b k : Fin I.n → I.E) y
-      map_add' := by intro x y; funext k; simp [hform_add_right]
-      map_smul' := by intro c x; funext k; simp [hform_smul_right] }
+      map_add' := by intro x y; funext k; simp [_root_.Formalism.UG.P.csScale_hform_add_right]
+      map_smul' := by intro c x; funext k; simp [_root_.Formalism.UG.P.csScale_hform_smul_right] }
 
   have hker : LinearMap.ker T ≤ frW I S := by
     intro y hy s hs
@@ -124,7 +126,7 @@ theorem fr_sup (hS : DefiniteCompl I S) : Submodule.span I.E S ⊔ frW I S = ⊤
       simp only [Submodule.coe_smul] at this
       exact this
     rw [← hexp, fr_hform_sum_left]
-    simp [hform_smul_left, hy']
+    simp [_root_.Formalism.UG.P.csDual_hform_smul_left, hy']
   have hrn := LinearMap.finrank_range_add_finrank_ker T
   have hr : Module.finrank I.E (LinearMap.range T) ≤ Module.finrank I.E V := by
     have := Submodule.finrank_le (LinearMap.range T)

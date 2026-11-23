@@ -110,11 +110,6 @@ theorem evc_rosati {S : Scheme.{0}} {s : S ⟶ Sp R} (o : Obj b N s) (a : D.O) {
   rw [lift_fst, lift_snd_assoc] at z₂
   rw [← z₁, ← z₂, evc, evc, e]
 
-theorem mulN_eq_pow {S : Scheme.{0}} (A : Over S) [GrpObj A] (n : ℕ) : mulN A n = (𝟙 A) ^ n := by
-  induction n with
-  | zero => rw [pow_zero]; rfl
-  | succ n ih => rw [pow_succ, ← ih]; rfl
-
 theorem star_ker_le {k : Type} [CommRing k] {s : Sp k ⟶ Sp R} {c : ℕ} {o o₁ o₂ : Obj b N s} {ψ₁ : o.A ⟶ o₁.A}
     {ψ₂ : o.A ⟶ o₂.A} (h₁ : IsPIsog c o o₁ ψ₁) (h₂ : IsPIsog c o o₂ ψ₂) (a : D.O)
     (H : ∀ (T : Over (Sp k)) (x : T ⟶ o.A), x ≫ ψ₂ = 1 → (x ≫ o.act.act a) ≫ ψ₁ = 1)
@@ -164,7 +159,7 @@ theorem star_ker_le {k : Type} [CommRing k] {s : Sp k ⟶ Sp R} {c : ℕ} {o o�
     (φ₂ ≫ o.act.act a ≫ ψ₁) inferInstance (fun S _ _ z hz => by
       have := H _ (z ≫ φ₂) (by rw [Category.assoc, e₂', MonObj.comp_pow, Category.comp_id, hz])
       simpa only [Category.assoc] using this)
-  rw [mulN_eq_pow] at eβ
+  rw [_root_.GlobalTheory.GrpTangent.mulN_eq_pow] at eβ
   have hfac : φ₂ ≫ o.act.act a = β ≫ φ₁ := by
     obtain ⟨hfl, hsu, -⟩ := SiegUniqBase.flat_surjective_qc_pow _ o₂.A o₂.ab c h₁.pos
     haveI := hfl

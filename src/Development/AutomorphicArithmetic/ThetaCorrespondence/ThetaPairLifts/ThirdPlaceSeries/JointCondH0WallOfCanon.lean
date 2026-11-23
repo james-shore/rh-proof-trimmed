@@ -101,7 +101,7 @@ theorem jointCond_H0Wall_of_canon_alt : GlobalTheory.Published.FontaineBcris →
       obtain ⟨U, hU1, hU2, hU3⟩ := (hJW τ).1
       exact ⟨U, hU1.trans hrn, hU2, hU3⟩)
   refine ⟨hu', 1, hgood, hc, ?_, hH.1, fun τ => (hJW τ).2, ?_⟩
-  · exact (_root_.GlobalTheory.T.decomposition_fontaine_at_places_over_l D i (X.r i) (X.ρ i) π h41 (hFont i) hgr hcont hdec (hg 0) (hg 1) u hu'
+  · exact (_root_.GlobalTheory.CrysChiOne.main_alt_alt D i (X.r i) (X.ρ i) π h41 (hFont i) hgr hcont hdec (hg 0) (hg 1) u hu'
       (TruncatedSeriesCountingIdentities.CoefExt.self i u hu')).2.2.1
   · rw [hX.c0]
     exact hH.2

@@ -113,7 +113,7 @@ theorem exists_isLinBar_at : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Typ
     exact hunr x
   have hcoM : ∀ z, coAt G t (uM z) = 0 := fun z => coAt_eq_zero G t _ (hM z).2.1
   haveI : CharZero (Fv F v) := charZero_of_injective_algebraMap (algebraMap F _).injective
-  obtain ⟨ι, hbij, htr, hmu⟩ := GlobalTheory.T.stoneVonNeumann_schwartzBruhat_transverseLagrangians (GlobalTheory.LatVac.psiAt B.ψ v) hψc hunr'
+  obtain ⟨ι, hbij, htr, hmu⟩ := _root_.GlobalTheory.StoneVN.intertwiner_matrix (GlobalTheory.LatVac.psiAt B.ψ v) hψc hunr'
     ((GlobalTheory.LatVac.locCo G.M'.co v).comp uT) ((GlobalTheory.LatVac.locCo G.M'.co v).comp uM)
     (fun Y Y' => by
       simp only [AddMonoidHom.comp_apply]

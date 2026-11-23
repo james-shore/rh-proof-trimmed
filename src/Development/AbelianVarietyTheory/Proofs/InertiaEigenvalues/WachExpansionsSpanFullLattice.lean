@@ -298,7 +298,7 @@ theorem full_lat : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : Fo
   obtain ⟨h1, h2, -, -, hc⟩ := Points.points D HW l K s LL h
   obtain ⟨τ, hτ⟩ := h1 i ζ hζ
   obtain ⟨-, -, ι, hι⟩ := h2 i ζ τ hτ
-  obtain ⟨Ψ, -, hspan, hΨ⟩ := GlobalTheory.T.wach_image_deRham_plus_component_level D HW F Cm l K s LL h T hT i ζ τ ι hι
+  obtain ⟨Ψ, -, hspan, hΨ⟩ := _root_.GlobalTheory.NL.PerS.image D HW F Cm l K s LL h T hT i ζ τ ι hι
   obtain ⟨ev, hev, -, ht, -⟩ := EvdR.exists_ev_dR D l K LL s ι
   have := GlobalTheory.Per.LetterDim.finite_Dcris ((D.loc l).PD K) T.ρ hT
   have : Module.Finite ↥LL.1 ↥(Di (HW l) h T i) :=

@@ -59,21 +59,10 @@ theorem pow_exp (n k : ℕ) (c : Multiplicative (Fin k → ZMod n)) : c ^ n = 1 
   funext i
   simp
 
-theorem spMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  simp [spMap]
-
-theorem pushHom_bij {S S' : Scheme.{0}} {A : Over S} {A' : Over S'} [GrpObj A] [GrpObj A'] {f : S' ⟶ S}
-    {φ : A'.left ⟶ A.left} (h : IsGrpPullback A' A f φ) (T : Over S') : Function.Bijective (pushHom h T) := by
-  refine ⟨fun x y e => Over.OverMorphism.ext (h.1.hom_ext (congrArg (fun q => q.left) e) ?_), fun y => ?_⟩
-  · exact (Over.w x).trans (Over.w y).symm
-  · exact ⟨Over.homMk (h.1.lift y.left T.hom (Over.w y)) (h.1.lift_snd _ _ _),
-      Over.OverMorphism.ext (h.1.lift_fst _ _ _)⟩
-
 theorem spMap_comp_assoc {A B C D : Type} [CommRing A] [CommRing B] [CommRing C] [CommRing D] {X : Scheme.{0}}
     (f : A →+* B) (g : B →+* C) (h : C →+* D) (y : Sp A ⟶ X) :
     spMap (h.comp g) ≫ spMap f ≫ y = spMap h ≫ spMap (g.comp f) ≫ y := by
-  simp only [spMap_comp, Category.assoc]
+  simp only [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, Category.assoc]
 
 abbrev lft {S X : Scheme.{0}} {G : Over S} {a : X ⟶ S} (p : Over.mk a ⟶ G) : X ⟶ G.left := p.left
 
@@ -98,9 +87,6 @@ theorem lft_pushHom {S S' : Scheme.{0}} {A : Over S} {A' : Over S'} [GrpObj A] [
 
 theorem toUnit_mk_left {X Y : Scheme.{0}} (f : Y ⟶ X) : (toUnit (Over.mk f)).left = f :=
   (Category.comp_id _).symm.trans (Over.w (toUnit (Over.mk f)))
-
-theorem toUnit_left {X : Scheme.{0}} (T : Over X) : (toUnit T).left = T.hom :=
-  (Category.comp_id _).symm.trans (Over.w (toUnit T))
 
 theorem exists_cover_torsion_list : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMonObj G] (L : LB G.left) (g m N : ℕ) (R : Type) [CommRing R] [IsNoetherianRing R] (x : Sp R ⟶ S), Odd m → IsUnit (m : R) → N = m ^ (4 * g) → PolFib G L g x → ∃ (R₁ : Type) (_ : CommRing R₁) (_ : Algebra R R₁) (q : Fin N → (Over.mk (spMap (algebraMap R R₁) ≫ x) ⟶ G)), Module.Finite R R₁ ∧ Module.FaithfullyFlat R R₁ ∧ (∀ a, q a ^ (m ^ 2) = 1) ∧ ∀ (K : Type) [Field K] (i₁ : R₁ →+* K) (pt : Fin N → (Over.mk (spMap (i₁.comp (algebraMap R R₁)) ≫ x) ⟶ G)), (∀ a, (pt a).left = spMap i₁ ≫ (q a).left) → Function.Injective pt ∧ ∀ (K' : Type) [Field K'] [IsAlgClosed K'] (i' : K →+* K') (p : Over.mk (spMap i' ≫ spMap (i₁.comp (algebraMap R R₁)) ≫ x) ⟶ G), p ^ (m ^ 2) = 1 → ∃ a, p.left = spMap i' ≫ (pt a).left := by
   intro S G _ _ L g m N R _ _ x hm hmu hN hP
@@ -139,7 +125,7 @@ theorem exists_cover_torsion_list : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G]
     apply hinj
     apply Over.OverMorphism.ext
     show (toUnit (Over.mk t) ≫ ψ c).left = (toUnit (Over.mk t) ≫ ψ d).left
-    rw [Over.comp_left, Over.comp_left, toUnit_left]
+    rw [Over.comp_left, Over.comp_left, _root_.GlobalTheory.ObjPull.toUnit_left']
     apply hc.1.hom_ext
     · rw [hQ, hQ] at h
       simpa [Category.assoc] using h
@@ -152,15 +138,15 @@ theorem exists_cover_torsion_list : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G]
     simp only [hpt] at h'
     let k := AlgebraicClosure K
     have := key k (spMap ((algebraMap K k).comp i₁)) (e a) (e a') (by
-      rw [spMap_comp, Category.assoc, Category.assoc]; exact congrArg (spMap (algebraMap K k) ≫ ·) h')
+      rw [_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, Category.assoc, Category.assoc]; exact congrArg (spMap (algebraMap K k) ≫ ·) h')
     exact e.injective this
   · intro K' _ _ i' p hp2
     have ht : spMap i' ≫ spMap (i₁.comp (algebraMap R R₁)) ≫ x = spMap (i'.comp i₁) ≫ b ≫ x :=
       (spMap_comp_assoc (algebraMap R R₁) i₁ i' x).symm
     obtain ⟨p', hp'⟩ := transport ht.symm p
-    obtain ⟨p₁, hp₁⟩ := (pushHom_bij hc (Over.mk (spMap (i'.comp i₁)))).2 p'
+    obtain ⟨p₁, hp₁⟩ := (_root_.GlobalTheory.Ex.Specialise.pushHom_bijective hc (Over.mk (spMap (i'.comp i₁)))).2 p'
     have hk : p₁ ^ (m ^ 2) = 1 := by
-      apply (pushHom_bij hc _).1
+      apply (_root_.GlobalTheory.Ex.Specialise.pushHom_bijective hc _).1
       rw [map_pow, hp₁, map_one]
       apply Over.OverMorphism.ext
       change lft _ = lft _
@@ -172,7 +158,7 @@ theorem exists_cover_torsion_list : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G]
     simp only [Equiv.apply_symm_apply]
     change lft p = _
     have h2 := congrArg lft hp₁
-    rw [← hp', ← h2, lft_pushHom, hQ, Over.comp_left, toUnit_mk_left, spMap_comp]
+    rw [← hp', ← h2, lft_pushHom, hQ, Over.comp_left, toUnit_mk_left, _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
     simp only [Category.assoc]
 
 end GlobalTheory.UMin.TorsionList

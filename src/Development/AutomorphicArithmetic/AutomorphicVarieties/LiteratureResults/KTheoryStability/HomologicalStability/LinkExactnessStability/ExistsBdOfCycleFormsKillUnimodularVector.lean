@@ -61,7 +61,7 @@ theorem cycle_formsKill_bound_splitSeq : ∀ (R : Type) [CommRing R] (s : ℕ), 
   intro R _ s hs n hlow p u hu hpn c hc hcz
   obtain ⟨f, hf⟩ := hu
   obtain ⟨w, hwu⟩ : ∃ w : Fin n → R, w ⬝ᵥ u = 1 := ⟨_, by simpa using hf ⟨0, by simp⟩ ⟨0, by simp⟩⟩
-  obtain ⟨hsc, -, hchar, -⟩ := GlobalTheory.T.subClosed_splitSeq_and_uniSeq_with_mem_iff R n
+  obtain ⟨hsc, -, hchar, -⟩ := _root_.GlobalTheory.SeqCx.split_uni_closed R n
   have hγF : [(u, w)] ∈ splitSeq R n := by
     rw [hchar]
     simp [hwu]
@@ -86,13 +86,13 @@ theorem cycle_formsKill_bound_splitSeq : ∀ (R : Type) [CommRing R] (s : ℕ), 
       | nil => simp at hlast
       | cons a t => simp
     simp only [List.length_singleton] at hρlen
-    refine GlobalTheory.T.exactAt_linkIn_splitSeq_of_exactAt_splitSeq R s hs n (n - ρ.length) (p - τ.length) ρ hρ ?_ ?_ ?_
+    refine _root_.GlobalTheory.SeqCx.exactAt_link_splitSeq R s hs n (n - ρ.length) (p - τ.length) ρ hρ ?_ ?_ ?_
     · omega
     · omega
     · apply hlow
       · omega
       · omega
-  obtain ⟨b1, hb1, hc1, hz1⟩ := GlobalTheory.T.exists_homologous_cycle_with_entries_in_of_exactAt_links _ _ _ hG'sc p hlinks c hc hcz
+  obtain ⟨b1, hb1, hc1, hz1⟩ := _root_.GlobalTheory.SeqCx.exists_sub_bd_mem_chains_linkIn_nil _ _ _ hG'sc p hlinks c hc hcz
   have hcone : ∀ l ∈ linkIn {x | x ∈ splitSeq R n ∧ ∀ y ∈ x, ∀ z ∈ [(u, w)], y.2 ⬝ᵥ z.1 = 0}
       {y : (Fin n → R) × (Fin n → R) | ∀ z ∈ [(u, w)], z.2 ⬝ᵥ y.1 = 0} [],
       (u, w) :: l ∈ splitSeq R n := by
@@ -110,7 +110,7 @@ theorem cycle_formsKill_bound_splitSeq : ∀ (R : Type) [CommRing R] (s : ℕ), 
       refine ⟨fun z hz => ⟨?_, ?_⟩, hlF.2⟩
       · simpa using hlS z hz
       · simpa using hlo z hz
-  obtain ⟨b2, hb2, hbd2⟩ := GlobalTheory.T.seqChain_cycle_bounded_by_cone _ (splitSeq R n) _ (u, w) hcone p _ hc1 hz1
+  obtain ⟨b2, hb2, hbd2⟩ := _root_.GlobalTheory.cone_cycle_isBoundary _ (splitSeq R n) _ (u, w) hcone p _ hc1 hz1
   refine ⟨b1 + b2, ?_, ?_⟩
   · refine Submodule.add_mem _ ?_ hb2
     refine Finsupp.supported_mono ?_ hb1
@@ -121,9 +121,3 @@ theorem cycle_formsKill_bound_splitSeq : ∀ (R : Type) [CommRing R] (s : ℕ), 
 
 end GlobalTheory.SeqCx
 
-section
-open GlobalTheory.SeqCx Matrix UpperTheory.V.KL
-theorem _root_.GlobalTheory.T.exists_bd_of_cycle_forms_kill_unimodular_vector : ∀ (R : Type) [CommRing R] (s : ℕ), StableRangeLe R s → ∀ n : ℕ, (∀ n' < n, ∀ p' : ℕ, 2 * p' + s + 1 ≤ n' → ExactAt (splitSeq R n') p') → ∀ (p : ℕ) (u : Fin n → R), [u] ∈ uniSeq R n → 2 * p + s + 1 ≤ n → ∀ c ∈ chains {σ | σ ∈ splitSeq R n ∧ ∀ y ∈ σ, ∀ v ∈ [u], y.2 ⬝ᵥ v = 0} p, bd _ c = 0 → ∃ b ∈ chains (splitSeq R n) (p + 1), bd _ b = c := by
-  first
-  | exact @GlobalTheory.SeqCx.cycle_formsKill_bound_splitSeq
-end

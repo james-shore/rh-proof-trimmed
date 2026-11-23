@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.DivCalc
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasRigidChart
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsProperToroidalModelStructureMap
+import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.StalkMapInjectiveOfFlat
 
 @[expose] public section
 
@@ -61,13 +62,6 @@ namespace GlobalTheory.Heat.WtLocal
 
 open GlobalTheory.ZH.CrdCalc (valR_res valR_spMap)
 open GlobalTheory.TorusModel (isPull_iff)
-
-theorem gm_comp' {X Y Z : Scheme.{0}} (r : Z ⟶ Y) (q : Y ⟶ X) (z : Z) (U : X.Opens) (h : q (r z) ∈ U) (a : Γ(X, U)ˣ) :
-    gm (r ≫ q) z U a = Units.map (r.stalkMap z).hom.toMonoidHom (gm q (r z) U a) := by
-  refine Units.ext ?_
-  rw [← gs_unit (r ≫ q) z U h, ← gs_pull r q z U h, gs_stalkMap r z (q ⁻¹ᵁ U) h, gs_pull (𝟙 Y) q (r z) U h,
-    Category.id_comp, gs_unit q (r z) U h]
-  rfl
 
 variable {R : Type} [CommRing R] [IsDomain R] {Q : DegPre R} {O : Type} [CommRing O] [StarRing O] [Module O Q.X]
   {oa : Q.OAct O} (Y : Ray oa)
@@ -94,10 +88,10 @@ theorem isWt_of_local (α : Q.X) (V : Y.H.left.Opens) (f : Γ(Y.H.left, V))
             (val ((Y.Φ _ u).s χ) (𝟙 _) (k.left y) fun ψ => J (k.left ≫ ψ)) := fun u => by
         refine (((isPull_iff _ _ _).1 (Y.rep.1 _ _ k u)).2 χ y J hJ).trans ?_
         rw [val_of _ (𝟙 _) _ _ (fun i => J (k.left ≫ DegPre.gtφT Q _ (Y.Φ _ u).b χ i)) (fun i => by rw [Category.id_comp])]
-        refine Eq.trans ?_ (gm_comp' k.left (𝟙 _) y _ (hJ.mem _ k.left) _)
+        refine Eq.trans ?_ (_root_.GlobalTheory.ConstFam.gm_comp_stalkMap k.left (𝟙 _) y _ (hJ.mem _ k.left) _)
         rw [Category.comp_id]
         rfl
-      rw [key, key, hc χ _ _ hJ', map_mul, ← gm_comp' k.left (𝟙 _) y ⊤ trivial]
+      rw [key, key, hc χ _ _ hJ', map_mul, ← _root_.GlobalTheory.ConstFam.gm_comp_stalkMap k.left (𝟙 _) y ⊤ trivial]
       congr 1
       refine Units.ext ?_
       rw [gm_val _ _ ⊤ trivial, gm_val _ _ ⊤ trivial]

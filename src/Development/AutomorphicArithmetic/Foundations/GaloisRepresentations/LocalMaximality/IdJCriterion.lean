@@ -101,7 +101,7 @@ theorem UpperTheory.Gal.productCup_of_system.idJ_of :
   choose w hwm hwt using fun k => (hD F K d x hc τ hτ a ha (omG x j • φ k)).2
   have hwB : ∀ k, w k ∈ omB ℂ K (rB ℂ K (xv x) {j}) (d - a) := by
     intro k
-    refine (GlobalTheory.T.twistedDual_regularForms_finiteCover ℂ F K d (xv x) hc τ hτ {j} (by simp) a (d - a) (by omega) (w k) (hwm k)).1 ?_
+    refine (_root_.GlobalTheory.PD.twistedDual_omB ℂ F K d (xv x) hc τ hτ {j} (by simp) a (d - a) (by omega) (w k) (hwm k)).1 ?_
     intro y hy
     have hy' : y ∈ ⋀[K]^a Ω[K⁄ℂ] := GlobalTheory.PD.mem_deg_of_mem_omB _ _ _ hy
     rw [ext_comm a (d - a) y (w k) hy' (hwm k), map_zsmul, map_zsmul]

@@ -276,7 +276,7 @@ theorem local_eqv (q : ℕ) [NeZero q] (T : Type) [CommRing T] [IsDomain T] [IsL
     haveI := h_neg (ZMod q) (sp (FractionRing T ⊗[T] A)) (tw q i) n hn
     exact bij_of_subsingleton _
   · obtain ⟨ζ, hζ⟩ := aic_root q T hT hq
-    refine GlobalTheory.T.h_zero_pullback_twist_bijective q A (FractionRing T ⊗[T] A) _ hqA ⟨algebraMap T A ζ, ?_⟩
+    refine _root_.GlobalTheory.EtC.h_zero_pull_bijective q A (FractionRing T ⊗[T] A) _ hqA ⟨algebraMap T A ζ, ?_⟩
       hdK.toNontrivial (fun e he => IsIdempotentElem.iff_eq_zero_or_one.1 he)
       (fun e he => IsIdempotentElem.iff_eq_zero_or_one.1 he) i
     have h1 := root_map q (algebraMap T A) hq hqA hζ
@@ -287,8 +287,8 @@ theorem local_eqv (q : ℕ) [NeZero q] (T : Type) [CommRing T] [IsDomain T] [IsL
   · haveI := UpperTheory.etaleCohomology_functorialityAxioms_hold_of_sheafAxioms (ZMod q) A hSH (tw q i) n hn
     haveI : Subsingleton (Ht q (sp (FractionRing T ⊗[T] A)) n i) := by
       rcases eq_or_lt_of_le (show 1 ≤ n by omega) with rfl | h2
-      · exact GlobalTheory.T.subsingleton_ht_one_genericFibre_of_sh_etale_cover q T hT hq A hSH hel i
-      · exact GlobalTheory.T.subsingleton_etaleCohomology_genericFibre_henselianLine q T hT hq A hSH hind n i (by omega)
+      · exact _root_.GlobalTheory.LocAcycDegOne.tateTwistCohomology_genericFibre_henselLine_subsingleton q T hT hq A hSH hel i
+      · exact _root_.GlobalTheory.EtC.GenFibreLine.genericFibre_subsingleton q T hT hq A hSH hind n i (by omega)
     exact bij_of_subsingleton _
 
 theorem pullback_square (T B A : Type) [CommRing T] [CommRing B] [CommRing A] [Algebra T B] [Algebra B A] [Algebra T A]

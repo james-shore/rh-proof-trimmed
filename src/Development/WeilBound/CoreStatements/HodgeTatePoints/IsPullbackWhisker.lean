@@ -72,6 +72,9 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDesc
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.TangentLinearity.FnOfComp
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.PrecompleteBases.PsbLb
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsCocharLie
+import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.InvariantFunctionsDescend
+import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.IsAffineOpenAndBijectiveOfWeightUnits
+import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ThickenedPointToTorusExtensionGenerator
 
 @[expose] public section
 
@@ -84,10 +87,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open Formalism.MainNotions.ModuliIntegralCharts.H1.GermD Formalism.MainNotions.ModuliIntegralCharts.H1.JetTr
-
-theorem spMap_cp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  simp only [spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
 
 theorem comp_listProd {X0 : Scheme.{0}} {G T T' : Over X0} [GrpObj G] (ρ : T' ⟶ T) (l : List (T ⟶ G)) :
     ρ ≫ l.prod = (l.map (ρ ≫ ·)).prod := by
@@ -124,7 +123,7 @@ theorem comb_iff {V : Type} [AddCommGroup V] [Module S V] (M : GlobalTheory.Comp
 def epsBC : tEpsG (spMap f ≫ x) ⟶ tEpsG x :=
   Over.homMk (spMap (GlobalTheory.CompanionTheory.Ar.dualMap f)) (by
     change spMap _ ≫ spMap _ ≫ x = spMap _ ≫ spMap f ≫ x
-    rw [← Category.assoc, ← Category.assoc, spMap_cp, spMap_cp]
+    rw [← Category.assoc, ← Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp']
     congr 2
     ext s <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl])
 
@@ -135,7 +134,7 @@ theorem comb_bc {n : ℕ} {v : Fin n → (Sp (DualNumber S) ⟶ t.G.left)} {a : 
   obtain ⟨u, hu, rfl⟩ := h
   refine ⟨fun i => epsBC f x ≫ u i, fun i => ?_, ?_⟩
   · change spMap _ ≫ (u i).left = _
-    rw [hu, ← Category.assoc, ← Category.assoc, spMap_cp, spMap_cp]
+    rw [hu, ← Category.assoc, ← Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp']
     congr 2
     refine RingHom.ext fun s => ?_
     ext <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap, epsMul, mul_comm]
@@ -150,7 +149,7 @@ theorem tan_bc {v : Sp (DualNumber S) ⟶ t.G.left} (h : IsTanAtG t x v) :
     exact Over.w (epsBC f x)
   · have e : spMap (TrivSqZeroExt.fstHom S₂ S₂ S₂).toRingHom ≫ spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) =
         spMap f ≫ spMap (TrivSqZeroExt.fstHom S S S).toRingHom := by
-      rw [spMap_cp, spMap_cp]
+      rw [_root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp']
       congr 1
       refine RingHom.ext fun s => ?_
       simp [GlobalTheory.CompanionTheory.Ar.dualMap]
@@ -200,7 +199,7 @@ theorem basis_bc {n : ℕ} {tg : Fin n → (Sp (DualNumber S) ⟶ t.G.left)} (ht
 def cO (κ : Type) (m : ℕ) : overAt (spMap f ≫ x) (Jet S₂ κ m) ⟶ overAt x (Jet S κ m) :=
   Over.homMk (spMap (jetCoef f κ m)) (by
     change spMap _ ≫ spMap _ ≫ x = spMap _ ≫ spMap f ≫ x
-    rw [← Category.assoc, ← Category.assoc, spMap_cp, spMap_cp, jetCoef_alg])
+    rw [← Category.assoc, ← Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', jetCoef_alg])
 
 theorem sq_of {κ κ' : Type} {m m' : ℕ} (α : Jet S κ m →ₐ[S] Jet S κ' m') (β : Jet S₂ κ m →ₐ[S₂] Jet S₂ κ' m')
     (h : (jetCoef f κ' m').comp (α : Jet S κ m →+* Jet S κ' m') =
@@ -208,7 +207,7 @@ theorem sq_of {κ κ' : Type} {m m' : ℕ} (α : Jet S κ m →ₐ[S] Jet S κ' 
     homAt (spMap f ≫ x) β ≫ cO f x κ m = cO f x κ' m' ≫ homAt x α := by
   apply Over.OverMorphism.ext
   change spMap _ ≫ spMap _ = spMap _ ≫ spMap _
-  rw [spMap_cp, spMap_cp, h]
+  rw [_root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', h]
 
 theorem sq_subst {κ κ' : Type} (m : ℕ) (φ : κ → MvPolynomial κ' S) (φ' : κ → MvPolynomial κ' S₂)
     (h : ∀ i, φ' i = MvPolynomial.map f (φ i)) :
@@ -250,7 +249,7 @@ theorem chart_bc {F : Fin d → MvPowerSeries (Fin 2 × Fin d) S} {act : 𝓞 E 
         ρ ≫ homAt x (jetAug : Jet S (Fin 1 × Fin d) m →ₐ[S] S) := by
       apply Over.OverMorphism.ext
       change spMap _ ≫ spMap _ = spMap _ ≫ spMap _
-      rw [spMap_cp, spMap_cp, jetCoef_aug]
+      rw [_root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', jetCoef_aug]
     rw [yBC, ← Category.assoc, e, Category.assoc, h.zero, MonObj.comp_one]
   · intro m
     rw [yBC, yBC, ← Category.assoc, sq_of f x _ _ (jetCoef_trunc f _ m).symm, Category.assoc, h.trunc]
@@ -264,7 +263,7 @@ theorem chart_bc {F : Fin d → MvPowerSeries (Fin 2 × Fin d) S} {act : 𝓞 E 
     have := comb_bc t f x (h.tan l)
     convert this using 2 with j j
     · change spMap _ ≫ spMap _ ≫ (y 1).left = spMap _ ≫ spMap _ ≫ (y 1).left
-      rw [← Category.assoc, ← Category.assoc, spMap_cp, spMap_cp]
+      rw [← Category.assoc, ← Category.assoc, _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp', _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_comp']
       congr 2
       apply Ideal.Quotient.ringHom_ext
       apply MvPolynomial.ringHom_ext
@@ -535,7 +534,7 @@ theorem pt_of_vec : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : 
 
 theorem pow_first : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) [StarRing (𝓞 E)], (∀ a : 𝓞 E, star a = H.bar a) → ∀ (X0 : Scheme.{0}) (t : SAB H X0), PowFns t → ∀ (k : Type) [Field k] (p : ℕ) [Fact p.Prime] [CharP k p] (hp : 1 ≤ p) (x : Sp k ⟶ X0) (y y₂ : overAt x (Jet k Unit p) ⟶ t.G), homAt x (jetAug : Jet k Unit p →ₐ[k] k) ≫ y = 1 → homAt x (jetAug : Jet k Unit p →ₐ[k] k) ≫ y₂ = 1 → homAt x (toFirst k p hp) ≫ y = homAt x (toFirst k p hp) ≫ y₂ → y ^ p = y₂ ^ p := by
   intro E _ _ _ H _ hstar X0 t hP k _ p _ _ hp x y y₂ hy hy₂ h
-  obtain ⟨d, ⟨g⟩⟩ := PositivityTheory.HtPt.Cd.germ_local E H hstar X0 t hP k x
+  obtain ⟨d, ⟨g⟩⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Conj.GermInh.germ_local E H hstar X0 t hP k x
   obtain ⟨χ, ⟨a0, rfl⟩, -⟩ := (PositivityTheory.HtPt.Cd.germ_univ E H hstar X0 t k x d g).2 Unit p y hy
   obtain ⟨χ₂, ⟨b0, rfl⟩, -⟩ := (PositivityTheory.HtPt.Cd.germ_univ E H hstar X0 t k x d g).2 Unit p y₂ hy₂
   obtain ⟨χ', a1, a2⟩ := exists_low hp χ a0
@@ -753,21 +752,6 @@ omit [Flat Q] in
 theorem surj_res (U : Y.Opens) : Surjective (Q ∣_ U) :=
   MorphismProperty.of_isPullback (P := @Surjective) (isPullback_morphismRestrict Q U).flip inferInstance
 
-set_option backward.isDefEq.respectTransparency false in
-omit [Flat Q] [Surjective Q] in
-theorem app_topIso (U : Y.Opens) :
-    Q.app U ≫ (Q ⁻¹ᵁ U).topIso.inv = U.topIso.inv ≫ (Q ∣_ U).appTop := by
-  rw [morphismRestrict_appTop, Scheme.Opens.topIso_inv, Scheme.Opens.topIso_inv, Scheme.Hom.app_eq_appLE,
-    Scheme.Hom.app_eq_appLE, Scheme.Hom.appLE_map, Scheme.Hom.appLE_map]
-  exact (Scheme.Hom.map_appLE _ _ _).symm
-
-theorem app_inj (U : Y.Opens) : Function.Injective (Q.app U).hom := fun a b h => by
-  have := surj_res Q U
-  apply (ConcreteCategory.bijective_of_isIso U.topIso.inv).1
-  apply appTop_inj (Q ∣_ U)
-  have e := fun c => congrArg (fun q => q.hom c) (app_topIso Q U)
-  exact (e a).symm.trans ((congrArg (Q ⁻¹ᵁ U).topIso.inv.hom h).trans (e b))
-
 theorem gs_topIso (U : X.Opens) (s : Γ(X, U)) (y : Z ⟶ U.toScheme) (z : Z) :
     gs y z ⊤ (U.topIso.inv.hom s) = gs (y ≫ U.ι) z U s := by
   have hz : U.ι (y z) ∈ U := (y z).2
@@ -788,7 +772,7 @@ theorem desc_sec [QuasiCompact Q] (U : Y.Opens) (s : Γ(X, Q ⁻¹ᵁ U))
     refine e1.trans ((h Z _ _ ?_ z (y1 z).2).trans e2.symm)
     rw [Category.assoc, Category.assoc, ← morphismRestrict_ι, reassoc_of% e]
   refine ⟨U.topIso.hom.hom v, (ConcreteCategory.bijective_of_isIso (Q ⁻¹ᵁ U).topIso.inv).1 ?_⟩
-  refine (congrArg (fun q => q.hom (U.topIso.hom.hom v)) (app_topIso Q U)).trans ?_
+  refine (congrArg (fun q => q.hom (U.topIso.hom.hom v)) (_root_.GlobalTheory.TorusTrivial.app_comp_topIso_inv Q U)).trans ?_
   rw [← hv]
   exact congrArg (Q ∣_ U).appTop.hom (Iso.hom_inv_id_apply U.topIso v)
 
@@ -804,24 +788,20 @@ theorem desc_unit [QuasiCompact Q] (U : Y.Opens) (s : Γ(X, Q ⁻¹ᵁ U)ˣ)
     rw [gs_unit _ _ _ hz, gs_unit _ _ _ (hm Z r r' e z hz), h Z r r' e z hz]
   obtain ⟨w, hw⟩ := desc_sec Q U (s⁻¹).val fun Z r r' e z hz => by
     rw [gs_unit _ _ _ hz, gs_unit _ _ _ (hm Z r r' e z hz), map_inv, map_inv, h Z r r' e z hz]
-  have e : v * w = 1 := app_inj Q U (by rw [map_mul, hv, hw, map_one, Units.mul_inv])
+  have e : v * w = 1 := _root_.GlobalTheory.FunDescent.app_injective Q U (by rw [map_mul, hv, hw, map_one, Units.mul_inv])
   exact ⟨⟨v, w, e, by rw [mul_comm, e]⟩, Units.ext hv⟩
 
 theorem unit_ext_flat {U : Y.Opens} {a b : Γ(Y, U)ˣ} (h : ∀ x, Q x ∈ U → gm Q x U a = gm Q x U b) : a = b := by
   have : pullU Q U a = pullU Q U b := unit_ext fun x hx => by
     rw [gm_pull (𝟙 X) Q x U hx, gm_pull (𝟙 X) Q x U hx, Category.id_comp]
     exact h x hx
-  exact Units.ext (app_inj Q U (congrArg Units.val this))
+  exact Units.ext (_root_.GlobalTheory.FunDescent.app_injective Q U (congrArg Units.val this))
 
 end Fn
 
 section Gen
 
 variable {X Y P : Scheme.{0}} {K : Type} [Fintype K]
-
-theorem good_exists {M : LB P} (hM : M.IsLB) {Z : Scheme.{0}} (z : Z) : ∃ J, Good M z J := by
-  choose I hI using fun χ : Z ⟶ P => exists_chart hM (χ z)
-  exact ⟨I, hI⟩
 
 theorem desc_gen (Q : X ⟶ Y) [Flat Q] [Surjective Q] [QuasiCompact Q] {M : LB P} (hM : M.IsLB) (ψ : K → (Y ⟶ P))
     (ε : K → ℤ) (c : LB.Gen (LB.LinComb M (fun k => Q ≫ ψ k) ε)) (hc : c.IsGen)
@@ -834,7 +814,7 @@ theorem desc_gen (Q : X ⟶ Y) [Flat Q] [Surjective Q] [QuasiCompact Q] {M : LB 
       change (r' ≫ Q) z ∈ LB.wchart M ψ j
       rw [← e]
       exact hz
-    obtain ⟨J, hJ⟩ := good_exists hM z
+    obtain ⟨J, hJ⟩ := _root_.GlobalTheory.TorusCoord.exists_good' hM z
     refine (gm_res r z (le j) hz _).trans (Eq.trans ?_ (gm_res r' z (le j) hz' _).symm)
     refine (gen_trans hc r z (le j hz) (hJ.mem _ r)).trans
       (Eq.trans ?_ (gen_trans hc r' z (le j hz') (hJ.mem _ r')).symm)
@@ -1232,7 +1212,7 @@ theorem desc_first {k : Type} [Field k] {X : Type} [AddCommGroup X] {G B : Over 
     ha ρ.val (fun R φ y hy => by
       have : (prodPoint φ y).appTop.hom ρ.val = (prodPoint φ y).appTop.hom 1 :=
         appTop_eq_of_gm _ _ _ 1 fun z => by
-          obtain ⟨J, hJ⟩ := good_exists hM z
+          obtain ⟨J, hJ⟩ := _root_.GlobalTheory.TorusCoord.exists_good' hM z
           have e := hρ' _ (prodPoint φ y) z J hJ
           rw [prodPoint_snd, hv R _ ((ha R φ y).trans hy) z J hJ, hv R y hy z J hJ, _root_.mul_one] at e
           rw [← e, map_one]
@@ -1251,7 +1231,7 @@ theorem desc_first {k : Type} [Field k] {X : Type} [AddCommGroup X] {G B : Over 
       have : Units.map (prodPoint ψ' y).appTop.hom.toMonoidHom ρ =
           Units.map (prodPoint φ (prodPoint φ' y ≫ (actW i (T1 k)).left)).appTop.hom.toMonoidHom ρ *
             Units.map (prodPoint φ' y).appTop.hom.toMonoidHom ρ := unit_ext fun z _ => by
-        obtain ⟨J, hJ⟩ := good_exists hM z
+        obtain ⟨J, hJ⟩ := _root_.GlobalTheory.TorusCoord.exists_good' hM z
         have e1 := hρ' _ (prodPoint ψ' y) z J hJ
         have e2 := hρ' _ (prodPoint φ (prodPoint φ' y ≫ (actW i (T1 k)).left)) z J hJ
         have e3 := hρ' _ (prodPoint φ' y) z J hJ

@@ -158,7 +158,7 @@ theorem glMap_diag_mem_subElem :
       ∀ (S : Finset (Fin n)) (d : GL (Fin n) (w.adicCompletion E)),
         (d : Matrix (Fin n) (Fin n) (w.adicCompletion E)) =
           Matrix.diagonal (fun i => if i ∈ S then ϖ else 1) →
-        (haveI := GlobalTheory.RowSatakeBound.finite_residue w
+        (haveI := _root_.Formalism.UG.P.glint_finite_residueField w
          glMap d (std (w.adicCompletionIntegers E) (w.adicCompletion E) n).1 ∈
            Subtype.val '' subElem S.card (std (w.adicCompletionIntegers E) (w.adicCompletion E) n)) := by
   intro E _ _ w n ϖ hϖ S d hd

@@ -59,11 +59,6 @@ open GlobalTheory.ConjTwist GlobalTheory.GalTw ReciprocityTheory.ChartRestrictio
 open Classical
 namespace GlobalTheory.IdemKerDiv
 
-theorem resS_eq_zero_iff_mem {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E]
-    [Algebra F E] (PP : Pl E) (x : Formalism.L2.Herm.intAf F E) :
-    resS F PP x = 0 ↔ x ∈ idS F PP.asIdeal := by
-  simp [resS, Ideal.Quotient.eq_zero_iff_mem]
-
 theorem intAt_inv_mul {E : Type} [Field E] [NumberField E] (P : HeightOneSpectrum (𝓞 E))
     {ϖ p : 𝓞 E} (hϖ : ϖ ∈ P.asIdeal) (hϖ2 : ϖ ∉ P.asIdeal ^ 2) (hp : p ∈ P.asIdeal) :
     Formalism.L2.Col.IntAt P ((ϖ : E)⁻¹ * (p : E)) := by
@@ -124,7 +119,7 @@ theorem integral_div_iff : ∀ (D : D7) (Q : Finset (Pl D.host.E)) (es : Pl D.ho
     intro x; rw [GlobalTheory.IdemIntegral.toEAf_incA]; rfl
   constructor
   · intro hM PP hPP
-    refine (resS_eq_zero_iff_mem (F := D.host.F) (E := D.host.E) PP ⟨N, hN⟩).mpr ?_
+    refine (_root_.Formalism.L2.DIV.resS_eq_zero_iff (F := D.host.F) (E := D.host.E) PP ⟨N, hN⟩).mpr ?_
     obtain ⟨M, hMdef⟩ : ∃ M, M = toEAf D (∑ P ∈ Q, es P * incA D ((ϖ P : D.host.E))⁻¹) * N :=
       ⟨_, rfl⟩
     rw [← hMdef] at hM
@@ -151,7 +146,7 @@ theorem integral_div_iff : ∀ (D : D7) (Q : Finset (Pl D.host.E)) (es : Pl D.ho
     · subst hPe
       exact Ideal.mul_mem_left _ _ (Ideal.mem_map_of_mem _ (hϖ P hP).1)
     · refine Ideal.mul_mem_right _ _ ?_
-      refine (resS_eq_zero_iff_mem (F := D.host.F) (E := D.host.E) PP _).mp ?_
+      refine (_root_.Formalism.L2.DIV.resS_eq_zero_iff (F := D.host.F) (E := D.host.E) PP _).mp ?_
       simp only [eI, dif_pos hP]
       exact GlobalTheory.TameProd.resS_idem_eq_zero (hid P hP) hPe _
   · intro hres
@@ -160,7 +155,7 @@ theorem integral_div_iff : ∀ (D : D7) (Q : Finset (Pl D.host.E)) (es : Pl D.ho
     refine Subring.sum_mem _ fun P hP => ?_
     have hmem : (⟨N, hN⟩ : Formalism.L2.Herm.intAf D.host.F D.host.E) ∈
         Ideal.map (oToS D.host.F D.host.E) P.asIdeal :=
-      (resS_eq_zero_iff_mem (F := D.host.F) (E := D.host.E) P ⟨N, hN⟩).mp (hres P hP)
+      (_root_.Formalism.L2.DIV.resS_eq_zero_iff (F := D.host.F) (E := D.host.E) P ⟨N, hN⟩).mp (hres P hP)
     have key : ∀ x : Formalism.L2.Herm.intAf D.host.F D.host.E,
         x ∈ Ideal.map (oToS D.host.F D.host.E) P.asIdeal →
         toEAf D (es P * incA D ((ϖ P : D.host.E))⁻¹) * (x : EAf D) ∈

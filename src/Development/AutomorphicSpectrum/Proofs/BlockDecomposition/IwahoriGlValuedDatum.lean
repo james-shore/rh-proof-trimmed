@@ -175,10 +175,8 @@ section Lat
 
 variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))] {n : ℕ}
 
-def IsInt (m : Matrix (Fin n) (Fin n) L) : Prop := ∀ i j, Valued.v (m i j) ≤ 1
-
 def IsIw (m : Matrix (Fin n) (Fin n) L) : Prop :=
-  IsInt m ∧ ∀ i j, j < i → Valued.v (m i j) < 1
+  _root_.Formalism.UG.P.fIwasawaInt m ∧ ∀ i j, j < i → Valued.v (m i j) < 1
 
 theorem mem_latK {k : ℕ} {x : Fin n → L} : x ∈ latK L n k ↔
     ∀ i : Fin n, if i.val < k then Valued.v (x i) ≤ 1 else Valued.v (x i) < 1 := Iff.rfl
@@ -288,8 +286,8 @@ theorem iO_apply (h : GL (Fin n) (OL L)) (i j : Fin n) :
       (((h : Matrix (Fin n) (Fin n) (OL L)) i j : OL L) : L) :=
   Matrix.GeneralLinearGroup.map_apply _ i j h
 
-theorem exists_lift {g : GL (Fin n) L} (h1 : IsInt (g : Matrix (Fin n) (Fin n) L))
-    (h2 : IsInt ((g⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L)) :
+theorem exists_lift {g : GL (Fin n) L} (h1 : _root_.Formalism.UG.P.fIwasawaInt (g : Matrix (Fin n) (Fin n) L))
+    (h2 : _root_.Formalism.UG.P.fIwasawaInt ((g⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L)) :
     ∃ g' : GL (Fin n) (OL L), iO L n g' = g := by
   let a : Matrix (Fin n) (Fin n) (OL L) := fun i j => ⟨(g : Matrix (Fin n) (Fin n) L) i j, h1 i j⟩
   let b : Matrix (Fin n) (Fin n) (OL L) := fun i j =>
@@ -374,8 +372,8 @@ theorem iO_mem {g : GL (Fin n) (OL L)}
     exact isIw_of_shape hϖ (Shape.inv hs)⟩
 
 theorem mem_IwGL_iff {g : GL (Fin n) L} : g ∈ IwGL L n ↔
-    IsInt (g : Matrix (Fin n) (Fin n) L) ∧
-      IsInt ((g⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) ∧
+    _root_.Formalism.UG.P.fIwasawaInt (g : Matrix (Fin n) (Fin n) L) ∧
+      _root_.Formalism.UG.P.fIwasawaInt ((g⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) ∧
       ∀ i j : Fin n, j < i → Valued.v ((g : Matrix (Fin n) (Fin n) L) i j) < 1 := by
   constructor
   · intro h
@@ -463,16 +461,16 @@ theorem isOpen_lt : IsOpen {x : L | Valued.v x < 1} := by
   simpa using this
 
 theorem isOpen_isInt_set (f : GL (Fin n) L → Matrix (Fin n) (Fin n) L) (hf : Continuous f) :
-    IsOpen {g | IsInt (f g)} := by
-  have : {g | IsInt (f g)} = ⋂ (i : Fin n) (j : Fin n), {g | Valued.v (f g i j) ≤ 1} := by
-    ext g; simp [IsInt]
+    IsOpen {g | _root_.Formalism.UG.P.fIwasawaInt (f g)} := by
+  have : {g | _root_.Formalism.UG.P.fIwasawaInt (f g)} = ⋂ (i : Fin n) (j : Fin n), {g | Valued.v (f g i j) ≤ 1} := by
+    ext g; simp [_root_.Formalism.UG.P.fIwasawaInt]
   rw [this]
   exact isOpen_iInter_of_finite fun i => isOpen_iInter_of_finite fun j =>
     isOpen_le.preimage (hf.matrix_elem i j)
 
 theorem isOpen_isIw_set (f : GL (Fin n) L → Matrix (Fin n) (Fin n) L) (hf : Continuous f) :
     IsOpen {g | IsIw (f g)} := by
-  have : {g | IsIw (f g)} = {g | IsInt (f g)} ∩
+  have : {g | IsIw (f g)} = {g | _root_.Formalism.UG.P.fIwasawaInt (f g)} ∩
       ⋂ (i : Fin n) (j : Fin n) (_ : j < i), {g | Valued.v (f g i j) < 1} := by
     ext g; simp [IsIw]
   rw [this]
@@ -504,9 +502,9 @@ theorem isCompact_le [CompleteSpace L] {ϖ : L} {σ : L →+* L} {q : ℕ} (h : 
   exact isCompact_iff_compactSpace.2 hp
 
 theorem isCompact_isInt [CompleteSpace L] {ϖ : L} {σ : L →+* L} {q : ℕ} (h : IsUnramInv ϖ σ q) :
-    IsCompact {m : Matrix (Fin n) (Fin n) L | IsInt m} := by
+    IsCompact {m : Matrix (Fin n) (Fin n) L | _root_.Formalism.UG.P.fIwasawaInt m} := by
   have hc := isCompact_univ_pi fun _ : Fin n => isCompact_univ_pi fun _ : Fin n => isCompact_le h
-  have : {m : Matrix (Fin n) (Fin n) L | IsInt m} = Set.univ.pi fun _ : Fin n => Set.univ.pi
+  have : {m : Matrix (Fin n) (Fin n) L | _root_.Formalism.UG.P.fIwasawaInt m} = Set.univ.pi fun _ : Fin n => Set.univ.pi
       fun _ : Fin n => {x : L | Valued.v x ≤ 1} := by
     ext m
     exact ⟨fun hm i _ j _ => hm i j, fun hm i j => hm i trivial j trivial⟩
@@ -516,7 +514,7 @@ theorem isCompact_isInt [CompleteSpace L] {ϖ : L} {σ : L →+* L} {q : ℕ} (h
 theorem isCompact_IwGL [CompleteSpace L] {ϖ : L} {σ : L →+* L} {q : ℕ} (h : IsUnramInv ϖ σ q) :
     IsCompact ((IwGL L n : Subgroup (GL (Fin n) L)) : Set (GL (Fin n) L)) := by
   have hK := isCompact_isInt (n := n) h
-  have hK' : IsCompact (MulOpposite.unop ⁻¹' {m : Matrix (Fin n) (Fin n) L | IsInt m}) :=
+  have hK' : IsCompact (MulOpposite.unop ⁻¹' {m : Matrix (Fin n) (Fin n) L | _root_.Formalism.UG.P.fIwasawaInt m}) :=
     (MulOpposite.opHomeomorph (M := Matrix (Fin n) (Fin n) L)).symm.isCompact_preimage.2 hK
   have hc := Units.isClosedEmbedding_embedProduct
     (α := Matrix (Fin n) (Fin n) L) |>.isCompact_preimage (hK.prod hK')

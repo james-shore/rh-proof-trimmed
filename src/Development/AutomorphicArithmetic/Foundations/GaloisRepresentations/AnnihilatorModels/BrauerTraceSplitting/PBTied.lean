@@ -128,7 +128,7 @@ private def pullbackToFiniteExtension {P : LocPrime l} {AI : LocAinf l P} (T : L
 
 theorem pBTied : PBTied := by
   intro l _ P AI hT K
-  exact (UpperTheory.Lit.Cmp.locTied6 l P AI hT).elim fun T =>
+  exact (_root_.Formalism.BasicNotions.CmpTie.locTied6_F l P AI hT).elim fun T =>
     ⟨pullbackToFiniteExtension T K, AlgEquiv.refl, fun _ _ => rfl, fun _ => rfl, PositivityTheory.LocInh.tiedA_φ_injective P⟩
 
 end UpperTheory.Gal.crystallineComparison.Br

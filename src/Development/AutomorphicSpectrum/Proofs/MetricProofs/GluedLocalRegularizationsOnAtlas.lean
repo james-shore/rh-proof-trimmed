@@ -82,13 +82,6 @@ lemma exists_lip_near {E G : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [
     (fun x hx => (hF.contDiffAt (hΩ.mem_nhds (hsub (hball hx)))).differentiableAt (by norm_num))
     (fun x hx => (hL x (hball hx)).trans (le_max_left _ _)) (mem_closedBall_self hδ.le) hw
 
-lemma isClosed_coordDiv {D : ℕ} (S : Finset (Fin D)) :
-    IsClosed (ReciprocityTheory.AnForm.A.coordDiv S) := by
-  have : ReciprocityTheory.AnForm.A.coordDiv S = ⋃ i ∈ S, {z : Fin D → ℂ | z i = 0} := by
-    ext z; simp [ReciprocityTheory.AnForm.A.coordDiv]
-  rw [this]
-  exact S.finite_toSet.isClosed_biUnion fun i _ => isClosed_eq (continuous_apply i) continuous_const
-
 lemma overlap_pair {e : ℕ} {X : Type} [TopologicalSpace X] [T2Space X] (B : FinHolAtlas e X)
     (j k : Fin B.n) (h2 : ∀ j, closedBall (0 : Fin e → ℂ) 2 ⊆ (B.chart j).target) (g : X → ℝ)
     (hg : ContDiffOn ℝ 1 (g ∘ (B.chart j).symm)
@@ -181,7 +174,7 @@ lemma chart_data {e : ℕ} {X : Type} [TopologicalSpace X] (A B : FinHolAtlas e 
         -C * Real.log (rLoc S m z) ≤ th.φ xj ((B.chart j).symm z) + ph ((B.chart j).symm z) ∧
         th.φ xj ((B.chart j).symm z) + ph ((B.chart j).symm z) ≤ C := by
   set V := ball (0 : Fin e → ℂ) 2 \ ReciprocityTheory.AnForm.A.coordDiv S with hV
-  have hVo : IsOpen V := isOpen_ball.sdiff (isClosed_coordDiv S)
+  have hVo : IsOpen V := isOpen_ball.sdiff (_root_.ReciprocityTheory.AnForm.A.PlurisubharmonicExtension.coordDiv_closed S)
   have hVt : ∀ z ∈ V, z ∈ (B.chart j).target := fun z hz => h2 (ball_subset_closedBall hz.1)
   have hVb : ∀ z ∈ V, (B.chart j).symm z ∉ bdry s := fun z hz hb =>
     hz.2 ((hS z (hVt z hz)).1 hb)

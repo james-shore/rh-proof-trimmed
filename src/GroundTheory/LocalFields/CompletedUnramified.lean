@@ -160,10 +160,6 @@ theorem eq_zero_of_forall_mem_maximalIdeal_pow {x : 𝔅} (h : ∀ n, x ∈ maxi
   IsHausdorff.haus' (I := maximalIdeal 𝔅) x fun n ↦ by
     simpa only [SModEq.zero, smul_eq_mul, Ideal.mul_top] using h n
 
-theorem exists_eq_unit_mul_pow_adicCompletion {ϖ : R} (hϖ : Irreducible ϖ) {x : 𝔅} (hx : x ≠ 0) :
-    ∃ (n : ℕ) (u : 𝔅ˣ), x = u * algebraMap R 𝔅 ϖ ^ n :=
-  _root_.GroundTheory.Variant₂.N1.exists_eq_unit_mul_pow_adicCompletion hϖ hx
-
 theorem algebraMap_pow_ne_zero {ϖ : R} (hϖ : Irreducible ϖ) (n : ℕ) :
     algebraMap R 𝔅 ϖ ^ n ≠ 0 := by
   rw [← map_pow, Ne, ← map_zero (algebraMap R 𝔅), (algebraMap_adicCompletion_injective R).eq_iff]
@@ -174,8 +170,8 @@ instance isDomain_adicCompletion : IsDomain 𝔅 := by
   have : NoZeroDivisors 𝔅 := ⟨fun {x y} hxy ↦ by
     by_contra h
     push Not at h
-    obtain ⟨m, u, rfl⟩ := exists_eq_unit_mul_pow_adicCompletion hϖ h.1
-    obtain ⟨n, v, rfl⟩ := exists_eq_unit_mul_pow_adicCompletion hϖ h.2
+    obtain ⟨m, u, rfl⟩ := _root_.GroundTheory.Variant₂.N1.exists_eq_unit_mul_pow_adicCompletion hϖ h.1
+    obtain ⟨n, v, rfl⟩ := _root_.GroundTheory.Variant₂.N1.exists_eq_unit_mul_pow_adicCompletion hϖ h.2
     apply algebraMap_pow_ne_zero hϖ (m + n)
     have : ((u * v : 𝔅ˣ) : 𝔅) * algebraMap R 𝔅 ϖ ^ (m + n) = 0 := by
       rw [← hxy, Units.val_mul, pow_add]
@@ -192,7 +188,7 @@ instance isDiscreteValuationRing_adicCompletion : IsDiscreteValuationRing 𝔅 :
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible R
   exact IsDiscreteValuationRing.ofHasUnitMulPowIrreducibleFactorization
     ⟨_, irreducible_algebraMap_adicCompletion hϖ, fun hx ↦ by
-      obtain ⟨n, u, hu⟩ := exists_eq_unit_mul_pow_adicCompletion hϖ hx
+      obtain ⟨n, u, hu⟩ := _root_.GroundTheory.Variant₂.N1.exists_eq_unit_mul_pow_adicCompletion hϖ hx
       exact ⟨n, u, by rw [hu, mul_comm]⟩⟩
 
 theorem exists_sub_algebraMap_mem_pow (x : 𝔅) (n : ℕ) :
@@ -604,11 +600,5 @@ theorem completedFrobenius_integerToCompleted {L : IntermediateField K Ω}
   exact maximalUnramifiedExtensionFrobenius_inclusion hL (x : L)
 
 end FiniteFrobenius
-
-section Check
-
-variable (K : Type*) [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K]
-
-end Check
 
 end GroundTheory.LocalField

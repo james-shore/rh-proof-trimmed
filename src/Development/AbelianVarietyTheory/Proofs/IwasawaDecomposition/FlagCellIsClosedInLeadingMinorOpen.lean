@@ -67,8 +67,6 @@ theorem sp_inj {A B : Type} [CommRing A] [CommRing B] {f g : A →+* B} (h : spM
   ext a
   exact congrArg (fun t => t.hom a) e
 
-theorem sp_surj {A B : Type} [CommRing A] [CommRing B] (f : Sp B ⟶ Sp A) : ∃ g : A →+* B, f = spMap g := ⟨(Spec.preimage f).hom, by simp [spMap]⟩
-
 theorem unit_of_pt_eq {O A : Type} [CommRing O] [CommRing A] {N : ℕ} {b b' : O →+* A} {v v' : Fin (N + 1) → A} {hv hv'}
     (h : pt b v hv = pt b' v' hv') : ∃ u : Aˣ, v' = u • v := by
   have pt_str : ∀ (c : O →+* A) (v : Fin (N + 1) → A) (hv : Ideal.span (Set.range v) = ⊤),
@@ -207,8 +205,8 @@ private theorem mono_cell_lemma (hD : LeftInv D c) (hb : h ≫ p0 = cbase m U)
     unfold pt
     congr 1
     exact MvPolynomial.ringHom_ext (fun r => by simp) (fun i => by simp)
-  obtain ⟨ψ₁, rfl⟩ := sp_surj (A := CR m U) (B := R) t₁
-  obtain ⟨ψ₂, rfl⟩ := sp_surj (A := CR m U) (B := R) t₂
+  obtain ⟨ψ₁, rfl⟩ := _root_.GlobalTheory.LevelFibre.exists_spMap (A := CR m U) (B := R) t₁
+  obtain ⟨ψ₂, rfl⟩ := _root_.GlobalTheory.LevelFibre.exists_spMap (A := CR m U) (B := R) t₂
   have hC : ψ₁.comp MvPolynomial.C = ψ₂.comp MvPolynomial.C :=
     over_inj (by rw [← base_eq hb ψ₁, ← base_eq hb ψ₂, e])
   congr 1
@@ -278,12 +276,12 @@ theorem exists_lift (hD : LeftInv D c) (hb : h ≫ p0 = cbase m U)
       rwa [hc] at h1
     exact ((IsLocalRing.specializes_closedPoint (show PrimeSpectrum R from y)).map
       (z ≫ p0).continuous).mem_open U.1.isOpen h0
-  obtain ⟨φ0, hφ0⟩ := sp_surj (A := Γ(X, U.1)) (B := R) (IsOpenImmersion.lift U.2.fromSpec (z ≫ p0) hU)
+  obtain ⟨φ0, hφ0⟩ := _root_.GlobalTheory.LevelFibre.exists_spMap (A := Γ(X, U.1)) (B := R) (IsOpenImmersion.lift U.2.fromSpec (z ≫ p0) hU)
   have hz0 : z ≫ p0 = spMap φ0 ≫ U.2.fromSpec := by rw [← hφ0, IsOpenImmersion.lift_fac]
   have hC : ψ.comp MvPolynomial.C = (algebraMap R K).comp φ0 :=
     over_inj (by rw [← base_eq hb ψ, e, Category.assoc, hz0, ← Category.assoc, sp_comp])
   have hk : φk = π.comp φ0 := over_inj (by rw [← hφk, Category.assoc, hz0, ← Category.assoc, sp_comp])
-  obtain ⟨bO, hbO⟩ := sp_surj (A := O) (B := R) (z ≫ p0 ≫ s)
+  obtain ⟨bO, hbO⟩ := _root_.GlobalTheory.LevelFibre.exists_spMap (A := O) (B := R) (z ≫ p0 ≫ s)
   have hpt : ∀ en, ∃ (v : Fin (plN M en.1 + 1) → R) (hv : Ideal.span (Set.range v) = ⊤), z ≫ p en = pt bO v hv :=
     fun en => exists_eq_pt bO (z ≫ p en) (by rw [Category.assoc, hs, hbO])
   choose V hV hzV using hpt
@@ -377,7 +375,7 @@ theorem closed_of [Finite T] (hD : LeftInv D c) (hb : h ≫ p0 = cbase m U)
   have hV : ValuativeCriterion h' := by
     rw [ValuativeCriterion.iff]
     refine ⟨fun S => ?_, IsSeparated.valuativeCriterion h'⟩
-    obtain ⟨ψ, hψ⟩ := sp_surj (A := CR m U) (B := S.K) S.i₁
+    obtain ⟨ψ, hψ⟩ := _root_.GlobalTheory.LevelFibre.exists_spMap (A := CR m U) (B := S.K) S.i₁
     have hz : Set.range (S.i₂ ≫ W.ι) ⊆ W := by
       rw [Scheme.Hom.comp_base, TopCat.coe_comp, Set.range_comp, ← Scheme.Opens.range_ι W]
       exact Set.image_subset_range _ _

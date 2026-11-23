@@ -53,7 +53,7 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PositivityTheory.KB.BlockInvariants
 
-theorem aGood : AGood := TwAG.aGood
+alias aGood := _root_.PositivityTheory.KB.TwAG.aGood
 
 theorem swt_all (hE : SEv) (hS : SStokes) : SWt :=
   swt hE hS (fft_of cplx sw1 sw2) aGood wPad weylTwoBlockMatrix wInv wOne wCyc tStab tBlk pStab blockSum_preserves_cone

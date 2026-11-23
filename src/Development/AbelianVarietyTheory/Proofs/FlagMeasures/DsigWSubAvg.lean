@@ -127,9 +127,9 @@ theorem kDense : Formalism.MainNotions.S.Pv.AmpDD.KDense := by
     refine Finset.sum_congr rfl fun j _ => ?_
     ring
   refine ⟨∫ g, peakN μ m g • σ g v ∂μ, ?_, ?_⟩
-  · have := GlobalTheory.T.integral_translate_family_isKFinite_hermitian k r H σ μ hU hμ N b hbc htr (fun j => c j / (Z : ℂ)) v
+  · have := _root_.GlobalTheory.KFinAvg.isKFinHpk_integral_translates k r H σ μ hU hμ N b hbc htr (fun j => c j / (Z : ℂ)) v
     simpa only [← e1] using this
-  · have hD' := fun D X hD hX => GlobalTheory.T.hasDerivAt_derived_action_max_compact_average k r H σ μ (peakN μ m) v D X hU hμ
+  · have hD' := fun D X hD hX => _root_.GlobalTheory.KFinAvg.hasDerivAt_exp_integral_dsigW k r H σ μ (peakN μ m) v D X hU hμ
       (by rw [show peakN μ m = fun g => ∑ j, (c j / (Z : ℂ)) * b j g from funext e1]
           exact continuous_finsetSum _ fun j _ => continuous_const.mul (hbc j)) hv' hD hX
     have hterm : ∀ w ∈ Ws, ‖PI.UpqRep.dsigW (k := k) (r := r) σ w (v - ∫ g, peakN μ m g • σ g v ∂μ)‖ ≤ e / (L + 1) := by

@@ -333,12 +333,10 @@ theorem reads0 (ψ : Chr D) : Reads D ψ (chiP D ψ) := by
   rw [← primVal_unram D ψ hp, primVal_eq D ψ p hp.1.ne_zero]
   rfl
 
-theorem primitive_reading_exists : adm10 D := fun ψ => ⟨_, reads0 D ψ⟩
-
 theorem prim_spec (ψ : Chr D) : Reads D ψ (prim D ψ) := by
   unfold prim
-  rw [dif_pos (primitive_reading_exists D ψ)]
-  exact (primitive_reading_exists D ψ).choose_spec
+  rw [dif_pos (_root_.Formalism.MainNotions.ZetaZeroFreeRegion.primitive_reading_holds D ψ)]
+  exact (_root_.Formalism.MainNotions.ZetaZeroFreeRegion.primitive_reading_holds D ψ).choose_spec
 
 theorem primitiveCharacter_chi0_eq_one_iff (ψ : Chr D) : (chi0 D ψ).primitiveCharacter = 1 ↔ ψ = 1 := by
   have e0 : chi0 D 1 = 1 := by
@@ -1579,10 +1577,6 @@ theorem algMap_ne {d : 𝓞 K} (hd : d ≠ 0) : algebraMap (𝓞 K) K d ≠ 0 :=
   intro h
   exact hd ((injective_iff_map_eq_zero (algebraMap (𝓞 K) K)).mp (IsFractionRing.injective (𝓞 K) K) d h)
 
-theorem exists_mul_mem (L : Submodule (𝓞 K) V) (v : V) (hv : v ∈ Submodule.span K (L : Set V)) :
-    ∃ d : 𝓞 K, d ≠ 0 ∧ d • v ∈ L := by
-  first | exact Bl.general_b_fact_left''''''''.goal1 .. | (apply Bl.general_b_fact_left''''''''.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_left''''''''.goal1 <;> assumption) | (apply @Bl.general_b_fact_left''''''''.goal1 <;> assumption) | (intros; apply @Bl.general_b_fact_left''''''''.goal1 <;> assumption) | (apply @Bl.general_b_fact_left''''''''.goal1 <;> first | assumption | infer_instance)
-
 end General
 
 def NuCommens (D : D7) (L : SizeData₂ D) : Prop :=
@@ -1597,7 +1591,7 @@ theorem mramSpan (D : D7) : MramSpan D := by
   intro x _
   have hx : D.nuIn u x ∈ Submodule.span D.what₂.LL (((D.fm u).lat 0).L : Set ((D.fm u).lat 0).V) := by
     rw [((D.fm u).lat_good 0).2.2]; trivial
-  obtain ⟨d, hd, hm⟩ := exists_mul_mem _ _ hx
+  obtain ⟨d, hd, hm⟩ := _root_.Bl.general_b_fact_left''''''''.goal1 _ _ hx
   have hmem : d • x ∈ DV.MramL D u := by
     show (D.nuIn u) (d • x) ∈ ((D.fm u).lat 0).L
     rw [int_smul d x, map_smul, ← int_smul]
@@ -1607,11 +1601,7 @@ theorem mramSpan (D : D7) : MramSpan D := by
   rw [e]
   exact Submodule.smul_mem _ _ (Submodule.subset_span hmem)
 
-theorem Iu_ne_zero (D : D7) (L : SizeData₂ D) (u : D.what₂.Word) : DV.Iu D L u ≠ 0 := by
-  unfold DV.Iu
-  rw [Finset.prod_ne_zero_iff]
-  intro w _
-  exact zpow_ne_zero _ (FractionalIdeal.coeIdeal_ne_zero.mpr (D.plEq w).ne_bot)
+alias Iu_ne_zero := _root_.Formalism.MainNotions.J.Iu_ne_zero
 
 theorem nuFull_of {D : D7} {L : SizeData₂ D} (hN' : DV.NprimeDef D L) (hc : NuCommens D L) : D.NuFull := by
   intro u
@@ -1711,26 +1701,11 @@ theorem ioP_le {D : D7} {L : SizeData₂ D} (X : G.Inst D L) (K : G.Consts) (p :
   · exact mul_nonneg (mul_nonneg (by norm_num) hSig)
       (div_nonneg (mul_nonneg (by norm_num) (mul_nonneg (mul_nonneg (Nat.cast_nonneg _) (Nat.cast_nonneg _)) ha)) hp)
 
-section Points
-
-variable (Fm : FamP eps) (x : ℝ) (i0 : Fm.Ix x)
-
-variable {Fm x i0}
-
-
-
-end Points
-
 end Formalism.MainNotions.Lnk
 
 end
 
-noncomputable section
-
 namespace Formalism.MainNotions
-
-open Formalism.MainNotions.Lnk
 
 end Formalism.MainNotions
 
-end

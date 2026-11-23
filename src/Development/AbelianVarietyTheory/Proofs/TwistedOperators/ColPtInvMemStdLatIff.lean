@@ -98,12 +98,6 @@ open Matrix
 
 variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {W : G.Weil} {U : Set T}
 
-theorem finEmb_stab {A B : HSp D} {c : ℕ} {ε : D.host.E} (d : HermitianOrthogonalExtensionData A B c ε)
-    (Λ : Submodule (𝓞 D.host.E) (Fin A.rank → D.host.E)) (y : GfC A)
-    (hy : Lev.finE A y.1 ∈ Formalism.UG.stabGL (Formalism.L2.Herm.hatL (F := D.host.F) Λ)) :
-    Lev.finE B (finEmb d y).1 ∈ Formalism.UG.stabGL (Formalism.L2.Herm.hatL (F := D.host.F) (d.lat Λ fun _ => 1)) :=
-  GlobalTheory.T.finiteEmbedding_mem_stabilizer_auxiliaryLattice d Λ y hy
-
 theorem levRow_stab (S : GridChoice W U) (t : T) :
     ∀ n (hn : 1 ≤ n) (h : n ≤ D.R.m) (k : FinPt G (.grid n D.R.m)), finG (G.V (.grid n D.R.m)) k ∈ S.levRow t n h →
       Lev.finE (G.V (.grid n D.R.m)) k.1 ∈ Formalism.UG.stabGL (Formalism.L2.Herm.hatL (F := D.host.F) (G.Λ (.grid n D.R.m))) := by
@@ -167,7 +161,7 @@ theorem colPt_inv_mem_stdLat_iff : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc :
   have e : G.Λ (.top D.R.m) = G.sp.topDec.lat (G.Λ (.grid D.R.m D.R.m)) (fun _ => 1) := G.sp.topLat
   have h2 : Lev.finE (G.V (.top D.R.m)) (finEmb G.sp.topDec k).1 ∈
       Formalism.UG.stabGL (Formalism.L2.Herm.hatL (F := D.host.F) (G.Λ (.top D.R.m))) := by
-    rw [e]; exact finEmb_stab G.sp.topDec _ k h1
+    rw [e]; exact _root_.GlobalTheory.FinEmbLat.finEmb_mem_stabGL G.sp.topDec _ k h1
   have h3 := conj_stab S.N (X := .top D.R.m) (by simp [DefNode]) _ h2
   have h4 := topLast_stab S.N _ h3
   exact actO_inv_mem_latO_iff _ _ _ _ _ h4 x

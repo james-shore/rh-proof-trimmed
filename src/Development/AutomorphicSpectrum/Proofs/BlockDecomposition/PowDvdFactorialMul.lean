@@ -58,18 +58,10 @@ open CategoryTheory AlgebraicGeometry Polynomial DividedPowers GlobalTheory.LogC
 
 namespace GlobalTheory.CompanionTheory.ThickLine
 
-theorem pow_dvd_factorial_mul {p : ℕ} (hp : p.Prime) (N : ℕ) : p ^ N ∣ (p * N).factorial := by
-  induction N with
-  | zero => simp
-  | succ N ih =>
-    rw [Nat.mul_succ, pow_succ]
-    exact (mul_dvd_mul ih (Nat.dvd_factorial hp.pos le_rfl)).trans
-      (Nat.factorial_mul_factorial_dvd_factorial_add _ _)
-
 theorem isNilpotent_of_mem {A : Type} [CommRing A] {J : Ideal A} (δ : DividedPowers J) {p : ℕ} (hp : p.Prime)
     (hn : IsNilpotent (p : A)) {x : A} (hx : x ∈ J) : IsNilpotent x := by
   obtain ⟨N, hN⟩ := hn
-  obtain ⟨k, hk⟩ := pow_dvd_factorial_mul hp N
+  obtain ⟨k, hk⟩ := _root_.GlobalTheory.CompanionTheory.QPd.pow_dvd_factorial hp N
   refine ⟨p * N, ?_⟩
   rw [← δ.factorial_mul_dpow_eq_pow hx, hk]
   push_cast
@@ -85,9 +77,6 @@ theorem ringHom_eq {B C : Type} [CommRing B] [CommRing C] (Q : PDPoly B) {f g : 
   | zero => simp
   | add x y _ _ hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
   | smul b x _ hx => rw [Algebra.smul_def, map_mul, map_mul, hx, h1]
-
-theorem e_one_mem {B : Type} [CommRing B] (Q : PDPoly B) (J : Ideal B) : Q.e 1 ∈ Q.ext J :=
-  Ideal.mem_sup_right (Ideal.subset_span ⟨0, rfl⟩)
 
 theorem le_comap_ext {B : Type} [CommRing B] (Q : PDPoly B) (J : Ideal B) :
     J ≤ (Q.ext J).comap (algebraMap B Q.P) :=
@@ -174,8 +163,8 @@ theorem hom_unique {T' : Thick (F.cr b ht κ)} {ψ ψ' : line T Q η₀ hη hp �
     (h : toLine T Q η₀ hη hp ≫ ψ = toLine T Q η₀ hη hp ≫ ψ') (he : ψ.φ (Q.e 1) = ψ'.φ (Q.e 1)) : ψ = ψ' := by
   refine Thick.Hom.ext (ringHom_eq Q (fun a => ?_) fun k => ?_) (funext fun j => j.elim)
   · exact congrArg (fun f : T ⟶ T' => f.φ a) h
-  · have h1 : T'.δ.dpow k (ψ.φ (Q.e 1)) = ψ.φ (η₀.dpow k (Q.e 1)) := ψ.dp.2 (Q.e 1) (e_one_mem Q T.J)
-    have h2 : T'.δ.dpow k (ψ'.φ (Q.e 1)) = ψ'.φ (η₀.dpow k (Q.e 1)) := ψ'.dp.2 (Q.e 1) (e_one_mem Q T.J)
+  · have h1 : T'.δ.dpow k (ψ.φ (Q.e 1)) = ψ.φ (η₀.dpow k (Q.e 1)) := ψ.dp.2 (Q.e 1) (_root_.GlobalTheory.PDA.PDPoly.e_one_mem_ext Q T.J)
+    have h2 : T'.δ.dpow k (ψ'.φ (Q.e 1)) = ψ'.φ (η₀.dpow k (Q.e 1)) := ψ'.dp.2 (Q.e 1) (_root_.GlobalTheory.PDA.PDPoly.e_one_mem_ext Q T.J)
     rw [hη.var k] at h1 h2
     have h3 : T'.δ.dpow k (ψ.φ (Q.e 1)) = T'.δ.dpow k (ψ'.φ (Q.e 1)) := congrArg _ he
     exact h1.symm.trans (h3.trans h2)
@@ -183,10 +172,10 @@ theorem hom_unique {T' : Thick (F.cr b ht κ)} {ψ ψ' : line T Q η₀ hη hp �
 def lineU (q : b.Rˣ) (hq : (q : b.R) - 1 ∈ b.I) (hpp : b.p.Prime) :
     (thU (F.cr b ht κ) q hq).U (line T Q η₀ hη hpp.ne_zero) :=
   ⟨(isNilpotent_of_mem η₀ hpp (by simpa using (T.adm.1 hpp.ne_zero).map (algebraMap T.B Q.P))
-      (e_one_mem Q T.J)).isUnit_one_add.unit,
+      (_root_.GlobalTheory.PDA.PDPoly.e_one_mem_ext Q T.J)).isUnit_one_add.unit,
     MonoidHom.mem_ker.2 (Units.ext (by
       change Ideal.Quotient.mk (Q.ext T.J) (1 + Q.e 1) = Ideal.Quotient.mk (Q.ext T.J) 1
-      exact Ideal.Quotient.eq.2 (by simpa using e_one_mem Q T.J)))⟩
+      exact Ideal.Quotient.eq.2 (by simpa using _root_.GlobalTheory.PDA.PDPoly.e_one_mem_ext Q T.J)))⟩
 
 theorem map_lineU {T' : Thick (F.cr b ht κ)} (q : b.Rˣ) (hq : (q : b.R) - 1 ∈ b.I) (hpp : b.p.Prime)
     (ψ : line T Q η₀ hη hpp.ne_zero ⟶ T') :

@@ -298,8 +298,8 @@ end Formalism.HermitianLatticeCounting.P.S4aux
 
 namespace Formalism.HermitianLatticeCounting.P
 
-theorem orbit_count_formula : Formalism.HermitianLatticeCounting.S4.OmCount := S4aux.orbit_count_formula
-theorem weighted_cauchy_schwarz : Formalism.HermitianLatticeCounting.S4.WeightedCS := S4aux.weighted_cauchy_schwarz
-theorem fourth_reduction_identity : Formalism.HermitianLatticeCounting.S4.Step4 := S4aux.fourth_reduction_identity
+alias orbit_count_formula := _root_.Formalism.HermitianLatticeCounting.P.S4aux.orbit_count_formula
+alias weighted_cauchy_schwarz := _root_.Formalism.HermitianLatticeCounting.P.S4aux.weighted_cauchy_schwarz
+alias fourth_reduction_identity := _root_.Formalism.HermitianLatticeCounting.P.S4aux.fourth_reduction_identity
 
 end Formalism.HermitianLatticeCounting.P

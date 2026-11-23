@@ -119,7 +119,7 @@ theorem glue_stable : ∀ (D : D7) (U : Submodule D.host.E (VS D).V) (M : Submod
 
 theorem loc_ext : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, LocNG.FPair (locH Z p) D.R.rS) (u u' : D.what₂.Word) (F : LFlag (D.sp.Y 0) D.R.rS (((D.mem u).A.T : ℕ) : D.host.E)) (F' : LFlag (D.sp.Y 0) D.R.rS (((D.mem u').A.T : ℕ) : D.host.E)), Based Z FP (Tu D u) (Tu D u') F F' → ∀ g ∈ H0 F F', ∀ p, ∃ g', GlobalTheory.Unfold.Ext p g g' ∧ GlobalTheory.InnerDatumAct.InU (FP p) g' ∧ ∀ g'', GlobalTheory.Unfold.Ext p g g'' → g'' = g' := by
   intro D Z FP u u' F F' hB g hg p
-  obtain ⟨g', hE, hU, huniq, -, -⟩ := GlobalTheory.T.rational_isometry_extends_local_isometry D Z p g hg.1
+  obtain ⟨g', hE, hU, huniq, -, -⟩ := _root_.GlobalTheory.LocExt.ext_isometry D Z p g hg.1
   refine ⟨g', hE, ⟨⟨hU, fun b => ?_⟩, ⟨hU, fun b => ?_⟩⟩, fun g'' h'' => huniq g'' h''⟩
   · rw [(hB p).1]
     show g' (frFac Z.δ p b • baseChange₂ D p (frame F b)) = frFac Z.δ p b • baseChange₂ D p (frame F b)
@@ -147,7 +147,7 @@ theorem locSet_encard_rel : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, Loc
     intro g hg d d' hmv ⟨Λ, hΛ⟩
     obtain ⟨n, hn, hf, -⟩ := hΛ.1.2.2.1
     obtain ⟨n', hn', hf', -⟩ := hΛ.1.2.2.2.1
-    have key := (GlobalTheory.T.unitaryComplement_moves_hermitianTerms (Z.M p) (Z.agree p).1 (locH Z p) D.R.rS D.R.k (FP p) (rank_Vp' D p)
+    have key := (_root_.GlobalTheory.HL.ComplMove.main (Z.M p) (Z.agree p).1 (locH Z p) D.R.rS D.R.k (FP p) (rank_Vp' D p)
       (hB.2.1 p) _ _ ⟨n, hn, hf⟩ ⟨n', hn', hf'⟩ g hg d d' hmv).2
     have hset : locSet G G' p d' = LocNG.img g '' locSet G G' p d := key.symm
     rw [hset]
@@ -202,7 +202,7 @@ theorem glue_count : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, LocNG.FPai
 
   set GS := Formalism.L2.SG.Pf.Cnt.GlueSet (VS D).hT (Formalism.L2.SG.Pf.Cnt.UPair D G.fl G') (Formalism.L2.SG.Pf.Cnt.MMof D G.fl G') with hGS
   have hstab : ∀ (g : Γ) (Λ : LV D), Λ ∈ GS → g • Λ ∈ GS := fun g Λ hΛ =>
-    glue_stable D _ _ g.1 g.2 Λ hΛ
+    _root_.GlobalTheory.GlueStable.glueSet_gmap_mem D _ _ g.1 g.2 Λ hΛ
   letI actS : MulAction Γ {Λ : LV D // Λ ∈ GS} :=
     { smul := fun g x => ⟨g • x.1, hstab g x.1 x.2⟩
       one_smul := fun x => Subtype.ext (one_smul Γ x.1)
@@ -268,10 +268,10 @@ theorem glue_count : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, LocNG.FPai
     exact ((hGD x.1).2.2.2 (π x) (sm g (π x)) g.1 ((hH0 _).2 g.2) (hRM g _)).1 (hπ x)
   have hfin : ∀ y : Dat Z FP, (∃ x, π x = y) → Finite (MulAction.stabilizer Γ y) := by
     rintro y ⟨x, rfl⟩
-    have h1 := stab_finite D Z FP u u' F G F' G' P d0 hk hB hS hTP x.1 (π x) x.2 (hπ x)
+    have h1 := _root_.GlobalTheory.StabYFin.stabY_finite D Z FP u u' F G F' G' P d0 hk hB hS hTP x.1 (π x) x.2 (hπ x)
     rw [hstabY] at h1
     exact (h1.of_finite_image Subtype.val_injective.injOn).to_subtype
-  have horbit := GlobalTheory.T.tsum_inv_card_stabilizer_eq_tsum_mul_card_fiber π hπeq hfin
+  have horbit := _root_.GlobalTheory.tsum_inv_stabilizer_eq_tsum_mul_fiber π hπeq hfin
 
   let ι : s → {Λ : LV D // Λ ∈ GS} := fun a => ⟨a.1, hs.1 a.1 a.2⟩
   have hcover : ∀ x : {Λ : LV D // Λ ∈ GS}, True → ∃ (a : s) (g : Γ), g • ι a = x := by
@@ -376,7 +376,7 @@ theorem glue_count : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, LocNG.FPai
       exact hd ⟨_, hΛ.1⟩
     show ((locSet G G' p d).encard : ℝ≥0∞) = 0
     rw [hemp, Set.encard_empty, ENat.toENNReal_zero]
-  have hreg := GlobalTheory.T.tsum_rationalClasses_eq_prod_localSums D Z FP u u' F F' P d0 R V hV hB hM φ hφrel hφzero
+  have hreg := _root_.GlobalTheory.GenMass.tsum_classes_eq_prod_locSums D Z FP u u' F F' P d0 R V hV hB hM φ hφrel hφzero
   let e : Quot (GRel (Z := Z) (FP := FP) F F') ≃ @MulAction.orbitRel.Quotient Γ (Dat Z FP) _ actY :=
     Quot.congr (Equiv.refl _) (fun a b => (hrel a b).trans ⟨fun h => (@MulAction.orbitRel Γ (Dat Z FP) _ actY).symm' h, fun h => (@MulAction.orbitRel Γ (Dat Z FP) _ actY).symm' h⟩)
   have hq : ∑' o : Quot (GRel (Z := Z) (FP := FP) F F'), g0 o.out =

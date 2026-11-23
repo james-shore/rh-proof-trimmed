@@ -86,7 +86,7 @@ theorem cc_psTrunc {κ : Type} [Fintype κ] [DecidableEq κ] (m : ℕ) (f : MvPo
 
 theorem cc_psIn (m : ℕ) (l : Fin 2) (f : PS R 1 d) :
     MvPolynomial.constantCoeff (psIn d m ![l] f) = MvPowerSeries.constantCoeff f := by
-  rw [psIn, MvPolynomial.constantCoeff_rename, cc_psTrunc]
+  rw [psIn, MvPolynomial.constantCoeff_rename, _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.FBIdPh.cc_psTrunc]
 
 theorem rename_eq_aeval {σ τ : Type} (k : σ → τ) (p : MvPolynomial σ R) :
     MvPolynomial.rename k p = MvPolynomial.aeval (fun i => (MvPolynomial.X (k i) : MvPolynomial τ R)) p := by
@@ -129,7 +129,7 @@ theorem double_substitution_jet_inclusion (Qs : Fin d' → PS R 1 d) (m : ℕ) (
   rintro ⟨l, j⟩
   simp only [AlgHom.comp_apply, jetCopy, sub1, sub2, jetSubstP, jetMap_mk, MvPolynomial.aeval_X]
   congr 1
-  rw [cc_psIn, map_sub, psIn_eq_aeval, MvPolynomial.aeval_C, MvPolynomial.algebraMap_eq, cc_psTrunc]
+  rw [cc_psIn, map_sub, psIn_eq_aeval, MvPolynomial.aeval_C, MvPolynomial.algebraMap_eq, _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.FBIdPh.cc_psTrunc]
 
 theorem double_substitution_truncation (Qs : Fin d' → PS R 1 d) (m : ℕ) :
     (jetTrunc : Jet R (Fin 2 × Fin d) (m + 1) →ₐ[R] Jet R (Fin 2 × Fin d) m).comp (sub2 Qs (m + 1)) =
@@ -154,7 +154,7 @@ theorem double_substitution_first_axis (Qs : Fin d' → PS R 1 d) (hQ : ∀ i, M
     first
       | exact bind_zero _ h0
       | simp [cc_psTrunc, hQ]
-  · simp [Function.comp_def, cc_psTrunc, hQ]
+  · simp [Function.comp_def, _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.FBIdPh.cc_psTrunc, hQ]
     exact bind_fst _
 
 theorem double_substitution_second_axis (Qs : Fin d' → PS R 1 d) (hQ : ∀ i, MvPowerSeries.constantCoeff (Qs i) = 0) (m : ℕ) :
@@ -165,7 +165,7 @@ theorem double_substitution_second_axis (Qs : Fin d' → PS R 1 d) (hQ : ∀ i, 
   congr 1
   rw [cc_psIn, hQ, map_zero, sub_zero, psIn, MvPolynomial.aeval_rename]
   fin_cases l
-  · simp [Function.comp_def, cc_psTrunc, hQ]
+  · simp [Function.comp_def, _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.FBIdPh.cc_psTrunc, hQ]
     exact bind_fst _
   · simp [Function.comp_def]
     have h0 : MvPolynomial.constantCoeff (psTrunc m (Qs j)) = 0 := by rw [cc_psTrunc, hQ]
@@ -470,11 +470,6 @@ theorem unit_second_axis_eq_one (hQ : ∀ i, MvPowerSeries.constantCoeff (Qs i) 
 
 end Main
 
-theorem psJet_one' {R : Type} [CommRing R] {κ : Type} [Fintype κ] [DecidableEq κ] (m : ℕ) :
-    psJet m (1 : MvPowerSeries κ R) = 1 := by
-  rw [psJet, ← MvPolynomial.coe_one, Formalism.MainNotions.ModuliIntegralCharts.H1.FBIdJet.psTrunc_eq, Formalism.MainNotions.ModuliIntegralCharts.H1.FBIdJet.mk_trunc_coe, map_one]
-
-
 open Formalism.MainNotions.ModuliIntegralCharts.H1.GermD Formalism.MainNotions.ModuliIntegralCharts.H1.GermFun in
 theorem exists_lam : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) [StarRing (𝓞 E)], (∀ a : 𝓞 E, star a = H.bar a) → ∀ (X : Scheme.{0}) (t : SAB H X) (k : Type) [Field k] [IsAlgClosed k] (p : ℕ) [Fact p.Prime] [CharP k p] (x : Sp k ⟶ X) (Q : AbQuot t x) (d d' : ℕ) (g : GermAt t x d) (gB : GermAt Q.tB (𝟙 (Sp k)) d'), ∀ (w : LB.Iso (t.PP.L.pull (pullback.fst t.G.hom x)) (Q.tB.PP.L.pull Q.q.left)), w.IsGen → ∀ Qs : Fin d' → PS k 1 d, (∀ i, MvPowerSeries.constantCoeff (Qs i) = 0) → (∀ m, fibPt t x (g.x m) ≫ Q.q = homAt (𝟙 (Sp k)) (sub1 Qs m) ≫ gB.x m) → ∃ lam : PS k 2 d, AxOne lam ∧ ∀ m, ∃ U : (Jet k (Fin 2 × Fin d) m)ˣ, (U : Jet k (Fin 2 × Fin d) m) = psJet m lam ∧ Tr w (cubeF t x ![jptG t x d g.x m (0 : Fin 2), jptG t x d g.x m (1 : Fin 2)]) (cφG t ![jptG t x d g.x m (0 : Fin 2), jptG t x d g.x m (1 : Fin 2)]) (fun I => (homAt (𝟙 (Sp k)) (sub2 Qs m)).left ≫ cφG Q.tB ![jptG Q.tB (𝟙 (Sp k)) d' gB.x m (0 : Fin 2), jptG Q.tB (𝟙 (Sp k)) d' gB.x m (1 : Fin 2)] I) (cε 2) (g.e m) (LB.pullGen Q.tB.PP.L (cφG Q.tB ![jptG Q.tB (𝟙 (Sp k)) d' gB.x m (0 : Fin 2), jptG Q.tB (𝟙 (Sp k)) d' gB.x m (1 : Fin 2)]) (cε 2) (gB.e m) (homAt (𝟙 (Sp k)) (sub2 Qs m)).left) (unitΓ U⁻¹) := by
   intro E _ _ _ H _ _ X t k _ _ p _ _ x Q d d' g gB w hw Qs hQ hq
@@ -482,9 +477,9 @@ theorem exists_lam : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H :
   obtain ⟨lam, hlam⟩ := exists_ps_of_jets (fun m => (U m : Jet k (Fin 2 × Fin d) m))
     (fun m => U_trunc w m (U m) (U (m + 1)) (hU m) (hU (m + 1)))
   refine ⟨lam, ⟨psJet_inj fun m => ?_, psJet_inj fun m => ?_⟩, fun m => ⟨U m, (hlam m).symm, hU m⟩⟩
-  · rw [← ps_jet_first_axis_eval, hlam, psJet_one']
+  · rw [← ps_jet_first_axis_eval, hlam, _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.FBIdJet.psJet_one]
     exact unit_first_axis_eq_one w hQ m (U m) (hU m)
-  · rw [← ps_jet_second_axis_eval, hlam, psJet_one']
+  · rw [← ps_jet_second_axis_eval, hlam, _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.FBIdJet.psJet_one]
     exact unit_second_axis_eq_one w hQ m (U m) (hU m)
 
 end GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.Lamex

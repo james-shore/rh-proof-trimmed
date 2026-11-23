@@ -65,9 +65,6 @@ open scoped MatrixGroups Real ComplexConjugate Manifold ModularForm
 
 namespace GlobalTheory.EisM
 
-lemma adjT_adj_adj (M : M2) : M.adjugate.adjugate = M := by
-  ext i j; fin_cases i <;> fin_cases j <;> simp [Matrix.adjugate_fin_two]
-
 lemma intMatrixTwo_adjugate_zero_zero (M : M2) : M.adjugate 0 0 = M 1 1 := by
   simp [Matrix.adjugate_fin_two]
 
@@ -120,7 +117,7 @@ theorem GlobalTheory.EisM.pet_To_adjoint : ∀ (k L N q : ℕ) (ε : DirichletCh
       = fun τ => (ch ε q)⁻¹ * qs (To k (ch ε q) q h) τ := by
     funext τ
     rw [hTheq]
-    simp only [hsum, Fintype.sum_option, adjT_adj_adj, intMatrixTwo_adjugate_zero_zero, Finset.mul_sum, mul_add]
+    simp only [hsum, Fintype.sum_option, _root_.GlobalTheory.EisM.intMatrixTwo_adjugate_adjugate, intMatrixTwo_adjugate_zero_zero, Finset.mul_sum, mul_add]
     simp [repT, repU, hinvq, hinv1, hε1, hne]
   rw [hsumeq, pet_const_mul_left]
   have hc : conj ((ch ε q)⁻¹) = ch ε q := by

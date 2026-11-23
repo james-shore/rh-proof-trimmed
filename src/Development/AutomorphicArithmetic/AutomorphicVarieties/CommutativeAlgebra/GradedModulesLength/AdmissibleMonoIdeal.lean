@@ -63,9 +63,7 @@ section
 
 variable {k : ℕ} {B R : Type} [CommRing B] [CommRing R] [Algebra B R] (𝒜 : Deg k → Submodule B R)
 
-private theorem self_isGr [GradedAlgebra 𝒜] : (GMod.self 𝒜).IsGr 𝒜 := by
-  refine ⟨?_, DirectSum.Decomposition.isInternal 𝒜, Module.Finite.self R⟩
-  exact fun ha hx => SetLike.mul_mem_graded (A := 𝒜) ha hx
+private alias self_isGr := _root_.Formalism.MainNotions.V.Pf.V2.Calc.E4.self_isGr
 
 private theorem mem_quo_ann_of_smul_mem {k : ℕ} {B R : Type} [CommRing B] [CommRing R] [Algebra B R] (F : GMod B R k)
     (N : Submodule R F.M) (x : R) (h : ∀ y : F.M, x • y ∈ N) : x ∈ (F.quo N).Ann := by
@@ -77,13 +75,6 @@ private theorem mem_quo_ann_of_smul_mem {k : ℕ} {B R : Type} [CommRing B] [Com
 private theorem le_ann_quo (J : Ideal R) : J ≤ ((GMod.self 𝒜).quo J).Ann := by
   intro x hx
   exact mem_quo_ann_of_smul_mem (GMod.self 𝒜) J x fun (y : R) => J.mul_mem_right y hx
-
-private theorem mem_ann_quot (F : GMod B R k) (s : R) : s ∈ (F.quot s).Ann := by
-  rw [GMod.Ann, Module.mem_annihilator]
-  intro m
-  obtain ⟨y, rfl⟩ := Submodule.Quotient.mk_surjective _ m
-  exact (Submodule.Quotient.mk_smul _ s y).symm.trans
-    ((Submodule.Quotient.mk_eq_zero _).mpr ⟨y, rfl⟩)
 
 private theorem secs_le_sup_secs_of_forall₂_sub_mem {k : ℕ} {R : Type} [CommRing R] {J' : Ideal R} :
     ∀ {ts ts' : List (Deg k × R)}, List.Forall₂ (fun p q => p.1 = q.1 ∧ p.2 - q.2 ∈ J') ts ts' →
@@ -171,7 +162,7 @@ private theorem mono_quo {k : ℕ} (X : HidaSetting k) (J 𝔮 : Ideal X.R) (hJ 
       fun m => rfl, hgr⟩
   have hann : J ⊔ Ideal.span {a} ≤ (((GMod.self X.𝒜).quo J).quot a).Ann :=
     sup_le ((le_ann_quo X.𝒜 J).trans (Cong.ann_le_quot _ a))
-      ((Ideal.span_singleton_le_iff_mem _).mpr (mem_ann_quot _ a))
+      ((Ideal.span_singleton_le_iff_mem _).mpr (_root_.Formalism.MainNotions.V.Pf.V2.Calc.E2.self_mem_quot _ a))
   have hadm' := admissible_mono_ideal X.𝒜 hadm hann (List.forall₂_same.mpr fun p _ => ⟨rfl, by simp⟩)
   exact ruleMono k X ts _ _ _ hts hF' hF hF'' ses hadm'
 
@@ -186,13 +177,6 @@ private theorem coef_hom {B A : Type} [CommRing B] [CommRing A] [Algebra B A] {k
   split_ifs
   · exact hp m
   · exact zero_mem _
-
-private theorem e_nn {k : ℕ} (i : Fin k) : 0 ≤ e i := by
-  intro j
-  simp only [e, Pi.zero_apply]
-  rcases eq_or_ne j i with rfl | h
-  · simp
-  · simp [Pi.single_apply, h]
 
 private theorem dif_congr {k : ℕ} (h h' : Deg k → ℤ) (hh : ∀ᶠ d in atTop, h d = h' d) (L : List (Deg k)) :
     ∀ᶠ d in atTop, dif L h d = dif L h' d := by
@@ -263,15 +247,15 @@ theorem UpperTheory.V.Alg.M.low_holds :
     intro p hp
     simp only [tsR, List.mem_append, List.mem_ofFn, List.mem_singleton] at hp
     rcases hp with ((⟨i, rfl⟩ | ⟨i, rfl⟩) | ⟨i, rfl⟩) | rfl
-    · exact ⟨e_nn _, sec_mem _ _ _ (Q.hG i)⟩
-    · exact ⟨e_nn _, sec_mem _ _ _ (sq_mem_pos 𝒜 (Q.hE i))⟩
-    · exact ⟨e_nn _, sec_mem _ _ _ (Q.hE' i)⟩
-    · exact ⟨e_nn _, sec_mem _ _ _ (Submodule.mem_sup_left (Submodule.mem_span_singleton_self _))⟩
+    · exact ⟨_root_.Formalism.MainNotions.V.Pf.V2.Calc.e_nonneg _, sec_mem _ _ _ (Q.hG i)⟩
+    · exact ⟨_root_.Formalism.MainNotions.V.Pf.V2.Calc.e_nonneg _, sec_mem _ _ _ (sq_mem_pos 𝒜 (Q.hE i))⟩
+    · exact ⟨_root_.Formalism.MainNotions.V.Pf.V2.Calc.e_nonneg _, sec_mem _ _ _ (Q.hE' i)⟩
+    · exact ⟨_root_.Formalism.MainNotions.V.Pf.V2.Calc.e_nonneg _, sec_mem _ _ _ (Submodule.mem_sup_left (Submodule.mem_span_singleton_self _))⟩
   have hvalF : Valid (mGr Q) (tsF Q) := by
     intro p hp
     simp only [tsF, List.mem_ofFn] at hp
     obtain ⟨i, rfl⟩ := hp
-    exact ⟨e_nn _, sec_mem _ _ _ (sq_mem_neg 𝒜 (Q.hF _))⟩
+    exact ⟨_root_.Formalism.MainNotions.V.Pf.V2.Calc.e_nonneg _, sec_mem _ _ _ (sq_mem_neg 𝒜 (Q.hF _))⟩
   have hval : Valid (mGr Q) (ts Q) := by
     intro p hp
     rcases List.mem_append.mp hp with h | h
@@ -315,7 +299,7 @@ theorem UpperTheory.V.Alg.M.low_holds :
       ring
     rw [hb']
     refine Ideal.add_mem _ ((Cong.ann_le_quot _ _) (le_ann_quo (mGr Q) 𝔮 hcq)) ?_
-    exact Ideal.mul_mem_right _ _ (mem_ann_quot _ _)
+    exact Ideal.mul_mem_right _ _ (_root_.Formalism.MainNotions.V.Pf.V2.Calc.E2.self_mem_quot _ _)
   have hkey : ∀ i : Fin r, ∀ h : (ϖ ^ c i • y i) ^ 2 ∈ mN 𝒜 (Q.F (Fin.last r)) 0,
       sec (mN 𝒜 (Q.F (Fin.last r))) 0 ((ϖ ^ c i • y i) ^ 2) h =
         algebraMap (𝒜 0) (mR Q) (algebraMap O (𝒜 0) ϖ) ^ (2 * c i) *
@@ -342,7 +326,7 @@ theorem UpperTheory.V.Alg.M.low_holds :
     sup_le (hJ𝔮.trans (le_ann_quo (mGr Q) 𝔮))
       ((Ideal.span_singleton_le_iff_mem _).mpr (le_ann_quo (mGr Q) 𝔮 haq))
   have hadmF := admissible_mono_ideal (mGr Q) hadm hJa hrel
-  have hla := la_holds 3 X ((GMod.self (mGr Q)).quo 𝔮) hF (algebraMap O (𝒜 0) ϖ) hreg hadm0 (e 0) (e_nn 0) r
+  have hla := la_holds 3 X ((GMod.self (mGr Q)).quo 𝔮) hF (algebraMap O (𝒜 0) ϖ) hreg hadm0 (e 0) (_root_.Formalism.MainNotions.V.Pf.V2.Calc.e_nonneg 0) r
     (fun i => sec (mN 𝒜 (Q.F (Fin.last r))) 0 (y i ^ 2) (hy2 i)) (fun i => 2 * c i)
     (fun i => sec_mem _ _ _ _) (tsR Q) hvalR hadmF
   have hhilb : ∀ᶠ d in atTop, hilb (((GMod.self (mGr Q)).quo 𝔮).quot

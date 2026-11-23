@@ -97,7 +97,7 @@ theorem jumps_finite : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (l 
     Submodule.finrank_mono inf_le_left
   have hlt : ∀ a b, IsJumpV ((D.loc l).PD K) T.ρ τ a → a < b → f b < f a := by
     intro a b ha hab
-    obtain ⟨d, hd, h1, h2⟩ := GlobalTheory.T.exists_crystallineLetter_of_hodgeJump D HW l K s LL h T hcrys i ζ τ hpt a ha
+    obtain ⟨d, hd, h1, h2⟩ := _root_.GlobalTheory.NL.JumpVec.exists_letter_of_jump D HW l K s LL h T hcrys i ζ τ hpt a ha
     have hle : S b ≤ S (a + 1) := hSanti (by omega)
     have hlt' : S (a + 1) < S a := by
       refine lt_of_le_of_ne (hSanti (by omega)) fun heq => h2 ?_

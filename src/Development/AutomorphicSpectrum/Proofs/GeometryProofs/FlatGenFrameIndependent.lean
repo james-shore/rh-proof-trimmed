@@ -59,17 +59,6 @@ namespace GlobalTheory.CompanionTheory.Ar.Flat.Ratio
 
 open Matrix
 
-theorem hf_sum_left {g : ℕ} {κ : Type*} [Fintype κ] (Hm : Matrix (Fin g) (Fin g) ℂ)
-    (c : κ → ℂ) (V : κ → Fin g → ℂ) (w : Fin g → ℂ) :
-    hermForm Hm (∑ i, c i • V i) w = ∑ i, c i * hermForm Hm (V i) w := by
-  simp [ReciprocityTheory.ChartRestriction.G.Geo.Tor.hermForm, sum_dotProduct, smul_dotProduct]
-
-theorem hf_sum_right {g : ℕ} {κ : Type*} [Fintype κ] (Hm : Matrix (Fin g) (Fin g) ℂ)
-    (c : κ → ℂ) (V : κ → Fin g → ℂ) (z : Fin g → ℂ) :
-    hermForm Hm z (∑ i, c i • V i) = ∑ i, star (c i) * hermForm Hm z (V i) := by
-  simp [ReciprocityTheory.ChartRestriction.G.Geo.Tor.hermForm, star_sum, Matrix.mulVec_sum, dotProduct_sum,
-    Matrix.mulVec_smul, dotProduct_smul]
-
 theorem exists_row {R M I : Type} [CommRing R] [IsDomain R] [AddCommGroup M] [Module R M] [Module.Finite R M] [Fintype I]
     (e : I → M) (he : LinearIndependent R e) (hc : Fintype.card I = Module.finrank R M) (x : M) :
     ∃ (n : R) (c : I → R), n ≠ 0 ∧ n • x = ∑ m, c m • e m := by
@@ -122,7 +111,7 @@ theorem lifts_change {p q g : ℕ} (T T' : (Fin g → ℂ) → (Fin g → ℂ)) 
     ext m n
     have e0 := hF m n
     rw [hc m, hc n, hc' m, hc' n] at e0
-    simp only [hf_sum_left, hf_sum_right, star_sum, star_mul', star_star, Finset.mul_sum] at e0
+    simp only [_root_.GlobalTheory.CompanionTheory.Ar.LinFlat.hermForm_sum_left, _root_.GlobalTheory.CompanionTheory.Ar.LinFlat.hermForm_sum_right, star_sum, star_mul', star_star, Finset.mul_sum] at e0
     have e1 : (2 * Complex.I) * (Tm * S₀ * Tmᴴ) m n = 2 * Complex.I * S m n := by
       rw [← e0, ← Finset.sum_sub_distrib]
       simp only [Matrix.mul_apply, Finset.sum_mul, Finset.mul_sum, Matrix.conjTranspose_apply]

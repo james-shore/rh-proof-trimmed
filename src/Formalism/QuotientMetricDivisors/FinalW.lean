@@ -57,11 +57,7 @@ namespace Formalism.DivisionValues
 
 theorem latticeGlue : LatticeGlue := lattice_gluing
 
-theorem height_constant_bound : HeightBoundConstant := height_constant_first
-
-theorem rowsHook : RowsHook := young_diagram_hook
-
-theorem rowsStepEOrigin : RowsStepEOrigin := young_diagram_step_origin
+alias height_constant_bound := _root_.Formalism.DivisionValues.height_constant_first
 
 theorem shiftMu : ShiftMu := by
   unfold ShiftMu
@@ -71,8 +67,6 @@ theorem shiftEx : ShiftEx := by
   unfold ShiftEx
   exact shift_existence
 
-theorem divIntoDualShift : DivIntoDualShift := divisor_into_dual_shift
-
-theorem primeLogSum : PrimeLogSum := prime_log_sum_bound
+alias divIntoDualShift := _root_.Formalism.DivisionValues.divisor_into_dual_shift
 
 end Formalism.DivisionValues

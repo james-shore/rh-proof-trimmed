@@ -206,7 +206,7 @@ theorem res_art_eq_art_norm (E E' Ω : Type) [Field E] [NumberField E] [Field Ω
   let M'' : ℕ := SE.sup M'
   let m : ℕ := (WithZero.log (w'.valuation E' (y : E'))).natAbs
   let P0 : ℕ := MK + M'' + ML + 1
-  obtain ⟨a, hap, hapos⟩ := GlobalTheory.FinPlaceApproxPos.approxpos_target E' TSK (fun u => if u = w' then (y : E') else 1) (P0 + m)
+  obtain ⟨a, hap, hapos⟩ := _root_.GlobalTheory.FinPlaceApproxPos.exists_approx_totally_positive E' TSK (fun u => if u = w' then (y : E') else 1) (P0 + m)
   have haW : w'.valuation E' (a - y) ≤ WithZero.exp (-((P0 : ℤ) + m)) := by
     have := hap w' hWT
     rw [if_pos rfl] at this
@@ -385,13 +385,13 @@ theorem exists_place {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra
 theorem hasNormGroups_of_isLocalArtin : GlobalTheory.Published.GlobalArtinReciprocity → GlobalTheory.Published.ChevalleyUnits → ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (A : ValuationSubring Ω) (w : HeightOneSpectrum (𝓞 E)) (h : IsPlaceOver A w) (ι : Ω →ₐ[E] Kbar w) (a : Weil h →* (w.adicCompletion E)ˣ), IsLocEmb A w ι → IsLocalArtin h a → HasNormGroups h ι a := by
   intro hG hC E Ω _ _ _ _ _ A w h ι a hι ha L hL σ g hg
   obtain ⟨H, hfin, hop, hH, hker⟩ := exists_fixing_subgroup E Ω A w h ι hι L hL
-  obtain ⟨K, hK, hloc, hHK⟩ := GlobalTheory.T.exists_localExtension_of_finiteIndex_weilSubgroup E Ω A w h H hfin hop
+  obtain ⟨K, hK, hloc, hHK⟩ := _root_.GlobalTheory.LocalExtField.exists_localExt_of_finiteIndex E Ω A w h H hfin hop
   haveI : NumberField K := NumberField.of_module_finite E K
   haveI : IsAlgClosed Ω := IsAlgClosure.isAlgClosed E
   haveI : IsAlgClosure K Ω := ⟨inferInstance, Algebra.IsAlgebraic.tower_top (K := E) K⟩
   obtain ⟨W, h'⟩ := exists_place h K
   obtain ⟨ι', hι'⟩ := GlobalTheory.LocDict.exists_isLocEmb K Ω A W h'
-  obtain ⟨f, b, hf, hb1, hb2, hfE, -, -, -, hNc, hNg⟩ := GlobalTheory.T.local_embeddings_tower_compatible E K Ω A w W h h' hloc ι ι' hι hι'
+  obtain ⟨f, b, hf, hb1, hb2, hfE, -, -, -, hNc, hNg⟩ := _root_.GlobalTheory.LocalExtCompletion.exists_completion_ext E K Ω A w W h h' hloc ι ι' hι hι'
   letI := f.toAlgebra
   have hLeq := GlobalTheory.T.local_embedding_weil_action_finite_extension E K Ω A w h ι hι L hL.finiteDimensional fun s g' hg' => (hH s g' hg').symm.trans (hHK s)
   have hN := GlobalTheory.T.completion_embedding_compatible_closures E K w W (fun x : K => ι (algebraMap K Ω x)) f b hf hb1

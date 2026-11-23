@@ -50,6 +50,8 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 import Development.AbelianVarietyTheory.Definitions.Degenerations.MorAlgSt
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.LeOfPowLePolyMulPow
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.HenselianLocalRingOfIsAdicComplete
+import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsSpecialisationWithThetaPoint
+import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.UnitOnInjectiveOfCommRing
 
 @[expose] public section
 
@@ -68,7 +70,7 @@ theorem exists_theta_local {S : Scheme.{0}} (G : Over S) [GrpObj G] (hA : IsAbel
   have := hA.comm
   set a : Over.mk u ⊗ G ⟶ G := fst (Over.mk u) G ≫ x with ha
   set y : Over.mk u ⊗ G ⟶ G := snd (Over.mk u) G with hy
-  have cube := GlobalTheory.CubeTop.cubeTheorem S G hA L hL (Over.mk u ⊗ G)
+  have cube := _root_.GlobalTheory.SpreadingModels.cubeTheorem_holds S G hA L hL (Over.mk u ⊗ G)
   have key : ∀ m : ℕ, ∃ t : LB.Gen (LB.LinComb L
       ![(a ^ m * y).left, (a ^ m).left, (a * y).left, a.left, y.left, (1 : Over.mk u ⊗ G ⟶ G).left]
       ![1, -1, -(m : ℤ), (m : ℤ), (m : ℤ) - 1, 1 - (m : ℤ)]), t.IsGen := by
@@ -134,13 +136,6 @@ open ReciprocityTheory.ChartRestriction.G.Out
 theorem unitOn_surjective {R : Type} [CommRing R] : Function.Surjective (unitOn (R := R)) :=
   (Units.mapEquiv (Scheme.ΓSpecIso (CommRingCat.of R)).symm.commRingCatIsoToRingEquiv.toMulEquiv).bijective.2
 
-theorem map_unitOn {R R' : Type} [CommRing R] [CommRing R'] (j : R →+* R') (c : Rˣ) :
-    Units.map (spMap j).appTop.hom.toMonoidHom (unitOn c) = unitOn (Units.map j.toMonoidHom c) :=
-  Units.ext (congrArg (fun q => q.hom c.val) (Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom j))).symm
-
-theorem unitOn_inj {R : Type} [CommRing R] : Function.Injective (unitOn (R := R)) := fun _ _ h =>
-  Units.ext ((ConcreteCategory.bijective_of_isIso (Scheme.ΓSpecIso (CommRingCat.of R)).inv).1 (congrArg Units.val h))
-
 theorem weilIs_specialise : ∀ (U Ω : Type) [CommRing U] [IsDomain U] [ValuationRing U] [Field Ω] [Algebra U Ω] [IsFractionRing U Ω] (S : Scheme.{0}) (G : Over S) [GrpObj G], IsAbelianScheme G → ∀ (Lb : LB G.left), Lb.IsLB → ∀ (u : Sp U ⟶ S) (n : ℕ), IsUnit (n : U) → ∀ (P Q : Over.mk u ⟶ G) (c : Uˣ), P ^ n = 1 → Q ^ n = 1 → ∀ (P' Q' : Over.mk (spMap (algebraMap U Ω) ≫ u) ⟶ G), P'.left = spMap (algebraMap U Ω) ≫ P.left → Q'.left = spMap (algebraMap U Ω) ≫ Q.left → Out.WeilIs G Lb n P' Q' (unitOn (Units.map (algebraMap U Ω : U →* Ω) c)) → ∀ (k : Type) [Field k] (h : U →+* k) (P₀ Q₀ : Over.mk (spMap h ≫ u) ⟶ G), P₀.left = spMap h ≫ P.left → Q₀.left = spMap h ≫ Q.left → Out.WeilIs G Lb n P₀ Q₀ (unitOn (Units.map (h : U →* k) c)) := by
   intro U Ω _ _ _ _ _ _ S G _ hA Lb hLb u n _ P Q c hP hQ P' Q' hP' hQ' HΩ k _ h P₀ Q₀ hP₀ hQ₀
   have hG := globalFns_holds
@@ -157,9 +152,9 @@ theorem weilIs_specialise : ∀ (U Ω : Type) [CommRing U] [IsDomain U] [Valuati
   have H₁ := GlobalTheory.CommPairing.weilIs_pull hG hA hLb iΩ hc₀
   rw [← eP, ← eQ] at H₁
   have H₁' : Out.WeilIs G Lb n P' Q' (unitOn (Units.map (algebraMap U Ω).toMonoidHom c₁)) := by
-    rw [← map_unitOn]; exact H₁
+    rw [← _root_.GlobalTheory.Ex.Specialise.map_unitOn]; exact H₁
   have e := GlobalTheory.CommutatorPairing.weilIs_unique hG hA hLb H₁' HΩ
-  have e' := unitOn_inj e
+  have e' := _root_.GlobalTheory.unitOn_injective_of_commRing e
   have hc : c₁ = c := Units.ext (IsFractionRing.injective U Ω (congrArg Units.val e'))
   subst hc
   let ik : Over.mk (spMap h ≫ u) ⟶ Over.mk u := Over.homMk (spMap h) rfl
@@ -167,7 +162,7 @@ theorem weilIs_specialise : ∀ (U Ω : Type) [CommRing U] [IsDomain U] [Valuati
   have eQ₀ : Q₀ = ik ≫ Q := Over.OverMorphism.ext hQ₀
   have H₂ := GlobalTheory.CommPairing.weilIs_pull hG hA hLb ik hc₀
   rw [← eP₀, ← eQ₀] at H₂
-  have := map_unitOn h c₁
+  have := _root_.GlobalTheory.Ex.Specialise.map_unitOn h c₁
   exact this ▸ H₂
 
 end GlobalTheory.WeilSpecialise

@@ -68,13 +68,6 @@ noncomputable section
 
 variable {e : ℕ} {X : Type} [TopologicalSpace X]
 
-theorem st_hessC_congr {D : ℕ} {f g : (Fin D → ℂ) → ℝ} {y : Fin D → ℂ} (h : f =ᶠ[𝓝 y] g) :
-    hessC f y = hessC g y := by
-  have h2 : fderiv ℝ (fderiv ℝ f) y = fderiv ℝ (fderiv ℝ g) y :=
-    (h.fderiv (𝕜 := ℝ)).fderiv_eq
-  unfold hessC
-  rw [h2]
-
 private lemma maDens_congr_of_hessC_eq {D : ℕ} {F F' : Fin D → (Fin D → ℂ) → ℝ} {y : Fin D → ℂ}
     (h : ∀ k, hessC (F k) y = hessC (F' k) y) : maDens F y = maDens F' y := by
   unfold maDens
@@ -157,24 +150,8 @@ theorem st_maDens_cons_congr {n : ℕ} {f g : (Fin (n + 1) → ℂ) → ℝ}
   apply maDens_congr_of_hessC_eq
   intro k
   refine Fin.cases ?_ (fun i => ?_) k
-  · simpa only [Fin.cons_zero] using st_hessC_congr h
+  · simpa only [Fin.cons_zero] using _root_.ReciprocityTheory.AnForm.A.hessC_congr' h
   · simp only [Fin.cons_succ]
-
-private lemma continuous_of_atlas_smooth' (A : FinHolAtlas e X) {f : X → ℝ} (hf : A.Smooth f) :
-    Continuous f := by
-  rw [continuous_iff_continuousAt]
-  intro x
-  obtain ⟨k, hk⟩ := A.cover x
-  have hs : (A.chart k).target ∩ (A.chart k).symm ⁻¹' univ ∈ 𝓝 ((A.chart k) x) := by
-    rw [preimage_univ, inter_univ]
-    exact (A.chart k).open_target.mem_nhds ((A.chart k).map_source hk)
-  have h1 : ContinuousAt (f ∘ (A.chart k).symm) ((A.chart k) x) :=
-    (hf k).continuousOn.continuousAt hs
-  have h2 : ContinuousAt ((f ∘ (A.chart k).symm) ∘ (A.chart k)) x :=
-    ContinuousAt.comp (f := A.chart k) h1 ((A.chart k).continuousAt hk)
-  refine h2.congr ?_
-  filter_upwards [(A.chart k).open_source.mem_nhds hk] with z hz
-  simp [(A.chart k).left_inv hz]
 
 theorem st_mInt_eq_chart [CompactSpace X] [T2Space X] (A : FinHolAtlas e X)
     (Ψ : Fin e → LocPot X) (hΨ : ∀ i, IsPotential A (Ψ i)) (j : Fin A.n) (g : X → ℝ)
@@ -245,7 +222,7 @@ theorem st_locDens_piece (u : X → ℝ) (hu : A.Smooth u) {y : Fin (e + 1) → 
       have hz' := hdiff ((A.chart j).symm z) hz.2
       simp only [Function.comp_apply]
       linarith
-    rw [st_hessC_congr heq, hessC_add_potential hf2 hh, hessC_re_of_analyticAt (hK y hyS), add_zero]
+    rw [_root_.ReciprocityTheory.AnForm.A.hessC_congr' heq, hessC_add_potential hf2 hh, hessC_re_of_analyticAt (hK y hyS), add_zero]
 
 
 include hΦ hGo hG hGU in
@@ -267,7 +244,7 @@ theorem st_left_piece (w ψ : X → ℝ) (hw : A.Smooth w) (hψ : A.Smooth ψ) (
     refine Fin.cases ?_ (fun i => ?_) i
     · simpa only [Fin.cons_zero] using hP0
     · simpa only [Fin.cons_succ] using hΦ i
-  rw [st_mInt_eq_piece A _ hΨ j G hG ψ (continuous_of_atlas_smooth' A hψ) hψG]
+  rw [st_mInt_eq_piece A _ hΨ j G hG ψ (_root_.ReciprocityTheory.AnForm.M.st_smooth_continuous A hψ) hψG]
   have hSm : MeasurableSet ((A.chart j).target ∩ (A.chart j).symm ⁻¹' G) :=
     ((A.chart j).isOpen_inter_preimage_symm hGo).measurableSet
   refine setIntegral_congr_fun hSm ?_

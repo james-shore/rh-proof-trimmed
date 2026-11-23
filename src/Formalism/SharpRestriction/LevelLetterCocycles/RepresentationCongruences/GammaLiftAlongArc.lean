@@ -105,7 +105,7 @@ theorem gamma_lift_along_arc [IsDomain O] (hinj : Function.Injective (algebraMap
     intro δ hδ
     refine lam_cancel W hR A a e T ?_
     have h1 : W.γD T δ (Λ • u) = Λ • W.γD T δ u := by
-      rw [Formalism.MainNotions.LiftingTheory.frame_γD_smul, hΛmem δ hδ]
+      rw [_root_.Formalism.MainNotions.LiftingTheory.gammaD_semilinear, hΛmem δ hδ]
     rw [← h1, hup0, Relay2.Pp_Δ W T c' e p0 hp0 δ hδ]
   obtain ⟨w, hw, w', hw', hww, hγΛ⟩ := lam_γ W hS A a e
   obtain ⟨u0, hu0, hγπ⟩ := hP
@@ -132,7 +132,7 @@ theorem gamma_lift_along_arc [IsDomain O] (hinj : Function.Injective (algebraMap
   have hγΛu : InFP W T c' e 1 (Λ • W.γ T u) := by
     have h1 : Λ • W.γ T u = w' • W.γ T (Λ • u) := by
       show _ = w' • W.γD T W.gam (Λ • u)
-      rw [Formalism.MainNotions.LiftingTheory.frame_γD_smul, hγΛ, smul_smul, ← mul_assoc, hww, one_mul]
+      rw [_root_.Formalism.MainNotions.LiftingTheory.gammaD_semilinear, hγΛ, smul_smul, ← mul_assoc, hww, one_mul]
       rfl
     refine ⟨w' • W.γ T p0, Relay2.Pp_smul W T c' _ hw' _ (Relay2.Pp_γ W T c' _ p0 hp0), ?_⟩
     rw [one_smul, h1, hup0]

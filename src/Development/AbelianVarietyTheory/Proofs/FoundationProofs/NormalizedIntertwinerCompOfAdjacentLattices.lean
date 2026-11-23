@@ -76,9 +76,9 @@ theorem normOp_comp_of_adj : ∀ {R X M : Type} [CommRing R] [AddCommGroup X] [M
   have lAB := hl.1 _ hAB0
   have lBC := hl.1 _ hBC0
   have lAC := hl.1 _ hAC
-  have homBC := ((GlobalTheory.T.sumOp_transversal_fixes_linear_and_of_le h B C hC).2.1 hBC0).2.2
-  have homAC := ((GlobalTheory.T.sumOp_transversal_fixes_linear_and_of_le h A C hC).2.1 hAC).2.2
-  have fixB := ((GlobalTheory.T.sumOp_transversal_fixes_linear_and_of_le h A B hB).2.1 hAB0).2.1 v hv
+  have homBC := ((_root_.GlobalTheory.FinWeil.sumOp_transversal h B C hC).2.1 hBC0).2.2
+  have homAC := ((_root_.GlobalTheory.FinWeil.sumOp_transversal h A C hC).2.1 hAC).2.2
+  have fixB := ((_root_.GlobalTheory.FinWeil.sumOp_transversal h A B hB).2.1 hAB0).2.1 v hv
   unfold normOp
   rw [homBC, smul_smul]
   by_cases h1 : B ⊓ C ≤ A

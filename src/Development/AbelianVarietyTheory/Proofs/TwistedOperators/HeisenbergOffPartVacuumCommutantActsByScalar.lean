@@ -68,22 +68,9 @@ namespace GlobalTheory.CommVac
 
 variable {D : D7}
 
-theorem symplO_add_right (S T : HSp D) (x y y' : WO S T) :
-    symplO S T x (y + y') = symplO S T x y + symplO S T x y' := by
-  unfold symplO hO
-  simp only [Matrix.add_apply, map_add (f := _), mul_add, add_mul, Finset.sum_add_distrib]
+alias hO_smul_left := _root_.GlobalTheory.PlaceModel.hO_smul_left
 
-theorem hO_smul_left (S T : HSp D) (a : AE D) (x y : WO S T) : hO S T (a • x) y = a * hO S T x y := by
-  unfold hO
-  simp only [Matrix.smul_apply, smul_eq_mul, Finset.mul_sum]
-  exact Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ =>
-    Finset.sum_congr rfl fun _ _ => by ring
-
-theorem hO_smul_right (S T : HSp D) (a : AE D) (x y : WO S T) : hO S T x (a • y) = cA D a * hO S T x y := by
-  unfold hO
-  simp only [Matrix.smul_apply, smul_eq_mul, map_mul, Finset.mul_sum]
-  exact Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ =>
-    Finset.sum_congr rfl fun _ _ => by ring
+alias hO_smul_right := _root_.GlobalTheory.PlaceModel.hO_smul_right
 
 theorem symplO_smul_comm (S T : HSp D) {a : AE D} (ha : cA D a = a) (x y : WO S T) :
     symplO S T (a • x) y = symplO S T x (a • y) := by
@@ -128,7 +115,7 @@ theorem heisO_offPart_vac : All fun {D} _ _ _ {G} W _ => ∀ i, i < D.R.m → �
       exact hdep _ (GlobalTheory.LatticeStable.smul_mem_latO D _ _ _ _ _ c hc u hu)
     have hadd : ∀ a b : AE D, W.ψ (symplO _ _ w (a • v)) = 1 → W.ψ (symplO _ _ w (b • v)) = 1 →
         W.ψ (symplO _ _ w ((a + b) • v)) = 1 := fun a b ha hb => by
-      rw [add_smul, symplO_add_right, AddChar.map_add_eq_mul, ha, hb, one_mul]
+      rw [add_smul, _root_.GlobalTheory.LatVac.symplO_add_right, AddChar.map_add_eq_mul, ha, hb, one_mul]
     have hsplit : ∀ e₁, IsSplitIdem D e₁ → W.ψ (symplO _ _ w (e₁ • v)) = 1 := fun e₁ h₁ =>
       hw.2 e₁ h₁ _ (hpiece _ (GlobalTheory.SplitHomLattice.idem_int h₁))
         (fun a b => by rw [Matrix.smul_apply, smul_eq_mul, ← mul_assoc, h₁.1])
@@ -157,14 +144,14 @@ theorem heisO_offPart_vac : All fun {D} _ _ _ {G} W _ => ∀ i, i < D.R.m → �
       rw [e2]
       exact hw.1 _ (hpiece _ hβ)
     · refine Finset.sum_induction _ (fun c => W.ψ (symplO _ _ w (c • v)) = 1) hadd ?_ ?_
-      · have h0 := symplO_add_right (G.pS (.chi i 0)) (G.pT (.chi i 0)) w 0 0
+      · have h0 := _root_.GlobalTheory.LatVac.symplO_add_right (G.pS (.chi i 0)) (G.pT (.chi i 0)) w 0 0
         rw [add_zero] at h0
         have h0' : symplO (G.pS (.chi i 0)) (G.pT (.chi i 0)) w 0 = 0 := by linear_combination -h0
         show W.ψ (symplO _ _ w ((0 : AE D) • v)) = 1
         rw [zero_smul, h0', AddChar.map_zero_eq_one]
       · intro x hx
         rw [← hsum x hx]
-        exact hadd _ _ (hsplit _ (hes x hx)) (hsplit _ (GlobalTheory.IdemSumVac.isSplitIdem_cA (hes x hx)))
+        exact hadd _ _ (hsplit _ (hes x hx)) (hsplit _ (_root_.GlobalTheory.SplitScalar.isSplitIdem_conj (hes x hx)))
   have hfin' : ((1 - e - cA D e) • w).map (infPart D) = 0 := by
     ext a b
     have := congrFun (congrFun hinf a) b

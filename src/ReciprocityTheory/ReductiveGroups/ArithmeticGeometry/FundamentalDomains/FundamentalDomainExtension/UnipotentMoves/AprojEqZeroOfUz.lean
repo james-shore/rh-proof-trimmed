@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.LminorSubmatrixCastSucc
 
 @[expose] public section
 
@@ -59,34 +60,21 @@ namespace AffineProjectionSplitting
 
 variable {r : ℕ} (X : Data E r) (ξ : Fin r → E)
 
-private lemma hermC_smul_left_dim {n : ℕ} (τ : E →+* ℂ) (G : Matrix (Fin n) (Fin n) E) (c : ℂ)
-    (u v : Fin n → ℂ) : hermC τ G (c • u) v = c * hermC τ G u v := by
-  simp only [hermC, Pi.smul_apply, smul_eq_mul, Finset.mul_sum, mul_assoc]
-
-private lemma hermC_sub_left_dim {n : ℕ} (τ : E →+* ℂ) (G : Matrix (Fin n) (Fin n) E)
-    (u w v : Fin n → ℂ) : hermC τ G (u - w) v = hermC τ G u v - hermC τ G w v := by
-  simp only [hermC, Pi.sub_apply, sub_mul, Finset.sum_sub_distrib]
-
-private lemma hermC_emb_emb_eq_herm {n : ℕ} (τ : E →+* ℂ) (G : Matrix (Fin n) (Fin n) E)
-    (x y : Fin n → E) : hermC τ G (Data.emb τ x) (Data.emb τ y) = τ (herm G x y) := by
-  set_option synthInstance.maxHeartbeats 100000 in
-    simp only [hermC, herm, Data.emb, map_sum, map_mul, cc, IsCMField.complexEmbedding_complexConj]
-
 lemma lineV_mem_Iperp (hξ : herm X.Gm ξ ξ = 0) (s : X.Ψ → ℂ) : X.lineV ξ s ∈ X.Iperp ξ := by
   simp only [Data.Iperp, Set.mem_setOf_eq]
   intro τ
-  simp only [Data.lineV, hermC_smul_left_dim, hermC_emb_emb_eq_herm, hξ, map_zero, mul_zero]
+  simp only [Data.lineV, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_smul_left, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_emb, hξ, map_zero, mul_zero]
 
 lemma Iperp_sub {u w : X.Ψ → Fin r → ℂ} (hu : u ∈ X.Iperp ξ) (hw : w ∈ X.Iperp ξ) :
     u - w ∈ X.Iperp ξ := by
   simp only [Data.Iperp, Set.mem_setOf_eq] at hu hw ⊢
   intro τ
-  rw [Pi.sub_apply, hermC_sub_left_dim, hu τ, hw τ, sub_zero]
+  rw [Pi.sub_apply, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_sub_left, hu τ, hw τ, sub_zero]
 
 lemma Iperp_smul (c : ℂ) {u : X.Ψ → Fin r → ℂ} (hu : u ∈ X.Iperp ξ) : c • u ∈ X.Iperp ξ := by
   simp only [Data.Iperp, Set.mem_setOf_eq] at hu ⊢
   intro τ
-  rw [Pi.smul_apply, hermC_smul_left_dim, hu τ, mul_zero]
+  rw [Pi.smul_apply, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_smul_left, hu τ, mul_zero]
 
 lemma aproj_eq_zero_of_Uz {x : Frame X.Ψ r} {u : X.Ψ → Fin r → ℂ} (hu : u ∈ X.Uz x ξ) :
     X.aproj x ξ u = 0 := by
@@ -95,19 +83,15 @@ lemma aproj_eq_zero_of_Uz {x : Frame X.Ψ r} {u : X.Ψ → Fin r → ℂ} (hu : 
   funext τ
   have hH : X.Hf x τ (u τ) (Data.emb τ.1 ξ) = 0 := by
     have h3 := h2 τ
-    simp only [Data.Jz, hermC_smul_left_dim] at h3
+    simp only [Data.Jz, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_smul_left] at h3
     rw [Data.Hf]
     exact (mul_eq_zero.mp h3).resolve_left Complex.I_ne_zero
   simp only [Data.aproj, Data.lineV, hH, zero_div, zero_smul, Pi.zero_apply]
 
-private lemma ppos_const_smul (x : Frame X.Ψ r) (τ : X.Ψ) (c : ℂ) (u : Fin r → ℂ) :
-    X.ppos x τ (c • u) = c • X.ppos x τ u := by
-  simp only [Data.ppos, hermC_smul_left_dim, Finset.smul_sum, smul_smul, Finset.mul_sum, mul_assoc]
-
 lemma Hf_smul (x : Frame X.Ψ r) (τ : X.Ψ) (c : ℂ) (u w : Fin r → ℂ) :
     X.Hf x τ (c • u) w = c * X.Hf x τ u w := by
   unfold Data.Hf
-  rw [ppos_const_smul, smul_comm (2 : ℂ) c, ← smul_sub, hermC_smul_left_dim]
+  rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.Data.ppos_smul_eq, smul_comm (2 : ℂ) c, ← smul_sub, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_smul_left]
 
 lemma aproj_smul (x : Frame X.Ψ r) (c : ℂ) (u : X.Ψ → Fin r → ℂ) :
     X.aproj x ξ (c • u) = c • X.aproj x ξ u := by
@@ -161,7 +145,7 @@ theorem sSplit : SSplit E := by
   have hv : ∀ j, X.embV (lam j) ∈ X.Iperp ξ := fun j => by
     simp only [Data.Iperp, Set.mem_setOf_eq]
     intro τ
-    simp only [Data.embV, AffineProjectionSplitting.hermC_emb_emb_eq_herm, (hA j).2, map_zero]
+    simp only [Data.embV, _root_.ReciprocityTheory.ChartRestriction.G.FD.hermC_emb, (hA j).2, map_zero]
   refine ⟨hA, hB, hC, fun j hj => ⟨(hD j hj).1, ?_⟩, fun j hj => ⟨(hF j hj).1, ?_⟩, hG⟩
   · exact split_key hξ hap hJ (hv j) I (hD j hj).2
   · have h2 := split_key hξ hap hJ (hv j) (-I) (by rw [(hF j hj).2, neg_smul])

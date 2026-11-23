@@ -59,7 +59,7 @@ theorem acris_mul_eq_zero : ∀ (l : ℕ) [Fact l.Prime] (x y : Formalism.Per.Ac
   have hl0 : (0 : ℝ) < (l : ℝ) := by linarith
   have hρ1 : (l : ℝ)⁻¹ < 1 := inv_lt_one_of_one_lt₀ hl
   have hρ0 : (0 : ℝ) < (l : ℝ)⁻¹ := inv_pos.mpr hl0
-  have hG := isGauss_gC_target l (l : ℝ)⁻¹ le_rfl hρ1
+  have hG := _root_.GlobalTheory.PMon.Gauss.isGauss_gC_of_le l (l : ℝ)⁻¹ le_rfl hρ1
   have hc : gC l (l : ℝ)⁻¹ (algebraMap (Formalism.Per.Ainf l) (Formalism.Per.Acris l) (l : Formalism.Per.Ainf l)) = (l : ℝ)⁻¹ := by
     rw [hG.2.2.2.2]
     exact GlobalTheory.GaussSlope.gauss_l l hρ0.le

@@ -314,7 +314,7 @@ theorem tmul_mem_twKer (a : Vt (j := j) ρ) (t : Zt τ m) (ht : t ∈ twKer τ.�
   refine Submodule.span_induction (p := fun t _ => a ⊗ₜ[ℂ] (t : Zt τ m) ∈ twKer (sig ρ τ) ((MirUin k (m + j)).subgroupOf (MirabolicParabolic k m j)) 1)
     ?_ ?_ ?_ ?_ ht
   · rintro _ ⟨n, b, rfl⟩
-    obtain ⟨v, hv, hv2⟩ := GlobalTheory.T.gpProj_unipotent_surjective k m j (n : Mir k j) n.2
+    obtain ⟨v, hv, hv2⟩ := _root_.GlobalTheory.CompanionTheory.BZMir.exists_gpProj_unip k m j (n : Mir k j) n.2
     refine Submodule.subset_span ⟨⟨v, hv⟩, a ⊗ₜ[ℂ] b, ?_⟩
     have h1 := sig_tmul ρ τ v a b (by rw [hv2]) (by rw [hv2]; exact n.2)
     rw [hv2] at h1

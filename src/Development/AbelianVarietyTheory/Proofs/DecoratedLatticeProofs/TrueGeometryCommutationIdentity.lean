@@ -71,12 +71,6 @@ theorem corner_mul (g h : GL (n ⊕ Fin 0) k) : (g * h).val.toBlocks₁₁ = g.v
 theorem corner_one : (1 : GL (n ⊕ Fin 0) k).val.toBlocks₁₁ = 1 := by
   ext i j; simp [Matrix.toBlocks₁₁, Matrix.one_apply]
 
-theorem box_stable {g : GL (n ⊕ Fin 0) k} (hg : g ∈ KO k _) (a : kˣ) {y : n → k} (hy : y ∈ box n a) :
-    g.val.toBlocks₁₁ *ᵥ y ∈ box n a := fun i => by
-  refine Valuation.map_sum_le _ fun j _ => ?_
-  rw [map_mul]
-  exact mul_le_of_le_one_of_le ((mem_KO.1 hg).1 (Sum.inl i) (Sum.inl j)) (hy j)
-
 theorem sameOrb_equiv {J : Subgroup (GL (n ⊕ Fin 0) k)} (hJ : J ≤ KO k _) (c : kˣ) : Equivalence (SameOrb J (box n c)) := by
   refine ⟨fun yb => ?_, fun {yb yb'} H => ?_, fun {yb yb' yb''} H H' => ?_⟩
   · obtain ⟨y, rfl⟩ := Submodule.Quotient.mk_surjective _ yb
@@ -89,7 +83,7 @@ theorem sameOrb_equiv {J : Subgroup (GL (n ⊕ Fin 0) k)} (hJ : J ≤ KO k _) (c
     refine ⟨h * g, mul_mem hh hg, y, rfl, ?_⟩
     rw [← e3, corner_mul, ← mulVec_mulVec, Submodule.Quotient.eq, ← mulVec_sub]
     rw [← e1] at e2
-    exact box_stable (hJ hh) _ ((Submodule.Quotient.eq _).1 e2.symm)
+    exact _root_.GlobalTheory.TwBridge.LevOrb.mulVec_mem_box (hJ hh) _ ((Submodule.Quotient.eq _).1 e2.symm)
 
 theorem box_le {ϖ : kˣ} (hϖ : GlobalTheory.IndefiniteRowSideFullHecke.FramePositiveSum.IsUnif ϖ) (M : ℕ) {y : n → k} (hy : y ∈ box n (ϖ ^ M)) : y ∈ box n (ϖ ^ M)⁻¹ := fun i => by
   have h1 : valuation k ((ϖ ^ M : kˣ) : k) ≤ 1 := by
@@ -128,7 +122,7 @@ theorem inBox_of_orb (E : QExt G χ) {y : E.Ch (G.s + 1)} {z} (hz : z ∈ box _ 
     (h : SameOrb ((G.T E.δ E.tame E.η).lev (G.s + 1) 0 rfl).J (box _ (G.ϖ ^ E.M)) (E.cos y) (Submodule.Quotient.mk z)) :
     InBox E (G.s + 1) y := by
   obtain ⟨g, hg, y', e1, e2⟩ := (sameOrb_equiv (E.le _ _ _) _).symm h
-  refine fun _ => ⟨_, box_stable (E.le _ _ _ hg) _ ?_, e2.symm⟩
+  refine fun _ => ⟨_, _root_.GlobalTheory.TwBridge.LevOrb.mulVec_mem_box (E.le _ _ _ hg) _ ?_, e2.symm⟩
   have := add_mem (box_le G.unif _ ((Submodule.Quotient.eq _).1 e1)) hz
   rwa [sub_add_cancel] at this
 
@@ -190,7 +184,7 @@ theorem orb_iff (hI : I.Ok)
   have hs : G.s + 1 + 1 = B.R.m := G.hs
   have hL := hI.idx_ok a
   rw [show B.R.m - 2 = G.s by omega] at hL
-  have h := GlobalTheory.T.twistPrime_rational_coset_sameOrbit_iff_level B.fields (B.primes X) B.R I.Ch I.sel I.S (I.tup a) (I.cst a) B.embLL P G.k _ G.s _ tw (I.idx a) I.glob hL
+  have h := _root_.GlobalTheory.TwBridge.LevOrb.sameOrb_iff_level B.fields (B.primes X) B.R I.Ch I.sel I.S (I.tup a) (I.cst a) B.embLL P G.k _ G.s _ tw (I.idx a) I.glob hL
     (b.get (by omega)) hQ e he z z'
   have e1 : levQ I a (G.s + 1) b = (I.idx a).levQ (G.s + 1) (b.get (by omega)) := by
     unfold levQ levQAt

@@ -64,13 +64,8 @@ open Pb
 
 namespace CoB
 
-theorem sub_H {R : Type} [CommRing R] {C : Type 1} [Category.{0} C] (F : C ⥤ ModuleCat.{0} R)
-    (h : ∀ T, Subsingleton (F.obj T)) (j : ℕ) : Subsingleton (CH.H F j) := by
-  have : Subsingleton (CH.Cn F j) := ⟨fun _ _ => funext fun _ => (h _).elim _ _⟩
-  exact Submodule.Quotient.mk_surjective _ |>.subsingleton
-
 theorem hq_zero {b : Base} {L : b.Fun} (Q : ObjectProperty (Thick L)) (ρ ρ' : ℤ) (h : ρ' ≤ 0) (j : ℕ) : Subsingleton (HQ Q ρ ρ' j) := by
-  refine sub_H _ (fun T => ⟨fun x y => ?_⟩) j
+  refine _root_.GlobalTheory.CompanionTheory.FinOverO.sub_CH _ (fun T => ⟨fun x y => ?_⟩) j
   obtain ⟨x, hx, rfl⟩ := sq_surj _ _ x
   obtain ⟨y, hy, rfl⟩ := sq_surj _ _ y
   refine (sq_eq _ _ _ _).2 ?_

@@ -65,11 +65,7 @@ namespace GlobalTheory.LogKS.Glue
 
 variable {Z : Scheme.{0}}
 
-theorem resG_resG {U V W : Z.Opens} (h1 : V ≤ U) (h2 : W ≤ V) (f : Γ(Z, U)) :
-    resG Z h2 (resG Z h1 f) = resG Z (h2.trans h1) f := by
-  change (Z.presheaf.map (homOfLE h1).op ≫ Z.presheaf.map (homOfLE h2).op).hom f = _
-  rw [← Functor.map_comp]
-  rfl
+alias resG_resG := _root_.GlobalTheory.Cartier.resG_resG
 
 variable {J : Type} (V : J → Z.Opens) (e : J → ∀ O : Z.Opens, Γ(Z, O) → Γ(Z, O))
 

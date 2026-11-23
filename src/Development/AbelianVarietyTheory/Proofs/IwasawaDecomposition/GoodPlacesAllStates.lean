@@ -92,11 +92,6 @@ theorem comap_conjPlE (P : PlE D.host) :
   ext a
   rw [Ideal.mem_comap, Ideal.mem_comap, GlobalTheory.SplitConjPlace.mem_conjPlE (D := D), GlobalTheory.SplitConjPlace.cO_algebraMap (D := D)]
 
-theorem finrank_E (D : D7) : Module.finrank ℚ D.host.E = 2 * D.R.f := by
-  have h1 : Module.finrank ℚ D.host.E = 4 * D.R.ord := D.host.finrank_cmField
-  have h5 : D.R.f = 2 * D.R.ord := rfl
-  rw [h1, h5]; ring
-
 theorem cover (k : Fin 2) (w : PlE D.host) (hw : ((D.host.g k : ℕ) : 𝓞 D.host.E) ∈ w.asIdeal) :
     ∃ v, w = D.naut.plGw k v ∨ w = GlobalTheory.SplitConjPlace.conjPlE (D := D) (D.naut.plGw k v) := by
   let T : Set (PlE D.host) := {u | ((D.host.g k : ℕ) : 𝓞 D.host.E) ∈ u.asIdeal}
@@ -116,7 +111,7 @@ theorem cover (k : Fin 2) (w : PlE D.host) (hw : ((D.host.g k : ℕ) : 𝓞 D.ho
       simp only [f, Sum.elim_inr, conjPlE_conjPlE] at this
       exact congrArg Sum.inr (D.naut.plGw_inj k this)
   have hT : T.ncard = 2 * D.R.f := by
-    rw [← finrank_E D]; exact D.nd.g_split k
+    rw [← _root_.Formalism.MainNotions.StandardLattice.finrank_host D]; exact D.nd.g_split k
   have hc : Nat.card T = Nat.card (D.nd.PlG k ⊕ D.nd.PlG k) := by
     rw [Nat.card_coe_set_eq, hT, Nat.card_sum, Nat.card_eq_fintype_card, D.nd.card_PlG k, two_mul]
   haveI : Finite T := by

@@ -57,7 +57,7 @@ namespace GlobalTheory.IwLevel.PrimeToP
 
 theorem isIsogDeg_killedBy : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.Datum p) (R : Type) [CommRing R] (b : GlobalTheory.UPel.HT.Base D R) (N : ℕ) (S : Scheme.{0}) (s : S ⟶ Sp R) (o : GlobalTheory.UPel.HT.Obj b N s), (∀ c : 𝓞 D.F, c ≠ 0 → GlobalTheory.IwLevel.IsIsogDeg (o.act.act (algebraMap (𝓞 D.F) D.O c)) ((Algebra.norm ℤ c).natAbs ^ (D.m * D.n))) → ∀ (𝔟 : Ideal (𝓞 D.F)), 𝔟 ⊔ Ideal.span {(p : 𝓞 D.F)} = ⊤ → ∀ (K : Over S) (i : K ⟶ o.A), Mono i → (∀ (T : Over S) (x : T ⟶ o.A), GlobalTheory.IwLevel.InSub i x ↔ GlobalTheory.IwLevel.KilledBy (GlobalTheory.IwLevel.htAct o) (𝔟.map (algebraMap (𝓞 D.F) D.O)) x) → GlobalTheory.IwLevel.IsIsogDeg (toUnit K) (Ideal.absNorm 𝔟 ^ (D.m * D.n)) := by
   intro p _ D R _ b N S s o _hdeg 𝔟 h𝔟 K i hi hK
-  obtain ⟨K', i', hi', hfin, het, hK'⟩ := GlobalTheory.T.killed_by_ideal_finite_etale p D R b N S s o 𝔟 h𝔟
+  obtain ⟨K', i', hi', hfin, het, hK'⟩ := _root_.GlobalTheory.HTTorsRep.exists_finiteEtale_killedBy p D R b N S s o 𝔟 h𝔟
   have hne : 𝔟 ≠ ⊥ := by
     rintro rfl
     rw [bot_sup_eq] at h𝔟
@@ -77,8 +77,8 @@ theorem isIsogDeg_killedBy : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel
   obtain ⟨v, hv⟩ : GlobalTheory.IwLevel.InSub i i' := (hK K' i').2 ((hK' K' i').1 ⟨𝟙 _, Category.id_comp _⟩)
   have : IsIso u := ⟨⟨v, by rw [← cancel_mono i, Category.assoc, hv, hu, Category.id_comp],
     by rw [← cancel_mono i', Category.assoc, hu, hv, Category.id_comp]⟩⟩
-  have h3 := GlobalTheory.T.isogeny_degree_of_point_count o.A K' i' hi' hfin het _ hd fun k _ _ t => by
-    rw [← GlobalTheory.T.harrisTaylor_card_killed_by_ideal_eq_absNorm_pow p D R b N S s o 𝔟 h𝔟 k t]
+  have h3 := _root_.GlobalTheory.FinEtRank.isIsogDeg_of_card o.A K' i' hi' hfin het _ hd fun k _ _ t => by
+    rw [← _root_.GlobalTheory.HTTorsCount.card_killedBy_eq_absNorm_pow p D R b N S s o 𝔟 h𝔟 k t]
     exact Nat.card_congr (Equiv.subtypeEquivRight fun y => hK' _ y)
   have h4 := (GlobalTheory.IwLevel.IsIsogDeg.of_isIso u).comp h3
   rwa [_root_.one_mul, toUnit_unique (u ≫ toUnit K') (toUnit K)] at h4

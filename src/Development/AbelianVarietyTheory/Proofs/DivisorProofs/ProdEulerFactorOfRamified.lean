@@ -96,8 +96,7 @@ theorem unrAt_inv (ν : HChar E) (w : HeightOneSpectrum (𝓞 E)) : (ν⁻¹).Un
   refine forall_congr' fun x => imp_congr_right fun _ => ?_
   rw [loc_inv, inv_eq_one]
 
-theorem val_inv (ν : HChar E) (w : HeightOneSpectrum (𝓞 E)) : (ν⁻¹).val w = (ν.val w)⁻¹ := by
-  rw [← GlobalTheory.CMVal.finPart_unifAt, ← GlobalTheory.CMVal.finPart_unifAt, GlobalTheory.CMVal.finPart_inv]
+alias val_inv := _root_.Formalism.L2.Host.HChar.val_inv
 
 end Char
 

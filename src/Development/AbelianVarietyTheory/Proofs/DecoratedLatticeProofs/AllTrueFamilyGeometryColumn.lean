@@ -48,6 +48,7 @@ import Development.AbelianVarietyTheory.Definitions.LatticeFrames.UnitRatio
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ValuationDetOfMemKO
 import Formalism.LocalToGlobal.Columns.CoefficientsModP.WeTransposeWordTransposeWord
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SplitPlaceCharacterConductorIntegers
 
 @[expose] public section
 
@@ -62,15 +63,11 @@ open GlobalTheory.FinPl GlobalTheory.FinPl.FrameLat
 
 variable {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
-theorem pr_mem_of_fin_int (p : SplitPt D k) {a : AE D} (ha : finPart D a ∈ intAE D) : p.pr a ∈ 𝒪[k] := by
-  rw [p.int_iff, p.sec_pr, RingHom.map_mul]
-  exact mul_mem_intAE (e_mem_intAt p).2 ha
-
 theorem splitPlace_valuation_cmImaginaryGenerator_eq_one (p : SplitPt D k) (hp : p.UnitAA) : valuation k (p.pr (incA D D.host.xi0)) = 1 := by
   obtain ⟨h1, h2⟩ := hp.1 _ (e_mem_intAt p)
   have he : p.pr p.e = 1 := by rw [← sec_one, p.pr_sec]
-  have h3 := pr_mem_of_fin_int p h1.2
-  have h4 := pr_mem_of_fin_int p h2.2
+  have h3 := _root_.GlobalTheory.SplitCharCond.pr_int p h1.2
+  have h4 := _root_.GlobalTheory.SplitCharCond.pr_int p h2.2
   rw [RingHom.map_mul, he, mul_one, Valuation.mem_integer_iff] at h3 h4
   have h5 : valuation k (p.pr (incA D D.host.xi0)) * valuation k (p.pr (incA D D.host.xi0⁻¹)) = 1 := by
     rw [← map_mul, ← RingHom.map_mul, ← RingHom.map_mul, mul_inv_cancel₀ (GlobalTheory.DualPairCompare.embedding_xi_zero_ne_zero D), RingHom.map_one,

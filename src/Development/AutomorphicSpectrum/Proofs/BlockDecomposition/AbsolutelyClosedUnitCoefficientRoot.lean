@@ -83,7 +83,7 @@ theorem exists_root : ∀ {S : Type} [CommRing S] , Aic (S := S) →
   have hdeg : Q.reverse.natDegree = Q.natDegree := by
     rw [reverse_natDegree, htd]; rfl
   have hid : i ≤ Q.natDegree := le_natDegree_of_ne_zero hu.ne_zero
-  obtain ⟨s, hs⟩ := GlobalTheory.T.absolutely_closed_polynomial_splits hA _ hmon
+  obtain ⟨s, hs⟩ := _root_.GlobalTheory.CompanionTheory.MonicSplit.monic_splits hA _ hmon
   have hcard : Multiset.card s = Q.natDegree := by
     rw [← hdeg, hs, natDegree_multiset_prod_X_sub_C_eq_card]
   have hcoeff : Q.reverse.coeff (Q.natDegree - i) = Q.coeff i := by

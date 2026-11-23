@@ -68,16 +68,7 @@ section Germs
 
 variable {X X' X'' Z : Scheme.{0}} {R R' : Type} [CommRing R] [CommRing R']
 
-theorem eval₂_scale {σ A : Type} [CommRing A] (φ : R →+* A) (c : A) (x : σ → A) {F : MvPolynomial σ R}
-    {e : ℕ} (hF : F.IsHomogeneous e) : eval₂ φ (fun j => c * x j) F = c ^ e * eval₂ φ x F := by
-  rw [eval₂_eq, eval₂_eq, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun a ha => ?_
-  have hd : ∑ j ∈ a.support, a j = e := by
-    have := hF (mem_support_iff.1 ha)
-    rw [← this, Finsupp.weight_apply, Finsupp.sum]
-    simp
-  simp only [mul_pow, Finset.prod_mul_distrib, Finset.prod_pow_eq_pow_sum, hd]
-  ring
+alias eval₂_scale := _root_.GlobalTheory.Degen.FormOnto.eval₂_scale
 
 def gsHom (r : Z ⟶ X) (z : Z) (U : X.Opens) (h : r z ∈ U) : Γ(X, U) →+* Z.presheaf.stalk z :=
   (Z.presheaf.germ (r ⁻¹ᵁ U) z h).hom.comp (r.app U).hom
@@ -99,28 +90,15 @@ theorem gs_eval_poly {σ : Type} (p : X ⟶ Spec (CommRingCat.of R)) (r : Z ⟶ 
   · ext j
     exact gsHom_apply r z U h _
 
-theorem cst_comp_spec (p : X ⟶ Spec (CommRingCat.of R')) (g : R →+* R') (U : X.Opens) :
-    AbLaw.cst (p ≫ Spec.map (CommRingCat.ofHom g)) U = (AbLaw.cst p U).comp g := by
-  ext a
-  have := congrArg (fun q => q.hom a) (Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom g))
-  simp only [CommRingCat.hom_comp, RingHom.comp_apply, CommRingCat.hom_ofHom] at this
-  simp only [AbLaw.cst, RingHom.comp_apply, Scheme.Hom.comp_appTop, CommRingCat.hom_comp]
-  rw [this]
+alias cst_comp_spec := _root_.GlobalTheory.Degen.FormOnto.cst_specMap
 
-theorem gs_sec_chart {H : LB X} (s : LB.Sec H) (r : Z ⟶ X) (z : Z) {i j : H.ι} (hi : r z ∈ H.U i) (hj : r z ∈ H.U j) :
-    gs r z _ (s.f i) = (gm r z _ (H.g i j)).val * gs r z _ (s.f j) := by
-  have hm : r z ∈ H.U i ⊓ H.U j := ⟨hi, hj⟩
-  have e := congrArg (gs r z _) (s.compat i j)
-  rwa [gs_res _ z _ hm, gs_mul _ z _ hm, gs_res _ z _ hm, gs_unit _ z _ hm] at e
+alias gs_sec_chart := _root_.GlobalTheory.SecPullIso.gs_sec_trans
 
 def Rel {H : LB X} {H' : LB X'} (β : X' ⟶ X) (w : LB.Iso H' (H.pull β)) (s : LB.Sec H) (s' : LB.Sec H') : Prop :=
   ∀ z (k : H.ι) (k' : H'.ι), β z ∈ H.U k → z ∈ H'.U k' →
     gs β z _ (s.f k) = (gw w (𝟙 _) z k k').val * gs (𝟙 _) z _ (s'.f k')
 
-theorem gs_stalkMap_comp (r : Z ⟶ X') (β : X' ⟶ X) (z : Z) (U : X.Opens) (h : β (r z) ∈ U) (a : Γ(X, U)) :
-    (r.stalkMap z).hom (gs β (r z) U a) = gs (r ≫ β) z U a := by
-  rw [← gs_pull r β z U h, gs_eq β _ U h, gs_eq r z _ h]
-  exact Scheme.Hom.germ_stalkMap_apply r (β ⁻¹ᵁ U) z h _
+alias gs_stalkMap_comp := _root_.GlobalTheory.Unif.PolyStep.gs_stalkMap
 
 theorem Rel.pull {H : LB X} {H' : LB X'} {β : X' ⟶ X} {w : LB.Iso H' (H.pull β)} {s : LB.Sec H} {s' : LB.Sec H'}
     (h : Rel β w s s') (r : Z ⟶ X') (z : Z) (k : H.ι) (k' : H'.ι) (hk : β (r z) ∈ H.U k) (hk' : r z ∈ H'.U k') :
@@ -216,13 +194,7 @@ theorem mem_vanIdeal_pull {H : LB X} {H' : LB X'} (hH : H.IsLB) {β : X' ⟶ X} 
   rw [h0 k, ← gsHom_apply β z _ hk, map_zero] at e
   rw [(Units.isUnit _).mul_right_eq_zero.1 e.symm, ← gsHom_apply (𝟙 X') z _ hz, map_zero]
 
-theorem component_mem_span (S : Set (MvPolynomial σ R)) (hS : ∀ F ∈ S, ∃ t, F.IsHomogeneous t) :
-    ∀ F ∈ Ideal.span S, ∀ t, homogeneousComponent t F ∈ Ideal.span S := by
-  intro F hF t
-  letI := MvPolynomial.gradedAlgebra (σ := σ) (R := R)
-  have h := Ideal.homogeneous_span (homogeneousSubmodule σ R) S (fun F hF => hS F hF) t hF
-  rwa [show (DirectSum.decompose (homogeneousSubmodule σ R) F t : MvPolynomial σ R) = homogeneousComponent t F from
-    decomposition.decompose'_apply F t] at h
+alias component_mem_span := _root_.GlobalTheory.Unif.FormalEmb.component_mem_span
 
 end GlobalTheory.Degen.FormalEmb
 
@@ -247,7 +219,7 @@ theorem GlobalTheory.Degen.exists_projective_of_formal_embedding_local : ∀ (R 
     · exact hva
     · obtain ⟨j₀, hj, w, hw, hr⟩ := tower _ Y β hβ H v hH s hs e
       exact GlobalTheory.AbLaw.veryAmpleBy_of_isNilpotent _ _ _ (Ideal.Quotient.factor_surjective _)
-        (GlobalTheory.Degen.isNilpotent_ker_factor_pow I _)
+        (_root_.GlobalTheory.Degen.PolyStepLocal.nilpotent_ker I _)
         _ _ _ _ j₀ hj _ _ w n _ _ (hH _).1 (hH _).1 ((isGen_iff _).2 hw) hr hva
   have c₁ : ∀ e, β e ≫ (Y (e + 1)).hom ≫ thick V I (e + 1) = (Y e).hom ≫ thick V I e := fun e => by
     rw [← Category.assoc, (hβ e).w, Category.assoc, thickTrans_comp]

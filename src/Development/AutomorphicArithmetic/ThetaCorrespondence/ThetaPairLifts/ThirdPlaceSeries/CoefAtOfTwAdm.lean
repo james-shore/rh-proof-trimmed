@@ -86,7 +86,7 @@ theorem coefAt_of_twAdm_alt : _root_.GlobalTheory.BigOn.Exp.TwAdmAlt → _root_.
     rw [hv', MvPolynomial.map_map, hfield]
   have hκs : IsScale p.R p.v₀ (baseW (Fm.ex x hx i) w j ρ) κ := ⟨gramR, c0R, c0L, hft, u, hu, fun F =>
     (congrArg (fun z => harmFn _ _ _ (p.R.ioP j (PiTensorProduct.tprod ℂ u) z)) (hcL F)).symm.trans
-      ((hκ _).trans (congrArg (κ • ·) (coefFn_map_eq _ _ _)))⟩
+      ((hκ _).trans (congrArg (κ • ·) (_root_.GlobalTheory.SeriesTie.Scale.coefFn_map _ _ _)))⟩
   obtain ⟨k, hk, hkk⟩ := scale_pow_eq_of_isScale p.R p.v₀ _ hsc hκs
   have hφc : phs p j * c₀ ≠ 0 := fun h0 => hν0 ((pow_eq_zero_iff hn).1 (hνn.trans (by rw [h0, zero_pow hn])))
   have hφ : phs p j ≠ 0 := left_ne_zero_of_mul hφc

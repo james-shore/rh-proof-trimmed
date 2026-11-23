@@ -110,14 +110,6 @@ end GlobalTheory.KFinLinkPort
 
 namespace GlobalTheory.KFinLinkPort
 
-theorem kFiniteVectors_irreducibleUnitary_unitaryGroupPQ : GlobalTheory.Published.KFiniteVectorsUnitary := by
-  intro n ε H _ _ _ _ σ hσ hirr
-  exact ⟨GlobalTheory.KFinLinkPort.isAdmissible_of hσ hirr,
-    GlobalTheory.HcPort.kFiniteVectors_analytic_indefiniteUnitary n ε H σ hσ hirr,
-    GlobalTheory.T.dense_kFinite_vectors_unitaryGroupRep n ε H σ hσ,
-    GlobalTheory.KFinLinkPort.isLieStable_of hσ hirr,
-    fun S hS hL => GlobalTheory.KFinLinkPort.lieIrr_of hσ hirr S hS hL⟩
-
 end GlobalTheory.KFinLinkPort
 
 end

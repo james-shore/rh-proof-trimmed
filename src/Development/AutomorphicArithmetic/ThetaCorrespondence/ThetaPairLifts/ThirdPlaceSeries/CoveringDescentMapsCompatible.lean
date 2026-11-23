@@ -74,9 +74,9 @@ namespace GlobalTheory.CovTop.DescentMaps
 theorem covering_descent_maps_compatible_alt : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → GlobalTheory.Published.GrothendieckDeformation → GlobalTheory.HSCore.Quoted → GlobalTheory.Published.SiegelToroidalIntegral →
     GlobalTheory.Published.ToroidalForFanKS → GlobalTheory.Published.SemiAbelianLieSeminegative → _root_.GlobalTheory.CovTop.GramCondition → _root_.GlobalTheory.CovTop.DeepGoodness → _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.CovTop.FlatDegreeCondition → _root_.GlobalTheory.CovTop.MapsCondition := by
   intro hP hGD hQ hSI hTF hSN hGram hDG hSz hFD
-  obtain ⟨C, hC0, hub⟩ := _root_.GlobalTheory.T.exists_short_integral_vector_of_determinant_bound hP hGD hQ hSI hTF hSN
-  have hT := _root_.GlobalTheory.T.exists_psi_isTypeLevel_latDeep_eq_latN hP hGram hDG
-  have hS := _root_.GlobalTheory.T.size_bounds_for_family_alt hSz
+  obtain ⟨C, hC0, hub⟩ := _root_.GlobalTheory.ShortDet.exists_short_integral_vector hP hGD hQ hSI hTF hSN
+  have hT := _root_.GlobalTheory.CovTop.TypeLattice.exists_psi_latDeep_eq_latN_of_covers hP hGram hDG
+  have hS := _root_.GlobalTheory.CovTop.CovSz.size_rows_alt hSz
   have hH := _root_.GlobalTheory.CovTop.Sizes.hostN_alt (2 * C + 200)
   unfold _root_.GlobalTheory.CovTop.MapsCondition _root_.GlobalTheory.CovTop.CoversCondition _root_.GlobalTheory.CovTop.LiftsCondition
   unfold _root_.GlobalTheory.CovTop.DeepGoodness at hDG
@@ -164,19 +164,5 @@ theorem covering_descent_maps_compatible_alt : _root_.GlobalTheory.CovTop.Publis
     (Gs p i (cZero (Fm.D x ι) ((i : ℕ) + 1))) e2.symm
   exact ⟨n, φ, h1, h2, h3, h4⟩
 end GlobalTheory.CovTop.DescentMaps
-end
-section
-open CategoryTheory AlgebraicGeometry NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Theta
-open GlobalTheory GlobalTheory.CompHS GlobalTheory.CovTop GlobalTheory.BigTop GlobalTheory.HSApp GlobalTheory.DegVal GlobalTheory.DegCmp
-open GlobalTheory.AllWt (Psi wtOf cuspOn cuspW latOn latW normOn petOn GoodOn GoodW rankOn degOn rankW)
-open GlobalTheory.CompHt (hodgeWt)
-open GlobalTheory.LevDesc (TypeFrame grpHR grpGHR latN levDet secRing transl pull KeepsCusp)
-open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelAut)
-open GlobalTheory.BadCount
-open scoped TensorProduct
-
-theorem _root_.GlobalTheory.T.covering_maps_of_gram_deep_size_flatDeg : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → GlobalTheory.Published.GrothendieckDeformation → GlobalTheory.HSCore.Quoted → GlobalTheory.Published.SiegelToroidalIntegral → GlobalTheory.Published.ToroidalForFanKS → GlobalTheory.Published.SemiAbelianLieSeminegative → _root_.GlobalTheory.CovTop.GramCondition → _root_.GlobalTheory.CovTop.DeepGoodness → _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.CovTop.FlatDegreeCondition → _root_.GlobalTheory.CovTop.MapsCondition := by
-  first | exact @_root_.GlobalTheory.CovTop.DescentMaps.covering_descent_maps_compatible_alt | exact _root_.GlobalTheory.CovTop.DescentMaps.covering_descent_maps_compatible_alt | (intros; apply _root_.GlobalTheory.CovTop.DescentMaps.covering_descent_maps_compatible_alt <;> assumption)
 end
 end

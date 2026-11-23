@@ -86,7 +86,7 @@ theorem mul_mem_cancel {I J K : FI} (hK : K ≠ 0) {x y : D.host.E} (hx : x ∈ 
 
 variable (X : HidaSetting D)
 
-theorem aa_ne (Y : HidaSetting D) (a : Fin D.R.rS) : aaD D a ≠ 0 := Formalism.L2.SG.Pf.NcReal.JX.CovB.aaD_ne_zero Y a
+alias aa_ne := _root_.Formalism.L2.SG.Pf.NcReal.JX.CovB.aaD_ne_zero
 
 theorem e_mem {a : Fin D.R.rS} {c : D.host.E} (hc : c ∈ aaD D a) : c • X.eX a ∈ (VS D).L0 := by
   rw [X.Lam_split]

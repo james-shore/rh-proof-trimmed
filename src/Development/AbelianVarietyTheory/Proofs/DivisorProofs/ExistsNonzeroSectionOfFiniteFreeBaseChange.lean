@@ -65,11 +65,6 @@ namespace GlobalTheory.FlatGenDescent
 
 variable {X X' : Scheme.{0}}
 
-theorem isUnit_gs_iff {Z : Scheme.{0}} (f : Z ⟶ X) (z : Z) (U : X.Opens) (h : f z ∈ U) (a : Γ(X, U)) :
-    IsUnit (gs f z U a) ↔ f z ∈ X.basicOpen a := by
-  rw [gs_eq f z U h, ← Scheme.mem_basicOpen Z _ z h, ← Scheme.preimage_basicOpen]
-  rfl
-
 theorem exists_mul {M : LB X} (hM : M.IsLB) (u : LB.Sec M) (v : LB.Sec (AbLaw.pw M (-1))) :
     ∃ a : Γ(X, ⊤), ∀ (Z : Scheme.{0}) (r : Z ⟶ X) (z : Z) (k : M.ι), r z ∈ M.U k →
       gs r z ⊤ a = gs r z (M.U k) (u.f k) * gs r z (M.U k) (v.f k) := by
@@ -110,12 +105,12 @@ theorem exists_sec_of_flat {R R' : Type} [CommRing R] [CommRing R'] (g : R →+*
     obtain ⟨y, x, hx, e⟩ := hm.exists_inv hij
     have e' := congrArg (gs π z ⊤) e
     rw [gs_add π z ⊤ trivial, gs_mul π z ⊤ trivial, gs_eq π z ⊤ trivial 1, map_one, map_one] at e'
-    have hxu : ¬ IsUnit (gs π z ⊤ x) := fun h => hz x hx ((isUnit_gs_iff π z ⊤ trivial x).1 h)
+    have hxu : ¬ IsUnit (gs π z ⊤ x) := fun h => hz x hx ((_root_.GlobalTheory.LBGerm.isUnit_gs_iff π z ⊤ trivial x).1 h)
     have hu1 : IsUnit (gs π z ⊤ y * gs π z ⊤ (a i j)) :=
       (IsLocalRing.isUnit_or_isUnit_of_add_one e').resolve_right hxu
     have hu2 := isUnit_of_mul_isUnit_right hu1
     rw [ha i j X' π z k hk] at hu2
-    exact TopologicalSpace.Opens.mem_iSup.2 ⟨k, (isUnit_gs_iff π z _ hk _).1 (isUnit_of_mul_isUnit_left hu2)⟩
+    exact TopologicalSpace.Opens.mem_iSup.2 ⟨k, (_root_.GlobalTheory.LBGerm.isUnit_gs_iff π z _ hk _).1 (isUnit_of_mul_isUnit_left hu2)⟩
   · push_neg at hne
     refine ⟨⟨fun _ => 0, fun _ _ => by simp⟩, fun z hz => False.elim ?_⟩
     obtain ⟨k, hk⟩ := exists_chart hM (π z)
@@ -131,7 +126,7 @@ theorem exists_sec_of_flat {R R' : Type} [CommRing R] [CommRing R'] (g : R →+*
     refine Ideal.sum_mem _ fun i _ => Ideal.sum_mem _ fun j _ => ?_
     rw [_root_.mul_mul_mul_comm]
     refine Ideal.mul_mem_left _ _ ?_
-    have h₄ : ¬ IsUnit (gs π z ⊤ (a i j)) := fun h => hz _ (hne i j) ((isUnit_gs_iff π z ⊤ trivial _).1 h)
+    have h₄ : ¬ IsUnit (gs π z ⊤ (a i j)) := fun h => hz _ (hne i j) ((_root_.GlobalTheory.LBGerm.isUnit_gs_iff π z ⊤ trivial _).1 h)
     rw [ha i j X' π z k hk] at h₄
     exact h₄
 

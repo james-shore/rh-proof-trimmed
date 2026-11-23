@@ -90,7 +90,7 @@ theorem lintegral_dens : ∀ (m : ℕ) (A : Matrix (Fin m) (Fin m) ℂ), A.PosDe
     obtain ⟨hDpos, hD⟩ := re_facts hA
     have hf := flagConst_pos p
     have hc : 0 ≤ A.det.re ^ (1 - (p : ℤ)) / flagConst p := by positivity
-    rw [← (GlobalTheory.T.measurePreserving_glueLowerUnitriangularBlocks _ _ _ e he).lintegral_comp hm, Measure.volume_eq_prod, lintegral_prod _ hm2.aemeasurable]
+    rw [← (_root_.GlobalTheory.FlagFibre.measurePreserving_glue _ _ _ e he).lintegral_comp hm, Measure.volume_eq_prod, lintegral_prod _ hm2.aemeasurable]
     have key : ∀ v : Fin p × Fin 1 → ℂ,
         ∫⁻ w : (Low 1 → ℂ) × (Low p → ℂ), ENNReal.ofReal (dens A (glue e (v, w))) =
         ENNReal.ofReal (A.det.re ^ (1 - (p : ℤ)) / flagConst p) *

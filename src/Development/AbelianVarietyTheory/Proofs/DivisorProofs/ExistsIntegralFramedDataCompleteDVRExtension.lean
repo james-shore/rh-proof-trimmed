@@ -54,6 +54,7 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValua
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.CubePullbacks.CubePull
 import Development.AbelianVarietyTheory.Definitions.CMLattices.IntegralOf
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.KchMul
+import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.TangentConstantDirectionSpecialisesDeriv
 
 @[expose] public section
 
@@ -63,13 +64,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 noncomputable section
 
 namespace GlobalTheory.FramedExt
-
-theorem eSec_hom {S : Scheme.{0}} (X : Over S) [GrpObj X] : eSec X ≫ X.hom = 𝟙 _ := by
-  simp [eSec]
-
-theorem dualMapR_comp_algebraMap {R R' : Type} [CommRing R] [CommRing R'] (f : R →+* R') :
-    (Chart.dualMapR f).comp (algebraMap R (DualNumber R)) = (algebraMap R' (DualNumber R')).comp f := by
-  ext a <;> simp [Chart.dualMapR, TrivSqZeroExt.algebraMap_eq_inl]
 
 theorem dual_ext {R R' : Type} [CommRing R] [CommRing R'] (F₁ F₂ : DualNumber R →+* DualNumber R')
     (h : ∀ a : R, F₁ (algebraMap R (DualNumber R) a) = F₂ (algebraMap R (DualNumber R) a))
@@ -134,7 +128,7 @@ theorem isFibreOf_descend {R R₂ K : Type} [CommRing R] [CommRing R₂] [CommRi
   have he₂ : eSec k.P.A ≫ ψ₂ = spMap f ≫ eSec G₂ := by
     apply hψ.1.hom_ext
     · rw [Category.assoc, hek, Category.assoc, he, spMap_comp, Category.assoc]
-    · rw [Category.assoc, hbase, ← Category.assoc, eSec_hom, Category.assoc, eSec_hom]
+    · rw [Category.assoc, hbase, ← Category.assoc, _root_.ReciprocityTheory.ChartRestriction.G.Out.CubePf.eSec_hom, Category.assoc, _root_.ReciprocityTheory.ChartRestriction.G.Out.CubePf.eSec_hom]
       simp
   have gI := (isGen_iff wI).1 hwI
   have g₀ := (isGen_iff e).1 hgen
@@ -176,7 +170,7 @@ theorem isFibreOf_descend {R R₂ K : Type} [CommRing R] [CommRing R₂] [CommRi
     · rw [Category.assoc, hv i, Category.assoc, hw, ← Category.assoc, hFe, spMap_comp]
     · rw [Category.assoc, hbase, ← Category.assoc, Over.w (k.v i), Category.assoc, Over.w (w₂ (Fin.cast hg i))]
       simp only [epsR, Over.mk_hom]
-      rw [← spMap_comp, ← spMap_comp, dualMapR_comp_algebraMap]
+      rw [← spMap_comp, ← spMap_comp, _root_.GlobalTheory.SpecTangent.dualMapR_comp]
 
 theorem exists_framed_ext : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (T T' : CDVR) (iT : T.Fr →+* T'.Fr) (φ : T.V →+* T'.V), (∀ a : T.V, algebraMap T'.V T'.Fr (φ a) = iT (algebraMap T.V T.Fr a)) → ∀ (G : SAB H (Sp T.V)) (t' : SAB H (Sp T.Fr)), SABMap t' G (spMap (algebraMap T.V T.Fr)) → ∀ (n : ℕ) (w : Fin n → (epsR T.V ⟶ G.G)), IsLieBasis w → ∀ (θ : G.PP.L.Sec), Generates (X := G.G) θ → ∀ (k : KeyIn T.Fr), IsFibreOf k G.G G.PP.L G.PP.rig θ w (algebraMap T.V T.Fr) → ∃ (G' : SAB H (Sp T'.V)) (t'' : SAB H (Sp T'.Fr)) (_ : SABMap t'' t' (spMap iT)) (_ : SABMap t'' G' (spMap (algebraMap T'.V T'.Fr))) (n' : ℕ) (w' : Fin n' → (epsR T'.V ⟶ G'.G)) (θ' : G'.PP.L.Sec) (k' : KeyIn T'.Fr), IsLieBasis w' ∧ Generates (X := G'.G) θ' ∧ IsFibreOf k' G'.G G'.PP.L G'.PP.rig θ' w' (algebraMap T'.V T'.Fr) ∧ KeyPB k' k iT := by
   intro E _ _ _ H T T' iT φ hφ G t' m2 n w hw θ hθ k hk

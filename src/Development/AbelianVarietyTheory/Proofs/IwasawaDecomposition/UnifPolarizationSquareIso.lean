@@ -99,15 +99,15 @@ theorem main : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], IsCN R 
   haveI : CharZero R := hR.2.2.2
   haveI : IsIntegrallyClosed R := hR.2.1
   obtain ⟨xe, hxe⟩ := unifPre_characterGroup_iso R _ hA D D' A A' G hsa U.toUnifPre U'.toUnifPre
-  obtain ⟨Φ, w, wL, hw, hwL, hm, hp⟩ := GlobalTheory.T.polarisedAbelianPart_iso_of_bundleSquare_iso R hR G hsa D D' A A' U U' hL
-  have hc := GlobalTheory.T.degenerationCharMap_eq_on_even_characters R hR G hsa D D' A A' U U' hL Φ w hw hm (fun e => (hp e).1) xe hxe
+  obtain ⟨Φ, w, wL, hw, hwL, hm, hp⟩ := _root_.GlobalTheory.unif_sq_polarised_iso R hR G hsa D D' A A' U U' hL
+  have hc := _root_.GlobalTheory.SqCompare.c_two_comp R hR G hsa D D' A A' U U' hL Φ w hw hm (fun e => (hp e).1) xe hxe
   refine ⟨xe, fun y r r' hr hr' => ?_⟩
   obtain ⟨⟨s, hs, -⟩, -⟩ := GlobalTheory.PsiCoordLocal.main R D hR.2.1 (xe (2 • y))
   obtain ⟨⟨s', hs', -⟩, -⟩ := GlobalTheory.PsiCoordLocal.main R D' hR.2.1 (2 • y)
   have a1 : Associated s (r ^ 4) := GlobalTheory.T.psiCoordinate_two_nsmul_associated_pow_four R _ D (xe y) r s hr (by rw [← map_nsmul]; exact hs)
   have a2 : Associated s' (r' ^ 4) := GlobalTheory.T.psiCoordinate_two_nsmul_associated_pow_four R _ D' y r' s' hr' hs'
   have a3 : Associated (s ^ 4) (s' ^ 4) :=
-    GlobalTheory.T.psiCoordinates_evenCharacters_fourthPowers_associated R hR G hsa D D' A A' U U' hL Φ w wL hw hwL hm hp xe hxe hc y s s' hs hs'
+    _root_.GlobalTheory.PsiFourth.main R hR G hsa D D' A A' U U' hL Φ w wL hw hwL hm hp xe hxe hc y s s' hs hs'
   refine associated_of_pow (n := 8) (by norm_num) ?_
   have e1 : (r ^ 2) ^ 8 = (r ^ 4) ^ 4 := by ring
   have e2 : (r' ^ 2) ^ 8 = (r' ^ 4) ^ 4 := by ring

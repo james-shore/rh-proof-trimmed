@@ -104,8 +104,8 @@ theorem local_bij (q : X ⟶ Spec (CommRingCat.of O)) (ρ : O →+* k) {n : ℕ}
   have hl0 : l ≠ 0 := (Fact.out : l.Prime).ne_zero
   obtain ⟨c', hF', -⟩ := GlobalTheory.CompanionTheory.FlatChartP.exists_flat_chart (Wc.pd l k (n + 1)) l hl0 (nil_m k (n + 1)) q
     ((Wc.res l k (n + 1)).comp ρ) cW
-  obtain ⟨c, e, hec, hfl⟩ := GlobalTheory.T.witt_chart_descend_level q ρ hn c'
-  have hF : FlatT c.D := hfl (GlobalTheory.T.flat_thickening_quotient l k O (B.schFn q) ρ n hn c'.D hF')
+  obtain ⟨c, e, hec, hfl⟩ := _root_.GlobalTheory.CompanionTheory.ChartRed.chart_q q ρ hn c'
+  have hF : FlatT c.D := hfl (_root_.GlobalTheory.CompanionTheory.FlatThick.flatT_qT l k O (B.schFn q) ρ n hn c'.D hF')
   obtain ⟨PA, hPA⟩ := poly_all (Wc.pd l k n) l hl0 q ((Wc.res l k n).comp ρ) FlatT (Or.inr rfl) {W}
   obtain ⟨PB, hPB⟩ := poly_all (Wc.pd l k (n + 1)) l hl0 q ((Wc.res l k (n + 1)).comp ρ) FlatT (Or.inr rfl) {W}
   have hgA := GlobalTheory.CompanionTheory.ChartMaps.good c

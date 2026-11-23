@@ -56,7 +56,7 @@ theorem actLaws_levFull {E : Type} [Field E] [NumberField E] [IsCMField E] {H : 
     ActLaws (K := c.F) (fun S _ _ => FrPt Xo c S) (fun φ y z => FrMap φ y z) (fun t y y' => FrBor t y y')
       (fun {S : Type} [CommRing S] [Algebra c.F S] (g' : LaMod Dw l ≃ₗ[𝓞 E] LaMod Dw l) (y y' : FrPt Xo c S) =>
         levActR (Xo := Xo) (c := c) (levFull Dw l) g' y y') := by
-  obtain ⟨⟨ι, hι, hone⟩, hmul, hnb⟩ := GlobalTheory.T.framedPointMove_calculus E H Dw l Xo c
+  obtain ⟨⟨ι, hι, hone⟩, hmul, hnb⟩ := _root_.GlobalTheory.MoveCalc.frMove_calculus E H Dw l Xo c
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
   · intro g S _ _ y
     obtain ⟨ρ, ν, i, h⟩ := exists_move hpq hA Xo g

@@ -62,19 +62,6 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     {PD : PeriodData G Qp K₀ K B BdR} {LL O : Type} [Field LL] [Algebra Qp LL]
     [CommRing O] [Algebra O LL] [TopologicalSpace LL] {v : AddValuation LL (WithTop ℚ)} {n : ℕ}
 
-theorem exists_pow_smul_le {V : Type} [AddCommGroup V] [Module LL V] [Module O V] [IsScalarTower O LL V]
-    (c : O) (hc : ∀ a : LL, ∃ (k : ℕ) (b : O), algebraMap O LL b = algebraMap O LL c ^ k * a)
-    (L S : Submodule O V) (hL : Submodule.span LL (L : Set V) = ⊤) (hS : S.FG) :
-    ∃ m : ℕ, ∀ x ∈ S, c ^ m • x ∈ L := by
-  first
-  | (rename_i h_2 h_3 h_4 h_5 h_7 h_8 h_9 h_10; revert LL O h_2 h_3 h_4 h_5 V h_7 h_8 h_9 h_10 c hc L S hL hS; exact @_root_.GlobalTheory.PowerScalarMembership.main)
-  | exact @_root_.GlobalTheory.PowerScalarMembership.main
-  | exact _root_.GlobalTheory.PowerScalarMembership.main
-  | (apply _root_.GlobalTheory.PowerScalarMembership.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowerScalarMembership.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowerScalarMembership.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PowerScalarMembership.main ..)
-
 variable (W : LocWach PD LL O v n)
 
 theorem ee_torsionFree (hp : ∀ a : O, (PD.p : O) * a = 0 → a = 0) (x : W.EE)

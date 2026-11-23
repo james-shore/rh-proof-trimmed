@@ -119,7 +119,7 @@ theorem phi_one_Wm (hE : IsGlRep E) (hU : IsInfUnitary ε E) (hV : IsKIrrHW ε E
   have hTc : ∀ v ∈ T, casimir E v = (casVal lam : ℂ) • v := by
     intro v hv
     obtain ⟨x', hx', rfl⟩ := Submodule.mem_map.1 hv
-    exact casimir_genSub hE hc _ (layer_le_genSub (ε := ε) 1 (phi_mem_layer (Wm_le_ncV hx')))
+    exact casimir_genSub hE hc _ (layer_le_genSub (ε := ε) 1 (_root_.ReciprocityTheory.ChartRestriction.DS.wordContraction_mem_noncompactLayer' (Wm_le_ncV hx')))
   rw [hμ] at hyμ
   exact hy0 (khw_eq_zero_sharp hE hU hmono hh (two_lt_of_gap hε hbig) hab hε hfdT hTst hTc hyT hyμ)
 
@@ -156,7 +156,7 @@ theorem phi_Wm_position (hE : IsGlRep E) (hU : IsInfUnitary ε E) (hV : IsKIrrHW
     unfold slice
     congr 1
     funext ι
-    rw [sch_permute_apply, Function.update_comp_equiv, hσ, Equiv.symm_swap, Equiv.swap_apply_right]
+    rw [_root_.ReciprocityTheory.ChartRestriction.DS.permute_apply, Function.update_comp_equiv, hσ, Equiv.symm_swap, Equiv.swap_apply_right]
   have h0 : phi E (k + 1) (permute σ F) = 0 :=
     phi_Wm_last hE hU hV hc hmono hh hbig (fun κ => by rw [hperm]; exact hF _)
   have hs := phi_permute_sub_mem hE hV.2.1 σ hF0

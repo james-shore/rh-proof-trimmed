@@ -273,7 +273,7 @@ theorem isIrreducible_multiProd_of_prod₂ {n : Type} [Fintype n] [DecidableEq n
   have hc : Fintype.card (Fin (d 0 + d 1)) = Fintype.card n := by
     rw [Fintype.card_fin, ← hd, ← Fintype.card_congr e]; simp
   let ψ : Fin (d 0 + d 1) ≃ n := Fintype.equivOfCardEq hc
-  obtain ⟨E₂⟩ := GlobalTheory.T.normalisedParabolicInduction_reindex_equiv k (Fin 2) (fun i => Fin (d i)) _ _ (stdBlocks d hd) ψ _ (piTensor fun i => (σ i).π)
+  obtain ⟨E₂⟩ := _root_.GlobalTheory.SmGL.Relabel.parInd_reindex k (Fin 2) (fun i => Fin (d i)) _ _ (stdBlocks d hd) ψ _ (piTensor fun i => (σ i).π)
   have h4 := GlobalTheory.SwapTwo.isIrreducible_of_comp _ (GlobalTheory.Parabolic.isIrreducible_of_equiv E₂ h3)
   obtain ⟨E₃⟩ := (GlobalTheory.SmGL.Placing.parInd_jac_placing k (Fin 2) n (fun i => Fin (d i)) ((stdBlocks d hd).trans ψ) e _).1
     (piTensor fun i => (σ i).π)

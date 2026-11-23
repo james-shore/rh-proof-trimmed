@@ -62,7 +62,7 @@ namespace GlobalTheory.LiftExpSplit
 theorem main_alt_alt : Hypotheses₂ → ∀ (D : D7) (L : SizeData₂ D) (P : ParameterChoice' D L) (nch : NChoice D) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (Cm : CmpOf D.loc D.locA HW F) (X : KillingConditions.HubData D) (C₂ : ℝ), _root_.GlobalTheory.NLink.SetupAlt L nch HW X C₂ → ∀ i, TwistedPlaces.TwLoc D i → D.nd.l i ∉ TwistedPlaces.gset D → KillingConditions.RangeAD L X.exc (D.nd.l i) → TwistedPlaces.SplitK D (D.nd.l i) → EmbeddingTypes.LiftExponentColumn i (X.r i) (X.dc i) (X.eS i) ∧ EmbeddingTypes.LiftExponentDualPlaces i (X.r i) (X.dc i) (X.eS i) := by
   intro hP D L P nch HW F Cm X C₂ hS i hTw hg hR hsp
   have hAJ : _root_.Formalism.MainNotions.AdmissibleParameterJ.AdmJAlt L := hS.facts.admJ L hS.par
-  have hJ : AdmissibleParameterJ.JumpConditions L := _root_.GlobalTheory.JumpStatement.holds_all_alt D L hAJ
+  have hJ : AdmissibleParameterJ.JumpConditions L := _root_.GlobalTheory.JumpSets.stmtJ_holds_alt D L hAJ
   obtain ⟨⟨ep, hA⟩, -, -, -, he, -, -⟩ := hJ
   have hgood : ∀ i, GoodR D.nd i (X.r i) := hS.canon.fam.good
   have hAA : _root_.Formalism.MainNotions.SumRepresentations.AdmAAlt D := hS.facts.toCore.admA
@@ -70,13 +70,13 @@ theorem main_alt_alt : Hypotheses₂ → ∀ (D : D7) (L : SizeData₂ D) (P : P
     hS.facts.g2.1 hS.facts.block hS.facts.muUnr i hTw hg hR hsp
   have hg0 : D.nd.l i ≠ D.host.g 0 := fun h => hg (by simp [TwistedPlaces.gset, h])
   have hg1 : D.nd.l i ≠ D.host.g 1 := fun h => hg (by simp [TwistedPlaces.gset, h])
-  have hG2 : EmbeddingTypes.admG2 i (X.r i) ep := _root_.GlobalTheory.T.admG2_of_setup_jumps hP D L P nch HW F Cm X C₂ hS ep hA i
+  have hG2 : EmbeddingTypes.admG2 i (X.r i) ep := _root_.GlobalTheory.JumpShapeAt.main_alt_alt hP D L P nch HW F Cm X C₂ hS ep hA i
   have h2 : D.nd.l i ≠ 2 := fun h => hR.1 (Or.inl (h ▸ D.host.two_mem_small))
   have heS : X.eS i = eA L 23 (D.nd.l i) := hS.canon.data.eS i hsp
   have h54 : LiftingTheory.LiftTheoremAllCases D HW F 23 32 32 :=
     (GlobalTheory.T.localConstants_from_admitted_local_Galois_statements hP.bk hP.tate hP.euler D HW F Cm).2.2.2.2.2.2.2
   have hcont : TruncatedSeriesCountingIdentities.FamilyContinuous (D := D) i (X.r i) := continuous_family_of D i (X.r i) (hgood i)
-  have hFont : TruncatedSeriesCountingIdentities.FontaineAtPlacesOverL (D := D) i := GlobalTheory.T.fontaineAtPlacesOverL D i
+  have hFont : TruncatedSeriesCountingIdentities.FontaineAtPlacesOverL (D := D) i := _root_.GlobalTheory.FontaineAdm.fontaineProperties_all_places D i
   have hj := D.nd.j_range i
   have hhB : AdmissibleParameterJ.hJ L + 2 = Formalism.MainNotions.TwistedPlaces.hB L := by
     unfold AdmissibleParameterJ.hJ Formalism.MainNotions.TwistedPlaces.hB; ring

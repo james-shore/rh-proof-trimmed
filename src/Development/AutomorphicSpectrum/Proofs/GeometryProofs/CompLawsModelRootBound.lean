@@ -55,14 +55,6 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Plug.CuspHodge
 
-theorem mem_ptsOver_mcPts {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {P : Ideal (MRing ι)}
-    {z : (Σ k, ι k) → ℂ} (h : z ∈ mcPts P) : z ∈ Small.ptsOver ℂ P := by
-  refine ⟨h.1, fun f hf => ?_⟩
-  have := h.2 f hf
-  rw [MvPolynomial.eval_map] at this
-  rw [MvPolynomial.aeval_def]
-  exact this
-
 theorem exists_form_const {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {Ω : Type} [Field Ω]
     (y : (Σ k, ι k) → Ω) (hb : Birational y) {F : Type} [Field F] [NumberField F] (cst : F →+* Ω) :
     ∃ v : MRing ι, Small.IsFormOff (mCoordIdeal y) v ∧ ∀ z ∈ mcPts (mCoordIdeal y), MvPolynomial.aeval z v ≠ 0 →
@@ -73,7 +65,7 @@ theorem exists_form_const {K : Type} [Fintype K] {ι : K → Type} [∀ k, Finty
   obtain ⟨v, hv, H⟩ := GlobalTheory.CompanionTheory.Ar.Rec.FinRd.ValSub.exists_subring_val K ι Ω y hb
     (Finset.univ.image fun i => cst (b i))
   refine ⟨v, hv, fun z hz hzv => ?_⟩
-  obtain ⟨A, ev, hB, hinv, hval⟩ := H ℂ z (mem_ptsOver_mcPts hz) hzv
+  obtain ⟨A, ev, hB, hinv, hval⟩ := H ℂ z (_root_.PositivityTheory.UnitarySelfGeneration.RA.ptsOver_of_mcPts hz) hzv
   have hq : ∀ q : ℚ, cst (algebraMap ℚ F q) ∈ A := fun q => by
     have e : cst (algebraMap ℚ F q) = (q.num : Ω) * ((q.den : ℕ) : Ω)⁻¹ := by
       have e1 : cst (algebraMap ℚ F q) = (q : Ω) := eq_ratCast (cst.comp (algebraMap ℚ F)) q
@@ -130,7 +122,7 @@ theorem cusp_hodgeLe : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [I
   obtain ⟨k, -, y, hy, hr⟩ := hread σ z hz hσ (left_ne_zero_of_mul hne)
   obtain ⟨θ, hθ, hval⟩ := hr a (nOf u) hn'
   obtain ⟨hg, hb⟩ := hval f hsec
-  have hzp := mem_ptsOver_mcPts hz
+  have hzp := _root_.PositivityTheory.UnitarySelfGeneration.RA.ptsOver_of_mcPts hz
   have hw' : Small.HasVal RM.y (Top.combLine (RM.line 1) (nOf u)).a
       (Fr.rd f * ∏ r', Or.e r' ^ (-nOf u (some r'))) z w := by
     rw [← hgauge]

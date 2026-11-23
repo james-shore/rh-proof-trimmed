@@ -60,10 +60,10 @@ namespace LateralTheory.E.H2CurveOrder
 open LateralTheory.E.E4 LeafKumSeqPf KummerH0Surjection
 
 theorem muUnits : LeafKumMuPf.LeafKumMuUnits := by
-  have hI := LeafKumMuInjPfGlue.LeafKumMuInj_of TwLocGenPf.TwLocGen_of GmSepPf.GmSep_of
+  have hI := LeafKumMuInjPfGlue.LeafKumMuInj_of TwLocGenPf.TwLocGen_of _root_.LateralTheory.E.H2CurveOrder.GmSepPf.gmSep
   exact LeafKumMuUnitsPf.LeafKumMuUnits_of LeafKumMuMapPf.LeafKumMuMap_of hI
-    (LeafKumMuSurjPf.etale_mu_twist_sections_surj_of_prim_root_pow_inj LeafKumMuSurjPrimPf.LeafKumMuSurjPrim_of
-      LeafKumMuSurjPowPf.LeafKumMuSurjPow_of hI)
+    (LeafKumMuSurjPf.etale_mu_twist_sections_surj_of_prim_root_pow_inj _root_.LateralTheory.E.H2CurveOrder.LeafKumMuSurjPrimPf.LeafKumMuSurjPrim_pf
+      _root_.LateralTheory.E.H2CurveOrder.LeafKumMuSurjPowPf.pow_pf hI)
 
 theorem kumSecSurj : LeafKumSecSurj := LeafKumSecSurjPf.LeafKumSecSurj_of LeafUnitRootPf.LeafUnitRoot_of
 

@@ -58,9 +58,7 @@ open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace GlobalTheory.EtAlgCD
 
-theorem spMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  rw [← Functor.map_comp, ← Spec.map_comp]; rfl
+alias spMap_comp := _root_.GlobalTheory.EtC.ExcisionNat.spMap_comp
 
 theorem spMap_id (A : Type) [CommRing A] : spMap (RingHom.id A) = 𝟙 (sp A) := by
   change sch.map (Spec.map (𝟙 _)) = _
@@ -83,13 +81,13 @@ theorem subsingleton_prod (q : ℕ) (d i : ℤ) (A B : Type) [CommRing A] [CommR
     Subsingleton (Ht q (sp (A × B)) d i) := by
   constructor
   intro x y
-  exact (GlobalTheory.T.etaleCohomology_prod_ring_projections_bijective q A B d i).1 (Prod.ext (Subsingleton.elim _ _) (Subsingleton.elim _ _))
+  exact (_root_.GlobalTheory.EtC.ProdCoh.ht_prod_bijective q A B d i).1 (Prod.ext (Subsingleton.elim _ _) (Subsingleton.elim _ _))
 
 theorem subsingleton_of_subsingleton_ring (q : ℕ) (d i : ℤ) (A : Type) [CommRing A] [Subsingleton A] :
     Subsingleton (Ht q (sp A) d i) := by
   constructor
   intro a b
-  obtain ⟨x, hx⟩ := (GlobalTheory.T.etaleCohomology_prod_ring_projections_bijective q A A d i).2 (a, b)
+  obtain ⟨x, hx⟩ := (_root_.GlobalTheory.EtC.ProdCoh.ht_prod_bijective q A A d i).2 (a, b)
   have hfs : RingHom.fst A A = RingHom.snd A A := RingHom.ext fun _ => Subsingleton.elim _ _
   have h1 := congrArg Prod.fst hx
   have h2 := congrArg Prod.snd hx
@@ -265,7 +263,7 @@ theorem etale_polynomial_cd_le_one : ∀ (q : ℕ) [NeZero q] (K E : Type) [Fiel
       isLocalizationAway_of_pi f Φ (fun x j => rfl) j
     haveI : Algebra.Etale E (E ⧸ f j) := Algebra.Etale.of_isLocalizationAway (Φ.symm (Pi.single j 1))
     haveI : Algebra.Etale K[X] (E ⧸ f j) := Algebra.Etale.comp K[X] E _
-    exact subsingleton_of_domain GlobalTheory.T.smooth_affine_curve_etale_cohomologicalDimension_le_one q K (E ⧸ f j) hq n i hn
+    exact subsingleton_of_domain _root_.GlobalTheory.EtC.etC_c2 q K (E ⧸ f j) hq n i hn
   let σ := (Fintype.equivFin ι).symm
   haveI := subsingleton_pi q n i (Fintype.card ι) (fun k => E ⧸ f (σ k)) (fun k => hfac (σ k))
   haveI := subsingleton_of_ringEquiv q n i (RingEquiv.piCongrLeft (fun j => E ⧸ f j) σ)

@@ -58,7 +58,7 @@ theorem exists_comap_eq : ∀ {X : Scheme.{0}} {ι : Type u} (V : ι → Scheme.
       (J i).comap a = (J j).comap a') →
     ∃ I : X.IdealSheafData, ∀ i, I.comap (f i) = J i := by
   intro X ι V f hf hcov J hJ
-  exact idealSheaf_glue_of_openImmersions (fun 𝒜 h1 h2 k h3 => GlobalTheory.T.exists_idealSheafData_of_compatible_ideals 𝒜 h1 h2 k h3)
+  exact idealSheaf_glue_of_openImmersions (fun 𝒜 h1 h2 k h3 => _root_.GlobalTheory.AffineIdealGlue.exists_idealSheafData_of_compatible 𝒜 h1 h2 k h3)
     V f hf (fun x => by obtain ⟨i, y, hy⟩ := hcov x; exact ⟨i, y, hy⟩) J hJ
 
 end GlobalTheory.IdealGlue

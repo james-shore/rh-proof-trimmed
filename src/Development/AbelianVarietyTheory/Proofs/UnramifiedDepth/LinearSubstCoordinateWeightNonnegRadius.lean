@@ -92,7 +92,7 @@ theorem linPull_coord_weight_nonneg : ∀ (C : Type) [Field C] [CharZero C] (V :
       · beta_reduce
         rw [if_neg (show n ≠ 0 by omega)]
         exact hco _ _ (fun k => lattice_inclusion_forms_injective G S c n (Sum.inl k)) b
-  obtain ⟨h0, hlog, -⟩ := GlobalTheory.T.formalGroupCoordinates_pullback_linear_tangentBasis C V d I J G S t hT (Fin N) e z al hze hal0 halk
+  obtain ⟨h0, hlog, -⟩ := _root_.GlobalTheory.MainTerm.linPull_coords C V d I J G S t hT (Fin N) e z al hze hal0 halk
 
   let σ := Fintype.equivFin I
   have key := GlobalTheory.ExpWeight.ordGe_of_lgSum_eq_linear C V.v V.l V.l_prime V.v_l (Fintype.card I) N

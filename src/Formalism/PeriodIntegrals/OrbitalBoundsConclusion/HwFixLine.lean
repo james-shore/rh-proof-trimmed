@@ -43,4 +43,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem highest_weight_fixed_line : PI.HwFix.HwFixedLine := PI.HwFix.Line.hwFixedLine_main

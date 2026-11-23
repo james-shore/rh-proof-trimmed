@@ -41,6 +41,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbProj
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.VeryDenseClosedPointObjectsOfMinimalPrimes
 
 @[expose] public section
 
@@ -65,10 +66,6 @@ theorem isAlgebraic_of_injective {B S : Type} [CommRing B] [CommRing S] [Algebra
   have : Algebra.IsAlgebraic ℤ ℚ := IsLocalization.isAlgebraic ℚ (nonZeroDivisors ℤ)
   have : Algebra.IsAlgebraic ℤ S := Algebra.IsAlgebraic.trans ℤ ℚ S
   exact Algebra.IsAlgebraic.of_injective f.toIntAlgHom hf
-
-theorem finiteType_of_surjective {A B : Type} [CommRing A] [CommRing B] [Algebra.FiniteType ℤ A]
-    (f : A →+* B) (hf : Function.Surjective f) : Algebra.FiniteType ℤ B :=
-  Algebra.FiniteType.of_surjective f.toIntAlgHom hf
 
 theorem isAlgebraic_of_finite (B : Type) [CommRing B] [IsDomain B] [CharZero B] [Algebra.FiniteType ℤ B]
     (h : {Q : PrimeSpectrum B | ∀ n : ℕ, n ≠ 0 → (n : B) ∉ Q.asIdeal}.Finite) : Algebra.IsAlgebraic ℤ B := by
@@ -126,7 +123,7 @@ theorem finite_primes (A : Type) [CommRing A] [Algebra.FiniteType ℤ A] (P : Pr
     by_contra hne
     refine hP n (fun e => hne (e ▸ dvd_rfl)) ?_
     rw [← Ideal.Quotient.eq_zero_iff_mem, map_natCast]; exact hn)
-  have := finiteType_of_surjective π hs
+  have := _root_.GlobalTheory.ClosedPts.finiteType_int_of_surjective π hs
   have hinj := PrimeSpectrum.comap_injective_of_surjective π hs
   have hr : Set.range (PrimeSpectrum.comap π) = PrimeSpectrum.zeroLocus (P.asIdeal : Set A) := by
     rw [range_comap_of_surjective _ π hs, Ideal.mk_ker]

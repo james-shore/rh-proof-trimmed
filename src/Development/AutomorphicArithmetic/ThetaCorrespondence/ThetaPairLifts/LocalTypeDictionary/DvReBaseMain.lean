@@ -151,9 +151,9 @@ theorem rebase_constants_agree (hP : _root_.GlobalTheory.FunPr.ThetaLocalInputs)
       rw [hΦ']
       exact Submodule.sum_mem _ fun i _ => Submodule.subset_span ⟨f' i, r' i, (hr' i).1, rfl⟩
     have key := hd _ _ hm (y * h⁻¹)
-    have i1 := _root_.GlobalTheory.T.thetaIntegral_comp_rightTranslate hP F E σ B a (a + a') G.V G.W G.M _ _ om _ _ _ _ (GlobalTheory.ThK.RealUniq.isPair_V hT) g hg h _ sΦ
+    have i1 := _root_.GlobalTheory.ThetaRightTranslate.thetaIntegral_rightTranslate_eq hP F E σ B a (a + a') G.V G.W G.M _ _ om _ _ _ _ (GlobalTheory.ThK.RealUniq.isPair_V hT) g hg h _ sΦ
       (y * h⁻¹)
-    have i2 := _root_.GlobalTheory.T.thetaIntegral_comp_rightTranslate hP F E σ B a' (a + a') G.V' G.W G.M' _ _ om' _ _ _ _ (GlobalTheory.ThK.RealUniq.isPair_V' hT) g' hg' h _
+    have i2 := _root_.GlobalTheory.ThetaRightTranslate.thetaIntegral_rightTranslate_eq hP F E σ B a' (a + a') G.V' G.W G.M' _ _ om' _ _ _ _ (GlobalTheory.ThK.RealUniq.isPair_V' hT) g' hg' h _
       sΦ' (y * h⁻¹)
     rw [inv_mul_cancel_right] at i1 i2
     change G.M.I om (om (g, h) (Λ • Φ)) (y * h⁻¹) = d * G.M'.I om' (om' (g', h) Φ') (y * h⁻¹) at key

@@ -79,7 +79,7 @@ theorem exists_nsmul_intAf : letI := tensTopL (F := F) (E := E) (FiniteAdeleRing
   have h1 : (rlt_comb (F := F) b) ⁻¹' O ∈ nhds (0 : Fin m → FiniteAdeleRing (𝓞 F) F) :=
     hc.continuousAt.preimage_mem_nhds (by rw [map_zero]; exact hO)
   obtain ⟨O', hO', hsub⟩ := pi_small (0 : FiniteAdeleRing (𝓞 F) F) _ h1
-  obtain ⟨N, hN, hNO⟩ := GlobalTheory.AdLat.OpenLat.exists_nsmul_adele F O' hO'
+  obtain ⟨N, hN, hNO⟩ := _root_.GlobalTheory.LocalNormBound.main F O' hO'
   refine ⟨N, hN, fun x hx => ?_⟩
   obtain ⟨r, hr, rfl⟩ := (Set.ext_iff.1 (rlt_image_comb (F := F) b hb) x).2 hx
   rw [← map_nsmul]

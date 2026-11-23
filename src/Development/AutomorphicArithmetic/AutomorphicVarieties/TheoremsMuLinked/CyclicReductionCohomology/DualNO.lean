@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
+import Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.SeparableMatrixStability.SecondSelmerSpanBoundAtAllLevels
 
 @[expose] public section
 
@@ -63,13 +64,6 @@ private theorem cnt {R Γ M : Type} [CommRing R] [Group Γ] [AddCommGroup M] [Mo
   rw [c1, ← c2, ← c3]
   calc _ ≤ ({z | z ∈ Bl ρ ∧ z c = 0}.ncard * K) * (Nat.card (Bl ρ) * Nat.card ρ.invariants) := Nat.mul_le_mul_right _ h
     _ = _ := by ring
-
-private theorem sec {l : ℕ} [Fact l.Prime] {L : Loc} {G G0 : Glob l L} (h : G.Hom G0) : Function.Surjective h.p₀ := by
-  intro g0
-  obtain ⟨g, hg⟩ := h.surj g0
-  refine ⟨⟨g, ?_⟩, Subtype.ext hg⟩
-  rw [MonoidHom.mem_ker, ← h.η, hg]
-  exact g0.2
 
 private theorem red_mul {O : Type} [CommRing O] [IsLocalRing O] {n : ℕ} (m : ℕ) (A B : Matrix (Fin n) (Fin n) O) :
     red m (A * B) = red m A * red m B := Matrix.map_mul
@@ -113,7 +107,7 @@ theorem UpperTheory.V.Th.dualNO :
     rw [hAd.1, hε, ← map_inv]
     rfl
   have hP := red_unit m x.P
-  obtain ⟨s, hs⟩ := (sec (T.h N)).hasRightInverse
+  obtain ⟨s, hs⟩ := (_root_.UpperTheory.V.Pa.Glob.Hom.p₀_surj (T.h N)).hasRightInverse
   let Z : AddSubgroup ((T.GN N).Γ → Mm O n m) :=
     { carrier := {y | y ∈ Zl rep ∧ ∀ j, ∃ Y, y (T.ph N j) = rep (T.ph N j) Y - Y ∧ y (T.ta N j) = rep (T.ta N j) Y - Y}
       add_mem' := fun {a b} ha hb => ⟨add_mem ha.1 hb.1, fun j => by

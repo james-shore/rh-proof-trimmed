@@ -86,6 +86,6 @@ theorem exists_geomIso_of_unif : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLoc
       (fun i => e₀ (v i)) htor hC⟩
   obtain ⟨A₀, a, ha, hLa⟩ := GlobalTheory.T.polarisedAbelianVariety_descends_of_rational_thetaPoints (Kb R) (Kb W) e₀ B n hn ho hth
   refine ⟨A₀, e₀, he₀, ?_, B, a, b, ha, hLa, hB.2.1, hB.2.2.symm⟩
-  exact GlobalTheory.SymDescentAlgClosed.hypS_of_baseChange (Kb R) (Kb W) e₀ A₀ B a ha hLa (GlobalTheory.T.lineBundleSymmetryHypothesis_baseChange _ _ _ A' B b hB hS)
+  exact GlobalTheory.SymDescentAlgClosed.hypS_of_baseChange (Kb R) (Kb W) e₀ A₀ B a ha hLa (_root_.GlobalTheory.MBLow.hypS_of_isPolFibre _ _ _ A' B b hB hS)
 
 end GlobalTheory.Mum.GeoDesc

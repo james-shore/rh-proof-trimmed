@@ -137,7 +137,7 @@ theorem fixedLine : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D
     xiN θ S T hS hT δ sc f ∈ Formalism.L2.Th1.H.fixedBy (HV sc) (alV D.host.d sc)
       (LamC (tauE D) δ (D.host.AA0 : Submodule (𝓞 D.host.E) D.host.E) N N') := by
   intro D ψ θ S T a b hS hT δ sc hP g hg h hh N N' hN hN' f hf hl x hx z
-  obtain ⟨γ, hγ, rfl, v, hv⟩ := lamPre D S T a b hS hT δ N N' x hx
+  obtain ⟨γ, hγ, rfl, v, hv⟩ := _root_.GlobalTheory.AdForm.LamPre.exists_mat_of_mem_lamC D S T a b hS hT δ N N' x hx
   have hs := latSign D ψ θ S T a b hS hT δ sc hP g hg h hh N N' hN hN' f hf hl γ hγ v hv
   have hu := GlobalTheory.T.gaussianReading_finiteRationalHeisenbergTranslate D ψ θ S T a b hS hT δ sc hP f hf γ v hv
   rw [← hu]
@@ -154,13 +154,13 @@ theorem vac_moved : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D
   have hvac : IsVacO ψ θ S T (fun _ => 1) (fun _ => 1) (latFr S hS N) (latFr T hT N') (om (g, h) f) := by
     refine ⟨hstd, { inf := hv.inf, theta := hth', lat := ?_, fock := hI.1.2, norm := ?_ }⟩
     · refine ⟨fun u' hu' => ?_, fun e he u' hu' hhalf => ?_⟩
-      · obtain ⟨u, hu, rfl⟩ := latMove D S T a b hS hT hP.gS hP.gT g hg h hh N N' hN hN' u' hu'
+      · obtain ⟨u, hu, rfl⟩ := _root_.GlobalTheory.LatMoveStd.latO_moved_onto D S T a b hS hT hP.gS hP.gT g hg h hh N N' hN hN' u' hu'
         have h2 : actO S T g h u + actO S T g h u = actO S T g h (u + u) := by
           simp only [actO, Matrix.mul_add, Matrix.add_mul]
         have h3 := hv.lat.1 u hu
         rw [two_nsmul] at h3 ⊢
         rw [h2, ← hW.om_heis g h _ f hv.theta, h3]
-      · obtain ⟨u, hu, rfl⟩ := latMove D S T a b hS hT hP.gS hP.gT g hg h hh N N' hN hN' u' hu'
+      · obtain ⟨u, hu, rfl⟩ := _root_.GlobalTheory.LatMoveStd.latO_moved_onto D S T a b hS hT hP.gS hP.gT g hg h hh N N' hN hN' u' hu'
         rw [← hW.om_heis g h u f hv.theta, hv.lat.2 e he u hu (halfBack D S T g h e u hhalf)]
     · refine ⟨hv.norm.1, fun p hp => ?_⟩
       show nrm2 p.1 p.2 (om (g, h) f) = 1

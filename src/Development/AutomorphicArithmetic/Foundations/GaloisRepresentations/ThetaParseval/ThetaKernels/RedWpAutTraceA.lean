@@ -51,6 +51,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Separation.CompletelyRegular
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RationalIsometryVacuumScalarGaussSumIntegral
 
 @[expose] public section
 
@@ -79,18 +80,18 @@ theorem iota_fin_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ �
 theorem symplOHF_act_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) (g : GAF σ JS) (h : GAF σ JT) (x y : WOF F E nS nT) :
     symplOHF σ JS JT ξ₀ (actOF σ JS JT g h x) (actOF σ JS JT g h y) = symplOHF σ JS JT ξ₀ x y := by
   unfold symplOHF
-  rw [_root_.PositivityTheory.ThKW.symplOF_actOF_k C]
+  rw [_root_.PositivityTheory.ThKW.TauSpanIdentities.symplOF_actOF_k C]
 theorem ratWF_eq_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) (y : Matrix (Fin nT) (Fin nS) E) :
     ratWF (F := F) y = iotaVF ι (infRatF (tauB B) y) + (finRatF F y : WOF F E nS nT) := by
-  rw [add_comm, ← _root_.PositivityTheory.ThKW.piWF_ratWF_k C y]
+  rw [add_comm, ← _root_.PositivityTheory.ThKW.TauSpanIdentities.piWF_ratWF_k C y]
   exact finIdem_add_iota C.chart _
 theorem beta_fin_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) (x y : Matrix (Fin nT) (Fin nS) E) :
     B.ψ (symplOHF σ JS JT ξ₀ (finRatF F x : WOF F E nS nT) (finRatF F y)) *
       Complex.exp (-(Real.pi * Complex.I) *
         (omV (HMF JS JT ξ₀ (tauB B)) (infRatF (tauB B) x) (infRatF (tauB B) y) : ℝ)) = 1 := by
-  have h1 := _root_.PositivityTheory.ThKW.psi_rat_k C x y
-  have h2 := _root_.PositivityTheory.ThKW.beta_iota_left_k C (infRatF (tauB B) x) (ratWF (F := F) y)
-  have h3 := _root_.PositivityTheory.ThKW.beta_iota_right_k C (finRatF F x : WOF F E nS nT) (infRatF (tauB B) y)
+  have h1 := _root_.PositivityTheory.ThKW.TauSpanIdentities.psi_rat_k C x y
+  have h2 := _root_.PositivityTheory.ThKW.TauSpanIdentities.beta_iota_left_k C (infRatF (tauB B) x) (ratWF (F := F) y)
+  have h3 := _root_.PositivityTheory.ThKW.TauSpanIdentities.beta_iota_right_k C (finRatF F x : WOF F E nS nT) (infRatF (tauB B) y)
   rw [piWF_of_fin (finRatF F x).fin, LinearMap.map_zero, LinearMap.zero_apply, Complex.ofReal_zero, mul_zero,
     Complex.exp_zero] at h3
   have d1 : symplOHF σ JS JT ξ₀ (ratWF x) (ratWF y) =
@@ -101,15 +102,15 @@ theorem beta_fin_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ �
       symplOHF σ JS JT ξ₀ (finRatF F x : WOF F E nS nT) (iotaVF ι (infRatF (tauB B) y)) +
         symplOHF σ JS JT ξ₀ (finRatF F x : WOF F E nS nT) (finRatF F y) := by
     rw [← GlobalTheory.HeisLineF.symplOHF_add_right, ← _root_.PositivityTheory.ThKW.Trc.ratWF_eq_k C]
-  rw [d1, d2, AddChar.map_add_eq_mul, AddChar.map_add_eq_mul, h2, h3, one_mul, mul_comm, _root_.PositivityTheory.ThKW.piWF_ratWF_k C] at h1
+  rw [d1, d2, AddChar.map_add_eq_mul, AddChar.map_add_eq_mul, h2, h3, one_mul, mul_comm, _root_.PositivityTheory.ThKW.TauSpanIdentities.piWF_ratWF_k C] at h1
   exact h1
 theorem chiLat_add_iota_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) (x : WOF F E nS nT) (v : IxF F nS nT → ℂ) :
     chiLatF σ JS JT ξ₀ B.ψ Λ w (x + iotaVF ι v) = chiLatF σ JS JT ξ₀ B.ψ Λ w x := by
   unfold chiLatF
-  rw [smul_add, finIdem_smul_of_real (_root_.PositivityTheory.ThKW.Trc.iota_fin_k C v), add_zero]
+  rw [smul_add, _root_.PositivityTheory.ThKW.TauSpanIdentities.finIdem_smul_of_real (_root_.PositivityTheory.ThKW.Trc.iota_fin_k C v), add_zero]
 theorem ratWF_injective_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) :
     Function.Injective (ratWF (F := F) : Matrix (Fin nT) (Fin nS) E → WOF F E nS nT) := fun x y h =>
-  infRatF_injective B (by rw [← _root_.PositivityTheory.ThKW.piWF_ratWF_k C, ← _root_.PositivityTheory.ThKW.piWF_ratWF_k C, h])
+  _root_.PositivityTheory.ThKW.TauSpanIdentities.infRatF_injective B (by rw [← _root_.PositivityTheory.ThKW.TauSpanIdentities.piWF_ratWF_k C, ← _root_.PositivityTheory.ThKW.TauSpanIdentities.piWF_ratWF_k C, h])
 def ratEquivF_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) : Matrix (Fin nT) (Fin nS) E ≃ ratLF F E nS nT :=
   Equiv.ofBijective (fun y => ⟨ratWF y, y, rfl⟩)
     ⟨fun _ _ h => _root_.PositivityTheory.ThKW.Trc.ratWF_injective_k C (congrArg Subtype.val h), by rintro ⟨_, y, rfl⟩; exact ⟨y, rfl⟩⟩
@@ -122,13 +123,13 @@ theorem serF_eq_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι
   unfold serF GlobalTheory.HeisenbergGaussianSeries.series
   rw [← (_root_.PositivityTheory.ThKW.Trc.ratEquivF_k C).tsum_eq]
   have hc (y : Matrix (Fin nT) (Fin nS) E) : ((ratEquivF_k C y : ratLF F E nS nT) : WOF F E nS nT) = ratWF y := rfl
-  simp only [hc, piWA_apply, iotaA_apply, _root_.PositivityTheory.ThKW.piWF_ratWF_k C]
+  simp only [hc, piWA_apply, iotaA_apply, _root_.PositivityTheory.ThKW.TauSpanIdentities.piWF_ratWF_k C]
 section Act
 variable {g : GAF σ JS} {h : GAF σ JT} {a : Matrix (Fin nS) (Fin nS) E} {b : Matrix (Fin nT) (Fin nT) E}
 theorem act_iota_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) (v : IxF F nS nT → ℂ) :
     actOF σ JS JT g⁻¹ h⁻¹ (iotaVF ι v) = iotaVF ι (mMF σ JS JT θ (g⁻¹, h⁻¹) *ᵥ v) := by
   have e := finIdem_add_iota C.chart (actOF σ JS JT g⁻¹ h⁻¹ (iotaVF ι v))
-  rw [← actOF_smul, finIdem_smul_of_real (_root_.PositivityTheory.ThKW.Trc.iota_fin_k C v), actOF_zero', zero_add, _root_.PositivityTheory.ThKW.piWF_actOF_k C,
+  rw [← actOF_smul, _root_.PositivityTheory.ThKW.TauSpanIdentities.finIdem_smul_of_real (_root_.PositivityTheory.ThKW.Trc.iota_fin_k C v), actOF_zero', zero_add, _root_.PositivityTheory.ThKW.TauSpanIdentities.piWF_actOF_k C,
     piWF_iotaVF C.chart] at e
   exact e
 theorem omV_act_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) (u v : IxF F nS nT → ℂ) :
@@ -138,9 +139,9 @@ theorem omV_act_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι
       (omV (HMF JS JT ξ₀ (tauB B)) (mMF σ JS JT θ (g⁻¹, h⁻¹) *ᵥ (t • u)) (mMF σ JS JT θ (g⁻¹, h⁻¹) *ᵥ v) : ℝ)) =
       Complex.exp (-(Real.pi * Complex.I) * (omV (HMF JS JT ξ₀ (tauB B)) (t • u) v : ℝ)) := by
     intro t
-    have h1 := _root_.PositivityTheory.ThKW.beta_iota_left_k C (mMF σ JS JT θ (g⁻¹, h⁻¹) *ᵥ (t • u)) (actOF σ JS JT g⁻¹ h⁻¹ (iotaVF ι v))
-    have h2 := _root_.PositivityTheory.ThKW.beta_iota_left_k C (t • u) (iotaVF ι v)
-    rw [_root_.PositivityTheory.ThKW.piWF_actOF_k C, piWF_iotaVF C.chart, ← _root_.PositivityTheory.ThKW.Trc.act_iota_k C, _root_.PositivityTheory.ThKW.Trc.symplOHF_act_k C] at h1
+    have h1 := _root_.PositivityTheory.ThKW.TauSpanIdentities.beta_iota_left_k C (mMF σ JS JT θ (g⁻¹, h⁻¹) *ᵥ (t • u)) (actOF σ JS JT g⁻¹ h⁻¹ (iotaVF ι v))
+    have h2 := _root_.PositivityTheory.ThKW.TauSpanIdentities.beta_iota_left_k C (t • u) (iotaVF ι v)
+    rw [_root_.PositivityTheory.ThKW.TauSpanIdentities.piWF_actOF_k C, piWF_iotaVF C.chart, ← _root_.PositivityTheory.ThKW.Trc.act_iota_k C, _root_.PositivityTheory.ThKW.Trc.symplOHF_act_k C] at h1
     rw [piWF_iotaVF C.chart] at h2
     exact h1.symm.trans h2
   by_contra hne
@@ -169,7 +170,7 @@ theorem actR_add_infRat_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ�
     (y : Matrix (Fin nT) (Fin nS) E) (v : IxF F nS nT → ℂ) :
     mMF σ JS JT θ (g⁻¹, h⁻¹) *ᵥ (infRatF (tauB B) y + v) =
       infRatF (tauB B) (b * y * a) + mMF σ JS JT θ (g⁻¹, h⁻¹) *ᵥ v := by
-  rw [mulVec_add, ← _root_.PositivityTheory.ThKW.piWF_ratWF_k C y, ← _root_.PositivityTheory.ThKW.piWF_ratWF_k C (b * y * a), ← act_ratW ha hb, _root_.PositivityTheory.ThKW.piWF_actOF_k C]
+  rw [mulVec_add, ← _root_.PositivityTheory.ThKW.TauSpanIdentities.piWF_ratWF_k C y, ← _root_.PositivityTheory.ThKW.TauSpanIdentities.piWF_ratWF_k C (b * y * a), ← act_ratW ha hb, _root_.PositivityTheory.ThKW.TauSpanIdentities.piWF_actOF_k C]
 end Act
 theorem phase_identity_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) {W : AEF F E} (hW : W + cAF σ W = 1) (U Y : WOF F E nS nT)
     (hi : symplOHF σ JS JT ξ₀ (W • (U + Y)) (U + Y) = symplOHF σ JS JT ξ₀ (W • Y) Y) :
@@ -224,8 +225,8 @@ theorem left_side_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ 
   have h1 := _root_.PositivityTheory.ThKW.Trc.actR_add_infRat_k C ha hb y 0
   rw [mulVec_zero, add_zero, add_zero] at h1
   rw [h1] at h0
-  rw [Equiv.ofBijective_apply, _root_.PositivityTheory.ThKW.Trc.chiLat_add_iota_k C, _root_.PositivityTheory.ThKW.Trc.chiLat_mul_exp_k C hG hR hA ha hb hw, _root_.PositivityTheory.ThKW.beta_iota_right_k C,
-    _root_.PositivityTheory.ThKW.beta_iota_left_k C, gaussV, _root_.PositivityTheory.ThKW.Trc.actR_add_infRat_k C ha hb, piWF_add, piWF_iotaVF C.chart, _root_.PositivityTheory.ThKW.piWF_ratWF_k C, map_sub (infRatF (tauB B))]
+  rw [Equiv.ofBijective_apply, _root_.PositivityTheory.ThKW.Trc.chiLat_add_iota_k C, _root_.PositivityTheory.ThKW.Trc.chiLat_mul_exp_k C hG hR hA ha hb hw, _root_.PositivityTheory.ThKW.TauSpanIdentities.beta_iota_right_k C,
+    _root_.PositivityTheory.ThKW.TauSpanIdentities.beta_iota_left_k C, gaussV, _root_.PositivityTheory.ThKW.Trc.actR_add_infRat_k C ha hb, piWF_add, piWF_iotaVF C.chart, _root_.PositivityTheory.ThKW.TauSpanIdentities.piWF_ratWF_k C, map_sub (infRatF (tauB B))]
   generalize mMF σ JS JT θ (g⁻¹, h⁻¹) *ᵥ v = u at h0 ⊢
   generalize infRatF (tauB B) (b * y * a) = z at h0 ⊢
   generalize infRatF (tauB B) y = x at h0 ⊢
@@ -248,7 +249,7 @@ theorem right_side_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ
       ∑' y, coefQF σ JS JT ξ₀ B s Λ w u y *
         Complex.exp (2 * Real.pi * Complex.I * ((-omV (HMF JS JT ξ₀ (tauB B)) (infRatF (tauB B) y)) v : ℝ)) := by
   have hu : piWF θ (u : WOF F E nS nT) = 0 := piWF_of_fin u.fin
-  rw [Pi.smul_apply, smul_eq_mul, heisOF, _root_.PositivityTheory.ThKW.beta_iota_left_k C, hu, LinearMap.map_zero, Complex.ofReal_zero, mul_zero,
+  rw [Pi.smul_apply, smul_eq_mul, heisOF, _root_.PositivityTheory.ThKW.TauSpanIdentities.beta_iota_left_k C, hu, LinearMap.map_zero, Complex.ofReal_zero, mul_zero,
     Complex.exp_zero, one_mul, _root_.PositivityTheory.ThKW.Trc.serF_eq_k C, ← tsum_mul_left]
   refine tsum_congr fun y => ?_
   have e1 : ratWF (F := F) y + (iotaVF ι v + (u : WOF F E nS nT)) = (ratWF y + (u : WOF F E nS nT)) + iotaVF ι v := by
@@ -262,8 +263,8 @@ theorem right_side_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ
     simp only [map_add (f := _), map_neg, LinearMap.neg_apply, e2, halt v (infRatF (tauB B) y)]
     push_cast
     ring
-  rw [coefQF, GlobalTheory.HeisLineF.symplOHF_add_right, AddChar.map_add_eq_mul, _root_.PositivityTheory.ThKW.beta_iota_right_k C, _root_.PositivityTheory.ThKW.beta_iota_left_k C,
-    piWF_add, piWF_add, hu, piWF_iotaVF C.chart, _root_.PositivityTheory.ThKW.piWF_ratWF_k C, add_zero, neg_add_cancel, add_zero, e1,
+  rw [coefQF, GlobalTheory.HeisLineF.symplOHF_add_right, AddChar.map_add_eq_mul, _root_.PositivityTheory.ThKW.TauSpanIdentities.beta_iota_right_k C, _root_.PositivityTheory.ThKW.TauSpanIdentities.beta_iota_left_k C,
+    piWF_add, piWF_add, hu, piWF_iotaVF C.chart, _root_.PositivityTheory.ThKW.TauSpanIdentities.piWF_ratWF_k C, add_zero, neg_add_cancel, add_zero, e1,
     _root_.PositivityTheory.ThKW.Trc.chiLat_add_iota_k C, ← e3]
   ring
 theorem summable_coefQF_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) (hG : GoodLat Λ) (hR : RatSD σ JS JT ξ₀ Λ)
@@ -277,12 +278,12 @@ theorem summable_coefQF_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ�
     (chiLatF σ JS JT ξ₀ B.ψ Λ w) hpos
     (by
       rintro _ ⟨y, rfl⟩ hy
-      have : y = 0 := infRatF_injective B (((_root_.PositivityTheory.ThKW.piWF_ratWF_k C y).symm.trans hy).trans (map_zero _).symm)
+      have : y = 0 := _root_.PositivityTheory.ThKW.TauSpanIdentities.infRatF_injective B (((_root_.PositivityTheory.ThKW.TauSpanIdentities.piWF_ratWF_k C y).symm.trans hy).trans (map_zero _).symm)
       rw [this, map_zero])
     (fun R => by
-      refine ((_root_.PositivityTheory.ThKW.finite_lat_k C.good hG R).image (fun y => ratWF (F := F) y)).subset ?_
+      refine ((_root_.PositivityTheory.ThKW.AutLatA.finLat_k C.good hG R).image (fun y => ratWF (F := F) y)).subset ?_
       rintro _ ⟨⟨y, rfl⟩, h1, h2⟩
-      exact ⟨y, ⟨(_root_.PositivityTheory.ThKW.finRatF_mem_iff_k C hG hR hA y).1 h1, by rw [← _root_.PositivityTheory.ThKW.piWF_ratWF_k C]; exact h2⟩, rfl⟩)
+      exact ⟨y, ⟨(_root_.PositivityTheory.ThKW.finRatF_mem_iff_k C hG hR hA y).1 h1, by rw [← _root_.PositivityTheory.ThKW.TauSpanIdentities.piWF_ratWF_k C]; exact h2⟩, rfl⟩)
     (fun x hx => if_neg hx)
     (fun x => by
       unfold chiLatF
@@ -294,7 +295,7 @@ theorem summable_coefQF_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ�
   refine h.congr fun y => ?_
   have e : ‖phaseF σ JS JT ξ₀ B.ψ w u‖ = 1 := hψ.2.1 _
   have hc (y : Matrix (Fin nT) (Fin nS) E) : ((ratEquivF_k C y : ratLF F E nS nT) : WOF F E nS nT) = ratWF y := rfl
-  simp only [Function.comp_apply, hc, piWA_apply, _root_.PositivityTheory.ThKW.piWF_ratWF_k C, add_zero, zero_mul, Real.exp_zero,
+  simp only [Function.comp_apply, hc, piWA_apply, _root_.PositivityTheory.ThKW.TauSpanIdentities.piWF_ratWF_k C, add_zero, zero_mul, Real.exp_zero,
     mul_one]
   rw [coefQF, norm_mul (phaseF σ JS JT ξ₀ B.ψ w u), e, one_mul]
 theorem gauss_mul_integral_A_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS JT ξ₀ θ ι) (hG : GoodLat Λ) (hR : RatSD σ JS JT ξ₀ Λ)
@@ -311,7 +312,7 @@ theorem gauss_mul_integral_A_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS J
       ∫ v, gaussV (HMF JS JT ξ₀ (tauB B)) s (mMF σ JS JT θ (g⁻¹, h⁻¹)) v = r * κ := by
   have hσ := _root_.PositivityTheory.ThKW.Trc.sgsg_k C
   obtain ⟨hH, -⟩ := _root_.PositivityTheory.ThKW.hermitian_form_selfadjoint_global F E σ B C.good nS nT JS JT C.hS C.hT ξ₀ C.h0 C.hξ
-  obtain ⟨halt, -, -, hpos⟩ := omV_laws (H := HMF JS JT ξ₀ (tauB B)) hH hs.sq hs.pos
+  obtain ⟨halt, -, -, hpos⟩ := _root_.PositivityTheory.ThKW.TauSpanIdentities.omV_laws (H := HMF JS JT ξ₀ (tauB B)) hH hs.sq hs.pos
   have hw := hO.hw
   have H := isHeis_opFF hσ C.hS C.hT C.hξ hc hw
   have hA := hO.sd
@@ -340,7 +341,7 @@ theorem gauss_mul_integral_A_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS J
     refine ⟨r, hr, ?_⟩
     rw [h0, Finset.sum_congr rfl fun k _ => hQ _ (ht k)] at e
     exact e
-  · rw [eq_top_iff, ← _root_.PositivityTheory.ThKW.span_infRatF_k C.good, Submodule.span_le]
+  · rw [eq_top_iff, ← _root_.PositivityTheory.ThKW.TauSpanIdentities.span_infRatF_k C.good, Submodule.span_le]
     rintro _ ⟨y, rfl⟩
     obtain ⟨N, hN, h1⟩ := hG.den y
     obtain ⟨M, hM, h2⟩ := hG.den (b * y * a)
@@ -373,12 +374,12 @@ theorem gauss_mul_integral_A_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS J
     have hc' : b * c * a - c ∈ Λ := sub_mem hc2 hc1
     by_cases hy : b * y * a - y ∈ Λ
     · rw [hQ _ hy, hQ _ (e ▸ add_mem hy hc'), gamQF, gamQF, map_smul, map_smul, map_sub, map_sub,
-        ← rhoFF_finRatF ha hb, ← rhoFF_finRatF ha hb, map_add (finRatF F)]
-      refine gam_periodic H hA _ (fun x y => ?_) _ ?_ ((hmem c).2 hc1) ?_
+        ← _root_.PositivityTheory.ThKW.TauSpanIdentities.rhoFF_finRatF ha hb, ← _root_.PositivityTheory.ThKW.TauSpanIdentities.rhoFF_finRatF ha hb, map_add (finRatF F)]
+      refine _root_.GlobalTheory.RatTrace.gam_periodic H hA _ (fun x y => ?_) _ ?_ ((hmem c).2 hc1) ?_
       · unfold gamFF
-        rw [coe_rhoFF, coe_rhoFF, _root_.PositivityTheory.ThKW.symplOF_actOF_k C]
-      · rw [rhoFF_finRatF ha hb, ← map_sub]; exact (hmem _).2 hy
-      · rw [rhoFF_finRatF ha hb]; exact (hmem _).2 hc2
+        rw [coe_rhoFF, coe_rhoFF, _root_.PositivityTheory.ThKW.TauSpanIdentities.symplOF_actOF_k C]
+      · rw [_root_.PositivityTheory.ThKW.TauSpanIdentities.rhoFF_finRatF ha hb, ← map_sub]; exact (hmem _).2 hy
+      · rw [_root_.PositivityTheory.ThKW.TauSpanIdentities.rhoFF_finRatF ha hb]; exact (hmem _).2 hc2
     · rw [hQ0 _ hy, hQ0]
       intro hn
       rw [e] at hn
@@ -389,7 +390,7 @@ theorem gauss_mul_integral_A_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS J
     exact mul_le_mul_of_nonneg_left (norm_sum_le _ _) (norm_nonneg _)
   · simp
   · intro y hy hn
-    have h1 : infRatF (tauB B) y ≠ 0 := fun h => hy (infRatF_injective B (h.trans (map_zero _).symm))
+    have h1 : infRatF (tauB B) y ≠ 0 := fun h => hy (_root_.PositivityTheory.ThKW.TauSpanIdentities.infRatF_injective B (h.trans (map_zero _).symm))
     have h2 := hpos _ h1
     rw [neg_eq_zero.1 hn] at h2
     exact lt_irrefl _ h2
@@ -398,15 +399,15 @@ theorem gauss_mul_integral_A_k (C : _root_.PositivityTheory.ThKW.Ctx_k σ B JS J
     obtain ⟨i, -, hi⟩ := Finset.exists_ne_zero_of_sum_ne_zero (right_ne_zero_of_mul hy)
     have h1 : finRatF F c ∈ (latF F E nS nT Λ).map (rhoFF σ JS JT (g, h)) := by
       refine ⟨finRatF F (b * c * a), (hmem _).2 hc2, ?_⟩
-      rw [← rhoFF_finRatF ha hb, ← Module.End.mul_apply, ← map_mul,
+      rw [← _root_.PositivityTheory.ThKW.TauSpanIdentities.rhoFF_finRatF ha hb, ← Module.End.mul_apply, ← map_mul,
         show ((g, h) : GAF σ JS × GAF σ JT) * (g⁻¹, h⁻¹) = 1 from mul_inv_cancel (g, h), map_one,
         Module.End.one_apply]
     have h2 := H.iso hA (mem_of_coefQF_ne_zero hi) ((hmem c).2 hc1)
     rw [H.add_left, H.iso hB (huB i) h1, mul_one] at h2
-    obtain ⟨z, hz⟩ := (_root_.PositivityTheory.ThKW.gamQF_eq_one_iff_k C y c).1 h2
+    obtain ⟨z, hz⟩ := (_root_.PositivityTheory.ThKW.TauSpanIdentities.gamQF_eq_one_iff_k C y c).1 h2
     exact ⟨-z, by rw [LinearMap.neg_apply, hz, Int.cast_neg]⟩
   · intro v
-    obtain ⟨hf, hfix, hvac⟩ := _root_.PositivityTheory.ThKW.ser_vacuum_k C hG hR hO hs (-v)
+    obtain ⟨hf, hfix, hvac⟩ := _root_.PositivityTheory.ThKW.SerA.main_k C hG hR hO hs (-v)
     have e := hκ ⟨_, hf⟩ hfix hvac (iotaVF ι v)
     rw [(sumOp_eq_sum_transversal H _ _ hB _ hfix _ u huB huT).1, Submodule.coe_sum, Finset.sum_apply] at e
     simp only [coe_opFF, _root_.PositivityTheory.ThKW.Trc.right_side_k C halt, _root_.PositivityTheory.ThKW.Trc.left_side_k C hG hR hA ha hb hw halt hbij] at e

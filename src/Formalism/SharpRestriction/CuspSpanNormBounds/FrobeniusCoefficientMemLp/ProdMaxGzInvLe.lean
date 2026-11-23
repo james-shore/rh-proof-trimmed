@@ -40,6 +40,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.HHRed
 
 @[expose] public section
 
@@ -72,17 +73,9 @@ theorem frameExp_succ : frameExp D.R.rS (D.R.rS + 1) = frameExp D.R.rS D.R.rS :=
 
 def wG : ℝ := D.host.rdE ^ (-(2 * (frameExp D.R.rS D.R.rS : ℝ)))
 
-private theorem one_le_host_rdE : 1 ≤ D.host.rdE := by
-  unfold Formalism.BasicNotions.Host.rdE
-  apply Real.one_le_rpow _ (by positivity)
-  have h := NumberField.discr_ne_zero D.host.E
-  have h' : (1 : ℤ) ≤ |discr D.host.E| := Int.one_le_abs h
-  have h'' : ((1 : ℤ) : ℝ) ≤ ((|discr D.host.E| : ℤ) : ℝ) := by exact_mod_cast h'
-  simpa [Int.cast_abs] using h''
-
 theorem wG_pos : 0 < wG D := by
   unfold wG
-  exact Real.rpow_pos_of_pos (lt_of_lt_of_le one_pos (one_le_host_rdE D)) _
+  exact Real.rpow_pos_of_pos (lt_of_lt_of_le one_pos (_root_.Formalism.MainNotions.S.Pv.HH.one_le_rdE D)) _
 
 theorem absGz_eq {u u' : D.what₂.Word} (F0 : FlagG (VS D) D.R.rS ((Tu D u : ℕ) : D.host.E)) (F' : FlagU D u')
     (τ : D.what₂.Tau) :

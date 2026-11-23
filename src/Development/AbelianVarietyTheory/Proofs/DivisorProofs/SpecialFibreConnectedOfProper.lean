@@ -130,7 +130,7 @@ theorem connectedSpace_specialFibre_of_morphisms : GlobalTheory.Published.Formal
   haveI : IsProper (Over.mk (twoπ O)).hom := isProper_twoπ O
   have hc : ∀ n, GlobalTheory.SpecialConn.thickTr f n ≫ h (n + 1) = h n := by
     intro n
-    refine GlobalTheory.T.hom_ext_specProdSelf_of_basicOpen_preimage_eq O _ _ _ ?_ ?_
+    refine _root_.GlobalTheory.AlgConn.hom_ext_of_twoπ_of_basicOpen O _ _ _ ?_ ?_
     · rw [Category.assoc, hhp, hhp, ← Category.assoc, GlobalTheory.SpecialConn.thickTr_ι]
     · refine TopologicalSpace.Opens.ext ?_
       rw [hhU n, Scheme.Hom.comp_preimage]

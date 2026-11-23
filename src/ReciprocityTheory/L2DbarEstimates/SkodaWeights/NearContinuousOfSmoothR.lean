@@ -62,11 +62,6 @@ open scoped ENNReal InnerProductSpace
 
 noncomputable section
 
-theorem near_vsq_pos {p : ℕ} (w : Fin p → ℂ) (hw : w ≠ 0) : 0 < vsq w := by
-  obtain ⟨i, hi⟩ := Function.ne_iff.mp hw
-  exact Finset.sum_pos' (fun j _ => by positivity)
-    ⟨i, Finset.mem_univ _, pow_pos (norm_pos_iff.mpr hi) 2⟩
-
 private theorem contDiffOn_vsq_gv_comp_chart_symm {M : Type*} [TopologicalSpace M] (n : ℕ) (z : M → V n)
     {p : ℕ} (g : Fin p → M → ℂ) (hg : ∀ l, Holo n z (g l))
     (e : OpenPartialHomeomorph M (V n)) (he : IsChart n z e) :
@@ -115,7 +110,7 @@ theorem near_smooth_slice {M : Type*} [TopologicalSpace M] [T2Space M] (n : ℕ)
   have hv : ContDiffOn ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (fun y => (((vsq (gv g (e.symm y)))⁻¹ : ℝ) : ℂ))
       e.target :=
     Complex.ofRealCLM.contDiff.comp_contDiffOn ((contDiffOn_vsq_gv_comp_chart_symm n z g hg e he).inv
-      fun y _ => (near_vsq_pos (gv g (e.symm y)) (hN (e.symm y))).ne')
+      fun y _ => (_root_.ReciprocityTheory.L2DbarEstimates.H.vsq_pos (gv g (e.symm y)) (hN (e.symm y))).ne')
   have hnum : ContDiffOn ℝ ((⊤ : ℕ∞) : WithTop ℕ∞)
       (fun y => u (e.symm y) * (starRingEnd ℂ) (g i (e.symm y))) e.target := hu'.mul hc
   show ContDiffOn ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (fun y => u (e.symm y) * (starRingEnd ℂ) (g i (e.symm y)) /
@@ -131,7 +126,7 @@ theorem skodaNear (n : ℕ) (M : Type*) [TopologicalSpace M] [T2Space M]
     Smooth.continuous n X.z hz _ (Holo.smooth n X.z _ (hg l))
   have huc : Continuous u' := Smooth.continuous n X.z hz _ (Holo.smooth n X.z _ hu')
   have hNc := near_continuous_vsq g hgc
-  have hNp : ∀ x, 0 < vsq (gv g x) := fun x => near_vsq_pos _ (hN x)
+  have hNp : ∀ x, 0 < vsq (gv g x) := fun x => _root_.ReciprocityTheory.L2DbarEstimates.H.vsq_pos _ (hN x)
   have hW := skodaWeight n M X.z hz p g φ₀ t hg hN hφ₀ hLφ₀ ht.le
   have hWc : Continuous (skW g φ₀ t) := near_continuous_of_smoothR n X.z hz _ hW.1
   have hlogc : Continuous (fun x => Real.log (vsq (gv g x))) :=

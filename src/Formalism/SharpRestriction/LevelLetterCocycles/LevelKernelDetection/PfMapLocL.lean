@@ -53,10 +53,6 @@ section Cst
 variable {LL Ks D D₂ : Type} [Field LL] [CommRing Ks] [Algebra LL Ks] [AddCommGroup D] [Module LL D]
   [AddCommGroup D₂] [Module LL D₂]
 
-theorem mapLocL_cstD_add (d d' : D) :
-    cstD (LL := LL) Ks (d + d') = cstD Ks d + cstD Ks d' := by
-  simp [cstD, TensorProduct.tmul_add]
-
 theorem mapLocL_cstD_zero : cstD (LL := LL) (D := D) Ks 0 = 0 := by
   simp [cstD]
 
@@ -65,7 +61,7 @@ theorem mapLocL_cstD_sum {ι : Type} (s : Finset ι) (f : ι → D) :
   classical
   induction s using Finset.induction_on with
   | empty => simp [mapLocL_cstD_zero]
-  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, mapLocL_cstD_add, ih]
+  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, _root_.Formalism.ExponentWindows.G.SlopeTestRemainingChoices.cst_add, ih]
 
 theorem mapLocL_C_smul_cstD (x : LL) (d : D) :
     (HahnSeries.C (algebraMap LL Ks x) : HahnSeries ℤ Ks) • cstD (LL := LL) Ks d = cstD Ks (x • d) := by

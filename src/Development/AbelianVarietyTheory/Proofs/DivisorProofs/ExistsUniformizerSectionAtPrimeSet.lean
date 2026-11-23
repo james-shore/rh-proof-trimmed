@@ -74,14 +74,6 @@ namespace GlobalTheory.QResChar
 
 open Formalism.IndefR.Fin.LevelGroupLemmas.Lat (liftE lift lift_add lift_zero toEAf_liftE eq_lift_of_infPart)
 
-theorem liftE_add {D : D7} (a b : EAf D) : liftE (a + b) = liftE a + liftE b := by
-  unfold liftE
-  rw [map_add (f := _), lift_add]
-
-theorem liftE_zero {D : D7} : liftE (0 : EAf D) = 0 := by
-  unfold liftE
-  rw [map_zero, lift_zero]
-
 theorem liftE_toEAf {D : D7} {z : AE D} (hz : infPart D z = 0) : liftE (toEAf D z) = z := by
   conv_rhs => rw [eq_lift_of_infPart z hz]
   unfold liftE
@@ -91,9 +83,9 @@ theorem liftE_toEAf {D : D7} {z : AE D} (hz : infPart D z = 0) : liftE (toEAf D 
 def psiE {D : D7} (ψ : AddChar (AF D.host.F) ℂ) : AddChar (EAf D) ℂ where
   toFun z := ψ (-Algebra.trace (AF D.host.F) (AE D) (incA D D.host.xi0 * liftE z))
   map_zero_eq_one' := by
-    rw [liftE_zero, mul_zero, map_zero, neg_zero, AddChar.map_zero_eq_one]
+    rw [_root_.Formalism.IndefR.Fin.LevelGroupLemmas.Lat.liftE_zero, mul_zero, map_zero, neg_zero, AddChar.map_zero_eq_one]
   map_add_eq_mul' a b := by
-    rw [liftE_add, mul_add, map_add (f := _), neg_add, AddChar.map_add_eq_mul]
+    rw [_root_.Formalism.IndefR.Fin.LevelGroupLemmas.Lat.liftE_add, mul_add, map_add (f := _), neg_add, AddChar.map_add_eq_mul]
 
 theorem psi_sympl {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (βS : GL (Fin S.rank) (EAf D))
     (βT : GL (Fin T.rank) (EAf D)) (t y : WO S T) (hy : ∀ i j, infPart D (y i j) = 0) :
@@ -101,7 +93,7 @@ theorem psi_sympl {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (βS :
   have hinf : infPart D (hO S T y t) = 0 := by
 
     simp only [hO, map_sum, map_mul, hy, mul_zero, Finset.sum_const_zero]
-  rw [GlobalTheory.OrientedHeis.symplO_skew y t, ← GlobalTheory.HalfDuality.trace_id]
+  rw [GlobalTheory.OrientedHeis.symplO_skew y t, ← _root_.GlobalTheory.TraceFrames.toEAf_hO_eq_trace_frames]
   change _ = ψ (-Algebra.trace (AF D.host.F) (AE D) (incA D D.host.xi0 * liftE (toEAf D (hO S T y t))))
   rw [liftE_toEAf hinf]
   rfl

@@ -65,10 +65,10 @@ theorem rat_iff (D : D7) (Z : LocDat D) {T T' : D.host.E} (F0 : LFlag (D.sp.Y 0)
   have hgf : ∀ p, g p = fun a => (c.c p).e (scaled Z p (frame F₁) a) := fun p => funext (hg p)
   constructor
   · intro hγ p
-    obtain ⟨h, hext, -, -, -, hNU⟩ := GlobalTheory.T.rational_isometry_extends_local_isometry D Z p γ hγ.1
+    obtain ⟨h, hext, -, -, -, hNU⟩ := _root_.GlobalTheory.LocExt.ext_isometry D Z p γ hγ.1
     let k := ((c.c p).e.symm.trans h).trans (c.c p).e
     have hk : k ∈ (G.S p).Nof (g p) := by
-      rw [hgf p]; exact (GlobalTheory.T.localUnipotent_frame_corresponds_under_isometry (c.c p) _ h).1 (hNU F₁ hγ)
+      rw [hgf p]; exact (_root_.GlobalTheory.HL.NUTransport.mem_NU_iff_mem_Nof (c.c p) _ h).1 (hNU F₁ hγ)
     refine ⟨k, hk, ?_⟩
     · intro x
       obtain ⟨y, rfl⟩ := c.e.surjective x

@@ -76,12 +76,12 @@ theorem xlam_eq_span_scaled : ∀ (D : D7) (T : D.host.E) (G : LFlag (D.sp.Y 0) 
     (fun a => ddS D ^ (-((D.R.rS : ℤ) - (a : ℕ)))) (fun a => zpow_ne_zero _ hdd)
     (fun a x hx hxa => by
       have h1 : G.fl.coefX x a ∈ GlobalTheory.RowLatXS.Ia Λ G.fl a :=
-        ((GlobalTheory.T.flagCoeffIdealOfLattice_fg_and_mem_iff _ _ _ G.fl Λ a hΛ.fg).2 _).2 ⟨x, hx, hxa, rfl⟩
+        ((_root_.GlobalTheory.RowLatXS.Ia_fg_and_mem_iff _ _ _ G.fl Λ a hΛ.fg).2 _).2 ⟨x, hx, hxa, rfl⟩
       rw [hJ a] at h1
       exact h1)
     (fun a t ht => by
       have h1 : t ∈ GlobalTheory.RowLatXS.Ia Λ G.fl a := by rw [hJ a]; exact ht
-      exact ((GlobalTheory.T.flagCoeffIdealOfLattice_fg_and_mem_iff _ _ _ G.fl Λ a hΛ.fg).2 t).1 h1)
+      exact ((_root_.GlobalTheory.RowLatXS.Ia_fg_and_mem_iff _ _ _ G.fl Λ a hΛ.fg).2 t).1 h1)
   exact ⟨e', he, hX⟩
 
 end GlobalTheory.RowLatXS

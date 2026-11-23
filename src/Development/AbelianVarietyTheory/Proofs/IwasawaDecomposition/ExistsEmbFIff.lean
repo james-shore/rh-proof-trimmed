@@ -326,7 +326,7 @@ theorem clsP_tie : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.P
         (VV_shW B.wts.sgW _) hsh z
       lat := fun x => lat_iff (I.stX I.mu0) B.fields.emb B.embLL (I.perIn u I.mu0).sgT (l.fmL u I.mu0).famP hS hsh hemb
         (I.rec7 l Z).plEq (I.rec7 l Z).what₂.places.resChar (I.rec7 l Z).what₂.places.resChar_prime
-        (GlobalTheory.LvT.Inh.resChar_mem_plEq (I.rec7 l Z)) (fun w => IntSpan (I.rec7 l Z) w B.wts.sgW)
+        (_root_.Formalism.BasicNotions.resChar_mem (I.rec7 l Z)) (fun w => IntSpan (I.rec7 l Z) w B.wts.sgW)
         (fun w Q => by
           have h := GlobalTheory.LvT.Built.ValLat.mem_closure_iff B.embLL ((I.rec7 l Z).plEq w) (intW (I.rec7 l Z).what₂.places w)
             ((I.rec7 l Z).val_nonneg_iff w) B.wts.sgW Q

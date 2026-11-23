@@ -79,9 +79,9 @@ theorem tlat_one_genus : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
     refine (GlobalTheory.T.localSpanOfLatticeAtPlace_eq_for_almost_all_places F E n L M hLat hMat).subset ?_
     intro v hv heq
     exact hv (by simp only [k, if_pos heq])
-  obtain ⟨y, hyU, hy⟩ := GlobalTheory.T.exists_adelic_unitary_of_finite_support F E n cm.sig J k hkU hfin
+  obtain ⟨y, hyU, hy⟩ := _root_.GlobalTheory.St.G.exists_adelic_of_finite_support F E n cm.sig J k hkU hfin
   have hglob : ∀ x, x ∈ hat F L ↔ y.1 *ᵥ x ∈ hat F M := by
-    rw [GlobalTheory.T.adelicLattice_carry_iff_forall_place F E n L M hLat hMat y]
+    rw [_root_.GlobalTheory.St.G.Carry.carry_iff F E n L M hLat hMat y]
     intro v x
     rw [hy v]
     by_cases hv : loc v L = loc v M

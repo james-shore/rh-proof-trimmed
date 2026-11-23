@@ -41,4 +41,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem amplifier_root_jacobian : PI.AmpRoot.RootJac := PI.AmpRootJacW.rootJac

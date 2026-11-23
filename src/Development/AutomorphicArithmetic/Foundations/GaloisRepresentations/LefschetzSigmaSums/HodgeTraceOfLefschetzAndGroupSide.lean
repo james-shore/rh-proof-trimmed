@@ -68,16 +68,17 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdicWittLattices.PPtsOfSplits
 
 @[expose] public section
 
 namespace UpperTheory.Gal.LocalSmoothExtension
 
-theorem HopWord_holds : HopWord := hopWord_of Tw.fnRing Tw.hopLin Tw.hopMul
+theorem HopWord_holds : HopWord := hopWord_of _root_.UpperTheory.Gal.G3.pFnRing Tw.hopLin Tw.hopMul
 theorem TransPull_holds : TransPull := transPull_of homEx_of polPull_of tatePull_of
 theorem KSBc_holds : KSBc := kSBc_of (modelBc_of mapEq_of) (legBc_of mapEq_of TransPull_holds) powComp_of
 theorem MemOp_holds : MemOp :=
-  memOp2_of kNNormal_of cntFn_of cntSum_of sigmaFEt_of (sigmaSplit_of sigmaFEt_of Tw.splitsPts Tw.ptsOfSplits)
+  memOp2_of kNNormal_of cntFn_of cntSum_of sigmaFEt_of (sigmaSplit_of sigmaFEt_of Tw.splitsPts _root_.UpperTheory.Gal.G3.pPtsOfSplits)
     Tw.twGal Tw.hopEx
 theorem OccOf_holds : OccOf :=
   occOf_of MemOp_holds Tw.hodgeGood Tw.hodgeTr Tw.bcGood Tw.opBc Tw.opTr Tw.bcSplits

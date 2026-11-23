@@ -55,23 +55,13 @@ namespace GlobalTheory.FockTranslate
 
 open GlobalTheory.SplitScalar GlobalTheory.LatVac
 
-theorem differentiable_of_char (χ : ℝ → ℂ) (hc : Continuous χ) (h0 : χ 0 = 1)
-    (hm : ∀ s t, χ (s + t) = χ s * χ t) : Differentiable ℝ χ := by
-  first
-  | exact @_root_.GlobalTheory.ContinuousHomDifferentiable.continuous_hom_differentiable
-  | exact _root_.GlobalTheory.ContinuousHomDifferentiable.continuous_hom_differentiable
-  | (apply _root_.GlobalTheory.ContinuousHomDifferentiable.continuous_hom_differentiable <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ContinuousHomDifferentiable.continuous_hom_differentiable <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ContinuousHomDifferentiable.continuous_hom_differentiable <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ContinuousHomDifferentiable.continuous_hom_differentiable ..)
-
 variable {D : D7}
 
 theorem differentiable_heisO {ψ : AddChar (AF D.host.F) ℂ} (hψ : Continuous ψ) {S T : HSp D} {f : WO S T → ℂ}
     (hf : IsThetaFunO ψ S T f) (L : ℝ →+ WO S T) (hL : Continuous L) (hfin : ∀ t, (L t).map (finPart D) = 0)
     (w : WO S T) : Differentiable ℝ fun t : ℝ => heisO ψ S T (L t) f w := by
   have h1 : Differentiable ℝ fun t : ℝ => ψ (symplOH S T w (L t)) := by
-    refine differentiable_of_char _ (hψ.comp (continuous_const.mul (continuous_symplO S T continuous_const hL))) ?_ ?_
+    refine _root_.GlobalTheory.ContinuousHomDifferentiable.continuous_hom_differentiable _ (hψ.comp (continuous_const.mul (continuous_symplO S T continuous_const hL))) ?_ ?_
     · rw [map_zero, symplOH, symplO_zero_right, mul_zero, AddChar.map_zero_eq_one]
     · intro s t
       rw [map_add (f := _), symplOH_add_right, AddChar.map_add_eq_mul]

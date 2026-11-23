@@ -56,7 +56,7 @@ import Mathlib.Topology.Sheaves.Init
 namespace PositivityTheory.Rg.Rs
 
 theorem expNeg_of (h : An.Count) : ExpNeg :=
-  expNegGlue_holds dict_holds (l2glue_holds h GlobalTheory.CompanionTheory.SiegelEscape.escape)
+  _root_.PositivityTheory.Rg.Rs.JExpNegGlue.main dict_holds (l2glue_holds h GlobalTheory.CompanionTheory.SiegelEscape.escape)
 
 theorem sqIntCrit_of (h1 : InitBnd) (h2 : FinTr) (h3 : An.BoxVol) : SqIntCrit :=
   sqIntGlue_holds dict_holds niceAut_holds h1 h2 killPoly_holds

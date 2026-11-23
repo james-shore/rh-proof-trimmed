@@ -129,8 +129,8 @@ theorem exists_pull (A : HodgeCpt Y S y) (B : HodgeCpt Y S y') (h : B.X ⟶ A.X)
       · intro e; apply a; apply i.injective; simpa using e
       · simpa using hreg p' _ b
       · simpa using hreg p' _ d
-  have hnoeth := (GlobalTheory.T.regAt_noetherian_model_noetherian A.X Ω A.ξ ℤ _ _ A.tie).1
-  have hnoeth' := (GlobalTheory.T.regAt_noetherian_model_noetherian B.X Ω' B.ξ ℤ _ _ B.tie).1
+  have hnoeth := (_root_.GlobalTheory.CompanionTheory.Ar.CoordNoeth.noetherian_of_coordTie A.X Ω A.ξ ℤ _ _ A.tie).1
+  have hnoeth' := (_root_.GlobalTheory.CompanionTheory.Ar.CoordNoeth.noetherian_of_coordTie B.X Ω' B.ξ ℤ _ _ B.tie).1
   have hic : ∀ q : Cpt A.ξ, IsIntegrallyClosed (A.X.presheaf.stalk q.1) := fun q => (A.normal q.1).2
   have hic' : ∀ q : Cpt B.ξ, IsIntegrallyClosed (B.X.presheaf.stalk q.1) := fun q => (B.normal q.1).2
   have htors : ∀ p ∈ S, FullTorsion B.t.G B.ξ (p ^ A.R p) := fun p hp =>

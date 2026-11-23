@@ -65,9 +65,7 @@ private theorem cont_smul (l : ℕ) [Fact l.Prime] (O : Type) [CommRing O] [Alge
   · intro x y hx hy
     exact (hx.add hy).congr fun g => (smul_add _ _ _).symm
 
-private theorem locConst {Γ A : Type} [Group Γ] [TopologicalSpace Γ] [IsTopologicalGroup Γ] [Group A] (ψ : Γ →* A)
-    (h : IsOpen (ψ.ker : Set Γ)) : IsLocallyConstant ψ :=
-  _root_.UpperTheory.Reformulated.B.LocallyConstantFunctions.locConst ψ h
+private alias locConst := _root_.UpperTheory.Reformulated.B.LocallyConstantFunctions.locConst
 
 theorem UpperTheory.V.Base.contTw :
     ∀ (k Ω : Type) [Field k] [NumberField k] [Field Ω] [Algebra k Ω] [IsAlgClosure k Ω] (l : ℕ) [Fact l.Prime],

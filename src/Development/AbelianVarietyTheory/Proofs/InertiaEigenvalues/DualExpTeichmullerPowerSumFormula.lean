@@ -73,18 +73,13 @@ theorem exists_inv_pow_one_add {l : ℕ} [Fact l.Prime] {s : ℕ} (hs : 1 ≤ s)
     rw [one_pow] at h2
     exact h1.trans h2
 
-theorem zetaQ_pow_level {l : ℕ} [Fact l.Prime] (P : LocPrime l) (s : ℕ) : P.ζQ s ^ (l ^ s) = 1 := by
-  induction s with
-  | zero => simpa using P.ζQ_zero
-  | succ s ih => rw [pow_succ', pow_mul, P.ζQ_succ, ih]
-
 theorem levSum_mem_Ks {l : ℕ} [Fact l.Prime] (P : LocPrime l) (K : FinExt l) (s j : ℕ) {ι : Type}
     (T : Finset ι) (c : ι → ↥(K0 K)) (m : ι → ℕ) (d : ↥(K0 K)) :
     levSum P K s j T c m d ∈ Ks K s := by
   have h0 : ∀ x : ↥(K0 K), (x : Om l) ∈ Ks K s := fun x => (le_sup_left : K0 K ≤ Ks K s) x.2
   have hζ : P.ζQ s ∈ Ks K s := by
     refine (le_sup_right : _ ≤ Ks K s) (IntermediateField.subset_adjoin _ _ ?_)
-    exact zetaQ_pow_level P s
+    exact _root_.GlobalTheory.ExpImage.ζQ_pow P s
   unfold levSum
   refine add_mem (sum_mem fun i _ => mul_mem (pow_mem (natCast_mem _ _) _) (sum_mem fun a _ =>
     mul_mem (mul_mem (h0 _) (pow_mem (natCast_mem _ _) _)) (pow_mem hζ _)))

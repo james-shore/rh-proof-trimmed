@@ -126,7 +126,7 @@ theorem slab_squeeze : ∀ (n : ℕ) (ε : Fin n → Bool) (S : Set (Formalism.R
       linarith
 
     have h2 : nrm (uMat l - 1) ≤ len (crd E (uMat l - 1)) + nrm (uMat l - 1) ^ 2 := by
-      have hp := GlobalTheory.T.cutOut_subgroup_tangent_second_order_hilbertSchmidt n ε S d E hS l hl
+      have hp := _root_.GlobalTheory.IwConstApprox.nrm_sub_proj_le_sq n ε S d E hS l hl
       have e := nrm_add_le (cmb E (crd E (uMat l - 1))) (uMat l - 1 - cmb E (crd E (uMat l - 1)))
       rw [add_sub_cancel, nrm_cmb hON] at e
       linarith

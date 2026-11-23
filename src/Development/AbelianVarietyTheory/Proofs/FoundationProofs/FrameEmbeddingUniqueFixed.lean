@@ -53,15 +53,7 @@ open scoped BigOperators Pointwise
 
 namespace GlobalTheory.InertParity.FiniteOrder
 
-theorem exists_prime_mem {R : Type*} [CommRing R] (P : Ideal R) (hP : P.IsPrime) (n : ℕ) (hn : n ≠ 0)
-    (h : (n : R) ∈ P) : ∃ q : ℕ, q.Prime ∧ q ∣ n ∧ (q : R) ∈ P := by
-  first
-  | exact @_root_.GlobalTheory.PrimeDivisorMembership.exists_prime_dvd_mem
-  | exact _root_.GlobalTheory.PrimeDivisorMembership.exists_prime_dvd_mem
-  | (apply _root_.GlobalTheory.PrimeDivisorMembership.exists_prime_dvd_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PrimeDivisorMembership.exists_prime_dvd_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PrimeDivisorMembership.exists_prime_dvd_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.PrimeDivisorMembership.exists_prime_dvd_mem ..)
+alias exists_prime_mem := _root_.GlobalTheory.PrimeDivisorMembership.exists_prime_dvd_mem
 
 theorem simple_case (D : D7) (S : Type) [AddCommGroup S] [Module (𝓞 D.host.E) S] [Finite S]
     [IsSimpleModule (𝓞 D.host.E) S] :

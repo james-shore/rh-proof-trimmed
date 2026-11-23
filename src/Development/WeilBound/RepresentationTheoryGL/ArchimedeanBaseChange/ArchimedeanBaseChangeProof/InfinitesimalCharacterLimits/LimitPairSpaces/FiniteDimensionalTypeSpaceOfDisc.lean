@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsFinsetSeparating
 
 @[expose] public section
 
@@ -58,33 +59,6 @@ namespace PositivityTheory.Rg.BcB.SpectralAccumulation.LV
 open PositivityTheory.Rg.BcB.SpectralAccumulation PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.SpectralAccumulation.Cz.KTypeSlices
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
-
-theorem exists_sep {α : Type} (X : Submodule ℂ (α → ℂ)) [FiniteDimensional ℂ X] :
-    ∃ S : Finset α, ∀ w ∈ X, (∀ a ∈ S, w a = 0) → w = 0 := by
-  classical
-  let Ker : Finset α → Submodule ℂ (α → ℂ) := fun S =>
-    X ⊓ ⨅ a ∈ S, LinearMap.ker (LinearMap.proj a : (α → ℂ) →ₗ[ℂ] ℂ)
-  have hmem : ∀ S w, w ∈ Ker S ↔ w ∈ X ∧ ∀ a ∈ S, w a = 0 := by
-    intro S w
-    simp only [Ker, Submodule.mem_inf, Submodule.mem_iInf, LinearMap.mem_ker, LinearMap.proj_apply]
-  have hfd : ∀ S, FiniteDimensional ℂ (Ker S) := fun S => Submodule.finiteDimensional_of_le inf_le_left
-  have hex : ∃ d, ∃ S, Module.finrank ℂ (Ker S) = d := ⟨_, ∅, rfl⟩
-  obtain ⟨S, hS0⟩ := Nat.find_spec hex
-  have hS : ∀ S', Module.finrank ℂ (Ker S) ≤ Module.finrank ℂ (Ker S') := fun S' => by
-    rw [hS0]
-    exact Nat.find_min' hex ⟨S', rfl⟩
-  refine ⟨S, fun w hw h0 => ?_⟩
-  by_contra hne
-  obtain ⟨a, ha⟩ := Function.ne_iff.1 hne
-  have hlt : Ker (insert a S) < Ker S := by
-    refine lt_of_le_of_ne (fun v hv => ?_) (fun he => ?_)
-    · rw [hmem] at hv ⊢
-      exact ⟨hv.1, fun b hb => hv.2 b (Finset.mem_insert_of_mem hb)⟩
-    · have hwS : w ∈ Ker S := (hmem S w).2 ⟨hw, h0⟩
-      rw [← he, hmem] at hwS
-      exact ha (hwS.2 a (Finset.mem_insert_self a S))
-  have := hfd S
-  exact absurd (hS (insert a S)) (not_le.2 (Submodule.finrank_lt_finrank_of_lt hlt))
 
 theorem typSp_tw_le {n : ℕ} {K' : Subgroup (GL (Fin n) (Af E))} (hK : K' ≤ detKer n)
     (W' : Submodule ℂ (Kinf E n → ℂ)) (U : Submodule ℂ (Sm E n)) (z : ℂ) :
@@ -126,7 +100,7 @@ theorem finiteDimensional_type_space_of_disc (hA : AdmDisc) {N : ℕ} (K : Subgr
     have : FiniteDimensional ℂ Y := fd_tens2 _ _
     set X := TypSp (Kf N K (r + s)) (Wf N W (r + s)) (Tr.node t₁ t₂).space with hX
     have : FiniteDimensional ℂ (Wf N W (r + s)) := fd_Wf hW _
-    obtain ⟨S, hS⟩ := exists_sep (Wf N W (r + s))
+    obtain ⟨S, hS⟩ := _root_.UpperTheory.Reformulated.B.Qp2.exists_finset_separating (Wf N W (r + s))
     set T := Tset r s (Kf N K (r + s)) with hTdef
     have hI : ∀ φ ∈ X, MemInd2 (tw t₁.space ((s : ℂ) / 2)) (tw t₂.space (-(r : ℂ) / 2)) φ := by
       intro φ hφ

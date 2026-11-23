@@ -137,7 +137,7 @@ theorem left_star (z : Fin (2 * r + k + 1) → ℂ) (D : Set (Mx k r)) (f : Mx k
   have hy : yv k r z b.succ (T * g) ⟨2 * r + k - a.val - b.val - 1, hjlt⟩ =
       star (if a.val = b.val + 1 then c a else 0) := by
     simp only [yv, hpos, fvec, dif_pos hb1]
-    obtain ⟨h1, h2⟩ := Formalism.FourierDecayAlt.P.xi_Y_zhat_identity k r z z (T * g) ⟨_, hb1⟩ a hg₁.1
+    obtain ⟨h1, h2⟩ := _root_.CovecW.covec_entries k r z z (T * g) ⟨_, hb1⟩ a hg₁.1
     rw [h2, ← h1]
     congr 1
     rw [Formalism.FourierDecayAlt.P.SignAntidiagonal.herm_bvec_eI, ← Matrix.mulVec_mulVec, hga, hTa]

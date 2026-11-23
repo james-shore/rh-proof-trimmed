@@ -93,7 +93,7 @@ theorem clause1_perfectPrism : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (P : 
   obtain ⟨bk⟩ := GlobalTheory.T.nonempty_breuilKisinDatum l K
   obtain ⟨τ, hτ⟩ := GlobalTheory.T.exists_breuilKisin_frobenius_period l K bk
   let b := Module.finBasis ℤ_[l] ↥L.T
-  obtain ⟨s⟩ := GlobalTheory.T.exists_crystalline_lattice_periods_on_disc l K bk τ hτ P AI hStd V ρ L hcont hcrys _ b
+  obtain ⟨s⟩ := _root_.GlobalTheory.SeedExists.exists_seed l K bk τ hτ P AI hStd V ρ L hcont hcrys _ b
   have hu : ∀ g, IsUnit (LinearMap.toMatrix b b (actT L g)) := fun g => isUnit_toMatrix_actT L b g
   obtain ⟨hs⟩ := GlobalTheory.T.nonempty_discPeriodAinfBasisData_of_isPer l K bk τ hτ _ _ hu s
   obtain ⟨S, T, hST⟩ := GlobalTheory.T.exists_stratified_phiModule_crystalline_lattice l K bk τ hτ _ _ hu s hs

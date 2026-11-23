@@ -138,11 +138,6 @@ theorem quot_eq_zero_of_weight_ne {a d : ℕ} (ha : 0 < a) {n n₀ : ι → ℕ}
     rw [sub_smul, h1, sub_self]
   exact (smul_eq_zero.1 h2).resolve_left (sub_ne_zero.2 hg)
 
-theorem finiteDimensional_inv (a d : ℕ) (n : ι → ℕ) : FiniteDimensional ℂ (inv (ι := ι) a d n) := by
-  have hfin : (Set.range (prodMinors (ι := ι) (a := a) (d := d) (n := n))).Finite := Set.finite_range _
-  haveI := FiniteDimensional.span_of_finite ℂ hfin
-  exact Submodule.finiteDimensional_of_le (GlobalTheory.MinorFrame.inv_le_span_prodMinors a d n)
-
 theorem exists_const_of_equivariant {a d : ℕ} (had : a ≤ d) (n₀ : ι → ℕ) (Pr : Type) [AddCommGroup Pr] [Module ℂ Pr]
     (q F : Pol ι d a →ₗ[ℂ] Pr) (σ : (ι → Matrix (Fin d) (Fin d) ℂ) → Module.End ℂ Pr) [Nontrivial Pr]
     (hqs : Function.Surjective q)
@@ -156,14 +151,14 @@ theorem exists_const_of_equivariant {a d : ℕ} (had : a ≤ d) (n₀ : ι → �
     ∃ ρ : ℂ, ρ ≠ 0 ∧ ∀ P ∈ inv (ι := ι) a d n₀, F P = ρ • q P := by
   set V := inv (ι := ι) a d n₀ with hV
 
-  have havg := GlobalTheory.T.exists_detCharInvariant_same_value_twisted a d n₀ Pr q hq
+  have havg := _root_.GlobalTheory.MinorFrame.exists_mem_inv_eq_of_twisted a d n₀ Pr q hq
   have hsurj : Function.Surjective (q ∘ₗ V.subtype) := by
     intro x
     obtain ⟨P, rfl⟩ := hqs x
     obtain ⟨P₀, hP₀, he⟩ := havg P
     exact ⟨⟨P₀, hP₀⟩, he.symm⟩
 
-  have hker := GlobalTheory.T.fockDetCharInvariants_rowSubstitution_irreducible a d n₀ had (V ⊓ LinearMap.ker q) inf_le_left
+  have hker := _root_.GlobalTheory.MinorFrame.RowIrr.inv_irreducible a d n₀ had (V ⊓ LinearMap.ker q) inf_le_left
     (inv_inf_ker_stable n₀ q σ hqσ)
   have hinj : Function.Injective (q ∘ₗ V.subtype) := by
     rcases hker with h0 | hV'
@@ -178,7 +173,7 @@ theorem exists_const_of_equivariant {a d : ℕ} (had : a ≤ d) (n₀ : ι → �
       have : (P : Pol ι d a) ∈ V ⊓ LinearMap.ker q := by rw [hV']; exact P.2
       exact hx (hP.symm.trans (LinearMap.mem_ker.1 (Submodule.mem_inf.1 this).2))
   let e : V ≃ₗ[ℂ] Pr := LinearEquiv.ofBijective (q ∘ₗ V.subtype) ⟨hinj, hsurj⟩
-  haveI : FiniteDimensional ℂ V := finiteDimensional_inv a d n₀
+  haveI : FiniteDimensional ℂ V := _root_.GlobalTheory.MinorFrame.RowIrr.inv_finiteDimensional a d n₀
   haveI : Nontrivial V := e.toEquiv.nontrivial
   let E : Module.End ℂ V := e.symm.toLinearMap ∘ₗ F ∘ₗ V.subtype
   obtain ⟨c, hc⟩ := Module.End.exists_eigenvalue E
@@ -194,7 +189,7 @@ theorem exists_const_of_equivariant {a d : ℕ} (had : a ≤ d) (n₀ : ι → �
         σ (fun τ => (κ τ : Matrix (Fin d) (Fin d) ℂ)) ((F - c • q) P) := by
     intro κ P hP
     simp only [LinearMap.sub_apply, LinearMap.smul_apply, map_sub, map_smul, hFσ κ P hP, hqσ κ P hP]
-  have hker2 := GlobalTheory.T.fockDetCharInvariants_rowSubstitution_irreducible a d n₀ had (V ⊓ LinearMap.ker (F - c • q)) inf_le_left
+  have hker2 := _root_.GlobalTheory.MinorFrame.RowIrr.inv_irreducible a d n₀ had (V ⊓ LinearMap.ker (F - c • q)) inf_le_left
     (inv_inf_ker_stable n₀ (F - c • q) σ hFc)
   have hall : ∀ P ∈ V, F P = c • q P := by
     rcases hker2 with h0 | hV'
@@ -243,7 +238,7 @@ theorem quot_minor_eq_const_smul_compl : ∀ (D : D7) {a a' d : ℕ} (had : a + 
     ∃ ρ : ℂ, ρ ≠ 0 ∧ ∀ (n : D.what₂.Tau → ℕ) (T : Tup D a d n), ∃ ε : ℤˣ,
       q (GlobalTheory.BotFormula.minorF rfl rfl T) = (ρ * ((ε : ℤ) : ℂ)) • q' (GlobalTheory.BotFormula.minorF rfl rfl (GlobalTheory.BotMatch.complTup D had T)) := by
   intro D a a' d had n₀ Pr _ _ q q' σ ha ha' hPr hqs hq's hq hq' hqσ hq'σ
-  obtain ⟨Pl, ε, hPlT, hPlκ⟩ := GlobalTheory.T.exists_complementaryMinor_map_realPlaces D had n₀
+  obtain ⟨Pl, ε, hPlT, hPlκ⟩ := _root_.GlobalTheory.BotMatch.complementary_minor_map D had n₀
 
   have hPlV : ∀ P ∈ inv (ι := D.what₂.Tau) a d n₀, Pl P ∈ inv (ι := D.what₂.Tau) a' d n₀ := by
     intro P hP
@@ -271,7 +266,7 @@ theorem quot_minor_eq_const_smul_compl : ∀ (D : D7) {a a' d : ℕ} (had : a + 
     push_neg at hcon
     obtain ⟨x, hx⟩ := exists_ne (0 : Pr)
     obtain ⟨P', rfl⟩ := hq's x
-    obtain ⟨P₀, hP₀, he⟩ := GlobalTheory.T.exists_detCharInvariant_same_value_twisted a' d n₀ Pr q' hq' P'
+    obtain ⟨P₀, hP₀, he⟩ := _root_.GlobalTheory.MinorFrame.exists_mem_inv_eq_of_twisted a' d n₀ Pr q' hq' P'
     apply hx
     rw [he]
     have hle : Submodule.span ℂ (Set.range (prodMinors (ι := D.what₂.Tau) (a := a') (d := d) (n := n₀))) ≤

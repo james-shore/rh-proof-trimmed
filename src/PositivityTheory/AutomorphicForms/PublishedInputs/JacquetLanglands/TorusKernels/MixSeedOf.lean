@@ -38,11 +38,13 @@ public import PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands
 public import PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.RealArchimedeanBounds.DRepsP
 public import PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.FinalH
 public import PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.PfGTerm
+import PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.PfGMod
+import PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.PfGUnit
 
 @[expose] public section
 
 namespace UpperTheory.Esk
 
-theorem holWC : HolWC := holWC_of dAx dTwo' dGood' dReps (pf_GTerm s_GCh s_GUnit s_GMod)
+theorem holWC : HolWC := holWC_of dAx dTwo' dGood' dReps (pf_GTerm _root_.UpperTheory.Esk.pf_GCh _root_.UpperTheory.Esk.pf_GUnit _root_.UpperTheory.Esk.pf_GMod)
 
 end UpperTheory.Esk

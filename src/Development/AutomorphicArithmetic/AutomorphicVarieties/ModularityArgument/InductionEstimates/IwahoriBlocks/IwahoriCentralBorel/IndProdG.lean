@@ -58,10 +58,6 @@ section Tools
 
 variable {G V Y H : Type} [Group G] [AddCommGroup V] [Module ℂ V] [AddCommGroup Y] [Module ℂ Y] [Group H]
 
-private theorem irrCases (ρ : Representation ℂ G V) (h : ρ.IsIrreducible) (W : Submodule ℂ V)
-    (hW : ∀ g, ∀ v ∈ W, ρ g v ∈ W) : W = ⊥ ∨ W = ⊤ :=
-  _root_.UpperTheory.Reformulated.B.Qe20.irrCases ρ h W hW
-
 private theorem irrOf (ρ : Representation ℂ G V) (hn : Nontrivial V)
     (h : ∀ W : Submodule ℂ V, (∀ g, ∀ v ∈ W, ρ g v ∈ W) → W = ⊥ ∨ W = ⊤) : ρ.IsIrreducible := by
   refine { toNontrivial := ⟨⟨⊥, ⊤, fun e => ?_⟩⟩, eq_bot_or_eq_top := fun S => ?_ }
@@ -199,7 +195,7 @@ private theorem simpleBase [Subsingleton G] [Subsingleton H] (j : H →* G) (y :
     rintro ⟨h, c⟩ v ⟨ψ, hψ, rfl⟩
     rw [Subsingleton.elim h 1]
     exact ⟨_, h2 c ψ hψ, rfl⟩
-  rcases irrCases y hy (Q.map ev) st with h | h
+  rcases _root_.UpperTheory.Reformulated.B.Qe20.irrCases y hy (Q.map ev) st with h | h
   · left
     refine (Submodule.eq_bot_iff _).2 fun φ hφ => ?_
     have : φ 1 ∈ Q.map ev := ⟨φ, hφ, rfl⟩
@@ -302,7 +298,7 @@ private theorem prodStep (P : Subgroup A) (j : H →* B) (hj : Topology.IsEmbedd
     intro p v hv h hh
     rw [hfρ, commY, hv h hh]
   have hWtop : Wf = ⊤ := by
-    rcases irrCases ρ hL.irr Wf hWst with e | e
+    rcases _root_.UpperTheory.Reformulated.B.Qe20.irrCases ρ hL.irr Wf hWst with e | e
     · exfalso
       have : v₀ ∈ Wf := fun h hh => hU h hh
       rw [e] at this
@@ -548,7 +544,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.IwahoriBlocks.indProdG
         exact hf (LinearMap.ext hh)
       exact ⟨⟨_, _, hv⟩⟩
     have hy' : y'.IsIrreducible := by
-      refine irrOf y' hYn fun W hW => irrCases y hy W fun x v hv => ?_
+      refine irrOf y' hYn fun W hW => _root_.UpperTheory.Reformulated.B.Qe20.irrCases y hy W fun x v hv => ?_
       obtain ⟨z, rfl⟩ := hsurj x
       exact hW z v hv
     have hsm' : ∀ v, IsOpen {p : ∀ i : Fin r, P i.succ | y' (p, 1) v = v} := by

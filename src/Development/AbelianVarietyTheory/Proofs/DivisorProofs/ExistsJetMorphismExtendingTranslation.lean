@@ -74,7 +74,7 @@ theorem jet_sh : ∀ {I : Type} [Fintype I] {g : ℕ} {Λ : Type} [AddCommGroup 
     rw [sh_refl]
   have hf2 : ∀ y : Hol (K.W k), (ptHom (K.triv k') e ≫ jet1 k').φ y =
       TrivSqZeroExt.inl (sh e y) + TrivSqZeroExt.inr (fun a ↦ dw a (sh e y)) := fun y ↦ rfl
-  obtain ⟨χ, hdeg, h0, h1, hφ⟩ := GlobalTheory.T.exists_jet_extension_square_zero K (T := K.jet k') (ptHom (K.triv k') e ≫ jet0 k')
+  obtain ⟨χ, hdeg, h0, h1, hφ⟩ := _root_.GlobalTheory.SquareLiftLemmas.exists_hom_jet K (T := K.jet k') (ptHom (K.triv k') e ≫ jet0 k')
     (ptHom (K.triv k') e ≫ jet1 k') (fun a ↦ TrivSqZeroExt.inr (Pi.single a 1)) rfl (fun _ ↦ rfl)
     (fun a b ↦ TrivSqZeroExt.inr_mul_inr _ _ _) (fun x ↦ by
       rw [hf2, hf1]

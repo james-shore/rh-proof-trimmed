@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.DenseInterior
+import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.IsRegularFnIffOfIsAffineOpen
 
 @[expose] public section
 
@@ -58,17 +59,12 @@ namespace GlobalTheory.CechFin
 
 variable {Z : Scheme.{0}}
 
-theorem sf_resG_resG {U V V' : Z.Opens} (h : V ≤ U) (h' : V' ≤ V) (x : Γ(Z, U)) :
-    resG Z h' (resG Z h x) = resG Z (h'.trans h) x :=
-  (congrArg (fun q => q.hom x) (Z.presheaf.map_comp (homOfLE h).op (homOfLE h').op)).symm
-
-theorem sf_resG_id {U : Z.Opens} (h : U ≤ U) (x : Γ(Z, U)) : resG Z h x = x :=
-  congrArg (fun q => q.hom x) (Z.presheaf.map_id (Opposite.op U))
+alias sf_resG_id := _root_.GlobalTheory.LB.resG_self
 
 theorem sf_resG_inj {U V : Z.Opens} (h : V ≤ U) (h' : U ≤ V) {x y : Γ(Z, U)}
     (e : resG Z h x = resG Z h y) : x = y := by
   have := congrArg (resG Z h') e
-  rwa [sf_resG_resG, sf_resG_resG, sf_resG_id, sf_resG_id] at this
+  rwa [_root_.GlobalTheory.Cartier.resG_resG, _root_.GlobalTheory.Cartier.resG_resG, sf_resG_id, sf_resG_id] at this
 
 variable {J : Type} (W : J → Z.Opens) (c : ∀ i i' : J, Γ(Z, W i ⊓ W i'))
 
@@ -76,14 +72,14 @@ def sfCr (U : Z.Opens) (i i' : J) (h : U ≤ W i ⊓ W i') : Γ(Z, U) := resG Z 
 
 theorem sfCr_res {U V : Z.Opens} (i i' : J) (h : U ≤ W i ⊓ W i') (h' : V ≤ U) :
     resG Z h' (sfCr W c U i i' h) = sfCr W c V i i' (h'.trans h) :=
-  sf_resG_resG _ _ _
+  _root_.GlobalTheory.Cartier.resG_resG _ _ _
 
 theorem sfCr_add (hc : IsCoc W c) (U : Z.Opens) (i i' i'' : J) (h : U ≤ W i ⊓ W i' ⊓ W i'') :
     sfCr W c U i i' (h.trans inf_le_left) +
       sfCr W c U i' i'' (h.trans (le_inf (inf_le_left.trans inf_le_right) inf_le_right)) =
       sfCr W c U i i'' (h.trans (le_inf (inf_le_left.trans inf_le_left) inf_le_right)) := by
   have e := congrArg (resG Z h) (hc i i' i'')
-  rw [map_add (f := _), sf_resG_resG, sf_resG_resG, sf_resG_resG] at e
+  rw [map_add (f := _), _root_.GlobalTheory.Cartier.resG_resG, _root_.GlobalTheory.Cartier.resG_resG, _root_.GlobalTheory.Cartier.resG_resG] at e
   exact e
 
 theorem sfCr_self (hc : IsCoc W c) (U : Z.Opens) (i : J) (h : U ≤ W i ⊓ W i) :
@@ -200,11 +196,11 @@ theorem GlobalTheory.CechFin.cocycle_of_finite_affine_subcover : ∀ (R : Type) 
   have t1 : resG Z hBP (resG Z inf_le_left (hfun i)) = -resG Z hab (g a) := by
     simp only [hfun, @dif_pos _ (Classical.propDecidable _) hi]
     rw [map_neg, map_neg]
-    exact congrArg Neg.neg ((sf_resG_resG _ _ _).trans (sf_resG_resG _ _ _))
+    exact congrArg Neg.neg ((_root_.GlobalTheory.Cartier.resG_resG _ _ _).trans (_root_.GlobalTheory.Cartier.resG_resG _ _ _))
   have t2 : resG Z hBP (resG Z inf_le_right (hfun i')) = -resG Z ha'b (g a') := by
     simp only [hfun, @dif_pos _ (Classical.propDecidable _) hi']
     rw [map_neg, map_neg]
-    exact congrArg Neg.neg ((sf_resG_resG _ _ _).trans (sf_resG_resG _ _ _))
+    exact congrArg Neg.neg ((_root_.GlobalTheory.Cartier.resG_resG _ _ _).trans (_root_.GlobalTheory.Cartier.resG_resG _ _ _))
   rw [r1, r2] at erho
   apply sf_resG_inj hBP hPB
   rw [map_add (f := _), map_sub, t1, t2]

@@ -58,17 +58,6 @@ section Global
 
 variable {E : Type} [Field E] [NumberField E] {n : ℕ}
 
-theorem exists_zsmul_mem_of_span (M : Submodule (𝓞 E) (Fin n → E))
-    (hM : Submodule.span E (M : Set (Fin n → E)) = ⊤) (x : Fin n → E) :
-    ∃ c : ℤ, c ≠ 0 ∧ c • x ∈ M := by
-  first
-  | exact @_root_.GlobalTheory.IntSmulIsIntegral.exists_int_smul_mem
-  | exact _root_.GlobalTheory.IntSmulIsIntegral.exists_int_smul_mem
-  | (apply _root_.GlobalTheory.IntSmulIsIntegral.exists_int_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntSmulIsIntegral.exists_int_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntSmulIsIntegral.exists_int_smul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.IntSmulIsIntegral.exists_int_smul_mem ..)
-
 theorem exists_zsmul_le (L M : Submodule (𝓞 E) (Fin n → E)) (hL : Module.Finite (𝓞 E) L)
     (hM : Submodule.span E (M : Set (Fin n → E)) = ⊤) :
     ∃ c : ℤ, c ≠ 0 ∧ ∀ x ∈ L, c • x ∈ M := by
@@ -80,7 +69,7 @@ theorem exists_zsmul_le (L M : Submodule (𝓞 E) (Fin n → E)) (hL : Module.Fi
     | empty => exact ⟨1, one_ne_zero, by simp⟩
     | insert a T _ ih =>
       obtain ⟨c, hc, hcT⟩ := ih
-      obtain ⟨d, hd, hda⟩ := exists_zsmul_mem_of_span M hM a
+      obtain ⟨d, hd, hda⟩ := _root_.GlobalTheory.IntSmulIsIntegral.exists_int_smul_mem M hM a
       refine ⟨d * c, mul_ne_zero hd hc, fun x hx => ?_⟩
       rcases Finset.mem_insert.mp hx with rfl | hx
       · rw [mul_comm, mul_smul]

@@ -69,18 +69,6 @@ section PseudoBasis
 variable {R K : Type} [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K]
   [IsFractionRing R K]
 
-theorem exists_smul_mem_of_mem_span_fraction {V : Type} [AddCommGroup V] [Module K V] [Module R V]
-    [IsScalarTower R K V] (Λ : Submodule R V) (v : V) (hv : v ∈ Submodule.span K (Λ : Set V)) :
-    ∃ d : R, d ≠ 0 ∧ d • v ∈ Λ := by
-  first
-  | (rename_i h_2 h_3 h_4 h_5 h_6 h_8 h_9 h_10 h_11; revert R K h_2 h_3 h_4 h_5 h_6 V h_8 h_9 h_10 h_11 Λ v hv; exact @_root_.GlobalTheory.LatticeBoundedAction.main)
-  | exact @_root_.GlobalTheory.LatticeBoundedAction.main
-  | exact _root_.GlobalTheory.LatticeBoundedAction.main
-  | (apply _root_.GlobalTheory.LatticeBoundedAction.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LatticeBoundedAction.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LatticeBoundedAction.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.LatticeBoundedAction.main ..)
-
 theorem exists_splitting_vector {V : Type} [AddCommGroup V] [Module K V] [Module R V]
     [IsScalarTower R K V] (Λ : Submodule R V) (hfg : Λ.FG)
     (hsp : Submodule.span K (Λ : Set V) = ⊤) (l : V →ₗ[K] K) (hl : l ≠ 0) :
@@ -167,7 +155,7 @@ theorem exists_pseudoCoords (n : ℕ) :
     have hsp' : Submodule.span K (Λ' : Set W) = ⊤ := by
       rw [eq_top_iff]
       intro w _
-      obtain ⟨d, hd, hdw⟩ := exists_smul_mem_of_mem_span_fraction (K := K) Λ (w : V)
+      obtain ⟨d, hd, hdw⟩ := _root_.GlobalTheory.LatticeBoundedAction.main (K := K) Λ (w : V)
         (by rw [hsp]; trivial)
       have hd1 : algebraMap R K d ≠ 0 := by simpa using hd
       have hm : algebraMap R K d • w ∈ Λ' := by

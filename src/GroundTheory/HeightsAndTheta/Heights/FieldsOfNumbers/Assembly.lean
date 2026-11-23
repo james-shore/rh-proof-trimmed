@@ -81,10 +81,9 @@ universe u
 
 theorem GradedFinite.full : GradedFinite.Statement.{u} := GradedFinite.proof
 
-theorem HilbExactDivide.full : HilbExactDivide.Statement.{u} :=
-  HilbExactDivide.proof GradedFinite.full
+alias HilbExactDivide.full := _root_.GroundTheory.Heights₂.Heights.FieldNumbers.HilbExactDivide.closed
 
-theorem PolyOfDiffs.full : PolyOfDiffs.Statement := PolyOfDiffs.proof
+alias PolyOfDiffs.full := _root_.GroundTheory.Heights₂.Heights.FieldNumbers.PolyOfDiffs.proof
 
 theorem HilbEventuallyPoly.full : HilbEventuallyPoly.Statement.{u} :=
   HilbEventuallyPoly.of_exactDivide_polyOfDiffs HilbExactDivide.full PolyOfDiffs.full
@@ -92,13 +91,13 @@ theorem HilbEventuallyPoly.full : HilbEventuallyPoly.Statement.{u} :=
 theorem PrimeFiltration.full : PrimeFiltration.Statement.{u} :=
   PrimeFiltration.proof HilbExactDivide.full
 
-theorem EventuallyPolyUnique.full : EventuallyPolyUnique.Statement := EventuallyPolyUnique.proof
+alias EventuallyPolyUnique.full := _root_.GroundTheory.Heights₂.Heights.FieldNumbers.EventuallyPolyUnique.proof
 
-theorem EventuallyPolyShift.full : EventuallyPolyShift.Statement := EventuallyPolyShift.proof
+alias EventuallyPolyShift.full := _root_.GroundTheory.Heights₂.Heights.FieldNumbers.EventuallyPolyShift.proof
 
-theorem HilbIrrelevantZero.full : HilbIrrelevantZero.Statement.{u} := HilbIrrelevantZero.proof
+alias HilbIrrelevantZero.full := _root_.GroundTheory.Heights₂.Heights.FieldNumbers.HilbIrrelevantZero.proof
 
-theorem RelevantPrimeDimGe.full : RelevantPrimeDimGe.Statement.{u} := RelevantPrimeDimGe.proof
+alias RelevantPrimeDimGe.full := _root_.GroundTheory.Heights₂.Heights.FieldNumbers.RelevantPrimeDimGe.proof
 
 theorem HilbDegreeBound.full : HilbDegreeBound.Statement.{u} :=
   HilbDegreeBound.proof HilbEventuallyPoly.full HilbExactDivide.full PolyOfDiffs.full
@@ -108,7 +107,7 @@ theorem HilbDegreeBound.full : HilbDegreeBound.Statement.{u} :=
 theorem MixedDiffConst.full : MixedDiffConst.Statement.{u} :=
   MixedDiffConst.proof HilbDegreeBound.full HilbEventuallyPoly.full
 
-theorem IntNumSymm.full : IntNumSymm.Statement := IntNumSymm.proof
+alias IntNumSymm.full := _root_.GroundTheory.Heights₂.Heights.FieldNumbers.IntNumSymm.proof
 
 theorem IntNumAdd.full : IntNumAdd.Statement.{u} := IntNumAdd.proof MixedDiffConst.full
 
@@ -128,7 +127,7 @@ theorem CutRational.full : CutRational.Statement.{u} :=
 
 theorem ExistsForm.full : ExistsForm.Statement.{u} := ExistsForm.proof
 
-theorem DivCycleSupport.full : DivCycleSupport.Statement.{u} := DivCycleSupport.proof
+alias DivCycleSupport.full := _root_.GroundTheory.Heights₂.Heights.FieldNumbers.DivCycleSupport.proof
 
 theorem IntNumUnique.full : IntNumUnique.Statement.{u} :=
   IntNumUnique.proof CutRational.full IntNumBase.full ExistsForm.full DivCycleSupport.full
@@ -140,7 +139,7 @@ theorem ProjectionFormulaDegree.of_divPushForward (h : DivPushForward.Statement.
     ProjectionFormulaDegree.Statement.{u} :=
   ProjectionFormulaDegree.proof CutRational.full IntNumBase.full ProjectionFormulaContracted.full h
 
-theorem RenameHilbFn.full : RenameHilbFn.Statement.{u} := RenameHilbFn.proof
+alias RenameHilbFn.full := _root_.GroundTheory.Heights₂.Heights.FieldNumbers.RenameHilbFn.proof
 
 theorem RenameIntNum.full : RenameIntNum.Statement.{u} := RenameIntNum.proof RenameHilbFn.full
 

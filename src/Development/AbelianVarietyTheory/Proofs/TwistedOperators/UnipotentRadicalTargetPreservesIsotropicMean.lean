@@ -52,14 +52,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.UnipMean
 
-theorem heisO_zero {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (V W : HSp D) (f : WO V W → ℂ) : heisO ψ V W 0 f = f := by
-  funext x
-  unfold heisO symplOH symplO hO
-  simp
-
-theorem symplO_zero_left {D : D7} (V W : HSp D) (z : WO V W) : symplO V W 0 z = 0 := by
-  unfold symplO hO
-  simp
+alias symplO_zero_left := _root_.GlobalTheory.SplitScalar.symplO_zero_left
 
 theorem mean_target : ∀ (D : D7) (V W : HSp D) (s : ℕ) (L : Matrix (Fin W.rank) (Fin s) D.host.E), IsIsoFrame W L → ∀ (ψ : AddChar (AF D.host.F) ℂ) (χS χT : (AE D)ˣ →* Circle) (ω : GA D V × GA D W →* Module.End ℂ (WO V W → ℂ)), IsWeilDatumO ψ V W χS χT ω → ∀ (μ : Measure (Mx D s V.rank)) (𝓐 : Set (Mx D s V.rank)), IsCovolOne (ratMx D s V.rank) μ 𝓐 → ∀ (n : NI W L) (f : WO V W → ℂ), IsThetaFunO ψ V W f → ∫ a in 𝓐, ω (1, (n : GA D W)) f (HMul.hMul (L.map (incA D)) (a : Matrix (Fin s) (Fin V.rank) (AE D)) : Matrix (Fin W.rank) (Fin V.rank) (AE D)) ∂μ = ∫ a in 𝓐, f (HMul.hMul (L.map (incA D)) (a : Matrix (Fin s) (Fin V.rank) (AE D)) : Matrix (Fin W.rank) (Fin V.rank) (AE D)) ∂μ := by
   intro D V W s L hL ψ χS χT ω hω μ 𝓐 hcov n f hf
@@ -102,7 +95,7 @@ theorem mean_target : ∀ (D : D7) (V W : HSp D) (s : ℕ) (L : Matrix (Fin W.ra
     refine ⟨c, Circle.coe_ne_zero c, ?_⟩
     intro f' hf'
     have h0 := hc f' hf' 0 (fun y => symplO_zero_left V W _)
-    simp only [heisO_zero, e1, Matrix.mul_one] at h0
+    simp only [_root_.GlobalTheory.SplitScalar.heisO_zero, e1, Matrix.mul_one] at h0
     exact h0
   have key := mean_unip hL hω hcov hsc n.2 f hf
   unfold meanL at key

@@ -98,18 +98,6 @@ theorem card_quot_span_pow {O : Type} [CommRing O] [IsDomain O] (a : O) (ha : a 
       exact Nat.card_congr (Submodule.quotientQuotientEquivQuotient _ _ hle).toEquiv
     rw [h1, h2, h3, ih, pow_succ, mul_comm]
 
-theorem exists_finset_fixed {G LL V : Type} [Group G] [Field LL] [AddCommGroup V] [Module LL V]
-    [FiniteDimensional LL V] (ρ : Representation LL G V) :
-    ∃ s : Finset G, ∀ v : V, (∀ g ∈ s, ρ g v = v) → v ∈ H0V ρ := by
-  first
-  | (rename_i h_3 h_4 h_5 h_6 h_7; revert G LL V h_3 h_4 h_5 h_6 h_7 ρ; exact @_root_.GlobalTheory.FixedFinsetInvariants.exists_finset_fixed_mem_invariants)
-  | exact @_root_.GlobalTheory.FixedFinsetInvariants.exists_finset_fixed_mem_invariants
-  | exact _root_.GlobalTheory.FixedFinsetInvariants.exists_finset_fixed_mem_invariants
-  | (apply _root_.GlobalTheory.FixedFinsetInvariants.exists_finset_fixed_mem_invariants <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FixedFinsetInvariants.exists_finset_fixed_mem_invariants <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FixedFinsetInvariants.exists_finset_fixed_mem_invariants <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.FixedFinsetInvariants.exists_finset_fixed_mem_invariants ..)
-
 theorem exists_artinRees_pow {O M P : Type} [CommRing O] [IsNoetherianRing O] [AddCommGroup M]
     [Module O M] [AddCommGroup P] [Module O P] [Module.Finite O P] (φ : M →ₗ[O] P) (a : O) :
     ∃ c : ℕ, ∀ r, c ≤ r → ∀ x : M, φ x ∈ a ^ r • (⊤ : Submodule O P) →
@@ -132,19 +120,6 @@ namespace GlobalTheory.GrowthOfInvariants
 
 open Pointwise
 
-theorem exists_smul_mem {O LL V : Type} [CommRing O] [IsDomain O] [Field LL] [Algebra O LL]
-    [IsFractionRing O LL] [AddCommGroup V] [Module LL V] [Module O V] [IsScalarTower O LL V]
-    (T : Submodule O V) (hspan : Submodule.span LL (T : Set V) = ⊤) (x : V) :
-    ∃ d : O, d ≠ 0 ∧ d • x ∈ T := by
-  first
-  | (rename_i h_3 h_4 h_5 h_6 h_7 h_8 h_9 h_10 h_11; revert O LL V h_3 h_4 h_5 h_6 h_7 h_8 h_9 h_10 h_11 T hspan x; exact @_root_.GlobalTheory.NonzeroScalarMembership.exists_ne_zero_smul_mem)
-  | exact @_root_.GlobalTheory.NonzeroScalarMembership.exists_ne_zero_smul_mem
-  | exact _root_.GlobalTheory.NonzeroScalarMembership.exists_ne_zero_smul_mem
-  | (apply _root_.GlobalTheory.NonzeroScalarMembership.exists_ne_zero_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NonzeroScalarMembership.exists_ne_zero_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NonzeroScalarMembership.exists_ne_zero_smul_mem <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.NonzeroScalarMembership.exists_ne_zero_smul_mem ..)
-
 theorem exists_basis_comap {O LL V : Type} [CommRing O] [IsDomain O] [IsPrincipalIdealRing O]
     [Field LL] [Algebra O LL] [IsFractionRing O LL] [AddCommGroup V] [Module LL V] [Module O V]
     [IsScalarTower O LL V] (T : Submodule O V) [Module.Free O T] [Module.Finite O T]
@@ -162,7 +137,7 @@ theorem exists_basis_comap {O LL V : Type} [CommRing O] [IsDomain O] [IsPrincipa
     apply le_antisymm
     · rw [Submodule.span_le]; rintro _ ⟨i, rfl⟩; exact hvW i
     · intro x hx
-      obtain ⟨d, hd, hdx⟩ := exists_smul_mem T hspan x
+      obtain ⟨d, hd, hdx⟩ := _root_.GlobalTheory.NonzeroScalarMembership.exists_ne_zero_smul_mem T hspan x
       have hdxW : d • x ∈ W := by rw [← algebraMap_smul LL]; exact W.smul_mem _ hx
       let t0 : T₀ := ⟨⟨d • x, hdx⟩, hdxW⟩
       have hmem : d • x ∈ Submodule.span O (Set.range v) := by
@@ -189,7 +164,7 @@ namespace GlobalTheory.GrowthOfInvariants
 theorem exists_fin_fixed {G LL V : Type} [Group G] [Field LL] [AddCommGroup V] [Module LL V]
     [FiniteDimensional LL V] (ρ : Representation LL G V) :
     ∃ (n : ℕ) (g : Fin n → G), ∀ v : V, (∀ i, ρ (g i) v = v) → v ∈ H0V ρ := by
-  obtain ⟨s, hs⟩ := exists_finset_fixed ρ
+  obtain ⟨s, hs⟩ := _root_.GlobalTheory.FixedFinsetInvariants.exists_finset_fixed_mem_invariants ρ
   refine ⟨s.card, fun i => (s.equivFin.symm i).1, fun v hv => hs v fun g hg => ?_⟩
   have := hv (s.equivFin ⟨g, hg⟩)
   simpa using this
@@ -357,7 +332,7 @@ namespace GlobalTheory.GrowthOfInvariants
 
 theorem growth_galois_invariants_mod_prime_power_lattice_alt : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (LL : Type) [Field LL] [Algebra ℚ_[l] LL] [TopologicalSpace LL] (O : Type) [CommRing O] [Algebra O LL], GoodO (Qp := ℚ_[l]) LL O → ∀ (A : GRep ↥(GK K) ℚ_[l] LL O) (LA : Lattice (O := O) A.ρ), ∃ C : ℕ, 0 < C ∧ ∀ (r : ℕ) (hI : StableSub LA (Ideal.span {((l : ℕ) : O) ^ r} • ⊤ : Submodule O ↥LA.T)), Nat.card (O ⧸ Ideal.span {((l : ℕ) : O)}) ^ (r * finrank LL ↥(H0V A.ρ)) ≤ Nat.card {x : ↥LA.T ⧸ (Ideal.span {((l : ℕ) : O) ^ r} • ⊤ : Submodule O ↥LA.T) // ∀ g, actQ LA _ hI g x = x} ∧ Nat.card {x : ↥LA.T ⧸ (Ideal.span {((l : ℕ) : O) ^ r} • ⊤ : Submodule O ↥LA.T) // ∀ g, actQ LA _ hI g x = x} ≤ C * Nat.card (O ⧸ Ideal.span {((l : ℕ) : O)}) ^ (r * finrank LL ↥(H0V A.ρ)) := by
   intro l _ K LL _ _ _ O _ _ hG A LA
-  obtain ⟨-, -, hfinq, -⟩ := GlobalTheory.GoodCoeff.good_coeff_integers l LL O hG
+  obtain ⟨-, -, hfinq, -⟩ := _root_.GlobalTheory.PowerImageOpen.main l LL O hG
   obtain ⟨⟨hD, hDVR, hFr⟩, -, -, -, -⟩ := hG
   haveI := hD; haveI := hDVR; haveI := hFr
   have ha0 : ((l : ℕ) : O) ≠ 0 := by

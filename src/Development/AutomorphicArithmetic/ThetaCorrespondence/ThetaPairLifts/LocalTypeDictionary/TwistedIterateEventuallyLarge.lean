@@ -75,7 +75,7 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Fl
 variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} (G : GridData L sc)
 theorem twisted_iterate_eventually_large : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.CuspAlongSmoothLifts.LiftsCuspidal → Big fun ch => IterAt ch := by
   intro hP hL
-  obtain ⟨c0, h0⟩ := Big.and (_root_.GlobalTheory.T.flipRun_cusp_transition hL hP) (Big.and (_root_.GlobalTheory.EndCusp.leadingForm_mem_cuspList hP) GlobalTheory.RowClaim.colFn_cont_left)
+  obtain ⟨c0, h0⟩ := Big.and (_root_.GlobalTheory.FlipRun.cuspStep_of_large_flipRun hL hP) (Big.and (_root_.GlobalTheory.EndCusp.leadingForm_mem_cuspList hP) GlobalTheory.RowClaim.colFn_cont_left)
   refine ⟨c0, fun ε CF hC => ?_⟩
   obtain ⟨x0, hx⟩ := h0 ε CF hC
   refine ⟨x0, fun D large₂ he hxx Γ _ _ Pl0 T A Ks _ _ _ R Fc hS ch hch hsc => ?_⟩

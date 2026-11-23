@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsSabMapOfBaseEq
 
 @[expose] public section
 
@@ -110,7 +111,7 @@ theorem isIso_spMap_inclusion {F F' : IntermediateField ℚ ℂ} (h : F = F') :
 def jKA {l l₂ : Level H} (h : l.A ∣ l₂.A) : KA l →+* KA l₂ := (IntermediateField.inclusion (KA_le h)).toRingHom
 
 theorem coe_jKA {l l₂ : Level H} (h : l.A ∣ l₂.A) (x : KA l) : ((jKA h x : KA l₂) : ℂ) = ((x : KA l) : ℂ) :=
-  IntermediateField.coe_inclusion (KA_le h) x
+  IntermediateField.coe_inclusion (_root_.GlobalTheory.levelField_le_of_dvd h) x
 
 theorem spMap_square {l l₂ : Level H} (h : l.A ∣ l₂.A) (c : Coeff l) (c₂ : Coeff l₂) (hc : c.F = c₂.F) :
     spMap (IntermediateField.inclusion c₂.le).toRingHom ≫ spMap (jKA h) =

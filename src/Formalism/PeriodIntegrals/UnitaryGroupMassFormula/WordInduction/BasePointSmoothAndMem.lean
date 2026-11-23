@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.IsAdmissibleSplittingCharPairMulTwist
 
 @[expose] public section
 
@@ -180,7 +181,7 @@ theorem core (hH : HeadLetter) (hZ : ZOnly) (hR : RulesClosed) (hX : BasePointSm
     have hq' : q.1 ∈ {τ : ℂ | (τ, q.2) ∈ Om k r j hj Dm γ} := hq
     rw [← row_congr κ pl (Y : ℂ) hV (key 0) (key 1) (e 0) hq']
     unfold row
-    rcases two_cases (e 0) with h | h <;> cases pl <;>
+    rcases _root_.Formalism.FourierDecayAlt.P.MAx3.NF.fin2 (e 0) with h | h <;> cases pl <;>
       simp only [h, if_true, Bool.false_eq_true, if_false, one_ne_zero, Complex.conj_ofReal] <;>
       (try simp only [hκ]) <;> first | exact hHL.2.2.1 | exact hHL.1 | exact hHL.2.2.2 | exact hHL.2.1
 

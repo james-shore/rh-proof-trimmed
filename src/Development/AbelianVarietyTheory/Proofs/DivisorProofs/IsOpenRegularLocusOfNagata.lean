@@ -83,7 +83,7 @@ theorem isOpen_regularLocus_of_nagata : ∀ (B : Type) [CommRing B] [IsNoetheria
     exact isRegularLocalRing_atPrime_of_le p.asIdeal q.asIdeal hpq hq
   · intro p hp
     obtain ⟨g₁, hg₁p, hg₁⟩ := hyp p.asIdeal
-    obtain ⟨g₂, hg₂p, hg₂⟩ := GlobalTheory.T.exists_regular_near_of_regular_quotient_prime B p.asIdeal hp
+    obtain ⟨g₂, hg₂p, hg₂⟩ := _root_.GlobalTheory.RegularAscent.exists_regular_near_of_regular_quotient B p.asIdeal hp
     refine ⟨g₁ * g₂, fun h => (p.isPrime.mem_or_mem h).elim hg₁p hg₂p, ?_⟩
     intro q hpq hq
     have hq₁ : g₁ ∉ q.asIdeal := fun h => hq (q.asIdeal.mul_mem_right _ h)

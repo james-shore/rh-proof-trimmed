@@ -113,10 +113,6 @@ theorem arNum_rename' {σ' : Type} (e : σ' → σ) (H : MvPolynomial σ' ℝ) :
 
 end Lin
 
-theorem exists_perm_of_ofFn_perm' {α : Type} {n : ℕ} (v w : Fin n → α)
-    (h : (List.ofFn v).Perm (List.ofFn w)) : ∃ s : Equiv.Perm (Fin n), v = w ∘ s :=
-  _root_.UpperTheory.Reformulated.B.Yde7.main v w h
-
 theorem arList_eq_of_perm {K : Type} [Fintype K] [DecidableEq K] {ι : K → Type} [∀ k, Fintype (ι k)]
     {P : Ideal (MRing ι ℤ)} {D : ℕ} (hP : IsArithVar P (D + 1))
     {I : Ideal (MRing ι ℤ) → (n : ℕ) → (Fin n → HermLine ι) → ℝ} (hI : IsIntersectionFamily I)
@@ -127,7 +123,7 @@ theorem arList_eq_of_perm {K : Type} [Fintype K] [DecidableEq K] {ι : K → Typ
     intro m v h
     have hm : m = D + 1 := by simpa using h.length_eq
     subst hm
-    obtain ⟨s, rfl⟩ := exists_perm_of_ofFn_perm' v L h
+    obtain ⟨s, rfl⟩ := _root_.UpperTheory.Reformulated.B.Yde7.main v L h
     exact hI.1 P _ L s hP hL
   refine key l.length l.get ?_
   rwa [List.ofFn_get]

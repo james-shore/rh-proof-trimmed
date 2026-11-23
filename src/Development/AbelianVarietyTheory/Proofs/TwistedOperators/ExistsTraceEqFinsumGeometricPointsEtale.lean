@@ -83,16 +83,6 @@ namespace GlobalTheory.EtaleTraceGeom
 
 open TensorProduct
 
-theorem exists_eq_eval {K : Type} [Field K] {P : Type} [Fintype P] [DecidableEq P]
-    (θ : (P → K) →ₐ[K] K) : ∃ p : P, ∀ z : P → K, θ z = z p := by
-  first
-  | exact @_root_.GlobalTheory.AlgHomEqEval.algHom_eq_eval
-  | exact _root_.GlobalTheory.AlgHomEqEval.algHom_eq_eval
-  | (apply _root_.GlobalTheory.AlgHomEqEval.algHom_eq_eval <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AlgHomEqEval.algHom_eq_eval <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AlgHomEqEval.algHom_eq_eval <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.AlgHomEqEval.algHom_eq_eval ..)
-
 theorem trace_pi_self {K : Type} [Field K] {P : Type} [Fintype P] [DecidableEq P] (z : P → K) :
     Algebra.trace K (P → K) z = ∑ p, z p := by
   let b := Pi.basisFun K P
@@ -154,7 +144,7 @@ theorem exists_trace_eq_finsum : ∀ (R B : Type) [CommRing R] [CommRing B] [Alg
     rintro ⟨χ, hχ⟩
     let χ' : B →ₐ[R] Ω := { χ with commutes' := fun r => RingHom.congr_fun hχ r }
     let ψ : Ω ⊗[R] B →ₐ[Ω] Ω := AlgHom.liftEquiv R Ω B Ω χ'
-    obtain ⟨p, hp⟩ := exists_eq_eval (ψ.comp e.symm.toAlgHom)
+    obtain ⟨p, hp⟩ := _root_.GlobalTheory.AlgHomEqEval.algHom_eq_eval (ψ.comp e.symm.toAlgHom)
     refine ⟨p, Subtype.ext (RingHom.ext fun y => ?_)⟩
     rw [hF, ← hp (e (1 ⊗ₜ y))]
     simp [ψ, χ']

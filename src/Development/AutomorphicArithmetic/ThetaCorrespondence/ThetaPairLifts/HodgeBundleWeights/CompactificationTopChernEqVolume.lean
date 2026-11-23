@@ -70,7 +70,7 @@ theorem equal_volume_of_compactification : _root_.GlobalTheory.CovTop.PublishedH
   obtain ⟨M, hs, hb, hk, hc⟩ := hKS.exists_model_charts hS hr Y.d.Xo₂ Y.d.c₂
   obtain ⟨TF, hTF⟩ := GlobalTheory.CompProport.exists_torFlag_charts hr M hs hb hk hc
   have hσ : GoodEmb Y.d.c₂ Y.d.c₂.F.val.toRingHom := rfl
-  obtain ⟨-, q, -, hv⟩ := _root_.GlobalTheory.CompProport.invariant_volume_eq_covolume (_root_.GlobalTheory.T.covering_topology_refinement hP2) hP2.q7 hSA hY hf TF hTF hσ
+  obtain ⟨-, q, -, hv⟩ := _root_.GlobalTheory.CompProport.invariant_volume_eq_covolume (_root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems.toClassicalTheorems hP2) hP2.q7 hSA hY hf TF hTF hσ
   have hg0 : ∀ p : ℕ, p.Prime → T.Q.l.GoodAt p :=
     Formalism.L2.Pj.goodAt_of_two_primes hT.pins.2.1.1 (D.host.g_prime 0) (D.host.g_prime 1) D.host.g_ne
   have hg : ∀ p : ℕ, p.Prime → Y.d.l₂.GoodAt p := GlobalTheory.LawsDeep.goodAt_of_mul _ _ _ hY.lev.1.2.1 hg0

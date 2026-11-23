@@ -77,9 +77,6 @@ private lemma count_coeIdeal_eq_zero_of_not_le (v : HeightOneSpectrum (𝓞 F)) 
   have hne' : (Associates.mk v.asIdeal).count (Associates.mk J).factors ≠ 0 := by exact_mod_cast hne
   exact h (Ideal.dvd_iff_le.mp ((Associates.count_ne_zero_iff_dvd hJ v.irreducible).mp hne'))
 
-lemma count_coeIdeal_eq_zero (v : HeightOneSpectrum (𝓞 F)) {J : Ideal (𝓞 F)} (h : ¬ J ≤ v.asIdeal) :
-    FractionalIdeal.count F v (J : FractionalIdeal (𝓞 F)⁰ F) = 0 := count_coeIdeal_eq_zero_of_not_le v h
-
 lemma not_le_of_count_eq_zero (v : HeightOneSpectrum (𝓞 F)) {J : Ideal (𝓞 F)} (hJ : J ≠ ⊥)
     (h : FractionalIdeal.count F v (J : FractionalIdeal (𝓞 F)⁰ F) = 0) : ¬ J ≤ v.asIdeal := by
   intro hle
@@ -311,7 +308,7 @@ theorem local_generator_base_change : LocGenBaseChange := by
   have h2 := congrArg (FractionalIdeal.count K1 p1) h1
   rw [FractionalIdeal.count_mul K1 p1 (by rw [eq_bcI hB]; exact bcI_ne_zero hI) (hne B hB'),
     FractionalIdeal.count_mul K1 p1 (spanSingleton_ne_zero' hc1) (hne A hA),
-    count_coeIdeal_eq_zero p1 (hmap A hA), count_coeIdeal_eq_zero p1 (hmap B hB')] at h2
+    _root_.Formalism.L2.LamCM.count_coeIdeal_eq_zero_of_not_le p1 (hmap A hA), _root_.Formalism.L2.LamCM.count_coeIdeal_eq_zero_of_not_le p1 (hmap B hB')] at h2
   exact ⟨hc1, by omega⟩
 
 end Formalism.L2.LamCM

@@ -103,11 +103,11 @@ theorem mapped_props (l : ℕ) [Fact l.Prime] (ι : Qbar l ≃+* ℂ) {Γ : Type
     rfl
   refine ⟨GlobalTheory.TraceSemisimple.isSSRep_mapRep _ _ _ iq a _ hss, ?_, ?_, ?_⟩
   · simp only [hcoe]
-    exact hr.matrix_map (GlobalTheory.T.continuous_ringHom_finite_dvr_to_padicAlgClosure l O hadic iq hiq)
+    exact hr.matrix_map (_root_.GlobalTheory.AdicCont.continuous_adic l O hadic iq hiq)
   · intro σ hσ
     rw [hcoe, Matrix.charpoly_map, Polynomial.map_map]
     exact hp σ hσ
-  · obtain ⟨T, hT⟩ := GlobalTheory.T.exists_finset_image_mem_subring l O iq hiq
+  · obtain ⟨T, hT⟩ := _root_.GlobalTheory.image_finite_mem_subring l O iq hiq
     refine ⟨T, fun R hR hTR g i j => ?_⟩
     rw [hcoe]
     exact hT R hR hTR _
@@ -129,7 +129,7 @@ theorem exists_splitting_set : ∀ (l : ℕ) [Fact l.Prime] (ι : Qbar l ≃+* �
     exact hex ⟨_, T, h1, h2, h3, h4⟩
   obtain ⟨ρ₀, T, hss₀, hc₀, hp₀, hT⟩ := hex
   obtain ⟨n, Vs, hint, hirr⟩ := GlobalTheory.semisimple_matrix_rep_decomp ρ₀ hss₀
-  choose b E D σ₀ hDE hran hσ₀ using fun j => GlobalTheory.T.exists_leftInverse_restrict_stable_submodule_matrixRep ρ₀ (Vs j) (hirr j).2.1
+  choose b E D σ₀ hDE hran hσ₀ using fun j => _root_.GlobalTheory.StableSubMat.exists_restrict ρ₀ (Vs j) (hirr j).2.1
   let T' : Finset (Qbar l) := T ∪ Finset.univ.biUnion (fun j : Fin n =>
     Finset.univ.image (fun ij : Fin a × Fin (b j) => E j ij.1 ij.2) ∪
       Finset.univ.image (fun ij : Fin (b j) × Fin a => D j ij.1 ij.2))

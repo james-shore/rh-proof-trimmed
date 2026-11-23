@@ -60,9 +60,7 @@ theorem finrank_orth_add (U : Submodule E S.V) :
     finrank E (orth S U) + finrank E U = finrank E S.V := by
   apply Formalism.MainNotions.BridgeLemma₂.finrank_orth_add_finrank <;> assumption
 
-theorem exists_smul_mem (Λ : Submodule (𝓞 E) S.V) (hΛ : Submodule.IsFullLattice E Λ) (x : S.V) :
-    ∃ a : 𝓞 E, a ≠ 0 ∧ a • x ∈ Λ :=
-  Bl.general_b_fact_third''''.goal1 S Λ hΛ x
+alias exists_smul_mem := _root_.Bl.general_b_fact_third''''.goal1
 
 theorem span_inf_toO (Λ : Submodule (𝓞 E) S.V) (hΛ : Submodule.IsFullLattice E Λ) (U : Submodule E S.V) :
     Submodule.span E ((Λ ⊓ toO S U : Submodule (𝓞 E) S.V) : Set S.V) = U := by

@@ -61,7 +61,7 @@ theorem exists_sub_tower {B : ℕ → Type} [∀ n, AddCommGroup (B n)] (r : ∀
 theorem nonempty_dat (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj A] (p : ℕ) (G : PDivGroup p R)
     (t : G.TorsionTower A) (c : primDR A) : Nonempty (Dat t c) := by
   obtain ⟨f, hf⟩ := CatCoh.H1.mk_surjective _ c.1
-  obtain ⟨g, hg⟩ := GlobalTheory.T.exists_additiveStructure_of_primitiveDeRhamClass R A f (by rw [hf]; exact c.2)
+  obtain ⟨g, hg⟩ := _root_.GlobalTheory.PtExt.exists_isAdd_of_mem_primDR R A f (by rw [hf]; exact c.2)
   obtain ⟨h, hh⟩ := exists_sub_tower (B := fun n ↦ G.A n) (fun n ↦ G.res n) (fun n ↦ G.res_surjective n)
     (fun n ↦ fv f (G.A (n + 1)) (G.A n) (G.res n : G.A (n + 1) →ₐ[R] G.A n) (t.y (n + 1)))
   exact ⟨⟨f, hf, g, hg, h, hh⟩⟩

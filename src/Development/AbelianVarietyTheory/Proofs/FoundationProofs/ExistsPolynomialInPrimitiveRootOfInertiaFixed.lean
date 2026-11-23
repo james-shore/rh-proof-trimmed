@@ -62,7 +62,7 @@ theorem GlobalTheory.ZetaPoly.exists_poly : ∀ (l : ℕ) [Fact l.Prime] (Ω : T
     split_ifs
     · exact ⟨hu, fun s hs => hfix s hs (map_one s)⟩
     · exact ⟨A.zero_mem, fun s _ => map_zero s⟩
-  obtain ⟨P, hPfix, hPev⟩ := GlobalTheory.T.exists_polynomial_eval_eq_of_inertia_fixed Ω A ζ u hfix
+  obtain ⟨P, hPfix, hPev⟩ := _root_.GlobalTheory.exists_polynomial_inertia_fixed_eval_eq Ω A ζ u hfix
   set N := (l ^ n).totient with hN
   have hlpos : 0 < l ^ n := pow_pos (Fact.out : l.Prime).pos n
   have hNpos : 0 < N := Nat.totient_pos.2 hlpos
@@ -95,9 +95,9 @@ theorem GlobalTheory.ZetaPoly.exists_poly : ∀ (l : ℕ) [Fact l.Prime] (Ω : T
     simpa using this
   have hl0 : (l : Ω) ≠ 0 := Nat.cast_ne_zero.2 (Fact.out : l.Prime).ne_zero
   have hcA : ∀ i < N, T.coeff i ∈ A := by
-    refine GlobalTheory.T.coeff_mem_of_sum_mul_pow_mem_of_valuation_zpow Ω A N (ζ - 1) (l : Ω) (fun i => T.coeff i) hNpos hl0 hl1
-      (GlobalTheory.T.valuationSubring_primitiveRoot_sub_one_pow_totient_ratAlg l Ω A n ζ hn hζ) (fun i _ hc => ?_) (hsum ▸ hu)
-    refine GlobalTheory.T.inertiaFixed_valuation_eq_zpow_prime_ratAlgClosure l Ω A ⟨v, hv, hlv⟩ _ hc (fun s hs => ?_)
+    refine _root_.GlobalTheory.mem_of_sum_mul_pow_mem_of_valuation_zpow Ω A N (ζ - 1) (l : Ω) (fun i => T.coeff i) hNpos hl0 hl1
+      (_root_.GlobalTheory.valuation_zeta_sub_one_pow_totient l Ω A n ζ hn hζ) (fun i _ hc => ?_) (hsum ▸ hu)
+    refine _root_.GlobalTheory.InertiaFixedValue.valuation_eq_zpow_of_ine_fixed l Ω A ⟨v, hv, hlv⟩ _ hc (fun s hs => ?_)
     have := congrArg (fun p => _root_.AddMonoidAlgebra.coeff (M := ℕ) p i) (hTmap s hs)
     simpa [Polynomial.coeff_map] using this
   have hcA' : ∀ i, T.coeff i ∈ A := fun i => by

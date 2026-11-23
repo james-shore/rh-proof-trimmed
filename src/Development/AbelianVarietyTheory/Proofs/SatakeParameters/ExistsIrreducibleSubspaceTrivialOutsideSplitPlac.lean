@@ -345,7 +345,7 @@ theorem GlobalTheory.exists_irreducible_sub_trivOutside_split : ∀ (L : Type) [
       show NG.rt L n κ (NG.rt L n k (v : GAf L n → ℂ)) = NG.rt L n k (v : GAf L n → ℂ)
       have hfx : NG.rt L n (k⁻¹ * κ * k) (v : GAf L n → ℂ) = v := hv.1.2 _ (cong_conj hkU hκ)
       rw [← rt_mul, e, rt_mul, hfx]
-    obtain ⟨u, huE, hu⟩ := GlobalTheory.SmoothRiesz.exists_mem_eq_on_of_finiteDimensional Bf hBfpos (Bf ⟨f, hfS⟩) E
+    obtain ⟨u, huE, hu⟩ := _root_.GlobalTheory.ExistsRepresentation.exists_represent Bf hBfpos (Bf ⟨f, hfS⟩) E
     have hfixH : ∀ k, NG.Cong L n N k → TrivOutside {s.v} k → NG.rt L n k (u : GAf L n → ℂ) = u := by
       intro k hkC hkT
       let u' : π.S := ⟨NG.rt L n k u, π.stable k u u.2⟩

@@ -105,16 +105,6 @@ theorem exists_sec_pull {X Y Y' : Scheme.{0}} {N : LB X} (hN : N.IsLB) {a : Y �
     (LBIso.chartPull (chartPullSame N _ _ _ u fun _ => hu.symm) (Geo.Tor.chartPullPull _ u u rfl)
       ⟨_, CubePf.idIsoL_isGen (pull_isLB hN a)⟩) hs
 
-theorem lbIso_pw {Y : Scheme.{0}} {A B : LB Y} (h : LBIso A B) (t : ℤ) :
-    LBIso (AbLaw.pw A t) (AbLaw.pw B t) := by
-  obtain ⟨w, hw⟩ := h
-  refine ⟨⟨fun p => w.s p ^ t⟩, fun p q => ?_⟩
-  have e := congrArg (· ^ t) (hw p q)
-  simp only [mul_zpow, ← map_zpow] at e
-  refine e.trans (congrArg₂ (· * ·) ?_ rfl)
-  exact (mul_zpow _ _ t).trans (congrArg₂ (· * ·) (map_zpow _ _ t).symm
-    ((inv_zpow _ t).trans (congrArg (·⁻¹) (map_zpow _ _ t).symm)))
-
 theorem isIso_spMap {R R' : Type} [CommRing R] [CommRing R'] (e : R ≃+* R') : IsIso (spMap e.toRingHom) :=
   inferInstanceAs (IsIso (Spec.map e.toCommRingCatIso.hom))
 
@@ -161,7 +151,7 @@ theorem relAmple_special_fibre : Laws → Laws2 → ∀ (V K : Type) [CommRing V
     refine exists_sec_ne_zero (𝟙 _) (isLB_pw P.isLB d) (pull_isLB hN φ) ?_ h₀
     refine LBIso.chartPull (chartPullId _) (Geo.Tor.chartPullPull _ (𝟙 _) (𝟙 _) rfl) ?_
     rw [AmpleCrit.pull_pw_eq]
-    exact lbIso_pw hiso.symm d
+    exact _root_.GlobalTheory.UU.TorsionCount.lbIso_pw hiso.symm d
   have h₂ : ∃ s : LB.Sec ((AbLaw.pw M.L.L d).pull (pullback.fst B.hom (jK V))), ∃ j, s.f j ≠ 0 := by
     let e : K ≃+* FractionRing V := (FractionRing.algEquiv V K).symm.toRingEquiv
     have := isIso_spMap e

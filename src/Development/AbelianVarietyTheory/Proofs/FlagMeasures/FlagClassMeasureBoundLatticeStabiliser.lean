@@ -93,12 +93,12 @@ theorem covol_le {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G
     (hA : ∀ γ ∈ Γ, ∀ g ∈ A, γ * g ∈ A) (hAZ : ∀ u ∈ N, ∀ m ∈ M, ∀ k ∈ K, u * m * k ∈ A → m ∈ Z)
     (hw : ∀ m ∈ M, m ∈ Z → t * δ m ≤ w m) (hcN : covol ΓN μN N ≤ R * t) :
     C * covol Γ μ A ≤ c * R * covol ΓM (μM.withDensity w) M := by
-  obtain ⟨σ, hσ, hσ1, hσ2⟩ := GlobalTheory.T.exists_measurable_coset_section' G (K ⊓ M) (by rw [Subgroup.coe_inf]; exact hK.inter hM)
+  obtain ⟨σ, hσ, hσ1, hσ2⟩ := _root_.GlobalTheory.exists_measurable_coset_section G (K ⊓ M) (by rw [Subgroup.coe_inf]; exact hK.inter hM)
   have hκ : ∀ k, k * (σ k)⁻¹ ∈ K ⊓ M := fun k => by simpa using (K ⊓ M).inv_mem (hσ1 k)
   have key : ∀ DN DM : Set G, MeasurableSet DN → MeasurableSet DM → (∀ x ∈ (N : Set G), ∃ γ ∈ ΓN, γ * x ∈ DN) →
       (∀ x ∈ (M : Set G), ∃ γ ∈ ΓM, γ * x ∈ DM) → C * covol Γ μ A ≤ c * (μN DN * ∫⁻ m in DM ∩ Z, δ m ∂μM) := by
     intro DN DM hDN hDM cN cM
-    obtain ⟨D, hD, hiff⟩ := GlobalTheory.T.measurableSet_iwasawa_slice_of_transversal G N M K σ hN.measurableSet hM.measurableSet hK.measurableSet hσ hσ1 hσ2
+    obtain ⟨D, hD, hiff⟩ := _root_.GlobalTheory.exists_measurableSet_slice_of_transversal G N M K σ hN.measurableSet hM.measurableSet hK.measurableSet hσ hσ1 hσ2
       hnorm huniq DN (DM ∩ Z) hDN (hDM.inter hZ)
     have hcov : ∀ x ∈ A, ∃ γ ∈ Γ, γ * x ∈ D := by
       intro x hx
@@ -241,8 +241,8 @@ theorem bound : ∀ (I I₀ : AutInst) (e : I₀.E ≃+* I.E) (xf : I.Gf) (a : �
   choose μM hσM hμM using fun v => (hex v).2.1
   choose μK hK0 hK1 hKl using fun v => (hex v).2.2
   haveI : ∀ v, IsProbabilityMeasure (μK v) := fun v => ⟨hK1 v⟩
-  have hgN := fun v => GlobalTheory.T.isotropicFlagUnipotentRadical_closed_subgroup_keeps I.n (I.ε v) a j _ (hiso v)
-  have hgM := fun v => GlobalTheory.T.isotropicFlagLevi_maxCompact_closed_subgroups I.n (I.ε v) a (flagAt I S v)
+  have hgN := fun v => _root_.GlobalTheory.FlagMeas.UnipRad.flagN_subgroup_closed_keeps I.n (I.ε v) a j _ (hiso v)
+  have hgM := fun v => _root_.GlobalTheory.FlagLeviGroup.levi_compact_subgroups I.n (I.ε v) a (flagAt I S v)
   choose N hN using fun v => (hgN v).1
   choose M hM using fun v => (hgM v).1
   choose K hK using fun v => (hgM v).2.2.1

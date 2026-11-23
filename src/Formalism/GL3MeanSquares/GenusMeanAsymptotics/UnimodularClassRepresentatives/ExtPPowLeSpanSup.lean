@@ -47,6 +47,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 public import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
+import Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.ExistsSqAbsNormOfInert
 
 @[expose] public section
 
@@ -180,14 +181,9 @@ private theorem coe_iota_eq_algebraMap_coe (a : 𝓞 F) : ((ι a : 𝓞 K) : K) 
   | exact (IsScalarTower.algebraMap_apply (𝓞 F) (𝓞 K) K a).symm.trans
       (IsScalarTower.algebraMap_apply (𝓞 F) F K a)
 
-private theorem coe_conjO_eq_star_coe (z : 𝓞 K) : ((conjO K z : 𝓞 K) : K) = star (z : K) := by
-  first
-  | rfl
-  | (unfold conjO; rfl)
-
 theorem conjO_map (hF : IsFixF K F) (a : 𝓞 F) : conjO K (ι a) = ι a := by
   apply RingOfIntegers.ext
-  rw [coe_conjO_eq_star_coe, coe_iota_eq_algebraMap_coe]
+  rw [_root_.Formalism.HermitianLattices.Ext.L3.conjO_coe, coe_iota_eq_algebraMap_coe]
   exact (hF _).mpr ⟨_, rfl⟩
 
 theorem conjO_mem_pow (hF : IsFixF K F) (𝔭 : Ideal (𝓞 F)) (k : ℕ) :
@@ -270,7 +266,7 @@ private theorem exists_iota_eq_of_star_coe_eq (hF : IsFixF K F) (w : 𝓞 K) (hw
 theorem exists_tr (hF : IsFixF K F) (z : 𝓞 K) : ∃ a : 𝓞 F, ι a = z + conjO K z := by
   apply exists_iota_eq_of_star_coe_eq hF
   have e : ((z + conjO K z : 𝓞 K) : K) = (z : K) + star (z : K) := by
-    rw [← coe_conjO_eq_star_coe]
+    rw [← _root_.Formalism.HermitianLattices.Ext.L3.conjO_coe]
     rfl
   rw [e, star_add, star_star, add_comm]
 
@@ -321,12 +317,12 @@ theorem exists_theta (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF : 
   obtain ⟨θ, t, ht, hθt⟩ := hK.2.2 P hPmax
   have htc : t = conjO K θ := by
     apply RingOfIntegers.ext
-    rw [coe_conjO_eq_star_coe]
+    rw [_root_.Formalism.HermitianLattices.Ext.L3.conjO_coe]
     exact ht
   subst htc
   refine ⟨θ, ?_⟩
   have hδc : ((θ - conjO K θ : 𝓞 K) : K) = (θ : K) - star (θ : K) := by
-    rw [← coe_conjO_eq_star_coe]
+    rw [← _root_.Formalism.HermitianLattices.Ext.L3.conjO_coe]
     rfl
   have hfix : star (((θ - conjO K θ) * (θ - conjO K θ) : 𝓞 K) : K) =
       (((θ - conjO K θ) * (θ - conjO K θ) : 𝓞 K) : K) := by

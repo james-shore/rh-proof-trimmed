@@ -118,7 +118,7 @@ theorem NDl_coords (i : ZMod n) (hmod : Formalism.MainNotions.DeltaInvariantLatt
   obtain ⟨d, b, hb⟩ := Formalism.MainNotions.UnusedSlot80.Relay2.frame_exists W T i hmod
   have hbN : ∀ k, b k ∈ W.N T := fun k => (hb.1 k).1.1
   have hbl : ∀ k, (letE i : LetA O n) • b k = b k := fun k =>
-    Formalism.MainNotions.UnusedSlot80.ArcF.letter_of_Nl W T i (hb.1 k).2
+    _root_.Formalism.MainNotions.LiftingTheory.frame_letE_fix W T i (hb.1 k).2
   refine ⟨d, b, fun k => ⟨hbN k, hbl k, (hb.1 k).1.2⟩, fun y hy => ?_⟩
   have hy' : y ∈ W.N T ∧ Formalism.MainNotions.CrystallineLiftingInputs.DL W T i y := hy
   have hyi : Formalism.MainNotions.LiftingTheory.InNΔi W T i y :=

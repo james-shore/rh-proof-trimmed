@@ -360,7 +360,7 @@ theorem satBasisV_holds :
     intro i
     have hwi : w i ∈ Submodule.span E (Λ : Set V) := by
       rw [hΛ.span_eq_top]; exact Submodule.mem_top
-    obtain ⟨d, hd0, hdΛ⟩ := exists_smul_mem_of_mem_span hwi
+    obtain ⟨d, hd0, hdΛ⟩ := _root_.Bl.SecondBlockLemmaE.goal1 hwi
     exact ⟨d, hd0, hdΛ, Submodule.smul_of_tower_mem _ d (Submodule.subset_span ⟨i, rfl⟩)⟩
   obtain ⟨e, c, hc, hMe⟩ := adapted_basis n w hw _ hMfg inf_le_right hd a ha
   have hinj := IsFractionRing.injective (𝓞 E) E

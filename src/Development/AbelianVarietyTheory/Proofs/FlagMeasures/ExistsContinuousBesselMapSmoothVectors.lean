@@ -58,17 +58,9 @@ namespace GlobalTheory.SgInf.BesselExt
 
 variable {k r : ℕ}
 
-theorem one_memG : (1 : Mat k r) ∈ GG k r := by
-  show (1 : Mat k r)ᴴ * Hpk k r * 1 = Hpk k r
-  simp
+alias one_memG := _root_.GlobalTheory.SgInfDD.gg_one
 
-theorem mul_memG {x y : Mat k r} (hx : x ∈ GG k r) (hy : y ∈ GG k r) : x * y ∈ GG k r := by
-  show (x * y)ᴴ * Hpk k r * (x * y) = Hpk k r
-  have hx' : xᴴ * Hpk k r * x = Hpk k r := hx
-  have hy' : yᴴ * Hpk k r * y = Hpk k r := hy
-  calc (x * y)ᴴ * Hpk k r * (x * y) = yᴴ * (xᴴ * Hpk k r * x) * y := by
-        rw [Matrix.conjTranspose_mul]; simp only [Matrix.mul_assoc]
-    _ = Hpk k r := by rw [hx', hy']
+alias mul_memG := _root_.GlobalTheory.SgInfDD.gg_mul
 
 section Sm
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
@@ -141,13 +133,13 @@ theorem GlobalTheory.SgInf.exists_besselExt : ∀ (k r : ℕ) {H : Type} [Normed
   refine ⟨fun u => F u 1, ⟨?_, ?_, ?_, ?_⟩, ?_⟩
   · intro u hu u' hu'
     have hs := smooth_add hu hu'
-    refine GlobalTheory.T.besselModel_eqOn_of_continuousOn_ae_eq k r μG (F (u + u')) (fun x => F u x + F u' x) hHaar (hF _ hs).1
+    refine _root_.GlobalTheory.SgInf.AeqCont.eqOn_of_ae k r μG (F (u + u')) (fun x => F u x + F u' x) hHaar (hF _ hs).1
       ((hF u hu).1.add (hF u' hu').1) ?_ 1 one_memG
     filter_upwards [(hF _ hs).2.1, hadd u u', (hF u hu).2.1, (hF u' hu').2.1] with x h1 h2 h3 h4
     rw [h1, h2, h3, h4]
   · intro b u hu
     have hs := smooth_smul b hu
-    refine GlobalTheory.T.besselModel_eqOn_of_continuousOn_ae_eq k r μG (F (b • u)) (fun x => b • F u x) hHaar (hF _ hs).1
+    refine _root_.GlobalTheory.SgInf.AeqCont.eqOn_of_ae k r μG (F (b • u)) (fun x => b • F u x) hHaar (hF _ hs).1
       ((hF u hu).1.const_smul b) ?_ 1 one_memG
     filter_upwards [(hF _ hs).2.1, hsmul b u, (hF u hu).2.1] with x h1 h2 h3
     rw [h1, h2, h3]
@@ -159,14 +151,14 @@ theorem GlobalTheory.SgInf.exists_besselExt : ∀ (k r : ℕ) {H : Type} [Normed
     have hsu : IsSmoothVec σ (σ (h * m) u) := ((hDDi.2.2.2.1 u hu).1 _ htG)
 
     have h1 : ∀ x ∈ GG k r, F (σ (h * m) u) x = F u (x * (h * m)) := by
-      refine GlobalTheory.T.besselModel_eqOn_of_continuousOn_ae_eq k r μG _ _ hHaar (hF _ hsu).1 ?_ ?_
+      refine _root_.GlobalTheory.SgInf.AeqCont.eqOn_of_ae k r μG _ _ hHaar (hF _ hsu).1 ?_ ?_
       · exact (hF u hu).1.comp ((continuous_id.mul continuous_const).continuousOn)
           (fun x hx => mul_memG hx htG)
       · filter_upwards [(hF _ hsu).2.1, hR _ htG u, ae_rtrans hUni htG (hF u hu).2.1] with x h1 h2 h3
         rw [h1, h2, h3]
 
     have h2 : ∀ x ∈ GG k r, F u ((h * m) * x) = PiS (psiGen k r z c) π (h * m) (F u x) := by
-      refine GlobalTheory.T.besselModel_eqOn_of_continuousOn_ae_eq k r μG (fun x => F u ((h * m) * x)) (fun x => PiS (psiGen k r z c) π (h * m) (F u x))
+      refine _root_.GlobalTheory.SgInf.AeqCont.eqOn_of_ae k r μG (fun x => F u ((h * m) * x)) (fun x => PiS (psiGen k r z c) π (h * m) (F u x))
         hHaar ?_ ?_ ?_
       · exact (hF u hu).1.comp ((continuous_const.mul continuous_id).continuousOn)
           (fun x hx => mul_memG htG hx)
@@ -182,7 +174,7 @@ theorem GlobalTheory.SgInf.exists_besselExt : ∀ (k r : ℕ) {H : Type} [Normed
     have hcont : ContinuousOn (Afun (psiGen k r z c) π μS σ u v ξ) (GG k r) := by
       have hD1 := GlobalTheory.T.besselForm_converges_equivariant_hermitian k r σ w a μG d z c π μS hStd hSide (DD σ w) hDDi.1 hStd.2.2.2.2.2.2.2.1 u hu v hv
       exact (ContinuousLinearMap.apply ℂ Wp ξ).continuous.comp_continuousOn hD1.2.2.2
-    have := GlobalTheory.T.besselModel_eqOn_of_continuousOn_ae_eq k r μG (F u) _ hHaar (hF u hsu).1 hcont
+    have := _root_.GlobalTheory.SgInf.AeqCont.eqOn_of_ae k r μG (F u) _ hHaar (hF u hsu).1 hcont
       (by rw [← hTD u hu]; exact (hF u hsu).2.1) 1 one_memG
     show F u 1 = _
     rw [this]

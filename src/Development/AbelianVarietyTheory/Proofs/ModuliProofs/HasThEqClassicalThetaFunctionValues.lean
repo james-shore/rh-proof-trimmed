@@ -94,7 +94,7 @@ theorem isThetaPtOver (hL : Out.Laws) (hL2 : Out.Laws2) (hT : ThetaUnifAV) (P : 
     Out.IsThetaPtOver P N x (fun i => constFn T.hom ⊤
       (χ (l i) * Complex.exp (-(Real.pi / 2 / (N : ℂ) ^ 2) * hermForm Hm (l i) (l i)) *
         θ ((N : ℂ)⁻¹ • (l i : Fin P.g → ℂ)))) := by
-  have hC := GlobalTheory.Moduli.cube_of_isLB
+  have hC := _root_.GlobalTheory.AbLaw.CubeAssembly.cube_gen
   obtain ⟨th, hgen, hth⟩ := GlobalTheory.exists_isGenSec_of_isThetaFn hL hL2 hC hT P u Hm χ θ T p hAH hθ h0
   obtain ⟨s1, α, c, hc, hα, htw, hs1⟩ := GlobalTheory.exists_twistPull_mul_fn hL hL2 hC hT P u Hm χ N θ T p th hAH hN hth
   obtain ⟨τ, hτ, hval⟩ := GlobalTheory.OriginValue.exists_gen_isValueAt_origin P u ((N : ℤ) ^ 2) T p
@@ -135,8 +135,7 @@ theorem exists_symLift (hL : Out.Laws) (P : Out.PolAV (Sp ℂ)) (n : ℕ) (k : �
     exact hV
   exact ⟨U, hU⟩
 
-theorem ex_zero {A : Over (Sp ℂ)} [GrpObj A] {L : LB A.left} {g : ℕ} (u : HolUnif A L g) :
-    u.ex 0 = 1 := (u.ker 0).2 u.Λ.zero_mem
+alias ex_zero := _root_.GlobalTheory.TangentOrigin.ex_zero
 
 theorem ex_nsmul {A : Over (Sp ℂ)} [GrpObj A] {L : LB A.left} {g : ℕ} (u : HolUnif A L g)
     (z : Fin g → ℂ) (n : ℕ) : u.ex (n • z) = u.ex z ^ n := by

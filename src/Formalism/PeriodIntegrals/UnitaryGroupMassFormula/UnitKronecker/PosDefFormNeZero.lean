@@ -60,13 +60,9 @@ theorem posDef_form_ne_zero {k : ℕ} {H : Matrix (Fin k) (Fin k) ℂ} (hH : H.P
     (hv : v ≠ 0) : star v ⬝ᵥ (H *ᵥ v) ≠ 0 :=
   ((Matrix.posDef_iff_dotProduct_mulVec.mp hH).2 hv).ne'
 
-theorem exists_eigenvector {k : ℕ} (G : Matrix (Fin k) (Fin k) ℂ) (μ : ℂ) (hμ : G.charpoly.IsRoot μ) :
-    ∃ v : Fin k → ℂ, v ≠ 0 ∧ G *ᵥ v = μ • v := by
-  first | exact Bl.general_b_fact_right_bis.goal1 .. | (apply Bl.general_b_fact_right_bis.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_right_bis.goal1 <;> assumption) | (apply @Bl.general_b_fact_right_bis.goal1 <;> assumption) | (intros; apply @Bl.general_b_fact_right_bis.goal1 <;> assumption) | (apply @Bl.general_b_fact_right_bis.goal1 <;> first | assumption | infer_instance)
-
 theorem stepA : StepA := by
   intro k H G hH hG μ hμ
-  obtain ⟨v, hv0, hv⟩ := exists_eigenvector G μ hμ
+  obtain ⟨v, hv0, hv⟩ := _root_.Bl.general_b_fact_right_bis.goal1 G μ hμ
   have h := form_pres hG v v
   rw [hv, Matrix.mulVec_smul, star_smul] at h
   simp only [smul_dotProduct, dotProduct_smul, smul_eq_mul] at h

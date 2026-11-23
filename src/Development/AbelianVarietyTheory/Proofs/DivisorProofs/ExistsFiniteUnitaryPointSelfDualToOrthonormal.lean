@@ -47,6 +47,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisOfRegularForm
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsStableComplBot
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary
 import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsRationalUnitarySplitDenominator
 
 @[expose] public section
 
@@ -96,7 +97,7 @@ theorem mem_hat_colLat_iff {D : D7} {n : ℕ} (B : GL (Fin n) D.host.E)
     w ∈ GlobalTheory.AdLat.hat D.host.F (Formalism.L2.DIV.colLat B : Set (Fin n → D.host.E)) ↔
       IntVec (GlobalTheory.UnRep.fm D.host.F (B⁻¹).1 *ᵥ w) := by
   have ew : GlobalTheory.UnRep.fm D.host.F B.1 *ᵥ (GlobalTheory.UnRep.fm D.host.F (B⁻¹).1 *ᵥ w) = w := by
-    rw [Matrix.mulVec_mulVec, ← GlobalTheory.HatPullback.fm_mul', Units.mul_inv, GlobalTheory.HatPullback.fm_one', Matrix.one_mulVec]
+    rw [Matrix.mulVec_mulVec, ← _root_.GlobalTheory.UnRep.LatForm.fm_mul, Units.mul_inv, _root_.GlobalTheory.UnRep.LatForm.fm_one, Matrix.one_mulVec]
   have h1 := GlobalTheory.HatPullback.main D.host.F D.host.E n B (Formalism.L2.DIV.colLat B) (GlobalTheory.UnRep.fm D.host.F (B⁻¹).1 *ᵥ w)
   rw [ew, GlobalTheory.ColStd.colLat_comap_eq_stdLat] at h1
   exact h1.trans (mem_hat_stdLat_iff _)

@@ -153,7 +153,7 @@ theorem grid_squares_index_estimate (W S : Type) (m N : ℕ) (lam δ : W → ℝ
 theorem gridHeightBoundIndexed : GridHeightBoundIndexed := by
   intro K _ _ _ _ Sq m N dl S Se N0 rr zA zA' zT zTd gT ch dd hh yy S0 cc ee qq B BN0 Bδ W0
     hdl hS hN0 hSe hrr hdd hddN hyy hcc hsq hA hT hTd hBN00 hBN0 hBδ
-  obtain ⟨ell, hell⟩ := grid_ell_bound K
+  obtain ⟨ell, hell⟩ := _root_.Bl.PlaneOverMembership.goal1 K
   classical
   have he : ∀ w : Pl K, (0 : ℝ) < (vw w (ell w : K) : ℝ) := by
     intro w

@@ -64,7 +64,7 @@ theorem charpoly_push_eq_map_charpoly (k : Type) [Field k] [IsAlgClosed k]
   obtain ⟨p, hp⟩ := CharP.exists k
   rcases CharP.char_is_prime_or_zero k p with h | h
   · haveI : Fact p.Prime := ⟨h⟩
-    exact GlobalTheory.T.charpoly_deRhamHomology_abelianVariety_charP p k B f
+    exact _root_.GlobalTheory.DeRhamCharpolyP.charpoly_push p k B f
   · subst h
     have : CharZero k := CharP.charP_to_charZero k
     have hcharpoly := GlobalTheory.DeRhamCharpolyZero.charpoly_push k B f
@@ -84,7 +84,7 @@ theorem charpoly_push_eq : ∀ (k : Type) [Field k] [IsAlgClosed k] (A : Over (S
   obtain ⟨g, hg⟩ := GlobalTheory.AV.exists_smoothOfRelativeDimension_of_isAbelianScheme k A hA
   let B : GlobalTheory.AV.AbVar k := ⟨A, hA, g, hg⟩
   let f' : B ⟶ B := GlobalTheory.AV.AbVar.Hom.mk (A := B) (B := B) f
-  rw [GlobalTheory.T.l_power_torsion_endomorphism_evaluation k B f' L φ l hl hlk ev hadd hφ hker him]
+  rw [_root_.GlobalTheory.AV.AbVar.charpoly_eq_lattice_model k B f' L φ l hl hlk ev hadd hφ hker him]
   exact charpoly_push_eq_map_charpoly k B f'
 
 end GlobalTheory.DeRham

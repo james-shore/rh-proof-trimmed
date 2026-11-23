@@ -86,11 +86,6 @@ private theorem exists_pow_of_coeff_AA_ne_zero {p : ℕ} {x y : Fin 2} {n : Fin 
   · exact ⟨i, j, hc.2.1, hc.2.2⟩
   · exact absurd rfl hj
 
-private theorem pow_sq_pow_modEq_one_sq_sub_one {p : ℕ} (hp : 2 ≤ p) (i : ℕ) :
-    (p ^ 2) ^ i ≡ 1 [MOD p ^ 2 - 1] := by
-  have key : p ^ 2 ≡ 1 [MOD p ^ 2 - 1] := Nat.modEq_sub (Nat.one_le_pow _ _ (by omega))
-  simpa using key.pow i
-
 theorem support_ok_a_zero_one {p : ℕ} (hp : 2 ≤ p) : SuppOK p (AA K p 0 1) := by
   intro n hn
   obtain ⟨i, j, hi, hj⟩ := exists_pow_of_coeff_AA_ne_zero hn
@@ -99,7 +94,7 @@ theorem support_ok_a_zero_one {p : ℕ} (hp : 2 ≤ p) : SuppOK p (AA K p 0 1) :
   refine ⟨pow_pos (pow_pos hp0 2) i, Nat.mul_pos hp0 (pow_pos (pow_pos hp0 2) j), ?_⟩
   have h2 : p * (p * (p ^ 2) ^ j) = (p ^ 2) ^ (j + 1) := by ring
   rw [h2]
-  exact (pow_sq_pow_modEq_one_sq_sub_one hp i).trans (pow_sq_pow_modEq_one_sq_sub_one hp (j + 1)).symm
+  exact (_root_.Formalism.InvariantFactorPaths.G7.CoboundarySeries.powq_modEq_one hp i).trans (_root_.Formalism.InvariantFactorPaths.G7.CoboundarySeries.powq_modEq_one hp (j + 1)).symm
 
 theorem support_ok_a_one_zero {p : ℕ} (hp : 2 ≤ p) : SuppOK p (AA K p 1 0) := by
   intro n hn
@@ -107,7 +102,7 @@ theorem support_ok_a_one_zero {p : ℕ} (hp : 2 ≤ p) : SuppOK p (AA K p 1 0) :
   have hp0 : 0 < p := by omega
   rw [hi, hj]
   refine ⟨Nat.mul_pos hp0 (pow_pos (pow_pos hp0 2) j), pow_pos (pow_pos hp0 2) i, ?_⟩
-  exact ((pow_sq_pow_modEq_one_sq_sub_one hp j).mul_left p).trans ((pow_sq_pow_modEq_one_sq_sub_one hp i).mul_left p).symm
+  exact ((_root_.Formalism.InvariantFactorPaths.G7.CoboundarySeries.powq_modEq_one hp j).mul_left p).trans ((_root_.Formalism.InvariantFactorPaths.G7.CoboundarySeries.powq_modEq_one hp i).mul_left p).symm
 
 private theorem suppOK_C_mul_sub_C_mul {p : ℕ} {G H : MvPowerSeries (Fin 2) K} (hG : SuppOK p G)
     (hH : SuppOK p H) (a b : K) :
@@ -215,7 +210,7 @@ theorem DeS_Gser {p : ℕ} (hp : 2 ≤ p) (hpK : (p : K) ≠ 0) (σ : K →+* K)
       MvPowerSeries.C (σ c) * (at1 0 (g0F K p) * at1 1 (lgF K p)) -
         MvPowerSeries.C c * (at1 0 (lgF K p) * at1 1 (g0F K p)) := by
   unfold DeS
-  rw [Formalism.InvariantFactorPaths.G7.CoboundarySeries.map_Gser σ p c (σ c), hσσ, Formalism.InvariantFactorPaths.G7.Top.frobExprG K p c (σ c) hp hpK,
+  rw [Formalism.InvariantFactorPaths.G7.CoboundarySeries.map_Gser σ p c (σ c), hσσ, _root_.Formalism.InvariantFactorPaths.G7.frobenius_expression_g K p c (σ c) hp hpK,
     ← mul_assoc, ← map_mul, inv_mul_cancel₀ hpK, map_one, one_mul]
 
 theorem partial_coboundary_de_s_g_series {p : ℕ} (hp : 2 ≤ p) (hpK : (p : K) ≠ 0) (σ : K →+* K) {c : K}
@@ -239,7 +234,7 @@ end Supp
 theorem derivIs_Gser {K : Type} [NormedField K] [IsUltrametricDist K] [CharZero K] {p : ℕ}
     (hp : p.Prime) (hnp : ‖(p : K)‖ = (p : ℝ)⁻¹) {c c' : K} (hc : ‖c‖ ≤ 1) (hc' : ‖c'‖ ≤ 1) :
     DerivIs p (Gser p c c') c := by
-  obtain ⟨h1, h2⟩ := Formalism.InvariantFactorPaths.G7.Top.derivA K p hp hnp
+  obtain ⟨h1, h2⟩ := _root_.Formalism.InvariantFactorPaths.G7.derivative_a K p hp hnp
   have e : MvPowerSeries.pderiv (R := K) 0 (Gser p c c') -
       MvPowerSeries.C c * (at1 0 (PowerSeries.derivative (R := K) (lgF K p)) * at1 1 (g0F K p)) =
       c • (MvPowerSeries.pderiv (R := K) 0 (Aser K p) -
@@ -266,7 +261,7 @@ theorem frobenius_partial_coboundary_bound {K : Type} [NormedField K] [IsUltrame
       MvPowerSeries.C (σ c) * (in3 (cob F (g0F K p)) * at1 2 (lgF K p))) :
     Bd (p : ℝ)⁻¹ (frobVar p (MvPowerSeries.map σ (d1 F G)) -
       MvPowerSeries.C (p : K) * d1 F G) := by
-  have herror := frobenius_coboundary_error_bound Top.divDeriv Top.deIntegral Top.lawSymm hU hF hc hDer
+  have herror := frobenius_coboundary_error_bound _root_.Formalism.InvariantFactorPaths.G7.divided_derivative Top.deIntegral _root_.Formalism.InvariantFactorPaths.G7.formal_law_symmetric hU hF hc hDer
   rw [hΔ, sub_self, mul_zero, zero_sub] at herror
   simpa only [neg_neg] using bd_neg herror
 
@@ -294,7 +289,7 @@ theorem partial_coboundary_g_series_equiv {K : Type} [NormedField K] [IsUltramet
   have hDer := derivIs_Gser (K := K) hU.1 hU.2.2.1 hc hσc
   have hΔ := partial_coboundary_de_s_g_series hp2 hpK σ hσσ hF.1 hF.2.2
   have hB := frobenius_partial_coboundary_bound hU hF hc hDer hΔ
-  exact (Formalism.InvariantFactorPaths.G7.Top.dworkMv K (Fin 3) p σ hU.1 hU.2.2.1 hU.2.2.2.2 _ hd0).mpr hB
+  exact (_root_.Formalism.InvariantFactorPaths.G7.dwork_multivariable K (Fin 3) p σ hU.1 hU.2.2.1 hU.2.2.2.2 _ hd0).mpr hB
 
 end CoefficientSupportCongruences
 

@@ -304,8 +304,7 @@ theorem sgn_mul (e e' : Bool) : sgn e * sgn e' = if e = e' then 1 else -1 := by 
 
 theorem Jm_eq (ε : Fin n → Bool) : Formalism.REAL.Jm ε = diagonal fun a => sgn (ε a) := rfl
 
-theorem Jm_mul_self (ε : Fin n → Bool) : Formalism.REAL.Jm ε * Formalism.REAL.Jm ε = 1 := by
-  simp only [Jm_eq, diagonal_mul_diagonal, sgn_mul_self, diagonal_one]
+alias Jm_mul_self := _root_.Formalism.REAL.Jm_mul_self
 
 variable {F G X : Matrix (Fin n) (Fin n) ℂ} {ε : Fin n → Bool}
 

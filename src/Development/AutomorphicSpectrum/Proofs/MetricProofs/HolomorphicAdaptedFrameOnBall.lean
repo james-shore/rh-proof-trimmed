@@ -69,16 +69,12 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.Dict.Chart
 
-theorem differentiableOn_prod' {n : ℕ} {U : Set (Fin n → ℂ)} {ι : Type} (u : Finset ι) {f : ι → (Fin n → ℂ) → ℂ}
-    (h : ∀ i ∈ u, DifferentiableOn ℂ (f i) U) : DifferentiableOn ℂ (fun t => ∏ i ∈ u, f i t) U :=
-  _root_.UpperTheory.Reformulated.B.Yhd5.main u h
-
 theorem differentiableOn_det' {n m : ℕ} {U : Set (Fin n → ℂ)} {M : (Fin n → ℂ) → Matrix (Fin m) (Fin m) ℂ}
     (h : ∀ a b, DifferentiableOn ℂ (fun t => M t a b) U) : DifferentiableOn ℂ (fun t => (M t).det) U := by
   simp only [Matrix.det_apply]
   refine DifferentiableOn.fun_sum fun σ _ => ?_
   refine DifferentiableOn.const_smul ?_ _
-  exact differentiableOn_prod' _ fun i _ => h _ _
+  exact _root_.UpperTheory.Reformulated.B.Yhd5.main _ fun i _ => h _ _
 
 theorem chart_exists : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (Ψ : Type) [Fintype Ψ] (j j' n g : ℕ) (Λ : Type) [AddCommGroup Λ] [Module (𝓞 E) Λ] (F : UnivFam E Ψ j j' n g Λ) (C : LatEmb F) (A₀ : Ψ → Matrix (Fin (j + j')) (Sg j j') ℂ), C.IsAdapted (F.R 0) A₀ → ∃ (Z : (Fin n → ℂ) → Fin n → ℂ) (G : (Fin n → ℂ) → ℂ), DifferentiableOn ℂ Z (ballDom F.q) ∧ DifferentiableOn ℂ G (ballDom F.q) ∧ (∀ t ∈ ballDom F.q, ∀ A, C.IsAdapted (F.R t) A → Z t = moebBall F.q (fun τ => C.cinv (A₀ τ) τ * A τ) 0) ∧ ∀ t ∈ ballDom F.q, ballPot F.q (Z t) = ballPot F.q t + (G t).re := by
   intro E _ _ _ Ψ _ j j' n g Λ _ _ F C A₀ h₀
@@ -166,7 +162,7 @@ theorem chart_exists : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (�
 
   let Pf : (Fin n → ℂ) → ℂ := fun t => ∏ τ, (Ym t τ).det
   have hPd : DifferentiableOn ℂ Pf (ballDom F.q) := by
-    refine differentiableOn_prod' _ fun τ _ => differentiableOn_det' fun a b => ?_
+    refine _root_.UpperTheory.Reformulated.B.Yhd5.main _ fun τ _ => differentiableOn_det' fun a b => ?_
     exact (differentiableOn_pi.1 (hYd τ b)) a
   have hP0 : ∀ t ∈ ballDom F.q, Pf t ≠ 0 := fun t ht =>
     Finset.prod_ne_zero_iff.2 fun τ _ => (hloc t ht τ).1

@@ -109,8 +109,8 @@ include hv hS hT
 theorem rigid {F F' : WO S T → ℂ} (hF : IsAlgComb ψ S T v F) (hF' : IsAlgComb ψ S T v F') (h0 : F ≠ 0) {c : ℂ}
     (hc : F' = c • F) : IsAlgebraic ℚ c := by
   obtain ⟨p, hp⟩ := hv.2.norm.1
-  have h1 := mem_algebraicClosure_iff.2 (GlobalTheory.T.vacuum_self_dual_lattices hv hS hT p.1 p.2 hp F F hF hF)
-  have h2 := mem_algebraicClosure_iff.2 (GlobalTheory.T.vacuum_self_dual_lattices hv hS hT p.1 p.2 hp F F' hF hF')
+  have h1 := mem_algebraicClosure_iff.2 (_root_.GlobalTheory.AlgPair.thetaIP_algComb hv hS hT p.1 p.2 hp F F hF hF)
+  have h2 := mem_algebraicClosure_iff.2 (_root_.GlobalTheory.AlgPair.thetaIP_algComb hv hS hT p.1 p.2 hp F F' hF hF')
   have h3 := GlobalTheory.RawLift.VecNonzero.thetaInner_self_ne_zero hv.1 (theta_of_alg hv.1 hv.2.theta hF) h0 hp
   rw [hc, thetaInner_smul_right] at h2
   have := div_mem h2 h1
@@ -124,7 +124,7 @@ theorem om_scaled (hW : IsWeilDatumO ψ S T χS χT om) {p : GA D S × GA D T} {
   obtain ⟨x, h⟩ := p
   refine ⟨∑ q, c q • heisO ψ S T (actO S T x h (w q)) F₀, IsAlgComb.finsum _ _ hc fun q => IsAlgComb.Heisenberg₂
     (fun a b ha hb => mem_algebraicClosure_iff.1 (GlobalTheory.BotFourier.psiH_mem hv.1 hS hT ha hb))
-    (GlobalTheory.FinApprox.actO_fin _ _ (hw q)) h0, ?_⟩
+    (_root_.GlobalTheory.LatNhds.actO_fin _ _ (hw q)) h0, ?_⟩
 
   rw [map_sum, Finset.smul_sum]
   refine Finset.sum_congr rfl fun q _ => ?_
@@ -210,8 +210,8 @@ theorem split_alg {e : Formalism.L2.Theta.AE D} (he : IsSplitIdem D e) {g : GA D
   rw [eF, thetaInner_smul_left, thetaInner_smul_right, ← mul_assoc] at n1
   have n2 : star κ * κ ∈ Qb := by
     rw [eq_div_of_mul_eq (GlobalTheory.RawLift.VecNonzero.thetaInner_self_ne_zero hv.1 (theta_of_alg hv.1 hv.2.theta hF) hF0 hp) n1]
-    exact div_mem (mem_algebraicClosure_iff.2 (GlobalTheory.T.vacuum_self_dual_lattices hv hS hT p.1 p.2 hp v v alg_self alg_self))
-      (mem_algebraicClosure_iff.2 (GlobalTheory.T.vacuum_self_dual_lattices hv hS hT p.1 p.2 hp F F hF hF))
+    exact div_mem (mem_algebraicClosure_iff.2 (_root_.GlobalTheory.AlgPair.thetaIP_algComb hv hS hT p.1 p.2 hp v v alg_self alg_self))
+      (mem_algebraicClosure_iff.2 (_root_.GlobalTheory.AlgPair.thetaIP_algComb hv hS hT p.1 p.2 hp F F hF hF))
 
   obtain ⟨n, c, w, hc, hw, hFe⟩ := id hF
   obtain ⟨ℓ, l1, l2, l3⟩ := GlobalTheory.T.exists_algebraicInvariantForm_vacuum_splitPlace hv hS hT e he n w hw
@@ -238,11 +238,6 @@ theorem split_alg {e : Formalism.L2.Theta.AE D} (he : IsSplitIdem D e) {g : GA D
   rw [eF]
   exact hF.smul (mem_algebraicClosure_iff.1 hκ)
 
-omit hv hS hT hcS hcT hW in
-theorem finCong_one (V : HSp D) (N : ℕ) : GlobalTheory.Member.FinCong V N 1 := by
-  have h := (GlobalTheory.Member.PrincLevel.levelGroup V N).one_mem
-  exact h.2
-
 theorem mem_algGroup {p : GA D S × GA D T} :
     p ∈ algGroup hv hS hT hcS hcT hW ↔ p.1 ∈ GfC S ∧ p.2 ∈ GfC T ∧ IsAlgComb ψ S T v (om p v) := Iff.rfl
 
@@ -254,10 +249,10 @@ theorem source_mem {x : GA D S} (hx : x ∈ GfC S) : (x, (1 : GA D T)) ∈ algGr
   · rw [Subgroup.mem_comap, map_pow, mem_algGroup] at hp
     rw [Subgroup.mem_comap, MonoidHom.inl_apply, mem_algGroup]
     exact ⟨hg, one_mem _, root_closed hv hS hT hcS hcT hW hg (one_mem _) hm hp.2.2⟩
-  · rw [Subgroup.mem_comap, MonoidHom.inl_apply, mem_algGroup, hlev k hk 1 (one_mem _) hc (finCong_one T N)]
+  · rw [Subgroup.mem_comap, MonoidHom.inl_apply, mem_algGroup, hlev k hk 1 (one_mem _) hc (_root_.GlobalTheory.Member.PrincLevel.finCong_one T N)]
     exact ⟨hk, one_mem _, alg_self⟩
   · rw [Subgroup.mem_comap, MonoidHom.inl_apply, mem_algGroup]
-    exact ⟨mem_GfC_of_suppAt he hg, one_mem _,
+    exact ⟨_root_.GlobalTheory.SplitPlace.mem_GfC he hg, one_mem _,
       split_alg hv hS hT hcS hcT hW he hg (GlobalTheory.WeilDetermined.suppAt_one e T)⟩
 
 
@@ -268,10 +263,10 @@ theorem target_mem {h : GA D T} (hh : h ∈ GfC T) : ((1 : GA D S), h) ∈ algGr
   · rw [Subgroup.mem_comap, map_pow, mem_algGroup] at hp
     rw [Subgroup.mem_comap, MonoidHom.inr_apply, mem_algGroup]
     exact ⟨one_mem _, hg, root_closed hv hS hT hcS hcT hW (one_mem _) hg hm hp.2.2⟩
-  · rw [Subgroup.mem_comap, MonoidHom.inr_apply, mem_algGroup, hlev 1 (one_mem _) k hk (finCong_one S N) hc]
+  · rw [Subgroup.mem_comap, MonoidHom.inr_apply, mem_algGroup, hlev 1 (one_mem _) k hk (_root_.GlobalTheory.Member.PrincLevel.finCong_one S N) hc]
     exact ⟨one_mem _, hk, alg_self⟩
   · rw [Subgroup.mem_comap, MonoidHom.inr_apply, mem_algGroup]
-    exact ⟨one_mem _, mem_GfC_of_suppAt he hg,
+    exact ⟨one_mem _, _root_.GlobalTheory.SplitPlace.mem_GfC he hg,
       split_alg hv hS hT hcS hcT hW he (GlobalTheory.WeilDetermined.suppAt_one e S) hg⟩
 
 theorem om_vac_algComb {x : GA D S} (hx : x ∈ GfC S) {h : GA D T} (hh : h ∈ GfC T) :

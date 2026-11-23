@@ -47,6 +47,7 @@ import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.SharpRestriction.LevelLetterCocycles.TwGood
 
 @[expose] public section
 
@@ -126,7 +127,7 @@ theorem stringDecomp_holds_alt_alt :
   obtain ⟨ρ', hρ'⟩ := exists_cast hrk (listRep Rp (epsQU D.nd D.naut i)⁻¹ Pa)
   have hQ := GlobalTheory.NRows.isHeckeGaloisQ_of_isHeckeGalois D i x (r x) (hr x)
   have hfin : (placesOver D.host.E (D.nd.l i) ∪ ↑(D.nd.S i) ∪ ↑(D.nd.Q i) : Set (PlE D.host)).Finite :=
-    ((placesOver_finite' D.host.E (D.nd.l i) (D.nd.lPrime i).out.ne_zero).union (D.nd.S i).finite_toSet).union
+    ((_root_.Formalism.MainNotions.placesOver_finite_av D.host.E (D.nd.l i) (D.nd.lPrime i).out.ne_zero).union (D.nd.S i).finite_toSet).union
       (D.nd.Q i).finite_toSet
   have key := GlobalTheory.charpoly_eq_of_eqOn_dense
     (fun g => ((mapRep (iotaOQ D.nd D.naut i) (r x) g : GL _ _) :

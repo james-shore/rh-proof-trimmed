@@ -324,7 +324,7 @@ theorem irr_vanish (σ : Fin k ⊕ Fin l ≃ Fin n) (χ : Gn g n → ℂ) (α : 
   simp only [Finset.mul_sum, tr_sum]
   have key : ∀ x y c d, tr (eN g σ * (single (inA σ x) c * single (inB σ y) d)) χ = c * d * res k l χ x y := by
     intro x y c d
-    rw [res_eq σ χ (isClass_of_isIrr hχ), eN, Finset.sum_mul, tr_sum,
+    rw [res_eq σ χ (_root_.GlobalTheory.GLq.ResCuspProd.isClass_of_isIrr hχ), eN, Finset.sum_mul, tr_sum,
       ← sum_mul_right y (fun B => χ (par σ x B y)), Finset.mul_sum, Finset.mul_sum]
     refine Finset.sum_congr rfl fun B _ => ?_
     simp only [single_mul_single, tr_single, inA, inB, MonoidHom.coe_mk, OneHom.coe_mk, par_mul]

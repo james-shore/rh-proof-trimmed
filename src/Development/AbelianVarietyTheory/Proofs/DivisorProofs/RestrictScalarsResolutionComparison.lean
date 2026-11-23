@@ -89,7 +89,7 @@ theorem restrRes_comparison : ∀ (R S : Type) [CommRing R] [CommRing S] (φ : R
   haveI := hgeS; haveI := hqS; haveI := hKR; haveI := hgeR
   haveI : ((rcx φ).obj (res S F)).IsStrictlyGE 0 := restrRes_strictlyGE φ (res S F)
   haveI : QuasiIso (rAug φ (resAug F)) := rAug_quasiIso φ (resAug F)
-  obtain ⟨u, hu⟩ := (GlobalTheory.T.extend_chainMap_along_quasiIso_kInjective R ((restr φ).obj F) ((rcx φ).obj (res S F)) (res R ((restr φ).obj F))
+  obtain ⟨u, hu⟩ := (_root_.GlobalTheory.EtC.extHom_of_quasiIso R ((restr φ).obj F) ((rcx φ).obj (res S F)) (res R ((restr φ).obj F))
     (rAug φ (resAug F))).1 (resAug _)
   refine ⟨semiOfRestr φ (res S F) u, ?_, ?_⟩
   · intro U a
@@ -104,14 +104,14 @@ theorem restrRes_comparison : ∀ (R S : Type) [CommRing R] [CommRing S] (φ : R
     rw [h0, h1]
     rfl
   · intro E n
-    have hc := GlobalTheory.T.sheafComplexSemilinearMap_comp_bijective S R (idSemi φ (res S F)) (semiOfRestr φ (res S F) u) u
+    have hc := _root_.GlobalTheory.EtC.OpComp.op_comp_bij S R (idSemi φ (res S F)) (semiOfRestr φ (res S F) u) u
       (fun U s a => semiOfRestr_app φ (res S F) u U s a)
-    have hid := (GlobalTheory.T.sheafComplexSemilinearMap_comp_bijective S R (idSemi φ (res S F)) (idSemi φ (res S F)) (𝟙 _) (fun U s a => rfl)).2
+    have hid := (_root_.GlobalTheory.EtC.OpComp.op_comp_bij S R (idSemi φ (res S F)) (idSemi φ (res S F)) (𝟙 _) (fun U s a => rfl)).2
       (fun U s => Function.bijective_id) E n
-    have hpush := GlobalTheory.T.acyclic_resolution_computes_etale_cohomology R ((restr φ).obj F) ((rcx φ).obj (res S F)) (rAug φ (resAug F)) u hu
+    have hpush := _root_.GlobalTheory.EtC.acycRes_computes R ((restr φ).obj F) ((rcx φ).obj (res S F)) (rAug φ (resAug F)) u hu
       (fun t P m hm => by
         haveI := hinjS t
-        exact GlobalTheory.T.restrictScalars_injective_sheaf_acyclic R S φ ((res S F).X t) P m hm) E n
+        exact _root_.GlobalTheory.EtC.restr_injective_acyclic R S φ ((res S F).X t) P m hm) E n
     have heq : (semiOfRestr φ (res S F) u).op.app E n =
         fun x => cpush _ u n ((idSemi φ (res S F)).op.app E n x) := funext (hc.1 E n)
     rw [heq]

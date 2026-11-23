@@ -88,12 +88,6 @@ variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
 variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E]
 variable {L : LocE F E} {r k : ℕ} (S : Frames L r k)
 
-theorem th_ne : S.th ≠ 0 := by
-  unfold Frames.th
-  split_ifs
-  · exact fun h => S.ϖ_irr.ne_zero (Subtype.ext h)
-  · exact one_ne_zero
-
 noncomputable def sumDiv : S.V × S.V →+ S.V :=
   (algebraMap F E S.th⁻¹ • (LinearMap.id : S.V →ₗ[E] S.V)).toAddMonoidHom.comp
     (AddMonoidHom.fst S.V S.V + AddMonoidHom.snd S.V S.V)
@@ -101,7 +95,7 @@ noncomputable def sumDiv : S.V × S.V →+ S.V :=
 theorem sumDiv_apply (p : S.V × S.V) : sumDiv S p = algebraMap F E S.th⁻¹ • (p.1 + p.2) := rfl
 
 theorem th_mul : algebraMap F E S.th * algebraMap F E S.th⁻¹ = 1 := by
-  rw [← map_mul, mul_inv_cancel₀ (th_ne S), map_one]
+  rw [← map_mul, mul_inv_cancel₀ (_root_.GlobalTheory.FrameLevel.th_ne_zero S), map_one]
 
 theorem refB_eq (J : ℕ) (Λ : Submodule L.O S.V) :
     S.refB J Λ = ((S.spanTo S.f J).toAddSubgroup.prod (S.spanTo S.f' J).toAddSubgroup) ⊓

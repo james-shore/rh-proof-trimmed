@@ -75,7 +75,7 @@ theorem exists_map_exp_all_traits : ∀ (R : Type) [CommRing R] [IsDomain R] [Is
   by_cases hT : ∃ (W : Type) (_ : CommRing W) (_ : IsDomain W) (_ : IsLocalRing W), Nonempty (Trait C W)
   · obtain ⟨W₀, _, _, _, ⟨T₀⟩⟩ := hT
     obtain ⟨K₀, _, _, _, _, em₀, hK₀⟩ := exists_field_over_trait R W₀ T₀.φ T₀.inj
-    obtain ⟨lab, E, hlab, hE, -⟩ := GlobalTheory.T.trait_inverse_expansion_equivariant_labels R hR D C j wA hwA W₀ T₀ K₀ em₀ hK₀
+    obtain ⟨lab, E, hlab, hE, -⟩ := _root_.GlobalTheory.Mum.traitInv_eqv_value R hR D C j wA hwA W₀ T₀ K₀ em₀ hK₀
     obtain ⟨Eb, hEb⟩ := GlobalTheory.Mum.Desc.eqv_down R hR D C.A (C.n ^ j) hodd (C.lab j) K₀ em₀ lab E hlab hE
     have hgal := GlobalTheory.Mum.labExt_of_trait R hR D C j W₀ ⟨T₀⟩
     obtain ⟨Φ₀, E₀, hE₀, hΦ₀⟩ := GlobalTheory.Mum.exists_eqv_rational R hR D C.A (C.n ^ j) hodd (C.lab j) Eb hEb hgal

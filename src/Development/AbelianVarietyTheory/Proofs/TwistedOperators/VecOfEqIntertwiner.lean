@@ -99,12 +99,6 @@ open Matrix
 
 variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {W : G.Weil} {U : Set T}
 
-theorem keepStd (S : GridChoice W U) {t : T} (j : ℕ) (hj : j + 1 < D.R.m) (k : FinPt G (.grid (j + 1) D.R.m))
-    (hk : finG (G.V (.grid (j + 1) D.R.m)) k ∈ S.levRow t (j + 1) hj.le) (v : Fin (G.V (.grid (j + 1) D.R.m)).rank → Formalism.IndefR.Lev.EAf D) :
-    v ∈ Formalism.L2.Herm.hatL (F := D.host.F) (colLat (S.N.fr (.grid (j + 1) D.R.m))) ↔
-      (Formalism.IndefR.Lev.finE (G.V (.grid (j + 1) D.R.m)) (moved S j k)).1 *ᵥ v ∈ Formalism.L2.Herm.hatL (F := D.host.F) (colLat (S.N.fr (.grid (j + 1) D.R.m))) :=
-  GlobalTheory.T.conjugatedLevelElement_keeps_standardLattice S j hj k hk v
-
 theorem mulVec_mulVec_inv {n : ℕ} {R : Type} [CommRing R] (X : GL (Fin n) R) (v : Fin n → R) :
     X.1 *ᵥ ((X⁻¹).1 *ᵥ v) = v := by
   rw [Matrix.mulVec_mulVec, Units.mul_inv, Matrix.one_mulVec]
@@ -156,7 +150,7 @@ theorem keepLow (S : GridChoice W U) {t : T} (j : ℕ) (hj : j + 1 < D.R.m) (k :
     have e1 : (Formalism.IndefR.Lev.finE (G.V (.grid j D.R.m)) 1).1 *ᵥ v = v := by rw [e0]; exact Matrix.one_mulVec v
     rw [e1]
   have h2 : moved S j k ∈ GfC (G.V (.grid (j + 1) D.R.m)) := ((S.N.u (.grid (j + 1) D.R.m))⁻¹ * k * S.N.u _).2
-  have h3 := keepStd S j hj k hk
+  have h3 := _root_.GlobalTheory.RowVertexInv.moved_keeps_std S j hj k hk
   exact keepPair S (i := j) (by omega) 1 (moved S j k) (one_mem _) h2 h1 h3 u
 
 theorem keepHigh (S : GridChoice W U) {t : T} (j : ℕ) (hj : j + 1 < D.R.m) (k : FinPt G (.grid (j + 1) D.R.m))
@@ -171,7 +165,7 @@ theorem keepHigh (S : GridChoice W U) {t : T} (j : ℕ) (hj : j + 1 < D.R.m) (k 
     have e1 : (Formalism.IndefR.Lev.finE (G.V (.grid (j + 1 + 1) D.R.m)) 1).1 *ᵥ v = v := by rw [e0]; exact Matrix.one_mulVec v
     rw [e1]
   have h2 : moved S j k ∈ GfC (G.V (.grid (j + 1) D.R.m)) := ((S.N.u (.grid (j + 1) D.R.m))⁻¹ * k * S.N.u _).2
-  have h3 := keepStd S j hj k hk
+  have h3 := _root_.GlobalTheory.RowVertexInv.moved_keeps_std S j hj k hk
   exact keepPair S (i := j + 1) (by omega) (moved S j k) 1 h2 (one_mem _) h3 h1 u
 
 theorem selfDual (S : GridChoice W U) {i : ℕ} (hi : i + 1 ≤ D.R.m) :
@@ -251,8 +245,8 @@ theorem vecOf_eq_intertwiner : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Con
     exact ⟨hs, h.2 _ hs⟩
   have hj1 : j + 1 ≤ D.R.m := by omega
   have hj2 : j + 1 + 1 ≤ D.R.m := by omega
-  obtain ⟨c₁, hc₁⟩ := vacScalar S hj1 1 ((S.N.u _)⁻¹ * k * S.N.u _) (keepLow S j hj k hk)
-  obtain ⟨c₂, hc₂⟩ := vacScalar S hj2 ((S.N.u _)⁻¹ * k * S.N.u _) 1 (keepHigh S j hj k hk)
+  obtain ⟨c₁, hc₁⟩ := _root_.GlobalTheory.RowChiVac.vac_chi_scalar S hj1 1 ((S.N.u _)⁻¹ * k * S.N.u _) (keepLow S j hj k hk)
+  obtain ⟨c₂, hc₂⟩ := _root_.GlobalTheory.RowChiVac.vac_chi_scalar S hj2 ((S.N.u _)⁻¹ * k * S.N.u _) 1 (keepHigh S j hj k hk)
   refine ⟨c₁, c₂, Tm, hc₁, hc₂, fun d hd a => ⟨(hTm d hd a).2, ?_⟩⟩
   by_cases h2 : a = .inr ⟨j + 1, hj⟩
   · subst h2

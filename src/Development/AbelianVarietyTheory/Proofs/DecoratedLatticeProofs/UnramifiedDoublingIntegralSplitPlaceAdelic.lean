@@ -109,12 +109,12 @@ theorem localZetaOn_split : GlobalTheory.Published.UnramifiedDoublingGL →
     GlobalTheory.LGrp.mem_fixed.1 (hpar w h).mem_fixed
   have hz1 : ‖(((GlobalTheory.LFun.val χ w)⁻¹ : ℂˣ) : ℂ)‖ = 1 := by
     rw [Units.val_inv_eq_inv_val, norm_inv, GlobalTheory.LFun.norm_val, inv_one]
-  have hker := GlobalTheory.T.sphericalSection_graph_splitPlace D A L hL χ b hb v hv hU s φ hφ w h e he
+  have hker := _root_.GlobalTheory.Core.Rk.KerSplit.sphSec_split D A L hL χ b hb v hv hU s φ hφ w h e he
   have hbd : ℓ x ≠ 0 → ∀ β ∈ par w, ‖(β : ℂ)‖ ≤ (qV D.host.E w : ℝ) ^ ((A.rank : ℝ) / 2) ∧
       ‖((β⁻¹ : ℂˣ) : ℂ)‖ ≤ (qV D.host.E w : ℝ) ^ ((A.rank : ℝ) / 2) := by
     intro h0 β hβ
     have hc1 : c 1 ≠ 0 := by rw [hcx, map_one, Module.End.one_apply]; exact h0
-    have Hb := GlobalTheory.T.sphericalParameterBound_split_place D A L hL v hv par c hc' hc1
+    have Hb := _root_.GlobalTheory.Core.Rk.BdSplit.paramBound_split D A L hL v hv par c hc' hc1
     refine ⟨(Hb w h).2 β hβ, ?_⟩
     have H2 := (Hb w' h').2 β⁻¹ (hB' ▸ Multiset.mem_map_of_mem _ hβ)
     have e2 : ((Ideal.absNorm w'.asIdeal : ℕ) : ℝ) = (qV D.host.E w : ℝ) := by

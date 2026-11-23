@@ -58,7 +58,7 @@ namespace GlobalTheory.GoodCoeff
 
 theorem exists_trace_form_integral_iff : ∀ (l : ℕ) [Fact l.Prime] (LL : Type) [Field LL] [Algebra ℚ_[l] LL] [TopologicalSpace LL] (O : Type) [CommRing O] [Algebra O LL], GoodO (Qp := ℚ_[l]) LL O → ∃ lam : LL →ₗ[ℚ_[l]] ℚ_[l], ∀ a : LL, (∀ b : O, ∃ u : ℤ_[l], lam (a * algebraMap O LL b) = (u : ℚ_[l])) ↔ ∃ b : O, algebraMap O LL b = a := by
   intro l _ LL _ _ _ O _ _ hG
-  have hint := (good_coeff_integers l LL O hG).1
+  have hint := (_root_.GlobalTheory.PowerImageOpen.main l LL O hG).1
   obtain ⟨⟨hD, hDVR, hFr⟩, hfin, hmod, htop, hopen⟩ := hG
   haveI := hD
   haveI := hDVR

@@ -56,9 +56,7 @@ open IsLocalRing Polynomial
 
 namespace GlobalTheory.KeyOriginRetract
 
-theorem mem_originIdeal {R : Type} [CommRing R] [IsLocalRing R] (p : Polynomial R) :
-    p ∈ GlobalTheory.KeyOriginCut.originIdeal R ↔ p.coeff 0 ∈ maximalIdeal R := by
-  apply GlobalTheory.VertUnitsNoeth.mem_originIdeal_iff' <;> assumption
+alias mem_originIdeal := _root_.GlobalTheory.VertUnitsNoeth.mem_originIdeal_iff'
 
 theorem sub_coeff_zero_mem {R B : Type} [CommRing R] [CommRing B] [Algebra R B] [Algebra (Polynomial R) B]
     [IsScalarTower R (Polynomial R) B] (p : Polynomial R) :
@@ -174,9 +172,9 @@ theorem enlarge_retract : ∀ (T O : Type) [CommRing T] [IsDomain T] [IsLocalRin
       (algebraMap (Polynomial T) O).comp (Polynomial.mapRingHom i) := by
     rw [RingHom.comp_assoc, ← IsScalarTower.algebraMap_eq, hjA]
   obtain ⟨A₁, _, _, _, _, _, _, f, i₁, e, hi₁, hil₁, hfi, he, hag⟩ :=
-    GlobalTheory.T.localRing_mod_t_embeds_strictHenselian T O hT hTO hX A i hi hil EA (jA.comp (algebraMap EA (Localization.AtPrime QA))) hj
+    _root_.GlobalTheory.FibreRetract.fibre_retract T O hT hTO hX A i hi hil EA (jA.comp (algebraMap EA (Localization.AtPrime QA))) hj
   obtain ⟨EA', _, _, _, _, _, QA', _, jA', ψA', DA', _, _, actA', hF', ⟨β, h, hβ, hh⟩, γ, hγ, hjγ, hQ',
-    hex, huniq⟩ := GlobalTheory.T.fittingDatum_baseChange_localEnlargement T O hT P φ hφ hsh hP q hq0 hqT A i EA QA jA ψA DA actA hF0 A₁ f i₁ hi₁ hil₁ hfi
+    hex, huniq⟩ := _root_.GlobalTheory.EnlargeBaseChange.fits_baseChange T O hT P φ hφ hsh hP q hq0 hqT A i EA QA jA ψA DA actA hF0 A₁ f i₁ hi₁ hil₁ hfi
   haveI := hil₁
   obtain ⟨σ, hσC, hσγ⟩ := hex A₁ (Polynomial.evalRingHom 0) e (by
     rw [he]

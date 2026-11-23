@@ -51,7 +51,7 @@ theorem GlobalTheory.PlugPt.side_weight_ties_of_ray_field : GlobalTheory.NT.RayF
   obtain ⟨hRC, hTC, -⟩ := GlobalTheory.Plug.wPt_frame 𝒮 K p
   have ht := GlobalTheory.T.coreFrameCompatible_constructed_point hR 𝒮 hC K p
   obtain ⟨hpsi, hval, htame⟩ := _root_.GlobalTheory.T.side_weight_psi_choice_tame_tie hL 𝒮 ν K p
-  obtain ⟨hser, hlev, hdat, hsmall⟩ := _root_.GlobalTheory.T.side_weight_export_all_data_small_has hR hL 𝒮 ν K p
+  obtain ⟨hser, hlev, hdat, hsmall⟩ := _root_.GlobalTheory.sideW_export_small_alt hR hL 𝒮 ν K p
   refine ⟨?_, ?_, hser, hlev, hdat, hpsi, hval, hsmall, htame⟩
   · show p.x.what₂.r.z.R.C = GlobalTheory.Mem.Col2.TC.cf p.w.I p.w.l p.Z
     rw [hRC, hTC]

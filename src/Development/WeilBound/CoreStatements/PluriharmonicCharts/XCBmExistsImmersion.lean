@@ -80,7 +80,7 @@ theorem PositivityTheory.Xgp.t_c_bm_exists_immersion : Given → ∀ (E : Type) 
   obtain ⟨j, r, p, hr, hj, hwd, hp⟩ := exists_family (𝔐 := 𝔐) Rb hcl hx
   have hhol : IsHolTo (Metric.ball 0 1) p := GlobalTheory.T.holomorphic_coords_of_generic_point 𝔐.X M.Ω 𝔐.ξ _ _ M.x 𝔐.tie 𝔐.all _ _ _ p
     Metric.isOpen_ball hwd fun u hu => (hp u hu).2.1
-  obtain ⟨τ₀, hτ⟩ := GlobalTheory.T.holomorphic_disc_over_number_field_ring c.F 𝔐.X (𝔐.f ≫ Y.s) _ p hhol
+  obtain ⟨τ₀, hτ⟩ := _root_.GlobalTheory.CompanionTheory.Ar.ConstEmbedding.exists_embedding c.F 𝔐.X (𝔐.f ≫ Y.s) _ p hhol
   have hint : ∀ u ∈ Metric.ball 0 1, 𝔐.Interior (p u) := fun u hu => (hInt _ _ (hp u hu).2.2).1 (hp u hu).1
   have hb0 : 0 ∈ Metric.ball (0 : Fin (Fintype.card (CMType H) * D.p * D.q) → ℂ) 1 := Metric.mem_ball_self one_pos
   have hc0 : CoordsAt 𝔐.ξ M.x (p 0) (Rb.lift x x) := by

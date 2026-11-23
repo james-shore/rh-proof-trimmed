@@ -255,13 +255,13 @@ theorem attN_of_isSSRep_mapRep_of_nc_locG (hF : FrobDense D) (hG : UpperTheory.G
     exact congrArg (Polynomial.map ι.toRingHom) h2
   · obtain ⟨ι', r', A', -, h', hA'⟩ := exists_conj_br_alt hF hG hc hr hρ hM hφ hι hs v hv
     obtain ⟨a1, a2, a3⟩ := h'.above v hv _ (D.ntwbr i v hv) (D.ntwbr_ind i v hv)
-    obtain ⟨b1, b2, b3, -⟩ := GlobalTheory.T.padicHodgeProperties_conj_invariant _ (D.loc _) _ _ _ _ (D.ntwbr i v hv) _ _ _ A' hA'
+    obtain ⟨b1, b2, b3, -⟩ := _root_.GlobalTheory.ConjLocal.local_conj _ (D.loc _) _ _ _ _ (D.ntwbr i v hv) _ _ _ A' hA'
     exact ⟨((isModel_brEmb v hv).isdRAt_iff _).1 (b1 (a1 (hN v hv)).deRham),
       fun hu => ((isModel_brEmb v hv).isCrysAt_iff _).1 (b2 (a2 hu)),
       fun _ => ((isModel_brEmb v hv).isPotCrysAt_iff _).1 (b3 (a3 (hN v hv)))⟩
   · obtain ⟨ι', r', A', hι', h', hA'⟩ := exists_conj_br_alt hF hG hc hr hρ hM hφ hι hs v hv
     obtain ⟨a1, -, -⟩ := h'.above v hv _ (D.ntwbr i v hv) (D.ntwbr_ind i v hv)
-    obtain ⟨-, -, -, b4⟩ := GlobalTheory.T.padicHodgeProperties_conj_invariant _ (D.loc _) _ _ _ _ (D.ntwbr i v hv) _ _ _ A' hA'
+    obtain ⟨-, -, -, b4⟩ := _root_.GlobalTheory.ConjLocal.local_conj _ (D.loc _) _ _ _ _ (D.ntwbr i v hv) _ _ _ A' hA'
     let c : D.host.E →+* ↥(D.ntwbr i v hv).Kw.1 :=
       ((D.ntwbr i v hv).j.comp (algebraMap D.host.E D.nd.Om)).codRestrict (D.ntwbr i v hv).Kw.1 (D.ntwbr i v hv).j_E
     let τ₀ : D.host.E →+* Qbar (D.ntw.l i) :=

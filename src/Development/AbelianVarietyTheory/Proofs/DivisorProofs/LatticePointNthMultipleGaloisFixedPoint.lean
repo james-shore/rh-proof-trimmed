@@ -289,7 +289,7 @@ theorem origin_of_generic {S : Scheme.{0}} {V : Type} [CommRing V] [IsDomain V] 
     rw [hK] at h
     rw [map_one]
     exact (gm_pull (𝟙 _) (jK V) x ⊤ trivial u).trans ((congrArg (fun g => gm g x ⊤ u) (Category.id_comp _)).trans h)
-  have hu1 : u = 1 := Units.ext (GlobalTheory.GenOrigin.jK_appTop_inj V (by
+  have hu1 : u = 1 := Units.ext (_root_.GlobalTheory.PsiInt.jK_appTop_injective V (by
     have := congrArg Units.val h1
     simpa using this))
   intro T z J J' hJ hJ'

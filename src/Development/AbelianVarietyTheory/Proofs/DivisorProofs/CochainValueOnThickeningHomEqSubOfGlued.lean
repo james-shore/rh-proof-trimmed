@@ -96,7 +96,7 @@ theorem fv_eq_sub_of_glued : ∀ {R : Type} [CommRing R] {X : Scheme.{0}} {s : X
     (∀ p : Pair (pt T'), toSec R T'.obj.B p.1.1 G' = hSec f g T' p) →
     fv f φ = G' - φ.hom.φ G := by
   intro R _ X s f g _ T T' φ G G' hG hG'
-  refine GlobalTheory.T.spec_functions_eq_of_restrictions_on_pairs T.obj.B T'.obj.B (pt T) (spMap (φ.hom.φ : T.obj.B →+* T'.obj.B)) _ _ ?_
+  refine _root_.GlobalTheory.CechDR.AffLoc.eq_of_secMap_eq_on_pairs T.obj.B T'.obj.B (pt T) (spMap (φ.hom.φ : T.obj.B →+* T'.obj.B)) _ _ ?_
   intro V' p hV'
   have hp' : V'.1 ≤ pt T' ⁻¹ᵁ p.1.2.1 := by
     rw [pt_comp φ]

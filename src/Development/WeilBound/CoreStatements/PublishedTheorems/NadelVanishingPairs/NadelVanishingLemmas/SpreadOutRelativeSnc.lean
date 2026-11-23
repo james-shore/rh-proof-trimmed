@@ -85,10 +85,6 @@ theorem finiteType_adjInv {k : Type} [Field k] (R : Subring k) (hR : Algebra.Fin
     (Polynomial.eval₂RingHom R.subtype a⁻¹).rangeRestrict.toIntAlgHom
     (Polynomial.eval₂RingHom R.subtype a⁻¹).rangeRestrict_surjective
 
-theorem spMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  simp [spMap, CommRingCat.ofHom_comp, Spec.map_comp]
-
 end GlobalTheory.ModelSnc
 
 end
@@ -100,12 +96,12 @@ theorem exists_model_relSnc : ∀ (k : Type) [Field k] (X : Scheme.{0}) (f : X �
   haveI : SmoothOfRelativeDimension d f := GlobalTheory.T.smoothOfRelativeDimension_of_relSncDivisor k X f d s L σ h
   have hsm : Smooth f := SmoothOfRelativeDimension.smooth d f
   obtain ⟨R, X₁, f₁, π, L₁, σ₁, h₁, M₁, hM₁, hR, hsm₁, hpr₁, hpb, hcl, hsame, hclM⟩ :=
-    GlobalTheory.T.spread_out_smooth_proper k X f hsm hf s L σ h.isLB M hM
+    _root_.GlobalTheory.LogPair.exists_model_with_sections k X f hsm hf s L σ h.isLB M hM
   have hX : RelSnc f d (fun i => (L₁ i).pull π) (fun i => Cartier.secPull (σ₁ i) π) :=
-    GlobalTheory.T.relative_snc_same_divisor k X f d s L σ _ _ h (fun i => pull_isLB (h₁ i) π) hsame
+    _root_.GlobalTheory.LogPair.relSnc_of_sameDiv k X f d s L σ _ _ h (fun i => pull_isLB (h₁ i) π) hsame
   haveI := hsm₁
   haveI := hpr₁
-  obtain ⟨a, ha, hsp⟩ := GlobalTheory.T.relative_snc_generic_spread R k R.subtype X₁ X f₁ f π d s L₁ σ₁ hpb h₁ hX
+  obtain ⟨a, ha, hsp⟩ := _root_.GlobalTheory.LogPair.relSnc_spread R k R.subtype X₁ X f₁ f π d s L₁ σ₁ hpb h₁ hX
   set R' := adjInv R (a : k)
   set χ := toAdjInv R (a : k)
   have hχ : IsUnit (χ a) := isUnit_toAdjInv R a ha
@@ -114,7 +110,7 @@ theorem exists_model_relSnc : ∀ (k : Type) [Field k] (X : Scheme.{0}) (f : X �
   have hρ : IsPullback ρ g f₁ (spMap χ) := IsPullback.of_hasPullback f₁ (spMap χ)
   have hZ := hsp R' χ hχ _ g ρ hρ
   have hcomp : spMap R.subtype = spMap R'.subtype ≫ spMap χ := by
-    rw [← spMap_comp, subtype_comp_toAdjInv]
+    rw [← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp, subtype_comp_toAdjInv]
   have hw : π ≫ f₁ = (f ≫ spMap R'.subtype) ≫ spMap χ := by
     rw [Category.assoc, ← hcomp]; exact hpb.w
   let π' : X ⟶ pullback f₁ (spMap χ) := pullback.lift π (f ≫ spMap R'.subtype) hw

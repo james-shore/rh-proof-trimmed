@@ -115,12 +115,12 @@ theorem small_sum' {α : Type} (T : Finset α) (u : α → Hn F → ℂ) {r : �
     rw [Finset.sum_insert ha]
     have h1 := hu a (Finset.mem_insert_self a T)
     have h2 := ih fun b hb => hu b (Finset.mem_insert_of_mem hb)
-    simpa using (GlobalTheory.T.hilbertQExp_padicBound_algebra_properties F p ι r r _ _ 0 h1 h2).1
+    simpa using (_root_.GlobalTheory.HilbertThetaSeries.small_filtration F p ι r r _ _ 0 h1 h2).1
 
 theorem small_sum {α : Type} (T : Finset α) (u : α → Hn F → ℂ) {r : ℝ} (hT : T.Nonempty)
     (hu : ∀ a ∈ T, Small ι r (u a)) : Small ι r (∑ a ∈ T, u a) := by
   obtain ⟨a0, ha0⟩ := hT
-  have hr : 0 ≤ r := (GlobalTheory.T.hilbertQExp_padicBound_algebra_properties F p ι r r _ _ 0 (hu a0 ha0) (hu a0 ha0)).2.2.2.2.1
+  have hr : 0 ≤ r := (_root_.GlobalTheory.HilbertThetaSeries.small_filtration F p ι r r _ _ 0 (hu a0 ha0) (hu a0 ha0)).2.2.2.2.1
   exact small_sum' ι T u (small_zero ι hr) hu
 
 end Small
@@ -148,7 +148,7 @@ theorem sl_cancel {F : Type} [Field F] [NumberField F] (k : ℕ) (h h' : GL (Fin
 theorem avg_pow : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (p : ℕ) [Fact p.Prime] (ι : Qbar p ≃+* ℂ), p ≠ 2 → ∀ δ : F, IsDel p δ → ∀ θ : Hn F → ℂ, Seed ι δ θ → ∀ y : (Af F)ˣ, AtP p δ y → ∃ N : ℕ, ∀ M : ℕ, p ^ N ∣ M → ∃ f : Hn F → ℂ, Comp ι δ ((p - 1) * M) (aff y 0) f := by
   intro F _ _ _ p _ ι hp2 δ hδ θ hθ y hy
   classical
-  obtain ⟨hfin, hone, h1, hgrp⟩ := GlobalTheory.T.hilbert_seed_orbit_finite_and_congruence F p ι hp2 δ hδ θ hθ y hy
+  obtain ⟨hfin, hone, h1, hgrp⟩ := _root_.GlobalTheory.HilbertThetaSeries.orbit_seed_finite_congr F p ι hp2 δ hδ θ hθ y hy
   set g0 := aff y (0 : Af F) with hg0
   set T := hfin.toFinset with hT
   have hmem : ∀ g, g ∈ T ↔ ∃ γ, Stab g0 γ ∧ g = sl (p - 1) (toInf γ) θ := fun g => by
@@ -202,10 +202,10 @@ theorem avg_pow : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (p 
     have hS : Small ι ((p : ℝ)⁻¹ ^ (N + 1)) (∑ g ∈ T, ((sl0 (p - 1) (toInf γ) g) ^ (p ^ N * m) - 1)) := by
       refine small_sum ι T _ hTne fun g hg => ?_
       obtain ⟨γ', hγ', rfl⟩ := (hmem g).1 hg
-      exact GlobalTheory.T.hilbertQExp_padicCongruence_pow_prime_pow F p ι _ (hone γ' hγ' γ hγ) N m
-    have H := (GlobalTheory.T.hilbertQExp_padicBound_algebra_properties F p ι _ _ _ _ c hS hS).2.2.1
+      exact _root_.GlobalTheory.QPow.main F p ι _ (hone γ' hγ' γ hγ) N m
+    have H := (_root_.GlobalTheory.HilbertThetaSeries.small_filtration F p ι _ _ _ _ c hS hS).2.2.1
     have hθ1 := hone 1 h1 γ hγ
-    refine (GlobalTheory.T.hilbertQExp_padicBound_algebra_properties F p ι _ _ _ _ c H hθ1).2.2.2.1 ?_
+    refine (_root_.GlobalTheory.HilbertThetaSeries.small_filtration F p ι _ _ _ _ c H hθ1).2.2.2.1 ?_
     have hp0 : (0 : ℝ) < p := by exact_mod_cast (Fact.out : p.Prime).pos
     have hn : ‖ι.symm c‖ ≤ (p : ℝ) ^ N := by
       rw [hc, map_inv₀, map_natCast]
@@ -219,5 +219,3 @@ end GlobalTheory.HilbertThetaSeries.OrbitAvg
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Af UpperTheory.V.Sd GlobalTheory.HilbertThetaSeries
 open scoped Matrix
 
-theorem _root_.GlobalTheory.T.exists_orbit_average_of_seed_powers_weight : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (p : ℕ) [Fact p.Prime] (ι : Qbar p ≃+* ℂ), p ≠ 2 → ∀ δ : F, IsDel p δ → ∀ θ : Hn F → ℂ, Seed ι δ θ → ∀ y : (Af F)ˣ, AtP p δ y → ∃ N : ℕ, ∀ M : ℕ, p ^ N ∣ M → ∃ f : Hn F → ℂ, Comp ι δ ((p - 1) * M) (aff y 0) f := by
-  first | exact @GlobalTheory.HilbertThetaSeries.OrbitAvg.avg_pow | exact GlobalTheory.HilbertThetaSeries.OrbitAvg.avg_pow | (intros; apply GlobalTheory.HilbertThetaSeries.OrbitAvg.avg_pow <;> assumption)

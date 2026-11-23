@@ -356,11 +356,6 @@ lemma exists_codiff (E : Type) [Field E] [NumberField E] [StarRing E] :
       rw [FractionalIdeal.dual_dual, FractionalIdeal.mem_one_iff] at h1
       exact h1
 
-lemma exists_smul_mem_of_span {E U : Type} [Field E] [NumberField E] [AddCommGroup U] [Module E U]
-    [Module (𝓞 E) U] [IsScalarTower (𝓞 E) E U] (N : Submodule (𝓞 E) U)
-    (hN : Submodule.span E (N : Set U) = ⊤) (x : U) : ∃ d : 𝓞 E, d ≠ 0 ∧ d • x ∈ N := by
-  exact Bl.general_b_fact_second'.goal1 N hN x
-
 lemma exists_int_smul_mem {E U : Type} [Field E] [NumberField E] [AddCommGroup U]
     [Module (𝓞 E) U] (L : Submodule (𝓞 E) U) (x : U) (d : 𝓞 E) (hd : d ≠ 0) (hx : d • x ∈ L) :
     ∃ n : ℤ, n ≠ 0 ∧ n • x ∈ L := by
@@ -380,7 +375,7 @@ lemma exists_smul_le {E U : Type} [Field E] [NumberField E] [AddCommGroup U] [Mo
     ∃ d : 𝓞 E, d ≠ 0 ∧ ∀ x ∈ M, d • x ∈ N := by
   induction M, hM using Submodule.fg_induction with
   | singleton x =>
-    obtain ⟨d, hd, hdx⟩ := exists_smul_mem_of_span N hN x
+    obtain ⟨d, hd, hdx⟩ := _root_.Bl.general_b_fact_second'.goal1 N hN x
     refine ⟨d, hd, fun y hy => ?_⟩
     obtain ⟨r, rfl⟩ := Submodule.mem_span_singleton.mp hy
     rw [smul_comm]
@@ -500,7 +495,7 @@ lemma relIndex_hermitian_dual_eq [FiniteDimensional ℚ U] (h : U →ₗ[E] U �
     exact Submodule.smul_mono (le_refl K) hNM hx
   have hfull : ∀ x : U, ∃ n : ℤ, n ≠ 0 ∧ n • x ∈ (K • N).restrictScalars ℤ := by
     intro x
-    obtain ⟨e, he, hex⟩ := exists_smul_mem_of_span N hN x
+    obtain ⟨e, he, hex⟩ := _root_.Bl.general_b_fact_second'.goal1 N hN x
     refine exists_int_smul_mem (K • N) x (k * e) (mul_ne_zero hk0 he) ?_
     rw [mul_smul]
     exact Submodule.smul_mem_smul hkK hex

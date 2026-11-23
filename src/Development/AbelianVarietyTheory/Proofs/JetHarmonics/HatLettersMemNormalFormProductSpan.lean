@@ -98,7 +98,7 @@ theorem hats_mem_nfSpan : ∀ (P : M.Par) (A : Type) [Ring A] [StarRing A] [Alge
       (∀ s : ℂ, Z s = ∑ j ∈ Finset.range (P.r + 2), s ^ j • X j) →
       (∀ i, Z (ν i) ∈ nfSpan d T 0 a 1) → ∀ s, Z s ∈ nfSpan d T 0 a 1 := by
     intro Z X ν hν hZ hi s
-    refine (Submodule.span_le.2 ?_) ((GlobalTheory.T.mem_span_values_of_vector_polynomial A (P.r + 2) Z X ν hν hZ).2 s)
+    refine (Submodule.span_le.2 ?_) ((_root_.GlobalTheory.vecPoly_mem_span_values A (P.r + 2) Z X ν hν hZ).2 s)
     rintro _ ⟨i, rfl⟩
     exact hi i
   obtain ⟨Xa, Xr, hXa, hXr, -⟩ := GlobalTheory.T.plusHats_taylorCoeff_leibniz_rule A P.r d.L 0

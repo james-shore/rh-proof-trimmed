@@ -61,22 +61,22 @@ theorem UpperTheory.bijective_semiMap_op_of_bijective_cochain_pushforward :
   have idBij : ∀ (K : Cx R) (U : Scheme.{0}) (s : ℤ),
       Function.Bijective ((idSemi (Int.castRingHom R) K).app U s) :=
     fun _ _ _ => ⟨fun _ _ h => h, fun b => ⟨b, rfl⟩⟩
-  have bL := (GlobalTheory.T.sheafComplexSemilinearMap_comp_bijective R ℤ (idSemi (Int.castRingHom R) L) (idSemi (Int.castRingHom R) L) (𝟙 _)
+  have bL := (_root_.GlobalTheory.EtC.OpComp.op_comp_bij R ℤ (idSemi (Int.castRingHom R) L) (idSemi (Int.castRingHom R) L) (𝟙 _)
     (fun _ _ _ => rfl)).2 (idBij L) E n
-  have bB := (GlobalTheory.T.sheafComplexSemilinearMap_comp_bijective R ℤ (idSemi (Int.castRingHom R) B) (idSemi (Int.castRingHom R) B) (𝟙 _)
+  have bB := (_root_.GlobalTheory.EtC.OpComp.op_comp_bij R ℤ (idSemi (Int.castRingHom R) B) (idSemi (Int.castRingHom R) B) (𝟙 _)
     (fun _ _ _ => rfl)).2 (idBij B) E n
   have key : ∀ x, (idSemi (Int.castRingHom R) B).op.app E n (ρ.op.app E n x) =
       cpush ((chains ℤ).obj E) ρ.toZ n ((idSemi (Int.castRingHom R) L).op.app E n x) := by
     intro x
     obtain ⟨α, rfl⟩ := x.mk_surjective
-    obtain ⟨β, hβ⟩ := (GlobalTheory.T.exists_image_cocycle_semilinearSheafComplexMap R R ρ).1 E n α
-    obtain ⟨γ, hγ⟩ := (GlobalTheory.T.exists_image_cocycle_semilinearSheafComplexMap R ℤ (idSemi (Int.castRingHom R) B)).1 E n β
-    have h1 := (GlobalTheory.T.exists_image_cocycle_semilinearSheafComplexMap R R ρ).2 E n α β hβ
-    have h2 := (GlobalTheory.T.exists_image_cocycle_semilinearSheafComplexMap R ℤ (idSemi (Int.castRingHom R) B)).2 E n β γ hγ
-    have h3 := (GlobalTheory.T.exists_image_cocycle_semilinearSheafComplexMap R ℤ (UpperTheory.bijective_semiMap_op_of_bijective_cochain_pushforward.toRcx ρ)).2 E n α γ
+    obtain ⟨β, hβ⟩ := (_root_.GlobalTheory.EtC.SemiMap.op_image_spec R R ρ).1 E n α
+    obtain ⟨γ, hγ⟩ := (_root_.GlobalTheory.EtC.SemiMap.op_image_spec R ℤ (idSemi (Int.castRingHom R) B)).1 E n β
+    have h1 := (_root_.GlobalTheory.EtC.SemiMap.op_image_spec R R ρ).2 E n α β hβ
+    have h2 := (_root_.GlobalTheory.EtC.SemiMap.op_image_spec R ℤ (idSemi (Int.castRingHom R) B)).2 E n β γ hγ
+    have h3 := (_root_.GlobalTheory.EtC.SemiMap.op_image_spec R ℤ (UpperTheory.bijective_semiMap_op_of_bijective_cochain_pushforward.toRcx ρ)).2 E n α γ
       (fun p s h U y => (hγ p s h U y).trans (congrArg _ (hβ p s h U y)))
     rw [h1, h2, ← h3]
-    exact (GlobalTheory.T.sheafComplexSemilinearMap_comp_bijective R ℤ (idSemi (Int.castRingHom R) L) (UpperTheory.bijective_semiMap_op_of_bijective_cochain_pushforward.toRcx ρ) ρ.toZ
+    exact (_root_.GlobalTheory.EtC.OpComp.op_comp_bij R ℤ (idSemi (Int.castRingHom R) L) (UpperTheory.bijective_semiMap_op_of_bijective_cochain_pushforward.toRcx ρ) ρ.toZ
       (fun _ _ _ => rfl)).1 E n _
   have comp : Function.Bijective
       ((idSemi (Int.castRingHom R) B).op.app E n ∘ ρ.op.app E n) := by

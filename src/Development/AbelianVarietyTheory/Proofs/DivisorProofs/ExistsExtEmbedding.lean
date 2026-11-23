@@ -138,7 +138,7 @@ theorem card_of_runModel {p : PtAt ex Csz} {r : TwoRuns p.T p.P.Gp} {h : RunsOk 
   obtain ⟨k⟩ : Nonempty ((r.used v).full.U ((i : ℕ) + 1) (r.used v).full.σ₀).Comp :=
     ⟨((r.used v).full.dict ((i : ℕ) + 1) (r.used v).full.σ₀ 1).1⟩
   have h2 := Formalism.L2.Pj.DatLin.two_card (M.comp (e.symm k)).cmType
-  rw [M.comp_Ψ, Formalism.L2.S.Pv.MSTypP.finrank_hostE' D] at h2
+  rw [M.comp_Ψ, _root_.Formalism.MainNotions.StandardLattice.finrank_host D] at h2
   omega
 
 end Card

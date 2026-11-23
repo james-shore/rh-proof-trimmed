@@ -124,9 +124,6 @@ theorem exists_similitude (a : ℚ) (ha : 0 < a) :
 
 variable (D : D7)
 
-theorem exists_rat_of_real (x : D.host.K) (hx : (D.host.φ₀ (x : D.host.E)).im = 0) : ∃ a : ℚ, x = (a : D.host.K) :=
-  by apply _root_.GlobalTheory.RationalOfReal.rat_of_real <;> assumption
-
 theorem exists_rat_pos {N N' : ℕ} (x : Matrix (Fin N') (Fin N) D.host.E) (hx : x ≠ 0) :
     ∃ a : ℚ, 0 < a ∧ hYY D x x = (a : D.host.K) := by
   have hc : ∀ (φ : D.host.E →+* ℂ) (z : D.host.E), φ (D.host.conj z) = starRingEnd ℂ (φ z) :=
@@ -139,7 +136,7 @@ theorem exists_rat_pos {N N' : ℕ} (x : Matrix (Fin N') (Fin N) D.host.E) (hx :
     simp only [map_sum, map_mul, hc, Complex.mul_conj]
     push_cast
     rfl
-  obtain ⟨a, ha⟩ := exists_rat_of_real D (hYY D x x) (by rw [h, Complex.ofReal_im])
+  obtain ⟨a, ha⟩ := _root_.GlobalTheory.RationalOfReal.rat_of_real D (hYY D x x) (by rw [h, Complex.ofReal_im])
   refine ⟨a, ?_, ha⟩
   obtain ⟨i, j, hij⟩ : ∃ i j, x i j ≠ 0 := by
     by_contra hh

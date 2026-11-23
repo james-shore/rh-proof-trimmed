@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmallSectionHeightLowerBound
 
 @[expose] public section
 
@@ -84,20 +85,6 @@ theorem pull_congr (L : HermLB p) {q : Y ⟶ Sp k} {f f' : Y ⟶ X} (e : f = f')
     (hf' : f' ≫ p = q) : L.pull f hf = L.pull f' hf' := by
   subst e
   rfl
-
-theorem isClosed_of_ne_generic {Z : Scheme.{0}} [IsIntegral Z] (hd : topologicalKrullDim Z = 1) {z : Z}
-    (hz : z ≠ genericPoint Z) : IsClosed ({z} : Set Z) := by
-  rcases Order.krullDim_le_one_iff.1 (show Order.krullDim (IrreducibleCloseds Z) ≤ 1 from hd.le)
-    ⟨closure {z}, isIrreducible_singleton.closure, isClosed_closure⟩ with h | h
-  · refine isClosed_of_closure_subset fun w hw => ?_
-    have h₁ : (⟨closure {w}, isIrreducible_singleton.closure, isClosed_closure⟩ : IrreducibleCloseds Z) ≤
-        ⟨closure {z}, isIrreducible_singleton.closure, isClosed_closure⟩ :=
-      closure_minimal (Set.singleton_subset_iff.2 hw) isClosed_closure
-    have h₂ : z ∈ closure {w} := h h₁ (subset_closure rfl)
-    exact ((specializes_iff_mem_closure.2 h₂).antisymm (specializes_iff_mem_closure.2 hw)).eq
-  · exact absurd (IsGenericPoint.eq (Set.eq_univ_of_univ_subset (@h
-      ⟨Set.univ, IrreducibleSpace.isIrreducible_univ Z, isClosed_univ⟩ (Set.subset_univ _)))
-      (genericPoint_spec Z)) hz
 
 theorem log_card_residueField {W Z : Scheme.{0}} (g : W ⟶ Z) (w : W) [Finite (W.residueField w)] :
     Real.log (Nat.card (W.residueField w)) =
@@ -195,7 +182,7 @@ theorem main : ∀ (k : Type) [CommRing k] (X Y : Scheme.{0}) (p : X ⟶ Sp k) (
     · rw [hw, Int.cast_zero, zero_mul, zero_mul]
     have hne : w ≠ genericPoint (clo y) := fun e =>
       CartierDiv.genericPoint_notMem_supp _ (e ▸ CartierDiv.mem_supp_of_mult_ne_zero hw)
-    have := hW.finite_residueField (isClosed_of_ne_generic hdW hne)
+    have := hW.finite_residueField (_root_.GlobalTheory.SmallSecHeight.isClosed_of_ne hdW hne)
     rw [log_card_residueField g w]
   rw [e₁, e₂, e₃]
   unfold HermLB.curveDeg

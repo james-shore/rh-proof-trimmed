@@ -78,7 +78,7 @@ theorem exists_lower (b : Module.Basis ι F E) (L : Submodule (𝓞 E) (Fin n �
     ∃ d : ℕ, 0 < d ∧ ∀ y : Fin n → E ⊗[F] Af F,
       (∀ j k, coord b (y j) k ∈ Ohat F) → d • y ∈ lamAf (F := F) L := by
   classical
-  choose m hm hmL using fun p : Fin n × ι => exists_nat_smul_mem L hL (Pi.single p.1 (b p.2))
+  choose m hm hmL using fun p : Fin n × ι => _root_.Bl.general_b_fact_third'.goal1 L hL (Pi.single p.1 (b p.2))
   refine ⟨∏ p, m p, Finset.prod_pos fun p _ => hm p, fun y hy => ?_⟩
   have key : ∀ (j : Fin n) (k : ι) (c : Af F), c ∈ Ohat F →
       (∏ p, m p) • Pi.single j (b k ⊗ₜ[F] c) ∈ lamAf (F := F) L := by

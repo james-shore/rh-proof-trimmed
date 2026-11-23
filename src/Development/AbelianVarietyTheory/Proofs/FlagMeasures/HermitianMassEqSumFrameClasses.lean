@@ -63,12 +63,12 @@ theorem mass_eq_sumCls : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalS
       rintro h hh Λ ⟨ht, hp⟩
       obtain ⟨ht', -, -, -, hFr, -⟩ := GlobalTheory.T.hermitianFrames_stabilizer_acts_on_terms L r k S d Λ ht h hh
       have hlat := (TermBasic.term_basic L r k S d Λ ht).1.1
-      exact ⟨⟨ht', hP h hh Λ ht hp⟩, hFr, ((GlobalTheory.T.commonStabilizer_stabilizers_commensurable_volume L r k S).1 Λ hlat).2.2 h hh⟩)
+      exact ⟨⟨ht', hP h hh Λ ht hp⟩, hFr, ((_root_.GlobalTheory.HL.volSt L r k S).1 Λ hlat).2.2 h hh⟩)
     (by
       rintro Λ ⟨ht, -⟩
       have tb := TermBasic.term_basic L r k S d Λ ht
-      have hA := (GlobalTheory.T.commonStabilizer_stabilizers_commensurable_volume L r k S).1 Λ tb.1.1
-      have hC := (GlobalTheory.T.commonStabilizer_stabilizers_commensurable_volume L r k S).2 (S.Fr d Λ) tb.2.2.2.2.2.2.1.1
+      have hA := (_root_.GlobalTheory.HL.volSt L r k S).1 Λ tb.1.1
+      have hC := (_root_.GlobalTheory.HL.volSt L r k S).2 (S.Fr d Λ) tb.2.2.2.2.2.2.1.1
       exact ⟨hA.1, hA.2.1, hC.1, hC.2.1⟩)
   beta_reduce at key
   unfold Frames.mass Frames.mu

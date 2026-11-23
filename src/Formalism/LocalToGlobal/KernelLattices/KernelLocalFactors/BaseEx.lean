@@ -62,24 +62,14 @@ variable {R : Ranks} (H : Host R)
 
 theorem phi_b : H.φ₀ (H.sqd) = Complex.I * (Real.sqrt H.d : ℂ) := H.φ₀_mem
 
-theorem phi_conj (φ : H.E →+* ℂ) (x : H.E) : φ (H.conj x) = conj (φ x) :=
-  H.conjE_apply φ x
-
 theorem d_pos : 0 < H.d := H.hyp.2.1.pos
-
-theorem bE_sq : H.sqd ^ 2 = -(H.d : H.E) := H.sqd_sq
-
-theorem conj_b : H.conj (H.sqd) = -H.sqd := by
-  apply H.φ₀.injective
-  rw [phi_conj, map_neg, phi_b]
-  simp
 
 theorem b_mem_K : H.sqd ∈ H.K := mem_adjoin_simple_self ℚ _
 
 def bK : H.K := ⟨H.sqd, b_mem_K H⟩
 
 theorem finrank_K : Module.finrank ℚ H.K = 2 :=
-  SplitK.finrank_K (L := H.E) (b := H.sqd) (d := H.d) (d_pos H) (bE_sq H)
+  SplitK.finrank_K (L := H.E) (b := H.sqd) (d := H.d) (d_pos H) (_root_.Formalism.BasicNotions.Examples₂.bE_sq H)
 
 theorem K_induction {p : H.E → Prop} (hb : p (H.sqd)) (hq : ∀ r : ℚ, p (algebraMap ℚ H.E r))
     (hadd : ∀ x y, p x → p y → p (x + y)) (hinv : ∀ x, p x → p x⁻¹) (hmul : ∀ x y, p x → p y → p (x * y))
@@ -93,7 +83,7 @@ theorem K_induction {p : H.E → Prop} (hb : p (H.sqd)) (hq : ∀ r : ℚ, p (al
 
 theorem conj_mem_K (k : H.K) : H.conj (k : H.E) ∈ H.K := by
   refine K_induction H (p := fun x => H.conj x ∈ H.K) ?_ ?_ ?_ ?_ ?_ k
-  · rw [conj_b]; exact neg_mem (b_mem_K H)
+  · rw [_root_.Formalism.BasicNotions.Examples₂.conj_bE]; exact neg_mem (b_mem_K H)
   · intro r; rw [AlgEquiv.commutes]; exact H.K.algebraMap_mem r
   · intro x y hx hy; rw [map_add]; exact add_mem hx hy
   · intro x hx; rw [map_inv₀]; exact inv_mem hx
@@ -108,13 +98,13 @@ theorem fix_K (σ : H.E ≃ₐ[ℚ] H.E) (hσ : σ (H.sqd) = H.sqd) (k : H.K) : 
 
 theorem conj_conj (x : H.E) : H.conj (H.conj x) = x := by
   apply H.φ₀.injective
-  rw [phi_conj, phi_conj, Complex.conj_conj]
+  rw [_root_.Formalism.BasicNotions.Examples₂.emb_conj, _root_.Formalism.BasicNotions.Examples₂.emb_conj, Complex.conj_conj]
 
 theorem tr_pos (x : H.E) (hx : x ≠ 0) : 0 < Algebra.trace ℚ H.E (x * H.conj x) := by
   have h := trace_eq_sum_embeddings (K := ℚ) (L := H.E) ℂ (x := x * H.conj x)
   have h2 : ∀ σ : H.E →ₐ[ℚ] ℂ, σ (x * H.conj x) = ((Complex.normSq (σ x) : ℝ) : ℂ) := by
     intro σ
-    have h3 := phi_conj H (σ : H.E →+* ℂ) x
+    have h3 := _root_.Formalism.BasicNotions.Examples₂.emb_conj H (σ : H.E →+* ℂ) x
     rw [map_mul]
     have h4 : σ (H.conj x) = conj (σ x) := h3
     rw [h4, Complex.mul_conj]
@@ -152,13 +142,13 @@ theorem d_mod_eight_eq_seven : H.d % 8 = 7 := by
 
 theorem bK_mul : bK H * bK H = -(H.d : H.K) := by
   apply Subtype.ext
-  have h := bE_sq H
+  have h := _root_.Formalism.BasicNotions.Examples₂.bE_sq H
   rw [sq] at h
   simpa [bK] using h
 
 theorem sqrt_in_K : ∃ s : H.K, s * s = -(H.d : H.K) ∧
     H.conj (algebraMap H.K H.E s) = -algebraMap H.K H.E s :=
-  ⟨bK H, bK_mul H, conj_b H⟩
+  ⟨bK H, bK_mul H, _root_.Formalism.BasicNotions.Examples₂.conj_bE H⟩
 
 theorem theta_integral : IsIntegral ℤ ((1 + bK H) / 2 : H.K) := by
   obtain ⟨m, hm⟩ : ∃ m : ℕ, H.d + 1 = 4 * m := ⟨(H.d + 1) / 4, by have := d_mod_eight_eq_seven H; omega⟩
@@ -238,7 +228,7 @@ theorem splitKSplits : SplitKSplits D := splitKSplits_of (dMod8 D) (sqrtInK D)
 
 theorem yIndep (γ₀ : IsoK D) : YIndep γ₀ :=
   fun p 𝔭 γ γ' hp _ hm h1 h2 =>
-    ordRelativeDet_independence D.host.K D.host.E D.what₂.Tau {x | x ∈ D.host.AA0} p 𝔭 γ.g γ'.g γ₀.g hp hm h1 h2
+    _root_.PI.KerIso.DetOrdW.detOrdIndep D.host.K D.host.E D.what₂.Tau {x | x ∈ D.host.AA0} p 𝔭 γ.g γ'.g γ₀.g hp hm h1 h2
 
 theorem distinguished_ideal_ne_zero : D.host.AA0 ≠ 0 := by
   have hd : differentIdeal (𝓞 D.host.K) (𝓞 D.host.E) ≠ ⊥ := differentIdeal_ne_bot
@@ -261,8 +251,6 @@ theorem Base.half_not_mem {D : D7} {cc : Ideal (𝓞 D.host.K)} {δ : ℂ} (B : 
 end Final
 
 namespace Test
-
-open Formalism.BasicNotions.Examples₂
 
 end Test
 

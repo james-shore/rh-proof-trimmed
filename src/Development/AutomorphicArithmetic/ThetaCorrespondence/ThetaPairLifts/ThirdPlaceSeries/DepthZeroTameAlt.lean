@@ -128,8 +128,8 @@ theorem depthZero_tame_alt : _root_.GlobalTheory.NRows.ThetaLocalInputsAlt → �
     (_root_.UpperTheory.One.M.good_cls_of_isLocS_av P i PI s σ hσ)
   rw [← hA] at hb
   rw [← hA'] at hb'
-  obtain ⟨h1, h2, h3⟩ := GlobalTheory.T.weilDeligneDualTransport_monodromy_dim_wild D _ _ c hc1 hc2 _ _ D.R.nV b b' hb hb' hN hρ
-  have h4 := GlobalTheory.T.weilDeligneLabel_transportDual_inverseRoots D k _ _ c hc1 hc2 _ _ D.R.nV b b' hb hb' hN hρ _ _ hc3'
+  obtain ⟨h1, h2, h3⟩ := _root_.GlobalTheory.WeilDeligne.ConjDual.mono_dim_wild D _ _ c hc1 hc2 _ _ D.R.nV b b' hb hb' hN hρ
+  have h4 := _root_.GlobalTheory.WeilDeligne.LabTransport.main D k _ _ c hc1 hc2 _ _ D.R.nV b b' hb hb' hN hρ _ _ hc3'
   refine ⟨fun hm => (P.T.mono0 _ _).2 (h1 ((P.T.mono0 _ _).1 hm)), fun ht σ₁ hσ₁ hw₁ => ?_, h4⟩
   rw [P.T.inePol _ _ σ₁ hσ₁, ← P.T.dim]
   refine h3 (fun σ₂ hσ₂ hw₂ => ?_) σ₁ hσ₁ hw₁

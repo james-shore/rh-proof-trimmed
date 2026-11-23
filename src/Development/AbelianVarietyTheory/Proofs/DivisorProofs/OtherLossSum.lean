@@ -508,7 +508,7 @@ theorem sum_eatI {D : D7} {L : SizeData₂ D} (h : SizesAt L) {K : Consts} {c : 
     have a2 := Finset.card_le_card a
     rw [Nat.card_Icc, Nat.add_sub_cancel] at a2
     exact le_trans (by exact_mod_cast a2) (Nat.floor_le hX0)
-  have hM := Formalism.DivisionValues.primeLogSum L.sc.b (by linarith) S (fun p hp => ⟨(hS p hp).1, (hS p hp).2.trans hXb⟩)
+  have hM := _root_.Formalism.DivisionValues.prime_log_sum_bound L.sc.b (by linarith) S (fun p hp => ⟨(hS p hp).1, (hS p hp).2.trans hXb⟩)
   have hlogb : Real.log L.sc.b = L.sc.L := Real.log_exp _
   have hl4 : Real.log 4 ≤ 2 := by
     have := Real.log_two_lt_d9

@@ -71,22 +71,13 @@ open Classical in
 def cl (s : L.Sec) (r : Z ⟶ X) (z : Z) : Associates (Z.presheaf.stalk z) :=
   if h : ∃ a, r z ∈ L.U a then Associates.mk (gs r z (L.U h.choose) (s.f h.choose)) else 0
 
-theorem gs_trans (s : L.Sec) (r : Z ⟶ X) (z : Z) {a b : L.ι} (ha : r z ∈ L.U a) (hb : r z ∈ L.U b) :
-    gs r z (L.U a) (s.f a) = (gm r z _ (L.g a b)).val * gs r z (L.U b) (s.f b) := by
-  have hm : r z ∈ L.U a ⊓ L.U b := ⟨ha, hb⟩
-  exact (gs_res r z _ hm _).symm.trans ((congrArg (gs r z _) (s.compat a b)).trans ((gs_mul r z _ hm _ _).trans
-    (congrArg₂ (· * ·) (gs_unit r z _ hm _) (gs_res r z _ hm _))))
-
 theorem mk_unit_mul {A : Type} [CommRing A] (u : Aˣ) (a : A) : Associates.mk (u.val * a) = Associates.mk a :=
   Associates.mk_eq_mk_iff_associated.2 (associated_unit_mul_left a u u.isUnit)
 
 theorem cl_eq (s : L.Sec) (r : Z ⟶ X) (z : Z) {a : L.ι} (ha : r z ∈ L.U a) :
     cl s r z = Associates.mk (gs r z (L.U a) (s.f a)) := by
   have h : ∃ a, r z ∈ L.U a := ⟨a, ha⟩
-  rw [cl, dite_eq_left h, gs_trans s r z h.choose_spec ha, mk_unit_mul]
-
-theorem gs_pow (r : Z ⟶ X) (z : Z) (U : X.Opens) (h : r z ∈ U) (a : Γ(X, U)) (n : ℕ) :
-    gs r z U (a ^ n) = gs r z U a ^ n := by simp only [gs_eq r z U h, map_pow]
+  rw [cl, dite_eq_left h, _root_.GlobalTheory.SecPullIso.gs_sec_trans s r z h.choose_spec ha, mk_unit_mul]
 
 theorem exists_move (hL : L.IsLB) (hM : M.IsLB) (e : cls L hL = cls M hM) (s : L.Sec) :
     ∃ t : M.Sec, ∀ (Z : Scheme.{0}) (r : Z ⟶ X) (z : Z), cl t r z = cl s r z := by
@@ -110,7 +101,7 @@ theorem exists_pp (hL : L.IsLB) (φ : Y ⟶ X) (n : ℕ) (s : L.Sec) :
         ((φ.app (L.U (j PUnit.unit))).hom (s.f (j PUnit.unit) ^ n))) =
         gs (r ≫ φ) z (L.U (j PUnit.unit)) (s.f (j PUnit.unit)) ^ n := fun Z r z j hj =>
     (gs_res r z _ hj _).trans ((gs_pull r φ z _ (Set.mem_iInter.1 hj PUnit.unit) _).trans
-      (gs_pow _ z _ (Set.mem_iInter.1 hj PUnit.unit) _ n))
+      (_root_.GlobalTheory.LBGerm.gs_pow _ z _ (Set.mem_iInter.1 hj PUnit.unit) _ n))
   refine ⟨⟨fun j => (Y.presheaf.map (homOfLE (LB.wchart_le L (fun _ : PUnit => φ) j PUnit.unit)).op).hom
         ((φ.app (L.U (j PUnit.unit))).hom (s.f (j PUnit.unit) ^ n)), fun j j' => fn_ext fun y hy => ?_⟩,
     fun Z r z => ?_⟩
@@ -118,7 +109,7 @@ theorem exists_pp (hL : L.IsLB) (φ : Y ⟶ X) (n : ℕ) (s : L.Sec) :
       ((gs_unit (𝟙 Y) y _ hy _).trans (congrArg Units.val (gm_linComb L _ _ (𝟙 Y) y j j' hy.1 hy.2)))
       (gs_res (𝟙 Y) y _ hy _))).symm)
     refine (val _ (𝟙 Y) y j hy.1).trans (Eq.trans ?_ (congrArg _ (val _ (𝟙 Y) y j' hy.2)).symm)
-    rw [gs_trans s (𝟙 Y ≫ φ) y (Set.mem_iInter.1 hy.1 PUnit.unit) (Set.mem_iInter.1 hy.2 PUnit.unit), mul_pow]
+    rw [_root_.GlobalTheory.SecPullIso.gs_sec_trans s (𝟙 Y ≫ φ) y (Set.mem_iInter.1 hy.1 PUnit.unit) (Set.mem_iInter.1 hy.2 PUnit.unit), mul_pow]
     simp
   · obtain ⟨a, ha⟩ := exists_chart hL (φ (r z))
     have hj : r z ∈ (pp L φ n).U (fun _ => a) := Set.mem_iInter.2 fun _ => ha
@@ -134,7 +125,7 @@ theorem exists_scale (hL : L.IsLB) (c : Γ(X, ⊤)) (s : L.Sec) :
   refine ⟨⟨fun a => (X.presheaf.map (homOfLE (le_top : L.U a ≤ ⊤)).op).hom c * s.f a,
     fun a b => fn_ext fun y hy => ?_⟩, fun Z r z => ?_⟩
   · rw [gs_res (𝟙 X) y _ hy, gs_mul (𝟙 X) y _ hy, gs_res (𝟙 X) y _ hy, gs_unit (𝟙 X) y _ hy, val _ _ _ a hy.1,
-      val _ _ _ b hy.2, gs_trans s (𝟙 X) y hy.1 hy.2, mul_left_comm]
+      val _ _ _ b hy.2, _root_.GlobalTheory.SecPullIso.gs_sec_trans s (𝟙 X) y hy.1 hy.2, mul_left_comm]
   · obtain ⟨a, ha⟩ := exists_chart hL (r z)
     rw [cl_eq _ r z ha, cl_eq _ r z ha, Associates.mk_mul_mk]
     exact congrArg Associates.mk (val Z r z a ha)
@@ -154,7 +145,7 @@ theorem cl_ne_zero [IsIntegral X] (hL : L.IsLB) (s : L.Sec) (hs : ∃ i, s.f i �
   obtain ⟨y, hy⟩ := nonempty_preirreducible_inter (L.U i).isOpen (L.U a).isOpen hne ⟨x, ha⟩
   rw [cl_eq s (𝟙 X) x ha, Ne, Associates.mk_eq_zero]
   refine gs_ne_zero (fun e => gs_ne_zero hi y hy.1 ?_) x ha
-  rw [gs_trans s (𝟙 X) y hy.1 hy.2, e, gs_eq (𝟙 X) y _ hy.2, map_zero, map_zero, MulZeroClass.mul_zero]
+  rw [_root_.GlobalTheory.SecPullIso.gs_sec_trans s (𝟙 X) y hy.1 hy.2, e, gs_eq (𝟙 X) y _ hy.2, map_zero, map_zero, MulZeroClass.mul_zero]
 
 theorem exists_ne_zero_of_cl (hL : L.IsLB) (s : L.Sec) (r : Z ⟶ X) (z : Z) (h : cl s r z ≠ 0) : ∃ i, s.f i ≠ 0 := by
   obtain ⟨a, ha⟩ := exists_chart hL (r z)
@@ -277,7 +268,7 @@ theorem exists_scalars [Flat G.hom] [IsIntegral (pullback G.hom (jK R))]
     (fun a b => fn_ext (V := j ⁻¹ᵁ N.U a ⊓ j ⁻¹ᵁ N.U b) fun y hy => by
       refine (gs_res (𝟙 Y) y inf_le_left hy _).trans (Eq.trans ?_ (gs_res (𝟙 Y) y inf_le_right hy _).symm)
       refine mul_right_cancel₀ (ht' a y hy.1) ((hw a y hy.1).symm.trans ?_)
-      rw [gs_trans s j y hy.1 hy.2, gs_trans t j y hy.1 hy.2, hw b y hy.2, mul_left_comm])
+      rw [_root_.GlobalTheory.SecPullIso.gs_sec_trans s j y hy.1 hy.2, _root_.GlobalTheory.SecPullIso.gs_sec_trans t j y hy.1 hy.2, hw b y hy.2, mul_left_comm])
   have hu' : ∀ a y, j y ∈ N.U a → gs j y (N.U a) (s.f a) = gs (𝟙 Y) y ⊤ u * gs j y (N.U a) (t.f a) :=
     fun a y hy => (hw a y hy).trans (congrArg (· * _) ((congrArg (gs (𝟙 Y) y _) (hu a)).symm.trans
       (gs_res (𝟙 Y) y (le_top : j ⁻¹ᵁ N.U a ≤ ⊤) hy u)))
@@ -381,7 +372,7 @@ theorem exists_sec_sq_of_double : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLo
       exact (cl_eq h (𝟙 _ ≫ pullback.fst G.hom (jK R)) y hy.1).symm
     refine exists_unit_of_associated _ _ _ (fun y hy e => pow_ne_zero 2 (hθ0 y) ?_) (fun y hy => ?_)
     · rw [← hb y hy, e]; rfl
-    · rw [← Associates.mk_eq_mk_iff_associated, hb y hy, gs_pow _ y _ hy, gs_res _ y _ hy, cl_eq θ _ y hy.2,
+    · rw [← Associates.mk_eq_mk_iff_associated, hb y hy, _root_.GlobalTheory.LBGerm.gs_pow _ y _ hy, gs_res _ y _ hy, cl_eq θ _ y hy.2,
         Associates.mk_pow]
   · have e : cl h f.left x = (Associates.mk (GlobalTheory.TwistLoc.gc G.hom x r) * cl σ (𝟙 _) x) ^ 2 := by
       have e₁ := hrr x

@@ -62,9 +62,6 @@ theorem mnorm_real_smul (s : ℝ) (X : Matrix (Fin n) (Fin n) ℂ) : mnorm (s �
   unfold mnorm
   simp only [Matrix.smul_apply, norm_smul, Real.norm_eq_abs, Finset.mul_sum]
 
-theorem mnorm_nonneg (X : Matrix (Fin n) (Fin n) ℂ) : 0 ≤ mnorm X :=
-  Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => norm_nonneg _
-
 theorem iterate_smooth (hG : IsLinRed G) (hrep : Formalism.QuantumDeterminants.IsCRepOn G π) {v : H} (hs : IsSmoothVec G π v)
     {X : Matrix (Fin n) (Fin n) ℂ} (hX : X ∈ HCSS.lieOf G) (m : ℕ) :
     IsSmoothVec G π ((dRep π X)^[m] v) := by
@@ -80,7 +77,7 @@ theorem iterate_real_smul (hG : IsLinRed G) (hrep : Formalism.QuantumDeterminant
   induction m with
   | zero => simp
   | succ m ih =>
-    have hsm := iterate_smooth hG hrep hs hX m
+    have hsm := _root_.GlobalTheory.CompanionTheory.Hypotheses₂.HCA.isSmoothVec_iterate_dRep hG hrep hs hX m
     rw [Function.iterate_succ_apply', ih, Function.iterate_succ_apply', GlobalTheory.GKLie.dRep_smul,
       (GlobalTheory.T.derived_action_additive hG hrep hsm hsm hX hX).2.2, ← Complex.coe_smul, smul_smul, pow_succ']
 
@@ -112,7 +109,7 @@ theorem analytic_coeff : ∀ {n : ℕ} {G : Set (Matrix (Fin n) (Fin n) ℂ)} {H
   have hpa : ∀ (m : ℕ) (s : ℝ), p m (fun _ => s) = (s : ℂ) ^ m * a m := by
     intro m s
     simp [p, ContinuousMultilinearMap.mkPiRing_apply]
-  have hM : 0 < mnorm X + 1 := by linarith [mnorm_nonneg X]
+  have hM : 0 < mnorm X + 1 := by linarith [_root_.GlobalTheory.CompanionTheory.Hypotheses₂.HCA.mnorm_nonneg' X]
   have hsmall : ∀ s : ℝ, |s| < r / (mnorm X + 1) → |s| * mnorm X < r := by
     intro s h
     rw [lt_div_iff₀ hM] at h

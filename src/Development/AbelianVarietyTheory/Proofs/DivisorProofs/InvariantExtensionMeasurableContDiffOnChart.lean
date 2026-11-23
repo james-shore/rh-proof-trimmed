@@ -47,6 +47,7 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolum
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.LUStatementPf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.OntoStatementPfS
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.KaUnfoldPfA
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.PairUnfoldPfA
 
 @[expose] public section
 
@@ -56,12 +57,6 @@ open scoped ContDiff ENNReal Matrix
 namespace GlobalTheory.PeakWeightSmooth
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ}
-
-theorem lact_inv_lact (X : Data E r) (γ : GL (Fin r) E) (y : Frame X.Ψ r) : lact γ⁻¹ (lact γ y) = y := by
-  rw [KU.lact_lact X, inv_mul_cancel, KU.lact_one X]
-
-theorem lact_lact_inv (X : Data E r) (γ : GL (Fin r) E) (y : Frame X.Ψ r) : lact γ (lact γ⁻¹ y) = y := by
-  rw [KU.lact_lact X, mul_inv_cancel, KU.lact_one X]
 
 theorem local_form (X : Data E r) (x : Frame X.Ψ r) (hx : IsOrth X x) (ρ R : ℝ) (η : V (nd X) → ℝ)
     (ψ : Frame X.Ψ r → ℝ) (hρR : ρ < R) (hR : ∀ z : V (nd X), ‖z‖ ≤ R → z ∈ OmF X x)
@@ -84,7 +79,7 @@ theorem local_form (X : Data E r) (x : Frame X.Ψ r) (hx : IsOrth X x) (ρ R : �
       (IW.isOpen_dom X).inter (isOpen_ne_fun hΔ.continuous continuous_const)
     have hzO : z ∈ OmF X x := hR z (hz.trans hρR.le)
     have hmem : lact γ⁻¹ (lact γ (rmul (cpt X x z) b)) ∈ {w | w ∈ X.dom ∧ Δ w ≠ 0} := by
-      rw [lact_inv_lact]
+      rw [_root_.ReciprocityTheory.ChartRestriction.G.AR.Up.PairUnfoldPf.lact_inv_lact]
       exact ⟨OntoS.dom_rmul X hzO hb, (hinv z hzO b hb).1⟩
     refine ⟨γ, zOf, _, hUo, hmem, hzd, ?_⟩
     have hcont : ContinuousAt (fun y' => lact γ⁻¹ y') (lact γ (rmul (cpt X x z) b)) :=
@@ -95,7 +90,7 @@ theorem local_form (X : Data E r) (x : Frame X.Ψ r) (hx : IsOrth X x) (ρ R : �
       ContinuousAt.comp (f := fun y' => lact γ⁻¹ y')
         ((hzd.differentiableAt (hUo.mem_nhds hmem)).continuousAt) hcont
     have hval : zOf (lact γ⁻¹ (lact γ (rmul (cpt X x z) b))) = z := by
-      rw [lact_inv_lact]; exact (hinv z hzO b hb).2.1
+      rw [_root_.ReciprocityTheory.ChartRestriction.G.AR.Up.PairUnfoldPf.lact_inv_lact]; exact (hinv z hzO b hb).2.1
     have h2 : ‖zOf (lact γ⁻¹ (lact γ (rmul (cpt X x z) b)))‖ < R := by
       rw [hval]; exact lt_of_le_of_lt hz hρR
     have hnear : ∀ᶠ y' in 𝓝 (lact γ (rmul (cpt X x z) b)), ‖zOf (lact γ⁻¹ y')‖ < R :=
@@ -104,7 +99,7 @@ theorem local_form (X : Data E r) (x : Frame X.Ψ r) (hx : IsOrth X x) (ρ R : �
     obtain ⟨hy'd, hy'Δ⟩ := hy'U
     obtain ⟨-, hbO, heq⟩ := hsplit _ hy'd hy'Δ
     have hy' : y' = lact γ (rmul (cpt X x (zOf (lact γ⁻¹ y'))) (bOf (lact γ⁻¹ y'))) := by
-      rw [← heq, lact_lact_inv]
+      rw [← heq, _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.PairUnfoldPf.lact_lact_inv]
     conv_lhs => rw [hy']
     exact hψ γ hγ _ hbO _ hy'n.le
   · left

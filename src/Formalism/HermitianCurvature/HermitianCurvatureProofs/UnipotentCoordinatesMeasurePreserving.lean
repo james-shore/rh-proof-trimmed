@@ -83,6 +83,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.Block3MulBlocks
 
 @[expose] public section
 
@@ -107,8 +108,7 @@ variable {k r : ℕ}
 theorem isUnit_of_N {g : Formalism.FourierDecayAlt.B.Mat k r} (hg : g ∈ Nset k r) : IsUnit g.det :=
   (Formalism.FourierDecayAlt.P.unipotent_radical_closed k r).unit g hg
 
-theorem isUnit_of_G {g : Formalism.FourierDecayAlt.B.Mat k r} (hg : g ∈ Formalism.FourierDecayAlt.B.GV k r) : IsUnit g.det :=
-  (Formalism.FourierDecayAlt.P.unitary_group_closed k r).unit g hg
+alias isUnit_of_G := _root_.PI.StabPairsW.isUnit_det_of_mem_GV
 
 theorem closedR {γ : Formalism.FourierDecayAlt.B.Mat k r} (hγ : IsUnit γ.det) :
     Formalism.FourierDecayAlt.B2.IsClosedSubgroup (Formalism.FourierDecayAlt.C6.Rset γ) := by
@@ -408,15 +408,7 @@ theorem hpk_lev_last (j : Fin (2 * ρ + k + 1)) :
   unfold Hpk levPos B2x4.lastI
   split_ifs with h1 h2 h3 <;> first | rfl | (exfalso; simp only [Fin.ext_iff] at *; omega)
 
-theorem herm_self_real (y : Fin (2 * ρ + k + 1) → ℂ) :
-    (((herm (Hpk k ρ) y y).re : ℝ) : ℂ) = herm (Hpk k ρ) y y := by
-  have h := B2x4.herm_symm _ (B2x4.Hpk_herm k ρ) y y
-  apply Complex.ext
-  · simp
-  · have : (herm (Hpk k ρ) y y).im = 0 := by
-      have h2 := congrArg Complex.im h
-      simp at h2; linarith
-    simp [this]
+alias herm_self_real := _root_.PI.StabPairsW.herm_self_re
 
 theorem cHc (c : Matrix (Fin (2 * ρ + k + 1)) (Fin 1) ℂ) :
     (cᴴ * Hpk k ρ * c) 0 0 = herm (Hpk k ρ) (fun i => c i 0) (fun i => c i 0) := by
@@ -607,9 +599,7 @@ theorem muN_succ (ρ : ℕ) [SigmaFinite (D.muN k ρ)] :
     (Measure.map_map hh0 phi_mp.measurable).symm
   rw [this, U.muRC, phi_mp.map_eq]; rfl
 
-theorem sigma_of_haar {a : ℕ} {S : Set (B.Mat k a)} {μ : Measure (Mt k a)} (h : B.IsHaarOn S μ) : SigmaFinite μ := by
-  have : IsFiniteMeasureOnCompacts μ := ⟨h.finite_compact⟩
-  infer_instance
+alias sigma_of_haar := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.sigmaF
 
 theorem haar_zero : B.IsHaarOn (Nset k 0) (D.muN k 0) := by
   rw [Formalism.FourierDecayAlt.P.unipotent_haar_base_case k]
@@ -655,8 +645,8 @@ theorem finrank_CV (E : Type) [Field E] [NumberField E] [IsCMField E] :
 
 theorem nhat : D.NhatCovol := by
   intro E _ _ _ hU g ν s hg
-  obtain ⟨hd, hs, hc⟩ := Formalism.FourierDecayAlt.P.block_frame Formalism.FourierDecayAlt.P.lattice_facts_general
-    Formalism.FourierDecayAlt.P.euclidean_frame E hU g ν s hg
+  obtain ⟨hd, hs, hc⟩ := _root_.Formalism.FourierDecayAlt.P.Jx3.t_BlockFrame Formalism.FourierDecayAlt.P.lattice_facts_general
+    _root_.Formalism.FourierDecayAlt.P.Jx2.t_EuclidFrame E hU g ν s hg
   have hrd : 0 < S6.rd E := Formalism.FourierDecayAlt.P.Jx4.rd_pos E
   set c : ℝ := S6.rd E ^ (-ν) with hcdef
   have hc0 : c ≠ 0 := (zpow_pos hrd _).ne'
@@ -721,7 +711,7 @@ theorem lev_mul (o ρ : ℕ) (a b : B.Mat k ρ) : ιLev k o ρ (a * b) = ιLev k
   congr 1 <;> simp
 
 theorem lev_GV (o ρ : ℕ) (y : B.Mat k ρ) (hy : y ∈ B.GV k ρ) : ιLev k o ρ y ∈ B.GV k (o + ρ) := by
-  rw [lev_eq_embG]; exact (Formalism.FourierDecayAlt.P.slice_membership k o ρ).2.2 y hy
+  rw [lev_eq_embG]; exact (_root_.Formalism.FourierDecayAlt.P.Ux2.sliceMem k o ρ).2.2 y hy
 
 theorem lev_cont (o ρ : ℕ) : Continuous (ιLev k o ρ) := by
   refine continuous_pi fun p => continuous_pi fun q => ?_
@@ -2337,10 +2327,10 @@ theorem um_uni (x1 : U.RC k 1 (j + ρ)) : Ux2.uniK (Ux2.kU (j + 1)) (Um x1) := b
         rw [Matrix.one_apply_ne]
         intro h; subst h; exact lt_irrefl _ hab
 
-theorem rev_zero' (n : ℕ) : Fin.rev (0 : Fin (n + 1)) = Fin.last n := by ext; simp
-theorem rev_succ' {n : ℕ} (a : Fin n) : Fin.rev a.succ = (Fin.rev a).castSucc := by ext; simp [Fin.val_rev]; try omega
-theorem rev_last' (n : ℕ) : Fin.rev (Fin.last n) = 0 := by ext; simp
-theorem rev_castSucc' {n : ℕ} (a : Fin n) : Fin.rev a.castSucc = (Fin.rev a).succ := by ext; simp [Fin.val_rev]; try omega
+alias rev_zero' := _root_.Fin.rev_zero
+alias rev_succ' := _root_.Fin.rev_succ
+alias rev_last' := _root_.Fin.rev_last
+alias rev_castSucc' := _root_.Fin.rev_castSucc
 
 theorem wvec_apply (v : Fin j → ℂ) (a : Fin j) : (G.wMat j *ᵥ v) a = v a.rev := by
   simp [G.wMat, Matrix.mulVec, dotProduct]
@@ -2770,8 +2760,7 @@ theorem kl0 (x1 : U.RC k 1 (j + ρ)) (x : U.RC k j ρ) :
       | last => simp only [posS, posL, Ux3.block3_apply]; simp [Ut0, c1v, cS]
       | cast b' => simp only [posS, Ux3.block3_apply]; simp [Ut0, Ux3.rn_eq, Ux3.block3_apply]
 
-theorem castM_mul {a b : ℕ} (h : a = b) (A B' : B.Mat k a) : D.castM h (A * B') = D.castM h A * D.castM h B' := by
-  simp only [D.castM, Matrix.reindex_apply, Matrix.submatrix_mul_equiv]
+alias castM_mul := _root_.Formalism.FourierDecayAlt.P.Dx2.Tower.castM_mul
 
 theorem embG_mul {j' ρ' : ℕ} (A B' : B.Mat k ρ') : U.embG k j' ρ' (A * B') = U.embG k j' ρ' A * U.embG k j' ρ' B' := by
   rw [U.embG, U.embG, U.embG, Ux3.block3_mul]; congr 1 <;> simp
@@ -2938,12 +2927,7 @@ theorem norm_det_w (j : ℕ) : ‖(G.wMat j).det‖ = 1 := by
   have h3 : 0 ≤ ‖(G.wMat j).det‖ := norm_nonneg _
   nlinarith [sq_nonneg (‖(G.wMat j).det‖ - 1)]
 
-theorem det_upper (u : G.UT j → ℂ) : (G.upper u).det = 1 := by
-  have hu := Ux2.upper_uni u
-  rw [Matrix.det_of_isUpperTriangular]
-  · simp [hu.1]
-  · intro a b hab
-    exact hu.2 a b (Ux2.kU_lt.mpr hab)
+alias det_upper := _root_.Formalism.FourierDecayAlt.P.Ux3.det_upper
 
 theorem middle_four_swap_measure_preserving {α β γ δ : Type*} [MeasurableSpace α] [MeasurableSpace β] [MeasurableSpace γ] [MeasurableSpace δ]
     (μa : Measure α) (μb : Measure β) (μc : Measure γ) (μd : Measure δ) [SigmaFinite μa] [SigmaFinite μb]
@@ -3616,15 +3600,12 @@ variable {k r : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace �
 
 theorem std : C2.Std k r D.z D.z' := ⟨D.k_pos, ⟨D.z_mem, D.T_pos⟩, ⟨D.z'_mem, D.T'_pos⟩⟩
 
-theorem isUnit_G {γ : B.Mat k r} (hγ : γ ∈ B.GV k r) : IsUnit γ.det :=
-  (Formalism.FourierDecayAlt.P.unitary_group_closed k r).unit γ hγ
-
 variable {γ : B.Mat k r} (hγ : γ ∈ B.GV k r) (hpos : 0 < Gf k r D.z D.z' γ)
 include hγ hpos
 
 theorem rset_eq : C6.Rset γ = C2.Rst k r D.z D.z' γ := by
   rw [(Formalism.FourierDecayAlt.P.stabilizer_split k r D.z D.z' γ (std D) ⟨hγ, hpos⟩).2.1]
-  have hu := isUnit_G hγ
+  have hu := _root_.PI.StabPairsW.isUnit_det_of_mem_GV hγ
   ext ρ
   simp only [C6.Rset, Set.mem_ofPred_eq]
   constructor
@@ -3645,7 +3626,7 @@ include hd hZ
 
 theorem u_lstg {ρ : B.Mat k r} (hρ : ρ ∈ C6.Rset γ) : (C2.uMap k r D.z ρ)ᴴ ∈ C2.Lstg (C2.monoP w d) := by
   rw [rset_eq D hγ hpos] at hρ
-  have h1 := (Formalism.FourierDecayAlt.P.stabilizer_pairs k r D.z D.z' γ (std D) ⟨hγ, hpos⟩).1.mapsTo hρ
+  have h1 := (_root_.stabPairs k r D.z D.z' γ (std D) ⟨hγ, hpos⟩).1.mapsTo hρ
   simp only [Set.mem_ofPred_eq] at h1
   rw [hZ] at h1
   have h2 : C2.uMap k r D.z ρ ∈ {u | u ∈ C2.UTset (r + 1) ∧ ∃ u' ∈ C2.UTset (r + 1), uᴴ * C2.monoP w d * u' =
@@ -3662,13 +3643,13 @@ theorem exists_rho (x : C2.Lstidx w → ℂ) : ∃ ρ ∈ C6.Rset γ, C2.uMap k 
   have hmem : ((low w x)ᴴ, u') ∈ {p : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ × Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ |
       p.1 ∈ C2.UTset (r + 1) ∧ p.2 ∈ C2.UTset (r + 1) ∧ p.1ᴴ * Zhat k r D.z D.z' γ * p.2 = Zhat k r D.z D.z' γ} := by
     refine ⟨hu1, hu', ?_⟩; rw [hZ]; exact he
-  obtain ⟨ρ, hρ, hρe⟩ := (Formalism.FourierDecayAlt.P.stabilizer_pairs k r D.z D.z' γ (std D) ⟨hγ, hpos⟩).1.surjOn hmem
+  obtain ⟨ρ, hρ, hρe⟩ := (_root_.stabPairs k r D.z D.z' γ (std D) ⟨hγ, hpos⟩).1.surjOn hmem
   refine ⟨ρ, by rw [rset_eq D hγ hpos]; exact hρ, ?_⟩
   exact congrArg Prod.fst hρe
 
 theorem u_inj : Set.InjOn (C2.uMap k r D.z) (C6.Rset γ) := by
   rw [rset_eq D hγ hpos]
-  exact (Formalism.FourierDecayAlt.P.stabilizer_pairs k r D.z D.z' γ (std D) ⟨hγ, hpos⟩).2.1
+  exact (_root_.stabPairs k r D.z D.z' γ (std D) ⟨hγ, hpos⟩).2.1
 
 end posG
 
@@ -3733,7 +3714,7 @@ theorem continuous_radial_phi : Continuous (phi0 D w : Mt k r → C2.Lstidx w �
 
 theorem rhoF_meas : Measurable fun x : C2.Lstidx w → ℂ => (Matrix.of.symm (rhoF D γ w x) : Mt k r) := by
   set S : Set (Mt k r) := {x | Matrix.of x ∈ C6.Rset γ} with hS
-  have hcl : IsClosed S := (Formalism.FourierDecayAlt.P.Dx2.OrbJ.closedR (isUnit_G hγ)).closed
+  have hcl : IsClosed S := (Formalism.FourierDecayAlt.P.Dx2.OrbJ.closedR (_root_.PI.StabPairsW.isUnit_det_of_mem_GV hγ)).closed
   have hemb := ContinuousOn.measurableEmbedding hcl.measurableSet (continuous_radial_phi D (w := w)).continuousOn
     (fun a ha b hb hab => by
       have e1 := u_eq_low D hγ hd hG (ρ := Matrix.of a) ha
@@ -3862,7 +3843,7 @@ include hγ hd hG
 
 theorem left_shift {a : B.Mat k r} (ha : a ∈ C6.Rset γ) (x : C2.Lstidx w → ℂ) :
     a * rhoF D γ w x = rhoF D γ w (Tl w (C2.uMap k r D.z a)ᴴ x) := by
-  have hR := Formalism.FourierDecayAlt.P.Dx2.OrbJ.closedR (isUnit_G hγ)
+  have hR := Formalism.FourierDecayAlt.P.Dx2.OrbJ.closedR (_root_.PI.StabPairsW.isUnit_det_of_mem_GV hγ)
   obtain ⟨hx1, hx2⟩ := rhoF_spec D hγ hd hG x
   apply rhoF_unique D hγ hd hG _ (hR.mul_mem a ha _ hx1)
   have hl := lstg_mul w d hd (low_mem w d hd x) (hG.lst _ ha)
@@ -3872,7 +3853,7 @@ theorem left_shift {a : B.Mat k r} (ha : a ∈ C6.Rset γ) (x : C2.Lstidx w → 
 
 theorem right_shift {a : B.Mat k r} (ha : a ∈ C6.Rset γ) (x : C2.Lstidx w → ℂ) :
     rhoF D γ w x * a = rhoF D γ w (Tr w (C2.uMap k r D.z a)ᴴ x) := by
-  have hR := Formalism.FourierDecayAlt.P.Dx2.OrbJ.closedR (isUnit_G hγ)
+  have hR := Formalism.FourierDecayAlt.P.Dx2.OrbJ.closedR (_root_.PI.StabPairsW.isUnit_det_of_mem_GV hγ)
   obtain ⟨hx1, hx2⟩ := rhoF_spec D hγ hd hG x
   apply rhoF_unique D hγ hd hG _ (hR.mul_mem _ hx1 a ha)
   have hl := lstg_mul w d hd (hG.lst _ ha) (low_mem w d hd x)
@@ -3881,7 +3862,7 @@ theorem right_shift {a : B.Mat k r} (ha : a ∈ C6.Rset γ) (x : C2.Lstidx w →
     Matrix.conjTranspose_conjTranspose]
 
 theorem haar_good : B.IsHaarOn (C6.Rset γ) (Formalism.FourierDecayAlt.D.muR D γ w) := by
-  have hR := Formalism.FourierDecayAlt.P.Dx2.OrbJ.closedR (isUnit_G hγ)
+  have hR := Formalism.FourierDecayAlt.P.Dx2.OrbJ.closedR (_root_.PI.StabPairsW.isUnit_det_of_mem_GV hγ)
   have hm := rhoF_meas D hγ hd hG
   have hmu : Formalism.FourierDecayAlt.D.muR D γ w = (volume : Measure (C2.Lstidx w → ℂ)).map
       (fun x => (Matrix.of.symm (rhoF D γ w x) : Mt k r)) := rfl
@@ -3941,11 +3922,9 @@ variable {k r : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace �
 
 def yv (γ : B.Mat k r) (b : Fin r) : Fin (2 * r + k + 1) → ℂ := γ *ᵥ DF.ee k r b
 
-theorem fvec_cs (z : Fin (2 * r + k + 1) → ℂ) (b : Fin r) : fvec k r z b.castSucc = DF.ee k r b := by
-  simp only [fvec, Fin.val_castSucc, dif_pos b.isLt]
+alias fvec_cs := _root_.Formalism.FourierDecayAlt.P.Dx2.DF.fvec_cs
 
-theorem fvec_last (z : Fin (2 * r + k + 1) → ℂ) : fvec k r z (Fin.last r) = z := by
-  simp [fvec]
+alias fvec_last := _root_.Formalism.FourierDecayAlt.P.Dx2.DF.fvec_lastI
 
 include hZ in
 theorem pz (a b : Fin (r + 1)) :
@@ -4254,7 +4233,7 @@ theorem rhoD_N (x : C2.Lstidx w → ℂ) : rhoD γ hB d x ∈ Nset k r := by
 
 theorem rhoD'_N (x : C2.Lstidx w → ℂ) : γ⁻¹ * rhoD γ hB d x * γ ∈ Nset k r := by
   have hG := Formalism.FourierDecayAlt.P.unitary_group_closed k r
-  have hu := isUnit_G hγ
+  have hu := _root_.PI.StabPairsW.isUnit_det_of_mem_GV hγ
   have hinv : ∀ v, γ⁻¹ *ᵥ (γ *ᵥ v) = v := fun v => by
     rw [Matrix.mulVec_mulVec, Matrix.nonsing_inv_mul _ hu, Matrix.one_mulVec]
   refine mem_N _ (hG.mul_mem _ (hG.mul_mem _ (hG.inv_mem γ hγ) _ (rhoD_UH D hγ hd hZ hB x)) γ hγ) _ (upperUnipotent_mem_upperTriangular hd x) ?_ ?_
@@ -4344,7 +4323,7 @@ variable {k r : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace �
 
 theorem rel_uu' {ρ : B.Mat k r} (hρ : ρ ∈ C6.Rset γ) (hγ : γ ∈ B.GV k r) :
     (C2.uMap k r D.z ρ)ᴴ * Zhat k r D.z D.z' γ * C2.uMap k r D.z' (γ⁻¹ * ρ * γ) = Zhat k r D.z D.z' γ := by
-  have hu := isUnit_G hγ
+  have hu := _root_.PI.StabPairsW.isUnit_det_of_mem_GV hγ
   have hρu : IsUnit ρ.det := (Formalism.FourierDecayAlt.P.unipotent_radical_closed k r).unit ρ hρ.1
   have e := Formalism.FourierDecayAlt.P.zhat_equivalence k r D.z D.z' ⟨D.z_mem, D.T_pos⟩ ⟨D.z'_mem, D.T'_pos⟩ ρ
     (N_sub_S D.z hρ.1) _ (N_sub_S D.z' hρ.2) γ
@@ -4400,7 +4379,7 @@ theorem uMap_one (z : Fin (2 * r + k + 1) → ℂ) (hz : C2.StdZ k r z) : C2.uMa
 include hγ hd hZ hB
 
 theorem trivial_of_u_one {ρ : B.Mat k r} (hρ : ρ ∈ C6.Rset γ) (hu1 : C2.uMap k r D.z ρ = 1) : ρ = 1 := by
-  have hu := isUnit_G hγ
+  have hu := _root_.PI.StabPairsW.isUnit_det_of_mem_GV hγ
   have hP := Formalism.FourierDecayAlt.P.C2x2.isUnit_det_monomialMatrix w d hd
   have hγ' : γᴴ * Hpk k r * γ = Hpk k r := hγ
   have hρU : ρᴴ * Hpk k r * ρ = Hpk k r := hρ.1.1
@@ -4503,7 +4482,7 @@ theorem trivial_of_u_one {ρ : B.Mat k r} (hρ : ρ ∈ C6.Rset γ) (hu1 : C2.uM
 
 theorem inj_degen : Set.InjOn (C2.uMap k r D.z) (C6.Rset γ) := by
   intro ρ1 h1 ρ2 h2 heq
-  have hR := Formalism.FourierDecayAlt.P.Dx2.OrbJ.closedR (isUnit_G hγ)
+  have hR := Formalism.FourierDecayAlt.P.Dx2.OrbJ.closedR (_root_.PI.StabPairsW.isUnit_det_of_mem_GV hγ)
   have hu1 : IsUnit ρ1.det := hR.unit ρ1 h1
   have hi := hR.inv_mem ρ1 h1
   have hm := hR.mul_mem _ hi ρ2 h2
@@ -5717,19 +5696,9 @@ def utEquiv : G.UT (ph + (n + 1)) ≃ (G.UT ph ⊕ (Fin ph × Fin (n + 1))) ⊕ 
 section blocks
 variable {p s : ℕ}
 
-theorem b_cc (A : Matrix (Fin p) (Fin p) ℂ) (B : Matrix (Fin p) (Fin s) ℂ) (C : Matrix (Fin s) (Fin p) ℂ)
-    (D : Matrix (Fin s) (Fin s) ℂ) (i j : Fin p) : U.blk2 A B C D (Fin.castAdd s i) (Fin.castAdd s j) = A i j := by
-  simp [U.blk2]
 theorem b_cn (A : Matrix (Fin p) (Fin p) ℂ) (B : Matrix (Fin p) (Fin s) ℂ) (C : Matrix (Fin s) (Fin p) ℂ)
     (D : Matrix (Fin s) (Fin s) ℂ) (i : Fin p) (j : Fin s) : U.blk2 A B C D (Fin.castAdd s i) (Fin.natAdd p j) = B i j := by
   simp [U.blk2]
-theorem b_nc (A : Matrix (Fin p) (Fin p) ℂ) (B : Matrix (Fin p) (Fin s) ℂ) (C : Matrix (Fin s) (Fin p) ℂ)
-    (D : Matrix (Fin s) (Fin s) ℂ) (i : Fin s) (j : Fin p) : U.blk2 A B C D (Fin.natAdd p i) (Fin.castAdd s j) = C i j := by
-  simp [U.blk2]
-theorem b_nn (A : Matrix (Fin p) (Fin p) ℂ) (B : Matrix (Fin p) (Fin s) ℂ) (C : Matrix (Fin s) (Fin p) ℂ)
-    (D : Matrix (Fin s) (Fin s) ℂ) (i j : Fin s) : U.blk2 A B C D (Fin.natAdd p i) (Fin.natAdd p j) = D i j := by
-  simp [U.blk2]
-
 theorem one_cn (i : Fin p) (j : Fin s) : (1 : Matrix (Fin (p + s)) (Fin (p + s)) ℂ) (Fin.castAdd s i) (Fin.natAdd p j) = 0 := by
   rw [Matrix.one_apply_ne]; intro h; have := congrArg Fin.val h; simp at this; omega
 theorem one_nc (i : Fin s) (j : Fin p) : (1 : Matrix (Fin (p + s)) (Fin (p + s)) ℂ) (Fin.natAdd p i) (Fin.castAdd s j) = 0 := by
@@ -5748,16 +5717,16 @@ theorem permutationMatrix_extend_eq_fromBlocks (σ : Equiv.Perm (Fin ph)) : U.wP
   induction a using Fin.addCases with
   | left i =>
     induction b using Fin.addCases with
-    | left j => rw [b_cc]; simp [U.wP, blockPerm_castAdd, Fin.castAdd_inj]
+    | left j => rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_upper_left]; simp [U.wP, blockPerm_castAdd, Fin.castAdd_inj]
     | right j =>
       rw [b_cn]; simp only [U.wP, Matrix.of_apply, blockPerm_castAdd, Matrix.zero_apply]
       rw [if_neg]; intro h; have := congrArg Fin.val h; simp at this; omega
   | right i =>
     induction b using Fin.addCases with
     | left j =>
-      rw [b_nc]; simp only [U.wP, Matrix.of_apply, blockPerm_natAdd, Matrix.zero_apply]
+      rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_lower_left]; simp only [U.wP, Matrix.of_apply, blockPerm_natAdd, Matrix.zero_apply]
       rw [if_neg]; intro h; have := congrArg Fin.val h; simp at this; omega
-    | right j => rw [b_nn]; simp [U.wP, blockPerm_natAdd, G.wMat, eq_comm]
+    | right j => rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_lower_right]; simp [U.wP, blockPerm_natAdd, G.wMat, eq_comm]
 
 theorem diag_dP (d : Fin ph → ℂ) (t : ℂ) :
     Matrix.diagonal (dP (n := n) d t) = U.blk2 (Matrix.diagonal d) 0 0 (t • 1) := by
@@ -5765,14 +5734,14 @@ theorem diag_dP (d : Fin ph → ℂ) (t : ℂ) :
   induction a using Fin.addCases with
   | left i =>
     induction b using Fin.addCases with
-    | left j => rw [b_cc]; simp [Matrix.diagonal_apply, dP, Fin.castAdd_inj]
+    | left j => rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_upper_left]; simp [Matrix.diagonal_apply, dP, Fin.castAdd_inj]
     | right j => rw [b_cn, Matrix.diagonal_apply_ne]; · rfl
                  intro h; have := congrArg Fin.val h; simp at this; omega
   | right i =>
     induction b using Fin.addCases with
-    | left j => rw [b_nc, Matrix.diagonal_apply_ne]; · rfl
+    | left j => rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_lower_left, Matrix.diagonal_apply_ne]; · rfl
                 intro h; have := congrArg Fin.val h; simp at this; omega
-    | right j => rw [b_nn]; simp [Matrix.diagonal_apply, dP, Matrix.one_apply, Fin.natAdd_inj]
+    | right j => rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_lower_right]; simp [Matrix.diagonal_apply, dP, Matrix.one_apply, Fin.natAdd_inj]
 
 theorem lowW_sigP (σ : Equiv.Perm (Fin ph)) (v : U.LW (sigP (n := n) σ) → ℂ) :
     U.lowW (sigP σ) v = U.blk2 (U.lowW σ (fun q => v (lwIn σ (Sum.inl q)))) 0
@@ -5782,7 +5751,7 @@ theorem lowW_sigP (σ : Equiv.Perm (Fin ph)) (v : U.LW (sigP (n := n) σ) → �
   | left i =>
     induction b using Fin.addCases with
     | left j =>
-      rw [b_cc]
+      rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_upper_left]
       simp only [U.lowW, Matrix.add_apply, Matrix.of_apply, one_cc]
       congr 1
       by_cases h : j < i ∧ σ.symm j < σ.symm i
@@ -5801,7 +5770,7 @@ theorem lowW_sigP (σ : Equiv.Perm (Fin ph)) (v : U.LW (sigP (n := n) σ) → �
   | right i =>
     induction b using Fin.addCases with
     | left j =>
-      rw [b_nc]
+      rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_lower_left]
       simp only [U.lowW, Matrix.add_apply, Matrix.of_apply, one_nc, zero_add]
       have h' : Fin.castAdd (n + 1) j < Fin.natAdd ph i ∧
           (sigP σ).symm (Fin.castAdd (n + 1) j) < (sigP σ).symm (Fin.natAdd ph i) := by
@@ -5811,7 +5780,7 @@ theorem lowW_sigP (σ : Equiv.Perm (Fin ph)) (v : U.LW (sigP (n := n) σ) → �
         have := (σ.symm j).isLt; omega
       rw [dif_pos h']; rfl
     | right j =>
-      rw [b_nn]
+      rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_lower_right]
       simp only [U.lowW, Matrix.add_apply, Matrix.of_apply, one_nn]
       rw [dif_neg, add_zero]
       rintro ⟨h1, h2⟩
@@ -5828,7 +5797,7 @@ theorem upper_split (u : G.UT (ph + (n + 1)) → ℂ) :
   | left i =>
     induction b using Fin.addCases with
     | left j =>
-      rw [b_cc]; simp only [G.upper, Matrix.add_apply, one_cc, G.strictUpper, Matrix.of_apply]
+      rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_upper_left]; simp only [G.upper, Matrix.add_apply, one_cc, G.strictUpper, Matrix.of_apply]
       congr 1
     | right j =>
       rw [b_cn]; simp only [G.upper, Matrix.add_apply, one_cn, G.strictUpper, Matrix.of_apply, zero_add]
@@ -5836,11 +5805,11 @@ theorem upper_split (u : G.UT (ph + (n + 1)) → ℂ) :
   | right i =>
     induction b using Fin.addCases with
     | left j =>
-      rw [b_nc]; simp only [G.upper, Matrix.add_apply, one_nc, G.strictUpper, Matrix.of_apply, zero_add,
+      rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_lower_left]; simp only [G.upper, Matrix.add_apply, one_nc, G.strictUpper, Matrix.of_apply, zero_add,
         Matrix.zero_apply]
       rw [dif_neg]; intro h; have : ph + i.val < j.val := h; omega
     | right j =>
-      rw [b_nn]; simp only [G.upper, Matrix.add_apply, one_nn, G.strictUpper, Matrix.of_apply]
+      rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_lower_right]; simp only [G.upper, Matrix.add_apply, one_nn, G.strictUpper, Matrix.of_apply]
       congr 1
       by_cases h : i < j
       · rw [dif_pos h, dif_pos (show Fin.natAdd ph i < Fin.natAdd ph j from show ph + i.val < ph + j.val by
@@ -5874,7 +5843,6 @@ theorem headH_split (v : U.LW (sigP (n := n) σ) → ℂ) (u : G.UT (ph + (n + 1
   rfl
 
 theorem isUnit_low (v : U.LW σ → ℂ) : IsUnit (U.lowW σ v).det := by rw [Ux3.det_lowW]; exact isUnit_one
-theorem isUnit_up {m : ℕ} (u : G.UT m → ℂ) : IsUnit (G.upper u).det := by rw [Ux3.det_upper]; exact isUnit_one
 theorem isUnit_wP {m : ℕ} (τ : Equiv.Perm (Fin m)) : IsUnit (U.wP τ).det :=
   Matrix.isUnit_det_of_right_inverse (Ux2.permutationMatrix_mul_symm τ)
 
@@ -5885,7 +5853,7 @@ theorem zj_zero {P : ℕ} (a : Fin 0 → Fin P → ℂ) (b : Fin P → Fin 0 →
   have hi : i = Fin.castAdd 0 i := Fin.ext rfl
   have hj : j = Fin.castAdd 0 j := Fin.ext rfl
   conv_lhs => rw [hi, hj]
-  rw [b_cc]
+  rw [_root_.Formalism.FourierDecayAlt.P.Ux2.block2_apply_upper_left]
 
 theorem zj_split (v : U.LW (sigP (n := n) σ) → ℂ) (u : G.UT (ph + (n + 1)) → ℂ) :
     U.headH (sigP σ) (dP d t) v u =
@@ -5894,7 +5862,7 @@ theorem zj_split (v : U.LW (sigP (n := n) σ) → ℂ) (u : G.UT (ph + (n + 1)) 
   rw [headH_split, Ux4.ux_zjAffine]
   have hL := Matrix.nonsing_inv_mul _ (isUnit_low σ (v1 σ v))
   have hW := Matrix.nonsing_inv_mul _ (isUnit_wP σ)
-  have hU := Matrix.mul_nonsing_inv _ (isUnit_up (u1 u))
+  have hU := Matrix.mul_nonsing_inv _ (_root_.Formalism.FourierDecayAlt.P.Dx2.Split.upper_det (u1 u))
   simp only [Matrix.of_symm_apply, Equiv.apply_symm_apply, U.headH, aN, bN]
   congr 1
   · rw [show U.wP σ * U.lowW σ (v1 σ v) * Matrix.diagonal d * G.upper (u1 u) * ((G.upper (u1 u))⁻¹ * Bm u) =
@@ -5964,7 +5932,7 @@ theorem upper_fact (u : G.UT (ph + (n + 1)) → ℂ) :
     Equiv.apply_symm_apply]
   congr 1
   unfold bN
-  rw [← Matrix.mul_assoc, Matrix.mul_nonsing_inv _ (isUnit_up (u1 u)), Matrix.one_mul]; rfl
+  rw [← Matrix.mul_assoc, Matrix.mul_nonsing_inv _ (_root_.Formalism.FourierDecayAlt.P.Dx2.Split.upper_det (u1 u)), Matrix.one_mul]; rfl
 
 theorem psiH_split (β : ℂ) (a0 : Fin 0 → Fin (ph + (n + 1)) → ℂ) (b0 : Fin (ph + (n + 1)) → Fin 0 → ℂ)
     (v : U.LW (sigP (n := n) σ) → ℂ) (u : G.UT (ph + (n + 1)) → ℂ) :
@@ -5974,13 +5942,13 @@ theorem psiH_split (β : ℂ) (a0 : Fin 0 → Fin (ph + (n + 1)) → ℂ) (b0 : 
   unfold U.psiH
   simp only
   rw [← psi_add, conj_split, upper_fact, cornerA_zero, cornerB_zero]
-  have hlow := ((Formalism.FourierDecayAlt.P.low_weight_specialisation ph σ (U.lowW σ (v1 σ v))).mpr ⟨v1 σ v, rfl⟩)
+  have hlow := ((_root_.Formalism.FourierDecayAlt.P.Ux2.lowWSpec ph σ (U.lowW σ (v1 σ v))).mpr ⟨v1 σ v, rfl⟩)
   have huh : G.IsUpperUni (G.upper (u1 u)) := (Ux2.upper_iff _).mpr (Ux2.upper_uni _)
   have hu2 : G.IsUpperUni (G.upper (u2 u)) := (Ux2.upper_iff _).mpr (Ux2.upper_uni _)
   have h1 : G.IsLowerUni (1 : Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ) := by
     refine ⟨fun i => by simp, fun i j h => ?_⟩
     rw [Matrix.transpose_one, Matrix.one_apply_ne (ne_of_lt h).symm]
-  obtain ⟨cA, cB⟩ := Formalism.FourierDecayAlt.P.character_on_blocks ph (n + 1) (Matrix.of.symm (aN σ v)) (Matrix.of.symm (bN u))
+  obtain ⟨cA, cB⟩ := _root_.Formalism.FourierDecayAlt.P.Ux2.charBlock ph (n + 1) (Matrix.of.symm (aN σ v)) (Matrix.of.symm (bN u))
     (U.wP σ * U.lowW σ (v1 σ v) * (U.wP σ)⁻¹) (G.upper (u1 u)) 1 (G.upper (u2 u)) hlow.2 h1 huh hu2
   rw [cA, cB, subS_one, supS_superSum]
   congr 1
@@ -6022,12 +5990,8 @@ end meas
 
 section shear
 
-theorem permutationMatrix_eq_permMatrix'' {m : ℕ} (τ : Equiv.Perm (Fin m)) : U.wP τ = τ.permMatrix ℂ := by
-  ext a b
-  simp [U.wP, Equiv.Perm.permMatrix, PEquiv.toMatrix_apply, Equiv.toPEquiv_apply]
-
 theorem normSq_det_wP {m : ℕ} (τ : Equiv.Perm (Fin m)) : Complex.normSq (U.wP τ).det = 1 := by
-  rw [permutationMatrix_eq_permMatrix'', Matrix.det_permutation]
+  rw [_root_.Formalism.FourierDecayAlt.P.Ux5.permutationMatrix_eq_permMatrix, Matrix.det_permutation]
   rcases Int.units_eq_one_or (Equiv.Perm.sign τ) with h | h <;> simp [h]
 
 theorem det_inv_low (σ : Equiv.Perm (Fin ph)) (v : U.LW σ → ℂ) : ((U.lowW σ v)⁻¹).det = 1 := by
@@ -6148,14 +6112,7 @@ theorem cont_lowW : Continuous (U.lowW σ) := by
   · exact continuous_apply _
   · exact continuous_const
 
-theorem cont_upper {m : ℕ} : Continuous (G.upper (d := m)) := by
-  unfold G.upper G.strictUpper
-  refine continuous_const.add ?_
-  refine continuous_pi fun a => continuous_pi fun b => ?_
-  show Continuous fun v : G.UT m → ℂ => if h : a < b then v ⟨(a, b), h⟩ else 0
-  split_ifs with h
-  · exact continuous_apply _
-  · exact continuous_const
+alias cont_upper := _root_.Formalism.FourierDecayAlt.P.Dx2.SplitM.continuous_upper
 
 theorem inv_adj {m : ℕ} (A : Matrix (Fin m) (Fin m) ℂ) (h : A.det = 1) : A⁻¹ = A.adjugate := by
   rw [Matrix.inv_def, h, Ring.inverse_one, one_smul]
@@ -6173,7 +6130,7 @@ def shG (x : (U.LW σ → ℂ) × (G.UT ph → ℂ)) (y : (Fin (n + 1) → Fin p
 theorem shG_shF (x) (y : (Fin (n + 1) → Fin ph → ℂ) × (Fin ph → Fin (n + 1) → ℂ)) : shG σ x (shF σ x y) = y := by
   have hL := Matrix.nonsing_inv_mul _ (isUnit_low σ x.1)
   have hW := Matrix.nonsing_inv_mul _ (isUnit_wP σ)
-  have hU := Matrix.mul_nonsing_inv _ (isUnit_up x.2)
+  have hU := Matrix.mul_nonsing_inv _ (_root_.Formalism.FourierDecayAlt.P.Dx2.Split.upper_det x.2)
   ext1
   · simp only [shG, shF, Equiv.apply_symm_apply]
     apply (Matrix.of).symm.injective.eq_iff.mpr
@@ -6186,7 +6143,7 @@ theorem shG_shF (x) (y : (Fin (n + 1) → Fin ph → ℂ) × (Fin ph → Fin (n 
 theorem shF_shG (x) (y : (Fin (n + 1) → Fin ph → ℂ) × (Fin ph → Fin (n + 1) → ℂ)) : shF σ x (shG σ x y) = y := by
   have hL := Matrix.mul_nonsing_inv _ (isUnit_low σ x.1)
   have hW := Matrix.mul_nonsing_inv _ (isUnit_wP σ)
-  have hU := Matrix.nonsing_inv_mul _ (isUnit_up x.2)
+  have hU := Matrix.nonsing_inv_mul _ (_root_.Formalism.FourierDecayAlt.P.Dx2.Split.upper_det x.2)
   ext1
   · simp only [shG, shF, Equiv.apply_symm_apply]
     apply (Matrix.of).symm.injective.eq_iff.mpr
@@ -6578,8 +6535,8 @@ theorem sliceOm : D.SliceOm := by
   intro k r E _ _ _ z z' F h p n t hp hle γ hloc hint
   subst hp
   have hP : D.ptSize (h ++ [(n + 1, t)]) = D.ptSize h + (n + 1) := ptSize_append h (n + 1) t
-  have hspec := (Formalism.FourierDecayAlt.P.ptPerm_spec _ _ hloc).1
-  have hspec' := (Formalism.FourierDecayAlt.P.ptPerm_spec _ _ (isLocPt_head hloc)).1
+  have hspec := (_root_.Formalism.FourierDecayAlt.P.Dx1.d_ptPermSpec _ _ hloc).1
+  have hspec' := (_root_.Formalism.FourierDecayAlt.P.Dx1.d_ptPermSpec _ _ (isLocPt_head hloc)).1
   have hσ : ∀ a : Fin (D.ptSize (h ++ [(n + 1, t)])),
       ((sigP (n := n) (D.ptPerm h)) (Fin.cast hP a)).val = (D.ptPerm (h ++ [(n + 1, t)]) a).val := by
     intro a
@@ -6625,14 +6582,8 @@ namespace Formalism.FourierDecayAlt.P
 
 theorem nilpotent_measure_is_haar : Formalism.FourierDecayAlt.D.MuNHaar := fun k r => Dx2.MN.haar (k := k) r
 
-theorem unipotent_dual_lattice_covolume : Formalism.FourierDecayAlt.D.NhatCovol := Dx2.NH.nhat
+alias exists_isotropic_frame := _root_.Formalism.FourierDecayAlt.P.Dx2.dFrameExists
 
-theorem exists_level_tower : Formalism.FourierDecayAlt.D.TowerExists := Dx2.Tower.towerExists
-
-theorem exists_isotropic_frame : Formalism.FourierDecayAlt.D.DFrameExists := Dx2.dFrameExists
-
-theorem radial_measure_is_haar : Formalism.FourierDecayAlt.D.MuRHaar := Dx2.Rad.muRHaar
-
-theorem slice_measure_identity : Formalism.FourierDecayAlt.D.SliceOm := Dx2.SL.sliceOm
+alias radial_measure_is_haar := _root_.Formalism.FourierDecayAlt.P.Dx2.Rad.muRHaar
 
 end Formalism.FourierDecayAlt.P

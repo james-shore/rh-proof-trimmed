@@ -67,9 +67,9 @@ theorem levi_cocompact : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
   obtain ⟨ε, hε, hh⟩ := GlobalTheory.T.idele_bound_of_joint_anisotropic F E σ h n J hJ _ (hermFam σ J X Y) (L : Set (GAd σ J))
     (GlobalTheory.T.hermitian_family_anisotropic_joint F E σ h n J hJ r X Y hW)
     (fun g hg j => GlobalTheory.T.levi_minimal_idele_hermitian_bound F E σ h n J hJ r X Y hW g ((hmem g).1 hg).1 ((hmem g).1 hg).2 j)
-  obtain ⟨Ω, hΩ, hsub, hred⟩ := GlobalTheory.T.commutant_closed_subgroup_compact_quotient F E σ h n J hJ _ (projFam σ J X Y) L hLc
-    (fun g hg k => GlobalTheory.T.levi_minimal_commutes_projection_family F E σ h n J hJ r X Y hW g ((hmem g).1 hg).1 k) ⟨ε, hε, hh⟩
-    (fun γ hγ hc => (hmem γ).2 (GlobalTheory.T.mem_levi_minimal_of_commutes_projections F E σ h n J hJ r X Y hW γ hγ hc))
+  obtain ⟨Ω, hΩ, hsub, hred⟩ := _root_.GlobalTheory.CompanionTheory.ParCocompact.exists_isCompact_of_centralizer_height F E σ h n J hJ _ (projFam σ J X Y) L hLc
+    (fun g hg k => _root_.GlobalTheory.CompanionTheory.ParCocompact.LeviComm.leviMin_comm_projFam F E σ h n J hJ r X Y hW g ((hmem g).1 hg).1 k) ⟨ε, hε, hh⟩
+    (fun γ hγ hc => (hmem γ).2 (_root_.GlobalTheory.CompanionTheory.ParCocompact.mem_leviMin_of_comm F E σ h n J hJ r X Y hW γ hγ hc))
   refine ⟨Ω, hΩ, fun c hc => (hmem c).1 (hsub hc), fun m hm hm1 => ?_⟩
   obtain ⟨δ, hδ, hδL, hd⟩ := hred m ((hmem m).2 ⟨hm, hm1⟩)
   exact ⟨δ, hδ, ((hmem δ).1 hδL).1, _, hd, by group⟩
@@ -84,7 +84,7 @@ theorem minParOne_cocompact : ∀ (F E : Type) [Field F] [NumberField F] [Field 
     exact hmul _ hc.2 _ (hsub hc').2
   · obtain ⟨u, hu, m, hm, hm1, rfl⟩ := GlobalTheory.T.minimal_parabolic_levi_decomposition F E σ h n J hJ r X Y hW p hp
     obtain ⟨δ, hδ, hδL, c', hc', rfl⟩ := hM m hm hm1
-    have hu' := GlobalTheory.T.levi_normalizes_unipotent_ter F E σ h n J hJ r X Y hW δ hδL u hu
+    have hu' := _root_.GlobalTheory.CompanionTheory.ParCocompact.UnipNormal.leviMin_normalises_unipMin F E σ h n J hJ r X Y hW δ hδL u hu
     obtain ⟨δ', hδ', hδU, c, hc, hcU, e⟩ := hU _ hu'
     refine ⟨δ * δ', mul_mem hδ hδ', mul_mem_minPar (leviMin_subset X Y hδL)
       (minParOne_subset (unipMin_subset_minParOne X hδU)), c * c',

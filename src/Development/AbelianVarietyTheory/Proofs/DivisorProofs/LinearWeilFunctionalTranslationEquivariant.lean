@@ -194,7 +194,7 @@ theorem core (hT : IsTriple B G X om om') (v : Pl (F := F)) (t : E →ₐ[F] Fv 
     { toFun := fun g => c (sec g)
       map_one' := by simp only [sec1, c1]
       map_mul' := fun g₁ g₂ => by simp only [secmul, cmul _ (hsec g₁) _ (hsec g₂)] }
-  obtain ⟨χ, hχ⟩ := GlobalTheory.ghom_factors_through_det (two_ne_zero_Fv v) κ.toHomUnits
+  obtain ⟨χ, hχ⟩ := _root_.GlobalTheory.DetFactor.factors_through_det (two_ne_zero_Fv v) κ.toHomUnits
   refine ⟨χ * apowHom ((a : ℂ) / 2), fun h hh => ⟨cmpGL t h, rfl, fun φ hφ φ₁ hφ₁ hA => ?_⟩⟩
   have hsh : sec (cmpGL t h) = h := hinj _ (hsec _) _ hh (by rw [hsecv, cmpGL_val])
   have hch : c h = (χ (Matrix.GeneralLinearGroup.det (cmpGL t h)) : ℂ) := by

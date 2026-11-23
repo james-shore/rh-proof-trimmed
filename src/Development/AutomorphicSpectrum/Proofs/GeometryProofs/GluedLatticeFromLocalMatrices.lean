@@ -78,8 +78,8 @@ theorem gIdx_eq_locAt {W : Type} [AddCommGroup W] [Module (𝓞 L) W] (v : Finit
     rw [locAt_inf, ← h w hw, inf_idem]
   have hB : ∀ w : FinitePlace L, w ≠ v → locAt w B = locAt w (B ⊓ A) := fun w hw => by
     rw [locAt_inf, h w hw, inf_idem]
-  have n1 := GlobalTheory.T.local_index_at_single_place L W v A (A ⊓ B) inf_le_left (by rwa [eA]) hA
-  have n2 := GlobalTheory.T.local_index_at_single_place L W v B (B ⊓ A) inf_le_left (by rwa [eA]) hB
+  have n1 := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.LocIndex.relIndex_locAt L W v A (A ⊓ B) inf_le_left (by rwa [eA]) hA
+  have n2 := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.LocIndex.relIndex_locAt L W v B (B ⊓ A) inf_le_left (by rwa [eA]) hB
   rw [eA, locAt_inf, eA] at n1
   rw [eA, locAt_inf, eA] at n2
   rw [gIdx, gIdx, n1, n2]
@@ -119,14 +119,14 @@ theorem gIdx_glued (S : Finset (FinitePlace L)) : ∀ T : FinitePlace L → Matr
       S.finite_toSet.subset fun w hw => by
         by_contra h
         exact hw (hS' w h)
-    obtain ⟨a1, a2⟩ := GlobalTheory.T.glued_lattice_finite_index L n T hd f1
-    obtain ⟨b1, b2⟩ := GlobalTheory.T.glued_lattice_finite_index L n T' hd' f2
+    obtain ⟨a1, a2⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.LocFrame.Comm.glued_commensurable L n T hd f1
+    obtain ⟨b1, b2⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.LocFrame.Comm.glued_commensurable L n T' hd' f2
     have c1 := AddSubgroup.relIndex_ne_zero_trans a1 b2
     have c2 := AddSubgroup.relIndex_ne_zero_trans b1 a2
     have loc : ∀ w : FinitePlace L, w ≠ v → locAt w (glued T) = locAt w (glued T') := fun w hw => by
-      rw [GlobalTheory.T.glued_lattice_localization L n T hd f1, GlobalTheory.T.glued_lattice_localization L n T' hd' f2, hTw w hw]
-    rw [gIdx_add c1 c2 b1 b2, gIdx_eq_locAt v _ _ c1 c2 loc, GlobalTheory.T.glued_lattice_localization L n T hd f1, GlobalTheory.T.glued_lattice_localization L n T' hd' f2,
-      hTv, GlobalTheory.T.local_index_frame_log_det L n v (T v) (hd v), ih T' hd' hS', Finset.sum_insert hv]
+      rw [_root_.GlobalTheory.CompanionTheory.Ar.Cusp.LocFrame.locAt_glued L n T hd f1, _root_.GlobalTheory.CompanionTheory.Ar.Cusp.LocFrame.locAt_glued L n T' hd' f2, hTw w hw]
+    rw [gIdx_add c1 c2 b1 b2, gIdx_eq_locAt v _ _ c1 c2 loc, _root_.GlobalTheory.CompanionTheory.Ar.Cusp.LocFrame.locAt_glued L n T hd f1, _root_.GlobalTheory.CompanionTheory.Ar.Cusp.LocFrame.locAt_glued L n T' hd' f2,
+      hTv, _root_.GlobalTheory.CompanionTheory.Ar.Cusp.LocFrame.gIdx_locAt_frame L n v (T v) (hd v), ih T' hd' hS', Finset.sum_insert hv]
     refine congrArg _ (Finset.sum_congr rfl fun w hw => ?_)
     rw [hTw w fun e => hv (e ▸ hw)]
 
@@ -179,7 +179,7 @@ theorem logIdx_localFrames : ∀ (L : Type) [Field L] [NumberField L] (V : Type)
     exact gIdx_map _ hΦ _ _
   obtain ⟨g1, g2, g3⟩ := GlobalTheory.T.global_index_frame_log_norm L n C hC
   have hfin' : {v : FinitePlace L | ¬ UnitAt v (T v)}.Finite := hfin
-  obtain ⟨a1, a2⟩ := GlobalTheory.T.glued_lattice_finite_index L n T hd hfin'
+  obtain ⟨a1, a2⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.LocFrame.Comm.glued_commensurable L n T hd hfin'
   rw [hidx, gIdx_add a1 a2 g1 g2, g3, gIdx_glued hfin'.toFinset T hd fun v hv => by
     by_contra h
     exact hv (hfin'.mem_toFinset.2 h)]

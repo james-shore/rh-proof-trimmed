@@ -177,16 +177,6 @@ theorem indep_two (h' : StepData σ J₁ y b C J₀) (hd : (consCol x B).det ≠
 
 end Two
 
-theorem lrAct_lrAct {S : Type} [CommRing S] {n M : ℕ} (γ γ' : Matrix (Fin n) (Fin n) S)
-    (X : Fin n → Fin M → S) : lrAct 1 γ' (lrAct 1 γ X) = lrAct 1 (γ * γ') X := by
-  funext a i
-  simp only [lrAct, Matrix.one_mulVec, Matrix.mul_apply, Finset.mul_sum, Finset.sum_mul, mul_assoc]
-  exact Finset.sum_comm
-
-theorem lrAct_one {S : Type} [CommRing S] {n M : ℕ} (X : Fin n → Fin M → S) : lrAct 1 1 X = X := by
-  funext a i
-  simp [lrAct, Matrix.one_apply]
-
 theorem lrAct_two {M : ℕ} (γ : Matrix (Fin 2) (Fin 2) E) (u v : Fin M → E) (a : Fin 2) :
     lrAct 1 γ ![u, v] a = γ 0 a • u + γ 1 a • v := by
   funext i
@@ -491,7 +481,7 @@ theorem square : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberFie
     have k1 := emb_fix (e' := e₂') he₂ h
     rw [hX, smul_lrAct] at k1
     have k2 := congrArg (lrAct 1 G') k1
-    rw [lrAct_lrAct, lrAct_lrAct, g1, lrAct_one, lrAct_one] at k2
+    rw [_root_.GlobalTheory.GaugeEx.SwapLoc.lrAct_one_mul, _root_.GlobalTheory.GaugeEx.SwapLoc.lrAct_one_mul, g1, _root_.GlobalTheory.GaugeEx.SwapLoc.lrAct_one_one, _root_.GlobalTheory.GaugeEx.SwapLoc.lrAct_one_one] at k2
     obtain ⟨h', hh'⟩ := emb_surj (e' := e₁') hL he₁ _ k2
     have k3 := emb_rel he₁ he₁' h'
     have k4 := emb_rel he₂ he₂' h
@@ -505,14 +495,14 @@ theorem square : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberFie
   have ht₂ : ∀ Y, (∃ g : HA (AF F) σ J, g • ratTup (F := F) (AF F) ![x₂ 0, B₂ *ᵥ y₂ 0] = Y) →
       t (lrAct 1 G' Y) • ratTup (F := F) (AF F) ![x₂ 0, B₂ *ᵥ y₂ 0] = Y := by
     rintro Y ⟨g, rfl⟩
-    rw [hX, smul_lrAct, smul_lrAct, lrAct_lrAct, g1, lrAct_one, ht _ ⟨g, rfl⟩]
+    rw [hX, smul_lrAct, smul_lrAct, _root_.GlobalTheory.GaugeEx.SwapLoc.lrAct_one_mul, g1, _root_.GlobalTheory.GaugeEx.SwapLoc.lrAct_one_one, ht _ ⟨g, rfl⟩]
   have cι : Continuous (emb (AF F) e₂ e₂') :=
     (continuous_subtype_val.comp (c₂ e₂ he₂).2).comp (continuous_subtype_val.comp (c₂' e₂' he₂').2)
   refine Measure.ext_of_lintegral _ fun f hf => ?_
   rw [unfold_two h₁ he₁ he₁' (c₁ e₁ he₁).2 (c₁' e₁' he₁').2 r₁' r₁ n₁ n₁' o₁ o₁' t₁ hf mt₁ ht,
     unfold_two h₂ he₂ he₂' (c₂ e₂ he₂).2 (c₂' e₂' he₂').2 r₂' r₂ n₂ n₂' o₂ o₂' t₂ hf mt₂ ht₂,
     hN, lintegral_map (meas_avg μ₀ cι hf mt₂) (cG G)]
-  simp only [lrAct_lrAct, g1, lrAct_one, hι]
+  simp only [_root_.GlobalTheory.GaugeEx.SwapLoc.lrAct_one_mul, g1, _root_.GlobalTheory.GaugeEx.SwapLoc.lrAct_one_one, hι]
 
 end Main
 

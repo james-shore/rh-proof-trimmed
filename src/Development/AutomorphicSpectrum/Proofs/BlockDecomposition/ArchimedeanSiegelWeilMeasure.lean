@@ -126,7 +126,7 @@ theorem dom_generic {K W : Type} [CommRing K] [Fintype W] (κ : K ≃+* (W → �
     ∃ R ε' : ℝ, 0 < ε' ∧ ∀ Y, MeasurableSet Y →
       ∫⁻ X in (goodK κ R ε')ᶜ ∩ q ⁻¹' Y, ‖φ X‖ₑ ∂μ ≤ ε * ν Y := by
   have hε2 : ε / 2 ≠ 0 := by simp [ENNReal.div_eq_top, hε]
-  obtain ⟨R, hR, htail⟩ := GlobalTheory.T.exists_box_radius_tail_lintegral_le_eps_mul K W κ n M H μ ν q C₀ hC hbox hq hbm φ hdec (ε / 2) hε2
+  obtain ⟨R, hR, htail⟩ := _root_.GlobalTheory.CompanionTheory.WhitFree.AvgInf.tail_small_of_density K W κ n M H μ ν q C₀ hC hbox hq hbm φ hdec (ε / 2) hε2
   set Bc : ℝ≥0∞ := ENNReal.ofReal B with hBc
   have hBt : Bc + 1 ≠ ⊤ := by simp [hBc]
   have hδ : ε / 2 / (Bc + 1) ≠ 0 := by
@@ -178,25 +178,6 @@ theorem shearK_eq_rmul {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type)
   · subst h
     simp [mul_comm]
   · simp [Function.update, h]
-
-theorem shearK_neg {K : Type} [CommRing K] {n M : ℕ} (a : Fin n) (s : Fin n → K) (hs : s a = 0)
-    (X : Fin n → Fin M → K) : shearK a (-s) (shearK a s X) = X := by
-  funext c i
-  by_cases h : c = a
-  · subst h
-    have h1 : ∀ b, (-s) b * shearK c s X b i = -(s b * X b i) := by
-      intro b
-      by_cases hb : b = c
-      · subst hb
-        simp [hs]
-      · simp [shearK, Function.update, hb]
-    simp only [shearK, Function.update_self]
-    have h2 : ∑ b, (-s) b * (Function.update X c (fun i => X c i + ∑ b, s b * X b i)) b i = -∑ b, s b * X b i := by
-      rw [← Finset.sum_neg_distrib]
-      exact Finset.sum_congr rfl fun b _ => h1 b
-    rw [h2]
-    ring
-  · simp [shearK, Function.update, h]
 
 end GlobalTheory.CompanionTheory.WhitFree.AvgInf
 
@@ -250,7 +231,7 @@ theorem avgInf_tendsto : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
     rw [this]
     exact hGc
   have hQv : ∀ X, (Q X : Matrix (Fin n) (Fin n) (Ainf F ⊗[F] E)) = gramR (Ainf F) σ J X := fun _ => rfl
-  obtain ⟨hbc, hUo, hgood⟩ := GlobalTheory.T.good_set_compact_linearly_independent (Ainf F ⊗[F] E) (NumberField.InfinitePlace F) κ hκ n M
+  obtain ⟨hbc, hUo, hgood⟩ := _root_.GlobalTheory.CompanionTheory.WhitFree.AvgInf.Topo.boxK_goodK_topology (Ainf F ⊗[F] E) (NumberField.InfinitePlace F) κ hκ n M
   have hd : d = 2 := by
     rw [← hCM.2.2.1, Module.finrank_eq_card_basis b, Fintype.card_fin]
   subst hd
@@ -285,9 +266,9 @@ theorem avgInf_tendsto : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
     let eT : (Fin n → Fin M → Ainf F ⊗[F] E) ≃ₜ (Fin n → Fin M → Ainf F ⊗[F] E) :=
       { toFun := shearK a s
         invFun := shearK a (-s)
-        left_inv := fun X => shearK_neg a s hs X
+        left_inv := fun X => _root_.GlobalTheory.CompanionTheory.WhitFree.AvgInf.Bad.shearK_neg_shearK a s hs X
         right_inv := fun X => by
-          have := shearK_neg a (-s) hsn X
+          have := _root_.GlobalTheory.CompanionTheory.WhitFree.AvgInf.Bad.shearK_neg_shearK a (-s) hsn X
           rwa [neg_neg] at this
         continuous_toFun := hcs s
         continuous_invFun := hcs (-s) }

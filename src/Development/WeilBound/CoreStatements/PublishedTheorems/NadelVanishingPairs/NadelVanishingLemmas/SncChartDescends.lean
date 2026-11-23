@@ -185,6 +185,6 @@ theorem chart_desc : ∀ (R R' : Type) [CommRing R] [CommRing R'] (φ : R →+* 
     convert hli using 1
     funext i
     exact hfam i
-  exact GlobalTheory.T.finrank_kaehler_affine_chart R X f d s L σ U c hc (π y) K hU hxU hres ⟨hrank, hlin⟩
+  exact _root_.GlobalTheory.LogPair.ChartPt.exists_chart R X f d s L σ U c hc (π y) K hU hxU hres ⟨hrank, hlin⟩
 
 end GlobalTheory.ChartDesc

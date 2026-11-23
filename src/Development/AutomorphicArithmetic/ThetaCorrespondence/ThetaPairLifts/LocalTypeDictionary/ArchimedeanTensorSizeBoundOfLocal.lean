@@ -51,8 +51,8 @@ end GlobalTheory.ArchTens
 open GlobalTheory.ArchTens in
 theorem _root_.GlobalTheory.SumSize.archimedean_tensor_size_bound_of_local (hP : _root_.GlobalTheory.FunPr.ThetaLocalInputs) : InfTensK := by
   obtain ⟨F1, h1⟩ := _root_.GlobalTheory.T.local_character_power_conductor_bound hP
-  obtain ⟨F2, h2⟩ := _root_.GlobalTheory.T.archimedean_tensor_factor_unfolding hP
-  obtain ⟨F3, h3⟩ := _root_.GlobalTheory.T.archimedean_tensor_volume_bound hP
+  obtain ⟨F2, h2⟩ := _root_.GlobalTheory.ArchTens.Unfold.archimedean_tensor_unfold_datum hP
+  obtain ⟨F3, h3⟩ := _root_.GlobalTheory.ArchTens.VolSize.archimedean_tensor_volume_coefficient hP
   refine ⟨max F1 (max F2 F3), fun CF hCF => ?_⟩
   obtain ⟨C1, h1⟩ := h1 CF (le_trans (le_max_left _ _) hCF)
   obtain ⟨C2, h2⟩ := h2 CF (le_trans ((le_max_left _ _).trans (le_max_right _ _)) hCF)

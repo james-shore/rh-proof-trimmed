@@ -83,17 +83,11 @@ theorem eisClass_summable_of_hecke (hH : HeckeWeightTwo) {F : Type} [Field F] [N
 theorem dF_pos (F : Type) [Field F] [NumberField F] : 0 < dF F :=
   abs_pos.2 (by exact_mod_cast discr_ne_zero F)
 
-theorem nrm_pos {F : Type} [Field F] [NumberField F] (𝔞 : Frac F) : 0 < nrm 𝔞 := by
-  have h2 : FractionalIdeal.absNorm (𝔞 : FractionalIdeal (𝓞 F)⁰ F) ≠ 0 := by
-    rw [Ne, FractionalIdeal.absNorm_eq_zero_iff]; exact 𝔞.ne_zero
-  unfold nrm
-  exact_mod_cast lt_of_le_of_ne (FractionalIdeal.absNorm_nonneg _) h2.symm
-
 theorem const_eq (F : Type) [Field F] [NumberField F] (𝔞 : Frac F) (k : ℕ) :
     cK F k * (dF F * nrm 𝔞) ^ k / omegaFactor 𝔞 ^ k =
       ((k - 1).factorial : ℝ) ^ Module.finrank ℚ F * dF F ^ ((k : ℝ) - 1 / 2) := by
   have hd := dF_pos F
-  have hn := nrm_pos 𝔞
+  have hn := _root_.GlobalTheory.EisPerB.nrm_pos 𝔞
   unfold cK omegaFactor
   rw [mul_pow, mul_pow, ← Real.rpow_natCast (dF F ^ _), ← Real.rpow_mul hd.le, ← Real.rpow_natCast (dF F) k]
   have h1 : dF F ^ ((1 : ℝ) / 2 * k) ≠ 0 := (Real.rpow_pos_of_pos hd _).ne'
@@ -124,14 +118,14 @@ theorem eisExp : GlobalTheory.IndefiniteRowSideFullHecke.TraceDualDifferent.Lips
       omega) (fun n h => by
       have h' : (1 - ((2 * s : ℕ) : ℤ)) = -2 * n := by exact_mod_cast h
       omega)
-  have hc := GlobalTheory.T.gammaReal_functionalEquation_constant_even_integer (dF F) (dF_pos F) (Module.finrank ℚ F) s (by omega) _ _ hfe'
+  have hc := _root_.GlobalTheory.gammaℝ_functional_constant_even (dF F) (dF_pos F) (Module.finrank ℚ F) s (by omega) _ _ hfe'
   refine ⟨hq, ?_⟩
   have hG := (HasSum.add_compl (f := eisClass 𝔞 𝔟 (2 * s) 0 z) (s := {c : Quotient (latRel 𝔞 𝔟) | c.out.1.2 = 0}) h0 h3).tsum_eq
   rw [show eisSum 𝔞 𝔟 (2 * s) 0 z = ∑' c, eisClass 𝔞 𝔟 (2 * s) 0 z c from rfl, hG]
   have hk := const_eq F 𝔞 (2 * s)
   have hω : (omegaFactor 𝔞 : ℂ) ≠ 0 := by
     unfold omegaFactor
-    exact_mod_cast (mul_pos (Real.rpow_pos_of_pos (dF_pos F) _) (nrm_pos 𝔞)).ne'
+    exact_mod_cast (mul_pos (Real.rpow_pos_of_pos (dF_pos F) _) (_root_.GlobalTheory.EisPerB.nrm_pos 𝔞)).ne'
   have hcK : (cK F (2 * s) : ℂ) ≠ 0 := by
     have : 0 < cK F (2 * s) := by
       unfold cK

@@ -107,13 +107,7 @@ section Hom
 
 variable {S : Scheme.{0}}
 
-theorem isMonHom_of_mul_comp {G H : Over S} [GrpObj G] [GrpObj H] (f : G ⟶ H)
-    (h : ∀ (T : Over S) (x y : T ⟶ G), (x * y) ≫ f = (x ≫ f) * (y ≫ f)) : IsMonHom f := by
-  refine ⟨?_, ?_⟩
-  · rw [MonObj.one_eq_one G, MonObj.one_eq_one H]
-    exact map_one (MonoidHom.mk' (fun x : 𝟙_ (Over S) ⟶ G ↦ x ≫ f) (h _))
-  · rw [MonObj.mul_eq_mul G, MonObj.mul_eq_mul H, MonObj.comp_mul, tensorHom_fst, tensorHom_snd]
-    exact h _ _ _
+alias isMonHom_of_mul_comp := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.isMonHom_of_mul
 
 def preHom {T T' G : Over S} [GrpObj G] (p : T' ⟶ T) : (T ⟶ G) →* (T' ⟶ G) :=
   MonoidHom.mk' (fun a => p ≫ a) fun a b => MonObj.comp_mul p a b

@@ -68,10 +68,10 @@ namespace GlobalTheory.Poinc.IntTerm
 
 theorem term_eq_const_psi_theta : ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V] (D : DegPre V) (θ : D.SecB 1 0), IntTerm.IsTheta D θ → ∀ s : Fam D (FractionRing V) 1, ∃ κ : FractionRing V, ∀ (g : GtPt D (𝟙_ (Over (Sp V)))) (g' : GtPtF D (FractionRing V)) (w : Frm D (FractionRing V) 1 g'.b) (l : FractionRing V), GtPt.IsPullF (FractionRing V) (toUnit (TF (R := V) (FractionRing V))).left g g' → w.IsGen → IntTerm.IntFrm D g.b w l → ∀ (mu : D.X) (r : V), Formalism.L2.Pj.PsiCoord D mu r → ∃ a : V, l * coef s g' w mu = κ * algebraMap V (FractionRing V) (r * a) ∧ (IntTerm.UnitAt D θ (D.c mu * g.b) → IsUnit a) := by
   intro V _ _ _ D θ hθ s
-  obtain ⟨c₀, hc₀, hc⟩ := GlobalTheory.T.psi_zero_mul_rigidification_constant_ne_zero V D
-  obtain ⟨κ₀, hκ⟩ := GlobalTheory.T.degreeOneFamily_term_eq_psi_thetaValue_character V D θ hθ s
+  obtain ⟨c₀, hc₀, hc⟩ := _root_.GlobalTheory.Poinc.IntTerm.psi_zero_rig_const V D
+  obtain ⟨κ₀, hκ⟩ := _root_.GlobalTheory.Poinc.IntTerm.coef_eq_theta_value V D θ hθ s
   refine ⟨κ₀ / c₀, fun g g' w l hpull hw hint mu r hr => ?_⟩
-  obtain ⟨gam, hgam, vgam⟩ := GlobalTheory.T.exists_integralGenerator_of_psiCoordinate V D mu r hr
+  obtain ⟨gam, hgam, vgam⟩ := _root_.GlobalTheory.Poinc.PsiIntGen.main V D mu r hr
   obtain ⟨a, ha, hu⟩ := GlobalTheory.T.exists_base_element_theta_term_integralPoint V D θ g g' w l hpull hint mu gam hgam
   refine ⟨a, ?_, fun h => GlobalTheory.T.isUnit_of_isUnit_constant_closedPoint_localRing V a (hu h)⟩
   obtain ⟨z⟩ := CoefBasic.exists_pt (R := V) (F := FractionRing V)

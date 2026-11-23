@@ -64,8 +64,8 @@ def locKer {B : Type} [CommRing B] (f : B) (P : Ideal B) (hP : P.IsPrime) : Idea
 theorem locKer_coprime {B : Type} [CommRing B] [IsDedekindDomain B] (f : B) (hf : f ≠ 0) (P P' : Ideal B)
     (hP : P.IsMaximal) (hP' : P'.IsMaximal) (hne : P ≠ P') :
     IsCoprime (locKer f P hP.isPrime) (locKer f P' hP'.isPrime) := by
-  obtain ⟨N, hN⟩ := GlobalTheory.T.dedekind_power_localization B f hf P hP
-  obtain ⟨N', hN'⟩ := GlobalTheory.T.dedekind_power_localization B f hf P' hP'
+  obtain ⟨N, hN⟩ := _root_.GlobalTheory.dedekind_pow_maximal_mul_mem_span B f hf P hP
+  obtain ⟨N', hN'⟩ := _root_.GlobalTheory.dedekind_pow_maximal_mul_mem_span B f hf P' hP'
   have hc : IsCoprime P P' := Ideal.isCoprime_iff_sup_eq.2 (Ideal.IsMaximal.coprime_of_ne hP hP' hne)
   have hc' : IsCoprime (P ^ N) (P' ^ N') := hc.pow
   rw [Ideal.isCoprime_iff_sup_eq] at hc' ⊢
@@ -86,9 +86,7 @@ theorem mem_of_forall_locKer {B : Type} [CommRing B] (f b : B)
   have h1 : (1 : B) ∈ J := hJ ▸ Submodule.mem_top
   simpa [J] using h1
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  simp [spMap, Spec.map_comp]
+alias spMap_comp' := _root_.GlobalTheory.EtC.ProdStep.spMap_comp
 
 variable (q : ℕ) [NeZero q] (k B : Type) [Field k] [IsAlgClosed k] [CommRing B] [IsDedekindDomain B] [Algebra k B]
   [Algebra.FiniteType k B]
@@ -100,16 +98,16 @@ theorem onePoint (hq : IsUnit (q : k)) (f : B) (hf : f ≠ 0) (m i : ℤ) (hm : 
       (∀ b : B, algebraMap B A b ∈ Ideal.span {algebraMap B A f} ↔ b ∈ locKer f P hP.isPrime) ∧
       pull _ (spMap (algebraMap B A)) _ _ y = 0 := by
   have hqB : IsUnit (q : B) := by simpa using hq.map (algebraMap k B)
-  have hsep := GlobalTheory.T.residueField_atPrime_isSepClosed_of_finiteType k B P
-  obtain ⟨D, _, _, _, Q, hQ, hQP, hres, hy⟩ := GlobalTheory.T.etale_neighbourhood_kills_class q B hqB P hsep m i (by omega) y
-  obtain ⟨g, hS, hK⟩ := GlobalTheory.T.away_quotient_span_eq_localization B D f hf P hP hfP Q hQ hQP hres
+  have hsep := _root_.GlobalTheory.residueField_localization_atPrime_isSepClosed_of_finiteType k B P
+  obtain ⟨D, _, _, _, Q, hQ, hQP, hres, hy⟩ := _root_.GlobalTheory.EtC.OneCoh.dies_on_etale_with_point q B hqB P hsep m i (by omega) y
+  obtain ⟨g, hS, hK⟩ := _root_.GlobalTheory.etale_away_quotient_eq_localization B D f hf P hP hfP Q hQ hQP hres
   refine ⟨Localization.Away g, inferInstance, inferInstance, inferInstance, hS, hK, ?_⟩
   rw [IsScalarTower.algebraMap_eq B D (Localization.Away g), spMap_comp', pull_comp, hy, map_zero]
 
 theorem exists_nbhd_pull_eq_zero : ∀ (q : ℕ) [NeZero q] (k B : Type) [Field k] [IsAlgClosed k] [CommRing B] [IsDedekindDomain B] [Algebra k B] [Algebra.FiniteType k B], IsUnit (q : k) → ∀ f : B, f ≠ 0 → ¬ IsUnit f → ∀ (m i : ℤ), 1 ≤ m → ∀ y : Ht q (sp B) m i, ∃ (A' : Type) (_ : CommRing A') (_ : Algebra B A') (_ : Algebra.Etale B A'), IsNbhd B A' f ∧ pull _ (spMap (algebraMap B A')) _ _ y = 0 := by
   intro q _ k B _ _ _ _ _ _ hq f hf hfu m i hm y
   let Pt := {P : Ideal B // P.IsMaximal ∧ f ∈ P}
-  haveI : Finite Pt := (GlobalTheory.T.finite_maximal_containing B f hf).to_subtype
+  haveI : Finite Pt := (_root_.GlobalTheory.finite_maximal_ideals_containing B f hf).to_subtype
   letI : Fintype Pt := Fintype.ofFinite Pt
   let K : Pt → Ideal B := fun x => locKer f x.1 x.2.1.isPrime
   have key : ∀ T : Finset Pt, T.Nonempty → ∃ (A : Type) (_ : CommRing A) (_ : Algebra B A) (_ : Algebra.Etale B A),
@@ -129,8 +127,8 @@ theorem exists_nbhd_pull_eq_zero : ∀ (q : ℕ) [NeZero q] (k B : Type) [Field 
         refine locKer_coprime f hf x.1 j.1 x.2.1 j.2.1 fun h => hx ?_
         have : x = j := Subtype.ext h
         exact this ▸ hj
-      obtain ⟨hS, hK, hy⟩ := GlobalTheory.T.approximation_quotients_agree q B A₁ A₂ f _ _ m i y hcop hS₁ hK₁ hS₂ hK₂ hy₁ hy₂
-      refine ⟨A₁ × A₂, inferInstance, inferInstance, GlobalTheory.T.etale_prod_of_etale B A₁ A₂ inferInstance inferInstance, hS, fun b => ?_, hy⟩
+      obtain ⟨hS, hK, hy⟩ := _root_.GlobalTheory.EtC.ProdStep.prodStep q B A₁ A₂ f _ _ m i y hcop hS₁ hK₁ hS₂ hK₂ hy₁ hy₂
+      refine ⟨A₁ × A₂, inferInstance, inferInstance, _root_.GlobalTheory.etale_prod B A₁ A₂ inferInstance inferInstance, hS, fun b => ?_, hy⟩
       rw [hK b, Finset.cons_eq_insert, Finset.iInf_insert, inf_comm]
   have hne : (Finset.univ : Finset Pt).Nonempty := by
     have hspan : Ideal.span {f} ≠ ⊤ := fun h => hfu (Ideal.span_singleton_eq_top.1 h)

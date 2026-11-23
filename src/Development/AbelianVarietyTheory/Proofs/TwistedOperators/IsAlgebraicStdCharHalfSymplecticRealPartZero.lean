@@ -51,7 +51,7 @@ namespace GlobalTheory.PsiFinAlgebraic
 
 theorem exists_pow_psi_fin_eq_one {F : Type} [Field F] [NumberField F] {ψ : AddChar (AF F) ℂ} (hψ : IsCharAF F ψ)
     (y : Af F) : ∃ M : ℕ, 0 < M ∧ ψ (pairA F 0 y) ^ M = 1 := by
-  obtain ⟨N, hN, h⟩ := GlobalTheory.AdLat.OpenLat.exists_nsmul_adele F {c | ψ (pairA F 0 c) = 1}
+  obtain ⟨N, hN, h⟩ := _root_.GlobalTheory.LocalNormBound.main F {c | ψ (pairA F 0 c) = 1}
     (GlobalTheory.FinTranslate.eventually_fin_eq_one hψ)
   obtain ⟨m, hm, hy⟩ := GlobalTheory.UnRep.SmallMat.exists_nsmul_integral y
   refine ⟨N * m, Nat.mul_pos hN (Nat.pos_of_ne_zero hm), ?_⟩

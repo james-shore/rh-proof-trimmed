@@ -47,7 +47,7 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.D
 
-theorem chainNonVacuous : ChainNonVacuous := chain_nonvacuous
-theorem normUnits : NormUnits := norm_units_alt
+alias chainNonVacuous := _root_.Formalism.L2.Th1.D.chain_nonvacuous
+alias normUnits := _root_.Formalism.L2.Th1.D.norm_units_alt
 
 end Formalism.L2.Th1.D

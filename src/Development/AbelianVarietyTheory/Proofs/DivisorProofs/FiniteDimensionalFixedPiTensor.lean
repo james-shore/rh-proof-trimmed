@@ -108,7 +108,7 @@ theorem isAdmissible_piTensor {α : Type} [Finite α] (m : α → Type) [∀ a, 
     IsAdmissible (piTensor ρ : Representation ℂ (Levi k m) _) := by
   refine ⟨isSmooth_piTensor fun a => (hρ a).1, fun K hKo hKc => ?_⟩
   obtain ⟨K', hKo', hKc', hK'⟩ := exists_pi_compactOpen m (K : Set (Levi k m)) (hKo.mem_nhds K.one_mem)
-  haveI := finiteDimensional_fixed_piTensor ρ (fun a => (hρ a).1) K' hKc'
+  haveI := _root_.GlobalTheory.PiTensorFixed.finiteDimensional_fixed_piTensor ρ (fun a => (hρ a).1) K' hKc'
     fun a => (hρ a).2 (K' a) (hKo' a) (hKc' a)
   exact Submodule.finiteDimensional_of_le (S₁ := fixed (piTensor ρ : Representation ℂ (Levi k m) _) K)
     (S₂ := fixed (piTensor ρ) (Subgroup.pi Set.univ K'))

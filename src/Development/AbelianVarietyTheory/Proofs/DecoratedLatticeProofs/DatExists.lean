@@ -45,6 +45,7 @@ import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsOneComb
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsOpenKerUnramMulTame
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.MiStarOfMid
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IsBicharPairing
+import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.TrueGeometryRowPairProperty
 
 @[expose] public section
 
@@ -56,15 +57,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 noncomputable section
 
 namespace GlobalTheory.Fam
-
-theorem comb_smul_coef {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (κ : ℂ) (d : WO S T →₀ ℂ) (f : WO S T → ℂ) :
-    comb ψ S T (κ • d) f = κ • comb ψ S T d f := by
-  by_cases hκ : κ = 0
-  · subst hκ; simp [comb]
-  · unfold comb
-    rw [Finsupp.support_smul_eq hκ, Finset.smul_sum]
-    refine Finset.sum_congr rfl fun v _ => ?_
-    rw [Finsupp.smul_apply, smul_eq_mul, mul_smul]
 
 theorem isRatDatum_const_mul {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {S T : HSp D} {e : AE D}
     {Ξ : Matrix (Fin T.rank) (Fin S.rank) D.host.E → ℂ} {f₀ f : WO S T → ℂ} (h : IsRatDatum ψ S T e Ξ f₀ f) (κ : ℂ) :
@@ -89,13 +81,6 @@ theorem datRoot_ne_zero {x : ℂ} (h : ∃ n : ℕ, 0 < n ∧ x ^ n = 1) : x ≠
   rintro rfl
   simp [zero_pow hn.ne'] at hx
 
-theorem datRoot_mul {x y : ℂ} (hx : ∃ n : ℕ, 0 < n ∧ x ^ n = 1) (hy : ∃ n : ℕ, 0 < n ∧ y ^ n = 1) :
-    ∃ n : ℕ, 0 < n ∧ (x * y) ^ n = 1 := by
-  obtain ⟨a, ha, hxa⟩ := hx
-  obtain ⟨b, hb, hyb⟩ := hy
-  refine ⟨a * b, Nat.mul_pos ha hb, ?_⟩
-  rw [mul_pow, pow_mul, hxa, one_pow, mul_comm a b, pow_mul, hyb, one_pow, one_mul]
-
 theorem datRoot_prod {ι : Type*} (s : Finset ι) (x : ι → ℂ) (h : ∀ i ∈ s, ∃ n : ℕ, 0 < n ∧ x i ^ n = 1) :
     ∃ n : ℕ, 0 < n ∧ (∏ i ∈ s, x i) ^ n = 1 := by
   classical
@@ -103,7 +88,7 @@ theorem datRoot_prod {ι : Type*} (s : Finset ι) (x : ι → ℂ) (h : ∀ i �
   | empty => exact ⟨1, one_pos, by simp⟩
   | insert a s ha ih =>
     rw [Finset.prod_insert ha]
-    exact datRoot_mul (h a (Finset.mem_insert_self a s)) (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
+    exact _root_.GlobalTheory.TwPlaces.rou_mul (h a (Finset.mem_insert_self a s)) (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
 
 end GlobalTheory.Fam
 

@@ -87,7 +87,7 @@ theorem etaleNeighborhoods_equalize_parallel_maps : LateralTheory.EWeil.AbsorbPf
     rw [RingHom.etale_algebraMap]
     infer_instance
   refine ⟨CommRingCat.of (Localization.Away ε), gC ≫ w, IsLocalization.Away.lift ε hεu, w,
-    LateralTheory.EWeil.AbsorbPf.et_comp hC hw, ?_, rfl, IsLocalization.Away.lift_comp ε hεu, ?_⟩
+    _root_.LateralTheory.E.ColimPf.et_comp hC hw, ?_, rfl, IsLocalization.Away.lift_comp ε hεu, ?_⟩
   · rw [CommRingCat.hom_comp, ← RingHom.comp_assoc]
     have e1 : (IsLocalization.Away.lift ε hεu).comp w.hom = φC := IsLocalization.Away.lift_comp ε hεu
     rw [e1, hφC]

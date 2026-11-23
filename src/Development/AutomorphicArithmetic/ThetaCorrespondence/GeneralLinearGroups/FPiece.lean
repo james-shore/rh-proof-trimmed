@@ -114,7 +114,7 @@ private theorem piece_irr {s : ℕ} {d : Fin s → ℕ} {t : Fin s → ℕ} {d' 
       exact ⟨⟨_, subQuot S T, hq.isSmooth hρ, isIrreducible_subQuot hT⟩, hq, hS⟩
     · exact ih T hT.lt h1
   refine key ⊤ (jhMult_ne_zero_iff.2 ((jhMult_ne_zero_iff.1 h).trans ?_))
-  exact GlobalTheory.T.isSubquotient_relativeJacquet_blockLevi k s d t d' e' _ _ ρ _
+  exact _root_.GlobalTheory.JacStagesExact.isSubquotient_relJacD k s d t d' e' _ _ ρ _
     ((isSubquotient_of_equiv (topEquiv ρ)).isSmooth hρ) (isSubquotient_of_equiv (topEquiv ρ).symm)
 
 private theorem piece_coarse (hBZ : GlobalTheory.Published.BernsteinZelevinskyFiniteness) {s N : ℕ} (c : Fin s → ℕ)
@@ -134,8 +134,8 @@ private theorem piece_coarse (hBZ : GlobalTheory.Published.BernsteinZelevinskyFi
   let e' : ∀ a, (Σ b, Fin ((x a b).1)) ≃ Fin (d a) := fun a => stdBlocks (fun i => (x a i).1) rfl
   have hE : refinePlace e e' = stdBlocks (fun a => (Zc.Seg.concat c x a).1) hcat :=
     GlobalTheory.CompanionTheory.JmTrans.refinePlace_stdBlocks (x := fun a i => (x a i).1) hd (fun _ => rfl) hcat
-  obtain ⟨φR⟩ := GlobalTheory.T.piExteriorTensor_flattenedIndex_equiv_nested s c (fun a b => GL (Fin ((x a b).1)) k) _ fun a b => (x a b).rep
-  obtain ⟨φS⟩ := GlobalTheory.T.jacquetModule_in_stages_refined_blocks k s N d e c (fun a b => (x a b).1) e' V π
+  obtain ⟨φR⟩ := _root_.GlobalTheory.JacStages.piTensor_flatHom_equiv s c (fun a b => GL (Fin ((x a b).1)) k) _ fun a b => (x a b).rep
+  obtain ⟨φS⟩ := _root_.GlobalTheory.JacStagesProof.jac_refinePlace_equiv k s N d e c (fun a b => (x a b).1) e' V π
   have hirr0 : (piTensor fun l => (Zc.Seg.concat c x l).rep).IsIrreducible :=
     GlobalTheory.CompanionTheory.SocleJm.isIrreducible_piTensor hA (Zc.Seg.concat c x)
   have hirr1 := GlobalTheory.FinGL.Transport.isIrreducible_comp _
@@ -148,10 +148,10 @@ private theorem piece_coarse (hBZ : GlobalTheory.Published.BernsteinZelevinskyFi
     exact (GlobalTheory.SmGL.EmptyBlocks.jhMult_comp_surjective _ (flatHom_surjective _) _ _).trans_ne h1
   obtain ⟨τ, hτ, h3⟩ := piece_irr e' hirr (isSmooth_jac e hs) ((hBZ k).2.1 _ _ _ e V π hs hfl) h2
   obtain ⟨σ, ⟨φ⟩⟩ := GlobalTheory.CompanionTheory.LeviTensor.nonempty_equiv_piTensor hA d τ
-  obtain ⟨φT⟩ := GlobalTheory.T.relativeJacquet_piExteriorTensor_equiv_normalized k s d c (fun a b => (x a b).1) e' _ fun a => (σ a).rep.ρ
+  obtain ⟨φT⟩ := _root_.GlobalTheory.JacStages.relJacD_piTensor_equiv k s d c (fun a b => (x a b).1) e' _ fun a => (σ a).rep.ρ
   have h4 : IsSubquotient (piTensor fun a => piTensor fun b => (x a b).rep)
       (piTensor fun a => jac (e' a) (σ a).rep.ρ) :=
-    ((jhMult_ne_zero_iff.1 h3).trans (GlobalTheory.T.isSubquotient_relativeJacquet_blockLevi k s d c _ e' _ _ τ.ρ _
+    ((jhMult_ne_zero_iff.1 h3).trans (_root_.GlobalTheory.JacStagesExact.isSubquotient_relJacD k s d c _ e' _ _ τ.ρ _
       (isSmooth_piTensor fun a => (σ a).rep.smooth) (isSubquotient_of_equiv φ))).trans (isSubquotient_of_equiv φT)
   refine ⟨fun a => ⟨d a, σ a⟩, hd, jhMult_ne_zero_iff.2 ((isSubquotient_of_equiv φ.symm).trans hτ),
     fun a => ⟨rfl, jhMult_ne_zero_iff.2 ?_⟩⟩

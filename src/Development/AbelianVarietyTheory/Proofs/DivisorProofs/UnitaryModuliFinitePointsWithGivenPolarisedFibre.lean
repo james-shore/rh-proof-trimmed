@@ -119,7 +119,7 @@ theorem exists_oact (t : SAB H S) {K : Type} [Field K] (P : PolAV (Sp K)) (x : S
   let j' : OAct (𝓞 E) P.A := PolPartPull.oActIso β (OAct.pullback x t.G t.act)
   have hj : ∀ c, (j'.act c).left ≫ α = α ≫ (t.act.act c).left := fun c => by
     show (β.inv ≫ (Over.pullback x).map (t.act.act c) ≫ β.hom).left ≫ α = _
-    rw [Over.comp_left, Over.comp_left, Category.assoc, Category.assoc, hβ, PolPartPull.pbMap_fst, ← hβ,
+    rw [Over.comp_left, Over.comp_left, Category.assoc, Category.assoc, hβ, _root_.ReciprocityTheory.ChartRestriction.G.Pdiv.PullbackComparison.pullback_map_left_fst', ← hβ,
       ← Category.assoc, ← Category.assoc, ← Over.comp_left, Iso.inv_hom_id, Over.id_left, Category.id_comp]
   exact ⟨{ j'.toRingAct with rosati := fun c => rosati_fibre t P x hα hL c (hj c) (hj (star c)) }, hj⟩
 
@@ -188,10 +188,6 @@ end GlobalTheory.UMinQF
 noncomputable section
 namespace GlobalTheory.UMinQF
 
-theorem pow_of_add {La Q : Type} [AddCommGroup La] [Group Q] (f : La → Q) (hf : ∀ a b, f (a + b) = f a * f b)
-    (n : ℕ) (a : La) : f (n • a) = f a ^ n :=
-  (AddMonoidHom.mk' (fun a => Additive.ofMul (f a)) (fun a b => by rw [hf]; rfl)).map_nsmul n a
-
 theorem finite_points : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (K : Type) [Field K] [IsAlgClosed K] (P : PolAV (Sp K)) (s₀ : Sp K ⟶ Sp (KA l)), Set.Finite {x : Sp K ⟶ Xo.X | x ≫ Xo.s = s₀ ∧ ∃ α : P.A.left ⟶ Xo.univ.t.G.left, IsGrpPullback P.A Xo.univ.t.G x α ∧ LBIso P.L (Xo.univ.t.PP.L.pull α)} := by
   intro E _ _ _ H Dw l Xo K _ _ P s₀
   haveI := P.isAb.comm
@@ -221,7 +217,7 @@ theorem finite_points : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
     exact Ideal.mul_le_left h
   let F := fun x : X0 => ((fun c => (ρ x).act c), (fun a => pt x (Xo.univ.eta a)), (fun a => pt x (Xo.univ.etaA a)))
   set As := {act : 𝓞 E → (P.A ⟶ P.A) | ∃ ρ : P.OAct (𝓞 E), ∀ a, ρ.act a = act a}
-  have hA : As.Finite := GlobalTheory.T.finite_integerRing_actions_principallyPolarised E H K P
+  have hA : As.Finite := _root_.GlobalTheory.UMin.FinAct.finite_oActs E H K P
   set FM := {f : Dw.La → (baseOver (Sp K) ⟶ P.A) | (∀ a b, f (a + b) = f a * f b) ∧
     ∀ a, f a ∈ {z : baseOver (Sp K) ⟶ P.A | z ^ l.M = 1}}
   set FA := {f : Dw.La → (baseOver (Sp K) ⟶ P.A) | (∀ a b, f (a + b) = f a * f b) ∧
@@ -233,13 +229,13 @@ theorem finite_points : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
     · show pt x _ = pt x _ * pt x _
       rw [Xo.univ.eta_add, map_mul]
     · show pt x _ ^ l.M = 1
-      rw [← map_pow, ← pow_of_add _ Xo.univ.eta_add, Xo.univ.eta_ker, map_one]
+      rw [← map_pow, ← _root_.GlobalTheory.SiegelComparison.map_nsmul_of_add _ Xo.univ.eta_add, Xo.univ.eta_ker, map_one]
       rw [← Nat.cast_smul_eq_nsmul (𝓞 E)]
       exact Submodule.smul_mem_smul hMb Submodule.mem_top
     · show pt x _ = pt x _ * pt x _
       rw [Xo.univ.etaA_add, map_mul]
     · show pt x _ ^ l.A = 1
-      rw [← map_pow, ← pow_of_add _ Xo.univ.etaA_add, Xo.univ.etaA_ker, map_one]
+      rw [← map_pow, ← _root_.GlobalTheory.SiegelComparison.map_nsmul_of_add _ Xo.univ.etaA_add, Xo.univ.etaA_ker, map_one]
   have inj : Function.Injective F := by
     intro x x' h
     simp only [F, Prod.mk.injEq] at h

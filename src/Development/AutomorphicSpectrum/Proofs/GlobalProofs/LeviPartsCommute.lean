@@ -87,14 +87,6 @@ theorem kInf_mem_GinfC {D : D7} {θ : D.what₂.Tau → (Ainf D.host.F ⊗[D.hos
   obtain ⟨τ, -, rfl⟩ := List.mem_map.1 hx
   exact (isAtTau_kAt θ V hθ τ (hfr τ).1 (hfr τ).2 (κ τ)).1
 
-theorem mul_mem_minPar {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E} {n r : ℕ}
-    {J : Matrix (Fin n) (Fin n) E} {X : Matrix (Fin n) (Fin r) E} {p q : GlobalTheory.AdelicU.GAd σ J}
-    (hp : p ∈ PositivityTheory.ThKR.minPar σ J X) (hq : q ∈ PositivityTheory.ThKR.minPar σ J X) : p * q ∈ PositivityTheory.ThKR.minPar σ J X := by
-  obtain ⟨B, hB, eB⟩ := hp
-  obtain ⟨B', hB', eB'⟩ := hq
-  refine ⟨B * B', hB.mul hB', ?_⟩
-  rw [map_mul, Units.val_mul, Matrix.mul_assoc, eB', ← Matrix.mul_assoc, eB, Matrix.mul_assoc]
-
 theorem exists_iwasawa : ∀ (D : D7) (θ : D.what₂.Tau → (Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ)), IsInfFam θ → ∀ (V : HSp D) (ε : D.what₂.Tau → Fin V.rank → Bool) (fr : D.what₂.Tau → Matrix (Fin V.rank) (Fin V.rank) ℂ), IsFrameFam V ε fr → ∀ (m : ℕ) (X Y : Matrix (Fin V.rank) (Fin m) D.host.E), GlobalTheory.SiegelSet.IsWittFrame D.sp.cm.sig V.gram X Y → ∃ K : Subgroup (GA D V), IsCompact (K : Set (GA D V)) ∧ K ≤ GfC V ∧ ∀ g : GA D V, ∃ p ∈ PositivityTheory.ThKR.minPar D.sp.cm.sig V.gram X, ∃ κ : (∀ τ, Formalism.REAL.KG (ε τ)), ∃ k ∈ K, g = p * GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart.KInf.kInf θ V ε fr κ * k := by
   intro D θ hθ V ε fr hfr m X Y hW
   have hh := GlobalTheory.Mem.Vol.cmData_isCMExt_and_gram_isHermND D.host.F D.host.E D.sp.cm
@@ -102,7 +94,7 @@ theorem exists_iwasawa : ∀ (D : D7) (θ : D.what₂.Tau → (Ainf D.host.F ⊗
   refine ⟨K, hK, hKf, fun g => ?_⟩
   obtain ⟨p, hp, κ, e1⟩ := GlobalTheory.T.archimedean_iwasawa_minimal_parabolic D θ hθ V ε fr hfr m X Y hW _ (GlobalTheory.AutMult.toInf V g).2
   obtain ⟨q, hq, hqf, k, hk, e2⟩ := hiw _ (GlobalTheory.AutMult.toFin V g).2
-  refine ⟨p * q, mul_mem_minPar hp hq, κ, k, hk, ?_⟩
+  refine ⟨p * q, _root_.PositivityTheory.ThKR.mul_mem_minimal_parabolic hp hq, κ, k, hk, ?_⟩
   have hcomm := GlobalTheory.AutMult.commute_inf_fin (⟨_, kInf_mem_GinfC hθ hfr κ⟩ : GinfC V) ⟨q, hqf⟩
   rw [← GlobalTheory.AutMult.toInf_mul_toFin g, e1, e2, mul_assoc p, ← mul_assoc _ q k, hcomm.eq]
   simp only [mul_assoc]

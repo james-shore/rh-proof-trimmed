@@ -132,7 +132,7 @@ theorem rhoO_embV_mem_AAp (hC : Q.InCurve) (hT : Q.InTie S) (hw : ∀ k, G.w k �
       (X.vAt la (Q.y ζ) (X.inc _ f) - (T : EReal) * X.depth S.sW wL la (Q.y ζ))) :
     rhoO G la (embV X la G.N _ f) ∈ Q.AAp T m := by
   refine Submodule.subset_span ⟨toHK X la G.w wF T (embV X la G.N _ f), ⟨fun β _ => ?_, fun β hβ ζ => ?_⟩, rfl⟩
-  · exact (mem_HK X la G.w).2 (hasse_presentation X la G.w wF β _
+  · exact (mem_HK X la G.w).2 (_root_.PI.UnitaryGroupMassFormula.HassePresH.main X la G.w wF β _
       ((mem_HK X la G.w).1 (toHK X la G.w wF T (embV X la G.N _ f)).2))
   · exact le_of_coe_le_toE ((hf ζ).trans (hasse_order_bound G la Q S T integralClosure_dvr' hC hT hw f β hβ _ ζ))
 

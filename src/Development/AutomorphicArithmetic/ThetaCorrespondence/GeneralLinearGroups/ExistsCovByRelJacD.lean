@@ -267,7 +267,7 @@ private theorem cell (hG : GlobalTheory.Published.GeometricLemma) (hBZ : GlobalT
     ∃ s : ∀ i j, IrrCl (GL (Fin (b i j)) k),
       (∀ i, jm (fun j => (⟨b i j, s i j⟩ : IrrGL (k := k))) (hr i) (w i).rep ≠ 0) ∧
         ∀ j, jhMult (w j).rep (prodIrr (fun i => (⟨b i j, s i j⟩ : IrrGL (k := k))) (hc j)) ≠ 0 := by
-  have hτ : (piTensor fun j => (w j).rep).IsIrreducible := GlobalTheory.T.piExteriorTensor_smoothIrreducible_isIrreducible hBZ k _ _ fun j => (w j).2.rep
+  have hτ : (piTensor fun j => (w j).rep).IsIrreducible := _root_.GlobalTheory.ExtTensorIrr.piTensor_isIrreducible hBZ k _ _ fun j => (w j).2.rep
   have hρ : IsSmooth (piTensor fun i => (w i).rep) := isSmooth_piTensor fun i => (w i).2.rep.smooth
   obtain ⟨T, -, hT⟩ := (hG k).2 (Fin h) (Fin h) (fun i => Fin (w i).1) (fun i => Fin (w i).1) _ f g _
     (fun i => (w i).rep) (fun i => (w i).2.rep.smooth) (fun i => hasFiniteLength_of_isIrreducible (w i).2.rep.irr)
@@ -305,7 +305,7 @@ theorem UpperTheory.Lit.Full.diag3 :
     refine ⟨fun i => ?_, fun j => ?_⟩
     · simp [M]
     · simp [M]⟩
-  have hτ : (piTensor fun j => (w j).rep).IsIrreducible := GlobalTheory.T.piExteriorTensor_smoothIrreducible_isIrreducible hBZ k _ _ fun j => (w j).2.rep
+  have hτ : (piTensor fun j => (w j).rep).IsIrreducible := _root_.GlobalTheory.ExtTensorIrr.piTensor_isIrreducible hBZ k _ _ fun j => (w j).2.rep
   have hρ : IsSmooth (piTensor fun i => (w i).rep) := isSmooth_piTensor fun i => (w i).2.rep.smooth
   obtain ⟨f₀, g₀, ⟨E₀⟩⟩ := GlobalTheory.CompanionTheory.Hypotheses₂.TD.cell_diag b₀ (fun i j hj => by simp [b₀, Ne.symm hj]) _ hρ
   let f : ∀ (b : SizeMatrix M M) i, (Σ j, Fin (b.1 i j)) ≃ M i := fun b =>

@@ -56,10 +56,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 open Formalism.BasicNotions Formalism.BasicNotions.Loc NumberField
 
-private theorem isCM_of_conj (K : Type) [Field K] [NumberField K] [_root_.NumberField.IsTotallyComplex K]
-    (h : ∀ x : K, ∃ y : K, ∀ φ : K →+* ℂ, φ y = starRingEnd ℂ (φ x)) : IsCMField K :=
-  _root_.UpperTheory.Reformulated.B.Qh8.isCM_of_conj K h
-
 open Polynomial in
 private theorem exists_sqrt (l : ℕ) [hl : Fact l.Prime] :
     ∃ d : ℚ_[l], d ^ 2 = 1 - 4 * (l : ℚ_[l]) := by
@@ -154,7 +150,7 @@ theorem UpperTheory.exists_totally_imaginary_generator_of_isCMField :
     rw [hδc] at h1
     exact hδ0 w.embedding (by linear_combination (-1 / 2 : ℂ) * h1)⟩
   have hCM : IsCMField M := by
-    refine isCM_of_conj _ ?_
+    refine _root_.UpperTheory.Reformulated.B.Qh8.isCM_of_conj _ ?_
     rintro ⟨x, hx⟩
     induction hx using IntermediateField.adjoin_induction with
     | mem x hx =>

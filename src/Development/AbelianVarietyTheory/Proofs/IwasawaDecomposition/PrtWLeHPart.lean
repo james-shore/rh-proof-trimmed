@@ -74,7 +74,7 @@ theorem prtW_le_hPart : GlobalTheory.Published.WeilRepresentationUnitaryPair →
     refine exists_congr fun PP => and_congr_right fun _ => ?_
     rw [← underPl_asIdeal]
     exact ⟨fun h => by rw [h], fun h => HeightOneSpectrum.ext h⟩
-  have hlab := GlobalTheory.T.heckePolynomials_of_carried_eigensystem R F (GlobalTheory.Chain.LiftConv.liftInteg_of_cuspRapidDecay hcusp D) hH.ok hP.char hH.aux.ex
+  have hlab := _root_.GlobalTheory.CarriedHecke.hecke_polys_of_carries R F (GlobalTheory.Chain.LiftConv.liftInteg_of_cuspRapidDecay hcusp D) hH.ok hP.char hH.aux.ex
     (GlobalTheory.Hk3.schurAll_of_cuspRapidDecay hcusp R.toRealDat)
     (GlobalTheory.AdjPart.adjoint_injective_on_part R ⟨hH.prim.posScal.1, fun i t p => hH.prim.posScal.2 i t p _⟩ hH.prim.thmB)
     p c hcar

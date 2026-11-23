@@ -62,8 +62,8 @@ open IsLocalRing Formalism.MainNotions.ModuliIntegralCharts.H1 ReciprocityTheory
 namespace GlobalTheory.ThetaJetsT
 theorem exists_cusp_with_theta_jet_value_le_alt : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → _root_.GlobalTheory.CovTop.DeepGoodness → _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.CovTop.FlatDegreeCondition → _root_.GlobalTheory.CovTop.CoversCondition fun Fm x _ ι p i Y PP _ => ∀ (Z : Comp Y.d.Xo₂ Y.d.c₂) (TF : TorFlag Y.d.Xo₂ Y.d.c₂), ∀ la ∈ ({(⟨uW p i, cZero (Fm.D x ι) ((i : ℕ) + 1), (Fm.D x ι).R.k - 2, lenT p i PP⟩ : WtPar (dat p i)).u₁, (⟨uW p i, cZero (Fm.D x ι) ((i : ℕ) + 1), (Fm.D x ι).R.k - 2, lenT p i PP⟩ : WtPar (dat p i)).ub} : Set (AllWt.Weight (dat p i))), ∀ cst : ℝ, GlobalTheory.RefSum.JetNum (Fm.D x ι) (DF (dat p i) (GlobalTheory.RefSum.thA (dat p i) la (GlobalTheory.RefSum.nCol (dat p i)))) cst → ∀ y ∈ (U₀ TF.X Z : Set (Y₀ TF.X Z))ᶜ, ∀ (T : CDVR) (io : Y.d.c₂.F →+* T.Fr) (y' : IntFr Y.d.Xo₂ Y.d.c₂ T io) (g : (Y₀ TF.X Z).presheaf.stalk y →+* T.V) (φT : ℝ), IsLocalHom g → GlobalTheory.SlopeRec.HasPhi y' φT → (letI := io.toAlgebra; TF.X.ptY y'.1 = Spec.map (CommRingCat.ofHom ((algebraMap T.V T.Fr).comp g)) ≫ (Y₀ TF.X Z).fromSpecStalk y ≫ inc₀ TF.X Z) → ∃ f ∈ AllWt.cuspOn Y.U Z (Formalism.L2.Pj.wtZ (GlobalTheory.RefSum.thA (dat p i) la (GlobalTheory.RefSum.nCol (dat p i))) (GlobalTheory.RefSum.nCol (dat p i))), evI y' f ≠ 0 ∧ (vV T.V (evI y' f) : ℝ) ≤ cst * φT := by
   intro h1 h2 h3 h4
-  have hA := _root_.GlobalTheory.T.theta_jet_value_bound_char_zero' h1 h2 h3 h4
-  have hC := _root_.GlobalTheory.T.theta_cusp_value_formula_at_weight h1 h2 h3 h4
+  have hA := _root_.GlobalTheory.JetsCharZero.exists_theta_rule_value_le_cover_char_zero_alt h1 h2 h3 h4
+  have hC := _root_.GlobalTheory.ThetaCuspOn.theta_value_on_cusp_neighbourhood' h1 h2 h3 h4
   unfold _root_.GlobalTheory.CovTop.CoversCondition _root_.GlobalTheory.CovTop.LiftsCondition Formalism.MainNotions.Closed at hA hC ⊢
   obtain ⟨ε1, hε1, hA⟩ := hA
   obtain ⟨ε2, hε2, hC⟩ := hC
@@ -89,7 +89,7 @@ theorem exists_cusp_with_theta_jet_value_le_alt : _root_.GlobalTheory.CovTop.Pub
     (Spec.map (CommRingCat.ofHom g) ≫ (Y₀ TF.X Z).fromSpecStalk y ≫ inc₀ TF.X Z ≫ TF.X.π ≫ TF.Y.s)
   obtain ⟨st, nab, hnab⟩ := GlobalTheory.CanonConn.exists_isNab_uncond _ _ _ _ Y.d.Xo₂ Y.d.c₂
   obtain rfl := GlobalTheory.PowGerm.starSt _ _ st hnab.1
-  obtain ⟨T', io', y'', r, C, P, hch', hr, hC0, hP, hφ', hsc⟩ := GlobalTheory.T.exists_extension_truncatedFrame_chart_residue_charZero _ _ _ _ Y.d.Xo₂ Y.d.c₂ T io y' hch φT hφ
+  obtain ⟨T', io', y'', r, C, P, hch', hr, hC0, hP, hφ', hsc⟩ := _root_.GlobalTheory.ExtScaleZero.exists_ext_chart_scale_charZero _ _ _ _ Y.d.Xo₂ Y.d.c₂ T io y' hch φT hφ
   obtain ⟨f, hf, hne, hle⟩ := hA' la hla cst hJ nab hnab T' io' y'' C P (r * φT) hch' hC0 hP hφ'
   have hs := hsc nab hnab _ _ 1 1 f hf
   simp only [map_one, one_mul, mul_one] at hs
@@ -107,17 +107,5 @@ theorem exists_cusp_with_theta_jet_value_le_alt : _root_.GlobalTheory.CovTop.Pub
   rw [← hs, div_le_iff₀ hr']
   nlinarith
 end GlobalTheory.ThetaJetsT
-end
-section
-open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory Formalism.L2.Pj Formalism.BasicNotions
-open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
-open GlobalTheory GlobalTheory.CechPic GlobalTheory.Vanishing GlobalTheory.HermTools GlobalTheory.Adelic GlobalTheory.CompHS GlobalTheory.CovTop GlobalTheory.BigTop
-open GlobalTheory.FlagMod (FlagCover)
-open GlobalTheory.FlagTan (dimFlag)
-open GlobalTheory.HSApp
-
-theorem _root_.GlobalTheory.T.theta_jet_cusp_value_bound_alt : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → _root_.GlobalTheory.CovTop.DeepGoodness → _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.CovTop.FlatDegreeCondition → _root_.GlobalTheory.CovTop.CoversCondition fun Fm x _ ι p i Y PP _ => ∀ (Z : Comp Y.d.Xo₂ Y.d.c₂) (TF : TorFlag Y.d.Xo₂ Y.d.c₂), ∀ la ∈ ({(⟨uW p i, cZero (Fm.D x ι) ((i : ℕ) + 1), (Fm.D x ι).R.k - 2, lenT p i PP⟩ : WtPar (dat p i)).u₁, (⟨uW p i, cZero (Fm.D x ι) ((i : ℕ) + 1), (Fm.D x ι).R.k - 2, lenT p i PP⟩ : WtPar (dat p i)).ub} : Set (AllWt.Weight (dat p i))), ∀ cst : ℝ, GlobalTheory.RefSum.JetNum (Fm.D x ι) (DF (dat p i) (GlobalTheory.RefSum.thA (dat p i) la (GlobalTheory.RefSum.nCol (dat p i)))) cst → ∀ y ∈ (U₀ TF.X Z : Set (Y₀ TF.X Z))ᶜ, ∀ (T : CDVR) (io : Y.d.c₂.F →+* T.Fr) (y' : IntFr Y.d.Xo₂ Y.d.c₂ T io) (g : (Y₀ TF.X Z).presheaf.stalk y →+* T.V) (φT : ℝ), IsLocalHom g → GlobalTheory.SlopeRec.HasPhi y' φT → (letI := io.toAlgebra; TF.X.ptY y'.1 = Spec.map (CommRingCat.ofHom ((algebraMap T.V T.Fr).comp g)) ≫ (Y₀ TF.X Z).fromSpecStalk y ≫ inc₀ TF.X Z) → ∃ f ∈ AllWt.cuspOn Y.U Z (Formalism.L2.Pj.wtZ (GlobalTheory.RefSum.thA (dat p i) la (GlobalTheory.RefSum.nCol (dat p i))) (GlobalTheory.RefSum.nCol (dat p i))), evI y' f ≠ 0 ∧ (vV T.V (evI y' f) : ℝ) ≤ cst * φT := by
-  first | exact @_root_.GlobalTheory.ThetaJetsT.exists_cusp_with_theta_jet_value_le_alt | exact _root_.GlobalTheory.ThetaJetsT.exists_cusp_with_theta_jet_value_le_alt | (intros; apply _root_.GlobalTheory.ThetaJetsT.exists_cusp_with_theta_jet_value_le_alt <;> assumption)
 end
 end

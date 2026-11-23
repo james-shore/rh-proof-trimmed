@@ -67,11 +67,6 @@ theorem min_le_sum {ι : Type} [Fintype ι] [Nonempty ι] (a : ι → ℝ) (ha :
     _ = (∑ j, a j) ^ Fintype.card ι := by simp
     _ ≤ ∑ j, a j := pow_le_of_le_one h0 h1 Fintype.card_ne_zero
 
-theorem c_pos (τ : X.Ψ) : 0 < X.c τ := by
-  have : τ.1 X.ξ0 ≠ 0 := (map_ne_zero τ.1).mpr X.ξ0_ne
-  unfold Data.c
-  positivity
-
 omit [NumberField E] [IsCMField E] in
 theorem emb_ne_zero (τ : E →+* ℂ) {v : Fin r → E} (hv : v ≠ 0) : Data.emb τ v ≠ 0 := by
   intro h
@@ -167,7 +162,7 @@ theorem prod_lower_of_smul {y : Frame X.Ψ r} (hy : y ∈ X.dom) {ξ η : Fin r 
   rw [HermitianTraceFormVanishing.herm_smul_left] at h0
   have h1 := QuadraticCoefficientForms.one_le_prod_norm X _ h0 (mul_ne_zero (den_ne_zero X) (mul_ne_zero he h))
   have h2 : 0 ≤ ∏ τ, X.c τ * X.maj y τ (Data.emb τ.1 ξ) := Finset.prod_nonneg fun τ _ =>
-    mul_nonneg (c_pos X τ).le (MajorantConjugateTransfer.maj_nonneg X hy τ _)
+    mul_nonneg (_root_.ReciprocityTheory.ChartRestriction.G.FD.MajorantFamilyNorms.c_pos X τ).le (MajorantConjugateTransfer.maj_nonneg X hy τ _)
   refine (le_mul_of_one_le_right h2 h1).trans (le_of_eq ?_)
   rw [← Finset.prod_mul_distrib, ← Finset.prod_mul_distrib]
   refine Finset.prod_congr rfl fun τ _ => ?_
@@ -219,12 +214,12 @@ theorem dist_line_lower {x : Frame X.Ψ r} (hx : x ∈ X.dom) {ξ : Fin r → E}
     rw [← h0, neg_smul, one_smul]
     abel
   obtain ⟨μ, hμ, hμF⟩ := (hFf.image (m τ0)).isCompact.exists_forall_le' continuousOn_id hpos
-  have hc0 := c_pos X τ0
+  have hc0 := _root_.ReciprocityTheory.ChartRestriction.G.FD.MajorantFamilyNorms.c_pos X τ0
   refine ⟨min 1 (X.c τ0 * μ), lt_min one_pos (mul_pos hc0 hμ), fun v hv hve a => ?_⟩
   have hterm : ∀ τ, X.c τ * m τ v ≤ ∑ τ, X.c τ * X.maj x τ (Data.emb τ.1 v - a τ • Data.emb τ.1 ξ) :=
-    fun τ => (mul_le_mul_of_nonneg_left (hm τ v (a τ)) (c_pos X τ).le).trans
+    fun τ => (mul_le_mul_of_nonneg_left (hm τ v (a τ)) (_root_.ReciprocityTheory.ChartRestriction.G.FD.MajorantFamilyNorms.c_pos X τ).le).trans
       (Finset.single_le_sum (f := fun τ => X.c τ * X.maj x τ (Data.emb τ.1 v - a τ • Data.emb τ.1 ξ))
-        (fun τ _ => mul_nonneg (c_pos X τ).le (MajorantConjugateTransfer.maj_nonneg X hx τ _)) (Finset.mem_univ τ))
+        (fun τ _ => mul_nonneg (_root_.ReciprocityTheory.ChartRestriction.G.FD.MajorantFamilyNorms.c_pos X τ).le (MajorantConjugateTransfer.maj_nonneg X hx τ _)) (Finset.mem_univ τ))
   rcases le_total 1 (∑ τ, X.c τ * X.maj x τ (Data.emb τ.1 v - a τ • Data.emb τ.1 ξ)) with h1 | h1
   · exact (min_le_left _ _).trans h1
   refine (min_le_right _ _).trans (le_trans ?_ (hterm τ0))
@@ -233,7 +228,7 @@ theorem dist_line_lower {x : Frame X.Ψ r} (hx : x ∈ X.dom) {ξ : Fin r → E}
     refine ⟨⟨X.Λ.sub_mem hv (X.Λ.smul_mem α hξ), fun τ => ?_⟩, fun e he => hve (e + α) ?_⟩
     · rw [emb_sub, emb_smul, hP]
       have h2 : m τ v ≤ 1 / X.c τ := by
-        rw [le_div_iff₀ (c_pos X τ), mul_comm]
+        rw [le_div_iff₀ (_root_.ReciprocityTheory.ChartRestriction.G.FD.MajorantFamilyNorms.c_pos X τ), mul_comm]
         exact (hterm τ).trans h1
       have h3 : ‖A τ v - τ.1 (α : E)‖ ^ 2 ≤ ρ ^ 2 := by
         rw [norm_sub_rev]
@@ -258,10 +253,10 @@ theorem orbitThick_of_flowMaj : FlowMajSt → OrbitThickSt := by
   obtain ⟨δ3, hδ3, h3⟩ := dist_line_lower X hx hξ.1 hξ.2.2
   set P : ℝ := ∏ τ, X.c τ * X.maj x τ (Data.emb τ.1 ξ) with hP
   have hPp : 0 < P := Finset.prod_pos fun τ _ =>
-    mul_pos (c_pos X τ) (X.maj_pos hx τ (emb_ne_zero τ.1 hξ.2.2))
+    mul_pos (_root_.ReciprocityTheory.ChartRestriction.G.FD.MajorantFamilyNorms.c_pos X τ) (X.maj_pos hx τ (emb_ne_zero τ.1 hξ.2.2))
   have hD := prod_norm_pos X (den_ne_zero X)
   have hK := prod_norm_pos X (mul_ne_zero (den_ne_zero X) hξη)
-  have hC : 0 < ∏ τ, X.c τ ^ 2 := Finset.prod_pos fun τ _ => pow_pos (c_pos X τ) 2
+  have hC : 0 < ∏ τ, X.c τ ^ 2 := Finset.prod_pos fun τ _ => pow_pos (_root_.ReciprocityTheory.ChartRestriction.G.FD.MajorantFamilyNorms.c_pos X τ) 2
   set δ1 : ℝ := (∏ τ, X.c τ ^ 2) / ((∏ τ : X.Ψ, ‖τ.1 (X.den : E)‖ ^ 2) * P) with hδ1
   set δ2 : ℝ := P / ∏ τ : X.Ψ, ‖τ.1 ((X.den : E) * herm X.Gm ξ η)‖ ^ 2 with hδ2
   have hδ1p : 0 < δ1 := div_pos hC (mul_pos hD hPp)
@@ -274,7 +269,7 @@ theorem orbitThick_of_flowMaj : FlowMajSt → OrbitThickSt := by
   refine Real.sqrt_le_sqrt (le_csInf ⟨_, ξ, hξ.1, hξ.2.2, rfl⟩ ?_)
   rintro _ ⟨v, hv, hv0, rfl⟩
   have hnn : ∀ τ, 0 ≤ X.c τ * X.maj (X.flow ξ s x) τ (Data.emb τ.1 v) := fun τ =>
-    mul_nonneg (c_pos X τ).le (MajorantConjugateTransfer.maj_nonneg X hy τ _)
+    mul_nonneg (_root_.ReciprocityTheory.ChartRestriction.G.FD.MajorantFamilyNorms.c_pos X τ).le (MajorantConjugateTransfer.maj_nonneg X hy τ _)
   by_cases h : herm X.Gm v ξ = 0
   · by_cases he : ∃ e : E, v = e • ξ
     · obtain ⟨e, rfl⟩ := he
@@ -287,7 +282,7 @@ theorem orbitThick_of_flowMaj : FlowMajSt → OrbitThickSt := by
     · push Not at he
       refine (min_le_right _ _).trans ((h3 v hv he fun τ => X.Hf x τ (Data.emb τ.1 v) (Data.emb τ.1 ξ) /
         X.Hf x τ (Data.emb τ.1 ξ) (Data.emb τ.1 ξ)).trans (Finset.sum_le_sum fun τ _ => ?_))
-      refine mul_le_mul_of_nonneg_left ?_ (c_pos X τ).le
+      refine mul_le_mul_of_nonneg_left ?_ (_root_.ReciprocityTheory.ChartRestriction.G.FD.MajorantFamilyNorms.c_pos X τ).le
       have h4 := hF1 ξ hξ x hx s hy τ (Data.emb τ.1 v) (by rw [← emb_herm, h, map_zero])
       have h5 := maj_sub_smul X hx τ (Data.emb τ.1 v) (emb_ne_zero τ.1 hξ.2.2) 0
       rw [zero_smul, sub_zero, sub_zero] at h5

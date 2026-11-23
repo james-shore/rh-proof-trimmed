@@ -115,7 +115,7 @@ theorem dual_extX {S S₀ T : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) {LS : Lat
         ψ (symplO S T (d.extX T a) (d.extY T a')) = 1 := by
   refine (GlobalTheory.SelfDualAt.latO_ann_at D ψ hψ S T LS LT hS hT _ _ (GlobalTheory.AscFinWit.mxAt_mul' ha d.pX)).trans ?_
   exact ⟨fun h _ ha' => h _ ha', fun h u hu =>
-    (congrArg ψ (GlobalTheory.AscFinWit.symplO_extX d T a u)).trans (h _ (extY_jY_mem d hS hT hm hu))⟩
+    (congrArg ψ (_root_.GlobalTheory.MixHalf.symplO_extX d T a u)).trans (h _ (extY_jY_mem d hS hT hm hu))⟩
 
 theorem mxAt_of_extY {S S₀ T : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) {a' : Mx D T.rank ρ}
     (h : MxAt (fun _ => True) (d.extY T a')) : MxAt (fun _ => True) a' := by

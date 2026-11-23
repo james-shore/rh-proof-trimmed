@@ -79,16 +79,7 @@ namespace GlobalTheory.KaExists
 
 open GlobalTheory.KeyGalDesc (g_eq exists_keyPB_pair)
 
-theorem exists_coords {R : Type} [CommRing R] (x : KeyIn R) {l N : ℕ} (b : Fin N → RR x l) (c : Fin N → R) :
-    ∃ s : RR x l, Coords x b c s.f := by
-  refine ⟨⟨fun i => ∑ k, cst x.P.A.hom (x.P.L.U i) (c k) * (show Γ(x.P.A.left, x.P.L.U i) from (b k).f i),
-    fun i j => ?_⟩, fun i => rfl⟩
-  refine (map_sum _ _ _).trans (Eq.trans ?_ (congrArg _ (map_sum _ _ _)).symm)
-  rw [Finset.mul_sum]
-  refine Finset.sum_congr rfl fun k _ => ?_
-  refine (map_mul _ _ _).trans (Eq.trans ?_ (congrArg _ (map_mul _ _ _)).symm)
-  exact (congrArg₂ (· * ·) ((rs_cst _ _ _).trans (rs_cst _ inf_le_right _).symm) ((b k).compat i j)).trans
-    (mul_left_comm _ _ _)
+alias exists_coords := _root_.GlobalTheory.KeyGeneric.exists_coords
 
 theorem exists_kaVal_of_keyPB (hL : Out.Laws) {R R' : Type} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     [CommRing R'] [IsLocalRing R'] {x : KeyIn R} {x' : KeyIn R'} {f : R →+* R'} {n l l' : ℕ}

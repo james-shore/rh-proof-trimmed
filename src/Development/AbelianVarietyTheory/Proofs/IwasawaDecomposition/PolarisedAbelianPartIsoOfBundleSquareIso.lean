@@ -81,10 +81,10 @@ theorem unif_sq_polarised_iso : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLoca
   have hS : SecBaseChangeSt := allSixLaws.1.secBaseChange
   have hA : AmpleSt := allSixLaws.1.ample
   obtain ⟨wL₀, hwL₀⟩ := hL
-  obtain ⟨wL, hwL, hrig⟩ := GlobalTheory.T.exists_rescale_rigidified_square_iso _ G U.LG U'.LG wL₀ hwL₀
+  obtain ⟨wL, hwL, hrig⟩ := _root_.GlobalTheory.RigSq.exists_rescale _ G U.LG U'.LG wL₀ hwL₀
   choose β hβm hβ using unifPre_abelianPart_iso R (maximalIdeal R) hR D D' A A' G hG U.toUnifPre U'.toUnifPre
   choose v hvg hv using fun e =>
-    GlobalTheory.T.polarization_squares_agree_at_each_thickening hGF R (maximalIdeal R) hR D D' A A' G hG U.toUnifPre U'.toUnifPre wL hwL hrig e (β e) (hβm e) (hβ e)
+    _root_.GlobalTheory.polarisation_squares_agree_at_level hGF R (maximalIdeal R) hR D D' A A' G hG U.toUnifPre U'.toUnifPre wL hwL hrig e (β e) (hβm e) (hβ e)
   have hβl : ∀ e, (U'.gt e).q.left ≫ (β e).hom.left = (U.gt e).q.left := fun e =>
     congrArg (·.left) (hβ e)
   have hp : ∀ e, (U'.gt e).q.left ≫ (β e).hom.left ≫ (fstG (maximalIdeal R) e D.toPre.P.A).left =
@@ -100,7 +100,7 @@ theorem unif_sq_polarised_iso : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLoca
       trans_comp_q U.toUnifPre, ← Category.assoc, hβl]
   have hR' := hR
   obtain ⟨hN, -, -, hC⟩ := hR'
-  obtain ⟨Φ, w, hw, H⟩ := GlobalTheory.T.exists_iso_polarised_of_compatible_thickenings_square hS hA R (maximalIdeal R) D.toPre.P D'.toPre.P β v hvg hc (by
+  obtain ⟨Φ, w, hw, H⟩ := _root_.GlobalTheory.exists_iso_of_compatible_thickenings_sq hS hA R (maximalIdeal R) D.toPre.P D'.toPre.P β v hvg hc (by
     intro e Z r z j j' hj hj'
     have := (U'.gt e).q_flat
     have := (U'.gt e).q_surj

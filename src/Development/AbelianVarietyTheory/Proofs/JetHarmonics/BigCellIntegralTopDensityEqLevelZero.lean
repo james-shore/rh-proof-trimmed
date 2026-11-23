@@ -98,7 +98,7 @@ theorem integral_topDensity_eq_levelZero : GlobalTheory.HCXi.BesselXiIntegrable 
   have hpol := hCc Wp Wq P p f χ A N w hDD hχ hf hCC hthr1 hw hN
   obtain ⟨δ, hδ, hδχ⟩ := hχ.2.1
   have hcut := fun (ε : ℝ) (hε : 0 < ε) (c : Fin (P.r + 1) → ℂ) =>
-    GlobalTheory.T.topVector_cutoff_eq_and_vanish Wp Wq P p Cb χ δ ε f w c hDD hw hχ hδχ hε hf
+    _root_.GlobalTheory.TopVec.tv_cutF Wp Wq P p Cb χ δ ε f w c hDD hw hχ hδχ hε hf
   set X := List.foldr (fun (a : Bool × ℝ) G => M.sgn P p.l0 • Q.CV P.k P.r (a.2 : ℂ) G) f w with hXdef
   have hXCC : B.InCC A 5 X := by
     obtain ⟨K, -, hK⟩ := GlobalTheory.capelli_fold_ccle P.k P.r Wp Wq (M.sgn P p.l0) w 5

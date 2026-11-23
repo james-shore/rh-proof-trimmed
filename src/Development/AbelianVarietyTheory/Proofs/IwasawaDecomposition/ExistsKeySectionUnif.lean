@@ -161,7 +161,7 @@ theorem rule_eq_of_rootVal {κ : GlobalTheory.KeyCl.Rule} (h₁ : GlobalTheory.K
   have d1 := ((T k).norm _ hb).1.ne_zero
   rw [hNk] at ha
   have a0 : a ≠ 0 := fun h0 => mul_ne_zero hN d1 (by rw [← ha, h0]; simp)
-  have e₂ := GlobalTheory.T.theta_key_rule_value_at_theta_point κ h₁ h₃ E H Dw l Xo c σ g e F r M k (T k) _ hb a (un k x) Ψ a0 hy hΨ
+  have e₂ := _root_.GlobalTheory.KeyFourth.value_at_thetaPt κ h₁ h₃ E H Dw l Xo c σ g e F r M k (T k) _ hb a (un k x) Ψ a0 hy hΨ
   have e₃ : N ^ 4 * (κ ℂ Ψ.key : ℂ) = ((2 * Real.pi * Complex.I) ^ g) ^ 4 := by
     refine mul_right_cancel₀ (pow_ne_zero 4 d1) ?_
     rw [show a ^ 8 = (a ^ 2) ^ 4 by ring, ha] at e₂

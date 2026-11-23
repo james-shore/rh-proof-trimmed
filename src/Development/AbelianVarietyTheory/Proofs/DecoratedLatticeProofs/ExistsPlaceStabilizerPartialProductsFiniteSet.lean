@@ -113,10 +113,9 @@ set_option synthInstance.maxHeartbeats 400000
 
 variable {D : D7}
 
-theorem mt_mul (S : HSp D) (a b : GA D S) : mt S (a * b) = mt S a * mt S b := by
-  simp [Formalism.L2.Theta.mt, map_mul]
+alias mt_mul := _root_.GlobalTheory.BesselCompare.mt_mul
 
-theorem mt_one (S : HSp D) : mt S 1 = 1 := by simp [Formalism.L2.Theta.mt]
+alias mt_one := _root_.GlobalTheory.BesselCompare.mt_one
 
 def locG (S : HSp D) {e : AE D} (he : e * e = e) (hc : cA D e = e) (κ : GA D S) : GA D S :=
   ⟨⟨locM e (mt S κ), locM e (mt S κ⁻¹), by rw [locM_mul he, ← mt_mul, mul_inv_cancel, mt_one, locM_one],
@@ -147,7 +146,7 @@ theorem cA_pe (v : Pl D) : cA D (pe D v) = pe D v := by
   simp [pe, cA, sigR, Algebra.TensorProduct.algebraMap_apply]
 
 theorem ext_AE {x y : AE D} (h1 : infPart D x = infPart D y) (h2 : ∀ w, compAt D w x = compAt D w y) : x = y :=
-  GlobalTheory.VacStabFixed.parts_ext h1 (GlobalTheory.LatticeLocalGlobal.ext_components _ _ fun w => h2 w)
+  _root_.GlobalTheory.SplitScalar.adele_ext h1 (GlobalTheory.LatticeLocalGlobal.ext_components _ _ fun w => h2 w)
 
 theorem pe_idem (v : Pl D) : pe D v * pe D v = pe D v :=
   ext_AE (by simp [inf_pe]) fun w => by rw [map_mul, comp_pe]; split_ifs <;> simp

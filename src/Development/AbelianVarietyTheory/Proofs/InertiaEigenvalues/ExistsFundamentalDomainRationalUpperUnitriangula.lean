@@ -85,7 +85,7 @@ theorem exists_fundamentalDomain_NE (E : Type) [Field E] [NumberField E] (n : �
       refine (Continuous.measurable ?_) (GroundTheory.Global.measurableSet_fundamentalSet E)
       exact (Units.continuous_val.comp continuous_subtype_val).matrix_elem i j
     · intro x
-      obtain ⟨γ, ⟨hγ, hγD⟩, huniq⟩ := GlobalTheory.T.existsUnique_ratUnitriangular_mul_entries_mem_fundamentalSet E n (x : GA E n) x.2
+      obtain ⟨γ, ⟨hγ, hγD⟩, huniq⟩ := _root_.GlobalTheory.CellDec.existsUnique_ratUnip_mul_mem_fundamentalSet E n (x : GA E n) x.2
       refine ⟨⟨⟨ratGL E n γ, ratGL_mem_NA hγ⟩, Subgroup.mem_subgroupOf.2 (Subgroup.mem_map.2 ⟨γ, hγ, rfl⟩)⟩,
         fun i j hij => hγD i j hij, ?_⟩
       intro g hg

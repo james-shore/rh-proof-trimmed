@@ -60,14 +60,6 @@ namespace GlobalTheory.DualCon.Assemble
 
 variable {S : Scheme.{0}} {A : Over S} [GrpObj A]
 
-theorem fam_ev {U Y : Over S} {M : LB (A ⊗ U).left} (h : Fam A M) (u : Y ⟶ U) :
-    Fam A (ev M (fst A Y) (snd A Y ≫ u)) := by
-  have hN : (ev M (fst A Y) (snd A Y ≫ u)).IsLB := pull_isLB h.isLB _
-  refine ⟨hN, (isAdditive_iff hN).2 fun Z a a' t ↦ ?_⟩
-  simp only [evc_ev h.isLB, lift_fst, lift_snd_assoc]
-  exact (isAdditive_iff h.isLB).1 h.add Z a a' _
-
-
 omit [GrpObj A] in
 theorem same_comp {T U Y Z : Over S} {N : LB (A ⊗ T).left} {M : LB (A ⊗ U).left} (hN : N.IsLB) (hM : M.IsLB)
     {y : Y ⟶ T} {u : Y ⟶ U} (h : Same A N M y u) (z : Z ⟶ Y) :
@@ -89,7 +81,7 @@ theorem fibInj {B S' U : Over S} [IsFinite S'.hom] [Surjective S'.hom] {b : B �
   have k : ∀ v : Y ⟶ U, evc hM.isLB (fst A Y) (snd A Y ≫ v) =
       evc hP.fam.isLB (fst A Y) (snd A Y ≫ lift v (y ≫ t) ≫ j) := fun v ↦ by
     simpa only [lift_fst] using same_comp hM.isLB hP.fam.isLB h (lift v (y ≫ t))
-  have hN := fam_ev hM u
+  have hN := _root_.GlobalTheory.DualCon.Fam.ev hM u
   have e : lift u (y ≫ t) ≫ j = lift u' (y ≫ t) ≫ j := by
     refine (hP.univ Y (y ≫ t) _ hN).unique ⟨by rw [Category.assoc, hj, lift_snd], ?_⟩
       ⟨by rw [Category.assoc, hj, lift_snd], ?_⟩
@@ -118,8 +110,7 @@ theorem isPullback_prod (X Y : Over S) : IsPullback (fst X Y) (snd X Y) (toUnit 
   ⟨⟨toUnit_unique _ _⟩, ⟨PullbackCone.IsLimit.mk _ (fun c ↦ lift c.fst c.snd) (fun _ ↦ lift_fst _ _)
     (fun _ ↦ lift_snd _ _) fun c m h₁ h₂ ↦ by ext <;> simp [h₁, h₂]⟩⟩
 
-theorem toUnit_left (X : Over S) : (toUnit X).left = X.hom :=
-  (Category.comp_id _).symm.trans (Over.w (toUnit X))
+alias toUnit_left := _root_.GlobalTheory.ObjPull.toUnit_left'
 
 end GlobalTheory.DualCon.Assemble
 
@@ -146,7 +137,7 @@ theorem hasRep_of_liftAt (R : Type) [CommRing R] [IsNoetherianRing R] (A : Over 
     exact (congrArg (@SmoothOfRelativeDimension g _ _) e).mpr (hU x)
   have hpb := isPullback_prod B₀ S'
   obtain ⟨e, he, -⟩ := rep_unique (Sp R) A B (B₀ ⊗ S') S' b P _ _ hP
-    (GlobalTheory.T.rep_ev_of_isPullback (Sp R) A B₀ _ S' _ _ P₀ _ _ _ hP₀ hpb)
+    (_root_.GlobalTheory.DualCon.Rep.baseChange (Sp R) A B₀ _ S' _ _ P₀ _ _ _ hP₀ hpb)
   have hpb' : IsPullback (e.hom ≫ fst B₀ S') b (toUnit B₀) (toUnit S') :=
     hpb.of_iso e.symm (Iso.refl _) (Iso.refl _) (Iso.refl _) (by simp) (by simp [← he]) (by simp) (by simp)
   refine ⟨B₀, toUnit B₀, P₀, hP₀, GlobalTheory.T.properSmoothGeomConnected_descend_finite_surjective _ _ _ _ _ _ _ _ g (hpb'.map (Over.forget _)) ?_ ?_ ?_ hb⟩

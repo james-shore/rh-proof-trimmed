@@ -214,7 +214,7 @@ theorem psiM_local (T : KType ε (lowK ε lam)) (μ : Fin n → ℤ) (hμ : IsMu
     obtain ⟨γ, -, hγ, hmul⟩ := exists_oneParam ε hY
     have hid : ∀ z ∈ U, fderiv ℂ (psM T μ) z (z * ℓ ((K g)ᴴ * K g₀)) =
         -(T.dτ (ℓ ((K g)ᴴ * K g₀)) * psM T μ z) :=
-      fun z hz => (hU z hz _ ((inK_iff ε _).1 hY).2).1
+      fun z hz => (hU z hz _ ((_root_.ReciprocityTheory.ChartRestriction.DS.S7.kfa_inK_iff ε _).1 hY).2).1
     have hc := lcB_const T μ hUo hdiff hid hY γ hγ hmul
       (NormedSpace.exp (-PolarDecomposition.polar_L g)) hq2
     have hγ1 : toMK (γ 1) = (K g)ᴴ * K g₀ := by

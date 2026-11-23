@@ -51,7 +51,7 @@ namespace GlobalTheory.TwLat
 theorem nrmL_dlt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ (w : Pl E), ¬ IsSplitAt w → ∀ (K : GlobalTheory.UnitLemma.UQ) (e : K.E ≃+* w.adicCompletion E), (∀ x, e (K.c x) = cj w (e x)) → (∀ x, x ∈ (algebraMap K.O K.E).range ↔ Valued.v (e x) ≤ 1) → (∀ x, GlobalTheory.UnitLemma.val K.O x = ordL (e x)) → ∀ (B : GlobalTheory.UnitLemma.InvAlg K) (m : ℕ) (b : Module.Basis (Fin m) K.E B.A), ∀ u β : B.A, IsUnit (GlobalTheory.TwLat.gram e b β) → B.σ β = β * ((-1) ^ (m - 1) * u) → (nrmL m w (GlobalTheory.TwLat.dlt e b β)).val = GlobalTheory.TwLat.mulMat e b u := by
   intro E _ _ _ _ w hw K e hec _ _ B m b u β hG hβ
   let B' : GlobalTheory.UnitLemma.InvAlg K := { B with g := u }
-  have hGc0 := GlobalTheory.GramTwistNorm.gram_map_conj B' (w.adicCompletion E) e (cj w) hec m β hβ b
+  have hGc0 := _root_.GlobalTheory.ScalarSigmaBasis.main B' (w.adicCompletion E) e (cj w) hec m β hβ b
   set G := gram e b β with hGdef
   set P := mulMat e b u with hP
   set Φ := GlobalTheory.Tw.Phi m (w.adicCompletion E) with hΦ

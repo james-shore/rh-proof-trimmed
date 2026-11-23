@@ -79,7 +79,7 @@ theorem traceOne_holds (D : D7) : TraceOne D := by
         apply hx
         rw [← neg_sub]
         exact P.neg_mem hmem
-  obtain ⟨x, y, hy, hxy⟩ := traceSurjective_holds D.host.E hU 1 (by simp)
+  obtain ⟨x, y, hy, hxy⟩ := _root_.PI.CMT.main D.host.E hU 1 (by simp)
   refine ⟨x, ?_⟩
   rw [← hy]
   exact_mod_cast congrArg (fun z : 𝓞 D.host.E => (z : D.host.E)) hxy

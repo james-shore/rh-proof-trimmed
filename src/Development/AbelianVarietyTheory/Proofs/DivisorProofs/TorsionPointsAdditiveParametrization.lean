@@ -120,14 +120,14 @@ theorem free_torsion_geomPt : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Ty
       exact hc
     have hmem : ((n : ℕ) : 𝓞 D.F) ∈ Ideal.span {c} := Ideal.absNorm_mem _
     obtain ⟨c', hc'⟩ := Ideal.mem_span_singleton'.mp hmem
-    obtain ⟨g', hg'⟩ := GlobalTheory.T.exists_pow_eq_point_of_isAbelianScheme S o.A o.ab k x n hn0 g.toMul
+    obtain ⟨g', hg'⟩ := _root_.GlobalTheory.AbDivPt.exists_pow_eq_of_isAlgClosed S o.A o.ab k x n hn0 g.toMul
     refine ⟨c' • Additive.ofMul g', ?_⟩
     show c • c' • Additive.ofMul g' = g
     rw [smul_smul, mul_comm, hc', Nat.cast_smul_eq_nsmul, ← ofMul_pow, hg']
     rfl
   have hcard1 : Nat.card (Submodule.torsionBySet (𝓞 D.F) (Additive (Over.mk x ⟶ o.A)) (w0 : Set (𝓞 D.F))) =
       Nat.card (𝓞 D.F ⧸ w0) ^ (D.m * D.n) := by
-    rw [← GlobalTheory.T.card_torsion_killed_by_prime_at_etale_place p D R b N w0 hw S s o k x]
+    rw [← _root_.GlobalTheory.UPel.HT.EtLev.GeoCard.card_ker_place p D R b N w0 hw S s o k x]
     refine Nat.card_congr (Equiv.subtypeEquiv Additive.toMul (fun g => ?_))
     rw [Submodule.mem_torsionBySet_iff]
     constructor
@@ -138,8 +138,8 @@ theorem free_torsion_geomPt : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Ty
     · intro h c
       rw [hsm]
       exact congrArg Additive.ofMul (h c.1 c.2)
-  have hall := GlobalTheory.T.card_torsionBySet_pow_of_divisible_numberField D.F _ w0 (D.m * D.n) hmax hne hdiv hcard1
-  obtain ⟨f, hf1, hf2, hf3⟩ := GlobalTheory.T.torsionBySet_pow_free_of_card_pow_numberField D.F _ w0 (D.m * D.n) r hmax hne hall
+  have hall := _root_.GlobalTheory.torsion_pow_card D.F _ w0 (D.m * D.n) hmax hne hdiv hcard1
+  obtain ⟨f, hf1, hf2, hf3⟩ := _root_.GlobalTheory.torsionBySet_pow_free_of_natCard D.F _ w0 (D.m * D.n) r hmax hne hall
   refine ⟨fun a => (f a).toMul, ?_, ?_, ?_, ?_⟩
   · intro a a'
     show Additive.toMul (f (a + a')) = Additive.toMul (f a) * Additive.toMul (f a')

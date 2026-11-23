@@ -111,7 +111,7 @@ theorem class_summand_eq_term_of_a_one : ∀ (p : ℕ) [Fact p.Prime] (G : HTGro
       rw [hr]; rfl
     have h5 : minpoly G.F (((r : G.Cˣ × ℚˣ).1 : G.Cˣ) : G.C) = P.pol := by
       rw [hr]; rfl
-    rw [h1, h2, h3, h4, h5, GlobalTheory.pointSum_comp_mulEquiv, GlobalTheory.T.orbital_term_point_sum p G P Kf f K' f' hf hf' x t hx]
+    rw [h1, h2, h3, h4, h5, GlobalTheory.pointSum_comp_mulEquiv, _root_.GlobalTheory.LKMid.Pair.term_one_eq_pointSum p G P Kf f K' f' hf hf' x t hx]
   · rw [if_neg (fun h => hm (hiff.1 h)), if_neg hm]
 
 end GlobalTheory.LKCx.CxReg

@@ -56,17 +56,6 @@ open Formalism.L2.NTheta GlobalTheory.SplitPlace IsDedekindDomain
 
 variable {D : D7}
 
-theorem le_unif {x : WithZero (Multiplicative ℤ)} (h : x < 1) :
-    x ≤ ((Multiplicative.ofAdd (-1 : ℤ) : Multiplicative ℤ) : WithZero (Multiplicative ℤ)) := by
-  rcases eq_or_ne x 0 with rfl | hx
-  · exact zero_le'
-  obtain ⟨u, rfl⟩ := WithZero.ne_zero_iff_exists.1 hx
-  rw [← WithZero.coe_one, WithZero.coe_lt_coe] at h
-  rw [WithZero.coe_le_coe]
-  rw [← Multiplicative.toAdd_lt, toAdd_one] at h
-  rw [← Multiplicative.toAdd_le, toAdd_ofAdd]
-  omega
-
 theorem ratio_int {P : HeightOneSpectrum (𝓞 D.host.E)} {e : Formalism.L2.Theta.AE D} (he : IsIdemAt e P)
     {ϖ : 𝓞 D.host.E} (hP : ϖ ∈ P.asIdeal) (hP2 : ϖ ∉ P.asIdeal ^ 2) {y : 𝓞 D.host.E} (hy : y ∈ P.asIdeal) :
     ∃ t ∈ intAE D, finPart D e * finPart D (incA D (y : D.host.E)) =
@@ -91,7 +80,7 @@ theorem ratio_int {P : HeightOneSpectrum (𝓞 D.host.E)} {e : Formalism.L2.Thet
     change ¬ Valued.v (φ ((y : D.host.E)⁻¹)) ≤ 1 at hn
     rw [map_inv₀, map_inv₀, not_le, one_lt_inv₀ (zero_lt_iff.2 ((Valuation.ne_zero_iff _).2 ((map_ne_zero φ).2 fun h0 => hy0 (RingOfIntegers.coe_eq_zero_iff.1 h0))))] at hn
     have hϖv : Valued.v (φ ϖ) = _ := hu
-    have h6 := le_unif hn
+    have h6 := _root_.Formalism.UG.P.satake_lt_one_le hn
     rw [← hϖv] at h6
     rw [div_le_one₀ (by rw [hϖv]; exact zero_lt_iff.2 WithZero.coe_ne_zero)]
     exact h6

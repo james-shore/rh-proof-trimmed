@@ -99,7 +99,7 @@ theorem glob_iso : ∀ (K : Type) [Field K] [CharZero K],
       HT.pullH u hu a (a + j) ((e p W a j).symm ((formCos p W.U a).cx.cls c h0)) =
         (e q U a j).symm ((formCos q U.U a).cx.cls _ h1) := by
   intro K _ _
-  obtain ⟨e1, he1⟩ := GlobalTheory.T.cech_hodge_degeneration_natural K
+  obtain ⟨e1, he1⟩ := _root_.GlobalTheory.CompanionTheory.OmGlobSite.glob_site K
   obtain ⟨t, htr, htp⟩ := GlobalTheory.CompanionTheory.OmGlobTerm.AssemblyHe1.term K
   let φ : ∀ {X : Scheme.{0}} (q : X ⟶ Spec (CommRingCat.of K)) [Smooth q] (U : Cov q) (a : ℕ),
       Cx.Hom (cechH (Fk q U a) (Vk q U a) a).cx (formCos q U.U a).cx (RingHom.id K) := fun q _ U a =>
@@ -107,7 +107,7 @@ theorem glob_iso : ∀ (K : Type) [Field K] [CharZero K],
   refine ⟨fun q _ U a j => (e1 q U a j).trans
     (LinearEquiv.ofBijective ((φ q U a).mapH j) (P.mapH_bij (φ q U a) (fun n => tH_bij q U a (t q U a) (fun m n i θ x => htr q U a m n i θ x) n) j)), ?_⟩
   intro X Y q p _ _ u hu U W τ hτ a j c h0 h1
-  obtain ⟨hG, hτ'⟩ := GlobalTheory.T.pullback_cover_star_compat q p u hu U W τ hτ a
+  obtain ⟨hG, hτ'⟩ := _root_.GlobalTheory.CompanionTheory.OmGlobPush.push_kc q p u hu U W τ hτ a
 
   let c₀ : (cechH (Fk p W a) (Vk p W a) a).X j := fun i => (t p W a j i).symm (c i)
   have hc₀ : (φ p W a).f j c₀ = c := funext fun i => (t p W a j i).apply_symm_apply (c i)

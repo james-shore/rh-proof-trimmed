@@ -249,13 +249,7 @@ theorem star_mdisc (A : Fin D → Matrix (Fin D) (Fin D) ℂ) :
   simp only [mdisc, star_mul', star_sum, ← Matrix.conjTranspose_sum, Matrix.det_conjTranspose,
     star_pow, star_neg, star_one, star_div₀, star_natCast]
 
-theorem mdisc_nonneg_of_posSemidef (A : Fin D → Matrix (Fin D) (Fin D) ℂ)
-    (hA : ∀ k, (A k).PosSemidef) : (mdisc A).im = 0 ∧ 0 ≤ (mdisc A).re := by
-  exact mixedDiscriminant_nonneg_of_gram A hA
-
-theorem mdisc_re_mono (A B : Fin D → Matrix (Fin D) (Fin D) ℂ) (hA : ∀ k, (A k).PosSemidef)
-    (hAB : ∀ k, (B k - A k).PosSemidef) : (mdisc A).re ≤ (mdisc B).re := by
-  exact mixedDiscriminant_re_mono_of_gram A B hA hAB
+alias mdisc_re_mono := _root_.ReciprocityTheory.AnForm.A.mixedDiscriminant_re_mono_of_gram
 
 theorem mdisc_mul_mul (B C : Matrix (Fin D) (Fin D) ℂ) (A : Fin D → Matrix (Fin D) (Fin D) ℂ) :
     mdisc (fun k => B * A k * C) = B.det * C.det * mdisc A := by

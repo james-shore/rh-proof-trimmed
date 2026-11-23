@@ -43,6 +43,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.AnalyticForms.RegularLocalRings.BaseChangeCB
 import ReciprocityTheory.AnalyticForms.RegularLocalRings.IntToRat
+import Lemmata.GeneralBFactTerForm.Imports
 
 @[expose] public section
 
@@ -90,6 +91,6 @@ theorem isCxVar_of_mem_minimalPrimes_cxIdeal :
   refine ⟨⟨hK, ⟨hQ.1.1, hQm, hQr⟩, ?_⟩, hc⟩
   rw [ReciprocityTheory.AnForm.R.BaseChangeC.ringKrullDim_of_mem_minimalPrimes_map _ Q hQ']
   rw [hdim, show d + 1 + Fintype.card K = (d + Fintype.card K) + 1 by omega] at hQdim
-  exact GroundTheory.Heights₂.Heights.Targets.ConeComplexBaseChange.dim_cancel_one hQdim
+  exact _root_.Bl.general_b_fact_ter_form.goal1 hQdim
 
 end GlobalTheory.CompanionTheory.Ar.Pub.CxComp

@@ -61,10 +61,6 @@ section Ring
 
 variable {S : Scheme.{0}} {G : Over S} [GrpObj G] [IsCommMonObj G]
 
-theorem isMonHom_mul' (f g : G ⟶ G) [IsMonHom f] [IsMonHom g] : IsMonHom (f * g) := by
-  rw [Hom.mul_def]
-  infer_instance
-
 def evId (e : AddMonoid.End (Additive (G ⟶ G))) : G ⟶ G := (e (Additive.ofMul (𝟙 _))).toMul
 
 structure IsEnd (e : AddMonoid.End (Additive (G ⟶ G))) : Prop where
@@ -85,14 +81,14 @@ def endRing : Subring (AddMonoid.End (Additive (G ⟶ G))) where
   add_mem' {a b} ha hb := by
     have := ha.hom; have := hb.hom
     have e : evId (a + b) = evId a * evId b := rfl
-    refine ⟨by rw [e]; exact isMonHom_mul' _ _, fun x => ?_⟩
+    refine ⟨by rw [e]; exact _root_.GlobalTheory.Balanced.isMonHom_mul _ _, fun x => ?_⟩
     rw [e, MonObj.comp_mul, ← ha.eq, ← hb.eq]
     rfl
   zero_mem' := by
     refine ⟨?_, fun x => (MonObj.comp_one x.toMul).symm⟩
     have e : evId (0 : AddMonoid.End (Additive (G ⟶ G))) = 𝟙 G * (𝟙 G)⁻¹ := (mul_inv_cancel (𝟙 G)).symm
     rw [e]
-    exact isMonHom_mul' _ _
+    exact _root_.GlobalTheory.Balanced.isMonHom_mul _ _
   neg_mem' {a} ha := by
     have := ha.hom
     have e : evId (-a) = (evId a)⁻¹ := rfl

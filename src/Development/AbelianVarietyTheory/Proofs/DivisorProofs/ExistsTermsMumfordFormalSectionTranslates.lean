@@ -102,8 +102,8 @@ theorem exists_terms : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R],
   have key : ∀ ν, ∃ t : SecT D.toPre a N (-1) (shift h h' N (-1) ν), TRel h ν s₀ t ∧
       ∀ e : ℕ, r ν ∈ maximalIdeal R ^ (e + 1) → Van (maximalIdeal R) t e := by
     intro ν
-    obtain ⟨u₀, hu₀, hfac⟩ := GlobalTheory.T.exists_normalised_twistedGenerator_of_factor R hB D a a' h h' hE N hN r g hg hval ν
-    exact GlobalTheory.T.exists_mumfordTerm_translate_normalisedGenerator R D a h h' N s₀ ν u₀ hu₀ (r ν) hfac
+    obtain ⟨u₀, hu₀, hfac⟩ := _root_.GlobalTheory.TwNorm.exists_gen_fac R hB D a a' h h' hE N hN r g hg hval ν
+    exact _root_.GlobalTheory.MumTerm.exists_term R D a h h' N s₀ ν u₀ hu₀ (r ν) hfac
   choose t ht using key
   have hz : TRel h 0 s₀ z₀ :=
     GlobalTheory.T.twisted_section_related_at_zero_shift R hB D a a' h h' hE N hN s₀ z₀ fun Z x z J hJ => (hz₀ Z x z J hJ).trans (hs₀ Z x z J hJ).symm

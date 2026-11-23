@@ -91,7 +91,7 @@ theorem finX_holds (hWu : Formalism.L2.SG.Pf.WuDecayOfGap) (hRF : Formalism.L2.S
   have hfold : ∀ u, Formalism.L2.SG.WuDecay.FoldOK T.X u T.Y.hK := fun u =>
     Formalism.L2.SG.Closed.FoldOKC_holds hFL D T.X T.Y u hK2 hWD
   exact finX_of_neat T.Y (fun u => Formalism.L2.SG.Pf.neatKu_full D T.X T.Y u)
-    (fun u => Formalism.L2.SG.Closed.InHHC_holds D T.X T.Y u hph (hfold u))
+    (fun u => _root_.Formalism.L2.SG.Pf.inHHC_holds D T.X T.Y u hph (hfold u))
     (Formalism.L2.SG.Pf.RowDictPf.finiteDimensional_HHX_of_hypotheses T.X hRF Formalism.L2.SG.Pf.RowDictPf.schur_orthogonality_discrete_series
       (fun v => phLoc_int_of_gap T.X hg v _))
     (fun u u' t => fibFin_holds D T.X T.Y u u' t)

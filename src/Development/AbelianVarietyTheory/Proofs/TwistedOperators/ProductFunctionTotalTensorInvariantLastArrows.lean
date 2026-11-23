@@ -62,34 +62,6 @@ open GlobalTheory.LastVertexMove
 
 variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {W : G.Weil} {U : Set T}
 
-theorem lat_col (S : GridChoice W U) {t : T} (ht : t ∈ U) (k : FinPt G (.grid D.R.m D.R.m))
-    (hk : finG (G.V (.grid D.R.m D.R.m)) k ∈ S.levRow t D.R.m le_rfl)
-    (x : WO (G.pS (.top t (lastIx D))) (G.pT (.top t (lastIx D)))) :
-    actO _ _ (colPt S t (finEmb G.sp.topDec k)).1⁻¹ (colPt S t (finEmb G.sp.topDec k)).2⁻¹ x ∈ stdLat S (.top t (lastIx D)) ↔
-      x ∈ stdLat S (.top t (lastIx D)) :=
-  GlobalTheory.LastColLat.colPt_inv_mem_stdLat_iff S ht k hk x
-
-theorem lat_row (S : GridChoice W U) {t : T} (ht : t ∈ U) (k : FinPt G (.grid D.R.m D.R.m))
-    (hk : finG (G.V (.grid D.R.m D.R.m)) k ∈ S.levRow t D.R.m le_rfl)
-    (x : WO (G.pS (.chi (lastIx D) D.R.m : Pair T)) (G.pT (.chi (lastIx D) D.R.m : Pair T))) :
-    actO _ _ (rowPt S k).1⁻¹ (rowPt S k).2⁻¹ x ∈ stdLat S (.chi (lastIx D) D.R.m) ↔ x ∈ stdLat S (.chi (lastIx D) D.R.m) :=
-  GlobalTheory.LastRowLat.rowPt_mem_stdLat S ht k hk x
-
-theorem vac_col (S : GridChoice W U) (t : T) (g : FinPt G (.top D.R.m))
-    (hlat : ∀ x, actO _ _ (colPt S t g).1⁻¹ (colPt S t g).2⁻¹ x ∈ stdLat S (.top t (lastIx D)) ↔ x ∈ stdLat S (.top t (lastIx D))) :
-    ∃ c : ℂ, colShift S t g (S.Z.vac (.top t (lastIx D))) = c • S.Z.vac (.top t (lastIx D)) :=
-  GlobalTheory.LastVertexVac.colShift_vac_eq_smul S t g hlat
-
-theorem vac_row (S : GridChoice W U) (k : FinPt G (.grid D.R.m D.R.m))
-    (hlat : ∀ x, actO _ _ (rowPt S k).1⁻¹ (rowPt S k).2⁻¹ x ∈ stdLat S (.chi (lastIx D) D.R.m) ↔
-      x ∈ stdLat S (.chi (lastIx D) D.R.m)) :
-    ∃ c : ℂ, rowShift S k (S.Z.vac (.chi (lastIx D) D.R.m)) = c • S.Z.vac (.chi (lastIx D) D.R.m) :=
-  GlobalTheory.LastRowVac.vac_row_scalar S k hlat
-
-theorem sb_std (S : GridChoice W U) {t : T} (ht : t ∈ U) {p : Pair T} (hp : DefPair D.R.m p) (d : FinDatum G t p)
-    (hP : d.P = locPl G t) : IsSBHalf d.e (stdLat S p) d.fn :=
-  GlobalTheory.LastVertexMove.isSBHalf_stdLat S ht hp d hP
-
 theorem loc (S : GridChoice W U) {t : T} {Φ : G.Datum} {β : CosFam G t} {τ : PureDat G t →₀ ℂ} {μ₀ : T}
     (hL : L.Is μ₀) (hde : Nat.Coprime D.host.pde (D.host.QS * D.host.q) ∧ Nat.Coprime D.host.pde' (D.host.QS * D.host.q))
     (hc : ∀ P ∈ L.Q t, ((Ideal.absNorm D.host.ccK : ℕ) : 𝓞 D.host.E) ∉ P.asIdeal)
@@ -190,8 +162,8 @@ theorem productFn_invariant : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Cons
     τ.sum fun d a => a * (∏ j, S.Z.vec (d.1 j) (w j)) * ∏ i, S.Z.vec (d.2 i) (v i) := by
   intro D T L sc G W U S t Φ β τ μ₀ hL hde hc ht hβ hexp hvec k hk w v
   obtain ⟨e, he, hdat, -⟩ := id hexp
-  obtain ⟨cc, hcc⟩ := vac_col S t (finEmb G.sp.topDec k) (lat_col S ht k hk)
-  obtain ⟨cr, hcr⟩ := vac_row S k (lat_row S ht k hk)
+  obtain ⟨cc, hcc⟩ := _root_.GlobalTheory.LastVertexVac.colShift_vac_eq_smul S t (finEmb G.sp.topDec k) (_root_.GlobalTheory.LastColLat.colPt_inv_mem_stdLat_iff S ht k hk)
+  obtain ⟨cr, hcr⟩ := _root_.GlobalTheory.LastRowVac.vac_row_scalar S k (_root_.GlobalTheory.LastRowLat.rowPt_mem_stdLat S ht k hk)
   have hloc := loc S hL hde hc ht hβ hexp hvec k hk cc cr hcc hcr
   rcases τ.support.eq_empty_or_nonempty with h0 | ⟨d₀, hd₀⟩
   · simp [Finsupp.sum, h0]
@@ -218,19 +190,19 @@ theorem productFn_invariant : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Cons
   have hsc : ∀ d ∈ τ.support, colShift S t (finEmb G.sp.topDec k) (S.Z.vec (d.1 (lastIx D))) =
       Tc (lastIx D) (cc • moveFn (colPt S t (finEmb G.sp.topDec k)) (d.1 (lastIx D)).fn) := by
     intro d hd
-    have hsb := sb_std S ht (defPair_top t (lastIx D)) (d.1 (lastIx D)) ((hdat d hd).1 (lastIx D)).1
+    have hsb := _root_.GlobalTheory.LastVertexMove.isSBHalf_stdLat S ht (defPair_top t (lastIx D)) (d.1 (lastIx D)) ((hdat d hd).1 (lastIx D)).1
     rw [((hdat d hd).1 (lastIx D)).2.1] at hsb
     rw [hvc d hd, map_smul, colShift_eq]
     exact om_model S (defPair_top t (lastIx D)) (inRange_top t (lastIx D)) he (Tc (lastIx D)) (hTc (lastIx D)) _ cc
-      (lat_col S ht k hk) hcc _ hsb
+      (_root_.GlobalTheory.LastColLat.colPt_inv_mem_stdLat_iff S ht k hk) hcc _ hsb
   have hsr : ∀ d ∈ τ.support, rowShift S k (S.Z.vec (d.2 (lastIx D))) =
       Tr (lastIx D) (cr • moveFn (rowPt S k) (d.2 (lastIx D)).fn) := by
     intro d hd
-    have hsb := sb_std S ht (defPair_chi (lastIx D)) (d.2 (lastIx D)) ((hdat d hd).2 (lastIx D)).1
+    have hsb := _root_.GlobalTheory.LastVertexMove.isSBHalf_stdLat S ht (defPair_chi (lastIx D)) (d.2 (lastIx D)) ((hdat d hd).2 (lastIx D)).1
     rw [((hdat d hd).2 (lastIx D)).2.1] at hsb
     rw [hvr d hd, map_smul, rowShift_eq]
     exact om_model S (defPair_chi (lastIx D)) (inRange_chi (lastIx D)) he (Tr (lastIx D)) (hTr (lastIx D)) _ cr
-      (lat_row S ht k hk) hcr _ hsb
+      (_root_.GlobalTheory.LastRowLat.rowPt_mem_stdLat S ht k hk) hcr _ hsb
   have key := GlobalTheory.funProd_multilinear_sum_eq (prodForm Tc Tr w v) τ
     (fun d j => ⟨Function.update (fun j => (d.1 j).fn) (lastIx D)
       (cc • moveFn (colPt S t (finEmb G.sp.topDec k)) (d.1 (lastIx D)).fn) j, Submodule.mem_top⟩)

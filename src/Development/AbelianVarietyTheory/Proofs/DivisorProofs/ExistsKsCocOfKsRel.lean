@@ -59,15 +59,6 @@ namespace GlobalTheory.KSCechData
 
 open GlobalTheory.KS GlobalTheory.LogKSBal
 
-theorem constFn_spMap {R K : Type} [CommRing R] [CommRing K] (x₀ : R →+* K) {Y : Scheme.{0}} (q : Y ⟶ Sp K)
-    (O : Y.Opens) (r : R) : constFn (q ≫ spMap x₀) O r = constFn q O (x₀ r) := by
-  refine ext_valR _ _ fun B _ y hy => ?_
-  have e : y ≫ q = spMap (Spec.preimage (y ≫ q)).hom := (Spec.map_preimage _).symm
-  generalize (Spec.preimage (y ≫ q)).hom = β at e
-  rw [valR_constFn q y hy e, valR_constFn (q ≫ spMap x₀) y hy (β := β.comp x₀)
-    (by rw [← Category.assoc, e, GlobalTheory.LogKSLoc.spMap_comp'])]
-  rfl
-
 theorem constFn_neg {K : Type} [CommRing K] {Y : Scheme.{0}} (q : Y ⟶ Sp K) (O : Y.Opens) (r : K) :
     constFn q O (-r) = -constFn q O r := by
   simp [constFn]
@@ -98,7 +89,7 @@ theorem exists_ksCoc_of_ksRel : ∀ {R : Type} [CommRing R] {K : Type} [Field K]
     fun O f => GlobalTheory.KS.AdjDlog.app_eq_pbT m O f
   have hconst : ∀ (O : P.A.left.Opens) (r : R), pbT m (constFn P.A.hom O r) (m ⁻¹ᵁ O) =
       constFn A.hom (m ⁻¹ᵁ O) (x₀ r) := fun O r => by
-    rw [pbT_constFn _ _ le_rfl, hm, constFn_spMap]
+    rw [pbT_constFn _ _ le_rfl, hm, _root_.GlobalTheory.KS.InvHom.constFn_spMap]
   refine ⟨L, hfin, GlobalTheory.FinAffineCharts.refineLB_isLB P.isLB _ _ hle hs,
     fun a => hΩ a, GlobalTheory.FinAffineCharts.iso_refineLB P.isLB _ _ hle,
     fun a O f => pbT m (d (κ a) O f) _, fun φ hφ => ⟨fun a => ⟨fun O hO f f' => ?_, fun O hO f f' => ?_,

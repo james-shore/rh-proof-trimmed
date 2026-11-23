@@ -419,16 +419,4 @@ end UpperTheory.V.Z.Keep.PotentialOfUnlocked
 
 
 open UpperTheory.V.Z.Keep.PotentialOfUnlocked in
-theorem UpperTheory.V.Z.Keep.crDescend (hP : LocalPublishedTheorems) {l : ℕ} [Fact l.Prime] {Γ : Type} [Group Γ] [TopologicalSpace Γ]
-    [IsTopologicalGroup Γ] [CompactSpace Γ] [T2Space Γ] (φ : Γ →* GQ l) (hφ : IsOpenEmbedding φ)
-    (H : Subgroup Γ) [H.Normal] (hH : IsOpen (H : Set Γ)) {n : ℕ} (r₀ : Γ →* GL (Fin n) (Om l))
-    (hr : Continuous fun g => (r₀ g : Matrix (Fin n) (Fin n) (Om l))) (P : GL (Fin n) (Om l))
-    (κ : Fin n → Γ →* (Om l)ˣ) (w : Fin n → ℤ)
-    (hfl : ∀ s, (∀ i j, j < i → (P * r₀ s * P⁻¹ : GL (Fin n) (Om l)) i j = 0) ∧
-      ∀ i, (P * r₀ s * P⁻¹ : GL (Fin n) (Om l)) i i = (κ i s : Om l))
-    (hw : StrictAnti w) (hI : ∀ i, ∀ g ∈ H, φ g ∈ Iq l → κ i g = cycA l l (Om l) (φ g) ^ w i)
-    (hne : ∀ i j, κ i ≠ κ j * (cycA l l (Om l)).comp φ) :
-    ∃ (E' : FinExt l) (r' : H →* GL (Fin n) ↥E'.1),
-      (∀ h a b, (((r' h : Matrix (Fin n) (Fin n) ↥E'.1) a b : ↥E'.1) : Om l) =
-        (r₀ h : Matrix (Fin n) (Fin n) (Om l)) a b) ∧ IsCr (φ.comp H.subtype) (colRep r') :=
-  cr_descend hP φ hφ H hH r₀ hr P κ w hfl hw hI hne
+alias UpperTheory.V.Z.Keep.crDescend := _root_.UpperTheory.V.Z.Keep.PotentialOfUnlocked.cr_descend

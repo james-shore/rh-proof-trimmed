@@ -113,7 +113,7 @@ theorem pre_colT (hψ : StdPsi ψ) {m : ℕ} {f : GA E a → ℂ} (hma : m + 1 <
       rw [← mul_assoc (blkU x), blkU_mul_blkU h1 x y, mul_assoc, hf.law k h1, dot_eLast_shift h1 x y]
       ring
     · obtain rfl : k = m + 1 := by omega
-      have hT := GlobalTheory.T.quotientAverage_translate_invariant _ _ (isCoLat_ratV E _) _ (hf.per hψ g) y
+      have hT := _root_.GlobalTheory.CuspGeneric.avg_add_right _ _ (isCoLat_ratV E _) _ (hf.per hψ g) y
       simp only [colT, coefF]
       rw [← hT, ← avg_const_mul]
       congr 1

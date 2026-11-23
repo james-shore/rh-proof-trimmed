@@ -44,7 +44,5 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 namespace LateralTheory.Fin.StrictHenselization
-theorem etale_strict_henselization_cohomology_stalk_in_local_homotopy_assembly : LateralTheory.KummerTheory.StrictHenselization := by
-  apply LateralTheory.KummerTheory.SHenCut.shen
-theorem intersectionNumber_baseChange : LateralTheory.KummerTheory.StrictHenselization := etale_strict_henselization_cohomology_stalk_in_local_homotopy_assembly
+alias intersectionNumber_baseChange := _root_.LateralTheory.KummerTheory.SHenCut.shen
 end LateralTheory.Fin.StrictHenselization

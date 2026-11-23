@@ -168,20 +168,13 @@ def psiM {P Q : ℕ} (e : Fin P ⊕ Fin Q ≃ Fin n) {ε : Fin n → Bool}
     Formalism.BasicNotions.UpqT P Q ≃ᵐ UJ ε :=
   (psiC e he1 he2).toHomeomorph.toMeasurableEquiv
 
-private theorem jm_sq_lemma (ε : Fin n → Bool) : Formalism.REAL.Jm ε * Formalism.REAL.Jm ε = 1 := by
-  unfold Formalism.REAL.Jm
-  rw [Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-  congr 1
-  funext i
-  split_ifs <;> norm_num
-
 private theorem isClosedEmbedding_coe_of_mem_iff_conjTranspose_Jm_mul_eq (ε : Fin n → Bool) (H : Subgroup (Matrix (Fin n) (Fin n) ℂ)ˣ)
     (hH : ∀ g : (Matrix (Fin n) (Fin n) ℂ)ˣ, g ∈ H ↔
       (g : Matrix (Fin n) (Fin n) ℂ)ᴴ * Formalism.REAL.Jm ε * g = Formalism.REAL.Jm ε) :
     Topology.IsClosedEmbedding
       (fun g : H => ((g : (Matrix (Fin n) (Fin n) ℂ)ˣ) : Matrix (Fin n) (Fin n) ℂ)) := by
   set J := Formalism.REAL.Jm ε with hJdef
-  have hJJ : J * J = 1 := jm_sq_lemma ε
+  have hJJ : J * J = 1 := _root_.Formalism.REAL.Jm_mul_self ε
   have hleft : ∀ M : Matrix (Fin n) (Fin n) ℂ, Mᴴ * J * M = J → (J * Mᴴ * J) * M = 1 := by
     intro M hM
     calc J * Mᴴ * J * M = J * (Mᴴ * J * M) := by simp only [Matrix.mul_assoc]
@@ -224,10 +217,7 @@ private theorem isClosedEmbedding_coe_of_mem_iff_conjTranspose_Jm_mul_eq (ε : F
     exact (continuous_id.matrix_conjTranspose.matrix_mul continuous_const).matrix_mul continuous_id
   exact isClosed_eq hq continuous_const
 
-lemma toM_emb (ε : Fin n → Bool) :
-    MeasurableEmbedding (β := Fin n → Fin n → ℂ) (fun g : UJ ε => toM g) := by
-  have h := isClosedEmbedding_coe_of_mem_iff_conjTranspose_Jm_mul_eq ε (UJ ε) (fun g => Iff.rfl)
-  exact Topology.IsClosedEmbedding.measurableEmbedding (β := Fin n → Fin n → ℂ) h
+alias toM_emb := _root_.ReciprocityTheory.ChartRestriction.DS.measurableEmbedding_toM
 
 lemma umat_emb (ε : Fin n → Bool) :
     MeasurableEmbedding (β := Fin n → Fin n → ℂ) (fun g : Formalism.REAL.UJ ε => Formalism.MainNotions.S.umat g) := by

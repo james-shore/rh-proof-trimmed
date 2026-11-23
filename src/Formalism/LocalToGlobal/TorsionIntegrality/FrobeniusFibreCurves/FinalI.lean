@@ -48,9 +48,6 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace Formalism.L2.Th1.B
 
-theorem th0Isogeny : Th0Isogeny := Iso.theta_zero_isogeny_holds
-theorem phENorm : PhENorm := Nrm.PhENorm_of th0Isogeny
+theorem phENorm : PhENorm := Nrm.PhENorm_of _root_.Formalism.L2.Th1.B.Iso.theta_zero_isogeny_holds
 theorem th0Vanish : ThetaZeroVanishing := Van.Th0Vanish_of cubeE phENorm
-theorem twoAdicScalars : TwoAdicScalars := Van.two_adic_scalar_conditions
-
 end Formalism.L2.Th1.B

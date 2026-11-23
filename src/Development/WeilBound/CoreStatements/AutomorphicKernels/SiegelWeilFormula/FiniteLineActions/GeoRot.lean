@@ -65,28 +65,19 @@ theorem cw_one' (w : InfinitePlace F) : d.cw w (1 : Matrix (Fin d.n ⊕ Fin d.n)
 
 theorem cw_transpose' (w : InfinitePlace F) {p q : Type} (A : Matrix p q (AE F E)) : d.cw w Aᵀ = (d.cw w A)ᵀ := rfl
 
-theorem incM_b_mul_inv (d : SD σ) : incM F (d.b : Matrix (Fin d.n ⊕ Fin d.n) (Fin d.n ⊕ Fin d.n) E) *
-    incM F ((d.b⁻¹ : GL (Fin d.n ⊕ Fin d.n) E) : Matrix (Fin d.n ⊕ Fin d.n) (Fin d.n ⊕ Fin d.n) E) = 1 := by
-  rw [incM, incM, ← Matrix.map_mul, Units.mul_inv, Matrix.map_one _ (map_zero _) (map_one _)]
-
-theorem incM_b_inv_mul (d : SD σ) :
-    incM F ((d.b⁻¹ : GL (Fin d.n ⊕ Fin d.n) E) : Matrix (Fin d.n ⊕ Fin d.n) (Fin d.n ⊕ Fin d.n) E) *
-      incM F (d.b : Matrix (Fin d.n ⊕ Fin d.n) (Fin d.n ⊕ Fin d.n) E) = 1 := by
-  rw [incM, incM, ← Matrix.map_mul, Units.inv_mul, Matrix.map_one _ (map_zero _) (map_one _)]
-
 theorem inFrame_mul' (x y : d.G) : inFrame d.b (x * y) = inFrame d.b x * inFrame d.b y := by
   have e : mat2 (x * y) = mat2 x * mat2 y := rfl
   simp only [inFrame, e, Matrix.mul_assoc]
-  rw [← Matrix.mul_assoc (incM F (d.b : Matrix (Fin d.n ⊕ Fin d.n) (Fin d.n ⊕ Fin d.n) E)), incM_b_mul_inv, Matrix.one_mul]
+  rw [← Matrix.mul_assoc (incM F (d.b : Matrix (Fin d.n ⊕ Fin d.n) (Fin d.n ⊕ Fin d.n) E)), _root_.PositivityTheory.SiegelWeilFormula.Krd.bb, Matrix.one_mul]
 
 theorem inFrame_one' : inFrame d.b (1 : d.G) = 1 := by
   have e : mat2 (1 : d.G) = 1 := rfl
-  simp only [inFrame, e, Matrix.mul_one, incM_b_inv_mul]
+  simp only [inFrame, e, Matrix.mul_one, _root_.PositivityTheory.SiegelWeilFormula.Krd.bb']
 
 theorem matrix_eq_frame_conj (x : d.G) : mat2 x = incM F (d.b : Matrix (Fin d.n ⊕ Fin d.n) (Fin d.n ⊕ Fin d.n) E) * inFrame d.b x *
     incM F ((d.b⁻¹ : GL (Fin d.n ⊕ Fin d.n) E) : Matrix (Fin d.n ⊕ Fin d.n) (Fin d.n ⊕ Fin d.n) E) := by
   simp only [inFrame, Matrix.mul_assoc]
-  rw [incM_b_mul_inv, Matrix.mul_one, ← Matrix.mul_assoc, incM_b_mul_inv, Matrix.one_mul]
+  rw [_root_.PositivityTheory.SiegelWeilFormula.Krd.bb, Matrix.mul_one, ← Matrix.mul_assoc, _root_.PositivityTheory.SiegelWeilFormula.Krd.bb, Matrix.one_mul]
 
 theorem cw_inFrame_prod' (R : RD d) (f : InfinitePlace F → GR d.n) (w' : InfinitePlace F) :
     ∀ L : List (InfinitePlace F), L.Nodup → d.cw w' (inFrame d.b ((L.map fun w => R.ι w (f w)).prod)) =

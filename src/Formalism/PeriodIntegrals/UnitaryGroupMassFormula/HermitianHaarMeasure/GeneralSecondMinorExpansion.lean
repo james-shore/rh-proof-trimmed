@@ -207,9 +207,7 @@ theorem chat2Alin {A : Type*} [Ring A] [Algebra ℂ A] {m : ℕ} (E : Fin m → 
     exact Finset.sum_congr rfl fun l _ => Finset.sum_congr rfl fun p _ => by ring
   · simp only [if_neg h, Finset.sum_const_zero]
 
-private theorem measurePreserving_swap4 {A : Type*} [AddCommMonoid A] {m : ℕ} (g : Fin m → Fin m → Fin m → Fin m → A) :
-    ∑ a, ∑ b, ∑ c, ∑ d, g a b c d = ∑ c, ∑ d, ∑ a, ∑ b, g a b c d :=
-  (pull1 _).trans (Finset.sum_congr rfl fun _ _ => pull1 _)
+private alias measurePreserving_swap4 := _root_.PI.QnHermHaar.sum_four_comm_version
 
 theorem tATrans (hCC : ContractionsCovariant) {A : Type} [Ring A] [Algebra ℂ A] {m : ℕ}
     (E : Fin m → Fin m → A) (Y Yb : Fin m → A) (x xb : Fin m → ℂ) (P Q : Matrix (Fin m) (Fin m) ℂ)

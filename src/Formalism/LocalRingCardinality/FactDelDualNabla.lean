@@ -109,7 +109,7 @@ theorem fInertGe (D : D7) : FInertGe D := by
     rw [← Finset.sum_div, ← Finset.sum_div, h3]
     ring
 
-theorem factDelDualNabla : FactDelDualNabla := factDelDualNabla_of Formalism.L2.DIV.weylEqDualNabla
+theorem factDelDualNabla : FactDelDualNabla := factDelDualNabla_of _root_.Formalism.L2.DIV.weyl_eq_dual_nabla_holds
 
 section Check
 

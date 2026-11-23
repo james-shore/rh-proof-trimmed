@@ -76,10 +76,10 @@ theorem movedKappa_unique : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ 
   have hF : Differentiable ℂ F :=
     _root_.GlobalTheory.MovedDict.Entire.differentiable_moved_operator_eval hPr hInp ch hIs p hp x y
   obtain ⟨hsd, hsd'⟩ := _root_.GlobalTheory.MovedSD.moved_series_decomposition hPr hInp ch hIs p hp x y
-  have hF0 : F ≠ 0 := selfDualIntertwiner_baseVector_ne_zero ch.S.Z.crv ch.S.Z.pt0 (ch.S.Z.e0_is p hp) hsd hsd'
+  have hF0 : F ≠ 0 := _root_.GlobalTheory.MovedKappaEx.selfDualLattice_intertwiner_baseVector_ne_zero ch.S.Z.crv ch.S.Z.pt0 (ch.S.Z.e0_is p hp) hsd hsd'
   obtain ⟨α, hα⟩ := GlobalTheory.NatFamily.exists_taylor_ne D hF hF0
   have e := (h1 α).symm.trans (h2 α)
-  rw [applyAt0_monomial, applyAt0_monomial, GlobalTheory.ProdThetaConj.taylor_const_mul hF,
+  rw [_root_.GlobalTheory.MovedKappaEx.applyAt0_monomial', _root_.GlobalTheory.MovedKappaEx.applyAt0_monomial', GlobalTheory.ProdThetaConj.taylor_const_mul hF,
     GlobalTheory.ProdThetaConj.taylor_const_mul hF] at e
   have e' := (opp p).injective (mul_left_cancel₀ (ch.S.Z.c0 p).ne_zero e)
   have hP : (α.prod fun v e => period ch.S.Z.δ v.1 ^ e) ≠ 0 :=
@@ -100,7 +100,7 @@ theorem movedKappa_arithmetic : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (
     Mod1All κ ∧ (∀ (q : ℕ) [Fact q.Prime], EqAt D q (GlobalTheory.SumSize.latAt ch.S.toGridChoice p.small x) (stdL D _) →
       EqAt D q (GlobalTheory.SumSize.latAt ch.S.toGridChoice p.big y) (stdL D _) → ∀ lam : Qbar →+* ℂ_[q], ‖lamC lam κ‖ = 1) := by
   intro hPr hInp D Γ _ _ Pl0 T A Ks _ _ _ R ch hIs p hp x y κ hj
-  obtain ⟨κ₀, hm, hu, hj₀⟩ := _root_.GlobalTheory.T.exists_unique_moved_kappa_jet hPr hInp ch hIs p hp x y
+  obtain ⟨κ₀, hm, hu, hj₀⟩ := _root_.GlobalTheory.MovedKappaEx.exists_moved_kappa hPr hInp ch hIs p hp x y
   obtain rfl := _root_.GlobalTheory.MovedKappaArith.movedKappa_unique hPr hInp ch hIs p hp x y κ κ₀ hj hj₀
   exact ⟨hm, hu⟩
 end GlobalTheory.MovedKappaArith

@@ -80,9 +80,6 @@ theorem rootsOfUnity_inj {O k : Type} [CommRing O] [IsDomain O] [Field k] (f : O
     _ = (x * y ^ (M - 1)) * y := by ring
     _ = y := by rw [h1, one_mul]
 
-theorem main : ∀ {O k : Type} [inst : CommRing O] [IsDomain O] [inst_2 : Field k] (f : O →+* k) {M : ℕ},
-    (↑M : k) ≠ (0 : k) → ∀ {x y : O}, x ^ M = (1 : O) → y ^ M = (1 : O) →
-      (f : O → k) x = (f : O → k) y → x = y :=
-  fun f _ hM _ _ hx hy hf => rootsOfUnity_inj f hM hx hy hf
+alias main := _root_.GlobalTheory.RootsOfUnityInjectiveInertiaEigenvalues.rootsOfUnity_inj
 
 end GlobalTheory.RootsOfUnityInjectiveInertiaEigenvalues

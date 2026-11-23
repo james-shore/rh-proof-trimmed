@@ -255,20 +255,6 @@ theorem transport_gen {R : Type} [CommRing R] {C : Type 1} [Category.{0} C] {A :
   subst e
   exact ⟨AddEquiv.refl _, fun _ => rfl⟩
 
-theorem toSq_bij_bot' {R : Type} [CommRing R] {C : Type 1} [Category.{0} C] {A : C ⥤ CommAlgCat.{0} R}
-    (a₀ b : IdF A) (h0 : ∀ T, a₀.S T = ⊤) (hb : ∀ T, b.S T = ⊥) (j : ℕ) :
-    Function.Bijective ((toSq a₀ b h0).pull j) := by
-  refine CrystallineSemistableComparison.P.mapH_bij (toSq a₀ b h0).hom (fun n => ⟨fun f f' h => ?_, fun y => ?_⟩) j
-  · funext s
-    have h1 := congrArg Subtype.val (congrFun h s)
-    have h2 := Ideal.Quotient.eq.1 h1
-    rw [hb] at h2
-    exact sub_eq_zero.1 h2
-  · have hm : ∀ s : ComposableArrows C n, ∃ t : A.obj (s.obj (Fin.last n)),
-        Ideal.Quotient.mk _ t = (show sqM a₀ b _ from y s).1 := fun s => Ideal.Quotient.mk_surjective _
-    choose t ht using hm
-    exact ⟨t, funext fun s => Subtype.ext (ht s)⟩
-
 theorem zK_transport {K : Type} [CommRing K] {X : Scheme.{0}} (q : X ⟶ Spec (CommRingCat.of K))
     (Q : ObjectProperty (Thick (smFun X q))) (t u : ℤ) (ht : t ≤ 0) (j : ℕ) :
     ∃ E : HQ Q t u j ≃+ HQ Q 0 u j, ∀ x, E (zK q Q t u ht j x) = quoK q Q u j x := by
@@ -285,7 +271,7 @@ theorem zK_transport {K : Type} [CommRing K] {X : Scheme.{0}} (q : X ⟶ Spec (C
 
 theorem quoM_bij {b : Base} {L : b.Fun} (Q : ObjectProperty (Thick L)) (s : ℕ) (h : ∀ T, Q T → T.pdPow s = ⊥) (j : ℕ) :
     Function.Bijective (quoM Q s j) := by
-  refine toSq_bij_bot' _ _ _ (fun T => ?_) j
+  refine _root_.GlobalTheory.CompanionTheory.QuoK.toSq_bijective_of_bot _ _ _ (fun T => ?_) j
   change T.obj.pdPow ((s : ℤ).toNat) = ⊥
   simpa using h _ T.property
 
@@ -371,7 +357,5 @@ theorem main : BcOn False → KH.KIso → BasisB := by
       exact E.toAddMonoidHom.map_zero
     have h1 := ((hK q U s hd 𝒱 h𝒱 j).2 (r - i) (by omega) x).2 h0
     exact GlobalTheory.LogCris.fil_anti _ _ (by omega) h1
-
-theorem basisB_of_bcOn : BcOn False → KH.KIso → BasisB := main
 
 end GlobalTheory.CompanionTheory.BasisBase

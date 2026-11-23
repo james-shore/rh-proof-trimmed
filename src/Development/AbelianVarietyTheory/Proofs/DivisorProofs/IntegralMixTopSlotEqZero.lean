@@ -119,7 +119,7 @@ theorem integral_mixTop_position_eq_zero : ∀ {n : ℕ} {r : Type} [Fintype r] 
     simp only [hθ, transConn, intersection_update_fsHerm_neg_one]
     split_ifs with h h'
     · rw [mdbar_neg]; rfl
-    · exact congrFun (congrFun (GlobalTheory.T.antiholomorphicDeriv_cutoff_connection_difference_eq ((hρd v hv.1).differentiableAt (by simp))
+    · exact congrFun (congrFun (_root_.GlobalTheory.GoodTop.mdbar_neg_cut_conn_sub ((hρd v hv.1).differentiableAt (by simp))
         ((hG₀ v hv.1).1.of_le h2) (hG₀ v hv.1).2 ((hG₁ v hv).1.of_le h2) (hG₁ v hv).2) a) b
     · rw [mdbar_neg]; rfl
   have hzero : ∀ a, ∀ v ∈ offHyp S U, v ∉ K → θ j a v = 0 := by

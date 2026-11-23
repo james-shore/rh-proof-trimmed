@@ -69,12 +69,6 @@ theorem units_identity {G : Type*} [CommGroup G] (u P Q R β γ ε : G) (d t : �
   simp only [ofMul_mul, ofMul_zpow, ofMul_inv]
   module
 
-theorem pw_pw {X : Scheme.{0}} (L : LB X) (a b : ℤ) : pw (pw L a) b = pw L (a * b) := by
-  show (⟨L.ι, L.U, fun i j => (L.g i j ^ a) ^ b⟩ : LB X) = ⟨L.ι, L.U, fun i j => L.g i j ^ (a * b)⟩
-  congr 1
-  funext i j
-  exact (zpow_mul _ _ _).symm
-
 theorem lbIso_tw_tw {X : Scheme.{0}} {L : LB X} (hL : L.IsLB) (d t : ℤ) :
     LBIso (tw (tw L (pw L d) t) (pw L d) 1) (pw L (d * (t + 1) + 1)) := by
   refine GlobalTheory.LBAlg.lbIso_of_germs
@@ -160,7 +154,7 @@ theorem exists_veryAmpleBy_pw_and_succ : ∀ (R : Type) [CommRing R] (X : Over (
   rcases hc with rfl | rfl
   · obtain ⟨n', s', hs'⟩ := GlobalTheory.AbLaw.veryAmpleBy_pw R X.left X.hom _ n s hH hs (t + 1) (by omega)
     have e : GlobalTheory.AbLaw.pw L ((d₁ * (t + 1) : ℕ) : ℤ) = GlobalTheory.AbLaw.pw (GlobalTheory.AbLaw.pw L (d₁ : ℤ)) ((t + 1 : ℕ) : ℤ) := by
-      rw [pw_pw]
+      rw [_root_.GlobalTheory.Algebraise.pw_pw]
       push_cast
       rfl
     rw [e]

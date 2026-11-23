@@ -86,19 +86,14 @@ theorem wd_wd (D : D7) (T : Tor D) {N N' : ℕ} (a b : VC D N N') :
   field_simp at this
   linear_combination (wdPh D T a * wdPh D T b * F (z + (a + b))) * this
 
-theorem wd_zero (D : D7) (T : Tor D) {a d : ℕ} (G : VC D a d → ℂ) : Wd D T 0 G = G := by
-  funext z
-  simp [Wd, wdPh, ee, qH, U, Hf]
+alias wd_zero := _root_.GlobalTheory.NormSum.wd_zero
 
 theorem pt_zero (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) {a d : ℕ} :
     pt D (tor0 D cc δ) δ (0 : Matrix (Fin d) (Fin a) D.host.E) = 0 := by
   funext τ i j
   simp [pt, embV, tor0]
 
-theorem pt_add (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) {a d : ℕ} (z w : Matrix (Fin d) (Fin a) D.host.E) :
-    pt D (tor0 D cc δ) δ (z + w) = pt D (tor0 D cc δ) δ z + pt D (tor0 D cc δ) δ w := by
-  funext τ i j
-  simp [pt, embV, tor0, mul_add]
+alias pt_add := _root_.GlobalTheory.NormSum.MovedLattice.pt_add
 
 theorem iop_zero (D : D7) (T : Tor D) {N N' : ℕ} (A B : AddSubgroup (VC D N N')) : Iop D T A B 0 = 0 := by
   funext z

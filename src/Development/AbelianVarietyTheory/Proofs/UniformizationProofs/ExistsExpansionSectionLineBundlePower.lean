@@ -191,7 +191,7 @@ theorem main : Laws → Laws2 → (AllPre fun U => ∀ k, 1 ≤ k → ∀ σ, �
     refine ⟨τ, fun Z r z JG J hJG hJ => (hτ Z r z JG J hJG hJ).trans (congrArg _ ((hs Z r z JG hJG).trans ?_))⟩
     exact congrArg (fun p => sval σ p z JG) (Category.assoc _ _ _).symm
   choose τ hτ using lev
-  have ex := fun e => GlobalTheory.T.existsUnique_thickTorus_level_weight_expansion V _ D e G (U.gt e) k (τ e)
+  have ex := fun e => _root_.GlobalTheory.existsUnique_level_expansion V _ D e G (U.gt e) k (τ e)
   choose f hf hu using ex
   choose S hS hsum using hf
 

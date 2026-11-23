@@ -112,7 +112,7 @@ theorem shifted_weight_parameter {ε : Fin n → Bool} {lam : Fin n → ℝ} {h 
     rw [heq', hγβ]; abel
   have hb0 : ∀ k, 0 ≤ kirrPs k γ := by
     intro k; rw [hγβ, rootCone_entry_int]
-    linarith [(highestWeightVector_lift k s).1, partialSum_single_bounds hcone k]
+    linarith [(highestWeightVector_lift k s).1, _root_.ReciprocityTheory.ChartRestriction.DS.Lap.LemK.partialSum_nonneg_of_rootCone hcone k]
   have hb1 : ∀ k, kirrPs k γ ≤ 1 := by
     intro k; rw [hγ, partialSum_sub]
     have := hbd k; rw [rootCone_entry_int] at this
@@ -357,7 +357,7 @@ theorem k3V (n : ℕ) : QuotientHighestWeightTensorStandard n := by
       rintro _ ⟨z, hz, rfl⟩
       rw [sch_phi_one_apply]
       refine Submodule.sum_mem _ fun p _ => ?_
-      have hzp : z (fun _ => p) ∈ W0 := mem_V_of_mem_ncV (Wm_le_ncV hz) _
+      have hzp : z (fun _ => p) ∈ W0 := _root_.ReciprocityTheory.ChartRestriction.DS.ncV_mem (Wm_le_ncV hz) _
       obtain ⟨f, hf, hfeq⟩ := Submodule.mem_map.1 (hW0S hzp)
       rw [← hfeq, ← hφ p.1 p.2 f ((hX0mem f).1 (hS1X hf)).1]
       exact Submodule.mem_map_of_mem (hmapmem _ _ f hf)

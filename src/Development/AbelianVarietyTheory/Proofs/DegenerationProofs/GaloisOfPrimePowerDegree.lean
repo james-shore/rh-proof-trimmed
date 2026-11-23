@@ -130,19 +130,7 @@ theorem isLocalRing_of_finite (R S : Type*) [CommRing R] [HenselianLocalRing R] 
       surjective_algebraMap_localization_of_henselian R q⟩
   exact e.symm.isLocalRing
 
-theorem exists_root {R : Type} (K : Type*) [CommRing R] [IsDomain R]
-    [IsDiscreteValuationRing R] (hH : HenselianLocalRing R) [IsAlgClosed (ResidueField R)]
-    [Field K] [Algebra R K] [IsFractionRing R K] {π : R} (hπ : Irreducible π)
-    (L : Type) [Field L] [Algebra K L] [FiniteDimensional K L] [Algebra.IsSeparable K L]
-    (hn : IsUnit ((Module.finrank K L : ℕ) : R)) :
-    ∃ ρ : L, ρ ^ Module.finrank K L = algebraMap K L (algebraMap R K π) := by
-  first
-  | exact @_root_.GlobalTheory.GaloisPowerRoots.exists_pow_finrank_eq
-  | exact _root_.GlobalTheory.GaloisPowerRoots.exists_pow_finrank_eq
-  | (apply _root_.GlobalTheory.GaloisPowerRoots.exists_pow_finrank_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.GaloisPowerRoots.exists_pow_finrank_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.GaloisPowerRoots.exists_pow_finrank_eq <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.GaloisPowerRoots.exists_pow_finrank_eq ..)
+alias exists_root := _root_.GlobalTheory.GaloisPowerRoots.exists_pow_finrank_eq
 
 theorem mem_range_of_pow_eq_one {R : Type*} (K : Type*) [CommRing R] [HenselianLocalRing R]
     [IsAlgClosed (ResidueField R)] [Field K] [Algebra R K] [IsFractionRing R K] {n : ℕ}

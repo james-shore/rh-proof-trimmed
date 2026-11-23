@@ -137,8 +137,7 @@ theorem wt_int (a : ZMod p) : v (wt ω a) ≤ 1 := by
 private theorem lam_eq_sum_wt_mul_sub (f : ZMod p → C) : lam ω f = ∑ a, wt ω a * (f a - f 0) := by
   simp [lam, u0, sS, sub_mul, mul_sub, Finset.sum_sub_distrib, Finset.sum_mul]
 
-theorem lam_eq (f : ZMod p → C) : lam ω f = ∑ a, wt ω a * (f a - f 0) := by
-  exact lam_eq_sum_wt_mul_sub hω f
+alias lam_eq := _root_.ReciprocityTheory.PGsh.Up.U3.IsTeich.lam_eq_sum_wt_mul_sub
 
 theorem lam_omega : lam ω ω = (p : C) - 1 := by
   rw [lam_eq_sum_wt_mul_sub hω, hω.zero]

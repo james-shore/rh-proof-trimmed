@@ -83,7 +83,7 @@ theorem mem_iSup_range_isModel : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel
       add_mem' := fun ha hb => GlobalTheory.LocMod.LinSpace.isThetaFunO_add ha hb
       zero_mem' := GlobalTheory.LocMod.LinSpace.isThetaFunO_zero ψ S T
       smul_mem' := fun c _ hg => GlobalTheory.LocMod.LinSpace.isThetaFunO_smul c hg }
-  have key := GlobalTheory.T.mem_span_translates_of_fixed_lattice (fun x y => ψ (Formalism.IndefR.Datum.symplO S T x y)) (isBichar_symplO S T ψ) (heisL S T ψ)
+  have key := _root_.GlobalTheory.FourierSpan.mem_span_translates_of_fixed (fun x y => ψ (Formalism.IndefR.Datum.symplO S T x y)) (isBichar_symplO S T ψ) (heisL S T ψ)
     (half S T p.e) (half S T (Formalism.L2.Theta.cA D p.e)) L L' K
     (by rintro _ ⟨x, hx, rfl⟩; exact (hL x hx).1)
     (fun t ht => (isHalf_iff S T).1 (hL'e t ht))

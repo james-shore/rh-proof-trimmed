@@ -176,7 +176,7 @@ theorem levi_product : ∀ (I I₀ : AutInst) (e : I₀.E ≃+* I.E) (xf : I.Gf)
   let R : (∀ i, MatInf I.E (j i)) × I₀.Ginf →
       ∀ v : InfinitePlace I.F, (∀ i, Fin (j i) → Fin (j i) → ℂ) × UJ (I₀.ε (σ v)) :=
     fun z v => (fun i => z.1 i (β v), z.2 (σ v))
-  have hR := GlobalTheory.T.measurePreserving_rearrange_pi_prod_measures _ _ _ β σ a (fun i => Fin (j i) → Fin (j i) → ℂ) (fun w => UJ (I₀.ε w))
+  have hR := _root_.GlobalTheory.LeviIso.measurePreserving_rearrange _ _ _ β σ a (fun i => Fin (j i) → Fin (j i) → ℂ) (fun w => UJ (I₀.ε w))
     (fun i => haarLoc (j i)) (fun w => muG (I₀.ε w)) (fun i => 2 ^ (j i ^ 2)) c₀ (fun i => by positivity)
     (fun w => ((GlobalTheory.T.riemannianHaarGauge_whole_group _ _).1 _ (hc₀ w)).1.le)
   have hRm : Measurable R := hR.measurable

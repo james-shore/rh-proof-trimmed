@@ -139,13 +139,13 @@ theorem dim_locAt_graph : ∀ {K κ κ' L : Type} [Field K] [Field κ] [Field κ
     rw [← ringKrullDim_locAt 𝔭 hinj]
     letI : Algebra ℂ L := ((algebraMap (K ⊗[ℂ] κ') L).comp (algebraMap ℂ (K ⊗[ℂ] κ'))).toAlgebra
     haveI : IsScalarTower ℂ (K ⊗[ℂ] κ') L := IsScalarTower.of_algebraMap_eq' rfl
-    have hQ := GlobalTheory.T.isLocalRingOfVarietyPoint_localization_placeTensor (L := L) E 𝔭 hO'
+    have hQ := _root_.GlobalTheory.GraphLocal.isLocModel_locAt (L := L) E 𝔭 hO'
     letI : IsLocalRing (locAt (L := L) 𝔭) := isLocalRing_locAt 𝔭 hinj
     letI : Algebra ℂ (locAt (L := L) 𝔭) :=
       ((algebraMap ℂ L).codRestrict _ hQ.const_mem).toAlgebra
     haveI : Algebra.EssFiniteType ℂ (locAt (L := L) 𝔭) := hQ.essFiniteType
     haveI : IsNoetherianRing (locAt (L := L) 𝔭) := Algebra.EssFiniteType.isNoetherianRing ℂ _
-    have hmax := GlobalTheory.T.graphIdeal_localization_maximalIdeal_eq_span (L := L) k R π ρ E hER t zR 𝔭 hO' hc1 hc2 hfrac hcent ht hzR h𝔭
+    have hmax := _root_.GlobalTheory.GraphLocal.MaxGen.maximalIdeal_locAt_eq_span (L := L) k R π ρ E hER t zR 𝔭 hO' hc1 hc2 hfrac hcent ht hzR h𝔭
     refine (ringKrullDim_le_spanFinrank_maximalIdeal _).trans ?_
     rw [hmax]
     have h1 := Submodule.spanFinrank_span_le_ncard_of_finite (R := locAt (L := L) 𝔭)
@@ -163,8 +163,8 @@ theorem dim_locAt_graph : ∀ {K κ κ' L : Type} [Field K] [Field κ] [Field κ
       unfold TrBasis at hzR; rw [e] at hzR; exact hzR
     let v : Fin (k + 1) → placeAlg E := Fin.cons (⟨(t : K), t.2⟩ : placeAlg E)
         (fun i => (⟨(zR i : K), hER _ (zR i).2⟩ : placeAlg E))
-    have hf := GlobalTheory.T.flat_tensorSubalgebraMvPolynomialEval_of_flat_aeval (κ' := κ') (placeAlg E) (k + 1) v
-      (GlobalTheory.T.flat_aeval_dvrPlaceRing_uniformiser_residueLifts k R π E hER t zR hc1 hc2 hcent ht hzR'.1)
+    have hf := _root_.GlobalTheory.GraphLocal.flat_polyMap_of_flat_aeval (κ' := κ') (placeAlg E) (k + 1) v
+      (_root_.GlobalTheory.GraphLocal.FlatPlace.flat_aeval_placeAlg k R π E hER t zR hc1 hc2 hcent ht hzR'.1)
     have hle := height_le_height_of_flat v hf 𝔭
     have hgr : graphIdeal E R π ρ ≤ 𝔭 := h𝔭.1.2
     have hX : ∀ i, MvPolynomial.X i - MvPolynomial.C ((Fin.cons (0 : κ') fun j => ρ (π (zR j)) :

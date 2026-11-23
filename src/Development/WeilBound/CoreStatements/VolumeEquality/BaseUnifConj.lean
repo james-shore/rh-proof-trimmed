@@ -119,7 +119,7 @@ theorem kUnifConj : KUnifConj := by
   · have h := U.arith k
     unfold UnivFam.IsArith at h ⊢
     rwa [hform, Cj.autGrp_neg]
-  · have h := GlobalTheory.T.holomorphic_family_conjugate _ _ _ _ (U.hol k)
+  · have h := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.FamEx.isHolTo_conj _ _ _ _ (U.hol k)
     rwa [Cj.preimage_star_ballDom] at h
   · rw [Category.assoc, U.comp_s_eq_spMap_of_isOver k _ (Cj.star_mem_ballDom ht), hs]
   · rw [Cj.centre_conj]
@@ -145,7 +145,7 @@ theorem kUnifConj : KUnifConj := by
     exact ⟨A, i, φ, u, χ, h1, h2, h3, h4, h5, fun a => a.elim⟩
   · refine vecAt_conj 𝔐 (U.F k).R (F' k).R z t₀ (hR k) ?_
     refine U.vec S Ω K J y 𝔐 k (star ⁻¹' V) _ (hV.preimage continuous_star) (fun t ht => ?_)
-      (GlobalTheory.T.holomorphic_family_conjugate _ _ _ _ hz) (fun t ht => ?_) _ (by simpa using ht₀)
+      (_root_.GlobalTheory.CompanionTheory.Ar.Cusp.FamEx.isHolTo_conj _ _ _ _ hz) (fun t ht => ?_) _ (by simpa using ht₀)
     · simpa using Cj.star_mem_ballDom (hVs ht)
     · rw [Category.assoc, hzf _ ht, Cj.cj_cj, star_star]
   · have hpre : IsPreconnected (star ⁻¹' T : Set (Fin m → ℂ)) := by
@@ -159,7 +159,7 @@ theorem kUnifConj : KUnifConj := by
           rwa [star_star]
       rw [e₀]
       exact hTc.image _ continuous_star.continuousOn
-    refine U.locc m (star ⁻¹' T) _ (hT.preimage continuous_star) hpre (GlobalTheory.T.holomorphic_family_conjugate _ _ _ _ hy) (fun a ha => ?_)
+    refine U.locc m (star ⁻¹' T) _ (hT.preimage continuous_star) hpre (_root_.GlobalTheory.CompanionTheory.Ar.Cusp.FamEx.isHolTo_conj _ _ _ _ hy) (fun a ha => ?_)
       (fun a ha => ?_) (star b) (by simpa using hb) (star b') (by simpa using hb') k k' _ (Cj.star_mem_ballDom ht) _
       (Cj.star_mem_ballDom ht') ?_ ?_
     · rw [Cj.centre_conj]

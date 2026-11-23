@@ -54,18 +54,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.Mem.Isom
 
-theorem trace_pow_rect {A : Type} [Ring A] [Algebra ℂ A] {n m : ℕ} (E : Fin n → Fin n → A) (E' : Fin m → Fin m → A)
-    (P : Matrix (Fin m) (Fin n) ℂ) (Q : Matrix (Fin n) (Fin m) ℂ) (hPQ : P * Q = 1) (hQP : Q * P = 1)
-    (h : ∀ a b, E' a b = ∑ c, ∑ d, (Q c a * P b d) • E c d) (k : ℕ) :
-    ∑ c, (Matrix.of E' ^ k) c c = ∑ c, (Matrix.of E ^ k) c c := by
-  first
-  | exact @_root_.GlobalTheory.TracePowEq.trace_pow_eq
-  | exact _root_.GlobalTheory.TracePowEq.trace_pow_eq
-  | (apply _root_.GlobalTheory.TracePowEq.trace_pow_eq <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TracePowEq.trace_pow_eq <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TracePowEq.trace_pow_eq <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TracePowEq.trace_pow_eq ..)
-
 namespace IsoMat
 
 variable {D : D7} {V V' : HSp D} (I : IsoMat V V') {θ : InfF D}
@@ -117,7 +105,7 @@ theorem gelf_tr : ∀ (D : D7) (V V' : HSp D) (I : GlobalTheory.Mem.Isom.IsoMat 
     fun c d => GlobalTheory.Mem.RealTranslate.derEnd hθ τ (Matrix.single c d 1)
   let E' : Fin V'.rank → Fin V'.rank → Module.End ℂ (GlobalTheory.Mem.AutSpace.SmFun θ V') :=
     fun a b => GlobalTheory.Mem.RealTranslate.derEnd hθ τ (Matrix.single a b 1)
-  have key := trace_pow_rect (fun c d => I.conjSm hθ (E0 c d)) E' (I.pT τ) (I.qT τ) (I.pT_qT τ) (I.qT_pT τ)
+  have key := _root_.GlobalTheory.TracePowEq.trace_pow_eq (fun c d => I.conjSm hθ (E0 c d)) E' (I.pT τ) (I.qT τ) (I.pT_qT τ) (I.qT_pT τ)
     (fun a b => by
       simp only [E', E0]
       rw [I.derEnd_tr hθ τ, I.symm_adP_single τ a b]

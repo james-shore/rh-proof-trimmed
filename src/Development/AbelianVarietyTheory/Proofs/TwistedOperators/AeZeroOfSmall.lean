@@ -221,7 +221,7 @@ theorem schur (hψ : IsCharAF D.host.F ψ) (S T : HSp D) : Schur ψ S T := by
       · exact ENNReal.mul_ne_top ENNReal.coe_ne_top (ENNReal.mul_ne_top ENNReal.ofReal_ne_top hfin)
       · exact ENNReal.mul_ne_top ENNReal.ofReal_ne_top hfin
       intro ε hε
-      obtain ⟨s, c, happ⟩ := GlobalTheory.trigPoly_dense_periodic (WO S T) (ratL T S) K hK hcov (ratL T S) (chiR ψ S T)
+      obtain ⟨s, c, happ⟩ := _root_.GlobalTheory.QuotientDescentTwistedOperators.approx (WO S T) (ratL T S) K hK hcov (ratL T S) (chiR ψ S T)
         hχc hχadd hχadd' hχ0 hχn hχker Φ hΦ.cont (periodic_of_one hΦ) ε hε
       obtain ⟨P, hPdef⟩ : ∃ P : WO S T → ℂ, P = ∑ a ∈ s, c a • chiR ψ S T a := ⟨_, rfl⟩
       have hPθ : IsThetaFunO 1 S T P := by

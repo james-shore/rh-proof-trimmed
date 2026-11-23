@@ -80,7 +80,7 @@ theorem fold_L2_complex_of (hc : CplxDC.{u}) (G : Type u) [Group G] [Topological
       refine tsum_congr fun δ' => ?_
       rw [hMinv δ' (hD'.1 δ'.2) x]
     rw [hfun]
-    exact lintegralTransversalSum G μ Γ S' hS' F' hF' FΓ hFΓ D' hD' (fun y => mult Γ Ω y * ‖Ph' y‖ₑ)
+    exact _root_.PI.FoldUnfold.UnitaryGroupMassFormula.foldUnfold_main G μ Γ S' hS' F' hF' FΓ hFΓ D' hD' (fun y => mult Γ Ω y * ‖Ph' y‖ₑ)
       (hMm.mul hPm'.enorm) (fun s hs y => by simp only [hMinv s (hS' hs) y, hPinv' s hs y])
   have hne : (a : ℝ≥0∞) * quotientLIntegral μ F Ph ≠ ∞ := ENNReal.mul_ne_top ENNReal.coe_ne_top hQf.ne
   have hfin : (a : ℝ≥0∞) * quotientLIntegral μ F Ph * multiplicityLIntegral μ Γ Ω F' Ph' < ∞ :=

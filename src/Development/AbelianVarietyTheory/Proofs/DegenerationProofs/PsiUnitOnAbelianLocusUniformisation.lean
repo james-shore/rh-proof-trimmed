@@ -344,6 +344,6 @@ theorem psiUnitOn_abLocus : Laws → Laws2 → Laws3 → Laws4 → Laws5 → ∀
   have hp : QkToAkU U.toUnifPre F (n ^ j) p (f p) := (hf p _).2 rfl
   obtain ⟨w, hw⟩ := U.ext
   have fix := fixed_of_extends hcomp gp T' hx σ' hσ (f p) (hp w hw).1
-  exact (hfi p q).1 ((hf q _).1 ((GlobalTheory.T.qkToAkU_iff_galois_equivariant hL R I hB D A G hG U F F σ' (n ^ j) hk p q (f p) (f p) hpq fix).1 hp))
+  exact (hfi p q).1 ((hf q _).1 ((_root_.GlobalTheory.TorsionExt.qkToAkU_iff_of_qkExt hL R I hB D A G hG U F F σ' (n ^ j) hk p q (f p) (f p) hpq fix).1 hp))
 
 end GlobalTheory.PsiAbelian

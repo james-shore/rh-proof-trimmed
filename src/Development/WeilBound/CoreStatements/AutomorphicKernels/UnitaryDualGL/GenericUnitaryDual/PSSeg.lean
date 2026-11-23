@@ -63,7 +63,7 @@ variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchim
 
 theorem segDual_nu (hA : GlobalTheory.Published.IrreducibleAdmissibleGL) (Δ : Segment k) (s : ℂ) :
     Zc.segDual (Δ.nu s) = (Zc.segDual Δ).nu (-s) := by
-  have hc : ∀ x : IrrGL (k := k), x.IsCusp → (Zc.dualCl x).IsCusp := fun x hx => (GlobalTheory.T.dual_class_cuspidal hA x hx).1
+  have hc : ∀ x : IrrGL (k := k), x.IsCusp → (Zc.dualCl x).IsCusp := fun x hx => (_root_.GlobalTheory.CompanionTheory.DualCusp.dualCl_isCusp hA x hx).1
   refine Segment.ext_first ?_ ?_
   · show (Zc.segDual (Δ.nu s)).first = (Zc.segDual Δ).first.nu (-s)
     rw [GlobalTheory.CompanionTheory.SegDualPrec.first_segDual hc, GlobalTheory.CompanionTheory.SegDualPrec.first_segDual hc]

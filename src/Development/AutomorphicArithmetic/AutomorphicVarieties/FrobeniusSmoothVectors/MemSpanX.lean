@@ -55,13 +55,6 @@ import Mathlib.Topology.Sheaves.Init
 
 open IsLocalRing Matrix UpperTheory.V.Alg UpperTheory.V.U3 UpperTheory.V.Fr
 
-section
-open MvPowerSeries
-private theorem mem_span_X {O σ : Type} [CommRing O] [Fintype σ] (f : MvPowerSeries σ O)
-    (hf : constantCoeff f = 0) : f ∈ Ideal.span (Set.range (MvPowerSeries.X : σ → MvPowerSeries σ O)) :=
-  _root_.UpperTheory.Reformulated.B.MemSpanVariable.mem_span_X f hf
-end
-
 private theorem der_zero {O : Type} [CommRing O] [IsLocalRing O] {R : Type} [CommRing R] [Algebra O R] [IsCO O R]
     {σ : R →ₐ[O] R} (P : GPres O σ) (D : R →ₗ[O] ResidueField O) (hD : D ∈ PtDer (res O R) (ResidueField O))
     (h : ∀ s, D (P.p (MvPowerSeries.X s)) = 0) : D = 0 := by
@@ -84,7 +77,7 @@ private theorem der_zero {O : Type} [CommRing O] [IsLocalRing O] {R : Type} [Com
   obtain ⟨f, rfl⟩ := P.surj x
   have e : f = (f - algebraMap O _ (MvPowerSeries.constantCoeff f)) + (MvPowerSeries.constantCoeff f) • 1 := by
     rw [Algebra.algebraMap_eq_smul_one, sub_add_cancel]
-  have h2 := (hs _ (mem_span_X (f - algebraMap O _ (MvPowerSeries.constantCoeff f))
+  have h2 := (hs _ (_root_.UpperTheory.Reformulated.B.MemSpanVariable.mem_span_X (f - algebraMap O _ (MvPowerSeries.constantCoeff f))
     (by simp [MvPowerSeries.algebraMap_apply]))).2
   rw [e, map_add (f := _), map_add (f := _), h2, map_smul, map_smul, map_one, h1]
   simp

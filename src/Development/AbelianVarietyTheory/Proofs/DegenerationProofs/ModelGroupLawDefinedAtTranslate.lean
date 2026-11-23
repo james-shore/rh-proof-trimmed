@@ -77,27 +77,11 @@ theorem j_comm (M : Model R A) (N : Model R A') (f : A ⟶ A') (g : M.Y ⟶ N.Y)
   rw [Category.assoc]
   exact (congrArg (fun q => M.e.inv.left ≫ q) h4).symm.trans h2
 
-theorem prod_j_fst (M : Model R A) (N : Model R A') :
-    (M.prod N).j ≫ (fst M.Y N.Y).left = (fst A A').left ≫ M.j := by
-  exact j_comm (M.prod N) M (fst A A') (fst M.Y N.Y) (by simp [Model.prod])
+alias prod_j_fst := _root_.GlobalTheory.SS.GI.prod_j_fst
 
-theorem prod_j_snd (M : Model R A) (N : Model R A') :
-    (M.prod N).j ≫ (snd M.Y N.Y).left = (snd A A').left ≫ N.j := by
-  exact j_comm (M.prod N) N (snd A A') (snd M.Y N.Y) (by simp [Model.prod])
+alias prod_j_snd := _root_.GlobalTheory.SS.GI.prod_j_snd
 
-theorem prod_ext (M : Model R A) (N : Model R A') {T : Scheme.{0}} {u v : T ⟶ (M.prod N).Y.left}
-    (h1 : u ≫ (fst M.Y N.Y).left = v ≫ (fst M.Y N.Y).left)
-    (h2 : u ≫ (snd M.Y N.Y).left = v ≫ (snd M.Y N.Y).left) : u = v :=
-  pullback.hom_ext h1 h2
-
-theorem ext_test {M : Model R A} {N : Model R A'} {f : A ⟶ A'} {U : M.Y.left.Opens} {g : U.toScheme ⟶ N.Y.left}
-    (h : Extends M N f U g) {T : Scheme.{0}} (t : T ⟶ A.left) (u : T ⟶ U.toScheme) (e : u ≫ U.ι = t ≫ M.j) :
-    u ≫ g = t ≫ f.left ≫ N.j := by
-  have hp := isPullback_morphismRestrict M.j U
-  have e2 := hp.lift_fst u t e
-  have e1 := hp.lift_snd u t e
-  calc u ≫ g = hp.lift u t e ≫ (M.j ∣_ U) ≫ g := by rw [← Category.assoc, e2]
-    _ = _ := by rw [h.2, ← Category.assoc, e1]
+alias prod_ext := _root_.GlobalTheory.SS.GI.prod_hom_ext
 
 theorem defAt_mk (M : Model R A) (N : Model R A') (f : A ⟶ A') {V : Scheme.{0}} (i : V ⟶ M.Y.left)
     [IsOpenImmersion i] (g : V ⟶ N.Y.left) (h1 : g ≫ N.Y.hom = i ≫ M.Y.hom)
@@ -120,8 +104,8 @@ theorem defAt_comp {M : Model R A} {N : Model R A'} {P : Model R A''} {f : A ⟶
   refine defAt_mk M P (f ≫ f') ((g ⁻¹ᵁ V).ι ≫ U.ι) ((g ∣_ V) ≫ g') ?_ ?_ ⟨y, hy⟩
   · rw [Category.assoc, h'.1, morphismRestrict_ι_assoc, h.1, Category.assoc]
   · intro T t u e
-    have e1 := ext_test h t (u ≫ (g ⁻¹ᵁ V).ι) (by rw [Category.assoc, e])
-    have e2 := ext_test h' (t ≫ f.left) (u ≫ (g ∣_ V)) (by
+    have e1 := _root_.GlobalTheory.SS.SectionTranslation.extends_apply h t (u ≫ (g ⁻¹ᵁ V).ι) (by rw [Category.assoc, e])
+    have e2 := _root_.GlobalTheory.SS.SectionTranslation.extends_apply h' (t ≫ f.left) (u ≫ (g ∣_ V)) (by
       rw [Category.assoc, morphismRestrict_ι, ← Category.assoc, e1, Category.assoc])
     rw [← Category.assoc, e2, Over.comp_left, Category.assoc, Category.assoc]
 
@@ -148,10 +132,10 @@ theorem defAt_lift {M : Model R A} {N : Model R A'} {P : Model R A''} {f : A ⟶
     rw [this, reassoc_of% G1, h.1, reassoc_of% e₁]
   · intro T t u e
     apply prod_ext
-    · have := ext_test h t (u ≫ i₁) (by rw [Category.assoc, e₁, e])
+    · have := _root_.GlobalTheory.SS.SectionTranslation.extends_apply h t (u ≫ i₁) (by rw [Category.assoc, e₁, e])
       simp only [Category.assoc] at this ⊢
       rw [G1, this, prod_j_fst, ← Over.comp_left_assoc, lift_fst]
-    · have := ext_test h' t (u ≫ i₂) (by rw [Category.assoc, e₂, e])
+    · have := _root_.GlobalTheory.SS.SectionTranslation.extends_apply h' t (u ≫ i₂) (by rw [Category.assoc, e₂, e])
       simp only [Category.assoc] at this ⊢
       rw [G2, this, prod_j_snd, ← Over.comp_left_assoc, lift_snd]
 
@@ -183,11 +167,6 @@ theorem defAt_generic [IsDomain R] [IsDiscreteValuationRing R] [IsFractionRing R
   · rw [Category.assoc, N.j_hom, M.j_hom, Over.w_assoc]
   · intro T t u e
     rw [(cancel_mono _).1 e]
-
-theorem isOpen_isoAt (M : Model R A) (N : Model R A') (f : A ⟶ A') : IsOpen {y | IsoAt M N f y} := by
-  rw [isOpen_iff_forall_mem_open]
-  rintro y ⟨U, g, hy, h⟩
-  exact ⟨U, fun w hw => ⟨U, g, hw, h⟩, U.isOpen, hy⟩
 
 def Sec (M : Model R A) (p : 𝟙_ (Over (Sp K)) ⟶ A) (s : 𝟙_ (Over (Sp R)) ⟶ M.Y) : Prop :=
   p.left ≫ M.j = spMap (algebraMap R K) ≫ s.left
@@ -234,7 +213,7 @@ theorem sec_exists {M : Model R A} {N : Model R A'} {f : A ⟶ A'} {U : M.Y.left
   let s' := IsOpenImmersion.lift U.ι s.left hr
   have e : s' ≫ U.ι = s.left := IsOpenImmersion.lift_fac _ _ _
   refine ⟨Over.homMk (s' ≫ g) (by rw [Category.assoc, h.1, reassoc_of% e, Over.w s]), ?_, ?_⟩
-  · have := ext_test h p.left (spMap (algebraMap R K) ≫ s') (by rw [Category.assoc, e]; exact hs.symm)
+  · have := _root_.GlobalTheory.SS.SectionTranslation.extends_apply h p.left (spMap (algebraMap R K) ≫ s') (by rw [Category.assoc, e]; exact hs.symm)
     show (p ≫ f).left ≫ N.j = spMap (algebraMap R K) ≫ s' ≫ g
     rw [← Category.assoc (spMap _), this, Over.comp_left, Category.assoc]
   · have : y = s' (IsLocalRing.closedPoint R) := by
@@ -342,8 +321,8 @@ theorem lawdef_section [IsDomain R] (hR : SH R K) (A : Over (Sp K)) [GrpObj A] [
   obtain ⟨u₁, m₁, rfl⟩ := exists_fibre (isPullback_fibre_snd (Z := M.Y) Y) z₁ hz₁
   obtain ⟨u₂, m₂, rfl⟩ := exists_fibre (isPullback_fibre_fst (Z := M.Y) X) z₂ hz₂
   obtain ⟨s, hs, hs'⟩ := exists_section_general hR hM.1.1 gφ
-    ((isOpen_isoAt (M.prod M) (M.prod M) (shear A false)).preimage (lift (𝟙 M.Y) (toUnit M.Y ≫ Y)).left.continuous)
-    ((isOpen_isoAt (M.prod M) (M.prod M) (shear A true)).preimage (lift (toUnit M.Y ≫ X) (𝟙 M.Y)).left.continuous)
+    ((_root_.GlobalTheory.SS.GI.isOpen_isoAt (M.prod M) (M.prod M) (shear A false)).preimage (lift (𝟙 M.Y) (toUnit M.Y ≫ Y)).left.continuous)
+    ((_root_.GlobalTheory.SS.GI.isOpen_isoAt (M.prod M) (M.prod M) (shear A true)).preimage (lift (toUnit M.Y ≫ X) (𝟙 M.Y)).left.continuous)
     ⟨u₁, m₁, i₁⟩ ⟨u₂, m₂, i₂⟩
   obtain ⟨a, ha, ga, ha'⟩ := GlobalTheory.SS.SectionTranslation.translation_by_section R K hR A hA M hM s
   obtain ⟨t, ht, ht'⟩ := hs' a ha

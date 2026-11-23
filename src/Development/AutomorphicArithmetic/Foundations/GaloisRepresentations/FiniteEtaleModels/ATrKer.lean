@@ -93,7 +93,7 @@ theorem UpperTheory.Gal.FiniteEtaleModels.trKer_holds :
   have hinv : ∀ y, L.actG h⁻¹ (L.actG h y) = y := by
     intro y
     rw [← Module.End.mul_apply, ← map_mul, _root_.inv_mul_cancel, map_one, Module.End.one_apply]
-  obtain ⟨x, w, hw, hvx⟩ := GlobalTheory.T.latticeCompletion_eq_latticeVector_add_nsmul p D (n * κ) (Nat.mul_pos hn0 hκ0) hnκc v hv
+  obtain ⟨x, w, hw, hvx⟩ := _root_.GlobalTheory.LKGeo.exists_inAf_add_nsmul_of_mem_laHat p D (n * κ) (Nat.mul_pos hn0 hκ0) hnκc v hv
   obtain ⟨w', hw', hfx⟩ := hf x
   obtain ⟨w'', hw'', hw''e⟩ := hsurj w hw
   have e2 : κ • L.actG h⁻¹ w = w'' := by rw [← map_nsmul, ← hw''e, hinv]

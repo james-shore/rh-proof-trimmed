@@ -89,23 +89,6 @@ theorem measurePreserving_shear {A C : Type*} [AddCommGroup A] [MeasurableSpace 
   rw [hfun]
   exact h2
 
-private theorem isMulRightInvariant_map_of_exists_measurePreserving {X G : Type*} [MeasurableSpace X] [MeasurableSpace G] [Mul G] (P : Measure X)
-    (e : X ≃ᵐ G) (h : ∀ q, ∃ T : X → X, MeasurePreserving T P P ∧ ∀ p, e (T p) = e p * e q) :
-    (P.map e).IsMulRightInvariant := by
-  refine ⟨fun g => ?_⟩
-  obtain ⟨T, hT, hTe⟩ := h (e.symm g)
-  have h1 : (fun x => x * g) = e ∘ T ∘ e.symm := by
-    funext x
-    simp [hTe]
-  have hm : Measurable (fun x => x * g) := by
-    rw [h1]
-    exact e.measurable.comp (hT.measurable.comp e.symm.measurable)
-  rw [Measure.map_map hm e.measurable]
-  have h2 : (fun x => x * g) ∘ e = e ∘ T := by
-    funext p
-    simp [hTe]
-  rw [h2, ← Measure.map_map e.measurable hT.measurable, hT.map_eq]
-
 theorem haar_of_shear {A C G : Type*} [AddCommGroup A] [TopologicalSpace A] [IsTopologicalAddGroup A]
     [MeasurableSpace A] [BorelSpace A] [SecondCountableTopology A] [LocallyCompactSpace A]
     [AddCommGroup C] [TopologicalSpace C] [IsTopologicalAddGroup C]
@@ -136,7 +119,7 @@ theorem haar_of_shear {A C G : Type*} [AddCommGroup A] [TopologicalSpace A] [IsT
     congr 1
     exact Prod.ext (add_left_comm _ _ _) (add_comm _ _)
   have hr : ((κ.prod β).map e).IsMulRightInvariant := by
-    refine isMulRightInvariant_map_of_exists_measurePreserving (κ.prod β) e.toMeasurableEquiv ?_
+    refine _root_.GlobalTheory.Unf.HaarCoord.isMulRightInvariant_map (κ.prod β) e.toMeasurableEquiv ?_
     rintro ⟨c, b⟩
     refine ⟨fun p => (p.1 + (c + f p.2 b), p.2 + b),
       measurePreserving_shear κ β ((hf.comp (continuous_id.prodMk continuous_const)).measurable.const_add c) b, ?_⟩

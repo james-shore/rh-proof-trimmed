@@ -227,7 +227,7 @@ theorem orbitIdentity_all_of_integralClass_hostLog : ∀ (D : D7) (p : ℕ) [Fac
       ⟨σ, F, _, om, oms, ζ, hBd, rfl⟩).2.2.1
   have hπe : πs = fun y : ZV (nP D p) M N' =>
       (X (OrbitPlaces.orbMap D p (eA y.2.1).1 y.1, (eA y.2.1).2, y.2.2) : MvPowerSeries (OrbitPlaces.Pl D × Fin N × Fin N') ℂ_[p]) := rfl
-  have hc := GlobalTheory.T.orbitPlaces_thetaSeries_subst_orbMap_eq D p h5 σ om oms R eA f f' Θ
+  have hc := _root_.GlobalTheory.KerStd.HypOrbit.hypZ_of_inHyp D p h5 σ om oms R eA f f' Θ
   rw [← hρe, ← hπe] at hc
   have hA := congrArg (subst πs) hZ
   rw [hR1, hc] at hA
@@ -237,7 +237,7 @@ theorem orbitIdentity_all_of_integralClass_hostLog : ∀ (D : D7) (p : ℕ) [Fac
       funext fun x => Formalism.DworkPowerSeriesWeights.OrbMul.linSub_idM x
     rw [this, subst_self]; rfl
   rw [hlin, subst_comp_subst_apply hgs hπs] at hA
-  have hexp := GlobalTheory.T.expFactor_allOrbits_eq_prod_orbits D p R (N' := N') eA (beOf p (nP D p) σ (cob F (phFF p g2 g3 s2 ε)) om oms ζ) hbe0
+  have hexp := _root_.GlobalTheory.ExpFacOrbits.expFactor_allOrbits D p R (N' := N') eA (beOf p (nP D p) σ (cob F (phFF p g2 g3 s2 ε)) om oms ζ) hbe0
   rw [← hπe] at hexp
   rw [show (MvPowerSeries.map (MaximalUnramifiedExtension p).subtype (Formalism.L2.Th1.D.beMean p σ (cob F (phFF p g2 g3 s2 ε)) om oms ζ)) =
     beOf p (nP D p) σ (cob F (phFF p g2 g3 s2 ε)) om oms ζ from rfl] at hA

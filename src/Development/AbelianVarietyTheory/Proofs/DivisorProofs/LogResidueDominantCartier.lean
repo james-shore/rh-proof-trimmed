@@ -92,20 +92,7 @@ def stalkEquiv {Y : Scheme.{0}} [IsIntegral Y] (w : Y) : Y.presheaf.stalk w ≃+
 theorem stalkEquiv_apply {Y : Scheme.{0}} [IsIntegral Y] (w : Y) (a : Y.presheaf.stalk w) :
     ((stalkEquiv w a : locRing w) : Y.functionField) = algebraMap _ Y.functionField a := rfl
 
-theorem map_maximalIdeal_equiv {R R' : Type*} [CommRing R] [CommRing R'] [IsLocalRing R]
-    [IsLocalRing R'] (φ : R ≃+* R') :
-    (IsLocalRing.maximalIdeal R).map φ = IsLocalRing.maximalIdeal R' := by
-  ext a
-  rw [Ideal.mem_map_of_equiv, IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
-  constructor
-  · rintro ⟨b, hb, rfl⟩ h
-    rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff] at hb
-    exact hb ((isUnit_map_iff φ b).1 h)
-  · intro ha
-    refine ⟨φ.symm a, ?_, by simp⟩
-    rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
-    intro h
-    exact ha (by simpa using h.map φ)
+alias map_maximalIdeal_equiv := _root_.IsLocalRing.map_ringEquiv_maximalIdeal
 
 end GlobalTheory.FieldPair.AdjUp
 
@@ -118,7 +105,7 @@ theorem GlobalTheory.FieldPair.mult_lt_of_adjKlt : ∀ (X : Scheme.{0}) [IsInteg
   have hv0' : (pullCart s (CartierDiv.principal g) - m • K).mult v ≠ 0 := by omega
   haveI := hres.smooth
   haveI := SmoothOfRelativeDimension.smooth n (s ≫ p)
-  haveI : GlobalTheory.IsNormalScheme Y := Discrepancy.CanonIso.isNormalScheme_of_smooth' (s ≫ p)
+  haveI : GlobalTheory.IsNormalScheme Y := _root_.GlobalTheory.ModifSections.isNormalScheme_of_smooth (s ≫ p)
   have hmσ0 : (pullCart s (CartierDiv.principal g) - m • K).mult σ ≠ 0 := by
     rw [hmσ]; exact_mod_cast hm.ne'
   have hvB : v ∈ B := hres.supp (CartierDiv.mem_supp_of_mult_ne_zero hv0')

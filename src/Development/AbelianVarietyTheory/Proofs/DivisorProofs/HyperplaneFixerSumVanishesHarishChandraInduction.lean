@@ -284,7 +284,7 @@ theorem core [Finite F] (a b : ℕ) [Fintype (GL (Fin (a + b)) F)] (A : GL (Fin 
     (hA : IsChar ℂ ℂ A) (hB : IsChar ℂ ℂ B) (hfA : HFree A) (hfB : HFree B) (f : Fin (a + b) → F) (hf : f ≠ 0) :
     (∑ g, if g ∈ fixSet f then
       (if InPar a g then A (tlG a g) * B (brG a b g) else 0) else 0) = 0 := by
-  obtain ⟨P, π, hmem, -, hπ, -, -⟩ := GlobalTheory.T.exists_blockParabolic_subgroup_levi_projection F a b (a + b) rfl
+  obtain ⟨P, π, hmem, -, hπ, -, -⟩ := _root_.GlobalTheory.Shin.BlockPar.block_par F a b (a + b) rfl
   have hmul : ∀ p q : GL (Fin (a + b)) F, InPar a p → InPar a q →
       InPar a (p * q) ∧ tlG a (p * q) = tlG a p * tlG a q ∧ brG a b (p * q) = brG a b p * brG a b q := by
     intro p q hp hq

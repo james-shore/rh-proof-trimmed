@@ -223,7 +223,7 @@ theorem lintegral_x0F_le (X : Data E r) {j : ℕ} (hj : j ≤ r) (hp : X.p0 = r 
       rw [densF_eq X κ, ENNReal.ofReal_prod_of_nonneg fun _ _ => dens_nonneg _ _]
     rw [e1]
     exact Finset.measurable_prod _ fun t _ => hDm.comp ((measurable_pi_apply t).comp hco.measurable)
-  have key := GlobalTheory.ProdFibre.lintegral_pi_fibre X.Ψ _ _ _ (glue e) (base e) D φ (GlobalTheory.T.measurePreserving_glueLowerUnitriangularBlocks _ _ _ _ (isBlockOrderedSumEquiv_trueIndex hj))
+  have key := GlobalTheory.ProdFibre.lintegral_pi_fibre X.Ψ _ _ _ (glue e) (base e) D φ (_root_.GlobalTheory.FlagFibre.measurePreserving_glue _ _ _ _ (isBlockOrderedSumEquiv_trueIndex hj))
     (measurable_base _) (base_glue (isBlockOrderedSumEquiv_trueIndex hj)) hDm hφm
   set K := ENNReal.ofReal (1 / (flagConst j * flagConst (r - j)))
   have hcube : MeasurableSet (cube j (r - j)) :=

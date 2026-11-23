@@ -57,10 +57,6 @@ open scoped Classical
 
 namespace GlobalTheory.GLq.Label
 
-theorem ip_add_left {G : Type} [Group G] [Fintype G] (a b c : G → ℂ) : ip (a + b) c = ip a c + ip b c := by
-  unfold ip
-  simp only [Pi.add_apply, add_mul, Finset.sum_add_distrib, mul_add]
-
 theorem ip_add_right {G : Type} [Group G] [Fintype G] (a b c : G → ℂ) : ip a (b + c) = ip a b + ip a c := by
   unfold ip
   simp only [Pi.add_apply, mul_add, Finset.sum_add_distrib]
@@ -88,7 +84,7 @@ theorem ip_sum_sum {G : Type} [Group G] [Fintype G] (A B : List (G → ℂ)) (hA
     obtain ⟨m, hm, hmA⟩ := ih (fun r hr => hA r (by simp [hr]))
     obtain ⟨k, hk, hkB⟩ := ip_irr_sum ρ (hA ρ (by simp)) B hB
     refine ⟨k + m, ?_, ?_⟩
-    · rw [List.sum_cons, ip_add_left, hk, hm]
+    · rw [List.sum_cons, _root_.GlobalTheory.CharDec.ip_add_left, hk, hm]
       push_cast
       ring
     · intro χ hχ hχB
@@ -110,9 +106,7 @@ theorem ip_ne_zero_of_common {G : Type} [Group G] [Fintype G] (χ α β : G → 
   rw [hm]
   exact_mod_cast hmm χ hχA hχB
 
-theorem isChar_of_isIrr {G : Type} [Group G] {χ : G → ℂ} (h : IsIrr χ) : IsChar χ := by
-  obtain ⟨V, -, hV⟩ := h
-  exact ⟨V, hV⟩
+alias isChar_of_isIrr := _root_.GlobalTheory.CharDec.isChar_of_isIrr
 
 variable {g : ℕ} [Fact g.Prime]
 
@@ -185,7 +179,7 @@ theorem label_unique (L : LabelDatum g) (hg : 5 ≤ g) {n : ℕ} (χ : Gn g n �
 
 theorem label_exists (L : LabelDatum g) (hg : 5 ≤ g) (hG : Green) {n : ℕ} (χ : Gn g n → ℂ)
     (hχ : IsIrr χ) : ∃ f, HasLabel L χ f := by
-  obtain ⟨C, hC, hdC, hip⟩ := GlobalTheory.T.exists_cuspidal_list_harishChandra_pairing_ne_zero g n χ hχ
+  obtain ⟨C, hC, hdC, hip⟩ := _root_.GlobalTheory.GLq.SuppCusp.exists_cusp_list g n χ hχ
   have hex : ∀ c ∈ C, ∃ P, IsCuspOf L P c.2 := by
     intro c hc
     obtain ⟨τ, hτ, -, hall⟩ := hG g L c.1 (hC c hc).1

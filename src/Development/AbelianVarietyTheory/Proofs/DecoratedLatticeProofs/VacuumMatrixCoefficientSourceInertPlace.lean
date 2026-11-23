@@ -120,11 +120,7 @@ theorem GlobalTheory.VacSource.latticeIntertwiner_coefficient_vacua_source : ∀
 
 namespace GlobalTheory.VacSource
 
-theorem isSelfDualC_frameLat {D : D7} (V : HSp D) : IsSelfDualC V (frameLat V) := by
-  have h : frameLat V = GlobalTheory.PlaceModel.latFrame V :=
-    Submodule.ext fun y => (mem_frameLat V y).trans (GlobalTheory.PlaceModel.mem_latFrame V y).symm
-  rw [h]
-  exact GlobalTheory.PlaceModel.isSelfDualC_latFrame V
+alias isSelfDualC_frameLat := _root_.GlobalTheory.WeilAtPlace.isSelfDualC_frameLat
 
 theorem inv_neg_pow_mul (x : ℂ) (N M : ℕ) :
     ((-x) ^ (N * M))⁻¹ = ((((-1 : ℂˣ) ^ N : ℂˣ) : ℂ) * (x ^ N)⁻¹) ^ (M : ℤ) := by

@@ -60,15 +60,7 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.TorsionCharacter
 
-theorem exists_extend_character {H M F : Type} [CommGroup H] [CommGroup M] [Field F] [IsAlgClosed F]
-    (Φ : H →* M) (hΦ : Function.Injective Φ) (χ : H →* Fˣ) : ∃ κ : M →* Fˣ, ∀ x, κ (Φ x) = χ x := by
-  first
-  | exact @_root_.GlobalTheory.DivisibleUnits.target
-  | exact _root_.GlobalTheory.DivisibleUnits.target
-  | (apply _root_.GlobalTheory.DivisibleUnits.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DivisibleUnits.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DivisibleUnits.target <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.DivisibleUnits.target ..)
+alias exists_extend_character := _root_.GlobalTheory.DivisibleUnits.exists_extension
 
 variable {O : Type} [CommRing O]
 

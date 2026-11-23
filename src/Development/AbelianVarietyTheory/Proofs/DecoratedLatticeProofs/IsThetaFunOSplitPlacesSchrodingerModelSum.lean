@@ -63,7 +63,7 @@ theorem isThetaFunO_sum_placeModel : ∀ (D : D7) (ψ : AddChar (AF D.host.F) �
   have hinf : infPart D (∑ i, (L i).q.e) = 0 := by
 
     rw [map_sum]
-    exact Finset.sum_eq_zero fun i _ => GlobalTheory.LocMod.LinTheta.infPart_of_isSplitIdem (L i).q.split
+    exact Finset.sum_eq_zero fun i _ => _root_.GlobalTheory.PlaceModelSum.infPart_split (L i).q.split
   exact GlobalTheory.PlaceThetaVal.isThetaFunO_placeModel_apply hψ S T M M' hM hM' _ f₀ Φ T' hidem hinf hT' hvac.1 hΦ
 
 end GlobalTheory.PlaceSumTheta

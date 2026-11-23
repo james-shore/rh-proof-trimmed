@@ -53,6 +53,7 @@ import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.LengthLocQuotEqZero
+import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.ExistsPrimeFiltrationOfIsMultiHomogIdeal
 
 @[expose] public section
 
@@ -156,18 +157,6 @@ theorem isMultiHomog_X_single {K : Type} [Fintype K] {ι : K → Type} [∀ k, F
   · rw [e]
   · simp [e] at hm
 
-theorem isMultiHomog_one {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] :
-    IsMultiHomog (1 : MRing ι) 0 := by
-  classical
-  rw [isMultiHomog_iff_coeff]
-  intro m hm
-  rw [coeff_one] at hm
-  by_cases e : 0 = m
-  · subst e
-    funext k
-    simp [i2bdeg]
-  · simp [e] at hm
-
 theorem exists_graphLift_monomial {g : (Σ k, ι₂ k) → MRing ι} {δ : K₂ → K → ℕ}
     (hg : ∀ q, IsMultiHomog (g q) (δ q.1)) (m : (Σ k, Sum.elim ι ι₂ k) →₀ ℕ) :
     ∃ h : MRing ι, IsMultiHomog h (baseDeg δ (i2bdeg m)) ∧
@@ -184,7 +173,7 @@ theorem exists_graphLift_monomial {g : (Σ k, ι₂ k) → MRing ι} {δ : K₂ 
         funext k
         simp [baseDeg]
       rw [this]
-      exact isMultiHomog_one
+      exact _root_.ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_one
     · rw [e]
       have : expDeg (0 : K ⊕ K₂ → ℕ) = 0 := by
         ext k

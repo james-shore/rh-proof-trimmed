@@ -58,6 +58,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 public import Formalism.FormalDegreeBessel.FormalDegreeRatio.UnitaryWeylNormalHolds
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeylFormulaCompact.Weights
 
 @[expose] public section
 
@@ -173,11 +174,6 @@ theorem normSq_tie {k0 r : ℕ} (hk2 : 2 ≤ k0 + 1) (L : LocBessel (k0 + 1) r) 
   rw [h1, h2, h3, h4, h5, h6, h7, ← hc]
   rfl
 
-theorem inner_iso {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] (T : H →L[ℂ] H) (hT : ∀ u, ‖T u‖ = ‖u‖)
-    (a b : H) : ⟪T a, T b⟫_ℂ = ⟪a, b⟫_ℂ := by
-  let T' : H →ₗᵢ[ℂ] H := { toLinearMap := (T : H →ₗ[ℂ] H), norm_map' := hT }
-  exact T'.inner_map_map a b
-
 theorem stdF_coef (L : LocBessel k r) (ka : ℝ) (hka : 0 < ka) (v v' : L.Hs) (ξ : L.Wp) (ξ' : L.Wq) :
     ∀ x ∈ UH (Hpk k r), stdF L ka (Formalism.MainNotions.S.Pv.AmpDD.coefF L v v' ξ ξ') x =
       Formalism.MainNotions.S.Pv.BetaCut.coefM (turnL L ka).σ ((turnL L ka).σ (dMi k r ka⁻¹ 1) v)
@@ -196,7 +192,7 @@ theorem stdF_coef (L : LocBessel k r) (ka : ℝ) (hka : 0 < ka) (v v' : L.Hs) (�
     rw [hmul' _ (WeylGroupFacts.uh_mul hdM hx) _ hdMi, hmul' _ hdM _ hx, ContinuousLinearMap.comp_assoc]
   have e2 : ∀ a b : L.Hs, ⟪a, (turnL L ka).σ (dM k r ka⁻¹ 1) b⟫_ℂ = ⟪(turnL L ka).σ (dMi k r ka⁻¹ 1) a, b⟫_ℂ := by
     intro a b
-    rw [← inner_iso ((turnL L ka).σ (dM k r ka⁻¹ 1)) (hiso' _ hdM) ((turnL L ka).σ (dMi k r ka⁻¹ 1) a) b]
+    rw [← _root_.PI.WeylForKWork.wt_inner_iso ((turnL L ka).σ (dM k r ka⁻¹ 1)) (hiso' _ hdM) ((turnL L ka).σ (dMi k r ka⁻¹ 1) a) b]
     congr 1
     rw [← ContinuousLinearMap.comp_apply, ← hmul' _ hdM _ hdMi, dM_mul_dMi hκ one_pos, h1']
     rfl
@@ -287,7 +283,7 @@ theorem be_dil (L : LocBessel k r) (ka : ℝ) (hka : 0 < ka) [SigmaFinite L.μN]
   have hin : ⟪(turnL L ka).σ (dMi k r ka⁻¹ 1) w,
       (turnL L ka).σ (cj k r ka⁻¹ 1 (Matrix.of a) * cj k r ka⁻¹ 1 (Matrix.of b)) ((turnL L ka).σ (dMi k r ka⁻¹ 1) v)⟫_ℂ =
       ⟪w, (turnL L ka).σ (Matrix.of a * Matrix.of b) v⟫_ℂ := by
-    rw [← inner_iso ((turnL L ka).σ (dM k r ka⁻¹ 1)) (hiso' _ hdM)]
+    rw [← _root_.PI.WeylForKWork.wt_inner_iso ((turnL L ka).σ (dM k r ka⁻¹ 1)) (hiso' _ hdM)]
     rw [← ContinuousLinearMap.comp_apply ((turnL L ka).σ (dM k r ka⁻¹ 1)) ((turnL L ka).σ (dMi k r ka⁻¹ 1)),
       ← hmul' _ hdM _ hdMi, dM_mul_dMi hκ one_pos, h1', ContinuousLinearMap.one_apply]
     congr 1
@@ -389,7 +385,7 @@ theorem be_dil' (L : LocBessel k r) (ka : ℝ) (hka : 0 < ka) [SigmaFinite L.μN
   have hin : ⟪(turnL L ka).σ (dMi k r ka⁻¹ 1) w,
       (turnL L ka).σ (cj k r ka⁻¹ 1 (Matrix.of a) * cj k r ka⁻¹ 1 (Matrix.of b)) ((turnL L ka).σ (dMi k r ka⁻¹ 1) v)⟫_ℂ =
       ⟪w, (turnL L ka).σ (Matrix.of a * Matrix.of b) v⟫_ℂ := by
-    rw [← inner_iso ((turnL L ka).σ (dM k r ka⁻¹ 1)) (hiso' _ hdM)]
+    rw [← _root_.PI.WeylForKWork.wt_inner_iso ((turnL L ka).σ (dM k r ka⁻¹ 1)) (hiso' _ hdM)]
     rw [← ContinuousLinearMap.comp_apply ((turnL L ka).σ (dM k r ka⁻¹ 1)) ((turnL L ka).σ (dMi k r ka⁻¹ 1)),
       ← hmul' _ hdM _ hdMi, dM_mul_dMi hκ one_pos, h1', ContinuousLinearMap.one_apply]
     congr 1

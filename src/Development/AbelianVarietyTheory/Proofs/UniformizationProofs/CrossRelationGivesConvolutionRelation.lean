@@ -389,7 +389,7 @@ theorem core (hL : LL) (hR : AdmBase R I) (j j' : ℕ) {N : Type} [Fintype N] (�
     (sval_sum' (π := D.toPre.P.A.hom) hJ _ _ _).trans (Finset.sum_congr rfl fun ν _ =>
       (sval_smul' (π := D.toPre.P.A.hom) hJ _ _ _).trans (congrArg _ (hn ν α p Z r z J hJ)))
   obtain ⟨τ, hτ, hv⟩ := exists_frame E.aB α g hg.1 w w' hw hw'
-  refine GlobalTheory.T.adicSum_sections_of_finite_sums_on_thickenings hL R I hR D F _ (mixφ D.toPre E.aB α) (mixε j j') _ (m α)
+  refine _root_.GlobalTheory.SecAdicSum.sumF_of_sum_on_thickenings hL R I hR D F _ (mixφ D.toPre E.aB α) (mixε j j') _ (m α)
     (0 : SecOver D.toPre.P.A.hom _) (fun e => ?_) g.b τ hτ _ 0 fun z J hJ => ⟨fun p => ?_, ?_⟩
   · obtain ⟨S, hS⟩ := level E j j' e ρ σ σ' f f' (fun ν => hE ν e) (fun ν => hE' ν e) hrel m hm α
     exact ⟨S, fun Z r z J hJ => ⟨(hS Z r z J hJ).1,

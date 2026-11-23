@@ -47,6 +47,7 @@ import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLeviDescent.IsCoreMod
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLoc
+import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryMemGLs
 
 @[expose] public section
 
@@ -80,7 +81,7 @@ theorem compactSpace_unitary (n : ℕ) : CompactSpace (Matrix.unitaryGroup (Fin 
 
 theorem continuous_restrict {n : ℕ} (x : SmF n) :
     Continuous fun k : Matrix.unitaryGroup (Fin n) ℂ => x.1 k.1 :=
-  x.2.1.continuousOn.comp_continuous continuous_subtype_val unit_mem
+  x.2.1.continuousOn.comp_continuous continuous_subtype_val _root_.GlobalTheory.CompanionTheory.RCalc.unitary_mem_GLs
 
 section
 

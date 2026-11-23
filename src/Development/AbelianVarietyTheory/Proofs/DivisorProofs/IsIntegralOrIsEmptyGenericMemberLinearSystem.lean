@@ -76,14 +76,14 @@ theorem GenericMember.isIntegral_or_isEmpty_zeroScheme : ∀ (k : Type) [Field k
     erw [← CommRingCat.comp_apply, ← Functor.map_comp]
     rfl
   choose V c hVc j hVa hxV hu using loc
-  have hW : ∀ x, IsAffineOpen (π ⁻¹ᵁ V x) := fun x => (GlobalTheory.T.affine_base_change_over_field_extension k _ X X' f f' π hP (V x) (hVa x)).1
+  have hW : ∀ x, IsAffineOpen (π ⁻¹ᵁ V x) := fun x => (_root_.GlobalTheory.isAffineOpen_preimage_and_tensor_equiv_of_isPullback k _ X X' f f' π hP (V x) (hVa x)).1
   have key : ∀ x, (genSec k N f' π L b).f (fun _ => c x) ≠ 0 ∧
       ((secIdeal (LB.isLB_pull hL π) (genSec k N f' π L b)).ideal ⟨π ⁻¹ᵁ V x, hW x⟩ = ⊤ ∨
         ((secIdeal (LB.isLB_pull hL π) (genSec k N f' π L b)).ideal ⟨π ⁻¹ᵁ V x, hW x⟩).IsPrime ∧
         ((secIdeal (LB.isLB_pull hL π) (genSec k N f' π L b)).ideal ⟨π ⁻¹ᵁ V x, hW x⟩).comap
           (π.app (V x)).hom = ⊥) := fun x => by
-    obtain ⟨-, e, he1, he2⟩ := GlobalTheory.T.affine_base_change_over_field_extension k _ X X' f f' π hP (V x) (hVa x)
-    exact GlobalTheory.T.genericMemberSection_ne_zero_isPrime_affineChart k N X X' f f' π L hL b (V x) ⟨x, hxV x⟩ (hW x) (c x) (hVc x) (j x) (hu x) e he1 he2
+    obtain ⟨-, e, he1, he2⟩ := _root_.GlobalTheory.isAffineOpen_preimage_and_tensor_equiv_of_isPullback k _ X X' f f' π hP (V x) (hVa x)
+    exact _root_.GlobalTheory.GenericMember.genSec_chart_ne_zero_and_isPrime k N X X' f f' π L hL b (V x) ⟨x, hxV x⟩ (hW x) (c x) (hVc x) (j x) (hu x) e he1 he2
   refine ⟨genSec k N f' π L b, fun h0 => ?_, ?_⟩
   · obtain ⟨x⟩ := (inferInstance : Nonempty X)
     exact (key x).1 (by rw [h0]; rfl)

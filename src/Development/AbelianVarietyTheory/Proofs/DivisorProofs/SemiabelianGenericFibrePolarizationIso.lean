@@ -91,16 +91,6 @@ open GlobalTheory.UU GlobalTheory.LN GlobalTheory.PsiRing
 noncomputable section
 namespace GlobalTheory.SectionUnif
 
-theorem exists_shift {R : Type} [CommRing R] [IsDomain R] [IsNoetherianRing R] (I : Ideal R) {q : R} (hq : q ≠ 0) :
-    ∃ c : ℕ, ∀ (n : ℕ) (a : R), q * a ∈ I ^ (n + c) → a ∈ I ^ n := by
-  first
-  | exact @_root_.GlobalTheory.ClosingLemmaSecond.main
-  | exact _root_.GlobalTheory.ClosingLemmaSecond.main
-  | (apply _root_.GlobalTheory.ClosingLemmaSecond.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ClosingLemmaSecond.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ClosingLemmaSecond.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.ClosingLemmaSecond.main ..)
-
 section
 variable {R V : Type} [CommRing R] [IsDomain R] [CommRing V] [IsDomain V] {I : Ideal R} {I' : Ideal V}
   {D : DegPre R} {D' : DegPre V} {A : PolAV (Spec (CommRingCat.of (FractionRing R)))}
@@ -269,9 +259,9 @@ theorem exists_unif_of_ne_zero : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLoc
   obtain ⟨ga, a, hSc⟩ := exists_psiScal R E
   obtain ⟨th, hth, hmul⟩ := GlobalTheory.T.exists_thetaSection_nonzeroFibres_localRing h₂.secTwist R D
   obtain ⟨q, hq⟩ := hmul (f 0)
-  choose b hb using fun χ : D.X => GlobalTheory.T.exists_twistedSection_thetaTranslate_coef R D th hmul χ (ga χ) (hSc χ).1 (f χ)
+  choose b hb using fun χ : D.X => _root_.GlobalTheory.PsiCoef.exists_coef R D th hmul χ (ga χ) (hSc χ).1 (f χ)
   have hab : ∀ χ, algebraMap R (FractionRing R) q * (a χ).val = algebraMap R (FractionRing R) (b χ) := fun χ =>
-    GlobalTheory.T.psiScalar_eq_expansionCoef_ratio R E ga a f th hSc hrelE hth χ q (b χ) hq (hb χ)
+    _root_.GlobalTheory.psiScal_eq_ratio R E ga a f th hSc hrelE hth χ q (b χ) hq (hb χ)
   have hq0 : q ≠ 0 := by
     rintro rfl
     obtain ⟨j, hj⟩ := hne 0
@@ -283,7 +273,7 @@ theorem exists_unif_of_ne_zero : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLoc
     obtain ⟨D₁, A₁, G₁, _, _, F₁, U₁, U₂, hU₁, ⟨C₁⟩⟩ := exists_cmp hR.1 U hW hsp hA W g hW₁ hg hgc
     obtain ⟨-, gam₁, hgam₁, hpsi₁⟩ := (ne_zero_and_psiCmp h₁ h₂ hW₁ hg C₁ hU₁ σ f hf y hy).2 psi h hrel
     obtain ⟨x, rfl⟩ := C₁.xe.surjective χ
-    exact GlobalTheory.T.psiScalar_mem_of_psi_mem_ideal R W g E D₁.toPre C₁.β C₁.v C₁.xe C₁.pbB C₁.v_gen C₁.c_pr gam₁ hgam₁ hpsi₁ ga a hSc x _
+    exact _root_.GlobalTheory.PsiRing.scalar_mem_of_psiIn R W g E D₁.toPre C₁.β C₁.v C₁.xe C₁.pbB C₁.v_gen C₁.c_pr gam₁ hgam₁ hpsi₁ ga a hSc x _
       (D₁.psi_pos x fun h0 => hχ (by rw [h0, map_zero])) _ q (hab _)
   have hdiv : ∀ χ : D.X, χ ≠ 0 → ∃ r ∈ IsLocalRing.maximalIdeal R, b χ = q * r := fun χ hχ => by
     obtain ⟨r, hr⟩ := ValCrit.dvd_of_forall_cdvr R (b χ) q hq0 fun W _ _ _ g hW₁ hg hgc =>
@@ -295,11 +285,11 @@ theorem exists_unif_of_ne_zero : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLoc
   have hin : ∀ (χ : D.X) (J : Ideal R) (r : R), r ∈ J → b χ = q * r → E.PsiIn χ J := fun χ J r hJ e =>
     (PsiScalIn.main_local E ga a hSc χ J).2 ⟨r, hJ, mul_left_cancel₀
       ((map_ne_zero_iff _ (IsFractionRing.injective R (FractionRing R))).2 hq0) (((map_mul _ q r).symm.trans (congrArg _ e.symm)).trans (hab χ).symm)⟩
-  obtain ⟨c, hcs⟩ := exists_shift (IsLocalRing.maximalIdeal R) hq0
+  obtain ⟨c, hcs⟩ := _root_.GlobalTheory.ShiftMemPowOfMulMemPow.exists_shift_mem_pow_of_mul_mem_pow (IsLocalRing.maximalIdeal R) hq0
   let Dd : DegData R (IsLocalRing.maximalIdeal R) :=
     ⟨E, hev, hbi, fun χ hχ => (hdiv χ hχ).elim fun r hr => hin χ _ r hr.1 hr.2, fun n => by
       classical
-      obtain ⟨s, hs⟩ := GlobalTheory.T.expansionCoef_mem_adic_pow R _ hI D A G U σ f th hf hth (n + c)
+      obtain ⟨s, hs⟩ := _root_.GlobalTheory.PsiRing.coef_mem_pow R _ hI D A G U σ f th hf hth (n + c)
       refine (insert 0 s).finite_toSet.subset fun χ hχ => ?_
       by_contra hn
       rw [Finset.mem_coe, Finset.mem_insert, not_or] at hn

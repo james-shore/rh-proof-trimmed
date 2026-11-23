@@ -78,7 +78,7 @@ theorem isLocallyConstant_addChar (ψ : AddChar k ℂ) (hψ : Continuous ψ) : I
           rw [pow_succ, mul_two, add_smul]
         rw [e]
         exact Valuation.map_add_lt _ ih ih
-    apply eq_one_of_pow_two_pow_near
+    apply _root_.GlobalTheory.PositiveFormRecursion.main
     intro n
     have h3 : ψ ((2 ^ n : ℕ) • x) ∈ Metric.ball (1 : ℂ) (1 / 2) := hsub (h2 n)
     rw [AddChar.map_nsmul_eq_pow, Metric.mem_ball, dist_eq_norm] at h3
@@ -118,8 +118,6 @@ section
 
 open MeasureTheory Matrix
 
-theorem _root_.GlobalTheory.Adopt.schroedingerOperatorHeisenberg_preserves_schwartzBruhat : ∀ {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] [Invertible (2 : k)] (ψ0 : AddChar k ℂ), Continuous ψ0 →
-    ∀ {κ : Type} [Fintype κ] (w : (κ → k) × (κ → k)), ∀ φ ∈ GlobalTheory.WeilM.SB (κ → k), GlobalTheory.WeilM.schr ψ0 w φ ∈ GlobalTheory.WeilM.SB (κ → k) := by
-  first | exact @SchrodingerSchwartzBruhat.GlobalTheory.CompanionTheory.SchrSB.schr_mem_SB | exact SchrodingerSchwartzBruhat.GlobalTheory.CompanionTheory.SchrSB.schr_mem_SB | (intros; apply SchrodingerSchwartzBruhat.GlobalTheory.CompanionTheory.SchrSB.schr_mem_SB <;> assumption)
+alias _root_.GlobalTheory.Adopt.schroedingerOperatorHeisenberg_preserves_schwartzBruhat := _root_.SchrodingerSchwartzBruhat.GlobalTheory.CompanionTheory.SchrSB.schr_mem_SB
 
 end

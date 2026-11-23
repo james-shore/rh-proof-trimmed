@@ -59,9 +59,7 @@ def Bd (p : ℕ) [Fact p.Prime] (r : ℝ) (x : ℂ) : Prop :=
 
 variable {p : ℕ} [Fact p.Prime]
 
-lemma lamC_of_mem (lam : Qbar →+* ℂ_[p]) {x : ℂ} (h : x ∈ Qbar) : lamC lam x = lam ⟨x, h⟩ := by
-  unfold lamC
-  rw [dite_eq_left h]
+alias lamC_of_mem := _root_.Formalism.L2.KerInert.ISd.lamC_of_mem
 
 lemma Bd.zero {r : ℝ} (hr : 0 ≤ r) : Bd p r 0 := by
   refine ⟨zero_mem _, fun lam => ?_⟩

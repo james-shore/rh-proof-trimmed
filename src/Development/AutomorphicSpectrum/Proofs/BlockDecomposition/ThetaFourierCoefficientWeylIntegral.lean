@@ -65,10 +65,6 @@ theorem block_matrix_mul {n : ℕ} (a b c d a' b' c' d' : Mx D n n) :
 theorem mat_mul_mat {n : ℕ} (g h : G D n) : mat (g * h) = mat g * mat h := by
   simp only [mat, map_mul, Units.val_mul]
 
-theorem trace_adj_eq {n : ℕ} (M : Mx D n n) : Matrix.trace (adj M) = cA D (Matrix.trace M) := by
-  rw [adj, Matrix.trace_transpose]
-  exact (AddMonoidHom.map_trace (cA D).toAddMonoidHom M).symm
-
 theorem adj_gram (b₀ : HermE D ρ) : adj (b₀.1.map (incA D)) = b₀.1.map (incA D) := by
   ext i j
   have h := congrFun (congrFun b₀.2 i) j
@@ -88,7 +84,7 @@ theorem pr_neg_left (b₀ : HermE D ρ) (x y : Mx D ρ t) : pr b₀ (-x) y = -pr
 
 theorem trA_trace_pr_swap (b₀ : HermE D ρ) (x y : Mx D ρ t) :
     trA (Matrix.trace (pr b₀ y x)) = trA (Matrix.trace (pr b₀ x y)) := by
-  rw [← adj_pr b₀ x y, trace_adj_eq]
+  rw [← adj_pr b₀ x y, _root_.GlobalTheory.MixModel.trace_adj]
   exact GlobalTheory.DualPairCheck.trace_cA _
 
 theorem conj_char {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsCharAF D.host.F ψ) (u : AF D.host.F) :

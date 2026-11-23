@@ -56,7 +56,7 @@ theorem chars_congr {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [
 
 theorem charLift_trans : ∀ (K M N : Type) [Field K] [NumberField K] [_root_.NumberField.IsTotallyComplex K] [Field M] [NumberField M] [_root_.NumberField.IsTotallyComplex M] [Field N] [NumberField N] [_root_.NumberField.IsTotallyComplex N] [Algebra K M] [Algebra M N] [Algebra K N] [IsScalarTower K M N] (a : ℕ) (π : CuspSub K a) (P : CuspSub M a) (Q : CuspSub N a), CharLift π P → CharLift P Q → CharLift π Q := by
   intro K M N _ _ _ _ _ _ _ _ _ _ _ _ _ a π P Q h1 h2
-  refine ⟨GlobalTheory.T.cuspidal_baseChange_trans_tower K M N a π P Q h1.1 h2.1, ?_⟩
+  refine ⟨_root_.GlobalTheory.LiftTrans.isLift_trans K M N a π P Q h1.1 h2.1, ?_⟩
   intro v w _ τ T hτ hT ξ hξ hs
   let u : HeightOneSpectrum (𝓞 M) := w.under (𝓞 M)
   haveI hwu : w.asIdeal.LiesOver u.asIdeal := ⟨rfl⟩

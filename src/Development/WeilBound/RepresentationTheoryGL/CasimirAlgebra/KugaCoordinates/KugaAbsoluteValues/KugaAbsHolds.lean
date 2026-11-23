@@ -58,21 +58,6 @@ open Fin Function
 
 namespace PositivityTheory.Rg.Cz
 
-theorem kIp_kD : ∀ {P : Type} [AddCommGroup P] [Module ℝ P] {M : Type} [AddCommGroup M] [Module ℂ M] [Module ℝ M] [IsScalarTower ℝ ℂ M] {β : Type} [Fintype β] (B : M →ₗ[ℂ] M →ₗ⋆[ℂ] ℂ) (b : β → P) (T T' : P →ₗ[ℝ] Module.End ℂ M), (∀ X x y, B (T X x) y = B x (T' X y)) → ∀ {m : ℕ} (η : P [⋀^Fin m]→ₗ[ℝ] M) (θ : P [⋀^Fin (m + 1)]→ₗ[ℝ] M), kIp B b (kD T η) θ = ((m : ℂ) + 1) * kIp B b η (kDel T' b θ) :=
-  GlobalTheory.CompanionTheory.KAdjoint.kIp_kD
-
-theorem kDel_kD : ∀ {P : Type} [AddCommGroup P] [Module ℝ P] {M : Type} [AddCommGroup M] [Module ℂ M] [Module ℝ M] [IsScalarTower ℝ ℂ M] {β : Type} [Fintype β] (T T' : P →ₗ[ℝ] Module.End ℂ M) (b : β → P) {q : ℕ} (η : P [⋀^Fin q]→ₗ[ℝ] M) (Y : Fin q → P), kDel T' b (kD T η) Y = ∑ i, T' (b i) (T (b i) (η Y)) - ∑ t, ∑ i, T' (b i) (T (Y t) (η (Function.update Y t (b i)))) :=
-  GlobalTheory.CompanionTheory.KDelFormula.kDel_kD
-
-theorem kD_kDel : ∀ {P : Type} [AddCommGroup P] [Module ℝ P] {M : Type} [AddCommGroup M] [Module ℂ M] [Module ℝ M] [IsScalarTower ℝ ℂ M] {β : Type} [Fintype β] (T T' : P →ₗ[ℝ] Module.End ℂ M) (b : β → P) {n : ℕ} (θ : P [⋀^Fin (n + 1)]→ₗ[ℝ] M) (Y : Fin (n + 1) → P), kD T (kDel T' b θ) Y = ∑ s, ∑ i, T (Y s) (T' (b i) (θ (Function.update Y s (b i)))) :=
-  GlobalTheory.CompanionTheory.Kabs.kD_kDel_apply
-
-theorem kInv_sum : ∀ {P : Type} [AddCommGroup P] [Module ℝ P] {M : Type} [AddCommGroup M] [Module ℂ M] [Module ℝ M] [IsScalarTower ℝ ℂ M] {β γ : Type} [Fintype β] (b : β → P) (D : γ → P →ₗ[ℝ] P) (c : β → β → γ → ℝ) (E : γ → Module.End ℂ M), (∀ i j k, c j i k = -c i j k) → (∀ k j, D k (b j) = ∑ i, c i j k • b i) → ∀ {q : ℕ} (ω : P [⋀^Fin q]→ₗ[ℝ] M), (∀ k (Y : Fin q → P), E k (ω Y) = ∑ s, ω (Function.update Y s (D k (Y s)))) → ∀ (k : γ) (J : Fin q → β), ∑ s, ∑ i, (c (J s) i k : ℂ) • ω (Function.update (b ∘ J) s (b i)) = -E k (ω (b ∘ J)) :=
-  GlobalTheory.CompanionTheory.Invsum.invariance_contraction
-
-theorem kAlt_eq_zero : ∀ {P : Type} [AddCommGroup P] [Module ℝ P] {M : Type} [AddCommGroup M] [Module ℝ M] {β : Type} (b : β → P), Submodule.span ℝ (Set.range b) = ⊤ → ∀ {m : ℕ} (f : P [⋀^Fin m]→ₗ[ℝ] M), (∀ I : Fin m → β, f (b ∘ I) = 0) → f = 0 :=
-  GlobalTheory.CompanionTheory.AltSpan.alternatingMap_eq_zero_of_span
-
 section
 variable {P : Type} [AddCommGroup P] [Module ℝ P] {M : Type} [AddCommGroup M] [Module ℂ M]
   [Module ℝ M] [IsScalarTower ℝ ℂ M]
@@ -113,8 +98,8 @@ theorem kHom {β γ : Type} [Fintype β] [Fintype γ] (b : β → P) (a r : P �
     have e := (ha'r' k).eq
     simp only [mul_add, sub_mul, e]
     abel
-  have hinv := kInv_sum b D c (fun k => a' k + r' k) hc hD ω hω
-  rw [kDel_kD]
+  have hinv := _root_.GlobalTheory.CompanionTheory.Invsum.invariance_contraction b D c (fun k => a' k + r' k) hc hD ω hω
+  rw [_root_.GlobalTheory.CompanionTheory.KDelFormula.kDel_kD]
   generalize a + r = L at hcomm hsq ⊢
   generalize r - a = L' at hcomm hsq ⊢
   have step1 : ∑ i, L' (b i) (L (b i) (ω (b ∘ J))) -
@@ -162,7 +147,7 @@ theorem kT_nonneg {β : Type} [Fintype β] (B : M →ₗ[ℂ] M →ₗ⋆[ℂ] �
   | zero => simp
   | succ n =>
     have h1 : ∀ J : Fin (n + 1) → β, (∑ s, ∑ i, T (b (J s)) (T' (b i) (ω (Function.update (b ∘ J) s (b i))))) =
-        kD T (kDel T' b ω) (b ∘ J) := fun J => (kD_kDel T T' b ω (b ∘ J)).symm
+        kD T (kDel T' b ω) (b ∘ J) := fun J => (_root_.GlobalTheory.CompanionTheory.Kabs.kD_kDel_apply T T' b ω (b ∘ J)).symm
     simp_rw [h1]
     have h2 : (∑ J : Fin (n + 1) → β, B (ω (b ∘ J)) (kD T (kDel T' b ω) (b ∘ J))) =
         starRingEnd ℂ (kIp B b (kD T (kDel T' b ω)) ω) := by
@@ -170,7 +155,7 @@ theorem kT_nonneg {β : Type} [Fintype β] (B : M →ₗ[ℂ] M →ₗ⋆[ℂ] �
 
       rw [map_sum]
       exact Finset.sum_congr rfl fun J _ => hB _ _
-    rw [h2, kIp_kD B b T T' hTT (kDel T' b ω) ω, Complex.conj_re, Complex.mul_re]
+    rw [h2, _root_.GlobalTheory.CompanionTheory.KAdjoint.kIp_kD B b T T' hTT (kDel T' b ω) ω, Complex.conj_re, Complex.mul_re]
     have : (((n : ℂ) + 1)).im = 0 := by simp
     rw [this, zero_mul, sub_zero]
     have : (((n : ℂ) + 1)).re = (n : ℝ) + 1 := by simp
@@ -189,13 +174,13 @@ theorem kugaAbs_holds : KugaAbs := by
     simp only [LinearMap.add_apply, LinearMap.sub_apply, map_add (f := _), map_sub, ha, hr]
     ring
   have hzero : kD (a + r) ω = 0 := by
-    apply kAlt_eq_zero b hb
+    apply _root_.GlobalTheory.CompanionTheory.AltSpan.alternatingMap_eq_zero_of_span b hb
     have hK : ∀ J : Fin q → β, kDel (r - a) b (kD (a + r) ω) (b ∘ J) =
         ((∑ i, r (b i) * r (b i) - ∑ k, r' k * r' k) - (∑ i, a (b i) * a (b i) - ∑ k, a' k * a' k) :
           Module.End ℂ M) (ω (b ∘ J)) -
         ∑ s, ∑ i, (a + r) (b (J s)) ((r - a) (b i) (ω (Function.update (b ∘ J) s (b i)))) :=
       fun J => eq_sub_of_add_eq (kHom b a r a' r' D c har ha'r' hca hcr hc hD ω hω J)
-    have hA := kIp_kD B b (a + r) (r - a) hadj ω (kD (a + r) ω)
+    have hA := _root_.GlobalTheory.CompanionTheory.KAdjoint.kIp_kD B b (a + r) (r - a) hadj ω (kD (a + r) ω)
     have hT := kT_nonneg B b (a + r) (r - a) hB hpos hadj ω
     have h2 : ∀ J : Fin q → β, (B (ω (b ∘ J))
         (((∑ i, r (b i) * r (b i) - ∑ k, r' k * r' k) - (∑ i, a (b i) * a (b i) - ∑ k, a' k * a' k) :

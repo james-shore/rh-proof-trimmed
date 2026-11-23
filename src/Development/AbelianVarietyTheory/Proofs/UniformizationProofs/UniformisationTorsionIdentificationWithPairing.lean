@@ -69,12 +69,12 @@ theorem translT_comp {S : Scheme.{0}} (A : Over S) [GrpObj A] [IsCommMonObj A] {
 
 theorem torsion_eq : LL → AllUF fun {R} _ _ {I} {D} {A} {G} _ _ U F _ _ => ∀ (k : ℕ), 1 ≤ k → ∃ f, Tors U.toUnifPre F k f := by
   intro hL R _ _ _ I hI D A G _ _ hG U F _ _ _ k hk
-  have hqk := GlobalTheory.T.inducesFrobeniusOnSections_translation_iff_image hL R I hI D A G hG U F k hk
-  have hcomp := GlobalTheory.T.indAt_comp_equiv_unique_id hL R I hI D A G hG U F k hk
+  have hqk := _root_.GlobalTheory.UT.indAt_translT_iff hL R I hI D A G hG U F k hk
+  have hcomp := _root_.GlobalTheory.UT.IndComp.indAt_comp_unique hL R I hI D A G hG U F k hk
   have huniq := GlobalTheory.TorsionImage.qkToAkU_unique hL.1 hL.2.1 R I hI D A G hG U F k hk
   have hinj := GlobalTheory.TorsionMapInj.qkToAk_injective hL.1 hL.2.1 R I hI D A G hG U F k hk
   have hex : ∀ p : QkPt D.toPre F k, ∃ x, QkToAkU U.toUnifPre F k p x := fun p => by
-    obtain ⟨x, hx⟩ := GlobalTheory.T.exists_inducedTranslation_frobeniusOnSections hL R I hI D A G hG U F k hk p
+    obtain ⟨x, hx⟩ := _root_.GlobalTheory.InducedTranslation.exists_translT_indAt hL R I hI D A G hG U F k hk p
     exact ⟨x, (hqk p x).1 (hx 1 k le_rfl (mul_one k).symm p (one_smul _ _).symm rfl)⟩
   choose f hf using hex
   have hwd : ∀ p p', QkPt.Equiv D.toPre F p p' → f p = f p' := fun p p' h =>

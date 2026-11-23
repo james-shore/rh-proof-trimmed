@@ -58,9 +58,7 @@ open GlobalTheory.UU
 
 namespace GlobalTheory.TorusQuotLift
 
-theorem isMonHom_of_points {S : Scheme.{0}} {G H : Over S} [GrpObj G] [GrpObj H] (φ : G ⟶ H)
-    (key : ∀ {T : Over S} (x y : T ⟶ G), (x * y) ≫ φ = (x ≫ φ) * (y ≫ φ)) : IsMonHom φ := by
-  apply GlobalTheory.GroupGlue.isMonHom_of_points <;> assumption
+alias isMonHom_of_points := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.isMonHom_of_mul
 
 private lemma pullback_fst_comp_mul_left {S S' : Scheme.{0}} {G : Over S} [GrpObj G] (f : S' ⟶ S) {T : Over S'}
     (u v : T ⟶ (Over.pullback f).obj G) :

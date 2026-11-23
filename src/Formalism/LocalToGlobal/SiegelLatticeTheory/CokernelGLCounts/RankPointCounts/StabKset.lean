@@ -70,7 +70,7 @@ theorem stab_kset {h g : Hfin X u} (hg : g ∈ (kR X u).map (MulAut.conj h).toMo
   rw [mem_map_conj, mem_kR_iff] at hg
   have e : h⁻¹ * g⁻¹ * h = (h⁻¹ * g * h)⁻¹ := by group
   rw [e, Subgroup.coe_inv]
-  exact kset_inv' X.B.I hg
+  exact _root_.Formalism.L2.SG.Pf.unitaryCongruence.K_inv X.B.I hg
 
 variable {X u}
 
@@ -86,7 +86,7 @@ theorem matR_mem (h g : Hfin X u) (hg : g ∈ stabR X u h) :
   obtain ⟨hM, hMf⟩ := matR_spec (Subgroup.mem_inf.1 hg).1
   have hfix : ∀ y ∈ fixSet X u, (matR (Subgroup.mem_inf.1 hg).1 : Matrix _ _ _).map
       (Formalism.UG.inclE (F := X.B.I.F) (Formalism.MainNotions.S.Af X.B.I.F)) *ᵥ incl X.B.I y = incl X.B.I y := fun y hy => by
-    rw [← hMf]; exact hfin_fix X u g y hy
+    rw [← hMf]; exact _root_.Formalism.L2.SG.PoincareInHH.Cut.hfin_fix X u g y hy
   refine ⟨matE_isom X _ hM, fun a => matE_fix X u _ hfix _ (Or.inl (Or.inl ⟨a, rfl⟩)),
     fun a => matE_fix X u _ hfix _ (Or.inl (Or.inr ⟨a, rfl⟩)), matE_fix X u _ hfix _ (Or.inr rfl), ?_⟩
   have e : g * h * (h⁻¹ * g⁻¹ * h) = h := by group
@@ -128,7 +128,7 @@ theorem card_stab (h : Hfin X u) : Nat.card ↥(stabR X u h) = Nat.card ↥(AH X
       have e5 : ((h⁻¹ * g * h : Hfin X u) : X.B.I.Gf) =
           X.xu u * ((X.xu u)⁻¹ * ((h⁻¹ * g * h : Hfin X u) : X.B.I.Gf) * X.xu u) * (X.xu u)⁻¹ := by group
       rw [e5]
-      exact kset_mul' X.B.I (kset_mul' X.B.I (X.xu_K u) hK) (kset_inv' X.B.I (X.xu_K u))
+      exact _root_.Formalism.L2.SG.Pf.unitaryCongruence.K_mul X.B.I (_root_.Formalism.L2.SG.Pf.unitaryCongruence.K_mul X.B.I (X.xu_K u) hK) (_root_.Formalism.L2.SG.Pf.unitaryCongruence.K_inv X.B.I (X.xu_K u))
     have hg : g ∈ stabR X u h := Subgroup.mem_inf.2 ⟨hgR, hgK⟩
     refine ⟨⟨g, hg⟩, Subtype.ext ?_⟩
     show matE X (matR (Subgroup.mem_inf.1 hg).1) = γ

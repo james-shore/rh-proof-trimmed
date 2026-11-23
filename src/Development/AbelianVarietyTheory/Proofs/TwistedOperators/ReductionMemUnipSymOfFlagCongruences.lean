@@ -70,7 +70,7 @@ theorem redFn_col {β : GL (Fin n) (E ⊗[F] Formalism.L2.Herm.Af F)} {Λ : Subm
     (hmem : (M.val - 1) *ᵥ w ∈ Formalism.L2.Herm.hatL (F := F) Λ ∧
       redV β PP ((M.val - 1) *ᵥ w) ∈ Submodule.pi {q | q ∉ A} (fun _ => (⊥ : Submodule (kP PP) (kP PP)))) :
     ∀ q, q ∉ A → ((redFn β PP M : GL (Fin n) (kP PP)) : Matrix (Fin n) (Fin n) (kP PP)) q j = if q = j then 1 else 0 := by
-  obtain ⟨hadd, -, hMv⟩ := GlobalTheory.T.residueCoordinatesInFrame_linear_stabiliser β Λ hβ PP
+  obtain ⟨hadd, -, hMv⟩ := _root_.GlobalTheory.SeeConjGroup.redV_add_smul_stab β Λ hβ PP
   intro q hq
   have e1 : (M.val - 1) *ᵥ w + w = (M : Matrix (Fin n) (Fin n) _) *ᵥ w := by
     rw [Matrix.sub_mulVec, Matrix.one_mulVec, sub_add_cancel]
@@ -88,7 +88,7 @@ end Gen
 theorem redV_zero_of_frame {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {n : ℕ}
     {β : GL (Fin n) (E ⊗[F] Formalism.L2.Herm.Af F)} {Λ : Submodule (𝓞 E) (Fin n → E)} (hβ : IsFrame β Λ) (PP : Pl E) :
     redV β PP 0 = 0 := by
-  obtain ⟨hadd, -, -⟩ := GlobalTheory.T.residueCoordinatesInFrame_linear_stabiliser β Λ hβ PP
+  obtain ⟨hadd, -, -⟩ := _root_.GlobalTheory.SeeConjGroup.redV_add_smul_stab β Λ hβ PP
   have := hadd 0 (Submodule.zero_mem _) 0 (Submodule.zero_mem _)
   rw [add_zero] at this
   simpa using this
@@ -151,7 +151,7 @@ theorem redV_mL (D : D7) (g : ℕ) (β : GL (Fin (Yc D 0).rank) (EAf D)) (PP : P
     (hg : ((g : ℕ) : 𝓞 D.host.E) ∈ PP.asIdeal) :
     ∀ v ∈ Formalism.L2.SG.HidaSetting.mL (II D) g,
       v ∈ Formalism.L2.Herm.hatL (F := D.host.F) (E := D.host.E) (n := (Yc D 0).rank) (II D).L ∧ redV β PP v = 0 := by
-  obtain ⟨hadd, hsmul, -⟩ := GlobalTheory.T.residueCoordinatesInFrame_linear_stabiliser β (II D).L hβ PP
+  obtain ⟨hadd, hsmul, -⟩ := _root_.GlobalTheory.SeeConjGroup.redV_add_smul_stab β (II D).L hβ PP
   intro v hv
   unfold mL at hv
   induction hv using Submodule.span_induction with
@@ -192,7 +192,7 @@ theorem redV_span (D : D7) (β : GL (Fin (Yc D 0).rank) (EAf D)) (PP : Pl D.host
     (hS : ∀ s ∈ S, s ∈ Formalism.L2.Herm.hatL (F := D.host.F) (E := D.host.E) (n := (Yc D 0).rank) (II D).L ∧ redV β PP s ∈ T) :
     ∀ v ∈ Submodule.span (IntAf (II D).F (II D).E) S,
       v ∈ Formalism.L2.Herm.hatL (F := D.host.F) (E := D.host.E) (n := (Yc D 0).rank) (II D).L ∧ redV β PP v ∈ T := by
-  obtain ⟨hadd, hsmul, -⟩ := GlobalTheory.T.residueCoordinatesInFrame_linear_stabiliser β (II D).L hβ PP
+  obtain ⟨hadd, hsmul, -⟩ := _root_.GlobalTheory.SeeConjGroup.redV_add_smul_stab β (II D).L hβ PP
   intro v hv
   induction hv using Submodule.span_induction with
   | mem y hy => exact hS y hy
@@ -217,7 +217,7 @@ theorem redV_Mo (D : D7) (g : ℕ) (β : GL (Fin (Yc D 0).rank) (EAf D)) (PP : P
     (hS : ∀ s ∈ S, s ∈ Formalism.L2.Herm.hatL (F := D.host.F) (E := D.host.E) (n := (Yc D 0).rank) (II D).L ∧ redV β PP s ∈ T) :
     ∀ v ∈ Formalism.L2.SG.Pf.unitaryCongruence.Mo (II D) g S,
       v ∈ Formalism.L2.Herm.hatL (F := D.host.F) (E := D.host.E) (n := (Yc D 0).rank) (II D).L ∧ redV β PP v ∈ T := by
-  obtain ⟨hadd, -, -⟩ := GlobalTheory.T.residueCoordinatesInFrame_linear_stabiliser β (II D).L hβ PP
+  obtain ⟨hadd, -, -⟩ := _root_.GlobalTheory.SeeConjGroup.redV_add_smul_stab β (II D).L hβ PP
   intro v hv
   obtain ⟨y, hy, z, hz, rfl⟩ := Submodule.mem_sup.1 hv
   obtain ⟨hy1, hy2⟩ := redV_span D β PP hβ T S hS y hy

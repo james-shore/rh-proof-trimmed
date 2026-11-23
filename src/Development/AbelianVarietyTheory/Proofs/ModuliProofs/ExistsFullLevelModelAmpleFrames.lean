@@ -226,7 +226,7 @@ theorem topAmpExists : GlobalTheory.LN.HomExtSt → Out.Laws → Out.Laws2 → G
   have hg1 : 1 ≤ Module.finrank ℚ E / 2 * (D.p + D.q) :=
     calc 1 = 1 * 1 := rfl
       _ ≤ _ := Nat.mul_le_mul (one_le_finrank_div_two (E := E)) hpq
-  obtain ⟨j₁, hj₁⟩ := GlobalTheory.T.exists_thetaFamily_pel_smooth_generic_fibre hL hL2 hRed hGen hTh E H D _ J a w w' bas hpq hbas haw haw' hcl n hnp hno
+  obtain ⟨j₁, hj₁⟩ := _root_.GlobalTheory.ZM.exists_thetaFam_isPEL_smooth hL hL2 hRed hGen hTh E H D _ J a w w' bas hpq hbas haw haw' hcl n hnp hno
   obtain ⟨k, j₂, hj₂⟩ := GlobalTheory.T.nonempty_ampleFramedModel_PELThetaFamily hL hL2 hSR hTU hUT hZG E H D n hpq hnp hno
   obtain ⟨j₃, hj₃⟩ := GlobalTheory.T.exists_universal_quasiProjective_siegelFamily_large_level hL hL2 hGen hTh _ n hg1 hnp hno
   obtain ⟨j, hj1, hj2, hj3, hj⟩ : ∃ j, j₁ ≤ j ∧ j₂ ≤ j ∧ j₃ ≤ j ∧ 1 ≤ j :=
@@ -237,7 +237,7 @@ theorem topAmpExists : GlobalTheory.LN.HomExtSt → Out.Laws → Out.Laws2 → G
   obtain ⟨F, τ, hPEL, hsm⟩ := hj₁ j hj1 (RZ H n ((n ^ j) ^ 2)) b (RZ H n ((n ^ j) ^ 2)).subtype
     (RZ.rt H n ((n ^ j) ^ 2)) (RZ.coe_rt H n _) hAr
   obtain ⟨C⟩ := hj₂ j hj2 (n ^ j) rfl _ J a bas b F τ hbas hcl ⟨w, w', haw, haw'⟩ hb hPEL hsm
-  obtain ⟨lev, hcore⟩ := GlobalTheory.T.exists_universal_fullLevel_of_pelThetaFamily hL hL2 E H D n (n ^ j) _ J a bas b F τ hbas hcl
+  obtain ⟨lev, hcore⟩ := _root_.GlobalTheory.exists_famCore_of_thetaFam hL hL2 E H D n (n ^ j) _ J a bas b F τ hbas hcl
     ⟨w, w', haw, haw'⟩ hb hPEL hsm hpq hnp hno ⟨j, hj, rfl⟩
   have hcl2 := GlobalTheory.T.cmFamily_finite_unramified_over_siegelFamily hHE hL hL2 E H D n ((n ^ j) ^ 2) F.MM F.s τ lev hpq hnp hno
     ⟨j * 2, by omega, hNe⟩ hcore (hj₃ j hj3)

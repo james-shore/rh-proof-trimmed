@@ -148,7 +148,7 @@ theorem RecNums.divIneq (muC mu0 Fo Lpass Eb : ℝ) (hC : muC ≤ mu0 + Lpass)
   have hS := R.p18
   have hb' := R.p34
   have hC0 : 0 ≤ R.C0 := by linarith [R.c1]
-  have H := Formalism.DivisionValues.divIneqRecord J Pl R.TT muC mu0 Fo R.hu R.hA (∑ j, R.hX j) R.logT
+  have H := _root_.Formalism.DivisionValues.divisor_inequality_explicit J Pl R.TT muC mu0 Fo R.hu R.hA (∑ j, R.hX j) R.logT
     R.hB R.aT (fun j ρ => ∑ i, ph (R.ν j ρ i)) (fun j ρ => ∑ i, R.ν j ρ i) R.logH R.x R.eps R.L R.b R.a R.rd R.La R.B0 R.NcF
     R.m R.f R.k R.Nn R.S R.tt R.η R.w'' R.b' R.lam0 R.C0 R.ce Lpass Eb
     (R.m * (R.Ch * R.f * R.nV ^ 2 * R.Lp))

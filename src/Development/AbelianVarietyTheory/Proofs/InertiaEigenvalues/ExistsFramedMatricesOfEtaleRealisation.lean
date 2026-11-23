@@ -80,8 +80,8 @@ theorem exists_mReal_of_realises : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (
   intro l _ K bk d S M e hF T _ _ ρ j H
   have hfin := H.finite
   have hfree := H.free
-  obtain ⟨e', he'⟩ := GlobalTheory.T.isSemilinearBaseChange_exists_basis_eq_image_of_basis _ _ _ _ _ (M.tr bk.ι) (M.tr_bc bk.ι) (Fin d) e
-  obtain ⟨c, hc⟩ := GlobalTheory.T.isSemilinearBaseChange_exists_basis_eq_image_of_basis _ _ _ _ _ j H.bc (Fin d) e'
+  obtain ⟨e', he'⟩ := _root_.GlobalTheory.Prism.semiBC_basis _ _ _ _ _ (M.tr bk.ι) (M.tr_bc bk.ι) (Fin d) e
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.Prism.semiBC_basis _ _ _ _ _ j H.bc (Fin d) e'
   have hrank : Module.finrank ℤ_[l] T = d := by
     rw [← Module.finrank_baseChange (R := WCb l), Module.finrank_eq_card_basis c, Fintype.card_fin]
   let b := Module.finBasisOfFinrankEq ℤ_[l] T hrank
@@ -102,7 +102,7 @@ theorem exists_mReal_of_realises : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (
         simp [Pi.single_apply]
       obtain ⟨m, s, hm⟩ := exists_isFrac (t : (ainfObj K).A)
         (M.Φ (ainfObj K) t (∑ j', (Pi.single k (1 : (ainfObj K).A) : Fin d → (ainfObj K).A) j' • M.tr bk.ι (e j')))
-      obtain ⟨r, hr⟩ := GlobalTheory.T.prismaticFCrystal_frobenius_pullback_basis l K bk d M e S.a S.A hF.Φ (ainfObj K) bk.ι t _ m s hm
+      obtain ⟨r, hr⟩ := _root_.GlobalTheory.BSP.frob_tr_basis l K bk d M e S.a S.A hF.Φ (ainfObj K) bk.ι t _ m s hm
       replace hm : IsFrac (t : (ainfObj K).A) (M.Φ (ainfObj K) t (M.tr bk.ι (e k))) m s := by
         simpa only [hsum] using hm
       have hj : inclW l (bk.ev bk.E) ^ s • TensorProduct.map (frobW l).toLinearMap LinearMap.id

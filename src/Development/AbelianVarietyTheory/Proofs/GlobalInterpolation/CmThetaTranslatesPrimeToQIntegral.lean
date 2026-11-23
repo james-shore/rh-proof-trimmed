@@ -80,8 +80,6 @@ theorem opU_hOne (L : PeriodPair) (x : Fin 1 → ℂ) (F : ℂ → ℂ) (z : Fin
   congr 3
   ring
 
-theorem area_pos (L : PeriodPair) : 0 < Formalism.L2.Th1.F.area L := Formalism.L2.Th1.F.areaPos_thm L
-
 theorem herm_conj (L : PeriodPair) (x y : ℂ) : herm L y x = conj (herm L x y) := by
   simp [herm, mul_comm]
 
@@ -137,7 +135,7 @@ theorem setupOne_ok (hp : d.Prime) (h16 : d % 16 = 7) : (setupOne d L).Ok := by
     show (hOne L (Fin 1)).PosDef
     rw [h, Matrix.posDef_diagonal_iff]
     intro _
-    have := area_pos L
+    have := _root_.Formalism.L2.Th1.F.PeriodAreaSignLemmas.area_pos L
     rw [← Complex.ofReal_inv]
     exact_mod_cast inv_pos.2 this
   · have hi : Function.Injective (fun x : (setupOne d L).La => (⟨x.1 0, x.2⟩ : L.lattice)) := by

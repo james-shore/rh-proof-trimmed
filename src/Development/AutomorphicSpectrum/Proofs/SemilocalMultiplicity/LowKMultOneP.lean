@@ -54,6 +54,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
 public import CompanionTheory.HarishChandraModules.LowKTypeMultiplicity.EigenspaceCyclicDensity.CreationOperators.DifferentialCommutesWeightOperator
+import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.KsetSubset
 
 @[expose] public section
 
@@ -65,20 +66,18 @@ theorem hGenCO : GenCO := genCO_of koszul_differential_sq_zero (cover2_of (acycA
 
 theorem hInj : Inj :=
   inj_of (vanK_of (cok_of hGenCO) GlobalTheory.CompanionTheory.LKWtProj.wtProj
-    (GlobalTheory.CompanionTheory.KWeightMajor.wtMajor_of GlobalTheory.CompanionTheory.TransS.InfChar.hLowSpan)) GlobalTheory.CompanionTheory.LKWtProj.wtProj koszul_differential_sq_zero
+    (GlobalTheory.CompanionTheory.KWeightMajor.wtMajor_of _root_.GlobalTheory.CompanionTheory.KLowSpan.lowSpan_holds)) GlobalTheory.CompanionTheory.LKWtProj.wtProj koszul_differential_sq_zero
 
 theorem hMultAlg : MultAlg :=
-  multAlg_of GlobalTheory.CompanionTheory.TransS.InfChar.hLowSpan GlobalTheory.CompanionTheory.TransS.InfChar.hHWMap GlobalTheory.CompanionTheory.LKDens.dens
+  multAlg_of _root_.GlobalTheory.CompanionTheory.KLowSpan.lowSpan_holds GlobalTheory.CompanionTheory.TransS.InfChar.hHWMap GlobalTheory.CompanionTheory.LKDens.dens
     GlobalTheory.CompanionTheory.LKInvLift.invLift GlobalTheory.CompanionTheory.HCdecomp.hcdec hGenCO top_degree_cycle hInj
 
 theorem hKModExists : KModExists :=
   GlobalTheory.CompanionTheory.KModExists.kModExists GlobalTheory.CompanionTheory.TransS.InfChar.hSmMod CompanionTheory.D.gk.admitted.kFin_mem_smoothVecs
-    GlobalTheory.CompanionTheory.TransS.InfChar.hKFinStab GlobalTheory.CompanionTheory.TransS.InfChar.hStabLink GlobalTheory.CompanionTheory.TransS.InfChar.hHWofType
+    _root_.UpperTheory.Reformulated.B.Gc1.kFinStab GlobalTheory.CompanionTheory.TransS.InfChar.hStabLink GlobalTheory.CompanionTheory.TransS.InfChar.hHWofType
     GlobalTheory.CompanionTheory.TransS.InfChar.hTypeOfHW
 
-theorem hOrthCyc : OrthCyc := GlobalTheory.CompanionTheory.LowKType.orthCyc
-
-theorem lowKMultOneP : LowKMultOneP := lowKMultOneP_of hMultAlg hKModExists cyclic_vectors_dense hOrthCyc
+theorem lowKMultOneP : LowKMultOneP := lowKMultOneP_of hMultAlg hKModExists cyclic_vectors_dense _root_.GlobalTheory.CompanionTheory.LowKType.orthCyc
 
 theorem lowKMultOne : Formalism.MainNotions.DiscreteSeriesWeylDimension.LowKMultOne := low_K_type_multiplicity_one_of lowKMultOneP
 

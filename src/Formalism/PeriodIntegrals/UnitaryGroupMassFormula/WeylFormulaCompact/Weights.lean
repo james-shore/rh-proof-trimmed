@@ -62,11 +62,6 @@ open scoped InnerProductSpace
 def wtTorus {N : ℕ} (θ : Fin N → ℝ) : Matrix (Fin N) (Fin N) ℂ :=
   diagonal fun a => Complex.exp ((θ a : ℂ) * Complex.I)
 
-theorem wt_char_real (f : ℝ → ℂ) (hc : Continuous f) (hm : ∀ s t, f (s + t) = f s * f t)
-    (h0 : f 0 = 1) (hn : ∀ t, ‖f t‖ = 1) :
-    ∃ m : ℝ, ∀ t, f t = Complex.exp (((m * t : ℝ) : ℂ) * Complex.I) := by
-  first | exact Bl.general_b_fact_left_variant.goal1 .. | (apply Bl.general_b_fact_left_variant.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_left_variant.goal1 <;> assumption)
-
 theorem wt_common_eigvec {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] {ι : Type}
     (A : ι → (H →L[ℂ] H)) (W : Submodule ℂ H) [FiniteDimensional ℂ W] (hW : W ≠ ⊥)
     (hst : ∀ i, ∀ v ∈ W, A i v ∈ W) (hcomm : ∀ i j, ∀ v, A i (A j v) = A j (A i v)) :
@@ -210,7 +205,7 @@ theorem torus_weight_exists : TorusWt := by
   have hcoord : ∀ a : Fin N, ∃ m : ℝ, ∀ t,
       χ (Pi.single a t) = Complex.exp (((m * t : ℝ) : ℂ) * Complex.I) := by
     intro a
-    apply wt_char_real (fun t => χ (Pi.single a t))
+    apply _root_.Bl.general_b_fact_left_variant.goal1 (fun t => χ (Pi.single a t))
     · exact hχc.comp ((LinearMap.single ℝ (fun _ : Fin N => ℝ) a).continuous_of_finiteDimensional)
     · intro s t; simp only [Pi.single_add]; exact hχadd _ _
     · simpa using hχ0

@@ -272,14 +272,14 @@ theorem finite_of_compact (Ω : Set G.GAf) (hΩ : IsCompact Ω) (γ₀ : G.Cˣ)
   · rw [hY, Set.image_empty]; exact Set.finite_empty
   have hirr₁ : Irreducible (minpoly G.F (P₁.γ : G.C)) := by rw [hP₁.1]; exact hirr
   obtain ⟨L, _, _, ι, c, hinj, hcent, hc, hcc⟩ :=
-    GlobalTheory.T.exists_numberField_involution_similitudeCentralizer p G P₁.β P₁.γ P₁.c P₁.sym P₁.sim hirr₁ P₁.reg.1
-  obtain ⟨S, hloc⟩ := GlobalTheory.T.definitePairs_ratio_locally_rational_times_norm p G Ω hΩ P₁ L ι c hinj hcent hc
+    _root_.GlobalTheory.CentSim.centraliser_field_involution p G P₁.β P₁.γ P₁.c P₁.sym P₁.sim hirr₁ P₁.reg.1
+  obtain ⟨S, hloc⟩ := _root_.GlobalTheory.LocTriv.ratio_local_norm_dpair p G Ω hΩ P₁ L ι c hinj hcent hc
   have hγ : ∀ P ∈ Y, P.γ = P₁.γ := fun P hP => hP.1.trans hP₁.1.symm
   have hcc' : ∀ P ∈ Y, P.c = P₁.c := fun P hP => hP.2.1.trans hP₁.2.1.symm
   have ha : ∀ P ∈ Y, ∃ a : L, ι a = ((P.β * P₁.β⁻¹ : G.Cˣ) : G.C) := fun P hP =>
     (hcent _).1 (quot_commute_and_fixed P P₁ (hγ P hP) (hcc' P hP)).1
   set X : Set L := {a | ∃ P ∈ Y, ι a = ((P.β * P₁.β⁻¹ : G.Cˣ) : G.C)} with hXdef
-  obtain ⟨R, hR⟩ := GlobalTheory.FixedNormCls.finite_classes_mod_rat_norms L c hcc S X (by
+  obtain ⟨R, hR⟩ := _root_.GlobalTheory.FixedNormCls.exists_finset_classes L c hcc S X (by
     rintro a ⟨P, hP, hPa⟩
     refine ⟨fun h0 => ?_, hinj ?_, fun v hv => hloc P (hγ P hP) (hcc' P hP) hP.2.2 a hPa v hv⟩
     · rw [h0, map_zero] at hPa

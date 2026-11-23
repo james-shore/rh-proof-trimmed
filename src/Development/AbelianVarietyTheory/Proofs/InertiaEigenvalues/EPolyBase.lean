@@ -155,18 +155,6 @@ theorem card_Del {l : ℕ} (hl : 2 ≤ l) (hk : (PD.p : k) = 0) (ι : k⸨X⸩ �
   simp [h6, hk] at h4
   linear_combination h4
 
-theorem aeval_red {M V : Type} [AddCommGroup M] [Module O M] [AddCommGroup V] [Module k V] (J : M →+ V)
-    (hs : ∀ (c : O) y, J (c • y) = algebraMap O k c • J y) (ν : Module.End O M) (μ : Module.End k V)
-    (hν : ∀ y, J (ν y) = μ (J y)) (f : Polynomial O) (y : M) :
-    J (Polynomial.aeval ν f y) = Polynomial.aeval μ (f.map (algebraMap O k)) (J y) := by
-  first
-  | exact @_root_.GlobalTheory.AevalCommute.main
-  | exact _root_.GlobalTheory.AevalCommute.main
-  | (apply _root_.GlobalTheory.AevalCommute.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AevalCommute.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AevalCommute.main <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.AevalCommute.main ..)
-
 variable {W} {l n : ℕ} {R : RingPG k l} {F : DFun R n G} {ι : k⸨X⸩ →ₐ[k] k⸨X⸩} {τ : ZMod n → ZMod n₀}
   {γ : W.Gam} (p : Pres W F ι τ γ) (T : LocLat G Qp LL O) (A : Ob k G) (q : ↥T.L.T →ₗ[O] (Fin A.m → k))
   (i : ZMod n)
@@ -259,7 +247,7 @@ theorem ePoly_gen [CharP k l] (hp : PD.p = l) (hl : 2 ≤ l) (hq : Onto T A q)
     intro y
     obtain ⟨z, hz, h⟩ := hmid (τ i) s y
     obtain ⟨z', hz'⟩ := red_div p i hq hk hc s _ z hz h
-    rw [aeval_red (red p T A q i) (red_smul p i hq) ν _ (red_ν p i hq ν hν), Polynomial.map_prod] at hz'
+    rw [_root_.GlobalTheory.AevalCommute.aeval_apply_comm (red p T A q i) (red_smul p i hq) ν _ (red_ν p i hq ν hν), Polynomial.map_prod] at hz'
     simp only [Polynomial.map_sub, Polynomial.map_X, Polynomial.map_C, hc2, map_neg, sub_neg_eq_add] at hz'
     exact mem_sh_iff_exists.2 ⟨_, (hN _).2 ⟨⟨z', z'.2.2⟩, z'.2.1, rfl⟩, hz'.symm⟩
   refine ⟨∏ m ∈ I.erase 0, (Polynomial.X + Polynomial.C (m : k)), ?_, fun x hx => ?_⟩

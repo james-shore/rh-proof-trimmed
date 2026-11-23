@@ -81,14 +81,6 @@ theorem hostDifferentGenerator_mul_mem_inverseDifferent {a : D.host.E} (ha : a �
   have h := FractionalIdeal.mul_mem_mul (FractionalIdeal.mem_spanSingleton_self (nonZeroDivisors (𝓞 D.host.E)) D.host.xi0) ha
   rwa [← mul_assoc] at h
 
-theorem psiE_add' (ψ : AddChar (AF D.host.F) ℂ) (x y : AE D) : psiE ψ (x + y) = psiE ψ x * psiE ψ y := by
-  unfold psiE
-  rw [map_add (f := _), AddChar.map_add_eq_mul]
-
-theorem psiE_zero' (ψ : AddChar (AF D.host.F) ℂ) : psiE ψ (0 : AE D) = 1 := by
-  unfold psiE
-  rw [map_zero, AddChar.map_zero_eq_one]
-
 theorem cA_tmul' (p : AF D.host.F) (e : D.host.E) :
     cA D (p ⊗ₜ[D.host.F] e) = p ⊗ₜ[D.host.F] D.host.conj e := by
   rw [GlobalTheory.IdeleAA.tmul_eq, map_mul, GlobalTheory.SelfDualAt.cA_alg, GlobalTheory.IdeleAA.cA_incA, ← GlobalTheory.IdeleAA.tmul_eq]
@@ -110,11 +102,11 @@ theorem adelicTraceChar_differentGen_conj_idealCompletion : ∀ {D : D7} {ψ : A
   | mem s hs =>
     obtain ⟨α, hα, a, ha, rfl⟩ := hs
     exact adelicTraceChar_differentGen_conj_integral_tmul hψ hα ha
-  | zero => rw [map_zero, mul_zero]; exact psiE_zero' ψ
-  | add x y _ _ hx hy => rw [map_add (f := _), mul_add, psiE_add', hx, hy, one_mul]
+  | zero => rw [map_zero, mul_zero]; exact _root_.GlobalTheory.MixPer.psiE_zero ψ
+  | add x y _ _ hx hy => rw [map_add (f := _), mul_add, _root_.GlobalTheory.MixPer.psiE_add, hx, hy, one_mul]
   | neg x _ hx =>
-    have h := psiE_add' ψ (incA D D.host.xi0 * cA D x) (incA D D.host.xi0 * cA D (-x))
-    rw [← mul_add, ← map_add (f := _), add_neg_cancel, map_zero, mul_zero, psiE_zero', hx, one_mul] at h
+    have h := _root_.GlobalTheory.MixPer.psiE_add ψ (incA D D.host.xi0 * cA D x) (incA D D.host.xi0 * cA D (-x))
+    rw [← mul_add, ← map_add (f := _), add_neg_cancel, map_zero, mul_zero, _root_.GlobalTheory.MixPer.psiE_zero, hx, one_mul] at h
     exact h.symm
 
 end GlobalTheory.XCharBF

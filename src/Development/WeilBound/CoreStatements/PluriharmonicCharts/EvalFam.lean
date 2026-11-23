@@ -89,7 +89,7 @@ theorem exists_res {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι 
   classical
   have hPh : ReciprocityTheory.AnForm.R.IsMultiHomogIdeal (pC (mCoordIdeal x)) := isMultiHomogIdeal_pC hP.2.1.2.1
   have hDh : ReciprocityTheory.AnForm.R.IsMultiHomogIdeal (pC J) := isMultiHomogIdeal_pC hJ
-  obtain ⟨hcpt, hsrc⟩ := GlobalTheory.T.snc_resolution_compact_embedded K ι _ hPh
+  obtain ⟨hcpt, hsrc⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Cmp.SncRes.Top.compact_open_embedding K ι _ hPh
   obtain ⟨himage, htrans⟩ := GlobalTheory.T.snc_resolution_transition_polynomial K ι _ hPh
   obtain ⟨hcover, hliftmem, hcompat, hsurj, hinj, hzero⟩ := GlobalTheory.T.snc_resolution_cover_and_cone K ι _ _ hPh hDh
   have hinv := GlobalTheory.T.snc_resolution_local_chart_polynomial K ι _ hPh

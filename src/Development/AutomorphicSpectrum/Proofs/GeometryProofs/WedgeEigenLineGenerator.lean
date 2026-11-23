@@ -118,7 +118,7 @@ theorem wedge_span {Ω V : Type} [Field Ω] [AddCommGroup V] [Module Ω V] {n : 
     (he : LinearIndependent Ω e) (ht : t ≠ 0)
     (h : exteriorPower.ιMulti Ω n b = t • exteriorPower.ιMulti Ω n e) (i : Fin n) :
     b i ∈ Submodule.span Ω (Set.range e) :=
-  GlobalTheory.T.mem_span_of_iota_multi_proportional Ω V n b e t he ht h i
+  _root_.GlobalTheory.CompanionTheory.WedgeSpan.span_of_wedge_proportional Ω V n b e t he ht h i
 
 theorem wedge_matrix {Ω V : Type} [Field Ω] [AddCommGroup V] [Module Ω V] {n : ℕ} (e : Fin n → V)
     (P : Matrix (Fin n) (Fin n) Ω) :
@@ -127,7 +127,7 @@ theorem wedge_matrix {Ω V : Type} [Field Ω] [AddCommGroup V] [Module Ω V] {n 
 
 theorem wedge_ne_zero {Ω V : Type} [Field Ω] [AddCommGroup V] [Module Ω V] {n : ℕ} {e : Fin n → V}
     (he : LinearIndependent Ω e) : exteriorPower.ιMulti Ω n e ≠ 0 :=
-  GlobalTheory.T.iota_multi_ne_zero_of_lin_indep Ω V n e he
+  _root_.GlobalTheory.CompanionTheory.Exterior.ιMulti_ne_zero_of_linearIndependent Ω V n e he
 
 end Lemmas
 

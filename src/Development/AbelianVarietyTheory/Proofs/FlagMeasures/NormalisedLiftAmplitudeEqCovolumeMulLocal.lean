@@ -59,7 +59,7 @@ theorem GlobalTheory.AmpLift.amp_lift : ∀ (D : D7) (X : HidaSetting D) (Y : Fu
   have hν' : IsQuotMeasS X.B.I x.2.1 ν := hμeq ▸ hν
   have hOO := Formalism.L2.SG.Pf.formAllC_holds D X Y u u' s x.2.1 ν x.2.2
     (Formalism.L2.SG.Pf.RelChar.relCharC_holds D X Y u u' s hrel) hHR hν' hfund.1 hfund.2
-  have hprod := GlobalTheory.T.realOrbitalIntegral_hsNorm_eq_prod_local D X u u' s.pt.1 μl νl ν hHaar hνl hν hinv
+  have hprod := _root_.GlobalTheory.OrbQuotProd.oo_quot D X u u' s.pt.1 μl νl ν hHaar hνl hν hinv
   unfold Formalism.L2.SG.TermOp.ampN
   rw [Formalism.L2.SG.LoopTerm.hsNormSq_smul, Formalism.L2.SG.LoopTerm.hsNormSq_smul, hOO,
     ← Complex.coe_smul, Formalism.L2.SG.LoopTerm.hsNormSq_smul, hprod]

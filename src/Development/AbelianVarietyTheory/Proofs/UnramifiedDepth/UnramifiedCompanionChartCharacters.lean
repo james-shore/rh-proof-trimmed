@@ -99,7 +99,7 @@ theorem unramified_companion_chart_characters : ∀ (p : ℕ) [Fact p.Prime], Up
     hht
   have hρ' : (ρ : OE → Matrix (Fin d) (Fin d) O) = fun a => linPart (actMap iota act a) :=
     funext fun a => (hρ a).1
-  obtain ⟨xs, hxs, hle⟩ := GlobalTheory.T.linearData_unramified_length_bound p C v O hv OE cp hset _ H d rk m _ B ρ N _ hdat hp2 hdisc w t hfrob r W
+  obtain ⟨xs, hxs, hle⟩ := _root_.GlobalTheory.ChF.linDat_unram_bound p C v O hv OE cp hset _ H d rk m _ B ρ N _ hdat hp2 hdisc w t hfrob r W
     (fun τ => by rw [hρ']; exact (isEigBasis_iff _ _ _).1 (hW τ)) j
   refine ⟨xs, ⟨m, u, ?_, hxs⟩, hle⟩
   rw [← hF']

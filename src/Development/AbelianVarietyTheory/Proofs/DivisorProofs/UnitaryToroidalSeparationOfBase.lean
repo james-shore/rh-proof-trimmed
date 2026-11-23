@@ -123,7 +123,7 @@ theorem uPoinStX_sep : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
     refine ⟨T₀, fun k hk => ?_⟩
     have h := hT k hk
     rwa [hνπ] at h
-  · exact GlobalTheory.T.separation_normalizedBlowup_unitaryCompactification E H Dw hpq φ hφ hns l Xo c C d J₀ hd hJ₀ hval₀ S π j hbl hprop hjπ hjo hrj.symm
+  · exact _root_.GlobalTheory.USep.sepB_of_normBl E H Dw hpq φ hφ hns l Xo c C d J₀ hd hJ₀ hval₀ S π j hbl hprop hjπ hjo hrj.symm
 
 theorem uStB : GlobalTheory.UChart.UStB := uPoinStX_sep
 

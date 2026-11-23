@@ -58,7 +58,7 @@ namespace GlobalTheory.LocMod.Exist
 
 variable {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (p : Place D k)
 
-theorem e_mul_ι (x : k) : p.e * p.ι x = p.ι x := by rw [← p.ι_π, p.π_ι]
+alias e_mul_ι := _root_.GlobalTheory.LocMod.Witness.e_ι
 
 variable {Y Y' : Type} [Fintype Y] [DecidableEq Y] [Fintype Y'] [DecidableEq Y'] {S T : HSp D}
   (FS : GlobalTheory.LocMod.Frame k S.rank Y') (FT : GlobalTheory.LocMod.Frame k T.rank Y)
@@ -81,9 +81,7 @@ theorem dual_mem (b : Matrix Y Y' k) : dual p FS FT b ∈ half S T (cA D p.e) :=
     simp only [dual, Matrix.map_apply]
     rw [← map_mul, e_mul_ι]
 
-theorem up_add (x y : Matrix Y Y' k) : p.up FS FT (x + y) = p.up FS FT x + p.up FS FT y := by
-  ext i j
-  simp only [Place.up, Matrix.mul_add, Matrix.add_mul, Matrix.map_apply, Matrix.add_apply, map_add (f := _)]
+alias up_add := _root_.GlobalTheory.LocMod.Witness.up_add
 
 theorem dual_add (x y : Matrix Y Y' k) : dual p FS FT (x + y) = dual p FS FT x + dual p FS FT y := by
   ext i j
@@ -93,8 +91,7 @@ theorem up_zero : p.up FS FT 0 = 0 := by simpa using up_add p FS FT 0 0
 
 theorem dual_zero : dual p FS FT 0 = 0 := by simpa using dual_add p FS FT 0 0
 
-theorem continuous_up : Continuous (p.up FS FT) :=
-  ((continuous_const.matrix_mul continuous_id).matrix_mul continuous_const).matrix_map p.cont_ι
+alias continuous_up := _root_.GlobalTheory.LocMod.Witness.up_cont
 
 theorem continuous_dual : Continuous (dual p FS FT) :=
   ((((continuous_const.matrix_mul continuous_id.matrix_transpose).matrix_mul continuous_const).matrix_mul

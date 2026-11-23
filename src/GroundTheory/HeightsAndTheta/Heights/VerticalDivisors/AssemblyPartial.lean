@@ -63,7 +63,7 @@ namespace GroundTheory.Heights₂.Heights.Vertical
 
 open MvPolynomial NumberField IsDedekindDomain
 
-theorem NormLength.full : NormLength.Statement := NormLength.proof
+alias NormLength.full := _root_.GroundTheory.Heights₂.Heights.Vertical.NormLength.proof
 theorem VertTermEq.full : VertTermEq.Statement := VertTermEq.proof
 theorem ParAlgIndep.full : ParAlgIndep.Statement := ParAlgIndep.proof
 theorem NormFormEval.full : NormFormEval.Statement := NormFormEval.proof
@@ -72,10 +72,10 @@ theorem ChowFormHomog.full : ChowFormHomog.Statement := ChowFormHomog.proof
 theorem IncidenceNull.full : IncidenceNull.Statement := IncidenceNull.proof
 theorem LengthDecomp.full : LengthDecomp.Statement := LengthDecomp.proof
 theorem NormFormLocalization.full : NormFormLocalization.Statement := NormFormLocalization.proof
-theorem ParDVRIsDVR.full : ParDVRIsDVR.Statement := ParDVRIsDVR.proof
+alias ParDVRIsDVR.full := _root_.GroundTheory.Heights₂.Heights.Vertical.ParDVRIsDVR.proof
 theorem ParFracIsFractionRing.full : ParFracIsFractionRing.Statement := ParFracIsFractionRing.proof
-theorem PrimitiveScale.full : PrimitiveScale.Statement := PrimitiveScale.proof
-theorem SecBGeneric.full : SecBGeneric.Statement := SecBGeneric.proof
+alias PrimitiveScale.full := _root_.GroundTheory.Heights₂.Heights.Vertical.PrimitiveScale.proof
+alias SecBGeneric.full := _root_.GroundTheory.Heights₂.Heights.Vertical.SecBGeneric.proof
 theorem SecBFinite.full : SecBFinite.Statement :=
   SecBFinite.proof IncidenceNull.full ChartTorsion.full PrimitiveScale.full
 

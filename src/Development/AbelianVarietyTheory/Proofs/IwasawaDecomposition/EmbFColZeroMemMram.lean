@@ -276,11 +276,7 @@ theorem embF_injective {E K ι : Type} [Field E] [NumberField E] [StarRing E] [F
     Function.Injective (T.embF emb σ lam h) :=
   inj_of_li σ _ (T.hlat emb lam h).b (T.lawBasis_of_ok emb σ lam h).1
 
-theorem embF_mem_Fi {E K ι : Type} [Field E] [NumberField E] [StarRing E] [Field K] [NumberField K] [StarRing K] [Fintype ι]
-    {n : ℕ} (T : GStep E K n) (emb : ι → E →+* K) (σ : K →+* ℂ) (lam : ι → DomWeight n) (h : (T.fam emb lam).Ok)
-    (x : T.FormsK emb lam h) : T.embF emb σ lam h x ∈ T.Fi emb σ lam := by
-  rw [← (T.lawBasis_of_ok emb σ lam h).2]
-  exact mem_span_basis_image σ (T.hlat emb lam h).b _ x
+alias embF_mem_Fi := _root_.GlobalTheory.Mem.Col2.Law.embF_mem
 
 end Zero
 

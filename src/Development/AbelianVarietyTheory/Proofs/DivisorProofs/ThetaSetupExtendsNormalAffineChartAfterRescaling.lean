@@ -177,7 +177,7 @@ theorem exists_real_rechart (hL : Laws) {o Ω : Type} [CommRing o] [Field Ω] [A
     rw [hdd, smul_smul, ← fm, inv_mul_cancel₀ hdd0]
     exact ((congrArg (· • _) (map_one _)).trans (one_smul _ _)).symm
 
-  obtain ⟨α', hα', nα'⟩ := GlobalTheory.T.exists_normalised_mulPull_iso_origin hL _ P' rig' hrig' (ρ.n ^ ρ.k) S.N hN (baseOver (Sp R'))
+  obtain ⟨α', hα', nα'⟩ := _root_.GlobalTheory.ThetaReal.exists_normalised_mulPull hL _ P' rig' hrig' (ρ.n ^ ρ.k) S.N hN (baseOver (Sp R'))
   obtain ⟨α₀, hα₀, vα⟩ := exists_genThrough₂ gp τ hτ hw hL₁ hL₀ (psi_pow gp τ hτ (ρ.n ^ ρ.k)) ρ.α ρ.α_gen
   obtain ⟨α₀', hα₀', vα'⟩ := exists_genThrough₂ gp' τ' hτ' hw' hL' hL₀ (psi_pow gp' τ' hτ' (ρ.n ^ ρ.k)) α' hα'
   obtain rfl : α₀ = α₀' := gen_eq_of_section hL₀ (fst _ P₀.A).left (ptSecT P₀.A 1).left (ptSecT_fst _)

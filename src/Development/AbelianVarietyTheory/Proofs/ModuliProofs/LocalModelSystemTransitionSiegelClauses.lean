@@ -74,7 +74,7 @@ end Incl
 
 theorem system_clauses : (∀ (T K : Type) [CommRing T] [IsDomain T] [IsDiscreteValuationRing T] [Field K] [Algebra T K] [IsFractionRing T K] (G G' : Over (Sp T)) [GrpObj G] [GrpObj G'], IsSemiAbelian G → IsSemiAbelian G' → ∀ f : (Over.pullback (spMap (algebraMap T K))).obj G ⟶ (Over.pullback (spMap (algebraMap T K))).obj G', IsMonHom f → ∃! F : G ⟶ G', IsMonHom F ∧ (Over.pullback (spMap (algebraMap T K))).map F = f) → Out.Laws → Out.Laws2 → Out.Laws3 → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (Xo : ∀ l : Level H, Moduli D l), 1 ≤ D.p + D.q → ToroidalLevelCompatibility (H := H) (D := D) → ∀ (S : System Xo) p W hp hW, N2 (S.Y p W hp hW) := by
   intro hext L1 L2 L3 E _ _ _ H D Xo hD hN S p W hp hW
-  refine ⟨fun i => (GlobalTheory.T.localModel_oneModel_and_splitFibres hext L1 L2 L3 E H D Xo hD hN S p W hp hW i).1, ?_⟩
+  refine ⟨fun i => (_root_.GlobalTheory.Models.System.levelStructureConditions_and_splitFibres hext L1 L2 L3 E H D Xo hD hN S p W hp hW i).1, ?_⟩
   obtain ⟨hnp, hodd, h3, h4⟩ := S.aux (S.ch p)
   have hcop := (GlobalTheory.T.exists_two_inert_odd_primes_coprime_level E H).2 _ (S.aux (S.ch p))
   obtain ⟨-, hl2, hl3⟩ := GlobalTheory.T.primeToPart_level_exists_unique_mono E H p hp
@@ -85,13 +85,13 @@ theorem system_clauses : (∀ (T K : Type) [CommRing T] [IsDomain T] [IsDiscrete
     obtain ⟨b, hb⟩ := exists_isIncl (W := W) hc
     obtain ⟨l₀, h₀, hr⟩ := S.raises p W hp hW i
     obtain ⟨l₀', h₀', hr'⟩ := S.raises p W hp hW i₂
-    obtain ⟨π, hπ⟩ := GlobalTheory.T.exists_transition_map_raised_models hext L1 L2 L3 E H D Xo _ _ (S.T (S.ch p)) hN l₀ l₀' _ _ i.l i.c _ _
+    obtain ⟨π, hπ⟩ := _root_.GlobalTheory.RaisedTransition.exists_isTransition hext L1 L2 L3 E H D Xo _ _ (S.T (S.ch p)) hN l₀ l₀' _ _ i.l i.c _ _
       (S.Y p W hp hW i) i₂.l i₂.c _ _ (S.Y p W hp hW i₂) b hnp.pos ⟨_, dvd_rfl⟩ (hl3 _ _ _ _ h₀ h₀' hl)
       (hl2 _ _ h₀).1 (hl2 _ _ h₀').1 hl hc ((GlobalTheory.T.coefficientField_integers_dedekind_fractionField E H i.l i.c).2.2.2 p W hp hW).1
       ((GlobalTheory.T.coefficientField_integers_dedekind_fractionField E H i₂.l i₂.c).2.2.2 p W hp hW).1 hb hr hr'
     exact ⟨π, fun b' hb' => isIncl_unique hb hb' ▸ hπ⟩
   choose π hπ using key
-  obtain ⟨Ag, hAg⟩ := GlobalTheory.T.cm_models_siegel_family_comparison L1 L2 L3 E H D Xo _ _ (S.T (S.ch p)) hN p hp (S.ch_ne p).symm hnp ⟨_, rfl⟩
+  obtain ⟨Ag, hAg⟩ := _root_.GlobalTheory.SiegelComparison.siegelCompare L1 L2 L3 E H D Xo _ _ (S.T (S.ch p)) hN p hp (S.ch_ne p).symm hnp ⟨_, rfl⟩
   refine ⟨π, hπ, S.n (S.ch p), S.J (S.ch p), Ag, hnp, hodd, S.ch_ne p, ?_, hcop, ?_⟩
   · have h2 : 3 ≤ S.n (S.ch p) := by
       have := hnp.two_le

@@ -118,15 +118,15 @@ theorem i_derex : GlobalTheory.RealLift.DerEx := GlobalTheory.T.archHeisenbergDe
 
 theorem i_fockex : GlobalTheory.RealLift.DerEx → GlobalTheory.RealLift.FockEx := GlobalTheory.T.fockToSchrodingerMapExists_of_archHeisenbergDerivatives
 
-theorem i_vacline : GlobalTheory.RealLift.DerEx → GlobalTheory.RealLift.VacLine := GlobalTheory.T.schwartzFockVacuumLineUnique_of_heisenberg_derivatives
+alias i_vacline := _root_.GlobalTheory.VacLn.vacLine_of_derEx
 
-theorem i_polrange : GlobalTheory.RealLift.ActsLaws → GlobalTheory.RealLift.DerEx → GlobalTheory.RealLift.VacLine → GlobalTheory.RealLift.PolRange := GlobalTheory.T.fockPolynomialSpace_eq_fockImage_of_arch_laws
+alias i_polrange := _root_.GlobalTheory.RealLift.PolRangePf.polRange_of
 
 theorem i_genex : GlobalTheory.RealLift.GenEx := GlobalTheory.T.oneParamSubgroup_generators_exist
 
 theorem i_lineex : GlobalTheory.RealLift.LineEx := GlobalTheory.T.unitaryLieElements_generate_oneParamLines
 
-theorem i_kline : GlobalTheory.RealLift.LineEx → GlobalTheory.RealLift.KLine := GlobalTheory.T.maximalCompact_oneParameterLines_of_lieLines
+alias i_kline := _root_.GlobalTheory.RealLift.kLine_of_lineEx
 
 theorem i_liescalar : GlobalTheory.FunPr.Hypotheses₂ → GlobalTheory.RealLift.DerEx → GlobalTheory.RealLift.VacLine → GlobalTheory.RealLift.LieScalar := GlobalTheory.T.lieScalar_of_prints_derEx_vacLine
 
@@ -159,8 +159,7 @@ theorem atPl_one (w : ι) : atPl w (1 : Module.End ℂ (V w)) = 1 := by
     · simp [Function.update_of_ne h]]
   exact PiTensorProduct.map_id
 
-theorem atPl_zero (w : ι) : atPl w (0 : Module.End ℂ (V w)) = 0 := by
-  simp only [atPl_eq, MultilinearMap.map_update_zero]
+alias atPl_zero := _root_.GlobalTheory.RealLift.PolRangePf.atPl_zero'
 
 end Helpers
 

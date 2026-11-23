@@ -75,7 +75,7 @@ theorem exists_sig_of_row (D : D7) (cf : CharFrame D) (Rw : RowSide D) (low : Fi
       P ∉ D.ntw.S0 i → eig j (Bs.rowS i s) k P = eig j σ k P := by
   classical
   obtain ⟨x, hxg, hx0, hxe⟩ := hOcc j h1 h2 σ hiso hgood
-  obtain ⟨Φ, hΦ0, hΦs, hΦT⟩ := GlobalTheory.T.exists_descent_map_nonzero_of_small_field_form D S _ (hKs _ h1 h2) i b x hx0
+  obtain ⟨Φ, hΦ0, hΦs, hΦT⟩ := _root_.GlobalTheory.exists_desc_of_isKsForm D S _ (hKs _ h1 h2) i b x hx0
   set e := Bs.eF i j b h1 h2 with he
   have hfix : MonoidAlgebra.lift (FractionRing (D.ntw.O i)) (Module.End (FractionRing (D.ntw.O i)) (D.nexp.Fm i j b))
       (G0g D.nd) (LinearEquiv.automorphismGroup.toLinearMapMonoidHom.comp (D.nexp.actG i j b)) (D.nexp.eAlg i b)

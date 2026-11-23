@@ -332,7 +332,7 @@ theorem main : Laws → ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValu
   letI := H.starRing
   refine of_generic hL P.U P.oD a (t.act.act a) k N (by omega) ?_ u hu hc F σ' s hs σ'' hσ
   rcases hk with rfl | hk
-  · exact GlobalTheory.T.expansion_pullback_sourceLevelOne hL V E H t P a N hN hN0
+  · exact _root_.GlobalTheory.PullLevelOne.expands_pull_level_one hL V E H t P a N hN hN0
   · exact GlobalTheory.T.expansion_commutes_pullback_cmEndo_four_le hL V E H t P a N hN hN0 k hk
 
 end GlobalTheory.PullExpField

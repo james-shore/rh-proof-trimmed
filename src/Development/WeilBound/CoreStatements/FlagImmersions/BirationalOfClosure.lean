@@ -65,67 +65,6 @@ open GlobalTheory.CompanionTheory.Ar.Giv (aeval_eq_zero_of_mem_mCoordIdeal)
 variable {K₀ K : Type} [Fintype K₀] [Fintype K] {J₀ : K₀ → Type} {J : K → Type} [∀ k, Fintype (J₀ k)]
   [∀ k, Fintype (J k)]
 
-theorem homog_add {f g : MRing J} {a : K → ℕ} (hf : IsMultiHomog f a) (hg : IsMultiHomog g a) :
-    IsMultiHomog (f + g) a := by
-  classical
-  intro m hm k
-  rcases Finset.mem_union.1 (MvPolynomial.support_add hm) with h | h
-  · exact hf m h k
-  · exact hg m h k
-
-theorem homog_neg {f : MRing J} {a : K → ℕ} (hf : IsMultiHomog f a) : IsMultiHomog (-f) a := by
-  intro m hm k
-  rw [MvPolynomial.support_neg] at hm
-  exact hf m hm k
-
-theorem homog_zero (a : K → ℕ) : IsMultiHomog (0 : MRing J) a := by
-  intro m hm
-  simp at hm
-
-theorem homog_sum {X : Type} (s : Finset X) {f : X → MRing J} {a : K → ℕ} (h : ∀ x ∈ s, IsMultiHomog (f x) a) :
-    IsMultiHomog (∑ x ∈ s, f x) a := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simpa using homog_zero a
-  | insert x s hx ih =>
-    rw [Finset.sum_insert hx]
-    exact homog_add (h x (Finset.mem_insert_self x s)) (ih fun u hu => h u (Finset.mem_insert_of_mem hu))
-
-theorem homog_pow {f : MRing J} {a : K → ℕ} (hf : IsMultiHomog f a) (n : ℕ) : IsMultiHomog (f ^ n) (n • a) := by
-  induction n with
-  | zero => simpa using (isMultiHomog_one' (J₀ := J))
-  | succ n ih =>
-    rw [pow_succ, succ_nsmul]
-    exact isMultiHomog_mul' ih hf
-
-theorem homog_X [DecidableEq K] (k : K) (i : J k) : IsMultiHomog (X ⟨k, i⟩ : MRing J) (Pi.single k 1) := by
-  classical
-  intro m hm k'
-  rw [MvPolynomial.support_X, Finset.mem_singleton] at hm
-  subst hm
-  by_cases h : k' = k
-  · subst h
-    rw [Finset.sum_eq_single i]
-    · simp
-    · intro b _ hb
-      rw [Finsupp.single_apply, if_neg]
-      intro e
-      exact hb (eq_of_heq (Sigma.mk.inj e).2).symm
-    · simp
-  · rw [Pi.single_eq_of_ne h]
-    refine Finset.sum_eq_zero fun b _ => ?_
-    rw [Finsupp.single_apply, if_neg]
-    intro e
-    exact h (Sigma.mk.inj e).1.symm
-
-theorem homog_mono (c : ∀ k, J k) (a : K → ℕ) : IsMultiHomog (∏ k, (X ⟨k, c k⟩ : MRing J) ^ a k) a := by
-  classical
-  have h := isMultiHomog_prod' (J₀ := J) Finset.univ (f := fun k => (X ⟨k, c k⟩ : MRing J) ^ a k)
-    (a := fun k => a k • Pi.single k 1) fun k _ => homog_pow (homog_X k (c k)) (a k)
-  convert h using 1
-  funext k
-  simp [Finset.sum_apply, Pi.single_apply]
-
 theorem exists_blkV {κ : K₀ → K} {v : (Σ k, J₀ k) → Σ k, J k} (hv : IsBlockMap κ v) :
     ∃ bx : ∀ k, J₀ k ≃ J (κ k), v = blkV κ bx := by
   have hq : ∀ k (i : J₀ k), ∃ i' : J (κ k), v ⟨k, i⟩ = ⟨κ k, i'⟩ := by
@@ -189,7 +128,7 @@ theorem zeros_proj {Ω₀ Ω : Type} [Field Ω₀] [Field Ω] (y₀ : (Σ k, J�
     intro c
     by_cases hc : ∀ k, y ⟨k, c k⟩ ≠ 0
     · let M : MRing J := ∏ k, (X ⟨k, c k⟩ : MRing J) ^ aF k
-      have hM : IsMultiHomog M aF := homog_mono c aF
+      have hM : IsMultiHomog M aF := _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.LocalRep.isMultiHomog_chartMono c aF
       have hMy : aeval y M ≠ 0 := by
         simp only [M, map_prod, map_pow, aeval_X]
         exact Finset.prod_ne_zero_iff.2 fun k _ => pow_ne_zero _ (hc k)
@@ -207,10 +146,10 @@ theorem zeros_proj {Ω₀ Ω : Type} [Field Ω₀] [Field Ω] (y₀ : (Σ k, J�
       intro z hz hzc hFz
       let Φ : MRing J := ∑ j ∈ Finset.range (n + 1), rename v (cc j) * F ^ j * M ^ (n - j)
       have hΦh : IsMultiHomog Φ (Function.extend κ a 0 + n • aF) := by
-        refine homog_sum _ fun j hj => ?_
+        refine _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.SectionBounded.homog_sum _ fun j hj => ?_
         have hjn : j ≤ n := Nat.lt_succ_iff.1 (Finset.mem_range.1 hj)
-        have h1 := isMultiHomog_mul' (isMultiHomog_mul' (isMultiHomog_rename' hv (hcc j hj).1) (homog_pow hF j))
-          (homog_pow hM (n - j))
+        have h1 := isMultiHomog_mul' (isMultiHomog_mul' (isMultiHomog_rename' hv (hcc j hj).1) (_root_.GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.HeightsSet.isMultiHomog_pow hF j))
+          (_root_.GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.HeightsSet.isMultiHomog_pow hM (n - j))
         convert h1 using 1
         rw [add_assoc, ← add_nsmul, Nat.add_sub_cancel' hjn]
       have hΦy : aeval y Φ = 0 := by
@@ -262,23 +201,23 @@ theorem birational_of_closure {Ω : Type} [Field Ω] {n : ℕ} (yf : Fin n → �
   | mem x hx =>
     obtain ⟨⟨a, b⟩, rfl⟩ := hx
     by_cases hb : yf b = 0
-    · exact ⟨0, 0, 1, homog_zero _, isMultiHomog_one', by simp, by simp [hb]⟩
-    · exact ⟨Pi.single () 1, X ⟨(), a⟩, X ⟨(), b⟩, homog_X _ _, homog_X _ _, by simpa using hb, by simp [hb]⟩
+    · exact ⟨0, 0, 1, _root_.GlobalTheory.CompanionTheory.Ar.AlgPoly.form_zero _, isMultiHomog_one', by simp, by simp [hb]⟩
+    · exact ⟨Pi.single () 1, X ⟨(), a⟩, X ⟨(), b⟩, _root_.ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_X' _ _, _root_.ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_X' _ _, by simpa using hb, by simp [hb]⟩
   | one => exact ⟨0, 1, 1, isMultiHomog_one', isMultiHomog_one', by simp, by simp⟩
   | add x y _ _ hx hy =>
     obtain ⟨d, g, h, hg, hh, h0, he⟩ := hx
     obtain ⟨d', g', h', hg', hh', h0', he'⟩ := hy
-    refine ⟨d + d', g * h' + h * g', h * h', homog_add (isMultiHomog_mul' hg hh') (isMultiHomog_mul' hh hg'),
+    refine ⟨d + d', g * h' + h * g', h * h', _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.BirationalModelExists.isMultiHomog_add' (isMultiHomog_mul' hg hh') (isMultiHomog_mul' hh hg'),
       isMultiHomog_mul' hh hh', by rw [map_mul]; exact mul_ne_zero h0 h0', ?_⟩
     simp only [map_add (f := _), map_mul, he, he']
     ring
   | neg x _ hx =>
     obtain ⟨d, g, h, hg, hh, h0, he⟩ := hx
-    exact ⟨d, -g, h, homog_neg hg, hh, h0, by rw [map_neg, he]; ring⟩
+    exact ⟨d, -g, h, _root_.GlobalTheory.CompanionTheory.Ar.AlgPoly.form_neg hg, hh, h0, by rw [map_neg, he]; ring⟩
   | inv x _ hx =>
     obtain ⟨d, g, h, hg, hh, h0, he⟩ := hx
     by_cases hx0 : x = 0
-    · exact ⟨0, 0, 1, homog_zero _, isMultiHomog_one', by simp, by simp [hx0]⟩
+    · exact ⟨0, 0, 1, _root_.GlobalTheory.CompanionTheory.Ar.AlgPoly.form_zero _, isMultiHomog_one', by simp, by simp [hx0]⟩
     · refine ⟨d, h, g, hh, hg, by rw [he]; exact mul_ne_zero hx0 h0, ?_⟩
       rw [he]
       field_simp

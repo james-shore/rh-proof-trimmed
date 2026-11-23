@@ -57,11 +57,11 @@ theorem isPlacesIdem_mul_self {F : Type} [Field F] [NumberField F] {S₁ : Finse
 theorem strongApprox_nrm_one : ∀ (F : Type) [Field F] [NumberField F] (a b : F), a ≠ 0 → b ≠ 0 → ∀ (S₁ : Finset (InfinitePlace F)) (S₂ : Finset (HeightOneSpectrum (𝓞 F))) (ε : AF F), IsPlacesIdem S₁ S₂ ε → (S₁.Nonempty ∨ S₂.Nonempty) → (∃ p q : AF F, ε * (algebraMap F (AF F) b - (p ^ 2 - algebraMap F (AF F) a * q ^ 2)) = 0) → ∀ g : DA F a b, nrm g = 1 → g ∈ closure (H0 (a := a) (b := b) ε) := by
   intro F _ _ a b ha hb S₁ S₂ ε hε hS hpq g hg
   by_cases hiso : ∃ x : ℍ[F, a, b], x ≠ 0 ∧ nrm x = 0
-  · exact GlobalTheory.T.strongApproximation_normOne_splitQuaternionAlgebra F a b ha hb hiso S₁ S₂ ε hε hS g hg
+  · exact _root_.GlobalTheory.QSA.strongApprox_split F a b ha hb hiso S₁ S₂ ε hε hS g hg
   · have hdiv : ∀ x : ℍ[F, a, b], nrm x = 0 → x = 0 := fun x hx =>
       by_contra fun h => hiso ⟨x, h, hx⟩
     obtain ⟨p, q, hpq⟩ := hpq
-    refine GlobalTheory.T.mem_closure_normOne_of_strongApproximation F a b ha hb hdiv S₁ S₂ ε hε hS (fun t => ?_) g hg
+    refine _root_.GlobalTheory.QSA.DivAssembly.strongApproximation_normOne_divisionQuaternion F a b ha hb hdiv S₁ S₂ ε hε hS (fun t => ?_) g hg
     have h2 : IsUnit (2 : AF F) := by
       have : IsUnit (algebraMap F (AF F) 2) := (IsUnit.mk0 (2 : F) two_ne_zero).map _
       rwa [map_ofNat] at this

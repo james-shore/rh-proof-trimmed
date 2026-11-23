@@ -126,7 +126,7 @@ theorem cls_equiv_dcls_irr : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p), G.a =
     exact ⟨x.1, x.2⟩
   have key := fun (P0 : Polynomial G.F) (hi : Irreducible P0) (hm : P0.Monic)
       (hd : P0.natDegree = G.n) =>
-    GlobalTheory.T.exists_polynomial_move_definiteSimilitudePair_marked p G ha hn P0 (sel P0) v0 hv0 hi (hsel v0 hv0 P0 hm hd)
+    _root_.GlobalTheory.LKDef.move_definite p G ha hn P0 (sel P0) v0 hv0 hi (hsel v0 hv0 P0 hm hd)
   choose! A hA1 hA2 using key
   have hF := fun (P : Pair G) (hi : Irreducible P.pol) (hm : P.Mark (sel P.pol)) =>
     hA2 P.pol hi (minpoly_monic_of_irreducible (P.γ : G.C) hi) P.reg.1 P rfl hm

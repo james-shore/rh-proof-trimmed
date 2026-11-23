@@ -68,9 +68,6 @@ theorem famSc_castSucc (sc : ℝ) (e : Fin r → Fin n → ℂ) (z : Fin n → �
     famSc sc e z (Fin.castSucc b) = sfv sc b • e b := by
   simp only [famSc, fam, Fin.snoc_castSucc, Fin.coe_castSucc, sfv]
 
-theorem famSc_last (sc : ℝ) (e : Fin r → Fin n → ℂ) (z : Fin n → ℂ) : famSc sc e z (Fin.last r) = z := by
-  simp only [famSc, fam, Fin.snoc_last, Fin.val_last, Nat.sub_self, pow_zero, inv_one, one_smul]
-
 theorem zhat_Mv (F0 : Frm ε e f z w T) (F1 : Frm ε e f z' w' T') (hsc : 0 < sc) {c : Fin (r + 1) → ℂ} (i0 : Fin k) :
     Zhat ε (famSc sc e z) (famSc sc e z') (Mv ε e f z z' w w' sc T T' i0 c) = Matrix.diagonal c := by
   have hMe : ∀ b, Mv ε e f z z' w w' sc T T' i0 c *ᵥ e b = e2 sc c f b := fun b => frameChangeMatrix_isotropic F1 b
@@ -83,19 +80,19 @@ theorem zhat_Mv (F0 : Frm ε e f z w T) (F1 : Frm ε e f z' w' T') (hsc : 0 < sc
   | last =>
     induction b using Fin.lastCases with
     | last =>
-      rw [famSc_last, famSc_last, hMz]
+      rw [_root_.Formalism.L2.SG.RealObj.InfCut.UnitaryIsometries.famSc_last', _root_.Formalism.L2.SG.RealObj.InfCut.UnitaryIsometries.famSc_last', hMz]
       simp only [z2, UnitaryIsometries.hJ_add_right, UnitaryIsometries.hJ_smul_right, F0.zz, F0.zw, mul_zero, add_zero, diagonal_apply_eq,
         alv]
       field_simp
     | cast b =>
-      rw [famSc_last, famSc_castSucc, mulVec_smul, hMe]
+      rw [_root_.Formalism.L2.SG.RealObj.InfCut.UnitaryIsometries.famSc_last', famSc_castSucc, mulVec_smul, hMe]
       simp only [e2, UnitaryIsometries.hJ_smul_right, hJ_swap0 (F0.pz b), mul_zero]
       rw [diagonal_apply_ne]
       exact fun h => (Fin.castSucc_lt_last b).ne h.symm
   | cast a =>
     induction b using Fin.lastCases with
     | last =>
-      rw [famSc_castSucc, famSc_last, hMz]
+      rw [famSc_castSucc, _root_.Formalism.L2.SG.RealObj.InfCut.UnitaryIsometries.famSc_last', hMz]
       simp only [z2, UnitaryIsometries.hJ_smul_left, UnitaryIsometries.hJ_add_right, UnitaryIsometries.hJ_smul_right, F0.ez, F0.ew, mul_zero,
         add_zero]
       rw [diagonal_apply_ne]

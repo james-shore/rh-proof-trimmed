@@ -201,13 +201,6 @@ variable {σ : E →ₐ[F] E} {n r m : ℕ} {J : Matrix (Fin n) (Fin n) E} {X Y 
   {Z : Matrix (Fin n) (Fin m) E} {Qi : Matrix (Idx r m) (Fin n) E}
 
 
-omit [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] in
-theorem norm_matrix_triple_product_le {a b c d : Type} [Fintype b] [Fintype c] (A : Matrix a b ℂ) (M : Matrix b c ℂ)
-    (B : Matrix c d ℂ) {α μ β : ℝ} (hA : ∀ i j, ‖A i j‖ ≤ α) (hM : ∀ i j, ‖M i j‖ ≤ μ) (hB : ∀ i j, ‖B i j‖ ≤ β)
-    (i : a) (j : d) : ‖(A * M * B) i j‖ ≤ Fintype.card b * Fintype.card c * (α * μ * β) :=
-  _root_.UpperTheory.Reformulated.B.Yla6.main A M B hA hM hB i j
-
-
 omit [Field F] [NumberField F] [Algebra F E] in
 theorem entry_le_sum {a b : Type} [Fintype a] [Fintype b] (M : Matrix a b E) (φ : E →+* ℂ) (i : a) (j : b) :
     ‖φ (M i j)‖ ≤ ∑ ψ : E →+* ℂ, ∑ u, ∑ v, ‖ψ (M u v)‖ :=
@@ -267,7 +260,7 @@ theorem block_diagonal_bound_weighted : ∀ {ι : Type} [Fintype ι] [DecidableE
               (inv_nonneg.2 hwy.le)
         _ = B * R := by field_simp
     · simpa using mul_nonneg hB0 hR0
-  have := norm_matrix_triple_product_le (bd b P) (bd b T) (bd b P') hbP hbT hbP' u v
+  have := _root_.UpperTheory.Reformulated.B.Yla6.main (bd b P) (bd b T) (bd b P') hbP hbT hbP' u v
   refine this.trans (le_of_eq ?_)
   ring
 
@@ -307,9 +300,9 @@ theorem arch_bound (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame �
       ∀ δ : GRat σ J, ratEmb σ J δ = p * a * y * a⁻¹ * p⁻¹ → (∀ j ∈ S, StabUpTo X δ.1.1 j) →
       ∀ (w : InfinitePlace F) (τ : EmbOver E w) (u v : Idx r m),
         ‖τ.1 (bd (lev m S) (Qi * δ.1.1 * frm X Z Y) u v)‖ ≤ B := by
-  obtain ⟨Bp, -, hBp⟩ := GlobalTheory.T.compact_archimedean_entries_bounded F E σ n J Ω hΩ
-  obtain ⟨Bpi, -, hBpi⟩ := GlobalTheory.T.compact_archimedean_entries_bounded F E σ n J (Inv.inv '' Ω) (hΩ.image continuous_inv)
-  obtain ⟨By, -, hBy⟩ := GlobalTheory.T.compact_archimedean_entries_bounded F E σ n J C₁ hC₁
+  obtain ⟨Bp, -, hBp⟩ := _root_.GlobalTheory.CompanionTheory.CFin.archMat_entries_bounded_of_isCompact F E σ n J Ω hΩ
+  obtain ⟨Bpi, -, hBpi⟩ := _root_.GlobalTheory.CompanionTheory.CFin.archMat_entries_bounded_of_isCompact F E σ n J (Inv.inv '' Ω) (hΩ.image continuous_inv)
+  obtain ⟨By, -, hBy⟩ := _root_.GlobalTheory.CompanionTheory.CFin.archMat_entries_bounded_of_isCompact F E σ n J C₁ hC₁
   have hs : ∀ x, (σ : E →+* E) ((σ : E →+* E) x) = x := sigma_sigma h
   have hJ' : cT (σ : E →+* E) J = J := Matrix.ext fun i j => hJ.1 _ _
   set q1 := ∑ ψ : E →+* ℂ, ∑ u, ∑ v, ‖ψ (Qi u v)‖ with hq1
@@ -357,7 +350,7 @@ theorem arch_bound (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame �
   rw [ca, cai] at hD
   have bM : ∀ (g : GAd σ J) (β : ℝ), (∀ i j, ‖am g i j‖ ≤ β) → β ≤ max Bp (max Bpi By) → ∀ i j, ‖cd (am g) i j‖ ≤ b0 :=
     fun g β hg hβ i j => by
-      have := norm_matrix_triple_product_le Qic (am g) Qc (fun i j => entry_le_sum Qi φ i j) hg (fun i j => entry_le_sum (frm X Z Y) φ i j) i j
+      have := _root_.UpperTheory.Reformulated.B.Yla6.main Qic (am g) Qc (fun i j => entry_le_sum Qi φ i j) hg (fun i j => entry_le_sum (frm X Z Y) φ i j) i j
       simp only [Fintype.card_fin] at this
       refine this.trans ?_
       rw [hb0]

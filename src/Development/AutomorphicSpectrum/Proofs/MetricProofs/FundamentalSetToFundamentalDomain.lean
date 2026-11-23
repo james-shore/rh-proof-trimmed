@@ -187,15 +187,7 @@ theorem isPreconnected_ballDom {Ψ : Type} [Fintype Ψ] {j j' n : ℕ} (q : Ψ �
     IsPreconnected (ballDom q) := by
   apply SheetDecomposition.ballDom_preconnected <;> assumption
 
-theorem measurable_ballDens {Ψ : Type} [Fintype Ψ] {j j' n : ℕ} (q : Ψ × Fin j × Fin j' ≃ Fin n) :
-    Measurable (ballDens q) := by
-  have hm : ∀ τ, Continuous fun t : Fin n → ℂ => ballMat q t τ := fun τ =>
-    continuous_matrix fun a b => continuous_apply _
-  have hd : ∀ τ, Measurable fun t : Fin n → ℂ => Real.log (1 - (ballMat q t τ)ᴴ * ballMat q t τ).det.re := fun τ =>
-    Real.measurable_log.comp (Complex.continuous_re.comp
-      (continuous_const.sub ((hm τ).matrix_conjTranspose.matrix_mul (hm τ))).matrix_det).measurable
-  unfold ballDens ballPot
-  exact Real.measurable_exp.comp (measurable_const.mul (Finset.measurable_sum _ fun τ _ => hd τ).neg)
+alias measurable_ballDens := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.DictMeas.measurable_ballDens
 
 end Ball
 

@@ -56,6 +56,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.Divisors.RealisedChainTorusEq
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.KernelSpanOverClasses
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LevelCharactersUnramifiedOffLevelPlaces
 
 @[expose] public section
 
@@ -233,43 +234,19 @@ theorem typePrime_mem (R : RealDat D A Ks) (F : Face D A) (hC : GlobalTheory.Hk3
   have h2 : algebraMap (𝓞 D.host.K) (𝓞 D.host.E) ((D.host.g k : ℕ) : 𝓞 D.host.K) ∈ PP.asIdeal := hmemK
   simpa using h2
 
-theorem typePrime_not_mem {Q : Finset (Pl D.host.E)} (hQ : IsTwistPlaces D.host.g Q) {PP : Pl D.host.E} (h : PP ∈ Q)
-    (k : Fin 2) : ((D.host.g k : ℕ) : 𝓞 D.host.E) ∉ PP.asIdeal := by
-  intro hmemE
-  obtain ⟨⟨q, hq, hcard, -, hne⟩, -⟩ := hQ PP h
-  haveI : Finite (kP PP) := Nat.finite_of_card_ne_zero (by rw [hcard]; exact hq.ne_zero)
-  have : PP.asIdeal.IsPrime := PP.isPrime
-  haveI : Fintype (kP PP) := Fintype.ofFinite _
-  have h0g : ((D.host.g k : ℕ) : kP PP) = 0 := by
-    have := (Ideal.Quotient.eq_zero_iff_mem (I := PP.asIdeal)).2 hmemE
-    simpa using this
-  have h0q : ((q : ℕ) : kP PP) = 0 := by
-    rw [← hcard, Nat.card_eq_fintype_card]; exact Nat.cast_card_eq_zero (kP PP)
-  have hd1 : ringChar (kP PP) ∣ D.host.g k := ringChar.dvd h0g
-  have hd2 : ringChar (kP PP) ∣ q := ringChar.dvd h0q
-  have hcop : Nat.Coprime q (D.host.g k) := (Nat.coprime_primes hq (D.host.g_prime k)).2 (hne k)
-  have h1 : ringChar (kP PP) = 1 := Nat.eq_one_of_dvd_coprimes hcop hd2 hd1
-  exact CharP.ringChar_ne_one h1
-
 theorem typePlace_off_twist (R : RealDat D A Ks) (F : Face D A) (hC : GlobalTheory.Hk3.Core R F) {Q : Finset (Pl D.host.E)}
     (hQ : IsTwistPlaces D.host.g Q) {PP PP' : Pl D.host.E} (hP : PP ∈ R.Pg) (hP' : PP' ∈ Q) :
     PP' ≠ PP ∧ ¬ Lev.IsConjPl PP PP' := by
   obtain ⟨k, hk⟩ := typePrime_mem R F hC hP
-  refine ⟨fun e => typePrime_not_mem hQ hP' k (e ▸ hk), fun hc => ?_⟩
+  refine ⟨fun e => _root_.GlobalTheory.LevelPlaces.not_mem_of_twist hQ hP' k (e ▸ hk), fun hc => ?_⟩
   obtain ⟨c', hc', hcc⟩ := hc _ hk
   have h1 : (c' : D.host.E) = (((D.host.g k : ℕ) : 𝓞 D.host.E) : D.host.E) := hcc.trans (by simp)
   have : c' = ((D.host.g k : ℕ) : 𝓞 D.host.E) := RingOfIntegers.coe_injective h1
-  exact typePrime_not_mem hQ hP' k (this ▸ hc')
+  exact _root_.GlobalTheory.LevelPlaces.not_mem_of_twist hQ hP' k (this ▸ hc')
 
 end GlobalTheory.TypeMove
 
 namespace GlobalTheory.TypeMove
-
-theorem exists_detOne_mul_std {K : Type} [Field K] {n r : ℕ} (hrn : r < n) (y : Matrix (Fin n) (Fin r) K)
-    (hy : y.rank = r) :
-    ∃ g : GL (Fin n) K, Matrix.GeneralLinearGroup.det g = 1 ∧
-      g.val * (Matrix.of fun (a : Fin n) (b : Fin r) => if (a : ℕ) = (b : ℕ) then (1 : K) else 0) = y :=
-  GlobalTheory.T.exists_det_one_mul_stdBlock' hrn y hy
 
 theorem exists_local_lift_detOne {D : D7} {V : HSp D} {β : GL (Fin V.rank) (Lev.EAf D)}
     {Λ : Submodule (𝓞 D.host.E) (Fin V.rank → D.host.E)} {N : ℕ} (hB : IsBaseFrame V β Λ N)
@@ -302,13 +279,13 @@ theorem GlobalTheory.TypeMove.vecFree_typeMove : ∀ (D : D7) (G : Type) [Group 
   have hlt : (Wc D i).rank < (Vc D i).rank := by
     rw [rV, rW]; have := D.R.t_odd.pos; omega
   have hg : ∀ PP ∈ R.Pg, ∃ g : GL (Fin (Vc D i).rank) (kP PP), Matrix.GeneralLinearGroup.det g = 1 ∧
-      g.val * (fun PP : Pl D.host.E => Matrix.of fun (a : Fin (Vc D i).rank) (b : Fin (Wc D i).rank) => if (a : ℕ) = (b : ℕ) then (1 : kP PP) else 0) PP = y₀ PP := fun PP hPP => exists_detOne_mul_std hlt (y₀ PP) (hy₀ PP hPP)
+      g.val * (fun PP : Pl D.host.E => Matrix.of fun (a : Fin (Vc D i).rank) (b : Fin (Wc D i).rank) => if (a : ℕ) = (b : ℕ) then (1 : kP PP) else 0) PP = y₀ PP := fun PP hPP => _root_.GlobalTheory.exists_det_one_mul_stdBlock hlt (y₀ PP) (hy₀ PP hPP)
   choose! gm hgdet hgmul using hg
   have hκ : ∀ PP : ↥R.Pg, ∃ κ : GA D (Vc D i), SuppAt (es PP.1) (Vc D i) κ ∧ κ ∈ GfC (Vc D i) ∧
       finE (Vc D i) κ ∈ St (R.βV i) ∧ redFn (R.βV i) PP.1 (finE (Vc D i) κ) = (gm PP.1)⁻¹ ∧
       (∀ P', P' ≠ PP.1 → ¬ Lev.IsConjPl PP.1 P' → redFn (R.βV i) P' (finE (Vc D i) κ) = 1) ∧
       IsDetAt (es PP.1) (Vc D i) κ 1 := fun PP =>
-    exists_local_lift_detOne hBV (hes PP.1 (Finset.mem_union_left _ PP.2)) (gm PP.1)⁻¹
+    _root_.GlobalTheory.ParahoricLiftDet.exists_local_lift_det hBV (hes PP.1 (Finset.mem_union_left _ PP.2)) (gm PP.1)⁻¹
       (by rw [map_inv, hgdet PP.1 PP.2, inv_one])
   choose κ h1 h2 h3 h4 h5 h6 using hκ
   have hnd : (Finset.univ : Finset ↥R.Pg).toList.Nodup := Finset.nodup_toList _

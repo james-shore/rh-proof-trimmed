@@ -445,13 +445,9 @@ theorem ge_int {x : C} (hx : IsIntegral ℤ x) : V.Ge 0 x := by
   have h1 : IsIntegral (Valuation.integer (V.v : Valuation C (Multiplicative (WithTop ℝ)ᵒᵈ))) x := hx.tower_top
   exact (Valuation.integer.integers (V.v : Valuation C (Multiplicative (WithTop ℝ)ᵒᵈ))).mem_of_integral h1
 
-theorem mm_add {a b : C} (ha : V.MM a) (hb : V.MM b) : V.MM (a + b) := V.v.map_lt_add ha hb
+alias mm_add := _root_.UpperTheory.G2.RowLab.Hyp.mm_add
 
-theorem mm_mul {a b : C} (ha : V.Ge 0 a) (hb : V.MM b) : V.MM (a * b) := by
-  unfold VF.MM at *
-  unfold VF.Ge at ha
-  rw [V.v.map_mul]
-  exact lt_of_lt_of_le hb (le_add_of_nonneg_left (by simpa using ha))
+alias mm_mul := _root_.UpperTheory.G2.RowLab.Hyp.mm_mul
 
 def ker (V : VF C) {R : Type} [CommRing R] (f : R →+* C) (hf : ∀ x, V.Ge 0 (f x)) : Ideal R where
   carrier := {x | V.MM (f x)}

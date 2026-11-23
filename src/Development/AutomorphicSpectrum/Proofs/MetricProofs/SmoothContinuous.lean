@@ -76,18 +76,7 @@ theorem sameOrbit_base {σ : Type} (blk : σ → Option K) {z z' : (Σ k, ι k) 
   obtain ⟨c, hc, rfl⟩ := h
   exact ⟨fun k => c k.1, fun k => hc k.1, rfl⟩
 
-theorem smooth_continuous {e : ℕ} {X : Type} [TopologicalSpace X] {A : FinHolAtlas e X} {f : X → ℝ}
-    (hf : A.Smooth f) : Continuous f := by
-  refine continuous_iff_continuousAt.2 fun x => ?_
-  obtain ⟨j, hj⟩ := A.cover x
-  have h1 : ContinuousAt (f ∘ (A.chart j).symm) (A.chart j x) := by
-    have hm : (A.chart j).target ∩ (A.chart j).symm ⁻¹' Set.univ ∈ nhds (A.chart j x) := by
-      simpa using (A.chart j).open_target.mem_nhds ((A.chart j).map_source hj)
-    exact ((hf j).contDiffAt hm).continuousAt
-  have h2 := h1.comp ((A.chart j).continuousAt hj)
-  refine h2.congr ?_
-  filter_upwards [(A.chart j).open_source.mem_nhds hj] with y hy
-  simp [Function.comp, (A.chart j).left_inv hy]
+alias smooth_continuous := _root_.ReciprocityTheory.AnForm.M.PLAux.smooth_continuous
 
 def clampT (T t : ℝ) : ℝ := if 0 < t ∧ t ≤ T then t else T
 

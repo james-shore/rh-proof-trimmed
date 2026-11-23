@@ -162,7 +162,7 @@ theorem framepf_Ψβ_Lam (hT : IsCrys PD T.ρ) (F : Matrix (Fin Bs.r) (Fin Bs.r)
     refine Submodule.mem_inf.2 ⟨Submodule.mem_inf.2 ⟨(Submodule.restrictScalars_mem _ _ _).2 h1, ?_⟩, ?_⟩
     · rw [mem_DelS]
       intro δ hδ
-      rw [gradNPf_γD_smul, map_pow, hEΔ δ hδ, hΔ δ hδ]
+      rw [_root_.Formalism.MainNotions.LiftingTheory.gammaD_semilinear, map_pow, hEΔ δ hδ, hΔ δ hδ]
     · rw [mem_letS, smul_smul, mul_comm, ← smul_smul, hl]
   obtain ⟨t, ht⟩ := framepf_Ψβ_Pc Bs π' c hπ0 hΔπ hR2 γ0 hu βφ hβφ hT F _ hP
   refine Submodule.mem_comap.2 ⟨t, ?_⟩

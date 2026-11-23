@@ -64,9 +64,9 @@ theorem rational_moved_scalar_algebraic : ∀ {D : D7} {T : Type} [Finite T] {L 
       ∀ (κ : ℂ) (F : WO (GlobalTheory.Grid.neg A) WW → ℂ), GlobalTheory.MovedAlg.IsAlgComb W.ψ (GlobalTheory.Grid.neg A) WW X.vac F →
         X.ω t (γ, γ') X.vac = κ • F → IsAlgebraic ℚ κ := by
   intro D T _ L μ₀ sc G W i j A A' WW X hP hI hL hX t γ hγ a ha γ' hγ' a' ha' h1 h2 κ F hF e
-  obtain ⟨k, hk⟩ := _root_.GlobalTheory.T.jet_of_moved_vacuum_nonvanishing hP hI hL hX t γ hγ a ha γ' hγ' a' ha' h1 h2
-  obtain ⟨Ω, hΩ, hJ⟩ := _root_.GlobalTheory.T.bottom_translate_jets_algebraic hP hI hL hX (Finsupp.mapDomain Prod.fst k)
-  obtain ⟨n', c', k', hc', hk', he'⟩ := _root_.GlobalTheory.T.moved_vacuum_jet_algebraic_combination hP hI hL hX t γ hγ a ha γ' hγ' a' ha' h1 h2 k
+  obtain ⟨k, hk⟩ := _root_.GlobalTheory.MovedJetNZ.moved_vacuum_jet_ne_zero hP hI hL hX t γ hγ a ha γ' hγ' a' ha' h1 h2
+  obtain ⟨Ω, hΩ, hJ⟩ := _root_.GlobalTheory.BotTransJet.isAlgebraic_pureTensorO_div_period hP hI hL hX (Finsupp.mapDomain Prod.fst k)
+  obtain ⟨n', c', k', hc', hk', he'⟩ := _root_.GlobalTheory.MovedJet.jet_moved_vacuum_algebraic hP hI hL hX t γ hγ a ha γ' hγ' a' ha' h1 h2 k
   have hψ : IsStdChar D W.ψ (-1) := (hX.is.weil t).std
   have hθ : IsInfFam W.θ := hX.is.isVac.2.inf
   have hv : IsThetaFunO W.ψ (GlobalTheory.Grid.neg A) WW X.vac := hX.is.isVac.2.theta
@@ -107,7 +107,7 @@ theorem rational_translate_algebraic_combination : ∀ {D : D7} {T : Type} [Fini
         (∀ p, (w p).map (infPart D) = 0) ∧
         X.ω t (γ, γ') X.vac = ∑ p, c p • heisO W.ψ (GlobalTheory.Grid.neg A) WW (w p) X.vac := by
   intro D T _ L μ₀ sc G W i j A A' WW X hP hI hL hX t γ hγ a ha γ' hγ' a' ha' h1 h2
-  obtain ⟨κ, F, hF, e⟩ := _root_.GlobalTheory.T.rational_vacuum_algebraic_combination hP hI hL hX t γ hγ a ha γ' hγ' a' ha' h1 h2
+  obtain ⟨κ, F, hF, e⟩ := _root_.GlobalTheory.RatVacAlg.rational_vacuum_eq_smul_algebraic_combination hP hI hL hX t γ hγ a ha γ' hγ' a' ha' h1 h2
   have hk := _root_.GlobalTheory.RatMovedAlg.rational_moved_scalar_algebraic hP hI hL hX t γ hγ a ha γ' hγ' a' ha' h1 h2 κ F hF e
   obtain ⟨n, c, w, hc, hw, he⟩ := hF.smul hk
   exact ⟨n, c, w, hc, hw, e.trans he⟩
@@ -115,20 +115,3 @@ end GlobalTheory.RatMovedAlg
 end
 end
 
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
-open IsDedekindDomain NumberField GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.RowClaim
-open Formalism.L2.Host (HChar)
-open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.RowEx MeasureTheory
-
-theorem _root_.GlobalTheory.T.rationally_moved_vector_algebraic : ∀ {D : D7} {T : Type} [Finite T] {L : LevCh D T} {μ₀ : T} {sc : Consts} {G : GridData L sc} {W : G.Weil}
-    {i j : Fin D.R.m} {A A' WW : HSp D} {X : Tri T A A' WW}, _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, GlobalTheory.NormSum.Inp D) → L.Is μ₀ →
-    IsBottomTri W i j X → ∀ (t : T), ∀ γ ∈ Formalism.L2.Theta.GQ A, ∀ a ∈ GinfC A, ∀ γ' ∈ Formalism.L2.Theta.GQ WW, ∀ a' ∈ GinfC WW,
-      γ * a ∈ GfC A → γ' * a' ∈ GfC WW →
-      ∃ (n : ℕ) (c : Fin n → ℂ) (w : Fin n → WO (GlobalTheory.Grid.neg A) WW), (∀ p, IsAlgebraic ℚ (c p)) ∧
-        (∀ p, (w p).map (infPart D) = 0) ∧
-        X.ω t (γ, γ') X.vac = ∑ p, c p • heisO W.ψ (GlobalTheory.Grid.neg A) WW (w p) X.vac := by
-  first | exact @_root_.GlobalTheory.RatMovedAlg.rational_translate_algebraic_combination | exact _root_.GlobalTheory.RatMovedAlg.rational_translate_algebraic_combination | (intros; apply _root_.GlobalTheory.RatMovedAlg.rational_translate_algebraic_combination <;> assumption)
-end

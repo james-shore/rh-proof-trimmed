@@ -172,11 +172,6 @@ namespace GlobalTheory.DualLine
 
 variable {D : D7}
 
-theorem cA_cA' (x : AE D) : cA D (cA D x) = x := by
-  induction x using TensorProduct.inductionOn with
-  | tmul c e => show c ⊗ₜ[D.host.F] star (star e) = _; rw [star_star]
-  | add x y hx hy => rw [map_add (f := _), map_add (f := _), hx, hy]
-
 theorem cA_gA (S : HSp D) (a b : Fin S.rank) : cA D (gA S a b) = incA D (S.gram b a) :=
   congrArg (incA D) (GlobalTheory.LatVac.gram_star S a b)
 
@@ -203,7 +198,7 @@ theorem mem_of_hA {S : HSp D} {L : Lat S} (hL : IsSelfDualC S L) {v : Pl D} {y :
       exact (GlobalTheory.FinPl.LatMem.mul_indP (hyAt a)).symm
     rw [e1]
 
-    simp only [hA, map_sum, map_mul, cA_cA', cA_gA, hcw, Finset.mul_sum, Finset.sum_mul]
+    simp only [hA, map_sum, map_mul, _root_.Formalism.L2.Theta.cA_cA, cA_gA, hcw, Finset.mul_sum, Finset.sum_mul]
     rw [Finset.sum_comm]
     refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun a' _ => Finset.sum_congr rfl fun k _ => ?_
     ring

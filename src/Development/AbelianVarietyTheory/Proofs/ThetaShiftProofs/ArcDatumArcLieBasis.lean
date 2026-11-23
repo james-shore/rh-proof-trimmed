@@ -217,19 +217,14 @@ section Push
 
 variable {S : Type} [CommRing S] {x : Sp S ⟶ Xo.X} {t' : SAB H (Sp S)} (m : SABMap t' Xo.univ.t x)
 
-theorem tan_iff (w : epsR S ⟶ t'.G) : IsTanAt x (w.left ≫ m.φ) ↔ IsTangent w := by
-  have hw : w.left ≫ t'.G.hom = spMap (algebraMap S (DualNumber S)) := Over.w w
-  exact ⟨fun h => (Chart.tan_push m.cart w).2 h.2,
-    fun h => ⟨by rw [Category.assoc, m.cart.1.w, ← Category.assoc, hw], (Chart.tan_push m.cart w).1 h⟩⟩
+alias tan_iff := _root_.GlobalTheory.ArcQ.NormalForm.ExFr.tan_iff
 
 theorem eig_iff (w : epsR S ⟶ t'.G) (a : 𝓞 E) (s : S) :
     (w.left ≫ m.φ) ≫ (Xo.univ.t.act.act a).left = spMap (epsMul s) ≫ w.left ≫ m.φ ↔
       (w ≫ t'.act.act a).left = spMap (epsScaleR s) ≫ w.left := by
   apply GlobalTheory.ArcQ.ExFr.eig_iff <;> assumption
 
-theorem comb_iff {n : ℕ} (v : Fin n → (epsR S ⟶ t'.G)) (cf : Fin n → S) (w : epsR S ⟶ t'.G) :
-    IsCombAt x (fun i => (v i).left ≫ m.φ) cf (w.left ≫ m.φ) ↔ IsLieComb cf v w :=
-  (Chart.comb_push m.cart cf v w).symm
+alias comb_iff := _root_.GlobalTheory.ArcQ.NormalForm.ExFr.comb_iff
 
 end Push
 

@@ -52,10 +52,6 @@ open NumberField GlobalTheory.CuspRep MeasureTheory PositivityTheory.Affgl Globa
 
 namespace GlobalTheory.CompanionTheory.CTFin.ProdTrick
 
-theorem exists_finset_separating {X : Type} (V : Submodule ℂ (X → ℂ)) [FiniteDimensional ℂ V] :
-    ∃ T : Finset X, ∀ v ∈ V, (∀ x ∈ T, v x = 0) → v = 0 :=
-  _root_.UpperTheory.Reformulated.B.Qp2.exists_finset_separating V
-
 theorem exists_finiteDimensional_of_slices :
     ∀ (X Y : Type) (V₁ : Submodule ℂ (X → ℂ)) (V₂ : Submodule ℂ (Y → ℂ)),
       FiniteDimensional ℂ V₁ → FiniteDimensional ℂ V₂ →
@@ -63,7 +59,7 @@ theorem exists_finiteDimensional_of_slices :
         ∀ f : X × Y → ℂ, (∀ y, (fun x => f (x, y)) ∈ V₁) → (∀ x, (fun y => f (x, y)) ∈ V₂) →
           f ∈ 𝓥 := by
   intro X Y V₁ V₂ h₁ h₂
-  obtain ⟨T, hT⟩ := exists_finset_separating V₁
+  obtain ⟨T, hT⟩ := _root_.UpperTheory.Reformulated.B.Qp2.exists_finset_separating V₁
   let S : Submodule ℂ (X × Y → ℂ) :=
     { carrier := {f | (∀ y, (fun x => f (x, y)) ∈ V₁) ∧ (∀ x, (fun y => f (x, y)) ∈ V₂)}
       add_mem' := fun {a b} ha hb =>

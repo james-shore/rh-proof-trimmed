@@ -110,19 +110,6 @@ private theorem colv_apply_of_not_isW {r k : ℕ} {K : Type} [Field K] (c : Idx 
   · rfl
   · rfl
 
-private theorem dlH_dlH_lattice_columns {r k : ℕ} (s : Idx r k) : dlH (dlH s) = s := by
-  rcases s with a | ((i | u) | b) <;> simp [dlH]
-
-private theorem not_isW_dlH_of_not_isW {r k : ℕ} (s : Idx r k) (hs : ¬ IsW s) : ¬ IsW (dlH s) := by
-  rcases s with a | ((i | u) | b)
-  · rintro ⟨j, hj⟩
-    simp [dlH] at hj
-  · exact absurd ⟨i, rfl⟩ hs
-  · rintro ⟨j, hj⟩
-    simp [dlH] at hj
-  · rintro ⟨j, hj⟩
-    simp [dlH] at hj
-
 private theorem ofCols_mulVec_single_one {r k : ℕ} {K : Type} [Field K] (v : Idx r k → Idx r k → K)
     (s : Idx r k) : ofCols v *ᵥ Pi.single s 1 = v s := by
   funext i
@@ -238,7 +225,7 @@ theorem hAdaptQ_of_in (X : HidaSetting D) (hb : AdBridgeIso X.B.I) (u : D.what�
     · rw [hccW i t ht]
       exact zero_mem _
     · simp only [cc, if_neg ht]
-      exact mul_mem (neg_mem (h5 _ _)) (h4 _ (not_isW_dlH_of_not_isW t ht))
+      exact mul_mem (neg_mem (h5 _ _)) (h4 _ (_root_.PIW.MassDataColumns.dlH_frame t ht))
   have hgO : ((gOf p : ℕ) : FpX X p) ∈ p.1.adicCompletionIntegers X.B.I.F := natCast_mem _ _
   obtain ⟨A, hA⟩ : ∃ A : Matrix (Idx D.R.rS D.R.k) (Idx D.R.rS D.R.k) (FpX X p),
       A = ofCols (colv (cV X u p θ) (yV X hb u p θ)) := ⟨_, rfl⟩
@@ -347,7 +334,7 @@ theorem hAdaptQ_of_in (X : HidaSetting D) (hb : AdBridgeIso X.B.I) (u : D.what�
       fun v t => by
         rw [hNn]
         exact ofCols_transpose_mulVec_apply _ _ t
-    have hdn := not_isW_dlH_of_not_isW s hs
+    have hdn := _root_.PIW.MassDataColumns.dlH_frame s hs
     rw [hQ, Matrix.transpose_mul, ← Matrix.mulVec_mulVec]
     funext t
     rw [Matrix.transpose_add, Matrix.transpose_one, Matrix.add_mulVec, Matrix.one_mulVec, Pi.add_apply, hNT]
@@ -358,7 +345,7 @@ theorem hAdaptQ_of_in (X : HidaSetting D) (hb : AdBridgeIso X.B.I) (u : D.what�
       change _ + z i ⬝ᵥ _ = _
       rw [dotProduct_eq_sum_mul, Finset.sum_eq_single (dlH s)]
       · rw [hwn _ hdn, if_pos rfl]
-        simp only [z, cc, if_neg hdn, dlH_dlH_lattice_columns, Pi.smul_apply, Pi.single_apply, if_neg hne,
+        simp only [z, cc, if_neg hdn, _root_.PIW.MassDataColumns.dlH_dlH, Pi.smul_apply, Pi.single_apply, if_neg hne,
           smul_eq_mul, mul_zero]
         linear_combination (-(((gOf p : ℕ) : FpX X p) * o s i)) * mul_inv_cancel₀ (h3 s hs)
       · intro j _ hj

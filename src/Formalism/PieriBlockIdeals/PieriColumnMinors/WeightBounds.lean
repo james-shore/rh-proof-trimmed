@@ -84,10 +84,6 @@ theorem short_bound_le_coarse_holds : Short6LeCoarse := by
   have : (0 : ℝ) ≤ 6 * ((q : ℝ) + 2 * (j : ℝ)) := by positivity
   linarith
 
-theorem indexIntegral_nonneg_of_params (l : ℕ) (xm xp mB : ℤ) : 0 ≤ IlInd l xm xp mB := by
-  unfold IlInd
-  split_ifs <;> norm_num
-
 theorem gated_min_nonneg_of_nonneg (l k t : ℕ) (D : ℤ) (I : ℝ) (hI : 0 ≤ I) :
     0 ≤ (if ((d0 l D : ℕ) : ℤ) < D then min (min (k : ℝ) (t : ℝ)) (I / (d0 l D : ℝ)) else 0) := by
   split_ifs
@@ -105,7 +101,7 @@ theorem short_bound_nonneg_holds : Short6Nonneg := by
   have h2 : 0 ≤ (k : ℝ) * (((xp - xm : ℤ) : ℝ) / (l : ℝ) + IlInd l xm xp mB) :=
     mul_nonneg (Nat.cast_nonneg _) (add_nonneg
       (div_nonneg (by exact_mod_cast sub_nonneg.mpr hx) (Nat.cast_nonneg _))
-      (indexIntegral_nonneg_of_params l xm xp mB))
+      (_root_.Formalism.CohomologicalDescent.UnitNormBounds.indexIntegral_nonneg l xm xp mB))
   have h3 := gated_min_nonneg_of_nonneg l k t (xm - mB) I hI
   have h4 : 0 ≤ (I / (l : ℝ)) * (1 + Real.posLog ((h : ℝ) / (l : ℝ))) := by
     have := Real.posLog_nonneg (x := (h : ℝ) / (l : ℝ))
@@ -659,7 +655,7 @@ theorem coarse_le_c_w_holds : CoarseLeCW := by
     push_cast
     linarith [hw.1, hw.2.2]
   have hS0 : (0 : ℝ) ≤ ((W.xp τ - W.xm τ : ℤ) : ℝ) := by exact_mod_cast sub_nonneg.mpr hw.2.1
-  have hIl := indexIntegral_nonneg_of_params l (W.xm τ) (W.xp τ) (W.top P τ)
+  have hIl := _root_.Formalism.CohomologicalDescent.UnitNormBounds.indexIntegral_nonneg l (W.xm τ) (W.xp τ) (W.top P τ)
   have t3 : (kc P : ℝ) * (((W.xp τ - W.xm τ : ℤ) : ℝ) / (l : ℝ) + IlInd l (W.xm τ) (W.xp τ) (W.top P τ)) ≤
       (P.k : ℝ) * (P.S / (l : ℝ) + IlInd l (W.xm τ) (W.xp τ) (W.top P τ)) :=
     mul_le_mul hk (by linarith [div_le_div_of_nonneg_right hS hl0])

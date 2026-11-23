@@ -109,7 +109,7 @@ private theorem psi_eq (F : Type) [Field F] [Finite F] (V : Type) [AddCommGroup 
   have hc := hcl _ (GlobalTheory.T.rootPowerSumCharacter_additive_and_X_sub_one_pow F θ c).1
   have hc' := hcl _ (GlobalTheory.T.rootPowerSumCharacter_additive_and_X_sub_one_pow F θ c').1
   have e1 := GlobalTheory.T.primitiveClassFunction_expansion_rootSums F V θ hθ _ hc'.1 hc'.2 hn g hg
-  have e2 := GlobalTheory.T.primitiveClassFunction_expansion_rootSums F V θ hθ _ hc.1 hc.2 hn g hg
+  have e2 := _root_.GlobalTheory.CuspGL.expand_primitive F V θ hθ _ hc.1 hc.2 hn g hg
   have hsum : (∑ k ∈ Finset.range (Nat.card F ^ Module.finrank F V - 1),
       (ipGL (psi (rootSum θ c') V) fun x ↦ rootSum θ k (LinearMap.charpoly x)) *
         psi (rootSum θ k) V g) =
@@ -117,7 +117,7 @@ private theorem psi_eq (F : Type) [Field F] [Finite F] (V : Type) [AddCommGroup 
       (ipGL (psi (rootSum θ c) V) fun x ↦ rootSum θ k (LinearMap.charpoly x)) *
         psi (rootSum θ k) V g := by
     refine Finset.sum_congr rfl fun k _ => ?_
-    rw [GlobalTheory.T.invertibleEndInnerProduct_rootPowerSum_mobius F V θ hθ hn, GlobalTheory.T.invertibleEndInnerProduct_rootPowerSum_mobius F V θ hθ hn,
+    rw [_root_.GlobalTheory.CuspGL.ipGL_psi_rootSum F V θ hθ hn, _root_.GlobalTheory.CuspGL.ipGL_psi_rootSum F V θ hθ hn,
       count_eq (Nat.card F) (Module.finrank F V) c c' i k Nat.card_pos hn h]
   have hne : glCard F (Module.finrank F V) * (Module.finrank F V : ℂ) ≠ 0 := by
     refine mul_ne_zero ?_ (Nat.cast_ne_zero.mpr hn.ne')

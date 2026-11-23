@@ -85,11 +85,6 @@ theorem gt_of_uh (M : DSModel V S) {g : Matrix (Fin V.rank) (Fin V.rank) ℂ} (h
   have hgu : IsUnit g := by rw [← e]; exact (hfu.mul hu).mul (M.fr_unit τ)
   exact ⟨⟨hgu.unit, hg⟩, rfl⟩
 
-theorem rep_one' : M.rep τ 1 = 1 := by
-  show M.σ τ (M.fr τ * 1 * (M.fr τ)⁻¹) = 1
-  rw [Matrix.mul_one, fr_mul_inv]
-  exact (M.ds τ).2.2.1.1.1
-
 def Ksub : Submodule ℂ (M.H τ) :=
   Submodule.span ℂ {x | ∃ g ∈ Formalism.QuantumDeterminants.UH (gramAt D V τ), ∃ w0 : lowT M τ, x = M.rep τ g ((w0 : M.sm τ) : M.H τ)}
 
@@ -141,7 +136,7 @@ theorem ksub_closure_top (hlow : ∃ w0 : lowT M τ, ((w0 : M.sm τ) : M.H τ) �
     have hmem : ((w0 : M.sm τ) : M.H τ) ∈ (Ksub M τ).topologicalClosure := by
       apply Submodule.le_topologicalClosure
       refine Submodule.subset_span ⟨1, one_uh τ, w0, ?_⟩
-      rw [rep_one' M τ, ContinuousLinearMap.one_apply]
+      rw [_root_.Formalism.IndefR.SchurOrthogonalityAlt.gp_rep_one M τ, ContinuousLinearMap.one_apply]
     rw [h, Submodule.mem_bot] at hmem
     exact hw0 hmem
   · exact h

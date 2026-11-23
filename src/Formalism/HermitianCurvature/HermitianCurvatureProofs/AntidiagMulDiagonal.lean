@@ -52,7 +52,7 @@ variable {K : Type} [Field K] {n : ℕ}
 
 theorem jointTheoremA : JointTheoremA := by
   intro C₀ hC₀
-  obtain ⟨C, hC⟩ := Formalism.FourierDecayAlt.P.coarseBound
+  obtain ⟨C, hC⟩ := _root_.Formalism.FourierDecayAlt.P.RecText.recT
   refine ⟨2 * C₀, C, ?_⟩
   intro Kx Θ f r e σ hKx hf hΘ hr he hσ hrec
   have hΘ1 : 1 ≤ Θ := by linarith
@@ -78,4 +78,3 @@ theorem jointTheoremA : JointTheoremA := by
 
 end Formalism.FourierDecayAlt.P.K
 
-theorem Formalism.FourierDecayAlt.P.joint_theorem_A' : Formalism.FourierDecayAlt.K.JointTheoremA := Formalism.FourierDecayAlt.P.K.jointTheoremA

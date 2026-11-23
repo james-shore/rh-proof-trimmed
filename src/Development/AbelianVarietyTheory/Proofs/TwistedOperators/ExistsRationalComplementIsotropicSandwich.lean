@@ -353,9 +353,6 @@ section Forms
 
 variable {D : D7} (V W : HSp D)
 
-theorem hO_add_right (x y y' : WO V W) : hO V W x (y + y') = hO V W x y + hO V W x y' := by
-  rw [hO_eq_trace, hO_eq_trace, hO_eq_trace, adj_add, Matrix.add_mul, Matrix.mul_add, Matrix.trace_add]
-
 theorem hO_sub_right (x y y' : WO V W) : hO V W x (y - y') = hO V W x y - hO V W x y' := by
   rw [hO_eq_trace, hO_eq_trace, hO_eq_trace, adj_sub, Matrix.sub_mul, Matrix.mul_sub, Matrix.trace_sub]
 
@@ -485,7 +482,7 @@ theorem annih_step {D : D7} (V W : HSp D) {a b k : ℕ} (P : Matrix (Fin W.rank)
     rw [← Matrix.map_mul, ← Matrix.map_mul, ← Matrix.map_sub _ (map_sub (incA D)), hcy, Matrix.map_add _ (map_add (incA D)),
       GlobalTheory.IsoMean.cplx_rat]
     simp only [Matrix.of_apply, GlobalTheory.IsoMean.emb, Matrix.map_mul]
-  rw [e, hO_add_right, hO_emb_eq_zero V W P Q x hxo, add_zero]
+  rw [e, _root_.GlobalTheory.LatVac.hO_add_right, hO_emb_eq_zero V W P Q x hxo, add_zero]
 
 end GlobalTheory.IsoCompl
 

@@ -142,7 +142,7 @@ theorem term_weight_pos (hH0 : Cnt.Hyp0 D large₂ C' Cl Cg cb Cu cT CT C0) (h7 
     have := mul_nonpos_of_nonneg_of_nonpos hgm.le (not_lt.1 hn)
     linarith
   unfold tvPr
-  exact div_pos hT (rows_Tr_pos D u')
+  exact div_pos hT (_root_.Formalism.MainNotions.BridgeLemma₂.rowsT_Tr_pos D u')
 
 theorem prod_term_weight_pow_le (hH0 : Cnt.Hyp0 D large₂ C' Cl Cg cb Cu cT CT C0) (h6 : VanishingOnXAndXPlus.adm6 D large₂ C' Cl Cg cb Cu cT CT C0 δ)
     (hδ2 : δ ≤ 1 / 2) : ∏ τ, tvPr D τ u' ^ D.R.k ≤ 2 * C0 * GamS D large₂ ^ 2 := by
@@ -212,7 +212,7 @@ theorem small_term_pow_le (h : rows_Hyps Y C' Cl Cg cb Cu cT CT C0 A c Cpr Ca C2
     have hν : 0 ≤ nuV (Tr D u) (Y.W τ).z (Y.W τ).z' (Y.γ t τ) := by
       unfold nuV
       rw [d_Gf_eq Y hrd t τ]
-      exact div_nonneg (rows_Gz_pos Y h.hT hrd t hG hrel τ).le (mul_nonneg (rows_Tr_pos D u).le (sq_nonneg _))
+      exact div_nonneg (rows_Gz_pos Y h.hT hrd t hG hrel τ).le (mul_nonneg (_root_.Formalism.MainNotions.BridgeLemma₂.rowsT_Tr_pos D u).le (sq_nonneg _))
     have := (htv τ).le
     positivity
   have a0 : ∀ τ, 0 ≤ ampMinF D Ca δm τ u u' (Y.W τ).z (Y.W τ).z' (Y.γ t τ) := by

@@ -173,8 +173,7 @@ theorem exists_denom {X : Scheme.{0}} (G : Over X) [GrpObj G] [IsCommMonObj G] [
   rw [← h1, ← hjl]
   congr 3
 
-theorem snd_epsMul {A : Type} [CommRing A] (c : A) (t : DualNumber A) : (epsMul c t).snd = c * t.snd := by
-  simp [epsMul]
+alias snd_epsMul := _root_.GlobalTheory.CompanionTheory.Ar.LieTangent.epsMul_snd
 
 theorem core_tan {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCat.of Ω) ⟶ X} {G : Over X} [GrpObj G]
     [IsCommMonObj G] [Smooth G.hom] {E : Type} [AddCommGroup E] [Module Ω E]

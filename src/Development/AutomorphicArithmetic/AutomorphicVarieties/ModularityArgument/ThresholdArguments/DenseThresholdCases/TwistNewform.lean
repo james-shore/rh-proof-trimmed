@@ -106,7 +106,7 @@ private theorem sources_of_spherical (P : _root_.UpperTheory.V.Af.HypothesesH') 
     rcases hα' with h1 | h1
     · rw [h1, RingEquiv.symm_apply_apply, hun]
     · rw [h1, map_inv₀, RingEquiv.symm_apply_apply, norm_inv, hun, inv_one]
-  obtain ⟨hal, hpow⟩ := GlobalTheory.T.newform_unit_root_not_root_of_unity_odd_weight l ι e g α hl2 he hlev hroot hαn
+  obtain ⟨hal, hpow⟩ := _root_.GlobalTheory.Ord2.root_facts l ι e g α hl2 he hlev hroot hαn
   refine ⟨⟨g, χ⁻¹, A, κ, hlev, hal, kills_inv hχ, ?_, hA, hfl, fun s hs => ?_⟩, fun A' κ' hA' hfl' => ?_⟩
   · rw [tw_tw] at hg
     rw [mul_assoc]

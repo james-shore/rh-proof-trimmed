@@ -83,7 +83,7 @@ theorem siegel_ne_zero : ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosu
     have hz' : 0 < z.im := hz
     simp only [sgC, UpperHalfPlane.ofComplex_apply_of_im_pos hz']
     exact sg_ne_zero c x _ hx
-  haveI := codiscreteWithin_Hs_neBot
+  haveI := _root_.GlobalTheory.KZ.SiegelModel.neBot_Hs
   obtain ⟨z, h1, h2⟩ := (hev.and hne).exists
   exact h2 h1
 

@@ -90,7 +90,7 @@ theorem closed_of_points : ∀ (S : Scheme.{0}) (P : ∀ (R' : Type) [CommRing R
     rw [Scheme.Hom.ker, Scheme.IdealSheafData.le_ofIdeals_iff]
     constructor
     · intro h
-      exact GlobalTheory.T.affinePointProperty_of_le_ker_app S P hLoc hrep R' x fun V hV ↦ h ⟨V, hV⟩
+      exact _root_.GlobalTheory.PtClosed.of_le_ker_app S P hLoc hrep R' x fun V hV ↦ h ⟨V, hV⟩
     · intro h V
       exact GlobalTheory.T.idealKilledByRingMapsWithProperty_le_ker_app S P hBC R' x h V.1 V.2
   rw [← key]

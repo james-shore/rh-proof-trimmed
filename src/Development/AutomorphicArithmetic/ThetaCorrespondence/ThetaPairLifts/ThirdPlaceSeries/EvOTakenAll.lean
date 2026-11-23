@@ -60,8 +60,8 @@ theorem evO_takenAll_alt : GlobalTheory.TwSys.Cheb → HeckeStdPlain → ∀ (D 
   obtain ⟨L₀, hL₀⟩ := hB bigA
   have hQ₀ := hA L₀ hL₀
   obtain ⟨big₁, h₁⟩ :=
-    _root_.GlobalTheory.T.side_eigen_integrality_alt hHS D cf jE A low Pq S hL eig θ Bs M C tp hCS hMt hstar hE hsplit hCS2 bigA L₀ hL₀
-  have hc₀ := _root_.GlobalTheory.T.contains_after_localization_alt D cf jE A M C tp.tup bigA L₀ hL₀
+    _root_.GlobalTheory.CoefDuty.ExtBuilt.extOf_built_alt hHS D cf jE A low Pq S hL eig θ Bs M C tp hCS hMt hstar hE hsplit hCS2 bigA L₀ hL₀
+  have hc₀ := _root_.GlobalTheory.CoefDuty.MemberO.member_duties_alt D cf jE A M C tp.tup bigA L₀ hL₀
   let S0 : L₀.X.nd.Loc → Finset ℂ := fun i =>
     if h : ∃ S : Finset ℂ, Chosen (withLoc L₀).nd (withLoc L₀).naut i ↑S then h.choose else ∅
   let big : D.what₂.places.Pl → Finset ℂ := fun w =>
@@ -70,7 +70,7 @@ theorem evO_takenAll_alt : GlobalTheory.TwSys.Cheb → HeckeStdPlain → ∀ (D 
   have hL₁' : _root_.GlobalTheory.CoefDuty.BuiltAlt A M C tp.tup big₁ L₁ :=
     (_root_.GlobalTheory.T.eventually_conjunction_mono_alt D cf jE A M C tp.tup (fun _ => True) (fun _ => True)).2.2.2 big₁ big L₁
       (fun w => Finset.subset_union_left) hL₁
-  have hc₁ := _root_.GlobalTheory.T.contains_after_localization_alt D cf jE A M C tp.tup big L₁ hL₁
+  have hc₁ := _root_.GlobalTheory.CoefDuty.MemberO.member_duties_alt D cf jE A M C tp.tup big L₁ hL₁
   intro i₁ hlive₁
   obtain ⟨i₀, hw, ⟨e⟩⟩ := h₁ L₁ hL₁' i₁
   have hc₀i := hc₀ i₀
@@ -80,7 +80,7 @@ theorem evO_takenAll_alt : GlobalTheory.TwSys.Cheb → HeckeStdPlain → ∀ (D 
   have hlive₀ : Live L₀.lay.fixZ.nd i₀ :=
     GlobalTheory.T.irreducibleResidualPoint_descends_coefficientExtension hCh _ _ _ _ i₀ i₁ e hgood₀ hZ₀ (hc₁i.2.2.1.1 hlive₁)
   have hex : ∃ S : Finset ℂ, Chosen (withLoc L₀).nd (withLoc L₀).naut i₀ ↑S :=
-    _root_.GlobalTheory.T.exists_finset_chosen_of_cheb_oSplit hCh (withLoc L₀) hQ₀.1 hQ₀.2.1 i₀ (hQ₀.2.2 i₀) (hc₀i.2.2.1.2 hlive₀)
+    _root_.GlobalTheory.OChoose.oChoose_alt hCh (withLoc L₀) hQ₀.1 hQ₀.2.1 i₀ (hQ₀.2.2 i₀) (hc₀i.2.2.1.2 hlive₀)
   have hch : Chosen (withLoc L₀).nd (withLoc L₀).naut i₀ ↑(S0 i₀) := by
     simp only [S0, dif_pos hex]
     exact hex.choose_spec

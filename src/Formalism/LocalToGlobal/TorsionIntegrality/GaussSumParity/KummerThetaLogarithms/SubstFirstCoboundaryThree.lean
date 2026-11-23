@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.ThetaLogCoordinates.UniformThetaSubstitution.FrobeniusLiftNorms.ConstantCoeffLawFirstTwoOfThree
 
 @[expose] public section
 
@@ -167,16 +168,6 @@ theorem log_law {l : ℕ} {F : MvPowerSeries (Fin 2) K} (hF0 : constantCoeff F =
     subst_single_var h2, subst_single_var h2] at h
   exact h
 
-private theorem constantCoeff_in3_eq_zero {F : MvPowerSeries (Fin 2) K} (hF0 : constantCoeff F = 0) :
-    constantCoeff (in3 F) = 0 := by
-  unfold in3
-  have hx : ∀ i : Fin 2, constantCoeff (![(X 0 : MvPowerSeries (Fin 3) K), X 1] i) = 0 := by
-    intro i; fin_cases i <;> simp
-  first
-  | exact constantCoeff_subst_eq_zero hx F hF0
-  | exact constantCoeff_subst_eq_zero (hasSubst_finite_of_constantCoeff_eq_zero hx) hx hF0
-  | (apply constantCoeff_subst_eq_zero <;> first | assumption | exact hasSubst_finite_of_constantCoeff_eq_zero hx)
-
 theorem subst_first_coboundary_three {F : MvPowerSeries (Fin 2) K} (hF0 : constantCoeff F = 0) {τ : Type}
     {a b c : MvPowerSeries τ K} (ha : constantCoeff a = 0) (hb : constantCoeff b = 0)
     (hc : constantCoeff c = 0) (H : MvPowerSeries (Fin 2) K) :
@@ -190,7 +181,7 @@ theorem subst_first_coboundary_three {F : MvPowerSeries (Fin 2) K} (hF0 : consta
     simp only [subst_X h3]
     first | rfl | simp
   unfold d1
-  rw [mvSubst_sub h3, mvSubst_sub h3, subst2_comp h3 (constantCoeff_in3_eq_zero hF0) (hX 2),
+  rw [mvSubst_sub h3, mvSubst_sub h3, subst2_comp h3 (_root_.Formalism.InvariantFactorPaths.G7.GramFrameCompositionLinFacts.constantCoeff_law_first_two_of_three hF0) (hX 2),
     subst2_comp h3 (hX 0) (hX 2), subst2_comp h3 (hX 1) (hX 2), e1]
   simp only [subst_X h3]
   first | rfl | simp

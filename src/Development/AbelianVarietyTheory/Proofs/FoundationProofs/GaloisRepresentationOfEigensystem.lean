@@ -67,13 +67,6 @@ namespace GlobalTheory.KZ.HeckeProj
 
 variable {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ}
 
-theorem gal_mul_apply (X : Tower Ω ε) (s s' : Ω ≃ₐ[ℚ] Ω) (f : X.K) : X.gal (s * s') f = X.gal s (X.gal s' f) := by
-  letI := X.fld; letI := X.alg
-  apply (X.exp : X.K →+* HahnSeries ℚ Ω).injective
-  refine HahnSeries.ext (funext fun r => ?_)
-  show (X.exp (X.gal (s * s') f)).coeff r = (X.exp (X.gal s (X.gal s' f))).coeff r
-  rw [X.gal_exp, X.gal_exp, X.gal_exp, AlgEquiv.mul_apply]
-
 theorem gal_one_apply (X : Tower Ω ε) (f : X.K) : X.gal 1 f = f := by
   letI := X.fld; letI := X.alg
   apply (X.exp : X.K →+* HahnSeries ℚ Ω).injective
@@ -105,7 +98,7 @@ theorem kmap_refl (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] : X.kmap l (RingEqu
 
 theorem galB_mul (X : Tower Ω ε) (l : ℕ) [Fact l.Prime] (s s' : Ω ≃ₐ[ℚ] Ω) :
     X.galB l (s * s') = X.galB l s ∘ₗ X.galB l s' := by
-  have hg : X.gal (s * s') = (X.gal s').trans (X.gal s) := RingEquiv.ext (gal_mul_apply X s s')
+  have hg : X.gal (s * s') = (X.gal s').trans (X.gal s) := RingEquiv.ext (_root_.GlobalTheory.KZ.Tower.gal_mul_apply X s s')
   have hr : (s * s').toRingEquiv = s.toRingEquiv * s'.toRingEquiv := RingEquiv.ext fun x => rfl
   apply LinearMap.ext; intro b; funext u
   simp only [Tower.galB, LinearMap.coe_mk, AddHom.coe_mk, LinearMap.comp_apply]
@@ -193,7 +186,7 @@ theorem heckeProj_main : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosu
   have hVBfin : FiniteDimensional E (X.VB N l w E) := by
     unfold Tower.VB; infer_instance
   set Pv := FreeAlgebra.lift E (X.opV N l E) P with hPv
-  have hPst := HeckeProj.adj_stab {T | admitted N l T} (X.opV N l E) (X.VB N l w E) (X.galV l E) hstab hcomm P hPadm
+  have hPst := _root_.GlobalTheory.AdjoinStableCommutes.adjoin_stable_and_commutes {T | admitted N l T} (X.opV N l E) (X.VB N l w E) (X.galV l E) hstab hcomm P hPadm
   have heig : ∀ x ∈ X.VB N l w E, ∀ T, admitted N l T → X.opV N l E T (Pv x) = lam T • Pv x := by
     intro x hx T hT
     have := hPe x hx T hT

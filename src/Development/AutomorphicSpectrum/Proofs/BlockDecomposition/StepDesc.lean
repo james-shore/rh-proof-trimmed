@@ -63,9 +63,6 @@ theorem xi_thick (T : (F.pt κ).Elements) :
     ((gE F κ k n).obj T).i ((base l).cris n (∑ i ∈ Finset.range l, ε.qk 1 ^ i)) ∈ ((gE F κ k n).obj T).J :=
   xi_mem F κ k n T _ ((GlobalTheory.CompanionTheory.EpsFacts.eps_facts ε).2.2.1 T.1 n)
 
-theorem mu_factor : ε.μ = (ε.qk 1 - 1) * ∑ i ∈ Finset.range l, ε.qk 1 ^ i :=
-  (GlobalTheory.CompanionTheory.EpsFacts.eps_facts ε).2.2.2.1
-
 end
 
 
@@ -76,6 +73,6 @@ theorem main : ∀ {l : ℕ} [Fact l.Prime], D.Out l → ∀ {O : Type} [CommRin
   intro l _ hOut O _ F κ ε k n ρ hρ hk
   exact desc_flt (b := bs l k n) (L := Lc F κ k n) (Λ := Acris l) (F.pt κ) ((base l).cris n) (gE F κ k n) ρ hρ
     ε.μ (ε.μ_mem k (base l) n) (jE (F.pt κ)) (ε.qk 1 - 1) (∑ i ∈ Finset.range l, ε.qk 1 ^ i)
-    (mu_factor ε) (xi_thick F κ ε k n) (step_desc F κ ε k n ρ hρ hOut hk)
+    (_root_.GlobalTheory.CompanionTheory.EpsFacts.mu_eq ε) (xi_thick F κ ε k n) (step_desc F κ ε k n ρ hρ hOut hk)
 
 end GlobalTheory.CompanionTheory.DescTest

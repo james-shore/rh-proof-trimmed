@@ -119,7 +119,7 @@ theorem splitAll_holds : SplitAll := by
   intro D T u u' X0 C Th Q i0 i0' νq Lsp ϖ hne hSt hCT hg3
   have hWD : Formalism.L2.SG.WuDecay.WuDecay T.X := hCT.2.2.2.2.1
   have hAbs : (T.Y.tO u u').AbsConv :=
-    Formalism.L2.SG.Pf.absConvC_outright D T.X T.Y u u'
+    _root_.Formalism.L2.SG.Closed.AbsConvC_outright D T.X T.Y u u'
       (Formalism.L2.SG.Closed.FoldOKC_outright D T.X T.Y u (Formalism.L2.SG.Closed.level_subgroup_properties T.X) hWD)
       (Formalism.L2.SG.Closed.FoldOKC_outright D T.X T.Y u' (Formalism.L2.SG.Closed.level_subgroup_properties T.X) hWD)
       (Formalism.L2.SG.Pf.fundExistsC_holds D T.X T.Y u u')

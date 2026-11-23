@@ -123,7 +123,7 @@ theorem exists_fam {S : Scheme.{0}} {A U T : Over S} [GrpObj A] [IsLocallyNoethe
     rw [evc, ← hc, ← CechPic.pull_comp, ← Over.comp_left, lift_whiskerLeft]
   have key : ∀ (Y : Over S) (a : Y ⟶ A) (t : Y ⟶ T), evc hM a (t ≫ p) = evc hN a t := fun Y a t ↦ by
     rw [k, k', k', ha.evc_one hN, sub_zero]
-  refine ⟨M, hM, GlobalTheory.T.isAdditive_lineBundleFamily_of_geometricFibres S A U hA M hM ((triv_ev_iff hM _ _).2 (by rw [k, sub_self])) fun K _ _ s t ↦ ?_, key⟩
+  refine ⟨M, hM, _root_.GlobalTheory.AddFib.isAdditive_of_geomFibres S A U hA M hM ((triv_ev_iff hM _ _).2 (by rw [k, sub_self])) fun K _ _ s t ↦ ?_, key⟩
   obtain ⟨t', rfl⟩ := hp K s t
   refine (isAdditive_iff (pull_isLB hM _)).2 fun Y a a' y ↦ ?_
   simp only [evc_ev hM, lift_fst, lift_snd_assoc]
@@ -132,7 +132,7 @@ theorem exists_fam {S : Scheme.{0}} {A U T : Over S} [GrpObj A] [IsLocallyNoethe
 
 theorem hasRep_of_sqZero : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (A : Over (Sp R)) [GrpObj A] (g : ℕ), IsAbelianScheme A → SmoothOfRelativeDimension g A.hom → ∀ J : Ideal R, J ^ 2 = ⊥ → HasRep A g (Over.mk (spMap (Ideal.Quotient.mk J))) → HasRep A g (𝟙_ _) := by
   intro R _ _ A _ g hA hg J hJ ⟨B, b, P, hP, hb⟩
-  refine GlobalTheory.T.representingScheme_of_finite_surjective_lift R A g hA hg B _ b P ?_ ?_ hP hb fun x ↦ ?_
+  refine _root_.GlobalTheory.DualCon.hasRep_of_liftAt R A g hA hg B _ b P ?_ ?_ hP hb fun x ↦ ?_
   · haveI : IsClosedImmersion (spMap (Ideal.Quotient.mk J)) :=
       IsClosedImmersion.spec_of_surjective _ Ideal.Quotient.mk_surjective
     exact inferInstanceAs (IsFinite (spMap (Ideal.Quotient.mk J)))

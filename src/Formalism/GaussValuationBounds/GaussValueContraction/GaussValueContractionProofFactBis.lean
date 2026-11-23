@@ -61,7 +61,7 @@ theorem padicInt_valuation_unit (ℓ : ℕ) [Fact ℓ.Prime] (u : ℤ_[ℓ]ˣ) :
 
 theorem cjExist_proof : CjExist := by
   intro ℓ _ hℓ χ hχ
-  have hZ := Formalism.WindowSums.arc_ZpowVal ℓ χ 1 le_rfl (fun h => absurd h hℓ) hχ
+  have hZ := _root_.Formalism.WindowSums.valuation_zpow_sub_one ℓ χ 1 le_rfl (fun h => absurd h hℓ) hχ
   have hℓ0 : (ℓ : ℤ_[ℓ]) ≠ 0 := by exact_mod_cast (Fact.out : ℓ.Prime).ne_zero
   have hdvd : ∀ j : ℤ, (ℓ : ℤ_[ℓ]) ∣ ((χ ^ (-j) : ℤ_[ℓ]ˣ) : ℤ_[ℓ]) - 1 := by
     intro j

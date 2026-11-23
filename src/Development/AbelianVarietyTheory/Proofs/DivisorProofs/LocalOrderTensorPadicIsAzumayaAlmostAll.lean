@@ -83,7 +83,7 @@ theorem exists_coords_of_mem_locOrder : ∀ (ℓ : ℕ) [Fact ℓ.Prime] (F B : 
     conv_lhs => rw [← e.sum_repr x]
     rw [TensorProduct.tmul_sum]
     refine Finset.sum_congr rfl fun i _ => ?_
-    rw [GlobalTheory.LocMatrix.cenMap_tmul, Algebra.TensorProduct.tmul_mul_tmul, one_mul, Algebra.smul_def]
+    rw [_root_.GlobalTheory.CentralizerMapTensor.cenMap_tmul_eq, Algebra.TensorProduct.tmul_mul_tmul, one_mul, Algebra.smul_def]
   intro y hy
   induction hy using Algebra.adjoin_induction with
   | mem y hy =>
@@ -115,7 +115,7 @@ theorem exists_coords_of_mem_locOrder : ∀ (ℓ : ℕ) [Fact ℓ.Prime] (F B : 
           ∑ k, cenMap ℓ F B (c i * c' j * ((1 : ℚ_[ℓ]) ⊗ₜ[ℚ] e.repr (e i * e j) k)) *
             ((1 : ℚ_[ℓ]) ⊗ₜ[ℚ] e k) := by
         intro i j
-        have hcomm := (GlobalTheory.LocMatrix.cenMap_commute ℓ F B (c' j) ((1 : ℚ_[ℓ]) ⊗ₜ[ℚ] e i)).eq
+        have hcomm := (_root_.GlobalTheory.CentralizerMapTensor.commute_cenMap ℓ F B (c' j) ((1 : ℚ_[ℓ]) ⊗ₜ[ℚ] e i)).eq
         have h1 : cenMap ℓ F B (c i) * ((1 : ℚ_[ℓ]) ⊗ₜ[ℚ] e i) *
             (cenMap ℓ F B (c' j) * ((1 : ℚ_[ℓ]) ⊗ₜ[ℚ] e j)) =
             cenMap ℓ F B (c i * c' j) * ((1 : ℚ_[ℓ]) ⊗ₜ[ℚ] (e i * e j)) := by
@@ -142,7 +142,7 @@ theorem exists_coordProj (ℓ : ℕ) [Fact ℓ.Prime] (F B : Type) [Field F] [Nu
   induction a using TensorProduct.induction_on with
   | zero => simp
   | tmul q x =>
-    rw [GlobalTheory.LocMatrix.cenMap_tmul, Algebra.TensorProduct.tmul_mul_tmul, mul_one, ← Algebra.smul_def]
+    rw [_root_.GlobalTheory.CentralizerMapTensor.cenMap_tmul_eq, Algebra.TensorProduct.tmul_mul_tmul, mul_one, ← Algebra.smul_def]
     simp only [LinearMap.lTensor_tmul, LinearMap.coe_restrictScalars, map_smul, Basis.coord_apply,
       Basis.repr_self, Finsupp.single_apply, smul_eq_mul]
     split_ifs <;> simp

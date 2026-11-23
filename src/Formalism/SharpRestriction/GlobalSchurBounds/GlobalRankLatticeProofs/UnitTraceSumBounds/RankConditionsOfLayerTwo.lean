@@ -310,8 +310,8 @@ theorem card_ssIdx_eq {D : D7} (u : D.what₂.Word) (τ : D.what₂.Tau) :
     subst hN
     unfold Formalism.LogVandermondeBounds.StandardLattice.dimVN
     rw [Formalism.L2.Col.vandN_congr (y := StandardLattice.uN D u τ) fun i j hi hj => by rw [hx i hi, hx j hj]; ring]
-  refine key _ _ (Formalism.L2.Col.rankN_zero D.R) fun i hi => ?_
-  have hi0 : i < D.R.N 0 := by rw [Formalism.L2.Col.rankN_zero]; exact hi
+  refine key _ _ (_root_.Formalism.BasicNotions.Ranks.N_zero D.R) fun i hi => ?_
+  have hi0 : i < D.R.N 0 := by rw [_root_.Formalism.BasicNotions.Ranks.N_zero]; exact hi
   have h := (D.fm u).lam_eq 0 (Nat.zero_le _) τ ⟨i, hi0⟩
   rw [dite_eq_left hi] at h
   unfold hcToWeightQ rhoVec at h

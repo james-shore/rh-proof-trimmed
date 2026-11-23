@@ -356,7 +356,7 @@ section AllK
 theorem th0TransAll_of (hP : PTorsAll) (hK : KleinAll) : PeriodTranscendenceAllLattices := by
   intro D cc δ B hcc hδ
   have sd : B.StdOK := Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.SO.stdOK B hcc hδ
-  obtain ⟨h2, h3⟩ := Sigma.invAlg' D cc δ hcc hδ B.L B.lat
+  obtain ⟨h2, h3⟩ := _root_.Formalism.L2.KerInert.Sigma.ChartWirtingerDerivatives.weierstrass_invariants_algebraic D cc δ hcc hδ B.L B.lat
   exact th0TransAlg_of B.L B.ω₀ sd.per sd.half h2 h3 (Sigma.secondEisensteinAlgebraic D cc δ hcc hδ B.L B.lat)
     (hP D cc δ B hcc hδ) (hK D cc δ B hcc hδ)
 
@@ -373,7 +373,7 @@ theorem pTorsAlg_of (L : PeriodPair) (hg2 : L.g₂ ∈ Formalism.MainNotions.Tay
     (PI.GalTorsConj.W.alg_of_sq hsq hx (mem_algebraicClosure_iff.1 hg2) (mem_algebraicClosure_iff.1 hg3))⟩
 
 theorem torsion_points_algebraic : PTorsAll := fun D cc δ B hcc hδ =>
-  pTorsAlg_of B.L (Sigma.invAlg' D cc δ hcc hδ B.L B.lat).1 (Sigma.invAlg' D cc δ hcc hδ B.L B.lat).2
+  pTorsAlg_of B.L (_root_.Formalism.L2.KerInert.Sigma.ChartWirtingerDerivatives.weierstrass_invariants_algebraic D cc δ hcc hδ B.L B.lat).1 (_root_.Formalism.L2.KerInert.Sigma.ChartWirtingerDerivatives.weierstrass_invariants_algebraic D cc δ hcc hδ B.L B.lat).2
 
 theorem kerTransAll_of_klein (hP : PTorsAll) (hK : KleinAll) : KerTransAll :=
   kerTransAll_of (th0TransAll_of hP hK)

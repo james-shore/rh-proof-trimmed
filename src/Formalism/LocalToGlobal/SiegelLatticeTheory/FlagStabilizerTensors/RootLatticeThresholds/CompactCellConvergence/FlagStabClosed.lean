@@ -50,6 +50,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.HermitianCurvature.HermitianCurvatureProofs.SymmetricScalarBlockMatrixMul
 
 @[expose] public section
 
@@ -109,10 +110,6 @@ theorem sgS_closed (z z' : Fin (2 * r + k + 1) → ℂ) (hz : StdZ k r z)
     (γ : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) : IsClosed (SgS k r z z' γ) :=
   (sset_closed z hz).inter ((lpg_closed _).preimage ((uMap_cont z).matrix_conjTranspose))
 
-theorem n_in_sset (z : Fin (2 * r + k + 1) → ℂ) {n : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ}
-    (hn : n ∈ Nset k r) : n ∈ Sset k r z :=
-  ⟨1, ⟨WeylGroupFacts.uh_one, fun a => by simp, by simp⟩, n, hn, by simp⟩
-
 theorem uw_in_sset (z : Fin (2 * r + k + 1) → ℂ) {h : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ}
     (hh : h ∈ UWset k r z) : h ∈ Sset k r z :=
   ⟨h, hh, 1, WeylGroupFacts.mem_n_one, by simp⟩
@@ -126,8 +123,8 @@ theorem sg_eq (z z' : Fin (2 * r + k + 1) → ℂ) (hz : StdZ k r z)
   constructor
   · rintro ⟨n0, hn0, v, hv, hvL, h, hh, rfl⟩
     obtain ⟨hτN, -, hτu⟩ := hT v hv
-    have h1 : n0 ∈ Sset k r z := n_in_sset z hn0.1
-    have h2 : tauM k r z v ∈ Sset k r z := n_in_sset z hτN
+    have h1 : n0 ∈ Sset k r z := _root_.Formalism.FourierDecayAlt.P.Ux3.nset_sset z hn0.1
+    have h2 : tauM k r z v ∈ Sset k r z := _root_.Formalism.FourierDecayAlt.P.Ux3.nset_sset z hτN
     have h3 : h ∈ Sset k r z := uw_in_sset z hh
     refine ⟨hSG.2.1 _ (hSG.2.1 _ h1 _ h2) _ h3, ?_⟩
     rw [(hU.1 _ (hSG.2.1 _ h1 _ h2)).2.2 _ h3, (hU.1 _ h1).2.2 _ h2, hn0.2, hτu, hU.2 h hh]
@@ -148,13 +145,13 @@ theorem sg_eq (z z' : Fin (2 * r + k + 1) → ℂ) (hz : StdZ k r z)
     have hsplit : h * m = h * m * h⁻¹ * h := by
       rw [Matrix.mul_assoc (h * m), Matrix.nonsing_inv_mul _ hhU, Matrix.mul_one]
     have hun : uMap k r z (h * m * h⁻¹) = v := by
-      have := hmul _ (n_in_sset z hn) _ (uw_in_sset z hh)
+      have := hmul _ (_root_.Formalism.FourierDecayAlt.P.Ux3.nset_sset z hn) _ (uw_in_sset z hh)
       rw [← hsplit, hU.2 h hh, Matrix.mul_one] at this
       exact this.symm
     have hone : uMap k r z 1 = 1 := hU.2 1 ⟨WeylGroupFacts.uh_one, fun a => by simp, by simp⟩
     have huinv : uMap k r z (h * m * h⁻¹ * (tauM k r z v)⁻¹) = 1 := by
-      have e1 := hmul _ (n_in_sset z hn) _ (n_in_sset z hτi)
-      have e2 := hmul _ (n_in_sset z hτN) _ (n_in_sset z hτi)
+      have e1 := hmul _ (_root_.Formalism.FourierDecayAlt.P.Ux3.nset_sset z hn) _ (_root_.Formalism.FourierDecayAlt.P.Ux3.nset_sset z hτi)
+      have e2 := hmul _ (_root_.Formalism.FourierDecayAlt.P.Ux3.nset_sset z hτN) _ (_root_.Formalism.FourierDecayAlt.P.Ux3.nset_sset z hτi)
       rw [Matrix.mul_nonsing_inv _ hτU, hone, hτu] at e2
       rw [e1, hun]; exact e2.symm
     refine ⟨_, ⟨hn0, huinv⟩, v, hv, by simpa using hsL, h, hh, ?_⟩

@@ -92,11 +92,7 @@ theorem gdd_eq_idl (D : Formalism.BasicNotions.D7) (a b : ℤ) :
 def PlacesTau (D : Formalism.BasicNotions.D7) : Prop :=
   ∀ l : D.host.E, ∏ τ : D.what₂.Tau, ‖D.host.emb (D.eTau τ) l‖ = ∏ w : InfinitePlace D.host.E, w l
 
-theorem rdE_pos (D : Formalism.BasicNotions.D7) : 0 < D.host.rdE := by
-  unfold Formalism.BasicNotions.Host.rdE
-  apply Real.rpow_pos_of_pos
-  have : (discr D.host.E : ℝ) ≠ 0 := by exact_mod_cast NumberField.discr_ne_zero D.host.E
-  exact abs_pos.2 this
+alias rdE_pos := _root_.Formalism.MainNotions.S.rdE_pos
 
 theorem emb_injective (D : Formalism.BasicNotions.D7) : Function.Injective D.host.emb := by
   intro g g' h
@@ -376,7 +372,7 @@ theorem selfDual_of_core (M : Model F E) (hOK : M.OK) (a : E) :
     constructor
     · intro h
       rw [mem_R_split]
-      refine (Formalism.FourierDecayAlt.P.self_dual_gamma F (𝒪[F]) (g.q : F) g.q.2 hq (g.e a)).1 ?_
+      refine (_root_.Formalism.FourierDecayAlt.P.Misc.selfDualG_holds F (𝒪[F]) (g.q : F) g.q.2 hq (g.e a)).1 ?_
       intro b hb
       apply psiF_cond hF L g
       intro u hu

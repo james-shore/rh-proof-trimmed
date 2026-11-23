@@ -101,7 +101,7 @@ theorem exists_etale_frame_of_finite_zeroSet : ∀ (n : ℕ) (Y : Type) [Topolog
     apply hk2
     calc k2 ≤ max k1 k2 := le_max_right _ _
       _ ≤ (2 * n + 2) * max k1 k2 := Nat.le_mul_of_pos_left _ (by omega)
-  · exact GlobalTheory.T.isEtaleCoordinates_section_quotients n Y ι La A _ t0 t _ ht0 ht hopen' (fun y hy => ⟨(hdec y hy).1, (hdec y hy).2.1⟩)
+  · exact _root_.GlobalTheory.OTY.etale_zmap_main n Y ι La A _ t0 t _ ht0 ht hopen' (fun y hy => ⟨(hdec y hy).1, (hdec y hy).2.1⟩)
   · exact hfrac _ _ a t0 _ ha' ht0 (fun y hy => ⟨(hdec y hy).2.2, (hdec y hy).1⟩)
   · refine GlobalTheory.T.dense_nonvanishingSet_of_ne_zero_on_components n Y ι La A _ _ T h3 hTm ?_
     intro P hP

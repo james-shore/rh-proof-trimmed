@@ -91,17 +91,7 @@ theorem exists_C_mem_span {R K : Type*} [CommRing R] [IsDomain R] [Field K] [Alg
   simp only [Polynomial.map_add (f := _), Polynomial.map_mul, map_C, hU, hV, map_mul]
   linear_combination (C (algebraMap R K s) * C (algebraMap R K t)) * huv
 
-theorem exists_common_denominator {R A : Type*} [CommRing R] [IsDomain R] [CommRing A]
-    [Algebra R A] [Module.Finite R A] (a : A)
-    (h : ∀ b : A, ∃ s : R, s ≠ 0 ∧ ∃ r : R[X], algebraMap R A s * b = aeval a r) :
-    ∃ s : R, s ≠ 0 ∧ ∀ b : A, ∃ r : R[X], algebraMap R A s * b = aeval a r := by
-  first
-  | exact @_root_.GlobalTheory.CommonDenominatorForFinset.exists_common_denominator
-  | exact _root_.GlobalTheory.CommonDenominatorForFinset.exists_common_denominator
-  | (apply _root_.GlobalTheory.CommonDenominatorForFinset.exists_common_denominator <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CommonDenominatorForFinset.exists_common_denominator <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CommonDenominatorForFinset.exists_common_denominator <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.CommonDenominatorForFinset.exists_common_denominator ..)
+alias exists_common_denominator := _root_.GlobalTheory.CommonDenominatorForFinset.exists_common_denominator
 
 theorem exists_primitive_element_discriminant_multiple (R A K L : Type*) [CommRing R] [IsDomain R] [IsIntegrallyClosed R]
     [CommRing A] [IsDomain A] [Algebra R A] [FaithfulSMul R A] [Module.Finite R A]

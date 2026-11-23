@@ -287,7 +287,7 @@ theorem exists_ktie {X : ProvA} (h : Good D X) {V : HSp D} {S : D.what₂.Tau �
       ∃ e u, KTie (X.ds p q (ofBlocks l₁ l₂)) M τ (ofBlocks l₁ l₂) c br cj e u := by
   have hpar := h.par p q _ hp
   have hfin := (h.ds p q _ hp).1
-  obtain ⟨e, he⟩ := GlobalTheory.T.exists_signCompatible_numbering_decreasing_enumeration V.rank p q l₁ l₂ c br cj (M.ε τ) (M.lam τ) h₁ h₂ hp (by rw [← hS]; exact M.enum τ)
+  obtain ⟨e, he⟩ := _root_.GlobalTheory.ArchRec.EnumBlocks.exists_isOrd V.rank p q l₁ l₂ c br cj (M.ε τ) (M.lam τ) h₁ h₂ hp (by rw [← hS]; exact M.enum τ)
   obtain ⟨m, hm, U, hU⟩ : ∃ m : ℤ, (m : ℚ) = 2 * c ∧ ∃ U, Comparison₂ (X.ds p q (ofBlocks l₁ l₂)) M τ br cj e m U := by
     cases br <;> cases cj
     · obtain ⟨m, hm, hU⟩ := GlobalTheory.T.discreteSeriesModelParamShiftedWeight_of_coverDiscreteSeries D h.br X V S M τ p q l₁ l₂ c hn h₁ h₂ hp hpar (by rw [hS]; rfl)

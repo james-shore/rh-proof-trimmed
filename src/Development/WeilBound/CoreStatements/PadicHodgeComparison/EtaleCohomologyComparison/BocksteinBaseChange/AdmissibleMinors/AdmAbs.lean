@@ -172,10 +172,6 @@ theorem indep_S (hstab : ∀ g, ∀ x ∈ S, σ g x ∈ S)
       exact Finset.sum_congr rfl fun i _ => by ring
     rw [this, hsw x, zero_div]
 
-theorem exists_minor {r a : ℕ} (M : Matrix (Fin r) (Fin a) F) (hM : ∀ z : Fin a → F, M *ᵥ z = 0 → z = 0) :
-    ∃ e : Fin a → Fin r, (M.submatrix e id).det ≠ 0 :=
-  _root_.UpperTheory.Reformulated.B.Yra1.main M hM
-
 omit [Field F] in
 theorem det_mem' [Field F] (S : Subring F) {a : ℕ} (A : Matrix (Fin a) (Fin a) F) (hA : ∀ i j, A i j ∈ S) :
     A.det ∈ S ∧ ∀ i j, A.adjugate i j ∈ S := by
@@ -221,7 +217,7 @@ theorem admissible_of_absolute (hstab : ∀ g, ∀ x ∈ S, σ g x ∈ S)
         simp only [sub_mul, Finset.sum_sub_distrib]
         rw [← e1, ← e2, hcσ, sub_self])
     exact sub_eq_zero.1 (congr_fun h i)
-  obtain ⟨e, he⟩ := exists_minor (Matrix.of fun i j => β j i) fun z hz => hcinj z fun x => by
+  obtain ⟨e, he⟩ := _root_.UpperTheory.Reformulated.B.Yra1.main (Matrix.of fun i j => β j i) fun z hz => hcinj z fun x => by
     have h0 : ∀ i, ∑ j, β j i * z j = 0 := fun i => by
       have := congr_fun hz i
       simpa [Matrix.mulVec, dotProduct] using this

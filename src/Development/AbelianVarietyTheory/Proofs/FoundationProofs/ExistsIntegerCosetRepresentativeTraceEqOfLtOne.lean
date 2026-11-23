@@ -58,7 +58,7 @@ theorem exists_integer_coset_trace_eq (L : Type) [Field L] (v : Valuation L ℝ�
     [Fintype (G ⧸ U)] (hU : AlmostSep v U) (e : L) (he : ∀ g : G, g • e = e) (he1 : v e < 1) :
     ∃ y ∈ Fix L U, v y ≤ 1 ∧ cosetTrace U y = e := by
   obtain ⟨n, a, b, c, hs, hc⟩ := hU (v e) he1
-  have hid := GlobalTheory.T.sum_mul_cosetRepresentativeTrace_eq L v G U n a b c hs 1 (one_mem _)
+  have hid := _root_.GlobalTheory.AlmostEt.sum_mul_cosetTrace_eq L v G U n a b c hs 1 (one_mem _)
   simp only [mul_one] at hid
 
   obtain ⟨i, hi⟩ : ∃ i, v e < v (cosetTrace U (b i)) := by
@@ -95,8 +95,5 @@ theorem exists_integer_coset_trace_eq (L : Type) [Field L] (v : Valuation L ℝ�
           exact hi.le
       _ = 1 := one_mul 1
   · rw [hfix.2.2 (e / t) hq, div_mul_cancel₀ e ht0]
-
-theorem exists_integer_coset_trace_eq' : ∀ (L : Type) [Field L] (v : Valuation L ℝ≥0) (G : Type) [Group G] [MulSemiringAction G L], (∀ (g : G) (x : L), v (g • x) = v x) → ∀ (U : Subgroup G) [Fintype (G ⧸ U)], AlmostSep v U → ∀ e : L, (∀ g : G, g • e = e) → v e < 1 → ∃ y ∈ Fix L U, v y ≤ 1 ∧ cosetTrace U y = e :=
-  fun L _ v G _ _ hv U _ hU e he he1 => exists_integer_coset_trace_eq L v G hv U hU e he he1
 
 end GlobalTheory.AlmostEt

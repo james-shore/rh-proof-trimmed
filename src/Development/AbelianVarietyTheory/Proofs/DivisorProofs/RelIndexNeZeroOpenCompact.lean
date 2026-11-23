@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalIntegralProductGroup
 
 @[expose] public section
 
@@ -104,20 +105,10 @@ theorem twCent_prod (θ₁ : G₁ →* G₁) (θ₂ : G₂ →* G₂) (a : G₁)
   rw [Prod.ext_iff]
   exact Iff.rfl
 
-theorem relIndex_prod (A C : Subgroup G₁) (B D : Subgroup G₂) :
-    (A.prod B).relIndex (C.prod D) = A.relIndex C * B.relIndex D := by
-  have e : (A.prod B).subgroupOf (C.prod D) =
-      ((A.subgroupOf C).prod (B.subgroupOf D)).comap (Subgroup.prodEquiv C D).toMonoidHom := by
-    ext z
-    exact Iff.rfl
-  rw [Subgroup.relIndex, e, Subgroup.index_comap_of_surjective _ (Subgroup.prodEquiv C D).surjective,
-    Subgroup.index_prod]
-  rfl
-
 theorem vol_prod (C₁ H₁ : Subgroup G₁) (C₂ H₂ : Subgroup G₂) :
     vol (C₁.prod C₂) (H₁.prod H₂) = vol C₁ H₁ * vol C₂ H₂ := by
   unfold vol
-  rw [relIndex_prod, relIndex_prod]
+  rw [_root_.GlobalTheory.BCT.OrbProd.relIndex_prod_prod, _root_.GlobalTheory.BCT.OrbProd.relIndex_prod_prod]
   push_cast
   rw [div_mul_div_comm]
 
@@ -164,14 +155,6 @@ theorem fold_sum (Γ' T K : Subgroup G) (F : G → ℂ) (hΓT : Γ' ≤ T)
       ∑ᶠ y : DoubleCoset.Quotient (T : Set G) (K : Set G),
         ((massC Γ' T (T ⊓ K.map (MulAut.conj (Quotient.out y)).toMonoidHom) : ℚ) : ℂ) * F (Quotient.out y) :=
   GlobalTheory.T.finsum_doubleCoset_fold_intermediate_subgroup Γ' T K F hΓT hF hfin hsupp
-
-theorem massC_ne_zero_of_ne (Γ' T K : Subgroup G) (F : G → ℂ) (hΓT : Γ' ≤ T)
-    (hF : ∀ t ∈ T, ∀ x, ∀ k ∈ K, F (t * x * k) = F x)
-    (hfin : ∀ x : G, ((Γ' ⊓ K.map (MulAut.conj x).toMonoidHom : Subgroup G) : Set G).Finite)
-    (hsupp : {q : DoubleCoset.Quotient (Γ' : Set G) (K : Set G) | F (Quotient.out q) ≠ 0}.Finite)
-    (y : G) (hy : F y ≠ 0) :
-    massC Γ' T (T ⊓ K.map (MulAut.conj y).toMonoidHom) ≠ 0 :=
-  GlobalTheory.T.twistedCentralizerMass_ne_zero_of_mem_support Γ' T K F hΓT hF hfin hsupp y hy
 
 variable [TopologicalSpace G] [IsTopologicalGroup G]
 

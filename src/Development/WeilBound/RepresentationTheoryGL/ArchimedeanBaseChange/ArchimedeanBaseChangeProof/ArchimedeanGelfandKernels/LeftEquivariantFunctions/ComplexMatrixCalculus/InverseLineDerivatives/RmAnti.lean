@@ -46,8 +46,8 @@ import Mathlib.Topology.Sheaves.Init
 
 namespace PositivityTheory.RgBcC
 
-theorem rmHol : RmHol := Cxd2.rmHol_of Cxd2.atTrace Cxd2.atDer
+theorem rmHol : RmHol := Cxd2.rmHol_of _root_.PositivityTheory.RgBcC.Cxd2.Alg.atTrace' _root_.PositivityTheory.RgBcC.Cxd2.Der.atDer'
 
-theorem rmAnti : RmAnti := Cxd2.rmAnti_of Cxd2.atTraceT Cxd2.atDer
+theorem rmAnti : RmAnti := Cxd2.rmAnti_of _root_.PositivityTheory.RgBcC.Cxd2.Alg.atTraceT' _root_.PositivityTheory.RgBcC.Cxd2.Der.atDer'
 
 end PositivityTheory.RgBcC

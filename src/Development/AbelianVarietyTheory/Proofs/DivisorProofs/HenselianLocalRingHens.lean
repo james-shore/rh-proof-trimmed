@@ -155,7 +155,7 @@ theorem henselianLocalRing_hens : ∀ (R : Type) [CommRing R] [IsLocalRing R],
     have hΦm : Φ (h.derivative.eval a₀') ∈ maximalIdeal (Hens R) := map_nonunit (Hens.of i) _ hm
     rw [key2] at hΦm
     exact (mem_maximalIdeal _).1 hΦm ((hu.pow _).mul hf'ρ)
-  obtain ⟨j, hij, c, hc, hcm⟩ := GlobalTheory.T.exists_le_isRoot_of_simpleRoot_pointedEtaleNbhd R i h a₀' hhm hpt1 hpt2
+  obtain ⟨j, hij, c, hc, hcm⟩ := _root_.GlobalTheory.Henselisation.exists_le_isRoot_of_simple_root R i h a₀' hhm hpt1 hpt2
   haveI := hofloc j
   have hofj : (Hens.of j).comp (EtNbhd.trans hij) = Hens.of i :=
     RingHom.ext fun x => Ring.DirectLimit.of_f hij x

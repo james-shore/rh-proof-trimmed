@@ -75,7 +75,7 @@ theorem isUnE_prod (hG : IsHermForm c G) (l : List ((Fin n → E) × E))
   | cons p l ih =>
     rw [List.map_cons, List.prod_cons]
     have hp := hl p List.mem_cons_self
-    exact isUnE_mul ((GlobalTheory.T.unitaryQuasiReflection_laws F E c n G hG p.1 hp.1).2.2.2 p.2 hp.2)
+    exact isUnE_mul ((_root_.GlobalTheory.UnRep.ReflLaws.refl_laws F E c n G hG p.1 hp.1).2.2.2 p.2 hp.2)
       (ih fun q hq => hl q (List.mem_cons_of_mem _ hq))
 
 theorem exists_inv (hG : IsHermForm c G) (l : List ((Fin n → E) × E))
@@ -87,7 +87,7 @@ theorem exists_inv (hG : IsHermForm c G) (l : List ((Fin n → E) × E))
   | cons p l ih =>
     obtain ⟨l', h1, h2⟩ := ih fun q hq => hl q (List.mem_cons_of_mem _ hq)
     have hp := hl p List.mem_cons_self
-    obtain ⟨-, r1, r2, -⟩ := GlobalTheory.T.unitaryQuasiReflection_laws F E c n G hG p.1 hp.1
+    obtain ⟨-, r1, r2, -⟩ := _root_.GlobalTheory.UnRep.ReflLaws.refl_laws F E c n G hG p.1 hp.1
     refine ⟨l' ++ [(p.1, c p.2)], ?_, ?_⟩
     · intro q hq
       rcases List.mem_append.1 hq with hq | hq
@@ -111,7 +111,7 @@ theorem prod_fix (hG : IsHermForm c G) (v : Fin n → E) (l : List ((Fin n → E
     have hp := hl p List.mem_cons_self
     rw [List.map_cons, List.prod_cons, ← Matrix.mulVec_mulVec,
       ih fun q hq => hl q (List.mem_cons_of_mem _ hq),
-      (GlobalTheory.T.unitaryQuasiReflection_laws F E c n G hG p.1 hp.1).1, hp.2]
+      (_root_.GlobalTheory.UnRep.ReflLaws.refl_laws F E c n G hG p.1 hp.1).1, hp.2]
     simp
 
 omit [NumberField F] [NumberField E] in

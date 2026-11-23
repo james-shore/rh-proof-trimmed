@@ -67,10 +67,10 @@ theorem galRS_iso {F Ω : Type} [Field F] [NumberField F] [IsTotallyReal F] [Fie
   · exact (((H.loc w σ hσ hP).1 A h rc hrc).1 hl).of_conj hl p fun g => hp' _
   · obtain ⟨a1, a2⟩ := ((H.loc w σ hσ hP).1 A h rc hrc).2 O Bw hj g
     exact ⟨ExLib.isPstAt_conj (Loc.PP l) Bw p (hc A) a1, ExLib.wdAt_conj (Loc.PP l) ι Bw h hj p (hc A) ▸ a2⟩
-  · obtain ⟨k1, -, -, k4⟩ := GlobalTheory.T.padicHodgeProperties_conj_invariant l (Loc.PP l) F Ω O _ Bw n _ _ p (hc A)
+  · obtain ⟨k1, -, -, k4⟩ := _root_.GlobalTheory.ConjLocal.local_conj l (Loc.PP l) F Ω O _ Bw n _ _ p (hc A)
     obtain ⟨a1, a2⟩ := (H.loc w σ hσ hP).2 A h O Bw hj
     exact ⟨k1 a1, fun τ LL' τ' hτ => k4 τ _ (a2 τ LL' τ' hτ)⟩
-  · obtain ⟨-, k2, -, -⟩ := GlobalTheory.T.padicHodgeProperties_conj_invariant l (Loc.PP l) F Ω O _ Bw n _ _ p (hc A)
+  · obtain ⟨-, k2, -, -⟩ := _root_.GlobalTheory.ConjLocal.local_conj l (Loc.PP l) F Ω O _ Bw n _ _ p (hc A)
     exact k2 (H.crys w A h O Bw hj σ hσ hS)
 
 end UpperTheory.Gal.SV

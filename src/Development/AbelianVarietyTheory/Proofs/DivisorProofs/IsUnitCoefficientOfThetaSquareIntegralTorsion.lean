@@ -96,7 +96,7 @@ theorem GlobalTheory.Poinc.Sep.CoefInt.isUnit_of_theta_sq : ∀ (N₁ : ℕ), 2 
   have hpl : p.left = spMap ev ≫ (b c₁).left := by rw [hc]; rfl
   have h1 := hne z J hgood
   rw [hpl] at h1
-  obtain ⟨y, hy⟩ := GlobalTheory.Poinc.Sep.Coef.toStk_surj z (sval (θ : LB.Sec (LB.LinComb D.P.L (D.famφB 0) (DegPre.famε 1))) (spMap ev ≫ (b c₁).left) z J)
+  obtain ⟨y, hy⟩ := _root_.GlobalTheory.Ex.GtValues.toStk_surj z (sval (θ : LB.Sec (LB.LinComb D.P.L (D.famφB 0) (DegPre.famε 1))) (spMap ev ≫ (b c₁).left) z J)
   rw [e2, hG0, map_zero, ← hy, ← map_pow] at e
   have h3 : toStk z (y ^ 2) = 0 := (Units.mul_left_eq_zero _).1 e.symm
   have h4 : y ^ 2 = 0 := (toStk z).injective (h3.trans (map_zero _).symm)

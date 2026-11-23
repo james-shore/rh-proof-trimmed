@@ -492,10 +492,6 @@ end Formalism.FourierDecayAlt.P.Sz2
 
 namespace Formalism.FourierDecayAlt.P
 
-theorem exponent_sizes : Formalism.FourierDecayAlt.Sz.EaSize := Sz2.eaSize
-
 theorem corollary_a_of_proposition_a : Formalism.FourierDecayAlt.Sz.CorA := Sz2.corA_of_propA massRatioFormula
-
-theorem bracket_bound_alt : Formalism.FourierDecayAlt.Sz.BracketBound := Sz2.bracketBound
 
 end Formalism.FourierDecayAlt.P

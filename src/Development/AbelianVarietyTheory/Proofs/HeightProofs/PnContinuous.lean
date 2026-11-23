@@ -72,11 +72,6 @@ namespace GlobalTheory.HeightDefinite.Generic
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
   {l : Level H} {Xo : Moduli Dw l} {c : Coeff l}
 
-theorem frMap_comp {S T U : Type} [CommRing S] [Algebra c.F S] [CommRing T] [Algebra c.F T] [CommRing U]
-    [Algebra c.F U] (φ : S →ₐ[c.F] T) (ψ : T →ₐ[c.F] U) {y : FrPt Xo c S} {z : FrPt Xo c T} {w : FrPt Xo c U}
-    (h₁ : FrMap φ y z) (h₂ : FrMap ψ z w) : FrMap (ψ.comp φ) y w :=
-  Formalism.L2.Pj.frMap_trans S T U φ ψ y z w h₁ h₂
-
 theorem frBor_of_frMap {S T : Type} [CommRing S] [Algebra c.F S] [CommRing T] [Algebra c.F T]
     (φ : S →ₐ[c.F] T) {t : Ix Dw → Sˣ} {y y' : FrPt Xo c S} {z z' : FrPt Xo c T} (h : FrBor t y y')
     (hz : FrMap φ y z) (hz' : FrMap φ y' z') : FrBor (fun i => Units.map (φ : S →* T) (t i)) z z' := by
@@ -90,7 +85,7 @@ theorem evR_of_frMap (hL : EvLaws Xo c) {a : (E →+* ℂ) × ℕ → ℕ} {n : 
     {y : FrPt Xo c S} {z : FrPt Xo c T} (hyz : FrMap φ y z) : evR Xo c g z = φ (evR Xo c g y) := by
   obtain ⟨q, χ, y₀, hy₀⟩ := hL.test S y
   rw [evR_eq_map_of_test_point hL hg q χ y₀ y hy₀,
-    evR_eq_map_of_test_point hL hg q (φ.comp χ) y₀ z (frMap_comp χ φ hy₀ hyz)]
+    evR_eq_map_of_test_point hL hg q (φ.comp χ) y₀ z (_root_.GlobalTheory.FramedBaseChange.trans χ φ hy₀ hyz)]
   rfl
 
 theorem isFractionRing_chart {h : GenFrEx Xo c} (C : FChart h) : IsFractionRing C.R (Om C.Z) := by
@@ -151,7 +146,7 @@ theorem pn_frBor_good (hd : Dom a n) (hg : g ∈ sec Xo c a n) {σ : c.F →+* �
     {t : Ix Dw → (CAt σ)ˣ} {y y' : FrPt Xo c (CAt σ)} (hb : FrBor t y y') : pn fn σ a n g y' = pn fn σ a n g y := by
   obtain ⟨k, x, s, hs⟩ := (hU σ hσ).2.2.1 y
   have hs' := (GlobalTheory.Reg.BorelGroupoid.frBor_groupoid E H Dw l Xo c (CAt σ)).2.1 _ _ _ _ _ hs hb
-  have T := (GlobalTheory.T.pointwise_norm_section_eq_flagDomain_norm E H Dw l Xo c r U hU xR fn hx hfn).2.1 σ hσ k x
+  have T := (_root_.GlobalTheory.FrameNorm.Comparison₂.ptNorm_eq_pnorm E H Dw l Xo c r U hU xR fn hx hfn).2.1 σ hσ k x
   exact (T _ _ hs' a n hd g hg).trans (T _ _ hs a n hd g hg).symm
 
 theorem pn_frBor (hd : Dom a n) (hg : g ∈ sec Xo c a n) {σ : c.F →+* ℂ}
@@ -165,7 +160,7 @@ theorem pn_frBor (hd : Dom a n) (hg : g ∈ sec Xo c a n) {σ : c.F →+* ℂ}
     have hL := (GlobalTheory.T.evaluation_laws_generic_frames_atlas_hold E H Dw l Xo c).1
     obtain ⟨z, hz⟩ := hL.bc _ _ (conjAlg σ) y
     obtain ⟨z', hz'⟩ := hL.bc _ _ (conjAlg σ) y'
-    have T := (GlobalTheory.T.pointwise_norm_section_eq_flagDomain_norm E H Dw l Xo c r U hU xR fn hx hfn).2.2 σ
+    have T := (_root_.GlobalTheory.FrameNorm.Comparison₂.ptNorm_eq_pnorm E H Dw l Xo c r U hU xR fn hx hfn).2.2 σ
     exact ((T _ _ hz' a n g hg).symm.trans
       (pn_frBor_good hU hx hfn hd hg hσ' (frBor_of_frMap _ hb hz hz'))).trans (T _ _ hz a n g hg)
 
@@ -179,10 +174,10 @@ theorem pn_generic (hd : Dom a n) (hg : g ∈ sec Xo c a n) {h : GenFrEx Xo c}
   obtain rfl : sgOf P = σ := hP
   have hL := (GlobalTheory.T.evaluation_laws_generic_frames_atlas_hold E H Dw l Xo c).1
   obtain ⟨w, hw⟩ := hL.bc _ _ (PAlg P) C.yg
-  have h1 := frMap_comp _ _ C.gen hw
+  have h1 := _root_.GlobalTheory.FramedBaseChange.trans _ _ C.gen hw
   obtain rfl : x = (PAlg P).comp C.R.val := AlgHom.ext hxP
   obtain rfl : z = w := (GlobalTheory.Frames.frMap_unique_refl_iff E H Dw l Xo c _ _ _ C.y).1 _ _ hz h1
-  rw [(GlobalTheory.T.frameNorm_conjugate_points_eq_pointwise E H Dw l Xo c r U hU xR fn hx hfn h yP hyP).2.2 C.Z P a n g hg]
+  rw [(_root_.GlobalTheory.FrameNorm.fnConj_valAtCx_nrmC_eq_ptNorm E H Dw l Xo c r U hU xR fn hx hfn h yP hyP).2.2 C.Z P a n g hg]
   exact pn_frBor hU hx hfn hd hg (frBor_of_frMap _ C.bor (hyP C.Z P) hw)
 
 attribute [local instance 1100] Subalgebra.algebra in
@@ -201,7 +196,7 @@ theorem pn_continuous (hg : g ∈ sec Xo c a n) {h : GenFrEx Xo c} (C : FChart h
   have hf : ∀ i, Continuous fun x => |fn σ (y x) i| := fun i =>
     continuousOn_univ.1 (GlobalTheory.T.frameNorms_continuousOn_smoothChart E H Dw l Xo c r U hU xR fn hx hfn σ C.R C.y _ Set.univ (fun x => x) y
       (fun b => (hc b).continuousOn) (fun x _ => hy x) i)
-  have hne := (GlobalTheory.T.pointwise_norm_section_eq_flagDomain_norm E H Dw l Xo c r U hU xR fn hx hfn).1
+  have hne := (_root_.GlobalTheory.FrameNorm.Comparison₂.ptNorm_eq_pnorm E H Dw l Xo c r U hU xR fn hx hfn).1
   have e : (fun x => pn fn σ a n g (y x)) =
       fun x => ‖Formalism.L2.PjFree.toC (x (evR Xo c g C.y))‖ * ∏ i, |fn σ (y x) i|⁻¹ ^ ex Dw a n i := by
     funext x
@@ -227,7 +222,7 @@ theorem supC_le_iSup_generic : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
     rintro _ ⟨⟨P, hP⟩, rfl⟩
     obtain rfl : sgOf P = σ := hP
     dsimp only
-    rw [(GlobalTheory.T.frameNorm_conjugate_points_eq_pointwise E H Dw l Xo c r U hU xR fn hx hfn h yP hyP).2.2 Z P a n g hgs]
+    rw [(_root_.GlobalTheory.FrameNorm.fnConj_valAtCx_nrmC_eq_ptNorm E H Dw l Xo c r U hU xR fn hx hfn h yP hyP).2.2 Z P a n g hgs]
     exact le_ciSup (hB (sgOf P)) (yP Z P)
   have hnn : 0 ≤ ⨆ P : T0.PT (Ω := Om Z) σ, nrmC fn (yP Z) (wtZ a n) (valC h a n g Z) P :=
     Real.iSup_nonneg fun P => mul_nonneg (norm_nonneg _)

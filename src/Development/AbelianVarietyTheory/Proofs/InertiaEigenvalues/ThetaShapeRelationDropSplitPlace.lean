@@ -178,7 +178,7 @@ theorem rel_extend {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdChar D ψ (-1)) 
       (c.sum fun u z => z • heisO ψ S T u g₂) = 0)
     (c : WO S T →₀ ℂ) (hc : ∀ u ∈ c.support, Q' u) (h1 : (c.sum fun u z => z • heisO ψ S T u g₁) = 0) :
     (c.sum fun u z => z • heisO ψ S T u g₂) = 0 := by
-  have hsep := GlobalTheory.T.splitPlace_invariantForms_separate_thetaFunctions D ψ S T hψ a ha
+  have hsep := _root_.GlobalTheory.DownLift.SplitSep.invForms_separate D ψ S T hψ a ha
   have hz : ∀ x, heisO ψ S T x (0 : WO S T → ℂ) = 0 := fun x => (heisL ψ S T x).map_zero
   have hlc : ∀ (k : WO S T → ℂ) (τ : WO S T → WO S T) (g : WO S T → ℂ), IsThetaFunO ψ S T g →
       IsThetaFunO ψ S T (c.sum fun u z => (z * k u) • heisO ψ S T (τ u) g) := fun k τ g hg =>

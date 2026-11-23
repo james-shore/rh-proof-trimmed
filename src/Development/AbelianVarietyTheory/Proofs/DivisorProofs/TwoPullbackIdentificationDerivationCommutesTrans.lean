@@ -62,15 +62,6 @@ open GlobalTheory.KS.DlogPol (gs_pbT gs_sub)
 
 namespace GlobalTheory.HeatConn.Comm
 
-theorem gs_stalkMap' {X X' Z : Scheme.{0}} (r : Z ⟶ X') (β : X' ⟶ X) (z : Z) (U : X.Opens) (h : β (r z) ∈ U)
-    (a : Γ(X, U)) : (r.stalkMap z).hom (gs β (r z) U a) = gs (r ≫ β) z U a := by
-  rw [← gs_pull r β z U h, gs_eq β _ U h, gs_eq r z _ h]
-  exact Scheme.Hom.germ_stalkMap_apply r (β ⁻¹ᵁ U) z h _
-
-theorem spMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap (g.comp f) = spMap g ≫ spMap f := by
-  rw [spMap, spMap, spMap, ← Spec.map_comp]; rfl
-
 theorem cst_spMap {V V' : Type} [CommRing V] [CommRing V'] {Z : Scheme.{0}} (q : Z ⟶ Sp V) (ψ : V' →+* V) (z : Z)
     (a : V') : cst (q ≫ spMap ψ) z a = cst q z (ψ a) := by
   rw [cst, cst, ← gs_pull _ (spMap ψ) z ⊤ trivial]
@@ -83,7 +74,7 @@ theorem stalkMap_eq_zero {k : Type} [Field k] {A₀ B' : Scheme.{0}} (q : B' ⟶
     (fun c hc => by
       have h1 : c.fst = 0 := by simpa using congrArg TrivSqZeroExt.snd hc
       exact ⟨TrivSqZeroExt.inl c.snd, by ext <;> simp [h1]⟩) ht
-  rw [map_mul, cst, gs_stalkMap' sc q y ⊤ trivial, ← cst, hsc, cst_spMap]
+  rw [map_mul, cst, _root_.GlobalTheory.Unif.PolyStep.gs_stalkMap sc q y ⊤ trivial, ← cst, hsc, cst_spMap]
   have e0 : (TrivSqZeroExt.fstHom k k k).toRingHom DualNumber.eps = 0 := by simp
   rw [e0, cst, map_zero, gs_eq _ y ⊤ trivial, map_zero, map_zero, zero_mul]
 
@@ -93,7 +84,7 @@ namespace GlobalTheory.HeatConn.Comm
 
 theorem spMap_fst_alg (k : Type) [Field k] :
     spMap (TrivSqZeroExt.fstHom k k k).toRingHom ≫ spMap (algebraMap k (DualNumber k)) = 𝟙 _ := by
-  rw [← spMap_comp]
+  rw [← _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp]
   have : (TrivSqZeroExt.fstHom k k k).toRingHom.comp (algebraMap k (DualNumber k)) = RingHom.id k := by
     ext; simp
   rw [this, spMap]
@@ -187,7 +178,7 @@ theorem commutes : ∀ {R : Type} [CommRing R] [IsDomain R] (Q : DegPre R) {k : 
   have hfB : Flat B'.hom := MorphismProperty.of_isPullback h₁.1 hfA
   obtain ⟨φ', hφ'0, hφ'1, hφ'2⟩ := exists_lift Q ρ B' π₁ π₂ c' h₁ h₂ hc α j
   have e2 : spMap (constHom ρ) = spMap (algebraMap k (DualNumber k)) ≫
-      spMap ((TrivSqZeroExt.fstHom k k k).toRingHom.comp ρ) := spMap_comp _ _
+      spMap ((TrivSqZeroExt.fstHom k k k).toRingHom.comp ρ) := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap_comp _ _
   obtain ⟨sc, hspr, hs₂, hsq, hpts⟩ := exists_sec Q.P.A.hom _ A₀.hom B'.hom m₀ π₁ π₂ pr hA₀.1
     (e2 ▸ h₂.1) h₃ hpr₁ hpr₂
   have hpre : ∀ U : Q.P.A.left.Opens, π₂ ⁻¹ᵁ U ≤ π₁ ⁻¹ᵁ U := fun U x hx => by
@@ -242,7 +233,7 @@ theorem commutes : ∀ {R : Type} [CommRing R] [IsDomain R] (Q : DegPre R) {k : 
       change m₀ ((pr ≫ T) (sc y)) ∈ W
       simp only [Scheme.Hom.comp_apply]
       rw [hy0]; simpa using hy
-    rw [map_sub, gs_stalkMap' sc pr y _ ma, gs_stalkMap' sc (pr ≫ T) y _ mb, hspr, reassoc_of% hspr] at h0
+    rw [map_sub, _root_.GlobalTheory.Unif.PolyStep.gs_stalkMap sc pr y _ ma, _root_.GlobalTheory.Unif.PolyStep.gs_stalkMap sc (pr ≫ T) y _ mb, hspr, reassoc_of% hspr] at h0
     exact sub_eq_zero.1 h0
   have hyz : (T ≫ m₀) (b z) ∈ W := by simpa using hz
   have mz1 : b z ∈ m₀ ⁻¹ᵁ (φ ⁻¹ᵁ W) := by
@@ -253,6 +244,6 @@ theorem commutes : ∀ {R : Type} [CommRing R] [IsDomain R] (Q : DegPre R) {k : 
   have mz2 : T (b z) ∈ m₀ ⁻¹ᵁ W := by
     change m₀ (T (b z)) ∈ W
     simpa using hyz
-  rw [gs_stalkMap b z _ mz1, key (b z) hyz, gs_stalkMap' b T z _ mz2]
+  rw [gs_stalkMap b z _ mz1, key (b z) hyz, _root_.GlobalTheory.Unif.PolyStep.gs_stalkMap b T z _ mz2]
 
 end GlobalTheory.HeatConn.Comm

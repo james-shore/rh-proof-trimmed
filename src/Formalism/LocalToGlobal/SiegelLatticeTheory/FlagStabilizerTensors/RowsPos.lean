@@ -219,8 +219,8 @@ theorem diagonalBound_pos_of_degreeCutoff (hP : PB.NormSqBoundOfEqualIota) (hE :
     (Formalism.L2.SG.RowsOther.pairsDeg_of_amp _ hG0 _ _ _ _ hPg (h C' Cl h1 h2 D large₂ X Y u hTs hH hT))
 
 theorem kernel_diagonal_positive (hTy : TypeP) : KppDiagP :=
-  diagonalBound_pos_of_degreeCutoff Formalism.FourierDecayAlt.P.price_of_index Formalism.FourierDecayAlt.P.equal_index
-    Formalism.FourierDecayAlt.P.pair_split_alt Formalism.FourierDecayAlt.P.subfamilyAlt Formalism.L2.SG.Closed.TermsGGBound_holds
+  diagonalBound_pos_of_degreeCutoff _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_PriceOfIota _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_EqualIota
+    _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_PairSplit _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_SubFamily Formalism.L2.SG.Closed.TermsGGBound_holds
     Formalism.L2.SG.KappaOffDiagonal.corankPosC_holds Formalism.L2.SG.Pf.normExpDegC_holds
     (pairs_degree_bound Formalism.L2.SG.Closed.FoldOKC_outright Formalism.L2.SG.Pf.fundExistsC_holds
       Formalism.L2.SG.Closed.OOIntAllC_outright IrrVecC_holds JPosC_holds hTy DelC_holds cosetsC_holds kappa_off_diagonal_dim_form_C
@@ -259,8 +259,8 @@ theorem diagLP_of_rows (hA : PB.PairBoundAbstract) (hP : PB.NormSqBoundOfEqualIo
   exact hD.trans (mul_le_mul_of_nonneg_right (hNum' C' Cl a4 b4 D large₂ X Y u hH hK2 hT (hG ▸ hCG)) hdd)
 
 theorem diagonal_positive_final (hNG : RowNGP) (hM : RowMainEqP) : DiagLP :=
-  diagLP_of_rows Formalism.FourierDecayAlt.P.pair_bound_abstract Formalism.FourierDecayAlt.P.price_of_index Formalism.FourierDecayAlt.P.equal_index
-    Formalism.FourierDecayAlt.P.pair_split_alt Formalism.FourierDecayAlt.P.subfamilyAlt Formalism.L2.SG.Closed.TermsGGBound_holds
+  diagLP_of_rows _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_PairBoundAbstract _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_PriceOfIota _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_EqualIota
+    _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_PairSplit _root_.Formalism.FourierDecayAlt.P.GrowthPolynomialOperator.t_SubFamily Formalism.L2.SG.Closed.TermsGGBound_holds
     normExpSatTied_holds Formalism.L2.SG.KappaOffDiagonal.corankPosC_holds idOneC_holds hNG hM Formalism.L2.SG.Pf.diagNumC_holds
 
 end Formalism.L2.SG.RowsPos

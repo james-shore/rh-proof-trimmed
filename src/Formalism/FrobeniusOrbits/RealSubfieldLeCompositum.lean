@@ -79,12 +79,6 @@ theorem hcl_neg_one : hcl e (-1 : (ZMod (2 ^ (e + 2)))ˣ) = 1 := by
 
 end Hcl
 
-section Subfields
-
-variable {L : Type*} [Field L] [Algebra ℚ L] {ζ a b : L}
-
-end Subfields
-
 section Signs
 
 variable {e : ℕ} {L : Type*} [Field L] [Algebra ℚ L] {ζ a b : L}
@@ -110,13 +104,9 @@ section Layer
 
 variable {e q d : ℕ} {L : Type} [Field L] [NumberField L] {ζ a b : L}
 
-theorem hostE_isGalois (hqd : HypOdd q d) (h : IsLayer (e + 2) q d ζ a b) :
-    IsGalois ℚ (hostE ζ a b) :=
-  Galois.isGalois_hostE hqd h
+alias hostE_isGalois := _root_.Formalism.FrobeniusOrbits.Galois.isGalois_hostE
 
-theorem finrank_cmField (hqd : HypOdd q d) (h : IsLayer (e + 2) q d ζ a b) :
-    Module.finrank ℚ (hostE ζ a b) = 2 ^ (e + 2) :=
-  Galois.finrank_cmField hqd h
+alias finrank_cmField := _root_.Formalism.FrobeniusOrbits.Galois.finrank_cmField
 
 theorem galE_mul (hqd : HypOdd q d) (h : IsLayer (e + 2) q d ζ a b)
     (σ τ : hostE ζ a b ≃ₐ[ℚ] hostE ζ a b) :
@@ -159,11 +149,6 @@ theorem galE_eq_one_iff (hqd : HypOdd q d) (h : IsLayer (e + 2) q d ζ a b)
     exact galE_injective hqd h (hs.trans (galE_one hqd h).symm)
   · rintro rfl
     exact galE_one hqd h
-
-theorem galE_exists_lift (hqd : HypOdd q d) (h : IsLayer (e + 2) q d ζ a b)
-    (σ : hostE ζ a b ≃ₐ[ℚ] hostE ζ a b) :
-    ∃ τ : L ≃ₐ[ℚ] L, ∀ x : hostE ζ a b, ((σ x : hostE ζ a b) : L) = τ x :=
-  Galois.exists_lift hqd h σ
 
 private lemma hcl_eq_of_pow_add_inv_pow_eq {M : Type} [Field M] {e : ℕ} {ζ : M} (hζ : IsPrimitiveRoot ζ (2 ^ (e + 2)))
     (u v : (ZMod (2 ^ (e + 2)))ˣ)
@@ -209,11 +194,7 @@ private lemma zpow_neg_val_eq_inv_pow_val_of_isPrimitiveRoot {M : Type} [Field M
   rw [inv_pow]
   exact eq_inv_of_mul_eq_one_left h1
 
-theorem galE_of_lift (h : IsLayer (e + 2) q d ζ a b) {σ : hostE ζ a b ≃ₐ[ℚ] hostE ζ a b}
-    {τ : L ≃ₐ[ℚ] L} (hστ : ∀ x : hostE ζ a b, ((σ x : hostE ζ a b) : L) = τ x) :
-    galE e ζ a b σ =
-      (((galMap h.1 a b τ).2.1, (galMap h.1 a b τ).2.2), hcl e (galMap h.1 a b τ).1) := by
-  apply Formalism.FrobeniusOrbits.Galois.galE_lift <;> assumption
+alias galE_of_lift := _root_.Formalism.FrobeniusOrbits.Galois.galE_lift
 
 theorem galE_aE (hqd : HypOdd q d) (h : IsLayer (e + 2) q d ζ a b)
     (σ : hostE ζ a b ≃ₐ[ℚ] hostE ζ a b) :
@@ -264,7 +245,7 @@ theorem galE_snd_eq_hcl_iff (hqd : HypOdd q d) (h : IsLayer (e + 2) q d ζ a b)
     (galE e ζ a b σ).2 = hcl e u ↔
       ((σ (thE ζ a b) : hostE ζ a b) : L) =
         ζ ^ (u : ZMod (2 ^ (e + 2))).val + ζ⁻¹ ^ (u : ZMod (2 ^ (e + 2))).val := by
-  obtain ⟨τ, hτ⟩ := galE_exists_lift hqd h σ
+  obtain ⟨τ, hτ⟩ := _root_.Formalism.FrobeniusOrbits.Galois.exists_lift hqd h σ
   have hθ : ((σ (thE ζ a b) : hostE ζ a b) : L) =
       ζ ^ ((h.1.autToPow ℚ τ : (ZMod (2 ^ (e + 2)))ˣ) : ZMod (2 ^ (e + 2))).val +
         ζ⁻¹ ^ ((h.1.autToPow ℚ τ : (ZMod (2 ^ (e + 2)))ˣ) : ZMod (2 ^ (e + 2))).val := by

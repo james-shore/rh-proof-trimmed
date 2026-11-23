@@ -168,9 +168,7 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 variable {X Y : Scheme.{0}}
 
-theorem res_res {U V W : X.Opens} (h₁ : V ≤ U) (h₂ : W ≤ V) (u : Γ(X, U)ˣ) :
-    res h₂ (res h₁ u) = res (h₂.trans h₁) u :=
-  Units.ext (rs_rs h₁ h₂ u.val)
+alias res_res := _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res'
 
 theorem pw_pw (H : LB X) (a b : ℤ) : AbLaw.pw (AbLaw.pw H a) b = AbLaw.pw H (a * b) := by
   exact congrArg (fun g => (⟨H.ι, H.U, g⟩ : LB X))

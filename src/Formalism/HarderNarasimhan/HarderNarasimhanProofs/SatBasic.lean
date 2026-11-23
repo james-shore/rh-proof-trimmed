@@ -99,7 +99,7 @@ theorem saturation_basic_properties : SatBasic := by
     haveI := hdisc B hBL
     haveI := hdisc A (hAB.trans hBL)
     refine ⟨Formalism.F.att_rk_le (satBasic_zl_mono ρ hAB), fun hr => ?_⟩
-    have hc := Formalism.F.covolAntiSameRank E (zl ρ A) (zl ρ B) (hdisc B hBL)
+    have hc := _root_.Formalism.F.covol_anti_same_rank E (zl ρ A) (zl ρ B) (hdisc B hBL)
       (satBasic_zl_mono ρ hAB) hr
     have hpB := Formalism.F.covol_pos (zl ρ B)
     show -Real.log (Formalism.F.covol (zl ρ A)) ≤ -Real.log (Formalism.F.covol (zl ρ B))
@@ -138,7 +138,7 @@ theorem saturation_basic_properties : SatBasic := by
       rw [satBasic_zl_bot ρ]
       simp [Formalism.F.rk]
   · show -Real.log (Formalism.F.covol (zl ρ ⊥)) = 0
-    rw [satBasic_zl_bot ρ, (Formalism.F.covolBasic E).1]
+    rw [satBasic_zl_bot ρ, (_root_.Formalism.F.covol_basic_properties E).1]
     simp
   · refine ⟨bot_le, ?_⟩
     rw [satBasic_zl_bot ρ]

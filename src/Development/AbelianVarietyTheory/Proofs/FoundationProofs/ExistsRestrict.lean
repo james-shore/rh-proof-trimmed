@@ -171,7 +171,7 @@ theorem exists_limit [IsAlgClosure ℚ Ω] (X : Tower Ω ε) (A : ValuationSubri
       rintro n b hb _ _ ⟨φ, h, rfl⟩ ⟨φ', h', rfl⟩
       rw [← map_sub]
       exact lam_le hC (pow_ne_zero _ l_ne_zero) _ fun s =>
-        norm_le_of_cgA hj (GlobalTheory.T.cgA_coeff_of_isThB_succ Ω ε X A N l hl2 hlN (by omega) hlA n b φ φ' h h' _))
+        norm_le_of_cgA hj (_root_.GlobalTheory.ThBCompat.isThB_succ_coeff_cong Ω ε X A N l hl2 hlN (by omega) hlA n b φ φ' h h' _))
     (by
       rintro n b hb b' hb' a a' _ _ ⟨φ, h, rfl⟩ ⟨φ', h', rfl⟩
       refine ⟨_, GlobalTheory.ThAdd.isThB_add Ω ε X A N l n w b b' hlA hb hb' a a' φ φ' h h', ?_⟩
@@ -238,7 +238,7 @@ theorem exists_period [IsAlgClosure ℚ Ω] (X : Tower Ω ε) (A : ValuationSubr
   have := (GlobalTheory.T.kummerBettiModule_free_finite ε X ε.injective hhol N l w hl2 hN hNl hw).1
   have hkill : ∀ i, L (σ i ![1, 0]) = 0 := by
     intro i
-    have hsp := GlobalTheory.T.mem_span_eigen_of_baseChange_eigen' l (X.Fn l) {s : Ω ≃ₐ[ℚ] Ω // s ∈ Ine (F := ℚ) A ∧ ∀ y ∈ F₀, s y = y} (X.B N l w)
+    have hsp := _root_.GlobalTheory.mem_span_eigen_of_baseChange_eigen l (X.Fn l) {s : Ω ≃ₐ[ℚ] Ω // s ∈ Ine (F := ℚ) A ∧ ∀ y ∈ F₀, s y = y} (X.B N l w)
       (fun s => X.galB l s.1) (fun s => (cycZ ℚ Ω l s.1 : ℤ_[l]) ^ (w + 1))
       (fun s => GlobalTheory.KZ.StabGal.galB_mem_B ε X ε.injective hhol N l w hl2 hN hNl hw s.1) (σ i ![1, 0]) (hσ i _) (fun s => by
         obtain ⟨h1, h2⟩ := hF₀ s.1 s.2.1 s.2.2

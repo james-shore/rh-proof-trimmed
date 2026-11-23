@@ -164,9 +164,9 @@ theorem exists_l2Val : Out.Laws → ∀ (K : Type) [Field K] [IsAlgClosed K] (x 
   obtain ⟨ξ, hξ, hk⟩ := GlobalTheory.T.exists_enum_ker_transpose_similitude_points laws K x m al hm hal
   obtain ⟨mu, hmu, hmuv⟩ := GlobalTheory.T.exists_normalised_iso_pullback_mul_by_m laws K x m
   choose w hw using fun I => GlobalTheory.SimilPull.exists_gen_similitude_pull laws K x m al (ξ I) hal (hk I)
-  choose rho hrho using fun I => GlobalTheory.T.exists_normalising_unit_similitude_origin K x m al (ξ I) mu (w I) hm0 hal (hk I) hmu (hw I)
-  choose s hs using fun I => GlobalTheory.T.exists_section_boxProduct_div_generator _ _ x.P.L hL (Fin 4) (Fin 4) _ _ (m : ℤ) x.th (w I) (hw I)
-  choose Q hQ using fun I => GlobalTheory.T.boxProducts_basis_span_powObj_sections K x m _ b hb 4 (s I)
+  choose rho hrho using fun I => _root_.GlobalTheory.SimilUnit.exists_normalising_unit K x m al (ξ I) mu (w I) hm0 hal (hk I) hmu (hw I)
+  choose s hs using fun I => _root_.GlobalTheory.KeyQuot.exists_sec_quot _ _ x.P.L hL (Fin 4) (Fin 4) _ _ (m : ℤ) x.th (w I) (hw I)
+  choose Q hQ using fun I => _root_.GlobalTheory.BoxSpan.boxProducts_span K x m _ b hb 4 (s I)
   have hdet : (Matrix.of Q).det ≠ 0 := by
     intro h0
     obtain ⟨c, hc, hcQ⟩ := Matrix.exists_vecMul_eq_zero_iff.2 h0
@@ -204,7 +204,7 @@ theorem exists_l2Val : Out.Laws → ∀ (K : Type) [Field K] [IsAlgClosed K] (x 
     have hχ : Function.Injective χ := fun I I' h => by
       by_contra hne
       obtain ⟨r, hr⟩ := hξ I I' hne p
-      have e := GlobalTheory.T.eq_of_similitudeIso_quotient_kernel_invariant laws K x m al (ξ I) (ξ I') (w I) (w I') hm hal (hw I) (hw I') (fun v hv Z r z J hJ => by
+      have e := _root_.GlobalTheory.KeyKa.eq_of_similitude_invariant laws K x m al (ξ I) (ξ I') (w I) (w I') hm hal (hw I) (hw I') (fun v hv Z r z J hJ => by
         have e₁ : a I ⟨v, hv⟩ = a I' ⟨v, hv⟩ := fn_ext (X := S.left) fun y _ => by
           obtain rfl : y = p := Subsingleton.elim _ _
           exact (gs_eq (𝟙 S.left) p ⊤ trivial _).trans ((DFunLike.congr_fun h ⟨v, hv⟩).trans

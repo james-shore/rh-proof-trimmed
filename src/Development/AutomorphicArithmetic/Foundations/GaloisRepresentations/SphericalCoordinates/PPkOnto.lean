@@ -70,11 +70,6 @@ private theorem norm_nat_coprime {m : ℕ} (hm : m.Coprime p) : ‖((m : ℕ) : 
   have := (padicNorm.nat_eq_one_iff m).2 hnd
   exact_mod_cast this
 
-private theorem norm_p_lt : ‖((p : ℕ) : PadicAlgCl p)‖ < 1 := by
-  have h1 : ((p : ℕ) : PadicAlgCl p) = (((p : ℕ) : ℚ_[p]) : PadicAlgCl p) := by simp
-  rw [h1, PadicAlgCl.norm_extends]
-  exact Padic.norm_p_lt_one
-
 private theorem pairL_comm {G : HTGroup p} (a b : Loc G) : pairL a b = pairL b a := by
   unfold pairL
   refine Finset.sum_congr rfl fun w _ => ?_
@@ -160,7 +155,7 @@ private theorem dense_top (K : IntermediateField ℚ_[p] (PadicAlgCl p)) {n : �
     have hne0 : (c i0 : PadicAlgCl p) ≠ 0 := by exact_mod_cast hi0
     have hpos : 0 < ‖(c j : PadicAlgCl p)‖ :=
       lt_of_lt_of_le (norm_pos_iff.2 hne0) (hj i0 (Finset.mem_univ _))
-    have hp := norm_p_lt (p := p)
+    have hp := _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.UnramifiedExtensions.norm_p_lt_one (p := p)
     have h1 : ‖((p : ℕ) : PadicAlgCl p)‖ * ‖((∑ i, c i * a' i j : K) : PadicAlgCl p)‖ ≤
         ‖((p : ℕ) : PadicAlgCl p)‖ * ‖(c j : PadicAlgCl p)‖ :=
       mul_le_mul_of_nonneg_left hS (norm_nonneg _)

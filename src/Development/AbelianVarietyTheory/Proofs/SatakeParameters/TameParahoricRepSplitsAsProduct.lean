@@ -87,8 +87,8 @@ theorem exists_prinSeries (hBZ : GlobalTheory.Published.BernsteinZelevinskyFinit
   have hl : HasFiniteLength (jacB π.π) :=
     (hasFiniteLength_comp_iff _ _ (leviTorus k (Fin n)).surjective).2
       ((hBZ k).2.1 _ _ _ (points (Fin n)) _ π.π π.smooth (hasFiniteLength_of_isIrreducible π.irr))
-  obtain ⟨ψ, l, hl0, hψ, hu⟩ := GlobalTheory.T.exists_torusEigenform_of_compactTorus_eigenvector k n _ (jacB π.π) (Submodule.Quotient.mk v) θ
-    (isSmooth_jacB π.smooth) hl hθ (GlobalTheory.T.tameIwahoriEigenvector_jacquetQuotient_ne_zero hD k n π v θ hv h) fun t ht => by
+  obtain ⟨ψ, l, hl0, hψ, hu⟩ := _root_.GlobalTheory.TorusEigenform.main k n _ (jacB π.π) (Submodule.Quotient.mk v) θ
+    (isSmooth_jacB π.smooth) hl hθ (_root_.GlobalTheory.TameIwahori.JacquetNonzero.jacquet_mk_ne_zero hD k n π v θ hv h) fun t ht => by
       rw [UnramFixed.jacB_apply, jacBU_mk, h.2 t ht]
       have : ((deltaHalf k fun _ : Fin n => Unit).comp (leviTorus k (Fin n)).toMonoidHom) t = 1 :=
         UnramFixed.deltaHalf_torusO k ht
@@ -155,7 +155,7 @@ theorem tameSplit : GlobalTheory.Published.BernsteinZelevinskyFiniteness → Glo
     induction i using Fin.addCases with
     | left i => simpa [θ] using isSmoothChar_one
     | right i => simpa [θ] using hχ
-  obtain ⟨ψ, hψθ, -, hsub⟩ := exists_prinSeries hBZ hD π hθ hv (GlobalTheory.T.tameIwahoriTorusCharVector_of_parahoricDetCharVector k r t χ _ π.π v htame hpar)
+  obtain ⟨ψ, hψθ, -, hsub⟩ := exists_prinSeries hBZ hD π hθ hv (_root_.GlobalTheory.TameParahoric.isIwVec_of_isParahoricVec k r t χ _ π.π v htame hpar)
   have hψ : ∀ i, IsSmoothChar (ψ i) := fun i => isSmoothChar_of_eq_on_units (hθ i) (hψθ i)
   let ψ₁ : Fin r → kˣ →* ℂˣ := fun i => ψ (Fin.castAdd t i)
   let ψ₂ : Fin t → kˣ →* ℂˣ := fun i => ψ (Fin.natAdd r i)

@@ -42,6 +42,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Formalism.GL3MeanSquares.GenusMeanAsymptotics.JacobiCharacterSums.PNTDHPos
 
 @[expose] public section
 
@@ -83,14 +84,6 @@ lemma dhDom_hasSum {q : ℕ} [NeZero q] (ψ : DirichletCharacter ℂ q) (k : ℕ
   exact (LSeriesSummable_of_abscissaOfAbsConv_lt_re
     (by simpa using habs)).LSeriesHasSum
 
-private theorem logMul_iterate_apply_eq_log_pow_mul (f : ℕ → ℂ) (k n : ℕ) :
-    logMul^[k] f n = Complex.log n ^ k * f n := by
-  induction k with
-  | zero => simp
-  | succ k ih =>
-    rw [Function.iterate_succ_apply', logMul, ih]
-    ring
-
 lemma dhDom_term_le {q : ℕ} [NeZero q] (χ₁ χ : DirichletCharacter ℂ q) (h1 : χ₁ ^ 2 = 1)
     (k : ℕ) (σ γ : ℝ) (n : ℕ) :
     ‖term (logMul^[k] (↗χ * ↗Λ)) ((σ : ℂ) + γ * I) n
@@ -117,7 +110,7 @@ lemma dhDom_term_le {q : ℕ} [NeZero q] (χ₁ χ : DirichletCharacter ℂ q) (
   have hre : ∀ c : ℝ, ((A : ℂ) * (c : ℂ) / (((n : ℝ) ^ σ : ℝ) : ℂ)).re = A * c / (n : ℝ) ^ σ := by
     intro c
     rw [← Complex.ofReal_mul, ← Complex.ofReal_div, Complex.ofReal_re]
-  simp only [term_of_ne_zero hn, logMul_iterate_apply_eq_log_pow_mul, Pi.mul_apply, MulChar.coeToFun_mul, e1, hR]
+  simp only [term_of_ne_zero hn, _root_.Formalism.HermitianLattices.Ext.PrimesInProgressions.dhPos_iter_logMul, Pi.mul_apply, MulChar.coeToFun_mul, e1, hR]
   by_cases hu : IsUnit (n : ZMod q)
   · obtain ⟨u, hu'⟩ := hu
     rw [← hu', MulChar.one_apply_coe]

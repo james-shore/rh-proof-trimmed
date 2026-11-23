@@ -53,21 +53,6 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Ex
 
 variable {A U : Type} [CommGroup A] [CommGroup U] {θ : A → A → A → U}
 
-theorem cubN_mul_iter (h : IsCub θ) (n m : ℕ) (b x : A) :
-    cubN θ (n * m) 1 b x = cubN θ n 1 (b ^ m) x * cubN θ m 1 b x ^ n := by
-  induction n with
-  | zero => simp [cubN]
-  | succ n ih =>
-    have e : cubN θ ((n + 1) * m) 1 b x = cubN θ (n * m) 1 b x * cubN θ m (b ^ (n * m)) b x := by
-      rw [Nat.succ_mul]
-      simp only [cubN, Finset.prod_range_add]
-      refine congrArg _ (Finset.prod_congr rfl fun i _ => ?_)
-      rw [_root_.one_mul, pow_add]
-    have s1 : cubN θ (n + 1) 1 (b ^ m) x = cubN θ n 1 (b ^ m) x * θ ((b ^ m) ^ n) (b ^ m) x := by
-      simp only [cubN, Finset.prod_range_succ, _root_.one_mul]
-    rw [e, ih, h.N_split m (b ^ (n * m)) b x, s1, ← pow_mul' b n m, pow_succ (cubN θ m 1 b x) n]
-    ac_rfl
-
 theorem cubN_pow_right (h : IsCub θ) (k m : ℕ) (b x : A) :
     cubN θ k 1 b (x ^ m) * cubN θ m 1 x b ^ k = cubN θ k 1 b x ^ m * cubN θ m 1 x (b ^ k) := by
   induction m with
@@ -100,8 +85,8 @@ theorem wp_pushRep (n m : ℕ) (hn : 0 < n) (p q : N.QT (n * m)) :
   have ps2 := NumD.Gt.pow_s q.1.2 m p.1.1.toAdd
   rw [← N.QT_pow_b q] at ps1
   rw [← N.QT_pow_b p] at ps2
-  have i1 := cubN_mul_iter N.cub n m q.1.2.b p.1.2.b
-  have i2 := cubN_mul_iter N.cub n m p.1.2.b q.1.2.b
+  have i1 := _root_.GlobalTheory.CubeBalance.cubN_mul N.cub n m q.1.2.b p.1.2.b
+  have i2 := _root_.GlobalTheory.CubeBalance.cubN_mul N.cub n m p.1.2.b q.1.2.b
   have a := cubN_pow_right N.cub n m (p.1.2.b ^ m) q.1.2.b
   have b := cubN_pow_right N.cub n m (q.1.2.b ^ m) p.1.2.b
   have c := cubN_pow_right N.cub m m q.1.2.b p.1.2.b

@@ -58,7 +58,7 @@ theorem exists_finiteDimensional_kStable_smooth : ∀ (n : ℕ) (ε : Fin n → 
   have hT : IsTest φ := ⟨hφ, hφc⟩
   have hne := GlobalTheory.LowTypeRestriction.garding_ne_zero hU hT.continuous hφc hφ0 hφ1 hw
     fun g hg h0 => hUs ⟨hφU g h0, hg⟩
-  have hK := GlobalTheory.LowTypeRestriction.isKTypeOf_map hS (GlobalTheory.LowTypeRestriction.garding hU hT.continuous hφc)
+  have hK := _root_.GlobalTheory.KTypeUnderMaps.isKTypeOf_map hS (GlobalTheory.LowTypeRestriction.garding hU hT.continuous hφc)
     (fun k hk w => GlobalTheory.LowTypeRestriction.garding_comm hU hT.continuous hφc hinv hk w) hwS hne
   refine ⟨S.map (GlobalTheory.LowTypeRestriction.garding hU hT.continuous hφc), hK.1,
     (Submodule.ne_bot_iff _).2 ⟨_, ⟨w, hwS, rfl⟩, hne⟩, ?_, fun k hk v hv => hK.2.1 k hk v hv⟩

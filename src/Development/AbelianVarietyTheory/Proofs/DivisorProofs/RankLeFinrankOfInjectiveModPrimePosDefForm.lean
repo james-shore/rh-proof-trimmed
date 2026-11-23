@@ -119,7 +119,7 @@ theorem rank_le_finrank_of_injective_mod_prime : ∀ (l : ℕ) [Fact l.Prime] (H
     intro t ht
     have hl : (l : ℤ_[l]) ≠ 0 := Nat.cast_ne_zero.2 hlne
     exact (smul_eq_zero.1 ht).resolve_left hl
-  obtain ⟨hinj, -⟩ := GlobalTheory.T.liftBaseChange_padicInt_injective_saturated_of_modL l M T htor ψ hψ
+  obtain ⟨hinj, -⟩ := _root_.GlobalTheory.latticeMap_liftBaseChange_injective_saturated l M T htor ψ hψ
   have h1 := LinearMap.finrank_le_finrank_of_injective hinj
   rw [Module.finrank_baseChange] at h1
   let v : Fin n → M := fun i => ⟨u i, 1, one_ne_zero, by

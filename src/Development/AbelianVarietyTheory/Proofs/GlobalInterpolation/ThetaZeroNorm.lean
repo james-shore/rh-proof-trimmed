@@ -43,6 +43,4 @@ noncomputable section
 
 namespace GlobalTheory.Proof.ThetaZeroNormGlobalInterpolation
 
-theorem normTheta0 : GlobalTheory.IndefiniteRowSideFullHecke.JacobiThetaHalfCharacteristic.NormTheta0 := GlobalTheory.ThetaNullNormSquares.normTheta0
-
 end GlobalTheory.Proof.ThetaZeroNormGlobalInterpolation

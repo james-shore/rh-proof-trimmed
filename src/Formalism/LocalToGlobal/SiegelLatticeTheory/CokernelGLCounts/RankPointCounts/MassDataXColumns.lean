@@ -60,8 +60,8 @@ theorem inColumnsAt_holds :
       (hK : X.LevelSubgroupCharacter) (FdN FdN' : Set X.B.I.Ginf) (u u' : D.what₂.Word)
       (X0 : Fin (2 * D.R.rS + 2) → Fin X.B.I.n → X.B.I.E) (L : LocIn (TypX X)) (A : AnIn),
       InColumnsAt X hb hK FdN FdN' u u' X0 L A :=
-  massDataColumns_of' Formalism.L2.SG.Closed.AdBridgeIso_holds Formalism.L2.SG.Closed.AdBridgeGF_holds
-    Formalism.L2.SG.Closed.AdBridgeK_holds
+  massDataColumns_of' _root_.Formalism.L2.SG.Pf.adelic_isomorphism_exists _root_.Formalism.L2.SG.AdBridge.adBridgeGF_main
+    _root_.adelic_maximal_compact
     (fun X u hK => Formalism.L2.SG.PoincareInHH.Cut.neatKu_of_gamUnipKu X u hK
       (Formalism.L2.SG.PoincareInHH.Cut.latOfLattice_holds X u) (Formalism.L2.SG.PoincareInHH.Cut.gamUnipKu_holds X u hK))
     (fun X u hK => Formalism.L2.SG.Closed.ClassFin_holds X u hK)

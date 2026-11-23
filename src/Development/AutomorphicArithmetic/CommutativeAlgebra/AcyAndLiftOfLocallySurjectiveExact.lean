@@ -100,7 +100,7 @@ theorem UpperTheory.acy_and_lift_of_locally_surjective_exact :
     refine ⟨fun s t => ?_⟩
     have hz : ∀ s : Sec (cokernel d) U, s = 0 := by
       intro s
-      have hl := ((GlobalTheory.T.bigEtaleModuleSheaf_mono_epi_iff_sections ℤ (cokernel.π d)).2.2.1.1 inferInstance) U s
+      have hl := ((_root_.GlobalTheory.EtC.mono_epi_sections ℤ (cokernel.π d)).2.2.1.1 inferInstance) U s
       have hl2 : Loc U fun W k => Sec.res k s = Sec.res k (0 : Sec (cokernel d) U) := by
         refine local_bind hl ?_
         rintro V g ⟨z, hz⟩

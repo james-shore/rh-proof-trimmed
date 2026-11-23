@@ -163,15 +163,15 @@ theorem exchange : ∀ {E : Type} [Field E] [NumberField E] [StarRing E] {n : �
     by_cases hQ : Q = P
     · rw [hQ]
       have h1 : localization₂ (conjPrime₂ P).asIdeal A = localization₂ (conjPrime₂ P).asIdeal B := by rw [hP]; exact hAP
-      rw [GlobalTheory.T.localization_hermitianDual_eq P A B hA hB h1, hBu', hAP]
+      rw [_root_.GlobalTheory.DualLoc.use₅ P A B hA hB h1, hBu', hAP]
     · have hQ' : conjPrime₂ Q ≠ P := fun h => hQ (by rw [← hcc Q, h, hP])
-      rw [GlobalTheory.T.localization_hermitianDual_eq Q A C hA hC (hAQ _ hQ'), hCu', hAQ Q hQ]
+      rw [_root_.GlobalTheory.DualLoc.use₅ Q A C hA hC (hAQ _ hQ'), hCu', hAQ Q hQ]
   have patch_lat_loc : ∀ (h : Sp E n ≃ₗ[E] Sp E n), h ∈ UF E n →
       ∀ Y : Submodule (𝓞 E) (Sp E n), Submodule.IsLattice E Y → IsUnimodular (hStd E n) Y →
       Submodule.IsLattice E (patchAt P (gmap h Y) Y) ∧ ∀ Q : HeightOneSpectrum (𝓞 E),
         localization₂ Q.asIdeal (patchAt P (gmap h Y) Y) = localization₂ Q.asIdeal (if Q = P then gmap h Y else Y) := by
     intro h hh Y hY hu
-    exact GlobalTheory.T.submodulePatchAtPrime_isLattice_locP P (gmap h Y) Y
+    exact _root_.GlobalTheory.InertExchange.patchAt_isLattice_locP P (gmap h Y) Y
       (isFullLattice_of_unimodular (gmap_lattice h Y hY) (unimodG h hh Y hu))
       (isFullLattice_of_unimodular hY hu)
   have locσ := fun Y hY hu => (patch_lat_loc g hg Y hY hu).2

@@ -70,10 +70,6 @@ theorem tensor_sub_left (M N : Type u) [AddCommMonoid M] [AddCommMonoid N] [Modu
     | add x y hx hy => rw [hx, hy, add_zero]
   exact ⟨fun a b => by rw [key a, key b]⟩
 
-theorem tensor_sub_right (M N : Type u) [AddCommMonoid M] [AddCommMonoid N] [Module R M] [Module R N] [Subsingleton N] :
-    Subsingleton (M ⊗[R] N) :=
-  _root_.UpperTheory.Reformulated.B.Qn17.tensor_sub_right M N
-
 variable {I A : Type} [DecidableEq I] [Fintype A] [DecidableEq A] (M : I → Type u) [∀ t, AddCommMonoid (M t)]
   [∀ t, Module R (M t)] (ι : A → I)
 
@@ -143,7 +139,7 @@ theorem kunE_of_diag {P Q T : ℕ → Cx.{w} K} (pr : ∀ {a a' c : ℕ}, a + a'
     exact tensor_sub_left _ _
   have offR : ∀ t : Idx c n, t.j ≠ t.a' → Subsingleton ((P t.a).H t.i ⊗[K] (Q t.a').H t.j) := fun t h => by
     have := hQ t.a' t.j h
-    exact tensor_sub_right _ _
+    exact _root_.UpperTheory.Reformulated.B.Qn17.tensor_sub_right _ _
   by_cases hn : n = c
   · subst hn
     obtain ⟨e, he⟩ := hE n
@@ -201,11 +197,6 @@ theorem xd_kun (E : XD K) (U₁ : ObjectProperty E.C₁) (U₂ : ObjectProperty 
   kunE_of_diag (P := fun a => CH.cx (U₁.ι ⋙ E.F₁ a)) (Q := fun a => CH.cx (U₂.ι ⋙ E.F₂ a)) (T := fun a => CH.cx (U₃.ι ⋙ E.F₃ a))
     (fun {a a' c} ha => E.pr U₁ U₂ U₃ h₁ h₂ ha) hP hQ hT hE
 
-theorem cls_eq {R : Type} [CommRing R] (L : Cx.{w} R) {n : ℕ} {x y : L.X n} (e : x = y) (hx : L.d n x = 0) (hy : L.d n y = 0) :
-    L.cls x hx = L.cls y hy := by
-  subst e
-  rfl
-
 section
 variable {X X' P : Scheme.{0}} (q : X ⟶ Spec (CommRingCat.of K)) (q' : X' ⟶ Spec (CommRingCat.of K)) (p₁ : P ⟶ X) (p₂ : P ⟶ X')
     (hw : p₂ ≫ q' = p₁ ≫ q)
@@ -235,6 +226,6 @@ theorem kun_aff : SiteLaws → AffOm → KunAff → ∀ (K : Type) [Field K] [Ch
     have hz' : (CH.cx ((inU (p₁ ≫ q) (p₁ ⁻¹ᵁ V ⊓ p₂ ⁻¹ᵁ V')).ι ⋙ G (p₁ ≫ q) c)).d c (cupU (p₁ ≫ q) _ hc hc ((morV p₁ rfl a h₁).pullC a x) ((morV p₂ hP.w.symm (c - a) h₂).pullC (c - a) y)) = 0 := by
       rw [← eq]
       exact hz
-    exact (he a hc x y hx hy hz').trans (cls_eq _ eq.symm _ _)
+    exact (he a hc x y hx hy hz').trans (_root_.CrystallineSemistableComparison.Auxff.cls_congr _ eq.symm _ _)
 
 end GlobalTheory.CompanionTheory.KunGlue.Aff

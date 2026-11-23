@@ -70,6 +70,7 @@ import Std.Tactic.BVDecide.Normalize.Prop
 public import Development.AbelianVarietyTheory.BlockTheory.ThetaLiftGeometry.HeckeIntertwinersInert
 import Formalism.LocalToGlobal.HilbertRowConditions.CenterIdempotentAction
 import Formalism.LocalToGlobal.IndefiniteReal.RecTie
+import Formalism.LocalToGlobal.Columns.RecLevelHost
 
 @[expose] public section
 
@@ -366,7 +367,7 @@ theorem loc_data (hG : V.gram = 1) (Λ : Submodule (𝓞 D.host.E) (Fin V.rank �
   obtain ⟨hc1, hc2, hc3⟩ := id hoffP
   let P : Pl D.host.E := pl x.1
   let Pb : Pl D.host.E := Formalism.L2.Col.conjPrime₂ P
-  have hcc : Formalism.L2.Col.conjPrime₂ Pb = P := Formalism.L2.Col.conjPrime_conjPrime P
+  have hcc : Formalism.L2.Col.conjPrime₂ Pb = P := _root_.Formalism.L2.Col.rlh_conjP_conjP P
   obtain ⟨v, hov⟩ : ∃ v : HeightOneSpectrum (𝓞 D.host.F), Formalism.L2.Col.IsOver v Pb :=
     ⟨HeightOneSpectrum.under (𝓞 D.host.F) Pb, rfl⟩
   have hovP : Formalism.L2.Col.IsOver v P := hcc ▸ Formalism.L2.Col.tud_isOver_conj D.sp.cm hov

@@ -43,4 +43,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem additive_integral_generation : PI.AddIntG.Target := PI.AddIntG.Wk.addIntG_top

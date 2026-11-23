@@ -103,7 +103,7 @@ theorem GlobalTheory.sub_choose_finite : ∀ (X : Scheme.{0}), IsNoetherian X �
   intro i x hx
   rw [SetLike.mem_coe, mem_sub]
   intro j W' hW' hWi hWj
-  apply GlobalTheory.T.mem_adjoin_restricted_sections_of_local X F α hα (V j) (V i) (Set.range (a j)) x _ W' hW' hWi hWj
+  apply _root_.GlobalTheory.QcSub.Local.mem_gen_of_local X F α hα (V j) (V i) (Set.range (a j)) x _ W' hW' hWi hWj
   intro y hy
   have hy' : y ∈ ((V j ⊓ V i : X.Opens) : Set X) := ⟨hy.2, hy.1⟩
   have := hs2 i j hy'

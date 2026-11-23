@@ -53,7 +53,7 @@ theorem UpperTheory.Gal.TranscendenceTraces.extRes_of :
   obtain ⟨hKI, -, hGE, -, hι, -⟩ := GlobalTheory.T.chosenInjectiveResolution_etaleSheaf_properties R G
   haveI := hKI
   haveI := hGE
-  have key := GlobalTheory.T.extend_chainMap_along_quasiIso_kInjective R F T (res R G) ε
+  have key := _root_.GlobalTheory.EtC.extHom_of_quasiIso R F T (res R G) ε
   refine ⟨fun a => ?_, fun m m' h U i n k hin hnk y hy => ?_⟩
   · obtain ⟨m, hm⟩ := key.1 ((CochainComplex.singleFunctor (Shv R) 0).map a ≫ resAug G)
     refine ⟨m, ?_⟩

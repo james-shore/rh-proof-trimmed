@@ -91,9 +91,9 @@ theorem exists_equiv : ∀ (l : ℕ) [Fact l.Prime] (LL : FinExt l) (T : QLat LL
   intro l _ LL T Pl AI hS
   obtain ⟨Ti⟩ := hS
   have hz : ∀ z : ℤ_[l], Ti.eB (algebraMap ℚ_[l] Pl.R.B (z : ℚ_[l])) = algebraMap ℤ_[l] (Per.Bcris l) z :=
-    fun z => (Ti.zB z).trans (GlobalTheory.RingIface.aB_zl l z).symm
+    fun z => (Ti.zB z).trans (_root_.GlobalTheory.RingIface.aB_algebraMap_padicInt l z).symm
   exact ⟨linEquiv T Ti.eB hz, linEquiv_one T Ti.eB hz, linEquiv_act T Ti.eB hz Ti.actB,
     linEquiv_frob T Ti.eB hz Ti.frob,
-    mem_finiteCocycles_iff_bcrisTensor_coboundary T Pl (exists_pow_smul_mem T) _ (linEquiv_one T Ti.eB hz) (linEquiv_act T Ti.eB hz Ti.actB)⟩
+    mem_finiteCocycles_iff_bcrisTensor_coboundary T Pl (_root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem T) _ (linEquiv_one T Ti.eB hz) (linEquiv_act T Ti.eB hz Ti.actB)⟩
 
 end GlobalTheory.BKGal.CrisTensor

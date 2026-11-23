@@ -96,7 +96,7 @@ theorem galRul_isSum : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartIndepS
   intro hC D G _ _ Pl0 T0 A T _ R F κ v₀ hcore hFW i Tp tup M hP τ ta hta hfix hcurve hxi
   have hf : Fixes M.c' ta := ⟨fun φ x => Subtype.ext (by rw [hta]; exact hfix.host φ x),
     fun a => Subtype.ext (by rw [hta]; exact hfix.core ⟨a, T.Q.c.le a.2⟩)⟩
-  obtain ⟨k0, hk0, hcxi⟩ := GlobalTheory.T.galoisConj_coverFunction_eq_const_mul_conjTuple D G Pl0 T0 A T R F κ v₀ hcore hFW i Tp tup M hP τ ta hta hfix hcurve hxi
+  obtain ⟨k0, hk0, hcxi⟩ := _root_.GlobalTheory.CoverConj.conj_cover_const D G Pl0 T0 A T R F κ v₀ hcore hFW i Tp tup M hP τ ta hta hfix hcurve hxi
   have hk0ne : k0 ≠ 0 := by
     rintro rfl
     obtain ⟨n, hn, hkn⟩ := hk0

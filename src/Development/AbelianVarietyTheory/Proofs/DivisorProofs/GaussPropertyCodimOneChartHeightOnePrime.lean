@@ -302,7 +302,7 @@ theorem gaussAt_vert : ∀ (σ : Setup) (x : Sp σ.R) (z : (σ.C x).G.left), Ver
       (Order.one_le_iff_ne_zero.2 fun e => σ.hf ?_)
     have h₁ : σ.f ∈ p.asIdeal := hf
     rwa [Ideal.height_eq_zero_iff_eq_bot.1 e] at h₁
-  have g₁ := GlobalTheory.T.gauss_at_height_one_vertical_point σ p (πb y) hp1 hV
+  have g₁ := _root_.GlobalTheory.Desc.gaussAt_chart_of_height_one σ p (πb y) hp1 hV
   have g₂ := gaussAt_pullback hπb hθb hs (σ.ρ p σ.f)
     ((map_ne_zero_iff _ (injective_of_flat hb)).2 hf0') hfE' hV.1.le
   have g₃ := GlobalTheory.Desc.GaussComp.gaussAt_comp _ E _ _ _ b _ _ (σ.θ p) θb (maximalIdeal _) (maximalIdeal E) (σ.W p)
@@ -329,6 +329,6 @@ theorem gaussAt_vert : ∀ (σ : Setup) (x : Sp σ.R) (z : (σ.C x).G.left), Ver
     have hd : ∃ d : (σ.C p).R, d ≠ 0 ∧ GlobalTheory.Desc.cst (σ.C p).G.hom d * σ.θ p w ∈
         spanBy (GlobalTheory.Desc.cst (σ.C p).G.hom) (Set.range (σ.θ p)) :=
       ⟨1, one_ne_zero, spanBy_smul _ (subset_spanBy _ _ ⟨w, rfl⟩)⟩
-    exact (GlobalTheory.T.gauss_at_height_one_vertical_point σ p z' hp1 hz' _ hd).2 ((g₁ _ hd).1 hw)
+    exact (_root_.GlobalTheory.Desc.gaussAt_chart_of_height_one σ p z' hp1 hz' _ hd).2 ((g₁ _ hd).1 hw)
 
 end GlobalTheory.Desc.GaussPt

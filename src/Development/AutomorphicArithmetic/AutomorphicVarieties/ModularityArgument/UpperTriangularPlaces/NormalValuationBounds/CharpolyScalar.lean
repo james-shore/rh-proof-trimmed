@@ -55,12 +55,6 @@ section linear
 
 variable {k : Type} [Field k] [IsAlgClosed k]
 
-private theorem common_eig {V : Type} [AddCommGroup V] [Module k V] [FiniteDimensional k V]
-    (S : Set (End k V)) (hS : ∀ f ∈ S, ∀ f' ∈ S, f * f' = f' * f) :
-    ∀ (d : ℕ) (W : Submodule k V), finrank k W = d → W ≠ ⊥ → (∀ f ∈ S, ∀ x ∈ W, f x ∈ W) →
-      ∃ v ∈ W, v ≠ 0 ∧ ∀ f ∈ S, ∃ c : k, f v = c • v :=
-  _root_.UpperTheory.Reformulated.B.CommonEigenvectorOfCommutingSet.common_eig S hS
-
 private theorem charpoly_scalar {W : Type} [AddCommGroup W] [Module k W] [FiniteDimensional k W] (hW : finrank k W = 1)
     (f : End k W) (c : k) (hf : ∀ x, f x = c • x) : f.charpoly = X - C c := by
   have hs : f = c • (1 : End k W) := LinearMap.ext fun x => by simp [hf]
@@ -84,7 +78,7 @@ private theorem chars_of_comm {Γ : Type} [Group Γ] :
   | succ d ih =>
     intro V _ _ _ ρ hc hd
     haveI : Nontrivial V := Module.nontrivial_of_finrank_pos (R := k) (by omega)
-    obtain ⟨v, -, hv0, hv⟩ := common_eig (Set.range ρ)
+    obtain ⟨v, -, hv0, hv⟩ := _root_.UpperTheory.Reformulated.B.CommonEigenvectorOfCommutingSet.common_eig (Set.range ρ)
       (by rintro _ ⟨a, rfl⟩ _ ⟨b, rfl⟩; exact hc a b) _ ⊤ rfl top_ne_bot (fun _ _ _ _ => trivial)
     choose c hcv using fun g => hv (ρ g) ⟨g, rfl⟩
     have inj : ∀ a b : k, a • v = b • v → a = b := fun a b h => smul_left_injective k hv0 h

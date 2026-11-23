@@ -51,7 +51,7 @@ namespace GlobalTheory.ThLoc
 theorem inputs_of_algT (hT : Formalism.L2.KerInert.AlgTAll) : Inputs := by
   exact
     { jInt := cm1
-      modelTwo := goodOrdinaryModelAtTwo_cmLattice_seven_mod_eight
+      modelTwo := _root_.GlobalTheory.ThLoc.GoodTwo.goodModelTwo
       jetsOdd := locJets_all.1
       jetsTwo := locJets_all.2.1
       jetsThree := thetaZJetsThree

@@ -61,6 +61,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.UnitTraceSumBounds.AddPtW
+import Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.LogarithmicSubstitution.NormHalfB2SubTwoTorsionLeOne
 
 @[expose] public section
 
@@ -156,7 +157,7 @@ theorem biadd_of_ph (g : G1 p) (hOk : g.Ok) (hp : p ≠ 2) (s2 : ℂ_[p])
       (g.be (Xv 0) (Xv 1) + g.be (Xv 0) (Xv 2)) := by
   have hL := (Formalism.L2.Th1.A.bridgeLaw ℂ_[p] g.W (intModel_of_ok hOk)).1
   have hF : MvPowerSeries.constantCoeff (Formalism.L2.Th1.A.fgl g.W) = 0 := hL.1
-  obtain ⟨-, hsym, hd1, -⟩ := Formalism.L2.Th1.B.weierstrass_biadditive_mod_equiv ℂ_[p] g.W s2 (intModel_of_ok hOk)
+  obtain ⟨-, hsym, hd1, -⟩ := _root_.Formalism.L2.Th1.B.Crv.curve_formal_first_level_holds ℂ_[p] g.W s2 (intModel_of_ok hOk)
     (Formalism.MainNotions.Ext.CutA.norm_two_cp hp)
   have cX : ∀ i : Fin 3, MvPowerSeries.constantCoeff (MvPowerSeries.X i : MvPowerSeries (Fin 3) ℂ_[p]) = 0 :=
     fun i => by simp
@@ -253,7 +254,7 @@ theorem coefWf_phW (W : WeierstrassCurve ℂ_[p]) (h1 : W.a₁ ∈ Formalism.L2.
   have hWW : W'.map K.subtype = W := rfl
   obtain ⟨hl, -, hwp, -, -⟩ := Formalism.L2.Th1.A.zMap K ℂ_[p] K.subtype W'
   obtain ⟨h0, h1', -, -⟩ := Formalism.L2.Th1.A.logSpec K W'
-  have hB := (Formalism.L2.Th1.B.baseChange K ℂ_[p] K.subtype ⟨s2, hs⟩ 0 0 (Formalism.L2.Th1.A.wpReg W') 0
+  have hB := (_root_.Formalism.L2.Th1.B.Map.baseChangeCompatible K ℂ_[p] K.subtype ⟨s2, hs⟩ 0 0 (Formalism.L2.Th1.A.wpReg W') 0
     (Formalism.L2.Th1.A.logSer W') 0 h0 h1' (by simp)).2.2.2.2.1
   have e : Formalism.L2.Th1.B.phW W s2 =
       PowerSeries.map K.subtype (Formalism.L2.Th1.B.phO ⟨s2, hs⟩ (Formalism.L2.Th1.A.wpReg W') (Formalism.L2.Th1.A.logSer W')) := by

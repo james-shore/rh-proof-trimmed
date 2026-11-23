@@ -119,14 +119,6 @@ theorem actB_FB (g : GQ l) (k : ℕ) (x : Formalism.Per6.BdRp l) (hx : x ∈ FB 
 theorem tch_pow (x : Tl l) (n : ℕ) : tch l (x ^ n) = tch l x ^ n := by
   simp only [tch, map_pow]
 
-theorem near_pow_of_sub {B : Type} [CommRing B] {S : Subring B} {ϖ : B} {a b : B} (ha : a ∈ S) (hb : b ∈ S)
-    (h : ∃ s ∈ S, a - b = ϖ * s) (M : ℕ) : ∃ s ∈ S, a ^ M - b ^ M = ϖ * s := by
-  obtain ⟨s, hs, e⟩ := h
-  obtain ⟨c, hc⟩ := sub_dvd_pow_sub_pow (⟨a, ha⟩ : ↥S) ⟨b, hb⟩ M
-  refine ⟨s * c, S.mul_mem hs c.2, ?_⟩
-  have h3 : a ^ M - b ^ M = (a - b) * (c : B) := by simpa using congrArg Subtype.val hc
-  rw [h3, e]; ring
-
 theorem iter_near {B : Type} [CommRing B] {S : Subring B} {ϖ : B} (hϖ : ϖ ∈ S) (q : ℕ) {Q b : B} (hQ : Q ∈ S)
     (hb : b ∈ S) (h : ∃ s ∈ S, Q - b = ϖ * s) (n : ℕ) :
     ltIter ϖ q n Q ∈ S ∧ ∃ s ∈ S, ltIter ϖ q n Q - b ^ (q ^ n) = ϖ * s := by
@@ -137,7 +129,7 @@ theorem iter_near {B : Type} [CommRing B] {S : Subring B} {ϖ : B} (hϖ : ϖ ∈
     have e : ltIter ϖ q (n + 1) Q = ϖ * ltIter ϖ q n Q + ltIter ϖ q n Q ^ q := by
       simp only [ltIter, Function.iterate_succ_apply']
     have hbn : b ^ (q ^ n) ∈ S := S.pow_mem hb _
-    obtain ⟨s, hs, e2⟩ := near_pow_of_sub h1 hbn h2 q
+    obtain ⟨s, hs, e2⟩ := _root_.GlobalTheory.CompanionTheory.LTPer.LogConv.pow_congr' h1 hbn h2 q
     refine ⟨by rw [e]; exact S.add_mem (S.mul_mem hϖ h1) (S.pow_mem h1 _), ltIter ϖ q n Q + s,
       S.add_mem h1 hs, ?_⟩
     rw [e, pow_succ q n, pow_mul]
@@ -193,7 +185,7 @@ theorem pre_period (HT : TiltLeaf) (K : FinExt l) (χ : ↥(GK K) →* (↥K.1)�
     exact ⟨a, ha, by simpa [ltIter] using e⟩
   have hnilQ : ∃ M : ℕ, 0 < M ∧ Near S ϖ (FB l 1) 1 (Q ^ M) := by
     obtain ⟨M, hM, s, hs, e⟩ := hnil0
-    obtain ⟨s', hs', e'⟩ := near_pow_of_sub hQS (hvS 0) hQ0 M
+    obtain ⟨s', hs', e'⟩ := _root_.GlobalTheory.CompanionTheory.LTPer.LogConv.pow_congr' hQS (hvS 0) hQ0 M
     refine ⟨M, hM, s + s', S.add_mem hs hs', ?_⟩
     have : Q ^ M - ϖ ^ 1 * (s + s') = tch l (v 0) ^ M - ϖ ^ 1 * s := by
       rw [pow_one] at *

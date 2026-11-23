@@ -93,11 +93,7 @@ lemma contDiff_trip : ContDiff ℂ ∞ (fun p : Matrix (Fin n) (Fin n) ℂ × Ma
     Matrix (Fin n) (Fin n) ℂ => p.2.2 * p.1 * p.2.1) := by
   exact contDiff_mmul (contDiff_mmul (contDiff_snd.comp contDiff_snd) contDiff_fst) (contDiff_fst.comp contDiff_snd)
 
-lemma isOpen_omega : IsOpen (OmegaSet n : Set (Matrix (Fin n) (Fin n) ℂ)) := by
-  exact ReciprocityTheory.ChartRestriction.DS.S7.isOpen_omega
-
-lemma sm_phi (μ : Fin n → ℤ) : ContDiffOn ℂ ∞ (PhiM μ) (OmegaSet n) := by
-  exact phiM_contDiffOn μ
+alias isOpen_omega := _root_.ReciprocityTheory.ChartRestriction.DS.S7.isOpen_omega
 
 def Wset (n : ℕ) : Set (Matrix (Fin n) (Fin n) ℂ × Matrix (Fin n) (Fin n) ℂ × Matrix (Fin n) (Fin n) ℂ) :=
   {p | p.2.2 * p.1 * p.2.1 ∈ OmegaSet n}
@@ -110,7 +106,7 @@ def g0 (μ : Fin n → ℤ) :
   fun p => PhiM μ (p.2.2 * p.1 * p.2.1)
 
 lemma smooth_g0_on_Wset (μ : Fin n → ℤ) : ContDiffOn ℂ ∞ (g0 μ) (Wset n) := by
-  exact (sm_phi μ).comp contDiff_trip.contDiffOn (fun p hp => hp)
+  exact (_root_.ReciprocityTheory.ChartRestriction.DS.S7.phiM_contDiffOn μ).comp contDiff_trip.contDiffOn (fun p hp => hp)
 
 lemma dAtW {g : Matrix (Fin n) (Fin n) ℂ × Matrix (Fin n) (Fin n) ℂ × Matrix (Fin n) (Fin n) ℂ → ℂ}
     (hg : ContDiffOn ℂ ∞ g (Wset n)) {p} (hp : p ∈ Wset n) : DifferentiableAt ℂ g p := by

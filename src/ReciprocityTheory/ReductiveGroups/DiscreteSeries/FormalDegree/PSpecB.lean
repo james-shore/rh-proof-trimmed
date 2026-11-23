@@ -104,13 +104,6 @@ theorem neg_pmat_eq {ε : Fin n → Bool} (z : PCoord ε → ℂ) :
   | rw [Matrix.mul_neg, Matrix.neg_mul]
   | noncomm_ring
 
-theorem jm_mul_jm (ε : Fin n → Bool) : Jm ε * Jm ε = 1 := by
-  unfold Jm
-  rw [diagonal_mul_diagonal, ← diagonal_one]
-  congr 1
-  funext a
-  by_cases h : ε a <;> simp [h]
-
 theorem jm_conj_pmat {ε : Fin n → Bool} (z : PCoord ε → ℂ) : Jm ε * (pmat z * Jm ε) = -pmat z := by
   ext a b
   unfold Jm
@@ -146,7 +139,7 @@ private lemma charpoly_roots_diagonal (d : Fin n → ℂ) :
 theorem pev_neg_multiset {ε : Fin n → Bool} (z : PCoord ε → ℂ) :
     Multiset.map (fun a => -pev z a) univ.val = Multiset.map (pev z) univ.val := by
   have hcp : (-pmat z).charpoly = (pmat z).charpoly := by
-    rw [← jm_conj_pmat z, Matrix.charpoly_mul_comm, Matrix.mul_assoc, jm_mul_jm, Matrix.mul_one]
+    rw [← jm_conj_pmat z, Matrix.charpoly_mul_comm, Matrix.mul_assoc, _root_.ReciprocityTheory.ChartRestriction.DS.S7.Jm_mul_self, Matrix.mul_one]
   have h1 : (pmat z).charpoly = (diagonal fun a => (pev z a : ℂ)).charpoly := by
     conv_lhs => rw [pmat_eq_eigenvectorUnitary_mul_diagonal_mul_star z]
     exact charpoly_eigenvectorUnitary_conj_eq z _

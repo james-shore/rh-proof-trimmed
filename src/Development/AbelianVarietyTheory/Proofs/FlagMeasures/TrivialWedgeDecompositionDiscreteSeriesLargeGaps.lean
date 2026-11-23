@@ -202,14 +202,14 @@ theorem exists_equiv (hH : HypsG) {ε : Fin (2 * r + k + 1) → Bool} {κ ι : T
   have hTs : ∀ s, SmMap (RI1 a) (RI2 s) (fun y => ∑ c, pr2 s c (io1 a c y)) := by
     intro s
     have hc : ∀ c, SmMap (RI1 a) (RI2 s) (fun y => pr2 s c (io1 a c y)) := fun c =>
-      (Gp91.GlobalTheory.T.smooth_maps_closure hK k r ε (m1 a) mS (m2 s) (RI1 a) S (RI2 s) (hd1 a) hS (hd2 s)).2.1 _ _
+      (_root_.Gp91.GlobalTheory.SmMapAct.smMap_act hK k r ε (m1 a) mS (m2 s) (RI1 a) S (RI2 s) (hd1 a) hS (hd2 s)).2.1 _ _
         (h1.io_sm a c) (h2.pr_sm s c)
     have key : ∀ t : Finset ι, SmMap (RI1 a) (RI2 s) (fun y => ∑ c ∈ t, pr2 s c (io1 a c y)) := by
       intro t
       induction t using Finset.induction_on with
       | empty => simpa using smMap_zero (RI1 a) (RI2 s)
       | insert c t hc' ih =>
-        have := (Gp91.GlobalTheory.T.smooth_maps_closure hK k r ε (m1 a) (m2 s) (m2 s) (RI1 a) (RI2 s) (RI2 s) (hd1 a) (hd2 s)
+        have := (_root_.Gp91.GlobalTheory.SmMapAct.smMap_act hK k r ε (m1 a) (m2 s) (m2 s) (RI1 a) (RI2 s) (RI2 s) (hd1 a) (hd2 s)
           (hd2 s)).2.2.1 _ _ 1 (hc c) ih
         simpa [Finset.sum_insert hc'] using this
     exact key univ

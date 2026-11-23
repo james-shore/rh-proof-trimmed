@@ -303,7 +303,7 @@ theorem card_ker_eq_det {S : Scheme.{0}} (A : Over S) [GrpObj A] (hA : IsAbelian
     exact hφ (Int.natAbs_eq_zero.1 hdeg.symm)
   have hneg : ∀ (T : Over (Sp k)) (y : T ⟶ B.X), y ≫ Hom.hom (-f) = 1 ↔ y ≫ f.hom = 1 := fun T y => by
     rw [neg_hom, GrpObj.comp_inv, inv_eq_one]
-  have hk := GlobalTheory.AV.DegSep.deg_eq_card_ker_of_killed k B B (-f) n (Nat.cast_ne_zero.2 hn) hiso fun T y hy => by
+  have hk := _root_.GlobalTheory.AV.DegSep.deg_eq_card_ker k B B (-f) n (Nat.cast_ne_zero.2 hn) hiso fun T y hy => by
     apply (hbij T).1
     have h := hf T y
     rw [(hneg T y).1 hy, map_one] at h

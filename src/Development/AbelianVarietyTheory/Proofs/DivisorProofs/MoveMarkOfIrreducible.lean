@@ -181,13 +181,13 @@ theorem exists_basis (ha : G.a = 1) (P : Pair G) (μ : ℂ) (hm : P.Mark μ) (pb
         (Z : Matrix (Fin G.n) (Fin G.n) ℂ) * Matrix.diagonal (fun i => e i y)) ∧ (∀ i, d i ≠ 0) ∧
       (Z : Matrix (Fin G.n) (Fin G.n) ℂ)ᴴ * (G.gram w * G.psi w ((P.β⁻¹ : G.Cˣ) : G.C)) *
         (Z : Matrix (Fin G.n) (Fin G.n) ℂ) = Matrix.diagonal (fun i => (d i : ℂ)) := by
-  obtain ⟨Z, lam, hinj, hroot, hZ⟩ := GlobalTheory.T.exists_eigenbasis_psi_infinitePlace_distinct_roots p G P w
+  obtain ⟨Z, lam, hinj, hroot, hZ⟩ := _root_.GlobalTheory.LKMid.psi_eigenbasis p G P w
   have hr : ∀ i, P.pol.eval₂ w.embedding (lam i) = 0 := fun i => (hroot _).2 ⟨i, rfl⟩
   choose e he he' using fun i => exists_emb pb w.embedding (lam i) (hpol ▸ hr i)
-  obtain ⟨h1, h2, h3⟩ := GlobalTheory.T.similitudePair_hermitianForm_invertible_similitude p G P w
-  obtain ⟨d, hd, hD⟩ := GlobalTheory.T.exists_diagonal_congr_of_similitude_distinct_eigenvalues _ (G.psi w P.γ) ((P.c : ℚ) : ℝ) Z lam h1 h2
+  obtain ⟨h1, h2, h3⟩ := _root_.GlobalTheory.LKMid.pair_form_laws p G P w
+  obtain ⟨d, hd, hD⟩ := _root_.GlobalTheory.similitude_eigvec_orthogonal _ (G.psi w P.γ) ((P.c : ℚ) : ℝ) Z lam h1 h2
     (by exact_mod_cast P.c.ne_zero) (by rw [h3]; simp) hinj
-    (fun i => GlobalTheory.T.marked_similitude_pair_minpoly_roots_normSq_eq p G P μ ha hm _ _ (hr i)) hZ
+    (fun i => _root_.GlobalTheory.LKMid.MarkEll.mark_ell p G P μ ha hm _ _ (hr i)) hZ
   have hl : (fun i => e i pb.gen) = lam := funext he'
   refine ⟨Z, d, e, he, hl ▸ hinj, fun z hz => ?_, fun y => ?_, hd, hD⟩
   · obtain ⟨i, hi⟩ := (hroot z).1 hz

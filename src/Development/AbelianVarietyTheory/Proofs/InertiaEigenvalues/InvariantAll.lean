@@ -123,8 +123,6 @@ theorem bot_or_top {Γ k K : Type} [Field k] [Field K] [Algebra k K] {r : ℕ}
   rw [hy]
   exact W.sum_mem fun i _ => W.smul_mem _ (he i)
 
-theorem main : ∀ {Γ k K : Type} [inst : Field k] [inst_1 : Field K] [inst_2 : Algebra k K] {r : ℕ} (M : Γ → Matrix (Fin r) (Fin r) k), Submodule.span k (Set.range M) = ⊤ → ∀ (W : Submodule K (Fin r → K)), (∀ (g : Γ), ∀ x ∈ W, Matrix.mulVec (Matrix.map (M g) (⇑(Algebra.algebraMap k K) : k → K)) x ∈ W) → W = ⊥ ∨ W = ⊤ := by
-  intro Γ k K _ _ _ r M hM W hW
-  exact bot_or_top M hM W hW
+alias main := _root_.GlobalTheory.InvariantBotOrTop.bot_or_top
 
 end GlobalTheory.InvariantBotOrTop

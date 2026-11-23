@@ -44,5 +44,3 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem hermitian_lattice_finite : PI.HermLatFin.HermLatFin :=
-  PI.HermLatFin.UnitaryGroupMassFormula.hermLatFin_main

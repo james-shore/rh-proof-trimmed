@@ -89,7 +89,7 @@ private theorem th_mem {E : Type} [Field E] [NumberField E] [IsCMField E] {n p :
 theorem eigEx : EigEx := by
   intro E _ _ _ A n p _ S F x U w₀ Up V hn hSc hGen hOff hq r W hAux N hr hStab L hw Ty hTy
   refine ⟨(GlobalTheory.CuspRep.invT n E).prodMap invMonoidHom, fun y => ⟨rfl, rfl⟩, fun J g θ hg => ?_⟩
-  obtain ⟨φ, hφ0, hφT, hφj, hφe⟩ := phiEx E A n p S F x U w₀ Up V hn hSc hGen hOff hq r W hAux N hr hStab L hw Ty hTy
+  obtain ⟨φ, hφ0, hφT, hφj, hφe⟩ := _root_.UpperTheory.Gal.W2.Seed.phiEx_holds E A n p S F x U w₀ Up V hn hSc hGen hOff hq r W hAux N hr hStab L hw Ty hTy
   have hkey : ∀ h, V.Φ (th (F.tr.sec h)) = φ h := fun h => by
     have := hφj (F.tr.sec h) fun w hw => by rw [F.tr.sec_p h w hw]; exact one_mem _
     rw [frame_th, F.j_tr, F.tr.j_sec] at this
@@ -98,7 +98,7 @@ theorem eigEx : EigEx := by
   have hCen : Ty.Cen 1 := ⟨fun g => by simp, map_one _⟩
   refine pHasEigOf (pStdForm pMuStar) pPInt (pPPart pJEq) pExtP E A n p S F.tr _ ((CertificateRingHomMap.xi V.W V.jz).comp _) (fun g => V.Φ (th g))
     (fun γ g => ?_) (fun k h1 h2 g => ?_) ?_ Ty.K₀ Ty.cms (fun k hk h => ?_) J (fun j => (g j).fn) θ (Ty.tf 1)
-    (fun j => (memFn E A n p S F x U w₀ Up V hn hSc hGen hOff hq r W hAux N hr hStab L hw Ty hTy (g j) (θ j) (hg j)).1)
+    (fun j => (_root_.UpperTheory.Gal.W2.Seed.memFn_holds E A n p S F x U w₀ Up V hn hSc hGen hOff hq r W hAux N hr hStab L hw Ty hTy (g j) (θ j) (hg j)).1)
     (pTfAdm _ _ Ty 1 (map_one _)).1.1 ?_ (fun j => ?_)
   · show V.Φ (th (rat γ * g)) = _
     rw [map_mul, th_rat, V.form.left]

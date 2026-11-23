@@ -71,7 +71,7 @@ theorem reciprocity_unramified_and_norm_frobenius_eigenvalue_le (hL : _root_.Upp
   have h1 := GlobalTheory.SatHecke.isUnitarySatakeAt_of_hasSatake E w n (GlobalTheory.SplitRead.Irr.ofIrrRep σ) α hα hu
   have h2 : GlobalTheory.RowSatakeBound.IsUnitarySatakeAt w n
       ((Finset.univ.val.map fun i => (α i : ℂ)).map (·⁻¹)) := by
-    have := GlobalTheory.RowSatakeBound.finite_residue w
+    have := _root_.Formalism.UG.P.glint_finite_residueField w
     exact GlobalTheory.SatakeInv.isUnitarySatake_map_inv _ _ _ _ h1
   intro b hb
   apply h2.norm_le

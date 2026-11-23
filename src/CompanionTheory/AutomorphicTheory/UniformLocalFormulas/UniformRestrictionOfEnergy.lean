@@ -121,7 +121,7 @@ theorem uniform_restriction_of_energy (hF : LoopBCovN.CovNFormula) (hU : UniqOfP
       have h1 := (D.host.g_prime 1).pos
       unfold Formalism.MainNotions.S.Lat.gS
       positivity
-    have := rd_pos D
+    have := _root_.Formalism.MainNotions.S.rdE_pos D
     unfold MassDataConc.kapN
     positivity
   have hIC : B.IntC = IntC X u u' 1 := by
@@ -130,7 +130,7 @@ theorem uniform_restriction_of_energy (hF : LoopBCovN.CovNFormula) (hU : UniqOfP
     rw [if_pos hκ, div_mul_cancel₀ _ hκ.ne']
   rw [hIC] at hF1
   rw [hv] at hF2 hrdb
-  have hrd := rd_pos D
+  have hrd := _root_.Formalism.MainNotions.S.rdE_pos D
   have hIre : 0 ≤ Ire := by
     have h0 : 0 ≤ (B.c0 * B.c0')⁻¹ * IntC X u u' 1 := mul_nonneg (inv_nonneg.2 hc0.le) ENNReal.toReal_nonneg
     rw [hF1, hF2, ← mul_assoc, ← kpl_pow] at h0

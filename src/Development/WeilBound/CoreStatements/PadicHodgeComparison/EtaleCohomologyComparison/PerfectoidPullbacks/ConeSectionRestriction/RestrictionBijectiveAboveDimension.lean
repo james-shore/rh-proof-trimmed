@@ -79,7 +79,7 @@ theorem ks_pd (𝒱 : Set X.Opens) (s : ℕ) (c : (KS q s 𝒱).FullSubcategory)
 
 def clsK (D : E.LineData X) (s : ℕ) (Λ : CLiftK (KS q s (𝒱D D)).ι D) :
     CH.H ((KS q s (𝒱D D)).ι ⋙ O (smFun X q)) 2 :=
-  (CH.cx ((KS q s (𝒱D D)).ι ⋙ O (smFun X q))).cls (zK Λ s) (zK_cocycle Λ s (ks_pd q _ s))
+  (CH.cx ((KS q s (𝒱D D)).ι ⋙ O (smFun X q))).cls (zK Λ s) (_root_.GlobalTheory.CompanionTheory.ConeZcoc.main Λ s (ks_pd q _ s))
 
 theorem pull_cls_zK {C C' : Type 1} [Category.{0} C] [Category.{0} C'] {g : C ⥤ Thick (smFun X q)} {D : E.LineData X}
     (Λ : CLiftK g D) (h : C' ⥤ C) (s : ℕ) (hz : CH.d _ 2 (zK Λ s) = 0) (hz' : CH.d _ 2 (zK (Λ.precomp h) s) = 0) :
@@ -95,14 +95,14 @@ theorem clsK_res (D : E.LineData X) {s S : ℕ} (h : s ≤ S) (Λ : CLiftK (KS q
     (CH.Mor.restrict ((KS q S (𝒱D D)).ι ⋙ O (smFun X q)) (ObjectProperty.ιOfLE (ks_mono q _ h))).pull 2
       (clsK q D S ΛS) = clsK q D s Λ := by
   have hz1 : CH.d _ 2 (zK (ΛS.precomp (ObjectProperty.ιOfLE (ks_mono q (𝒱D D) h))) S) = 0 :=
-    zK_cocycle (ΛS.precomp (ObjectProperty.ιOfLE (ks_mono q (𝒱D D) h))) S
+    _root_.GlobalTheory.CompanionTheory.ConeZcoc.main (ΛS.precomp (ObjectProperty.ιOfLE (ks_mono q (𝒱D D) h))) S
       (fun c => (ks_mono q (𝒱D D) h _ c.property).1.1)
   have hz2 : CH.d _ 2 (zK (ΛS.precomp (ObjectProperty.ιOfLE (ks_mono q (𝒱D D) h))) s) = 0 :=
-    zK_cocycle (ΛS.precomp (ObjectProperty.ιOfLE (ks_mono q (𝒱D D) h))) s (ks_pd q _ s)
+    _root_.GlobalTheory.CompanionTheory.ConeZcoc.main (ΛS.precomp (ObjectProperty.ιOfLE (ks_mono q (𝒱D D) h))) s (ks_pd q _ s)
   refine (pull_cls_zK q ΛS _ S _ hz1).trans ((cls_congr _ ?_ hz1 hz2).trans ?_)
   · funext σ
     exact (plogK_congr _ h (ks_pd q _ s _) (r_sub_one_mem _ σ)).symm
-  · exact zK_cls_eq _ Λ s (ks_pd q _ s) hz2 _
+  · exact _root_.GlobalTheory.CompanionTheory.ConeZcls.main _ Λ s (ks_pd q _ s) hz2 _
 
 theorem pull_restrict_comp {R : Type} [CommRing R] {C C' C'' : Type 1} [Category.{0} C] [Category.{0} C']
     [Category.{0} C''] (F : C ⥤ ModuleCat.{0} R) (G : C' ⥤ C) (G' : C'' ⥤ C') (n : ℕ) (x : CH.H F n) :
@@ -133,12 +133,12 @@ theorem test_factor (D : E.LineData X) (S : ℕ) (x : HdR q 2)
       (CH.Mor.restrict (O (smFun X q)) (g' ⋙ (KS q S (𝒱D D)).ι)).pull 2 x := by
   let ΛS := (lift_exists q D S).some
   have hz1 : CH.d _ 2 (zK (ΛS.precomp g') S) = 0 :=
-    zK_cocycle (ΛS.precomp g') S (fun c => (g'.obj c).property.1.1)
-  have hz2 : CH.d _ 2 (zK (ΛS.precomp g') s) = 0 := zK_cocycle (ΛS.precomp g') s hs
+    _root_.GlobalTheory.CompanionTheory.ConeZcoc.main (ΛS.precomp g') S (fun c => (g'.obj c).property.1.1)
+  have hz2 : CH.d _ 2 (zK (ΛS.precomp g') s) = 0 := _root_.GlobalTheory.CompanionTheory.ConeZcoc.main (ΛS.precomp g') s hs
   rw [pull_restrict_comp (O (smFun X q)) (KS q S (𝒱D D)).ι g' 2 x]
   change _ = (CH.Mor.restrict ((KS q S (𝒱D D)).ι ⋙ O (smFun X q)) g').pull 2 (resK q (KS q S (𝒱D D)) 2 x)
   rw [hA ΛS]
-  refine (zK_cls_eq Λ (ΛS.precomp g') s hs hz hz2).trans ?_
+  refine (_root_.GlobalTheory.CompanionTheory.ConeZcls.main Λ (ΛS.precomp g') s hs hz hz2).trans ?_
   refine (cls_congr _ (funext fun σ => plogK_congr _ hsS (hs _) (r_sub_one_mem _ σ)) hz2 hz1).trans ?_
   exact (pull_cls_zK q ΛS g' S _ hz1).symm
 
@@ -155,13 +155,13 @@ theorem isFirstChernDeRham_exists_of (d : ℕ) [SmoothOfRelativeDimension d q] (
     have e : resK q (KS q (d + 1) (𝒱D D)) 2 x' = resK q (KS q (d + 1) (𝒱D D)) 2 x := by
       rw [resK_res q (𝒱D D) hS x', hx', clsK_res q D hS Λ₀ ΛS, hx]
     rw [← (hk (d + 1) (by omega)).1 e, hx']
-  refine ⟨x, fun s C _ g hs hV Λ => ⟨zK Λ s, zK_cocycle Λ s hs, fun σ => rfl, ?_⟩⟩
+  refine ⟨x, fun s C _ g hs hV Λ => ⟨zK Λ s, _root_.GlobalTheory.CompanionTheory.ConeZcoc.main Λ s hs, fun σ => rfl, ?_⟩⟩
   let S := max s (d + 1)
   let g' : C ⥤ (KS q S (𝒱D D)).FullSubcategory := ObjectProperty.lift _ g fun c =>
     ⟨⟨show pdP _ S = ⊥ from eq_bot_iff.2 ((dividedPowerFiltration_anti _ (le_max_left _ _)).trans (le_of_eq (hs c))),
       fun r y hy => by simpa using hy⟩, by
       obtain ⟨V, σ, hσ, hV⟩ := hV c
       exact ⟨V, ⟨σ, hσ⟩, hV⟩⟩
-  exact test_factor q D S x (hA S (le_max_right _ _)) g' (le_max_left _ _) hs Λ (zK_cocycle Λ s hs)
+  exact test_factor q D S x (hA S (le_max_right _ _)) g' (le_max_left _ _) hs Λ (_root_.GlobalTheory.CompanionTheory.ConeZcoc.main Λ s hs)
 
 end CrystallineSemistableComparison.Pb

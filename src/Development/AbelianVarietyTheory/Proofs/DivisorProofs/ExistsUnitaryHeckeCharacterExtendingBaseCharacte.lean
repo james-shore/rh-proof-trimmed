@@ -212,7 +212,7 @@ theorem exists_extend_hecke : ∀ (F E : Type) [Field F] [NumberField F] [Field 
         ∀ a, lam' (idFF F E a) = lam a := by
   intro F E _ _ _ _ _ σ B hB lam hc h1 hinf
   haveI : IsTopologicalRing (AF F ⊗[F] E) := IsModuleTopology.isTopologicalRing (AF F) _
-  obtain ⟨M, hM, hMk⟩ := GlobalTheory.T.exists_congruence_kernel_ideleCharacter_trivialAtInfinity F lam hc hinf
+  obtain ⟨M, hM, hMk⟩ := _root_.GlobalTheory.HeckeExtend.exists_cong_ker F lam hc hinf
   let V : Subgroup (AF F ⊗[F] E)ˣ := (Units.map (incAF F E).toMonoidHom).range ⊔ WE F E (8 * M)
   have hkey : ∀ a : (AF F)ˣ, idFF F E a ∈ V → lam a = 1 := key σ hB.cm M hM lam h1 hMk
   have hN : 0 < 8 * M := by positivity

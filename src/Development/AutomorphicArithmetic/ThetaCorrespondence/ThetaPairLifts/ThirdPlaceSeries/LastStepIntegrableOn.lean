@@ -43,6 +43,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.MiStarOfMid
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.PairForm
+import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ChainCompositeLiftIntertwinesFiniteGroupActions
 
 @[expose] public section
 
@@ -68,7 +69,7 @@ theorem lastStep_integrableOn_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTi
     (cart (_root_.GlobalTheory.Fam.pk_z W).MX) (onb (_root_.GlobalTheory.Fam.pk_z W).MX) hv' Q
   have hν := hC.models.νX W.P.A3.A.μ0
   have key := GlobalTheory.Hk3.StepX.integ_X hω hf (F.1 x)
-    (multT_apply_continuous _ _ _ _ F.1 F.2 x) (multT_apply_left _ _ _ _ F.1 F.2 x) _ hν.1.1 _ hν.2 g 1
+    (multT_apply_continuous _ _ _ _ F.1 F.2 x) (_root_.GlobalTheory.ChainLiftEquiv.multT_left _ _ _ _ F.1 F.2 x) _ hν.1.1 _ hν.2 g 1
   simpa only [mul_one] using key
 end GlobalTheory.BaseChain
 end

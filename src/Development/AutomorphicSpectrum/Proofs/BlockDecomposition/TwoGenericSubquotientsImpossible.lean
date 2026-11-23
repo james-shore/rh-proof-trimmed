@@ -87,7 +87,7 @@ theorem nonempty_equiv_of_generic {G V : Type} [Group G] [AddCommGroup V] [Modul
   have hDT : D.toSubmodule ≤ T := le_of_not_le_sup T _ _ hT hC
   have hAT : ¬ A.toSubmodule ≤ T := fun h => hA (h.trans le_sup_right)
   have hCT : ¬ C.toSubmodule ≤ T := fun h => hC (h.trans le_sup_right)
-  have hET : ¬ (A ⊓ C).toSubmodule ≤ T := GlobalTheory.T.inf_not_in_codim_one_submodule ρ T hT A C (hsup A C) hAT hCT
+  have hET : ¬ (A ⊓ C).toSubmodule ≤ T := _root_.GlobalTheory.CompanionTheory.RgGuCore.gen_core_meet ρ T hT A C (hsup A C) hAT hCT
   have hEA : A ⊓ C ≤ A := inf_le_left
   have hEC : A ⊓ C ≤ C := inf_le_right
   have hEB : ¬ A ⊓ C ≤ B := fun h => hET (le_trans h hBT)
@@ -106,7 +106,7 @@ theorem nonempty_equiv_of_generic {G V : Type} [Group G] [AddCommGroup V] [Modul
         Subrepresentation.toSubmodule_inf]
       exact sup_le (inf_le_right.trans hBT) (inf_le_right.trans hDT)
     exact (fun v hv => h3 (h hv) : (A ⊓ C).toSubmodule ≤ T)
-  obtain ⟨e₃⟩ := GlobalTheory.T.irreducible_subquotients_equiv_of_not_le ρ (A ⊓ C) B D hiB hiD hnot
+  obtain ⟨e₃⟩ := _root_.GlobalTheory.CompanionTheory.GenCore.nonempty_equiv_subQuot ρ (A ⊓ C) B D hiB hiD hnot
   exact ⟨(e₁.symm.trans e₃).trans e₂⟩
 
 end GlobalTheory.CompanionTheory.GenCoreMain

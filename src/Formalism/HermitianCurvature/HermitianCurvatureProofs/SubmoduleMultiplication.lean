@@ -1027,4 +1027,4 @@ end Main
 
 end Formalism.FourierDecayAlt.P.InverseBoundedFixedPoint
 
-theorem Formalism.FourierDecayAlt.P.morseLemma : Formalism.FourierDecayAlt.A6.MorseLemma := Formalism.FourierDecayAlt.P.InverseBoundedFixedPoint.morse
+alias Formalism.FourierDecayAlt.P.morseLemma := _root_.Formalism.FourierDecayAlt.P.InverseBoundedFixedPoint.morse

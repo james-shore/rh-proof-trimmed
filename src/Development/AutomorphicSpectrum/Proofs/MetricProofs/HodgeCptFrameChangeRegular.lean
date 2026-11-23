@@ -171,7 +171,7 @@ theorem frames_pure (A : ∀ s, Matrix (Fin (n s)) (Fin (rk Ψ p q s)) Ω) (x₀
       unfold blkF at hk
       split_ifs at hk with hp
       exact ⟨hp, (Option.some.inj hk).symm⟩
-    have e1 := GlobalTheory.T.minor_expansion_of_scaled_product A C Ts (xcOf x₀ c) m hAT r.1 (stepOf Ψ p q r) (BlockEmbeddings.stepOf_fst r) i h
+    have e1 := _root_.GlobalTheory.CompanionTheory.Ar.PB.FMX.Frm.sum_cMin_tMat_mul A C Ts (xcOf x₀ c) m hAT r.1 (stepOf Ψ p q r) (BlockEmbeddings.stepOf_fst r) i h
       (stepCols (p + q) p r.2) (card_stepCols r)
     have key : detFac p r.2 (tMat Ts r.1) * xcOf x₀ c ^ (m (stepOf Ψ p q r).1 * (((stepOf Ψ p q r).2 : ℕ) + 1)) =
         (∏ k', xb A x₀ ⟨k', c k'⟩ ^ bF m r k') * wt (stepOf Ψ p q r) := by

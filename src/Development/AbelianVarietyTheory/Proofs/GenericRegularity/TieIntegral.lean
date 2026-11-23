@@ -74,7 +74,7 @@ theorem tie_integral : ReciprocityTheory.ChartRestriction.G.Out.SecTwistSt → �
     exact ⟨m2, h.symm⟩
   obtain ⟨m2, h2⟩ := key _ Λ.m2 e
   exact ⟨_, Λ.t', Λ.m1, m2,
-    GlobalTheory.T.framedPoint_vectors_integral_in_cell E H Dw l Xo c O β Y M T io f₀ ix u₀ hu z Λ hL _ m m2 h2,
-    GlobalTheory.T.exists_integralGenerator_of_chartPoint_cdvr hS E H Dw l Xo c O β Y M hP T io f₀ z.x z.s Λ hT _ m m2 h2⟩
+    _root_.GlobalTheory.Reg.tie_vectors_integral E H Dw l Xo c O β Y M T io f₀ ix u₀ hu z Λ hL _ m m2 h2,
+    _root_.GlobalTheory.Reg.exists_generator_of_thTie hS E H Dw l Xo c O β Y M hP T io f₀ z.x z.s Λ hT _ m m2 h2⟩
 
 end GlobalTheory.Reg

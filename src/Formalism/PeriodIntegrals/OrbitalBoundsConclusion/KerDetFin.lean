@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-theorem ordRelativeDet_finite : PI.KerIso.DetOrdFin := PI.KerDetFinW.detOrdFin
+alias ordRelativeDet_finite := _root_.PI.KerDetFinW.detOrdFin

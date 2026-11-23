@@ -225,9 +225,6 @@ namespace GlobalTheory.HTLocSim
 
 variable {p : ℕ} [Fact p.Prime] {D : Datum p} {R : Type} [CommRing R] {b : Base D R} {N : ℕ}
 
-theorem exists_spMap_eq {A B : Type} [CommRing A] [CommRing B] (f : Sp B ⟶ Sp A) : ∃ β : A →+* B, f = spMap β :=
-  ⟨(Spec.preimage f).hom, by simp [spMap]⟩
-
 theorem exists_open_eq_cycAway {M : ℕ} (hM : M ≠ 0) {T : Scheme.{0}} (f g : T ⟶ Sp (cycAway M)) (k : Type) [Field k]
     (y : Sp k ⟶ T) (hy : y ≫ f = y ≫ g) : ∃ V : T.Opens, Set.range y ⊆ (V : Set T) ∧ V.ι ≫ f = V.ι ≫ g := by
   haveI : FormallyUnramified (spMap (algebraMap ℤ (cycAway M))) := by
@@ -297,9 +294,9 @@ theorem exists_local_similitude : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R 
     ⟨(⊥ : PrimeSpectrum k), (Scheme.Hom.comp_apply _ _ _).trans (Scheme.fromSpecResidueField_apply q _)⟩
   have hM0 : 0 < M := by omega
   haveI : NeZero M := ⟨hM0.ne'⟩
-  obtain ⟨β, hβ⟩ := exists_spMap_eq (y ≫ x ≫ s₁)
-  obtain ⟨β', hβ'⟩ := exists_spMap_eq (y ≫ x' ≫ s₁)
-  obtain ⟨βR, hβR⟩ := exists_spMap_eq (y ≫ t)
+  obtain ⟨β, hβ⟩ := _root_.GlobalTheory.ZM.RepMap.exists_spMap (y ≫ x ≫ s₁)
+  obtain ⟨β', hβ'⟩ := _root_.GlobalTheory.ZM.RepMap.exists_spMap (y ≫ x' ≫ s₁)
+  obtain ⟨βR, hβR⟩ := _root_.GlobalTheory.ZM.RepMap.exists_spMap (y ≫ t)
   obtain ⟨a, i, hmul, hzi, ha⟩ := exists_sim_point hM0 hodd o hl hl' k y β β' hβ hβ'
   obtain ⟨hρs, ⟨n, σ, hn, hσ, hρ1⟩, ma, hma⟩ := hρ a
   have hz := isPrimitiveRoot_map hM0.ne' β

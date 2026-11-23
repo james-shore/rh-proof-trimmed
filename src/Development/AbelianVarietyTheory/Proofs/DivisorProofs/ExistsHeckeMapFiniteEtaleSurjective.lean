@@ -83,11 +83,11 @@ theorem exists_heckeMap_finite_etale_surjective : ∀ (p : ℕ) [Fact p.Prime] (
   have l1 : 3 ≤ N * k := hN.trans (Nat.le_mul_of_pos_right _ hk0)
   have l2 : 3 ≤ N * k * k := l1.trans (Nat.le_mul_of_pos_right _ hk0)
   have l3 : 3 ≤ N * k * k * k := l2.trans (Nat.le_mul_of_pos_right _ hk0)
-  obtain ⟨M₂⟩ := GlobalTheory.T.harrisTaylorIntegralModel_nonempty p D R b (N * k * k) l2 c2
-  obtain ⟨M₃⟩ := GlobalTheory.T.harrisTaylorIntegralModel_nonempty p D R b (N * k * k * k) l3 c3
-  obtain ⟨π, hπ⟩ := GlobalTheory.T.exists_heckeMap_harrisTaylorIntegralModels p D R b g c k N hc hk hN hNp hg hgk hck M M'
-  obtain ⟨π₁, hπ₁⟩ := GlobalTheory.T.exists_heckeMap_harrisTaylorIntegralModels p D R b g' (k ^ 2 / c) k (N * k) h5 hk l1 c1 h3' h4 h6 M' M₂
-  obtain ⟨π₂, hπ₂⟩ := GlobalTheory.T.exists_heckeMap_harrisTaylorIntegralModels p D R b g c k (N * k * k) hc hk l2 c2 hg hgk hck M₂ M₃
+  obtain ⟨M₂⟩ := _root_.GlobalTheory.UPel.HT.model_nonempty p D R b (N * k * k) l2 c2
+  obtain ⟨M₃⟩ := _root_.GlobalTheory.UPel.HT.model_nonempty p D R b (N * k * k * k) l3 c3
+  obtain ⟨π, hπ⟩ := _root_.GlobalTheory.UPel.HT.Hecke.exists_isHeckeMap p D R b g c k N hc hk hN hNp hg hgk hck M M'
+  obtain ⟨π₁, hπ₁⟩ := _root_.GlobalTheory.UPel.HT.Hecke.exists_isHeckeMap p D R b g' (k ^ 2 / c) k (N * k) h5 hk l1 c1 h3' h4 h6 M' M₂
+  obtain ⟨π₂, hπ₂⟩ := _root_.GlobalTheory.UPel.HT.Hecke.exists_isHeckeMap p D R b g c k (N * k * k) hc hk l2 c2 hg hgk hck M₂ M₃
   have e : π ≫ M.s = M'.s := hπ.1
   have e₁ : π₁ ≫ M'.s = M₂.s := hπ₁.1
   have e₂ : π₂ ≫ M₂.s = M₃.s := hπ₂.1
@@ -100,7 +100,7 @@ theorem exists_heckeMap_finite_etale_surjective : ∀ (p : ℕ) [Fact p.Prime] (
   obtain ⟨-, -, b3⟩ := GlobalTheory.T.harrisTaylor_levelForgetting_finite_etale_surjective p D R b (N * k) (N * k * k * k) _ c3 l1 M' M₃ (π₂ ≫ π₁)
     (by rw [Category.assoc, e₁, e₂]) f2
   have s1 : Surjective π₁ := Surjective.of_comp π₂ π₁
-  have t1 : Etale π₁ := GlobalTheory.T.etale_of_comp_etale_sameRelativeDimension _ _ _ _ π₁ π M₂.s M'.s _ e₁ M₂.smooth M'.smooth a2
+  have t1 : Etale π₁ := _root_.GlobalTheory.etale_of_comp_etale_of_smoothOfRelativeDimension _ _ _ _ π₁ π M₂.s M'.s _ e₁ M₂.smooth M'.smooth a2
   have hs : IsSeparated π := by
     have : IsSeparated (π ≫ M.s) := e ▸ isSeparated_model_str M'
     exact IsSeparated.of_comp π M.s
@@ -109,7 +109,7 @@ theorem exists_heckeMap_finite_etale_surjective : ∀ (p : ℕ) [Fact p.Prime] (
     have : Smooth M'.s := SmoothOfRelativeDimension.smooth (D.a * (D.n - 1)) M'.s
     have : LocallyOfFiniteType (π ≫ M.s) := by rw [e]; infer_instance
     exact locallyOfFiniteType_of_comp π M.s
-  obtain ⟨r1, r2⟩ := GlobalTheory.T.etale_isFinite_of_comp_etale_surjective' _ _ _ π₁ π t1 s1 a2 a1 hs hl
+  obtain ⟨r1, r2⟩ := _root_.GlobalTheory.etale_isFinite_of_comp_etale_surjective _ _ _ π₁ π t1 s1 a2 a1 hs hl
   exact ⟨π, hπ, r2, r1, Surjective.of_comp π₁ π⟩
 
 end GlobalTheory.UPel.HT.Hecke

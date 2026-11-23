@@ -82,15 +82,6 @@ def quotientProdSubgroupEquiv (K : AddSubgroup N) : (N ⧸ K) × K ≃ N where
     show (x : N ⧸ K).out + (-((x : N ⧸ K).out) + x) = x
     abel
 
-private theorem valuation_det_le_one_of_integral_entries (hv : v.Integers R) {X : Type} [Fintype X] [DecidableEq X]
-    (E : Matrix X X C) (hE : ∀ i j, ∃ r : R, algebraMap R C r = E i j) : v E.det ≤ 1 := by
-  choose M hM using hE
-  have hEM : E = (Matrix.of M).map (algebraMap R C) := by
-    ext i j
-    exact (hM i j).symm
-  rw [hEM, det_map_algebraMap]
-  exact hv.map_le_one _
-
 theorem hasColength_eq_pow_mul_pow (hv : v.Integers R) (AA : HopfOrder (C := C) R N) (K : AddSubgroup N)
     [DecidablePred (· ∈ K)] [DecidableEq (N ⧸ K)] [Fintype (N ⧸ K)] :
     ∀ c cB cK, HasColen R v AA.carrier c →
@@ -126,10 +117,10 @@ theorem hasColength_eq_pow_mul_pow (hv : v.Integers R) (AA : HopfOrder (C := C) 
       simp only [h3mm, Matrix.of_apply, Matrix.mul_apply, Bx]
       rw [hge l, cosetCoordinates_sum, Finset.sum_apply]
       simp only [cosetCoordinates_pullbackQuotient_mul, Pi.smul_apply, smul_eq_mul]
-    have hB1 : v Bx.det ≤ 1 := valuation_det_le_one_of_integral_entries hv Bx fun l j => by
+    have hB1 : v Bx.det ≤ 1 := _root_.ReciprocityTheory.PGsh.L2.valuation_det_le_one_of_entries_integral hv Bx fun l j => by
       obtain ⟨r, hr⟩ := hint (Submodule.mem_comap.mp (he l j)) x
       exact ⟨r, hr⟩
-    have hF1 : v (h3mm K β f x).det ≤ 1 := valuation_det_le_one_of_integral_entries hv _ fun j m =>
+    have hF1 : v (h3mm K β f x).det ≤ 1 := _root_.ReciprocityTheory.PGsh.L2.valuation_det_le_one_of_entries_integral hv _ fun j m =>
       hint (cosetCoordinates_mem AA K β hβ hAK (hfA j) m) x
     have h := hgdet x
     rw [hmul, Matrix.det_mul, map_mul, mul_comm] at h

@@ -82,15 +82,6 @@ theorem stabLat_mulLat_unit {O A : Type} [CommRing O] [CommRing A] [Algebra O A]
   · intro h y
     rw [h (((t⁻¹ : Aˣ) : A) * y), mul_left_comm]
 
-theorem cast_finsum_rat {α : Type*} (u : α → ℚ) : ((∑ᶠ a, u a : ℚ) : ℂ) = ∑ᶠ a, ((u a : ℚ) : ℂ) := by
-  by_cases h : (Function.support u).Finite
-  · simpa using map_finsum (Rat.castHom ℂ) h
-  · have h' : ¬ (Function.support (fun a => ((u a : ℚ) : ℂ))).Finite := by
-      have : Function.support (fun a => ((u a : ℚ) : ℂ)) = Function.support u := by
-        ext a; simp
-      rwa [this]
-    rw [finsum_of_infinite_support h, finsum_of_infinite_support h', Rat.cast_zero]
-
 end GlobalTheory.OrbReindex
 
 namespace GlobalTheory.OrbReindex
@@ -175,7 +166,7 @@ theorem twOrb_eq_orbSum : ∀ {G : Type} [Group G] [TopologicalSpace G] (Kg : Su
     exact hw _ _ (Quot.eqvGen_exact h1)
   unfold twOrb orbSum
   simp only [havg, hidx]
-  rw [cast_finsum_rat, ← finsum_comp_equiv e]
+  rw [_root_.GlobalTheory.KapLat.cast_finsum, ← finsum_comp_equiv e]
   simp only [hwt, one_mul, mul_ite, mul_one, mul_zero]
   simp only [Rat.cast_natCast]
   exact finsum_ite_subtype _ _

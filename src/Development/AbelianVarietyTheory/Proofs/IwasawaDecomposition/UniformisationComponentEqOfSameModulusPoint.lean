@@ -106,7 +106,7 @@ theorem unitary_of_single {Uf : ∀ σ' : c.F →+* ℂ, Formalism.L2.PjFree.Unf
   obtain ⟨g', hg'⟩ := g.exists_isMap (RingHom.id ℂ) h2 hx
   have e := x_eq_of_cxPt (g5.trans h5.symm)
   obtain rfl : k = k₁ := (uniformisation_component_eq_of_same_modulusPoint hσ hU x x₁ e.symm).symm
-  have key := comb_unitary hσ hU k x x₁ h4 g4 e τ _ (isCombAt_co e (fun τ i => (hg' τ i).trans (g6 τ i).symm) τ)
+  have key := _root_.GlobalTheory.ShFam.lie_coord_unitary hσ hU k x x₁ h4 g4 e τ _ (isCombAt_co e (fun τ i => (hg' τ i).trans (g6 τ i).symm) τ)
   rw [h6.co τ hg' hx] at key
   convert key using 2 <;> ext <;> simp
 
@@ -126,8 +126,6 @@ theorem unfFam_empty (U : Formalism.L2.PjFree.Unf Xo c σ r) (σ' : c.F →+* �
   rw [dite_eq_right (Ne.symm h)]
   exact inferInstanceAs (IsEmpty Empty)
 
-theorem unfFam_self (U : Formalism.L2.PjFree.Unf Xo c σ r) : unfFam U σ = U := dif_pos rfl
-
 theorem isHodgeFrame_of_eq {Uf : ∀ σ' : c.F →+* ℂ, Formalism.L2.PjFree.Unf Xo c σ' r} {U : Formalism.L2.PjFree.Unf Xo c σ r}
     (hq : Uf σ = U) (hσ : Formalism.L2.PjFree.GoodEmb c σ) {k : U.Comp} {x : (U.X k).dom} (hx : IsOrth (U.X k) x.1) :
     IsHodgeFrame (Z := Z) Uf (cxPt Z (U.un k x)) (cxFrame Z (U.un k x)) := by
@@ -139,8 +137,8 @@ variable (Z) in
 theorem hodgeMet_gram_orth {U : Formalism.L2.PjFree.Unf Xo c σ r} (hσ : Formalism.L2.PjFree.GoodEmb c σ)
     (hU : Formalism.L2.PjFree.IsUnf U) {k : U.Comp} {x : (U.X k).dom} (hx : IsOrth (U.X k) x.1) (τ : E →+* ℂ) :
     (hodgeMet Z U).gram (cxPt Z (U.un k x)) (cxFrame Z (U.un k x)) τ = ((2 * Real.pi : ℝ) : ℂ) • 1 := by
-  rw [hodgeMet, gram_eq_of_single (unfFam_empty U) hσ ((unfFam_self U).symm ▸ hU)
-    (isHodgeFrame_of_eq (unfFam_self U) hσ hx), EigFrame.co_self, conjTranspose_one, Matrix.mul_one]
+  rw [hodgeMet, gram_eq_of_single (unfFam_empty U) hσ ((_root_.GlobalTheory.HodgeSmooth.unfFam_self U).symm ▸ hU)
+    (isHodgeFrame_of_eq (_root_.GlobalTheory.HodgeSmooth.unfFam_self U) hσ hx), EigFrame.co_self, conjTranspose_one, Matrix.mul_one]
 
 end GlobalTheory.HodgeGenUnf
 

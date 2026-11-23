@@ -255,9 +255,7 @@ theorem txFrame_val [IsNoetherianRing R] (hL : Laws) {k : ℕ} (hk : Odd k) {p :
   rw [NumD.wQ, NumB.wS, ← a₂, mul_div_assoc (q.1.2.s _), ← a₁, Nat.add_sub_cancel, Nat.mul_div_cancel_left l two_pos,
     inv_mul_cancel_right, ← pow_mul, pow_succ, mul_div_cancel_left]
 
-theorem rg_ne : ν.rg ≠ 0 := fun h => by
-  let y : Sp F := IsLocalRing.closedPoint F
-  exact Units.ne_zero _ ((toStk_vF _ _ (good ν y)).symm.trans ((congrArg (toStk y) h).trans (map_zero _)))
+alias rg_ne := _root_.GlobalTheory.Ex.FamVal.rg_ne
 
 theorem coef_val {k : ℕ} {s : Fam D F k} {f : N.X → N.A → F} (hs : ν.FamV s f) {g : GtPtF D F} {c : N.Gt} (hg : ν.Pt g c)
     {w : Frm D F k g.b} (hw : w.IsGen) (χ : N.X) :

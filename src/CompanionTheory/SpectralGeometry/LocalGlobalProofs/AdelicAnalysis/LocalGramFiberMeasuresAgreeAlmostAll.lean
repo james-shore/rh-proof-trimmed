@@ -77,7 +77,7 @@ theorem lattice_mass_fibre_eq : ∀ (F E : Type) [Field F] [NumberField F] [Fiel
   haveI := hlam.1
   obtain ⟨-, c2, c3⟩ := GlobalTheory.T.coordinate_haar_measure F E σ hσ (Fv F v) d b lam hlam.1
   haveI := c2 n M
-  obtain ⟨a1, a2, a3, -⟩ := GlobalTheory.T.local_lattice_compact_open_unit_volume F E σ hσ d b n M v
+  obtain ⟨a1, a2, a3, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.latV_compact_open_mass F E σ hσ d b n M v
   have hcont : ∀ k : GL (Fin M) (Fv F v ⊗[F] E),
       Continuous (actTup (Fv F v) (n := n) k) := by
     intro k
@@ -100,7 +100,7 @@ theorem lattice_mass_fibre_eq : ∀ (F E : Type) [Field F] [NumberField F] [Fiel
         funext a
         simp only [actTup, Pi.add_apply, Matrix.mulVec_add] }
   have hmap : (coordW (Fv F v) b lam n M).map e = coordW (Fv F v) b lam n M :=
-    (GlobalTheory.T.map_addHaar_addEquiv_eq_smul_and_eq_of_compact_open _ _ (coordW (Fv F v) b lam n M) (coordW (Fv F v) b lam n M) e (hcont g)
+    (_root_.GlobalTheory.CompanionTheory.SW.HaarTransport.map_addEquiv_haar _ _ (coordW (Fv F v) b lam n M) (coordW (Fv F v) b lam n M) e (hcont g)
       (hcont g⁻¹)).2 (latV b v) (latV b v) a1 a2 ⟨0, a3⟩ (hlat n) rfl
   have hfib := GlobalTheory.T.gram_fiber_measures_change_of_form F E σ hσ M J hJ J' hJ' (Fv F v) hL n (coordW (Fv F v) b lam n M)
     (coordHerm (Fv F v) σ b lam n) m (c2 n M) (c3 n) hm (coordW (Fv F v) b lam n M) m' (c2 n M) hm' g hg 1

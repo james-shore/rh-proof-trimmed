@@ -110,13 +110,6 @@ theorem isLat_comap (f : W →ₗ[LaurentSeries k] V) (hf : Function.Injective f
 
 end
 
-theorem main : ∀ {k : Type} [inst : Field k] {V : Type} [inst_1 : AddCommGroup V]
-    [inst_2 : Module (LaurentSeries k) V] [inst_3 : Module (PowerSeries k) V]
-    [inst_4 : IsScalarTower (PowerSeries k) (LaurentSeries k) V] {W : Type} [inst_5 : AddCommGroup W]
-    [inst_6 : Module (LaurentSeries k) W] [inst_7 : Module (PowerSeries k) W]
-    [inst_8 : IsScalarTower (PowerSeries k) (LaurentSeries k) W] (f : LinearMap (RingHom.id (LaurentSeries k)) W V),
-    Function.Injective (DFunLike.coe f) → ∀ {N : Submodule (PowerSeries k) V}, GlobalTheory.PhiGam.IsLat N →
-      GlobalTheory.PhiGam.IsLat (Submodule.comap (LinearMap.restrictScalars (PowerSeries k) f) N) :=
-  fun f hf _ hN => isLat_comap f hf hN
+alias main := _root_.GlobalTheory.LatticeComap.isLat_comap
 
 end GlobalTheory.LatticeComap

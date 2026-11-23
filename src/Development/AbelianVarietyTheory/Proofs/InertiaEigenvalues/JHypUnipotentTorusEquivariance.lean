@@ -78,12 +78,6 @@ theorem row_one (A : Et F E) (z : A.K) (s : A.Kˣ) (g : SpecialLinearGroup (Fin 
   show ((nS z).1 * (mS s).1 * g.1) 1 j = ((s⁻¹ : A.Kˣ) : A.K) * g.1 1 j
   simp [nS, mS, Matrix.mul_apply, Fin.sum_univ_two]
 
-theorem absK_unit (A : Et F E) (s : A.Kˣ) : A.absK (s : A.K) = (distribHaarChar A.K s : ℝ) := by
-  unfold Et.absK
-  rw [dite_eq_left s.isUnit]
-  congr 2
-  exact Units.ext (IsUnit.unit_spec _)
-
 theorem integral_inv_mul [Unram F E] (A : Et F E) (μK : Measure A.K) [μK.IsAddHaarMeasure] (s : A.Kˣ)
     (H : A.K → ℂ) :
     ∫ t, H (((s⁻¹ : A.Kˣ) : A.K) * t) ∂μK = (distribHaarChar A.K s : ℝ) * ∫ u, H u ∂μK := by
@@ -129,7 +123,7 @@ theorem jHyp_nm : ∀ (F E : Type) [NontriviallyNormedField F] [NontriviallyNorm
     simp only [hH]
     rw [etaK_mul A s u hu]
     ring
-  rw [h2, integral_mul_const, absK_unit]
+  rw [h2, integral_mul_const, _root_.GlobalTheory.JR.EtMeas.absK_unit]
   ring
 
 end GlobalTheory.JHypEquiv

@@ -66,14 +66,6 @@ theorem at_mul_left {x : Matrix (Fin n) (Fin d) (_root_.GlobalTheory.IndefiniteR
   intro a ha
   rw [← Matrix.mul_smul, hx a ha, Matrix.mul_zero]
 
-theorem continuous_mat_line_left (γ : Multiplicative ℝ →* UA σ X.J) (hγ : Continuous γ) :
-    Continuous fun t : ℝ => mat (γ (Multiplicative.ofAdd t)) :=
-  Units.continuous_val.comp (continuous_subtype_val.comp (hγ.comp continuous_ofAdd))
-
-theorem mat_mul_left (g h : UA σ X.J) : mat (g * h) = mat g * mat h := rfl
-
-theorem mat_one_left : mat (1 : UA σ X.J) = 1 := rfl
-
 def opLl (M : Model σ X W) (g : Matrix (Fin n) (Fin n) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))) : (Vs (Fin n × Fin d)) →ₗ[ℝ] Vs (Fin n × Fin d) where
   toFun w := GlobalTheory.HeisOrbit.archCo M.co (g * lift M.co w)
   map_add' w w' := by rw [lift_add, Matrix.mul_add, archCo_add]
@@ -95,7 +87,7 @@ theorem opRl_apply (M : Model σ X W) (γ : Multiplicative ℝ →* UA σ X.J) (
 
 theorem opRl_zero (M : Model σ X W) (γ : Multiplicative ℝ →* UA σ X.J) : opRl M γ 0 = 1 := by
   refine ContinuousLinearMap.ext fun w => ?_
-  rw [opRl_apply, opLl_apply, ofAdd_zero, map_one, mat_one_left, Matrix.one_mul, archCo_lift]
+  rw [opRl_apply, opLl_apply, ofAdd_zero, map_one, _root_.GlobalTheory.HeisOrbitSmooth.mat_one, Matrix.one_mul, archCo_lift]
   rfl
 
 theorem opRl_add (M : Model σ X W) (γ : Multiplicative ℝ →* UA σ X.J) (s t : ℝ) :
@@ -104,14 +96,14 @@ theorem opRl_add (M : Model σ X W) (γ : Multiplicative ℝ →* UA σ X.J) (s 
   rw [ContinuousLinearMap.mul_apply, opRl_apply, opRl_apply, opRl_apply,
     opLl_apply M (mat (γ (Multiplicative.ofAdd t))) w,
     opLl_archCo M _ (at_mul_left (at_lift M.co w) _),
-    opLl_apply, ofAdd_add, map_mul, mat_mul_left, Matrix.mul_assoc]
+    opLl_apply, ofAdd_add, map_mul, _root_.GlobalTheory.HeisOrbitSmooth.mat_mul, Matrix.mul_assoc]
 
 theorem continuous_opRl (M : Model σ X W) (γ : Multiplicative ℝ →* UA σ X.J) (hγ : Continuous γ) :
     Continuous (opRl M γ) := by
   haveI : IsTopologicalRing (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)) := IsModuleTopology.isTopologicalRing (AF F) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))
   refine continuous_clm_apply.2 fun w => ?_
   simp only [opRl_apply, opLl_apply]
-  exact (continuous_archCo M).comp ((continuous_mat_line_left γ hγ).matrix_mul continuous_const)
+  exact (continuous_archCo M).comp ((_root_.GlobalTheory.HeisOrbitSmooth.continuous_mat_line γ hγ).matrix_mul continuous_const)
 
 theorem archCo_orbit_smooth_left : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
     {n d : ℕ} {X : Spc F E n} {W : Spc F E d} (M : Model σ X W), ∀ γ ∈ Lines σ X, ∀ u : Matrix (Fin n) (Fin d) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)), At (evI F) u →

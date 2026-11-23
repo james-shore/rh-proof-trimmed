@@ -194,7 +194,7 @@ theorem rCuspCsd : RCuspCsd := by
   have hstr := GlobalTheory.Rigid.strings_eq_of_equiv
     (fun j => (⟨A j, CG.mk (GlobalTheory.ThetaPull.thetaSub (PP j))⟩ : Σ b, CG E b)) Dd
     (fun j => (⟨A j, CG.mk (PP j)⟩ : Σ b, CG E b)) Dd s fun x => hs x
-  obtain ⟨s0, hs0⟩ := GlobalTheory.T.multiset_of_strings_determines_points_degrees _ Dd _ Dd hDd hDd hstr
+  obtain ⟨s0, hs0⟩ := _root_.GlobalTheory.CompanionTheory.Rigid.strings_rigid _ Dd _ Dd hDd hDd hstr
   have hfix : s0 i = i := by
     obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
     obtain ⟨lam, hlam⟩ := hr τ

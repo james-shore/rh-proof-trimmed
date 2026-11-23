@@ -253,7 +253,7 @@ theorem dualPack : ∀ (K V : Type) [Field K] [NumberField K] [StarRing K] [AddC
       (one_le_sq_iff₀ (by positivity)).mp h1
     rw [inv_eq_one_div, div_le_iff₀ hIpos]
     exact h4
-  obtain ⟨hfin, hcard⟩ := Formalism.HermitianLatticeCounting.Final.LatticeSumBounds.boxCount ι s (S.toAddSubgroup.map Φ)
+  obtain ⟨hfin, hcard⟩ := _root_.Formalism.HermitianLatticeCounting.P.box_count_alt ι s (S.toAddSubgroup.map Φ)
     (Ideal.absNorm I : ℝ)⁻¹ (fun v => Real.sqrt (ρ v)) (inv_pos.mpr hIpos)
     (fun v => Real.sqrt_pos.mpr (hρ v)) (by
       rintro _ ⟨x, hx, rfl⟩ hx0

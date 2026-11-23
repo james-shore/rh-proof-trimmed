@@ -295,7 +295,7 @@ theorem line_zero (hc : IsPCtx M Rb keep κ v F kb V bl r h) {w : Fin e → ℂ}
       simp only [pRho, Equiv.symm_apply_apply] at this
       rw [hbase s] at this
       simpa using this
-    have hS := GlobalTheory.T.pMat_stepCols_entry Ψ N j keep q M.j_le
+    have hS := _root_.GlobalTheory.CompanionTheory.Ar.PB.PFl.SmallStep.pStep_reads Ψ N j keep q M.j_le
     cases hk : M.blk (q.1.1.1, pStep j keep q.1.1.1 q.1.1.2.2) with
     | none =>
       have e0 := hrel 0

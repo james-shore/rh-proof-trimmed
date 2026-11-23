@@ -219,7 +219,7 @@ theorem finite_case (σ : E →ₐ[F] E) (hσ : IsCMExt F E σ) {M d : ℕ} (J :
       ((∫⁻ y, Ψinf y ∂minf) * ∏ v ∈ S, ∫⁻ y, Ψ v y ∂(m v)) *
         ENNReal.ofReal (∏' v : {v // v ∉ S}, (m v.1 (primV σ J b v.1)).toReal) := by
   classical
-  haveI := GlobalTheory.CompanionTheory.SW.EulerZero.countable_places F
+  haveI := _root_.GlobalTheory.AdelicUnitaryTop.countable_heightOneSpectrum F
   obtain ⟨u, hu, hut⟩ :=
     exists_seq_monotone_tendsto_atTop_atTop (Finset (HeightOneSpectrum (𝓞 F)))
   let T : ℕ → Finset (HeightOneSpectrum (𝓞 F)) := fun k => S ∪ u k

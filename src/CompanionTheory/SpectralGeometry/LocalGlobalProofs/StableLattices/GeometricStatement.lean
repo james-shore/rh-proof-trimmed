@@ -55,6 +55,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactExponentialSurjective
 
 @[expose] public section
 
@@ -80,7 +81,7 @@ theorem hs_Pm_pos (hA : IsGrad ε A) (x : S7.UJ ε) : 0 < hs (S7.toM x * Pm A) :
 
 theorem prod_pos (hA : IsGrad ε A) (x : S7.UJ ε) :
     0 < hs (S7.toM x * Pm A) * (1 + hs (S7.toM x * Pz A)) :=
-  mul_pos (hs_Pm_pos hA x) (by linarith [hs_nonneg (S7.toM x * Pz A)])
+  mul_pos (hs_Pm_pos hA x) (by linarith [_root_.Formalism.REAL.frobenius_nonneg_matrix (S7.toM x * Pz A)])
 
 theorem tau_continuous (hA : IsGrad ε A) : Continuous fun x : S7.UJ ε => tauG A (S7.toM x) := by
   unfold tauG
@@ -197,7 +198,7 @@ theorem hs_lines (hA : IsGrad ε A) (x : S7.UJ ε) (t : ℝ) (h0 : 0 ≤ tauG A 
     exact Real.exp_le_one_iff.2 (by linarith)
   have hac : 1 ≤ hs (S7.toM x * Pm A) * hs (S7.toM x * Pp A) := by
     have h1 := one_le_hs (Pp_idem hA) (Pp_ne_zero hA)
-    have h2 := hs_mul_le (Pp A * S7.toM x⁻¹) (S7.toM x * Pp A)
+    have h2 := _root_.Formalism.REAL.frobenius_mul_le (Pp A * S7.toM x⁻¹) (S7.toM x * Pp A)
     have h3 : S7.toM x⁻¹ * S7.toM x = 1 := by
       show ((x⁻¹ : S7.UJ ε) : (Matrix (Fin n) (Fin n) ℂ)ˣ).val * ((x : (Matrix (Fin n) (Fin n) ℂ)ˣ)).val = 1
       simp
@@ -208,9 +209,9 @@ theorem hs_lines (hA : IsGrad ε A) (x : S7.UJ ε) (t : ℝ) (h0 : 0 ≤ tauG A 
   set a := hs (S7.toM x * Pm A)
   set b := hs (S7.toM x * Pz A)
   set c := hs (S7.toM x * Pp A)
-  have ha : 0 ≤ a := hs_nonneg _
-  have hb : 0 ≤ b := hs_nonneg _
-  have hc : 0 ≤ c := hs_nonneg _
+  have ha : 0 ≤ a := _root_.Formalism.REAL.frobenius_nonneg_matrix _
+  have hb : 0 ≤ b := _root_.Formalism.REAL.frobenius_nonneg_matrix _
+  have hc : 0 ≤ c := _root_.Formalism.REAL.frobenius_nonneg_matrix _
   have ha1 : a ≤ 1 := by nlinarith
   have hab : a * b ≤ 1 := by nlinarith
   have hc1 : 1 ≤ c := by nlinarith
@@ -286,7 +287,7 @@ theorem nilp_decomp (hA : IsGrad ε A) {Y : Matrix (Fin n) (Fin n) ℂ} (hY : Y 
       abel
 
 theorem hilbert_schmidt_triple_mul_le (U V W : Matrix (Fin n) (Fin n) ℂ) : hs (U * V * W) ≤ hs U * hs V * hs W :=
-  (hs_mul_le _ _).trans (mul_le_mul_of_nonneg_right (hs_mul_le _ _) (hs_nonneg _))
+  (_root_.Formalism.REAL.frobenius_mul_le _ _).trans (mul_le_mul_of_nonneg_right (_root_.Formalism.REAL.frobenius_mul_le _ _) (_root_.Formalism.REAL.frobenius_nonneg_matrix _))
 
 theorem contraction (hA : IsGrad ε A) (x : S7.UJ ε) {Y : Matrix (Fin n) (Fin n) ℂ} (hY : Y ∈ nilpC A)
     (h0 : 0 ≤ tauG A (S7.toM x)) :
@@ -310,9 +311,9 @@ theorem contraction (hA : IsGrad ε A) (x : S7.UJ ε) {Y : Matrix (Fin n) (Fin n
   rw [e]
   set a := hs (S7.toM x * Pm A)
   set b := hs (S7.toM x * Pz A)
-  have ha : 0 ≤ a := hs_nonneg _
-  have hb : 0 ≤ b := hs_nonneg _
-  have hy : 0 ≤ hs Y := hs_nonneg _
+  have ha : 0 ≤ a := _root_.Formalism.REAL.frobenius_nonneg_matrix _
+  have hb : 0 ≤ b := _root_.Formalism.REAL.frobenius_nonneg_matrix _
+  have hy : 0 ≤ hs Y := _root_.Formalism.REAL.frobenius_nonneg_matrix _
   have ha1 : a ≤ 1 := by nlinarith
   have k1 : a * a ≤ a * (1 + b) := by nlinarith
   have k2 : 4 * (a * a) + 6 * (a * b) ≤ 6 * (a * (1 + b)) := by nlinarith
@@ -466,7 +467,7 @@ theorem cover (n : ℕ) (ε : Fin n → Bool) :
   have hα0 : 0 < α := by linarith
   have hβ0 : 0 < β := by linarith
   have hapos : 0 < a := hs_Pm_pos (hA j) _
-  have hb0 : 0 ≤ b := hs_nonneg _
+  have hb0 : 0 ≤ b := _root_.Formalism.REAL.frobenius_nonneg_matrix _
   have hP : a * (1 + b) ≤ 20 * (n : ℝ) ^ 2 * (β / α) := by
     have t1 : 1 + b ≤ 5 * n * β := by nlinarith [mul_le_mul hnR hβ1 zero_le_one (by linarith : (0 : ℝ) ≤ n)]
     calc a * (1 + b) ≤ (4 * n / α) * (5 * n * β) :=
@@ -530,7 +531,7 @@ theorem geo : Geo := by
       exact hx'
   · intro j x t h0 ht
     obtain ⟨u1, u2⟩ := hs_lines (hA j) (x : S7.UJ ε) t h0 ht
-    have hx0 := hs_nonneg (S7.toM (x : S7.UJ ε))
+    have hx0 := _root_.Formalism.REAL.frobenius_nonneg_matrix (S7.toM (x : S7.UJ ε))
     have hexp := (Real.exp_pos (2 * t)).le
     constructor
     · refine le_trans ?_ u1

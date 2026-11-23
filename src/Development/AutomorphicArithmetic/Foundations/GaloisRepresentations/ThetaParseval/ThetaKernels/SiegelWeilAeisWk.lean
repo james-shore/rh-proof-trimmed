@@ -67,7 +67,7 @@ theorem majorant_w_k (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) {s�
         ∀ g ∈ C, ∀ q, ‖GlobalTheory.Eis.term (par2 σ d.Y) (rat2 σ d.Y) (fun x => ((d.Ht x : ℝ) : ℂ) ^ (z - s₁) * f x) g q‖ ≤ u q := by
   have hKc : IsCompact (d.K : Set d.G) := _root_.PositivityTheory.SiegelWeilFormula.Aeis.isCompact_K_w_k d.ok.good d.ok.stdK
   obtain ⟨hac, hpos⟩ := _root_.PositivityTheory.SiegelWeilFormula.Aeis.height_pos_w_k d.ok.good d.ok.stdK d.ok.hgt
-  obtain ⟨C0, hC0⟩ := GlobalTheory.T.flat_section_growth_bound d.K d.a hKc d.ok.hgt hpos d.χ s₁ f hf
+  obtain ⟨C0, hC0⟩ := _root_.GlobalTheory.CompanionTheory.EisTerm.flat_norm_le_height_rpow d.K d.a hKc d.ok.hgt hpos d.χ s₁ f hf
   obtain ⟨σ₀, hσ⟩ := _root_.PositivityTheory.SiegelWeilFormula.Aeis.godement_sum_w_k d.ok.good d.ok.frame d.ok.stdK d.ok.hgt
   refine ⟨σ₀ - (d.n : ℝ) / 2, fun z hz C hC => ?_⟩
   set σ' : ℝ := z.re + (d.n : ℝ) / 2 with hσ'

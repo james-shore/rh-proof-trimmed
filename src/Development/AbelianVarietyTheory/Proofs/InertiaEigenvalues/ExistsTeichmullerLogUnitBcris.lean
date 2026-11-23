@@ -70,7 +70,7 @@ theorem isLogJ_pow {e : Per.Fl l} (hJ : InJ (Per.tm e - 1)) {y : Per.Acris l} (h
     ∀ m : ℕ, IsLogJ (Per.tm (e ^ m) - 1) ((m : Per.Acris l) * y)
   | 0 => by simpa using (isLogJ_zero : IsLogJ (l := l) 0 0)
   | m + 1 => by
-    have h := GlobalTheory.T.isAcrisLogOneAdd_add_of_mul l _ _ _ _ (inJ_pow hJ m) hJ (isLogJ_pow hJ hy m) hy
+    have h := _root_.GlobalTheory.LogU.isLogJ_add l _ _ _ _ (inJ_pow hJ m) hJ (isLogJ_pow hJ hy m) hy
     have e1 : Per.tm (e ^ (m + 1)) - 1 = (Per.tm (e ^ m) - 1) + (Per.tm e - 1) +
         (Per.tm (e ^ m) - 1) * (Per.tm e - 1) := by
       rw [pow_succ, show Per.tm (e ^ m * e) = Per.tm (e ^ m) * Per.tm e from
@@ -162,7 +162,7 @@ theorem exists_log_unit : ∀ (l : ℕ) [Fact l.Prime] (C : Core l) (x : OCb l),
       rw [← mul_assoc, ← hxω, ← hgx, hxω, map_mul, hgω]
     have hge₁ : Per.σF g (x₁ ^ l ^ N) = x₁ ^ l ^ N * e ^ l ^ N := by rw [map_pow, hgx₁, mul_pow]
     have hle' := TAct.logA_pow C.j_cris he1 hle (l ^ N)
-    have hsum := GlobalTheory.T.isAcrisLogOneAdd_add_of_mul l _ _ _ _ hJ (inJ_mu (e := e ^ l ^ N) (by rw [map_pow, he1, one_pow])) hy hle'
+    have hsum := _root_.GlobalTheory.LogU.isLogJ_add l _ _ _ _ hJ (inJ_mu (e := e ^ l ^ N) (by rw [map_pow, he1, one_pow])) hy hle'
     have hσ := isLogJ_extends (GlobalTheory.CrisMaps.sigA_extends g) hy
     have hw : Per.σA g (Per.tm (x₁ ^ l ^ N) - 1) = (Per.tm (x₁ ^ l ^ N) - 1) + mu (e ^ l ^ N) +
         (Per.tm (x₁ ^ l ^ N) - 1) * mu (e ^ l ^ N) := by

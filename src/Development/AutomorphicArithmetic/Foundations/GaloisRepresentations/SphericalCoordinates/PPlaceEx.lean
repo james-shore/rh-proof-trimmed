@@ -177,13 +177,10 @@ private theorem rank_datum {p : ℕ} [Fact p.Prime] (D : Datum p) (hm : D.m = 1)
 private theorem sh_mul' {p : ℕ} [Fact p.Prime] (G : HTGroup p) (a b : G.C) : sh G (a * b) = sh G b * sh G a := by
   simp only [sh, map_mul, MulOpposite.unop_mul]
 
-private theorem sh_one' {p : ℕ} [Fact p.Prime] (G : HTGroup p) : sh G (1 : G.C) = 1 := by
-  simp only [sh, map_one, MulOpposite.unop_one]
-
 private theorem sh_inv_eq {p : ℕ} [Fact p.Prime] (G : HTGroup p) (β : G.Cˣ) (h : sh G (β : G.C) = β) :
     sh G ((β⁻¹ : G.Cˣ) : G.C) = ((β⁻¹ : G.Cˣ) : G.C) := by
   have h1 : sh G ((β⁻¹ : G.Cˣ) : G.C) * (β : G.C) = 1 := by
-    rw [← h, ← sh_mul', Units.mul_inv, sh_one']
+    rw [← h, ← sh_mul', Units.mul_inv, _root_.GlobalTheory.LKMid.sh_one_eq]
   calc sh G ((β⁻¹ : G.Cˣ) : G.C) = sh G ((β⁻¹ : G.Cˣ) : G.C) * ((β : G.C) * ((β⁻¹ : G.Cˣ) : G.C)) := by
         rw [Units.mul_inv, _root_.mul_one]
     _ = ((β⁻¹ : G.Cˣ) : G.C) := by rw [← _root_.mul_assoc, h1, _root_.one_mul]
@@ -215,7 +212,7 @@ private theorem inv_rel {p : ℕ} [Fact p.Prime] (G : HTGroup p) (β β' y : G.C
     (hβ : (β' : G.C) = algebraMap ℚ G.C s * (y * β * sh G y)) :
     sh G y * ((β'⁻¹ : G.Cˣ) : G.C) * y = algebraMap ℚ G.C s⁻¹ * ((β⁻¹ : G.Cˣ) : G.C) := by
   have hy : sh G (y : G.C) * sh G ((y⁻¹ : G.Cˣ) : G.C) = 1 := by
-    rw [← sh_mul', Units.inv_mul, sh_one']
+    rw [← sh_mul', Units.inv_mul, _root_.GlobalTheory.LKMid.sh_one_eq]
   have hc : algebraMap ℚ G.C s * algebraMap ℚ G.C s⁻¹ = 1 := by
     rw [← map_mul, mul_inv_cancel₀ hs.ne', map_one]
   have hz : (β' : G.C) * (algebraMap ℚ G.C s⁻¹ *

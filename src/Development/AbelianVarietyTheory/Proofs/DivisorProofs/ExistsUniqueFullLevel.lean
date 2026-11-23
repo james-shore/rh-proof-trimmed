@@ -81,7 +81,7 @@ theorem exists_unique_fullLevel {D : Datum H} {l : Level H} {B : Type} [CommRing
     ⟨fun a => (hA a).trans (hetaA a).symm, fun a ha => (hM a ha).trans (heta a ha).symm⟩
   refine ⟨ev, ⟨hev, hi⟩, ?_⟩
   rintro ev' ⟨h1, h2⟩
-  have := GlobalTheory.T.isFullSymplecticLevelStructure_unique_of_levels l (fun g g' c c' => weilIs_unitOn_unique o.t.G o.t.PP.isLB x _ g g' c c') hz
+  have := _root_.GlobalTheory.FullLevel.isSympLevel_unique l (fun g g' c c' => weilIs_unitOn_unique o.t.G o.t.PP.isLB x _ g g' c c') hz
     hev hi h1 h2
   exact this.symm
 

@@ -162,7 +162,7 @@ theorem cmp_trace (d : ℕ) (Z : Scheme.{0}) [IsIntegral Z] (p : Z ⟶ Sp ℂ) [
     cmp d p hinst hU a b (hodgeTrace hc a b z) = Cx.hmap _ _ (LinearMap.pi fun s : Finset ι => (GlobalTheory.W1.trDR ℂ Z.functionField Y.functionField).comp (LinearMap.proj s)) hm b (cmp d p' hinst' hU' a b z) := by
   letI := algΓ p
   letI := algΓ p'
-  have hfin := (GlobalTheory.T.finiteEtale_functionField_integralClosure_differentials Z Y p p' c hc inferInstance inferInstance d hinst hinst' hg).1
+  have hfin := (_root_.GlobalTheory.W1.SchFF.finiteEtale_functionField Z Y p p' c hc inferInstance inferInstance d hinst hinst' hg).1
   obtain ⟨z1, hz1⟩ := cechClass_surjective
     (cechCube ℂ ((Scheme.Modules.pushforward c).obj (Omega p' a)) ⊤ U) b
     ((cechHEquivCoh ℂ hU.cover (cover_biInf hU) ((Scheme.Modules.pushforward c).obj (Omega p' a)) b).symm

@@ -186,7 +186,7 @@ theorem exists_resolution_supp : GlobalTheory.Published.Principalisation → ∀
       have := isProper_str ℂ N
       infer_instance
     exact IsProper.of_comp (s₂ ≫ s₁) p
-  · obtain ⟨r, w, D, σ, -, -, hw, -⟩ := GlobalTheory.T.exists_prime_divisors_snc_boundary ℂ Y ((s₂ ≫ s₁) ≫ p) n hpr' B hsnc
+  · obtain ⟨r, w, D, σ, -, -, hw, -⟩ := _root_.GlobalTheory.SncComp.relSnc_components ℂ Y ((s₂ ≫ s₁) ≫ p) n hpr' B hsnc
     refine (Set.finite_range w).subset ?_
     rintro v ⟨hvB, hv1⟩
     obtain ⟨i, rfl⟩ := hw v hv1 hvB
@@ -195,7 +195,7 @@ theorem exists_resolution_supp : GlobalTheory.Published.Principalisation → ∀
     exact hη ((ratPull_bijective_of_birational ℂ X Y p (s₂ ≫ s₁) hbij n).1
       (h.trans (map_zero _).symm))
   · intro y
-    exact GlobalTheory.T.exists_snc_chart ℂ Y ((s₂ ≫ s₁) ≫ p) n B hsnc y
+    exact _root_.GlobalTheory.Discrepancy.exists_isSncChart ℂ Y ((s₂ ≫ s₁) ≫ p) n B hsnc y
   · intro y v g hvy _ hvB hg
     exact ord_fnPull_eq_zero s₁ s₂ G y v g hvy (fun h => hvB ((hB v).2 (Or.inl (Or.inl h)))) hg
   · intro y v g hvy _ hvB hg

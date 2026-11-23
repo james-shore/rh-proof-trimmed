@@ -57,35 +57,13 @@ section
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
 
-theorem invol (hCM : IsCMExt F E σ) (x : E) : σ (σ x) = x := by
-  obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
-  exact τ.injective (by rw [hCM.2.2.2, hCM.2.2.2]; simp)
-
-theorem exists_pure (hCM : IsCMExt F E σ) : ∃ e : E, e ≠ 0 ∧ σ e = -e := by
-  by_contra hcon
-  push_neg at hcon
-  have hfix : ∀ x : E, σ x = x := fun x => by
-    by_contra hx
-    refine hcon (x - σ x) (sub_ne_zero.2 (Ne.symm hx)) ?_
-    rw [map_sub, invol hCM]
-    ring
-  obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
-  have hreal : ComplexEmbedding.IsReal τ := by
-    ext x
-    have h := hCM.2.2.2 τ x
-    rw [hfix] at h
-    simpa using h.symm
-  haveI : IsTotallyComplex E := hCM.2.1
-  have hc : (InfinitePlace.mk τ).IsComplex := IsTotallyComplex.isComplex _
-  exact (InfinitePlace.not_isReal_iff_isComplex.2 hc) (InfinitePlace.isReal_mk_iff.2 hreal)
-
 theorem coord_E (hCM : IsCMExt F E σ) {e : E} (he : e ≠ 0) (hσ : σ e = -e) (z : E) :
     ∃ c d : F, z = algebraMap F E c + algebraMap F E d * e := by
   obtain ⟨c, hc⟩ := GoodMass.fixed_mem hCM ((z + σ z) / 2) (by
-    rw [map_div₀, map_add (f := _), invol hCM, map_ofNat]
+    rw [map_div₀, map_add (f := _), _root_.GlobalTheory.CompanionTheory.SW.HermTop.sigma_sigma hCM, map_ofNat]
     ring)
   obtain ⟨d, hd⟩ := GoodMass.fixed_mem hCM ((z - σ z) / (2 * e)) (by
-    rw [map_div₀, map_sub, invol hCM, map_mul, map_ofNat, hσ]
+    rw [map_div₀, map_sub, _root_.GlobalTheory.CompanionTheory.SW.HermTop.sigma_sigma hCM, map_mul, map_ofNat, hσ]
     field_simp
     ring)
   refine ⟨c, d, ?_⟩
@@ -181,7 +159,7 @@ theorem hasse : Hasse := by
   have hj0 : j ≠ 0 := by
     rintro rfl
     exact hJ.2 (by rw [Matrix.det_fin_one, ← hj, map_zero])
-  obtain ⟨e, he, hσ⟩ := exists_pure hCM
+  obtain ⟨e, he, hσ⟩ := _root_.CompanionTheory.PlacePermOperatorBicommutantSpan.exists_anti hCM
   obtain ⟨δ, hδ⟩ := GoodMass.fixed_mem hCM (e * e) (by rw [map_mul, hσ]; ring)
   have hδ' : e * e = algebraMap F E δ := hδ.symm
   have hδ0 : δ ≠ 0 := by

@@ -116,7 +116,7 @@ theorem weighted_lintegral_sobolev_pointwise : ∀ {E : Type} [NormedAddCommGrou
         exact mul_le_mul_of_nonneg_right (le_abs_self t) (norm_nonneg v)
       show t * ‖v‖ + -‖x‖ ≤ ‖x + t • v‖
       linarith
-    have hR := GlobalTheory.T.norm_le_lintegral_ray_iteratedFDeriv' G m x v hG hray
+    have hR := _root_.GlobalTheory.norm_le_lintegral_ray_iteratedFDeriv G m x v hG hray
     have hxk : (0:ℝ) ≤ ‖x‖ ^ k := by positivity
     calc a = ENNReal.ofReal (‖x‖ ^ k) * ENNReal.ofReal ‖G x‖ := by rw [ha, ENNReal.ofReal_mul hxk]
       _ ≤ ENNReal.ofReal (‖x‖ ^ k) * ∫⁻ t in Ioi (0:ℝ), ENNReal.ofReal (t ^ m / (m.factorial : ℝ) *

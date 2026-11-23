@@ -43,7 +43,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 open Complex DirichletCharacter
 
-theorem allChi : UpperTheory.EveryCharacter := UpperTheory.FinalTheorems.everyCharacter
+alias allChi := _root_.UpperTheory.FinalTheorems.everyCharacter
 
 theorem rhOfAll : RiemannHypothesis := Claim.zeta allChi
 

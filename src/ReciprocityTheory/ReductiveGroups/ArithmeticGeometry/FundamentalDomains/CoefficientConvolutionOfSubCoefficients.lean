@@ -326,11 +326,6 @@ private lemma huu_lemma_26 {ξ : Fin r → E} (hξ : herm X.Gm ξ ξ = 0) (τ : 
           NumberField.IsCMField.complexEmbedding_complexConj]
   rw [← h, hξ, map_zero]
 
-private lemma colmul_lemma_27 (A M : Matrix (Fin r) (Fin r) ℂ) (a : Fin r) :
-    col (A * M) a = A *ᵥ col M a := by
-  funext k
-  simp only [col, Matrix.mul_apply, Matrix.mulVec, dotProduct]
-
 private lemma flowmv_lemma_28 (ξ : Fin r → E) (τ : X.Ψ) (s : ℂ) (p : Fin r → ℂ) :
     X.flowMat ξ τ s *ᵥ p =
       p - (I * (X.c τ : ℂ) * s * hermC τ.1 X.Gm p (Data.emb τ.1 ξ)) • Data.emb τ.1 ξ := by
@@ -351,7 +346,7 @@ private lemma gramflow_lemma_29 {ξ : Fin r → E} (hξ : herm X.Gm ξ ξ = 0) (
   have hu := huu_lemma_26 hξ τ
   simp only [gram, Matrix.of_apply, Matrix.add_apply, Matrix.smul_apply, smul_eq_mul, rk1,
     Matrix.vecMulVec_apply, hv]
-  rw [colmul_lemma_27, colmul_lemma_27, flowmv_lemma_28, flowmv_lemma_28]
+  rw [_root_.ReciprocityTheory.ChartRestriction.G.FD.AdmissibleHermitianColumns.col_mul, _root_.ReciprocityTheory.ChartRestriction.G.FD.AdmissibleHermitianColumns.col_mul, flowmv_lemma_28, flowmv_lemma_28]
   simp only [hsubl_lemma_21, hsubr_lemma_23, hsmull_lemma_22, hsmulr_lemma_24, hu]
   rw [← hconj_lemma_25 τ (col M b) (Data.emb τ.1 ξ)]
   simp only [map_mul, Complex.conj_I, Complex.conj_ofReal, Complex.conj_conj]

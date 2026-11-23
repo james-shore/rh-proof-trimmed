@@ -224,11 +224,6 @@ theorem sum_om_eq {W : G.Weil} (ρ : RealMatch W) (t : T) {e : AE D} (hee : e * 
   · refine congrArg _ (congrArg₂ _ (Finset.prod_congr rfl fun n _ => (hrow d hd n).symm) (Finset.prod_congr rfl fun i _ => ?_))
     exact (congrFun (hP _ _ _ _ ((hloc d hd).2 i)).2 (v i)).symm
 
-theorem actO_one_one (S T' : HSp D) (u : WO S T') : actO S T' 1 1 u = u := by
-  unfold actO
-  rw [inv_one]
-  exact (Matrix.mul_one _).trans (Matrix.one_mul _)
-
 theorem movY_eq (j : ℕ) (hj : j + 1 + 1 < D.R.m) (k : GA D (G.V (.grid D.R.m (j + 1))))
     (y : ∀ i : Fin D.R.m, WO (G.V (.grid D.R.m i)) (G.V (.grid D.R.m (i + 1)))) (i : Fin D.R.m) :
     GlobalTheory.RowKFix.movY G j hj k y i =
@@ -253,7 +248,7 @@ theorem movY_eq (j : ℕ) (hj : j + 1 + 1 < D.R.m) (k : GA D (G.V (.grid D.R.m (
   have e1 : (Pi.mulSingle (j + 1) k : Pts G) i = 1 := Pi.mulSingle_eq_of_ne (fun h => h2 (Fin.ext h)) _
   have e2 : (Pi.mulSingle (j + 1) k : Pts G) (i + 1) = 1 :=
     Pi.mulSingle_eq_of_ne (fun h => h1 (Fin.ext (Nat.succ_injective h))) _
-  rw [e1, e2, inv_one, inv_one, actO_one_one]
+  rw [e1, e2, inv_one, inv_one, _root_.GlobalTheory.LatNhds.actO_one]
 
 theorem sum_om_single_eq : ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : Type} {A : FamIn D.what₂.LL Γ Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] {R : RealDat D A Ks} (ch : Choice R) (large₂ : SizeData₂ D) (F : Face D A), HidaSetting large₂ R F → ch.Is → ∀ (t : T) (Φ : ch.G.Datum) (τ : SchRow ch.G × SchDown ch.G t →₀ ℂ), IsFlipFin t ch.S.B ch.rm Φ τ → ∀ (j : ℕ) (hj : j + 1 + 1 < D.R.m), ∀ k ∈ latGrp ch.G (j + 1), ∀ c₁ c₂ : ℂ, ch.W.om (.mu t D.R.m j) (1, k) (ch.rm.vT D.R.m j) = c₁ • ch.rm.vT D.R.m j → ch.W.om (.mu t D.R.m (j + 1)) (k, 1) (ch.rm.vT D.R.m (j + 1)) = c₂ • ch.rm.vT D.R.m (j + 1) → (∀ x y, c₁ * c₂ * ∏ w ∈ locPl ch.G t, Tflip ch.W ch.S.B t Φ w (oppArgs t ch.S.B w x (GlobalTheory.RowKFix.movY ch.G j hj k y)) = ∏ w ∈ locPl ch.G t, Tflip ch.W ch.S.B t Φ w (oppArgs t ch.S.B w x y)) → ∀ (y : RowPt ch.G) (v : ∀ i : Fin D.R.m, WO (ch.G.V (.grid D.R.m i)) (ch.G.V (.grid D.R.m (i + 1)))), (τ.sum fun d x => x * ((∏ n, d.1 n (y n)) * ∏ i : Fin D.R.m, ch.W.om (.mu t D.R.m i) ((Pi.mulSingle (j + 1) k : Pts ch.G) i, (Pi.mulSingle (j + 1) k : Pts ch.G) (i + 1)) (d.2 i) (v i))) = τ.sum fun d x => x * ((∏ n, d.1 n (y n)) * ∏ i, d.2 i (v i)) := by
   intro D Γ _ _ Pl0 T A Ks _ _ _ R ch large₂ F _ _ t Φ τ hτ j hj k hk c₁ c₂ h₁ h₂ hT y v

@@ -134,9 +134,7 @@ theorem haar_conj {G G' : Set (Mat k r)} {μ : Measure (Mt k r)} (a : Mat k r) (
     rw [Measure.map_map (lmul_cont s).measurable hm, hc,
       ← Measure.map_map hm (lmul_cont _).measurable, hinv _ ht]
 
-theorem unit_of_GG {g : Mat k r} (hg : g ∈ GG k r) : IsUnit g.det := by
-  have hH : IsUnit (Hpk k r).det := Matrix.isUnit_det_of_right_inverse (hpkFacts k r).2.1
-  exact ((uHGroup _ (Hpk k r) hH).2.2 g hg).1
+alias unit_of_GG := _root_.GlobalTheory.Amp.NfMid.unit_det
 
 theorem matGroup {G : Set (Mat k r)} (h : IsClosedSub k r G) : PI.IsMatGroup G := by
   obtain ⟨hsub, hcl, h1, hmul, hinv⟩ := h

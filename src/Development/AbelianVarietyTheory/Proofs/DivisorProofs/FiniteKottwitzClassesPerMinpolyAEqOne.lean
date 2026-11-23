@@ -60,14 +60,6 @@ namespace GlobalTheory.LKCx.PeriodicClassFixedPoints
 
 variable {p : ℕ} [Fact p.Prime]
 
-theorem sh_mul' (G : HTGroup p) (a b : G.C) : sh G (a * b) = sh G b * sh G a := by
-  simp only [sh, map_mul, MulOpposite.unop_mul]
-
-theorem sh_one' (G : HTGroup p) : sh G 1 = 1 := by simp [sh]
-
-theorem sh_mul_inv' (G : HTGroup p) (e : G.Cˣ) : sh G (e : G.C) * sh G ((e⁻¹ : G.Cˣ) : G.C) = 1 := by
-  rw [← sh_mul', Units.inv_mul, sh_one']
-
 theorem commute_ratio (G : HTGroup p) (β β₁ γ : G.Cˣ) (c : ℚ) (hc : c ≠ 0)
     (h : (γ : G.C) * β * sh G γ = algebraMap ℚ G.C c * β)
     (h₁ : (γ : G.C) * β₁ * sh G γ = algebraMap ℚ G.C c * β₁) :
@@ -90,8 +82,8 @@ theorem tau_ratio (G : HTGroup p) (β β₁ : G.Cˣ) (h : sh G β = β) (h₁ : 
       (β : G.C) * ((β₁⁻¹ : G.Cˣ) : G.C) := by
   have e : (β₁ : G.C) * sh G ((β₁⁻¹ : G.Cˣ) : G.C) = 1 := by
     conv_lhs => rw [← h₁]
-    exact sh_mul_inv' G β₁
-  rw [sh_mul', h, ← mul_assoc, e, one_mul]
+    exact _root_.GlobalTheory.CxRegPair.sh_mul_sh_inv G β₁
+  rw [_root_.GlobalTheory.LKMid.PairConj.sh_mul, h, ← mul_assoc, e, one_mul]
 
 theorem rel_of_same (G : HTGroup p) (β₁ γ₀ : G.Cˣ) (a₀ : G.C) (P Q : Pair G) (hP : P.γ = γ₀) (hQ : Q.γ = γ₀)
     (r r' : ℚˣ) (e e' : G.Cˣ) (he : Commute (e : G.C) γ₀) (he' : Commute (e' : G.C) γ₀)
@@ -108,10 +100,10 @@ theorem rel_of_same (G : HTGroup p) (β₁ γ₀ : G.Cˣ) (a₀ : G.C) (P Q : Pa
     have hrr : (r' : ℚ) / r * r = r' := by field_simp
     rw [hrr]
     congr 1
-    rw [Units.val_mul, sh_mul']
+    rw [Units.val_mul, _root_.GlobalTheory.LKMid.PairConj.sh_mul]
     calc (e' : G.C) * a₀ * β₁ * sh G (e' : G.C)
         = (e' : G.C) * (((e⁻¹ : G.Cˣ) : G.C) * e) * a₀ * β₁ * (sh G (e : G.C) * sh G ((e⁻¹ : G.Cˣ) : G.C)) * sh G (e' : G.C) := by
-          rw [Units.inv_mul, sh_mul_inv', mul_one, mul_one]
+          rw [Units.inv_mul, _root_.GlobalTheory.CxRegPair.sh_mul_sh_inv, mul_one, mul_one]
       _ = _ := by simp only [mul_assoc]
   · have hc : Commute ((e' * e⁻¹ : G.Cˣ) : G.C) (γ₀ : G.C) := by
       rw [Units.val_mul]; exact he'.mul_left he.units_inv_left
@@ -142,8 +134,8 @@ theorem finite_fixed (G : HTGroup p) (L : G.Level) (f : G.GAf → ℂ)
     rintro q ⟨P, -, hγ, hc, -⟩
     exact hne ⟨P, hγ, hc⟩
   obtain ⟨P₁, rfl, rfl⟩ := hne
-  obtain ⟨S, hS⟩ := GlobalTheory.T.kottwitzPair_form_ratio_local_scalar_norm p G L f hf hreg P₁
-  obtain ⟨A, hA⟩ := GlobalTheory.T.finite_fixed_unit_classes_centralizer_regular p G P₁.β P₁.sym P₁.γ P₁.c P₁.sim P₁.reg.2 P₁.reg.1 S
+  obtain ⟨S, hS⟩ := _root_.GlobalTheory.CxRegPair.local_pair_scalar_norm p G L f hf hreg P₁
+  obtain ⟨A, hA⟩ := _root_.GlobalTheory.LKCx.ClsReg.finite_fixed_classes_regular p G P₁.β P₁.sym P₁.γ P₁.c P₁.sim P₁.reg.2 P₁.reg.1 S
   let D : G.C × Bool → Pair G → Prop := fun ab P => P.γ = P₁.γ ∧ ∃ (r : ℚˣ) (e : G.Cˣ),
     Commute (e : G.C) P₁.γ ∧ decide (0 < (r : ℚ)) = ab.2 ∧
     (P.β : G.C) = algebraMap ℚ G.C r * ((e : G.C) * ab.1 * P₁.β * sh G (e : G.C))

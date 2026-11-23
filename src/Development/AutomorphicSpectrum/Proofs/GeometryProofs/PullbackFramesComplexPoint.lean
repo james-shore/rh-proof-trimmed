@@ -149,7 +149,7 @@ theorem expand (Z : CptOver Y U) {F : Type} [Field F] {y : Sp F ⟶ Xo.XF c}
     rw [← hb', hw] at h1
     have h2 : (t - Pm.det) • exteriorPower.ιMulti Z.Ω n c₀ = 0 := by
       rw [sub_smul, h1, sub_self]
-    exact sub_eq_zero.1 ((smul_eq_zero.1 h2).resolve_right (GlobalTheory.T.iota_multi_ne_zero_of_lin_indep Z.Ω Z.V n c₀ hc.1))
+    exact sub_eq_zero.1 ((smul_eq_zero.1 h2).resolve_right (_root_.GlobalTheory.CompanionTheory.Exterior.ιMulti_ne_zero_of_linearIndependent Z.Ω Z.V n c₀ hc.1))
   have hcomb : ∀ i, IsComb (Matrix.of A i) v₀ (v i) := fun i => by
     obtain ⟨w, hw'⟩ := exists_comb (Matrix.of A i) v₀
     obtain ⟨w', hw₁, hw₂⟩ := GlobalTheory.T.component_specialization_tangent_comb E H D l Xo c O β Y U Z F y n c₀ v₀ (Pm i) (Matrix.of A i) w h h₀ (hA i) hw'

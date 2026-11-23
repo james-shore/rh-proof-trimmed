@@ -70,13 +70,6 @@ open MvPolynomial
 
 namespace GlobalTheory.CompanionTheory.ConeNoether
 
-theorem prod_pow_lead {R ι : Type*} [CommRing R] (s : Finset ι) (e : ι → ℕ)
-    (g : ι → Polynomial R) (c : ι → R) (hd : ∀ i, (g i).natDegree ≤ 1)
-    (hc : ∀ i, (g i).coeff 1 = c i) :
-    (∏ i ∈ s, g i ^ e i).natDegree ≤ ∑ i ∈ s, e i ∧
-      (∏ i ∈ s, g i ^ e i).coeff (∑ i ∈ s, e i) = ∏ i ∈ s, c i ^ e i :=
-  _root_.UpperTheory.Reformulated.B.Yra8.main s e g c hd hc
-
 theorem isIntegral_of_homogeneous_relation {K R S ι : Type*} [Field K] [CommRing R] [CommRing S]
     [Algebra K R] [Algebra K S] [Algebra R S] [IsScalarTower K R S] [Fintype ι]
     (F : MvPolynomial ι K) {n : ℕ} (hF : F.IsHomogeneous n) (a : ι → K) (ha : eval a F ≠ 0)
@@ -103,13 +96,13 @@ theorem isIntegral_of_homogeneous_relation {K R S ι : Type*} [Field K] [CommRin
     rw [hp]
     refine Polynomial.natDegree_sum_le_of_forall_le _ _ fun d hd => ?_
     refine (Polynomial.natDegree_C_mul_le _ _).trans ?_
-    have := (prod_pow_lead Finset.univ d g _ hgd hgc).1
+    have := (_root_.UpperTheory.Reformulated.B.Yra8.main Finset.univ d g _ hgd hgc).1
     rwa [hdeg d hd] at this
   have hpc : p.coeff n = algebraMap K R (eval a F) := by
 
     rw [hp, eval_eq', map_sum, Polynomial.finsetSum_coeff]
     refine Finset.sum_congr rfl fun d hd => ?_
-    have := (prod_pow_lead Finset.univ d g _ hgd hgc).2
+    have := (_root_.UpperTheory.Reformulated.B.Yra8.main Finset.univ d g _ hgd hgc).2
     rw [hdeg d hd] at this
     rw [Polynomial.coeff_C_mul, this]
     simp

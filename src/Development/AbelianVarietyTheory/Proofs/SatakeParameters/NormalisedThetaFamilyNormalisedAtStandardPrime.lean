@@ -77,22 +77,6 @@ open Formalism.L2.Th1.H (Sesq IsSelfDual IsHerm dualLat altE Th alphaQ blk4 pow4
 open Formalism.L2.Th1.F (cmTheta)
 open Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity
 
-theorem cmTheta_odd (b : ℤ) (hb : Odd b) (d : ℕ) : ∃ k : ℤ, cmTheta b d = cmTheta 1 d + (k : ℂ) := by
-  obtain ⟨k, rfl⟩ := hb
-  refine ⟨k, ?_⟩
-  simp only [cmTheta]
-  push_cast
-  ring
-
-theorem stable_of_one {V : Type*} [AddCommGroup V] [Module ℂ V] (Λ : AddSubgroup V) (d : ℕ)
-    (h : ∀ x ∈ Λ, cmTheta 1 d • x ∈ Λ) (b : ℤ) (hb : Odd b) : ∀ x ∈ Λ, cmTheta b d • x ∈ Λ := by
-  intro x hx
-  obtain ⟨k, hk⟩ := cmTheta_odd b hb d
-  rw [hk, add_smul]
-  refine Λ.add_mem (h x hx) ?_
-  rw [Int.cast_smul_eq_zsmul]
-  exact Λ.zsmul_mem hx k
-
 theorem hermitianSelfDual_of_fourfoldBlock {n : Type} [Fintype n] [DecidableEq n] (h : Matrix n n ℂ) (Λ : AddSubgroup (n → ℂ))
     (hsd : IsSelfDual (matH (blk4 h)) (pow4 Λ)) : IsSelfDual (matH h) Λ := by
   have key : ∀ (x : n → ℂ) (y : Fin 4 × n → ℂ),
@@ -123,31 +107,6 @@ theorem hermitianSelfDual_of_fourfoldBlock {n : Type} [Fintype n] [DecidableEq n
     refine ⟨m, ?_⟩
     rw [key, Formalism.L2.Th1.H.CmData.slice_embA, if_pos rfl] at hm
     exact hm
-
-section Base
-
-variable {D : D7} {cc : Ideal (𝓞 D.host.K)} {δ : ℂ} (B : Base D cc δ)
-
-theorem selfDual_fourfold_curveIdeal_lattice (hcc : TaylorLogMetric.IsCurveIdeal D cc) (hδ : TaylorLogMetric.IsDiscriminantTwelfthRootOfIdealLattice D cc δ) :
-    IsSelfDual (matH (blk4 (hOne B.L D.what₂.Tau))) (pow4 B.lamM) := by
-  have h := ((B.latAll hcc hδ (base_linkage_nonempty D cc δ B)).1 2 2 _ _
-    (Formalism.MainNotions.GlobalTheoryTheory.Inhab.Adm_std D 2 2 even_two even_two)).1
-  rw [show TaylorLogMetric.area (TaylorLogMetric.lamOf D cc δ) = _ from B.areaOK, show TaylorLogMetric.La D B.tor _ _ = _ from B.lat0OK 2 2] at h
-  have h2 := SO.selfDual_img _ _ (SO.reix D.what₂.Tau) (SO.reix_isom B.L D.what₂.Tau) _ h
-  rw [SO.reix_pow] at h2
-  exact h2
-
-theorem selfDual_lamM (hcc : TaylorLogMetric.IsCurveIdeal D cc) (hδ : TaylorLogMetric.IsDiscriminantTwelfthRootOfIdealLattice D cc δ) :
-    IsSelfDual (matH (hOne B.L D.what₂.Tau)) B.lamM :=
-  hermitianSelfDual_of_fourfoldBlock _ _ (selfDual_fourfold_curveIdeal_lattice B hcc hδ)
-
-theorem stable_lamM (b : ℤ) (hb : Odd b) : ∀ x ∈ B.lamM, cmTheta b D.host.d • x ∈ B.lamM := by
-  refine stable_of_one _ _ (fun x hx => ?_) b hb
-  have := SO.lamMM_smul (AR.om D) hx
-  rw [← SO.theta_eq] at this
-  exact this
-
-end Base
 
 end GlobalTheory.ThLoc.LocStd
 
@@ -301,12 +260,12 @@ theorem latAt_std : ∀ (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ), Taylor
   have hH : ∀ x y, matH (hOne B'.L X.Tau) x y = matH (hOne B'.L D.what₂.Tau) (reixE s.iT x) (reixE s.iT y) :=
     matH_reix s.iT _ _ (hOne_reix s B'.L)
   have hSDM : IsSelfDual (matH (hOne B'.L X.Tau)) (Formalism.L2.Ker.KS.lamM' s B') :=
-    Formalism.L2.Ker.KS.selfDual_pb (reixE s.iT) _ _ hH (selfDual_lamM B' hcc hδ)
+    Formalism.L2.Ker.KS.selfDual_pb (reixE s.iT) _ _ hH (_root_.GlobalTheory.ThLoc.LocMM.selfDual_lamM B' hcc hδ)
   have hStM : ∀ x ∈ Formalism.L2.Ker.KS.lamM' s B', cmTheta b₀ D.host.d • x ∈ Formalism.L2.Ker.KS.lamM' s B' := by
     intro x hx
     show reixE s.iT (cmTheta b₀ D.host.d • x) ∈ B'.lamM
     rw [map_smul]
-    exact stable_lamM B' b₀ hb _ hx
+    exact _root_.GlobalTheory.ThLoc.LocMM.stable_lamM B' b₀ hb _ hx
   have hThM : Formalism.L2.Ker.KS.thM' s B' ∈ Th (matH (hOne B'.L X.Tau))
       (alphaQ (Real.sqrt D.host.d / 2) (matH (hOne B'.L X.Tau))) (Formalism.L2.Ker.KS.lamM' s B') :=
     Formalism.L2.Ker.KS.th_pb (reixE s.iT) _ _ hH (fun x _ => alphaQ_reix s B'.L _ x)
@@ -315,8 +274,8 @@ theorem latAt_std : ∀ (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ), Taylor
     (Formalism.L2.Ker.KS.cmBase_isCm B a₀ b₀ c₀ ha hd lam hlam hcm hl) p ι
   have hMM : LocNorm a₀ b₀ D.host.d ha hd lam hlam (hOne B'.L X.Tau) (Formalism.L2.Ker.KS.lamM' s B')
       (Formalism.L2.Ker.KS.thM' s B') p ι :=
-    locNorm_reix s.iT a₀ b₀ c₀ D.host.d ha hd lam hlam hcm _ _ (hOne_reix s B'.L) _ (selfDual_lamM B' hcc hδ)
-      (stable_lamM B' b₀ hb) _ p ι hMM0
+    locNorm_reix s.iT a₀ b₀ c₀ D.host.d ha hd lam hlam hcm _ _ (hOne_reix s B'.L) _ (_root_.GlobalTheory.ThLoc.LocMM.selfDual_lamM B' hcc hδ)
+      (_root_.GlobalTheory.ThLoc.LocMM.stable_lamM B' b₀ hb) _ p ι hMM0
 
   have hχu : ‖ι (Base.chiFac χ N N' L L')‖ ≤ 1 := by
     let lm : TaylorLogMetric.Qbar →+* ℂ_[p] := (ι : ℂ →+* ℂ_[p]).comp (TaylorLogMetric.Qbar).val.toRingHom

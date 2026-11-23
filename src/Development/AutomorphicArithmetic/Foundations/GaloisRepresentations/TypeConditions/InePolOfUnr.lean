@@ -92,7 +92,4 @@ theorem relW_of_aw (T : GlobalTheory.RowTie.WDTie N A) {w : PlE H} {x y : A.LP w
   rw [T.inePol _ _ σ hσ, T.inePol _ _ σ hσ, WD.inePol_of_mem_Ine _ hσ, WD.inePol_of_mem_Ine _ hσ,
     h.ine (ncW_of_nc T k) _ (deg_ineIncl _)]
 
-theorem cuspA_of_ab (T : GlobalTheory.RowTie.WDTie N A) {w : PlE H} {x y : A.LP w} (h1 : A.lpDim y ≠ 1)
-    (h : UpperTheory.GalN.Ab (T.e w x) (T.e w y)) : UpperTheory.GalN.CuspA N A x y := UpperTheory.GalN.cuspA_of_ab T h1 h
-
 end UpperTheory.GalS

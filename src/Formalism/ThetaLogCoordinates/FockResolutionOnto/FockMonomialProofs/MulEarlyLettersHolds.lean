@@ -222,10 +222,7 @@ theorem X_mul_mem {σ : Type} (v : σ) (Q : Set (σ →₀ ℕ)) (g : MvPolynomi
     Set.image_subset_iff]
   exact Iff.rfl
 
-theorem wt_single_add (LL : Letters N) (j : ℕ) (c' : Fin r) (i : Fin N) (c : Fin r) (m : Fin N × Fin r →₀ ℕ) :
-    wt LL j c' (Finsupp.single (i, c) 1 + m) = wt LL j c' m +
-      (if (i : ℕ) < j then (if LL.vec i then (1 : ℤ) else -1) else 0) * (if c = c' then 1 else 0) := by
-  exact wt_single_add_eq LL j c' i c m
+alias wt_single_add := _root_.Formalism.InvariantFactorPaths.L4.wt_single_add_eq
 
 theorem abs_wt_le (LL : Letters N) (j : ℕ) (c : Fin r) (m : Fin N × Fin r →₀ ℕ) :
     |wt LL j c m| ≤ ((∑ v, m v : ℕ) : ℤ) := by

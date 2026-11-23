@@ -62,8 +62,6 @@ attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {n : ℕ}
 
-theorem val_mem (y : G n) : y.val ∈ GLs n := (Matrix.isUnits_det_units y).ne_zero
-
 theorem basis_true_eq_single (a c : Fin n) : bs (true, a, c) = Matrix.single a c (1 : ℂ) := by simp [bs]
 
 theorem bs_f (a c : Fin n) : bs (false, a, c) = Matrix.single a c Complex.I := by simp [bs]
@@ -110,7 +108,7 @@ theorem cls_ae {f : Mat n → V} (h : MemLp (fun y : G n => f y.val) 2 μ) : cls
 
 theorem cls_congr {f f' : Mat n → V} (h : MemLp (fun y : G n => f y.val) 2 μ) (e : ∀ g ∈ GLs n, f g = f' g) :
     cls μ f = cls μ f' := by
-  have e' : (fun y : G n => f y.val) = fun y => f' y.val := funext fun y => e _ (val_mem y)
+  have e' : (fun y : G n => f y.val) = fun y => f' y.val := funext fun y => e _ (_root_.GlobalTheory.CompanionTheory.WaveSpd.val_mem_GLs y)
   have h' : MemLp (fun y : G n => f' y.val) 2 μ := e' ▸ h
   rw [cls_eq μ h, cls_eq μ h']
   exact MemLp.toLp_congr h h' (by rw [e'])
@@ -227,11 +225,11 @@ theorem secBound (hI : IbpSob) : SecBound := by
     have b1 : ‖u - u'‖ ≤ ‖BY a c‖ * ‖x‖ := by
       refine norm_le_of_ae μ hf0 _ _ ?_
       filter_upwards [Lp.coeFn_sub u u', cls_ae μ (mem1 μ hS (true, a, c)), cls_ae μ (mem1 μ hS (true, c, a))] with y h1 h2 h3
-      rw [h1, Pi.sub_apply, h2, h3, ← hBY a c f hCE _ (val_mem y), Rd_sub, basis_true_eq_single, basis_true_eq_single]
+      rw [h1, Pi.sub_apply, h2, h3, ← hBY a c f hCE _ (_root_.GlobalTheory.CompanionTheory.WaveSpd.val_mem_GLs y), Rd_sub, basis_true_eq_single, basis_true_eq_single]
     have b2 : ‖v + v'‖ ≤ ‖BZ a c‖ * ‖x‖ := by
       refine norm_le_of_ae μ hf0 _ _ ?_
       filter_upwards [Lp.coeFn_add v v', cls_ae μ (mem1 μ hS (false, a, c)), cls_ae μ (mem1 μ hS (false, c, a))] with y h1 h2 h3
-      rw [h1, Pi.add_apply, h2, h3, ← hBZ a c f hCE _ (val_mem y), Rd_add, bs_f, bs_f]
+      rw [h1, Pi.add_apply, h2, h3, ← hBZ a c f hCE _ (_root_.GlobalTheory.CompanionTheory.WaveSpd.val_mem_GLs y), Rd_add, bs_f, bs_f]
     have p1 := pol_sub u u'
     have p2 := pol_add v v'
     have s1 : ‖u - u'‖ ^ 2 ≤ (‖BY a c‖ * ‖x‖) ^ 2 := pow_le_pow_left₀ (norm_nonneg _) b1 2

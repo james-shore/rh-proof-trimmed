@@ -87,10 +87,7 @@ private theorem eqv_comp {R : Type} [CommRing R] {X Y Z : Spc} {f : X ⟶ Y} {g 
   rw [e]
   exact (hf n).comp (hg n)
 
-private theorem eqv_iso {R : Type} [CommRing R] {X Y : Spc} (f : X ⟶ Y) [IsIso f] (F : Shv R) : Eqv R f F := fun n => by
-  refine Function.bijective_iff_has_inverse.2 ⟨pull R (inv f) F n, fun x => ?_, fun x => ?_⟩
-  · rw [← pull_comp, IsIso.inv_hom_id, pull_id]
-  · rw [← pull_comp, IsIso.hom_inv_id, pull_id]
+private alias eqv_iso := _root_.GlobalTheory.EtC.eqv_of_isIso
 
 private theorem inv_sp {E : Spc} (hE : Inv q E) (a : Act) : Inv q (Sp E a) :=
   fun U ⟨x⟩ => hE U ⟨((Sp.fst E a).app _).app _ x⟩

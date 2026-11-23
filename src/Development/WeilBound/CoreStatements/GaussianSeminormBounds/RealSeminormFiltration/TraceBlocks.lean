@@ -256,7 +256,7 @@ theorem at_det {g : Matrix β β (AE F E)} (hg : At (evI F) (g - 1)) : At (evI F
 
 theorem norm_eq_one (h : IsCMExt F E σ) (τ : ∀ w : InfinitePlace F, EmbOver E w) {z : AE F E} (hz : At (evI F) (z - 1))
     (h1 : ∀ w, ‖piInf (τ w) z‖ = 1) : Algebra.norm (AF F) z = 1 := by
-  obtain ⟨x, hx⟩ := exists_moved h
+  obtain ⟨x, hx⟩ := _root_.GlobalTheory.AdelicU.exists_cm_conj_ne h
   have hσ : ∀ x, σ (σ x) = x := fun x => by
     obtain ⟨ρ⟩ : Nonempty (E →+* ℂ) := inferInstance
     exact ρ.injective (by rw [h.2.2.2, h.2.2.2, star_star])

@@ -98,22 +98,6 @@ section Chart
 variable {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCat.of Ω) ⟶ X} {K : Type} [Fintype K]
   {J : K → Type} {y : (Σ k, J k) → Ω}
 
-theorem ne_of_chart {p : Cpt ξ} {c : ∀ k, J k} (h : InChart ξ (fun c' : ∀ k, J k => ∏ k, y ⟨k, c' k⟩) c p) (k : K) :
-    y ⟨k, c k⟩ ≠ 0 :=
-  (Finset.prod_ne_zero_iff.1 h.1) k (Finset.mem_univ k)
-
-theorem ratio_mem {p : Cpt ξ} {c : ∀ k, J k} (h : InChart ξ (fun c' : ∀ k, J k => ∏ k, y ⟨k, c' k⟩) c p)
-    (k : K) (i : J k) : y ⟨k, i⟩ / y ⟨k, c k⟩ ∈ regAt ξ p := by
-  classical
-  have h1 := h.2 (Function.update c k i)
-  have h2 : (∏ l, y ⟨l, Function.update c k i l⟩) / ∏ l, y ⟨l, c l⟩ = y ⟨k, i⟩ / y ⟨k, c k⟩ := by
-    rw [← Finset.prod_div_distrib, Finset.prod_eq_single k]
-    · simp
-    · intro l _ hl
-      rw [Function.update_of_ne hl, div_self (ne_of_chart h l)]
-    · simp
-  rwa [h2] at h1
-
 theorem chart_update {p : Cpt ξ} {c : ∀ k, J k} (h : InChart ξ (fun c' : ∀ k, J k => ∏ k, y ⟨k, c' k⟩) c p)
     [DecidableEq K] (k₀ : K) (i : J k₀) (hi : InChart ξ (fun i' : J k₀ => y ⟨k₀, i'⟩) i p) :
     InChart ξ (fun c' : ∀ k, J k => ∏ k, y ⟨k, c' k⟩) (Function.update c k₀ i) p := by
@@ -123,7 +107,7 @@ theorem chart_update {p : Cpt ξ} {c : ∀ k, J k} (h : InChart ξ (fun c' : ∀
     · subst hk
       simpa using hi.1
     · rw [Function.update_of_ne hk]
-      exact ne_of_chart h k
+      exact _root_.GlobalTheory.CompanionTheory.Ar.Lat.block_coord_ne_zero h k
   refine ⟨Finset.prod_ne_zero_iff.2 fun k _ => hne k, fun c' => ?_⟩
   show (∏ k, y ⟨k, c' k⟩) / ∏ k, y ⟨k, Function.update c k₀ i k⟩ ∈ regAt ξ p
   rw [← Finset.prod_div_distrib]
@@ -132,7 +116,7 @@ theorem chart_update {p : Cpt ξ} {c : ∀ k, J k} (h : InChart ξ (fun c' : ∀
   · subst hk
     simpa using hi.2 (c' k)
   · rw [Function.update_of_ne hk]
-    exact ratio_mem h k (c' k)
+    exact _root_.GlobalTheory.CompanionTheory.Ar.Lat.block_ratio_mem h k (c' k)
 
 theorem chartRing_mem {p : Cpt ξ} {c : ∀ k, J k} (h : InChart ξ (fun c' : ∀ k, J k => ∏ k, y ⟨k, c' k⟩) c p)
     {a : Ω} (ha : a ∈ chartRingZ y c) : a ∈ regAt ξ p := by
@@ -140,7 +124,7 @@ theorem chartRing_mem {p : Cpt ξ} {c : ∀ k, J k} (h : InChart ξ (fun c' : �
   induction ha using Algebra.adjoin_induction with
   | mem x hx =>
     obtain ⟨q, rfl⟩ := hx
-    exact ratio_mem h q.1 q.2
+    exact _root_.GlobalTheory.CompanionTheory.Ar.Lat.block_ratio_mem h q.1 q.2
   | algebraMap r => simpa using intCast_mem (regAt ξ p) r
   | add x y _ _ hx hy => exact add_mem hx hy
   | mul x y _ _ hx hy => exact mul_mem hx hy
@@ -180,7 +164,7 @@ theorem isEff_of_data (G : RefGeo Y) (n : RootIx D → ℤ) (e : G.Ω) (b : G.Ω
   have hc := chart_update hc0 G.k₀ i hi
   set cc := Function.update c0 G.k₀ i with hcc
   have hcck : cc G.k₀ = i := by simp [hcc]
-  have hne := ne_of_chart hc
+  have hne := _root_.GlobalTheory.CompanionTheory.Ar.Lat.block_coord_ne_zero hc
   have hgen := hDeg.2 p (Set.mem_univ _) cc hc
   set a : G.K → ℤ := ∑ r, (-n r) • G.xdeg r with ha
   set E₀ : G.Ω := ∏ r, G.e r ^ (-n r) with hE₀
@@ -206,7 +190,7 @@ theorem isEff_of_data (G : RefGeo Y) (n : RootIx D → ℤ) (e : G.Ω) (b : G.Ω
   have hEc0 : Ec ≠ 0 := Finset.prod_ne_zero_iff.2 fun k _ => hne k
   have hMc : M / Ec ∈ regAt G.𝔐.ξ p := by
     rw [hM, hEc, ← Finset.prod_div_distrib]
-    exact Subring.prod_mem _ fun k _ => ratio_mem hc k (i₀ k)
+    exact Subring.prod_mem _ fun k _ => _root_.GlobalTheory.CompanionTheory.Ar.Lat.block_ratio_mem hc k (i₀ k)
   have hP : Q1 * Q2 * Pa = G.y ⟨G.k₀, i⟩ * Ec := by
     have h1 : G.y ⟨G.k₀, i⟩ * Ec = ∏ k, G.y ⟨k, cc k⟩ := by
       rw [hEc, ← Finset.mul_prod_erase Finset.univ (fun k => G.y ⟨k, cc k⟩) (Finset.mem_univ G.k₀), hcck]
@@ -278,7 +262,7 @@ theorem exists_eff : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsC
   obtain ⟨k, hk, e, he, he0⟩ := h2 (GlobalTheory.T.global_reference_gap_positive hG E H D Xo l c Y hgl hp hq G A ν hν) β dβ hβ hβP
   have hne0 : ∀ κ, ∃ i, G.y ⟨κ, i⟩ ≠ 0 := by
     obtain ⟨c0, hc0⟩ := G.𝔐.tie.cover ⟨genPt G.𝔐.ξ, specializes_rfl⟩
-    exact fun κ => ⟨c0 κ, ne_of_chart hc0 κ⟩
+    exact fun κ => ⟨c0 κ, _root_.GlobalTheory.CompanionTheory.Ar.Lat.block_coord_ne_zero hc0 κ⟩
   choose i₀ hi₀ using hne0
   set n : RootIx D → ℤ := fun r => ((k * 1 : ℕ) : ℤ) * ν r with hn'
   have hdeg : ∀ κ, (∑ r, (-n r) • G.xdeg r) κ = (k : ℤ) * (PB.combLine A.Re.ref (gapN ν)).a κ := by

@@ -167,7 +167,7 @@ theorem comb_ne_zero (R : RiemLat E g Λ) {ι : Type} [Fintype ι] (b : Module.B
     (ha : a ≠ 0) : comb R b a ≠ 0 := by
   intro h0
   apply ha
-  have hli := linearIndependent_periods R b
+  have hli := _root_.LevelTowerAlt.basis_indep R b
   have h1 : ∑ i, a i • R.P (b i) = 0 := by
     rw [← h0]
     refine Finset.sum_congr rfl fun i _ => ?_

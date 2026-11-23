@@ -137,7 +137,7 @@ theorem card_BrKer_le_of_prime_pow (l : ℕ) (hl : l.Prime) (k : ℕ) :
     have hnt : Nontrivial (GalLK p K L) := by
       rw [← Finite.one_lt_card_iff_nontrivial, hcard]
       exact Nat.one_lt_pow (Nat.succ_ne_zero k) hl.one_lt
-    obtain ⟨N, hN, hNi⟩ := exists_normal_index_eq_prime l (IsPGroup.of_card hcard)
+    obtain ⟨N, hN, hNi⟩ := _root_.ReciprocityTheory.DiscreteGroups.LocalClassField.Deg2.exists_normal_index l (IsPGroup.of_card hcard)
     obtain ⟨K', h1, h2, h3, h4, h5⟩ := exists_field_of_quotient hK hL h N
     have hn1 : (subG p K K').Normal := by rw [h4]; infer_instance
     have hn2 : (subG p K' L).Normal := subG_normal_of_le h1 h hn

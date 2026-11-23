@@ -58,7 +58,7 @@ namespace FubiniStudyChowHeightFormula₂.Adr
 
 variable {B : Type} [CommRing B]
 
-theorem e_succ_mem_aug (Q : PDPoly B) (n : ℕ) : Q.e (n + 1) ∈ Q.aug := Ideal.subset_span ⟨n, rfl⟩
+alias e_succ_mem_aug := _root_.GlobalTheory.PDA.PDPoly.e_succ_mem_aug
 
 def liftAlg (Q : PDPoly B) {C : Type} [CommRing C] [Algebra B C] (c : ℕ → C) (h0 : c 0 = 1)
     (hm : ∀ m n, c m * c n = ((m + n).choose m : C) * c (m + n)) : Q.P →ₐ[B] C :=

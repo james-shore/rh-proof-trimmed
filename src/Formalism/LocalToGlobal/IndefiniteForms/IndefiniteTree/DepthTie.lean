@@ -343,25 +343,13 @@ theorem vw_N (v : HeightOneSpectrum (𝓞 K)) (N : ℕ) (hN : N ≠ 0) :
   push_cast
   rfl
 
-private theorem vw_mul_lemma (v : HeightOneSpectrum (𝓞 K)) (a b : K) (ha : a ≠ 0) (hb : b ≠ 0) :
-    vw v (a * b) = vw v a + vw v b := by
-  unfold vw
-  rw [← FractionalIdeal.spanSingleton_mul_spanSingleton]
-  have h1 : FractionalIdeal.spanSingleton (nonZeroDivisors (𝓞 K)) a ≠ 0 :=
-    FractionalIdeal.spanSingleton_eq_zero_iff.not.mpr ha
-  have h2 : FractionalIdeal.spanSingleton (nonZeroDivisors (𝓞 K)) b ≠ 0 :=
-    FractionalIdeal.spanSingleton_eq_zero_iff.not.mpr hb
-  first
-    | exact FractionalIdeal.count_mul K v h1 h2
-    | exact FractionalIdeal.count_mul h1 h2
-
 theorem vw_sig (hsp : PiSplit (H := H) Dd) (hprime : Dd.Q.g1.Prime ∧ Dd.Q.g2.Prime ∧ Dd.Q.q1.Prime ∧ Dd.Q.dd.Prime)
     (v : HeightOneSpectrum (𝓞 K)) (Dw' : Datum H) (j : ℕ) :
     (vw v (sigAt (Dw := Dw') (H := H) (LL := K) Dd j) : ℝ) = (vw v (nnKAt (H := H) (LL := K) Dd j) : ℝ) +
       (padicValNat (plc v) (Nsig Dd.Q (DF Dw' (Dd.aL j)) (DF Dw' (Dd.aF j))) : ℝ) * (ramw v : ℝ) := by
   have hn : nnKAt (H := H) (LL := K) Dd j ≠ 0 := nnK_ne_zero Dd hsp ⟨hprime.1, hprime.2.1⟩ j
   have hN : Nsig Dd.Q (DF Dw' (Dd.aL j)) (DF Dw' (Dd.aF j)) ≠ 0 := Nsig_ne_zero _ hprime _ _
-  rw [sigAt_eq, vw_mul_lemma v _ _ hn (Nat.cast_ne_zero.mpr hN), vw_N v _ hN]
+  rw [sigAt_eq, _root_.Formalism.DivisionValues.ValuationRepresentative.vw_mul v _ _ hn (Nat.cast_ne_zero.mpr hN), vw_N v _ hN]
   rw [Int.cast_add, Int.cast_mul, Int.cast_natCast]
 
 theorem sigmaLevel (hσ : ∀ v j, O.σ v j = sigAt (Dw := Dw (ι j)) (H := H) (LL := K) Dd (ι j))

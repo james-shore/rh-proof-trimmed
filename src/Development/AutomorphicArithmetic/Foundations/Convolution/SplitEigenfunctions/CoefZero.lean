@@ -45,6 +45,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.BaseChangeUnits.CycCOfCyclic
 public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.UnitaryActions.ContinuousAdelicGL2OfContinuousEntries
+import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.IsotypicQuotients.NormWfLe
 
 @[expose] public section
 
@@ -63,31 +64,7 @@ variable {E : Type} [Field E] [NumberField E]
 
 private theorem vn (q : A E) : (nU q).val = !![1, q; 0, 1] := rfl
 
-private theorem n_add (x y : A E) : gl (nU (x + y)) = gl (nU x) * gl (nU y) := by
-  refine Units.ext ?_
-  ext i j
-  fin_cases i <;> fin_cases j <;> simp [vn, Matrix.mul_apply, Fin.sum_univ_two, add_comm]
-
-private theorem n_zero : gl (nU (0 : A E)) = 1 := by
-  refine Units.ext ?_
-  ext i j
-  fin_cases i <;> fin_cases j <;> simp [vn]
-
-private theorem cont_n : Continuous fun q : A E => gl (nU q) := by
-  refine Units.continuous_iff.2 ⟨?_, ?_⟩
-  · refine continuous_matrix fun i j => ?_
-    fin_cases i <;> fin_cases j <;> simp [vn] <;> fun_prop
-  · have e : ∀ q : A E, (gl (nU q))⁻¹ = gl (nU (-q)) := fun q =>
-      inv_eq_of_mul_eq_one_right (by rw [← n_add, add_neg_cancel, n_zero])
-    simp only [e]
-    refine continuous_matrix fun i j => ?_
-    fin_cases i <;> fin_cases j <;> simp [vn] <;> fun_prop
-
-private theorem rat_n (k : E) : ∃ γ : GL (Fin 2) E, ratGL E 2 γ = gl (nU (rt k)) := by
-  refine ⟨Matrix.SpecialLinearGroup.toGL ⟨!![1, k; 0, 1], by simp [Matrix.det_fin_two]⟩, Units.ext ?_⟩
-  ext i j
-  change algebraMap E (A E) (!![1, k; 0, 1] i j) = _
-  fin_cases i <;> fin_cases j <;> simp [vn]
+private alias cont_n := _root_.UpperTheory.ConvolutionTheory.R2.Pp.cont_n
 
 private theorem rat_w : ∃ γ : GL (Fin 2) E, ratGL E 2 γ = gl (wW E) := by
   refine ⟨Matrix.SpecialLinearGroup.toGL ⟨!![0, 1; -1, 0], by simp [Matrix.det_fin_two]⟩, Units.ext ?_⟩
@@ -115,9 +92,9 @@ private theorem per_Fh (D : Dat ℚ E) {Φ : GL (Fin 2) (A E) → ℂ} (hL : ∀
     (h : GL (Fin 2) (A E)) : ∀ l ∈ vecLattice ℚ (Fin 2), ∀ x, Fh D Φ h (l + x) = Fh D Φ h x := by
   intro l hl x
   obtain ⟨η, rfl⟩ := mem_vecLattice.1 hl
-  obtain ⟨γ, hγ⟩ := rat_n (algebraMap ℚ E (η 0) + algebraMap ℚ E (η 1) * D.θ)
+  obtain ⟨γ, hγ⟩ := _root_.UpperTheory.ConvolutionTheory.R2.Pp.rat_n (algebraMap ℚ E (η 0) + algebraMap ℚ E (η 1) * D.θ)
   simp only [Fh, Pi.add_apply]
-  rw [D.mkE_add, n_add]
+  rw [D.mkE_add, _root_.UpperTheory.ConvolutionTheory.R2.Pp.n_add]
   change Φ (gl (nU (D.mkE (rt (η 0)) (rt (η 1)))) * gl (nU (D.mkE (x 0) (x 1))) * h) = _
   rw [D.mkE_rt, ← hγ, mul_assoc, hL]
 
@@ -260,7 +237,7 @@ private theorem n_inv (D : Dat ℚ E) {Φ : GL (Fin 2) (A E) → ℂ} (hΦ : Con
     simp [hF, Fh, ha]
   have e3 : F 0 = Φ h := by
     simp only [hF, Fh, Pi.zero_apply]
-    rw [D.mkE_zero, n_zero, one_mul]
+    rw [D.mkE_zero, _root_.UpperTheory.ConvolutionTheory.R2.Pp.n_zero, one_mul]
   rw [← e2, h1, e3]
 
 end UpperTheory.ConvolutionTheory.RankTwoDescent.VanishingCoefficients

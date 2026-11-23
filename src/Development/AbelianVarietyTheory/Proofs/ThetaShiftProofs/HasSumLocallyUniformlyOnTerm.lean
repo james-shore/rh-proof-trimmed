@@ -61,15 +61,7 @@ namespace GlobalTheory
 
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (hermForm eTwoPi)
 
-theorem summable_exp_neg_sum_abs_int {ι : Type} [Fintype ι] :
-    Summable fun m : ι → ℤ => Real.exp (-∑ i, |(m i : ℝ)|) := by
-  first
-  | exact @_root_.GlobalTheory.SummableExpNegAbsSum.summable_exp_neg_sum_abs
-  | exact _root_.GlobalTheory.SummableExpNegAbsSum.summable_exp_neg_sum_abs
-  | (apply _root_.GlobalTheory.SummableExpNegAbsSum.summable_exp_neg_sum_abs <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SummableExpNegAbsSum.summable_exp_neg_sum_abs <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SummableExpNegAbsSum.summable_exp_neg_sum_abs <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.SummableExpNegAbsSum.summable_exp_neg_sum_abs ..)
+alias summable_exp_neg_sum_abs_int := _root_.GlobalTheory.SummableExpNegAbsSum.summable_exp_neg_sum_abs
 
 namespace AnArc
 

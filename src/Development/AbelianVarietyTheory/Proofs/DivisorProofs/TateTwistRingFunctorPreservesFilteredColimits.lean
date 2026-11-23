@@ -77,9 +77,9 @@ theorem prim_map_comp {q : ℕ} {A B C : Type} [CommRing A] [CommRing B] [CommRi
 
 theorem twF_preservesFilteredColimits : ∀ (q : ℕ) (i : ℤ), PreservesFilteredColimitsOfSize.{0, 0} (twF q i) := by
   intro q i
-  rw [(GlobalTheory.T.preservesFilteredColimits_moduleCat_iff_forget_iff_elements (ULift.{1} (ZMod q)) (twF q i)).2]
+  rw [(_root_.GlobalTheory.EtC.FilteredElements.preservesFilteredColimits_modules_iff_elements (ULift.{1} (ZMod q)) (twF q i)).2]
   intro J _ _ D c hc
-  obtain ⟨hon, hinj⟩ := GlobalTheory.T.cyclotomicPrimitiveRoots_filtered_colimit q J D c hc
+  obtain ⟨hon, hinj⟩ := _root_.GlobalTheory.EtC.prim_filtered_colimit q J D c hc
   have hw : ∀ {j k : J} (f : j ⟶ k) (y : (twF q i).obj (D.obj j)),
       ((twF q i).map (c.ι.app k)).hom (((twF q i).map (D.map f)).hom y) = ((twF q i).map (c.ι.app j)).hom y := by
     intro j k f y
@@ -154,7 +154,7 @@ theorem twF_preservesFilteredColimits : ∀ (q : ℕ) (i : ℤ), PreservesFilter
         (Finsupp.mapDomain (Prim.map (D.map (IsFiltered.leftToMax j k)).hom) x -
           Finsupp.mapDomain (Prim.map (D.map (IsFiltered.rightToMax j k)).hom) s) = 0 := by
       rw [Finsupp.mapDomain_sub, ← Finsupp.mapDomain_comp, ← Finsupp.mapDomain_comp, hwP, hwP, hsr, sub_self]
-    have key := GlobalTheory.T.finsupp_mapDomain_eq_zero_at_filtered_stage (ULift.{1} (ZMod q)) J (primSys q D) (Prim q c.pt) (fun j => Prim.map (c.ι.app j).hom)
+    have key := _root_.GlobalTheory.finsupp_mapDomain_eq_zero_at_stage (ULift.{1} (ZMod q)) J (primSys q D) (Prim q c.pt) (fun j => Prim.map (c.ι.app j).hom)
       (fun j k f ζ => hwP' f ζ) hinj (IsFiltered.max j k) _ hz
     obtain ⟨n, h, hn⟩ := key
     refine ⟨n, IsFiltered.leftToMax j k ≫ h, ?_⟩

@@ -88,9 +88,9 @@ theorem geometric_height_bound_at_place (hX : GlobalTheory.CovTop.HypothesesX) (
     have : (0 : ℤ) ≤ ((dimFlag (dat p i) + 3) ^ 2 + 2 * ((dat p i).p + (dat p i).q) : ℕ) := by positivity
     push_cast at *
     nlinarith
-  have hgood := _root_.GlobalTheory.T.covering_domain_lattice_regularity hP _ p.T hL _ hp1 hq1 hf hj Y _ _ hYg u1 (fun τ => (hsa τ).antitone) hg1
-  have hbir := _root_.GlobalTheory.T.birOn_wtOf_of_consecutive_gap_bound hX hG hQ hS1 (_root_.GlobalTheory.T.covering_topology_refinement hP) hP.q15 hP.q16 _ p.T hL _ hp1 hq1 Y _ _ hYg u1 hgap
-  have hprop := (_root_.GlobalTheory.T.proportionality_principle_compactification hP hS1 hS2 hS3 _ p.T hL _ hp1 hq1 hf hj Y _ _ hYg).1
+  have hgood := _root_.GlobalTheory.CovTop.GoodDom.covering_regular_at_domain hP _ p.T hL _ hp1 hq1 hf hj Y _ _ hYg u1 (fun τ => (hsa τ).antitone) hg1
+  have hbir := _root_.GlobalTheory.DegVal.birOn_of_weight_gaps_large hX hG hQ hS1 (_root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems.toClassicalTheorems hP) hP.q15 hP.q16 _ p.T hL _ hp1 hq1 Y _ _ hYg u1 hgap
+  have hprop := (_root_.GlobalTheory.CompProport.hirzebruch_proportionality_toroidal hP hS1 hS2 hS3 _ p.T hL _ hp1 hq1 hf hj Y _ _ hYg).1
   intro Z
   refine ⟨hgood.2 Z, hbir Z, ?_⟩
   have hv : vdm u1 ≠ 0 := (GlobalTheory.CompHt.vdm_pos hsa).ne'

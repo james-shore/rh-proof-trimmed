@@ -97,7 +97,7 @@ theorem UpperTheory.Gal.crystallineComparison.Mod.kerU_of :
   intro hU p _ D R _ b N r w hw hu S _ s o o' ψ ψ' e hm hm' hlin h1 h2
   obtain ⟨α, hα1, hα2, hα3⟩ := hU p D r w hw hu e
   have hc0 : p ^ e ≠ 0 := pow_ne_zero _ (Fact.out : p.Prime).ne_zero
-  obtain ⟨hfin, hflat⟩ := GlobalTheory.T.isFinite_flat_abelianSchemeHom_of_quasiInverse S o.A o'.A o.ab o'.ab ψ ψ' (p ^ e) hc0 hm hm' h1 h2
+  obtain ⟨hfin, hflat⟩ := _root_.GlobalTheory.IsogFiniteFlat.isFinite_and_flat_of_quasiInverse S o.A o'.A o.ab o'.ab ψ ψ' (p ^ e) hc0 hm hm' h1 h2
   let ρ : 𝓞 D.F → (o.A ⟶ o.A) := fun a => o.act.act (algebraMap (𝓞 D.F) D.O a)
   have ρhom : ∀ a, IsMonHom (ρ a) := fun a => o.act.hom _
   have ρmul : ∀ a a', ρ (a * a') = ρ a ≫ ρ a' := fun a a' => by

@@ -143,13 +143,6 @@ theorem isMultiHomog_rename {κ : K → K'} {v : (Σ k, ι k) → Σ k, ι' k} (
   · rw [Function.extend_apply' _ _ _ hk]
     exact Finset.sum_eq_zero fun k _ => Finset.sum_eq_zero fun i _ => if_neg fun h => hk ⟨k, h⟩
 
-theorem isMultiHomog_mul {f g : MRing ι} {a b : K → ℕ} (hf : IsMultiHomog f a) (hg : IsMultiHomog g b) :
-    IsMultiHomog (f * g) (a + b) := by
-  classical
-  intro m hm k
-  obtain ⟨m₁, h₁, m₂, h₂, rfl⟩ := Finset.mem_add.1 (support_mul f g hm)
-  simp only [Finsupp.add_apply, Finset.sum_add_distrib, Pi.add_apply, hf m₁ h₁ k, hg m₂ h₂ k]
-
 end Forms
 
 section Sides
@@ -385,7 +378,7 @@ theorem joint_system : Inputs → ReciprocityTheory.ChartRestriction.G.Geo.ResK.
     · rcases hprime.mem_or_mem h with h | h
       exacts [hβn h, hn₁ h]
     · exact hn₂ h
-  have hB := isMultiHomog_mul (isMultiHomog_mul hβ (isMultiHomog_rename hb₁ hγ₁)) (isMultiHomog_rename hb₂ hγ₂)
+  have hB := _root_.PositivityTheory.UnitarySelfGeneration.ialg_mul (_root_.PositivityTheory.UnitarySelfGeneration.ialg_mul hβ (isMultiHomog_rename hb₁ hγ₁)) (isMultiHomog_rename hb₂ hγ₂)
   obtain ⟨K', _, ι', _, κ, v, y', J, R, Amp, hb, hy, hfield, har', -, -, hpot, hpos, hbad⟩ :=
     GlobalTheory.CompanionTheory.Ar.Cmp.Good.exists_good_model hK K ι Ω y D _ _ har hB hBn
   obtain ⟨S, Re, f, g, d, h⟩ := assemble hI.pullback Re₁ Re₂ hb₁ hb₂ har alg₁ alg₂ hS hγ₁ hz₁ hγ₂ hz₂ rfl hB hBn
@@ -395,8 +388,5 @@ theorem joint_system : Inputs → ReciprocityTheory.ChartRestriction.G.Geo.ResK.
 end GlobalTheory.CompanionTheory.Ar.Cmp.BuildK
 
 namespace PositivityTheory.UnitarySelfGeneration
-
-open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I2 ReciprocityTheory.ChartRestriction.G.AI.I4 ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P GlobalTheory.CompanionTheory.Ar.Cmp GlobalTheory.CompanionTheory.Ar.PB Filter Topology
-open ReciprocityTheory.ChartRestriction.G.AI.I1 (IsBlockMap pullDeg)
 
 end PositivityTheory.UnitarySelfGeneration

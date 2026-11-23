@@ -256,8 +256,8 @@ theorem ipTh_ptOf_glue : ∀ (D : D7) (V W : HSp D) (S S' : D.what₂.Tau → SP
   have hψ := hω.std
   have hN := ipTh_self_ne_zero hψ hcov hf.theta hf.ne
   refine ⟨hN, ?_⟩
-  have comm := GlobalTheory.T.fockOperators_distinct_real_places_commute_theta D V W S S' M M' θ ψ χS χT ω hθ hω
-  have fac1 := GlobalTheory.T.fockCoefficient_realPlace_two_vacua D V W S S' M M' θ ψ χS χT ω hθ hω m X hcov
+  have comm := _root_.GlobalTheory.TwoPlaceComm.twoPlace_comm D V W S S' M M' θ ψ χS χT ω hθ hω
+  have fac1 := _root_.GlobalTheory.VacCoefAtPlace.coef_at_place D V W S S' M M' θ ψ χS χT ω hθ hω m X hcov
   dsimp only at comm fac1
   have key : ∀ A : Finset D.what₂.Tau, ∀ P : D.what₂.Tau → LPol W.rank V.rank, (∀ τ ∉ A, P τ = 1) →
       (∀ τ ∉ A, IsFockVacAt (heisO ψ V W) θ τ (cplxO (cart M τ) (cart M' τ)) (ptOf ψ θ M M' f (glue P))) ∧

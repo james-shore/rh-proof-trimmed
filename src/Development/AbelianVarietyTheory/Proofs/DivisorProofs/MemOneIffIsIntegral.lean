@@ -45,6 +45,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsNsmulMulVecMem
 
 @[expose] public section
 
@@ -57,16 +58,6 @@ open NumberField GlobalTheory.CMVal
 namespace GlobalTheory.RoadE
 
 variable {E : Type} [Field E] [NumberField E]
-
-theorem exists_nat_mul_isIntegral (a : E) : ∃ k : ℕ, 0 < k ∧ IsIntegral ℤ ((k : E) * a) := by
-  have h : IsAlgebraic ℤ a := (IsFractionRing.isAlgebraic_iff ℤ ℚ E).2 (Algebra.IsAlgebraic.isAlgebraic a)
-  obtain ⟨k, hk, hi⟩ := h.exists_integral_multiple
-  refine ⟨k.natAbs, Int.natAbs_pos.2 hk, ?_⟩
-  rw [zsmul_eq_mul] at hi
-  rw [Nat.cast_natAbs]
-  rcases abs_choice k with h | h <;> rw [h]
-  · exact hi
-  · push_cast; rw [neg_mul]; exact hi.neg
 
 theorem mem_one_iff_isIntegral (a : maximalRealSubfield E) :
     a ∈ (1 : Submodule (𝓞 (maximalRealSubfield E)) (maximalRealSubfield E)) ↔ IsIntegral ℤ (a : E) := by
@@ -89,8 +80,8 @@ theorem exists_coord_integral [IsCMField E] {θ : E} (hθ : θ ∉ maximalRealSu
       IsIntegral ℤ (a : E) ∧ IsIntegral ℤ (b : E) := by
   set σ := IsCMField.complexConj E with hσ
   have hδ : θ - σ θ ≠ 0 := fun h => hθ ((IsCMField.complexConj_eq_self_iff E θ).1 (sub_eq_zero.1 h).symm)
-  obtain ⟨k₁, h₁, i₁⟩ := exists_nat_mul_isIntegral (θ - σ θ)⁻¹
-  obtain ⟨k₂, h₂, i₂⟩ := exists_nat_mul_isIntegral θ
+  obtain ⟨k₁, h₁, i₁⟩ := _root_.GlobalTheory.IntegralMultipleClearDenominators.exists_nat_mul_integral (θ - σ θ)⁻¹
+  obtain ⟨k₂, h₂, i₂⟩ := _root_.GlobalTheory.IntegralMultipleClearDenominators.exists_nat_mul_integral θ
   refine ⟨k₁ * k₂, Nat.mul_pos h₁ h₂, fun z a b hz e => ?_⟩
   have hσz : IsIntegral ℤ (σ z) := hz.map (σ : E →+* E).toIntAlgHom
   have ea : σ (a : E) = a := σ.commutes a
@@ -116,7 +107,7 @@ theorem exists_level : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (�
   intro E _ _ _ θ c y N₀ hc hθ hN₀
   obtain ⟨M, hM, hlo, hhi⟩ := GlobalTheory.CMVal.LatBound.lattice_between E c hc y
   obtain ⟨k, hk, hco⟩ := exists_coord_integral (θ := θ) fun h => hθ ⟨⟨θ, h⟩, rfl⟩
-  obtain ⟨D, hD, iD⟩ := exists_nat_mul_isIntegral θ
+  obtain ⟨D, hD, iD⟩ := _root_.GlobalTheory.IntegralMultipleClearDenominators.exists_nat_mul_integral θ
   have hn : ∀ m : ℕ, IsIntegral ℤ (m : E) := fun m => by exact_mod_cast (isIntegral_algebraMap (R := ℤ) (A := E) (x := (m : ℤ)))
   refine ⟨k * M, N₀ * (k * M * M * D), passMul θ c y (k * M), by positivity, by positivity, dvd_mul_right _ _,
     ⟨fun x hx => ?_, fun x hx => ?_⟩, fun x => Iff.rfl⟩

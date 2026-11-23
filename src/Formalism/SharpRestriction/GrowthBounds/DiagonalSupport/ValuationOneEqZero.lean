@@ -54,19 +54,11 @@ section Bij
 
 variable {n' r : ℕ} [NeZero n'] (Fr : Frames n' r) {L₁ N₁ : ℕ}
 
-theorem dg_posOf_val (x : ℤ) : ((posOf n' x).val : ℤ) = x % n' := by
-  have hn : (0 : ℤ) < n' := by exact_mod_cast NeZero.pos n'
-  have h0 : 0 ≤ x % n' := Int.emod_nonneg _ hn.ne'
-  have h1 : x % n' < n' := Int.emod_lt_of_pos _ hn
-  simp only [posOf]
-  rw [Nat.mod_eq_of_lt (by omega)]
-  omega
-
 theorem dg_posOf_inj {y a b : ℤ} (ha : y ≤ a ∧ a < y + n') (hb : y ≤ b ∧ b < y + n') (h : posOf n' a = posOf n' b) :
     a = b := by
   have hn : (0 : ℤ) < n' := by exact_mod_cast NeZero.pos n'
   have hv := congrArg (fun t : Fin n' => (t.val : ℤ)) h
-  simp only [dg_posOf_val] at hv
+  simp only [_root_.Formalism.MainNotions.G.WittFrameLocaliserOrders.residue_position_val] at hv
   have e1 := Int.mul_ediv_add_emod a n'
   have e2 := Int.mul_ediv_add_emod b n'
   have hk : a - b = n' * (a / n' - b / n') := by
@@ -110,9 +102,7 @@ theorem dg_z_mono (hV : Fr.Valid L₁ N₁) (hr : 1 ≤ r) : StrictMono fun j : 
   intro j
   exact lt_of_lt_of_le (hV.2.2.2.1 j) (dg_fr_le hV (j + 1) (Nat.zero_le _) (by omega))
 
-theorem frame_end_lt_next_start (hV : Fr.Valid L₁ N₁) (j : ℤ) : Fr.fr (j - 1) (r - 1) < Fr.fr j 0 := by
-  have h := hV.2.2.2.1 (j - 1)
-  rwa [sub_add_cancel] at h
+alias frame_end_lt_next_start := _root_.Formalism.MainNotions.G.symbolGeneratorData.dv_frame_lt
 
 theorem dg_llPos_eq (j : ℤ) (l : ℕ) (hl : l < (Fr.LLset j).card) :
     llPos Fr j l = (Fr.LLset j).orderEmbOfFin rfl ⟨l, hl⟩ := by
@@ -251,7 +241,7 @@ theorem dg_surj (hV : Fr.Valid L₁ N₁) (hr : 1 ≤ r) (hJ : J = Fr.J) (hnL : 
     · have := Int.emod_lt_of_pos ((s.val : ℤ) - (Fr.fr (-1) (r - 1) + 1)) hn
       omega
     · apply Fin.ext
-      have h1 := dg_posOf_val (n' := n')
+      have h1 := _root_.Formalism.MainNotions.G.WittFrameLocaliserOrders.residue_position_val (n' := n')
         (Fr.fr (-1) (r - 1) + 1 + ((s.val : ℤ) - (Fr.fr (-1) (r - 1) + 1)) % n')
       have h2 : (Fr.fr (-1) (r - 1) + 1 + ((s.val : ℤ) - (Fr.fr (-1) (r - 1) + 1)) % n') % n' =
           s.val := by

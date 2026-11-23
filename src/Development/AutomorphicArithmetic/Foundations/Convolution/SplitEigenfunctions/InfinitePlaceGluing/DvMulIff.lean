@@ -65,12 +65,7 @@ open UpperTheory.ConvolutionTheory.R2.G (FS2 Rw nE row)
 open UpperTheory.V.Af.Smo (EigAt)
 open scoped ComplexOrder
 
-private theorem ψ_add' (x y : A ℚ) : ψ (x + y) = ψ x * ψ y := by simp [ψ, AddChar.map_add_eq_mul]
-
 private theorem ψ_zero' : ψ (0 : A ℚ) = 1 := by simp [ψ]
-
-private theorem ψ_neg_mul' (x : A ℚ) : ψ (-x) * ψ x = 1 := by
-  rw [← ψ_add', neg_add_cancel, ψ_zero']
 
 private theorem congE_mono {E : Type} [Field E] [NumberField E] {M L : ℕ} (h : M ∣ L) {κ : GL (Fin 2) (A E)}
     (hκ : CongE L κ) : CongE M κ := by
@@ -195,7 +190,7 @@ theorem UpperTheory.ConvolutionTheory.RankTwoDescent.exGd_of :
       rw [hΦ]; exact e
     rw [e', hc]
     have e2 : ψ ((a : A ℚ) * iota L * (1 - (y : A ℚ))) = ψ (x a) * ψ (-((y : A ℚ) * x a)) := by
-      rw [← ψ_add', hx]
+      rw [← _root_.UpperTheory.ConvolutionTheory.RankTwoDescent.Nz.psi_add, hx]
       congr 1
       ring
     rw [e2]
@@ -212,7 +207,7 @@ theorem UpperTheory.ConvolutionTheory.RankTwoDescent.exGd_of :
     have e2 : ψ (-((y : A ℚ) * ((M₀ : A ℚ) * (d : A ℚ) * b))) = 1 := by
       have := mul_right_cancel₀ hz' (e.symm.trans (one_mul _).symm)
       exact this
-    have e3 := ψ_neg_mul' ((y : A ℚ) * ((M₀ : A ℚ) * (d : A ℚ) * b))
+    have e3 := _root_.UpperTheory.ConvolutionTheory.RankTwoDescent.Nz.psi_neg_mul ((y : A ℚ) * ((M₀ : A ℚ) * (d : A ℚ) * b))
     rw [e2, one_mul] at e3
     rw [hMdef]
     push_cast

@@ -147,7 +147,7 @@ theorem moments_fin : (∀ (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) (B :
   · rw [norm_mul, norm_mul, hΩ, hlam, hUn ι, GlobalTheory.MomOne.Basic.norm_nat_eq_one (Nat.Coprime.symm hcop)]
     norm_num
   intro N N' L L' hA t ht
-  obtain ⟨g, S, e, hSd, hSok, hLa, hhf, hbeta, hLaRep, hNN⟩ := GlobalTheory.T.exists_analyticSetup_periodLatticePair D cc δ B hcc hδ N N' L L' hA
+  obtain ⟨g, S, e, hSd, hSok, hLa, hhf, hbeta, hLaRep, hNN⟩ := _root_.GlobalTheory.MomSetup.periodSetup D cc δ B hcc hδ N N' L L' hA
   obtain ⟨N₀, hN₀, hN₀p, hN₀t⟩ := ht
   have hHm : S.Hm.IsHermitian := hSok.2.2.1.1
   have hd0 : 0 < S.d := hSd ▸ hdp.pos

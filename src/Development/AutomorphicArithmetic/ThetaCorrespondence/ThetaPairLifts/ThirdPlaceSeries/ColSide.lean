@@ -74,22 +74,22 @@ theorem GlobalTheory.Fam.colSide_alt : GlobalTheory.Published.DiscreteSeriesCove
   classical
   have hm : (I.rec7 l Z).R.m = B.R.m := rfl
   have hRow : ∀ col, (a.fam row col).RowOK := fun col => ⟨ha.meas, ha.last, ha.x, hrow, hsame⟩
-  have hc : (commOf (_root_.GlobalTheory.Fam.pk_z W) u a.g).Is := (_root_.GlobalTheory.T.famCh_is_and_tuples_is_of_colOK hDS hHC W u hW.pk (a.fam row _root_.GlobalTheory.Fam.trivialColumnChoice) (hRow _)).1
-  choose J hJ using _root_.GlobalTheory.T.exists_quadratic_extension_reads_of_true W hW u a ha haT hc
-  obtain ⟨C, hC0, hC⟩ := _root_.GlobalTheory.T.true_geometry_row_pair_relation_alt_alt_alt W hW u a ha haT hiA
+  have hc : (commOf (_root_.GlobalTheory.Fam.pk_z W) u a.g).Is := (_root_.GlobalTheory.Fam.IsFam.main_alt_alt hDS hHC W u hW.pk (a.fam row _root_.GlobalTheory.Fam.trivialColumnChoice) (hRow _)).1
+  choose J hJ using _root_.GlobalTheory.Fam.readsExists_alt W hW u a ha haT hc
+  obtain ⟨C, hC0, hC⟩ := _root_.GlobalTheory.Fam.QuadraticExtensionData.dat_exists W hW u a ha haT hiA
   choose s ζ ρ hD using fun t => hC t (J t) (hJ t)
-  obtain ⟨V, VT, hV0, hVT0, hV⟩ := _root_.GlobalTheory.T.true_geometry_exists_volume_data_alt W hW u a ha haT
-  obtain ⟨kom, hkom⟩ := _root_.GlobalTheory.T.true_geometry_exists_kernel_alt W hW u a ha haT
+  obtain ⟨V, VT, hV0, hVT0, hV⟩ := _root_.GlobalTheory.Fam.vol_level_wt_const_alt W hW u a ha haT
+  obtain ⟨kom, hkom⟩ := _root_.GlobalTheory.Fam.KomExist.exists_compactOpen_alt W hW u a ha haT
   have hdd0 : ∀ t j α γ, ∃ d, j < B.R.m → GlobalTheory.SeeSaw.IsFinComb d ∧ ∀ f, comb (_root_.GlobalTheory.Fam.pk_z W).ψ _ _ d f =
       comb (_root_.GlobalTheory.Fam.pk_z W).ψ _ _ ((J t).dQ (s t) j α γ) (comb (_root_.GlobalTheory.Fam.pk_z W).ψ _ _ (a.v.dG j) (comb (_root_.GlobalTheory.Fam.pk_z W).ψ _ _ (a.v.dT j) f)) := by
     intro t j α γ
     by_cases hj : j < B.R.m
-    · obtain ⟨h1, h2, h3⟩ := _root_.GlobalTheory.T.true_geometry_twist_local_value_alt W hW u a ha haT t (J t) (hJ t) (s t) j α γ hj
+    · obtain ⟨h1, h2, h3⟩ := _root_.GlobalTheory.Fam.FinData.main_alt_alt W hW u a ha haT t (J t) (hJ t) (s t) j α γ hj
       obtain ⟨d, hd⟩ := GlobalTheory.Fam.finComb3 _ (_root_.GlobalTheory.Fam.pk_z W).ψ _ _ _ _ _ h1 h2 h3
       exact ⟨d, fun _ => hd⟩
     · exact ⟨0, fun h => absurd h hj⟩
   choose dd hdd using hdd0
-  obtain ⟨S', hS'⟩ := _root_.GlobalTheory.T.true_geometry_joint_twist_relation_alt W hW u a ha haT J hJ k
+  obtain ⟨S', hS'⟩ := _root_.GlobalTheory.Fam.colOf_readS_alt W hW u a ha haT J hJ k
   have hone : ∀ t, ∃ β₀ : (J t).Ch B.R.m, ∀ β, β = β₀ := fun t => by
     have hc1 : Fintype.card ((J t).Ch B.R.m) = 1 := by
       rw [Fintype.card_pi]
@@ -147,7 +147,7 @@ theorem GlobalTheory.Fam.colSide_alt : GlobalTheory.Published.DiscreteSeriesCove
     show _ • (if j < B.R.m then _ else 0) = _
     rw [if_pos hj]
     rfl
-  have hpl := fun t => _root_.GlobalTheory.T.true_geometry_twist_local_data_alt W hW u a ha haT t (J t) (hJ t)
+  have hpl := fun t => _root_.GlobalTheory.Fam.QJPlaces.places_under_alt W hW u a ha haT t (J t) (hJ t)
   have hQ : ∀ t p, p ∈ (w₀ t).Q ↔ ∃ PP ∈ (_root_.GlobalTheory.Fam.pk_z W).Q t, p = PP.under (𝓞 (I.rec7 l Z).host.F) := fun t p => by
     show p ∈ Finset.univ.image (fun i => ((J t).G i).q.v) ↔ _
     rw [Finset.mem_image]
@@ -192,7 +192,7 @@ theorem GlobalTheory.Fam.colSide_alt : GlobalTheory.Published.DiscreteSeriesCove
         exact ⟨⟨_, _, hkom t j hj⟩, hv, (hdd t j α γ hj).1⟩
       e := fun t j α g hg => by
         obtain ⟨x, hx, rfl⟩ := Finset.mem_image.1 (Finsupp.mapDomain_support hg)
-        exact (_root_.GlobalTheory.T.true_geometry_joint_twist_data_alt W hW u a ha haT J hJ row col (fun _ => rfl) (k.sc t) (cTf t) t j α x (Finsupp.support_smul hx)).2
+        exact (_root_.GlobalTheory.Fam.famOf_eps_mem_alt W hW u a ha haT J hJ row col (fun _ => rfl) (k.sc t) (cTf t) t j α x (Finsupp.support_smul hx)).2
       eT := fun t n h β g hg => by
         obtain ⟨x, hx, rfl⟩ := Finset.mem_image.1 (Finsupp.mapDomain_support hg)
         have : x = 1 := by
@@ -229,16 +229,16 @@ theorem GlobalTheory.Fam.colSide_alt : GlobalTheory.Published.DiscreteSeriesCove
     { ok := hOK
       pins := hPins
       same := fun t => ⟨rfl, rfl, rfl, rfl, rfl, rfl⟩
-      laws := fun t => _root_.GlobalTheory.T.true_geometry_family_final_alt hDS hHC W hW u a ha haT row col (hRow col) hOK t (F t) (w₀ t) (s t) (hD t).1 (hPins t) (hQ t)
-      lev := fun t => _root_.GlobalTheory.T.true_geometry_quadratic_twist_level_alt W hW u a ha haT t (J t) (hJ t) row col (F t) rfl rfl (fun i => HEq.rfl)
-      vec := fun t => _root_.GlobalTheory.T.true_geometry_joint_twist_identity_alt W hW u a ha haT J hJ row col (fun _ => rfl) (k.sc t) _ t
+      laws := fun t => _root_.GlobalTheory.QColLaws.laws_resc_alt hDS hHC W hW u a ha haT row col (hRow col) hOK t (F t) (w₀ t) (s t) (hD t).1 (hPins t) (hQ t)
+      lev := fun t => _root_.GlobalTheory.QLevAt.qLev_of_reads_alt W hW u a ha haT t (J t) (hJ t) row col (F t) rfl rfl (fun i => HEq.rfl)
+      vec := fun t => _root_.GlobalTheory.QVecJoin.qVec_pinTup_alt W hW u a ha haT J hJ row col (fun _ => rfl) (k.sc t) _ t
       FY := fun t j f => Iff.rfl
       FT := fun t f => Set.mem_univ f
       FX := fun t j _ ψ _ α y => Set.mem_univ _
       atQ := fun t j => by
-        obtain ⟨h1, h2, h3⟩ := _root_.GlobalTheory.T.true_geometry_joint_twist_value_alt W hW u a ha haT J hJ row col (fun _ => rfl) (k.sc t) (cTf t) t j
+        obtain ⟨h1, h2, h3⟩ := _root_.GlobalTheory.QPl.PinComb.famOf_pinTup_combAt_alt W hW u a ha haT J hJ row col (fun _ => rfl) (k.sc t) (cTf t) t j
         refine ⟨h1, h2, fun α γ x hx => h3 α γ x (Finsupp.support_smul hx)⟩
-      e := fun t j α => ⟨rfl, fun g hg => (_root_.GlobalTheory.T.true_geometry_joint_twist_data_alt W hW u a ha haT J hJ row col (fun _ => rfl) (k.sc t) (cTf t) t j α g (Finsupp.support_smul hg)).1⟩
+      e := fun t j α => ⟨rfl, fun g hg => (_root_.GlobalTheory.Fam.famOf_eps_mem_alt W hW u a ha haT J hJ row col (fun _ => rfl) (k.sc t) (cTf t) t j α g (Finsupp.support_smul hg)).1⟩
       eT := fun t n h β => ⟨rfl, fun g hg => by
         have hg' := Finsupp.support_single_subset (Finsupp.support_smul hg)
         rw [Finset.mem_singleton.1 hg']
@@ -256,5 +256,5 @@ theorem GlobalTheory.Fam.colSide_alt : GlobalTheory.Published.DiscreteSeriesCove
         show GlobalTheory.Fam.UnitRatio _ (VT * ∑ β, s t B.R.m β) (VT * ∑ β, s _ B.R.m β)
         rw [hsum, hsum]
         exact hroot _ _ ((hD t).1 _ _) _ ((hD _).1 _ _) _ hVT0
-      zero := _root_.GlobalTheory.T.true_geometry_joint_twist_bound_alt W hW u a ha haT J hJ row kom dd _ s cV cK cP (fun t α => (hD t).2.1 α) hPinCh }
+      zero := _root_.GlobalTheory.Fam.chartZero_colOf_alt W hW u a ha haT J hJ row kom dd _ s cV cK cP (fun t α => (hD t).2.1 α) hPinCh }
 end

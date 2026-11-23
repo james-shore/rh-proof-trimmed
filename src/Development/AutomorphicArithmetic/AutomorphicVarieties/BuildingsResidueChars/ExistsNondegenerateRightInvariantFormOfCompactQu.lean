@@ -63,7 +63,7 @@ theorem UpperTheory.exists_nondegenerate_right_invariant_form_of_compact_quotien
   haveI : BorelSpace G := ⟨rfl⟩
   haveI : Countable Γ := TopologicalSpace.separableSpace_iff_countable.1 inferInstance
   obtain ⟨μ, hμ⟩ : ∃ μ : Measure G, μ.IsHaarMeasure := ⟨Measure.haar, inferInstance⟩
-  obtain ⟨𝓕, -, h𝓕'⟩ := Formalism.IndefR.Eqv.G5.fdom_exists_all Γ
+  obtain ⟨𝓕, -, h𝓕'⟩ := _root_.Bl.SecondBlockLemmaC.goal1 Γ
   have h𝓕 := h𝓕' μ
   have hfin : μ 𝓕 < ⊤ := by
     refine lt_of_le_of_lt ?_ (hC.measure_lt_top (μ := μ))

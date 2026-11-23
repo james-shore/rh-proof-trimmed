@@ -99,12 +99,6 @@ lemma log_sup_support {ι : Type} [Fintype ι] (x : ι → L) (hx : ∃ i, x i �
     exact le_antisymm hle hge
   simp [h3]
 
-lemma log_support {x : L} (hx : x ≠ 0) : (Function.support fun v : FinitePlace L => Real.log (v x)).Finite := by
-  refine (FinitePlace.hasFiniteMulSupport hx).subset fun v hv => ?_
-  intro h
-  apply hv
-  simp only [h, Real.log_one]
-
 lemma product_formula {x : L} (hx : x ≠ 0) :
     (∑ᶠ v : FinitePlace L, Real.log (v x)) + ∑ σ : L →+* ℂ, Real.log ‖σ x‖ = 0 := by
   apply GlobalTheory.CompanionTheory.Ar.RootHt.RatioSum.finsum_log_add_sum_log <;> assumption
@@ -244,7 +238,7 @@ lemma blockHt_nonneg (w : (Σ k, ι k) → L) (k : K) (h : ∃ i, w ⟨k, i⟩ �
   refine mul_nonneg (inv_nonneg.2 (Nat.cast_nonneg _)) ?_
   rw [← product_formula hi₀]
   refine add_le_add ?_ (Finset.sum_le_sum fun σ _ => ?_)
-  · refine finsum_le_of_le (log_support hi₀) (log_sup_support (fun i => w ⟨k, i⟩) ⟨i₀, hi₀⟩) fun v => ?_
+  · refine finsum_le_of_le (_root_.GlobalTheory.CompanionTheory.Ar.Ht.SecLow.log_support_finite hi₀) (log_sup_support (fun i => w ⟨k, i⟩) ⟨i₀, hi₀⟩) fun v => ?_
     have hp : 0 < v (w ⟨k, i₀⟩) := by
       have : v (w ⟨k, i₀⟩) ≠ 0 := by simpa using hi₀
       exact lt_of_le_of_ne (apply_nonneg v _) this.symm

@@ -71,7 +71,7 @@ theorem exists_isWeil : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Nu
   have hS : IsHermND σ (-ξ₀ • W.J⁻¹) := GlobalTheory.T.isHermitianNondegenerate_neg_traceZero_smul_inv_skewHermitian F E σ d W.J hW.skew hWu ξ₀ hξ hσξ
   have hLat : PositivityTheory.ThKW.LatH σ (-ξ₀ • W.J⁻¹) X.Jᵀ ξ₀ := PositivityTheory.ThKW.latH_of hB.cm hX hW hXu hWu hξ
   obtain ⟨ω, hω⟩ := PositivityTheory.ThKW.S.exists_isWeilDatumOF F E σ B hB d n (-ξ₀ • W.J⁻¹) X.Jᵀ hS hT ξ₀ hξ hσξ hLat χW χX hcW hcX
-    (GlobalTheory.T.restrictsToQuadraticPow_of_restrictsToQuadraticSignPow F E σ B hB χW d rW) (GlobalTheory.T.restrictsToQuadraticPow_of_restrictsToQuadraticSignPow F E σ B hB χX n rX)
+    (_root_.GlobalTheory.ResEtaFOfPow.resEtaF_of_resEtaPow F E σ B hB χW d rW) (_root_.GlobalTheory.ResEtaFOfPow.resEtaF_of_resEtaPow F E σ B hB χX n rX)
   have eB : (-1 : AF F ⊗[F] E) • incM F W.J = incM F (ξ₀ • (-ξ₀ • W.J⁻¹)⁻¹) := by
     have e1 : (-ξ₀ • W.J⁻¹)⁻¹ = (-ξ₀)⁻¹ • W.J := Matrix.inv_eq_left_inv (by
       rw [Matrix.smul_mul, Matrix.mul_smul, smul_smul, Matrix.mul_nonsing_inv _ hWu,
@@ -82,7 +82,7 @@ theorem exists_isWeil : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Nu
     funext i j
     simp [incM]
   exact PositivityTheory.ThKW.S.exists_isUWeilPair_cm F E σ B hB d n (-ξ₀ • W.J⁻¹) X.Jᵀ hS hT ξ₀ hξ hσξ hLat χW χX hcW hcX
-    (GlobalTheory.T.restrictsToQuadraticPow_of_restrictsToQuadraticSignPow F E σ B hB χW d rW) (GlobalTheory.T.restrictsToQuadraticPow_of_restrictsToQuadraticSignPow F E σ B hB χX n rX) ω hω X.J W.J (-1) (by simp) eB
+    (_root_.GlobalTheory.ResEtaFOfPow.resEtaF_of_resEtaPow F E σ B hB χW d rW) (_root_.GlobalTheory.ResEtaFOfPow.resEtaF_of_resEtaPow F E σ B hB χX n rX) ω hω X.J W.J (-1) (by simp) eB
     (Fin n × Fin d) M.co hM.rat
 
 theorem weilEx : PositivityTheory.ThKG.Tow.WeilEx := exists_isWeil

@@ -65,7 +65,6 @@ theorem span_valuation_le {L : Type} [Field L] [NumberField L] {S : Set L}
         ≤ 1 * γ := mul_le_mul' (HeightOneSpectrum.valuation_le_one w a) hy
       _ = γ := one_mul γ
 
-theorem main : ∀ {L : Type} [inst : Field L] [inst_1 : NumberField L] {S : Set L} (w : IsDedekindDomain.HeightOneSpectrum (NumberField.RingOfIntegers L)) {γ : WithZero (Multiplicative ℤ)}, (∀ x ∈ S, (IsDedekindDomain.HeightOneSpectrum.valuation L w : L → WithZero (Multiplicative ℤ)) x ≤ γ) → ∀ x ∈ Submodule.span (NumberField.RingOfIntegers L) S, (IsDedekindDomain.HeightOneSpectrum.valuation L w : L → WithZero (Multiplicative ℤ)) x ≤ γ :=
-  @fun _ _ _ _ w _ h => span_valuation_le w h
+alias main := _root_.GlobalTheory.SpanValuationBound.span_valuation_le
 
 end GlobalTheory.SpanValuationBound

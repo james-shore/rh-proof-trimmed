@@ -342,11 +342,7 @@ namespace Formalism.FourierDecayAlt.P
 
 open Formalism.FourierDecayAlt.S6 Formalism.FourierDecayAlt.P.S6x2
 
-theorem different_power_conj_stable : Formalism.FourierDecayAlt.S6.PowConjStable := powConjStable
-
 theorem dual_lattice_subset : Formalism.FourierDecayAlt.S6.DualSubset :=
-  dualSubset dual_third_group_holds powConjStable between
-
-theorem assemble_lattice_facts : Formalism.FourierDecayAlt.S6.AssembleLattices := assembleLattices
+  dualSubset _root_.Formalism.FourierDecayAlt.P.Dual.dual_third_group_integral powConjStable between
 
 end Formalism.FourierDecayAlt.P

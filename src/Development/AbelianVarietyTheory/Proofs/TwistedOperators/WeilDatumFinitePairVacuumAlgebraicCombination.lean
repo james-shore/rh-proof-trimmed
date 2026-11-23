@@ -75,10 +75,7 @@ namespace GlobalTheory.FinWeilAlg
 
 variable {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {S T : HSp D}
 
-theorem heisO_smul' (w : WO S T) (c : ℂ) (f : WO S T → ℂ) : heisO ψ S T w (c • f) = c • heisO ψ S T w f := by
-  funext z
-  simp only [heisO, Pi.smul_apply, smul_eq_mul]
-  ring
+alias heisO_smul' := _root_.GlobalTheory.ThetaAllChar.heisO_smul
 
 theorem heisO_sum' {ι : Type} (s : Finset ι) (w : WO S T) (F : ι → WO S T → ℂ) :
     heisO ψ S T w (∑ i ∈ s, F i) = ∑ i ∈ s, heisO ψ S T w (F i) := by
@@ -307,7 +304,7 @@ theorem om_vac_algComb : ∀ {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {θ : Inf
   refine ⟨a⁻¹, ∑ i, c i • heisO ψ S T (actO S T x h (u i)) (heisO ψ S T w v), ?_, ?_⟩
   · refine isAlgComb_finset _ _ fun i _ => ?_
     refine GlobalTheory.MovedAlg.IsAlgComb.smul ?_ (GlobalTheory.MovedAlg.IsAlgComb.Heisenberg₂ hψalg
-      (GlobalTheory.FinApprox.actO_fin _ _ (GlobalTheory.VacUnique.latO_inf S T _ _ _ (hu i)))
+      (_root_.GlobalTheory.LatNhds.actO_fin _ _ (GlobalTheory.VacUnique.latO_inf S T _ _ _ (hu i)))
       (GlobalTheory.MovedAlg.IsAlgComb.Heisenberg₂ hψalg hw (isAlgComb_self v)))
     rcases hc i with e | e <;> rw [e]
     · exact isAlgebraic_one

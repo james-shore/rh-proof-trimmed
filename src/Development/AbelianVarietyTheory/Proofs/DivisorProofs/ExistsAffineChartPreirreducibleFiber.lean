@@ -106,7 +106,7 @@ theorem exists_affine_chart_preirreducible_fiber : ∀ (X S : Scheme.{0}) (f : X
   have he'' : e' ≫ pullback.fst f p = p ≫ e := pullback.lift_fst _ _ _
   have h1 := GlobalTheory.T.preimage_section_connectedComponentIn_of_isPullback X S _ _ f (pullback.snd f p) p (pullback.fst f p) e e' hf
     (IsPullback.of_hasPullback f p) he he' he''
-  have h2 := (GlobalTheory.T.isOpen_isIrreducible_componentOfRationalPoint_smooth k _ (pullback.snd f p) e' inferInstance he').2
+  have h2 := (_root_.GlobalTheory.isOpen_and_isIrreducible_sectionComponent_of_smooth_field k _ (pullback.snd f p) e' inferInstance he').2
   rw [← h1] at h2
   let j : pullback (W.ι ≫ f) p ⟶ pullback f p :=
     pullback.map _ _ _ _ W.ι (𝟙 _) (𝟙 _) (by simp) (by simp)

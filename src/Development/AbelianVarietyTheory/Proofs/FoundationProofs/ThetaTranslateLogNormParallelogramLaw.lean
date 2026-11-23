@@ -70,11 +70,6 @@ open GlobalTheory.EvenTheta GlobalTheory.ThetaTransl
 
 variable {p : ℕ} [Fact p.Prime]
 
-theorem lamC_mul' (lam : Qbar →+* ℂ_[p]) {a b : ℂ} (ha : a ∈ Qbar) (hb : b ∈ Qbar) :
-    lamC lam (a * b) = lamC lam a * lamC lam b := by
-  unfold lamC
-  rw [dite_eq_left (mul_mem ha hb), dite_eq_left ha, dite_eq_left hb, ← map_mul]; rfl
-
 theorem lamC_sub' (lam : Qbar →+* ℂ_[p]) {a b : ℂ} (ha : a ∈ Qbar) (hb : b ∈ Qbar) :
     lamC lam (a - b) = lamC lam a - lamC lam b := by
   unfold lamC
@@ -196,8 +191,8 @@ theorem generic (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) (g : GL3Theta.G
   have cP := hc _ (tors_laq hP.2)
   have cQ := hc _ (tors_laq hQ.2)
   have key' := congrArg (lamC g.lam) key
-  rw [lamC_mul' _ cS cD, lamC_mul' _ (mul_mem (sub_mem wQ wP) (pow_mem cP 2)) (pow_mem cQ 2),
-    lamC_mul' _ (sub_mem wQ wP) (pow_mem cP 2), lamC_sub' _ wQ wP, lamC_pow' _ cP, lamC_pow' _ cQ] at key'
+  rw [_root_.GlobalTheory.ThetaParam.lamC_mul _ cS cD, _root_.GlobalTheory.ThetaParam.lamC_mul _ (mul_mem (sub_mem wQ wP) (pow_mem cP 2)) (pow_mem cQ 2),
+    _root_.GlobalTheory.ThetaParam.lamC_mul _ (sub_mem wQ wP) (pow_mem cP 2), lamC_sub' _ wQ wP, lamC_pow' _ cP, lamC_pow' _ cQ] at key'
   have hn := congrArg norm key'
   simp only [norm_mul, norm_pow, hwone, one_mul] at hn
   change ‖cval g (P + Q)‖ * ‖cval g (P - Q)‖ = ‖cval g P‖ ^ 2 * ‖cval g Q‖ ^ 2 at hn
@@ -227,7 +222,7 @@ theorem doubling (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) (g : GL3Theta.
   have cS := hc _ (tors_laq hS.2)
   have cP := hc _ (tors_laq hP.2)
   have key' := congrArg (lamC g.lam) key
-  rw [lamC_mul' _ (neg_mem dP) (pow_mem cP 4), lamC_neg' _ dP, lamC_pow' _ cP] at key'
+  rw [_root_.GlobalTheory.ThetaParam.lamC_mul _ (neg_mem dP) (pow_mem cP 4), lamC_neg' _ dP, lamC_pow' _ cP] at key'
   have hn := congrArg norm key'
   simp only [norm_mul, norm_neg, norm_pow, hone, one_mul] at hn
   change ‖cval g (2 * P)‖ = ‖cval g P‖ ^ 4 at hn

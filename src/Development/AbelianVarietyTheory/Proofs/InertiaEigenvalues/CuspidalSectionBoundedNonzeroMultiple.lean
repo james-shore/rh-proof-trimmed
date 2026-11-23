@@ -92,48 +92,8 @@ theorem exists_mul_mem_closure {O K Ω : Type} [CommRing O] [IsDomain O] [Field 
     rw [e]
     exact mul_mem h1 h2
 
-theorem inV_iff' (T : CDVR) (x : T.Fr) : InV T x ↔ 0 ≤ vV T.V x := by
-  by_cases h0 : x = 0
-  · subst h0; simp [InV, vV]
-  have hne := valV_ne_zero (V := T.V) h0
-  constructor
-  · rintro ⟨a, rfl⟩
-    have h1 : valV T.V (algebraMap T.V T.Fr a) ≤ 1 := IsDedekindDomain.HeightOneSpectrum.valuation_le_one _ a
-    have h2 := (WithZero.log_le_log hne one_ne_zero).2 h1
-    rw [WithZero.log_one] at h2
-    unfold vV; omega
-  · intro h
-    have h4 : valV T.V x ≤ 1 := by
-      refine (WithZero.log_le_log hne one_ne_zero).1 ?_
-      rw [WithZero.log_one]
-      unfold vV at h
-      omega
-    exact IsDiscreteValuationRing.exists_lift_of_le_one (A := T.V) (K := T.Fr) h4
-
-theorem inV_of_overLa' {K : Type} [Field K] [NumberField K] {la : HeightOneSpectrum (𝓞 K)} {T : CDVR}
-    {io : K →+* T.Fr} {e : ℕ} (ho : OverLa la T.V io e) (a : (la.valuation K).valuationSubring) : InV T (io a) := by
-  rw [inV_iff', ho.2]
-  refine mul_nonneg (Nat.cast_nonneg e) ?_
-  by_cases h0 : (a : K) = 0
-  · simp [h0, vLa]
-  have hne : la.valuation K (a : K) ≠ 0 := (Valuation.ne_zero_iff _).2 h0
-  have h2 := (WithZero.log_le_log hne one_ne_zero).2 a.2
-  rw [WithZero.log_one] at h2
-  unfold vLa; omega
-
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}
 variable {Xo : Moduli Dw l} {c : Coeff l}
-
-theorem inV_iff_of_frBor {a : (E →+* ℂ) × ℕ → ℕ} {n : ℕ} {f : Rul Xo c} (hf : f ∈ sec Xo c a n) {T : CDVR}
-    {io : c.F →+* T.Fr} (y y' : IntFr Xo c T io) (t : Ix Dw → T.Frˣ)
-    (h : letI := io.toAlgebra; FrBor t y.1 y'.1) : InV T (evI y f) ↔ InV T (evI y' f) := by
-  obtain ⟨hE, hU, -⟩ := GlobalTheory.Reg.evLaws_genFr_atlas E H Dw l Xo c
-  have h1 := unitIndep_of hE.wt hU a n f hf T io y y' t h 1
-  have key : ∀ x : T.Fr, InV T x ↔ 0 ≤ nval T.V 1 x := fun x => by
-    by_cases h0 : x = 0
-    · subst h0; simp [nval_zero, InV]
-    · rw [nval_of_ne h0, inV_iff', EReal.coe_nonneg]; simp
-  rw [key, key, h1]
 
 theorem inV_of_mem_B {O : Type} [CommRing O] {β : O →+* c.F} (P : GlobalTheory.Reg.PChart Xo c β) {e : P.Ω} {T : CDVR}
     {io : c.F →+* T.Fr} (ψ : P.R e →+* T.Fr) (hψ : ∀ k, ψ (algebraMap c.F _ k) = io k) (hO : ∀ a, InV T (io (β a)))
@@ -173,12 +133,12 @@ theorem exists_bddAll_cusp : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     have hW : ∀ x, x ∈ W ↔ InV T x := fun x =>
       ⟨fun h => IsDiscreteValuationRing.exists_lift_of_le_one (A := T.V) (K := T.Fr) h,
         by rintro ⟨a, rfl⟩; exact IsDedekindDomain.HeightOneSpectrum.valuation_le_one _ a⟩
-    have hO : ∀ a : (la.valuation c.F).valuationSubring, InV T (io (algebraMap _ c.F a)) := fun a => inV_of_overLa' ho a
+    have hO : ∀ a : (la.valuation c.F).valuationSubring, InV T (io (algebraMap _ c.F a)) := fun a => _root_.GlobalTheory.GoodTransfer.inV_of_overLa ho a
     obtain ⟨j, e, he, ψ, z, t, hgW, hz, ht⟩ := hC T.Fr W (fun a => (hW _).2 (hO a)) y.1
     have hzI : Integral T io z := (P j).int e he T io ψ (fun a => hO a) (fun g hg => (hW _).1 (hgW g hg)) z hz
     let z' : IntFr Xo c T io := ⟨z, hE.test _ z, hzI⟩
     set κ' := algebraMap (la.valuation c.F).valuationSubring c.F (∏ j, κ j) with hκ'
-    rw [← evI_smul, inV_iff_of_frBor (Submodule.smul_mem _ κ' hF) y z' t ht, evI_smul]
+    rw [← evI_smul, _root_.GlobalTheory.GoodTransfer.inV_of_frBor (Submodule.smul_mem _ κ' hF) y z' t ht, evI_smul]
     show InV T (io κ' * evR Xo c f z)
     rw [(hev _).1 _ ψ _ _ hz]
     let s : (P j).R e := algebraMap c.F _ κ' * evR Xo c f ((P j).y e he)

@@ -53,7 +53,7 @@ theorem compatibleForms_cocycles_differ_by_coboundary : ∀ (R R' : Type) [CommR
   intro R R' _ _ I I' κ κ' X X' t t' σ φ₀ m k k' f f' hk hk' h
   have h' : H1.mk _ (m.coef.pullbackOneCocycle f) = H1.mk _ f' := h.symm
   obtain ⟨g, hg⟩ := H1.mk_eq_mk.1 h'
-  have hinj := (GlobalTheory.T.fnMap_pullbackBijective12_kk_and_res R' I' κ' X' t' X' (𝟙 X')).1.1.injective
+  have hinj := (_root_.GlobalTheory.PDForm.crystalline_forget_forms_bijective_site_and_pairs R' I' κ' X' t' X' (𝟙 X')).1.1.injective
   have hz : (morMap m).p1 k.1 - k'.1 ∈ (KK κ' t').Z1 :=
     sub_mem ((morMap m).z1 k).2 k'.2
   have h0 : (KK κ' t').fnMap.h1 (QuotientAddGroup.mk ⟨_, hz⟩ : (KK κ' t').H1) = 0 := by

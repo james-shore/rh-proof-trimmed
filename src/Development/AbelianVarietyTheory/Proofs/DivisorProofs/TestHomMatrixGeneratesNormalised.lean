@@ -44,6 +44,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.DivCalc
 import Development.AbelianVarietyTheory.Definitions.Divisors.NonemptyHomFixRepTrivial
+import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.ExistsSecNonzeroLocusEqOfLbIso
 
 @[expose] public section
 
@@ -79,15 +80,6 @@ theorem eq_θ {Rg : Type} [CommRing Rg] (A : Over (Sp Rg)) {Y : Scheme.{0}} (φ 
     · ext
       simp only [Over.comp_left, u, v, Over.homMk_left, Category.assoc, θ_snd, Category.comp_id, h]
   exact congrArg CommaMorphism.left this
-
-theorem gs_sum' {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) (h : f y ∈ U) {n : ℕ}
-    (a : Fin n → Γ(X, U)) : gs f y U (∑ i, a i) = ∑ i, gs f y U (a i) := by
-  set_option synthInstance.maxHeartbeats 100000 in
-    simp only [gs_eq f y U h, map_sum]
-
-theorem gs_pow' {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) (h : f y ∈ U) (a : Γ(X, U)) (n : ℕ) :
-    gs f y U (a ^ n) = gs f y U a ^ n := by
-  simp only [gs_eq f y U h, map_pow]
 
 theorem gs_comp_stalk {X Y Z : Scheme.{0}} (t : Z ⟶ Y) (g : Y ⟶ X) (z : Z) (U : X.Opens) (h : g (t z) ∈ U)
     (f : Γ(X, U)) : gs (t ≫ g) z U f = (t.stalkMap z).hom (gs g (t z) U f) := by
@@ -130,7 +122,7 @@ theorem mat_cond : ∀ (Rg : Type) [CommRing Rg] (A B : Over (Sp Rg)) [GrpObj A]
           gs (r ≫ φA' ≫ θ A) z ((LPow A L (k : ℤ) (topS Rg)).U p.2) ((bA i).f p.2) := by
     intro Z r z p hz j
     have e := congrArg (gs r z _) (hmat j p)
-    erw [gs_appLE _ _ _ _ r z hz, gs_mul r z _ hz, gs_sum' r z _ hz] at e
+    erw [gs_appLE _ _ _ _ r z hz, gs_mul r z _ hz, _root_.ReciprocityTheory.ChartRestriction.G.DVR.SectionScalarValuation.gs_sum r z _ hz] at e
     refine Eq.trans ?_ (e.trans ?_)
     · rfl
     · congr 1
@@ -223,7 +215,7 @@ theorem mat_cond : ∀ (Rg : Type) [CommRing Rg] (A B : Over (Sp Rg)) [GrpObj A]
     have hN : gs (zeroPt A') x _ (α.s p).val * gs t x _ (eA.s (fun _ => qA)).val ^ k =
         gs t x _ (eB.s (fun _ => qB)).val ^ k := by
       have e := congrArg (gs (𝟙 (Sp R)) x _) (hnorm p)
-      rw [gs_mul _ _ _ hxW, gs_pow' _ _ _ hxW, gs_pow' _ _ _ hxW] at e
+      rw [gs_mul _ _ _ hxW, _root_.GlobalTheory.LBGerm.gs_pow _ _ _ hxW, _root_.GlobalTheory.LBGerm.gs_pow _ _ _ hxW] at e
       erw [gs_appLE _ _ _ _ _ x hxW, gs_appLE _ _ _ _ _ x hxW, gs_appLE _ _ _ _ _ x hxW] at e
       simp only [Category.id_comp] at e
       exact e
@@ -232,7 +224,7 @@ theorem mat_cond : ∀ (Rg : Type) [CommRing Rg] (A B : Over (Sp Rg)) [GrpObj A]
     simp only [hIA] at eK
     have heb : IsUnit (gs t x _ (eB.s (fun _ => qB)).val) := by
       rw [gs_unit t x _ hWB]; exact Units.isUnit _
-    rw [gs_appTop', gs_sum' (𝟙 (Sp R)) x ⊤ trivial]
+    rw [gs_appTop', _root_.ReciprocityTheory.ChartRestriction.G.DVR.SectionScalarValuation.gs_sum (𝟙 (Sp R)) x ⊤ trivial]
     simp only [gs_mul (𝟙 (Sp R)) x ⊤ trivial, gs_appTop']
     apply (heb.pow k).mul_left_inj.1
     rw [eK, ← hN, Finset.sum_mul, Finset.mul_sum]

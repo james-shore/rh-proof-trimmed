@@ -109,15 +109,6 @@ theorem spMap_comp_spMap {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (
     spMap g ≫ spMap f = spMap (g.comp f) := by
   simp only [spMap, ← Spec.map_comp]; rfl
 
-theorem epi_spMap {K k : Type} [Field K] [Field k] (f : K →+* k) : Epi (spMap f) := by
-  have h1 : Flat (spMap f) := by
-    let _ := f.toAlgebra
-    exact HasRingHomProperty.Spec_iff.2 (show (algebraMap K k).Flat from
-      RingHom.flat_algebraMap_iff.2 inferInstance)
-  have h2 : Surjective (spMap f) :=
-    ⟨fun x => ⟨IsLocalRing.closedPoint k, Subsingleton.elim (α := PrimeSpectrum K) _ _⟩⟩
-  exact Flat.epi_of_flat_of_surjective _
-
 theorem exists_reps (M : Type) [AddCommGroup M] [Module.Finite ℤ M] (N : ℕ) (hN : 0 < N) :
     ∃ (T : Type) (_ : Finite T) (r : M → T) (u : T → M), ∀ a, ∃ b, a = u (r a) + N • b := by
   let S : Submodule ℤ M := LinearMap.range ((N : ℤ) • (LinearMap.id : M →ₗ[ℤ] M))
@@ -192,7 +183,7 @@ theorem exists_of_tateIso {D : Datum H} {l : Geo.Tor.Level H} {Xo : Moduli D l} 
     simp only [eΩ]
     rw [← Category.assoc, spMap_comp_spMap]
     rfl
-  haveI := epi_spMap (algebraMap Ω L)
+  haveI := _root_.PositivityTheory.HtPt.Mg.epi_spMap (algebraMap Ω L)
   have hover : ∀ τ, eΩ τ ≫ q = spMap (algebraMap K Ω) := fun τ => by
     rw [← cancel_epi (spMap (algebraMap Ω L)), ← Category.assoc, heΩ, hg, spMap_comp_spMap]
     rfl

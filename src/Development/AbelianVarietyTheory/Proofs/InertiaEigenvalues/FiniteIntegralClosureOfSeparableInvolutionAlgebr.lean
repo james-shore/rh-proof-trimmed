@@ -58,23 +58,13 @@ namespace GlobalTheory.UnitLemma.IntegralFinite
 
 open Matrix
 
-theorem isIntegral_matrix_trace {R F : Type} [CommRing R] [Field F] [Algebra R F] {n : Type}
-    [Fintype n] [DecidableEq n] (M : Matrix n n F) (hM : IsIntegral R M) : IsIntegral R M.trace := by
-  first
-  | exact @_root_.GlobalTheory.TargetStatementAlt.target
-  | exact _root_.GlobalTheory.TargetStatementAlt.target
-  | (apply _root_.GlobalTheory.TargetStatementAlt.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TargetStatementAlt.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TargetStatementAlt.target <;> first | assumption | infer_instance)
-  | (intros; exact _root_.GlobalTheory.TargetStatementAlt.target ..)
-
 variable {K : UQ} (B : InvAlg K)
 
 theorem isIntegral_trace {x : B.A} (hx : IsIntegral K.O x) :
     IsIntegral K.O (Algebra.trace K.E B.A x) := by
   let bs := Module.finBasis K.E B.A
   rw [Algebra.trace_eq_matrix_trace bs]
-  exact isIntegral_matrix_trace _ (hx.map ((Algebra.leftMulMatrix bs).restrictScalars K.O))
+  exact _root_.GlobalTheory.TargetStatementAlt.main _ (hx.map ((Algebra.leftMulMatrix bs).restrictScalars K.O))
 
 theorem trace_mem_range {x : B.A} (hx : IsIntegral K.O x) :
     ∃ c : K.O, algebraMap K.O K.E c = Algebra.trace K.E B.A x :=

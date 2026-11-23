@@ -79,7 +79,7 @@ theorem exists_int_mulVec_mem (L : Submodule (𝓞 E) (Fin n → E)) (hL : L.IsF
     intro L' hL'
     induction L', hL' using Submodule.fg_induction with
     | singleton x =>
-      obtain ⟨c, hc, hx⟩ := exists_int_smul_mem L hL (N *ᵥ x)
+      obtain ⟨c, hc, hx⟩ := _root_.GlobalTheory.IntSmulMemLatticeTwistedOperators.exists_int_smul_mem L hL (N *ᵥ x)
       refine ⟨c, hc, fun y hy => ?_⟩
       obtain ⟨r, rfl⟩ := Submodule.mem_span_singleton.1 hy
       rw [Matrix.mulVec_smul, smul_comm]

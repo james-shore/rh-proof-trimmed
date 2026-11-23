@@ -104,12 +104,6 @@ theorem span_inf_eq {K : Type} [Field K] [NumberField K] {V : Type} [AddCommGrou
     rw [this]
     exact Submodule.smul_mem _ _ (Submodule.subset_span hmem)
 
-theorem main : ∀ {K : Type} [inst : Field K] [NumberField K] {V : Type} [inst_2 : AddCommGroup V]
-    [inst_3 : Module K V] [inst_4 : Module (NumberField.RingOfIntegers K) V]
-    [inst_5 : IsScalarTower (NumberField.RingOfIntegers K) K V]
-    (L : Submodule (NumberField.RingOfIntegers K) V), Submodule.IsFullLattice K L →
-    ∀ (T : Submodule K V),
-    Submodule.span K (↑(L ⊓ Submodule.restrictScalars (NumberField.RingOfIntegers K) T) : Set V) = T :=
-  fun L hL T => span_inf_eq L hL T
+alias main := _root_.GlobalTheory.SpanInfEq.span_inf_eq
 
 end GlobalTheory.SpanInfEq

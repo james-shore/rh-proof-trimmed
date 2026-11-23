@@ -142,15 +142,7 @@ theorem dosetInd_mem_hecke (K : Subgroup G) (g : G) : dosetInd ℂ K g ∈ Hecke
 
 variable [AddCommGroup V] [Module ℂ V]
 
-theorem mem_fixed_iff {ρ : Representation ℂ G V} {K : Subgroup G} {v : V} :
-    v ∈ fixed ρ K ↔ ∀ k ∈ K, ρ k v = v := by
-  constructor
-  · intro h k hk
-    have := (show ∀ h : K, ρ h v = (((1 : K →* ℂˣ) h : ℂˣ) : ℂ) • v from h) ⟨k, hk⟩
-    simpa using this
-  · intro h
-    exact (show ∀ h : K, ρ h v = (((1 : K →* ℂˣ) h : ℂˣ) : ℂ) • v from fun k => by
-      simpa using h k k.2)
+alias mem_fixed_iff := _root_.GlobalTheory.LGrp.mem_fixed
 
 theorem pairing_translate_eq_zero (ρ : Representation ℂ G V) (K : Subgroup G)
     (hc : IsCommensurated K) (B : V →ₗ[ℂ] V →ₗ⋆[ℂ] ℂ)

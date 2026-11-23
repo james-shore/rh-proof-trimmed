@@ -81,8 +81,8 @@ theorem charpoly_eq_of_isogeny_intertwines :
       u ((n : End B) - g).asHom hdim rfl).2
     rw [hc, h2, mul_comm] at h1
     exact (Nat.eq_of_mul_eq_mul_right hpos h1).symm
-  obtain ⟨⟨hm, hd, hev⟩, -⟩ := GlobalTheory.T.abelianVarietyEndCharpoly_spec K A f
+  obtain ⟨⟨hm, hd, hev⟩, -⟩ := _root_.GlobalTheory.AV.AbVar.isCharpoly_charpoly_unique K A f
   have hg : IsCharpoly g (charpoly f) := ⟨hm, by rw [hd, hdim], fun n => by rw [hev n, key n]⟩
-  exact (GlobalTheory.T.abelianVarietyEndCharpoly_spec K B g).2 _ hg
+  exact (_root_.GlobalTheory.AV.AbVar.isCharpoly_charpoly_unique K B g).2 _ hg
 
 end GlobalTheory.AV.AbVar

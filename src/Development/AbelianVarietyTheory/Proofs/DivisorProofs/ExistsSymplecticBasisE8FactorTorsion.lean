@@ -64,10 +64,10 @@ theorem omegaStd_eq_sum (g : ℕ) (a b : Fin g ⊕ Fin g → ℤ) :
   have r : ∀ a, (σ.symm (.inr a) : ℕ) = g + a := fun _ => rfl
   have ll : ∀ i j, Out.stdSymp g (σ.symm (.inl i)) (σ.symm (.inl j)) = 0 := fun i j => by
     have := i.2; have := j.2
-    simp only [Out.stdSymp, l, r]; split_ifs <;> omega
+    simp only [Out.stdSymp, l]; split_ifs <;> omega
   have rr : ∀ i j, Out.stdSymp g (σ.symm (.inr i)) (σ.symm (.inr j)) = 0 := fun i j => by
     have := i.2; have := j.2
-    simp only [Out.stdSymp, l, r]; split_ifs <;> omega
+    simp only [Out.stdSymp, r]; split_ifs <;> omega
   have lr : ∀ i j, Out.stdSymp g (σ.symm (.inl i)) (σ.symm (.inr j)) = if i = j then 1 else 0 := fun i j => by
     have := i.2; have := j.2
     simp only [Out.stdSymp, l, r, Fin.ext_iff]; split_ifs <;> omega
@@ -108,7 +108,7 @@ theorem exists_family {N g : ℕ} (hN : Odd N) {T R : Type} [CommGroup T] [CommR
   have eskew : ∀ x y, e x y * e y x = 1 := fun x y => by
     have := halt (x * y)
     simp only [map_mul, MonoidHom.mul_apply, halt, _root_.one_mul, _root_.mul_one] at this
-    first | exact this | (rw [_root_.mul_comm]; exact this)
+    first | (rw [_root_.mul_comm]; exact this)
   have halt' : ∀ p, h p p = 1 := fun p => by
     have k₁ : h p p ^ 2 = 1 := by
       have := eskew (fun u => p ^ s₀ u) (fun u => p ^ t₀ u)

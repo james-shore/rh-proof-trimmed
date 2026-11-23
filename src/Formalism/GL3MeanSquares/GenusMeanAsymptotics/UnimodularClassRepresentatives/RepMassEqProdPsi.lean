@@ -62,6 +62,6 @@ theorem repMass_eq_prod_psi (hK : Formalism.HermitianLatticesTheory.IsCMUnram K)
     (hL : Submodule.IsFullLattice K L) (hLi : Formalism.HermitianLatticesTheory.IsIntegralLat h L) {c : ℝ}
     (hc : MassConst K F (finrank K V - 1) c) :
     repMass h L (h S.x₀ S.x₀) = c * ∏' 𝔭 : {𝔭 : Ideal (𝓞 F) // 𝔭.IsMaximal}, psiP S L 𝔭.1 :=
-  MassProductFormula.repMass_eq_prod_psi' hK hF hs hd S (by first | exact hL | exact hL.toIsLattice) hLi hc
+  MassProductFormula.repMass_eq_prod_psi' hK hF hs hd S (by first | exact hL) hLi hc
 
 end Formalism.HermitianLattices.Ext.L3

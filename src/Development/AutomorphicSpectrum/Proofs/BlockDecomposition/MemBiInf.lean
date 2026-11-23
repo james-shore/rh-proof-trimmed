@@ -293,7 +293,6 @@ theorem top_O (hZ : DH.Zar2) (q : X ⟶ Spec (CommRingCat.of O)) (l s : ℕ) (�
     obtain ⟨z, rfl⟩ := Ideal.Quotient.mk_surjective y
     first
       | rfl
-      | (simp only [NatTrans.id_app, CategoryTheory.Functor.map_id]; rfl)
   rw [e]
   exact z.comp t0
 
@@ -347,7 +346,6 @@ theorem glue (h : OL l O) (U : Cov q) (s m : ℕ) (hQ : ∀ (𝒱 : Set X.Opens)
     obtain ⟨z, rfl⟩ := Ideal.Quotient.mk_surjective (show GB (l := l) T.obj m from y)
     first
       | rfl
-      | (simp only [NatTrans.id_app, CategoryTheory.Functor.map_id]; rfl)
   have e2 := funext e
   refine (show Function.Bijective (fun x => rO.pull j ((morU (gP h (TO q l s (Set.range U.U)) m (hQ _) (St ⊤ (Set.range U.U)) (hP _))
       (U := capS (fun α T => InU (U.U α) T.obj) S) (U' := capS (fun α T => InU (U.U α) T.obj) S)
@@ -387,7 +385,6 @@ theorem main : ∀ {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] (h : OL l O)
     obtain ⟨z, rfl⟩ := Ideal.Quotient.mk_surjective (show GB (l := l) T.obj m from y)
     first
       | rfl
-      | (simp only [NatTrans.id_app, CategoryTheory.Functor.map_id]; rfl)
   rw [e]
   exact g.comp tL
 

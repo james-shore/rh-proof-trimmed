@@ -185,8 +185,6 @@ theorem highestWeight_dominant {N : Type*} [NormedAddCommGroup N] [InnerProductS
   have key' : (ν a - ν b) * ‖y‖ ^ 2 = ‖A b a y‖ ^ 2 := by
     norm_cast at key
     first
-    | exact Complex.ofReal_injective key
-    | exact RCLike.ofReal_injective key
     | exact (Complex.ofReal_injective (by simpa using key))
   have hpos : 0 < ‖y‖ ^ 2 := pow_pos (norm_pos_iff.mpr hy0) 2
   by_contra hlt
@@ -343,8 +341,8 @@ theorem exists_kIrreducible_highestWeight {N : Type*} [NormedAddCommGroup N] [In
     by_cases h1 : c = a <;> by_cases h2 : c = b
     · subst h1; subst h2; simp
     · subst h1; simp [h2, Ne.symm h2]
-    · subst h2; simp [h1, Ne.symm h1]
-    · simp [h1, h2, Ne.symm h1, Ne.symm h2]
+    · subst h2; simp [h1]
+    · simp [h1, h2, Ne.symm h2]
   have hHr : ∀ a b x, H (A a b x) = A a b (H x) + (((b : ℕ) : ℂ) - ((a : ℕ) : ℂ)) • A a b x := by
     intro a b x
 

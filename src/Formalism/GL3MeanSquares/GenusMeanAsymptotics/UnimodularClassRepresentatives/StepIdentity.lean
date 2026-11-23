@@ -93,7 +93,7 @@ theorem step_identity (P H X Y Y' Z V V' : Matrix n n K) (a b : K)
   simp only [add_mul, mul_add, sub_mul, mul_sub, one_mul, mul_one, smul_mul_assoc, mul_smul_comm]
   simp only [← Matrix.mul_assoc, hYHY]
   simp only [← Matrix.mul_assoc, hHY, hYH, hV2]
-  simp only [Matrix.mul_assoc, smul_mul_assoc, mul_smul_comm, smul_smul]
+  simp only [Matrix.mul_assoc, smul_smul]
   module
 
 theorem step (hS : IsLocUnif S ϖ) {H E : Matrix n n K} (hH : Hᴴ = H) (hES : Ent S E) {e k : ℕ}

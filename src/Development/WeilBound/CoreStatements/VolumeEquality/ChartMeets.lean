@@ -152,7 +152,7 @@ theorem chartMeets : ChartMeets := by
             (ContinuousLinearMap.fst ℂ (Fin n → ℂ) (K → ℂ)) 0 := hasStrictFDerivAt_fst
         exact hγp.comp (0 : (Fin n → ℂ) × (K → ℂ)) hfst
     refine (h1.mul h2).congr_fderiv (ContinuousLinearMap.ext fun v => ?_)
-    simp [L] <;> ring
+    simp [L]
   have hinjL : Function.Injective L := by
     set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
     rintro ⟨v, d⟩ h0

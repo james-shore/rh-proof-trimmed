@@ -69,7 +69,7 @@ theorem posSemidef_sub_smul_one {n : Type} [Fintype n] [DecidableEq n] {A : Matr
       (diagonal (fun i => ((hH.eigenvalues i - δ' : ℝ) : ℂ))) := by
     have d : diagonal (fun i => ((hH.eigenvalues i - δ' : ℝ) : ℂ)) =
         diagonal (RCLike.ofReal ∘ hH.eigenvalues) - (δ' : ℂ) • (1 : Matrix n n ℂ) := by
-      ext i j; by_cases h : i = j <;> simp [diagonal, one_apply, h]
+      ext i j; by_cases h : i = j <;> simp [diagonal, h]
     conv_lhs => rw [hH.spectral_theorem]
     rw [d, map_sub, map_smul, map_one]
   rw [e, conjStarAlgAut_apply, isUnit_coe.posSemidef_star_right_conjugate_iff]

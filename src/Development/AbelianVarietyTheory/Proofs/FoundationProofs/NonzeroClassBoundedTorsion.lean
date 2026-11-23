@@ -49,11 +49,7 @@ theorem exists_bound_of_mem_span {K E ι : Type} [NormedField K] [AddCommGroup E
     (f : E →ₗ[K] K) (hf : f ∈ Submodule.span K (Set.range φ)) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ (p : E) (r : ℝ), 0 ≤ r → (∀ j, ‖φ j p‖ ≤ r) → ‖f p‖ ≤ C * r := by
   first
-  | exact @_root_.GlobalTheory.NormBoundOfSpan.norm_le_of_mem_span
-  | exact _root_.GlobalTheory.NormBoundOfSpan.norm_le_of_mem_span
   | (apply _root_.GlobalTheory.NormBoundOfSpan.norm_le_of_mem_span <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NormBoundOfSpan.norm_le_of_mem_span <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NormBoundOfSpan.norm_le_of_mem_span <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.NormBoundOfSpan.norm_le_of_mem_span ..)
 
 theorem exists_bound_multiplier {K Γ : Type} [NormedField K] (M : Γ → Matrix (Fin 2) (Fin 2) K) (Y : Γ → Fin 2 → K)

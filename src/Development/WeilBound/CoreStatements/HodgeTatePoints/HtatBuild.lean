@@ -61,7 +61,7 @@ theorem chart_build : ∀ (A K : Type) [CommRing A] [IsDomain A] [Field K] [Alge
   let ρΩ : 𝓞 E →+* Module.End K Ω :=
     { toFun := fun a => hj.equiv.toLinearMap ∘ₗ T a ∘ₗ hj.equiv.symm.toLinearMap
       map_one' := by ext x; simp
-      map_mul' := by intro a b; ext x; simp [Module.End.mul_apply]
+      map_mul' := by intro a b; ext x; simp
       map_zero' := by ext x; simp
       map_add' := by intro a b; ext x; simp }
   have hρ : ∀ a w, ρΩ a (j w) = j (ρ a w) := by
@@ -98,7 +98,7 @@ theorem chart_build : ∀ (A K : Type) [CommRing A] [IsDomain A] [Field K] [Alge
             om_lat := by
               have hfull : Submodule.IsFullLattice K (LinearMap.range j) :=
                 { toIsLattice := Submodule.IsLattice.of_fg K hfg, span_eq_top := hspan }
-              first | exact hfull | exact hfull.toIsLattice
+              first | exact hfull
             om_proj := hproj
             ρΩ := ρΩ
             om_stable := ?_

@@ -77,7 +77,7 @@ theorem pol_apply (τ : D.what₂.Tau) (a b : Fin m) (Q : PolF D m n) :
     (fun j : Fin n => (X (τ, a, j) : PolF D m n) • pderiv (τ, b, j)) Finset.univ
   simp only [Derivation.coeFnAddMonoidHom_apply] at e
   rw [pol, e, Finset.sum_apply]
-  simp [Derivation.smul_apply]
+  simp
 
 theorem pol_X (τ : D.what₂.Tau) (a b : Fin m) (t : D.what₂.Tau) (i : Fin m) (j : Fin n) :
     (pol τ a b (X (t, i, j)) : PolF D m n) = if t = τ ∧ i = b then X (τ, a, j) else 0 := by
@@ -249,11 +249,7 @@ theorem exists_common_eigenvector {V ι : Type*} [AddCommGroup V] [Module ℂ V]
     (hE : ∀ i, ∀ x ∈ E, H i x ∈ E) (hE0 : E ≠ ⊥) :
     ∃ v ∈ E, v ≠ 0 ∧ ∀ i, ∃ c : ℂ, H i v = c • v := by
   first
-  | exact @_root_.GlobalTheory.CommonEigenvector.common_eigenvector
-  | exact _root_.GlobalTheory.CommonEigenvector.common_eigenvector
   | (apply _root_.GlobalTheory.CommonEigenvector.common_eigenvector <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CommonEigenvector.common_eigenvector <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CommonEigenvector.common_eigenvector <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CommonEigenvector.common_eigenvector ..)
 
 theorem exists_hw_of_height {V ι ρ : Type*} [AddCommGroup V] [Module ℂ V] [Fintype ι]

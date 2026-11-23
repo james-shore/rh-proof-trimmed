@@ -243,7 +243,7 @@ theorem log_norm_lattice_discriminant {L : PeriodPair} {a : ℂ} {τ : ℍ} (ha 
   have h1 := norm_ne_zero_iff.2 (ModularForm.eta_ne_zero τ.2)
   have h2 := norm_ne_zero_iff.2 ha
   rw [← latticeCurve_Δ, latticeCurve_Δ_eq_discriminant ha h, ModularForm.discriminant, norm_mul,
-    norm_pow, norm_pow, norm_div, show ‖(2 * π : ℂ)‖ = 2 * π by simp [Real.pi_pos.le],
+    norm_pow, norm_pow, norm_div, show ‖(2 * π : ℂ)‖ = 2 * π by simp,
     Real.log_mul (by positivity) (by positivity), Real.log_pow, Real.log_pow,
     Real.log_div (by positivity) h2]
   norm_num

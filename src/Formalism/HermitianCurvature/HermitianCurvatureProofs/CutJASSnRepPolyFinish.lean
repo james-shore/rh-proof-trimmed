@@ -93,7 +93,6 @@ theorem polynomial_finish_holds : PolyFinish := by
     exact sub_eq_zero.1 (pow_eq_zero_iff'.1 h2).1
   have hcard : Multiset.card q.roots = q.natDegree := by
     first
-      | exact (Polynomial.natDegree_eq_card_roots' (IsAlgClosed.splits q)).symm
       | exact IsAlgClosed.card_roots_eq_natDegree
   have hrep : q.roots = Multiset.replicate q.natDegree (a : ℂ) := by
     rw [← hcard]; exact Multiset.eq_replicate.2 ⟨rfl, hroot⟩

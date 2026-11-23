@@ -186,7 +186,6 @@ lemma iB_hom [IsMonHom i] : IsMonHom (iB f X i) := by
         _ = ((x₀ ≫ i) * (y₀ ≫ i)).left := by
           congr 1
           first
-          | simp
           | (rw [Hom.mul_def, Hom.mul_def, Category.assoc, IsMonHom.mul_hom, ← Category.assoc]
              congr 1
              simp)

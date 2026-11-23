@@ -93,7 +93,6 @@ theorem flat_of_finite_rep : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (B
     exact MorphismProperty.overPullbackMap (P := @IsClosedImmersion) f j hj
   have hfin' : IsFinite ((Over.pullback f).obj H).hom := by
     first
-    | exact MorphismProperty.pullback_snd (P := @IsFinite) _ _ hfin
     | (haveI := hfin; exact (inferInstance : IsFinite (pullback.snd H.hom f)))
   exact GlobalTheory.T.lineBundleKernel_flat_of_finite_noetherian_local hG (Localization.AtPrime m) ((Over.pullback f).obj B) hB' hP _ hML hth _ _ hcl hrep' hfin'
 

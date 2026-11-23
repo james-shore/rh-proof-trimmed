@@ -85,11 +85,7 @@ theorem exists_factor_pi {J : Type} [Fintype J] [DecidableEq J] (A : J → Type)
     [∀ i, CommRing (A i)] {k : Type} [CommRing k] [IsDomain k] (χ : (∀ i, A i) →+* k) :
     ∃ (i : J) (ψ : A i →+* k), ∀ x, χ x = ψ (x i) := by
   first
-  | exact @_root_.GlobalTheory.FactorThroughProjection.exists_factor_through_projection
-  | exact _root_.GlobalTheory.FactorThroughProjection.exists_factor_through_projection
   | (apply _root_.GlobalTheory.FactorThroughProjection.exists_factor_through_projection <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FactorThroughProjection.exists_factor_through_projection <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FactorThroughProjection.exists_factor_through_projection <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.FactorThroughProjection.exists_factor_through_projection ..)
 
 

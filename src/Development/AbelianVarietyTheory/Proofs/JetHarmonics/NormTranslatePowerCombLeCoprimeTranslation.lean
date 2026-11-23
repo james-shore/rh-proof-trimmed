@@ -66,7 +66,7 @@ theorem even_of_inOK_half {d : ℕ} (hd : 0 < d) {s : ℕ} (h : InOK d ((s : ℂ
     rcases him with h | h
     · exact h
     · exfalso
-      first | exact hs h | omega
+      first | omega
   subst hv
   have h2 : (s : ℝ) = 2 * u := by
     simp at hre

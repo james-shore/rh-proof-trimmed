@@ -55,11 +55,7 @@ namespace GlobalTheory.SepTypes
 theorem coeffSpan_finiteDimensional {G W : Type} [Group G] [AddCommGroup W] [Module ℂ W] [FiniteDimensional ℂ W]
     (ρ : Representation ℂ G W) : FiniteDimensional ℂ (coeffSpan ρ) := by
   first
-  | exact @_root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients
-  | exact _root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients
   | (apply _root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients ..)
 
 theorem coeffSpan_rtrans {G W : Type} [Group G] [AddCommGroup W] [Module ℂ W]

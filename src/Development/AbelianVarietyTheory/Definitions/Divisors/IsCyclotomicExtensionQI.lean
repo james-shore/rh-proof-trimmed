@@ -739,7 +739,7 @@ theorem hK_QI : Module.finrank ℚ (⊤ : Subfield QI) = 2 ∧ ∀ τ : QI →+*
   · intro τ
     refine ⟨IsCyclotomicExtension.zeta 4 ℚ QI, Subfield.mem_top _, fun h => ?_⟩
     have h3 := congrArg (fun z => (τ z).re) zeta_sq
-    simp only [map_pow, map_neg, map_one, pow_two, map_mul, Complex.mul_re, h, Complex.neg_re, Complex.one_re] at h3
+    simp only [map_neg, map_one, pow_two, map_mul, Complex.mul_re, h, Complex.neg_re, Complex.one_re] at h3
     nlinarith [mul_self_nonneg (τ (IsCyclotomicExtension.zeta 4 ℚ QI)).re]
 
 instance fact_prime_five : Fact (Nat.Prime 5) := ⟨by norm_num⟩
@@ -793,7 +793,7 @@ theorem eig_Hc (c : ℚ) (τ : QI →+* ℂ) (i : Fin 1) :
   simp only [Fin.prod_univ_one, gramAt, Hc, Matrix.det_unique, Matrix.transpose_apply, Matrix.map_apply,
     Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_fin_one, map_ratCast] at h
   have h' : ((isHermitian_gramAt (herm_Hc c) τ).eigenvalues 0 : ℂ) = ((c : ℝ) : ℂ) := by
-    rw [Complex.ofReal_ratCast]; first | exact h | exact h.symm
+    rw [Complex.ofReal_ratCast]; first | exact h.symm
   exact_mod_cast h'
 
 theorem sig_Hc (c : ℚ) (hc : c ≠ 0) (τ : QI →+* ℂ) :

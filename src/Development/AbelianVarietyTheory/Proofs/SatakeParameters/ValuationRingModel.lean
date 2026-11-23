@@ -252,11 +252,6 @@ theorem res_algClosed [IsAlgClosed K] : IsAlgClosed (IsLocalRing.ResidueField O)
   first
   | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact @_root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField
   | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact _root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField
-  | exact @_root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField
-  | exact _root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField
-  | (apply _root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.AlgClosedResidueField.isAlgClosed_residueField ..)
 
 end Top

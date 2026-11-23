@@ -70,9 +70,6 @@ private lemma res_res_lemma {X : Scheme.{0}} {U V W : X.Opens} (h₁ : V ≤ U) 
   simp only [res, Units.coe_map, MonoidHom.coe_coe]
   first
     | (rw [← CommRingCat.comp_apply, ← Functor.map_comp]; rfl)
-    | (rw [← RingHom.comp_apply, ← CommRingCat.hom_comp, ← Functor.map_comp]; rfl)
-    | simp [← Functor.map_comp_apply]
-    | simp
 
 
 end GV

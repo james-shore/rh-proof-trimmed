@@ -69,7 +69,6 @@ lemma primeLogSum_log_factorial_le {N : ℕ} (hN : 1 ≤ N) :
       have e : ((n:ℝ) + 1) * ((n:ℝ) / ((n:ℝ) + 1) - 1) = -1 := by
         first
         | (field_simp; ring)
-        | field_simp
       nlinarith [mul_le_mul_of_nonneg_left h (show (0:ℝ) ≤ (n:ℝ) + 1 by positivity)]
     rw [Nat.factorial_succ]
     push_cast
@@ -81,9 +80,6 @@ lemma primeLogSum_div_le_factorization (N p : ℕ) (hp : p.Prime) (hpN : p ≤ N
   have hlog : 0 < Nat.log p N := by
     first
     | exact Nat.log_pos hp.one_lt hpN
-    | exact Nat.log_pos_iff.mpr ⟨hpN, hp.one_lt⟩
-    | exact Nat.log_pos_iff.mpr ⟨hp.one_lt, hpN⟩
-    | exact Nat.log_pos hpN hp.one_lt
   haveI := Fact.mk hp
   rw [Nat.factorization_def _ hp, padicValNat_factorial (Nat.lt_add_one (Nat.log p N))]
   have h1 : 1 ∈ Finset.Ico 1 (Nat.log p N + 1) := by
@@ -102,7 +98,6 @@ lemma primeLogSum_log_factorial_eq (N : ℕ) :
     have hp' : p.Prime ∧ p ∣ N.factorial := by
       first
       | (rw [Nat.support_factorization] at hp; exact ⟨Nat.prime_of_mem_primeFactors hp, Nat.dvd_of_mem_primeFactors hp⟩)
-      | exact ⟨Nat.prime_of_mem_factorization hp, Nat.dvd_of_mem_factorization hp⟩
     rw [Finset.mem_filter, Finset.mem_Iic]
     exact ⟨(Nat.Prime.dvd_factorial hp'.1).mp hp'.2, hp'.1⟩
   · intro i _
@@ -120,14 +115,11 @@ lemma primeLogSum_point (N p : ℕ) (hp : p.Prime) (hpN : p ≤ N) :
     have h3 : N / p * p ≤ N.factorial.factorization p * p := by
       first
       | exact Nat.mul_le_mul_right p hv
-      | exact Nat.mul_le_mul_right hv
-      | nlinarith
     linarith
   have hN : (N:ℝ) ≤ ((N.factorial.factorization p : ℕ) : ℝ) * p + p := by exact_mod_cast hnat
   rw [← mul_div_assoc]
   first
   | rw [div_le_iff₀ hpp]
-  | rw [div_le_iff hpp]
   nlinarith [mul_le_mul_of_nonneg_right hN hlog]
 
 lemma primeLogSum_theta (N : ℕ) :
@@ -152,13 +144,11 @@ lemma primeLogSum_theta (N : ℕ) :
         by
           first
           | exact (Real.log_prod hne).symm
-          | exact (Real.log_prod _ _ hne).symm
     _ = Real.log ((∏ p ∈ (Finset.range (N + 1)).filter Nat.Prime, p : ℕ) : ℝ) := by
         rw [Nat.cast_prod]
     _ ≤ Real.log ((4 ^ N : ℕ) : ℝ) := by
         first
         | exact Real.log_le_log hpos (by exact_mod_cast hprod)
-        | exact Real.log_le_log_of_le hpos (by exact_mod_cast hprod)
     _ = Real.log 4 * N := by
         push_cast
         rw [Real.log_pow]
@@ -179,11 +169,9 @@ lemma primeLogSum_log_le (p k : ℕ) (hp : 0 < p) (hk : p ≤ 2 ^ k) :
   calc Real.log (p : ℝ) ≤ Real.log ((2:ℝ) ^ k) := by
         first
         | exact Real.log_le_log h1 h2
-        | exact Real.log_le_log_of_le h1 h2
     _ = (k : ℝ) * Real.log 2 := by
         first
         | exact Real.log_pow 2 k
-        | exact Real.log_pow k 2
 
 lemma primeLogSum_tele (m : ℕ) (hm : 2 ≤ m) :
     Real.log ((m + 1 : ℕ) : ℝ) / (((m + 1 : ℕ) : ℝ) * (((m + 1 : ℕ) : ℝ) - 1)) ≤
@@ -198,14 +186,12 @@ lemma primeLogSum_tele (m : ℕ) (hm : 2 ≤ m) :
   have hLl : Real.log (m:ℝ) ≤ Real.log ((m:ℝ) + 1) := by
     first
     | exact Real.log_le_log hx0 (by linarith)
-    | exact Real.log_le_log_of_le hx0 (by linarith)
   have hk : (m:ℝ) * (Real.log ((m:ℝ) + 1) - Real.log m) ≤ 1 := by
     have h := Real.log_le_sub_one_of_pos (show (0:ℝ) < ((m:ℝ) + 1) / m from div_pos (by linarith) hx0)
     rw [Real.log_div (by positivity) hx0.ne'] at h
     have e : (m:ℝ) * (((m:ℝ) + 1) / m - 1) = 1 := by
       first
       | (field_simp; ring)
-      | field_simp
     calc (m:ℝ) * (Real.log ((m:ℝ) + 1) - Real.log m) ≤ (m:ℝ) * (((m:ℝ) + 1) / m - 1) :=
           mul_le_mul_of_nonneg_left h hx0.le
       _ = 1 := e
@@ -221,7 +207,6 @@ lemma primeLogSum_tele (m : ℕ) (hm : 2 ≤ m) :
     first
     | (field_simp; ring)
     | (rw [eq_div_iff hden.ne']; field_simp)
-    | (rw [eq_div_iff hden.ne']; field_simp; ring)
   have hnum : 0 ≤ (Real.log (m:ℝ) + 1) * m * ((m:ℝ) + 1)
       - (Real.log ((m:ℝ) + 1) + 1) * ((m:ℝ) - 1) * ((m:ℝ) + 1)
       - Real.log ((m:ℝ) + 1) * ((m:ℝ) - 1) := by
@@ -266,9 +251,6 @@ lemma primeLogSum_tail (N : ℕ) :
       rw [e]
       first
       | exact div_le_div_of_nonneg_right h5 (by norm_num)
-      | exact (div_le_div_iff_of_pos_right (by norm_num)).mpr h5
-      | exact (div_le_div_right (by norm_num)).mpr h5
-      | gcongr
     exact le_trans h1 (le_trans (sub_le_self _ h2) h4)
 
 lemma primeLogSum_small :
@@ -335,7 +317,6 @@ lemma primeLogSum_nat (N : ℕ) (hN : 1 ≤ N) :
       have h1 : (p:ℝ) - 1 ≠ 0 := (show (0:ℝ) < (p:ℝ) - 1 by linarith).ne'
       first
       | (field_simp; ring)
-      | field_simp
     have hX : (N:ℝ) * ∑ p ∈ (Finset.Iic N).filter Nat.Prime, Real.log p / (p : ℝ) ≤
         ((N:ℝ) + 1) * Real.log N - N + 1 + Real.log 4 * N := by
       rw [Finset.mul_sum]
@@ -395,6 +376,5 @@ lemma primeLogSum_nat (N : ℕ) (hN : 1 ≤ N) :
     refine le_of_mul_le_mul_left ?_ (show (0:ℝ) < N by linarith)
     first
     | linarith
-    | nlinarith [hX, hS2', hlogN, hLx, hL, hL0]
 
 end ReciprocityTheory.ChartRestriction.G.H1

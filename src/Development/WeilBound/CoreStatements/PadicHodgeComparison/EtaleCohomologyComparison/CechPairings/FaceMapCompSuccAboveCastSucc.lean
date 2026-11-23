@@ -268,7 +268,7 @@ theorem vsA {n : ℕ} (p : Fin (n+1)) (x : Fin n) : (p.succAbove x : ℕ) = if (
   unfold Fin.succAbove; split_ifs with h1 h2 h2 <;> simp_all [Fin.lt_def]
 
 theorem vpA {n : ℕ} (p : Fin n) (x : Fin (n+1)) : (p.predAbove x : ℕ) = if (p:ℕ) < x then (x:ℕ) - 1 else x := by
-  unfold Fin.predAbove; split_ifs with h1 h2 h2 <;> rw [Fin.lt_def, Fin.val_castSucc] at h1 <;> simp_all <;> omega
+  unfold Fin.predAbove; split_ifs with h1 h2 h2 <;> rw [Fin.lt_def, Fin.val_castSucc] at h1 <;> simp_all
 
 theorem vbb {n : ℕ} (i : Fin (n+1)) (x : Fin (n+2)) : bb i x = if (i:ℕ) < x then 1 else 0 := by
   unfold bb; simp [Fin.lt_def]
@@ -277,55 +277,55 @@ theorem E1 {n : ℕ} (i : Fin (n+1)) (j : Fin (n+2)) (h : (j:ℕ) ≤ i) :
     j.succAbove ∘ i.predAbove = i.succ.predAbove ∘ j.castSucc.succAbove := by
   funext x
   apply Fin.ext
-  simp only [Function.comp_apply, vsA, vpA, vbb, Fin.val_succ, Fin.val_castSucc, Fin.val_last, Fin.val_zero, id_eq]
+  simp only [Function.comp_apply, vsA, vpA, Fin.val_succ, Fin.val_castSucc]
   split_ifs <;> simp_all <;> omega
 theorem faceMap_comp_succAbove_castSucc {n : ℕ} (i : Fin (n+1)) (j : Fin (n+2)) (h : (j:ℕ) ≤ i) : bb i = bb i.succ ∘ j.castSucc.succAbove := by
   funext x
   apply Fin.ext
-  simp only [Function.comp_apply, vsA, vpA, vbb, Fin.val_succ, Fin.val_castSucc, Fin.val_last, Fin.val_zero, id_eq]
+  simp only [Function.comp_apply, vsA, vbb, Fin.val_succ, Fin.val_castSucc]
   split_ifs <;> simp_all <;> omega
 theorem E2 {n : ℕ} (i : Fin (n+1)) (j : Fin (n+2)) (h : (i:ℕ) < j) :
     j.succAbove ∘ i.predAbove = i.castSucc.predAbove ∘ j.succ.succAbove := by
   funext x
   apply Fin.ext
-  simp only [Function.comp_apply, vsA, vpA, vbb, Fin.val_succ, Fin.val_castSucc, Fin.val_last, Fin.val_zero, id_eq]
+  simp only [Function.comp_apply, vsA, vpA, Fin.val_succ, Fin.val_castSucc]
   split_ifs <;> simp_all <;> omega
 theorem E2b {n : ℕ} (i : Fin (n+1)) (j : Fin (n+2)) (h : (i:ℕ) < j) : bb i = bb i.castSucc ∘ j.succ.succAbove := by
   funext x
   apply Fin.ext
-  simp only [Function.comp_apply, vsA, vpA, vbb, Fin.val_succ, Fin.val_castSucc, Fin.val_last, Fin.val_zero, id_eq]
+  simp only [Function.comp_apply, vsA, vbb, Fin.val_succ, Fin.val_castSucc]
   split_ifs <;> simp_all <;> omega
 theorem E3 {n : ℕ} (i : Fin (n+1)) :
     i.castSucc.predAbove ∘ i.succ.castSucc.succAbove = i.succ.predAbove ∘ i.succ.castSucc.succAbove := by
   funext x
   apply Fin.ext
-  simp only [Function.comp_apply, vsA, vpA, vbb, Fin.val_succ, Fin.val_castSucc, Fin.val_last, Fin.val_zero, id_eq]
+  simp only [Function.comp_apply, vsA, vpA, Fin.val_succ, Fin.val_castSucc]
   split_ifs <;> simp_all <;> omega
 theorem faceMap_castSucc_comp_eq_succ {n : ℕ} (i : Fin (n+1)) :
     bb i.castSucc ∘ i.succ.castSucc.succAbove = bb i.succ ∘ i.succ.castSucc.succAbove := by
   funext x
   apply Fin.ext
-  simp only [Function.comp_apply, vsA, vpA, vbb, Fin.val_succ, Fin.val_castSucc, Fin.val_last, Fin.val_zero, id_eq]
+  simp only [Function.comp_apply, vsA, vbb, Fin.val_succ, Fin.val_castSucc]
   split_ifs <;> simp_all <;> omega
 theorem E4 {n : ℕ} : (0 : Fin (n+2)).predAbove ∘ (0 : Fin (n+3)).succAbove = id := by
   funext x
   apply Fin.ext
-  simp only [Function.comp_apply, vsA, vpA, vbb, Fin.val_succ, Fin.val_castSucc, Fin.val_last, Fin.val_zero, id_eq]
-  split_ifs <;> simp_all <;> omega
+  simp only [Function.comp_apply, vsA, vpA, Fin.val_zero, id_eq]
+  split_ifs <;> simp_all
 theorem faceMap_zero_comp_eq_one {n : ℕ} : bb (0 : Fin (n+2)) ∘ (0 : Fin (n+3)).succAbove = fun _ => 1 := by
   funext x
   apply Fin.ext
-  simp only [Function.comp_apply, vsA, vpA, vbb, Fin.val_succ, Fin.val_castSucc, Fin.val_last, Fin.val_zero, id_eq]
-  split_ifs <;> simp_all <;> omega
+  simp only [Function.comp_apply, vsA, vbb, Fin.val_zero]
+  split_ifs <;> simp_all
 theorem E5 {n : ℕ} : (Fin.last (n+1)).predAbove ∘ (Fin.last (n+2)).succAbove = id := by
   funext x
   apply Fin.ext
-  simp only [Function.comp_apply, vsA, vpA, vbb, Fin.val_succ, Fin.val_castSucc, Fin.val_last, Fin.val_zero, id_eq]
+  simp only [Function.comp_apply, vsA, vpA, Fin.val_last, id_eq]
   split_ifs <;> simp_all <;> omega
 theorem faceMap_last_comp_eq_zero {n : ℕ} : bb (Fin.last (n+1)) ∘ (Fin.last (n+2)).succAbove = fun _ => 0 := by
   funext x
   apply Fin.ext
-  simp only [Function.comp_apply, vsA, vpA, vbb, Fin.val_succ, Fin.val_castSucc, Fin.val_last, Fin.val_zero, id_eq]
+  simp only [Function.comp_apply, vsA, vbb, Fin.val_last, Fin.val_zero]
   split_ifs <;> simp_all <;> omega
 
 end CrystallineSemistableComparison.Auxfc

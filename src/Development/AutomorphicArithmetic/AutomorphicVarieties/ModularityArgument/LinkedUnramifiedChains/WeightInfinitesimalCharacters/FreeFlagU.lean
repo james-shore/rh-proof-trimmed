@@ -69,6 +69,6 @@ theorem UpperTheory.V.Z.J.freeFlagU :
   obtain ⟨rc, hrc⟩ := P.exists_rec h
   have hc := (compatCsd PH F Ω l ι n hn r π hr hreg hcsd hatt w σ hσ A h rc hrc).2
   exact purLocS P F Ω l hl ι n r hr w A h hw (rc (algNorm σ))
-    (fun O _ _ _ Bw hj => ⟨(hc O Bw hj).1, by first | exact Lev.SsCmp.of_eq (hc O Bw hj).2 | exact (hc O Bw hj).2⟩)
+    (fun O _ _ _ Bw hj => ⟨(hc O Bw hj).1, by first | exact (hc O Bw hj).2⟩)
     (temper P F Ω n hn π hreg ⟨_, hpol⟩ w A h rc hrc σ hσ) ψ m k hflag hm hk hine
     (Or.inl hgen)

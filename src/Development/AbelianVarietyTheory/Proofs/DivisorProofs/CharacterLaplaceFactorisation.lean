@@ -64,11 +64,7 @@ theorem exists_mul_eq_mul_diagonal {n : ℕ} (A : Matrix (Fin n) (Fin n) ℂ) (t
     (ht : Function.Injective t) (hA : A.charpoly = ∏ i, (X - C (t i))) :
     ∃ P : GL (Fin n) ℂ, A * (P : Matrix (Fin n) (Fin n) ℂ) = (P : Matrix (Fin n) (Fin n) ℂ) * diagonal t := by
   first
-  | exact @_root_.GlobalTheory.DiagonalConjugateExistence.exists_conj_diagonal
-  | exact _root_.GlobalTheory.DiagonalConjugateExistence.exists_conj_diagonal
   | (apply _root_.GlobalTheory.DiagonalConjugateExistence.exists_conj_diagonal <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DiagonalConjugateExistence.exists_conj_diagonal <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DiagonalConjugateExistence.exists_conj_diagonal <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.DiagonalConjugateExistence.exists_conj_diagonal ..)
 
 theorem chAt_prod_eq_gtChar {n : ℕ} (lam : DomWeight n) (t : Fin n → ℂ) (ht : Function.Injective t)

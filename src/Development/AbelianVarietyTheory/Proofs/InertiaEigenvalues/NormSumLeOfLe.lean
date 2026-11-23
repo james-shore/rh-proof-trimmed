@@ -62,11 +62,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 theorem norm_sum_le_of_le {p : ℕ} [Fact p.Prime] {ι : Type} (s : Finset ι) (g : ι → ℂ_[p]) {r : ℝ} (hr : 0 ≤ r)
     (h : ∀ k ∈ s, ‖g k‖ ≤ r) : ‖∑ k ∈ s, g k‖ ≤ r := by
   first
-  | exact @_root_.GlobalTheory.SingleStatement.main
-  | exact _root_.GlobalTheory.SingleStatement.main
   | (apply _root_.GlobalTheory.SingleStatement.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SingleStatement.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SingleStatement.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SingleStatement.main ..)
 
 section Core

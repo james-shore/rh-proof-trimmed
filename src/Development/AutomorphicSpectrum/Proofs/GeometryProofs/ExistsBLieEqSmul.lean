@@ -132,7 +132,7 @@ theorem exists_bLie_eq_smul (q : O) (hq0 : q ≠ 0) (hcok : ∀ f : omega P.Gt, 
       simp [mul_comm]
     · intro i _ hij
       rw [hyF]
-      simp [hij, Ne.symm hij]
+      simp [hij]
     · simp
   choose b hb using hint
   have hx : P.bLie (F b) = algebraMap O C q • u := by
@@ -175,7 +175,7 @@ theorem delta_smul_proj_mem {_ : DecidableEq (E →+* C)} (i : E →+* C) {δ : 
         ReciprocityTheory.ChartRestriction.G.TB.evAt i (ReciprocityTheory.ChartRestriction.G.TB.idemOf (integralBasis E) k) := by
 
       simp only [ReciprocityTheory.ChartRestriction.G.TB.idemOf, ReciprocityTheory.ChartRestriction.G.TB.evAt, map_sum,
-      Algebra.TensorProduct.productMap_apply_tmul, map_mul]
+      Algebra.TensorProduct.productMap_apply_tmul]
       rfl
     have h3 : ∑ j, i ((r j : 𝓞 E) : E) * k ((ω j : 𝓞 E) : E) =
         i (δ : E) * ReciprocityTheory.ChartRestriction.G.TB.evAt i (ReciprocityTheory.ChartRestriction.G.TB.idemOf (integralBasis E) k) := by

@@ -153,7 +153,7 @@ theorem _root_.GlobalTheory.norm_sum_eigenprojector_le_of_resolvent_bound :
   have hbound := circleIntegral.norm_integral_le_of_norm_le_const hR.le hF
   rw [hint, norm_smul] at hbound
   have hnorm : ‖(2 * (Real.pi : ℂ) * I)‖ = 2 * Real.pi := by
-    simp [Real.pi_pos.le]
+    simp
   rw [hnorm] at hbound
   have hS : ‖∑ i ∈ In, p i x‖ = ‖∑ i ∈ In, v i‖ := by
     have hc : ((∑ i ∈ In, v i : VV) : H) = ∑ i ∈ In, p i x := by simp [v]

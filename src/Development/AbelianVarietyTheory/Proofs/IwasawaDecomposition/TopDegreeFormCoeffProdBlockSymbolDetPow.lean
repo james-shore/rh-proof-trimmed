@@ -144,7 +144,7 @@ theorem graph_prodCongrRight (σ : ι → Equiv.Perm γ) :
   unfold glue graph
   simp only [Finsupp.mapDomain_finsetSum, Finsupp.mapDomain_single]
   rw [Fintype.sum_prod_type]
-  simp only [Finsupp.mapDomain_finsetSum, Finsupp.mapDomain_single, emb, Equiv.prodCongrRight_apply]
+  simp only [emb, Equiv.prodCongrRight_apply]
 
 theorem exists_prodCongrRight (w : Equiv.Perm (ι × γ)) (hw : ∀ a, (w a).1 = a.1) :
     ∃ σ : ι → Equiv.Perm γ, Equiv.prodCongrRight σ = w := by

@@ -63,7 +63,7 @@ theorem tr_d (K : Cx R) (N : ℕ) (i j : ℤ) (hi : -(N : ℤ) ≤ i) (hj : -(N 
     (tr K N).d i j = (trX K N i hi).hom ≫ K.d i j ≫ (trX K N j hj).inv := by
   have h1 := eF N i hi
   have h2 := eF N j hj
-  simp only [trX, HomologicalComplex.stupidTruncXIso, tr, HomologicalComplex.stupidTrunc, Iso.trans_hom, Iso.trans_inv,
+  simp only [trX, HomologicalComplex.stupidTruncXIso, HomologicalComplex.stupidTrunc, Iso.trans_hom, Iso.trans_inv,
     eqToIso.hom, eqToIso.inv, Category.assoc]
   rw [HomologicalComplex.extend_d_eq _ _ h1 h2, HomologicalComplex.restriction_d_eq _ _ h1 h2]
   simp [HomologicalComplex.restrictionXIso]
@@ -133,7 +133,7 @@ theorem nat2 {K L : Cx R} (g : K ⟶ L) (N : ℕ) :
   · subst h
     show pf K N _ ≫ _ = _ ≫ pf L N _
     rw [pf, dite_eq_left rfl, pf, dite_eq_left rfl, trm_f g (N + 1) _ (by omega)]
-    simp [CochainComplex.singleFunctor, CochainComplex.singleFunctors, HomologicalComplex.single_map_f_self,
+    simp [CochainComplex.singleFunctor, HomologicalComplex.single_map_f_self,
       HomologicalComplex.singleObjXSelf]
   · exact (SgZ L N i h).eq_of_tgt _ _
 

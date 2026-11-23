@@ -209,7 +209,6 @@ theorem maximal_index_size_bound : KmaxSize := by
       + (P.k : ℝ) * (P.n : ℝ) ^ 2 * (P.S + (P.t : ℝ) + P.L)) / (P.m : ℝ) := by
     unfold Par.lstar
     field_simp
-    try ring
   have hnA := F.nA
   have hkA := F.kA
   have htA := F.tA
@@ -254,7 +253,6 @@ theorem n_mul_width_eq_b_div {P : Par} {X' A : ℝ} (hH : P.Hyp) (hR : Rows P X'
   unfold Par.w''
   rw [hR.b'_eq]
   field_simp
-  try ring
 
 theorem small_term_bound_first : Small1 := by
   intro P X' A T hH hR hB hT
@@ -273,7 +271,6 @@ theorem small_term_bound_first : Small1 := by
     unfold Par.w''
     rw [hR.b'_eq]
     field_simp
-    try ring
   have hT' : (T : ℝ) ≤ 2 * (P.n : ℝ) := by
     have : (T : ℝ) ≤ P.f := by exact_mod_cast hT
     linarith [F.f2n]

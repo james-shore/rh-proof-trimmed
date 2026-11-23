@@ -82,7 +82,7 @@ theorem aLoc_eq_roL {𝔭 : {𝔭 : Ideal (𝓞 F) // 𝔭.IsMaximal}} (h𝔭 : 
   obtain ⟨hn', hvn'⟩ := (exists_vF_eq 𝔭.2 (valF n 𝔭)).choose_spec
   rw [roL, if_neg h𝔭]
   unfold aLoc
-  rw [alphaN_eq_of_vF_eq hK hF hs hd (by first | exact hL | exact hL.toIsLattice) hLi 𝔭.2 hv hn hn' (by rw [hvn', valF_apply hn])]
+  rw [alphaN_eq_of_vF_eq hK hF hs hd (by first | exact hL) hLi 𝔭.2 hv hn hn' (by rw [hvn', valF_apply hn])]
 
 include hm
 
@@ -99,7 +99,7 @@ theorem roL_zero (𝔭 : {𝔭 : Ideal (𝓞 F) // 𝔭.IsMaximal}) : roL h L S 
       omega
     rw [roL, if_neg h𝔭]
     unfold aLoc
-    rw [unitaryAbsoluteValueBounds.alphaN_unit hK hF hs hd (by first | exact hL | exact hL.toIsLattice) hLi 𝔭.2 hv (by omega) hn𝔭]
+    rw [unitaryAbsoluteValueBounds.alphaN_unit hK hF hs hd (by first | exact hL) hLi 𝔭.2 hv (by omega) hn𝔭]
     have he := eFac_pos (K := K) 𝔭.2 (m := finrank K V) (by omega)
     unfold eFac at he ⊢
     exact div_self he.ne'
@@ -120,7 +120,7 @@ theorem roL_diff (𝔭 : {𝔭 : Ideal (𝓞 F) // 𝔭.IsMaximal}) (j : ℕ) :
     obtain ⟨hn0, hv0⟩ := (exists_vF_eq 𝔭.2 j).choose_spec
     rw [hro, hro]
     unfold aLoc eFac
-    have hb := alphaN_rho_diff_bound hK hF hs hd (by first | exact hL | exact hL.toIsLattice) hLi hm 𝔭.2 hv hn1 hn0 (by rw [hv1, hv0])
+    have hb := alphaN_rho_diff_bound hK hF hs hd (by first | exact hL) hLi hm 𝔭.2 hv hn1 hn0 (by rw [hv1, hv0])
     refine hb.trans ?_
     rw [hv1]
 

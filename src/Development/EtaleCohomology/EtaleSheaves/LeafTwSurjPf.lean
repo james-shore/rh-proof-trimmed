@@ -80,7 +80,7 @@ theorem rel_single {A : Type} [CommRing A] (ζ' ξ : Prim q A) (a : (ZMod q)ˣ) 
     Submodule.subset_span ⟨ζ', ξ, a, h, rfl⟩
   rw [← Submodule.Quotient.mk_smul, Finsupp.smul_single, Submodule.Quotient.eq]
   convert hm using 3
-  first | rfl | (ext1; simp)
+  first | (ext1; simp)
 
 theorem rel_map {A A' : Type} [CommRing A] [CommRing A'] (φ : Prim q A → Prim q A') (ζ' ξ : Prim q A)
     (a : (ZMod q)ˣ) (h : (φ ξ).1 = (φ ζ').1 ^ (a : ZMod q).val) :

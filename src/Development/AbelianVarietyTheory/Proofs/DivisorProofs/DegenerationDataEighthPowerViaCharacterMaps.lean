@@ -219,7 +219,7 @@ theorem exists_tens (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (hR : B
     obtain ⟨mu, rfl⟩ := xe.symm.surjective y
     rw [AddEquiv.apply_symm_apply, hxe]
 
-    simp only [map_sum, kh, Finset.smul_sum, smul_smul]
+    simp only [map_sum, kh, smul_smul]
     rw [Finset.sum_comm]
     simp only [← Finset.sum_smul, hNs _ a, NS]
     simp

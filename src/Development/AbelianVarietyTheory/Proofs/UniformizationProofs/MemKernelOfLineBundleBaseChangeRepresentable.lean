@@ -64,7 +64,7 @@ theorem memKL_baseChange_rep : ∀ (S S' : Scheme.{0}) (f : S' ⟶ S) (B : Over 
     refine ⟨Over.homMk (pullback.lift z.left T'.hom (Over.w z)) (pullback.lift_snd _ _ _), ?_⟩
     refine Over.OverMorphism.ext (pullback.hom_ext ?_ ((Over.w _).trans (Over.w x).symm))
     rw [← hz']
-    simp [pullback.lift_fst, pullback.lift_fst_assoc]
+    simp
   · rintro ⟨z, rfl⟩
     refine ⟨Over.homMk (z.left ≫ pullback.fst H.hom f) ?_, ?_⟩
     · have := Over.w z
@@ -72,6 +72,6 @@ theorem memKL_baseChange_rep : ∀ (S S' : Scheme.{0}) (f : S' ⟶ S) (B : Over 
       simp [pullback.condition, ← this]
     · refine Over.OverMorphism.ext ?_
       change (z.left ≫ pullback.fst H.hom f) ≫ j.left = (z.left ≫ ((Over.pullback f).map j).left) ≫ pullback.fst B.hom f
-      simp [pullback.lift_fst]
+      simp
 
 end GlobalTheory

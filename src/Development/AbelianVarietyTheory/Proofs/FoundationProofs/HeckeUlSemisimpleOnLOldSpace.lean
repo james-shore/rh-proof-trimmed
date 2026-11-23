@@ -377,7 +377,7 @@ namespace GlobalTheory.OldSpace
 
 theorem quad_apply (u : Module.End ℂ (ℍ → ℂ)) (μ c : ℂ) (G : ℍ → ℂ) :
     aeval u (X ^ 2 - C μ * X + C c) G = u (u G) - μ • u G + c • G := by
-  simp [pow_two, Algebra.algebraMap_eq_smul_one, Module.End.mul_apply]
+  simp [pow_two, Algebra.algebraMap_eq_smul_one]
 
 theorem ul_oldSpace : ∀ (N l k : ℕ), 5 ≤ N → l.Prime → ¬ l ∣ N → 3 ≤ k → ∀ (χ : DirichletCharacter ℂ N) (α : ℂ), α ^ 2 ≠ χ l * (l : ℂ) ^ (k - 1) →
   ∀ f₁ f₂ : CuspForm (CongruenceSubgroup.Gamma1 N) (k : ℤ),

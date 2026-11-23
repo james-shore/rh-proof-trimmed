@@ -117,7 +117,7 @@ theorem conj_Gamma_den_mul (g : GL (Fin 2) ℚ) (M : ℕ) (y : SL(2, ℤ))
   ext i j
   change (↑((1 : Matrix (Fin 2) (Fin 2) ℤ) i j +
     M • (A₁.num * k * A₂.num) i j) : ZMod M) = (1 : Matrix (Fin 2) (Fin 2) (ZMod M)) i j
-  simp [nsmul_eq_mul, Matrix.one_apply]
+  simp [Matrix.one_apply]
 
 theorem exists_conj_principal_congruence :
     ∀ g : GQ, ∃ n : ℕ, 0 < n ∧ ∀ N : ℕ, ∀ δ ∈ CongruenceSubgroup.Gamma (N * n),

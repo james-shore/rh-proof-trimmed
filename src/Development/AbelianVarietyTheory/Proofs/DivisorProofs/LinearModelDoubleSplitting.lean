@@ -115,7 +115,7 @@ theorem eqOn_SB_of_box {k : Type} [TopologicalSpace k] [T2Space k] [LocallyCompa
   have e2 : ((GlobalTheory.LocFlat.CFac.comapH e (GlobalTheory.LocFlat.CFac.comapH e.symm ⟨φ, hφ⟩)).1 : (κ ⊕ κ → k) → ℂ) = φ := by
     funext x
     simp only [GlobalTheory.LocFlat.CFac.comapH_apply, Homeomorph.symm_apply_apply]
-  simp only [M₁, M₂, LinearMap.comp_apply, Submodule.subtype_apply] at this
+  simp only [M₁, M₂, LinearMap.comp_apply] at this
   rw [← e2]
   exact this
 

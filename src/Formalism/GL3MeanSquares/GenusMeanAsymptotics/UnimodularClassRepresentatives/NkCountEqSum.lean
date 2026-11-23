@@ -214,8 +214,7 @@ theorem sum_oM (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hF : IsFixF
         rw [Submodule.span_image, hL.span_eq_top, Submodule.map_top, LinearMap.range_eq_top]
         exact g.surjective
       first
-      | exact oM_ne_zero hs S hLat h𝔭 hxM
-      | exact oM_ne_zero hs S hLat.toIsLattice h𝔭 hxM) w
+      | exact oM_ne_zero hs S hLat h𝔭 hxM) w
   calc ∑ M ∈ R, (oM S M : ℝ) * w (S.cut M) = _ :=
         Finset.sum_congr rfl fun M _ => by rw [← OrbF.relIndex_stab hs]
     _ = _ := key

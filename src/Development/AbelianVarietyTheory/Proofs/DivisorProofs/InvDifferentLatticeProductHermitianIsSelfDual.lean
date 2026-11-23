@@ -191,7 +191,7 @@ theorem lsB_sd (D : Formalism.BasicNotions.D7) (cc : Ideal (𝓞 D.host.K)) (r :
       · subst hj
         simp only [Pi.smul_apply, Pi.single_eq_same, smul_eq_mul, mul_one, Algebra.smul_def, ho]
         field_simp
-      · simp [Pi.single_apply, hj]
+      · simp [hj]
     rw [he]
     exact Submodule.smul_mem _ o (Submodule.subset_span ⟨i, rfl⟩)
   · rw [eq_top_iff]
@@ -211,7 +211,7 @@ theorem lsB_sd (D : Formalism.BasicNotions.D7) (cc : Ideal (𝓞 D.host.K)) (r :
             funext j
             by_cases hj : j = i
             · subst hj; simp [mul_comm]
-            · simp [Pi.single_apply, hj]
+            · simp [hj]
           rw [hg']
           exact Submodule.smul_mem _ _ (Submodule.subset_span (hsingle i u hu))
         | zero => rw [zero_smul]; exact zero_mem _

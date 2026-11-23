@@ -216,9 +216,6 @@ theorem tateH2OAt_of_fund (P : LocPrime l) (K Lf : FinExt l) [CompactSpace ↥(G
     intro x o
     rw [Algebra.smul_def, map_mul]
     congr 1
-    try rw [← IsScalarTower.algebraMap_apply ℤ_[l] ↥(OL Lf) ↥Lf.1]
-    try rw [IsScalarTower.algebraMap_apply ℤ_[l] ℚ_[l] ↥Lf.1]
-    try rfl
   have hcyc : ∀ g (o : ↥(OL Lf)), ((cycLL (P.PD K) ↥Lf.1 g : (↥Lf.1)ˣ) : ↥Lf.1) * ι o =
       ι ((χ g : ℤ_[l]) • o) := by
     intro g o

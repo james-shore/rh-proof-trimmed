@@ -79,7 +79,7 @@ theorem valsAt_torus_surjective : ∀ (G : Type) [CommGroup G] (τ : G →* G), 
   simp only [MonoidHom.comp_apply, Subgroup.coe_subtype]
   apply Multiplicative.toAdd.injective
   funext i
-  simp only [MonoidHom.comp_apply, MulEquiv.coe_toMonoidHom,
+  simp only [MulEquiv.coe_toMonoidHom,
     MulEquiv.piMultiplicative_symm_apply, toAdd_ofAdd, MonoidHom.pi_apply, Function.comp_apply]
   rw [map_prod, toAdd_prod]
   have hc : ∀ j, Multiplicative.toAdd (w (e i) (y j * (τ (y j))⁻¹)) = if i = j then Multiplicative.toAdd n i else 0 := by

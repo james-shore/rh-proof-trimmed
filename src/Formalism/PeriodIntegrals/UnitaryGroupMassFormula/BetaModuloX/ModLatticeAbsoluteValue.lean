@@ -145,7 +145,7 @@ theorem mod_lattice_absolute_value : ModXAbs := by
     exact hξX
   have hLb := Lb_lattice F' Λ hΛ
   have hfg : (Lb F' Λ).FG := by
-    first | exact hLb.toIsLattice.fg | exact hLb.fg
+    first | exact hLb.toIsLattice.fg
   have hfix := mink_fix (Lb F' Λ) hfg φ hφL n hn hpow' g hg hcongQ
   have hall : ∀ q, φ q = q := by
     have hle : Submodule.span E (Lb F' Λ : Set (Qt F')) ≤
@@ -161,15 +161,6 @@ theorem mod_lattice_absolute_value : ModXAbs := by
           rw [Submodule.IsFullLattice.span_eq_top]
           exact Submodule.mem_top
         | obtain ⟨a, rfl⟩ := Submodule.Quotient.mk_surjective (Pk F') q
-          obtain ⟨o, ho, hoa⟩ := Bl.general_b_fact_third''''.goal1 S Λ hΛ (a : S.V)
-          have hmem : (Submodule.Quotient.mk (p := Pk F') (o • a) : Qt F') ∈ Lb F' Λ :=
-            (mem_Lb F' Λ).2 ⟨o • a, by simpa using hoa, rfl⟩
-          have ho' : algebraMap (𝓞 E) E o ≠ 0 :=
-            (map_ne_zero_iff _ (IsFractionRing.injective (𝓞 E) E)).2 ho
-          have ha : (Submodule.Quotient.mk (p := Pk F') a : Qt F') =
-              (algebraMap (𝓞 E) E o)⁻¹ • (Submodule.Quotient.mk (p := Pk F') (o • a) : Qt F') := by
-            rw [Submodule.Quotient.mk_smul, ← algebraMap_smul E o, smul_smul, inv_mul_cancel₀ ho', one_smul]
-          rw [ha]
           exact Submodule.smul_mem _ _ (Submodule.subset_span hmem))
     rw [LinearMap.mem_ker, LinearMap.sub_apply, LinearMap.id_apply, sub_eq_zero] at hq
     exact hq

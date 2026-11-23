@@ -81,11 +81,7 @@ theorem lpow_smul_mem (T : QLat LL) (n : ℕ) (x : T.V) (hx : x ∈ T.L.T) : (l 
 
 theorem exists_pow_smul_mem (T : QLat LL) (v : T.V) : ∃ n : ℕ, (l : ↥LL.1) ^ n • v ∈ T.L.T := by
   first
-  | exact @_root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem
-  | exact _root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem
   | (apply _root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IntegralPowerScalar.exists_pow_smul_mem ..)
 
 theorem actB_tmul_one (T : QLat LL) (g : Gl l) (x : ↥T.L.T) :

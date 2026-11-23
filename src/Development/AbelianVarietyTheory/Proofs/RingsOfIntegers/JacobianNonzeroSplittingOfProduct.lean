@@ -69,11 +69,7 @@ theorem exists_basis {A R : Type} [CommRing A] [CommRing R] [Algebra A R] {r : �
     (h : ∀ f, ∃! cf : Fin r → A, f = ∑ i, algebraMap A R (cf i) * b i) :
     ∃ e : Module.Basis (Fin r) A R, ∀ i, e i = b i := by
   first
-  | exact @_root_.GlobalTheory.SmoothEvaluation.main
-  | exact _root_.GlobalTheory.SmoothEvaluation.main
   | (apply _root_.GlobalTheory.SmoothEvaluation.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SmoothEvaluation.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SmoothEvaluation.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SmoothEvaluation.main ..)
 
 theorem sum_tower {A₀ A₁ R : Type} [CommRing A₀] [IsDomain A₀] [CommRing A₁] [IsDomain A₁] [CommRing R] [IsDomain R]

@@ -69,7 +69,7 @@ theorem vmul_lt {a b c : ValueGroupWithZero k} (h : a < b) (hc : c ≠ 0) : a * 
   mul_lt_mul_of_pos_right h (zero_lt_iff.2 hc)
 
 theorem vmul_le_iff {a b c : ValueGroupWithZero k} (hc : c ≠ 0) : c * a ≤ c * b ↔ a ≤ b := by
-  first | exact mul_le_mul_left₀ hc | exact mul_le_mul_iff_right₀ (zero_lt_iff.2 hc)
+  first | exact mul_le_mul_iff_right₀ (zero_lt_iff.2 hc)
 
 theorem near_id {j : ℕ} (E : Fin j → Fin j → k) (hE : ∀ a b, valuation k (E a b) < 1)
     (t : Fin j → k) (γ : ValueGroupWithZero k)
@@ -162,7 +162,7 @@ theorem exists_strictHenselian_absolutely_closed_local_ring (hjn : j ≤ n) (hjr
     rintro _ ⟨a, rfl⟩
     refine ⟨Pi.single (Fin.castLE hjr a) 1, ?_⟩
     funext i
-    simp [Matrix.mulVecLin_apply, Matrix.mulVec, dotProduct, Pi.single_apply, v]
+    simp [Matrix.mulVec, dotProduct, Pi.single_apply, v]
   have heq : Submodule.span k (Set.range v) = LinearMap.range x.mulVecLin := by
     apply Submodule.eq_of_le_of_finrank_le hsub
     rw [finrank_span_eq_card hli, Fintype.card_fin]
@@ -172,7 +172,7 @@ theorem exists_strictHenselian_absolutely_closed_local_ring (hjn : j ≤ n) (hjr
     rw [heq]
     refine ⟨Pi.single l 1, ?_⟩
     funext i
-    simp [Matrix.mulVecLin_apply, Matrix.mulVec, dotProduct, Pi.single_apply]
+    simp [Matrix.mulVec, dotProduct, Pi.single_apply]
   choose T hT using fun l => (Submodule.mem_span_range_iff_exists_fun k).1 (hmem l)
   refine ⟨fun a l => T l a, fun i l => ?_⟩
   have := congrFun (hT l) i
@@ -350,8 +350,8 @@ theorem ind_eq [Fintype 𝓀[k]] [DecidableEq 𝓀[k]] {n r j : ℕ} (hjn : j �
     intro ρ
     refine forall_congr' fun i => forall_congr' fun a => ?_
     have e := mulMr_left hjr ((ϖ : k)⁻¹) (c : k) L ρ x i a
-    first | rw [e] | erw [e] | (simp only [Matrix.mul_apply] at e ⊢; rw [e])
-  simp only [Set.indicator_apply, mem_ball_iff hjr, hLeq]
+    first | erw [e]
+  simp only [Set.indicator_apply, mem_ball_iff hjr]
   by_cases hx : Lc hjr c x
   · obtain ⟨T, hT⟩ := exists_strictHenselian_absolutely_closed_local_ring hjn hjr hc hx hrk
     have h1 : (∀ i (l : Fin r), j ≤ l.val → valuation k (x i l) ≤ valuation k (c : k)) ↔

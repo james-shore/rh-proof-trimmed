@@ -57,11 +57,7 @@ variable {l : ℕ} [Fact l.Prime]
 theorem exists_pow_smul_mem (K LL : FinExt l) (T : LocLat ↥(GK K) ℚ_[l] ↥LL.1 ↥(OL LL)) (v : T.V) :
     ∃ n : ℕ, (l : ↥LL.1) ^ n • v ∈ T.L.T := by
   first
-  | exact @_root_.GlobalTheory.IntegerRingPowers.main
-  | exact _root_.GlobalTheory.IntegerRingPowers.main
   | (apply _root_.GlobalTheory.IntegerRingPowers.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegerRingPowers.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegerRingPowers.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IntegerRingPowers.main ..)
 
 theorem killed_of_coordinates {G : Type} [Group G] [TopologicalSpace G] {Qp LL O : Type} [Field Qp]

@@ -80,7 +80,7 @@ lemma not_inOK_half {d : ℕ} (hd : 0 < d) : ¬ InOK d (0 - 1 / 2) := by
   have hv : v = 0 := by
     rcases him with h | h
     · exact h
-    · exfalso; first | exact hs.ne' h | omega
+    · exfalso; first | omega
   subst hv
   simp at hre
   have h2 : ((2 * u : ℤ) : ℝ) = ((-1 : ℤ) : ℝ) := by push_cast; rw [← hre]; norm_num

@@ -156,7 +156,7 @@ theorem ptOf_comp {S : Scheme.{0}} (t : Sp ℂ ⟶ S) {A B : Over S}
     (y : Over.mk (𝟙 (Sp ℂ)) ⟶ (Over.pullback t).obj A) (f : A ⟶ B) :
     ptOf t (y ≫ (Over.pullback t).map f) = ptOf t y ≫ f := by
   ext
-  simp [ptOf, pullback.lift_fst]
+  simp [ptOf]
 
 theorem ptOf_injective {S : Scheme.{0}} (t : Sp ℂ ⟶ S) {A : Over S} :
     Function.Injective (ptOf t (A := A)) := by

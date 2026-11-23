@@ -158,11 +158,11 @@ private theorem descend {n : ℕ} {A G H : Type} [CommRing A] [Group G] [Group H
       have hm : MonoidAlgebra.mapRingHom T (algebraMap A A[X]) (MonoidAlgebra.single 1 r)
           = MonoidAlgebra.single 1 (algebraMap A A[X] r) := by
         ext g
-        simp [MonoidAlgebra.coeff_single, Finsupp.single_apply]
+        simp [MonoidAlgebra.coeff_single]
       rw [hr, map_mul, map_mul, map_mul, hx, Matrix.map_mul, hm, rep_single R, rep_single R, map_one]
       congr 1
       ext i j
-      by_cases h : i = j <;> simp [Matrix.one_apply, h]
+      by_cases h : i = j <;> simp [h]
   have rep_chi {T : Type} [Group T] (R : T →* Matrix (Fin n) (Fin n) A) (y : MonoidAlgebra A T) :
       (W.GDet.ofRep (R)).chi y = (W.GDet.repAlg (R) A y).charpoly := by
     unfold W.GDet.chi
@@ -171,7 +171,7 @@ private theorem descend {n : ℕ} {A G H : Type} [CommRing A] [Group G] [Group H
     rw [Matrix.charpoly]
     congr 1
     ext i j
-    by_cases h : i = j <;> simp [Matrix.charmatrix_apply, Matrix.one_apply, h]
+    by_cases h : i = j <;> simp [h]
   have rep_trace {T : Type} [Group T] (R : T →* Matrix (Fin n) (Fin n) A) (y : MonoidAlgebra A T) :
       (W.GDet.ofRep (R)).tr y = (W.GDet.repAlg (R) A y).trace := by
     haveI : Nonempty (Fin n) := ⟨⟨0, hn⟩⟩

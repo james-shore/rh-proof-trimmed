@@ -89,7 +89,7 @@ theorem invSign_eq (τ : κ → ι) {s : Finset κ} {x : κ} (hs : Set.InjOn τ 
   have h1 := hx a ha
   have h2 := hxs a ha
   rcases lt_or_gt_of_ne h1 with h3 | h3 <;> rcases lt_or_gt_of_ne h2 with h4 | h4 <;>
-    simp [h3, h4, h3.le, h4.le, not_lt.2 h3.le, not_lt.2 h4.le]
+    simp [h3, h4, not_lt.2 h3.le, not_lt.2 h4.le]
 
 theorem image_erase_of_injOn (τ : κ → ι) {t : Finset κ} {i : κ} (hi : i ∈ t)
     (ht : Set.InjOn τ t) : (t.erase i).image τ = (t.image τ).erase (τ i) := by

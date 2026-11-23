@@ -199,7 +199,7 @@ theorem ps_gram_det_ne {σ κ : Type} [Fintype κ] [DecidableEq κ] (q : κ → 
   set p : MvPolynomial σ ℚ := ∑ j, v j • q j with hp
   have hpc : ∀ m, p.coeff m = ∑ j, v j * (q j).coeff m := by
     intro m
-    simp [hp, MvPolynomial.coeff_sum, MvPolynomial.coeff_smul]
+    simp [hp]
   have hsub : ∀ i, (q i).support ⊆ S := fun i =>
     Finset.subset_biUnion_of_mem (fun j => (q j).support) (Finset.mem_univ i)
   have hwpos : ∀ m, 0 < w m := fun m => by

@@ -77,8 +77,7 @@ private lemma eq_zero_of_forall_algHom_apply_eq_zero_of_isReduced {C V : Type} [
     let eqv : C ≃ₐ[C] V ⧸ m := AlgEquiv.ofBijective (Algebra.ofId C (V ⧸ m))
       ⟨(algebraMap C (V ⧸ m)).injective, hsurj⟩
     have h := hv (eqv.symm.toAlgHom.comp (Ideal.Quotient.mkₐ C m))
-    simp only [AlgHom.comp_apply, Ideal.Quotient.mkₐ_eq_mk, AlgEquiv.coe_toAlgHom,
-      AlgHom.coe_coe] at h
+    simp only [AlgHom.comp_apply, Ideal.Quotient.mkₐ_eq_mk, AlgEquiv.coe_toAlgHom] at h
     exact Ideal.Quotient.eq_zero_iff_mem.mp ((map_eq_zero_iff _ eqv.symm.injective).mp h)
   rw [IsArtinianRing.jacobson_eq_radical] at hmem
   obtain ⟨n, hn⟩ := hmem
@@ -193,7 +192,7 @@ theorem _root_.GlobalTheory.exists_eval_eq_of_multiplicative_on_points : ∀ (O 
     intro x y k
     conv_lhs => rw [← (e.tensorProduct e).sum_repr (Δ (e k))]
 
-    simp only [map_sum, map_smul, Module.Basis.tensorProduct_apply,
+    simp only [map_sum, Module.Basis.tensorProduct_apply,
     Algebra.smul_def, Fintype.sum_prod_type, map_mul, AlgHom.commutes,
     Algebra.TensorProduct.lift_tmul, m]
   have key : ∀ x y : A →ₐ[O] C, ∑ j, (∑ i, (∑ k, c k * algebraMap O C (m k i j) - c i * c j) *

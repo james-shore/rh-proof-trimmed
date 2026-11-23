@@ -137,7 +137,7 @@ theorem map_conj_mulVec {r : ℕ} (M : Matrix (Fin r) (Fin r) ℂ) (u : Fin r �
     (M.map (starRingEnd ℂ)) *ᵥ u = star (M *ᵥ star u) := by
   funext i
 
-  simp [Matrix.mulVec, dotProduct, map_sum]
+  simp [Matrix.mulVec, dotProduct]
 
 theorem normSq_star {r : ℕ} (u : Fin r → ℂ) : ReciprocityTheory.MultiplicativeHeights.normSq (star u) = ReciprocityTheory.MultiplicativeHeights.normSq u := by
   simp [ReciprocityTheory.MultiplicativeHeights.normSq]

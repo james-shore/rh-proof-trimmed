@@ -61,7 +61,7 @@ theorem chrW_pow_not_real {F E : Type} [Field F] [NumberField F] [Field E] [Numb
   intro m hm r hr
   have hn : ‖((chrW χ t (unifAt v) : ℂˣ) : ℂ)‖ = 1 := by
     simp only [chrW, locChar, MonoidHom.coe_comp, Function.comp_apply]
-    first | exact Circle.norm_coe _ | exact Circle.abs_coe _ | simp
+    first | exact Circle.norm_coe _
   have hr1 : |r| = 1 := by
     have e := congrArg norm hr
     rw [norm_pow, hn, one_pow, Complex.norm_real, Real.norm_eq_abs] at e

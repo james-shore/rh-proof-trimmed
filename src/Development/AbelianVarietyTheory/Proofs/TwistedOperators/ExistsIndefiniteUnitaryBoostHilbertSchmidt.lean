@@ -132,7 +132,7 @@ theorem boost_exists : ∀ (m : ℕ) (ε : Fin m → Bool) (a b : Fin m → ℂ)
   have hAa : A *ᵥ a = S • (a + b) := by
     rw [hmul, haa, hba]
     have e1 : α * (c2 : ℂ) + 1 = S := by rw [hα, ← hSS]; field_simp; try ring
-    have e2 : γ * (c2 : ℂ) = S := by rw [hγ, ← hSS]; field_simp; try ring
+    have e2 : γ * (c2 : ℂ) = S := by rw [hγ, ← hSS]; field_simp
     linear_combination (norm := module) e1 • a + e2 • b
   have hsq : A * A = 1 + (2 * α + α ^ 2 * (c2 : ℂ) + γ ^ 2 * ((c2 : ℂ) - 1)) • vecMulVec a (star a)
       + (2 * β + β ^ 2 * ((c2 : ℂ) - 1) + γ ^ 2 * (c2 : ℂ)) • vecMulVec b (star b)

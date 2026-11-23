@@ -66,7 +66,7 @@ theorem counit_comp_cartierBaseChange :
   induction x with
   | add x y hx hy => simp only [map_add (f := _), hx, hy]
   | tmul r φ =>
-    simp [Algebra.TensorProduct.one_def, Algebra.smul_def, mul_comm]
+    simp [Algebra.smul_def, mul_comm]
 
 def cotBaseChange :
     Cot R' (CartierDual R' (R' ⊗[R] A)) ≃ₗ[R'] R' ⊗[R] Cot R (CartierDual R A) :=

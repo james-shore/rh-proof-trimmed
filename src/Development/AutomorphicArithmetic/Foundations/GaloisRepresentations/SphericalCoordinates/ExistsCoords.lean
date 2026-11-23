@@ -77,7 +77,7 @@ private theorem exists_coords {K C V : Type} [Field K] [Ring C] [Algebra K C] [A
       map_add' := fun c c' => by ext w; simp
       map_smul' := fun x c => by
         ext w
-        simp [hsm, Algebra.smul_def, Module.End.mul_apply] }
+        simp [hsm, Algebra.smul_def] }
     (by ext w; simp) (fun c c' => by ext w; simp [Module.End.mul_apply])
   have hr : ∀ c w, r c w = rep c w := fun _ _ => rfl
   let s : C →ₐ[K] Matrix (Fin n) (Fin n) K := (LinearMap.toMatrixAlgEquiv b).toAlgHom.comp r

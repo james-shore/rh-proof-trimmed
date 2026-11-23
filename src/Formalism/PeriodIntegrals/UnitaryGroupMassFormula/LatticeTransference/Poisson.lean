@@ -110,7 +110,7 @@ private theorem summable_exp_neg_mul_norm_add_sq {E : Type} [NormedAddCommGroup 
         rw [sub_neg_eq_add, hz, norm_zero, Real.zero_rpow]
         have : (0 : ℝ) < N := by positivity
         linarith
-      simp [hz, h0]
+      simp [hz]
     · have hu : 0 < ‖(z : E) + w‖ := norm_pos_iff.2 hz
       simp only [hz, if_false, add_zero, sub_neg_eq_add]
       exact key _ hu
@@ -521,8 +521,6 @@ theorem poissonGauss : PoissonGauss := by
     rw [Complex.ofReal_tsum, ← B.tsum_eq]
     apply tsum_congr
     intro c
-    change (Real.exp (-π * t * ‖(B c : E) + φ.symm s‖ ^ 2) : ℂ) =
-      h (s + fun i => (c i : ℝ))
     change (Real.exp (-π * t * ‖(B c : E) + φ.symm s‖ ^ 2) : ℂ) =
       (Real.exp (-π * t * ‖φ.symm (s + fun i => (c i : ℝ))‖ ^ 2) : ℂ)
     rw [map_add, ← hB c]

@@ -167,8 +167,6 @@ theorem hpart2_dec {P Q : Mat k r} (hP : inLie k r P) (hQ : inLie k r Q) :
   simp only [Matrix.smul_apply, Matrix.add_apply, Matrix.neg_apply, smul_eq_mul]
   field_simp
   ring_nf
-  try simp [Complex.I_sq]
-  try ring
 
 theorem dec (Z : Mat k r) : Z = hpart1 (Hpk k r) Z + Complex.I • hpart2 (Hpk k r) Z := by
   unfold hpart1 hpart2

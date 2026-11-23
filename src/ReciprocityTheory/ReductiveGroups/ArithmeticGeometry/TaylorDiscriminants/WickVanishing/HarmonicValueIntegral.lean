@@ -68,15 +68,12 @@ private theorem hasSubst_lemma {σ τ k : Type} [CommRing k] [Finite σ] {a : σ
     (ha : ∀ s, constantCoeff (a s) = 0) : HasSubst a := by
   first
   | exact MvPowerSeries.hasSubst_of_constantCoeff_zero ha
-  | exact MvPowerSeries.HasSubst.of_constantCoeff_zero' ha
-  | exact ⟨fun s => by simp [ha s], fun d => Set.toFinite _⟩
 
 private theorem mvPowerSeries_subst_C {σ τ k : Type} [CommRing k] {a : σ → MvPowerSeries τ k} (hs : HasSubst a) (c : k) :
     subst a (C c : MvPowerSeries σ k) = (C c : MvPowerSeries τ k) := by
   have e : ∀ (ρ : Type), (C c : MvPowerSeries ρ k) = c • (1 : MvPowerSeries ρ k) := fun ρ => by
     first
     | rw [MvPowerSeries.smul_eq_C_mul, mul_one]
-    | simp [MvPowerSeries.smul_eq_C_mul]
   rw [e σ, e τ, ← coe_substAlgHom hs, map_smul, map_one]
 
 theorem const_subst {σ τ k : Type} [CommRing k] [Finite σ] {a : σ → MvPowerSeries τ k}
@@ -85,8 +82,6 @@ theorem const_subst {σ τ k : Type} [CommRing k] [Finite σ] {a : σ → MvPowe
   have h0 : constantCoeff (G - C (constantCoeff G)) = 0 := by simp
   have h1 : constantCoeff (subst a (G - C (constantCoeff G))) = 0 := by
     first
-    | exact constantCoeff_subst_eq_zero hs _ h0
-    | exact constantCoeff_subst_eq_zero hs h0
     | (apply constantCoeff_subst_eq_zero <;> assumption)
   have e : subst a (G - C (constantCoeff G)) = subst a G - C (constantCoeff G) := by
     rw [← coe_substAlgHom hs, map_sub, coe_substAlgHom hs, mvPowerSeries_subst_C hs]
@@ -120,7 +115,6 @@ theorem E_liftX (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] h = 0) (f : PS 
   unfold liftX
   first
   | rw [subst_comp_subst_apply hl hb]
-  | rw [subst_comp_subst_apply hb hl]
   have e : (fun p : Fin 1 × Fin d => subst (bE k h) (X (Sum.inl p.2) : AA k d)) =
       (X : Fin 1 × Fin d → PS k 1 d) := by
     funext p
@@ -132,9 +126,6 @@ theorem E_liftX (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] h = 0) (f : PS 
   rw [e]
   first
   | (rw [subst_self]; rfl)
-  | exact congrFun subst_self f
-  | simp [subst_self]
-  | (rw [← map_algebraMap_eq_subst_X]; simp)
 
 section Inter
 
@@ -169,8 +160,6 @@ theorem E_nabla (B : FB R d O) (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] 
     have e : Finsupp.degree (d + Finsupp.single t 1) = Finsupp.degree d + 1 := by
       first
       | rw [map_add (f := _), Finsupp.degree_single]
-      | simp [Finsupp.degree, Finsupp.sum_add_index']
-      | (unfold Finsupp.degree; rw [Finsupp.sum_add_index' (by simp) (by simp)]; simp)
     omega
   have low_mul_lemma {τ : Type} {m n : ℕ} {f g : MvPowerSeries τ k} (hf : Low m f) (hg : Low n g) :
       Low (m + n) (f * g) := by
@@ -180,13 +169,10 @@ theorem E_nabla (B : FB R d O) (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] 
     refine Finset.sum_eq_zero fun x hx => ?_
     first
     | rw [Finset.HasAntidiagonal.mem_antidiagonal] at hx
-    | simp only [Finset.HasAntidiagonal.mem_antidiagonal] at hx
-    | simp only [Finset.mem_antidiagonal] at hx
     have e : Finsupp.degree x.1 + Finsupp.degree x.2 = Finsupp.degree d := by
       rw [← hx]
       first
       | exact (map_add _ _ _).symm
-      | simp [Finsupp.degree, Finsupp.sum_add_index']
     by_cases h1 : Finsupp.degree x.1 < m
     · rw [hf _ h1, zero_mul]
     · rw [hg _ (by omega), mul_zero]
@@ -206,8 +192,6 @@ theorem E_nabla (B : FB R d O) (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] 
   have finsupp_apply_le_degree' {ι : Type} (d : ι →₀ ℕ) (i : ι) : d i ≤ d.degree := by
     first
     | exact Finsupp.le_degree i d
-    | exact Finsupp.le_degree d i
-    | exact Finsupp.le_degree
   have low_subst_of_low {σ τ : Type} [Finite σ] {a : σ → MvPowerSeries τ k} (ha : ∀ s, Low 1 (a s)) {N : ℕ}
       {g : MvPowerSeries σ k} (hg : Low N g) : Low N (subst a g) := by
     classical
@@ -227,8 +211,6 @@ theorem E_nabla (B : FB R d O) (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] 
         have hdeg : e.degree = ∑ s ∈ e.support, e s := by
           first
           | rfl
-          | exact Finsupp.degree_eq_sum e
-          | simp [Finsupp.degree]
         rw [hdeg]
         exact h
       exact smul_eq_zero_of_right _ (hl d (by omega))
@@ -244,8 +226,7 @@ theorem E_nabla (B : FB R d O) (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] 
     next p s0 hp =>
       rw [map_mul, MvPolynomial.aeval_X, Derivation.leibniz, hp, smul_eq_mul, smul_eq_mul, Finset.mul_sum]
       simp only [Derivation.leibniz, MvPolynomial.pderiv_X, Pi.single_apply, smul_eq_mul, map_add (f := _), map_mul,
-        MvPolynomial.aeval_X, add_mul, Finset.sum_add_distrib, mul_ite, mul_one, mul_zero, map_one, map_zero,
-        ite_mul, zero_mul, Finset.sum_ite_eq, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+        MvPolynomial.aeval_X, add_mul, Finset.sum_add_distrib, mul_ite, mul_one, mul_zero]
       simp only [apply_ite (MvPolynomial.aeval a), map_zero, ite_mul, zero_mul, Finset.sum_ite_eq,
         Finset.mem_univ, if_true, mul_assoc]
       try ring
@@ -281,7 +262,6 @@ theorem E_nabla (B : FB R d O) (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] 
       have h1 := finsupp_apply_le_degree' m s
       first
       | (change m s ≤ M; omega)
-      | (simp; omega)
     ext d
     obtain ⟨p, hp⟩ := hpoly (d.degree + 1 + 1)
     have hf : f = (f - (p : MvPowerSeries σ k)) + (p : MvPowerSeries σ k) := (sub_add_cancel _ _).symm
@@ -297,8 +277,8 @@ theorem E_nabla (B : FB R d O) (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] 
     rw [h1 d (by omega), h2 d (by omega)]
   simp only [pderiv_subst hc, Finset.mul_sum]
   simp only [Fintype.sum_sum_type, Finset.sum_add_distrib]
-  simp only [bE, Sum.elim_inl, Sum.elim_inr, pderiv_X, Pi.single_apply, ite_mul, mul_ite, mul_zero, mul_one, Finset.sum_ite_eq, Finset.mem_univ, if_true]
-  simp only [Prod.mk.injEq, true_and, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+  simp only [bE, Sum.elim_inl, Sum.elim_inr, pderiv_X, Pi.single_apply, mul_ite, mul_zero, mul_one]
+  simp only [Prod.mk.injEq, true_and]
   simp only [Finset.sum_ite_eq', Finset.mem_univ, if_true]
   congr 1
   rw [Finset.sum_comm]

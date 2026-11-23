@@ -472,11 +472,11 @@ theorem antisymmetric_double_sum_eq_zero {A : Type*} [AddCommGroup A] (f : Fin n
 
 theorem exterior_wedge_sq_zero (a : Fin n) : exteriorWedge P a * exteriorWedge P a = 0 := by
   refine LinearMap.ext fun K => funext fun J => ?_
-  simp [Module.End.mul_apply, exterior_wedge_apply]
+  simp [exterior_wedge_apply]
 
 theorem exterior_contraction_sq_zero (a : Fin n) : exteriorContraction P a * exteriorContraction P a = 0 := by
   refine LinearMap.ext fun K => funext fun J => ?_
-  simp [Module.End.mul_apply, exterior_contraction_apply]
+  simp [exterior_contraction_apply]
 
 theorem totalWedge_mul_self (v : Fin n → P) : totalWedge v * totalWedge v = 0 := by
   unfold totalWedge
@@ -667,7 +667,7 @@ theorem twist_column_kernel_eq_lambda {B : Fin N → ℕ} (Pa : PPath n N LL B) 
     have h0 : columnLambdaOperator N jj c (extOne : Finset (Fin n) → TwistedRing N n) = extOne := by
       have hlambda {P : Type} [CommRing P] (u v : Fin n → P) (θ : P) :
           lambdaOperator u v θ (extOne : Finset (Fin n) → P) = extOne := by
-        simp [lambdaOperator, Module.End.mul_apply, total_contraction_exterior_one]
+        simp [lambdaOperator, total_contraction_exterior_one]
       unfold columnLambdaOperator
       split_ifs <;> exact hlambda (P := TwistedRing N n) _ _ _
     simp only [Kcol]
@@ -843,7 +843,7 @@ theorem total_wedge_zero_of_top_support {P : Type*} [CommRing P] (v : Fin n → 
 
 theorem lambda_eq_self_of_contraction_zero {P : Type*} [CommRing P] (u v : Fin n → P) (θ : P) {K : Finset (Fin n) → P}
     (h : totalContraction u K = 0) : lambdaOperator u v θ K = K := by
-  simp [lambdaOperator, Module.End.mul_apply, h]
+  simp [lambdaOperator, h]
 
 theorem lambda_eq_smul_of_total_wedge_zero {P : Type*} [CommRing P] (u v : Fin n → P) (θ : P) (hd : ∑ m, u m * v m = 1)
     {K : Finset (Fin n) → P} (h : totalWedge v K = 0) : lambdaOperator u v θ K = θ • K := by
@@ -925,7 +925,7 @@ theorem components_in_filtration_lambda {K : Finset (Fin n) → Q} (u v : Fin n 
     ComponentsInFiltration Fl a' (lambdaOperator u v θ K) := by
   intro J
   have e : lambdaOperator u v θ K J = K J + (θ - 1) * totalWedge v (totalContraction u K) J := by
-    simp [lambdaOperator, Module.End.mul_apply]
+    simp [lambdaOperator]
   rw [e]
   refine (Fl.F a').add_mem (Fl.anti h0 (h J)) ?_
   have h1 : θ - 1 ∈ Fl.F a' := (Fl.F a').sub_mem (Fl.anti ha hθ) (Fl.anti h0 Fl.one_mem)

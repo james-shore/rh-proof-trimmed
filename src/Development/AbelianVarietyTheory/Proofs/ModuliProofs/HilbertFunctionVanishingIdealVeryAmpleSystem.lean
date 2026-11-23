@@ -130,7 +130,6 @@ def toPw (M : LB X) (e : ℕ) (t : (lbPow M e).Sec) : (AbLaw.pw M e).Sec where
         first
           | (change res _ (∏ _k : PUnit, _) = _
              rw [Fintype.prod_unique, map_zpow])
-          | refine (congrArg (res _) (@Fintype.prod_unique PUnit _ _ _ _ _)).trans ((map_zpow _ _ _).trans ?_)
           | refine (congrArg (res _) (Fintype.prod_unique _)).trans ((map_zpow _ _ _).trans ?_)
         congr 1
         ext

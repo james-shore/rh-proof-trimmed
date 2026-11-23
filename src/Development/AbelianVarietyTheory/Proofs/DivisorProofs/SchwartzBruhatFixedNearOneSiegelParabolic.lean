@@ -69,7 +69,7 @@ theorem toBlocks₁₁_one' : (1 : Matrix (ν ⊕ ν) (ν ⊕ ν) E).toBlocks₁
   ext i j; simp [toBlocks₁₁, Matrix.one_apply]
 
 theorem toBlocks₁₂_one' : (1 : Matrix (ν ⊕ ν) (ν ⊕ ν) E).toBlocks₁₂ = 0 := by
-  ext i j; simp [toBlocks₁₂, one_apply]
+  ext i j; simp [toBlocks₁₂]
 
 variable {F : Type} [Field F] [Algebra F E] (c : E →ₐ[F] E) {α : Type} [Fintype α] [DecidableEq α]
 

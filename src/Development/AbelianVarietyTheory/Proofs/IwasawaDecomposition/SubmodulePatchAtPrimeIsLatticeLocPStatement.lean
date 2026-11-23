@@ -49,4 +49,3 @@ theorem _root_.GlobalTheory.T.submodulePatchAtPrime_isLattice_locP : ∀ {E : Ty
   intro E _ _ _ n P A B hA hB
   first
   | exact GlobalTheory.InertExchange.patchAt_isLattice_locP P A B hA hB
-  | exact GlobalTheory.InertExchange.patchAt_isLattice_locP P A B hA.toIsLattice hB.toIsLattice

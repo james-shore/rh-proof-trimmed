@@ -80,13 +80,13 @@ theorem shuffle_cup1_product_formula {R : Type} [CommRing R] {C : Type} [Categor
     refine bv_congr ?_ ?_ u
     · intro t
       apply Fin.ext
-      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_sI, val_predAbove]
+      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_sI]
       change (if 0 < t.val then 1 else 0) = t.val
       have ht := t.isLt
       split_ifs <;> omega
     · intro t
       apply Fin.ext
-      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_sI, val_predAbove]
+      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_predAbove]
       change (if 0 < t.val then t.val - 1 else t.val) = 0
       have ht := t.isLt
       split_ifs <;> omega
@@ -96,13 +96,13 @@ theorem shuffle_cup1_product_formula {R : Type} [CommRing R] {C : Type} [Categor
     refine bv_congr ?_ ?_ w
     · intro t
       apply Fin.ext
-      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_sI, val_predAbove]
+      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_sI]
       change (if 0 < t.val + 1 then 1 else 0) = 1
       have ht := t.isLt
       split_ifs <;> omega
     · intro t
       apply Fin.ext
-      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_sI, val_predAbove]
+      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_predAbove]
       change (if 0 < t.val + 1 then t.val + 1 - 1 else t.val + 1) = t.val
       have ht := t.isLt
       split_ifs <;> omega
@@ -112,13 +112,13 @@ theorem shuffle_cup1_product_formula {R : Type} [CommRing R] {C : Type} [Categor
     refine bv_congr ?_ ?_ u
     · intro t
       apply Fin.ext
-      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_sI, val_predAbove]
+      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_sI]
       change (if j.val + 1 < t.val then 1 else 0) = 0
       have ht := t.isLt
       split_ifs <;> omega
     · intro t
       apply Fin.ext
-      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_sI, val_predAbove]
+      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_predAbove]
       change (if j.val + 1 < t.val then t.val - 1 else t.val) = t.val
       have ht := t.isLt
       split_ifs <;> omega
@@ -128,13 +128,13 @@ theorem shuffle_cup1_product_formula {R : Type} [CommRing R] {C : Type} [Categor
     refine bv_congr ?_ ?_ w
     · intro t
       apply Fin.ext
-      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_sI, val_predAbove]
+      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_sI]
       change (if j.val + 1 < t.val + 1 then 1 else 0) = (if j.val < t.val then 1 else 0)
       have ht := t.isLt
       split_ifs <;> omega
     · intro t
       apply Fin.ext
-      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_sI, val_predAbove]
+      simp only [OrderHom.comp, OrderHom.coe_mk, Function.comp_apply, val_predAbove]
       change (if j.val + 1 < t.val + 1 then t.val + 1 - 1 else t.val + 1) = (j.predAboveOrderHom t).succ.val
       rw [Fin.val_succ, val_predAbove]
       have ht := t.isLt

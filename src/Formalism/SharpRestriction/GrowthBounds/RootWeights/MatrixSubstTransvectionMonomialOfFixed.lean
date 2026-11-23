@@ -58,7 +58,6 @@ open Formalism.MainNotions.G
 theorem prod_monomial_eq_monomial_sum_prod {B σ α : Type*} [CommRing B] (s : Finset α) (f : α → σ →₀ ℕ) (c : α → B) :
     ∏ i ∈ s, monomial (f i) (c i) = monomial (∑ i ∈ s, f i) (∏ i ∈ s, c i) := by
   first
-  | exact (monomial_sum_index s f c).symm
   | classical
     refine Finset.induction_on s (by simp) ?_
     intro i s hi ih

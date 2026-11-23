@@ -46,4 +46,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open GlobalTheory.EtC
 
 theorem _root_.GlobalTheory.T.sH_of_isField_finiteType_of_isAlgClosed : ∀ (k B : Type) [Field k] [IsAlgClosed k] [CommRing B] [Algebra k B] [Algebra.FiniteType k B], IsField B → SH B := by
-  first | (exact @GlobalTheory.field_finiteType_algClosed_SH) | (exact GlobalTheory.field_finiteType_algClosed_SH) | (intros; apply GlobalTheory.field_finiteType_algClosed_SH  <;> assumption)
+  first | (exact @GlobalTheory.field_finiteType_algClosed_SH)

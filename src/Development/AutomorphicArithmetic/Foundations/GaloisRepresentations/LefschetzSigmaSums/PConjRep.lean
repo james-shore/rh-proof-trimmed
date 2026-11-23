@@ -106,7 +106,7 @@ theorem conjRep_of : ConjRep := by
         simp [twMap]
       map_mul' := fun g h => by
         ext x
-        simp [twMap, Module.End.mul_apply] }
+        simp [twMap] }
   exact ⟨Tw σ V, twAdd σ V, twMod σ V, tw_finite σ V, ξ', toTw σ V, tw_smul σ V, fun g x => rfl⟩
 
 end UpperTheory.Gal.LocalSmoothExtension

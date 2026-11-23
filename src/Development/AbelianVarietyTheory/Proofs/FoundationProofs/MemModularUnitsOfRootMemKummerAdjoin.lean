@@ -122,11 +122,7 @@ theorem val_eq_one_of_pow {L : Type} [Field L] (A : ValuationSubring L) {x : L} 
 theorem root_eq_one {F : Type} [Field F] (V : ValuationSubring F) {m : ℕ} (hm : V.valuation (m : F) = 1) {ζ : F}
     (hζ : ζ ^ m = 1) (hV : V.valuation (ζ - 1) < 1) : ζ = 1 := by
   first
-  | exact @_root_.GlobalTheory.RootOfUnityEqOne.main
-  | exact _root_.GlobalTheory.RootOfUnityEqOne.main
   | (apply _root_.GlobalTheory.RootOfUnityEqOne.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.RootOfUnityEqOne.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.RootOfUnityEqOne.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.RootOfUnityEqOne.main ..)
 
 theorem fix_root {L : Type} [Field L] (B : ValuationSubring L) {m : ℕ} (hm0 : m ≠ 0) (hm : B.valuation (m : L) = 1)

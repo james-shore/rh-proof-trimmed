@@ -77,7 +77,7 @@ lemma prod_update_a (z z' : Fin (2 * r + k + 1) → ℂ) (a b : Fin (r + 2) → 
   · apply Finset.prod_congr rfl
     intro j hj
     have hjl : j ≠ l := Finset.ne_of_mem_erase hj
-    simp [fct, Pi.single_apply, hjl]
+    simp [fct, hjl]
   · simp [fct]
 
 lemma prod_update_b (z z' : Fin (2 * r + k + 1) → ℂ) (a b : Fin (r + 2) → ℕ) (g : Mat k r) (l : Fin (r + 2)) :
@@ -89,7 +89,7 @@ lemma prod_update_b (z z' : Fin (2 * r + k + 1) → ℂ) (a b : Fin (r + 2) → 
   · apply Finset.prod_congr rfl
     intro j hj
     have hjl : j ≠ l := Finset.ne_of_mem_erase hj
-    simp [fct, Pi.single_apply, hjl]
+    simp [fct, hjl]
   · simp [fct]
 
 theorem hasDerivAt_cvs (D : RealPlaceData k r Wp Wq) {nf : ℕ} (X g : Mat k r) (t : CT k r nf)
@@ -155,7 +155,7 @@ theorem hasDerivAt_cvs (D : RealPlaceData k r Wp Wq) {nf : ℕ} (X g : Mat k r) 
     intro l
     split_ifs with h
     · simp [cvs, h]
-    · simp [cvs, monoM_eq, P0, G0]; try ring
+    · simp [cvs, monoM_eq, P0, G0]
   have hcb : ∀ l, cvs D (if t.b l = 0 then { t with q := 0 } else
       { t with q := C (-(t.b l : ℂ)) * t.q * dP X (qDbl D.z D.z' l), b := t.b + Pi.single l 1 }) g =
       -(t.b l : ℂ) * P0 * eval (vars g) (dP X (qDbl D.z D.z' l)) *
@@ -163,13 +163,13 @@ theorem hasDerivAt_cvs (D : RealPlaceData k r Wp Wq) {nf : ℕ} (X g : Mat k r) 
     intro l
     split_ifs with h
     · simp [cvs, h]
-    · simp [cvs, monoM_eq, P0, G0]; try ring
+    · simp [cvs, monoM_eq, P0, G0]
   have hcc : cvs D (if t.c = 0 then { t with q := 0 } else
       { t with q := C (-(t.c : ℂ)) * t.q * dP X (qGf D.z D.z'), c := t.c + 1 }) g =
       -(t.c : ℂ) * P0 * dG * ((∏ l, fct D.z D.z' t.a t.b g l) * G0⁻¹ ^ (t.c + 1)) := by
     split_ifs with h
     · simp [cvs, h]
-    · simp [cvs, monoM_eq, P0, G0, dG]; try ring
+    · simp [cvs, monoM_eq, P0, G0, dG]
   have hlist : ((dscal D X t).map fun t' => cvs D t' g).sum =
       eval (vars g) (dP X t.q) * ((∏ l, fct D.z D.z' t.a t.b g l) * G0⁻¹ ^ t.c) +
       ∑ l, (-(t.a l : ℂ) * P0 * eval (vars g) (dP X (qDl D.z D.z' l)) *

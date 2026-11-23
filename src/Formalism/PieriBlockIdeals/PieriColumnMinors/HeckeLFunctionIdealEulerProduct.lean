@@ -79,8 +79,6 @@ theorem constantCoeff_subst_of_constantCoeff_zero_alt {a : R⟦X⟧} (ha : const
   have hs : HasSubst a := by
     first
     | exact HasSubst.of_constantCoeff_zero ha
-    | exact PowerSeries.HasSubst.of_constantCoeff_zero ha
-    | exact HasSubst.of_constantCoeff_zero' ha
   obtain ⟨g, hg⟩ : X ∣ f - C (constantCoeff f) := by
     rw [X_dvd_iff, map_sub, constantCoeff_C, sub_self]
   have e : f = C (constantCoeff f) + X * g := by
@@ -95,8 +93,6 @@ theorem constantCoeff_gammaSeries (lam : R) (un : R⟦X⟧) : constantCoeff (gam
 theorem hasSubst_gammaSeries (lam : R) (un : R⟦X⟧) : HasSubst (gamSer lam un) := by
   first
   | exact HasSubst.of_constantCoeff_zero (constantCoeff_gammaSeries lam un)
-  | exact PowerSeries.HasSubst.of_constantCoeff_zero (constantCoeff_gammaSeries lam un)
-  | exact HasSubst.of_constantCoeff_zero' (constantCoeff_gammaSeries lam un)
 
 end General
 
@@ -273,8 +269,6 @@ theorem frobenius_laws_hold : FrobLaws := by
   have hs : HasSubst (X ^ l : R⟦X⟧) := by
     first
     | exact HasSubst.of_constantCoeff_zero hc
-    | exact PowerSeries.HasSubst.of_constantCoeff_zero hc
-    | exact HasSubst.of_constantCoeff_zero' hc
   refine ⟨fun f g => ?_, fun f g => ?_, fun a => ?_, ?_⟩
   · exact subst_add hs f g
   · exact subst_mul hs f g
@@ -290,7 +284,7 @@ theorem blockTriangular_of_mul_eq_pow_smul_one {R : Type} [CommRing R] [IsDomain
   have hm' : Φ.map φ * Φ'.map φ = (φ π ^ h) • (1 : Matrix (Fin n) (Fin n) (FractionRing R)) := by
     rw [← Matrix.map_mul, hm]
     ext a c
-    by_cases hac : a = c <;> simp [hac, Matrix.one_apply]
+    by_cases hac : a = c <;> simp [hac]
   have hc : (φ π) ^ h ≠ 0 := pow_ne_zero _ ((map_ne_zero_iff φ hinj).2 hπ)
   have hr : Φ.map φ * (((φ π) ^ h)⁻¹ • Φ'.map φ) = 1 := by
     rw [Matrix.mul_smul, hm', smul_smul, inv_mul_cancel₀ hc, one_smul]
@@ -298,8 +292,6 @@ theorem blockTriangular_of_mul_eq_pow_smul_one {R : Type} [CommRing R] [IsDomain
   letI : Invertible (Φ.map φ) := by
     first
     | exact ⟨_, mul_eq_one_comm.mp hr, hr⟩
-    | exact Matrix.invertibleOfIsUnitDet _ (Matrix.isUnit_det_of_right_inverse hr)
-    | exact Matrix.invertibleOfRightInverse _ _ hr
   have hΦK : (Φ.map φ).BlockTriangular b := fun a c hac => by simp [hΦ hac]
   have h4 := Matrix.blockTriangular_inv_of_blockTriangular hΦK hij
   rw [hinv, Matrix.smul_apply, Matrix.map_apply, smul_eq_mul, mul_eq_zero] at h4
@@ -381,15 +373,9 @@ theorem theta_diagonal_holds : ThetaDiag := by
     intro f q
     first
     | (rw [coeff_mul, Finset.Nat.antidiagonal_succ]; simp [coeff_zero_eq_constantCoeff_apply]; ring)
-    | (rw [coeff_mul, Finset.Nat.antidiagonal_succ]; simp [coeff_zero_eq_constantCoeff_apply])
-    | (rw [show (1 : ℕ) = 0 + 1 from rfl, coeff_mul, Finset.Nat.antidiagonal_succ];
-        simp [coeff_zero_eq_constantCoeff_apply]; ring)
-    | (simp [coeff_mul, Finset.Nat.sum_antidiagonal_succ, coeff_zero_eq_constantCoeff_apply]; ring)
-    | (simp [coeff_mul, Finset.Nat.sum_antidiagonal_succ, coeff_zero_eq_constantCoeff_apply])
   have hV : IsUnit (1 + un * X : k⟦X⟧) := by
     first
     | (rw [isUnit_iff_constantCoeff]; simp)
-    | exact isUnit_iff_constantCoeff.2 (by simp)
   set V := hV.unit with hVdef
   have hV0 : constantCoeff (V : k⟦X⟧) = 1 := by rw [IsUnit.unit_spec]; simp
   have hV1' : coeff 1 (V : k⟦X⟧) = constantCoeff un := by
@@ -479,11 +465,6 @@ theorem theta_base_change_holds : ThetaBaseChange := by
     intro f q
     first
     | (rw [coeff_mul, Finset.Nat.antidiagonal_succ]; simp [coeff_zero_eq_constantCoeff_apply]; ring)
-    | (rw [coeff_mul, Finset.Nat.antidiagonal_succ]; simp [coeff_zero_eq_constantCoeff_apply])
-    | (rw [show (1 : ℕ) = 0 + 1 from rfl, coeff_mul, Finset.Nat.antidiagonal_succ];
-        simp [coeff_zero_eq_constantCoeff_apply]; ring)
-    | (simp [coeff_mul, Finset.Nat.sum_antidiagonal_succ, coeff_zero_eq_constantCoeff_apply]; ring)
-    | (simp [coeff_mul, Finset.Nat.sum_antidiagonal_succ, coeff_zero_eq_constantCoeff_apply])
   have hcoef : ∀ M N : Matrix (Fin n) (Fin n) k⟦X⟧, (M * N).map (coeff 1) =
       M.map (coeff 1) * N.map constantCoeff + M.map constantCoeff * N.map (coeff 1) := by
     intro M N
@@ -504,13 +485,13 @@ theorem theta_base_change_holds : ThetaBaseChange := by
   have hAG1 : A.map (coeff 1) * G.map constantCoeff + A.map constantCoeff * G.map (coeff 1) = 0 := by
     rw [← hcoef, hAG]
     ext i j
-    by_cases hij : i = j <;> simp [hij, Matrix.one_apply]
+    by_cases hij : i = j <;> simp [hij]
   have hB0 : (1 + (X : k⟦X⟧) • D).map constantCoeff = 1 := by
     ext i j
     by_cases hij : i = j <;> simp [hij, Matrix.one_apply]
   have hB1 : (1 + (X : k⟦X⟧) • D).map (coeff 1) = D.map constantCoeff := by
     ext i j
-    by_cases hij : i = j <;> simp [hij, Matrix.one_apply, e1]
+    by_cases hij : i = j <;> simp [hij, e1]
   have hC0 : (G.map (gam0 0 un)).map constantCoeff = G.map constantCoeff := by
     ext i j
     simp only [Matrix.map_apply, hcc0]
@@ -565,7 +546,6 @@ theorem reduction_natCast_prime_eq_zero (l : ℕ) [CharP F l] (red : O →+* F) 
 theorem constantCoeff_map_eq (red : O →+* F) (y : O⟦X⟧) :
     constantCoeff (PowerSeries.map red y) = red (constantCoeff y) := by
   first
-  | exact constantCoeff_map red y
   | rw [← coeff_zero_eq_constantCoeff_apply, ← coeff_zero_eq_constantCoeff_apply, coeff_map]
 
 theorem map_X_sub_C_prime_pow_eq_X_pow (l : ℕ) [CharP F l] (red : O →+* F) (m : ℕ) :
@@ -745,7 +725,6 @@ theorem alpha_bounds_hold : AlphaBounds := by
   have hle : e.toNat ≤ h := by
     first
     | exact (pow_dvd_pow_iff X_ne_zero X_prime.not_unit).1 hdvd
-    | exact (pow_dvd_pow_iff_le X_ne_zero X_prime.not_unit).1 hdvd
   have h2 : ((e.toNat : ℕ) : ℤ) ≤ (h : ℤ) := by exact_mod_cast hle
   linarith [Int.toNat_of_nonneg h1]
 
@@ -880,7 +859,6 @@ def pi0SubstHom (l : ℕ) [Fact l.Prime] (O : Type) [CommRing O] [Algebra ℤ_[l
 theorem pi0SubstHom_apply (l : ℕ) [Fact l.Prime] (O : Type) [CommRing O] [Algebra ℤ_[l] O]
     (f : O⟦X⟧) : pi0SubstHom l O f = inc l O f := by
   first
-  | rfl
   | exact congrFun (coe_substAlgHom (hasSubst_pi0_alt l O)) f
 
 theorem pi0Subst_C (l : ℕ) [Fact l.Prime] (O : Type) [CommRing O] [Algebra ℤ_[l] O] (a : O) :

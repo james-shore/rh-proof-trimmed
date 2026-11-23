@@ -111,7 +111,7 @@ theorem eq_zero_of_eval (R : A[X]) (h : ∀ y : ℂ, R.eval (algebraMap ℂ A y)
       have hk0 : R.coeff k = 0 := by
         by_contra hne
         exact hk (mem_support_iff.mpr hne)
-      simp [coeff_monomial, hk0]
+      simp [hk0]
   rw [← hc, h0, coeff_zero]
 
 def PolF (f : ℂ → A) : Prop := ∃ p : A[X], ∀ y : ℂ, p.eval (algebraMap ℂ A y) = f y

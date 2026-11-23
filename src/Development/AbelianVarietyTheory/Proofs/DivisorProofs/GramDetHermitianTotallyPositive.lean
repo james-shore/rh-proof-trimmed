@@ -68,11 +68,7 @@ theorem gramOn_basis_mulVec_injective {E : Type} [Field E] {n : ℕ}
     Function.Injective (Matrix.of fun k i => τ ((Module.finBasis E V i).1 k) :
         Matrix (Fin n) (Fin (Module.finrank E V)) ℂ).mulVec := by
   first
-  | exact @_root_.GlobalTheory.BasisLeftInverse.injective_mulVec_map_basis
-  | exact _root_.GlobalTheory.BasisLeftInverse.injective_mulVec_map_basis
   | (apply _root_.GlobalTheory.BasisLeftInverse.injective_mulVec_map_basis <;> assumption)
-  | (intros; apply _root_.GlobalTheory.BasisLeftInverse.injective_mulVec_map_basis <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.BasisLeftInverse.injective_mulVec_map_basis <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.BasisLeftInverse.injective_mulVec_map_basis ..)
 
 theorem gramOn_one_det_totallyPositive : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (n : ℕ) (V : Submodule E (Fin n → E)), (gramOn (IsCMField.complexConj E).toRingEquiv.toRingHom 1 V).det ≠ 0 ∧ ∀ τ : E →+* ℂ, ∃ r : ℝ, 0 < r ∧ τ (gramOn (IsCMField.complexConj E).toRingEquiv.toRingHom 1 V).det = r := by

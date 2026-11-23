@@ -87,11 +87,11 @@ theorem latAtV_selfDual_k : ∀ (F E : Type) [Field F] [NumberField F] [Field E]
   · intro hψ
     haveI := hB.unram
     obtain ⟨m, s, c, hsc⟩ := exists_traceFamily (F := F) (E := E)
-    obtain ⟨k, S, T, hS, hTm, -, hTS⟩ := exists_formFrame' σ X.J (det_ne_zero_of_herm σ B hX) X.L (by first | exact hX.lat | exact hX.lat.toIsLattice)
+    obtain ⟨k, S, T, hS, hTm, -, hTS⟩ := exists_formFrame' σ X.J (det_ne_zero_of_herm σ B hX) X.L (by first | exact hX.lat)
       (fun y hy => (hX.dual y).2 fun x hx => by
         obtain ⟨r, hr⟩ := hy x hx
         rw [← hr]; exact RingOfIntegers.isIntegral_coe r)
-    obtain ⟨k', S', T', hS', hTm', hTd', hTS'⟩ := exists_formFrame' σ W.J (det_ne_zero_of_skew σ B hW) W.L (by first | exact hW.lat | exact hW.lat.toIsLattice)
+    obtain ⟨k', S', T', hS', hTm', hTd', hTS'⟩ := exists_formFrame' σ W.J (det_ne_zero_of_skew σ B hW) W.L (by first | exact hW.lat)
       (fun y hy => (hW.dual y).2 fun x hx o => by
         obtain ⟨r, hr⟩ := hy x hx
         rw [← hr]
@@ -112,7 +112,7 @@ theorem latAtV_selfDual_k : ∀ (F E : Type) [Field F] [NumberField F] [Field E]
       have hx : (fun i => e * S i j) ∈ X.L := by
         have := X.L.smul_mem (⟨e, hei⟩ : 𝓞 E) (hS j)
         convert this using 1
-        ext i; first | rfl | simp [Algebra.smul_def]
+        ext i; first | rfl
       have htat : At (evFin F v) t := fun u hu => by
         have := GlobalTheory.LatVac.symp_smul_smul σ (incM F X.J) (incM F W.J) (-1) u 1 z M
         rw [hz u hu, one_smul, mul_one, GlobalTheory.LatVacArith.symp_zero_left] at this

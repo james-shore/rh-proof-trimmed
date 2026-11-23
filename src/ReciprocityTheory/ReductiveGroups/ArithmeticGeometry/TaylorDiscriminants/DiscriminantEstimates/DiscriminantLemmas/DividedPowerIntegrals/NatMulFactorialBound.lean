@@ -123,7 +123,7 @@ theorem good_dL (L : Submodule A K) (κ : I → J → K) (hκ : ∀ i j, κ i j 
     (Q : MvPolynomial (I ⊕ J) K) (hQ : Good L k Q) : Good L (k + 1) (dL κ i Q) := by
   intro m
   have e : (dL κ i Q).coeff m = ∑ j, κ i j * AddMonoidAlgebra.coeff (pderiv (Sum.inr j) Q) m := by
-    simp [dL, MvPolynomial.coeff_sum]
+    simp [dL]
   rw [e]
   refine Submodule.sum_mem _ fun j _ => ?_
   rw [MvPolynomial.coeff_pderiv]
@@ -133,7 +133,7 @@ theorem good_dR (L : Submodule A K) (κ : I → J → K) (hκ : ∀ i j, κ i j 
     (Q : MvPolynomial (I ⊕ J) K) (hQ : Good L k Q) : Good L (k + 1) (dR κ j Q) := by
   intro m
   have e : (dR κ j Q).coeff m = ∑ i, κ i j * AddMonoidAlgebra.coeff (pderiv (Sum.inl i) Q) m := by
-    simp [dR, MvPolynomial.coeff_sum]
+    simp [dR]
   rw [e]
   refine Submodule.sum_mem _ fun i _ => ?_
   rw [MvPolynomial.coeff_pderiv]

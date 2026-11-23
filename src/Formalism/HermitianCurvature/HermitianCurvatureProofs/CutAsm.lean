@@ -128,8 +128,6 @@ theorem op_sum_apply (P : M.Par) {ι : Type} (s : Finset ι) (g : ι → (MA.DQ 
     (∑ i ∈ s, g i) y = ∑ i ∈ s, g i y := by
   first
   | exact LinearMap.sum_apply s g y
-  | exact ContinuousLinearMap.sum_apply s g y
-  | simp
 
 theorem actA_mul (P : M.Par) (a b : MA.A P (MA.DQ P)) (x : M.Ty P → MA.SmQ P.r P.TT) :
     MA.actA P (a * b) x = MA.actA P a (MA.actA P b x) := by
@@ -140,9 +138,6 @@ theorem actA_mul (P : M.Par) (a b : MA.A P (MA.DQ P)) (x : M.Ty P → MA.SmQ P.r
     rw [Matrix.mul_apply, pr_fst_sum]
     first
       | exact (LinearMap.sum_apply _ _ _).trans (Finset.sum_congr rfl fun i _ => rfl)
-      | exact (ContinuousLinearMap.sum_apply _ _ _).trans (Finset.sum_congr rfl fun i _ => rfl)
-      | exact (op_sum_apply P Finset.univ _ _).trans (Finset.sum_congr rfl fun i _ => rfl)
-      | (simp; rfl)
   rw [Finset.sum_congr rfl fun π' _ => e π', Finset.sum_comm]
   refine Finset.sum_congr rfl fun σ _ => ?_
 
@@ -157,8 +152,6 @@ theorem actA_smul (P : M.Par) (c : ℂ) (a : MA.A P (MA.DQ P)) (x : M.Ty P → M
   symm
   refine Finset.sum_congr rfl fun π' _ => ?_
   first
-    | exact LinearMap.smul_apply _ _ _
-    | exact ContinuousLinearMap.smul_apply _ _ _
     | rfl
 
 theorem actA_one (P : M.Par) (x : M.Ty P → MA.SmQ P.r P.TT) : MA.actA P 1 x = x := by
@@ -167,7 +160,7 @@ theorem actA_one (P : M.Par) (x : M.Ty P → MA.SmQ P.r P.TT) : MA.actA P 1 x = 
   simp only [Formalism.FourierDecayAlt.MA.actA, Matrix.one_apply]
   erw [Finset.sum_eq_single π (fun b _ hb => by simp only [if_neg (Ne.symm hb)]; rfl)
     (fun h => absurd (Finset.mem_univ π) h)]
-  simp only [if_pos rfl]
+  simp only
   rfl
 
 theorem initial_coefficient_of_start_matrix (P : M.Par) (l : ℕ) (Y : ℂ) :

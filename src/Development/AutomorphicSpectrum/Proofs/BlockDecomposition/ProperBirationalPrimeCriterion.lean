@@ -105,7 +105,6 @@ theorem isIso_stalkMap_of_isIso_restrict {Y Z : Scheme.{0}} (ψ : Z ⟶ Y) (W : 
     (h : IsIso (ψ ∣_ W)) (z : Z) (hz : z ∈ ψ ⁻¹ᵁ W) : IsIso (ψ.stalkMap z) := by
   haveI : IsIso ((ψ ∣_ W).stalkMap ⟨z, hz⟩) := by
     first
-    | infer_instance
     | (haveI : IsOpenImmersion (ψ ∣_ W) := inferInstance; infer_instance)
     | (haveI : IsOpenImmersion (ψ ∣_ W) := IsOpenImmersion.of_isIso _; infer_instance)
     | exact PresheafedSpace.IsOpenImmersion.stalk_iso (ψ ∣_ W).toPshHom ⟨z, hz⟩

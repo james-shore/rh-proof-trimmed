@@ -1079,17 +1079,17 @@ theorem bc_tL_post {E E' : Type} [NormedAddCommGroup E] [NormedSpace ℂ E] [Nor
       (fun x => L (f x))) g = L (-(Q.chatL (Q.EH k r) (Q.posL k r 0) (Q.uC k r 0 Y - 1) (fun _ => Q.xv k r z' 0)
         (Q.ybv k r z 0) f) g)
 
-    simp only [Pi.neg_apply, Q.chatL, map_neg, map_sum, map_smul, bc_qminor_post L hf hg]
+    simp only [Q.chatL, map_neg, map_sum, map_smul, bc_qminor_post L hf hg]
   · show -(Q.chatL (Q.EH k r) (Q.posL k r 0) (Q.uC k r 0 Y) (Q.yv k r z 0) (fun _ => Q.xbv k r z' 0)
       (fun x => L (f x))) g = L (-(Q.chatL (Q.EH k r) (Q.posL k r 0) (Q.uC k r 0 Y) (Q.yv k r z 0)
         (fun _ => Q.xbv k r z' 0) f) g)
 
-    simp only [Pi.neg_apply, Q.chatL, map_neg, map_sum, map_smul, bc_qminor_post L hf hg]
+    simp only [Q.chatL, map_neg, map_sum, map_smul, bc_qminor_post L hf hg]
   · show -(Q.chat2L (Q.EH k r) (Q.posL k r 0) (Q.uC k r 0 Y - 1) (Q.yv k r z 0) (fun _ => Q.xv k r z' 0)
       (Q.ybv k r z 0) (fun _ => Q.xbv k r z' 0) (fun x => L (f x))) g = L (-(Q.chat2L (Q.EH k r) (Q.posL k r 0)
         (Q.uC k r 0 Y - 1) (Q.yv k r z 0) (fun _ => Q.xv k r z' 0) (Q.ybv k r z 0) (fun _ => Q.xbv k r z' 0) f) g)
 
-    simp only [Pi.neg_apply, Q.chat2L, map_neg, map_sum, apply_ite L, map_smul, map_zero, bc_qminor_post L hf hg]
+    simp only [Q.chat2L, map_neg, map_sum, apply_ite L, map_smul, map_zero, bc_qminor_post L hf hg]
 
 theorem bc_smoothLev {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E] {f : B.Mat k r → E}
     (hf : CkOn (⊤ : ℕ∞) (GV k r) f) : Q.SmoothLev k r 0 Set.univ f := by
@@ -1638,7 +1638,7 @@ theorem rma_step (X : ActualOps k r z z' π π') (L : R.LevelData (Pr (RadSp k r
           (∑ d, rma_fst _ (M c d) (rma_fst _ (Wd.Ts (P5.site L l) Y d b) Ψ)) := by
 
       simp only [Matrix.mul_apply, map_sum, map_mul, Finset.sum_mul, LinearMap.sum_apply, Module.End.mul_apply]
-      first | rfl | exact Finset.sum_comm
+      first | exact Finset.sum_comm
     rw [e1]
     simp only [Submodule.coe_sum, Finset.sum_apply, oMul]
     refine Finset.sum_congr rfl fun c _ => ?_

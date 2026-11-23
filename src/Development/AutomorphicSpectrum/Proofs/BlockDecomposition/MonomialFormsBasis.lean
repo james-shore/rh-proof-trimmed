@@ -81,7 +81,7 @@ theorem wedge_basis (bΩ : Module.Basis (E n d) (Lr K n d) Ω[Lr K n d⁄K]) (h 
   unfold exteriorPower.ιMulti_family wedge
   congr 1
   funext i
-  simp [Module.Basis.reindex_apply, h, enumD, setEquiv, Set.powersetCard.ofFinEmbEquiv_symm_apply]
+  simp [h, enumD, setEquiv, Set.powersetCard.ofFinEmbEquiv_symm_apply]
 
 theorem monW_basis : ∀ {K : Type} [Field K] {n d : ℕ} (a : ℕ), ∃ b : Module.Basis (Gam n d × {D : Finset (E n d) // D.card = a}) K (Om K (Lr K n d) a), ∀ p, b p = monW K p.1 p.2 := by
   intro K _ n d a

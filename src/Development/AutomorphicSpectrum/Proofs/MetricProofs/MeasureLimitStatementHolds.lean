@@ -190,7 +190,7 @@ theorem dens_nonneg (A : FinHolAtlas e X) (R : GroundTheory.Heights₂.Heights.R
     (A.chart j).isOpen_inter_preimage_symm hY
   have h2 : ContDiffAt ℝ 2 (R.ph ∘ (A.chart j).symm) y :=
     ((R.ph_smooth j).contDiffAt (ho.mem_nhds ⟨hy, hyY⟩)).of_le
-      (by first | simp | exact_mod_cast (le_top : ((2 : ℕ) : ℕ∞) ≤ ⊤) | exact WithTop.coe_le_coe.mpr le_top)
+      (by first | simp)
   have h1 := pot_contDiffAt_two R.th_pot ((A.chart j).symm y) j hy (R.th.mem_U _)
   refine hessC_posSemidef_of_levi _ y (h1.add h2) fun w => ?_
   exact hp _ j y ⟨hy, ⟨R.th.mem_U _, Set.mem_univ _⟩, hyY⟩ w

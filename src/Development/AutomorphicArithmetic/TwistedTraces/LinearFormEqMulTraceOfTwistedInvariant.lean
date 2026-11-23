@@ -73,16 +73,16 @@ theorem UpperTheory.linearForm_eq_mul_trace_of_twisted_invariant :
     have hc : (η.smulRight (J x)) * J = J * ((η ∘ₗ J).smulRight x) := by
       apply LinearMap.ext
       intro y
-      simp [Module.End.mul_apply]
+      simp
     have h1 := h ((η ∘ₗ J).smulRight x) (η.smulRight (J x)) (ξ.smulRight u) hc
     have e1 : ξ.smulRight u * η.smulRight (J x) = ξ (J x) • η.smulRight u := by
       apply LinearMap.ext
       intro y
-      simp [Module.End.mul_apply, smul_smul, mul_comm]
+      simp [smul_smul, mul_comm]
     have e2 : (η ∘ₗ J).smulRight x * ξ.smulRight u = η (J u) • ξ.smulRight x := by
       apply LinearMap.ext
       intro y
-      simp [Module.End.mul_apply, smul_smul, mul_comm]
+      simp [smul_smul, mul_comm]
     rw [e1, e2, map_smul, map_smul] at h1
     simpa [smul_eq_mul] using h1
   have hJ : ∃ x, J x ≠ 0 := by
@@ -105,7 +105,7 @@ theorem UpperTheory.linearForm_eq_mul_trace_of_twisted_invariant :
     have e : η.smulRight u * J = (η ∘ₗ J).smulRight u := by
       apply LinearMap.ext
       intro y
-      simp [Module.End.mul_apply]
+      simp
     have hk := key u x₀ η ξ₀
     rw [hξ₀, one_mul] at hk
     rw [e, tr, hk]

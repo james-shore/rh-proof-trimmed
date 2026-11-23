@@ -168,7 +168,7 @@ theorem levOp_hfun {V : Type} [AddCommGroup V] [Module ℂ V] (ρ : Representati
   unfold levOp
   rw [finsum_eq_sum_of_support_subset _ hsupp, LinearMap.smul_apply, LinearMap.sum_apply]
   congr 1
-  simp only [hfun, Finset.sum_smul, LinearMap.sum_apply, LinearMap.smul_apply, LinearMap.comp_apply, LinearMap.id_apply, mul_ite,
+  simp only [hfun, Finset.sum_smul, LinearMap.sum_apply, mul_ite,
     mul_one, mul_zero, ite_smul, zero_smul, QuotientGroup.out_eq']
   rw [Finset.sum_comm (s := T)]
   refine Finset.sum_congr rfl fun q _ => ?_
@@ -222,7 +222,7 @@ theorem twTr_linearIndependent : ∀ (G : Type) [Group G] [TopologicalSpace G] [
 
     rw [Representation.asAlgebraHom_def, MonoidAlgebra.lift_apply, Finsupp.sum, LinearMap.sum_apply, map_sum]
     refine Finset.sum_congr rfl fun g _ => ?_
-    simp [map_mul, Module.End.mul_apply]
+    simp [map_mul]
   have hbasis : ∀ i k, levOp (σ i).ρ K K' f LinearMap.id (b i k : (σ i).V) =
       (if i = i₀ then r⁻¹ * N else 0) • (b i k : (σ i).V) := by
     intro i k

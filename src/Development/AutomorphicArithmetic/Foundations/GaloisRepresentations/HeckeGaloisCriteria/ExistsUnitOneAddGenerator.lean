@@ -181,7 +181,7 @@ theorem exists_type (D : D7) (P : PairedCharacterCondition.Pend D) (i : D.nd.Loc
       rw [dite_eq_left c.2]
     change D.ntypes.onMt _ _ (∑ τ, a τ) = ∑ τ, D.ntypes.onMt _ _ (a τ)
     have hval : (∑ τ, a τ) = ((∑ τ, (⟨a τ, hco τ⟩ : ↥(Subalgebra.center ℂ (MonoidAlgebra ℂ (G0g D.nd))))) : MonoidAlgebra ℂ (G0g D.nd)) := by
-      simp only [AddSubmonoidClass.coe_finsetSum]
+      simp only
     rw [hval, ← AddSubmonoidClass.coe_finsetSum, hcoe, map_sum]
     apply Finset.sum_congr rfl
     intro τ _

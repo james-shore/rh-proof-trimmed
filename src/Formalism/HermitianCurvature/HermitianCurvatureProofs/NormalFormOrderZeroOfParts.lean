@@ -109,7 +109,7 @@ theorem mulZ_lin (f : ℂ → ℂ) (Φ Ψ : Fn k r (Wq →L[ℂ] Wp)) (s : ℂ) 
   funext c g
   simp only [mulZ, Pi.add_apply, Pi.smul_apply]
   by_cases hx : (c, g) ∈ DomR k r z z'
-  · simp only [Set.indicator_of_mem hx, Pi.add_apply, Pi.smul_apply, smul_add]
+  · simp only [Set.indicator_of_mem hx, smul_add]
     rw [smul_comm]
   · simp [Set.indicator_of_notMem hx]
 
@@ -838,20 +838,17 @@ theorem zeta_smooth_level (hD : IsOpen D) (hU : IsOpen U) (hDU : ∀ g ∈ D, ze
   · have hJ := jet_sub (J 1 0) (jet_sub (jet_val (U := U) (ζ0 := ζ0) (tL k r z z' i Y 1 0 h g))
       (jet_dZ (U := U) (ζ0 := ζ0) (tL k r z z' i Y 1 1 h g)))
     have := jet_zero hU h0 hJ (fun j l => by
-      beta_reduce
       rw [lower_left_monomial_action z z' hD hh hg Y j l, (mono_at ζ0 j l).1, (mono_at ζ0 j l).2.1]
       split_ifs <;> simp_all) f hf
     exact sub_eq_zero.mp this
   · have hJ := jet_sub (J 1 1) (jet_val (U := U) (ζ0 := ζ0) (tL k r z z' i Y 1 1 h g))
     have := jet_zero hU h0 hJ (fun j l => by
-      beta_reduce
       rw [diagonal_monomial_action z z' hD hh hg Y j l, (mono_at ζ0 j l).1]
       split_ifs <;> simp_all) f hf
     exact sub_eq_zero.mp this
   · have hJ := jet_sub (J 0 1) (jet_add (jet_val (U := U) (ζ0 := ζ0) (tL k r z z' i Y 0 1 h g))
       (jet_dZb (U := U) (ζ0 := ζ0) (tL k r z z' i Y 1 1 h g)))
     have := jet_zero hU h0 hJ (fun j l => by
-      beta_reduce
       rw [upper_right_monomial_action z z' hD hh hg Y j l, (mono_at ζ0 j l).1, (mono_at ζ0 j l).2.2]
       split_ifs <;> simp_all) f hf
     exact sub_eq_zero.mp this
@@ -2412,7 +2409,7 @@ theorem blk_comm {τl τj : M.Ty P} (hτl : M.Up P l ρ τl) (hτj : M.Up P j ρ
     refine supp_mul d.κ (supp_SSk hd i _) (supp_SSk hd m _) ρ ρ'' (comm_not_off hd hl hj hjl hσ ?_)
     simp only [Pi.add_apply, Pi.zero_apply, ee]
     by_contra hc; push Not at hc; obtain ⟨h1, h2⟩ := hc
-    apply hn; split_ifs at h1 h2 <;> simp_all <;> omega
+    apply hn; split_ifs at h1 h2 <;> simp_all
   rw [sum2 _ _ hj hl hjl zz, term_upup hd hτl, term_upup hd hτj]
 
 end Comm
@@ -2540,8 +2537,8 @@ theorem op_identity (u v : ℂ) :
     (u - v) • (L.GG * L.GG * (L.nabs * L.nab - L.nab * L.nabs) +
       (1 + u + v) • (L.ζ * L.ζb - L.GG)) := by
   unfold R.LevelData.m0 R.LevelData.l0
-  simp only [alg_mul, mul_add, add_mul, mul_sub, sub_mul, mul_neg, neg_mul, neg_neg, smul_mul_assoc,
-    mul_smul_comm, mul_assoc, smul_add, smul_sub, smul_neg, neg_sub, neg_add]
+  simp only [alg_mul, mul_sub, sub_mul, mul_neg, neg_mul, smul_mul_assoc,
+    mul_smul_comm, mul_assoc, smul_add, smul_sub, smul_neg, neg_sub]
   simp only [M1, M2, M3', M4, M5, M6', M7, M8, M9, gamma_zeta_nabla_cancel, gamma_zeta_conj_cancel, s_zb, gamma_nabla_zeta_commutator]
   module
 

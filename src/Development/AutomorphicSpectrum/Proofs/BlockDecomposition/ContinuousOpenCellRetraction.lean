@@ -84,7 +84,7 @@ theorem mirProj_eq_one_of_unip (n : ℕ) (u : Mir k n) (v : Multiplicative (Fin 
   ext i j
   show blockMat k n ((u : GL (Fin (n + 1)) k) : Matrix (Fin (n + 1)) (Fin (n + 1)) k) i j = _
   rw [hu]
-  simp [blockMat, unip, colMat, Fin.castSucc_ne_last, one_apply]
+  simp [blockMat, unip, colMat, Fin.castSucc_ne_last]
   change (if i.castSucc = j.castSucc then (1 : k) else 0) = if i = j then 1 else 0
   simp
 

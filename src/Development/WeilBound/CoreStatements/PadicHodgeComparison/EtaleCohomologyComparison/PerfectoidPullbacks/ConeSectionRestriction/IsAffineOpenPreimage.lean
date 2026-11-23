@@ -108,7 +108,6 @@ theorem iSup_preimage_eq_top {m e : ℕ} (he : 0 < e) (y : Fin m → MvPolynomia
 theorem finiteType_affine (q : X ⟶ Spec (CommRingCat.of K)) [LocallyOfFiniteType q] {W : X.Opens}
     (hW : IsAffineOpen W) : letI := (strV q W).toAlgebra; Algebra.FiniteType K Γ(X, W) := by
   first
-    | exact GlobalTheory.T.affine_open_finiteType ..
     | (intros; apply GlobalTheory.T.affine_open_finiteType <;> assumption)
 
 end CrystallineSemistableComparison.Pb

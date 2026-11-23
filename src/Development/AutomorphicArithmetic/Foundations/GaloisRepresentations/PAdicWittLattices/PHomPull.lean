@@ -104,4 +104,4 @@ theorem UpperTheory.Gal.G3.pHomPull :
     simp only [GlobalTheory.CechPic.pull_id]
     rw [← GlobalTheory.CechPic.pull_comp, ← hsq, GlobalTheory.CechPic.pull_comp, ← h1]
 
-    simp [map_sum, map_zsmul]
+    simp

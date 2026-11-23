@@ -135,7 +135,7 @@ theorem exists_trans {E F : Idx R Ω} (h : E ≤ F) :
   refine ⟨φ, fun a => ?_⟩
   have := congrArg (fun g => liftEquiv R Ω F (g (1 ⊗ₜ a))) hφ
   simp only [Algebra.TensorProduct.map_tmul, AlgHom.coe_id, id_eq, AlgHom.coe_comp,
-    Function.comp_apply, AlgEquiv.coe_toAlgHom, AlgHom.coe_coe, AlgEquiv.apply_symm_apply] at this
+    Function.comp_apply, AlgEquiv.coe_toAlgHom, AlgEquiv.apply_symm_apply] at this
   rw [red_apply, red_apply, this]
   simp
 

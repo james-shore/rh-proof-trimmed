@@ -79,8 +79,6 @@ theorem fn_sum_le_totalDegree {m : Fin n →₀ ℕ} (hm : m ∈ De.support) :
   have h := MvPolynomial.le_totalDegree hm
   first
     | (rwa [Finsupp.sum_fintype _ _ (fun _ => rfl)] at h)
-    | (simpa [Finsupp.degree, Finsupp.sum_fintype] using h)
-    | (rwa [Finsupp.degree_eq_sum] at h)
 
 theorem fn_hom_of_ne {a : ℂ} (ha : a ≠ 0) (b : Fin n → ℂ) :
     fnHom De a b = a ^ (De.totalDegree + 1) * MvPolynomial.eval (fun k => b k / a) De := by
@@ -109,8 +107,6 @@ theorem fn_diffOn_prod {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {S
     (u : Finset (Fin n)) (f : Fin n → E → ℂ) (h : ∀ k, DifferentiableOn ℂ (f k) S) :
     DifferentiableOn ℂ (fun x => ∏ k ∈ u, f k x) S := by
   first
-    | exact DifferentiableOn.finset_prod (fun k _ => h k)
-    | exact DifferentiableOn.fun_finset_prod (fun k _ => h k)
     | (classical
        induction u using Finset.induction_on with
        | empty => simp [differentiableOn_const]
@@ -128,14 +124,6 @@ theorem fn_diffOn_hom {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {S 
     ((ha.pow _).mul (fn_diffOn_prod Finset.univ (fun k x => b k x ^ m k) (fun k => (hb k).pow _))).const_mul _
   first
     | exact DifferentiableOn.fun_sum hterm
-    | exact DifferentiableOn.sum hterm
-    | (have e : (fun x => ∑ m ∈ De.support, AddMonoidAlgebra.coeff De m *
-          (a x ^ (De.totalDegree + 1 - ∑ k, m k) * ∏ k, (fun k => b k x) k ^ m k)) =
-          ∑ m ∈ De.support, fun x => AddMonoidAlgebra.coeff De m *
-          (a x ^ (De.totalDegree + 1 - ∑ k, m k) * ∏ k, (fun k => b k x) k ^ m k) := by
-         ext x; simp [Finset.sum_apply]
-       rw [e]
-       exact DifferentiableOn.sum hterm)
 
 theorem fn_eq_zero_of_eval {v0 : V n}
     (h : ∀ᶠ v in 𝓝 v0, MvPolynomial.eval (fun k => v k) De = 0) : De = 0 := by

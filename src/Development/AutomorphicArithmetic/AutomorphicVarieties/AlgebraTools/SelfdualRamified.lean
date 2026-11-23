@@ -72,7 +72,7 @@ private theorem UpperTheory.V.AlgebraTools.selfdual_ramified_coord {A : Type} [C
   refine ⟨(Matrix.of a)ᵀ, ?_⟩
   ext i j
   have := congrFun (ha j) i
-  simp only [Finset.sum_apply, Pi.smul_apply, Algebra.smul_def, Matrix.mulVec, dotProduct] at this
+  simp only [Finset.sum_apply, Algebra.smul_def, Matrix.mulVec, dotProduct] at this
   simp only [Matrix.mul_apply, Matrix.transpose_apply, Matrix.of_apply, Matrix.map_apply]
   rw [← this]
   exact Finset.sum_congr rfl fun k _ => mul_comm _ _
@@ -127,7 +127,7 @@ private theorem UpperTheory.V.AlgebraTools.selfdual_ramified_basis {A : Type} [C
     simp only [Pi.basisFun_repr] at ha
     simp [hρ, Matrix.mulVec, dotProduct, ha]
   obtain ⟨Y, hY, h1, h2, h3, h4⟩ :=
-    UpperTheory.V.AlgebraTools.almost_selfdual (Matrix.toBilin' H) ρ σ u hs hn hσ hB _ (by first | exact hY₀ | exact hY₀.toIsLattice) hst
+    UpperTheory.V.AlgebraTools.almost_selfdual (Matrix.toBilin' H) ρ σ u hs hn hσ hB _ (by first | exact hY₀) hst
   have hZ := (UpperTheory.V.AlgebraTools.dual_lattice (Matrix.toBilin' H) hs hn Y hY).1
   obtain ⟨b, S, hb1, hb2⟩ := UpperTheory.V.AlgebraTools.smith_zero_one ϖ Y _ hϖ hZ h3 h4
   have hfin : Module.finrank F (Fin n → F) = n := by simp

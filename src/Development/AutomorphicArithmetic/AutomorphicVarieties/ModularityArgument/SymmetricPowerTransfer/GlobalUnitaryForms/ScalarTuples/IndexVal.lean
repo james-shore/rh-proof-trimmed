@@ -67,7 +67,7 @@ private theorem mem_val {K : Type} [Field K] (d : K) (u : Kˣ) :
   constructor
   · rintro ⟨w, rfl⟩
     refine ⟨(w : QuadraticAlgebra K d 0).re, (w : QuadraticAlgebra K d 0).im, ?_⟩
-    simp only [Units.coe_map, MonoidHom.coe_coe, QuadraticAlgebra.norm_def]
+    simp only [Units.coe_map, QuadraticAlgebra.norm_def]
     ring
   · rintro ⟨a, b, h⟩
     have hn : QuadraticAlgebra.norm (⟨a, b⟩ : QuadraticAlgebra K d 0) = u := by
@@ -123,7 +123,7 @@ private theorem index_val {K : Type} [Field K] [CharZero K] [ValuativeRel K] [To
       map_mul' := by
         intro z w
         simp only [QuadraticAlgebra.re_mul, QuadraticAlgebra.im_mul, map_add (f := _), map_mul,
-          map_zero, zero_mul, add_zero]
+          zero_mul, add_zero]
         linear_combination (-(algebraMap K L z.im * algebraMap K L w.im)) * hβ
       map_zero' := by simp
       map_add' := by

@@ -1431,7 +1431,7 @@ theorem frame_inv_poly2 {O LL : Type} [CommRing O] [Field LL] [Algebra O LL] (p 
     have h1 : (PowerSeries.constantCoeff : PowerSeries LL →+* LL).mapMatrix Hps = 1 := by
       ext i j
       simp only [RingHom.mapMatrix_apply, Matrix.map_apply, hHps, Matrix.of_apply,
-        PowerSeries.coeff_zero_eq_constantCoeff_apply, PowerSeries.constantCoeff_mk, hsol0,
+        PowerSeries.constantCoeff_mk, hsol0,
         Matrix.one_apply, Pi.single_apply]
     rw [h1, Matrix.det_one]
     exact isUnit_one
@@ -1728,7 +1728,7 @@ theorem sec_zero [IsDomain O] (hinj : Function.Injective (algebraMap O LL))
       simp only [hρ', mul_add, Finset.sum_add_distrib]
       congr 1
       · rw [Finset.sum_eq_single k0 (fun k _ hk => by simp [Ne.symm hk]) (by simp)]
-        simp only [map_mul, map_pow, map_natCast, ite_true, map_one, mul_one]
+        simp only [map_pow, map_natCast, ite_true, mul_one]
         ring
       · rw [Finset.mul_sum]
         exact Finset.sum_congr rfl fun k _ => by ring

@@ -90,7 +90,7 @@ theorem card_fibre_orbit (p : A → B) (hp : ∀ (g : G) a, p (g • a) = g • 
     rw [← hp, hg]
   have hsub : MulAction.stabilizer H a₀ = (MulAction.stabilizer G a₀).subgroupOf H := by
     ext x
-    simp [Subgroup.mem_subgroupOf, MulAction.mem_stabilizer_iff, Subgroup.smul_def]
+    simp [MulAction.mem_stabilizer_iff, Subgroup.smul_def]
   have hstab : Nat.card (MulAction.stabilizer H a₀) = Nat.card (MulAction.stabilizer G a₀) := by
     rw [hsub]
     exact Nat.card_congr (Subgroup.subgroupOfEquivOfLe hle).toEquiv

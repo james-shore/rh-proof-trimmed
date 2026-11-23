@@ -122,10 +122,7 @@ theorem laurent_degrees_substitution_eq (M M' : Matrix (Fin n) (Fin n) A) (h : M
   apply Finset.Subset.antisymm (laurent_degrees_substitution_subset LL S M M' Q)
   have h' : M' * M = 1 := by
     first
-    | exact Matrix.mul_eq_one_comm.1 h
     | exact mul_eq_one_comm.1 h
-    | exact Matrix.mul_eq_one_comm_of_equiv (Equiv.refl _) h
-    | exact Matrix.nonsing_inv_mul_cancel_of_mul_eq_one h
   have hQ : matrixSubst LL S (RingHom.id _) (M'.map LaurentPolynomial.C) (M.map LaurentPolynomial.C)
       (matrixSubst LL S (RingHom.id _) (M.map LaurentPolynomial.C) (M'.map LaurentPolynomial.C) Q) = Q := by
     rw [matrixSubst_comp, ← Matrix.map_mul, h', Matrix.map_one _ (map_zero _) (map_one _), matrixSubst_one,
@@ -147,7 +144,7 @@ private theorem genericMatrixBis_mul_genericMatrixInverse (R : Type) [Field R] (
     simp only [Matrix.smul_apply, Matrix.map_apply, Matrix.one_apply_eq, smul_eq_mul, mul_one]
     rw [mul_comm]
     exact IsLocalization.Away.mul_invSelf _
-  · simp [Matrix.smul_apply, Matrix.one_apply, hab]
+  · simp [Matrix.smul_apply, hab]
 
 private theorem map_C_genericMatrixBis_and_inverse_eq_gL_gLinv (R : Type) [Field R] (n : ℕ) :
     (genericMatrixRootWeights R n).map LaurentPolynomial.C = gL R n ∧ (genericMatrixInverse R n).map LaurentPolynomial.C = gLinv R n := by

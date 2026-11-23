@@ -142,10 +142,6 @@ theorem gsvVec_tmap (hx : IsUnivChart _ n xc) (a : 𝓞 E) (cc : Fin n → L) :
   all_goals first
     | rfl
     | (simp; done)
-    | (simp [Over.pullback]; done)
-    | (simp [Over.pullback, pullback.map]; done)
-    | (erw [pullback.lift_fst]; done)
-    | (erw [pullback.lift_fst]; rfl)
 
 theorem gsv_bc [IsLocalRing L] {L' : Type} [CommRing L'] [Algebra L L'] (hx : IsUnivChart _ n xc) :
     ∃ (xc' : ∀ m : ℕ, ReciprocityTheory.ChartRestriction.G.Chart.sp (R₀ := L') (JetR L' (Fin n) m) ⟶

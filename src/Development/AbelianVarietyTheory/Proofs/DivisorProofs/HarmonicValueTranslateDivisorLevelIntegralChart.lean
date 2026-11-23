@@ -330,8 +330,6 @@ theorem harmonicValue_translate_dvd_unit : ∀ (E : Type) [Field E] [NumberField
     have h2 := hal a Pp hPp
     have h3 : algebraMap T.Fr F (evI y f) = thExpr Xo c nab yF Pp Fs := by
       first
-        | exact GlobalTheory.PtTie.evI_eq_thExpr_ext (chartIndep2_of_glob GlobalTheory.firstFiveLaws.1.globalFns) E H Dw l Xo c nab hnab T
-            io y F φ hφ yF hyF a n xx Pp hPp Fs hFs f hf'
         | exact GlobalTheory.PtTie.evI_eq_thExpr_ext E H Dw l Xo c nab hnab T io y F φ hφ yF hyF a n xx Pp hPp Fs hFs f hf'
     have h0 := nabJet T.Fr (chD C.ch) (𝓞 E) C.ch.B F (MvPowerSeries.map (algebraMap T.Fr F) C.ch.h) H.w0 N n
       (LtN Dw n) (fun ℓ : LtN Dw n => ℓ.2.2)

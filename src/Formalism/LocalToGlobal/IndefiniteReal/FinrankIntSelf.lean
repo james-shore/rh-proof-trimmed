@@ -76,10 +76,7 @@ lemma charOf_conj {T : Type} [AddCommGroup T] [Module K T] (τ : Representation 
       inv_mul_cancel, map_one, one_mul]
   · have h0 : LinearMap.trace K T = 0 := by
       first
-      | exact LinearMap.trace_eq_zero_of_not_finite hf
-      | exact LinearMap.trace_eq_zero_of_not_finite (R := K) (M := T) hf
       | (rw [LinearMap.trace, dif_neg]; rintro ⟨_, ⟨b⟩⟩; exact hf (Module.Finite.of_basis b))
-      | (unfold LinearMap.trace; rw [dif_neg]; rintro ⟨_, ⟨b⟩⟩; exact hf (Module.Finite.of_basis b))
     simp [h0]
 
 lemma eS_mul_rho {T V : Type} [AddCommGroup T] [Module K T] [AddCommGroup V] [Module K V]

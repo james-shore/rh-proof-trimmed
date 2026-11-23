@@ -129,7 +129,7 @@ theorem in_map {f : MvPowerSeries σ Q} (hf : In (⊤ : Ideal B) f) :
 
 theorem map_smul_series (c : Q) (f : MvPowerSeries σ Q) : map Θ (c • f) = Θ c • map Θ f := by
   ext α
-  simp [coeff_map, coeff_smul]
+  simp [coeff_map]
 
 include hΘ in
 theorem map_comb {ι : Type} [Fintype ι] (b : ι → B) (e : ι → MvPowerSeries σ Q) :

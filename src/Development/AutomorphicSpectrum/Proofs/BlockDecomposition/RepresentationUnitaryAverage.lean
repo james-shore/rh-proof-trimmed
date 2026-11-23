@@ -196,7 +196,7 @@ lemma end_coeff_continuous {M : Type} [AddCommGroup M] [Module ℂ M]
       _ = _ := by
 
           rw [h2, map_sum]
-          simp [LinearMap.single_apply]
+          simp
   simp only [key]
   refine continuous_finsetSum _ fun i _ => ?_
   obtain ⟨ℓ', hℓ'⟩ := LinearMap.exists_extend (c ∘ₗ LinearMap.single ℂ (fun _ : Fin (Module.finrank ℂ A) => (A : Type)) i)
@@ -222,7 +222,7 @@ theorem representing_vector : ∀ {K M H X : Type} [Group K] [TopologicalSpace K
   have hρAmul : ∀ k k', ρA (k * k') = ρA k ∘ₗ ρA k' := by
     intro k k'
     ext a
-    simp [hρA, map_mul, Module.End.mul_apply]
+    simp [hρA, map_mul]
   have hρA1 : ρA 1 = LinearMap.id := by
     ext a
     simp [hρA]

@@ -60,7 +60,6 @@ theorem exists_dir {ι : Type*} (S : Finset ι) (c : ι → ℂ) (hc : ∀ i ∈
   classical
   obtain ⟨t, ht⟩ : ∃ t : ℝ, t ∉ S.image (fun i => (c i).re / (c i).im) := by
     first
-    | exact Infinite.exists_not_mem_finset _
     | exact Infinite.exists_notMem_finset _
   refine ⟨1 + (t : ℂ) * Complex.I, ?_, fun i hi => ?_⟩
   · intro h

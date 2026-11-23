@@ -66,11 +66,7 @@ theorem isIntegral_of_forall {O : Type} [CommRing O] {ι : Type} [Finite ι] {R 
     [∀ i, CommRing (R i)] [∀ i, Algebra O (R i)] (x : ∀ i, R i) (hx : ∀ i, IsIntegral O (x i)) :
     IsIntegral O x := by
   first
-  | exact @_root_.GlobalTheory.IntegralPi.main
-  | exact _root_.GlobalTheory.IntegralPi.main
   | (apply _root_.GlobalTheory.IntegralPi.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.IntegralPi.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.IntegralPi.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.IntegralPi.main ..)
 
 theorem isIntegral_single {O : Type} [CommRing O] {ι : Type} [Finite ι] [DecidableEq ι] {R : ι → Type}

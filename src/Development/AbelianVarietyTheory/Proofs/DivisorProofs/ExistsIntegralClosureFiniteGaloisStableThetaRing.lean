@@ -122,7 +122,7 @@ theorem exists_integralClosure_finite : ∀ {o₁ Ω₁ : Type} [CommRing o₁] 
       | add y z _ _ hy hz => exact A.add_mem hy hz
       | smul r y _ hy =>
         convert A.mul_mem (hR₁A r.1 (hs ▸ r.2)) hy using 1
-        first | rfl | exact Algebra.smul_def r (y : Ω₂) | simp [Algebra.smul_def]
+        first | exact Algebra.smul_def r (y : Ω₂)
   letI : Algebra R₁ R := h.toAlgebra
   haveI : IsScalarTower R₁ R Ω₂ := .of_algebraMap_eq fun a => rfl
   haveI : IsIntegralClosure R R₁ Ω₂ :=

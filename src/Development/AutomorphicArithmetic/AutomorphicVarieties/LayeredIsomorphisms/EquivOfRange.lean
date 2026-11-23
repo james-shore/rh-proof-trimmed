@@ -103,7 +103,6 @@ theorem UpperTheory.V.Win.abiso :
   haveI : IsGalois ℚ (AlgebraicClosure ℚ) := by
     first
       | exact @IsAlgClosure.isGalois ℚ (AlgebraicClosure ℚ) _ _ (AlgebraicClosure.instAlgebra ℚ) _ _
-      | convert @IsAlgClosure.isGalois ℚ (AlgebraicClosure ℚ) _ _ (AlgebraicClosure.instAlgebra ℚ) _ _
   let f : CyclotomicField N ℚ →ₐ[ℚ] AlgebraicClosure ℚ := (by
     refine @_root_.IsAlgClosed.lift _ _ _ _ _ _ _ _ _ _ _ ?_ ?_ ?_
     solve_by_elim* (maxDepth := 2) only [*,

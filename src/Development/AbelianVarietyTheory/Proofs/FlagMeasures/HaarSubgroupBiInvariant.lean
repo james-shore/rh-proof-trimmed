@@ -63,11 +63,7 @@ theorem unimod_of_contract (N : Subgroup G) (hN : IsClosed (N : Set G)) {ν : Me
     (h3 : ∀ m ∈ N, Filter.Tendsto (fun s => a s * m * (a s)⁻¹) Filter.atBot (nhds 1)) :
     (∀ m ∈ N, ν.map (fun x => x * m) = ν) ∧ ν.map (fun x => x⁻¹) = ν := by
   first
-  | exact @_root_.GlobalTheory.ModularAutomorphism.unimodular_of_contracted
-  | exact _root_.GlobalTheory.ModularAutomorphism.unimodular_of_contracted
   | (apply _root_.GlobalTheory.ModularAutomorphism.unimodular_of_contracted <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ModularAutomorphism.unimodular_of_contracted <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ModularAutomorphism.unimodular_of_contracted <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ModularAutomorphism.unimodular_of_contracted ..)
 
 end General

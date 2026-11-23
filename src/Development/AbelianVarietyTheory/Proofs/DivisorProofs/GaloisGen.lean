@@ -308,7 +308,7 @@ theorem cub_mem (H : Desc f q ev k₀ u) (x x' y : Over.mk (spMap ev) ⟶ D.P.A)
     (fun U _ h => by simp [Fin.prod_univ_eight])
     (fun U _ h => by
       simp only [← Over.comp_left, MonObj.comp_mul, MonObj.comp_one, lift_fst_assoc, lift_snd, Category.id_comp,
-        _root_.mul_one, _root_.one_mul]
+        _root_.mul_one]
       simp)
     (fun z J hJ => by
       simp only [lift_snd]

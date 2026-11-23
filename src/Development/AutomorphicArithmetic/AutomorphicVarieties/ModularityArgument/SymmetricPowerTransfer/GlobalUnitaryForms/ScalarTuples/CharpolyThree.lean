@@ -56,7 +56,7 @@ private theorem charpoly_three {R : Type} [CommRing R] (N : Matrix (Fin 3) (Fin 
     N.charpoly = X ^ 3 - C N.trace * X ^ 2 + C N.adjugate.trace * X - C N.det := by
   simp only [Matrix.charpoly, Matrix.det_fin_three, Matrix.charmatrix_apply, Matrix.adjugate_fin_three,
     Matrix.trace_fin_three]
-  simp [Matrix.diagonal_apply, Matrix.det_fin_three]
+  simp
   ring
 
 end UpperTheory.V.Z.Sym.Glob

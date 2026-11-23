@@ -171,7 +171,7 @@ theorem lie_model_action_base_change : ∀ (E : Type) [Field E] [NumberField E] 
   · intro u
     rw [hpt]
     have h3 := hj (b.equivFun.symm u)
-    simp only [LieModel.Lifts, Category.comp_id] at h3
+    simp only [Category.comp_id] at h3
     exact h3
   · intro a u
     apply M'.inj
@@ -181,7 +181,7 @@ theorem lie_model_action_base_change : ∀ (E : Type) [Field E] [NumberField E] 
     rw [h1, hpt, hpt]
     have h3 := hj (b.equivFun.symm u)
     have h4 := hj (b.equivFun.symm (rho t.act M a u))
-    simp only [LieModel.Lifts, Category.comp_id] at h3 h4
+    simp only [Category.comp_id] at h3 h4
     ext1
     rw [Over.comp_left, h3, h4, h2, Over.comp_left, Category.assoc]
 

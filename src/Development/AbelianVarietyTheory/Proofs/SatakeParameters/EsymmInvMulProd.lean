@@ -65,7 +65,7 @@ theorem esymm_inv_mul_prod (s : Multiset ℂ) (hs : ∀ x ∈ s, x ≠ 0) :
     have hi : i = 0 := by simp at h; exact h.1
     have hj : j = 0 := by simp at h; exact h.2
     subst hi hj
-    simp [esymm_deg_zero]
+    simp
   | cons x s ih =>
     intro i j h
     have hx : x ≠ 0 := hs x (Multiset.mem_cons_self x s)

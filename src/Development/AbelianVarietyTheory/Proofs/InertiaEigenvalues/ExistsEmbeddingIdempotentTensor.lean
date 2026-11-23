@@ -84,7 +84,7 @@ theorem _root_.GlobalTheory.exists_embedding_idempotent_tensor (F K L : Type) [F
     conv_lhs => rw [← b.sum_repr x]
 
     rw [Finset.sum_mul, map_sum]
-    simp [smul_mul_assoc, hbd]
+    simp [hbd]
   have hs0 : s ≠ 0 := by
     intro h
     have htr : Algebra.trace F K s = (Module.finrank F K : F) := by

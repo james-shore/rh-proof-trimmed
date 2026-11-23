@@ -134,7 +134,7 @@ theorem tangent_vector_extends_over_integers : ∀ (O K : Type) [CommRing O] [Is
     apply Over.OverMorphism.ext
     have h1 := hjK e
     have h2 := hjP e
-    simp only [LieModel.Lifts, Category.comp_id] at h1 h2
+    simp only [Category.comp_id] at h1 h2
     have h3 : (MK.pt (jK e)).left = spMap (dualMap c) ≫ (MP.pt (jP e)).left := by
       rw [h1, h2, ← Category.assoc, spMap_comp_spMap_ample_line_bundles, dualMap_comp_dualMap', hc]
     rw [h3, hes', MP.smul, MK.smul, hvw, ← Category.assoc, ← Category.assoc]

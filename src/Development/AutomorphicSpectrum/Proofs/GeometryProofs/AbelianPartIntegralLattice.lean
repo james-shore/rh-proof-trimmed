@@ -97,7 +97,6 @@ theorem geo_height_arch : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
   have hover : ∀ x : A.Λ, (MV'.pt (j x) ≫ P'.τ.q ≫ P'.e.hom).left ≫ mB.φ ≫ m'.φ =
       spMap (dualMap (e.comp (algebraMap (𝓞 L) L))) ≫ (MB.pt (A.f x)).left := fun x => by
     have e1 := hlift x
-    unfold LieModel.Lifts at e1
     rw [dualMap_comp]
     have e3 : spMap ((dualMap e).comp (dualMap (algebraMap (𝓞 L) L))) =
         spMap (dualMap e) ≫ spMap (dualMap (algebraMap (𝓞 L) L)) := by

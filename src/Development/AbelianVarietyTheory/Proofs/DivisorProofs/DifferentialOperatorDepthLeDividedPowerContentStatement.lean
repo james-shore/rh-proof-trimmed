@@ -49,4 +49,4 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.WeightedSumBounds.Pt
 open MvPowerSeries ReciprocityTheory.PGsh ReciprocityTheory.ChartRestriction.G.Sh GlobalTheory.FGDepth
 
 theorem _root_.GlobalTheory.T.differentialOperatorDepth_le_dividedPowerContent : ∀ (C : Type) [Field C] [CharZero C] (v : AddValuation C (WithTop ℝ)) (κ : Type) [Fintype κ] [DecidableEq κ] (d n : κ → ℕ) (G : ∀ b, LogFGL v (d b)) (u : ∀ b, Fin (n b) → Fin (d b) → C) (P : MvPolynomial (Σ b, Fin (n b)) C) (D : ℕ), P.IsHomogeneous D → (∀ b, IsSatFrame v (u b)) → depth G (ι := fun b => Fin (n b)) u P ≤ content v P := by
-  first | exact @GlobalTheory.FGDepth.DepthLeContent.depth_le_content | exact GlobalTheory.FGDepth.DepthLeContent.depth_le_content | (intros; apply GlobalTheory.FGDepth.DepthLeContent.depth_le_content <;> assumption)
+  first | exact @GlobalTheory.FGDepth.DepthLeContent.depth_le_content

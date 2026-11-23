@@ -124,7 +124,7 @@ theorem exists_KO_row_zero_of_rank_lt (k : Type) [Field k] [ValuativeRel k] [Top
       intro l
       by_cases hl : l = i₀
       · subst hl; simp [E, hc'0]
-      · simp [E, hl, Matrix.one_apply, Ne.symm hl]
+      · simp [E, hl, Ne.symm hl]
     rw [Matrix.mul_apply]
     simp_rw [hrow, hc', div_mul_eq_mul_div, ← Finset.sum_div, hcj j, zero_div]
 

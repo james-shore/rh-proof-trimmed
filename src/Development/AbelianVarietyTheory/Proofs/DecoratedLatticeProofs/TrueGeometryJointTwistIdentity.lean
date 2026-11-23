@@ -73,7 +73,7 @@ theorem step_mid : ∀ (D : D7) (c : Comm D) (v : VCom c) (B : GlobalTheory.Fam.
   · obtain ⟨n, hn⟩ := hn i
     obtain ⟨ea, ha, mS⟩ := (G i).frame j (n + 1) (by omega)
     obtain ⟨eb, hb, mT⟩ := (G i).frame (j + 1) n (by omega)
-    exact puts (G i).q hstep.1.2.inf hom (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ hsd | exact hsd.1) (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ hsd' | exact hsd'.1) _ _ he ((hQ _).2 ⟨i, rfl⟩) (G i).idem hstep.1.2.theta hTm ea eb
+    exact puts (G i).q hstep.1.2.inf hom (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ hsd) (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ hsd') _ _ he ((hQ _).2 ⟨i, rfl⟩) (G i).idem hstep.1.2.theta hTm ea eb
       (parPhi (E i).δ) (int_of_parPhi _) _
       (fun π' hπ hred N => GlobalTheory.T.parahoricTestFunction_integralAdelic_reduction D _ (G i).q (pl i) π' hπ hred _ (E i).tame _ (hres i) _ _ _ _ _ _ _ _
         (hLr.trans (hrk i)) ea eb ha hb N) _ _ _ _ _ _ mS mT ((E i).reg.1 j n hn) rfl ((E i).eL_at j n hn)
@@ -94,7 +94,7 @@ theorem step_top : ∀ (D : D7) (c : Comm D) (v : VCom c) (B : GlobalTheory.Fam.
   · obtain rfl : j = (G i).s := by have := (G i).hs; omega
     obtain ⟨ea, ha, mS⟩ := (G i).frame ((G i).s + 1) 0 rfl
     obtain ⟨eb, hb, mT⟩ := (G i).frameTop
-    exact puts (G i).q hstep.1.2.inf hom (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ hsd | exact hsd.1) (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ hsd' | exact hsd'.1) _ _ he ((hQ _).2 ⟨i, rfl⟩) (G i).idem hstep.1.2.theta hTm ea eb
+    exact puts (G i).q hstep.1.2.inf hom (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ hsd) (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ hsd') _ _ he ((hQ _).2 ⟨i, rfl⟩) (G i).idem hstep.1.2.theta hTm ea eb
       (parPhi (E i).δ) (int_of_parPhi _) _
       (fun π' hπ hred N => GlobalTheory.T.parahoricTestFunction_integralAdelic_reduction D _ (G i).q (pl i) π' hπ hred _ (E i).tame _ (hres i) _ _ _ _ _ _ _ _
         (hLr.trans (hrk i)) ea eb ha hb N) _ _ _ (Equiv.refl _) _ _ mS mT (E i).reg.2.1 rfl (E i).eLT_at

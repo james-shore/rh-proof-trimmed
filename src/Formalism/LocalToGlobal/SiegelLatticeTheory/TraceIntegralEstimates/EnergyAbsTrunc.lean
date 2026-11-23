@@ -137,7 +137,6 @@ theorem op_ext_basis (X Z : V' →L[ℂ] V)
   have hcol : ∀ j, X (stdOrthonormalBasis ℂ V' j) = Z (stdOrthonormalBasis ℂ V' j) := by
     intro j
     first
-    | exact ext_inner_left_basis (stdOrthonormalBasis ℂ V).toBasis (fun i => by simpa using h i j)
     | (apply (stdOrthonormalBasis ℂ V).repr.injective
        ext i
        simpa [OrthonormalBasis.repr_apply_apply] using h i j)

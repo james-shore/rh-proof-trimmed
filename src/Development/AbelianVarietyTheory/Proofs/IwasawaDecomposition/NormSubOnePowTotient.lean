@@ -68,11 +68,7 @@ theorem norm_root_eq_one {K : Type*} [NormedField K] {n : ℕ} (hn : n ≠ 0) {�
 theorem norm_pow_sub_one_le {K : Type*} [NormedField K] [IsUltrametricDist K]
     {ζ : K} (hz : ‖ζ‖ = 1) (a : ℕ) : ‖ζ ^ a - 1‖ ≤ ‖ζ - 1‖ := by
   first
-  | exact @_root_.GlobalTheory.NormPowSubOne.main
-  | exact _root_.GlobalTheory.NormPowSubOne.main
   | (apply _root_.GlobalTheory.NormPowSubOne.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NormPowSubOne.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NormPowSubOne.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.NormPowSubOne.main ..)
 
 theorem norm_sub_one_le {K : Type*} [NormedField K] [IsUltrametricDist K]

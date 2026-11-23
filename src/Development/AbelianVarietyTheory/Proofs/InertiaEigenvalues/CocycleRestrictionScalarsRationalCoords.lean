@@ -81,7 +81,6 @@ theorem GlobalTheory.PMon.cocycle_rat_coords : ∀ (l : ℕ) [Fact l.Prime] (n :
     rw [hc0, hC, ← hc0 g, ← hc0 h, Matrix.mulVec_mulVec, ← hint g]
     rw [← Matrix.mulVec_mulVec, ← Matrix.mulVec_add]
     congr 1
-    congr 1
     funext x
     simp only [Pi.add_apply, map_add, RingHom.map_mulVec, Function.comp_def]
   have inj : (fun x => f (c₀ (g * h) x)) =

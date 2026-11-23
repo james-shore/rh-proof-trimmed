@@ -124,7 +124,7 @@ theorem span_eq_top {E : Type} [Field E] {Ψ : Type} [Fintype Ψ] (N : ℕ) (s :
         by_cases hj : j = i
         · subst hj
           simp
-        · simp [Pi.single_apply, hj]
+        · simp [hj]
 
       rw [LinearMap.mem_ker, hsum, map_sum] at hmem
       exact hmem) τ

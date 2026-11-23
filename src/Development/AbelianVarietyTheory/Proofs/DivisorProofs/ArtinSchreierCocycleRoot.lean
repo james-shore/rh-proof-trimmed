@@ -91,7 +91,7 @@ theorem single_mem_headSub {a n : ℕ} (j : Fin n) (hj : (j : ℕ) < a) :
   rw [mem_headSub]
   intro i hi
   have : i ≠ j := by intro h; subst h; omega
-  simp [Pi.single_apply, this]
+  simp [this]
 
 theorem toLin'_apply_single {n : ℕ} (H : Matrix (Fin n) (Fin n) F) (i j : Fin n) :
     Matrix.toLin' H (Pi.single j 1) i = H i j := by

@@ -118,7 +118,7 @@ theorem jSRadLoc_of (hU : FamCCUnif) : JSRadLoc := by
     | nil => simpa [wOp] using hC0
     | cons j js ih =>
       have e : wOp X ⟨0, hr0⟩ (j :: js) Φ = X.op ⟨0, hr0⟩ j (wOp X ⟨0, hr0⟩ js Φ) := by
-        simp [wOp, List.map_cons, List.prod_cons, Module.End.mul_apply]
+        simp [wOp, List.map_cons, List.prod_cons]
       rw [e]
       exact Formalism.FourierDecayAlt.P.operator_class_closed Wp Wq P Tw hP hNw 0 hj hPj hPs X j _ ih
   obtain ⟨Gj, hGj, hRep⟩ := hW js

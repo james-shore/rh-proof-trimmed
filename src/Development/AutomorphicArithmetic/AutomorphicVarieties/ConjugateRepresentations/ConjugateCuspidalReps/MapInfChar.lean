@@ -122,8 +122,8 @@ private theorem eF_det (t τ : E →+* ℂ) (i j : Fin a) :
     have e0 : Matrix.of (toL (Matrix.single i j x)) = Matrix.single i j x := rfl
     rw [h, ContinuousLinearMap.comp_apply, ContinuousLinearMap.comp_apply, fderiv_det_one, e0]
     split_ifs with h3
-    · subst h3; simp [hd]
-    · simp [hd, h3]
+    · subst h3; simp
+    · simp [h3]
   rw [eF, h2, h2]
   by_cases h3 : i = j
   · have h4 := coord_hol τ t
@@ -151,7 +151,7 @@ private theorem conj_fun (σ : ℂ ≃+* ℂ) {f : GL (Fin a) (Cinf E) → ℂ} 
       ∀ τ i j, eF (fun y : GL (Fin a) (Cinf E) => σ (Φ fun i j => tE σ (y.val i j))) (σ.toRingHom.comp τ) i j = σ (eF f τ i j) := by
   classical
   have one : ∀ i j, tE σ ((1 : GL (Fin a) (Cinf E)).val i j) = emb E ((1 : GL (Fin a) (Cinf E)).val i j) := fun i j => by
-    by_cases h : i = j <;> simp [Matrix.one_apply, h]
+    by_cases h : i = j <;> simp [h]
   induction hf using Algebra.adjoin_induction with
   | mem f hf =>
     rcases hf with ⟨t, k, l, rfl⟩ | ⟨t, rfl⟩

@@ -59,7 +59,7 @@ theorem hT_coords {D : D7} (V : HSp D) (a b : Fin V.rank → D.host.E) :
       ∑ k, ∑ l, star (a k) * V.gram k l * b l := by
   simp only [Module.Basis.equivFun_symm_apply]
 
-  simp only [map_sum, LinearMap.sum_apply, map_smulₛₗ, LinearMap.smul_apply, map_smul, smul_eq_mul, HSpace.gram,
+  simp only [map_sum, LinearMap.sum_apply, map_smulₛₗ, LinearMap.smul_apply, smul_eq_mul, HSpace.gram,
   starRingEnd_apply, Finset.mul_sum, RingHom.id_apply]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun l _ => ?_
@@ -122,8 +122,8 @@ theorem exists_perp {E : Type} [Field E] [NumberField E] [StarRing E] (hst : ∀
     have e1 := Submodule.finrank_sup_add_finrank_inf_eq (LinearMap.range ι) (Submodule.span E (Set.range c))
     rw [hdisj.eq_bot, finrank_bot, LinearMap.finrank_range_of_inj hinj, finrank_span_eq_card hc, Fintype.card_fin] at e1
     have e2 := GlobalTheory.WittLow.finrank_orth hs V.nondeg c hc
-    have e3 : Module.finrank E V'.V = V'.rank := by first | rfl | simpa using Module.finrank_eq_card_basis V'.frame
-    have e4 : Module.finrank E V.V = V.rank := by first | rfl | simpa using Module.finrank_eq_card_basis V.frame
+    have e3 : Module.finrank E V'.V = V'.rank := by first | simpa using Module.finrank_eq_card_basis V'.frame
+    have e4 : Module.finrank E V.V = V.rank := by first | simpa using Module.finrank_eq_card_basis V.frame
     rw [← hP] at e2
     omega
   refine ⟨V', p ∘ₗ ι, hiso, fun v => ⟨?_, fun hv => ?_⟩⟩

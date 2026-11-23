@@ -192,13 +192,11 @@ theorem slowWeightBound' : SLOW := by
     rw [hc, hq, hRk]
     have : (1 - κ) ≠ 0 := by linarith
     field_simp
-    try ring
   have hsT : (3 : ℝ) ^ (∑ i, t i) ≤ 3 ^ T := Real.rpow_le_rpow_of_exponent_le (by norm_num) hT
   have hRp : 0 < R ^ (-κ) := Real.rpow_pos_of_pos hR _
   have hreal : c * (2 * q) + R ^ (-κ) ≤ (3 ^ T / (1 - κ) + 1) * R ^ (-κ) := by
     rw [hcq, add_mul, one_mul, div_mul_eq_mul_div]
     gcongr
-    try linarith
   calc ∫⁻ β, slowly t A b β * ENNReal.ofReal (|β| ^ (-κ))
       = (∫⁻ β in Icc (-R) R, f β * ENNReal.ofReal (|β| ^ (-κ))) +
           ∫⁻ β in (Icc (-R) R)ᶜ, f β * ENNReal.ofReal (|β| ^ (-κ)) :=

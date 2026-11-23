@@ -177,9 +177,9 @@ theorem prod_range_zmod {M : Type} [CommMonoid M] {J : ℕ} [NeZero J] (g : ℤ 
   · intro t _
     simp
   · intro j _
-    simp [ZMod.natCast_zmod_val]
+    simp
   · intro t ht
-    simp only [Finset.mem_coe, Finset.mem_range] at ht
+    simp only [Finset.mem_range] at ht
     simp [ZMod.val_natCast, Nat.mod_eq_of_lt ht]
   · intro j _
     rfl

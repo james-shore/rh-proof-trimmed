@@ -349,7 +349,6 @@ theorem xi_swap : XiSwap := by
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun b _ => Finset.sum_congr rfl fun a _ => ?_
   field_simp
-  try ring
 
 theorem xiEt_of (hE : EtLoc) : XiEt := by
   intro a₀ b₀ c₀ dK ha hdK lam hlam hOK n _ _ h Λ hH _ _ hsd hSt θ hθ p _ hp2 hpd ι hInt hLoc π hπq hpp hlt

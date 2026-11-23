@@ -151,7 +151,7 @@ theorem last_unit_holds : LastUnit := by
           obtain ⟨a', ha'⟩ := Formalism.HermitianLatticesTheory.star_algebraMap_ringOfIntegers_mem_range a
           refine ⟨a' * b, ?_⟩
           rw [map_mul, ha', hb, ← algebraMap_smul K a x, LinearMap.map_smulₛₗ₂]
-          simp only [LinearMap.smul_apply, starRingEnd_apply, smul_eq_mul]
+          simp only [starRingEnd_apply, smul_eq_mul]
       exact key y (by rw [hS]; exact hy)
     rw [eq_top_iff]
     intro x _

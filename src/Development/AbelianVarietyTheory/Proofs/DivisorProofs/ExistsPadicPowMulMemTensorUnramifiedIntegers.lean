@@ -54,11 +54,7 @@ variable (p : ℕ) [Fact p.Prime]
 
 theorem exists_pow_mul_norm_le_one (y : PadicAlgCl p) : ∃ k : ℕ, ‖(p : PadicAlgCl p) ^ k * y‖ ≤ 1 := by
   first
-  | exact @_root_.GlobalTheory.PowerScaledNormBound.exists_pow_mul_norm_le_one
-  | exact _root_.GlobalTheory.PowerScaledNormBound.exists_pow_mul_norm_le_one
   | (apply _root_.GlobalTheory.PowerScaledNormBound.exists_pow_mul_norm_le_one <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PowerScaledNormBound.exists_pow_mul_norm_le_one <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PowerScaledNormBound.exists_pow_mul_norm_le_one <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.PowerScaledNormBound.exists_pow_mul_norm_le_one ..)
 
 variable (K : IntermediateField ℚ_[p] (PadicAlgCl p)) (r : ℕ)

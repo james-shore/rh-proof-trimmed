@@ -146,7 +146,6 @@ theorem maDens_fs (φ : Fin 1 → (Fin 1 → ℂ) → ℝ) (z : Fin 1 → ℂ)
     refine this.congr_deriv ?_
     try simp only [Pi.mul_apply, Pi.pow_apply]
     field_simp
-    all_goals ring
   have hd2 : HasDerivAt (fun t : ℝ => (2 * (1 + t))⁻¹) (-(2 * (1 + ‖z 0‖ ^ 2) ^ 2)⁻¹)
       (‖z 0‖ ^ 2) := by
     have h1 : (2 * (1 + ‖z 0‖ ^ 2)) ≠ 0 := by positivity
@@ -154,7 +153,6 @@ theorem maDens_fs (φ : Fin 1 → (Fin 1 → ℂ) → ℝ) (z : Fin 1 → ℂ)
     refine this.congr_deriv ?_
     try simp only [Pi.mul_apply, Pi.pow_apply]
     field_simp
-    all_goals ring
   rw [maDens_radial φ _ _ (fun t => -(2 * (1 + t) ^ 2)⁻¹) z hφ hd hd2, fsDens]
   have h1 : (1 + ‖z 0‖ ^ 2) ≠ 0 := by positivity
   have := Real.pi_pos
@@ -184,7 +182,7 @@ theorem maDens_fs_inv (φ : Fin 1 → (Fin 1 → ℂ) → ℝ) (z : Fin 1 → �
     have := ((((hasDerivAt_id' (‖z 0‖ ^ 2)).mul
       ((hasDerivAt_id' (‖z 0‖ ^ 2)).const_add 1)).const_mul 2).inv h1).neg
     refine this.congr_deriv ?_
-    try simp only [Pi.mul_apply, Pi.pow_apply]
+    try simp only [Pi.mul_apply]
     field_simp
     all_goals ring
   rw [maDens_radial φ _ _ (fun t => (2 * t + 1) / (2 * t ^ 2 * (1 + t) ^ 2)) z hφ' hd hd2, fsDens]
@@ -205,7 +203,7 @@ theorem integral_Ioi_fsDens_radial :
     have h1 : (2 * Real.pi * (1 + r ^ 2)) ≠ 0 := by positivity
     have := ((((hasDerivAt_id' r).pow 2).const_add 1).const_mul (2 * Real.pi)).inv h1 |>.neg
     refine this.congr_deriv ?_
-    try simp only [Pi.mul_apply, Pi.pow_apply]
+    try simp only [Pi.pow_apply]
     field_simp
     all_goals ring
   · intro r hr

@@ -96,7 +96,6 @@ theorem val_double (hG : GlobalFnsSt) {a : D.P.A ⟶ D.P.A} (ha : a = 𝟙 D.P.A
       abel)
     (fun w I hI => by
       have C : IsCub (cubV D.cub (T := 𝟙_ _) w I) := isCub_cubV D.cub hI
-      beta_reduce
       rw [Category.comp_id, normd_one hu hI, C.face₃, C.face₃]
       simp) T b z J hJ
   beta_reduce at key
@@ -119,7 +118,6 @@ theorem exists_gam (hG : GlobalFnsSt) {a : D.P.A ⟶ D.P.A} (ha : a = 𝟙 D.P.A
       simp [ofMul_mul, ofMul_inv, ofMul_zpow, ofMul_pow]
       module) (fun w I hI => by
       have C : IsCub (cubV D.cub (T := 𝟙_ _) w I) := isCub_cubV D.cub hI
-      beta_reduce
       rw [comp_id_pow, one_pow, Category.comp_id, normd_one hκ hI, normd_one hν hI, C.N_one]
       simp)
   refine ⟨gam, hgam, fun T g b z J hJ => ?_⟩

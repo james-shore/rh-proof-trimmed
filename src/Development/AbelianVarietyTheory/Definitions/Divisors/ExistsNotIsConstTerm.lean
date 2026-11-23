@@ -310,7 +310,7 @@ theorem not_zfin_exp (h : IsCMExt F E σ) (hJ : IsHermND σ J) {w : InfinitePlac
     · rintro _ ⟨t, rfl⟩
       have e : M (γ t) i i = Complex.exp (t * Complex.I) := by
         rw [hM, show t • (Complex.I • (1 : Matrix (Fin n) (Fin n) ℂ)) = Matrix.diagonal fun _ => t * Complex.I by
-          ext a b; by_cases a = b <;> simp [*, Matrix.one_apply], Matrix.exp_diagonal]
+          ext a b; by_cases a = b <;> simp [*], Matrix.exp_diagonal]
         simp [Complex.exp_eq_exp_ℂ]
       have := congrFun hp (γ t)
       simpa [T, e] using this

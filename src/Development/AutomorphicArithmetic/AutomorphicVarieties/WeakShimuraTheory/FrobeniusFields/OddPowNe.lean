@@ -80,7 +80,6 @@ private theorem dist4 {k : Type} [Field k] {x : k} (h1 : (-1 : k) ≠ 1) (h0 : x
   intro i j h
   fin_cases i <;> fin_cases j <;> simp at h ⊢
   all_goals first
-    | exact absurd (by linear_combination h * h) hx
     | exact absurd (by linear_combination (-x - 1) * h) hx
     | exact absurd (by linear_combination (x - 1) * h) hx
     | exact absurd (by linear_combination (-x + 1) * h) hx

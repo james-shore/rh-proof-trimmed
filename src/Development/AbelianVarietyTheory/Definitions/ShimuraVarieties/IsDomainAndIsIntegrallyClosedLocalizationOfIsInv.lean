@@ -567,7 +567,7 @@ theorem isSeparated [IsSeparated (π ≫ q)] : IsSeparated q := by
   have hm : UniversallyClosed m :=
     MorphismProperty.pullbackMap (P := @UniversallyClosed) ‹_› ‹_› rfl rfl
   have e : π ≫ pullback.diagonal q = pullback.diagonal (π ≫ q) ≫ m := by
-    apply pullback.hom_ext <;> simp [m, pullback.map, pullback.lift_fst, pullback.lift_snd]
+    apply pullback.hom_ext <;> simp [m, pullback.map]
   have : UniversallyClosed (π ≫ pullback.diagonal q) := by rw [e]; infer_instance
   have : UniversallyClosed (pullback.diagonal q) := UniversallyClosed.of_comp_surjective π _
   exact ⟨IsClosedImmersion.of_isPreimmersion _ (pullback.diagonal q).isClosedMap.isClosed_range⟩

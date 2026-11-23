@@ -71,8 +71,6 @@ theorem exists_of_thick : ∀ (A : Type) [CommRing A] [IsNoetherianRing A] (I : 
     unfold thickMap
     first
       | (simp only [pullback.map, pullback.lift_fst, Category.comp_id]; done)
-      | exact (pullback.lift_fst _ _ _).trans (Category.comp_id _)
-      | simp [pullback.map]
   have hF₁ : ∀ e, F e ≫ Z.hom = (thickObj A I e X).hom ≫ thick A I e := by
     intro e
     dsimp [F, Z]

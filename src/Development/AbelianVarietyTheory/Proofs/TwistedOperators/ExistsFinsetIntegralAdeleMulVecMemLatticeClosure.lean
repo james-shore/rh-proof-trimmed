@@ -111,9 +111,9 @@ theorem exists_finset_smul_mulVec_mem_closure : ∀ (F E : Type) [Field F] [Numb
       conv_lhs => rw [← B.sum_repr (M r q)]
       rw [Finset.sum_mul]
       refine Finset.sum_congr rfl fun i _ => ?_
-      simp [Nm, incV, B, c, Algebra.TensorProduct.basis_apply, smul_mul_assoc, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR]
+      simp [Nm, incV, B, c, Algebra.TensorProduct.basis_apply, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR]
     · intro p _ hp
-      simp [Nm, incV, Pi.single_apply, Ne.symm hp]
+      simp [Nm, incV, Ne.symm hp]
     · simp
   choose D hD0 hDL using fun j => exists_nsmul_map_mem L hL (Nm j)
   let c' : Fin n × Fin n × Fin (Module.finrank F E) → AF F :=

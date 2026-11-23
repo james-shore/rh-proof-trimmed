@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.mem_weylCellUnitaryGroup_longSimpleReflection_iff 
     IsWeylRep (simpleU k) (y : GL (Fin n) L) → ∀ (u : GU σ n),
     u ∈ cellU y ↔ ∀ i j, ¬ (i = lo k ∧ j = (lo k).rev) →
       ((u : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) i j = (1 : Matrix (Fin n) (Fin n) L) i j := by
-  first | exact @GlobalTheory.cellU_rankOne_shape | exact GlobalTheory.cellU_rankOne_shape | (intros; apply GlobalTheory.cellU_rankOne_shape <;> assumption)
+  first | exact @GlobalTheory.cellU_rankOne_shape

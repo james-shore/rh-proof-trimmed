@@ -145,7 +145,7 @@ private theorem ValueChart.rep_smul (C : ValueChart G p) (r : R) {φ : X.preshea
   obtain ⟨g, h1, h2, h3⟩ := h
   refine ⟨(epsMul r).comp g, fun b => ?_, fun b => ?_, ?_⟩
   · simp [epsMul, h1]
-  · simp [epsMul, h2, Finset.mul_sum, mul_left_comm]
+  · simp [epsMul, h2, mul_left_comm]
   · rw [h3, CommRingCat.ofHom_comp, Spec.map_comp, Category.assoc]
 
 private theorem ValueChart.rep_exists (C : ValueChart G p) (φ : X.presheaf.stalk p ⟶ CommRingCat.of R) (x : Spec (CommRingCat.of R) ⟶ X)

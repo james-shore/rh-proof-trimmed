@@ -45,4 +45,4 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 
 theorem _root_.GlobalTheory.T.matrixSupportedAtPlace_of_isHalf_splitPoint : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
     (q : SplitPt D k) (m n : ℕ) (w : Mx D m n), IsHalf (q.e + cA D q.e) w → MxAt (· = q.v) w := by
-  first | exact @GlobalTheory.FinPl.SplitHalfSupp.mxAt_of_isHalf_above | exact GlobalTheory.FinPl.SplitHalfSupp.mxAt_of_isHalf_above | (intros; apply GlobalTheory.FinPl.SplitHalfSupp.mxAt_of_isHalf_above <;> assumption)
+  first | exact @GlobalTheory.FinPl.SplitHalfSupp.mxAt_of_isHalf_above

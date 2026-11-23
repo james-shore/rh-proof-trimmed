@@ -46,4 +46,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.standardPairLattice_locally_orthonormal_basis : ∀ D : D7, odd1 D := by
-  first | exact @GlobalTheory.OddGenus.odd_one | exact GlobalTheory.OddGenus.odd_one | (intros; apply GlobalTheory.OddGenus.odd_one <;> assumption)
+  first | exact @GlobalTheory.OddGenus.odd_one

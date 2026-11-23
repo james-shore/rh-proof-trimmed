@@ -43,4 +43,4 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HomExtNormal
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan
 
 theorem _root_.GlobalTheory.T.hasPolyhedralCover_balancedForms_CMField : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (X : Type) [AddCommGroup X] [Module (𝓞 E) X] [Module.Finite (𝓞 E) X] [Module.Projective (𝓞 E) X], HasRedCover H.bar X := by
-  first | exact @GlobalTheory.RedTh.hasRedCover | exact GlobalTheory.RedTh.hasRedCover | (intros; apply GlobalTheory.RedTh.hasRedCover <;> assumption)
+  first | exact @GlobalTheory.RedTh.hasRedCover

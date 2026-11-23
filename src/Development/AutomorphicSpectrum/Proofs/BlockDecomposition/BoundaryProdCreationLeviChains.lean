@@ -285,7 +285,7 @@ theorem adS_eq_adLL (lev : Fin n → ℕ) (s : Bool) (p q : Fin n) {x : Cq n V} 
   · rw [if_pos (Or.inr hl), if_pos hl]
   · rw [if_neg hl]
     split_ifs
-    · simp [Module.End.mul_apply, annL_of_supp hx hl]
+    · simp [annL_of_supp hx hl]
     · rfl
 
 theorem lK_eq_Lv (lev : Fin n → ℕ) (E1 E2 : Fin n → Fin n → Module.End ℂ V) (p q : Fin n) {x : Cq n V}
@@ -323,7 +323,7 @@ theorem boundary_prod_creation_levi_vanish (lev : Fin n → ℕ) (E1 E2 : Fin n 
     have h3 := LinearMap.congr_fun (cartanK lev E1 E2 f)
       (((t.map fun i => (creL (false, i) : Module.End ℂ (Cq n V))).prod : Module.End ℂ (Cq n V)) x)
     simp only [LinearMap.add_apply, Module.End.mul_apply, hf, ih'] at h3
-    simp only [List.map_cons, List.prod_cons, Module.End.mul_apply, List.length_cons, pow_succ, map_smul]
+    simp only [List.map_cons, List.prod_cons, Module.End.mul_apply, List.length_cons, pow_succ]
     rw [eq_neg_of_add_eq_zero_left h3, mul_neg_one, neg_smul, map_smul]
 
 theorem bd_prodL : ∀ (n : ℕ) (lev : Fin n → ℕ) (V : Type) [AddCommGroup V] [Module ℂ V] (E1 E2 : Fin n → Fin n → Module.End ℂ V)

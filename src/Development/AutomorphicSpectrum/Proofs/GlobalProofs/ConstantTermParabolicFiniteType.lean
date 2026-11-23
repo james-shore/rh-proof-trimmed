@@ -656,7 +656,7 @@ theorem foldr_slice {V V' : HSp D} {s : GA D V' →* GA D V} {y : GA D V} (τ : 
     simp only [List.foldr_cons, List.map_cons, List.prod_cons]
     rw [ih, hE]
     funext h
-    simp [map_mul, map_sub, Polynomial.aeval_X, Polynomial.aeval_C, Module.End.mul_apply, LinearMap.sub_apply,
+    simp [map_mul, map_sub, Polynomial.aeval_X, Polynomial.aeval_C, LinearMap.sub_apply,
       Module.algebraMap_end_apply]
 
 theorem prod_roots_toList {q : Polynomial ℂ} (hq : q.Monic) :

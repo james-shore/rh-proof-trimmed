@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.exists_algebraicDatum_thetaTransform_eq : ∀ (D :
     ∀ cS : Matrix (Fin S.rank) (Fin d) (AE D) ≃+ WO S X,
       (∀ u, cS u = (HMul.hMul (uᵀ.submatrix e id) (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.incM ((if ε then -1 else 1 : D.host.E) • S.gram)) : Matrix (Fin X.rank) (Fin S.rank) (AE D))) →
       ∀ f : WO S X → ℂ, IsFinF ψ θ ε A B f → ∃ ΦD ∈ algD M Bs.ψ Bs.emb, IsDatum M ψ cS ΦD f := by
-  first | exact @GlobalTheory.VacDatum.vacDatum_exists | exact GlobalTheory.VacDatum.vacDatum_exists | (intros; apply GlobalTheory.VacDatum.vacDatum_exists <;> assumption)
+  first | exact @GlobalTheory.VacDatum.vacDatum_exists

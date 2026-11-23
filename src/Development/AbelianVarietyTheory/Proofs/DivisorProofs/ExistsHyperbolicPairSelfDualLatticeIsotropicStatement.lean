@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.exists_hyperbolicPair_selfDualLattice_isotropic : 
       (∀ z ∈ Y.L, form σ Y.J z y • x' ∈ Y.L ∧ form σ Y.J z x' • y ∈ Y.L) ∧
       ∀ v : B.P, ((∀ c : E, c • x' ∈ Y.L → Valued.v (B.τ v c) ≤ 1) ∧ ∃ c : E, c • x' ∈ Y.L ∧ Valued.v (B.τ v c) = 1) ∧
         ((∀ c : E, c • y ∈ Y.L → Valued.v (B.τ v c) ≤ 1) ∧ ∃ c : E, c • y ∈ Y.L ∧ Valued.v (B.τ v c) = 1) := by
-  first | exact @GlobalTheory.HypPairLat.exists_pair | exact GlobalTheory.HypPairLat.exists_pair | (intros; apply GlobalTheory.HypPairLat.exists_pair <;> assumption)
+  first | exact @GlobalTheory.HypPairLat.exists_pair

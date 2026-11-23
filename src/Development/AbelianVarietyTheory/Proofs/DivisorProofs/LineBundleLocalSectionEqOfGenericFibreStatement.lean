@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.lineBundleLocalSection_eq_of_generic_fibre : ∀ (
       GenIs ξ s v → GenIs ξ s' v → ∀ i,
         resG _ (fun _ hx => ⟨hx.1, hx.2.1⟩ : L.U i ⊓ G.hom ⁻¹ᵁ (N ⊓ N') ≤ L.U i ⊓ G.hom ⁻¹ᵁ N) (s i) =
           resG _ (fun _ hx => ⟨hx.1, hx.2.2⟩ : L.U i ⊓ G.hom ⁻¹ᵁ (N ⊓ N') ≤ L.U i ⊓ G.hom ⁻¹ᵁ N') (s' i) := by
-  first | exact @GlobalTheory.UMin.ThBdl.locSec_eq_of_genIs | exact GlobalTheory.UMin.ThBdl.locSec_eq_of_genIs | (intros; apply GlobalTheory.UMin.ThBdl.locSec_eq_of_genIs <;> assumption)
+  first | exact @GlobalTheory.UMin.ThBdl.locSec_eq_of_genIs

@@ -52,4 +52,4 @@ open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.Spl
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.jacquetSubquotient_firstFactor_of_emptySecondBlock : ∀ (F : Type) [Field F] [ValuativeRel F] [TopologicalSpace F] [IsNonarchimedeanLocalField F] (r : ℕ) (c : Bool → ℕ) (f : (Σ j, Fin (c j)) ≃ Fin r) (V : Type) [AddCommGroup V] [Module ℂ V] (π : Representation ℂ (GL (Fin r) F) V) (s : ∀ j, IrrRep (GL (Fin (c j)) F)), c true = 0 → IsSubquotient (piTensor fun j => (s j).ρ) (jac f π) → ∃ φ : Fin r ≃ Fin (c false), IsSubquotient ((s false).ρ.comp (reix F φ) : Representation ℂ (GL (Fin r) F) (s false).V) π := by
-  first | exact @GlobalTheory.EmptySecondBlock.isSubquotient_of_empty_second_block | exact GlobalTheory.EmptySecondBlock.isSubquotient_of_empty_second_block | (intros; apply GlobalTheory.EmptySecondBlock.isSubquotient_of_empty_second_block <;> assumption)
+  first | exact @GlobalTheory.EmptySecondBlock.isSubquotient_of_empty_second_block

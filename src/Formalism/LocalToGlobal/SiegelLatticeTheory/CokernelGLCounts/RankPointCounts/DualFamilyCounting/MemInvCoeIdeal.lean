@@ -319,7 +319,6 @@ theorem indep (hG : GZ T T' (Zhat F0 F1) ≠ 0) : LinearIndependent D.host.E (Su
         ((Equiv.Perm.sign (Equiv.sumComm (Fin (D.R.rS + 1)) (Fin (D.R.rS + 1))) : ℤ) : D.host.E) * GZ T T' (Zhat F0 F1) := by
       rw [heq, Matrix.det_permute', PI.UnitaryGroupMassFormula.CntFormula.DetGa.det_N, GZ, hfull, hprev,
         Matrix.det_conjTranspose, ← Matrix.conjTranspose_submatrix, Matrix.det_conjTranspose]
-      push_cast
       ring
     rw [hformula]
     refine mul_ne_zero ?_ hG

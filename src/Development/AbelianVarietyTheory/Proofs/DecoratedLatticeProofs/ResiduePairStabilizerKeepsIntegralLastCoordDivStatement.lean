@@ -80,4 +80,4 @@ theorem _root_.GlobalTheory.T.residuePairStabilizer_keeps_integralLastCoordDiv :
           ∀ r0 : Fin m, r0.1 + 1 = m → ∃ s ∈ 𝒪[k], ((b * g.val * b').reindex (finCongr hm) (finCongr hm) *ᵥ u) r0 = τ * s)) ∧
       (∀ u : Fin m → k, (∀ r, u r ∈ 𝒪[k]) ↔
         ∀ r, (((b * (g⁻¹).val * b').reindex (finCongr hm) (finCongr hm))ᵀ *ᵥ u) r ∈ 𝒪[k]) := by
-  first | exact @GlobalTheory.PairKeep.keep | exact GlobalTheory.PairKeep.keep | (intros; apply GlobalTheory.PairKeep.keep <;> assumption)
+  first | exact @GlobalTheory.PairKeep.keep

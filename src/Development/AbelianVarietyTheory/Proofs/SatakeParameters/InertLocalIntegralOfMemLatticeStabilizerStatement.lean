@@ -58,4 +58,4 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 open Formalism.UG
 
 theorem _root_.GlobalTheory.T.inertLocal_integral_of_mem_latticeStabilizer : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) (v : HeightOneSpectrum (𝓞 (maximalRealSubfield L))) (w : HeightOneSpectrum (𝓞 L)) (Dv : InertDatum L n v w), ∀ u : GAf L n, u ∈ Umax L n → ∀ i j, ((Dv.loc u : GL (Fin n) (w.adicCompletion L)) : Matrix (Fin n) (Fin n) (w.adicCompletion L)) i j ∈ intL (w.adicCompletion L) := by
-  first | exact @GlobalTheory.InertUmaxInt.loc_integral_of_mem_Umax | exact GlobalTheory.InertUmaxInt.loc_integral_of_mem_Umax | (intros; apply GlobalTheory.InertUmaxInt.loc_integral_of_mem_Umax <;> assumption)
+  first | exact @GlobalTheory.InertUmaxInt.loc_integral_of_mem_Umax

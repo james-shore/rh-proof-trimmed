@@ -47,4 +47,4 @@ open GlobalTheory.UPoinc
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_semilinear_label_action_of_galois_deeper : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H), 1 ≤ Dw.p + Dw.q → ∀ (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (cf : Coeff l) (C : UCompact Xo cf), ∀ (X₁ : USetup C) (D : UDeep X₁) (σ : D.X.Ω₁ ≃ₐ[X₁.Ω₁] D.X.Ω₁), ∃ a : D.X.S.Gam ≃+ D.X.S.Gam, D.GalLab σ a ∧ ∀ x, a (D.lab x) = D.lab x := by
-  first | exact @GlobalTheory.UPoinc.UGalAct.exists_galLab | exact GlobalTheory.UPoinc.UGalAct.exists_galLab | (intros; apply GlobalTheory.UPoinc.UGalAct.exists_galLab <;> assumption)
+  first | exact @GlobalTheory.UPoinc.UGalAct.exists_galLab

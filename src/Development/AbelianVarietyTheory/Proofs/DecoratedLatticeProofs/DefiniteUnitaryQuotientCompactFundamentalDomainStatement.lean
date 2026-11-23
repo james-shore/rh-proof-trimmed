@@ -57,4 +57,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Core.Rk.Exh GlobalTheory.RegSW
 
 theorem _root_.GlobalTheory.T.definite_unitary_quotient_compact_fundamentalDomain : ∀ (D : D7) (A : HSp D), HSpace.SigOK A → HSpace.IsPosDef A → ∀ m : Measure (GA D A), m.IsHaarMeasure → GlobalTheory.Unf.CoCpt A ∧ ∃ (X K : Set (GA D A)), MeasurableSet X ∧ IsFundamentalDomain (GQ A) X m ∧ IsCompact K ∧ X ⊆ K := by
-  first | exact @GlobalTheory.DefFund.coCpt_and_fundamentalDomain_subset_compact | exact GlobalTheory.DefFund.coCpt_and_fundamentalDomain_subset_compact | (intros; apply GlobalTheory.DefFund.coCpt_and_fundamentalDomain_subset_compact <;> assumption)
+  first | exact @GlobalTheory.DefFund.coCpt_and_fundamentalDomain_subset_compact

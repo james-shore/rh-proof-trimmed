@@ -178,7 +178,7 @@ private theorem mul_eq_mul_of_ratio_eq_one {n : ℕ} {R : Type} [CommRing R] [Al
 
   simp only [LinearMap.sum_apply, LinearMap.comp_apply, map_sum, Submodule.coe_subtype,
   LinearEquiv.coe_coe]
-  simp only [Submodule.coe_sum, inner]
+  simp only [inner]
   simp
 
   rw [← LinearMap.sum_apply, ← map_sum, hs, map_one]
@@ -212,7 +212,7 @@ theorem isoOfTrace : IsoOfTrace k := by
 
     rw [map_sum, map_one]
     funext x
-    simp [hE, Finset.sum_apply, Pi.single_apply]
+    simp [hE, Finset.sum_apply]
   have hm : ∀ m : MaximalSpectrum R, ∀ a ∈ m.asIdeal, a * e m = 0 := by
     intro m a ha
     apply E.injective

@@ -48,4 +48,4 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts G
 open scoped Matrix ContDiff ComplexOrder
 
 theorem _root_.GlobalTheory.T.integral_realPoly_eq_of_dbarCohomologous : ∀ (M : Type) [TopologicalSpace M] [T2Space M] [SecondCountableTopology M] [CompactSpace M] [MeasurableSpace M] [BorelSpace M] (n : ℕ) (A : HolAtlas M n) (ι : Type) (w w' : ι → A.Pt → Ev n), (∀ i, DbarCoh A (w i) (w' i)) → ∀ P : MvPolynomial ι ℝ, A.integral (evalF A w P) = A.integral (evalF A w' P) := by
-  first | exact @GlobalTheory.ChernCalc.integral_evalF_of_dbarCoh | exact GlobalTheory.ChernCalc.integral_evalF_of_dbarCoh | (intros; apply GlobalTheory.ChernCalc.integral_evalF_of_dbarCoh <;> assumption)
+  first | exact @GlobalTheory.ChernCalc.integral_evalF_of_dbarCoh

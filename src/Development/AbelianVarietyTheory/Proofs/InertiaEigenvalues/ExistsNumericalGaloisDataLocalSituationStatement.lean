@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.exists_numerical_galoisData_localSituation : ∀ {
         (∀ i a, ((D.Ut i).count a : ℤ) = tableLineDegreeTwo.jTil U w t i a) ∧
         ∀ c ∈ Finset.Icc 1 t,
           (GalData.mk lam T (χ 1) ε : GalData ↥(GK K) ℚ_[l] ↥LL.1 ↥(OL LL)).chi c = χ c := by
-  first | exact @GlobalTheory.TopWindow.exists_topData_galData | exact GlobalTheory.TopWindow.exists_topData_galData | (intros; apply GlobalTheory.TopWindow.exists_topData_galData <;> assumption)
+  first | exact @GlobalTheory.TopWindow.exists_topData_galData

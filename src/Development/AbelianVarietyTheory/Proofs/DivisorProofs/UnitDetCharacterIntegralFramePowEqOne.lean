@@ -140,8 +140,6 @@ theorem absNorm_mem_conj (𝔪 : Ideal (𝓞 D.host.E)) : ((Ideal.absNorm 𝔪 :
   have := Ideal.smul_mem_pointwise_smul D.host.conj _ 𝔪 (Ideal.absNorm_mem 𝔪)
   have h2 : D.host.conj • ((Ideal.absNorm 𝔪 : ℕ) : 𝓞 D.host.E) = ((Ideal.absNorm 𝔪 : ℕ) : 𝓞 D.host.E) := by
     first
-    | exact smul_natCast _ _
-    | simp
     | exact map_natCast (MulSemiringAction.toRingHom _ _ D.host.conj) _
   rw [h2] at this
   exact this

@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.scaled_lattice_character_trivial : ∀ (F : Type) 
         ∃ k : ℤ, Algebra.trace ℚ F (∑ i, ξ i * b i) = k) →
     ∀ z ∈ GlobalTheory.EvAdm.scaledInt F κ a,
       ψ (((0 : InfiniteAdeleRing F), ∑ i, z i * algebraMap F (FiniteAdeleRing (𝓞 F) F) (b i)) : AF F) = 1 := by
-  first | exact @GlobalTheory.TraceDualChar.psi_trivial_on_scaledInt | exact GlobalTheory.TraceDualChar.psi_trivial_on_scaledInt | (intros; apply GlobalTheory.TraceDualChar.psi_trivial_on_scaledInt <;> assumption)
+  first | exact @GlobalTheory.TraceDualChar.psi_trivial_on_scaledInt

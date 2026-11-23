@@ -51,4 +51,4 @@ open UpperHalfPlane Complex MeasureTheory CongruenceSubgroup GlobalTheory.EisM U
 open scoped MatrixGroups Real ComplexConjugate Manifold ModularForm
 
 theorem _root_.GlobalTheory.T.second_difference_inv_pow_bound : ∀ j : ℕ, ∃ C : ℝ, ∀ z a b : ℂ, z ≠ 0 → 4 * ‖a‖ ≤ ‖z‖ → 4 * ‖b‖ ≤ ‖z‖ → ‖(z ^ j)⁻¹ - ((z + a) ^ j)⁻¹ - ((z + b) ^ j)⁻¹ + ((z + a + b) ^ j)⁻¹‖ ≤ C * ‖a‖ * ‖b‖ / ‖z‖ ^ (j + 2) := by
-  first | exact @GlobalTheory.EisM.SecondDiff.second_diff_inv_pow | exact GlobalTheory.EisM.SecondDiff.second_diff_inv_pow | (intros; apply GlobalTheory.EisM.SecondDiff.second_diff_inv_pow <;> assumption)
+  first | exact @GlobalTheory.EisM.SecondDiff.second_diff_inv_pow

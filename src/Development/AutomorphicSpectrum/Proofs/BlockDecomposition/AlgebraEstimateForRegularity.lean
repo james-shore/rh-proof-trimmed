@@ -177,7 +177,7 @@ theorem lap_comm_bound (c : ι → ι → ι → ℝ)
 theorem sum_sq_eq (hs : ∀ i u v, ⟪X i u, v⟫_ℂ = -⟪u, X i v⟫_ℂ) (a : V) :
     ∑ i, ‖X i a‖ ^ 2 = (⟪a, lap X a⟫_ℂ).re := by
   have h : lap X a = -∑ i, X i (X i a) := by
-    simp [lap, Module.End.mul_apply, LinearMap.sum_apply]
+    simp [lap, LinearMap.sum_apply]
   rw [h, inner_neg_right, inner_sum, Complex.neg_re, Complex.re_sum, ← Finset.sum_neg_distrib]
   refine sum_congr rfl fun i _ => ?_
   have e : ⟪a, X i (X i a)⟫_ℂ = -⟪X i a, X i a⟫_ℂ := by rw [hs]; simp

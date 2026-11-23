@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.dualVectors_normalForm_mem_secondFlag : ∀ {K V :
       (∀ a, a.val < j → f a ∈ Submodule.span K (e' '' {b | b.val < j})) ∧
       (∀ a b, H.B (e a) (f b) = if a = b then 1 else 0) ∧ (∀ a b, H.B (f a) (f b) = 0) ∧
       (∀ a, a.val < j → e' a ∈ Submodule.span K (f '' {b | b.val < j})) := by
-  first | exact @GlobalTheory.dual_vectors_in_second_flag | exact GlobalTheory.dual_vectors_in_second_flag | (intros; apply GlobalTheory.dual_vectors_in_second_flag <;> assumption)
+  first | exact @GlobalTheory.dual_vectors_in_second_flag

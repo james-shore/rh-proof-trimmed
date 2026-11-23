@@ -98,8 +98,7 @@ theorem homog_of_mul {σ : Type} (w : σ → ℕ) {s g : MvPolynomial σ K} {n :
   have hc : weightedHomogeneousComponent w (Finsupp.weight w m) g ≠ 0 := by
     intro h0
     have h3 := congrArg (AddMonoidAlgebra.coeff · m) h0
-    simp only [coeff_weightedHomogeneousComponent, ite_eq_left rfl,
-      AddMonoidAlgebra.coeff_zero, Finsupp.zero_apply] at h3
+    simp only [coeff_weightedHomogeneousComponent, AddMonoidAlgebra.coeff_zero, Finsupp.zero_apply] at h3
     exact hm h3
   apply hc
   have h4 : s * weightedHomogeneousComponent w (Finsupp.weight w m) g = 0 := by
@@ -206,7 +205,7 @@ theorem chi_psi_dvd (i0 : Fin k) (f : Pol K k) :
     · simp [chiF, psiF]
     · by_cases hj : j = i0
       · subst hj
-        simp only [chiF, psiF, Sum.elim_inr, if_true, eq_self_iff_true]
+        simp only [chiF, psiF, Sum.elim_inr, if_true]
         have e : X (Sum.inl j) * X (Sum.inr j) - -tp K j = tt K k := by
           rw [sub_neg_eq_add, tp, tt, ← Finset.add_sum_erase _ _ (Finset.mem_univ j)]
         rw [e]

@@ -44,4 +44,4 @@ open NumberField MeasureTheory Formalism.BasicNotions Formalism.BasicNotions.TH 
 open scoped ENNReal
 
 theorem _root_.GlobalTheory.T.principalLevelLiftModuliLaws_of_core : ∀ (D : D7) (T : CoreJ D) (j : ℕ), LawsJ T → InR D j → Laws D j (T.Q.Xo j) T.Q.c (T.U j) (coreDict T.toCore j) ∧ ∀ (G : WTZ D.host.E) (σ : T.Q.c.F →+* ℂ) (f : cuspW (T.Q.Xo j) T.Q.c (T.U j) G), normW (T.U j) (xiR D) (fun _ => D.sp.W j) (coreDict T.toCore j) G σ f = normW (T.U j) (xiR D) (T.V j) (T.dict j) G σ f := by
-  first | exact @GlobalTheory.LevGeo.laws_of_coreJ | exact GlobalTheory.LevGeo.laws_of_coreJ | (intros; apply GlobalTheory.LevGeo.laws_of_coreJ <;> assumption)
+  first | exact @GlobalTheory.LevGeo.laws_of_coreJ

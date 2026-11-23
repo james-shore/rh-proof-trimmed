@@ -120,7 +120,7 @@ theorem exists_le_hom (hS : Submodule.IsLattice D.host.E ΛS) (hT : Submodule.Is
     funext i
     change (((A * B * B * C) • genMap S T a s t) *ᵥ y) i = (c : D.host.E) * t i
     simp only [Matrix.smul_apply, Matrix.mulVec, dotProduct, genMap, Matrix.of_apply,
-      Pi.smul_apply, smul_eq_mul, hc', nsmul_eq_mul, Nat.cast_mul, star_mul', star_natCast,
+      hc', nsmul_eq_mul, Nat.cast_mul, star_mul', star_natCast,
       Finset.sum_mul, Finset.mul_sum]
     exact Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun k _ => by ring
   | zero => simp

@@ -74,7 +74,7 @@ theorem map_eq_self_of_normalises_lattice {B : Type} [Group B] [TopologicalSpace
   have hmap : (ν.map φ) D = ν (φ ⁻¹' D) :=
     MeasurableEquiv.map_apply φ.toHomeomorph.toMeasurableEquiv D
   have h3 : (c : ℝ≥0∞) * ν D = 1 * ν D := by
-    calc (c : ℝ≥0∞) * ν D = (c • ν) D := by simp [Measure.smul_apply]
+    calc (c : ℝ≥0∞) * ν D = (c • ν) D := by simp
       _ = (ν.map φ) D := by rw [hc]
       _ = 1 * ν D := by rw [one_mul]; exact hmap.trans hm
   have hc1 : c = 1 := by

@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.hermitian_endo_matrix_rational_in_lattice_basis : 
     (∀ z w, z ⬝ᵥ H₂.mulVec (star w) = z ⬝ᵥ H₁.mulVec (star (γ w))) →
     ∃ Tq : Matrix (Fin n) (Fin n) ℚ,
       Tq.map (Rat.cast : ℚ → ℝ) = LinearMap.toMatrix e e (γ.restrictScalars ℝ) := by
-  first | exact @GlobalTheory.herm_endo_matrix_rat | exact GlobalTheory.herm_endo_matrix_rat | (intros; apply GlobalTheory.herm_endo_matrix_rat <;> assumption)
+  first | exact @GlobalTheory.herm_endo_matrix_rat

@@ -48,4 +48,4 @@ open GlobalTheory.FlagFibre (Low)
 open scoped Matrix ContDiff ComplexOrder ENNReal Classical
 
 theorem _root_.GlobalTheory.T.gradedSquaredLength_upperUnitriangular_gram_eq_of_agree : ∀ (s : ℕ) (G : Matrix (Fin s) (Fin s) ℂ) (y y' : Low s → ℂ) (i : Fin s), (∀ j : Low s, j.1.2 ≤ i → y' j = y j) → grD (upU y' * G * (upU y')ᴴ) i = grD (upU y * G * (upU y)ᴴ) i := by
-  first | exact @GlobalTheory.FlagCell2.grD_upU_gram_eq | exact GlobalTheory.FlagCell2.grD_upU_gram_eq | (intros; apply GlobalTheory.FlagCell2.grD_upU_gram_eq <;> assumption)
+  first | exact @GlobalTheory.FlagCell2.grD_upU_gram_eq

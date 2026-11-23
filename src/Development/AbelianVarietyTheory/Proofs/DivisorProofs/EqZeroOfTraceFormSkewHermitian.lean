@@ -157,8 +157,8 @@ theorem traceForm_nondegenerate : ∀ (E : Type) [Field E] [NumberField E] [IsCM
       ext a b
       by_cases hab : a = b
       · subst b
-        simp [Matrix.one_apply, hc]
-      · simp [Matrix.one_apply, hab, cc]
+        simp [hc]
+      · simp [hab, cc]
     have hmapY : (Y - c • (1 : Matrix (Fin r) (Fin r) E)).map cc = Y.map cc - (c • (1 : Matrix (Fin r) (Fin r) E)).map cc := by
       ext a b
       simp [cc]

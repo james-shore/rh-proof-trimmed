@@ -53,4 +53,4 @@ open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ChartGlue GlobalTheory.Mix
 
 theorem _root_.GlobalTheory.T.exists_isFinite_restrict_near_codimOne : ∀ (F : Type) [Field F] (X Y : Scheme.{0}) [IsIntegral X] [IsIntegral Y] (p : X ⟶ Sp F) (q : Y ⟶ Sp F) (D : ℕ), IsProjOver p → topologicalKrullDim X = (D : ℕ) → IsProjOver q → topologicalKrullDim Y = D → ∀ π : Y ⟶ X, π ≫ p = q → π (genericPoint Y) = genericPoint X → ∀ z : X, Order.coheight z = 1 → ∃ U : X.Opens, z ∈ U ∧ IsFinite (π ∣_ U) := by
-  first | exact @GlobalTheory.FiniteNearCodimOne.exists_isFinite_restrict_of_coheight_eq_one | exact GlobalTheory.FiniteNearCodimOne.exists_isFinite_restrict_of_coheight_eq_one | (intros; apply GlobalTheory.FiniteNearCodimOne.exists_isFinite_restrict_of_coheight_eq_one <;> assumption)
+  first | exact @GlobalTheory.FiniteNearCodimOne.exists_isFinite_restrict_of_coheight_eq_one

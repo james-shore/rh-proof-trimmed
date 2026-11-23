@@ -246,7 +246,6 @@ theorem posOK_at_top (h1 : CloudOne) {p n' : ℕ} (R : RS p n') (mm : ℕ) (hmm 
       try ring
     · simp only [Fin.rev_last]
       rw [t0]
-      try ring
     · intro i hi1 hi2
       rw [abs_neg]
       refine tm i.rev ?_ ?_

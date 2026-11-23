@@ -52,5 +52,3 @@ theorem _root_.GlobalTheory.T.exists_maximal_integralHermitianLattice_orthonorma
   first
   | exact @GlobalTheory.Mass.MaxExists.main
   | intro K V _ _ _ _ _ _ _ _ h hK hS hN
-    have result := GlobalTheory.Mass.MaxExists.main K V h hK hS hN
-    exact ⟨result.1, fun M hL hU => result.2.1 M hL.toIsLattice hU, result.2.2⟩

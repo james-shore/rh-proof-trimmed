@@ -98,7 +98,7 @@ theorem natAct_mul (A B : ∀ v, GL (Fin (P.m + 1)) (P.Qq v)) (F : P.Xsp) :
   simp only [AlgHom.comp_apply] at h
   simp only [Places.natAct, LinearMap.smul_apply, AlgHom.toLinearMap_apply, map_smul, smul_smul, h,
     mul_inv_rev, Units.val_mul, gPos_mul, Matrix.det_mul, mul_zpow, Finset.prod_mul_distrib]
-  first | rfl | (congr 1; exact mul_comm _ _)
+  first | (congr 1; exact mul_comm _ _)
 
 theorem natAct_one (F : P.Xsp) : P.natAct (fun _ => 1) F = F := by
   simp only [Places.natAct, inv_one, Units.val_one, gPos_one, Matrix.det_one, one_zpow, Finset.prod_const_one,

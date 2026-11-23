@@ -146,7 +146,6 @@ theorem div_multiplier : ResidueKilled.Tr.Div := by
     show H s g * (u s)⁻¹ = (s - s₀) ^ k * cont (fun z => e z g) s
     rw [cont_eq_div hA hne (hH g) (fun z hz => hmul z hz g) hA0, hAs]
     field_simp
-    try ring
   · intro g
     exact (hH g).differentiableOn.mul (hu.inv hu0)
   · exact hHc.continuousOn.mul (hu1.inv₀ (fun x hx => hu0 x.1 hx.1))

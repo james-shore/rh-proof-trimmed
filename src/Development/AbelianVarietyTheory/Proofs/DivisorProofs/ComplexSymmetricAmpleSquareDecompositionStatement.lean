@@ -53,4 +53,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.complex_symmetricAmple_square_decomposition : ∀ (A : Over (Sp ℂ)) [GrpObj A], IsAbelianScheme A → ∀ (L M : LB A.left), L.IsLB → M.IsLB → RelAmple A L → RelAmple A M → LBIso (L.pull (GrpObj.inv : A ⟶ A).left) L → LBIso (M.pull (GrpObj.inv : A ⟶ A).left) M → SqDec A L M := by
-  first | exact @GlobalTheory.SqDecC.sqDec_complex | exact GlobalTheory.SqDecC.sqDec_complex | (intros; apply GlobalTheory.SqDecC.sqDec_complex <;> assumption)
+  first | exact @GlobalTheory.SqDecC.sqDec_complex

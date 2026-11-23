@@ -53,11 +53,7 @@ theorem span_matrix_eq_top_of_residue_span {ι A : Type} [CommRing A] [IsLocalRi
       (Set.range (fun i => (f i).map (IsLocalRing.residue A))) = ⊤) :
     Submodule.span A (Set.range f) = ⊤ := by
   first
-  | exact @_root_.GlobalTheory.SpanOfResidue.span_eq_top_of_residue
-  | exact _root_.GlobalTheory.SpanOfResidue.span_eq_top_of_residue
   | (apply _root_.GlobalTheory.SpanOfResidue.span_eq_top_of_residue <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SpanOfResidue.span_eq_top_of_residue <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SpanOfResidue.span_eq_top_of_residue <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SpanOfResidue.span_eq_top_of_residue ..)
 
 theorem span_mat_eq_top_of_residue {Γ A : Type} [Group Γ] [CommRing A] [IsLocalRing A] {r : ℕ}

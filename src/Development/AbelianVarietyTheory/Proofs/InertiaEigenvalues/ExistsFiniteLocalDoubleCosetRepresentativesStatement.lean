@@ -48,4 +48,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RawLift
 
 theorem _root_.GlobalTheory.T.exists_finite_local_double_coset_representatives : ∀ {D : D7} (V : HSp D) (β : GL (Fin V.rank) (Formalism.IndefR.Lev.EAf D)) (L : LevDat D.host.E ℂ V.rank) (v : HeightOneSpectrum (𝓞 D.host.F)) (f : AE D), IsFinIdem D v f → ∀ α : GA D V, SuppF V f α → ∃ C : Finset (GA D V), (∀ γ ∈ C, SuppF V f γ) ∧ IsCosetRep V {k | k ∈ levG V β L ∧ SuppF V f k} α C := by
-  first | exact @GlobalTheory.LocalRepsFin.exists_isCosetRep_finIdem | exact GlobalTheory.LocalRepsFin.exists_isCosetRep_finIdem | (intros; apply GlobalTheory.LocalRepsFin.exists_isCosetRep_finIdem <;> assumption)
+  first | exact @GlobalTheory.LocalRepsFin.exists_isCosetRep_finIdem

@@ -65,4 +65,4 @@ theorem _root_.GlobalTheory.T.doublingIntegrand_integrable_of_coefficient_const_
     (∀ x, x ∉ intG D P.a → X.ιA x ∈ openOff X.A (stdLat X.A) Sf → ∀ k ∈ GinfC X.A, wcoef X.om ν 𝓕 Φ Φ (X.ιA x * k) = 0) →
     (∀ s : ℂ, IntegrableOn (integrand X.om X.m ν 𝓕 (stdLat X.A) a Φ Φ (fun _ => 1) (fun _ => 1) s) (openOff X.A (stdLat X.A) Sf) X.m) ∧
       ∫ g in openOff X.A (stdLat X.A) Sf, wcoef X.om ν 𝓕 Φ Φ g ∂X.m = c := by
-  first | exact @GlobalTheory.RatioConst.integral_const_coef | exact GlobalTheory.RatioConst.integral_const_coef | (intros; apply GlobalTheory.RatioConst.integral_const_coef <;> assumption)
+  first | exact @GlobalTheory.RatioConst.integral_const_coef

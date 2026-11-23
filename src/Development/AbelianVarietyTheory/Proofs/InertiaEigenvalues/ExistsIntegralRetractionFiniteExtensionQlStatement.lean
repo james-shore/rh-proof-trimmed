@@ -52,4 +52,4 @@ open scoped Formalism.Per
 open GlobalTheory.BaseCoef
 
 theorem _root_.GlobalTheory.T.exists_integral_retraction_finiteExtension_ql : ∀ (l : ℕ) [Fact l.Prime] (LL LL' : FinExt l) (hL : LL.1 ≤ LL'.1), ∃ r : ↥LL'.1 →ₗ[ℚ_[l]] ↥LL.1, (∀ a x, r (incl hL a * x) = a * r x) ∧ r 1 = 1 ∧ (∀ x ∈ OL LL', r x ∈ OL LL) := by
-  first | exact @GlobalTheory.CoefRetraction.exists_integral_retraction | exact GlobalTheory.CoefRetraction.exists_integral_retraction | (intros; apply GlobalTheory.CoefRetraction.exists_integral_retraction <;> assumption)
+  first | exact @GlobalTheory.CoefRetraction.exists_integral_retraction

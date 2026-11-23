@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.discreteSeriesCoeffSeries_of_kTypeProjections : Gl
         (∀ j, IsKFin ε σ (x j)) ∧
         ∀ y ∈ UJset ε, (∫ k, e k * f (y * Formalism.REAL.toMK k) ∂(Formalism.REAL.muK ε)) = ∑ j, ℓ j (σ y (x j))) →
     GlobalTheory.TypeSum.HasTypeAll (GlobalTheory.SmoothGlob.lieSet ε) (UJset ε) σ f := by
-  first | exact @GlobalTheory.TypeSum.KSeries.hasTypeAll_of_kTypes | exact GlobalTheory.TypeSum.KSeries.hasTypeAll_of_kTypes | (intros; apply GlobalTheory.TypeSum.KSeries.hasTypeAll_of_kTypes <;> assumption)
+  first | exact @GlobalTheory.TypeSum.KSeries.hasTypeAll_of_kTypes

@@ -52,4 +52,4 @@ open scoped TensorProduct
 
 
 theorem _root_.GlobalTheory.T.exists_selfDualLattice_semicharacter_vacuum : ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (ΛS : Submodule (𝓞 D.host.E) (Fin S.rank → D.host.E)) (ΛT : Submodule (𝓞 D.host.E) (Fin T.rank → D.host.E)), IsStdChar D ψ (-1) → IsSelfDualC S ΛS → IsSelfDualC T ΛT → ∀ b : 𝓞 D.host.E, (b : D.host.E) + star (b : D.host.E) = 1 → ∃ χ : WO S T → ℂ, IsLatVac (heisO ψ S T) (latO S T (ΛS : Set (Fin S.rank → D.host.E)) (ΛT : Set (Fin T.rank → D.host.E)) fun _ => True) χ ∧ ∀ l ∈ latO S T (ΛS : Set (Fin S.rank → D.host.E)) (ΛT : Set (Fin T.rank → D.host.E)) (fun _ => True), χ l = ψ (symplOH S T (l.map fun z => incA D (b : D.host.E) * z) l) := by
-  first | exact @GlobalTheory.SemiCharValue.exists_semichar_value | exact GlobalTheory.SemiCharValue.exists_semichar_value | (intros; apply GlobalTheory.SemiCharValue.exists_semichar_value <;> assumption)
+  first | exact @GlobalTheory.SemiCharValue.exists_semichar_value

@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.hermitianLatticeSignatureSplit_of_definite : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H), D.p = 0 ∨ D.q = 0 → SplitLat D := by
-  first | exact @GlobalTheory.CompRat.splitLat_of_definite | exact GlobalTheory.CompRat.splitLat_of_definite | (intros; apply GlobalTheory.CompRat.splitLat_of_definite <;> assumption)
+  first | exact @GlobalTheory.CompRat.splitLat_of_definite

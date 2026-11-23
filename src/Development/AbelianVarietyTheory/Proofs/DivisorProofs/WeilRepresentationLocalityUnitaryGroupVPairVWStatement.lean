@@ -47,4 +47,4 @@ theorem _root_.GlobalTheory.T.weilRepresentationLocality_unitaryGroupV_pairVW : 
     (a a' : ℕ) (G : Geo σ a a') (X : Chars F E) (om : Rep σ G.V G.W) (om' : Rep σ G.V' G.W), IsTriple B G X om om' →
     ∀ (v : Pl (F := F)), ∀ g ∈ UAt σ G.V (evFin F v), ∀ φ ∈ SB (Fin a × Fin (a + a') → Fv F v),
       ∃ φ₁ ∈ SB (Fin a × Fin (a + a') → Fv F v), Acts (evFin F v) (om (g, 1)) φ φ₁ := by
-  first | exact @GlobalTheory.WeilLocalityV.locality | exact GlobalTheory.WeilLocalityV.locality | (intros; apply GlobalTheory.WeilLocalityV.locality <;> assumption)
+  first | exact @GlobalTheory.WeilLocalityV.locality

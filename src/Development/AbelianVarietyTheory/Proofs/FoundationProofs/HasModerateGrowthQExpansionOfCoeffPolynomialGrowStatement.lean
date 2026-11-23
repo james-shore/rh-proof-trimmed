@@ -48,4 +48,4 @@ open UpperHalfPlane Complex MeasureTheory CongruenceSubgroup GlobalTheory.EisM U
 open scoped MatrixGroups Real ComplexConjugate Manifold ModularForm
 
 theorem _root_.GlobalTheory.T.hasModerateGrowth_qExpansion_of_coeffPolynomialGrowth : ∀ a : ℕ → ℂ, PolyB a → Mod (qs a) := by
-  first | exact @GlobalTheory.EisM.mod_qs_of_polyB | exact GlobalTheory.EisM.mod_qs_of_polyB | (intros; apply GlobalTheory.EisM.mod_qs_of_polyB <;> assumption)
+  first | exact @GlobalTheory.EisM.mod_qs_of_polyB

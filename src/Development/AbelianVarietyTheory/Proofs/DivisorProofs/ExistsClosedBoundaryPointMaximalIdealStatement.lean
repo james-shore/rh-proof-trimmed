@@ -63,4 +63,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.ChartDer
 
 theorem _root_.GlobalTheory.T.exists_closedBoundaryPoint_maximalIdeal : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l) (Y : Model Xo c (RingHom.id c.F)), SmoothOfRelativeDimension Dw.dim (genStr Y) → ∀ (U : Y.X.affineOpens) (m : Ideal Γ(Y.X, U.1)), m.IsMaximal → ∀ x : Y.X, x ∉ interior Y → x ∈ U.1 → (∀ f ∈ m, x ∉ Y.X.basicOpen f) → ∃ x' : gen Y, genι Y x' = x ∧ x' ∈ genBd Y ∧ IsClosed ({x'} : Set (gen Y)) := by
-  first | exact @GlobalTheory.BoundaryPoint.exists_closed_boundary_point | exact GlobalTheory.BoundaryPoint.exists_closed_boundary_point | (intros; apply GlobalTheory.BoundaryPoint.exists_closed_boundary_point <;> assumption)
+  first | exact @GlobalTheory.BoundaryPoint.exists_closed_boundary_point

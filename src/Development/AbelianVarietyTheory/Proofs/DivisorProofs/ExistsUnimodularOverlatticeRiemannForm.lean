@@ -289,7 +289,7 @@ theorem exists_unimodular_overlattice : ∀ (g : ℕ) (Λ : Submodule ℤ (Fin g
 
       rw [hx_def, map_sum, LinearMap.sum_apply]
       simp only [map_smul, LinearMap.smul_apply, smul_eq_mul, hD,
-        LinearMap.BilinForm.apply_dualBasis_left, mul_ite, mul_one, mul_zero]
+        LinearMap.BilinForm.apply_dualBasis_left, mul_ite, mul_zero]
       simp
     have hmaps : ((imForm Hm x).restrictScalars ℤ).comp Λ₁.subtype = (Algebra.linearMap ℤ ℝ).comp φ :=
       b.ext fun j => by

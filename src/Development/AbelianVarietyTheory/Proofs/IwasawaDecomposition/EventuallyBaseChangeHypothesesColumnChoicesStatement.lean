@@ -46,4 +46,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.TypeRec.factG
 
 theorem _root_.GlobalTheory.T.eventually_baseChangeHypotheses_columnChoices : EvLgG fun K B f _ => KPx B f → ∀ (T : TwDat B) (w : ColW B f T) (Z : w.Lt), SphericalInertData.HypCM (w.D Z) := by
-  first | exact @GlobalTheory.Mem.HypCMRec.hypCM_at_record | exact GlobalTheory.Mem.HypCMRec.hypCM_at_record | (intros; apply GlobalTheory.Mem.HypCMRec.hypCM_at_record <;> assumption)
+  first | exact @GlobalTheory.Mem.HypCMRec.hypCM_at_record

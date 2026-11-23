@@ -133,7 +133,7 @@ theorem pr_mem (v : (VS D).V) : pr X v ∈ Wb X := by
 theorem pr_eX (c : Fin D.R.rS) : pr X (X.eX c) = 0 := by
   rw [pr_apply]
   simp only [hT_fe, X.ee, ite_smul, one_smul, zero_smul, Finset.sum_ite_eq, Finset.mem_univ, if_true,
-    Finset.sum_const_zero, sub_zero, sub_self]
+    Finset.sum_const_zero, sub_self]
 
 theorem pr_X {x : (VS D).V} (hx : x ∈ Submodule.span D.host.E (Set.range X.eX)) : pr X x = 0 := by
   have hle : Submodule.span D.host.E (Set.range X.eX) ≤ LinearMap.ker (pr X) := by

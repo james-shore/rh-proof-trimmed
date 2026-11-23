@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open IsLocalRing
 
 theorem _root_.GlobalTheory.T.exists_dominating_local_domain_eq_mul_maximal : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] [IsNoetherianRing R] [IsIntegrallyClosed R] (f G : R), G ∉ Ideal.span {f} → ∃ (B : Type) (_ : CommRing B) (_ : IsDomain B) (_ : IsLocalRing B) (_ : IsNoetherianRing B) (ι : R →+* B), Function.Injective ι ∧ IsLocalHom ι ∧ (∀ b : B, ∃ r : R, b - ι r ∈ maximalIdeal B) ∧ ∃ u ∈ maximalIdeal B, ι f = ι G * u := by
-  first | exact @GlobalTheory.Izumi.exists_dominating_eq_mul_of_not_mem_span | exact GlobalTheory.Izumi.exists_dominating_eq_mul_of_not_mem_span | (intros; apply GlobalTheory.Izumi.exists_dominating_eq_mul_of_not_mem_span <;> assumption)
+  first | exact @GlobalTheory.Izumi.exists_dominating_eq_mul_of_not_mem_span

@@ -107,7 +107,7 @@ theorem left_smooth {H : Matrix (Fin n) (Fin n) ℂ} (hH : AAInvW.HInvol H)
     have h := (LinearMap.toContinuousLinearMap (LinearMap.mulLeft ℝ X)).contDiff (n := ∞)
     convert h using 1
     funext x
-    first | simp | rfl
+    first | rfl
   refine ⟨fun g₀ hg₀ => ?_, fun g hg => ?_⟩
   · obtain ⟨U, F, hU, hg₀U, hF, hfF⟩ := hf g₀ hg₀
     refine ⟨U, fun x => fderiv ℝ F x (X * x), hU, hg₀U, ?_, fun x hxU hxH => ?_⟩
@@ -359,7 +359,7 @@ variable [CompleteSpace H]
 theorem dsigW_zero {σ : Mat k r → (H →L[ℂ] H)} (hσ : IsURepOn (GG k r) σ) (W : List (Mat k r))
     (hW : ∀ X ∈ W, InLieHpk k r X) : dsigW σ W 0 = 0 := by
   have h := dsigW_comb hσ W hW 1 (sm_zero σ) (sm_zero σ) (sm_zero σ)
-  simp only [sub_self, smul_zero, zero_sub, one_smul] at h
+  simp only [sub_self, smul_zero, zero_sub] at h
   have h2 : (2 : ℂ) • dsigW σ W 0 = 0 := by
     rw [two_smul]
     nth_rewrite 1 [h]

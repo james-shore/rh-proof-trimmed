@@ -55,11 +55,7 @@ theorem exists_finite_reproducing_of_submodule {X : Type} (V : Submodule ℂ (X 
     (F : Finset ↥V) :
     ∃ (S : Finset X) (u : X → ↥V), ∀ f ∈ F, f = ∑ x ∈ S, (f : X → ℂ) x • u x := by
   first
-  | exact @_root_.GlobalTheory.LagrangeInterpolationExistence.exists_interpolation
-  | exact _root_.GlobalTheory.LagrangeInterpolationExistence.exists_interpolation
   | (apply _root_.GlobalTheory.LagrangeInterpolationExistence.exists_interpolation <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LagrangeInterpolationExistence.exists_interpolation <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LagrangeInterpolationExistence.exists_interpolation <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.LagrangeInterpolationExistence.exists_interpolation ..)
 
 theorem finsupp_sum_multilinear_eq_of_prod_eq {ι : Type} [Fintype ι] [DecidableEq ι]

@@ -44,4 +44,4 @@ open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.cmObjHomOfType_linearIndependent : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (K : Type) [Field K] [NumberField K] (ρ : 𝓞 K) (σ₁ : K →+* ℂ) (p q : ℕ) (X : CMObj H K ρ σ₁ p q)
     (x : Fin p → 𝓞 E), ∏ a, ((X.A true).t.act.act (x a) ≫ GlobalTheory.FlatCM.phiP X a) = 1 → x = 0 := by
-  first | exact @GlobalTheory.FlatCM.HomIndep.phiP_independent | exact GlobalTheory.FlatCM.HomIndep.phiP_independent | (intros; apply GlobalTheory.FlatCM.HomIndep.phiP_independent <;> assumption)
+  first | exact @GlobalTheory.FlatCM.HomIndep.phiP_independent

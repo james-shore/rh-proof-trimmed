@@ -47,4 +47,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.TypeRec.factG
 
 theorem _root_.GlobalTheory.T.eventually_auxiliary_places_split_distinct : EvLgG fun K B f _ => KPx B f → ∀ (T : TwDat B) (w : ColW B f T) (Z : w.Lt), ∃ w0, GlobalTheory.LamTie.PlacesOk (w.D Z).host (AbsolutelyIrreducibleSpan.q0 (w.D Z)) w0 := by
-  first | exact @GlobalTheory.TwInputs.PlacesAt.evLgG_placesOk | exact GlobalTheory.TwInputs.PlacesAt.evLgG_placesOk | (intros; apply GlobalTheory.TwInputs.PlacesAt.evLgG_placesOk <;> assumption)
+  first | exact @GlobalTheory.TwInputs.PlacesAt.evLgG_placesOk

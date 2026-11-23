@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.coefficientField_algClosed_in_functionFields_of_periodSpaces : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (σ : KA l →+* ℂ) (g : ℕ) (ty : Fin g → (E →+* ℂ)) (F : FamilyUnif Xo σ ty), 1 ≤ D.p + D.q → σ (baseKA l).ρ = H.rt0 → IsTypeFn H D.p D.q ty → l.A = 1 → ∀ c : Coeff l, (∀ τ : ℂ ≃+* ℂ, (∀ x ∈ c.F, τ x = x) → ConjugationPermutesPeriods F τ id) → FnAlgClosed (Xo := Xo) (c := c) := by
-  first | exact @GlobalTheory.CompRat.FixedConst.fnAlgClosed_of_permutes_id | exact GlobalTheory.CompRat.FixedConst.fnAlgClosed_of_permutes_id | (intros; apply GlobalTheory.CompRat.FixedConst.fnAlgClosed_of_permutes_id <;> assumption)
+  first | exact @GlobalTheory.CompRat.FixedConst.fnAlgClosed_of_permutes_id

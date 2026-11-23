@@ -49,4 +49,4 @@ import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
 open NumberField Matrix GlobalTheory.CuspRep
 
 theorem _root_.GlobalTheory.T.isStandardAdelicAddChar_global_adelicChar : ∀ (E : Type) [Field E] [NumberField E], GlobalTheory.CuspGeneric.StdPsi (Circle.coeHom.compAddChar (GroundTheory.Global.adelicChar E)) := by
-  first | exact @GlobalTheory.StdCharStd.stdPsi_adelicChar | exact GlobalTheory.StdCharStd.stdPsi_adelicChar | (intros; apply GlobalTheory.StdCharStd.stdPsi_adelicChar <;> assumption)
+  first | exact @GlobalTheory.StdCharStd.stdPsi_adelicChar

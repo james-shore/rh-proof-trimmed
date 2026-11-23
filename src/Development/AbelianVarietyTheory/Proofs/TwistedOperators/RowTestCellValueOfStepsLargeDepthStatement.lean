@@ -46,4 +46,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.rowTest_cellValue_of_steps_large_depth : Big fun ch => ∀ s, FlatAt ch s → TensAt ch → VolAt ch → WtAt ch s → FockAt ch → BasicAt ch → OneAt ch → (∀ t a, ch.S.SumOK t (ch.Phi a)) → ValAt ch s := by
-  first | exact @GlobalTheory.RowVal.valAt_big | exact GlobalTheory.RowVal.valAt_big | (intros; apply GlobalTheory.RowVal.valAt_big <;> assumption)
+  first | exact @GlobalTheory.RowVal.valAt_big

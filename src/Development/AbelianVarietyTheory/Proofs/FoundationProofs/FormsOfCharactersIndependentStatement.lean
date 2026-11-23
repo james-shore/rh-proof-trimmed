@@ -49,4 +49,4 @@ open UpperHalfPlane Complex MeasureTheory CongruenceSubgroup GlobalTheory.EisM U
 open scoped MatrixGroups Real ComplexConjugate Manifold ModularForm
 
 theorem _root_.GlobalTheory.T.eq_zero_of_mf_ch_sum_eq_zero : ∀ (k L N : ℕ) (a : DirichletCharacter ℂ N → ℕ → ℂ), 0 < L → N ∣ L → (∀ ε, MF k L (ch ε) (a ε)) → (∑ ε, a ε) = 0 → ∀ ε, a ε = 0 := by
-  first | exact @GlobalTheory.EisM.Indep.forms_of_characters_independent | exact GlobalTheory.EisM.Indep.forms_of_characters_independent | (intros; apply GlobalTheory.EisM.Indep.forms_of_characters_independent <;> assumption)
+  first | exact @GlobalTheory.EisM.Indep.forms_of_characters_independent

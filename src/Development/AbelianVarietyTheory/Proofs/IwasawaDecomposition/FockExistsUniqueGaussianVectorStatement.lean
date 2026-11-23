@@ -45,4 +45,4 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH GlobalTheory.Mem.Osc Matri
 open scoped ComplexOrder
 
 theorem _root_.GlobalTheory.T.fock_existsUnique_gaussian_vector : ∀ (P Q : ℕ) (F : Fock (Ix P Q)) (A : Matrix (Fin P) (Fin Q) ℂ) (x : Ix P Q → ℂ), (1 - Aᴴ * A).PosDef → ∃! v : F.H, HasCoeff F v (expPS (gaussPoly A x)) := by
-  first | exact @GlobalTheory.FockGauss.existsUnique_gauss | exact GlobalTheory.FockGauss.existsUnique_gauss | (intros; apply GlobalTheory.FockGauss.existsUnique_gauss <;> assumption)
+  first | exact @GlobalTheory.FockGauss.existsUnique_gauss

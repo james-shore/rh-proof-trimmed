@@ -77,7 +77,7 @@ theorem ringAction_descends_along_surjection
     fun a z => hF a z⟩
   · exact hext _ _ fun z => by simp [hF]
   · intro a b
-    exact hext _ _ fun z => by simp [hF, Module.End.mul_apply]
+    exact hext _ _ fun z => by simp [hF]
   · exact hext _ _ fun z => by simp [hF]
   · intro a b
     exact hext _ _ fun z => by simp [hF]

@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_fourier_stable_submodule_containing_gaussia
     ∃ W : Submodule ℂ (SchwartzMap E ℂ), W ≤ N ∧ G ∈ W ∧
       (∀ (ℓ : E →L[ℝ] ℝ) (f f₁ : SchwartzMap E ℂ), f ∈ W → (∀ x, f₁ x = (ℓ x : ℂ) * f x) → f₁ ∈ W) ∧
       (∀ f ∈ W, 𝓕 f ∈ W) := by
-  first | exact @GlobalTheory.exists_fourier_stable_gaussian_submodule | exact GlobalTheory.exists_fourier_stable_gaussian_submodule | (intros; apply GlobalTheory.exists_fourier_stable_gaussian_submodule <;> assumption)
+  first | exact @GlobalTheory.exists_fourier_stable_gaussian_submodule

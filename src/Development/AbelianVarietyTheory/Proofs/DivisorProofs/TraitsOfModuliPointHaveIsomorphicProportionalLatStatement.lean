@@ -48,4 +48,4 @@ open GlobalTheory
 open Classical
 
 theorem _root_.GlobalTheory.T.traitsOfModuliPoint_have_isomorphic_proportional_lattices : UTraitUniqSt := by
-  first | exact @GlobalTheory.UPoinc.uTraitUniqSt_holds | exact GlobalTheory.UPoinc.uTraitUniqSt_holds | (intros; apply GlobalTheory.UPoinc.uTraitUniqSt_holds <;> assumption)
+  first | exact @GlobalTheory.UPoinc.uTraitUniqSt_holds

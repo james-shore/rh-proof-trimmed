@@ -61,4 +61,4 @@ open CategoryTheory.Limits TopologicalSpace
 theorem _root_.GlobalTheory.T.normal_finite_dominant_refinement : ∀ (F : Type) [Field F] [NumberField F] (Y : Var F) (V₁ V₂ : Mean4O.Cover Y),
     ∃ (G : Scheme.{0}) (_ : IsIntegral G) (_ : GlobalTheory.IsNormalScheme G) (g : G ⟶ V₁.G) (k : G ⟶ V₂.G),
       IsFinite g ∧ IsDominant g ∧ k ≫ V₂.π = g ≫ V₁.π := by
-  first | exact @GlobalTheory.Mean4O.CommonGen.exists_common | exact GlobalTheory.Mean4O.CommonGen.exists_common | (intros; apply GlobalTheory.Mean4O.CommonGen.exists_common <;> assumption)
+  first | exact @GlobalTheory.Mean4O.CommonGen.exists_common

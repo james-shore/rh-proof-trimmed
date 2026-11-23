@@ -65,4 +65,4 @@ theorem _root_.GlobalTheory.T.exists_resolution_divisors_topForm_normalCrossings
         Scheme.ord (fnPull s g : Y.functionField) v = 0) ∧
       (∀ (v : Y) (F : DivOver (s ≫ p)), Order.coheight v = 1 → v ∉ B → F.IsAt v →
         (fun ω => @dite ℤ (∃ a, F.IsFormOrd ω a) (Classical.propDecidable _) (fun h => h.choose) (fun _ => 0)) (ratPull p s n η) = 0) := by
-  first | exact @GlobalTheory.ResPairSupp.exists_resolution_supp | exact GlobalTheory.ResPairSupp.exists_resolution_supp | (intros; apply GlobalTheory.ResPairSupp.exists_resolution_supp <;> assumption)
+  first | exact @GlobalTheory.ResPairSupp.exists_resolution_supp

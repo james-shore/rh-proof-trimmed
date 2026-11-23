@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.CechPic GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.LogPair
 
 theorem _root_.GlobalTheory.T.exists_primeDivisor_over_target_birational : ∀ (k : Type) [Field k] (X Y : Scheme.{0}) [IsIntegral X] [IsIntegral Y] (p : X ⟶ Sp k) (s : Y ⟶ X) [IsDominant s], Function.Bijective (functionFieldMap s) → ∀ E' : DivOver (s ≫ p), ∃ E : DivOver p, DivOver.Over s E' E := by
-  first | exact @GlobalTheory.Discrepancy.DivOver.exists_over_of_bijective | exact GlobalTheory.Discrepancy.DivOver.exists_over_of_bijective | (intros; apply GlobalTheory.Discrepancy.DivOver.exists_over_of_bijective <;> assumption)
+  first | exact @GlobalTheory.Discrepancy.DivOver.exists_over_of_bijective

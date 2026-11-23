@@ -49,4 +49,4 @@ open GlobalTheory.TrMult
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_restrictedProduct_haar_given_finiteFactors : ∀ (D : D7) (V : HSp D) (μ : Measure (GA D V)) [μ.IsHaarMeasure] (μf : ∀ v, Measure (GLoc D.sp.cm.sig V.gram v)), (∀ v, (μf v).IsHaarMeasure) → (∀ᶠ v in cofinite, μf v (Kv V v) = 1) → (∃ μa, IsRestrictedProd D.sp.cm.sig V.gram (frameLat V) μa μf μ) ∧ ∃ ν, IsFinMeas V μf ν := by
-  first | exact @GlobalTheory.ProdMeas.exists_prod_of_haar | exact GlobalTheory.ProdMeas.exists_prod_of_haar | (intros; apply GlobalTheory.ProdMeas.exists_prod_of_haar <;> assumption)
+  first | exact @GlobalTheory.ProdMeas.exists_prod_of_haar

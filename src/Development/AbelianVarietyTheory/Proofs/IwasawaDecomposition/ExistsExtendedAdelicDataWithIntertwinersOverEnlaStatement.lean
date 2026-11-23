@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.exists_extendedAdelicData_with_intertwiners_over_e
       Formalism.L2.Pj.LawsCore core'.toCore → core'.Q.Canon → (∀ j, 1 ≤ (core'.Q.Dw j).p + (core'.Q.Dw j).q) → core'.pb = f'.P.pb →
       ∃ z' : Dat (w'.st Z') w'.I hX' T' {v | B'.places.resChar v ∈ T'.pl}, z'.core = core' ∧
         z'.R.toRealDat.ExAt ∧ GlobalTheory.RealGeo.InGeo z'.geo ∧ z'.Std ∧ ExtN z z')  := by
-  first | exact @GlobalTheory.Mem.R3.Rw.datExt_rest | exact GlobalTheory.Mem.R3.Rw.datExt_rest | (intros; apply GlobalTheory.Mem.R3.Rw.datExt_rest <;> assumption)
+  first | exact @GlobalTheory.Mem.R3.Rw.datExt_rest

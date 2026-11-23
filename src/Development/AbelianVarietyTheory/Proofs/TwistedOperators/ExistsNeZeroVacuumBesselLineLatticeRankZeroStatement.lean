@@ -48,4 +48,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.exists_ne_zero_vacuum_besselLineLattice_rankZero : OnStd fun {D} _ _ _ {G} W F => ∃ Φ₀, VacG W.ψ _ _ (lineLat F 0) Φ₀ ∧ Φ₀ ≠ 0 := by
-  first | exact @GlobalTheory.AscFin.LineZero.exists_vacG_lineLat_zero | exact GlobalTheory.AscFin.LineZero.exists_vacG_lineLat_zero | (intros; apply GlobalTheory.AscFin.LineZero.exists_vacG_lineLat_zero <;> assumption)
+  first | exact @GlobalTheory.AscFin.LineZero.exists_vacG_lineLat_zero

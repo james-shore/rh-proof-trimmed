@@ -74,4 +74,4 @@ theorem _root_.GlobalTheory.T.exists_normal_arithmeticVariety_model_projectiveSp
       ∀ (k l : Fin (m + 1)) (i : ((ProjSpace.O1 (𝓞 K) m).pull g').ι) (h : genericPoint X' ∈ ((ProjSpace.O1 (𝓞 K) m).pull g').U i),
         ψ' (y k) * fnOf _ h ((GlobalTheory.Cartier.secPull (ProjSpace.coord (𝓞 K) m l) g').f i) =
           ψ' (y l) * fnOf _ h ((GlobalTheory.Cartier.secPull (ProjSpace.coord (𝓞 K) m k) g').f i) := by
-  first | exact @GlobalTheory.NormalModel.exists_normal_model | exact GlobalTheory.NormalModel.exists_normal_model | (intros; apply GlobalTheory.NormalModel.exists_normal_model <;> assumption)
+  first | exact @GlobalTheory.NormalModel.exists_normal_model

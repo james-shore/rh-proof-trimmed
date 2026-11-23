@@ -64,7 +64,7 @@ theorem atPl_mul (w : T) (L₁ L₂ : Module.End ℂ (V w)) : atPl w (L₁ * L�
   apply PiTensorProduct.ext
   apply MultilinearMap.ext
   intro f
-  simp [atPl_tprod, Module.End.mul_apply]
+  simp [atPl_tprod]
 
 theorem atPl_one (w : T) : atPl w (1 : Module.End ℂ (V w)) = 1 := by
   apply PiTensorProduct.ext

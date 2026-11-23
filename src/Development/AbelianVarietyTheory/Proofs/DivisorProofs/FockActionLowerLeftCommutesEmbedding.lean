@@ -111,7 +111,7 @@ theorem pderiv_w_detR (h : P ≤ R) (b : Fin Q) (c : Fin R) :
   rw [detR_eq]
   apply derivation_det_eq_zero
   intro i j
-  simp [blockR, pderiv_X, Pi.single_apply]
+  simp [blockR, pderiv_X]
 
 theorem pderiv_s_detR (h : P ≤ R) (a : Fin P) (c : Fin R) :
     pderiv (Sum.inl a, Sum.inl c) (detR P Q R h) =
@@ -127,10 +127,9 @@ theorem pderiv_s_detR (h : P ≤ R) (a : Fin P) (c : Fin R) :
     rw [Matrix.updateRow_apply]
     split_ifs with hi
     · simp [Pi.single_apply]; split_ifs <;> simp
-    · simp [blockR, pderiv_X, Pi.single_apply, hi]
+    · simp [blockR, pderiv_X, hi]
   rw [Derivation.leibniz, hadj]
   simp [blockR, pderiv_X, Pi.single_apply, eq_comm]
-  done
 
 theorem sum_s_pderiv_detR (h : P ≤ R) (a' a : Fin P) :
     ∑ c : Fin R, X (Sum.inl a', Sum.inl c) * pderiv (Sum.inl a, Sum.inl c) (detR P Q R h) =
@@ -228,7 +227,7 @@ theorem opR_down (k : ℕ) (a : Fin P) (b : Fin Q) (G : Mdl P Q) :
     opR P Q R k (Sum.inr b) (Sum.inl a) G =
       -(∑ a' : Fin P, ∑ b' : Fin Q, X (a', b') * pderiv (a', b) (pderiv (a, b') G)
         + ((R + k : ℕ) : ℂ) • pderiv (a, b) G) := by
-  simp [opR, LinearMap.sum_apply, Module.End.mul_apply]
+  simp [opR, LinearMap.sum_apply]
 
 theorem sum_A (h : P ≤ R) (k : ℕ) (a : Fin P) (b : Fin Q) (G : Mdl P Q) :
     ∑ c : Fin R, (∑ b' : Fin Q, (∑ a' : Fin P, phiR P Q R (pderiv (a', b) (pderiv (a, b') G)) *

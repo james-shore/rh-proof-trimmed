@@ -147,7 +147,7 @@ theorem sizes_of_cover_alt : _root_.GlobalTheory.CovTop.CoversCondition fun Fm x
       unfold Formalism.BasicNotions.Scale.b; exact Real.exp_le_exp.2 (by linarith)
     have hr5' : ((Fm.D x ι).R.r : ℝ) ≤ (Fm.L x ι).sc.x ^ (5 : ℕ) := by
       have e : (Fm.L x ι).sc.x ^ (5 : ℕ) = (Fm.L x ι).sc.x ^ (5 : ℝ) := by exact_mod_cast (Real.rpow_natCast _ 5).symm
-      first | exact hr5 | (rw [e]; exact hr5)
+      first | (rw [e]; exact hr5)
     have : ((Fm.D x ι).R.r : ℝ) + 1 < (Fm.D x ι).host.g k :=
       calc ((Fm.D x ι).R.r : ℝ) + 1 ≤ (Fm.L x ι).sc.x ^ (5 : ℕ) + 1 := add_le_add hr5' le_rfl
         _ < (Fm.L x ι).sc.x ^ (6 : ℕ) := h5

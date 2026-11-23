@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.routeBigVertex_kernelProduct_eq_const_mul_thetaKer
         ∃ Φ : WO (sgn ε (G.V (.grid (i + 1) (j + 1)))) X → ℂ, IsThetaFunO W.ψ (sgn ε _) X Φ ∧
           ∃ (h : GA D X) (c : ℂ), ∀ u, W.kerA (.right i (j + 1)) d.1.2 g u * W.kerA (.down t (i + 1) j) d.2 u g₁ =
             c * thetaKO ω u h Φ := by
-  first | exact @GlobalTheory.FunObj.routeBig_kernel_product_eq_theta | exact GlobalTheory.FunObj.routeBig_kernel_product_eq_theta | (intros; apply GlobalTheory.FunObj.routeBig_kernel_product_eq_theta <;> assumption)
+  first | exact @GlobalTheory.FunObj.routeBig_kernel_product_eq_theta

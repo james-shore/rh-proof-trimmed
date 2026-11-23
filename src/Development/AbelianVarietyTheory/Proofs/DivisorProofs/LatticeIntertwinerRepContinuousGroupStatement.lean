@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.latticeIntertwinerRep_continuous_group : ∀ (F E 
         (lam : ℕ →* ℂ) (Om : GAF σ JS × GAF σ JT →* Module.End ℂ (GlobalTheory.WeilPartsF.thetaSubF σ JS JT ξ₀ B.ψ)),
         GlobalTheory.FinLatF.IsLatRepF σ JS JT ξ₀ B.ψ hc Λ w lam Om →
         ∀ f (w : WOF F E nS nT), Continuous fun p : GAF σ JS × GAF σ JT => (Om p f : WOF F E nS nT → ℂ) w := by
-  first | exact @GlobalTheory.FinLatF.latRepF_cont | exact GlobalTheory.FinLatF.latRepF_cont | (intros; apply GlobalTheory.FinLatF.latRepF_cont <;> assumption)
+  first | exact @GlobalTheory.FinLatF.latRepF_cont

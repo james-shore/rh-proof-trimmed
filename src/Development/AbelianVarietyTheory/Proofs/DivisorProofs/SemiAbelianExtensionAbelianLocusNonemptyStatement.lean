@@ -54,4 +54,4 @@ open Classical
 
 
 theorem _root_.GlobalTheory.T.semiAbelianExtension_abelianLocus_nonempty : ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] [ZH.ArithBase o Ω] (S : ZH.ThetaSys o Ω) (ρ : S.Real) (M : ZH.RatModel o Ω) (U₀ : M.Z.Opens) (EE : M.Lat S.J) (Zh : ZH.ZHOut ρ M U₀ EE), S.Over₀ M U₀ → (abLocus Zh.G).Nonempty := by
-  first | exact @GlobalTheory.ZHAbLocusNonempty.abLocus_nonempty | exact GlobalTheory.ZHAbLocusNonempty.abLocus_nonempty | (intros; apply GlobalTheory.ZHAbLocusNonempty.abLocus_nonempty <;> assumption)
+  first | exact @GlobalTheory.ZHAbLocusNonempty.abLocus_nonempty

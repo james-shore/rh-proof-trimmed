@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc TensorProduct GlobalTheory.NL Formalism.MainNotions.DeltaInvariantLattices
 
 theorem _root_.GlobalTheory.T.wachLattice_heights_from_hodgeJumps : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (Cm : CmpOf D.loc D.locA HW F), P5 D HW F := by
-  first | exact @GlobalTheory.NL.Heights.heights_from_jumps | exact GlobalTheory.NL.Heights.heights_from_jumps | (intros; apply GlobalTheory.NL.Heights.heights_from_jumps <;> assumption)
+  first | exact @GlobalTheory.NL.Heights.heights_from_jumps

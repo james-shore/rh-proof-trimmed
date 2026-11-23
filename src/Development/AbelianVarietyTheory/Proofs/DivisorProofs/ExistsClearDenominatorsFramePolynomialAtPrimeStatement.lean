@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.exists_clear_denominators_framePolynomial_at_prime
           (∀ b, (Y b).det ≠ 0) → GlobalTheory.Frames.FrChg (fun b => (Y b).transpose) (s : z.K) z.y y' →
           (∏ b, (Y b).det ^ k b) * evR Xo c F y' = Formalism.L2.LamCM.evalFr G Y) →
         ∀ μ, p.valuation z.K ((x : z.K) * AddMonoidAlgebra.coeff G μ) ≤ 1 := by
-  first | exact @GlobalTheory.CoeffDenom.exists_clear_coeff_at_prime | exact GlobalTheory.CoeffDenom.exists_clear_coeff_at_prime | (intros; apply GlobalTheory.CoeffDenom.exists_clear_coeff_at_prime <;> assumption)
+  first | exact @GlobalTheory.CoeffDenom.exists_clear_coeff_at_prime

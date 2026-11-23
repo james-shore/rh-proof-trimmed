@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.det_derivatives_div_jacobian_independent : ∀ {E 
     (g : Fin (dimFlag Dw) → Γ(M.X, O)) (g' : Fin (dimFlag Dw) → Γ(M.X, O'))
     (hz : ⊤ ≤ z ⁻¹ᵁ O) (hz' : ⊤ ≤ z ⁻¹ᵁ O') (hwO : ∀ b, ⊤ ≤ w b ⁻¹ᵁ O) (hwO' : ∀ b, ⊤ ≤ w b ⁻¹ᵁ O'), (Matrix.of fun a b => (evalPt (w b) O (hwO b) (g a)).snd).det * evalPt z O' hz' (M.K.jacobian i hO' g') =
       (Matrix.of fun a b => (evalPt (w b) O' (hwO' b) (g' a)).snd).det * evalPt z O hz (M.K.jacobian i hO g) := by
-  first | exact @GlobalTheory.TanJac.det_mul_jacobian_comm | exact GlobalTheory.TanJac.det_mul_jacobian_comm | (intros; apply GlobalTheory.TanJac.det_mul_jacobian_comm <;> assumption)
+  first | exact @GlobalTheory.TanJac.det_mul_jacobian_comm

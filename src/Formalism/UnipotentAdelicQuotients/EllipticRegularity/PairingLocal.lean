@@ -75,7 +75,6 @@ theorem adjointPairingLocal : PairingLocal := by
     exact (dw_eventuallyEq _ hev).eq_of_nhds
   · have hg0 : g y = 0 := by
       first
-        | exact image_eq_zero_of_nmem_tsupport (fun h => hy (hg h))
         | exact image_eq_zero_of_notMem_tsupport (fun h => hy (hg h))
     rw [hg0, zero_mul, zero_mul]
 

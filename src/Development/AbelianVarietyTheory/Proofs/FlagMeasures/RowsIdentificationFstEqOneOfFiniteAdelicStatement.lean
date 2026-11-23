@@ -46,4 +46,4 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.S Fo
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LabPin.instCM
 
 theorem _root_.GlobalTheory.T.rowsIdentification_fst_eq_one_of_finiteAdelic : ∀ (D : D7) (X : HidaSetting D) (h : X.B.I = Formalism.L2.SG.InstExistsPf.instOf D) (g : Formalism.L2.Theta.GA D (D.sp.Y 0)), g ∈ GfC (D.sp.Y 0) → (Formalism.L2.SG.RowsJoinPinned.iotaX X h g).1 = 1 := by
-  first | exact @GlobalTheory.RealTrivIota.iotaX_fst_eq_one_of_mem_GfC | exact GlobalTheory.RealTrivIota.iotaX_fst_eq_one_of_mem_GfC | (intros; apply GlobalTheory.RealTrivIota.iotaX_fst_eq_one_of_mem_GfC <;> assumption)
+  first | exact @GlobalTheory.RealTrivIota.iotaX_fst_eq_one_of_mem_GfC

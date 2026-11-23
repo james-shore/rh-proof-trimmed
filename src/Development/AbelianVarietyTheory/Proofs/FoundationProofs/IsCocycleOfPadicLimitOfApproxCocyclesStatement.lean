@@ -57,4 +57,4 @@ open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.
 open scoped Matrix
 
 theorem _root_.GlobalTheory.T.isCocycle_of_padic_limit_of_approx_cocycles : ∀ (l : ℕ) [Fact l.Prime] {Γ : Type} [Group Γ] (M : Γ → Matrix (Fin 2) (Fin 2) (Qbar l)) (z : ℕ → Γ → Fin 2 → Qbar l) (y : Γ → Fin 2 → Qbar l), (∀ s i j, ‖M s i j‖ ≤ 1) → (∀ r s i, ‖z r s i‖ ≤ 1) → (∀ r s t i, ‖z r (s * t) i - (z r s + M s *ᵥ z r t) i‖ ≤ ‖((l : ℕ) : Qbar l) ^ r‖) → (∀ r s i, ‖y s i - z r s i‖ ≤ ‖((l : ℕ) : Qbar l) ^ r‖) → ∀ s t, y (s * t) = y s + M s *ᵥ y t := by
-  first | exact @GlobalTheory.LimCoc.limit_cocycle | exact GlobalTheory.LimCoc.limit_cocycle | (intros; apply GlobalTheory.LimCoc.limit_cocycle <;> assumption)
+  first | exact @GlobalTheory.LimCoc.limit_cocycle

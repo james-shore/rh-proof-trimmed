@@ -54,4 +54,4 @@ open scoped CategoryTheory.Obj TensorProduct Pointwise
 open GlobalTheory.Models
 
 theorem _root_.GlobalTheory.T.exists_desc_of_dense_preimmersion : ∀ (S X X' U U' Y : Scheme.{0}) [IsLocallyNoetherian X'] (π : X ⟶ X') (j : U ⟶ X) (j' : U' ⟶ X') (r : U ⟶ U') (s' : X' ⟶ S) (p : Y ⟶ S) (f : X ⟶ Y) (f₀ : U' ⟶ Y), IsNormalScheme X' → IsReduced X → IsFinite π → Surjective π → Surjective r → IsDominant j → QuasiCompact j → IsPreimmersion j' → Flat j' → IsDominant j' → QuasiCompact j' → IsSeparated p → LocallyOfFiniteType p → j ≫ π = r ≫ j' → j ≫ f = r ≫ f₀ → f ≫ p = π ≫ s' → f₀ ≫ p = j' ≫ s' → ∃ f' : X' ⟶ Y, j' ≫ f' = f₀ ∧ π ≫ f' = f := by
-  first | exact @GlobalTheory.exists_desc_of_isFinite_of_densePart | exact GlobalTheory.exists_desc_of_isFinite_of_densePart | (intros; apply GlobalTheory.exists_desc_of_isFinite_of_densePart <;> assumption)
+  first | exact @GlobalTheory.exists_desc_of_isFinite_of_densePart

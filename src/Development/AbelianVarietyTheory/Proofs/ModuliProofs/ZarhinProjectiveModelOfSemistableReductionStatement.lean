@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 theorem _root_.GlobalTheory.T.zarhinProjectiveModel_of_semistableReduction : GlobalTheory.Published.SemistableReductionSt → GlobalTheory.ZH.ZHSt := by
-  first | exact @GlobalTheory.zh_of_semistableReduction | exact GlobalTheory.zh_of_semistableReduction | (intros; apply GlobalTheory.zh_of_semistableReduction <;> assumption)
+  first | exact @GlobalTheory.zh_of_semistableReduction

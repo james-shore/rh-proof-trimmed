@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.exists_oppositeSubmodule_improved_mod_prime_of_ne_
     (hgen : ∀ ψ : 𝓞 E →+ ℤ, ∃ t : 𝓞 E, ∀ u, ψ (s * u) = θ (t * u))
     (hZ : ¬ Z.map y ≤ img D y Z' 𝔭),
     ∃ Z'', Improves D y n 𝔭 Z Z' Z'' := by
-  first | exact @GlobalTheory.LowFilt.exists_improves_of_ne_conj | exact GlobalTheory.LowFilt.exists_improves_of_ne_conj | (intros; apply GlobalTheory.LowFilt.exists_improves_of_ne_conj <;> assumption)
+  first | exact @GlobalTheory.LowFilt.exists_improves_of_ne_conj

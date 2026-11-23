@@ -48,4 +48,4 @@ open BranchingSupport Formalism.FourierDecayAlt Formalism.FourierDecayAlt.ThreeD
 open scoped InnerProductSpace ENNReal
 
 theorem _root_.GlobalTheory.T.isMatGroup_GG_and_haar_right_invariant : ∀ (k r : ℕ), PI.IsMatGroup (GG k r) ∧ ∀ μG : Measure (Formalism.QuantumDeterminants.Mt k r), PI.BesselPeriodGGP.IsHaarOn (GG k r) μG → PI.IsHaarOnM (GG k r) μG ∧ PI.IsRightInvM (GG k r) μG := by
-  first | exact @GlobalTheory.unitaryGroup_matGroup_unimodular | exact GlobalTheory.unitaryGroup_matGroup_unimodular | (intros; apply GlobalTheory.unitaryGroup_matGroup_unimodular <;> assumption)
+  first | exact @GlobalTheory.unitaryGroup_matGroup_unimodular

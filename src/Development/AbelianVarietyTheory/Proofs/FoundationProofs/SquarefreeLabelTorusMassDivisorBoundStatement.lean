@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open Polynomial Classical GlobalTheory.BadShare
 
 theorem _root_.GlobalTheory.T.squarefreeLabelTorusMass_divisor_bound : ∀ (g : ℕ) [Fact g.Prime], (∀ N : ℕ, (mass g N fun _ => True) ≤ 1) ∧ ∀ (N a : ℕ), ∀ h ∈ sqSet g a, (mass g N fun f => h ∣ f) ≤ ((torusCard g h : ℝ))⁻¹ := by
-  first | exact @GlobalTheory.BadShare.divisor_bound | exact GlobalTheory.BadShare.divisor_bound | (intros; apply GlobalTheory.BadShare.divisor_bound <;> assumption)
+  first | exact @GlobalTheory.BadShare.divisor_bound

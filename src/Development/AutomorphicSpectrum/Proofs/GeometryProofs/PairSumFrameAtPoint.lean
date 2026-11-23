@@ -154,7 +154,7 @@ theorem exists_dual_sum (𝔐 : HodgeCpt Y S y) (hind : iSupIndep 𝔐.Vgen) (q 
           exact Finset.sum_congr rfl fun k _ => e1 k
 
         simp only [LinearMap.comp_apply, e2, map_sum, map_smul, hgb, LinearMap.proj_apply]
-        simp only [Pi.smul_apply, smul_eq_mul]
+        simp only [smul_eq_mul]
         refine sum_mem fun k _ => mul_mem (c' k).2 ?_
         rw [Pi.single_apply]
         split_ifs

@@ -92,7 +92,7 @@ theorem bK_mem : bb D ∈ D.host.K := FL.bE_mem D
 def bK : D.host.K := ⟨bb D, bK_mem D⟩
 
 theorem okc_of (u : 𝓞 D.host.K) : OKc D (D.host.φ₀ ((u : D.host.K) : D.host.E)) :=
-  by apply _root_.UpperTheory.Reformulated.B.IntegralClosureCriterion.okc_of <;> assumption
+  by apply _root_.UpperTheory.Reformulated.B.IntegralClosureCriterion.okc_of
 
 end Formalism.L2.Ker.Cd.IntegralLatticeDensity.AR
 

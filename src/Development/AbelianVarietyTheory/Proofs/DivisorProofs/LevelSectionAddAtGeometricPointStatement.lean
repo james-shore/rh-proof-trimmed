@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.levelSection_add_at_geometricPoint : ∀ {E : Type
     (φ : X' ⟶ X₀ TF.Y Z) (ℓ : V₀ TF.Y Z ⟶ X') (hℓ : ℓ ≫ φ = j₀ TF.Y Z) (Ω : Type) [Field Ω] [IsAlgClosed Ω] (x : Sp Ω ⟶ V₀ TF.Y Z) (a b : LevelMod Dw l)
     (A B C : Over.mk (x ≫ ℓ) ⟶ GlobalTheory.EqvAct.pullG TF Z φ) (hA : A.left = x ≫ GlobalTheory.TorsSpec.etaSecL TF Z φ ℓ hℓ a)
     (hB : B.left = x ≫ GlobalTheory.TorsSpec.etaSecL TF Z φ ℓ hℓ b) (hC : C.left = x ≫ GlobalTheory.TorsSpec.etaSecL TF Z φ ℓ hℓ (a + b)), C = A * B := by
-  first | exact @GlobalTheory.TorsSpec.etaSecL_add_geom | exact GlobalTheory.TorsSpec.etaSecL_add_geom | (intros; apply GlobalTheory.TorsSpec.etaSecL_add_geom <;> assumption)
+  first | exact @GlobalTheory.TorsSpec.etaSecL_add_geom

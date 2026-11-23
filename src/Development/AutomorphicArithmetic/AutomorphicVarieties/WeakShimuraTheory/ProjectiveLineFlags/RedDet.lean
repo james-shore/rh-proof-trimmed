@@ -50,7 +50,6 @@ theorem UpperTheory.V.Ws.P1.redDet :
     intro a
     first
       | rfl
-      | simp
   rw [W.Resid.Dbar, (AlgebraTools.Det.repApi (W.diagRep K.r.chib)).2.2.2.2.2.1 (algebraMap (ResidueField c'.O) k)]
   apply P1.detExt
   intro g

@@ -50,4 +50,4 @@ open ReciprocityTheory.ChartRestriction.G.Out GlobalTheory.ZH Classical
 attribute [local instance] SplitExt.free SplitExt.finite MvPolynomial.gradedAlgebra
 
 theorem _root_.GlobalTheory.T.nonempty_geometric_special_fibre_uniformised : GlobalTheory.UT.LL → ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] [ArithBase o Ω] (S : ThetaSys o Ω) (ρ : S.Real) (p : ℕ) [Fact p.Prime] (y₀ : S.R →+* PadicAlgCl p) (u : ρ.UTest p y₀) (N : ℕ), 1 ≤ N → Nonempty (u.FibOf N) := by
-  first | exact @GlobalTheory.ZH.UFib.nonempty_fibOf | exact GlobalTheory.ZH.UFib.nonempty_fibOf | (intros; apply GlobalTheory.ZH.UFib.nonempty_fibOf <;> assumption)
+  first | exact @GlobalTheory.ZH.UFib.nonempty_fibOf

@@ -63,7 +63,7 @@ private theorem list_prod_apply_eq_foldr {W : Type} [NormedAddCommGroup W] [Norm
       (l.map (fun (T : Module.End ℂ W) => (T : W → W))) := by
   induction l with
   | nil => rfl
-  | cons a l ih => simp [List.prod_cons, Module.End.mul_apply, ih]
+  | cons a l ih => simp [List.prod_cons, ih]
 
 private theorem qmF_eq_qdet_apply {W : Type} [NormedAddCommGroup W] [NormedSpace ℂ W] {m : ℕ}
     (E : Fin m → Fin m → Module.End ℂ W) (w : ℂ) (v : W) :
@@ -107,8 +107,7 @@ theorem capacity_from_hermitian_char : CapFromHC := by
       omega
   rw [hI, Finset.prod_map, Finset.prod_range]
   refine Finset.prod_congr rfl (fun j _ => ?_)
-  simp [Nat.succ_sub_one, j.isLt]
-  push_cast
+  simp [j.isLt]
   ring
 
 variable {D : D7} (X : Formalism.L2.SG.HidaSetting.HidaSetting D) {θ : ℝ} (C : Formalism.L2.SG.LocWSOf.Choice X θ)

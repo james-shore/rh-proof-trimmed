@@ -63,11 +63,7 @@ namespace GlobalTheory.MemLoc.PhiImage
 theorem exists_lim_series {R : Type} [CommRing R] (p : R) [IsPrecomplete (Ideal.span {p}) R] (f : ℕ → R) :
     ∃ L : R, ∀ k, p ^ k ∣ (∑ i ∈ Finset.range k, p ^ i * f i) - L := by
   first
-  | exact @_root_.GlobalTheory.LimitSeriesPowSmul.target
-  | exact _root_.GlobalTheory.LimitSeriesPowSmul.target
   | (apply _root_.GlobalTheory.LimitSeriesPowSmul.target <;> assumption)
-  | (intros; apply _root_.GlobalTheory.LimitSeriesPowSmul.target <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.LimitSeriesPowSmul.target <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.LimitSeriesPowSmul.target ..)
 
 theorem approx {R A : Type} [CommRing R] [CommRing A] (ι : R →+* A) (p : ℕ)

@@ -51,4 +51,4 @@ open CompanionTheory.D.LK (IsKMod IsMin)
 open scoped InnerProductSpace
 
 theorem _root_.GlobalTheory.T.voganNormSq_lt_of_remove_noncompactRoot : ∀ (n : ℕ) (ε : Fin n → Bool) (lam : Fin n → ℝ), StrictAnti lam → IsHolChamber ε lam → ∀ a b : Fin n, ε a = true → ε b = false → vNormSq ε (lowK ε lam - root a b) < vNormSq ε (lowK ε lam) := by
-  first | exact @GlobalTheory.HolomorphicRootNormBound.vNormSq_lt_of_root | exact GlobalTheory.HolomorphicRootNormBound.vNormSq_lt_of_root | (intros; apply GlobalTheory.HolomorphicRootNormBound.vNormSq_lt_of_root <;> assumption)
+  first | exact @GlobalTheory.HolomorphicRootNormBound.vNormSq_lt_of_root

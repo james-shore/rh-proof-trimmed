@@ -45,4 +45,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.decomposition_unitary_mul_star_eq_one : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X} [Fact (D.what₂.places.resChar w).Prime] {std t J} S => ∀ (d : Dec J std) j La, d.eM j La * star (d.eM j La) = 1) := by
-  first | exact @GlobalTheory.TwV.DelB.Dec.eM_mul_star | exact GlobalTheory.TwV.DelB.Dec.eM_mul_star | (intros; apply GlobalTheory.TwV.DelB.Dec.eM_mul_star <;> assumption)
+  first | exact @GlobalTheory.TwV.DelB.Dec.eM_mul_star

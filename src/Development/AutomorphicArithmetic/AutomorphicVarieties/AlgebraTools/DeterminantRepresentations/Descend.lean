@@ -129,7 +129,7 @@ theorem UpperTheory.V.AlgebraTools.Det.descend :
     have hs : MonoidAlgebra.mapRingHom G (MvPolynomial.map ι) (b • x) =
         MvPolynomial.map ι b • MonoidAlgebra.mapRingHom G (MvPolynomial.map ι) x := by
       ext g
-      simp [MonoidAlgebra.mapRingHom_apply]
+      simp
     rw [hd, map_mul, map_pow, hd, hs, D'.homog]
   obtain ⟨D, hD⟩ := UpperTheory.V.AlgebraTools.Det.extendPoly d hnat hhom
   have hex : D.map ι = D' := by

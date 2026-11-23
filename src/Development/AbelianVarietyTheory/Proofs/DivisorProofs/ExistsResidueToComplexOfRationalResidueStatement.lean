@@ -50,4 +50,4 @@ open scoped TensorProduct
 theorem _root_.GlobalTheory.T.exists_residue_to_complex_of_rationalResidue : ∀ {K : Type} [Field K] [Algebra ℂ K] (R : Subring K) (h : IsLocModel (algebraMap ℂ K) R),
   RatRes (algebraMap ℂ K) R →
   ∃ ε : R →+* ℂ, (∀ a : ℂ, ε ⟨algebraMap ℂ K a, h.const_mem a⟩ = a) ∧ ∀ r : R, ε r = 0 ↔ NonUnit R (r : K) := by
-  first | exact @GlobalTheory.FieldPair.exists_residue_complex | exact GlobalTheory.FieldPair.exists_residue_complex | (intros; apply GlobalTheory.FieldPair.exists_residue_complex <;> assumption)
+  first | exact @GlobalTheory.FieldPair.exists_residue_complex

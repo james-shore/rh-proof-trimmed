@@ -65,4 +65,4 @@ theorem _root_.GlobalTheory.T.continuous_transportedWeilOperator_groupVariable :
       GlobalTheory.WeilM.UG (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig) (incM D.host.F JB) →* Module.End ℂ ((κ → AF D.host.F) → ℂ),
                        GlobalTheory.WeilSchrodinger.IsTransport ψ co ω om →
   ∀ Φ ∈ GlobalTheory.WeilM.schA D.host.F κ, ∀ z : κ → AF D.host.F, Continuous fun p => om p Φ z := by
-  first | exact @GlobalTheory.WeilCont.continuous_transport_apply | exact GlobalTheory.WeilCont.continuous_transport_apply | (intros; apply GlobalTheory.WeilCont.continuous_transport_apply <;> assumption)
+  first | exact @GlobalTheory.WeilCont.continuous_transport_apply

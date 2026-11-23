@@ -226,7 +226,7 @@ theorem exists_invariant_pos_form : ∀ (E : Type) [Field E] [NumberField E] [Is
   · rw [hB, hB, Complex.star_def, ← integral_conj]
     congr 1
     funext g
-    simp only [map_mul, map_star, starRingEnd_apply, star_star]
+    simp only [map_mul, starRingEnd_apply, star_star]
     ring
   · rw [hre, Complex.ofReal_re]
     exact integral_nonneg fun g => by positivity

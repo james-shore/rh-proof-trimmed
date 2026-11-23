@@ -47,4 +47,4 @@ open UpperHalfPlane Complex MeasureTheory CongruenceSubgroup GlobalTheory.EisM U
 open scoped MatrixGroups Real ComplexConjugate Manifold ModularForm
 
 theorem _root_.GlobalTheory.T.exists_bound_norm_qs_of_one_le_im : ∀ (b : ℕ → ℂ), PolyB b → ∃ M : ℝ, ∀ τ : ℍ, 1 ≤ τ.im → ‖qs b τ‖ ≤ M := by
-  first | exact @GlobalTheory.EisM.qs_bdd_above_one | exact GlobalTheory.EisM.qs_bdd_above_one | (intros; apply GlobalTheory.EisM.qs_bdd_above_one <;> assumption)
+  first | exact @GlobalTheory.EisM.qs_bdd_above_one

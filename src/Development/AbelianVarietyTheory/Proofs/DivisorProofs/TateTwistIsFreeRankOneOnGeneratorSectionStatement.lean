@@ -48,4 +48,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex TensorProduct GlobalTheory.EtC
 
 theorem _root_.GlobalTheory.T.tateTwist_isFreeRankOne_on_generatorSection : ∀ (q : ℕ) (i : ℤ) (S : Scheme.{0}) (ζ : Prim q Γ(S, ⊤)), Gen (tw q i) S (twGen i ζ) := by
-  first | (exact @GlobalTheory.twGen_gen) | (exact GlobalTheory.twGen_gen) | (intros; apply GlobalTheory.twGen_gen  <;> assumption)
+  first | (exact @GlobalTheory.twGen_gen)

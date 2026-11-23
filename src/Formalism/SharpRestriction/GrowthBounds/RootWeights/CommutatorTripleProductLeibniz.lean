@@ -71,7 +71,6 @@ theorem casimirConjugation_apply (E : GLOps n K V) (c : Fin n) (s : Finset (Fin 
 theorem casimirPowerW_zero (E : GLOps n K V) (c : Fin n) (s : Finset (Fin n)) : casimirPower E c s 0 = 1 := by
   first
   | rfl
-  | simp [casimirPower]
   | unfold casimirPower
     done
 
@@ -85,7 +84,7 @@ theorem casimirPowerW_succ (E : GLOps n K V) (c : Fin n) (s : Finset (Fin n)) (q
 theorem casimirPowerW_succ_apply (E : GLOps n K V) (c : Fin n) (s : Finset (Fin n)) (q : ℕ) (y : V) :
     casimirPower E c s (q + 1) y = ∑ i ∈ s, E c i (casimirPower E c s q (E i c y)) := by
   rw [casimirPowerW_succ]
-  simp [LinearMap.sum_apply, Module.End.mul_apply]
+  simp [LinearMap.sum_apply]
 
 theorem commutator_triple_product_leibniz {R : Type*} [Ring R] (A F W G : R) :
     A * (F * W * G) - (F * W * G) * A =

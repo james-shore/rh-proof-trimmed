@@ -99,7 +99,7 @@ lemma smul_mem_grade (e : Module.Basis ℕ B M) (I : ℕ → Ideal B) (r j : ℕ
   by_cases h : j = k
   · subst h
     simpa using ha
-  · simp [Finsupp.single_apply, h]
+  · simp [h]
 
 noncomputable def shift (e : Module.Basis ℕ B M) : Module.End B M :=
   e.constr B (fun k => e (k + 1))
@@ -308,7 +308,7 @@ theorem ker_and_surjective : ∀ {B M : Type} [CommRing B] [AddCommGroup M] [Mod
     have hD0 : D (e 0) = 0 := by simpa using hD 0
     have hTz : T z' = 0 := by
       have : D (c • e 0 + shift e z') = T z' := by
-        simp [hTdef, Module.End.mul_apply, hD0]
+        simp [hTdef, hD0]
       rwa [this] at hz
     have hz' : z' = 0 := by
       have : (R * T) z' = z' := by rw [hRT]; rfl

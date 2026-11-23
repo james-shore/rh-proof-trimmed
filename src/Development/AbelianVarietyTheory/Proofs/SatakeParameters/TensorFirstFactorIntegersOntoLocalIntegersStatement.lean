@@ -56,4 +56,4 @@ open scoped TensorProduct Matrix
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.tensor_first_factor_integers_onto_local_integers : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {n p : ℕ} {G : GAtP p} (A : LocAt F E n G), SplAlg A → ∀ v, (∀ s ∈ intV E (A.pl v).1, A.ph v s ∈ (A.pl v).1.adicCompletionIntegers F) ∧ ∀ x ∈ (A.pl v).1.adicCompletionIntegers F, ∃ s ∈ intV E (A.pl v).1, A.ph v s = x := by
-  first | exact @GlobalTheory.TwV.ph_tensInt_onto | exact GlobalTheory.TwV.ph_tensInt_onto | (intros; apply GlobalTheory.TwV.ph_tensInt_onto <;> assumption)
+  first | exact @GlobalTheory.TwV.ph_tensInt_onto

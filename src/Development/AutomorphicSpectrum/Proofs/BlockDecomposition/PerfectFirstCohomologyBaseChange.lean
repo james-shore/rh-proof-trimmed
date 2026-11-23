@@ -163,7 +163,6 @@ theorem stein_univ (R C : Type) [CommRing R] [Category.{0} C] [Finite C] [∀ T 
     funext T
     first
       | exact map_one _
-      | simp
   refine GlobalTheory.T.retract_base_change_kernel_compatible R (TrivSqZeroExt R M) M _ _ _ _
     (TrivSqZeroExt.inrHom R M) (TrivSqZeroExt.sndHom R M) (GlobalTheory.CatCoh.d0 F)
     (GlobalTheory.CatCoh.d0 F') E₀ E₁ 1 (LinearMap.ext fun _ => rfl) h01 ?_ ?_

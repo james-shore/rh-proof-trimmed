@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.isSymplecticLevel_of_pulledBack_object : ∀ (p : 
   (lv' : (Fin h ⊕ Fin h → ℤ) → (𝟙_ (Over T.left) ⟶ o'.A)) (lv : (Fin h ⊕ Fin h → ℤ) → (T ⟶ o.A)),
     (∀ a, (lv' a).left ≫ m.φ = (lv a).left) → SympCond o h M T t₁ lv →
       IsSympLev o'.P h M (zetaAway M) t₁ lv' := by
-  first | exact @GlobalTheory.HTSympCover.isSympLev_of_sympCond_pull | exact GlobalTheory.HTSympCover.isSympLev_of_sympCond_pull | (intros; apply GlobalTheory.HTSympCover.isSympLev_of_sympCond_pull <;> assumption)
+  first | exact @GlobalTheory.HTSympCover.isSympLev_of_sympCond_pull

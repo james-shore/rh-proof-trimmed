@@ -71,4 +71,4 @@ theorem _root_.GlobalTheory.T.detCharacter_eq_of_marked_lattice_isometry : ∀ {
       ((Matrix.GeneralLinearGroup.det (finHom V u) : (Af D.host.F ⊗[D.host.F] D.host.E)ˣ) :
         (Af D.host.F ⊗[D.host.F] D.host.E)) - 1 = (l.M : ℕ) • w) → xi (Matrix.GeneralLinearGroup.det (finHom V u)) = 1)
     (hxi2 : ∀ γ ∈ GQ V, xi (Matrix.GeneralLinearGroup.det (finHom V γ)) = 1), xi (Matrix.GeneralLinearGroup.det (finHom V g')) = xi (Matrix.GeneralLinearGroup.det (finHom V g)) := by
-  first | exact @GlobalTheory.MarkIso.xi_det_eq_of_marked_isometry | exact GlobalTheory.MarkIso.xi_det_eq_of_marked_isometry | (intros; apply GlobalTheory.MarkIso.xi_det_eq_of_marked_isometry <;> assumption)
+  first | exact @GlobalTheory.MarkIso.xi_det_eq_of_marked_isometry

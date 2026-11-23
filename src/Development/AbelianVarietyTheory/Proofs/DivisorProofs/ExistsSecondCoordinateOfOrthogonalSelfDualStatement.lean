@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_second_coordinate_of_orthogonal_selfDual : 
     (∀ a ∈ v.adicCompletionIntegers F, ∀ l ∈ Λ, a • l ∈ Λ) →
     (∃ c : Fv F v, c ≠ 0 ∧ ∀ l ∈ Λ, ∀ i, c * l.1 i ∈ v.adicCompletionIntegers F) →
     ∀ u : κ → Fv F v, (∀ y, ((0 : κ → Fv F v), y) ∈ Λ → ψ₀ (u ⬝ᵥ y) = 1) → ∃ y', (u, y') ∈ Λ := by
-  first | exact @GlobalTheory.selfDual_exists_snd_of_orth | exact GlobalTheory.selfDual_exists_snd_of_orth | (intros; apply GlobalTheory.selfDual_exists_snd_of_orth <;> assumption)
+  first | exact @GlobalTheory.selfDual_exists_snd_of_orth

@@ -44,4 +44,4 @@ open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.
 open scoped Matrix
 
 theorem _root_.GlobalTheory.T.exists_ker_rep_cyclotomic_ne_one_normalForm : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (e : ℕ) (S : Finset Pl) (A : ValuationSubring Ω) (W : R2 Ω l), Nf e S A W → ∃ z ∈ W.ker, eps l z ≠ 1 := by
-  first | exact @GlobalTheory.Ord2.exists_ker_eps_ne_one | exact GlobalTheory.Ord2.exists_ker_eps_ne_one | (intros; apply GlobalTheory.Ord2.exists_ker_eps_ne_one <;> assumption)
+  first | exact @GlobalTheory.Ord2.exists_ker_eps_ne_one

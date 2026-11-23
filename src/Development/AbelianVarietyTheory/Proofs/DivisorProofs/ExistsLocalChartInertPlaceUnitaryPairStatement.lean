@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.exists_localChart_inertPlace_unitaryPair : ∀ (F 
       (ιS : Formalism.UG.UJ σL (JS : Matrix (Fin a') (Fin a') (w.adicCompletion E)) →* UA σ G.V'.J)
       (ιT : Formalism.UG.UJ σL (JT : Matrix (Fin (a + a')) (Fin (a + a')) (w.adicCompletion E)) →* UA σ G.W.J),
       GlobalTheory.InertBridge.Chart σ B G v ϖ σL q δ JS JT ψL κ ιS ιT := by
-  first | exact @GlobalTheory.InertBridge.exists_chart | exact GlobalTheory.InertBridge.exists_chart | (intros; apply GlobalTheory.InertBridge.exists_chart <;> assumption)
+  first | exact @GlobalTheory.InertBridge.exists_chart

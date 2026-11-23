@@ -48,4 +48,4 @@ open GlobalTheory.FlagFibre (Low)
 open scoped Matrix ContDiff ComplexOrder ENNReal Classical
 
 theorem _root_.GlobalTheory.T.topDegreeDensity_base_form_times_fibre_class : ∀ (ι : Type) [Fintype ι] (m : ι → ℕ) (n d : ℕ) (ε : Fin n ≃ Fin d ⊕ Cell m) (G : V d → Mat m ℂ) (a : V d → Alt d) (w : V n), (∀ τ, (G (bsL ε w) τ).PosDef) → (∀ τ, MContDiffAt 2 (fun v => G v τ) (bsL ε w)) → dens (cellForm ε G a w) = dens (a (bsL ε w)) * (fibDens (G (bsL ε w)) (fb ε w) : ℝ) := by
-  first | exact @GlobalTheory.FlagCell2.CellDens.dens_cellForm | exact GlobalTheory.FlagCell2.CellDens.dens_cellForm | (intros; apply GlobalTheory.FlagCell2.CellDens.dens_cellForm <;> assumption)
+  first | exact @GlobalTheory.FlagCell2.CellDens.dens_cellForm

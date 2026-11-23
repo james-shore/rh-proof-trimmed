@@ -158,7 +158,7 @@ theorem inSS_pL (Bs : B.RealPlaceData k r Wp Wq) {x : Mt k r × Mt k r}
 
 theorem sgs_pL (x : Mt k r × Mt k r) (g : B.Mat k r) :
     B.sgs (pL x) g = (Matrix.of x.1 : B.Mat k r)⁻¹ * (Matrix.of x.2 : B.Mat k r)⁻¹ * g := by
-  simp only [B.sgs, pL, Prod.fst, Prod.snd, Equiv.apply_symm_apply, Matrix.mul_one]
+  simp only [B.sgs, pL, Equiv.apply_symm_apply, Matrix.mul_one]
 
 theorem contDiff_lmul (σ : B.Mat k r) : ContDiff ℝ (⊤ : ℕ∞) (fun g : B.Mat k r => σ * g) := by
   refine contDiff_pi.2 fun i => contDiff_pi.2 fun j => ?_

@@ -62,7 +62,7 @@ theorem adl_exists_place_ge_one (r : 𝓞 F) (hr : r ≠ 0) :
   by_contra h
   push_neg at h
   have hnn : ∀ w : InfinitePlace F, 0 ≤ w (r : F) := fun w => by
-    first | positivity | exact w.nonneg _ | exact InfinitePlace.nonneg w _
+    first | positivity
   have hN : (1 : ℝ) ≤ ((|Algebra.norm ℚ (r : F)| : ℚ) : ℝ) := by
     rw [← Algebra.coe_norm_int]
     have hz : Algebra.norm ℤ r ≠ 0 := Algebra.norm_ne_zero_iff.mpr hr
@@ -99,10 +99,7 @@ theorem adl_isOpen_nbhd : IsOpen (adlNbhd F) := by
     apply RestrictedProduct.isOpen_forall_mem
     intro v
     first
-      | exact IsDedekindDomain.HeightOneSpectrum.isOpen_adicCompletionIntegers F v
-      | exact v.isOpen_adicCompletionIntegers F
       | exact Valued.isOpen_integer _
-      | exact Valued.integer_isOpen _
   exact h1.prod h2
 
 theorem adl_zero_mem_nbhd : (0 : AdeleRing (𝓞 F) F) ∈ adlNbhd F := by
@@ -110,7 +107,7 @@ theorem adl_zero_mem_nbhd : (0 : AdeleRing (𝓞 F) F) ∈ adlNbhd F := by
   · have h0 : (0 : AdeleRing (𝓞 F) F).1 w = 0 := rfl
     rw [h0, norm_zero]
     exact one_pos
-  · first | exact zero_mem _ | simp
+  · first | exact zero_mem _
 
 theorem adl_norm_algebraMap (x : F) (w : InfinitePlace F) :
     ‖(algebraMap F (InfiniteAdeleRing F) x) w‖ = w x := by

@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.definitePair_term_eq_centraliser_orbit_sum : ∀ (
       P.term L.K.toSubgroup f 1 K' f' =
         centSum (GlobalTheory.LKCx.toAfF G P.β P.trivAf.choose P.trivAf.choose_spec.choose P.trivAf.choose_spec.choose_spec)
           (GlobalTheory.LKCx.toP1 G P.β) (MonoidHom.id (Gr G 1)) L.K.toSubgroup K' 1 f f' ⟨(P.γ, P.c), hm⟩ := by
-  first | exact @GlobalTheory.LKDef.TermPair.term_eq_centSum | exact GlobalTheory.LKDef.TermPair.term_eq_centSum | (intros; apply GlobalTheory.LKDef.TermPair.term_eq_centSum <;> assumption)
+  first | exact @GlobalTheory.LKDef.TermPair.term_eq_centSum

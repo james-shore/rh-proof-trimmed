@@ -50,4 +50,4 @@ open NumberField nonZeroDivisors MeasureTheory GlobalTheory.LipschitzTR GlobalTh
 open scoped FourierTransform RealInnerProductSpace
 
 theorem _root_.GlobalTheory.T.covolume_fractionalIdealRealLatticeImage : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (N : FractionalIdeal (𝓞 F)⁰ F), N ≠ 0 → ∀ [DiscreteTopology (latOf N)] [IsZLattice ℝ (latOf N)], ZLattice.covolume (latOf N) = covol N := by
-  first | exact @GlobalTheory.LipschitzCovol.covolume_latOf | exact GlobalTheory.LipschitzCovol.covolume_latOf | (intros; apply GlobalTheory.LipschitzCovol.covolume_latOf <;> assumption)
+  first | exact @GlobalTheory.LipschitzCovol.covolume_latOf

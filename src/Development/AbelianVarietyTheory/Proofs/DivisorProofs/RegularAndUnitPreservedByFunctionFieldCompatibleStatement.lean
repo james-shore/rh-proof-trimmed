@@ -53,4 +53,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.regular_and_unit_preserved_by_functionField_compatible : ∀ (Y P : Scheme.{0}) [IsIntegral Y] [IsIntegral P] (m : Y ⟶ P) (φ : P.functionField →+* Y.functionField), gp Y ≫ m = spMap φ ≫ gp P → ∀ (y : Y) (v : P.functionField), RegAt (m y) v → RegAt y (φ v) ∧ (UnitAt y (φ v) ↔ UnitAt (m y) v) := by
-  first | exact @GlobalTheory.Desc.regAt_map_of_gp | exact GlobalTheory.Desc.regAt_map_of_gp | (intros; apply GlobalTheory.Desc.regAt_map_of_gp <;> assumption)
+  first | exact @GlobalTheory.Desc.regAt_map_of_gp

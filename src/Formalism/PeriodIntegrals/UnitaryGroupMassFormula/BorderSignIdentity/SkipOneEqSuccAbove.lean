@@ -146,7 +146,7 @@ theorem borderE_of (hC : PI.ExpFirstCol) (hR : PI.ExpLastRow) : PI.BorderE := by
   have hrow : PI.bE e v ∘ (Fin.succ w).succAbove = PI.bE e (v ∘ w.succAbove) := by
     funext j
     refine Fin.cases ?_ (fun j => ?_) j
-    · simp [PI.bE, Fin.succ_succAbove_zero]
+    · simp [PI.bE]
     · simp [PI.bE, Fin.succ_succAbove_succ]
   have hvw : PI.bE e v w.succ = v w := by simp [PI.bE]
   rw [hrow, hvw, Tm_of_ne E u (hve w), rowPart hR E hG e (v ∘ w.succAbove) v hve (u - 1),
@@ -154,7 +154,7 @@ theorem borderE_of (hC : PI.ExpFirstCol) (hR : PI.ExpLastRow) : PI.BorderE := by
   refine Finset.sum_congr rfl fun x _ => ?_
   erw [comp_skip v w, comp_skip v x]
   rw [show u - 1 - 1 = u - 2 by ring]
-  simp only [zmul, mul_smul_comm, smul_mul_assoc, smul_smul, Fin.val_succ, mul_assoc]
+  simp only [zmul, mul_smul_comm, smul_smul, Fin.val_succ, mul_assoc]
   rw [← neg_smul]
   congr 1
   ring

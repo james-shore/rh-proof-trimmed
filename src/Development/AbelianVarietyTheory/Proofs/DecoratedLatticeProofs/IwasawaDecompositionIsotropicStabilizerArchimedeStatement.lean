@@ -54,4 +54,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Core.Rk.Exh GlobalTheory.RegSW
 
 theorem _root_.GlobalTheory.T.iwasawa_decomposition_isotropicStabilizer_archimedean : ∀ (D : D7) (T T₀ : HSp D) (r : ℕ) (d : HypDec T T₀ r) (b : GL (Fin T.rank) (AE D)), IsMaj T b → ∀ y ∈ GinfC T, ∃ q ∈ stab d, ∃ k ∈ Kmax T b, q ∈ GinfC T ∧ y = q * k := by
-  first | exact @GlobalTheory.Core.Rk.IwIso.iwasawa_stab_arch | exact GlobalTheory.Core.Rk.IwIso.iwasawa_stab_arch | (intros; apply GlobalTheory.Core.Rk.IwIso.iwasawa_stab_arch <;> assumption)
+  first | exact @GlobalTheory.Core.Rk.IwIso.iwasawa_stab_arch

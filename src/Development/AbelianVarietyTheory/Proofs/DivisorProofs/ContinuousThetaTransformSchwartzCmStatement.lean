@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.continuous_thetaTransform_schwartz_cm : ∀ (F E :
           (∀ x : Matrix (Fin nT) (Fin nS) E, ∃ y z : κ → F,
             co.e (incM F x) = (fun i => algebraMap F (AF F) (y i), fun i => algebraMap F (AF F) (z i))) →
           ∀ Φ ∈ schA F κ, Continuous (GlobalTheory.WeilSchrodinger.thetaTr F co B.ψ Φ) := by
-  first | exact @GlobalTheory.ThetaTrContF.continuous_thetaTrF | exact GlobalTheory.ThetaTrContF.continuous_thetaTrF | (intros; apply GlobalTheory.ThetaTrContF.continuous_thetaTrF <;> assumption)
+  first | exact @GlobalTheory.ThetaTrContF.continuous_thetaTrF

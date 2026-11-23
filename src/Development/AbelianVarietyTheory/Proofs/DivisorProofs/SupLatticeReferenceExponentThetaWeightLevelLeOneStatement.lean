@@ -49,4 +49,4 @@ open GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.SlopeRec GlobalTheory
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.supLatticeReferenceExponent_thetaWeight_level_le_one : ∀ (D : D7) (T : Core D), LawsM T → ∀ (_ : ErrX D) (j : ℕ), InR D j → ∀ (a : (D.host.E →+* ℂ) × ℕ → ℕ) (n : ℕ) (cst : ℝ), Dom a n → LastPos (T.Q.Dw j) a → ∑ f : Lt1 (T.Q.Dw j), 2 * rk f ≤ n → 2 * D.R.r ≤ n → JetNum D (DF (T.Q.Dw j) a) cst → ∀ k : Fin 2, refExp_vp (T.U j) cst (wtZ a n) (D.host.g k) ≤ ((1 : ℝ) : EReal) := by
-  first | exact @GlobalTheory.RefLevel.refExp_level_le_one | exact GlobalTheory.RefLevel.refExp_level_le_one | (intros; apply GlobalTheory.RefLevel.refExp_level_le_one <;> assumption)
+  first | exact @GlobalTheory.RefLevel.refExp_level_le_one

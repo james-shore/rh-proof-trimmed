@@ -43,4 +43,4 @@ import Mathlib.Topology.Sheaves.Init
 open NumberField
 
 theorem _root_.GlobalTheory.T.algWt_exists_invForm' : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) (a : Formalism.L2.NG.AlgWt L n), ∃ β : a.W →ₗ⋆[ℂ] a.W →ₗ[ℂ] ℂ, GlobalTheory.CoefDuty.IsInvForm a β := by
-  first | exact @GlobalTheory.algWt_exists_invForm | exact GlobalTheory.algWt_exists_invForm | (intros; apply GlobalTheory.algWt_exists_invForm <;> assumption)
+  first | exact @GlobalTheory.algWt_exists_invForm

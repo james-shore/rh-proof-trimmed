@@ -55,4 +55,3 @@ theorem _root_.GlobalTheory.T.hyperbolic_pair_lattice_local_split : ∀ (F E : T
   intro F E _ _ _ _ _ σ h n J hJ x y hxx hyy hxy hyx L hLat v hv hL g
   first
   | exact GlobalTheory.IwSplitLine.iwasawa_line_split F E σ h n J hJ x y hxx hyy hxy hyx L hLat v hv hL g
-  | exact GlobalTheory.IwSplitLine.iwasawa_line_split F E σ h n J hJ x y hxx hyy hxy hyx L hLat.toIsLattice v hv hL g

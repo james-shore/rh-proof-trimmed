@@ -147,7 +147,7 @@ theorem stabilizer_pi {ι : Type} {G : ι → Type} [∀ i, Group (G i)] {X : ι
 theorem stabilizer_res {P : Type} [Group P] (R : Subgroup P) {Y : Type} [MulAction P Y] (y : Y) :
     MulAction.stabilizer R y = (MulAction.stabilizer P y).subgroupOf R := by
   ext g
-  simp [MulAction.mem_stabilizer_iff, Subgroup.mem_subgroupOf, Subgroup.smul_def]
+  simp [MulAction.mem_stabilizer_iff, Subgroup.smul_def]
 
 end GlobalTheory.HL
 

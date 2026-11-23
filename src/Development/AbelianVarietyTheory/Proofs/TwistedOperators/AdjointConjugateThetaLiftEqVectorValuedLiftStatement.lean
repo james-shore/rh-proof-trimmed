@@ -61,4 +61,4 @@ theorem _root_.GlobalTheory.T.adjoint_conjugateThetaLift_eq_vectorValuedLift : �
   ∀ (y : (R.HW i σ).H) (h : GA D (Vc D i)) (w : c.W),
     inner ℂ (c.ext (H.e (LinearMap.adjoint th y)) h) w =
       (∏ ρ, ((dimK _ _ (kapAt (Wc D i) σ ρ) : ℚ) : ℂ)) * GlobalTheory.AdelicScalar.upLift R i ω (GlobalTheory.IndefiniteRowSideFullHecke.TwistedLevelValues.ptAt R i σ B f (io (PiTensorProduct.tprod ℂ v) w)) ((R.HW i σ).e (GlobalTheory.LiftLower.projH R i σ y) fun ρ => v ρ) h := by
-  first | exact @GlobalTheory.ConjAdjoint.adjoint_eq_upLift | exact GlobalTheory.ConjAdjoint.adjoint_eq_upLift | (intros; apply GlobalTheory.ConjAdjoint.adjoint_eq_upLift <;> assumption)
+  first | exact @GlobalTheory.ConjAdjoint.adjoint_eq_upLift

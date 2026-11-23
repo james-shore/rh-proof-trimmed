@@ -153,7 +153,7 @@ theorem finrank_finite_cocycles_le [Module.Finite LL (Dcris PD ρ)] :
     have hj : Function.Injective j := by
       intro a b hab
       have h := congrArg Subtype.val hab
-      simp only [j, LinearMap.codRestrict_apply, LinearMap.comp_apply, Submodule.subtype_apply] at h
+      simp only [j] at h
       exact Subtype.ext (Subtype.ext h)
     exact LinearMap.finrank_le_finrank_of_injective hj
   have h2 : finrank LL (LinearMap.range T) ≤ finrank LL (Dcris PD ρ ⧸ N) := Submodule.finrank_le _
@@ -179,7 +179,7 @@ theorem finrank_finite_cocycles_le [Module.Finite LL (Dcris PD ρ)] :
     have hj : Function.Injective j := by
       intro a b hab
       have h := congrArg Subtype.val hab
-      simp only [j, LinearMap.codRestrict_apply, LinearMap.comp_apply, Submodule.subtype_apply] at h
+      simp only [j] at h
       exact Subtype.ext (Subtype.ext h)
     exact LinearMap.finrank_le_finrank_of_injective hj
   have h7 : finrank LL N = finrank LL (LinearMap.range (oneSubφ PD ρ)) := rfl

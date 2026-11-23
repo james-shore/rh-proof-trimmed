@@ -201,7 +201,7 @@ theorem aff_gamma (π : 𝓞 L) (hπ : Prime π) (n r : ℕ) (hn : 1 ≤ n) (c :
     show diagonal _ = _
     congr 1
     funext a
-    split_ifs <;> first | rfl | simp
+    split_ifs <;> first | rfl
   have hQ : (qO * (c : Matrix (Fin (n + r)) (Fin (n + r)) (𝓞 L))).map alg =
       ((qel L (n + r) π hπ.ne_zero : GK L (n + r)) : Matrix (Fin (n + r)) (Fin (n + r)) L) * cL := by
     rw [Matrix.map_mul, hqM]; rfl
@@ -224,7 +224,6 @@ theorem aff_gamma (π : 𝓞 L) (hπ : Prime π) (n r : ℕ) (hn : 1 ≤ n) (c :
         ((((qel L (n + r) π hπ.ne_zero : GK L (n + r)) : Matrix (Fin (n + r)) (Fin (n + r)) L) * cL) *ᵥ e) a := by
       rw [RingHom.map_mulVec, hQ]
       congr 1
-      try exact he'
     rw [hzO, Pi.add_apply, Pi.smul_apply, map_add (f := _), smul_eq_mul, map_mul, h5, map_sub, map_one]
     simp only [Pi.add_apply, Pi.smul_apply, Pi.sub_apply, smul_eq_mul, Pi.single_apply]
     split_ifs
@@ -336,8 +335,7 @@ theorem pStabVan : PStabVan := by
     obtain ⟨a, rfl⟩ := finSumFinEquiv.surjective a
     obtain ⟨b, rfl⟩ := finSumFinEquiv.surjective b
     rcases a with a | a <;> rcases b with b | b
-    · simp only [Matrix.reindex_apply, Matrix.submatrix_apply, finSumFinEquiv_apply_left, finSumFinEquiv_apply_right,
-        finSumFinEquiv_symm_apply_castAdd, finSumFinEquiv_symm_apply_natAdd, Matrix.fromBlocks_apply₁₁]
+    · simp only [Matrix.reindex_apply, Matrix.submatrix_apply, finSumFinEquiv_apply_left, finSumFinEquiv_symm_apply_castAdd]
       apply aff_alg_inj
       rw [← aff_toK_val, hM, aff_blk_top]
       rfl
@@ -353,8 +351,8 @@ theorem pStabVan : PStabVan := by
       have := congrArg Fin.val hh
       simp only [Fin.val_castAdd, Fin.val_natAdd] at this
       omega
-    · simp only [Matrix.reindex_apply, Matrix.submatrix_apply, finSumFinEquiv_apply_left, finSumFinEquiv_apply_right,
-        finSumFinEquiv_symm_apply_castAdd, finSumFinEquiv_symm_apply_natAdd]
+    · simp only [Matrix.reindex_apply, Matrix.submatrix_apply, finSumFinEquiv_apply_right,
+        finSumFinEquiv_symm_apply_natAdd]
       show (f x : Matrix (Fin (n + r)) (Fin (n + r)) (𝓞 L)) (Fin.natAdd n a) (Fin.natAdd n b) =
         (1 : Matrix (Fin r) (Fin r) (𝓞 L)) a b
       apply aff_alg_inj

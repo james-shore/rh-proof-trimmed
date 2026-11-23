@@ -61,4 +61,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.exists_unique_extend_point_abelianScheme_DVR : ∀ (R : Type) [CommRing R] (P : PolAV (Sp R)) (W L : Type) [CommRing W] [IsDomain W] [IsDiscreteValuationRing W] [Field L] [Algebra W L] [IsFractionRing W L] (f : R →+* W) (x : Over.mk (spMap ((algebraMap W L).comp f)) ⟶ P.A), ∃! y : Over.mk (spMap f) ⟶ P.A, spMap (algebraMap W L) ≫ y.left = x.left := by
-  first | exact @GlobalTheory.DVRExt.exists_unique_extend | exact GlobalTheory.DVRExt.exists_unique_extend | (intros; apply GlobalTheory.DVRExt.exists_unique_extend <;> assumption)
+  first | exact @GlobalTheory.DVRExt.exists_unique_extend

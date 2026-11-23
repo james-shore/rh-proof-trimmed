@@ -48,4 +48,4 @@ open GlobalTheory.KJInf Formalism.L2.Ker
 open GlobalTheory.SeeSaw GlobalTheory.Unf
 
 theorem _root_.GlobalTheory.T.continuous_chartLevelCharacters_adelic_tuple : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins B X → ∀ (l : I.Laws) (Z : TC.Later B (I.cols l)), ∀ (u : B.Word) (a : I.ι) (Ch : ℕ → Type) (A : TwDat I l Z u a Ch), A.Is → ∀ (i : ℕ) (hi : i ≤ B.R.m) β, Continuous fun κ => ((A.chi i β κ : ℂˣ) : ℂ) := by
-  first | exact @GlobalTheory.AdForm.ChiCont.chi_continuous | exact GlobalTheory.AdForm.ChiCont.chi_continuous | (intros; apply GlobalTheory.AdForm.ChiCont.chi_continuous <;> assumption)
+  first | exact @GlobalTheory.AdForm.ChiCont.chi_continuous

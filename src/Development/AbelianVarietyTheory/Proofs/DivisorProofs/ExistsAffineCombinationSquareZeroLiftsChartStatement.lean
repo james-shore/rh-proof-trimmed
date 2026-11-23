@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.exists_affineCombination_squareZero_lifts_chart : 
     (∀ i, spMap q ≫ w i = spMap q ≫ u) →
     ∃ c : Sp S ⟶ Y, GlobalTheory.SecGlue.IsCombIn V u c w a ∧ spMap q ≫ c = spMap q ≫ u ∧
       ∀ (R' : Type) [CommRing R'] (p : Y ⟶ Sp R'), (∀ i, w i ≫ p = u ≫ p) → c ≫ p = u ≫ p := by
-  first | exact @GlobalTheory.SecGlue.CombEx.exists_comb | exact GlobalTheory.SecGlue.CombEx.exists_comb | (intros; apply GlobalTheory.SecGlue.CombEx.exists_comb <;> assumption)
+  first | exact @GlobalTheory.SecGlue.CombEx.exists_comb

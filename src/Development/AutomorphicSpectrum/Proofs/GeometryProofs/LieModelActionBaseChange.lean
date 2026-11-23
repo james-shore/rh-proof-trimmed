@@ -169,7 +169,6 @@ theorem lieModel_coordinates_baseChange : ∀ (E : Type) [Field E] [NumberField 
     intro u
     rw [transport_pt, transport_pt, key]
     have h := hlift (eV.symm u)
-    unfold LieModel.Lifts at h
     rw [Category.comp_id] at h
     exact h
   refine ⟨transport M' eT, rho t.act (transport M' eT), rho_isActOf t.act _, hpt, ?_⟩

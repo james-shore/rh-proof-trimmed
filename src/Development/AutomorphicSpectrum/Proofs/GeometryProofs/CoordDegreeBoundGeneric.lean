@@ -286,7 +286,6 @@ theorem exists_phi : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Sp Ω ⟶
     have h3 : v = MT.pt (j x) := by
       apply Over.OverMorphism.ext
       have h4 := hjj x
-      unfold LieModel.Lifts at h2 h4
       rw [Category.comp_id] at h2 h4
       exact h2.trans h4.symm
     subst h3

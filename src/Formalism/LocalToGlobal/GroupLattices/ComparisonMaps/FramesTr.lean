@@ -189,7 +189,7 @@ theorem cmpC_li (hc : ∀ τ x, emb τ (σ x) = starRingEnd ℂ (emb τ x)) (hex
       smul_eq_mul, Pi.zero_apply, MvPolynomial.coeff_zero, cmpC, if_pos L.2, MvPolynomial.coeff_map] at h1
     have h2 := congrArg (fun y => β.repr y k) h1
 
-    simp only [map_sum, map_zero, Finset.sum_apply', Finset.sum_apply, Finsupp.coe_zero, Pi.zero_apply,
+    simp only [map_sum, map_zero, Finset.sum_apply', Finsupp.coe_zero, Pi.zero_apply,
     hsm, map_smul, Finsupp.smul_apply, smul_eq_mul] at h2
     simp only [Finset.sum_apply, Pi.smul_apply, MvPolynomial.coeff_sum, MvPolynomial.coeff_smul,
       smul_eq_mul, Pi.zero_apply, AddMonoidAlgebra.coeff_zero, Finsupp.zero_apply]

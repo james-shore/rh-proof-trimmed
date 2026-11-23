@@ -48,4 +48,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.last_seesaw_lattices_nonzero_line_vacua : OnStd fun {D} _ _ _ {G} W F => (∀ ρ, 2 * ρ + 2 ≤ D.R.m → ∃ Φ₀, VacG W.ψ _ _ (lineLat F ρ) Φ₀ ∧ Φ₀ ≠ 0) ∧ ∀ (v : CoreVol G) h, LastLat W.ψ (F.jac v 0 h) F.oz (latRow G 0) (lineLat F 0) (latCore G 0) := by
-  first | exact @GlobalTheory.LastSeeSaw.lastLat_std | exact GlobalTheory.LastSeeSaw.lastLat_std | (intros; apply GlobalTheory.LastSeeSaw.lastLat_std <;> assumption)
+  first | exact @GlobalTheory.LastSeeSaw.lastLat_std

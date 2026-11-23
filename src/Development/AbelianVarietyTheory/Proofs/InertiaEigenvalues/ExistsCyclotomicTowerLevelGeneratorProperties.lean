@@ -65,11 +65,7 @@ variable {l : ℕ} [Fact l.Prime]
 theorem norm_pow_sub_lin_le (w : ℚ_[l]) (hw : ‖w‖ ≤ 1) (k : ℕ) :
     ‖w ^ k - 1 - k * (w - 1)‖ ≤ ‖w - 1‖ ^ 2 := by
   first
-  | exact @_root_.GlobalTheory.UltrametricPowerBound.main
-  | exact _root_.GlobalTheory.UltrametricPowerBound.main
   | (apply _root_.GlobalTheory.UltrametricPowerBound.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UltrametricPowerBound.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UltrametricPowerBound.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.UltrametricPowerBound.main ..)
 
 theorem exists_nat_norm_sub_le (x : ℚ_[l]) (hx : ‖x‖ ≤ 1) :

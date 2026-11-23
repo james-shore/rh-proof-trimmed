@@ -59,7 +59,7 @@ theorem cT_cT (σ : L →+* L) (hσ : ∀ x, σ (σ x) = x) {a b : Type} (M : Ma
 
 theorem cT_mul_rect (σ : L →+* L) {a b c : Type} [Fintype b] (M : Matrix a b L) (N : Matrix b c L) :
     Formalism.UG.cT σ (M * N) = Formalism.UG.cT σ N * Formalism.UG.cT σ M := by
-  ext i j; simp [Formalism.UG.cT, Matrix.mul_apply, map_sum, mul_comm]
+  ext i j; simp [Formalism.UG.cT, Matrix.mul_apply, mul_comm]
 
 theorem isIntM_sub' [Valued L (WithZero (Multiplicative ℤ))] {a b : Type} {M N : Matrix a b L} (hM : IsIntM M) (hN : IsIntM N) : IsIntM (M - N) :=
   fun i j => sub_mem (hM i j) (hN i j)

@@ -81,11 +81,7 @@ theorem exists_sub_perp {E : Type*} [AddCommGroup E] [Module ℂ E] (B : E →�
 theorem totalDegree_aeval_le {σ : Type*} (f : σ → MvPolynomial σ ℂ) (hf : ∀ v, (f v).totalDegree ≤ 1)
     (P : MvPolynomial σ ℂ) : (aeval f P).totalDegree ≤ P.totalDegree := by
   first
-  | exact @_root_.GlobalTheory.AevalTotalDegreeBound.main
-  | exact _root_.GlobalTheory.AevalTotalDegreeBound.main
   | (apply _root_.GlobalTheory.AevalTotalDegreeBound.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.AevalTotalDegreeBound.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.AevalTotalDegreeBound.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.AevalTotalDegreeBound.main ..)
 
 variable {ι : Type} {m n : ℕ}

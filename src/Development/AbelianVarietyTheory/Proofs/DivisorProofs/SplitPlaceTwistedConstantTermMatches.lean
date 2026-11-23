@@ -90,7 +90,7 @@ theorem twOrb_twConj : ∀ {G : Type} [Group G] [TopologicalSpace G] [IsTopologi
       rw [DoubleCoset.eq]
       refine ⟨g⁻¹ * t⁻¹ * g, ?_, k⁻¹, K.inv_mem hk, by group⟩
       rw [GlobalTheory.TwOrbConj.twCent_conj]
-      exact ⟨t⁻¹, (GlobalTheory.BCT.twCent θ δ).inv_mem ht, by simp [MulAut.conj_apply]⟩
+      exact ⟨t⁻¹, (GlobalTheory.BCT.twCent θ δ).inv_mem ht, by simp⟩
     right_inv q := by
       obtain ⟨t, ht, k, hk, he⟩ := DoubleCoset.mk_out_eq_mul (twCent θ (g⁻¹ * δ * θ g)) K (g⁻¹ * Quotient.out q)
       show DoubleCoset.mk _ K (g * Quotient.out (DoubleCoset.mk (GlobalTheory.BCT.twCent θ (g⁻¹ * δ * θ g)) K

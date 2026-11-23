@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.exists_finitePlaceVacuum_of_heisenbergLattice : �
     (∀ γ ∈ Γ, c (GlobalTheory.LatVac.liftV v 2 • γ) = 1) →
     ∃ φ : (κ → Fv F v) → ℂ, φ ∈ GlobalTheory.WeilM.SB _ ∧ φ ≠ 0 ∧
       ∀ γ ∈ Γ, GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Acts (GlobalTheory.AdelicU.evFin F v) (co.rho ψ γ) φ (c γ • φ) := by
-  first | exact @GlobalTheory.HeisLatVac.exists_vac_of_lattice | exact GlobalTheory.HeisLatVac.exists_vac_of_lattice | (intros; apply GlobalTheory.HeisLatVac.exists_vac_of_lattice <;> assumption)
+  first | exact @GlobalTheory.HeisLatVac.exists_vac_of_lattice

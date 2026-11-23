@@ -62,4 +62,4 @@ open GlobalTheory.Poinc.FibLat GlobalTheory.Poinc.Eq8
 
 
 theorem _root_.GlobalTheory.T.thetaGroupOfPoint_eq_along_modelHom : ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o Ω] (S : ThetaSys o Ω) (M Y : RatModel o Ω) (q : Y.Z ⟶ M.Z), Y.pt ≫ q = M.pt → M.HasDiv S.th → ∀ w : Y.Z, S.HH Y w = S.HH M (q w) := by
-  first | exact @GlobalTheory.Poinc.HHFibre.HH_eq_of_hom | exact GlobalTheory.Poinc.HHFibre.HH_eq_of_hom | (intros; apply GlobalTheory.Poinc.HHFibre.HH_eq_of_hom <;> assumption)
+  first | exact @GlobalTheory.Poinc.HHFibre.HH_eq_of_hom

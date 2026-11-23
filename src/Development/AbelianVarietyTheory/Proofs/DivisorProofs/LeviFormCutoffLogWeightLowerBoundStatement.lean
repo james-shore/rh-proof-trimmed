@@ -51,4 +51,4 @@ open NumberField ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.Chart
 open scoped ContDiff ENNReal Matrix
 
 theorem _root_.GlobalTheory.T.leviForm_cutoffLogWeight_lower_bound : ∀ (χ : ℝ → ℝ) (A : ℝ), ContDiff ℝ ∞ χ → (∀ t, 0 ≤ χ t ∧ χ t ≤ 1) → (∀ t, t ≤ 1 / 4 → χ t = 1) → (∀ t, 1 ≤ t → χ t = 0) → (∀ t, |deriv χ t| ≤ A) → (∀ t, |deriv (deriv χ) t| ≤ A) → ∀ (n : ℕ) (ρ δ : ℝ), 0 < ρ → 0 < δ → δ ≤ 1 → ∀ (z : V n) (ξ : Fin n → ℂ), -((13 * A + 20) / ρ ^ 2 * ∑ j, ‖ξ j‖ ^ 2) ≤ (leviV n (fun w => ((χ (‖w‖ ^ 2 / ρ ^ 2) * Real.log ((‖w‖ ^ 2 / ρ ^ 2 + δ) / 2) : ℝ) : ℂ)) z ξ).re := by
-  first | exact @GlobalTheory.PeakWeightLevi.levi_cutLog_lower | exact GlobalTheory.PeakWeightLevi.levi_cutLog_lower | (intros; apply GlobalTheory.PeakWeightLevi.levi_cutLog_lower <;> assumption)
+  first | exact @GlobalTheory.PeakWeightLevi.levi_cutLog_lower

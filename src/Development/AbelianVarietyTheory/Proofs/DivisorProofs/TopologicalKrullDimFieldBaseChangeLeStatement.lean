@@ -53,4 +53,4 @@ open GlobalTheory.ThickeningDetermines (secIdeal)
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.topologicalKrullDim_fieldBaseChange_le : ∀ (k K : Type) [Field k] [Field K] [Algebra k K] (X X' : Scheme.{0}) (f : X ⟶ Sp k) [LocallyOfFiniteType f] (f' : X' ⟶ Sp K) (π : X' ⟶ X), IsPullback π f' f (spMap (algebraMap k K)) → topologicalKrullDim X' ≤ topologicalKrullDim X := by
-  first | exact @GlobalTheory.FieldExtDim.topologicalKrullDim_baseChange_le | exact GlobalTheory.FieldExtDim.topologicalKrullDim_baseChange_le | (intros; apply GlobalTheory.FieldExtDim.topologicalKrullDim_baseChange_le <;> assumption)
+  first | exact @GlobalTheory.FieldExtDim.topologicalKrullDim_baseChange_le

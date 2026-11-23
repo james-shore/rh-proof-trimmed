@@ -53,4 +53,4 @@ open GlobalTheory.FlagFibre (Low)
 open scoped Matrix ContDiff ComplexOrder ENNReal Classical
 
 theorem _root_.GlobalTheory.T.pullbackComplexFormsLinearMap_comp_linear : ∀ (n n' n'' : ℕ) (L : V n →L[ℂ] V n') (L' : V n' →L[ℂ] V n'') (α : Alt n''), pull (L'.comp L) α = pull L (pull L' α) := by
-  first | exact @GlobalTheory.FlagCell2.pull_comp_linear | exact GlobalTheory.FlagCell2.pull_comp_linear | (intros; apply GlobalTheory.FlagCell2.pull_comp_linear <;> assumption)
+  first | exact @GlobalTheory.FlagCell2.pull_comp_linear

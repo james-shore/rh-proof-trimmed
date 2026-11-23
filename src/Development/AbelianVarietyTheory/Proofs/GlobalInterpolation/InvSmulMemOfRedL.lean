@@ -437,7 +437,7 @@ theorem span_eq_top_of_unimodular (N : Submodule (𝓞 E) (Sp E n))
       rw [Finset.sum_mul]
       apply Finset.sum_congr rfl
       intro i _
-      simp [Pi.smul_apply, smul_eq_mul, mul_comm, mul_left_comm, mul_assoc]
+      simp [Pi.smul_apply, smul_eq_mul, mul_comm, mul_left_comm]
     rw [heq, hz, zero_mul]
     exact zero_mem _
   obtain ⟨ψ, hψ, -⟩ := Submodule.exists_le_ker_of_notMem

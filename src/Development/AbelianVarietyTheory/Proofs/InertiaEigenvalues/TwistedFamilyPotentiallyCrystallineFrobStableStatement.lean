@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.twistedFamily_potentiallyCrystalline_frobStable : 
   (pc (D.loc (D.nd.l i)) h hN hF hS).IsPotCrys ((D.nbr i w hw).rep ((chiGL i).comp (decS D.nd w))) →
   (pc (D.loc (D.nd.l i)) h hN hF hS).InertiaThrough ((D.nbr i w hw).rep ((chiGL i).comp (decS D.nd w))) {c} →
   PotFam i w hw (fun x : ↥Xs => rTwO D.nd i r x) n := by
-  first | exact @GlobalTheory.PotTwist.main | exact GlobalTheory.PotTwist.main | (intros; apply GlobalTheory.PotTwist.main <;> assumption)
+  first | exact @GlobalTheory.PotTwist.main

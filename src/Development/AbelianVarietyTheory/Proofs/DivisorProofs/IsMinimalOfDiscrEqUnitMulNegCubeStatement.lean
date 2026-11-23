@@ -51,4 +51,4 @@ open NumberField IsDedekindDomain WeierstrassCurve GlobalTheory GlobalTheory.Pub
 open scoped IntermediateField BigOperators Topology
 
 theorem _root_.GlobalTheory.T.isMinimal_of_discr_eq_unit_mul_neg_prime_cube : ∀ (p : ℕ) (F : Type) [Field F] [NumberField F] (w : HeightOneSpectrum (𝓞 F)) (W : WeierstrassCurve F) (u : (w.valuationSubringAtPrime F)ˣ), (p : 𝓞 F) ∉ w.asIdeal ^ 3 → W.IsIntegral (w.valuationSubringAtPrime F) → W.Δ = ((u : w.valuationSubringAtPrime F) : F) * -(p : F) ^ 3 → W.IsMinimal (w.valuationSubringAtPrime F) := by
-  first | exact @GlobalTheory.CMModel.isMinimal_of_discr_eq_unit_mul_neg_cube | exact GlobalTheory.CMModel.isMinimal_of_discr_eq_unit_mul_neg_cube | (intros; apply GlobalTheory.CMModel.isMinimal_of_discr_eq_unit_mul_neg_cube <;> assumption)
+  first | exact @GlobalTheory.CMModel.isMinimal_of_discr_eq_unit_mul_neg_cube

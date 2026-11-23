@@ -46,4 +46,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.movedVectorsAreCombinationsOfVacua_of_large_depth : Big fun ch => MovedAt ch := by
-  first | exact @GlobalTheory.RowVal.movedAt_big | exact GlobalTheory.RowVal.movedAt_big | (intros; apply GlobalTheory.RowVal.movedAt_big <;> assumption)
+  first | exact @GlobalTheory.RowVal.movedAt_big

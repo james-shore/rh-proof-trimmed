@@ -47,4 +47,4 @@ open GlobalTheory.EvenOnto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.evenThetaChain_LValues_ne_zero_and_params_injective : ∀ D : D7, ChainL D ∧ ∀ (c : Com D) (k : ℕ) (B B' : GlobalTheory.LFun.Fam D.host.E) (w : HeightOneSpectrum (𝓞 D.host.E)), chainPar c B k w = chainPar c B' k w → B w = B' w := by
-  first | exact @GlobalTheory.EvenOnto.chainL_and_inj | exact GlobalTheory.EvenOnto.chainL_and_inj | (intros; apply GlobalTheory.EvenOnto.chainL_and_inj <;> assumption)
+  first | exact @GlobalTheory.EvenOnto.chainL_and_inj

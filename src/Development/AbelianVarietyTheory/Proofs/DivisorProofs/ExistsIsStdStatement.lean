@@ -45,4 +45,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open DividedPowers GlobalTheory.Cris GlobalTheory.PDA
 
 theorem _root_.GlobalTheory.T.exists_dividedPowers_ext_isStd : ∀ (B : Type) [CommRing B] (J : Ideal B) (δ : DividedPowers J) (Q : PDPoly B), ∃ η : DividedPowers (Q.ext J), Q.IsStd δ η := by
-  first | exact @GlobalTheory.PDA.PDPoly.exists_isStd | exact GlobalTheory.PDA.PDPoly.exists_isStd | (intros; apply GlobalTheory.PDA.PDPoly.exists_isStd <;> assumption)
+  first | exact @GlobalTheory.PDA.PDPoly.exists_isStd

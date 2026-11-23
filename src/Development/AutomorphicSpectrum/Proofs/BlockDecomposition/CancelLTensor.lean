@@ -64,7 +64,7 @@ theorem cancel_lTensor (A : Type) [CommRing A] (B : Type) [CommRing B] [Algebra 
   | tmul b t =>
     induction t with
     | add x y hx hy => simp only [map_add (f := _), TensorProduct.tmul_add, hx, hy]
-    | tmul c k => simp [TensorProduct.AlgebraTensorModule.cancelBaseChange_tmul, TensorProduct.smul_tmul']
+    | tmul c k => simp [TensorProduct.AlgebraTensorModule.cancelBaseChange_tmul]
 
 theorem cov_comp : ∀ (p : ℕ) [Fact p.Prime] (A : Type) [CommRing A](B : Type) [CommRing B] [Algebra A B](B₁ : Type) [CommRing B₁] [Algebra A B₁] [Algebra B B₁] [IsScalarTower A B B₁] (r : ℕ → A), Pf p A → Pf p B → IsRt p r → Cov p r B → Cov p (fun k => algebraMap A B (r k)) B₁ → Cov p r B₁ := by
   intro p _ A _ B _ _ B₁ _ _ _ _ r hA hB hr h1 h2

@@ -52,4 +52,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheo
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_torus_tangent_of_raynaud_tangent_over_unit : ∀ (R : Type) [CommRing R] [IsDomain R] (Q : DegPre R) (O : Type) [CommRing O] [StarRing O] [Module O Q.X] (oa : Q.OAct O) (Y : Ray oa) (p : epsR R ⟶ Y.H), IsTangent p → p ≫ Y.q = 1 → ∃ ℓ : Q.X →+ R, p = GlobalTheory.HeatMod.TorField.torTan ℓ ≫ Y.i := by
-  first | exact @GlobalTheory.HeatMod.TorField.exists_torTan_of_q | exact GlobalTheory.HeatMod.TorField.exists_torTan_of_q | (intros; apply GlobalTheory.HeatMod.TorField.exists_torTan_of_q <;> assumption)
+  first | exact @GlobalTheory.HeatMod.TorField.exists_torTan_of_q

@@ -44,4 +44,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.twistedPointRow_admissible_trueColumns : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → ∀ (l : I.Laws) (Z : TC.Later B (I.cols l)) (l0 : I.Law0 l), Formalism.L2.G.Adm2InU.TwistedPointIntegral (I.rec7 l Z) (I.tw l l0 Z) := by
-  first | exact @GlobalTheory.PerQ.twistedPointIntegral_of_TC_ok | exact GlobalTheory.PerQ.twistedPointIntegral_of_TC_ok | (intros; apply GlobalTheory.PerQ.twistedPointIntegral_of_TC_ok <;> assumption)
+  first | exact @GlobalTheory.PerQ.twistedPointIntegral_of_TC_ok

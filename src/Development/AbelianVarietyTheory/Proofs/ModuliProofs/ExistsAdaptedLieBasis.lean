@@ -209,9 +209,7 @@ theorem GlobalTheory.exists_adapted_lieBasis : ∀ (E : Type) [Field E] [NumberF
     have e1 : (Chart.spMap (Chart.fstD K)).left = spMap (TrivSqZeroExt.fstHom K K K).toRingHom := rfl
     have e2 : (Chart.sp (R₀ := K) K).hom = 𝟙 _ := by
       first
-      | rfl
       | (unfold Chart.sp; simp)
-      | (simp [Chart.sp, Algebra.id.map_eq_id])
     constructor
     · intro h
       apply Over.OverMorphism.ext

@@ -75,11 +75,11 @@ theorem oscillator_deriv_along_line_quadratic : _root_.GlobalTheory.FunPr.ThetaL
   have trace_real {ι : Type} [Fintype ι] (f : ι → ℝ) :
       Algebra.trace ℝ (ι → ℝ) f = ∑ i, f i := by
     rw [Algebra.trace_eq_matrix_trace (Pi.basisFun ℝ ι)]
-    simp [Matrix.trace, Algebra.leftMulMatrix_eq_repr_mul, Pi.single_apply]
+    simp [Matrix.trace, Algebra.leftMulMatrix_eq_repr_mul]
   have trace_complex {ι : Type} [Fintype ι] (f : ι → ℂ) :
       Algebra.trace ℝ (ι → ℂ) f = ∑ i, 2 * (f i).re := by
     rw [Algebra.trace_eq_matrix_trace (Pi.basis fun _ : ι => Complex.basisOneI)]
-    simp [Matrix.trace, Algebra.leftMulMatrix_eq_repr_mul, Fintype.sum_sigma, Pi.single_apply, Fin.sum_univ_two,
+    simp [Matrix.trace, Algebra.leftMulMatrix_eq_repr_mul, Fintype.sum_sigma, Fin.sum_univ_two,
       Complex.coe_basisOneI, Complex.coe_basisOneI_repr]
     refine Finset.sum_congr rfl fun i _ => ?_
     ring
@@ -143,5 +143,5 @@ theorem _root_.GlobalTheory.T.oscillator_lie_action_quadratic : _root_.GlobalThe
         (∀ i, ActsD (evI F) (M.heisLine ψ (v i)) f (g₁ i)) → (∀ i, ActsD (evI F) (M.heisLine ψ (u i)) (g₁ i) (g₂ i)) →
         ∀ F₁ : ℝ → SInf F (Fin n × Fin d), (∀ t, Acts (evI F) (om (1, γ (Multiplicative.ofAdd t))) f (F₁ t)) →
         ∀ y, HasDerivAt (fun t => F₁ t y) (∑ i, c i * g₂ i y + c₀ * f y) 0 := by
-  first | exact @_root_.GlobalTheory.OscQuad.oscillator_deriv_along_line_quadratic | exact _root_.GlobalTheory.OscQuad.oscillator_deriv_along_line_quadratic | (intros; apply _root_.GlobalTheory.OscQuad.oscillator_deriv_along_line_quadratic <;> assumption)
+  first | exact @_root_.GlobalTheory.OscQuad.oscillator_deriv_along_line_quadratic
 end

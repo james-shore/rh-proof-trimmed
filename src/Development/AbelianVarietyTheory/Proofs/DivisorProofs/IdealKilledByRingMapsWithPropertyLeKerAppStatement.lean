@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.idealKilledByRingMapsWithProperty_le_ker_app : ∀
     P R' x → P R'' (spMap g ≫ x)) →
   ∀ (R' : Type) [CommRing R'] (x : Sp R' ⟶ S), P R' x →
     ∀ (V : S.Opens) (hV : IsAffineOpen V), killIdeal (ptQ P V hV) ≤ RingHom.ker (x.app V).hom := by
-  first | exact @GlobalTheory.PtClosed.killIdeal_le_ker_app | exact GlobalTheory.PtClosed.killIdeal_le_ker_app | (intros; apply GlobalTheory.PtClosed.killIdeal_le_ker_app; all_goals assumption)
+  first | exact @GlobalTheory.PtClosed.killIdeal_le_ker_app

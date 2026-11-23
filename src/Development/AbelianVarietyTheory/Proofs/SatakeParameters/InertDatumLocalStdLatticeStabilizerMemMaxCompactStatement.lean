@@ -57,4 +57,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.inertDatum_local_stdLatticeStabilizer_mem_maxCompact : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) (v : HeightOneSpectrum (𝓞 (maximalRealSubfield L))) (w : HeightOneSpectrum (𝓞 L)) (Dv : InertDatum L n v w) (κ : GAf L n), κ ∈ Umax L n → ∀ hκ : Dv.loc κ ∈ Formalism.UG.GU Dv.σw n, (⟨Dv.loc κ, hκ⟩ : Formalism.UG.GU Dv.σw n) ∈ Formalism.UG.KU Dv.σw n := by
-  first | exact @GlobalTheory.InertStdLat.loc_mem_KU | exact GlobalTheory.InertStdLat.loc_mem_KU | (intros; apply GlobalTheory.InertStdLat.loc_mem_KU <;> assumption)
+  first | exact @GlobalTheory.InertStdLat.loc_mem_KU

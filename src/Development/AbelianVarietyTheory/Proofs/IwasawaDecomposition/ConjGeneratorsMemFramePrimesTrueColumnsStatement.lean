@@ -42,4 +42,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.conjGenerators_mem_framePrimes_trueColumns : ∀ (B : Base) (f : Fr B.toPre) (T : TwDat B) (w : Bl.ColW B f T) (Z : w.Lt) (t : Bl.ColT w Z), HalfAt (Formalism.L2.Herm.toErrXS t.full.1) (Fr.at (w.st Z) f) := by
-  first | exact @GlobalTheory.AtMember.conj_gen_mem_frame | exact GlobalTheory.AtMember.conj_gen_mem_frame | (intros; apply GlobalTheory.AtMember.conj_gen_mem_frame <;> assumption)
+  first | exact @GlobalTheory.AtMember.conj_gen_mem_frame

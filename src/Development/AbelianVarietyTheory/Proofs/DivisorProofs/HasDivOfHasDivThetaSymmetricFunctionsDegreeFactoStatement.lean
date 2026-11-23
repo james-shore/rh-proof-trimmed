@@ -50,4 +50,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.hasDiv_of_hasDiv_thetaSymmetricFunctionsDegreeFactorial : ∀ (k Ω : Type) [CommRing k] [Field Ω] [Algebra k Ω] (M : RatModel k Ω) (N : ℕ) (c : Fin N → Ω), Geo.Tor.IsNormalScheme M.Z → M.HasDiv (symTup c) → M.HasDiv c := by
-  first | exact @GlobalTheory.UMin.hasDiv_of_hasDiv_symTup | exact GlobalTheory.UMin.hasDiv_of_hasDiv_symTup | (intros; apply GlobalTheory.UMin.hasDiv_of_hasDiv_symTup <;> assumption)
+  first | exact @GlobalTheory.UMin.hasDiv_of_hasDiv_symTup

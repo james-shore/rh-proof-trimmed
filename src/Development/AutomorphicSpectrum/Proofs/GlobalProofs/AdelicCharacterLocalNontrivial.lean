@@ -60,7 +60,6 @@ theorem middle_core {K : Type} [Field K] {n r a d : ℕ} (hd : a + d + a = n)
   have hCC : C * Ci = 1 := by
     first
       | exact mul_eq_one_comm.mp hCi
-      | exact Matrix.mul_eq_one_comm_of_equiv (Equiv.refl _) hCi
   obtain ⟨Cm, hCm⟩ : ∃ Cm : Matrix (Fin n) (Fin d) K, ∀ i t, Cm i t = C i ⟨a + t.val, by omega⟩ :=
     ⟨fun i t => C i ⟨a + t.val, by omega⟩, fun _ _ => rfl⟩
   obtain ⟨Cb, hCb⟩ : ∃ Cb : Matrix (Fin d) (Fin n) K, ∀ t i, Cb t i = Ci ⟨a + t.val, by omega⟩ i :=
@@ -192,7 +191,6 @@ theorem pair_vec (V : HSp D) {p : ℕ} (U : Matrix (Fin V.rank) (Fin p) D.host.E
   Formalism.BasicNotions.HSpace.gram, Finset.mul_sum, Finset.sum_mul, RingHom.id_apply]
   first
     | (refine Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun l _ => ?_; ring)
-    | (rw [Finset.sum_comm]; refine Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun l _ => ?_; ring)
 
 theorem pair_frame (V V' : HSp D) (ι : V'.V →ₗ[D.host.E] V.V) {p : ℕ} (U : Matrix (Fin V.rank) (Fin p) D.host.E) (i : Fin p)
     (j : Fin V'.rank) :
@@ -238,7 +236,6 @@ theorem frame_cols : ∀ (D : D7) (V V' : HSp D) (ι : V'.V →ₗ[D.host.E] V.V
     intro x y
     have hs := V.herm
     first
-      | exact (hs x y).symm
       | exact (hs.eq x y).symm
   have hG : Formalism.UG.cT (D.sp.cm.sig : D.host.E →+* D.host.E) V.gram = V.gram := by
     ext k l

@@ -135,7 +135,7 @@ theorem finrank_eigSp_eval : ∀ (E : Type) [Field E] [NumberField E] (Ω Vs C :
     ext i
     by_cases h : i = j
     · subst h; simp
-    · simp [Pi.single_apply, h]
+    · simp [h]
   have tΩ : ∀ a, LinearMap.trace Ω Vs (ρ a) = ((∑ j, M a j j : R') : Ω) :=
     fun a => trace_of_comb hl hs (ρ a) (M a) (hM a)
   have tC : ∀ a, LinearMap.trace C (Fin g → C) (ρC a) = ψ (∑ j, M a j j) := by

@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.compactUnitary_moves_heisenbergDerivative : ∀ (F
     GlobalTheory.ThK.IsPair B M χX χW om r s r' s' → ∀ k ∈ KInf σ X B.emb, ∀ u : Matrix (Fin n) (Fin d) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)), At (evI F) u →
     ∀ f f₁ fk h : SInf F (Fin n × Fin d), ActsD (evI F) (M.heisLine B.ψ u) f f₁ → Acts (evI F) (om (k, 1)) f fk →
       Acts (evI F) (om (k, 1)) f₁ h → ActsD (evI F) (M.heisLine B.ψ (mat k * u)) fk h := by
-  first | exact @GlobalTheory.KHeisComm.actsD_heisLine_mat_mul | exact GlobalTheory.KHeisComm.actsD_heisLine_mat_mul | (intros; apply GlobalTheory.KHeisComm.actsD_heisLine_mat_mul <;> assumption)
+  first | exact @GlobalTheory.KHeisComm.actsD_heisLine_mat_mul

@@ -45,4 +45,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open IsLocalRing
 
 theorem _root_.GlobalTheory.T.exists_localHom_completeDVR_principal_maximalIdeal : ∀ (B : Type) [CommRing B] [IsLocalRing B] (ϖ : B), maximalIdeal B = Ideal.span {ϖ} → ϖ ∈ nonZeroDivisors B → CharZero (ResidueField B) → ∃ (W : Type) (_ : CommRing W) (_ : IsDomain W) (_ : IsLocalRing W) (h : B →+* W), GlobalTheory.LN.CDvr W ∧ IsLocalHom h ∧ h ϖ ≠ 0 := by
-  first | exact @GlobalTheory.PrincDvr.exists_cDvr_localHom | exact GlobalTheory.PrincDvr.exists_cDvr_localHom | (intros; apply GlobalTheory.PrincDvr.exists_cDvr_localHom <;> assumption)
+  first | exact @GlobalTheory.PrincDvr.exists_cDvr_localHom

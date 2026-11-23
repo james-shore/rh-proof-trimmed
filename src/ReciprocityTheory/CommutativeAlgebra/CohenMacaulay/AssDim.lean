@@ -55,7 +55,7 @@ theorem exists_assoc_step {M : Type*} [AddCommGroup M] [Module R M] [Module.Fini
     {p : Ideal R} (hp : p ∈ associatedPrimes R M) {x : R} (hx : x ∈ maximalIdeal R)
     (reg : IsSMulRegular M x) :
     ∃ q ∈ associatedPrimes R (QuotSMulTop x M), p < q ∧ x ∈ q ∧ x ∉ p := by
-  first | exact Bl.general_b_fact_rest.goal1 .. | (apply Bl.general_b_fact_rest.goal1 <;> assumption) | (intros; apply Bl.general_b_fact_rest.goal1 <;> assumption)
+  first | (apply Bl.general_b_fact_rest.goal1 <;> assumption)
 
 theorem length_le_of_isRegular_of_mem_associatedPrimes : ∀ (rs : List R)
     {M : Type*} [AddCommGroup M] [Module R M] [Module.Finite R M],

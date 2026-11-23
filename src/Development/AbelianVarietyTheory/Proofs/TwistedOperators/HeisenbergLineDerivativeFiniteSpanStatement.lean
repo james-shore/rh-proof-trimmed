@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.heisenbergLine_derivative_finite_span : ∀ (F E :
       ∀ u : Matrix (Fin n) (Fin d) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)), At (evI F) u → ∃ D : SInf F (Fin n × Fin d) →ₗ[ℂ] SInf F (Fin n × Fin d),
         (∀ f f₁ : SInf F (Fin n × Fin d), ActsD (evI F) (M.heisLine ψ u) f f₁ ↔ f₁ = D f) ∧
         ∀ f, D f ∈ Submodule.span ℂ (Set.range fun i => L i f) := by
-  first | exact @GlobalTheory.HeisDerivSpan.heisLine_deriv_finite_span | exact GlobalTheory.HeisDerivSpan.heisLine_deriv_finite_span | (intros; apply GlobalTheory.HeisDerivSpan.heisLine_deriv_finite_span <;> assumption)
+  first | exact @GlobalTheory.HeisDerivSpan.heisLine_deriv_finite_span

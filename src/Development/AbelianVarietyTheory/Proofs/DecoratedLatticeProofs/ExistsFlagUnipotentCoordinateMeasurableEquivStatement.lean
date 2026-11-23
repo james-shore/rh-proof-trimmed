@@ -49,4 +49,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Unf
 
 theorem _root_.GlobalTheory.T.exists_flagUnipotent_coordinate_measurableEquiv : ∀ (D : D7) (V V₀ : HSp D) (ρ : ℕ) (d : HypDec V V₀ ρ), ∃ e : skewA D ρ × (Mx D ρ V₀.rank × UX D ρ) ≃ᵐ flagN d, ∀ p, (e p : GA D V) = d.nC p.1 * (d.nB p.2.1 * d.levi p.2.2.1) := by
-  first | exact @GlobalTheory.Unf.flagCoord_measEquiv | exact GlobalTheory.Unf.flagCoord_measEquiv | (intros; apply GlobalTheory.Unf.flagCoord_measEquiv <;> assumption)
+  first | exact @GlobalTheory.Unf.flagCoord_measEquiv

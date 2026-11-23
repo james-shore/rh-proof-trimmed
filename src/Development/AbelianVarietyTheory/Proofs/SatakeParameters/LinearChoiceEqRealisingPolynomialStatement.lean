@@ -44,4 +44,4 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.linearChoice_eq_realisingPolynomial : ∀ {p : ℕ} [Fact p.Prime] (X : Sys p) (D : D7) (pos : (Σ v : X.Pl, Fin (X.G.P.n' v)) ≃ D.what₂.Tau) (i : ℕ) {n : ℕ} (h : (X.Pj i).m + 1 = n) (a : D.what₂.Tau → ℤ) (Q : MvPolynomial (GL3Theta.FrV D n) ℂ) (R : XR (X.Pj i) ℂ), Realises X D pos i h a Q R → phiC X D pos i h a Q = R := by
-  first | exact @GlobalTheory.TwV.DelA.phiC_eq_of_realises | exact GlobalTheory.TwV.DelA.phiC_eq_of_realises | (intros; apply GlobalTheory.TwV.DelA.phiC_eq_of_realises <;> assumption)
+  first | exact @GlobalTheory.TwV.DelA.phiC_eq_of_realises

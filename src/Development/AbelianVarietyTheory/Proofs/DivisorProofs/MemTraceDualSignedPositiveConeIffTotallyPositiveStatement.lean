@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.mem_traceDualSignedPositiveCone_iff_totallyPositiv
     ∀ z ∈ GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.upperHalf F, ∀ ν : F,
       ν ∈ GlobalTheory.IndefiniteRowSideFullHecke.TraceDualDifferent.dualCone (GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization.latM 𝔞) (fun τ => ((τ b : ℝ) : ℂ) * z τ) ↔
         (ν ∈ (𝔞 : FractionalIdeal (𝓞 F)⁰ F) ∧ ∀ τ : F →+* ℝ, 0 < τ (ν * b)) := by
-  first | exact @GlobalTheory.Div.LipschitzCone.cone_iff | exact GlobalTheory.Div.LipschitzCone.cone_iff | (intros; apply GlobalTheory.Div.LipschitzCone.cone_iff <;> assumption)
+  first | exact @GlobalTheory.Div.LipschitzCone.cone_iff

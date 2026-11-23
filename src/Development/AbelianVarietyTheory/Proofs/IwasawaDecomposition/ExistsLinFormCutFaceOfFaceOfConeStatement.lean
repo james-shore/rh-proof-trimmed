@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.exists_linForm_cut_face_of_face_of_cone : ∀ {O :
     (∀ β ∈ balForms bar X, (∀ y, 0 ≤ β y y) → InRCone γ β → h₁ β = 0 → InRCone γ' β) →
     ∃ h : LinearMap.BilinForm ℤ X →ₗ[ℤ] ℤ, (∀ i, 0 ≤ h (δ i)) ∧ (∀ j, h (γ' j) = 0) ∧
       ∀ β ∈ balForms bar X, (∀ y, 0 ≤ β y y) → InRCone δ β → h β = 0 → InRCone γ' β := by
-  first | exact @GlobalTheory.PolFan.exists_linForm_cut_face_of_face | exact GlobalTheory.PolFan.exists_linForm_cut_face_of_face | (intros; apply GlobalTheory.PolFan.exists_linForm_cut_face_of_face <;> assumption)
+  first | exact @GlobalTheory.PolFan.exists_linForm_cut_face_of_face

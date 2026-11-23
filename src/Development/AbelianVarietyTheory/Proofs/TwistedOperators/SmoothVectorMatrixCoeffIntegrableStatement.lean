@@ -69,4 +69,4 @@ theorem _root_.GlobalTheory.T.smooth_vector_matrixCoeff_integrable : ∀ (m N : 
       ⟪v, π (GlobalTheory.PackLoc.embOpt e (Formalism.MainNotions.S.umat h)) v⟫_ℂ‖) (Formalism.REAL.muG ε') ∧
     ∫ h, ‖⟪v, π (GlobalTheory.PackLoc.embOpt e (NormedSpace.exp (s • X) * Formalism.MainNotions.S.umat h)) v⟫_ℂ -
       ⟪v, π (GlobalTheory.PackLoc.embOpt e (Formalism.MainNotions.S.umat h)) v⟫_ℂ‖ ∂(Formalism.REAL.muG ε') ≤ K * |s| * GlobalTheory.SepReal.hsn X := by
-  first | exact @GlobalTheory.PackLip.lip_core | exact GlobalTheory.PackLip.lip_core | (intros; apply GlobalTheory.PackLip.lip_core <;> assumption)
+  first | exact @GlobalTheory.PackLip.lip_core

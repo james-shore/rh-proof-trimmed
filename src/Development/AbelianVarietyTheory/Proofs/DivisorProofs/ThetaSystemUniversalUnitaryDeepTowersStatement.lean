@@ -48,4 +48,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.USep
 
 theorem _root_.GlobalTheory.T.thetaSystem_universalUnitary_deep_towers : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H), 1 ≤ Dw.p + Dw.q → ∀ (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l) (C : UCompact Xo c), ∀ (X₁ : GlobalTheory.GSep.GSet) (act : 𝓞 E → (X₁.ρ.P.A ⟶ X₁.ρ.P.A)) (u : Sp (ratHull X₁.S.R) ⟶ Xo.XF c) (π : X₁.M.Z ⟶ C.Z), GlobalTheory.GSep.ULink C X₁ act u π → GlobalTheory.GSep.Deep X₁ act := by
-  first | exact @GlobalTheory.GSep.UTower.deep_of_uLink | exact GlobalTheory.GSep.UTower.deep_of_uLink | (intros; apply GlobalTheory.GSep.UTower.deep_of_uLink <;> assumption)
+  first | exact @GlobalTheory.GSep.UTower.deep_of_uLink

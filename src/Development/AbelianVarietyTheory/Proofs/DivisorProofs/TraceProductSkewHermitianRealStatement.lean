@@ -52,4 +52,4 @@ open NumberField IsDedekindDomain MeasureTheory Matrix GlobalTheory.AdLat Global
 open scoped ENNReal
 
 theorem _root_.GlobalTheory.T.trace_product_skew_hermitian_real : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (G : Matrix (Fin r) (Fin r) E) (X Y : Matrix (Fin r) (Fin r) E), (∀ a b, cc (G a b) = G b a) → G.det ≠ 0 → (∀ u w, herm G (X *ᵥ u) w + herm G u (X *ᵥ w) = 0) → (∀ u w, herm G (Y *ᵥ u) w + herm G u (Y *ᵥ w) = 0) → (X * Y).trace ∈ maximalRealSubfield E := by
-  first | exact @GlobalTheory.trace_mul_skew_mem_maximalRealSubfield | exact GlobalTheory.trace_mul_skew_mem_maximalRealSubfield | (intros; apply GlobalTheory.trace_mul_skew_mem_maximalRealSubfield <;> assumption)
+  first | exact @GlobalTheory.trace_mul_skew_mem_maximalRealSubfield

@@ -50,4 +50,4 @@ open GlobalTheory.Unf
 open scoped ComplexOrder ENNReal NNReal ContDiff
 
 theorem _root_.GlobalTheory.T.weilOperator_thetaFun_sup_moderate_growth : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (χS χT : (AE D)ˣ →* Circle) (om : Om S T), IsWeilDatumO ψ S T χS χT om → ∀ f, IsThetaFunO ψ S T f → ∃ (C : ℝ) (A : ℕ), ∀ g h w, ‖om (g, h) f w‖ ≤ C * (height S g * height T h) ^ A := by
-  first | exact @GlobalTheory.SupThetaGrowth.om_sup_growth | exact GlobalTheory.SupThetaGrowth.om_sup_growth | (intros; apply GlobalTheory.SupThetaGrowth.om_sup_growth <;> assumption)
+  first | exact @GlobalTheory.SupThetaGrowth.om_sup_growth

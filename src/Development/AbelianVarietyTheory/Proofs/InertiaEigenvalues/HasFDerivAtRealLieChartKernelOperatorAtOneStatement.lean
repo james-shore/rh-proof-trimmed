@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.hasFDerivAt_realLieChart_kernelOperator_at_one : �
     (∀ i, ∃ C : ℝ, ∀ g, ‖(lie E a (lieBasis E a i) φ).1 g‖ ≤ C) → ∀ g,
       HasFDerivAt (chart (kerOp ν k γ φ.1) g)
         (∫ x, k x • (fderiv ℝ (chart φ.1 g) (toL (γ x).val)).comp (rmul (toL (γ x).val)) ∂ν) (oneL E a) := by
-  first | exact @GlobalTheory.JSW.hasFDerivAt_chart_kerOp | exact GlobalTheory.JSW.hasFDerivAt_chart_kerOp | (intros; apply GlobalTheory.JSW.hasFDerivAt_chart_kerOp <;> assumption)
+  first | exact @GlobalTheory.JSW.hasFDerivAt_chart_kerOp

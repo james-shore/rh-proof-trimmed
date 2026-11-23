@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.squareFlip_reaches_localQuotient_classes : ∀ {D 
     ∀ w ∈ locPl G t, ∀ v, w.under (𝓞 D.host.F) = v → ∀ φ₀ ∈ GlobalTheory.WeilM.SB _,
     ∃ n Φ φ₂ g φ₃, depthAt G w ≤ n ∧ IsNatDatum (unifAt w) n Φ ∧ IsLocFn W B t e Γ w v (flipAt W t i j w n Φ) φ₂ ∧
       φ₃ ∈ GlobalTheory.WeilM.SB _ ∧ Acts (evFin D.host.F v) (om (1, blkU _ _ e h.JWW g)) φ₂ φ₃ ∧ Rf.p v φ₃ = Rf.p v φ₀ := by
-  first | exact @GlobalTheory.SquareFlipReach.flip_reach | exact GlobalTheory.SquareFlipReach.flip_reach | (intros; apply GlobalTheory.SquareFlipReach.flip_reach <;> assumption)
+  first | exact @GlobalTheory.SquareFlipReach.flip_reach

@@ -321,7 +321,7 @@ theorem exists_primitive_of_aeval_eq_zero {S : Type*} [CommRing S] [IsDomain S] 
   let g₀ : MvPolynomial (Fin n) ℤ := ∑ v ∈ g.support, monomial v (b v)
   have hc : ∀ v, v ∈ g.support → g₀.coeff v = b v := by
     intro v hv
-    simp [g₀, MvPolynomial.coeff_sum, MvPolynomial.coeff_monomial, hv]
+    simp [g₀, MvPolynomial.coeff_monomial, hv]
   have hc' : ∀ v, v ∉ g.support → g₀.coeff v = 0 := by
     intro v hv
     simp only [g₀, MvPolynomial.coeff_sum, MvPolynomial.coeff_monomial]

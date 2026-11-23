@@ -47,4 +47,4 @@ open scoped TensorProduct InnerProductSpace
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.measurable_level_indicator_coefficient_test_function : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → ∀ (V : HSp D) (S : D.what₂.Tau → SPar) (M : DSModel V S) (Λ : Lat V) (𝔪 : Ideal (𝓞 D.host.E)), IsSelfDualC V Λ → 𝔪 ≠ ⊥ → ∀ (v a : ∀ τ, M.H τ), Measurable (coef θ M (congLev D.sp.cm V.gram Λ 𝔪) v a) := by
-  first | exact @GlobalTheory.SepPer.CoefMeas.measurable_coef | exact GlobalTheory.SepPer.CoefMeas.measurable_coef | (intros; apply GlobalTheory.SepPer.CoefMeas.measurable_coef <;> assumption)
+  first | exact @GlobalTheory.SepPer.CoefMeas.measurable_coef

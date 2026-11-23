@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.selfDual_lattice_of_integral_gramMatrix : ∀ (L :
           w = (a : Matrix (Fin n) (Fin n) L) *ᵥ u + v) ↔
         ∃ v : Fin n → L, ∃ w' : Fin n' → L, (∀ i, v i ∈ Formalism.UG.intL L) ∧ (∀ i, w' i ∈ Formalism.UG.intL L) ∧
           w = v + GlobalTheory.Hk3.HoweG.adj σ JS JT x *ᵥ w') := by
-  first | exact @GlobalTheory.Hk3.HoweG.selfDual_lattice_of_gram_int | exact GlobalTheory.Hk3.HoweG.selfDual_lattice_of_gram_int | (intros; apply GlobalTheory.Hk3.HoweG.selfDual_lattice_of_gram_int <;> assumption)
+  first | exact @GlobalTheory.Hk3.HoweG.selfDual_lattice_of_gram_int

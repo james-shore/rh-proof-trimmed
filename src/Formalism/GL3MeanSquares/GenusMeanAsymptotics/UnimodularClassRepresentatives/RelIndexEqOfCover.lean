@@ -64,7 +64,7 @@ private theorem ncard_orbit_in_stabilizer_eq_relIndex {X Y : Type*} [MulAction G
   have h1 : MulAction.stabilizer (MulAction.stabilizer G y) t =
       (MulAction.stabilizer G t).subgroupOf (MulAction.stabilizer G y) := by
     ext g
-    simp [Subgroup.mem_subgroupOf, MulAction.mem_stabilizer_iff, Subgroup.smul_def]
+    simp [MulAction.mem_stabilizer_iff, Subgroup.smul_def]
   have h2 : MulAction.orbit (MulAction.stabilizer G y) t = {x : X | ∃ g : G, g • y = y ∧ g • t = x} := by
     ext x
     constructor

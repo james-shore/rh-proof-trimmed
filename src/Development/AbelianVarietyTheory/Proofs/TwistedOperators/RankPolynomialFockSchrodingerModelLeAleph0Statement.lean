@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.rank_polynomialFock_schrodingerModel_le_aleph0 : �
     (M : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Model σ X W),
     B.IsGood σ → X.IsHerm σ B r s → W.IsSkew σ B r' s' → M.IsGood B.ψ →
     Module.rank ℂ (M.Pol B.ψ B.emb) ≤ Cardinal.aleph0 := by
-  first | exact @GlobalTheory.FockCount.rank_pol_le_aleph0 | exact GlobalTheory.FockCount.rank_pol_le_aleph0 | (intros; apply GlobalTheory.FockCount.rank_pol_le_aleph0 <;> assumption)
+  first | exact @GlobalTheory.FockCount.rank_pol_le_aleph0

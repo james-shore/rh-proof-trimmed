@@ -55,4 +55,4 @@ open GlobalTheory.HTLat GlobalTheory.Published GlobalTheory.Published.AbVarRed I
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.spec_fraction_field_isPullback_of_unramified_alt : ∀ (R K W K' : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Field K] [Algebra R K] [IsFractionRing R K] [CommRing W] [IsDomain W] [IsDiscreteValuationRing W] [Field K'] [Algebra W K'] [IsFractionRing W K'] [Algebra R W] [Algebra K K'] [Algebra R K'] [IsScalarTower R W K'] [IsScalarTower R K K'], (maximalIdeal R).map (algebraMap R W) = maximalIdeal W → IsPullback (spMap (algebraMap W K')) (spMap (algebraMap K K')) (spMap (algebraMap R W)) (spMap (algebraMap R K)) := by
-  first | exact @GlobalTheory.spec_fraction_field_isPullback_of_unramified | exact GlobalTheory.spec_fraction_field_isPullback_of_unramified | (intros; apply GlobalTheory.spec_fraction_field_isPullback_of_unramified <;> assumption)
+  first | exact @GlobalTheory.spec_fraction_field_isPullback_of_unramified

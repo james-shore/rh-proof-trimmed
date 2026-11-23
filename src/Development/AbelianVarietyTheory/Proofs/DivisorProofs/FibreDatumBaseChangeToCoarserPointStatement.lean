@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.fibreDatum_baseChange_to_coarserPoint : ∀ (S : S
       F DualNumber.eps = DualNumber.eps → ∀ j, (y' j).left ≫ pullback.fst G.hom ξ' = spMap F ≫ (y j).left ≫ pullback.fst G.hom ξ) →
     KeyOn f x (KeyVals.bG G ξ') (KeyVals.bL L ξ') t' (fun j => y' (j.cast hg)) →
     KeyOn (f.comp r) x (KeyVals.bG G ξ) (KeyVals.bL L ξ) t (fun j => y (j.cast hg)) := by
-  first | exact @GlobalTheory.KeyValsTrans.keyOn_trans | exact GlobalTheory.KeyValsTrans.keyOn_trans | (intros; apply GlobalTheory.KeyValsTrans.keyOn_trans <;> assumption)
+  first | exact @GlobalTheory.KeyValsTrans.keyOn_trans

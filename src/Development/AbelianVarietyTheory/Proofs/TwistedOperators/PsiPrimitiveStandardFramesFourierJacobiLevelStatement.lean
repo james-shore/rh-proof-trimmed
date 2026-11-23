@@ -48,4 +48,4 @@ open scoped nonZeroDivisors ContDiff
 open GlobalTheory.AscFin
 
 theorem _root_.GlobalTheory.T.psi_primitive_standardFrames_fourierJacobiLevel : OnStd fun {D} _ _ {sc} {G} W F => ∀ ρ (h : 2 * ρ + 2 ≤ D.R.m), ∀ v ∉ G.pl.S0, PrimAt W.ψ (F.dJ ρ h) (G.Λ (.grid (2 * ρ + 1) 0)) v := by
-  first | exact @GlobalTheory.AscFin.primAt_jac_std | exact GlobalTheory.AscFin.primAt_jac_std | (intros; apply GlobalTheory.AscFin.primAt_jac_std <;> assumption)
+  first | exact @GlobalTheory.AscFin.primAt_jac_std

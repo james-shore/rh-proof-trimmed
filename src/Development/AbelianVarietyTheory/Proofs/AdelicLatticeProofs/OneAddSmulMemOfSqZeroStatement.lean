@@ -48,4 +48,4 @@ open Matrix GlobalTheory.ClassFin
 open scoped Kronecker ComplexOrder TensorProduct
 
 theorem _root_.GlobalTheory.T.one_add_smul_mem_of_sq_zero' : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (Γ : Set (Matrix ι ι ℂ)), IsQGroup Γ → ∀ ε : Matrix ι ι ℂ, ε * ε = 0 → 1 + ε ∈ Γ → ∀ t : ℂ, 1 + t • ε ∈ Γ := by
-  first | exact @GlobalTheory.ClassFin.one_add_smul_mem_of_sq_zero | exact GlobalTheory.ClassFin.one_add_smul_mem_of_sq_zero | (intros; apply GlobalTheory.ClassFin.one_add_smul_mem_of_sq_zero <;> assumption)
+  first | exact @GlobalTheory.ClassFin.one_add_smul_mem_of_sq_zero

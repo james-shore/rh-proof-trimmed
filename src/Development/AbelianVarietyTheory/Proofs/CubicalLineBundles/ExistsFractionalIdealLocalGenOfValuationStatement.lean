@@ -62,4 +62,4 @@ open GlobalTheory GlobalTheory.CM GlobalTheory.LamF
 
 
 theorem _root_.GlobalTheory.T.exists_fractionalIdeal_localGen_of_valuation : ∀ (K : Type) [Field K] [NumberField K] (oa : HeightOneSpectrum (𝓞 K) → ℤ), (Function.support oa).Finite → ∃ I : FractionalIdeal (nonZeroDivisors (𝓞 K)) K, I ≠ 0 ∧ ∀ (p : HeightOneSpectrum (𝓞 K)) (a : K), p.valuation K a = WithZero.exp (-oa p) → IsLocGen p a I := by
-  first | exact @GlobalTheory.LamF.exists_fractionalIdeal_isLocGen_of_valuation | exact GlobalTheory.LamF.exists_fractionalIdeal_isLocGen_of_valuation | (intros; apply GlobalTheory.LamF.exists_fractionalIdeal_isLocGen_of_valuation <;> assumption)
+  first | exact @GlobalTheory.LamF.exists_fractionalIdeal_isLocGen_of_valuation

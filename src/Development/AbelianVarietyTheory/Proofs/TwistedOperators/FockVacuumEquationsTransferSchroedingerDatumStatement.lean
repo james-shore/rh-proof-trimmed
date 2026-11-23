@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.fockVacuumEquations_transfer_schroedingerDatum : �
       (∀ u, cS u = (HMul.hMul (uᵀ.submatrix e id) (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.incM ((if ε then -1 else 1 : D.host.E) • S.gram)) : Matrix (Fin X.rank) (Fin S.rank) (AE D))) →
       ∀ (f : WO S X → ℂ) (Φ : (Fin S.rank × Fin d → AF D.host.F) → ℂ), IsFinF ψ θ ε A B f → IsDatum M ψ cS Φ f →
         GlobalTheory.VacDatum.IsGaussEq M Bs.ψ Bs.emb Φ := by
-  first | exact @GlobalTheory.VacTransfer.vacDatum_transfer | exact GlobalTheory.VacTransfer.vacDatum_transfer | (intros; apply GlobalTheory.VacTransfer.vacDatum_transfer <;> assumption)
+  first | exact @GlobalTheory.VacTransfer.vacDatum_transfer

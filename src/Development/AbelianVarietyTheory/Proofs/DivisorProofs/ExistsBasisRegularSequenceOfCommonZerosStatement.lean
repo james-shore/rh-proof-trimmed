@@ -50,4 +50,4 @@ open GlobalTheory.HSCore GlobalTheory.QCoh
 open GlobalTheory
 
 theorem _root_.GlobalTheory.T.exists_basis_regular_sequence_of_common_zeros : ∀ (K : Type) [Field K] [NumberField K] (G : Geo K) (s : Fin G.D → Fin G.N → K), G.IsGood s → ∀ B : LB G.Y, B.IsLB → ∃ g : Matrix (Fin G.D) (Fin G.D) K, IsUnit g.det ∧ RegSeq G.isLB (GlobalTheory.LB.toMod B) (List.ofFn fun i => G.comb (∑ j, g i j • s j)) := by
-  first | exact @GlobalTheory.RegBasis.exists_regular_basis | exact GlobalTheory.RegBasis.exists_regular_basis | (intros; apply GlobalTheory.RegBasis.exists_regular_basis <;> assumption)
+  first | exact @GlobalTheory.RegBasis.exists_regular_basis

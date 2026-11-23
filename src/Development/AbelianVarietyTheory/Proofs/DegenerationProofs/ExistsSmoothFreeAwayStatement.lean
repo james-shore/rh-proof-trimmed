@@ -58,4 +58,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.SS
 
 theorem _root_.GlobalTheory.T.exists_smooth_free_away' : ∀ (k C : Type) [Field k] [PerfectField k] [CommRing C] [Nontrivial C] [IsReduced C] [Algebra k C] [Algebra.FiniteType k C] (M : Type) [AddCommGroup M] [Module C M] [Module.Finite C M], ∃ f : C, f ≠ 0 ∧ Algebra.Smooth k (Localization.Away f) ∧ Module.Free (Localization.Away f) (LocalizedModule (Submonoid.powers f) M) := by
-  first | exact @GlobalTheory.SS.exists_smooth_free_away | exact GlobalTheory.SS.exists_smooth_free_away | (intros; apply GlobalTheory.SS.exists_smooth_free_away <;> assumption)
+  first | exact @GlobalTheory.SS.exists_smooth_free_away

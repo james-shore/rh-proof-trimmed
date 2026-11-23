@@ -63,4 +63,4 @@ open GlobalTheory GlobalTheory.HTLat GlobalTheory.Published.AbVarRed GlobalTheor
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.integral_charpoly_of_monic_integral_annihilator : ∀ (k V : Type) [Field k] [Algebra ℚ k] [AddCommGroup V] [Module k V] [Module.Finite k V] (φ : V →ₗ[k] V) (P : Polynomial ℚ) (Q : Polynomial ℤ), Q.Monic → Polynomial.aeval φ Q = 0 → P.map (algebraMap ℚ k) = φ.charpoly → ∃ P₀ : Polynomial ℤ, P₀.map (algebraMap ℤ ℚ) = P := by
-  first | exact @GlobalTheory.AV.AbVar.int_of_charpoly_rat_of_monic_annihilator | exact GlobalTheory.AV.AbVar.int_of_charpoly_rat_of_monic_annihilator | (intros; apply GlobalTheory.AV.AbVar.int_of_charpoly_rat_of_monic_annihilator <;> assumption)
+  first | exact @GlobalTheory.AV.AbVar.int_of_charpoly_rat_of_monic_annihilator

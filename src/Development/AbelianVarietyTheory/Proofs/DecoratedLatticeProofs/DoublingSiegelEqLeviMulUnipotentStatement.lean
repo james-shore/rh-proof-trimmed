@@ -54,4 +54,4 @@ open GlobalTheory.MixModel GlobalTheory.Core.Rk.SWLaw
 
 
 theorem _root_.GlobalTheory.T.doublingSiegel_eq_levi_mul_unipotent : ∀ (D : D7) (A : HSp D) (p : siegel A), ∃ (a : GL (Fin A.rank) (AE D)) (c : skewA D A.rank), (p : GA D (dblSp A)) = (dblDec A).levi a * (dblDec A).nC c := by
-  first | exact @GlobalTheory.Core.Rk.SWLaw.siegel_eq_levi_nC | exact GlobalTheory.Core.Rk.SWLaw.siegel_eq_levi_nC | (intros; apply GlobalTheory.Core.Rk.SWLaw.siegel_eq_levi_nC <;> assumption)
+  first | exact @GlobalTheory.Core.Rk.SWLaw.siegel_eq_levi_nC

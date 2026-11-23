@@ -47,4 +47,4 @@ theorem _root_.GlobalTheory.T.stepCharacter_det_coupled_eq_prod_local : UnderTie
     (∀ P, InFrame t.seam (A.fb (t.m2 + 1) (cpl_lt t μ).le β') (t.cst μ).D P κ'.1 ((κ'' P)⁻¹).1) →
     muOf t u μ dtU (t.m2 + 1) (Matrix.GeneralLinearGroup.det κ'.1) =
       t.seam.σ₀ (∏ P : SB t μ, rhoS t.Ch t.sel (t.tup μ) t.m2 P ((LinearEquiv.det (κ'' P).1 : t.X.Eˣ) : t.X.E))) := by
-  first | exact @GlobalTheory.CplMuDet.muOf_det_cpl | exact GlobalTheory.CplMuDet.muOf_det_cpl | (intros; apply GlobalTheory.CplMuDet.muOf_det_cpl <;> assumption)
+  first | exact @GlobalTheory.CplMuDet.muOf_det_cpl

@@ -53,4 +53,4 @@ open GlobalTheory.HSApp
 
 
 theorem _root_.GlobalTheory.T.exists_dominant_exponents_matching_weight_bar_gap : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (la : GlobalTheory.AllWt.Weight Dw), 1 ≤ Dw.p → 1 ≤ Dw.q → (∀ τ, Antitone (la τ)) → (∀ τ, 1 ≤ GlobalTheory.CompHS.gap (la τ) (Dw.p - 1)) → ∀ (N M k : ℕ), 0 < N → 2 * M + N ≤ k + 1 → ∃ (w : GlobalTheory.AllWt.Psi H → ℤ) (a : (E →+* ℂ) × ℕ → ℕ), Dom a (2 * M) ∧ (fun i => (ex Dw a (2 * M) i : ℤ)) = (k + 1) • GlobalTheory.AllWt.exOf Dw la 0 + GlobalTheory.AllWt.exOf Dw (GlobalTheory.FlatLine.parWt Dw fun τ => (N : ℤ) * w τ) M := by
-  first | exact @GlobalTheory.WtMatchArithBar.exists_dom_exponents_bar | exact GlobalTheory.WtMatchArithBar.exists_dom_exponents_bar | (intros; apply GlobalTheory.WtMatchArithBar.exists_dom_exponents_bar <;> assumption)
+  first | exact @GlobalTheory.WtMatchArithBar.exists_dom_exponents_bar

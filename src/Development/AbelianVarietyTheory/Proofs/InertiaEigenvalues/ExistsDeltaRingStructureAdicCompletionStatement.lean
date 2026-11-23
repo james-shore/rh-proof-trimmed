@@ -47,4 +47,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.exists_deltaRingStructure_adicCompletion : ∀ (l : ℕ) [Fact l.Prime] (L : Type) [CommRing L] (Q : Type) [CommRing Q] (i : L →+* Q) (J : Ideal L), IsCompl i J → (l : L) ∈ J → ∀ D : Delta l L, ∃ D' : Delta l Q, IsδMap D D' i := by
-  first | exact @GlobalTheory.BSP.exists_delta_completion | exact GlobalTheory.BSP.exists_delta_completion | (intros; apply GlobalTheory.BSP.exists_delta_completion <;> assumption)
+  first | exact @GlobalTheory.BSP.exists_delta_completion

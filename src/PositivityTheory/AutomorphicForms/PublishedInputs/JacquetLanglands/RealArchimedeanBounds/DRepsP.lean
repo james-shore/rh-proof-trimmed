@@ -156,7 +156,7 @@ theorem step {c : Pl F → ℕ} {w : Pl F} {W : List (Pl F)} {ι κ : Type} [Fin
       rfl
     · refine ⟨u', ?_⟩
       rw [pLoc_locGL_of_ne h, one_mul, hu']
-      simp [List.count_cons, Ne.symm h]
+      simp [Ne.symm h]
 
 theorem base (c : Pl F → ℕ) : IsReps c ([] : List (Pl F)) (fun _ : Unit => (1 : GF F)) := by
   refine ⟨?_, ?_, ?_⟩

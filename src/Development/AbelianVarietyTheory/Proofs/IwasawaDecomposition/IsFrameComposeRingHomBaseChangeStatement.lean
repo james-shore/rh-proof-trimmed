@@ -51,4 +51,4 @@ open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestrictio
 open Formalism.MainNotions.DIV.Cons (intO)
 
 theorem _root_.GlobalTheory.T.isFrame_compose_ringHom_baseChange : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (c : Coeff l) (X : Scheme.{0}) (t : SAB H X) (R S : Type) [CommRing R] [CommRing S] (f : c.F →+* R) (φ : R →+* S) (x : Sp R ⟶ X) (u : Vecs Dw t R), GlobalTheory.LocM.IsFrame t f x u → GlobalTheory.LocM.IsFrame t (φ.comp f) (spMap φ ≫ x) (u.bc φ) := by
-  first | exact @GlobalTheory.ShFam.Pad.isFrame_baseChange | exact GlobalTheory.ShFam.Pad.isFrame_baseChange | (intros; apply GlobalTheory.ShFam.Pad.isFrame_baseChange <;> assumption)
+  first | exact @GlobalTheory.ShFam.Pad.isFrame_baseChange

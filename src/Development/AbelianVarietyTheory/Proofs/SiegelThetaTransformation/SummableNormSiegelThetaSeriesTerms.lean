@@ -57,11 +57,7 @@ namespace GlobalTheory.SW.SiegelSum
 theorem summable_pi_prod {J A : Type} [Fintype J] (f : J → A → ℝ) (h0 : ∀ j a, 0 ≤ f j a)
     (hs : ∀ j, Summable (f j)) : Summable fun n : J → A => ∏ j, f j (n j) := by
   first
-  | exact @_root_.GlobalTheory.SummableProdPi.summable_prod_pi
-  | exact _root_.GlobalTheory.SummableProdPi.summable_prod_pi
   | (apply _root_.GlobalTheory.SummableProdPi.summable_prod_pi <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SummableProdPi.summable_prod_pi <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SummableProdPi.summable_prod_pi <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SummableProdPi.summable_prod_pi ..)
 
 theorem exists_mul_dotProduct_le {ι : Type} [Fintype ι] {Y : Matrix ι ι ℝ} (hY : Y.PosDef) :

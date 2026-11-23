@@ -46,4 +46,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.isBiTheta_weilRep_second_variable : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (A S A' : HSp D) (χS' χA' : (AE D)ˣ →* Circle) (omb : Om S A'), IsWeilDatumO ψ S A' χS' χA' omb → ∀ C, IsBiTheta ψ A S A' C → ∀ q, IsBiTheta ψ A S A' fun u v => omb q (C u) v := by
-  first | exact @GlobalTheory.BiActRight.isBiTheta_act_right | exact GlobalTheory.BiActRight.isBiTheta_act_right | (intros; apply GlobalTheory.BiActRight.isBiTheta_act_right <;> assumption)
+  first | exact @GlobalTheory.BiActRight.isBiTheta_act_right

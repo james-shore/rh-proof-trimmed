@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.contDiff_thetaTransform_realLines_cmExtension : �
           ∀ (k : ℕ) (L : (Fin k → ℝ) →+ Formalism.IndefR.DatumF.WOF F E nS nT), Continuous L →
             (∀ t, (L t).map (Formalism.IndefR.DatumF.finPartF F E) = 0) →
             ∀ w, ContDiff ℝ ∞ fun t => GlobalTheory.WeilSchrodinger.thetaTr F co B.ψ φ (w + L t) := by
-  first | exact @GlobalTheory.ThetaSmoothCM.contDiff_thetaTr_real_CM | exact GlobalTheory.ThetaSmoothCM.contDiff_thetaTr_real_CM | (intros; apply GlobalTheory.ThetaSmoothCM.contDiff_thetaTr_real_CM <;> assumption)
+  first | exact @GlobalTheory.ThetaSmoothCM.contDiff_thetaTr_real_CM

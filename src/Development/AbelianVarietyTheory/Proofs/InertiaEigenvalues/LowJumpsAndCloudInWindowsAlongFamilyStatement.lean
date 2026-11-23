@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.lowJumps_and_cloud_in_windows_along_family : ∀ {
       W0 ≤ (if up then (z : ℝ) - (((Fm.D x a).R.t : ℝ) - 1) / 2 else (((Fm.D x a).R.t : ℝ) - 1) / 2 - z) ∧
       (if up then (z : ℝ) - (((Fm.D x a).R.t : ℝ) - 1) / 2 else (((Fm.D x a).R.t : ℝ) - 1) / 2 - z) ≤
         W0 + (Fm.L x a).Sc + (Fm.L x a).etaSz + 1 := by
-  first | exact @GlobalTheory.LetterWindows.lows_cloud_windows | exact GlobalTheory.LetterWindows.lows_cloud_windows | (intros; apply GlobalTheory.LetterWindows.lows_cloud_windows <;> assumption)
+  first | exact @GlobalTheory.LetterWindows.lows_cloud_windows

@@ -52,4 +52,4 @@ open GlobalTheory.HCChar GlobalTheory.Published GlobalTheory.Published.Langlands
 open scoped InnerProductSpace Topology ENNReal ComplexConjugate
 
 theorem _root_.GlobalTheory.T.leviModulusOne_linearReductive_exp_mul_exp : ∀ (n : ℕ) (ε : Fin n → Bool) (a : ℕ) (j : Fin a → ℕ) (W : Flag n a), IsIsoFlag ε j W → (∀ i, 1 ≤ j i) → GlobalTheory.LinRed.IsLinRed (mats (leviOne ε W)) ∧ ∀ g ∈ mats (leviOne ε W), ∃ X Y : Matrix (Fin n) (Fin n) ℂ, (∀ t : ℝ, NormedSpace.exp (t • X) ∈ mats (leviOne ε W)) ∧ (∀ t : ℝ, NormedSpace.exp (t • Y) ∈ mats (leviOne ε W)) ∧ g = NormedSpace.exp X * NormedSpace.exp Y := by
-  first | exact @GlobalTheory.LeviPolar.isLinRed_leviOne | exact GlobalTheory.LeviPolar.isLinRed_leviOne | (intros; apply GlobalTheory.LeviPolar.isLinRed_leviOne <;> assumption)
+  first | exact @GlobalTheory.LeviPolar.isLinRed_leviOne

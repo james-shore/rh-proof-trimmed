@@ -76,4 +76,4 @@ theorem _root_.GlobalTheory.T.eq_of_formallyUnramified_of_eq_at_closedPoint : �
     [LocallyOfFiniteType f] (R : CommRingCat.{0}) [IsLocalRing R] (u₁ u₂ : Spec R ⟶ T) (h : u₁ ≫ f = u₂ ≫ f)
     (K : Type) [Field K] (k : Sp K ⟶ Spec R) (hk : ∀ x, k x = IsLocalRing.closedPoint R)
     (hku : k ≫ u₁ = k ≫ u₂), u₁ = u₂ := by
-  first | exact @GlobalTheory.TorsSpec.eq_of_unramified_of_closedPoint | exact GlobalTheory.TorsSpec.eq_of_unramified_of_closedPoint | (intros; apply GlobalTheory.TorsSpec.eq_of_unramified_of_closedPoint <;> assumption)
+  first | exact @GlobalTheory.TorsSpec.eq_of_unramified_of_closedPoint

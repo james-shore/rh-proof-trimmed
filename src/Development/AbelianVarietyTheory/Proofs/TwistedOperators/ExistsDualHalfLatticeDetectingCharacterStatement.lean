@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_dual_half_lattice_detecting_character : ∀
     (∀ k : WO (Vc D i) (Wc D i), IsHalf (cA D e) k → IsIntM (frMapAdj (Vc D i) (Wc D i) (R.βV i) (R.βW i) k) → (∀ PP ∈ R.Pg ∪ R.Q t, redM PP (frMapAdj (Vc D i) (Wc D i) (R.βV i) (R.βW i) k) = 0) →
       R.ψ (symplO (Vc D i) (Wc D i) k y) = 1) ∧
     R.ψ (symplO (Vc D i) (Wc D i) x y) ≠ 1 := by
-  first | exact @GlobalTheory.HalfDuality.exists_dual_half | exact GlobalTheory.HalfDuality.exists_dual_half | (intros; apply GlobalTheory.HalfDuality.exists_dual_half <;> assumption)
+  first | exact @GlobalTheory.HalfDuality.exists_dual_half

@@ -135,7 +135,7 @@ theorem polyH_nil (t : kˣ) (ζ : (Sp k n → ℂ) →ₗ[ℂ] ℂ) : polyH t []
 
 theorem polyH_cons (t : kˣ) (x : ℝ) (a : List ℝ) (ζ : (Sp k n → ℂ) →ₗ[ℂ] ℂ) :
     polyH t (x :: a) ζ = pullH t (polyH t a ζ) - ((((nabs k t)⁻¹ : ℝ) ^ x : ℝ) : ℂ) • polyH t a ζ := by
-  simp [polyH, List.map_cons, List.prod_cons, Module.End.mul_apply]
+  simp [polyH, List.map_cons, List.prod_cons]
 
 theorem fibre_quotient_holds : FibQ k := by
   classical

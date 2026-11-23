@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.lastStepCharacter_at_levelDet_mul_localCharacters 
         t.seam.σ₀ (∏ P, rhoS t.Ch t.sel (t.tup μ) (t.m2 + 1) P ((LinearEquiv.det (g P) : t.X.Eˣ) : t.X.E) *
           rhoT t.Ch t.sel (t.tup μ) (t.m2 + 1) P ((LinearEquiv.det (g' P) : t.X.Eˣ) : t.X.E)) =
       muOf t u μ dtU (t.m2 + 1 + 1) (Matrix.GeneralLinearGroup.det κ'.1)) := by
-  first | exact @GlobalTheory.TwTop.muOf_det_top | exact GlobalTheory.TwTop.muOf_det_top | (intros; apply GlobalTheory.TwTop.muOf_det_top <;> assumption)
+  first | exact @GlobalTheory.TwTop.muOf_det_top

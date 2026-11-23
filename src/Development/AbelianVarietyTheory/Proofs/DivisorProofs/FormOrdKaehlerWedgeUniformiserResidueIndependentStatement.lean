@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.formOrd_kaehlerWedge_uniformiser_residueIndependen
   (∀ P : MvPolynomial (Fin m) ℂ, P ≠ 0 → MvPolynomial.eval₂ cK y P ≠ 0 ∧ (MvPolynomial.eval₂ cK y P)⁻¹ ∈ F.ring) →
   TrBasis cK (Fin.cons π y : Fin (m + 1) → K) →
   (fun ω => @dite ℤ (∃ a, F.IsFormOrd ω a) (Classical.propDecidable _) (fun h => h.choose) (fun _ => 0)) (dForm cK (Fin.cons π y : Fin (m + 1) → K)) = 0 := by
-  first | exact @GlobalTheory.formOrd_dForm_cons_of_ord_eq_one | exact GlobalTheory.formOrd_dForm_cons_of_ord_eq_one | (intros; apply GlobalTheory.formOrd_dForm_cons_of_ord_eq_one <;> assumption)
+  first | exact @GlobalTheory.formOrd_dForm_cons_of_ord_eq_one

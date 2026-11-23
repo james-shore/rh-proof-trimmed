@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_sec_normCoeff_local' : ∀ {X Y : Scheme.{0
         (τ : Γ(Y, f ⁻¹ᵁ V)), x ∈ V ∧ (∀ y : Y, f y ∈ V → (y ∈ nonzeroLocus t ↔ y ∈ Y.basicOpen τ)) ∧
         ∀ (k : ℕ) (z : X), z ∈ V →
           (z ∈ nonzeroLocus (u k) ↔ z ∈ X.basicOpen (normCoeff (f.app V).hom (f.finite_app V hV) τ k)) := by
-  first | exact @GlobalTheory.NormalDescent.exists_sec_normCoeff_local | exact GlobalTheory.NormalDescent.exists_sec_normCoeff_local | (intros; apply GlobalTheory.NormalDescent.exists_sec_normCoeff_local <;> assumption)
+  first | exact @GlobalTheory.NormalDescent.exists_sec_normCoeff_local

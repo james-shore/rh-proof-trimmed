@@ -171,11 +171,7 @@ theorem esymm_inv_algSat {q : ℕ} (hq : q ≠ 0) {a : ℕ} {B : Multiset ℂˣ}
     ((UpperTheory.V.Af.algSat a q B).map (·⁻¹)).esymm j =
       (UpperTheory.V.Af.algSat a q B).esymm (a - j) * (((q : ℂ) ^ a.choose 2)⁻¹ * (satEig q a B a)⁻¹) := by
   first
-  | exact @_root_.GlobalTheory.ElementarySymmetricInverse.esymm_inv_algSat
-  | exact _root_.GlobalTheory.ElementarySymmetricInverse.esymm_inv_algSat
   | (apply _root_.GlobalTheory.ElementarySymmetricInverse.esymm_inv_algSat <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ElementarySymmetricInverse.esymm_inv_algSat <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ElementarySymmetricInverse.esymm_inv_algSat <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ElementarySymmetricInverse.esymm_inv_algSat ..)
 
 theorem sphOps : SphOps := by

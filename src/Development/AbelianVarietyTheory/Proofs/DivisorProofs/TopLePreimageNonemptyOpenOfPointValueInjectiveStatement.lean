@@ -59,4 +59,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.top_le_preimage_nonempty_open_of_pointValue_injective : ∀ (K : Type) [Field K] (P₀ : Out.PolAV (Sp K)), ∀ (F : Type) [Field F] (ψ : K →+* F) (ξ : Sp F ⟶ P₀.A.left), ξ ≫ P₀.A.hom = spMap ψ → (∀ O (f : Γ(P₀.A.left, O)), ⊤ ≤ ξ ⁻¹ᵁ O → valR ξ O f = 0 → f = 0) → ∀ O : P₀.A.left.Opens, (O : Set P₀.A.left).Nonempty → ⊤ ≤ ξ ⁻¹ᵁ O := by
-  first | exact @GlobalTheory.GenPtOpen.top_le_preimage_of_valR_injective | exact GlobalTheory.GenPtOpen.top_le_preimage_of_valR_injective | (intros; apply GlobalTheory.GenPtOpen.top_le_preimage_of_valR_injective <;> assumption)
+  first | exact @GlobalTheory.GenPtOpen.top_le_preimage_of_valR_injective

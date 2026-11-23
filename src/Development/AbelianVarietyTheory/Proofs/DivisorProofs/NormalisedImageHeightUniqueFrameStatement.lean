@@ -54,4 +54,4 @@ open GlobalTheory
 open Formalism.L2.Pj Formalism.NormVectorIdentities.Items
 
 theorem _root_.GlobalTheory.T.normalisedImageHeight_unique_frame : Quoted → ∀ (F : Type) [Field F] [NumberField F] (V Ω : Type) [AddCommGroup V] [Module F V] [Module (𝓞 F) V] [IsScalarTower (𝓞 F) F V] [Field Ω] [Algebra F Ω] (Nm : (F →+* ℂ) → V → ℝ) (W : Submodule (𝓞 F) V) (ev : V →ₗ[F] Ω) (D : ℕ) (h h' : ℝ), IsTotallyComplex F → CompHt.IsImageHeight Nm W ev D h → CompHt.IsImageHeight Nm W ev D h' → h = h' := by
-  first | exact @GlobalTheory.ImageHeightFrame.isImageHeight_unique | exact GlobalTheory.ImageHeightFrame.isImageHeight_unique | (intros; apply GlobalTheory.ImageHeightFrame.isImageHeight_unique <;> assumption)
+  first | exact @GlobalTheory.ImageHeightFrame.isImageHeight_unique

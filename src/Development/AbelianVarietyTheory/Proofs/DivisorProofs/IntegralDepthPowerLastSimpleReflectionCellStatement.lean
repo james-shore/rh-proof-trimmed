@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.integral_depth_power_lastSimpleReflectionCell : �
       Integrable (fun u : cellU y => (z / (q : ℂ) ^ 2) ^ depthU k (u : GU σ n)) μ ∧
       ∫ u : cellU y, (z / (q : ℂ) ^ 2) ^ depthU k (u : GU σ n) ∂μ = cSU q z ∧
       ∫⁻ u : cellU y, ‖(z / (q : ℂ) ^ 2) ^ depthU k (u : GU σ n)‖ₑ ∂μ = ‖cSU q ((‖z‖ : ℝ) : ℂ)‖ₑ := by
-  first | exact @GlobalTheory.WeylCell.WeylUnipotentShell.integral_depth_cell | exact GlobalTheory.WeylCell.WeylUnipotentShell.integral_depth_cell | (intros; apply GlobalTheory.WeylCell.WeylUnipotentShell.integral_depth_cell <;> assumption)
+  first | exact @GlobalTheory.WeylCell.WeylUnipotentShell.integral_depth_cell

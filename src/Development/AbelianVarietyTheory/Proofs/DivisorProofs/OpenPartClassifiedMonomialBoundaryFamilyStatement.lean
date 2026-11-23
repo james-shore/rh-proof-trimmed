@@ -47,4 +47,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.openPart_classified_monomialBoundaryFamily : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Geo.Tor.Level H} (Xo : Moduli Dw l) (c : Coeff l) (φ : InvFun (𝓞 E)), ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], GlobalTheory.Mum.Base R → ∀ C : MonoFam Xo c φ R, OpenCls C := by
-  first | exact @GlobalTheory.UCanon.OpenPart.openCls | exact GlobalTheory.UCanon.OpenPart.openCls | (intros; apply GlobalTheory.UCanon.OpenPart.openCls <;> assumption)
+  first | exact @GlobalTheory.UCanon.OpenPart.openCls

@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.exists_nonzero_thetaFun_oriented_model_cm : ∀ (F
     B.IsGood σ → ∀ (nS nT : ℕ) (JS : Matrix (Fin nS) (Fin nS) E) (JT : Matrix (Fin nT) (Fin nT) E),
       IsHermND σ JS → IsHermND σ JT → ∀ ξ₀ : E, ξ₀ ≠ 0 → σ ξ₀ = -ξ₀ →
       ∃ f₀ : Formalism.IndefR.DatumF.WOF F E nS nT → ℂ, Formalism.IndefR.DatumF.IsThetaFunOF σ JS JT ξ₀ B.ψ f₀ ∧ f₀ ≠ 0 := by
-  first | exact @GlobalTheory.ThetaNonzeroF.exists_isThetaFunOF_ne_zero | exact GlobalTheory.ThetaNonzeroF.exists_isThetaFunOF_ne_zero | (intros; apply GlobalTheory.ThetaNonzeroF.exists_isThetaFunOF_ne_zero <;> assumption)
+  first | exact @GlobalTheory.ThetaNonzeroF.exists_isThetaFunOF_ne_zero

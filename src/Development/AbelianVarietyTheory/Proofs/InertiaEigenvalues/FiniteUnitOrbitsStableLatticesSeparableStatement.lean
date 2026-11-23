@@ -50,4 +50,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.UnitLemma Polynomial
 
 theorem _root_.GlobalTheory.T.finite_unit_orbits_stable_lattices_separable : ∀ (O E A : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [Finite (IsLocalRing.ResidueField O)] [Field E] [Algebra O E] [IsFractionRing O E] [CommRing A] [Algebra O A] [Algebra E A] [IsScalarTower O E A] [Module.Finite E A] (g : A), (LinearMap.mulLeft E g).charpoly.Separable → Finite (MulAction.orbitRel.Quotient Aˣ (stLat O E g)) := by
-  first | exact @GlobalTheory.UnitLemma.finite_orbits_stLat_of_separable | exact GlobalTheory.UnitLemma.finite_orbits_stLat_of_separable | (intros; apply GlobalTheory.UnitLemma.finite_orbits_stLat_of_separable <;> assumption)
+  first | exact @GlobalTheory.UnitLemma.finite_orbits_stLat_of_separable

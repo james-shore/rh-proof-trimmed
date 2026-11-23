@@ -46,4 +46,4 @@ import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.GL3Theta Formalism.L2.Host GlobalTheory.KerJ NumberField Classical
 
 theorem _root_.GlobalTheory.T.rhoThreeOf_of_determinantCharacterFiniteOrderType : ∀ (D : D7) (u : D.what₂.Word) (C : ColumnChain D.R D.what₂.Tau (D.hcW u)) (mt : ℕ → D.Dt →* ℂˣ), MtType u mt → rhoThreeOf D C mt := by
-  first | exact @GlobalTheory.KerJ.RhoThree.rhoThreeOf_of_mtType | exact GlobalTheory.KerJ.RhoThree.rhoThreeOf_of_mtType | (intros; apply GlobalTheory.KerJ.RhoThree.rhoThreeOf_of_mtType <;> assumption)
+  first | exact @GlobalTheory.KerJ.RhoThree.rhoThreeOf_of_mtType

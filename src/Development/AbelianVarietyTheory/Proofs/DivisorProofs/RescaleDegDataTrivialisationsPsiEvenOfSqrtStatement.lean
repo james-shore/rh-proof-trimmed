@@ -46,4 +46,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.rescaleDegDataTrivialisations_psiEven_of_sqrt : ∀ (R : Type) [CommRing R] [IsDomain R] (D : DegPre R) (h eta : D.X → (FractionRing R)ˣ), EvenDefect D h → (∀ a b, eta (a + b) = eta a * eta b) → (∀ a, eta a ^ 2 = h a) → (rescale D eta).PsiEven := by
-  first | exact @GlobalTheory.PolDeg.rescale_psiEven | exact GlobalTheory.PolDeg.rescale_psiEven | (intros; apply GlobalTheory.PolDeg.rescale_psiEven <;> assumption)
+  first | exact @GlobalTheory.PolDeg.rescale_psiEven

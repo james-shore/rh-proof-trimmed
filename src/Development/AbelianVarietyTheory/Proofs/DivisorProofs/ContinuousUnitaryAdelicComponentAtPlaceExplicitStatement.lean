@@ -48,4 +48,4 @@ open Matrix NumberField IsDedekindDomain GlobalTheory.LKTrip GlobalTheory.LKMid 
 open scoped TensorProduct Classical
 
 theorem _root_.GlobalTheory.T.continuous_unitaryAdelicComponentAtPlace_explicit : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (v : AwayP p), Continuous (piV G v) := by
-  first | (exact @GlobalTheory.OrbFinAf.continuous_piV) | (exact GlobalTheory.OrbFinAf.continuous_piV) | (intros; apply GlobalTheory.OrbFinAf.continuous_piV  <;> assumption)
+  first | (exact @GlobalTheory.OrbFinAf.continuous_piV)

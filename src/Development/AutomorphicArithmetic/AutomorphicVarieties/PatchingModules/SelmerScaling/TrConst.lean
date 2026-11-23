@@ -106,7 +106,7 @@ theorem UpperTheory.V.Pa.trConst :
   haveI : IsScalarTower S.x.A S.F R := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
   obtain ⟨M, hMfin, -, -, hMj, -⟩ := trLat l S R e θ hT
   have htow : ∀ y : S.B, algebraMap S.B S.U.AA y = algebraMap S.Bh S.U.AA (algebraMap S.B S.Bh y) :=
-    fun y => by first | rfl | exact IsScalarTower.algebraMap_apply _ _ _ _
+    fun y => by first | exact IsScalarTower.algebraMap_apply _ _ _ _
   set ψ1 : S.B →+* R := θ.comp (algebraMap S.B S.U.AA) with hψ1
   set ψ2 : S.B →+* R :=
     (algebraMap S.F R).comp ((algebraMap S.x.A S.F).comp S.P.f.toRingHom) with hψ2

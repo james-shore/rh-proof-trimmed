@@ -43,4 +43,4 @@ open NumberField IsDedekindDomain WeierstrassCurve GlobalTheory GlobalTheory.Pub
 open scoped IntermediateField BigOperators Topology
 
 theorem _root_.GlobalTheory.T.stable_sum_elim_of_isKerReps_add_sub_sqrtNegNat : ∀ (p : ℕ) (F : IntermediateField ℚ ℂ) (L : PeriodPair) (a : ℤ) (S S' : Finset ℂ), L.g₂ ∈ F → L.g₃ ∈ F → MulStable L (sqrtNegNat p) → IsKerReps L (a + sqrtNegNat p) S → IsKerReps L (a - sqrtNegNat p) S' → Stable L F (Sum.elim (fun t : S => (t : ℂ)) (fun t : S' => (t : ℂ))) := by
-  first | exact @GlobalTheory.CMModel.stable_kerReps_add_sub | exact GlobalTheory.CMModel.stable_kerReps_add_sub | (intros; apply GlobalTheory.CMModel.stable_kerReps_add_sub <;> assumption)
+  first | exact @GlobalTheory.CMModel.stable_kerReps_add_sub

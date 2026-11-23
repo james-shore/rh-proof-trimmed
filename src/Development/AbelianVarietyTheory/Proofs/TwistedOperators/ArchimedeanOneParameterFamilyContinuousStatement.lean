@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.archimedeanOneParameterFamily_continuous : ∀ {F 
     (∀ (f : SInf F (Fin n × Fin d)) y, Continuous fun t => T t f y) ∧
     ∀ (μ : Measure (Fin n × Fin d → mixedEmbedding.mixedSpace F)), μ.IsAddHaarMeasure → ∀ f φ : SInf F (Fin n × Fin d),
       Continuous fun t => ∫ x, T t f x * starRingEnd ℂ (φ x) ∂μ := by
-  first | exact @GlobalTheory.ArchFamilyCont.continuous_family | exact GlobalTheory.ArchFamilyCont.continuous_family | (intros; apply GlobalTheory.ArchFamilyCont.continuous_family <;> assumption)
+  first | exact @GlobalTheory.ArchFamilyCont.continuous_family

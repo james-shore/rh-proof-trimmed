@@ -79,11 +79,11 @@ theorem tmC_inv_star {N q : ℕ} (ρ : Equiv.Perm (Fin q)) (w0 : InfinitePlace L
     ContinuousMultilinearMap.mkPiAlgebra_apply, LinearMap.coe_toContinuousLinearMap', star_sum, star_prod]
   refine Fintype.sum_equiv (Equiv.arrowCongr ρ (Equiv.refl _)) _ _ (fun b => ?_)
   refine Finset.prod_congr rfl (fun i _ => ?_)
-  simp only [ent, mat, Equiv.arrowCongr_apply, Equiv.coe_refl, Function.comp_id, Function.comp_apply,
+  simp only [ent, mat, Equiv.arrowCongr_apply, Equiv.coe_refl, Function.comp_apply,
     LinearMap.coe_mk, AddHom.coe_mk]
   have hh := ((Y i).2 w0).apply (b i) (b (ρ⁻¹ i))
   simp only [Matrix.of_apply] at hh ⊢
-  simp only [id, Equiv.symm_apply_apply, ← Equiv.Perm.inv_def]
+  simp only [id, ← Equiv.Perm.inv_def]
   have e : ρ⁻¹ (ρ i) = i := by simp
   rw [e]
   exact hh.symm

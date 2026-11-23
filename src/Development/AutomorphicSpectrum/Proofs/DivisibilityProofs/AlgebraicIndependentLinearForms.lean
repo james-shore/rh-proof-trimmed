@@ -156,7 +156,7 @@ theorem ker_eq_span_homogeneous {F E : Type} [Field F] [Field E] [Algebra F E]
         (IsHomogeneous.sum _ _ _ fun i _ => isHomogeneous_C_mul_X (c p i) (a i))
     · rw [hρX]
 
-      simp only [map_sub, aeval_X, map_sum, map_mul, algHom_C, algebraMap_eq]
+      simp only [map_sub, aeval_X, map_sum, map_mul, algHom_C]
       simpa [sub_eq_zero] using hxp p
   have hle : Ideal.span S ≤ RingHom.ker (aeval x : MvPolynomial P F →ₐ[F] E) := by
     rw [Ideal.span_le]

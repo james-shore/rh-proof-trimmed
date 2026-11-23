@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.glued_section_generic_value_nonvanishing : ∀ (S 
     (v : SecM G L 1 (Over.mk ξ)) (hN : ∀ k, N k ≤ V), (⨆ k, N k) = V →
     (∀ k i, resG _ (fun _ hx => ⟨hx.1, hN k hx.2⟩ : L.U i ⊓ G.hom ⁻¹ᵁ N k ≤ L.U i ⊓ G.hom ⁻¹ᵁ V) (s' i) = s k i) →
     (∀ k, GenIs ξ (s k) v) → (∀ k, FibNz (s k) (N k)) → (Nonempty κ → GenIs ξ s' v) ∧ FibNz s' V := by
-  first | exact @GlobalTheory.UMin.ThBdl.Glued.glued | exact GlobalTheory.UMin.ThBdl.Glued.glued | (intros; apply GlobalTheory.UMin.ThBdl.Glued.glued <;> assumption)
+  first | exact @GlobalTheory.UMin.ThBdl.Glued.glued

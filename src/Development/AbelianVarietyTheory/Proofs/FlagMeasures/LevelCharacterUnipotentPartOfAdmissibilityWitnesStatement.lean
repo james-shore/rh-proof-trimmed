@@ -48,4 +48,4 @@ open scoped Pointwise ENNReal Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.levelCharacter_unipotentPart_of_admissibilityWitness : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.what₂.Word), Formalism.MainNotions.S.Cnt.Stand D u u' → ∀ (t : TauC Y u u') (ξ : Matrix (Fin (D.R.rS + 1)) (Fin (D.R.rS + 1)) (𝓞 D.host.E)), AdmWit t.lam (gS D) (lf D (X.Fu u)) t.frame ξ → chiN X (kOf X u u' ((Y.cs u).h ((Y.cs u).base t.lam) : X.B.I.Gf) ((Y.cs u').h ((Y.cs u').base t.lam') : X.B.I.Gf) t.pt) = (Formalism.L2.SG.PairVal.psiInf (gS D) (Formalism.L2.SG.PairVal.sgUp (ξ.map (algebraMap (𝓞 D.host.E) D.host.E))))⁻¹ := by
-  first | exact @GlobalTheory.AdmWitChar.chiN_kOf_eq_inv_psiInf_sgUp | exact GlobalTheory.AdmWitChar.chiN_kOf_eq_inv_psiInf_sgUp | (intros; apply GlobalTheory.AdmWitChar.chiN_kOf_eq_inv_psiInf_sgUp <;> assumption)
+  first | exact @GlobalTheory.AdmWitChar.chiN_kOf_eq_inv_psiInf_sgUp

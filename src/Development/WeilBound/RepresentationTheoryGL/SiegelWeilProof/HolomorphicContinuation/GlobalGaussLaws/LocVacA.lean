@@ -155,7 +155,7 @@ theorem det_shift (c κ : ℝ) (b : Matrix (Fin n) (Fin n) ℂ) (hb : b.IsHermit
     by_cases h : i = j
     · subst h
       simp
-    · simp [one_apply, h]
+    · simp [h]
   have hD : (c : ℂ) • (1 : Matrix (Fin n) (Fin n) ℂ) - (Complex.I * κ) • b =
       Unitary.conjStarAlgAut ℂ _ hb.eigenvectorUnitary
         ((c : ℂ) • 1 - (Complex.I * κ) • diagonal (RCLike.ofReal ∘ hb.eigenvalues)) := by

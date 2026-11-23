@@ -57,11 +57,7 @@ theorem exists_orth_proj (B : W →ₗ⋆[ℂ] W →ₗ[ℂ] ℂ) (hdef : ∀ v,
     (M : Submodule ℂ W) [FiniteDimensional ℂ M] (v : W) :
     ∃ m ∈ M, ∀ z ∈ M, B z (v - m) = 0 := by
   first
-  | exact @_root_.GlobalTheory.OrthogonalProjection.exists_orth_proj
-  | exact _root_.GlobalTheory.OrthogonalProjection.exists_orth_proj
   | (apply _root_.GlobalTheory.OrthogonalProjection.exists_orth_proj <;> assumption)
-  | (intros; apply _root_.GlobalTheory.OrthogonalProjection.exists_orth_proj <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.OrthogonalProjection.exists_orth_proj <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.OrthogonalProjection.exists_orth_proj ..)
 
 theorem rho_inv_rho (ρ : Representation ℂ H W) (g : H) (u : W) : ρ g⁻¹ (ρ g u) = u := by
@@ -111,11 +107,11 @@ theorem exists_compl_proj (ρ : Representation ℂ H W) (B : W →ₗ⋆[ℂ] W 
     · intro o ho
       obtain ⟨k', rfl⟩ := hmem o ho
       simp only [s, Set.Finite.mem_toFinset, Set.mem_range]
-      exact ⟨⟨k, hk⟩ * k', by simp [map_mul, Module.End.mul_apply]⟩
+      exact ⟨⟨k, hk⟩ * k', by simp [map_mul]⟩
     · intro o ho
       obtain ⟨k', rfl⟩ := hmem o ho
       simp only [s, Set.Finite.mem_toFinset, Set.mem_range]
-      exact ⟨⟨k, hk⟩⁻¹ * k', by simp [map_mul, Module.End.mul_apply]⟩
+      exact ⟨⟨k, hk⟩⁻¹ * k', by simp [map_mul]⟩
     · intro o _; exact rho_inv_rho ρ k o
     · intro o _; exact rho_rho_inv ρ k o
     · intro o _; rfl

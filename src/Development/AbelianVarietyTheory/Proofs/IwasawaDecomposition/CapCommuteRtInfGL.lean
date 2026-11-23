@@ -59,11 +59,7 @@ theorem qdet_ad {n : ℕ} (E : Fin n → Fin n → A) (hE : GlRel E) (P Q : Matr
     (hQP : Q * P = 1) (u : ℂ) :
     qdet (fun a b => ∑ c, ∑ d, (P c a * Q b d) • E c d) u = qdet E u := by
   first
-  | exact @_root_.GlobalTheory.QuantumMinorAdjacentSwap.qdet_conj
-  | exact _root_.GlobalTheory.QuantumMinorAdjacentSwap.qdet_conj
   | (apply _root_.GlobalTheory.QuantumMinorAdjacentSwap.qdet_conj <;> assumption)
-  | (intros; apply _root_.GlobalTheory.QuantumMinorAdjacentSwap.qdet_conj <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.QuantumMinorAdjacentSwap.qdet_conj <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.QuantumMinorAdjacentSwap.qdet_conj ..)
 
 theorem qdet_semiconj {n : ℕ} (E E' : Fin n → Fin n → A) (R : A) (h : ∀ a b, R * E a b = E' a b * R) (u : ℂ) :

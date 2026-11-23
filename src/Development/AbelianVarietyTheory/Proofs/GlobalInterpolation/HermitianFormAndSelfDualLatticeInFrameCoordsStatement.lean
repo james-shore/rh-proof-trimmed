@@ -47,4 +47,4 @@ open NumberField MeasureTheory Matrix Topology Formalism.BasicNotions Formalism.
 open scoped ENNReal TensorProduct
 
 theorem _root_.GlobalTheory.T.hermitian_form_and_selfDual_lattice_in_frame_coords : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [StarRing E] [Algebra F E] (cm : CMData F E) (W : HSpace E), (∀ a b : W.V, hE cm.sig W.gram (fun i => W.frame.repr a i) (fun i => W.frame.repr b i) = W.hT a b) ∧ ∃ L : Submodule (𝓞 E) (Fin W.rank → E), IsSelfDualLat cm.sig W.gram L ∧ (L : Set (Fin W.rank → E)) = latC W := by
-  first | exact @GlobalTheory.FrameDict.dict | exact GlobalTheory.FrameDict.dict | (intros; apply GlobalTheory.FrameDict.dict <;> assumption)
+  first | exact @GlobalTheory.FrameDict.dict

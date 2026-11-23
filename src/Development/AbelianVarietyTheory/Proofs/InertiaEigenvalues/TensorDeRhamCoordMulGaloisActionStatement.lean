@@ -56,4 +56,4 @@ open GlobalTheory.HodgeAt
 
 
 theorem _root_.GlobalTheory.T.tensorDeRhamCoordMul_galois_action : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (K L : FinExt l) (σ : GQ l) (a : ℕ) (r : ↥(GK K) →* GL (Fin a) ↥L.1) (R : Representation ↥L.1 ↥(GK K) (Fin a → ↥L.1)), (∀ g v, R g v = (r g).val *ᵥ v) → ∀ g : ↥(GK K), (∀ y : ↥L.1, (g : GQ l) (σ (y : Om l)) = σ (y : Om l)) → ∀ x : (Fin a → ↥L.1) ⊗[ℚ_[l]] P.R.BdR, PhiS P σ L a (actVdR (P.PD K) R g x) = ((r g).val.map fun y => algebraMap (Om l) P.R.BdR (σ (y : Om l))) *ᵥ fun i => P.actQdR (g : GQ l) (PhiS P σ L a x i) := by
-  first | exact @GlobalTheory.HodgeAt.PhiS_act | exact GlobalTheory.HodgeAt.PhiS_act | (intros; apply GlobalTheory.HodgeAt.PhiS_act <;> assumption)
+  first | exact @GlobalTheory.HodgeAt.PhiS_act

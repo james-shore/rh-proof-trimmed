@@ -46,4 +46,4 @@ open Classical NumberField IsDedekindDomain Formalism.L2.FormalSeriesBounds Form
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 theorem _root_.GlobalTheory.T.formalGroupCocycle_lthPower_coboundary_mod_maximal : ∀ (C : Type) [Field C] (V : VF C) (d : ℕ) [NeZero d] (I : Fin 2 → Type) [∀ g, Fintype (I g)] (κ : Type) [Fintype κ] (X : RawChart C d I κ), RLaw X V → ∀ γ : κ → PowerSeries C, IsCv V γ → (∀ i n, 2 ≤ n → n < V.l ^ 2 → PowerSeries.coeff n (alongCv γ (X.lg i)) = 0) → IntS V (c2 X fun i => PowerSeries.coeff 1 (γ i)) ∧ ∀ μ, V.MM (MvPowerSeries.coeff μ ((c2 X fun i => PowerSeries.coeff 1 (γ i)) ^ V.l + cob X ((V.l : C) • hCoef X γ V.l))) := by
-  first | exact @GlobalTheory.CocyclePow.cocycle_pow_coboundary | exact GlobalTheory.CocyclePow.cocycle_pow_coboundary | (intros; apply GlobalTheory.CocyclePow.cocycle_pow_coboundary <;> assumption)
+  first | exact @GlobalTheory.CocyclePow.cocycle_pow_coboundary

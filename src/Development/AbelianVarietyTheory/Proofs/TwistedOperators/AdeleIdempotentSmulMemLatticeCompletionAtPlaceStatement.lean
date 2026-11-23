@@ -58,4 +58,4 @@ open GlobalTheory.AscFin
 
 
 theorem _root_.GlobalTheory.T.adeleIdempotent_smul_mem_latticeCompletionAtPlace : ∀ (D : D7) (S : HSp D) (𝔞 : Set D.host.E) (L : GlobalTheory.FinPl.Lat S) (v : GlobalTheory.FinPl.Pl D) (z : Fin S.rank → AE D), z ∈ GlobalTheory.FinPl.latMul S 𝔞 L (fun _ => True) → GlobalTheory.FinPlLoc.idem D (· = v) • z ∈ GlobalTheory.FinPl.latMul S 𝔞 L (· = v) := by
-  first | exact @GlobalTheory.FinPlLoc.idem_smul_mem_latMul_at | exact GlobalTheory.FinPlLoc.idem_smul_mem_latMul_at | (intros; apply GlobalTheory.FinPlLoc.idem_smul_mem_latMul_at <;> assumption)
+  first | exact @GlobalTheory.FinPlLoc.idem_smul_mem_latMul_at

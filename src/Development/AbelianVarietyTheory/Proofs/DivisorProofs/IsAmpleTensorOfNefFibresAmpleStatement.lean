@@ -50,4 +50,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSNef
 
 theorem _root_.GlobalTheory.T.isAmple_tensor_of_nef_fibres_ample : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ), IsArithVar p D → ∀ L A : HermLB p, NefFib L → IsAmpleLB A.B → IsAmpleLB (L.tens A).B := by
-  first | exact @GlobalTheory.AmpleNefFibZ.isAmpleLB_tens_of_nefFib | exact GlobalTheory.AmpleNefFibZ.isAmpleLB_tens_of_nefFib | (intros; apply GlobalTheory.AmpleNefFibZ.isAmpleLB_tens_of_nefFib <;> assumption)
+  first | exact @GlobalTheory.AmpleNefFibZ.isAmpleLB_tens_of_nefFib

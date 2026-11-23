@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc TensorProduct GlobalTheory.NL Formalism.MainNotions.DeltaInvariantLattices
 
 theorem _root_.GlobalTheory.T.wachLattice_laterClauses_hold : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (Cm : CmpOf D.loc D.locA HW F), DeltaInvariantNormBound D HW F Cm := by
-  first | exact @GlobalTheory.NL.wach_used_clauses | exact GlobalTheory.NL.wach_used_clauses | (intros; apply GlobalTheory.NL.wach_used_clauses <;> assumption)
+  first | exact @GlobalTheory.NL.wach_used_clauses

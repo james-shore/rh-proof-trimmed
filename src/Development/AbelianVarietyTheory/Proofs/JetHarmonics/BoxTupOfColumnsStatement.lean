@@ -52,4 +52,4 @@ open Formalism.MainNotions.ModuliIntegralCharts.H1.BoxTuple Formalism.MainNotion
 open ReciprocityTheory.ChartRestriction.G.TB (colM dAct)
 
 theorem _root_.GlobalTheory.T.boxTupSt_of_laws_of_twistBaseChange : Laws → Laws2 → Laws4 → TwistBaseChangeStatement → BoxTupSt := by
-  first | exact @GlobalTheory.boxTup_of_columns | exact GlobalTheory.boxTup_of_columns | (intros; apply GlobalTheory.boxTup_of_columns <;> assumption)
+  first | exact @GlobalTheory.boxTup_of_columns

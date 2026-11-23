@@ -89,7 +89,7 @@ theorem exists_cbData : ∀ (K : Type) [Field K] [NumberField K] [StarRing K] [_
     have hm : LinearMap.toMatrix (Pi.basisFun K (Fin (c j.castSucc))) (Pi.basisFun K (Fin (c j.succ)))
         (Matrix.mulVecLin (Kj j)) = Kj j := by
       ext a b
-      simp [LinearMap.toMatrix_apply]
+      simp
     have e : Formalism.HN.opNormAt (Pi.basisFun K (Fin (c j.castSucc))) (Xc j.castSucc)
         (Pi.basisFun K (Fin (c j.succ))) (Xc j.succ) v (Matrix.mulVecLin (Kj j)) =
         ‖LinearMap.toContinuousLinearMap (Matrix.toEuclideanLin ((Xc j.succ v)⁻¹ *

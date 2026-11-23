@@ -172,7 +172,6 @@ theorem kType_of_hcTypeU {k : ℕ} {u : Fin k → ℝ} {H : Type} [NormedAddComm
     rw [← hσ] at this
     first
     | (rwa [toMK_torepK (fun _ : Fin k => true) hg] at this)
-    | (convert this using 2; exact (toMK_torepK (fun _ : Fin k => true) hg).symm)
   case nrm =>
     rw [norm_smul, Complex.norm_real, Real.norm_eq_abs, abs_inv, abs_norm]
     exact inv_mul_cancel₀ (norm_ne_zero_iff.mpr hv0)
@@ -185,7 +184,6 @@ theorem kType_of_hcTypeU {k : ℕ} {u : Fin k → ℝ} {H : Type} [NormedAddComm
     rw [map_smul, hhw a b hab, smul_zero]
   intro g x
   first
-  | (simp only [LinearIsometryEquiv.refl_apply, KType.op, hσ])
   | (show π (toMK g) x = ((fhTau π hU g : unitary (H →L[ℂ] H)) : H →L[ℂ] H) x; rw [hσ])
 
 end ReciprocityTheory.ChartRestriction.DS.HW

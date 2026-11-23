@@ -52,4 +52,4 @@ open Formalism.MainNotions.ModuliIntegralCharts.H1.BoxTuple Formalism.MainNotion
 open ReciprocityTheory.ChartRestriction.G.TB (colM dAct)
 
 theorem _root_.GlobalTheory.T.chartFromPointDatum_of_laws : Laws → Laws2 → Laws4 → TwistBaseChangeStatement → LinkSt := by
-  first | exact @GlobalTheory.ChartLink.link | exact GlobalTheory.ChartLink.link | (intros; apply GlobalTheory.ChartLink.link <;> assumption)
+  first | exact @GlobalTheory.ChartLink.link

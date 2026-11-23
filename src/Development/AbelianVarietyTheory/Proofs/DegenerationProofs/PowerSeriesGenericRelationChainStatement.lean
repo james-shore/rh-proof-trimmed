@@ -59,4 +59,4 @@ open GlobalTheory.SS
 open GlobalTheory.SS.ArcInf
 
 theorem _root_.GlobalTheory.T.relation_of_gen_of_order_eq : ∀ (k : Type) [Field k] [Infinite k] (ρ : PowerSeries k → PowerSeries k → Prop) (Gen : ℕ → ℕ → Prop), (∀ z w, ρ z w → ρ w z) → (∀ x y z, ρ x y → ρ y z → ρ x z) → (∀ m n, Gen m n → ∀ z : PowerSeries k, z.order = (m : ℕ∞) → ∃ S : Set k, S.Finite ∧ ∀ t, t ∉ S → ρ z (PowerSeries.C t * PowerSeries.X ^ n)) → (∀ m n, Gen m n → ∀ z w : PowerSeries k, z.order = (m : ℕ∞) → w.order = (m : ℕ∞) → ρ z w) ∧ ∀ m₀, (∀ m, m₀ ≤ m → Gen m (m + 1)) → ∀ (m n : ℕ) (z w : PowerSeries k), m₀ ≤ m → m₀ ≤ n → z.order = (m : ℕ∞) → w.order = (n : ℕ∞) → ρ z w := by
-  first | exact @GlobalTheory.powerSeries_generic_relation_chain | exact GlobalTheory.powerSeries_generic_relation_chain | (intros; apply GlobalTheory.powerSeries_generic_relation_chain <;> assumption)
+  first | exact @GlobalTheory.powerSeries_generic_relation_chain

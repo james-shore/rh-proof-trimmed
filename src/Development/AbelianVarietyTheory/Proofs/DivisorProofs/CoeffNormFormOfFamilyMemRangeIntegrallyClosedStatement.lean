@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.coeff_normFormOfFamily_mem_range_integrallyClosed 
     [IsFractionRing A K] [Algebra K L] [FiniteDimensional K L] [Algebra A L] [IsScalarTower A K L] {m : ℕ}
     (x : Fin m → L), (∀ i, IsIntegral A (x i)) →
     ∀ s, (GlobalTheory.NormSheaf.normForm K L x).coeff s ∈ (algebraMap A K).range := by
-  first | exact @GlobalTheory.NormSheaf.IntegralCoeff.coeff_normForm_mem_range | exact GlobalTheory.NormSheaf.IntegralCoeff.coeff_normForm_mem_range | (intros; apply GlobalTheory.NormSheaf.IntegralCoeff.coeff_normForm_mem_range <;> assumption)
+  first | exact @GlobalTheory.NormSheaf.IntegralCoeff.coeff_normForm_mem_range

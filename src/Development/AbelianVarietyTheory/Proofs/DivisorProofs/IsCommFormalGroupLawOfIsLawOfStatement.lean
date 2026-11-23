@@ -46,4 +46,4 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
 
 theorem _root_.GlobalTheory.T.isCommFormalGroupLaw_of_isLawOf : ∀ (p : ℕ) (k : Type) [CommRing k] (d : ℕ) (G : PDivGroup p k) (c : Chart G d), ∀ (μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) k), c.IsLawOf μ → IsLaw μ := by
-  first | exact @GlobalTheory.Katz.Chart.isLaw_of_isLawOf | exact GlobalTheory.Katz.Chart.isLaw_of_isLawOf | (intros; apply GlobalTheory.Katz.Chart.isLaw_of_isLawOf <;> assumption)
+  first | exact @GlobalTheory.Katz.Chart.isLaw_of_isLawOf

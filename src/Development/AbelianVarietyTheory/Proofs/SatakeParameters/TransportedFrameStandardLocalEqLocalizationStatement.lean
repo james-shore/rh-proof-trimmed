@@ -45,4 +45,4 @@ open NumberField IsDedekindDomain Matrix Formalism.BasicNotions Formalism.UG For
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.transportedFrame_standardLocal_eq_localization : ∀ {D : D7} {X : Fields} (s : Seam D X) {n : ℕ} (P : HeightOneSpectrum (𝓞 X.E)) (g : Sp X.E n ≃ₗ[X.E] Sp X.E n) (N : Submodule (𝓞 X.E) (Sp X.E n)), (∀ x, g x ∈ Formalism.HermitianLatticesTheory.localization₂ P.asIdeal N ↔ x ∈ stdAt X.E n P) → mvL (seamGL s g) (stdAt D.host.E n (seamP s P)) = Formalism.HermitianLatticesTheory.localization₂ (seamP s P).asIdeal (s.lat N) := by
-  first | exact @GlobalTheory.FrameLat.seamGL_stdAt | exact GlobalTheory.FrameLat.seamGL_stdAt | (intros; apply GlobalTheory.FrameLat.seamGL_stdAt <;> assumption)
+  first | exact @GlobalTheory.FrameLat.seamGL_stdAt

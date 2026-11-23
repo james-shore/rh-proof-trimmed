@@ -43,4 +43,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.chartsReadingStep_moveBasePoints_one_offLevelPrime : GlobalTheory.TwU.AtTrue.ReadsMove := by
-  first | exact @GlobalTheory.TwU.AtTrue.readsMove_holds | exact GlobalTheory.TwU.AtTrue.readsMove_holds | (intros; apply GlobalTheory.TwU.AtTrue.readsMove_holds <;> assumption)
+  first | exact @GlobalTheory.TwU.AtTrue.readsMove_holds

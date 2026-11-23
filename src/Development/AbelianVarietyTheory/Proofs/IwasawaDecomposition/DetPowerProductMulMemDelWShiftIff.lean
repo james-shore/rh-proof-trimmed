@@ -100,7 +100,6 @@ theorem rowGen_fullMinor (R : Type) [CommRing R] {m : ℕ} (a b : Fin m) (hab : 
     by_cases hp : p = b
     · subst hp
       simp [hMdef, Matrix.updateRow_apply, rowGen, Fin.castLE_refl]
-      try ring
     · simp [hMdef, Matrix.updateRow_apply, rowGen, Fin.castLE_refl, hp]
   rw [hM, Matrix.det_updateRow_add_smul_self _ (Ne.symm hab)]
 

@@ -73,11 +73,7 @@ theorem isItW_of_globIt {M : DSModel V S} {M' : DSModel W S'} {θ : InfFam D} (h
     (hC : ∀ τ, CompactFock ψ θ M M' ω f τ (aS τ) (aT τ)) (hL : ∀ τ, LieFock ψ θ M M' ω f τ (aS τ) (aT τ)) :
     IsItW θ M M' ω (ptOf ψ θ M M' f) It := by
   first
-  | exact @_root_.GlobalTheory.SourceOperatorLemmas.isItW_of_globIt
-  | exact _root_.GlobalTheory.SourceOperatorLemmas.isItW_of_globIt
   | (apply _root_.GlobalTheory.SourceOperatorLemmas.isItW_of_globIt <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SourceOperatorLemmas.isItW_of_globIt <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SourceOperatorLemmas.isItW_of_globIt <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SourceOperatorLemmas.isItW_of_globIt ..)
 
 theorem exists_locIt {X : ProvA} (hX : ChosenSeries X) (h1 : Formalism.MainNotions.SchurIrreducible.ArchimedeanRallisFirst X) (h2 : Formalism.MainNotions.SchurIrreducible.ArchimedeanRallisSecond X)

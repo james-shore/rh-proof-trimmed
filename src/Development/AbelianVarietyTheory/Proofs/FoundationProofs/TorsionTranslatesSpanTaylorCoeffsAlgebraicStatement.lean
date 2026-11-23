@@ -46,4 +46,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.torsionTranslatesSpan_taylorCoeffs_algebraic : ∀ (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ), Crv D cc δ → ∀ (N N' r : ℕ) (b : Fin r → Matrix (Fin N') (Fin N) D.host.E), OnB D b → ∀ F ∈ Tr D (tor0 D cc δ) b, Differentiable ℂ F ∧ CoefIn D F Qbar := by
-  first | exact @GlobalTheory.ThetaConj.translates_coef_algebraic | exact GlobalTheory.ThetaConj.translates_coef_algebraic | (intros; apply GlobalTheory.ThetaConj.translates_coef_algebraic <;> assumption)
+  first | exact @GlobalTheory.ThetaConj.translates_coef_algebraic

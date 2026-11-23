@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.exists_inverse_integral_matrices_preserving_double
       (M *ᵥ z) ∘ Sum.inl ∈ Λ ∧ (M *ᵥ z) ∘ Sum.inr ∈ Λ ∧ (M' *ᵥ z) ∘ Sum.inl ∈ Λ ∧ (M' *ᵥ z) ∘ Sum.inr ∈ Λ) →
     ∃ G G' : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) O, G * G' = 1 ∧
       M * Matrix.fromBlocks P 0 0 P = Matrix.fromBlocks P 0 0 P * G.map ι := by
-  first | exact @GlobalTheory.LatticeStab.matrix_in_diag_basis | exact GlobalTheory.LatticeStab.matrix_in_diag_basis | (intros; apply GlobalTheory.LatticeStab.matrix_in_diag_basis <;> assumption)
+  first | exact @GlobalTheory.LatticeStab.matrix_in_diag_basis

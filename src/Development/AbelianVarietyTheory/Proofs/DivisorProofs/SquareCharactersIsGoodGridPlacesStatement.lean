@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.squareCharacters_isGood_gridPlaces : ∀ {D : D7} 
       ∀ B : Base D.host.F D.host.E, S₀ ∪ Q ⊆ B.P → B.v₁ ∉ S₀ ∪ Q → SplitsFully D.host.E B.v₁ →
         HasExp B.emb (alpha G t i j) B.mα → HasExp B.emb (beta G i j) B.mβ →
         Chars.IsGood B ⟨alpha G t i j, beta G i j, S₀, Q⟩ (spW G i j).rank (spW₁ G i j).rank := by
-  first | exact @GlobalTheory.FunObj.squareChars_isGood | exact GlobalTheory.FunObj.squareChars_isGood | (intros; apply GlobalTheory.FunObj.squareChars_isGood <;> assumption)
+  first | exact @GlobalTheory.FunObj.squareChars_isGood

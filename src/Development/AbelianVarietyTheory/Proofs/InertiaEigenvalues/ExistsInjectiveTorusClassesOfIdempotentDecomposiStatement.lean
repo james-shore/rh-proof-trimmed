@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open GlobalTheory.UnitLemma GlobalTheory.UnitLemma.Desc Polynomial
 
 theorem _root_.GlobalTheory.T.exists_injective_torus_classes_of_idempotent_decomposition : ∀ (K : UQ) (B : InvAlg K) (ι : Type) [Fintype ι] (e : ι → B.A) (S : Finset ι) (a : K.O), K.Small a → IsPre B e S → ∀ k : ℕ, ∃ f : ({i // i ∉ S} → Fin (k + 1)) → B.T ⧸ (intUnits K.O B.A).subgroupOf B.T, Function.Injective f ∧ ∀ n, IsIntegral K.O ((((Quotient.out (f n) : B.T) : B.Aˣ)⁻¹ : B.Aˣ) * algebraMap K.O B.A a ^ k : B.A) := by
-  first | exact @GlobalTheory.UnitLemma.TorusPts.torus_points | exact GlobalTheory.UnitLemma.TorusPts.torus_points | (intros; apply GlobalTheory.UnitLemma.TorusPts.torus_points <;> assumption)
+  first | exact @GlobalTheory.UnitLemma.TorusPts.torus_points

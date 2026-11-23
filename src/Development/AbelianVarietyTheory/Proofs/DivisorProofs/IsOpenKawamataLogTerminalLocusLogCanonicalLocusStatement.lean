@@ -50,4 +50,4 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.CechPic GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.LogPair
 
 theorem _root_.GlobalTheory.T.isOpen_kawamataLogTerminalLocus_logCanonicalLocus : GlobalTheory.Published.Principalisation → ∀ (k : Type) [Field k] [CharZero k] (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoetherian X] [GlobalTheory.IsNormalScheme X] (p : X ⟶ Sp k) (n : ℕ), IsProjOver p → topologicalKrullDim X = n → ∀ (Δ : X → ℚ) (m : ℕ) (G : CartierDiv X), 0 < m → IsLogCanonicalMultiple p n Δ m G → IsOpen {x : X | KltAt p n Δ x} ∧ IsOpen {x : X | LcAt p n Δ x} := by
-  first | exact @GlobalTheory.Discrepancy.isOpen_kltLocus_lcLocus | exact GlobalTheory.Discrepancy.isOpen_kltLocus_lcLocus | (intros; apply GlobalTheory.Discrepancy.isOpen_kltLocus_lcLocus <;> assumption)
+  first | exact @GlobalTheory.Discrepancy.isOpen_kltLocus_lcLocus

@@ -79,7 +79,6 @@ theorem exists_eq_ell_mul {F : Type} [Field F] [NumberField F] (ℓ : ℕ) [Fact
   have hZ' : algebraMap (𝓞 F) F Z = (X : F) / ℓ := hZ
   have hc : (ℓ : F) * ((X : F) / ℓ) = X := by field_simp
   rw [map_mul, hZ', map_natCast, hc]
-  try rfl
 
 theorem exists_int_approx (ℓ : ℕ) [Fact ℓ.Prime] (c : ℚ_[ℓ]) (hc : ‖c‖ ≤ 1) :
     ∃ m : ℤ, ‖(c - m) / ℓ‖ ≤ 1 := by

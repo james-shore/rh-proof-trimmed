@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.unitaryWeylCellShell_isOpenCompactSubgroup : ∀ (
       (∀ u v : cellU y, u ∈ shellU k y j → v ∈ shellU k y j → u * v ∈ shellU k y j) ∧
       (∀ u : cellU y, u ∈ shellU k y j → u⁻¹ ∈ shellU k y j)) ∧
     shellU k y 0 = (((KU σ n).subgroupOf (cellU y) : Subgroup (cellU y)) : Set (cellU y)) := by
-  first | exact @GlobalTheory.WeylCell.WeylUnipotentShell.shellU_open_compact_subgroup | exact GlobalTheory.WeylCell.WeylUnipotentShell.shellU_open_compact_subgroup | (intros; apply GlobalTheory.WeylCell.WeylUnipotentShell.shellU_open_compact_subgroup <;> assumption)
+  first | exact @GlobalTheory.WeylCell.WeylUnipotentShell.shellU_open_compact_subgroup

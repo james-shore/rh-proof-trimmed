@@ -60,7 +60,6 @@ theorem initMinor_perm {R : Type*} [CommRing R] {r m s : ℕ} (I : Fin s → Fin
   unfold initMinor
   first
   | (rw [zsmul_eq_mul, ← Matrix.det_permute]; rfl)
-  | (rw [← Units.smul_def, ← Matrix.det_permute]; rfl)
 
 theorem initMinor_not_inj {R : Type*} [CommRing R] {r m s : ℕ} (I : Fin s → Fin r) (hs : s ≤ m)
     (hI : ¬ Function.Injective I) : initMinor R (n := m) I hs = 0 := by
@@ -94,9 +93,6 @@ theorem liftRows_perm {n N : ℕ} (h : n + 1 = N) {m : ℕ} (ρ : Fin m → Fin 
     rw [Function.comp_apply]
     first
     | rw [Equiv.Perm.viaFintypeEmbedding_apply_notMem_range _ _ hnot]
-    | rw [Equiv.Perm.viaFintypeEmbedding_apply_not_mem_range _ _ hnot]
-    | rw [Equiv.Perm.viaFintypeEmbedding_apply_notMem_range hnot]
-    | rw [Equiv.Perm.viaFintypeEmbedding_apply_not_mem_range hnot]
     simp [liftRows]
   | cast i =>
     rw [Function.comp_apply]
@@ -253,14 +249,13 @@ theorem count_succ {n K : ℕ} (sz : Fin K → ℕ) (hsz : ∀ k, sz k ≤ n) (s
     (Finset.univ.filter fun k => sz k = s.1 + 1).card = shapeDeg sz s - nuNext (shapeDeg sz) s := by
   unfold nuNext shapeDeg
   split_ifs with h
-  · try simp only [Fin.val_mk]
+  · try simp only
     have hsub : (Finset.univ.filter fun k : Fin K => s.1 + 1 < sz k) ⊆ Finset.univ.filter fun k : Fin K => s.1 < sz k := by
       intro k hk
       simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hk ⊢
       omega
     first
     | rw [← Finset.card_sdiff_of_subset hsub]
-    | rw [← Finset.card_sdiff hsub]
     apply congrArg Finset.card
     ext k
     simp only [Finset.mem_filter, Finset.mem_univ, true_and, Finset.mem_sdiff]
@@ -362,7 +357,6 @@ private theorem card_filter_not_mem_sz_eq_succ {n N : ℕ} (h : n + 1 = N) (lam 
       (Finset.univ.filter fun k : Fin K => sz k = s.1 + 1).card := by
     rw [← e1, ← e2]
     first
-    | exact Finset.filter_card_add_filter_neg_card_eq_card _
     | exact Finset.card_filter_add_card_filter_not _
   have hc := count_succ sz hsz s
   rw [hsh] at hc

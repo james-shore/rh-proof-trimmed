@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_unramified_uniformisation_polarisedTriple :
     ∃ (V' : Type) (_ : CommRing V') (_ : IsDomain V') (_ : IsLocalRing V') (f : V →+* V'),
       CDvr V' ∧ Function.Injective f ∧ IsLocalHom f ∧ Irreducible (f ϖ) ∧
       ∃ (t' : SAB H (Sp V')) (_ : SABMap t' t (spMap f)), Nonempty (PELUnif (maximalIdeal V') t') := by
-  first | exact @GlobalTheory.TorRef.exists_unif_unram | exact GlobalTheory.TorRef.exists_unif_unram | (intros; apply GlobalTheory.TorRef.exists_unif_unram <;> assumption)
+  first | exact @GlobalTheory.TorRef.exists_unif_unram

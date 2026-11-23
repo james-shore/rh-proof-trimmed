@@ -48,4 +48,4 @@ theorem _root_.GlobalTheory.T.inertPoint_mem_tensorLattice_iff_integral_coords :
     IsFrameAt w X.L A → IsFrameAt w Y.L Bm → ∀ x,
       (∀ i j, x i j ∈ Formalism.UG.intL (w.adicCompletion E)) ↔
         kap hw h (A : Matrix (Fin n) (Fin n) (w.adicCompletion E)) (Bm : Matrix (Fin d) (Fin d) (w.adicCompletion E)) x ∈ latAtV X Y v := by
-  first | exact @GlobalTheory.InertLat.kap_mem_latAtV_iff | exact GlobalTheory.InertLat.kap_mem_latAtV_iff | (intros; apply GlobalTheory.InertLat.kap_mem_latAtV_iff <;> assumption)
+  first | exact @GlobalTheory.InertLat.kap_mem_latAtV_iff

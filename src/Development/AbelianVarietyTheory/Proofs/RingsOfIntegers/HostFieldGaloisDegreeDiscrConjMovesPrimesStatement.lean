@@ -51,4 +51,4 @@ open GlobalTheory.PlaceInt
 open Formalism.BasicNotions Formalism.MainNotions IsDedekindDomain
 
 theorem _root_.GlobalTheory.T.hostField_galois_degree_discr_conj_moves_primes : ∀ (D : D7) (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host D.host.E), IsGalois ℚ D.host.E ∧ Module.finrank ℚ D.host.E = 4 * D.R.ord ∧ (∀ p : ℕ, p.Prime → (p : ℤ) ∣ NumberField.discr D.host.E → p ∣ D.host.condN) ∧ ∀ p ∈ D.host.condN.primeFactors, p.Prime ∧ ∀ 𝔭 : Ideal (𝓞 D.host.E), 𝔭.IsPrime → (p : 𝓞 D.host.E) ∈ 𝔭 → ∃ x ∈ 𝔭, H.bar x ∉ 𝔭 := by
-  first | exact @GlobalTheory.PlaceInt.host_galois_discr_moves | exact GlobalTheory.PlaceInt.host_galois_discr_moves | (intros; apply GlobalTheory.PlaceInt.host_galois_discr_moves <;> assumption)
+  first | exact @GlobalTheory.PlaceInt.host_galois_discr_moves

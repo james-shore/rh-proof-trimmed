@@ -60,4 +60,4 @@ open GlobalTheory.Published GlobalTheory.ContraPair
 open GlobalTheory.CuspRep.InfType GlobalTheory.CuspRep.AlgExpo
 
 theorem _root_.GlobalTheory.T.ideleMapOfAlgebra_maximalRealSubfield_injective : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Function.Injective (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryHeckeCharacterIdele.ideleMap (maximalRealSubfield E) E) := by
-  first | exact @GlobalTheory.IdeleMapInjective.ideleMap_injective | exact GlobalTheory.IdeleMapInjective.ideleMap_injective | (intros; apply GlobalTheory.IdeleMapInjective.ideleMap_injective <;> assumption)
+  first | exact @GlobalTheory.IdeleMapInjective.ideleMap_injective

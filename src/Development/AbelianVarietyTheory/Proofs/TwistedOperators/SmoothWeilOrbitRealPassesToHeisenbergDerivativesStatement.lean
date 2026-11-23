@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.smooth_weilOrbit_real_passes_to_heisenbergDerivati
           (∃ f' ∈ M.Pol ψ τ, ∀ x, HasDerivAt (fun t => T t f x) (f' x) 0) →
           ∀ f₁ : SInf F (Fin n × Fin d), ActsD (evI F) (M.heisLine ψ u) f f₁ →
             ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (fun p : ℝ × (Fin n × Fin d → mixedEmbedding.mixedSpace F) => T p.1 f₁ p.2) ∧ ∃ f₁' ∈ M.Pol ψ τ, ∀ x, HasDerivAt (fun t => T t f₁ x) (f₁' x) 0 := by
-  first | exact @GlobalTheory.HeisOrbitReal.orbit_heis_real | exact GlobalTheory.HeisOrbitReal.orbit_heis_real | (intros; apply GlobalTheory.HeisOrbitReal.orbit_heis_real <;> assumption)
+  first | exact @GlobalTheory.HeisOrbitReal.orbit_heis_real

@@ -82,8 +82,7 @@ theorem eval_eq_sum_coeff_mul_monomial {g : ℕ} (p : MvPolynomial (Fin g) ℂ) 
     MvPolynomial.eval (fun i => z i) p = ∑ α ∈ p.support, AddMonoidAlgebra.coeff p α * monomialOfMultiindex α z := by
   first
   | (simp [MvPolynomial.eval_eq', monomialOfMultiindex]; done)
-  | (simp [MvPolynomial.eval_eq, monomialOfMultiindex, Finsupp.prod]; done)
-  | (rw [MvPolynomial.eval_eq']; unfold monomialOfMultiindex; done)
+  | (simp [MvPolynomial.eval_eq, monomialOfMultiindex]; done)
 
 theorem norm_eval_sq_le {g : ℕ} (p : MvPolynomial (Fin g) ℂ) (z : EuclideanSpace ℂ (Fin g)) :
     ‖MvPolynomial.eval (fun i => z i) p‖ ^ 2 ≤ fa1N p * fa1K p z := by
@@ -97,7 +96,6 @@ theorem norm_eval_sq_le {g : ℕ} (p : MvPolynomial (Fin g) ℂ) (z : EuclideanS
     rw [norm_mul]
     first
     | (field_simp; done)
-    | (field_simp; ring)
   have h2 := Finset.sum_mul_sq_le_sq_mul_sq p.support
     (fun α => ‖AddMonoidAlgebra.coeff p α‖ * Real.sqrt (fa1M α)) (fun α => ‖monomialOfMultiindex α z‖ / Real.sqrt (fa1M α))
   have h3 : ∀ α, (‖AddMonoidAlgebra.coeff p α‖ * Real.sqrt (fa1M α)) ^ 2 = ‖AddMonoidAlgebra.coeff p α‖ ^ 2 * fa1M α :=

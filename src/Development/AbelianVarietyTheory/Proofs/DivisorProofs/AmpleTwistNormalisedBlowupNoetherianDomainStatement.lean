@@ -53,4 +53,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.SiegelTor
 
 theorem _root_.GlobalTheory.T.ample_twist_normalisedBlowup_noetherian_domain : ∀ (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] (X X' N : Scheme.{0}) (s : X ⟶ Sp R) (J : X.IdealSheafData) (b : X' ⟶ X) (ν : N ⟶ X') (EX : EffCartierData N), IsProjOver s → FinalTheorems.Blowup b J → IsFinite ν → EX.idealSheaf = J.comap (ν ≫ b) → ∀ L : LB X, IsAmpleLB L → ∃ T₀ : ℕ, ∀ T, T₀ ≤ T → IsAmpleLB (CechPic.tens (lbPow (L.pull (ν ≫ b)) T) (CechPic.dual EX.lb)) := by
-  first | exact @GlobalTheory.BlowAmpleNoeth.ample_twist_of_blowup | exact GlobalTheory.BlowAmpleNoeth.ample_twist_of_blowup | (intros; apply GlobalTheory.BlowAmpleNoeth.ample_twist_of_blowup <;> assumption)
+  first | exact @GlobalTheory.BlowAmpleNoeth.ample_twist_of_blowup

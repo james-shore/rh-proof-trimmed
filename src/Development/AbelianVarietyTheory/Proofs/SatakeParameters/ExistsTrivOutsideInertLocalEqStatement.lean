@@ -58,4 +58,4 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 open Formalism.UG
 
 theorem _root_.GlobalTheory.T.exists_trivOutside_inertLocal_eq : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) (v : HeightOneSpectrum (𝓞 (maximalRealSubfield L))) (w : HeightOneSpectrum (𝓞 L)) (Dv : InertDatum L n v w), ∀ y : GL (Fin n) (w.adicCompletion L), y ∈ GU Dv.σw n → ∃ x : GAf L n, TrivOutside {v} x ∧ Dv.loc x = y := by
-  first | exact @GlobalTheory.InertLocSurj.exists_trivOutside_loc_eq | exact GlobalTheory.InertLocSurj.exists_trivOutside_loc_eq | (intros; apply GlobalTheory.InertLocSurj.exists_trivOutside_loc_eq <;> assumption)
+  first | exact @GlobalTheory.InertLocSurj.exists_trivOutside_loc_eq

@@ -62,11 +62,7 @@ theorem exists_den_field {E Ω : Type*} [Field E] [NumberField E] [Field Ω] (ι
     (A : ValuationSubring Ω) {x : E} (hx : A.valuation (ι x) ≤ 1) :
     ∃ s t : 𝓞 E, A.valuation (ι s) = 1 ∧ (s : E) * x = t := by
   first
-  | exact @_root_.GlobalTheory.UnitDenominatorValuation.exists_unit_denominator
-  | exact _root_.GlobalTheory.UnitDenominatorValuation.exists_unit_denominator
   | (apply _root_.GlobalTheory.UnitDenominatorValuation.exists_unit_denominator <;> assumption)
-  | (intros; apply _root_.GlobalTheory.UnitDenominatorValuation.exists_unit_denominator <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.UnitDenominatorValuation.exists_unit_denominator <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.UnitDenominatorValuation.exists_unit_denominator ..)
 
 end GlobalTheory.CMRam

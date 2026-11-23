@@ -70,18 +70,18 @@ theorem factorial_mul_ev (l : ℕ) [Fact l.Prime] (e : Per.Fl l) (y : Per.BdRp l
     ((n.factorial : ℕ) : Per.AinfP l ⧸ Per.kerP l ^ n) * Per.ev l n y =
       Ideal.Quotient.mk _ (∑ k ∈ Finset.range n, (-1) ^ k * ((n.factorial / (k + 1) : ℕ) : Per.AinfP l) *
         (algebraMap (Per.Ainf l) (Per.AinfP l) (Per.tm e - 1)) ^ (k + 1)) := by
-  first | exact @FactorialMulEvaluation.Bridge.CrisIncl.factorial_mul_ev | exact FactorialMulEvaluation.Bridge.CrisIncl.factorial_mul_ev .. | (intros; apply FactorialMulEvaluation.Bridge.CrisIncl.factorial_mul_ev <;> assumption)
+  first | (intros; apply FactorialMulEvaluation.Bridge.CrisIncl.factorial_mul_ev <;> assumption)
 
 theorem isLog_of_partial (l : ℕ) [Fact l.Prime] (e : Per.Fl l) (he : e.untilt = 1) (y : Per.BdRp l)
     (h : ∀ n : ℕ, ∃ c : Per.AinfP l, ((n.factorial : ℕ) : Per.AinfP l) * c =
       ∑ k ∈ Finset.range n, (-1) ^ k * ((n.factorial / (k + 1) : ℕ) : Per.AinfP l) *
         (algebraMap (Per.Ainf l) (Per.AinfP l) (Per.tm e - 1)) ^ (k + 1) ∧
       Per.ev l n y = Ideal.Quotient.mk _ c) : Per.IsLog l e y := by
-  first | exact @LogOfPartial.Bridge.CrisIncl.isLog_of_partial | exact LogOfPartial.Bridge.CrisIncl.isLog_of_partial .. | (intros; apply LogOfPartial.Bridge.CrisIncl.isLog_of_partial <;> assumption)
+  first | (intros; apply LogOfPartial.Bridge.CrisIncl.isLog_of_partial <;> assumption)
 
 theorem log_unique (l : ℕ) [Fact l.Prime] (e : Per.Fl l) (he : e.untilt = 1) (y y' : Per.BdRp l)
     (h : Per.IsLog l e y) (h' : Per.IsLog l e y') : y = y' := by
-  first | exact @LogUniqueAlt.Bridge.CrisIncl.log_unique | exact LogUniqueAlt.Bridge.CrisIncl.log_unique .. | (intros; apply LogUniqueAlt.Bridge.CrisIncl.log_unique <;> assumption)
+  first | (intros; apply LogUniqueAlt.Bridge.CrisIncl.log_unique <;> assumption)
 
 theorem incl_aB (l : ℕ) [Fact l.Prime] (ι : Per.Bcris l →+* Per.BdR l) (h : Per.IsCrisDR l ι) (a : Per.Ainf l) :
     ι (Per.aB l a) = algebraMap (Per.BdRp l) (Per.BdR l)

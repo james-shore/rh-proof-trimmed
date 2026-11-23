@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj TensorProduct
 
 theorem _root_.GlobalTheory.T.cmModuli_consequence_of_abelianSchemeLaws : N1c := by
-  first | exact @GlobalTheory.closing_of_abelianSchemeLaws | exact GlobalTheory.closing_of_abelianSchemeLaws | (intros; apply GlobalTheory.closing_of_abelianSchemeLaws <;> assumption)
+  first | exact @GlobalTheory.closing_of_abelianSchemeLaws

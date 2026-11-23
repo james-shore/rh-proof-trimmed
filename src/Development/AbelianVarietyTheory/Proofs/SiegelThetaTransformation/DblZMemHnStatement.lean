@@ -46,4 +46,4 @@ open Matrix Complex NumberField MeasureTheory GlobalTheory GlobalTheory.SW Globa
 open scoped ComplexConjugate ComplexOrder Real Classical
 
 theorem _root_.GlobalTheory.T.dblZ_mem_Hn_and_det_ne_zero : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (X : Data E r), ∀ x₁ ∈ X.dom, ∀ x₂ ∈ X.dom, IsType X.Ψ ∧ dblZ X x₁ x₂ ∈ Hn X.Ψ r ∧ ∀ τ, (aLin X x₁ x₂ τ).det ≠ 0 ∧ (aAnti X x₁ x₂ τ).det ≠ 0 ∧ aLin X x₂ x₁ τ = (aAnti X x₁ x₂ τ).map conj := by
-  first | exact @GlobalTheory.SW.dblZ_mem_Hn | exact GlobalTheory.SW.dblZ_mem_Hn | (intros; apply GlobalTheory.SW.dblZ_mem_Hn <;> assumption)
+  first | exact @GlobalTheory.SW.dblZ_mem_Hn

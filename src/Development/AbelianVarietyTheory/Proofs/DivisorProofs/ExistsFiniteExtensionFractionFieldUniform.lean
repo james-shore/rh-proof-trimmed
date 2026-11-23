@@ -59,11 +59,7 @@ theorem exists_split_ext (K : Type) [Field K] (C : Type) [CommRing C] (φ : K �
       ∀ (K₂ Ω : Type) [Field K₂] [Field Ω] (e : E →+* K₂) (j : K₂ →+* Ω) (ψ : C →+* Ω),
         ψ.comp φ = j.comp (e.comp (algebraMap K E)) → ∃ ψ₀ : C →+* K₂, j.comp ψ₀ = ψ := by
   first
-  | exact @_root_.GlobalTheory.FiniteFieldOfPoints.exists_finite_field_of_points
-  | exact _root_.GlobalTheory.FiniteFieldOfPoints.exists_finite_field_of_points
   | (apply _root_.GlobalTheory.FiniteFieldOfPoints.exists_finite_field_of_points <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FiniteFieldOfPoints.exists_finite_field_of_points <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FiniteFieldOfPoints.exists_finite_field_of_points <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.FiniteFieldOfPoints.exists_finite_field_of_points ..)
 
 end GlobalTheory.Mum.RatTors

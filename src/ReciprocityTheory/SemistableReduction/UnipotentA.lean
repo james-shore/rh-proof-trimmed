@@ -139,7 +139,6 @@ theorem unip_pow_card_eq_zero {K : Type*} [Field K] [CharZero K] {r : ℕ} (N : 
   have hdiv : P' + m * (P /ₘ m) = P := by
     rw [hP']
     first
-      | exact Polynomial.modByMonic_add_div P hmon
       | exact Polynomial.modByMonic_add_div P m
   have hPeq : aeval N P' = aeval N P := by
     have h := congrArg (aeval N) hdiv
@@ -150,7 +149,6 @@ theorem unip_pow_card_eq_zero {K : Type*} [Field K] [CharZero K] {r : ℕ} (N : 
     refine le_trans ?_ hmdeg
     first
       | exact Polynomial.natDegree_modByMonic_le P hmon
-      | exact Polynomial.natDegree_modByMonic_le P m
   have hP'0 : P'.coeff 0 = 0 := by
     have h := congrArg (fun p => _root_.AddMonoidAlgebra.coeff (M := ℕ) p 0) hdiv
     simp only [Polynomial.coeff_add, Polynomial.mul_coeff_zero, hmc, zero_mul, add_zero] at h

@@ -63,7 +63,7 @@ private theorem gDet_chi_map_mapRingHom {n : ℕ} {R R' G : Type} [CommRing R] [
   let g : Polynomial R →ₐ[R] Polynomial R' :=
     { Polynomial.mapRingHom f with
       commutes' := fun c => by
-        simp [RingHom.algebraMap_toAlgebra, Polynomial.algebraMap_apply] }
+        simp [RingHom.algebraMap_toAlgebra] }
   have h := D.nat (Polynomial R) (Polynomial R') g
     (MonoidAlgebra.single 1 Polynomial.X - MonoidAlgebra.mapRingHom G Polynomial.C x)
   refine Eq.trans ?_ h

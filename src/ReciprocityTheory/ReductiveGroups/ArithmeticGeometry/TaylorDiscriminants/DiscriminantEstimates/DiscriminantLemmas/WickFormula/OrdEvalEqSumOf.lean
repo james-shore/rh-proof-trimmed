@@ -140,7 +140,7 @@ theorem ordX_holds : OrdX := by
       (fun j => (m + Finsupp.single (Sum.inl i) 1 : Fin r ⊕ Fin s →₀ ℕ) (Sum.inl j)) i
       (by simp) (fun i' hi' => by simp [Finsupp.single_apply, Ne.symm hi'])
     rw [hb, mul_assoc]
-    simp [Finsupp.single_apply]
+    simp
   · rw [mul_add, ordEval_add, ordEval_add, hp, hq, mul_add]
 
 end PI.WickFormula

@@ -47,4 +47,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Unf
 
 theorem _root_.GlobalTheory.T.besselPeriod_double_step_unfolding_of_descent : ∀ D : D7, Descent D → DoubleStep D := by
-  first | exact @GlobalTheory.Unf.doubleStep_of_descent | exact GlobalTheory.Unf.doubleStep_of_descent | (intros; apply GlobalTheory.Unf.doubleStep_of_descent <;> assumption)
+  first | exact @GlobalTheory.Unf.doubleStep_of_descent

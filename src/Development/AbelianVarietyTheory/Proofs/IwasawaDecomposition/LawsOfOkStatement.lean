@@ -44,4 +44,4 @@ import Mathlib.Topology.Sheaves.Init
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.Col Formalism.L2.DIV Formalism.L2.Forms GlobalTheory.Mem.Col2
 
 theorem _root_.GlobalTheory.T.tDat_laws_of_ok : ∀ {E K : Type} [Field E] [NumberField E] [StarRing E] [Field K] {n : ℕ} {S : GStep E K n} {ST : Finset (HeightOneSpectrum (𝓞 E))} (A : TDat S ST) (T : ℕ), S.Ok → A.Ok T → A.Laws T := by
-  first | exact @GlobalTheory.Mem.Col2.TDat.laws_of_ok | exact GlobalTheory.Mem.Col2.TDat.laws_of_ok | (intros; apply GlobalTheory.Mem.Col2.TDat.laws_of_ok <;> assumption)
+  first | exact @GlobalTheory.Mem.Col2.TDat.laws_of_ok

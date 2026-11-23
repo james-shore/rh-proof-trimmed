@@ -49,4 +49,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection (Blocks parahoric
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.lowerBlockParameter_of_one_nonzeroValue : ∀ D : D7, SoftQ D → QOfVal D := by
-  first | exact @GlobalTheory.LowerBlockParam.qOfVal | exact GlobalTheory.LowerBlockParam.qOfVal | (intros; apply GlobalTheory.LowerBlockParam.qOfVal <;> assumption)
+  first | exact @GlobalTheory.LowerBlockParam.qOfVal

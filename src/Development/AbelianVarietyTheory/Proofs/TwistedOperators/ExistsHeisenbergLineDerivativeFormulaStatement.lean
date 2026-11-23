@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.exists_heisenbergLine_derivative_formula : ∀ {F 
     ∃ u : Matrix (Fin n) (Fin d) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)), At (evI F) u ∧ ∀ f g : SInf F (Fin n × Fin d),
       ActsD (evI F) (M.heisLine ψ u) ⇑f ⇑g → ∀ y, g y =
         fderiv ℝ (⇑f) y v.1 - 2 * Real.pi * Complex.I * (trP F (Fin n × Fin d) y v.2 : ℂ) * f y := by
-  first | exact @GlobalTheory.HeisDerivArch.exists_heisLine_actsD_eq | exact GlobalTheory.HeisDerivArch.exists_heisLine_actsD_eq | (intros; apply GlobalTheory.HeisDerivArch.exists_heisLine_actsD_eq <;> assumption)
+  first | exact @GlobalTheory.HeisDerivArch.exists_heisLine_actsD_eq

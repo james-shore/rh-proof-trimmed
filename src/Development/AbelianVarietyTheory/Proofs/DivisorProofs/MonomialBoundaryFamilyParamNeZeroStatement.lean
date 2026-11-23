@@ -57,4 +57,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.monomialBoundaryFamily_param_ne_zero : ∀ {R : Type} [CommRing R] [IsDomain R] (Q : DegPre R) {m : ℕ} (t : Fin m → R) (gam : Fin m → LinearMap.BilinForm ℤ Q.X), IsMonomial Q t gam → LinearIndependent ℤ gam → (∀ i y z, gam i y z = gam i z y) → ∀ i, t i ≠ 0 := by
-  first | exact @GlobalTheory.MonoParam.t_ne_zero | exact GlobalTheory.MonoParam.t_ne_zero | (intros; apply GlobalTheory.MonoParam.t_ne_zero <;> assumption)
+  first | exact @GlobalTheory.MonoParam.t_ne_zero

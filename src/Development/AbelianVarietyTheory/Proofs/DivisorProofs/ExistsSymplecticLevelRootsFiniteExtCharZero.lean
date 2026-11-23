@@ -90,7 +90,7 @@ theorem pairing_prod {H U : Type} [CommGroup H] [CommGroup U] (e : H →* H →*
   rw [hz]
   simp only [map_prod, map_zpow, hp, MonoidHom.zpow_apply, Fintype.prod_sum_type,
     map_mul, MonoidHom.mul_apply, h₁, h₂, h₃, h₄, one_zpow, Finset.prod_const_one, _root_.one_mul, _root_.mul_one,
-    hi, Finset.prod_ite_eq, Finset.prod_ite_eq', Finset.mem_univ, if_true]
+    hi, Finset.prod_ite_eq', Finset.mem_univ, if_true]
   rw [← Finset.prod_mul_distrib]
   refine Finset.prod_congr rfl fun i _ => ?_
   simp only [← zpow_mul, inv_zpow', ← zpow_add, zpow_sub, ← zpow_neg]

@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.isRegular_fderiv_constant_vector_uniformised : ∀ (A : Over (Sp ℂ)) [GrpObj A] (g : ℕ) (L : LB A.left) (u : HolUnif A L g), IsAbelianScheme A → ∀ (U : A.left.Opens) (b : Γ(A.left, U)) (w : Fin g → ℂ), IsReg u.ex U fun z => fderiv ℂ (val u.ex U b) z w := by
-  first | exact @GlobalTheory.CechPer.isReg_fderiv_val | exact GlobalTheory.CechPer.isReg_fderiv_val | (intros; apply GlobalTheory.CechPer.isReg_fderiv_val <;> assumption)
+  first | exact @GlobalTheory.CechPer.isReg_fderiv_val

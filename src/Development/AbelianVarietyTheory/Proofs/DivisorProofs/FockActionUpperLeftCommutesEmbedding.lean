@@ -66,7 +66,7 @@ theorem der_aeval {σ : Type} [Fintype σ] [DecidableEq σ] (d : Derivation K A 
       by_cases hi : n = i
       · subst hi
         simp [Derivation.leibniz]; ring
-      · simp [Derivation.leibniz, hi, pderiv_X, Pi.single_apply]; ring
+      · simp [Derivation.leibniz, hi, pderiv_X]; ring
     simp only [e, Finset.sum_add_distrib]
     simp [hp, Finset.mul_sum]
 
@@ -121,7 +121,7 @@ theorem rowDer_X_inl_inl (a a' i : Fin P) (c : Fin R) :
 theorem rowDer_w (a a' : Fin P) (b : Fin Q) (c : Fin R) :
     rowDer Q R a a' (X (Sum.inr b, Sum.inl c)) = 0 := by
   rw [rowDer_apply]
-  simp [pderiv_X, Pi.single_apply]
+  simp [pderiv_X]
 
 theorem rowDer_mR (a a' i : Fin P) (b : Fin Q) :
     rowDer Q R a a' (mR P Q R i b) = if i = a' then mR P Q R a b else 0 := by

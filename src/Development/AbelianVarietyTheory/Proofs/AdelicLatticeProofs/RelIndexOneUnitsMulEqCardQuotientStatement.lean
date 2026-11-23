@@ -48,4 +48,4 @@ open NumberField IsDedekindDomain Polynomial GlobalTheory.QNorm GlobalTheory.CNo
 open scoped WithZero TensorProduct
 
 theorem _root_.GlobalTheory.T.relIndex_oneUnits_mul_eq_card_quotient' : ∀ (O : Type) [CommRing O] [IsDomain O] (t s : O), t ≠ 0 → s ∣ t → Ideal.span {t} ≤ Ideal.jacobson (⊥ : Ideal O) → (oneUnits (s * t)).relIndex (oneUnits t) = Nat.card (O ⧸ Ideal.span {s}) := by
-  first | exact @GlobalTheory.CNorm.relIndex_oneUnits_mul_eq_card_quotient | exact GlobalTheory.CNorm.relIndex_oneUnits_mul_eq_card_quotient | (intros; apply GlobalTheory.CNorm.relIndex_oneUnits_mul_eq_card_quotient <;> assumption)
+  first | exact @GlobalTheory.CNorm.relIndex_oneUnits_mul_eq_card_quotient

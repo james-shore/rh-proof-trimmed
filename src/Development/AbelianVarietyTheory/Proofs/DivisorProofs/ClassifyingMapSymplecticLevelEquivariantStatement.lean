@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.classifyingMap_symplecticLevel_equivariant : ∀ (
     y ≫ s = Y.hom ≫ t → y ≫ s₁ = t₁ →
     ∀ (r : sympSimGrp h M → (Y ⟶ Y)), (∀ a, (r a).left ≫ t₁ = t₁ ≫ spMap (σ a)) →
     (∀ a c, r a ≫ lu c = sympTwist a lu c) → ∀ a, (r a).left ≫ y = y ≫ ρ a := by
-  first | exact @GlobalTheory.HTSympCover.classify_equivariant | exact GlobalTheory.HTSympCover.classify_equivariant | (intros; apply GlobalTheory.HTSympCover.classify_equivariant <;> assumption)
+  first | exact @GlobalTheory.HTSympCover.classify_equivariant

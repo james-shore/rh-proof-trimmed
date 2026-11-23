@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.chow_form_fibre_specialization
   eval (consGroup u₀ (nrmGroups h e (coefRows h π))) g ≠ 0 →
     ∃ c : ℂ, c ≠ 0 ∧ ∀ u : Fin n → ℂ, eval (consGroup u (nrmGroups h e (coefRows h π))) g =
       c * ∏ᶠ y ∈ fibrePts (coneSet h W) π, ∑ j, u j * h.pointOf y j := by
-  first | exact @PositivityTheory.Xgn.t_xgz_chow_mahler_fibrefactor | exact PositivityTheory.Xgn.t_xgz_chow_mahler_fibrefactor
+  first | exact @PositivityTheory.Xgn.t_xgz_chow_mahler_fibrefactor

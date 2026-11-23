@@ -65,4 +65,4 @@ theorem _root_.GlobalTheory.T.liftAdelicForm_level_type_eq_columnLevel : ∀ (X 
               ((Bridge.colJEquiv X.toD7.sp.cm X.B.R.nV ∅ (LiftBrg.sgL X I U t) _).symm k))) ∧
         ((k : Formalism.L2.Col.UAd X.toD7.sp.cm X.B.R.nV) ∈ Bridge.principalCongruenceSubgroup X.toD7.sp.cm X.B.R.nV ∅ (LiftBrg.sgL X I U t) →
           (levEnv (Vc X.toD7 i) (L.βV i) (L.datVt i t)).χ ⟨eG k, hk⟩ = 1) := by
-  first | exact @GlobalTheory.Mem.LevPres.lev_type_eq | exact GlobalTheory.Mem.LevPres.lev_type_eq | (intros; apply GlobalTheory.Mem.LevPres.lev_type_eq <;> assumption)
+  first | exact @GlobalTheory.Mem.LevPres.lev_type_eq

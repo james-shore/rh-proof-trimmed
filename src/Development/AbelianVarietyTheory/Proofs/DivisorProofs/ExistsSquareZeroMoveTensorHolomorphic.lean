@@ -93,11 +93,7 @@ theorem lTensor_leibniz {R S : Type} [CommRing R] [Algebra ℂ R] [CommRing S] [
     LinearMap.lTensor R d.toLinearMap (x * y) =
       x * LinearMap.lTensor R d.toLinearMap y + y * LinearMap.lTensor R d.toLinearMap x := by
   first
-  | exact @_root_.GlobalTheory.TensorLeibnizRule.lTensor_leibniz
-  | exact _root_.GlobalTheory.TensorLeibnizRule.lTensor_leibniz
   | (apply _root_.GlobalTheory.TensorLeibnizRule.lTensor_leibniz <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TensorLeibnizRule.lTensor_leibniz <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TensorLeibnizRule.lTensor_leibniz <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.TensorLeibnizRule.lTensor_leibniz ..)
 
 theorem lTensor_one {R S : Type} [CommRing R] [Algebra ℂ R] [CommRing S] [Algebra ℂ S]

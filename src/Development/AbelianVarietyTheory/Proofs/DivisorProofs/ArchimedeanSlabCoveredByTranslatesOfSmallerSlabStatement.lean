@@ -49,4 +49,4 @@ open GlobalTheory.ArchDecay
 
 
 theorem _root_.GlobalTheory.T.archimedeanSlab_covered_by_translates_of_smaller_slab : ∀ (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ], ∃ c : ℕ, ∀ m : ℕ, 0 < m → slab F κ m ⊆ slab F κ 1 ∧ ∃ R : Finset (κ → AF F), R.card ≤ m ^ c ∧ (∀ r ∈ R, arch F r = 0) ∧ ∀ w ∈ slab F κ 1, ∃ r ∈ R, w - r ∈ slab F κ m := by
-  first | exact @GlobalTheory.ArchDecay.slab_subset_and_cover | exact GlobalTheory.ArchDecay.slab_subset_and_cover | (intros; apply GlobalTheory.ArchDecay.slab_subset_and_cover <;> assumption)
+  first | exact @GlobalTheory.ArchDecay.slab_subset_and_cover

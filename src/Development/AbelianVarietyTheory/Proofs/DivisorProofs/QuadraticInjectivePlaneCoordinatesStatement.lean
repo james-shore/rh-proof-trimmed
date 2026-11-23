@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.quadratic_injective_plane_coordinates : ∀ (F E :
       Function.Injective f → (∀ x, hat (f x) = M.co.e (incM F x)) →
     ∀ K : Submodule F (Matrix (Fin n) (Fin d₁) E), Module.finrank F K = n * d₁ → (∀ z ∈ K, (M₁.co.e (incM F z)).1 = 0) →
       n * d ≤ Module.finrank F (lagr M M₁ H') := by
-  first | exact @GlobalTheory.MixedLagr.le_finrank_lagr | exact GlobalTheory.MixedLagr.le_finrank_lagr | (intros; apply GlobalTheory.MixedLagr.le_finrank_lagr <;> assumption)
+  first | exact @GlobalTheory.MixedLagr.le_finrank_lagr

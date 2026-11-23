@@ -46,4 +46,4 @@ theorem _root_.GlobalTheory.T.exists_archSchwartz_derivative_heisenbergLine : �
     {n d : ℕ} {X : Spc F E n} {W : Spc F E d} (M : Model σ X W) (ψ : AddChar (AF F) ℂ), IsStd ψ →
     ∀ u : Matrix (Fin n) (Fin d) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)), At (evI F) u →
     ∃ D : SInf F (Fin n × Fin d) →ₗ[ℂ] SInf F (Fin n × Fin d), ∀ f : SInf F (Fin n × Fin d), ActsD (evI F) (M.heisLine ψ u) f (D f) := by
-  first | exact @GlobalTheory.HeisDeriv.exists_actsD_heisLine | exact GlobalTheory.HeisDeriv.exists_actsD_heisLine | (intros; apply GlobalTheory.HeisDeriv.exists_actsD_heisLine <;> assumption)
+  first | exact @GlobalTheory.HeisDeriv.exists_actsD_heisLine

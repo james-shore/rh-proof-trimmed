@@ -52,4 +52,4 @@ open GlobalTheory.BadPlace
 open Classical
 
 theorem _root_.GlobalTheory.T.thetaHalfSpaceDatum_translate_disjoint_support : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) (A : FamIn D.what₂.LL G Pl0 T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), Laws R F → R.FullP → ∀ (i : Fin D.R.m) (t : T) (ea : AE D), IsIdemSum ea (R.Pg ∪ R.Q t) → ∀ (P : Pl D.host.E), P ∈ R.Pg ∨ P ∈ R.Q t → ∀ e f, IsPrimeIdem P e f → ∀ k, SuppF (Wc D i) f k → k ∉ levW R i → ∀ x x' : WO (Vc D i) (Wc D i), (∀ a b, f * x a b = f * x' a b) → datP R i t ea (actO (Vc D i) (Wc D i) 1 k⁻¹ x) ≠ 0 → datP R i t ea x' ≠ 0 → False := by
-  first | exact @GlobalTheory.BadPlace.disj_supp | exact GlobalTheory.BadPlace.disj_supp | (intros; apply GlobalTheory.BadPlace.disj_supp <;> assumption)
+  first | exact @GlobalTheory.BadPlace.disj_supp

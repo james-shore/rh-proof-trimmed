@@ -50,4 +50,4 @@ open GlobalTheory.HSCore GlobalTheory.QCoh
 open GlobalTheory
 
 theorem _root_.GlobalTheory.T.hyperplane_section_vanishing_shift : ∀ (k : Type) [Field k] (Y : Scheme.{0}) [Algebra k Γ(Y, ⊤)], IsProjOver (GlobalTheory.strHom k (X := Y)) → ∀ (L : LB Y) (hL : L.IsLB) (F : Y.Modules) [IsFiniteQC F] (t : L.Sec) [Mono (GlobalTheory.cutHom F hL t)] (j₀ : ℤ), VanishFrom L F j₀ → VanishFrom L (GlobalTheory.cut F hL t) (j₀ + 1) ∧ ∀ j : ℤ, j₀ + 1 ≤ j → GlobalTheory.hdim k (GlobalTheory.twistZ F L j) 0 = GlobalTheory.hdim k (GlobalTheory.twistZ F L (j - 1)) 0 + GlobalTheory.hdim k (GlobalTheory.twistZ (GlobalTheory.cut F hL t) L j) 0 := by
-  first | exact @GlobalTheory.HSCore.vanishFrom_cut_and_hdim | exact GlobalTheory.HSCore.vanishFrom_cut_and_hdim | (intros; apply GlobalTheory.HSCore.vanishFrom_cut_and_hdim <;> assumption)
+  first | exact @GlobalTheory.HSCore.vanishFrom_cut_and_hdim

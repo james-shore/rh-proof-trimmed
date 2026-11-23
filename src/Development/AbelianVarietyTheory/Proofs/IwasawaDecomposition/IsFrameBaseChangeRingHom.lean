@@ -68,7 +68,7 @@ theorem tv_sum' {κ : Type} (s : Finset κ) (f : κ → TanM x t.G) : tv (∑ i 
   classical
   induction s using Finset.induction_on with
   | empty => simp
-  | @insert a s ha ih => simp [ha, ih]
+  | @insert a s ha ih => simp [ha]
 
 def Full {κ : Type} [Fintype κ] (v : κ → TanM x t.G) : Prop :=
   ∀ n : TanM x t.G, ∃! a : κ → S, n = ∑ k, a k • v k

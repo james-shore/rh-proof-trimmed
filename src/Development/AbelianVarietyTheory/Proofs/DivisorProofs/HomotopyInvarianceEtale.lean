@@ -62,11 +62,7 @@ theorem eqv_baseChange (q : ℕ) (A : Type) [CommRing A] (i : ℤ) (A' : Type) [
     Eqv _ (sch.map (pullback.map (Spec.map (CommRingCat.ofHom (Polynomial.C : A →+* Polynomial A)) ≫ 𝟙 _) s (𝟙 _) s
       (Spec.map (CommRingCat.ofHom (Polynomial.C : A →+* Polynomial A))) (𝟙 _) (𝟙 _) (by simp) (by simp))) (tw q i) := by
   first
-  | exact @_root_.GlobalTheory.PolynomialPushoutEquivalence.main
-  | exact _root_.GlobalTheory.PolynomialPushoutEquivalence.main
   | (apply _root_.GlobalTheory.PolynomialPushoutEquivalence.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PolynomialPushoutEquivalence.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PolynomialPushoutEquivalence.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.PolynomialPushoutEquivalence.main ..)
 
 theorem homotopy_invariance_etale : GlobalTheory.EtC.C4 := by

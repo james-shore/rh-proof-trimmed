@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.evaluation_automorphism_commutes_schwartz : ∀ (F
     ∀ e : Fn F n d →ₗ[ℂ] Fn F n d, IsEv B M M₁ 1 1 ∅ e →
     Set.BijOn e (schA F (Fin n × Fin d) : Set _) (schA F (Fin n × Fin d) : Set _) →
     ∀ T : Fn F n d ≃ₗ[ℂ] Fn F n d, (∀ Φ ∈ schA F (Fin n × Fin d), T Φ = e Φ) → IsTame F T.symm.toLinearMap := by
-  first | exact @GlobalTheory.EvSymmTame.isTame_symm | exact GlobalTheory.EvSymmTame.isTame_symm | (intros; apply GlobalTheory.EvSymmTame.isTame_symm <;> assumption)
+  first | exact @GlobalTheory.EvSymmTame.isTame_symm

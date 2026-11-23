@@ -251,7 +251,7 @@ theorem rank_le (hFr : IsFractionRing O LL) (T : LocLat G Qp LL O) (c : ZMod n) 
         _ = 0 := by rw [← Finset.smul_sum, hsum, smul_zero]
     obtain ⟨y, hy, hyz⟩ := h3.1 _ hcz
     set z : W.DD T := ∑ i, o i • b i with hz
-    have hzc : ((∑ i, o i • bN i : ↥(W.N T)) : W.DD T) = z := by simp [hz, bN, Submodule.coe_sum]
+    have hzc : ((∑ i, o i • bN i : ↥(W.N T)) : W.DD T) = z := by simp [hz, bN]
     have hy' : (letπ : LetA O n) • y = z := by
       rw [← hzc, ← hyz]
       simp [Formalism.MainNotions.DeltaInvariantLattices.smulA]

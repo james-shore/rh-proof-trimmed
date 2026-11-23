@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.contDiffOn_coefficients_complexForm_mul : ∀ (n m
     (∀ v : V m, (∀ S, DifferentiableAt ℝ (fun x => (bas n).repr (F x) S) v) →
       (∀ S, DifferentiableAt ℝ (fun x => (bas n).repr (G x) S) v) →
       ∀ S, DifferentiableAt ℝ (fun x => (bas n).repr (F x * G x) S) v) := by
-  first | exact @GlobalTheory.CxForm.contDiff_coeff_mul | exact GlobalTheory.CxForm.contDiff_coeff_mul | (intros; apply GlobalTheory.CxForm.contDiff_coeff_mul <;> assumption)
+  first | exact @GlobalTheory.CxForm.contDiff_coeff_mul

@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.mem_integral_of_commute_separable_reduction : ∀ 
     A.charpoly = P₀.map (algebraMap (w.adicCompletionIntegers E) (w.adicCompletion E)) → Commute s A →
     (∃ B : WithZero (Multiplicative ℤ), ∀ (k : ℕ) (i j : Fin n), Valued.v ((s ^ k) i j) ≤ B) →
     ∀ i j, s i j ∈ w.adicCompletionIntegers E := by
-  first | exact @GlobalTheory.IntMatSep.integral_of_commute_sep | exact GlobalTheory.IntMatSep.integral_of_commute_sep | (intros; apply GlobalTheory.IntMatSep.integral_of_commute_sep <;> assumption)
+  first | exact @GlobalTheory.IntMatSep.integral_of_commute_sep

@@ -45,4 +45,4 @@ open scoped TensorProduct Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.level_places_finite : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.MainNotions.G.Inst D L} {Gl : Formalism.MainNotions.G.LatInst D} {Kc : Formalism.MainNotions.G.Consts} {Yd : DivX D} {cX : ExtraC} {ex : Extra D L hT Gi Gl Kc Yd cX} (W : RealPack ex), PkHyp W → Set.Finite {PP : Pl D.host.E | PP ∈ (pk W).Pg ∨ QAll W PP} := by
-  first | exact @GlobalTheory.Fam.finite_levelPlaces_or_tuplePlaces | exact GlobalTheory.Fam.finite_levelPlaces_or_tuplePlaces | (intros; apply GlobalTheory.Fam.finite_levelPlaces_or_tuplePlaces <;> assumption)
+  first | exact @GlobalTheory.Fam.finite_levelPlaces_or_tuplePlaces

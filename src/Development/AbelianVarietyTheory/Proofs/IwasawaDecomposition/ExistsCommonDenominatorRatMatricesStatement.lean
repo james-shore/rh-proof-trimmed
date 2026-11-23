@@ -67,4 +67,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 
 theorem _root_.GlobalTheory.T.exists_common_denominator_rat_matrices : ∀ (a g : ℕ) (b : Fin a → Matrix (Fin g) (Fin g) ℚ), ∃ (D : ℕ) (B : Fin a → Matrix (Fin g) (Fin g) ℤ), 0 < D ∧ ∀ k i j, (B k i j : ℚ) = D * b k i j := by
-  first | exact @GlobalTheory.rat_matrix_common_denom | exact GlobalTheory.rat_matrix_common_denom | (intros; apply GlobalTheory.rat_matrix_common_denom <;> assumption)
+  first | exact @GlobalTheory.rat_matrix_common_denom

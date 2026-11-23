@@ -71,7 +71,6 @@ theorem gd_qsmul (q : ℚ) (x : Fin m → E) : q • x = ((q : E)) • x := by
 theorem gd_star_rat (q : ℚ) : star ((q : E)) = (q : E) := by
   first
     | exact star_ratCast q
-    | simpa [starRingEnd_apply] using map_ratCast (starRingEnd E) q
 
 def gdLeft (y : Fin m → E) : (Fin m → E) →ₗ[ℚ] ℚ where
   toFun x := Algebra.trace ℚ E (hform (starRingEnd E) J x y)
@@ -116,11 +115,10 @@ theorem successive_vector_gram_det : SvGramDet := by
       by_cases h : a = i
       · subst h
         simp
-      · simp [Pi.single_apply, h]
+      · simp [h]
     rw [hs]
     first
       | rw [single_dotProduct, one_mul]
-      | simp [dotProduct, Pi.single_apply]
   have hnd : ∀ y : Fin m → E, (∀ x, hform (starRingEnd E) J x y = 0) → y = 0 := by
     intro y hy
     have hJy : J *ᵥ y = 0 := by

@@ -46,4 +46,4 @@ open Complex DirichletCharacter ArithmeticFunction MeasureTheory Filter Topology
 open scoped Classical
 
 theorem _root_.GlobalTheory.T.primesInProgressions_relativeError : GlobalTheory.Lin.PrimesRel := by
-  first | exact @GlobalTheory.Lin.primesRel_holds | exact GlobalTheory.Lin.primesRel_holds | (intros; apply GlobalTheory.Lin.primesRel_holds <;> assumption)
+  first | exact @GlobalTheory.Lin.primesRel_holds

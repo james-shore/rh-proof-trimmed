@@ -58,4 +58,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheo
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.isClosed_singleton_genericFibre_of_maximal_affineOpen : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l) (Y : Model Xo c (RingHom.id c.F)) (U : Y.X.affineOpens) (mm : Ideal Γ(Y.X, U.1)), mm.IsMaximal → ∀ x : gen Y, genι Y x ∈ U.1 → (∀ f ∈ mm, genι Y x ∉ Y.X.basicOpen f) → IsClosed ({x} : Set (gen Y)) := by
-  first | exact @GlobalTheory.LocReg.isClosed_singleton_gen | exact GlobalTheory.LocReg.isClosed_singleton_gen | (intros; apply GlobalTheory.LocReg.isClosed_singleton_gen <;> assumption)
+  first | exact @GlobalTheory.LocReg.isClosed_singleton_gen

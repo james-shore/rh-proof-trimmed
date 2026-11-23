@@ -65,11 +65,7 @@ theorem tri_det (q : ℕ) (x : Option (Fin q)) : (tri q x).det = q := by
 theorem tri_exists {q : ℕ} (hp : q.Prime) (δ : Matrix (Fin 2) (Fin 2) ℤ) (hδ : δ.det = q) :
     ∃ (γ : SL(2, ℤ)) (y : Option (Fin q)), δ = γ.1 * tri q y := by
   first
-  | exact @_root_.GlobalTheory.DetZeroFactorization.main
-  | exact _root_.GlobalTheory.DetZeroFactorization.main
   | (apply _root_.GlobalTheory.DetZeroFactorization.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.DetZeroFactorization.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.DetZeroFactorization.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.DetZeroFactorization.main ..)
 
 def rep (q : ℕ) (w : SL(2, ℤ)) : Option (Fin q) → Matrix (Fin 2) (Fin 2) ℤ
@@ -99,9 +95,9 @@ theorem rep_inj {q : ℕ} (hp : q.Prime) (w : SL(2, ℤ)) (γ : SL(2, ℤ)) {x y
   obtain ⟨e00, e01, e10, e11⟩ := rep_none_entries q w
   rcases x with _ | u <;> rcases y with _ | v
   · rfl
-  · simp [rep, tri, Matrix.mul_apply, Fin.sum_univ_two, e00, e10] at h00 h10
+  · simp [rep, tri, Matrix.mul_apply, Fin.sum_univ_two] at h00 h10
     exact absurd ⟨w 0 0 * γ 1 1 - γ 0 1 * w 1 0, by rw [← h00, ← h10] at dγ; linear_combination -dγ⟩ hnd
-  · simp [rep, tri, Matrix.mul_apply, Fin.sum_univ_two, e00, e10] at h00 h10
+  · simp [rep, tri, Matrix.mul_apply, Fin.sum_univ_two] at h00 h10
     exact absurd ⟨γ 0 0 * w 0 0 + γ 0 1 * w 1 0, by linear_combination h00⟩ hnd
   · simp [rep, tri, Matrix.mul_apply, Fin.sum_univ_two] at h00 h01 ⊢
     rw [← h00] at h01

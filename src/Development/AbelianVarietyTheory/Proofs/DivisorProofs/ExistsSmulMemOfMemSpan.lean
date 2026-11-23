@@ -168,11 +168,7 @@ theorem HasGram_eq_zero {N : (K →+* ℂ) → V → ℝ} (h : HasGram N) (v : I
 theorem exists_smul_mem_of_mem_span [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] {L : Submodule (𝓞 K) V} {x : V}
     (hx : x ∈ Submodule.span K (L : Set V)) : ∃ a : 𝓞 K, a ≠ 0 ∧ a • x ∈ L := by
   first
-  | exact @_root_.GlobalTheory.NonzeroScalarMultipleMembership.exists_ne_zero_smul_mem
-  | exact _root_.GlobalTheory.NonzeroScalarMultipleMembership.exists_ne_zero_smul_mem
   | (apply _root_.GlobalTheory.NonzeroScalarMultipleMembership.exists_ne_zero_smul_mem <;> assumption)
-  | (intros; apply _root_.GlobalTheory.NonzeroScalarMultipleMembership.exists_ne_zero_smul_mem <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.NonzeroScalarMultipleMembership.exists_ne_zero_smul_mem <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.NonzeroScalarMultipleMembership.exists_ne_zero_smul_mem ..)
 
 theorem fg_of_injective [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] [Module (𝓞 K) W] [IsScalarTower (𝓞 K) K W]

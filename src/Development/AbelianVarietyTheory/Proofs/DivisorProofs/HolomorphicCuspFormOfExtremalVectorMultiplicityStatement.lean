@@ -45,4 +45,4 @@ open scoped TensorProduct InnerProductSpace ContDiff
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.holomorphic_cusp_form_of_extremal_vector_multiplicity : GlobalTheory.Published.CuspRapidDecay → ∀ (D : D7) (θ : InfFam D) (V : HSp D) (S : D.what₂.Tau → SPar) (M : DSModel V S) (w : D.what₂.Tau → Fin V.rank → ℤ) (v : M.Vec), IsInfFam θ → HolShape M → WtIs M w → IsExtVec M v → ∀ (J : Set (GA D V)) (χ : GA D V → ℂ), ∀ T ∈ Mult θ M J χ, HolForm θ M w J χ (T v) ∧ ZCusp V (T v) := by
-  first | exact @GlobalTheory.HolDict.holForm_zCusp_of_mem_mult | exact GlobalTheory.HolDict.holForm_zCusp_of_mem_mult | (intros; apply GlobalTheory.HolDict.holForm_zCusp_of_mem_mult <;> assumption)
+  first | exact @GlobalTheory.HolDict.holForm_zCusp_of_mem_mult

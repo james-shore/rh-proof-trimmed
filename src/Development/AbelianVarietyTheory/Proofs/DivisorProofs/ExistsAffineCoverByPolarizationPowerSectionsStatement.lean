@@ -52,4 +52,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_affine_cover_by_polarization_power_sections : ∀ (K : Type) [Field K] (P₀ : Out.PolAV (Sp K)), ∃ (k : ℕ) (I : Type) (s : I → SecM (𝟙 P₀.A.left) P₀.L k), 1 ≤ k ∧ ⨆ i, Out.nonzeroLocus (s i) = ⊤ ∧ ∀ i, IsAffineOpen (Out.nonzeroLocus (s i)) ∧ ((Out.nonzeroLocus (s i) : P₀.A.left.Opens) : Set P₀.A.left).Nonempty := by
-  first | exact @GlobalTheory.AmpleCover.exists_affine_cover_secM | exact GlobalTheory.AmpleCover.exists_affine_cover_secM | (intros; apply GlobalTheory.AmpleCover.exists_affine_cover_secM <;> assumption)
+  first | exact @GlobalTheory.AmpleCover.exists_affine_cover_secM

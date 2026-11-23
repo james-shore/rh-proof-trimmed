@@ -126,15 +126,12 @@ instance finVS : FiniteDimensional D.host.E (VS D).V := Module.Finite.of_basis (
 
 theorem oE_smul (c : 𝓞 D.host.E) (x : (VS D).V) : c • x = ((c : D.host.E)) • x := by
   first
-  | rfl
   | exact (algebraMap_smul D.host.E c x).symm
 
 theorem oF_coe (t : 𝓞 D.host.F) :
     ((algebraMap (𝓞 D.host.F) (𝓞 D.host.E) t : 𝓞 D.host.E) : D.host.E) = algebraMap D.host.F D.host.E (t : D.host.F) := by
   first
   | rfl
-  | simp
-  | exact (IsScalarTower.algebraMap_apply (𝓞 D.host.F) D.host.F D.host.E t).symm
 
 theorem hO : (Zd.M p).L.O = (D.s.atP p).O := by
   exact (Zd.agree p).2.2.2.1

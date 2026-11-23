@@ -60,4 +60,4 @@ open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
 theorem _root_.GlobalTheory.T.mem_splitPlaceFinitePointsOffPrimes_of_supported : ∀ {D : D7} (V : HSp D) (Q : Finset ℕ) (s : GfC V),
     GlobalTheory.UnRep.SuppSplit (GlobalTheory.Member.cF D) (∏ q ∈ Q, q) (finHom V s.1).1 → s ∈ GlobalTheory.MovedKappaEx.splitOff V Q := by
-  first | exact @GlobalTheory.MovedKappaEx.mem_splitOff_of_suppSplit | exact GlobalTheory.MovedKappaEx.mem_splitOff_of_suppSplit | (intros; apply GlobalTheory.MovedKappaEx.mem_splitOff_of_suppSplit <;> assumption)
+  first | exact @GlobalTheory.MovedKappaEx.mem_splitOff_of_suppSplit

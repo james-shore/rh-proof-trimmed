@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.stoneVonNeumann_schwartzBruhat_anyCharacter : ∀ 
       Set.BijOn ι (GlobalTheory.WeilM.SB (κ → k) : Set _) (GlobalTheory.WeilM.SB (Matrix (Fin n) (Fin d) k) : Set _) ∧
       (∀ Y, ∀ φ ∈ GlobalTheory.WeilM.SB (κ → k), ι (GlobalTheory.WeilM.schr ψ0 (wT Y) φ) = fun Y' => ι φ (Y' + Y)) ∧
       (∀ z, ∀ φ ∈ GlobalTheory.WeilM.SB (κ → k), ι (GlobalTheory.WeilM.schr ψ0 (wM z) φ) = fun Y' => ψ0 (∑ i, ∑ j, Y' i j * z i j) * ι φ Y') := by
-  first | exact @GlobalTheory.SvNAnyChar.stoneVonNeumann_any_char | exact GlobalTheory.SvNAnyChar.stoneVonNeumann_any_char | (intros; apply GlobalTheory.SvNAnyChar.stoneVonNeumann_any_char <;> assumption)
+  first | exact @GlobalTheory.SvNAnyChar.stoneVonNeumann_any_char

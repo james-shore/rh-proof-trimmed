@@ -45,4 +45,4 @@ open scoped UpperHalfPlane MatrixGroups Matrix ModularForm ComplexConjugate
 open GlobalTheory.QFam GlobalTheory.WpFam
 
 theorem _root_.GlobalTheory.T.weierstrassP_torsion_isModularFamily : ∀ (N : ℕ) [NeZero N], IsFam (vact N) 2 (wp N) ∧ IsFam (vact N) 3 (wpd N) := by
-  first | exact @GlobalTheory.WpFam.isFam_wp_wpd | exact GlobalTheory.WpFam.isFam_wp_wpd | (intros; apply GlobalTheory.WpFam.isFam_wp_wpd <;> assumption)
+  first | exact @GlobalTheory.WpFam.isFam_wp_wpd

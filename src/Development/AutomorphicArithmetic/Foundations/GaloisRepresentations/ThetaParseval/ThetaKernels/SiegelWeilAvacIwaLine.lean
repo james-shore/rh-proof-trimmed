@@ -78,7 +78,7 @@ theorem frame_eps_k (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) : �
       (incM F d.b.1)ᵀ * incM F (dbl d.Y.J) * incM F (d.b.1.map σ) := by
     simp only [incM, Matrix.map_mul, Matrix.transpose_map]
   rw [e1, e2, ← key, hε]
-  ext (i|i) (j|j) <;> simp [incM, Matrix.fromBlocks_map, Matrix.one_apply] <;> split_ifs <;> simp
+  ext (i|i) (j|j) <;> simp [incM, Matrix.one_apply] <;> split_ifs <;> simp
 variable {n : ℕ}
 section Unit
 variable {ι : Type} [Fintype ι] [DecidableEq ι]

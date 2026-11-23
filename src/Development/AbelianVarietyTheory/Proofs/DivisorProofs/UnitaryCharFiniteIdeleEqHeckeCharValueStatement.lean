@@ -56,4 +56,4 @@ open scoped Pointwise
 
 theorem _root_.GlobalTheory.T.unitaryChar_finiteIdele_eq_heckeChar_value : ∀ {D : D7} (c : (Formalism.L2.Theta.AE D)ˣ →* Circle) (χ : Formalism.L2.Host.HChar D.host.E), ChrEq c χ →
     ∀ x y, IsFinIdl x y → ((c x : Circle) : ℂ) = ((χ.1 (GlobalTheory.Mem.Col2.SplitChar.finIdl D y) : ℂˣ) : ℂ) := by
-  first | exact @GlobalTheory.BotPointDict.chr_at_finIdl | exact GlobalTheory.BotPointDict.chr_at_finIdl | (intros; apply GlobalTheory.BotPointDict.chr_at_finIdl <;> assumption)
+  first | exact @GlobalTheory.BotPointDict.chr_at_finIdl

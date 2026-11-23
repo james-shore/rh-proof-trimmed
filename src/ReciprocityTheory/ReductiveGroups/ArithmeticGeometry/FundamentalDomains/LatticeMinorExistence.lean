@@ -70,7 +70,7 @@ lemma exists_minor {u : Fin 2 → Fin r → E} (hu : LinearIndependent E u) :
     funext b
     have hb := hcon a b
     simp only [Fin.sum_univ_two, Finset.sum_apply, Pi.add_apply, Pi.smul_apply, smul_eq_mul,
-      Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons, Pi.zero_apply]
+      Matrix.cons_val_zero, Matrix.cons_val_one, Pi.zero_apply]
     linear_combination -hb)
   exact ha (by simpa using key 1)
 

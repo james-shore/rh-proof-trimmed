@@ -48,4 +48,4 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.PairStep
 
 theorem _root_.GlobalTheory.T.weilQDivisorAvoidsPoint_cartier_iff_notMem_supp : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoetherian X] (D₀ : CartierDiv X) (m : ℕ) (z : X), D₀.Eff → 0 < m → (Off (qWeil D₀ m) z ↔ z ∉ D₀.supp) := by
-  first | exact @GlobalTheory.PairStep.off_qWeil_iff_notMem_supp | exact GlobalTheory.PairStep.off_qWeil_iff_notMem_supp | (intros; apply GlobalTheory.PairStep.off_qWeil_iff_notMem_supp <;> assumption)
+  first | exact @GlobalTheory.PairStep.off_qWeil_iff_notMem_supp

@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.deform_multiple_zeros_linear_family : ∀ (k J I :
  (∀ (e₀ : k) (e : I → ℕ → k), ∃ h : J → k, ∑ j, h j * PowerSeries.constantCoeff (ξ j) = e₀ ∧ ∀ i, ∀ l, l + 1 < N → ∑ j, h j * PowerSeries.coeff l (s i j) = e i l) →
  ∃ (y : J → PowerSeries k) (a : I → PowerSeries k), (∀ j, PowerSeries.constantCoeff (y j) = y₀ j) ∧ (∀ i, PowerSeries.constantCoeff (a i) = 0) ∧
    ∑ j, y j * ξ j = 0 ∧ ∀ i, ∀ l < N, ∑ j, y j * (((PowerSeries.derivativeFun)^[l] (s i j)).subst (a i) : PowerSeries k) = 0 := by
-  first | exact @GlobalTheory.DeformZeros.deform | exact GlobalTheory.DeformZeros.deform | (intros; apply GlobalTheory.DeformZeros.deform <;> assumption)
+  first | exact @GlobalTheory.DeformZeros.deform

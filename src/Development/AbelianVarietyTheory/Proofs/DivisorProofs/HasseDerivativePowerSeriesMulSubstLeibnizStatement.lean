@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open Polynomial
 
 theorem _root_.GlobalTheory.T.hasseDerivativePowerSeries_mul_subst_leibniz : ∀ (k : Type) [Field k] (a φ ψ : PowerSeries k) (l : ℕ), PowerSeries.constantCoeff a = 0 → ((GlobalTheory.PicDiv.hasse l (φ * ψ)).subst a : PowerSeries k) = ∑ p ∈ Finset.range (l + 1), ((GlobalTheory.PicDiv.hasse p φ).subst a : PowerSeries k) * (GlobalTheory.PicDiv.hasse (l - p) ψ).subst a := by
-  first | exact @GlobalTheory.hasse_mul_subst | exact GlobalTheory.hasse_mul_subst | (intros; apply GlobalTheory.hasse_mul_subst <;> assumption)
+  first | exact @GlobalTheory.hasse_mul_subst

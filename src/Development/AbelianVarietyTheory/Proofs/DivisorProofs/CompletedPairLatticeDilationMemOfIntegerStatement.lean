@@ -49,4 +49,4 @@ open Classical
 
 
 theorem _root_.GlobalTheory.T.completedPairLattice_dilation_mem_of_integer : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T0 : Type) (A : FamIn D.what₂.LL G Pl0 T0 D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (i : Fin D.R.m) (ϖ : 𝓞 D.host.E), ∀ y ∈ lattice₂ R i, dil i (ϖ : D.host.E) y ∈ lattice₂ R i := by
-  first | exact @GlobalTheory.BaseCmp.dil_mem_latP | exact GlobalTheory.BaseCmp.dil_mem_latP | (intros; apply GlobalTheory.BaseCmp.dil_mem_latP <;> assumption)
+  first | exact @GlobalTheory.BaseCmp.dil_mem_latP

@@ -151,8 +151,6 @@ theorem nRows0_eq_finrank_isotE : GlobalTheory.Published.WeilRepresentationUnita
     rw [Submodule.map_comap_eq, inf_eq_right.2 hrng]
   rw [(Submodule.equivMapOfInjective f hf (Wp π)).finrank_eq, hmap, Y.prtE0]
   first
-    | exact LinearEquiv.finrank_map_eq _ _
     | exact LinearEquiv.finrank_map_eq (PiTensorProduct.lift : Mult.MMap (R.MY 0) ≃ₗ[ℂ] _) _
-    | exact ((Submodule.equivMapOfInjective (PiTensorProduct.lift : Mult.MMap (R.MY 0) ≃ₗ[ℂ] _).toLinearMap (LinearEquiv.injective _) _).finrank_eq).symm
 
 end GlobalTheory.BaseRowCount

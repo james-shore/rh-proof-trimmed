@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.archWeilOperator_unitaryW_lintegral_norm_eq : ∀ 
     ∀ h ∈ UAt σ W (evI F), ∀ (N : ℕ) (C : (Fin n × Fin d → mixedEmbedding.mixedSpace F) ≃L[ℝ] EuclideanSpace ℝ (Fin N))
       (f : SInf F (Fin n × Fin d)),
       ∫⁻ x, ‖archOp om h f (C.symm x)‖ₑ ^ 2 = ∫⁻ x, ‖f (C.symm x)‖ₑ ^ 2 := by
-  first | exact @GlobalTheory.ArchimedeanLineL2.archOp_lintegral_eq | exact GlobalTheory.ArchimedeanLineL2.archOp_lintegral_eq | (intros; apply GlobalTheory.ArchimedeanLineL2.archOp_lintegral_eq <;> assumption)
+  first | exact @GlobalTheory.ArchimedeanLineL2.archOp_lintegral_eq

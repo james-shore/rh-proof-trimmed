@@ -46,4 +46,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.inducedType_thetaGenusOne_permutes : ∀ D : D7, admG1 D ∧ EmbeddingPermutesTypes D := by
-  first | exact @GlobalTheory.InducedType.induced_type | exact GlobalTheory.InducedType.induced_type | (intros; apply GlobalTheory.InducedType.induced_type <;> assumption)
+  first | exact @GlobalTheory.InducedType.induced_type

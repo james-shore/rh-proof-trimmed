@@ -218,8 +218,7 @@ def kL (H : Sesq V) (w x : V) : V →L[ℂ] ℂ :=
 
 theorem term_eq (H : Sesq V) (α : V → ℂ) (w x z : V) :
     α x * opU H x (kerK H w) z = kC H α w x * Complex.exp (kL H w x z) := by
-  simp only [opU, kerK, kC, kL, ContinuousLinearMap.smul_apply, LinearMap.coe_toContinuousLinearMap',
-    LinearMap.flip_apply, smul_eq_mul, map_add, map_sub, LinearMap.add_apply]
+  simp only [opU, kerK, kC, kL, ContinuousLinearMap.smul_apply, smul_eq_mul, map_add, map_sub, LinearMap.add_apply]
   rw [mul_assoc]
   congr 1
   rw [← Complex.exp_add, ← Complex.exp_add]
@@ -257,7 +256,7 @@ theorem kernel_summable_bound (hS : LatGaussSummable) (hN : FormNorm) (H : Sesq 
   have hxx : c0 * ‖(x : V)‖ ^ 2 ≤ (H x x).re := (hn x).1
   have hkL : ‖kL H w x‖ ≤ Real.pi * (K * (‖w‖ + ‖(x : V)‖)) := by
     rw [kL, norm_smul]
-    have hpi : ‖(Real.pi : ℂ)‖ = Real.pi := by simp [Real.pi_pos.le]
+    have hpi : ‖(Real.pi : ℂ)‖ = Real.pi := by simp
     rw [hpi]
     apply mul_le_mul_of_nonneg_left _ Real.pi_pos.le
     exact (hK (w - x)).trans (mul_le_mul_of_nonneg_left (norm_sub_le _ _) hK0)

@@ -46,4 +46,4 @@ import GroundTheory.GlobalFields.KummerTheory.LocalIndex
 open NumberField GlobalTheory.CuspRep GlobalTheory.CuspQuot GlobalTheory.AutGrowth MeasureTheory GroundTheory.Global GroundTheory.Automorphic GroundTheory.Automorphic.Reduction
 
 theorem _root_.GlobalTheory.T.isCuspForm_operator_act : GlobalTheory.Published.AutomorphicFormsFiniteGL → ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ) (o : Op E a) (φ : Sm E a), IsCuspForm φ → IsCuspForm (act o φ) := by
-  first | exact @GlobalTheory.CuspStabFin.isCuspForm_act | exact GlobalTheory.CuspStabFin.isCuspForm_act | (intros; apply GlobalTheory.CuspStabFin.isCuspForm_act <;> assumption)
+  first | exact @GlobalTheory.CuspStabFin.isCuspForm_act

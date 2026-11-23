@@ -49,4 +49,4 @@ open scoped CategoryTheory.Obj TensorProduct
 open GlobalTheory.ZV
 
 theorem _root_.GlobalTheory.T.polarizedAbelian_ample_exists_positive_volume : Out.Laws → Out.Laws2 → ∀ (K : Type) [Field K] [IsAlgClosed K] (P : Out.PolAV (Sp K)) (M : LB P.A.left), M.IsLB → Out.RelAmple P.A M → ∃ δ : ℝ, 0 < δ ∧ Vol P.A.hom M P.g δ := by
-  first | exact @GlobalTheory.VolEx.exists_vol | exact GlobalTheory.VolEx.exists_vol | (intros; apply GlobalTheory.VolEx.exists_vol <;> assumption)
+  first | exact @GlobalTheory.VolEx.exists_vol

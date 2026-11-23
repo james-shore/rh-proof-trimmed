@@ -103,7 +103,6 @@ theorem exists_eq_mul_mult_of_units (F : Type) [Field F] [NumberField F]
           have hm : (mult v.1 : ℝ) ≠ 0 := Nat.cast_ne_zero.mpr mult_ne_zero
           simp only [a]
           field_simp
-          try ring
       _ = 0 := by
           rw [Finset.sum_sub_distrib, ← Finset.mul_sum, e1, e2]
           field_simp

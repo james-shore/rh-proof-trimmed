@@ -128,8 +128,8 @@ theorem leviZ_wd_coord (n : ℕ) (j l : Fin n) (y : V n) :
   rw [hL]
   by_cases h : j = l
   · subst h
-    simp [bas, PiLp.single_apply, Complex.I_mul_I]
-  · simp [bas, PiLp.single_apply, h, Ne.symm h]
+    simp [bas, Complex.I_mul_I]
+  · simp [bas, h, Ne.symm h]
 
 theorem leviZ_d_coord {M : Type*} [TopologicalSpace M] (n : ℕ) (z : M → V n)
     (hz : IsLocalHomeomorph z) (j l : Fin n) (x : M) :

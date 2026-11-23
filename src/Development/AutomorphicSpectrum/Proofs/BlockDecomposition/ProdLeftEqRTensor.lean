@@ -95,7 +95,7 @@ theorem mv_prod : ∀ (p : ℕ) [Fact p.Prime] (A : Type) [CommRing A](B₁ : Ty
           Algebra.TensorProduct.map ρ₂ (AlgHom.id A K) ((LinearMap.snd A B₁ B₂).rTensor K t) := by
       intro t
       induction t with
-      | tmul b k => simp [ρ, TensorProduct.sub_tmul]
+      | tmul b k => simp [ρ]
       | add x y hx hy =>
         simp only [map_add (f := _), hx, hy]
         abel

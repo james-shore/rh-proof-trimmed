@@ -62,4 +62,4 @@ theorem _root_.GlobalTheory.T.extend_ae_linear_of_local_sq_bound_dense : ∀ {X 
       (∀ (b : ℂ) (u : H), T (b • u) =ᵐ[μ] fun x => b • T u x) ∧
       (∀ n, ∃ C : ℝ, ∀ u : H, AEStronglyMeasurable (T u) (μ.restrict (K n)) ∧
         ∫⁻ x in K n, (‖T u x‖₊ : ENNReal) ^ 2 ∂μ ≤ ENNReal.ofReal (C * ‖u‖ ^ 2)) := by
-  first | exact @GlobalTheory.extend_ae_linear_of_local_sq | exact GlobalTheory.extend_ae_linear_of_local_sq | (intros; apply GlobalTheory.extend_ae_linear_of_local_sq <;> assumption)
+  first | exact @GlobalTheory.extend_ae_linear_of_local_sq

@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.stalk_evaluation_root_of_unity_value_member : ∀ 
     (δ : Fin m → LinearMap.BilinForm ℤ Y) (𝔪 : UMem X z act V ev Y t δ) (zt : X.M.Z.presheaf.stalk z),
     X.M.stalkHom z zt = algebraMap X.o₁ X.Ω₁ X.S.ζ →
     algebraMap V (FractionRing V) (ev zt) = 𝔪.yK ⟨algebraMap X.o₁ X.Ω₁ X.S.ζ, X.S.R.algebraMap_mem _⟩ := by
-  first | exact @GlobalTheory.Poinc.Sep.MemberZeta.algebraMap_ev_eq_yK | exact GlobalTheory.Poinc.Sep.MemberZeta.algebraMap_ev_eq_yK | (intros; apply GlobalTheory.Poinc.Sep.MemberZeta.algebraMap_ev_eq_yK <;> assumption)
+  first | exact @GlobalTheory.Poinc.Sep.MemberZeta.algebraMap_ev_eq_yK

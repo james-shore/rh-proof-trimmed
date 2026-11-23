@@ -84,7 +84,7 @@ theorem exists_twist_along_genericAutomorphism {o Ω : Type} [CommRing o] [Field
   have : Mono (κ ≫ t) := (MorphismProperty.monomorphisms Scheme).of_isPullback he.1.flip (.infer_property _)
   have : IsMonHom (Iso.refl P₀.A).hom := inferInstanceAs (IsMonHom (𝟙 P₀.A))
   obtain ⟨j, hj, lj, ej⟩ := exists_factor P₀ P₁ P₀ (ψ := 𝟙 _) e₁ he (isGrpPullback_of_iso (Iso.refl P₀.A)) le
-    ((iso_iff P₀.isLB P₀.isLB _).2 (by rw [GlobalTheory.CechPic.pull_id]; try rfl))
+    ((iso_iff P₀.isLB P₀.isLB _).2 (by rw [GlobalTheory.CechPic.pull_id]))
   have w₁ : a₁' ≫ ρ'.P.A.hom = (P₁.A.hom ≫ v) ≫ r := by rw [ha₁'.1.w, Category.assoc, hv]
   have k₁ := hα.1.lift_fst _ _ w₁
   have k₂ := hα.1.lift_snd _ _ w₁

@@ -66,4 +66,4 @@ theorem _root_.GlobalTheory.T.zariskiDense_rationalPoints_definiteUnitary_charZe
       (∀ σ : L →+* K, ((B (σ.comp (IsCMField.complexConj L : L →+* L)) : GL (Fin n) K) : Matrix (Fin n) (Fin n) K) =
         Matrix.transpose (((B σ)⁻¹ : GL (Fin n) K) : Matrix (Fin n) (Fin n) K)) →
       MvPolynomial.eval (fun p : (L →+* K) × Fin n × Fin n => ((B p.1 : GL (Fin n) K) : Matrix (Fin n) (Fin n) K) p.2.1 p.2.2) P = 0 := by
-  first | exact @GlobalTheory.UnitaryDense.unitary_points_dense | exact GlobalTheory.UnitaryDense.unitary_points_dense | (intros; apply GlobalTheory.UnitaryDense.unitary_points_dense <;> assumption)
+  first | exact @GlobalTheory.UnitaryDense.unitary_points_dense

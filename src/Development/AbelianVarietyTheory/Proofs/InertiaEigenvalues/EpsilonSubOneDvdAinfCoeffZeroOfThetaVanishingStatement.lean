@@ -44,4 +44,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.BK
 open scoped Formalism.Per
 
 theorem _root_.GlobalTheory.T.epsilon_sub_one_dvd_ainf_coeff_zero_of_theta_vanishing : ∀ (l : ℕ) [Fact l.Prime] (ε : OCb l), IsEps ε → ∀ a : Ainf l, (∀ n : ℕ, Per.θ l (WittVector.frobenius^[n] a) = 0) → (ε - 1) ∣ a.coeff 0 := by
-  first | exact @GlobalTheory.eps_sub_one_dvd_coeff_zero | exact GlobalTheory.eps_sub_one_dvd_coeff_zero | (intros; apply GlobalTheory.eps_sub_one_dvd_coeff_zero <;> assumption)
+  first | exact @GlobalTheory.eps_sub_one_dvd_coeff_zero

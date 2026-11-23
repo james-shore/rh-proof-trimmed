@@ -188,11 +188,7 @@ theorem norm_of_normOne {a : ℕ} {b c : ℤ} {d : ℕ} (hok : PI.UnitDetRootDef
     (hT : ∀ T v : ℚ_[l], T ^ 2 + (d : ℚ_[l]) * v ^ 2 = 4 → ‖T‖ ≤ 1) (ι : ℂ ≃+* ℂ_[l]) {x : ℂ}
     (hx : x ∈ PI.UnitaryGroupMassFormula.UnitDetRoot.KF b d) (h1 : x * conj x = 1) : ‖ι x‖ = 1 := by
   first
-  | exact @_root_.GlobalTheory.TraceNormCoordinates.norm_eq_one
-  | exact _root_.GlobalTheory.TraceNormCoordinates.norm_eq_one
   | (apply _root_.GlobalTheory.TraceNormCoordinates.norm_eq_one <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TraceNormCoordinates.norm_eq_one <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TraceNormCoordinates.norm_eq_one <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.TraceNormCoordinates.norm_eq_one ..)
 
 theorem le_one (l : ℕ) [Fact l.Prime] (ι : ℂ ≃+* ℂ_[l]) (z : ℂ) (hz : IsIntegral ℤ z) : ‖ι z‖ ≤ 1 := by

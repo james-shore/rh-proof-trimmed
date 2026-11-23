@@ -46,4 +46,4 @@ open GlobalTheory.SepRows GlobalTheory.CoreOnto
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.testGridCommonData_properties_hold : ComOK := by
-  first | exact @GlobalTheory.CoreOnto.comOK | exact GlobalTheory.CoreOnto.comOK | (intros; apply GlobalTheory.CoreOnto.comOK <;> assumption)
+  first | exact @GlobalTheory.CoreOnto.comOK

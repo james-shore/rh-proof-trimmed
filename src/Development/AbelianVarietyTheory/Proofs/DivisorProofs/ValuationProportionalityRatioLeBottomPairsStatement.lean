@@ -68,4 +68,4 @@ theorem _root_.GlobalTheory.T.valuation_proportionalityRatio_le_bottomPairs : �
     b₂ ≠ 0 → v ∈ Qbar → (∀ lam : Qbar →+* ℂ_[p], ‖lamC lam v‖ = 1) →
     ∀ (γ z z' : K), b₁ = σ γ * b₂ * v → σ z = (P₁.norm : ℂ) → σ z' = (P₂'.norm : ℂ) → z ≠ 0 → z' ≠ 0 →
     (vw w γ : ℝ) ≤ vw w z + vw w z' + 6 * Formalism.PairingDivisionLocalBalance.wt S del_vp w := by
-  first | exact @GlobalTheory.NormSum.LemmaC.vw_le_of_bottom_pairs | exact GlobalTheory.NormSum.LemmaC.vw_le_of_bottom_pairs | (intros; apply GlobalTheory.NormSum.LemmaC.vw_le_of_bottom_pairs <;> assumption)
+  first | exact @GlobalTheory.NormSum.LemmaC.vw_le_of_bottom_pairs

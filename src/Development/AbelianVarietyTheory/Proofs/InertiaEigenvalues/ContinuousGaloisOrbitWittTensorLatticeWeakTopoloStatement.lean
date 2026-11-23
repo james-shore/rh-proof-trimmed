@@ -50,4 +50,4 @@ open scoped Topology PowerSeries.WithPiTopology
 
 
 theorem _root_.GlobalTheory.T.continuous_galois_orbit_wittTensorLatticeWeakTopology : ∀ {l : ℕ} [Fact l.Prime] {P : LocPrime l} (AI : LocAinf l P) {K LL : FinExt l} (T : Lt K LL) {d : ℕ} (b : LatB T d) (y : TW (RW LL) T), letI := twTop T b; Continuous fun g : ↥(GK K) => TWact (AI.gRW LL (g : GQ l)) T g y := by
-  first | exact @GlobalTheory.WeakClosed.continuous_orbit_twTop | exact GlobalTheory.WeakClosed.continuous_orbit_twTop | (intros; apply GlobalTheory.WeakClosed.continuous_orbit_twTop <;> assumption)
+  first | exact @GlobalTheory.WeakClosed.continuous_orbit_twTop

@@ -45,4 +45,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 open Formalism.L2.Fam.NPC Formalism.L2.Fam.NPC.BaseC GlobalTheory.HeckeLocN
 
 theorem _root_.GlobalTheory.T.localBridges_at_placesOverResidueChar_of_large_coeff : ∀ (D : D7) (w : D.what₂.places.Pl), ∃ F0 : Loc.FinExt (D.what₂.places.resChar w), ∀ (X : CoefIn D.what₂) (j : ℕ), F0.1 ≤ (X.Kx j w).1 → BrAt X j w := by
-  first | exact @GlobalTheory.HeckeLocN.BridgeAll.brAt_of_large | exact GlobalTheory.HeckeLocN.BridgeAll.brAt_of_large | (intros; apply GlobalTheory.HeckeLocN.BridgeAll.brAt_of_large <;> assumption)
+  first | exact @GlobalTheory.HeckeLocN.BridgeAll.brAt_of_large

@@ -48,4 +48,4 @@ open Formalism.IndefR.RecTie Formalism.IndefR.Lev Formalism.L2.Rows GlobalTheory
 
 theorem _root_.GlobalTheory.T.exists_algebraicRoots_coeffFieldContainsTwistValues : ∃ Sv : ∀ P : Pre, Set (Formalism.L2.Host.HChar P.host.E) → Finset ℂ, (∀ P Ξ, ∀ z ∈ Sv P Ξ, IsAlgebraic ℚ z) ∧
   ∀ (B : Base) (px : PreX B.toPre) (I : Col2.ColIn B px), I.Ok → (∀ z ∈ Sv B.toPre (Set.range I.xi), z ∈ B.LLC) → ValsIn I := by
-  first | exact @GlobalTheory.Mem.Col2.exists_roots_valsIn | exact GlobalTheory.Mem.Col2.exists_roots_valsIn | (intros; apply GlobalTheory.Mem.Col2.exists_roots_valsIn <;> assumption)
+  first | exact @GlobalTheory.Mem.Col2.exists_roots_valsIn

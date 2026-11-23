@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.SS
 
 theorem _root_.GlobalTheory.T.exists_torusQuotient_no_cocharacter : ∀ (k : Type) [Field k] [IsAlgClosed k] (G : Over (Sp k)) [GrpObj G], SmConn G → ∃ (X : Type) (_ : AddCommGroup X) (_ : Module.Free ℤ X) (_ : Module.Finite ℤ X) (B : Over (Sp k)) (_ : GrpObj B) (i : splitTorus (Sp k) X ⟶ G) (q : G ⟶ B), IsQuot i q ∧ ∀ f : Gm (Sp k) ⟶ B, IsMonHom f → f = 1 := by
-  first | exact @GlobalTheory.SS.MaxTorus.exists_quot_no_cocharacter | exact GlobalTheory.SS.MaxTorus.exists_quot_no_cocharacter | (intros; apply GlobalTheory.SS.MaxTorus.exists_quot_no_cocharacter <;> assumption)
+  first | exact @GlobalTheory.SS.MaxTorus.exists_quot_no_cocharacter

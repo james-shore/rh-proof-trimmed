@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.fourierJacobiStep_leftChange_measurePreserving : �
     ∀ v ∈ symN k n c, ∀ κ : GL n k, valuation k (gdet κ : k) = 1 → ∀ x₀ : Matrix n n' k,
       ∃ φ : (StepVar n c n' → k) ≃ᵐ (StepVar n c n' → k), MeasurePreserving φ (stepVol ν n c n') (stepVol ν n c n') ∧
         ∀ e, ((v * embX c κ)⁻¹).val * stepPt x₀ e = stepPt ((κ⁻¹).val * x₀) (φ e) := by
-  first | exact @GlobalTheory.StepLeft.left_change | exact GlobalTheory.StepLeft.left_change | (intros; apply GlobalTheory.StepLeft.left_change <;> assumption)
+  first | exact @GlobalTheory.StepLeft.left_change

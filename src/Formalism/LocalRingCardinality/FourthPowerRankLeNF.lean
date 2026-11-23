@@ -61,7 +61,6 @@ theorem m_pow_four_le_n {D : D7} (L : SizeData₂ D) (hN : SizeN L) (hM : SizeM 
     rw [Real.rpow_mul hx0.le]
     first
       | (norm_num; done)
-      | exact_mod_cast (Real.rpow_natCast (L.sc.x ^ szTh L) 4).symm
   have e2 : Real.sqrt (L.sc.x * L.sc.delta1) ^ 4 = L.sc.x ^ (2 - L.sc.eps / 4) := by
     have h4 : Real.sqrt (L.sc.x * L.sc.delta1) ^ 4 = (L.sc.x * L.sc.delta1) ^ 2 := by
       calc Real.sqrt (L.sc.x * L.sc.delta1) ^ 4
@@ -79,7 +78,6 @@ theorem m_pow_four_le_n {D : D7} (L : SizeData₂ D) (hN : SizeN L) (hM : SizeM 
     by
       first
         | exact pow_le_pow_left₀ (Nat.cast_nonneg _) hMu 4
-        | gcongr
   have h2 : (L.sc.x ^ szTh L * Real.sqrt (L.sc.x * L.sc.delta1)) ^ 4
       = L.sc.x ^ (szTh L * 4 + (2 - L.sc.eps / 4)) := by
     rw [mul_pow, e1, e2, ← Real.rpow_add hx0]
@@ -98,6 +96,5 @@ theorem m_pow_four_le_f {D : D7} (L : SizeData₂ D) (h : SizesAt L) : D.R.m ^ 4
   show D.R.m ^ 4 ≤ 2 * D.R.n
   first
     | omega
-    | linarith
 
 end Formalism.BasicNotions

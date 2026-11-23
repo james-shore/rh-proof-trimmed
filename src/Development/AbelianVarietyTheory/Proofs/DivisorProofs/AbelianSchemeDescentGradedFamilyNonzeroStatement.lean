@@ -52,4 +52,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.abelianSchemeDescent_gradedFamily_nonzero : ∀ σ : Setup, GradedFam σ.c₀ σ.N ∧ ∃ k, 1 ≤ k ∧ ∃ b ∈ σ.N k, b ≠ 0 := by
-  first | exact @GlobalTheory.DescGraded.gradedFam_and_ne_zero | exact GlobalTheory.DescGraded.gradedFam_and_ne_zero | (intros; apply GlobalTheory.DescGraded.gradedFam_and_ne_zero <;> assumption)
+  first | exact @GlobalTheory.DescGraded.gradedFam_and_ne_zero

@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.doubledVacuum_eigen_inertPlace_latticeStabiliser :
     ∀ g ∈ GlobalTheory.DblVac.KD σ G.V v, ∃ μ : ℂ,
       omd g (boxFun (tens (evFin F v) (G.M.vac v) r) (fun x => star (tens (evFin F v) (G.M.vac v) r x))) =
         μ • boxFun (tens (evFin F v) (G.M.vac v) r) (fun x => star (tens (evFin F v) (G.M.vac v) r x)) := by
-  first | exact @GlobalTheory.VDblEig.vdbl_eigen | exact GlobalTheory.VDblEig.vdbl_eigen | (intros; apply GlobalTheory.VDblEig.vdbl_eigen <;> assumption)
+  first | exact @GlobalTheory.VDblEig.vdbl_eigen

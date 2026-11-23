@@ -48,4 +48,4 @@ open NumberField IsDedekindDomain ValuativeRel Matrix Polynomial Formalism.Conju
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.conductor_rec_compatible : DepthZeroCuspidalLL → DepthZeroInduction → LanglandsExhaustionGL → ZelevinskyPolynomialRing → GeometricLemma → BernsteinZelevinskyFiniteness → ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (A : ValuationSubring Ω) (w : HeightOneSpectrum (𝓞 E)) (h : IsPlaceOver A w) (rc : IrrGL (k := w.adicCompletion E) → WD h), IsRecLit h rc → ∀ x : IrrGL (k := w.adicCompletion E), fixed x.rep (KOne (w.adicCompletion E) (Fin x.1)) ≠ ⊥ ↔ IsTameWD (rc x) := by
-  first | exact @GlobalTheory.LlcDepth.fixed_ne_bot_iff_isTameWD | exact GlobalTheory.LlcDepth.fixed_ne_bot_iff_isTameWD | (intros; apply GlobalTheory.LlcDepth.fixed_ne_bot_iff_isTameWD <;> assumption)
+  first | exact @GlobalTheory.LlcDepth.fixed_ne_bot_iff_isTameWD

@@ -50,4 +50,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LN
 
 theorem _root_.GlobalTheory.T.semiAbelianHomExtension_of_laws : Laws → Laws2 → HomExtSt := by
-  first | exact @GlobalTheory.LN.homExt_of_laws | exact GlobalTheory.LN.homExt_of_laws | (intros; apply GlobalTheory.LN.homExt_of_laws <;> assumption)
+  first | exact @GlobalTheory.LN.homExt_of_laws

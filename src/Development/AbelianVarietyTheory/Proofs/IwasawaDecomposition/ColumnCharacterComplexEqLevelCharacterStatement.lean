@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.column_character_complex_eq_level_character : ∀ 
     ∀ (i : Fin X.toD7.R.m) (w : Pl X.toD7.host.E) (hw : w ∈ (X.B.primes px).vGs) (u : (kP w)ˣ),
       X.toD7.what₂.embLL ((Formalism.L2.Col.chiAt I.Ch ⟨w, hw⟩ (i : ℕ) u : X.B.fields.Kˣ) : X.B.fields.K) =
         ((L.chi ((i : ℕ) + 1) w u : ℂˣ) : ℂ) := by
-  first | exact @GlobalTheory.Mem.ChiType.embLL_chiAt_eq_levChi | exact GlobalTheory.Mem.ChiType.embLL_chiAt_eq_levChi | (intros; apply GlobalTheory.Mem.ChiType.embLL_chiAt_eq_levChi <;> assumption)
+  first | exact @GlobalTheory.Mem.ChiType.embLL_chiAt_eq_levChi

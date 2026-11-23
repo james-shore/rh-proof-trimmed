@@ -54,4 +54,4 @@ open scoped TensorProduct Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.splitPlace_detRootChar_mul : ∀ (D : D7) (V : HSp D) (μ : (AE D)ˣ →* Circle) (n : ℕ), Even n → ResEta D μ n → ∀ e, IsSplitIdem D e → ∀ (s g : GA D V), SuppAt e V s → ∀ x₀ x x₁, IsDetAt e V s x₀ → IsDetRoot V g x → IsDetRoot V (s * g) x₁ → μ x₁ = μ x₀ * μ x := by
-  first | exact @GlobalTheory.SplitRootProd.mu_root_mul | exact GlobalTheory.SplitRootProd.mu_root_mul | (intros; apply GlobalTheory.SplitRootProd.mu_root_mul <;> assumption)
+  first | exact @GlobalTheory.SplitRootProd.mu_root_mul

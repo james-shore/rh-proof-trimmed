@@ -58,4 +58,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.exists_affine_nonzeroLocus_unit_closedFibre_semiAb : ∀ (R : Type) [CommRing R] [IsRegularLocalRing R] [IsDomain R] (G : Over (Sp R)) [GrpObj G], IsSemiAbelian G → IsAbelianScheme ((Over.pullback (jK R)).obj G) → ∃ (M₀ : LB G.left) (s₀ : M₀.Sec), M₀.IsLB ∧ IsAffineOpen (nonzeroLocus s₀) ∧ ∃ y₀ ∈ nonzeroLocus s₀, G.hom y₀ = closedPoint R := by
-  first | exact @GlobalTheory.SemiAbAffineUnit.exists_affine_nonzeroLocus_unit | exact GlobalTheory.SemiAbAffineUnit.exists_affine_nonzeroLocus_unit | (intros; apply GlobalTheory.SemiAbAffineUnit.exists_affine_nonzeroLocus_unit <;> assumption)
+  first | exact @GlobalTheory.SemiAbAffineUnit.exists_affine_nonzeroLocus_unit

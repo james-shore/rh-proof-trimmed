@@ -43,4 +43,4 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.fockVectors_overVacua_dense_thetaFunctions : ∀ D : D7, GlobalTheory.ChainFr.FockDense D := by
-  first | exact @GlobalTheory.FockDensity.fockDense | exact GlobalTheory.FockDensity.fockDense | (intros; apply GlobalTheory.FockDensity.fockDense <;> assumption)
+  first | exact @GlobalTheory.FockDensity.fockDense

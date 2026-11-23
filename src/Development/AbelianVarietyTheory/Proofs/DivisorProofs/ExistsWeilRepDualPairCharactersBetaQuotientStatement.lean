@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.exists_weilRep_dualPair_characters_beta_quotient :
       (r s r' s' : ℕ), X.IsHerm D.sp.cm.sig B r s → Y.IsSkew D.sp.cm.sig B r' s' →
       ∀ Mo : Model D.sp.cm.sig X Y, Mo.IsGood B.ψ →
       ∃ om, Mo.IsWeil B.ψ (beta G i j) (beta G i j / alpha G t i j) om := by
-  first | exact @GlobalTheory.WeilTripleW.exists_isWeil | exact GlobalTheory.WeilTripleW.exists_isWeil | (intros; apply GlobalTheory.WeilTripleW.exists_isWeil <;> assumption)
+  first | exact @GlobalTheory.WeilTripleW.exists_isWeil

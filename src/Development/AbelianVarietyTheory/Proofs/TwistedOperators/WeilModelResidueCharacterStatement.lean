@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.weil_model_residue_character : ∀ (F E : Type) [F
         (∀ (t : ℝ) (f : SInf F (Fin n × Fin d)), Acts (evI F) (om (1, γ (Multiplicative.ofAdd t))) f (T t f)) →
         ∀ (μ : MeasureTheory.Measure (Fin n × Fin d → mixedEmbedding.mixedSpace F)), μ.IsAddHaarMeasure →
         ∀ (t : ℝ) (f : SInf F (Fin n × Fin d)), ∫ x, ‖T t f x‖ ^ 2 ∂μ = ∫ x, ‖f x‖ ^ 2 ∂μ := by
-  first | exact @GlobalTheory.ArchimedeanUnitaryL2.integral_norm_sq_eq_pair | exact GlobalTheory.ArchimedeanUnitaryL2.integral_norm_sq_eq_pair | (intros; apply GlobalTheory.ArchimedeanUnitaryL2.integral_norm_sq_eq_pair <;> assumption)
+  first | exact @GlobalTheory.ArchimedeanUnitaryL2.integral_norm_sq_eq_pair

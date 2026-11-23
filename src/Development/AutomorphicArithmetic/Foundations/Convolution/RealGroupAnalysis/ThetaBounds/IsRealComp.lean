@@ -197,8 +197,8 @@ private theorem dE_apply (τ : E →+* ℂ) (i j : Fin 2) (ψ' : S4 F) :
   unfold Fo.Ops.dE
   rw [Fin.sum_univ_two, Fin.sum_univ_two]
   by_cases h : i = j
-  · simp [h, Module.End.mul_apply, X_apply, DX_apply]
-  · simp [h, Module.End.mul_apply, X_apply, DX_apply]
+  · simp [h, X_apply, DX_apply]
+  · simp [h, X_apply, DX_apply]
 
 private theorem dL_apply (Y : Lie E 2) (ψ' : S4 F) :
     (O.dL D Y ψ').1 v = ∑ τ : E →+* ℂ, ∑ i, ∑ j, coord τ (Y i j) * (O.dE D τ i j ψ').1 v := by

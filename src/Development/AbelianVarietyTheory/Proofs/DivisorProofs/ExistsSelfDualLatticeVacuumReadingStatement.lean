@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.exists_selfDualLattice_vacuumReading : ∀ {D : D7
       finPt hS hT r z ∈ latO S T (stdLat S) LT fun _ => True) ∧
     ∀ e0 ∈ Formalism.MainNotions.TaylorLogMetric.Th D (Formalism.MainNotions.TaylorLogMetric.tor0 D ⊤ δ) (Formalism.MainNotions.StandardLatticesGL3.stdL D a) (Formalism.MainNotions.StandardLatticesGL3.stdL D d), ∀ f₀,
       Reads ψ θ hS hT ⊤ δ r e0 f₀ → IsSphOff ψ S T (stdLat S) LT ∅ f₀ := by
-  first | exact @GlobalTheory.NormRatio.vacLat_of_reads | exact GlobalTheory.NormRatio.vacLat_of_reads | (intros; apply GlobalTheory.NormRatio.vacLat_of_reads <;> assumption)
+  first | exact @GlobalTheory.NormRatio.vacLat_of_reads

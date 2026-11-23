@@ -48,4 +48,4 @@ open scoped Matrix
 open MeasureTheory GlobalTheory.RealWeil
 
 theorem _root_.GlobalTheory.T.continuous_rho_apply : ∀ (l : Type) [Fintype l] (v : L2 l), Continuous fun w : l ⊕ l → ℝ => rho w v := by
-  first | exact @GlobalTheory.RealWeil.continuous_rho | exact GlobalTheory.RealWeil.continuous_rho | (intros; apply GlobalTheory.RealWeil.continuous_rho <;> assumption)
+  first | exact @GlobalTheory.RealWeil.continuous_rho

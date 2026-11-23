@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.readsGaussian_smul_const_unique : ∀ {D : D7} (ψ
   (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) (r : D.host.E), Setup ψ θ S T cc δ r →
   ∀ (G : VC D a d → ℂ) (f : WO S T → ℂ) (c c' : ℂ), G ≠ 0 →
   Reads ψ θ hS hT cc δ r (c • G) f → Reads ψ θ hS hT cc δ r (c' • G) f → c = c' := by
-  first | exact @GlobalTheory.NormExact.reads_smul_const_unique | exact GlobalTheory.NormExact.reads_smul_const_unique | (intros; apply GlobalTheory.NormExact.reads_smul_const_unique <;> assumption)
+  first | exact @GlobalTheory.NormExact.reads_smul_const_unique

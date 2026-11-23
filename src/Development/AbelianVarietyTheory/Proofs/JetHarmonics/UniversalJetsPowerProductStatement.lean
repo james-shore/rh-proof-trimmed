@@ -50,4 +50,4 @@ open Formalism.MainNotions.ModuliIntegralCharts.H1.BoxTuple Formalism.MainNotion
 open ReciprocityTheory.ChartRestriction.G.TB (colM dAct)
 
 theorem _root_.GlobalTheory.T.universalJets_power_product : UnivPowSt := by
-  first | exact @GlobalTheory.PowGerm.univPow | exact GlobalTheory.PowGerm.univPow | (intros; apply GlobalTheory.PowGerm.univPow <;> assumption)
+  first | exact @GlobalTheory.PowGerm.univPow

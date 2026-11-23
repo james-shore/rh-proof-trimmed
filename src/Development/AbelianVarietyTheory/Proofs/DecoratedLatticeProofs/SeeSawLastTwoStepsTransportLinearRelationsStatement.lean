@@ -48,4 +48,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.seeSaw_lastTwoSteps_transport_linear_relations : GlobalTheory.Published.HarishChandraModules → ∀ (D : D7) (c : Comm D) (𝒯 : Type) (t : 𝒯 → Tup c), RapidVal D → c.Is → (∀ s, (t s).Is) → ValLastX t → TwoX t → PerX t → RdX t → LastX t := by
-  first | exact @GlobalTheory.SeeSaw.lastX_of_laws | exact GlobalTheory.SeeSaw.lastX_of_laws | (intros; apply GlobalTheory.SeeSaw.lastX_of_laws <;> assumption)
+  first | exact @GlobalTheory.SeeSaw.lastX_of_laws

@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.smallRoute_kernel_eq_char_mul_thetaKernel : ∀ {D
     ∀ (B : Frames G) (ρ : RealMatch W) (Θ : TotT G (routeBig t i j)) (Θ' : TotT G (routeSmall t i j)), IsMatched B t ρ i j Θ Θ' →
     ∀ g g₁ u, kerSmall W Θ' g g₁ u = GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.xiV G i j g * GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.xiV₁ G t i j g₁ *
       thetaKO ωB u (GlobalTheory.SquareComm.blk _ _ (g, g₁)) (GlobalTheory.SquareDict.datumB W Θ') := by
-  first | exact @GlobalTheory.SquareDict.kerSmall_eq_thetaKO | exact GlobalTheory.SquareDict.kerSmall_eq_thetaKO | (intros; apply GlobalTheory.SquareDict.kerSmall_eq_thetaKO <;> assumption)
+  first | exact @GlobalTheory.SquareDict.kerSmall_eq_thetaKO

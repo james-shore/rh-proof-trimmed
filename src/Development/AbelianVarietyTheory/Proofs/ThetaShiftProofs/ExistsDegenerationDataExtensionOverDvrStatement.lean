@@ -44,4 +44,4 @@ open Formalism.L2.Pj Formalism.L2.PjFree Formalism.L2.Pj.QAt Formalism.L2.LamCM 
 open scoped LaurentSeries
 
 theorem _root_.GlobalTheory.T.exists_degenerationData_extension_over_dvr : Known → ∀ (V K : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [Field K] [Algebra V K] [IsFractionRing V K] (Pv : Out.PolAV (Sp V)) (DK : Out.DegPre K) (φ : DK.P.A.left ⟶ Pv.A.left), IsPolFibre (algebraMap V K) Pv DK.P φ → ∃ (DV : Out.DegPre V) (p : Out.IsPullDeg (algebraMap V K) DV DK), DV.P = Pv ∧ HEq (prj p) φ ∧ ∀ (k : ℕ) (q' : Out.QkPt DK (FractionRing K) k), DK.TauBimult → ∃ q, GlobalTheory.ArcPull.IsPullQk p q q' := by
-  first | exact @GlobalTheory.DvrDeg.exists_extension | exact GlobalTheory.DvrDeg.exists_extension | (intros; apply GlobalTheory.DvrDeg.exists_extension <;> assumption)
+  first | exact @GlobalTheory.DvrDeg.exists_extension

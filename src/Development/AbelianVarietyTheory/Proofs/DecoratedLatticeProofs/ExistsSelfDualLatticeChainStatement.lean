@@ -45,4 +45,4 @@ open scoped TensorProduct Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_self_dual_lattice_chain : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.MainNotions.G.Inst D L} {Gl : Formalism.MainNotions.G.LatInst D} {Kc : Formalism.MainNotions.G.Consts} {Yd : DivX D} {cX : ExtraC} {ex : Extra D L hT Gi Gl Kc Yd cX} (W : RealPack ex), PkHyp W → ∀ j, j < D.R.m → ∃ L : GlobalTheory.FinPl.Lat (Yc D j), IsSelfDualC (Yc D j) L := by
-  first | exact @GlobalTheory.SDLatY.exists_selfDual_latY | exact GlobalTheory.SDLatY.exists_selfDual_latY | (intros; apply GlobalTheory.SDLatY.exists_selfDual_latY <;> assumption)
+  first | exact @GlobalTheory.SDLatY.exists_selfDual_latY

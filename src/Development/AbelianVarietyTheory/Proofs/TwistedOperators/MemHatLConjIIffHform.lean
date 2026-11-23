@@ -104,7 +104,7 @@ theorem mulVec_eq_sum {A : Type} [CommRing A] {n : ℕ} (B : Matrix (Fin n) (Fin
     B *ᵥ u = ∑ i, u i • (B *ᵥ Pi.single i 1) := by
   funext c
   rw [Finset.sum_apply]
-  simp only [Pi.smul_apply, Matrix.mulVec_single_one, smul_eq_mul, Matrix.transpose_apply]
+  simp only [Pi.smul_apply, Matrix.mulVec_single_one, smul_eq_mul]
   simp only [Matrix.mulVec, dotProduct]
   exact Finset.sum_congr rfl fun i _ => mul_comm _ _
 
@@ -241,9 +241,6 @@ theorem inId_sigR {I K : Ideal (𝓞 D.host.E)} (hIK : I.map (cO D) ≤ K) {x : 
     exact h2 h1
   · first
       | exact RingHom.coe_restrict_apply _ _ _ _ s
-      | exact congrArg Subtype.val (RingHom.restrict_apply _ _ s)
-      | (unfold sO; rw [RingHom.restrict_apply])
-      | (with_reducible_and_instances rfl)
 
 end GlobalTheory.FrameIdeal
 
@@ -321,7 +318,7 @@ private theorem selfDual_isFullLattice {D : D7} : ∀ (V : HSp D) (Λ : Submodul
       refine ⟨b + c, ?_⟩
       change (b : D.host.E) + c = _
       rw [hb, hc]
-      simp [f, map_add, add_mul, Finset.sum_add_distrib, mul_add]
+      simp [f, add_mul, Finset.sum_add_distrib, mul_add]
     smul_mem' := by
       rintro c x ⟨b, hb⟩
       refine ⟨RingOfIntegers.mapRingHom (starRingEnd D.host.E) c * b, ?_⟩

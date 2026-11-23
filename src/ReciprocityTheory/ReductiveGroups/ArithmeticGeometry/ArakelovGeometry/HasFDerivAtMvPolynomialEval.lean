@@ -66,7 +66,6 @@ theorem bilinear_real_imag_expand {V : Type*} [NormedAddCommGroup V] [NormedSpac
 
     simp only [map_sum, ContinuousLinearMap.sum_apply]
     first
-      | rfl
       | exact Finset.sum_comm
   rw [key]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
@@ -106,8 +105,8 @@ theorem leviForm_eq_complexHessian (φ : (Fin D → ℂ) → ℝ) (y w : Fin D �
   refine Finset.sum_congr rfl fun b _ => ?_
   simp only [cxHessian]
   simp [Complex.mul_re, Complex.mul_im, Complex.add_re, Complex.add_im, Complex.ofReal_re,
-    Complex.ofReal_im, Complex.I_re, Complex.I_im, Complex.div_re, Complex.div_im, Complex.conj_re,
-    Complex.conj_im, Complex.normSq]
+    Complex.ofReal_im, Complex.I_re, Complex.I_im, Complex.conj_re,
+    Complex.conj_im]
   ring
 
 end

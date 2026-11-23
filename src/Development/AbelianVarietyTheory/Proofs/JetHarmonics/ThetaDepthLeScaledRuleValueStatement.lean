@@ -49,4 +49,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons
 open GlobalTheory.PtTie
 
 theorem _root_.GlobalTheory.T.thetaDepth_le_scaled_rule_value : ∀ (D : D7) (T : Top D) (h : LawsP T) (j : ℕ) (hj : InR D j) (w : WeightFamilies.Wt D j), w.LastPos → ∀ (s : 𝓞 (recB h.toLawsCore).KO), s ≠ 0 → ∀ (la : HeightOneSpectrum (𝓞 T.Q.c.F)) (y : T.PtA j la), ∀ f ∈ T.th j w, (recPJ h j hj).depth s w la y ≤ (((vLa la ((s : 𝓞 T.Q.c.F) : T.Q.c.F) : ℤ) : ℝ) : EReal) + vAtV y f := by
-  first | exact @GlobalTheory.DepthRule.depth_le_scaled_value | exact GlobalTheory.DepthRule.depth_le_scaled_value | (intros; apply GlobalTheory.DepthRule.depth_le_scaled_value <;> assumption)
+  first | exact @GlobalTheory.DepthRule.depth_le_scaled_value

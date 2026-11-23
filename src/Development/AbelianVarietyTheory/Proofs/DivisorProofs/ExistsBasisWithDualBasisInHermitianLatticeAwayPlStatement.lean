@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.exists_basis_with_dual_basis_in_hermitian_lattice_
     ∃ f p : Fin n → Fin n → E, (∀ k, ∃ t : 𝓞 F, t ∉ v.asIdeal ∧ algebraMap F E (t : F) • f k ∈ X.L) ∧
       (∀ k, ∃ t : 𝓞 F, t ∉ v.asIdeal ∧ algebraMap F E (t : F) • p k ∈ X.L) ∧
       ∀ k l, form σ X.J (p k) (f l) = if k = l then 1 else 0 := by
-  first | exact @GlobalTheory.HermLocDualBasis.exists_locDualBasis | exact GlobalTheory.HermLocDualBasis.exists_locDualBasis | (intros; apply GlobalTheory.HermLocDualBasis.exists_locDualBasis <;> assumption)
+  first | exact @GlobalTheory.HermLocDualBasis.exists_locDualBasis

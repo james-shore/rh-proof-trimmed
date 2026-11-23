@@ -44,4 +44,4 @@ open Formalism.L2.Pj Formalism.L2.PjFree Formalism.L2.Pj.QAt Formalism.L2.LamCM 
 open scoped LaurentSeries
 
 theorem _root_.GlobalTheory.T.isTauCanonical_iff_of_isPullDeg_tauBimult : Known → ∀ (R R' : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] [CommRing R'] [IsDomain R'] [IsNoetherianRing R'] (f : R →+* R') (D₀ : Out.DegPre R) (D₁ : Out.DegPre R') (p : Out.IsPullDeg f D₀ D₁) (n : ℕ), Function.Injective f → D₀.TauBimult → D₁.TauBimult → (TauCan D₀ n ↔ TauCan D₁ n) := by
-  first | exact @GlobalTheory.TauCanPull.tauCan_iff_of_isPullDeg | exact GlobalTheory.TauCanPull.tauCan_iff_of_isPullDeg | (intros; apply GlobalTheory.TauCanPull.tauCan_iff_of_isPullDeg <;> assumption)
+  first | exact @GlobalTheory.TauCanPull.tauCan_iff_of_isPullDeg

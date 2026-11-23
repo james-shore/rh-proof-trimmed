@@ -57,11 +57,7 @@ theorem exists_galois_embedding (R R' : Type) [CommRing R] [IsDomain R] [CharZer
       FiniteDimensional (FractionRing R) L ∧ IsGalois (FractionRing R) L ∧
       ∃ j : R' →ₐ[R] L, Function.Injective j := by
   first
-  | exact @_root_.GlobalTheory.GaloisEmbeddingExistence.exists_galois_embedding
-  | exact _root_.GlobalTheory.GaloisEmbeddingExistence.exists_galois_embedding
   | (apply _root_.GlobalTheory.GaloisEmbeddingExistence.exists_galois_embedding <;> assumption)
-  | (intros; apply _root_.GlobalTheory.GaloisEmbeddingExistence.exists_galois_embedding <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.GaloisEmbeddingExistence.exists_galois_embedding <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.GaloisEmbeddingExistence.exists_galois_embedding ..)
 
 end GlobalTheory.GalClosure

@@ -51,4 +51,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.exists_invariant_lift_mod_E : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (m : ℕ), ∃ k : ℕ, ∀ s : bk.S, ∃ γ : bk.S, bk.E ∣ γ - (l : bk.S) ^ k * s ∧ ∀ g : ↥(GK K), bk.ev bk.E ^ m ∣ Per.σA (g : GQ l) (bk.ev γ) - bk.ev γ := by
-  first | exact @GlobalTheory.BSP.BK.exists_inv_lift | exact GlobalTheory.BSP.BK.exists_inv_lift | (intros; apply GlobalTheory.BSP.BK.exists_inv_lift <;> assumption)
+  first | exact @GlobalTheory.BSP.BK.exists_inv_lift

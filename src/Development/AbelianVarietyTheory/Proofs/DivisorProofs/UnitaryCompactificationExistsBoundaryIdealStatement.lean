@@ -48,4 +48,4 @@ open GlobalTheory
 open Classical
 
 theorem _root_.GlobalTheory.T.unitaryCompactification_exists_boundary_ideal : UIdealSt := by
-  first | exact @GlobalTheory.UPoinc.uIdealSt_holds | exact GlobalTheory.UPoinc.uIdealSt_holds | (intros; apply GlobalTheory.UPoinc.uIdealSt_holds <;> assumption)
+  first | exact @GlobalTheory.UPoinc.uIdealSt_holds

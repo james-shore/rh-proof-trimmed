@@ -56,4 +56,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped Matrix TensorProduct
 
 theorem _root_.GlobalTheory.T.exists_pow_eq_unit_of_continuous_complex_root : ∀ (B : Type) [CommRing B] [IsDomain B] [Algebra ℂ B] [Algebra.Smooth ℂ B] (n : ℕ) (u : Bˣ) (ρ : (B →ₐ[ℂ] ℂ) → ℂ), 0 < n → (∀ (m : ℕ) (V : Set (Fin m → ℂ)) (s : (Fin m → ℂ) → (B →ₐ[ℂ] ℂ)), IsOpen V → (∀ a : B, DifferentiableOn ℂ (fun p => s p a) V) → ContinuousOn (fun p => ρ (s p)) V) → (∀ ψ : B →ₐ[ℂ] ℂ, ρ ψ ^ n = ψ (u : B)) → ∃ b : B, b ^ n = u := by
-  first | exact @GlobalTheory.ContRoot.exists_pow_eq_of_continuous_root | exact GlobalTheory.ContRoot.exists_pow_eq_of_continuous_root | (intros; apply GlobalTheory.ContRoot.exists_pow_eq_of_continuous_root <;> assumption)
+  first | exact @GlobalTheory.ContRoot.exists_pow_eq_of_continuous_root

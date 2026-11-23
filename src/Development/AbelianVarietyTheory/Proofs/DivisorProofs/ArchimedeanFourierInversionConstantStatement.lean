@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.archimedean_fourier_inversion_constant : ∀ (F : 
           (Algebra.trace ℝ (mixedEmbedding.mixedSpace F) (x ⬝ᵥ y) : ℝ)) ∂μ) *
         Complex.exp (-(2 * Real.pi * Complex.I) * (Algebra.trace ℝ (mixedEmbedding.mixedSpace F) (y ⬝ᵥ a) : ℝ)) ∂μ =
       d * f (-a) := by
-  first | exact @GlobalTheory.ArchFourier.fourier_twice_sInf | exact GlobalTheory.ArchFourier.fourier_twice_sInf | (intros; apply GlobalTheory.ArchFourier.fourier_twice_sInf <;> assumption)
+  first | exact @GlobalTheory.ArchFourier.fourier_twice_sInf

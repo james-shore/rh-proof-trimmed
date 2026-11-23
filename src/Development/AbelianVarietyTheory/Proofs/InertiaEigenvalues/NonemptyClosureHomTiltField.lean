@@ -56,11 +56,7 @@ namespace GlobalTheory.Per
 theorem exists_pow_eq_one_of_algClosure_zmod (l : ℕ) [hl : Fact l.Prime] (a : AlgebraicClosure (ZMod l))
     (ha : a ≠ 0) : ∃ m : ℕ, 0 < m ∧ ¬ l ∣ m ∧ a ^ m = 1 := by
   first
-  | exact @_root_.GlobalTheory.ProofStatement.main
-  | exact _root_.GlobalTheory.ProofStatement.main
   | (apply _root_.GlobalTheory.ProofStatement.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ProofStatement.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ProofStatement.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ProofStatement.main ..)
 
 theorem exists_isPrimitiveRoot_tilt (l : ℕ) [hl : Fact l.Prime] (m : ℕ) (hm : 0 < m) (hlm : ¬ l ∣ m) :

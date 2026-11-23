@@ -51,4 +51,4 @@ open scoped Pointwise TensorProduct InnerProductSpace
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.isHarishChandraParam_gridVertexRealParameter : ∀ (D : D7), HostHyp D → ∀ (i j : ℕ), 1 ≤ i → i ≤ D.R.m → j ≤ D.R.m → ∀ (τ : D.what₂.Tau) (n : ℕ) (lam : Fin n → ℝ) (ε : Fin n → Bool), n = GlobalTheory.Grid.rkV D i j → IsEnum (GlobalTheory.Grid.parV D i j τ) lam ε → Formalism.QuantumDeterminants.IsHCParam lam := by
-  first | exact @GlobalTheory.Grid.isHCParam_parV | exact GlobalTheory.Grid.isHCParam_parV | (intros; apply GlobalTheory.Grid.isHCParam_parV <;> assumption)
+  first | exact @GlobalTheory.Grid.isHCParam_parV

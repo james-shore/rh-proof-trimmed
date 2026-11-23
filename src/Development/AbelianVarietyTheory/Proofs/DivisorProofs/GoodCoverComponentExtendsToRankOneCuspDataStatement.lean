@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.goodCover_component_extends_to_rankOne_cusp_data :
     ∀ σ, GoodEmb Y.d.c₂ σ → ∀ k : (Y.U σ).Comp, ∃ (Xx : FD.DataX D.host.E D.R.r)
       (𝔄 : FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E), Xx.toData = (Y.U σ).X k ∧ 𝔄 ≠ 0 ∧
       Xx.Λ = Submodule.span (𝓞 D.host.E) {v | ∃ a ∈ 𝔄, ∃ u ∈ Xx.L', v = a • u} := by
-  first | exact @GlobalTheory.CovData.exists_dataX_good | exact GlobalTheory.CovData.exists_dataX_good | (intros; apply GlobalTheory.CovData.exists_dataX_good <;> assumption)
+  first | exact @GlobalTheory.CovData.exists_dataX_good

@@ -78,4 +78,4 @@ theorem _root_.GlobalTheory.T.heisenbergIntertwiner_eq_twisted_weilOperator : �
       @Measure.IsAddHaarMeasure _ _ _ (borel _) μ → ∫⁻ y, ‖S g φ y‖ₑ ^ 2 ∂μ = ∫⁻ y, ‖φ y‖ₑ ^ 2 ∂μ) →
     ∃ ν α : (Fv F Bs.v₁)ˣ →* ℂˣ, (∀ x, ‖(ν x : ℂ)‖ = 1) ∧
       ∀ ι, Γ.M'.IsLinBar Bs.ψ Bs.τ₁ 1 1 ι → ∀ g, ∀ φ ∈ GlobalTheory.WeilM.SB _, ι (S g φ) = omB ν α g 1 (ι φ) := by
-  first | exact @GlobalTheory.LinModelLocal.exists_omB_of_linBar | exact GlobalTheory.LinModelLocal.exists_omB_of_linBar | (intros; apply GlobalTheory.LinModelLocal.exists_omB_of_linBar <;> assumption)
+  first | exact @GlobalTheory.LinModelLocal.exists_omB_of_linBar

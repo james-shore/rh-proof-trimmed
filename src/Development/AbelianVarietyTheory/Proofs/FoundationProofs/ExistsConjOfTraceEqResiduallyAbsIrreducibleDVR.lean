@@ -122,7 +122,7 @@ theorem exists_conj_of_surjective {O A : Type} [CommRing O] [IsLocalRing O] [Rin
     · subst hq
       simp [Matrix.sum_apply, Matrix.single_apply]
     · rw [Matrix.mul_single_apply_of_ne _ _ _ _ _ hq]
-      simp [Matrix.sum_apply, Matrix.single_apply, Ne.symm hq]
+      simp [Matrix.sum_apply, Ne.symm hq]
 
   rw [h2, hmul, h3, map_sum, Matrix.sum_apply, Matrix.mul_apply]
   refine Finset.sum_congr rfl fun k _ => ?_
@@ -135,11 +135,7 @@ theorem span_eq_top_of_residue {O ι : Type} [CommRing O] [IsLocalRing O] {a : �
       (Set.range fun g => (M g).map (IsLocalRing.residue O)) = ⊤) :
     Submodule.span O (Set.range M) = ⊤ := by
   first
-  | exact @_root_.GlobalTheory.ResidueSpanLift.span_eq_top_of_span_residue_eq_top
-  | exact _root_.GlobalTheory.ResidueSpanLift.span_eq_top_of_span_residue_eq_top
   | (apply _root_.GlobalTheory.ResidueSpanLift.span_eq_top_of_span_residue_eq_top <;> assumption)
-  | (intros; apply _root_.GlobalTheory.ResidueSpanLift.span_eq_top_of_span_residue_eq_top <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.ResidueSpanLift.span_eq_top_of_span_residue_eq_top <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.ResidueSpanLift.span_eq_top_of_span_residue_eq_top ..)
 
 theorem exists_conj_of_trace_eq_local {O : Type} [CommRing O] [IsLocalRing O] {Γ : Type} [Group Γ]

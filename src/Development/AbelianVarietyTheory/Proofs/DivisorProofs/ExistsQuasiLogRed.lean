@@ -60,11 +60,7 @@ theorem exists_seq_of_step {A : Type} (P : ℕ → A → Prop) (Q : ℕ → A �
     (h₀ : P 0 a₀) (hs : ∀ n a, P n a → ∃ b, P (n + 1) b ∧ Q n a b) :
     ∃ F : ℕ → A, F 0 = a₀ ∧ ∀ n, P n (F n) ∧ Q n (F n) (F (n + 1)) := by
   first
-  | exact @_root_.GlobalTheory.SequenceFromIteration.exists_seq_of_step
-  | exact _root_.GlobalTheory.SequenceFromIteration.exists_seq_of_step
   | (apply _root_.GlobalTheory.SequenceFromIteration.exists_seq_of_step <;> assumption)
-  | (intros; apply _root_.GlobalTheory.SequenceFromIteration.exists_seq_of_step <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.SequenceFromIteration.exists_seq_of_step <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.SequenceFromIteration.exists_seq_of_step ..)
 
 theorem exists_limit_of_steps {R σ : Type} [CommRing R] (F : ℕ → MvPowerSeries σ R)

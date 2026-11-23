@@ -1,0 +1,5 @@
+The files in this directory are under the Apache License 2.0 (LICENSE in this directory).
+
+transform.py follows the import rewiring and span cutting of tools/prune.py from keithadler/rh-trim
+(https://github.com/keithadler/rh-trim, Apache-2.0), with changes. It reads keep lists by declaration, applies edit
+lists (edits.py, EDIT-LISTS.md), refuses edits inside the statement cone, and keeps imports in their original order.

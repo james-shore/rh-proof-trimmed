@@ -47,4 +47,4 @@ theorem _root_.GlobalTheory.T.weilPairingCompatible_add_second_position_complex 
     WeilEq B.t.PP.L f g₁ A.t.PP.L (A.t.act.act r₁) (𝟙 _) (spMap (σ₁.comp (algebraMap (𝓞 K) K))) →
     WeilEq B.t.PP.L f g₂ A.t.PP.L (A.t.act.act r₂) (𝟙 _) (spMap (σ₁.comp (algebraMap (𝓞 K) K))) →
     WeilEq B.t.PP.L f (g₁ * g₂) A.t.PP.L (A.t.act.act (r₁ + r₂)) (𝟙 _) (spMap (σ₁.comp (algebraMap (𝓞 K) K))) := by
-  first | exact @GlobalTheory.weilEq_mul_right_add | exact GlobalTheory.weilEq_mul_right_add | (intros; apply GlobalTheory.weilEq_mul_right_add <;> assumption)
+  first | exact @GlobalTheory.weilEq_mul_right_add

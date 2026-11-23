@@ -91,7 +91,7 @@ theorem infinityDerivation_coord (t : Fin (n + 1) → Rˣ) (D : Fin (n + 1) → 
       derivation_sum_apply, smul_eq_mul, Units.val_mul, Derivation.leibniz, hinv, hD]
     simp [show ∀ i : Fin n, (0 : Fin (n + 1)) = i.succ ↔ False from fun i => ⟨fun h => Fin.succ_ne_zero i h.symm, False.elim⟩]
     linear_combination ((t _ : R) * ((t 0 : R) * (((t 0)⁻¹ : Rˣ) : R) + 1)) * huv
-  · simp [infinityDerivation, u0, Derivation.smul_apply, smul_eq_mul, hinv, hD, (Fin.succ_ne_zero _)]
+  · simp [infinityDerivation, u0, smul_eq_mul, hinv, hD, (Fin.succ_ne_zero _)]
   · simp only [infinityDerivation, u0, Fin.cases_succ, Derivation.smul_apply, smul_eq_mul, Units.val_mul, Derivation.leibniz,
       hinv, hD]
     simp [Fin.succ_ne_zero]
@@ -117,7 +117,7 @@ theorem jacobian_infinityDerivation (t : Fin (n + 1) → Rˣ) (D : Fin (n + 1) �
     intro bs; ext j l
     simp only [Matrix.of_apply, id, Matrix.mul_apply, hC]
     induction j using Fin.cases with
-    | zero => simp [infinityDerivation, derivation_sum_apply, Finset.mul_sum, mul_assoc]
+    | zero => simp [infinityDerivation, Finset.mul_sum, mul_assoc]
     | succ j => simp [infinityDerivation]
   have huv : (t 0 : R) * (((t 0)⁻¹ : Rˣ) : R) = 1 := (t 0).mul_inv
   intro y hy

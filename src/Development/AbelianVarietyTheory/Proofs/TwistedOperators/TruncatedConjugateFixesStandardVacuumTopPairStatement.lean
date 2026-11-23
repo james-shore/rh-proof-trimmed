@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.truncatedConjugate_fixes_standardVacuum_topPair : 
     algebraMap (AF D.host.F) (AE D) ε = e + cA D e →
     W.om (.top t j) (1, resG (G.V (.top (j + 1))) (1 - ε) (conjPt S j k)) (S.Z.vac (.top t j)) =
       S.Z.vac (.top t j) := by
-  first | exact @GlobalTheory.TopLevelInv.vacFix_conjPt_off | exact GlobalTheory.TopLevelInv.vacFix_conjPt_off | (intros; apply GlobalTheory.TopLevelInv.vacFix_conjPt_off <;> assumption)
+  first | exact @GlobalTheory.TopLevelInv.vacFix_conjPt_off

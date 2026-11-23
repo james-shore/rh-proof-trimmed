@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.transportedWeilDatum_isUnitary_adelicSchwartz : �
  ∀ om : GlobalTheory.WeilM.UG (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig) (incM D.host.F JA) ×
       GlobalTheory.WeilM.UG (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig) (incM D.host.F JB) →* Module.End ℂ ((κ → AF D.host.F) → ℂ),
                        GlobalTheory.WeilSchrodinger.IsTransport ψ co ω om → GlobalTheory.WeilM.IsUnitaryOn (GlobalTheory.WeilM.adeleClass D.host.F) om := by
-  first | exact @GlobalTheory.WeilUnitaryTransport.isUnitaryOn_transport | exact GlobalTheory.WeilUnitaryTransport.isUnitaryOn_transport | (intros; apply GlobalTheory.WeilUnitaryTransport.isUnitaryOn_transport <;> assumption)
+  first | exact @GlobalTheory.WeilUnitaryTransport.isUnitaryOn_transport

@@ -246,7 +246,7 @@ theorem adapted_basis : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlg
     have hc : cob1 (up E c.μ) (map (algebraMap O E) s) = 0 := by
       rw [← hs, ← cobL_apply c.μ h0]
 
-      simp [comb, map_sum, map_smul, Fintype.sum_sum_type, cobL_apply, hcob, hr]
+      simp [comb, map_sum, Fintype.sum_sum_type, cobL_apply, hcob, hr]
     have hs0 := GlobalTheory.T.pDivGroupChart_integral_additive_series_eq_zero p C v O hv G d c E hE s hc
     have hc0 : comb b e = 0 := by rw [hs, hs0, map_zero]
     have hl : ∀ i, b (Sum.inl i) = 0 := fun i => by

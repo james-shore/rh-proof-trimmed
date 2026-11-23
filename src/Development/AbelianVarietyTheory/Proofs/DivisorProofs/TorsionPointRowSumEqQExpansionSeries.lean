@@ -72,7 +72,7 @@ private lemma wpFam_ch_natCast_mul (N : ℕ) [NeZero N] (j : ℕ) (b : ZMod N) :
   rw [hc] at h
   rw [h]
   congr 1
-  first | (push_cast; ring) | push_cast
+  first | (push_cast; ring)
 
 open scoped UpperHalfPlane MatrixGroups Matrix ModularForm ComplexConjugate in
 private lemma wpFam_ch_neg_natCast_mul (N : ℕ) [NeZero N] (j : ℕ) (b : ZMod N) :
@@ -85,7 +85,7 @@ private lemma wpFam_ch_neg_natCast_mul (N : ℕ) [NeZero N] (j : ℕ) (b : ZMod 
   rw [hc] at h
   rw [h]
   congr 1
-  first | (push_cast; ring) | push_cast
+  first | (push_cast; ring)
 
 
 open scoped UpperHalfPlane MatrixGroups Matrix ModularForm ComplexConjugate in
@@ -103,7 +103,7 @@ theorem _root_.GlobalTheory.WpFam.torsion_row_series : ∀ (N : ℕ) [NeZero N] 
   constructor
   · have h := EisensteinSeries.qExpansion_identity_pnat he
       ⟨(((d : ℕ) : ℂ) * τ + (b.val : ℂ)) / N, him _ (Complex.natCast_im _)⟩
-    simp only [UpperHalfPlane.coe_mk] at h
+    simp only at h
     have hS : (∑' j : ℕ+, ((j : ℕ) : ℂ) ^ e * Complex.exp (2 * Real.pi * Complex.I
         * ((((d : ℕ) : ℂ) * τ + (b.val : ℂ)) / N)) ^ (j : ℕ))
         = ∑' j : ℕ+, ((j : ℕ) : ℂ) ^ e * _root_.GlobalTheory.WpFam.ch N (((j : ℕ) : ZMod N) * b)
@@ -116,7 +116,7 @@ theorem _root_.GlobalTheory.WpFam.torsion_row_series : ∀ (N : ℕ) [NeZero N] 
   · have h := EisensteinSeries.qExpansion_identity_pnat he
       ⟨(((d : ℕ) : ℂ) * τ + -(b.val : ℂ)) / N, him _
         (by rw [Complex.neg_im, Complex.natCast_im, neg_zero])⟩
-    simp only [UpperHalfPlane.coe_mk] at h
+    simp only at h
     have hterm : ∀ m : ℤ, 1 / ((-((d : ℕ) : ℂ) * τ + (b.val : ℂ)) / N + m) ^ (e + 1)
         = (-1) ^ (e + 1) * (1 / ((((d : ℕ) : ℂ) * τ + -(b.val : ℂ)) / N + ((-m : ℤ) : ℂ)) ^ (e + 1)) := by
       intro m

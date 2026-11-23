@@ -48,4 +48,4 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts G
 open scoped Matrix ContDiff ComplexOrder
 
 theorem _root_.GlobalTheory.T.isForm_evalRealPoly_chernForms_flaggedMetric : ∀ (F : Type) [Field F] (σ : F →+* ℂ) (X : Var F) (ι : Type) [Finite ι] (m k : ι → ℕ) (E : Fr (ratOf X) m k) (H : Mat m X.Fn → CxPts X.str σ → Mat m ℂ), IsMetricFr E H → ∀ R : MvPolynomial (ι × ℕ) ℝ, (atlas X σ).IsForm (evalF (atlas X σ) (chernF E H) R) := by
-  first | exact @GlobalTheory.ChernCalc.isForm_evalF_chernF | exact GlobalTheory.ChernCalc.isForm_evalF_chernF | (intros; apply GlobalTheory.ChernCalc.isForm_evalF_chernF <;> assumption)
+  first | exact @GlobalTheory.ChernCalc.isForm_evalF_chernF

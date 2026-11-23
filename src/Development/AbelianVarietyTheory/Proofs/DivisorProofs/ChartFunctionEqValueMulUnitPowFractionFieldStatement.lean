@@ -52,4 +52,4 @@ open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.chartFunction_eq_value_mul_unit_pow_fractionField : ∀ (X : Scheme.{0}) (L : LB X), L.IsLB → ∀ (Ω : Type) [CommRing Ω] [IsDomain Ω] (x : Sp Ω ⟶ X) (g : GlobalTheory.RayEv.Transport.Frame L (x ≫ 𝟙 X)) (j : L.ι) (O : X.Opens), O ≤ L.U j → ⊤ ≤ (spMap (algebraMap Ω (FractionRing Ω)) ≫ x) ⁻¹ᵁ O → ∃ e₀ : (FractionRing Ω)ˣ, ∀ (k : ℕ) (σ : SecM (𝟙 X) L k) (ω : Ω), IsValue (𝟙 _) L x g k σ ω → valR (spMap (algebraMap Ω (FractionRing Ω)) ≫ x) O (rsT (σ.f fun _ => j) O) = algebraMap Ω (FractionRing Ω) ω * (e₀ : FractionRing Ω) ^ k := by
-  first | exact @GlobalTheory.FracPt.chart_eq_value_mul_pow | exact GlobalTheory.FracPt.chart_eq_value_mul_pow | (intros; apply GlobalTheory.FracPt.chart_eq_value_mul_pow <;> assumption)
+  first | exact @GlobalTheory.FracPt.chart_eq_value_mul_pow

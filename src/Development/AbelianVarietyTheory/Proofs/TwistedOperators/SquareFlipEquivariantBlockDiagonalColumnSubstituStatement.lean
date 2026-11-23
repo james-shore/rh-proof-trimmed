@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.squareFlip_equivariant_blockDiagonal_columnSubstit
       squareFlip μ σ ψ ν ϖ e (Assignment.one.block D₁ D₂) (fun Z => Φ (Z * fromBlocks M₁.val 0 0 M₂.val)) X =
         (ν (gdet M₁) : ℂ) * (((ν (gdet M₂))⁻¹ : ℂˣ) : ℂ) *
           squareFlip μ σ ψ ν ϖ e (Assignment.one.block D₁ D₂) Φ (X * fromBlocks M₁.val 0 0 M₂.val) := by
-  first | exact @GlobalTheory.SquareFlipCols.squareFlip_blockDiag_cols | exact GlobalTheory.SquareFlipCols.squareFlip_blockDiag_cols | (intros; apply GlobalTheory.SquareFlipCols.squareFlip_blockDiag_cols <;> assumption)
+  first | exact @GlobalTheory.SquareFlipCols.squareFlip_blockDiag_cols

@@ -61,4 +61,4 @@ open GlobalTheory.ThetaDens
 
 
 theorem _root_.GlobalTheory.T.exists_sobolev_bound_theta_pointwise : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ θ : InfFam D, IsInfFam θ → ∀ S T : HSp D, ∀ (μ : Measure (WO S T)) (𝓕 : Set (WO S T)), IsCovolOne (ratL T S) μ 𝓕 → ∀ U : AddSubgroup (WO S T), IsOpen (U : Set (WO S T)) → ∃ (d : ℕ) (C : ℝ≥0), ∀ f ∈ thetaLevel ψ S T U, ∀ w, ‖f w‖ₑ ≤ C * sobO ψ θ μ 𝓕 d f := by
-  first | exact @GlobalTheory.ThetaDensSup.sup_le_sobO | exact GlobalTheory.ThetaDensSup.sup_le_sobO | (intros; apply GlobalTheory.ThetaDensSup.sup_le_sobO <;> assumption)
+  first | exact @GlobalTheory.ThetaDensSup.sup_le_sobO

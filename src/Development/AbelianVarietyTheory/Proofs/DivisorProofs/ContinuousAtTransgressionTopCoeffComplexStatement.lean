@@ -46,4 +46,4 @@ open ReciprocityTheory.L2DbarEstimates (V)
 open scoped ContDiff Matrix
 
 theorem _root_.GlobalTheory.T.continuousAt_transgressionTopCoeffComplex : ∀ {n : ℕ} {r : Type} [Fintype r] [DecidableEq r] {ρ : V n → ℝ} {G₀ G₁ : V n → Matrix r r ℂ} {v : V n}, ContDiffAt ℝ 1 ρ v → MContDiffAt 2 G₀ v → IsUnit (G₀ v).det → MContDiffAt 2 G₁ v → IsUnit (G₁ v).det → ContinuousAt (corrC ρ G₀ G₁) v := by
-  first | exact @GlobalTheory.GoodTop.continuousAt_corrC | exact GlobalTheory.GoodTop.continuousAt_corrC | (intros; apply GlobalTheory.GoodTop.continuousAt_corrC <;> assumption)
+  first | exact @GlobalTheory.GoodTop.continuousAt_corrC

@@ -45,4 +45,4 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.unfoldedProduct_depends_on_dataProduct : Big fun ch => ConLin ch := by
-  first | exact @GlobalTheory.RowVal.conLin_big | exact GlobalTheory.RowVal.conLin_big | (intros; apply GlobalTheory.RowVal.conLin_big <;> assumption)
+  first | exact @GlobalTheory.RowVal.conLin_big

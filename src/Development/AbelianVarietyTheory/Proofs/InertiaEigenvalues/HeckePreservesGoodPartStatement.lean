@@ -46,4 +46,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Integral
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.hecke_preserves_good_part : ∀ (D : D7), CommG D → ∀ i, D.ntw.NonzeroIndexPlace i → ∀ j ∈ Finset.Icc 1 D.R.m, ∀ b k P, HkIdx i k P → ∀ x ∈ V0 D.nexp i j b, D.nexp.hkF i j b k P x ∈ V0 D.nexp i j b := by
-  first | exact @GlobalTheory.HkGoodStable.hkF_mem_V0 | exact GlobalTheory.HkGoodStable.hkF_mem_V0 | (intros; apply GlobalTheory.HkGoodStable.hkF_mem_V0 <;> assumption)
+  first | exact @GlobalTheory.HkGoodStable.hkF_mem_V0

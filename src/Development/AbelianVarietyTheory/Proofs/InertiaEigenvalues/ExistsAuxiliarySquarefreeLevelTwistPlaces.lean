@@ -120,7 +120,7 @@ theorem exists_field_adjoin_root (k : Subfield ℂ) (L : IntermediateField ℚ �
     IntermediateField.adjoin_rootSet_isSplittingField (IsAlgClosed.splits _)
   haveI : FiniteDimensional ℚ C := Polynomial.IsSplittingField.finiteDimensional C p
   haveI : Normal ℚ C := Normal.of_isSplittingField p
-  refine ⟨L ⊔ C, inferInstance, @IntermediateField.normal_sup ℚ ℂ _ _ _ L C (by convert ‹Normal ℚ L› <;> exact Subsingleton.elim _ _) (by convert ‹Normal ℚ C› <;> exact Subsingleton.elim _ _), le_sup_left, fun x hx => ?_,
+  refine ⟨L ⊔ C, inferInstance, @IntermediateField.normal_sup ℚ ℂ _ _ _ L C (by convert ‹Normal ℚ L›) (by convert ‹Normal ℚ C›), le_sup_left, fun x hx => ?_,
     (le_sup_right : C ≤ L ⊔ C) (IntermediateField.subset_adjoin ℚ _ ((hroots z).2 (pow_orderOf_eq_one z)))⟩
   let S : IntermediateField ℚ ℂ := Subfield.toIntermediateField k fun r => by
     simpa using SubfieldClass.ratCast_mem k r

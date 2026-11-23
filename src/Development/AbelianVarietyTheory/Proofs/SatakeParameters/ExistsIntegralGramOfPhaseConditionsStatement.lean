@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.exists_integral_gram_of_phase_conditions : ∀ (L 
     ψ ((δ * Matrix.trace (C * (x * ((JS⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) * Matrix.transpose (x.map σ))) + σ (δ * Matrix.trace (C * (x * ((JS⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) * Matrix.transpose (x.map σ))))) / 2) = 1) →
     ∃ l ∈ GlobalTheory.Hk3.HoweDuality.intMat L n' n,
       ∀ i j, ((x - l) * ((JS⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) * Matrix.transpose ((x - l).map σ)) i j ∈ Formalism.UG.intL L := by
-  first | exact @GlobalTheory.Hk3.HoweDuality.exists_int_gram_of_phases | exact GlobalTheory.Hk3.HoweDuality.exists_int_gram_of_phases | (intros; apply GlobalTheory.Hk3.HoweDuality.exists_int_gram_of_phases <;> assumption)
+  first | exact @GlobalTheory.Hk3.HoweDuality.exists_int_gram_of_phases

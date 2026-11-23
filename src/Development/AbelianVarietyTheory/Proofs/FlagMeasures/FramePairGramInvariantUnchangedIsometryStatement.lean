@@ -50,4 +50,4 @@ open scoped Pointwise ENNReal Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.frame_pair_gram_invariant_unchanged_isometry : ∀ (D : D7) {T T' : D.host.E} (F0 F : LFlag (D.sp.Y 0) D.R.rS T) (F0' F' : LFlag (D.sp.Y 0) D.R.rS T') (ρ : (VS D).V ≃ₗ[D.host.E] (VS D).V) (U U' : Matrix (Fin (D.R.rS + 1)) (Fin (D.R.rS + 1)) D.host.E), MovesTo F0 F0' F F' ρ U U' → Gval F F' = Gval F0 F0' := by
-  first | exact @GlobalTheory.HL.gval_eq_of_movesTo | exact GlobalTheory.HL.gval_eq_of_movesTo | (intros; apply GlobalTheory.HL.gval_eq_of_movesTo <;> assumption)
+  first | exact @GlobalTheory.HL.gval_eq_of_movesTo

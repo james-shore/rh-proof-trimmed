@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.card_hodgeTate_jumps_crystalline_eq_dim : ∀ {l :
       IsCrys (P.PD K) ρ →
       (∀ i τ, tableLineDegreeTwo.Over (H.W K 1 LL hA.2.2).emb i τ → ∀ a, multV (P.PD K) ρ τ a = (U i).count a) →
       ∀ i, Multiset.card (U i) = Module.finrank ↥LL.1 V := by
-  first | exact @GlobalTheory.Per.LetterJumps.card_jumps_letter | exact GlobalTheory.Per.LetterJumps.card_jumps_letter | (intros; apply GlobalTheory.Per.LetterJumps.card_jumps_letter <;> assumption)
+  first | exact @GlobalTheory.Per.LetterJumps.card_jumps_letter

@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.torsion_cmUnitaryShimura_mem_closure_linearHom_ima
         x ^ n = 1 ∧ GlobalTheory.Serre.IsLinearHom (X.A true).t.act X.B.t.act f ∧
         (∃ m : ℕ, 0 < m ∧ ∃ z : Fin p → 𝓞 E, f ^ m = ∏ a, ((X.A true).t.act.act (z a) ≫ GlobalTheory.FlatCM.phiP X a)) ∧
         w = x ≫ f} := by
-  first | exact @GlobalTheory.FlatCM.TorsGen.gen | exact GlobalTheory.FlatCM.TorsGen.gen | (intros; apply GlobalTheory.FlatCM.TorsGen.gen <;> assumption)
+  first | exact @GlobalTheory.FlatCM.TorsGen.gen

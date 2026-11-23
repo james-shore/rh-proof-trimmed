@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.chernForms_frame_independent_closed : ∀ {M : Typ
     (∀ a b (x : A.Pt), x.pt ∈ U a → x.pt ∈ U b → A.chern (G a) j x = A.chern (G b) j x) ∧
     ∀ P : A.Fld, (∀ a (x : A.Pt), x.pt ∈ U a → P x = (A.chern (G a) j x : GlobalTheory.CxForm.Alt n)) →
       A.IsForm P ∧ A.del P = 0 ∧ A.dbar P = 0 := by
-  first | exact @GlobalTheory.ChernFrame.chern_frame_closed | exact GlobalTheory.ChernFrame.chern_frame_closed | (intros; apply GlobalTheory.ChernFrame.chern_frame_closed <;> assumption)
+  first | exact @GlobalTheory.ChernFrame.chern_frame_closed

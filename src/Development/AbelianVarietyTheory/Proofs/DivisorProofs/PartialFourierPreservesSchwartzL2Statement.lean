@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.partial_fourier_preserves_schwartz_L2 : ∀ {F : T
     (∀ Φ ∈ schA F (κ ⊕ κ'), partL T Φ ∈ schA F (κ ⊕ κ')) →
     ∀ μ : @Measure (κ ⊕ κ' → AF F) (borel _), @Measure.IsAddHaarMeasure _ _ _ (borel _) μ →
       ∃ C : ℝ≥0∞, ∀ Φ ∈ schA F (κ ⊕ κ'), ∫⁻ x, ‖partL T Φ x‖ₑ ^ 2 ∂μ = C * ∫⁻ x, ‖Φ x‖ₑ ^ 2 ∂μ := by
-  first | exact @GlobalTheory.DblEval.lintegral_partL_eq | exact GlobalTheory.DblEval.lintegral_partL_eq | (intros; apply GlobalTheory.DblEval.lintegral_partL_eq <;> assumption)
+  first | exact @GlobalTheory.DblEval.lintegral_partL_eq

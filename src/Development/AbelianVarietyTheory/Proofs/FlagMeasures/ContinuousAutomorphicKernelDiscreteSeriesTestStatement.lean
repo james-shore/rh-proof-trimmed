@@ -45,4 +45,4 @@ open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.R
 open scoped InnerProductSpace ComplexOrder ContDiff
 
 theorem _root_.GlobalTheory.T.continuous_automorphicKernel_discreteSeriesTest : ∀ (B : RowsAut) (d : InfinitePlace B.I.F → ℝ) (h : ℝ), IsDSData B d → 1 ≤ B.I.n → LocDec B h → HBig B 32 h → Continuous (fun p : B.I.GA × B.I.GA => kern B.I (phe B d) p.1 p.2) := by
-  first | exact @GlobalTheory.Dec.continuous_kern_phe | exact GlobalTheory.Dec.continuous_kern_phe | (intros; apply GlobalTheory.Dec.continuous_kern_phe <;> assumption)
+  first | exact @GlobalTheory.Dec.continuous_kern_phe

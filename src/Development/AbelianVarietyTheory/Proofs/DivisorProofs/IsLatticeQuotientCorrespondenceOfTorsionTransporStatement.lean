@@ -53,4 +53,4 @@ open GlobalTheory.CMVal GlobalTheory.HeckeGal
 open ModularForm (E₄ E₆)
 
 theorem _root_.GlobalTheory.T.isLatticeQuotientCorrespondence_of_torsionTransport : ∀ (K : Type) [Field K] [NumberField K] (ι : K →+* ℂ) (g : ℂ ≃+* ℂ) (t : (Af K)ˣ) (Λ₀ Λ₁ : PeriodPair) (Ω₀ Ω₁ : ℂ), TorsTransport ι g t Λ₀ Λ₁ Ω₀ Ω₁ → IsTr ι Λ₀ Λ₁ (Tr t) := by
-  first | exact @GlobalTheory.WpFam.TrIs.main | exact GlobalTheory.WpFam.TrIs.main | (intros; apply GlobalTheory.WpFam.TrIs.main <;> assumption)
+  first | exact @GlobalTheory.WpFam.TrIs.main

@@ -45,4 +45,4 @@ open BranchingSupport GlobalTheory.CellAmp GlobalTheory.Amp GlobalTheory.TypeAsm
 open scoped InnerProductSpace ENNReal
 
 theorem _root_.GlobalTheory.T.localDataTailBound_closedForm_largeGaps : GlobalTheory.GapIn.Hyp → TailP := by
-  first | exact @GlobalTheory.TypeAsm.TailTopGap.tailP_of_gap | exact GlobalTheory.TypeAsm.TailTopGap.tailP_of_gap | (intros; apply GlobalTheory.TypeAsm.TailTopGap.tailP_of_gap <;> assumption)
+  first | exact @GlobalTheory.TypeAsm.TailTopGap.tailP_of_gap

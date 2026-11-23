@@ -58,11 +58,7 @@ variable (F : Type) [Field F] [NumberField F]
 theorem traceInf_algebraMap (x : F) :
     traceInf F (algebraMap F (Ainf F) x) = ((Algebra.trace ℚ F x : ℚ) : ℝ) := by
   first
-  | exact @_root_.GlobalTheory.TraceSumRealEmbeddings.traceInf_algebraMap
-  | exact _root_.GlobalTheory.TraceSumRealEmbeddings.traceInf_algebraMap
   | (apply _root_.GlobalTheory.TraceSumRealEmbeddings.traceInf_algebraMap <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TraceSumRealEmbeddings.traceInf_algebraMap <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TraceSumRealEmbeddings.traceInf_algebraMap <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.TraceSumRealEmbeddings.traceInf_algebraMap ..)
 
 variable {F}

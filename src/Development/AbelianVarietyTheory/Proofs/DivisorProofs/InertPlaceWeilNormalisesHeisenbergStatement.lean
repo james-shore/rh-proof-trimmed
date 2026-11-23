@@ -64,4 +64,4 @@ theorem _root_.GlobalTheory.T.inertPlace_weil_normalises_heisenberg : ∀ (F E :
     ∀ g h x, ω (g, h) * ρ x =
       ρ (((h : GL (Fin (a + a')) L) : Matrix (Fin (a + a')) (Fin (a + a')) L) * x *
         (((g : GL (Fin a') L)⁻¹ : GL (Fin a') L) : Matrix (Fin a') (Fin a') L)) * ω (g, h) := by
-  first | exact @GlobalTheory.InertBridge.weil_normalises_heis | exact GlobalTheory.InertBridge.weil_normalises_heis | (intros; apply GlobalTheory.InertBridge.weil_normalises_heis <;> assumption)
+  first | exact @GlobalTheory.InertBridge.weil_normalises_heis

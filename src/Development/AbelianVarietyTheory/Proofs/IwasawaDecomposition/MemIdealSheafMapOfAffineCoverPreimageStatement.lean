@@ -53,4 +53,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.mem_idealSheaf_map_of_affineCover_preimage : ∀ {X Y' : Scheme.{0}} (ρ : Y' ⟶ X) [QuasiCompact ρ] (I : Y'.IdealSheafData) (U : X.affineOpens) {ι : Type} (W : ι → Y'.affineOpens) (hW : ∀ i, (W i : Y'.Opens) ≤ ρ ⁻¹ᵁ (U : X.Opens)), ρ ⁻¹ᵁ (U : X.Opens) ≤ ⨆ i, (W i : Y'.Opens) → ∀ b : Γ(X, U), (∀ i, (ρ.appLE U (W i) (hW i)).hom b ∈ I.ideal (W i)) → b ∈ (I.map ρ).ideal U := by
-  first | exact @GlobalTheory.IdealPushCover.mem_map_ideal_of_cover | exact GlobalTheory.IdealPushCover.mem_map_ideal_of_cover | (intros; apply GlobalTheory.IdealPushCover.mem_map_ideal_of_cover <;> assumption)
+  first | exact @GlobalTheory.IdealPushCover.mem_map_ideal_of_cover

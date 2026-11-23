@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_archimedeanOperator_weilRep_pureTensor : �
       M.IsWeil ψ χX χW om →
       ∀ h ∈ UAt σ W (evI F), ∃ T : SInf F (Fin n × Fin d) →ₗ[ℂ] SInf F (Fin n × Fin d),
         ∀ f : SInf F (Fin n × Fin d), Acts (evI F) (om (1, h)) f (T f) := by
-  first | exact @GlobalTheory.ArchFactorPair.exists_archOperator_pair | exact GlobalTheory.ArchFactorPair.exists_archOperator_pair | (intros; apply GlobalTheory.ArchFactorPair.exists_archOperator_pair <;> assumption)
+  first | exact @GlobalTheory.ArchFactorPair.exists_archOperator_pair

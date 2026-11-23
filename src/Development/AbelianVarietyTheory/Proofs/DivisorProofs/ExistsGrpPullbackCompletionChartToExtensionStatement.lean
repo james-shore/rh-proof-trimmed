@@ -52,4 +52,4 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
 theorem _root_.GlobalTheory.T.exists_grpPullback_completionChart_to_extension : ∀ (X S : Scheme.{0}) (j : X ⟶ S) [IsOpenImmersion j], IsDominant j → ∀ (A : Over X) [GrpObj A] (G : Over S) [GrpObj G] (e : A.left ⟶ G.left), IsSemiAbelian G → IsGrpPullback A G j e → ∀ (x : S) (C : Chart j A x), ∃ π : C.G.left ⟶ G.left, IsGrpPullback C.G G C.ξ π ∧ C.α ≫ e = pullback.fst C.G.hom (jK C.R) ≫ π := by
-  first | exact @GlobalTheory.Desc.exists_grpPullback_chart_to_ext | exact GlobalTheory.Desc.exists_grpPullback_chart_to_ext | (intros; apply GlobalTheory.Desc.exists_grpPullback_chart_to_ext <;> assumption)
+  first | exact @GlobalTheory.Desc.exists_grpPullback_chart_to_ext

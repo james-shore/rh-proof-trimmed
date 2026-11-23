@@ -51,4 +51,4 @@ open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.Weakl
 open scoped Formalism.Per NNReal
 
 theorem _root_.GlobalTheory.T.theta_ainf_period_pow_ne_zero : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (τ : Ainf l), bk.IsPer τ → ∀ (n : ℕ), ((Per.θD l).comp (aDp l)) (τ ^ n) ≠ 0 := by
-  first | exact @GlobalTheory.ThetaPer.thetaD_aDp_pow_ne_zero | exact GlobalTheory.ThetaPer.thetaD_aDp_pow_ne_zero | (intros; apply GlobalTheory.ThetaPer.thetaD_aDp_pow_ne_zero <;> assumption)
+  first | exact @GlobalTheory.ThetaPer.thetaD_aDp_pow_ne_zero

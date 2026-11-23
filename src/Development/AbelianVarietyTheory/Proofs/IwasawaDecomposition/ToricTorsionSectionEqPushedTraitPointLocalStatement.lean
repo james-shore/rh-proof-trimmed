@@ -71,4 +71,4 @@ theorem _root_.GlobalTheory.T.toricTorsionSection_eq_pushed_trait_point_local : 
     ∀ (z : Over.mk (spMap u) ⟶ splitTorus (Sp V) X'),
       (∀ χ, GlobalTheory.UU.chV z χ = unitOn (τU (Multiplicative.ofAdd χ))) →
       (s U (u.comp ψ) τ h).left = (z ≫ j).left ≫ mV.φ := by
-  first | exact @GlobalTheory.TorSecLocal.toric_torsion_section_overLocal | exact GlobalTheory.TorSecLocal.toric_torsion_section_overLocal | (intros; apply GlobalTheory.TorSecLocal.toric_torsion_section_overLocal <;> assumption)
+  first | exact @GlobalTheory.TorSecLocal.toric_torsion_section_overLocal

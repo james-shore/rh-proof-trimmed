@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.topLevelDatum_transform_at_twist_prime_under_level
   z' * topDat Ch sel mu cst (m2 + 1) P (g'.symm.toLinearMap ∘ₗ y ∘ₗ g.toLinearMap) (g.symm y₁) *
       rhoS Ch sel mu (m2 + 1) P ((LinearEquiv.det g : X.Eˣ) : X.E) * rhoT Ch sel mu (m2 + 1) P ((LinearEquiv.det g' : X.Eˣ) : X.E) =
     z * topDat Ch sel mu cst (m2 + 1) P y y₂ := by
-  first | exact @GlobalTheory.TwTopLaw.topLawQ_midTop | exact GlobalTheory.TwTopLaw.topLawQ_midTop | (intros; apply GlobalTheory.TwTopLaw.topLawQ_midTop <;> assumption)
+  first | exact @GlobalTheory.TwTopLaw.topLawQ_midTop

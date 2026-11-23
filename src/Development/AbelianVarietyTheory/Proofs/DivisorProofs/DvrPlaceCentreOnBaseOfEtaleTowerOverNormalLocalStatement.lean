@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.dvrPlace_centre_on_base_of_etaleTowerOverNormalLoc
   IsEtTower cK R cL T ι ψ τ → P.IsPrimeOf T →
   (∀ g : R, g ≠ 0 → P.ord (ι g : L) = 0) ∨
   ∃ P0 : Place cK, P0.IsPrimeOf R ∧ ∀ g : R, g ≠ 0 → (P0.ord (g : K) = 0 ↔ P.ord (ι g : L) = 0) := by
-  first | exact @GlobalTheory.FieldPair.centre_of_isEtTower | exact GlobalTheory.FieldPair.centre_of_isEtTower | (intros; apply GlobalTheory.FieldPair.centre_of_isEtTower <;> assumption)
+  first | exact @GlobalTheory.FieldPair.centre_of_isEtTower

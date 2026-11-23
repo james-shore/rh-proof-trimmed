@@ -55,4 +55,4 @@ open Classical
 
 
 theorem _root_.GlobalTheory.T.levelPlaces_union_twistPlaces_split_disjoint : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.Hk3.Core R F → ∀ t : T, Formalism.L2.DIV.IsSplitSet (R.Pg ∪ R.Q t) ∧ Disjoint R.Pg (R.Q t) := by
-  first | exact @GlobalTheory.TwistTypePlaces.isSplitSet_union | exact GlobalTheory.TwistTypePlaces.isSplitSet_union | (intros; apply GlobalTheory.TwistTypePlaces.isSplitSet_union <;> assumption)
+  first | exact @GlobalTheory.TwistTypePlaces.isSplitSet_union

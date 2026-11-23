@@ -102,7 +102,7 @@ private lemma count_fib {Γ P Q : Type} [Group Γ] [MulAction Γ P] [MulAction �
       exact h.2
   have hstab : MulAction.stabilizer H s = (MulAction.stabilizer Γ s).subgroupOf H := by
     ext h
-    simp [Subgroup.mem_subgroupOf, MulAction.mem_stabilizer_iff, Subgroup.smul_def]
+    simp [MulAction.mem_stabilizer_iff, Subgroup.smul_def]
   have hcs : Nat.card (MulAction.stabilizer H s) = Nat.card (MulAction.stabilizer Γ s) := by
     rw [hstab]
     exact Nat.card_congr (Subgroup.subgroupOfEquivOfLe hle).toEquiv

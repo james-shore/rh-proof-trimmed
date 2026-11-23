@@ -48,5 +48,3 @@ open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComp
 theorem _root_.GlobalTheory.T.isKummerTorsorSplitting_kummerTorsorSplitting : ∀ (q : ℕ) [NeZero q], IsKum q (kumT q) := by
   first
   | exact @GlobalTheory.EtC.KummerSplit.isKum_kumT
-  | exact GlobalTheory.EtC.KummerSplit.isKum_kumT
-  | (intros; apply GlobalTheory.EtC.KummerSplit.isKum_kumT <;> assumption)

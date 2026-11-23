@@ -48,4 +48,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UT ReciprocityTheory.ChartRestriction.G.DVR
 
 theorem _root_.GlobalTheory.T.exists_semiAbelianExtendingModel_above_thetaSystem : ∀ (X₁ : GlobalTheory.GSep.GSet), ∃ (Y : RatModel X₁.o₁ X₁.Ω₁) (πY : Y.Z ⟶ X₁.M.Z), GlobalTheory.GSep.ZHAbove X₁ Y πY := by
-  first | exact @GlobalTheory.GSep.exists_zhAbove | exact GlobalTheory.GSep.exists_zhAbove | (intros; apply GlobalTheory.GSep.exists_zhAbove <;> assumption)
+  first | exact @GlobalTheory.GSep.exists_zhAbove

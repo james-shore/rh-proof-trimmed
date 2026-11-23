@@ -48,4 +48,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.Local
 open GlobalTheory.TopLevelInv
 
 theorem _root_.GlobalTheory.T.unitaryIdeleChar_eq_prod_loc_of_tameAt : ∀ {D : D7} {c : (AE D)ˣ →* Circle} {χ : Formalism.L2.Host.HChar D.host.E}, ChrEq c χ → ∀ (T : Finset (Pl D.host.E)), (∀ P ∈ T, χ.TameAt P) → ∀ (a : ∀ P : Pl D.host.E, (Kw P)ˣ) (x : (AE D)ˣ), infPart D (x : AE D) = 1 → (∀ P ∈ T, GlobalTheory.StdFrames.cpt P (toEAf D (x : AE D)) = (a P : Kw P)) → (∀ P ∉ T, GlobalTheory.StdFrames.cpt P (toEAf D (x : AE D)) = 1) → ((c x : Circle) : ℂ) = ∏ P ∈ T, ((χ.loc P (a P) : ℂˣ) : ℂ) := by
-  first | exact @GlobalTheory.TameCharProd.char_eq_prod_loc_of_tame | exact GlobalTheory.TameCharProd.char_eq_prod_loc_of_tame | (intros; apply GlobalTheory.TameCharProd.char_eq_prod_loc_of_tame <;> assumption)
+  first | exact @GlobalTheory.TameCharProd.char_eq_prod_loc_of_tame

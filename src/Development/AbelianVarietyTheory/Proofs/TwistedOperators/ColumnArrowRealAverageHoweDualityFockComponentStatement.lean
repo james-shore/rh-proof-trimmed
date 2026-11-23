@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.columnArrow_realAverage_howeDuality_fockComponent 
       IsPlaceModel W.ψ (symplO _ _) (heisO W.ψ _ _) e (stdLatO S (.top t j)) 1 (S.Z.vac (.top t j)) Tm →
       ∃ c : ℂ, W.om (.top t j) (1, ((((S.N.u (.top (j + 1)))⁻¹ * k * S.N.u (.top (j + 1)) : FinPt G (.top (j + 1))) : FinPt G (.top (j + 1))) : GA D (G.V (.top (j + 1))))) (S.Z.vac (.top t j)) =
         c • Tm fun x => halfInd e (stdLatO S (.top t j)) (actO _ _ 1⁻¹ ((((S.N.u (.top (j + 1)))⁻¹ * k * S.N.u (.top (j + 1)) : FinPt G (.top (j + 1))) : FinPt G (.top (j + 1))) : GA D (G.V (.top (j + 1))))⁻¹ x) := by
-  first | exact @GlobalTheory.ExpansionInvariance.vac_move_low | exact GlobalTheory.ExpansionInvariance.vac_move_low | (intros; apply GlobalTheory.ExpansionInvariance.vac_move_low <;> assumption)
+  first | exact @GlobalTheory.ExpansionInvariance.vac_move_low

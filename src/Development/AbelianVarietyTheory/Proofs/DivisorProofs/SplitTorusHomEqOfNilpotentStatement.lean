@@ -51,4 +51,4 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 theorem _root_.GlobalTheory.T.splitTorus_hom_eq_of_bcMap_comp_eq : ∀ (A κ : Type) [CommRing A] [IsLocalRing A] [CommRing κ] (π : A →+* κ), Function.Surjective π → IsNilpotent (RingHom.ker π) → ∀ (X : Type) [AddCommGroup X] (H : Over (Sp A)) [GrpObj H] [IsCommMonObj H] (i₁ i₂ : splitTorus (Sp A) X ⟶ H), IsMonHom i₁ → IsMonHom i₂ → GlobalTheory.SplitTorus.bcMap (spMap π) X ≫ i₁.left = GlobalTheory.SplitTorus.bcMap (spMap π) X ≫ i₂.left → i₁ = i₂ := by
-  first | exact @GlobalTheory.splitTorus_hom_eq_of_nilpotent | exact GlobalTheory.splitTorus_hom_eq_of_nilpotent | (intros; apply GlobalTheory.splitTorus_hom_eq_of_nilpotent <;> assumption)
+  first | exact @GlobalTheory.splitTorus_hom_eq_of_nilpotent

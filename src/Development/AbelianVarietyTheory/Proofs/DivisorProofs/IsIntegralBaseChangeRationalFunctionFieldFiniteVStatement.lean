@@ -52,4 +52,4 @@ open GlobalTheory.ThickeningDetermines (secIdeal)
 open scoped TensorProduct
 
 theorem _root_.GlobalTheory.T.isIntegral_baseChange_rationalFunctionField_finiteVars : ∀ (k : Type) [Field k] (N : ℕ) (X X' : Scheme.{0}) [IsIntegral X] (f : X ⟶ Sp k) (f' : X' ⟶ Sp (FractionRing (MvPolynomial (Fin N) k))) (π : X' ⟶ X), IsPullback π f' f (spMap (algebraMap k (FractionRing (MvPolynomial (Fin N) k)))) → IsIntegral X' := by
-  first | exact @GlobalTheory.PureTransc.isIntegral_of_isPullback | exact GlobalTheory.PureTransc.isIntegral_of_isPullback | (intros; apply GlobalTheory.PureTransc.isIntegral_of_isPullback <;> assumption)
+  first | exact @GlobalTheory.PureTransc.isIntegral_of_isPullback

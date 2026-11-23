@@ -55,4 +55,4 @@ open GlobalTheory.Core.Rk.IP (Pair Unram SphFun openOff integrand wcoef rcoef up
 
 theorem _root_.GlobalTheory.T.isPolynomialFockThetaVector_definiteBottom : GBig fun {D} T Lc _ G _ _ _ _ => ∀ (W : G.Weil) (i j : Fin D.R.m) (A A' WW : HSp D) (X : Tri T A A' WW),
   IsBottomTri W i j X → ∀ t : T, ∀ P : PolF D WW.rank A.rank, IsFockVec W.ψ W.θ (GlobalTheory.Grid.neg A) WW (fun τ => -X.rA.s τ) X.rW.s (pureTensorO W.ψ W.θ (GlobalTheory.Grid.neg A) WW (fun τ => -X.rA.s τ) X.rW.s X.rA.B X.rW.B (X.f t) P) := by
-  first | exact @GlobalTheory.BottomIPData.isFockVec_bottom | exact GlobalTheory.BottomIPData.isFockVec_bottom | (intros; apply GlobalTheory.BottomIPData.isFockVec_bottom <;> assumption)
+  first | exact @GlobalTheory.BottomIPData.isFockVec_bottom

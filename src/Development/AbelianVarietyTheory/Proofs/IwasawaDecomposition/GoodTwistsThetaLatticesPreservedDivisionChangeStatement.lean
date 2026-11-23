@@ -43,4 +43,4 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Fo
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.goodTwistsThetaLattices_preserved_divisionChange : ∀ (D : D7) (nch : NChoice D) (xd : ThData D) (N : ∀ u, Submodule (𝓞 D.what₂.LL) (D.div.Nu u).V) (h : D.what₂.Word → ℝ), GoodO D nch xd → GoodO (setDiv D N h) (nchTr N h nch) (xdTr N h xd) := by
-  first | exact @GlobalTheory.Mem.Top.Bl.WitTr.goodO_setDiv | exact GlobalTheory.Mem.Top.Bl.WitTr.goodO_setDiv | (intros; apply GlobalTheory.Mem.Top.Bl.WitTr.goodO_setDiv <;> assumption)
+  first | exact @GlobalTheory.Mem.Top.Bl.WitTr.goodO_setDiv

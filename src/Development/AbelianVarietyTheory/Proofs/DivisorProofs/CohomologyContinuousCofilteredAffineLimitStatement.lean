@@ -48,5 +48,3 @@ open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComp
 theorem _root_.GlobalTheory.T.cohomologyContinuous_cofiltered_affine_limit : ∀ (R : Type) [CommRing R] (F : Shv R), Finitary F → ∀ (I : Type) [SmallCategory I] [IsCofiltered I] (G : I ⥤ Scheme.{0}) (c : Cone G), IsLimit c → (∀ i, IsAffine (G.obj i)) → ContCone R F (sch.mapCone c) := by
   first
   | exact @GlobalTheory.EtC.contCone_of_affine_limit
-  | exact GlobalTheory.EtC.contCone_of_affine_limit
-  | (intros; apply GlobalTheory.EtC.contCone_of_affine_limit <;> assumption)

@@ -47,4 +47,4 @@ open GlobalTheory GlobalTheory.ZH GlobalTheory.CechPic GlobalTheory.Cartier Glob
 open Classical
 
 theorem _root_.GlobalTheory.T.flagSpace_intersectionNumber_adjacent_swap_neg : ∀ (F : Type) [Field F] (X Y : Var F) (ι : Type) [Fintype ι] (m : ι → ℕ) (E : Fr (ratOf X) m 0) (E' : Fr (ratOf Y) m m) (φ : X.Fn →ₐ[F] Y.Fn) (f : Y.X ⟶ X.X), Refines E E' φ f → ∀ (gr : Root m → Y.Dv), IsGraded E' gr → ∀ (τ : ι) (a b : Fin (m τ)), (b : ℕ) = a + 1 → ∀ Q : MvPolynomial (Root m) ℝ, Y.interPoly gr (rename (Equiv.swap (⟨τ, a⟩ : Root m) ⟨τ, b⟩) Q) = - Y.interPoly gr Q := by
-  first | exact @GlobalTheory.FlagPush.interPoly_swap_adjacent | exact GlobalTheory.FlagPush.interPoly_swap_adjacent | (intros; apply GlobalTheory.FlagPush.interPoly_swap_adjacent <;> assumption)
+  first | exact @GlobalTheory.FlagPush.interPoly_swap_adjacent

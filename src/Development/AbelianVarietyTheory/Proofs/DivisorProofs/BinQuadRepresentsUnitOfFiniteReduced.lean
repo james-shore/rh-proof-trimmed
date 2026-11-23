@@ -55,11 +55,7 @@ theorem binQuad_represents_unit_of_finite_reduced (S : Type) [CommRing S] [Finit
     [IsReduced S] (t m f : S) (hd : IsUnit (t ^ 2 - 4 * m)) (hf : IsUnit f) :
     ∃ a b : S, a ^ 2 + t * a * b + m * b ^ 2 = f := by
   first
-  | exact @_root_.GlobalTheory.FieldCaseReduction.main
-  | exact _root_.GlobalTheory.FieldCaseReduction.main
   | (apply _root_.GlobalTheory.FieldCaseReduction.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FieldCaseReduction.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FieldCaseReduction.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.FieldCaseReduction.main ..)
 
 theorem norm_surj_of_finite_reduced_involution : ∀ (R : Type) [CommRing R] [Finite R]

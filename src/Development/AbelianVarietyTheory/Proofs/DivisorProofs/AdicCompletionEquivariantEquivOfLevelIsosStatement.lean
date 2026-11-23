@@ -72,4 +72,4 @@ theorem _root_.GlobalTheory.T.adicCompletion_equivariant_equiv_of_level_isos : �
       ∀ e (x : O) (y : C'), Ideal.Quotient.mk ((m ^ (e + 1)).map (algebraMap R C')) y = i e x →
         AdicCompletion.evalₐ IC (e + 1) (Ψ (AdicCompletion.of IT _ (x ⊗ₜ[R] (1 : R')))) =
           Ideal.Quotient.mk (IC ^ (e + 1)) y := by
-  first | exact @GlobalTheory.InvAlg.Levels.levels_equiv | exact GlobalTheory.InvAlg.Levels.levels_equiv | (intros; apply GlobalTheory.InvAlg.Levels.levels_equiv <;> assumption)
+  first | exact @GlobalTheory.InvAlg.Levels.levels_equiv

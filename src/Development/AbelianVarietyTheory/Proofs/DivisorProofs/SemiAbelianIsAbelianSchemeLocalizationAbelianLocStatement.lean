@@ -61,4 +61,4 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.semiAbelian_isAbelianScheme_localization_abelianLocus : ∀ (R : Type) [CommRing R] [IsRegularLocalRing R] [IsDomain R] (G₁ : Over (Sp R)) [GrpObj G₁] [IsCommMonObj G₁], IsSemiAbelian G₁ → ∀ (p : Sp R) [p.asIdeal.IsPrime], p ∈ abLocus G₁ → IsAbelianScheme ((Over.pullback (spMap (algebraMap R (Localization.AtPrime p.asIdeal)))).obj G₁) := by
-  first | exact @GlobalTheory.AbLocusAtPrime.isAbelianScheme_localization | exact GlobalTheory.AbLocusAtPrime.isAbelianScheme_localization | (intros; apply GlobalTheory.AbLocusAtPrime.isAbelianScheme_localization <;> assumption)
+  first | exact @GlobalTheory.AbLocusAtPrime.isAbelianScheme_localization

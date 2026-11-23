@@ -76,7 +76,7 @@ theorem UpperTheory.exists_scalar_of_twisted_intertwiner_commuting_algebras :
             (TensorProduct.tmul ℂ (((φ (J i x₀))⁻¹ • φ) ∘ₗ J i) x₀) := by
       apply LinearMap.ext
       intro y
-      simp [Module.End.mul_apply, dualTensorHom_apply]
+      simp [dualTensorHom_apply]
     rw [e, LinearMap.trace_eq_contract_apply ℂ (P i)]
     simp [contractLeft_apply, hφ]
   choose E hE using hE

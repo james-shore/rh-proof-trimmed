@@ -82,7 +82,7 @@ theorem le_trace {M : Matrix (Fin N) (Fin N) ℂ} (hM : M.PosSemidef) {T : ℝ}
       U * diagonal (fun i => ((T - hM.1.eigenvalues i : ℝ) : ℂ)) * Uᴴ := by
     have : diagonal (fun i => ((T - hM.1.eigenvalues i : ℝ) : ℂ)) =
         (T : ℂ) • (1 : Matrix (Fin N) (Fin N) ℂ) - diagonal (fun i => (hM.1.eigenvalues i : ℂ)) := by
-      ext i j; by_cases h : i = j <;> simp [h, Matrix.one_apply]
+      ext i j; by_cases h : i = j <;> simp [h]
     rw [this, Matrix.mul_sub, Matrix.sub_mul, ← hs', Matrix.mul_smul, Matrix.smul_mul,
       Matrix.mul_one, hUU]
   rw [e]
@@ -207,11 +207,11 @@ omit [IsCMField E] in
 theorem den_smul_J {N D : ℕ} {t : E} (h : IsIntegral ℤ ((D : E) * t)) :
     Den D (t • Matrix.J (Fin N) E) := by
   rintro (i | i) (j | j) <;> by_cases hij : i = j <;>
-    simp [Matrix.J, Matrix.one_apply, hij, isIntegral_zero, h, h.neg]
+    simp [Matrix.J, hij, isIntegral_zero, h, h.neg]
 
 omit [NumberField E] [IsCMField E] in
 theorem map_J {N : ℕ} (τ : E →+* ℂ) : (Matrix.J (Fin N) E).map τ = Matrix.J (Fin N) ℂ := by
-  ext (i | i) (j | j) <;> by_cases hij : i = j <;> simp [Matrix.J, Matrix.one_apply, hij]
+  ext (i | i) (j | j) <;> by_cases hij : i = j <;> simp [Matrix.J, hij]
 
 omit [NumberField E] [IsCMField E] in
 theorem li_submatrix {k α β : Type} (e : α ≃ β) {W : Matrix k β E}

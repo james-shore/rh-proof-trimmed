@@ -53,11 +53,7 @@ theorem sum_range_mul_of_periodic {K : Type} [Field K] (g : ℕ → K) (N : ℕ)
     (hg : ∀ i, g (N + i) = g i) (k : ℕ) :
     ∑ i ∈ Finset.range (N * k), g i = (k : K) * ∑ i ∈ Finset.range N, g i := by
   first
-  | exact @_root_.GlobalTheory.PeriodicSumShift.sum_range_mul_of_periodic
-  | exact _root_.GlobalTheory.PeriodicSumShift.sum_range_mul_of_periodic
   | (apply _root_.GlobalTheory.PeriodicSumShift.sum_range_mul_of_periodic <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PeriodicSumShift.sum_range_mul_of_periodic <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PeriodicSumShift.sum_range_mul_of_periodic <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.PeriodicSumShift.sum_range_mul_of_periodic ..)
 
 theorem sum_valsQ_of_invariant (E : Type) [Field E] [NumberField E]

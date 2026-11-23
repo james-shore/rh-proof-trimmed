@@ -48,4 +48,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.place_idempotent_finite_adele_zero_elsewhere : ∀ (D : D7) (ι : (Af D.host.F ⊗[D.host.F] D.host.E) ≃+* FiniteAdeleRing (𝓞 D.host.E) D.host.E), (∀ k : D.host.E, ι ((1 : Af D.host.F) ⊗ₜ[D.host.F] k) = algebraMap D.host.E (FiniteAdeleRing (𝓞 D.host.E) D.host.E) k) → (∀ y, y ∈ intAE D ↔ ∀ P : HeightOneSpectrum (𝓞 D.host.E), Valued.v (ι y P) ≤ 1) → ∀ (P : Pl D.host.E) (e : AE D), Formalism.L2.NTheta.IsIdemAt e P → ∀ P' : Pl D.host.E, P' ≠ P → ι (finPart D e) P' = 0 := by
-  first | exact @GlobalTheory.ExportSeries.idem_apply_eq_zero_of_ne | exact GlobalTheory.ExportSeries.idem_apply_eq_zero_of_ne | (intros; apply GlobalTheory.ExportSeries.idem_apply_eq_zero_of_ne <;> assumption)
+  first | exact @GlobalTheory.ExportSeries.idem_apply_eq_zero_of_ne

@@ -252,7 +252,7 @@ theorem thetaExp_kap_eq (h : T.Pins) (hj : InR D j) (w : WeightFamilies.Wt D j) 
         simp only [thetaExp, wtOf]
         unfold InPsi at hτ
         rw [dite_eq_right hτ]
-        split_ifs <;> first | rfl | omega
+        split_ifs <;> first | rfl
   · obtain ⟨a, ha⟩ := w.n_even
     show 2 * ((D.R.nV / 2 : ℕ) : ℤ) = ((w.n : ℕ) : ℤ)
     omega

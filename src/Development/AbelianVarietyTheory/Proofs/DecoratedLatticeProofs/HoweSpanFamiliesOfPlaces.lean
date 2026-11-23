@@ -65,7 +65,7 @@ theorem lft_jY (g : ι → Matrix (Fin a) (Fin a) ℂ) (τ : ι) (F : PY Unit a)
   have : (lft g).comp (jY a τ) = (jY a τ).comp (lft (fun _ : Unit => g τ)) := by
     apply MvPolynomial.algHom_ext; intro v
 
-    simp [lft, jY, aeval_X, rename_X, map_sum, map_mul, rename_C]
+    simp [lft, jY, aeval_X, rename_X, map_sum, map_mul]
   exact DFunLike.congr_fun this F
 
 theorem mvZ_jZ (g : ι → Matrix (Fin a) (Fin a) ℂ) (h : ι → Matrix (Fin b) (Fin b) ℂ) (τ : ι) (P : FP Unit a b) :
@@ -73,7 +73,7 @@ theorem mvZ_jZ (g : ι → Matrix (Fin a) (Fin a) ℂ) (h : ι → Matrix (Fin b
   have : (mvZ g h).comp (jZ a b τ) = (jZ a b τ).comp (mvZ (fun _ : Unit => g τ) (fun _ => h τ)) := by
     apply MvPolynomial.algHom_ext; intro v
 
-    simp [mvZ, jZ, aeval_X, rename_X, map_sum, map_mul, rename_C]
+    simp [mvZ, jZ, aeval_X, rename_X, map_sum, map_mul]
   exact DFunLike.congr_fun this P
 
 theorem subY_jY (hab : a ≤ b) (y' : ι → Matrix (Fin b) (Fin b) ℂ) (τ : ι) (F : PY Unit a) :
@@ -81,7 +81,7 @@ theorem subY_jY (hab : a ≤ b) (y' : ι → Matrix (Fin b) (Fin b) ℂ) (τ : �
   have : (subY hab y').comp (jY a τ) = (jZ a b τ).comp (subY hab (fun _ : Unit => y' τ)) := by
     apply MvPolynomial.algHom_ext; intro v
 
-    simp [subY, jZ, jY, aeval_X, rename_X, map_sum, map_mul, rename_C]
+    simp [subY, jZ, jY, aeval_X, rename_X, map_sum, map_mul]
   exact DFunLike.congr_fun this F
 
 theorem tenU (ι σ : Type) [Fintype ι] [DecidableEq ι] :
@@ -170,7 +170,7 @@ theorem lftMap [Fintype ι] [DecidableEq ι] (eY : PiTensorProduct ℂ (fun _ : 
     PiTensorProduct.map_tprod, LinearEquiv.coe_coe, hY1, AlgHom.toLinearMap_apply, map_prod, lft_jY]
   apply Finset.prod_congr rfl; intro σ _
   by_cases h : σ = τ
-  · subst h; simp [LinearMap.restrict_apply]; rfl
+  · subst h; simp; rfl
   · simp [Function.update_of_ne h, (GlobalTheory.T.fockSubstitution_identities Unit a a le_rfl).2.2.2.2.1]
 
 theorem mvZMap [Fintype ι] [DecidableEq ι] (hab : a ≤ b) (eZ : PiTensorProduct ℂ (fun _ : ι => FP Unit a b) ≃ₗ[ℂ] FP ι a b)

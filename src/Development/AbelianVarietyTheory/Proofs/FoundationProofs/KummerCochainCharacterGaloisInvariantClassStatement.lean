@@ -58,4 +58,4 @@ theorem _root_.GlobalTheory.T.kummer_cochain_character_galoisInvariant_class : �
   ∃ θ : Ω, θ ≠ 0 ∧ θ ^ N ∈ IntermediateField.adjoin K {α, β} ∧
     (∀ g ∈ (IntermediateField.adjoin K {α, β}).fixingSubgroup, η g = kum ζ θ g) ∧
     ∀ s : Ω ≃ₐ[K] Ω, ∃ u ∈ IntermediateField.adjoin K {α, β}, u ≠ 0 ∧ s (θ ^ N) = θ ^ N * u ^ N := by
-  first | exact @GlobalTheory.eta_kummer_galoisInvariant | exact GlobalTheory.eta_kummer_galoisInvariant | (intros; apply GlobalTheory.eta_kummer_galoisInvariant <;> assumption)
+  first | exact @GlobalTheory.eta_kummer_galoisInvariant

@@ -48,4 +48,4 @@ open ModularForm (E₄ E₆)
 open scoped MatrixGroups ModularForm Manifold Topology
 
 theorem _root_.GlobalTheory.T.exists_eisenstein_slash_ne_outside_gamma : ∀ M : ℕ, 3 ≤ M → ∀ x : SL(2, ℤ), x ∉ CongruenceSubgroup.Gamma M → ∃ (k : ℤ) (f : ℍ → ℂ), IsMF (CongruenceSubgroup.Gamma M) k f ∧ f ∣[k] x ≠ f := by
-  first | exact @GlobalTheory.EisSep.exists_isMF_slash_ne | exact GlobalTheory.EisSep.exists_isMF_slash_ne | (intros; apply GlobalTheory.EisSep.exists_isMF_slash_ne <;> assumption)
+  first | exact @GlobalTheory.EisSep.exists_isMF_slash_ne

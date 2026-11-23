@@ -68,4 +68,4 @@ theorem _root_.GlobalTheory.T.levelStructure_baseChange_labels_torsion : ∀ (K 
       (∀ z : Over.mk (spMap f) ⟶ P.A, z ^ k = 1 → ∃ a, io.symm (levelPoint lev hg a) = z) ∧
       ∀ i j, WeilIs P.A P.L k (io.symm (levelPoint lev hg (Pi.single i 1))) (io.symm (levelPoint lev hg (Pi.single j 1)))
         (unitOn (ζ ^ stdSymp g i j)) := by
-  first | exact @GlobalTheory.levelPoint_baseChange_label | exact GlobalTheory.levelPoint_baseChange_label | (intros; apply GlobalTheory.levelPoint_baseChange_label <;> assumption)
+  first | exact @GlobalTheory.levelPoint_baseChange_label

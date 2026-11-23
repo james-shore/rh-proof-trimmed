@@ -55,4 +55,3 @@ theorem _root_.GlobalTheory.T.summable_height_rpow_parabolicCosets : ∀ (F E : 
   let _ : Submodule.IsFullLattice E L := hL
   first
   | exact GlobalTheory.SphEis.summable_height_rpow F E σ n J j m C D Z J₀ hF L a hL hI h hh g t ht
-  | exact GlobalTheory.SphEis.summable_height_rpow F E σ n J j m C D Z J₀ hF L a (inferInstance : Submodule.IsLattice E L) hI h hh g t ht

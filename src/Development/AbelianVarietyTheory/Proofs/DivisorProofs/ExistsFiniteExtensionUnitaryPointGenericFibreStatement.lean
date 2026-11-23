@@ -55,4 +55,4 @@ theorem _root_.GlobalTheory.T.exists_finite_extension_unitary_point_generic_fibr
       ∃ (V₁ : Type) (_ : CommRing V₁) (_ : IsDomain V₁) (_ : IsLocalRing V₁) (f : V →+* V₁)
         (fK : FractionRing V →+* FractionRing V₁), CDvr V₁ ∧ Function.Injective f ∧ IsLocalHom f ∧ f.Finite ∧
         (∀ a, fK (algebraMap V _ a) = algebraMap V₁ _ (f a)) ∧ ∃ t : SAB H (Sp V₁), GenOf Xo c (spMap fK ≫ y) t := by
-  first | exact @GlobalTheory.TraitSemi.exists_ext_semi | exact GlobalTheory.TraitSemi.exists_ext_semi | (intros; apply GlobalTheory.TraitSemi.exists_ext_semi <;> assumption)
+  first | exact @GlobalTheory.TraitSemi.exists_ext_semi

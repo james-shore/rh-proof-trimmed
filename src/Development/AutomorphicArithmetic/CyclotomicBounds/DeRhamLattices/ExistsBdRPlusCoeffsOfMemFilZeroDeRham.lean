@@ -92,7 +92,7 @@ theorem _root_.UpperTheory.KN.exists_BdRPlus_coeffs_of_mem_filZero_deRham :
   · intro o d v e
     refine (hact o d v e).trans ?_
     congr 1
-    first | done | rfl | exact (algebraMap_smul (↥LL.1) o v)
+    first | done | exact (algebraMap_smul (↥LL.1) o v)
   · intro x hx
     exact ((UpperTheory.KN.fil_zero_eq_range_cD_and_cD_injective l Pl AI Td (Formalism.MainNotions.ElementDenominator.qlExt l)).1 x).1 hx
   · intro v y

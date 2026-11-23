@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.exists_semiAbelianModel_finiteExt_completeDVR : �
         LBIso A.L (P.L.pull β) ∧
         ∃ (G : Over (Sp V₁)) (_ : GrpObj G) (_ : IsCommMonObj G) (gen : (Over.pullback (jK V₁)).obj G ≅ A.A),
           IsSemiAbelian G ∧ IsMonHom gen.hom := by
-  first | exact @GlobalTheory.PolSemiAbModel.exists_model | exact GlobalTheory.PolSemiAbModel.exists_model | (intros; apply GlobalTheory.PolSemiAbModel.exists_model <;> assumption)
+  first | exact @GlobalTheory.PolSemiAbModel.exists_model

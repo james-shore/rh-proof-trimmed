@@ -56,4 +56,4 @@ open scoped Classical TensorProduct
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.resultant_ne_zero_of_monic_of_separable_mul : ∀ (k : Type) [Field k] (P Q : k[X]), P.Monic → Q.Monic → (P * Q).Separable → resultant P Q ≠ 0 := by
-  first | exact @GlobalTheory.resultant_ne_zero_of_separable_mul | exact GlobalTheory.resultant_ne_zero_of_separable_mul | (intros; apply GlobalTheory.resultant_ne_zero_of_separable_mul <;> assumption)
+  first | exact @GlobalTheory.resultant_ne_zero_of_separable_mul

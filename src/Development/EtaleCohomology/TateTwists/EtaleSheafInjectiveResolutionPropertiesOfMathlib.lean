@@ -94,8 +94,7 @@ lemma ι_nat {F G : Shv R} (φ : F ⟶ G) : resι R F ≫ (resMap R φ).f 0 = φ
   simp only [HomologicalComplex.comp_f] at h
   change resι R F ≫ _ = _ at h
   rw [h]
-  simp [sglι, resι, resAug, CochainComplex.singleFunctor, CochainComplex.singleFunctors,
-    HomologicalComplex.single_map_f_self]
+  simp [sglι, resι, resAug, CochainComplex.singleFunctor, HomologicalComplex.single_map_f_self]
 
 end LateralTheory.EtaleFoundations.ResBasicPf
 

@@ -59,4 +59,4 @@ theorem _root_.GlobalTheory.T.exists_algebraicInvariantForm_vacuum_splitPlace : 
     ∀ e : Formalism.L2.Theta.AE D, IsSplitIdem D e → ∀ (n : ℕ) (w : Fin n → WO S T), (∀ p, (w p).map (infPart D) = 0) →
     ∃ ℓ : (WO S T → ℂ) →ₗ[ℂ] ℂ, (∀ u : WO S T, (∀ i j, cA D e * u i j = u i j) → ∀ f, IsThetaFunO ψ S T f → ℓ (heisO ψ S T u f) = ℓ f) ∧
       ℓ v = 1 ∧ ∀ p, IsAlgebraic ℚ (ℓ (heisO ψ S T (w p) v)) := by
-  first | exact @GlobalTheory.SplitAlgForm.exists_alg_form | exact GlobalTheory.SplitAlgForm.exists_alg_form | (intros; apply GlobalTheory.SplitAlgForm.exists_alg_form <;> assumption)
+  first | exact @GlobalTheory.SplitAlgForm.exists_alg_form

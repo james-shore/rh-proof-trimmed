@@ -65,9 +65,7 @@ theorem aic_intClosure {A B : Type} [CommRing A] [CommRing B] [Algebra A B] (h :
   have hint : IsIntegral (integralClosure A B) a := ⟨p, hp, by rwa [eval₂_eq_eval_map]⟩
   have hA : IsIntegral A a := by
     first
-    | exact hint.trans
     | exact isIntegral_trans a hint
-    | exact IsIntegral.tower_top hint
   have hm : a ∈ integralClosure A B := hA
   refine ⟨⟨a, hm⟩, ?_⟩
   apply Subtype.val_injective

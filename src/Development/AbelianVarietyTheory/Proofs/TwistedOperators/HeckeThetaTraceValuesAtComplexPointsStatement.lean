@@ -73,4 +73,4 @@ theorem _root_.GlobalTheory.T.heckeThetaTrace_values_at_complexPoints : ∀ (E :
       valAt' (lift (𝟙 (Over.mk z.x)) (ψp a)).left ((PPx z.x).U (fun _ => i)) (z.s.f (fun _ => i)) =
         ∑ m, b i (jm m) (cr m * a) *
           valAt' (lift (𝟙 (Over.mk y.x)) ((cr m * a) ^ p)).left ((PPx y.x).U (fun _ => jm m)) (y.s.f (fun _ => jm m))) := by
-  first | exact @GlobalTheory.HeckeValues.hkPtC_values | exact GlobalTheory.HeckeValues.hkPtC_values | (intros; apply GlobalTheory.HeckeValues.hkPtC_values <;> assumption)
+  first | exact @GlobalTheory.HeckeValues.hkPtC_values

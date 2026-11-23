@@ -46,4 +46,4 @@ open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalis
 open scoped BigOperators
 
 theorem _root_.GlobalTheory.T.galois_conj_taylor_thetaTranslate : ∀ D : D7, gal1 D := by
-  first | exact @GlobalTheory.JetConj.galois_translate_sgStar | exact GlobalTheory.JetConj.galois_translate_sgStar | (intros; apply GlobalTheory.JetConj.galois_translate_sgStar <;> assumption)
+  first | exact @GlobalTheory.JetConj.galois_translate_sgStar

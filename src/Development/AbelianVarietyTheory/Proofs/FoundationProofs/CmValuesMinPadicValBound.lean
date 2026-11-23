@@ -105,8 +105,6 @@ theorem cmValues_minPadicVal_bound : MinVal := by
     · simp only [hd, if_true]
       refine ⟨l + 1, by have := hl.two_le; omega, ?_, ?_⟩
       · first
-          | exact (Nat.coprime_succ_self l)
-          | exact (Nat.coprime_self_succ l)
           | simp
       · have h := padicValNat.pow_sub_pow (p := l) (x := l + 1) (y := 1) hodd (by have := hl.one_lt; omega)
           (by simp) (by

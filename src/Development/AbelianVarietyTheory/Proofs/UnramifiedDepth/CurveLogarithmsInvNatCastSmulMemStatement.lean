@@ -49,4 +49,4 @@ open scoped BigOperators
 open NumberField Formalism.IncomingBounds Formalism.L2.FormalSeriesBounds Formalism.L2.Pj GlobalTheory.RowLaw ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 theorem _root_.GlobalTheory.T.curveLogarithms_inv_natCast_smul_mem : ∀ (C : Type) [Field C] (V : VF C) (d : ℕ) [NeZero d] (I : Fin 2 → Type) [∀ g, Fintype (I g)] (κ : Type) [Fintype κ] (X : RawChart C d I κ), RLaw X V → ∀ g (N : ℕ), V.v (N : C) = 0 → ∀ a ∈ Cv X V g, (N : C)⁻¹ • a ∈ Cv X V g := by
-  first | exact @GlobalTheory.RowLaw.cv_inv_natCast_smul_mem | exact GlobalTheory.RowLaw.cv_inv_natCast_smul_mem | (intros; apply GlobalTheory.RowLaw.cv_inv_natCast_smul_mem <;> assumption)
+  first | exact @GlobalTheory.RowLaw.cv_inv_natCast_smul_mem

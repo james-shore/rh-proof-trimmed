@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.CechPic GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.LogPair
 
 theorem _root_.GlobalTheory.T.formOrd_eq_mult_of_isCartierDivisorOfRationalForm : ∀ (k : Type) [Field k] [CharZero k] (Y : Scheme.{0}) [IsIntegral Y] [IsLocallyNoetherian Y] (q : Y ⟶ Sp k) (n : ℕ) [SmoothOfRelativeDimension n q] (η : RatForms q n), η ≠ 0 → ∀ K : CartierDiv Y, IsDivOfForm K η → ∀ (E : DivOver q) (w : Y), E.IsAt w → (fun ω => @dite ℤ (∃ a, E.IsFormOrd ω a) (Classical.propDecidable _) (fun h => h.choose) (fun _ => 0)) η = K.mult w := by
-  first | exact @GlobalTheory.Discrepancy.DivOver.formOrd_eq_mult_of_isDivOfForm | exact GlobalTheory.Discrepancy.DivOver.formOrd_eq_mult_of_isDivOfForm | (intros; apply GlobalTheory.Discrepancy.DivOver.formOrd_eq_mult_of_isDivOfForm <;> assumption)
+  first | exact @GlobalTheory.Discrepancy.DivOver.formOrd_eq_mult_of_isDivOfForm

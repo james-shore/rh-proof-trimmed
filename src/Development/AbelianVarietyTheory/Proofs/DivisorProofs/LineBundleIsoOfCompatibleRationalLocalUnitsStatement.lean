@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.lineBundleIso_of_compatible_rational_local_units :
       f p * S.presheaf.germ _ (genericPoint S) h2 (A.g p.2 q.2 : Γ(S, A.U p.2 ⊓ A.U q.2)) =
         S.presheaf.germ _ (genericPoint S) h1 (B.g p.1 q.1 : Γ(S, B.U p.1 ⊓ B.U q.1)) * f q) →
     LBIso A B := by
-  first | exact @GlobalTheory.GlueRat.lbIso_of_rat | exact GlobalTheory.GlueRat.lbIso_of_rat | (intros; apply GlobalTheory.GlueRat.lbIso_of_rat <;> assumption)
+  first | exact @GlobalTheory.GlueRat.lbIso_of_rat

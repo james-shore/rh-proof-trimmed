@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.integral_injectiveSubspace_compactOpen_const_ne_ze
     ∀ j : (Fin N → Fv F v) →ₗ[Fv F v] (κ → Fv F v) × (κ → Fv F v), Function.Injective j →
     ∀ c : ℂ, c ≠ 0 → ∀ U : Set ((κ → Fv F v) × (κ → Fv F v)), IsOpen U → IsCompact U → 0 ∈ U →
     ∫ y, U.indicator (fun _ => c) (j y) ∂ν ≠ 0 := by
-  first | exact @GlobalTheory.integral_indicator_preimage_injective_ne_zero | exact GlobalTheory.integral_indicator_preimage_injective_ne_zero | (intros; apply GlobalTheory.integral_indicator_preimage_injective_ne_zero <;> assumption)
+  first | exact @GlobalTheory.integral_indicator_preimage_injective_ne_zero

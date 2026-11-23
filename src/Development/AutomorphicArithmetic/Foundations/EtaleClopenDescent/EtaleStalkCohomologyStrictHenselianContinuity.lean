@@ -259,7 +259,7 @@ theorem main : LateralTheory.E.LeafVanBStalkPf.LeafSHCont := by
         (by simp) (by simp)) := by
       rw [← Functor.map_comp]
       congr 1
-      apply pullback.hom_ext <;> simp only [zl, resBW, pullback.map, Category.assoc, pullback.lift_fst, pullback.lift_snd, pullback.lift_fst_assoc, pullback.lift_snd_assoc, Category.comp_id, htl j0]
+      apply pullback.hom_ext <;> simp only [zl, resBW, pullback.map, Category.assoc, pullback.lift_fst, pullback.lift_snd, pullback.lift_fst_assoc, Category.comp_id, htl j0]
     have ce0 : sch.map (tl j0) ≫ sch.map (S.a j0).left = sch.map S.t := by
       rw [← Functor.map_comp, htl]
     have c3' : sch.map (pullback.fst (S.t ≫ U.hom) ι) ≫ (sch.map (tl j0) ≫ sch.map (S.a j0).left) =

@@ -165,7 +165,6 @@ theorem sum_bound (a : ArchFrame P z g) (n r : ℕ) (f : Fin r → (Fin g → �
       have h3 : Mv⁻¹ * e * ‖f j w‖ = Mv⁻¹ * (‖f j w‖ * e) := by ring
       first
         | rw [abs_of_pos (inv_pos.2 hM), abs_of_pos hepos, h3, inv_mul_le_iff₀ hM, _root_.mul_one]
-        | rw [h3, inv_mul_le_iff₀ hM, _root_.mul_one]
       exact h2) c
   simp only [coe_normSeminorm, Fintype.card_fin, smul_eq_mul] at h1
   have h3 : ∑ j, c j * (((Mv⁻¹ * e : ℝ) : ℂ) * f j w) = ((Mv⁻¹ * e : ℝ) : ℂ) * ∑ j, c j * f j w := by

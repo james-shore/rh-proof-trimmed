@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.cuspFormRapidSpan_continuous_automorphic_cuspidal 
     (ω : HChar E), ω.IsUnitary → π.HasCentChar ω → ∀ φ ∈ GlobalTheory.JSW.mspanR π, Continuous φ ∧
     (∀ γ g, φ (ratGL E (m + 1) γ * g) = φ g) ∧
     ∀ r, 0 < r → r ≤ m → ∀ g, avg (ratV E (UnipotentBlockColumnIndex (m + 1) r m)) (fun x => φ (blkU x * g)) = 0 := by
-  first | exact @GlobalTheory.JSW.mspanR_cont_left_avg | exact GlobalTheory.JSW.mspanR_cont_left_avg | (intros; apply GlobalTheory.JSW.mspanR_cont_left_avg; all_goals assumption)
+  first | exact @GlobalTheory.JSW.mspanR_cont_left_avg

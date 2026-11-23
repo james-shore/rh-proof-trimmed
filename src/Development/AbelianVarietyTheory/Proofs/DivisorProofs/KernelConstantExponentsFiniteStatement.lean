@@ -49,4 +49,4 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 open scoped ComplexOrder
 
 theorem _root_.GlobalTheory.T.kernelConstant_exponents_finite : ∀ (D : D7) (γ₀ : IsoK D) (k : KapChoice γ₀), k.YFinite := by
-  first | exact @GlobalTheory.ExponentsFinite.yFinite | exact GlobalTheory.ExponentsFinite.yFinite | (intros; apply GlobalTheory.ExponentsFinite.yFinite <;> assumption)
+  first | exact @GlobalTheory.ExponentsFinite.yFinite

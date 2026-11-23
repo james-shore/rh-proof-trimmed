@@ -50,4 +50,4 @@ open GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection (Blocks parahoric
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.twistedChain_stage_soft_properties : GlobalTheory.Published.HarishChandraFinite → GlobalTheory.Published.CuspRapidDecay → ∀ D : D7, SoftQ D := by
-  first | exact @GlobalTheory.ChainTw.softQ_all | exact GlobalTheory.ChainTw.softQ_all | (intros; apply GlobalTheory.ChainTw.softQ_all <;> assumption)
+  first | exact @GlobalTheory.ChainTw.softQ_all

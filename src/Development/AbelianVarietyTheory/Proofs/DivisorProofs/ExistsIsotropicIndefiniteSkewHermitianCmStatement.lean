@@ -49,4 +49,4 @@ theorem _root_.GlobalTheory.T.exists_isotropic_indefinite_skewHermitian_cm : ∀
     (B : Base F E), IsCMExt F E σ → ∀ (n : ℕ) (J : Matrix (Fin n) (Fin n) E) (r s : ℕ), (∀ i j, σ (J j i) = -J i j) →
     (∀ w, HasSig (Complex.I • J.map (B.emb w).1) r s) → 1 ≤ r → 1 ≤ s → 3 ≤ n →
     ∃ x : Fin n → E, x ≠ 0 ∧ form σ J x x = 0 := by
-  first | exact @GlobalTheory.PlaneSkew.exists_isotropic_skew | exact GlobalTheory.PlaneSkew.exists_isotropic_skew | (intros; apply GlobalTheory.PlaneSkew.exists_isotropic_skew <;> assumption)
+  first | exact @GlobalTheory.PlaneSkew.exists_isotropic_skew

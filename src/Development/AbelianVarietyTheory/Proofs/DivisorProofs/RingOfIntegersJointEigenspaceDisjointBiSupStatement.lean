@@ -60,4 +60,4 @@ open scoped Matrix
 open GlobalTheory.UPel.HT GlobalTheory.UPel.HT.LieType
 
 theorem _root_.GlobalTheory.T.ringOfIntegersJointEigenspace_disjoint_biSup : ∀ (F : Type) [Field F] [NumberField F] (g : ℕ) (φ : 𝓞 F →+* Matrix (Fin g) (Fin g) ℂ) (s : Finset (F →+* ℂ)) (τ : F →+* ℂ), τ ∉ s → Disjoint (eigSp φ τ) (⨆ τ' ∈ s, eigSp φ τ') := by
-  first | exact @GlobalTheory.UPel.HT.LieType.eigSp_disjoint_biSup | exact GlobalTheory.UPel.HT.LieType.eigSp_disjoint_biSup | (intros; apply GlobalTheory.UPel.HT.LieType.eigSp_disjoint_biSup <;> assumption)
+  first | exact @GlobalTheory.UPel.HT.LieType.eigSp_disjoint_biSup

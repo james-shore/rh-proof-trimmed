@@ -128,7 +128,7 @@ theorem isNatDatum_sliceB {ϖ : kˣ} {e : ℕ} {γ : List Edge} {T : G.Args → 
         ext r s; simp [Matrix.toCols₂]
       · by_cases hb' : b = .theta i j
         · subst hb'
-          ext r s; simp [Function.update_of_ne hne, Matrix.toCols₁]
+          ext r s; simp [Matrix.toCols₁]
         · simp [Function.update_of_ne hb, Function.update_of_ne hb']
     have hZ' := FourierDepth.mem_matLat_smul_stdLat.1 hZ₀
     refine (congrArg T key).trans (hT.2.2 _ _ fun b => ?_)
@@ -176,7 +176,7 @@ theorem isTensor_flipTensor {ψ : AddChar k Circle} {ϖ : kˣ} {e : ℕ} (hϖ : 
       by_cases hb2 : b = .ex i j
       · subst hb2; simp
       · by_cases hb1 : b = .theta i j
-        · subst hb1; simp [Function.update_of_ne hne]
+        · subst hb1; simp
         · simp only [Function.update_of_ne hb2, Function.update_of_ne hb1]
           exact hxy b (mo b hb hb1 hb2)
     have e2 : G.joinA i j x = G.joinA i j y := by
@@ -208,13 +208,13 @@ theorem isTensor_flipTensor {ψ : AddChar k Circle} {ϖ : kˣ} {e : ℕ} (hϖ : 
         by_cases hb : b = .ex i j
         · subst hb; simp
         · by_cases hb' : b = .theta i j
-          · subst hb'; simp [Function.update_of_ne hne]
+          · subst hb'; simp
           · simp [Function.update_of_ne hb, Function.update_of_ne hb']
       refine (congrArg T key).trans (hT.2.2 _ _ fun b => ?_)
       by_cases hb : b = .ex i j
       · subst hb; simp
       · by_cases hb' : b = .theta i j
-        · subst hb'; simp [Function.update_of_ne hne]
+        · subst hb'; simp
         · simpa [Function.update_of_ne hb, Function.update_of_ne hb'] using hz b
     have e2 : G.joinA i j (x + z) = G.joinA i j x + G.joinA i j z := by
       ext r (s | s) <;> simp [Grid.joinA]
@@ -433,8 +433,6 @@ theorem exists_idemSum_locPl' {μ₀ : T} (hL : L.Is μ₀) (G : GridData L sc) 
   · exact b ▸ G.pl.w_split _ a
   · first
     | exact GlobalTheory.ParahoricLift.exists_isIdemAt fun h => (hL.Q_pl t w b).2 w b h
-    | exact GlobalTheory.ParahoricLift.exists_isIdemAt fun h => (hL.Q_pl t w b).2 w b ((GlobalTheory.IdemSupport.isConjPl_iff _ _).2 h)
-    | exact GlobalTheory.ParahoricLift.exists_isIdemAt fun h => (hL.Q_pl t w b).2 w b ((GlobalTheory.IdemSupport.isConjPl_iff _ _).1 h)
 
 
 variable (G) in
@@ -549,8 +547,8 @@ theorem isSBHalf_cosLoc_top (S : GridChoice W U) (t : T) {e : AE D} (he : IsIdem
     IsSBHalf e (latO (G.pS (.top t j)) (G.pT (.top t j)) (G.latS (.top t j) : Set _) (G.latT (.top t j) : Set _) fun _ => True)
       (cosLoc (locPl G t) e (S.βp (j + 1)) (S.βp j) N r) :=
   GlobalTheory.T.indicator_smallCoset_half_isSchwartzBruhat (G.V (.top j)) (G.V (.top (j + 1))) (G.Λ (.top j)) (G.Λ (.top (j + 1))) (S.βp j) (S.βp (j + 1)) (locPl G t) e N r
-    (by first | exact isFullLattice_top G j.2.le | exact (isFullLattice_top G j.2.le).toIsLattice)
-    (by first | exact isFullLattice_top G j.2 | exact (isFullLattice_top G j.2).toIsLattice) (S.βp_is j j.2.le) (S.βp_is (j + 1) j.2) he hr
+    (by first | exact isFullLattice_top G j.2.le)
+    (by first | exact isFullLattice_top G j.2) (S.βp_is j j.2.le) (S.βp_is (j + 1) j.2) he hr
 
 theorem isSBHalf_cosLoc_chi {μ₀ : T} (hL : L.Is μ₀) (S : GridChoice W U) (t : T) {e : AE D} (he : IsIdemSum e (locPl G t))
     (N : ℕ) (i : Fin D.R.m) {r : WO (G.pS (.chi i D.R.m)) (G.pT (.chi i D.R.m))} (hr : IsHalf e r) :
@@ -562,8 +560,8 @@ theorem isSBHalf_cosLoc_chi {μ₀ : T} (hL : L.Is μ₀) (S : GridChoice W U) (
     · exact isFullLattice_grid_zero hL G
     · exact isFullLattice_grid_succ G hi.le
   exact GlobalTheory.T.indicator_smallCoset_half_isSchwartzBruhat (G.pS (.chi i D.R.m)) (G.pT (.chi i D.R.m)) (G.Λ (.grid (i + 1) D.R.m)) (G.Λ (.grid i D.R.m))
-    (S.B.β (i + 1) D.R.m) (S.B.β i D.R.m) (locPl G t) e N r (by first | exact isFullLattice_grid_succ G i.2 | exact (isFullLattice_grid_succ G i.2).toIsLattice)
-    (by first | exact hT | exact hT.toIsLattice)
+    (S.B.β (i + 1) D.R.m) (S.B.β i D.R.m) (locPl G t) e N r (by first | exact isFullLattice_grid_succ G i.2)
+    (by first | exact hT)
     (S.B.isFrame_β hL i.2 le_rfl) (S.B.isFrame_β hL i.2.le le_rfl) he hr
 
 end SBs

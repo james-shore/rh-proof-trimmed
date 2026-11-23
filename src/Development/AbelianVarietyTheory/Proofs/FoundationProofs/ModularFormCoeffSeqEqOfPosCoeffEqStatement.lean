@@ -47,4 +47,4 @@ open UpperHalfPlane Complex MeasureTheory CongruenceSubgroup GlobalTheory.EisM U
 open scoped MatrixGroups Real ComplexConjugate Manifold ModularForm
 
 theorem _root_.GlobalTheory.T.modularFormCoeffSeq_eq_of_pos_coeff_eq : ∀ (k L : ℕ) (χ : ℤ → ℂ) (a b : ℕ → ℂ), 1 ≤ k → 0 < L → MF k L χ a → MF k L χ b → (∀ n, n ≠ 0 → a n = b n) → a = b := by
-  first | exact @GlobalTheory.EisM.eq_of_coeff_pos_eq | exact GlobalTheory.EisM.eq_of_coeff_pos_eq | (intros; apply GlobalTheory.EisM.eq_of_coeff_pos_eq <;> assumption)
+  first | exact @GlobalTheory.EisM.eq_of_coeff_pos_eq

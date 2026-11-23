@@ -111,7 +111,7 @@ theorem periodMap_apply {g : ℕ} (τ : Matrix (Fin g) (Fin g) ℂ) (z : Fin g �
     simp [Matrix.mulVec, dotProduct, Fintype.sum_sum_type, Matrix.one_apply]
   · change (Matrix.fromBlocks 1 (τ.map Complex.re) 0 (τ.map Complex.im)).mulVec
       (Sum.elim (fun j => (z j).re) (fun j => (z j).im)) (Sum.inr i) = _
-    simp [Matrix.mulVec, dotProduct, Fintype.sum_sum_type, Matrix.one_apply]
+    simp [Matrix.mulVec, dotProduct, Fintype.sum_sum_type]
 
 end GlobalTheory.PeriodVol
 

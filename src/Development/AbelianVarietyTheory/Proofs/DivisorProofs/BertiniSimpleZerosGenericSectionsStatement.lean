@@ -49,4 +49,4 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.ChowHt GlobalTheory.Adelic GlobalTheory.HSCore GlobalTheory.HSChoice GlobalTheory.HSShort
 
 theorem _root_.GlobalTheory.T.bertini_simple_zeros_generic_sections : Quoted → Bertini := by
-  first | exact @GlobalTheory.BertiniTop.bertini | exact GlobalTheory.BertiniTop.bertini | (intros; apply GlobalTheory.BertiniTop.bertini <;> assumption)
+  first | exact @GlobalTheory.BertiniTop.bertini

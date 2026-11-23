@@ -47,4 +47,4 @@ open scoped Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_integer_one_mod_g_at_place_zero_elsewhere : ∀ (D : D7) (p : PlF D), ∃ a : 𝓞 D.host.E, (∃ o ∈ (D.s.atP p).O, (D.s.atP p).ιE (a : D.host.E) - 1 = (D.s.atP p).ιE ((gS D : ℕ) : D.host.E) * o) ∧ ∀ p' : PlF D, p' ≠ p → ∃ o ∈ (D.s.atP p').O, (D.s.atP p').ιE (a : D.host.E) = (D.s.atP p').ιE ((gS D : ℕ) : D.host.E) * o := by
-  first | exact @GlobalTheory.CrtG.exists_one_here_zero_elsewhere | exact GlobalTheory.CrtG.exists_one_here_zero_elsewhere | (intros; apply GlobalTheory.CrtG.exists_one_here_zero_elsewhere <;> assumption)
+  first | exact @GlobalTheory.CrtG.exists_one_here_zero_elsewhere

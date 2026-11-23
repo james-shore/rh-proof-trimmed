@@ -218,7 +218,7 @@ private theorem coordLat_lemma_2 {E : Type} [Field E] [NumberField E] [IsCMField
   obtain ⟨j, hj, -⟩ := LieBaseChange.existsUnique_semilinear_lifts X t.G Ω₀ Ω ψ ξ₀ V V' M₀ Mq
   refine ⟨j.toAddMonoidHom, fun e => ?_⟩
   have h1 := hj e
-  simp only [LieModel.Lifts, Category.comp_id] at h1
+  simp only [Category.comp_id] at h1
   change (M.pt (j e)).left ≫ m.φ = _
   rw [hMp, ← hMq, h1]
 

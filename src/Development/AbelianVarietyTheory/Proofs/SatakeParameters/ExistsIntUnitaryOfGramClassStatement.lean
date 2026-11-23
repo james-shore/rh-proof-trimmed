@@ -57,4 +57,4 @@ theorem _root_.GlobalTheory.T.exists_intUnitary_of_gramClass_alt : ∀ (L : Type
     GlobalTheory.Hk3.HoweG.HomA σ JS JT x y → GlobalTheory.Hk3.HoweG.GramEq σ JT x y → GlobalTheory.Hk3.HoweDuality.latIdx y = GlobalTheory.Hk3.HoweDuality.latIdx x →
     ∃ h : Formalism.UG.UJ σ (JT : Matrix (Fin n') (Fin n') L), (h : GL (Fin n') L) ∈ Formalism.UG.GLint (Fin n') (Formalism.UG.intL L) ∧
       ∀ i j, (y - ((h : GL (Fin n') L) : Matrix (Fin n') (Fin n') L) * x) i j ∈ Formalism.UG.intL L := by
-  first | exact @GlobalTheory.Hk3.HoweG.exists_intUnitary_of_gramClass | exact GlobalTheory.Hk3.HoweG.exists_intUnitary_of_gramClass | (intros; apply GlobalTheory.Hk3.HoweG.exists_intUnitary_of_gramClass <;> assumption)
+  first | exact @GlobalTheory.Hk3.HoweG.exists_intUnitary_of_gramClass

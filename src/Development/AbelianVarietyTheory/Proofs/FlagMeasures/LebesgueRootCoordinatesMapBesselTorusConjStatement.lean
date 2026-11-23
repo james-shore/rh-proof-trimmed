@@ -45,4 +45,4 @@ open Formalism.FourierDecayAlt GlobalTheory.ThA MeasureTheory Formalism.QuantumD
 open scoped InnerProductSpace
 
 theorem _root_.GlobalTheory.T.lebesgue_rootCoordinates_map_besselTorus_conj : ∀ (k r : ℕ) (α : ℂ), α ≠ 0 → (D.muN k r).map (conjM (aT k r α)) = ENNReal.ofReal ((‖α‖ ^ B.kap k r)⁻¹) • D.muN k r := by
-  first | exact @GlobalTheory.ThA.TorusJac.muN_map_conj | exact GlobalTheory.ThA.TorusJac.muN_map_conj | (intros; apply GlobalTheory.ThA.TorusJac.muN_map_conj <;> assumption)
+  first | exact @GlobalTheory.ThA.TorusJac.muN_map_conj

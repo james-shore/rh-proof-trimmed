@@ -56,4 +56,4 @@ theorem _root_.GlobalTheory.T.familyUniformisation_fibre_theta : ThetaUnifAV →
     (∀ n : ℕ, (∀ s, ∃! θ, u.IsThetaFn Hm χ n θ ∧ u.IsFnPow n s θ) ∧ ∀ θ, u.IsThetaFn Hm χ n θ → ∃! s, u.IsFnPow n s θ) ∧
     (∀ z, (u.ex (F z)).left ≫ φ = (FU.ex i Pe z).left) ∧ (∀ z, F z ∈ u.Λ ↔ z ∈ Pe.range) ∧
     ∀ a b, (hermForm Hm (F (Pe a)) (F (Pe b))).im = (FU.Di i).EF a b := by
-  first | exact @GlobalTheory.familyUnif_fibre_theta | exact GlobalTheory.familyUnif_fibre_theta | (intros; apply GlobalTheory.familyUnif_fibre_theta <;> assumption)
+  first | exact @GlobalTheory.familyUnif_fibre_theta

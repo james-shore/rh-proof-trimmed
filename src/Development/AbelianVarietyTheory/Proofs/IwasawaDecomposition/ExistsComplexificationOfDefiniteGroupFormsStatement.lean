@@ -48,4 +48,3 @@ theorem _root_.GlobalTheory.T.exists_complexification_of_definiteGroupForms' : �
   intro K O _ _ _ _ o σ G _ _ m e hσ ho hm
   first
   | exact SpOfMat.exists_complexification_of_definiteGroupForms K O o σ G m e hσ ho hm
-  | exact SpOfMat.exists_complexification_of_definiteGroupForms K O o σ G m e hσ ho hm hm.lat

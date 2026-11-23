@@ -47,4 +47,4 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.latticePeriodForm_independent_of_models : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l), DatIndep Xo c := by
-  first | exact @GlobalTheory.ModelIndep.datIndep | exact GlobalTheory.ModelIndep.datIndep | (intros; apply GlobalTheory.ModelIndep.datIndep <;> assumption)
+  first | exact @GlobalTheory.ModelIndep.datIndep

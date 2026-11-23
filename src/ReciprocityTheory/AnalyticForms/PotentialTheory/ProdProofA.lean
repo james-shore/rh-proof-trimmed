@@ -85,7 +85,7 @@ theorem pot_contDiffAt {X : Type} [TopologicalSpace X] {A : FinHolAtlas e X}
     ContDiffAt ℝ 2 (P.φ x ∘ (A.chart k).symm) z := by
   have hmem : (A.chart k).target ∩ (A.chart k).symm ⁻¹' P.U x ∈ 𝓝 z :=
     ((A.chart k).isOpen_inter_preimage_symm (P.isOpen_U x)).mem_nhds ⟨hz, hzU⟩
-  exact ((hP.1 x k).contDiffAt hmem).of_le (by first | exact_mod_cast (le_top : (2 : ℕ∞) ≤ ⊤) | simp | exact WithTop.coe_le_coe.2 le_top)
+  exact ((hP.1 x k).contDiffAt hmem).of_le (by first | simp)
 
 end
 

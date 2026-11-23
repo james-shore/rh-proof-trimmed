@@ -50,4 +50,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.Local
 open GlobalTheory.TopLevelInv GlobalTheory.StepLeft Classical
 
 theorem _root_.GlobalTheory.T.periodStep_inv_mul_point_shape : ∀ {k : Type} [Field k] {n n' : Type} [Fintype n] [DecidableEq n] [Fintype n'] [DecidableEq n'] {c : ℕ} (v : GL (n ⊕ Fin c) k), v ∈ symN k n c → ∀ (κ : GL n k) (x₀ : Matrix n n' k) (e : StepVar n c n' → k), ((v * embX c κ)⁻¹).val * stepPt x₀ e = stepPt ((κ⁻¹).val * x₀) (fun a => (((v * embX c κ)⁻¹).val * stepPt x₀ e : Matrix (n ⊕ Fin c) (n' ⊕ Fin (c + 1)) k) a.1.1 a.1.2) := by
-  first | exact @GlobalTheory.StepLeft.inv_mul_stepPt_shape | exact GlobalTheory.StepLeft.inv_mul_stepPt_shape | (intros; apply GlobalTheory.StepLeft.inv_mul_stepPt_shape <;> assumption)
+  first | exact @GlobalTheory.StepLeft.inv_mul_stepPt_shape

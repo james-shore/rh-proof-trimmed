@@ -50,4 +50,4 @@ theorem _root_.GlobalTheory.T.mem_span_tangent_of_type_of_isBasis : ∀ (C : Typ
     (G : LogFGL v d) (γ : Fin d → Fin d → PowerSeries C), IsBasis G p ty γ →
     ∀ (t : ZMod h) (w : Fin d → C), (∀ c, ty c ≠ t → w c = 0) →
       w ∈ Submodule.span C (Set.range fun b : {b // ty b = t} => tangent (γ b.1)) := by
-  first | exact @GlobalTheory.span_tangent_of_type | exact GlobalTheory.span_tangent_of_type | (intros; apply GlobalTheory.span_tangent_of_type <;> assumption)
+  first | exact @GlobalTheory.span_tangent_of_type

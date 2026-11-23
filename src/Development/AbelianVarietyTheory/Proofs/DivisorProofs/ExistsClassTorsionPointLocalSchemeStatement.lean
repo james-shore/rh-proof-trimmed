@@ -64,4 +64,4 @@ theorem _root_.GlobalTheory.T.exists_class_torsionPoint_localScheme : ∀ {E : T
       (∀ a ∈ I, P ≫ (act.act a).left = P ≫ G.hom ≫ (MonObj.one : 𝟙_ (Over X') ⟶ G).left) → ∃ c, P = x ≫ w c)
     (K : Type) [Field K] [IsAlgClosed K] (P : Sp K ⟶ (torsion G n).left)
     (hP : ∀ a ∈ I, P ≫ (torsion.ι G n).left ≫ (act.act a).left = P ≫ (torsion G n).hom ≫ (MonObj.one : 𝟙_ (Over X') ⟶ G).left) (x : Sp K), ∃ c, GlobalTheory.TorsSpec.ValAt G n ℓ w (P x) c := by
-  first | exact @GlobalTheory.TorsSpec.exists_valAt | exact GlobalTheory.TorsSpec.exists_valAt | (intros; apply GlobalTheory.TorsSpec.exists_valAt <;> assumption)
+  first | exact @GlobalTheory.TorsSpec.exists_valAt

@@ -52,4 +52,4 @@ open scoped Formalism.Per
 open GlobalTheory.BaseCoef
 
 theorem _root_.GlobalTheory.T.latticeHomBaseChange_onto : ∀ (l : ℕ) [Fact l.Prime] {G : Type} [Group G] [TopologicalSpace G] (LL LL' : FinExt l) (hL : LL.1 ≤ LL'.1) (T₁ T₂ : LocLat G ℚ_[l] ↥LL.1 ↥(OL LL)) (k₁ k₂ : ℕ) (b₁ : Module.Basis (Fin k₁) ↥LL.1 T₁.V) (b₂ : Module.Basis (Fin k₂) ↥LL.1 T₂.V) (hb₁ : IsLatBasis T₁ b₁) (hb₂ : IsLatBasis T₂ b₂) (F : LatHom T₁.L T₂.L), F.Onto → (extHom hL hb₁ hb₂ F).Onto := by
-  first | exact @GlobalTheory.BaseCoef.extHom_onto | exact GlobalTheory.BaseCoef.extHom_onto | (intros; apply GlobalTheory.BaseCoef.extHom_onto <;> assumption)
+  first | exact @GlobalTheory.BaseCoef.extHom_onto

@@ -56,11 +56,7 @@ theorem tendsto_finiteAdele {ι : Type} {l : Filter ι} (f : ι → FiniteAdeleR
     (hf : ∀ i v, f i v ∈ v.adicCompletionIntegers L) (hb : ∀ v, b v ∈ v.adicCompletionIntegers L)
     (h : ∀ v, Tendsto (fun i => f i v) l (𝓝 (b v))) : Tendsto f l (𝓝 b) := by
   first
-  | exact @_root_.GlobalTheory.TendstoOfIntegrals.target_check
-  | exact _root_.GlobalTheory.TendstoOfIntegrals.target_check
   | (apply _root_.GlobalTheory.TendstoOfIntegrals.target_check <;> assumption)
-  | (intros; apply _root_.GlobalTheory.TendstoOfIntegrals.target_check <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.TendstoOfIntegrals.target_check <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.TendstoOfIntegrals.target_check ..)
 
 def ev (v : HeightOneSpectrum (𝓞 L)) : AdeleRing (𝓞 L) L →* v.adicCompletion L where

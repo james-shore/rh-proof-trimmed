@@ -72,7 +72,7 @@ theorem UpperTheory.Gal.CertificateRingHomMap.pTracePow_holds :
     | succ n ih =>
       ext x
       rw [pow_succ' t, Module.End.mul_apply, ← ih]
-      simp [LinearMap.restrict_apply, pow_succ', Module.End.mul_apply, ht]
+      simp [LinearMap.restrict_apply, pow_succ', ht]
   have hproj : LinearMap.IsProj (LinearMap.range q) q := by
     refine ⟨fun x => ⟨x, rfl⟩, ?_⟩
     rintro _ ⟨y, rfl⟩

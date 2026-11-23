@@ -84,11 +84,7 @@ theorem gen_irred_adm {V : Type} [AddCommGroup V] [Module ℂ V]
     (∀ Q : Submodule ℂ V, Q ≤ genSub act {u} → (∀ Z, ∀ y ∈ Q, act Z y ∈ Q) → u ∉ Q → Q = ⊥) ∧
     ∀ μ, ∃ S : Submodule ℂ V, FiniteDimensional ℂ S ∧ ∀ x ∈ genSub act {u}, x ∈ hwSub act μ → x ∈ S := by
   first
-  | exact @_root_.GlobalTheory.FiltrationEquivalenceRelation.main
-  | exact _root_.GlobalTheory.FiltrationEquivalenceRelation.main
   | (apply _root_.GlobalTheory.FiltrationEquivalenceRelation.main <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FiltrationEquivalenceRelation.main <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FiltrationEquivalenceRelation.main <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.FiltrationEquivalenceRelation.main ..)
 
 def prodAct {V V' : Type} [AddCommGroup V] [Module ℂ V] [AddCommGroup V'] [Module ℂ V']

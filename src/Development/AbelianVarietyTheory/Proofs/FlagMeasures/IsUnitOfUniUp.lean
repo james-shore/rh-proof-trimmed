@@ -131,7 +131,7 @@ private lemma coe_pm_inv_mul_mul_pm {n : ℕ} (σ : Equiv.Perm (Fin n)) (x : _ro
       _ = Matrix.transpose Pm := by rw [← mul_assoc, Units.inv_mul, one_mul]
   rw [Units.val_mul, Units.val_mul, hPinv, hP]
   ext i j
-  simp [Pm, Matrix.mul_apply, Matrix.transpose_apply, Matrix.of_apply]
+  simp [Pm, Matrix.mul_apply, Matrix.of_apply]
 
 open Polynomial in
 open scoped Classical in

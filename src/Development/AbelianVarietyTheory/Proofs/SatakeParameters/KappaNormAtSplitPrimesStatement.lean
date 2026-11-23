@@ -48,4 +48,4 @@ open Formalism.L2.Th1.E (IntCurve curveL Unif)
 open Formalism.DworkPowerSeriesWeights (JetsIntegral)
 
 theorem _root_.GlobalTheory.T.kappa_norm_at_splitPrimes : ∀ D : D7, KappaSplit D := by
-  first | exact @GlobalTheory.kappaSplit_all | exact GlobalTheory.kappaSplit_all | (intros; apply GlobalTheory.kappaSplit_all <;> assumption)
+  first | exact @GlobalTheory.kappaSplit_all

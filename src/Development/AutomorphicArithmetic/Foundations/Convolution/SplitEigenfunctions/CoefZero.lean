@@ -71,7 +71,7 @@ private theorem n_add (x y : A E) : gl (nU (x + y)) = gl (nU x) * gl (nU y) := b
 private theorem n_zero : gl (nU (0 : A E)) = 1 := by
   refine Units.ext ?_
   ext i j
-  fin_cases i <;> fin_cases j <;> simp [vn]
+  fin_cases i <;> fin_cases j <;> simp
 
 private theorem cont_n : Continuous fun q : A E => gl (nU q) := by
   refine Units.continuous_iff.2 ⟨?_, ?_⟩

@@ -59,4 +59,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 theorem _root_.GlobalTheory.T.exists_nsmul_symplecticPairing_character_trivial : ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ), Continuous ψ → (∀ x, ‖ψ x‖ = 1) →
     ∀ (S T : HSp D) (A0 : WO S T), ∃ N : ℕ, 0 < N ∧ ∀ v : WO S T, (∀ i j, infPart D (v i j) = 0) →
       (∀ i j, GlobalTheory.BotClassDict.finQ D (v i j) ∈ Formalism.MainNotions.StandardLatticesGL3.OhE D) → ψ (symplOH S T A0 (N • v)) = 1 := by
-  first | exact @GlobalTheory.FinCharInt.char_sympl_nsmul_int | exact GlobalTheory.FinCharInt.char_sympl_nsmul_int | (intros; apply GlobalTheory.FinCharInt.char_sympl_nsmul_int <;> assumption)
+  first | exact @GlobalTheory.FinCharInt.char_sympl_nsmul_int

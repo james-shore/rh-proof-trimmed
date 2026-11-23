@@ -71,11 +71,7 @@ theorem cenMap_mem (Λ : Subring B)
 
 theorem cenMap_commute (a : ℚ_[ℓ] ⊗[ℚ] F) (y : ℚ_[ℓ] ⊗[ℚ] B) : Commute (cenMap ℓ F B a) y := by
   first
-  | exact @_root_.GlobalTheory.CentralizerMapTensor.commute_cenMap
-  | exact _root_.GlobalTheory.CentralizerMapTensor.commute_cenMap
   | (apply _root_.GlobalTheory.CentralizerMapTensor.commute_cenMap <;> assumption)
-  | (intros; apply _root_.GlobalTheory.CentralizerMapTensor.commute_cenMap <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.CentralizerMapTensor.commute_cenMap <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.CentralizerMapTensor.commute_cenMap ..)
 
 def cenIncl (Λ : Subring B) (hΛ : ∀ a : NumberField.RingOfIntegers F, algebraMap F B (a : F) ∈ Λ) :

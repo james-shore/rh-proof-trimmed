@@ -467,7 +467,7 @@ theorem local_frame_second_factor : ∀ (F E : Type) [Field F] [NumberField F] [
     intro i j
     show algebraMap (v.adicCompletionIntegers F) (v.adicCompletion F) _ = _
 
-    simp only [rr, map_sum, map_mul]
+    simp only [map_sum, map_mul]
     rfl
   have hterm : ∀ i j, (sp (hR cm.sig J (v.adicCompletion F) (bd i) (y.1 *ᵥ b j))).2 =
       A i j + (g : v.adicCompletion F) * (rr i j : v.adicCompletion F) := by

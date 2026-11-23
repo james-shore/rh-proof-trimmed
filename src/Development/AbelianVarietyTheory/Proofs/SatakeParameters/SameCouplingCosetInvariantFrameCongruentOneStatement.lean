@@ -51,4 +51,4 @@ theorem _root_.GlobalTheory.T.sameCouplingCoset_invariant_frame_congruent_one : 
   (P.1 ∉ Pr.vGs → 2 * cst.M ≤ cst.D P) →
   (P.1 ∈ Pr.vGs → ∀ l, IntAt P.1 ((qOf P.1 : X.E) * y0 l)) → (P.1 ∉ Pr.vGs → ∀ l, IntAt P.1 ((qOf P.1 : X.E) ^ cst.M * y0 l)) →
   ∀ w, SameCoset sel mu cst P (κ.symm w) y0 ↔ SameCoset sel mu cst P w y0 := by
-  first | exact @GlobalTheory.CosetLoc.sameCoset_symm_iff | exact GlobalTheory.CosetLoc.sameCoset_symm_iff | (intros; apply GlobalTheory.CosetLoc.sameCoset_symm_iff <;> assumption)
+  first | exact @GlobalTheory.CosetLoc.sameCoset_symm_iff

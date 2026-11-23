@@ -69,12 +69,6 @@ variable {E 𝔸 : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [NormedRing
 
 theorem contDiff_exp_alg : ContDiff ℝ 1 (NormedSpace.exp : 𝔸 → 𝔸) := by
   first
-  | exact contDiff_exp
-  | exact NormedSpace.contDiff_exp
-  | exact (NormedSpace.analyticOnNhd_exp (𝕂 := ℝ)).contDiff
-  | exact (analyticOnNhd_exp (𝕂 := ℝ)).contDiff
-  | exact contDiff_iff_contDiffAt.mpr fun x =>
-      (analyticAt_exp_of_mem_ball (𝕂 := ℝ) x (by simp [expSeries_radius_eq_top])).contDiffAt
   | exact contDiff_iff_contDiffAt.mpr fun x =>
       (NormedSpace.analyticAt_exp_of_mem_ball (𝕂 := ℝ) x (by simp [NormedSpace.expSeries_radius_eq_top])).contDiffAt
 
@@ -82,7 +76,6 @@ theorem hasFDerivAt_exp_alg (x : 𝔸) :
     HasFDerivAt (NormedSpace.exp : 𝔸 → 𝔸) (fderiv ℝ (NormedSpace.exp : 𝔸 → 𝔸) x) x := by
   first
   | exact ((contDiff_exp_alg (𝔸 := 𝔸)).differentiable one_ne_zero x).hasFDerivAt
-  | exact ((contDiff_exp_alg (𝔸 := 𝔸)).differentiable le_rfl x).hasFDerivAt
 
 theorem fderiv_exp_eq {x W D : 𝔸} (h : HasDerivAt (fun s : ℝ => NormedSpace.exp (x + s • W)) D 0) :
     fderiv ℝ (NormedSpace.exp : 𝔸 → 𝔸) x W = D := by
@@ -194,8 +187,6 @@ theorem exp_two (X : Matrix (Fin n) (Fin n) ℂ) :
   rw [two_smul]
   first
   | exact Matrix.exp_add_of_commute _ _ (Commute.refl X)
-  | exact Matrix.exp_add_of_commute (Commute.refl X)
-  | exact NormedSpace.exp_add_of_commute (Commute.refl X)
 
 theorem exp_two_actR {ε : Fin n → Bool} {g : Matrix (Fin n) (Fin n) ℂ} (hg : inUJ ε g)
     (z : PCoord ε → ℂ) :
@@ -226,7 +217,6 @@ def crdC (ε : Fin n → Bool) : Matrix (Fin n) (Fin n) ℂ →L[ℝ] (PCoord ε
 theorem pmat_contDiff (ε : Fin n → Bool) : ContDiff ℝ 1 (fun z : PCoord ε → ℂ => pmat z) := by
   first
   | exact (pmatC ε).contDiff
-  | exact ContinuousLinearMap.contDiff (pmatC ε)
 
 theorem actR_continuous {ε : Fin n → Bool} {g : Matrix (Fin n) (Fin n) ℂ} (hg : inUJ ε g) :
     Continuous (actR (ε := ε) g) := by

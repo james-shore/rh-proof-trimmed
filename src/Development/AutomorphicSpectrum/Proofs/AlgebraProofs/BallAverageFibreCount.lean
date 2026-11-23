@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.ball_average_fibre_count : ∀
         ∫⁻ w in (Metric.ball (0 : EuclideanSpace ℂ (Fin (e + 1))) 1), T (cntOver S π w) =
       volume (Metric.ball (0 : EuclideanSpace ℂ (Fin (e + 1))) 1) *
         ∫⁻ π : Fin (e + 1) → Fin n → ℂ, matGauss π * T (cntOver S π (firstCoordVec (e + 1))) := by
-  first | exact @PositivityTheory.Xgn.t_xgz_chow_mahler_e0reduce | exact PositivityTheory.Xgn.t_xgz_chow_mahler_e0reduce
+  first | exact @PositivityTheory.Xgn.t_xgz_chow_mahler_e0reduce

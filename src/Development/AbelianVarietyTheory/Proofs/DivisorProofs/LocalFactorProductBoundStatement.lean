@@ -50,4 +50,4 @@ open NumberField IsDedekindDomain MeasureTheory Matrix GlobalTheory.AdLat Global
 open scoped ENNReal
 
 theorem _root_.GlobalTheory.T.local_factor_product_bound : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ), 2 ≤ r → Multipliable (locFactor E r) → 0 < ∏' v, locFactor E r v ∧ (∏' v, locFactor E r v)⁻¹ ≤ (∏ i ∈ Finset.Icc 2 r, ∑' n : ℕ, 1 / ((n : ℝ) + 1) ^ i) ^ fdeg E := by
-  first | exact @GlobalTheory.EulerLocVol.tprod_locFactor_bound | exact GlobalTheory.EulerLocVol.tprod_locFactor_bound | (intros; apply GlobalTheory.EulerLocVol.tprod_locFactor_bound <;> assumption)
+  first | exact @GlobalTheory.EulerLocVol.tprod_locFactor_bound

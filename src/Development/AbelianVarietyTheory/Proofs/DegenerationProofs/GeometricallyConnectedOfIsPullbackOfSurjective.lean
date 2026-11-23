@@ -155,11 +155,7 @@ theorem unit_eq_one_of_axes {K : Type} [Field K] [IsAlgClosed K] {X : Scheme.{0}
     (u : Γ(pullback f f, ⊤)) (hu : IsUnit u) (u₁ : a₁.appTop.hom u = 1) (u₂ : a₂.appTop.hom u = 1) :
     u = 1 := by
   first
-  | exact @_root_.GlobalTheory.PrimitiveUnitProduct.unit_on_product_eq_one
-  | exact _root_.GlobalTheory.PrimitiveUnitProduct.unit_on_product_eq_one
   | (apply _root_.GlobalTheory.PrimitiveUnitProduct.unit_on_product_eq_one <;> assumption)
-  | (intros; apply _root_.GlobalTheory.PrimitiveUnitProduct.unit_on_product_eq_one <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.PrimitiveUnitProduct.unit_on_product_eq_one <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.PrimitiveUnitProduct.unit_on_product_eq_one ..)
 
 end GlobalTheory.UnitRigidity

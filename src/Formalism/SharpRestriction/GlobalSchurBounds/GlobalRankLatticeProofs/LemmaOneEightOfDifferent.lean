@@ -88,7 +88,6 @@ private theorem smul_ne_bot' (σ : D.host.E ≃ₐ[ℚ] D.host.E) (I : Ideal (�
   rw [← k, h]
   first
     | simp
-    | (rw [Ideal.pointwise_smul_def]; exact Ideal.map_bot)
 
 theorem sqrt_d_pos : 0 < Real.sqrt D.host.d := by
   exact Real.sqrt_pos.mpr (by exact_mod_cast D.host.hyp.2.1.pos)
@@ -171,7 +170,7 @@ theorem im_pos (N : ℕ) (hN : N ≠ 0) (φ : D.host.E →+* ℂ) (hφ : φ ∈ 
     rw [Complex.I_sq]
   rw [key]
   simp only [Complex.mul_im, Complex.I_re, Complex.I_im, Complex.ofReal_re, Complex.ofReal_im,
-    zero_mul, one_mul, add_zero, mul_zero, zero_add]
+    one_mul, mul_zero, zero_add]
   exact inv_pos.mpr (mul_pos (by exact_mod_cast Nat.pos_of_ne_zero hN) hpos)
 
 theorem pol (hA : DiffK D) (hB : NormK D) : PolPart D := by
@@ -270,8 +269,6 @@ theorem pol (hA : DiffK D) (hB : NormK D) : PolPart D := by
       rw [AlgEquiv.apply_symm_apply] at k
       rw [Algebra.traceForm_apply]
       first
-        | (rw [← hweq]; rw [show y * (-1 / (((Ideal.absNorm cc : ℕ) : D.host.E) * D.host.sqrtMinusD) * w) =
-            -1 / (((Ideal.absNorm cc : ℕ) : D.host.E) * D.host.sqrtMinusD) * w * y by ring]; exact k)
         | (rw [hweq]; rw [show y * (-1 / (((Ideal.absNorm cc : ℕ) : D.host.E) * D.host.sqrtMinusD) * w) =
             -1 / (((Ideal.absNorm cc : ℕ) : D.host.E) * D.host.sqrtMinusD) * w * y by ring]; exact k)
 

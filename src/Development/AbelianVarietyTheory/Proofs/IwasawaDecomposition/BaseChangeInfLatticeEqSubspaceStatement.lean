@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.exists_injective_baseChange_inf_restrictScalars_ra
     ∃ e : FractionRing O ⊗[O] ↥(N ⊓ W.restrictScalars O) →ₗ[FractionRing O] V,
       Function.Injective e ∧ LinearMap.range e = W ∧
       ∀ (c : FractionRing O) (x : ↥(N ⊓ W.restrictScalars O)), e (c ⊗ₜ[O] x) = c • (x : V) := by
-  first | exact @GlobalTheory.baseChange_inf_lattice_eq_subspace | exact GlobalTheory.baseChange_inf_lattice_eq_subspace | (intros; apply GlobalTheory.baseChange_inf_lattice_eq_subspace <;> assumption)
+  first | exact @GlobalTheory.baseChange_inf_lattice_eq_subspace

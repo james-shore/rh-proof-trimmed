@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.kummer_cocycle_twisted_coboundary : ∀ (p : ℕ) 
         IsTwistedOneCoboundary 0 k (Ggeo p Ω) χ (fun g => (p : Ω) ^ c * a g - o * ((κ g).val : Ω))) ∧
   (∀ o : Ω, IsInt (p := p) o → (∀ g ∈ Ggeo p Ω, g o = o) →
       IsTwistedOneCoboundary 0 k (Ggeo p Ω) χ (fun g => o * ((κ g).val : Ω)) → Cong (p := p) k ((p : Ω) ^ c * o) 0) := by
-  first | exact @GlobalTheory.K5.TopGeo.top | exact GlobalTheory.K5.TopGeo.top | (intros; apply GlobalTheory.K5.TopGeo.top <;> assumption)
+  first | exact @GlobalTheory.K5.TopGeo.top

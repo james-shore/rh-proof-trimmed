@@ -316,10 +316,9 @@ theorem part3 [Module.Finite R L] [Module.Projective R L] (hκ : ∀ a, κ a ∈
       rw [Ideal.toCotangent_eq] at e1
       convert res_sq (RC := RC) (κ := κ) hs0 _ e1 using 1
       funext z
-      simp only [Pi.sub_apply, Finset.sum_apply, res_apply, Submodule.coe_sum,
-        Submodule.coe_smul, Subalgebra.coe_smul,
-        Pi.smul_apply, smul_eq_mul, map_mul, hf', hαs, ← ha]
-      simp [Subalgebra.coe_sub, map_sub, map_sum, map_mul, hf', hαs]
+      simp only [res_apply, Submodule.coe_sum,
+        ← ha]
+      simp [map_sub, map_sum, map_mul, hf', hαs]
     | zero => convert Q.zero_mem using 1; funext z; simp
     | add a b _ _ ha hb =>
       convert Q.add_mem ha hb using 1
@@ -662,7 +661,7 @@ theorem PositivityTheory.Xgn.teichmuller_test_function : ∀ (E : Type) [Field E
       rw [← e1, Finset.sum_mul, ← Finset.sum_add_distrib]
       refine Finset.sum_congr rfl fun k _ => ?_
       rw [← hχσ, ht, hk, map_mul]
-      simp only [RingHom.comp_apply, Subalgebra.coe_algebraMap]
+      simp only [RingHom.comp_apply]
       ring)
     refine part3 hκ (toN_zero sc) (fun k x => pq (Ideal.Quotient.mk _ (RingOfIntegers.basis E k)) • x)
       (fun k => mulT _ p (RingOfIntegers.basis E k)) (fun k => P.ρ (RingOfIntegers.basis E k))

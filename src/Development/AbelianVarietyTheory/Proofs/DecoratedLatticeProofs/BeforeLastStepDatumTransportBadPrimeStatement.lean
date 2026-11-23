@@ -63,4 +63,4 @@ theorem _root_.GlobalTheory.T.beforeLastStep_datum_transport_badPrime : ∀ {B :
         Formalism.L2.Col.PsiAt I.Ch I.sel (I.tup a) (I.cst a) i P ((I.idx a).h i al P)
           (Formalism.L2.Col.inFr (Formalism.L2.Col.frsF I.sel (I.tup a) q.1.1 P) (Formalism.L2.Col.frsF I.sel (I.tup a) q'.1.1 P) x)
           ((Formalism.L2.Col.frsF I.sel (I.tup a) q'.1.1 P).symm (Formalism.L2.Col.repY q'.1.2)) := by
-  first | exact @GlobalTheory.Transport.TwistCpl.psiAt_transport_tw | exact GlobalTheory.Transport.TwistCpl.psiAt_transport_tw | (intros; apply GlobalTheory.Transport.TwistCpl.psiAt_transport_tw <;> assumption)
+  first | exact @GlobalTheory.Transport.TwistCpl.psiAt_transport_tw

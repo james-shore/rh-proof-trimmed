@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.heisenbergInvariantForm_comp_localWeilOperator : �
       (∀ φ ∈ SB (Fin a' × Fin (a + a') → Fv F v), S φ ∈ SB (Fin a' × Fin (a + a') → Fv F v) ∧
         Acts (evFin F v) (om' (g, 1)) φ (S φ)) →
       GlobalTheory.InertVacLag.HeisInv G.M' B.ψ v C (l ∘ₗ S) := by
-  first | exact @GlobalTheory.InertVacEquiv.heisInv_comp | exact GlobalTheory.InertVacEquiv.heisInv_comp | (intros; apply GlobalTheory.InertVacEquiv.heisInv_comp <;> assumption)
+  first | exact @GlobalTheory.InertVacEquiv.heisInv_comp

@@ -208,7 +208,7 @@ theorem shape_dbl : GlobalTheory.FunPr.Hypotheses₂ → ∀ (F E : Type) [Field
     rw [map_mul, map_mul, map_neg, map_neg, map_one, map_one, neg_one_mul, neg_one_mul, ← neg_add, add_comm, key]
     show GlobalTheory.LatVac.psiAt B.ψ v _ = GlobalTheory.LatVac.psiAt B.ψ v _
     congr 1
-    simp only [Matrix.neg_apply, neg_mul, Finset.sum_neg_distrib, neg_neg]
+    simp only [neg_mul, Finset.sum_neg_distrib, neg_neg]
     rfl
   let Lm : (Matrix (Fin n) (Fin d ⊕ Fin d) (Fv F v) →ₗ[Fv F v] Fv F v) → Matrix (Fin n) (Fin d ⊕ Fin d) (Fv F v) :=
     fun l => Matrix.of fun k j => l (Matrix.single k j 1)

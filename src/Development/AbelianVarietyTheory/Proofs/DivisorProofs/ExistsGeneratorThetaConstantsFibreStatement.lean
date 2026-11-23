@@ -67,4 +67,4 @@ theorem _root_.GlobalTheory.T.exists_generator_thetaConstants_fibre : ∀ (V₁ 
   ∀ v : Ix g (m ^ 2) → K, t.HasTh (𝟙 _) v →
   ∃ (th : LB.Sec (LPow D.P.A D.P.L ((1 : ℕ) : ℤ) (Over.mk (spMap ev)))) (κ : K), IsGenSec D.P.A D.P.L ((1 : ℕ) : ℤ) th ∧ κ ≠ 0 ∧
     ∀ a, ∃ y : Over.mk (spMap ev) ⟶ D.P.A, GlobalTheory.Ex.OneGen.ThG D.P.A D.P.L D.rig m th y (GlobalTheory.Ex.fnOf (κ * v a)) := by
-  first | exact @GlobalTheory.FibThetaMove.exists_gen_thG_fibre | exact GlobalTheory.FibThetaMove.exists_gen_thG_fibre | (intros; apply GlobalTheory.FibThetaMove.exists_gen_thG_fibre <;> assumption)
+  first | exact @GlobalTheory.FibThetaMove.exists_gen_thG_fibre

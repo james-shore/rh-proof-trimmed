@@ -60,4 +60,4 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.columnLattice_comap_eq_standardLattice : ∀ {K : Type} [Field K] {n : ℕ} (B : GL (Fin n) K),
     (Formalism.L2.DIV.colLat B).comap ((Matrix.mulVecLin B.1).restrictScalars (𝓞 K)) = Formalism.L2.Pj.stdLat K n := by
-  first | exact @GlobalTheory.ColStd.colLat_comap_eq_stdLat | exact GlobalTheory.ColStd.colLat_comap_eq_stdLat | (intros; apply GlobalTheory.ColStd.colLat_comap_eq_stdLat <;> assumption)
+  first | exact @GlobalTheory.ColStd.colLat_comap_eq_stdLat

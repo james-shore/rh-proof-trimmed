@@ -193,7 +193,7 @@ theorem Pop_mem (o n z : ℕ) : (Pop w e zv sv o n z : Module.End k (MvPolynomia
 
 theorem tieP_eq_Pop (o n z : ℕ) (y : MvPolynomial σ k) :
     M.tieP w e zv sv o n z y = Pop w e zv sv o n z y := by
-  simp [M.tieP, Pop, LinearMap.sum_apply, Module.End.mul_apply]
+  simp [M.tieP, Pop, LinearMap.sum_apply]
 
 theorem good_of_ops {S : Set σ} (hS : Disjoint (V w e zv sv) S) {T : Module.End k (MvPolynomial σ k)}
     (hT : T ∈ Ops S) {o n : ℕ} {y : MvPolynomial σ k} (hy : Good w e zv sv o n y) :
@@ -609,8 +609,8 @@ theorem disjA (hB : D.BlockOK) {a b : Option (Fin D.T.t)} (hab : a ≠ b) :
     have hv0' : (finPos N (D.T.pos i') : ℕ) = D.T.pos i' := finPos_val (by omega)
     have hv1' : (finPos N (D.T.pos i' + 1) : ℕ) = D.T.pos i' + 1 := finPos_val (by omega)
     rcases hva with ((⟨c, rfl⟩ | ⟨c, rfl⟩) | rfl | rfl) <;> rcases hvb with ((⟨c', h⟩ | ⟨c', h⟩) | h | h) <;>
-      simp only [wA, eA, zA, sA, xiVar, scalZ, scalS, Option.elim, Sum.inl.injEq, Sum.inr.injEq, reduceCtorEq,
-        Prod.mk.injEq, Fin.ext_iff, Fin.val_castSucc, Fin.val_last] at h <;> omega
+      simp only [wA, eA, zA, sA, scalZ, scalS, Option.elim, Sum.inl.injEq, Sum.inr.injEq, reduceCtorEq,
+        Prod.mk.injEq, Fin.ext_iff, Fin.val_castSucc] at h <;> omega
 
 theorem nodupLA : (LA D).Nodup := by
   simp only [LA, List.nodup_cons, List.mem_map, reduceCtorEq, and_false, exists_false, not_false_eq_true,

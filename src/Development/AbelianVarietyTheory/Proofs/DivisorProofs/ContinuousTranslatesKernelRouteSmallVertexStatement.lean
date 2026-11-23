@@ -52,4 +52,4 @@ theorem _root_.GlobalTheory.T.continuous_translates_kernel_route_small_vertex : 
     (hΘ : IsMatched B t ρ i j Θ Θ') (g₁ : GA D (G.V (.grid (i + 1) j))) (z : GA D (G.V (.grid i j)) →₀ ℂ),
     Continuous (fun p : GA D (G.V (.grid i (j + 1))) × GA D (G.V (.grid i j)) =>
       translates z (kerSmall W Θ' p.1 g₁) p.2) := by
-  first | exact @GlobalTheory.SmallRoute.continuous_translates_kerSmall | exact GlobalTheory.SmallRoute.continuous_translates_kerSmall | (intros; apply GlobalTheory.SmallRoute.continuous_translates_kerSmall <;> assumption)
+  first | exact @GlobalTheory.SmallRoute.continuous_translates_kerSmall

@@ -47,4 +47,4 @@ import Mathlib.Topology.Sheaves.Init
 open Formalism Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.WeaklyAdmissibleFiltrations
 
 theorem _root_.GlobalTheory.T.integralityFromMetric_of_designConditionAll : GlobalTheory.Published.GlobalArtinReciprocity → GlobalTheory.Published.BlochKatoLocal → Formalism.GaloisCohomology.LocalTateDualityK → Formalism.GaloisCohomology.LocalEulerCharK → ∀ D : D7, Formalism.MainNotions.N.K.Rows.AllDesignConditions D → TruncatedSeriesCountingIdentities.IntegralityFromMetric D := by
-  first | exact @GlobalTheory.LocalisationBoundAtPoint.boundAtPoint_all_localisations_of_objectConditions | exact GlobalTheory.LocalisationBoundAtPoint.boundAtPoint_all_localisations_of_objectConditions | (intros; apply GlobalTheory.LocalisationBoundAtPoint.boundAtPoint_all_localisations_of_objectConditions <;> assumption)
+  first | exact @GlobalTheory.LocalisationBoundAtPoint.boundAtPoint_all_localisations_of_objectConditions

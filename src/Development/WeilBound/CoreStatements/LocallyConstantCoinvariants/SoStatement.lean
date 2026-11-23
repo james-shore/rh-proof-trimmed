@@ -205,7 +205,7 @@ theorem mem_so (hM : M.IsGood ψ) (t : E →ₐ[F] Fv F v) {Ψ} (hΨ : Ψ ∈ sc
       by_cases h : w = v
       · subst h
         simp [s]
-      · simp [s, h, Function.update_of_ne h]
+      · simp [s, h]
     unfold GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure
     rw [key, finprod_mul_distrib hfs hfin, finprod_eq_single s v fun w hw => if_neg hw]
     simp only [s, if_true]

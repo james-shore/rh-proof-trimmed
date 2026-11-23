@@ -123,10 +123,10 @@ theorem exists_algHom_over_of_bijective_algebraMap (hbij : Function.Bijective (a
   let E : K₀ ≃ₐ[Qp] K := AlgEquiv.ofBijective (IsScalarTower.toAlgHom Qp K₀ K) hbij
   refine ⟨(W.emb c).comp E.symm.toAlgHom, ?_, fun x => ?_⟩
   · ext x
-    simp only [AlgHom.comp_apply, AlgEquiv.coe_toAlgHom, AlgHom.coe_coe]
+    simp only [AlgHom.comp_apply, AlgEquiv.coe_toAlgHom]
     congr 1
     exact E.symm_apply_apply x
-  · simp only [AlgHom.comp_apply, AlgEquiv.coe_toAlgHom, AlgHom.coe_coe]
+  · simp only [AlgHom.comp_apply, AlgEquiv.coe_toAlgHom]
     congr 1
     exact E.symm_apply_apply x
 

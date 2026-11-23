@@ -50,4 +50,4 @@ open GlobalTheory.FlagFibre (Low)
 open scoped Matrix ContDiff ComplexOrder ENNReal Classical
 
 theorem _root_.GlobalTheory.T.formPart_compl_complexPointsInOpen_eq_zero : ∀ (F : Type) [Field F] (σ : F →+* ℂ) (Y : Var F) (β : (atlas Y σ).Fld) (W : Y.X.Opens), genericPoint Y.X ∈ W → ∀ s : ℤˣ, (atlas Y σ).part β s (ptsIn Y.str σ W)ᶜ = 0 := by
-  first | exact @GlobalTheory.FlagCell2Null.part_compl_ptsIn | exact GlobalTheory.FlagCell2Null.part_compl_ptsIn | (intros; apply GlobalTheory.FlagCell2Null.part_compl_ptsIn <;> assumption)
+  first | exact @GlobalTheory.FlagCell2Null.part_compl_ptsIn

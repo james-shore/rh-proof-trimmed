@@ -54,4 +54,4 @@ theorem _root_.GlobalTheory.T.local_operators_product_compatible : ∀ {F : Type
     Set.SurjOn e (schA F κ : Set ((κ → AF F) → ℂ)) (schA F κ : Set ((κ → AF F) → ℂ)) →
     (∀ v, ev v (stdInd F κ v) ≠ 0) →
     ∀ v, ∀ χ ∈ SB (κ → Fv F v), ∃ ψ ∈ SB (κ → Fv F v), ev v ψ = χ := by
-  first | exact @GlobalTheory.EvOnto.ev_surjOn_SB | exact GlobalTheory.EvOnto.ev_surjOn_SB | (intros; apply GlobalTheory.EvOnto.ev_surjOn_SB <;> assumption)
+  first | exact @GlobalTheory.EvOnto.ev_surjOn_SB

@@ -60,4 +60,4 @@ theorem _root_.GlobalTheory.T.finiteGeneratedSubring_localised_basicOpen : ∀ {
     (x : Γ(Sp K, gp ⁻¹ᵁ S.basicOpen f)), x ∈ finFam gp V t (S.basicOpen f) →
     ∃ (k : ℕ) (y : Γ(Sp K, gp ⁻¹ᵁ W)), y ∈ finFam gp V t W ∧
       resK gp (S.basicOpen_le f) y = resK gp (S.basicOpen_le f) ((gp.app W).hom f) ^ k * x := by
-  first | exact @GlobalTheory.Mum.finFam_basicOpen_loc | exact GlobalTheory.Mum.finFam_basicOpen_loc | (intros; apply GlobalTheory.Mum.finFam_basicOpen_loc <;> assumption)
+  first | exact @GlobalTheory.Mum.finFam_basicOpen_loc

@@ -53,4 +53,4 @@ theorem _root_.GlobalTheory.T.skewConjGram_sigmaConjTranspose_trace_identity : �
   ∀ (n' : ℕ) (JT : GL (Fin n') L) (y : Matrix (Fin n') (Fin n) L),
     Matrix.trace ((M * Γ * Formalism.UG.cT σ M * (JS : Matrix (Fin n) (Fin n) L)) * ((JS⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) * Formalism.UG.cT σ y * (JT : Matrix (Fin n') (Fin n') L) * y) =
       Matrix.trace (Γ * (Formalism.UG.cT σ (y * M) * (JT : Matrix (Fin n') (Fin n') L) * (y * M))) := by
-  first | exact @GlobalTheory.skewConj_cT_mul_and_trace | exact GlobalTheory.skewConj_cT_mul_and_trace | (intros; apply GlobalTheory.skewConj_cT_mul_and_trace <;> assumption)
+  first | exact @GlobalTheory.skewConj_cT_mul_and_trace

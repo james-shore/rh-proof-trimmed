@@ -47,4 +47,4 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped LaurentSeries
 
 theorem _root_.GlobalTheory.T.nonempty_unifWitnessData_of_isUnf : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (r : ℕ) (U : Unf Xo c σ r), IsUnf U → Nonempty (UnfWit U) := by
-  first | exact @GlobalTheory.ArcQ.nonempty_unfWit_of_isUnf | exact GlobalTheory.ArcQ.nonempty_unfWit_of_isUnf | (intros; apply GlobalTheory.ArcQ.nonempty_unfWit_of_isUnf <;> assumption)
+  first | exact @GlobalTheory.ArcQ.nonempty_unfWit_of_isUnf
